@@ -13,7 +13,7 @@ import { R_MuzzleFlashUpdate } from './r_muzzle.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_newdark, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow } from './gl_post.js';
+import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1447,6 +1447,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_hdr );
 	Cvar_RegisterVariable( r_newdark );
+	Cvar_RegisterVariable( r_newedges );
 	Cvar_RegisterVariable( r_bloom );
 	Cvar_RegisterVariable( r_volumetric );
 	Cvar_RegisterVariable( r_caustics );

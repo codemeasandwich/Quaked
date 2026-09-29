@@ -15,8 +15,8 @@ const SHOULDER_RIGHT = 15;
 const SHOULDER_UP = - 9;
 const SHOULDER_FORWARD = 4;
 
-export const FLASHLIGHT_OUTER = 0.90; // cosine of the beam's outer edge (about 26 degrees)
-export const FLASHLIGHT_INNER = 0.97; // and of its bright core (about 14 degrees)
+export const FLASHLIGHT_OUTER = 0.936; // cosine of the beam's outer edge (about 20 degrees)
+export const FLASHLIGHT_INNER = 0.948; // where the edge ends: the beam has a defined rim (about 18.5 degrees)
 
 const beam = { on: false, pos: [ 0, 0, 0 ], dir: [ 1, 0, 0 ] };
 let seeded = false;

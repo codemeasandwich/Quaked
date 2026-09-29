@@ -42,6 +42,11 @@ export const r_caustics = new cvar_t( 'r_caustics', '1' ); // strength of light 
 // dark (1 = as baked).  Light that does not come from a source is not invented.
 export const r_newdark = new cvar_t( 'r_newdark', '2.8' );
 
+// Accent on the corners and edges where surfaces really meet at an angle: the
+// inside of a corner darkens, the outer edge catches a little light.  1 = as
+// designed, 0 = off.  Faces in one plane (however they are cut up) are untouched.
+export const r_newedges = new cvar_t( 'r_newedges', '1' );
+
 // shared with the lit world materials' shader
 const lightCurve = { value: 1 };
 
@@ -62,7 +67,7 @@ const SCATTER = 0.03; // point light in-scattering
 const LIGHT_FLOOR = 0.14; // light on a surface the lightmap left dark
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
 const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky scales it
-const SPOT_POWER = 1.5; // the flashlight, in the same units as the point lights
+const SPOT_POWER = 2.4; // the flashlight, in the same units as the point lights
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
 const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
@@ -1170,7 +1175,7 @@ void main() {
 			beam += uSpotCol * cone / ( 1.0 + dist * dist / ( 300.0 * 300.0 ) );
 		}
 		float phase = henyeyGreenstein( dot( dirV, uSpotDir ), 0.5 );
-		result += beam * ds * 0.00004 * phase;
+		result += beam * ds * 0.000006 * phase;
 	}
 
 	gl_FragColor = vec4( result + acc * uScatter, 1.0 );
@@ -1245,6 +1250,7 @@ uniform float uSunSurface;
 uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
 uniform float uLightFloor;
+uniform float uEdge;
 uniform float uSaturation;
 uniform float uContrast;
 uniform float uBright;
@@ -1292,6 +1298,37 @@ vec3 shoulder( vec3 c ) {
 	return mix( scaled, vec3( mapped ), hot * 0.45 );
 }
 
+// Ambient accent at real creases.  The surface's plane comes from the depth
+// buffer (not the normal map, whose bumps are not corners); each neighbour within
+// a few units is above the plane (the other wall of an inside corner: darken) or
+// below it (past an outer edge: lighten).  Neighbours on the plane, which is what
+// a flat wall made of several pieces looks like, count for nothing.
+float creaseAccent( vec3 P, vec3 Ng ) {
+	float dist = - P.z;
+	if ( dist < 24.0 ) return 1.0; // the weapon, right at the eye
+	const float R = 7.0;
+	vec2 px = clamp( vec2( uProj[ 0 ][ 0 ], uProj[ 1 ][ 1 ] ) * 0.5 * ( R / dist ), uTexel * 1.5, uTexel * 16.0 );
+	float occ = 0.0;
+	float edge = 0.0;
+	for ( int i = 0; i < 8; i ++ ) {
+		float a = float( i ) * 0.785398;
+		vec2 dir = vec2( cos( a ), sin( a ) );
+		for ( int k = 1; k <= 2; k ++ ) {
+			vec3 Pn = viewPosAt( vUv + dir * px * ( float( k ) * 0.5 ) );
+			vec3 v = Pn - P;
+			float vd = length( v );
+			if ( vd < 0.5 ) continue;
+			float h = dot( v, Ng ) / vd;
+			float w = 1.0 - smoothstep( R * 1.3, R * 3.5, vd ); // far things are another surface, not a corner
+			if ( h > 0.18 ) occ += ( h - 0.18 ) * w;
+			else if ( h < - 0.18 ) edge += ( - h - 0.18 ) * w;
+		}
+	}
+	occ /= 16.0;
+	edge /= 16.0;
+	return ( 1.0 - clamp( occ * 6.0, 0.0, 0.8 ) * uEdge ) * ( 1.0 + clamp( edge * 4.0, 0.0, 0.45 ) * uEdge );
+}
+
 void main() {
 	vec3 scene = texture2D( tScene, vUv ).rgb;
 	float d = texture2D( tDepth, vUv ).x;
@@ -1302,6 +1339,7 @@ void main() {
 
 	vec3 c = scene;
 	vec3 Nw = vec3( 0.0, 0.0, 1.0 );
+	float spotMask = 0.0;
 
 	// Direct light from the sun and the nearby lights, applied to what the
 	// classic lightmaps already put on the surface.
@@ -1327,6 +1365,14 @@ void main() {
 			if ( dot( N, P ) > 0.0 ) N = - N;
 		}
 		Nw = normalize( mat3( uViewInv ) * N );
+
+		// the plane of the surface from the depth buffer, for the corner accent
+		vec3 dxG = viewPosAt( vUv + vec2( uTexel.x, 0.0 ) ) - P;
+		vec3 dxL = P - viewPosAt( vUv - vec2( uTexel.x, 0.0 ) );
+		vec3 dyG = viewPosAt( vUv + vec2( 0.0, uTexel.y ) ) - P;
+		vec3 dyL = P - viewPosAt( vUv - vec2( 0.0, uTexel.y ) );
+		dxG = abs( dxG.z ) < abs( dxL.z ) ? dxG : dxL;
+		dyG = abs( dyG.z ) < abs( dyL.z ) ? dyG : dyL;
 
 		vec3 relit = vec3( 0.0 );
 
@@ -1375,7 +1421,9 @@ void main() {
 			float sd = length( Ls );
 			vec3 Sn = Ls / max( sd, 1.0 );
 			float sndl = max( dot( N, Sn ), 0.0 );
-			float cone = smoothstep( uSpotCone.x, uSpotCone.y, dot( - Sn, uSpotDir ) );
+			float cosS = dot( - Sn, uSpotDir );
+			// a defined edge, and a brighter core
+			float cone = smoothstep( uSpotCone.x, uSpotCone.y, cosS ) * mix( 0.62, 1.0, smoothstep( uSpotCone.y, 0.995, cosS ) );
 			if ( sndl > 0.0 && cone > 0.0 && sd < 1500.0 ) {
 				float fall = 1.0 / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) );
 				fall *= 1.0 - smoothstep( 800.0, 1500.0, sd );
@@ -1391,6 +1439,7 @@ void main() {
 				}
 				svis /= float( RELIGHT_STEPS );
 				spot = uSpotCol * sndl * fall * cone * svis * svis;
+				spotMask = clamp( sndl * fall * cone * svis * svis * 1.6, 0.0, 1.0 );
 			}
 		}
 
@@ -1398,6 +1447,16 @@ void main() {
 		// wash out to grey where a light falls on it)
 		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
 		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 2.0 + 0.2 * tint );
+
+		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
+		if ( spotMask > 0.0 ) {
+			float ls = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+			c = mix( vec3( ls ), c, 1.0 + 0.85 * spotMask );
+			c *= 1.0 + 0.18 * spotMask;
+		}
+
+		// corners and edges
+		if ( uEdge > 0.0 ) c *= creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through
@@ -1600,6 +1659,7 @@ function createPipeline() {
 			uSunSurfaceCol: { value: new THREE.Vector3( ...SUN_SURFACE_COLOR ) },
 			uLightSurface: { value: LIGHT_SURFACE },
 			uLightFloor: { value: LIGHT_FLOOR },
+			uEdge: { value: 1 },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
 			uBright: { value: 0.6 },
@@ -1917,6 +1977,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	}
 
+	cm.uEdge.value = Math.max( 0, r_newedges.value );
 	cm.uTime.value = time;
 	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];
