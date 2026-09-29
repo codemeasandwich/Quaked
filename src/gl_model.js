@@ -7,6 +7,7 @@
 import * as THREE from 'three';
 import { Sys_Error } from './sys.js';
 import { Con_Printf, COM_FileBase } from './common.js';
+import { Cvar_VariableValue } from './cvar.js';
 import { d_8to24table, vid } from './vid.js';
 import { COM_LoadFile } from './pak.js';
 import { DotProduct, VectorCopy, Length } from './mathlib.js';
@@ -742,6 +743,8 @@ function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbrig
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.generateMipmaps = mipmap;
 	texture.colorSpace = THREE.SRGBColorSpace;
+	// the HDR ("Newer") lighting also filters textures anisotropically; classic stays as it was
+	if ( Cvar_VariableValue( 'r_hdr' ) !== 0 ) texture.anisotropy = 16;
 	// Note: flipY defaults to false for DataTexture, which is correct for Quake
 	// Quake's UV T=0 at top + texture row 0 at V=0 means no flip is needed
 	texture.needsUpdate = true;

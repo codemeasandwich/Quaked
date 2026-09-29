@@ -1,20 +1,24 @@
-// HDR lighting pipeline: emissive surfaces, volumetric light and bloom.
+// HDR lighting pipeline: emissive surfaces, sun and light shafts, relighting
+// and bloom.
 //
 // The world is rendered into a half-float target (with a depth texture) instead
 // of straight to the screen, so surfaces can be brighter than white.  Then:
 //
-//   1. Volumetric pass (half res).  For every pixel the view ray is marched
-//      analytically through the inverse-square field of the nearest lights
-//      (map light entities, emissive surfaces such as lava and light panels,
-//      dynamic lights), and each light is occluded by a screen-space ray march
-//      against the depth buffer.  That is what carves light shafts out of
-//      pillars and grates.  Sky openings add a sun shaft.
-//   2. Bloom: threshold + mip chain, so anything over-bright glows.
-//   3. Composite: ambient haze, exposure, and a filmic shoulder that keeps the
-//      classic look below white and rolls highlights off instead of clipping.
+//   1. Sun.  A shadow map of the world is rendered from the sky's direction
+//      (sky is not a shadow caster, so skylights and windows let light in).
+//      Every view ray is marched through it: the lit stretches of air become
+//      the light shafts, and lit surfaces get direct sun on top of their
+//      lightmaps.
+//   2. Lights.  Map lights, emissive surfaces (lava, light panels) and dynamic
+//      lights scatter through the air (analytic inverse-square along the view
+//      ray) and relight nearby surfaces, occluded by screen-space ray marches
+//      against the depth buffer.
+//   3. Bloom: threshold + mip chain, so anything over-bright glows.
+//   4. Composite: grade, exposure, and a filmic shoulder that rolls highlights
+//      off instead of clipping.
 //
 // It is a rasterised approximation (no path tracing): light does not bounce,
-// and occlusion only knows about what is on screen.
+// and point-light occlusion only knows about what is on screen.
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
@@ -32,15 +36,35 @@ const SURF_DRAWTURB = 0x10;
 
 export const MAX_VOLUME_LIGHTS = 8;
 
+// Objects on this layer cast sun shadows (the world; sky deliberately is not)
+export const SUN_SHADOW_LAYER = 3;
+
 // Tunables
 const EMISSIVE_BOOST = 3.0; // fullbright texels, in HDR
 const LAVA_BOOST = 2.6;
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
-const SCATTER = 0.07; // in-scattering coefficient (radiance per unit of light power)
-const HAZE_DENSITY = 0.00011; // ambient extinction per unit
+const SCATTER = 0.03; // point light in-scattering
+const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
+const HAZE_DENSITY = 0.00004; // ambient extinction per unit
 const MAX_RAY = 3600;
-const SUN_DIR_WORLD = [ 0.35, 0.22, 0.91 ];
-const SUN_COLOR = [ 1.0, 0.72, 0.8 ];
+const SUN_COLOR = [ 3.4, 2.7, 1.9 ];
+const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
+const SUN_SURFACE = 1.6; // direct sun on surfaces
+const SATURATION = 1.18;
+const CONTRAST = 0.5; // extra gain for mid-tones and highlights
+const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
+const BUMP = 0.55; // strength of the screen-space relief
+
+// direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
+let sunDirection = [ - 0.28, - 0.18, 0.94 ];
+
+function sunFromAngles( yaw, pitch ) {
+
+	const y = yaw * Math.PI / 180, p = pitch * Math.PI / 180;
+	// a sun at pitch -90 shines straight down, so the direction to it points up
+	return [ Math.cos( y ) * Math.cos( p ) * - 1, Math.sin( y ) * Math.cos( p ) * - 1, - Math.sin( p ) ];
+
+}
 
 //============================================================================
 // Emissive materials
@@ -220,13 +244,24 @@ export function R_BuildWorldLights( model ) {
 
 	worldLights = [];
 	hasSky = false;
+	sunDirection = [ - 0.28, - 0.18, 0.94 ];
 
 	if ( model == null || model.nodes == null ) return worldLights;
 
 	// light entities
 	if ( model.entities != null ) {
 
-		for ( const ent of R_ParseEntityLump( model.entities ) ) {
+		const entities = R_ParseEntityLump( model.entities );
+
+		const world = entities.find( e => e.classname === 'worldspawn' );
+		if ( world != null && world._sun_mangle != null ) {
+
+			const a = parseVector( world._sun_mangle, null );
+			if ( a != null ) sunDirection = sunFromAngles( a[ 0 ], a[ 1 ] );
+
+		}
+
+		for ( const ent of entities ) {
 
 			if ( ent.classname == null || ent.classname.indexOf( 'light' ) !== 0 || ent.origin == null ) continue;
 
@@ -439,26 +474,27 @@ void main() {
 	gl_Position = vec4( position.xy, 0.0, 1.0 );
 }`;
 
-const VOLUME_FRAGMENT = `
+// shared by the volumetric and composite passes
+const COMMON_FRAGMENT = `
 precision highp float;
 #include <packing>
 uniform sampler2D tDepth;
+uniform sampler2D tSunShadow;
 uniform mat4 uProj;
 uniform mat4 uProjInv;
+uniform mat4 uViewInv;
+uniform mat4 uSunVP;
 uniform float uNear;
 uniform float uFar;
 uniform int uCount;
 uniform vec4 uLightPos[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec4 uLightCol[ ${MAX_VOLUME_LIGHTS} ];
-uniform vec3 uSunDir;
+uniform vec3 uSunDirV;
 uniform vec3 uSunCol;
 uniform float uSunOn;
-uniform float uScatter;
+uniform float uShadowTexel;
 uniform float uMaxRay;
 varying vec2 vUv;
-
-const int SHADOW_STEPS = 14;
-const int SHAFT_STEPS = 28;
 
 float sceneDist( vec2 uv ) {
 	float d = texture2D( tDepth, uv ).x;
@@ -474,31 +510,72 @@ float henyeyGreenstein( float c, float g ) {
 	return ( 1.0 - g * g ) / pow( 1.0 + g * g - 2.0 * g * c, 1.5 );
 }
 
+// 1 where the sun reaches a world-space point, 0 in shadow
+float sunLit( vec3 worldPos ) {
+	vec3 u = ( uSunVP * vec4( worldPos, 1.0 ) ).xyz * 0.5 + 0.5;
+	if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) return 1.0;
+	return step( u.z - 0.0012, texture2D( tSunShadow, u.xy ).x );
+}
+
+float sunLitSoft( vec3 worldPos ) {
+	vec3 u = ( uSunVP * vec4( worldPos, 1.0 ) ).xyz * 0.5 + 0.5;
+	if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) return 1.0;
+	float ref = u.z - 0.0012;
+	float t = uShadowTexel;
+	float lit = step( ref, texture2D( tSunShadow, u.xy + vec2( -t, -t ) ).x )
+		+ step( ref, texture2D( tSunShadow, u.xy + vec2( t, -t ) ).x )
+		+ step( ref, texture2D( tSunShadow, u.xy + vec2( -t, t ) ).x )
+		+ step( ref, texture2D( tSunShadow, u.xy + vec2( t, t ) ).x );
+	return lit * 0.25;
+}
+`;
+
+const VOLUME_FRAGMENT = COMMON_FRAGMENT + `
+uniform float uSunScatter;
+uniform float uScatter;
+
+const int SHADOW_STEPS = 12;
+const int SUN_STEPS = 48;
+
 void main() {
 	vec4 r = uProjInv * vec4( vUv * 2.0 - 1.0, 1.0, 1.0 );
 	vec3 dirV = normalize( r.xyz / r.w );
 
 	float zd = sceneDist( vUv );
-	float D = zd > 1e5 ? uMaxRay : min( zd / max( - dirV.z, 0.05 ), uMaxRay );
+	float D = zd > 1e5 ? min( uMaxRay, 1800.0 ) : min( zd / max( - dirV.z, 0.05 ), uMaxRay );
 	float jit = noise( gl_FragCoord.xy );
 
-	vec3 acc = vec3( 0.0 );
+	vec3 result = vec3( 0.0 );
 
+	// sun: march the view ray through the sun's shadow map
+	if ( uSunOn > 0.5 ) {
+		float dMax = min( D, zd > 1e5 ? 500.0 : 2600.0 );
+		float ds = dMax / float( SUN_STEPS );
+		float lit = 0.0;
+		for ( int k = 0; k < SUN_STEPS; k ++ ) {
+			float t = ( float( k ) + jit ) * ds;
+			vec3 pw = ( uViewInv * vec4( dirV * t, 1.0 ) ).xyz;
+			lit += sunLit( pw );
+		}
+		lit *= ds;
+		float phase = henyeyGreenstein( dot( dirV, uSunDirV ), 0.55 );
+		result += uSunCol * lit * uSunScatter * phase * ( zd > 1e5 ? 0.35 : 1.0 );
+	}
+
+	// point lights: analytic inverse-square scattering, occluded on screen
+	vec3 acc = vec3( 0.0 );
 	for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
 		if ( i >= uCount ) break;
 
 		vec3 L = uLightPos[ i ].xyz;
 		float R = uLightPos[ i ].w;
 
-		// closed form of the integral of 1 / |P - L|^2 along the ray
 		float t0 = dot( L, dirV );
 		float h = sqrt( max( dot( L, L ) - t0 * t0, 0.0 ) + R * R );
 		float integral = ( atan( ( D - t0 ) / h ) + atan( t0 / h ) ) / h;
-		// finite reach: the inverse-square tail would otherwise fog whole rooms
 		float range = uLightCol[ i ].w;
 		integral *= 1.0 - smoothstep( 0.25 * range, range, h );
 
-		// is the point of the ray nearest the light actually lit?
 		vec3 Q = dirV * clamp( t0, 0.0, D );
 		float lit = 0.0;
 		for ( int k = 0; k < SHADOW_STEPS; k ++ ) {
@@ -508,9 +585,8 @@ void main() {
 			vec4 c = uProj * vec4( P, 1.0 );
 			vec2 uv = c.xy / c.w * 0.5 + 0.5;
 			if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { lit += 1.0; continue; }
-			float sd = sceneDist( uv );
 			float bias = 6.0 + 0.015 * ( - P.z );
-			lit += sd < ( - P.z ) - bias ? 0.0 : 1.0;
+			lit += sceneDist( uv ) < ( - P.z ) - bias ? 0.0 : 1.0;
 		}
 		lit /= float( SHADOW_STEPS );
 
@@ -518,31 +594,7 @@ void main() {
 		acc += uLightCol[ i ].rgb * integral * lit * lit * phase;
 	}
 
-	vec3 result = acc * uScatter;
-
-	// sun shafts through openings to the sky
-	if ( uSunOn > 0.5 ) {
-		vec4 sc = uProj * vec4( uSunDir * 1000.0, 1.0 );
-		if ( sc.w > 0.0 ) {
-			vec2 suv = sc.xy / sc.w * 0.5 + 0.5;
-			vec2 delta = suv - vUv;
-			float open = 0.0;
-			for ( int k = 0; k < SHAFT_STEPS; k ++ ) {
-				float s = ( float( k ) + jit ) / float( SHAFT_STEPS );
-				vec2 uv = vUv + delta * s;
-				float sky = 0.0;
-				if ( uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0 )
-					sky = sceneDist( uv ) > 1e5 ? 1.0 : 0.0;
-				open += sky * ( 1.0 - s * 0.6 );
-			}
-			open /= float( SHAFT_STEPS );
-			float facing = pow( clamp( dot( dirV, uSunDir ), 0.0, 1.0 ), 2.0 );
-			float thick = 1.0 - exp( - 0.00045 * D );
-			result += uSunCol * pow( open, 3.0 ) * facing * thick * 0.5;
-		}
-	}
-
-	gl_FragColor = vec4( result, 1.0 );
+	gl_FragColor = vec4( result + acc * uScatter, 1.0 );
 }`;
 
 const BLOOM_PREFILTER_FRAGMENT = `
@@ -598,24 +650,30 @@ void main() {
 	gl_FragColor = vec4( texture2D( tHigh, vUv ).rgb + c / 12.0 * uWeight, 1.0 );
 }`;
 
-const COMPOSITE_FRAGMENT = `
-precision highp float;
+const COMPOSITE_FRAGMENT = COMMON_FRAGMENT + `
 #include <common>
-#include <packing>
 uniform sampler2D tScene;
-uniform sampler2D tDepth;
 uniform sampler2D tVolume;
 uniform sampler2D tBloom;
-uniform mat4 uProjInv;
-uniform float uNear;
-uniform float uFar;
+uniform vec2 uTexel;
 uniform float uExposure;
 uniform float uBloom;
 uniform float uVolume;
 uniform float uHaze;
 uniform vec3 uHazeColor;
-uniform float uMaxRay;
-varying vec2 vUv;
+uniform float uSunSurface;
+uniform float uLightSurface;
+uniform float uSaturation;
+uniform float uContrast;
+uniform float uBump;
+
+const int RELIGHT_STEPS = 8;
+
+vec3 viewPosAt( vec2 uv ) {
+	float d = texture2D( tDepth, uv ).x;
+	vec4 p = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );
+	return p.xyz / p.w;
+}
 
 // keeps values under the knee untouched; rolls highlights off toward white
 vec3 shoulder( vec3 c ) {
@@ -625,7 +683,6 @@ vec3 shoulder( vec3 c ) {
 	float range = 1.0 - knee;
 	float mapped = knee + range * ( 1.0 - exp( - ( m - knee ) / range ) );
 	vec3 scaled = c * ( mapped / m );
-	// very hot colours desaturate toward white, like an overexposed sensor
 	float hot = smoothstep( 1.0, 4.0, m );
 	return mix( scaled, vec3( mapped ), hot * 0.45 );
 }
@@ -638,14 +695,89 @@ void main() {
 	vec3 dirV = normalize( r.xyz / r.w );
 	float D = d >= 0.99999 ? uMaxRay : min( - perspectiveDepthToViewZ( d, uNear, uFar ) / max( - dirV.z, 0.05 ), uMaxRay );
 
+	vec3 c = scene;
+
+	// Direct light from the sun and the nearby lights, applied to what the
+	// classic lightmaps already put on the surface.
+	if ( d < 0.99999 ) {
+		vec3 P = viewPosAt( vUv );
+		vec3 Pl = viewPosAt( vUv - vec2( uTexel.x, 0.0 ) );
+		vec3 Pr = viewPosAt( vUv + vec2( uTexel.x, 0.0 ) );
+		vec3 Pd = viewPosAt( vUv - vec2( 0.0, uTexel.y ) );
+		vec3 Pu = viewPosAt( vUv + vec2( 0.0, uTexel.y ) );
+		vec3 dx = abs( Pr.z - P.z ) < abs( P.z - Pl.z ) ? Pr - P : P - Pl;
+		vec3 dy = abs( Pu.z - P.z ) < abs( P.z - Pd.z ) ? Pu - P : P - Pd;
+		vec3 N = normalize( cross( dx, dy ) );
+		if ( dot( N, P ) > 0.0 ) N = - N;
+
+		// relief: the texture's own brightness pattern tilts the normal, so the
+		// stone catches the light instead of looking painted on
+		float lc = dot( scene, vec3( 0.333 ) );
+		float lx = dot( texture2D( tScene, vUv + vec2( uTexel.x, 0.0 ) ).rgb, vec3( 0.333 ) )
+			- dot( texture2D( tScene, vUv - vec2( uTexel.x, 0.0 ) ).rgb, vec3( 0.333 ) );
+		float ly = dot( texture2D( tScene, vUv + vec2( 0.0, uTexel.y ) ).rgb, vec3( 0.333 ) )
+			- dot( texture2D( tScene, vUv - vec2( 0.0, uTexel.y ) ).rgb, vec3( 0.333 ) );
+		vec2 slope = vec2( lx, ly ) / ( lc + 0.06 );
+		slope = clamp( slope, vec2( - 1.5 ), vec2( 1.5 ) );
+		N = normalize( N - uBump * ( slope.x * vec3( 1.0, 0.0, 0.0 ) + slope.y * vec3( 0.0, 1.0, 0.0 ) ) );
+
+		vec3 relit = vec3( 0.0 );
+
+		if ( uSunOn > 0.5 ) {
+			float ndl = max( dot( N, uSunDirV ), 0.0 );
+			if ( ndl > 0.0 ) {
+				vec3 pw = ( uViewInv * vec4( P + N * 1.5, 1.0 ) ).xyz;
+				relit += uSunCol * uSunSurface * ndl * sunLitSoft( pw );
+			}
+		}
+
+		float jit = noise( gl_FragCoord.xy );
+		for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
+			if ( i >= uCount ) break;
+			vec3 L = uLightPos[ i ].xyz - P;
+			float dist = length( L );
+			float range = uLightCol[ i ].w;
+			if ( dist > range ) continue;
+			float ndl = max( dot( N, L / dist ), 0.0 );
+			if ( ndl <= 0.0 ) continue;
+
+			float fall = 1.0 / ( 1.0 + dist * dist / ( 60.0 * 60.0 ) );
+			fall *= 1.0 - smoothstep( 0.55 * range, range, dist );
+
+			float vis = 0.0;
+			for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
+				float s = ( float( k ) + jit ) / float( RELIGHT_STEPS );
+				vec3 Q = mix( P + N * 2.0, uLightPos[ i ].xyz, s * 0.95 );
+				if ( Q.z > - uNear ) { vis += 1.0; continue; }
+				vec4 cq = uProj * vec4( Q, 1.0 );
+				vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
+				if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { vis += 1.0; continue; }
+				vis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
+			}
+			vis /= float( RELIGHT_STEPS );
+
+			relit += uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
+		}
+
+		c = scene * ( 1.0 + relit );
+	}
+
 	// ambient haze
 	float T = exp( - uHaze * D );
-	vec3 c = scene * T + uHazeColor * ( 1.0 - T );
+	c = c * T + uHazeColor * ( 1.0 - T );
 
 	c += texture2D( tVolume, vUv ).rgb * uVolume;
 	c += texture2D( tBloom, vUv ).rgb * uBloom;
 
-	c = shoulder( max( c * uExposure, 0.0 ) );
+	c = max( c * uExposure, 0.0 );
+
+	// grade: punchier mid-tones and highlights (darks are left alone), richer colour
+	float l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+	c *= 1.0 + uContrast * smoothstep( 0.04, 0.5, l );
+	l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+	c = mix( vec3( l ), c, uSaturation );
+
+	c = shoulder( c );
 
 	gl_FragColor = vec4( c, 1.0 );
 	#include <colorspace_fragment>
@@ -656,6 +788,9 @@ void main() {
 //============================================================================
 
 const BLOOM_LEVELS = 5;
+const SUN_SHADOW_SIZE = 2048;
+const SUN_SHADOW_EXTENT = 1700; // half-size of the shadowed area around the camera, in units
+const SUN_SHADOW_DEPTH = 3400;
 
 let gpu = null;
 
@@ -702,25 +837,46 @@ function createPipeline() {
 
 	}
 
+	// uniforms shared by the volumetric and composite passes
+	const shared = {
+		tDepth: { value: null },
+		tSunShadow: { value: null },
+		uProj: { value: new THREE.Matrix4() },
+		uProjInv: { value: new THREE.Matrix4() },
+		uViewInv: { value: new THREE.Matrix4() },
+		uSunVP: { value: new THREE.Matrix4() },
+		uNear: { value: 4 }, uFar: { value: 4096 },
+		uCount: { value: 0 },
+		uLightPos: { value: lightPos },
+		uLightCol: { value: lightCol },
+		uSunDirV: { value: new THREE.Vector3() },
+		uSunCol: { value: new THREE.Vector3( ...SUN_COLOR ) },
+		uSunOn: { value: 0 },
+		uShadowTexel: { value: 0.5 / SUN_SHADOW_SIZE },
+		uMaxRay: { value: MAX_RAY }
+	};
+
+	const sunCamera = new THREE.OrthographicCamera( - SUN_SHADOW_EXTENT, SUN_SHADOW_EXTENT,
+		SUN_SHADOW_EXTENT, - SUN_SHADOW_EXTENT, 1, SUN_SHADOW_DEPTH * 2 );
+
 	return {
 		width: 0, height: 0,
-		scene, mesh,
+		scene, mesh, shared,
 		camera: new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 ),
 		hdr: null, volume: null, down: [], up: [],
-		volumeMaterial: makeMaterial( VOLUME_FRAGMENT, {
-			tDepth: { value: null },
-			uProj: { value: new THREE.Matrix4() },
-			uProjInv: { value: new THREE.Matrix4() },
-			uNear: { value: 4 }, uFar: { value: 4096 },
-			uCount: { value: 0 },
-			uLightPos: { value: lightPos },
-			uLightCol: { value: lightCol },
-			uSunDir: { value: new THREE.Vector3() },
-			uSunCol: { value: new THREE.Vector3( ...SUN_COLOR ) },
-			uSunOn: { value: 0 },
-			uScatter: { value: SCATTER },
-			uMaxRay: { value: MAX_RAY }
+		sunCamera,
+		sunTarget: new THREE.WebGLRenderTarget( SUN_SHADOW_SIZE, SUN_SHADOW_SIZE, {
+			depthBuffer: true,
+			depthTexture: new THREE.DepthTexture( SUN_SHADOW_SIZE, SUN_SHADOW_SIZE ),
+			generateMipmaps: false,
+			minFilter: THREE.NearestFilter,
+			magFilter: THREE.NearestFilter
 		} ),
+		sunOverride: new THREE.MeshBasicMaterial( { colorWrite: false, side: THREE.DoubleSide } ),
+		volumeMaterial: makeMaterial( VOLUME_FRAGMENT, Object.assign( {
+			uSunScatter: { value: SUN_SCATTER },
+			uScatter: { value: SCATTER }
+		}, shared ) ),
 		prefilterMaterial: makeMaterial( BLOOM_PREFILTER_FRAGMENT, {
 			tScene: { value: null }, uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uThreshold: { value: 1 }
@@ -732,16 +888,18 @@ function createPipeline() {
 			tLow: { value: null }, tHigh: { value: null },
 			uTexel: { value: new THREE.Vector2() }, uWeight: { value: 1 }
 		} ),
-		compositeMaterial: makeMaterial( COMPOSITE_FRAGMENT, {
-			tScene: { value: null }, tDepth: { value: null },
-			tVolume: { value: null }, tBloom: { value: null },
-			uProjInv: { value: new THREE.Matrix4() },
-			uNear: { value: 4 }, uFar: { value: 4096 },
+		compositeMaterial: makeMaterial( COMPOSITE_FRAGMENT, Object.assign( {
+			tScene: { value: null }, tVolume: { value: null }, tBloom: { value: null },
+			uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uBloom: { value: 0.6 }, uVolume: { value: 1 },
 			uHaze: { value: HAZE_DENSITY },
-			uHazeColor: { value: new THREE.Vector3( 0.018, 0.014, 0.014 ) },
-			uMaxRay: { value: MAX_RAY }
-		} )
+			uHazeColor: { value: new THREE.Vector3( 0.006, 0.005, 0.005 ) },
+			uSunSurface: { value: SUN_SURFACE },
+			uLightSurface: { value: LIGHT_SURFACE },
+			uSaturation: { value: SATURATION },
+			uContrast: { value: CONTRAST },
+			uBump: { value: BUMP }
+		}, shared ) )
 	};
 
 }
@@ -829,46 +987,111 @@ export function R_PostBind( renderer ) {
 
 }
 
+const _sunRight = new THREE.Vector3();
+const _sunUp = new THREE.Vector3();
+const _sunCenter = new THREE.Vector3();
+const _sunDir = new THREE.Vector3();
+const _clearColor = new THREE.Color();
+
+// Depth of the world as the sun sees it.  Sky is not on the shadow layer, so
+// skylights and windows let the light through.
+function renderSunShadow( renderer, scene, camera ) {
+
+	const p = gpu;
+	const cam = p.sunCamera;
+
+	_sunDir.set( sunDirection[ 0 ], sunDirection[ 1 ], sunDirection[ 2 ] ).normalize();
+
+	const e = camera.matrixWorld.elements;
+	_sunCenter.set( e[ 12 ], e[ 13 ], e[ 14 ] );
+
+	cam.up.set( 0, 0, 1 );
+	if ( Math.abs( _sunDir.z ) > 0.95 ) cam.up.set( 1, 0, 0 );
+
+	// snap the centre to whole shadow texels so the shadows don't crawl
+	cam.position.copy( _sunCenter ).addScaledVector( _sunDir, SUN_SHADOW_DEPTH );
+	cam.lookAt( _sunCenter );
+	cam.updateMatrixWorld( true );
+	const m = cam.matrixWorld.elements;
+	_sunRight.set( m[ 0 ], m[ 1 ], m[ 2 ] );
+	_sunUp.set( m[ 4 ], m[ 5 ], m[ 6 ] );
+	const texel = ( SUN_SHADOW_EXTENT * 2 ) / SUN_SHADOW_SIZE;
+	const cr = _sunCenter.dot( _sunRight ), cu = _sunCenter.dot( _sunUp );
+	_sunCenter.addScaledVector( _sunRight, - ( cr - Math.round( cr / texel ) * texel ) );
+	_sunCenter.addScaledVector( _sunUp, - ( cu - Math.round( cu / texel ) * texel ) );
+	cam.position.copy( _sunCenter ).addScaledVector( _sunDir, SUN_SHADOW_DEPTH );
+	cam.lookAt( _sunCenter );
+	cam.updateMatrixWorld( true );
+	cam.matrixWorldInverse.copy( cam.matrixWorld ).invert();
+
+	cam.layers.set( SUN_SHADOW_LAYER );
+
+	renderer.getClearColor( _clearColor );
+	const clearAlpha = renderer.getClearAlpha();
+	const override = scene.overrideMaterial;
+
+	scene.overrideMaterial = p.sunOverride;
+	renderer.setRenderTarget( p.sunTarget );
+	renderer.setClearColor( 0xffffff, 1 );
+	renderer.clear( true, true, false );
+	renderer.render( scene, cam );
+
+	scene.overrideMaterial = override;
+	renderer.setClearColor( _clearColor, clearAlpha );
+
+	p.shared.uSunVP.value.multiplyMatrices( cam.projectionMatrix, cam.matrixWorldInverse );
+	p.shared.tSunShadow.value = p.sunTarget.depthTexture;
+
+}
+
 /*
 ================
 R_PostFinish
 
-Turn the HDR image into the frame that is shown: volumetrics, bloom, tone map.
-viewport is the on-screen rectangle in logical pixels ( lx, ly, lw, lh ).
+Turn the HDR image into the frame that is shown: sun shadows, volumetrics,
+direct lighting, bloom, grade and tone map.  viewport is the on-screen
+rectangle in logical pixels ( lx, ly, lw, lh ).
 ================
 */
-export function R_PostFinish( renderer, camera, viewport, visframe, styles, dlights, time, exposure, hasSkyView ) {
+export function R_PostFinish( renderer, scene, camera, viewport, visframe, styles, dlights, time, exposure, hasSkyView ) {
 
 	const p = gpu;
 	const hdr = p.hdr;
+	const sh = p.shared;
 
 	selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
 
-	// volumetric pass
-	const vm = p.volumeMaterial.uniforms;
-	vm.tDepth.value = hdr.depthTexture;
-	vm.uProj.value.copy( camera.projectionMatrix );
-	vm.uProjInv.value.copy( camera.projectionMatrixInverse );
-	vm.uNear.value = camera.near;
-	vm.uFar.value = camera.far;
-	vm.uCount.value = selectedCount;
+	sh.tDepth.value = hdr.depthTexture;
+	sh.uProj.value.copy( camera.projectionMatrix );
+	sh.uProjInv.value.copy( camera.projectionMatrixInverse );
+	sh.uViewInv.value.copy( camera.matrixWorld );
+	sh.uNear.value = camera.near;
+	sh.uFar.value = camera.far;
+	sh.uCount.value = selectedCount;
 	for ( let i = 0; i < selectedCount; i ++ ) {
 
 		const s = _selected[ i ];
-		vm.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
-		vm.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
+		sh.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
+		sh.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
 
 	}
 
-	// sun direction into view space (rotation part of the view matrix)
-	const e = camera.matrixWorldInverse.elements;
-	const sd = SUN_DIR_WORLD;
-	vm.uSunDir.value.set(
-		e[ 0 ] * sd[ 0 ] + e[ 4 ] * sd[ 1 ] + e[ 8 ] * sd[ 2 ],
-		e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
-		e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
-	vm.uSunOn.value = hasSkyView === true && skySeen === true ? 1 : 0;
+	// the sun, when the map has sky to light it
+	const sunOn = hasSkyView === true;
+	sh.uSunOn.value = sunOn ? 1 : 0;
+	if ( sunOn ) {
 
+		const e = camera.matrixWorldInverse.elements;
+		const sd = sunDirection;
+		sh.uSunDirV.value.set(
+			e[ 0 ] * sd[ 0 ] + e[ 4 ] * sd[ 1 ] + e[ 8 ] * sd[ 2 ],
+			e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
+			e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
+		renderSunShadow( renderer, scene, camera );
+
+	}
+
+	// volumetric pass
 	const volume = Math.max( 0, r_volumetric.value );
 	if ( volume > 0 ) runPass( renderer, p.volumeMaterial, p.volume );
 
@@ -912,13 +1135,10 @@ export function R_PostFinish( renderer, camera, viewport, visframe, styles, dlig
 	// composite to the screen
 	const cm = p.compositeMaterial.uniforms;
 	cm.tScene.value = hdr.texture;
-	cm.tDepth.value = hdr.depthTexture;
 	cm.tVolume.value = volume > 0 ? p.volume.texture : null;
 	cm.tBloom.value = bloom > 0 ? p.bloomResult.texture : null;
-	cm.uProjInv.value.copy( camera.projectionMatrixInverse );
-	cm.uNear.value = camera.near;
-	cm.uFar.value = camera.far;
-	cm.uExposure.value = exposure;
+	cm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
+	cm.uExposure.value = exposure * HDR_EXPOSURE;
 	cm.uBloom.value = bloom;
 	cm.uVolume.value = volume;
 
@@ -933,6 +1153,8 @@ export function R_PostShutdown() {
 
 	if ( gpu === null ) return;
 	disposeTargets();
+	gpu.sunTarget.dispose();
+	gpu.sunTarget.depthTexture.dispose();
 	gpu = null;
 
 }

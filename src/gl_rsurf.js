@@ -37,7 +37,7 @@ function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky } from './gl_post.js';
+import { R_BuildWorldLights, R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, SUN_SHADOW_LAYER } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
@@ -2724,6 +2724,9 @@ function R_BuildWorldMeshes() {
 			surfData.geom.dispose();
 
 		}
+
+		// the world casts sun shadows in the HDR pipeline (sky does not)
+		batchedMesh.layers.enable( SUN_SHADOW_LAYER );
 
 		worldGroup.add( batchedMesh );
 		worldBatchedMeshes.push( batchedMesh );

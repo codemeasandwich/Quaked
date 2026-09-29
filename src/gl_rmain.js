@@ -1319,7 +1319,7 @@ export function R_RenderView() {
 
 			R_PostBind( renderer );
 			renderer.render( scene, camera );
-			R_PostFinish( renderer, camera, _viewport, r_visframecount, d_lightstylevalue,
+			R_PostFinish( renderer, scene, camera, _viewport, r_visframecount, d_lightstylevalue,
 				cl_dlights, cl != null ? cl.time : 0, renderer.toneMappingExposure, R_MapHasSky() );
 
 		} else {
