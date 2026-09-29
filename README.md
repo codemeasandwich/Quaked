@@ -22,6 +22,10 @@ Every teleporter surface (`*teleport`) that leads somewhere is a live camera ont
 
 New Game is always the original game: original lighting, water, monsters and teleporters, with no camera portals. In Newer Game, **Options > Newer Game features** switches its parts on and off one at a time: lighting, water (needs the lighting), enemies (the Quake Reforged skins) and camera portals (the teleporter windows and the seamless level crossings; these apply from the next level). The console variables are `r_newer_lighting`, `r_newer_water`, `r_newer_enemies` and `r_newer_portals`.
 
+#### Lighting and muzzle flash
+
+Newer lighting is lit by its sources: the baked light is curved (`r_newdark`, 2.8 by default; 1 is as baked) so areas with no clear source are dark, and lights (torches, pillar lamps, glowing surfaces) light the surfaces they can see, with things in the way casting shadows. Weapons have a muzzle flash: a burst of warm light on the surroundings and a flash at the barrel.
+
 #### Seamless levels
 
 In Newer Game, every Episode 1 level exit that is an archway, a passageway, a walk-through portal or a pit (that includes the start hub's difficulty doors and E1M4's secret exit) is a live window onto the next level: you can see its first room through the opening, and stepping through is not a level load or a teleport. You keep your speed and heading, and the game switches levels under you. Looking back, the level you came from shows through the doorway behind you, and you can walk back through it (a level you have left is kept exactly as it was: dead monsters where they fell, dropped weapons, picked-up items and opened doors; a key door across the exit you return by is removed). Teleporter pads are unaffected. Console: `sv_seamless 0` off, `1` Newer Game only (default), `2` always. Single player only.

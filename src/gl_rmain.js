@@ -9,9 +9,10 @@ import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
 import { R_SetupLevelViews } from './r_levelview.js';
+import { R_MuzzleFlashUpdate } from './r_muzzle.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky } from './gl_post.js';
+import { r_hdr, r_newdark, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1311,6 +1312,9 @@ export function R_RenderView() {
 
 	R_Clear();
 
+	// the flash at the gun's muzzle (Newer lighting)
+	R_MuzzleFlashUpdate( scene, R_RegisterGlow, r_refdef.vieworg, vpn, vright, vup );
+
 	// render normal view
 	R_RenderScene();
 	R_DrawViewModel();
@@ -1434,6 +1438,7 @@ export function R_Init() {
 
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_hdr );
+	Cvar_RegisterVariable( r_newdark );
 	Cvar_RegisterVariable( r_bloom );
 	Cvar_RegisterVariable( r_volumetric );
 	Cvar_RegisterVariable( r_caustics );

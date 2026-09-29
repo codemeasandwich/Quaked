@@ -36,6 +36,13 @@ export const r_volumetric = new cvar_t( 'r_volumetric', '1' );
 export const r_newbright = new cvar_t( 'r_newbright', '0.6' );
 export const r_newcontrast = new cvar_t( 'r_newcontrast', '1.4' );
 export const r_caustics = new cvar_t( 'r_caustics', '1' ); // strength of light patterns beneath water
+// How hard the baked lighting falls off in Newer Game: the lightmap is raised to
+// this power, so what is lit by a clear source stays bright and what is not goes
+// dark (1 = as baked).  Light that does not come from a source is not invented.
+export const r_newdark = new cvar_t( 'r_newdark', '2.8' );
+
+// shared with the lit world materials' shader
+const lightCurve = { value: 1 };
 
 // glquake.h flags (not imported: keeps this module out of the renderer's import cycle)
 const SURF_DRAWSKY = 4;
@@ -51,6 +58,7 @@ const EMISSIVE_BOOST = 3.0; // fullbright texels, in HDR
 const LAVA_BOOST = 0.75;
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
 const SCATTER = 0.03; // point light in-scattering
+const LIGHT_FLOOR = 0.14; // light on a surface the lightmap left dark
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
 const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky scales it
 const MAX_RAY = 3600;
@@ -205,7 +213,12 @@ function patchDetailShader( shader ) {
 
 	let f = shader.fragmentShader;
 
-	f = 'layout(location = 1) out highp vec4 gNormal;\n' + f;
+	f = 'layout(location = 1) out highp vec4 gNormal;\nuniform float uLmGamma;\n' + f;
+	shader.uniforms.uLmGamma = lightCurve;
+
+	// the baked light, curved: only what a source really lights stays bright
+	f = f.replace( '#include <lights_fragment_maps>', THREE.ShaderChunk.lights_fragment_maps.replace(
+		'lightMapTexel.rgb * lightMapIntensity', 'pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( uLmGamma ) ) * lightMapIntensity' ) );
 
 	// texture lookups follow the parallax-shifted coordinates
 	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
@@ -895,6 +908,8 @@ for ( let i = 0; i < MAX_VOLUME_LIGHTS; i ++ )
 let selectedCount = 0;
 
 const DLIGHT_COLOR = [ 1.0, 0.62, 0.28 ];
+const MUZZLE_COLOR = [ 1.0, 0.78, 0.45 ]; // a muzzle flash is whiter and much stronger than an ember
+const MUZZLE_POWER = 3.2;
 
 function consider( px, py, pz, color, power, radius, view ) {
 
@@ -960,8 +975,10 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 			if ( d == null || d.radius <= 0 || d.die < time ) continue;
 
 			const fade = Math.min( 1, ( d.die - time ) / 0.3 );
-			consider( d.origin[ 0 ], d.origin[ 1 ], d.origin[ 2 ], DLIGHT_COLOR,
-				d.radius / 300 * 1.4 * fade, 40, view );
+			// (the game gives a muzzle flash a minimum light of 32)
+			const muzzle = d.minlight === 32;
+			consider( d.origin[ 0 ], d.origin[ 1 ], d.origin[ 2 ], muzzle ? MUZZLE_COLOR : DLIGHT_COLOR,
+				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER : 1 ), 40, view );
 
 		}
 
@@ -1202,6 +1219,7 @@ uniform vec3 uHazeColor;
 uniform float uSunSurface;
 uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
+uniform float uLightFloor;
 uniform float uSaturation;
 uniform float uContrast;
 uniform float uBright;
@@ -1323,7 +1341,9 @@ void main() {
 			relit += uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
 		}
 
-		c = scene * ( 1.0 + relit );
+		// a source lights a surface whatever its baked light was; the small floor
+		// stands for the surface's own colour, which is not known here
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor;
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through
@@ -1520,6 +1540,7 @@ function createPipeline() {
 			uSunSurface: { value: SUN_SURFACE },
 			uSunSurfaceCol: { value: new THREE.Vector3( ...SUN_SURFACE_COLOR ) },
 			uLightSurface: { value: LIGHT_SURFACE },
+			uLightFloor: { value: LIGHT_FLOOR },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
 			uBright: { value: 0.6 },
@@ -1606,6 +1627,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	setGlowActive( active );
 	R_AnimSetNewer( newer );
 	R_AnimSetLighting( active );
+	lightCurve.value = active ? Math.max( 1, r_newdark.value ) : 1;
 	skySeen = false;
 
 	if ( active === false ) return false;

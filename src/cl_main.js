@@ -24,6 +24,7 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from './mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
+import { R_MuzzleFlashFired } from './r_muzzle.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from './host.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from './gl_screen.js';
@@ -1068,6 +1069,8 @@ export function CL_RelinkEntities() {
 			R_EntityParticles( ent );
 
 		if ( ent.effects & 0x0002 ) { // EF_MUZZLEFLASH
+
+			if ( i === cl.viewentity ) R_MuzzleFlashFired();
 
 			const dl = CL_AllocDlight( i );
 			VectorCopy( ent.origin, dl.origin );
