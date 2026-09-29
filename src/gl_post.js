@@ -23,7 +23,7 @@
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
-import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
+import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
@@ -47,9 +47,9 @@ const LAVA_BOOST = 0.75;
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
 const SCATTER = 0.03; // point light in-scattering
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
-const HAZE_DENSITY = 0.00004; // ambient extinction per unit
+const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky scales it
 const MAX_RAY = 3600;
-const SUN_COLOR = [ 3.4, 2.7, 1.9 ];
+const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
 const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
 const SUN_SURFACE = 1.0; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
 const SUN_SURFACE_COLOR = [ 1.0, 0.82, 0.6 ];
@@ -511,6 +511,7 @@ export function R_BuildWorldLights( model ) {
 	hasSky = false;
 	liquidRegions = [];
 	liquidLinks = [];
+	buildSkyCookie();
 	sunDirection = [ - 0.28, - 0.18, 0.94 ];
 
 	if ( model == null || model.nodes == null ) return worldLights;
@@ -732,6 +733,121 @@ export function R_BuildSunOccluder( model ) {
 
 }
 
+//============================================================================
+// Sky analysis
+//
+// How much light comes through the sky, what colour it is and what pattern it
+// has all come from the map's own sky textures, so a bright clear sky gives a
+// bright sunlit outdoors and crisp shafts with little haze, while a dark or
+// stormy sky gives dim light, faint shafts and more haze.  The pattern (clouds)
+// becomes a "cookie" that is projected along the sun so shafts and sunlit
+// patches break up the way the sky does.
+//============================================================================
+
+const SKY_DEFAULT = { luma: 0.5, color: [ 1, 0.85, 0.65 ], contrast: 0 };
+let skyInfo = SKY_DEFAULT;
+let skyCookie = null;
+
+// brightness is judged the way it looks (display values), not in linear light,
+// so a sky that looks mid-dark is not rated as black
+function srgbToLinear( v ) {
+
+	return v / 255;
+
+}
+
+// analyse RGBA sky layers; returns { luma, color, contrast, cookie: Float32Array(n) } or null
+export function R_AnalyseSky( solid, cloud, size ) {
+
+	if ( solid == null || solid.length < size * size * 4 ) return null;
+
+	const n = size * size;
+	const luma = new Float32Array( n );
+	let r = 0, g = 0, b = 0, sum = 0;
+
+	for ( let i = 0; i < n; i ++ ) {
+
+		let cr = srgbToLinear( solid[ i * 4 ] ), cg = srgbToLinear( solid[ i * 4 + 1 ] ), cb = srgbToLinear( solid[ i * 4 + 2 ] );
+
+		if ( cloud != null && cloud.length >= n * 4 ) {
+
+			const a = cloud[ i * 4 + 3 ] / 255;
+			cr += ( srgbToLinear( cloud[ i * 4 ] ) - cr ) * a;
+			cg += ( srgbToLinear( cloud[ i * 4 + 1 ] ) - cg ) * a;
+			cb += ( srgbToLinear( cloud[ i * 4 + 2 ] ) - cb ) * a;
+
+		}
+
+		luma[ i ] = cr * 0.2126 + cg * 0.7152 + cb * 0.0722;
+		r += cr; g += cg; b += cb; sum += luma[ i ];
+
+	}
+
+	const mean = sum / n;
+	let variance = 0;
+	for ( let i = 0; i < n; i ++ ) variance += ( luma[ i ] - mean ) * ( luma[ i ] - mean );
+	const contrast = Math.min( 1, Math.sqrt( variance / n ) / ( mean + 0.02 ) );
+
+	// the average colour, kept saturated but normalised so it tints and does not dim
+	const peak = Math.max( r, g, b ) / n || 1;
+	const color = [ r / n / peak, g / n / peak, b / n / peak ];
+
+	// mean-1 cookie: brighter than average sky passes more light
+	const cookie = new Float32Array( n );
+	for ( let i = 0; i < n; i ++ ) cookie[ i ] = luma[ i ] / ( mean + 1e-4 );
+
+	return { luma: mean, color, contrast, cookie };
+
+}
+
+// shared strength derived from the sky: 0 = a dark sky, 1 = a bright clear one
+export function R_SkyBrightness( luma ) {
+
+	const t = Math.max( 0, Math.min( 1, ( luma - 0.05 ) / 0.4 ) );
+	return t * t * ( 3 - 2 * t );
+
+}
+
+export function R_GetSkyInfo() {
+
+	return skyInfo;
+
+}
+
+function buildSkyCookie() {
+
+	skyInfo = SKY_DEFAULT;
+	if ( skyCookie !== null ) { skyCookie.dispose(); skyCookie = null; }
+
+	const sd = solidskytexture != null && solidskytexture.image != null ? solidskytexture.image.data : null;
+	const ad = alphaskytexture != null && alphaskytexture.image != null ? alphaskytexture.image.data : null;
+	const size = solidskytexture != null && solidskytexture.image != null ? solidskytexture.image.width : 0;
+	const result = size > 0 ? R_AnalyseSky( sd, ad, size ) : null;
+	if ( result == null ) return;
+
+	skyInfo = { luma: result.luma, color: result.color, contrast: result.contrast };
+
+	// how much of the pattern shows through: a clear sky barely varies
+	const depth = 0.35 + 0.65 * result.contrast;
+	const data = new Uint8Array( size * size * 4 );
+	for ( let i = 0; i < size * size; i ++ ) {
+
+		const v = Math.max( 0, Math.min( 1, 1 - depth + depth * result.cookie[ i ] * 0.75 ) );
+		data[ i * 4 ] = data[ i * 4 + 1 ] = data[ i * 4 + 2 ] = Math.round( v * 255 );
+		data[ i * 4 + 3 ] = 255;
+
+	}
+
+	skyCookie = new THREE.DataTexture( data, size, size, THREE.RGBAFormat );
+	skyCookie.wrapS = THREE.RepeatWrapping;
+	skyCookie.wrapT = THREE.RepeatWrapping;
+	skyCookie.magFilter = THREE.LinearFilter;
+	skyCookie.minFilter = THREE.LinearFilter;
+	skyCookie.colorSpace = THREE.NoColorSpace;
+	skyCookie.needsUpdate = true;
+
+}
+
 export function R_GetWorldLights() {
 
 	return worldLights;
@@ -864,10 +980,14 @@ uniform int uCount;
 uniform vec4 uLightPos[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec4 uLightCol[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec3 uSunDirV;
+uniform vec3 uSunDirW;
 uniform vec3 uSunCol;
 uniform float uSunOn;
 uniform float uShadowTexel;
 uniform float uMaxRay;
+uniform sampler2D tCookie;
+uniform float uCookie; // 0 = no pattern, 1 = the sky's own pattern
+uniform float uCookieTime;
 varying vec2 vUv;
 
 float sceneDist( vec2 uv ) {
@@ -882,6 +1002,16 @@ float noise( vec2 p ) {
 
 float henyeyGreenstein( float c, float g ) {
 	return ( 1.0 - g * g ) / pow( 1.0 + g * g - 2.0 * g * c, 1.5 );
+}
+
+// how much of the sky's pattern reaches a point: the sky texture projected along
+// the sun's direction and scrolled the way the sky drifts, so shafts and sunlit
+// patches break up the way the clouds do
+float skyCookie( vec3 worldPos ) {
+	vec3 sd = normalize( uSunDirW );
+	vec2 uv = ( worldPos.xy - sd.xy / max( sd.z, 0.2 ) * ( worldPos.z - 1000.0 ) ) / 1500.0;
+	uv += vec2( 1.0, 0.55 ) * uCookieTime * 0.004;
+	return mix( 1.0, texture2D( tCookie, uv ).r, uCookie );
 }
 
 // 1 where the sun reaches a world-space point, 0 in shadow
@@ -908,6 +1038,9 @@ float sunLitSoft( vec3 worldPos ) {
 const VOLUME_FRAGMENT = COMMON_FRAGMENT + `
 uniform float uSunScatter;
 uniform float uScatter;
+uniform float uOpenFog;
+uniform float uShaftFog;
+uniform float uShadowSpread;
 
 const int SHADOW_STEPS = 12;
 const int SUN_STEPS = 48;
@@ -930,7 +1063,20 @@ void main() {
 		for ( int k = 0; k < SUN_STEPS; k ++ ) {
 			float t = ( float( k ) + jit ) * ds;
 			vec3 pw = ( uViewInv * vec4( dirV * t, 1.0 ) ).xyz;
-			lit += sunLit( pw );
+			vec3 u = ( uSunVP * vec4( pw, 1.0 ) ).xyz * 0.5 + 0.5;
+			if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) continue;
+			float ref = u.z - 0.0012;
+			float here = step( ref, texture2D( tSunShadow, u.xy ).x );
+			if ( here < 0.5 ) continue;
+			// Light only shows up in air where it is contrasted with shade: the
+			// more of the surroundings are in shadow, the denser the shaft.  Wide
+			// open lit air is faint, so daylight outdoors stays clear.
+			float around = step( ref, texture2D( tSunShadow, u.xy + vec2( uShadowSpread, 0.0 ) ).x )
+				+ step( ref, texture2D( tSunShadow, u.xy - vec2( uShadowSpread, 0.0 ) ).x )
+				+ step( ref, texture2D( tSunShadow, u.xy + vec2( 0.0, uShadowSpread ) ).x )
+				+ step( ref, texture2D( tSunShadow, u.xy - vec2( 0.0, uShadowSpread ) ).x );
+			float density = uOpenFog + ( 1.0 - around * 0.25 ) * uShaftFog;
+			lit += density * skyCookie( pw ) * exp( - t * 0.0007 );
 		}
 		lit *= ds;
 		float phase = henyeyGreenstein( dot( dirV, uSunDirV ), 0.55 );
@@ -1125,7 +1271,7 @@ void main() {
 			float ndl = max( dot( N, uSunDirV ), 0.0 );
 			if ( ndl > 0.0 ) {
 				vec3 pw = ( uViewInv * vec4( P + N * 1.5, 1.0 ) ).xyz;
-				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw );
+				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookie( pw );
 			}
 		}
 
@@ -1295,6 +1441,10 @@ function createPipeline() {
 		uLightPos: { value: lightPos },
 		uLightCol: { value: lightCol },
 		uSunDirV: { value: new THREE.Vector3() },
+		uSunDirW: { value: new THREE.Vector3() },
+		tCookie: { value: null },
+		uCookie: { value: 0 },
+		uCookieTime: { value: 0 },
 		uSunCol: { value: new THREE.Vector3( ...SUN_COLOR ) },
 		uSunOn: { value: 0 },
 		uShadowTexel: { value: 0.5 / SUN_SHADOW_SIZE },
@@ -1320,6 +1470,9 @@ function createPipeline() {
 		sunOverride: new THREE.MeshBasicMaterial( { colorWrite: false, side: THREE.DoubleSide } ),
 		volumeMaterial: makeMaterial( VOLUME_FRAGMENT, Object.assign( {
 			uSunScatter: { value: SUN_SCATTER },
+			uOpenFog: { value: 0.05 },
+			uShaftFog: { value: 0.6 },
+			uShadowSpread: { value: 100 / ( SUN_SHADOW_EXTENT * 2 ) },
 			uScatter: { value: SCATTER }
 		}, shared ) ),
 		prefilterMaterial: makeMaterial( BLOOM_PREFILTER_FRAGMENT, {
@@ -1527,9 +1680,31 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	}
 
-	// the sun, when the map has sky to light it
+	// the sun, when the map has sky to light it; how strong, what colour and what
+	// pattern all come from the map's sky
 	const sunOn = hasSkyView === true;
 	sh.uSunOn.value = sunOn ? 1 : 0;
+
+	const bright = R_SkyBrightness( skyInfo.luma );
+	const sunGain = 0.5 + 0.9 * bright; // a dark sky still gives a little
+	const tint = skyInfo.color;
+	sh.uSunCol.value.set(
+		SUN_COLOR[ 0 ] * sunGain * ( 0.55 + 0.45 * tint[ 0 ] ),
+		SUN_COLOR[ 1 ] * sunGain * ( 0.55 + 0.45 * tint[ 1 ] ),
+		SUN_COLOR[ 2 ] * sunGain * ( 0.55 + 0.45 * tint[ 2 ] ) );
+	p.compositeMaterial.uniforms.uSunSurfaceCol.value.set(
+		SUN_SURFACE_COLOR[ 0 ] * ( 0.6 + 0.4 * tint[ 0 ] ),
+		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
+		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
+	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
+	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * ( 0.5 + 1.3 * bright );
+	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
+	p.volumeMaterial.uniforms.uOpenFog.value = 0.09 - 0.075 * bright;
+	// a bright, clear sky is crisp; a dark one a little hazier
+	p.compositeMaterial.uniforms.uHaze.value = HAZE_DENSITY * ( 1.5 - 1.05 * bright );
+	sh.tCookie.value = skyCookie;
+	sh.uCookie.value = skyCookie !== null ? 1 : 0;
+	sh.uCookieTime.value = time;
 	if ( sunOn ) {
 
 		const e = camera.matrixWorldInverse.elements;
@@ -1538,6 +1713,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 			e[ 0 ] * sd[ 0 ] + e[ 4 ] * sd[ 1 ] + e[ 8 ] * sd[ 2 ],
 			e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
 			e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
+		sh.uSunDirW.value.set( sd[ 0 ], sd[ 1 ], sd[ 2 ] ).normalize();
 		renderSunShadow( renderer, scene, camera );
 
 	}

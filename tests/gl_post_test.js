@@ -196,3 +196,37 @@ Deno.test( 'liquid links let you see down into a pool and out of it', () => {
 	assertEqual( links[ 0 ].belowVis instanceof Uint8Array, true, 'what the liquid sees' );
 
 } );
+
+function skyLayer( size, rgb, alpha = 255 ) {
+
+	const data = new Uint8Array( size * size * 4 );
+	for ( let i = 0; i < size * size; i ++ ) data.set( [ rgb[ 0 ], rgb[ 1 ], rgb[ 2 ], alpha ], i * 4 );
+	return data;
+
+}
+
+Deno.test( 'the sky decides how bright, what colour and how patterned the light is', () => {
+
+	const bright = post.R_AnalyseSky( skyLayer( 8, [ 120, 120, 200 ] ), null, 8 );
+	const dark = post.R_AnalyseSky( skyLayer( 8, [ 44, 24, 26 ] ), null, 8 );
+
+	assertEqual( bright.luma > dark.luma, true, 'a bright sky measures brighter' );
+	assertEqual( post.R_SkyBrightness( bright.luma ) > post.R_SkyBrightness( dark.luma ), true, 'and drives stronger light' );
+	assertEqual( post.R_SkyBrightness( 0 ), 0, 'black sky is the floor' );
+	assertEqual( post.R_SkyBrightness( 1 ), 1, 'white sky is the ceiling' );
+	assertEqual( dark.color[ 0 ] > dark.color[ 2 ], true, 'a reddish sky tints the light red' );
+	assertEqual( bright.color[ 2 ] >= bright.color[ 0 ], true, 'a blue sky tints it blue' );
+	assertEqual( bright.contrast, 0, 'a uniform sky has no pattern' );
+
+	// clouds: half the texels bright, half dark => a clear pattern with mean 1
+	const patterned = skyLayer( 8, [ 40, 40, 60 ] );
+	for ( let i = 0; i < 32; i ++ ) patterned.set( [ 200, 200, 220, 255 ], i * 4 );
+	const cloudy = post.R_AnalyseSky( patterned, null, 8 );
+	assertEqual( cloudy.contrast > 0.3, true, 'clouds give the sky a pattern' );
+	let sum = 0;
+	for ( let i = 0; i < 64; i ++ ) sum += cloudy.cookie[ i ];
+	assertEqual( Math.abs( sum / 64 - 1 ) < 0.01, true, 'the pattern keeps the average light unchanged' );
+
+	assertEqual( post.R_AnalyseSky( null, null, 8 ), null, 'no sky texture, no analysis' );
+
+} );
