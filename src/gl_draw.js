@@ -744,7 +744,18 @@ export function Draw_ConsoleBackground( lines ) {
 
 	if ( ! overlayCtx ) return;
 
-	if ( conback && conback.canvas ) {
+	if ( conback && conback.canvas && conback.cover === true ) {
+
+		// custom wallpaper: fill the screen without stretching, cropping the overflow
+		const src = conback.canvas;
+		const destAspect = _vid.width / _vid.height;
+		let sw = src.width, sh = src.height;
+		if ( sw / sh > destAspect ) sw = sh * destAspect;
+		else sh = sw / destAspect;
+		overlayCtx.drawImage( src, ( src.width - sw ) / 2, ( src.height - sh ) / 2, sw, sh,
+			0, lines - _vid.height, _vid.width, _vid.height );
+
+	} else if ( conback && conback.canvas ) {
 
 		overlayCtx.drawImage( conback.canvas, 0, lines - _vid.height, _vid.width, _vid.height );
 
@@ -917,6 +928,50 @@ function _qpicToCanvas( width, height, data, alpha ) {
 
 	ctx.putImageData( imageData, 0, 0 );
 	return cs;
+
+}
+
+/*
+================
+Draw_LoadConbackImage
+
+Replaces the console background (gfx/conback.lmp) with an image from a URL.
+Resolves true on success; on failure the original background stays.
+================
+*/
+export function Draw_LoadConbackImage( url ) {
+
+	return new Promise( ( resolve ) => {
+
+		const img = new Image();
+		img.onload = function () {
+
+			const cs = document.createElement( 'canvas' );
+			cs.width = img.width;
+			cs.height = img.height;
+			cs.getContext( '2d' ).drawImage( img, 0, 0 );
+
+			conback = {
+				width: _vid.width,
+				height: _vid.height,
+				canvas: cs,
+				cover: true
+			};
+
+			resolve( true );
+
+		};
+
+		img.onerror = function () {
+
+			Con_Printf( 'Draw_LoadConbackImage: failed to load ' + url + '\n' );
+			resolve( false );
+
+		};
+
+		img.src = url;
+
+	} );
 
 }
 

@@ -10,7 +10,7 @@ import { cls, cl } from './src/client.js';
 import { sv } from './src/server.js';
 import { scene, camera } from './src/gl_rmain.js';
 import { renderer } from './src/vid.js';
-import { Draw_CachePicFromPNG } from './src/gl_draw.js';
+import { Draw_CachePicFromPNG, Draw_LoadConbackImage } from './src/gl_draw.js';
 import { XR_Init } from './src/webxr.js';
 
 const parms = {
@@ -75,6 +75,10 @@ async function main() {
 			Sys_Printf( 'Warning: Could not load custom menu images\\n' );
 
 		}
+
+		// Console (and menu backdrop) wallpaper; the original conback stays if it fails
+		if ( await Draw_LoadConbackImage( 'conback.webp' ) )
+			Sys_Printf( 'Loaded console wallpaper\n' );
 
 		// Check URL parameters for auto-join
 		const urlParams = new URLSearchParams( window.location.search );

@@ -29,6 +29,10 @@ You can switch at any time from the console: `r_hdr 0` (classic) or `r_hdr 1` (n
 
 This is a rasterised approximation, not path tracing: light does not bounce, and shafts are occluded by what is on screen. It needs WebGL2 float render targets; without them the classic path is used automatically, and it is off in WebXR.
 
+### Console wallpaper
+
+The console (and the main menu backdrop shown when no game is running) uses `conback.webp` instead of the original stone `conback.lmp`. It is cropped to fill the screen without stretching. To go back to the original, delete `conback.webp`.
+
 ### Dev Log
 
 https://x.com/mrdoob/status/2015076521531355583 (upstream three-quake)
