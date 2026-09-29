@@ -1343,7 +1343,10 @@ void main() {
 
 		// a source lights a surface whatever its baked light was; the small floor
 		// stands for the surface's own colour, which is not known here
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor;
+		// (tinted by the surface's own colour, so stone stays stone and does not
+		// wash out to grey where a light falls on it)
+		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint;
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through
