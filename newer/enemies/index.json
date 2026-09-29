@@ -2,11 +2,10 @@
  "models": {
   "boss": [
    {
-    "dir": "boss/v1",
+    "dir": "boss/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp",
-     "normal": "normal.webp"
+     "diffuse": "diffuse.webp"
     }
    }
   ],
@@ -192,21 +191,19 @@
   ],
   "knight": [
    {
-    "dir": "knight/v1",
+    "dir": "knight/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp",
-     "normal": "normal.webp"
+     "diffuse": "diffuse.webp"
     }
    }
   ],
   "ogre": [
    {
-    "dir": "ogre/v1",
+    "dir": "ogre/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp",
-     "normal": "normal.webp"
+     "diffuse": "diffuse.webp"
     }
    }
   ],
@@ -281,29 +278,10 @@
   ],
   "wizard": [
    {
-    "dir": "wizard/v1",
-    "flipGreen": true,
-    "maps": {
-     "diffuse": "diffuse.webp",
-     "gloss": "gloss.webp",
-     "normal": "normal.webp"
-    }
-   },
-   {
-    "dir": "wizard/v2",
-    "flipGreen": true,
-    "maps": {
-     "diffuse": "diffuse.webp",
-     "gloss": "gloss.webp",
-     "normal": "normal.webp"
-    }
-   },
-   {
-    "dir": "wizard/v3",
+    "dir": "wizard/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp",
-     "normal": "normal.webp"
+     "diffuse": "diffuse.webp"
     }
    }
   ],
