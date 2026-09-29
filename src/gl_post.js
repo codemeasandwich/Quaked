@@ -51,7 +51,8 @@ const HAZE_DENSITY = 0.00004; // ambient extinction per unit
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ];
 const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
-const SUN_SURFACE = 1.6; // direct sun on surfaces
+const SUN_SURFACE = 1.0; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
+const SUN_SURFACE_COLOR = [ 1.0, 0.82, 0.6 ];
 const SATURATION = 1.18;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
@@ -661,6 +662,73 @@ export function R_BuildWorldLights( model ) {
 
 }
 
+//============================================================================
+// Sun occluder
+//
+// The sun's shadow map must contain the whole map, not just what happens to be
+// visible or loaded this frame: a ceiling that is not being drawn would let the
+// sun through into a closed room.  So the shadow casters are their own static
+// mesh, built once per map from every solid world surface (no sky, no liquids),
+// and only ever seen by the shadow camera.
+//============================================================================
+
+let occluder = null;
+
+function disposeOccluder() {
+
+	if ( occluder === null ) return;
+	if ( occluder.parent != null ) occluder.parent.remove( occluder );
+	occluder.geometry.dispose();
+	occluder = null;
+
+}
+
+export function R_BuildSunOccluder( model ) {
+
+	disposeOccluder();
+	if ( model == null || model.surfaces == null ) return 0;
+
+	const first = model.firstmodelsurface || 0;
+	const last = first + ( model.nummodelsurfaces || model.surfaces.length );
+	const positions = [];
+
+	for ( let i = first; i < last; i ++ ) {
+
+		const surf = model.surfaces[ i ];
+		if ( surf == null || surf.polys == null ) continue;
+		if ( surf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) continue;
+
+		for ( let p = surf.polys; p; p = p.next ) {
+
+			const v = p.verts;
+			const at = ( n, k ) => v instanceof Float32Array ? v[ n * 7 + k ] : v[ n ][ k ];
+
+			for ( let n = 2; n < p.numverts; n ++ ) {
+
+				for ( const idx of [ 0, n - 1, n ] )
+					positions.push( at( idx, 0 ), at( idx, 1 ), at( idx, 2 ) );
+
+			}
+
+		}
+
+	}
+
+	if ( positions.length === 0 ) return 0;
+
+	const geometry = new THREE.BufferGeometry();
+	geometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( positions ), 3 ) );
+	geometry.computeBoundingSphere();
+
+	occluder = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { side: THREE.DoubleSide } ) );
+	occluder.name = 'quake_sun_occluder';
+	if ( occluder.layers !== undefined ) occluder.layers.set( SUN_SHADOW_LAYER ); // invisible to every ordinary camera
+	occluder.matrixAutoUpdate = false;
+
+	return positions.length / 9;
+
+}
+
 export function R_GetWorldLights() {
 
 	return worldLights;
@@ -816,13 +884,14 @@ float henyeyGreenstein( float c, float g ) {
 // 1 where the sun reaches a world-space point, 0 in shadow
 float sunLit( vec3 worldPos ) {
 	vec3 u = ( uSunVP * vec4( worldPos, 1.0 ) ).xyz * 0.5 + 0.5;
-	if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) return 1.0;
+	// beyond the shadow map nothing is known: assume shadow, never light
+	if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) return 0.0;
 	return step( u.z - 0.0012, texture2D( tSunShadow, u.xy ).x );
 }
 
 float sunLitSoft( vec3 worldPos ) {
 	vec3 u = ( uSunVP * vec4( worldPos, 1.0 ) ).xyz * 0.5 + 0.5;
-	if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) return 1.0;
+	if ( u.x < 0.0 || u.x > 1.0 || u.y < 0.0 || u.y > 1.0 || u.z > 1.0 ) return 0.0;
 	float ref = u.z - 0.0012;
 	float t = uShadowTexel;
 	float lit = step( ref, texture2D( tSunShadow, u.xy + vec2( -t, -t ) ).x )
@@ -966,6 +1035,7 @@ uniform float uVolume;
 uniform float uHaze;
 uniform vec3 uHazeColor;
 uniform float uSunSurface;
+uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
 uniform float uSaturation;
 uniform float uContrast;
@@ -1052,7 +1122,7 @@ void main() {
 			float ndl = max( dot( N, uSunDirV ), 0.0 );
 			if ( ndl > 0.0 ) {
 				vec3 pw = ( uViewInv * vec4( P + N * 1.5, 1.0 ) ).xyz;
-				relit += uSunCol * uSunSurface * ndl * sunLitSoft( pw );
+				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw );
 			}
 		}
 
@@ -1267,6 +1337,7 @@ function createPipeline() {
 			uHaze: { value: HAZE_DENSITY },
 			uHazeColor: { value: new THREE.Vector3( 0.006, 0.005, 0.005 ) },
 			uSunSurface: { value: SUN_SURFACE },
+			uSunSurfaceCol: { value: new THREE.Vector3( ...SUN_SURFACE_COLOR ) },
 			uLightSurface: { value: LIGHT_SURFACE },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
@@ -1401,6 +1472,7 @@ function renderSunShadow( renderer, scene, camera ) {
 	cam.matrixWorldInverse.copy( cam.matrixWorld ).invert();
 
 	cam.layers.set( SUN_SHADOW_LAYER );
+	if ( occluder !== null && occluder.parent !== scene ) scene.add( occluder );
 
 	renderer.getClearColor( _clearColor );
 	const clearAlpha = renderer.getClearAlpha();

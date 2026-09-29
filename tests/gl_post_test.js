@@ -155,3 +155,22 @@ Deno.test( 'liquids are translucent only in the HDR pipeline', () => {
 	assertEqual( post.R_LiquidOpacity( 'brick', 0.7 ), 0.7, 'other textures keep the given opacity' );
 
 } );
+
+Deno.test( 'sun shadow casters cover every solid surface, whatever is visible', () => {
+
+	const solid = makeWaterFace( 'brick', 0, 0, 200, 128 ); // a ceiling slab
+	const wall = makeWaterFace( 'brick', 300, 0, 200, 128 );
+	solid.flags = 0;
+	wall.flags = 0;
+	const sky = makeWaterFace( 'sky1', 600, 0, 200, 128 );
+	sky.flags = 4; // SURF_DRAWSKY
+	const water = makeWaterFace( '*04water1', 900, 0, 100, 128 );
+
+	const tris = post.R_BuildSunOccluder( makeModel( '', [ solid, wall, sky, water ] ) );
+
+	// two quads = four triangles; sky must not block the sun, and neither does liquid
+	assertEqual( tris, 4, 'only solid surfaces cast shadows' );
+	assertEqual( post.R_BuildSunOccluder( makeModel( '', [ sky, water ] ) ), 0, 'nothing solid, nothing cast' );
+	assertEqual( post.R_BuildSunOccluder( null ), 0, 'no map' );
+
+} );

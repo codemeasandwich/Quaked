@@ -40,7 +40,7 @@ function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks, SUN_SHADOW_LAYER } from './gl_post.js';
+import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
@@ -2757,9 +2757,6 @@ function R_BuildWorldMeshes() {
 
 		}
 
-		// the world casts sun shadows in the HDR pipeline (sky does not)
-		batchedMesh.layers.enable( SUN_SHADOW_LAYER );
-
 		worldGroup.add( batchedMesh );
 		worldBatchedMeshes.push( batchedMesh );
 		if ( t.anim_total > 0 )
@@ -3009,6 +3006,7 @@ export function GL_BuildLightmaps() {
 
 	// lights and emitters for the HDR pipeline's volumetrics
 	R_BuildWorldLights( cl_ref.worldmodel );
+	R_BuildSunOccluder( cl_ref.worldmodel );
 
 }
 
