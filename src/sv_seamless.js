@@ -15,8 +15,9 @@ import { cvar_t } from './cvar.js';
 import { sv, svs } from './server.js';
 import { COM_FindFile } from './pak.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.js';
-import { PR_GetString } from './progs.js';
-import { ED_Free } from './pr_edict.js';
+import { PR_GetString, EDICT_NUM, pr_global_struct } from './progs.js';
+import { ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
+import { COM_Parse, com_token } from './common.js';
 import { Mod_LoadForPreview, Mod_PointInLeaf } from './gl_model.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
@@ -36,6 +37,7 @@ const metaCache = new Map();
 let crossings = []; // this level's seamless exits
 let pending = null; // a crossing in progress: { map, origin, velocity, angles, pit, from }
 let lastOrigin = null;
+let levelStates = new Map(); // levels left through a crossing, as they were: map name -> snapshot
 let holding = null; // the arrival, while the player is held until the client is ready
 
 export function SV_SeamlessEnabled() {
@@ -174,6 +176,80 @@ function SV_ArrivalStart( mapName, start ) {
 
 }
 
+//============================================================================
+// Levels keep their state
+//============================================================================
+//
+// A level left through a crossing is written out the way a savegame writes it
+// (the game's globals and every entity but the players), and when the player
+// comes back it is read back over the freshly loaded level: dead monsters stay
+// dead where they fell, dropped weapons and picked-up items stay as they were,
+// doors stay open.  The states last for as long as the player only moves between
+// levels by crossings; starting a game or any other level change forgets them.
+
+function SV_CaptureLevel() {
+
+	const first = svs.maxclients + 1;
+	const globals = [];
+	ED_WriteGlobals( globals );
+
+	const edicts = [];
+	for ( let i = first; i < sv.num_edicts; i ++ ) {
+
+		const lines = [];
+		ED_Write( lines, EDICT_NUM( i ) );
+		edicts.push( lines.join( '\n' ) );
+
+	}
+
+	return { first, time: sv.time, lightstyles: sv.lightstyles.slice(), globals: globals.join( '\n' ), edicts };
+
+}
+
+// the text of one { ... } block, ready for the parsers (which start after the brace)
+function blockData( text ) {
+
+	const data = COM_Parse( text );
+	return com_token === '{' ? data : null;
+
+}
+
+function SV_RestoreLevel( snap ) {
+
+	// what the level's own entities just spawned is replaced by what was there
+	for ( let i = snap.first; i < sv.num_edicts; i ++ ) {
+
+		const ed = EDICT_NUM( i );
+		if ( ed.free === false ) ED_Free( ed );
+
+	}
+
+	const globals = blockData( snap.globals );
+	if ( globals !== null ) ED_ParseGlobals( globals );
+
+	snap.edicts.forEach( ( text, k ) => {
+
+		const ed = EDICT_NUM( snap.first + k );
+		const data = blockData( text );
+		if ( data === null ) return;
+
+		ed.free = false;
+		ED_ParseEdict( data, ed );
+		if ( ed.free === false ) SV_LinkEdict( ed, false );
+
+	} );
+
+	sv.num_edicts = snap.first + snap.edicts.length;
+	sv.time = snap.time;
+
+	for ( let i = 0; i < snap.lightstyles.length; i ++ ) sv.lightstyles[ i ] = snap.lightstyles[ i ];
+
+	// these belong to the game in progress, not to the level's old state
+	pr_global_struct.serverflags = svs.serverflags;
+	pr_global_struct.time = sv.time;
+
+}
+
 // doors across an exit's opening (a key door in front of the way out)
 function SV_ClearExitDoors( exit ) {
 
@@ -209,10 +285,18 @@ export function SV_SeamlessSetup() {
 	crossings = [];
 	lastOrigin = null;
 
+	// only crossings carry a level's state along; anything else starts afresh
+	const arriving = pending !== null && pending.map === sv.name;
+	if ( arriving === false ) levelStates.clear();
+
 	if ( ! SV_SeamlessEnabled() || svs.maxclients !== 1 || sv.worldmodel == null ) return;
 
 	const here = SV_LevelLinks( sv.name );
 	if ( here === null ) return;
+
+	// a level we have been in: as we left it
+	const state = arriving ? levelStates.get( sv.name ) : undefined;
+	if ( state !== undefined ) SV_RestoreLevel( state );
 
 	// the doorway we came in by, seen from this side: a way back
 	const from = pending !== null && pending.map === sv.name ? pending.from : null;
@@ -310,6 +394,9 @@ export function SV_SeamlessFrame() {
 
 			const t = c.transform;
 			const va = ent.v.v_angle;
+
+			// the level is left as it is: monsters, items, doors...
+			levelStates.set( sv.name, SV_CaptureLevel() );
 
 			pending = {
 				map: c.map,
@@ -443,6 +530,7 @@ export function SV_SeamlessReset() {
 	holding = null;
 	lastOrigin = null;
 	metaCache.clear();
+	levelStates.clear();
 
 }
 
