@@ -6,7 +6,7 @@ import { Sys_FloatTime } from './sys.js';
 import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
-import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
+import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals } from './gl_portal.js';
 import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
@@ -1473,7 +1473,20 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_portals );
 	Cvar_RegisterVariable( r_flashlight );
 	Cvar_RegisterVariable( r_decals );
-	SV_SetLiquidLinks( R_GetLiquidLinks );
+	// what the server sends you: through water, and through the windows of the
+	// level's own teleporters (a secret seen through one is there to be seen)
+	SV_SetLiquidLinks( () => {
+
+		const links = R_GetLiquidLinks();
+		if ( r_newer_portals.value === 0 ) return links;
+		const portals = R_GetPortals();
+		if ( portals.length === 0 ) return links;
+		const all = links.slice();
+		for ( const p of portals )
+			if ( p.srcLeaf != null ) all.push( p._svLink || ( p._svLink = { above: p.srcLeaf, below: null, aboveVis: [], belowVis: p.destVis } ) );
+		return all;
+
+	} );
 	R_LevelViewUseSnapshots( SV_LevelSnapshotEntities );
 	R_FlashlightInit();
 
