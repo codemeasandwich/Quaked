@@ -28,6 +28,12 @@ export function R_AnimSetNewer( active ) {
 
 }
 
+export function R_IsNewer() {
+
+	return newerActive;
+
+}
+
 export function R_AnimEnabled() {
 
 	const v = r_lerpmodels.value;

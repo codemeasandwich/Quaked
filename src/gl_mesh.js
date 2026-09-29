@@ -1,6 +1,7 @@
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';
+import { R_NewerAliasMaterial } from './r_newerskins.js';
 import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cl } from './client.js';
@@ -586,6 +587,14 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 	if ( ! paliashdr._materialCache ) paliashdr._materialCache = new Map();
 
 	const skinnum = entity && entity.skinnum ? entity.skinnum : 0;
+
+	// Newer Game: the Quake Reforged skin for this monster, once it has loaded
+	if ( skinnum === 0 && entity != null && entity.model != null ) {
+
+		const reforged = R_NewerAliasMaterial( entity, entity.model.name, hasLighting );
+		if ( reforged !== null ) return reforged;
+
+	}
 
 	// Animated skins cycle through frames 0-3 every 0.1 seconds
 	// Original: anim = (int)(cl.time*10) & 3

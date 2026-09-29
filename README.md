@@ -37,6 +37,10 @@ Newer Game also:
 - is graded 40% darker with 40% more contrast than its raw output (`r_newbright 0.6`, `r_newcontrast 1.4`; use 1 and 1 for the ungraded look);
 - adds extra frames between model animation frames: Quake steps monsters and weapons through their poses ten times a second, and Newer Game blends between them so movement runs at your display's frame rate. `r_lerpmodels 0` turns it off, `1` (default) is Newer Game only, `2` forces it on in the classic lighting too. It does not blend a model that has just come into view, teleported or changed model.
 
+- gives the monsters the **Quake Reforged** skins (see `newer/enemies/CREDITS.txt`): high resolution skins with normal maps (so the sun and torches light the scales and stitching), glow maps and a wet sheen. There are 33 skins for 26 models, including head gibs, and every monster picks one of its model's skins at random, once per monster per level, so a crowd of zombies is not a crowd of clones (`r_newer_variety 0` always uses the first). The classic lighting keeps the original skins. Models the shareware data does not include (Enforcer, Rotfish, Shub-Niggurath, Hell Knight, Fiend...) will use them when you run the full game.
+
+To add or replace skins, put the extracted downloads in one folder and run `python3 tools/build_newer_assets.py THAT_FOLDER`. It converts them to WebP, generates normal maps for skins that lack one, and rewrites `newer/enemies/index.json`.
+
 You can switch at any time from the console: `r_hdr 0` (classic) or `r_hdr 1` (newer). `r_bloom`, `r_volumetric` and `r_caustics` set the strength of each effect.
 
 This is a rasterised approximation, not path tracing: light does not bounce, and shafts are occluded by what is on screen. It needs WebGL2 float render targets; without them the classic path is used automatically, and it is off in WebXR.

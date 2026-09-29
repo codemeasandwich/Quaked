@@ -8,6 +8,7 @@ import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { r_lerpmodels } from './r_anim.js';
+import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
 import { r_hdr, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_MapHasSky } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
@@ -1437,6 +1438,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newbright );
 	Cvar_RegisterVariable( r_newcontrast );
 	Cvar_RegisterVariable( r_lerpmodels );
+	Cvar_RegisterVariable( r_newer_variety );
 
 	R_InitParticles();
 	R_SetParticleExternals( { scene: scene } );
@@ -1470,6 +1472,8 @@ export function R_NewMap() {
 
 	}
 	r_worldentity.model = cl != null ? cl.worldmodel : null;
+
+	R_NewerSkinsNewMap(); // monsters roll their Newer skins again
 
 	// reset framecount
 	set_r_framecount( 1 );
