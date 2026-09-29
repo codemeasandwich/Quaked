@@ -139,6 +139,22 @@ function floorBelow( p ) {
 // (var, without an initialiser: it may be set before this module has finished loading)
 var models;
 
+// The renderer's links through liquid surfaces ( { above, below, aboveVis, belowVis } ),
+// which the server uses to see through water (see SV_FatPVS)
+var liquidLinksSource;
+
+export function SV_SetLiquidLinks( fn ) {
+
+	liquidLinksSource = fn;
+
+}
+
+export function SV_LiquidLinks() {
+
+	return liquidLinksSource ? liquidLinksSource() : [];
+
+}
+
 export function SV_SeamlessUseModels( tools ) {
 
 	models = tools;

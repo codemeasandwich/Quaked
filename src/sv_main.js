@@ -63,7 +63,8 @@ import { VectorCopy, VectorAdd, DotProduct } from './mathlib.js';
 import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from './gl_model.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from './pr_edict.js';
 import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from './progs.js';
-import { SV_SeamlessSetup, SV_SeamlessUseModels } from './sv_seamless.js';
+import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks } from './sv_seamless.js';
+import { R_NewerGame } from './r_anim.js';
 
 SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf } );
 import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
@@ -612,6 +613,44 @@ function SV_AddToFatPVS( org, node ) {
 
 /*
 =============
+SV_SeeThroughLiquids
+
+The level compiler treats water as solid when it works out what can see what, so
+from outside a pool nothing in it is "visible", and from inside it nothing outside
+is.  Newer Game draws through the surface, so what is beyond it must be sent too
+(a secret wall under the water, a monster, an item): when one side of a liquid
+surface is in the set, so is the other.
+=============
+*/
+function SV_SeeThroughLiquids() {
+
+	const links = SV_LiquidLinks();
+	if ( links.length === 0 ) return;
+
+	const leafs = sv.worldmodel.leafs;
+
+	for ( const l of links ) {
+
+		if ( l.aNum === undefined ) {
+
+			l.aNum = leafs.indexOf( l.above );
+			l.bNum = leafs.indexOf( l.below );
+
+		}
+
+		// PVS bit i is leaf i + 1
+		const aSeen = l.aNum > 0 && ( fatpvs[ ( l.aNum - 1 ) >> 3 ] & ( 1 << ( ( l.aNum - 1 ) & 7 ) ) ) !== 0;
+		const bSeen = l.bNum > 0 && ( fatpvs[ ( l.bNum - 1 ) >> 3 ] & ( 1 << ( ( l.bNum - 1 ) & 7 ) ) ) !== 0;
+
+		if ( aSeen ) for ( let i = 0; i < l.belowVis.length && i < fatbytes; i ++ ) fatpvs[ i ] |= l.belowVis[ i ];
+		if ( bSeen ) for ( let i = 0; i < l.aboveVis.length && i < fatbytes; i ++ ) fatpvs[ i ] |= l.aboveVis[ i ];
+
+	}
+
+}
+
+/*
+=============
 SV_FatPVS
 
 Calculates a PVS that is the inclusive or of all leafs within 8 pixels of the
@@ -623,6 +662,7 @@ function SV_FatPVS( org ) {
 	fatbytes = ( sv.worldmodel.numleafs + 31 ) >> 3;
 	fatpvs.fill( 0, 0, fatbytes );
 	SV_AddToFatPVS( org, sv.worldmodel.nodes[ 0 ] );
+	if ( R_NewerGame() ) SV_SeeThroughLiquids();
 	return fatpvs;
 
 }

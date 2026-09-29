@@ -13,9 +13,9 @@ import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
-import { SV_SeamlessCrossings } from './sv_seamless.js';
+import { SV_SeamlessCrossings, SV_SetLiquidLinks } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater } from './gl_post.js';
+import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1470,6 +1470,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_portals );
 	Cvar_RegisterVariable( r_flashlight );
 	Cvar_RegisterVariable( r_decals );
+	SV_SetLiquidLinks( R_GetLiquidLinks );
 	R_FlashlightInit();
 
 	R_InitParticles();

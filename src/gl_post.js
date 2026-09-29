@@ -1594,10 +1594,14 @@ void main() {
 				c = c * T + tint * ( 1.0 - T ) * 0.6;
 			}
 
+			// below the surface of a pool: no outlines (the pool's walls stand on its edge, so a margin)
+			if ( d < 0.99999
+				&& hitW.x > bmin.x - 24.0 && hitW.x < bmax.x + 24.0 && hitW.y > bmin.y - 24.0 && hitW.y < bmax.y + 24.0
+				&& hitW.z > bmin.z && hitW.z < top + 2.0 ) creaseK = 1.0;
+
 			if ( d < 0.99999
 				&& hitW.x > bmin.x && hitW.x < bmax.x && hitW.y > bmin.y && hitW.y < bmax.y
 				&& hitW.z > bmin.z && hitW.z < top + 2.0 ) {
-				creaseK = 1.0; // seen through the water: no outlines
 				float depth = top - hitW.z;
 				vec2 plane = abs( Nw.z ) > 0.5 ? hitW.xy : ( abs( Nw.x ) > abs( Nw.y ) ? hitW.yz : hitW.xz );
 				float cs = caustic( plane * 0.0045, uTime * 0.6 );
