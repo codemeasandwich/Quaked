@@ -41,8 +41,8 @@ Deno.test( 'coming out of water wets the view, and it dries', () => {
 		if ( wet.density < 0.9 ) throw new Error( 'soaked on leaving the water: ' + wet.density );
 		if ( wet.blood !== 0 ) throw new Error( 'water is not blood' );
 
-		// dries over several seconds, and the drops have been running
-		for ( let i = 0; i < 40; i ++ ) {
+		// dries over a few seconds, and the drops have been running
+		for ( let i = 0; i < 15; i ++ ) {
 
 			advance( 0.1 );
 			drops.R_ScreenDropsUpdate();
@@ -51,8 +51,8 @@ Deno.test( 'coming out of water wets the view, and it dries', () => {
 
 		advance( 0.1 );
 		const later = drops.R_ScreenDropsUpdate();
-		if ( later.density >= wet.density || later.density <= 0 ) throw new Error( 'partly dry after four seconds: ' + later.density );
-		if ( later.age < 3.9 ) throw new Error( 'the drops have been running for about four seconds: ' + later.age );
+		if ( later.density >= wet.density || later.density <= 0 ) throw new Error( 'partly dry after a second and a half: ' + later.density );
+		if ( later.age < 1.5 ) throw new Error( 'the drops have been running for about a second and a half: ' + later.age );
 
 		for ( let i = 0; i < 100; i ++ ) {
 
@@ -62,6 +62,33 @@ Deno.test( 'coming out of water wets the view, and it dries', () => {
 		}
 
 		if ( drops.R_ScreenDropsUpdate().density !== 0 ) throw new Error( 'dry in the end' );
+
+	} );
+
+} );
+
+Deno.test( 'going under water washes the drops off, and none show while under', () => {
+
+	withClock( ( advance ) => {
+
+		drops.R_ScreenDropsReset();
+		drops.R_ScreenDropsUpdate();
+		drops.R_ScreenDropsView( - 1 );
+		drops.R_ScreenDropsWet( 1 );
+		drops.R_ScreenDropsBlood( 0.8 );
+		advance( 0.05 );
+		if ( drops.R_ScreenDropsUpdate().density < 0.9 ) throw new Error( 'wet before diving' );
+
+		drops.R_ScreenDropsView( - 3 ); // under water
+		advance( 0.05 );
+		if ( drops.R_ScreenDropsUpdate().density !== 0 ) throw new Error( 'washed off by the water' );
+
+		// lava and slime too
+		drops.R_ScreenDropsView( - 1 );
+		drops.R_ScreenDropsWet( 1 );
+		drops.R_ScreenDropsView( - 5 );
+		advance( 0.05 );
+		if ( drops.R_ScreenDropsUpdate().density !== 0 ) throw new Error( 'and in lava' );
 
 	} );
 

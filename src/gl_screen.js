@@ -573,6 +573,17 @@ function SCR_SetUpToDrawConsole() {
 	if ( scr_newer() && scr_wasforced && ! forcedup && key_dest !== key_console ) scr_con_current = 0;
 	scr_wasforced = forcedup;
 
+	// Newer Game: the console is only ever what the player opened.  Whatever starts
+	// a load (a portal, the menu, a restart), it never comes down by itself.
+	if ( scr_newer() && key_dest !== key_console ) {
+
+		scr_conlines = 0;
+		scr_con_current = 0;
+		Con_SetForcedup( false );
+		return;
+
+	}
+
 	Con_SetForcedup( forcedup );
 
 	if ( scr_plaque ) {

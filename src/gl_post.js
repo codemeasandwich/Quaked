@@ -99,6 +99,15 @@ const glowMaterials = new Set();
 let glowActive = false;
 
 
+// The eye is under water, slime or lava: no drops on the lens, no edge outlines
+let underwater = false;
+
+export function R_PostSetUnderwater( v ) {
+
+	underwater = v === true;
+
+}
+
 export function R_PostActive() {
 
 	return glowActive;
@@ -1010,7 +1019,7 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 			// an ordinary light fades over its last 0.3 s; a flash is only 0.1 s long and full strength until it is gone
 			const fade = Math.min( 1, ( d.die - time ) / ( muzzle ? 0.1 : 0.3 ) );
 			consider( d.origin[ 0 ], d.origin[ 1 ], d.origin[ 2 ], muzzle ? MUZZLE_COLOR : DLIGHT_COLOR,
-				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER : 1 ), 40, view, muzzle ? 1 : 0 );
+				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER * ( d.flashScale === undefined ? 1 : d.flashScale ) : 1 ), 40, view, muzzle ? 1 : 0 );
 
 		}
 
@@ -2084,9 +2093,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	}
 
-	cm.uEdge.value = Math.max( 0, r_newedges.value );
+	cm.uEdge.value = underwater ? 0 : Math.max( 0, r_newedges.value );
 	const drops = R_ScreenDropsUpdate();
-	cm.uDropDensity.value = drops.density;
+	cm.uDropDensity.value = underwater ? 0 : drops.density;
 	cm.uDropBlood.value = drops.blood;
 	cm.uDropAge.value = drops.age;
 	cm.uTime.value = time;

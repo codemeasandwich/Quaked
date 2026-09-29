@@ -5,8 +5,8 @@
 // each one; this module keeps track of how wet the view is.
 
 // how long it takes to dry, in seconds
-const WATER_DRY = 7;
-const BLOOD_DRY = 11;
+const WATER_DRY = 3.2;
+const BLOOD_DRY = 6;
 
 let wet = 0;
 let blood = 0;
@@ -34,8 +34,12 @@ slime are liquid.  The moment the eye comes out of it, the view is wet.
 */
 export function R_ScreenDropsView( contents ) {
 
-	const liquid = contents === - 3 || contents === - 4;
-	if ( inLiquid && liquid === false ) R_ScreenDropsWet( 1 );
+	const liquid = contents === - 3 || contents === - 4 || contents === - 5;
+
+	// under the surface the drops are washed off, and there are none to see
+	if ( liquid ) R_ScreenDropsClear();
+	else if ( inLiquid ) R_ScreenDropsWet( 1 );
+
 	inLiquid = liquid;
 
 }
@@ -100,6 +104,13 @@ export function R_ScreenDropsClear() {
 	wet = 0;
 	blood = 0;
 	age = 0;
+
+}
+
+// a new level: dry, and not in the water
+export function R_ScreenDropsReset() {
+
+	R_ScreenDropsClear();
 	inLiquid = false;
 
 }

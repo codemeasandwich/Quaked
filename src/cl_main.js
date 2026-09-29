@@ -24,7 +24,7 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from './mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
-import { R_MuzzleFlashFired, R_MuzzleView } from './r_muzzle.js';
+import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from './r_muzzle.js';
 import { R_NewerGame } from './r_anim.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from './host.js';
@@ -490,7 +490,8 @@ export function CL_ViewMuzzleFlash() {
 	AngleVectors( cl.viewangles, _flashFv, _flashRv, _flashUv );
 	VectorMA( dl.origin, 20, _flashFv, dl.origin );
 	VectorMA( dl.origin, - 4, _flashUv, dl.origin );
-	dl.radius = 240 + ( Math.random() * 32 | 0 );
+	dl.flashScale = R_MuzzleFlashScale();
+	dl.radius = ( 240 + ( Math.random() * 32 | 0 ) ) * ( 0.35 + 0.65 * dl.flashScale );
 	dl.minlight = 32;
 	dl.die = cl.time + 0.12;
 
@@ -958,6 +959,13 @@ function CL_LinkPlayers() {
 			dl.radius = 200 + ( Math.random() * 32 | 0 );
 			dl.minlight = 32;
 			dl.die = cl.time + 0.1;
+			if ( mine && R_NewerGame() ) {
+
+				// dimmer in a lit room (see R_MuzzleFlashScale)
+				dl.flashScale = R_MuzzleFlashScale();
+				dl.radius *= 0.35 + 0.65 * dl.flashScale;
+
+			}
 
 		}
 

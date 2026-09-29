@@ -92,3 +92,21 @@ Deno.test( 'the flashlight is off without the Newer lighting', () => {
 	flashlight.r_flashlight.value = 0;
 
 } );
+
+Deno.test( 'the muzzle flash is dimmed in a lit room and full in the dark', async () => {
+
+	const m = await import( '../src/r_muzzle.js' );
+	m.R_MuzzleSetView( [ 0, 0, 0 ] );
+
+	m.R_MuzzleSetProbe( () => 10 ); // dark
+	if ( m.R_MuzzleFlashScale() !== 1 ) throw new Error( 'full in the dark' );
+
+	m.R_MuzzleSetProbe( () => 80 ); // medium
+	const medium = m.R_MuzzleFlashScale();
+	m.R_MuzzleSetProbe( () => 200 ); // bright
+	const bright = m.R_MuzzleFlashScale();
+
+	if ( ! ( medium < 1 && medium > bright ) ) throw new Error( 'dimmer as it gets brighter: ' + medium + ' ' + bright );
+	if ( bright > 0.3 || bright < 0.2 ) throw new Error( 'a fraction in a bright room: ' + bright );
+
+} );

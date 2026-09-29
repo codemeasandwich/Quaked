@@ -9,13 +9,13 @@ import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
 import { R_SetupLevelViews } from './r_levelview.js';
-import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsClear } from './r_screendrops.js';
+import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
-import { R_MuzzleSetView } from './r_muzzle.js';
+import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow } from './gl_post.js';
+import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -301,6 +301,7 @@ export function R_SetupFrame() {
 		r_viewleaf = Mod_PointInLeaf( r_origin, cl.worldmodel );
 		R_ScreenDropsSetView( r_origin );
 		R_ScreenDropsView( r_viewleaf.contents );
+		R_PostSetUnderwater( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 || r_viewleaf.contents === - 5 );
 
 	}
 
@@ -1513,7 +1514,8 @@ export function R_NewMap() {
 	R_ClearParticles();
 	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
 	R_DecalsClear();
-	R_ScreenDropsClear();
+	R_ScreenDropsReset();
+	R_MuzzleSetProbe( ( p ) => R_LightPoint( p, cl ) );
 
 	// Clean up all cached entity resources from the previous map. Static
 	// entities keep their JS identity across CL_ClearState, so invalidate the

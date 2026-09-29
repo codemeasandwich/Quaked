@@ -30,6 +30,28 @@ export function R_MuzzleView() {
 
 }
 
+// How much of the flash to show given how bright the surroundings already are: all
+// of it in the dark, where the flash lights the room, and a fraction in a lit room,
+// where it would only be a distracting pulse.  The renderer supplies the probe
+// (the baked light at a point, 0 dark .. 255 bright).
+let probe = null;
+
+export function R_MuzzleSetProbe( fn ) {
+
+	probe = fn;
+
+}
+
+export function R_MuzzleFlashScale() {
+
+	if ( probe === null || haveView === false ) return 1;
+
+	const light = probe( viewOrigin );
+	const t = Math.min( 1, Math.max( 0, ( light - 30 ) / 110 ) );
+	return 1 - 0.75 * t * t * ( 3 - 2 * t );
+
+}
+
 // the player's weapon fired (called as the game flags the muzzle flash)
 export function R_MuzzleFlashFired() {
 
