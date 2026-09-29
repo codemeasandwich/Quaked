@@ -6,12 +6,13 @@
 // draw call) with a ring of the most recent MAX_DECALS marks, so a long fight
 // wears old marks away instead of slowing the game.  The surface is found from
 // the level's own polygons (the leaf the point is in has the surfaces that touch
-// it), so a mark takes the surface's angle, is kept inside that surface, and is
-// lit by the surface's baked light where it lands.
+// it), so a mark takes the surface's angle and is kept inside that surface.  It
+// multiplies the surface's colour (darkens or tints it) rather than drawing its
+// own, so it is lit exactly as the surface is.
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
-import { R_NewerGame, R_NewerLightingActive } from './r_anim.js';
+import { R_NewerGame } from './r_anim.js';
 
 export const r_decals = new cvar_t( 'r_decals', '1' );
 
@@ -27,12 +28,14 @@ const CELL_SCORCH = [ 2 ];
 const CELL_BLOOD = [ 3, 4, 5, 6 ];
 const CELL_DROP = [ 7 ];
 
-// kind: [ cells, colour, seconds it lasts ]
+// kind: the cells it uses, the colour it multiplies the surface by (1 = no change),
+// and how many seconds it lasts.  A mark darkens or tints what is under it, so it is
+// lit by exactly what lights the surface: dark walls give dark marks.
 const KINDS = {
-	hole: { cells: CELL_HOLE, color: [ 1.0, 1.0, 1.0 ], life: 90 },
-	scorch: { cells: CELL_SCORCH, color: [ 1.0, 1.0, 1.0 ], life: 120 },
-	blood: { cells: CELL_BLOOD, color: [ 0.5, 0.025, 0.025 ], life: 180 },
-	drop: { cells: CELL_DROP, color: [ 0.55, 0.03, 0.03 ], life: 180 }
+	hole: { cells: CELL_HOLE, color: [ 0.09, 0.08, 0.07 ], life: 90 },
+	scorch: { cells: CELL_SCORCH, color: [ 0.2, 0.18, 0.16 ], life: 120 },
+	blood: { cells: CELL_BLOOD, color: [ 0.42, 0.03, 0.03 ], life: 180 },
+	drop: { cells: CELL_DROP, color: [ 0.36, 0.025, 0.025 ], life: 180 }
 };
 
 const FADE = 8; // seconds over which a mark fades away at the end of its life
@@ -160,20 +163,33 @@ function atlasTexture() {
 	let seed = 12345;
 	const rand = () => ( seed = ( seed * 1103515245 + 12345 ) & 0x7fffffff ) / 0x7fffffff;
 
-	// bullet holes: a dark pit with a chipped, paler rim
+	// bullet holes: a small ragged pit, darkest in the middle, with a few hairline
+	// cracks and a faint bruise around it (no pale rim: it only ever darkens)
 	for ( const i of CELL_HOLE ) {
 
 		const [ cx, cy ] = at( i );
-		blob( cx, cy, 28, '150,140,125', 0.4 );
-		for ( let k = 0; k < 9; k ++ ) {
+		blob( cx, cy, 22, '255,255,255', 0.22 );
+		g.strokeStyle = 'rgba(255,255,255,0.55)';
+		g.lineCap = 'round';
+		for ( let k = 0; k < 6; k ++ ) {
 
-			const a = rand() * Math.PI * 2, d = 8 + rand() * 12;
-			blob( cx + Math.cos( a ) * d, cy + Math.sin( a ) * d, 3 + rand() * 4, '60,55,48', 0.55 );
+			const a = rand() * Math.PI * 2, len = 9 + rand() * 12;
+			g.lineWidth = 0.8 + rand() * 0.8;
+			g.beginPath();
+			g.moveTo( cx, cy );
+			g.lineTo( cx + Math.cos( a ) * len * 0.5 + ( rand() - 0.5 ) * 3, cy + Math.sin( a ) * len * 0.5 + ( rand() - 0.5 ) * 3 );
+			g.lineTo( cx + Math.cos( a ) * len, cy + Math.sin( a ) * len );
+			g.stroke();
 
 		}
 
-		blob( cx, cy, 13 + rand() * 2, '8,7,5', 1 );
-		blob( cx - 2, cy - 2, 7, '0,0,0', 1 );
+		// the pit: a few overlapping dark blobs so its edge is irregular
+		for ( let k = 0; k < 5; k ++ ) {
+
+			const a = rand() * Math.PI * 2, d = rand() * 3;
+			blob( cx + Math.cos( a ) * d, cy + Math.sin( a ) * d, 5 + rand() * 3, '255,255,255', 1 );
+
+		}
 
 	}
 
@@ -264,11 +280,28 @@ function ensureMesh() {
 		vertexColors: true,
 		transparent: true,
 		depthWrite: false,
+		toneMapped: false,
 		polygonOffset: true,
 		polygonOffsetFactor: - 4,
 		polygonOffsetUnits: - 4,
-		side: THREE.DoubleSide
+		side: THREE.DoubleSide,
+		// destination * source: the mark's colour multiplies what is already drawn
+		blending: THREE.CustomBlending,
+		blendEquation: THREE.AddEquation,
+		blendSrc: THREE.DstColorFactor,
+		blendDst: THREE.ZeroFactor
 	} );
+
+	// what is drawn is the multiplier: 1 where the mark is not, its colour where it is
+	material.onBeforeCompile = ( shader ) => {
+
+		shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\n' + shader.fragmentShader
+			.replace( '#include <opaque_fragment>', 'gl_FragColor = vec4( mix( vec3( 1.0 ), outgoingLight, diffuseColor.a ), 1.0 );' )
+			.replace( '#include <colorspace_fragment>', 'gNormal = vec4( 0.0 );' );
+
+	};
+
+	material.customProgramCacheKey = () => 'quake-decals';
 
 	mesh = new THREE.Mesh( geometry, material );
 	mesh.frustumCulled = false;
@@ -276,18 +309,6 @@ function ensureMesh() {
 	mesh.name = 'quake_decals';
 	mesh.matrixAutoUpdate = false;
 	return true;
-
-}
-
-// how bright the surface is where a mark lands, in the terms the Newer lighting
-// draws the baked light (it is curved, so a mark has to be too)
-function surfaceLight( x, y, z ) {
-
-	const cl = deps.cl();
-	const l = deps.lightPoint( [ x, y, z ], cl );
-	let f = Math.min( 1.2, Math.max( 0.02, l / 170 ) );
-	if ( R_NewerLightingActive() ) f = Math.pow( f, 2.4 ) * 1.6;
-	return Math.min( 1.3, f + 0.03 );
 
 }
 
@@ -338,8 +359,7 @@ export function R_DecalPlace( kind, p, radius, maxDist ) {
 	const corners = [ [ - 1, - 1 ], [ 1, - 1 ], [ 1, 1 ], [ - 1, 1 ] ];
 	const u0 = ( cell % 4 ) / 4, v0 = 1 - ( Math.floor( cell / 4 ) + 1 ) / 2;
 
-	const lit = surfaceLight( hit.px, hit.py, hit.pz );
-	const cr = k.color[ 0 ] * lit, cg = k.color[ 1 ] * lit, cb = k.color[ 2 ] * lit;
+	const cr = k.color[ 0 ], cg = k.color[ 1 ], cb = k.color[ 2 ];
 
 	for ( let c = 0; c < 4; c ++ ) {
 

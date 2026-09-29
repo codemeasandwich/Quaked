@@ -67,7 +67,7 @@ const SCATTER = 0.03; // point light in-scattering
 const LIGHT_FLOOR = 0.14; // light on a surface the lightmap left dark
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
 const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky scales it
-const SPOT_POWER = 2.4; // the flashlight, in the same units as the point lights
+const SPOT_POWER = 1.6; // the flashlight, in the same units as the point lights
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
 const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
@@ -163,7 +163,7 @@ function setGlowActive( active ) {
 
 const detailMaterials = new Set();
 
-const PARALLAX_DEPTH = 0.045; // in texture tiles
+const PARALLAX_DEPTH = 0.02; // in texture tiles
 const PARALLAX_LAYERS = 10;
 
 // Parallax: shift the texture lookups along the view ray by the height stored in
@@ -916,7 +916,7 @@ let selectedCount = 0;
 
 const DLIGHT_COLOR = [ 1.0, 0.62, 0.28 ];
 const MUZZLE_COLOR = [ 1.0, 0.78, 0.45 ]; // a muzzle flash is whiter and much stronger than an ember
-const MUZZLE_POWER = 1.3;
+const MUZZLE_POWER = 4;
 
 function consider( px, py, pz, color, power, radius, view ) {
 
@@ -1447,13 +1447,13 @@ void main() {
 		// (tinted by the surface's own colour, so stone stays stone and does not
 		// wash out to grey where a light falls on it)
 		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 2.0 + 0.2 * tint );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 1.3 + 0.12 * tint );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
 			float ls = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-			c = mix( vec3( ls ), c, 1.0 + 0.85 * spotMask );
-			c *= 1.0 + 0.18 * spotMask;
+			c = mix( vec3( ls ), c, 1.0 + 0.5 * spotMask );
+			c *= 1.0 + 0.08 * spotMask;
 		}
 
 		// corners and edges

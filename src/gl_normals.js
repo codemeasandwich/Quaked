@@ -23,13 +23,17 @@ import * as THREE from 'three';
 
 // how strongly each blur scale contributes to the height field
 const SCALES = [
-	{ radius: 0, weight: 0.55 },
-	{ radius: 1, weight: 0.75 },
+	{ radius: 0, weight: 0.3 },
+	{ radius: 1, weight: 0.5 },
 	{ radius: 3, weight: 1.0 },
-	{ radius: 6, weight: 0.8 }
+	{ radius: 6, weight: 0.6 }
 ];
 
-export const NORMAL_STRENGTH = 2.6;
+// How steep the relief is.  Busy textures (wiring, panels) have detail at every scale:
+// too much relief turns each speck into a bump and the picture is lost under the
+// lighting, so the slope is limited (below) as well as scaled.
+export const NORMAL_STRENGTH = 1.3;
+const MAX_TILT = 0.5; // the steepest a facet may lean, as a slope (about 27 degrees)
 
 function luminance( r, g, b ) {
 
