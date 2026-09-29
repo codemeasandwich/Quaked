@@ -15,6 +15,12 @@ import { R_RegisterGlow } from './gl_post.js';
 import { R_NewerLightingActive } from './r_anim.js';
 import { R_AddLevelPortal, R_ClearLevelPortals } from './gl_portal.js';
 import { R_NormalMapFor } from './gl_normals.js';
+import { R_LightPoint } from './gl_rlight.js';
+import { R_DrawAliasModel } from './gl_mesh.js';
+import { r_avertexnormal_dots } from './anorm_dots.js';
+import { R_PostActive } from './gl_post.js';
+import { Cvar_VariableValue } from './cvar.js';
+import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;
@@ -145,7 +151,7 @@ function createBucket() {
 
 }
 
-function pushFan( bucket, verts, normal, uvFn, lmFn ) {
+function pushFan( bucket, verts, normal, uvFn, lmFn, off ) {
 
 	for ( let i = 0; i < verts.length - 2; i ++ ) {
 
@@ -311,6 +317,144 @@ function averageColour( texture ) {
 
 }
 
+
+//============================================================================
+// Entities
+//============================================================================
+
+const SHADEDOT_QUANT = 16;
+
+// Is any of a brush entity's box (moved to origin) in what can be seen?  Doors and
+// false walls stand inside solid, so the points are taken a little outside it.
+function boundsSeen( mins, maxs, origin, seenLeaf ) {
+
+	const pad = 24;
+	for ( const x of [ mins[ 0 ] - pad, ( mins[ 0 ] + maxs[ 0 ] ) / 2, maxs[ 0 ] + pad ] )
+		for ( const y of [ mins[ 1 ] - pad, ( mins[ 1 ] + maxs[ 1 ] ) / 2, maxs[ 1 ] + pad ] )
+			for ( const z of [ mins[ 2 ] - pad, ( mins[ 2 ] + maxs[ 2 ] ) / 2, maxs[ 2 ] + pad ] )
+				if ( seenLeaf( [ x + origin[ 0 ], y + origin[ 1 ], z + origin[ 2 ] ] ) ) return true;
+
+	return false;
+
+}
+
+// A monster, item or torch of another level: a model like the ones the game draws,
+// lit from that level's own lightmaps.
+function createGhost( ent, world ) {
+
+	const m = Mod_LoadForPreview( ent.model );
+	const hdr = m != null && m.cache != null ? m.cache.data : null;
+	if ( hdr == null || hdr.posedata == null ) return null;
+
+	const e = { model: m, frame: ent.frame, skinnum: ent.skin, origin: ent.origin.slice(), angles: ent.angles.slice() };
+	const frames = hdr.frames || [];
+
+	// monsters from the level's own list start standing about
+	if ( ent.fromSnapshot === false && ent.classname.indexOf( 'monster_' ) === 0 ) {
+
+		for ( const prefix of [ 'stand', 'walk', 'swim', 'idle', 'fly' ] ) {
+
+			const at = frames.findIndex( ( f ) => R_FramePrefix( f.name ) === prefix );
+			if ( at >= 0 ) {
+
+				e.frame = at;
+				break;
+
+			}
+
+		}
+
+	}
+
+	// idle loops play on; anything else (a death, an attack) is left as it was
+	let seq = null;
+	const cur = frames[ e.frame ];
+	if ( cur != null && [ 'stand', 'walk', 'swim', 'idle', 'fly', 'flame' ].indexOf( R_FramePrefix( cur.name ) ) >= 0 ) {
+
+		const prefix = R_FramePrefix( cur.name );
+		const list = [];
+		frames.forEach( ( f, i ) => {
+
+			if ( R_FramePrefix( f.name ) === prefix ) list.push( i );
+
+		} );
+		if ( list.length > 1 ) seq = list;
+
+	}
+
+	// what the game's own lighting of a model gives at that spot
+	const flame = m.name === 'progs/flame2.mdl' || m.name === 'progs/flame.mdl';
+	const light = flame ? ( R_PostActive() ? 640 : 256 ) : R_LightPoint( e.origin, { worldmodel: world } );
+
+	const g = {
+		e, hdr, seq, light, flame,
+		spin: ( m.flags & 8 ) !== 0,
+		phase: ( Math.random() * 1000 ) | 0,
+		last: - 1000,
+		mesh: null
+	};
+
+	if ( ! ghostDraw( g, 0 ) ) return null;
+	return g;
+
+}
+
+function ghostDraw( g, time ) {
+
+	const e = g.e;
+	if ( g.spin ) e.angles[ 1 ] = ( time * 100 ) % 360;
+	if ( g.seq !== null ) e.frame = g.seq[ ( ( time * 10 ) + g.phase | 0 ) % g.seq.length ];
+
+	// as the game clamps a model's light (flames are left to glow)
+	let ambient = g.light;
+	let shade = g.light;
+	if ( g.flame === false ) {
+
+		if ( ambient > 128 ) ambient = 128;
+		if ( ambient + shade > 192 ) shade = 192 - ambient;
+
+	}
+
+	const row = ( ( e.angles[ 1 ] * ( SHADEDOT_QUANT / 360 ) ) | 0 ) & ( SHADEDOT_QUANT - 1 );
+	const mesh = R_DrawAliasModel( e, g.hdr, r_avertexnormal_dots[ row ], shade / 200 );
+	if ( mesh == null ) return false;
+
+	g.mesh = mesh;
+	g.last = time;
+	return true;
+
+}
+
+// Called every frame: what plays in the other levels (idle animations, spinning
+// items, and skins that have finished loading) while one of their windows is near.
+export function R_UpdateLevelViewEntities( camera, time ) {
+
+	for ( const v of views ) {
+
+		if ( v.ghosts.length === 0 || v.anchor === undefined ) continue;
+		const dx = camera[ 0 ] - v.anchor[ 0 ], dy = camera[ 1 ] - v.anchor[ 1 ], dz = camera[ 2 ] - v.anchor[ 2 ];
+		if ( dx * dx + dy * dy + dz * dz > 2500 * 2500 ) continue;
+
+		for ( const g of v.ghosts ) {
+
+			if ( g.seq === null && ! g.spin && time - g.last < 1 ) continue;
+			ghostDraw( g, time );
+
+		}
+
+	}
+
+}
+
+let snapshotSource = null;
+
+// how the levels you have been in were left (set by the renderer, which knows the server)
+export function R_LevelViewUseSnapshots( fn ) {
+
+	snapshotSource = fn;
+
+}
+
 /*
 ================
 R_BuildLevelView
@@ -322,7 +466,7 @@ Returns { group, dispose } or null when there is nothing to draw.  The group is
 in the level's own coordinates; the caller places it.
 ================
 */
-export function R_BuildLevelView( model, origin ) {
+export function R_BuildLevelView( model, origin, entities = [] ) {
 
 	if ( model == null || model.surfaces == null || model.leafs == null ) return null;
 
@@ -354,9 +498,9 @@ export function R_BuildLevelView( model, origin ) {
 	const liquids = new Map(); // texture -> bucket
 	const slot = { x: 0, y: 0 };
 
-	for ( const surf of surfaces ) {
+	const addSurface = ( model, surf, off ) => {
 
-		if ( surf.texinfo == null || surf.texinfo.texture == null || surf.numedges < 3 ) continue;
+		if ( surf.texinfo == null || surf.texinfo.texture == null || surf.numedges < 3 ) return;
 
 		const tex = surf.texinfo.texture;
 		const verts = surfaceVertices( model, surf );
@@ -366,27 +510,27 @@ export function R_BuildLevelView( model, origin ) {
 
 		if ( surf.flags & SURF_DRAWSKY ) {
 
-			pushFan( sky, verts, normal, ( v ) => [ v[ 0 ] / 400, v[ 1 ] / 400 ], null );
-			continue;
+			pushFan( sky, verts, normal, ( v ) => [ v[ 0 ] / 400, v[ 1 ] / 400 ], null, off );
+			return;
 
 		}
 
 		if ( surf.flags & SURF_DRAWTURB ) {
 
-			if ( tex.gl_texture == null ) continue;
+			if ( tex.gl_texture == null ) return;
 			if ( ! liquids.has( tex ) ) liquids.set( tex, createBucket() );
-			pushFan( liquids.get( tex ), verts, normal, ( v ) => texCoords( v, surf.texinfo, 64, 64 ), null );
-			continue;
+			pushFan( liquids.get( tex ), verts, normal, ( v ) => texCoords( v, surf.texinfo, 64, 64 ), null, off );
+			return;
 
 		}
 
-		if ( tex.gl_texture == null ) continue;
+		if ( tex.gl_texture == null ) return;
 
 		// the lightmap
 		const smax = ( surf.extents[ 0 ] >> 4 ) + 1;
 		const tmax = ( surf.extents[ 1 ] >> 4 ) + 1;
 		const block = allocBlock( atlas, smax, tmax, slot );
-		if ( block < 0 ) continue; // out of room: leave this surface out
+		if ( block < 0 ) return; // out of room: leave this surface out
 
 		surf.light_s = slot.x;
 		surf.light_t = slot.y;
@@ -406,6 +550,51 @@ export function R_BuildLevelView( model, origin ) {
 				];
 
 			} );
+
+	};
+
+	for ( const surf of surfaces ) addSurface( model, surf, undefined );
+
+	// the entities: doors and false walls (brush models, which are not in the
+	// world's leaves), items, monsters and torches
+	const ghosts = [];
+	const seenLeaf = ( p ) => leaves.has( Mod_PointInLeaf( p, model ) );
+
+	for ( const ent of entities ) {
+
+		const o = ent.origin;
+
+		if ( ent.kind === 'brush' ) {
+
+			const sm = ent.submodel;
+			if ( ! boundsSeen( sm.mins, sm.maxs, o, seenLeaf ) ) continue;
+			for ( let i = 0; i < sm.numfaces; i ++ ) {
+
+				const surf = model.surfaces[ sm.firstface + i ];
+				if ( surf != null ) addSurface( model, surf, o );
+
+			}
+
+		} else if ( ent.kind === 'bsp' ) {
+
+			if ( ! seenLeaf( [ o[ 0 ] + 16, o[ 1 ] + 16, o[ 2 ] + 16 ] ) ) continue;
+			const m = Mod_LoadForPreview( ent.model );
+			if ( m == null || m.surfaces == null ) continue;
+			const first = m.firstmodelsurface || 0;
+			for ( let i = 0; i < ( m.nummodelsurfaces || 0 ); i ++ ) {
+
+				const surf = m.surfaces[ first + i ];
+				if ( surf != null ) addSurface( m, surf, o );
+
+			}
+
+		} else if ( ent.kind === 'alias' ) {
+
+			if ( ! seenLeaf( [ o[ 0 ], o[ 1 ], o[ 2 ] + 24 ] ) ) continue;
+			const g = createGhost( ent, model );
+			if ( g !== null ) ghosts.push( g );
+
+		}
 
 	}
 
@@ -455,13 +644,17 @@ export function R_BuildLevelView( model, origin ) {
 	// static: nothing here moves
 	for ( const child of group.children ) child.matrixAutoUpdate = false;
 
+	for ( const g of ghosts ) group.add( g.mesh );
+
 	return {
 		group,
 		leaves: leaves.size,
 		surfaces: surfaces.size,
+		ghosts,
 		dispose: () => {
 
 			if ( group.parent != null ) group.parent.remove( group );
+			for ( const g of ghosts ) if ( g.e._aliasGeo != null ) g.e._aliasGeo.dispose();
 			for ( const d of disposables ) d.dispose();
 
 		}
@@ -547,7 +740,16 @@ function buildView( scene, c, i ) {
 	if ( o === undefined ) return;
 
 	const model = Mod_LoadForPreview( 'maps/' + c.map + '.bsp' );
-	const view = model != null ? R_BuildLevelView( model, t.dest ) : null;
+	let entities = [];
+	if ( model != null ) {
+
+		// how you left it if you have been there, else as it starts
+		const snapshot = snapshotSource !== null ? snapshotSource( c.map ) : null;
+		entities = R_LevelEntities( model.entities, snapshot, model.submodels, Cvar_VariableValue( 'skill' ) );
+
+	}
+
+	const view = model != null ? R_BuildLevelView( model, t.dest, entities ) : null;
 	if ( view === null ) return;
 
 	// each level gets a space of its own
@@ -576,6 +778,8 @@ function buildView( scene, c, i ) {
 		cc[ 1 ] + o.axisA[ 1 ] * a + o.axisB[ 1 ] * b + shift[ 1 ],
 		cc[ 2 ] + o.axisA[ 2 ] * a + o.axisB[ 2 ] * b + shift[ 2 ]
 	];
+
+	view.anchor = corner( ( o.a0 + o.a1 ) / 2, ( o.b0 + o.b1 ) / 2 );
 
 	R_AddLevelPortal( scene,
 		[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],

@@ -23,7 +23,7 @@ import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { r_newer_portals } from './r_anim.js';
 import {
-	R_ParseBsp, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
+	R_ParseBsp, R_ParseEntityLump, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
 } from './r_levelgraph.js';
 
 export const sv_seamless = new cvar_t( 'sv_seamless', '1' );
@@ -152,6 +152,16 @@ export function SV_SetLiquidLinks( fn ) {
 export function SV_LiquidLinks() {
 
 	return liquidLinksSource ? liquidLinksSource() : [];
+
+}
+
+// The entities of a level you have been in, as you left them ({ classname, origin,
+// model, frame ... } each), for drawing it from another level; null if not visited.
+export function SV_LevelSnapshotEntities( mapName ) {
+
+	const snap = levelStates.get( mapName );
+	if ( snap === undefined ) return null;
+	return R_ParseEntityLump( snap.edicts.join( '\n' ) );
 
 }
 

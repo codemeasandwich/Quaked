@@ -29,7 +29,7 @@ const DOOR_HIGH = 48; // and at least this tall
 // BSP metadata
 //============================================================================
 
-function parseEntityLump( text ) {
+export function R_ParseEntityLump( text ) {
 
 	const ents = [];
 	const block = /\{([^}]*)\}/g;
@@ -87,7 +87,7 @@ export function R_ParseBsp( bytes ) {
 
 	}
 
-	return { entities: parseEntityLump( text ), submodels, headerLumps: HEADER_LUMPS };
+	return { entities: R_ParseEntityLump( text ), submodels, headerLumps: HEADER_LUMPS };
 
 }
 
