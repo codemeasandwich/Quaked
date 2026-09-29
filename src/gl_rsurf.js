@@ -27,11 +27,17 @@ function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
 	}
 
-	return new THREE.MeshLambertMaterial( matOptions );
+	const material = new THREE.MeshLambertMaterial( matOptions );
+
+	// fullbright texels exceed white when the HDR pipeline is on
+	R_RegisterGlow( material );
+
+	return material;
 
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
+import { R_BuildWorldLights, R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
@@ -264,6 +270,9 @@ function _getWaterMaterial( t, opacity ) {
 			side: THREE.DoubleSide
 		} );
 		_waterMaterialCache.set( cacheKey, material );
+
+		const glow = t != null && t.name != null ? R_GlowBoostForTexture( t.name ) : 1;
+		if ( glow > 1 ) R_RegisterGlow( material, glow );
 
 	}
 	if ( material.opacity !== opacity ) material.opacity = opacity;
@@ -2186,6 +2195,8 @@ function R_DrawSkyChain( s ) {
 
 	if ( ! worldGroup ) return;
 
+	R_PostNoteSky();
+
 	// Create or update sky materials from the sky textures
 	if ( solidskytexture && ! solidSkyMaterial ) {
 
@@ -2216,6 +2227,16 @@ function R_DrawSkyChain( s ) {
 		} );
 
 	}
+
+	// With the HDR pipeline the sky must not write depth: pixels that show sky
+	// keep the far-plane depth, which is how the volumetric pass finds openings.
+	const skyDepthWrite = ! R_PostActive();
+	if ( solidSkyMaterial && solidSkyMaterial.depthWrite !== skyDepthWrite ) solidSkyMaterial.depthWrite = skyDepthWrite;
+	if ( alphaSkyMaterial && alphaSkyMaterial.depthWrite !== skyDepthWrite ) alphaSkyMaterial.depthWrite = skyDepthWrite;
+
+	// the sky is a light source too: brighter than white lets it bloom around openings
+	if ( solidSkyMaterial && solidSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( solidSkyMaterial, 1.9 );
+	if ( alphaSkyMaterial && alphaSkyMaterial.userData.glowBoost === undefined ) R_RegisterGlow( alphaSkyMaterial, 1.9 );
 
 	// Solid sky layer (background, speed = realtime*8)
 	let solidSpeed = realtime * 8;
@@ -2950,6 +2971,9 @@ export function GL_BuildLightmaps() {
 
 	// link teleporter surfaces to their receivers
 	R_BuildPortals( cl_ref.worldmodel );
+
+	// lights and emitters for the HDR pipeline's volumetrics
+	R_BuildWorldLights( cl_ref.worldmodel );
 
 }
 

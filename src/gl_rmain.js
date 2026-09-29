@@ -7,6 +7,7 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
+import { r_hdr, r_bloom, r_volumetric, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_MapHasSky } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -304,6 +305,45 @@ export function R_SetupFrame() {
 }
 
 //============================================================================
+// R_ComputeViewport
+//
+// The 3D view's rectangle: physical pixels ( width / height, used to size the
+// HDR target ) and the logical rectangle handed to Three.js.
+//============================================================================
+
+const _viewport = { width: 0, height: 0, lx: 0, ly: 0, lw: 0, lh: 0 };
+
+function R_ComputeViewport() {
+
+	renderer.getDrawingBufferSize( _setupgl_drawingBufferSize );
+	const bufferWidth = _setupgl_drawingBufferSize.x;
+	const bufferHeight = _setupgl_drawingBufferSize.y;
+	const scale = r_refdef.vrectScale;
+	let x = r_refdef.vrect.x * scale;
+	let x2 = ( r_refdef.vrect.x + r_refdef.vrect.width ) * scale;
+	let y = bufferHeight - r_refdef.vrect.y * scale;
+	let y2 = bufferHeight -
+		( r_refdef.vrect.y + r_refdef.vrect.height ) * scale;
+
+	// Match GLQuake's one-pixel expansion around fractional view boundaries.
+	if ( x > 0 ) x --;
+	if ( x2 < bufferWidth ) x2 ++;
+	if ( y2 < 0 ) y2 --;
+	if ( y < bufferHeight ) y ++;
+
+	const pixelRatio = renderer.getPixelRatio();
+	_viewport.width = Math.round( x2 - x );
+	_viewport.height = Math.round( y - y2 );
+	_viewport.lx = x / pixelRatio;
+	_viewport.ly = y2 / pixelRatio;
+	_viewport.lw = ( x2 - x ) / pixelRatio;
+	_viewport.lh = ( y - y2 ) / pixelRatio;
+
+	return _viewport;
+
+}
+
+//============================================================================
 // R_SetupGL
 //
 // Instead of raw GL matrix setup, we configure the Three.js camera
@@ -473,29 +513,8 @@ export function R_SetupGL() {
 	// coordinates Three.js expects before it reapplies the renderer pixel ratio.
 	if ( isXRActive() === false && renderer !== null ) {
 
-		renderer.getDrawingBufferSize( _setupgl_drawingBufferSize );
-		const bufferWidth = _setupgl_drawingBufferSize.x;
-		const bufferHeight = _setupgl_drawingBufferSize.y;
-		const scale = r_refdef.vrectScale;
-		let x = r_refdef.vrect.x * scale;
-		let x2 = ( r_refdef.vrect.x + r_refdef.vrect.width ) * scale;
-		let y = bufferHeight - r_refdef.vrect.y * scale;
-		let y2 = bufferHeight -
-			( r_refdef.vrect.y + r_refdef.vrect.height ) * scale;
-
-		// Match GLQuake's one-pixel expansion around fractional view boundaries.
-		if ( x > 0 ) x --;
-		if ( x2 < bufferWidth ) x2 ++;
-		if ( y2 < 0 ) y2 --;
-		if ( y < bufferHeight ) y ++;
-
-		const pixelRatio = renderer.getPixelRatio();
-		renderer.setViewport(
-			x / pixelRatio,
-			y2 / pixelRatio,
-			( x2 - x ) / pixelRatio,
-			( y - y2 ) / pixelRatio
-		);
+		const vp = R_ComputeViewport();
+		renderer.setViewport( vp.lx, vp.ly, vp.lw, vp.lh );
 
 	}
 
@@ -518,7 +537,7 @@ export function R_Clear() {
 	// In Three.js, clearing is handled by renderer.clear()
 	// We configure the clear behavior based on cvars
 
-	if ( gl_clear.value ) {
+	if ( gl_clear.value || R_PostActive() ) {
 
 		renderer.setClearColor( 0x000000, 1 );
 		renderer.clear( true, true, false );
@@ -872,7 +891,7 @@ function R_DrawAliasModel( e ) {
 		// HACK HACK HACK -- no fullbright colors, so make torches full light
 		const clmodel = e.model;
 		if ( clmodel.name === 'progs/flame2.mdl' || clmodel.name === 'progs/flame.mdl' )
-			ambientlight = shadelight = 256;
+			ambientlight = shadelight = R_PostActive() ? 640 : 256; // flames glow past white in HDR
 
 		// select shadedots row based on yaw angle
 		const yaw = e.angles ? e.angles[ 1 ] : 0;
@@ -1264,6 +1283,22 @@ export function R_RenderView() {
 
 	mirror = false;
 
+	// "Newer" lighting: render through the HDR pipeline (r_hdr 1); otherwise
+	// the classic direct-to-screen path below is untouched.
+	let post = false;
+	if ( renderer != null && isXRActive() === false && envmap === false ) {
+
+		const vp = R_ComputeViewport();
+		post = R_PostBegin( renderer, true, vp.width, vp.height );
+
+	} else {
+
+		R_PostBegin( renderer, false, 0, 0 );
+
+	}
+
+	if ( post ) R_PostBind( renderer );
+
 	R_Clear();
 
 	// render normal view
@@ -1280,7 +1315,18 @@ export function R_RenderView() {
 	// Present the frame via Three.js
 	if ( renderer && scene && camera ) {
 
-		renderer.render( scene, camera );
+		if ( post ) {
+
+			R_PostBind( renderer );
+			renderer.render( scene, camera );
+			R_PostFinish( renderer, camera, _viewport, r_visframecount, d_lightstylevalue,
+				cl_dlights, cl != null ? cl.time : 0, renderer.toneMappingExposure, R_MapHasSky() );
+
+		} else {
+
+			renderer.render( scene, camera );
+
+		}
 
 	}
 
@@ -1377,6 +1423,9 @@ export function R_Init() {
 	}
 
 	Cvar_RegisterVariable( r_portals );
+	Cvar_RegisterVariable( r_hdr );
+	Cvar_RegisterVariable( r_bloom );
+	Cvar_RegisterVariable( r_volumetric );
 
 	R_InitParticles();
 	R_SetParticleExternals( { scene: scene } );
