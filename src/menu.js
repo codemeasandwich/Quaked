@@ -1758,7 +1758,8 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_newer_water', label: '           Newer water' },
 	{ cvar: 'r_newer_enemies', label: '         Newer enemies' },
 	{ cvar: 'r_newer_portals', label: '        Camera portals' },
-	{ cvar: 'r_flashlight', label: '  Flashlight (key F)' }
+	{ cvar: 'r_flashlight', label: '  Flashlight (key F)' },
+	{ cvar: 'r_decals', label: '   Marks and blood' }
 ];
 let m_newer_cursor = 0;
 
@@ -1787,10 +1788,10 @@ function M_Newer_Draw() {
 
 	}
 
-	M_Print( 16, 104, ' These apply to Newer Game only.' );
-	M_Print( 16, 112, ' Water and the flashlight need' );
-	M_Print( 16, 120, ' the Newer lighting.' );
-	M_Print( 16, 128, ' Portals: from the next level.' );
+	M_Print( 16, 112, ' These apply to Newer Game only.' );
+	M_Print( 16, 120, ' Water and the flashlight need' );
+	M_Print( 16, 128, ' the Newer lighting.' );
+	M_Print( 16, 136, ' Portals: from the next level.' );
 
 	M_DrawCharacter( 200, 48 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 

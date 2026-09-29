@@ -916,7 +916,7 @@ let selectedCount = 0;
 
 const DLIGHT_COLOR = [ 1.0, 0.62, 0.28 ];
 const MUZZLE_COLOR = [ 1.0, 0.78, 0.45 ]; // a muzzle flash is whiter and much stronger than an ember
-const MUZZLE_POWER = 3.2;
+const MUZZLE_POWER = 1.3;
 
 function consider( px, py, pz, color, power, radius, view ) {
 
@@ -981,9 +981,10 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 			const d = dlights[ i ];
 			if ( d == null || d.radius <= 0 || d.die < time ) continue;
 
-			const fade = Math.min( 1, ( d.die - time ) / 0.3 );
 			// (the game gives a muzzle flash a minimum light of 32)
 			const muzzle = d.minlight === 32;
+			// an ordinary light fades over its last 0.3 s; a flash is only 0.1 s long and full strength until it is gone
+			const fade = Math.min( 1, ( d.die - time ) / ( muzzle ? 0.1 : 0.3 ) );
 			consider( d.origin[ 0 ], d.origin[ 1 ], d.origin[ 2 ], muzzle ? MUZZLE_COLOR : DLIGHT_COLOR,
 				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER : 1 ), 40, view );
 

@@ -1,5 +1,6 @@
 // Ported from: WinQuake/gl_rlight.c -- dynamic lighting
 
+import { R_NewerLightingActive } from './r_anim.js';
 import * as THREE from 'three';
 import { DotProduct, VectorCopy, VectorSubtract, Length } from './mathlib.js';
 import { MAX_LIGHTSTYLES } from './quakedef.js';
@@ -178,7 +179,8 @@ export function R_RenderDlights( cl, scene ) {
 
 			} else {
 
-				pointLight.intensity = 10000 * timeLeft;
+				// (the Newer lighting relights from the same light itself: half of the classic amount here)
+				pointLight.intensity = 10000 * timeLeft * ( R_NewerLightingActive() ? 0.5 : 1 );
 				pointLight.distance = l.radius;
 
 			}

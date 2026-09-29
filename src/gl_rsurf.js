@@ -1219,9 +1219,15 @@ export function R_RenderDynamicLightmaps( fa ) {
 // R_AddDynamicLights
 //============================================================================
 
-export function R_AddDynamicLights( surf ) {
+export // With the Newer lighting a dynamic light is drawn by the pipeline (gl_post.js), so
+// what it adds to the baked light is only a share of the classic amount: both at
+// full strength would light everything twice.
+const DYNAMIC_SHARE = 0.3;
+
+function R_AddDynamicLights( surf ) {
 
 	if ( ! cl_dlights ) return;
+	const dynScale = R_PostActive() ? DYNAMIC_SHARE : 1;
 
 	const smax = ( surf.extents[ 0 ] >> 4 ) + 1;
 	const tmax = ( surf.extents[ 1 ] >> 4 ) + 1;
@@ -1272,7 +1278,7 @@ export function R_AddDynamicLights( surf ) {
 					dist = td + ( sd >> 1 );
 
 				if ( dist < minlight )
-					blocklights[ t * smax + s ] += ( ( rad - dist ) * 256 ) | 0;
+					blocklights[ t * smax + s ] += ( ( rad - dist ) * 256 * dynScale ) | 0;
 
 			}
 

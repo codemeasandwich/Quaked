@@ -7,6 +7,7 @@ import { d_8to24table } from './vid.js';
 import { cl as client_cl } from './client.js';
 import { GL_TextureLinear, GL_RegisterTexture } from './glquake.js';
 import { isXRActive, XR_SCALE } from './webxr.js';
+import { R_DecalBloodSpray, R_DecalBloodLanded } from './r_decals.js';
 
 const MAX_PARTICLES = 2048;
 
@@ -70,6 +71,7 @@ const positionArray = new Float32Array( MAX_PARTICLES * 3 );
 const colorArray = new Float32Array( MAX_PARTICLES * 3 );
 
 let tracercount = 0;
+const _prevOrg = new Float32Array( 3 );
 
 /*
 ===============
@@ -349,6 +351,9 @@ export function R_RunParticleEffect( org, dir, color, count ) {
 			}
 
 		} else {
+
+			// blood thrown at a wall or the floor marks it (Newer Game)
+			if ( i === 0 && color === 73 ) R_DecalBloodSpray( org, dir, count );
 
 			p.die = client_cl.time + 0.1 * ( Math.random() * 5 | 0 );
 			p.color = ( color & ~ 7 ) + ( Math.random() * 8 | 0 );
@@ -710,9 +715,22 @@ export function R_DrawParticles() {
 		count ++;
 
 		// Update physics
+		const bloody = ( p.type === pt_grav || p.type === pt_slowgrav ) && p.color >= 64 && p.color <= 79;
+		if ( bloody ) { _prevOrg[ 0 ] = p.org[ 0 ]; _prevOrg[ 1 ] = p.org[ 1 ]; _prevOrg[ 2 ] = p.org[ 2 ]; }
+
 		p.org[ 0 ] += p.vel[ 0 ] * frametime;
 		p.org[ 1 ] += p.vel[ 1 ] * frametime;
 		p.org[ 2 ] += p.vel[ 2 ] * frametime;
+
+		// blood that comes down on the world stays there
+		if ( bloody && R_DecalBloodLanded( _prevOrg, p.org ) ) {
+
+			p.die = - 1;
+			prevIdx = idx;
+			idx = nextIdx;
+			continue;
+
+		}
 
 		switch ( p.type ) {
 

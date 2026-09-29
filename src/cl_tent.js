@@ -23,6 +23,7 @@ import { S_PrecacheSound, S_StartSound } from './snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash } from './render.js';
 import { Mod_ForName } from './gl_model.js';
+import { R_DecalShot, R_DecalScorch } from './r_decals.js';
 
 let num_temp_entities = 0;
 
@@ -146,6 +147,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_RunParticleEffect( pos, vec3_origin, 0, 10 );
+			R_DecalShot( pos );
 			if ( Math.random() * 5 | 0 )
 				S_StartSound( - 1, 0, cl_sfx_tink1, pos, 1, 1 );
 			else {
@@ -167,6 +169,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_RunParticleEffect( pos, vec3_origin, 0, 20 );
+			R_DecalShot( pos );
 			if ( Math.random() * 5 | 0 )
 				S_StartSound( - 1, 0, cl_sfx_tink1, pos, 1, 1 );
 			else {
@@ -188,6 +191,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_RunParticleEffect( pos, vec3_origin, 0, 20 );
+			R_DecalShot( pos );
 			break;
 
 		case TE_EXPLOSION: { // rocket explosion
@@ -196,6 +200,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_ParticleExplosion( pos );
+			R_DecalScorch( pos );
 			const dl = CL_AllocDlight( 0 );
 			VectorCopy( pos, dl.origin );
 			dl.radius = 350;

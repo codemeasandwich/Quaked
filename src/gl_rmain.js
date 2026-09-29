@@ -9,7 +9,7 @@ import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
 import { R_SetupLevelViews } from './r_levelview.js';
-import { R_MuzzleFlashUpdate } from './r_muzzle.js';
+import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
@@ -837,6 +837,9 @@ const _setupgl_drawingBufferSize = new THREE.Vector2();
 
 function R_DrawAliasModel( e ) {
 
+	// gibs leave a pool where they come to rest (Newer Game)
+	if ( e.model != null && ( e.model.flags & 4 ) !== 0 && cl != null ) R_DecalGibTrack( e, cl.time );
+
 	// walking monsters glide between the game's steps (Newer Game)
 	if ( e !== cl.viewent && R_AnimEnabled() && e._entityIndex !== undefined && ( e._entityIndex > cl.maxclients ) && cl != null )
 		R_SmoothMove( e, cl.time );
@@ -1320,8 +1323,8 @@ export function R_RenderView() {
 	// the shoulder flashlight follows the view with a lag
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
 
-	// the flash at the gun's muzzle (Newer lighting)
-	R_MuzzleFlashUpdate( scene, R_RegisterGlow, r_refdef.vieworg, vpn, vright, vup );
+	// marks on the world
+	R_DecalsFrame();
 
 	// render normal view
 	R_RenderScene();
@@ -1460,6 +1463,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_enemies );
 	Cvar_RegisterVariable( r_newer_portals );
 	Cvar_RegisterVariable( r_flashlight );
+	Cvar_RegisterVariable( r_decals );
 	R_FlashlightInit();
 
 	R_InitParticles();
@@ -1502,6 +1506,8 @@ export function R_NewMap() {
 	r_visframecount = 0;
 
 	R_ClearParticles();
+	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
+	R_DecalsClear();
 
 	// Clean up all cached entity resources from the previous map. Static
 	// entities keep their JS identity across CL_ClearState, so invalidate the
