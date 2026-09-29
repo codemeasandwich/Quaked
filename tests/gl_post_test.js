@@ -105,7 +105,7 @@ Deno.test( 'glow materials are boosted only while the pipeline is on', () => {
 
 	post.R_RegisterGlow( material, 3 );
 	assertEqual( material.emissiveIntensity, 1, 'classic look keeps intensity 1' );
-	assertEqual( post.R_GlowBoostForTexture( '*lava1' ) > 1, true, 'lava is boosted' );
+	assertEqual( post.R_GlowBoostForTexture( '*lava1' ) !== 1, true, 'lava is adjusted' );
 	assertEqual( post.R_GlowBoostForTexture( '*water1' ), 1, 'water is not' );
 
 } );
@@ -172,5 +172,27 @@ Deno.test( 'sun shadow casters cover every solid surface, whatever is visible', 
 	assertEqual( tris, 4, 'only solid surfaces cast shadows' );
 	assertEqual( post.R_BuildSunOccluder( makeModel( '', [ sky, water ] ) ), 0, 'nothing solid, nothing cast' );
 	assertEqual( post.R_BuildSunOccluder( null ), 0, 'no map' );
+
+} );
+
+Deno.test( 'liquid links let you see down into a pool and out of it', () => {
+
+	const airLeaf = { contents: - 1, visframe: 0, compressed_vis: null };
+	const waterLeaf = { contents: - 3, visframe: 0, compressed_vis: null };
+	const model = makeModel( '', [ makeWaterFace( '*04water1', 0, 0, 100, 128 ) ] );
+	model.nodes = [ {
+		contents: 0, plane: { normal: new Float32Array( [ 0, 0, 1 ] ), dist: 100 },
+		children: [ airLeaf, waterLeaf ]
+	} ];
+	model.leafs = [ { contents: - 2 }, airLeaf, waterLeaf ];
+	model.numleafs = 2;
+
+	post.R_BuildWorldLights( model );
+	const links = post.R_GetLiquidLinks();
+	assertEqual( links.length, 1, 'one link for the one surface' );
+	assertEqual( links[ 0 ].above, airLeaf, 'air above the surface' );
+	assertEqual( links[ 0 ].below, waterLeaf, 'liquid below it' );
+	assertEqual( links[ 0 ].aboveVis instanceof Uint8Array, true, 'what the air sees' );
+	assertEqual( links[ 0 ].belowVis instanceof Uint8Array, true, 'what the liquid sees' );
 
 } );

@@ -260,7 +260,15 @@ function _getWaterMaterial( t, opacity ) {
 	// HDR pipeline: liquids are see-through and leave the depth buffer to what is
 	// behind them, so the post pass can tint and light the floor correctly.
 	const hdr = R_PostActive();
-	if ( hdr && t != null && t.name != null ) opacity = R_LiquidOpacity( t.name, opacity );
+	if ( hdr && t != null && t.name != null ) {
+
+		opacity = R_LiquidOpacity( t.name, opacity );
+
+		// seen from inside the liquid, the surface is a window to what is above it
+		if ( opacity < 1 && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
+			opacity *= 0.4;
+
+	}
 
 	// Use texture + opacity bucket as key
 	const opKey = opacity < 1.0 ? 0 : 1;
@@ -280,7 +288,7 @@ function _getWaterMaterial( t, opacity ) {
 		_waterMaterialCache.set( cacheKey, material );
 
 		const glow = t != null && t.name != null ? R_GlowBoostForTexture( t.name ) : 1;
-		if ( glow > 1 ) R_RegisterGlow( material, glow );
+		if ( glow !== 1 ) R_RegisterGlow( material, glow );
 
 	}
 	if ( material.opacity !== opacity ) material.opacity = opacity;
@@ -2155,8 +2163,11 @@ export function R_MarkLeaves() {
 		const links = R_GetLiquidLinks();
 		for ( let i = 0; i < links.length; i ++ ) {
 
-			if ( links[ i ].above.visframe === r_visframecount )
-				_stampVisibleLeaves( cl_ref.worldmodel, links[ i ].vis );
+			const link = links[ i ];
+			if ( link.above.visframe === r_visframecount )
+				_stampVisibleLeaves( cl_ref.worldmodel, link.belowVis ); // seeing down into it
+			if ( link.below.visframe === r_visframecount )
+				_stampVisibleLeaves( cl_ref.worldmodel, link.aboveVis ); // seeing out of it
 
 		}
 

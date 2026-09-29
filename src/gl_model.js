@@ -1276,7 +1276,10 @@ function Mod_LoadTextures( fileofs, filelen ) {
 
 		} else {
 
-			tx.gl_texture = GL_LoadTexture( name, tx.width, tx.height, tx.pixels, true, false, true );
+			// Turbulent textures (lava, slime, water, teleporters) are drawn with a plain
+			// map, so they must keep their fullbright texels: lava is made of nothing
+			// else, and splitting them out left it black.
+			tx.gl_texture = GL_LoadTexture( name, tx.width, tx.height, tx.pixels, true, false, name.charAt( 0 ) !== '*' );
 
 		}
 

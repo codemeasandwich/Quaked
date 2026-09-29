@@ -1202,7 +1202,13 @@ export function R_PolyBlend() {
 
 	// update blend color (values are sRGB from Quake's palette, tell Three.js to convert)
 	polyBlendMesh.material.color.setRGB( v_blend[ 0 ], v_blend[ 1 ], v_blend[ 2 ], THREE.SRGBColorSpace );
-	polyBlendMesh.material.opacity = v_blend[ 3 ];
+	// In the HDR pipeline the water absorbs light itself, so the game's screen
+	// tint is eased while you are in water or slime; otherwise it buries the view
+	// out of the liquid.  Damage and powerup flashes are unaffected.
+	let opacity = v_blend[ 3 ];
+	if ( R_PostActive() && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
+		opacity *= 0.45;
+	polyBlendMesh.material.opacity = opacity;
 
 	renderer.render( polyBlendScene, polyBlendCamera );
 

@@ -43,7 +43,7 @@ export const SUN_SHADOW_LAYER = 3;
 
 // Tunables
 const EMISSIVE_BOOST = 3.0; // fullbright texels, in HDR
-const LAVA_BOOST = 2.6;
+const LAVA_BOOST = 0.75;
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
 const SCATTER = 0.03; // point light in-scattering
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
@@ -282,7 +282,8 @@ export const MAX_LIQUID_REGIONS = 6;
 // qbsp treats water as opaque when computing visibility, so the leaves under a
 // pool are not visible from outside it.  To see the bottom through a translucent
 // surface, the leaves beneath each liquid face join the visible set whenever the
-// leaf above that face is visible.   [ { above, vis } ]
+// leaf above that face is visible, and the other way round from inside the
+// liquid, so you can see out.   [ { above, below, aboveVis, belowVis } ]
 let liquidLinks = [];
 
 export function R_GetLiquidLinks() {
@@ -587,7 +588,9 @@ export function R_BuildWorldLights( model ) {
 							linkSeen.add( key * 1e6 + key2 );
 							if ( ! visCache.has( key2 ) )
 								visCache.set( key2, Mod_LeafPVS( below, model ).slice( 0, ( model.numleafs + 7 ) >> 3 ) );
-							liquidLinks.push( { above, vis: visCache.get( key2 ) } );
+							if ( ! visCache.has( - key ) )
+								visCache.set( - key, Mod_LeafPVS( above, model ).slice( 0, ( model.numleafs + 7 ) >> 3 ) );
+							liquidLinks.push( { above, below, belowVis: visCache.get( key2 ), aboveVis: visCache.get( - key ) } );
 
 						}
 
