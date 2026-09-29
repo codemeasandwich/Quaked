@@ -1252,7 +1252,8 @@ void main() {
 
 	// Direct light from the sun and the nearby lights, applied to what the
 	// classic lightmaps already put on the surface.
-	if ( d < 0.99999 ) {
+	// alpha < 0 in the normal buffer marks a window onto another level: leave it as drawn
+	if ( d < 0.99999 && texture2D( tNormal, vUv ).a > - 0.5 ) {
 		vec3 P = viewPosAt( vUv );
 		vec3 N;
 		vec4 g = texture2D( tNormal, vUv );

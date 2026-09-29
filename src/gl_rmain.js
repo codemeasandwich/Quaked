@@ -8,6 +8,8 @@ import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { r_lerpmodels } from './r_anim.js';
+import { R_SetupLevelViews } from './r_levelview.js';
+import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
 import { r_hdr, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_MapHasSky } from './gl_post.js';
 import { vid, renderer } from './vid.js';
@@ -1526,6 +1528,9 @@ export function R_NewMap() {
 
 	// rebuild lightmaps
 	GL_BuildLightmaps_rsurf();
+
+	// the next level, seen through this level's doorway and pit exits
+	R_SetupLevelViews( scene, SV_SeamlessCrossings() );
 
 }
 

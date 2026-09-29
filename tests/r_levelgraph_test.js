@@ -46,7 +46,10 @@ Deno.test( 'exit shapes: thin vertical slab, thin horizontal slab, or a pad', ()
 	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 6, 246, 110 ] ).axis, 0, 'axis x' );
 	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 246, 14, 62 ] ).axis, 1, 'axis y' );
 	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 126, 190, 6 ] ).kind, 'pit', 'thin in z' );
-	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 46, 46, 150 ] ).kind, 'pad', 'a fat box' );
+	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 46, 46, 150 ] ).kind, 'plane', 'a portal frame' );
+	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 46, 46, 150 ] ).square, true, 'square' );
+	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 118, 38, 86 ] ).axis, 1, 'thin in y' );
+	assertEqual( graph.R_ClassifyExit( [ 0, 0, 0 ], [ 120, 120, 150 ] ).kind, 'pad', 'a fat box' );
 
 } );
 
@@ -106,7 +109,7 @@ Deno.test( 'falling through a pit keeps falling and keeps facing', () => {
 
 Deno.test( 'pads are not doorways', () => {
 
-	assertEqual( graph.R_CrossingTransform( { mins: [ 0, 0, 0 ], maxs: [ 46, 46, 150 ] }, 1, { origin: [ 0, 0, 0 ], yaw: 0 }, 0 ), null, 'no transform' );
+	assertEqual( graph.R_CrossingTransform( { mins: [ 0, 0, 0 ], maxs: [ 120, 120, 150 ] }, 1, { origin: [ 0, 0, 0 ], yaw: 0 }, 0 ), null, 'no transform' );
 
 } );
 
@@ -116,6 +119,33 @@ Deno.test( 'the approach side is the one with more room', () => {
 	const open = ( c, d ) => d[ 0 ] > 0 ? 600 : 40; // open towards +x, a dead end towards -x
 	assertEqual( graph.R_ChooseApproachSide( exit, open ), 1, 'walk up from +x' );
 	assertEqual( graph.R_ChooseApproachSide( exit, ( c, d ) => d[ 0 ] > 0 ? 40 : 600 ), - 1, 'walk up from -x' );
+
+} );
+
+Deno.test( 'a square portal frame is entered from its open side, along either axis', () => {
+
+	const exit = { mins: [ 0, 0, 0 ], maxs: [ 46, 46, 150 ] };
+	const open = ( c, d ) => d[ 1 ] < 0 ? 500 : 30; // open towards -y only
+	const a = graph.R_ChooseApproach( exit, open );
+	assertEqual( a.axis, 1, 'along y' );
+	assertEqual( a.side, - 1, 'from -y' );
+	const t = graph.R_CrossingTransform( exit, a.side, { origin: [ 0, 0, 0 ], yaw: 0 }, 0, a.axis );
+	assertVec( t.through, [ 0, 1, 0 ], 'walks towards +y' );
+
+} );
+
+Deno.test( 'every Episode 1 exit is a doorway, a portal or a pit (only the finale is not)', async () => {
+
+	for ( const m of [ 'start', 'e1m1', 'e1m2', 'e1m3', 'e1m4', 'e1m5', 'e1m6', 'e1m7', 'e1m8' ] ) {
+
+		const l = graph.R_LevelLinks( graph.R_ParseBsp( await pakFile( `maps/${m}.bsp` ) ) );
+		for ( const e of l.exits ) assertEqual( e.kind === 'pad', false, `${m} -> ${e.map} is a doorway` );
+
+	}
+
+	// e1m4 has a secret exit as well as the main one
+	const l4 = graph.R_LevelLinks( graph.R_ParseBsp( await pakFile( 'maps/e1m4.bsp' ) ) );
+	assertEqual( l4.exits.map( e => e.map ).sort().join(), 'e1m5,e1m8', 'e1m4 exits' );
 
 } );
 

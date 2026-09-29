@@ -30,6 +30,7 @@ const PORTAL_RT_SCALE = 0.75; // render target size relative to the 3D viewport
 const PORTAL_RT_MAX = 1600;
 
 let portals = [];
+let levelPortals = [];
 let portalFrame = 0;
 let portalsEnabled = true;
 
@@ -475,9 +476,11 @@ void main() {
 }`;
 
 const FRAGMENT_SHADER = `
+layout(location = 1) out highp vec4 gNormal;
 uniform sampler2D map;
 uniform sampler2D portalMap;
 uniform float portalMix;
+uniform float seamless;
 uniform float time;
 varying vec2 vUv;
 varying vec4 vClip;
@@ -491,18 +494,22 @@ void main() {
 		vec2 rip = vec2(
 			sin( suv.y * 90.0 + time * 3.1 ) + sin( suv.y * 37.0 - time * 2.3 ),
 			cos( suv.x * 80.0 + time * 2.7 ) + cos( suv.x * 41.0 + time * 1.9 ) ) * 0.0012;
+		rip *= 1.0 - seamless;
 		vec2 uv = clamp( suv + rip + ( base.rg - 0.5 ) * 0.004, 0.002, 0.998 );
 		vec3 view = vec3(
 			texture2D( portalMap, uv + rip * 0.6 ).r,
 			texture2D( portalMap, uv ).g,
 			texture2D( portalMap, uv - rip * 0.6 ).b );
 		float pulse = 0.5 + 0.5 * sin( time * 2.0 + vUv.x * 5.0 + vUv.y * 3.0 );
-		view = view * ( 0.95 + 0.05 * pulse ) + base * vec3( 0.55, 0.8, 1.0 ) * ( 0.05 + 0.07 * pulse );
+		// a doorway between levels is just a doorway: no shimmer, no tint
+		if ( seamless < 0.5 ) view = view * ( 0.95 + 0.05 * pulse ) + base * vec3( 0.55, 0.8, 1.0 ) * ( 0.05 + 0.07 * pulse );
 		col = mix( base, view, portalMix );
 	}
 	gl_FragColor = vec4( col, 1.0 );
 	#include <tonemapping_fragment>
 	#include <colorspace_fragment>
+	// a window, not a wall: the lighting pass must not light it (alpha < 0 says so)
+	gNormal = vec4( 0.5, 0.5, 1.0, - 1.0 );
 }`;
 
 export function R_PortalMaterial( portal, texture ) {
@@ -514,6 +521,7 @@ export function R_PortalMaterial( portal, texture ) {
 				map: { value: null },
 				portalMap: { value: null },
 				portalMix: { value: 0 },
+				seamless: { value: portal.level === true ? 1 : 0 },
 				time: { value: 0 }
 			},
 			vertexShader: VERTEX_SHADER,
@@ -622,7 +630,7 @@ after the scene has been built and before the main renderer.render().
 export function R_RenderPortals( renderer, scene, camera, width, height, time, hidden ) {
 
 	const active = [];
-	for ( const p of portals ) {
+	for ( const p of portals.concat( levelPortals ) ) {
 
 		if ( p.activeFrame === portalFrame ) active.push( p );
 		setPortalUniforms( p, getDummyTexture(), 0, time );
@@ -691,7 +699,8 @@ export function R_RenderPortals( renderer, scene, camera, width, height, time, h
 
 			// the virtual eye must sit behind the receiver plane
 			const ve = viewCamera.matrixWorld.elements;
-			const side = ( ve[ 12 ] - p.dest[ 0 ] ) * p.forward[ 0 ] + ( ve[ 13 ] - p.dest[ 1 ] ) * p.forward[ 1 ];
+			const side = ( ve[ 12 ] - p.dest[ 0 ] ) * p.forward[ 0 ] + ( ve[ 13 ] - p.dest[ 1 ] ) * p.forward[ 1 ] +
+				( ve[ 14 ] - p.dest[ 2 ] ) * ( p.forward[ 2 ] || 0 );
 			if ( side > - 0.5 ) continue;
 
 			applyObliqueClip( viewCamera, p.dest, p.forward );
@@ -727,5 +736,91 @@ export function R_PortalsShutdown() {
 	R_ClearPortals();
 	for ( const rt of renderTargets ) rt.dispose();
 	renderTargets.length = 0;
+
+}
+
+
+//============================================================================
+// Level portals: a window in an exit onto the next level
+//============================================================================
+
+// where the level views live, so each one has its own space in the scene
+export function R_LevelPortalCount() {
+
+	return levelPortals.length;
+
+}
+
+export function R_ClearLevelPortals() {
+
+	for ( const p of levelPortals ) {
+
+		if ( p.mesh != null ) {
+
+			if ( p.mesh.parent != null ) p.mesh.parent.remove( p.mesh );
+			p.mesh.geometry.dispose();
+
+		}
+
+		if ( p.material !== null ) p.material.dispose();
+
+	}
+
+	levelPortals = [];
+
+}
+
+/*
+================
+R_AddLevelPortal
+
+corners   the four corners of the opening, in this level's coordinates
+matrix    column-major: this level's coordinates -> the scene, where the other
+          level's view has been placed
+dest      where the exit plane lands in the scene
+forward   the direction of travel across it, in the scene
+================
+*/
+export function R_AddLevelPortal( scene, corners, matrix, dest, forward ) {
+
+	const positions = new Float32Array( [
+		...corners[ 0 ], ...corners[ 1 ], ...corners[ 2 ],
+		...corners[ 0 ], ...corners[ 2 ], ...corners[ 3 ]
+	] );
+
+	const geometry = new THREE.BufferGeometry();
+	geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+	geometry.setAttribute( 'uv', new THREE.BufferAttribute( new Float32Array( 12 ), 2 ) );
+	geometry.computeBoundingSphere();
+
+	const portal = {
+		level: true,
+		surfaces: [],
+		center: [
+			( corners[ 0 ][ 0 ] + corners[ 2 ][ 0 ] ) * 0.5,
+			( corners[ 0 ][ 1 ] + corners[ 2 ][ 1 ] ) * 0.5,
+			( corners[ 0 ][ 2 ] + corners[ 2 ][ 2 ] ) * 0.5
+		],
+		dest, forward, matrix,
+		material: null,
+		activeFrame: - 1,
+		mesh: null
+	};
+
+	// no swirl to fall back on: a dark window until the view has been rendered
+	const material = R_PortalMaterial( portal, null );
+	const mesh = new THREE.Mesh( geometry, material );
+	mesh.frustumCulled = true;
+	mesh.matrixAutoUpdate = false;
+	mesh.name = 'quake_level_portal';
+
+	// drawn = in view: that is when the other level has to be rendered
+	mesh.onBeforeRender = () => R_PortalNoteVisible( portal );
+
+	portal.mesh = mesh;
+	scene.add( mesh );
+	levelPortals.push( portal );
+
+	return portal;
 
 }

@@ -791,8 +791,47 @@ function R_InitSky( tx ) {
 		loadmodel._threeTextures.add( result.alphaTexture );
 
 	}
-	solidskytexture = result.solidTexture;
-	alphaskytexture = result.alphaTexture;
+	// a level loaded only to be looked at must not replace the sky of the one being played
+	if ( loadmodel != null ) {
+
+		loadmodel._skySolid = result.solidTexture;
+		loadmodel._skyAlpha = result.alphaTexture;
+
+	}
+
+	if ( previewLoad === false ) {
+
+		solidskytexture = result.solidTexture;
+		alphaskytexture = result.alphaTexture;
+
+	}
+
+}
+
+let previewLoad = false;
+
+/*
+================
+Mod_LoadForPreview
+
+Loads a level's model so it can be drawn from a distance (the next level seen
+through an exit), without touching the current level's sky.  The model is
+flushed with the rest at the next level change.
+================
+*/
+export function Mod_LoadForPreview( name ) {
+
+	previewLoad = true;
+
+	try {
+
+		return Mod_ForName( name, false );
+
+	} finally {
+
+		previewLoad = false;
+
+	}
 
 }
 

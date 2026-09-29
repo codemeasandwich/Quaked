@@ -18,6 +18,10 @@ Every teleporter surface (`*teleport`) that leads somewhere is a live camera ont
 - Teleporting is quieter: the sound stays, the white particle burst is gone, and the launch out of the teleporter is halved (300 to 150 units/s).
 - Limits: entities the server doesn't send near you (monsters, other players at the receiver) don't appear in the window; a portal seen through another portal shows the plain swirl; portals are off in WebXR.
 
+#### Seamless levels
+
+In Newer Game, every Episode 1 level exit that is an archway, a passageway, a walk-through portal or a pit (that includes the start hub's difficulty doors and E1M4's secret exit) is a live window onto the next level: you can see its first room through the opening, and stepping through is not a level load or a teleport. You keep your speed and heading, and the game switches levels under you. Teleporter pads are unaffected. Console: `sv_seamless 0` off, `1` Newer Game only (default), `2` always. Single player only.
+
 #### New Game and Newer Game
 
 The single player menu has two ways to start:

@@ -20,7 +20,7 @@ import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import {
-	R_ParseBsp, R_LevelLinks, R_CrossingTransform, R_ChooseApproachSide
+	R_ParseBsp, R_LevelLinks, R_CrossingTransform, R_ChooseApproach
 } from './r_levelgraph.js';
 
 export const sv_seamless = new cvar_t( 'sv_seamless', '1' );
@@ -65,6 +65,41 @@ export function SV_LevelLinks( mapName ) {
 
 	metaCache.set( mapName, links );
 	return links;
+
+}
+
+// how far you can go from p along dir (up to limit) before you hit something solid
+function scan( p, dir, limit ) {
+
+	for ( let d = 4; d <= limit; d += 4 )
+		if ( solidAt( [ p[ 0 ] + dir[ 0 ] * d, p[ 1 ] + dir[ 1 ] * d, p[ 2 ] + dir[ 2 ] * d ] ) ) return d - 4;
+
+	return limit;
+
+}
+
+// the size of the opening the crossing is in, as a rectangle on its plane:
+// corners = centre + axisA * a + axisB * b for a in [ a0, a1 ], b in [ b0, b1 ]
+function openingOf( t ) {
+
+	const c = t.center;
+
+	if ( t.kind === 'pit' ) {
+
+		return {
+			axisA: [ 1, 0, 0 ], axisB: [ 0, 1, 0 ],
+			a0: - scan( c, [ - 1, 0, 0 ], 400 ), a1: scan( c, [ 1, 0, 0 ], 400 ),
+			b0: - scan( c, [ 0, - 1, 0 ], 400 ), b1: scan( c, [ 0, 1, 0 ], 400 )
+		};
+
+	}
+
+	const a = t.tangent;
+	return {
+		axisA: a, axisB: [ 0, 0, 1 ],
+		a0: - scan( c, [ - a[ 0 ], - a[ 1 ], 0 ], 400 ), a1: scan( c, [ a[ 0 ], a[ 1 ], 0 ], 400 ),
+		b0: - scan( c, [ 0, 0, - 1 ], 200 ), b1: scan( c, [ 0, 0, 1 ], 400 )
+	};
 
 }
 
@@ -124,8 +159,9 @@ export function SV_SeamlessSetup() {
 			( exit.mins[ 2 ] + exit.maxs[ 2 ] ) * 0.5
 		];
 
-		const side = R_ChooseApproachSide( exit, clearDistance );
-		const transform = R_CrossingTransform( exit, side, there.start, floorBelow( centre ) );
+		const approach = R_ChooseApproach( exit, clearDistance );
+		const side = approach.side;
+		const transform = R_CrossingTransform( exit, side, there.start, floorBelow( centre ), approach.axis );
 		if ( transform === null ) continue;
 
 		// stop the game's own exit from firing; this crossing takes over
@@ -149,7 +185,7 @@ export function SV_SeamlessSetup() {
 
 		}
 
-		if ( taken ) crossings.push( { exit, map: exit.map, transform, side } );
+		if ( taken ) crossings.push( { exit, map: exit.map, transform, side, opening: openingOf( transform ) } );
 
 	}
 

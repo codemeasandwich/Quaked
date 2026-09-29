@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { Sys_Error } from './sys.js';
 
-function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
+export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
 	lightmapTex.channel = 1; // Use uv1 for lightmap coordinates
 

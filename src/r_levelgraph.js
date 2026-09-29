@@ -19,8 +19,11 @@ const LUMP_MODELS = 14;
 const HEADER_LUMPS = 15;
 const SIZEOF_DMODEL = 64;
 
-const THIN = 32; // a slab is at most this thick
+const THIN = 32; // a pit slab is at most this thick
 const WIDE = 48; // and at least this wide in the other directions
+const DOOR_THICK = 64; // a doorway or portal brush is at most this thick
+const DOOR_WIDE = 40; // at least this wide
+const DOOR_HIGH = 48; // and at least this tall
 
 //============================================================================
 // BSP metadata
@@ -164,10 +167,14 @@ export function R_ClassifyExit( mins, maxs ) {
 	if ( dz <= THIN && dx >= WIDE && dy >= WIDE )
 		return { kind: 'pit' };
 
-	if ( dz >= WIDE ) {
+	// a doorway, archway or walk-through portal: a tall box that is thin one way
+	if ( dz >= DOOR_HIGH && Math.min( dx, dy ) <= DOOR_THICK && Math.max( dx, dy ) >= DOOR_WIDE ) {
 
-		if ( dx <= THIN && dy >= WIDE ) return { kind: 'plane', axis: 0 };
-		if ( dy <= THIN && dx >= WIDE ) return { kind: 'plane', axis: 1 };
+		// nearly square (a portal frame you could enter from any side): the
+		// approach is chosen from the level ( R_ChooseApproach )
+		if ( Math.max( dx, dy ) < Math.min( dx, dy ) * 1.25 ) return { kind: 'plane', axis: dx <= dy ? 0 : 1, square: true };
+
+		return { kind: 'plane', axis: dx < dy ? 0 : 1 };
 
 	}
 
@@ -204,9 +211,10 @@ they appear ( dest ), the rotation ( yaw ) and functions to carry positions and
 directions across and to tell when a move has crossed.
 ================
 */
-export function R_CrossingTransform( exit, side, start, floorZ ) {
+export function R_CrossingTransform( exit, side, start, floorZ, axis ) {
 
 	const shape = R_ClassifyExit( exit.mins, exit.maxs );
+	if ( shape.kind === 'plane' && axis !== undefined ) shape.axis = axis;
 	if ( shape.kind === 'pad' ) return null;
 
 	const cx = ( exit.mins[ 0 ] + exit.maxs[ 0 ] ) * 0.5;
@@ -292,6 +300,51 @@ export function R_CrossingTransform( exit, side, start, floorZ ) {
 
 		}
 	};
+
+}
+
+/*
+================
+R_ChooseApproach
+
+How the player walks up to a vertical exit: { axis, side } where axis is 0 or 1
+(the direction they travel along) and side is +1 or -1 (which side they start
+on).  Picks the side with the most open space in front of it; a nearly square
+portal frame may be entered along either axis.
+clearDistance( point, direction ) is how far you can go from point along
+direction before hitting solid.
+================
+*/
+export function R_ChooseApproach( exit, clearDistance ) {
+
+	const shape = R_ClassifyExit( exit.mins, exit.maxs );
+	if ( shape.kind !== 'plane' ) return { axis: 0, side: 1 };
+
+	const c = [
+		( exit.mins[ 0 ] + exit.maxs[ 0 ] ) * 0.5,
+		( exit.mins[ 1 ] + exit.maxs[ 1 ] ) * 0.5,
+		( exit.mins[ 2 ] + exit.maxs[ 2 ] ) * 0.5
+	];
+
+	// the ends of a slab are never the way in; a square has all four
+	const axes = shape.square === true ? [ 0, 1 ] : [ shape.axis ];
+	let best = null;
+
+	for ( const axis of axes ) {
+
+		const dir = axis === 0 ? [ 1, 0, 0 ] : [ 0, 1, 0 ];
+		const plus = clearDistance( c, dir );
+		const minus = clearDistance( c, [ - dir[ 0 ], - dir[ 1 ], - dir[ 2 ] ] );
+		const side = plus >= minus ? 1 : - 1;
+		const open = Math.max( plus, minus );
+
+		// prefer the more open side, and the one whose far side is more closed
+		const score = open - Math.min( plus, minus ) * 0.25;
+		if ( best === null || score > best.score ) best = { axis, side, score };
+
+	}
+
+	return { axis: best.axis, side: best.side };
 
 }
 
