@@ -12,6 +12,7 @@ import { R_SetupLevelViews } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsClear } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
+import { R_MuzzleSetView } from './r_muzzle.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
 import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow } from './gl_post.js';
@@ -1325,6 +1326,7 @@ export function R_RenderView() {
 
 	// the shoulder flashlight follows the view with a lag
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
+	R_MuzzleSetView( r_refdef.vieworg );
 
 	// marks on the world
 	R_DecalsFrame();

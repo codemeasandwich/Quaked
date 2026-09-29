@@ -13,6 +13,23 @@ const DURATION = 0.13; // seconds
 
 const now = () => ( typeof performance !== 'undefined' ? performance.now() : Date.now() ) / 1000;
 
+// where the camera is (set every frame by the renderer): the muzzle is just in front of it
+const viewOrigin = [ 0, 0, 0 ];
+let haveView = false;
+
+export function R_MuzzleSetView( origin ) {
+
+	viewOrigin[ 0 ] = origin[ 0 ]; viewOrigin[ 1 ] = origin[ 1 ]; viewOrigin[ 2 ] = origin[ 2 ];
+	haveView = true;
+
+}
+
+export function R_MuzzleView() {
+
+	return haveView ? viewOrigin : null;
+
+}
+
 // the player's weapon fired (called as the game flags the muzzle flash)
 export function R_MuzzleFlashFired() {
 

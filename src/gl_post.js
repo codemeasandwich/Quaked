@@ -939,9 +939,9 @@ let selectedCount = 0;
 
 const DLIGHT_COLOR = [ 1.0, 0.62, 0.28 ];
 const MUZZLE_COLOR = [ 1.0, 0.78, 0.45 ]; // a muzzle flash is whiter and much stronger than an ember
-const MUZZLE_POWER = 4;
+const MUZZLE_POWER = 3;
 
-function consider( px, py, pz, color, power, radius, view ) {
+function consider( px, py, pz, color, power, radius, view, add = 0 ) {
 
 	// view space
 	const vx = view[ 0 ] * px + view[ 4 ] * py + view[ 8 ] * pz + view[ 12 ];
@@ -967,6 +967,7 @@ function consider( px, py, pz, color, power, radius, view ) {
 	}
 
 	slot.score = score;
+	slot.add = add;
 	slot.pos[ 0 ] = vx; slot.pos[ 1 ] = vy; slot.pos[ 2 ] = vz;
 	slot.radius = radius;
 	slot.range = 130 + 170 * Math.sqrt( power );
@@ -1009,7 +1010,7 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 			// an ordinary light fades over its last 0.3 s; a flash is only 0.1 s long and full strength until it is gone
 			const fade = Math.min( 1, ( d.die - time ) / ( muzzle ? 0.1 : 0.3 ) );
 			consider( d.origin[ 0 ], d.origin[ 1 ], d.origin[ 2 ], muzzle ? MUZZLE_COLOR : DLIGHT_COLOR,
-				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER : 1 ), 40, view );
+				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER : 1 ), 40, view, muzzle ? 1 : 0 );
 
 		}
 
@@ -1274,6 +1275,7 @@ uniform float uSunSurface;
 uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
 uniform float uLightFloor;
+uniform float uLightAdd[ ${MAX_VOLUME_LIGHTS} ];
 uniform float uEdge;
 uniform float uDropDensity;
 uniform float uDropBlood;
@@ -1462,6 +1464,7 @@ void main() {
 		dyG = abs( dyG.z ) < abs( dyL.z ) ? dyG : dyL;
 
 		vec3 relit = vec3( 0.0 );
+		vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
 
 		if ( uSunOn > 0.5 ) {
 			float ndl = max( dot( N, uSunDirV ), 0.0 );
@@ -1496,7 +1499,9 @@ void main() {
 			}
 			vis /= float( RELIGHT_STEPS );
 
-			relit += uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
+			vec3 lightHere = uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
+			relit += lightHere;
+			flashAdd += lightHere * uLightAdd[ i ];
 		}
 
 		// a source lights a surface whatever its baked light was; the small floor
@@ -1533,7 +1538,7 @@ void main() {
 		// (tinted by the surface's own colour, so stone stays stone and does not
 		// wash out to grey where a light falls on it)
 		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 1.3 + 0.12 * tint );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 1.3 + 0.12 * tint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
@@ -1755,6 +1760,7 @@ function createPipeline() {
 			uSunSurfaceCol: { value: new THREE.Vector3( ...SUN_SURFACE_COLOR ) },
 			uLightSurface: { value: LIGHT_SURFACE },
 			uLightFloor: { value: LIGHT_FLOOR },
+			uLightAdd: { value: new Array( MAX_VOLUME_LIGHTS ).fill( 0 ) },
 			uEdge: { value: 1 },
 			uDropDensity: { value: 0 },
 			uDropBlood: { value: 0 },
@@ -1968,6 +1974,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		const s = _selected[ i ];
 		sh.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
 		sh.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
+		p.compositeMaterial.uniforms.uLightAdd.value[ i ] = s.add || 0;
 
 	}
 

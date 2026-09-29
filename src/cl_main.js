@@ -24,7 +24,8 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from './mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
-import { R_MuzzleFlashFired } from './r_muzzle.js';
+import { R_MuzzleFlashFired, R_MuzzleView } from './r_muzzle.js';
+import { R_NewerGame } from './r_anim.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from './host.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from './gl_screen.js';
@@ -461,6 +462,40 @@ CL_AllocDlight
 
 ===============
 */
+/*
+=================
+CL_ViewMuzzleFlash
+
+The player's weapon has just fired (their ammunition went down).  Newer Game only:
+a flash of light at the gun.  It does not wait for the game to flag a muzzle flash
+on the player's entity, so it is there the moment the shot is.
+=================
+*/
+const _flashFv = new Float32Array( 3 );
+const _flashRv = new Float32Array( 3 );
+const _flashUv = new Float32Array( 3 );
+
+export function CL_ViewMuzzleFlash() {
+
+	if ( R_NewerGame() === false || cl.viewentity <= 0 ) return;
+
+	// from the camera itself: the local player's entity is not kept up to date here
+	const eye = R_MuzzleView();
+	if ( eye === null ) return;
+
+	R_MuzzleFlashFired();
+
+	const dl = CL_AllocDlight( cl.viewentity );
+	VectorCopy( eye, dl.origin );
+	AngleVectors( cl.viewangles, _flashFv, _flashRv, _flashUv );
+	VectorMA( dl.origin, 20, _flashFv, dl.origin );
+	VectorMA( dl.origin, - 4, _flashUv, dl.origin );
+	dl.radius = 240 + ( Math.random() * 32 | 0 );
+	dl.minlight = 32;
+	dl.die = cl.time + 0.12;
+
+}
+
 export function CL_AllocDlight( key ) {
 
 	// first look for an exact key match
@@ -903,10 +938,23 @@ function CL_LinkPlayers() {
 			if ( mine ) R_MuzzleFlashFired();
 
 			const dl = CL_AllocDlight( j + 1 );
-			VectorCopy( pplayer.origin, dl.origin );
-			dl.origin[ 2 ] += 16;
 			AngleVectors( mine || pplayer.cmd == null ? cl.viewangles : pplayer.cmd.angles, _relinkFv, _relinkRv, _relinkUv );
-			VectorMA( dl.origin, 18, _relinkFv, dl.origin );
+
+			// the local player is where the camera is (their entity's own origin is not kept up to date here)
+			const eye = mine ? R_MuzzleView() : null;
+			if ( eye !== null ) {
+
+				VectorCopy( eye, dl.origin );
+				VectorMA( dl.origin, 20, _relinkFv, dl.origin );
+
+			} else {
+
+				VectorCopy( pplayer.origin, dl.origin );
+				dl.origin[ 2 ] += 16;
+				VectorMA( dl.origin, 18, _relinkFv, dl.origin );
+
+			}
+
 			dl.radius = 200 + ( Math.random() * 32 | 0 );
 			dl.minlight = 32;
 			dl.die = cl.time + 0.1;

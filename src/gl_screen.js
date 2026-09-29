@@ -63,15 +63,25 @@ let sb_lines = 0;
 
 const scr_vrect = { x: 0, y: 0, width: 0, height: 0 };
 
-// Changing level in the middle of a game: the console is not shown (it used to
-// come up full screen and then roll away, longer than the load itself took); the
-// last frame stays until the new level is ready, and then the game is simply there.
-let scr_hadworld = false;
+// Newer Game only: a level load does not bring up the console.  In the original
+// (New Game) it comes up full screen and then rolls away, which takes longer than
+// the load itself.  Here the last frame of the level you were in stays on screen
+// until the next one is ready (and a first load from the menu shows the loading
+// plaque instead), and after a load there is nothing to roll away.
+let scr_hadworld = false; // a level has been drawn this session
+let scr_plaque = false; // drawing the loading plaque instead of the console
+
+const scr_newer = () => Cvar_VariableValue( 'r_hdr' ) !== 0;
+
+function scr_loading() {
+
+	return ( ! _cl.worldmodel || _cls.signon !== SIGNONS ) && key_dest === key_game;
+
+}
 
 export function SCR_ChangingLevel() {
 
-	// a game in progress that is connecting to its next level (not a first start, not the console)
-	return scr_hadworld && _cls.state === 2 && ( ! _cl.worldmodel || _cls.signon !== SIGNONS ) && key_dest !== key_console;
+	return scr_newer() && scr_hadworld && scr_loading();
 
 }
 
@@ -530,7 +540,7 @@ SCR_DrawLoading
 */
 export function SCR_DrawLoading() {
 
-	if ( ! scr_drawloading )
+	if ( ! scr_drawloading && ! scr_plaque )
 		return;
 
 	const pic = Draw_CachePic( 'gfx/loading.lmp' );
@@ -554,16 +564,24 @@ function SCR_SetUpToDrawConsole() {
 
 	// decide on the height of the console
 	const forcedup = ! _cl.worldmodel || _cls.signon !== SIGNONS;
-	if ( ! forcedup ) scr_hadworld = true;
-	else if ( _cls.state !== 2 ) scr_hadworld = false;
+	if ( ! forcedup && _cl.worldmodel ) scr_hadworld = true;
+
+	// Newer Game: a load is not shown as a console
+	scr_plaque = scr_newer() && forcedup && ! scr_hadworld && scr_loading();
 
 	// coming out of a load: the console is gone at once, it does not roll up
-	if ( scr_wasforced && ! forcedup && key_dest !== key_console ) scr_con_current = 0;
+	if ( scr_newer() && scr_wasforced && ! forcedup && key_dest !== key_console ) scr_con_current = 0;
 	scr_wasforced = forcedup;
 
 	Con_SetForcedup( forcedup );
 
-	if ( forcedup ) {
+	if ( scr_plaque ) {
+
+		scr_conlines = 0;
+		scr_con_current = 0;
+		Con_SetForcedup( false );
+
+	} else if ( forcedup ) {
 
 		scr_conlines = _vid.height; // full screen
 		scr_con_current = scr_conlines;
@@ -886,7 +904,7 @@ export function SCR_UpdateScreen() {
 		SCR_DrawNotifyString();
 		scr_copyeverything = 1;
 
-	} else if ( scr_drawloading ) {
+	} else if ( scr_drawloading || scr_plaque ) {
 
 		SCR_DrawLoading();
 		Sbar_Draw();

@@ -69,7 +69,7 @@ import { R_NewMap } from './gl_rmisc.js';
 import { R_ParseParticleEffect, R_AddEfrags } from './render.js';
 import { Host_Error, Host_EndGame, realtime } from './host.js';
 import { set_noclip_anglehack } from './host_cmd.js';
-import { CL_SignonReply, CL_ClearState, cl_shownet } from './cl_main.js';
+import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
 import { CL_ParseTEnt } from './cl_tent.js';
 import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from './snd_dma.js';
 import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from './cd_audio.js';
@@ -983,6 +983,8 @@ export function CL_ParseClientdata( bits ) {
 	i = MSG_ReadByte();
 	if ( cl.stats[ STAT_AMMO ] !== i ) {
 
+		// the active ammo went down: the weapon fired
+		if ( i < cl.stats[ STAT_AMMO ] ) CL_ViewMuzzleFlash();
 		cl.stats[ STAT_AMMO ] = i;
 		// Sbar_Changed();
 
