@@ -1065,7 +1065,13 @@ export function SV_CheckWater( ent ) {
 SV_WallFriction
 ============
 */
-function SV_WallFriction( ent, trace ) {
+export function SV_WallFriction( ent, trace ) {
+
+	// No wall was recorded (SV_TryUnstick can report a wall hit without filling
+	// in the trace): nothing to take friction from.  C gets away with an
+	// unfilled trace_t; here it would be a missing plane.
+	if ( trace == null || trace.plane == null )
+		return;
 
 	const forward = _wallfriction_forward;
 	const right = _wallfriction_right;
@@ -1167,7 +1173,7 @@ export function SV_WalkMove( ent ) {
 	const oldvel = _walkmove_oldvel;
 	const nosteporg = _walkmove_nosteporg;
 	const nostepvel = _walkmove_nostepvel;
-	let steptrace = {};
+	let steptrace = { plane: { normal: new Float32Array( 3 ) } };
 
 	//
 	// do a regular slide move unless it looks like you ran into a step
@@ -1215,7 +1221,7 @@ export function SV_WalkMove( ent ) {
 	ent.v.velocity[ 0 ] = oldvel[ 0 ];
 	ent.v.velocity[ 1 ] = oldvel[ 1 ];
 	ent.v.velocity[ 2 ] = 0;
-	steptrace = {};
+	steptrace = { plane: { normal: new Float32Array( 3 ) } };
 	clip = SV_FlyMove( ent, host_frametime, steptrace );
 
 	// check for stuckness, possibly due to the limited precision of floats

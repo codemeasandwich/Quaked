@@ -5,6 +5,7 @@ import {
 	SV_SetFrametime,
 	SV_SetState,
 	SV_SoftenTeleportLaunch,
+	SV_WallFriction,
 	host_frametime,
 	sv_gravity
 } from '../src/sv_phys.js';
@@ -96,5 +97,25 @@ Deno.test( 'SV_SoftenTeleportLaunch halves the teleporter push once', () => {
 		SV_SetState( null, null, null );
 
 	}
+
+} );
+
+Deno.test( 'SV_WallFriction copes with a wall hit that recorded no plane', () => {
+
+	const ent = new edict_t( 1, 128 );
+	ent.v.v_angle = [ 0, 0, 0 ];
+	ent.v.velocity = [ 300, 0, 0 ];
+
+	// walking into a wall head on: friction slows the sideways part
+	SV_WallFriction( ent, { plane: { normal: new Float32Array( [ - 1, 0, 0 ] ) } } );
+
+	// no plane (what SV_TryUnstick leaves behind), an empty trace and no trace at all
+	ent.v.velocity = [ 300, 20, 0 ];
+	SV_WallFriction( ent, {} );
+	SV_WallFriction( ent, null );
+	SV_WallFriction( ent, { plane: { normal: new Float32Array( 3 ) } } );
+
+	assertNear( ent.v.velocity[ 0 ], 300, 0.001, 'an unrecorded wall leaves the velocity alone' );
+	assertNear( ent.v.velocity[ 1 ], 20, 0.001, 'in both directions' );
 
 } );
