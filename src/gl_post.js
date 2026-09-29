@@ -78,7 +78,7 @@ const SUN_SURFACE_COLOR = [ 1.0, 0.82, 0.6 ];
 const SATURATION = 1.18;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
-const CAUSTIC = 1.5; // brightness of caustics beneath water
+const CAUSTIC = 0.6; // brightness of caustics beneath water
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
 let sunDirection = [ - 0.28, - 0.18, 0.94 ];
@@ -1591,7 +1591,7 @@ void main() {
 				vec3 sigma = slime ? vec3( 0.0065, 0.0016, 0.0058 ) : vec3( 0.0030, 0.0010, 0.0007 );
 				vec3 tint = slime ? vec3( 0.010, 0.040, 0.006 ) : vec3( 0.005, 0.030, 0.045 );
 				vec3 T = exp( - sigma * ( tExit - tEnter ) );
-				c = c * T + tint * ( 1.0 - T ) * 0.6;
+				c = c * T + tint * ( 1.0 - T ) * 0.3;
 			}
 
 			// below the surface of a pool: no outlines (the pool's walls stand on its edge, so a margin)
@@ -1605,8 +1605,8 @@ void main() {
 				float depth = top - hitW.z;
 				vec2 plane = abs( Nw.z ) > 0.5 ? hitW.xy : ( abs( Nw.x ) > abs( Nw.y ) ? hitW.yz : hitW.xz );
 				float cs = caustic( plane * 0.0045, uTime * 0.6 );
-				float facing = 0.35 + 0.65 * max( Nw.z, 0.0 );
-				float fade = exp( - depth / 420.0 ) * smoothstep( - 4.0, 10.0, depth );
+				float facing = 0.06 + 0.94 * smoothstep( 0.3, 0.9, Nw.z ); // on floors, not the walls
+				float fade = exp( - depth / 420.0 ) * smoothstep( 6.0, 40.0, depth );
 				vec3 glow = slime ? vec3( 0.55, 1.0, 0.5 ) : vec3( 0.75, 1.0, 1.15 );
 				c += max( scene, vec3( 0.05 ) ) * glow * cs * uCaustic * facing * fade;
 			}
