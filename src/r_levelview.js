@@ -488,10 +488,11 @@ function buildView( scene, c, i ) {
 		1
 	];
 
+	const shift = o.shift !== undefined ? o.shift : [ 0, 0, 0 ];
 	const corner = ( a, b ) => [
-		cc[ 0 ] + o.axisA[ 0 ] * a + o.axisB[ 0 ] * b,
-		cc[ 1 ] + o.axisA[ 1 ] * a + o.axisB[ 1 ] * b,
-		cc[ 2 ] + o.axisA[ 2 ] * a + o.axisB[ 2 ] * b
+		cc[ 0 ] + o.axisA[ 0 ] * a + o.axisB[ 0 ] * b + shift[ 0 ],
+		cc[ 1 ] + o.axisA[ 1 ] * a + o.axisB[ 1 ] * b + shift[ 1 ],
+		cc[ 2 ] + o.axisA[ 2 ] * a + o.axisB[ 2 ] * b + shift[ 2 ]
 	];
 
 	R_AddLevelPortal( scene,

@@ -147,7 +147,11 @@ export function SV_SeamlessUseModels( tools ) {
 
 // how much wall to leave behind the plane where you arrive: the player's hull
 // is 16 to a side, and the doorway back must be somewhere they can reach
-const BACK_MARGIN = 24;
+const BACK_MARGIN = 20;
+
+// the doorway back is drawn this far in front of the wall it is in, so it sits in
+// the wall rather than floating in the room
+const WINDOW_GAP = 2;
 const BACK_LOOK = 128;
 
 /*
@@ -264,6 +268,69 @@ function SV_RestoreLevel( snap ) {
 
 }
 
+//============================================================================
+// Archways: the crossing is at the arch, not at the end of the tunnel
+//============================================================================
+
+const TUNNEL_MAX = 160; // how far back to look for where the passage opens out
+const ARCH_THICK = 32; // an exit brush this thin is an archway (a fatter one is a portal)
+
+// how far from the exit's plane, back the way the player comes, the passage
+// stays narrow: the tunnel between the arch and the trigger at the end of it
+function SV_TunnelDepth( t ) {
+
+	const ap = [ - t.through[ 0 ], - t.through[ 1 ], 0 ];
+	const tg = [ t.tangent[ 0 ], t.tangent[ 1 ], 0 ];
+	const back = [ - tg[ 0 ], - tg[ 1 ], 0 ];
+	let narrow = Infinity;
+
+	for ( let d = 0; d <= TUNNEL_MAX; d += 4 ) {
+
+		const p = [ t.center[ 0 ] + ap[ 0 ] * d, t.center[ 1 ] + ap[ 1 ] * d, t.center[ 2 ] ];
+		const width = scan( p, tg, 400 ) + scan( p, back, 400 );
+
+		if ( width < narrow ) narrow = width;
+		else if ( width > narrow * 1.35 + 16 ) return Math.max( 0, d - 4 );
+
+	}
+
+	return 0;
+
+}
+
+// doors between the arch and the trigger; a locked one (needs a key) is a reason to leave the crossing where it is
+function SV_DoorsInTunnel( exit, shifted ) {
+
+	const found = [];
+	let locked = false;
+
+	for ( let i = svs.maxclients + 1; i < sv.num_edicts; i ++ ) {
+
+		const ed = sv.edicts[ i ];
+		if ( ed.free ) continue;
+		const name = PR_GetString( ed.v.classname );
+		if ( name !== 'door' && name !== 'func_door' ) continue;
+
+		// the stretch from the arch to the far side of the trigger
+		let across = true;
+		for ( let a = 0; a < 3; a ++ ) {
+
+			const lo = Math.min( exit.mins[ a ], shifted.mins[ a ] ) - 4;
+			const hi = Math.max( exit.maxs[ a ], shifted.maxs[ a ] ) + 4;
+			if ( ed.v.absmax[ a ] < lo || ed.v.absmin[ a ] > hi ) across = false;
+
+		}
+
+		if ( across === false ) continue;
+		if ( ( ed.v.items | 0 ) !== 0 ) locked = true;
+		found.push( ed );
+
+	}
+
+	return locked ? null : found;
+
+}
+
 // doors across an exit's opening (a key door in front of the way out)
 function SV_ClearExitDoors( exit ) {
 
@@ -322,7 +389,11 @@ export function SV_SeamlessSetup() {
 			const o = from.opening;
 			crossings.push( {
 				exit: null, map: from.map, transform: inverse, side: 0, back: true,
-				opening: { axisA: inverse.tangent, axisB: [ 0, 0, 1 ], a0: o.a0, a1: o.a1, b0: o.b0, b1: o.b1 }
+				opening: {
+					axisA: inverse.tangent, axisB: [ 0, 0, 1 ], a0: o.a0, a1: o.a1, b0: o.b0, b1: o.b1,
+					// drawn in the wall behind the plane, not on it
+					shift: [ inverse.through[ 0 ] * ( BACK_MARGIN - WINDOW_GAP ), inverse.through[ 1 ] * ( BACK_MARGIN - WINDOW_GAP ), 0 ]
+				}
 			} );
 
 		}
@@ -345,7 +416,36 @@ export function SV_SeamlessSetup() {
 		const approach = R_ChooseApproach( exit, clearDistance );
 		const side = approach.side;
 		const arrival = exit.kind === 'pit' ? there.start : SV_ArrivalStart( exit.map, there.start );
-		const transform = R_CrossingTransform( exit, side, arrival, floorBelow( centre ), approach.axis );
+		let transform = R_CrossingTransform( exit, side, arrival, floorBelow( centre ), approach.axis );
+		let openDoors = [];
+
+		// An archway: cross at the arch itself.  The tunnel behind it is never
+		// walked (the window sits where the arch is and hides it), and any door
+		// that was in the way is gone.  A key door stays and the crossing stays
+		// behind it.
+		if ( transform !== null && exit.kind === 'plane' && Math.min( exit.maxs[ 0 ] - exit.mins[ 0 ], exit.maxs[ 1 ] - exit.mins[ 1 ] ) <= ARCH_THICK ) {
+
+			const depth = SV_TunnelDepth( transform );
+			if ( depth > 4 ) {
+
+				const ap = [ - transform.through[ 0 ] * depth, - transform.through[ 1 ] * depth, 0 ];
+				const moved = {
+					mins: [ exit.mins[ 0 ] + ap[ 0 ], exit.mins[ 1 ] + ap[ 1 ], exit.mins[ 2 ] ],
+					maxs: [ exit.maxs[ 0 ] + ap[ 0 ], exit.maxs[ 1 ] + ap[ 1 ], exit.maxs[ 2 ] ]
+				};
+
+				const doors = SV_DoorsInTunnel( exit, moved );
+				if ( doors !== null ) {
+
+					transform = R_CrossingTransform( moved, side, arrival, floorBelow( centre ), approach.axis );
+					openDoors = doors;
+
+				}
+
+			}
+
+		}
+
 		if ( transform === null ) continue;
 
 		// stop the game's own exit from firing; this crossing takes over
@@ -374,7 +474,12 @@ export function SV_SeamlessSetup() {
 		if ( taken && pending !== null && pending.map === sv.name && pending.viaBack === true )
 			SV_ClearExitDoors( exit );
 
-		if ( taken ) crossings.push( { exit, map: exit.map, transform, side, opening: openingOf( transform ) } );
+		if ( taken ) {
+
+			for ( const door of openDoors ) ED_Free( door );
+			crossings.push( { exit, map: exit.map, transform, side, opening: openingOf( transform ) } );
+
+		}
 
 	}
 
