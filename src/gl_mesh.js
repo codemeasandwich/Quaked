@@ -1,6 +1,7 @@
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';
+import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cl } from './client.js';
 import { R_GetPlayerSkinTexture } from './gl_rmisc.js';
@@ -499,6 +500,9 @@ R_SetupAliasFrame
 Determine which pose to render for the given entity and alias model header.
 =================
 */
+// how long the pose chosen by R_SetupAliasFrame lasts
+let _poseInterval = ANIM_STEP;
+
 function R_SetupAliasFrame( entity, paliashdr ) {
 
 	let posenum = 0;
@@ -512,6 +516,8 @@ function R_SetupAliasFrame( entity, paliashdr ) {
 
 		}
 
+		_poseInterval = ANIM_STEP;
+
 		if ( paliashdr.frames && paliashdr.frames[ frame ] ) {
 
 			const frameInfo = paliashdr.frames[ frame ];
@@ -523,6 +529,7 @@ function R_SetupAliasFrame( entity, paliashdr ) {
 				const interval = frameInfo.interval;
 				const time = cl ? cl.time : 0;
 				posenum += ( ( time / interval ) | 0 ) % numposes;
+				_poseInterval = interval;
 
 			}
 
@@ -653,6 +660,21 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 	if ( ! template )
 		return null;
 
+	// Extra frames: blend the pose being left with the one being entered
+	let blend = null;
+	if ( entity != null && R_AnimEnabled() ) {
+
+		const state = R_AliasPoseBlend( entity, paliashdr, posenum, cl ? cl.time : 0, _poseInterval );
+		if ( state.blend < 1 && state.from !== state.to ) {
+
+			const from = GL_DrawAliasFrame( paliashdr, state.from );
+			if ( from != null && from.vertexCount === template.vertexCount )
+				blend = { from, t: state.blend };
+
+		}
+
+	}
+
 	// Build or update per-entity geometry (shares template attributes, owns color buffer)
 	let geometry = entity ? entity._aliasGeo : null;
 	if ( geometry == null ) {
@@ -668,8 +690,13 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 	// When pose or model changes, swap to the new template's shared attributes
 	if ( entity._aliasPosenum !== posenum || entity._aliasPaliashdr !== paliashdr ) {
 
-		geometry.setAttribute( 'position', template.posAttr );
-		geometry.setAttribute( 'normal', template.normalAttr );
+		if ( blend === null ) {
+
+			geometry.setAttribute( 'position', template.posAttr );
+			geometry.setAttribute( 'normal', template.normalAttr );
+
+		}
+
 		geometry.setAttribute( 'uv', template.uvAttr );
 		geometry.setIndex( template.indices );
 
@@ -683,6 +710,35 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 
 		entity._aliasPosenum = posenum;
 		entity._aliasPaliashdr = paliashdr;
+
+	}
+
+	// A blended pose owns its positions and normals; leaving it goes back to the shared ones
+	if ( blend !== null ) {
+
+		const n = template.vertexCount * 3;
+		if ( entity._aliasBlendPos == null || entity._aliasBlendPos.array.length !== n ) {
+
+			entity._aliasBlendPos = new THREE.BufferAttribute( new Float32Array( n ), 3 );
+			entity._aliasBlendNormal = new THREE.BufferAttribute( new Float32Array( n ), 3 );
+
+		}
+
+		R_BlendArrays( entity._aliasBlendPos.array, blend.from.posAttr.array, template.posAttr.array, blend.t );
+		R_BlendArrays( entity._aliasBlendNormal.array, blend.from.normalAttr.array, template.normalAttr.array, blend.t );
+		entity._aliasBlendPos.needsUpdate = true;
+		entity._aliasBlendNormal.needsUpdate = true;
+
+		geometry.setAttribute( 'position', entity._aliasBlendPos );
+		geometry.setAttribute( 'normal', entity._aliasBlendNormal );
+		entity._aliasBlended = true;
+
+	} else if ( entity._aliasBlended === true ) {
+
+		geometry.setAttribute( 'position', template.posAttr );
+		geometry.setAttribute( 'normal', template.normalAttr );
+		entity._aliasBlended = false;
+		entity._aliasPosenum = posenum;
 
 	}
 

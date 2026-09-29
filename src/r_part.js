@@ -5,7 +5,7 @@ import { VectorCopy, VectorSubtract, VectorNormalize } from './mathlib.js';
 import { r_avertexnormals } from './anorm_dots.js';
 import { d_8to24table } from './vid.js';
 import { cl as client_cl } from './client.js';
-import { gl_texturemode, GL_RegisterTexture } from './glquake.js';
+import { GL_TextureLinear, GL_RegisterTexture } from './glquake.js';
 import { isXRActive, XR_SCALE } from './webxr.js';
 
 const MAX_PARTICLES = 2048;
@@ -108,7 +108,7 @@ function R_InitParticleTexture() {
 
 	particleTexture = new THREE.DataTexture( data, 8, 8, THREE.RGBAFormat );
 	// Use cvar to determine filter mode: 0 = nearest (pixelated), 1 = linear (smooth)
-	const filter = gl_texturemode.value ? THREE.LinearFilter : THREE.NearestFilter;
+	const filter = GL_TextureLinear() ? THREE.LinearFilter : THREE.NearestFilter;
 	particleTexture.magFilter = filter;
 	particleTexture.minFilter = filter;
 	particleTexture.colorSpace = THREE.SRGBColorSpace;

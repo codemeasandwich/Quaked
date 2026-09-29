@@ -25,11 +25,16 @@ import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
+import { GL_SetForceLinear } from './glquake.js';
+import { R_AnimSetNewer } from './r_anim.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
 export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
 export const r_volumetric = new cvar_t( 'r_volumetric', '1' );
+// Newer Game's overall look: 1 = as designed.  0.6 is 40% darker, 1.4 is 40% more contrast.
+export const r_newbright = new cvar_t( 'r_newbright', '0.6' );
+export const r_newcontrast = new cvar_t( 'r_newcontrast', '1.4' );
 export const r_caustics = new cvar_t( 'r_caustics', '1' ); // strength of light patterns beneath water
 
 // glquake.h flags (not imported: keeps this module out of the renderer's import cycle)
@@ -121,6 +126,7 @@ function setGlowActive( active ) {
 
 	if ( active === glowActive ) return;
 	glowActive = active;
+	GL_SetForceLinear( active ); // smooth texture filtering in Newer Game
 	for ( const m of glowMaterials )
 		applyGlow( m, m.userData.glowBoost );
 	for ( const m of detailMaterials )
@@ -1188,6 +1194,9 @@ uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
 uniform float uSaturation;
 uniform float uContrast;
+uniform float uBright;
+uniform float uContrastGain;
+uniform float uContrastPivot;
 uniform float uTime;
 uniform float uCaustic;
 uniform int uWaterCount;
@@ -1372,6 +1381,11 @@ void main() {
 
 	gl_FragColor = vec4( c, 1.0 );
 	#include <colorspace_fragment>
+
+	// brightness, then contrast about a mid tone, on the displayed values
+	vec3 shown = gl_FragColor.rgb * uBright;
+	shown = max( uContrastPivot + ( shown - uContrastPivot ) * uContrastGain, 0.0 );
+	gl_FragColor = vec4( shown, 1.0 );
 }`;
 
 //============================================================================
@@ -1497,6 +1511,9 @@ function createPipeline() {
 			uLightSurface: { value: LIGHT_SURFACE },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
+			uBright: { value: 0.6 },
+			uContrastGain: { value: 1.4 },
+			uContrastPivot: { value: 0.12 },
 			uTime: { value: 0 },
 			uCaustic: { value: CAUSTIC },
 			uWaterCount: { value: 0 },
@@ -1574,6 +1591,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 
 	const active = enabled && r_hdr.value !== 0 && R_PostSupported( renderer ) && width > 8 && height > 8;
 	setGlowActive( active );
+	R_AnimSetNewer( active );
 	skySeen = false;
 
 	if ( active === false ) return false;
@@ -1793,7 +1811,13 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.tVolume.value = volume > 0 ? p.volume.texture : null;
 	cm.tBloom.value = bloom > 0 ? p.bloomResult.texture : null;
 	cm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
+	// brightness and contrast are applied to the picture as displayed (below), so
+	// 0.6 is 40% darker and 1.4 is 40% more contrast as seen
+	const newBright = Math.max( 0, r_newbright.value );
 	cm.uExposure.value = exposure * HDR_EXPOSURE;
+	cm.uBright.value = newBright;
+	cm.uContrastGain.value = Math.max( 0, r_newcontrast.value );
+	cm.uContrastPivot.value = newBright * 0.2; // deviations are taken from a typical scene brightness
 	cm.uBloom.value = bloom;
 	cm.uVolume.value = volume;
 

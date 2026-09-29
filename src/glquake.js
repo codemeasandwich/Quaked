@@ -263,6 +263,25 @@ export const gl_subdivide_size = { name: 'gl_subdivide_size', string: '128', val
 // Texture filtering: 0 = nearest (pixelated), 1 = linear (smooth)
 export const gl_texturemode = { name: 'gl_texturemode', string: '0', value: 0, archive: true };
 
+// The Newer lighting always filters textures smoothly (linear, mip-mapped and
+// anisotropic), whatever gl_texturemode says; the user's own setting is left
+// alone and comes back when Newer is switched off.
+let gl_forcelinear = false;
+
+export function GL_TextureLinear() {
+
+	return gl_forcelinear || gl_texturemode.value !== 0;
+
+}
+
+export function GL_SetForceLinear( force ) {
+
+	if ( force === gl_forcelinear ) return;
+	gl_forcelinear = force;
+	GL_UpdateTextureFiltering();
+
+}
+
 // Track all game textures for filter updates
 export const _allGameTextures = [];
 
@@ -286,13 +305,15 @@ export function GL_UnregisterTexture( texture ) {
 
 export function GL_UpdateTextureFiltering() {
 
-	const filter = gl_texturemode.value ? THREE.LinearFilter : THREE.NearestFilter;
-	const mipFilter = gl_texturemode.value ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
+	const linear = GL_TextureLinear();
+	const filter = linear ? THREE.LinearFilter : THREE.NearestFilter;
+	const mipFilter = linear ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
 
 	for ( const texture of _allGameTextures ) {
 
 		if ( texture ) {
 
+			texture.anisotropy = gl_forcelinear ? 16 : 1;
 			texture.magFilter = filter;
 			texture.minFilter = texture.generateMipmaps ? mipFilter : filter;
 			texture.needsUpdate = true;

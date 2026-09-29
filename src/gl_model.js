@@ -7,7 +7,6 @@
 import * as THREE from 'three';
 import { Sys_Error } from './sys.js';
 import { Con_Printf, COM_FileBase } from './common.js';
-import { Cvar_VariableValue } from './cvar.js';
 import { d_8to24table, vid } from './vid.js';
 import { COM_LoadFile } from './pak.js';
 import { DotProduct, VectorCopy, Length } from './mathlib.js';
@@ -29,7 +28,7 @@ import {
 	MIPLEVELS, MAXLIGHTMAPS, NUM_AMBIENTS,
 	TEX_SPECIAL
 } from './bspfile.js';
-import { gl_subdivide_size, gl_texturemode, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
+import { gl_subdivide_size, gl_texturemode, GL_TextureLinear, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
 
 // ============================================================================
 // modelgen.h constants
@@ -719,8 +718,8 @@ function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbrig
 		}
 
 		fullbrightTexture = new THREE.DataTexture( fbRgba, width, height, THREE.RGBAFormat );
-		const fbFilter = gl_texturemode.value ? THREE.LinearFilter : THREE.NearestFilter;
-		const fbMipFilter = gl_texturemode.value ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
+		const fbFilter = GL_TextureLinear() ? THREE.LinearFilter : THREE.NearestFilter;
+		const fbMipFilter = GL_TextureLinear() ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
 		fullbrightTexture.magFilter = fbFilter;
 		fullbrightTexture.minFilter = mipmap ? fbMipFilter : fbFilter;
 		fullbrightTexture.wrapS = THREE.RepeatWrapping;
@@ -735,8 +734,8 @@ function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbrig
 
 	const texture = new THREE.DataTexture( rgba, width, height, THREE.RGBAFormat );
 	// Use cvar to determine filter mode: 0 = nearest (pixelated), 1 = linear (smooth)
-	const filter = gl_texturemode.value ? THREE.LinearFilter : THREE.NearestFilter;
-	const mipFilter = gl_texturemode.value ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
+	const filter = GL_TextureLinear() ? THREE.LinearFilter : THREE.NearestFilter;
+	const mipFilter = GL_TextureLinear() ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
 	texture.magFilter = filter;
 	texture.minFilter = mipmap ? mipFilter : filter;
 	texture.wrapS = THREE.RepeatWrapping;
@@ -744,7 +743,7 @@ function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbrig
 	texture.generateMipmaps = mipmap;
 	texture.colorSpace = THREE.SRGBColorSpace;
 	// the HDR ("Newer") lighting also filters textures anisotropically; classic stays as it was
-	if ( Cvar_VariableValue( 'r_hdr' ) !== 0 ) texture.anisotropy = 16;
+	if ( GL_TextureLinear() && gl_texturemode.value === 0 ) texture.anisotropy = 16;
 	// Note: flipY defaults to false for DataTexture, which is correct for Quake
 	// Quake's UV T=0 at top + texture row 0 at V=0 means no flip is needed
 	texture.needsUpdate = true;

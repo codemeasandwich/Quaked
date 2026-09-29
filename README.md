@@ -31,6 +31,12 @@ Every world texture gets a generated normal map and a height map (see `src/gl_no
 
 Water and slime become see-through: the bottom of a pool shows through the surface, light is absorbed with depth (shallows stay clear, depths go dark and blue-green, slime green), and the surfaces beneath get animated caustics. Lava stays opaque and glows.
 
+Newer Game also:
+
+- filters textures smoothly (linear and anisotropic), whatever `gl_texturemode` is set to; your own setting is left alone and comes back with the classic lighting;
+- is graded 40% darker with 40% more contrast than its raw output (`r_newbright 0.6`, `r_newcontrast 1.4`; use 1 and 1 for the ungraded look);
+- adds extra frames between model animation frames: Quake steps monsters and weapons through their poses ten times a second, and Newer Game blends between them so movement runs at your display's frame rate. `r_lerpmodels 0` turns it off, `1` (default) is Newer Game only, `2` forces it on in the classic lighting too. It does not blend a model that has just come into view, teleported or changed model.
+
 You can switch at any time from the console: `r_hdr 0` (classic) or `r_hdr 1` (newer). `r_bloom`, `r_volumetric` and `r_caustics` set the strength of each effect.
 
 This is a rasterised approximation, not path tracing: light does not bounce, and shafts are occluded by what is on screen. It needs WebGL2 float render targets; without them the classic path is used automatically, and it is off in WebXR.
