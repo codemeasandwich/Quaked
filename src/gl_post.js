@@ -1438,6 +1438,7 @@ void main() {
 	vec3 c = scene;
 	vec3 Nw = vec3( 0.0, 0.0, 1.0 );
 	float spotMask = 0.0;
+	float creaseK = 1.0; // the corner accent, applied after the liquids (which switch it off below their surface)
 
 	// Direct light from the sun and the nearby lights, applied to what the
 	// classic lightmaps already put on the surface.
@@ -1557,7 +1558,7 @@ void main() {
 		}
 
 		// corners and edges
-		if ( uEdge > 0.0 ) c *= creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
+		if ( uEdge > 0.0 ) creaseK = creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through
@@ -1596,6 +1597,7 @@ void main() {
 			if ( d < 0.99999
 				&& hitW.x > bmin.x && hitW.x < bmax.x && hitW.y > bmin.y && hitW.y < bmax.y
 				&& hitW.z > bmin.z && hitW.z < top + 2.0 ) {
+				creaseK = 1.0; // seen through the water: no outlines
 				float depth = top - hitW.z;
 				vec2 plane = abs( Nw.z ) > 0.5 ? hitW.xy : ( abs( Nw.x ) > abs( Nw.y ) ? hitW.yz : hitW.xz );
 				float cs = caustic( plane * 0.0045, uTime * 0.6 );
@@ -1606,6 +1608,8 @@ void main() {
 			}
 		}
 	}
+
+	c *= creaseK;
 
 	// ambient haze
 	float T = exp( - uHaze * D );

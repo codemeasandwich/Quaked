@@ -12,6 +12,7 @@ import * as THREE from 'three';
 import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from './gl_model.js';
 import { R_BuildLightMap, createQuakeLightmapMaterial } from './gl_rsurf.js';
 import { R_RegisterGlow } from './gl_post.js';
+import { R_NewerLightingActive } from './r_anim.js';
 import { R_AddLevelPortal, R_ClearLevelPortals } from './gl_portal.js';
 import { R_NormalMapFor } from './gl_normals.js';
 
@@ -210,6 +211,89 @@ function visibleLeaves( model, origin ) {
 
 }
 
+// The sky as the level itself draws it: two layers of cloud (a solid one behind
+// and a see-through one in front) scrolling at different speeds, projected onto a
+// flattened dome from where the camera is, so it has depth and moves as you do.
+const SKY_VERTEX = `
+varying vec3 vWorld;
+void main() {
+	vec4 w = modelMatrix * vec4( position, 1.0 );
+	vWorld = w.xyz;
+	gl_Position = projectionMatrix * viewMatrix * w;
+}`;
+
+const SKY_FRAGMENT = `
+layout(location = 1) out highp vec4 gNormal;
+uniform sampler2D tSolid;
+uniform sampler2D tAlpha;
+uniform float uSolid;
+uniform float uCloud;
+uniform float uUseAlpha;
+uniform float uGlow;
+varying vec3 vWorld;
+void main() {
+	vec3 d = vWorld - cameraPosition;
+	d.z *= 3.0; // flatten the dome
+	float k = 6.0 * 63.0 / max( length( d ), 1.0 );
+	vec3 c = texture2D( tSolid, ( uSolid + d.xy * k ) / 128.0 ).rgb;
+	if ( uUseAlpha > 0.5 ) {
+		vec4 a = texture2D( tAlpha, ( uCloud + d.xy * k ) / 128.0 );
+		c = mix( c, a.rgb, a.a );
+	}
+	gl_FragColor = vec4( c * uGlow, 1.0 );
+	#include <colorspace_fragment>
+	gNormal = vec4( 0.0 );
+}`;
+
+function skyMaterial( model ) {
+
+	const solid = model._skySolid, alpha = model._skyAlpha;
+
+	if ( solid == null ) {
+
+		const flat = new THREE.MeshBasicMaterial( { color: 0x6080a0, side: THREE.DoubleSide } );
+		R_RegisterGlow( flat, 1.9 );
+		return flat;
+
+	}
+
+	for ( const t of [ solid, alpha ] ) {
+
+		if ( t == null ) continue;
+		t.wrapS = THREE.RepeatWrapping;
+		t.wrapT = THREE.RepeatWrapping;
+
+	}
+
+	return new THREE.ShaderMaterial( {
+		uniforms: {
+			tSolid: { value: solid },
+			tAlpha: { value: alpha != null ? alpha : solid },
+			uSolid: { value: 0 },
+			uCloud: { value: 0 },
+			uUseAlpha: { value: alpha != null ? 1 : 0 },
+			uGlow: { value: 1 }
+		},
+		vertexShader: SKY_VERTEX,
+		fragmentShader: SKY_FRAGMENT,
+		side: THREE.DoubleSide
+	} );
+
+}
+
+// the clouds scroll: 8 and 16 texels a second, wrapping at the texture's size; and the
+// sky is a light source, brighter than white, when the Newer lighting is what draws
+function updateSky( material ) {
+
+	if ( material.uniforms === undefined ) return;
+
+	const t = performance.now() / 1000;
+	material.uniforms.uSolid.value = ( t * 8 ) % 128;
+	material.uniforms.uCloud.value = ( t * 16 ) % 128;
+	material.uniforms.uGlow.value = R_NewerLightingActive() ? 1.9 : 1;
+
+}
+
 function averageColour( texture ) {
 
 	const data = texture != null && texture.image != null ? texture.image.data : null;
@@ -343,13 +427,11 @@ export function R_BuildLevelView( model, origin ) {
 
 	if ( sky.position.length > 0 ) {
 
-		const material = new THREE.MeshBasicMaterial( {
-			color: averageColour( model._skySolid ),
-			side: THREE.DoubleSide
-		} );
-		R_RegisterGlow( material, 1.9 ); // the sky is a light source in Newer Game
+		const material = skyMaterial( model );
 		const geometry = bucketGeometry( sky, false );
-		group.add( new THREE.Mesh( geometry, material ) );
+		const mesh = new THREE.Mesh( geometry, material );
+		mesh.onBeforeRender = () => updateSky( material );
+		group.add( mesh );
 		disposables.push( geometry, material );
 
 	}
