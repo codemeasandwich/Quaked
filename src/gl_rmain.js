@@ -9,6 +9,7 @@ import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
 import { R_SetupLevelViews } from './r_levelview.js';
+import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsClear } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
@@ -297,6 +298,8 @@ export function R_SetupFrame() {
 	if ( cl && cl.worldmodel ) {
 
 		r_viewleaf = Mod_PointInLeaf( r_origin, cl.worldmodel );
+		R_ScreenDropsSetView( r_origin );
+		R_ScreenDropsView( r_viewleaf.contents );
 
 	}
 
@@ -1508,6 +1511,7 @@ export function R_NewMap() {
 	R_ClearParticles();
 	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
 	R_DecalsClear();
+	R_ScreenDropsClear();
 
 	// Clean up all cached entity resources from the previous map. Static
 	// entities keep their JS identity across CL_ClearState, so invalidate the

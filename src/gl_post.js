@@ -26,6 +26,7 @@ import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { GL_SetForceLinear } from './glquake.js';
+import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
 
@@ -61,7 +62,8 @@ export const SUN_SHADOW_LAYER = 3;
 
 // Tunables
 const EMISSIVE_BOOST = 3.0; // fullbright texels, in HDR
-const LAVA_BOOST = 0.75;
+const LAVA_BOOST = 1.1; // lava is a light source: brighter than white, so it blooms
+const LAVA_PULSE = 0.14; // and it breathes, slowly
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
 const SCATTER = 0.03; // point light in-scattering
 const LIGHT_FLOOR = 0.14; // light on a surface the lightmap left dark
@@ -132,7 +134,28 @@ export function R_RegisterGlow( material, boost = EMISSIVE_BOOST ) {
 	material.userData.glowBoost = boost;
 	applyGlow( material, boost );
 	glowMaterials.add( material );
-	material.addEventListener( 'dispose', () => glowMaterials.delete( material ) );
+	if ( boost === LAVA_BOOST ) lavaMaterials.add( material );
+	material.addEventListener( 'dispose', () => {
+
+		glowMaterials.delete( material );
+		lavaMaterials.delete( material );
+
+	} );
+
+}
+
+// lava materials, whose glow slowly swells and fades
+const lavaMaterials = new Set();
+
+function pulseLava( seconds ) {
+
+	const pulse = 1 + LAVA_PULSE * Math.sin( seconds * 1.6 ) + LAVA_PULSE * 0.5 * Math.sin( seconds * 4.3 + 1.3 );
+	for ( const m of lavaMaterials ) {
+
+		m.userData.glowBoost = LAVA_BOOST * pulse;
+		applyGlow( m, m.userData.glowBoost );
+
+	}
 
 }
 
@@ -529,7 +552,7 @@ function surfaceEmission( surf ) {
 	const tex = surf.texinfo.texture;
 	const name = tex.name.toLowerCase();
 
-	if ( name.indexOf( '*lava' ) === 0 ) return { color: [ 1.0, 0.36, 0.1 ], coverage: 1.6 };
+	if ( name.indexOf( '*lava' ) === 0 ) return { color: [ 1.0, 0.36, 0.1 ], coverage: 2.4 };
 	if ( name.indexOf( '*slime' ) === 0 ) return { color: [ 0.25, 0.95, 0.2 ], coverage: 0.6 };
 	if ( name.indexOf( '*teleport' ) === 0 ) return { color: [ 0.55, 0.65, 1.0 ], coverage: 0.15 };
 	if ( name.charAt( 0 ) === '*' || tex.gl_texture == null ) return null;
@@ -1252,6 +1275,9 @@ uniform vec3 uSunSurfaceCol;
 uniform float uLightSurface;
 uniform float uLightFloor;
 uniform float uEdge;
+uniform float uDropDensity;
+uniform float uDropBlood;
+uniform float uDropAge;
 uniform float uSaturation;
 uniform float uContrast;
 uniform float uBright;
@@ -1330,11 +1356,61 @@ float creaseAccent( vec3 P, vec3 Ng ) {
 	return ( 1.0 - clamp( occ * 6.0, 0.0, 0.8 ) * uEdge ) * ( 1.0 + clamp( edge * 4.0, 0.0, 0.45 ) * uEdge );
 }
 
-void main() {
-	vec3 scene = texture2D( tScene, vUv ).rgb;
-	float d = texture2D( tDepth, vUv ).x;
+float dropHash( vec2 p ) {
+	p = fract( p * vec2( 123.34, 345.45 ) );
+	p += dot( p, p + 34.345 );
+	return fract( p.x * p.y );
+}
 
-	vec4 r = uProjInv * vec4( vUv * 2.0 - 1.0, 1.0, 1.0 );
+// Drops on the lens.  Cells of a grid each hold at most one drop; how many cells
+// are wet is the density, so as the view dries the drops go one by one.  Some
+// columns of the grid slide downwards over time, carrying their drops with them
+// and leaving a thin wet line behind.  Returns ( bend x, bend y, drop, glint ).
+vec4 lensDrops( vec2 uv, float grid, float seed ) {
+	vec2 g = uv * vec2( grid * 1.7, grid );
+	float col = floor( g.x );
+	float runs = step( 0.55, dropHash( vec2( col + seed, 3.0 ) ) );
+	float speed = runs * ( 0.35 + 1.1 * dropHash( vec2( col, 9.0 + seed ) ) );
+	g.y += uDropAge * speed * 0.7 * min( 1.0, uDropAge * 0.6 );
+	vec2 id = floor( g );
+	vec2 f = fract( g ) - 0.5;
+	float r1 = dropHash( id + seed );
+	float r2 = dropHash( id * 1.7 + 11.3 + seed );
+	float r3 = dropHash( id * 2.3 + 5.1 + seed );
+	if ( r1 > uDropDensity * 0.5 ) return vec4( 0.0 );
+	vec2 p = ( vec2( r2, r3 ) - 0.5 ) * 0.5;
+	float size = 0.1 + 0.2 * r2 * r3 + 0.05 * r3;
+	vec2 d = ( f - p ) * vec2( 1.0, 1.15 );
+	float dist = length( d );
+	float drop = smoothstep( size, size * 0.55, dist );
+	// the wet line above a running drop
+	float line = 0.0;
+	if ( runs > 0.5 && uDropAge > 0.4 ) {
+		float above = f.y - p.y;
+		line = smoothstep( 0.03, 0.0, abs( f.x - p.x ) ) * step( 0.0, above ) * smoothstep( 0.5, 0.0, above ) * 0.55;
+	}
+	float mask = max( drop, line * 0.6 );
+	// the drop is a lens: it shows the picture upside-down and bent
+	vec2 bend = - ( f - p ) * drop * 1.5 / grid;
+	float glint = smoothstep( 0.55, 1.0, dot( normalize( vec2( - 0.6, 0.8 ) ), d / max( size, 1e-3 ) ) ) * drop;
+	return vec4( bend, mask, glint );
+}
+
+void main() {
+	vec2 uvd = vUv;
+	float dropMask = 0.0;
+	float dropGlint = 0.0;
+	if ( uDropDensity > 0.001 ) {
+		vec4 a = lensDrops( vUv, 9.0, 0.0 );
+		vec4 b = lensDrops( vUv, 21.0, 17.0 );
+		uvd = vUv + a.xy + b.xy * 0.7;
+		dropMask = clamp( a.z + b.z * 0.8, 0.0, 1.0 );
+		dropGlint = clamp( a.w + b.w * 0.6, 0.0, 1.0 );
+	}
+	vec3 scene = texture2D( tScene, uvd ).rgb;
+	float d = texture2D( tDepth, uvd ).x;
+
+	vec4 r = uProjInv * vec4( uvd * 2.0 - 1.0, 1.0, 1.0 );
 	vec3 dirV = normalize( r.xyz / r.w );
 	float D = d >= 0.99999 ? uMaxRay : min( - perspectiveDepthToViewZ( d, uNear, uFar ) / max( - dirV.z, 0.05 ), uMaxRay );
 
@@ -1345,10 +1421,10 @@ void main() {
 	// Direct light from the sun and the nearby lights, applied to what the
 	// classic lightmaps already put on the surface.
 	// alpha < 0 in the normal buffer marks a window onto another level: leave it as drawn
-	if ( d < 0.99999 && texture2D( tNormal, vUv ).a > - 0.5 ) {
-		vec3 P = viewPosAt( vUv );
+	if ( d < 0.99999 && texture2D( tNormal, uvd ).a > - 0.5 ) {
+		vec3 P = viewPosAt( uvd );
 		vec3 N;
-		vec4 g = texture2D( tNormal, vUv );
+		vec4 g = texture2D( tNormal, uvd );
 		float here = - P.z;
 		if ( here > 8.0 && abs( g.a - here ) < 0.025 * here + 1.0 ) {
 			// the surface's own (normal-mapped) normal, written while it was drawn
@@ -1356,10 +1432,10 @@ void main() {
 			if ( dot( N, P ) > 0.0 ) N = - N;
 		} else {
 			// other geometry: the normal of the depth surface
-			vec3 Pl = viewPosAt( vUv - vec2( uTexel.x, 0.0 ) );
-			vec3 Pr = viewPosAt( vUv + vec2( uTexel.x, 0.0 ) );
-			vec3 Pd = viewPosAt( vUv - vec2( 0.0, uTexel.y ) );
-			vec3 Pu = viewPosAt( vUv + vec2( 0.0, uTexel.y ) );
+			vec3 Pl = viewPosAt( uvd - vec2( uTexel.x, 0.0 ) );
+			vec3 Pr = viewPosAt( uvd + vec2( uTexel.x, 0.0 ) );
+			vec3 Pd = viewPosAt( uvd - vec2( 0.0, uTexel.y ) );
+			vec3 Pu = viewPosAt( uvd + vec2( 0.0, uTexel.y ) );
 			vec3 dx = abs( Pr.z - P.z ) < abs( P.z - Pl.z ) ? Pr - P : P - Pl;
 			vec3 dy = abs( Pu.z - P.z ) < abs( P.z - Pd.z ) ? Pu - P : P - Pd;
 			N = normalize( cross( dx, dy ) );
@@ -1368,10 +1444,10 @@ void main() {
 		Nw = normalize( mat3( uViewInv ) * N );
 
 		// the plane of the surface from the depth buffer, for the corner accent
-		vec3 dxG = viewPosAt( vUv + vec2( uTexel.x, 0.0 ) ) - P;
-		vec3 dxL = P - viewPosAt( vUv - vec2( uTexel.x, 0.0 ) );
-		vec3 dyG = viewPosAt( vUv + vec2( 0.0, uTexel.y ) ) - P;
-		vec3 dyL = P - viewPosAt( vUv - vec2( 0.0, uTexel.y ) );
+		vec3 dxG = viewPosAt( uvd + vec2( uTexel.x, 0.0 ) ) - P;
+		vec3 dxL = P - viewPosAt( uvd - vec2( uTexel.x, 0.0 ) );
+		vec3 dyG = viewPosAt( uvd + vec2( 0.0, uTexel.y ) ) - P;
+		vec3 dyL = P - viewPosAt( uvd - vec2( 0.0, uTexel.y ) );
 		dxG = abs( dxG.z ) < abs( dxL.z ) ? dxG : dxL;
 		dyG = abs( dyG.z ) < abs( dyL.z ) ? dyG : dyL;
 
@@ -1511,8 +1587,8 @@ void main() {
 	float T = exp( - uHaze * D );
 	c = c * T + uHazeColor * ( 1.0 - T );
 
-	c += texture2D( tVolume, vUv ).rgb * uVolume;
-	c += texture2D( tBloom, vUv ).rgb * uBloom;
+	c += texture2D( tVolume, uvd ).rgb * uVolume;
+	c += texture2D( tBloom, uvd ).rgb * uBloom;
 
 	c = max( c * uExposure, 0.0 );
 
@@ -1523,6 +1599,15 @@ void main() {
 	c = mix( vec3( l ), c, uSaturation );
 
 	c = shoulder( c );
+
+	// the drops: a little darker at the edge where they bend the light, a bright
+	// glint, and blood-red where it is blood
+	if ( dropMask > 0.0 ) {
+		c *= 1.0 - 0.07 * dropMask;
+		c += vec3( 0.85, 0.9, 1.0 ) * ( dropGlint * 0.9 + dropMask * 0.05 ) * ( 1.0 - uDropBlood );
+		vec3 red = c * vec3( 0.75, 0.06, 0.05 ) + vec3( 0.05, 0.0, 0.0 ) * dropMask;
+		c = mix( c, red, uDropBlood * clamp( dropMask * 1.4, 0.0, 1.0 ) );
+	}
 
 	gl_FragColor = vec4( c, 1.0 );
 	#include <colorspace_fragment>
@@ -1661,6 +1746,9 @@ function createPipeline() {
 			uLightSurface: { value: LIGHT_SURFACE },
 			uLightFloor: { value: LIGHT_FLOOR },
 			uEdge: { value: 1 },
+			uDropDensity: { value: 0 },
+			uDropBlood: { value: 0 },
+			uDropAge: { value: 0 },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
 			uBright: { value: 0.6 },
@@ -1748,6 +1836,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	R_AnimSetNewer( newer );
 	R_AnimSetLighting( active );
 	lightCurve.value = active ? Math.max( 1, r_newdark.value ) : 1;
+	if ( active ) pulseLava( performance.now() / 1000 );
 	skySeen = false;
 
 	if ( active === false ) return false;
@@ -1979,6 +2068,10 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	cm.uEdge.value = Math.max( 0, r_newedges.value );
+	const drops = R_ScreenDropsUpdate();
+	cm.uDropDensity.value = drops.density;
+	cm.uDropBlood.value = drops.blood;
+	cm.uDropAge.value = drops.age;
 	cm.uTime.value = time;
 	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];

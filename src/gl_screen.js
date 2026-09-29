@@ -33,6 +33,7 @@ let scr_copyeverything = 0;
 
 export let scr_con_current = 0;
 let scr_conlines = 0; // lines of console to display
+let scr_wasforced = false;
 
 let oldfov = 0;
 let oldscreensize = 0;
@@ -61,6 +62,18 @@ let clearnotify = 0;
 let sb_lines = 0;
 
 const scr_vrect = { x: 0, y: 0, width: 0, height: 0 };
+
+// Changing level in the middle of a game: the console is not shown (it used to
+// come up full screen and then roll away, longer than the load itself took); the
+// last frame stays until the new level is ready, and then the game is simply there.
+let scr_hadworld = false;
+
+export function SCR_ChangingLevel() {
+
+	// a game in progress that is connecting to its next level (not a first start, not the console)
+	return scr_hadworld && _cls.state === 2 && ( ! _cl.worldmodel || _cls.signon !== SIGNONS ) && key_dest !== key_console;
+
+}
 
 export let scr_disabled_for_loading = false;
 export let scr_drawloading = false;
@@ -541,6 +554,13 @@ function SCR_SetUpToDrawConsole() {
 
 	// decide on the height of the console
 	const forcedup = ! _cl.worldmodel || _cls.signon !== SIGNONS;
+	if ( ! forcedup ) scr_hadworld = true;
+	else if ( _cls.state !== 2 ) scr_hadworld = false;
+
+	// coming out of a load: the console is gone at once, it does not roll up
+	if ( scr_wasforced && ! forcedup && key_dest !== key_console ) scr_con_current = 0;
+	scr_wasforced = forcedup;
+
 	Con_SetForcedup( forcedup );
 
 	if ( forcedup ) {
@@ -810,6 +830,14 @@ export function SCR_UpdateScreen() {
 
 	if ( ! scr_initialized || ! con_initialized )
 		return; // not initialized yet
+
+	// changing level mid-game: keep the last frame, show no console
+	if ( SCR_ChangingLevel() ) {
+
+		scr_con_current = 0;
+		return;
+
+	}
 
 	// GL_BeginRendering
 	if ( _GL_BeginRendering ) _GL_BeginRendering();

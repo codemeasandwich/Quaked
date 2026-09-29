@@ -8,6 +8,7 @@ import { cl as client_cl } from './client.js';
 import { GL_TextureLinear, GL_RegisterTexture } from './glquake.js';
 import { isXRActive, XR_SCALE } from './webxr.js';
 import { R_DecalBloodSpray, R_DecalBloodLanded } from './r_decals.js';
+import { R_ScreenDropsBloodAt } from './r_screendrops.js';
 
 const MAX_PARTICLES = 2048;
 
@@ -353,7 +354,12 @@ export function R_RunParticleEffect( org, dir, color, count ) {
 		} else {
 
 			// blood thrown at a wall or the floor marks it (Newer Game)
-			if ( i === 0 && color === 73 ) R_DecalBloodSpray( org, dir, count );
+			if ( i === 0 && color === 73 ) {
+
+				R_DecalBloodSpray( org, dir, count );
+				R_ScreenDropsBloodAt( org, count ); // and on the lens, if it was close
+
+			}
 
 			p.die = client_cl.time + 0.1 * ( Math.random() * 5 | 0 );
 			p.color = ( color & ~ 7 ) + ( Math.random() * 8 | 0 );
