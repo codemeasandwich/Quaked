@@ -63,6 +63,7 @@ import { VectorCopy, VectorAdd, DotProduct } from './mathlib.js';
 import { Mod_ForName, Mod_LeafPVS } from './gl_model.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from './pr_edict.js';
 import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from './progs.js';
+import { SV_SeamlessSetup } from './sv_seamless.js';
 import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
 import { SV_Physics, SV_SetState, SV_SetCallbacks,
 	sv_maxvelocity, sv_gravity, sv_nostep, sv_friction, sv_edgefriction,
@@ -1752,6 +1753,9 @@ export function SV_SpawnServer( server ) {
 	if ( sv.worldmodel && sv.worldmodel.entities ) {
 
 		ED_LoadFromFile( sv.worldmodel.entities );
+
+		// doorway and pit exits become seamless crossings (single player, Newer Game)
+		SV_SeamlessSetup();
 
 	}
 

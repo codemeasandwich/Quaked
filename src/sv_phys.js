@@ -1,5 +1,6 @@
 // Ported from: WinQuake/sv_phys.c -- server physics
 
+import { SV_SeamlessHolding } from './sv_seamless.js';
 import { Sys_Error } from './sys.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cvar_t } from './cvar.js';
@@ -1307,6 +1308,10 @@ export function SV_Physics_Client( ent, num ) {
 
 	if ( ! svs.clients[ num - 1 ].active )
 		return; // unconnected slot
+
+	// arrived through a seamless exit and the client is still loading
+	if ( SV_SeamlessHolding( num ) )
+		return;
 
 	//
 	// call standard client pre-think

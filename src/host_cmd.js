@@ -30,6 +30,7 @@ import { CL_StopPlayback } from './cl_demo.js';
 import { SCR_BeginLoadingPlaque } from './gl_screen.js';
 import { hostname } from './net_main.js';
 import { SV_LinkEdict } from './world.js';
+import { SV_SeamlessPlacePlayer } from './sv_seamless.js';
 import { SV_ClientPrintf, SV_BroadcastPrintf,
 	Host_ShutdownServer, Host_Shutdown } from './host.js';
 import { COM_FindFile, COM_EnsureFile } from './pak.js';
@@ -1361,6 +1362,9 @@ function Host_Spawn_f() {
 				Sys_Printf( '%s entered the game\n', host_client.name );
 
 			PR_ExecuteProgram( pr_global_struct.PutClientInServer );
+
+			// arriving through a seamless exit: keep the way you were moving
+			SV_SeamlessPlacePlayer( ent );
 
 		}
 
