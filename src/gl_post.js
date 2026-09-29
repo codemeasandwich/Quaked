@@ -24,6 +24,7 @@ import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
+import { R_NormalMapFor } from './gl_normals.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
@@ -55,7 +56,6 @@ const SATURATION = 1.18;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
 const CAUSTIC = 1.5; // brightness of caustics beneath water
-const BUMP = 0.55; // strength of the screen-space relief
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
 let sunDirection = [ - 0.28, - 0.18, 0.94 ];
@@ -74,6 +74,7 @@ function sunFromAngles( yaw, pitch ) {
 
 const glowMaterials = new Set();
 let glowActive = false;
+
 
 export function R_PostActive() {
 
@@ -121,6 +122,145 @@ function setGlowActive( active ) {
 	glowActive = active;
 	for ( const m of glowMaterials )
 		applyGlow( m, m.userData.glowBoost );
+	for ( const m of detailMaterials )
+		applyDetail( m );
+
+}
+
+//============================================================================
+// Surface detail: generated normal maps, parallax and the normal G-buffer
+//============================================================================
+
+const detailMaterials = new Set();
+
+const PARALLAX_DEPTH = 0.045; // in texture tiles
+const PARALLAX_LAYERS = 10;
+
+// Parallax: shift the texture lookups along the view ray by the height stored in
+// the normal map's alpha, so bricks stand proud of the mortar and shift as you
+// move.  Runs only when a normal map is attached (the Newer lighting).
+const PARALLAX_GLSL = `
+#ifdef USE_NORMALMAP
+vec2 pUv = vMapUv;
+{
+	vec3 pq0 = dFdx( - vViewPosition );
+	vec3 pq1 = dFdy( - vViewPosition );
+	vec2 pst0 = dFdx( vMapUv );
+	vec2 pst1 = dFdy( vMapUv );
+	vec3 pN = normalize( cross( pq0, pq1 ) );
+	vec3 pq1p = cross( pq1, pN );
+	vec3 pq0p = cross( pN, pq0 );
+	vec3 pT = pq1p * pst0.x + pq0p * pst1.x;
+	vec3 pB = pq1p * pst0.y + pq0p * pst1.y;
+	float pdet = max( dot( pT, pT ), dot( pB, pB ) );
+	float pscale = pdet == 0.0 ? 0.0 : inversesqrt( pdet );
+	vec3 pV = normalize( vViewPosition );
+	vec3 pVt = vec3( dot( pV, pT * pscale ), dot( pV, pB * pscale ), dot( pV, pN ) );
+
+	float pAmt = ${PARALLAX_DEPTH} * ( 1.0 - smoothstep( 260.0, 820.0, length( vViewPosition ) ) );
+	if ( pAmt > 0.0005 ) {
+		const float LAYERS = ${PARALLAX_LAYERS}.0;
+		vec2 P = pVt.xy / max( abs( pVt.z ), 0.35 ) * pAmt;
+		vec2 dUv = P / LAYERS;
+		vec2 gx = dFdx( vMapUv );
+		vec2 gy = dFdy( vMapUv );
+		float layer = 1.0 / LAYERS;
+		float cur = 0.0;
+		vec2 uv = vMapUv;
+		float depthHere = 1.0 - textureGrad( normalMap, uv, gx, gy ).a;
+		for ( int i = 0; i < ${PARALLAX_LAYERS}; i ++ ) {
+			if ( cur >= depthHere ) break;
+			uv -= dUv;
+			depthHere = 1.0 - textureGrad( normalMap, uv, gx, gy ).a;
+			cur += layer;
+		}
+		vec2 prev = uv + dUv;
+		float after = depthHere - cur;
+		float before = ( 1.0 - textureGrad( normalMap, prev, gx, gy ).a ) - cur + layer;
+		float w = after / ( after - before + 1e-5 );
+		pUv = mix( uv, prev, clamp( w, 0.0, 1.0 ) );
+	}
+}
+#endif
+`;
+
+// Writes the surface normal and its distance to a second render target; the
+// composite pass uses it to light the relief.
+function patchDetailShader( shader ) {
+
+	let f = shader.fragmentShader;
+
+	f = 'layout(location = 1) out highp vec4 gNormal;\n' + f;
+
+	// texture lookups follow the parallax-shifted coordinates
+	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
+	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' ) );
+	f = f.replace( '#include <emissivemap_fragment>', THREE.ShaderChunk.emissivemap_fragment.replace( /vEmissiveMapUv/g, '_pUv' ) );
+	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );' );
+
+	// without a normal map there is no parallax; keep the names valid
+	f = f.replace( /_pUv/g, 'DETAIL_UV' );
+	f = '#ifdef USE_NORMALMAP\n#define DETAIL_UV pUv\n#else\n#define DETAIL_UV vMapUv\n#endif\n' + f;
+
+	shader.fragmentShader = f;
+
+}
+
+// Every material drawn into the HDR target has to write both attachments.  Those
+// that know nothing about the normal G-buffer (entities, sky, water, sprites,
+// portals...) write "no normal here", which also replaces a stale normal from
+// whatever they were drawn over.  Alpha 0 makes the composite fall back to the
+// normal of the depth surface.
+function patchGBufferShader( shader ) {
+
+	const f = shader.fragmentShader;
+	if ( f.indexOf( 'gNormal' ) !== - 1 || f.indexOf( '#include <colorspace_fragment>' ) === - 1 ) return;
+
+	shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\n' +
+		f.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n	gNormal = vec4( 0.0 );' );
+
+}
+
+THREE.Material.prototype.onBeforeCompile = patchGBufferShader;
+
+function applyDetail( material ) {
+
+	const diffuse = material.userData.detailDiffuse;
+	const wanted = glowActive && diffuse != null ? R_NormalMapFor( diffuse ) : null;
+
+	if ( material.normalMap === wanted ) return;
+
+	const changedKind = ( material.normalMap != null ) !== ( wanted != null );
+	material.normalMap = wanted;
+	if ( material.normalScale !== undefined ) material.normalScale.set( 1, 1 );
+	if ( changedKind ) material.needsUpdate = true;
+
+}
+
+// Lit world materials: gets a generated normal map and parallax while the HDR
+// pipeline is on, and always writes the normal G-buffer.
+export function R_RegisterDetail( material, diffuse ) {
+
+	material.userData.detailDiffuse = diffuse;
+	material.onBeforeCompile = patchDetailShader;
+	material.customProgramCacheKey = function () {
+
+		return 'quake-detail';
+
+	};
+
+	applyDetail( material );
+	detailMaterials.add( material );
+	material.addEventListener( 'dispose', () => detailMaterials.delete( material ) );
+
+}
+
+// the material's diffuse texture changed (texture animation)
+export function R_RefreshDetail( material, diffuse ) {
+
+	if ( ! detailMaterials.has( material ) ) return;
+	material.userData.detailDiffuse = diffuse;
+	applyDetail( material );
 
 }
 
@@ -816,6 +956,7 @@ void main() {
 const COMPOSITE_FRAGMENT = COMMON_FRAGMENT + `
 #include <common>
 uniform sampler2D tScene;
+uniform sampler2D tNormal;
 uniform sampler2D tVolume;
 uniform sampler2D tBloom;
 uniform vec2 uTexel;
@@ -828,7 +969,6 @@ uniform float uSunSurface;
 uniform float uLightSurface;
 uniform float uSaturation;
 uniform float uContrast;
-uniform float uBump;
 uniform float uTime;
 uniform float uCaustic;
 uniform int uWaterCount;
@@ -886,25 +1026,24 @@ void main() {
 	// classic lightmaps already put on the surface.
 	if ( d < 0.99999 ) {
 		vec3 P = viewPosAt( vUv );
-		vec3 Pl = viewPosAt( vUv - vec2( uTexel.x, 0.0 ) );
-		vec3 Pr = viewPosAt( vUv + vec2( uTexel.x, 0.0 ) );
-		vec3 Pd = viewPosAt( vUv - vec2( 0.0, uTexel.y ) );
-		vec3 Pu = viewPosAt( vUv + vec2( 0.0, uTexel.y ) );
-		vec3 dx = abs( Pr.z - P.z ) < abs( P.z - Pl.z ) ? Pr - P : P - Pl;
-		vec3 dy = abs( Pu.z - P.z ) < abs( P.z - Pd.z ) ? Pu - P : P - Pd;
-		vec3 N = normalize( cross( dx, dy ) );
-		if ( dot( N, P ) > 0.0 ) N = - N;
-
-		// relief: the texture's own brightness pattern tilts the normal, so the
-		// stone catches the light instead of looking painted on
-		float lc = dot( scene, vec3( 0.333 ) );
-		float lx = dot( texture2D( tScene, vUv + vec2( uTexel.x, 0.0 ) ).rgb, vec3( 0.333 ) )
-			- dot( texture2D( tScene, vUv - vec2( uTexel.x, 0.0 ) ).rgb, vec3( 0.333 ) );
-		float ly = dot( texture2D( tScene, vUv + vec2( 0.0, uTexel.y ) ).rgb, vec3( 0.333 ) )
-			- dot( texture2D( tScene, vUv - vec2( 0.0, uTexel.y ) ).rgb, vec3( 0.333 ) );
-		vec2 slope = vec2( lx, ly ) / ( lc + 0.06 );
-		slope = clamp( slope, vec2( - 1.5 ), vec2( 1.5 ) );
-		N = normalize( N - uBump * ( slope.x * vec3( 1.0, 0.0, 0.0 ) + slope.y * vec3( 0.0, 1.0, 0.0 ) ) );
+		vec3 N;
+		vec4 g = texture2D( tNormal, vUv );
+		float here = - P.z;
+		if ( here > 8.0 && abs( g.a - here ) < 0.025 * here + 1.0 ) {
+			// the surface's own (normal-mapped) normal, written while it was drawn
+			N = normalize( g.rgb * 2.0 - 1.0 );
+			if ( dot( N, P ) > 0.0 ) N = - N;
+		} else {
+			// other geometry: the normal of the depth surface
+			vec3 Pl = viewPosAt( vUv - vec2( uTexel.x, 0.0 ) );
+			vec3 Pr = viewPosAt( vUv + vec2( uTexel.x, 0.0 ) );
+			vec3 Pd = viewPosAt( vUv - vec2( 0.0, uTexel.y ) );
+			vec3 Pu = viewPosAt( vUv + vec2( 0.0, uTexel.y ) );
+			vec3 dx = abs( Pr.z - P.z ) < abs( P.z - Pl.z ) ? Pr - P : P - Pl;
+			vec3 dy = abs( Pu.z - P.z ) < abs( P.z - Pd.z ) ? Pu - P : P - Pd;
+			N = normalize( cross( dx, dy ) );
+			if ( dot( N, P ) > 0.0 ) N = - N;
+		}
 		Nw = normalize( mat3( uViewInv ) * N );
 
 		vec3 relit = vec3( 0.0 );
@@ -1122,7 +1261,7 @@ function createPipeline() {
 			uTexel: { value: new THREE.Vector2() }, uWeight: { value: 1 }
 		} ),
 		compositeMaterial: makeMaterial( COMPOSITE_FRAGMENT, Object.assign( {
-			tScene: { value: null }, tVolume: { value: null }, tBloom: { value: null },
+			tScene: { value: null }, tNormal: { value: null }, tVolume: { value: null }, tBloom: { value: null },
 			uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uBloom: { value: 0.6 }, uVolume: { value: 1 },
 			uHaze: { value: HAZE_DENSITY },
@@ -1131,7 +1270,6 @@ function createPipeline() {
 			uLightSurface: { value: LIGHT_SURFACE },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
-			uBump: { value: BUMP },
 			uTime: { value: 0 },
 			uCaustic: { value: CAUSTIC },
 			uWaterCount: { value: 0 },
@@ -1165,7 +1303,7 @@ function ensureTargets( width, height ) {
 	gpu.height = height;
 
 	const depth = new THREE.DepthTexture( width, height );
-	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples: 4 } );
+	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples: 4, count: 2 } );
 	gpu.volume = makeRT( Math.ceil( width / 2 ), Math.ceil( height / 2 ) );
 
 	let w = Math.ceil( width / 2 ), h = Math.ceil( height / 2 );
@@ -1399,7 +1537,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	cm.uTime.value = time;
 	cm.uCaustic.value = CAUSTIC * Math.max( 0, r_caustics.value );
-	cm.tScene.value = hdr.texture;
+	cm.tScene.value = hdr.textures[ 0 ];
+	cm.tNormal.value = hdr.textures[ 1 ];
 	cm.tVolume.value = volume > 0 ? p.volume.texture : null;
 	cm.tBloom.value = bloom > 0 ? p.bloomResult.texture : null;
 	cm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );

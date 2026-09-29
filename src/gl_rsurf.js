@@ -32,12 +32,15 @@ function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 	// fullbright texels exceed white when the HDR pipeline is on
 	R_RegisterGlow( material );
 
+	// generated normal map + parallax while the HDR pipeline is on
+	R_RegisterDetail( material, diffuseMap );
+
 	return material;
 
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks, SUN_SHADOW_LAYER } from './gl_post.js';
+import { R_BuildWorldLights, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks, SUN_SHADOW_LAYER } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
@@ -396,6 +399,7 @@ export function R_UpdateAnimatedMaterial( material, baseTexture, entityFrame = 0
 	material.map = diffuse;
 	if ( hadMap !== hasMap )
 		material.needsUpdate = true;
+	R_RefreshDetail( material, diffuse );
 
 	if ( supportsEmissive ) {
 
