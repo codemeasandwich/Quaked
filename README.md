@@ -15,6 +15,7 @@ Every teleporter surface (`*teleport`) that leads somewhere is a live camera ont
 - Destinations come from the map's own entities (`trigger_teleport` → `info_teleport_destination`), so it works on any map.
 - Up to 3 nearest visible portals are rendered per frame, at 75% resolution.
 - `r_portals 0` in the console turns it off and restores the classic swirl.
+- Teleporting is quieter: the sound stays, the white particle burst is gone, and the launch out of the teleporter is halved (300 to 150 units/s).
 - Limits: entities the server doesn't send near you (monsters, other players at the receiver) don't appear in the window; a portal seen through another portal shows the plain swirl; portals are off in WebXR.
 
 ### Dev Log

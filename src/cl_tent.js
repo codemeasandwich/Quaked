@@ -21,7 +21,7 @@ import { CL_AllocDlight } from './cl_main.js';
 import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from './mathlib.js';
 import { S_PrecacheSound, S_StartSound } from './snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
-	R_ParticleExplosion2, R_LavaSplash, R_TeleportSplash } from './render.js';
+	R_ParticleExplosion2, R_LavaSplash } from './render.js';
 import { Mod_ForName } from './gl_model.js';
 
 let num_temp_entities = 0;
@@ -243,7 +243,7 @@ export function CL_ParseTEnt() {
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			R_TeleportSplash( pos );
+			// no white particle burst; the teleport sound comes from the server
 			break;
 
 		case TE_EXPLOSION2: { // color mapped explosion

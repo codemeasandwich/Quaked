@@ -3,6 +3,8 @@ import {
 	SV_AddGravity,
 	SV_SetCallbacks,
 	SV_SetFrametime,
+	SV_SetState,
+	SV_SoftenTeleportLaunch,
 	host_frametime,
 	sv_gravity
 } from '../src/sv_phys.js';
@@ -61,6 +63,37 @@ Deno.test( 'SV_AddGravity reads a custom gravity field', () => {
 
 		SV_SetFrametime( oldFrametime );
 		sv_gravity.value = oldGravityValue;
+
+	}
+
+} );
+
+Deno.test( 'SV_SoftenTeleportLaunch halves the teleporter push once', () => {
+
+	const entity = new edict_t( 1, 128 );
+	const fakeSv = { time: 10 };
+	SV_SetState( fakeSv, null, null );
+
+	try {
+
+
+		entity.v.velocity = [ 300, 0, 0 ];
+		entity.v.teleport_time = 10.6;
+
+		SV_SoftenTeleportLaunch( entity );
+		assertNear( entity.v.velocity[ 0 ], 150, 0.001, 'launch speed' );
+
+		SV_SoftenTeleportLaunch( entity );
+		assertNear( entity.v.velocity[ 0 ], 150, 0.001, 'only applied once per teleport' );
+
+		entity.v.velocity = [ 200, 0, 0 ];
+		entity.v.teleport_time = 12; // water jump
+		SV_SoftenTeleportLaunch( entity );
+		assertNear( entity.v.velocity[ 0 ], 200, 0.001, 'water jump untouched' );
+
+	} finally {
+
+		SV_SetState( null, null, null );
 
 	}
 

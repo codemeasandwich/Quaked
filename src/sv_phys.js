@@ -1260,6 +1260,36 @@ export function SV_WalkMove( ent ) {
 
 }
 
+// progs' teleport_touch sets velocity = v_forward * 300 and teleport_time = time + 0.7
+// (water jumping also uses teleport_time, but for 2 seconds)
+const TELEPORT_LAUNCH_SCALE = 0.5;
+const TELEPORT_HOLD_MAX = 0.75;
+
+/*
+================
+SV_SoftenTeleportLaunch
+
+Halve the push the player gets when coming out of a teleporter.
+================
+*/
+export function SV_SoftenTeleportLaunch( ent ) {
+
+	const teleportTime = ent.v.teleport_time;
+	if ( teleportTime === ent._lastTeleportTime ) return;
+	ent._lastTeleportTime = teleportTime;
+
+	const remaining = teleportTime - sv.time;
+	if ( remaining <= 0 || remaining > TELEPORT_HOLD_MAX ) return;
+
+	const velocity = ent.v.velocity;
+	ent.v.velocity = [
+		velocity[ 0 ] * TELEPORT_LAUNCH_SCALE,
+		velocity[ 1 ] * TELEPORT_LAUNCH_SCALE,
+		velocity[ 2 ] * TELEPORT_LAUNCH_SCALE
+	];
+
+}
+
 /*
 ================
 SV_Physics_Client
@@ -1278,6 +1308,8 @@ export function SV_Physics_Client( ent, num ) {
 	pr_global_struct.time = sv.time;
 	pr_global_struct.self = EDICT_TO_PROG( ent );
 	PR_ExecuteProgram( pr_global_struct.PlayerPreThink );
+
+	SV_SoftenTeleportLaunch( ent );
 
 	//
 	// do a move
