@@ -23,12 +23,13 @@
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
-import { Mod_PointInLeaf } from './gl_model.js';
+import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
 export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
 export const r_volumetric = new cvar_t( 'r_volumetric', '1' );
+export const r_caustics = new cvar_t( 'r_caustics', '1' ); // strength of light patterns beneath water
 
 // glquake.h flags (not imported: keeps this module out of the renderer's import cycle)
 const SURF_DRAWSKY = 4;
@@ -53,6 +54,7 @@ const SUN_SURFACE = 1.6; // direct sun on surfaces
 const SATURATION = 1.18;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
+const CAUSTIC = 1.5; // brightness of caustics beneath water
 const BUMP = 0.55; // strength of the screen-space relief
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
@@ -129,6 +131,99 @@ function setGlowActive( active ) {
 let worldLights = [];
 let hasSky = false;
 
+// Pools of water and slime: { kind, min: [x, y], max: [x, y], z }.  A ray that
+// passes through one loses light to it, and surfaces beneath it get caustics.
+let liquidRegions = [];
+let leafKeyCounter = 0;
+
+export const MAX_LIQUID_REGIONS = 6;
+
+// qbsp treats water as opaque when computing visibility, so the leaves under a
+// pool are not visible from outside it.  To see the bottom through a translucent
+// surface, the leaves beneath each liquid face join the visible set whenever the
+// leaf above that face is visible.   [ { above, vis } ]
+let liquidLinks = [];
+
+export function R_GetLiquidLinks() {
+
+	return liquidLinks;
+
+}
+
+// 0 water, 1 slime, -1 not a see-through liquid (lava is opaque, teleporters are portals)
+function liquidKind( name ) {
+
+	const n = name.toLowerCase();
+	if ( n.charAt( 0 ) !== '*' || n.indexOf( 'lava' ) >= 0 || n.indexOf( 'teleport' ) >= 0 ) return - 1;
+	if ( n.indexOf( 'slime' ) >= 0 ) return 1;
+	if ( n.indexOf( 'water' ) >= 0 ) return 0;
+	return - 1;
+
+}
+
+// how opaque the liquid's surface is drawn in the HDR pipeline
+export function R_LiquidOpacity( name, fallback ) {
+
+	const kind = liquidKind( name );
+	if ( kind === 0 ) return 0.42;
+	if ( kind === 1 ) return 0.62;
+	return fallback;
+
+}
+
+// merge the many small faces of a pool into one box
+function mergeLiquidFaces( faces ) {
+
+	const parent = faces.map( ( f, i ) => i );
+	const find = i => parent[ i ] === i ? i : ( parent[ i ] = find( parent[ i ] ) );
+
+	for ( let i = 0; i < faces.length; i ++ ) {
+
+		for ( let j = i + 1; j < faces.length; j ++ ) {
+
+			const a = faces[ i ], b = faces[ j ];
+			if ( a.kind !== b.kind || Math.abs( a.z - b.z ) > 1.5 ) continue;
+			if ( a.min[ 0 ] > b.max[ 0 ] + 24 || b.min[ 0 ] > a.max[ 0 ] + 24 ) continue;
+			if ( a.min[ 1 ] > b.max[ 1 ] + 24 || b.min[ 1 ] > a.max[ 1 ] + 24 ) continue;
+			parent[ find( i ) ] = find( j );
+
+		}
+
+	}
+
+	const merged = new Map();
+	for ( let i = 0; i < faces.length; i ++ ) {
+
+		const r = find( i );
+		const f = faces[ i ];
+		const m = merged.get( r );
+		if ( m === undefined ) {
+
+			merged.set( r, { kind: f.kind, min: f.min.slice(), max: f.max.slice(), z: f.z } );
+
+		} else {
+
+			for ( let a = 0; a < 2; a ++ ) {
+
+				m.min[ a ] = Math.min( m.min[ a ], f.min[ a ] );
+				m.max[ a ] = Math.max( m.max[ a ], f.max[ a ] );
+
+			}
+
+		}
+
+	}
+
+	return [ ...merged.values() ].filter( r => ( r.max[ 0 ] - r.min[ 0 ] ) * ( r.max[ 1 ] - r.min[ 1 ] ) > 64 * 64 );
+
+}
+
+export function R_GetLiquidRegions() {
+
+	return liquidRegions;
+
+}
+
 function parseVector( s, fallback ) {
 
 	if ( s == null ) return fallback;
@@ -189,6 +284,34 @@ function polyInfo( surf ) {
 
 }
 
+function polyBounds( surf ) {
+
+	const b = [ 1e9, 1e9, 1e9, - 1e9, - 1e9, - 1e9 ];
+	let any = false;
+
+	for ( let p = surf.polys; p; p = p.next ) {
+
+		const v = p.verts;
+		for ( let i = 0; i < p.numverts; i ++ ) {
+
+			for ( let k = 0; k < 3; k ++ ) {
+
+				const x = v instanceof Float32Array ? v[ i * 7 + k ] : v[ i ][ k ];
+				if ( x < b[ k ] ) b[ k ] = x;
+				if ( x > b[ k + 3 ] ) b[ k + 3 ] = x;
+
+			}
+
+			any = true;
+
+		}
+
+	}
+
+	return any ? b : null;
+
+}
+
 // average colour and coverage of a texture's fullbright texels
 function fullbrightEmission( texture ) {
 
@@ -244,6 +367,8 @@ export function R_BuildWorldLights( model ) {
 
 	worldLights = [];
 	hasSky = false;
+	liquidRegions = [];
+	liquidLinks = [];
 	sunDirection = [ - 0.28, - 0.18, 0.94 ];
 
 	if ( model == null || model.nodes == null ) return worldLights;
@@ -290,12 +415,48 @@ export function R_BuildWorldLights( model ) {
 		const first = model.firstmodelsurface || 0;
 		const last = first + ( model.nummodelsurfaces || model.surfaces.length );
 		const clusters = new Map();
+		const liquidFaces = [];
+		const linkSeen = new Set();
+		const visCache = new Map();
 
 		for ( let i = first; i < last; i ++ ) {
 
 			const surf = model.surfaces[ i ];
 			if ( surf == null || surf.texinfo == null || surf.texinfo.texture == null ) continue;
 			if ( surf.flags & SURF_DRAWSKY ) { hasSky = true; continue; }
+
+			const liquid = liquidKind( surf.texinfo.texture.name );
+			if ( liquid >= 0 && Math.abs( surf.plane.normal[ 2 ] ) > 0.95 ) {
+
+				const info = polyInfo( surf );
+				const box = polyBounds( surf );
+				if ( info != null && box != null ) {
+
+					liquidFaces.push( { kind: liquid, min: [ box[ 0 ], box[ 1 ] ], max: [ box[ 3 ], box[ 4 ] ], z: info.center[ 2 ] } );
+
+					// the air above this face and the liquid just below it
+					const above = Mod_PointInLeaf( [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] + 4 ], model );
+					const below = Mod_PointInLeaf( [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] - 4 ], model );
+					if ( above !== below && below.contents !== - 2 ) {
+
+						const key = above.__portalKey ?? ( above.__portalKey = ++ leafKeyCounter );
+						const key2 = below.__portalKey ?? ( below.__portalKey = ++ leafKeyCounter );
+						if ( ! linkSeen.has( key * 1e6 + key2 ) ) {
+
+							linkSeen.add( key * 1e6 + key2 );
+							if ( ! visCache.has( key2 ) )
+								visCache.set( key2, Mod_LeafPVS( below, model ).slice( 0, ( model.numleafs + 7 ) >> 3 ) );
+							liquidLinks.push( { above, vis: visCache.get( key2 ) } );
+
+						}
+
+					}
+
+				}
+
+				continue;
+
+			}
 
 			const emission = surfaceEmission( surf );
 			if ( emission == null ) continue;
@@ -326,6 +487,8 @@ export function R_BuildWorldLights( model ) {
 			}
 
 		}
+
+		liquidRegions = mergeLiquidFaces( liquidFaces );
 
 		const surfaceLights = [];
 		for ( const c of clusters.values() ) {
@@ -666,8 +829,29 @@ uniform float uLightSurface;
 uniform float uSaturation;
 uniform float uContrast;
 uniform float uBump;
+uniform float uTime;
+uniform float uCaustic;
+uniform int uWaterCount;
+uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
+uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner
 
 const int RELIGHT_STEPS = 8;
+
+// tiling water caustics: the bright network light makes when it is bent by ripples
+float caustic( vec2 uv, float t ) {
+	vec2 p = mod( uv * 6.28318, 6.28318 ) - 250.0;
+	vec2 i = p;
+	float c = 1.0;
+	float inten = 0.005;
+	for ( int n = 0; n < 4; n ++ ) {
+		float tt = t * ( 1.0 - ( 3.5 / float( n + 1 ) ) );
+		i = p + vec2( cos( tt - i.x ) + sin( tt + i.y ), sin( tt - i.y ) + cos( tt + i.x ) );
+		c += 1.0 / length( vec2( p.x / ( sin( i.x + tt ) / inten ), p.y / ( cos( i.y + tt ) / inten ) ) );
+	}
+	c /= 4.0;
+	c = 1.17 - pow( c, 1.4 );
+	return pow( abs( c ), 8.0 );
+}
 
 vec3 viewPosAt( vec2 uv ) {
 	float d = texture2D( tDepth, uv ).x;
@@ -696,6 +880,7 @@ void main() {
 	float D = d >= 0.99999 ? uMaxRay : min( - perspectiveDepthToViewZ( d, uNear, uFar ) / max( - dirV.z, 0.05 ), uMaxRay );
 
 	vec3 c = scene;
+	vec3 Nw = vec3( 0.0, 0.0, 1.0 );
 
 	// Direct light from the sun and the nearby lights, applied to what the
 	// classic lightmaps already put on the surface.
@@ -720,6 +905,7 @@ void main() {
 		vec2 slope = vec2( lx, ly ) / ( lc + 0.06 );
 		slope = clamp( slope, vec2( - 1.5 ), vec2( 1.5 ) );
 		N = normalize( N - uBump * ( slope.x * vec3( 1.0, 0.0, 0.0 ) + slope.y * vec3( 0.0, 1.0, 0.0 ) ) );
+		Nw = normalize( mat3( uViewInv ) * N );
 
 		vec3 relit = vec3( 0.0 );
 
@@ -760,6 +946,53 @@ void main() {
 		}
 
 		c = scene * ( 1.0 + relit );
+	}
+
+	// Liquids: water and slime take light out of any ray that travels through
+	// them (so shallows stay clear and depths go dark and blue-green), and the
+	// surfaces beneath them get caustics.
+	if ( uWaterCount > 0 ) {
+		vec3 camW = uViewInv[ 3 ].xyz;
+		vec3 dirW = mat3( uViewInv ) * dirV;
+		vec3 inv = 1.0 / ( dirW + vec3( 1e-6 ) );
+		vec3 hitW = camW + dirW * D;
+
+		for ( int i = 0; i < ${MAX_LIQUID_REGIONS}; i ++ ) {
+			if ( i >= uWaterCount ) break;
+
+			vec4 lo = uWaterMin[ i ];
+			vec4 hi = uWaterMax[ i ];
+			float top = lo.z;
+			bool slime = lo.w > 0.5;
+			vec3 bmin = vec3( lo.xy, top - 900.0 );
+			vec3 bmax = vec3( hi.xy, top );
+
+			vec3 t1 = ( bmin - camW ) * inv;
+			vec3 t2 = ( bmax - camW ) * inv;
+			vec3 tn = min( t1, t2 );
+			vec3 tf = max( t1, t2 );
+			float tEnter = max( max( tn.x, tn.y ), max( tn.z, 0.0 ) );
+			float tExit = min( min( tf.x, tf.y ), min( tf.z, D ) );
+
+			if ( tExit > tEnter ) {
+				vec3 sigma = slime ? vec3( 0.0065, 0.0016, 0.0058 ) : vec3( 0.0030, 0.0010, 0.0007 );
+				vec3 tint = slime ? vec3( 0.010, 0.040, 0.006 ) : vec3( 0.005, 0.030, 0.045 );
+				vec3 T = exp( - sigma * ( tExit - tEnter ) );
+				c = c * T + tint * ( 1.0 - T ) * 0.6;
+			}
+
+			if ( d < 0.99999
+				&& hitW.x > bmin.x && hitW.x < bmax.x && hitW.y > bmin.y && hitW.y < bmax.y
+				&& hitW.z > bmin.z && hitW.z < top + 2.0 ) {
+				float depth = top - hitW.z;
+				vec2 plane = abs( Nw.z ) > 0.5 ? hitW.xy : ( abs( Nw.x ) > abs( Nw.y ) ? hitW.yz : hitW.xz );
+				float cs = caustic( plane * 0.0045, uTime * 0.6 );
+				float facing = 0.35 + 0.65 * max( Nw.z, 0.0 );
+				float fade = exp( - depth / 420.0 ) * smoothstep( - 4.0, 10.0, depth );
+				vec3 glow = slime ? vec3( 0.55, 1.0, 0.5 ) : vec3( 0.75, 1.0, 1.15 );
+				c += max( scene, vec3( 0.05 ) ) * glow * cs * uCaustic * facing * fade;
+			}
+		}
 	}
 
 	// ambient haze
@@ -898,7 +1131,12 @@ function createPipeline() {
 			uLightSurface: { value: LIGHT_SURFACE },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
-			uBump: { value: BUMP }
+			uBump: { value: BUMP },
+			uTime: { value: 0 },
+			uCaustic: { value: CAUSTIC },
+			uWaterCount: { value: 0 },
+			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
+			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }
 		}, shared ) )
 	};
 
@@ -1134,6 +1372,33 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	// composite to the screen
 	const cm = p.compositeMaterial.uniforms;
+
+	// the pools nearest the camera
+	const cw = camera.matrixWorld.elements;
+	const ranked = [];
+	for ( const r of liquidRegions ) {
+
+		const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
+		const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
+		const dz = Math.max( r.z - 900 - cw[ 14 ], 0, cw[ 14 ] - r.z );
+		const dist = Math.hypot( dx, dy, dz );
+		if ( dist < 3200 ) ranked.push( { r, dist } );
+
+	}
+
+	ranked.sort( ( a, b ) => a.dist - b.dist );
+	const waterCount = Math.min( ranked.length, MAX_LIQUID_REGIONS );
+	cm.uWaterCount.value = waterCount;
+	for ( let i = 0; i < waterCount; i ++ ) {
+
+		const r = ranked[ i ].r;
+		cm.uWaterMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, r.kind );
+		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, 0 );
+
+	}
+
+	cm.uTime.value = time;
+	cm.uCaustic.value = CAUSTIC * Math.max( 0, r_caustics.value );
 	cm.tScene.value = hdr.texture;
 	cm.tVolume.value = volume > 0 ? p.volume.texture : null;
 	cm.tBloom.value = bloom > 0 ? p.bloomResult.texture : null;

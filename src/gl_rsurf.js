@@ -37,7 +37,7 @@ function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, SUN_SHADOW_LAYER } from './gl_post.js';
+import { R_BuildWorldLights, R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks, SUN_SHADOW_LAYER } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
@@ -254,6 +254,11 @@ Returns a cached material for water/turb surfaces. Keyed by texture object.
 */
 function _getWaterMaterial( t, opacity ) {
 
+	// HDR pipeline: liquids are see-through and leave the depth buffer to what is
+	// behind them, so the post pass can tint and light the floor correctly.
+	const hdr = R_PostActive();
+	if ( hdr && t != null && t.name != null ) opacity = R_LiquidOpacity( t.name, opacity );
+
 	// Use texture + opacity bucket as key
 	const opKey = opacity < 1.0 ? 0 : 1;
 	const key = ( t && t.gl_texture ) ? t.gl_texture : null;
@@ -276,6 +281,9 @@ function _getWaterMaterial( t, opacity ) {
 
 	}
 	if ( material.opacity !== opacity ) material.opacity = opacity;
+
+	const depthWrite = ! ( hdr && opacity < 1 );
+	if ( material.depthWrite !== depthWrite ) material.depthWrite = depthWrite;
 
 	return material;
 
@@ -2081,13 +2089,19 @@ export function R_DrawWaterSurfaces() {
 
 // Cached buffer for r_novis solid visibility (matches C's static byte solid[4096])
 let _markleaves_solid = new Uint8Array( 4096 );
+let _lastMarkedPostActive = false;
 
 export function R_MarkLeaves() {
 
 	const cl_ref = cl;
 	if ( ! cl_ref || ! cl_ref.worldmodel ) return;
 
-	if ( r_oldviewleaf === r_viewleaf && ! r_novis.value ) {
+	// switching lighting mode changes what has to be visible (pool bottoms)
+	const postActive = R_PostActive();
+	const modeChanged = postActive !== _lastMarkedPostActive;
+	_lastMarkedPostActive = postActive;
+
+	if ( r_oldviewleaf === r_viewleaf && ! r_novis.value && ! modeChanged ) {
 
 		_visibilityNeedsUpdate = false;
 		return;
@@ -2129,6 +2143,20 @@ export function R_MarkLeaves() {
 	if ( ! vis ) return;
 
 	_stampVisibleLeaves( cl_ref.worldmodel, vis );
+
+	// Water is opaque to the visibility compiler; in the HDR pipeline the bottom
+	// of a pool shows through, so what is under visible water is drawable too.
+	if ( ! r_novis.value && R_PostActive() ) {
+
+		const links = R_GetLiquidLinks();
+		for ( let i = 0; i < links.length; i ++ ) {
+
+			if ( links[ i ].above.visframe === r_visframecount )
+				_stampVisibleLeaves( cl_ref.worldmodel, links[ i ].vis );
+
+		}
+
+	}
 
 	// A portal shows the receiver's view, so what the receiver can see has to
 	// be drawable too.

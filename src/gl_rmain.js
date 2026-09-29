@@ -7,7 +7,7 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
-import { r_hdr, r_bloom, r_volumetric, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_MapHasSky } from './gl_post.js';
+import { r_hdr, r_bloom, r_volumetric, r_caustics, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_MapHasSky } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1426,6 +1426,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_hdr );
 	Cvar_RegisterVariable( r_bloom );
 	Cvar_RegisterVariable( r_volumetric );
+	Cvar_RegisterVariable( r_caustics );
 
 	R_InitParticles();
 	R_SetParticleExternals( { scene: scene } );
