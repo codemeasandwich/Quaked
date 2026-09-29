@@ -76,6 +76,17 @@ async function main() {
 
 		}
 
+		// Single player menu with Newer Game added, in the game's own lettering
+		try {
+
+			await Draw_CachePicFromPNG( 'gfx/sp_menu_ext.lmp', 'spmenu.png' );
+
+		} catch ( e ) {
+
+			Sys_Printf( 'Warning: Could not load the single player menu image\n' );
+
+		}
+
 		// Console (and menu backdrop) wallpaper; the original conback stays if it fails
 		if ( await Draw_LoadConbackImage( 'conback.webp' ) )
 			Sys_Printf( 'Loaded console wallpaper\n' );

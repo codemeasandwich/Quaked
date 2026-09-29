@@ -684,7 +684,7 @@ function M_Main_Key( key ) {
 */
 
 let m_singleplayer_cursor = 0;
-const SINGLEPLAYER_ITEMS = 4; // New Game, Load, Save, Newer Game
+const SINGLEPLAYER_ITEMS = 4; // Newer Game, New Game, Load, Save
 
 function M_Menu_SinglePlayer_f() {
 
@@ -701,10 +701,21 @@ function M_SinglePlayer_Draw() {
 	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/ttl_sgl.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
-	M_DrawTransPic( 72, 32, _Draw_CachePic( 'gfx/sp_menu.lmp' ) );
+	// Newer Game, New Game, Load, Save.  The sheet is drawn in the game's own menu
+	// lettering; without it the original three items are drawn, with Newer Game
+	// added as text at the top.
+	const extPic = _Draw_CachePic( 'gfx/sp_menu_ext.lmp' );
 
-	// "Newer Game": same game, new HDR lighting (the art only has the classic three items)
-	M_Print( 72 + 8, 32 + 3 * 20 + 6, 'Newer Game' );
+	if ( extPic != null ) {
+
+		M_DrawTransPic( 72, 32, extPic );
+
+	} else {
+
+		M_DrawTransPic( 72, 32 + 20, _Draw_CachePic( 'gfx/sp_menu.lmp' ) );
+		M_Print( 72 + 8, 32 + 6, 'Newer Game' );
+
+	}
 
 	const f = Math.floor( _host_time_get() * 10 ) % 6;
 	M_DrawTransPic( 54, 32 + m_singleplayer_cursor * 20, _Draw_CachePic( 'gfx/menudot' + ( f + 1 ) + '.lmp' ) );
@@ -736,21 +747,21 @@ function M_SinglePlayer_Key( key ) {
 
 			switch ( m_singleplayer_cursor ) {
 
-				case 0:
-				case 3: // Newer Game
+				case 0: // Newer Game
+				case 1: // New Game
 					setKeyDest( key_game );
 					if ( _IN_RequestPointerLock ) _IN_RequestPointerLock();
 					if ( _sv.active )
 						Cbuf_AddText( 'disconnect\n' );
 					Cbuf_AddText( 'maxplayers 1\n' );
 					// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
-					Cbuf_AddText( ( m_singleplayer_cursor === 3 ? 'r_hdr 1\n' : 'r_hdr 0\n' ) );
+					Cbuf_AddText( ( m_singleplayer_cursor === 0 ? 'r_hdr 1\n' : 'r_hdr 0\n' ) );
 					Cbuf_AddText( 'map start\n' );
 					break;
-				case 1:
+				case 2:
 					M_Menu_Load_f();
 					break;
-				case 2:
+				case 3:
 					M_Menu_Save_f();
 					break;
 
