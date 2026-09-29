@@ -26,7 +26,7 @@ import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { GL_SetForceLinear } from './glquake.js';
-import { R_AnimSetNewer } from './r_anim.js';
+import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
@@ -85,6 +85,14 @@ let glowActive = false;
 export function R_PostActive() {
 
 	return glowActive;
+
+}
+
+// Newer Game's water: see-through liquids, absorption and caustics.  It is part
+// of the lighting pipeline, so it needs that as well as its own switch.
+export function R_WaterActive() {
+
+	return glowActive && r_newer_water.value !== 0;
 
 }
 
@@ -311,6 +319,8 @@ function liquidKind( name ) {
 
 // how opaque the liquid's surface is drawn in the HDR pipeline
 export function R_LiquidOpacity( name, fallback ) {
+
+	if ( r_newer_water.value === 0 ) return fallback;
 
 	const kind = liquidKind( name );
 	if ( kind === 0 ) return 0.42;
@@ -1590,9 +1600,12 @@ R_PostBind selects.
 */
 export function R_PostBegin( renderer, enabled, width, height ) {
 
-	const active = enabled && r_hdr.value !== 0 && R_PostSupported( renderer ) && width > 8 && height > 8;
+	// Newer Game is on; its lighting pipeline can be switched off on its own
+	const newer = enabled && r_hdr.value !== 0;
+	const active = newer && r_newer_lighting.value !== 0 && R_PostSupported( renderer ) && width > 8 && height > 8;
 	setGlowActive( active );
-	R_AnimSetNewer( active );
+	R_AnimSetNewer( newer );
+	R_AnimSetLighting( active );
 	skySeen = false;
 
 	if ( active === false ) return false;
@@ -1795,7 +1808,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	ranked.sort( ( a, b ) => a.dist - b.dist );
-	const waterCount = Math.min( ranked.length, MAX_LIQUID_REGIONS );
+	const waterCount = r_newer_water.value !== 0 ? Math.min( ranked.length, MAX_LIQUID_REGIONS ) : 0;
 	cm.uWaterCount.value = waterCount;
 	for ( let i = 0; i < waterCount; i ++ ) {
 
@@ -1806,7 +1819,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	cm.uTime.value = time;
-	cm.uCaustic.value = CAUSTIC * Math.max( 0, r_caustics.value );
+	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];
 	cm.tNormal.value = hdr.textures[ 1 ];
 	cm.tVolume.value = volume > 0 ? p.volume.texture : null;

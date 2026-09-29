@@ -11,10 +11,25 @@
 // monster coming into view does not slide out of its previous pose), when the
 // model changes, or when the entity has teleported or jumped.
 
-import { cvar_t } from './cvar.js';
+import { cvar_t, Cvar_VariableValue } from './cvar.js';
 
 // 0 = off, 1 = on in Newer Game only (the default), 2 = always
 export const r_lerpmodels = new cvar_t( 'r_lerpmodels', '1' );
+
+// Newer Game's features, each on or off (they apply only while playing Newer
+// Game, which is r_hdr): the lighting pipeline, water, enemies and camera portals
+export const r_newer_lighting = new cvar_t( 'r_newer_lighting', '1' );
+export const r_newer_water = new cvar_t( 'r_newer_water', '1' );
+export const r_newer_enemies = new cvar_t( 'r_newer_enemies', '1' );
+export const r_newer_portals = new cvar_t( 'r_newer_portals', '1' );
+
+// playing Newer Game (r_hdr is what the menu sets; read directly because a level
+// is started in the same batch of commands that sets it)
+export function R_NewerGame() {
+
+	return Cvar_VariableValue( 'r_hdr' ) !== 0;
+
+}
 
 export const ANIM_STEP = 0.1; // seconds between frames in Quake's own animations
 const STALE = 0.25; // not drawn for this long: start again without blending
@@ -25,6 +40,21 @@ let newerActive = false;
 export function R_AnimSetNewer( active ) {
 
 	newerActive = active === true;
+
+}
+
+// whether the Newer lighting pipeline is what is drawing (set by gl_post.js)
+let lightingActive = false;
+
+export function R_AnimSetLighting( active ) {
+
+	lightingActive = active === true;
+
+}
+
+export function R_NewerLightingActive() {
+
+	return lightingActive;
 
 }
 

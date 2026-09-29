@@ -40,7 +40,7 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks } from './gl_post.js';
+import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
@@ -259,7 +259,7 @@ function _getWaterMaterial( t, opacity ) {
 
 	// HDR pipeline: liquids are see-through and leave the depth buffer to what is
 	// behind them, so the post pass can tint and light the floor correctly.
-	const hdr = R_PostActive();
+	const hdr = R_WaterActive();
 	if ( hdr && t != null && t.name != null ) {
 
 		opacity = R_LiquidOpacity( t.name, opacity );
@@ -2109,7 +2109,7 @@ export function R_MarkLeaves() {
 	if ( ! cl_ref || ! cl_ref.worldmodel ) return;
 
 	// switching lighting mode changes what has to be visible (pool bottoms)
-	const postActive = R_PostActive();
+	const postActive = R_PostActive() ? ( R_WaterActive() ? 2 : 1 ) : 0;
 	const modeChanged = postActive !== _lastMarkedPostActive;
 	_lastMarkedPostActive = postActive;
 
@@ -2158,7 +2158,7 @@ export function R_MarkLeaves() {
 
 	// Water is opaque to the visibility compiler; in the HDR pipeline the bottom
 	// of a pool shows through, so what is under visible water is drawable too.
-	if ( ! r_novis.value && R_PostActive() ) {
+	if ( ! r_novis.value && R_WaterActive() ) {
 
 		const links = R_GetLiquidLinks();
 		for ( let i = 0; i < links.length; i ++ ) {

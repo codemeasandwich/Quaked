@@ -10,6 +10,7 @@
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
+import { R_NewerGame, r_newer_portals } from './r_anim.js';
 import { COM_Parse, com_token } from './common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
 
@@ -434,7 +435,9 @@ export function R_BuildPortals( model ) {
 
 export function R_PortalsBeginFrame( enabled ) {
 
-	portalsEnabled = enabled && r_portals.value !== 0;
+	// camera portals belong to Newer Game (and can be switched off there); the
+	// original game keeps its teleporters as they were
+	portalsEnabled = enabled && r_portals.value !== 0 && R_NewerGame() && r_newer_portals.value !== 0;
 
 }
 

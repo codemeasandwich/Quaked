@@ -18,10 +18,10 @@ import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.j
 import { PR_GetString, EDICT_NUM, pr_global_struct } from './progs.js';
 import { ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
 import { COM_Parse, com_token } from './common.js';
-import { Mod_LoadForPreview, Mod_PointInLeaf } from './gl_model.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
+import { r_newer_portals } from './r_anim.js';
 import {
 	R_ParseBsp, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
 } from './r_levelgraph.js';
@@ -45,7 +45,8 @@ export function SV_SeamlessEnabled() {
 	const v = sv_seamless.value;
 	// r_hdr is read directly: the level is spawned in the same command batch as
 	// "r_hdr 1", before any frame has been drawn with it
-	return v >= 2 || ( v >= 1 && Cvar_VariableValue( 'r_hdr' ) !== 0 );
+	// (the windows onto the next level are camera portals: no portals, no crossings)
+	return v >= 2 || ( v >= 1 && Cvar_VariableValue( 'r_hdr' ) !== 0 && r_newer_portals.value !== 0 );
 
 }
 
@@ -133,6 +134,17 @@ function floorBelow( p ) {
 
 }
 
+// The level model loader lives higher up in the import graph (importing it here
+// would make a cycle), so the server hands it over: Mod_LoadForPreview, Mod_PointInLeaf
+// (var, without an initialiser: it may be set before this module has finished loading)
+var models;
+
+export function SV_SeamlessUseModels( tools ) {
+
+	models = tools;
+
+}
+
 // how much wall to leave behind the plane where you arrive: the player's hull
 // is 16 to a side, and the doorway back must be somewhere they can reach
 const BACK_MARGIN = 24;
@@ -149,7 +161,9 @@ level you came from) goes on that wall, so the plane is put just in front of it.
 */
 function SV_ArrivalStart( mapName, start ) {
 
-	const model = Mod_LoadForPreview( 'maps/' + mapName + '.bsp' );
+	if ( ! models ) return start;
+
+	const model = models.Mod_LoadForPreview( 'maps/' + mapName + '.bsp' );
 	if ( model == null || model.leafs == null ) return start;
 
 	const rad = start.yaw * Math.PI / 180;
@@ -158,7 +172,7 @@ function SV_ArrivalStart( mapName, start ) {
 	let back = BACK_LOOK;
 	for ( let d = 4; d <= BACK_LOOK; d += 4 ) {
 
-		const leaf = Mod_PointInLeaf( [ start.origin[ 0 ] - dir[ 0 ] * d, start.origin[ 1 ] - dir[ 1 ] * d, start.origin[ 2 ] ], model );
+		const leaf = models.Mod_PointInLeaf( [ start.origin[ 0 ] - dir[ 0 ] * d, start.origin[ 1 ] - dir[ 1 ] * d, start.origin[ 2 ] ], model );
 		if ( leaf.contents === CONTENTS_SOLID ) {
 
 			back = d - 4;

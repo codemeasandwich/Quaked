@@ -23,7 +23,7 @@
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
-import { R_IsNewer } from './r_anim.js';
+import { R_IsNewer, R_NewerLightingActive, r_newer_enemies } from './r_anim.js';
 
 // 1 = each monster picks one of its model's skins at random, 0 = always the first
 export const r_newer_variety = new cvar_t( 'r_newer_variety', '1' );
@@ -142,7 +142,7 @@ function createSet( variant ) {
 	const set = {
 		key,
 		diffuse: null,
-		materials: [ null, null ],
+		materials: [ null, null, null, null ], // [ lit, unlit ] with the Newer lighting, then without
 		uniforms: {
 			qrNormal: { value: null },
 			qrLuma: { value: null },
@@ -254,12 +254,12 @@ function patchShader( set ) {
 R_NewerAliasMaterial
 
 The Reforged material for this monster, or null when its model has no Reforged
-skin, the Newer lighting is off, or the skin has not finished loading.
+skin, Newer Game or its enemies are off, or the skin has not finished loading.
 ================
 */
 export function R_NewerAliasMaterial( entity, modelName, hasLighting ) {
 
-	if ( ! R_IsNewer() ) return null;
+	if ( ! R_IsNewer() || r_newer_enemies.value === 0 ) return null;
 
 	if ( skinIndex === null ) {
 
@@ -284,12 +284,20 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting ) {
 
 	if ( set.diffuse === null ) return null;
 
-	const index = hasLighting ? 1 : 0;
+	// with the Newer lighting the skin is relit by the pipeline; without it (the
+	// classic lighting) it is the same picture lit the classic way
+	const relit = R_NewerLightingActive();
+	const index = ( hasLighting ? 1 : 0 ) + ( relit ? 0 : 2 );
 	if ( set.materials[ index ] === null ) {
 
 		const material = new THREE.MeshBasicMaterial( { map: set.diffuse, vertexColors: hasLighting } );
-		material.onBeforeCompile = patchShader( set );
-		material.customProgramCacheKey = () => 'quake-reforged-' + variant.dir + index;
+		if ( relit ) {
+
+			material.onBeforeCompile = patchShader( set );
+			material.customProgramCacheKey = () => 'quake-reforged-' + variant.dir + index;
+
+		}
+
 		set.materials[ index ] = material;
 
 	}

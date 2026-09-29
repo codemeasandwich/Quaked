@@ -7,11 +7,11 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
-import { r_lerpmodels } from './r_anim.js';
+import { r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
 import { R_SetupLevelViews } from './r_levelview.js';
 import { SV_SeamlessCrossings } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_MapHasSky } from './gl_post.js';
+import { r_hdr, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1210,7 +1210,7 @@ export function R_PolyBlend() {
 	// tint is eased while you are in water or slime; otherwise it buries the view
 	// out of the liquid.  Damage and powerup flashes are unaffected.
 	let opacity = v_blend[ 3 ];
-	if ( R_PostActive() && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
+	if ( R_WaterActive() && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
 		opacity *= 0.45;
 	polyBlendMesh.material.opacity = opacity;
 
@@ -1441,6 +1441,10 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newcontrast );
 	Cvar_RegisterVariable( r_lerpmodels );
 	Cvar_RegisterVariable( r_newer_variety );
+	Cvar_RegisterVariable( r_newer_lighting );
+	Cvar_RegisterVariable( r_newer_water );
+	Cvar_RegisterVariable( r_newer_enemies );
+	Cvar_RegisterVariable( r_newer_portals );
 
 	R_InitParticles();
 	R_SetParticleExternals( { scene: scene } );

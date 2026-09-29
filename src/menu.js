@@ -49,6 +49,7 @@ export const m_gameoptions = 16;
 export const m_search = 17;
 export const m_slist = 18;
 export const m_credits = 19;
+export const m_newer = 20;
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -1613,7 +1614,7 @@ function M_AdjustSliders( dir ) {
 ==============================================================================
 */
 
-const OPTIONS_ITEMS = 13;
+const OPTIONS_ITEMS = 14;
 let m_options_cursor = 0;
 
 function M_Menu_Options_f() {
@@ -1670,6 +1671,8 @@ function M_Options_Draw() {
 	M_Print( 16, 128, '             Crosshair' );
 	M_DrawCheckbox( 220, 128, Cvar_VariableValue( 'crosshair' ) );
 
+	M_Print( 16, 136, '   Newer Game features' );
+
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
@@ -1707,6 +1710,9 @@ function M_Options_Key( key ) {
 					Cbuf_AddText( 'gamma 1\n' );
 					Cbuf_AddText( 'volume 0.4\n' );
 					break;
+				case 13:
+					M_Menu_Newer_f();
+					break;
 				default:
 					M_AdjustSliders( 1 );
 					break;
@@ -1732,6 +1738,101 @@ function M_Options_Key( key ) {
 		case K_RIGHTARROW:
 			M_AdjustSliders( 1 );
 			break;
+
+	}
+
+}
+
+/*
+==============================================================================
+
+			NEWER GAME FEATURES
+
+The parts of Newer Game that can be switched on and off one at a time.  They
+take effect only while playing Newer Game; New Game is always the original.
+==============================================================================
+*/
+
+const NEWER_FEATURES = [
+	{ cvar: 'r_newer_lighting', label: '        Newer lighting' },
+	{ cvar: 'r_newer_water', label: '           Newer water' },
+	{ cvar: 'r_newer_enemies', label: '         Newer enemies' },
+	{ cvar: 'r_newer_portals', label: '        Camera portals' }
+];
+let m_newer_cursor = 0;
+
+function M_Menu_Newer_f() {
+
+	setKeyDest( key_menu );
+	m_state = m_newer;
+	m_entersound = true;
+
+}
+
+function M_Newer_Draw() {
+
+	if ( ! _Draw_CachePic ) return;
+
+	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
+	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+
+	M_PrintWhite( 16, 32, '     Newer Game features' );
+
+	for ( let i = 0; i < NEWER_FEATURES.length; i ++ ) {
+
+		M_Print( 16, 48 + i * 8, NEWER_FEATURES[ i ].label );
+		M_DrawCheckbox( 220, 48 + i * 8, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) );
+
+	}
+
+	M_Print( 16, 96, ' These apply to Newer Game only.' );
+	M_Print( 16, 104, ' Water needs the Newer lighting.' );
+	M_Print( 16, 112, ' Portals: from the next level.' );
+
+	M_DrawCharacter( 200, 48 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+
+}
+
+function M_Newer_Toggle() {
+
+	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
+	const name = NEWER_FEATURES[ m_newer_cursor ].cvar;
+	Cvar_SetValue( name, Cvar_VariableValue( name ) !== 0 ? 0 : 1 );
+
+}
+
+function M_Newer_Key( key ) {
+
+	switch ( key ) {
+
+		case K_ESCAPE:
+			M_Menu_Options_f();
+			break;
+		case K_ENTER:
+		case K_LEFTARROW:
+		case K_RIGHTARROW:
+			M_Newer_Toggle();
+			break;
+		case K_UPARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			if ( -- m_newer_cursor < 0 ) m_newer_cursor = NEWER_FEATURES.length - 1;
+			break;
+		case K_DOWNARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			if ( ++ m_newer_cursor >= NEWER_FEATURES.length ) m_newer_cursor = 0;
+			break;
+
+	}
+
+}
+
+function M_Newer_Touch( vx, vy ) {
+
+	if ( vy >= 48 && vy < 48 + NEWER_FEATURES.length * 8 ) {
+
+		m_newer_cursor = Math.floor( ( vy - 48 ) / 8 );
+		M_Newer_Toggle();
 
 	}
 
@@ -2311,6 +2412,7 @@ export function M_Keydown( key ) {
 		case m_multiplayer: M_MultiPlayer_Key( key ); return;
 		case m_setup: M_Setup_Key( key ); return;
 		case m_options: M_Options_Key( key ); return;
+		case m_newer: M_Newer_Key( key ); return;
 		case m_keys: M_Keys_Key( key ); return;
 		case m_video: M_Video_Key( key ); return;
 		case m_credits: M_Credits_Key( key ); return;
@@ -2360,6 +2462,7 @@ export function M_Draw() {
 		case m_multiplayer: M_MultiPlayer_Draw(); break;
 		case m_setup: M_Setup_Draw(); break;
 		case m_options: M_Options_Draw(); break;
+		case m_newer: M_Newer_Draw(); break;
 		case m_keys: M_Keys_Draw(); break;
 		case m_video: M_Video_Draw(); break;
 		case m_credits: M_Credits_Draw(); break;
@@ -2442,6 +2545,10 @@ export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
 
 		case m_options:
 			M_Options_Touch( vx, vy );
+			break;
+
+		case m_newer:
+			M_Newer_Touch( vx, vy );
 			break;
 
 		case m_keys:
