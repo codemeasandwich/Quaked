@@ -305,6 +305,78 @@ export function R_CrossingTransform( exit, side, start, floorZ, axis ) {
 
 /*
 ================
+R_InverseCrossing
+
+The way back through a crossing, seen from the level on the far side: it
+carries a point of the far level to where it came from in the near one.
+
+t        the transform of R_CrossingTransform, near level -> far level
+opening  { a0, a1, b0, b1 } the extent of the doorway along the tangent and up,
+         from the crossing's centre
+
+Same shape as R_CrossingTransform's result (a plane): center and dest swap
+sides, so the exit's own opening can be reused.  Returns null for a pit.
+================
+*/
+export function R_InverseCrossing( t, opening ) {
+
+	if ( t.kind !== 'plane' ) return null;
+
+	const rad = - t.yaw * Math.PI / 180;
+	const cos = Math.cos( rad ), sin = Math.sin( rad );
+	const direction = ( v ) => [ cos * v[ 0 ] - sin * v[ 1 ], sin * v[ 0 ] + cos * v[ 1 ], v[ 2 ] ];
+
+	const center = t.dest.slice(); // in the far level
+	const dest = t.center.slice(); // in the near level
+	const forward = t.direction( t.through );
+	const through = [ - forward[ 0 ], - forward[ 1 ], - forward[ 2 ] ];
+	const tangent = t.direction( t.tangent );
+
+	const beyond = ( p ) =>
+		( p[ 0 ] - center[ 0 ] ) * through[ 0 ] + ( p[ 1 ] - center[ 1 ] ) * through[ 1 ] + ( p[ 2 ] - center[ 2 ] ) * through[ 2 ];
+
+	return {
+		kind: 'plane',
+		back: true,
+		center, through, dest, yaw: - t.yaw, tangent,
+		halfWidth: ( opening.a1 - opening.a0 ) * 0.5,
+		halfHeight: ( opening.b1 - opening.b0 ) * 0.5,
+
+		position: ( p ) => {
+
+			const r = direction( [ p[ 0 ] - center[ 0 ], p[ 1 ] - center[ 1 ], p[ 2 ] - center[ 2 ] ] );
+			return [ dest[ 0 ] + r[ 0 ], dest[ 1 ] + r[ 1 ], dest[ 2 ] + r[ 2 ] ];
+
+		},
+
+		direction,
+		angle: ( a ) => a - t.yaw,
+		beyond,
+
+		crossed: ( prev, cur ) => {
+
+			if ( beyond( prev ) > 0 || beyond( cur ) <= 0 ) return false;
+
+			const k = beyond( prev ) / ( beyond( prev ) - beyond( cur ) );
+			const hit = [
+				prev[ 0 ] + ( cur[ 0 ] - prev[ 0 ] ) * k,
+				prev[ 1 ] + ( cur[ 1 ] - prev[ 1 ] ) * k,
+				prev[ 2 ] + ( cur[ 2 ] - prev[ 2 ] ) * k
+			];
+
+			const across = ( hit[ 0 ] - center[ 0 ] ) * tangent[ 0 ] + ( hit[ 1 ] - center[ 1 ] ) * tangent[ 1 ];
+			if ( across < opening.a0 - 8 || across > opening.a1 + 8 ) return false;
+
+			const up = hit[ 2 ] - center[ 2 ];
+			return up >= opening.b0 - 32 && up <= opening.b1 + 32;
+
+		}
+	};
+
+}
+
+/*
+================
 R_ChooseApproach
 
 How the player walks up to a vertical exit: { axis, side } where axis is 0 or 1

@@ -16,11 +16,13 @@ import { sv, svs } from './server.js';
 import { COM_FindFile } from './pak.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.js';
 import { PR_GetString } from './progs.js';
+import { ED_Free } from './pr_edict.js';
+import { Mod_LoadForPreview, Mod_PointInLeaf } from './gl_model.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import {
-	R_ParseBsp, R_LevelLinks, R_CrossingTransform, R_ChooseApproach
+	R_ParseBsp, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
 } from './r_levelgraph.js';
 
 export const sv_seamless = new cvar_t( 'sv_seamless', '1' );
@@ -32,7 +34,7 @@ const FL_ONGROUND = 512;
 const metaCache = new Map();
 
 let crossings = []; // this level's seamless exits
-let pending = null; // a crossing in progress: { map, origin, velocity, angles, pit }
+let pending = null; // a crossing in progress: { map, origin, velocity, angles, pit, from }
 let lastOrigin = null;
 let holding = null; // the arrival, while the player is held until the client is ready
 
@@ -129,6 +131,72 @@ function floorBelow( p ) {
 
 }
 
+// how much wall to leave behind the plane where you arrive: the player's hull
+// is 16 to a side, and the doorway back must be somewhere they can reach
+const BACK_MARGIN = 24;
+const BACK_LOOK = 128;
+
+/*
+================
+SV_ArrivalStart
+
+Where the exit plane lands in the level it leads to.  The start's own spot is
+usually a step or two from the wall behind it; the way back (the window onto the
+level you came from) goes on that wall, so the plane is put just in front of it.
+================
+*/
+function SV_ArrivalStart( mapName, start ) {
+
+	const model = Mod_LoadForPreview( 'maps/' + mapName + '.bsp' );
+	if ( model == null || model.leafs == null ) return start;
+
+	const rad = start.yaw * Math.PI / 180;
+	const dir = [ Math.cos( rad ), Math.sin( rad ) ];
+
+	let back = BACK_LOOK;
+	for ( let d = 4; d <= BACK_LOOK; d += 4 ) {
+
+		const leaf = Mod_PointInLeaf( [ start.origin[ 0 ] - dir[ 0 ] * d, start.origin[ 1 ] - dir[ 1 ] * d, start.origin[ 2 ] ], model );
+		if ( leaf.contents === CONTENTS_SOLID ) {
+
+			back = d - 4;
+			break;
+
+		}
+
+	}
+
+	const shift = Math.max( 0, back - BACK_MARGIN );
+	return {
+		origin: [ start.origin[ 0 ] - dir[ 0 ] * shift, start.origin[ 1 ] - dir[ 1 ] * shift, start.origin[ 2 ] ],
+		yaw: start.yaw
+	};
+
+}
+
+// doors across an exit's opening (a key door in front of the way out)
+function SV_ClearExitDoors( exit ) {
+
+	const pad = 96;
+
+	for ( let i = 1; i < sv.num_edicts; i ++ ) {
+
+		const ed = sv.edicts[ i ];
+		if ( ed.free ) continue;
+
+		const name = PR_GetString( ed.v.classname );
+		if ( name !== 'door' && name !== 'func_door' && name !== 'func_door_secret' ) continue;
+
+		let across = true;
+		for ( let a = 0; a < 3; a ++ )
+			if ( ed.v.absmax[ a ] < exit.mins[ a ] - pad || ed.v.absmin[ a ] > exit.maxs[ a ] + pad ) across = false;
+
+		if ( across ) ED_Free( ed );
+
+	}
+
+}
+
 /*
 ================
 SV_SeamlessSetup
@@ -146,6 +214,23 @@ export function SV_SeamlessSetup() {
 	const here = SV_LevelLinks( sv.name );
 	if ( here === null ) return;
 
+	// the doorway we came in by, seen from this side: a way back
+	const from = pending !== null && pending.map === sv.name ? pending.from : null;
+	if ( from != null ) {
+
+		const inverse = R_InverseCrossing( from.transform, from.opening );
+		if ( inverse !== null ) {
+
+			const o = from.opening;
+			crossings.push( {
+				exit: null, map: from.map, transform: inverse, side: 0, back: true,
+				opening: { axisA: inverse.tangent, axisB: [ 0, 0, 1 ], a0: o.a0, a1: o.a1, b0: o.b0, b1: o.b1 }
+			} );
+
+		}
+
+	}
+
 	for ( const exit of here.exits ) {
 
 		if ( exit.kind === 'pad' ) continue;
@@ -161,7 +246,8 @@ export function SV_SeamlessSetup() {
 
 		const approach = R_ChooseApproach( exit, clearDistance );
 		const side = approach.side;
-		const transform = R_CrossingTransform( exit, side, there.start, floorBelow( centre ), approach.axis );
+		const arrival = exit.kind === 'pit' ? there.start : SV_ArrivalStart( exit.map, there.start );
+		const transform = R_CrossingTransform( exit, side, arrival, floorBelow( centre ), approach.axis );
 		if ( transform === null ) continue;
 
 		// stop the game's own exit from firing; this crossing takes over
@@ -184,6 +270,11 @@ export function SV_SeamlessSetup() {
 			taken = true;
 
 		}
+
+		// coming back through this exit from the other side: whatever was locked
+		// across it (a key door) has been dealt with and is gone
+		if ( taken && pending !== null && pending.map === sv.name && pending.viaBack === true )
+			SV_ClearExitDoors( exit );
 
 		if ( taken ) crossings.push( { exit, map: exit.map, transform, side, opening: openingOf( transform ) } );
 
@@ -223,9 +314,13 @@ export function SV_SeamlessFrame() {
 			pending = {
 				map: c.map,
 				pit: t.kind === 'pit',
+				viaBack: c.back === true,
 				origin: t.position( cur ),
 				velocity: t.direction( [ ent.v.velocity[ 0 ], ent.v.velocity[ 1 ], ent.v.velocity[ 2 ] ] ),
-				angles: [ va[ 0 ], t.angle( va[ 1 ] ), 0 ]
+				angles: [ va[ 0 ], t.angle( va[ 1 ] ), 0 ],
+				// the doorway just used, for the way back from the other side (going
+				// back through a way back leads to a level that already has this exit)
+				from: c.back === true || t.kind !== 'plane' ? null : { map: sv.name, transform: t, opening: c.opening }
 			};
 
 			Cbuf_AddText( 'changelevel ' + c.map + '\n' );
@@ -257,9 +352,37 @@ export function SV_SeamlessPlacePlayer( ent ) {
 	const start = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];
 	ent.v.origin = arrival.origin;
 
-	// carried into a wall (a wide doorway into a narrow room): use the start
-	if ( SV_TestEntityPosition( ent ) !== null )
-		ent.v.origin = start;
+	// carried into a wall (a wide doorway into a narrow room, or a floor a step
+	// higher): the nearest free spot on ahead of them (the way they are going), then up; the start
+	// only if there is none
+	if ( SV_TestEntityPosition( ent ) !== null ) {
+
+		const carried = arrival.origin;
+		const v = arrival.velocity;
+		const speed = Math.sqrt( v[ 0 ] * v[ 0 ] + v[ 1 ] * v[ 1 ] );
+		const yaw = arrival.angles[ 1 ] * Math.PI / 180;
+		const dir = speed > 1 ? [ v[ 0 ] / speed, v[ 1 ] / speed ] : [ Math.cos( yaw ), Math.sin( yaw ) ];
+		let found = false;
+
+		for ( let d = 0; d <= 112 && found === false; d += 8 ) {
+
+			for ( const dz of [ 0, 8, 16, 24, 32, 40 ] ) {
+
+				ent.v.origin = [ carried[ 0 ] + dir[ 0 ] * d, carried[ 1 ] + dir[ 1 ] * d, carried[ 2 ] + dz ];
+				if ( SV_TestEntityPosition( ent ) === null ) {
+
+					found = true;
+					break;
+
+				}
+
+			}
+
+		}
+
+		if ( found === false ) ent.v.origin = start;
+
+	}
 
 	ent.v.oldorigin = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];
 	ent.v.velocity = arrival.velocity;

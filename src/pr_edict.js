@@ -254,17 +254,24 @@ export function ED_FindGlobal( name ) {
 ED_FindFunction
 ============
 */
+let functionIndex = null;
+let functionIndexFor = null;
+
 export function ED_FindFunction( name ) {
 
-	for ( let i = 0; i < progs.numfunctions; i ++ ) {
+	// looked up by name for every entity of a level: index them once per progs
+	if ( functionIndex === null || functionIndexFor !== pr_functions ) {
 
-		const func = pr_functions[ i ];
-		if ( PR_GetString( func.s_name ) === name )
-			return func;
+		functionIndex = new Map();
+		functionIndexFor = pr_functions;
+
+		for ( let i = progs.numfunctions - 1; i >= 0; i -- )
+			functionIndex.set( PR_GetString( pr_functions[ i ].s_name ), pr_functions[ i ] ); // the first one wins
 
 	}
 
-	return null;
+	const func = functionIndex.get( name );
+	return func === undefined ? null : func;
 
 }
 
@@ -739,6 +746,10 @@ Returns an offset into the string table for a newly allocated string.
 Handles backslash-n escape sequences.
 =============
 */
+let growBuf = null;
+let growLen = 0;
+let growView = null;
+
 export function ED_NewString( string ) {
 
 	// Use array + join() instead of string concatenation to avoid O(n²) allocations
@@ -768,15 +779,34 @@ export function ED_NewString( string ) {
 	const ofs = pr_extra_strings_offset + pr_extra_strings.length;
 	pr_extra_strings.push( result );
 
-	// Patch into the string data so PR_GetString can find it
-	// We extend the strings data array
+	// Patch into the string data so PR_GetString can find it.  The table grows in
+	// place (doubling), not by copying the whole of it for every string: a level's
+	// entities add thousands of them.
 	const encoded = new TextEncoder().encode( result + '\0' );
-	const newData = new Uint8Array( pr_strings_data.length + encoded.length );
-	newData.set( pr_strings_data );
-	newData.set( encoded, pr_strings_data.length );
 
-	const newOfs = pr_strings_data.length;
-	PR_SetStringsData( newData );
+	if ( growView === null || pr_strings_data !== growView ) {
+
+		// a new progs (or someone else replaced the table): start from what is there
+		growBuf = new Uint8Array( Math.max( pr_strings_data.length * 2, pr_strings_data.length + 65536 ) );
+		growBuf.set( pr_strings_data );
+		growLen = pr_strings_data.length;
+
+	}
+
+	if ( growLen + encoded.length > growBuf.length ) {
+
+		const bigger = new Uint8Array( ( growLen + encoded.length ) * 2 );
+		bigger.set( growBuf.subarray( 0, growLen ) );
+		growBuf = bigger;
+
+	}
+
+	growBuf.set( encoded, growLen );
+	const newOfs = growLen;
+	growLen += encoded.length;
+
+	growView = growBuf.subarray( 0, growLen );
+	PR_SetStringsData( growView );
 
 	return newOfs;
 

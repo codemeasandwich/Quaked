@@ -193,6 +193,19 @@ export function R_GenerateNormalData( rgba, width, height, fullbright ) {
 // Three.js textures
 //============================================================================
 
+// generated maps by texel content, kept across levels
+const generated = new Map();
+const MAX_GENERATED = 600;
+
+// a cheap hash of a texture's texels (FNV-1a over every 5th byte)
+function hashTexels( data ) {
+
+	let h = 2166136261;
+	for ( let i = 0; i < data.length; i += 5 ) h = Math.imul( h ^ data[ i ], 16777619 );
+	return ( h >>> 0 ).toString( 36 ) + data.length;
+
+}
+
 // Normal map for a diffuse DataTexture (built once and cached on it).  Returns
 // null for textures we cannot read.
 export function R_NormalMapFor( diffuse ) {
@@ -203,7 +216,18 @@ export function R_NormalMapFor( diffuse ) {
 	const { width, height, data } = diffuse.image;
 	const fb = diffuse._fullbright != null && diffuse._fullbright.image != null ? diffuse._fullbright.image.data : null;
 
-	const texture = new THREE.DataTexture( R_GenerateNormalData( data, width, height, fb ), width, height, THREE.RGBAFormat );
+	// the same picture on the next level (or the next visit) needs no new maps
+	const key = width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
+	let pixels = generated.get( key );
+	if ( pixels === undefined ) {
+
+		pixels = R_GenerateNormalData( data, width, height, fb );
+		if ( generated.size >= MAX_GENERATED ) generated.delete( generated.keys().next().value );
+		generated.set( key, pixels );
+
+	}
+
+	const texture = new THREE.DataTexture( pixels, width, height, THREE.RGBAFormat );
 	texture.wrapS = THREE.RepeatWrapping;
 	texture.wrapT = THREE.RepeatWrapping;
 	texture.magFilter = THREE.LinearFilter;

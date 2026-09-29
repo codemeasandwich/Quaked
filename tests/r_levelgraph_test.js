@@ -177,3 +177,28 @@ Deno.test( 'the real Episode 1 maps link up in a chain', async () => {
 	assertEqual( await shape( 'e1m6', 'e1m7' ), 'pit', 'e1m6 ends in a pit' );
 
 } );
+
+Deno.test( 'the way back through a crossing undoes it', () => {
+
+	const exit = { mins: [ 97, - 100, 0 ], maxs: [ 103, 100, 110 ] };
+	const start = { origin: [ 500, 700, 40 ], yaw: 90 };
+	const t = graph.R_CrossingTransform( exit, 1, start, 0 );
+	const opening = { a0: - 100, a1: 100, b0: - 24, b1: 90 };
+	const inv = graph.R_InverseCrossing( t, opening );
+
+	// there and back again
+	const p = [ 90, 30, 30 ];
+	assertVec( inv.position( t.position( p ) ), p, 'position' );
+	assertVec( inv.direction( t.direction( [ 300, 20, - 50 ] ) ), [ 300, 20, - 50 ], 'velocity' );
+	assertNear( inv.angle( t.angle( 33 ) ), 33, 1e-6, 'facing' );
+
+	// walking backwards out of the far level's start crosses; walking on into it does not
+	const back = t.direction( t.through ); // the way forward in the far level
+	const at = t.dest;
+	const behind = [ at[ 0 ] + back[ 0 ] * 10, at[ 1 ] + back[ 1 ] * 10, at[ 2 ] ];
+	const past = [ at[ 0 ] - back[ 0 ] * 10, at[ 1 ] - back[ 1 ] * 10, at[ 2 ] ];
+	assertEqual( inv.crossed( behind, past ), true, 'going back crosses' );
+	assertEqual( inv.crossed( past, behind ), false, 'going on does not' );
+	assertEqual( graph.R_InverseCrossing( graph.R_CrossingTransform( { mins: [ 0, 0, 0 ], maxs: [ 100, 100, 6 ] }, 1, start, 0 ), opening ), null, 'a pit has no way back' );
+
+} );

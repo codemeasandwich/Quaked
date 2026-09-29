@@ -2253,6 +2253,10 @@ function Mod_LoadBrushModel( mod, buffer ) {
 
 		mod.numleafs = bm.visleafs;
 
+		// a level loaded to be looked at has only its world: the *1, *2... entries
+		// belong to the level being played (its doors and platforms)
+		if ( previewLoad === true ) break;
+
 		if ( i < mod.numsubmodels - 1 ) {
 
 			// duplicate the basic information

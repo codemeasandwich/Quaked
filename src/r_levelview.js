@@ -13,6 +13,7 @@ import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from './gl_model.js'
 import { R_BuildLightMap, createQuakeLightmapMaterial } from './gl_rsurf.js';
 import { R_RegisterGlow } from './gl_post.js';
 import { R_AddLevelPortal, R_ClearLevelPortals } from './gl_portal.js';
+import { R_NormalMapFor } from './gl_normals.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;
@@ -415,8 +416,11 @@ export function R_LoadLevelView( mapName, origin ) {
 //============================================================================
 
 let views = [];
+let setupGeneration = 0;
 
 export function R_ClearLevelViews() {
+
+	setupGeneration ++;
 
 	for ( const v of views ) v.dispose();
 	views = [];
@@ -438,50 +442,88 @@ export function R_SetupLevelViews( scene, crossings ) {
 	R_ClearLevelViews();
 	if ( scene == null ) return;
 
+	// one view per timeslice, after the frame that starts the level: building them
+	// is work that need not stall the arrival
+	const generation = ++ setupGeneration;
+
 	crossings.forEach( ( c, i ) => {
 
-		const t = c.transform;
-		const o = c.opening;
-		if ( o === undefined ) return;
+		setTimeout( () => {
 
-		const view = R_LoadLevelView( c.map, t.dest );
-		if ( view === null ) return;
+			if ( generation === setupGeneration ) buildView( scene, c, i );
 
-		// each level gets a space of its own
-		const off = [ LEVEL_VIEW_OFFSET[ 0 ] + i * 30000, LEVEL_VIEW_OFFSET[ 1 ], LEVEL_VIEW_OFFSET[ 2 ] ];
-		view.group.position.set( off[ 0 ], off[ 1 ], off[ 2 ] );
-		view.group.updateMatrix();
-		scene.add( view.group );
-
-		// this level's coordinates -> the scene: p' = off + dest + R( p - centre )
-		const rad = t.yaw * Math.PI / 180;
-		const cos = Math.cos( rad ), sin = Math.sin( rad );
-		const cc = t.center;
-		const matrix = [
-			cos, sin, 0, 0,
-			- sin, cos, 0, 0,
-			0, 0, 1, 0,
-			off[ 0 ] + t.dest[ 0 ] - ( cos * cc[ 0 ] - sin * cc[ 1 ] ),
-			off[ 1 ] + t.dest[ 1 ] - ( sin * cc[ 0 ] + cos * cc[ 1 ] ),
-			off[ 2 ] + t.dest[ 2 ] - cc[ 2 ],
-			1
-		];
-
-		const corner = ( a, b ) => [
-			cc[ 0 ] + o.axisA[ 0 ] * a + o.axisB[ 0 ] * b,
-			cc[ 1 ] + o.axisA[ 1 ] * a + o.axisB[ 1 ] * b,
-			cc[ 2 ] + o.axisA[ 2 ] * a + o.axisB[ 2 ] * b
-		];
-
-		R_AddLevelPortal( scene,
-			[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],
-			matrix,
-			[ off[ 0 ] + t.dest[ 0 ], off[ 1 ] + t.dest[ 1 ], off[ 2 ] + t.dest[ 2 ] ],
-			t.direction( t.through ) );
-
-		views.push( view );
+		}, 20 + i * 40 );
 
 	} );
+
+}
+
+function buildView( scene, c, i ) {
+
+	const t = c.transform;
+	const o = c.opening;
+	if ( o === undefined ) return;
+
+	const model = Mod_LoadForPreview( 'maps/' + c.map + '.bsp' );
+	const view = model != null ? R_BuildLevelView( model, t.dest ) : null;
+	if ( view === null ) return;
+
+	// each level gets a space of its own
+	const off = [ LEVEL_VIEW_OFFSET[ 0 ] + i * 30000, LEVEL_VIEW_OFFSET[ 1 ], LEVEL_VIEW_OFFSET[ 2 ] ];
+	view.group.position.set( off[ 0 ], off[ 1 ], off[ 2 ] );
+	view.group.updateMatrix();
+	scene.add( view.group );
+
+	// this level's coordinates -> the scene: p' = off + dest + R( p - centre )
+	const rad = t.yaw * Math.PI / 180;
+	const cos = Math.cos( rad ), sin = Math.sin( rad );
+	const cc = t.center;
+	const matrix = [
+		cos, sin, 0, 0,
+		- sin, cos, 0, 0,
+		0, 0, 1, 0,
+		off[ 0 ] + t.dest[ 0 ] - ( cos * cc[ 0 ] - sin * cc[ 1 ] ),
+		off[ 1 ] + t.dest[ 1 ] - ( sin * cc[ 0 ] + cos * cc[ 1 ] ),
+		off[ 2 ] + t.dest[ 2 ] - cc[ 2 ],
+		1
+	];
+
+	const corner = ( a, b ) => [
+		cc[ 0 ] + o.axisA[ 0 ] * a + o.axisB[ 0 ] * b,
+		cc[ 1 ] + o.axisA[ 1 ] * a + o.axisB[ 1 ] * b,
+		cc[ 2 ] + o.axisA[ 2 ] * a + o.axisB[ 2 ] * b
+	];
+
+	R_AddLevelPortal( scene,
+		[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],
+		matrix,
+		[ off[ 0 ] + t.dest[ 0 ], off[ 1 ] + t.dest[ 1 ], off[ 2 ] + t.dest[ 2 ] ],
+		t.direction( t.through ) );
+
+	views.push( view );
+
+	R_PrewarmNormalMaps( model );
+
+}
+
+// The rest of the level's textures get their normal maps made now, a few at a
+// time while the player walks about, so that starting the level does not have to.
+function R_PrewarmNormalMaps( model ) {
+
+	if ( model == null || model.textures == null ) return;
+
+	const generation = setupGeneration;
+	const queue = model.textures.filter( ( t ) => t != null && t.gl_texture != null && t.name.charAt( 0 ) !== '*' );
+
+	const step = () => {
+
+		if ( generation !== setupGeneration || queue.length === 0 ) return;
+		R_NormalMapFor( queue.shift().gl_texture );
+		setTimeout( step, 12 );
+
+	};
+
+	setTimeout( step, 60 );
 
 }
 
