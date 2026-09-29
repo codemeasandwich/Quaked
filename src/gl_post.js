@@ -1408,6 +1408,16 @@ void main() {
 		dropGlint = clamp( a.w + b.w * 0.6, 0.0, 1.0 );
 	}
 	vec3 scene = texture2D( tScene, uvd ).rgb;
+	if ( dropMask > 0.0 ) {
+		// what is seen through a drop is slightly out of focus
+		vec2 bl = uTexel * 3.5;
+		vec3 soft = ( scene
+			+ texture2D( tScene, uvd + vec2( bl.x, 0.0 ) ).rgb + texture2D( tScene, uvd - vec2( bl.x, 0.0 ) ).rgb
+			+ texture2D( tScene, uvd + vec2( 0.0, bl.y ) ).rgb + texture2D( tScene, uvd - vec2( 0.0, bl.y ) ).rgb
+			+ texture2D( tScene, uvd + bl ).rgb + texture2D( tScene, uvd - bl ).rgb
+			+ texture2D( tScene, uvd + vec2( bl.x, - bl.y ) ).rgb + texture2D( tScene, uvd - vec2( bl.x, - bl.y ) ).rgb ) / 9.0;
+		scene = mix( scene, soft, clamp( dropMask * 1.2, 0.0, 1.0 ) );
+	}
 	float d = texture2D( tDepth, uvd ).x;
 
 	vec4 r = uProjInv * vec4( uvd * 2.0 - 1.0, 1.0, 1.0 );
@@ -1603,8 +1613,8 @@ void main() {
 	// the drops: a little darker at the edge where they bend the light, a bright
 	// glint, and blood-red where it is blood
 	if ( dropMask > 0.0 ) {
-		c *= 1.0 - 0.07 * dropMask;
-		c += vec3( 0.85, 0.9, 1.0 ) * ( dropGlint * 0.9 + dropMask * 0.05 ) * ( 1.0 - uDropBlood );
+		// water is clear: only a small neutral glint on the edge, no tint, no darkening
+		c += vec3( 1.0 ) * dropGlint * 0.35 * ( 1.0 - uDropBlood );
 		vec3 red = c * vec3( 0.75, 0.06, 0.05 ) + vec3( 0.05, 0.0, 0.0 ) * dropMask;
 		c = mix( c, red, uDropBlood * clamp( dropMask * 1.4, 0.0, 1.0 ) );
 	}
