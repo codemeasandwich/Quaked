@@ -1,0 +1,731 @@
+// Portal rendering: every "*teleport" surface that leads somewhere is drawn as a
+// live window onto its receiver (the info_teleport_destination that its
+// trigger_teleport sends you to).
+//
+// The world is rendered a second time from a virtual camera placed at the
+// receiver, into a render target, and the portal surface samples that target in
+// screen space.  That is what makes the surface look "cut out" of the wall:
+// what you see through it is exactly the space you would be standing in if you
+// stepped through.
+
+import * as THREE from 'three';
+import { cvar_t } from './cvar.js';
+import { COM_Parse, com_token } from './common.js';
+import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
+
+export const r_portals = new cvar_t( 'r_portals', '1' );
+
+// Same constants as glquake.h / gl_rmain.js (not imported to keep this module
+// out of the renderer's circular import graph)
+const SURF_PLANEBACK = 2;
+const SURF_DRAWTURB = 0x10;
+const SURF_DRAWSKY = 4;
+
+const PLAYER_ORIGIN_HEIGHT = 24; // hull origin above the floor
+const TELEPORT_DEST_HEIGHT = 27; // trigger_teleport places the player at dest + '0 0 27'
+const TRIGGER_SLOP = 24; // how far a trigger may be from the surface it belongs to
+
+const MAX_PORTAL_VIEWS = 3; // portal views rendered per frame
+const PORTAL_RT_SCALE = 0.75; // render target size relative to the 3D viewport
+const PORTAL_RT_MAX = 1600;
+
+let portals = [];
+let portalFrame = 0;
+let portalsEnabled = true;
+
+//============================================================================
+// Entity lump parsing
+//============================================================================
+
+export function R_ParseEntityLump( text ) {
+
+	const ents = [];
+	let data = text;
+
+	while ( true ) {
+
+		data = COM_Parse( data );
+		if ( data === null || com_token !== '{' ) break;
+
+		const ent = {};
+
+		while ( true ) {
+
+			data = COM_Parse( data );
+			if ( data === null ) return ents;
+			if ( com_token === '}' ) break;
+
+			const key = com_token;
+			data = COM_Parse( data );
+			if ( data === null ) return ents;
+			ent[ key ] = com_token;
+
+		}
+
+		ents.push( ent );
+
+	}
+
+	return ents;
+
+}
+
+function parseVector( s ) {
+
+	const v = [ 0, 0, 0 ];
+	if ( s == null ) return v;
+
+	const parts = s.trim().split( /\s+/ );
+	for ( let i = 0; i < 3 && i < parts.length; i ++ )
+		v[ i ] = parseFloat( parts[ i ] ) || 0;
+
+	return v;
+
+}
+
+// Same key handling as ED_ParseEdict: a bare "angle" is a yaw
+function destinationYaw( ent ) {
+
+	if ( ent.angles != null ) return parseVector( ent.angles )[ 1 ];
+	if ( ent.angle != null ) return parseFloat( ent.angle ) || 0;
+	return 0;
+
+}
+
+//============================================================================
+// Portal construction
+//============================================================================
+
+function surfaceBounds( surf, mins, maxs ) {
+
+	let any = false;
+
+	for ( let p = surf.polys; p; p = p.next ) {
+
+		for ( let i = 0; i < p.numverts; i ++ ) {
+
+			let x, y, z;
+			if ( p.verts instanceof Float32Array ) {
+
+				x = p.verts[ i * 7 ];
+				y = p.verts[ i * 7 + 1 ];
+				z = p.verts[ i * 7 + 2 ];
+
+			} else {
+
+				x = p.verts[ i ][ 0 ];
+				y = p.verts[ i ][ 1 ];
+				z = p.verts[ i ][ 2 ];
+
+			}
+
+			if ( x < mins[ 0 ] ) mins[ 0 ] = x;
+			if ( y < mins[ 1 ] ) mins[ 1 ] = y;
+			if ( z < mins[ 2 ] ) mins[ 2 ] = z;
+			if ( x > maxs[ 0 ] ) maxs[ 0 ] = x;
+			if ( y > maxs[ 1 ] ) maxs[ 1 ] = y;
+			if ( z > maxs[ 2 ] ) maxs[ 2 ] = z;
+			any = true;
+
+		}
+
+	}
+
+	return any;
+
+}
+
+function boxGap( amins, amaxs, bmins, bmaxs ) {
+
+	let d2 = 0;
+	for ( let i = 0; i < 3; i ++ ) {
+
+		const gap = Math.max( amins[ i ] - bmaxs[ i ], bmins[ i ] - amaxs[ i ], 0 );
+		d2 += gap * gap;
+
+	}
+
+	return Math.sqrt( d2 );
+
+}
+
+function cross( a, b ) {
+
+	return [
+		a[ 1 ] * b[ 2 ] - a[ 2 ] * b[ 1 ],
+		a[ 2 ] * b[ 0 ] - a[ 0 ] * b[ 2 ],
+		a[ 0 ] * b[ 1 ] - a[ 1 ] * b[ 0 ]
+	];
+
+}
+
+// Rigid transform taking the source portal frame onto the receiver frame.
+//
+// Source frame: origin C, axes ( right, up, n ) with n the surface normal
+// pointing at the viewer.  Receiver frame: origin D, axes ( right, up, -F )
+// with F the direction the player faces after teleporting.  A viewer in front
+// of the surface (+n) therefore lands behind the receiver plane (-F) looking
+// along F, and crossing the surface (n = 0) lands exactly on the receiver.
+// Returned as a column-major 4x4.
+function portalMatrix( C, n, D, yaw ) {
+
+	const rad = yaw * Math.PI / 180;
+	const F = [ Math.cos( rad ), Math.sin( rad ), 0 ];
+	const nd = [ - F[ 0 ], - F[ 1 ], 0 ];
+	const ud = [ 0, 0, 1 ];
+	const rd = cross( ud, nd );
+
+	let us = [ 0, 0, 1 ];
+	if ( Math.abs( n[ 2 ] ) > 0.9 ) us = [ 1, 0, 0 ]; // floor / ceiling portal
+	const rs = cross( us, n );
+	const len = Math.hypot( rs[ 0 ], rs[ 1 ], rs[ 2 ] ) || 1;
+	rs[ 0 ] /= len; rs[ 1 ] /= len; rs[ 2 ] /= len;
+	us = cross( n, rs );
+
+	const bs = [ rs, us, n ];
+	const bd = [ rd, ud, nd ];
+
+	// R = Rd * Rs^T
+	const R = new Array( 9 );
+	for ( let i = 0; i < 3; i ++ ) {
+
+		for ( let j = 0; j < 3; j ++ ) {
+
+			let sum = 0;
+			for ( let k = 0; k < 3; k ++ ) sum += bd[ k ][ i ] * bs[ k ][ j ];
+			R[ i * 3 + j ] = sum;
+
+		}
+
+	}
+
+	const t = [ 0, 0, 0 ];
+	for ( let i = 0; i < 3; i ++ )
+		t[ i ] = D[ i ] - ( R[ i * 3 ] * C[ 0 ] + R[ i * 3 + 1 ] * C[ 1 ] + R[ i * 3 + 2 ] * C[ 2 ] );
+
+	return {
+		elements: [
+			R[ 0 ], R[ 3 ], R[ 6 ], 0,
+			R[ 1 ], R[ 4 ], R[ 7 ], 0,
+			R[ 2 ], R[ 5 ], R[ 8 ], 0,
+			t[ 0 ], t[ 1 ], t[ 2 ], 1
+		],
+		forward: F
+	};
+
+}
+
+export function R_TransformPortalPoint( portal, p ) {
+
+	const e = portal.matrix;
+	return [
+		e[ 0 ] * p[ 0 ] + e[ 4 ] * p[ 1 ] + e[ 8 ] * p[ 2 ] + e[ 12 ],
+		e[ 1 ] * p[ 0 ] + e[ 5 ] * p[ 1 ] + e[ 9 ] * p[ 2 ] + e[ 13 ],
+		e[ 2 ] * p[ 0 ] + e[ 6 ] * p[ 1 ] + e[ 10 ] * p[ 2 ] + e[ 14 ]
+	];
+
+}
+
+export function R_ClearPortals() {
+
+	for ( const p of portals ) {
+
+		for ( const s of p.surfaces ) s._portal = null;
+		if ( p.material != null ) p.material.dispose();
+
+	}
+
+	portals = [];
+
+}
+
+export function R_GetPortals() {
+
+	return portals;
+
+}
+
+export function R_BuildPortals( model ) {
+
+	R_ClearPortals();
+
+	if ( model == null || model.entities == null || model.surfaces == null ||
+		model.submodels == null || model.nodes == null )
+		return portals;
+
+	const ents = R_ParseEntityLump( model.entities );
+
+	const dests = new Map();
+	for ( const ent of ents ) {
+
+		if ( ent.classname === 'info_teleport_destination' && ent.targetname != null &&
+			dests.has( ent.targetname ) === false )
+			dests.set( ent.targetname, ent );
+
+	}
+
+	const triggers = [];
+	for ( const ent of ents ) {
+
+		if ( ent.classname !== 'trigger_teleport' || ent.target == null || ent.model == null ) continue;
+		if ( ent.model.charAt( 0 ) !== '*' ) continue;
+
+		const dest = dests.get( ent.target );
+		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
+		if ( dest == null || sub == null ) continue;
+
+		triggers.push( { dest, mins: sub.mins, maxs: sub.maxs } );
+
+	}
+
+	if ( triggers.length === 0 ) return portals;
+
+	// Link every "*teleport" surface of the world to the trigger it belongs to
+	const groups = new Map();
+	const first = model.firstmodelsurface || 0;
+	const last = first + ( model.nummodelsurfaces || model.surfaces.length );
+	const smins = [ 0, 0, 0 ], smaxs = [ 0, 0, 0 ];
+
+	for ( let i = first; i < last; i ++ ) {
+
+		const surf = model.surfaces[ i ];
+		if ( surf == null || surf.texinfo == null || surf.texinfo.texture == null ) continue;
+		if ( ( surf.flags & SURF_DRAWTURB ) === 0 ) continue;
+		if ( surf.texinfo.texture.name.toLowerCase().indexOf( '*teleport' ) !== 0 ) continue;
+
+		smins[ 0 ] = smins[ 1 ] = smins[ 2 ] = 99999;
+		smaxs[ 0 ] = smaxs[ 1 ] = smaxs[ 2 ] = - 99999;
+		if ( surfaceBounds( surf, smins, smaxs ) === false ) continue;
+
+		let best = - 1, bestGap = TRIGGER_SLOP;
+		for ( let t = 0; t < triggers.length; t ++ ) {
+
+			const gap = boxGap( smins, smaxs, triggers[ t ].mins, triggers[ t ].maxs );
+			if ( gap <= bestGap ) {
+
+				bestGap = gap;
+				best = t;
+
+			}
+
+		}
+
+		if ( best < 0 ) continue;
+
+		const sign = ( surf.flags & SURF_PLANEBACK ) ? - 1 : 1;
+		const n = [
+			surf.plane.normal[ 0 ] * sign,
+			surf.plane.normal[ 1 ] * sign,
+			surf.plane.normal[ 2 ] * sign
+		];
+		const dist = surf.plane.dist * sign;
+
+		// coplanar faces of one doorway/pad share a portal so they share one view
+		const key = best + '|' + n.map( v => v.toFixed( 2 ) ).join( ',' ) + '|' + Math.round( dist );
+		let g = groups.get( key );
+		if ( g === undefined ) {
+
+			g = {
+				trigger: triggers[ best ], n, dist, surfaces: [],
+				mins: [ 99999, 99999, 99999 ], maxs: [ - 99999, - 99999, - 99999 ]
+			};
+			groups.set( key, g );
+
+		}
+
+		g.surfaces.push( surf );
+		for ( let a = 0; a < 3; a ++ ) {
+
+			g.mins[ a ] = Math.min( g.mins[ a ], smins[ a ] );
+			g.maxs[ a ] = Math.max( g.maxs[ a ], smaxs[ a ] );
+
+		}
+
+	}
+
+	for ( const g of groups.values() ) {
+
+		const n = g.n;
+		const C = [
+			( g.mins[ 0 ] + g.maxs[ 0 ] ) * 0.5,
+			( g.mins[ 1 ] + g.maxs[ 1 ] ) * 0.5,
+			( g.mins[ 2 ] + g.maxs[ 2 ] ) * 0.5
+		];
+
+		// doorway: match a standing player's origin so the eye lines up with the
+		// receiver's eye once you step through
+		if ( Math.abs( n[ 2 ] ) < 0.7 )
+			C[ 2 ] = Math.min( g.mins[ 2 ] + PLAYER_ORIGIN_HEIGHT, C[ 2 ] );
+
+		// slide onto the surface plane
+		const off = n[ 0 ] * C[ 0 ] + n[ 1 ] * C[ 1 ] + n[ 2 ] * C[ 2 ] - g.dist;
+		C[ 0 ] -= n[ 0 ] * off;
+		C[ 1 ] -= n[ 1 ] * off;
+		C[ 2 ] -= n[ 2 ] * off;
+
+		const origin = parseVector( g.trigger.dest.origin );
+		const D = [ origin[ 0 ], origin[ 1 ], origin[ 2 ] + TELEPORT_DEST_HEIGHT ];
+		const yaw = destinationYaw( g.trigger.dest );
+
+		const m = portalMatrix( C, n, D, yaw );
+
+		const srcLeaf = Mod_PointInLeaf( [ C[ 0 ] + n[ 0 ] * 16, C[ 1 ] + n[ 1 ] * 16, C[ 2 ] + n[ 2 ] * 16 ], model );
+		const destLeaf = Mod_PointInLeaf( D, model );
+		const destVis = Mod_LeafPVS( destLeaf, model ).slice( 0, ( model.numleafs + 7 ) >> 3 );
+
+		const portal = {
+			surfaces: g.surfaces,
+			center: C,
+			normal: n,
+			dest: D,
+			yaw,
+			forward: m.forward,
+			matrix: m.elements,
+			srcLeaf,
+			destVis,
+			destLeafs: [],
+			extraSurfaces: [],
+			material: null,
+			activeFrame: - 1
+		};
+
+		// Leaves the receiver can see: their static entities and their sky / water
+		// surfaces have to be handed to the renderer even when the main view's
+		// frustum never reaches them.
+		const seen = new Set();
+		for ( let l = 0; l < model.numleafs; l ++ ) {
+
+			if ( ( destVis[ l >> 3 ] & ( 1 << ( l & 7 ) ) ) === 0 ) continue;
+
+			const leaf = model.leafs[ l + 1 ];
+			if ( leaf == null ) continue;
+			portal.destLeafs.push( leaf );
+
+			if ( leaf.firstmarksurface == null ) continue;
+			for ( let c = 0; c < leaf.nummarksurfaces; c ++ ) {
+
+				const s = leaf.firstmarksurface[ c ];
+				if ( s == null || seen.has( s ) ) continue;
+				seen.add( s );
+
+				if ( ( s.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) === 0 ) continue;
+				if ( s.texinfo != null && s.texinfo.texture != null &&
+					s.texinfo.texture.name.charAt( 0 ) === '*' &&
+					s.texinfo.texture.name.toLowerCase().indexOf( '*teleport' ) === 0 ) continue;
+				portal.extraSurfaces.push( s );
+
+			}
+
+		}
+
+		for ( const s of portal.surfaces ) s._portal = portal;
+		portals.push( portal );
+
+	}
+
+	return portals;
+
+}
+
+//============================================================================
+// Per-frame hooks used by the world renderer
+//============================================================================
+
+export function R_PortalsBeginFrame( enabled ) {
+
+	portalsEnabled = enabled && r_portals.value !== 0;
+
+}
+
+export function R_PortalsActive() {
+
+	return portalsEnabled && portals.length > 0;
+
+}
+
+// Called for every portal surface the world renderer draws this frame
+export function R_PortalNoteVisible( portal ) {
+
+	portal.activeFrame = portalFrame;
+
+}
+
+let dummyTexture = null;
+
+function getDummyTexture() {
+
+	if ( dummyTexture === null ) {
+
+		dummyTexture = new THREE.DataTexture( new Uint8Array( [ 64, 96, 160, 255 ] ), 1, 1, THREE.RGBAFormat );
+		dummyTexture.needsUpdate = true;
+
+	}
+
+	return dummyTexture;
+
+}
+
+const VERTEX_SHADER = `
+varying vec2 vUv;
+varying vec4 vClip;
+void main() {
+	vUv = uv;
+	vClip = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+	gl_Position = vClip;
+}`;
+
+const FRAGMENT_SHADER = `
+uniform sampler2D map;
+uniform sampler2D portalMap;
+uniform float portalMix;
+uniform float time;
+varying vec2 vUv;
+varying vec4 vClip;
+void main() {
+	vec3 base = texture2D( map, vUv ).rgb;
+	vec3 col = base;
+	if ( portalMix > 0.0 ) {
+		// The receiver's view was rendered with this camera's projection, so the
+		// same screen position shows the same ray: the surface is a cut-out.
+		vec2 suv = vClip.xy / vClip.w * 0.5 + 0.5;
+		vec2 rip = vec2(
+			sin( suv.y * 90.0 + time * 3.1 ) + sin( suv.y * 37.0 - time * 2.3 ),
+			cos( suv.x * 80.0 + time * 2.7 ) + cos( suv.x * 41.0 + time * 1.9 ) ) * 0.0012;
+		vec2 uv = clamp( suv + rip + ( base.rg - 0.5 ) * 0.004, 0.002, 0.998 );
+		vec3 view = vec3(
+			texture2D( portalMap, uv + rip * 0.6 ).r,
+			texture2D( portalMap, uv ).g,
+			texture2D( portalMap, uv - rip * 0.6 ).b );
+		float pulse = 0.5 + 0.5 * sin( time * 2.0 + vUv.x * 5.0 + vUv.y * 3.0 );
+		view = view * ( 0.95 + 0.05 * pulse ) + base * vec3( 0.55, 0.8, 1.0 ) * ( 0.05 + 0.07 * pulse );
+		col = mix( base, view, portalMix );
+	}
+	gl_FragColor = vec4( col, 1.0 );
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`;
+
+export function R_PortalMaterial( portal, texture ) {
+
+	if ( portal.material === null ) {
+
+		portal.material = new THREE.ShaderMaterial( {
+			uniforms: {
+				map: { value: null },
+				portalMap: { value: null },
+				portalMix: { value: 0 },
+				time: { value: 0 }
+			},
+			vertexShader: VERTEX_SHADER,
+			fragmentShader: FRAGMENT_SHADER,
+			side: THREE.DoubleSide
+		} );
+		portal.material.uniforms.portalMap.value = getDummyTexture();
+
+	}
+
+	const uniforms = portal.material.uniforms;
+	const map = texture != null ? texture : getDummyTexture();
+	if ( uniforms.map.value !== map ) uniforms.map.value = map;
+
+	return portal.material;
+
+}
+
+//============================================================================
+// Rendering the receivers
+//============================================================================
+
+const renderTargets = [];
+let viewCamera = null;
+let viewMatrix = null;
+let clipPlane = null;
+let clipVector = null;
+let clipPoint = null;
+let clipQ = null;
+let savedClearColor = null;
+
+function getRenderTarget( index, width, height ) {
+
+	let rt = renderTargets[ index ];
+	if ( rt === undefined ) {
+
+		rt = new THREE.WebGLRenderTarget( width, height, {
+			type: THREE.HalfFloatType,
+			minFilter: THREE.LinearFilter,
+			magFilter: THREE.LinearFilter,
+			generateMipmaps: false,
+			depthBuffer: true
+		} );
+		renderTargets[ index ] = rt;
+
+	} else if ( rt.width !== width || rt.height !== height ) {
+
+		rt.setSize( width, height );
+
+	}
+
+	return rt;
+
+}
+
+// Clip everything on the near side of the receiver plane (Lengyel's oblique
+// near plane), otherwise the walls behind the receiver would hide the view.
+function applyObliqueClip( cam, point, normal ) {
+
+	clipPlane.setFromNormalAndCoplanarPoint(
+		clipVector.set( normal[ 0 ], normal[ 1 ], normal[ 2 ] ),
+		clipPoint.set( point[ 0 ], point[ 1 ], point[ 2 ] ) );
+	clipPlane.applyMatrix4( cam.matrixWorldInverse );
+
+	const e = cam.projectionMatrix.elements;
+	const v = clipQ;
+	const plane = { x: clipPlane.normal.x, y: clipPlane.normal.y, z: clipPlane.normal.z, w: clipPlane.constant };
+
+	v.set(
+		( Math.sign( plane.x ) + e[ 8 ] ) / e[ 0 ],
+		( Math.sign( plane.y ) + e[ 9 ] ) / e[ 5 ],
+		- 1,
+		( 1 + e[ 10 ] ) / e[ 14 ]
+	);
+
+	const k = 2 / ( plane.x * v.x + plane.y * v.y + plane.z * v.z + plane.w * v.w );
+	e[ 2 ] = plane.x * k;
+	e[ 6 ] = plane.y * k;
+	e[ 10 ] = plane.z * k + 1;
+	e[ 14 ] = plane.w * k;
+
+	cam.projectionMatrixInverse.copy( cam.projectionMatrix ).invert();
+
+}
+
+function setPortalUniforms( portal, map, mix, time ) {
+
+	const material = portal.material;
+	if ( material === null ) return;
+
+	material.uniforms.portalMap.value = map;
+	material.uniforms.portalMix.value = mix;
+	material.uniforms.time.value = time;
+	material.uniformsNeedUpdate = true;
+
+}
+
+/*
+================
+R_RenderPortals
+
+Render the receiver's view of every portal that was drawn this frame.  Call
+after the scene has been built and before the main renderer.render().
+================
+*/
+export function R_RenderPortals( renderer, scene, camera, width, height, time, hidden ) {
+
+	const active = [];
+	for ( const p of portals ) {
+
+		if ( p.activeFrame === portalFrame ) active.push( p );
+		setPortalUniforms( p, getDummyTexture(), 0, time );
+
+	}
+
+	portalFrame ++;
+
+	if ( portalsEnabled === false || active.length === 0 || renderer == null )
+		return 0;
+
+	if ( viewCamera === null ) {
+
+		viewCamera = new THREE.PerspectiveCamera();
+		viewCamera.matrixAutoUpdate = false;
+		viewCamera.matrixWorldAutoUpdate = false;
+		viewMatrix = new THREE.Matrix4();
+		clipPlane = new THREE.Plane();
+		clipVector = new THREE.Vector3();
+		clipPoint = new THREE.Vector3();
+		clipQ = new THREE.Vector4();
+		savedClearColor = new THREE.Color();
+
+	}
+
+	const cpos = camera.matrixWorld.elements;
+	active.sort( ( a, b ) => {
+
+		const da = ( a.center[ 0 ] - cpos[ 12 ] ) ** 2 + ( a.center[ 1 ] - cpos[ 13 ] ) ** 2 + ( a.center[ 2 ] - cpos[ 14 ] ) ** 2;
+		const db = ( b.center[ 0 ] - cpos[ 12 ] ) ** 2 + ( b.center[ 1 ] - cpos[ 13 ] ) ** 2 + ( b.center[ 2 ] - cpos[ 14 ] ) ** 2;
+		return da - db;
+
+	} );
+
+	const w = Math.max( 16, Math.min( PORTAL_RT_MAX, Math.round( width * PORTAL_RT_SCALE ) ) );
+	const h = Math.max( 16, Math.min( PORTAL_RT_MAX, Math.round( height * PORTAL_RT_SCALE ) ) );
+
+	const hiddenState = [];
+	for ( let i = 0; i < hidden.length; i ++ ) {
+
+		hiddenState.push( hidden[ i ].visible );
+		hidden[ i ].visible = false;
+
+	}
+
+	const oldTarget = renderer.getRenderTarget();
+	renderer.getClearColor( savedClearColor );
+	const oldAlpha = renderer.getClearAlpha();
+
+	let rendered = 0;
+
+	try {
+
+		for ( let i = 0; i < active.length && rendered < MAX_PORTAL_VIEWS; i ++ ) {
+
+			const p = active[ i ];
+
+			viewMatrix.fromArray( p.matrix );
+			viewCamera.matrixWorld.multiplyMatrices( viewMatrix, camera.matrixWorld );
+			viewCamera.matrixWorldInverse.copy( viewCamera.matrixWorld ).invert();
+			viewCamera.projectionMatrix.copy( camera.projectionMatrix );
+			viewCamera.near = camera.near;
+			viewCamera.far = camera.far;
+			viewCamera.fov = camera.fov;
+			viewCamera.aspect = camera.aspect;
+
+			// the virtual eye must sit behind the receiver plane
+			const ve = viewCamera.matrixWorld.elements;
+			const side = ( ve[ 12 ] - p.dest[ 0 ] ) * p.forward[ 0 ] + ( ve[ 13 ] - p.dest[ 1 ] ) * p.forward[ 1 ];
+			if ( side > - 0.5 ) continue;
+
+			applyObliqueClip( viewCamera, p.dest, p.forward );
+
+			const rt = getRenderTarget( rendered, w, h );
+
+			renderer.setRenderTarget( rt );
+			renderer.setClearColor( 0x000000, 1 );
+			renderer.clear( true, true, true );
+			renderer.render( scene, viewCamera );
+
+			setPortalUniforms( p, rt.texture, 1, time );
+			rendered ++;
+
+		}
+
+	} finally {
+
+		renderer.setRenderTarget( oldTarget );
+		renderer.setClearColor( savedClearColor, oldAlpha );
+
+		for ( let i = 0; i < hidden.length; i ++ )
+			hidden[ i ].visible = hiddenState[ i ];
+
+	}
+
+	return rendered;
+
+}
+
+export function R_PortalsShutdown() {
+
+	R_ClearPortals();
+	for ( const rt of renderTargets ) rt.dispose();
+	renderTargets.length = 0;
+
+}

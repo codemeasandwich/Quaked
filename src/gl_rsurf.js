@@ -32,6 +32,7 @@ function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
+import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights } from './gl_rlight.js';
 import {
 	r_refdef, r_origin, vpn, vright, vup
@@ -279,6 +280,14 @@ Returns a cached Mesh for a water/turb surface. Cached on the surface object.
 ================
 */
 function _getWaterMesh( s, geometry, material, renderGroup ) {
+
+	// teleporter surfaces become live windows onto their receiver
+	if ( s._portal != null && R_PortalsActive() ) {
+
+		material = R_PortalMaterial( s._portal, material.map );
+		R_PortalNoteVisible( s._portal );
+
+	}
 
 	let mesh = s._waterMesh;
 	if ( ! mesh ) {
@@ -1600,6 +1609,73 @@ export function R_DrawBrushModel( e ) {
 // R_RecursiveWorldNode
 //============================================================================
 
+// Queue a visible world surface for drawing (by texture chain, or right away)
+function _chainSurface( surf, worldmodel ) {
+
+	// if sorting by texture, just store it out
+	if ( gl_texsort.value ) {
+
+		if ( ! mirror ||
+			surf.texinfo.texture !== worldmodel.textures[ mirrortexturenum ] ) {
+
+			surf.texturechain = surf.texinfo.texture.texturechain;
+			surf.texinfo.texture.texturechain = surf;
+
+		}
+
+	} else if ( surf.flags & SURF_DRAWSKY ) {
+
+		surf.texturechain = skychain;
+		skychain = surf;
+
+	} else if ( surf.flags & SURF_DRAWTURB ) {
+
+		surf.texturechain = waterchain;
+		waterchain = surf;
+
+	} else {
+
+		R_DrawSequentialPoly( surf );
+
+	}
+
+}
+
+// Portal views are rendered from the receiver, which the main view's frustum
+// walk never reaches.  Hand over what that walk would have produced there:
+// static entities, and the sky / water surfaces (world geometry is drawn from
+// the PVS, which already includes the receiver's leaves).
+function R_AddPortalReceiverSurfaces( worldmodel ) {
+
+	if ( ! R_PortalsActive() ) return;
+
+	const portals = R_GetPortals();
+	for ( let i = 0; i < portals.length; i ++ ) {
+
+		const portal = portals[ i ];
+		if ( portal.srcLeaf.visframe !== r_visframecount ) continue;
+
+		for ( let j = 0; j < portal.destLeafs.length; j ++ ) {
+
+			const leaf = portal.destLeafs[ j ];
+			if ( leaf.efrags )
+				set_cl_numvisedicts( R_StoreEfrags( leaf.efrags, cl_visedicts, cl_numvisedicts, MAX_VISEDICTS, r_framecount ) );
+
+		}
+
+		for ( let j = 0; j < portal.extraSurfaces.length; j ++ ) {
+
+			const surf = portal.extraSurfaces[ j ];
+			if ( surf.visframe === r_framecount ) continue; // already queued
+			surf.visframe = r_framecount;
+			_chainSurface( surf, worldmodel );
+
+		}
+
+	}
+
+}
+
 export function R_RecursiveWorldNode( node ) {
 
 	if ( ! node ) return;
@@ -1703,32 +1779,7 @@ export function R_RecursiveWorldNode( node ) {
 					( ( dot < 0 ) ^ ! ! ( surf.flags & SURF_PLANEBACK ) ) )
 					continue; // wrong side
 
-				// if sorting by texture, just store it out
-				if ( gl_texsort.value ) {
-
-					if ( ! mirror ||
-						surf.texinfo.texture !== worldmodel.textures[ mirrortexturenum ] ) {
-
-						surf.texturechain = surf.texinfo.texture.texturechain;
-						surf.texinfo.texture.texturechain = surf;
-
-					}
-
-				} else if ( surf.flags & SURF_DRAWSKY ) {
-
-					surf.texturechain = skychain;
-					skychain = surf;
-
-				} else if ( surf.flags & SURF_DRAWTURB ) {
-
-					surf.texturechain = waterchain;
-					waterchain = surf;
-
-				} else {
-
-					R_DrawSequentialPoly( surf );
-
-				}
+				_chainSurface( surf, worldmodel );
 
 			}
 
@@ -1788,6 +1839,8 @@ export function R_DrawWorld() {
 	currentRenderGroup = worldGroup;
 
 	R_RecursiveWorldNode( cl_ref.worldmodel.nodes[ 0 ] );
+
+	R_AddPortalReceiverSurfaces( cl_ref.worldmodel );
 
 	// Update mesh visibility based on PVS (leaf visframe set by R_MarkLeaves)
 	R_UpdateWorldVisibility();
@@ -2066,11 +2119,31 @@ export function R_MarkLeaves() {
 
 	if ( ! vis ) return;
 
-	for ( let i = 0; i < cl_ref.worldmodel.numleafs; i ++ ) {
+	_stampVisibleLeaves( cl_ref.worldmodel, vis );
+
+	// A portal shows the receiver's view, so what the receiver can see has to
+	// be drawable too.
+	if ( ! r_novis.value && R_PortalsActive() ) {
+
+		const portals = R_GetPortals();
+		for ( let i = 0; i < portals.length; i ++ ) {
+
+			if ( portals[ i ].srcLeaf.visframe === r_visframecount )
+				_stampVisibleLeaves( cl_ref.worldmodel, portals[ i ].destVis );
+
+		}
+
+	}
+
+}
+
+function _stampVisibleLeaves( worldmodel, vis ) {
+
+	for ( let i = 0; i < worldmodel.numleafs; i ++ ) {
 
 		if ( vis[ i >> 3 ] & ( 1 << ( i & 7 ) ) ) {
 
-			let node = cl_ref.worldmodel.leafs[ i + 1 ];
+			let node = worldmodel.leafs[ i + 1 ];
 			if ( ! node ) continue;
 
 			while ( node ) {
@@ -2874,6 +2947,9 @@ export function GL_BuildLightmaps() {
 
 	// Build cached meshes for all world surfaces (after lightmap textures are ready)
 	R_BuildWorldMeshes();
+
+	// link teleporter surfaces to their receivers
+	R_BuildPortals( cl_ref.worldmodel );
 
 }
 

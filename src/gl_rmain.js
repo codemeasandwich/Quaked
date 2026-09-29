@@ -5,7 +5,8 @@ import * as THREE from 'three';
 import { Sys_FloatTime } from './sys.js';
 import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
-import { cvar_t } from './cvar.js';
+import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
+import { r_portals, R_PortalsBeginFrame, R_RenderPortals } from './gl_portal.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1199,6 +1200,9 @@ export function R_RenderScene() {
 	// Begin new frame: clear the "this frame" set
 	_entityMeshesThisFrame.clear();
 
+	// portal views are rendered per camera, which XR's stereo pair doesn't allow
+	R_PortalsBeginFrame( isXRActive() === false && envmap === false );
+
 	// Dynamic lights are managed by R_RenderDlights - it updates intensity
 	// each frame and removes expired lights from scene
 
@@ -1270,6 +1274,9 @@ export function R_RenderView() {
 	// render mirror view
 	R_Mirror();
 
+	// render what teleporters lead to
+	R_PortalViews();
+
 	// Present the frame via Three.js
 	if ( renderer && scene && camera ) {
 
@@ -1294,6 +1301,31 @@ export function R_RenderView() {
 		Con_Printf( ( ( ( time2 - time1 ) * 1000 ) | 0 ) + ' ms  ' + c_brush_polys + ' wpoly ' + c_alias_polys + ' epoly' );
 
 	}
+
+}
+
+//============================================================================
+// R_PortalViews
+//
+// Every teleporter surface drawn this frame is a window onto its receiver.
+//============================================================================
+
+const _portalHidden = [];
+
+function R_PortalViews() {
+
+	if ( renderer == null || scene == null || camera == null ) return;
+
+	// the weapon belongs to the main view only
+	_portalHidden.length = 0;
+	if ( cl != null && cl.viewent != null && cl.viewent._aliasMesh != null )
+		_portalHidden.push( cl.viewent._aliasMesh );
+
+	const scale = r_refdef.vrectScale;
+	R_RenderPortals(
+		renderer, scene, camera,
+		r_refdef.vrect.width * scale, r_refdef.vrect.height * scale,
+		Sys_FloatTime(), _portalHidden );
 
 }
 
@@ -1343,6 +1375,8 @@ export function R_Init() {
 		d_lightstylevalue[ i ] = 264; // 'm' is normal light (char 109, 109-'a' = 12, 12*22 = 264)
 
 	}
+
+	Cvar_RegisterVariable( r_portals );
 
 	R_InitParticles();
 	R_SetParticleExternals( { scene: scene } );
