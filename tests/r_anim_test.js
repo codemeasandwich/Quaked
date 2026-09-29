@@ -143,3 +143,50 @@ Deno.test( 'Newer Game forces smooth texture filtering without touching the user
 	}
 
 } );
+
+Deno.test( 'walking monsters glide between the game\'s steps', async () => {
+
+	const { R_SmoothMove } = await import( '../src/r_anim.js' );
+
+	// stepped 10 units every 0.1 s, drawn at 60 fps
+	const e = { origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ], model: { flags: 0 } };
+	const shown = [];
+	for ( let f = 0; f < 90; f ++ ) {
+
+		const t = 1 + f / 60;
+		e.origin = [ Math.floor( ( t - 1 ) / 0.1 ) * 10, 0, 0 ];
+		e.angles = [ 0, 0, 0 ];
+		R_SmoothMove( e, t );
+		shown.push( e.origin[ 0 ] );
+
+	}
+
+	// moves nearly every frame (raw would only change every sixth) and never goes backwards
+	let changes = 0;
+	for ( let i = 1; i < shown.length; i ++ ) {
+
+		if ( shown[ i ] < shown[ i - 1 ] - 1e-9 ) throw new Error( 'went backwards' );
+		if ( shown[ i ] !== shown[ i - 1 ] ) changes ++;
+
+	}
+
+	if ( changes < 70 ) throw new Error( 'not gliding: ' + changes + ' changes in 89 frames' );
+
+	// drawn twice in one frame shows the same thing
+	const first = e.origin[ 0 ];
+	e.origin = [ 9999, 0, 0 ];
+	R_SmoothMove( e, 1 + 89 / 60 );
+	if ( e.origin[ 0 ] !== first ) throw new Error( 'a second draw in the same frame changed it' );
+
+	// a fast mover (a rocket) and a teleport are left alone
+	const rocket = { origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ], model: { flags: 1 } };
+	R_SmoothMove( rocket, 5 );
+	rocket.origin = [ 30, 0, 0 ]; R_SmoothMove( rocket, 5.1 );
+	if ( rocket.origin[ 0 ] !== 30 ) throw new Error( 'a rocket is not smoothed' );
+
+	const tele = { origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ], model: { flags: 0 } };
+	R_SmoothMove( tele, 7 );
+	tele.origin = [ 500, 0, 0 ]; R_SmoothMove( tele, 7.1 );
+	if ( tele.origin[ 0 ] !== 500 ) throw new Error( 'a teleport is not smoothed' );
+
+} );

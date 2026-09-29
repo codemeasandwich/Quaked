@@ -121,6 +121,126 @@ export function R_AliasPoseBlend( entity, model, target, time, interval ) {
 
 }
 
+//============================================================================
+// Smooth movement
+//============================================================================
+//
+// Monsters walk in steps: the game moves them once per think (about every 0.1 s),
+// so their position and heading only change ten times a second however smooth
+// their poses are.  Here the displayed position and heading glide from where they
+// were to where the game put them, over the time the step took.  It lags the
+// game by one step, which is invisible; fast things (projectiles, players) and
+// things that are teleported are left alone.
+
+const STEP_MIN = 0.04; // changes closer together than this are continuous movement
+const STEP_MAX = 0.35; // and further apart than this are not walking
+const STEP_SPEED = 380; // units per second: faster than any monster walks
+const STEP_JUMP = 96; // a bigger change is a teleport
+const MODEL_EFFECTS = ~ 8; // any model flag but EF_ROTATE (rockets, grenades, gibs, tracers...) means fast
+
+const _from = [ 0, 0, 0 ];
+
+function lerpAngle( a, b, t ) {
+
+	let d = b - a;
+	if ( d > 180 ) d -= 360; else if ( d < - 180 ) d += 360;
+	return a + d * t;
+
+}
+
+/*
+================
+R_SmoothMove
+
+Called just before an alias entity is drawn; adjusts entity.origin and
+entity.angles in place (the game recomputes them every frame).
+================
+*/
+export function R_SmoothMove( entity, time ) {
+
+	const o = entity.origin, a = entity.angles;
+	if ( o == null || a == null ) return;
+
+	let s = entity._smoothMove;
+
+	if ( s === undefined || time < s.lastTime || time - s.lastTime > STALE || s.model !== entity.model ) {
+
+		entity._smoothMove = {
+			model: entity.model, lastTime: time, changed: time,
+			rawO: [ o[ 0 ], o[ 1 ], o[ 2 ] ], rawA: [ a[ 0 ], a[ 1 ], a[ 2 ] ],
+			fromO: [ o[ 0 ], o[ 1 ], o[ 2 ] ], toO: [ o[ 0 ], o[ 1 ], o[ 2 ] ],
+			fromA: [ a[ 0 ], a[ 1 ], a[ 2 ] ], toA: [ a[ 0 ], a[ 1 ], a[ 2 ] ],
+			start: time, dur: 0
+		};
+		return;
+
+	}
+
+	// drawn again in the same frame (a portal or mirror view): show what was shown
+	if ( time === s.lastTime && s.shown !== undefined ) {
+
+		for ( let i = 0; i < 3; i ++ ) { o[ i ] = s.shown[ i ]; a[ i ] = s.shownA[ i ]; }
+		return;
+
+	}
+
+	s.lastTime = time;
+
+	const moved = Math.hypot( o[ 0 ] - s.rawO[ 0 ], o[ 1 ] - s.rawO[ 1 ], o[ 2 ] - s.rawO[ 2 ] );
+	const turned = Math.abs( lerpAngle( s.rawA[ 1 ], a[ 1 ], 1 ) - s.rawA[ 1 ] ) + Math.abs( lerpAngle( s.rawA[ 0 ], a[ 0 ], 1 ) - s.rawA[ 0 ] );
+
+	if ( moved > 0.01 || turned > 0.05 ) {
+
+		const dt = time - s.changed;
+
+		// where it is shown right now: the starting point of the next glide
+		const t = s.dur > 0 ? Math.min( 1, ( time - s.start ) / s.dur ) : 1;
+		for ( let i = 0; i < 3; i ++ ) {
+
+			_from[ i ] = s.fromO[ i ] + ( s.toO[ i ] - s.fromO[ i ] ) * t;
+			s.fromA[ i ] = lerpAngle( s.fromA[ i ], s.toA[ i ], t );
+
+		}
+
+		const walking = dt >= STEP_MIN && dt <= STEP_MAX && moved < STEP_JUMP && moved / dt < STEP_SPEED &&
+			( entity.model == null || ( ( entity.model.flags | 0 ) & MODEL_EFFECTS ) === 0 );
+
+		if ( walking ) {
+
+			for ( let i = 0; i < 3; i ++ ) s.fromO[ i ] = _from[ i ];
+			s.dur = Math.min( dt * 1.2, STEP_MAX ); // a little long, so it never stops short of the next step
+
+		} else {
+
+			// no glide: show it where the game says
+			for ( let i = 0; i < 3; i ++ ) { s.fromO[ i ] = o[ i ]; s.fromA[ i ] = a[ i ]; }
+			s.dur = 0;
+
+		}
+
+		for ( let i = 0; i < 3; i ++ ) { s.toO[ i ] = o[ i ]; s.toA[ i ] = a[ i ]; s.rawO[ i ] = o[ i ]; s.rawA[ i ] = a[ i ]; }
+		s.start = time;
+		s.changed = time;
+
+	}
+
+	if ( s.dur > 0 ) {
+
+		const t = Math.min( 1, ( time - s.start ) / s.dur );
+		for ( let i = 0; i < 3; i ++ ) {
+
+			o[ i ] = s.fromO[ i ] + ( s.toO[ i ] - s.fromO[ i ] ) * t;
+			a[ i ] = lerpAngle( s.fromA[ i ], s.toA[ i ], t );
+
+		}
+
+	}
+
+	s.shown = [ o[ 0 ], o[ 1 ], o[ 2 ] ];
+	s.shownA = [ a[ 0 ], a[ 1 ], a[ 2 ] ];
+
+}
+
 // out[ i ] = a[ i ] + ( b[ i ] - a[ i ] ) * t
 export function R_BlendArrays( out, a, b, t ) {
 

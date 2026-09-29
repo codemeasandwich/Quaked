@@ -403,6 +403,7 @@ export async function Host_Init( parms ) {
 	Cbuf_AddText( 'bind a +moveleft\n' );
 	Cbuf_AddText( 'bind d +moveright\n' );
 	Cbuf_AddText( 'bind SPACE +jump\n' );
+	Cbuf_AddText( 'bind f flashlight\n' ); // Newer Game's shoulder flashlight
 	Cbuf_AddText( 'bind MOUSE1 +attack\n' );
 
 	// Always run by default for the web port

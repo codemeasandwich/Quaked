@@ -24,7 +24,7 @@ New Game is always the original game: original lighting, water, monsters and tel
 
 #### Lighting and muzzle flash
 
-Newer lighting is lit by its sources: the baked light is curved (`r_newdark`, 2.8 by default; 1 is as baked) so areas with no clear source are dark, and lights (torches, pillar lamps, glowing surfaces) light the surfaces they can see, with things in the way casting shadows. Weapons have a muzzle flash: a burst of warm light on the surroundings and a flash at the barrel.
+Newer lighting is lit by its sources: the baked light is curved (`r_newdark`, 2.8 by default; 1 is as baked) so areas with no clear source are dark, and lights (torches, pillar lamps, glowing surfaces) light the surfaces they can see, with things in the way casting shadows. Weapons have a muzzle flash: a burst of warm light on the surroundings and a flash at the barrel. A shoulder-mounted flashlight (key F, `flashlight`, or Options > Newer Game features) throws a cone of light and a faint beam that trails your aim by a fraction of a second. Monsters glide between the game's ten-a-second steps as well as blending between their poses, so they move smoothly.
 
 #### Seamless levels
 

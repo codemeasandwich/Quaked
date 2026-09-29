@@ -14,6 +14,7 @@ const MUZZLE_RIGHT = 3;
 const MUZZLE_UP = - 7;
 
 let firedAt = - 1;
+let fired = 0;
 let sprite = null;
 
 const now = () => ( typeof performance !== 'undefined' ? performance.now() : Date.now() ) / 1000;
@@ -22,6 +23,14 @@ const now = () => ( typeof performance !== 'undefined' ? performance.now() : Dat
 export function R_MuzzleFlashFired() {
 
 	firedAt = now();
+	fired ++;
+
+}
+
+// how many flashes there have been (for tests)
+export function R_MuzzleFlashCount() {
+
+	return fired;
 
 }
 

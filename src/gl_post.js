@@ -26,6 +26,7 @@ import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { GL_SetForceLinear } from './glquake.js';
+import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
@@ -61,6 +62,7 @@ const SCATTER = 0.03; // point light in-scattering
 const LIGHT_FLOOR = 0.14; // light on a surface the lightmap left dark
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
 const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky scales it
+const SPOT_POWER = 1.5; // the flashlight, in the same units as the point lights
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
 const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
@@ -1010,6 +1012,11 @@ uniform mat4 uSunVP;
 uniform float uNear;
 uniform float uFar;
 uniform int uCount;
+uniform float uSpotOn;
+uniform vec3 uSpotPos;
+uniform vec3 uSpotDir;
+uniform vec3 uSpotCol;
+uniform vec2 uSpotCone;
 uniform vec4 uLightPos[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec4 uLightCol[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec3 uSunDirV;
@@ -1146,6 +1153,24 @@ void main() {
 
 		float phase = henyeyGreenstein( dot( normalize( Q - L ), - dirV ), 0.3 );
 		acc += uLightCol[ i ].rgb * integral * lit * lit * phase;
+	}
+
+	// the flashlight's beam: the air in the cone lights up, thickest where you look along it
+	if ( uSpotOn > 0.5 ) {
+		float dMax = min( D, 900.0 );
+		float ds = dMax / 20.0;
+		vec3 beam = vec3( 0.0 );
+		for ( int k = 0; k < 20; k ++ ) {
+			float t = ( float( k ) + jit ) * ds;
+			vec3 P = dirV * t;
+			vec3 toP = P - uSpotPos;
+			float dist = length( toP );
+			float cone = smoothstep( uSpotCone.x, uSpotCone.y, dot( toP / max( dist, 1.0 ), uSpotDir ) );
+			if ( cone <= 0.0 ) continue;
+			beam += uSpotCol * cone / ( 1.0 + dist * dist / ( 300.0 * 300.0 ) );
+		}
+		float phase = henyeyGreenstein( dot( dirV, uSpotDir ), 0.5 );
+		result += beam * ds * 0.00004 * phase;
 	}
 
 	gl_FragColor = vec4( result + acc * uScatter, 1.0 );
@@ -1343,10 +1368,36 @@ void main() {
 
 		// a source lights a surface whatever its baked light was; the small floor
 		// stands for the surface's own colour, which is not known here
+		// the flashlight
+		vec3 spot = vec3( 0.0 );
+		if ( uSpotOn > 0.5 ) {
+			vec3 Ls = uSpotPos - P;
+			float sd = length( Ls );
+			vec3 Sn = Ls / max( sd, 1.0 );
+			float sndl = max( dot( N, Sn ), 0.0 );
+			float cone = smoothstep( uSpotCone.x, uSpotCone.y, dot( - Sn, uSpotDir ) );
+			if ( sndl > 0.0 && cone > 0.0 && sd < 1500.0 ) {
+				float fall = 1.0 / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) );
+				fall *= 1.0 - smoothstep( 800.0, 1500.0, sd );
+				float svis = 0.0;
+				for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
+					float s = ( float( k ) + jit ) / float( RELIGHT_STEPS );
+					vec3 Q = mix( P + N * 2.0, uSpotPos, s * 0.95 );
+					if ( Q.z > - uNear ) { svis += 1.0; continue; }
+					vec4 cq = uProj * vec4( Q, 1.0 );
+					vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
+					if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { svis += 1.0; continue; }
+					svis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
+				}
+				svis /= float( RELIGHT_STEPS );
+				spot = uSpotCol * sndl * fall * cone * svis * svis;
+			}
+		}
+
 		// (tinted by the surface's own colour, so stone stays stone and does not
 		// wash out to grey where a light falls on it)
 		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint;
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 2.0 + 0.2 * tint );
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through
@@ -1486,6 +1537,11 @@ function createPipeline() {
 		uSunVP: { value: new THREE.Matrix4() },
 		uNear: { value: 4 }, uFar: { value: 4096 },
 		uCount: { value: 0 },
+		uSpotOn: { value: 0 },
+		uSpotPos: { value: new THREE.Vector3() },
+		uSpotDir: { value: new THREE.Vector3( 0, 0, - 1 ) },
+		uSpotCol: { value: new THREE.Vector3( 1, 0.94, 0.82 ).multiplyScalar( SPOT_POWER ) },
+		uSpotCone: { value: new THREE.Vector2( FLASHLIGHT_OUTER, FLASHLIGHT_INNER ) },
 		uLightPos: { value: lightPos },
 		uLightCol: { value: lightCol },
 		uSunDirV: { value: new THREE.Vector3() },
@@ -1729,6 +1785,24 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	sh.uNear.value = camera.near;
 	sh.uFar.value = camera.far;
 	sh.uCount.value = selectedCount;
+
+	// the flashlight, in view space
+	const beam = R_FlashlightBeam();
+	sh.uSpotOn.value = beam.on ? 1 : 0;
+	if ( beam.on ) {
+
+		const v = camera.matrixWorldInverse.elements;
+		const bp = beam.pos, bd = beam.dir;
+		sh.uSpotPos.value.set(
+			v[ 0 ] * bp[ 0 ] + v[ 4 ] * bp[ 1 ] + v[ 8 ] * bp[ 2 ] + v[ 12 ],
+			v[ 1 ] * bp[ 0 ] + v[ 5 ] * bp[ 1 ] + v[ 9 ] * bp[ 2 ] + v[ 13 ],
+			v[ 2 ] * bp[ 0 ] + v[ 6 ] * bp[ 1 ] + v[ 10 ] * bp[ 2 ] + v[ 14 ] );
+		sh.uSpotDir.value.set(
+			v[ 0 ] * bd[ 0 ] + v[ 4 ] * bd[ 1 ] + v[ 8 ] * bd[ 2 ],
+			v[ 1 ] * bd[ 0 ] + v[ 5 ] * bd[ 1 ] + v[ 9 ] * bd[ 2 ],
+			v[ 2 ] * bd[ 0 ] + v[ 6 ] * bd[ 1 ] + v[ 10 ] * bd[ 2 ] ).normalize();
+
+	}
 	for ( let i = 0; i < selectedCount; i ++ ) {
 
 		const s = _selected[ i ];

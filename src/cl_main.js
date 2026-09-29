@@ -895,6 +895,24 @@ function CL_LinkPlayers() {
 
 		}
 
+		// muzzle flash: a player firing (this path handles players, so the flash
+		// the rest of the entities get in CL_RelinkEntities has to be made here too)
+		if ( ( pplayer.effects & 0x0002 ) !== 0 ) { // EF_MUZZLEFLASH
+
+			const mine = j + 1 === cl.viewentity;
+			if ( mine ) R_MuzzleFlashFired();
+
+			const dl = CL_AllocDlight( j + 1 );
+			VectorCopy( pplayer.origin, dl.origin );
+			dl.origin[ 2 ] += 16;
+			AngleVectors( mine || pplayer.cmd == null ? cl.viewangles : pplayer.cmd.angles, _relinkFv, _relinkRv, _relinkUv );
+			VectorMA( dl.origin, 18, _relinkFv, dl.origin );
+			dl.radius = 200 + ( Math.random() * 32 | 0 );
+			dl.minlight = 32;
+			dl.die = cl.time + 0.1;
+
+		}
+
 		// the player object never gets added (the local player is the camera)
 		if ( j + 1 === cl.viewentity )
 			continue;
