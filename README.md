@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/quaked-banner.png" alt="Quaked project banner" width="100%">
+</p>
+
 # Quaked
 
 Quake in the browser, built on Three.js. Quaked is developed by [@codemeasandwich](https://github.com/codemeasandwich) and is based on [three-quake](https://github.com/mrdoob/three-quake) by [@mrdoob](https://github.com/mrdoob).
