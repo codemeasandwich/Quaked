@@ -20,6 +20,7 @@ import { skill, coop, teamplay, deathmatch, svs } from './server.js';
 import { Touch_ExitFullscreen } from './touch.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from './quakedef.js';
+import { COM_FindFile } from './pak.js';
 
 /*
 ==============================================================================
@@ -50,6 +51,7 @@ export const m_search = 17;
 export const m_slist = 18;
 export const m_credits = 19;
 export const m_newer = 20;
+export const m_levelselect = 21;
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -685,7 +687,7 @@ function M_Main_Key( key ) {
 */
 
 let m_singleplayer_cursor = 0;
-const SINGLEPLAYER_ITEMS = 4; // Newer Game, New Game, Load, Save
+const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
 function M_Menu_SinglePlayer_f() {
 
@@ -717,6 +719,8 @@ function M_SinglePlayer_Draw() {
 		M_Print( 72 + 8, 32 + 6, 'Newer Game' );
 
 	}
+
+	M_Print( 72 + 8, 32 + 4 * 20 + 6, 'Level Select' );
 
 	const f = Math.floor( _host_time_get() * 10 ) % 6;
 	M_DrawTransPic( 54, 32 + m_singleplayer_cursor * 20, _Draw_CachePic( 'gfx/menudot' + ( f + 1 ) + '.lmp' ) );
@@ -765,10 +769,175 @@ function M_SinglePlayer_Key( key ) {
 				case 3:
 					M_Menu_Save_f();
 					break;
+				case 4:
+					M_Menu_LevelSelect_f();
+					break;
 
 			}
 
 			break;
+
+	}
+
+}
+
+/*
+==============================================================================
+
+			LEVEL SELECT
+
+Start any level directly: pick Newer Game or New Game, the skill, and the level.
+==============================================================================
+*/
+
+export const LEVEL_SELECT_LEVELS = [
+	{ map: 'start', name: 'Introduction' },
+	{ map: 'e1m1', name: 'The Slipgate Complex' },
+	{ map: 'e1m2', name: 'Castle of the Damned' },
+	{ map: 'e1m3', name: 'The Necropolis' },
+	{ map: 'e1m4', name: 'The Grisly Grotto' },
+	{ map: 'e1m5', name: 'Gloom Keep' },
+	{ map: 'e1m6', name: 'The Door to Chthon' },
+	{ map: 'e1m7', name: 'The House of Chthon' },
+	{ map: 'e1m8', name: 'Ziggurat Vertigo' }
+];
+const SKILL_NAMES = [ 'Easy', 'Normal', 'Hard', 'Nightmare' ];
+const LEVELSELECT_ROWS = 2; // mode and skill come before the levels
+let m_levelselect_cursor = 2;
+let m_levelselect_newer = true;
+
+function levelSelectLevels() {
+
+	// only the ones this copy of the game has
+	return LEVEL_SELECT_LEVELS.filter( ( l ) => COM_FindFile( 'maps/' + l.map + '.bsp' ) !== null );
+
+}
+
+function M_Menu_LevelSelect_f() {
+
+	setKeyDest( key_menu );
+	m_state = m_levelselect;
+	m_entersound = true;
+	m_levelselect_cursor = Math.min( m_levelselect_cursor, LEVELSELECT_ROWS + Math.max( 0, levelSelectLevels().length - 1 ) );
+
+}
+
+function M_LevelSelect_Draw() {
+
+	if ( ! _Draw_CachePic ) return;
+
+	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+	const p = _Draw_CachePic( 'gfx/ttl_sgl.lmp' );
+	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+
+	const levels = levelSelectLevels();
+	M_PrintWhite( 112, 32, 'Level Select' );
+
+	M_Print( 16, 48, '            Game' );
+	M_PrintWhite( 184, 48, m_levelselect_newer ? 'Newer Game' : 'New Game' );
+	M_Print( 16, 56, '           Skill' );
+	const skill = Math.max( 0, Math.min( 3, Math.round( Cvar_VariableValue( 'skill' ) ) ) );
+	M_PrintWhite( 184, 56, SKILL_NAMES[ skill ] );
+
+	for ( let i = 0; i < levels.length; i ++ ) {
+
+		M_Print( 64, 76 + i * 8, levels[ i ].map.toUpperCase().padEnd( 6 ) );
+		M_PrintWhite( 112, 76 + i * 8, levels[ i ].name );
+
+	}
+
+	const y = m_levelselect_cursor < LEVELSELECT_ROWS ? 48 + m_levelselect_cursor * 8 : 76 + ( m_levelselect_cursor - LEVELSELECT_ROWS ) * 8;
+	M_DrawCharacter( m_levelselect_cursor < LEVELSELECT_ROWS ? 168 : 48, y, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+
+}
+
+function M_LevelSelect_Change( dir ) {
+
+	if ( m_levelselect_cursor === 0 ) {
+
+		m_levelselect_newer = ! m_levelselect_newer;
+
+	} else if ( m_levelselect_cursor === 1 ) {
+
+		const skill = Math.max( 0, Math.min( 3, Math.round( Cvar_VariableValue( 'skill' ) ) ) );
+		Cvar_SetValue( 'skill', ( skill + dir + 4 ) % 4 );
+
+	} else {
+
+		return false;
+
+	}
+
+	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
+	return true;
+
+}
+
+function M_LevelSelect_Start() {
+
+	const levels = levelSelectLevels();
+	const level = levels[ m_levelselect_cursor - LEVELSELECT_ROWS ];
+	if ( level === undefined ) return;
+
+	m_entersound = true;
+	setKeyDest( key_game );
+	if ( _IN_RequestPointerLock ) _IN_RequestPointerLock();
+	if ( _sv.active )
+		Cbuf_AddText( 'disconnect\n' );
+	Cbuf_AddText( 'maxplayers 1\n' );
+	// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
+	Cbuf_AddText( m_levelselect_newer ? 'r_hdr 1\n' : 'r_hdr 0\n' );
+	Cbuf_AddText( 'map ' + level.map + '\n' );
+
+}
+
+function M_LevelSelect_Key( key ) {
+
+	const count = LEVELSELECT_ROWS + levelSelectLevels().length;
+
+	switch ( key ) {
+
+		case K_ESCAPE:
+			M_Menu_SinglePlayer_f();
+			break;
+
+		case K_UPARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			if ( -- m_levelselect_cursor < 0 ) m_levelselect_cursor = count - 1;
+			break;
+
+		case K_DOWNARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			if ( ++ m_levelselect_cursor >= count ) m_levelselect_cursor = 0;
+			break;
+
+		case K_LEFTARROW:
+			M_LevelSelect_Change( - 1 );
+			break;
+
+		case K_RIGHTARROW:
+			M_LevelSelect_Change( 1 );
+			break;
+
+		case K_ENTER:
+			if ( ! M_LevelSelect_Change( 1 ) ) M_LevelSelect_Start();
+			break;
+
+	}
+
+}
+
+function M_LevelSelect_Touch( vx, vy ) {
+
+	if ( vy >= 48 && vy < 64 ) {
+
+		m_levelselect_cursor = Math.floor( ( vy - 48 ) / 8 );
+		M_LevelSelect_Change( 1 );
+
+	} else if ( vy >= 76 && vy < 76 + levelSelectLevels().length * 8 ) {
+
+		m_levelselect_cursor = LEVELSELECT_ROWS + Math.floor( ( vy - 76 ) / 8 );
+		M_LevelSelect_Start();
 
 	}
 
@@ -2436,6 +2605,7 @@ export function M_Keydown( key ) {
 		case m_setup: M_Setup_Key( key ); return;
 		case m_options: M_Options_Key( key ); return;
 		case m_newer: M_Newer_Key( key ); return;
+		case m_levelselect: M_LevelSelect_Key( key ); return;
 		case m_keys: M_Keys_Key( key ); return;
 		case m_video: M_Video_Key( key ); return;
 		case m_credits: M_Credits_Key( key ); return;
@@ -2486,6 +2656,7 @@ export function M_Draw() {
 		case m_setup: M_Setup_Draw(); break;
 		case m_options: M_Options_Draw(); break;
 		case m_newer: M_Newer_Draw(); break;
+		case m_levelselect: M_LevelSelect_Draw(); break;
 		case m_keys: M_Keys_Draw(); break;
 		case m_video: M_Video_Draw(); break;
 		case m_credits: M_Credits_Draw(); break;
@@ -2572,6 +2743,10 @@ export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
 
 		case m_newer:
 			M_Newer_Touch( vx, vy );
+			break;
+
+		case m_levelselect:
+			M_LevelSelect_Touch( vx, vy );
 			break;
 
 		case m_keys:

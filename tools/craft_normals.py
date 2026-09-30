@@ -37,7 +37,7 @@ TEX = os.path.join(ROOT, 'newer', 'textures')
 #   groove  how much dark lines are cut in;  bump  how much bright knobs stand out
 #   glow    how much glowing parts are flattened (0..1);  strength  how steep the relief is
 PROFILES = [
-    ( r'^(crate\d_(side|top)|crate_)', dict( bands=( .5, 1, 1.1, .7 ), groove=.35, bump=.6, glow=0, strength=1.3 ) ),  # stencilled crates: rivets, panel frames, flat paint
+    ( r'^(crate\d_(side|top)|crate_)', dict( bands=( .5, 1, 1.1, .7 ), groove=.6, bump=.6, glow=0, strength=1.3, flatprint=True ) ),  # crates: frame and rivets in relief, the printed design flat: rivets, panel frames, flat paint
     ( r'^(batt\dsid|batt\dtop|nail\dsid|nail\dtop)', dict( bands=( .5, 1, .8, .5 ), groove=.8, bump=.7, glow=.2, strength=1.25 ) ),  # ammo boxes
     ( r'^(enter01|wenter01)', dict( bands=( .45, 1, 1.2, .9 ), groove=.6, bump=.5, glow=.1, strength=1.5 ) ),  # the bone arch and the rock around it
     ( r'^(door05_2)', dict( bands=( .6, 1, .8, .5 ), groove=.6, bump=1.0, glow=0, strength=1.35 ) ),
@@ -99,6 +99,31 @@ def smoothstep( e0, e1, x ):
     t = np.clip( ( x - e0 ) / ( e1 - e0 ), 0, 1 )
     return t * t * ( 3 - 2 * t )
 
+def remove_print( rgb, L, k ):
+    """The luminance with the printed design (dark or red paint on the olive panel) filled in with the
+    panel's own surface, so the design leaves no relief; the panel and its frame keep theirs."""
+    r, g, b = rgb[..., 0], rgb[..., 1], rgb[..., 2]
+    eps = 1e-4
+    paper = ( L > 0.2 ) & ( L < 0.7 ) & ( g / ( r + eps ) > 0.74 ) & ( g / ( r + eps ) < 1.02 ) & ( b / ( r + eps ) > 0.3 ) & ( b / ( r + eps ) < 0.85 ) & ( r > g * 0.98 )
+    # the panel: where paper is dense
+    dense = gblur( paper.astype( np.float32 ), 6 * k ) > 0.3
+    rows = np.where( dense.mean( axis=1 ) > 0.35 )[0]; cols = np.where( dense.mean( axis=0 ) > 0.3 )[0]
+    if len( rows ) < 8 or len( cols ) < 8: return L
+    inside = np.zeros_like( paper )
+    m = int( 6 * k )
+    inside[rows.min() + m:rows.max() - m, cols.min() + m:cols.max() - m] = True
+    pm = float( np.median( L[paper & inside] ) ) if ( paper & inside ).any() else float( np.median( L ) )
+    redpaint = ( r > g * 1.45 ) & ( r > 0.25 )
+    mark = inside & ~paper & ( ( L < pm * 0.78 ) | redpaint | ( L > pm * 1.35 ) )
+    mark = gblur( mark.astype( np.float32 ), 1.6 * k ) > 0.15
+    mark = gblur( mark.astype( np.float32 ), 1.2 * k ) > 0.12
+    ok = ( ~mark ).astype( np.float32 )
+    # the panel's own level, with its slow variation only (no blobs where the design was)
+    fill = 0.5 * pm + 0.5 * gblur( L * ok, 30 * k ) / np.maximum( np.clip( gblur( ok, 30 * k ), 0, 1 ), 1e-2 )
+    fill = fill + ( gblur( L, 1.2 * k ) - gblur( L, 3.5 * k ) ) * ( ok )  # the paint's fine grain stays
+    w = np.clip( gblur( mark.astype( np.float32 ), 1.0 * k ), 0, 1 ) ** 0.8
+    return L * ( 1 - w ) + fill * w
+
 def craft( rgb, prof ):
     """rgb: float array h x w x 3 in 0..1 (sRGB). Returns (height 0..1, normals h x w x 3 in -1..1)."""
     h, w, _ = rgb.shape
@@ -106,6 +131,10 @@ def craft( rgb, prof ):
     L = rgb @ np.array( [ 0.299, 0.587, 0.114 ] )
     mx = rgb.max( axis=2 ); mn = rgb.min( axis=2 )
     sat = ( mx - mn ) / np.maximum( mx, 1e-4 )
+
+    # a design printed on a panel (a crate's logo) is paint, not relief: take it out of the height
+    if prof.get( 'flatprint' ):
+        L = remove_print( rgb, L, k )
 
     # take the baked-in lighting out: what is left is detail
     L = L - gblur( L, 40 * k ) * 0.85
