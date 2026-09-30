@@ -152,6 +152,8 @@ const SATURATION = 1.1;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
 const OUTDOOR_EXPOSURE = 0.88; // open daylight needs less gain than a dim interior
+const OUTDOOR_BLOOM_THRESHOLD = 2.4; // the sky itself is bright: only real highlights (lava, lights) glow, not the daylight
+const OUTDOOR_BLOOM = 0.5; // and what does glow is softer under the open sky
 const CAUSTIC = 0.6;
 const BUMP_LIGHT = 0.3; // how much of the normal map's relief takes the direct light (1 = all of it) // brightness of caustics beneath water
 
@@ -2175,7 +2177,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		pm.tScene.value = hdr.texture;
 		pm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
 		pm.uExposure.value = exposure;
-		pm.uThreshold.value = 1.1;
+		pm.uThreshold.value = hasSkyView === true ? OUTDOOR_BLOOM_THRESHOLD : 1.1;
 		runPass( renderer, p.prefilterMaterial, p.down[ 0 ] );
 
 		const dm = p.downMaterial.uniforms;
@@ -2253,7 +2255,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uBright.value = newBright;
 	cm.uContrastGain.value = Math.max( 0, r_newcontrast.value );
 	cm.uContrastPivot.value = newBright * 0.2; // deviations are taken from a typical scene brightness
-	cm.uBloom.value = bloom;
+	cm.uBloom.value = bloom * ( hasSkyView === true ? OUTDOOR_BLOOM : 1 );
 	cm.uVolume.value = volume;
 
 	R_PerfStage( 'bloom' );
