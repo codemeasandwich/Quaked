@@ -184,6 +184,48 @@ export function R_NormalsFromHeight( h, width, height, strength = NORMAL_STRENGT
 
 }
 
+// Tangent-space normals (RGBA8, height in alpha) from a crafted height field: a height map made offline
+// for one texture (tools/craft_normals.py, which has the same maths), in 0..1, and how steep to make it.
+export function R_NormalsFromCraftedHeight( h, width, height, strength ) {
+
+	const out = new Uint8Array( width * height * 4 );
+	const sc = strength * Math.sqrt( width * height ) / 8;
+	const at = ( x, y ) => h[ ( ( y + height ) % height ) * width + ( ( x + width ) % width ) ];
+
+	for ( let y = 0; y < height; y ++ ) {
+
+		for ( let x = 0; x < width; x ++ ) {
+
+			// a weighted difference across the texel: 3 for its own row (or column), 1 for each neighbour's
+			const gx = ( 3 * ( at( x + 1, y ) - at( x - 1, y ) )
+				+ ( at( x + 1, y - 1 ) - at( x - 1, y - 1 ) ) + ( at( x + 1, y + 1 ) - at( x - 1, y + 1 ) ) ) / 10 * 0.5;
+			const gy = ( 3 * ( at( x, y + 1 ) - at( x, y - 1 ) )
+				+ ( at( x - 1, y + 1 ) - at( x - 1, y - 1 ) ) + ( at( x + 1, y + 1 ) - at( x + 1, y - 1 ) ) ) / 10 * 0.5;
+
+			let nx = - gx * sc;
+			let ny = - gy * sc;
+
+			// a soft cap on how steeply a facet may lean
+			const m = Math.sqrt( nx * nx + ny * ny );
+			const cap = 1 / Math.sqrt( 1 + ( m / 1.1 ) * ( m / 1.1 ) );
+			nx *= cap;
+			ny *= cap;
+
+			const len = Math.sqrt( nx * nx + ny * ny + 1 );
+			const o = ( y * width + x ) * 4;
+			out[ o ] = Math.round( ( nx / len * 0.5 + 0.5 ) * 255 );
+			out[ o + 1 ] = Math.round( ( ny / len * 0.5 + 0.5 ) * 255 );
+			out[ o + 2 ] = Math.round( ( 1 / len * 0.5 + 0.5 ) * 255 );
+			out[ o + 3 ] = Math.round( h[ y * width + x ] * 255 );
+
+		}
+
+	}
+
+	return out;
+
+}
+
 // the complete pipeline on raw texels
 export function R_GenerateNormalData( rgba, width, height, fullbright ) {
 
@@ -221,11 +263,17 @@ export function R_NormalMapFor( diffuse ) {
 	const fb = diffuse._fullbright != null && diffuse._fullbright.image != null ? diffuse._fullbright.image.data : null;
 
 	// the same picture on the next level (or the next visit) needs no new maps
-	const key = width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
+	// a height map crafted for this texture, when it has one of the same size
+	const crafted = diffuse.userData != null ? diffuse.userData.newerHeight : undefined;
+	const useCrafted = crafted != null && crafted.width === width && crafted.height === height;
+
+	const key = useCrafted ? 'crafted:' + crafted.file + ':' + crafted.strength
+		: width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
 	let pixels = generated.get( key );
 	if ( pixels === undefined ) {
 
-		pixels = R_GenerateNormalData( data, width, height, fb );
+		pixels = useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength )
+			: R_GenerateNormalData( data, width, height, fb );
 		if ( generated.size >= MAX_GENERATED ) generated.delete( generated.keys().next().value );
 		generated.set( key, pixels );
 

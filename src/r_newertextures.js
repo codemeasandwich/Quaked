@@ -18,6 +18,7 @@ import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 const BASE = 'newer/textures/';
 
 let index = null; // name -> file
+let normals = {}; // name -> { file, strength }: the height map crafted for the texture (tools/craft_normals.py)
 let version = '0'; // changes whenever a picture does, so the browser fetches the new one
 let indexPromise = null;
 const pictures = new Map(); // file -> Promise of { data, width, height }
@@ -27,7 +28,7 @@ function loadIndex() {
 	if ( indexPromise === null ) {
 
 		indexPromise = COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
-			.then( ( j ) => { index = j.textures != null ? j.textures : {}; version = String( j.version ); return index; } )
+			.then( ( j ) => { index = j.textures != null ? j.textures : {}; normals = j.normals != null ? j.normals : {}; version = String( j.version ); return index; } )
 			.catch( () => { index = {}; return index; } );
 
 	}
@@ -78,12 +79,26 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 		const file = idx[ name ];
 		if ( file === undefined ) return null;
-		return loadPicture( file );
 
-	} ).then( ( pic ) => {
+		// the picture and, when there is one, its crafted height map
+		const crafted = normals[ name ];
+		return Promise.all( [ loadPicture( file ), crafted !== undefined ? loadPicture( crafted.file ) : null ] )
+			.then( ( [ pic, heightPic ] ) => ( pic == null ? null : { pic, heightPic, crafted } ) );
+
+	} ).then( ( loaded ) => {
 
 		texture.userData.newerPending = false;
-		if ( pic == null ) return;
+		if ( loaded == null ) return;
+		const pic = loaded.pic;
+
+		if ( loaded.heightPic != null && loaded.heightPic.width === pic.width && loaded.heightPic.height === pic.height ) {
+
+			// the red of the grey picture is the height
+			const h = new Float32Array( pic.width * pic.height );
+			for ( let i = 0; i < h.length; i ++ ) h[ i ] = loaded.heightPic.data[ i * 4 ] / 255;
+			texture.userData.newerHeight = { file: loaded.crafted.file, strength: loaded.crafted.strength, data: h, width: pic.width, height: pic.height };
+
+		}
 
 		let data = pic.data;
 

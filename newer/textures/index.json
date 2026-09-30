@@ -1,5 +1,5 @@
 {
- "version": 2026093010,
+ "version": 2026093012,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -213,5 +213,855 @@
   "wmet4_8": "wmet4_8.webp",
   "metal6_3": "metal6_3.webp",
   "metal6_4": "metal6_4.webp"
+ },
+ "normals": {
+  "+0_box_side": {
+   "file": "normals/p_0_box_side.webp",
+   "strength": 1.15
+  },
+  "+0_box_top": {
+   "file": "normals/p_0_box_top.webp",
+   "strength": 1.15
+  },
+  "+0_med100": {
+   "file": "normals/p_0_med100.webp",
+   "strength": 1.15
+  },
+  "+0_med25": {
+   "file": "normals/p_0_med25.webp",
+   "strength": 1.15
+  },
+  "+0_med25s": {
+   "file": "normals/p_0_med25s.webp",
+   "strength": 1.15
+  },
+  "+0basebtn": {
+   "file": "normals/p_0basebtn.webp",
+   "strength": 1.15
+  },
+  "+0butn": {
+   "file": "normals/p_0butn.webp",
+   "strength": 1.15
+  },
+  "+0butnn": {
+   "file": "normals/p_0butnn.webp",
+   "strength": 1.15
+  },
+  "+0button": {
+   "file": "normals/p_0button.webp",
+   "strength": 1.15
+  },
+  "+0floorsw": {
+   "file": "normals/p_0floorsw.webp",
+   "strength": 1.15
+  },
+  "+0light01": {
+   "file": "normals/p_0light01.webp",
+   "strength": 1.45
+  },
+  "+0planet": {
+   "file": "normals/p_0planet.webp",
+   "strength": 0.7
+  },
+  "+0shoot": {
+   "file": "normals/p_0shoot.webp",
+   "strength": 1.15
+  },
+  "+0slip": {
+   "file": "normals/p_0slip.webp",
+   "strength": 0.7
+  },
+  "+0slipbot": {
+   "file": "normals/p_0slipbot.webp",
+   "strength": 1.15
+  },
+  "+0sliptop": {
+   "file": "normals/p_0sliptop.webp",
+   "strength": 1.15
+  },
+  "+1_box_side": {
+   "file": "normals/p_1_box_side.webp",
+   "strength": 1.15
+  },
+  "+1_box_top": {
+   "file": "normals/p_1_box_top.webp",
+   "strength": 1.15
+  },
+  "+1_med100": {
+   "file": "normals/p_1_med100.webp",
+   "strength": 1.15
+  },
+  "+1_med25": {
+   "file": "normals/p_1_med25.webp",
+   "strength": 1.15
+  },
+  "+1_med25s": {
+   "file": "normals/p_1_med25s.webp",
+   "strength": 1.15
+  },
+  "+1basebtn": {
+   "file": "normals/p_1basebtn.webp",
+   "strength": 1.15
+  },
+  "+1butn": {
+   "file": "normals/p_1butn.webp",
+   "strength": 1.15
+  },
+  "+1butnn": {
+   "file": "normals/p_1butnn.webp",
+   "strength": 1.15
+  },
+  "+1button": {
+   "file": "normals/p_1button.webp",
+   "strength": 1.15
+  },
+  "+1floorsw": {
+   "file": "normals/p_1floorsw.webp",
+   "strength": 1.15
+  },
+  "+1light01": {
+   "file": "normals/p_1light01.webp",
+   "strength": 1.45
+  },
+  "+1planet": {
+   "file": "normals/p_1planet.webp",
+   "strength": 0.7
+  },
+  "+1shoot": {
+   "file": "normals/p_1shoot.webp",
+   "strength": 1.15
+  },
+  "+1slip": {
+   "file": "normals/p_1slip.webp",
+   "strength": 0.7
+  },
+  "+2_med100": {
+   "file": "normals/p_2_med100.webp",
+   "strength": 1.15
+  },
+  "+2_med25": {
+   "file": "normals/p_2_med25.webp",
+   "strength": 1.15
+  },
+  "+2butn": {
+   "file": "normals/p_2butn.webp",
+   "strength": 1.15
+  },
+  "+2butnn": {
+   "file": "normals/p_2butnn.webp",
+   "strength": 1.15
+  },
+  "+2button": {
+   "file": "normals/p_2button.webp",
+   "strength": 1.15
+  },
+  "+2floorsw": {
+   "file": "normals/p_2floorsw.webp",
+   "strength": 1.15
+  },
+  "+2light01": {
+   "file": "normals/p_2light01.webp",
+   "strength": 1.45
+  },
+  "+2planet": {
+   "file": "normals/p_2planet.webp",
+   "strength": 0.7
+  },
+  "+2shoot": {
+   "file": "normals/p_2shoot.webp",
+   "strength": 1.15
+  },
+  "+2slip": {
+   "file": "normals/p_2slip.webp",
+   "strength": 0.7
+  },
+  "+3_med100": {
+   "file": "normals/p_3_med100.webp",
+   "strength": 1.15
+  },
+  "+3_med25": {
+   "file": "normals/p_3_med25.webp",
+   "strength": 1.15
+  },
+  "+3butn": {
+   "file": "normals/p_3butn.webp",
+   "strength": 1.15
+  },
+  "+3butnn": {
+   "file": "normals/p_3butnn.webp",
+   "strength": 1.15
+  },
+  "+3button": {
+   "file": "normals/p_3button.webp",
+   "strength": 1.15
+  },
+  "+3floorsw": {
+   "file": "normals/p_3floorsw.webp",
+   "strength": 1.15
+  },
+  "+3planet": {
+   "file": "normals/p_3planet.webp",
+   "strength": 0.7
+  },
+  "+3shoot": {
+   "file": "normals/p_3shoot.webp",
+   "strength": 1.15
+  },
+  "+3slip": {
+   "file": "normals/p_3slip.webp",
+   "strength": 0.7
+  },
+  "+4slip": {
+   "file": "normals/p_4slip.webp",
+   "strength": 0.7
+  },
+  "+5slip": {
+   "file": "normals/p_5slip.webp",
+   "strength": 0.7
+  },
+  "+6slip": {
+   "file": "normals/p_6slip.webp",
+   "strength": 0.7
+  },
+  "+abasebtn": {
+   "file": "normals/p_abasebtn.webp",
+   "strength": 1.15
+  },
+  "+abutn": {
+   "file": "normals/p_abutn.webp",
+   "strength": 1.15
+  },
+  "+abutnn": {
+   "file": "normals/p_abutnn.webp",
+   "strength": 1.15
+  },
+  "+abutton": {
+   "file": "normals/p_abutton.webp",
+   "strength": 1.15
+  },
+  "+afloorsw": {
+   "file": "normals/p_afloorsw.webp",
+   "strength": 1.15
+  },
+  "+ashoot": {
+   "file": "normals/p_ashoot.webp",
+   "strength": 1.15
+  },
+  "adoor01_2": {
+   "file": "normals/adoor01_2.webp",
+   "strength": 1.15
+  },
+  "adoor02_2": {
+   "file": "normals/adoor02_2.webp",
+   "strength": 1.15
+  },
+  "adoor09_2": {
+   "file": "normals/adoor09_2.webp",
+   "strength": 1.15
+  },
+  "afloor3_1": {
+   "file": "normals/afloor3_1.webp",
+   "strength": 1.15
+  },
+  "altar1_3": {
+   "file": "normals/altar1_3.webp",
+   "strength": 1.45
+  },
+  "altar1_6": {
+   "file": "normals/altar1_6.webp",
+   "strength": 1.45
+  },
+  "altar1_7": {
+   "file": "normals/altar1_7.webp",
+   "strength": 1.45
+  },
+  "altarb_2": {
+   "file": "normals/altarb_2.webp",
+   "strength": 1.45
+  },
+  "arrow_m": {
+   "file": "normals/arrow_m.webp",
+   "strength": 1.15
+  },
+  "basebutn3": {
+   "file": "normals/basebutn3.webp",
+   "strength": 1.15
+  },
+  "ceiling1_3": {
+   "file": "normals/ceiling1_3.webp",
+   "strength": 1.15
+  },
+  "comp1_1": {
+   "file": "normals/comp1_1.webp",
+   "strength": 1.15
+  },
+  "comp1_2": {
+   "file": "normals/comp1_2.webp",
+   "strength": 1.15
+  },
+  "comp1_3": {
+   "file": "normals/comp1_3.webp",
+   "strength": 1.15
+  },
+  "comp1_4": {
+   "file": "normals/comp1_4.webp",
+   "strength": 1.15
+  },
+  "comp1_5": {
+   "file": "normals/comp1_5.webp",
+   "strength": 1.15
+  },
+  "comp1_6": {
+   "file": "normals/comp1_6.webp",
+   "strength": 1.15
+  },
+  "cop1_1": {
+   "file": "normals/cop1_1.webp",
+   "strength": 1.2
+  },
+  "cop1_2": {
+   "file": "normals/cop1_2.webp",
+   "strength": 1.2
+  },
+  "cop1_3": {
+   "file": "normals/cop1_3.webp",
+   "strength": 1.2
+  },
+  "cop1_5": {
+   "file": "normals/cop1_5.webp",
+   "strength": 1.2
+  },
+  "cop1_6": {
+   "file": "normals/cop1_6.webp",
+   "strength": 1.2
+  },
+  "cop1_7": {
+   "file": "normals/cop1_7.webp",
+   "strength": 1.2
+  },
+  "cop1_8": {
+   "file": "normals/cop1_8.webp",
+   "strength": 1.2
+  },
+  "cop2_3": {
+   "file": "normals/cop2_3.webp",
+   "strength": 1.2
+  },
+  "cop2_4": {
+   "file": "normals/cop2_4.webp",
+   "strength": 1.2
+  },
+  "cop2_6": {
+   "file": "normals/cop2_6.webp",
+   "strength": 1.2
+  },
+  "cop3_1": {
+   "file": "normals/cop3_1.webp",
+   "strength": 1.2
+  },
+  "cop3_4": {
+   "file": "normals/cop3_4.webp",
+   "strength": 1.2
+  },
+  "cop4_3": {
+   "file": "normals/cop4_3.webp",
+   "strength": 1.2
+  },
+  "dem4_1": {
+   "file": "normals/dem4_1.webp",
+   "strength": 1.45
+  },
+  "dem4_4": {
+   "file": "normals/dem4_4.webp",
+   "strength": 1.45
+  },
+  "dem5_3": {
+   "file": "normals/dem5_3.webp",
+   "strength": 1.45
+  },
+  "door01_2": {
+   "file": "normals/door01_2.webp",
+   "strength": 1.15
+  },
+  "ecop1_1": {
+   "file": "normals/ecop1_1.webp",
+   "strength": 1.2
+  },
+  "ecop1_4": {
+   "file": "normals/ecop1_4.webp",
+   "strength": 1.2
+  },
+  "ecop1_6": {
+   "file": "normals/ecop1_6.webp",
+   "strength": 1.2
+  },
+  "elwall1_1": {
+   "file": "normals/elwall1_1.webp",
+   "strength": 1.45
+  },
+  "ground1_2": {
+   "file": "normals/ground1_2.webp",
+   "strength": 1.5
+  },
+  "ground1_6": {
+   "file": "normals/ground1_6.webp",
+   "strength": 1.5
+  },
+  "key01_3": {
+   "file": "normals/key01_3.webp",
+   "strength": 1.15
+  },
+  "key02_1": {
+   "file": "normals/key02_1.webp",
+   "strength": 1.15
+  },
+  "key02_2": {
+   "file": "normals/key02_2.webp",
+   "strength": 1.15
+  },
+  "key03_1": {
+   "file": "normals/key03_1.webp",
+   "strength": 1.15
+  },
+  "key03_2": {
+   "file": "normals/key03_2.webp",
+   "strength": 1.15
+  },
+  "key03_3": {
+   "file": "normals/key03_3.webp",
+   "strength": 1.15
+  },
+  "light1_4": {
+   "file": "normals/light1_4.webp",
+   "strength": 0.7
+  },
+  "light1_5": {
+   "file": "normals/light1_5.webp",
+   "strength": 0.7
+  },
+  "light1_7": {
+   "file": "normals/light1_7.webp",
+   "strength": 0.7
+  },
+  "light3_6": {
+   "file": "normals/light3_6.webp",
+   "strength": 0.7
+  },
+  "light3_7": {
+   "file": "normals/light3_7.webp",
+   "strength": 0.7
+  },
+  "light3_8": {
+   "file": "normals/light3_8.webp",
+   "strength": 0.7
+  },
+  "m5_3": {
+   "file": "normals/m5_3.webp",
+   "strength": 1.2
+  },
+  "m5_5": {
+   "file": "normals/m5_5.webp",
+   "strength": 1.2
+  },
+  "m5_8": {
+   "file": "normals/m5_8.webp",
+   "strength": 1.2
+  },
+  "med100": {
+   "file": "normals/med100.webp",
+   "strength": 1.15
+  },
+  "med3_0": {
+   "file": "normals/med3_0.webp",
+   "strength": 1.15
+  },
+  "med3_1": {
+   "file": "normals/med3_1.webp",
+   "strength": 1.15
+  },
+  "metal6_3": {
+   "file": "normals/metal6_3.webp",
+   "strength": 1.15
+  },
+  "metal6_4": {
+   "file": "normals/metal6_4.webp",
+   "strength": 1.15
+  },
+  "metalt2_6": {
+   "file": "normals/metalt2_6.webp",
+   "strength": 1.45
+  },
+  "metalt2_8": {
+   "file": "normals/metalt2_8.webp",
+   "strength": 1.45
+  },
+  "mmetal1_1": {
+   "file": "normals/mmetal1_1.webp",
+   "strength": 1.2
+  },
+  "mmetal1_2": {
+   "file": "normals/mmetal1_2.webp",
+   "strength": 1.2
+  },
+  "mmetal1_5": {
+   "file": "normals/mmetal1_5.webp",
+   "strength": 1.5
+  },
+  "mmetal1_7": {
+   "file": "normals/mmetal1_7.webp",
+   "strength": 1.2
+  },
+  "mmetal1_8": {
+   "file": "normals/mmetal1_8.webp",
+   "strength": 1.2
+  },
+  "mswtch_3": {
+   "file": "normals/mswtch_3.webp",
+   "strength": 1.15
+  },
+  "mswtch_4": {
+   "file": "normals/mswtch_4.webp",
+   "strength": 1.15
+  },
+  "nmetal2_1": {
+   "file": "normals/nmetal2_1.webp",
+   "strength": 1.4
+  },
+  "nmetal2_6": {
+   "file": "normals/nmetal2_6.webp",
+   "strength": 1.4
+  },
+  "rock0sid": {
+   "file": "normals/rock0sid.webp",
+   "strength": 1.5
+  },
+  "rock1_2": {
+   "file": "normals/rock1_2.webp",
+   "strength": 1.5
+  },
+  "rock1sid": {
+   "file": "normals/rock1sid.webp",
+   "strength": 1.5
+  },
+  "rock4_1": {
+   "file": "normals/rock4_1.webp",
+   "strength": 1.5
+  },
+  "rock4_2": {
+   "file": "normals/rock4_2.webp",
+   "strength": 1.5
+  },
+  "rockettop": {
+   "file": "normals/rockettop.webp",
+   "strength": 1.5
+  },
+  "rune1_6": {
+   "file": "normals/rune1_6.webp",
+   "strength": 1.15
+  },
+  "rune1_7": {
+   "file": "normals/rune1_7.webp",
+   "strength": 1.15
+  },
+  "rune2_1": {
+   "file": "normals/rune2_1.webp",
+   "strength": 1.15
+  },
+  "rune2_2": {
+   "file": "normals/rune2_2.webp",
+   "strength": 1.15
+  },
+  "rune2_3": {
+   "file": "normals/rune2_3.webp",
+   "strength": 1.15
+  },
+  "rune2_4": {
+   "file": "normals/rune2_4.webp",
+   "strength": 1.15
+  },
+  "rune_a": {
+   "file": "normals/rune_a.webp",
+   "strength": 1.15
+  },
+  "sfloor4_2": {
+   "file": "normals/sfloor4_2.webp",
+   "strength": 1.5
+  },
+  "sfloor4_5": {
+   "file": "normals/sfloor4_5.webp",
+   "strength": 1.15
+  },
+  "shot0sid": {
+   "file": "normals/shot0sid.webp",
+   "strength": 1.15
+  },
+  "shot0top": {
+   "file": "normals/shot0top.webp",
+   "strength": 1.15
+  },
+  "shot1sid": {
+   "file": "normals/shot1sid.webp",
+   "strength": 1.15
+  },
+  "shot1top": {
+   "file": "normals/shot1top.webp",
+   "strength": 1.15
+  },
+  "skill0": {
+   "file": "normals/skill0.webp",
+   "strength": 1.15
+  },
+  "skill1": {
+   "file": "normals/skill1.webp",
+   "strength": 1.15
+  },
+  "skill2": {
+   "file": "normals/skill2.webp",
+   "strength": 1.15
+  },
+  "skill3": {
+   "file": "normals/skill3.webp",
+   "strength": 1.15
+  },
+  "slip1": {
+   "file": "normals/slip1.webp",
+   "strength": 1.15
+  },
+  "slipbotsd": {
+   "file": "normals/slipbotsd.webp",
+   "strength": 1.15
+  },
+  "sliplite": {
+   "file": "normals/sliplite.webp",
+   "strength": 0.7
+  },
+  "slipside": {
+   "file": "normals/slipside.webp",
+   "strength": 0.7
+  },
+  "sliptopsd": {
+   "file": "normals/sliptopsd.webp",
+   "strength": 1.15
+  },
+  "switch_1": {
+   "file": "normals/switch_1.webp",
+   "strength": 1.15
+  },
+  "swtch1_1": {
+   "file": "normals/swtch1_1.webp",
+   "strength": 1.15
+  },
+  "tech01_1": {
+   "file": "normals/tech01_1.webp",
+   "strength": 1.15
+  },
+  "tech01_6": {
+   "file": "normals/tech01_6.webp",
+   "strength": 1.15
+  },
+  "tech01_7": {
+   "file": "normals/tech01_7.webp",
+   "strength": 1.15
+  },
+  "tech04_3": {
+   "file": "normals/tech04_3.webp",
+   "strength": 1.15
+  },
+  "tech07_2": {
+   "file": "normals/tech07_2.webp",
+   "strength": 1.15
+  },
+  "tech08_1": {
+   "file": "normals/tech08_1.webp",
+   "strength": 1.15
+  },
+  "tech09_3": {
+   "file": "normals/tech09_3.webp",
+   "strength": 1.15
+  },
+  "tech10_1": {
+   "file": "normals/tech10_1.webp",
+   "strength": 1.2
+  },
+  "tech10_3": {
+   "file": "normals/tech10_3.webp",
+   "strength": 1.15
+  },
+  "tech11_2": {
+   "file": "normals/tech11_2.webp",
+   "strength": 1.15
+  },
+  "tlight01": {
+   "file": "normals/tlight01.webp",
+   "strength": 0.7
+  },
+  "tlight02": {
+   "file": "normals/tlight02.webp",
+   "strength": 0.7
+  },
+  "tlight07": {
+   "file": "normals/tlight07.webp",
+   "strength": 0.7
+  },
+  "tlight08": {
+   "file": "normals/tlight08.webp",
+   "strength": 0.7
+  },
+  "tlight10": {
+   "file": "normals/tlight10.webp",
+   "strength": 0.7
+  },
+  "tlight11": {
+   "file": "normals/tlight11.webp",
+   "strength": 0.7
+  },
+  "twall1_1": {
+   "file": "normals/twall1_1.webp",
+   "strength": 1.15
+  },
+  "twall1_2": {
+   "file": "normals/twall1_2.webp",
+   "strength": 1.15
+  },
+  "twall2_1": {
+   "file": "normals/twall2_1.webp",
+   "strength": 1.15
+  },
+  "twall2_2": {
+   "file": "normals/twall2_2.webp",
+   "strength": 1.15
+  },
+  "twall2_3": {
+   "file": "normals/twall2_3.webp",
+   "strength": 1.15
+  },
+  "twall3_1": {
+   "file": "normals/twall3_1.webp",
+   "strength": 1.15
+  },
+  "twall5_1": {
+   "file": "normals/twall5_1.webp",
+   "strength": 1.15
+  },
+  "uwall1_2": {
+   "file": "normals/uwall1_2.webp",
+   "strength": 1.5
+  },
+  "vine1_2": {
+   "file": "normals/vine1_2.webp",
+   "strength": 1.5
+  },
+  "wgrnd1_5": {
+   "file": "normals/wgrnd1_5.webp",
+   "strength": 1.5
+  },
+  "wgrnd1_6": {
+   "file": "normals/wgrnd1_6.webp",
+   "strength": 1.5
+  },
+  "wiz1_1": {
+   "file": "normals/wiz1_1.webp",
+   "strength": 1.2
+  },
+  "wiz1_4": {
+   "file": "normals/wiz1_4.webp",
+   "strength": 1.5
+  },
+  "wizmet1_1": {
+   "file": "normals/wizmet1_1.webp",
+   "strength": 1.2
+  },
+  "wizmet1_2": {
+   "file": "normals/wizmet1_2.webp",
+   "strength": 1.2
+  },
+  "wizmet1_3": {
+   "file": "normals/wizmet1_3.webp",
+   "strength": 1.2
+  },
+  "wizmet1_7": {
+   "file": "normals/wizmet1_7.webp",
+   "strength": 1.5
+  },
+  "wizmet1_8": {
+   "file": "normals/wizmet1_8.webp",
+   "strength": 1.2
+  },
+  "wizwood1_3": {
+   "file": "normals/wizwood1_3.webp",
+   "strength": 1.5
+  },
+  "wizwood1_4": {
+   "file": "normals/wizwood1_4.webp",
+   "strength": 1.2
+  },
+  "wizwood1_5": {
+   "file": "normals/wizwood1_5.webp",
+   "strength": 1.2
+  },
+  "wizwood1_7": {
+   "file": "normals/wizwood1_7.webp",
+   "strength": 1.2
+  },
+  "wizwood1_8": {
+   "file": "normals/wizwood1_8.webp",
+   "strength": 1.2
+  },
+  "wkey02_1": {
+   "file": "normals/wkey02_1.webp",
+   "strength": 1.15
+  },
+  "wkey02_2": {
+   "file": "normals/wkey02_2.webp",
+   "strength": 1.15
+  },
+  "wmet2_1": {
+   "file": "normals/wmet2_1.webp",
+   "strength": 1.4
+  },
+  "wmet2_3": {
+   "file": "normals/wmet2_3.webp",
+   "strength": 1.2
+  },
+  "wmet3_1": {
+   "file": "normals/wmet3_1.webp",
+   "strength": 1.45
+  },
+  "wmet4_3": {
+   "file": "normals/wmet4_3.webp",
+   "strength": 1.45
+  },
+  "wmet4_4": {
+   "file": "normals/wmet4_4.webp",
+   "strength": 1.4
+  },
+  "wmet4_5": {
+   "file": "normals/wmet4_5.webp",
+   "strength": 1.4
+  },
+  "wmet4_6": {
+   "file": "normals/wmet4_6.webp",
+   "strength": 1.4
+  },
+  "wmet4_7": {
+   "file": "normals/wmet4_7.webp",
+   "strength": 1.2
+  },
+  "wmet4_8": {
+   "file": "normals/wmet4_8.webp",
+   "strength": 1.2
+  },
+  "wood1_1": {
+   "file": "normals/wood1_1.webp",
+   "strength": 1.2
+  },
+  "woodflr1_2": {
+   "file": "normals/woodflr1_2.webp",
+   "strength": 1.2
+  },
+  "woodflr1_4": {
+   "file": "normals/woodflr1_4.webp",
+   "strength": 1.2
+  }
  }
 }
