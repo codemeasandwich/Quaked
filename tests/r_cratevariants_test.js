@@ -1,4 +1,4 @@
-import { R_CratePlan, R_IsCrateSide, CRATE_BOXES, CRATE_ODDS, CRATE_COMMON } from '../src/r_cratevariants.js';
+import { R_CrateSetSeed, R_CratePlan, R_IsCrateSide, CRATE_BOXES, CRATE_ODDS, CRATE_COMMON } from '../src/r_cratevariants.js';
 
 function assertEqual( actual, expected, message ) {
 
@@ -19,6 +19,26 @@ function crate( x, y ) {
 	];
 
 }
+
+R_CrateSetSeed( 12345 );
+
+Deno.test( 'a different seed makes different crates change', () => {
+
+	const faces = crate( 0, 0 );
+	let differs = 0;
+	for ( let i = 0; i < 400; i ++ ) {
+
+		R_CrateSetSeed( i );
+		const a = JSON.stringify( R_CratePlan( 'e1m1', faces, 2, [] ) );
+		R_CrateSetSeed( i + 1000 );
+		if ( a !== JSON.stringify( R_CratePlan( 'e1m1', faces, 2, [] ) ) ) differs ++;
+
+	}
+
+	R_CrateSetSeed( 12345 );
+	assertEqual( differs > 50, true, 'seeds differ: ' + differs );
+
+} );
 
 Deno.test( 'crate sides are told by name', () => {
 

@@ -1300,10 +1300,11 @@ void main() {
 			float dist = length( toP );
 			float cone = smoothstep( uSpotCone.x, uSpotCone.y, dot( toP / max( dist, 1.0 ), uSpotDir ) );
 			if ( cone <= 0.0 ) continue;
-			beam += uSpotCol * cone / ( 1.0 + dist * dist / ( 300.0 * 300.0 ) );
+			// thickest near the lamp, thinning out with distance: a faint shaft, not a veil
+			beam += uSpotCol * cone * cone / ( 1.0 + dist * dist / ( 200.0 * 200.0 ) );
 		}
 		float phase = henyeyGreenstein( dot( dirV, uSpotDir ), 0.5 );
-		result += beam * ds * 0.000006 * phase;
+		result += beam * ds * 0.0000022 * phase;
 	}
 
 	gl_FragColor = vec4( result + acc * uScatter, 1.0 );
@@ -1664,7 +1665,7 @@ void main() {
 		// (tinted by the surface's own colour, so stone stays stone and does not
 		// wash out to grey where a light falls on it)
 		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 1.3 + 0.12 * tint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 1.3 + 0.3 * tint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {

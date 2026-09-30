@@ -20,6 +20,16 @@ export const CRATE_BOXES = [
 // sides alike
 export const CRATE_COMMON = [ 'crate_eagle', 'crate_bolt', 'crate_skull' ];
 
+// chosen afresh each time the game starts (each page load), and kept for the whole session so
+// a level looks the same on every visit and from both sides of a level crossing
+let sessionSeed = ( Math.random() * 0xffffffff ) >>> 0;
+
+export function R_CrateSetSeed( seed ) {
+
+	sessionSeed = seed >>> 0;
+
+}
+
 export function R_IsCrateSide( name ) {
 
 	return /^crate\d_side$/.test( name );
@@ -97,7 +107,7 @@ export function R_CratePlan( mapName, faces, odds = CRATE_ODDS, common = CRATE_C
 
 		}
 
-		const key = mapName + ':' + c.join( ',' );
+		const key = sessionSeed + ':' + mapName + ':' + c.join( ',' );
 		const h = hash( key );
 		if ( h % odds === 0 ) {
 
