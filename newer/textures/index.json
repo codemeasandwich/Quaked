@@ -1,5 +1,5 @@
 {
- "version": 2026093045,
+ "version": 2026093047,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -424,7 +424,8 @@
   },
   "+1light01": {
    "file": "normals/p_1light01.webp",
-   "strength": 1.45
+   "strength": 1.45,
+   "cap": 1.1
   },
   "+1planet": {
    "file": "normals/p_1planet.webp",
@@ -464,7 +465,8 @@
   },
   "+2light01": {
    "file": "normals/p_2light01.webp",
-   "strength": 1.45
+   "strength": 1.45,
+   "cap": 1.1
   },
   "+2planet": {
    "file": "normals/p_2planet.webp",
@@ -504,7 +506,8 @@
   },
   "+3planet": {
    "file": "normals/p_3planet.webp",
-   "strength": 0.7
+   "strength": 0.7,
+   "cap": 1.1
   },
   "+3shoot": {
    "file": "normals/p_3shoot.webp",
