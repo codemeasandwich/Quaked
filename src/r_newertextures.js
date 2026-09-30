@@ -8,8 +8,9 @@
 // already uses.  The normal map made from the old pixels is dropped so that the
 // next frame makes one from the new ones.
 //
-// Textures that have glowing (fullbright) texels are left alone: their glow is a
-// separate map that the new picture would double.
+// Textures with glowing (fullbright) texels keep their glow: the glow is a separate
+// map (the picture's glowing part, drawn at full brightness whatever the light), so
+// the original glowing area, enlarged, picks the glowing part out of the new picture.
 
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
 
@@ -67,7 +68,7 @@ function loadPicture( file ) {
 
 export function R_NewerTextureUpgrade( name, texture ) {
 
-	if ( texture == null || texture._fullbright != null ) return;
+	if ( texture == null ) return;
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 ) return;
 	if ( texture.userData == null || texture.userData.newerPicture === true || texture.userData.newerPending === true ) return;
 	texture.userData.newerPending = true;
@@ -83,9 +84,23 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		texture.userData.newerPending = false;
 		if ( pic == null ) return;
 
+		let data = pic.data;
+
+		// the glowing part: where the original glowed, enlarged smoothly
+		const fb = texture._fullbright;
+		if ( fb != null && fb.image != null && fb.image.data != null && typeof document !== 'undefined' ) {
+
+			const split = splitGlow( fb.image, pic );
+			data = split.diffuse;
+			fb.dispose();
+			fb.image = { data: split.glow, width: pic.width, height: pic.height };
+			fb.needsUpdate = true;
+
+		}
+
 		// the very same texture, with more pixels
 		texture.dispose();
-		texture.image = { data: pic.data, width: pic.width, height: pic.height };
+		texture.image = { data, width: pic.width, height: pic.height };
 		texture.userData.newerPicture = true;
 		texture.needsUpdate = true;
 
@@ -134,5 +149,53 @@ export function R_NewerTexturesForModel( model ) {
 		R_NewerTextureUpgrade( t.name, t.gl_texture );
 
 	}
+
+}
+
+// the new picture, as [ the lit part, the glowing part ] the way the loader splits a
+// texture with fullbright texels: the glowing pixels are black in the lit part
+function splitGlow( fbImage, pic ) {
+
+	const w = fbImage.width, h = fbImage.height;
+	const small = document.createElement( 'canvas' );
+	small.width = w;
+	small.height = h;
+	const sctx = small.getContext( '2d' );
+	const mask = sctx.createImageData( w, h );
+	for ( let i = 0; i < w * h; i ++ ) {
+
+		const on = fbImage.data[ i * 4 + 3 ] > 0 ? 255 : 0;
+		mask.data[ i * 4 ] = mask.data[ i * 4 + 1 ] = mask.data[ i * 4 + 2 ] = on;
+		mask.data[ i * 4 + 3 ] = 255;
+
+	}
+
+	sctx.putImageData( mask, 0, 0 );
+
+	const big = document.createElement( 'canvas' );
+	big.width = pic.width;
+	big.height = pic.height;
+	const bctx = big.getContext( '2d', { willReadFrequently: true } );
+	bctx.imageSmoothingEnabled = true;
+	bctx.imageSmoothingQuality = 'high';
+	bctx.drawImage( small, 0, 0, pic.width, pic.height );
+	const grown = bctx.getImageData( 0, 0, pic.width, pic.height ).data;
+
+	const diffuse = new Uint8Array( pic.data );
+	const glow = new Uint8Array( pic.data.length );
+
+	for ( let i = 0; i < pic.width * pic.height; i ++ ) {
+
+		if ( grown[ i * 4 ] < 128 ) continue;
+
+		glow[ i * 4 ] = pic.data[ i * 4 ];
+		glow[ i * 4 + 1 ] = pic.data[ i * 4 + 1 ];
+		glow[ i * 4 + 2 ] = pic.data[ i * 4 + 2 ];
+		glow[ i * 4 + 3 ] = 255;
+		diffuse[ i * 4 ] = diffuse[ i * 4 + 1 ] = diffuse[ i * 4 + 2 ] = 0;
+
+	}
+
+	return { diffuse, glow };
 
 }
