@@ -712,6 +712,8 @@ function M_SinglePlayer_Draw() {
 	if ( extPic != null ) {
 
 		M_DrawTransPic( 72, 32, extPic );
+		// an older sheet (a cached copy) has four rows: Level Select is added as text
+		if ( extPic.height < 96 ) M_Print( 72 + 8, 32 + 4 * 20 + 6, 'Level Select' );
 
 	} else {
 

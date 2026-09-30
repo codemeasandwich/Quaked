@@ -100,7 +100,7 @@ async function main() {
 		// Single player menu with Newer Game added, in the game's own lettering
 		try {
 
-			await Draw_CachePicFromPNG( 'gfx/sp_menu_ext.lmp', 'spmenu.png' );
+			await Draw_CachePicFromPNG( 'gfx/sp_menu_ext.lmp', 'spmenu.png?v=2' );
 
 		} catch ( e ) {
 
