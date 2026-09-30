@@ -1924,16 +1924,26 @@ function disposeTargets() {
 
 }
 
+// Multisampling is a large part of the cost of a picture: it is given up in steps as the
+// picture gets smaller (the smaller picture is scaled up smoothly anyway)
+function samplesFor( scale ) {
+
+	return scale >= 0.85 ? 4 : scale >= 0.65 ? 2 : 0;
+
+}
+
 function ensureTargets( width, height ) {
 
-	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height ) return;
+	const samples = samplesFor( dyn.scale );
+	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples ) return;
 
 	disposeTargets();
 	gpu.width = width;
 	gpu.height = height;
+	gpu.samples = samples;
 
 	const depth = new THREE.DepthTexture( width, height );
-	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples: 4, count: 2 } );
+	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples, count: 2 } );
 	gpu.volume = makeRT( Math.ceil( width / 2 ), Math.ceil( height / 2 ) );
 
 	let w = Math.ceil( width / 2 ), h = Math.ceil( height / 2 );
