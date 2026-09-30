@@ -203,6 +203,21 @@ export function COM_FindFile( filename ) {
 
 }
 
+// the names of the files in the packs that start with prefix (lower case)
+export function COM_ListFiles( prefix ) {
+
+	const out = [];
+	for ( const sp of com_searchpaths ) {
+
+		if ( ! sp.pack ) continue;
+		for ( const f of sp.pack.files ) if ( f.name.indexOf( prefix ) === 0 ) out.push( f.name );
+
+	}
+
+	return out;
+
+}
+
 /*
 =================
 COM_SetNewerPack

@@ -13,11 +13,11 @@
 
 import { cvar_t } from './cvar.js';
 import { sv, svs } from './server.js';
-import { COM_FindFile } from './pak.js';
+import { COM_FindFile, COM_ListFiles } from './pak.js';
 import { Ent_Parse } from './lit.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.js';
-import { PR_GetString, EDICT_NUM, pr_global_struct } from './progs.js';
-import { ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
+import { PR_GetString, EDICT_NUM, EDICT_TO_PROG, pr_global_struct } from './progs.js';
+import { ED_Alloc, ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
 import { COM_Parse, com_token } from './common.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
@@ -325,6 +325,248 @@ function SV_RestoreLevel( snap ) {
 
 }
 
+
+//============================================================================
+// Monsters that give chase follow through the crossing
+//============================================================================
+//
+// Whatever is hunting the player close behind them when they cross is taken out of the
+// level they leave and comes through the doorway after them, a little behind, at about
+// the pace they were keeping.  (A monster whose model the next level has not loaded
+// cannot be shown there, and stays behind.)
+
+const FOLLOW_RANGE = 700;
+const FOLLOW_MAX = 6;
+const FOLLOW_SPEED = 200;
+const FOLLOW_STAGGER = 0.35;
+const FOLLOW_GIVE_UP = 3;
+const NO_FOLLOW = /^monster_(boss|oldone|shalrath_gate|fish|tarbaby_spawner)$/;
+let arrivals = null;
+
+function SV_TakeFollowers( player, cur, t ) {
+
+	if ( t.kind === 'pit' ) return [];
+
+	const me = EDICT_TO_PROG( player );
+	const found = [];
+
+	for ( let i = svs.maxclients + 1; i < sv.num_edicts; i ++ ) {
+
+		const ed = EDICT_NUM( i );
+		if ( ed.free ) continue;
+
+		const cls = PR_GetString( ed.v.classname );
+		if ( cls.indexOf( 'monster_' ) !== 0 || NO_FOLLOW.test( cls ) ) continue;
+		if ( ! ( ed.v.health > 0 ) || ed.v.takedamage === 0 || ed.v.enemy !== me ) continue;
+		if ( ( ed.v.flags | 0 ) & 2 ) continue; // FL_SWIM
+
+		const rel = [ ed.v.origin[ 0 ] - cur[ 0 ], ed.v.origin[ 1 ] - cur[ 1 ], ed.v.origin[ 2 ] - cur[ 2 ] ];
+		const dist = Math.hypot( rel[ 0 ], rel[ 1 ], rel[ 2 ] );
+		if ( dist <= FOLLOW_RANGE ) found.push( { ed, rel, dist } );
+
+	}
+
+	found.sort( ( a, b ) => a.dist - b.dist );
+	const list = [];
+
+	for ( const f of found.slice( 0, FOLLOW_MAX ) ) {
+
+		const lines = [];
+		ED_Write( lines, f.ed );
+		const r = t.direction( f.rel );
+		list.push( { text: lines.join( '\n' ), rel: r, delay: f.dist / FOLLOW_SPEED + list.length * FOLLOW_STAGGER, yaw: f.ed.v.angles[ 1 ] } );
+		ED_Free( f.ed );
+
+	}
+
+	// they are no longer this level's to kill
+	pr_global_struct.total_monsters -= list.length;
+	return list;
+
+}
+
+
+// A monster coming through from another level may be one this level never loaded: its model and
+// its sounds are added to the level while it is still loading (nothing can be added later).
+function SV_PrecacheFollowers( followers ) {
+
+	if ( sv.model_precache == null || sv.sound_precache == null ) return;
+
+	const add = ( list, name ) => {
+
+		for ( let i = 0; i < 256 && i < list.length; i ++ ) {
+
+			if ( list[ i ] == null ) {
+
+				list[ i ] = name;
+				return true;
+
+			}
+
+			if ( list[ i ] === name ) return false;
+
+		}
+
+		return false;
+
+	};
+
+	for ( const f of followers ) {
+
+		const m = /"model"\s+"([^"]+)"/.exec( f.text );
+		if ( m === null ) continue;
+
+		if ( add( sv.model_precache, m[ 1 ] ) ) {
+
+			const i = sv.model_precache.indexOf( m[ 1 ] );
+			sv.models[ i ] = models != null && models.Mod_ForName ? models.Mod_ForName( m[ 1 ], true ) : null;
+
+		}
+
+		// the monster's sounds: everything in the folder named after it (soldier/, knight/ ...)
+		const dir = /^progs\/([a-z]+)/.exec( m[ 1 ] );
+		if ( dir === null ) continue;
+		for ( const file of COM_ListFiles( 'sound/' + dir[ 1 ] + '/' ) ) {
+
+			add( sv.sound_precache, file.substring( 6 ) );
+
+		}
+
+	}
+
+}
+
+// in the new level: the followers are lined up to come through
+function SV_QueueFollowers( arrival ) {
+
+	arrivals = null;
+	if ( arrival.followers === undefined || arrival.followers.length === 0 ) return;
+
+	arrivals = { at: sv.time, t: arrival.transform, list: arrival.followers.map( ( f ) => ( { ...f, placed: false, tries: 0 } ) ) };
+
+}
+
+function SV_ModelIndex( name ) {
+
+	if ( sv.model_precache == null ) return - 1;
+	for ( let i = 0; i < sv.model_precache.length; i ++ ) {
+
+		if ( sv.model_precache[ i ] == null ) break;
+		if ( sv.model_precache[ i ] === name ) return i;
+
+	}
+
+	return - 1;
+
+}
+
+function SV_PlaceFollowers( player ) {
+
+	const a = arrivals;
+	if ( a === null ) return;
+
+	const t = a.t;
+	const fwd = t.direction( t.through ); // the way on, in this level
+	const side = [ - fwd[ 1 ], fwd[ 0 ], 0 ];
+	let waiting = 0;
+
+	for ( const f of a.list ) {
+
+		if ( f.placed ) continue;
+		if ( sv.time - a.at < f.delay ) {
+
+			waiting ++;
+			continue;
+
+		}
+
+		const data = blockData( f.text );
+		if ( data === null ) {
+
+			f.placed = true;
+			continue;
+
+		}
+
+		const ed = ED_Alloc();
+		ED_ParseEdict( data, ed );
+
+		const index = SV_ModelIndex( PR_GetString( ed.v.model ) );
+		if ( index < 0 ) {
+
+			// this level has not loaded that monster
+			ED_Free( ed );
+			f.placed = true;
+			continue;
+
+		}
+
+		// just in front of the doorway, where they were across from the player
+		const lat = Math.max( - 56, Math.min( 56, f.rel[ 0 ] * side[ 0 ] + f.rel[ 1 ] * side[ 1 ] ) );
+		const base = [ t.dest[ 0 ] + fwd[ 0 ] * 28 + side[ 0 ] * lat, t.dest[ 1 ] + fwd[ 1 ] * 28 + side[ 1 ] * lat, t.dest[ 2 ] ];
+		const yaw = t.angle( f.yaw );
+
+		ed.v.modelindex = index;
+		ed.v.enemy = EDICT_TO_PROG( player );
+		ed.v.goalentity = ed.v.enemy;
+		ed.v.oldenemy = 0;
+		ed.v.movetarget = 0;
+		ed.v.owner = 0;
+		ed.v.chain = 0;
+		ed.v.nextthink = sv.time + 0.1;
+		ed.v.attack_finished = 0;
+		ed.v.pain_finished = 0;
+		ed.v.search_time = 0;
+		ed.v.velocity = [ 0, 0, 0 ];
+		ed.v.angles = [ 0, yaw, 0 ];
+		ed.v.ideal_yaw = yaw;
+		ed.v.flags = ( ed.v.flags | 0 ) & ~ 512; // not on the ground until it is found to be
+
+		// the first free spot on from the doorway
+		let ok = false;
+		for ( let d = 0; d <= 96 && ok === false; d += 8 ) {
+
+			for ( const dz of [ 0, 8, 16, 32 ] ) {
+
+				ed.v.origin = [ base[ 0 ] + fwd[ 0 ] * d, base[ 1 ] + fwd[ 1 ] * d, base[ 2 ] + dz ];
+				if ( SV_TestEntityPosition( ed ) === null ) {
+
+					ok = true;
+					break;
+
+				}
+
+			}
+
+		}
+
+		if ( ok === false ) {
+
+			// the way is blocked for now: try again in a moment
+			ED_Free( ed );
+			if ( ++ f.tries * 0.1 < FOLLOW_GIVE_UP ) {
+
+				waiting ++;
+				continue;
+
+			}
+
+			f.placed = true;
+			continue;
+
+		}
+
+		ed.v.oldorigin = [ ed.v.origin[ 0 ], ed.v.origin[ 1 ], ed.v.origin[ 2 ] ];
+		SV_LinkEdict( ed, false );
+		pr_global_struct.total_monsters += 1;
+		f.placed = true;
+
+	}
+
+	if ( waiting === 0 ) arrivals = null;
+
+}
+
 //============================================================================
 // Archways: the crossing is at the arch, not at the end of the tunnel
 //============================================================================
@@ -558,6 +800,8 @@ export function SV_SeamlessSetup() {
 	const here = SV_LevelLinks( sv.name );
 	if ( here === null ) return;
 
+	if ( arriving && pending.followers !== undefined ) SV_PrecacheFollowers( pending.followers );
+
 	// a level we have been in: as we left it
 	const state = arriving ? levelStates.get( sv.name ) : undefined;
 	if ( state !== undefined ) SV_RestoreLevel( state );
@@ -669,12 +913,14 @@ After the physics each frame: has the player gone through an exit?
 export function SV_SeamlessFrame() {
 
 	if ( pending !== null ) return;
-	if ( crossings.length === 0 && pads.length === 0 && teleport === null ) return;
+	if ( crossings.length === 0 && pads.length === 0 && teleport === null && arrivals === null ) return;
 
 	const client = svs.clients[ 0 ];
 	if ( client == null || client.edict == null ) return;
 
 	const ent = client.edict;
+
+	if ( arrivals !== null && holding === null ) SV_PlaceFollowers( ent );
 
 	// near an exit: the level behind it is got ready now, a little each frame
 	if ( warmLevelHook !== undefined && teleport === null ) SV_WarmNearExits( ent );
@@ -693,6 +939,9 @@ export function SV_SeamlessFrame() {
 			const t = c.transform;
 			const va = ent.v.v_angle;
 
+			// whatever is chasing the player comes too
+			const followers = SV_TakeFollowers( ent, cur, t );
+
 			// the level is left as it is: monsters, items, doors...
 			levelStates.set( sv.name, SV_CaptureLevel() );
 
@@ -701,6 +950,8 @@ export function SV_SeamlessFrame() {
 				index: crossings.indexOf( c ),
 				pit: t.kind === 'pit',
 				viaBack: c.back === true,
+				followers,
+				transform: t,
 				origin: t.position( cur ),
 				velocity: t.direction( [ ent.v.velocity[ 0 ], ent.v.velocity[ 1 ], ent.v.velocity[ 2 ] ] ),
 				angles: [ va[ 0 ], t.angle( va[ 1 ] ), 0 ],
@@ -833,8 +1084,10 @@ export function SV_SeamlessPlacePlayer( ent ) {
 	const arrival = pending;
 	pending = null;
 	lastOrigin = null;
+	arrivals = null;
 
 	if ( arrival === null || arrival.map !== sv.name ) return;
+	SV_QueueFollowers( arrival );
 
 	const start = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];
 	ent.v.origin = arrival.origin;
@@ -931,6 +1184,7 @@ export function SV_SeamlessReset() {
 	R_TeleportFxReset();
 	pending = null;
 	holding = null;
+	arrivals = null;
 	lastOrigin = null;
 	metaCache.clear();
 	levelStates.clear();

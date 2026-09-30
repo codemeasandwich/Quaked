@@ -66,7 +66,7 @@ import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, 
 import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks } from './sv_seamless.js';
 import { R_NewerGame } from './r_anim.js';
 
-SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf } );
+SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf, Mod_ForName } );
 import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
 import { SV_Physics, SV_SetState, SV_SetCallbacks,
 	sv_maxvelocity, sv_gravity, sv_nostep, sv_friction, sv_edgefriction,
