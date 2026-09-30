@@ -1,5 +1,5 @@
 {
- "version": 2026093036,
+ "version": 2026093039,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -270,7 +270,17 @@
   "crate_dharma_hl": "crate_dharma_hl.webp",
   "crate_eagle": "crate_eagle.webp",
   "crate_bolt": "crate_bolt.webp",
-  "crate_skull": "crate_skull.webp"
+  "crate_skull": "crate_skull.webp",
+  "exit02_2": "exit02_2.webp",
+  "plat_stem": "plat_stem.webp",
+  "plat_top1": "plat_top1.webp",
+  "plat_top2": "plat_top2.webp",
+  "window1_3": "window1_3.webp",
+  "adoor03_3": "adoor03_3.webp",
+  "z_exit": "z_exit.webp",
+  "adoor03_6": "adoor03_6.webp",
+  "door05_3": "door05_3.webp",
+  "plat_side1": "plat_side1.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -1352,6 +1362,46 @@
   "crate_skull": {
    "file": "normals/crate_skull.webp",
    "strength": 1.3
+  },
+  "exit02_2": {
+   "file": "normals/exit02_2.webp",
+   "strength": 1.5
+  },
+  "plat_stem": {
+   "file": "normals/plat_stem.webp",
+   "strength": 1.15
+  },
+  "plat_top1": {
+   "file": "normals/plat_top1.webp",
+   "strength": 1.15
+  },
+  "plat_top2": {
+   "file": "normals/plat_top2.webp",
+   "strength": 1.6
+  },
+  "window1_3": {
+   "file": "normals/window1_3.webp",
+   "strength": 1.5
+  },
+  "adoor03_3": {
+   "file": "normals/adoor03_3.webp",
+   "strength": 1.2
+  },
+  "z_exit": {
+   "file": "normals/z_exit.webp",
+   "strength": 1.2
+  },
+  "adoor03_6": {
+   "file": "normals/adoor03_6.webp",
+   "strength": 1.15
+  },
+  "door05_3": {
+   "file": "normals/door05_3.webp",
+   "strength": 1.15
+  },
+  "plat_side1": {
+   "file": "normals/plat_side1.webp",
+   "strength": 1.15
   }
  }
 }
