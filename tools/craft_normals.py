@@ -37,6 +37,8 @@ TEX = os.path.join(ROOT, 'newer', 'textures')
 #   groove  how much dark lines are cut in;  bump  how much bright knobs stand out
 #   glow    how much glowing parts are flattened (0..1);  strength  how steep the relief is
 PROFILES = [
+    ( r'^(window03|dr07_1)', dict( bands=( .35, 1, 1.3, .9 ), groove=1.0, bump=.5, glow=.4, strength=1.5 ) ),  # stone wall with a window, rough stone
+    ( r'^(dr02_1)', dict( bands=( .5, 1, 1.2, 1 ), groove=.5, bump=.6, glow=0, strength=1.4 ) ),  # skull frame
     # the metal_2 sheet, by what each picture is
     ( r'^(metal4_[23]|metalt1_1|metalt2_[23]|metal6_)', dict( bands=( .5, 1, 1.2, 1 ), groove=.3, bump=.3, glow=.25, strength=1.45 ) ),  # skulls, snakes
     ( r'^(met5_2|metal1_1|metal1_2|metal1_7|metal4_[456]|metalt2_[15])', dict( bands=( 1, .9, .3, .1 ), groove=.2, bump=.6, glow=0, strength=1.4 ) ),  # pebbles, gunk, moss

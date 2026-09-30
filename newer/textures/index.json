@@ -1,5 +1,5 @@
 {
- "version": 2026093017,
+ "version": 2026093019,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -243,7 +243,11 @@
   "door02_2": "door02_2.webp",
   "door03_2": "door03_2.webp",
   "door04_1": "door04_1.webp",
-  "door04_2": "door04_2.webp"
+  "door04_2": "door04_2.webp",
+  "window03": "window03.webp",
+  "dr02_1": "dr02_1.webp",
+  "edoor01_1": "edoor01_1.webp",
+  "dr07_1": "dr07_1.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -1216,6 +1220,22 @@
   },
   "door04_2": {
    "file": "normals/door04_2.webp",
+   "strength": 1.15
+  },
+  "window03": {
+   "file": "normals/window03.webp",
+   "strength": 1.5
+  },
+  "dr07_1": {
+   "file": "normals/dr07_1.webp",
+   "strength": 1.5
+  },
+  "dr02_1": {
+   "file": "normals/dr02_1.webp",
+   "strength": 1.4
+  },
+  "edoor01_1": {
+   "file": "normals/edoor01_1.webp",
    "strength": 1.15
   }
  }
