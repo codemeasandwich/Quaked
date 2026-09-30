@@ -23,6 +23,7 @@ import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { r_newer_portals } from './r_anim.js';
+import { R_AddLevelRunner, R_MoveLevelRunner, R_RemoveLevelRunner, R_ClearLevelRunners } from './r_levelview.js';
 import { R_TeleportFxBegin, R_TeleportFxCapture, R_TeleportFxMode, R_TeleportOverlayShown, R_TeleportFxSnap, R_TeleportFxReset } from './r_teleportfx.js';
 import {
 	R_ParseBsp, R_ParseEntityLump, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
@@ -338,7 +339,7 @@ function SV_RestoreLevel( snap ) {
 const FOLLOW_RANGE = 700;
 const FOLLOW_MAX = 6;
 const FOLLOW_SPEED = 200;
-const FOLLOW_STAGGER = 0.35;
+const FOLLOW_STAGGER = 0.3;
 const FOLLOW_GIVE_UP = 3;
 const NO_FOLLOW = /^monster_(boss|oldone|shalrath_gate|fish|tarbaby_spawner)$/;
 let arrivals = null;
@@ -373,8 +374,25 @@ function SV_TakeFollowers( player, cur, t ) {
 
 		const lines = [];
 		ED_Write( lines, f.ed );
-		const r = t.direction( f.rel );
-		list.push( { text: lines.join( '\n' ), rel: r, delay: f.dist / FOLLOW_SPEED + list.length * FOLLOW_STAGGER, yaw: f.ed.v.angles[ 1 ] } );
+		const text = lines.join( '\n' );
+		const o = f.ed.v.origin;
+
+		// its run: straight to the doorway, to the spot across from the player that it was off to the side by
+		const side = t.tangent;
+		const lat = Math.max( - 56, Math.min( 56, f.rel[ 0 ] * side[ 0 ] + f.rel[ 1 ] * side[ 1 ] ) );
+		const from = [ o[ 0 ], o[ 1 ], o[ 2 ] ];
+		const to = [ cur[ 0 ] + side[ 0 ] * lat, cur[ 1 ] + side[ 1 ] * lat, o[ 2 ] ];
+		const run = Math.hypot( to[ 0 ] - from[ 0 ], to[ 1 ] - from[ 1 ] );
+		const earliest = list.length > 0 ? list[ list.length - 1 ].delay + FOLLOW_STAGGER : 0;
+
+		list.push( {
+			text, from, to, run,
+			delay: Math.max( run / FOLLOW_SPEED, earliest ),
+			heading: Math.atan2( to[ 1 ] - from[ 1 ], to[ 0 ] - from[ 0 ] ) * 180 / Math.PI,
+			model: ( /"model"\s+"([^"]+)"/.exec( text ) || [ '', '' ] )[ 1 ],
+			skin: parseInt( ( /"skin"\s+"(\d+)"/.exec( text ) || [ '', '0' ] )[ 1 ], 10 ),
+			classname: PR_GetString( f.ed.v.classname )
+		} );
 		ED_Free( f.ed );
 
 	}
@@ -436,13 +454,50 @@ function SV_PrecacheFollowers( followers ) {
 
 }
 
+
+// The player goes back through the doorway before the followers have all come through: the ones still
+// running are put back in the level they were running in, where they had got to.
+function SV_ReturnFollowers( map ) {
+
+	const a = arrivals;
+	arrivals = null;
+	if ( a === null ) return;
+
+	const snap = levelStates.get( map );
+	let n = 0;
+
+	for ( const f of a.list ) {
+
+		if ( f.runner !== null ) {
+
+			R_RemoveLevelRunner( f.runner );
+			f.runner = null;
+
+		}
+
+		if ( f.placed || snap === undefined || a.from !== map ) continue;
+
+		const k = f.delay > 0 ? Math.min( 1, ( sv.time - a.at ) / f.delay ) : 1;
+		const at = [ f.from[ 0 ] + ( f.to[ 0 ] - f.from[ 0 ] ) * k, f.from[ 1 ] + ( f.to[ 1 ] - f.from[ 1 ] ) * k, f.from[ 2 ] ];
+		snap.edicts.push( f.text.replace( /"origin"\s+"[^"]*"/, '"origin" "' + at.join( ' ' ) + '"' ) );
+		n ++;
+
+	}
+
+	if ( n > 0 ) snap.globals = snap.globals.replace( /("total_monsters"\s+")([^"]*)(")/, ( m, x, v, y ) => x + ( ( parseFloat( v ) || 0 ) + n ) + y );
+
+}
+
 // in the new level: the followers are lined up to come through
 function SV_QueueFollowers( arrival ) {
 
 	arrivals = null;
 	if ( arrival.followers === undefined || arrival.followers.length === 0 ) return;
 
-	arrivals = { at: sv.time, t: arrival.transform, list: arrival.followers.map( ( f ) => ( { ...f, placed: false, tries: 0 } ) ) };
+	arrivals = { at: sv.time, t: arrival.transform, from: arrival.fromMap, list: arrival.followers.map( ( f ) => ( { ...f, placed: false, tries: 0, runner: null } ) ) };
+
+	// until it gets here, each is seen through the doorway, running for it
+	for ( const f of arrivals.list ) f.runner = R_AddLevelRunner( arrival.fromMap, f.model, f.skin, f.classname, f.from, f.heading );
 
 }
 
@@ -467,16 +522,31 @@ function SV_PlaceFollowers( player ) {
 
 	const t = a.t;
 	const fwd = t.direction( t.through ); // the way on, in this level
-	const side = [ - fwd[ 1 ], fwd[ 0 ], 0 ];
 	let waiting = 0;
 
 	for ( const f of a.list ) {
 
 		if ( f.placed ) continue;
-		if ( sv.time - a.at < f.delay ) {
+		const age = sv.time - a.at;
+		if ( age < f.delay ) {
+
+			// still on the run, on the other side
+			if ( f.runner !== null ) {
+
+				const k = f.delay > 0 ? age / f.delay : 1;
+				R_MoveLevelRunner( f.runner, [ f.from[ 0 ] + ( f.to[ 0 ] - f.from[ 0 ] ) * k, f.from[ 1 ] + ( f.to[ 1 ] - f.from[ 1 ] ) * k, f.from[ 2 ] ], f.heading );
+
+			}
 
 			waiting ++;
 			continue;
+
+		}
+
+		if ( f.runner !== null ) {
+
+			R_RemoveLevelRunner( f.runner );
+			f.runner = null;
 
 		}
 
@@ -501,10 +571,10 @@ function SV_PlaceFollowers( player ) {
 
 		}
 
-		// just in front of the doorway, where they were across from the player
-		const lat = Math.max( - 56, Math.min( 56, f.rel[ 0 ] * side[ 0 ] + f.rel[ 1 ] * side[ 1 ] ) );
-		const base = [ t.dest[ 0 ] + fwd[ 0 ] * 28 + side[ 0 ] * lat, t.dest[ 1 ] + fwd[ 1 ] * 28 + side[ 1 ] * lat, t.dest[ 2 ] ];
-		const yaw = t.angle( f.yaw );
+		// where the run ends: at the doorway, stepping out of it
+		const at = t.position( f.to );
+		const base = [ at[ 0 ] + fwd[ 0 ] * 4, at[ 1 ] + fwd[ 1 ] * 4, at[ 2 ] ];
+		const yaw = t.angle( f.heading );
 
 		ed.v.modelindex = index;
 		ed.v.enemy = EDICT_TO_PROG( player );
@@ -563,7 +633,12 @@ function SV_PlaceFollowers( player ) {
 
 	}
 
-	if ( waiting === 0 ) arrivals = null;
+	if ( waiting === 0 ) {
+
+		arrivals = null;
+		R_ClearLevelRunners();
+
+	}
 
 }
 
@@ -939,6 +1014,9 @@ export function SV_SeamlessFrame() {
 			const t = c.transform;
 			const va = ent.v.v_angle;
 
+			// (followers still on their way back through the other way go back to where they were)
+			SV_ReturnFollowers( c.map );
+
 			// whatever is chasing the player comes too
 			const followers = SV_TakeFollowers( ent, cur, t );
 
@@ -951,6 +1029,7 @@ export function SV_SeamlessFrame() {
 				pit: t.kind === 'pit',
 				viaBack: c.back === true,
 				followers,
+				fromMap: sv.name,
 				transform: t,
 				origin: t.position( cur ),
 				velocity: t.direction( [ ent.v.velocity[ 0 ], ent.v.velocity[ 1 ], ent.v.velocity[ 2 ] ] ),
@@ -1185,6 +1264,7 @@ export function SV_SeamlessReset() {
 	pending = null;
 	holding = null;
 	arrivals = null;
+	R_ClearLevelRunners();
 	lastOrigin = null;
 	metaCache.clear();
 	levelStates.clear();

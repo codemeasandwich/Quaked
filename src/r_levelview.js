@@ -447,6 +447,98 @@ export function R_UpdateLevelViewEntities( camera, time ) {
 
 }
 
+
+//============================================================================
+// Runners: monsters seen on the far side of a doorway, on their way to it
+//============================================================================
+//
+// A monster that was hunting the player when they crossed is still in the level they left
+// (as far as the picture through the doorway is concerned) and runs for the doorway in a
+// straight line; the game makes it real when it gets there (see sv_seamless.js).
+
+const RUN_PREFIXES = [ 'run', 'runb', 'runc', 'rund', 'walk', 'fly', 'swim', 'stand' ];
+let runners = [];
+
+function R_AttachRunner( r, view ) {
+
+	const m = Mod_LoadForPreview( r.model );
+	const hdr = m != null && m.cache != null ? m.cache.data : null;
+	if ( hdr == null || hdr.posedata == null ) return;
+
+	const frames = hdr.frames || [];
+	let seq = null;
+	for ( const prefix of RUN_PREFIXES ) {
+
+		const list = [];
+		frames.forEach( ( f, i ) => {
+
+			if ( R_FramePrefix( f.name ) === prefix ) list.push( i );
+
+		} );
+		if ( list.length > 1 ) {
+
+			seq = list;
+			break;
+
+		}
+
+	}
+
+	const g = createGhost( { model: r.model, frame: seq !== null ? seq[ 0 ] : 0, skin: r.skin, origin: r.pos.slice(), angles: [ 0, r.yaw, 0 ], classname: r.classname, fromSnapshot: true }, view.world );
+	if ( g === null ) return;
+
+	g.seq = seq;
+	view.ghosts.push( g );
+	view.group.add( g.mesh );
+	r.g = g;
+	r.view = view;
+
+}
+
+function R_AttachRunners( view ) {
+
+	view.world = Mod_LoadForPreview( 'maps/' + view.map + '.bsp' );
+	for ( const r of runners ) if ( r.g == null && r.map === view.map ) R_AttachRunner( r, view );
+
+}
+
+// map: the level the monster is in (as the view knows it), pos/yaw in that level's coordinates
+export function R_AddLevelRunner( map, model, skin, classname, pos, yaw ) {
+
+	const r = { map, model, skin, classname, pos: pos.slice(), yaw, g: null, view: null };
+	runners.push( r );
+	for ( const v of views ) if ( v.map === map && r.g == null && v.world !== undefined ) R_AttachRunner( r, v );
+	return r;
+
+}
+
+export function R_MoveLevelRunner( r, pos, yaw ) {
+
+	if ( r.g == null ) return;
+	r.g.e.origin[ 0 ] = pos[ 0 ]; r.g.e.origin[ 1 ] = pos[ 1 ]; r.g.e.origin[ 2 ] = pos[ 2 ];
+	r.g.e.angles[ 1 ] = yaw;
+
+}
+
+export function R_RemoveLevelRunner( r ) {
+
+	runners = runners.filter( ( x ) => x !== r );
+	if ( r.g == null || r.view == null ) return;
+
+	r.view.ghosts = r.view.ghosts.filter( ( g ) => g !== r.g );
+	if ( r.g.mesh.parent != null ) r.g.mesh.parent.remove( r.g.mesh );
+	if ( r.g.e._aliasGeo != null ) r.g.e._aliasGeo.dispose();
+	r.g = null;
+
+}
+
+export function R_ClearLevelRunners() {
+
+	for ( const r of runners.slice() ) R_RemoveLevelRunner( r );
+	runners = [];
+
+}
+
 let snapshotSource = null;
 
 // how the levels you have been in were left (set by the renderer, which knows the server)
@@ -697,6 +789,7 @@ let setupGeneration = 0;
 export function R_ClearLevelViews() {
 
 	setupGeneration ++;
+	for ( const r of runners ) { r.g = null; r.view = null; } // they are attached again when the views are built
 
 	for ( const v of views ) v.dispose();
 	views = [];
@@ -782,6 +875,7 @@ function buildView( scene, c, i ) {
 	];
 
 	view.anchor = corner( ( o.a0 + o.a1 ) / 2, ( o.b0 + o.b1 ) / 2 );
+	view.map = c.map;
 
 	const portal = R_AddLevelPortal( scene,
 		[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],
@@ -791,6 +885,7 @@ function buildView( scene, c, i ) {
 	portal.crossing = i;
 
 	views.push( view );
+	R_AttachRunners( view );
 
 	R_PrewarmNormalMaps( model );
 
