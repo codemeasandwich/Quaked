@@ -1667,7 +1667,12 @@ void main() {
 		// (tinted by the surface's own colour, so stone stays stone and does not
 		// wash out to grey where a light falls on it)
 		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * 1.3 + 0.3 * tint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+		// the beam adds less to what is already bright (an enemy in it would wash out: a flat lift on a pale surface
+		// is grey), and its flat tint only lifts the darks
+		float sl = dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) );
+		float spotGain = 1.15 * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
+		float spotLift = 0.12 * ( 1.0 - smoothstep( 0.15, 0.6, sl ) );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + spotLift * tint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
