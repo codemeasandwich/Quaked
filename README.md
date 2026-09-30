@@ -96,6 +96,16 @@ The third-party enemy skin pack, its leftover extracted source textures and shad
 
 To try the result, serve the repository, reload the game, start **Newer Game**, and compare a soldier or ogre with **Newer enemies** on and off. A zombie or dog should keep its original skin in both cases. No game data or model geometry is changed.
 
+### Phones and tablets
+
+On a touch device the game shows on-screen controls. Held sideways the stick is on the left and the buttons on the right; held upright they sit in a panel along the bottom, with the status bar above it.
+
+- **Stick** (left): up and down aim, left and right turn. `touch_strafe 1` makes left and right sidestep instead; `touch_turn` and `touch_aim` set the turning speed.
+- **GO** (the big button in the bottom right corner): move forward. **FIRE** is straight above it, **JUMP** at 45 degrees up and to the left, and **WEAPON** to its left.
+- **WEAPON** slows the game right down (`host_timescale`, single player), blurs the picture and lists the weapons you hold; tap one to choose it, or tap outside the list to close it.
+- Dragging anywhere else on the screen looks around, and so does tilting the device. The pause button is at the top right.
+- Newer Game starts with a wider view on a phone: `fov` 100 upright and 120 sideways (until you set your own `fov`; New Game keeps 90).
+
 ### The Newer Game pack
 
 Newer Game's art and data (`newer/textures`, `newer/enemies`, `newer/hud`, and their `index.json` manifests) can be packed into one ordinary Quake pak, `newer.pak`, next to `pak0.pak`:

@@ -4,7 +4,8 @@
 import { Con_Printf, Con_CheckResize, Con_DrawConsole, Con_DrawNotify, Con_ClearNotify,
 	con_forcedup, Con_SetForcedup, con_initialized } from './console.js';
 import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from './r_perf.js';
-import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines } from './sbar.js';
+import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines, Sbar_SetYOffset } from './sbar.js';
+import { Touch_BottomInset } from './touch.js';
 import { M_Draw } from './menu.js';
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
@@ -37,6 +38,17 @@ let scr_conlines = 0; // lines of console to display
 let scr_wasforced = false;
 
 let oldfov = 0;
+let oldtouchinset = 0;
+
+// how many screen pixels (vid units) of the bottom the touch controls take up: on a phone held upright
+// the status bar sits above them
+function SCR_TouchInset() {
+
+	const px = Touch_BottomInset();
+	if ( px <= 0 || typeof window === 'undefined' || ! window.innerHeight ) return 0;
+	return Math.round( px * _vid.height / window.innerHeight );
+
+}
 let oldscreensize = 0;
 
 export const scr_viewsize = { name: 'viewsize', string: '100', value: 100, archive: true };
@@ -357,7 +369,12 @@ function SCR_CalcRefdef() {
 
 	size /= 100.0;
 
-	const h = _vid.height - sb_lines;
+	// (upright on a phone) the status bar is above the touch controls, and the classic view ends above it
+	const touchInset = SCR_TouchInset();
+	Sbar_SetYOffset( _cl.intermission ? 0 : touchInset );
+	oldtouchinset = touchInset;
+
+	const h = _vid.height - sb_lines - ( _cl.intermission ? 0 : touchInset );
 
 	_r_refdef.vrect.width = Math.floor( _vid.width * size );
 	if ( _r_refdef.vrect.width < 96 ) {
@@ -368,8 +385,8 @@ function SCR_CalcRefdef() {
 	}
 
 	_r_refdef.vrect.height = Math.floor( _vid.height * size );
-	if ( _r_refdef.vrect.height > _vid.height - sb_lines )
-		_r_refdef.vrect.height = _vid.height - sb_lines;
+	if ( _r_refdef.vrect.height > h )
+		_r_refdef.vrect.height = h;
 	if ( _r_refdef.vrect.height > _vid.height )
 		_r_refdef.vrect.height = _vid.height;
 
@@ -911,6 +928,8 @@ export function SCR_UpdateScreen() {
 		_vid.recalc_refdef = true;
 
 	}
+
+	if ( oldtouchinset !== SCR_TouchInset() ) _vid.recalc_refdef = true;
 
 	if ( oldscreensize !== scr_viewsize.value ) {
 

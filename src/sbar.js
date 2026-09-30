@@ -77,6 +77,18 @@ let sb_showscores = false;
 export let sb_lines = 0; // scan lines to draw
 export function set_sb_lines( v ) { sb_lines = v; }
 
+// how far up from the bottom of the screen the status bar sits, in screen pixels (on a phone held
+// upright the touch controls take the bottom of the screen)
+let sb_yoffset = 0;
+export function Sbar_SetYOffset( v ) { sb_yoffset = v; }
+
+// where the status bar's top edge is
+function sbarTop() {
+
+	return _vid.height - SBAR_HEIGHT - sb_yoffset;
+
+}
+
 // Rogue mission pack
 const rsb_invbar = new Array( 2 ).fill( null );
 const rsb_weapons = new Array( 5 ).fill( null );
@@ -295,9 +307,9 @@ function Sbar_DrawPic( x, y, pic ) {
 	if ( ! _Draw_Pic || ! pic ) return;
 
 	if ( _cl.gametype === GAME_DEATHMATCH )
-		_Draw_Pic( x, y + ( _vid.height - SBAR_HEIGHT ), pic );
+		_Draw_Pic( x, y + sbarTop(), pic );
 	else
-		_Draw_Pic( x + ( ( _vid.width - 320 ) >> 1 ), y + ( _vid.height - SBAR_HEIGHT ), pic );
+		_Draw_Pic( x + ( ( _vid.width - 320 ) >> 1 ), y + sbarTop(), pic );
 
 }
 
@@ -311,9 +323,9 @@ function Sbar_DrawTransPic( x, y, pic ) {
 	if ( ! _Draw_TransPic || ! pic ) return;
 
 	if ( _cl.gametype === GAME_DEATHMATCH )
-		_Draw_TransPic( x, y + ( _vid.height - SBAR_HEIGHT ), pic );
+		_Draw_TransPic( x, y + sbarTop(), pic );
 	else
-		_Draw_TransPic( x + ( ( _vid.width - 320 ) >> 1 ), y + ( _vid.height - SBAR_HEIGHT ), pic );
+		_Draw_TransPic( x + ( ( _vid.width - 320 ) >> 1 ), y + sbarTop(), pic );
 
 }
 
@@ -329,9 +341,9 @@ function Sbar_DrawCharacter( x, y, num ) {
 	if ( ! _Draw_Character ) return;
 
 	if ( _cl.gametype === GAME_DEATHMATCH )
-		_Draw_Character( x + 4, y + _vid.height - SBAR_HEIGHT, num );
+		_Draw_Character( x + 4, y + sbarTop(), num );
 	else
-		_Draw_Character( x + ( ( _vid.width - 320 ) >> 1 ) + 4, y + _vid.height - SBAR_HEIGHT, num );
+		_Draw_Character( x + ( ( _vid.width - 320 ) >> 1 ) + 4, y + sbarTop(), num );
 
 }
 
@@ -347,12 +359,12 @@ function Sbar_DrawString( x, y, str ) {
 	if ( _cl.gametype === GAME_DEATHMATCH ) {
 
 		for ( let i = 0; i < str.length; i ++ )
-			_Draw_Character( x + i * 8, y + _vid.height - SBAR_HEIGHT, str.charCodeAt( i ) );
+			_Draw_Character( x + i * 8, y + sbarTop(), str.charCodeAt( i ) );
 
 	} else {
 
 		for ( let i = 0; i < str.length; i ++ )
-			_Draw_Character( x + ( ( _vid.width - 320 ) >> 1 ) + i * 8, y + _vid.height - SBAR_HEIGHT, str.charCodeAt( i ) );
+			_Draw_Character( x + ( ( _vid.width - 320 ) >> 1 ) + i * 8, y + sbarTop(), str.charCodeAt( i ) );
 
 	}
 
@@ -535,7 +547,7 @@ function Sbar_DrawFrags() {
 		xofs = 0;
 	else
 		xofs = ( _vid.width - 320 ) >> 1;
-	const y = _vid.height - SBAR_HEIGHT - 23;
+	const y = sbarTop() - 23;
 
 	for ( let i = 0; i < l; i ++ ) {
 

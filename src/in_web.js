@@ -18,12 +18,13 @@ import { Con_Printf } from './console.js';
 import { cl, cls, ca_connected } from './client.js';
 import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from './cl_main.js';
 import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from './cl_input.js';
+import { R_NewerGame } from './r_anim.js';
 import { V_StopPitchDrift } from './view.js';
 import { host_frametime } from './host.js';
 import { PITCH, YAW } from './quakedef.js';
 import {
 	Touch_IsMobile, Touch_Init, Touch_Enable, Touch_Disable, Touch_IsEnabled,
-	Touch_GetMoveInput, Touch_GetLookDelta,
+	Touch_GetMoveInput, Touch_GetLookDelta, Touch_GetStick, touch_turn, touch_aim, touch_strafe, Touch_UpdateFov,
 	Touch_ShowMenu, Touch_HideMenu, Touch_SetMenuCallback, Touch_RequestFullscreen
 } from './touch.js';
 import { M_TouchInput } from './menu.js';
@@ -807,7 +808,27 @@ export function IN_Move( cmd ) {
 
 		}
 
-		// Add touch joystick movement
+		// the stick: up and down aim, left and right turn (or sidestep: touch_strafe)
+		const stick = Touch_GetStick();
+		if ( stick.x !== 0 || stick.y !== 0 ) {
+
+			if ( stick.y !== 0 ) {
+
+				V_StopPitchDrift();
+				cl.viewangles[ PITCH ] -= stick.y * Math.abs( stick.y ) * cl_pitchspeed.value * touch_aim.value * host_frametime;
+				if ( cl.viewangles[ PITCH ] > 80 )
+					cl.viewangles[ PITCH ] = 80;
+				if ( cl.viewangles[ PITCH ] < - 70 )
+					cl.viewangles[ PITCH ] = - 70;
+
+			}
+
+			if ( stick.x !== 0 && touch_strafe.value === 0 )
+				cl.viewangles[ YAW ] -= stick.x * Math.abs( stick.x ) * cl_yawspeed.value * touch_turn.value * host_frametime;
+
+		}
+
+		// the forward button (and the stick, when it sidesteps)
 		const touchMove = Touch_GetMoveInput();
 
 		cmd.forwardmove += cl_forwardspeed.value * touchMove.forward;
@@ -940,6 +961,9 @@ Should be called each frame.
 export function IN_UpdateTouch() {
 
 	if ( ! isMobile ) return;
+
+	// Newer Game's wider view on a phone
+	Touch_UpdateFov( R_NewerGame() );
 
 	if ( key_dest === key_game && cls.state === ca_connected && ! cls.demoplayback ) {
 

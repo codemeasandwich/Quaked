@@ -76,6 +76,8 @@ export let host_basepal = null;
 export let host_colormap = null;
 
 const host_framerate = new cvar_t( 'host_framerate', '0' ); // set for slow motion
+// how fast a single player game runs (1 = normal; the touch controls' weapon menu slows it right down)
+const host_timescale = new cvar_t( 'host_timescale', '1' );
 const host_speeds = new cvar_t( 'host_speeds', '0' ); // set for running times
 
 export const sys_ticrate = new cvar_t( 'sys_ticrate', '0.05' );
@@ -163,6 +165,7 @@ function Host_InitLocal() {
 	Host_InitCommands();
 
 	Cvar_RegisterVariable( host_framerate );
+	Cvar_RegisterVariable( host_timescale );
 	Cvar_RegisterVariable( host_speeds );
 	Cvar_RegisterVariable( sys_ticrate );
 	Cvar_RegisterVariable( serverprofile );
@@ -639,6 +642,10 @@ function _Host_FilterTime( time ) {
 			host_frametime = 0.001;
 
 	}
+
+	// slow motion (single player only: a network game cannot run at its own speed)
+	if ( host_timescale.value > 0 && host_timescale.value < 1 && sv.active && svs.maxclients === 1 )
+		host_frametime *= host_timescale.value;
 
 	return true;
 

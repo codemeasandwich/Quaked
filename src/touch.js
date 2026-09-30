@@ -1,9 +1,33 @@
 // Touch controls for mobile devices
-// Provides virtual joystick on left, look area on right with tap-to-jump
+//
+// Landscape: an analog stick on the left and a cluster of buttons on the right. Portrait: the same in a
+// panel along the bottom of the screen, with the status bar above it (see touch_layout.js for where
+// everything goes).
+//
+//   stick   up and down aim, left and right turn (touch_strafe 1 makes them sidestep instead)
+//   GO      the thumb-size button in the bottom right corner: move forward
+//   FIRE    straight above it
+//   JUMP    at 45 degrees up and to the left
+//   WEAPON  to its left: the game slows right down, the picture blurs and a menu offers the weapons
+//
+// Dragging anywhere else on the screen looks around, and so does tilting the device (gyroscope).
 
 import { K_ESCAPE, Key_Event } from './keys.js';
 import { in_attack, in_jump } from './cl_input.js';
 import { S_UnlockAudio } from './snd_dma.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
+import { Cbuf_AddText } from './cmd.js';
+import { cl } from './client.js';
+import { STAT_SHELLS } from './quakedef.js';
+import { Touch_Layout, Touch_WeaponChoices } from './touch_layout.js';
+
+// left and right of the stick: 0 turns, 1 sidesteps
+export const touch_strafe = new cvar_t( 'touch_strafe', '0' );
+// how fast the stick turns and aims, as a multiple of the keyboard's turning speed (at full push)
+export const touch_turn = new cvar_t( 'touch_turn', '1.6' );
+export const touch_aim = new cvar_t( 'touch_aim', '1.2' );
+// how slow the game runs while the weapon menu is open (1 = normal speed)
+const SLOWMO = '0.12';
 
 // Touch state
 let enabled = false;
@@ -13,20 +37,17 @@ let menuTouchCallback = null;
 let fullscreenActivated = false;
 let wakeLock = null;
 
-// Movement joystick (left side)
-let moveTouch = null;
-let joystickOrigin = { x: 0, y: 0 };
-let joystickCurrent = { x: 0, y: 0 };
+// The stick
+let stickTouch = null;
+let stickX = 0; // -1 (left) to 1 (right)
+let stickY = 0; // -1 (down) to 1 (up)
+let forwardHeld = false;
 
-// Look area (right side)
+// Look area (the whole screen, behind the controls)
 let lookTouch = null;
 let lastLookPos = { x: 0, y: 0 };
-let lookTouchOrigin = { x: 0, y: 0 };
-let lookTouchDist = 0;
 
 // Accumulated values for IN_Move
-let moveForward = 0;
-let moveRight = 0;
 let lookDeltaX = 0;
 let lookDeltaY = 0;
 let jumpImpulse = false;
@@ -41,13 +62,20 @@ const LOOK_SENSITIVITY = 3.0;
 
 // UI elements
 let overlay = null;
-let joystickArea = null;
-let joystickBase = null;
-let joystickKnob = null;
+let panel = null;
 let lookArea = null;
+let stickBase = null;
+let stickKnob = null;
+let forwardButton = null;
 let fireButton = null;
 let jumpButton = null;
+let weaponButton = null;
 let pauseButton = null;
+let weaponMenu = null;
+let weaponList = null;
+let weaponMenuOpen = false;
+let probe = null; // measures the safe area insets
+let layout = null;
 
 /*
 =================
@@ -62,6 +90,115 @@ export function Touch_IsMobile() {
 		( navigator.maxTouchPoints && navigator.maxTouchPoints > 2 );
 
 }
+
+const BUTTON_CSS = `
+	position: absolute;
+	border-radius: 50%;
+	background: rgba(24, 14, 8, 0.5);
+	border: 2px solid rgba(255, 190, 110, 0.55);
+	pointer-events: auto;
+	touch-action: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: sans-serif;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: rgba(255, 225, 180, 0.85);
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+`;
+
+function makeButton( label, glyph ) {
+
+	const b = document.createElement( 'div' );
+	b.style.cssText = BUTTON_CSS;
+	if ( glyph ) {
+
+		const g = document.createElement( 'div' );
+		g.textContent = glyph;
+		g.style.cssText = 'font-size: 1.6em; line-height: 1;';
+		b.appendChild( g );
+
+	}
+
+	const t = document.createElement( 'div' );
+	t.textContent = label;
+	t.style.cssText = 'font-size: 0.62em; margin-top: 2px;';
+	b.appendChild( t );
+	return b;
+
+}
+
+function setCircle( el, c, extra ) {
+
+	const r = c.r + ( extra || 0 );
+	el.style.left = ( c.x - r ) + 'px';
+	el.style.top = ( c.y - r ) + 'px';
+	el.style.width = ( r * 2 ) + 'px';
+	el.style.height = ( r * 2 ) + 'px';
+
+}
+
+/*
+=================
+Touch_ApplyLayout
+
+Puts the controls where the window's shape says (landscape or portrait).
+=================
+*/
+function Touch_ApplyLayout() {
+
+	if ( ! initialized ) return;
+
+	let safe = { top: 0, right: 0, bottom: 0, left: 0 };
+	if ( probe !== null && typeof getComputedStyle === 'function' ) {
+
+		const cs = getComputedStyle( probe );
+		safe = {
+			top: parseFloat( cs.paddingTop ) || 0, right: parseFloat( cs.paddingRight ) || 0,
+			bottom: parseFloat( cs.paddingBottom ) || 0, left: parseFloat( cs.paddingLeft ) || 0
+		};
+
+	}
+
+	layout = Touch_Layout( window.innerWidth, window.innerHeight, safe );
+	const L = layout;
+
+	setCircle( stickBase, L.stick );
+	stickKnob.style.width = ( L.stick.r * 0.84 ) + 'px';
+	stickKnob.style.height = ( L.stick.r * 0.84 ) + 'px';
+	Touch_MoveKnob( stickX, stickY );
+	// the touch area of the stick is a good deal bigger than what is drawn
+	stickArea.style.left = ( L.stick.x - L.stick.r * 1.5 ) + 'px';
+	stickArea.style.top = ( L.stick.y - L.stick.r * 1.5 ) + 'px';
+	stickArea.style.width = ( L.stick.r * 3 ) + 'px';
+	stickArea.style.height = ( L.stick.r * 3 ) + 'px';
+
+	setCircle( forwardButton, L.forward );
+	setCircle( fireButton, L.fire );
+	setCircle( jumpButton, L.jump );
+	setCircle( weaponButton, L.weapon );
+	setCircle( pauseButton, L.pause );
+
+	forwardButton.style.fontSize = ( L.forward.r * 0.42 ) + 'px';
+	fireButton.style.fontSize = ( L.fire.r * 0.42 ) + 'px';
+	jumpButton.style.fontSize = ( L.jump.r * 0.45 ) + 'px';
+	weaponButton.style.fontSize = ( L.weapon.r * 0.45 ) + 'px';
+	pauseButton.style.fontSize = ( L.pause.r * 0.8 ) + 'px';
+
+	// the portrait layout has a panel to put them on
+	panel.style.display = L.portrait ? 'block' : 'none';
+	panel.style.height = L.panelHeight + 'px';
+
+	// the weapon menu: two columns in portrait, four across in landscape
+	weaponList.style.gridTemplateColumns = L.portrait ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)';
+
+}
+
+let stickArea = null;
 
 /*
 =================
@@ -87,134 +224,80 @@ function Touch_CreateUI( container ) {
 		touch-action: none;
 	`;
 
-	// Left side - movement joystick area
-	joystickArea = document.createElement( 'div' );
-	joystickArea.style.cssText = `
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 40%;
-		height: 100%;
-		pointer-events: auto;
-		touch-action: none;
-	`;
+	// measures the safe area (notches, the home bar)
+	probe = document.createElement( 'div' );
+	probe.style.cssText = 'position: fixed; visibility: hidden; pointer-events: none; padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);';
 
-	// Joystick base (appears when touching)
-	joystickBase = document.createElement( 'div' );
-	joystickBase.style.cssText = `
-		position: fixed;
-		width: 120px;
-		height: 120px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.15);
-		border: 2px solid rgba(255, 255, 255, 0.3);
-		display: none;
-		transform: translate(-50%, -50%);
-		pointer-events: none;
-	`;
-
-	// Joystick knob
-	joystickKnob = document.createElement( 'div' );
-	joystickKnob.style.cssText = `
-		position: absolute;
-		width: 50px;
-		height: 50px;
-		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.4);
-		border: 2px solid rgba(255, 255, 255, 0.6);
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-	`;
-	joystickBase.appendChild( joystickKnob );
-	joystickArea.appendChild( joystickBase );
-
-	// Right side - look area (tap to jump, drag to look)
+	// the whole screen looks around when it is dragged
 	lookArea = document.createElement( 'div' );
-	lookArea.style.cssText = `
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 60%;
-		height: 100%;
-		pointer-events: auto;
-		touch-action: none;
-	`;
+	lookArea.style.cssText = 'position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: auto; touch-action: none;';
 
-	// Fire button (top right)
-	fireButton = document.createElement( 'div' );
-	fireButton.style.cssText = `
-		position: absolute;
-		right: 60px;
-		top: 50px;
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-		background: transparent;
-		border: 2px solid rgba(255, 100, 100, 0.5);
-		pointer-events: auto;
-		touch-action: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: sans-serif;
-		font-size: 14px;
-		color: rgba(255, 255, 255, 0.7);
-	`;
-	fireButton.textContent = 'FIRE';
+	// portrait: the panel the controls sit on
+	panel = document.createElement( 'div' );
+	panel.style.cssText = 'position: absolute; left: 0; bottom: 0; width: 100%; display: none; pointer-events: none; background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(8,4,2,0.78) 35%);';
 
-	// Jump button (below fire button)
-	jumpButton = document.createElement( 'div' );
-	jumpButton.style.cssText = `
-		position: absolute;
-		right: 60px;
-		top: 170px;
-		width: 100px;
-		height: 100px;
-		border-radius: 50%;
-		background: transparent;
-		border: 2px solid rgba(100, 150, 255, 0.5);
-		pointer-events: auto;
-		touch-action: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: sans-serif;
-		font-size: 14px;
-		color: rgba(255, 255, 255, 0.7);
-	`;
-	jumpButton.textContent = 'JUMP';
+	// the stick
+	stickBase = document.createElement( 'div' );
+	stickBase.style.cssText = 'position: absolute; border-radius: 50%; background: rgba(24, 14, 8, 0.4); border: 2px solid rgba(255, 190, 110, 0.45); pointer-events: none;';
+	stickKnob = document.createElement( 'div' );
+	stickKnob.style.cssText = 'position: absolute; border-radius: 50%; background: rgba(255, 210, 150, 0.45); border: 2px solid rgba(255, 225, 180, 0.8); pointer-events: none;';
+	stickBase.appendChild( stickKnob );
+	stickArea = document.createElement( 'div' );
+	stickArea.style.cssText = 'position: absolute; border-radius: 50%; pointer-events: auto; touch-action: none;';
 
-	// Pause button (bottom right corner)
+	forwardButton = makeButton( 'GO', '▲' );
+	fireButton = makeButton( 'FIRE', '●' );
+	jumpButton = makeButton( 'JUMP', '⬆' );
+	weaponButton = makeButton( 'WEAPON', '⚔' );
+
+	// Pause button (top right corner)
 	pauseButton = document.createElement( 'div' );
-	pauseButton.style.cssText = `
-		position: absolute;
-		right: 20px;
-		bottom: 20px;
-		width: 40px;
-		height: 40px;
-		border-radius: 5px;
-		background: rgba(255, 255, 255, 0.15);
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		pointer-events: auto;
-		touch-action: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-family: sans-serif;
-		font-size: 16px;
-		color: rgba(255, 255, 255, 0.7);
-	`;
+	pauseButton.style.cssText = BUTTON_CSS + 'border-radius: 8px; flex-direction: row;';
 	pauseButton.textContent = '| |';
 
+	// the weapon menu
+	weaponMenu = document.createElement( 'div' );
+	weaponMenu.id = 'touch-weapons';
+	weaponMenu.style.cssText = `
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		z-index: 210;
+		pointer-events: auto;
+		touch-action: none;
+		-webkit-backdrop-filter: blur(9px) brightness(0.6) saturate(0.85);
+		backdrop-filter: blur(9px) brightness(0.6) saturate(0.85);
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		font-family: sans-serif;
+		color: #f3dcb4;
+	`;
+	const title = document.createElement( 'div' );
+	title.textContent = 'CHOOSE A WEAPON';
+	title.style.cssText = 'font-weight: bold; letter-spacing: 3px; margin-bottom: 14px; font-size: 15px; opacity: 0.85;';
+	weaponList = document.createElement( 'div' );
+	weaponList.style.cssText = 'display: grid; gap: 10px; width: min(92%, 640px);';
+	weaponMenu.appendChild( title );
+	weaponMenu.appendChild( weaponList );
+
 	// Assemble UI
-	overlay.appendChild( joystickArea );
 	overlay.appendChild( lookArea );
+	overlay.appendChild( panel );
+	overlay.appendChild( stickBase );
+	overlay.appendChild( stickArea );
+	overlay.appendChild( forwardButton );
 	overlay.appendChild( fireButton );
 	overlay.appendChild( jumpButton );
+	overlay.appendChild( weaponButton );
 	overlay.appendChild( pauseButton );
 
+	container.appendChild( probe );
 	container.appendChild( overlay );
+	container.appendChild( weaponMenu );
 
 	// Create menu navigation overlay
 	Touch_CreateMenuUI( container );
@@ -274,6 +357,66 @@ function Touch_CreateMenuUI( container ) {
 
 /*
 =================
+Touch_MoveKnob
+
+Draws the stick's knob where the stick is pushed (x right, y up, each -1 to 1).
+=================
+*/
+function Touch_MoveKnob( x, y ) {
+
+	if ( stickKnob === null || layout === null ) return;
+
+	const r = layout.stick.r * 0.58;
+	stickKnob.style.left = `calc(50% + ${x * r}px)`;
+	stickKnob.style.top = `calc(50% + ${- y * r}px)`;
+	stickKnob.style.transform = 'translate(-50%, -50%)';
+
+}
+
+const STICK_DEADZONE = 0.12;
+
+function Touch_SetStick( touch ) {
+
+	const c = layout.stick;
+	const dx = ( touch.clientX - c.x ) / c.r;
+	const dy = ( touch.clientY - c.y ) / c.r;
+	const len = Math.hypot( dx, dy );
+	const ux = len > 0 ? dx / len : 0;
+	const uy = len > 0 ? dy / len : 0;
+	const m = Math.min( 1, len );
+
+	Touch_MoveKnob( ux * m, - uy * m );
+
+	// a dead zone in the middle, then the full range
+	const out = m < STICK_DEADZONE ? 0 : ( m - STICK_DEADZONE ) / ( 1 - STICK_DEADZONE );
+	stickX = ux * out;
+	stickY = - uy * out;
+
+}
+
+function Touch_ReleaseStick() {
+
+	stickTouch = null;
+	stickX = 0;
+	stickY = 0;
+	Touch_MoveKnob( 0, 0 );
+
+}
+
+function Touch_Press( el, on ) {
+
+	el.style.background = on ? 'rgba(255, 190, 110, 0.4)' : 'rgba(24, 14, 8, 0.5)';
+
+}
+
+function Touch_Buzz() {
+
+	if ( typeof navigator.vibrate === 'function' ) navigator.vibrate( 40 );
+
+}
+
+/*
+=================
 Touch event handlers
 =================
 */
@@ -296,41 +439,38 @@ function onTouchStart( e ) {
 
 		const target = e.currentTarget;
 
-		if ( target === joystickArea && moveTouch === null ) {
+		if ( target === stickArea && stickTouch === null ) {
 
-			// Start joystick
-			moveTouch = touch.identifier;
-			joystickOrigin.x = touch.clientX;
-			joystickOrigin.y = touch.clientY;
-			joystickCurrent.x = touch.clientX;
-			joystickCurrent.y = touch.clientY;
-
-			// Show joystick at touch position
-			joystickBase.style.display = 'block';
-			joystickBase.style.left = touch.clientX + 'px';
-			joystickBase.style.top = touch.clientY + 'px';
+			stickTouch = touch.identifier;
+			Touch_SetStick( touch );
 
 		} else if ( target === lookArea && lookTouch === null ) {
 
-			// Start look (also tracks tap for jump)
 			lookTouch = touch.identifier;
 			lastLookPos.x = touch.clientX;
 			lastLookPos.y = touch.clientY;
-			lookTouchOrigin.x = touch.clientX;
-			lookTouchOrigin.y = touch.clientY;
-			lookTouchDist = 0;
+
+		} else if ( target === forwardButton ) {
+
+			forwardHeld = true;
+			Touch_Press( forwardButton, true );
 
 		} else if ( target === fireButton ) {
 
 			in_attack.state |= 1 + 2; // down + impulse down
-			fireButton.style.background = 'rgba(255, 100, 100, 0.2)';
-			if ( typeof navigator.vibrate === 'function' ) navigator.vibrate( 100 );
+			Touch_Press( fireButton, true );
+			Touch_Buzz();
 
 		} else if ( target === jumpButton ) {
 
 			in_jump.state |= 1 + 2; // down + impulse down
-			jumpButton.style.background = 'rgba(100, 150, 255, 0.2)';
-			if ( typeof navigator.vibrate === 'function' ) navigator.vibrate( 100 );
+			Touch_Press( jumpButton, true );
+			Touch_Buzz();
+
+		} else if ( target === weaponButton ) {
+
+			Touch_Buzz();
+			Touch_OpenWeaponMenu();
 
 		} else if ( target === pauseButton ) {
 
@@ -350,54 +490,17 @@ function onTouchMove( e ) {
 
 	for ( const touch of e.changedTouches ) {
 
-		if ( touch.identifier === moveTouch ) {
+		if ( touch.identifier === stickTouch ) {
 
-			// Update joystick
-			joystickCurrent.x = touch.clientX;
-			joystickCurrent.y = touch.clientY;
-
-			// Calculate offset from origin
-			const dx = joystickCurrent.x - joystickOrigin.x;
-			const dy = joystickCurrent.y - joystickOrigin.y;
-
-			// Clamp to max radius
-			const maxRadius = 50;
-			const dist = Math.sqrt( dx * dx + dy * dy );
-			let clampedX = dx;
-			let clampedY = dy;
-
-			if ( dist > maxRadius ) {
-
-				clampedX = ( dx / dist ) * maxRadius;
-				clampedY = ( dy / dist ) * maxRadius;
-
-			}
-
-			// Update knob position
-			joystickKnob.style.left = `calc(50% + ${clampedX}px)`;
-			joystickKnob.style.top = `calc(50% + ${clampedY}px)`;
-
-			// Convert to normalized input (-1 to 1)
-			// Note: Y is inverted (up = forward = positive)
-			moveRight = clampedX / maxRadius;
-			moveForward = - clampedY / maxRadius;
+			Touch_SetStick( touch );
 
 		} else if ( touch.identifier === lookTouch ) {
 
-			// Calculate look delta
-			const dx = touch.clientX - lastLookPos.x;
-			const dy = touch.clientY - lastLookPos.y;
-
-			lookDeltaX += dx * LOOK_SENSITIVITY;
-			lookDeltaY += dy * LOOK_SENSITIVITY;
+			lookDeltaX += ( touch.clientX - lastLookPos.x ) * LOOK_SENSITIVITY;
+			lookDeltaY += ( touch.clientY - lastLookPos.y ) * LOOK_SENSITIVITY;
 
 			lastLookPos.x = touch.clientX;
 			lastLookPos.y = touch.clientY;
-
-			// Track total distance from origin (for tap detection)
-			const totalDx = touch.clientX - lookTouchOrigin.x;
-			const totalDy = touch.clientY - lookTouchOrigin.y;
-			lookTouchDist = Math.sqrt( totalDx * totalDx + totalDy * totalDy );
 
 		}
 
@@ -413,35 +516,133 @@ function onTouchEnd( e ) {
 
 		const target = e.currentTarget;
 
-		if ( touch.identifier === moveTouch ) {
+		if ( touch.identifier === stickTouch ) {
 
-			// Reset joystick
-			moveTouch = null;
-			moveForward = 0;
-			moveRight = 0;
-			joystickBase.style.display = 'none';
-			joystickKnob.style.left = '50%';
-			joystickKnob.style.top = '50%';
+			Touch_ReleaseStick();
 
 		} else if ( touch.identifier === lookTouch ) {
 
 			lookTouch = null;
 
+		} else if ( target === forwardButton ) {
+
+			forwardHeld = false;
+			Touch_Press( forwardButton, false );
+
 		} else if ( target === fireButton ) {
 
 			in_attack.state &= ~1; // up
 			in_attack.state |= 4; // impulse up
-			fireButton.style.background = 'transparent';
+			Touch_Press( fireButton, false );
 
 		} else if ( target === jumpButton ) {
 
 			in_jump.state &= ~1; // up
 			in_jump.state |= 4; // impulse up
-			jumpButton.style.background = 'transparent';
+			Touch_Press( jumpButton, false );
+
+		} else if ( target === weaponButton ) {
+
+			// (the menu opened when it was pressed)
 
 		}
 
 	}
+
+}
+
+/*
+=================
+The weapon menu
+
+Tapping the weapon button slows the game right down, blurs the picture and lists the weapons; a tap on one
+chooses it (impulse 1-8) and the game speeds up again. A tap anywhere else closes the menu.
+=================
+*/
+
+function Touch_OpenWeaponMenu() {
+
+	if ( weaponMenuOpen ) return;
+	weaponMenuOpen = true;
+
+	// let go of everything that was held
+	in_attack.state &= ~1;
+	in_attack.state |= 4;
+	in_jump.state &= ~1;
+	in_jump.state |= 4;
+	forwardHeld = false;
+	Touch_Press( forwardButton, false );
+	Touch_Press( fireButton, false );
+	Touch_Press( jumpButton, false );
+	Touch_ReleaseStick();
+
+	const ammo = [ 0, 1, 2, 3 ].map( ( i ) => cl.stats[ STAT_SHELLS + i ] | 0 );
+	const choices = Touch_WeaponChoices( cl.items | 0, ammo );
+
+	weaponList.textContent = '';
+	for ( const c of choices ) {
+
+		if ( ! c.owned ) continue;
+
+		const card = document.createElement( 'div' );
+		card.style.cssText = `
+			padding: 14px 8px;
+			border-radius: 10px;
+			text-align: center;
+			font-weight: bold;
+			font-size: 15px;
+			background: rgba(24, 14, 8, 0.72);
+			border: 2px solid rgba(255, 190, 110, ${c.usable ? 0.75 : 0.25});
+			opacity: ${c.usable ? 1 : 0.4};
+			user-select: none;
+			-webkit-user-select: none;
+		`;
+		card.textContent = c.name;
+
+		if ( c.ammo !== null ) {
+
+			const a = document.createElement( 'div' );
+			a.textContent = c.ammo + ' ammo';
+			a.style.cssText = 'font-size: 12px; font-weight: normal; margin-top: 4px; opacity: 0.8;';
+			card.appendChild( a );
+
+		}
+
+		if ( c.usable ) {
+
+			card.addEventListener( 'touchstart', ( e ) => {
+
+				e.preventDefault();
+				e.stopPropagation();
+				Cbuf_AddText( 'impulse ' + c.impulse + '\n' );
+				Touch_CloseWeaponMenu();
+
+			}, { passive: false } );
+
+		}
+
+		weaponList.appendChild( card );
+
+	}
+
+	weaponMenu.style.display = 'flex';
+	Cvar_Set( 'host_timescale', SLOWMO );
+
+}
+
+function Touch_CloseWeaponMenu() {
+
+	if ( ! weaponMenuOpen ) return;
+	weaponMenuOpen = false;
+	weaponMenu.style.display = 'none';
+	Cvar_Set( 'host_timescale', '1' );
+
+}
+
+function onWeaponMenuTouch( e ) {
+
+	e.preventDefault();
+	if ( e.target === weaponMenu ) Touch_CloseWeaponMenu();
 
 }
 
@@ -616,7 +817,7 @@ function Touch_ReleaseWakeLock() {
 =================
 Touch_RequestFullscreen
 
-Request fullscreen and lock to landscape orientation on mobile
+Request fullscreen on mobile (the screen may be held either way up)
 =================
 */
 export async function Touch_RequestFullscreen() {
@@ -634,22 +835,6 @@ export async function Touch_RequestFullscreen() {
 		} else if ( container.webkitRequestFullscreen ) {
 
 			await container.webkitRequestFullscreen();
-
-		}
-
-		// Lock to landscape orientation
-		if ( screen.orientation && screen.orientation.lock ) {
-
-			try {
-
-				await screen.orientation.lock( 'landscape' );
-
-			} catch ( e ) {
-
-				// Orientation lock may not be supported or allowed
-				console.log( 'Could not lock orientation:', e.message );
-
-			}
 
 		}
 
@@ -714,11 +899,32 @@ export function Touch_Init( container ) {
 
 	if ( initialized ) return;
 
+	Cvar_RegisterVariable( touch_strafe );
+	Cvar_RegisterVariable( touch_turn );
+	Cvar_RegisterVariable( touch_aim );
+
 	Touch_CreateUI( container || document.body );
 
 	initialized = true;
+	Touch_ApplyLayout();
+
+	// turning the device round changes the layout
+	window.addEventListener( 'resize', Touch_ApplyLayout );
+	window.addEventListener( 'orientationchange', Touch_ApplyLayout );
 
 }
+
+const LISTENED = () => [
+	[ stickArea, [ 'touchstart', 'touchmove', 'touchend', 'touchcancel' ] ],
+	[ lookArea, [ 'touchstart', 'touchmove', 'touchend', 'touchcancel' ] ],
+	[ forwardButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
+	[ fireButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
+	[ jumpButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
+	[ weaponButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
+	[ pauseButton, [ 'touchstart' ] ]
+];
+
+const HANDLER = { touchstart: onTouchStart, touchmove: onTouchMove, touchend: onTouchEnd, touchcancel: onTouchEnd };
 
 /*
 =================
@@ -734,27 +940,12 @@ export function Touch_Enable() {
 
 	enabled = true;
 	overlay.style.display = 'block';
+	Touch_ApplyLayout();
 
-	// Add touch listeners
-	joystickArea.addEventListener( 'touchstart', onTouchStart, { passive: false } );
-	joystickArea.addEventListener( 'touchmove', onTouchMove, { passive: false } );
-	joystickArea.addEventListener( 'touchend', onTouchEnd, { passive: false } );
-	joystickArea.addEventListener( 'touchcancel', onTouchEnd, { passive: false } );
+	for ( const [ el, events ] of LISTENED() )
+		for ( const ev of events ) el.addEventListener( ev, HANDLER[ ev ], { passive: false } );
 
-	lookArea.addEventListener( 'touchstart', onTouchStart, { passive: false } );
-	lookArea.addEventListener( 'touchmove', onTouchMove, { passive: false } );
-	lookArea.addEventListener( 'touchend', onTouchEnd, { passive: false } );
-	lookArea.addEventListener( 'touchcancel', onTouchEnd, { passive: false } );
-
-	fireButton.addEventListener( 'touchstart', onTouchStart, { passive: false } );
-	fireButton.addEventListener( 'touchend', onTouchEnd, { passive: false } );
-	fireButton.addEventListener( 'touchcancel', onTouchEnd, { passive: false } );
-
-	jumpButton.addEventListener( 'touchstart', onTouchStart, { passive: false } );
-	jumpButton.addEventListener( 'touchend', onTouchEnd, { passive: false } );
-	jumpButton.addEventListener( 'touchcancel', onTouchEnd, { passive: false } );
-
-	pauseButton.addEventListener( 'touchstart', onTouchStart, { passive: false } );
+	weaponMenu.addEventListener( 'touchstart', onWeaponMenuTouch, { passive: false } );
 
 	// Enable gyroscope if permission was already granted
 	if ( gyroPermissionRequested ) {
@@ -779,29 +970,15 @@ export function Touch_Disable() {
 
 	if ( ! initialized || ! enabled ) return;
 
+	Touch_CloseWeaponMenu();
+
 	enabled = false;
 	overlay.style.display = 'none';
 
-	// Remove touch listeners
-	joystickArea.removeEventListener( 'touchstart', onTouchStart );
-	joystickArea.removeEventListener( 'touchmove', onTouchMove );
-	joystickArea.removeEventListener( 'touchend', onTouchEnd );
-	joystickArea.removeEventListener( 'touchcancel', onTouchEnd );
+	for ( const [ el, events ] of LISTENED() )
+		for ( const ev of events ) el.removeEventListener( ev, HANDLER[ ev ] );
 
-	lookArea.removeEventListener( 'touchstart', onTouchStart );
-	lookArea.removeEventListener( 'touchmove', onTouchMove );
-	lookArea.removeEventListener( 'touchend', onTouchEnd );
-	lookArea.removeEventListener( 'touchcancel', onTouchEnd );
-
-	fireButton.removeEventListener( 'touchstart', onTouchStart );
-	fireButton.removeEventListener( 'touchend', onTouchEnd );
-	fireButton.removeEventListener( 'touchcancel', onTouchEnd );
-
-	jumpButton.removeEventListener( 'touchstart', onTouchStart );
-	jumpButton.removeEventListener( 'touchend', onTouchEnd );
-	jumpButton.removeEventListener( 'touchcancel', onTouchEnd );
-
-	pauseButton.removeEventListener( 'touchstart', onTouchStart );
+	weaponMenu.removeEventListener( 'touchstart', onWeaponMenuTouch );
 
 	// Disable gyroscope while controls are off
 	Gyro_Disable();
@@ -810,10 +987,9 @@ export function Touch_Disable() {
 	Touch_ReleaseWakeLock();
 
 	// Reset state
-	moveTouch = null;
 	lookTouch = null;
-	moveForward = 0;
-	moveRight = 0;
+	Touch_ReleaseStick();
+	forwardHeld = false;
 	lookDeltaX = 0;
 	lookDeltaY = 0;
 	jumpImpulse = false;
@@ -835,12 +1011,26 @@ export function Touch_IsEnabled() {
 =================
 Touch_GetMoveInput
 
-Returns normalized movement input from joystick
+Returns the movement input: forward while the GO button is held, and sideways
+from the stick when it is set to sidestep
 =================
 */
 export function Touch_GetMoveInput() {
 
-	return { forward: moveForward, right: moveRight };
+	return { forward: forwardHeld ? 1 : 0, right: touch_strafe.value !== 0 ? stickX : 0 };
+
+}
+
+/*
+=================
+Touch_GetStick
+
+The stick as { x, y }, each -1 to 1 (right and up are positive), with a dead zone in the middle
+=================
+*/
+export function Touch_GetStick() {
+
+	return { x: stickX, y: stickY };
 
 }
 
@@ -864,7 +1054,7 @@ export function Touch_GetLookDelta() {
 =================
 Touch_CheckJump
 
-Returns true if jump was triggered (tap on right side)
+Returns true if jump was triggered
 =================
 */
 export function Touch_CheckJump() {
@@ -877,6 +1067,64 @@ export function Touch_CheckJump() {
 	}
 
 	return false;
+
+}
+
+/*
+=================
+Touch_BottomInset
+
+How many CSS pixels of the bottom of the screen the controls take up (the portrait panel), so the
+status bar can sit above them. 0 in landscape and when the controls are not up.
+=================
+*/
+export function Touch_BottomInset() {
+
+	return enabled && layout !== null ? layout.panelHeight : 0;
+
+}
+
+/*
+=================
+Touch_UpdateFov
+
+On a phone, Newer Game starts with a wider view: 100 held upright and 120 on its side (the field of
+view cvar is left alone once the player has set their own).  Called every frame.
+=================
+*/
+let fovAuto = 0; // the value set here, or 0
+let fovManaged = true;
+
+export function Touch_UpdateFov( newer ) {
+
+	if ( ! initialized || layout === null ) return;
+
+	const cur = Cvar_VariableValue( 'fov' );
+
+	if ( ! newer ) {
+
+		// back in New Game: the original view again, if the player had not changed it
+		if ( fovAuto !== 0 && cur === fovAuto ) Cvar_Set( 'fov', '90' );
+		fovAuto = 0;
+		return;
+
+	}
+
+	if ( ! fovManaged ) return;
+
+	if ( ( fovAuto === 0 && cur !== 90 ) || ( fovAuto !== 0 && cur !== fovAuto ) ) {
+
+		fovManaged = false; // the player has their own
+		return;
+
+	}
+
+	if ( layout.fov !== fovAuto ) {
+
+		Cvar_Set( 'fov', String( layout.fov ) );
+		fovAuto = layout.fov;
+
+	}
 
 }
 
