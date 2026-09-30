@@ -18,7 +18,7 @@ import { FL_GODMODE, FL_NOTARGET,
 import { Cvar_Set, Cvar_SetValue, Cvar_VariableValue } from './cvar.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_Args, Cmd_ExecuteString,
 	Cmd_ForwardToServer, cmd_source, src_command, src_client, Cbuf_AddText } from './cmd.js';
-import { SV_SpawnServer, SV_SaveSpawnparms, SV_DropClient,
+import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_DropClient,
 	SV_WriteClientdataToMessage, current_skill } from './sv_main.js';
 import { sv, svs, host_client, set_host_client,
 	NUM_SPAWN_PARMS, NUM_PING_TIMES } from './server.js';
@@ -1362,6 +1362,8 @@ function Host_Spawn_f() {
 				Sys_Printf( '%s entered the game\n', host_client.name );
 
 			PR_ExecuteProgram( pr_global_struct.PutClientInServer );
+
+			SV_RestorePowerups( ent );
 
 			// arriving through a seamless exit: keep the way you were moving
 			SV_SeamlessPlacePlayer( ent );

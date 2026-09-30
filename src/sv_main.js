@@ -1543,6 +1543,53 @@ Grabs the current state of each client for saving across the
 transition to another level
 ================
 */
+// Newer Game: the power-ups (the pentagram, the quad, the biosuit, the ring) and the time they
+// have left go with you to the next level.  Quake's own parms leave them behind.
+const CARRY_ITEMS = 524288 | 1048576 | 2097152 | 4194304; // IT_INVISIBILITY, IT_INVULNERABILITY, IT_SUIT, IT_QUAD
+const CARRY_TIMERS = [
+	[ 524288, 'invisible_finished', 'invisible_time' ],
+	[ 1048576, 'invincible_finished', 'invincible_time' ],
+	[ 2097152, 'radsuit_finished', 'rad_time' ],
+	[ 4194304, 'super_damage_finished', 'super_time' ]
+];
+let carriedPowerups = null;
+
+function SV_CapturePowerups( ent ) {
+
+	carriedPowerups = null;
+	if ( ! R_NewerGame() ) return;
+
+	const now = sv.time;
+	const timers = [];
+	for ( const [ bit, finished ] of CARRY_TIMERS ) {
+
+		const left = ent.v[ finished ] - now;
+		if ( ( ent.v.items & bit ) !== 0 && left > 0 ) timers.push( [ bit, finished, left ] );
+
+	}
+
+	if ( timers.length ) carriedPowerups = timers;
+
+}
+
+// called once the player is in the new level
+export function SV_RestorePowerups( ent ) {
+
+	const timers = carriedPowerups;
+	carriedPowerups = null;
+	if ( ! timers ) return;
+
+	for ( const [ bit, finished, left ] of timers ) {
+
+		ent.v.items = ( ent.v.items | 0 ) | bit;
+		ent.v[ finished ] = sv.time + left;
+		const flag = CARRY_TIMERS.find( t => t[ 0 ] === bit )[ 2 ];
+		ent.v[ flag ] = 1; // as when it is picked up: its sound and warnings are due
+
+	}
+
+}
+
 export function SV_SaveSpawnparms() {
 
 	svs.serverflags = pr_global_struct.serverflags;
@@ -1555,6 +1602,7 @@ export function SV_SaveSpawnparms() {
 
 		// call the progs to get default spawn parms for the new client
 		pr_global_struct.self = EDICT_TO_PROG( client.edict );
+		if ( i === 0 ) SV_CapturePowerups( client.edict );
 		PR_ExecuteProgram( pr_global_struct.SetChangeParms );
 		for ( let j = 0; j < NUM_SPAWN_PARMS; j ++ )
 			client.spawn_parms[ j ] = pr_global_struct[ 'parm' + ( j + 1 ) ];
