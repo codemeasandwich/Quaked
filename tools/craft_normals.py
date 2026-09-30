@@ -37,6 +37,9 @@ TEX = os.path.join(ROOT, 'newer', 'textures')
 #   groove  how much dark lines are cut in;  bump  how much bright knobs stand out
 #   glow    how much glowing parts are flattened (0..1);  strength  how steep the relief is
 PROFILES = [
+    ( r'^(enter01|wenter01)', dict( bands=( .45, 1, 1.2, .9 ), groove=.6, bump=.5, glow=.1, strength=1.5 ) ),  # the bone arch and the rock around it
+    ( r'^(door05_2)', dict( bands=( .6, 1, .8, .5 ), groove=.6, bump=1.0, glow=0, strength=1.35 ) ),
+    ( r'^(window02_1)', dict( bands=( .3, 1, 1, .6 ), groove=1.2, bump=.2, glow=.6, strength=1.2 ) ),  # stained glass: lead lines in, glass recessed
     ( r'^(window03|dr07_1)', dict( bands=( .35, 1, 1.3, .9 ), groove=1.0, bump=.5, glow=.4, strength=1.5 ) ),  # stone wall with a window, rough stone
     ( r'^(dr02_1)', dict( bands=( .5, 1, 1.2, 1 ), groove=.5, bump=.6, glow=0, strength=1.4 ) ),  # skull frame
     # the metal_2 sheet, by what each picture is
