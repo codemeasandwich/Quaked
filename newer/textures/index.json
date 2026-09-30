@@ -1,5 +1,5 @@
 {
- "version": 2026093043,
+ "version": 2026093045,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -290,7 +290,32 @@
   "wswamp1_2": "wswamp1_2.webp",
   "wswamp1_4": "wswamp1_4.webp",
   "wswamp2_1": "wswamp2_1.webp",
-  "wswamp2_2": "wswamp2_2.webp"
+  "wswamp2_2": "wswamp2_2.webp",
+  "carch03": "carch03.webp",
+  "bricka2_1": "bricka2_1.webp",
+  "bricka2_2": "bricka2_2.webp",
+  "carch04_2": "carch04_2.webp",
+  "church1_2": "church1_2.webp",
+  "city1_4": "city1_4.webp",
+  "city2_1": "city2_1.webp",
+  "city2_7": "city2_7.webp",
+  "city2_8": "city2_8.webp",
+  "city4_6": "city4_6.webp",
+  "city4_7": "city4_7.webp",
+  "city5_1": "city5_1.webp",
+  "city5_3": "city5_3.webp",
+  "city5_4": "city5_4.webp",
+  "city5_6": "city5_6.webp",
+  "city5_7": "city5_7.webp",
+  "city5_8": "city5_8.webp",
+  "city6_4": "city6_4.webp",
+  "citya1_1": "citya1_1.webp",
+  "column1_2": "column1_2.webp",
+  "column1_5": "column1_5.webp",
+  "stone1_3": "stone1_3.webp",
+  "wall16_7": "wall16_7.webp",
+  "wall9_8": "wall9_8.webp",
+  "wbrick1_5": "wbrick1_5.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -1475,6 +1500,131 @@
    "file": "normals/wswamp2_2.webp",
    "strength": 2.6,
    "cap": 2.2
+  },
+  "carch03": {
+   "file": "normals/carch03.webp",
+   "strength": 2.0,
+   "cap": 1.8
+  },
+  "bricka2_1": {
+   "file": "normals/bricka2_1.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "bricka2_2": {
+   "file": "normals/bricka2_2.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "carch04_2": {
+   "file": "normals/carch04_2.webp",
+   "strength": 2.0,
+   "cap": 1.8
+  },
+  "church1_2": {
+   "file": "normals/church1_2.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city1_4": {
+   "file": "normals/city1_4.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city2_1": {
+   "file": "normals/city2_1.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city2_7": {
+   "file": "normals/city2_7.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city2_8": {
+   "file": "normals/city2_8.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city4_6": {
+   "file": "normals/city4_6.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city4_7": {
+   "file": "normals/city4_7.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city5_1": {
+   "file": "normals/city5_1.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city5_3": {
+   "file": "normals/city5_3.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city5_4": {
+   "file": "normals/city5_4.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city5_6": {
+   "file": "normals/city5_6.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city5_7": {
+   "file": "normals/city5_7.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city5_8": {
+   "file": "normals/city5_8.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "city6_4": {
+   "file": "normals/city6_4.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "citya1_1": {
+   "file": "normals/citya1_1.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "column1_2": {
+   "file": "normals/column1_2.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "column1_5": {
+   "file": "normals/column1_5.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "stone1_3": {
+   "file": "normals/stone1_3.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "wall16_7": {
+   "file": "normals/wall16_7.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "wall9_8": {
+   "file": "normals/wall9_8.webp",
+   "strength": 2.4,
+   "cap": 2.1
+  },
+  "wbrick1_5": {
+   "file": "normals/wbrick1_5.webp",
+   "strength": 2.4,
+   "cap": 2.1
   }
  }
 }
