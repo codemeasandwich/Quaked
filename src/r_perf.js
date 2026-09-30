@@ -168,11 +168,18 @@ export function R_PerfStop( reason ) {
 
 	host.Cbuf_AddText( 'disconnect\n' );
 
+	// stopped early (the menu was opened): what was timed so far is reported all the same
 	if ( reason !== 'finished' ) {
 
+		if ( run.recording && run.frames.length > 0 ) closeDemo();
 		host.log( 'Performance profiler stopped.\n' );
-		run = null;
-		return;
+
+		if ( run.results.length === 0 || ! run.results.some( d => d.frames.length > 0 ) ) {
+
+			run = null;
+			return;
+
+		}
 
 	}
 
@@ -219,6 +226,7 @@ function tick() {
 
 	// a menu (Esc) stops the profile
 	if ( host.menuOpen() && run.seen ) { R_PerfStop( 'stopped' ); return; }
+
 
 	const playing = host.cls.demoplayback === true;
 
@@ -351,6 +359,7 @@ function buildReport( r ) {
 	const total = all.reduce( ( a, b ) => a + b, 0 );
 	const stages = Object.entries( stageTotals ).map( ( [ k, v ] ) => ( { stage: k, avgMs: +( v / Math.max( 1, frames ) ).toFixed( 2 ), share: +( 100 * v / Math.max( 1, total ) ).toFixed( 1 ) } ) ).sort( ( a, b ) => b.avgMs - a.avgMs );
 
+	report.partial = r.results.length < DEMOS.length;
 	report.summary = {
 		frames, avgFps: +( 1000 * frames / Math.max( 1, total ) ).toFixed( 1 ),
 		onePercentLowFps: +( 1000 / Math.max( 1, pct( all, 0.99 ) ) ).toFixed( 1 ),

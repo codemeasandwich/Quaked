@@ -17,6 +17,7 @@ import { R_NewerGame, r_newer_textures } from './r_anim.js';
 const BASE = 'newer/textures/';
 
 let index = null; // name -> file
+let version = '0'; // changes whenever a picture does, so the browser fetches the new one
 let indexPromise = null;
 const pictures = new Map(); // file -> Promise of { data, width, height }
 
@@ -24,9 +25,9 @@ function loadIndex() {
 
 	if ( indexPromise === null ) {
 
-		indexPromise = typeof fetch === 'undefined' ? Promise.resolve( {} ) : fetch( BASE + 'index.json' )
+		indexPromise = typeof fetch === 'undefined' ? Promise.resolve( {} ) : fetch( BASE + 'index.json', { cache: 'no-cache' } )
 			.then( ( r ) => r.ok ? r.json() : {} )
-			.then( ( j ) => { index = j.textures != null ? j.textures : {}; return index; } )
+			.then( ( j ) => { index = j.textures != null ? j.textures : {}; version = String( j.version ); return index; } )
 			.catch( () => { index = {}; return index; } );
 
 	}
@@ -57,7 +58,7 @@ function loadPicture( file ) {
 
 		};
 		img.onerror = () => resolve( null );
-		img.src = BASE + file;
+		img.src = BASE + file + '?v=' + version;
 
 	} );
 

@@ -11,15 +11,16 @@ const BASE = 'newer/hud/';
 
 let index = null; // name -> file
 let indexPromise = null;
+let version = '0';
 const canvases = new Map(); // file -> canvas or null (not there)
 
 function loadIndex() {
 
 	if ( indexPromise === null ) {
 
-		indexPromise = typeof fetch === 'undefined' ? Promise.resolve( {} ) : fetch( BASE + 'index.json' )
+		indexPromise = typeof fetch === 'undefined' ? Promise.resolve( {} ) : fetch( BASE + 'index.json', { cache: 'no-cache' } )
 			.then( ( r ) => r.ok ? r.json() : {} )
-			.then( ( j ) => { index = j.sprites != null ? j.sprites : {}; return index; } )
+			.then( ( j ) => { index = j.sprites != null ? j.sprites : {}; version = String( j.version ); return index; } )
 			.catch( () => { index = {}; return index; } );
 
 	}
@@ -45,7 +46,7 @@ function loadCanvas( file ) {
 
 		};
 		img.onerror = () => resolve( null );
-		img.src = BASE + file;
+		img.src = BASE + file + '?v=' + version;
 
 	} );
 
