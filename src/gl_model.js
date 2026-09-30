@@ -8,7 +8,8 @@ import * as THREE from 'three';
 import { Sys_Error } from './sys.js';
 import { Con_Printf, COM_FileBase } from './common.js';
 import { d_8to24table, vid } from './vid.js';
-import { COM_LoadFile } from './pak.js';
+import { COM_LoadFile, COM_FindFile } from './pak.js';
+import { Lit_Parse, Ent_Parse } from './lit.js';
 import { DotProduct, VectorCopy, Length } from './mathlib.js';
 import { Cvar_RegisterVariable } from './cvar.js';
 import { R_InitSky as R_InitSky_warp, GL_SubdivideSurface as GL_SubdivideSurface_warp, GL_Warp_SetLoadmodel } from './gl_warp.js';
@@ -264,6 +265,8 @@ export class msurface_t {
 		this.cached_dlight = false;							// true if dynamic light in cache
 		this.samples = null;		// Uint8Array -- [numstyles*surfsize]
 		this.sampleOffset = 0;		// offset into lightdata
+		this.litsamples = null;		// Uint8Array -- the coloured version of samples (litdata), or null
+		this.litOffset = 0;			// offset into litdata
 
 	}
 
@@ -601,6 +604,7 @@ export class model_t {
 
 		this.visdata = null;		// Uint8Array
 		this.lightdata = null;		// Uint8Array
+		this.litdata = null;		// Uint8Array, RGB: three bytes per byte of lightdata (a LIT file), or null
 		this.entities = null;		// string
 
 		// additional model data
@@ -1451,6 +1455,10 @@ function Mod_LoadLighting( fileofs, filelen ) {
 	loadmodel.lightdata = new Uint8Array( filelen );
 	loadmodel.lightdata.set( mod_base.subarray( fileofs, fileofs + filelen ) );
 
+	// coloured lightmaps, when the Newer Game pack has them for this map
+	const lit = COM_FindFile( loadmodel.name.replace( /\.bsp$/i, '.lit' ) );
+	loadmodel.litdata = lit !== null ? Lit_Parse( lit.data, filelen ) : null;
+
 }
 
 // ============================================================================
@@ -1480,6 +1488,16 @@ function Mod_LoadEntities( fileofs, filelen ) {
 	if ( filelen === 0 ) {
 
 		loadmodel.entities = null;
+		return;
+
+	}
+
+	// a replacement entity list from the Newer Game pack (maps/e1m1.ent)
+	const ent = COM_FindFile( loadmodel.name.replace( /\.bsp$/i, '.ent' ) );
+	const replacement = ent !== null ? Ent_Parse( ent.data ) : null;
+	if ( replacement !== null ) {
+
+		loadmodel.entities = replacement;
 		return;
 
 	}
@@ -1791,6 +1809,12 @@ function Mod_LoadFaces( fileofs, filelen ) {
 
 			s.samples = loadmodel.lightdata;
 			s.sampleOffset = lightofs;
+			if ( loadmodel.litdata !== null ) {
+
+				s.litsamples = loadmodel.litdata;
+				s.litOffset = lightofs * 3;
+
+			}
 
 		}
 
@@ -2317,6 +2341,7 @@ function Mod_LoadBrushModel( mod, buffer ) {
 			nextmodel.textures = mod.textures;
 			nextmodel.visdata = mod.visdata;
 			nextmodel.lightdata = mod.lightdata;
+			nextmodel.litdata = mod.litdata;
 			nextmodel.entities = mod.entities;
 			nextmodel.needload = false;
 

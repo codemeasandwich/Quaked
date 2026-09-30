@@ -13,6 +13,7 @@
 // the original glowing area, enlarged, picks the glowing part out of the new picture.
 
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
+import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 
 const BASE = 'newer/textures/';
 
@@ -25,8 +26,7 @@ function loadIndex() {
 
 	if ( indexPromise === null ) {
 
-		indexPromise = typeof fetch === 'undefined' ? Promise.resolve( {} ) : fetch( BASE + 'index.json', { cache: 'no-cache' } )
-			.then( ( r ) => r.ok ? r.json() : {} )
+		indexPromise = COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
 			.then( ( j ) => { index = j.textures != null ? j.textures : {}; version = String( j.version ); return index; } )
 			.catch( () => { index = {}; return index; } );
 
@@ -58,7 +58,7 @@ function loadPicture( file ) {
 
 		};
 		img.onerror = () => resolve( null );
-		img.src = BASE + file + '?v=' + version;
+		img.src = COM_NewerURL( BASE + file, BASE + file + '?v=' + version );
 
 	} );
 

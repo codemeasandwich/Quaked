@@ -41,6 +41,14 @@ const loadedPacks = [];
 // Virtual files (for loose files not in pak)
 const virtualFiles = new Map();
 
+// The Newer Game pack (newer.pak): art and data for Newer Game. It is not on the search path
+// like pak0.pak: it is looked at first, and only while Newer Game is on, so New Game
+// stays exactly the original. Its files keep the names they have as loose files ("newer/...").
+let newerPack = null;
+let newerIndex = null; // name -> packfile_t
+let newerActive = false;
+const newerUrls = new Map(); // name -> blob URL
+
 // Base path for on-demand loose file fetching
 // Browser: '' (relative URLs like 'maps/foo.bsp')
 // Deno: '/opt/three-quake/' (absolute filesystem path)
@@ -154,6 +162,14 @@ export function COM_FindFile( filename ) {
 
 	const search = filename.toLowerCase();
 
+	// Newer Game's own files come first
+	if ( newerActive && newerIndex !== null ) {
+
+		const nf = newerIndex.get( search );
+		if ( nf !== undefined ) return { data: new Uint8Array( newerPack.data, nf.filepos, nf.filelen ), size: nf.filelen };
+
+	}
+
 	// Search through loaded packs (reverse order - last added has priority)
 	for ( let i = 0; i < com_searchpaths.length; i ++ ) {
 
@@ -184,6 +200,117 @@ export function COM_FindFile( filename ) {
 	}
 
 	return null;
+
+}
+
+/*
+=================
+COM_SetNewerPack
+
+Makes a loaded pack the Newer Game pack (or none, with null).
+=================
+*/
+export function COM_SetNewerPack( pack ) {
+
+	for ( const url of newerUrls.values() ) URL.revokeObjectURL( url );
+	newerUrls.clear();
+	newerPack = pack;
+	newerIndex = null;
+
+	if ( pack != null ) {
+
+		newerIndex = new Map();
+		for ( const f of pack.files ) newerIndex.set( f.name, f );
+
+	}
+
+}
+
+export function COM_NewerPackLoaded() {
+
+	return newerPack !== null;
+
+}
+
+// whether the pack's files are visible to COM_FindFile (Newer Game is on)
+export function COM_SetNewerActive( on ) {
+
+	newerActive = on === true;
+
+}
+
+/*
+=================
+COM_NewerFile
+
+A file of the Newer Game pack: { data, size } or null.
+=================
+*/
+export function COM_NewerFile( name ) {
+
+	if ( newerIndex === null ) return null;
+	const nf = newerIndex.get( name.toLowerCase() );
+	return nf === undefined ? null : { data: new Uint8Array( newerPack.data, nf.filepos, nf.filelen ), size: nf.filelen };
+
+}
+
+const MIME = { webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', json: 'application/json' };
+
+/*
+=================
+COM_NewerURL
+
+A URL to load a Newer Game file from: out of the pack when it has the file, otherwise
+the loose file at fallback (a checkout without newer.pak).
+=================
+*/
+export function COM_NewerURL( name, fallback ) {
+
+	const f = COM_NewerFile( name );
+	if ( f === null || typeof URL === 'undefined' || typeof Blob === 'undefined' || typeof URL.createObjectURL !== 'function' ) return fallback;
+
+	let url = newerUrls.get( name );
+	if ( url === undefined ) {
+
+		const ext = name.slice( name.lastIndexOf( '.' ) + 1 ).toLowerCase();
+		url = URL.createObjectURL( new Blob( [ f.data ], { type: MIME[ ext ] || 'application/octet-stream' } ) );
+		newerUrls.set( name, url );
+
+	}
+
+	return url;
+
+}
+
+/*
+=================
+COM_NewerJSON
+
+A Newer Game json file: parsed out of the pack, or fetched from fallback (never cached),
+or {} when there is neither.
+=================
+*/
+export async function COM_NewerJSON( name, fallback ) {
+
+	const f = COM_NewerFile( name );
+	if ( f !== null ) {
+
+		try { return JSON.parse( new TextDecoder().decode( f.data ) ); } catch ( e ) { return {}; }
+
+	}
+
+	if ( typeof fetch === 'undefined' ) return {};
+
+	try {
+
+		const r = await fetch( fallback, { cache: 'no-cache' } );
+		return r.ok ? await r.json() : {};
+
+	} catch ( e ) {
+
+		return {};
+
+	}
 
 }
 
@@ -445,5 +572,44 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 	Sys_Printf( 'Loaded ' + url + ' (' + buffer.byteLength + ' bytes)\\n' );
 
 	return COM_LoadPackFile( filename || url, buffer );
+
+}
+
+/*
+=================
+COM_FetchOptionalPak
+
+Like COM_FetchPak for a pak that may not be there (newer.pak): null, quietly, when the file is
+missing or is not a pak (a server that answers every unknown address with a web page).
+=================
+*/
+export async function COM_FetchOptionalPak( url, filename ) {
+
+	try {
+
+		if ( typeof Deno !== 'undefined' ) {
+
+			const data = await Deno.readFile( url );
+			return isPack( data ) ? COM_LoadPackFile( filename, data.buffer.slice( data.byteOffset, data.byteOffset + data.byteLength ) ) : null;
+
+		}
+
+		const response = await fetch( url );
+		if ( ! response.ok ) return null;
+
+		const buffer = await response.arrayBuffer();
+		return isPack( new Uint8Array( buffer ) ) ? COM_LoadPackFile( filename, buffer ) : null;
+
+	} catch ( e ) {
+
+		return null;
+
+	}
+
+}
+
+function isPack( bytes ) {
+
+	return bytes.length >= 12 && bytes[ 0 ] === 0x50 && bytes[ 1 ] === 0x41 && bytes[ 2 ] === 0x43 && bytes[ 3 ] === 0x4B;
 
 }

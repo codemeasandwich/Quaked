@@ -96,6 +96,16 @@ The third-party enemy skin pack, its leftover extracted source textures and shad
 
 To try the result, serve the repository, reload the game, start **Newer Game**, and compare a soldier or ogre with **Newer enemies** on and off. A zombie or dog should keep its original skin in both cases. No game data or model geometry is changed.
 
+### The Newer Game pack
+
+Newer Game's art and data (`newer/textures`, `newer/enemies`, `newer/hud`, and their `index.json` manifests) can be packed into one ordinary Quake pak, `newer.pak`, next to `pak0.pak`:
+
+    python3 tools/build_newer_pak.py
+
+The game loads `newer.pak` when it is there and reads the art out of it; without it (a plain checkout) it reads the loose files in `newer/`, exactly as before. The pack is only visible while Newer Game is on, so New Game is still just `pak0.pak`. Files keep their names (`newer/textures/index.json`), so nothing else changes. Put the pack anywhere a web server serves it from; it is a single download that the browser can cache.
+
+The pack can also carry per-map files, from `newer/maps/` (stored as `maps/<name>`), which the game finds like its own maps: `e1m1.lit` gives a level coloured lightmaps (RGB light from ericw-tools' `light -lit`, with bounce and sun if you like; used in Newer Game with the lighting pipeline) and `e1m1.ent` replaces the level's entity list (for example to add a `_sun_mangle` to the worldspawn, or lights; also used when working out which exits lead where). Neither exists yet for the shipped maps.
+
 You can switch at any time from the console: `r_hdr 0` (classic) or `r_hdr 1` (newer). `r_bloom`, `r_volumetric` and `r_caustics` set the strength of each effect.
 
 This is a rasterised approximation, not path tracing: light does not bounce, and point-light occlusion uses on-screen depth. Sun shadows and sun shafts use the full-map shadow geometry. It needs WebGL2 float render targets; without them the classic path is used automatically, and it is off in WebXR.

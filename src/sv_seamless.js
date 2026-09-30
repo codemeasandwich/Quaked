@@ -14,6 +14,7 @@
 import { cvar_t } from './cvar.js';
 import { sv, svs } from './server.js';
 import { COM_FindFile } from './pak.js';
+import { Ent_Parse } from './lit.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.js';
 import { PR_GetString, EDICT_NUM, pr_global_struct } from './progs.js';
 import { ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
@@ -72,7 +73,17 @@ export function SV_LevelLinks( mapName ) {
 			? new Uint8Array( file.data.buffer, file.data.byteOffset, file.size )
 			: file.data;
 		const meta = bytes != null ? R_ParseBsp( bytes ) : null;
-		if ( meta !== null ) links = R_LevelLinks( meta );
+
+		if ( meta !== null ) {
+
+			// the Newer Game pack may give the map a different entity list (maps/e1m1.ent)
+			const ent = COM_FindFile( 'maps/' + mapName + '.ent' );
+			const text = ent != null ? Ent_Parse( ent.data ) : null;
+			if ( text !== null ) meta.entities = R_ParseEntityLump( text );
+
+			links = R_LevelLinks( meta );
+
+		}
 
 	}
 

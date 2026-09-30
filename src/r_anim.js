@@ -12,6 +12,7 @@
 // model changes, or when the entity has teleported or jumped.
 
 import { cvar_t, Cvar_VariableValue } from './cvar.js';
+import { COM_SetNewerActive } from './pak.js';
 
 // 0 = off, 1 = on in Newer Game only (the default), 2 = always
 export const r_lerpmodels = new cvar_t( 'r_lerpmodels', '1' );
@@ -44,6 +45,7 @@ let newerActive = false;
 export function R_AnimSetNewer( active ) {
 
 	newerActive = active === true;
+	COM_SetNewerActive( newerActive ); // newer.pak's files are only there in Newer Game
 
 }
 

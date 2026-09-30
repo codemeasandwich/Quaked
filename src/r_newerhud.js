@@ -6,6 +6,7 @@
 // the picture is still laid out at the sprite's original size, so nothing moves.
 
 import { R_NewerGame, r_newer_hud } from './r_anim.js';
+import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 
 const BASE = 'newer/hud/';
 
@@ -18,8 +19,7 @@ function loadIndex() {
 
 	if ( indexPromise === null ) {
 
-		indexPromise = typeof fetch === 'undefined' ? Promise.resolve( {} ) : fetch( BASE + 'index.json', { cache: 'no-cache' } )
-			.then( ( r ) => r.ok ? r.json() : {} )
+		indexPromise = COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
 			.then( ( j ) => { index = j.sprites != null ? j.sprites : {}; version = String( j.version ); return index; } )
 			.catch( () => { index = {}; return index; } );
 
@@ -46,7 +46,7 @@ function loadCanvas( file ) {
 
 		};
 		img.onerror = () => resolve( null );
-		img.src = BASE + file + '?v=' + version;
+		img.src = COM_NewerURL( BASE + file, BASE + file + '?v=' + version );
 
 	} );
 

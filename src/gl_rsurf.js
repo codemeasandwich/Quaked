@@ -2,6 +2,7 @@
 
 import * as THREE from 'three';
 import { Sys_Error } from './sys.js';
+import { R_NewerGame } from './r_anim.js';
 
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
@@ -96,6 +97,10 @@ let lightmap_bytes = 1; // 1, 2, or 4
 let lightmap_textures = 0;
 
 const blocklights = new Uint32Array( 18 * 18 );
+// the green and blue of the light of a surface when the map has coloured lightmaps (a LIT file), and the dynamic light alone
+const blocklightsG = new Uint32Array( 18 * 18 );
+const blocklightsB = new Uint32Array( 18 * 18 );
+const blocklightsDyn = new Uint32Array( 18 * 18 );
 
 // Cached buffers for R_AddDynamicLights (Golden Rule #4)
 const _dlight_impact = new Float32Array( 3 );
@@ -1294,13 +1299,18 @@ function R_AddDynamicLights( surf ) {
 // Combine and scale multiple lightmaps into the 8.8 format in blocklights
 //============================================================================
 
-export function R_BuildLightMap( surf, dest, destOffset, stride ) {
+// bytes is how many bytes each texel takes in dest: 1 (the light's brightness) or 3 (red, green and
+// blue, for a map with coloured lightmaps)
+export function R_BuildLightMap( surf, dest, destOffset, stride, bytes = lightmap_bytes ) {
 
 	const smax = ( surf.extents[ 0 ] >> 4 ) + 1;
 	const tmax = ( surf.extents[ 1 ] >> 4 ) + 1;
 	const size = smax * tmax;
+	const colour = bytes === 3;
 	let lightmap = surf.samples;
 	let lightmapOffset = surf.sampleOffset || 0;
+	const lit = colour ? surf.litsamples : null;
+	let litOffset = surf.litOffset || 0;
 
 	surf.cached_dlight = ( surf.dlightframe === r_framecount );
 
@@ -1313,11 +1323,25 @@ export function R_BuildLightMap( surf, dest, destOffset, stride ) {
 		for ( let i = 0; i < size; i ++ )
 			blocklights[ i ] = 255 * 256;
 
+		if ( colour ) {
+
+			blocklightsG.fill( 255 * 256, 0, size );
+			blocklightsB.fill( 255 * 256, 0, size );
+
+		}
+
 	} else {
 
 		// clear to no light
 		for ( let i = 0; i < size; i ++ )
 			blocklights[ i ] = 0;
+
+		if ( colour ) {
+
+			blocklightsG.fill( 0, 0, size );
+			blocklightsB.fill( 0, 0, size );
+
+		}
 
 		// add all the lightmaps
 		if ( lightmap != null ) {
@@ -1326,23 +1350,78 @@ export function R_BuildLightMap( surf, dest, destOffset, stride ) {
 
 				const scale = d_lightstylevalue[ surf.styles[ maps ] ];
 				surf.cached_light[ maps ] = scale; // 8.8 fraction
-				for ( let i = 0; i < size; i ++ )
-					blocklights[ i ] += lightmap[ lightmapOffset + i ] * scale;
+
+				if ( lit !== null ) {
+
+					for ( let i = 0; i < size; i ++ ) {
+
+						blocklights[ i ] += lit[ litOffset + i * 3 ] * scale;
+						blocklightsG[ i ] += lit[ litOffset + i * 3 + 1 ] * scale;
+						blocklightsB[ i ] += lit[ litOffset + i * 3 + 2 ] * scale;
+
+					}
+
+					litOffset += size * 3;
+
+				} else {
+
+					for ( let i = 0; i < size; i ++ ) {
+
+						const v = lightmap[ lightmapOffset + i ] * scale;
+						blocklights[ i ] += v;
+						if ( colour ) {
+
+							blocklightsG[ i ] += v;
+							blocklightsB[ i ] += v;
+
+						}
+
+					}
+
+				}
+
 				lightmapOffset += size; // skip to next lightmap
 
 			}
 
 		}
 
-		// add all the dynamic lights
-		if ( surf.dlightframe === r_framecount )
-			R_AddDynamicLights( surf );
+		// add all the dynamic lights (white: they add the same to red, green and blue)
+		if ( surf.dlightframe === r_framecount ) {
+
+			if ( colour ) {
+
+				for ( let i = 0; i < size; i ++ ) {
+
+					blocklightsDyn[ i ] = blocklights[ i ];
+					blocklights[ i ] = 0;
+
+				}
+
+				R_AddDynamicLights( surf );
+
+				for ( let i = 0; i < size; i ++ ) {
+
+					const d = blocklights[ i ];
+					blocklights[ i ] = blocklightsDyn[ i ] + d;
+					blocklightsG[ i ] += d;
+					blocklightsB[ i ] += d;
+
+				}
+
+			} else {
+
+				R_AddDynamicLights( surf );
+
+			}
+
+		}
 
 	}
 
 	// bound, invert, and shift
-	// store as luminance (single byte per texel)
-	stride -= smax;
+	// store as luminance (single byte per texel), or as red, green and blue
+	stride -= smax * bytes;
 	let bl = 0; // index into blocklights
 	let di = destOffset;
 
@@ -1350,11 +1429,23 @@ export function R_BuildLightMap( surf, dest, destOffset, stride ) {
 
 		for ( let j = 0; j < smax; j ++ ) {
 
-			let t = blocklights[ bl ++ ];
-			t >>= 7;
+			let t = blocklights[ bl ] >> 7;
 			if ( t > 255 ) t = 255;
 			dest[ di ] = 255 - t;
-			di ++;
+
+			if ( colour ) {
+
+				let g = blocklightsG[ bl ] >> 7;
+				if ( g > 255 ) g = 255;
+				let b = blocklightsB[ bl ] >> 7;
+				if ( b > 255 ) b = 255;
+				dest[ di + 1 ] = 255 - g;
+				dest[ di + 2 ] = 255 - b;
+
+			}
+
+			bl ++;
+			di += bytes;
 
 		}
 
@@ -2000,10 +2091,21 @@ export function R_BlendLightmaps() {
 
 				for ( let p = 0; p < pixelCount; p ++ ) {
 
-					const val = 255 - lightmaps[ srcOffset + p ];
-					dstData[ p * 4 ] = val;
-					dstData[ p * 4 + 1 ] = val;
-					dstData[ p * 4 + 2 ] = val;
+					if ( lightmap_bytes === 3 ) {
+
+						dstData[ p * 4 ] = 255 - lightmaps[ srcOffset + p * 3 ];
+						dstData[ p * 4 + 1 ] = 255 - lightmaps[ srcOffset + p * 3 + 1 ];
+						dstData[ p * 4 + 2 ] = 255 - lightmaps[ srcOffset + p * 3 + 2 ];
+
+					} else {
+
+						const val = 255 - lightmaps[ srcOffset + p ];
+						dstData[ p * 4 ] = val;
+						dstData[ p * 4 + 1 ] = val;
+						dstData[ p * 4 + 2 ] = val;
+
+					}
+
 					dstData[ p * 4 + 3 ] = 255;
 
 				}
@@ -2932,8 +3034,9 @@ export function GL_BuildLightmaps() {
 	set_r_framecount( 1 ); // no dlightcache
 
 	// set lightmap format -- use luminance (1 byte per texel)
+	// (3 bytes, red green blue, when the level has coloured lightmaps and Newer Game is on)
 	gl_lightmap_format = GL_LUMINANCE;
-	lightmap_bytes = 1;
+	lightmap_bytes = ( cl_ref.worldmodel != null && cl_ref.worldmodel.litdata != null && R_NewerGame() ) ? 3 : 1;
 
 	// build lightmaps for all brush models
 	const MAX_MODELS = 256;
@@ -2991,10 +3094,21 @@ export function GL_BuildLightmaps() {
 		const data = new Uint8Array( pixelCount * 4 );
 		for ( let p = 0; p < pixelCount; p ++ ) {
 
-			const val = 255 - lightmaps[ offset + p ];
-			data[ p * 4 ] = val;
-			data[ p * 4 + 1 ] = val;
-			data[ p * 4 + 2 ] = val;
+			if ( lightmap_bytes === 3 ) {
+
+				data[ p * 4 ] = 255 - lightmaps[ offset + p * 3 ];
+				data[ p * 4 + 1 ] = 255 - lightmaps[ offset + p * 3 + 1 ];
+				data[ p * 4 + 2 ] = 255 - lightmaps[ offset + p * 3 + 2 ];
+
+			} else {
+
+				const val = 255 - lightmaps[ offset + p ];
+				data[ p * 4 ] = val;
+				data[ p * 4 + 1 ] = val;
+				data[ p * 4 + 2 ] = val;
+
+			}
+
 			data[ p * 4 + 3 ] = 255;
 
 		}

@@ -18,6 +18,7 @@
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies } from './r_anim.js';
+import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 
 // 1 = each monster picks one of its model's skins at random, 0 = always the first
 export const r_newer_variety = new cvar_t( 'r_newer_variety', '1' );
@@ -39,8 +40,7 @@ function requestIndex() {
 	if ( indexRequested || typeof fetch === 'undefined' ) return;
 	indexRequested = true;
 
-	fetch( BASE + 'index.json' )
-		.then( ( r ) => r.ok ? r.json() : null )
+	COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
 		.then( R_NewerSetIndex )
 		.catch( () => { /* no replacement skins available */ } );
 
@@ -158,7 +158,7 @@ function createSet( variant ) {
 		const file = variant.maps[ name ];
 		if ( file === undefined ) return;
 
-		loader.load( BASE + key + '/' + file, ( texture ) => {
+		loader.load( COM_NewerURL( BASE + key + '/' + file, BASE + key + '/' + file ), ( texture ) => {
 
 			texture.flipY = false; // skins are stored top row first, like Quake's own
 			texture.colorSpace = colour ? THREE.SRGBColorSpace : THREE.NoColorSpace;

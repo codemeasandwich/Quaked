@@ -4,7 +4,7 @@
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/sys.js';
 import { COM_InitArgv } from './src/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/host.js';
-import { COM_FetchPak, COM_AddPack } from './src/pak.js';
+import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack } from './src/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/cmd.js';
 import { Con_Printf } from './src/common.js';
 import { Cvar_VariableValue, Cvar_SetValue } from './src/cvar.js';
@@ -56,6 +56,23 @@ async function main() {
 		} else {
 
 			Sys_Printf( 'Warning: pak0.pak not found - game data will be missing\\n' );
+
+		}
+
+		// Newer Game's own art and data, when it is there (a checkout without it uses the loose files in newer/)
+		try {
+
+			const newerPak = await COM_FetchOptionalPak( 'newer.pak', 'newer.pak' );
+			if ( newerPak ) {
+
+				COM_SetNewerPack( newerPak );
+				Sys_Printf( 'newer.pak loaded\\n' );
+
+			}
+
+		} catch ( e ) {
+
+			Sys_Printf( 'newer.pak not loaded: ' + e.message + '\\n' );
 
 		}
 

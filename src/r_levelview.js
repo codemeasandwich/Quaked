@@ -535,7 +535,7 @@ export function R_BuildLevelView( model, origin, entities = [] ) {
 
 		surf.light_s = slot.x;
 		surf.light_t = slot.y;
-		R_BuildLightMap( surf, atlas.blocks[ block ], slot.y * BLOCK_WIDTH + slot.x, BLOCK_WIDTH );
+		R_BuildLightMap( surf, atlas.blocks[ block ], slot.y * BLOCK_WIDTH + slot.x, BLOCK_WIDTH, 1 );
 
 		const key = tex.gl_texture.id + '/' + block;
 		if ( ! lit.has( key ) ) lit.set( key, { texture: tex.gl_texture, block, bucket: createBucket() } );
