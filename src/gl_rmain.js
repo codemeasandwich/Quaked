@@ -11,6 +11,7 @@ import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_new
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
 import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
+import { CL_TeleportSpots } from './cl_tent.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
@@ -843,6 +844,108 @@ const _setupgl_up = new Float32Array( 3 );
 const _setupgl_matrix = new THREE.Matrix4();
 const _setupgl_drawingBufferSize = new THREE.Vector2();
 
+// A monster that has come through a teleporter arrives the way the player does: stretched upwards and split
+// into red and blue, and snaps into place.
+const TELE_FX_TIME = 0.5;
+const _teleTint = [ new THREE.Color( 1, 0.15, 0.1 ), new THREE.Color( 0.1, 0.35, 1 ) ];
+
+function R_EntityTeleportFx( e, mesh, scene ) {
+
+	if ( e._telefx === undefined && CL_TeleportSpots.length > 0 && e.origin != null ) {
+
+		for ( const sp of CL_TeleportSpots ) {
+
+			if ( cl.time - sp.time > 0.3 || cl.time < sp.time ) continue;
+			const dx = e.origin[ 0 ] - sp.pos[ 0 ], dy = e.origin[ 1 ] - sp.pos[ 1 ], dz = e.origin[ 2 ] - sp.pos[ 2 ];
+			if ( dx * dx + dy * dy + dz * dz < 40 * 40 ) {
+
+				e._telefx = sp.time;
+				break;
+
+			}
+
+		}
+
+	}
+
+	const age = e._telefx !== undefined ? cl.time - e._telefx : - 1;
+	const extras = e._telefxMeshes;
+
+	if ( age < 0 || age > TELE_FX_TIME ) {
+
+		if ( extras !== undefined ) {
+
+			for ( const m of extras ) {
+
+				if ( m.parent != null ) m.parent.remove( m );
+				m.material.dispose();
+
+			}
+
+			e._telefxMeshes = undefined;
+
+		}
+
+		if ( age > TELE_FX_TIME ) {
+
+			mesh.scale.set( 1, 1, 1 );
+			e._telefx = undefined;
+
+		}
+
+		return;
+
+	}
+
+	const k = 1 - age / TELE_FX_TIME;
+	const ease = k * k * ( 3 - 2 * k );
+	const stretch = 1 + 2.4 * ease;
+	const width = 1 / Math.sqrt( stretch );
+	const feet = 24; // a monster's origin is about this far above its feet
+
+	mesh.scale.set( width, width, stretch );
+	mesh.position.z += ( stretch - 1 ) * feet;
+
+	if ( extras === undefined ) {
+
+		e._telefxMeshes = _teleTint.map( ( c ) => {
+
+			const mat = mesh.material.clone();
+			mat.color = c.clone();
+			mat.transparent = true;
+			mat.blending = THREE.AdditiveBlending;
+			mat.depthWrite = false;
+			const m = new THREE.Mesh( mesh.geometry, mat );
+			m.renderOrder = 2;
+			scene.add( m );
+			return m;
+
+		} );
+
+	}
+
+	// each colour is stretched a little more than the last, so they come apart along the stretch
+	e._telefxMeshes.forEach( ( m, i ) => {
+
+		const sgn = i === 0 ? 1 : - 1;
+		const extra = 1 + ( i === 0 ? 0.18 : - 0.1 ) * ease;
+		m.geometry = mesh.geometry;
+		m.quaternion.copy( mesh.quaternion );
+		m.scale.set( width, width, stretch * extra );
+		m.position.set(
+			mesh.position.x + vright[ 0 ] * sgn * 9 * ease,
+			mesh.position.y + vright[ 1 ] * sgn * 9 * ease,
+			mesh.position.z + ( extra - 1 ) * stretch * feet
+		);
+		m.material.opacity = 0.75 * ease;
+		m.visible = true;
+		_entityMeshesThisFrame.add( m );
+		_entityMeshesInScene.add( m );
+
+	} );
+
+}
+
 function R_DrawAliasModel( e ) {
 
 	// gibs leave a pool where they come to rest (Newer Game)
@@ -959,6 +1062,8 @@ function R_DrawAliasModel( e ) {
 		_entityMeshesThisFrame.add( mesh );
 
 	}
+
+	if ( mesh && scene && e !== cl.viewent ) R_EntityTeleportFx( e, mesh, scene );
 
 	// Draw shadow (Ported from WinQuake/gl_rmain.c:579-591); Newer Game casts it from the
 	// lights that really shine on the model instead

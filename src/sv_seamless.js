@@ -18,7 +18,8 @@ import { Ent_Parse } from './lit.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.js';
 import { PR_GetString, EDICT_NUM, EDICT_TO_PROG, pr_global_struct } from './progs.js';
 import { ED_Alloc, ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
-import { COM_Parse, com_token } from './common.js';
+import { COM_Parse, com_token, MSG_WriteByte, MSG_WriteCoord } from './common.js';
+import { svc_temp_entity, TE_TELEPORT } from './protocol.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
@@ -326,7 +327,6 @@ function SV_RestoreLevel( snap ) {
 
 }
 
-
 //============================================================================
 // Monsters that give chase follow through the crossing
 //============================================================================
@@ -346,7 +346,7 @@ let arrivals = null;
 
 function SV_TakeFollowers( player, cur, t ) {
 
-	if ( t.kind === 'pit' ) return [];
+	if ( t !== null && t.kind === 'pit' ) return [];
 
 	const me = EDICT_TO_PROG( player );
 	const found = [];
@@ -376,6 +376,17 @@ function SV_TakeFollowers( player, cur, t ) {
 		ED_Write( lines, f.ed );
 		const text = lines.join( '\n' );
 		const o = f.ed.v.origin;
+		const model = ( /"model"\s+"([^"]+)"/.exec( text ) || [ '', '' ] )[ 1 ];
+		const earliest = list.length > 0 ? list[ list.length - 1 ].delay + FOLLOW_STAGGER : 0;
+
+		if ( t === null ) {
+
+			// a teleporter pad: it walks to the pad and is sent after the player, as late as that took
+			list.push( { text, model, delay: Math.max( Math.hypot( f.rel[ 0 ], f.rel[ 1 ] ) / FOLLOW_SPEED, earliest ), yaw: f.ed.v.angles[ 1 ], pad: true } );
+			ED_Free( f.ed );
+			continue;
+
+		}
 
 		// its run: straight to the doorway, to the spot across from the player that it was off to the side by
 		const side = t.tangent;
@@ -383,13 +394,12 @@ function SV_TakeFollowers( player, cur, t ) {
 		const from = [ o[ 0 ], o[ 1 ], o[ 2 ] ];
 		const to = [ cur[ 0 ] + side[ 0 ] * lat, cur[ 1 ] + side[ 1 ] * lat, o[ 2 ] ];
 		const run = Math.hypot( to[ 0 ] - from[ 0 ], to[ 1 ] - from[ 1 ] );
-		const earliest = list.length > 0 ? list[ list.length - 1 ].delay + FOLLOW_STAGGER : 0;
 
 		list.push( {
 			text, from, to, run,
 			delay: Math.max( run / FOLLOW_SPEED, earliest ),
 			heading: Math.atan2( to[ 1 ] - from[ 1 ], to[ 0 ] - from[ 0 ] ) * 180 / Math.PI,
-			model: ( /"model"\s+"([^"]+)"/.exec( text ) || [ '', '' ] )[ 1 ],
+			model,
 			skin: parseInt( ( /"skin"\s+"(\d+)"/.exec( text ) || [ '', '0' ] )[ 1 ], 10 ),
 			classname: PR_GetString( f.ed.v.classname )
 		} );
@@ -402,7 +412,6 @@ function SV_TakeFollowers( player, cur, t ) {
 	return list;
 
 }
-
 
 // A monster coming through from another level may be one this level never loaded: its model and
 // its sounds are added to the level while it is still loading (nothing can be added later).
@@ -454,7 +463,6 @@ function SV_PrecacheFollowers( followers ) {
 
 }
 
-
 // The player goes back through the doorway before the followers have all come through: the ones still
 // running are put back in the level they were running in, where they had got to.
 function SV_ReturnFollowers( map ) {
@@ -501,6 +509,32 @@ function SV_QueueFollowers( arrival ) {
 
 }
 
+// the followers of a teleporter pad, to be sent after the player
+let padFollowers = null;
+
+function SV_TakePadFollowers( ent, map ) {
+
+	padFollowers = null;
+	const origin = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];
+	const list = SV_TakeFollowers( ent, origin, null );
+	if ( list.length > 0 ) padFollowers = { map, list };
+
+}
+
+function SV_QueuePadFollowers( ent ) {
+
+	const p = padFollowers;
+	padFollowers = null;
+	if ( p === null || p.map !== sv.name ) return;
+
+	arrivals = {
+		at: sv.time, t: null, from: null,
+		spot: { origin: [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ], yaw: ent.v.angles[ 1 ] },
+		list: p.list.map( ( f ) => ( { ...f, placed: false, tries: 0, runner: null } ) )
+	};
+
+}
+
 function SV_ModelIndex( name ) {
 
 	if ( sv.model_precache == null ) return - 1;
@@ -521,7 +555,8 @@ function SV_PlaceFollowers( player ) {
 	if ( a === null ) return;
 
 	const t = a.t;
-	const fwd = t.direction( t.through ); // the way on, in this level
+	const yawSpot = a.spot !== undefined ? a.spot.yaw * Math.PI / 180 : 0;
+	const fwd = t !== null ? t.direction( t.through ) : [ Math.cos( yawSpot ), Math.sin( yawSpot ), 0 ]; // the way on, in this level
 	let waiting = 0;
 
 	for ( const f of a.list ) {
@@ -571,10 +606,20 @@ function SV_PlaceFollowers( player ) {
 
 		}
 
-		// where the run ends: at the doorway, stepping out of it
-		const at = t.position( f.to );
-		const base = [ at[ 0 ] + fwd[ 0 ] * 4, at[ 1 ] + fwd[ 1 ] * 4, at[ 2 ] ];
-		const yaw = t.angle( f.heading );
+		// where the run ends: at the doorway, stepping out of it; or at the spot a teleport sends you to
+		let base, yaw;
+		if ( t !== null ) {
+
+			const at = t.position( f.to );
+			base = [ at[ 0 ] + fwd[ 0 ] * 4, at[ 1 ] + fwd[ 1 ] * 4, at[ 2 ] ];
+			yaw = t.angle( f.heading );
+
+		} else {
+
+			base = a.spot.origin.slice();
+			yaw = a.spot.yaw;
+
+		}
 
 		ed.v.modelindex = index;
 		ed.v.enemy = EDICT_TO_PROG( player );
@@ -592,19 +637,35 @@ function SV_PlaceFollowers( player ) {
 		ed.v.ideal_yaw = yaw;
 		ed.v.flags = ( ed.v.flags | 0 ) & ~ 512; // not on the ground until it is found to be
 
-		// the first free spot on from the doorway
+		// the first free spot: on from the doorway, or round the place where the teleport lands
 		let ok = false;
-		for ( let d = 0; d <= 96 && ok === false; d += 8 ) {
+		const spots = [];
+		if ( t !== null ) {
 
-			for ( const dz of [ 0, 8, 16, 32 ] ) {
+			for ( let d = 0; d <= 96; d += 8 ) for ( const dz of [ 0, 8, 16, 32 ] ) spots.push( [ fwd[ 0 ] * d, fwd[ 1 ] * d, dz ] );
 
-				ed.v.origin = [ base[ 0 ] + fwd[ 0 ] * d, base[ 1 ] + fwd[ 1 ] * d, base[ 2 ] + dz ];
-				if ( SV_TestEntityPosition( ed ) === null ) {
+		} else {
 
-					ok = true;
-					break;
+			for ( const r of [ 0, 40, 72, 104 ] ) {
+
+				for ( let k = 0; k < ( r === 0 ? 1 : 8 ); k ++ ) {
+
+					const an = k * Math.PI / 4;
+					for ( const dz of [ 0, 8, 24 ] ) spots.push( [ Math.cos( an ) * r, Math.sin( an ) * r, dz ] );
 
 				}
+
+			}
+
+		}
+
+		for ( const [ dx, dy, dz ] of spots ) {
+
+			ed.v.origin = [ base[ 0 ] + dx, base[ 1 ] + dy, base[ 2 ] + dz ];
+			if ( SV_TestEntityPosition( ed ) === null ) {
+
+				ok = true;
+				break;
 
 			}
 
@@ -629,6 +690,17 @@ function SV_PlaceFollowers( player ) {
 		ed.v.oldorigin = [ ed.v.origin[ 0 ], ed.v.origin[ 1 ], ed.v.origin[ 2 ] ];
 		SV_LinkEdict( ed, false );
 		pr_global_struct.total_monsters += 1;
+
+		if ( t === null ) {
+
+			// it has come through the teleporter
+			MSG_WriteByte( sv.datagram, svc_temp_entity );
+			MSG_WriteByte( sv.datagram, TE_TELEPORT );
+			MSG_WriteCoord( sv.datagram, ed.v.origin[ 0 ] );
+			MSG_WriteCoord( sv.datagram, ed.v.origin[ 1 ] );
+			MSG_WriteCoord( sv.datagram, ed.v.origin[ 2 ] );
+
+		}
 		f.placed = true;
 
 	}
@@ -855,6 +927,9 @@ export function SV_SeamlessSetup() {
 
 	crossings = [];
 	pads = [];
+
+	// (monsters that will be sent after the player may need their models)
+	if ( padFollowers !== null && padFollowers.map === sv.name ) SV_PrecacheFollowers( padFollowers.list );
 
 	// a teleporter pad has sent us here: the picture snaps back now
 	if ( teleport !== null ) {
@@ -1129,6 +1204,7 @@ function SV_TeleporterPads( ent ) {
 
 			teleport.phase = 'loading';
 			teleport.since = now;
+			SV_TakePadFollowers( ent, teleport.map );
 			Cbuf_AddText( 'changelevel ' + teleport.map + '\n' );
 
 		}
@@ -1137,6 +1213,7 @@ function SV_TeleporterPads( ent ) {
 
 		teleport.phase = 'loading';
 		teleport.since = now;
+		SV_TakePadFollowers( ent, teleport.map );
 		Cbuf_AddText( 'changelevel ' + teleport.map + '\n' );
 
 	} else if ( teleport.phase === 'loading' && now - teleport.since > TELEPORT_GIVE_UP ) {
@@ -1165,7 +1242,14 @@ export function SV_SeamlessPlacePlayer( ent ) {
 	lastOrigin = null;
 	arrivals = null;
 
-	if ( arrival === null || arrival.map !== sv.name ) return;
+	if ( arrival === null ) {
+
+		SV_QueuePadFollowers( ent );
+		return;
+
+	}
+
+	if ( arrival.map !== sv.name ) return;
 	SV_QueueFollowers( arrival );
 
 	const start = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];

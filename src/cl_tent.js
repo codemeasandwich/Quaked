@@ -18,6 +18,9 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
+
+// where monsters have just been teleported in (for their arrival effect)
+export const CL_TeleportSpots = [];
 import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from './mathlib.js';
 import { S_PrecacheSound, S_StartSound } from './snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
@@ -248,7 +251,10 @@ export function CL_ParseTEnt() {
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			// no white particle burst; the teleport sound comes from the server
+			// no white particle burst; the teleport sound comes from the server.  A monster that has
+			// come through gets the screen's own effect: see R_EntityTeleportFx
+			CL_TeleportSpots.push( { pos: [ pos[ 0 ], pos[ 1 ], pos[ 2 ] ], time: cl.time } );
+			if ( CL_TeleportSpots.length > 8 ) CL_TeleportSpots.shift();
 			break;
 
 		case TE_EXPLOSION2: { // color mapped explosion
