@@ -24,6 +24,23 @@ def runs(v, th, gap):
         p = i
     out.append((int(s), int(p) + 1)); return out
 
+def trim_bleed(a, left, right, top, bot, t):
+    """Some upscalers fill the gap between two tiles with a strip of texture that belongs to no tile,
+    and it ends up on one side of the cut. When a cut is wider than the tile's shape allows, find
+    the picture in it: its left edge is the sharpest rise in brightness near the start of the cut,
+    its right edge the sharpest drop after that. Returns the new (left, right)."""
+    want = (bot - top) * t['w'] / t['h']
+    if right - left < want * 1.08: return left, right
+    prof = a[top:bot, int(left):int(right)].astype(float).mean(axis=0)
+    n = len(prof)
+    rise = prof[3:] - prof[:-3]
+    hi0 = min(n - 4, int(want * 0.25))
+    L = int(np.argmax(rise[:hi0])) + 1 if hi0 > 3 and rise[:hi0].max() > 12 else 0
+    lo = L + int(want * 0.8); hi = min(n - 4, L + int(want * 1.12))
+    if hi <= lo: return left + L, right
+    drop = prof[lo:hi] - prof[lo + 3:hi + 3]
+    return left + L, left + lo + int(np.argmax(drop)) + 2
+
 def main(manifest, sheet, image, out, factor=4):
     m = json.load(open(manifest)); os.makedirs(out, exist_ok=True)
     im = Image.open(image).convert('RGB'); a = np.asarray(im).max(axis=2)
@@ -63,6 +80,9 @@ def main(manifest, sheet, image, out, factor=4):
             for i, ( n, t ) in enumerate( k ):
                 left = c0 if i == 0 else at( ( k[i - 1][1]['x'] + k[i - 1][1]['w'] + t['x'] ) / 2 )
                 right = c1 if i == len( k ) - 1 else at( ( t['x'] + t['w'] + k[i + 1][1]['x'] ) / 2 )
+                left, right = trim_bleed(a, left, right, top, bot, t)
+                # a tile is as tall as its width says: anything below is the gap to the tall tiles beside it
+                bot = min(bot, top + round((right - left) * t['h'] / t['w'] * 1.08))
                 got[n] = im.crop((round(left), top, round(right), bot)).resize((t['w'] * factor, t['h'] * factor), Image.LANCZOS)
     check = Image.new('RGB', (W * factor, H * factor))
     for n, t in tiles:
