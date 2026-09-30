@@ -41,31 +41,29 @@ def main(manifest, sheet, image, out, factor=4):
     got = {}
     for (y0, y1), exp in zip(rows, exp_rows):
         cols = runs((a[y0:y1] > DARK).sum(axis=0), 10, gap_h)
-        # split joined pictures: the expected widths decide how many tiles each run holds
-        total = sum(t['w'] for _, t in exp)
         if len(cols) > len(exp):
             sys.exit(f'row at y={y0}: found {len(cols)} tiles, expected {len(exp)}: needs a manual look')
-        # assign tiles to runs in order, by width proportion
-        span = sum(c1 - c0 for c0, c1 in cols)
-        pos = 0; assign = []
-        for c0, c1 in cols:
-            share = (c1 - c0) / span * total
-            k = []; acc = 0
-            while pos < len(exp) and (not k or acc + exp[pos][1]['w'] / 2 <= share):
-                k.append(exp[pos]); acc += exp[pos][1]['w']; pos += 1
-            assign.append(((c0, c1), k))
-        if pos < len(exp): assign[-1][1].extend(exp[pos:])
-        for (c0, c1), k in assign:
+        # which run holds which tiles: by where each tile sits along the row
+        xmin = min(t['x'] for _, t in exp); xmax = max(t['x'] + t['w'] for _, t in exp)
+        img0, img1 = cols[0][0], cols[-1][1]
+        def where( x ): return img0 + ( x - xmin ) / ( xmax - xmin ) * ( img1 - img0 )
+        groups = [[] for _ in cols]
+        for n, t in exp:
+            cx = where( t['x'] + t['w'] / 2 )
+            k = min( range( len( cols ) ), key=lambda i: 0 if cols[i][0] <= cx <= cols[i][1] else min( abs( cx - cols[i][0] ), abs( cx - cols[i][1] ) ) )
+            groups[k].append( ( n, t ) )
+        for ( c0, c1 ), k in zip( cols, groups ):
+            if not k: continue
             ys = np.where((a[y0:y1, c0:c1] > DARK).sum(axis=1) > max(2, (c1 - c0) // 20))[0]
             top, bot = y0 + int(ys.min()), y0 + int(ys.max()) + 1
-            # tiles of one height in a row share the row's top and bottom (an arch
-            # or a dark corner must not make one tile look shorter than its neighbours)
             if len({t['h'] for _, t in exp}) == 1: top, bot = y0, y1
-            kw = sum(t['w'] for _, t in k); x = c0
-            for n, t in k:
-                w = (c1 - c0) * t['w'] / kw
-                got[n] = im.crop((round(x), top, round(x + w), bot)).resize((t['w'] * factor, t['h'] * factor), Image.LANCZOS)
-                x += w
+            # tiles joined into one picture are cut where the gaps between them were
+            gx0 = min(t['x'] for _, t in k); gx1 = max(t['x'] + t['w'] for _, t in k)
+            def at( x ): return c0 + ( x - gx0 ) / ( gx1 - gx0 ) * ( c1 - c0 )
+            for i, ( n, t ) in enumerate( k ):
+                left = c0 if i == 0 else at( ( k[i - 1][1]['x'] + k[i - 1][1]['w'] + t['x'] ) / 2 )
+                right = c1 if i == len( k ) - 1 else at( ( t['x'] + t['w'] + k[i + 1][1]['x'] ) / 2 )
+                got[n] = im.crop((round(left), top, round(right), bot)).resize((t['w'] * factor, t['h'] * factor), Image.LANCZOS)
     check = Image.new('RGB', (W * factor, H * factor))
     for n, t in tiles:
         if n in got:
