@@ -27,6 +27,7 @@ import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from '
 import { R_NormalMapFor } from './gl_normals.js';
 import { GL_SetForceLinear } from './glquake.js';
 import { R_ScreenDropsUpdate } from './r_screendrops.js';
+import { R_TeleportFx } from './r_teleportfx.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
 
@@ -1288,6 +1289,8 @@ uniform float uLightAdd[ ${MAX_VOLUME_LIGHTS} ];
 uniform float uEdge;
 uniform float uDropDensity;
 uniform float uDropBlood;
+uniform float uTeleStretch;
+uniform float uTeleChroma;
 uniform float uDropAge;
 uniform float uSaturation;
 uniform float uContrast;
@@ -1409,16 +1412,28 @@ vec4 lensDrops( vec2 uv, float grid, float seed ) {
 
 void main() {
 	vec2 uvd = vUv;
+	// teleporting: the picture is pulled upwards (the middle rows fill the screen)
+	if ( uTeleStretch > 0.0 ) {
+		float S = 1.0 + uTeleStretch * uTeleStretch * 9.0;
+		uvd.y = 0.5 + ( vUv.y - 0.5 ) / S;
+		uvd.x = 0.5 + ( vUv.x - 0.5 ) * ( 1.0 + uTeleStretch * 0.35 );
+	}
 	float dropMask = 0.0;
 	float dropGlint = 0.0;
 	if ( uDropDensity > 0.001 ) {
 		vec4 a = lensDrops( vUv, 9.0, 0.0 );
 		vec4 b = lensDrops( vUv, 21.0, 17.0 );
-		uvd = vUv + a.xy + b.xy * 0.7;
+		uvd += a.xy + b.xy * 0.7;
 		dropMask = clamp( a.z + b.z * 0.8, 0.0, 1.0 );
 		dropGlint = clamp( a.w + b.w * 0.6, 0.0, 1.0 );
 	}
 	vec3 scene = texture2D( tScene, uvd ).rgb;
+	if ( uTeleChroma > 0.0 ) {
+		// red, green and blue come apart, along the stretch
+		vec2 sp = vec2( uTeleChroma * 0.006 * ( 1.0 + 3.0 * uTeleStretch ), uTeleChroma * 0.05 );
+		scene = vec3( texture2D( tScene, uvd + sp ).r, scene.g, texture2D( tScene, uvd - sp ).b );
+		scene *= 1.0 + uTeleChroma * 0.35;
+	}
 	if ( dropMask > 0.0 ) {
 		// what is seen through a drop is slightly out of focus
 		vec2 bl = uTexel * 3.5;
@@ -1781,6 +1796,8 @@ function createPipeline() {
 			uEdge: { value: 1 },
 			uDropDensity: { value: 0 },
 			uDropBlood: { value: 0 },
+			uTeleStretch: { value: 0 },
+			uTeleChroma: { value: 0 },
 			uDropAge: { value: 0 },
 			uSaturation: { value: SATURATION },
 			uContrast: { value: CONTRAST },
@@ -2105,6 +2122,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	const drops = R_ScreenDropsUpdate();
 	cm.uDropDensity.value = underwater ? 0 : drops.density;
 	cm.uDropBlood.value = drops.blood;
+	const tele = R_TeleportFx( performance.now() / 1000 );
+	cm.uTeleStretch.value = tele.stretch;
+	cm.uTeleChroma.value = tele.chroma;
 	cm.uDropAge.value = drops.age;
 	cm.uTime.value = time;
 	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;

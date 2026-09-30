@@ -22,6 +22,7 @@ import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { r_newer_portals } from './r_anim.js';
+import { R_TeleportFxBegin, R_TeleportFxSnap, R_TeleportFxReset } from './r_teleportfx.js';
 import {
 	R_ParseBsp, R_ParseEntityLump, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
 } from './r_levelgraph.js';
@@ -37,6 +38,13 @@ const metaCache = new Map();
 let crossings = []; // this level's seamless exits
 let pending = null; // a crossing in progress: { map, origin, velocity, angles, pit, from }
 let lastOrigin = null;
+// Teleporter pads that lead to other levels: the game's own exit is taken over so the
+// change is at once (no intermission), with a stretch and snap of the picture
+let pads = []; // { exit, map }
+let teleport = null; // { map, origin, since, phase: 'build' | 'loading' }
+const TELEPORT_BUILD = 0.36; // seconds of stretching before the level changes
+const TELEPORT_GIVE_UP = 8; // seconds: the level did not change
+
 let levelStates = new Map(); // levels left through a crossing, as they were: map name -> snapshot
 let holding = null; // the arrival, while the player is held until the client is ready
 
@@ -387,9 +395,132 @@ SV_SeamlessSetup
 Called once a level's entities are loaded.
 ================
 */
+// Something to walk back through: a doorway, archway, portal or door in this level
+// where the way back would be.  Without it the way back would lead out of nowhere,
+// so the player who arrives is not offered one.
+const RETURN_MARKER = /^(\+.)?slip|^[aew]?door|^dr\d|^[w]?enter|^z?_?exit|arch|^window|^gate|^portc/; // (a teleporter is not one: see SV_ExitIsTeleporter)
+const RETURN_REACH = 224; // how far from the way back a marker may be
+
+function SV_HasReturnMarker( inverse ) {
+
+	const model = sv.worldmodel;
+	if ( model == null || model.surfaces == null ) return false;
+
+	const c = inverse.center;
+
+	for ( const surf of model.surfaces ) {
+
+		if ( surf.texinfo == null || surf.texinfo.texture == null ) continue;
+		if ( ! RETURN_MARKER.test( surf.texinfo.texture.name ) ) continue;
+
+		const mn = [ 1e9, 1e9, 1e9 ], mx = [ - 1e9, - 1e9, - 1e9 ];
+		for ( let i = 0; i < surf.numedges; i ++ ) {
+
+			const l = model.surfedges[ surf.firstedge + i ];
+			const e = l > 0 ? model.edges[ l ] : model.edges[ - l ];
+			const v = model.vertexes[ l > 0 ? e.v[ 0 ] : e.v[ 1 ] ].position;
+			for ( let a = 0; a < 3; a ++ ) {
+
+				mn[ a ] = Math.min( mn[ a ], v[ a ] );
+				mx[ a ] = Math.max( mx[ a ], v[ a ] );
+
+			}
+
+		}
+
+		if ( mx[ 0 ] < c[ 0 ] - RETURN_REACH || mn[ 0 ] > c[ 0 ] + RETURN_REACH ) continue;
+		if ( mx[ 1 ] < c[ 1 ] - RETURN_REACH || mn[ 1 ] > c[ 1 ] + RETURN_REACH ) continue;
+		if ( mx[ 2 ] < c[ 2 ] - 64 || mn[ 2 ] > c[ 2 ] + 160 ) continue;
+
+		return true;
+
+	}
+
+	return false;
+
+}
+
+// An exit with a teleporter surface (the swirling *teleport pictures) at it is a
+// teleporter, whatever its shape: a pad that leads to another level, not a doorway.
+function SV_ExitIsTeleporter( exit ) {
+
+	const model = sv.worldmodel;
+	if ( model == null || model.surfaces == null ) return false;
+
+	const reach = 48;
+
+	for ( const surf of model.surfaces ) {
+
+		if ( surf.texinfo == null || surf.texinfo.texture == null ) continue;
+		if ( surf.texinfo.texture.name.slice( 0, 9 ).toLowerCase() !== '*teleport' ) continue;
+
+		let near = true;
+		const mn = [ 1e9, 1e9, 1e9 ], mx = [ - 1e9, - 1e9, - 1e9 ];
+		for ( let i = 0; i < surf.numedges; i ++ ) {
+
+			const l = model.surfedges[ surf.firstedge + i ];
+			const e = l > 0 ? model.edges[ l ] : model.edges[ - l ];
+			const v = model.vertexes[ l > 0 ? e.v[ 0 ] : e.v[ 1 ] ].position;
+			for ( let a = 0; a < 3; a ++ ) {
+
+				mn[ a ] = Math.min( mn[ a ], v[ a ] );
+				mx[ a ] = Math.max( mx[ a ], v[ a ] );
+
+			}
+
+		}
+
+		for ( let a = 0; a < 3; a ++ )
+			if ( mx[ a ] < exit.mins[ a ] - reach || mn[ a ] > exit.maxs[ a ] + reach ) near = false;
+
+		if ( near ) return true;
+
+	}
+
+	return false;
+
+}
+
+// stop the game's own exit from firing; whoever asks takes over.  Triggers clear
+// their model name when they spawn, so this one is found by its box: the game makes
+// it one unit bigger than the brush all round.
+function takeExit( exit ) {
+
+	let taken = false;
+	for ( let i = 0; i < sv.num_edicts; i ++ ) {
+
+		const ed = sv.edicts[ i ];
+		if ( ed.free ) continue;
+		if ( PR_GetString( ed.v.classname ) !== 'trigger_changelevel' ) continue;
+
+		let same = true;
+		for ( let a = 0; a < 3; a ++ )
+			if ( Math.abs( ed.v.mins[ a ] - exit.mins[ a ] ) > 2 || Math.abs( ed.v.maxs[ a ] - exit.maxs[ a ] ) > 2 ) same = false;
+		if ( same === false ) continue;
+
+		ed.v.solid = SOLID_NOT;
+		SV_LinkEdict( ed, false );
+		taken = true;
+
+	}
+
+	return taken;
+
+}
+
 export function SV_SeamlessSetup() {
 
 	crossings = [];
+	pads = [];
+
+	// a teleporter pad has sent us here: the picture snaps back now
+	if ( teleport !== null ) {
+
+		if ( teleport.phase === 'loading' && teleport.map === sv.name ) R_TeleportFxSnap();
+		else R_TeleportFxReset(); // some other level change: no teleport
+		teleport = null;
+
+	}
 	lastOrigin = null;
 
 	// only crossings carry a level's state along; anything else starts afresh
@@ -410,7 +541,7 @@ export function SV_SeamlessSetup() {
 	if ( from != null ) {
 
 		const inverse = R_InverseCrossing( from.transform, from.opening );
-		if ( inverse !== null ) {
+		if ( inverse !== null && SV_HasReturnMarker( inverse ) ) {
 
 			const o = from.opening;
 			crossings.push( {
@@ -428,7 +559,13 @@ export function SV_SeamlessSetup() {
 
 	for ( const exit of here.exits ) {
 
-		if ( exit.kind === 'pad' ) continue;
+		if ( exit.kind === 'pad' || SV_ExitIsTeleporter( exit ) ) {
+
+			// a teleporter pad: it stays a pad, and the teleport is at once
+			if ( SV_LevelLinks( exit.map ) !== null && takeExit( exit ) ) pads.push( { exit, map: exit.map } );
+			continue;
+
+		}
 
 		const there = SV_LevelLinks( exit.map );
 		if ( there === null || there.start === null ) continue; // not available: leave it to the game
@@ -475,25 +612,7 @@ export function SV_SeamlessSetup() {
 		if ( transform === null ) continue;
 
 		// stop the game's own exit from firing; this crossing takes over
-		let taken = false;
-		for ( let i = 0; i < sv.num_edicts; i ++ ) {
-
-			const ed = sv.edicts[ i ];
-			if ( ed.free ) continue;
-			if ( PR_GetString( ed.v.classname ) !== 'trigger_changelevel' ) continue;
-
-			// triggers clear their model name when they spawn, so find this one by its
-			// box: the game makes it one unit bigger than the brush all round
-			let same = true;
-			for ( let a = 0; a < 3; a ++ )
-				if ( Math.abs( ed.v.mins[ a ] - exit.mins[ a ] ) > 2 || Math.abs( ed.v.maxs[ a ] - exit.maxs[ a ] ) > 2 ) same = false;
-			if ( same === false ) continue;
-
-			ed.v.solid = SOLID_NOT;
-			SV_LinkEdict( ed, false );
-			taken = true;
-
-		}
+		const taken = takeExit( exit );
 
 		// coming back through this exit from the other side: whatever was locked
 		// across it (a key door) has been dealt with and is gone
@@ -523,12 +642,17 @@ After the physics each frame: has the player gone through an exit?
 */
 export function SV_SeamlessFrame() {
 
-	if ( crossings.length === 0 || pending !== null ) return;
+	if ( pending !== null ) return;
+	if ( crossings.length === 0 && pads.length === 0 && teleport === null ) return;
 
 	const client = svs.clients[ 0 ];
 	if ( client == null || client.edict == null ) return;
 
 	const ent = client.edict;
+
+	if ( SV_TeleporterPads( ent ) ) return;
+	if ( crossings.length === 0 ) return;
+
 	const cur = [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ];
 
 	if ( lastOrigin !== null ) {
@@ -564,6 +688,64 @@ export function SV_SeamlessFrame() {
 	}
 
 	lastOrigin = cur;
+
+}
+
+/*
+================
+SV_TeleporterPads
+
+The player on a pad that leads to another level: the picture stretches while they
+stand held where they are, then the level changes with no intermission and no
+loading screen, and the picture snaps back in the new level.  Returns true while
+a teleport is under way.
+================
+*/
+function SV_TeleporterPads( ent ) {
+
+	const now = performance.now() / 1000;
+
+	if ( teleport === null ) {
+
+		if ( pads.length === 0 || ent.v.health <= 0 ) return false;
+
+		for ( const p of pads ) {
+
+			let inside = true;
+			for ( let a = 0; a < 3; a ++ )
+				if ( ent.v.absmax[ a ] < p.exit.mins[ a ] || ent.v.absmin[ a ] > p.exit.maxs[ a ] ) inside = false;
+			if ( inside === false ) continue;
+
+			teleport = { map: p.map, origin: [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ], since: now, phase: 'build' };
+			R_TeleportFxBegin( now );
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+	// held where they stepped, in the air if need be
+	ent.v.velocity = [ 0, 0, 0 ];
+	ent.v.origin = [ teleport.origin[ 0 ], teleport.origin[ 1 ], teleport.origin[ 2 ] ];
+	SV_LinkEdict( ent, false );
+
+	if ( teleport.phase === 'build' && now - teleport.since >= TELEPORT_BUILD ) {
+
+		teleport.phase = 'loading';
+		teleport.since = now;
+		Cbuf_AddText( 'changelevel ' + teleport.map + '\n' );
+
+	} else if ( teleport.phase === 'loading' && now - teleport.since > TELEPORT_GIVE_UP ) {
+
+		// the level never came: let go
+		teleport = null;
+		R_TeleportFxReset();
+
+	}
+
+	return true;
 
 }
 
@@ -672,6 +854,9 @@ export function SV_SeamlessPending() {
 export function SV_SeamlessReset() {
 
 	crossings = [];
+	pads = [];
+	teleport = null;
+	R_TeleportFxReset();
 	pending = null;
 	holding = null;
 	lastOrigin = null;
