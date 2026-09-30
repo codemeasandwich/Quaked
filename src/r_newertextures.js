@@ -106,7 +106,8 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		const fb = texture._fullbright;
 		if ( fb != null && fb.image != null && fb.image.data != null && typeof document !== 'undefined' ) {
 
-			const split = splitGlow( fb.image, pic );
+			const own = GLOW_FROM_PICTURE[ name ];
+			const split = own !== undefined ? R_GlowFromPicture( pic, own ) : splitGlow( fb.image, pic );
 			data = split.diffuse;
 			fb.dispose();
 			fb.image = { data: split.glow, width: pic.width, height: pic.height };
@@ -209,6 +210,41 @@ function splitGlow( fbImage, pic ) {
 		glow[ i * 4 + 2 ] = pic.data[ i * 4 + 2 ];
 		glow[ i * 4 + 3 ] = 255;
 		diffuse[ i * 4 ] = diffuse[ i * 4 + 1 ] = diffuse[ i * 4 + 2 ] = 0;
+
+	}
+
+	return { diffuse, glow };
+
+}
+
+// Pictures whose lit parts are not where the original's were (a redrawn texture): the glow is
+// taken from the new picture itself, its strong red, inside a box given as fractions of the picture
+// (so the hazard stripes beside the lights do not glow).
+const GLOW_FROM_PICTURE = {
+	'+0_box_side': { x0: 0.3, x1: 0.7 },
+	'+1_box_side': { x0: 0.3, x1: 0.7 }
+};
+
+export function R_GlowFromPicture( pic, box ) {
+
+	const diffuse = new Uint8Array( pic.data );
+	const glow = new Uint8Array( pic.data.length );
+	const { width: w, height: h } = pic;
+
+	for ( let y = 0; y < h; y ++ ) {
+
+		for ( let x = 0; x < w; x ++ ) {
+
+			if ( x < box.x0 * w || x >= box.x1 * w ) continue;
+
+			const i = ( y * w + x ) * 4;
+			const r = pic.data[ i ], g = pic.data[ i + 1 ], b = pic.data[ i + 2 ];
+			if ( r < 140 || r < g * 2.2 || r < b * 2.2 ) continue;
+
+			glow[ i ] = r; glow[ i + 1 ] = g; glow[ i + 2 ] = b; glow[ i + 3 ] = 255;
+			diffuse[ i ] = diffuse[ i + 1 ] = diffuse[ i + 2 ] = 0;
+
+		}
 
 	}
 
