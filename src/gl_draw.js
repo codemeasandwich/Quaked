@@ -7,6 +7,7 @@ import { W_GetLumpName } from './wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from './pak.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
+import { R_NewerHudCanvas } from './r_newerhud.js';
 
 /*
 ==============================================================================
@@ -601,7 +602,20 @@ export function Draw_Pic( x, y, pic ) {
 
 	if ( pic.canvas ) {
 
-		overlayCtx.drawImage( pic.canvas, x, y );
+		// Newer Game: a higher resolution picture, at the sprite's own size, smoothed
+		const hi = pic._name !== undefined ? R_NewerHudCanvas( pic ) : null;
+		if ( hi != null ) {
+
+			overlayCtx.imageSmoothingEnabled = true;
+			overlayCtx.imageSmoothingQuality = 'high';
+			overlayCtx.drawImage( hi, x, y, pic.width, pic.height );
+			overlayCtx.imageSmoothingEnabled = false;
+
+		} else {
+
+			overlayCtx.drawImage( pic.canvas, x, y );
+
+		}
 
 	} else if ( pic.imageData ) {
 
@@ -1108,7 +1122,8 @@ export function Draw_PicFromWad( name ) {
 	return {
 		width: width,
 		height: height,
-		canvas: cs
+		canvas: cs,
+		_name: name.toLowerCase()
 	};
 
 }
