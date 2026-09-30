@@ -43,6 +43,8 @@ let profiling = false;
 let stageLast = 0;
 let cur = null; // the frame being timed: { stages: {}, total }
 let rendererRef = null;
+const prev = { programs: - 1, textures: - 1, geometries: - 1 };
+const knownPrograms = new Set();
 
 export function R_PerfInit( renderer ) {
 
@@ -113,6 +115,29 @@ export function R_PerfFrameEnd() {
 
 		cur.calls = rendererRef.info.render.calls;
 		cur.triangles = rendererRef.info.render.triangles;
+		// what the card had to be given this frame: new shader programs, textures, geometry
+		const programs = rendererRef.info.programs != null ? rendererRef.info.programs.length : 0;
+		const textures = rendererRef.info.memory.textures, geometries = rendererRef.info.memory.geometries;
+		cur.newPrograms = prev.programs >= 0 ? Math.max( 0, programs - prev.programs ) : 0;
+		cur.newTextures = prev.textures >= 0 ? Math.max( 0, textures - prev.textures ) : 0;
+		cur.newGeometries = prev.geometries >= 0 ? Math.max( 0, geometries - prev.geometries ) : 0;
+		prev.programs = programs; prev.textures = textures; prev.geometries = geometries;
+
+		// which programs they were (by material kind), for the stalls
+		if ( rendererRef.info.programs != null ) {
+
+			const names = [];
+			for ( const p of rendererRef.info.programs ) {
+
+				if ( knownPrograms.has( p ) ) continue;
+				knownPrograms.add( p );
+				names.push( ( p.name || 'program' ) + ( p.cacheKey ? ' ' + String( p.cacheKey ).slice( 0, 40 ) : '' ) );
+
+			}
+
+			if ( names.length > 0 && cur.newPrograms > 0 ) cur.programNames = names.slice( 0, 6 );
+
+		}
 
 	}
 
@@ -313,6 +338,7 @@ const ADVICE = {
 	'final lighting pass': 'the per-pixel lighting and effects pass: fewer lights ray-marched (RELIGHT_STEPS, MAX_VOLUME_LIGHTS), or a lower resolution',
 	'overlays and water': 'screen blends and water surfaces',
 	'2D screen and menus': 'the status bar, text and menus',
+	'compile': 'compiling the level\'s shaders when it starts (hidden by the level change)',
 	'audio and the rest': 'sound and everything else'
 };
 
@@ -359,6 +385,19 @@ function buildReport( r ) {
 	const total = all.reduce( ( a, b ) => a + b, 0 );
 	const stages = Object.entries( stageTotals ).map( ( [ k, v ] ) => ( { stage: k, avgMs: +( v / Math.max( 1, frames ) ).toFixed( 2 ), share: +( 100 * v / Math.max( 1, total ) ).toFixed( 1 ) } ) ).sort( ( a, b ) => b.avgMs - a.avgMs );
 
+	// the stalls: frames far slower than the usual one, and what the card was given in them
+	const usual = pct( all, 0.5 );
+	const spikes = [];
+	for ( const d of r.results ) d.frames.forEach( ( f, i ) => { if ( f.total > Math.max( 4 * usual, 30 ) ) spikes.push( { demo: d.demo, frame: i, ms: +f.total.toFixed( 1 ), newPrograms: f.newPrograms || 0, newTextures: f.newTextures || 0, newGeometries: f.newGeometries || 0, programs: f.programNames || undefined, mainStage: Object.entries( f.stages ).sort( ( a, b ) => b[ 1 ] - a[ 1 ] )[ 0 ][ 0 ] } ); } );
+	const spikeMs = spikes.reduce( ( a, f ) => a + f.ms, 0 );
+	report.stalls = {
+		usualFrameMs: +usual.toFixed( 1 ), count: spikes.length, totalMs: Math.round( spikeMs ), shareOfRunTime: +( 100 * spikeMs / Math.max( 1, total ) ).toFixed( 1 ),
+		withNewShaderPrograms: spikes.filter( f => f.newPrograms > 0 ).length,
+		withNewTextures: spikes.filter( f => f.newTextures > 0 ).length,
+		withNewGeometry: spikes.filter( f => f.newGeometries > 0 ).length,
+		worst: spikes.sort( ( a, b ) => b.ms - a.ms ).slice( 0, 12 )
+	};
+
 	report.partial = r.results.length < DEMOS.length;
 	report.summary = {
 		frames, avgFps: +( 1000 * frames / Math.max( 1, total ) ).toFixed( 1 ),
@@ -382,6 +421,7 @@ function printReport( rep ) {
 	for ( const d of rep.demos ) L.push( d.demo + ': ' + d.frames + ' frames, ' + d.avgFps + ' fps average, ' + d.onePercentLowFps + ' fps 1% low, worst ' + ( d.ms ? d.ms.max : 0 ) + ' ms' );
 	L.push( 'Overall: ' + s.avgFps + ' fps average, ' + s.onePercentLowFps + ' fps 1% low; ' + s.share60 + '% of frames within 16.7 ms (60 fps)' );
 	L.push( 'Draw calls avg ' + s.avgDrawCalls + ' (max ' + s.maxDrawCalls + '), triangles avg ' + s.avgTriangles + ' (max ' + s.maxTriangles + ')' );
+	if ( rep.stalls.count > 0 ) L.push( 'Stalls: ' + rep.stalls.count + ' frames far slower than the usual ' + rep.stalls.usualFrameMs + ' ms, ' + rep.stalls.shareOfRunTime + '% of the run time; ' + rep.stalls.withNewShaderPrograms + ' with new shader programs, ' + rep.stalls.withNewTextures + ' with new textures, ' + rep.stalls.withNewGeometry + ' with new geometry' );
 	L.push( 'Where the time goes (ms per frame, share):' );
 	for ( const st of s.stages ) L.push( '  ' + st.stage.padEnd( 22 ) + String( st.avgMs ).padStart( 7 ) + ' ms  ' + String( st.share ).padStart( 5 ) + '%' );
 	if ( s.bottlenecks.length === 0 ) L.push( 'No single stage takes more than an eighth of the frame.' );

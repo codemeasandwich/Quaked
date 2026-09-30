@@ -1517,6 +1517,15 @@ export function R_RenderView() {
 		if ( post ) {
 
 			R_PostBind( renderer );
+
+			if ( _needCompile && r_framecount > 1 ) {
+
+				_needCompile = false;
+				try { renderer.compile( scene, camera ); } catch ( e ) { console.warn( 'compile failed', e ); }
+				R_PerfStage( 'compile' );
+
+			}
+
 			renderer.render( scene, camera );
 			R_PerfStage( 'world draw' );
 			R_PostFinish( renderer, scene, camera, _viewport, r_visframecount, d_lightstylevalue,
@@ -1744,7 +1753,14 @@ export function R_Init() {
 // Called when a new map is loaded
 //============================================================================
 
+// A new level's materials are compiled (and their textures put on the card) on its first
+// frames, while the screen is still held back, instead of one at a time as they first come
+// into view: each of those is a stall of a good fraction of a second.
+let _needCompile = false;
+
 export function R_NewMap() {
+
+	_needCompile = true;
 
 	// clear old data
 	r_viewleaf = null;

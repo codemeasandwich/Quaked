@@ -145,10 +145,73 @@ Updates PointLights for all dynamic lights. Lights stay in scene
 and have their intensity updated each frame based on decaying radius.
 =============
 */
+// Newer lighting: the scene always has the same few lights, so its shaders are made once.
+// A scene's lights are part of every surface's shader; a light more or less makes the game
+// build them all again, and every explosion or muzzle flash would (a stall of a good part of
+// a second).  The few nearest dynamic lights take the slots; an unused slot has no light.
+const NEWER_LIGHT_SLOTS = 3;
+const _slotLights = [];
+
+function R_RenderDlightSlots( cl, scene ) {
+
+	// (the classic lights are not used while these are)
+	for ( const l of _dlightPool ) if ( l != null && l.parent != null ) l.parent.remove( l );
+
+	const active = [];
+
+	for ( let i = 0; i < MAX_DLIGHTS; i ++ ) {
+
+		const l = cl_dlights[ i ];
+		if ( l == null || l.die < cl.time || l.radius <= 0 ) continue;
+
+		VectorSubtract( l.origin, r_origin, _dlightV );
+		const dist = Length( _dlightV );
+		if ( dist < l.radius * 0.35 ) AddLightBlend( 1, 0.5, 0, l.radius * 0.0003 ); // inside it: a tint on the screen
+		active.push( { l, d: dist - l.radius * 0.5 } );
+
+	}
+
+	active.sort( ( a, b ) => a.d - b.d );
+
+	for ( let k = 0; k < NEWER_LIGHT_SLOTS; k ++ ) {
+
+		let light = _slotLights[ k ];
+		if ( light == null ) light = _slotLights[ k ] = new THREE.PointLight( 0xffaa44, 0, 300, 1 );
+		if ( scene != null && light.parent == null ) scene.add( light );
+
+		const a = active[ k ];
+		if ( a === undefined ) {
+
+			light.intensity = 0;
+			continue;
+
+		}
+
+		const timeLeft = Math.min( a.l.die - cl.time, 0.5 );
+		light.position.set( a.l.origin[ 0 ], a.l.origin[ 1 ], a.l.origin[ 2 ] );
+		// (the Newer lighting relights from the same light itself: half of the classic amount here)
+		light.intensity = 10000 * timeLeft * 0.5;
+		light.distance = a.l.radius;
+		light.decay = 1;
+
+	}
+
+}
+
 export function R_RenderDlights( cl, scene ) {
 
 	if ( gl_flashblend.value === 0 )
 		return;
+
+	if ( R_NewerLightingActive() && ! isXRActive() ) {
+
+		R_RenderDlightSlots( cl, scene );
+		return;
+
+	}
+
+	// (back to the classic lights)
+	for ( const l of _slotLights ) if ( l != null && l.parent != null ) l.parent.remove( l );
 
 	r_dlightframecount = r_framecount + 1;
 
