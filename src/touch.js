@@ -7,7 +7,8 @@
 //   stick   up and down aim, left and right turn (touch_strafe 1 makes them sidestep instead)
 //   GO      the thumb-size button in the bottom right corner: move forward
 //   FIRE    straight above it
-//   JUMP    at 45 degrees up and to the left
+//   STRAFE  at 45 degrees up and to the left: while it is held the stick sidesteps instead of turning
+//   JUMP    on the left, straight above the stick
 //   WEAPON  to its left: the game slows right down, the picture blurs and a menu offers the weapons
 //
 // Dragging anywhere else on the screen looks around, and so does tilting the device (gyroscope).
@@ -69,6 +70,8 @@ let stickKnob = null;
 let forwardButton = null;
 let fireButton = null;
 let jumpButton = null;
+let strafeButton = null;
+let strafeHeld = false;
 let weaponButton = null;
 let pauseButton = null;
 let weaponMenu = null;
@@ -182,12 +185,14 @@ function Touch_ApplyLayout() {
 	setCircle( forwardButton, L.forward );
 	setCircle( fireButton, L.fire );
 	setCircle( jumpButton, L.jump );
+	setCircle( strafeButton, L.strafe );
 	setCircle( weaponButton, L.weapon );
 	setCircle( pauseButton, L.pause );
 
 	forwardButton.style.fontSize = ( L.forward.r * 0.42 ) + 'px';
 	fireButton.style.fontSize = ( L.fire.r * 0.42 ) + 'px';
 	jumpButton.style.fontSize = ( L.jump.r * 0.45 ) + 'px';
+	strafeButton.style.fontSize = ( L.strafe.r * 0.45 ) + 'px';
 	weaponButton.style.fontSize = ( L.weapon.r * 0.45 ) + 'px';
 	pauseButton.style.fontSize = ( L.pause.r * 0.8 ) + 'px';
 
@@ -252,6 +257,7 @@ function Touch_CreateUI( container ) {
 	forwardButton = makeButton( 'GO', '▲' );
 	fireButton = makeButton( 'FIRE', '●' );
 	jumpButton = makeButton( 'JUMP', '⬆' );
+	strafeButton = makeButton( 'STRAFE', '⇆' );
 	weaponButton = makeButton( 'WEAPON', '⚔' );
 
 	// Pause button (top right corner)
@@ -296,6 +302,7 @@ function Touch_CreateUI( container ) {
 	overlay.appendChild( forwardButton );
 	overlay.appendChild( fireButton );
 	overlay.appendChild( jumpButton );
+	overlay.appendChild( strafeButton );
 	overlay.appendChild( weaponButton );
 	overlay.appendChild( pauseButton );
 
@@ -471,6 +478,12 @@ function onTouchStart( e ) {
 			Touch_Press( jumpButton, true );
 			Touch_Buzz();
 
+		} else if ( target === strafeButton ) {
+
+			strafeHeld = true;
+			Touch_Press( strafeButton, true );
+			Touch_Buzz();
+
 		} else if ( target === weaponButton ) {
 
 			Touch_Buzz();
@@ -545,6 +558,11 @@ function onTouchEnd( e ) {
 			in_jump.state |= 4; // impulse up
 			Touch_Press( jumpButton, false );
 
+		} else if ( target === strafeButton ) {
+
+			strafeHeld = false;
+			Touch_Press( strafeButton, false );
+
 		} else if ( target === weaponButton ) {
 
 			// (the menu opened when it was pressed)
@@ -578,6 +596,8 @@ function Touch_OpenWeaponMenu() {
 	Touch_Press( forwardButton, false );
 	Touch_Press( fireButton, false );
 	Touch_Press( jumpButton, false );
+	strafeHeld = false;
+	Touch_Press( strafeButton, false );
 	Touch_ReleaseStick();
 
 	const ammo = [ 0, 1, 2, 3 ].map( ( i ) => cl.stats[ STAT_SHELLS + i ] | 0 );
@@ -924,6 +944,7 @@ const LISTENED = () => [
 	[ forwardButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
 	[ fireButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
 	[ jumpButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
+	[ strafeButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
 	[ weaponButton, [ 'touchstart', 'touchend', 'touchcancel' ] ],
 	[ pauseButton, [ 'touchstart' ] ]
 ];
@@ -1016,12 +1037,19 @@ export function Touch_IsEnabled() {
 Touch_GetMoveInput
 
 Returns the movement input: forward while the GO button is held, and sideways
-from the stick when it is set to sidestep
+from the stick when it is set to sidestep or the STRAFE button is held
 =================
 */
+// is the STRAFE button held (the stick sidesteps rather than turns)
+export function Touch_StrafeHeld() {
+
+	return strafeHeld;
+
+}
+
 export function Touch_GetMoveInput() {
 
-	return { forward: forwardHeld ? 1 : 0, right: touch_strafe.value !== 0 ? stickX : 0 };
+	return { forward: forwardHeld ? 1 : 0, right: touch_strafe.value !== 0 || strafeHeld ? stickX : 0 };
 
 }
 

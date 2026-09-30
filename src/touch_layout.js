@@ -4,8 +4,8 @@
 // Portrait: the same two groups in a panel along the bottom, with the status bar on top of it.
 //
 // The buttons are an arc around the forward button, a thumb-size circle in the bottom right corner
-// where the thumb rests: fire is straight above it, jump at 45 degrees up and to the left, and
-// change weapon to its left.
+// where the thumb rests: fire is straight above it, strafe at 45 degrees up and to the left, and
+// change weapon to its left.  Jump is on the left, straight above the stick.
 
 export const FOV_PORTRAIT = 100;
 export const FOV_LANDSCAPE = 120;
@@ -33,16 +33,17 @@ export function Touch_Layout( w, h, safe ) {
 
 	const forward = { x: fx, y: fy, r: rForward };
 	const fire = { x: fx, y: fy - ( rForward + rFire + gap ), r: rFire };
-	const jump = { x: fx - side, y: fy - side, r: rJump };
+	const strafe = { x: fx - side, y: fy - side, r: rJump };
 	const weapon = { x: fx - ( rForward + rWeapon + gap ), y: fy, r: rWeapon };
 	const stick = { x: inset.left + m + rStick, y: h - inset.bottom - m - rStick, r: rStick };
+	const jump = { x: stick.x, y: stick.y - ( stick.r + rJump + gap ), r: rJump };
 	const pause = { x: w - inset.right - m - 20 * s, y: inset.top + m + 20 * s, r: 20 * s };
 
 	// the panel of the portrait layout: from the top of the highest button to the bottom of the screen
 	let panelHeight = 0;
 	if ( portrait ) {
 
-		const top = Math.min( fire.y - fire.r, jump.y - jump.r, stick.y - stick.r );
+		const top = Math.min( fire.y - fire.r, strafe.y - strafe.r, jump.y - jump.r, stick.y - stick.r );
 		panelHeight = Math.round( h - top + 14 * s );
 
 	}
@@ -50,7 +51,7 @@ export function Touch_Layout( w, h, safe ) {
 	return {
 		portrait, scale: s, panelHeight,
 		fov: portrait ? FOV_PORTRAIT : FOV_LANDSCAPE,
-		stick, forward, fire, jump, weapon, pause
+		stick, forward, fire, jump, strafe, weapon, pause
 	};
 
 }

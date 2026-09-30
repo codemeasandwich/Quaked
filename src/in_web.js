@@ -24,7 +24,7 @@ import { host_frametime } from './host.js';
 import { PITCH, YAW } from './quakedef.js';
 import {
 	Touch_IsMobile, Touch_Init, Touch_Enable, Touch_Disable, Touch_IsEnabled,
-	Touch_GetMoveInput, Touch_GetLookDelta, Touch_GetStick, touch_turn, touch_aim, touch_strafe, Touch_UpdateFov,
+	Touch_GetMoveInput, Touch_GetLookDelta, Touch_GetStick, touch_turn, touch_aim, touch_strafe, Touch_StrafeHeld, Touch_UpdateFov,
 	Touch_ShowMenu, Touch_HideMenu, Touch_SetMenuCallback, Touch_RequestFullscreen
 } from './touch.js';
 import { M_TouchInput } from './menu.js';
@@ -823,7 +823,7 @@ export function IN_Move( cmd ) {
 
 			}
 
-			if ( stick.x !== 0 && touch_strafe.value === 0 )
+			if ( stick.x !== 0 && touch_strafe.value === 0 && ! Touch_StrafeHeld() )
 				cl.viewangles[ YAW ] -= stick.x * Math.abs( stick.x ) * cl_yawspeed.value * touch_turn.value * host_frametime;
 
 		}

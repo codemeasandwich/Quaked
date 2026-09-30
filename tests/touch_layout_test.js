@@ -20,7 +20,7 @@ Deno.test( 'every control is on the screen and none overlap', () => {
 	for ( const [ w, h ] of screens ) {
 
 		const L = Touch_Layout( w, h );
-		const circles = { stick: L.stick, forward: L.forward, fire: L.fire, jump: L.jump, weapon: L.weapon, pause: L.pause };
+		const circles = { stick: L.stick, forward: L.forward, fire: L.fire, jump: L.jump, strafe: L.strafe, weapon: L.weapon, pause: L.pause };
 		const names = Object.keys( circles );
 
 		for ( const n of names ) {
@@ -52,17 +52,21 @@ Deno.test( 'the buttons are an arc around the forward button in the corner', () 
 		const L = Touch_Layout( w, h );
 
 		// forward is the biggest and the nearest to the bottom right corner
-		assertEqual( L.forward.r > L.fire.r && L.fire.r > L.jump.r, true, 'sizes' );
-		for ( const other of [ L.fire, L.jump, L.weapon ] )
+		assertEqual( L.forward.r > L.fire.r && L.fire.r > L.strafe.r, true, 'sizes' );
+		for ( const other of [ L.fire, L.strafe, L.weapon ] )
 			assertEqual( Math.hypot( w - L.forward.x, h - L.forward.y ) < Math.hypot( w - other.x, h - other.y ), true, 'forward is in the corner' );
 
-		// fire straight above, weapon straight to the left, jump at 45 degrees between them
+		// fire straight above, weapon straight to the left, strafe at 45 degrees between them
 		near( L.fire.x, L.forward.x, 0.01, 'fire above' );
 		assertEqual( L.fire.y < L.forward.y, true, 'fire higher' );
 		near( L.weapon.y, L.forward.y, 0.01, 'weapon beside' );
 		assertEqual( L.weapon.x < L.forward.x, true, 'weapon to the left' );
-		near( L.forward.x - L.jump.x, L.forward.y - L.jump.y, 0.01, 'jump at 45 degrees' );
-		assertEqual( L.jump.x < L.forward.x && L.jump.y < L.forward.y, true, 'jump up and to the left' );
+		near( L.forward.x - L.strafe.x, L.forward.y - L.strafe.y, 0.01, 'strafe at 45 degrees' );
+		assertEqual( L.strafe.x < L.forward.x && L.strafe.y < L.forward.y, true, 'strafe up and to the left' );
+
+		// jump is on the left, straight above the stick
+		near( L.jump.x, L.stick.x, 0.01, 'jump above the stick' );
+		assertEqual( L.jump.y < L.stick.y - L.stick.r, true, 'jump higher than the stick' );
 
 		// the stick is on the left
 		assertEqual( L.stick.x < w / 2 && L.stick.x > 0, true, 'stick on the left' );
@@ -81,7 +85,7 @@ Deno.test( 'portrait has a panel the status bar sits above, landscape does not; 
 
 	// all the controls are inside it
 	const top = 844 - p.panelHeight;
-	for ( const c of [ p.stick, p.forward, p.fire, p.jump, p.weapon ] )
+	for ( const c of [ p.stick, p.forward, p.fire, p.jump, p.strafe, p.weapon ] )
 		assertEqual( c.y - c.r >= top, true, 'inside the panel' );
 
 	const l = Touch_Layout( 844, 390 );
