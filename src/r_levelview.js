@@ -438,7 +438,7 @@ export function R_UpdateLevelViewEntities( camera, time ) {
 
 		for ( const g of v.ghosts ) {
 
-			if ( g.seq === null && ! g.spin && time - g.last < 1 ) continue;
+			if ( g.seq === null && ! g.spin && ! g.flame && time - g.last < 1 ) continue; // (a flame burns on every frame)
 			ghostDraw( g, time );
 
 		}
@@ -820,5 +820,12 @@ function R_PrewarmNormalMaps( model ) {
 export function R_LevelViewCount() {
 
 	return views.length;
+
+}
+
+// what the views hold (for tests)
+export function R_LevelViewGhosts() {
+
+	return views.map( ( v ) => v.ghosts.map( ( g ) => [ g.e.model.name, ...g.e.origin ] ) );
 
 }
