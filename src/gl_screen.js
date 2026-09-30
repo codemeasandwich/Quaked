@@ -3,9 +3,10 @@
 
 import { Con_Printf, Con_CheckResize, Con_DrawConsole, Con_DrawNotify, Con_ClearNotify,
 	con_forcedup, Con_SetForcedup, con_initialized } from './console.js';
+import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from './r_perf.js';
 import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines } from './sbar.js';
 import { M_Draw } from './menu.js';
-import { Draw_Character, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
+import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
@@ -712,6 +713,23 @@ function SCR_DrawNotifyString() {
 SCR_TileClear
 ==================
 */
+// the frame counter (Options > FPS counter) and the profiler's status
+function SCR_DrawPerf() {
+
+	const status = R_PerfScreenLines();
+	if ( status !== null ) {
+
+		for ( let i = 0; i < status.length; i ++ ) Draw_String( 8, 8 + i * 10, status[ i ] );
+
+	}
+
+	if ( Cvar_VariableValue( 'cl_showfps' ) === 0 ) return;
+
+	const text = R_PerfFpsText();
+	Draw_String( _vid.width - text.length * 8 - 8, 4, text );
+
+}
+
 function SCR_TileClear() {
 
 	if ( _r_refdef.vrect.x > 0 ) {
@@ -962,6 +980,10 @@ export function SCR_UpdateScreen() {
 		M_Draw();
 
 	}
+
+	SCR_DrawPerf();
+
+	R_PerfStage( '2D screen and menus' );
 
 	if ( _V_UpdatePalette ) _V_UpdatePalette();
 

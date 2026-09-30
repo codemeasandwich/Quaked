@@ -44,6 +44,7 @@ import { V_RenderView, V_UpdatePalette } from './view.js';
 import { S_LocalSound } from './snd_dma.js';
 import { M_Menu_Main_f } from './menu.js';
 import { R_Efrag_SetExternals } from './gl_refrag.js';
+import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage } from './r_perf.js';
 import { Host_InitCommands } from './host_cmd.js';
 import { R_SetParticleExternals } from './r_part.js';
 
@@ -529,6 +530,8 @@ function _Host_Frame_Internal( time ) {
 	if ( ! _Host_FilterTime( time ) )
 		return; // don't run too fast, or packets will flood out
 
+	R_PerfFrameBegin( performance.now() / 1000 );
+
 	// allow mice or other external controllers to add commands
 	IN_Commands();
 
@@ -553,6 +556,8 @@ function _Host_Frame_Internal( time ) {
 	if ( sv.active )
 		Host_ServerFrame();
 
+	R_PerfStage( 'server' );
+
 	//-------------------
 	//
 	// client operations
@@ -573,6 +578,8 @@ function _Host_Frame_Internal( time ) {
 
 	}
 
+	R_PerfStage( 'client and messages' );
+
 	// update video
 	SCR_UpdateScreen();
 
@@ -591,6 +598,8 @@ function _Host_Frame_Internal( time ) {
 	CDAudio_Update();
 
 	host_framecount ++;
+
+	R_PerfFrameEnd();
 
 }
 

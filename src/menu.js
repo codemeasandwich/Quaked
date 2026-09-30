@@ -1602,6 +1602,10 @@ function M_AdjustSliders( dir ) {
 			Cvar_SetValue( 'crosshair', Cvar_VariableValue( 'crosshair' ) !== 0 ? 0 : 1 );
 			break;
 
+		case 14: // FPS counter
+			Cvar_SetValue( 'cl_showfps', Cvar_VariableValue( 'cl_showfps' ) !== 0 ? 0 : 1 );
+			break;
+
 	}
 
 }
@@ -1614,7 +1618,7 @@ function M_AdjustSliders( dir ) {
 ==============================================================================
 */
 
-const OPTIONS_ITEMS = 14;
+const OPTIONS_ITEMS = 16;
 let m_options_cursor = 0;
 
 function M_Menu_Options_f() {
@@ -1673,6 +1677,11 @@ function M_Options_Draw() {
 
 	M_Print( 16, 136, '   Newer Game features' );
 
+	M_Print( 16, 144, '           FPS counter' );
+	M_DrawCheckbox( 220, 144, Cvar_VariableValue( 'cl_showfps' ) );
+
+	M_Print( 16, 152, '  Performance profiler' );
+
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
@@ -1712,6 +1721,12 @@ function M_Options_Key( key ) {
 					break;
 				case 13:
 					M_Menu_Newer_f();
+					break;
+				case 15:
+					// leave the menu and run the demos flat out
+					setKeyDest( key_game );
+					m_state = m_none;
+					Cbuf_AddText( 'perfprofile\n' );
 					break;
 				default:
 					M_AdjustSliders( 1 );

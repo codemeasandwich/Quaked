@@ -28,6 +28,7 @@ import { R_NormalMapFor } from './gl_normals.js';
 import { GL_SetForceLinear } from './glquake.js';
 import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_TeleportFx } from './r_teleportfx.js';
+import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
 
@@ -71,6 +72,7 @@ function dynResUpdate( now ) {
 	if ( r_dynres.value === 0 ) {
 
 		dyn.scale = 1;
+		R_PerfSetScale( 1 );
 		dyn.last = now;
 		return;
 
@@ -114,6 +116,7 @@ function dynResUpdate( now ) {
 	}
 
 	dyn.scale = Math.round( dyn.scale * 100 ) / 100;
+	R_PerfSetScale( dyn.scale );
 	if ( dyn.scale !== before ) dyn.frames = 0;
 
 }
@@ -2154,12 +2157,14 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 			e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
 		sh.uSunDirW.value.set( sd[ 0 ], sd[ 1 ], sd[ 2 ] ).normalize();
 		renderSunShadow( renderer, scene, camera );
+		R_PerfStage( 'sun shadow' );
 
 	}
 
 	// volumetric pass
 	const volume = Math.max( 0, r_volumetric.value );
 	if ( volume > 0 ) runPass( renderer, p.volumeMaterial, p.volume );
+	R_PerfStage( 'light shafts' );
 
 	// bloom
 	const bloom = Math.max( 0, r_bloom.value );
@@ -2250,10 +2255,13 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uBloom.value = bloom;
 	cm.uVolume.value = volume;
 
+	R_PerfStage( 'bloom' );
+
 	renderer.setRenderTarget( null );
 	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
 	gpu.mesh.material = p.compositeMaterial;
 	renderer.render( p.scene, p.camera );
+	R_PerfStage( 'final lighting pass' );
 
 }
 

@@ -9,6 +9,7 @@ import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
 import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
+import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
@@ -1497,8 +1498,12 @@ export function R_RenderView() {
 	// render mirror view
 	R_Mirror();
 
+	R_PerfStage( 'scene build' );
+
 	// render what teleporters lead to
 	R_PortalViews();
+
+	R_PerfStage( 'portal views' );
 
 	// Present the frame via Three.js
 	if ( renderer && scene && camera ) {
@@ -1511,12 +1516,14 @@ export function R_RenderView() {
 
 			R_PostBind( renderer );
 			renderer.render( scene, camera );
+			R_PerfStage( 'world draw' );
 			R_PostFinish( renderer, scene, camera, _viewport, r_visframecount, d_lightstylevalue,
 				cl_dlights, cl != null ? cl.time : 0, renderer.toneMappingExposure, R_MapHasSky() );
 
 		} else {
 
 			renderer.render( scene, camera );
+			R_PerfStage( 'world draw' );
 
 		}
 
@@ -1534,6 +1541,8 @@ export function R_RenderView() {
 
 	// Clean up water meshes AFTER rendering (they need to exist during render)
 	R_CleanupWaterMeshes_rsurf();
+
+	R_PerfStage( 'overlays and water' );
 
 	if ( r_speeds.value ) {
 
@@ -1680,6 +1689,8 @@ export function R_Init() {
 
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_hdr );
+	Cvar_RegisterVariable( cl_showfps );
+	R_PerfInit( renderer );
 	Cvar_RegisterVariable( r_dynres );
 	Cvar_RegisterVariable( r_fps_target );
 	Cvar_RegisterVariable( r_newdark );

@@ -5,7 +5,11 @@ import { Sys_Init, Sys_Printf, Sys_Error } from './src/sys.js';
 import { COM_InitArgv } from './src/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/host.js';
 import { COM_FetchPak, COM_AddPack } from './src/pak.js';
-import { Cbuf_AddText } from './src/cmd.js';
+import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/cmd.js';
+import { Con_Printf } from './src/common.js';
+import { Cvar_VariableValue, Cvar_SetValue } from './src/cvar.js';
+import { key_dest, key_game } from './src/keys.js';
+import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_PerfLastReport } from './src/r_perf.js';
 import { cls, cl } from './src/client.js';
 import { sv } from './src/server.js';
 import { scene, camera } from './src/gl_rmain.js';
@@ -116,6 +120,21 @@ async function main() {
 		Object.defineProperty( window, 'camera', { get: () => camera } );
 		Object.defineProperty( window, 'renderer', { get: () => renderer } );
 
+		// the performance profiler (perfprofile, perfstop, perfreport; Options > Performance profiler)
+		R_PerfSetHost( {
+			Cbuf_AddText, cls, log: Con_Printf, getCvar: Cvar_VariableValue, setCvar: Cvar_SetValue,
+			size: () => renderer.domElement.width + 'x' + renderer.domElement.height,
+			menuOpen: () => key_dest !== key_game
+		} );
+		Cmd_AddCommand( 'perfprofile', () => R_PerfStart( Cmd_Argc() > 1 ? parseInt( Cmd_Argv( 1 ), 10 ) : 0 ) ); // perfprofile [frames per demo]
+		Cmd_AddCommand( 'perfstop', () => R_PerfStop( 'stopped' ) );
+		Cmd_AddCommand( 'perfreport', () => {
+
+			const r = R_PerfLastReport();
+			Con_Printf( r !== null ? r.text + '\n' : 'No profile yet: perfprofile runs one\n' );
+
+		} );
+
 		let oldtime = performance.now() / 1000;
 
 		// Use renderer.setAnimationLoop instead of requestAnimationFrame.
@@ -128,7 +147,8 @@ async function main() {
 			const time = newtime - oldtime;
 			oldtime = newtime;
 
-			Host_Frame( time );
+			if ( R_PerfProfiling() ) R_PerfPump( Host_Frame );
+			else Host_Frame( time );
 
 		} );
 
