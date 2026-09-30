@@ -2,9 +2,19 @@
 
 Quake in the browser, built on Three.js. Quaked is developed by [@codemeasandwich](https://github.com/codemeasandwich) and is based on [three-quake](https://github.com/mrdoob/three-quake) by [@mrdoob](https://github.com/mrdoob).
 
-### Play
+**Project repository: [codemeasandwich/Quaked](https://github.com/codemeasandwich/Quaked).** The enhancements below describe this repository's version.
 
-https://mrdoob.github.io/three-quake/ (upstream three-quake build)
+### Play this version locally
+
+From the root of this checkout, serve the files over HTTP:
+
+```sh
+python3 -m http.server 8000
+```
+
+Open [localhost:8000](http://localhost:8000/) and choose **Newer Game** from the single-player menu to use the enhancements. **New Game** selects the classic presentation. Internet access is needed for the Three.js modules loaded from the CDN.
+
+[Upstream three-quake demo](https://mrdoob.github.io/three-quake/) is a separate build; it does not demonstrate the enhancements documented here.
 
 Confirming **Quit** opens [this project’s GitHub page](https://github.com/codemeasandwich/Quaked) in a new tab and returns the game to its main menu. Cancelling Quit stays in the game.
 
@@ -18,7 +28,8 @@ Every teleporter surface (`*teleport`) that leads somewhere is a live camera ont
 - Up to 3 nearest visible portals are rendered per frame, at 75% resolution.
 - `r_portals 0` in the console turns it off and restores the classic swirl.
 - Teleporting is quieter: the sound stays, the white particle burst is gone, and the launch out of the teleporter is halved (300 to 150 units/s).
-- Limits: entities the server doesn't send near you (monsters, other players at the receiver) don't appear in the window; a portal seen through another portal shows the plain swirl; portals are off in WebXR.
+- In local single player, visibility includes the teleporter destination, so entities and secrets visible through its window are sent to the renderer. A remote server must also supply those entities.
+- Limits: a portal seen through another portal shows the plain swirl; portals are off in WebXR. Camera portals are enabled for Newer Game and can be disabled in its feature options.
 
 #### Newer Game options
 
@@ -26,15 +37,15 @@ New Game is always the original game: original lighting, water, monsters and tel
 
 #### Lighting and muzzle flash
 
-Newer lighting is lit by its sources: the baked light is curved (`r_newdark`, 2.8 by default; 1 is as baked) so areas with no clear source are dark, and lights (torches, pillar lamps, glowing surfaces) light the surfaces they can see, with things in the way casting shadows. Weapons have a muzzle flash: a brief flash of warm light around the player (light only, nothing drawn at the barrel). Shots leave bullet holes on walls, rockets leave scorch marks, and blood (from gibs, hits and blood spray) lands and sticks to walls and floors (Options > Newer Game features > Marks and blood, `r_decals`). A shoulder-mounted flashlight (key F, `flashlight`, or Options > Newer Game features) throws a cone of light and a faint beam that trails your aim by a fraction of a second. Corners and edges where surfaces really meet at an angle get a slight accent (inside corners darken, outer edges catch light; `r_newedges`, 0 turns it off), and never on flat faces cut into several pieces. Monsters glide between the game's ten-a-second steps as well as blending between their poses, so they move smoothly.
+Newer lighting is lit by its sources: the baked light is curved (`r_newdark`, 2.8 by default; 1 is as baked) so areas with no clear source are dark, and lights (torches, pillar lamps, glowing surfaces) light the surfaces they can see, with things in the way casting shadows. Weapons have a muzzle flash that lights the room: a brief flash of warm light around the player (light only, nothing drawn at the barrel), reduced in already bright rooms. Added light retains the colour of the surface it hits. Sun shadows use geometry from the whole map, preventing unseen walls from leaking sunlight into closed rooms. Shots leave bullet holes on walls, rockets leave scorch marks, and blood (from gibs, hits and blood spray) lands and sticks to walls and floors (Options > Newer Game features > Marks and blood, `r_decals`). These marks follow the surface lighting rather than glowing in dark rooms. A shoulder-mounted flashlight (key F, `flashlight`, or Options > Newer Game features) throws a cone of light and a faint beam that trails your aim by a fraction of a second. Corners and edges where surfaces really meet at an angle get a slight accent (inside corners darken, outer edges catch light; `r_newedges`, 0 turns it off), and never on flat faces cut into several pieces. Edge accents are suppressed underwater and through pools. Monsters glide between the game's ten-a-second steps as well as blending between their poses, so they move smoothly.
 
 #### Lens drops, lava glow and level changes
 
-Coming out of water leaves the view beaded with drops that bend the picture, some running down before they dry; being close to a body bursting does the same with blood. Lava glows and breathes, and lights what is around it. Changing level keeps the last frame on screen and shows no console; it is simply the new level when it is ready.
+Coming out of water leaves the view beaded with clear drops that refract and slightly blur the picture, some running down before they dry; being close to a body bursting does the same with blood. Drops clear quickly and are suppressed underwater. Lava glows and breathes, and lights what is around it. In Newer Game, loading or changing level no longer automatically opens the console. Changing level keeps the last frame on screen; it is simply the new level when it is ready.
 
 #### Seamless levels
 
-In Newer Game, every Episode 1 level exit that is an archway, a passageway, a walk-through portal or a pit (that includes the start hub's difficulty doors and E1M4's secret exit) is a live window onto the next level: you can see its first room through the opening, and stepping through is not a level load or a teleport. You keep your speed and heading, and the game switches levels under you. Archways are crossed at the arch itself: the tunnel behind it is not walked (the window sits where the arch is) and unlocked doors across it are removed, while a locked key door stays; pits keep their fall. Looking back, the level you came from shows through the doorway behind you, and you can walk back through it (a level you have left is kept exactly as it was: dead monsters where they fell, dropped weapons, picked-up items and opened doors; a key door across the exit you return by is removed). The windows show the level's monsters, items, torches, doors and secret or false walls (a level you have been in as you left it). Looking down into water shows what lies under it, secrets included. Teleporter pads are unaffected. Console: `sv_seamless 0` off, `1` Newer Game only (default), `2` always. Single player only.
+In Newer Game, every Episode 1 level exit that is an archway, a passageway, a walk-through portal or a pit (that includes the start hub's difficulty doors and E1M4's secret exit) is a live window onto the next level: you can see its first room through the opening, and stepping through is not a level load or a teleport. You keep your speed and heading, and the game switches levels under you. Archways are crossed at the arch itself: the tunnel behind it is not walked (the window sits where the arch is) and unlocked doors across it are removed, while a locked key door stays; pits keep their fall. Looking back, the level you came from shows through the doorway behind you, and you can walk back through it (a level you have left is kept exactly as it was: dead monsters where they fell, dropped weapons, picked-up items and opened doors; a key door across the exit you return by is removed). The windows render the destination's real sky and show the level's monsters, items, torches, doors and secret or false walls (a level you have been in as you left it). Looking down into water shows what lies under it, secrets included. Teleporter pads are unaffected. Console: `sv_seamless 0` off, `1` Newer Game only (default), `2` always. Single player only.
 
 #### New Game and Newer Game
 
@@ -45,9 +56,9 @@ The single player menu has two ways to start:
 
 The sky sets the mood. Its brightness, colour and pattern are read from the map's own sky textures: a bright clear sky gives a bright sunlit outdoors with little haze, a dark or stormy one gives dimmer light, faint shafts and a little more haze. Shafts follow the sky's pattern (the clouds are projected along the sun, so shafts and sunlit patches break up the way the sky does) and only build up where light is contrasted with shade, so open daylight stays clear.
 
-Every world texture gets a generated normal map and a height map (see `src/gl_normals.js`), so bricks, cracks and grain have relief that reacts to the sun, torches and dynamic lights, with parallax that shifts the texture as you move. Nothing is shipped or painted by hand: Quake's textures are painted with their shading baked in, so brightness is used as height. It is normalised for contrast, blended across several scales so blocks read as blocks and not just noise, and made tileable. It is generated once per texture the first time Newer Game needs it (about 85 ms for a whole level). Monster and item models, sprites, sky and water are not normal mapped.
+Every world texture gets a generated normal map and a height map (see `src/gl_normals.js`), so bricks, cracks and grain have relief that reacts to the sun, torches and dynamic lights, with parallax that shifts the texture as you move. Nothing is shipped or painted by hand: Quake's textures are painted with their shading baked in, so brightness is used as height. It is normalised for contrast, blended across several scales so blocks read as blocks and not just noise, and made tileable. It is generated once per texture the first time Newer Game needs it (the cost depends on the map and hardware). Monster and item models, sprites, sky and water are not normal mapped.
 
-Water and slime become see-through: the bottom of a pool shows through the surface, light is absorbed with depth (shallows stay clear, depths go dark and blue-green, slime green), and the surfaces beneath get animated caustics. Lava stays opaque and glows.
+Water and slime become see-through: the bottom of a pool shows through the surface, light is absorbed with depth (shallows stay clear, depths go dark and blue-green, slime green), and submerged floors get subdued animated caustics, strongly reduced on walls and near the surface. Visibility through water also includes entities and secrets, and looking out from inside a liquid remains clear. Lava stays opaque and glows.
 
 Newer Game also:
 
@@ -65,7 +76,11 @@ To try the result, serve the repository, reload the game, start **Newer Game**, 
 
 You can switch at any time from the console: `r_hdr 0` (classic) or `r_hdr 1` (newer). `r_bloom`, `r_volumetric` and `r_caustics` set the strength of each effect.
 
-This is a rasterised approximation, not path tracing: light does not bounce, and shafts are occluded by what is on screen. It needs WebGL2 float render targets; without them the classic path is used automatically, and it is off in WebXR.
+This is a rasterised approximation, not path tracing: light does not bounce, and point-light occlusion uses on-screen depth. Sun shadows and sun shafts use the full-map shadow geometry. It needs WebGL2 float render targets; without them the classic path is used automatically, and it is off in WebXR.
+
+#### Stability fixes
+
+Walking into a wall corner no longer crashes when a collision trace has no plane. Lava keeps its colour and glow, and liquid rendering no longer blacks out the view when looking out from within a pool.
 
 ### Console wallpaper
 
@@ -77,9 +92,9 @@ Removal verification (2026-09-30): all 78 imported pack files, including its cre
 
 Seven public-menu scenarios also passed using Node with a mocked `window.open`: Escape, n and N cancel; y and Y confirm; touch supports both confirmation and cancellation. Confirmation opens this project's GitHub URL in a new tab and returns to the main menu. Actual browser navigation and popup policy were not exercised. These checks cover the menu's Quit action; console `quit` retains its existing shutdown behavior.
 
-### Dev Log
+### Upstream background
 
-https://x.com/mrdoob/status/2015076521531355583 (upstream three-quake)
+[Original three-quake development post](https://x.com/mrdoob/status/2015076521531355583). This is upstream background; the project repository is [codemeasandwich/Quaked](https://github.com/codemeasandwich/Quaked).
 
 ### Assets
 
