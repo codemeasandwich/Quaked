@@ -31,6 +31,8 @@ import {
 } from './bspfile.js';
 import { gl_subdivide_size, gl_texturemode, GL_TextureLinear, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
 import { R_NewerTextureUpgrade } from './r_newertextures.js';
+import { R_NewerGame, r_newer_textures, r_newer_crates } from './r_anim.js';
+import { R_IsCrateSide, R_CratePlan } from './r_cratevariants.js';
 
 // ============================================================================
 // modelgen.h constants
@@ -1845,6 +1847,82 @@ function Mod_LoadFaces( fileofs, filelen ) {
 		}
 
 		out[ surfnum ] = s;
+
+	}
+
+	Mod_CrateVariants( out );
+
+}
+
+// Newer Game: once in 40, a crate wears one of the rare pictures (r_cratevariants.js).  Its faces
+// get their own copy of the texture info, pointing at a texture of the variant's name, which the
+// textures' own upgrade (r_newertextures.js) gives its picture like any other.
+function Mod_CrateVariants( surfaces ) {
+
+	if ( ! R_NewerGame() || r_newer_textures.value === 0 || r_newer_crates.value < 1 ) return;
+
+	const sides = [];
+	for ( const s of surfaces ) {
+
+		if ( s == null || s.texinfo == null || s.texinfo.texture == null || ! R_IsCrateSide( s.texinfo.texture.name ) ) continue;
+
+		const mins = [ 1e9, 1e9, 1e9 ], maxs = [ - 1e9, - 1e9, - 1e9 ];
+		for ( let i = 0; i < s.numedges; i ++ ) {
+
+			const e = loadmodel.surfedges[ s.firstedge + i ];
+			const v = loadmodel.vertexes[ e >= 0 ? loadmodel.edges[ e ].v[ 0 ] : loadmodel.edges[ - e ].v[ 1 ] ];
+			for ( let k = 0; k < 3; k ++ ) {
+
+				mins[ k ] = Math.min( mins[ k ], v.position[ k ] );
+				maxs[ k ] = Math.max( maxs[ k ], v.position[ k ] );
+
+			}
+
+		}
+
+		const flip = ( s.flags & SURF_PLANEBACK ) ? - 1 : 1;
+		sides.push( { surface: s, mins, maxs, normal: [ s.plane.normal[ 0 ] * flip, s.plane.normal[ 1 ] * flip, s.plane.normal[ 2 ] * flip ] } );
+
+	}
+
+	if ( sides.length === 0 ) return;
+
+	const plan = R_CratePlan( loadmodel.name, sides, Math.round( r_newer_crates.value ) );
+	const made = new Map();
+
+	for ( let i = 0; i < sides.length; i ++ ) {
+
+		const variant = plan[ i ];
+		if ( variant === null ) continue;
+
+		const s = sides[ i ].surface;
+		const base = s.texinfo.texture;
+
+		let tx = made.get( variant );
+		if ( tx === undefined ) {
+
+			tx = new texture_t();
+			tx.name = variant;
+			tx.width = base.width;
+			tx.height = base.height;
+			tx.pixels = base.pixels;
+			tx.offsets.set( base.offsets );
+			tx.gl_texture = GL_LoadTexture( variant, tx.width, tx.height, tx.pixels, true, false, true );
+			R_NewerTextureUpgrade( variant, tx.gl_texture );
+
+			loadmodel.textures.push( tx );
+			loadmodel.numtextures = loadmodel.textures.length;
+			made.set( variant, tx );
+
+		}
+
+		const info = new mtexinfo_t();
+		info.vecs[ 0 ].set( s.texinfo.vecs[ 0 ] );
+		info.vecs[ 1 ].set( s.texinfo.vecs[ 1 ] );
+		info.mipadjust = s.texinfo.mipadjust;
+		info.flags = s.texinfo.flags;
+		info.texture = tx;
+		s.texinfo = info;
 
 	}
 

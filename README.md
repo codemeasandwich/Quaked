@@ -106,6 +106,10 @@ On a touch device the game shows on-screen controls. Held sideways the stick is 
 - Dragging anywhere else on the screen looks around, and so does tilting the device. The pause button is at the top right.
 - Newer Game starts with a wider view on a phone: `fov` 100 upright and 120 sideways (until you set your own `fov`; New Game keeps 90).
 
+### Rare crate pictures
+
+In Newer Game one crate in 40 wears a different side picture (`src/r_cratevariants.js`): a Dharma crate with a Half-Life graffiti crate on its other side, or an SCP crate with an SCP-and-graffiti one. Which crates change is fixed by the level and where the crate stands, so it is the same every visit. `r_newer_crates` sets the odds (40 = one in 40, 0 = never; applies from the next level). Only the crate sides change: the tops do not.
+
 ### The Newer Game pack
 
 Newer Game's art and data (`newer/textures`, `newer/enemies`, `newer/hud`, and their `index.json` manifests) can be packed into one ordinary Quake pak, `newer.pak`, next to `pak0.pak`:
