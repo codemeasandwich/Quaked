@@ -49,6 +49,75 @@ export const r_newdark = new cvar_t( 'r_newdark', '2.8' );
 // designed, 0 = off.  Faces in one plane (however they are cut up) are untouched.
 export const r_newedges = new cvar_t( 'r_newedges', '1' );
 
+// Newer Game holds a frame rate by itself: when frames take longer than the target
+// allows, the picture is drawn at a lower resolution (and scaled up to fill the
+// screen) until they fit, and creeps back up when there is room.  r_dynres 0 = always
+// full resolution; r_fps_target is the frames per second aimed for.
+export const r_dynres = new cvar_t( 'r_dynres', '1' );
+export const r_fps_target = new cvar_t( 'r_fps_target', '60' );
+const DYNRES_MIN = 0.5;
+const dyn = { scale: 1, last: 0, sum: 0, frames: 0, cool: 0, probing: false, probeEvery: 240, since: 0 };
+
+export function R_DynResScale() {
+
+	return dyn.scale;
+
+}
+
+// once a frame while the pipeline draws: the average frame time of the last stretch
+// decides the resolution of the next
+function dynResUpdate( now ) {
+
+	if ( r_dynres.value === 0 ) {
+
+		dyn.scale = 1;
+		dyn.last = now;
+		return;
+
+	}
+
+	let dt = now - dyn.last;
+	dyn.last = now;
+	if ( dt <= 0 || dt > 2 ) { dyn.sum = 0; dyn.frames = 0; return; } // a level load or a pause, not a slow picture
+	dt = Math.min( dt, 0.25 ); // (one long frame does not count for more than that)
+
+	dyn.sum += dt;
+	dyn.frames ++;
+	dyn.since ++;
+	if ( dyn.frames < 24 && dyn.sum < 1.2 ) return;
+
+	const avg = dyn.sum / dyn.frames;
+	dyn.sum = 0;
+	dyn.frames = 0;
+
+	const budget = 1 / Math.max( 20, r_fps_target.value );
+	const before = dyn.scale;
+
+	if ( avg > budget * 1.12 ) {
+
+		// too slow: smaller, in proportion to how slow (frame cost follows the pixel count)
+		if ( dyn.probing ) { dyn.probeEvery = Math.min( 1800, dyn.probeEvery * 2 ); dyn.probing = false; }
+		dyn.scale = Math.max( DYNRES_MIN, dyn.scale * Math.max( 0.8, Math.min( 0.95, Math.sqrt( budget / avg ) ) ) );
+		dyn.since = 0;
+
+	} else if ( dyn.scale < 1 && dyn.since >= dyn.probeEvery ) {
+
+		// it fits: see whether one step bigger fits too
+		dyn.scale = Math.min( 1, dyn.scale * 1.08 );
+		dyn.probing = true;
+		dyn.since = 0;
+
+	} else if ( dyn.probing ) {
+
+		dyn.probing = false; // the bigger picture held: keep it
+
+	}
+
+	dyn.scale = Math.round( dyn.scale * 100 ) / 100;
+	if ( dyn.scale !== before ) dyn.frames = 0;
+
+}
+
 // shared with the lit world materials' shader
 const lightCurve = { value: 1 };
 
@@ -1141,7 +1210,7 @@ uniform float uShaftFog;
 uniform float uShadowSpread;
 
 const int SHADOW_STEPS = 12;
-const int SUN_STEPS = 48;
+const int SUN_STEPS = 36;
 
 void main() {
 	vec4 r = uProjInv * vec4( vUv * 2.0 - 1.0, 1.0, 1.0 );
@@ -1322,7 +1391,7 @@ uniform int uWaterCount;
 uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
 uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner
 
-const int RELIGHT_STEPS = 8;
+const int RELIGHT_STEPS = 6;
 
 // tiling water caustics: the bright network light makes when it is bent by ripples
 float caustic( vec2 uv, float t ) {
@@ -1919,7 +1988,8 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	if ( active === false ) return false;
 
 	if ( gpu === null ) gpu = createPipeline();
-	ensureTargets( width, height );
+	dynResUpdate( performance.now() / 1000 );
+	ensureTargets( Math.max( 16, Math.round( width * dyn.scale / 2 ) * 2 ), Math.max( 16, Math.round( height * dyn.scale / 2 ) * 2 ) );
 	return true;
 
 }

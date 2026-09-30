@@ -968,7 +968,8 @@ lights   [ { pos: [ x, y, z ], opacity } ] (at most a few)
 Returns the mesh, or null when there is nothing to draw.
 =============
 */
-const SHADOW_SIZE = 96;
+const SHADOW_SIZE = 64;
+const SHADOW_INTERVAL = 0.09; // seconds between redrawing a monster's shadow (it is only a soft shape)
 const SHADOW_PAD = 6;
 const SHADOW_MAX_REACH = 400; // a shadow reaching farther than this is not drawn
 const SHADOW_MAX_STRETCH = 2.6; // a shadow is at most this many times as far from the light as the model
@@ -985,6 +986,13 @@ export function GL_DrawAliasLightShadow( entity, paliashdr, posenum, floorZ, lig
 
 	const template = GL_DrawAliasFrame( paliashdr, posenum );
 	if ( template == null ) return null;
+
+	// a soft shape does not need drawing every frame: keep the last one for a moment
+	const now = cl ? cl.time : 0;
+	if ( entity._shadowFloorMesh != null && entity._shadowAt !== undefined && Math.abs( now - entity._shadowAt ) < SHADOW_INTERVAL
+		&& Math.abs( entity._shadowKey - ( entity.origin[ 0 ] + entity.origin[ 1 ] * 3 + entity.origin[ 2 ] * 7 + ( entity.angles ? entity.angles[ 1 ] : 0 ) ) ) < 0.5 ) return entity._shadowFloorMesh;
+	entity._shadowAt = now;
+	entity._shadowKey = entity.origin[ 0 ] + entity.origin[ 1 ] * 3 + entity.origin[ 2 ] * 7 + ( entity.angles ? entity.angles[ 1 ] : 0 );
 
 	// the pose that is on screen (a blend between two while the animation is smoothed)
 	const src = entity._aliasBlended === true && entity._aliasBlendPos != null ? entity._aliasBlendPos.array : template.posAttr.array;
@@ -1113,9 +1121,7 @@ export function GL_DrawAliasLightShadow( entity, paliashdr, posenum, floorZ, lig
 
 		// soft edges, and the dimmer or farther the light the fainter
 		out.globalAlpha = pr.opacity * Math.max( 0.5, 1.2 - size / 500 );
-		out.filter = 'blur(1.2px)';
-		out.drawImage( entity._shadowTemp, 0, 0 );
-		out.filter = 'none';
+		out.drawImage( entity._shadowTemp, 0, 0 ); // (drawn small and stretched smooth: that is the softness)
 
 	}
 

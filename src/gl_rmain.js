@@ -16,7 +16,7 @@ import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlig
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, SUN_SHADOW_LAYER } from './gl_post.js';
+import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1000,6 +1000,8 @@ const SHADOW_LIGHT_FALLOFF = 350;
 const SHADOW_AMBIENT = 0.25; // what shines on everything, so one dim light does not make a black shadow
 const SHADOW_DARKEST = 0.72;
 const SHADOW_MAX_LIGHTS = 2;
+const SHADOW_MAX_DISTANCE = 900; // monsters farther than this cast no floor shadow
+const SHADOW_MAX_CASTERS = 10; // per frame, first come
 const SHADOW_NO_MODELS = /flame|s_light|bolt|lavaball|spike|missile|grenade|w_spike|eyes|gib|zom_gib|h_/;
 
 function R_ShadowLights( origin ) {
@@ -1100,11 +1102,21 @@ function R_FireBase( e ) {
 
 }
 
+let _shadowFrame = - 1;
+let _shadowCount = 0;
+
 function R_LightShadow( e, paliashdr ) {
 
 	if ( e.model != null && e.model.name === 'progs/flame2.mdl' ) return R_FireBase( e );
 
 	if ( e.model == null || SHADOW_NO_MODELS.test( e.model.name ) ) return null;
+
+	// far monsters are small and dim, and only so many are shadowed at once
+	const dx = e.origin[ 0 ] - r_origin[ 0 ], dy = e.origin[ 1 ] - r_origin[ 1 ], dz = e.origin[ 2 ] - r_origin[ 2 ];
+	if ( dx * dx + dy * dy + dz * dz > SHADOW_MAX_DISTANCE * SHADOW_MAX_DISTANCE ) return null;
+	if ( _shadowFrame !== r_framecount ) { _shadowFrame = r_framecount; _shadowCount = 0; }
+	if ( e._shadowFloorMesh == null && _shadowCount >= SHADOW_MAX_CASTERS ) return null;
+	_shadowCount ++;
 
 	// only on a flat floor close below
 	R_LightPoint( e.origin, cl );
@@ -1668,6 +1680,8 @@ export function R_Init() {
 
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_hdr );
+	Cvar_RegisterVariable( r_dynres );
+	Cvar_RegisterVariable( r_fps_target );
 	Cvar_RegisterVariable( r_newdark );
 	Cvar_RegisterVariable( r_newedges );
 	Cvar_RegisterVariable( r_bloom );
