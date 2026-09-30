@@ -1,14 +1,8 @@
-// Newer Game enemy skins: the Quake Reforged retextures (Alfader and Nergal,
-// http://quakeone.com/reforged/index.html) and their variants.  See
-// newer/enemies/CREDITS.txt.
+// Newer Game enemy skins: custom upsampled replacements listed in
+// newer/enemies/index.json. Each model currently has one custom diffuse map;
+// models without an entry retain their original Quake skins.
 //
-// newer/enemies/index.json (written by tools/build_newer_assets.py) lists, for
-// each model, the skins available.  While the Newer lighting is on, every
-// monster picks one of its model's skins at random, once per monster per level,
-// so a crowd of zombies is not a crowd of clones.
-//
-// A skin is a diffuse map plus a normal map, and some also a glow ("luma") and a
-// gloss map:
+// The loader also supports multiple variants and optional material maps:
 //
 //   diffuse  replaces the skin
 //   luma     glows on top of the lit skin (brighter than white in HDR)
@@ -48,7 +42,7 @@ function requestIndex() {
 	fetch( BASE + 'index.json' )
 		.then( ( r ) => r.ok ? r.json() : null )
 		.then( R_NewerSetIndex )
-		.catch( () => { /* no Reforged skins installed */ } );
+		.catch( () => { /* no replacement skins available */ } );
 
 }
 
@@ -253,7 +247,7 @@ function patchShader( set ) {
 ================
 R_NewerAliasMaterial
 
-The Reforged material for this monster, or null when its model has no Reforged
+The replacement material for this monster, or null when its model has no custom
 skin, Newer Game or its enemies are off, or the skin has not finished loading.
 ================
 */

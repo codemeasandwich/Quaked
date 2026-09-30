@@ -91,7 +91,7 @@ Deno.test( 'entities without a slot number get a seed of their own that sticks',
 
 } );
 
-Deno.test( 'no Reforged material unless Newer Game is on and the skin is known', () => {
+Deno.test( 'no replacement material unless Newer Game is on and the skin is known', () => {
 
 	const entity = { _entityIndex: 3 };
 	skins.R_NewerSetIndex( { models: { zombie: [ { dir: 'zombie/v1', maps: { diffuse: 'diffuse.webp' } } ] } } );
@@ -103,7 +103,7 @@ Deno.test( 'no Reforged material unless Newer Game is on and the skin is known',
 
 	try {
 
-		assertEqual( skins.R_NewerAliasMaterial( entity, 'progs/knight.mdl', true ), null, 'a model with no Reforged skin' );
+		assertEqual( skins.R_NewerAliasMaterial( entity, 'progs/knight.mdl', true ), null, 'a model with no replacement skin' );
 		// the skin has not finished loading (and there is no texture loader here)
 		assertEqual( skins.R_NewerAliasMaterial( entity, 'progs/zombie.mdl', true ), null, 'still loading' );
 
@@ -138,6 +138,31 @@ Deno.test( 'every file the skin index names exists', async () => {
 
 	}
 
-	assertEqual( variants >= 33, true, 'all the supplied skins are indexed' );
+	assertEqual( variants, 5, 'the five custom skins are indexed' );
+	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'boss,knight,ogre,soldier,wizard', 'only retained custom models are indexed' );
+	for ( const [ model, list ] of Object.entries( index.models ) )
+		assertEqual( list[ 0 ].dir, model + '/custom', 'retains the custom skin directory' );
+
+} );
+
+Deno.test( 'removed pack models fall back to original skins with the shipped manifest', async () => {
+
+	const index = JSON.parse( await Deno.readTextFile( new URL( '../newer/enemies/index.json', import.meta.url ) ) );
+	skins.R_NewerSetIndex( index );
+	anim.R_AnimSetNewer( true );
+	const old = anim.r_newer_enemies.value;
+	anim.r_newer_enemies.value = 1;
+	try {
+
+		for ( const model of [ 'dog', 'zombie', 'demon', 'enforcer', 'fish', 'hknight', 'oldone', 'shalrath', 'shambler', 'tarbaby', 'h_knight', 'h_ogre', 'h_wizard' ] )
+			assertEqual( skins.R_NewerAliasMaterial( { _entityIndex: 3 }, 'progs/' + model + '.mdl', true ), null, model + ' uses original skin' );
+
+	} finally {
+
+		anim.r_newer_enemies.value = old;
+		anim.R_AnimSetNewer( false );
+		skins.R_NewerSetIndex( null );
+
+	}
 
 } );

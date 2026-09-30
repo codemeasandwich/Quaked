@@ -6,6 +6,8 @@ Quake in the browser, built on Three.js. Quaked is developed by [@codemeasandwic
 
 https://mrdoob.github.io/three-quake/ (upstream three-quake build)
 
+Confirming **Quit** opens [this project’s GitHub page](https://github.com/codemeasandwich/Quaked) in a new tab and returns the game to its main menu. Cancelling Quit stays in the game.
+
 ### Features
 
 #### Live portals
@@ -20,7 +22,7 @@ Every teleporter surface (`*teleport`) that leads somewhere is a live camera ont
 
 #### Newer Game options
 
-New Game is always the original game: original lighting, water, monsters and teleporters, with no camera portals. In Newer Game, **Options > Newer Game features** switches its parts on and off one at a time: lighting, water (needs the lighting), enemies (the Quake Reforged skins) and camera portals (the teleporter windows and the seamless level crossings; these apply from the next level). The console variables are `r_newer_lighting`, `r_newer_water`, `r_newer_enemies` and `r_newer_portals`.
+New Game is always the original game: original lighting, water, monsters and teleporters, with no camera portals. In Newer Game, **Options > Newer Game features** switches its parts on and off one at a time: lighting, water (needs the lighting), enemies (the custom upsampled skins) and camera portals (the teleporter windows and the seamless level crossings; these apply from the next level). The console variables are `r_newer_lighting`, `r_newer_water`, `r_newer_enemies` and `r_newer_portals`.
 
 #### Lighting and muzzle flash
 
@@ -53,9 +55,13 @@ Newer Game also:
 - is graded 40% darker with 40% more contrast than its raw output (`r_newbright 0.6`, `r_newcontrast 1.4`; use 1 and 1 for the ungraded look);
 - adds extra frames between model animation frames: Quake steps monsters and weapons through their poses ten times a second, and Newer Game blends between them so movement runs at your display's frame rate. `r_lerpmodels 0` turns it off, `1` (default) is Newer Game only, `2` forces it on in the classic lighting too. It does not blend a model that has just come into view, teleported or changed model.
 
-- gives the monsters the **Quake Reforged** skins (see `newer/enemies/CREDITS.txt`): high resolution skins with normal maps (so the sun and torches light the scales and stitching), glow maps and a wet sheen. There are 33 skins for 26 models, including head gibs, and every monster picks one of its model's skins at random, once per monster per level, so a crowd of zombies is not a crowd of clones (`r_newer_variety 0` always uses the first). The classic lighting keeps the original skins. Models the shareware data does not include (Enforcer, Rotfish, Shub-Niggurath, Hell Knight, Fiend...) will use them when you run the full game.
+- uses the custom upsampled skins for the boss, knight, ogre, soldier and wizard, fitted to the original models' skin layouts. Other enemies and head gibs keep their original Quake skins. **Options > Newer Game features > Newer enemies** (`r_newer_enemies`) switches these replacements off; New Game always uses the originals. Replacement skins also work with Newer lighting disabled.
 
-To add or replace skins, put the extracted downloads in one folder and run `python3 tools/build_newer_assets.py THAT_FOLDER`. It converts them to WebP, generates normal maps for skins that lack one, and rewrites `newer/enemies/index.json`.
+The Quake Reforged pack and its destructive rebuild importer have been removed. The five `newer/enemies/*/custom/diffuse.webp` files retain the latest skin alignment work unchanged. `newer/enemies/_unused/player_upscaled.webp` is preserved as an unused asset and is not loaded by the game.
+
+`newer/enemies/index.json` is the skin manifest. To add a replacement, add its WebP file and a model entry with `dir`, `maps.diffuse`, and `flipGreen`; preserve the existing custom files and entries. Optional normal, luma and gloss maps remain supported by the existing loader. Missing entries, pending downloads and failed texture loads fall back to the original skin. The current five models each have one replacement, so `r_newer_variety` has no visible effect.
+
+To try the result, serve the repository, reload the game, start **Newer Game**, and compare a soldier or ogre with **Newer enemies** on and off. A zombie or dog should keep its original skin in both cases. No game data or model geometry is changed.
 
 You can switch at any time from the console: `r_hdr 0` (classic) or `r_hdr 1` (newer). `r_bloom`, `r_volumetric` and `r_caustics` set the strength of each effect.
 
@@ -64,6 +70,12 @@ This is a rasterised approximation, not path tracing: light does not bounce, and
 ### Console wallpaper
 
 The console (and the main menu backdrop shown when no game is running) uses `conback.webp` instead of the original stone `conback.lmp`. It is cropped to fill the screen without stretching. To go back to the original, delete `conback.webp`.
+
+### Verification of the skin and Quit changes
+
+Removal verification (2026-09-30): all 78 imported pack files, including its credits file, are absent; all six retained WebP images match the pre-removal Git version byte-for-byte and decode successfully. Independent review passed. The 14 skin/animation tests passed using a Node 24 compatibility harness because Deno was unavailable; a mocked texture loader also verified all five custom material paths, lighting independence, the enemy toggle, and New Game fallback. Browser/WebGL appearance has not been visually verified. With Deno installed, the focused suite is `deno test --allow-read tests/r_newerskins_test.js tests/r_anim_test.js`.
+
+Seven public-menu scenarios also passed using Node with a mocked `window.open`: Escape, n and N cancel; y and Y confirm; touch supports both confirmation and cancellation. Confirmation opens this project's GitHub URL in a new tab and returns to the main menu. Actual browser navigation and popup policy were not exercised. These checks cover the menu's Quit action; console `quit` retains its existing shutdown behavior.
 
 ### Dev Log
 

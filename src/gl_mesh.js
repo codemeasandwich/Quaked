@@ -588,11 +588,11 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 
 	const skinnum = entity && entity.skinnum ? entity.skinnum : 0;
 
-	// Newer Game: the Quake Reforged skin for this monster, once it has loaded
+	// Newer Game: the custom replacement skin for this monster, once it has loaded
 	if ( skinnum === 0 && entity != null && entity.model != null ) {
 
-		const reforged = R_NewerAliasMaterial( entity, entity.model.name, hasLighting );
-		if ( reforged !== null ) return reforged;
+		const replacement = R_NewerAliasMaterial( entity, entity.model.name, hasLighting );
+		if ( replacement !== null ) return replacement;
 
 	}
 
