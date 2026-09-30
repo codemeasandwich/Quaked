@@ -6,7 +6,7 @@ import { Sys_FloatTime } from './sys.js';
 import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
-import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals } from './gl_portal.js';
+import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
 import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
@@ -14,7 +14,7 @@ import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
-import { SV_SeamlessCrossings, SV_SetLiquidLinks, SV_LevelSnapshotEntities } from './sv_seamless.js';
+import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
 import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks } from './gl_post.js';
 import { vid, renderer } from './vid.js';
@@ -1352,6 +1352,10 @@ export function R_RenderView() {
 	// Present the frame via Three.js
 	if ( renderer && scene && camera ) {
 
+		// crossing into the next level: from the moment the player is through, and
+		// while the level loads, keep showing the level they are entering
+		const leaving = R_LevelTransitionBegin();
+
 		if ( post ) {
 
 			R_PostBind( renderer );
@@ -1364,6 +1368,8 @@ export function R_RenderView() {
 			renderer.render( scene, camera );
 
 		}
+
+		if ( leaving !== null ) R_LevelTransitionEnd( leaving );
 
 	}
 
@@ -1382,6 +1388,68 @@ export function R_RenderView() {
 
 		time2 = Sys_FloatTime();
 		Con_Printf( ( ( ( time2 - time1 ) * 1000 ) | 0 ) + ' ms  ' + c_brush_polys + ' wpoly ' + c_alias_polys + ' epoly' );
+
+	}
+
+}
+
+//============================================================================
+// The crossing into the next level
+//
+// The game decides the player has gone through an exit a moment before the next
+// level is loaded, and the screen holds the last frame while it loads.  That frame
+// must be the level being entered (as the window showed it), not the back of the
+// doorway in the level being left: so the view is moved into the other level's
+// window, and the weapon with it.
+//============================================================================
+
+const _transitionMatrix = new THREE.Matrix4();
+
+function R_LevelTransitionBegin() {
+
+	const pend = SV_SeamlessPending();
+	if ( pend === null || pend.index === undefined || camera == null ) return null;
+
+	const m = R_LevelPortalMatrix( pend.index );
+	if ( m === null ) return null;
+
+	_transitionMatrix.fromArray( m );
+
+	camera.updateMatrixWorld( true );
+	const saved = { world: camera.matrixWorld.clone(), auto: camera.matrixWorldAutoUpdate, weapon: null, weaponMatrix: null, weaponAuto: true };
+
+	camera.matrixWorldAutoUpdate = false;
+	camera.matrixWorld.premultiply( _transitionMatrix );
+	camera.matrixWorldInverse.copy( camera.matrixWorld ).invert();
+
+	// the gun is drawn in the world at the eye: it goes along
+	const gun = cl != null && cl.viewent != null ? cl.viewent._aliasMesh : null;
+	if ( gun != null ) {
+
+		gun.updateMatrix();
+		saved.weapon = gun;
+		saved.weaponMatrix = gun.matrix.clone();
+		saved.weaponAuto = gun.matrixAutoUpdate;
+		gun.matrixAutoUpdate = false;
+		gun.matrix.premultiply( _transitionMatrix );
+		gun.matrixWorld.copy( gun.matrix );
+
+	}
+
+	return saved;
+
+}
+
+function R_LevelTransitionEnd( saved ) {
+
+	camera.matrixWorld.copy( saved.world );
+	camera.matrixWorldInverse.copy( saved.world ).invert();
+	camera.matrixWorldAutoUpdate = saved.auto;
+
+	if ( saved.weapon !== null ) {
+
+		saved.weapon.matrix.copy( saved.weaponMatrix );
+		saved.weapon.matrixAutoUpdate = saved.weaponAuto;
 
 	}
 

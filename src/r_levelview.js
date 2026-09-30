@@ -783,11 +783,12 @@ function buildView( scene, c, i ) {
 
 	view.anchor = corner( ( o.a0 + o.a1 ) / 2, ( o.b0 + o.b1 ) / 2 );
 
-	R_AddLevelPortal( scene,
+	const portal = R_AddLevelPortal( scene,
 		[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],
 		matrix,
 		[ off[ 0 ] + t.dest[ 0 ], off[ 1 ] + t.dest[ 1 ], off[ 2 ] + t.dest[ 2 ] ],
 		t.direction( t.through ) );
+	portal.crossing = i;
 
 	views.push( view );
 

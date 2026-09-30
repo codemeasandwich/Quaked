@@ -754,6 +754,17 @@ export function R_LevelPortalCount() {
 
 }
 
+// the matrix (this level's coordinates -> the scene) of the window onto the level
+// that crossing number `index` leads to, or null while that view is not built
+export function R_LevelPortalMatrix( index ) {
+
+	for ( const p of levelPortals )
+		if ( p.crossing === index && p.mesh != null ) return p.matrix;
+
+	return null;
+
+}
+
 export function R_ClearLevelPortals() {
 
 	for ( const p of levelPortals ) {

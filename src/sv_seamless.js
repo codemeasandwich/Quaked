@@ -545,6 +545,7 @@ export function SV_SeamlessFrame() {
 
 			pending = {
 				map: c.map,
+				index: crossings.indexOf( c ),
 				pit: t.kind === 'pit',
 				viaBack: c.back === true,
 				origin: t.position( cur ),
