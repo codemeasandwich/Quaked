@@ -138,10 +138,36 @@ Deno.test( 'every file the skin index names exists', async () => {
 
 	}
 
-	assertEqual( variants, 7, 'the seven custom skins are indexed' );
-	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'backpack,boss,knight,ogre,soldier,suit,wizard', 'only retained custom models are indexed' );
+	assertEqual( variants, 10, 'the ten custom skins are indexed' );
+	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'armor,backpack,boss,knight,ogre,soldier,suit,wizard', 'only retained custom models are indexed' );
 	for ( const [ model, list ] of Object.entries( index.models ) )
 		assertEqual( list[ 0 ].dir, model + '/custom', 'retains the custom skin directory' );
+
+} );
+
+Deno.test( 'a skin listed for a skin number is used for that skin only (the armor colours)', () => {
+
+	skins.R_NewerSetIndex( { models: { armor: [
+		{ dir: 'armor/a', maps: { diffuse: 'd.webp' } },
+		{ dir: 'armor/b', skin: 1, maps: { diffuse: 'd.webp' } }
+	] } } );
+	anim.R_AnimSetNewer( true );
+	const old = anim.r_newer_enemies.value;
+	anim.r_newer_enemies.value = 1;
+	try {
+
+		// nothing has loaded (no fetch here), so every answer is the original skin: what matters is that
+		// asking for a skin the index has no entry for does not throw
+		assertEqual( skins.R_NewerAliasMaterial( { _entityIndex: 1 }, 'progs/armor.mdl', true, 0 ), null, 'skin 0 before the picture has loaded' );
+		assertEqual( skins.R_NewerAliasMaterial( { _entityIndex: 1 }, 'progs/armor.mdl', true, 2 ), null, 'no entry for skin 2' );
+
+	} finally {
+
+		anim.r_newer_enemies.value = old;
+		anim.R_AnimSetNewer( false );
+		skins.R_NewerSetIndex( null );
+
+	}
 
 } );
 

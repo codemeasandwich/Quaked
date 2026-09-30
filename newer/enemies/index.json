@@ -62,7 +62,33 @@
      "diffuse": "diffuse.webp"
     }
    }
+  ],
+  "armor": [
+   {
+    "dir": "armor/custom",
+    "skin": 0,
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp"
+    }
+   },
+   {
+    "dir": "armor/skin1",
+    "skin": 1,
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp"
+    }
+   },
+   {
+    "dir": "armor/skin2",
+    "skin": 2,
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp"
+    }
+   }
   ]
  },
- "version": 3
+ "version": 4
 }

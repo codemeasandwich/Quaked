@@ -251,7 +251,7 @@ The replacement material for this monster, or null when its model has no custom
 skin, Newer Game or its enemies are off, or the skin has not finished loading.
 ================
 */
-export function R_NewerAliasMaterial( entity, modelName, hasLighting ) {
+export function R_NewerAliasMaterial( entity, modelName, hasLighting, skinnum = 0 ) {
 
 	if ( ! R_IsNewer() || r_newer_enemies.value === 0 ) return null;
 
@@ -263,8 +263,15 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting ) {
 	}
 
 	const key = R_NewerModelKey( modelName );
-	const variants = key !== null ? skinIndex[ key ] : undefined;
-	if ( variants === undefined || variants.length === 0 ) return null;
+	const all = key !== null ? skinIndex[ key ] : undefined;
+	if ( all === undefined ) return null;
+
+	// a variant with a "skin" number is for that skin of the model only (the armor's
+	// green, yellow and red); the others are the model's skin 0
+	if ( all._bySkin === undefined ) all._bySkin = {};
+	let variants = all._bySkin[ skinnum ];
+	if ( variants === undefined ) variants = all._bySkin[ skinnum ] = all.filter( ( v ) => ( v.skin || 0 ) === skinnum );
+	if ( variants.length === 0 ) return null;
 
 	const variant = variants[ R_NewerPickVariant( entity, key, variants.length ) ];
 

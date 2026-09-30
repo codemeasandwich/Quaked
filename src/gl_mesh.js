@@ -589,9 +589,9 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 	const skinnum = entity && entity.skinnum ? entity.skinnum : 0;
 
 	// Newer Game: the custom replacement skin for this monster, once it has loaded
-	if ( skinnum === 0 && entity != null && entity.model != null ) {
+	if ( entity != null && entity.model != null ) {
 
-		const replacement = R_NewerAliasMaterial( entity, entity.model.name, hasLighting );
+		const replacement = R_NewerAliasMaterial( entity, entity.model.name, hasLighting, skinnum );
 		if ( replacement !== null ) return replacement;
 
 	}
