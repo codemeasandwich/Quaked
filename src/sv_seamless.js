@@ -398,7 +398,7 @@ Called once a level's entities are loaded.
 // Something to walk back through: a doorway, archway, portal or door in this level
 // where the way back would be.  Without it the way back would lead out of nowhere,
 // so the player who arrives is not offered one.
-const RETURN_MARKER = /^(\+.)?slip|^[aew]?door|^dr\d|^[w]?enter|^z?_?exit|arch|^window|^gate|^portc/; // (a teleporter is not one: see SV_ExitIsTeleporter)
+const RETURN_MARKER = /^[aew]?door|^dr\d|^[w]?enter|^z?_?exit|arch|^window|^gate|^portc/; // (a teleporter is not one: see SV_ExitIsTeleporter)
 const RETURN_REACH = 224; // how far from the way back a marker may be
 
 function SV_HasReturnMarker( inverse ) {
@@ -440,8 +440,11 @@ function SV_HasReturnMarker( inverse ) {
 
 }
 
-// An exit with a teleporter surface (the swirling *teleport pictures) at it is a
-// teleporter, whatever its shape: a pad that leads to another level, not a doorway.
+// An exit with a teleporter machine at it (the swirling *teleport pictures, or a
+// slipgate: the slip textures) is a teleporter, whatever its shape: a pad that leads
+// to another level, not a doorway.
+const TELEPORTER_TEXTURE = /^(\*teleport|(\+.)?slip)/i;
+
 function SV_ExitIsTeleporter( exit ) {
 
 	const model = sv.worldmodel;
@@ -452,7 +455,7 @@ function SV_ExitIsTeleporter( exit ) {
 	for ( const surf of model.surfaces ) {
 
 		if ( surf.texinfo == null || surf.texinfo.texture == null ) continue;
-		if ( surf.texinfo.texture.name.slice( 0, 9 ).toLowerCase() !== '*teleport' ) continue;
+		if ( ! TELEPORTER_TEXTURE.test( surf.texinfo.texture.name ) ) continue;
 
 		let near = true;
 		const mn = [ 1e9, 1e9, 1e9 ], mx = [ - 1e9, - 1e9, - 1e9 ];
