@@ -1,4 +1,4 @@
-import { R_CratePlan, R_IsCrateSide, CRATE_BOXES, CRATE_ODDS } from '../src/r_cratevariants.js';
+import { R_CratePlan, R_IsCrateSide, CRATE_BOXES, CRATE_ODDS, CRATE_COMMON } from '../src/r_cratevariants.js';
 
 function assertEqual( actual, expected, message ) {
 
@@ -37,7 +37,7 @@ Deno.test( 'about one crate in 40 changes, all its faces use the same box, oppos
 	for ( let i = 0; i < total; i ++ ) {
 
 		const faces = crate( i * 200, ( i % 7 ) * 300 );
-		const plan = R_CratePlan( 'e1m1', faces );
+		const plan = R_CratePlan( 'e1m1', faces, CRATE_ODDS, [] );
 
 		const names = plan.filter( ( p ) => p !== null );
 		if ( names.length === 0 ) continue;
@@ -61,9 +61,9 @@ Deno.test( 'both boxes turn up, and the choice is the same every time', () => {
 	const seen = new Set();
 	for ( let i = 0; i < 3000; i ++ ) {
 
-		const plan = R_CratePlan( 'e1m2', crate( i * 130, 0 ) );
+		const plan = R_CratePlan( 'e1m2', crate( i * 130, 0 ), CRATE_ODDS, [] );
 		for ( const p of plan ) if ( p !== null ) seen.add( p );
-		assertEqual( JSON.stringify( plan ), JSON.stringify( R_CratePlan( 'e1m2', crate( i * 130, 0 ) ) ), 'stable' );
+		assertEqual( JSON.stringify( plan ), JSON.stringify( R_CratePlan( 'e1m2', crate( i * 130, 0 ), CRATE_ODDS, [] ) ), 'stable' );
 
 	}
 
@@ -79,7 +79,7 @@ Deno.test( 'crates that touch are one crate; a level name changes the roll', () 
 	for ( let i = 0; i < 400; i ++ ) {
 
 		const shift = ( f ) => ( { mins: f.mins.map( ( v ) => v + i * 97 ), maxs: f.maxs.map( ( v ) => v + i * 97 ), normal: f.normal } );
-		const plan = R_CratePlan( 'start', [ shift( a ), shift( b ) ] );
+		const plan = R_CratePlan( 'start', [ shift( a ), shift( b ) ], CRATE_ODDS, [] );
 		assertEqual( ( plan[ 0 ] === null ) === ( plan[ 1 ] === null ), true, 'touching faces change together' );
 
 	}
@@ -88,7 +88,7 @@ Deno.test( 'crates that touch are one crate; a level name changes the roll', () 
 	for ( let i = 0; i < 2000; i ++ ) {
 
 		const f = crate( i * 150, 0 );
-		if ( JSON.stringify( R_CratePlan( 'e1m1', f ) ) !== JSON.stringify( R_CratePlan( 'e1m3', f ) ) ) differs ++;
+		if ( JSON.stringify( R_CratePlan( 'e1m1', f, CRATE_ODDS, [] ) ) !== JSON.stringify( R_CratePlan( 'e1m3', f, CRATE_ODDS, [] ) ) ) differs ++;
 
 	}
 
@@ -100,22 +100,49 @@ Deno.test( 'a crate with a face that is not one whole picture keeps its ordinary
 
 	const faces = crate( 0, 0 );
 	faces[ 2 ].whole = false;
-	assertEqual( R_CratePlan( 'e1m1', faces, 1 ).every( ( p ) => p === null ), true, 'nothing changes' );
+	assertEqual( R_CratePlan( 'e1m1', faces, 1, [] ).every( ( p ) => p === null ), true, 'nothing changes' );
 
 	const good = crate( 0, 0 ).map( ( f ) => ( { ...f, whole: true } ) );
-	assertEqual( R_CratePlan( 'e1m1', good, 1 ).every( ( p ) => p !== null ), true, 'whole pictures change' );
+	assertEqual( R_CratePlan( 'e1m1', good, 1, [] ).every( ( p ) => p !== null ), true, 'whole pictures change' );
 
 	// a broken crate does not hold back one that is apart from it
 	const two = [ ...crate( 0, 0 ).map( ( f ) => ( { ...f, whole: false } ) ), ...crate( 500, 0 ).map( ( f ) => ( { ...f, whole: true } ) ) ];
-	const plan = R_CratePlan( 'e1m1', two, 1 );
+	const plan = R_CratePlan( 'e1m1', two, 1, [] );
 	assertEqual( plan.slice( 0, 4 ).every( ( p ) => p === null ), true, 'first crate unchanged' );
 	assertEqual( plan.slice( 4 ).every( ( p ) => p !== null ), true, 'second crate changes' );
 
 } );
 
+Deno.test( 'ordinary crates take the common pictures, all four sides alike, in about the share expected', () => {
+
+	const count = { none: 0 };
+	for ( const c of CRATE_COMMON ) count[ c ] = 0;
+	const total = 4000;
+
+	for ( let i = 0; i < total; i ++ ) {
+
+		const plan = R_CratePlan( 'e1m1', crate( i * 170, ( i % 5 ) * 200 ) );
+		const names = plan.filter( ( p ) => p !== null );
+		if ( names.length === 0 ) { count.none ++; continue; }
+		if ( CRATE_COMMON.includes( names[ 0 ] ) ) {
+
+			assertEqual( names.length, 4, 'all four sides' );
+			assertEqual( names.every( ( n ) => n === names[ 0 ] ), true, 'all alike' );
+			count[ names[ 0 ] ] ++;
+
+		}
+
+	}
+
+	// one in four keeps its own, a quarter for each of the three others (less the rare ones)
+	assertEqual( count.none > total * 0.2 && count.none < total * 0.3, true, 'own picture: ' + count.none );
+	for ( const c of CRATE_COMMON ) assertEqual( count[ c ] > total * 0.2 && count[ c ] < total * 0.3, true, c + ': ' + count[ c ] );
+
+} );
+
 Deno.test( 'with odds of 1 every crate changes', () => {
 
-	const plan = R_CratePlan( 'e1m1', crate( 0, 0 ), 1 );
+	const plan = R_CratePlan( 'e1m1', crate( 0, 0 ), 1, [] );
 	assertEqual( plan.every( ( p ) => p !== null ), true, 'all changed' );
 
 } );

@@ -16,6 +16,10 @@ export const CRATE_BOXES = [
 	[ 'crate_scp', 'crate_scp_hl' ]
 ];
 
+// more ordinary pictures: a crate whose faces are all whole picks from these and its own, all four
+// sides alike
+export const CRATE_COMMON = [ 'crate_eagle', 'crate_bolt', 'crate_skull' ];
+
 export function R_IsCrateSide( name ) {
 
 	return /^crate\d_side$/.test( name );
@@ -38,7 +42,7 @@ function hash( s ) {
 // with a face that does not (a half crate, a crate set off the grid) keeps its ordinary picture,
 // because a picture with a sign in the middle only looks right whole.
 // Returns, for each face, the name of its variant picture or null.
-export function R_CratePlan( mapName, faces, odds = CRATE_ODDS ) {
+export function R_CratePlan( mapName, faces, odds = CRATE_ODDS, common = CRATE_COMMON ) {
 
 	const n = faces.length;
 	const parent = faces.map( ( _, i ) => i );
@@ -93,15 +97,27 @@ export function R_CratePlan( mapName, faces, odds = CRATE_ODDS ) {
 
 		}
 
-		const h = hash( mapName + ':' + c.join( ',' ) );
-		choice.set( r, h % odds === 0 ? ( ( h >>> 8 ) & 1 ) : - 1 );
+		const key = mapName + ':' + c.join( ',' );
+		const h = hash( key );
+		if ( h % odds === 0 ) {
+
+			choice.set( r, ( h >>> 8 ) & 1 );
+
+		} else {
+
+			// an ordinary one: its own picture, or one of the others
+			const k = common.length > 0 ? hash( 'common:' + key ) % ( common.length + 1 ) : 0;
+			choice.set( r, k === 0 ? - 1 : - 2 - ( k - 1 ) );
+
+		}
 
 	}
 
 	return faces.map( ( f, i ) => {
 
 		const box = choice.get( find( i ) );
-		if ( box < 0 ) return null;
+		if ( box === - 1 ) return null;
+		if ( box <= - 2 ) return common[ - 2 - box ];
 
 		// opposite faces of a crate get the two pictures of the box
 		const side = f.normal[ 0 ] * 0.92 + f.normal[ 1 ] * 0.39 >= 0 ? 0 : 1;

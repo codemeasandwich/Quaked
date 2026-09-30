@@ -108,7 +108,7 @@ On a touch device the game shows on-screen controls. Held sideways the stick is 
 
 ### Rare crate pictures
 
-In Newer Game one crate in 40 wears a different side picture (`src/r_cratevariants.js`): a Dharma crate with a Half-Life graffiti crate on its other side, or an SCP crate with an SCP-and-graffiti one. Which crates change is fixed by the level and where the crate stands, so it is the same every visit. `r_newer_crates` sets the odds (40 = one in 40, 0 = never; applies from the next level). Only the crate sides change: the tops do not.
+In Newer Game one crate in 40 wears a different side picture (`src/r_cratevariants.js`): a Dharma crate with a Half-Life graffiti crate on its other side, or an SCP crate with an SCP-and-graffiti one. Which crates change is fixed by the level and where the crate stands, so it is the same every visit. `r_newer_crates` sets the odds (40 = one in 40, 0 = never; applies from the next level). Ordinary crates also choose among three more common pictures (an eagle, a winged bolt and a winged skull) and their own, all four sides alike. Only the crate sides change: the tops do not. `r_newer_crates 0` switches all of this off.
 
 ### The Newer Game pack
 
