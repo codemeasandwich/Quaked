@@ -65,7 +65,8 @@ PROFILES = [
     # slime, pebbles, bumps
     ( r'^(nmetal2|wmet2_1|wmet4_4|wmet4_5|wmet4_6)', dict( bands=( 1, .9, .3, .1 ), groove=.2, bump=.6, glow=0, strength=1.4 ) ),
     # rock, ground, vines, dirt, brick, bark
-    ( r'^(rock|ground|vine|uwall|wgrnd|wizmet1_7|wiz1_4|mmetal1_5|wizwood1_3|sfloor4_2$)', dict( bands=( .35, 1, 1.3, .9 ), groove=1.0, bump=.4, glow=0, strength=1.5 ) ),
+    ( r'^(rock\d_\d|ground|uwall|wgrnd|wizmet1_7|wiz1_4)', dict( bands=( .3, 1, 1.6, 1.3 ), groove=1.6, bump=.9, glow=0, strength=3.6, cap=3.2 ) ),  # rock: as extreme as it goes
+    ( r'^(vine|mmetal1_5|wizwood1_3|sfloor4_2$)', dict( bands=( .35, 1, 1.3, .9 ), groove=1.0, bump=.4, glow=0, strength=1.5 ) ),
     # wood
     ( r'^(wood|wizwood|woodflr)', dict( bands=( .8, 1, .5, .2 ), groove=.8, bump=.2, glow=0, strength=1.2 ) ),
     # riveted and scratched plates, rusty metal
@@ -168,9 +169,9 @@ def craft( rgb, prof ):
         H = H * ( 1 - m ) + floor * m
 
     H01 = ( H - H.min() ) / ( H.max() - H.min() + 1e-6 )
-    return normals_from_height( np.round( H01 * 255 ) / 255, prof['strength'] )
+    return normals_from_height( np.round( H01 * 255 ) / 255, prof['strength'], prof.get( 'cap', 1.1 ) )
 
-def normals_from_height( H01, strength ):
+def normals_from_height( H01, strength, capk=1.1 ):
     """The normals of a height field in 0..1: the maths of R_NormalsFromCraftedHeight in src/gl_normals.js."""
     h, w = H01.shape
     # slope: the same scale the engine uses for generated maps, so strength means the same thing
@@ -182,7 +183,7 @@ def normals_from_height( H01, strength ):
     gx = d( H01, 1 ) * 0.5; gy = d( H01, 0 ) * 0.5
     sx = -gx * sc; sy = -gy * sc
     # soft cap on how steeply a facet may lean
-    m = np.sqrt( sx * sx + sy * sy ); cap = 1.0 / np.sqrt( 1.0 + ( m / 1.1 ) ** 2 )
+    m = np.sqrt( sx * sx + sy * sy ); cap = 1.0 / np.sqrt( 1.0 + ( m / capk ) ** 2 )
     sx *= cap; sy *= cap
     nz = 1.0
     ln = np.sqrt( sx * sx + sy * sy + nz * nz )
@@ -215,11 +216,11 @@ def main( args ):
         H01, n = craft( rgb, prof )
         fn = name.replace( '+', 'p_' ).replace( '*', 'star_' ) + '.webp'
         save_height( os.path.join( TEX, 'normals', fn ), H01 )
-        normals[name] = { 'file': 'normals/' + fn, 'strength': prof['strength'] }
+        normals[name] = { 'file': 'normals/' + fn, 'strength': prof['strength'], 'cap': prof.get( 'cap', 1.1 ) }
         if prev:
             # what the engine will see: the height as it is stored
             stored = np.asarray( Image.open( os.path.join( TEX, 'normals', fn ) ).convert( 'L' ), dtype=np.float32 ) / 255.0
-            H2, n2 = normals_from_height( stored, prof['strength'] )
+            H2, n2 = normals_from_height( stored, prof['strength'], prof.get( 'cap', 1.1 ) )
             preview( rgb, H2, n2, os.path.join( prev, fn.replace( '.webp', '.png' ) ) )
     idx['normals'] = normals
     idx['version'] = int( idx['version'] ) + 1

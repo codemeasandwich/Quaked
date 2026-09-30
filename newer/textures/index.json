@@ -1,5 +1,5 @@
 {
- "version": 2026093040,
+ "version": 2026093041,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -669,11 +669,13 @@
   },
   "ground1_2": {
    "file": "normals/ground1_2.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "ground1_6": {
    "file": "normals/ground1_6.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "key01_3": {
    "file": "normals/key01_3.webp",
@@ -801,27 +803,33 @@
   },
   "rock0sid": {
    "file": "normals/rock0sid.webp",
-   "strength": 1.5
+   "strength": 1.15,
+   "cap": 1.1
   },
   "rock1_2": {
    "file": "normals/rock1_2.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "rock1sid": {
    "file": "normals/rock1sid.webp",
-   "strength": 1.5
+   "strength": 1.15,
+   "cap": 1.1
   },
   "rock4_1": {
    "file": "normals/rock4_1.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "rock4_2": {
    "file": "normals/rock4_2.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "rockettop": {
    "file": "normals/rockettop.webp",
-   "strength": 1.5
+   "strength": 1.15,
+   "cap": 1.1
   },
   "rune1_6": {
    "file": "normals/rune1_6.webp",
@@ -1013,7 +1021,8 @@
   },
   "uwall1_2": {
    "file": "normals/uwall1_2.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "vine1_2": {
    "file": "normals/vine1_2.webp",
@@ -1021,11 +1030,13 @@
   },
   "wgrnd1_5": {
    "file": "normals/wgrnd1_5.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "wgrnd1_6": {
    "file": "normals/wgrnd1_6.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "wiz1_1": {
    "file": "normals/wiz1_1.webp",
@@ -1033,7 +1044,8 @@
   },
   "wiz1_4": {
    "file": "normals/wiz1_4.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "wizmet1_1": {
    "file": "normals/wizmet1_1.webp",
@@ -1049,7 +1061,8 @@
   },
   "wizmet1_7": {
    "file": "normals/wizmet1_7.webp",
-   "strength": 1.5
+   "strength": 3.6,
+   "cap": 3.2
   },
   "wizmet1_8": {
    "file": "normals/wizmet1_8.webp",

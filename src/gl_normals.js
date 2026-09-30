@@ -186,7 +186,7 @@ export function R_NormalsFromHeight( h, width, height, strength = NORMAL_STRENGT
 
 // Tangent-space normals (RGBA8, height in alpha) from a crafted height field: a height map made offline
 // for one texture (tools/craft_normals.py, which has the same maths), in 0..1, and how steep to make it.
-export function R_NormalsFromCraftedHeight( h, width, height, strength ) {
+export function R_NormalsFromCraftedHeight( h, width, height, strength, capk = 1.1 ) {
 
 	const out = new Uint8Array( width * height * 4 );
 	const sc = strength * Math.sqrt( width * height ) / 8;
@@ -207,7 +207,7 @@ export function R_NormalsFromCraftedHeight( h, width, height, strength ) {
 
 			// a soft cap on how steeply a facet may lean
 			const m = Math.sqrt( nx * nx + ny * ny );
-			const cap = 1 / Math.sqrt( 1 + ( m / 1.1 ) * ( m / 1.1 ) );
+			const cap = 1 / Math.sqrt( 1 + ( m / capk ) * ( m / capk ) );
 			nx *= cap;
 			ny *= cap;
 
@@ -267,12 +267,12 @@ export function R_NormalMapFor( diffuse ) {
 	const crafted = diffuse.userData != null ? diffuse.userData.newerHeight : undefined;
 	const useCrafted = crafted != null && crafted.width === width && crafted.height === height;
 
-	const key = useCrafted ? 'crafted:' + crafted.file + ':' + crafted.strength
+	const key = useCrafted ? 'crafted:' + crafted.file + ':' + crafted.strength + ':' + crafted.cap
 		: width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
 	let pixels = generated.get( key );
 	if ( pixels === undefined ) {
 
-		pixels = useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength )
+		pixels = useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength, crafted.cap )
 			: R_GenerateNormalData( data, width, height, fb );
 		if ( generated.size >= MAX_GENERATED ) generated.delete( generated.keys().next().value );
 		generated.set( key, pixels );

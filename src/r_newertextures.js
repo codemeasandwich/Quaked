@@ -96,7 +96,7 @@ export function R_NewerTextureUpgrade( name, texture ) {
 			// the red of the grey picture is the height
 			const h = new Float32Array( pic.width * pic.height );
 			for ( let i = 0; i < h.length; i ++ ) h[ i ] = loaded.heightPic.data[ i * 4 ] / 255;
-			texture.userData.newerHeight = { file: loaded.crafted.file, strength: loaded.crafted.strength, data: h, width: pic.width, height: pic.height };
+			texture.userData.newerHeight = { file: loaded.crafted.file, strength: loaded.crafted.strength, cap: loaded.crafted.cap || 1.1, data: h, width: pic.width, height: pic.height };
 
 		}
 
