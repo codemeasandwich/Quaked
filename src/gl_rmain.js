@@ -7,7 +7,7 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals } from './gl_portal.js';
-import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals } from './r_anim.js';
+import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures } from './r_anim.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
@@ -1470,6 +1470,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_lighting );
 	Cvar_RegisterVariable( r_newer_water );
 	Cvar_RegisterVariable( r_newer_enemies );
+	Cvar_RegisterVariable( r_newer_textures );
 	Cvar_RegisterVariable( r_newer_portals );
 	Cvar_RegisterVariable( r_flashlight );
 	Cvar_RegisterVariable( r_decals );

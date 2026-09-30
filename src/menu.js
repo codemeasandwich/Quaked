@@ -1758,6 +1758,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_newer_water', label: '           Newer water' },
 	{ cvar: 'r_newer_enemies', label: '         Newer enemies' },
 	{ cvar: 'r_newer_portals', label: '        Camera portals' },
+	{ cvar: 'r_newer_textures', label: '        Newer textures' },
 	{ cvar: 'r_flashlight', label: '  Flashlight (key F)' },
 	{ cvar: 'r_decals', label: '   Marks and blood' }
 ];

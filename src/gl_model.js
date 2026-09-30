@@ -29,6 +29,7 @@ import {
 	TEX_SPECIAL
 } from './bspfile.js';
 import { gl_subdivide_size, gl_texturemode, GL_TextureLinear, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
+import { R_NewerTextureUpgrade } from './r_newertextures.js';
 
 // ============================================================================
 // modelgen.h constants
@@ -1318,6 +1319,9 @@ function Mod_LoadTextures( fileofs, filelen ) {
 			// map, so they must keep their fullbright texels: lava is made of nothing
 			// else, and splitting them out left it black.
 			tx.gl_texture = GL_LoadTexture( name, tx.width, tx.height, tx.pixels, true, false, name.charAt( 0 ) !== '*' );
+
+			// Newer Game: our own higher resolution version of the picture, once it arrives
+			if ( name.charAt( 0 ) !== '*' ) R_NewerTextureUpgrade( name, tx.gl_texture );
 
 		}
 

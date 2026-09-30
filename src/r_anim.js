@@ -17,11 +17,12 @@ import { cvar_t, Cvar_VariableValue } from './cvar.js';
 export const r_lerpmodels = new cvar_t( 'r_lerpmodels', '1' );
 
 // Newer Game's features, each on or off (they apply only while playing Newer
-// Game, which is r_hdr): the lighting pipeline, water, enemies and camera portals
+// Game, which is r_hdr): the lighting pipeline, water, enemies, camera portals and wall textures
 export const r_newer_lighting = new cvar_t( 'r_newer_lighting', '1' );
 export const r_newer_water = new cvar_t( 'r_newer_water', '1' );
 export const r_newer_enemies = new cvar_t( 'r_newer_enemies', '1' );
 export const r_newer_portals = new cvar_t( 'r_newer_portals', '1' );
+export const r_newer_textures = new cvar_t( 'r_newer_textures', '1' );
 
 // playing Newer Game (r_hdr is what the menu sets; read directly because a level
 // is started in the same batch of commands that sets it)
