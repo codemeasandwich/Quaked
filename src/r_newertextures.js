@@ -69,6 +69,8 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	if ( texture == null || texture._fullbright != null ) return;
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 ) return;
+	if ( texture.userData == null || texture.userData.newerPicture === true || texture.userData.newerPending === true ) return;
+	texture.userData.newerPending = true;
 
 	loadIndex().then( ( idx ) => {
 
@@ -78,8 +80,8 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	} ).then( ( pic ) => {
 
-		if ( pic == null || texture.userData == null ) return;
-		if ( texture.userData.newerPicture === true ) return;
+		texture.userData.newerPending = false;
+		if ( pic == null ) return;
 
 		// the very same texture, with more pixels
 		texture.dispose();
@@ -95,5 +97,42 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		}
 
 	} );
+
+}
+
+let appliedFor = null;
+let appliedOn = false;
+
+/*
+================
+R_NewerTexturesFrame
+
+Called every frame with the level being played: whenever the level, Newer Game or
+the option changes, every texture of the level gets its higher resolution picture
+(if it has one and has not already), whichever way the level came to be loaded.
+================
+*/
+export function R_NewerTexturesFrame( worldmodel ) {
+
+	const on = R_NewerGame() && r_newer_textures.value !== 0;
+	if ( worldmodel === appliedFor && on === appliedOn ) return;
+
+	appliedFor = worldmodel;
+	appliedOn = on;
+	if ( on ) R_NewerTexturesForModel( worldmodel );
+
+}
+
+// every texture of a level (or of a level seen from another)
+export function R_NewerTexturesForModel( model ) {
+
+	if ( model == null || model.textures == null || ! R_NewerGame() || r_newer_textures.value === 0 ) return;
+
+	for ( const t of model.textures ) {
+
+		if ( t == null || t.gl_texture == null || t.name.charAt( 0 ) === '*' || t.name.slice( 0, 3 ) === 'sky' ) continue;
+		R_NewerTextureUpgrade( t.name, t.gl_texture );
+
+	}
 
 }

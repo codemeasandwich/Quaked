@@ -21,6 +21,7 @@ import { r_avertexnormal_dots } from './anorm_dots.js';
 import { R_PostActive } from './gl_post.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
+import { R_NewerTexturesForModel } from './r_newertextures.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;
@@ -749,6 +750,7 @@ function buildView( scene, c, i ) {
 
 	}
 
+	R_NewerTexturesForModel( model );
 	const view = model != null ? R_BuildLevelView( model, t.dest, entities ) : null;
 	if ( view === null ) return;
 
