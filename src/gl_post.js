@@ -145,12 +145,13 @@ const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky sc
 const SPOT_POWER = 1.6; // the flashlight, in the same units as the point lights
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
-const SUN_SCATTER = 0.00006; // sun in-scattering per unit of lit air
-const SUN_SURFACE = 1.0; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
-const SUN_SURFACE_COLOR = [ 1.0, 0.82, 0.6 ];
-const SATURATION = 1.18;
+const SUN_SCATTER = 0.00003; // sun in-scattering per unit of lit air
+const SUN_SURFACE = 0.6; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
+const SUN_SURFACE_COLOR = [ 1.0, 0.9, 0.76 ];
+const SATURATION = 1.1;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
+const OUTDOOR_EXPOSURE = 0.88; // open daylight needs less gain than a dim interior
 const CAUSTIC = 0.6;
 const BUMP_LIGHT = 0.3; // how much of the normal map's relief takes the direct light (1 = all of it) // brightness of caustics beneath water
 
@@ -1250,7 +1251,7 @@ void main() {
 		}
 		lit *= ds;
 		float phase = henyeyGreenstein( dot( dirV, uSunDirV ), 0.55 );
-		result += uSunCol * lit * uSunScatter * phase * ( zd > 1e5 ? 0.35 : 1.0 );
+		result += uSunCol * lit * uSunScatter * phase * ( zd > 1e5 ? 0.1 : 1.0 );
 	}
 
 	// point lights: analytic inverse-square scattering, occluded on screen
@@ -2248,7 +2249,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	// brightness and contrast are applied to the picture as displayed (below), so
 	// 0.6 is 40% darker and 1.4 is 40% more contrast as seen
 	const newBright = Math.max( 0, r_newbright.value );
-	cm.uExposure.value = exposure * HDR_EXPOSURE;
+	cm.uExposure.value = exposure * HDR_EXPOSURE * ( hasSkyView === true ? OUTDOOR_EXPOSURE : 1 );
 	cm.uBright.value = newBright;
 	cm.uContrastGain.value = Math.max( 0, r_newcontrast.value );
 	cm.uContrastPivot.value = newBright * 0.2; // deviations are taken from a typical scene brightness
