@@ -1,5 +1,5 @@
 {
- "version": 2026093015,
+ "version": 2026093017,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -239,7 +239,11 @@
   "metalt2_1": "metalt2_1.webp",
   "metalt2_2": "metalt2_2.webp",
   "metalt2_3": "metalt2_3.webp",
-  "metalt2_5": "metalt2_5.webp"
+  "metalt2_5": "metalt2_5.webp",
+  "door02_2": "door02_2.webp",
+  "door03_2": "door03_2.webp",
+  "door04_1": "door04_1.webp",
+  "door04_2": "door04_2.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -1197,6 +1201,22 @@
   "metalt2_5": {
    "file": "normals/metalt2_5.webp",
    "strength": 1.4
+  },
+  "door02_2": {
+   "file": "normals/door02_2.webp",
+   "strength": 1.15
+  },
+  "door03_2": {
+   "file": "normals/door03_2.webp",
+   "strength": 1.15
+  },
+  "door04_1": {
+   "file": "normals/door04_1.webp",
+   "strength": 1.15
+  },
+  "door04_2": {
+   "file": "normals/door04_2.webp",
+   "strength": 1.15
   }
  }
 }
