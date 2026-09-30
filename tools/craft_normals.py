@@ -37,6 +37,8 @@ TEX = os.path.join(ROOT, 'newer', 'textures')
 #   groove  how much dark lines are cut in;  bump  how much bright knobs stand out
 #   glow    how much glowing parts are flattened (0..1);  strength  how steep the relief is
 PROFILES = [
+    ( r'^(wswamp)', dict( bands=( .4, 1, 1.5, 1.1 ), groove=1.3, bump=.7, glow=0, strength=2.6, cap=2.2 ) ),  # roots and mossy stone
+    ( r'^(tech04|tech01_9|twall2_[56]|twall5_3)', dict( bands=( .5, 1, .8, .5 ), groove=.8, bump=.8, glow=.1, strength=1.3 ) ),
     ( r'^(exit02_2)', dict( bands=( .5, 1, 1.2, 1 ), groove=.3, bump=.4, glow=0, strength=1.5 ) ),  # bones
     ( r'^(plat_top2)', dict( bands=( .9, 1.4, .4, .2 ), groove=.6, bump=1.3, glow=0, strength=1.6 ) ),  # diamond plate
     ( r'^(window1_3)', dict( bands=( .4, 1, 1.2, .8 ), groove=1.0, bump=.4, glow=0, strength=1.5 ) ),

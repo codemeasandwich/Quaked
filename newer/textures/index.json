@@ -1,5 +1,5 @@
 {
- "version": 2026093041,
+ "version": 2026093043,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -280,7 +280,17 @@
   "z_exit": "z_exit.webp",
   "adoor03_6": "adoor03_6.webp",
   "door05_3": "door05_3.webp",
-  "plat_side1": "plat_side1.webp"
+  "plat_side1": "plat_side1.webp",
+  "tech01_9": "tech01_9.webp",
+  "tech04_1": "tech04_1.webp",
+  "tech04_2": "tech04_2.webp",
+  "twall2_5": "twall2_5.webp",
+  "twall2_6": "twall2_6.webp",
+  "twall5_3": "twall5_3.webp",
+  "wswamp1_2": "wswamp1_2.webp",
+  "wswamp1_4": "wswamp1_4.webp",
+  "wswamp2_1": "wswamp2_1.webp",
+  "wswamp2_2": "wswamp2_2.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -1415,6 +1425,56 @@
   "plat_side1": {
    "file": "normals/plat_side1.webp",
    "strength": 1.15
+  },
+  "tech01_9": {
+   "file": "normals/tech01_9.webp",
+   "strength": 1.3,
+   "cap": 1.1
+  },
+  "tech04_1": {
+   "file": "normals/tech04_1.webp",
+   "strength": 1.3,
+   "cap": 1.1
+  },
+  "tech04_2": {
+   "file": "normals/tech04_2.webp",
+   "strength": 1.3,
+   "cap": 1.1
+  },
+  "twall2_5": {
+   "file": "normals/twall2_5.webp",
+   "strength": 1.3,
+   "cap": 1.1
+  },
+  "twall2_6": {
+   "file": "normals/twall2_6.webp",
+   "strength": 1.3,
+   "cap": 1.1
+  },
+  "twall5_3": {
+   "file": "normals/twall5_3.webp",
+   "strength": 1.3,
+   "cap": 1.1
+  },
+  "wswamp1_2": {
+   "file": "normals/wswamp1_2.webp",
+   "strength": 2.6,
+   "cap": 2.2
+  },
+  "wswamp1_4": {
+   "file": "normals/wswamp1_4.webp",
+   "strength": 2.6,
+   "cap": 2.2
+  },
+  "wswamp2_1": {
+   "file": "normals/wswamp2_1.webp",
+   "strength": 2.6,
+   "cap": 2.2
+  },
+  "wswamp2_2": {
+   "file": "normals/wswamp2_2.webp",
+   "strength": 2.6,
+   "cap": 2.2
   }
  }
 }
