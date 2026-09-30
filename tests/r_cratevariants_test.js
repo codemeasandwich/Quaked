@@ -96,6 +96,23 @@ Deno.test( 'crates that touch are one crate; a level name changes the roll', () 
 
 } );
 
+Deno.test( 'a crate with a face that is not one whole picture keeps its ordinary picture', () => {
+
+	const faces = crate( 0, 0 );
+	faces[ 2 ].whole = false;
+	assertEqual( R_CratePlan( 'e1m1', faces, 1 ).every( ( p ) => p === null ), true, 'nothing changes' );
+
+	const good = crate( 0, 0 ).map( ( f ) => ( { ...f, whole: true } ) );
+	assertEqual( R_CratePlan( 'e1m1', good, 1 ).every( ( p ) => p !== null ), true, 'whole pictures change' );
+
+	// a broken crate does not hold back one that is apart from it
+	const two = [ ...crate( 0, 0 ).map( ( f ) => ( { ...f, whole: false } ) ), ...crate( 500, 0 ).map( ( f ) => ( { ...f, whole: true } ) ) ];
+	const plan = R_CratePlan( 'e1m1', two, 1 );
+	assertEqual( plan.slice( 0, 4 ).every( ( p ) => p === null ), true, 'first crate unchanged' );
+	assertEqual( plan.slice( 4 ).every( ( p ) => p !== null ), true, 'second crate changes' );
+
+} );
+
 Deno.test( 'with odds of 1 every crate changes', () => {
 
 	const plan = R_CratePlan( 'e1m1', crate( 0, 0 ), 1 );

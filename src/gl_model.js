@@ -1880,8 +1880,31 @@ function Mod_CrateVariants( surfaces ) {
 
 		}
 
+		// does the face show one whole picture, starting at its edge?
+		const tex = s.texinfo.texture;
+		let whole = true;
+		for ( let j = 0; j < 2; j ++ ) {
+
+			let lo = 1e9, hi = - 1e9;
+			for ( let i = 0; i < s.numedges; i ++ ) {
+
+				const e = loadmodel.surfedges[ s.firstedge + i ];
+				const v = loadmodel.vertexes[ e >= 0 ? loadmodel.edges[ e ].v[ 0 ] : loadmodel.edges[ - e ].v[ 1 ] ];
+				const c = v.position[ 0 ] * s.texinfo.vecs[ j ][ 0 ] + v.position[ 1 ] * s.texinfo.vecs[ j ][ 1 ]
+					+ v.position[ 2 ] * s.texinfo.vecs[ j ][ 2 ] + s.texinfo.vecs[ j ][ 3 ];
+				lo = Math.min( lo, c );
+				hi = Math.max( hi, c );
+
+			}
+
+			const size = j === 0 ? tex.width : tex.height;
+			const off = ( ( lo % size ) + size ) % size;
+			if ( Math.abs( hi - lo - size ) > 1.5 || ( off > 1.5 && size - off > 1.5 ) ) whole = false;
+
+		}
+
 		const flip = ( s.flags & SURF_PLANEBACK ) ? - 1 : 1;
-		sides.push( { surface: s, mins, maxs, normal: [ s.plane.normal[ 0 ] * flip, s.plane.normal[ 1 ] * flip, s.plane.normal[ 2 ] * flip ] } );
+		sides.push( { whole, surface: s, mins, maxs, normal: [ s.plane.normal[ 0 ] * flip, s.plane.normal[ 1 ] * flip, s.plane.normal[ 2 ] * flip ] } );
 
 	}
 

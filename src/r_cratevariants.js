@@ -33,7 +33,10 @@ function hash( s ) {
 
 }
 
-// faces: [ { mins: [x,y,z], maxs: [x,y,z], normal: [x,y,z] } ] (only the crate sides).
+// faces: [ { mins: [x,y,z], maxs: [x,y,z], normal: [x,y,z], whole } ] (only the crate sides); whole is
+// whether the face shows exactly one whole picture (the picture's size, starting on its edge). A crate
+// with a face that does not (a half crate, a crate set off the grid) keeps its ordinary picture,
+// because a picture with a sign in the middle only looks right whole.
 // Returns, for each face, the name of its variant picture or null.
 export function R_CratePlan( mapName, faces, odds = CRATE_ODDS ) {
 
@@ -77,8 +80,18 @@ export function R_CratePlan( mapName, faces, odds = CRATE_ODDS ) {
 
 	}
 
+	const broken = new Set();
+	for ( let i = 0; i < n; i ++ ) if ( faces[ i ].whole === false ) broken.add( find( i ) );
+
 	const choice = new Map();
 	for ( const [ r, c ] of corner ) {
+
+		if ( broken.has( r ) ) {
+
+			choice.set( r, - 1 );
+			continue;
+
+		}
 
 		const h = hash( mapName + ':' + c.join( ',' ) );
 		choice.set( r, h % odds === 0 ? ( ( h >>> 8 ) & 1 ) : - 1 );
