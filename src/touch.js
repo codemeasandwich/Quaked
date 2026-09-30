@@ -164,7 +164,9 @@ function Touch_ApplyLayout() {
 
 	}
 
-	layout = Touch_Layout( window.innerWidth, window.innerHeight, safe );
+	layoutW = window.innerWidth;
+	layoutH = window.innerHeight;
+	layout = Touch_Layout( layoutW, layoutH, safe );
 	const L = layout;
 
 	setCircle( stickBase, L.stick );
@@ -199,6 +201,8 @@ function Touch_ApplyLayout() {
 }
 
 let stickArea = null;
+let layoutW = 0; // the window the layout was made for
+let layoutH = 0;
 
 /*
 =================
@@ -1098,6 +1102,9 @@ let fovManaged = true;
 export function Touch_UpdateFov( newer ) {
 
 	if ( ! initialized || layout === null ) return;
+
+	// the window changed shape (the device was turned): lay the controls out again
+	if ( window.innerWidth !== layoutW || window.innerHeight !== layoutH ) Touch_ApplyLayout();
 
 	const cur = Cvar_VariableValue( 'fov' );
 
