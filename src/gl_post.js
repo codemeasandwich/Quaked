@@ -79,7 +79,8 @@ const SUN_SURFACE_COLOR = [ 1.0, 0.82, 0.6 ];
 const SATURATION = 1.18;
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
 const HDR_EXPOSURE = 1.35; // the lit parts of a level should read as lit
-const CAUSTIC = 0.6; // brightness of caustics beneath water
+const CAUSTIC = 0.6;
+const BUMP_LIGHT = 0.3; // how much of the normal map's relief takes the direct light (1 = all of it) // brightness of caustics beneath water
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
 let sunDirection = [ - 0.28, - 0.18, 0.94 ];
@@ -1306,6 +1307,7 @@ uniform float uLightAdd[ ${MAX_VOLUME_LIGHTS} ];
 uniform float uEdge;
 uniform float uDropDensity;
 uniform float uDropBlood;
+uniform float uBumpLight;
 uniform float uTeleStretch;
 uniform float uTeleChroma;
 uniform float uDropAge;
@@ -1505,13 +1507,20 @@ void main() {
 		dxG = abs( dxG.z ) < abs( dxL.z ) ? dxG : dxL;
 		dyG = abs( dyG.z ) < abs( dyL.z ) ? dyG : dyL;
 
+		// The relief is lit by a softened normal: the surface's own plane with only a
+		// part of the bumps.  Lit by the full normal, one side of every bump is hit
+		// full on (a white speckle) and the other side not at all (harsh contrast).
+		vec3 Ng = normalize( cross( dxG, dyG ) );
+		if ( dot( Ng, P ) > 0.0 ) Ng = - Ng;
+		vec3 Nl = normalize( mix( Ng, N, uBumpLight ) );
+
 		vec3 relit = vec3( 0.0 );
 		vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
 
 		if ( uSunOn > 0.5 ) {
-			float ndl = max( dot( N, uSunDirV ), 0.0 );
+			float ndl = max( dot( Nl, uSunDirV ), 0.0 );
 			if ( ndl > 0.0 ) {
-				vec3 pw = ( uViewInv * vec4( P + N * 1.5, 1.0 ) ).xyz;
+				vec3 pw = ( uViewInv * vec4( P + Ng * 1.5, 1.0 ) ).xyz;
 				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookie( pw );
 			}
 		}
@@ -1523,7 +1532,7 @@ void main() {
 			float dist = length( L );
 			float range = uLightCol[ i ].w;
 			if ( dist > range ) continue;
-			float ndl = max( dot( N, L / dist ), 0.0 );
+			float ndl = max( dot( Nl, L / dist ), 0.0 );
 			if ( ndl <= 0.0 ) continue;
 
 			float fall = 1.0 / ( 1.0 + dist * dist / ( 60.0 * 60.0 ) );
@@ -1532,7 +1541,7 @@ void main() {
 			float vis = 0.0;
 			for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
 				float s = ( float( k ) + jit ) / float( RELIGHT_STEPS );
-				vec3 Q = mix( P + N * 2.0, uLightPos[ i ].xyz, s * 0.95 );
+				vec3 Q = mix( P + Ng * 2.0, uLightPos[ i ].xyz, s * 0.95 );
 				if ( Q.z > - uNear ) { vis += 1.0; continue; }
 				vec4 cq = uProj * vec4( Q, 1.0 );
 				vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
@@ -1554,7 +1563,7 @@ void main() {
 			vec3 Ls = uSpotPos - P;
 			float sd = length( Ls );
 			vec3 Sn = Ls / max( sd, 1.0 );
-			float sndl = max( dot( N, Sn ), 0.0 );
+			float sndl = max( dot( Nl, Sn ), 0.0 );
 			float cosS = dot( - Sn, uSpotDir );
 			// a defined edge, and a brighter core
 			float cone = smoothstep( uSpotCone.x, uSpotCone.y, cosS ) * mix( 0.62, 1.0, smoothstep( uSpotCone.y, 0.995, cosS ) );
@@ -1564,7 +1573,7 @@ void main() {
 				float svis = 0.0;
 				for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
 					float s = ( float( k ) + jit ) / float( RELIGHT_STEPS );
-					vec3 Q = mix( P + N * 2.0, uSpotPos, s * 0.95 );
+					vec3 Q = mix( P + Ng * 2.0, uSpotPos, s * 0.95 );
 					if ( Q.z > - uNear ) { svis += 1.0; continue; }
 					vec4 cq = uProj * vec4( Q, 1.0 );
 					vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
@@ -1813,6 +1822,7 @@ function createPipeline() {
 			uEdge: { value: 1 },
 			uDropDensity: { value: 0 },
 			uDropBlood: { value: 0 },
+			uBumpLight: { value: BUMP_LIGHT },
 			uTeleStretch: { value: 0 },
 			uTeleChroma: { value: 0 },
 			uDropAge: { value: 0 },

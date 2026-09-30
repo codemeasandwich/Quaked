@@ -60,6 +60,7 @@ let clearconsole = 0;
 let clearnotify = 0;
 
 let sb_lines = 0;
+let oldnewer = false;
 
 const scr_vrect = { x: 0, y: 0, width: 0, height: 0 };
 
@@ -377,6 +378,15 @@ function SCR_CalcRefdef() {
 		_r_refdef.vrect.y = 0;
 	else
 		_r_refdef.vrect.y = Math.floor( ( h - _r_refdef.vrect.height ) / 2 );
+
+	// Newer Game: the picture fills the screen and the status bar is drawn over the
+	// bottom of it, so wide screens do not show black beside the bar
+	if ( scr_newer() && _r_refdef.vrect.width >= _vid.width && sb_lines > 0 ) {
+
+		_r_refdef.vrect.height = _vid.height;
+		_r_refdef.vrect.y = 0;
+
+	}
 
 	// Hor+ FOV: lock vertical FOV to what fov cvar gives at 4:3,
 	// then expand horizontal FOV for the actual aspect ratio.
@@ -887,6 +897,13 @@ export function SCR_UpdateScreen() {
 	if ( oldscreensize !== scr_viewsize.value ) {
 
 		oldscreensize = scr_viewsize.value;
+		_vid.recalc_refdef = true;
+
+	}
+
+	if ( oldnewer !== scr_newer() ) {
+
+		oldnewer = scr_newer();
 		_vid.recalc_refdef = true;
 
 	}
