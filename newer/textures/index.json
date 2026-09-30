@@ -1,5 +1,5 @@
 {
- "version": 2026093025,
+ "version": 2026093027,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -261,7 +261,9 @@
   "nail0sid": "nail0sid.webp",
   "nail0top": "nail0top.webp",
   "nail1sid": "nail1sid.webp",
-  "nail1top": "nail1top.webp"
+  "nail1top": "nail1top.webp",
+  "batt1sid": "batt1sid.webp",
+  "batt1top": "batt1top.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -1306,6 +1308,14 @@
   },
   "nail1top": {
    "file": "normals/nail1top.webp",
+   "strength": 1.25
+  },
+  "batt1sid": {
+   "file": "normals/batt1sid.webp",
+   "strength": 1.25
+  },
+  "batt1top": {
+   "file": "normals/batt1top.webp",
    "strength": 1.25
   }
  }
