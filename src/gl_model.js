@@ -1880,9 +1880,13 @@ function Mod_CrateVariants( surfaces ) {
 
 		}
 
-		// does the face show one whole picture, starting at its edge?
+		// how far does the face run along the picture, and where in it does it start?  A face one
+		// picture across (or several) is whole; the mapper often started it part way into the picture,
+		// which cuts the crate's frame in two with a seam down the middle: that is put right below
 		const tex = s.texinfo.texture;
-		let whole = true;
+		let whole = true; // every axis a whole number of pictures (shifted into place below)
+		let single = true; // and exactly one picture: the crates that may take another picture
+		const shift = [ 0, 0 ];
 		for ( let j = 0; j < 2; j ++ ) {
 
 			let lo = 1e9, hi = - 1e9;
@@ -1898,13 +1902,23 @@ function Mod_CrateVariants( surfaces ) {
 			}
 
 			const size = j === 0 ? tex.width : tex.height;
+			const span = hi - lo;
+			const k = Math.round( span / size );
+			if ( k < 1 || Math.abs( span - k * size ) > 1.5 ) {
+
+				whole = false;
+				continue;
+
+			}
+
+			if ( k !== 1 ) single = false;
 			const off = ( ( lo % size ) + size ) % size;
-			if ( Math.abs( hi - lo - size ) > 1.5 || ( off > 1.5 && size - off > 1.5 ) ) whole = false;
+			if ( off > 1.5 && size - off > 1.5 ) shift[ j ] = - off / size;
 
 		}
 
-		const flip = ( s.flags & SURF_PLANEBACK ) ? - 1 : 1;
-		sides.push( { whole, surface: s, mins, maxs, normal: [ s.plane.normal[ 0 ] * flip, s.plane.normal[ 1 ] * flip, s.plane.normal[ 2 ] * flip ] } );
+				const flip = ( s.flags & SURF_PLANEBACK ) ? - 1 : 1;
+		sides.push( { whole: single, aligned: whole, shift, surface: s, mins, maxs, normal: [ s.plane.normal[ 0 ] * flip, s.plane.normal[ 1 ] * flip, s.plane.normal[ 2 ] * flip ] } );
 
 	}
 
@@ -1915,27 +1929,32 @@ function Mod_CrateVariants( surfaces ) {
 
 	for ( let i = 0; i < sides.length; i ++ ) {
 
-		const variant = plan[ i ];
-		if ( variant === null ) continue;
-
 		const s = sides[ i ].surface;
 		const base = s.texinfo.texture;
+		const variant = plan[ i ];
+		const shift = sides[ i ].aligned ? sides[ i ].shift : [ 0, 0 ];
+		if ( variant === null && shift[ 0 ] === 0 && shift[ 1 ] === 0 ) continue;
 
-		let tx = made.get( variant );
+		const name = variant !== null ? variant : base.name;
+		const key = name + '@' + shift[ 0 ].toFixed( 4 ) + ',' + shift[ 1 ].toFixed( 4 );
+
+		let tx = made.get( key );
 		if ( tx === undefined ) {
 
 			tx = new texture_t();
-			tx.name = variant;
+			tx.name = name;
 			tx.width = base.width;
 			tx.height = base.height;
 			tx.pixels = base.pixels;
 			tx.offsets.set( base.offsets );
-			tx.gl_texture = GL_LoadTexture( variant, tx.width, tx.height, tx.pixels, true, false, true );
-			R_NewerTextureUpgrade( variant, tx.gl_texture );
+			tx.gl_texture = GL_LoadTexture( name, tx.width, tx.height, tx.pixels, true, false, true );
+			// the picture starts at the face's edge (the diffuse picture and its relief move together)
+			tx.gl_texture.offset.set( shift[ 0 ], shift[ 1 ] );
+			R_NewerTextureUpgrade( name, tx.gl_texture );
 
 			loadmodel.textures.push( tx );
 			loadmodel.numtextures = loadmodel.textures.length;
-			made.set( variant, tx );
+			made.set( key, tx );
 
 		}
 

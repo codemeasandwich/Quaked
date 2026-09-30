@@ -287,6 +287,7 @@ export function R_NormalMapFor( diffuse ) {
 	texture.generateMipmaps = true;
 	texture.anisotropy = 16;
 	texture.colorSpace = THREE.NoColorSpace; // data, not colour
+	texture.offset.copy( diffuse.offset ); // a picture moved on its faces (crates) moves its relief too
 	texture.needsUpdate = true;
 
 	// go away with the texture it belongs to
