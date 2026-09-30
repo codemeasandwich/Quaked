@@ -151,6 +151,18 @@ var models;
 // which the server uses to see through water (see SV_FatPVS)
 var liquidLinksSource;
 
+// The renderer's way of getting a level ready before it is entered (see r_prewarm.js)
+var warmLevelHook;
+
+export function SV_SetWarmLevel( fn ) {
+
+	warmLevelHook = fn;
+
+}
+
+// how near an exit (in units) the player gets before the level behind it is got ready
+const WARM_DISTANCE = 900;
+
 export function SV_SetLiquidLinks( fn ) {
 
 	liquidLinksSource = fn;
@@ -653,6 +665,9 @@ export function SV_SeamlessFrame() {
 
 	const ent = client.edict;
 
+	// near an exit: the level behind it is got ready now, a little each frame
+	if ( warmLevelHook !== undefined && teleport === null ) SV_WarmNearExits( ent );
+
 	if ( SV_TeleporterPads( ent ) ) return;
 	if ( crossings.length === 0 ) return;
 
@@ -691,6 +706,27 @@ export function SV_SeamlessFrame() {
 	}
 
 	lastOrigin = cur;
+
+}
+
+function SV_WarmNearExits( ent ) {
+
+	const o = ent.v.origin;
+	const near = ( c ) => {
+
+		const dx = o[ 0 ] - c[ 0 ], dy = o[ 1 ] - c[ 1 ], dz = o[ 2 ] - c[ 2 ];
+		return dx * dx + dy * dy + dz * dz < WARM_DISTANCE * WARM_DISTANCE;
+
+	};
+
+	for ( const c of crossings ) if ( near( c.transform.center ) ) warmLevelHook( c.map );
+
+	for ( const p of pads ) {
+
+		const m = p.exit;
+		if ( near( [ ( m.mins[ 0 ] + m.maxs[ 0 ] ) / 2, ( m.mins[ 1 ] + m.maxs[ 1 ] ) / 2, ( m.mins[ 2 ] + m.maxs[ 2 ] ) / 2 ] ) ) warmLevelHook( p.map );
+
+	}
 
 }
 

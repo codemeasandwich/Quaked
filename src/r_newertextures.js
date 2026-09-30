@@ -200,3 +200,14 @@ function splitGlow( fbImage, pic ) {
 	return { diffuse, glow };
 
 }
+
+// Has this texture got the picture it is going to have?  (Not while the list of pictures
+// or its picture is still on the way.)
+export function R_NewerTextureSettled( name, texture ) {
+
+	if ( ! R_NewerGame() || r_newer_textures.value === 0 || texture == null ) return true;
+	if ( index === null ) return false;
+	if ( index[ name ] === undefined ) return true;
+	return texture.userData != null && texture.userData.newerPicture === true;
+
+}

@@ -10,12 +10,13 @@ import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelP
 import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
+import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
-import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_LevelSnapshotEntities } from './sv_seamless.js';
+import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
 import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
@@ -1483,6 +1484,7 @@ export function R_RenderView() {
 	R_MuzzleSetView( r_refdef.vieworg );
 
 	R_NewerTexturesFrame( cl != null ? cl.worldmodel : null );
+	R_WarmFrame();
 
 	// what moves in the other levels seen through their windows
 	if ( cl != null && r_newer_portals.value !== 0 ) R_UpdateLevelViewEntities( r_refdef.vieworg, cl.time );
@@ -1726,6 +1728,7 @@ export function R_Init() {
 
 	} );
 	R_LevelViewUseSnapshots( SV_LevelSnapshotEntities );
+	SV_SetWarmLevel( R_WarmLevel );
 	R_FlashlightInit();
 
 	R_InitParticles();

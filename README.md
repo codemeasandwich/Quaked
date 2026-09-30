@@ -45,6 +45,10 @@ Every teleporter surface (`*teleport`) that leads somewhere is a live camera ont
 
 New Game is always the original game: original lighting, water, monsters and teleporters, with no camera portals. In Newer Game, **Options > Newer Game features** switches its parts on and off one at a time: lighting, water (needs the lighting), enemies (the custom upsampled skins), camera portals (the teleporter windows and the seamless level crossings; these apply from the next level) and textures (our own higher resolution wall textures, `r_newer_textures`; see `newer/textures`, made with `tools/texture_sheets`) the shadows of enemies and items (`r_newer_shadows`; fires standing in a brazier or cauldron also darken the floor under them, and torches and fires flicker) and the status bar (`r_newer_hud`, higher resolution status bar sprites from `newer/hud`). The console variables are `r_newer_lighting`, `r_newer_water`, `r_newer_enemies`, `r_newer_portals`, `r_newer_textures`, `r_newer_hud` and `r_newer_shadows`.
 
+#### Getting the next level ready
+
+When the player comes within about 900 units of an exit (a doorway, archway, pit or teleporter pad), the level behind it is prepared a few milliseconds per frame: its map is read, its own textures fetched and decoded, its monsters' and items' models loaded, and the relief maps of its textures made. The real level change then only has to put the level together. In a test the level build after a change took about 40% less work on the main thread. (Loading the files themselves is not the cost: the game's data is already in memory.)
+
 #### Frame rate
 
 **FPS counter:** Options > FPS counter (`cl_showfps 1`) shows the frame rate, frame time and, when it is below full, the resolution scale in the top right corner.
