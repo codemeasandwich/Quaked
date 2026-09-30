@@ -288,7 +288,7 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting ) {
 		if ( relit ) {
 
 			material.onBeforeCompile = patchShader( set );
-			material.customProgramCacheKey = () => 'quake-reforged-' + variant.dir + index;
+			material.customProgramCacheKey = () => 'quake-custom-skin-' + variant.dir + index;
 
 		}
 

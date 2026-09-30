@@ -68,7 +68,7 @@ Newer Game also:
 
 - uses the custom upsampled skins for the boss, knight, ogre, soldier and wizard, fitted to the original models' skin layouts. Other enemies and head gibs keep their original Quake skins. **Options > Newer Game features > Newer enemies** (`r_newer_enemies`) switches these replacements off; New Game always uses the originals. Replacement skins also work with Newer lighting disabled.
 
-The Quake Reforged pack and its destructive rebuild importer have been removed. The five `newer/enemies/*/custom/diffuse.webp` files retain the latest skin alignment work unchanged. `newer/enemies/_unused/player_upscaled.webp` is preserved as an unused asset and is not loaded by the game.
+The third-party enemy skin pack, its leftover extracted source textures and shader, and its destructive rebuild importer have been removed. The game loads replacements only from the custom-skin manifest; no pack download link or pack loader is provided. The five `newer/enemies/*/custom/diffuse.webp` files retain the latest skin alignment work unchanged. `newer/enemies/_unused/player_upscaled.webp` is preserved as an unused asset and is not loaded by the game.
 
 `newer/enemies/index.json` is the skin manifest. To add a replacement, add its WebP file and a model entry with `dir`, `maps.diffuse`, and `flipGreen`; preserve the existing custom files and entries. Optional normal, luma and gloss maps remain supported by the existing loader. Missing entries, pending downloads and failed texture loads fall back to the original skin. The current five models each have one replacement, so `r_newer_variety` has no visible effect.
 
