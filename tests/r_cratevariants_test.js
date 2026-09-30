@@ -160,6 +160,32 @@ Deno.test( 'ordinary crates take the common pictures, all four sides alike, in a
 
 } );
 
+Deno.test( 'stacked and neighbouring crates are chosen one by one', () => {
+
+	// three crates touching (two side by side, one on top): not all alike, over many levels
+	let notAlike = 0;
+	for ( let i = 0; i < 300; i ++ ) {
+
+		const up = ( f ) => ( { ...f, mins: [ f.mins[ 0 ], f.mins[ 1 ], f.mins[ 2 ] + 64 ], maxs: [ f.maxs[ 0 ], f.maxs[ 1 ], f.maxs[ 2 ] + 64 ] } );
+		const base = crate( i * 400, 0 );
+		const faces = [ ...base, ...crate( i * 400 + 64, 0 ), ...base.map( up ) ];
+		const plan = R_CratePlan( 'e1m1', faces );
+		const names = [ plan[ 0 ], plan[ 4 ], plan[ 8 ] ];
+		if ( new Set( names ).size > 1 ) notAlike ++;
+		// each crate's own four faces are still alike
+		for ( const g of [ 0, 4, 8 ] ) {
+
+			const own = plan.slice( g, g + 4 ).filter( ( p ) => p !== null );
+			if ( own.length > 0 ) assertEqual( own.length, 4, 'a crate changes on all four sides' );
+
+		}
+
+	}
+
+	assertEqual( notAlike > 100, true, 'crates differ: ' + notAlike );
+
+} );
+
 Deno.test( 'with odds of 1 every crate changes', () => {
 
 	const plan = R_CratePlan( 'e1m1', crate( 0, 0 ), 1, [] );

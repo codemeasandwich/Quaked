@@ -84,48 +84,50 @@ export function R_CratePlan( mapName, faces, odds = CRATE_ODDS, common = CRATE_C
 
 	}
 
-	// the crate's corner: its lowest, most west and south point
-	const corner = new Map();
-	for ( let i = 0; i < n; i ++ ) {
-
-		const r = find( i ), c = corner.get( r ) || [ 1e9, 1e9, 1e9 ];
-		for ( let k = 0; k < 3; k ++ ) c[ k ] = Math.min( c[ k ], Math.round( faces[ i ].mins[ k ] ) );
-		corner.set( r, c );
-
-	}
-
+	// a cluster with a face that is not one whole picture (a half crate, a tall crate) stays as it is
 	const broken = new Set();
 	for ( let i = 0; i < n; i ++ ) if ( faces[ i ].whole === false ) broken.add( find( i ) );
 
+	// each crate is chosen by itself, so stacked and neighbouring crates differ: a face belongs to the
+	// crate that stands behind it (a crate is 64 across), named by that crate's lowest corner
 	const choice = new Map();
-	for ( const [ r, c ] of corner ) {
+	const crateOf = ( f ) => {
 
-		if ( broken.has( r ) ) {
+		const axis = Math.abs( f.normal[ 0 ] ) > 0.5 ? 0 : Math.abs( f.normal[ 1 ] ) > 0.5 ? 1 : 2;
+		const c = [ Math.round( f.mins[ 0 ] ), Math.round( f.mins[ 1 ] ), Math.round( f.mins[ 2 ] ) ];
+		if ( f.normal[ axis ] > 0 ) c[ axis ] -= 64;
+		return c.join( ',' );
 
-			choice.set( r, - 1 );
-			continue;
+	};
 
-		}
+	const pick = ( c ) => {
 
-		const key = sessionSeed + ':' + mapName + ':' + c.join( ',' );
+		let v = choice.get( c );
+		if ( v !== undefined ) return v;
+
+		const key = sessionSeed + ':' + mapName + ':' + c;
 		const h = hash( key );
 		if ( h % odds === 0 ) {
 
-			choice.set( r, ( h >>> 8 ) & 1 );
+			v = ( h >>> 8 ) & 1;
 
 		} else {
 
 			// an ordinary one: its own picture, or one of the others
 			const k = common.length > 0 ? hash( 'common:' + key ) % ( common.length + 1 ) : 0;
-			choice.set( r, k === 0 ? - 1 : - 2 - ( k - 1 ) );
+			v = k === 0 ? - 1 : - 2 - ( k - 1 );
 
 		}
 
-	}
+		choice.set( c, v );
+		return v;
+
+	};
 
 	return faces.map( ( f, i ) => {
 
-		const box = choice.get( find( i ) );
+		if ( broken.has( find( i ) ) ) return null;
+		const box = pick( crateOf( f ) );
 		if ( box === - 1 ) return null;
 		if ( box <= - 2 ) return common[ - 2 - box ];
 
