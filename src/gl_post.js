@@ -614,6 +614,8 @@ export function R_BuildWorldLights( model ) {
 				power: value / 300,
 				radius: 28,
 				style: parseInt( ent.style, 10 ) || 0,
+				// torches and fires burn unevenly: their light flickers (a light with a style of its own follows that)
+				flicker: FIRE_LIGHT.test( ent.classname ) && ( parseInt( ent.style, 10 ) || 0 ) === 0 ? 1 : 0,
 				leaf: Mod_PointInLeaf( pos, model )
 			} );
 
@@ -987,6 +989,19 @@ function consider( px, py, pz, color, power, radius, view, add = 0 ) {
 
 }
 
+const FIRE_LIGHT = /torch|flame|fire|brazier/i;
+
+// How bright a fire is at a moment: a slow swell and quick flutters, a little
+// different for every fire so a row of torches does not pulse together.
+export function R_FireFlicker( x, y, z, time ) {
+
+	const ph = ( x * 0.013 + y * 0.017 + z * 0.011 ) % 6.2832;
+	const a = Math.sin( time * 2.3 + ph ) * 0.5 + Math.sin( time * 5.1 + ph * 2.1 ) * 0.3;
+	const b = Math.sin( time * 13.7 + ph * 3.3 ) * Math.sin( time * 8.9 + ph * 1.7 );
+	return Math.min( 1.25, Math.max( 0.55, 0.9 + a * 0.15 + b * 0.18 ) );
+
+}
+
 function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 
 	selectedCount = 0;
@@ -1002,6 +1017,8 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 		let power = l.power;
 		if ( l.style !== 0 && styles != null && styles[ l.style ] !== undefined )
 			power *= styles[ l.style ] / 264;
+
+		if ( l.flicker === 1 ) power *= R_FireFlicker( l.pos[ 0 ], l.pos[ 1 ], l.pos[ 2 ], time );
 
 		if ( power <= 0.001 ) continue;
 		consider( l.pos[ 0 ], l.pos[ 1 ], l.pos[ 2 ], l.color, power, l.radius, view );

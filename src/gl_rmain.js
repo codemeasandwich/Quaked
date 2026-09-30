@@ -16,7 +16,7 @@ import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlig
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, SUN_SHADOW_LAYER } from './gl_post.js';
+import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1049,7 +1049,60 @@ function R_ShadowLights( origin ) {
 
 }
 
+// A fire standing on something (a cauldron, a brazier, a pit): the dark of its base on
+// the floor under it.  Wall torches are far from any floor and get none.
+let _fireTexture = null;
+let _fireMaterial = null;
+let _fireGeometry = null;
+
+function R_FireBase( e ) {
+
+	R_LightPoint( e.origin, cl );
+	// (the bottom of a bowl or brazier may slope)
+	if ( lightplane == null || lightplane.normal[ 2 ] < 0.5 ) return null;
+	const drop = e.origin[ 2 ] - lightspot[ 2 ];
+	if ( drop < - 4 || drop > 72 ) return null;
+
+	if ( _fireMaterial === null ) {
+
+		const c = document.createElement( 'canvas' );
+		c.width = c.height = 64;
+		const g = c.getContext( '2d' );
+		const gr = g.createRadialGradient( 32, 32, 2, 32, 32, 31 );
+		gr.addColorStop( 0, 'rgba(0,0,0,0.9)' );
+		gr.addColorStop( 0.55, 'rgba(0,0,0,0.5)' );
+		gr.addColorStop( 1, 'rgba(0,0,0,0)' );
+		g.fillStyle = gr;
+		g.fillRect( 0, 0, 64, 64 );
+
+		_fireTexture = new THREE.CanvasTexture( c );
+		_fireMaterial = new THREE.MeshBasicMaterial( { map: _fireTexture, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: - 2, polygonOffsetUnits: - 2 } );
+		_fireGeometry = new THREE.PlaneGeometry( 1, 1 );
+
+	}
+
+	let mesh = e._fireShadowMesh;
+	if ( mesh == null ) {
+
+		mesh = new THREE.Mesh( _fireGeometry, _fireMaterial );
+		mesh.renderOrder = 1;
+		e._fireShadowMesh = mesh;
+
+	}
+
+	// the container's shadow breathes a little with the fire
+	const k = R_FireFlicker( e.origin[ 0 ], e.origin[ 1 ], e.origin[ 2 ], cl.time );
+	const size = 52 + ( k - 0.9 ) * 14;
+	mesh.position.set( e.origin[ 0 ], e.origin[ 1 ], Math.max( lightspot[ 2 ], e.origin[ 2 ] - ( 12 ) ) + 0.4 );
+	mesh.scale.set( size, size, 1 );
+
+	return mesh;
+
+}
+
 function R_LightShadow( e, paliashdr ) {
+
+	if ( e.model != null && e.model.name === 'progs/flame2.mdl' ) return R_FireBase( e );
 
 	if ( e.model == null || SHADOW_NO_MODELS.test( e.model.name ) ) return null;
 
