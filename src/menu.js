@@ -2226,7 +2226,7 @@ function M_Setup_Key( key ) {
 ==============================================================================
 */
 
-const CREDITS_SOURCE_URL = 'https://github.com/mrdoob/three-quake';
+const CREDITS_SOURCE_URL = 'https://github.com/codemeasandwich/Quaked';
 
 function M_OpenCreditsSource() {
 
@@ -2247,22 +2247,24 @@ function M_Credits_Draw() {
 
 	M_DrawTextBox( 0, 0, 38, 23 );
 	M_PrintWhite( 16, 12, '  Quake version 1.09 by id Software\n' );
-	M_PrintWhite( 16, 28, 'Programming        Art \n' );
-	M_Print( 16, 36, ' John Carmack       Adrian Carmack\n' );
-	M_Print( 16, 44, ' Michael Abrash     Kevin Cloud\n' );
-	M_Print( 16, 52, ' John Cash          Paul Steed\n' );
-	M_Print( 16, 60, ' Dave \'Zoid\' Kirsch\n' );
-	M_PrintWhite( 16, 76, 'Design             Biz\n' );
-	M_Print( 16, 84, ' John Romero        Jay Wilbur\n' );
-	M_Print( 16, 92, ' Sandy Petersen     Mike Wilson\n' );
-	M_Print( 16, 100, ' American McGee     Donna Jackson\n' );
-	M_Print( 16, 108, ' Tim Willits        Todd Hollenshead\n' );
-	M_PrintWhite( 16, 124, 'Support            Id Mom\n' );
-	M_Print( 16, 132, ' Barrett Alexander  Shawn Green\n' );
-	M_PrintWhite( 16, 148, 'JavaScript port\n' );
-	M_Print( 16, 156, ' mrdoob + claude + codex\n' );
+	M_PrintWhite( 16, 24, 'Programming        Art \n' );
+	M_Print( 16, 32, ' John Carmack       Adrian Carmack\n' );
+	M_Print( 16, 40, ' Michael Abrash     Kevin Cloud\n' );
+	M_Print( 16, 48, ' John Cash          Paul Steed\n' );
+	M_Print( 16, 56, ' Dave \'Zoid\' Kirsch\n' );
+	M_PrintWhite( 16, 68, 'Design             Biz\n' );
+	M_Print( 16, 76, ' John Romero        Jay Wilbur\n' );
+	M_Print( 16, 84, ' Sandy Petersen     Mike Wilson\n' );
+	M_Print( 16, 92, ' American McGee     Donna Jackson\n' );
+	M_Print( 16, 100, ' Tim Willits        Todd Hollenshead\n' );
+	M_PrintWhite( 16, 112, 'Support            Id Mom\n' );
+	M_Print( 16, 120, ' Barrett Alexander  Shawn Green\n' );
+	M_PrintWhite( 16, 132, 'JavaScript port\n' );
+	M_Print( 16, 140, ' mrdoob + claude + codex\n' );
+	M_PrintWhite( 16, 152, 'Enhancements\n' );
+	M_Print( 16, 160, ' Brian Shannon (CodeMeaSandwich)\n' );
 	M_PrintWhite( 16, 172, 'Source code\n' );
-	M_Print( 16, 180, ' github.com/mrdoob/three-quake\n' );
+	M_Print( 16, 180, ' github.com/codemeasandwich/Quaked\n' );
 
 }
 
