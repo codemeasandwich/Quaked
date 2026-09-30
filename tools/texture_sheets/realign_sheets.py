@@ -30,13 +30,13 @@ def trim_bleed(a, left, right, top, bot, t):
     the picture in it: its left edge is the sharpest rise in brightness near the start of the cut,
     its right edge the sharpest drop after that. Returns the new (left, right)."""
     want = (bot - top) * t['w'] / t['h']
-    if right - left < want * 1.08: return left, right
+    if right - left < want * 1.04: return left, right
     prof = a[top:bot, int(left):int(right)].astype(float).mean(axis=0)
     n = len(prof)
     rise = prof[3:] - prof[:-3]
     hi0 = min(n - 4, int(want * 0.25))
     L = int(np.argmax(rise[:hi0])) + 1 if hi0 > 3 and rise[:hi0].max() > 12 else 0
-    lo = L + int(want * 0.8); hi = min(n - 4, L + int(want * 1.12))
+    lo = L + int(want * 0.75); hi = min(n - 4, L + int(want * 1.25))
     if hi <= lo: return left + L, right
     drop = prof[lo:hi] - prof[lo + 3:hi + 3]
     return left + L, left + lo + int(np.argmax(drop)) + 2
