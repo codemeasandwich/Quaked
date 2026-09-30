@@ -975,18 +975,65 @@ function buildSkyCookie() {
 
 	skyInfo = { luma: result.luma, color: result.color, contrast: result.contrast };
 
-	// how much of the pattern shows through: a clear sky barely varies
-	const depth = 0.35 + 0.65 * result.contrast;
-	const data = new Uint8Array( size * size * 4 );
-	for ( let i = 0; i < size * size; i ++ ) {
+	// how much of the pattern shows through: a clear sky barely varies, a cloudy or veined one (lightning,
+	// storm) carries its pattern well into the shafts
+	const depth = 0.75 + 1.1 * result.contrast;
 
-		const v = Math.max( 0, Math.min( 1, 1 - depth + depth * result.cookie[ i ] * 0.75 ) );
-		data[ i * 4 ] = data[ i * 4 + 1 ] = data[ i * 4 + 2 ] = Math.round( v * 255 );
-		data[ i * 4 + 3 ] = 255;
+	// the pattern in colour: how much brighter than the sky's average each part is (a steeper curve,
+	// so the bright veins stand out from the dark clouds), and where the colour differs from the average
+	const n = size * size;
+	const half = new Uint16Array( n * 4 );
+	const mean = [ 0, 0, 0 ];
+	const pix = new Float32Array( n * 3 );
+	for ( let i = 0; i < n; i ++ ) {
+
+		let cr = sd[ i * 4 ] / 255, cg = sd[ i * 4 + 1 ] / 255, cb = sd[ i * 4 + 2 ] / 255;
+		if ( ad != null && ad.length >= n * 4 ) {
+
+			const a = ad[ i * 4 + 3 ] / 255;
+			cr += ( ad[ i * 4 ] / 255 - cr ) * a;
+			cg += ( ad[ i * 4 + 1 ] / 255 - cg ) * a;
+			cb += ( ad[ i * 4 + 2 ] / 255 - cb ) * a;
+
+		}
+
+		pix[ i * 3 ] = cr; pix[ i * 3 + 1 ] = cg; pix[ i * 3 + 2 ] = cb;
+		mean[ 0 ] += cr; mean[ 1 ] += cg; mean[ 2 ] += cb;
 
 	}
 
-	skyCookie = new THREE.DataTexture( data, size, size, THREE.RGBAFormat );
+	for ( let k = 0; k < 3; k ++ ) mean[ k ] = mean[ k ] / n + 1e-4;
+
+	let total = [ 0, 0, 0 ];
+	const rgb = new Float32Array( n * 3 );
+	for ( let i = 0; i < n; i ++ ) {
+
+		const bright = Math.pow( Math.max( result.cookie[ i ], 0 ), 1 + 0.9 * depth );
+		for ( let k = 0; k < 3; k ++ ) {
+
+			const hue = Math.pow( pix[ i * 3 + k ] / mean[ k ] / Math.max( result.cookie[ i ], 1e-3 ), 0.6 );
+			rgb[ i * 3 + k ] = Math.max( 0, bright * Math.min( hue, 2.5 ) );
+			total[ k ] += rgb[ i * 3 + k ];
+
+		}
+
+	}
+
+	// each channel averages 1 (so the pattern shapes the light and does not dim or tint the whole of it)
+	for ( let i = 0; i < n; i ++ ) {
+
+		for ( let k = 0; k < 3; k ++ ) {
+
+			const v = Math.min( rgb[ i * 3 + k ] / ( total[ k ] / n + 1e-4 ), 6 );
+			half[ i * 4 + k ] = THREE.DataUtils.toHalfFloat( v );
+
+		}
+
+		half[ i * 4 + 3 ] = THREE.DataUtils.toHalfFloat( 1 );
+
+	}
+
+	skyCookie = new THREE.DataTexture( half, size, size, THREE.RGBAFormat, THREE.HalfFloatType );
 	skyCookie.wrapS = THREE.RepeatWrapping;
 	skyCookie.wrapT = THREE.RepeatWrapping;
 	skyCookie.magFilter = THREE.LinearFilter;
@@ -1162,6 +1209,7 @@ uniform float uMaxRay;
 uniform sampler2D tCookie;
 uniform float uCookie; // 0 = no pattern, 1 = the sky's own pattern
 uniform float uCookieTime;
+const float COOKIE_SCALE = 700.0; // world units to one repeat of the sky picture
 varying vec2 vUv;
 
 float sceneDist( vec2 uv ) {
@@ -1181,11 +1229,15 @@ float henyeyGreenstein( float c, float g ) {
 // how much of the sky's pattern reaches a point: the sky texture projected along
 // the sun's direction and scrolled the way the sky drifts, so shafts and sunlit
 // patches break up the way the clouds do
-float skyCookie( vec3 worldPos ) {
+vec3 skyCookieRGB( vec3 worldPos ) {
 	vec3 sd = normalize( uSunDirW );
-	vec2 uv = ( worldPos.xy - sd.xy / max( sd.z, 0.2 ) * ( worldPos.z - 1000.0 ) ) / 1500.0;
+	vec2 uv = ( worldPos.xy - sd.xy / max( sd.z, 0.2 ) * ( worldPos.z - 1000.0 ) ) / COOKIE_SCALE;
 	uv += vec2( 1.0, 0.55 ) * uCookieTime * 0.004;
-	return mix( 1.0, texture2D( tCookie, uv ).r, uCookie );
+	return mix( vec3( 1.0 ), texture2D( tCookie, uv ).rgb, uCookie );
+}
+
+float skyCookie( vec3 worldPos ) {
+	return dot( skyCookieRGB( worldPos ), vec3( 0.2126, 0.7152, 0.0722 ) );
 }
 
 // 1 where the sun reaches a world-space point, 0 in shadow
@@ -1233,7 +1285,7 @@ void main() {
 	if ( uSunOn > 0.5 ) {
 		float dMax = min( D, zd > 1e5 ? 500.0 : 2600.0 );
 		float ds = dMax / float( SUN_STEPS );
-		float lit = 0.0;
+		vec3 lit = vec3( 0.0 );
 		for ( int k = 0; k < SUN_STEPS; k ++ ) {
 			float t = ( float( k ) + jit ) * ds;
 			vec3 pw = ( uViewInv * vec4( dirV * t, 1.0 ) ).xyz;
@@ -1250,7 +1302,7 @@ void main() {
 				+ step( ref, texture2D( tSunShadow, u.xy + vec2( 0.0, uShadowSpread ) ).x )
 				+ step( ref, texture2D( tSunShadow, u.xy - vec2( 0.0, uShadowSpread ) ).x );
 			float density = uOpenFog + ( 1.0 - around * 0.25 ) * uShaftFog;
-			lit += density * skyCookie( pw ) * exp( - t * 0.0007 );
+			lit += density * skyCookieRGB( pw ) * exp( - t * 0.0007 );
 		}
 		lit *= ds;
 		float phase = henyeyGreenstein( dot( dirV, uSunDirV ), 0.55 );
@@ -1599,7 +1651,7 @@ void main() {
 			float ndl = max( dot( Nl, uSunDirV ), 0.0 );
 			if ( ndl > 0.0 ) {
 				vec3 pw = ( uViewInv * vec4( P + Ng * 1.5, 1.0 ) ).xyz;
-				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookie( pw );
+				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookieRGB( pw );
 			}
 		}
 
