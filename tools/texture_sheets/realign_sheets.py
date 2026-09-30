@@ -58,6 +58,9 @@ def main(manifest, sheet, image, out, factor=4):
         for (c0, c1), k in assign:
             ys = np.where((a[y0:y1, c0:c1] > DARK).sum(axis=1) > max(2, (c1 - c0) // 20))[0]
             top, bot = y0 + int(ys.min()), y0 + int(ys.max()) + 1
+            # tiles of one height in a row share the row's top and bottom (an arch
+            # or a dark corner must not make one tile look shorter than its neighbours)
+            if len({t['h'] for _, t in exp}) == 1: top, bot = y0, y1
             kw = sum(t['w'] for _, t in k); x = c0
             for n, t in k:
                 w = (c1 - c0) * t['w'] / kw
