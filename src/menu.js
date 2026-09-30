@@ -717,10 +717,9 @@ function M_SinglePlayer_Draw() {
 
 		M_DrawTransPic( 72, 32 + 20, _Draw_CachePic( 'gfx/sp_menu.lmp' ) );
 		M_Print( 72 + 8, 32 + 6, 'Newer Game' );
+		M_Print( 72 + 8, 32 + 4 * 20 + 6, 'Level Select' );
 
 	}
-
-	M_Print( 72 + 8, 32 + 4 * 20 + 6, 'Level Select' );
 
 	const f = Math.floor( _host_time_get() * 10 ) % 6;
 	M_DrawTransPic( 54, 32 + m_singleplayer_cursor * 20, _Draw_CachePic( 'gfx/menudot' + ( f + 1 ) + '.lmp' ) );
