@@ -24,6 +24,8 @@ export const r_newer_enemies = new cvar_t( 'r_newer_enemies', '1' );
 export const r_newer_portals = new cvar_t( 'r_newer_portals', '1' );
 export const r_newer_textures = new cvar_t( 'r_newer_textures', '1' );
 export const r_newer_hud = new cvar_t( 'r_newer_hud', '1' );
+// shadows of enemies and objects from the lights that shine on them
+export const r_newer_shadows = new cvar_t( 'r_newer_shadows', '1' );
 
 // playing Newer Game (r_hdr is what the menu sets; read directly because a level
 // is started in the same batch of commands that sets it)

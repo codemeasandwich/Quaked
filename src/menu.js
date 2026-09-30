@@ -1760,6 +1760,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_newer_portals', label: '        Camera portals' },
 	{ cvar: 'r_newer_textures', label: '        Newer textures' },
 	{ cvar: 'r_newer_hud', label: '      Newer status bar' },
+	{ cvar: 'r_newer_shadows', label: '   Enemy and item shadows' },
 	{ cvar: 'r_flashlight', label: '  Flashlight (key F)' },
 	{ cvar: 'r_decals', label: '   Marks and blood' }
 ];

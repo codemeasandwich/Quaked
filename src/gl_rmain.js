@@ -7,7 +7,7 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
-import { R_AnimEnabled, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud } from './r_anim.js';
+import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
@@ -16,7 +16,7 @@ import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlig
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks } from './gl_post.js';
+import { r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -24,9 +24,9 @@ import {
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
 } from './mathlib.js';
 import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf } from './gl_rsurf.js';
-import { Mod_PointInLeaf, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
-import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot } from './gl_rlight.js';
-import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow } from './gl_mesh.js';
+import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
+import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
+import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
 import { r_avertexnormal_dots } from './anorm_dots.js';
 import { V_SetContentsColor as V_SetContentsColor_view, V_CalcBlend as V_CalcBlend_view } from './view.js';
 import { chase_active } from './chase.js';
@@ -937,6 +937,10 @@ function R_DrawAliasModel( e ) {
 	const mesh = R_DrawAliasModel_mesh( e, paliashdr, shadedots, shadelight );
 	if ( mesh != null ) {
 
+		// Newer Game: the sun's light is blocked by monsters and items too
+		if ( e !== cl.viewent && r_newer_shadows.value !== 0 ) mesh.layers.enable( SUN_SHADOW_LAYER );
+		else mesh.layers.disable( SUN_SHADOW_LAYER );
+
 		mesh._quakeOwner = e;
 		_entityMeshCacheOwners.add( e );
 
@@ -954,10 +958,13 @@ function R_DrawAliasModel( e ) {
 
 	}
 
-	// Draw shadow (Ported from WinQuake/gl_rmain.c:579-591)
-	if ( r_shadows.value !== 0 && e !== cl.viewent && mesh != null && scene != null ) {
+	// Draw shadow (Ported from WinQuake/gl_rmain.c:579-591); Newer Game casts it from the
+	// lights that really shine on the model instead
+	const newerShadow = R_NewerLightingActive() && r_newer_shadows.value !== 0;
+	if ( ( newerShadow || r_shadows.value !== 0 ) && e !== cl.viewent && mesh != null && scene != null ) {
 
-		const shadowMesh = GL_DrawAliasShadow( e, paliashdr, e._aliasPosenum || 0, lightspot, _shadevector );
+		const shadowMesh = newerShadow ? R_LightShadow( e, paliashdr ) :
+			GL_DrawAliasShadow( e, paliashdr, e._aliasPosenum || 0, lightspot, _shadevector );
 		if ( shadowMesh != null ) {
 
 			shadowMesh._quakeOwner = e;
@@ -977,6 +984,85 @@ function R_DrawAliasModel( e ) {
 	}
 
 	c_alias_polys ++;
+
+}
+
+//============================================================================
+// Shadows from the lights (Newer Game)
+//
+// A model's shadow falls away from the lights that can see it, on the floor under it.
+// Each of the nearest lights that shine on it (a torch behind a wall does not) is one
+// shadow, as faint as that light is weak or far next to the others and the ambient.
+//============================================================================
+
+const SHADOW_LIGHT_REACH = 900;
+const SHADOW_LIGHT_FALLOFF = 350;
+const SHADOW_AMBIENT = 0.25; // what shines on everything, so one dim light does not make a black shadow
+const SHADOW_DARKEST = 0.72;
+const SHADOW_MAX_LIGHTS = 2;
+const SHADOW_NO_MODELS = /flame|s_light|bolt|lavaball|spike|missile|grenade|w_spike|eyes|gib|zom_gib|h_/;
+
+function R_ShadowLights( origin ) {
+
+	const all = R_GetWorldLights();
+	if ( all.length === 0 || cl == null || cl.worldmodel == null ) return [];
+
+	const world = cl.worldmodel;
+	const leaf = Mod_PointInLeaf( origin, world );
+	const vis = leaf != null && leaf !== world.leafs[ 0 ] ? Mod_LeafPVS( leaf, world ) : null;
+
+	const found = [];
+
+	for ( const l of all ) {
+
+		const dx = l.pos[ 0 ] - origin[ 0 ], dy = l.pos[ 1 ] - origin[ 1 ], dz = l.pos[ 2 ] - origin[ 2 ];
+		const d2 = dx * dx + dy * dy + dz * dz;
+		if ( d2 > SHADOW_LIGHT_REACH * SHADOW_LIGHT_REACH || dz < 56 ) continue;
+
+		// can it see the model at all?
+		if ( vis != null && l.leaf != null && l.leaf.contents !== - 2 ) {
+
+			if ( l._leafNum === undefined ) l._leafNum = world.leafs.indexOf( l.leaf );
+			const n = l._leafNum;
+			if ( n > 0 && ( vis[ ( n - 1 ) >> 3 ] & ( 1 << ( ( n - 1 ) & 7 ) ) ) === 0 ) continue;
+
+		}
+
+		let power = l.power;
+		if ( l.style !== 0 && d_lightstylevalue[ l.style ] !== undefined ) power *= d_lightstylevalue[ l.style ] / 264;
+		if ( power <= 0.02 ) continue;
+
+		const strength = power / ( 1 + d2 / ( SHADOW_LIGHT_FALLOFF * SHADOW_LIGHT_FALLOFF ) );
+		found.push( { pos: l.pos, strength } );
+
+	}
+
+	if ( found.length === 0 ) return [];
+
+	found.sort( ( a, b ) => b.strength - a.strength );
+	const chosen = found.slice( 0, SHADOW_MAX_LIGHTS );
+
+	let total = SHADOW_AMBIENT;
+	for ( const f of found ) total += f.strength;
+
+	return chosen.map( ( f ) => ( { pos: f.pos, opacity: Math.min( SHADOW_DARKEST, f.strength / total * 2.4 ) } ) );
+
+}
+
+function R_LightShadow( e, paliashdr ) {
+
+	if ( e.model == null || SHADOW_NO_MODELS.test( e.model.name ) ) return null;
+
+	// only on a flat floor close below
+	R_LightPoint( e.origin, cl );
+	if ( lightplane == null || lightplane.normal[ 2 ] < 0.9 ) return null;
+	const floorZ = lightspot[ 2 ];
+	if ( e.origin[ 2 ] - floorZ > 160 || e.origin[ 2 ] < floorZ - 8 ) return null;
+
+	const lights = R_ShadowLights( e.origin );
+	if ( lights.length === 0 ) return null;
+
+	return GL_DrawAliasLightShadow( e, paliashdr, e._aliasPosenum || 0, floorZ, lights );
 
 }
 
@@ -1543,6 +1629,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_enemies );
 	Cvar_RegisterVariable( r_newer_textures );
 	Cvar_RegisterVariable( r_newer_hud );
+	Cvar_RegisterVariable( r_newer_shadows );
 	Cvar_RegisterVariable( r_newer_portals );
 	Cvar_RegisterVariable( r_flashlight );
 	Cvar_RegisterVariable( r_decals );

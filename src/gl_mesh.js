@@ -953,3 +953,188 @@ export function GL_DrawAliasShadow( entity, paliashdr, posenum, lightspot, shade
 	return shadowMesh;
 
 }
+
+/*
+=============
+GL_DrawAliasLightShadow
+
+Newer Game's shadow of a model: cast by the lights that really shine on it.  The
+pose the model is in is projected from each light's position onto the floor under it
+(the shadow falls away from the light, is long from a low one, and is fainter from a
+far or dim one), drawn once into a small picture (so where the shadow overlaps itself
+it is not darker), softened, and laid on the floor as one flat square.
+
+lights   [ { pos: [ x, y, z ], opacity } ] (at most a few)
+Returns the mesh, or null when there is nothing to draw.
+=============
+*/
+const SHADOW_SIZE = 96;
+const SHADOW_PAD = 6;
+const SHADOW_MAX_REACH = 400; // a shadow reaching farther than this is not drawn
+const SHADOW_MAX_STRETCH = 2.6; // a shadow is at most this many times as far from the light as the model
+const _shadowQuad = new THREE.PlaneGeometry( 1, 1 );
+const _swm = new THREE.Matrix4();
+const _swz = new THREE.Matrix4();
+const _swy = new THREE.Matrix4();
+const _swx = new THREE.Matrix4();
+
+export function GL_DrawAliasLightShadow( entity, paliashdr, posenum, floorZ, lights ) {
+
+	if ( paliashdr == null || paliashdr.posedata == null || lights.length === 0 ) return null;
+	if ( typeof document === 'undefined' ) return null;
+
+	const template = GL_DrawAliasFrame( paliashdr, posenum );
+	if ( template == null ) return null;
+
+	// the pose that is on screen (a blend between two while the animation is smoothed)
+	const src = entity._aliasBlended === true && entity._aliasBlendPos != null ? entity._aliasBlendPos.array : template.posAttr.array;
+	const n = template.vertexCount;
+
+	// the model's place in the world
+	const yaw = ( entity.angles ? entity.angles[ 1 ] : 0 ) * _DEG2RAD;
+	const pitch = - ( entity.angles ? entity.angles[ 0 ] : 0 ) * _DEG2RAD;
+	const roll = ( entity.angles ? entity.angles[ 2 ] : 0 ) * _DEG2RAD;
+	_swm.identity();
+	_swz.makeRotationZ( yaw );
+	_swy.makeRotationY( pitch );
+	_swx.makeRotationX( roll );
+	_swm.multiply( _swz ).multiply( _swy ).multiply( _swx );
+	const m = _swm.elements;
+	const ox = entity.origin[ 0 ], oy = entity.origin[ 1 ], oz = entity.origin[ 2 ];
+
+	if ( entity._shadowWorld == null || entity._shadowWorld.length !== n * 3 ) entity._shadowWorld = new Float32Array( n * 3 );
+	const w = entity._shadowWorld;
+	for ( let i = 0; i < n; i ++ ) {
+
+		const x = src[ i * 3 ], y = src[ i * 3 + 1 ], z = src[ i * 3 + 2 ];
+		w[ i * 3 ] = m[ 0 ] * x + m[ 4 ] * y + m[ 8 ] * z + ox;
+		w[ i * 3 + 1 ] = m[ 1 ] * x + m[ 5 ] * y + m[ 9 ] * z + oy;
+		w[ i * 3 + 2 ] = m[ 2 ] * x + m[ 6 ] * y + m[ 10 ] * z + oz;
+
+	}
+
+	// each light's shadow of every vertex, on the floor
+	const proj = [];
+	let minX = 1e9, minY = 1e9, maxX = - 1e9, maxY = - 1e9;
+
+	for ( const light of lights ) {
+
+		const p = new Float32Array( n * 2 );
+		const ok = new Uint8Array( n );
+		const L = light.pos;
+
+		for ( let i = 0; i < n; i ++ ) {
+
+			const vz = w[ i * 3 + 2 ];
+			const drop = L[ 2 ] - vz;
+			if ( drop < 4 ) continue; // at or above the light: it casts no shadow on the floor
+			// a light only a little above the model would throw the shadow miles: it is
+			// bent short instead (the way it points stays right)
+			const t = Math.min( ( L[ 2 ] - floorZ ) / drop, SHADOW_MAX_STRETCH );
+
+			const px = L[ 0 ] + ( w[ i * 3 ] - L[ 0 ] ) * t;
+			const py = L[ 1 ] + ( w[ i * 3 + 1 ] - L[ 1 ] ) * t;
+			if ( Math.abs( px - ox ) > SHADOW_MAX_REACH || Math.abs( py - oy ) > SHADOW_MAX_REACH ) continue;
+
+			p[ i * 2 ] = px;
+			p[ i * 2 + 1 ] = py;
+			ok[ i ] = 1;
+			if ( px < minX ) minX = px;
+			if ( px > maxX ) maxX = px;
+			if ( py < minY ) minY = py;
+			if ( py > maxY ) maxY = py;
+
+		}
+
+		proj.push( { p, ok, opacity: light.opacity } );
+
+	}
+
+	if ( minX > maxX ) return null;
+
+	const size = Math.max( maxX - minX, maxY - minY, 16 );
+	const scale = ( SHADOW_SIZE - 2 * SHADOW_PAD ) / size;
+	const x0 = minX - SHADOW_PAD / scale;
+	const y1 = maxY + SHADOW_PAD / scale; // the top of the picture
+
+	if ( entity._shadowCanvas == null ) {
+
+		const mk = () => {
+
+			const c = document.createElement( 'canvas' );
+			c.width = c.height = SHADOW_SIZE;
+			return c;
+
+		};
+
+		entity._shadowCanvas = mk();
+		entity._shadowTemp = mk();
+		entity._shadowTexture = new THREE.CanvasTexture( entity._shadowCanvas );
+		entity._shadowTexture.colorSpace = THREE.SRGBColorSpace;
+		entity._shadowMaterial = new THREE.MeshBasicMaterial( {
+			map: entity._shadowTexture, color: 0x000000, transparent: true, depthWrite: false,
+			polygonOffset: true, polygonOffsetFactor: - 2, polygonOffsetUnits: - 2
+		} );
+
+	}
+
+	const out = entity._shadowCanvas.getContext( '2d' );
+	const tmp = entity._shadowTemp.getContext( '2d' );
+	out.clearRect( 0, 0, SHADOW_SIZE, SHADOW_SIZE );
+
+	const idx = template.indices;
+
+	for ( const pr of proj ) {
+
+		// the whole silhouette once, solid: overlaps do not add up
+		tmp.clearRect( 0, 0, SHADOW_SIZE, SHADOW_SIZE );
+		tmp.fillStyle = '#000';
+		tmp.beginPath();
+
+		for ( let t = 0; t < idx.length; t += 3 ) {
+
+			let a = idx[ t ], b = idx[ t + 1 ], c = idx[ t + 2 ];
+			if ( pr.ok[ a ] === 0 || pr.ok[ b ] === 0 || pr.ok[ c ] === 0 ) continue;
+
+			// front and back faces come out wound the opposite ways: make every one the same way,
+			// or where they overlap they cancel out and leave a hole
+			const ax = pr.p[ a * 2 ], ay = pr.p[ a * 2 + 1 ];
+			const cross = ( pr.p[ b * 2 ] - ax ) * ( pr.p[ c * 2 + 1 ] - ay ) - ( pr.p[ b * 2 + 1 ] - ay ) * ( pr.p[ c * 2 ] - ax );
+			if ( cross < 0 ) { const x = b; b = c; c = x; }
+
+			tmp.moveTo( ( pr.p[ a * 2 ] - x0 ) * scale, ( y1 - pr.p[ a * 2 + 1 ] ) * scale );
+			tmp.lineTo( ( pr.p[ b * 2 ] - x0 ) * scale, ( y1 - pr.p[ b * 2 + 1 ] ) * scale );
+			tmp.lineTo( ( pr.p[ c * 2 ] - x0 ) * scale, ( y1 - pr.p[ c * 2 + 1 ] ) * scale );
+			tmp.closePath();
+
+		}
+
+		tmp.fill( 'nonzero' );
+
+		// soft edges, and the dimmer or farther the light the fainter
+		out.globalAlpha = pr.opacity * Math.max( 0.5, 1.2 - size / 500 );
+		out.filter = 'blur(1.2px)';
+		out.drawImage( entity._shadowTemp, 0, 0 );
+		out.filter = 'none';
+
+	}
+
+	out.globalAlpha = 1;
+	entity._shadowTexture.needsUpdate = true;
+
+	let mesh = entity._shadowFloorMesh;
+	if ( mesh == null ) {
+
+		mesh = new THREE.Mesh( _shadowQuad, entity._shadowMaterial );
+		mesh.renderOrder = 1;
+		entity._shadowFloorMesh = mesh;
+
+	}
+
+	const side = SHADOW_SIZE / scale;
+	mesh.position.set( x0 + side / 2, y1 - side / 2, floorZ + 0.4 );
+	mesh.scale.set( side, side, 1 );
+
+	return mesh;
+
+}
