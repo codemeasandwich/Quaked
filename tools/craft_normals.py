@@ -37,6 +37,14 @@ TEX = os.path.join(ROOT, 'newer', 'textures')
 #   groove  how much dark lines are cut in;  bump  how much bright knobs stand out
 #   glow    how much glowing parts are flattened (0..1);  strength  how steep the relief is
 PROFILES = [
+    # the metal_2 sheet, by what each picture is
+    ( r'^(metal4_[23]|metalt1_1|metalt2_[23]|metal6_)', dict( bands=( .5, 1, 1.2, 1 ), groove=.3, bump=.3, glow=.25, strength=1.45 ) ),  # skulls, snakes
+    ( r'^(met5_2|metal1_1|metal1_2|metal1_7|metal4_[456]|metalt2_[15])', dict( bands=( 1, .9, .3, .1 ), groove=.2, bump=.6, glow=0, strength=1.4 ) ),  # pebbles, gunk, moss
+    ( r'^(metal2_2)', dict( bands=( .35, 1, 1.3, .9 ), groove=1.0, bump=.4, glow=0, strength=1.5 ) ),  # cracked earth
+    ( r'^(metal2_[56])', dict( bands=( .9, 1.4, .4, .2 ), groove=.6, bump=1.6, glow=0, strength=1.8 ) ),  # studs
+    ( r'^(metal1_4|metal2_4)', dict( bands=( .5, 1, .6, .3 ), groove=.6, bump=1.1, glow=0, strength=1.3 ) ),  # rivets, plates
+    ( r'^(metal1_3|metal5_6)', dict( bands=( .8, 1, .5, .2 ), groove=.8, bump=.2, glow=0, strength=1.2 ) ),  # scratched and planked
+    ( r'^(metal5_[1-4])', dict( bands=( .4, 1, 1.3, .9 ), groove=.9, bump=.5, glow=0, strength=1.4 ) ),  # arches, scales, patterns
     # lamps, lit panels: little relief of their own
     ( r'^(tlight|light|\+\dplanet|sliplite|slipside|\+\d?slip$|\+\dslip$)', dict( bands=( .3, .7, 1, .6 ), groove=.4, bump=.4, glow=.9, strength=.7 ) ),
     # lit switches, runes, keys, health boxes, signs: bevelled plates with a recessed glowing part
