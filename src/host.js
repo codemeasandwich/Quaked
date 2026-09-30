@@ -27,7 +27,7 @@ import { sv, svs, client_t,
 	host_client, set_host_client } from './server.js';
 import { R_Init, D_FlushCaches } from './gl_rmisc.js';
 import { VID_Init, VID_Shutdown } from './vid.js';
-import { Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from './gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from './gl_draw.js';
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from './gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from './snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from './cd_audio.js';
@@ -45,6 +45,7 @@ import { S_LocalSound } from './snd_dma.js';
 import { M_Menu_Main_f } from './menu.js';
 import { R_Efrag_SetExternals } from './gl_refrag.js';
 import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage } from './r_perf.js';
+import { R_TeleportFrameEnd } from './r_teleportfx.js';
 import { Host_InitCommands } from './host_cmd.js';
 import { R_SetParticleExternals } from './r_part.js';
 
@@ -598,6 +599,9 @@ function _Host_Frame_Internal( time ) {
 	CDAudio_Update();
 
 	host_framecount ++;
+
+	// (a teleporter's copy of the screen: made now the frame is drawn, and taken down once the new level is up)
+	if ( renderer != null ) R_TeleportFrameEnd( performance.now() / 1000, renderer.domElement, Draw_GetOverlayCanvas(), cls.signon === SIGNONS && cl.worldmodel != null );
 
 	R_PerfFrameEnd();
 

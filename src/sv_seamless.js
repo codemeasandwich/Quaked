@@ -22,7 +22,7 @@ import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { r_newer_portals } from './r_anim.js';
-import { R_TeleportFxBegin, R_TeleportFxSnap, R_TeleportFxReset } from './r_teleportfx.js';
+import { R_TeleportFxBegin, R_TeleportFxCapture, R_TeleportFxMode, R_TeleportOverlayShown, R_TeleportFxSnap, R_TeleportFxReset } from './r_teleportfx.js';
 import {
 	R_ParseBsp, R_ParseEntityLump, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
 } from './r_levelgraph.js';
@@ -719,8 +719,11 @@ function SV_TeleporterPads( ent ) {
 				if ( ent.v.absmax[ a ] < p.exit.mins[ a ] || ent.v.absmin[ a ] > p.exit.maxs[ a ] ) inside = false;
 			if ( inside === false ) continue;
 
-			teleport = { map: p.map, origin: [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ], since: now, phase: 'build' };
-			R_TeleportFxBegin( now );
+			// the picture the player sees is copied at the end of this frame, and stretched
+			// (by the browser, so it keeps moving) while the next level loads behind it
+			teleport = { map: p.map, origin: [ ent.v.origin[ 0 ], ent.v.origin[ 1 ], ent.v.origin[ 2 ] ], since: now, phase: 'capture', frames: 0 };
+			if ( typeof document !== 'undefined' ) R_TeleportFxCapture();
+			else { teleport.phase = 'build'; R_TeleportFxBegin( now ); }
 			return true;
 
 		}
@@ -734,7 +737,26 @@ function SV_TeleporterPads( ent ) {
 	ent.v.origin = [ teleport.origin[ 0 ], teleport.origin[ 1 ], teleport.origin[ 2 ] ];
 	SV_LinkEdict( ent, false );
 
-	if ( teleport.phase === 'build' && now - teleport.since >= TELEPORT_BUILD ) {
+	if ( teleport.phase === 'capture' ) {
+
+		// the copy is made when the frame has been drawn: is it up?
+		teleport.frames ++;
+		if ( R_TeleportOverlayShown() ) { teleport.phase = 'shown'; teleport.frames = 0; }
+		else if ( R_TeleportFxMode() === 'build' ) teleport.phase = 'build'; // it could not be copied: the live picture stretches
+		else if ( teleport.frames > 30 ) { teleport = null; R_TeleportFxReset(); return false; }
+
+	} else if ( teleport.phase === 'shown' ) {
+
+		// the copy has been on the screen for a moment: load the level behind it
+		if ( ++ teleport.frames >= 2 ) {
+
+			teleport.phase = 'loading';
+			teleport.since = now;
+			Cbuf_AddText( 'changelevel ' + teleport.map + '\n' );
+
+		}
+
+	} else if ( teleport.phase === 'build' && now - teleport.since >= TELEPORT_BUILD ) {
 
 		teleport.phase = 'loading';
 		teleport.since = now;
