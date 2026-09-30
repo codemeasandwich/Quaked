@@ -4,6 +4,12 @@ Quake in the browser, built on Three.js. Quaked is developed by [@codemeasandwic
 
 **Project repository: [codemeasandwich/Quaked](https://github.com/codemeasandwich/Quaked).** The enhancements below describe this repository's version.
 
+### Play online
+
+[Play Quaked](https://codemeasandwich.github.io/Quaked/) on GitHub Pages. Choose **Newer Game** for the enhancements described below.
+
+GitHub Pages publishes the repository root from `main`. `.nojekyll` keeps the game files as plain static assets; pushes to `main` trigger a new deployment. Only committed files are published.
+
 ### Play this version locally
 
 From the root of this checkout, serve the files over HTTP:
