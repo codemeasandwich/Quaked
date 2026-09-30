@@ -44,7 +44,25 @@
      "diffuse": "diffuse.webp"
     }
    }
+  ],
+  "backpack": [
+   {
+    "dir": "backpack/custom",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp"
+    }
+   }
+  ],
+  "player": [
+   {
+    "dir": "player/custom",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp"
+    }
+   }
   ]
  },
- "version": 1
+ "version": 2
 }
