@@ -35,7 +35,7 @@ function ensureStyle() {
 	style.id = 'qtele-style';
 	// each colour is stretched a little more than the last, so they come apart along the stretch
 	style.textContent = `
-		.qtele { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: #000; z-index: 2147483000; overflow: hidden; pointer-events: none; }
+		.qtele { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: #000; overflow: hidden; pointer-events: none; }
 		.qtele canvas { position: absolute; left: 0; top: 0; width: 100%; height: 100%; mix-blend-mode: screen; transform-origin: 50% 50%; will-change: transform; animation-duration: ${BUILD}s; animation-timing-function: cubic-bezier(0.55, 0, 0.95, 0.6); animation-fill-mode: forwards; }
 		@keyframes qtele-r { from { transform: scale(1, 1); } to { transform: scale(1.0, 8.4) translateY(-0.6%); } }
 		@keyframes qtele-g { from { transform: scale(1, 1); } to { transform: scale(1.04, 10) translateY(0); } }
@@ -44,8 +44,9 @@ function ensureStyle() {
 
 }
 
-// what the player sees, copied: the picture of the world and the status bar over it
-function capture( main, over ) {
+// what the player sees, copied: the picture of the world only.  The text and the status bar
+// are on a canvas of their own and stay as they are (sharp, and not stretched).
+function capture( main ) {
 
 	const w = Math.min( 1280, main.width ), h = Math.round( main.height * w / main.width );
 	const base = document.createElement( 'canvas' );
@@ -53,13 +54,12 @@ function capture( main, over ) {
 	base.height = h;
 	const g = base.getContext( '2d' );
 	g.drawImage( main, 0, 0, w, h );
-	if ( over != null ) g.drawImage( over, 0, 0, w, h );
 	g.getImageData( 0, 0, 1, 1 ); // (throws if the picture is not readable)
 	return base;
 
 }
 
-function show( base ) {
+function show( base, main ) {
 
 	ensureStyle();
 
@@ -82,7 +82,9 @@ function show( base ) {
 
 	}
 
-	document.body.appendChild( root );
+	// straight after the picture of the world, so the text canvas (later in the page) stays above it
+	if ( main.parentNode !== null ) main.parentNode.insertBefore( root, main.nextSibling );
+	else document.body.appendChild( root );
 	overlay = { root };
 
 }
@@ -122,7 +124,7 @@ export function R_TeleportFrameEnd( now, main, over, levelReady ) {
 
 		try {
 
-			show( capture( main, over ) );
+			show( capture( main ), main );
 			since = now;
 
 		} catch ( e ) {
