@@ -131,7 +131,7 @@ export function R_PerfFrameEnd() {
 
 				if ( knownPrograms.has( p ) ) continue;
 				knownPrograms.add( p );
-				names.push( ( p.name || 'program' ) + ( p.cacheKey ? ' ' + String( p.cacheKey ).slice( 0, 40 ) : '' ) );
+				names.push( ( p.name || 'program' ) + ( p.cacheKey ? ' ' + String( p.cacheKey ).slice( 0, 160 ) : '' ) );
 
 			}
 

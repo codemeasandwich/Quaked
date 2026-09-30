@@ -25,7 +25,7 @@ import {
 	M_PI, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorMA,
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
 } from './mathlib.js';
-import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf } from './gl_rsurf.js';
+import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial } from './gl_rsurf.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
@@ -1522,6 +1522,7 @@ export function R_RenderView() {
 
 				_needCompile = false;
 				try { renderer.compile( scene, camera ); } catch ( e ) { console.warn( 'compile failed', e ); }
+				R_WarmShaders( renderer, scene, camera );
 				R_PerfStage( 'compile' );
 
 			}
@@ -1757,6 +1758,73 @@ export function R_Init() {
 // frames, while the screen is still held back, instead of one at a time as they first come
 // into view: each of those is a stall of a good fraction of a second.
 let _needCompile = false;
+
+// The kinds of material that only appear once something spawns, is fired or comes into view
+// (monster skins, sprites, marks, shadows, doors...). Each is a stall of a second or more the
+// first time it is drawn, so they are all started compiling up front, off the main thread
+// where the browser allows it. Nothing here is ever drawn.
+let _warmGroup = null;
+
+function R_WarmShaders( renderer, scene, camera ) {
+
+	if ( _warmGroup === null ) {
+
+		const tex = () => {
+
+			const t = new THREE.DataTexture( new Uint8Array( [ 255, 255, 255, 255 ] ), 1, 1 );
+			t.colorSpace = THREE.SRGBColorSpace;
+			t.needsUpdate = true;
+			return t;
+
+		};
+
+		const map = tex();
+		const geometry = new THREE.PlaneGeometry( 1, 1 );
+		geometry.setAttribute( 'color', new THREE.BufferAttribute( new Float32Array( 12 ).fill( 1 ), 3 ) );
+		geometry.setAttribute( 'uv1', geometry.getAttribute( 'uv' ) );
+
+		const lm = tex();
+		lm.channel = 1;
+		const lit = createQuakeLightmapMaterial( map, lm );
+		const materials = [
+			lit,
+			new THREE.MeshBasicMaterial( { map } ),
+			new THREE.MeshBasicMaterial( { map, vertexColors: true } ),
+			new THREE.MeshBasicMaterial( { color: 0xcccccc, vertexColors: true } ),
+			new THREE.MeshBasicMaterial( { map, transparent: true, opacity: 0.5, side: THREE.DoubleSide } ),
+			new THREE.MeshBasicMaterial( { map, transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide } ),
+			new THREE.MeshBasicMaterial( { map, transparent: true, depthWrite: false, polygonOffset: true } ),
+			new THREE.MeshBasicMaterial( { map, vertexColors: true, transparent: true, depthWrite: false, toneMapped: false, side: THREE.DoubleSide } ),
+			new THREE.MeshBasicMaterial( { color: 0x000000, transparent: true, opacity: 0.5, depthWrite: false, side: THREE.DoubleSide } )
+		];
+
+		_warmGroup = new THREE.Group();
+		for ( const material of materials ) {
+
+			const mesh = new THREE.Mesh( geometry, material );
+			mesh.frustumCulled = false;
+			_warmGroup.add( mesh );
+
+		}
+
+	}
+
+	// they are only in the scene while the programs are being started
+	scene.add( _warmGroup );
+	try {
+
+		const started = typeof renderer.compileAsync === 'function' ? renderer.compileAsync( scene, camera ) : renderer.compile( scene, camera );
+		if ( started != null && typeof started.catch === 'function' ) started.catch( () => {} );
+
+	} catch ( e ) {
+
+		console.warn( 'shader warm-up failed', e );
+
+	}
+
+	scene.remove( _warmGroup );
+
+}
 
 export function R_NewMap() {
 
