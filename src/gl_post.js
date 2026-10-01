@@ -35,6 +35,7 @@ import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } fr
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
 export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
+export const r_bounce = new cvar_t( 'r_bounce', '1' ); // bounced light between surfaces (0 off)
 export const r_volumetric = new cvar_t( 'r_volumetric', '1' );
 // Newer Game's overall look: 1 = as designed.  0.6 is 40% darker, 1.4 is 40% more contrast.
 export const r_newbright = new cvar_t( 'r_newbright', '0.6' );
@@ -1194,6 +1195,7 @@ precision highp float;
 uniform sampler2D tDepth;
 uniform sampler2D tSunShadow;
 uniform mat4 uProj;
+uniform float uBounce;
 uniform mat4 uProjInv;
 uniform mat4 uViewInv;
 uniform mat4 uSunVP;
@@ -1735,7 +1737,52 @@ void main() {
 		// gets a plain warm one, so the flashlight always has something to light
 		float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
 		vec3 beamTint = mix( vec3( 0.3 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+		// Bounce light.  What a surface sees of its neighbours on the screen lights it a little: each of a handful of
+		// points round it (out to about 150 units) gives the light it is sending this way, if the two face each
+		// other, less with distance; and the receiver's own colour tints it (a red wall casts red on the floor, and
+		// a lit patch of floor lights the wall above it).  This is what stops the places no lamp reaches from being
+		// flat black, and why a room round a bright light glows with its colour.
+		vec3 bounce = vec3( 0.0 );
+		if ( uBounce > 0.0 ) {
+			const int BOUNCE_SAMPLES = 10;
+			float rad = clamp( 150.0 * uProj[ 0 ][ 0 ] * 0.5 / max( here, 8.0 ), 0.01, 0.22 );
+			float aspect = uTexel.y / uTexel.x;
+			float turn = jit * 6.2831;
+			for ( int i = 0; i < BOUNCE_SAMPLES; i ++ ) {
+				float fi = float( i ) + 0.5;
+				float a = fi * 2.39996 + turn;
+				float rr = sqrt( fi / float( BOUNCE_SAMPLES ) );
+				vec2 uvs = uvd + vec2( cos( a ), sin( a ) * aspect ) * rr * rad;
+				if ( uvs.x < 0.0 || uvs.x > 1.0 || uvs.y < 0.0 || uvs.y > 1.0 ) continue;
+				if ( texture2D( tDepth, uvs ).x >= 0.99999 ) continue;
+				vec4 gs = texture2D( tNormal, uvs );
+				if ( gs.a < - 0.5 ) continue;
+				vec3 Ps = viewPosAt( uvs );
+				vec3 v = Ps - P;
+				float dist = length( v );
+				if ( dist < 3.0 || dist > 260.0 ) continue;
+				vec3 dir = v / dist;
+				float cosR = max( dot( Ng, dir ), 0.0 );
+				vec3 Ns = gs.a > 0.0 ? normalize( gs.rgb * 2.0 - 1.0 ) : - dir;
+				if ( dot( Ns, Ps ) > 0.0 ) Ns = - Ns;
+				float cosS = max( dot( Ns, - dir ), 0.0 );
+				float w = cosR * cosS / ( 1.0 + dist * dist / ( 80.0 * 80.0 ) );
+				// what that point is sending: its lit colour, and the flashlight's light on it (the beam is added after
+				// this picture, so it is estimated here, without shadows)
+				float beamS = 0.0;
+				if ( uSpotOn > 0.5 ) {
+					vec3 Ls = uSpotPos - Ps;
+					float sd = length( Ls );
+					vec3 sn = Ls / max( sd, 1.0 );
+					float coneS = smoothstep( uSpotCone.x, uSpotCone.y, dot( - sn, uSpotDir ) );
+					beamS = coneS * max( dot( Ns, sn ), 0.0 ) / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) ) * ( 1.0 - smoothstep( 800.0, 1500.0, sd ) );
+				}
+				bounce += min( texture2D( tScene, uvs ).rgb * ( 1.0 + 5.0 * beamS ), vec3( 6.0 ) ) * w;
+			}
+			bounce *= uBounce * 14.0 / float( BOUNCE_SAMPLES );
+		}
+		vec3 receiver = mix( vec3( 0.6 ), tint, 0.7 ) * 0.55;
+		c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
@@ -1911,6 +1958,7 @@ function createPipeline() {
 		uNear: { value: 4 }, uFar: { value: 4096 },
 		uCount: { value: 0 },
 		uSpotOn: { value: 0 },
+		uBounce: { value: 1 },
 		uSpotPos: { value: new THREE.Vector3() },
 		uSpotDir: { value: new THREE.Vector3( 0, 0, - 1 ) },
 		uSpotCol: { value: new THREE.Vector3( 1, 0.985, 0.96 ).multiplyScalar( SPOT_POWER ) },
@@ -2228,6 +2276,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	p.volumeMaterial.uniforms.uOpenFog.value = 0.09 - 0.075 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
 	p.compositeMaterial.uniforms.uHaze.value = HAZE_DENSITY * ( 1.5 - 1.05 * bright );
+	sh.uBounce.value = Math.max( 0, r_bounce.value );
 	sh.tCookie.value = skyCookie;
 	sh.uCookie.value = skyCookie !== null ? 1 : 0;
 	sh.uCookieTime.value = time;
