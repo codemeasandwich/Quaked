@@ -1,0 +1,85 @@
+{
+  "checks": 769,
+  "failures": [],
+  "modes": {
+    "demo": 118,
+    "newer": 230,
+    "walking": 151,
+    "near-enemy": 63,
+    "short-slots": 207
+  },
+  "defaultSlotSeconds": 1200,
+  "observations": {
+    "demoSilent": 118,
+    "classicSilent": 0,
+    "safeMoving": 4,
+    "enemySuppressed": 398,
+    "combatSuppressed": 122,
+    "creditsSilent": 0,
+    "actualPlayback": 606,
+    "swells": 0,
+    "transitions": 16,
+    "peakRms": 0.030359648483980005
+  },
+  "starts": [
+    222.971962383033,
+    830.5903629704071,
+    2876.953568112073,
+    2071.348441051233,
+    2904.037964358438,
+    1970.8686351926647,
+    3421.219663109562,
+    1116.3546574780964,
+    3643.8961590696276,
+    1291.233802444424,
+    3024.5420776546193,
+    219.7160613951145,
+    2741.3946428093727,
+    0.3773009267240757,
+    3073.8183112882093,
+    1479.9148485815754,
+    136.9753108578501,
+    2261.810090413225
+  ],
+  "duration": 3700.806531,
+  "state": {
+    "active": true,
+    "reason": "",
+    "safe": false,
+    "enemiesNearby": true,
+    "combat": false,
+    "moving": false,
+    "musicVolume": 1,
+    "playback": {
+      "active": true,
+      "phase": "playing",
+      "slotSeconds": 8,
+      "volume": 0.075,
+      "actualGain": 0.07500000298023224,
+      "swells": 0,
+      "transitions": 16,
+      "recoveries": 0,
+      "error": null,
+      "decks": [
+        {
+          "start": 2261.810090413225,
+          "elapsed": 5.524688586774573,
+          "slot": 8,
+          "playing": true,
+          "blocked": false,
+          "gain": 1,
+          "duration": 3700.806531
+        },
+        {
+          "start": 136.9753108578501,
+          "elapsed": 8.002497142149906,
+          "slot": 8,
+          "playing": false,
+          "blocked": false,
+          "gain": 0,
+          "duration": 3700.806531
+        }
+      ]
+    }
+  }
+}

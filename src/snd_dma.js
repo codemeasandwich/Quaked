@@ -17,6 +17,7 @@ import {
 import { S_LoadSound } from './snd_mem.js';
 import { cl } from './client.js';
 import { Mod_PointInLeaf } from './gl_model.js';
+import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from './s_ambientmusic.js';
 
 /*
 ==============================================================================
@@ -133,6 +134,8 @@ S_Shutdown
 */
 export function S_Shutdown() {
 
+	S_AmbientMusicShutdown();
+
 	if ( ! sound_started )
 		return;
 
@@ -199,9 +202,13 @@ Web Audio API requires a user gesture before audio can play.
 */
 export function S_UnlockAudio() {
 
+	S_AmbientMusicUnlock();
+
 	if ( audioContext && audioContext.state === 'suspended' ) {
 
-		audioContext.resume();
+		// A device/autoplay rejection can leave it suspended. Retry on the
+		// next real gesture without an unhandled promise rejection.
+		audioContext.resume().catch( () => {} );
 
 	}
 
@@ -453,6 +460,8 @@ S_StartSound
 */
 export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation ) {
 
+	if ( entnum === cl.viewentity && /^weapons\//.test( sfx?.name || '' ) && ! /pickup|pkup|rattle/.test( sfx.name ) ) S_AmbientMusicNotifyCombat();
+
 	if ( ! sound_started || ! sfx )
 		return;
 
@@ -549,6 +558,8 @@ S_StopAllSounds
 =================
 */
 export function S_StopAllSounds( clear ) {
+
+	S_AmbientMusicStop();
 
 	if ( ! sound_started )
 		return;

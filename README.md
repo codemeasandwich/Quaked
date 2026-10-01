@@ -161,8 +161,16 @@ For the full game, replace with your own `pak0.pak` from a registered copy of Qu
 
 Code: GPL v2
 
+### Newer Game ambience
+
+Newer Game streams **Hallucinations (Lovecraftian Dark Ambient Hour)** by **Iron Cthulhu Apocalypse** quietly in the background. Safe movement away from living enemies produces occasional gentle volume swells; combat or nearby enemies keep it at the quiet background level. It picks randomized 20-minute sections and crossfades over 12 seconds, rather than playing the hour-long recording straight through. Classic games and title demos are silent.
+
+Both the existing sound-volume slider (`volume`) and `bgmvolume` govern it; `bgmvolume 0` disables it. Menus, pause, death, intermission, hidden tabs and loading pause playback. Deploy `music/ambient.mp3` alongside the game, outside `newer.pak`. The artist appears on the Credits screen. [Implementation, controls and verification](docs/ambient-music-2026-10-01.md).
+
 ### Credits
 
 - Quaked by [@codemeasandwich](https://github.com/codemeasandwich)
 - Original game by id Software ([source](https://github.com/id-Software/Quake))
 - Three.js port ([three-quake](https://github.com/mrdoob/three-quake)) by [@mrdoob](https://github.com/mrdoob) with [@claude](https://github.com/claude)
+
+- Ambient music by **Iron Cthulhu Apocalypse**: *Hallucinations (Lovecraftian Dark Ambient Hour)* ([asset credits](music/CREDITS.txt)).

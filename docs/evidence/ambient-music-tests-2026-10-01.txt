@@ -1,0 +1,36 @@
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+PASS public gameplay policy excludes classic, title demos, menus, death, intermission, pause, mute and hidden tabs
+PASS authoritative living enemy proximity includes unseen monsters while ignoring corpses and free edicts
+PASS monster engagement, attacks and damage suppress swells until a ten-second combat cooldown ends
+PASS map change resets old damage history and remote fallback recognizes native live/death poses
+PASS public host audio update lazily creates streams only in Newer Game and respects sound lifecycle
+PASS public credits screen includes musician within the original menu bounds and preserves source link hit target
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+PASS dynamic lights add their proximity blend to the displayed overlay
+PASS dynamic light marks use the renderer frame counter
+PASS inline brush models receive dynamic light marks
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+35/35 passed

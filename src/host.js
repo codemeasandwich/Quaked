@@ -31,6 +31,7 @@ import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_Con
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from './gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from './snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from './cd_audio.js';
+import { S_UpdateAmbientMusic } from './s_ambientgame.js';
 import { Sbar_Init, Sbar_SetExternals } from './sbar.js';
 import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, CL_NextDemo, cl_name } from './cl_main.js';
 import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock } from './in_web.js';
@@ -600,6 +601,7 @@ function _Host_Frame_Internal( time ) {
 	}
 
 	CDAudio_Update();
+	S_UpdateAmbientMusic();
 
 	host_framecount ++;
 
