@@ -1782,6 +1782,14 @@ function M_AdjustSliders( dir ) {
 			Cvar_SetValue( 'cl_showfps', Cvar_VariableValue( 'cl_showfps' ) !== 0 ? 0 : 1 );
 			break;
 
+		case 16: // light pillars
+			Cvar_SetValue( 'r_pillars', Math.max( 0, Math.min( 1, Math.round( ( Cvar_VariableValue( 'r_pillars' ) + dir * 0.05 ) * 100 ) / 100 ) ) );
+			break;
+
+		case 17: // cloud shadow speed
+			Cvar_SetValue( 'r_cloudspeed', Math.max( 0, Math.min( 1, Math.round( ( Cvar_VariableValue( 'r_cloudspeed' ) + dir * 0.05 ) * 100 ) / 100 ) ) );
+			break;
+
 	}
 
 }
@@ -1794,7 +1802,7 @@ function M_AdjustSliders( dir ) {
 ==============================================================================
 */
 
-const OPTIONS_ITEMS = 16;
+const OPTIONS_ITEMS = 18;
 let m_options_cursor = 0;
 
 function M_Menu_Options_f() {
@@ -1857,6 +1865,13 @@ function M_Options_Draw() {
 	M_DrawCheckbox( 220, 144, Cvar_VariableValue( 'cl_showfps' ) );
 
 	M_Print( 16, 152, '  Performance profiler' );
+
+	// (Newer Game) the sky's light: how strong the shafts are, and how fast the cloud shapes move on the ground
+	M_Print( 16, 160, '          Light pillars' );
+	M_DrawSlider( 220, 160, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_pillars' ) ) ) );
+
+	M_Print( 16, 168, '    Cloud shadow speed' );
+	M_DrawSlider( 220, 168, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_cloudspeed' ) ) ) );
 
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
