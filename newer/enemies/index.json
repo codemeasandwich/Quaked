@@ -5,8 +5,11 @@
     "dir": "boss/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "knight": [
@@ -14,8 +17,11 @@
     "dir": "knight/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "ogre": [
@@ -23,8 +29,11 @@
     "dir": "ogre/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "soldier": [
@@ -32,8 +41,11 @@
     "dir": "soldier/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "wizard": [
@@ -41,8 +53,11 @@
     "dir": "wizard/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "backpack": [
@@ -94,8 +109,11 @@
     "dir": "shambler/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "zombie": [
@@ -103,8 +121,11 @@
     "dir": "zombie/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "demon": [
@@ -112,10 +133,252 @@
     "dir": "demon/custom",
     "flipGreen": false,
     "maps": {
-     "diffuse": "diffuse.webp"
-    }
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "h_demon": [
+   {
+    "dir": "h_demon/custom",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "h_dog": [
+   {
+    "dir": "h_dog/custom",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "zom_gib": [
+   {
+    "dir": "zom_gib/custom",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "h_shams": [
+   {
+    "dir": "h_shams/custom",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ]
  },
- "version": 8
+ "version": 21,
+ "nativeHeights": {
+  "gib1": [
+   [
+    {
+     "file": "heights/gib1/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "gib2": [
+   [
+    {
+     "file": "heights/gib2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "gib3": [
+   [
+    {
+     "file": "heights/gib3/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "zom_gib": [
+   [
+    {
+     "file": "heights/zom_gib/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "ogre": [
+   [
+    {
+     "file": "heights/ogre/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_ogre": [
+   [
+    {
+     "file": "heights/h_ogre/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "demon": [
+   [
+    {
+     "file": "heights/demon/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_demon": [
+   [
+    {
+     "file": "heights/h_demon/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "shambler": [
+   [
+    {
+     "file": "heights/shambler/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_shams": [
+   [
+    {
+     "file": "heights/h_shams/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "knight": [
+   [
+    {
+     "file": "heights/knight/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_knight": [
+   [
+    {
+     "file": "heights/h_knight/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "soldier": [
+   [
+    {
+     "file": "heights/soldier/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_guard": [
+   [
+    {
+     "file": "heights/h_guard/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "wizard": [
+   [
+    {
+     "file": "heights/wizard/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_wizard": [
+   [
+    {
+     "file": "heights/h_wizard/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_dog": [
+   [
+    {
+     "file": "heights/h_dog/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "dog": [
+   [
+    {
+     "file": "heights/dog/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "zombie": [
+   [
+    {
+     "file": "heights/zombie/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "h_zombie": [
+   [
+    {
+     "file": "heights/h_zombie/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ],
+  "boss": [
+   [
+    {
+     "file": "heights/boss/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55
+    }
+   ]
+  ]
+ }
 }

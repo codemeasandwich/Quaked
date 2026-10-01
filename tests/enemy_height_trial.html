@@ -1,0 +1,139 @@
+<!doctype html><meta charset="utf-8"><base href="../"><title>Enemy skin and height trial</title>
+<style>body{margin:0;background:#131519;color:#eee;font:15px system-ui}header{padding:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}button:disabled,select:disabled{opacity:.45}button,select{font:inherit;padding:8px;background:#303740;color:white;border:1px solid #54606e;border-radius:5px}#status{padding:8px 16px;color:#addec0}canvas{width:100%;display:block}#evidence{display:none}</style>
+<header><strong>Enemy skin / height trial</strong><select id="model"></select><button id="front">Front</button><button id="back">Back</button><button id="height">Height relief: on</button><button id="custom">Custom skin: on</button><button id="authoring" disabled>Height authoring: new</button><label><input type="checkbox" id="rotate"> Rotate</label></header>
+<div id="status">Loading real models and skins…</div><canvas id="view"></canvas><pre id="evidence"></pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<script type="module">
+const status=document.querySelector('#status');let checks=0;
+const trialControls=[...document.querySelectorAll('header button,header select,header input')];trialControls.forEach(c=>c.disabled=true);
+function check(value,label){if(!value)throw new Error(label);checks++;}
+try {
+ await import('../src/gl_rsurf.js');
+ const THREE=await import('three'),pak=await import('../src/pak.js'),models=await import('../src/gl_model.js'),mesh=await import('../src/gl_mesh.js'),skins=await import('../src/r_newerskins.js'),anim=await import('../src/r_anim.js'),post=await import('../src/gl_post.js'),cvars=await import('../src/cvar.js'),vid=await import('../src/vid.js');
+ const archive=pak.COM_LoadPackFile('pak0.pak',await (await fetch('pak0.pak')).arrayBuffer());pak.COM_AddPack(archive);vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);models.Mod_Init();
+ const index=await (await fetch('newer/enemies/index.json',{cache:'no-store'})).json();skins.R_NewerSetIndex(index);
+ for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,post.r_newdark,post.r_newedges,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_enemies])if(!cvars.Cvar_FindVar(v.name))cvars.Cvar_RegisterVariable(v);
+ for(const [name,value] of Object.entries({r_hdr:1,r_dynres:0,r_newer_lighting:1,r_newer_normals:1,r_newer_enemies:1,r_bloom:0,r_volumetric:0,r_bounce:0,r_newbright:1,r_newcontrast:1,r_newdark:1,r_newedges:0}))cvars.Cvar_SetValue(name,value);
+ const renderer=new THREE.WebGLRenderer({canvas:document.querySelector('#view'),antialias:false,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(1200,720,false);renderer.setClearColor(0x1c2029,1);
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(40,1200/720,4,1500);camera.up.set(0,0,1);
+ const entities=new Map(),shades=new Float32Array(162).fill(.85);
+ for(const key of Object.keys(index.nativeHeights)){
+  const model=models.Mod_ForName('progs/'+key+'.mdl',true),header=models.Mod_Extradata(model),entity={model,frame:0,skinnum:0,origin:[0,0,0],angles:[0,0,0],_entityIndex:1};entities.set(key,{entity,header});
+  const option=document.createElement('option');option.value=key;option.textContent=key;document.querySelector('#model').append(option);
+ }
+ document.querySelector('#model').value='shambler';let active=null,currentMesh=null,angle=0;
+ let authoredNormal=null,previousNormal=null,authoringUniforms=null,usePrevious=false;
+ function updateAuthoringControl(){document.querySelector('#authoring').disabled=!authoredNormal || document.querySelector('#model').value!=='shambler' || anim.r_newer_enemies.value===0;}
+ function select(){
+  if(currentMesh){scene.remove(currentMesh);currentMesh=null;}
+  const key=document.querySelector('#model').value;active=entities.get(key);
+  if(['h_demon','h_dog','zom_gib','h_shams'].includes(key)){
+   const template=mesh.GL_DrawAliasFrame(active.header,0),box=new THREE.Box3().setFromBufferAttribute(template.posAttr),center=new THREE.Vector3(),size=new THREE.Vector3();box.getCenter(center);box.getSize(size);
+   if(key==='zom_gib'){const span=Math.max(size.x,size.z);camera.position.set(center.x,center.y-span*2.6,center.z+span*.12);}
+   else camera.position.set(center.x+Math.max(size.y,size.z)*2.6,center.y,center.z+Math.max(size.y,size.z)*.12);camera.lookAt(center);
+  }else{camera.position.set(240,0,62);camera.lookAt(0,0,42);}
+  updateAuthoringControl();
+ }
+ select();document.querySelector('#model').addEventListener('change',select);
+ document.querySelector('#front').onclick=()=>{angle=0;active.entity.angles[1]=0;};document.querySelector('#back').onclick=()=>{angle=180;active.entity.angles[1]=180;};
+ document.querySelector('#height').onclick=()=>{anim.r_newer_normals.value=anim.r_newer_normals.value?0:1;document.querySelector('#height').textContent='Height relief: '+(anim.r_newer_normals.value?'on':'off');};
+ document.querySelector('#custom').onclick=()=>{anim.r_newer_enemies.value=anim.r_newer_enemies.value?0:1;document.querySelector('#custom').textContent='Custom skin: '+(anim.r_newer_enemies.value?'on':'off');updateAuthoringControl();};
+ const lights=[{origin:[140,-90,120],radius:450,die:1e9,minlight:0},{origin:[-80,100,90],radius:180,die:1e9,minlight:0}];
+ let ready=false, gpuVerified=false;const start=performance.now();
+ function renderFrame(){
+  post.R_PostBegin(renderer,true,1200,720);camera.updateMatrixWorld();post.R_PostBind(renderer);renderer.clear();renderer.render(scene,camera);
+  post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:1200,lh:720},0,[],lights,0,1,false);
+ }
+ function framebuffer(){const data=new Uint8Array(1200*720*4);renderer.getContext().readPixels(0,0,1200,720,renderer.getContext().RGBA,renderer.getContext().UNSIGNED_BYTE,data);return data;}
+ const originalModels=[...entities.keys()];
+ const evidence={checks:0,version:index.version,models:originalModels};
+ function uniforms(material){const shader={uniforms:{},vertexShader:'#include <project_vertex>',fragmentShader:'#include <map_fragment>\n#include <opaque_fragment>\n#include <colorspace_fragment>'};material.onBeforeCompile(shader);return shader.uniforms;}
+ function updateSelectedMesh(){
+  const next=mesh.R_DrawAliasModel(active.entity,active.header,shades,.7);
+  if(next!==currentMesh){if(currentMesh)scene.remove(currentMesh);currentMesh=next;scene.add(next);}
+ }
+ function pixelDifference(a,b){let changed=0,total=0;for(let i=0;i<a.length;i+=4){const delta=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);if(delta)changed++;total+=delta;}return {changedPixels:changed,totalChannelDelta:total};}
+ function verifyHeadSwitches(){
+  const results=[];
+  for(const key of ['h_demon','h_dog','zom_gib','h_shams']){
+   document.querySelector('#model').value=key;select();angle=0;active.entity.angles[1]=0;anim.r_newer_enemies.value=1;anim.r_newer_normals.value=1;updateSelectedMesh();renderFrame();
+   const custom=skins.R_NewerAliasMaterial(active.entity,active.entity.model.name,true),withHeight=framebuffer();
+   check(custom.map.image.width===active.header.skinwidth*4 && custom.map.image.height===active.header.skinheight*4,key+': replacement dimensions preserve native UV scale');
+   check(currentMesh.material.map===custom.map,key+': real alias renderer uses replacement');
+   anim.r_newer_normals.value=0;updateSelectedMesh();renderFrame();const flat=framebuffer(),heightDelta=pixelDifference(withHeight,flat);check(heightDelta.changedPixels>100,key+': height toggle affects GPU pixels');
+   anim.r_newer_normals.value=1;anim.r_newer_enemies.value=0;updateSelectedMesh();renderFrame();const original=framebuffer();
+   check(currentMesh.material.map===active.header.gl_texturenum[0][0],key+': replacement switch restores exact original diffuse');
+   const diffuseDelta=pixelDifference(withHeight,original);check(diffuseDelta.changedPixels>100,key+': replacement visible on model');
+   results.push({model:key,dimensions:[custom.map.image.width,custom.map.image.height],heightDelta,diffuseDelta,originalDiffuseRestored:true});
+  }
+  document.querySelector('#model').value='shambler';select();anim.r_newer_enemies.value=1;anim.r_newer_normals.value=1;angle=0;active.entity.angles[1]=0;updateSelectedMesh();renderFrame();
+  evidence.headSwitchChecks=results;evidence.checks=checks;document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);
+ }
+ async function compareAuthoring(){
+  const kernel=await import('../src/gl_normals.js'),model=entities.get('shambler');
+  const material=skins.R_NewerAliasMaterial(model.entity,model.entity.model.name,true);
+  authoringUniforms=uniforms(material);authoredNormal=authoringUniforms.qrNormal.value;
+  const image=new Image();image.src='docs/evidence/height-authoring-baseline/shambler-custom.webp';await image.decode();
+  const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d');ctx.drawImage(image,0,0);const rgba=ctx.getImageData(0,0,c.width,c.height).data;
+  const height=Float32Array.from({length:c.width*c.height},(_,i)=>rgba[i*4]/255),data=kernel.R_NormalsFromCraftedHeight(height,c.width,c.height,.65,.55);
+  previousNormal=new THREE.DataTexture(data,c.width,c.height);previousNormal.wrapS=previousNormal.wrapT=THREE.RepeatWrapping;previousNormal.magFilter=THREE.LinearFilter;previousNormal.minFilter=THREE.LinearMipmapLinearFilter;previousNormal.generateMipmaps=authoredNormal.generateMipmaps;previousNormal.anisotropy=authoredNormal.anisotropy;previousNormal.colorSpace=authoredNormal.colorSpace;previousNormal.flipY=authoredNormal.flipY;previousNormal.offset.copy(authoredNormal.offset);previousNormal.needsUpdate=true;
+  check(active.entity.model.name==='progs/shambler.mdl' && anim.r_newer_enemies.value===1 && angle===0 && !document.querySelector('#rotate').checked,'fixed custom Shambler front comparison');
+  // Controls are disabled until this capture ends, fixing the pose/camera/light state.
+  authoringUniforms.qrNormal.value=authoredNormal;renderFrame();const authored=framebuffer();authoringUniforms.qrNormal.value=previousNormal;renderFrame();const previous=framebuffer();authoringUniforms.qrNormal.value=authoredNormal;renderFrame();
+  let changed=0,total=0;for(let i=0;i<previous.length;i+=4){const delta=Math.abs(previous[i]-authored[i])+Math.abs(previous[i+1]-authored[i+1])+Math.abs(previous[i+2]-authored[i+2]);if(delta>0)changed++;total+=delta;}
+  check(changed>500,'authored height changes real GPU pixels relative to previous height');
+  evidence.authoringComparison={changedPixels:changed,totalChannelDelta:total,diffuseUnchanged:true};evidence.checks=checks;document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);
+  verifyHeadSwitches();trialControls.forEach(c=>c.disabled=false);updateAuthoringControl();status.textContent+=' New head skin and height switches verified. Authored versus previous height changes '+changed+' pixels.';
+  document.querySelector('#authoring').onclick=()=>{usePrevious=!usePrevious;authoringUniforms.qrNormal.value=usePrevious?previousNormal:authoredNormal;document.querySelector('#authoring').textContent='Height authoring: '+(usePrevious?'previous':'new');};
+ }
+ async function verifyCatalog(){
+  const kernel=await import('../src/gl_normals.js');const nativeResults=[],customResults=[];
+  for(const [key,{entity,header}] of entities){
+   const texture=header.gl_texturenum[0][0],material=skins.R_EnemyAliasMaterial(texture,entity.model.name,true,0,0),u=uniforms(material);
+   const spec=index.nativeHeights[key][0][0],image=new Image();image.src='newer/enemies/'+spec.file+'?v='+index.version;await image.decode();
+   const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0);const raw=ctx.getImageData(0,0,image.width,image.height).data;
+   const height=Float32Array.from({length:image.width*image.height},(_,i)=>raw[i*4]/255),expected=kernel.R_NormalsFromCraftedHeight(height,image.width,image.height,spec.strength,spec.cap);
+   const deadline=performance.now()+15000;let matches=false;
+   while(performance.now()<deadline){const got=u.qrNormal.value?.image.data;matches=got?.length===expected.length && got.every((v,i)=>v===expected[i]);if(matches)break;await new Promise(r=>setTimeout(r,20));}
+   check(matches,key+': real stored height attached to selected original skin');nativeResults.push({model:key,dimensions:[image.width,image.height],storedHeight:spec.file});
+  }
+  for(const [key,variants] of Object.entries(index.models)){
+   if(!skins.ENEMY_SKIN_MODELS.has(key))continue;
+   const {entity}=entities.get(key);const deadline=performance.now()+20000;let material=null,u=null;
+   while(performance.now()<deadline){material=skins.R_NewerAliasMaterial(entity,entity.model.name,true);if(material){u=uniforms(material);if(u.uHasNormal.value===1)break;}await new Promise(r=>setTimeout(r,20));}
+   check(material && u?.uHasNormal.value===1,key+': real custom height loaded');
+   check(u.qrNormal.value.image.width===material.map.image.width && u.qrNormal.value.image.height===material.map.image.height,key+': matching custom dimensions');
+   const variant=variants[0],image=new Image();image.src='newer/enemies/'+variant.dir+'/'+variant.maps.height+'?v='+index.version;await image.decode();
+   const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0);const raw=ctx.getImageData(0,0,image.width,image.height).data;
+   const height=Float32Array.from({length:image.width*image.height},(_,i)=>raw[i*4]/255),expected=kernel.R_NormalsFromCraftedHeight(height,image.width,image.height,variant.heightStrength,variant.heightCap);
+   const matchDeadline=performance.now()+15000;let matches=false;
+   while(performance.now()<matchDeadline){const got=u.qrNormal.value?.image.data;matches=got?.length===expected.length && got.every((v,i)=>v===expected[i]);if(matches)break;await new Promise(r=>setTimeout(r,20));}
+   check(matches,key+': custom normals use the real stored height rather than generated fallback');
+   customResults.push({model:key,dimensions:[material.map.image.width,material.map.image.height],storedHeight:variant.dir+'/'+variant.maps.height});
+  }
+  evidence.nativeHeightLoads=nativeResults;evidence.customHeightLoads=customResults;evidence.checks=checks;
+  document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);status.textContent+=' All '+nativeResults.length+' native and '+customResults.length+' custom stored heights verified.';await compareAuthoring();
+ }
+
+ function draw(){
+  if(document.querySelector('#rotate').checked){angle+=.5;active.entity.angles[1]=angle;}
+  post.R_PostBegin(renderer,true,1200,720);const next=mesh.R_DrawAliasModel(active.entity,active.header,shades,.7);
+  if(next!==currentMesh){if(currentMesh)scene.remove(currentMesh);currentMesh=next;scene.add(next);}
+  camera.updateMatrixWorld();post.R_PostBind(renderer);renderer.clear();renderer.render(scene,camera);
+  post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:1200,lh:720},0,[],lights,0,1,false);
+  const custom=skins.R_NewerAliasMaterial(active.entity,active.entity.model.name,true);
+  if(!ready && custom && custom.map.image.width===1540){
+   const shader={uniforms:{},vertexShader:'#include <project_vertex>',fragmentShader:'#include <map_fragment>\n#include <opaque_fragment>\n#include <colorspace_fragment>'};custom.onBeforeCompile(shader);
+   if(shader.uniforms.uHasNormal.value===1){check(shader.uniforms.qrNormal.value.image.width===1540,'Shambler normal width');check(shader.uniforms.qrNormal.value.image.height===575,'Shambler normal height');ready=true;evidence.shamblerDiffuse=[1540,575];evidence.shamblerNormal=[1540,575];status.textContent='PASS — actual enemy models, replacement skins and height normals verified. '+Object.keys(index.nativeHeights).length+' original enemy/head/gore models available.';document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);}
+  }
+  if(ready && !gpuVerified){
+   gpuVerified=true;renderFrame();const withHeight=framebuffer();anim.r_newer_normals.value=0;renderFrame();const flat=framebuffer();anim.r_newer_normals.value=1;renderFrame();
+   let changed=0,total=0;for(let i=0;i<flat.length;i+=4){const delta=Math.abs(flat[i]-withHeight[i])+Math.abs(flat[i+1]-withHeight[i+1])+Math.abs(flat[i+2]-withHeight[i+2]);if(delta>0)changed++;total+=delta;}
+   check(changed>500,'height map affects actual rendered pixels');evidence.heightPixelComparison={changedPixels:changed,totalChannelDelta:total};evidence.checks=checks;document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);status.textContent+=' Height changes '+changed+' rendered pixels.';verifyCatalog().catch(error=>{status.textContent='FAIL — '+error.message;console.error(error);});
+  }
+  if(!ready && performance.now()-start>30000)status.textContent='Height/diffuse loading has not completed.';
+  requestAnimationFrame(draw);
+ }
+ draw();
+} catch(error){status.textContent='FAIL — '+error.message;console.error(error);}
+</script>

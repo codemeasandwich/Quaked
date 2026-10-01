@@ -1,0 +1,230 @@
+{
+ "factor": 4,
+ "bleed_pixels": 12,
+ "models": {
+  "h_demon": {
+   "source": "h_demon-2026-10-01.png",
+   "background": [
+    62,
+    66,
+    83
+   ],
+   "parts": [
+    {
+     "name": "front left horn",
+     "src": [
+      103,
+      10,
+      150,
+      197
+     ],
+     "dst": [
+      32,
+      6,
+      48,
+      75
+     ]
+    },
+    {
+     "name": "front right horn",
+     "src": [
+      174,
+      13,
+      217,
+      200
+     ],
+     "dst": [
+      57,
+      7,
+      71,
+      76
+     ]
+    },
+    {
+     "name": "back left horn",
+     "src": [
+      398,
+      13,
+      446,
+      197
+     ],
+     "dst": [
+      132,
+      7,
+      148,
+      75
+     ]
+    },
+    {
+     "name": "back right horn",
+     "src": [
+      471,
+      10,
+      511,
+      197
+     ],
+     "dst": [
+      157,
+      6,
+      171,
+      76
+     ]
+    },
+    {
+     "name": "front head",
+     "src": [
+      24,
+      195,
+      302,
+      407
+     ],
+     "dst": [
+      5,
+      79,
+      99,
+      156
+     ]
+    },
+    {
+     "name": "back head",
+     "src": [
+      315,
+      196,
+      595,
+      410
+     ],
+     "dst": [
+      104,
+      78,
+      199,
+      157
+     ]
+    }
+   ],
+   "source_sha256": "b910fcc149a76c473c738451d15f44af3980c79d960c5bcba02dbb0967c58b78"
+  },
+  "h_dog": {
+   "source": "h_dog-2026-10-01.png",
+   "background": [
+    62,
+    68,
+    84
+   ],
+   "parts": [
+    {
+     "name": "front head",
+     "src": [
+      10,
+      57,
+      303,
+      251
+     ],
+     "dst": [
+      6,
+      2,
+      132,
+      79
+     ]
+    },
+    {
+     "name": "back head",
+     "src": [
+      317,
+      59,
+      604,
+      249
+     ],
+     "dst": [
+      138,
+      3,
+      263,
+      78
+     ]
+    }
+   ],
+   "source_sha256": "be6a6f6df6fc272aeeaa7ccc03b1d77ae22587179d832bcc4b4c68535b877b01"
+  },
+  "zom_gib": {
+   "source": "zom_gib-2026-10-01.png",
+   "background": [
+    62,
+    68,
+    84
+   ],
+   "parts": [
+    {
+     "name": "front",
+     "src": [
+      12,
+      29,
+      186,
+      374
+     ],
+     "dst": [
+      4,
+      4,
+      47,
+      91
+     ]
+    },
+    {
+     "name": "back",
+     "src": [
+      214,
+      28,
+      385,
+      374
+     ],
+     "dst": [
+      56,
+      4,
+      99,
+      91
+     ]
+    }
+   ],
+   "source_sha256": "a28eb22e9081b7f0a96a8cfeac1b16bf7874c043586c2859a588f3a7d97ea798"
+  },
+  "h_shams": {
+   "source": "h_shams-2026-10-01.png",
+   "background": [
+    52,
+    30,
+    36
+   ],
+   "parts": [
+    {
+     "name": "front head",
+     "src": [
+      15,
+      14,
+      436,
+      329
+     ],
+     "dst": [
+      5,
+      1,
+      152,
+      106
+     ]
+    },
+    {
+     "name": "back head",
+     "src": [
+      451,
+      19,
+      865,
+      329
+     ],
+     "dst": [
+      160,
+      2,
+      306,
+      106
+     ]
+    }
+   ],
+   "source_sha256": "84fedf7aa288dccc16bf926f0339993ad038718487dfc7dd16d31f309687a143"
+  }
+ }
+}

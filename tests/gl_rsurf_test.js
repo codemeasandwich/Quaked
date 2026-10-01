@@ -154,6 +154,7 @@ Deno.test( 'cached water materials track fractional opacity changes', () => {
 	const oldFrame = gl_rmain.r_framecount;
 	const geometry = {
 		attributes: { uv: { needsUpdate: false } },
+		morphAttributes: {}, // Three.js Mesh inspects this even when no morph targets exist
 		dispose() {}
 	};
 	const surface = {

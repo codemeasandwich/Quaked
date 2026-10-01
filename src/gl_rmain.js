@@ -7,7 +7,7 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
-import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
+import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
 import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
@@ -1019,7 +1019,7 @@ function R_DrawAliasModel( e ) {
 		// HACK HACK HACK -- no fullbright colors, so make torches full light
 		const clmodel = e.model;
 		if ( clmodel.name === 'progs/flame2.mdl' || clmodel.name === 'progs/flame.mdl' )
-			ambientlight = shadelight = R_PostActive() ? 640 : 256; // flames glow past white in HDR
+			ambientlight = shadelight = R_NewerLightingActive() ? 640 : 256; // flames glow past white in HDR
 
 		// select shadedots row based on yaw angle
 		const yaw = e.angles ? e.angles[ 1 ] : 0;
@@ -1921,6 +1921,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_lerpmodels );
 	Cvar_RegisterVariable( r_newer_variety );
 	Cvar_RegisterVariable( r_newer_lighting );
+	Cvar_RegisterVariable( r_newer_normals );
 	Cvar_RegisterVariable( r_newer_water );
 	Cvar_RegisterVariable( r_newer_enemies );
 	Cvar_RegisterVariable( r_newer_textures );

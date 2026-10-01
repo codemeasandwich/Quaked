@@ -1949,7 +1949,8 @@ take effect only while playing Newer Game; New Game is always the original.
 
 const NEWER_FEATURES = [
 	{ cvar: 'r_newer_lighting', label: '        Newer lighting' },
-	{ cvar: 'r_newer_water', label: '           Newer water' },
+	{ cvar: 'r_newer_normals', label: '          Normal maps' },
+	{ cvar: 'r_newer_water', label: '        Newer liquids' },
 	{ cvar: 'r_newer_enemies', label: '         Newer enemies' },
 	{ cvar: 'r_newer_portals', label: '        Camera portals' },
 	{ cvar: 'r_newer_textures', label: '        Newer textures' },
@@ -2005,8 +2006,8 @@ function M_Newer_Draw() {
 	}
 
 	const notes = NEWER_ROW0 + NEWER_FEATURES.length * 8 + 6;
-	M_Print( 16, notes, ' Newer Game only. Water, mist and the' );
-	M_Print( 16, notes + 8, ' flashlight need the Newer lighting.' );
+	M_Print( 16, notes, ' Newer Game only. Lighting, normals' );
+	M_Print( 16, notes + 8, ' and liquids switch independently.' );
 
 	M_DrawCharacter( 200, NEWER_ROW0 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 

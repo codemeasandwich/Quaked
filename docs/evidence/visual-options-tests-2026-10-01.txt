@@ -1,0 +1,89 @@
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+PASS customize controls binds printable and named keys
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+PASS R_LevelEntities: models, skill, secret doors and plats
+PASS R_LevelEntities: a level you left shows how you left it
+PASS R_FramePrefix
+PASS exit shapes: thin vertical slab, thin horizontal slab, or a pad
+PASS walking through a doorway carries position, velocity and facing to the start
+PASS falling through a pit keeps falling and keeps facing
+PASS pads are not doorways
+PASS the approach side is the one with more room
+PASS a square portal frame is entered from its open side, along either axis
+PASS every Episode 1 exit is a doorway, a portal or a pit (only the finale is not)
+PASS the real Episode 1 maps link up in a chain
+PASS the way back through a crossing undoes it
+PASS lighting, normal maps and liquids switch independently on existing materials
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS Newer menu exposes independent lighting, normals and liquids controls
+46/46 passed

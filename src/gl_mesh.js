@@ -1,7 +1,7 @@
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';
-import { R_NewerAliasMaterial } from './r_newerskins.js';
+import { R_NewerAliasMaterial, R_EnemyAliasMaterial } from './r_newerskins.js';
 import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cl } from './client.js';
@@ -604,8 +604,6 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 	const cacheKey = skinnum * 8 + anim * 2 + ( hasLighting ? 1 : 0 );
 
 	let material = paliashdr._materialCache.get( cacheKey );
-	if ( material ) return material;
-
 	let texture = null;
 	if ( paliashdr.gl_texturenum ) {
 
@@ -618,6 +616,14 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 		}
 
 	}
+
+	if ( texture && entity != null && entity.model != null ) {
+
+		const detailed = R_EnemyAliasMaterial( texture, entity.model.name, hasLighting, skinnum, anim );
+		if ( detailed !== null ) return detailed;
+
+	}
+	if ( material ) return material;
 
 	if ( texture ) {
 

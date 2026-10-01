@@ -2,7 +2,7 @@
 
 import * as THREE from 'three';
 import { Sys_Error } from './sys.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame, R_NewerLightingActive } from './r_anim.js';
 
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
@@ -33,7 +33,7 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 	// fullbright texels exceed white when the HDR pipeline is on
 	R_RegisterGlow( material );
 
-	// generated normal map + parallax while the HDR pipeline is on
+	// independently switched normal maps + parallax in Newer Game
 	R_RegisterDetail( material, diffuseMap );
 
 	return material;
@@ -1232,7 +1232,7 @@ const DYNAMIC_SHARE = 0.3;
 function R_AddDynamicLights( surf ) {
 
 	if ( ! cl_dlights ) return;
-	const dynScale = R_PostActive() ? DYNAMIC_SHARE : 1;
+	const dynScale = R_NewerLightingActive() ? DYNAMIC_SHARE : 1;
 
 	const smax = ( surf.extents[ 0 ] >> 4 ) + 1;
 	const tmax = ( surf.extents[ 1 ] >> 4 ) + 1;

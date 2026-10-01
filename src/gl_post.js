@@ -31,7 +31,7 @@ import { R_TeleportFx } from './r_teleportfx.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes } from './r_waterprobe.js';
-import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
+import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_normals, r_newer_water } from './r_anim.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
@@ -189,7 +189,10 @@ function sunFromAngles( yaw, pitch ) {
 //============================================================================
 
 const glowMaterials = new Set();
-let glowActive = false;
+let glowActive = false; // advanced lighting and emissive boost
+let postActive = false; // shared render targets, also needed by normals and liquids
+let detailActive = false;
+const lightingLook = { value: 0 };
 
 
 // The eye is under water, slime or lava: no drops on the lens, no edge outlines
@@ -203,15 +206,14 @@ export function R_PostSetUnderwater( v ) {
 
 export function R_PostActive() {
 
-	return glowActive && classicLook.value === 0;
+	return postActive && classicLook.value === 0;
 
 }
 
-// Newer Game's water: see-through liquids, absorption and caustics.  It is part
-// of the lighting pipeline, so it needs that as well as its own switch.
+// Newer liquids use the shared targets, independently of advanced lighting.
 export function R_WaterActive() {
 
-	return glowActive && classicLook.value === 0 && r_newer_water.value !== 0;
+	return R_PostActive() && r_newer_water.value !== 0;
 
 }
 
@@ -274,11 +276,16 @@ function setGlowActive( active ) {
 
 	if ( active === glowActive ) return;
 	glowActive = active;
-	GL_SetForceLinear( active ); // smooth texture filtering in Newer Game
 	for ( const m of glowMaterials )
 		applyGlow( m, m.userData.glowBoost );
-	for ( const m of detailMaterials )
-		applyDetail( m );
+
+}
+
+function setDetailActive( active ) {
+
+	if ( active === detailActive ) return;
+	detailActive = active;
+	for ( const m of detailMaterials ) applyDetail( m );
 
 }
 
@@ -293,7 +300,7 @@ const PARALLAX_LAYERS = 10;
 
 // Parallax: shift the texture lookups along the view ray by the height stored in
 // the normal map's alpha, so bricks stand proud of the mortar and shift as you
-// move.  Runs only when a normal map is attached (the Newer lighting).
+// move.  Runs only when the independently switched normal map is attached.
 const PARALLAX_GLSL = `
 #ifdef USE_NORMALMAP
 vec2 pUv = vMapUv;
@@ -345,13 +352,14 @@ function patchDetailShader( shader ) {
 
 	let f = shader.fragmentShader;
 
-	f = 'layout(location = 1) out highp vec4 gNormal;\nuniform float uLmGamma;\nuniform float uClassic;\n' + f;
+	f = 'layout(location = 1) out highp vec4 gNormal;\nuniform float uLmGamma;\nuniform float uLighting;\nuniform float uClassic;\n' + f;
 	shader.uniforms.uLmGamma = lightCurve;
+	shader.uniforms.uLighting = lightingLook;
 	shader.uniforms.uClassic = classicLook;
 
 	// the baked light, curved: only what a source really lights stays bright
 	f = f.replace( '#include <lights_fragment_maps>', THREE.ShaderChunk.lights_fragment_maps.replace(
-		'lightMapTexel.rgb * lightMapIntensity', 'max( pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( mix( uLmGamma, 1.0, uClassic ) ) ), vec3( ' + BOUNCE_LIGHT + ' * ( 1.0 - uClassic ) ) ) * lightMapIntensity' ) );
+		'lightMapTexel.rgb * lightMapIntensity', 'max( pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( mix( uLmGamma, 1.0, uClassic ) ) ), vec3( ' + BOUNCE_LIGHT + ' * uLighting * ( 1.0 - uClassic ) ) ) * lightMapIntensity' ) );
 
 	// texture lookups follow the parallax-shifted coordinates
 	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
@@ -390,7 +398,7 @@ THREE.Material.prototype.onBeforeCompile = patchGBufferShader;
 function applyDetail( material ) {
 
 	const diffuse = material.userData.detailDiffuse;
-	const wanted = glowActive && diffuse != null ? R_NormalMapFor( diffuse ) : null;
+	const wanted = detailActive && diffuse != null ? R_NormalMapFor( diffuse ) : null;
 
 	if ( material.normalMap === wanted ) return;
 
@@ -401,8 +409,8 @@ function applyDetail( material ) {
 
 }
 
-// Lit world materials: gets a generated normal map and parallax while the HDR
-// pipeline is on, and always writes the normal G-buffer.
+// World materials keep normal maps and parallax independently of lighting,
+// and always write the normal G-buffer.
 export function R_RegisterDetail( material, diffuse ) {
 
 	material.userData.detailDiffuse = diffuse;
@@ -1505,6 +1513,7 @@ uniform float uEdge;
 uniform float uDropDensity;
 uniform float uDropBlood;
 uniform float uBumpLight;
+uniform float uLighting;
 uniform float uTeleStretch;
 uniform float uTeleChroma;
 uniform float uDropAge;
@@ -1771,148 +1780,151 @@ void main() {
 		if ( dot( Ng, P ) > 0.0 ) Ng = - Ng;
 		vec3 Nl = normalize( mix( Ng, N, uBumpLight ) );
 
-		vec3 relit = vec3( 0.0 );
-		vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
+		if ( uLighting > 0.5 ) {
+			vec3 relit = vec3( 0.0 );
+			vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
 
-		if ( uSunOn > 0.5 ) {
-			float ndl = max( dot( Nl, uSunDirV ), 0.0 );
-			if ( ndl > 0.0 ) {
-				vec3 pw = ( uViewInv * vec4( P + Ng * 1.5, 1.0 ) ).xyz;
-				relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookieRGB( pw );
+			if ( uSunOn > 0.5 ) {
+				float ndl = max( dot( Nl, uSunDirV ), 0.0 );
+				if ( ndl > 0.0 ) {
+					vec3 pw = ( uViewInv * vec4( P + Ng * 1.5, 1.0 ) ).xyz;
+					relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookieRGB( pw );
+				}
 			}
-		}
 
-		float jit = noise( gl_FragCoord.xy );
-		for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
-			if ( i >= uCount ) break;
-			vec3 L = uLightPos[ i ].xyz - P;
-			float dist = length( L );
-			float range = uLightCol[ i ].w;
-			if ( dist > range ) continue;
-			float ndl = max( dot( Nl, L / dist ), 0.0 );
-			if ( ndl <= 0.0 ) continue;
+			float jit = noise( gl_FragCoord.xy );
+			for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
+				if ( i >= uCount ) break;
+				vec3 L = uLightPos[ i ].xyz - P;
+				float dist = length( L );
+				float range = uLightCol[ i ].w;
+				if ( dist > range ) continue;
+				float ndl = max( dot( Nl, L / dist ), 0.0 );
+				if ( ndl <= 0.0 ) continue;
 
-			float fall = 1.0 / ( 1.0 + dist * dist / ( 60.0 * 60.0 ) );
-			fall *= 1.0 - smoothstep( 0.55 * range, range, dist );
+				float fall = 1.0 / ( 1.0 + dist * dist / ( 60.0 * 60.0 ) );
+				fall *= 1.0 - smoothstep( 0.55 * range, range, dist );
 
-			float vis = 0.0;
-			for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
-				float s = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
-				vec3 Q = mix( P + Ng * 2.0, uLightPos[ i ].xyz, s * 0.95 );
-				if ( Q.z > - uNear ) { vis += 1.0; continue; }
-				vec4 cq = uProj * vec4( Q, 1.0 );
-				vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
-				if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { vis += 1.0; continue; }
-				vis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
-			}
-			vis /= float( RELIGHT_STEPS );
-
-			vec3 lightHere = uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
-			relit += lightHere;
-			flashAdd += lightHere * uLightAdd[ i ];
-		}
-
-		// a source lights a surface whatever its baked light was; the small floor
-		// stands for the surface's own colour, which is not known here
-		// the flashlight
-		vec3 spot = vec3( 0.0 );
-		if ( uSpotOn > 0.5 ) {
-			vec3 Ls = uSpotPos - P;
-			float sd = length( Ls );
-			vec3 Sn = Ls / max( sd, 1.0 );
-			float sndl = max( dot( Nl, Sn ), 0.0 );
-			float cosS = dot( - Sn, uSpotDir );
-			// a defined edge, and a brighter core
-			float cone = smoothstep( uSpotCone.x, uSpotCone.y, cosS ) * mix( 0.62, 1.0, smoothstep( uSpotCone.y, 0.995, cosS ) );
-			if ( sndl > 0.0 && cone > 0.0 && sd < 1500.0 ) {
-				float fall = 1.0 / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) );
-				fall *= 1.0 - smoothstep( 800.0, 1500.0, sd );
-				float svis = 0.0;
+				float vis = 0.0;
 				for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
 					float s = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
-					vec3 Q = mix( P + Ng * 2.0, uSpotPos, s * 0.95 );
-					if ( Q.z > - uNear ) { svis += 1.0; continue; }
+					vec3 Q = mix( P + Ng * 2.0, uLightPos[ i ].xyz, s * 0.95 );
+					if ( Q.z > - uNear ) { vis += 1.0; continue; }
 					vec4 cq = uProj * vec4( Q, 1.0 );
 					vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
-					if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { svis += 1.0; continue; }
-					svis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
+					if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { vis += 1.0; continue; }
+					vis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
 				}
-				svis /= float( RELIGHT_STEPS );
-				spot = uSpotCol * sndl * fall * cone * svis * svis;
-				spotMask = clamp( sndl * fall * cone * svis * svis * 1.6, 0.0, 1.0 );
-			}
-		}
+				vis /= float( RELIGHT_STEPS );
 
-		// (tinted by the surface's own colour, so stone stays stone and does not
-		// wash out to grey where a light falls on it)
-		vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-		// the beam adds less to what is already bright (an enemy in it would wash out: a flat lift on a pale surface
-		// is grey), and its flat tint only lifts the darks
-		float sl = dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) );
-		float spotGain = 1.15 * ( 1.0 + 4.0 * ( 1.0 - smoothstep( 0.0, 0.06, sl ) ) ) * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
-		float spotLift = 0.12 * ( 1.0 - smoothstep( 0.15, 0.6, sl ) );
-		// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
-		// gets a plain warm one, so the flashlight always has something to light
-		float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
-		vec3 beamTint = mix( vec3( 0.3 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
-		// Bounce light.  What a surface sees of its neighbours on the screen lights it a little: each of a handful of
-		// points round it (out to about 150 units) gives the light it is sending this way, if the two face each
-		// other, less with distance; and the receiver's own colour tints it (a red wall casts red on the floor, and
-		// a lit patch of floor lights the wall above it).  This is what stops the places no lamp reaches from being
-		// flat black, and why a room round a bright light glows with its colour.
-		vec3 bounce = vec3( 0.0 );
-		if ( uBounce > 0.0 ) {
-			const int BOUNCE_SAMPLES = 8;
-			float rad = clamp( 150.0 * uProj[ 0 ][ 0 ] * 0.5 / max( here, 8.0 ), 0.01, 0.22 );
-			float aspect = uTexel.y / uTexel.x;
-			float turn = jit * 6.2831;
-			for ( int i = 0; i < BOUNCE_SAMPLES; i ++ ) {
-				float fi = float( i ) + 0.5;
-				float a = fi * 2.39996 + turn;
-				float rr = sqrt( fi / float( BOUNCE_SAMPLES ) );
-				vec2 uvs = uvd + vec2( cos( a ), sin( a ) * aspect ) * rr * rad;
-				if ( uvs.x < 0.0 || uvs.x > 1.0 || uvs.y < 0.0 || uvs.y > 1.0 ) continue;
-				if ( texture2D( tDepth, uvs ).x >= 0.99999 ) continue;
-				vec4 gs = texture2D( tNormal, uvs );
-				if ( gs.a < - 0.5 ) continue;
-				vec3 Ps = viewPosAt( uvs );
-				vec3 v = Ps - P;
-				float dist = length( v );
-				if ( dist < 3.0 || dist > 260.0 ) continue;
-				vec3 dir = v / dist;
-				float cosR = max( dot( Ng, dir ), 0.0 );
-				vec3 Ns = gs.a > 0.0 ? normalize( gs.rgb * 2.0 - 1.0 ) : - dir;
-				if ( dot( Ns, Ps ) > 0.0 ) Ns = - Ns;
-				float cosS = max( dot( Ns, - dir ), 0.0 );
-				float w = cosR * cosS / ( 1.0 + dist * dist / ( 80.0 * 80.0 ) );
-				// what that point is sending: its lit colour, and the flashlight's light on it (the beam is added after
-				// this picture, so it is estimated here, without shadows)
-				float beamS = 0.0;
-				if ( uSpotOn > 0.5 ) {
-					vec3 Ls = uSpotPos - Ps;
-					float sd = length( Ls );
-					vec3 sn = Ls / max( sd, 1.0 );
-					float coneS = smoothstep( uSpotCone.x, uSpotCone.y, dot( - sn, uSpotDir ) );
-					beamS = coneS * max( dot( Ns, sn ), 0.0 ) / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) ) * ( 1.0 - smoothstep( 800.0, 1500.0, sd ) );
+				vec3 lightHere = uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
+				relit += lightHere;
+				flashAdd += lightHere * uLightAdd[ i ];
+			}
+
+			// a source lights a surface whatever its baked light was; the small floor
+			// stands for the surface's own colour, which is not known here
+			// the flashlight
+			vec3 spot = vec3( 0.0 );
+			if ( uSpotOn > 0.5 ) {
+				vec3 Ls = uSpotPos - P;
+				float sd = length( Ls );
+				vec3 Sn = Ls / max( sd, 1.0 );
+				float sndl = max( dot( Nl, Sn ), 0.0 );
+				float cosS = dot( - Sn, uSpotDir );
+				// a defined edge, and a brighter core
+				float cone = smoothstep( uSpotCone.x, uSpotCone.y, cosS ) * mix( 0.62, 1.0, smoothstep( uSpotCone.y, 0.995, cosS ) );
+				if ( sndl > 0.0 && cone > 0.0 && sd < 1500.0 ) {
+					float fall = 1.0 / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) );
+					fall *= 1.0 - smoothstep( 800.0, 1500.0, sd );
+					float svis = 0.0;
+					for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
+						float s = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
+						vec3 Q = mix( P + Ng * 2.0, uSpotPos, s * 0.95 );
+						if ( Q.z > - uNear ) { svis += 1.0; continue; }
+						vec4 cq = uProj * vec4( Q, 1.0 );
+						vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
+						if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { svis += 1.0; continue; }
+						svis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
+					}
+					svis /= float( RELIGHT_STEPS );
+					spot = uSpotCol * sndl * fall * cone * svis * svis;
+					spotMask = clamp( sndl * fall * cone * svis * svis * 1.6, 0.0, 1.0 );
 				}
-				// a lamp or flame is far brighter than the wall round it, and one lucky sample on it showed as a speckle of dots
-				// on the wall: what a point sends is squashed (so a flame is a few times a wall, not a hundred), and
-				// averaged over a few neighbouring texels
-				vec2 ob = uTexel * 3.0;
-				vec3 src = ( texture2D( tScene, uvs ).rgb * 2.0 + texture2D( tScene, uvs + ob ).rgb + texture2D( tScene, uvs - ob ).rgb ) * 0.25 * ( 1.0 + 5.0 * beamS );
-				bounce += src / ( 1.0 + 0.9 * max( src.r, max( src.g, src.b ) ) ) * w;
 			}
-			bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
-		}
-		vec3 receiver = mix( vec3( 0.6 ), tint, 0.7 ) * 0.55;
-		c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
-		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
-		if ( spotMask > 0.0 ) {
-			float ls = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-			c = mix( vec3( ls ), c, 1.0 + 0.2 * spotMask );
-			c *= 1.0 + 0.08 * spotMask;
-		}
+			// (tinted by the surface's own colour, so stone stays stone and does not
+			// wash out to grey where a light falls on it)
+			vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
+			// the beam adds less to what is already bright (an enemy in it would wash out: a flat lift on a pale surface
+			// is grey), and its flat tint only lifts the darks
+			float sl = dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) );
+			float spotGain = 1.15 * ( 1.0 + 4.0 * ( 1.0 - smoothstep( 0.0, 0.06, sl ) ) ) * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
+			float spotLift = 0.12 * ( 1.0 - smoothstep( 0.15, 0.6, sl ) );
+			// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
+			// gets a plain warm one, so the flashlight always has something to light
+			float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
+			vec3 beamTint = mix( vec3( 0.3 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
+			// Bounce light.  What a surface sees of its neighbours on the screen lights it a little: each of a handful of
+			// points round it (out to about 150 units) gives the light it is sending this way, if the two face each
+			// other, less with distance; and the receiver's own colour tints it (a red wall casts red on the floor, and
+			// a lit patch of floor lights the wall above it).  This is what stops the places no lamp reaches from being
+			// flat black, and why a room round a bright light glows with its colour.
+			vec3 bounce = vec3( 0.0 );
+			if ( uBounce > 0.0 ) {
+				const int BOUNCE_SAMPLES = 8;
+				float rad = clamp( 150.0 * uProj[ 0 ][ 0 ] * 0.5 / max( here, 8.0 ), 0.01, 0.22 );
+				float aspect = uTexel.y / uTexel.x;
+				float turn = jit * 6.2831;
+				for ( int i = 0; i < BOUNCE_SAMPLES; i ++ ) {
+					float fi = float( i ) + 0.5;
+					float a = fi * 2.39996 + turn;
+					float rr = sqrt( fi / float( BOUNCE_SAMPLES ) );
+					vec2 uvs = uvd + vec2( cos( a ), sin( a ) * aspect ) * rr * rad;
+					if ( uvs.x < 0.0 || uvs.x > 1.0 || uvs.y < 0.0 || uvs.y > 1.0 ) continue;
+					if ( texture2D( tDepth, uvs ).x >= 0.99999 ) continue;
+					vec4 gs = texture2D( tNormal, uvs );
+					if ( gs.a < - 0.5 ) continue;
+					vec3 Ps = viewPosAt( uvs );
+					vec3 v = Ps - P;
+					float dist = length( v );
+					if ( dist < 3.0 || dist > 260.0 ) continue;
+					vec3 dir = v / dist;
+					float cosR = max( dot( Ng, dir ), 0.0 );
+					vec3 Ns = gs.a > 0.0 ? normalize( gs.rgb * 2.0 - 1.0 ) : - dir;
+					if ( dot( Ns, Ps ) > 0.0 ) Ns = - Ns;
+					float cosS = max( dot( Ns, - dir ), 0.0 );
+					float w = cosR * cosS / ( 1.0 + dist * dist / ( 80.0 * 80.0 ) );
+					// what that point is sending: its lit colour, and the flashlight's light on it (the beam is added after
+					// this picture, so it is estimated here, without shadows)
+					float beamS = 0.0;
+					if ( uSpotOn > 0.5 ) {
+						vec3 Ls = uSpotPos - Ps;
+						float sd = length( Ls );
+						vec3 sn = Ls / max( sd, 1.0 );
+						float coneS = smoothstep( uSpotCone.x, uSpotCone.y, dot( - sn, uSpotDir ) );
+						beamS = coneS * max( dot( Ns, sn ), 0.0 ) / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) ) * ( 1.0 - smoothstep( 800.0, 1500.0, sd ) );
+					}
+					// a lamp or flame is far brighter than the wall round it, and one lucky sample on it showed as a speckle of dots
+					// on the wall: what a point sends is squashed (so a flame is a few times a wall, not a hundred), and
+					// averaged over a few neighbouring texels
+					vec2 ob = uTexel * 3.0;
+					vec3 src = ( texture2D( tScene, uvs ).rgb * 2.0 + texture2D( tScene, uvs + ob ).rgb + texture2D( tScene, uvs - ob ).rgb ) * 0.25 * ( 1.0 + 5.0 * beamS );
+					bounce += src / ( 1.0 + 0.9 * max( src.r, max( src.g, src.b ) ) ) * w;
+				}
+				bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
+			}
+			vec3 receiver = mix( vec3( 0.6 ), tint, 0.7 ) * 0.55;
+			c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+
+			// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
+			if ( spotMask > 0.0 ) {
+				float ls = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+				c = mix( vec3( ls ), c, 1.0 + 0.2 * spotMask );
+				c *= 1.0 + 0.08 * spotMask;
+			}
+
+		} // advanced lighting
 
 		// corners and edges
 		if ( uEdge > 0.0 ) creaseK = creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
@@ -2032,22 +2044,24 @@ void main() {
 
 	c = max( c * uExposure, 0.0 );
 
-	// grade: punchier mid-tones and highlights (darks are left alone), richer colour
-	float l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-	c *= 1.0 + uContrast * smoothstep( 0.04, 0.5, l );
-	l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-	c = mix( vec3( l ), c, uSaturation );
+	if ( uLighting > 0.5 ) {
+		// grade: punchier mid-tones and highlights (darks are left alone), richer colour
+		float l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+		c *= 1.0 + uContrast * smoothstep( 0.04, 0.5, l );
+		l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+		c = mix( vec3( l ), c, uSaturation );
 
-	// atmosphere: deep blacks (the darks are pressed down), colour that is richer where it is
-	// weak (a vibrance on top of the saturation), cold shadows and warm lights
-	l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-	c *= mix( 0.85, 1.0, smoothstep( 0.0, 0.2, l ) );
-	float mx = max( c.r, max( c.g, c.b ) ), mn = min( c.r, min( c.g, c.b ) );
-	float chroma = ( mx - mn ) / max( mx, 1e-4 );
-	c = mix( vec3( l ), c, 1.0 + uVibrance * ( 1.0 - chroma ) );
-	c *= mix( vec3( 0.94, 0.97, 1.05 ), vec3( 1.03, 1.0, 0.95 ), smoothstep( 0.02, 0.40, l ) );
+		// atmosphere: deep blacks (the darks are pressed down), colour that is richer where it is
+		// weak (a vibrance on top of the saturation), cold shadows and warm lights
+		l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
+		c *= mix( 0.85, 1.0, smoothstep( 0.0, 0.2, l ) );
+		float mx = max( c.r, max( c.g, c.b ) ), mn = min( c.r, min( c.g, c.b ) );
+		float chroma = ( mx - mn ) / max( mx, 1e-4 );
+		c = mix( vec3( l ), c, 1.0 + uVibrance * ( 1.0 - chroma ) );
+		c *= mix( vec3( 0.94, 0.97, 1.05 ), vec3( 1.03, 1.0, 0.95 ), smoothstep( 0.02, 0.40, l ) );
 
-	c = shoulder( c );
+		c = shoulder( c );
+	}
 
 	// the drops: a little darker at the edge where they bend the light, a bright
 	// glint, and blood-red where it is blood
@@ -2205,6 +2219,7 @@ function createPipeline() {
 			uDropDensity: { value: 0 },
 			uDropBlood: { value: 0 },
 			uBumpLight: { value: BUMP_LIGHT },
+			uLighting: lightingLook,
 			uTeleStretch: { value: 0 },
 			uTeleChroma: { value: 0 },
 			uDropAge: { value: 0 },
@@ -2311,14 +2326,21 @@ R_PostBind selects.
 */
 export function R_PostBegin( renderer, enabled, width, height ) {
 
-	// Newer Game is on; its lighting pipeline can be switched off on its own
+	// The shared targets serve three independent visual options. Turning lighting
+	// off keeps relief and liquid compositing available without relighting the world.
 	const newer = enabled && r_hdr.value !== 0;
-	const active = newer && r_newer_lighting.value !== 0 && R_PostSupported( renderer ) && width > 8 && height > 8;
-	setGlowActive( active );
+	const wanted = r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0;
+	const active = newer && wanted && R_PostSupported( renderer ) && width > 8 && height > 8;
+	postActive = active;
+	const lighting = active && r_newer_lighting.value !== 0;
+	setGlowActive( lighting );
+	setDetailActive( active && r_newer_normals.value !== 0 );
+	GL_SetForceLinear( active );
 	R_AnimSetNewer( newer );
-	R_AnimSetLighting( active );
-	lightCurve.value = active ? Math.max( 1, r_newdark.value ) : 1;
-	if ( active ) pulseLava( performance.now() / 1000 );
+	R_AnimSetLighting( lighting );
+	lightingLook.value = lighting ? 1 : 0;
+	lightCurve.value = lighting ? Math.max( 1, r_newdark.value ) : 1;
+	if ( lighting ) pulseLava( performance.now() / 1000 );
 	skySeen = false;
 
 	if ( active === false ) return false;
@@ -2431,7 +2453,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	const hdr = p.hdr;
 	const sh = p.shared;
 
-	selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
+	const lighting = glowActive;
+	if ( lighting ) selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
+	else selectedCount = 0;
 
 	sh.tDepth.value = hdr.depthTexture;
 	sh.uProj.value.copy( camera.projectionMatrix );
@@ -2443,7 +2467,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	// the flashlight, in view space
 	const beam = R_FlashlightBeam();
-	sh.uSpotOn.value = beam.on ? 1 : 0;
+	sh.uSpotOn.value = lighting && beam.on ? 1 : 0;
 	if ( beam.on ) {
 
 		const v = camera.matrixWorldInverse.elements;
@@ -2469,7 +2493,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	// the sun, when the map has sky to light it; how strong, what colour and what
 	// pattern all come from the map's sky
-	const sunOn = hasSkyView === true;
+	const sunOn = lighting && hasSkyView === true;
 	sh.uSunOn.value = sunOn ? 1 : 0;
 
 	const bright = R_SkyBrightness( skyInfo.luma );
@@ -2489,7 +2513,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	p.volumeMaterial.uniforms.uOpenFog.value = 0.018 - 0.015 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
 	p.compositeMaterial.uniforms.uHaze.value = HAZE_DENSITY * ( 1.5 - 1.05 * bright );
-	sh.uBounce.value = Math.max( 0, r_bounce.value );
+	sh.uBounce.value = lighting ? Math.max( 0, r_bounce.value ) : 0;
 	sh.tCookie.value = skyCookie;
 	sh.tCookieCloud.value = skyCookieCloud;
 	sh.uCookieCloud.value = skyCookieCloud !== null ? 1 : 0;
@@ -2510,12 +2534,12 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	// volumetric pass
-	const volume = Math.max( 0, r_volumetric.value );
+	const volume = lighting ? Math.max( 0, r_volumetric.value ) : 0;
 	if ( volume > 0 ) runPass( renderer, p.volumeMaterial, p.volume );
 	R_PerfStage( 'light shafts' );
 
 	// bloom
-	const bloom = Math.max( 0, r_bloom.value );
+	const bloom = lighting ? Math.max( 0, r_bloom.value ) : 0;
 	if ( bloom > 0 ) {
 
 		const pm = p.prefilterMaterial.uniforms;
@@ -2633,7 +2657,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	cm.uScreenReflect.value = r_reflect_screen.value !== 0 ? 1 : 0;
 
-	cm.uEdge.value = underwater ? 0 : Math.max( 0, r_newedges.value );
+	cm.uEdge.value = underwater || ! lighting ? 0 : Math.max( 0, r_newedges.value );
 	const drops = R_ScreenDropsUpdate();
 	cm.uDropDensity.value = underwater ? 0 : drops.density;
 	cm.uDropBlood.value = drops.blood;
@@ -2642,6 +2666,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uTeleChroma.value = tele.chroma;
 	cm.uDropAge.value = drops.age;
 	cm.uTime.value = time;
+	cm.uHaze.value = lighting ? HAZE_DENSITY * ( 1.5 - 1.05 * bright ) : 0;
 	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];
 	cm.tNormal.value = hdr.textures[ 1 ];
@@ -2650,10 +2675,10 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
 	// brightness and contrast are applied to the picture as displayed (below), so
 	// 0.6 is 40% darker and 1.4 is 40% more contrast as seen
-	const newBright = Math.max( 0, r_newbright.value );
-	cm.uExposure.value = exposure * HDR_EXPOSURE * ( hasSkyView === true ? OUTDOOR_EXPOSURE : 1 );
+	const newBright = lighting ? Math.max( 0, r_newbright.value ) : 1;
+	cm.uExposure.value = lighting ? exposure * HDR_EXPOSURE * ( hasSkyView === true ? OUTDOOR_EXPOSURE : 1 ) : exposure;
 	cm.uBright.value = newBright;
-	cm.uContrastGain.value = Math.max( 0, r_newcontrast.value );
+	cm.uContrastGain.value = lighting ? Math.max( 0, r_newcontrast.value ) : 1;
 	cm.uContrastPivot.value = newBright * 0.2; // deviations are taken from a typical scene brightness
 	cm.uBloom.value = bloom * ( hasSkyView === true ? OUTDOOR_BLOOM : 1 );
 	cm.uVolume.value = volume;

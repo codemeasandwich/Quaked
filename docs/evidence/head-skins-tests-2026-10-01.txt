@@ -1,0 +1,38 @@
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+PASS every stock enemy, head and gore model has height-driven native relief without replacement art
+PASS native relief respects independent normals, original enemy toggle, lighting and classic pass
+PASS distinct skins and animation-frame textures keep distinct height maps and model-owned diffuse lifetimes
+PASS stored custom enemy height loads in either order, preserves UV and suppresses captions-independent material changes
+PASS failed or mismatched height downloads keep a safe native fallback
+PASS native two/three/five-frame groups use exactly the model loader animation slots
+PASS late custom/native downloads are disposed after shutdown and same-texture reuse
+PASS failed and wrong-size custom heights actively fall back to the matching diffuse
+PASS native height revision changes reject older responses and refresh the same diffuse texture
+PASS lighting, normal maps and liquids switch independently on existing materials
+PASS Newer menu exposes independent lighting, normals and liquids controls
+PASS viewmodel uses the registered chase camera cvar
+PASS player skin translation accepts numeric alias model types
+37/37 passed

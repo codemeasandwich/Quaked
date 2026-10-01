@@ -1,0 +1,392 @@
+{
+  "checks": 194,
+  "version": 21,
+  "source_sha256": "f65fd1bcc87f70862cfb7284f216c4b20b89a05ed82fd0cc71f4d7a51033a3e9",
+  "stored_height_count": 33,
+  "available_models": [
+    "boss",
+    "demon",
+    "dog",
+    "gib1",
+    "gib2",
+    "gib3",
+    "h_demon",
+    "h_dog",
+    "h_guard",
+    "h_knight",
+    "h_ogre",
+    "h_shams",
+    "h_wizard",
+    "h_zombie",
+    "knight",
+    "ogre",
+    "shambler",
+    "soldier",
+    "wizard",
+    "zom_gib",
+    "zombie"
+  ],
+  "runtime_model_keys": [
+    "boss",
+    "demon",
+    "dog",
+    "enforcer",
+    "fish",
+    "gib1",
+    "gib2",
+    "gib3",
+    "h_demon",
+    "h_dog",
+    "h_guard",
+    "h_hellkn",
+    "h_knight",
+    "h_ogre",
+    "h_shal",
+    "h_shams",
+    "h_wizard",
+    "h_zombie",
+    "hknight",
+    "knight",
+    "ogre",
+    "oldone",
+    "shalrath",
+    "shambler",
+    "soldier",
+    "tarbaby",
+    "wizard",
+    "zom_gib",
+    "zombie"
+  ],
+  "records": [
+    {
+      "model": "gib1",
+      "kind": "native",
+      "file": "heights/gib1/skin0_0.webp",
+      "dimensions": [
+        72,
+        68
+      ],
+      "sha256": "05ba2277ebf69cd88bef76da843fc6aaf6fb214ab61dde806a7bff70c27a0574"
+    },
+    {
+      "model": "gib2",
+      "kind": "native",
+      "file": "heights/gib2/skin0_0.webp",
+      "dimensions": [
+        168,
+        84
+      ],
+      "sha256": "ee833a952d7c2b8cbc1daf9777a0842357660ac1ba75c583d1ce8d86e36d2ad2"
+    },
+    {
+      "model": "gib3",
+      "kind": "native",
+      "file": "heights/gib3/skin0_0.webp",
+      "dimensions": [
+        200,
+        108
+      ],
+      "sha256": "92cbd68c861502e06e31f2c12fcd3717d87642671b72315e0f34a88a851c82d9"
+    },
+    {
+      "model": "zom_gib",
+      "kind": "native",
+      "file": "heights/zom_gib/skin0_0.webp",
+      "dimensions": [
+        104,
+        92
+      ],
+      "sha256": "c26a2522d4b956af1f84d88f61763229777858b7dc6a219d43bd8d4dc2e6fbf0"
+    },
+    {
+      "model": "ogre",
+      "kind": "native",
+      "file": "heights/ogre/skin0_0.webp",
+      "dimensions": [
+        264,
+        194
+      ],
+      "sha256": "b7add55773ffb47bce592a7c0a242c5a97e37936805a8c23ddc7ad4e77061b01"
+    },
+    {
+      "model": "h_ogre",
+      "kind": "native",
+      "file": "heights/h_ogre/skin0_0.webp",
+      "dimensions": [
+        184,
+        76
+      ],
+      "sha256": "c5e6cb96b66b2332eb96c1ce9a4e577eb3fa0f01dcd91863b69af058d5306aeb"
+    },
+    {
+      "model": "demon",
+      "kind": "native",
+      "file": "heights/demon/skin0_0.webp",
+      "dimensions": [
+        308,
+        177
+      ],
+      "sha256": "40394154302ab02175062621bd415e923dfc60b5a6f86239a9b69cac44940027"
+    },
+    {
+      "model": "h_demon",
+      "kind": "native",
+      "file": "heights/h_demon/skin0_0.webp",
+      "dimensions": [
+        200,
+        164
+      ],
+      "sha256": "27e92f7622423d84df97daedfcd4ddad752ab5c2fe67eedcd78bedbd34c9a386"
+    },
+    {
+      "model": "shambler",
+      "kind": "native",
+      "file": "heights/shambler/skin0_0.webp",
+      "dimensions": [
+        308,
+        115
+      ],
+      "sha256": "77d33f6aea6e4b507d8d58e571e748a1803040c79305e7fe45d5f2140cca0714"
+    },
+    {
+      "model": "h_shams",
+      "kind": "native",
+      "file": "heights/h_shams/skin0_0.webp",
+      "dimensions": [
+        312,
+        114
+      ],
+      "sha256": "0d937745ad3e3723a253ff5feb89c088aaeeba0a4154fc59ae63de5ff69042d1"
+    },
+    {
+      "model": "knight",
+      "kind": "native",
+      "file": "heights/knight/skin0_0.webp",
+      "dimensions": [
+        268,
+        194
+      ],
+      "sha256": "bb1a47d31b7ee8fd034a4cd40e7d12f2e6da98ad76662123f0095e2fcf83957e"
+    },
+    {
+      "model": "h_knight",
+      "kind": "native",
+      "file": "heights/h_knight/skin0_0.webp",
+      "dimensions": [
+        104,
+        60
+      ],
+      "sha256": "207c71a85861442b2942c21855007f84253320b57de018bd329748f7f30401aa"
+    },
+    {
+      "model": "soldier",
+      "kind": "native",
+      "file": "heights/soldier/skin0_0.webp",
+      "dimensions": [
+        300,
+        194
+      ],
+      "sha256": "8250db4889c1dc03eff1a6c897d6ad63201644af590dfd6e9439728a6853fc86"
+    },
+    {
+      "model": "h_guard",
+      "kind": "native",
+      "file": "heights/h_guard/skin0_0.webp",
+      "dimensions": [
+        72,
+        60
+      ],
+      "sha256": "fda7a53b41c61ac446f274a825a060fff09492bd457c49439f8b78189dc2908a"
+    },
+    {
+      "model": "wizard",
+      "kind": "native",
+      "file": "heights/wizard/skin0_0.webp",
+      "dimensions": [
+        216,
+        195
+      ],
+      "sha256": "f7af30122c2ac1591d84284fc8eb10f526e128e46335c1a5a0361a006731ad96"
+    },
+    {
+      "model": "h_wizard",
+      "kind": "native",
+      "file": "heights/h_wizard/skin0_0.webp",
+      "dimensions": [
+        152,
+        92
+      ],
+      "sha256": "983e9a9baaa8e970a89e6f67c6ef6f8bdcbbf8f906123c0c023da238e97688fa"
+    },
+    {
+      "model": "h_dog",
+      "kind": "native",
+      "file": "heights/h_dog/skin0_0.webp",
+      "dimensions": [
+        264,
+        84
+      ],
+      "sha256": "694b4c244bb54a77f5f489f5831ed2b65ac9a61e248ea0089b3b9b2fd8e333e2"
+    },
+    {
+      "model": "dog",
+      "kind": "native",
+      "file": "heights/dog/skin0_0.webp",
+      "dimensions": [
+        312,
+        169
+      ],
+      "sha256": "a799f06a855b832e2bcc76296f722205db96c338e423d7bd32093d6a410abc81"
+    },
+    {
+      "model": "zombie",
+      "kind": "native",
+      "file": "heights/zombie/skin0_0.webp",
+      "dimensions": [
+        168,
+        194
+      ],
+      "sha256": "5056307eafadb851956ca7256dd742bea172b6241bf0a32bf36e83fec7c69ba7"
+    },
+    {
+      "model": "h_zombie",
+      "kind": "native",
+      "file": "heights/h_zombie/skin0_0.webp",
+      "dimensions": [
+        72,
+        44
+      ],
+      "sha256": "c0fdf1457cf0e7699123e1e29f990f622640ba0c9faaa1d6890fb1a5dc91d618"
+    },
+    {
+      "model": "boss",
+      "kind": "native",
+      "file": "heights/boss/skin0_0.webp",
+      "dimensions": [
+        300,
+        194
+      ],
+      "sha256": "bbd09fadd2b714be4592428adc92739702b30db58cf99e96ee4fa9dc7bbdd612"
+    },
+    {
+      "model": "boss",
+      "kind": "custom",
+      "file": "boss/custom/height.webp",
+      "dimensions": [
+        1200,
+        776
+      ],
+      "sha256": "31a5a49df8775484130ffacf53724d889cb91e08b3e2bc5d64ebde1c209d6075"
+    },
+    {
+      "model": "knight",
+      "kind": "custom",
+      "file": "knight/custom/height.webp",
+      "dimensions": [
+        1072,
+        776
+      ],
+      "sha256": "b9bfd8a47f91541f23826f46ce9d37ee345f2f95319b86c3faa935499d3f1a6d"
+    },
+    {
+      "model": "ogre",
+      "kind": "custom",
+      "file": "ogre/custom/height.webp",
+      "dimensions": [
+        1056,
+        776
+      ],
+      "sha256": "04489756dcf3c7793cc52c68a748fd938058db0c448c4314cdf7993f76488ed5"
+    },
+    {
+      "model": "soldier",
+      "kind": "custom",
+      "file": "soldier/custom/height.webp",
+      "dimensions": [
+        1200,
+        776
+      ],
+      "sha256": "456b31b4a3a82ab7a293b09272cad227a832690e1b1bc7772b5289e5f4221e64"
+    },
+    {
+      "model": "wizard",
+      "kind": "custom",
+      "file": "wizard/custom/height.webp",
+      "dimensions": [
+        864,
+        780
+      ],
+      "sha256": "efae1548e535aa7e4455d9eed507037cdd5f1bbd1a73fc558cd73c680e44843d"
+    },
+    {
+      "model": "shambler",
+      "kind": "custom",
+      "file": "shambler/custom/height.webp",
+      "dimensions": [
+        1540,
+        575
+      ],
+      "sha256": "1a90223904058e9417e1224c8cf9df7f0944a85fc774dc0c0c25c86c479bf74a"
+    },
+    {
+      "model": "zombie",
+      "kind": "custom",
+      "file": "zombie/custom/height.webp",
+      "dimensions": [
+        840,
+        970
+      ],
+      "sha256": "0eb82654b167c0e0d4aadbcc057ff869d94ffc94f44cdb3c6d421c45bae0ac70"
+    },
+    {
+      "model": "demon",
+      "kind": "custom",
+      "file": "demon/custom/height.webp",
+      "dimensions": [
+        1540,
+        885
+      ],
+      "sha256": "6c1020f4ab8f4fe9adf17e66e161e04c0c3f2e36ea2d472f2ea5a72fd1df534c"
+    },
+    {
+      "model": "h_demon",
+      "kind": "custom",
+      "file": "h_demon/custom/height.webp",
+      "dimensions": [
+        800,
+        656
+      ],
+      "sha256": "78151929013ec5571d3d917df9123249a67824994949c0f33d312c7e24f8807b"
+    },
+    {
+      "model": "h_dog",
+      "kind": "custom",
+      "file": "h_dog/custom/height.webp",
+      "dimensions": [
+        1056,
+        336
+      ],
+      "sha256": "f648145229d96773a1ddceb78308cbc9160ae3aa4817a89836792075522496bf"
+    },
+    {
+      "model": "zom_gib",
+      "kind": "custom",
+      "file": "zom_gib/custom/height.webp",
+      "dimensions": [
+        416,
+        368
+      ],
+      "sha256": "b0e430b95894792b1345449bca960592255749d19539ae8af802d3791ec71b5e"
+    },
+    {
+      "model": "h_shams",
+      "kind": "custom",
+      "file": "h_shams/custom/height.webp",
+      "dimensions": [
+        1248,
+        456
+      ],
+      "sha256": "ba47508cbce4d1f204fd4331477ddb9e1de597922729ca44b709d276dbac4a97"
+    }
+  ]
+}

@@ -18,7 +18,6 @@ import { R_NormalMapFor } from './gl_normals.js';
 import { R_LightPoint } from './gl_rlight.js';
 import { R_DrawAliasModel } from './gl_mesh.js';
 import { r_avertexnormal_dots } from './anorm_dots.js';
-import { R_PostActive } from './gl_post.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
 import { R_NewerTexturesForModel } from './r_newertextures.js';
@@ -385,7 +384,7 @@ function createGhost( ent, world ) {
 
 	// what the game's own lighting of a model gives at that spot
 	const flame = m.name === 'progs/flame2.mdl' || m.name === 'progs/flame.mdl';
-	const light = flame ? ( R_PostActive() ? 640 : 256 ) : R_LightPoint( e.origin, { worldmodel: world } );
+	const light = flame ? 256 : R_LightPoint( e.origin, { worldmodel: world } );
 
 	const g = {
 		e, hdr, seq, light, flame,
@@ -407,8 +406,9 @@ function ghostDraw( g, time ) {
 	if ( g.seq !== null ) e.frame = g.seq[ ( ( time * 10 ) + g.phase | 0 ) % g.seq.length ];
 
 	// as the game clamps a model's light (flames are left to glow)
-	let ambient = g.light;
-	let shade = g.light;
+	const light = g.flame ? ( R_NewerLightingActive() ? 640 : 256 ) : g.light;
+	let ambient = light;
+	let shade = light;
 	if ( g.flame === false ) {
 
 		if ( ambient > 128 ) ambient = 128;

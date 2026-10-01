@@ -1,0 +1,240 @@
+{
+  "checks_passed": 51,
+  "source_size": [
+    1619,
+    971
+  ],
+  "source_sha256": "40f1300b891b52d40247ea4bb817193ad9e595090226fc88faf2b5f637cc88cc",
+  "version": 2026093054,
+  "textures": [
+    {
+      "name": "wiz1_1",
+      "box": [
+        18,
+        18,
+        306,
+        306
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/e1m2.bsp"
+      ],
+      "diffuse_sha256": "c5b128096836e7afe44fc9c1ab82785ad8b449555e7198f2f523b21340814108",
+      "height_sha256": "0e0e13698885a449486d4d661c22e8bfe8bb92b96d63a818748eb82630a09aa8"
+    },
+    {
+      "name": "wiz1_4",
+      "box": [
+        322,
+        4,
+        646,
+        303
+      ],
+      "uv_shift_texels": [
+        -2.1,
+        -0.35
+      ],
+      "maps": [
+        "maps/start.bsp",
+        "maps/e1m2.bsp",
+        "maps/e1m4.bsp"
+      ],
+      "diffuse_sha256": "e29735ce3be88fc3397fd56ae5b7f189d471dd07353596a912e2ddad179f67a1",
+      "height_sha256": "2eb357d7058681bd9ba7411a1b2cd9132c3f93f3832ec01073dda0f86b657ca0"
+    },
+    {
+      "name": "wizmet1_1",
+      "box": [
+        662,
+        14,
+        950,
+        306
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/start.bsp"
+      ],
+      "diffuse_sha256": "d60158615eb22c6687dff7e30db3e08818d3989042ad45cda7e882965a568d1f",
+      "height_sha256": "dd19a0ec5fa758f8fa12d84dcd506748738ad970ec738d086d241219718e1102"
+    },
+    {
+      "name": "wizmet1_2",
+      "box": [
+        979,
+        13,
+        1295,
+        313
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/start.bsp",
+        "maps/e1m2.bsp",
+        "maps/e1m3.bsp",
+        "maps/e1m4.bsp"
+      ],
+      "diffuse_sha256": "63138155dcc815a350a66ee9395d8c90fe2bdf11c5651e6cc2d358a31c75ab34",
+      "height_sha256": "c2eae39b9f9d1a8e82e38de043c21cdc1e758e6dee80220997fe8105441e909d"
+    },
+    {
+      "name": "wizmet1_3",
+      "box": [
+        1312,
+        18,
+        1609,
+        322
+      ],
+      "uv_shift_texels": [
+        -1.85,
+        2.2
+      ],
+      "maps": [
+        "maps/start.bsp"
+      ],
+      "diffuse_sha256": "239b201f6f509e3d798ea9f816f7ee5eb995c8110b81b5c76c3e8723985da837",
+      "height_sha256": "7b6d834a27a6cd4b089274414506356238fcdf36e60f3c6d03e79ddcc3569b22"
+    },
+    {
+      "name": "wizmet1_7",
+      "box": [
+        18,
+        333,
+        308,
+        628
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/e1m2.bsp",
+        "maps/e1m3.bsp",
+        "maps/e1m4.bsp"
+      ],
+      "diffuse_sha256": "f83025d4b21bd4f09acd227c08e9b43eab83e229adfd3249d2309c0febcbdd84",
+      "height_sha256": "cb7ad471d21b6596a69d2cf7d10cddb918e1bf950bac4eaa150c68436715b50c"
+    },
+    {
+      "name": "wizmet1_8",
+      "box": [
+        331,
+        334,
+        645,
+        633
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/start.bsp",
+        "maps/e1m3.bsp"
+      ],
+      "diffuse_sha256": "fffe492283a2f17ca807d7fa9122720f83caa30623c89aa947dcb8d8b235f657",
+      "height_sha256": "57407f1064a4d7fb52b8485ca721234165364396abce022325c9e68ad0ec4b4a"
+    },
+    {
+      "name": "wizwood1_3",
+      "box": [
+        657,
+        323,
+        963,
+        642
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/start.bsp"
+      ],
+      "diffuse_sha256": "fc9fb446ec3206b90d92f7b4aca6e319a4c15a14479c9156075868c43a25dde7",
+      "height_sha256": "47daa5a1ab2ced4b0f5ad467c204f8c640600d708a39469407b6ea27b972340f"
+    },
+    {
+      "name": "wizwood1_4",
+      "box": [
+        979,
+        334,
+        1296,
+        630
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/e1m2.bsp",
+        "maps/e1m3.bsp"
+      ],
+      "diffuse_sha256": "77257580a8248e43be966ffb2ad16213fb9a7dd3e6eda06900285d51b4dc01f5",
+      "height_sha256": "539c274afae6f5680ea6fe357f5fd08f31a1e0cbe1dd153b804dda78c75432a8"
+    },
+    {
+      "name": "wizwood1_5",
+      "box": [
+        1310,
+        324,
+        1619,
+        642
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/start.bsp",
+        "maps/e1m2.bsp",
+        "maps/e1m3.bsp"
+      ],
+      "diffuse_sha256": "94a48685ee9cf657d01dc16e0afcf10a5eaae0a24f832906dfe1546f264250c9",
+      "height_sha256": "6baf93a37e66cc47654a1df8ee82058a9b9045d29c3fd2d08f22ee4419cdaad1"
+    },
+    {
+      "name": "wizwood1_7",
+      "box": [
+        0,
+        643,
+        312,
+        971
+      ],
+      "uv_shift_texels": [
+        0,
+        0
+      ],
+      "maps": [
+        "maps/e1m3.bsp"
+      ],
+      "diffuse_sha256": "450416b2f83d8f2f7013ba629b372eab22ece6fc236cbb17945c7176815e1ef9",
+      "height_sha256": "64d500be392adc671e08e517267db69429e3744e6d217025d8abe5584f201739"
+    },
+    {
+      "name": "wizwood1_8",
+      "box": [
+        330,
+        645,
+        644,
+        971
+      ],
+      "uv_shift_texels": [
+        2.4,
+        0.11
+      ],
+      "maps": [
+        "maps/start.bsp",
+        "maps/e1m3.bsp",
+        "maps/e1m4.bsp"
+      ],
+      "diffuse_sha256": "d4d0302889f1fb1febea2a8fd4a3d204df5061303cf54e0b66757e8e7cbb4902",
+      "height_sha256": "3326fc60c19902872c0bc17b913278540388859703d532f0b8b7efa5fddeb910"
+    }
+  ]
+}

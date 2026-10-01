@@ -1,0 +1,258 @@
+{
+ "version": 1,
+ "model": "shambler",
+ "reference_size": [
+  308,
+  115
+ ],
+ "description": "Native atlas coordinates. Blood pigment is flat relative to reconstructed skin; declared wounds and folds are independent signed relief. Wrist/foot gore remains structural.",
+ "paint_regions": [
+  {
+   "name": "front abdomen drips",
+   "box": [
+    58,
+    51,
+    98,
+    97
+   ]
+  },
+  {
+   "name": "left forearm streaks",
+   "box": [
+    23,
+    43,
+    34,
+    65
+   ]
+  },
+  {
+   "name": "right forearm streaks",
+   "box": [
+    116,
+    43,
+    130,
+    65
+   ]
+  },
+  {
+   "name": "back left painted smear",
+   "box": [
+    205,
+    58,
+    225,
+    97
+   ]
+  },
+  {
+   "name": "back right painted smear",
+   "box": [
+    230,
+    71,
+    247,
+    88
+   ]
+  }
+ ],
+ "protected_regions": [
+  {
+   "name": "chest open wound",
+   "box": [
+    54,
+    23,
+    99,
+    51
+   ]
+  },
+  {
+   "name": "left wrist wound",
+   "box": [
+    15,
+    65,
+    42,
+    82
+   ]
+  },
+  {
+   "name": "right wrist wound",
+   "box": [
+    111,
+    65,
+    139,
+    82
+   ]
+  },
+  {
+   "name": "front foot wounds",
+   "box": [
+    39,
+    98,
+    114,
+    114
+   ]
+  }
+ ],
+ "pigment": {
+  "red_over_green": 1.6,
+  "red_over_blue": 1.5,
+  "minimum_red": 0.12,
+  "padding_texels": 0.35,
+  "feather_texels": 0.25,
+  "reconstruction_texels": 3
+ },
+ "features": [
+  {
+   "name": "chest wound recess",
+   "type": "recess",
+   "center": [
+    76,
+    36
+   ],
+   "radius": [
+    20,
+    12
+   ],
+   "depth": -0.1
+  },
+  {
+   "name": "left abdomen fold",
+   "type": "ridge",
+   "points": [
+    [
+     73,
+     56
+    ],
+    [
+     66,
+     62
+    ],
+    [
+     61,
+     68
+    ]
+   ],
+   "width": 1.2,
+   "depth": 0.035
+  },
+  {
+   "name": "right abdomen fold",
+   "type": "ridge",
+   "points": [
+    [
+     81,
+     56
+    ],
+    [
+     88,
+     62
+    ],
+    [
+     94,
+     68
+    ]
+   ],
+   "width": 1.2,
+   "depth": 0.035
+  },
+  {
+   "name": "back spine",
+   "type": "ridge",
+   "points": [
+    [
+     230,
+     11
+    ],
+    [
+     230,
+     30
+    ],
+    [
+     231,
+     52
+    ]
+   ],
+   "width": 1.1,
+   "depth": 0.045
+  },
+  {
+   "name": "upper back left fold",
+   "type": "ridge",
+   "points": [
+    [
+     229,
+     18
+    ],
+    [
+     218,
+     24
+    ],
+    [
+     227,
+     29
+    ]
+   ],
+   "width": 1.1,
+   "depth": 0.035
+  },
+  {
+   "name": "upper back right fold",
+   "type": "ridge",
+   "points": [
+    [
+     232,
+     18
+    ],
+    [
+     243,
+     24
+    ],
+    [
+     234,
+     29
+    ]
+   ],
+   "width": 1.1,
+   "depth": 0.035
+  },
+  {
+   "name": "lower back left fold",
+   "type": "ridge",
+   "points": [
+    [
+     229,
+     33
+    ],
+    [
+     216,
+     39
+    ],
+    [
+     227,
+     44
+    ]
+   ],
+   "width": 1.1,
+   "depth": 0.035
+  },
+  {
+   "name": "lower back right fold",
+   "type": "ridge",
+   "points": [
+    [
+     232,
+     33
+    ],
+    [
+     245,
+     39
+    ],
+    [
+     234,
+     44
+    ]
+   ],
+   "width": 1.1,
+   "depth": 0.035
+  }
+ ],
+ "diffuse_rgb_sha256": "490f86583751564b24407f35fd75c7ea6f4ec8865d44fcb1687f4f4051c98ef9"
+}

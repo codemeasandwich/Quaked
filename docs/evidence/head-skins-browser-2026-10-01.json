@@ -1,0 +1,378 @@
+{
+  "checks": 82,
+  "version": 21,
+  "models": [
+    "gib1",
+    "gib2",
+    "gib3",
+    "zom_gib",
+    "ogre",
+    "h_ogre",
+    "demon",
+    "h_demon",
+    "shambler",
+    "h_shams",
+    "knight",
+    "h_knight",
+    "soldier",
+    "h_guard",
+    "wizard",
+    "h_wizard",
+    "h_dog",
+    "dog",
+    "zombie",
+    "h_zombie",
+    "boss"
+  ],
+  "shamblerDiffuse": [
+    1540,
+    575
+  ],
+  "shamblerNormal": [
+    1540,
+    575
+  ],
+  "heightPixelComparison": {
+    "changedPixels": 48417,
+    "totalChannelDelta": 93266
+  },
+  "nativeHeightLoads": [
+    {
+      "model": "gib1",
+      "dimensions": [
+        72,
+        68
+      ],
+      "storedHeight": "heights/gib1/skin0_0.webp"
+    },
+    {
+      "model": "gib2",
+      "dimensions": [
+        168,
+        84
+      ],
+      "storedHeight": "heights/gib2/skin0_0.webp"
+    },
+    {
+      "model": "gib3",
+      "dimensions": [
+        200,
+        108
+      ],
+      "storedHeight": "heights/gib3/skin0_0.webp"
+    },
+    {
+      "model": "zom_gib",
+      "dimensions": [
+        104,
+        92
+      ],
+      "storedHeight": "heights/zom_gib/skin0_0.webp"
+    },
+    {
+      "model": "ogre",
+      "dimensions": [
+        264,
+        194
+      ],
+      "storedHeight": "heights/ogre/skin0_0.webp"
+    },
+    {
+      "model": "h_ogre",
+      "dimensions": [
+        184,
+        76
+      ],
+      "storedHeight": "heights/h_ogre/skin0_0.webp"
+    },
+    {
+      "model": "demon",
+      "dimensions": [
+        308,
+        177
+      ],
+      "storedHeight": "heights/demon/skin0_0.webp"
+    },
+    {
+      "model": "h_demon",
+      "dimensions": [
+        200,
+        164
+      ],
+      "storedHeight": "heights/h_demon/skin0_0.webp"
+    },
+    {
+      "model": "shambler",
+      "dimensions": [
+        308,
+        115
+      ],
+      "storedHeight": "heights/shambler/skin0_0.webp"
+    },
+    {
+      "model": "h_shams",
+      "dimensions": [
+        312,
+        114
+      ],
+      "storedHeight": "heights/h_shams/skin0_0.webp"
+    },
+    {
+      "model": "knight",
+      "dimensions": [
+        268,
+        194
+      ],
+      "storedHeight": "heights/knight/skin0_0.webp"
+    },
+    {
+      "model": "h_knight",
+      "dimensions": [
+        104,
+        60
+      ],
+      "storedHeight": "heights/h_knight/skin0_0.webp"
+    },
+    {
+      "model": "soldier",
+      "dimensions": [
+        300,
+        194
+      ],
+      "storedHeight": "heights/soldier/skin0_0.webp"
+    },
+    {
+      "model": "h_guard",
+      "dimensions": [
+        72,
+        60
+      ],
+      "storedHeight": "heights/h_guard/skin0_0.webp"
+    },
+    {
+      "model": "wizard",
+      "dimensions": [
+        216,
+        195
+      ],
+      "storedHeight": "heights/wizard/skin0_0.webp"
+    },
+    {
+      "model": "h_wizard",
+      "dimensions": [
+        152,
+        92
+      ],
+      "storedHeight": "heights/h_wizard/skin0_0.webp"
+    },
+    {
+      "model": "h_dog",
+      "dimensions": [
+        264,
+        84
+      ],
+      "storedHeight": "heights/h_dog/skin0_0.webp"
+    },
+    {
+      "model": "dog",
+      "dimensions": [
+        312,
+        169
+      ],
+      "storedHeight": "heights/dog/skin0_0.webp"
+    },
+    {
+      "model": "zombie",
+      "dimensions": [
+        168,
+        194
+      ],
+      "storedHeight": "heights/zombie/skin0_0.webp"
+    },
+    {
+      "model": "h_zombie",
+      "dimensions": [
+        72,
+        44
+      ],
+      "storedHeight": "heights/h_zombie/skin0_0.webp"
+    },
+    {
+      "model": "boss",
+      "dimensions": [
+        300,
+        194
+      ],
+      "storedHeight": "heights/boss/skin0_0.webp"
+    }
+  ],
+  "customHeightLoads": [
+    {
+      "model": "boss",
+      "dimensions": [
+        1200,
+        776
+      ],
+      "storedHeight": "boss/custom/height.webp"
+    },
+    {
+      "model": "knight",
+      "dimensions": [
+        1072,
+        776
+      ],
+      "storedHeight": "knight/custom/height.webp"
+    },
+    {
+      "model": "ogre",
+      "dimensions": [
+        1056,
+        776
+      ],
+      "storedHeight": "ogre/custom/height.webp"
+    },
+    {
+      "model": "soldier",
+      "dimensions": [
+        1200,
+        776
+      ],
+      "storedHeight": "soldier/custom/height.webp"
+    },
+    {
+      "model": "wizard",
+      "dimensions": [
+        864,
+        780
+      ],
+      "storedHeight": "wizard/custom/height.webp"
+    },
+    {
+      "model": "shambler",
+      "dimensions": [
+        1540,
+        575
+      ],
+      "storedHeight": "shambler/custom/height.webp"
+    },
+    {
+      "model": "zombie",
+      "dimensions": [
+        840,
+        970
+      ],
+      "storedHeight": "zombie/custom/height.webp"
+    },
+    {
+      "model": "demon",
+      "dimensions": [
+        1540,
+        885
+      ],
+      "storedHeight": "demon/custom/height.webp"
+    },
+    {
+      "model": "h_demon",
+      "dimensions": [
+        800,
+        656
+      ],
+      "storedHeight": "h_demon/custom/height.webp"
+    },
+    {
+      "model": "h_dog",
+      "dimensions": [
+        1056,
+        336
+      ],
+      "storedHeight": "h_dog/custom/height.webp"
+    },
+    {
+      "model": "zom_gib",
+      "dimensions": [
+        416,
+        368
+      ],
+      "storedHeight": "zom_gib/custom/height.webp"
+    },
+    {
+      "model": "h_shams",
+      "dimensions": [
+        1248,
+        456
+      ],
+      "storedHeight": "h_shams/custom/height.webp"
+    }
+  ],
+  "authoringComparison": {
+    "changedPixels": 12162,
+    "totalChannelDelta": 18450,
+    "diffuseUnchanged": true
+  },
+  "headSwitchChecks": [
+    {
+      "model": "h_demon",
+      "dimensions": [
+        800,
+        656
+      ],
+      "heightDelta": {
+        "changedPixels": 32883,
+        "totalChannelDelta": 48383
+      },
+      "diffuseDelta": {
+        "changedPixels": 68655,
+        "totalChannelDelta": 3459441
+      },
+      "originalDiffuseRestored": true
+    },
+    {
+      "model": "h_dog",
+      "dimensions": [
+        1056,
+        336
+      ],
+      "heightDelta": {
+        "changedPixels": 47101,
+        "totalChannelDelta": 91764
+      },
+      "diffuseDelta": {
+        "changedPixels": 80617,
+        "totalChannelDelta": 8602552
+      },
+      "originalDiffuseRestored": true
+    },
+    {
+      "model": "zom_gib",
+      "dimensions": [
+        416,
+        368
+      ],
+      "heightDelta": {
+        "changedPixels": 21654,
+        "totalChannelDelta": 49819
+      },
+      "diffuseDelta": {
+        "changedPixels": 44192,
+        "totalChannelDelta": 3647125
+      },
+      "originalDiffuseRestored": true
+    },
+    {
+      "model": "h_shams",
+      "dimensions": [
+        1248,
+        456
+      ],
+      "heightDelta": {
+        "changedPixels": 29182,
+        "totalChannelDelta": 39161
+      },
+      "diffuseDelta": {
+        "changedPixels": 65914,
+        "totalChannelDelta": 2129085
+      },
+      "originalDiffuseRestored": true
+    }
+  ]
+}
