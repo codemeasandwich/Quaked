@@ -8,6 +8,7 @@ import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from './pak.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { R_NewerHudCanvas } from './r_newerhud.js';
+import { BuildSinglePlayerMenuArt } from './menu_art.js';
 
 /*
 ==============================================================================
@@ -988,6 +989,27 @@ export function Draw_LoadConbackImage( url ) {
 		img.src = url;
 
 	} );
+
+}
+
+/*
+================
+Draw_CacheSinglePlayerMenu
+
+Build the extended menu once from native PAK lettering. Missing sources leave
+the existing menu's text fallback available; source canvases are never changed.
+================
+*/
+export function Draw_CacheSinglePlayerMenu() {
+
+	const path = 'gfx/sp_menu_ext.lmp';
+	if ( cachepics[ path ] ) return cachepics[ path ];
+	const pic = BuildSinglePlayerMenuArt(
+		Draw_CachePic( 'gfx/sp_menu.lmp' ), Draw_CachePic( 'gfx/mainmenu.lmp' ),
+		Draw_CachePic( 'gfx/mp_menu.lmp' ), Draw_CachePic( 'gfx/netmen4.lmp' ),
+		() => document.createElement( 'canvas' ) );
+	if ( pic !== null ) cachepics[ path ] = pic;
+	return pic;
 
 }
 

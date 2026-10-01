@@ -1,0 +1,89 @@
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS customize controls binds printable and named keys
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS load menu discovers and opens browser save slots
+4/4 passed

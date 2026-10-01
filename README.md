@@ -75,6 +75,8 @@ In Newer Game, every Episode 1 level exit that is an archway, a passageway, a wa
 
 #### New Game and Newer Game
 
+The single-player menu's added **Newer Game** and **Level Select** labels use the original game's letter sprites, composed once with measured spacing and baselines. The original New Game, Load and Save art and the five selection rows are preserved. [Menu lettering fix and verification](docs/single-player-menu-2026-10-01.md).
+
 The single player menu has two ways to start:
 
 - **New Game** uses the classic lighting, exactly as before.

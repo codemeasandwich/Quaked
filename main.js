@@ -14,7 +14,7 @@ import { cls, cl } from './src/client.js';
 import { sv } from './src/server.js';
 import { scene, camera } from './src/gl_rmain.js';
 import { renderer } from './src/vid.js';
-import { Draw_CachePicFromPNG, Draw_LoadConbackImage } from './src/gl_draw.js';
+import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage } from './src/gl_draw.js';
 import { XR_Init } from './src/webxr.js';
 
 const parms = {
@@ -97,16 +97,10 @@ async function main() {
 
 		}
 
-		// Single player menu with Newer Game added, in the game's own lettering
-		try {
-
-			await Draw_CachePicFromPNG( 'gfx/sp_menu_ext.lmp', 'spmenu.png?v=3' );
-
-		} catch ( e ) {
-
-			Sys_Printf( 'Warning: Could not load the single player menu image\n' );
-
-		}
+		// Compose added labels from native glyphs; preserve the original rows.
+		// This avoids the miscropped letters in older cached spmenu.png artwork.
+		if ( Draw_CacheSinglePlayerMenu() === null )
+			Sys_Printf( 'Warning: Could not build the single player menu image\n' );
 
 		// The banner of the Newer Game features menu
 		try {

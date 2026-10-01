@@ -1,0 +1,50 @@
+// Single-player lettering assembled once from Quake's own menu sprites.
+// Keep native pixels and baselines: centring each letter's ink box clips
+// descenders and shifts small capitals relative to their neighbours.
+export function BuildSinglePlayerMenuArt( single, main, multi, network, makeCanvas ) {
+
+	if ( ! single?.canvas || ! main?.canvas || ! multi?.canvas || ! network?.canvas ) return null;
+	const canvas = makeCanvas();
+	canvas.width = single.width;
+	canvas.height = 100; // five existing 20-pixel menu cells
+	const ctx = canvas.getContext( '2d' );
+	ctx.imageSmoothingEnabled = false;
+	const glyph = ( pic, sx, sy, w, h, x, y ) => ctx.drawImage( pic.canvas, sx, sy, w, h, x, y, w, h );
+
+	// Original New Game / Load / Save, including their authored spacing. The
+	// native rows are drawn unchanged at y20; the last four are blank padding.
+	// Newer's G descends into empty space above the following word's small caps.
+	glyph( single, 0, 0, single.width, single.height, 0, 20 );
+
+	// New + e + r, then the intact Game word. The final E in Game and R in
+	// Player have clean source bounds, unlike letters kerned into neighbours.
+	glyph( single, 0, 0, 66, 16, 0, 0 );
+	glyph( single, 129, 2, 16, 13, 68, 3 );
+	glyph( main, 200, 2, 20, 13, 86, 3 );
+	glyph( single, 71, 0, 74, 22, 112, 0 );
+
+	// Level Select: capital L/S from Load/Save, small L from Help, C from
+	// TCP/IP and T from Setup. Small capitals share y95; V/T retain their tips.
+	glyph( single, 2, 21, 19, 16, 2, 81 );
+	glyph( single, 129, 2, 16, 13, 22, 83 );
+	// Save's V overlaps A's right flank. Copy only the V's authored silhouette,
+	// rather than carrying that A fragment into the middle of "Level".
+	const vLeft = [ 32, 32, 33, 34, 35, 35, 36, 37, 37, 38, 39, 39, 40, 41 ];
+	for ( let row = 0; row < vLeft.length; row ++ ) {
+
+		const sx = vLeft[ row ];
+		glyph( single, sx, 43 + row, 51 - sx, 1, 40 + sx - 32, 83 + row );
+
+	}
+	glyph( single, 129, 2, 16, 13, 61, 83 );
+	glyph( main, 40, 63, 17, 13, 79, 83 );
+	glyph( single, 2, 41, 18, 16, 106, 81 );
+	glyph( single, 129, 2, 16, 13, 126, 83 );
+	glyph( main, 40, 63, 17, 13, 144, 83 );
+	glyph( single, 129, 2, 16, 13, 163, 83 );
+	glyph( network, 16, 6, 14, 12, 181, 84 );
+	glyph( multi, 40, 43, 18, 16, 197, 83 );
+
+	return { width: canvas.width, height: canvas.height, canvas };
+
+}
