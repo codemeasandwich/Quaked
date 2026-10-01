@@ -2906,6 +2906,22 @@ function R_UpdateWorldTextureAnimations() {
 // is in the PVS (has visframe === r_visframecount).
 //============================================================================
 
+// For a reflection probe (r_waterprobe.js): the whole level drawable (all = true), or the view's own
+// visibility put back
+export function R_WorldShowAll( all ) {
+
+	if ( all ) {
+
+		for ( const info of instanceVisInfo ) info.batch.setVisibleAt( info.instanceId, true );
+		return;
+
+	}
+
+	_visibilityNeedsUpdate = true;
+	R_UpdateWorldVisibility();
+
+}
+
 function R_UpdateWorldVisibility() {
 
 	// Skip update if viewleaf hasn't changed (PVS is the same)

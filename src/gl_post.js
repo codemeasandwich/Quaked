@@ -30,6 +30,7 @@ import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_TeleportFx } from './r_teleportfx.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
+import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } from './r_anim.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
@@ -38,6 +39,7 @@ export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
 export const r_heathaze = new cvar_t( 'r_heathaze', '0.6' ); // the shimmer over lava (0 off)
 export const r_mist = new cvar_t( 'r_mist', '0.6' ); // the toxic mist over slime (0 off)
 export const r_reflect = new cvar_t( 'r_reflect', '0.6' ); // how reflective water is (0 off)
+export const r_reflect_screen = new cvar_t( 'r_reflect_screen', '1' ); // 1 = reflections take what is on the screen first, 0 = only the pool's probe
 export const r_pillars = new cvar_t( 'r_pillars', '0.5' ); // how strong the light shafts are: 0 off, 1 the strongest (PILLAR_MAX), 0.5 the default
 export const r_cloudspeed = new cvar_t( 'r_cloudspeed', '0.1875' ); // how fast the cloud pattern drifts over the ground, against the sky's own scrolling (1 = the same)
 export const r_bounce = new cvar_t( 'r_bounce', '1' ); // bounced light between surfaces (0 off)
@@ -1511,6 +1513,13 @@ uniform float uContrastGain;
 uniform float uContrastPivot;
 uniform float uTime;
 uniform float uCaustic;
+uniform samplerCube tProbeA;
+uniform samplerCube tProbeB;
+uniform vec3 uProbeCenter[ 2 ];
+uniform vec3 uProbeMin[ 2 ];
+uniform vec3 uProbeMax[ 2 ];
+uniform int uProbeOf[ ${MAX_LIQUID_REGIONS} ]; // which probe a pool uses (-1 none)
+uniform float uScreenReflect;
 uniform int uLavaCount;
 uniform vec4 uLavaMin[ 4 ]; // xy = min corner, z = the lava's height
 uniform vec4 uLavaMax[ 4 ];
@@ -1625,6 +1634,18 @@ vec4 lensDrops( vec2 uv, float grid, float seed ) {
 	vec2 bend = - ( f - p ) * drop * 1.5 / grid;
 	float glint = smoothstep( 0.55, 1.0, dot( normalize( vec2( - 0.6, 0.8 ) ), d / max( size, 1e-3 ) ) ) * drop;
 	return vec4( bend, mask, glint );
+}
+
+// what a pool's probe (a cube map taken from above the pool) shows in the direction a ray goes, the picture treated as
+// having been taken in a box round the pool (so a wall at its edge is where the wall is)
+vec3 probeColor( int which, vec3 hp, vec3 rW ) {
+	vec3 rd = rW + vec3( 1e-5 );
+	vec3 first = ( uProbeMax[ which ] - hp ) / rd;
+	vec3 second = ( uProbeMin[ which ] - hp ) / rd;
+	vec3 farT = max( first, second );
+	float dist = min( min( farT.x, farT.y ), farT.z );
+	vec3 dir = normalize( hp + rW * max( dist, 0.0 ) - uProbeCenter[ which ] );
+	return which == 0 ? textureCube( tProbeA, dir ).rgb : textureCube( tProbeB, dir ).rgb;
 }
 
 void main() {
@@ -1936,7 +1957,11 @@ void main() {
 					mat3 toView = transpose( mat3( uViewInv ) );
 					vec3 hv = toView * ( hp - camW );
 					vec3 rv = toView * rW;
-					vec3 refl = vec3( 0.012, 0.018, 0.03 ) + uHazeColor * 6.0; // nothing found: a dark sky
+					// nothing found on the screen: what the pool's probe shows (or a dark sky if it has none yet)
+					int pr = uProbeOf[ i ];
+					vec3 fallback = vec3( 0.012, 0.018, 0.03 ) + uHazeColor * 6.0;
+					if ( pr >= 0 ) fallback = probeColor( pr, hp, rW );
+					vec3 refl = fallback;
 					float found = 0.0;
 					float stepLen = 10.0;
 					vec3 pv = hv + rv * 6.0 * ( 0.6 + 0.8 * jit0 );
@@ -1950,13 +1975,13 @@ void main() {
 						float dq = texture2D( tDepth, uvq ).x;
 						if ( dq >= 0.99999 ) {
 							// the sky
-							refl = texture2D( tScene, uvq ).rgb;
+							refl = mix( fallback, texture2D( tScene, uvq ).rgb, uScreenReflect );
 							found = 1.0;
 							break;
 						}
 						float gap = - pv.z - ( - viewPosAt( uvq ).z );
 						if ( gap > 0.0 && gap < 60.0 + stepLen ) {
-							refl = texture2D( tScene, uvq ).rgb * smoothstep( 0.0, 0.08, min( min( uvq.x, 1.0 - uvq.x ), min( uvq.y, 1.0 - uvq.y ) ) );
+							refl = mix( fallback, texture2D( tScene, uvq ).rgb, uScreenReflect * smoothstep( 0.0, 0.08, min( min( uvq.x, 1.0 - uvq.x ), min( uvq.y, 1.0 - uvq.y ) ) ) );
 							found = 1.0;
 							break;
 						}
@@ -2183,6 +2208,13 @@ function createPipeline() {
 			uContrastPivot: { value: 0.12 },
 			uTime: { value: 0 },
 			uCaustic: { value: CAUSTIC },
+			tProbeA: { value: null },
+			tProbeB: { value: null },
+			uProbeCenter: { value: [ new THREE.Vector3(), new THREE.Vector3() ] },
+			uProbeMin: { value: [ new THREE.Vector3(), new THREE.Vector3() ] },
+			uProbeMax: { value: [ new THREE.Vector3(), new THREE.Vector3() ] },
+			uProbeOf: { value: new Array( MAX_LIQUID_REGIONS ).fill( - 1 ) },
+			uScreenReflect: { value: 1 },
 			uLavaCount: { value: 0 },
 			uLavaMin: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
 			uLavaMax: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
@@ -2354,6 +2386,28 @@ function renderSunShadow( renderer, scene, camera ) {
 
 }
 
+// Before the frame is drawn: a pool that has just come into view gets its reflection probe
+export function R_WaterProbesFrame( renderer, scene, camera, showAll ) {
+
+	if ( ! R_WaterActive() || r_reflect.value <= 0 || liquidRegions.length === 0 ) return;
+
+	const cw = camera.matrixWorld.elements;
+	const near = [];
+	for ( const r of liquidRegions ) {
+
+		if ( r.kind !== 0 ) continue;
+		const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
+		const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
+		const dist = Math.hypot( dx, dy, Math.max( 0, r.z - cw[ 14 ], cw[ 14 ] - r.z - 900 ) );
+		if ( dist < 2400 ) near.push( { r, dist } );
+
+	}
+
+	near.sort( ( a, b ) => a.dist - b.dist );
+	R_WaterProbeUpdate( renderer, scene, camera, near.map( n => n.r ), showAll, liquidRegions );
+
+}
+
 /*
 ================
 R_PostFinish
@@ -2512,6 +2566,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 		const r = ranked[ i ].r;
 		cm.uWaterMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, r.kind );
+		cm.uProbeOf.value[ i ] = - 1;
 		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, 0 );
 
 	}
@@ -2545,6 +2600,30 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uLavaCount.value = lavaCount;
 	cm.uHeat.value = underwater ? 0 : Math.max( 0, r_heathaze.value );
 	cm.uReflect.value = underwater ? 0 : Math.max( 0, r_reflect.value );
+
+	// the pools' reflection probes (at most two are used at once)
+	const probeList = R_WaterProbes();
+	cm.tProbeA.value = probeList[ 0 ] != null ? probeList[ 0 ].rt.texture : null;
+	cm.tProbeB.value = probeList[ 1 ] != null ? probeList[ 1 ].rt.texture : null;
+	for ( let k = 0; k < 2; k ++ ) {
+
+		const pb = probeList[ k ];
+		if ( pb == null ) continue;
+		cm.uProbeCenter.value[ k ].set( pb.center[ 0 ], pb.center[ 1 ], pb.center[ 2 ] );
+		cm.uProbeMin.value[ k ].set( pb.min[ 0 ], pb.min[ 1 ], pb.min[ 2 ] );
+		cm.uProbeMax.value[ k ].set( pb.max[ 0 ], pb.max[ 1 ], pb.max[ 2 ] );
+
+	}
+
+	for ( let i = 0; i < waterCount; i ++ ) {
+
+		const r = ranked[ i ].r;
+		const k = probeList.findIndex( ( pb ) => pb.region === r );
+		cm.uProbeOf.value[ i ] = k;
+
+	}
+
+	cm.uScreenReflect.value = r_reflect_screen.value !== 0 ? 1 : 0;
 
 	cm.uEdge.value = underwater ? 0 : Math.max( 0, r_newedges.value );
 	const drops = R_ScreenDropsUpdate();
