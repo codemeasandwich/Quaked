@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base href="../">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<title>Quaked demo resolution trial</title>
+	<link rel="icon" type="image/svg+xml" href="icon.svg">
+	<link rel="apple-touch-icon" href="icon.png">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		html, body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: #000;
+		}
+		canvas {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+		#loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 100;
+			background: #000;
+		}
+		#loading-bar {
+			width: 200px;
+			height: 2px;
+			background: #333;
+		}
+		#loading-progress {
+			width: 0%;
+			height: 100%;
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-bar"><div id="loading-progress"></div></div>
+	</div>
+	<script type="importmap">
+	{
+		"imports": {
+			"three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js",
+			"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"
+		}
+	}
+	</script>
+	<section id="resolution-panel" style="position:fixed;top:8px;left:8px;z-index:200;color:white;background:#101318dd;padding:10px;font:13px system-ui;max-width:460px">
+<strong id="resolution-status">Waiting for title demo frames…</strong>
+<div><button id="full-resolution">Full resolution</button><button id="dynamic-resolution">Dynamic resolution</button></div>
+<pre id="resolution-evidence" style="white-space:pre-wrap;margin:6px 0 0"></pre></section>
+<script type="module">
+import * as THREE from 'three';
+await import('../main.js');
+const vid=await import('../src/vid.js');
+while(vid.renderer==null)await new Promise(resolve=>setTimeout(resolve,10));
+const liveRenderer=vid.renderer;
+// Three.js installs these methods on the instance; prototype wrappers are
+// shadowed by construction and cannot observe actual rendering.
+const originalBind=liveRenderer.setRenderTarget,originalRender=liveRenderer.render;
+let enhanced=null,frames=0,mismatches=0;const sizes=new Map();
+liveRenderer.setRenderTarget=function(target,...rest){
+ if(target?.textures?.length===2 && target.depthTexture)enhanced=target;
+ return originalBind.call(this,target,...rest);
+};
+liveRenderer.render=function(scene,camera){
+ const target=this.getRenderTarget();
+ // The exact classic scene pass: main game scene, one SRGB nearest-filtered
+ // target. Sun/probe/portal passes use other scenes/formats/filter settings.
+ if(scene===window.scene && target && target.textures.length===1 && target.texture.colorSpace===THREE.SRGBColorSpace && target.texture.magFilter===THREE.NearestFilter && enhanced){
+  frames++;const equal=target.width===enhanced.width && target.height===enhanced.height;if(!equal)mismatches++;
+  const key=enhanced.width+'x'+enhanced.height;sizes.set(key,{enhanced:[enhanced.width,enhanced.height],classic:[target.width,target.height],equal});
+  document.querySelector('#resolution-status').textContent=(mismatches?'FAIL':'PASS')+' — '+frames+' real split-demo frames; '+mismatches+' resolution mismatches';
+  document.querySelector('#resolution-evidence').textContent=JSON.stringify({frames,mismatches,pixelRatio:this.getPixelRatio(),drawingBuffer:[this.domElement.width,this.domElement.height],sizes:[...sizes.values()]},null,2);
+ }
+ return originalRender.call(this,scene,camera);
+};
+const {Cvar_SetValue}=await import('../src/cvar.js');
+document.querySelector('#full-resolution').onclick=()=>Cvar_SetValue('r_dynres',0);
+document.querySelector('#dynamic-resolution').onclick=()=>Cvar_SetValue('r_dynres',1);
+</script>
+</body>
+</html>

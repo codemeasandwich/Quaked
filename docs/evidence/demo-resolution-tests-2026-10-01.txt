@@ -1,0 +1,42 @@
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+recording to capture.dem.
+
+<-- server to client keepalive
+
+Completed demo
+
+PASS demo recording writes each received non-keepalive message
+PASS client initialization registers all demo commands
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+PASS lighting, normal maps and liquids switch independently on existing materials
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+PASS Newer menu exposes independent lighting, normals and liquids controls
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+23/23 passed

@@ -1725,10 +1725,11 @@ export function R_RenderView() {
 			R_PerfStage( 'world draw' );
 			// the title demo, half Newer and half classic
 			const split = R_DemoSplitActive();
+			const sceneTarget = renderer.getRenderTarget(); // exact enhanced scene raster size
 			R_PostSetSplit( split && ! R_DemoSplitFull() );
 			R_PostFinish( renderer, scene, camera, _viewport, r_visframecount, d_lightstylevalue,
 				cl_dlights, cl != null ? cl.time : 0, renderer.toneMappingExposure, R_MapHasSky() );
-			if ( split ) R_DemoSplitClassic( renderer, scene, camera, _viewport, R_ClassicOn, R_ClassicOff );
+			if ( split ) R_DemoSplitClassic( renderer, scene, camera, _viewport, R_ClassicOn, R_ClassicOff, sceneTarget );
 
 		} else {
 
