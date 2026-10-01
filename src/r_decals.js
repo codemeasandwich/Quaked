@@ -482,6 +482,43 @@ export function R_DecalBloodLanded( a, b ) {
 
 }
 
+// A body has burst at p: a pool of blood on the floor under it, wider and in more pieces the bigger it was
+// (size 1 is a zombie, 6 a shambler), and a few splashes on whatever is near
+export function R_DecalBloodPool( p, size ) {
+
+	if ( R_DecalsEnabled() === false || deps === null ) return;
+
+	const cl = deps.cl();
+	if ( cl == null || cl.worldmodel == null ) return;
+
+	const pieces = Math.round( 2 + size * 2.2 );
+	const reach = 14 + size * 7;
+	const q = [ 0, 0, 0 ];
+
+	for ( let i = 0; i < pieces; i ++ ) {
+
+		// somewhere round the body, the first in the middle
+		const a = Math.random() * Math.PI * 2;
+		const r = i === 0 ? 0 : Math.sqrt( Math.random() ) * reach;
+		const x = p[ 0 ] + Math.cos( a ) * r, y = p[ 1 ] + Math.sin( a ) * r;
+
+		// down to the floor
+		let z = p[ 2 ], found = false;
+		for ( let d = 0; d <= 80 && found === false; d += 4 ) {
+
+			q[ 0 ] = x; q[ 1 ] = y; q[ 2 ] = p[ 2 ] - d;
+			const leaf = deps.pointInLeaf( q, cl.worldmodel );
+			if ( leaf != null && leaf.contents === CONTENTS_SOLID ) found = true;
+			else z = q[ 2 ];
+
+		}
+
+		if ( found ) R_DecalPlace( 'blood', [ x, y, z ], ( i === 0 ? 16 : 7 ) + size * 2.2 + Math.random() * 9, 30 + size * 4 );
+
+	}
+
+}
+
 // A gib has come to rest at p: a pool of blood under it.
 export function R_DecalGibLanded( p ) {
 

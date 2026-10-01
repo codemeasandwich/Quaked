@@ -763,6 +763,14 @@ function Sbar_DrawFace() {
 
 	}
 
+	// Newer Game: the grin of someone who has just blown a monster apart (the evil face of the quad)
+	if ( _cl.grintime !== undefined && _cl.time <= _cl.grintime && _cl.time > _cl.faceanimtime ) {
+
+		Sbar_DrawPic( 112, 0, sb_face_quad );
+		return;
+
+	}
+
 	const health = _cl.stats[ STAT_HEALTH ];
 
 	if ( health >= 100 )

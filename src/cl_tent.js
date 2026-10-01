@@ -8,7 +8,7 @@ import {
 import {
 	TE_SPIKE, TE_SUPERSPIKE, TE_GUNSHOT, TE_EXPLOSION,
 	TE_TAREXPLOSION, TE_LIGHTNING1, TE_LIGHTNING2, TE_LIGHTNING3,
-	TE_LAVASPLASH, TE_TELEPORT, TE_EXPLOSION2, TE_WIZSPIKE,
+	TE_LAVASPLASH, TE_TELEPORT, TE_GORE, TE_EXPLOSION2, TE_WIZSPIKE,
 	TE_KNIGHTSPIKE, TE_BEAM
 } from './protocol.js';
 import {
@@ -26,7 +26,7 @@ import { S_PrecacheSound, S_StartSound } from './snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash } from './render.js';
 import { Mod_ForName } from './gl_model.js';
-import { R_DecalShot, R_DecalScorch } from './r_decals.js';
+import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from './r_decals.js';
 
 let num_temp_entities = 0;
 
@@ -246,6 +246,18 @@ export function CL_ParseTEnt() {
 			pos[ 2 ] = MSG_ReadCoord();
 			R_LavaSplash( pos );
 			break;
+
+		case TE_GORE: { // Newer Game: a monster burst; the bigger it was, the bigger the pool
+
+			pos[ 0 ] = MSG_ReadCoord();
+			pos[ 1 ] = MSG_ReadCoord();
+			pos[ 2 ] = MSG_ReadCoord();
+			const size = MSG_ReadByte();
+			cl.grintime = cl.time + 2;
+			if ( size > 1 ) R_DecalBloodPool( pos, size );
+			break;
+
+		}
 
 		case TE_TELEPORT:
 			pos[ 0 ] = MSG_ReadCoord();

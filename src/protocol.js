@@ -123,6 +123,7 @@ export const TE_LAVASPLASH = 10;
 export const TE_TELEPORT = 11;
 export const TE_EXPLOSION2 = 12;
 export const TE_BEAM = 13;
+export const TE_GORE = 40; // Newer Game: a monster has burst (origin, how big)
 
 //
 // QuakeWorld-style player info (svc_playerinfo)
