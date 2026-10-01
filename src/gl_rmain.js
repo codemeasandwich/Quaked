@@ -14,12 +14,13 @@ import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
 import { CL_TeleportSpots } from './cl_tent.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
+import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { r_bounce, r_cloudspeed, r_pillars, r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
+import { r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1596,6 +1597,7 @@ export function R_RenderView() {
 
 	// marks on the world
 	R_DecalsFrame();
+	R_MistFrame( scene, cl != null ? cl.time : 0 );
 
 	// render normal view
 	R_RenderScene();
@@ -1816,6 +1818,9 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_bounce );
 	Cvar_RegisterVariable( r_cloudspeed );
 	Cvar_RegisterVariable( r_pillars );
+	Cvar_RegisterVariable( r_heathaze );
+	Cvar_RegisterVariable( r_mist );
+	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_volumetric );
 	Cvar_RegisterVariable( r_caustics );
 	Cvar_RegisterVariable( r_newbright );
@@ -1966,6 +1971,7 @@ export function R_NewMap() {
 	R_ClearParticles();
 	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
 	R_DecalsClear();
+	R_MistClear();
 	R_ScreenDropsReset();
 	R_MuzzleSetProbe( ( p ) => R_LightPoint( p, cl ) );
 

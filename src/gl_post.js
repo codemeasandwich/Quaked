@@ -35,6 +35,9 @@ import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } fr
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
 export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
+export const r_heathaze = new cvar_t( 'r_heathaze', '0.6' ); // the shimmer over lava (0 off)
+export const r_mist = new cvar_t( 'r_mist', '0.6' ); // the toxic mist over slime (0 off)
+export const r_reflect = new cvar_t( 'r_reflect', '0.6' ); // how reflective water is (0 off)
 export const r_pillars = new cvar_t( 'r_pillars', '0.35' ); // how strong the light shafts are (0 off)
 export const r_cloudspeed = new cvar_t( 'r_cloudspeed', '0.1875' ); // how fast the cloud pattern drifts over the ground, against the sky's own scrolling (1 = the same)
 export const r_bounce = new cvar_t( 'r_bounce', '1' ); // bounced light between surfaces (0 off)
@@ -429,6 +432,7 @@ let hasSky = false;
 // Pools of water and slime: { kind, min: [x, y], max: [x, y], z }.  A ray that
 // passes through one loses light to it, and surfaces beneath it get caustics.
 let liquidRegions = [];
+let lavaRegions = [];
 let leafKeyCounter = 0;
 
 export const MAX_LIQUID_REGIONS = 6;
@@ -513,6 +517,12 @@ function mergeLiquidFaces( faces ) {
 	}
 
 	return [ ...merged.values() ].filter( r => ( r.max[ 0 ] - r.min[ 0 ] ) * ( r.max[ 1 ] - r.min[ 1 ] ) > 64 * 64 );
+
+}
+
+export function R_GetLavaRegions() {
+
+	return lavaRegions;
 
 }
 
@@ -666,6 +676,7 @@ export function R_BuildWorldLights( model ) {
 	worldLights = [];
 	hasSky = false;
 	liquidRegions = [];
+	lavaRegions = [];
 	liquidLinks = [];
 	buildSkyCookie();
 	sunDirection = [ - 0.28, - 0.18, 0.94 ];
@@ -717,6 +728,7 @@ export function R_BuildWorldLights( model ) {
 		const last = first + ( model.nummodelsurfaces || model.surfaces.length );
 		const clusters = new Map();
 		const liquidFaces = [];
+		const lavaFaces = [];
 		const linkSeen = new Set();
 		const visCache = new Map();
 
@@ -725,6 +737,16 @@ export function R_BuildWorldLights( model ) {
 			const surf = model.surfaces[ i ];
 			if ( surf == null || surf.texinfo == null || surf.texinfo.texture == null ) continue;
 			if ( surf.flags & SURF_DRAWSKY ) { hasSky = true; continue; }
+
+			// lava: the pools the heat shimmers over
+			const lname = surf.texinfo.texture.name.toLowerCase();
+			if ( lname.charAt( 0 ) === '*' && lname.indexOf( 'lava' ) >= 0 && Math.abs( surf.plane.normal[ 2 ] ) > 0.95 ) {
+
+				const linfo = polyInfo( surf );
+				const lbox = polyBounds( surf );
+				if ( linfo != null && lbox != null ) lavaFaces.push( { kind: 2, min: [ lbox[ 0 ], lbox[ 1 ] ], max: [ lbox[ 3 ], lbox[ 4 ] ], z: linfo.center[ 2 ] } );
+
+			}
 
 			const liquid = liquidKind( surf.texinfo.texture.name );
 			if ( liquid >= 0 && Math.abs( surf.plane.normal[ 2 ] ) > 0.95 ) {
@@ -792,6 +814,7 @@ export function R_BuildWorldLights( model ) {
 		}
 
 		liquidRegions = mergeLiquidFaces( liquidFaces );
+		lavaRegions = mergeLiquidFaces( lavaFaces );
 
 		const surfaceLights = [];
 		for ( const c of clusters.values() ) {
@@ -1487,6 +1510,11 @@ uniform float uContrastGain;
 uniform float uContrastPivot;
 uniform float uTime;
 uniform float uCaustic;
+uniform int uLavaCount;
+uniform vec4 uLavaMin[ 4 ]; // xy = min corner, z = the lava's height
+uniform vec4 uLavaMax[ 4 ];
+uniform float uHeat;
+uniform float uReflect;
 uniform int uWaterCount;
 uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
 uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner
@@ -1600,6 +1628,7 @@ vec4 lensDrops( vec2 uv, float grid, float seed ) {
 
 void main() {
 	vec2 uvd = vUv;
+	float jit0 = noise( gl_FragCoord.xy );
 	// teleporting: the picture is pulled upwards (the middle rows fill the screen)
 	if ( uTeleStretch > 0.0 ) {
 		float S = 1.0 + uTeleStretch * uTeleStretch * 9.0;
@@ -1614,6 +1643,40 @@ void main() {
 		uvd += a.xy + b.xy * 0.7;
 		dropMask = clamp( a.z + b.z * 0.8, 0.0, 1.0 );
 		dropGlint = clamp( a.w + b.w * 0.6, 0.0, 1.0 );
+	}
+	// Heat haze: over a pool of lava the air shimmers, and whatever is seen through that column of air wobbles.  Each
+	// pool is a box from its surface up; the longer the sight line runs through it, the more the picture is bent.
+	if ( uLavaCount > 0 && uHeat > 0.0 ) {
+		float d0 = texture2D( tDepth, uvd ).x;
+		vec4 r0 = uProjInv * vec4( uvd * 2.0 - 1.0, 1.0, 1.0 );
+		vec3 dv0 = normalize( r0.xyz / r0.w );
+		float D0 = d0 >= 0.99999 ? uMaxRay : min( - perspectiveDepthToViewZ( d0, uNear, uFar ) / max( - dv0.z, 0.05 ), uMaxRay );
+		vec3 cam0 = uViewInv[ 3 ].xyz;
+		vec3 dw0 = mat3( uViewInv ) * dv0;
+		vec3 inv0 = 1.0 / ( dw0 + vec3( 1e-6 ) );
+		vec2 wob = vec2( 0.0 );
+		for ( int i = 0; i < 4; i ++ ) {
+			if ( i >= uLavaCount ) break;
+			vec4 lo = uLavaMin[ i ];
+			vec4 hi = uLavaMax[ i ];
+			vec3 bmin = vec3( lo.xy - 48.0, lo.z );
+			vec3 bmax = vec3( hi.xy + 48.0, lo.z + 150.0 );
+			vec3 t1 = ( bmin - cam0 ) * inv0;
+			vec3 t2 = ( bmax - cam0 ) * inv0;
+			vec3 tn = min( t1, t2 );
+			vec3 tf = max( t1, t2 );
+			float tIn = max( max( tn.x, tn.y ), max( tn.z, 0.0 ) );
+			float tOut = min( min( tf.x, tf.y ), min( tf.z, D0 ) );
+			if ( tOut > tIn ) {
+				float len = clamp( ( tOut - tIn ) / 170.0, 0.0, 1.0 );
+				vec3 mid = cam0 + dw0 * ( 0.5 * ( tIn + tOut ) );
+				// rising, rippling columns of warm air
+				float up = mid.z * 0.11 - uTime * 3.4;
+				wob += vec2( sin( up + mid.x * 0.06 ) + 0.5 * sin( up * 1.7 + mid.y * 0.09 ),
+					cos( up * 0.8 + mid.y * 0.05 ) ) * len * 0.5 * smoothstep( lo.z + 150.0, lo.z + 30.0, mid.z );
+			}
+		}
+		uvd += wob * vec2( 1.0, 0.7 ) * 0.0055 * uHeat;
 	}
 	vec3 scene = texture2D( tScene, uvd ).rgb;
 	if ( uTeleChroma > 0.0 ) {
@@ -1858,6 +1921,53 @@ void main() {
 				c = c * T + tint * ( 1.0 - T ) * 0.3;
 			}
 
+			// Reflection: water gives back the picture of what is above it, more at a low angle than looking straight down.
+			// The reflected ray is marched across the screen against what is already drawn.
+			if ( ! slime && uReflect > 0.0 && camW.z > top && dirW.z < - 0.001 ) {
+				float tp = ( top - camW.z ) / dirW.z;
+				vec3 hp = camW + dirW * tp;
+				if ( tp > 0.0 && tp < D + 2.0 && hp.x > lo.x && hp.x < hi.x && hp.y > lo.y && hp.y < hi.y ) {
+					// little ripples in the surface
+					vec3 nW = normalize( vec3(
+						0.045 * sin( hp.x * 0.045 + uTime * 1.3 ) + 0.03 * sin( hp.y * 0.1 - uTime * 0.9 ),
+						0.045 * cos( hp.y * 0.05 + uTime * 1.1 ) + 0.03 * cos( hp.x * 0.09 + uTime * 0.8 ), 1.0 ) );
+					vec3 rW = reflect( dirW, nW );
+					mat3 toView = transpose( mat3( uViewInv ) );
+					vec3 hv = toView * ( hp - camW );
+					vec3 rv = toView * rW;
+					vec3 refl = vec3( 0.012, 0.018, 0.03 ) + uHazeColor * 6.0; // nothing found: a dark sky
+					float found = 0.0;
+					float stepLen = 10.0;
+					vec3 pv = hv + rv * 6.0 * ( 0.6 + 0.8 * jit0 );
+					for ( int k = 0; k < 28; k ++ ) {
+						pv += rv * stepLen;
+						stepLen *= 1.16;
+						if ( pv.z > - uNear ) break;
+						vec4 cq = uProj * vec4( pv, 1.0 );
+						vec2 uvq = cq.xy / cq.w * 0.5 + 0.5;
+						if ( uvq.x < 0.0 || uvq.x > 1.0 || uvq.y < 0.0 || uvq.y > 1.0 ) break;
+						float dq = texture2D( tDepth, uvq ).x;
+						if ( dq >= 0.99999 ) {
+							// the sky
+							refl = texture2D( tScene, uvq ).rgb;
+							found = 1.0;
+							break;
+						}
+						float gap = - pv.z - ( - viewPosAt( uvq ).z );
+						if ( gap > 0.0 && gap < 60.0 + stepLen ) {
+							refl = texture2D( tScene, uvq ).rgb * smoothstep( 0.0, 0.08, min( min( uvq.x, 1.0 - uvq.x ), min( uvq.y, 1.0 - uvq.y ) ) );
+							found = 1.0;
+							break;
+						}
+					}
+					float cosT = clamp( dot( - dirW, nW ), 0.0, 1.0 );
+					float fres = 0.04 + 0.96 * pow( 1.0 - cosT, 5.0 );
+					float edge = smoothstep( 0.0, 14.0, min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) ) );
+					float k = clamp( ( 0.1 + 1.1 * fres ) * uReflect * edge, 0.0, 0.85 );
+					c = mix( c, min( refl, vec3( 8.0 ) ) * vec3( 0.9, 0.97, 1.0 ), k );
+				}
+			}
+
 			// below the surface of a pool: no outlines (the pool's walls stand on its edge, so a margin)
 			if ( d < 0.99999
 				&& hitW.x > bmin.x - 24.0 && hitW.x < bmax.x + 24.0 && hitW.y > bmin.y - 24.0 && hitW.y < bmax.y + 24.0
@@ -2072,6 +2182,11 @@ function createPipeline() {
 			uContrastPivot: { value: 0.12 },
 			uTime: { value: 0 },
 			uCaustic: { value: CAUSTIC },
+			uLavaCount: { value: 0 },
+			uLavaMin: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
+			uLavaMax: { value: Array.from( { length: 4 }, () => new THREE.Vector4() ) },
+			uHeat: { value: 0.6 },
+			uReflect: { value: 0.6 },
 			uWaterCount: { value: 0 },
 			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
 			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }
@@ -2399,6 +2514,36 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, 0 );
 
 	}
+
+	// lava near the camera, for the heat haze
+	let lavaCount = 0;
+	if ( r_newer_water.value !== 0 && r_heathaze.value > 0 ) {
+
+		const near = [];
+		for ( const r of lavaRegions ) {
+
+			const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
+			const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
+			const dist = Math.hypot( dx, dy, Math.max( 0, cw[ 14 ] - r.z - 150 ) );
+			if ( dist < 2400 ) near.push( { r, dist } );
+
+		}
+
+		near.sort( ( a, b ) => a.dist - b.dist );
+		lavaCount = Math.min( near.length, 4 );
+		for ( let i = 0; i < lavaCount; i ++ ) {
+
+			const r = near[ i ].r;
+			cm.uLavaMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, 0 );
+			cm.uLavaMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, 0 );
+
+		}
+
+	}
+
+	cm.uLavaCount.value = lavaCount;
+	cm.uHeat.value = underwater ? 0 : Math.max( 0, r_heathaze.value );
+	cm.uReflect.value = underwater ? 0 : Math.max( 0, r_reflect.value );
 
 	cm.uEdge.value = underwater ? 0 : Math.max( 0, r_newedges.value );
 	const drops = R_ScreenDropsUpdate();

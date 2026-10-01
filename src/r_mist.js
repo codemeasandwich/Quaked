@@ -1,0 +1,160 @@
+// Newer Game: a light toxic mist rising from pools of slime.
+//
+// Soft green wisps climb off the surface, spread a little, and fade out as they go, in a loose cloud over each
+// pool (more over a bigger one).  They are one set of points drawn with the scene, so geometry in front of
+// them hides them as usual; where the slime is is known from the same list of pools the post pass uses
+// for tinting what is seen through it.
+
+import * as THREE from 'three';
+import { R_GetLiquidRegions, R_PostActive, r_mist } from './gl_post.js';
+import { R_NewerGame } from './r_anim.js';
+
+const MAX_WISPS = 720;
+const TINT = [ 0.34, 0.95, 0.30 ];
+
+let points = null;
+let builtFor = null;
+let wisps = [];
+let positions = null;
+let colors = null;
+let texture = null;
+
+function softTexture() {
+
+	if ( texture !== null ) return texture;
+
+	const c = document.createElement( 'canvas' );
+	c.width = c.height = 64;
+	const g = c.getContext( '2d' );
+	const gr = g.createRadialGradient( 32, 32, 0, 32, 32, 32 );
+	// a gaussian-ish falloff, no visible edge
+	gr.addColorStop( 0, 'rgba(255,255,255,0.55)' );
+	gr.addColorStop( 0.2, 'rgba(255,255,255,0.36)' );
+	gr.addColorStop( 0.45, 'rgba(255,255,255,0.12)' );
+	gr.addColorStop( 0.75, 'rgba(255,255,255,0.025)' );
+	gr.addColorStop( 1, 'rgba(255,255,255,0)' );
+	g.fillStyle = gr;
+	g.fillRect( 0, 0, 64, 64 );
+	texture = new THREE.CanvasTexture( c );
+	return texture;
+
+}
+
+function clear( scene ) {
+
+	if ( points !== null ) {
+
+		if ( points.parent != null ) points.parent.remove( points );
+		points.geometry.dispose();
+		points.material.dispose();
+		points = null;
+
+	}
+
+	wisps = [];
+	builtFor = null;
+
+}
+
+function build( scene, regions ) {
+
+	clear( scene );
+	builtFor = regions;
+
+	const pools = regions.filter( ( r ) => r.kind === 1 );
+	if ( pools.length === 0 ) return;
+
+	let total = 0;
+	for ( const r of pools ) {
+
+		const area = ( r.max[ 0 ] - r.min[ 0 ] ) * ( r.max[ 1 ] - r.min[ 1 ] );
+		const n = Math.max( 10, Math.min( 170, Math.round( area / ( 62 * 62 ) ) ) );
+		for ( let i = 0; i < n && total < MAX_WISPS; i ++, total ++ ) {
+
+			wisps.push( {
+				x: r.min[ 0 ] + 6 + Math.random() * Math.max( 1, r.max[ 0 ] - r.min[ 0 ] - 12 ),
+				y: r.min[ 1 ] + 6 + Math.random() * Math.max( 1, r.max[ 1 ] - r.min[ 1 ] - 12 ),
+				z: r.z,
+				phase: Math.random(),
+				rise: 90 + Math.random() * 90,
+				speed: 0.05 + Math.random() * 0.06, // cycles a second
+				sway: Math.random() * 6.28,
+				strength: 0.5 + Math.random() * 0.5
+			} );
+
+		}
+
+	}
+
+	positions = new Float32Array( wisps.length * 3 );
+	colors = new Float32Array( wisps.length * 3 );
+
+	const geometry = new THREE.BufferGeometry();
+	geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
+	geometry.setAttribute( 'color', new THREE.BufferAttribute( colors, 3 ) );
+
+	const material = new THREE.PointsMaterial( {
+		map: softTexture(),
+		size: 110,
+		sizeAttenuation: true,
+		vertexColors: true,
+		transparent: true,
+		depthWrite: false,
+		blending: THREE.AdditiveBlending
+	} );
+
+	points = new THREE.Points( geometry, material );
+	points.frustumCulled = false;
+	points.renderOrder = 3;
+	scene.add( points );
+
+}
+
+// every frame, with the scene and the time
+export function R_MistFrame( scene, time ) {
+
+	if ( scene == null ) return;
+
+	const on = R_NewerGame() && R_PostActive() && r_mist.value > 0;
+	if ( ! on ) {
+
+		if ( points !== null ) points.visible = false;
+		return;
+
+	}
+
+	const regions = R_GetLiquidRegions();
+	if ( regions !== builtFor ) build( scene, regions );
+	if ( points === null ) return;
+
+	points.visible = true;
+	const amount = Math.max( 0, Math.min( 1.5, r_mist.value ) );
+
+	for ( let i = 0; i < wisps.length; i ++ ) {
+
+		const w = wisps[ i ];
+		const age = ( time * w.speed + w.phase ) % 1;
+		// in, hang a while, and out
+		const fade = Math.sin( Math.PI * age );
+		const a = fade * fade * w.strength * amount * 0.065;
+
+		positions[ i * 3 ] = w.x + Math.sin( time * 0.3 + w.sway ) * ( 10 + age * 24 );
+		positions[ i * 3 + 1 ] = w.y + Math.cos( time * 0.27 + w.sway ) * ( 10 + age * 24 );
+		positions[ i * 3 + 2 ] = w.z + 8 + age * w.rise;
+
+		colors[ i * 3 ] = TINT[ 0 ] * a;
+		colors[ i * 3 + 1 ] = TINT[ 1 ] * a;
+		colors[ i * 3 + 2 ] = TINT[ 2 ] * a;
+
+	}
+
+	points.geometry.attributes.position.needsUpdate = true;
+	points.geometry.attributes.color.needsUpdate = true;
+
+}
+
+export function R_MistClear() {
+
+	clear( null );
+
+}

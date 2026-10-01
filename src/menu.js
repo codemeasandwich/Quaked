@@ -1956,7 +1956,10 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_decals', label: '   Marks and blood' },
 	// sliders: all the way to the left is off, and the further right, the stronger or faster
 	{ cvar: 'r_pillars', label: '          Light pillars', slider: true },
-	{ cvar: 'r_cloudspeed', label: '    Cloud shadow speed', slider: true }
+	{ cvar: 'r_cloudspeed', label: '    Cloud shadow speed', slider: true },
+	{ cvar: 'r_heathaze', label: '    Heat haze over lava', slider: true },
+	{ cvar: 'r_mist', label: '    Toxic mist over slime', slider: true },
+	{ cvar: 'r_reflect', label: '      Water reflections', slider: true }
 ];
 let m_newer_cursor = 0;
 
@@ -1988,10 +1991,8 @@ function M_Newer_Draw() {
 
 	}
 
-	M_Print( 16, 144, ' These apply to Newer Game only.' );
-	M_Print( 16, 152, ' Water and the flashlight need' );
-	M_Print( 16, 160, ' the Newer lighting.' );
-	M_Print( 16, 168, ' Portals: from the next level.' );
+	M_Print( 16, 168, ' Newer Game only. Water, mist and the' );
+	M_Print( 16, 176, ' flashlight need the Newer lighting.' );
 
 	M_DrawCharacter( 200, 48 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
