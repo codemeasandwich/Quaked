@@ -1278,7 +1278,7 @@ uniform float uShaftFog;
 uniform float uShadowSpread;
 
 const int SHADOW_STEPS = 12;
-const int SUN_STEPS = 36;
+const int SUN_STEPS = 56;
 
 void main() {
 	vec4 r = uProjInv * vec4( vUv * 2.0 - 1.0, 1.0, 1.0 );
@@ -1310,11 +1310,13 @@ void main() {
 				+ step( ref, texture2D( tSunShadow, u.xy - vec2( uShadowSpread, 0.0 ) ).x )
 				+ step( ref, texture2D( tSunShadow, u.xy + vec2( 0.0, uShadowSpread ) ).x )
 				+ step( ref, texture2D( tSunShadow, u.xy - vec2( 0.0, uShadowSpread ) ).x );
-			float density = uOpenFog + ( 1.0 - around * 0.25 ) * uShaftFog;
+			// (squared: the edge of a pillar is where it goes from the full density to none, not a soft ramp)
+			float edge = 1.0 - around * 0.25;
+			float density = uOpenFog + edge * edge * uShaftFog;
 			lit += density * skyCookieRGB( pw ) * exp( - t * 0.0007 );
 		}
 		lit *= ds;
-		float phase = henyeyGreenstein( dot( dirV, uSunDirV ), 0.55 );
+		float phase = henyeyGreenstein( dot( dirV, uSunDirV ), 0.3 );
 		result += uSunCol * lit * uSunScatter * phase * ( zd > 1e5 ? 0.1 : 1.0 );
 	}
 
@@ -1996,7 +1998,7 @@ function createPipeline() {
 		volumeMaterial: makeMaterial( VOLUME_FRAGMENT, Object.assign( {
 			uSunScatter: { value: SUN_SCATTER },
 			uOpenFog: { value: 0.05 },
-			uShaftFog: { value: 0.6 },
+			uShaftFog: { value: 1.3 },
 			uShadowSpread: { value: 100 / ( SUN_SHADOW_EXTENT * 2 ) },
 			uScatter: { value: SCATTER }
 		}, shared ) ),
@@ -2079,7 +2081,7 @@ function ensureTargets( width, height ) {
 
 	const depth = new THREE.DepthTexture( width, height );
 	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples, count: 2 } );
-	gpu.volume = makeRT( Math.ceil( width / 2 ), Math.ceil( height / 2 ) );
+	gpu.volume = makeRT( Math.ceil( width * 0.75 ), Math.ceil( height * 0.75 ) );
 
 	let w = Math.ceil( width / 2 ), h = Math.ceil( height / 2 );
 	for ( let i = 0; i < BLOOM_LEVELS; i ++ ) {
@@ -2273,7 +2275,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
 	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * ( 0.5 + 1.3 * bright );
 	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
-	p.volumeMaterial.uniforms.uOpenFog.value = 0.09 - 0.075 * bright;
+	p.volumeMaterial.uniforms.uOpenFog.value = 0.035 - 0.03 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
 	p.compositeMaterial.uniforms.uHaze.value = HAZE_DENSITY * ( 1.5 - 1.05 * bright );
 	sh.uBounce.value = Math.max( 0, r_bounce.value );
