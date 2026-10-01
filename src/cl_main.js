@@ -24,6 +24,7 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from './mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
+import { R_DemoSplitEnd } from './r_demosplit.js';
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from './r_muzzle.js';
 import { R_NewerGame } from './r_anim.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
@@ -221,6 +222,7 @@ export function CL_Disconnect() {
 	}
 
 	cls.demoplayback = cls.timedemo = false;
+	R_DemoSplitEnd();
 	cls.signon = 0;
 
 }

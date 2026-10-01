@@ -131,6 +131,8 @@ function dynResUpdate( now ) {
 
 // shared with the lit world materials' shader
 const lightCurve = { value: 1 };
+// 1 while the classic half of the title demo is drawn (see r_demosplit.js): no bounce floor, the original light curve, no relief
+export const classicLook = { value: 0 };
 // Bounce light: no surface is left pure black.  Where the baked light never reached, light still arrives from the rest of the
 // level, a little, so the surface keeps its own picture (the flashlight and any glow can then bring it out) instead of
 // being a flat black the beam can only paint grey.
@@ -310,7 +312,7 @@ vec2 pUv = vMapUv;
 	vec3 pV = normalize( vViewPosition );
 	vec3 pVt = vec3( dot( pV, pT * pscale ), dot( pV, pB * pscale ), dot( pV, pN ) );
 
-	float pAmt = ${PARALLAX_DEPTH} * ( 1.0 - smoothstep( 260.0, 820.0, length( vViewPosition ) ) ) * mix( 0.3, 1.0, smoothstep( 30.0, 150.0, length( vViewPosition ) ) );
+	float pAmt = ( 1.0 - uClassic ) * ${PARALLAX_DEPTH} * ( 1.0 - smoothstep( 260.0, 820.0, length( vViewPosition ) ) ) * mix( 0.3, 1.0, smoothstep( 30.0, 150.0, length( vViewPosition ) ) );
 	if ( pAmt > 0.0005 ) {
 		const float LAYERS = ${PARALLAX_LAYERS}.0;
 		vec2 P = pVt.xy / max( abs( pVt.z ), 0.35 ) * pAmt;
@@ -343,12 +345,13 @@ function patchDetailShader( shader ) {
 
 	let f = shader.fragmentShader;
 
-	f = 'layout(location = 1) out highp vec4 gNormal;\nuniform float uLmGamma;\n' + f;
+	f = 'layout(location = 1) out highp vec4 gNormal;\nuniform float uLmGamma;\nuniform float uClassic;\n' + f;
 	shader.uniforms.uLmGamma = lightCurve;
+	shader.uniforms.uClassic = classicLook;
 
 	// the baked light, curved: only what a source really lights stays bright
 	f = f.replace( '#include <lights_fragment_maps>', THREE.ShaderChunk.lights_fragment_maps.replace(
-		'lightMapTexel.rgb * lightMapIntensity', 'max( pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( uLmGamma ) ), vec3( ' + BOUNCE_LIGHT + ' ) ) * lightMapIntensity' ) );
+		'lightMapTexel.rgb * lightMapIntensity', 'max( pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( mix( uLmGamma, 1.0, uClassic ) ) ), vec3( ' + BOUNCE_LIGHT + ' * ( 1.0 - uClassic ) ) ) * lightMapIntensity' ) );
 
 	// texture lookups follow the parallax-shifted coordinates
 	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
@@ -2655,8 +2658,25 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	renderer.setRenderTarget( null );
 	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
 	gpu.mesh.material = p.compositeMaterial;
+	if ( splitLeft ) {
+
+		renderer.setScissor( viewport.lx, viewport.ly, Math.floor( viewport.lw / 2 ), viewport.lh );
+		renderer.setScissorTest( true );
+
+	}
+
 	renderer.render( p.scene, p.camera );
+	if ( splitLeft ) renderer.setScissorTest( false );
 	R_PerfStage( 'final lighting pass' );
+
+}
+
+// the title demo's half-and-half comparison: the final pass fills the left half only
+let splitLeft = false;
+
+export function R_PostSetSplit( on ) {
+
+	splitLeft = on === true;
 
 }
 

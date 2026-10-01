@@ -1,5 +1,6 @@
 // Ported from: WinQuake/cl_demo.c -- demo recording and playback
 
+import { R_DemoSplitStart, R_DemoSplitEnd } from './r_demosplit.js';
 import { MAX_MSGLEN } from './quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString,
@@ -41,6 +42,7 @@ export function CL_StopPlayback() {
 		return;
 
 	cls.demoplayback = false;
+	R_DemoSplitEnd();
 	cls.demofile = null;
 	cls.demodata = null;
 	cls.demopos = 0;
@@ -425,6 +427,8 @@ export function CL_PlayDemoFromData( data ) {
 	cls.demodata = new Uint8Array( data );
 	cls.demopos = 0;
 
+	// (the title demos are shown half Newer and half classic: the Newer pipeline is on while they play)
+	R_DemoSplitStart();
 	cls.demoplayback = true;
 	cls.state = ca_connected;
 	cls.forcetrack = 0;

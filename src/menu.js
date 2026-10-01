@@ -1,5 +1,6 @@
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
+import { R_DemoSplitActive } from './r_demosplit.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cmd_AddCommand } from './cmd.js';
 import { Con_Printf, Con_ToggleConsole_f } from './console.js';
@@ -2673,6 +2674,16 @@ export function M_Draw() {
 		if ( scr_con_current ) {
 
 			if ( _Draw_ConsoleBackground ) _Draw_ConsoleBackground( _vid.height );
+
+		} else if ( R_DemoSplitActive() && _Draw_Fill ) {
+
+			// the title demo is half Newer and half classic: dim it only a little, so the two can be compared
+			_Draw_Fill( 0, 0, _vid.width, _vid.height, 0, 0.32 );
+			_Draw_Fill( ( _vid.width >> 1 ) - 1, 0, 2, _vid.height, 0, 0.9 );
+			// (at the edges of the screen, clear of the menu's own plaque)
+			const off = ( _vid.width - 320 ) >> 1;
+			M_PrintWhite( 8 - off, 4, 'ENHANCED' );
+			M_PrintWhite( _vid.width - 8 - 7 * 8 - off, 4, 'CLASSIC' );
 
 		} else {
 
