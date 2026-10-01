@@ -1730,13 +1730,13 @@ void main() {
 		// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
 		// gets a plain warm one, so the flashlight always has something to light
 		float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
-		vec3 beamTint = mix( vec3( 0.6, 0.46, 0.28 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
+		vec3 beamTint = mix( vec3( 0.5 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
 		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.075 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
 			float ls = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-			c = mix( vec3( ls ), c, 1.0 + 0.5 * spotMask );
+			c = mix( vec3( ls ), c, 1.0 + 0.2 * spotMask );
 			c *= 1.0 + 0.08 * spotMask;
 		}
 
@@ -1909,7 +1909,7 @@ function createPipeline() {
 		uSpotOn: { value: 0 },
 		uSpotPos: { value: new THREE.Vector3() },
 		uSpotDir: { value: new THREE.Vector3( 0, 0, - 1 ) },
-		uSpotCol: { value: new THREE.Vector3( 1, 0.94, 0.82 ).multiplyScalar( SPOT_POWER ) },
+		uSpotCol: { value: new THREE.Vector3( 1, 0.985, 0.96 ).multiplyScalar( SPOT_POWER ) },
 		uSpotCone: { value: new THREE.Vector2( FLASHLIGHT_OUTER, FLASHLIGHT_INNER ) },
 		uLightPos: { value: lightPos },
 		uLightCol: { value: lightCol },
