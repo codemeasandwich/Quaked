@@ -184,11 +184,55 @@ export function R_NormalsFromHeight( h, width, height, strength = NORMAL_STRENGT
 
 }
 
+// two passes of a 1 4 6 4 1 blur in each direction, wrapping round (the textures tile)
+function R_SmoothHeight( src, width, height ) {
+
+	const k = [ 1 / 16, 4 / 16, 6 / 16, 4 / 16, 1 / 16 ];
+	let a = new Float32Array( src );
+	let b = new Float32Array( src.length );
+
+	for ( let pass = 0; pass < 2; pass ++ ) {
+
+		for ( let y = 0; y < height; y ++ ) {
+
+			for ( let x = 0; x < width; x ++ ) {
+
+				let v = 0;
+				for ( let i = - 2; i <= 2; i ++ ) v += k[ i + 2 ] * a[ y * width + ( ( x + i + width ) % width ) ];
+				b[ y * width + x ] = v;
+
+			}
+
+		}
+
+		for ( let y = 0; y < height; y ++ ) {
+
+			for ( let x = 0; x < width; x ++ ) {
+
+				let v = 0;
+				for ( let i = - 2; i <= 2; i ++ ) v += k[ i + 2 ] * b[ ( ( y + i + height ) % height ) * width + x ];
+				a[ y * width + x ] = v;
+
+			}
+
+		}
+
+	}
+
+	return a;
+
+}
+
 // Tangent-space normals (RGBA8, height in alpha) from a crafted height field: a height map made offline
 // for one texture (tools/craft_normals.py, which has the same maths), in 0..1, and how steep to make it.
-export function R_NormalsFromCraftedHeight( h, width, height, strength, capk = 1.1 ) {
+export function R_NormalsFromCraftedHeight( h0, width, height, strength, capk = 1.1 ) {
 
 	const out = new Uint8Array( width * height * 4 );
+
+	// The heights come as 8-bit greys, so a slope is made of steps: lit from close by, a steep relief turns
+	// into terraces and a jagged skin.  A light blur (two passes of 1 4 6 4 1) takes the steps out and leaves
+	// the shapes.
+	const h = R_SmoothHeight( h0, width, height );
 	const sc = strength * Math.sqrt( width * height ) / 8;
 	const at = ( x, y ) => h[ ( ( y + height ) % height ) * width + ( ( x + width ) % width ) ];
 

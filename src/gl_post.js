@@ -297,7 +297,7 @@ vec2 pUv = vMapUv;
 	vec3 pV = normalize( vViewPosition );
 	vec3 pVt = vec3( dot( pV, pT * pscale ), dot( pV, pB * pscale ), dot( pV, pN ) );
 
-	float pAmt = ${PARALLAX_DEPTH} * ( 1.0 - smoothstep( 260.0, 820.0, length( vViewPosition ) ) );
+	float pAmt = ${PARALLAX_DEPTH} * ( 1.0 - smoothstep( 260.0, 820.0, length( vViewPosition ) ) ) * mix( 0.3, 1.0, smoothstep( 30.0, 150.0, length( vViewPosition ) ) );
 	if ( pAmt > 0.0005 ) {
 		const float LAYERS = ${PARALLAX_LAYERS}.0;
 		vec2 P = pVt.xy / max( abs( pVt.z ), 0.35 ) * pAmt;
@@ -339,7 +339,10 @@ function patchDetailShader( shader ) {
 
 	// texture lookups follow the parallax-shifted coordinates
 	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
-	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' ) );
+	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
+	// depth is for looking at it from a little way off
+	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
+		.replace( 'mapN.xy *= normalScale;', 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) );' ) );
 	f = f.replace( '#include <emissivemap_fragment>', THREE.ShaderChunk.emissivemap_fragment.replace( /vEmissiveMapUv/g, '_pUv' ) );
 	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );' );
 
@@ -1724,7 +1727,11 @@ void main() {
 		float sl = dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) );
 		float spotGain = 1.15 * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
 		float spotLift = 0.12 * ( 1.0 - smoothstep( 0.15, 0.6, sl ) );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + spotLift * tint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+		// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
+		// gets a plain warm one, so the flashlight always has something to light
+		float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
+		vec3 beamTint = mix( vec3( 0.6, 0.46, 0.28 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.075 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
