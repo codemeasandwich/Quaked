@@ -1782,11 +1782,11 @@ function M_AdjustSliders( dir ) {
 			Cvar_SetValue( 'cl_showfps', Cvar_VariableValue( 'cl_showfps' ) !== 0 ? 0 : 1 );
 			break;
 
-		case 16: // light pillars
+		case 15: // light pillars
 			Cvar_SetValue( 'r_pillars', Math.max( 0, Math.min( 1, Math.round( ( Cvar_VariableValue( 'r_pillars' ) + dir * 0.05 ) * 100 ) / 100 ) ) );
 			break;
 
-		case 17: // cloud shadow speed
+		case 16: // cloud shadow speed
 			Cvar_SetValue( 'r_cloudspeed', Math.max( 0, Math.min( 1, Math.round( ( Cvar_VariableValue( 'r_cloudspeed' ) + dir * 0.05 ) * 100 ) / 100 ) ) );
 			break;
 
@@ -1864,14 +1864,15 @@ function M_Options_Draw() {
 	M_Print( 16, 144, '           FPS counter' );
 	M_DrawCheckbox( 220, 144, Cvar_VariableValue( 'cl_showfps' ) );
 
-	M_Print( 16, 152, '  Performance profiler' );
-
 	// (Newer Game) the sky's light: how strong the shafts are, and how fast the cloud shapes move on the ground
-	M_Print( 16, 160, '          Light pillars' );
-	M_DrawSlider( 220, 160, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_pillars' ) ) ) );
+	M_Print( 16, 152, '          Light pillars' );
+	M_DrawSlider( 220, 152, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_pillars' ) ) ) );
 
-	M_Print( 16, 168, '    Cloud shadow speed' );
-	M_DrawSlider( 220, 168, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_cloudspeed' ) ) ) );
+	M_Print( 16, 160, '    Cloud shadow speed' );
+	M_DrawSlider( 220, 160, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_cloudspeed' ) ) ) );
+
+	// the benchmark goes last
+	M_Print( 16, 168, '  Performance profiler' );
 
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
@@ -1913,7 +1914,7 @@ function M_Options_Key( key ) {
 				case 13:
 					M_Menu_Newer_f();
 					break;
-				case 15:
+				case 17:
 					// leave the menu and run the demos flat out
 					setKeyDest( key_game );
 					m_state = m_none;
