@@ -123,6 +123,10 @@ function dynResUpdate( now ) {
 
 // shared with the lit world materials' shader
 const lightCurve = { value: 1 };
+// Bounce light: no surface is left pure black.  Where the baked light never reached, light still arrives from the rest of the
+// level, a little, so the surface keeps its own picture (the flashlight and any glow can then bring it out) instead of
+// being a flat black the beam can only paint grey.
+const BOUNCE_LIGHT = 0.025;
 
 // glquake.h flags (not imported: keeps this module out of the renderer's import cycle)
 const SURF_DRAWSKY = 4;
@@ -335,7 +339,7 @@ function patchDetailShader( shader ) {
 
 	// the baked light, curved: only what a source really lights stays bright
 	f = f.replace( '#include <lights_fragment_maps>', THREE.ShaderChunk.lights_fragment_maps.replace(
-		'lightMapTexel.rgb * lightMapIntensity', 'pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( uLmGamma ) ) * lightMapIntensity' ) );
+		'lightMapTexel.rgb * lightMapIntensity', 'max( pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( uLmGamma ) ), vec3( ' + BOUNCE_LIGHT + ' ) ) * lightMapIntensity' ) );
 
 	// texture lookups follow the parallax-shifted coordinates
 	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
@@ -1725,7 +1729,7 @@ void main() {
 		// the beam adds less to what is already bright (an enemy in it would wash out: a flat lift on a pale surface
 		// is grey), and its flat tint only lifts the darks
 		float sl = dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) );
-		float spotGain = 1.15 * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
+		float spotGain = 1.15 * ( 1.0 + 4.0 * ( 1.0 - smoothstep( 0.0, 0.06, sl ) ) ) * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
 		float spotLift = 0.12 * ( 1.0 - smoothstep( 0.15, 0.6, sl ) );
 		// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
 		// gets a plain warm one, so the flashlight always has something to light
