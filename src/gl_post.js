@@ -38,7 +38,7 @@ export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
 export const r_heathaze = new cvar_t( 'r_heathaze', '0.6' ); // the shimmer over lava (0 off)
 export const r_mist = new cvar_t( 'r_mist', '0.6' ); // the toxic mist over slime (0 off)
 export const r_reflect = new cvar_t( 'r_reflect', '0.6' ); // how reflective water is (0 off)
-export const r_pillars = new cvar_t( 'r_pillars', '0.35' ); // how strong the light shafts are (0 off)
+export const r_pillars = new cvar_t( 'r_pillars', '0.5' ); // how strong the light shafts are: 0 off, 1 the strongest (PILLAR_MAX), 0.5 the default
 export const r_cloudspeed = new cvar_t( 'r_cloudspeed', '0.1875' ); // how fast the cloud pattern drifts over the ground, against the sky's own scrolling (1 = the same)
 export const r_bounce = new cvar_t( 'r_bounce', '1' ); // bounced light between surfaces (0 off)
 export const r_volumetric = new cvar_t( 'r_volumetric', '1' );
@@ -155,6 +155,7 @@ const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky sc
 const SPOT_POWER = 1.6; // the flashlight, in the same units as the point lights
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
+const PILLAR_MAX = 0.35; // the in-scattering multiplier at the slider's far end; the default is half of it
 const SUN_SCATTER = 0.00003; // sun in-scattering per unit of lit air
 const SUN_SURFACE = 0.6; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
 const SUN_SURFACE_COLOR = [ 1.0, 0.9, 0.76 ];
@@ -2421,7 +2422,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
 		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
 	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
-	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * Math.max( 0, r_pillars.value ) * ( 1.4 + 1.0 * bright );
+	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * PILLAR_MAX * Math.max( 0, r_pillars.value ) * ( 1.4 + 1.0 * bright );
 	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
 	p.volumeMaterial.uniforms.uOpenFog.value = 0.018 - 0.015 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
