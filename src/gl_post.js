@@ -43,7 +43,7 @@ export const r_caustics = new cvar_t( 'r_caustics', '1' ); // strength of light 
 // How hard the baked lighting falls off in Newer Game: the lightmap is raised to
 // this power, so what is lit by a clear source stays bright and what is not goes
 // dark (1 = as baked).  Light that does not come from a source is not invented.
-export const r_newdark = new cvar_t( 'r_newdark', '2.8' );
+export const r_newdark = new cvar_t( 'r_newdark', '2.2' );
 
 // Accent on the corners and edges where surfaces really meet at an angle: the
 // inside of a corner darkens, the outer edge catches a little light.  1 = as
@@ -139,7 +139,7 @@ const LAVA_BOOST = 1.1; // lava is a light source: brighter than white, so it bl
 const LAVA_PULSE = 0.14; // and it breathes, slowly
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
 const SCATTER = 0.03; // point light in-scattering
-const LIGHT_FLOOR = 0.09; // light on a surface the lightmap left dark
+const LIGHT_FLOOR = 0.12; // light on a surface the lightmap left dark
 const LIGHT_SURFACE = 0.16; // direct light from point lights on surfaces
 const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky scales it
 const SPOT_POWER = 1.6; // the flashlight, in the same units as the point lights
@@ -148,11 +148,11 @@ const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colo
 const SUN_SCATTER = 0.00003; // sun in-scattering per unit of lit air
 const SUN_SURFACE = 0.6; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
 const SUN_SURFACE_COLOR = [ 1.0, 0.9, 0.76 ];
-const SATURATION = 1.22;
-const VIBRANCE = 0.45; // extra saturation for the colours that have little
+const SATURATION = 1.15;
+const VIBRANCE = 0.12; // extra saturation for the colours that have little
 const CONTRAST = 0.5; // extra gain for mid-tones and highlights
-const HDR_EXPOSURE = 1.15; // the lit parts of a level should read as lit, the rest as dark
-const OUTDOOR_EXPOSURE = 0.74; // open daylight needs less gain than a dim interior
+const HDR_EXPOSURE = 1.3; // the lit parts of a level should read as lit, the rest as dark
+const OUTDOOR_EXPOSURE = 0.85; // open daylight needs less gain than a dim interior
 const OUTDOOR_BLOOM_THRESHOLD = 2.4; // the sky itself is bright: only real highlights (lava, lights) glow, not the daylight
 const OUTDOOR_BLOOM = 0.5; // and what does glow is softer under the open sky
 const CAUSTIC = 0.6;
@@ -1816,11 +1816,11 @@ void main() {
 	// atmosphere: deep blacks (the darks are pressed down), colour that is richer where it is
 	// weak (a vibrance on top of the saturation), cold shadows and warm lights
 	l = dot( c, vec3( 0.2126, 0.7152, 0.0722 ) );
-	c *= mix( 0.6, 1.0, smoothstep( 0.0, 0.2, l ) );
+	c *= mix( 0.85, 1.0, smoothstep( 0.0, 0.2, l ) );
 	float mx = max( c.r, max( c.g, c.b ) ), mn = min( c.r, min( c.g, c.b ) );
 	float chroma = ( mx - mn ) / max( mx, 1e-4 );
 	c = mix( vec3( l ), c, 1.0 + uVibrance * ( 1.0 - chroma ) );
-	c *= mix( vec3( 0.80, 0.90, 1.14 ), vec3( 1.06, 1.0, 0.90 ), smoothstep( 0.02, 0.40, l ) );
+	c *= mix( vec3( 0.94, 0.97, 1.05 ), vec3( 1.03, 1.0, 0.95 ), smoothstep( 0.02, 0.40, l ) );
 
 	c = shoulder( c );
 
