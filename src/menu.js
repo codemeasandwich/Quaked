@@ -687,6 +687,10 @@ function M_Main_Key( key ) {
 */
 
 let m_singleplayer_cursor = 0;
+// What a Newer Game starts with: the flashlight on, the brightness at its most, and the frame rate showing
+// (all still changeable in the options)
+const NEWER_DEFAULTS = 'r_flashlight 1\ngamma 0.5\ncl_showfps 1\n';
+
 const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
 function M_Menu_SinglePlayer_f() {
@@ -762,6 +766,7 @@ function M_SinglePlayer_Key( key ) {
 					Cbuf_AddText( 'maxplayers 1\n' );
 					// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
 					Cbuf_AddText( ( m_singleplayer_cursor === 0 ? 'r_hdr 1\n' : 'r_hdr 0\n' ) );
+					if ( m_singleplayer_cursor === 0 ) Cbuf_AddText( NEWER_DEFAULTS );
 					Cbuf_AddText( 'map start\n' );
 					break;
 				case 2:
@@ -888,6 +893,7 @@ function M_LevelSelect_Start() {
 	Cbuf_AddText( 'maxplayers 1\n' );
 	// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
 	Cbuf_AddText( m_levelselect_newer ? 'r_hdr 1\n' : 'r_hdr 0\n' );
+	if ( m_levelselect_newer ) Cbuf_AddText( NEWER_DEFAULTS );
 	Cbuf_AddText( 'map ' + level.map + '\n' );
 
 }
