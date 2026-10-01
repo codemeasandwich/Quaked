@@ -49,6 +49,12 @@ export function R_AnimSetClassicPass( on ) {
 
 }
 
+export function R_ClassicPassActive() {
+
+	return classicPass;
+
+}
+
 export const ANIM_STEP = 0.1; // seconds between frames in Quake's own animations
 const STALE = 0.25; // not drawn for this long: start again without blending
 const JUMP = 96; // a move this big in one frame is a teleport
@@ -73,20 +79,20 @@ export function R_AnimSetLighting( active ) {
 
 export function R_NewerLightingActive() {
 
-	return lightingActive;
+	return ! classicPass && lightingActive;
 
 }
 
 export function R_IsNewer() {
 
-	return newerActive;
+	return ! classicPass && newerActive;
 
 }
 
 export function R_AnimEnabled() {
 
 	const v = r_lerpmodels.value;
-	return v >= 2 || ( v >= 1 && newerActive );
+	return ! classicPass && ( v >= 2 || ( v >= 1 && newerActive ) );
 
 }
 

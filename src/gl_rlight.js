@@ -177,6 +177,7 @@ function R_RenderDlightSlots( cl, scene ) {
 
 		let light = _slotLights[ k ];
 		if ( light == null ) light = _slotLights[ k ] = new THREE.PointLight( 0xffaa44, 0, 300, 1 );
+		light.userData.newerOnly = true;
 		if ( scene != null && light.parent == null ) scene.add( light );
 
 		const a = active[ k ];

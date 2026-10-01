@@ -278,7 +278,7 @@ function _getWaterMaterial( t, opacity ) {
 	// Use texture + opacity bucket as key
 	const opKey = opacity < 1.0 ? 0 : 1;
 	const key = ( t && t.gl_texture ) ? t.gl_texture : null;
-	const cacheKey = key ? key.id * 2 + opKey : opKey;
+	const cacheKey = `${key ? key.id : 0}:${opKey}:${hdr ? 1 : 0}`;
 
 	let material = _waterMaterialCache.get( cacheKey );
 	if ( ! material ) {
@@ -326,6 +326,7 @@ function _getWaterMesh( s, geometry, material, renderGroup ) {
 	if ( ! mesh ) {
 
 		mesh = new THREE.Mesh( geometry, material );
+		mesh.userData.quakeLiquid = s.texinfo.texture;
 		s._waterMesh = mesh;
 
 	} else {
@@ -347,6 +348,16 @@ function _getWaterMesh( s, geometry, material, renderGroup ) {
 	_waterMeshesInScene.add( mesh );
 
 	return mesh;
+
+}
+
+// Chains were consumed by the enhanced draw. Prepare the already visible
+// surfaces directly instead of trying to draw those empty chains a second time.
+export function R_ClassicSurfaceMaterial( mesh ) {
+
+	if ( mesh.userData.quakeLiquid )
+		return _getWaterMaterial( mesh.userData.quakeLiquid, r_wateralpha.value );
+	return mesh.material;
 
 }
 
@@ -2405,6 +2416,7 @@ function R_DrawSkyChain( s ) {
 			if ( ! mesh ) {
 
 				mesh = new THREE.Mesh( geometry, solidSkyMaterial );
+				mesh.userData.quakeSky = true;
 				fa._skyMesh = mesh;
 
 			} else {
@@ -2445,6 +2457,7 @@ function R_DrawSkyChain( s ) {
 				if ( ! mesh ) {
 
 					mesh = new THREE.Mesh( geometry, alphaSkyMaterial );
+					mesh.userData.quakeSky = true;
 					fa._skyMesh2 = mesh;
 
 				} else {
@@ -2679,6 +2692,77 @@ export function GL_CreateSurfaceLightmap( surf ) {
 //============================================================================
 
 export const lightmapTextures = []; // THREE.DataTexture array
+
+// Original grayscale samples and the full native dynamic-light contribution.
+// Keep a separate atlas: the enhanced draw can use coloured .lit samples and
+// reduced baked dynamic light without contaminating the classic comparison.
+const classicAtlases = new WeakMap();
+const classicLightScratch = new Uint8Array( 18 * 18 );
+
+export function R_ClassicLightmap( texture ) {
+
+	return texture != null && classicAtlases.has( texture ) ? classicAtlases.get( texture ).texture : texture;
+
+}
+
+export function R_ClassicLightmapsFrame( models = cl.model_precache || [ cl.worldmodel ] ) {
+
+	const touched = new Set(), seen = new Set();
+	for ( const model of models ) {
+
+		if ( ! model || ! model.surfaces ) continue;
+		for ( const surf of model.surfaces ) {
+
+			if ( ! surf || seen.has( surf ) || ( surf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) ) continue;
+			seen.add( surf );
+			const original = lightmapTextures[ surf.lightmaptexturenum ];
+			if ( ! original ) continue;
+			let atlas = classicAtlases.get( original );
+			if ( ! atlas ) {
+
+				const data = new Uint8Array( BLOCK_WIDTH * BLOCK_HEIGHT * 4 );
+				const texture = new THREE.DataTexture( data, BLOCK_WIDTH, BLOCK_HEIGHT );
+				texture.minFilter = texture.magFilter = THREE.LinearFilter;
+				texture.channel = 1; texture.flipY = false;
+				atlas = { texture, surfaces: new WeakMap() };
+				classicAtlases.set( original, atlas );
+				original.addEventListener( 'dispose', () => { texture.dispose(); classicAtlases.delete( original ); } );
+
+			}
+			const dynamic = surf.dlightframe === r_framecount;
+			const scales = Array.from( surf.styles, style => style === 255 ? 0 : d_lightstylevalue[ style ] );
+			const old = atlas.surfaces.get( surf );
+			const fullbright = r_fullbright.value !== 0 || ( cl.worldmodel != null && cl.worldmodel.lightdata == null );
+			if ( old && old.fullbright === fullbright && ! dynamic && ! old.dynamic && scales.every( ( v, i ) => v === old.scales[ i ] ) ) continue;
+			const cached = Array.from( surf.cached_light ), cachedDynamic = surf.cached_dlight;
+			try {
+
+				R_BuildLightMap( surf, classicLightScratch, 0, 18, 1 );
+
+			} finally {
+
+				surf.cached_light.set ? surf.cached_light.set( cached ) : cached.forEach( ( v, i ) => { surf.cached_light[ i ] = v; } );
+				surf.cached_dlight = cachedDynamic;
+
+			}
+			const width = ( surf.extents[ 0 ] >> 4 ) + 1, height = ( surf.extents[ 1 ] >> 4 ) + 1;
+			const data = atlas.texture.image.data;
+			for ( let y = 0; y < height; y ++ ) for ( let x = 0; x < width; x ++ ) {
+
+				const p = ( ( surf.light_t + y ) * BLOCK_WIDTH + surf.light_s + x ) * 4;
+				data[ p ] = data[ p + 1 ] = data[ p + 2 ] = 255 - classicLightScratch[ y * 18 + x ];
+				data[ p + 3 ] = 255;
+
+			}
+			atlas.surfaces.set( surf, { scales, dynamic, fullbright } );
+			touched.add( atlas.texture );
+
+		}
+
+	}
+	for ( const texture of touched ) texture.needsUpdate = true;
+
+}
 
 //============================================================================
 // concatFloat32Arrays

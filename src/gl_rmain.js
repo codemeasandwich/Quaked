@@ -16,7 +16,8 @@ import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities }
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { R_ClassicTexture } from './r_newertextures.js';
-import { R_AnimSetClassicPass, R_AnimSetNewer, R_AnimSetLighting, R_IsNewer } from './r_anim.js';
+import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from './r_anim.js';
+import { R_SaveClassicScene, R_ClassicMaterial } from './r_classicstate.js';
 import { R_DemoSplitFull, R_DemoSplitActive, R_DemoSplitClassic, r_demosplit } from './r_demosplit.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
@@ -30,7 +31,7 @@ import {
 	M_PI, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorMA,
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
 } from './mathlib.js';
-import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, DrawTextureChains } from './gl_rsurf.js';
+import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, R_ClassicSurfaceMaterial, R_ClassicLightmapsFrame, R_ClassicLightmap } from './gl_rsurf.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
@@ -596,7 +597,9 @@ export function R_DrawEntitiesOnList() {
 				break;
 
 			case mod_brush:
-				R_DrawBrushModel( currententity );
+				// Cached brush geometry/poses are shared; only its material needs
+				// replacing in the classic pass. Avoid rebaking enhanced atlases.
+				if ( ! R_ClassicPassActive() ) R_DrawBrushModel( currententity );
 				break;
 
 			default:
@@ -744,15 +747,17 @@ export function R_DrawViewModel() {
 
 		// Non-XR: apply depthRange hack so weapon renders on top of world
 		const baseMaterial = mesh.material;
-		if ( currententity._viewmodelMaterial == null || currententity._viewmodelMaterialBase !== baseMaterial ) {
+		const slot = R_ClassicPassActive() ? '_classicViewmodelMaterial' : '_viewmodelMaterial';
+		const baseSlot = slot + 'Base';
+		if ( currententity[ slot ] == null || currententity[ baseSlot ] !== baseMaterial ) {
 
-			currententity._viewmodelMaterial = baseMaterial.clone();
-			currententity._viewmodelMaterial.transparent = true;
-			currententity._viewmodelMaterialBase = baseMaterial;
+			currententity[ slot ] = baseMaterial.clone();
+			currententity[ slot ].transparent = true;
+			currententity[ baseSlot ] = baseMaterial;
 
 		}
 
-		mesh.material = currententity._viewmodelMaterial;
+		mesh.material = currententity[ slot ];
 		mesh.renderOrder = 999;
 
 		mesh.onBeforeRender = _viewmodelBeforeRender;
@@ -818,6 +823,7 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	_disposeEntityGeometry( aliasGeometry, geometries );
 	_disposeEntityGeometry( shadowGeometry, geometries );
 	_disposeEntityMaterial( viewmodelMaterial, materials );
+	_disposeEntityMaterial( entity._classicViewmodelMaterial, materials );
 	_disposeEntityMaterial( playerMaterial, materials );
 
 	entity._spriteMesh = null;
@@ -832,6 +838,8 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	entity._aliasShadowVertCount = undefined;
 	entity._viewmodelMaterial = null;
 	entity._viewmodelMaterialBase = null;
+	entity._classicViewmodelMaterial = null;
+	entity._classicViewmodelMaterialBase = null;
 	entity._playerMaterial = null;
 	entity._playerSkinTexture = null;
 
@@ -854,6 +862,8 @@ const TELE_FX_TIME = 0.5;
 const _teleTint = [ new THREE.Color( 1, 0.15, 0.1 ), new THREE.Color( 0.1, 0.35, 1 ) ];
 
 function R_EntityTeleportFx( e, mesh, scene ) {
+
+	if ( ! R_IsNewer() ) { mesh.scale.setScalar( 1 ); return; }
 
 	if ( e._telefx === undefined && CL_TeleportSpots.length > 0 && e.origin != null ) {
 
@@ -920,6 +930,7 @@ function R_EntityTeleportFx( e, mesh, scene ) {
 			mat.blending = THREE.AdditiveBlending;
 			mat.depthWrite = false;
 			const m = new THREE.Mesh( mesh.geometry, mat );
+			m.userData.newerOnly = true;
 			m.renderOrder = 2;
 			scene.add( m );
 			return m;
@@ -1047,7 +1058,7 @@ function R_DrawAliasModel( e ) {
 	if ( mesh != null ) {
 
 		// Newer Game: the sun's light is blocked by monsters and items too
-		if ( e !== cl.viewent && r_newer_shadows.value !== 0 ) mesh.layers.enable( SUN_SHADOW_LAYER );
+		if ( R_IsNewer() && e !== cl.viewent && r_newer_shadows.value !== 0 ) mesh.layers.enable( SUN_SHADOW_LAYER );
 		else mesh.layers.disable( SUN_SHADOW_LAYER );
 
 		mesh._quakeOwner = e;
@@ -1079,6 +1090,7 @@ function R_DrawAliasModel( e ) {
 		if ( shadowMesh != null ) {
 
 			shadowMesh._quakeOwner = e;
+			shadowMesh.userData.newerOnly = newerShadow;
 			_entityMeshCacheOwners.add( e );
 
 			if ( ! _entityMeshesInScene.has( shadowMesh ) ) {
@@ -1490,8 +1502,32 @@ export function R_PolyBlend() {
 	if ( R_WaterActive() && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
 		opacity *= 0.45;
 	polyBlendMesh.material.opacity = opacity;
+	if ( R_DemoSplitActive() ) {
 
-	renderer.render( polyBlendScene, polyBlendCamera );
+		const vp = R_ComputeViewport();
+		const half = Math.floor( vp.lw / 2 );
+		const scissor = renderer.getScissor( new THREE.Vector4() ), scissorTest = renderer.getScissorTest();
+		try {
+
+			renderer.setScissorTest( true );
+			if ( ! R_DemoSplitFull() ) {
+
+				renderer.setScissor( vp.lx, vp.ly, half, vp.lh );
+				renderer.render( polyBlendScene, polyBlendCamera );
+
+			}
+			polyBlendMesh.material.opacity = v_blend[ 3 ];
+			renderer.setScissor( vp.lx + ( R_DemoSplitFull() ? 0 : half ), vp.ly, R_DemoSplitFull() ? vp.lw : vp.lw - half, vp.lh );
+			renderer.render( polyBlendScene, polyBlendCamera );
+
+		} finally {
+
+			polyBlendMesh.material.opacity = opacity;
+			renderer.setScissor( scissor ); renderer.setScissorTest( scissorTest );
+
+		}
+
+	} else renderer.render( polyBlendScene, polyBlendCamera );
 
 }
 
@@ -1549,57 +1585,55 @@ export function R_RenderScene() {
 //
 // Everything Newer is switched off, what the frame built for Newer Game is built again the classic way
 // (the models with their original skins, the water as the original had it), the world's materials are
-// given the original textures, and what only Newer Game draws (marks, mist, shadows, the views of other
+// given the original textures, and what only Newer Game draws (marks, mist, enhanced shadows, the views of other
 // levels) is hidden.  Then the scene is drawn, and all of it put back.
 //============================================================================
 
-let _classicSaved = null;
-let _classicHidden = [];
-let _classicNewer = false;
-let _classicLighting = false;
+let _classicRestore = null;
 
 function R_ClassicOn() {
 
-	_classicNewer = R_IsNewer();
-	_classicLighting = R_NewerLightingActive();
+	const previousPass = R_ClassicPassActive(), previousLook = classicLook.value;
+	const previousEntity = currententity, previousPolys = c_alias_polys;
+	const inScene = _entityMeshesInScene, thisFrame = _entityMeshesThisFrame;
+	const blend = Array.from( v_blend );
+	const restoreScene = R_SaveClassicScene( scene, cl.time );
+	// Install rollback before any preparation can throw.
+	_classicRestore = () => {
+
+		restoreScene();
+		_entityMeshesInScene = inScene; _entityMeshesThisFrame = thisFrame;
+		currententity = previousEntity; c_alias_polys = previousPolys;
+		for ( let i = 0; i < 4; i ++ ) v_blend[ i ] = blend[ i ];
+		classicLook.value = previousLook;
+		R_AnimSetClassicPass( previousPass );
+
+	};
+	_entityMeshesInScene = new Set( inScene );
+	_entityMeshesThisFrame = new Set( thisFrame );
 	R_AnimSetClassicPass( true );
-	R_AnimSetNewer( false );
-	R_AnimSetLighting( false );
 	classicLook.value = 1;
 
-	// the models and the water again, the classic way
 	R_DrawEntitiesOnList();
-	DrawTextureChains();
+	R_DrawViewModel();
+	R_RenderDlights(); // native dynamic lights, not the enhanced fixed light slots
+	R_ClassicLightmapsFrame();
 
-	_classicSaved = new Map();
-	_classicHidden = [];
+	scene.traverse( o => {
 
-	scene.traverse( ( o ) => {
+		if ( o.userData.newerOnly || ( o.isPointLight && gl_flashblend.value === 0 ) || o.name === 'quake_decals' || o.name === 'quake_level_portal' || o.name === 'quake_level_view' ) {
 
-		// only Newer Game draws these
-		const owner = o._quakeOwner;
-		if ( o.name === 'quake_decals' || o.name === 'quake_level_portal' || o.name === 'quake_level_view' || o.isPoints === true
-			|| ( owner != null && owner._aliasMesh !== o && o.isMesh === true ) ) {
-
-			if ( o.visible ) {
-
-				o.visible = false;
-				_classicHidden.push( o );
-
-			}
-
+			o.visible = false;
 			return;
 
 		}
-
-		const m = o.material;
-		if ( m == null || Array.isArray( m ) || _classicSaved.has( m ) ) return;
-		if ( m.map == null && m.emissiveMap == null ) return;
-
-		_classicSaved.set( m, { map: m.map, emissiveMap: m.emissiveMap, emissiveIntensity: m.emissiveIntensity } );
-		if ( m.map != null ) m.map = R_ClassicTexture( m.map );
-		if ( m.emissiveMap != null ) m.emissiveMap = R_ClassicTexture( m.emissiveMap );
-		if ( m.emissiveIntensity !== undefined ) m.emissiveIntensity = 1;
+		// Original particles, original optional shadows and fullbright texels
+		// belong to Quake and are deliberately retained.
+		const source = R_ClassicSurfaceMaterial( o );
+		if ( source == null ) return;
+		const native = m => R_ClassicMaterial( m, R_ClassicTexture, R_ClassicLightmap );
+		o.material = Array.isArray( source ) ? source.map( native ) : native( source );
+		if ( o.userData.quakeSky ) o.material.depthWrite = true;
 
 	} );
 
@@ -1607,22 +1641,11 @@ function R_ClassicOn() {
 
 function R_ClassicOff() {
 
-	for ( const [ m, v ] of _classicSaved ) {
+	if ( _classicRestore ) {
 
-		m.map = v.map;
-		m.emissiveMap = v.emissiveMap;
-		if ( v.emissiveIntensity !== undefined ) m.emissiveIntensity = v.emissiveIntensity;
+		try { _classicRestore(); } finally { _classicRestore = null; }
 
 	}
-
-	for ( const o of _classicHidden ) o.visible = true;
-	_classicSaved = null;
-	_classicHidden = [];
-
-	classicLook.value = 0;
-	R_AnimSetClassicPass( false );
-	R_AnimSetNewer( _classicNewer );
-	R_AnimSetLighting( _classicLighting );
 
 }
 

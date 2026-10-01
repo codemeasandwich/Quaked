@@ -447,7 +447,7 @@ export function R_PortalsBeginFrame( enabled ) {
 
 export function R_PortalsActive() {
 
-	return portalsEnabled && portals.length > 0;
+	return R_NewerGame() && portalsEnabled && portals.length > 0;
 
 }
 

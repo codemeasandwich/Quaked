@@ -235,6 +235,9 @@ function applyGlow( material, boost ) {
 export function R_RegisterGlow( material, boost = EMISSIVE_BOOST ) {
 
 	material.userData.glowBoost = boost;
+	// Keep the native tint for the isolated classic demo material.
+	if ( material.color && material.userData.classicGlowColor === undefined )
+		material.userData.classicGlowColor = material.color.toArray();
 	applyGlow( material, boost );
 	glowMaterials.add( material );
 	if ( boost === LAVA_BOOST ) lavaMaterials.add( material );

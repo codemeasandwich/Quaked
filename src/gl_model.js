@@ -1936,7 +1936,9 @@ function Mod_CrateVariants( surfaces ) {
 		if ( variant === null && shift[ 0 ] === 0 && shift[ 1 ] === 0 ) continue;
 
 		const name = variant !== null ? variant : base.name;
-		const key = name + '@' + shift[ 0 ].toFixed( 4 ) + ',' + shift[ 1 ].toFixed( 4 );
+		// Equal enhanced art can replace different original crate faces. Keep
+		// their native provenance distinct for the demo's classic half.
+		const key = name + '@' + shift[ 0 ].toFixed( 4 ) + ',' + shift[ 1 ].toFixed( 4 ) + ':native:' + base.name;
 
 		let tx = made.get( key );
 		if ( tx === undefined ) {
@@ -1948,6 +1950,7 @@ function Mod_CrateVariants( surfaces ) {
 			tx.pixels = base.pixels;
 			tx.offsets.set( base.offsets );
 			tx.gl_texture = GL_LoadTexture( name, tx.width, tx.height, tx.pixels, true, false, true );
+			tx.gl_texture.userData.classicBase = base.gl_texture;
 			// the picture starts at the face's edge (the diffuse picture and its relief move together)
 			tx.gl_texture.offset.set( shift[ 0 ], shift[ 1 ] );
 			R_NewerTextureUpgrade( name, tx.gl_texture );

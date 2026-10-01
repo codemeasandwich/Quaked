@@ -15,6 +15,7 @@
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 import * as THREE from 'three';
+import { gl_texturemode } from './glquake.js';
 
 // the textures that have been given their Newer picture, so they can be put back (r_demosplit.js)
 const upgraded = new Set();
@@ -275,31 +276,50 @@ export function R_NewerTextureSettled( name, texture ) {
 }
 
 
-// A texture as the original game had it: a copy with the original pixels, or the texture itself when it has
-// never been given a Newer picture.  (Filtering is the classic's: hard pixels.)
+// A separate native texture also avoids inheriting Newer Game's forced linear
+// filtering on artwork that was never replaced. Honour the user's native filter.
 export function R_ClassicTexture( texture ) {
 
-	if ( texture == null || texture.userData == null || texture.userData.classicImage === undefined ) return texture;
+	if ( texture == null ) return texture;
+	if ( texture.userData.classicBase ) return R_ClassicTexture( texture.userData.classicBase );
 
 	let twin = texture.userData.classicTwin;
 	if ( twin === undefined ) {
 
-		const img = texture.userData.classicImage;
-		twin = new THREE.DataTexture( img.data, img.width, img.height, texture.format, texture.type );
+		const img = texture.userData.classicImage || texture.image;
+		twin = texture.isDataTexture ? new THREE.DataTexture( img.data, img.width, img.height, texture.format, texture.type ) : new THREE.Texture( img );
 		twin.wrapS = texture.wrapS;
 		twin.wrapT = texture.wrapT;
 		twin.flipY = texture.flipY;
 		twin.colorSpace = texture.colorSpace;
 		twin.magFilter = THREE.NearestFilter;
 		twin.minFilter = THREE.NearestMipmapLinearFilter;
-		twin.generateMipmaps = true;
+		twin.generateMipmaps = texture.generateMipmaps;
 		twin.offset.copy( texture.offset );
 		twin.repeat.copy( texture.repeat );
 		twin.needsUpdate = true;
 		texture.userData.classicTwin = twin;
+		twin.userData.classicSourceVersion = texture.version;
+		texture.addEventListener( 'dispose', () => { twin.dispose(); delete texture.userData.classicTwin; } );
 
 	}
 
+	const linear = gl_texturemode.value !== 0;
+	if ( ! texture.userData.classicImage && twin.userData.classicSourceVersion !== texture.version ) {
+
+		twin.image = texture.image; twin.needsUpdate = true;
+		twin.userData.classicSourceVersion = texture.version;
+
+	}
+	const mag = linear ? THREE.LinearFilter : THREE.NearestFilter;
+	const min = twin.generateMipmaps ? ( linear ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter ) : mag;
+	if ( twin.magFilter !== mag || twin.minFilter !== min ) {
+
+		twin.magFilter = mag; twin.minFilter = min; twin.anisotropy = 1;
+		twin.needsUpdate = true;
+
+	}
+	twin.offset.copy( texture.offset ); twin.repeat.copy( texture.repeat );
 	return twin;
 
 }

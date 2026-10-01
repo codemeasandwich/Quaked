@@ -48,6 +48,21 @@ const cachepics = {}; // name -> { width, height, data, canvas, texnum }
 let overlayCanvas = null;
 let overlayCtx = null;
 
+// Coordinates use the same virtual canvas space as HUD drawing. Always restore
+// the caller's clip/transform, including when a drawing callback fails.
+export function Draw_WithClipRect( x, y, width, height, draw ) {
+
+	if ( ! overlayCtx ) return;
+	overlayCtx.save();
+	try {
+
+		overlayCtx.beginPath(); overlayCtx.rect( x, y, width, height ); overlayCtx.clip();
+		draw();
+
+	} finally { overlayCtx.restore(); }
+
+}
+
 // Charset
 let char_canvas = null;
 let conback = null;

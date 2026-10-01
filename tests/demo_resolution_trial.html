@@ -85,9 +85,9 @@ liveRenderer.setRenderTarget=function(target,...rest){
 };
 liveRenderer.render=function(scene,camera){
  const target=this.getRenderTarget();
- // The exact classic scene pass: main game scene, one SRGB nearest-filtered
+ // The exact classic scene pass: main game scene, one linear nearest-filtered
  // target. Sun/probe/portal passes use other scenes/formats/filter settings.
- if(scene===window.scene && target && target.textures.length===1 && target.texture.colorSpace===THREE.SRGBColorSpace && target.texture.magFilter===THREE.NearestFilter && enhanced){
+ if(scene===window.scene && target && target.textures.length===1 && target.texture.type===THREE.HalfFloatType && target.texture.colorSpace===THREE.LinearSRGBColorSpace && target.texture.magFilter===THREE.NearestFilter && enhanced){
   frames++;const equal=target.width===enhanced.width && target.height===enhanced.height;if(!equal)mismatches++;
   const key=enhanced.width+'x'+enhanced.height;sizes.set(key,{enhanced:[enhanced.width,enhanced.height],classic:[target.width,target.height],equal});
   document.querySelector('#resolution-status').textContent=(mismatches?'FAIL':'PASS')+' — '+frames+' real split-demo frames; '+mismatches+' resolution mismatches';

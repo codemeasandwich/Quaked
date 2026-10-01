@@ -104,6 +104,7 @@ function build( scene, regions ) {
 	} );
 
 	points = new THREE.Points( geometry, material );
+	points.userData.newerOnly = true;
 	points.frustumCulled = false;
 	points.renderOrder = 3;
 	scene.add( points );

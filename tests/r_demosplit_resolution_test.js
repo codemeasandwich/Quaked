@@ -29,6 +29,8 @@ Deno.test('classic split follows exact enhanced target dimensions, reuse and hei
  const renderer=rendererDouble(),prior=new THREE.WebGLRenderTarget(1,1);renderer.setRenderTarget(prior);
  const first=classicFrame(renderer,{width:802,height:604});equal(renderer.getRenderTarget(),prior,'previous output target restored');
  equal(first.texture.magFilter,THREE.NearestFilter,'classic filtering preserved');
+ equal(first.texture.type,THREE.HalfFloatType,'native brightness preserved until output gamma');
+ equal(first.texture.colorSpace,THREE.LinearSRGBColorSpace,'native output curve applied once');
  equal(classicFrame(renderer,{width:802,height:604}),first,'unchanged dimensions reuse target');
  let disposals=0;first.addEventListener('dispose',()=>disposals++);
  const taller=classicFrame(renderer,{width:802,height:606});equal(taller===first,false,'height-only change recreates target');equal(disposals,1,'old target disposed');

@@ -5,7 +5,7 @@
 // player had is put back when the demo stops, and starting a game sets it itself.  The right half is the same
 // scene drawn again with the Newer lighting left out (the original light curve, no bounce or relief or
 // post effects), with the original textures and skins, at the same scene-render resolution as the enhanced
-// half.  The scene is drawn a second time with everything Newer switched off (see R_ClassicHalf in gl_rmain.js).
+// half. The scene is drawn again with Newer switched off (see R_ClassicOn in gl_rmain.js).
 
 import * as THREE from 'three';
 import { cvar_t, Cvar_Set, Cvar_VariableString } from './cvar.js';
@@ -68,7 +68,10 @@ function ensure( width, height ) {
 	if ( rt === null || rt.width !== width || rt.height !== height ) {
 
 		if ( rt !== null ) rt.dispose();
-		rt = new THREE.WebGLRenderTarget( width, height, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true, generateMipmaps: false, colorSpace: THREE.SRGBColorSpace } );
+		// Preserve the native scene's brightness until the ordinary output gamma
+		// is applied by the blit. A byte target clips flames/fullbrights too early
+		// when the player's exposure is below one. No enhanced post pass runs here.
+		rt = new THREE.WebGLRenderTarget( width, height, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true, generateMipmaps: false, type: THREE.HalfFloatType, colorSpace: THREE.LinearSRGBColorSpace } );
 
 	}
 
@@ -107,25 +110,47 @@ export function R_DemoSplitClassic( renderer, scene, camera, viewport, classicOn
 	ensure( Math.max( 1, width ), Math.max( 1, height ) );
 
 	const prev = renderer.getRenderTarget();
-	renderer.setScissorTest( false );
-	renderer.setRenderTarget( rt );
-	renderer.setClearColor( 0x000000, 1 );
-	renderer.clear( true, true, false );
-	classicOn();
-	renderer.render( scene, camera );
-	classicOff();
-
-	// Present at the same output viewport, clipping to the classic half. Original
-	// artwork and classic filtering remain controlled by the existing classic pass.
-	renderer.setRenderTarget( prev );
-	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
-	const full = r_demosplit.value === 2;
-	renderer.setScissor( viewport.lx + ( full ? 0 : Math.floor( viewport.lw / 2 ) ), viewport.ly, full ? viewport.lw : Math.ceil( viewport.lw / 2 ), viewport.lh );
-	renderer.setScissorTest( true );
 	const autoClear = renderer.autoClear;
-	renderer.autoClear = false;
-	renderer.render( blitScene, blitCamera );
-	renderer.autoClear = autoClear;
-	renderer.setScissorTest( false );
+	const oldViewport = renderer.getViewport && renderer.getViewport( new THREE.Vector4() );
+	const oldScissor = renderer.getScissor && renderer.getScissor( new THREE.Vector4() );
+	const oldScissorTest = renderer.getScissorTest ? renderer.getScissorTest() : false;
+	const oldClear = renderer.getClearColor && renderer.getClearColor( new THREE.Color() );
+	const oldAlpha = renderer.getClearAlpha && renderer.getClearAlpha();
+	try {
+
+		renderer.setScissorTest( false );
+		renderer.setRenderTarget( rt );
+		renderer.setClearColor( 0x000000, 1 );
+		renderer.clear( true, true, false );
+		try {
+
+			classicOn();
+			renderer.render( scene, camera );
+
+		} finally {
+
+			classicOff();
+
+		}
+
+		// Present at the same output viewport, clipping to the classic half.
+		renderer.setRenderTarget( prev );
+		renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
+		const full = r_demosplit.value === 2;
+		renderer.setScissor( viewport.lx + ( full ? 0 : Math.floor( viewport.lw / 2 ) ), viewport.ly, full ? viewport.lw : Math.ceil( viewport.lw / 2 ), viewport.lh );
+		renderer.setScissorTest( true );
+		renderer.autoClear = false;
+		renderer.render( blitScene, blitCamera );
+
+	} finally {
+
+		renderer.autoClear = autoClear;
+		renderer.setRenderTarget( prev );
+		if ( oldViewport ) renderer.setViewport( oldViewport );
+		if ( oldScissor ) renderer.setScissor( oldScissor );
+		renderer.setScissorTest( oldScissorTest );
+		if ( oldClear ) renderer.setClearColor( oldClear, oldAlpha );
+
+	}
 
 }

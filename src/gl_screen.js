@@ -15,7 +15,25 @@ import { Cmd_AddCommand } from './cmd.js';
 import { key_dest, key_game, key_console, key_message } from './keys.js';
 import { realtime, host_frametime } from './host.js';
 import { renderer } from './vid.js';
+import { R_DemoSplitActive, R_DemoSplitFull } from './r_demosplit.js';
+import { R_ClassicPassActive, R_AnimSetClassicPass } from './r_anim.js';
+import { Draw_WithClipRect } from './gl_draw.js';
 import { r_refdef as _r_refdef_canonical } from './render.js';
+
+function SCR_DrawStatusBar() {
+
+	if ( ! R_DemoSplitActive() ) { Sbar_Draw(); return; }
+	const width = Draw_GetVirtualWidth(), height = Draw_GetVirtualHeight(), half = width / 2;
+	const oldPass = R_ClassicPassActive();
+	try {
+
+		if ( ! R_DemoSplitFull() ) Draw_WithClipRect( 0, 0, half, height, () => { Sbar_Changed(); Sbar_Draw(); } );
+		R_AnimSetClassicPass( true );
+		Draw_WithClipRect( R_DemoSplitFull() ? 0 : half, 0, R_DemoSplitFull() ? width : half, height, () => { Sbar_Changed(); Sbar_Draw(); } );
+
+	} finally { R_AnimSetClassicPass( oldPass ); }
+
+}
 
 /*
 ==============================================================================
@@ -964,7 +982,7 @@ export function SCR_UpdateScreen() {
 
 	if ( scr_drawdialog ) {
 
-		Sbar_Draw();
+		SCR_DrawStatusBar();
 		Draw_FadeScreen();
 		SCR_DrawNotifyString();
 		scr_copyeverything = 1;
@@ -972,7 +990,7 @@ export function SCR_UpdateScreen() {
 	} else if ( scr_drawloading || scr_plaque ) {
 
 		SCR_DrawLoading();
-		Sbar_Draw();
+		SCR_DrawStatusBar();
 
 	} else if ( _cl.intermission === 1 && key_dest === key_game ) {
 
@@ -994,7 +1012,7 @@ export function SCR_UpdateScreen() {
 		SCR_DrawTurtle();
 		SCR_DrawPause();
 		SCR_CheckDrawCenterString();
-		Sbar_Draw();
+		SCR_DrawStatusBar();
 		SCR_DrawConsole();
 		M_Draw();
 
