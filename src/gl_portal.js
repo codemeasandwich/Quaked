@@ -276,7 +276,7 @@ export function R_BuildPortals( model ) {
 		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
 		if ( dest == null || sub == null ) continue;
 
-		triggers.push( { dest, mins: sub.mins, maxs: sub.maxs } );
+		triggers.push( { dest, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs } );
 
 	}
 
@@ -376,6 +376,10 @@ export function R_BuildPortals( model ) {
 		const destVis = Mod_LeafPVS( destLeaf, model ).slice( 0, ( model.numleafs + 7 ) >> 3 );
 
 		const portal = {
+			triggerModel: g.trigger.model,
+			triggerTarget: g.trigger.target,
+			triggerMins: g.trigger.mins,
+			triggerMaxs: g.trigger.maxs,
 			surfaces: g.surfaces,
 			center: C,
 			normal: n,
@@ -480,6 +484,7 @@ void main() {
 
 const FRAGMENT_SHADER = `
 layout(location = 1) out highp vec4 gNormal;
+layout(location = 2) out highp vec4 gAlbedo;
 uniform sampler2D map;
 uniform sampler2D portalMap;
 uniform float portalMix;
@@ -513,6 +518,7 @@ void main() {
 	#include <colorspace_fragment>
 	// a window, not a wall: the lighting pass must not light it (alpha < 0 says so)
 	gNormal = vec4( 0.5, 0.5, 1.0, - 1.0 );
+	gAlbedo = vec4( 0.0 );
 }`;
 
 export function R_PortalMaterial( portal, texture ) {

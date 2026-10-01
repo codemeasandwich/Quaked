@@ -49,6 +49,8 @@ The startup title demo compares enhanced and classic rendering at the same scene
 
 Advanced lighting follows the scene's dynamic resolution too: its rays and bounce sampling run at the scene target size, then a cheap display pass converts colour and applies brightness/contrast. This removes the former full-display lighting bottleneck when the scene had already scaled down. [Lighting performance investigation and measured results](docs/lighting-performance-2026-10-01.md).
 
+Options now puts Newer Game features first, Performance profiler above Go to console, and FPS counter above Texture Filtering. Same-level camera portals retain approach angle, lateral position and momentum using their preview's transform. Flashlight shading retains unlit material colour separately from baked lighting, so genuinely unlit surfaces can stay black and recover their own texture colours under the beam. [Implementation and verification](docs/options-portals-flashlight-2026-10-01.md).
+
 #### Getting the next level ready
 
 When the player comes within about 900 units of an exit (a doorway, archway, pit or teleporter pad), the level behind it is prepared a few milliseconds per frame: its map is read, its own textures fetched and decoded, its monsters' and items' models loaded, and the relief maps of its textures made. The real level change then only has to put the level together. In a test the level build after a change took about 40% less work on the main thread. (Loading the files themselves is not the cost: the game's data is already in memory.)

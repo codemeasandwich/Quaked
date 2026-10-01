@@ -1,0 +1,69 @@
+{
+  "method": "normal animation loop",
+  "pixelRatio": 2,
+  "drawingBuffer": [
+    2560,
+    1440
+  ],
+  "results": [
+    {
+      "case": "all lighting dynamic",
+      "frames": 60,
+      "frameMs": {
+        "mean": 24.76271186440678,
+        "median": 24.900000005960464,
+        "p95": 29.69999998807907
+      },
+      "passes": {
+        "world auxiliary": {
+          "mean": 3.480000001937151,
+          "median": 3.4000000059604645,
+          "p95": 4.299999997019768
+        },
+        "world": {
+          "mean": 1.8333333325882752,
+          "median": 1.7999999970197678,
+          "p95": 2
+        },
+        "volume": {
+          "mean": 0.025000000496705373,
+          "median": 0,
+          "p95": 0.10000000894069672
+        },
+        "bloom prefilter": {
+          "mean": 0.0033333331346511843,
+          "median": 0,
+          "p95": 0
+        },
+        "bloom down": {
+          "mean": 0.006666666517655055,
+          "median": 0,
+          "p95": 0.09999999403953552
+        },
+        "bloom up": {
+          "mean": 0.009999999900658925,
+          "median": 0,
+          "p95": 0.09999999403953552
+        },
+        "composite": {
+          "mean": 0.021666666120290758,
+          "median": 0,
+          "p95": 0.10000000894069672
+        },
+        "lighting upscale": {
+          "mean": 0.006666666517655055,
+          "median": 0,
+          "p95": 0.09999999403953552
+        }
+      },
+      "sceneScale": 0.5,
+      "compositeTarget": [
+        1282,
+        720
+      ],
+      "lightCount": 8,
+      "bounce": 1,
+      "crateRarity": 40
+    }
+  ]
+}

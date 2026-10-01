@@ -134,10 +134,8 @@ function dynResUpdate( now ) {
 const lightCurve = { value: 1 };
 // 1 while the classic half of the title demo is drawn (see r_demosplit.js): no bounce floor, the original light curve, no relief
 export const classicLook = { value: 0 };
-// Bounce light: no surface is left pure black.  Where the baked light never reached, light still arrives from the rest of the
-// level, a little, so the surface keeps its own picture (the flashlight and any glow can then bring it out) instead of
-// being a flat black the beam can only paint grey.
-const BOUNCE_LIGHT = 0.025;
+// Unlit material colour is retained separately from baked lighting. A surface
+// without a light source need not be lifted merely to recover its colour later.
 
 // glquake.h flags (not imported: keeps this module out of the renderer's import cycle)
 const SURF_DRAWSKY = 4;
@@ -347,29 +345,29 @@ vec2 pUv = vMapUv;
 #endif
 `;
 
-// Writes the surface normal and its distance to a second render target; the
-// composite pass uses it to light the relief.
+// Retain the surface normal/distance and unlit diffuse colour in the scene's
+// normal and albedo attachments. The compositor lights the original material.
 function patchDetailShader( shader ) {
 
 	let f = shader.fragmentShader;
 
-	f = 'layout(location = 1) out highp vec4 gNormal;\nuniform float uLmGamma;\nuniform float uLighting;\nuniform float uClassic;\n' + f;
+	f = 'layout(location = 1) out highp vec4 gNormal;\nlayout(location = 2) out highp vec4 gAlbedo;\nuniform float uLmGamma;\nuniform float uLighting;\nuniform float uClassic;\n' + f;
 	shader.uniforms.uLmGamma = lightCurve;
 	shader.uniforms.uLighting = lightingLook;
 	shader.uniforms.uClassic = classicLook;
 
 	// the baked light, curved: only what a source really lights stays bright
 	f = f.replace( '#include <lights_fragment_maps>', THREE.ShaderChunk.lights_fragment_maps.replace(
-		'lightMapTexel.rgb * lightMapIntensity', 'max( pow( max( lightMapTexel.rgb, vec3( 0.0001 ) ), vec3( mix( uLmGamma, 1.0, uClassic ) ) ), vec3( ' + BOUNCE_LIGHT + ' * uLighting * ( 1.0 - uClassic ) ) ) * lightMapIntensity' ) );
+		'lightMapTexel.rgb * lightMapIntensity', 'pow( max( lightMapTexel.rgb, vec3( 0.0 ) ), vec3( mix( uLmGamma, 1.0, uClassic ) ) ) * lightMapIntensity' ) );
 
 	// texture lookups follow the parallax-shifted coordinates
-	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) );
+	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
 	// depth is for looking at it from a little way off
 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
 		.replace( 'mapN.xy *= normalScale;', 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) ) * ( 1.0 - uClassic );' ) );
 	f = f.replace( '#include <emissivemap_fragment>', THREE.ShaderChunk.emissivemap_fragment.replace( /vEmissiveMapUv/g, '_pUv' ) );
-	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );' );
+	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );\n\tgAlbedo = vec4( gDiffuse, 1.0 );' );
 
 	// without a normal map there is no parallax; keep the names valid
 	f = f.replace( /_pUv/g, 'DETAIL_UV' );
@@ -379,18 +377,21 @@ function patchDetailShader( shader ) {
 
 }
 
-// Every material drawn into the HDR target has to write both attachments.  Those
+// Every material drawn into the HDR target has to write all attachments. Those
 // that know nothing about the normal G-buffer (entities, sky, water, sprites,
 // portals...) write "no normal here", which also replaces a stale normal from
-// whatever they were drawn over.  Alpha 0 makes the composite fall back to the
-// normal of the depth surface.
+// whatever they were drawn over. Alpha 0 selects a depth normal or marks an
+// unavailable albedo. Transparent effects do not masquerade as opaque surfaces.
 function patchGBufferShader( shader ) {
 
-	const f = shader.fragmentShader;
+	let f = shader.fragmentShader;
 	if ( f.indexOf( 'gNormal' ) !== - 1 || f.indexOf( '#include <colorspace_fragment>' ) === - 1 ) return;
-
-	shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\n' +
-		f.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n	gNormal = vec4( 0.0 );' );
+	const surface = f.includes( '#include <map_fragment>' ) && this.depthWrite !== false && this.transparent !== true;
+	// Alias vertex colours contain baked illumination. Capture the texture/material
+	// before color_fragment multiplies that lighting in; zero cannot be divided out.
+	if ( surface ) f = f.replace( '#include <map_fragment>', '#include <map_fragment>\nvec3 gDiffuse = diffuseColor.rgb;' );
+	shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\nlayout(location = 2) out highp vec4 gAlbedo;\n' +
+		f.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = vec4( 0.0 );\n\tgAlbedo = ' + ( surface ? 'vec4( gDiffuse, 1.0 )' : 'vec4( 0.0 )' ) + ';' );
 
 }
 
@@ -1500,6 +1501,7 @@ const COMPOSITE_FRAGMENT = COMMON_FRAGMENT + `
 #include <common>
 uniform sampler2D tScene;
 uniform sampler2D tNormal;
+uniform sampler2D tAlbedo;
 uniform sampler2D tVolume;
 uniform sampler2D tBloom;
 uniform vec2 uTexel;
@@ -1827,9 +1829,7 @@ void main() {
 				flashAdd += lightHere * uLightAdd[ i ];
 			}
 
-			// a source lights a surface whatever its baked light was; the small floor
-			// stands for the surface's own colour, which is not known here
-			// the flashlight
+			// A real source can light a surface even when its baked light is zero.
 			vec3 spot = vec3( 0.0 );
 			if ( uSpotOn > 0.5 ) {
 				vec3 Ls = uSpotPos - P;
@@ -1858,18 +1858,10 @@ void main() {
 				}
 			}
 
-			// (tinted by the surface's own colour, so stone stays stone and does not
-			// wash out to grey where a light falls on it)
-			vec3 tint = scene / max( max( scene.r, max( scene.g, scene.b ) ), 0.01 );
-			// the beam adds less to what is already bright (an enemy in it would wash out: a flat lift on a pale surface
-			// is grey), and its flat tint only lifts the darks
-			float sl = dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) );
-			float spotGain = 1.15 * ( 1.0 + 4.0 * ( 1.0 - smoothstep( 0.0, 0.06, sl ) ) ) * ( 1.0 - 0.55 * smoothstep( 0.2, 0.8, sl ) );
-			float spotLift = 0.12 * ( 1.0 - smoothstep( 0.15, 0.6, sl ) );
-			// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
-			// gets a plain warm one, so the flashlight always has something to light
-			float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
-			vec3 beamTint = mix( vec3( 0.3 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
+			// Read the actual unlit material colour. The lit scene has lost it where
+			// the baked lighting is zero; a neutral grey lift cannot reconstruct it.
+			vec4 base = texture2D( tAlbedo, uvd );
+			vec3 albedo = base.a > 0.5 ? base.rgb : scene;
 			// Bounce light.  What a surface sees of its neighbours on the screen lights it a little: each of a handful of
 			// points round it (out to about 150 units) gives the light it is sending this way, if the two face each
 			// other, less with distance; and the receiver's own colour tints it (a red wall casts red on the floor, and
@@ -1917,13 +1909,17 @@ void main() {
 					// on the wall: what a point sends is squashed (so a flame is a few times a wall, not a hundred), and
 					// averaged over a few neighbouring texels
 					vec2 ob = uTexel * 3.0;
-					vec3 src = ( texture2D( tScene, uvs ).rgb * 2.0 + texture2D( tScene, uvs + ob ).rgb + texture2D( tScene, uvs - ob ).rgb ) * 0.25 * ( 1.0 + 5.0 * beamS );
+					vec3 src = ( texture2D( tScene, uvs ).rgb * 2.0 + texture2D( tScene, uvs + ob ).rgb + texture2D( tScene, uvs - ob ).rgb ) * 0.25;
+					if ( beamS > 0.0 ) {
+						vec4 sourceBase = texture2D( tAlbedo, uvs );
+						if ( sourceBase.a > 0.5 ) src += sourceBase.rgb * uSpotCol * 1.15 * beamS;
+					}
 					bounce += src / ( 1.0 + 0.9 * max( src.r, max( src.g, src.b ) ) ) * w;
 				}
 				bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
 			}
-			vec3 receiver = mix( vec3( 0.6 ), tint, 0.7 ) * 0.55;
-			c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+			vec3 receiver = albedo * 0.55;
+			c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 );
 
 			// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 			if ( spotMask > 0.0 ) {
@@ -2230,7 +2226,7 @@ function createPipeline() {
 			uTexel: { value: new THREE.Vector2() }, uWeight: { value: 1 }
 		} ),
 		compositeMaterial: makeMaterial( COMPOSITE_FRAGMENT, Object.assign( {
-			tScene: { value: null }, tNormal: { value: null }, tVolume: { value: null }, tBloom: { value: null },
+			tScene: { value: null }, tNormal: { value: null }, tAlbedo: { value: null }, tVolume: { value: null }, tBloom: { value: null },
 			uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uBloom: { value: 0.6 }, uVolume: { value: 1 },
 			uHaze: { value: HAZE_DENSITY },
@@ -2308,7 +2304,8 @@ function samplesFor( scale ) {
 function ensureTargets( width, height ) {
 
 	const samples = samplesFor( dyn.scale );
-	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples ) return;
+	const count = glowActive ? 3 : 2; // authored colour is consumed only by lighting
+	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples && gpu.hdr.textures.length === count ) return;
 
 	disposeTargets();
 	gpu.width = width;
@@ -2316,7 +2313,18 @@ function ensureTargets( width, height ) {
 	gpu.samples = samples;
 
 	const depth = new THREE.DepthTexture( width, height );
-	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples, count: 2 } );
+	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples, count } );
+	// SRGB8 storage preserves dark authored texels at half the bandwidth of HDR.
+	// The attachment encodes linear shader output and texture reads decode it;
+	// alpha marks valid surfaces. No extra geometry pass or baked-light floor.
+	if ( count === 3 ) {
+
+		gpu.hdr.textures[ 2 ].type = THREE.UnsignedByteType;
+		gpu.hdr.textures[ 2 ].colorSpace = THREE.SRGBColorSpace;
+		gpu.hdr.textures[ 2 ].minFilter = THREE.NearestFilter;
+		gpu.hdr.textures[ 2 ].magFilter = THREE.NearestFilter;
+
+	}
 	gpu.volume = makeRT( Math.ceil( width * 0.75 ), Math.ceil( height * 0.75 ) );
 
 	let w = Math.ceil( width / 2 ), h = Math.ceil( height / 2 );
@@ -2702,6 +2710,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];
 	cm.tNormal.value = hdr.textures[ 1 ];
+	cm.tAlbedo.value = hdr.textures[ 2 ] || null;
 	cm.tVolume.value = volume > 0 ? p.volume.texture : null;
 	cm.tBloom.value = bloom > 0 ? p.bloomResult.texture : null;
 	cm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );

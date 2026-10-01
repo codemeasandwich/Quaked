@@ -1,6 +1,7 @@
 // Ported from: WinQuake/sv_phys.c -- server physics
 
 import { SV_SeamlessHolding } from './sv_seamless.js';
+import { SV_PortalMoveStart, SV_PortalMoveEnd } from './sv_portalmotion.js';
 import { Sys_Error } from './sys.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cvar_t } from './cvar.js';
@@ -222,13 +223,15 @@ export let GetEdictFieldValue = null;
 
 export function SV_SetCallbacks( callbacks ) {
 
-	if ( callbacks.SV_Move ) SV_Move = callbacks.SV_Move;
-	if ( callbacks.SV_TestEntityPosition ) SV_TestEntityPosition = callbacks.SV_TestEntityPosition;
-	if ( callbacks.SV_LinkEdict ) SV_LinkEdict = callbacks.SV_LinkEdict;
-	if ( callbacks.SV_PointContents ) SV_PointContents = callbacks.SV_PointContents;
+	// Explicit null restores an uninitialized hook after isolated physics
+	// trials; omitted/undefined hooks retain the normal host wiring.
+	if ( callbacks.SV_Move !== undefined ) SV_Move = callbacks.SV_Move;
+	if ( callbacks.SV_TestEntityPosition !== undefined ) SV_TestEntityPosition = callbacks.SV_TestEntityPosition;
+	if ( callbacks.SV_LinkEdict !== undefined ) SV_LinkEdict = callbacks.SV_LinkEdict;
+	if ( callbacks.SV_PointContents !== undefined ) SV_PointContents = callbacks.SV_PointContents;
 	if ( callbacks.SV_StartSound ) SV_StartSound = callbacks.SV_StartSound;
-	if ( callbacks.PR_ExecuteProgram ) PR_ExecuteProgram = callbacks.PR_ExecuteProgram;
-	if ( callbacks.EDICT_TO_PROG ) EDICT_TO_PROG = callbacks.EDICT_TO_PROG;
+	if ( callbacks.PR_ExecuteProgram !== undefined ) PR_ExecuteProgram = callbacks.PR_ExecuteProgram;
+	if ( callbacks.EDICT_TO_PROG !== undefined ) EDICT_TO_PROG = callbacks.EDICT_TO_PROG;
 	if ( callbacks.PROG_TO_EDICT ) PROG_TO_EDICT = callbacks.PROG_TO_EDICT;
 	if ( callbacks.NEXT_EDICT ) NEXT_EDICT = callbacks.NEXT_EDICT;
 	if ( callbacks.GetEdictFieldValue ) GetEdictFieldValue = callbacks.GetEdictFieldValue;
@@ -1330,52 +1333,60 @@ export function SV_Physics_Client( ent, num ) {
 	//
 	// decide which move function to call
 	//
-	switch ( ent.v.movetype | 0 ) {
+	let portalMotion = null;
+	try {
+		switch ( ent.v.movetype | 0 ) {
 
-		case MOVETYPE_NONE:
-			if ( ! SV_RunThink( ent ) )
-				return;
-			break;
+			case MOVETYPE_NONE:
+				if ( ! SV_RunThink( ent ) )
+					return;
+				break;
 
-		case MOVETYPE_WALK:
-			if ( ! SV_RunThink( ent ) )
-				return;
-			if ( ! SV_CheckWater( ent ) && ! ( ( ent.v.flags | 0 ) & FL_WATERJUMP ) )
-				SV_AddGravity( ent );
-			SV_CheckStuck( ent );
-			SV_WalkMove( ent );
-			break;
+			case MOVETYPE_WALK:
+				if ( ! SV_RunThink( ent ) )
+					return;
+				if ( ! SV_CheckWater( ent ) && ! ( ( ent.v.flags | 0 ) & FL_WATERJUMP ) )
+					SV_AddGravity( ent );
+				SV_CheckStuck( ent );
+				portalMotion = SV_PortalMoveStart( ent, sv.time );
+				SV_WalkMove( ent );
+				break;
 
-		case MOVETYPE_TOSS:
-		case MOVETYPE_BOUNCE:
-			SV_Physics_Toss( ent );
-			break;
+			case MOVETYPE_TOSS:
+			case MOVETYPE_BOUNCE:
+				SV_Physics_Toss( ent );
+				break;
 
-		case MOVETYPE_FLY:
-			if ( ! SV_RunThink( ent ) )
-				return;
-			SV_FlyMove( ent, host_frametime, null );
-			break;
+			case MOVETYPE_FLY:
+				if ( ! SV_RunThink( ent ) )
+					return;
+				SV_FlyMove( ent, host_frametime, null );
+				break;
 
-		case MOVETYPE_NOCLIP:
-			if ( ! SV_RunThink( ent ) )
-				return;
-			VectorMA( ent.v.origin, host_frametime, ent.v.velocity, ent.v.origin );
-			break;
+			case MOVETYPE_NOCLIP:
+				if ( ! SV_RunThink( ent ) )
+					return;
+				VectorMA( ent.v.origin, host_frametime, ent.v.velocity, ent.v.origin );
+				break;
 
-		default:
-			Sys_Error( 'SV_Physics_client: bad movetype ' + ( ent.v.movetype | 0 ) );
+			default:
+				Sys_Error( 'SV_Physics_client: bad movetype ' + ( ent.v.movetype | 0 ) );
+
+		}
+
+		//
+		// call standard player post-think
+		//
+		SV_LinkEdict( ent, true );
+
+		pr_global_struct.time = sv.time;
+		pr_global_struct.self = EDICT_TO_PROG( ent );
+		PR_ExecuteProgram( pr_global_struct.PlayerPostThink );
+	} finally {
+
+		if ( portalMotion ) SV_PortalMoveEnd( ent, portalMotion );
 
 	}
-
-	//
-	// call standard player post-think
-	//
-	SV_LinkEdict( ent, true );
-
-	pr_global_struct.time = sv.time;
-	pr_global_struct.self = EDICT_TO_PROG( ent );
-	PR_ExecuteProgram( pr_global_struct.PlayerPostThink );
 
 }
 

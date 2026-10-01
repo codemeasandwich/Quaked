@@ -4,7 +4,7 @@
 <base href="../">
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-	<title>Lighting performance trial</title>
+	<title>Quaked</title>
 	<link rel="icon" type="image/svg+xml" href="icon.svg">
 	<link rel="apple-touch-icon" href="icon.png">
 	<style>
@@ -65,9 +65,9 @@
 		}
 	}
 	</script>
-	<section style="position:fixed;top:8px;left:8px;z-index:200;background:#111d;color:white;padding:8px;font:12px monospace;max-width:460px;max-height:85vh;overflow:auto">
-<button id="gpu">Measure GPU passes</button><button id="frames">Measure frame rate</button><button id="dynamic">Measure dynamic only</button><button id="dynamic-gpu">Measure dynamic GPU</button>
-<div id="status">Loading game…</div><pre id="summary" style="white-space:pre-wrap"></pre><details><summary>Raw measurements</summary><pre id="evidence" style="white-space:pre-wrap"></pre></details></section>
-<script type="module" src="tests/lighting_perf_trial.js"></script>
+	<section style="position:fixed;top:8px;left:8px;z-index:200;color:white;background:#111d;padding:8px;font:12px monospace;max-width:520px">
+<button id="hub">Start Newer hub</button><button id="options">Open Options</button><button id="portals">Run angled portal checks</button>
+<div id="status">Loading…</div><details><summary>Evidence</summary><pre id="report" style="white-space:pre-wrap"></pre></details></section>
+<script type="module" src="tests/game_options_portal_trial.js"></script>
 </body>
 </html>

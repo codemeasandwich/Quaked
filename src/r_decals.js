@@ -295,9 +295,9 @@ function ensureMesh() {
 	// what is drawn is the multiplier: 1 where the mark is not, its colour where it is
 	material.onBeforeCompile = ( shader ) => {
 
-		shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\n' + shader.fragmentShader
+		shader.fragmentShader = 'layout(location = 1) out highp vec4 gNormal;\nlayout(location = 2) out highp vec4 gAlbedo;\n' + shader.fragmentShader
 			.replace( '#include <opaque_fragment>', 'gl_FragColor = vec4( mix( vec3( 1.0 ), outgoingLight, diffuseColor.a ), 1.0 );' )
-			.replace( '#include <colorspace_fragment>', 'gNormal = vec4( 0.0 );' );
+			.replace( '#include <colorspace_fragment>', 'gNormal = vec4( 0.0 );\n\tgAlbedo = gl_FragColor;' );
 
 	};
 

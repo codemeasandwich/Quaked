@@ -1,0 +1,12 @@
+await import('../src/gl_rsurf.js');
+const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/r_anim.js'),cvar=await import('../src/cvar.js');
+function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
+Deno.test('frame pipeline carries authored albedo separately at scene resolution',()=>{
+ const vars=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water];for(const v of vars)if(!cvar.Cvar_FindVar(v.name))cvar.Cvar_RegisterVariable(v);const saved=vars.map(v=>v.string);
+ let target=null;const draws=[];const renderer={capabilities:{isWebGL2:true},extensions:{has:()=>true},getRenderTarget:()=>target,setRenderTarget:t=>{target=t;},setViewport(){},render(scene){draws.push({target,uniforms:scene.children[0].material.uniforms});}};
+ try{for(const v of vars)cvar.Cvar_SetValue(v.name,1);for(const name of ['r_dynres','r_bloom','r_volumetric'])cvar.Cvar_SetValue(name,0);
+  post.R_PostBegin(renderer,true,320,200);post.R_PostBind(renderer);const hdr=target;equal(hdr.textures.length,3,'scene, normals, authored colour');const albedo=hdr.textures[2];equal(albedo.type,THREE.UnsignedByteType,'bounded byte bandwidth');equal(albedo.colorSpace,THREE.SRGBColorSpace,'dark texel precision with automatic linear sampling');equal(albedo.magFilter,THREE.NearestFilter,'no colour interpolation across invalid surfaces');
+  const camera=new THREE.PerspectiveCamera(90,1.6,4,4096);camera.updateMatrixWorld();post.R_PostFinish(renderer,new THREE.Scene(),camera,{lx:0,ly:0,lw:320,lh:200},0,[],[],0,1,false);equal(draws.at(-1).uniforms.tAlbedo.value,albedo,'compositor consumes actual authored-colour attachment');equal(draws.at(-1).target,null,'existing direct full-scale path');
+  cvar.Cvar_SetValue('r_newer_lighting',0);post.R_PostBegin(renderer,true,320,200);post.R_PostBind(renderer);equal(target.textures.length,2,'lighting off preserves original two-target bandwidth');draws.length=0;post.R_PostFinish(renderer,new THREE.Scene(),camera,{lx:0,ly:0,lw:320,lh:200},0,[],[],0,1,false);equal(draws.at(-1).uniforms.uLighting.value,0,'original lighting remains independently selectable');equal(post.R_WaterActive(),true,'liquids preserved');
+ }finally{vars.forEach((v,i)=>cvar.Cvar_Set(v.name,saved[i]));post.R_PostBegin(renderer,false,0,0);}
+});

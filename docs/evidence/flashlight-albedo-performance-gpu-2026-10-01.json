@@ -1,0 +1,69 @@
+{
+  "method": "readPixels after each draw; synchronization overhead included",
+  "pixelRatio": 2,
+  "drawingBuffer": [
+    2560,
+    1440
+  ],
+  "results": [
+    {
+      "case": "all lighting dynamic",
+      "frames": 60,
+      "frameMs": {
+        "mean": 436.5762711864407,
+        "median": 368.6000000089407,
+        "p95": 1065.0999999940395
+      },
+      "passes": {
+        "world auxiliary": {
+          "mean": 98.08166666602095,
+          "median": 79.59999999403954,
+          "p95": 249.79999999701977
+        },
+        "world": {
+          "mean": 37.03499999965231,
+          "median": 18.299999997019768,
+          "p95": 92.3999999910593
+        },
+        "volume": {
+          "mean": 35.32833333313465,
+          "median": 24,
+          "p95": 100.20000000298023
+        },
+        "bloom prefilter": {
+          "mean": 36.1683333337307,
+          "median": 40.3999999910593,
+          "p95": 83.79999999701977
+        },
+        "bloom down": {
+          "mean": 95.5233333311975,
+          "median": 61.29999999701977,
+          "p95": 280.29999999701977
+        },
+        "bloom up": {
+          "mean": 63.998333332439266,
+          "median": 35.29999999701977,
+          "p95": 278.3999999910593
+        },
+        "composite": {
+          "mean": 30.233333333581687,
+          "median": 23.299999997019768,
+          "p95": 88.29999999701977
+        },
+        "lighting upscale": {
+          "mean": 33.57666666756074,
+          "median": 27.100000008940697,
+          "p95": 82.1000000089407
+        }
+      },
+      "sceneScale": 0.5,
+      "compositeTarget": [
+        1282,
+        720
+      ],
+      "lightCount": 8,
+      "bounce": 1,
+      "crateRarity": 40
+    }
+  ]
+}

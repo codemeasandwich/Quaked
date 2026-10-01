@@ -111,7 +111,7 @@ Deno.test( 'Newer menu exposes independent lighting, normals and liquids control
 		cmd.Cbuf_Init(); cmd.Cmd_Init(); menu.M_Init();
 		for ( const v of options ) cvar.Cvar_SetValue( v.name, 1 );
 		cmd.Cmd_ExecuteString( 'menu_options' );
-		for ( let i = 0; i < 13; i ++ ) menu.M_Keydown( keys.K_DOWNARROW );
+		// Newer Game features is now the first visible Options row.
 		menu.M_Keydown( keys.K_ENTER );
 		menu.M_Keydown( keys.K_ENTER );
 		equal( cvar.Cvar_VariableValue( 'r_newer_lighting' ), 0, 'first row controls lighting' );
@@ -129,7 +129,6 @@ Deno.test( 'Newer menu exposes independent lighting, normals and liquids control
 		options.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) );
 		menu.M_Keydown( keys.K_UPARROW ); menu.M_Keydown( keys.K_UPARROW );
 		menu.M_Keydown( keys.K_ESCAPE );
-		for ( let i = 0; i < 13; i ++ ) menu.M_Keydown( keys.K_UPARROW );
 
 	}
 

@@ -28,7 +28,7 @@ function finishFrame(target,material){
  run.samples.push({ms:dt,passes:frameCosts});frameCosts={};
  if(run.samples.length<60)return;
  const names=[...new Set(run.samples.flatMap(s=>Object.keys(s.passes)))];
- run.results.push({case:stages[run.index].name,frames:run.samples.length,frameMs:summarize(run.samples.slice(1).map(s=>s.ms)),passes:Object.fromEntries(names.map(n=>[n,summarize(run.samples.map(s=>s.passes[n]||0))])),sceneScale:R_DynResScale(),compositeTarget:target?[target.width,target.height]:[renderer.domElement.width,renderer.domElement.height],lightCount:material.uniforms.uCount.value,bounce:material.uniforms.uBounce.value,crateCount:Cvar_VariableValue('r_newer_crates')});
+ run.results.push({case:stages[run.index].name,frames:run.samples.length,frameMs:summarize(run.samples.slice(1).map(s=>s.ms)),passes:Object.fromEntries(names.map(n=>[n,summarize(run.samples.map(s=>s.passes[n]||0))])),sceneScale:R_DynResScale(),compositeTarget:target?[target.width,target.height]:[renderer.domElement.width,renderer.domElement.height],lightCount:material.uniforms.uCount.value,bounce:material.uniforms.uBounce.value,crateRarity:Cvar_VariableValue('r_newer_crates')});
  document.querySelector('#evidence').textContent=JSON.stringify({method:run.sync?'readPixels after each draw; synchronization overhead included':'normal animation loop',pixelRatio:renderer.getPixelRatio(),drawingBuffer:[renderer.domElement.width,renderer.domElement.height],results:run.results},null,2);
  document.querySelector('#summary').textContent=run.results.map(r=>`${r.case}: ${(1000/r.frameMs.mean).toFixed(1)} fps, ${r.frameMs.mean.toFixed(1)} ms, scale ${r.sceneScale}, lighting ${r.compositeTarget.join('×')}`).join('\n');
  run.index++;if(run.index===stages.length){document.querySelector('#status').textContent='DONE';run=null;return;}setStage();
@@ -38,7 +38,7 @@ renderer.render=function(scene,camera){
  const shader=m?.fragmentShader||'';
  const composite=shader.includes('const int BOUNCE_SAMPLES');
  const present=shader.includes('uniform sampler2D tComposite;');
- const label=composite?'composite':present?'lighting upscale':shader.includes('henyeyGreenstein')?'volume':shader.includes('uThreshold')?'bloom prefilter':shader.includes('tHigh')?'bloom up':shader.includes('tSource')?'bloom down':scene===window.scene?(target?.depthTexture&&target.textures.length===2?'world':'world auxiliary'):'other';
+ const label=composite?'composite':present?'lighting upscale':shader.includes('henyeyGreenstein')?'volume':shader.includes('uThreshold')?'bloom prefilter':shader.includes('tHigh')?'bloom up':shader.includes('tSource')?'bloom down':scene===window.scene?(target?.depthTexture&&target.textures.length>=2?'world':'world auxiliary'):'other';
  if(run?.sync)gl.finish();const t=performance.now();
  const result=render.call(this,scene,camera);
  if(run?.sync){
@@ -59,10 +59,11 @@ function start(sync,index=0){
  if(run)return;run={sync,index,results:[]};
  Cvar_SetValue('r_demosplit',0);Cvar_SetValue('r_hdr',1);
  for(const key of ['normals','water','enemies','portals','textures','hud','shadows'])Cvar_SetValue('r_newer_'+key,1);
- Cvar_SetValue('r_newer_crates',40); // retain the product's default crate density
+ Cvar_SetValue('r_newer_crates',40); // retain the product's default special-variant odds
  window.Cbuf_AddText('map start\nr_hdr 1\n');setStage();run.warm=180;
 }
 document.querySelector('#gpu').onclick=()=>start(true);
 document.querySelector('#frames').onclick=()=>start(false);
 document.querySelector('#dynamic').onclick=()=>start(false,stages.length-1);
+document.querySelector('#dynamic-gpu').onclick=()=>start(true,stages.length-1);
 document.querySelector('#status').textContent='Ready; stationary start-map comparison, all other enhanced options enabled';

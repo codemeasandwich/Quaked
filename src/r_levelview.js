@@ -230,6 +230,7 @@ void main() {
 
 const SKY_FRAGMENT = `
 layout(location = 1) out highp vec4 gNormal;
+layout(location = 2) out highp vec4 gAlbedo;
 uniform sampler2D tSolid;
 uniform sampler2D tAlpha;
 uniform float uSolid;
@@ -249,6 +250,7 @@ void main() {
 	gl_FragColor = vec4( c * uGlow, 1.0 );
 	#include <colorspace_fragment>
 	gNormal = vec4( 0.0 );
+	gAlbedo = vec4( 0.0 );
 }`;
 
 function skyMaterial( model ) {

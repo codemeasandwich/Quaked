@@ -1,0 +1,645 @@
+{
+  "status": "PASS",
+  "checks": 67,
+  "failures": 0,
+  "shippedQC": true,
+  "map": "start",
+  "results": [
+    {
+      "portal": "*3",
+      "sourceCenter": [
+        864,
+        1384,
+        24
+      ],
+      "offset": -4,
+      "sweep": {
+        "fraction": 1,
+        "startsolid": false,
+        "end": [
+          860,
+          1384.5,
+          24
+        ],
+        "playerMins": [
+          -16,
+          -16,
+          -24
+        ],
+        "playerMaxs": [
+          16,
+          16,
+          32
+        ],
+        "hitClass": null,
+        "hitModel": null,
+        "worldOrigin": [
+          0,
+          0,
+          0
+        ],
+        "worldIndex": 1,
+        "hulls": [
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              -16,
+              -16,
+              -24
+            ]
+          },
+          {
+            "first": 3030,
+            "mins": [
+              -32,
+              -32,
+              -24
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "corrected": true,
+      "source": [
+        860,
+        1384.5,
+        24
+      ],
+      "expectedPosition": [
+        540,
+        1536.5,
+        43
+      ],
+      "actual": [
+        540,
+        1536.5,
+        43
+      ],
+      "expectedVelocity": [
+        -79.99999999999999,
+        220,
+        17
+      ],
+      "actualVelocity": [
+        -80,
+        220,
+        17
+      ],
+      "actualAngles": [
+        13,
+        112,
+        0
+      ],
+      "packetAngles": [
+        12.65625,
+        111.09375,
+        0
+      ]
+    },
+    {
+      "portal": "*3",
+      "sourceCenter": [
+        864,
+        1384,
+        24
+      ],
+      "offset": 4,
+      "sweep": {
+        "fraction": 1,
+        "startsolid": false,
+        "end": [
+          868,
+          1384.5,
+          24
+        ],
+        "playerMins": [
+          -16,
+          -16,
+          -24
+        ],
+        "playerMaxs": [
+          16,
+          16,
+          32
+        ],
+        "hitClass": null,
+        "hitModel": null,
+        "worldOrigin": [
+          0,
+          0,
+          0
+        ],
+        "worldIndex": 1,
+        "hulls": [
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              -16,
+              -16,
+              -24
+            ]
+          },
+          {
+            "first": 3030,
+            "mins": [
+              -32,
+              -32,
+              -24
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "corrected": true,
+      "source": [
+        868,
+        1384.5,
+        24
+      ],
+      "expectedPosition": [
+        548,
+        1536.5,
+        43
+      ],
+      "actual": [
+        548,
+        1536.5,
+        43
+      ],
+      "expectedVelocity": [
+        80.00000000000001,
+        220,
+        17
+      ],
+      "actualVelocity": [
+        80,
+        220,
+        17
+      ],
+      "actualAngles": [
+        13,
+        68,
+        0
+      ],
+      "packetAngles": [
+        12.65625,
+        67.5,
+        0
+      ]
+    },
+    {
+      "portal": "*2",
+      "sourceCenter": [
+        544,
+        1384,
+        24
+      ],
+      "offset": -4,
+      "sweep": {
+        "fraction": 1,
+        "startsolid": false,
+        "end": [
+          540,
+          1384.5,
+          24
+        ],
+        "playerMins": [
+          -16,
+          -16,
+          -24
+        ],
+        "playerMaxs": [
+          16,
+          16,
+          32
+        ],
+        "hitClass": null,
+        "hitModel": null,
+        "worldOrigin": [
+          0,
+          0,
+          0
+        ],
+        "worldIndex": 1,
+        "hulls": [
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              -16,
+              -16,
+              -24
+            ]
+          },
+          {
+            "first": 3030,
+            "mins": [
+              -32,
+              -32,
+              -24
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "corrected": true,
+      "source": [
+        540,
+        1384.5,
+        24
+      ],
+      "expectedPosition": [
+        540,
+        1536.5,
+        43
+      ],
+      "actual": [
+        540,
+        1536.5,
+        43
+      ],
+      "expectedVelocity": [
+        -79.99999999999999,
+        220,
+        17
+      ],
+      "actualVelocity": [
+        -80,
+        220,
+        17
+      ],
+      "actualAngles": [
+        13,
+        112,
+        0
+      ],
+      "packetAngles": [
+        12.65625,
+        111.09375,
+        0
+      ]
+    },
+    {
+      "portal": "*2",
+      "sourceCenter": [
+        544,
+        1384,
+        24
+      ],
+      "offset": 4,
+      "sweep": {
+        "fraction": 1,
+        "startsolid": false,
+        "end": [
+          548,
+          1384.5,
+          24
+        ],
+        "playerMins": [
+          -16,
+          -16,
+          -24
+        ],
+        "playerMaxs": [
+          16,
+          16,
+          32
+        ],
+        "hitClass": null,
+        "hitModel": null,
+        "worldOrigin": [
+          0,
+          0,
+          0
+        ],
+        "worldIndex": 1,
+        "hulls": [
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              -16,
+              -16,
+              -24
+            ]
+          },
+          {
+            "first": 3030,
+            "mins": [
+              -32,
+              -32,
+              -24
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "corrected": true,
+      "source": [
+        548,
+        1384.5,
+        24
+      ],
+      "expectedPosition": [
+        548,
+        1536.5,
+        43
+      ],
+      "actual": [
+        548,
+        1536.5,
+        43
+      ],
+      "expectedVelocity": [
+        80.00000000000001,
+        220,
+        17
+      ],
+      "actualVelocity": [
+        80,
+        220,
+        17
+      ],
+      "actualAngles": [
+        13,
+        68,
+        0
+      ],
+      "packetAngles": [
+        12.65625,
+        67.5,
+        0
+      ]
+    },
+    {
+      "portal": "*1",
+      "sourceCenter": [
+        232,
+        1384,
+        24
+      ],
+      "offset": -4,
+      "sweep": {
+        "fraction": 1,
+        "startsolid": false,
+        "end": [
+          228,
+          1384.5,
+          24
+        ],
+        "playerMins": [
+          -16,
+          -16,
+          -24
+        ],
+        "playerMaxs": [
+          16,
+          16,
+          32
+        ],
+        "hitClass": null,
+        "hitModel": null,
+        "worldOrigin": [
+          0,
+          0,
+          0
+        ],
+        "worldIndex": 1,
+        "hulls": [
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              -16,
+              -16,
+              -24
+            ]
+          },
+          {
+            "first": 3030,
+            "mins": [
+              -32,
+              -32,
+              -24
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "corrected": true,
+      "source": [
+        228,
+        1384.5,
+        24
+      ],
+      "expectedPosition": [
+        540,
+        1536.5,
+        43
+      ],
+      "actual": [
+        540,
+        1536.5,
+        43
+      ],
+      "expectedVelocity": [
+        -79.99999999999999,
+        220,
+        17
+      ],
+      "actualVelocity": [
+        -80,
+        220,
+        17
+      ],
+      "actualAngles": [
+        13,
+        112,
+        0
+      ],
+      "packetAngles": [
+        12.65625,
+        111.09375,
+        0
+      ]
+    },
+    {
+      "portal": "*1",
+      "sourceCenter": [
+        232,
+        1384,
+        24
+      ],
+      "offset": 4,
+      "sweep": {
+        "fraction": 1,
+        "startsolid": false,
+        "end": [
+          236,
+          1384.5,
+          24
+        ],
+        "playerMins": [
+          -16,
+          -16,
+          -24
+        ],
+        "playerMaxs": [
+          16,
+          16,
+          32
+        ],
+        "hitClass": null,
+        "hitModel": null,
+        "worldOrigin": [
+          0,
+          0,
+          0
+        ],
+        "worldIndex": 1,
+        "hulls": [
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              -16,
+              -16,
+              -24
+            ]
+          },
+          {
+            "first": 3030,
+            "mins": [
+              -32,
+              -32,
+              -24
+            ]
+          },
+          {
+            "first": 0,
+            "mins": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "corrected": true,
+      "source": [
+        236,
+        1384.5,
+        24
+      ],
+      "expectedPosition": [
+        548,
+        1536.5,
+        43
+      ],
+      "actual": [
+        548,
+        1536.5,
+        43
+      ],
+      "expectedVelocity": [
+        80.00000000000001,
+        220,
+        17
+      ],
+      "actualVelocity": [
+        80,
+        220,
+        17
+      ],
+      "actualAngles": [
+        13,
+        68,
+        0
+      ],
+      "packetAngles": [
+        12.65625,
+        67.5,
+        0
+      ]
+    }
+  ]
+}

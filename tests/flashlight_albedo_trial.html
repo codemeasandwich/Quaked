@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Flashlight material-colour trial</title><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script></head><body style="background:#050505;color:white;font:14px system-ui"><h2>Zero baked light: beam off / beam on</h2><div id="views" style="display:flex;flex-wrap:wrap;gap:12px"></div><pre id="report">Running actual GPU surface checks…</pre><script type="module">
+await import('../src/gl_rsurf.js');
+const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/r_anim.js'),cvar=await import('../src/cvar.js'),flash=await import('../src/r_flashlight.js'),skins=await import('../src/r_newerskins.js');
+for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,flash.r_flashlight])if(!cvar.Cvar_FindVar(v.name))cvar.Cvar_RegisterVariable(v);
+for(const [k,v] of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_volumetric:0,r_bounce:0,r_newer_lighting:1,r_newer_normals:0,r_newer_water:0}))cvar.Cvar_SetValue(k,v);
+const renderer=new THREE.WebGLRenderer({preserveDrawingBuffer:true});renderer.setSize(192,128);renderer.setClearColor(0,0);
+const camera=new THREE.PerspectiveCamera(50,1.5,4,4096);camera.updateMatrixWorld();
+const tex=new THREE.DataTexture(new Uint8Array([190,32,18,255,28,170,44,255,30,48,200,255,0,0,0,255]),4,1);tex.colorSpace=THREE.SRGBColorSpace;tex.needsUpdate=true;
+const zero=new THREE.DataTexture(new Uint8Array([0,0,0,255]),1,1);zero.needsUpdate=true;
+const geom=new THREE.PlaneGeometry(80,48);geom.setAttribute('color',new THREE.BufferAttribute(new Float32Array(geom.attributes.position.count*3),3));
+const scene=new THREE.Scene();const mesh=new THREE.Mesh(geom);mesh.position.z=-150;scene.add(mesh);
+const results=[];let checks=0,failures=0;function check(ok,label){checks++;if(!ok){failures++;results.push({failure:label});}}
+function coords(x){const p=new THREE.Vector3(x,0,-150).project(camera);return [Math.floor((p.x*.5+.5)*192),Math.floor((p.y*.5+.5)*128)];}
+const locations=[-30,-10,10,30].map(coords);const gl=renderer.getContext();
+for(const kind of ['world zero-lightmap','original alias zero-vertex-light','enemy height-shader zero-vertex-light']){
+ cvar.Cvar_SetValue('r_newer_normals',kind.startsWith('enemy')?1:0);post.R_PostBegin(renderer,true,192,128);
+ const material=kind.startsWith('world')?new THREE.MeshLambertMaterial({map:tex,lightMap:zero,lightMapIntensity:2}):kind.startsWith('original')?new THREE.MeshBasicMaterial({map:tex,vertexColors:true}):skins.R_EnemyAliasMaterial(tex,'progs/dog.mdl',true);
+ if(kind.startsWith('world'))post.R_RegisterDetail(material,tex);if(!material)throw new Error('expected '+kind+' material');mesh.material=material;
+ let off=null;
+ for(const on of [false,true]){
+  cvar.Cvar_SetValue('r_flashlight',on?1:0);post.R_PostBegin(renderer,true,192,128);flash.R_FlashlightUpdate([0,0,0],[0,0,-1],[1,0,0],[0,1,0]);post.R_PostBind(renderer);const hdr=renderer.getRenderTarget();renderer.render(scene,camera);
+  const albedo=[];for(const [x,y] of locations){const out=new Uint8Array(4);renderer.readRenderTargetPixels(hdr,x,y,1,1,out,undefined,2);albedo.push([...out]);}
+  post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:192,lh:128},0,[],[],0,1,false);
+  const shown=locations.map(([x,y])=>{const p=new Uint8Array(4);gl.readPixels(x,y,1,1,gl.RGBA,gl.UNSIGNED_BYTE,p);return [...p];});
+  const img=document.createElement('img');img.src=renderer.domElement.toDataURL();img.width=384;img.height=256;const figure=document.createElement('figure');figure.style.margin='0';const cap=document.createElement('figcaption');cap.textContent=kind+' — flashlight '+(on?'ON':'OFF');figure.append(img,cap);document.querySelector('#views').append(figure);
+  if(!on){off=shown;for(const p of shown)check(p.slice(0,3).every(v=>v===0),kind+' unlit must be true black');}
+  else{for(let i=0;i<3;i++){check(shown[i][i]>shown[i][(i+1)%3]+10 && shown[i][i]>shown[i][(i+2)%3]+10,kind+' colour recovered '+i);check(shown[i][i]>off[i][i]+10,kind+' beam lights texture '+i);}check(shown[3].slice(0,3).every(v=>v===0),kind+' black pigment remains black');}
+  for(let i=0;i<4;i++){check(albedo[i][3]===255,kind+' valid material '+i);const expected=[...tex.image.data.slice(i*4,i*4+3)];check(expected.every((v,c)=>Math.abs(v-albedo[i][c])<=1),kind+' retains unlit diffuse '+i);}
+  check(gl.getError()===0,kind+' no GL error');results.push({kind,beam:on,albedo,shown});
+ }
+}
+// Dark author texels must survive the compact buffer rather than quantize to zero.
+tex.image.data.set([14,4,2,255,2,18,3,255,2,4,20,255,0,0,0,255]);tex.needsUpdate=true;post.R_PostBegin(renderer,true,192,128);post.R_PostBind(renderer);const darkTarget=renderer.getRenderTarget();renderer.render(scene,camera);const darkAlbedo=[];for(let i=0;i<4;i++){const out=new Uint8Array(4),[x,y]=locations[i];renderer.readRenderTargetPixels(darkTarget,x,y,1,1,out,undefined,2);darkAlbedo.push([...out]);check([...tex.image.data.slice(i*4,i*4+4)].every((v,c)=>Math.abs(v-out[c])<=1),'dark pigment precision '+i);}check(gl.getError()===0,'dark pigment readback no GL error');results.push({darkAlbedo});
+// Independent normal-map path returns to two targets when lighting is disabled.
+cvar.Cvar_SetValue('r_newer_lighting',0);post.R_PostBegin(renderer,true,192,128);post.R_PostBind(renderer);check(renderer.getRenderTarget().textures.length===2,'lighting off retains original buffer bandwidth');renderer.render(scene,camera);post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:192,lh:128},0,[],[],0,1,false);check(gl.getError()===0,'lighting off normal shader on two targets no GL error');
+document.querySelector('#report').textContent=JSON.stringify({status:failures?'FAIL':'PASS',checks,failures,results},null,2);
+</script></body></html>

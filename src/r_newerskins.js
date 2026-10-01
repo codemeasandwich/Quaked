@@ -355,6 +355,7 @@ const VERTEX_ADD = `
 
 const FRAGMENT_HEAD = `
 layout(location = 1) out highp vec4 gNormal;
+layout(location = 2) out highp vec4 gAlbedo;
 varying vec3 vQrView;
 varying vec3 vQrNormal;
 uniform sampler2D qrNormal;
@@ -370,6 +371,7 @@ uniform float uLumaBoost;
 `;
 
 const FRAGMENT_NORMAL = `
+	vec3 qrAlbedo = diffuseColor.rgb; // before baked vertex lighting
 	vec3 qrN = normalize( vQrNormal );
 	if ( uHasNormal > 0.5 && uSkinDetail > 0.5 ) {
 		vec3 q0 = dFdx( - vQrView );
@@ -411,7 +413,7 @@ function patchShader( set ) {
 		shader.fragmentShader = FRAGMENT_HEAD + shader.fragmentShader
 			.replace( '#include <map_fragment>', '#include <map_fragment>' + FRAGMENT_NORMAL )
 			.replace( '#include <opaque_fragment>', FRAGMENT_LIGHT + '#include <opaque_fragment>' )
-			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n	gNormal = vec4( qrN * 0.5 + 0.5, vQrView.z );' );
+			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n	gNormal = vec4( qrN * 0.5 + 0.5, vQrView.z );\n\tgAlbedo = vec4( qrAlbedo, 1.0 );' );
 
 	};
 

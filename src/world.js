@@ -23,6 +23,7 @@ import {
 } from './bspfile.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
 import { EDICT_TO_PROG, PROG_TO_EDICT, pr_global_struct } from './progs.js';
+import { SV_BeginPortalTouch, SV_PreparePortalTouch, SV_FinishPortalTouch, SV_RestorePortalReceiver } from './sv_portal.js';
 
 // Pre-allocated scratch vectors for SV_RecursiveHullCheck (indexed by recursion depth).
 // Grow this pool on demand because valid BSP hulls can be deeper than the common case.
@@ -410,14 +411,7 @@ export function SV_TouchLinks( ent, node ) {
 
 		}
 
-		const old_self = pr_global_struct.self;
-		const old_other = pr_global_struct.other;
-		pr_global_struct.self = EDICT_TO_PROG( touch );
-		pr_global_struct.other = EDICT_TO_PROG( ent );
-		pr_global_struct.time = sv.time;
-		PR_ExecuteProgram( touch.v.touch );
-		pr_global_struct.self = old_self;
-		pr_global_struct.other = old_other;
+		if ( SV_RunTriggerTouch( ent, touch ) ) SV_LinkEdict( ent, false );
 
 		l = next;
 
@@ -431,6 +425,61 @@ export function SV_TouchLinks( ent, node ) {
 		SV_TouchLinks( ent, node.children[ 0 ] );
 	if ( ent.v.absmin[ node.axis ] < node.dist )
 		SV_TouchLinks( ent, node.children[ 1 ] );
+
+}
+
+// The public trigger dispatch keeps QC's self/other context and touch behavior
+// together. Optional executors let focused tests use the same entry point.
+export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, clearAt = null ) {
+
+	const crossing = SV_BeginPortalTouch( ent, touch, SV_PortalBackingContact );
+	if ( crossing === false ) return false;
+	const incoming = SV_PreparePortalTouch( crossing, clearAt || ( origin => {
+
+		// Ignore monsters here: stock QC owns telefrags at the actual exit.
+		const trace = SV_Move( origin, ent.v.mins, ent.v.maxs, origin, MOVE_NOMONSTERS, ent );
+		return ! trace.startsolid && ! trace.allsolid;
+
+	} ) );
+	const old_self = pr_global_struct.self;
+	const old_other = pr_global_struct.other;
+	pr_global_struct.self = EDICT_TO_PROG( touch );
+	pr_global_struct.other = EDICT_TO_PROG( ent );
+	pr_global_struct.time = sv.time;
+	try {
+
+		execute( touch.v.touch );
+		return SV_FinishPortalTouch( ent, incoming );
+
+	} finally {
+
+		SV_RestorePortalReceiver( incoming );
+		pr_global_struct.self = old_self;
+		pr_global_struct.other = old_other;
+
+	}
+
+}
+
+// Some stock windows have backing geometry that stops the player's full hull
+// just before its origin can reach the visible plane. Keep that collision;
+// authorize a mapped portal touch at actual hull contact instead of requiring
+// an unreachable centre. A wall elsewhere, or merely being near a portal, is
+// never sufficient. QC and receiver clearance still decide the teleport.
+export function SV_PortalBackingContact( ent, portal, distance ) {
+
+	if ( ! sv.worldmodel?.hulls ) return false;
+	const n = portal.normal;
+	let radius = 0;
+	for ( let i = 0; i < 3; i ++ ) radius -= n[ i ] * ( n[ i ] >= 0 ? ent.v.mins[ i ] : ent.v.maxs[ i ] );
+	const epsilon = 1 / 16; // two BSP clipping epsilons, not a gameplay distance.
+	if ( distance > radius + epsilon || distance <= 0 ) return false;
+	const end = ent.v.origin.map( ( v, i ) => v - n[ i ] * ( distance + 0.5 ) );
+	const trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, MOVE_NOMONSTERS, ent );
+	if ( trace.startsolid || trace.allsolid || trace.fraction >= 1 || DotProduct( trace.plane.normal, n ) < 0.9 ) return false;
+	let remaining = 0;
+	for ( let i = 0; i < 3; i ++ ) remaining += ( ent.v.origin[ i ] - trace.endpos[ i ] ) * n[ i ];
+	return remaining >= - epsilon && remaining <= epsilon;
 
 }
 

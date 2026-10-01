@@ -80,7 +80,7 @@ const liveRenderer=vid.renderer;
 const originalBind=liveRenderer.setRenderTarget,originalRender=liveRenderer.render;
 let enhanced=null,frames=0,mismatches=0;const sizes=new Map();
 liveRenderer.setRenderTarget=function(target,...rest){
- if(target?.textures?.length===2 && target.depthTexture)enhanced=target;
+ if(target?.textures?.length>=2 && target.depthTexture)enhanced=target;
  return originalBind.call(this,target,...rest);
 };
 liveRenderer.render=function(scene,camera){

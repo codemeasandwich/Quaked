@@ -1711,7 +1711,7 @@ function M_AdjustSliders( dir ) {
 
 	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
 
-	switch ( m_options_cursor ) {
+	switch ( OPTIONS_ORDER[ m_options_cursor ] ) {
 
 		case 3: // texture filtering
 			Cvar_SetValue( 'gl_texturemode', ! gl_texturemode.value ? 1 : 0 );
@@ -1797,7 +1797,11 @@ function M_AdjustSliders( dir ) {
 ==============================================================================
 */
 
-const OPTIONS_ITEMS = 16;
+// Cursor/touch indices remain visible rows; action IDs retain their established
+// meaning across drawing, Enter and slider/toggle dispatch.
+const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+const OPTIONS_ITEMS = OPTIONS_ORDER.length;
+function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
 let m_options_cursor = 0;
 
 function M_Menu_Options_f() {
@@ -1816,50 +1820,50 @@ function M_Options_Draw() {
 	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 
-	M_Print( 16, 32, '    Customize controls' );
-	M_Print( 16, 40, '         Go to console' );
-	M_Print( 16, 48, '     Reset to defaults' );
+	M_Print( 16, optionsY( 0 ), '    Customize controls' );
+	M_Print( 16, optionsY( 1 ), '         Go to console' );
+	M_Print( 16, optionsY( 2 ), '     Reset to defaults' );
 
-	M_Print( 16, 56, '     Texture Filtering' );
-	M_DrawCheckbox( 220, 56, gl_texturemode.value );
+	M_Print( 16, optionsY( 3 ), '     Texture Filtering' );
+	M_DrawCheckbox( 220, optionsY( 3 ), gl_texturemode.value );
 
-	M_Print( 16, 64, '           Screen size' );
+	M_Print( 16, optionsY( 4 ), '           Screen size' );
 	let r = ( scr_viewsize.value - 30 ) / ( 120 - 30 );
-	M_DrawSlider( 220, 64, r );
+	M_DrawSlider( 220, optionsY( 4 ), r );
 
-	M_Print( 16, 72, '            Brightness' );
+	M_Print( 16, optionsY( 5 ), '            Brightness' );
 	r = ( 1.0 - v_gamma.value ) / 0.5;
-	M_DrawSlider( 220, 72, r );
+	M_DrawSlider( 220, optionsY( 5 ), r );
 
-	M_Print( 16, 80, '           Mouse Speed' );
+	M_Print( 16, optionsY( 6 ), '           Mouse Speed' );
 	r = ( sensitivity.value - 1 ) / 10;
-	M_DrawSlider( 220, 80, r );
+	M_DrawSlider( 220, optionsY( 6 ), r );
 
-	M_Print( 16, 88, '          Sound Volume' );
+	M_Print( 16, optionsY( 7 ), '          Sound Volume' );
 	r = volume.value;
-	M_DrawSlider( 220, 88, r );
+	M_DrawSlider( 220, optionsY( 7 ), r );
 
-	M_Print( 16, 96, '            Always Run' );
-	M_DrawCheckbox( 220, 96, cl_forwardspeed.value > 200 );
+	M_Print( 16, optionsY( 8 ), '            Always Run' );
+	M_DrawCheckbox( 220, optionsY( 8 ), cl_forwardspeed.value > 200 );
 
-	M_Print( 16, 104, '          Invert Mouse' );
-	M_DrawCheckbox( 220, 104, m_pitch.value < 0 );
+	M_Print( 16, optionsY( 9 ), '          Invert Mouse' );
+	M_DrawCheckbox( 220, optionsY( 9 ), m_pitch.value < 0 );
 
-	M_Print( 16, 112, '            Lookspring' );
-	M_DrawCheckbox( 220, 112, lookspring.value );
+	M_Print( 16, optionsY( 10 ), '            Lookspring' );
+	M_DrawCheckbox( 220, optionsY( 10 ), lookspring.value );
 
-	M_Print( 16, 120, '            Lookstrafe' );
-	M_DrawCheckbox( 220, 120, lookstrafe.value );
+	M_Print( 16, optionsY( 11 ), '            Lookstrafe' );
+	M_DrawCheckbox( 220, optionsY( 11 ), lookstrafe.value );
 
-	M_Print( 16, 128, '             Crosshair' );
-	M_DrawCheckbox( 220, 128, Cvar_VariableValue( 'crosshair' ) );
+	M_Print( 16, optionsY( 12 ), '             Crosshair' );
+	M_DrawCheckbox( 220, optionsY( 12 ), Cvar_VariableValue( 'crosshair' ) );
 
-	M_Print( 16, 136, '   Newer Game features' );
+	M_Print( 16, optionsY( 13 ), '   Newer Game features' );
 
-	M_Print( 16, 144, '           FPS counter' );
-	M_DrawCheckbox( 220, 144, Cvar_VariableValue( 'cl_showfps' ) );
+	M_Print( 16, optionsY( 14 ), '           FPS counter' );
+	M_DrawCheckbox( 220, optionsY( 14 ), Cvar_VariableValue( 'cl_showfps' ) );
 
-	M_Print( 16, 152, '  Performance profiler' );
+	M_Print( 16, optionsY( 15 ), '  Performance profiler' );
 
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
@@ -1875,7 +1879,7 @@ function M_Options_Key( key ) {
 			break;
 		case K_ENTER:
 			m_entersound = true;
-			switch ( m_options_cursor ) {
+			switch ( OPTIONS_ORDER[ m_options_cursor ] ) {
 
 				case 0:
 					M_Menu_Keys_f();

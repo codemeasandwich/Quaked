@@ -1,0 +1,185 @@
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+PASS frame pipeline carries authored albedo separately at scene resolution
+PASS dynamic lighting composition follows scene pixels and presents the split at display size
+PASS full-resolution lighting preserves the direct display path and grade
+PASS lighting, normal maps and liquids switch independently on existing materials
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS Newer menu exposes independent lighting, normals and liquids controls
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+PASS camera portal dispatch retains oblique view, lateral crossing, vertical velocity and speed
+PASS camera portal defers hull overlap until origin reaches visible threshold
+PASS portal view angles survive the actual svc_setangle writer despite model pitch compression
+PASS opposite entry face uses its own camera transform after backing out
+PASS floor portal rotates falling momentum and camera forward into receiver frame
+PASS classic, disabled camera portals, multiplayer and non-player touches keep QC unchanged
+PASS disabling visible portals cancels a saved approach before native touch
+PASS blocked receiver offset falls back to original QC destination and side effects
+PASS unmapped hidden trigger and a moved receiver keep native QC dispatch
+PASS QC refusal and mod redirect remain authoritative; receiver restores on exceptions
+PASS shipped start hub portal thresholds are physically reachable or use confirmed backing contact
+PASS entity lump parser reads key/value pairs
+PASS teleporter surface becomes a portal onto its receiver
+PASS back face of a teleporter portals the other way
+PASS teleport texture without a trigger stays a plain surface
+PASS other turbulent textures are not portals
+PASS SV_AddGravity reads a custom gravity field
+PASS SV_SoftenTeleportLaunch halves the teleporter push once
+PASS SV_WallFriction copes with a wall hit that recorded no plane
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: bind already defined
+
+Cmd_AddCommand: unbind already defined
+
+Cmd_AddCommand: unbindall already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS customize controls binds printable and named keys
+Cmd_AddCommand: stuffcmds already defined
+
+Cmd_AddCommand: exec already defined
+
+Cmd_AddCommand: echo already defined
+
+Cmd_AddCommand: alias already defined
+
+Cmd_AddCommand: cmd already defined
+
+Cmd_AddCommand: wait already defined
+
+Cmd_AddCommand: togglemenu already defined
+
+Cmd_AddCommand: menu_main already defined
+
+Cmd_AddCommand: menu_singleplayer already defined
+
+Cmd_AddCommand: menu_load already defined
+
+Cmd_AddCommand: menu_save already defined
+
+Cmd_AddCommand: menu_multiplayer already defined
+
+Cmd_AddCommand: menu_setup already defined
+
+Cmd_AddCommand: menu_options already defined
+
+Cmd_AddCommand: menu_keys already defined
+
+Cmd_AddCommand: menu_video already defined
+
+Cmd_AddCommand: help already defined
+
+Cmd_AddCommand: menu_credits already defined
+
+Cmd_AddCommand: menu_quit already defined
+
+Cmd_AddCommand: menu_lanconfig already defined
+
+Cmd_AddCommand: menu_gameoptions already defined
+
+PASS load menu discovers and opens browser save slots
+50/50 passed
