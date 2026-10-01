@@ -35,6 +35,7 @@ import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_water } fr
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
 export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
+export const r_cloudspeed = new cvar_t( 'r_cloudspeed', '3' ); // how fast the cloud pattern drifts over the ground, against the sky's own scrolling (1 = the same)
 export const r_bounce = new cvar_t( 'r_bounce', '1' ); // bounced light between surfaces (0 off)
 export const r_volumetric = new cvar_t( 'r_volumetric', '1' );
 // Newer Game's overall look: 1 = as designed.  0.6 is 40% darker, 1.4 is 40% more contrast.
@@ -2304,9 +2305,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
 		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
 	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
-	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * ( 1.4 + 1.0 * bright );
+	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * 4 * ( 1.4 + 1.0 * bright );
 	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
-	p.volumeMaterial.uniforms.uOpenFog.value = 0.035 - 0.03 * bright;
+	p.volumeMaterial.uniforms.uOpenFog.value = 0.018 - 0.015 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
 	p.compositeMaterial.uniforms.uHaze.value = HAZE_DENSITY * ( 1.5 - 1.05 * bright );
 	sh.uBounce.value = Math.max( 0, r_bounce.value );
@@ -2314,7 +2315,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	sh.tCookieCloud.value = skyCookieCloud;
 	sh.uCookieCloud.value = skyCookieCloud !== null ? 1 : 0;
 	sh.uCookie.value = skyCookie !== null ? 1 : 0;
-	sh.uCookieTime.value = time;
+	sh.uCookieTime.value = time * Math.max( 0, r_cloudspeed.value );
 	if ( sunOn ) {
 
 		const e = camera.matrixWorldInverse.elements;
