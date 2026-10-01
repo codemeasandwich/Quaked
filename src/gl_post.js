@@ -1862,7 +1862,7 @@ void main() {
 		// flat black, and why a room round a bright light glows with its colour.
 		vec3 bounce = vec3( 0.0 );
 		if ( uBounce > 0.0 ) {
-			const int BOUNCE_SAMPLES = 10;
+			const int BOUNCE_SAMPLES = 8;
 			float rad = clamp( 150.0 * uProj[ 0 ][ 0 ] * 0.5 / max( here, 8.0 ), 0.01, 0.22 );
 			float aspect = uTexel.y / uTexel.x;
 			float turn = jit * 6.2831;
@@ -1895,9 +1895,14 @@ void main() {
 					float coneS = smoothstep( uSpotCone.x, uSpotCone.y, dot( - sn, uSpotDir ) );
 					beamS = coneS * max( dot( Ns, sn ), 0.0 ) / ( 1.0 + sd * sd / ( 280.0 * 280.0 ) ) * ( 1.0 - smoothstep( 800.0, 1500.0, sd ) );
 				}
-				bounce += min( texture2D( tScene, uvs ).rgb * ( 1.0 + 5.0 * beamS ), vec3( 6.0 ) ) * w;
+				// a lamp or flame is far brighter than the wall round it, and one lucky sample on it showed as a speckle of dots
+				// on the wall: what a point sends is squashed (so a flame is a few times a wall, not a hundred), and
+				// averaged over a few neighbouring texels
+				vec2 ob = uTexel * 3.0;
+				vec3 src = ( texture2D( tScene, uvs ).rgb * 2.0 + texture2D( tScene, uvs + ob ).rgb + texture2D( tScene, uvs - ob ).rgb ) * 0.25 * ( 1.0 + 5.0 * beamS );
+				bounce += src / ( 1.0 + 0.9 * max( src.r, max( src.g, src.b ) ) ) * w;
 			}
-			bounce *= uBounce * 14.0 / float( BOUNCE_SAMPLES );
+			bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
 		}
 		vec3 receiver = mix( vec3( 0.6 ), tint, 0.7 ) * 0.55;
 		c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );

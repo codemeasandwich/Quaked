@@ -1,6 +1,6 @@
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
-import { R_DemoSplitActive } from './r_demosplit.js';
+import { R_DemoSplitActive, R_DemoSplitRelease } from './r_demosplit.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cmd_AddCommand } from './cmd.js';
 import { Con_Printf, Con_ToggleConsole_f } from './console.js';
@@ -688,9 +688,9 @@ function M_Main_Key( key ) {
 */
 
 let m_singleplayer_cursor = 0;
-// What a Newer Game starts with: the flashlight on, the brightness at its most, and the frame rate showing
+// What a Newer Game starts with: the flashlight on, the brightness at its lowest, and the frame rate showing
 // (all still changeable in the options)
-const NEWER_DEFAULTS = 'r_flashlight 1\ngamma 0.5\ncl_showfps 1\n';
+const NEWER_DEFAULTS = 'r_flashlight 1\ngamma 1\ncl_showfps 1\n';
 
 const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
@@ -768,6 +768,7 @@ function M_SinglePlayer_Key( key ) {
 					// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
 					Cbuf_AddText( ( m_singleplayer_cursor === 0 ? 'r_hdr 1\n' : 'r_hdr 0\n' ) );
 					if ( m_singleplayer_cursor === 0 ) Cbuf_AddText( NEWER_DEFAULTS );
+					R_DemoSplitRelease( m_singleplayer_cursor === 0 );
 					Cbuf_AddText( 'map start\n' );
 					break;
 				case 2:
@@ -895,6 +896,7 @@ function M_LevelSelect_Start() {
 	// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
 	Cbuf_AddText( m_levelselect_newer ? 'r_hdr 1\n' : 'r_hdr 0\n' );
 	if ( m_levelselect_newer ) Cbuf_AddText( NEWER_DEFAULTS );
+	R_DemoSplitRelease( m_levelselect_newer );
 	Cbuf_AddText( 'map ' + level.map + '\n' );
 
 }
@@ -2664,7 +2666,21 @@ export function M_Keydown( key ) {
 M_Draw
 ================
 */
+// the thin line down the middle and the ENHANCED / CLASSIC labels over the title demo
+function M_DrawSplitMarks() {
+
+	if ( ! _Draw_Fill ) return;
+	_Draw_Fill( ( _vid.width >> 1 ) - 1, 0, 2, _vid.height, 0, 0.9 );
+	const off = ( _vid.width - 320 ) >> 1;
+	M_PrintWhite( 8 - off, 4, 'ENHANCED' );
+	M_PrintWhite( _vid.width - 8 - 7 * 8 - off, 4, 'CLASSIC' );
+
+}
+
 export function M_Draw() {
+
+	// (also while the menu is not up)
+	if ( ( m_state === m_none || getKeyDest() !== key_menu ) && R_DemoSplitActive() ) M_DrawSplitMarks();
 
 	if ( m_state === m_none || getKeyDest() !== key_menu )
 		return;
@@ -2679,11 +2695,7 @@ export function M_Draw() {
 
 			// the title demo is half Newer and half classic: dim it only a little, so the two can be compared
 			_Draw_Fill( 0, 0, _vid.width, _vid.height, 0, 0.32 );
-			_Draw_Fill( ( _vid.width >> 1 ) - 1, 0, 2, _vid.height, 0, 0.9 );
-			// (at the edges of the screen, clear of the menu's own plaque)
-			const off = ( _vid.width - 320 ) >> 1;
-			M_PrintWhite( 8 - off, 4, 'ENHANCED' );
-			M_PrintWhite( _vid.width - 8 - 7 * 8 - off, 4, 'CLASSIC' );
+			M_DrawSplitMarks();
 
 		} else {
 

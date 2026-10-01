@@ -17,6 +17,7 @@ const LIFT = 36; // the probe sits this far above the surface
 
 let probes = []; // { region, rt, cam, center, min, max, used }
 let builtFor = null;
+let lastCapture = - 1e9;
 
 function dispose( p ) {
 
@@ -68,7 +69,14 @@ export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, a
 
 	}
 
+	// only the nearest pools get probes (the most that are kept): with more candidates than probes, each frame would
+	// throw one away and draw it again
+	regions = regions.slice( 0, MAX_PROBES );
 	if ( regions.length === 0 ) return;
+
+	// and never more than one capture a second
+	const t = performance.now();
+	if ( t - lastCapture < 1000 ) return;
 
 	_m.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
 	_frustum.setFromProjectionMatrix( _m );
@@ -83,6 +91,7 @@ export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, a
 		if ( ! _frustum.intersectsBox( _box ) ) continue;
 
 		// one pool at a time
+		lastCapture = t;
 		capture( renderer, scene, r, showAll );
 		return;
 

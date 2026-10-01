@@ -38,6 +38,15 @@ export function R_DemoSplitStart() {
 
 }
 
+// a game is about to start: what it sets for r_hdr stands (the demo's own switch is not undone behind it), and a classic
+// game gets the original textures back
+export function R_DemoSplitRelease( newer ) {
+
+	saved = null;
+	if ( ! newer ) R_NewerTexturesRevert();
+
+}
+
 // the demo has stopped
 export function R_DemoSplitEnd() {
 
