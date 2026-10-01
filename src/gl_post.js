@@ -903,6 +903,10 @@ export function R_BuildSunOccluder( model ) {
 const SKY_DEFAULT = { luma: 0.5, color: [ 1, 0.85, 0.65 ], contrast: 0 };
 let skyInfo = SKY_DEFAULT;
 let skyCookie = null;
+let skyCookieCloud = null;
+const cookieNorm = new THREE.Vector3( 1, 1, 1 );
+const cookieMean = new THREE.Vector3( 1, 1, 1 );
+const cookieDepth = { value: 1 };
 
 // brightness is judged the way it looks (display values), not in linear light,
 // so a sky that looks mid-dark is not rated as black
@@ -974,6 +978,7 @@ function buildSkyCookie() {
 
 	skyInfo = SKY_DEFAULT;
 	if ( skyCookie !== null ) { skyCookie.dispose(); skyCookie = null; }
+	if ( skyCookieCloud !== null ) { skyCookieCloud.dispose(); skyCookieCloud = null; }
 
 	const sd = solidskytexture != null && solidskytexture.image != null ? solidskytexture.image.data : null;
 	const ad = alphaskytexture != null && alphaskytexture.image != null ? alphaskytexture.image.data : null;
@@ -990,7 +995,6 @@ function buildSkyCookie() {
 	// the pattern in colour: how much brighter than the sky's average each part is (a steeper curve,
 	// so the bright veins stand out from the dark clouds), and where the colour differs from the average
 	const n = size * size;
-	const half = new Uint16Array( n * 4 );
 	const mean = [ 0, 0, 0 ];
 	const pix = new Float32Array( n * 3 );
 	for ( let i = 0; i < n; i ++ ) {
@@ -1027,27 +1031,35 @@ function buildSkyCookie() {
 
 	}
 
-	// each channel averages 1 (so the pattern shapes the light and does not dim or tint the whole of it)
-	for ( let i = 0; i < n; i ++ ) {
+	// each channel averages 1 (so the pattern shapes the light and does not dim or tint the whole of it): the
+	// shader works the same curve out for each point, and divides by these
+	cookieNorm.set( total[ 0 ] / n + 1e-4, total[ 1 ] / n + 1e-4, total[ 2 ] / n + 1e-4 );
+	cookieMean.set( mean[ 0 ], mean[ 1 ], mean[ 2 ] );
+	cookieDepth.value = depth;
 
-		for ( let k = 0; k < 3; k ++ ) {
+	// The sky is two layers that move at their own speeds (the solid one 8 units a second, the clouds over it
+	// 16), so the pattern is kept as the two layers and put together in the shader, each scrolled at its own
+	// speed: the light on the ground then moves as the clouds overhead do.
+	const make = ( withAlpha ) => {
 
-			const v = Math.min( rgb[ i * 3 + k ] / ( total[ k ] / n + 1e-4 ), 6 );
-			half[ i * 4 + k ] = THREE.DataUtils.toHalfFloat( v );
+		const data = new Uint16Array( n * 4 );
+		const src = withAlpha ? ad : sd;
+		for ( let i = 0; i < n * 4; i ++ ) data[ i ] = THREE.DataUtils.toHalfFloat( ( withAlpha || ( i & 3 ) !== 3 ) && src != null ? src[ i ] / 255 : 1 );
 
-		}
+		const t = new THREE.DataTexture( data, size, size, THREE.RGBAFormat, THREE.HalfFloatType );
+		t.wrapS = THREE.RepeatWrapping;
+		t.wrapT = THREE.RepeatWrapping;
+		t.magFilter = THREE.LinearFilter;
+		t.minFilter = THREE.LinearFilter;
+		t.colorSpace = THREE.NoColorSpace;
+		t.needsUpdate = true;
+		return t;
 
-		half[ i * 4 + 3 ] = THREE.DataUtils.toHalfFloat( 1 );
+	};
 
-	}
-
-	skyCookie = new THREE.DataTexture( half, size, size, THREE.RGBAFormat, THREE.HalfFloatType );
-	skyCookie.wrapS = THREE.RepeatWrapping;
-	skyCookie.wrapT = THREE.RepeatWrapping;
-	skyCookie.magFilter = THREE.LinearFilter;
-	skyCookie.minFilter = THREE.LinearFilter;
-	skyCookie.colorSpace = THREE.NoColorSpace;
-	skyCookie.needsUpdate = true;
+	skyCookie = make( false );
+	if ( skyCookieCloud !== null ) skyCookieCloud.dispose();
+	skyCookieCloud = ad != null && ad.length >= n * 4 ? make( true ) : null;
 
 }
 
@@ -1218,6 +1230,11 @@ uniform float uMaxRay;
 uniform sampler2D tCookie;
 uniform float uCookie; // 0 = no pattern, 1 = the sky's own pattern
 uniform float uCookieTime;
+uniform sampler2D tCookieCloud;
+uniform float uCookieCloud;
+uniform vec3 uCookieMean;
+uniform vec3 uCookieNorm;
+uniform float uCookieDepth;
 const float COOKIE_SCALE = 700.0; // world units to one repeat of the sky picture
 varying vec2 vUv;
 
@@ -1241,8 +1258,17 @@ float henyeyGreenstein( float c, float g ) {
 vec3 skyCookieRGB( vec3 worldPos ) {
 	vec3 sd = normalize( uSunDirW );
 	vec2 uv = ( worldPos.xy - sd.xy / max( sd.z, 0.2 ) * ( worldPos.z - 1000.0 ) ) / COOKIE_SCALE;
-	uv += vec2( 1.0, 0.55 ) * uCookieTime * 0.004;
-	return mix( vec3( 1.0 ), texture2D( tCookie, uv ).rgb, uCookie );
+	// the sky's own scrolling (see EmitSkyPolysQuake: 8 and 16 units a second of a 128 unit picture)
+	vec3 pix = texture2D( tCookie, uv + vec2( 1.0 ) * uCookieTime * ( 8.0 / 128.0 ) ).rgb;
+	if ( uCookieCloud > 0.5 ) {
+		vec4 cl = texture2D( tCookieCloud, uv + vec2( 1.0 ) * uCookieTime * ( 16.0 / 128.0 ) );
+		pix = mix( pix, cl.rgb, cl.a );
+	}
+	float L = dot( pix, vec3( 0.2126, 0.7152, 0.0722 ) ) / max( dot( uCookieMean, vec3( 0.2126, 0.7152, 0.0722 ) ), 1e-4 );
+	float bright = pow( max( L, 0.0 ), 1.0 + 0.9 * uCookieDepth );
+	vec3 hue = min( pow( max( pix / uCookieMean / max( L, 1e-3 ), vec3( 0.0 ) ), vec3( 0.6 ) ), vec3( 2.5 ) );
+	vec3 v = min( bright * hue / uCookieNorm, vec3( 6.0 ) );
+	return mix( vec3( 1.0 ), v, uCookie );
 }
 
 float skyCookie( vec3 worldPos ) {
@@ -1970,6 +1996,11 @@ function createPipeline() {
 		uSunDirV: { value: new THREE.Vector3() },
 		uSunDirW: { value: new THREE.Vector3() },
 		tCookie: { value: null },
+		tCookieCloud: { value: null },
+		uCookieCloud: { value: 0 },
+		uCookieMean: { value: cookieMean },
+		uCookieNorm: { value: cookieNorm },
+		uCookieDepth: cookieDepth,
 		uCookie: { value: 0 },
 		uCookieTime: { value: 0 },
 		uSunCol: { value: new THREE.Vector3( ...SUN_COLOR ) },
@@ -2273,13 +2304,15 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
 		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
 	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
-	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * ( 0.5 + 1.3 * bright );
+	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * ( 1.4 + 1.0 * bright );
 	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
 	p.volumeMaterial.uniforms.uOpenFog.value = 0.035 - 0.03 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
 	p.compositeMaterial.uniforms.uHaze.value = HAZE_DENSITY * ( 1.5 - 1.05 * bright );
 	sh.uBounce.value = Math.max( 0, r_bounce.value );
 	sh.tCookie.value = skyCookie;
+	sh.tCookieCloud.value = skyCookieCloud;
+	sh.uCookieCloud.value = skyCookieCloud !== null ? 1 : 0;
 	sh.uCookie.value = skyCookie !== null ? 1 : 0;
 	sh.uCookieTime.value = time;
 	if ( sunOn ) {
