@@ -1782,14 +1782,6 @@ function M_AdjustSliders( dir ) {
 			Cvar_SetValue( 'cl_showfps', Cvar_VariableValue( 'cl_showfps' ) !== 0 ? 0 : 1 );
 			break;
 
-		case 15: // light pillars
-			Cvar_SetValue( 'r_pillars', Math.max( 0, Math.min( 1, Math.round( ( Cvar_VariableValue( 'r_pillars' ) + dir * 0.05 ) * 100 ) / 100 ) ) );
-			break;
-
-		case 16: // cloud shadow speed
-			Cvar_SetValue( 'r_cloudspeed', Math.max( 0, Math.min( 1, Math.round( ( Cvar_VariableValue( 'r_cloudspeed' ) + dir * 0.05 ) * 100 ) / 100 ) ) );
-			break;
-
 	}
 
 }
@@ -1802,7 +1794,7 @@ function M_AdjustSliders( dir ) {
 ==============================================================================
 */
 
-const OPTIONS_ITEMS = 18;
+const OPTIONS_ITEMS = 16;
 let m_options_cursor = 0;
 
 function M_Menu_Options_f() {
@@ -1864,15 +1856,7 @@ function M_Options_Draw() {
 	M_Print( 16, 144, '           FPS counter' );
 	M_DrawCheckbox( 220, 144, Cvar_VariableValue( 'cl_showfps' ) );
 
-	// (Newer Game) the sky's light: how strong the shafts are, and how fast the cloud shapes move on the ground
-	M_Print( 16, 152, '          Light pillars' );
-	M_DrawSlider( 220, 152, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_pillars' ) ) ) );
-
-	M_Print( 16, 160, '    Cloud shadow speed' );
-	M_DrawSlider( 220, 160, Math.max( 0, Math.min( 1, Cvar_VariableValue( 'r_cloudspeed' ) ) ) );
-
-	// the benchmark goes last
-	M_Print( 16, 168, '  Performance profiler' );
+	M_Print( 16, 152, '  Performance profiler' );
 
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
@@ -1914,7 +1898,7 @@ function M_Options_Key( key ) {
 				case 13:
 					M_Menu_Newer_f();
 					break;
-				case 17:
+				case 15:
 					// leave the menu and run the demos flat out
 					setKeyDest( key_game );
 					m_state = m_none;
@@ -1969,7 +1953,10 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_newer_hud', label: '      Newer status bar' },
 	{ cvar: 'r_newer_shadows', label: '   Enemy and item shadows' },
 	{ cvar: 'r_flashlight', label: '  Flashlight (key F)' },
-	{ cvar: 'r_decals', label: '   Marks and blood' }
+	{ cvar: 'r_decals', label: '   Marks and blood' },
+	// sliders: all the way to the left is off, and the further right, the stronger or faster
+	{ cvar: 'r_pillars', label: '          Light pillars', slider: true },
+	{ cvar: 'r_cloudspeed', label: '    Cloud shadow speed', slider: true }
 ];
 let m_newer_cursor = 0;
 
@@ -1994,24 +1981,38 @@ function M_Newer_Draw() {
 	for ( let i = 0; i < NEWER_FEATURES.length; i ++ ) {
 
 		M_Print( 16, 48 + i * 8, NEWER_FEATURES[ i ].label );
-		M_DrawCheckbox( 220, 48 + i * 8, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) );
+		if ( NEWER_FEATURES[ i ].slider === true )
+			M_DrawSlider( 220, 48 + i * 8, Math.max( 0, Math.min( 1, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) ) ) );
+		else
+			M_DrawCheckbox( 220, 48 + i * 8, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) );
 
 	}
 
-	M_Print( 16, 112, ' These apply to Newer Game only.' );
-	M_Print( 16, 120, ' Water and the flashlight need' );
-	M_Print( 16, 128, ' the Newer lighting.' );
-	M_Print( 16, 136, ' Portals: from the next level.' );
+	M_Print( 16, 144, ' These apply to Newer Game only.' );
+	M_Print( 16, 152, ' Water and the flashlight need' );
+	M_Print( 16, 160, ' the Newer lighting.' );
+	M_Print( 16, 168, ' Portals: from the next level.' );
 
 	M_DrawCharacter( 200, 48 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
 }
 
-function M_Newer_Toggle() {
+// switch one on or off; a slider is moved a step (dir -1 or 1) instead, and Enter on one steps it up and round to off
+function M_Newer_Toggle( dir ) {
 
 	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
-	const name = NEWER_FEATURES[ m_newer_cursor ].cvar;
-	Cvar_SetValue( name, Cvar_VariableValue( name ) !== 0 ? 0 : 1 );
+	const f = NEWER_FEATURES[ m_newer_cursor ];
+
+	if ( f.slider === true ) {
+
+		let v = Cvar_VariableValue( f.cvar ) + ( dir === 0 ? 0.05 : dir * 0.05 );
+		if ( dir === 0 && v > 1.001 ) v = 0;
+		Cvar_SetValue( f.cvar, Math.max( 0, Math.min( 1, Math.round( v * 100 ) / 100 ) ) );
+		return;
+
+	}
+
+	Cvar_SetValue( f.cvar, Cvar_VariableValue( f.cvar ) !== 0 ? 0 : 1 );
 
 }
 
@@ -2023,9 +2024,13 @@ function M_Newer_Key( key ) {
 			M_Menu_Options_f();
 			break;
 		case K_ENTER:
+			M_Newer_Toggle( 0 );
+			break;
 		case K_LEFTARROW:
+			M_Newer_Toggle( - 1 );
+			break;
 		case K_RIGHTARROW:
-			M_Newer_Toggle();
+			M_Newer_Toggle( 1 );
 			break;
 		case K_UPARROW:
 			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
@@ -2045,7 +2050,7 @@ function M_Newer_Touch( vx, vy ) {
 	if ( vy >= 48 && vy < 48 + NEWER_FEATURES.length * 8 ) {
 
 		m_newer_cursor = Math.floor( ( vy - 48 ) / 8 );
-		M_Newer_Toggle();
+		M_Newer_Toggle( 0 );
 
 	}
 
