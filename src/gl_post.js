@@ -203,7 +203,7 @@ export function R_PostSetUnderwater( v ) {
 
 export function R_PostActive() {
 
-	return glowActive;
+	return glowActive && classicLook.value === 0;
 
 }
 
@@ -211,7 +211,7 @@ export function R_PostActive() {
 // of the lighting pipeline, so it needs that as well as its own switch.
 export function R_WaterActive() {
 
-	return glowActive && r_newer_water.value !== 0;
+	return glowActive && classicLook.value === 0 && r_newer_water.value !== 0;
 
 }
 
@@ -358,7 +358,7 @@ function patchDetailShader( shader ) {
 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
 	// depth is for looking at it from a little way off
 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
-		.replace( 'mapN.xy *= normalScale;', 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) );' ) );
+		.replace( 'mapN.xy *= normalScale;', 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) ) * ( 1.0 - uClassic );' ) );
 	f = f.replace( '#include <emissivemap_fragment>', THREE.ShaderChunk.emissivemap_fragment.replace( /vEmissiveMapUv/g, '_pUv' ) );
 	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );' );
 

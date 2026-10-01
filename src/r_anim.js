@@ -34,7 +34,17 @@ export const r_newer_crates = new cvar_t( 'r_newer_crates', '40' );
 // is started in the same batch of commands that sets it)
 export function R_NewerGame() {
 
-	return Cvar_VariableValue( 'r_hdr' ) !== 0;
+	return classicPass === false && Cvar_VariableValue( 'r_hdr' ) !== 0;
+
+}
+
+// While the classic half of the title demo is drawn (r_demosplit.js) nothing of Newer Game is on: this reads
+// as New Game
+let classicPass = false;
+
+export function R_AnimSetClassicPass( on ) {
+
+	classicPass = on === true;
 
 }
 

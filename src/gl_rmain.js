@@ -15,7 +15,9 @@ import { CL_TeleportSpots } from './cl_tent.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
-import { R_DemoSplitActive, R_DemoSplitClassic, r_demosplit } from './r_demosplit.js';
+import { R_ClassicTexture } from './r_newertextures.js';
+import { R_AnimSetClassicPass, R_AnimSetNewer, R_AnimSetLighting, R_IsNewer } from './r_anim.js';
+import { R_DemoSplitFull, R_DemoSplitActive, R_DemoSplitClassic, r_demosplit } from './r_demosplit.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
@@ -28,7 +30,7 @@ import {
 	M_PI, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorMA,
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
 } from './mathlib.js';
-import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll } from './gl_rsurf.js';
+import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, DrawTextureChains } from './gl_rsurf.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
@@ -1543,6 +1545,88 @@ export function R_RenderScene() {
 }
 
 //============================================================================
+// The classic half of the title demo (r_demosplit.js)
+//
+// Everything Newer is switched off, what the frame built for Newer Game is built again the classic way
+// (the models with their original skins, the water as the original had it), the world's materials are
+// given the original textures, and what only Newer Game draws (marks, mist, shadows, the views of other
+// levels) is hidden.  Then the scene is drawn, and all of it put back.
+//============================================================================
+
+let _classicSaved = null;
+let _classicHidden = [];
+let _classicNewer = false;
+let _classicLighting = false;
+
+function R_ClassicOn() {
+
+	_classicNewer = R_IsNewer();
+	_classicLighting = R_NewerLightingActive();
+	R_AnimSetClassicPass( true );
+	R_AnimSetNewer( false );
+	R_AnimSetLighting( false );
+	classicLook.value = 1;
+
+	// the models and the water again, the classic way
+	R_DrawEntitiesOnList();
+	DrawTextureChains();
+
+	_classicSaved = new Map();
+	_classicHidden = [];
+
+	scene.traverse( ( o ) => {
+
+		// only Newer Game draws these
+		const owner = o._quakeOwner;
+		if ( o.name === 'quake_decals' || o.name === 'quake_level_portal' || o.name === 'quake_level_view' || o.isPoints === true
+			|| ( owner != null && owner._aliasMesh !== o && o.isMesh === true ) ) {
+
+			if ( o.visible ) {
+
+				o.visible = false;
+				_classicHidden.push( o );
+
+			}
+
+			return;
+
+		}
+
+		const m = o.material;
+		if ( m == null || Array.isArray( m ) || _classicSaved.has( m ) ) return;
+		if ( m.map == null && m.emissiveMap == null ) return;
+
+		_classicSaved.set( m, { map: m.map, emissiveMap: m.emissiveMap, emissiveIntensity: m.emissiveIntensity } );
+		if ( m.map != null ) m.map = R_ClassicTexture( m.map );
+		if ( m.emissiveMap != null ) m.emissiveMap = R_ClassicTexture( m.emissiveMap );
+		if ( m.emissiveIntensity !== undefined ) m.emissiveIntensity = 1;
+
+	} );
+
+}
+
+function R_ClassicOff() {
+
+	for ( const [ m, v ] of _classicSaved ) {
+
+		m.map = v.map;
+		m.emissiveMap = v.emissiveMap;
+		if ( v.emissiveIntensity !== undefined ) m.emissiveIntensity = v.emissiveIntensity;
+
+	}
+
+	for ( const o of _classicHidden ) o.visible = true;
+	_classicSaved = null;
+	_classicHidden = [];
+
+	classicLook.value = 0;
+	R_AnimSetClassicPass( false );
+	R_AnimSetNewer( _classicNewer );
+	R_AnimSetLighting( _classicLighting );
+
+}
+
+//============================================================================
 // R_RenderView
 //
 // r_refdef must be set before the first call
@@ -1641,10 +1725,10 @@ export function R_RenderView() {
 			R_PerfStage( 'world draw' );
 			// the title demo, half Newer and half classic
 			const split = R_DemoSplitActive();
-			R_PostSetSplit( split );
+			R_PostSetSplit( split && ! R_DemoSplitFull() );
 			R_PostFinish( renderer, scene, camera, _viewport, r_visframecount, d_lightstylevalue,
 				cl_dlights, cl != null ? cl.time : 0, renderer.toneMappingExposure, R_MapHasSky() );
-			if ( split ) R_DemoSplitClassic( renderer, scene, camera, _viewport, classicLook );
+			if ( split ) R_DemoSplitClassic( renderer, scene, camera, _viewport, R_ClassicOn, R_ClassicOff );
 
 		} else {
 

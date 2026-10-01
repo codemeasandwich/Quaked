@@ -14,6 +14,10 @@
 
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import * as THREE from 'three';
+
+// the textures that have been given their Newer picture, so they can be put back (r_demosplit.js)
+const upgraded = new Set();
 
 const BASE = 'newer/textures/';
 
@@ -106,6 +110,7 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		const fb = texture._fullbright;
 		if ( fb != null && fb.image != null && fb.image.data != null && typeof document !== 'undefined' ) {
 
+			if ( fb.userData.classicImage === undefined ) fb.userData.classicImage = fb.image;
 			const own = GLOW_FROM_PICTURE[ name ];
 			const split = own !== undefined ? R_GlowFromPicture( pic, own ) : splitGlow( fb.image, pic );
 			data = split.diffuse;
@@ -114,6 +119,12 @@ export function R_NewerTextureUpgrade( name, texture ) {
 			fb.needsUpdate = true;
 
 		}
+
+		// the original pixels are kept: the classic half of the title demo draws with them, and a classic game
+		// after a Newer one has them back
+		if ( texture.userData.classicImage === undefined ) texture.userData.classicImage = texture.image;
+		if ( fb != null && fb.userData.classicImage === undefined ) fb.userData.classicImage = fb.image;
+		upgraded.add( texture );
 
 		// the very same texture, with more pixels
 		texture.dispose();
@@ -260,5 +271,63 @@ export function R_NewerTextureSettled( name, texture ) {
 	if ( index === null ) return false;
 	if ( index[ name ] === undefined ) return true;
 	return texture.userData != null && texture.userData.newerPicture === true;
+
+}
+
+
+// A texture as the original game had it: a copy with the original pixels, or the texture itself when it has
+// never been given a Newer picture.  (Filtering is the classic's: hard pixels.)
+export function R_ClassicTexture( texture ) {
+
+	if ( texture == null || texture.userData == null || texture.userData.classicImage === undefined ) return texture;
+
+	let twin = texture.userData.classicTwin;
+	if ( twin === undefined ) {
+
+		const img = texture.userData.classicImage;
+		twin = new THREE.DataTexture( img.data, img.width, img.height, texture.format, texture.type );
+		twin.wrapS = texture.wrapS;
+		twin.wrapT = texture.wrapT;
+		twin.flipY = texture.flipY;
+		twin.colorSpace = texture.colorSpace;
+		twin.magFilter = THREE.NearestFilter;
+		twin.minFilter = THREE.NearestMipmapLinearFilter;
+		twin.generateMipmaps = true;
+		twin.offset.copy( texture.offset );
+		twin.repeat.copy( texture.repeat );
+		twin.needsUpdate = true;
+		texture.userData.classicTwin = twin;
+
+	}
+
+	return twin;
+
+}
+
+// every texture back to its original pixels (the Newer picture is fetched again if Newer Game is played)
+export function R_NewerTexturesRevert() {
+
+	for ( const t of upgraded ) {
+
+		if ( t.userData.classicImage === undefined ) continue;
+		t.dispose();
+		t.image = t.userData.classicImage;
+		t.userData.newerPicture = false;
+		t.userData.newerHeight = undefined;
+		t.needsUpdate = true;
+		if ( t._normalMap != null ) { t._normalMap.dispose(); t._normalMap = undefined; }
+
+		const fb = t._fullbright;
+		if ( fb != null && fb.userData.classicImage !== undefined ) {
+
+			fb.dispose();
+			fb.image = fb.userData.classicImage;
+			fb.needsUpdate = true;
+
+		}
+
+	}
+
+	upgraded.clear();
 
 }
