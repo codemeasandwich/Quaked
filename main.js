@@ -108,6 +108,17 @@ async function main() {
 
 		}
 
+		// The banner of the Newer Game features menu
+		try {
+
+			await Draw_CachePicFromPNG( 'gfx/p_enhanced.lmp', 'enhancedmenu.png?v=1' );
+
+		} catch ( e ) {
+
+			Sys_Printf( 'Warning: Could not load the enhanced menu banner\n' );
+
+		}
+
 		// Console (and menu backdrop) wallpaper; the original conback stays if it fails
 		if ( await Draw_LoadConbackImage( 'conback.webp' ) )
 			Sys_Printf( 'Loaded console wallpaper\n' );

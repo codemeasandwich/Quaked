@@ -817,7 +817,7 @@ Draw_Fill
 Fills a box of pixels with a single color
 =============
 */
-export function Draw_Fill( x, y, w, h, c ) {
+export function Draw_Fill( x, y, w, h, c, alpha = 1 ) {
 
 	if ( ! overlayCtx ) return;
 
@@ -834,7 +834,9 @@ export function Draw_Fill( x, y, w, h, c ) {
 
 	}
 
+	overlayCtx.globalAlpha = alpha;
 	overlayCtx.fillRect( x, y, w, h );
+	overlayCtx.globalAlpha = 1;
 
 }
 

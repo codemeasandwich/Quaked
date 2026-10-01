@@ -1957,8 +1957,8 @@ const NEWER_FEATURES = [
 	// sliders: all the way to the left is off, and the further right, the stronger or faster
 	{ cvar: 'r_pillars', label: '          Light pillars', slider: true },
 	{ cvar: 'r_cloudspeed', label: '    Cloud shadow speed', slider: true },
-	{ cvar: 'r_heathaze', label: '    Heat haze over lava', slider: true },
-	{ cvar: 'r_mist', label: '    Toxic mist over slime', slider: true },
+	{ cvar: 'r_heathaze', label: '      Heat haze (lava)', slider: true },
+	{ cvar: 'r_mist', label: '    Toxic mist (slime)', slider: true },
 	{ cvar: 'r_reflect', label: '      Water reflections', slider: true }
 ];
 let m_newer_cursor = 0;
@@ -1971,30 +1971,41 @@ function M_Menu_Newer_f() {
 
 }
 
+// the rows start here
+const NEWER_ROW0 = 44;
+
 function M_Newer_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
 
-	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
-	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
-	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+	// a dark panel behind the list: the picture of the game behind the menu made it hard to read
+	if ( _Draw_Fill ) {
 
-	M_PrintWhite( 16, 32, '     Newer Game features' );
-
-	for ( let i = 0; i < NEWER_FEATURES.length; i ++ ) {
-
-		M_Print( 16, 48 + i * 8, NEWER_FEATURES[ i ].label );
-		if ( NEWER_FEATURES[ i ].slider === true )
-			M_DrawSlider( 220, 48 + i * 8, Math.max( 0, Math.min( 1, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) ) ) );
-		else
-			M_DrawCheckbox( 220, 48 + i * 8, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) );
+		const ox = ( _vid.width - 320 ) >> 1, oy = ( _vid.height - 200 ) >> 1;
+		_Draw_Fill( ox + 8, oy + 2, 304, 192, 0, 0.82 );
 
 	}
 
-	M_Print( 16, 168, ' Newer Game only. Water, mist and the' );
-	M_Print( 16, 176, ' flashlight need the Newer lighting.' );
+	const banner = _Draw_CachePic( 'gfx/p_enhanced.lmp' );
+	if ( banner != null ) M_DrawTransPic( ( 320 - banner.width ) / 2, 4, banner );
+	else M_DrawPic( ( 320 - 128 ) / 2, 4, _Draw_CachePic( 'gfx/p_option.lmp' ) );
 
-	M_DrawCharacter( 200, 48 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+	for ( let i = 0; i < NEWER_FEATURES.length; i ++ ) {
+
+		const y = NEWER_ROW0 + i * 8;
+		M_Print( 16, y, NEWER_FEATURES[ i ].label );
+		if ( NEWER_FEATURES[ i ].slider === true )
+			M_DrawSlider( 220, y, Math.max( 0, Math.min( 1, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) ) ) );
+		else
+			M_DrawCheckbox( 220, y, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) );
+
+	}
+
+	const notes = NEWER_ROW0 + NEWER_FEATURES.length * 8 + 6;
+	M_Print( 16, notes, ' Newer Game only. Water, mist and the' );
+	M_Print( 16, notes + 8, ' flashlight need the Newer lighting.' );
+
+	M_DrawCharacter( 200, NEWER_ROW0 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
 }
 
@@ -2048,9 +2059,9 @@ function M_Newer_Key( key ) {
 
 function M_Newer_Touch( vx, vy ) {
 
-	if ( vy >= 48 && vy < 48 + NEWER_FEATURES.length * 8 ) {
+	if ( vy >= NEWER_ROW0 && vy < NEWER_ROW0 + NEWER_FEATURES.length * 8 ) {
 
-		m_newer_cursor = Math.floor( ( vy - 48 ) / 8 );
+		m_newer_cursor = Math.floor( ( vy - NEWER_ROW0 ) / 8 );
 		M_Newer_Toggle( 0 );
 
 	}
