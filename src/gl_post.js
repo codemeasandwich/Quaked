@@ -1360,7 +1360,7 @@ void main() {
 			beam += uSpotCol * cone * cone / ( 1.0 + dist * dist / ( 200.0 * 200.0 ) );
 		}
 		float phase = henyeyGreenstein( dot( dirV, uSpotDir ), 0.5 );
-		result += beam * ds * 0.0000022 * phase;
+		result += beam * ds * 0.0000011 * phase;
 	}
 
 	gl_FragColor = vec4( result + acc * uScatter, 1.0 );
@@ -1730,8 +1730,8 @@ void main() {
 		// a surface the baked light never reached is black, and black has no colour to tint the beam with: it
 		// gets a plain warm one, so the flashlight always has something to light
 		float darkness = 1.0 - smoothstep( 0.0, 0.04, sl );
-		vec3 beamTint = mix( vec3( 0.5 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
-		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.075 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
+		vec3 beamTint = mix( vec3( 0.3 ), tint, smoothstep( 0.0, 0.03, max( scene.r, max( scene.g, scene.b ) ) ) );
+		c = scene * ( 1.0 + relit ) + relit * uLightFloor * tint + spot * ( scene * spotGain + ( spotLift + 0.0 * darkness ) * beamTint ) + flashAdd * ( 0.3 * tint + scene * 0.6 );
 
 		// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 		if ( spotMask > 0.0 ) {
