@@ -336,6 +336,7 @@ const ADVICE = {
 	'light shafts': 'the light-shaft pass: fewer steps (SUN_STEPS), or r_volumetric 0',
 	'bloom': 'the glow passes: r_bloom 0, or fewer levels',
 	'final lighting pass': 'the per-pixel lighting and effects pass: fewer lights ray-marched (RELIGHT_STEPS, MAX_VOLUME_LIGHTS), or a lower resolution',
+	'lighting upscale': 'presenting the scene-resolution lighting at display size (colour conversion and brightness/contrast only)',
 	'overlays and water': 'screen blends and water surfaces',
 	'2D screen and menus': 'the status bar, text and menus',
 	'compile': 'compiling the level\'s shaders when it starts (hidden by the level change)',

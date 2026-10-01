@@ -17,8 +17,9 @@
 //   4. Composite: grade, exposure, and a filmic shoulder that rolls highlights
 //      off instead of clipping.
 //
-// It is a rasterised approximation (no path tracing): light does not bounce,
-// and point-light occlusion only knows about what is on screen.
+// It is a rasterised approximation (no path tracing): bounced light and point-light
+// occlusion only know about what is on screen. Costly composition follows the
+// scene's dynamic resolution; only its inexpensive presentation fills the display.
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
@@ -1398,6 +1399,9 @@ void main() {
 		float integral = ( atan( ( D - t0 ) / h ) + atan( t0 / h ) ) / h;
 		float range = uLightCol[ i ].w;
 		integral *= 1.0 - smoothstep( 0.25 * range, range, h );
+		// An out-of-range light contributes exactly zero. Avoid its twelve depth
+		// marches rather than calculating a visibility that will be multiplied away.
+		if ( integral <= 0.0 ) continue;
 
 		vec3 Q = dirV * clamp( t0, 0.0, D );
 		float lit = 0.0;
@@ -1514,6 +1518,7 @@ uniform float uDropDensity;
 uniform float uDropBlood;
 uniform float uBumpLight;
 uniform float uLighting;
+uniform float uOffscreen;
 uniform float uTeleStretch;
 uniform float uTeleChroma;
 uniform float uDropAge;
@@ -1895,6 +1900,9 @@ void main() {
 					if ( dot( Ns, Ps ) > 0.0 ) Ns = - Ns;
 					float cosS = max( dot( Ns, - dir ), 0.0 );
 					float w = cosR * cosS / ( 1.0 + dist * dist / ( 80.0 * 80.0 ) );
+					// Coplanar/back-facing neighbours transfer no light. Their three
+					// HDR colour reads and beam estimate cannot change the result.
+					if ( w <= 0.0 ) continue;
 					// what that point is sending: its lit colour, and the flashlight's light on it (the beam is added after
 					// this picture, so it is estimated here, without shadows)
 					float beamS = 0.0;
@@ -2073,9 +2081,26 @@ void main() {
 	}
 
 	gl_FragColor = vec4( c, 1.0 );
-	#include <colorspace_fragment>
+	if ( uOffscreen < 0.5 ) {
+		#include <colorspace_fragment>
+		// brightness, then contrast about a mid tone, on the displayed values
+		vec3 shown = gl_FragColor.rgb * uBright;
+		shown = max( uContrastPivot + ( shown - uContrastPivot ) * uContrastGain, 0.0 );
+		gl_FragColor = vec4( shown, 1.0 );
+	}
+}`;
 
-	// brightness, then contrast about a mid tone, on the displayed values
+// The composite target stores linear colour. Convert and grade exactly once,
+// after upscaling, so brightness/contrast keep their display-space meaning.
+const PRESENT_FRAGMENT = `
+uniform sampler2D tComposite;
+uniform float uBright;
+uniform float uContrastGain;
+uniform float uContrastPivot;
+varying vec2 vUv;
+void main() {
+	gl_FragColor = texture2D( tComposite, vUv );
+	#include <colorspace_fragment>
 	vec3 shown = gl_FragColor.rgb * uBright;
 	shown = max( uContrastPivot + ( shown - uContrastPivot ) * uContrastGain, 0.0 );
 	gl_FragColor = vec4( shown, 1.0 );
@@ -2176,7 +2201,7 @@ function createPipeline() {
 		width: 0, height: 0,
 		scene, mesh, shared,
 		camera: new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 ),
-		hdr: null, volume: null, down: [], up: [],
+		hdr: null, volume: null, composite: null, down: [], up: [],
 		sunCamera,
 		sunTarget: new THREE.WebGLRenderTarget( SUN_SHADOW_SIZE, SUN_SHADOW_SIZE, {
 			depthBuffer: true,
@@ -2220,6 +2245,7 @@ function createPipeline() {
 			uDropBlood: { value: 0 },
 			uBumpLight: { value: BUMP_LIGHT },
 			uLighting: lightingLook,
+			uOffscreen: { value: 0 },
 			uTeleStretch: { value: 0 },
 			uTeleChroma: { value: 0 },
 			uDropAge: { value: 0 },
@@ -2246,7 +2272,11 @@ function createPipeline() {
 			uWaterCount: { value: 0 },
 			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
 			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }
-		}, shared ) )
+		}, shared ) ),
+		presentMaterial: makeMaterial( PRESENT_FRAGMENT, {
+			tComposite: { value: null }, uBright: { value: 1 },
+			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 }
+		} )
 	};
 
 }
@@ -2257,6 +2287,8 @@ function disposeTargets() {
 	gpu.hdr.dispose();
 	gpu.hdr.depthTexture.dispose();
 	gpu.volume.dispose();
+	if ( gpu.composite !== null ) gpu.composite.dispose();
+	gpu.composite = null;
 	for ( const rt of gpu.down ) rt.dispose();
 	for ( const rt of gpu.up ) rt.dispose();
 	gpu.hdr = null;
@@ -2685,9 +2717,27 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	R_PerfStage( 'bloom' );
 
+	// Previously the expensive ray marches/bounce still ran at full device-pixel
+	// resolution when the scene shrank. At half scale that did four times the
+	// scene's work, preventing dynamic resolution from meeting its frame budget.
+	const upscale = lighting && dyn.scale < 1;
+	cm.uOffscreen.value = upscale ? 1 : 0;
+	if ( upscale ) {
+
+		if ( p.composite === null ) p.composite = makeRT( hdr.width, hdr.height );
+		runPass( renderer, p.compositeMaterial, p.composite );
+		R_PerfStage( 'final lighting pass' );
+		const shown = p.presentMaterial.uniforms;
+		shown.tComposite.value = p.composite.texture;
+		shown.uBright.value = cm.uBright.value;
+		shown.uContrastGain.value = cm.uContrastGain.value;
+		shown.uContrastPivot.value = cm.uContrastPivot.value;
+
+	}
+
 	renderer.setRenderTarget( null );
 	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
-	gpu.mesh.material = p.compositeMaterial;
+	gpu.mesh.material = upscale ? p.presentMaterial : p.compositeMaterial;
 	if ( splitLeft ) {
 
 		renderer.setScissor( viewport.lx, viewport.ly, Math.floor( viewport.lw / 2 ), viewport.lh );
@@ -2697,7 +2747,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	renderer.render( p.scene, p.camera );
 	if ( splitLeft ) renderer.setScissorTest( false );
-	R_PerfStage( 'final lighting pass' );
+	R_PerfStage( upscale ? 'lighting upscale' : 'final lighting pass' );
 
 }
 

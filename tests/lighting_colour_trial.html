@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Lighting display-colour parity</title><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script></head><body style="background:#222;color:white"><pre id="result">Running real GPU colour comparison…</pre><script type="module">
+await import('../src/gl_rsurf.js');
+const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/r_anim.js'),cvar=await import('../src/cvar.js');
+const vars=[post.r_hdr,post.r_dynres,post.r_fps_target,post.r_bloom,post.r_volumetric,post.r_newbright,post.r_newcontrast,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water];
+for(const v of vars)cvar.Cvar_RegisterVariable(v);
+const renderer=new THREE.WebGLRenderer();renderer.setSize(32,32);document.body.append(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(90,1,4,4096);camera.updateMatrixWorld();
+let now=100000;const originalNow=Object.getOwnPropertyDescriptor(performance,'now');Object.defineProperty(performance,'now',{configurable:true,value:()=>now});
+function draw(colour,dynamic){
+ cvar.Cvar_SetValue('r_hdr',1);cvar.Cvar_SetValue('r_newer_lighting',1);cvar.Cvar_SetValue('r_bloom',0);cvar.Cvar_SetValue('r_volumetric',0);cvar.Cvar_SetValue('r_dynres',0);post.R_PostBegin(renderer,true,16,16);
+ if(dynamic){cvar.Cvar_SetValue('r_dynres',1);for(let i=0;i<150;i++){now+=100;post.R_PostBegin(renderer,true,32,32);}}
+ post.R_PostBind(renderer);renderer.setClearColor(new THREE.Color(...colour),1);renderer.clear(true,true,true);renderer.render(new THREE.Scene(),camera); // resolve the full-resolution MSAA target before sampling it
+ post.R_PostFinish(renderer,new THREE.Scene(),camera,{lx:0,ly:0,lw:32,lh:32},0,[],[],0,1,false);
+ const out=new Uint8Array(4);renderer.getContext().readPixels(16,16,1,1,renderer.getContext().RGBA,renderer.getContext().UNSIGNED_BYTE,out);return [...out];
+}
+const results=[];let failures=0;
+try{
+ for(const [bright,contrast] of [[.6,1.4],[1,1],[.8,.7]])for(const colour of [[.001,.004,.01],[.2,.3,.5],[1.3,.7,.2]]){
+  cvar.Cvar_SetValue('r_newbright',bright);cvar.Cvar_SetValue('r_newcontrast',contrast);
+  const direct=draw(colour,false),upscaled=draw(colour,true),maxError=Math.max(...direct.map((v,i)=>Math.abs(v-upscaled[i])));if(maxError>1)failures++;
+  results.push({colour,bright,contrast,direct,upscaled,maxError});
+ }
+ const error=renderer.getContext().getError();if(error)failures++;
+ document.querySelector('#result').textContent=JSON.stringify({status:failures?'FAIL':'PASS',checks:results.length,failures,glError:error,results},null,2);
+}finally{if(originalNow)Object.defineProperty(performance,'now',originalNow);else delete performance.now;post.R_PostShutdown();renderer.dispose();}
+</script></body></html>

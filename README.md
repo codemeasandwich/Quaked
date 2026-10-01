@@ -47,6 +47,8 @@ New Game is always the original game: original lighting, water, monsters and tel
 
 The startup title demo compares enhanced and classic rendering at the same scene resolution on both halves, including resizing and dynamic-resolution scaling. Classic still uses its original art and lighting. [Implementation and verification](docs/demo-resolution-2026-10-01.md).
 
+Advanced lighting follows the scene's dynamic resolution too: its rays and bounce sampling run at the scene target size, then a cheap display pass converts colour and applies brightness/contrast. This removes the former full-display lighting bottleneck when the scene had already scaled down. [Lighting performance investigation and measured results](docs/lighting-performance-2026-10-01.md).
+
 #### Getting the next level ready
 
 When the player comes within about 900 units of an exit (a doorway, archway, pit or teleporter pad), the level behind it is prepared a few milliseconds per frame: its map is read, its own textures fetched and decoded, its monsters' and items' models loaded, and the relief maps of its textures made. The real level change then only has to put the level together. In a test the level build after a change took about 40% less work on the main thread. (Loading the files themselves is not the cost: the game's data is already in memory.)

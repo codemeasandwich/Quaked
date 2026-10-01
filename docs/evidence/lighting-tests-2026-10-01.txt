@@ -1,0 +1,26 @@
+PASS dynamic lighting composition follows scene pixels and presents the split at display size
+PASS full-resolution lighting preserves the direct display path and grade
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+PASS lighting, normal maps and liquids switch independently on existing materials
+PASS Newer menu exposes independent lighting, normals and liquids controls
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+PASS the frame counter averages half a second of frames
+PASS stage marks and the profiler do nothing while not profiling
+25/25 passed
