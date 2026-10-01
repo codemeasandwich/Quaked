@@ -1394,7 +1394,7 @@ void main() {
 		vec3 Q = dirV * clamp( t0, 0.0, D );
 		float lit = 0.0;
 		for ( int k = 0; k < SHADOW_STEPS; k ++ ) {
-			float s = ( float( k ) + jit ) / float( SHADOW_STEPS );
+			float s = ( float( k ) + 0.5 ) / float( SHADOW_STEPS ); // (no per-pixel jitter: it showed as speckle round lights)
 			vec3 P = mix( Q, L, s * 0.97 );
 			if ( P.z > - uNear ) { lit += 1.0; continue; }
 			vec4 c = uProj * vec4( P, 1.0 );
@@ -1532,7 +1532,7 @@ uniform int uWaterCount;
 uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
 uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner
 
-const int RELIGHT_STEPS = 6;
+const int RELIGHT_STEPS = 8;
 
 // tiling water caustics: the bright network light makes when it is bent by ripples
 float caustic( vec2 uv, float t ) {
@@ -1797,7 +1797,7 @@ void main() {
 
 			float vis = 0.0;
 			for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
-				float s = ( float( k ) + jit ) / float( RELIGHT_STEPS );
+				float s = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
 				vec3 Q = mix( P + Ng * 2.0, uLightPos[ i ].xyz, s * 0.95 );
 				if ( Q.z > - uNear ) { vis += 1.0; continue; }
 				vec4 cq = uProj * vec4( Q, 1.0 );
@@ -1829,7 +1829,7 @@ void main() {
 				fall *= 1.0 - smoothstep( 800.0, 1500.0, sd );
 				float svis = 0.0;
 				for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
-					float s = ( float( k ) + jit ) / float( RELIGHT_STEPS );
+					float s = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
 					vec3 Q = mix( P + Ng * 2.0, uSpotPos, s * 0.95 );
 					if ( Q.z > - uNear ) { svis += 1.0; continue; }
 					vec4 cq = uProj * vec4( Q, 1.0 );
