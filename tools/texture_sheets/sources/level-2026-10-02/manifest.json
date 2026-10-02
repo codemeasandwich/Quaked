@@ -1,0 +1,716 @@
+{
+  "description": "Owner-supplied City/Church and Wizard texture update, explicit source crops after changed gutters. Reviewed periodic phase correction in native texel units; leaves world UVs unchanged.",
+  "outputSize": [
+    256,
+    256
+  ],
+  "nativeSize": [
+    64,
+    64
+  ],
+  "sources": {
+    "city_church_2.png": {
+      "size": [
+        1490,
+        1055
+      ],
+      "sha256": "2134cb9a375bf1032a838ed4917de2d4d64bb7463bdbd88510bb3bbe74afb519"
+    },
+    "wizard_1.png": {
+      "size": [
+        1642,
+        958
+      ],
+      "sha256": "76cde126b700e6879e97a0976f234176e24a6f6f3bcea3a5ae8e93d65416586b"
+    }
+  },
+  "tiles": {
+    "city5_1": {
+      "source": "city_church_2.png",
+      "crop": [
+        18,
+        21,
+        296,
+        306
+      ],
+      "policy": "layered-veneer",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        2,
+        3
+      ],
+      "layering": {
+        "referenceSize": [
+          256,
+          256
+        ],
+        "facingHeight": 0.78,
+        "brickHeight": 0.38,
+        "microAmplitude": 0.035,
+        "bevelPixels": 1.5,
+        "brickRegions": [
+          {
+            "polygon": [
+              [
+                8,
+                11
+              ],
+              [
+                86,
+                11
+              ],
+              [
+                86,
+                42
+              ],
+              [
+                77,
+                58
+              ],
+              [
+                59,
+                69
+              ],
+              [
+                8,
+                69
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                201,
+                11
+              ],
+              [
+                268,
+                11
+              ],
+              [
+                268,
+                73
+              ],
+              [
+                237,
+                72
+              ],
+              [
+                218,
+                61
+              ],
+              [
+                202,
+                44
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                8,
+                226
+              ],
+              [
+                39,
+                226
+              ],
+              [
+                54,
+                237
+              ],
+              [
+                71,
+                268
+              ],
+              [
+                8,
+                268
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                230,
+                235
+              ],
+              [
+                248,
+                223
+              ],
+              [
+                268,
+                222
+              ],
+              [
+                268,
+                268
+              ],
+              [
+                225,
+                268
+              ],
+              [
+                224,
+                251
+              ]
+            ]
+          },
+          {
+            "polygon": [
+              [
+                83,
+                164
+              ],
+              [
+                114,
+                160
+              ],
+              [
+                143,
+                168
+              ],
+              [
+                159,
+                179
+              ],
+              [
+                164,
+                192
+              ],
+              [
+                150,
+                211
+              ],
+              [
+                129,
+                224
+              ],
+              [
+                99,
+                229
+              ],
+              [
+                70,
+                220
+              ],
+              [
+                51,
+                205
+              ],
+              [
+                48,
+                184
+              ],
+              [
+                64,
+                172
+              ]
+            ]
+          },
+          {
+            "ellipse": [
+              132,
+              27,
+              156,
+              46
+            ]
+          },
+          {
+            "ellipse": [
+              54,
+              79,
+              80,
+              102
+            ]
+          },
+          {
+            "ellipse": [
+              177,
+              198,
+              207,
+              221
+            ]
+          }
+        ],
+        "facingLandmarks": [
+          [
+            122,
+            96
+          ],
+          [
+            169,
+            127
+          ],
+          [
+            108,
+            138
+          ]
+        ],
+        "brickLandmarks": [
+          [
+            35,
+            32
+          ],
+          [
+            236,
+            34
+          ],
+          [
+            28,
+            245
+          ],
+          [
+            246,
+            248
+          ],
+          [
+            105,
+            187
+          ],
+          [
+            145,
+            36
+          ],
+          [
+            66,
+            90
+          ],
+          [
+            190,
+            209
+          ]
+        ],
+        "chipFloor": 0.48
+      }
+    },
+    "city5_3": {
+      "source": "city_church_2.png",
+      "crop": [
+        298,
+        21,
+        593,
+        308
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        3
+      ]
+    },
+    "city5_4": {
+      "source": "city_church_2.png",
+      "crop": [
+        594,
+        21,
+        892,
+        308
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        -1,
+        5
+      ]
+    },
+    "city5_6": {
+      "source": "city_church_2.png",
+      "crop": [
+        894,
+        21,
+        1196,
+        308
+      ],
+      "policy": "carved",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        2
+      ]
+    },
+    "city5_7": {
+      "source": "city_church_2.png",
+      "crop": [
+        1197,
+        21,
+        1490,
+        308
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        1
+      ]
+    },
+    "city5_8": {
+      "source": "city_church_2.png",
+      "crop": [
+        18,
+        309,
+        296,
+        622
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        2,
+        0
+      ]
+    },
+    "city6_4": {
+      "source": "city_church_2.png",
+      "crop": [
+        298,
+        309,
+        593,
+        622
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        2
+      ]
+    },
+    "citya1_1": {
+      "source": "city_church_2.png",
+      "crop": [
+        594,
+        309,
+        892,
+        622
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "column1_2": {
+      "source": "city_church_2.png",
+      "crop": [
+        894,
+        309,
+        1196,
+        620
+      ],
+      "policy": "flat-polished",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "column1_5": {
+      "source": "city_church_2.png",
+      "crop": [
+        1197,
+        309,
+        1490,
+        622
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "stone1_3": {
+      "source": "city_church_2.png",
+      "crop": [
+        18,
+        638,
+        284,
+        951
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        2
+      ]
+    },
+    "wall16_7": {
+      "source": "city_church_2.png",
+      "crop": [
+        298,
+        638,
+        593,
+        951
+      ],
+      "policy": "pebbles",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wall9_8": {
+      "source": "city_church_2.png",
+      "crop": [
+        616,
+        638,
+        892,
+        951
+      ],
+      "policy": "fine-checker",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        2,
+        2
+      ]
+    },
+    "wbrick1_5": {
+      "source": "city_church_2.png",
+      "crop": [
+        915,
+        638,
+        1197,
+        951
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        2,
+        3
+      ]
+    },
+    "wiz1_1": {
+      "source": "wizard_1.png",
+      "crop": [
+        15,
+        15,
+        317,
+        314
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wiz1_4": {
+      "source": "wizard_1.png",
+      "crop": [
+        332,
+        15,
+        657,
+        314
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizmet1_1": {
+      "source": "wizard_1.png",
+      "crop": [
+        672,
+        15,
+        971,
+        314
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizmet1_2": {
+      "source": "wizard_1.png",
+      "crop": [
+        989,
+        15,
+        1309,
+        314
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizmet1_3": {
+      "source": "wizard_1.png",
+      "crop": [
+        1325,
+        15,
+        1627,
+        314
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        -1,
+        2
+      ]
+    },
+    "wizmet1_7": {
+      "source": "wizard_1.png",
+      "crop": [
+        15,
+        329,
+        317,
+        630
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizmet1_8": {
+      "source": "wizard_1.png",
+      "crop": [
+        333,
+        329,
+        657,
+        630
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizwood1_3": {
+      "source": "wizard_1.png",
+      "crop": [
+        672,
+        329,
+        972,
+        630
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizwood1_4": {
+      "source": "wizard_1.png",
+      "crop": [
+        989,
+        329,
+        1309,
+        630
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizwood1_5": {
+      "source": "wizard_1.png",
+      "crop": [
+        1325,
+        329,
+        1627,
+        630
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        -2,
+        -1
+      ]
+    },
+    "wizwood1_7": {
+      "source": "wizard_1.png",
+      "crop": [
+        15,
+        645,
+        318,
+        944
+      ],
+      "policy": "roots",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    },
+    "wizwood1_8": {
+      "source": "wizard_1.png",
+      "crop": [
+        334,
+        645,
+        657,
+        944
+      ],
+      "policy": "existing",
+      "rotation": 0,
+      "flipX": false,
+      "flipY": false,
+      "phaseNative": [
+        0,
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+PASS all26 installed WebPs and registered heights reach the public texture object without changing the64unit UV period
+PASS crafted normals match an independent periodic sine derivative and preserve height at the wrap
+PASS classic pass and normal NewGame preserve native pixels; returning restores all upgraded textures
+RESULT 3/3 passed (tests/level_texture_runtime_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+RESULT 3/3 passed (tests/gl_rsurf_test.js)
+TOTAL 23/23 passed

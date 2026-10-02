@@ -1,5 +1,5 @@
 {
- "version": 2026093054,
+ "version": 2026100203,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -1109,7 +1109,8 @@
   },
   "wiz1_1": {
    "file": "normals/wiz1_1.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wiz1_4": {
    "file": "normals/wiz1_4.webp",
@@ -1118,15 +1119,18 @@
   },
   "wizmet1_1": {
    "file": "normals/wizmet1_1.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wizmet1_2": {
    "file": "normals/wizmet1_2.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wizmet1_3": {
    "file": "normals/wizmet1_3.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wizmet1_7": {
    "file": "normals/wizmet1_7.webp",
@@ -1135,27 +1139,33 @@
   },
   "wizmet1_8": {
    "file": "normals/wizmet1_8.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wizwood1_3": {
    "file": "normals/wizwood1_3.webp",
-   "strength": 1.5
+   "strength": 1.5,
+   "cap": 1.1
   },
   "wizwood1_4": {
    "file": "normals/wizwood1_4.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wizwood1_5": {
    "file": "normals/wizwood1_5.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wizwood1_7": {
    "file": "normals/wizwood1_7.webp",
-   "strength": 1.2
+   "strength": 2.6,
+   "cap": 2.2
   },
   "wizwood1_8": {
    "file": "normals/wizwood1_8.webp",
-   "strength": 1.2
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wkey02_1": {
    "file": "normals/wkey02_1.webp",
@@ -1626,8 +1636,8 @@
   },
   "city5_6": {
    "file": "normals/city5_6.webp",
-   "strength": 2.4,
-   "cap": 2.1
+   "strength": 2.0,
+   "cap": 1.8
   },
   "city5_7": {
    "file": "normals/city5_7.webp",
@@ -1651,8 +1661,8 @@
   },
   "column1_2": {
    "file": "normals/column1_2.webp",
-   "strength": 2.4,
-   "cap": 2.1
+   "strength": 0.0,
+   "cap": 1.1
   },
   "column1_5": {
    "file": "normals/column1_5.webp",
@@ -1666,13 +1676,13 @@
   },
   "wall16_7": {
    "file": "normals/wall16_7.webp",
-   "strength": 2.4,
-   "cap": 2.1
+   "strength": 1.4,
+   "cap": 1.1
   },
   "wall9_8": {
    "file": "normals/wall9_8.webp",
-   "strength": 2.4,
-   "cap": 2.1
+   "strength": 1.2,
+   "cap": 1.1
   },
   "wbrick1_5": {
    "file": "normals/wbrick1_5.webp",
