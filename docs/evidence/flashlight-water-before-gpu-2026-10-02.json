@@ -1,0 +1,102 @@
+{
+  "reference": {
+    "frames": 152,
+    "durationMs": 10140,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "frames": [],
+  "failures": [],
+  "checks": [],
+  "performance": {
+    "frames": 120,
+    "width": 480,
+    "height": 270,
+    "elapsedMs": 321.70000000298023,
+    "meanMs": 2.6808333333581684,
+    "environment": "dim",
+    "method": "one-pixel readback after each complete frame; synchronization overhead included"
+  },
+  "flashlightChecks": [
+    {
+      "name": "environment reflection remains present with flashlight on",
+      "passed": true,
+      "flashlightOff": {
+        "changed": 5137,
+        "total": 11119,
+        "maximum": 201
+      },
+      "flashlightOn": {
+        "changed": 4798,
+        "total": 11119,
+        "maximum": 199
+      }
+    },
+    {
+      "name": "flashlight produces surface glints over black transmission with reflections off",
+      "passed": false,
+      "changed": 0,
+      "total": 20860,
+      "maximum": 0
+    },
+    {
+      "name": "beam aimed away does not light water",
+      "passed": true,
+      "changed": 0,
+      "total": 20860,
+      "maximum": 0
+    },
+    {
+      "name": "opaque occluder shadows visible water glints",
+      "passed": false,
+      "candidates": 0,
+      "shadowed": 0
+    },
+    {
+      "name": "bounded flashlight water response at grazing angle",
+      "passed": true,
+      "changed": 0,
+      "total": 2934,
+      "maximum": 0,
+      "glError": 0
+    },
+    {
+      "name": "bounded flashlight water response at downward angle",
+      "passed": true,
+      "changed": 14,
+      "total": 16988,
+      "maximum": 21,
+      "glError": 0
+    },
+    {
+      "name": "lighting off suppresses flashlight contribution",
+      "passed": true,
+      "changed": 0,
+      "total": 129600,
+      "maximum": 0
+    },
+    {
+      "name": "flashlight-lit opaque SSR receiver is reflected into water",
+      "passed": false,
+      "reflected": {
+        "changed": 0,
+        "total": 11119,
+        "maximum": 0
+      },
+      "directOnly": {
+        "changed": 0,
+        "total": 11119,
+        "maximum": 0
+      }
+    },
+    {
+      "name": "flashlight water shader compiles and renders",
+      "passed": true,
+      "glError": 0
+    }
+  ],
+  "flashlightFailures": [
+    "flashlight produces surface glints over black transmission with reflections off",
+    "opaque occluder shadows visible water glints",
+    "flashlight-lit opaque SSR receiver is reflected into water"
+  ]
+}

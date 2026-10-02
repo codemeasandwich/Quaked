@@ -56,7 +56,7 @@ export function R_WaterProbes() {
 R_WaterProbeUpdate
 
 Call before the frame is drawn.  regions: the see-through pools near the camera, nearest first (the water,
-not the slime).  showAll( true ) makes the whole level drawable and showAll( false ) puts the view's own
+including reflective toxic liquid).  showAll( true ) makes the whole level drawable and showAll( false ) puts the view's own
 visibility back, since the level normally only holds what the player can see.
 ================
 */
@@ -112,11 +112,32 @@ function capture( renderer, scene, r, showAll ) {
 	cam.updateMatrixWorld( true );
 
 	showAll( true );
+	const hidden = [];
+	const previousTarget = renderer.getRenderTarget();
+	const previousFace = renderer.getActiveCubeFace();
+	const previousMip = renderer.getActiveMipmapLevel();
+	const previousXR = renderer.xr.enabled;
+	// A cached environment capture must not retain the first-person weapon
+	// with its special depth range as a floating object in every reflection.
+	scene.traverse( o => {
+
+		if ( o.userData.quakeViewmodel && o.visible ) { o.visible = false; hidden.push( o ); }
+
+	} );
 	try {
 
 		cam.update( renderer, scene );
 
+	} catch ( error ) {
+
+		rt.dispose();
+		throw error;
+
 	} finally {
+
+		for ( const o of hidden ) o.visible = true;
+		renderer.setRenderTarget( previousTarget, previousFace, previousMip );
+		renderer.xr.enabled = previousXR;
 
 		showAll( false );
 

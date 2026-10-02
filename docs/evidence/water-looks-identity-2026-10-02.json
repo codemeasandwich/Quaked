@@ -1,0 +1,21 @@
+{
+  "mode": "Local uncommitted raster implementation",
+  "sources": {
+    "src/gl_post.js": "4beef061010c2528888062f49369835906d38683619a9d54ccf579afc6cd38ed",
+    "src/gl_rsurf.js": "d177dd98517fff4fb1ca8040b169058350b012fd9a94a43a93b796e3626d5d27",
+    "src/gl_rmain.js": "df3c953c64932750db5d2412debb29e4ad5ea82d6e4b5116c460a24280d4a54b",
+    "src/r_mist.js": "64daff6bf132b191ede56874e86114f5ab972f67c1fb0b02a7514792bc2c2d42",
+    "src/menu.js": "d240823cdce1c94ab4f201ff35b4b5cda9aada4e9113c53ba1f244b8bdc46f3d"
+  },
+  "references": {
+    "Screenshot 2026-10-01 at 23.56.40.png": "ecfbbd43a05d32cb667ed22003f684a4965ad83df5bc360bd9f44d6ed9b3e002",
+    "Screenshot 2026-10-01 at 23.56.55.png": "3e24494207c4df0ec632db0c6b05bb010519df67a5ecc992fea8fc5235b50d4e",
+    "Screenshot 2026-10-01 at 23.57.03.png": "10e3468425a1ddb65e742d09c963553d684b80b3fd64c672ef8d091d413f4c7c"
+  },
+  "selection": "Map/Clear/Tinted/Muddy/Toxic. Default Map is Clear water and Toxic slime; override affects water appearance only. No palette-derived classification or contents/damage mutation.",
+  "gpu_checks": {
+    "looks": 14,
+    "checks": 8,
+    "flashlightChecks": 9
+  }
+}

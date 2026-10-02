@@ -512,6 +512,16 @@ export function R_LightPoint( p, cl ) {
 
 }
 
+// Read-only brightness for cached water texture lighting. Alias shadows rely
+// on the spot/plane left by their own query, so preserve that public state.
+export function R_LightPointValue( p, client ) {
+
+	const x = lightspot[ 0 ], y = lightspot[ 1 ], z = lightspot[ 2 ], plane = lightplane;
+	try { return R_LightPoint( p, client ); }
+	finally { lightspot[ 0 ] = x; lightspot[ 1 ] = y; lightspot[ 2 ] = z; lightplane = plane; }
+
+}
+
 /*
 =============
 R_AddDynamicLights

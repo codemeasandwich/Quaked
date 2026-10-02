@@ -41,9 +41,9 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks } from './gl_post.js';
+import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks, r_newdark } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
-import { R_MarkLights } from './gl_rlight.js';
+import { R_MarkLights, R_LightPointValue } from './gl_rlight.js';
 import {
 	r_refdef, r_origin, vpn, vright, vup
 } from './render.js';
@@ -283,11 +283,17 @@ function _getWaterMaterial( t, opacity ) {
 	let material = _waterMaterialCache.get( cacheKey );
 	if ( ! material ) {
 
+		// Keep the original texture and its turbulent UVs. Only clear Newer water
+		// takes contextual baked brightness from its geometry instead of glowing
+		// fullbright; reflections and refraction remain in the compositor.
+		const clearWater = hdr && t != null && /water/i.test( t.name ) && ! /slime|lava|teleport/i.test( t.name );
+
 		material = new THREE.MeshBasicMaterial( {
 			map: ( t && t.gl_texture ) ? t.gl_texture : null,
-			color: ( t && t.gl_texture ) ? 0xffffff : 0x406080,
+			color: ( t && t.gl_texture ) || clearWater ? 0xffffff : 0x406080,
 			transparent: true,
 			opacity: opacity,
+			vertexColors: clearWater,
 			side: THREE.DoubleSide
 		} );
 		_waterMaterialCache.set( cacheKey, material );
@@ -305,6 +311,86 @@ function _getWaterMaterial( t, opacity ) {
 
 }
 
+export { _getWaterMaterial as R_LiquidSurfaceMaterial };
+
+let waterLightWorld = null, waterLightFrame = - 1, waterLightStyle = '', waterLightRevision = 0;
+const waterPointValues = new Map();
+
+function clearWaterTextureLight() {
+
+	waterLightWorld = null; waterLightFrame = - 1; waterLightStyle = ''; waterPointValues.clear(); waterLightRevision ++;
+
+}
+
+// Reuse raw vertex samples at shared positions, refreshed when light styles
+// change. Static lighting does not need repeated BSP traces. Derived colours
+// refresh independently for the lighting switch/light curve. Native materials
+// ignore this attribute, so their texture/brightness path is unaffected.
+export function R_UpdateWaterTextureLight( geometry, world = cl.worldmodel ) {
+
+	if ( world !== waterLightWorld ) {
+
+		clearWaterTextureLight(); waterLightWorld = world;
+
+	}
+	if ( waterLightFrame !== r_framecount ) {
+
+		waterLightFrame = r_framecount;
+		const style = Array.from( d_lightstylevalue ).join( ',' );
+		if ( style !== waterLightStyle ) {
+
+			waterLightStyle = style; waterPointValues.clear(); waterLightRevision ++;
+
+		}
+
+	}
+	let cache = geometry.userData.waterTextureLight;
+	if ( ! cache ) {
+
+		const positions = geometry.getAttribute( 'position' ), keys = [];
+		for ( let i = 0; i < positions.count; i ++ ) keys.push( `${positions.getX( i )},${positions.getY( i )},${positions.getZ( i )}` );
+		const raw = new Float32Array( positions.count ), colours = new Float32Array( positions.count * 3 );
+		geometry.setAttribute( 'color', new THREE.BufferAttribute( colours, 3 ) );
+		cache = geometry.userData.waterTextureLight = { keys, raw, revision: - 1, gamma: - 1 };
+
+	}
+	const refresh = cache.revision !== waterLightRevision;
+	if ( refresh ) {
+
+		const positions = geometry.getAttribute( 'position' ), sample = [ 0, 0, 0 ];
+		for ( let i = 0; i < positions.count; i ++ ) {
+
+			const key = cache.keys[ i ];
+			if ( ! waterPointValues.has( key ) ) {
+
+				sample[ 0 ] = positions.getX( i ); sample[ 1 ] = positions.getY( i ); sample[ 2 ] = positions.getZ( i );
+				waterPointValues.set( key, R_LightPointValue( sample, { worldmodel: world } ) );
+
+			}
+			cache.raw[ i ] = waterPointValues.get( key );
+
+		}
+		cache.revision = waterLightRevision;
+
+	}
+	const gamma = R_NewerLightingActive() ? Math.max( 1, r_newdark.value ) : 1;
+	if ( refresh || cache.gamma !== gamma ) {
+
+		const colours = geometry.getAttribute( 'color' );
+		for ( let i = 0; i < cache.raw.length; i ++ ) {
+
+			// R_LightPoint returns sample*style/256; the world atlas stores
+			// sample*style/128, then applies its curve and lightMapIntensity2.
+			const brightness = Math.pow( Math.min( 1, Math.max( 0, cache.raw[ i ] / 128 ) ), gamma ) * 2;
+			colours.setXYZ( i, brightness, brightness, brightness );
+
+		}
+		colours.needsUpdate = true; cache.gamma = gamma;
+
+	}
+
+}
+
 /*
 ================
 _getWaterMesh
@@ -313,6 +399,8 @@ Returns a cached Mesh for a water/turb surface. Cached on the surface object.
 ================
 */
 function _getWaterMesh( s, geometry, material, renderGroup ) {
+
+	if ( material.vertexColors ) R_UpdateWaterTextureLight( geometry );
 
 	// teleporter surfaces become live windows onto their receiver
 	if ( s._portal != null && R_PortalsActive() ) {
@@ -3036,6 +3124,8 @@ function R_UpdateWorldVisibility() {
 }
 
 export function GL_BuildLightmaps() {
+
+	clearWaterTextureLight();
 
 	const cl_ref = cl;
 	if ( ! cl_ref ) return;

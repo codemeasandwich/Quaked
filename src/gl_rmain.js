@@ -24,7 +24,7 @@ import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlig
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
-import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
+import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1062,6 +1062,7 @@ function R_DrawAliasModel( e ) {
 		else mesh.layers.disable( SUN_SHADOW_LAYER );
 
 		mesh._quakeOwner = e;
+		mesh.userData.quakeViewmodel = e === cl.viewent;
 		_entityMeshCacheOwners.add( e );
 
 	}
@@ -1936,6 +1937,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_heathaze );
 	Cvar_RegisterVariable( r_mist );
 	Cvar_RegisterVariable( r_reflect );
+	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
 	Cvar_RegisterVariable( r_demosplit );
 	Cvar_RegisterVariable( r_volumetric );

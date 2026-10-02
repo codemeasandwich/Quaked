@@ -6,7 +6,7 @@
 // for tinting what is seen through it.
 
 import * as THREE from 'three';
-import { R_GetLiquidRegions, R_PostActive, r_mist } from './gl_post.js';
+import { R_GetLiquidRegions, R_WaterActive, R_LiquidLookIndex, r_mist } from './gl_post.js';
 import { R_NewerGame } from './r_anim.js';
 
 const MAX_WISPS = 720;
@@ -14,6 +14,7 @@ const TINT = [ 0.34, 0.95, 0.30 ];
 
 let points = null;
 let builtFor = null;
+let builtLook = null;
 let wisps = [];
 let positions = null;
 let colors = null;
@@ -52,16 +53,16 @@ function clear( scene ) {
 	}
 
 	wisps = [];
-	builtFor = null;
+	builtFor = null; builtLook = null;
 
 }
 
 function build( scene, regions ) {
 
 	clear( scene );
-	builtFor = regions;
+	builtFor = regions; builtLook = R_LiquidLookIndex( 0 );
 
-	const pools = regions.filter( ( r ) => r.kind === 1 );
+	const pools = regions.filter( ( r ) => R_LiquidLookIndex( r.kind ) === 3 );
 	if ( pools.length === 0 ) return;
 
 	let total = 0;
@@ -105,6 +106,7 @@ function build( scene, regions ) {
 
 	points = new THREE.Points( geometry, material );
 	points.userData.newerOnly = true;
+	points.userData.liquidToxicMist = true;
 	points.frustumCulled = false;
 	points.renderOrder = 3;
 	scene.add( points );
@@ -116,7 +118,7 @@ export function R_MistFrame( scene, time ) {
 
 	if ( scene == null ) return;
 
-	const on = R_NewerGame() && R_PostActive() && r_mist.value > 0;
+	const on = R_NewerGame() && R_WaterActive() && r_mist.value > 0;
 	if ( ! on ) {
 
 		if ( points !== null ) points.visible = false;
@@ -125,7 +127,7 @@ export function R_MistFrame( scene, time ) {
 	}
 
 	const regions = R_GetLiquidRegions();
-	if ( regions !== builtFor ) build( scene, regions );
+	if ( regions !== builtFor || builtLook !== R_LiquidLookIndex( 0 ) ) build( scene, regions );
 	if ( points === null ) return;
 
 	points.visible = true;

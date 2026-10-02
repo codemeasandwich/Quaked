@@ -1,0 +1,20 @@
+{
+  "implementation_sha256": "49f05ecb9080bae2d1d6a703be4ec560dfe62093a4d0c99961691728cad18419",
+  "pre_fix_sha256": "b2dea6d4b0887c8dcfd8e0d02967410c65820fde1f8e5dd6670024a1b6bc9704",
+  "baseline": "Prior local textured-water increment; only gl_post.js replaced with its pre-flashlight snapshot. All other source and fixture code identical.",
+  "controlled_resolution": [
+    480,
+    270
+  ],
+  "fixed_optical_time_seconds": 1,
+  "fixture": "tests/water_optics_trial.html",
+  "frame_pipeline": [
+    "R_FlashlightUpdate",
+    "R_PostBegin",
+    "R_WaterProbesFrame",
+    "R_PostBind",
+    "R_PostFinish"
+  ],
+  "optical_mask": "Primary test crop refined by raycasting to the submerged floor through inset water-plane bounds; dry objects and blocker excluded.",
+  "gameplay_comparison": "E1M1 paused using native pause command; same client time and documented eye/angles; flashlight cvar alone changes."
+}

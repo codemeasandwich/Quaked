@@ -1,0 +1,151 @@
+{
+  "reference": {
+    "frames": 152,
+    "durationMs": 10140,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "frames": [],
+  "failures": [],
+  "checks": [
+    {
+      "name": "animated refraction with reflections disabled",
+      "passed": true,
+      "changed": 7846,
+      "total": 129600,
+      "maximum": 51
+    },
+    {
+      "name": "dry foreground ledge is not bent into water",
+      "passed": true,
+      "changed": 0,
+      "total": 100,
+      "maximum": 0
+    },
+    {
+      "name": "water-off stable native surface",
+      "passed": true,
+      "changed": 0,
+      "total": 129600,
+      "maximum": 0
+    },
+    {
+      "name": "cached probe reflection ripples with SSR disabled",
+      "passed": true,
+      "changed": 6189,
+      "total": 20860,
+      "maximum": 236
+    },
+    {
+      "name": "reflected highlight is present over black transmitted water",
+      "passed": true,
+      "changed": 6785,
+      "total": 20860,
+      "maximum": 255
+    },
+    {
+      "name": "unlit water and caustics do not glow",
+      "passed": true,
+      "maximum": 0
+    },
+    {
+      "name": "water brightness responds to environment",
+      "passed": true,
+      "changed": 8925,
+      "total": 8925,
+      "maximum": 118
+    },
+    {
+      "name": "GPU shader compile/render",
+      "passed": true,
+      "glError": 0
+    }
+  ],
+  "performance": {
+    "frames": 120,
+    "width": 480,
+    "height": 270,
+    "elapsedMs": 334.90000000596046,
+    "meanMs": 2.790833333383004,
+    "environment": "dim",
+    "method": "one-pixel readback after each complete frame; synchronization overhead included"
+  },
+  "flashlightChecks": [
+    {
+      "name": "environment reflection remains present with flashlight on",
+      "passed": true,
+      "flashlightOff": {
+        "changed": 5137,
+        "total": 11119,
+        "maximum": 201
+      },
+      "flashlightOn": {
+        "changed": 4810,
+        "total": 11119,
+        "maximum": 198
+      }
+    },
+    {
+      "name": "flashlight produces surface glints over black transmission with reflections off",
+      "passed": true,
+      "changed": 3302,
+      "total": 20860,
+      "maximum": 176
+    },
+    {
+      "name": "beam aimed away does not light water",
+      "passed": true,
+      "changed": 0,
+      "total": 20860,
+      "maximum": 0
+    },
+    {
+      "name": "opaque occluder shadows visible water glints",
+      "passed": true,
+      "candidates": 1633,
+      "shadowed": 158
+    },
+    {
+      "name": "bounded flashlight water response at grazing angle",
+      "passed": true,
+      "changed": 0,
+      "total": 2934,
+      "maximum": 0,
+      "glError": 0
+    },
+    {
+      "name": "bounded flashlight water response at downward angle",
+      "passed": true,
+      "changed": 14,
+      "total": 16988,
+      "maximum": 21,
+      "glError": 0
+    },
+    {
+      "name": "lighting off suppresses flashlight contribution",
+      "passed": true,
+      "changed": 0,
+      "total": 129600,
+      "maximum": 0
+    },
+    {
+      "name": "flashlight-lit opaque SSR receiver is reflected into water",
+      "passed": true,
+      "reflected": {
+        "changed": 2853,
+        "total": 11119,
+        "maximum": 28
+      },
+      "directOnly": {
+        "changed": 0,
+        "total": 11119,
+        "maximum": 0
+      }
+    },
+    {
+      "name": "flashlight water shader compiles and renders",
+      "passed": true,
+      "glError": 0
+    }
+  ],
+  "flashlightFailures": []
+}

@@ -1,0 +1,273 @@
+{
+  "sceneFrames": 30790,
+  "errors": [],
+  "views": {
+    "startup": 3056,
+    "loading": 670,
+    "down": 1179,
+    "under": 1415,
+    "grazing": 4572,
+    "lighting-toggle": 12390,
+    "reflection-toggle": 99,
+    "water-toggle": 7409
+  },
+  "pools": [
+    {
+      "kind": 1,
+      "min": [
+        656,
+        768
+      ],
+      "max": [
+        1504,
+        2624
+      ],
+      "z": -456
+    },
+    {
+      "kind": 1,
+      "min": [
+        -16,
+        2640
+      ],
+      "max": [
+        320,
+        3008
+      ],
+      "z": -136
+    },
+    {
+      "kind": 1,
+      "min": [
+        1272,
+        864
+      ],
+      "max": [
+        1352,
+        944
+      ],
+      "z": -432
+    },
+    {
+      "kind": 0,
+      "min": [
+        -108,
+        480
+      ],
+      "max": [
+        1008,
+        1328
+      ],
+      "z": -296
+    }
+  ],
+  "textures": [
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.28125,
+        0.28125,
+        0.28125
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.4375,
+        0.4375,
+        0.4375
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.578125,
+        0.578125,
+        0.578125
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.546875,
+        0.546875,
+        0.546875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.421875,
+        0.421875,
+        0.421875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.875,
+        0.875,
+        0.875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.875,
+        0.875,
+        0.875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.421875,
+        0.421875,
+        0.421875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.953125,
+        0.953125,
+        0.953125
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.59375,
+        0.59375,
+        0.59375
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.546875,
+        0.546875,
+        0.546875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.328125,
+        0.328125,
+        0.328125
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.375,
+        0.375,
+        0.375
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.71875,
+        0.71875,
+        0.71875
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 1,
+      "originalMap": true,
+      "vertexColours": false,
+      "rgb": [
+        0.46875,
+        0.46875,
+        0.46875
+      ]
+    }
+  ],
+  "captureFrames": 60,
+  "mode": "water-toggle",
+  "viewpoint": {
+    "pool": {
+      "min": [
+        -108,
+        480
+      ],
+      "max": [
+        1008,
+        1328
+      ],
+      "z": -296
+    },
+    "eye": [
+      576.2714233398438,
+      1056,
+      -276
+    ],
+    "angles": [
+      6,
+      99.41331481933594,
+      0
+    ],
+    "light": [
+      504,
+      1200,
+      -248
+    ]
+  },
+  "probes": 1
+}

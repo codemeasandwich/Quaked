@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>Water optics and complete reference trial</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}</script>
+<style>body{background:#121519;color:#eee;font:14px system-ui;margin:12px}section{display:flex;gap:12px;flex-wrap:wrap}figure{margin:0}canvas,img{width:480px;height:270px}button{margin:4px}pre{white-space:pre-wrap;font-size:12px;max-width:980px}.looks-preview #scene-refs,.looks-preview #evidence{display:none}</style>
+<h2>Water optics: textured transmission and reflection</h2>
+<div><button id="looks">Render four water looks</button><button id="flashlight-checks">Check flashlight and reflections</button><button id="flashlight">Toggle flashlight</button><button id="motion">Compare all 152 timed frames</button><button id="checks">Run GPU checks</button><button id="perf">Measure fixed-size render cost</button><button id="dim">Dim room</button><button id="bright">Bright room</button><button id="black">No light</button></div>
+<section id="scene-refs"><figure id="result-view"><figcaption>Current renderer / controlled pool</figcaption></figure><figure><figcaption>Complete supplied RTX GIF — original timing</figcaption><img id="reference" src="/reference-water.gif" alt="Complete original GIF reference"></figure></section>
+<section id="look-views"></section>
+<div id="status">Preparing…</div><pre id="evidence"></pre>
+<div id="captured-frames" hidden></div>
+<script type="module" src="water_optics_trial.js"></script>

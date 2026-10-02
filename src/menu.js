@@ -1967,7 +1967,8 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_cloudspeed', label: '    Cloud shadow speed', slider: true },
 	{ cvar: 'r_heathaze', label: '      Heat haze (lava)', slider: true },
 	{ cvar: 'r_mist', label: '    Toxic mist (slime)', slider: true },
-	{ cvar: 'r_reflect', label: '      Water reflections', slider: true }
+	{ cvar: 'r_reflect', label: '      Water reflections', slider: true },
+	{ cvar: 'r_water_look', label: '      Water appearance', choices: [ 'Map', 'Clear', 'Tinted', 'Muddy', 'Toxic' ] }
 ];
 let m_newer_cursor = 0;
 
@@ -2002,7 +2003,13 @@ function M_Newer_Draw() {
 
 		const y = NEWER_ROW0 + i * 8;
 		M_Print( 16, y, NEWER_FEATURES[ i ].label );
-		if ( NEWER_FEATURES[ i ].slider === true )
+		if ( NEWER_FEATURES[ i ].choices ) {
+
+			const choices = NEWER_FEATURES[ i ].choices, raw = Cvar_VariableValue( NEWER_FEATURES[ i ].cvar );
+			const choice = Number.isFinite( raw ) ? Math.max( 0, Math.min( choices.length - 1, Math.round( raw ) ) ) : 0;
+			M_PrintWhite( 220, y, choices[ choice ] );
+
+		} else if ( NEWER_FEATURES[ i ].slider === true )
 			M_DrawSlider( 220, y, Math.max( 0, Math.min( 1, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) ) ) );
 		else
 			M_DrawCheckbox( 220, y, Cvar_VariableValue( NEWER_FEATURES[ i ].cvar ) );
@@ -2022,6 +2029,15 @@ function M_Newer_Toggle( dir ) {
 
 	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
 	const f = NEWER_FEATURES[ m_newer_cursor ];
+
+	if ( f.choices ) {
+
+		const raw = Cvar_VariableValue( f.cvar ), count = f.choices.length;
+		const value = Number.isFinite( raw ) ? Math.max( 0, Math.min( count - 1, Math.round( raw ) ) ) : 0;
+		Cvar_SetValue( f.cvar, ( value + ( dir < 0 ? - 1 : 1 ) + count ) % count );
+		return;
+
+	}
 
 	if ( f.slider === true ) {
 
