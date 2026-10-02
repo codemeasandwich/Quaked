@@ -13,6 +13,20 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'tools/texture_sheets/sources/level-2026-10-02'
 RECIPE = json.loads((SOURCE / 'manifest.json').read_text())
 INDEX = json.loads((ROOT / 'newer/textures/index.json').read_text())
+# Later seam repairs (tools/texture_sheets/fix_seams.py) mend recorded edge rows only.
+SEAMS = json.loads((ROOT / 'tools/texture_sheets/seam_fixes.json').read_text())['fixed']
+
+
+def seam_mask(name, shape, key='touched'):
+    """True on the edge rows a recorded seam repair touched in this texture."""
+    mask = np.zeros(shape[:2], dtype=bool)
+    for fix in SEAMS.get(name, []):
+        n = fix[key] or 0
+        if fix['side'] == 't': mask[:n] = True
+        elif fix['side'] == 'b': mask[mask.shape[0] - n:] = True
+        elif fix['side'] == 'l': mask[:, :n] = True
+        else: mask[:, mask.shape[1] - n:] = True
+    return mask
 NAMES = set('city5_1 city5_3 city5_4 city5_6 city5_7 city5_8 city6_4 citya1_1 column1_2 column1_5 stone1_3 wall16_7 wall9_8 wbrick1_5 wiz1_1 wiz1_4 wizmet1_1 wizmet1_2 wizmet1_3 wizmet1_7 wizmet1_8 wizwood1_3 wizwood1_4 wizwood1_5 wizwood1_7 wizwood1_8'.split())
 
 
@@ -37,7 +51,8 @@ class LevelTextureAssets(unittest.TestCase):
                 dx, dy = tile.get('phaseNative', [0, 0])
                 expected = np.roll(expected, (dy * 4, dx * 4), (0, 1))
                 actual = np.array(Image.open(ROOT / 'newer/textures' / INDEX['textures'][name]).convert('RGB'))
-                np.testing.assert_array_equal(actual, expected)
+                keep = ~seam_mask(name, actual.shape)
+                np.testing.assert_array_equal(actual[keep], expected[keep])
         self.assertEqual(RECIPE['tiles']['column1_2']['crop'][3], 620, 'marble separator excluded')
         self.assertEqual(RECIPE['tiles']['city5_1']['crop'][3], 306, 'adjacent pink row excluded')
 
@@ -128,7 +143,9 @@ class LevelTextureAssets(unittest.TestCase):
         for name in set(baseline['normals']) - NAMES:
             self.assertEqual(INDEX['normals'][name], baseline['normals'][name], name)
         allowed = {'newer/textures/index.json'} | {'newer/textures/' + INDEX['textures'][name] for name in NAMES} | {'newer/textures/' + INDEX['normals'][name]['file'] for name in NAMES}
-        changed = set(subprocess.check_output(['git', 'diff', '--name-only', '8e4fefc', '--', 'newer/textures'], cwd=ROOT, text=True).splitlines())
+        # The boundary of that update itself (9a71a46); later increments, such as the seam
+        # repairs, change other textures by design.
+        changed = set(subprocess.check_output(['git', 'diff', '--name-only', '8e4fefc', '9a71a46', '--', 'newer/textures'], cwd=ROOT, text=True).splitlines())
         self.assertEqual(changed, allowed, 'only 26 diffuse + 26 heights + catalogue changed')
 
 

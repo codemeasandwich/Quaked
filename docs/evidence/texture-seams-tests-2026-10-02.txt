@@ -1,0 +1,15 @@
+python3 -m unittest -v tests/texture_seams_test.py tests/level_texture_assets_test.py  (2026-10-02T21:43:33Z, Python 3.12.14)
+test_authored_crates_and_untouched_files_are_byte_identical (tests.texture_seams_test.TextureSeams.test_authored_crates_and_untouched_files_are_byte_identical) ... ok
+test_catalogue_changes_only_its_version (tests.texture_seams_test.TextureSeams.test_catalogue_changes_only_its_version) ... ok
+test_no_clear_line_at_any_mended_texture_edge (tests.texture_seams_test.TextureSeams.test_no_clear_line_at_any_mended_texture_edge) ... ok
+test_repairs_change_only_the_rows_they_record (tests.texture_seams_test.TextureSeams.test_repairs_change_only_the_rows_they_record) ... ok
+test_the_check_finds_the_lines_that_were_there (tests.texture_seams_test.TextureSeams.test_the_check_finds_the_lines_that_were_there) ... ok
+test_exact_source_crop_phase_and_lossless_diffuse (tests.level_texture_assets_test.LevelTextureAssets.test_exact_source_crop_phase_and_lossless_diffuse) ... ok
+test_native_period_registration_and_unchanged_unselected_entries (tests.level_texture_assets_test.LevelTextureAssets.test_native_period_registration_and_unchanged_unselected_entries) ... ok
+test_registered_height_sizes_and_material_semantics (tests.level_texture_assets_test.LevelTextureAssets.test_registered_height_sizes_and_material_semantics) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 48.129s
+
+OK
+exit 0

@@ -1,0 +1,43 @@
+PASS all26 installed WebPs and registered heights reach the public texture object without changing the64unit UV period
+PASS crafted normals match an independent periodic sine derivative and preserve height at the wrap
+PASS classic pass and normal NewGame preserve native pixels; returning restores all upgraded textures
+RESULT 3/3 passed (tests/level_texture_runtime_test.js)
+Added packfile newer.pak (2 files)\n
+PASS the Newer Game pack is only visible while Newer Game is on
+Added packfile newer.pak (1 files)\n
+PASS json comes out of the pack, and from the loose file without one
+PASS LIT files: only the right size and version are taken
+PASS an entity list file must hold entities
+RESULT 4/4 passed (tests/newer_pack_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS lighting, normal maps and liquids switch independently on existing materials
+PASS Newer menu exposes independent lighting, normals and liquids controls
+RESULT 2/2 passed (tests/visual_options_test.js)
+PASS a different seed makes different crates change
+PASS crate sides are told by name
+PASS about one crate in 40 changes, all its faces use the same box, opposite faces differ
+PASS both boxes turn up, and the choice is the same every time
+PASS crates that touch are one crate; a level name changes the roll
+PASS a crate with a face that is not one whole picture keeps its ordinary picture
+PASS ordinary crates take the common pictures, all four sides alike, in about the share expected
+PASS stacked and neighbouring crates are chosen one by one
+PASS with odds of 1 every crate changes
+RESULT 9/9 passed (tests/r_cratevariants_test.js)
+PASS SV_RecursiveHullCheck supports hulls deeper than the scratch pool
+RESULT 1/1 passed (tests/world_test.js)
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+RESULT 3/3 passed (tests/gl_rsurf_test.js)
+TOTAL 31/31 passed
+exit 0
