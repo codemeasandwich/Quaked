@@ -1,6 +1,88 @@
 {
-  "version": 9,
+  "version": 11,
   "models": {
+    "v_shot": {
+      "source": "shotgun",
+      "scale": [
+        2.2513748053799216,
+        3.0317580686704098,
+        2.1619008964916255
+      ],
+      "offset": [
+        9.140908991296962,
+        0.01723984714932847,
+        -11.312957620469932
+      ],
+      "nativeMin": [
+        -1.675176054239273,
+        -1.7999171018600464,
+        -12.329010009765625
+      ],
+      "nativeMax": [
+        21.274396181106567,
+        1.8343952698633075,
+        -6.547528147697449
+      ],
+      "fitKind": "shotgun-barrel-frame",
+      "barrelCorrection": {
+        "nativeRear": [
+          5.809576521317164,
+          0.0552449650131166,
+          -7.816242222984632
+        ],
+        "nativeFront": [
+          21.219361235698063,
+          0.007737613748759031,
+          -9.928089069823423
+        ],
+        "fittedCapCenter": [
+          21.2238521691516,
+          0.017239409860946138,
+          -7.3999617084110065
+        ],
+        "rotation": [
+          [
+            0.990734841100389,
+            0.003082919481362304,
+            0.13577544047897053
+          ],
+          [
+            -0.0030543702574941925,
+            0.999995247792444,
+            -0.0004185867397542337
+          ],
+          [
+            -0.135776085715111,
+            -0.0,
+            0.9907395493003612
+          ]
+        ]
+      },
+      "poses": 7,
+      "nativePoseRigidRms": [
+        7.297205741502365e-16,
+        0.06329798249521727,
+        0.05735829673570506,
+        0.05863361502214025,
+        0.0691314912889826,
+        0.07433979153824856,
+        0.06859052245936191
+      ],
+      "excludedNativeVertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
     "v_shot2": {
       "source": "supershotgun",
       "scale": [
@@ -428,6 +510,43 @@
     }
   },
   "sources": {
+    "shotgun": {
+      "archive": "shotgun.zip",
+      "sha256": "75247259150089b1b0b47c98cc8ac61ecbc346cfbd56d36fb1006b7e5a9ede54",
+      "metadata": {
+        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+        "source": "https://sketchfab.com/3d-models/shotgun-9f58537324794d53b317676555f41fc9",
+        "title": "Shotgun"
+      },
+      "axes": [
+        -1,
+        3,
+        2
+      ],
+      "vertices": 745,
+      "rotationYDegrees": 0,
+      "triangles": 766,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": true
+      },
+      "selectedMesh": "Circle.002_skin_0"
+    },
     "supershotgun": {
       "archive": "supershotgun.zip",
       "sha256": "e889d49b71eb1bd7413c47ec836788303e1304eb56eaa2d013382246a15c113f",

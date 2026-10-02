@@ -1,0 +1,13 @@
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+PASS standard shotgun source port preserves the supplied topology, UVs, textures, proper forward orientation and all seven native firing poses
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+PASS standard shotgun source is held-only; original classic/New Game/toggle art and unchanged super shotgun pickup remain
+PASS standard shotgun source: restore public test fixtures
+RESULT 3/3 passed (tests/shotgun_source_test.js)
+TOTAL 3/3 passed

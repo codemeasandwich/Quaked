@@ -1,0 +1,136 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "baseCommit": "8e4fefc940ff993ccd9d6a3d0c65a53abf2c48fb",
+  "scope": "Complete standard shotgun source integration with rigid native-barrel alignment; native FACE_INVUL1 loaded for enhancedQuad+Pentagram andownerHUDassets preserved.",
+  "manifestVersion": 11,
+  "hudVersion": 20261002,
+  "shotgunCalibration": {
+    "source": "shotgun",
+    "scale": [
+      2.2513748053799216,
+      3.0317580686704098,
+      2.1619008964916255
+    ],
+    "offset": [
+      9.140908991296962,
+      0.01723984714932847,
+      -11.312957620469932
+    ],
+    "nativeMin": [
+      -1.675176054239273,
+      -1.7999171018600464,
+      -12.329010009765625
+    ],
+    "nativeMax": [
+      21.274396181106567,
+      1.8343952698633075,
+      -6.547528147697449
+    ],
+    "fitKind": "shotgun-barrel-frame",
+    "barrelCorrection": {
+      "nativeRear": [
+        5.809576521317164,
+        0.0552449650131166,
+        -7.816242222984632
+      ],
+      "nativeFront": [
+        21.219361235698063,
+        0.007737613748759031,
+        -9.928089069823423
+      ],
+      "fittedCapCenter": [
+        21.2238521691516,
+        0.017239409860946138,
+        -7.3999617084110065
+      ],
+      "rotation": [
+        [
+          0.990734841100389,
+          0.003082919481362304,
+          0.13577544047897053
+        ],
+        [
+          -0.0030543702574941925,
+          0.999995247792444,
+          -0.0004185867397542337
+        ],
+        [
+          -0.135776085715111,
+          -0.0,
+          0.9907395493003612
+        ]
+      ]
+    },
+    "poses": 7,
+    "nativePoseRigidRms": [
+      7.297205741502365e-16,
+      0.06329798249521727,
+      0.05735829673570506,
+      0.05863361502214025,
+      0.0691314912889826,
+      0.07433979153824856,
+      0.06859052245936191
+    ],
+    "excludedNativeVertices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "unchangedSuperShotgunPickup": "5f040138ed80da2debcd0632e0defc1f1d94f24bcf4c484bc201ffd79972a067",
+  "sha256": {
+    "tools/import_weapons.py": "92d846f715e67b8dd737354a8c84496e626e5b9b51cf0b49d37351aca7c286dd",
+    "src/sbar.js": "2b08447ec3cdf29561ead43f6fd8774a4d7b72bc00f9394fd41f85e6c176cd6b",
+    "newer/hud/index.json": "e2b42c60551b017b56c7111fd42b2f57d0a8c953ed88e8b4932db918086f3e9f",
+    "newer/hud/face2.webp": "9b712bbc16cf39d19e1b38e9e753a308f458b9379ebb2e4dbd7eac505cdf670e",
+    "newer/hud/face_quad.webp": "01f592c62f91ddb9bafd58ec84f2b6756e5e133bbe8173cb19186153b1be32d5",
+    "newer/hud/face_invul1.webp": "a3aec5447c5a49fea74cc03f8d08a98a1787fd69fb7398f604be567b0ae27ff8",
+    "newer/weapons/index.json": "7e910c965868bb0dfede739cc6384e4ba49245cd82eba4579760ad7441c6cc75",
+    "newer/weapons/v_shot.json": "13d2534623a72b7dba35bbd22826386235eb04f8e9b3081ef8f2a4aa50a88fdb",
+    "newer/weapons/shotgun/diffuse.png": "13c5c62ef1e11b80f99d4bcc32c3ac0fc6b52c6bca974e425764df91e9784ad5",
+    "newer/weapons/shotgun/normal.png": "d456e59f6809e3a76c17b9af63a0b19d55b7dcf1f614b17aec0d20d1ef7d1082",
+    "tests/shotgun_source_test.js": "30f066e6257ad5b9ddb8534e3cb168019200b9d20c666602c86c2a760e905009",
+    "tests/hud_face_combo_test.js": "cdf1d3377b35db7183330d96a52d1cb35723f61ed8791c4f492a6f52902dbfe8",
+    "tests/weapon_modes_test.js": "8e538d50a4bad26576ff7fd2fb55ddb7c14541b6005d290022b473f24225f6b3",
+    "tests/weapons_test.js": "6423dec0f05db329d2df3854b87b56609308fd1eb484f6e166125949ea251696",
+    "tests/weapon_gameplay_trial.js": "d9ea9cda394d404b6e98c2cfa9efa31c98f6f8164832ec9c4a1370e97dc5a50a",
+    "docs/images/shotgun-aligned-gameplay-2026-10-02.png": "c6a89fd88cd2b02f525691f76883eb6b01c93a30c4450884af5f80db298fdb74",
+    "docs/images/shotgun-original-gameplay-2026-10-02.png": "c329327a9378f769f86cc15826f2dcb2d4940175e6dd7f9c17e2841af2d998d7",
+    "docs/evidence/shotgun-hud-final-tests-2026-10-02.txt": "ac8ca2aea66eec86eca53875c1b3d99b1d1bc710cbbd8ac3cb8b11d2ab613b83"
+  },
+  "browser": {
+    "url": "http://localhost:8013/",
+    "ordinaryMenuFlow": "Single Player -> Newer Game",
+    "correctedShotgunVisible": true,
+    "originalNativeCompared": true,
+    "updatedHealth90FaceObserved": true,
+    "viewsize": 120,
+    "genericChromiumDiagnostic": {
+      "time": "2026-10-02T15:17:06.523Z",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "originatingStackAvailable": false
+    },
+    "actualQuadPentagramPickupRunClaimed": false,
+    "note": "Verification views lost control-session access; no hidden/headless game started."
+  },
+  "independentReview": {
+    "shotgunSourceModesStartup": "11/11 passed",
+    "nativeHUDSelectionLoader": "4/4 passed"
+  },
+  "sourceInputState": "Older source archives deleted by another actor; preserved untouched, intent clarification pending. They remain recoverable in local8e4fefc; current source-dependent prior tests not rerun.",
+  "publicPush": "still pending redistribution-rights clarification",
+  "verification": {
+    "finalFocusedChecks": "23/23 passed",
+    "nativeFallback": "Original24x24 FACE_INVUL1 from actual gfx.wad",
+    "olderSourceRegressions": "Not rerun: donor ZIPs removed outside this task"
+  }
+}

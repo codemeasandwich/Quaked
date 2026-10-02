@@ -107,9 +107,12 @@ Deno.test( 'weapon modes: actual Newer Game menu commands select all replacement
 	menu.M_Keydown( K_ENTER ); cmd.Cbuf_Execute();
 	same( destination, key_game, 'menu returns control to game' ); same( dispatched.at( - 1 ), 1, 'Newer mode applies before map dispatch' );
 	same( keys.filter( key => key.startsWith( 'g_' ) ).sort().join( ',' ), 'g_light,g_nail2,g_rock,g_rock2,g_shot', 'all five supplied pickup roles registered' );
-	same( keys.length, 10, 'ten firearm replacements registered' );
+	same( keys.length, 11, 'eleven firearm replacements registered' );
+	same( manifest.models.v_shot.source, 'shotgun', 'standard shotgun held replacement registered' );
+	same( manifest.models.g_shot.source, 'supershotgun', 'super shotgun pickup preserved' );
+	check( ! manifest.models.v_nail && ! manifest.models.g_shot1, 'original nailgun retained; no invented single-shotgun pickup' );
 	check( ! manifest.models.v_axe && ! manifest.sources.axe, 'axe excluded from replacement assets' );
-	same( roles.length, 11, 'all firearm roles and original axe covered' ); drawRoles( true );
+	same( roles.length, 12, 'all firearm roles and original axe covered' ); drawRoles( true );
 
 } );
 

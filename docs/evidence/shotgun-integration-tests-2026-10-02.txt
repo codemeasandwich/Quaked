@@ -1,0 +1,79 @@
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+PASS weapon startup: ordinary app waits for all optional held/pickup art before removing loading UI and starting demo frames
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+Weapon art fallback: g_rock2 Error: Invalid weapon geometry: g_rock2
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:80:85
+    at async Promise.all (index 8)
+    at async main (main.js:68:3)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:60:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:40:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:87:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS viewmodel uses the registered chase camera cvar
+RESULT 1/1 passed (tests/gl_rmain_test.js)
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+RESULT 7/7 passed (tests/r_anim_test.js)
+TOTAL 16/16 passed

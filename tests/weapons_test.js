@@ -175,6 +175,51 @@ function uniformNailgunBounds( header, key ) {
 	return { min: fitted.min.toArray(), max: fitted.max.toArray() };
 
 }
+
+let shotgunSource = null;
+function shotgunBarrelBounds( header ) {
+
+	if ( ! shotgunSource ) {
+
+		const zip = bytes( 'shotgun.zip' ), entries = new Map(); let end = zip.length - 22;
+		while ( zip.readUInt32LE( end ) !== 0x06054b50 ) end --;
+		let offset = zip.readUInt32LE( end + 16 );
+		for ( let i = 0; i < zip.readUInt16LE( end + 10 ); i ++ ) {
+
+			const size = zip.readUInt32LE( offset + 20 ), nameSize = zip.readUInt16LE( offset + 28 ), extra = zip.readUInt16LE( offset + 30 ), comment = zip.readUInt16LE( offset + 32 );
+			const name = zip.subarray( offset + 46, offset + 46 + nameSize ).toString(), local = zip.readUInt32LE( offset + 42 ), start = local + 30 + zip.readUInt16LE( local + 26 ) + zip.readUInt16LE( local + 28 );
+			if ( name.endsWith( '.gltf' ) || name.endsWith( '.bin' ) ) { const raw = zip.subarray( start, start + size ), method = zip.readUInt16LE( offset + 10 ); check( method === 0 || method === 8, 'shotgun source compression' ); entries.set( name, method === 8 ? inflateRawSync( raw ) : raw ); }
+			offset += 46 + nameSize + extra + comment;
+
+		}
+		const doc = JSON.parse( entries.get( 'scene.gltf' ) ); shotgunSource = [];
+		function visit( id, parent ) {
+
+			const node = doc.nodes[ id ], matrix = parent.clone().multiply( node.matrix ? new THREE.Matrix4().fromArray( node.matrix ) : new THREE.Matrix4() );
+			if ( node.mesh !== undefined ) {
+
+				const a = doc.accessors[ doc.meshes[ node.mesh ].primitives[ 0 ].attributes.POSITION ], v = doc.bufferViews[ a.bufferView ], buffer = entries.get( doc.buffers[ v.buffer ].uri );
+				for ( let i = 0; i < a.count; i ++ ) { const o = ( v.byteOffset || 0 ) + ( a.byteOffset || 0 ) + i * ( v.byteStride || 12 ), p = new THREE.Vector3( ...[ 0, 4, 8 ].map( j => buffer.readFloatLE( o + j ) ) ).applyMatrix4( matrix ); shotgunSource.push( new THREE.Vector3( - p.x, p.z, p.y ) ); }
+
+			}
+			for ( const child of node.children || [] ) visit( child, matrix );
+
+		}
+		for ( const id of doc.scenes[ doc.scene || 0 ].nodes ) visit( id, new THREE.Matrix4() );
+
+	}
+	const body = nativeBounds( header ), source = new THREE.Box3().setFromPoints( shotgunSource );
+	const scale = new THREE.Vector3( ...body.max.map( ( value, i ) => ( value - body.min[ i ] ) / ( source.max.getComponent( i ) - source.min.getComponent( i ) ) ) );
+	const fitted = shotgunSource.map( p => p.clone().sub( source.min ).multiply( scale ).add( new THREE.Vector3( ...body.min ) ) );
+	const average = values => values.reduce( ( sum, p ) => sum.add( p ), new THREE.Vector3() ).divideScalar( values.length );
+	const native = id => new THREE.Vector3( ...header.poseverts[ 0 ][ id ].v.map( ( x, i ) => x * header.scale[ i ] + header.scale_origin[ i ] ) );
+	const front = average( [ 20, 34, 46, 47, 53, 64 ].map( native ) ), rear = average( [ 51, 61, 52, 62, 27, 40 ].map( native ) );
+	const axis = front.clone().sub( rear ).normalize(), side = new THREE.Vector3( 0, 0, 1 ).cross( axis ).normalize(), up = axis.clone().cross( side ).normalize();
+	const frame = new THREE.Matrix4().makeBasis( axis, side, up ), cap = average( fitted.slice( 136, 172 ).map( p => p.clone() ) );
+	const box = new THREE.Box3().setFromPoints( fitted.map( p => p.sub( cap ).applyMatrix4( frame ).add( front ) ) );
+	return { min: box.min.toArray(), max: box.max.toArray() };
+
+}
 const pendingHeader = nativeHeader( 'v_axe' );
 const pendingEntity = { frame: 0, model: { name: 'progs/v_axe.mdl' }, origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ] };
 const pendingDrawCount = R_DrawAliasModel( pendingEntity, pendingHeader, null ).geometry.getAttribute( 'position' ).count;
@@ -216,12 +261,12 @@ function checkGrenadeBarrel( positions, header ) {
 
 Deno.test( 'supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors', () => {
 
-	equal( Object.keys( manifest.models ).length, 10, 'ten replacement firearm roles' );
+	equal( Object.keys( manifest.models ).length, 11, 'eleven replacement firearm roles' );
 	check( ! manifest.models.v_axe && weapons.R_WeaponAsset( 'progs/v_axe.mdl' ) === null, 'owner-restored axe always uses original art' );
 	equal( pendingDrawCount, pendingHeader.posedata[ 0 ].length, 'pending art draws original geometry' );
 	for ( const key of Object.keys( manifest.models ) ) {
 
-		const h = nativeHeader( key ), bounds = key === 'v_nail2' || key === 'g_nail2' ? uniformNailgunBounds( h, key ) : nativeBounds( h );
+		const h = nativeHeader( key ), bounds = key === 'v_shot' ? shotgunBarrelBounds( h ) : key === 'v_nail2' || key === 'g_nail2' ? uniformNailgunBounds( h, key ) : nativeBounds( h );
 		const e = { frame: 0, model: { name: 'progs/' + key + '.mdl' }, origin: [ 31, - 9, 40 ], angles: [ 17, 73, 11 ] };
 		const mesh = R_DrawAliasModel( e, h, new Float32Array( 162 ).fill( 1 ), 0.7 );
 		check( mesh.isMesh, key + ' renders an actual mesh' );
@@ -271,7 +316,8 @@ Deno.test( 'supplied weapons match native fits, authorized held rocket offset an
 	}
 	equal( manifest.sources.shell.selectedMesh, 'shotgun_shell_bullets_0', 'only requested pack mesh' );
 	check( requestedTextures.every( p => ! /weapon_pack|pistol|knife|ammo_box|uzi/.test( p ) ), 'unrequested pack art excluded' );
-	check( weapons.R_WeaponAsset( 'progs/v_shot.mdl' ) === null, 'original shotgun retained' );
+	equal( weapons.R_WeaponAsset( 'progs/v_shot.mdl' )?.source, 'shotgun', 'supplied standard shotgun now active' );
+	equal( manifest.models.g_shot.source, 'supershotgun', 'existing pickup stays super shotgun' );
 	check( weapons.R_WeaponAsset( 'progs/v_nail.mdl' ) === null, 'original nailgun retained' );
 
 } );

@@ -10,6 +10,7 @@ import json
 import struct
 import zipfile
 import io
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -18,6 +19,7 @@ from fbx_mesh import read_mesh
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'newer/weapons'
 SOURCES = {
+    'shotgun': ('shotgun.zip', ['v_shot'], [-1, 3, 2]),
     'supershotgun': ('supershotgun.zip', ['v_shot2', 'g_shot'], [1, -3, 2]),
     'supernailgun': ('supernailgun2.zip', ['v_nail2', 'g_nail2'], [1, -3, 2]),
     'grenadelauncher': ('grenadelauncher.zip', ['v_rock', 'g_rock'], [3, 1, 2]),
@@ -179,6 +181,25 @@ def fit_uniform(points, target, held=False):
                     'nativeMin': lower.tolist(), 'nativeMax': upper.tolist()}
 
 
+def fit_shotgun_barrel(points, target, rest):
+    # Native shotgun tilts its bore down toward the muzzle. A whole-body box
+    # fit alone places the donor's straight bore too high. Align the complete
+    # fitted mesh rigidly; do not bend its cylindrical barrel to native taper.
+    fitted, calibration = fit(points, target)
+    rear = rest[[51, 61, 52, 62, 27, 40]].mean(0)
+    front = rest[[20, 34, 46, 47, 53, 64]].mean(0)
+    forward = front - rear; forward /= np.linalg.norm(forward)
+    side = np.cross([0., 0., 1.], forward); side /= np.linalg.norm(side)
+    up = np.cross(forward, side)
+    rotation = np.column_stack([forward, side, up])
+    cap = fitted[136:172].mean(0)
+    fitted = (fitted - cap) @ rotation.T + front
+    calibration.update({'fitKind': 'shotgun-barrel-frame', 'barrelCorrection': {
+        'nativeRear': rear.tolist(), 'nativeFront': front.tolist(),
+        'fittedCapCenter': cap.tolist(), 'rotation': rotation.tolist()}})
+    return fitted, calibration
+
+
 def supernail_rotor(points, indices, calibration, pose_count):
     # Recover the four disconnected closed barrels by welded source topology.
     # The common rear ring and central guide are separate, stationary parts.
@@ -267,10 +288,15 @@ def rigid_normals(normals, rest, pose):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--only', choices=list(SOURCES), help='Update one supplied source in an existing manifest')
+    args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     native = native_models()
-    manifest = {'version': 9, 'models': {}, 'sources': {}}
+    manifest = json.loads((OUT / 'index.json').read_text()) if args.only else {'models': {}, 'sources': {}}
+    manifest['version'] = 11
     for key, (filename, models, axes) in SOURCES.items():
+        if args.only and key != args.only: continue
         path = ROOT / filename
         authored_normals = None
         if key == 'supernailgun':
@@ -329,7 +355,8 @@ def main():
             original = native['progs/' + model + '.mdl']
             poses = native_poses(original)
             selected, excluded = weapon_vertices(original, model, poses[0])
-            if key == 'supernailgun': fitted, calibration = fit_uniform(xyz, poses[0][selected], model == 'v_nail2')
+            if key == 'shotgun': fitted, calibration = fit_shotgun_barrel(xyz, poses[0][selected], poses[0])
+            elif key == 'supernailgun': fitted, calibration = fit_uniform(xyz, poses[0][selected], model == 'v_nail2')
             else: fitted, calibration = fit_grenade_barrel(xyz, poses[0]) if model == 'v_rock' else fit(xyz, poses[0][selected])
             if model == 'v_rock2':
                 # Owner-requested held silhouette refinement: move toward the
@@ -359,7 +386,8 @@ def main():
             xyz *= 2.4 / np.ptp(xyz, axis=0).max()
             (OUT / 'shell.json').write_text(json.dumps({'poses': [np.round(xyz, 7).flatten().tolist()], 'uv': uv.flatten().tolist(), 'indices': indices.tolist()}, separators=(',', ':')) + '\n')
     (OUT / 'index.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
-    print('Imported 10 weapon roles and only the shotgun-shell mesh; axe stays original.')
+    if args.only: print(f"Updated {args.only}; {len(manifest['models'])} weapon roles registered; axe stays original.")
+    else: print(f"Imported {len(manifest['models'])} weapon roles and only the shotgun-shell mesh; axe stays original.")
 
 
 if __name__ == '__main__': main()

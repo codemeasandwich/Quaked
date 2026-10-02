@@ -10,12 +10,14 @@ const { R_ShellsStatus, R_ShellsSnapshot } = await import( '../src/r_shells.js' 
 const { R_WeaponStatus } = await import( '../src/r_weapons.js' );
 const { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/cvar.js' );
 const keys = await import( '../src/keys.js' ), split = await import( '../src/r_demosplit.js' );
-const nailComparison = new URLSearchParams( window.location.search ).get( 'weapons' ) === 'nail-profile';
+const comparison = new URLSearchParams( window.location.search ).get( 'weapons' );
+const nailComparison = comparison === 'nail-profile', shotgunComparison = comparison === 'shotgun-profile';
+const cleanComparison = nailComparison || shotgunComparison;
 function start() {
 
 	split.R_DemoSplitRelease( true ); keys.set_key_dest( keys.key_game );
 	Cbuf_AddText( 'maxplayers 1\nr_hdr 1\nr_dynres 1\nbgmvolume 0\nmap e1m1\n' );
-	if ( nailComparison ) { Cvar_SetValue( 'viewsize', 120 ); Cvar_SetValue( 'crosshair', 0 ); } // no game HUD
+	if ( cleanComparison ) { Cvar_SetValue( 'viewsize', 120 ); Cvar_SetValue( 'crosshair', 0 ); } // no game HUD
 	const untilReady = setInterval( () => {
 
 		if ( cls.demoplayback || cls.signon !== 4 || ! sv.active || cl.worldmodel?.name !== 'maps/e1m1.bsp' || cl.stats[ 0 ] <= 0 || ! cl.viewent?.model ) return;
@@ -23,9 +25,10 @@ function start() {
 		// The title-demo handoff can restore its saved presentation after the
 		// queued map command. Establish the trial mode once live signon finishes.
 		split.R_DemoSplitRelease( true ); Cvar_SetValue( 'r_hdr', 1 ); Cvar_SetValue( 'r_newer_weapons', 1 );
-		if ( nailComparison ) { Cvar_SetValue( 'viewsize', 120 ); Cvar_SetValue( 'crosshair', 0 ); }
-		select( nailComparison ? 5 : 3 );
-		document.querySelector( '#weapon' ).value = nailComparison ? '5' : '3';
+		if ( cleanComparison ) { Cvar_SetValue( 'viewsize', 120 ); Cvar_SetValue( 'crosshair', 0 ); }
+		const initialWeapon = shotgunComparison ? 2 : nailComparison ? 5 : 3;
+		select( initialWeapon );
+		document.querySelector( '#weapon' ).value = String( initialWeapon );
 
 	}, 100 );
 

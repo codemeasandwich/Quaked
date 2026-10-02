@@ -1,4 +1,4 @@
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame, r_newer_hud } from './r_anim.js';
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
 
 import { Cmd_AddCommand } from './cmd.js';
@@ -71,6 +71,7 @@ for ( let i = 0; i < 7; i ++ ) sb_faces[ i ] = new Array( 2 ).fill( null );
 
 let sb_face_invis = null;
 let sb_face_quad = null;
+let sb_face_quad_invuln = null;
 let sb_face_invuln = null;
 let sb_face_invis_invuln = null;
 
@@ -278,6 +279,9 @@ export function Sbar_Init() {
 	sb_face_invuln = _Draw_PicFromWad( 'face_invul2' );
 	sb_face_invis_invuln = _Draw_PicFromWad( 'face_inv2' );
 	sb_face_quad = _Draw_PicFromWad( 'face_quad' );
+	// The previously unused native Quad + Pentagram picture also supplies the
+	// exact name and safe fallback for the optional higher-resolution artwork.
+	sb_face_quad_invuln = _Draw_PicFromWad( 'face_invul1' );
 
 	Cmd_AddCommand( '+showscores', Sbar_ShowScores );
 	Cmd_AddCommand( '-showscores', Sbar_DontShowScores );
@@ -735,6 +739,14 @@ function Sbar_DrawFace() {
 
 	let f;
 	let anim;
+
+	if ( R_NewerGame() && r_newer_hud.value !== 0 &&
+		( _cl.items & ( IT_QUAD | IT_INVULNERABILITY ) ) === ( IT_QUAD | IT_INVULNERABILITY ) ) {
+
+		Sbar_DrawPic( 112, 0, sb_face_quad_invuln );
+		return;
+
+	}
 
 	if ( ( _cl.items & ( IT_INVISIBILITY | IT_INVULNERABILITY ) ) === ( IT_INVISIBILITY | IT_INVULNERABILITY ) ) {
 
