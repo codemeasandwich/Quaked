@@ -108,6 +108,10 @@ The third-party enemy skin pack, its leftover extracted source textures and shad
 
 To try the result, serve the repository, reload the game, start **Newer Game**, and compare a soldier or ogre with **Newer enemies** on and off. A dog keeps its original diffuse in both cases, with height relief available in Newer Game. No game data or model geometry is changed.
 
+#### Shambler footfalls
+
+In Newer Game, each Shambler footstep shakes the floor: when its foot lands, the view gives one short shudder. The shudder is strongest beside it, fades with distance and is gone beyond 600 units. It is felt only while you are on the ground. The tremor follows the walk and run animation's heel strikes (measured from the model), not a timer. Several Shamblers together stay a small quake. `v_shamblersteps` (saved, default 1) scales it down; 0 turns it off. New Game and demos are unchanged. [Behaviour, design and verification](docs/shambler-footfalls-2026-10-02.md).
+
 ### Phones and tablets
 
 On a touch device the game shows on-screen controls. Held sideways the stick is on the left and the buttons on the right; held upright they sit in a panel along the bottom, with the status bar above it.

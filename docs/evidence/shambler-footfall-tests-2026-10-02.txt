@@ -1,0 +1,206 @@
+PASS each walking footfall shakes once, at the heel strike, and not between steps
+PASS running footfalls land on run2 and run5
+PASS strength is (1 - distance / 600) squared: a quarter at 300 units, nothing from 600
+PASS several Shamblers stomping together stay within the small-quake limits
+PASS short packet gaps still land their steps; longer jumps never replay one
+PASS starting to walk or run straight onto a contact pose is the first step
+PASS held, non-walking, teleporting, vanished and other-model poses never shake
+PASS a step ends early when the Shambler stops walking, changes model or the level changes
+PASS the player must be on the ground when the foot lands, and feels nothing in the air
+PASS New Game, the setting, demos, pause, death, intermission and menus stop the shake
+PASS small backwards steps in the predicted clock keep the step; a restart forgets it
+PASS with smoothed monster animation the shake waits for the contact pose to be drawn
+PASS V_CalcRefdef moves the eye and weapon together and tilts only the eye
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+PASS client initialization registers all demo commands
+RESULT 1/1 passed (tests/cl_demo_commands_test.js)
+Clearing memory
+
+PASS remote client state changes invalidate map-owned models
+RESULT 1/1 passed (tests/cl_main_test.js)
+PASS dynamic lights add their proximity blend to the displayed overlay
+PASS dynamic light marks use the renderer frame counter
+PASS inline brush models receive dynamic light marks
+RESULT 3/3 passed (tests/gl_rlight_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo (forcetrack -1)
+
+Playing demo (forcetrack -1)
+
+PASS attract playback compares in menus while manual and file demos remain single-view
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from profiler_mode_missing.dem.
+
+ERROR: couldn't open profiler_mode_missing.dem.
+
+PASS timedemo suppresses forced full-classic and failed loading never sets timedemo
+Playing demo (forcetrack -1)
+
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo (forcetrack -1)
+
+PASS title profiling is enhanced-only and restores the underlying owner mode on cancellation
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from demo2.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from demo3.dem.
+
+Playing demo (forcetrack -1)
+
+---- Performance profile (Newer Game, 800x600) ----
+demo1: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+demo2: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+demo3: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+Overall: 8.3 fps average, 8.3 fps 1% low; 0% of frames within 16.7 ms (60 fps)
+Draw calls avg 0 (max 0), triangles avg 0 (max 0)
+Where the time goes (ms per frame, share):
+  world draw                 40 ms   33.3%
+  audio and the rest         40 ms   33.3%
+Bottleneck: world draw (33.3%): drawing the world into the picture: triangles, materials or resolution. Lower the resolution (r_dynres) or reduce draw calls
+Bottleneck: audio and the rest (33.3%): sound and everything else
+This machine does not hold 60 fps on the demos at this resolution.
+(each stage waits for the graphics card, so this shows where time goes, not the exact frame rate of normal play)
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+PASS completed profiles report measured enhanced mode after classic owner preferences are restored
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+---- Performance profile (Newer Game, 800x600) ----
+demo1: 3 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+Overall: 8.3 fps average, 8.3 fps 1% low; 0% of frames within 16.7 ms (60 fps)
+Draw calls avg 0 (max 0), triangles avg 0 (max 0)
+Where the time goes (ms per frame, share):
+  world draw                 40 ms   33.3%
+  audio and the rest         40 ms   33.3%
+Bottleneck: world draw (33.3%): drawing the world into the picture: triangles, materials or resolution. Lower the resolution (r_dynres) or reduce draw calls
+Bottleneck: audio and the rest (33.3%): sound and everything else
+This machine does not hold 60 fps on the demos at this resolution.
+(each stage waits for the graphics card, so this shows where time goes, not the exact frame rate of normal play)
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+PASS menu cancellation from an active enhanced game restores preferences and reports partial measurements
+Playing demo from profiler_mode_missing.dem.
+
+ERROR: couldn't open profiler_mode_missing.dem.
+
+PASS failed profiler demo loading stops within its bound and restores all preferences
+PASS uncaught frame errors restore profiler settings before propagating the original error
+Host_Error: profiler regression
+
+Host_Error: profiler regression
+
+PASS recovered Host_Error stops profiling through the actual Host_Frame command interface
+RESULT 8/8 passed (tests/profiler_demo_mode_test.js)
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS water underside keeps live reflection controls, material cues and independent visual boundaries
+PASS mapped water probes choose real air anchors instead of a solid merged centre and skip unsafe pools before budgeting
+PASS contents-free optical screen blend retains full damage, pickup and powerup flashes without mutating native state
+PASS dynamic-light proximity flashes append to both native and contents-free frame blends and reset next frame
+RESULT 4/4 passed (tests/water_surface_test.js)
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+RESULT 7/7 passed (tests/r_anim_test.js)
+PASS classic CD music gain is applied once and all0/.5/1 sound/music combinations stay independent
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Cmd_AddCommand: cd already defined
+
+PASS CD direct fallback keeps music independent when WebAudio unavailable
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Cmd_AddCommand: cd already defined
+
+PASS CD direct fallback keeps music independent when WebAudio routing-fails
+RESULT 3/3 passed (tests/audio_volume_test.js)
+TOTAL 42/42 passed
+exit 0

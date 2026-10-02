@@ -1,0 +1,37 @@
+One-line wrong implementations of src/v_shamblersteps.js and src/view.js, each applied alone to a scratch copy, then tests/shambler_steps_test.js run (QUAKED_THREE_MODULE runner).
+killed = the tests fail; SURVIVED = the tests still pass. Final code, 2026-10-02.
+
+killed   gap recovery off
+killed   gap widened to 5
+killed   linear falloff
+killed   no death gate
+killed   no intermission gate
+killed   no menu gate
+killed   no sv.paused gate
+killed   no signon gate
+SURVIVED no worldmodel gate
+killed   no demo gate
+killed   no level reset
+killed   reset on any regression
+killed   no big regression reset
+killed   no cut on stop walking
+killed   no cut on model change
+killed   no per-entity stale
+SURVIVED no per-entity model check
+killed   no teleport check
+killed   no entering-cycle step
+killed   no ground check at contact
+killed   no ground mute
+killed   no smoothing delay
+killed   sine phase
+killed   no clamp
+killed   scale uncapped
+killed   same side both feet
+killed   wrong walk contacts
+killed   wrong run contacts
+killed   reach 800
+killed   weapon not moved
+killed   pitch not applied
+killed   roll not applied
+killed   not registered
+31/33 killed

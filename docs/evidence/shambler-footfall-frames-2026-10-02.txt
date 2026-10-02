@@ -1,0 +1,26 @@
+Shambler foot positions, progs/shambler.mdl from pak0.pak (model units).
+Feet = the 4+4 lowest vertices of stand1 split by side; z = lowest foot vertex, x = mean forward position.
+Floor z = -24.2. Heel strike = foot back on the floor at its furthest forward point.
+
+walk
+ 1  L z= -24.2 x= -26.7   R z= -24.2 x=  20.2  <- R heel strike
+ 2  L z= -22.6 x= -27.2   R z= -25.9 x=  11.3
+ 3  L z= -20.4 x= -22.5   R z= -24.2 x=   2.1
+ 4  L z= -22.0 x=  -5.7   R z= -24.2 x=  -3.1
+ 5  L z= -18.8 x=   8.2   R z= -24.2 x=  -8.7
+ 6  L z= -22.0 x=  13.3   R z= -25.3 x= -20.0
+ 7  L z= -24.2 x=  21.5   R z= -24.8 x= -27.7  <- L heel strike
+ 8  L z= -25.3 x=  19.1   R z= -20.9 x= -26.7
+ 9  L z= -24.2 x=   5.2   R z= -18.2 x= -21.6
+10  L z= -24.2 x=  -4.3   R z= -20.4 x= -11.5
+11  L z= -24.2 x= -10.6   R z= -20.9 x=  -1.8
+12  L z= -24.8 x= -18.0   R z= -24.2 x=   7.6
+
+run
+ 1  L z= -17.7 x= -36.1   R z= -20.9 x=  14.9
+ 2  L z= -19.3 x= -34.7   R z= -24.8 x=   2.5  <- R heel strike
+ 3  L z= -22.6 x= -13.7   R z= -24.8 x= -18.1
+ 4  L z= -18.2 x=  18.2   R z= -16.6 x= -33.3
+ 5  L z= -24.2 x=   7.2   R z= -22.0 x= -30.6  <- L heel strike
+ 6  L z= -24.8 x= -21.9   R z= -19.8 x= -14.7
+

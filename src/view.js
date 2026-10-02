@@ -24,6 +24,7 @@ import { VID_UpdateGamma } from './vid.js';
 import { scr_viewsize } from './gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
 import { v_blend, v_liquid_blend } from './glquake.js';
+import { V_ShamblerStepShake, v_shamblersteps } from './v_shamblersteps.js';
 
 export { v_blend };
 
@@ -915,6 +916,13 @@ export function V_CalcRefdef() {
 	} else
 		_oldz = playerorg[ 2 ];
 
+	const stepShake = V_ShamblerStepShake( playerorg, onGround );
+	r_refdef.vieworg[ 2 ] += stepShake[ 0 ];
+	view.origin[ 2 ] += stepShake[ 0 ]; // the weapon drops with the eye (it does not take the tilt)
+	r_refdef.viewangles[ PITCH ] += stepShake[ 1 ];
+	r_refdef.viewangles[ ROLL ] += stepShake[ 2 ];
+	if ( stepShake[ 0 ] !== 0 ) V_BoundOffsets( playerorg ); // New Game and still frames keep the original bounds
+
 	if ( Cvar_VariableValue( 'chase_active' ) !== 0 && _Chase_Update != null )
 		_Chase_Update();
 
@@ -1000,6 +1008,7 @@ export function V_Init() {
 	Cvar_RegisterVariable( v_kicktime );
 	Cvar_RegisterVariable( v_kickroll );
 	Cvar_RegisterVariable( v_kickpitch );
+	Cvar_RegisterVariable( v_shamblersteps );
 
 	Cvar_RegisterVariable( crosshair );
 	Cvar_RegisterVariable( cl_crossx );
