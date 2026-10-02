@@ -18,6 +18,7 @@ import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage
 import { XR_Init } from './src/webxr.js';
 import { R_WeaponsPreload } from './src/r_weapons.js';
 import { M_SetExternals } from './src/menu.js';
+import { LoadingScreen_SetProgress, LoadingScreen_Remove } from './src/loading_screen.js';
 
 const parms = {
 	basedir: '.',
@@ -33,23 +34,9 @@ async function main() {
 
 		COM_InitArgv( parms.argv );
 
-		// Loading bar
-		const loadingProgress = document.getElementById( 'loading-progress' );
-		const loadingOverlay = document.getElementById( 'loading' );
-
-		function setProgress( value ) {
-
-			if ( loadingProgress ) {
-
-				loadingProgress.style.width = ( value * 100 ) + '%';
-
-			}
-
-		}
-
-		// Load pak0.pak from the same directory
+		// Load pak0.pak from the same directory; the loading logo fills as it downloads
 		Sys_Printf( 'Loading pak0.pak...\\n' );
-		const pak0 = await COM_FetchPak( 'pak0.pak', 'pak0.pak', setProgress );
+		const pak0 = await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if ( pak0 ) {
 
 			COM_AddPack( pak0 );
@@ -86,11 +73,7 @@ async function main() {
 		await R_WeaponsPreload();
 
 		// Remove loading overlay
-		if ( loadingOverlay ) {
-
-			loadingOverlay.remove();
-
-		}
+		LoadingScreen_Remove();
 
 		// Preload custom menu images
 		try {

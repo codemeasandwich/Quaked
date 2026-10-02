@@ -24,6 +24,8 @@ python3 -m http.server 8000
 
 Open [localhost:8000](http://localhost:8000/) and choose **Newer Game** from the single-player menu to use the enhancements. **New Game** selects the classic presentation. Internet access is needed for the Three.js modules loaded from the CDN.
 
+While the game data downloads, the Quaked logo in the centre of the page fills from the bottom up in place of a loading bar. [Loading logo](docs/loading-logo-2026-10-02.md).
+
 [Upstream three-quake demo](https://mrdoob.github.io/three-quake/) is a separate build; it does not demonstrate the enhancements documented here.
 
 Confirming **Quit** opens [this project’s GitHub page](https://github.com/codemeasandwich/Quaked) in a new tab and returns the game to its main menu. Cancelling Quit stays in the game.

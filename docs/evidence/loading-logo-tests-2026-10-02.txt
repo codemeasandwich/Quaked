@@ -1,0 +1,7 @@
+PASS index.html carries logo.svg unchanged, cropped to the artwork
+PASS progress fills the logo from the bottom up and reports it
+PASS removing the screen, and pages without the logo, are safe
+PASS main.js drives the logo from the pak0.pak download and removes it once ready
+RESULT 4/4 passed (tests/loading_screen_test.js)
+TOTAL 4/4 passed
+exit 0

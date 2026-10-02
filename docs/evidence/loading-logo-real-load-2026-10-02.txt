@@ -1,0 +1,14 @@
+Real page load of index.html (python3 -m http.server 8766 at the repo root), headless Chrome
+driven over the DevTools protocol by loading-logo-watch-2026-10-02.mjs, download throttled to
+about 4 MB/s so intermediate states can be observed. The loader is sampled every 50 ms until
+it is removed.
+
+node docs/evidence/loading-logo-watch-2026-10-02.mjs <scratch-dir>
+samples 60 first {"t":33,"v":{"now":"0","y":"149.57","h":"0"}} last {"t":83076,"v":{"removed":true,"canvas":true}}
+progress values 59 monotonic true min 0 max 100
+errors []
+
+The fill starts empty at the bottom of the crop, rises monotonically 0 -> 100 with the real
+pak0.pak stream, and the overlay is removed once startup completes, leaving the game canvas
+(the title demo is drawn; images/loading-logo-2026-10-02/real-load-60-percent.png is the 60% frame).
+No page exceptions or console errors were reported.
