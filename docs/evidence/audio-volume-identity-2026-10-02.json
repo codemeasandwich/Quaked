@@ -1,0 +1,42 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "baseCommit": "8a927815a3c7a8cc5fd0c8c87a1c5bfe82c37373",
+  "scope": "Options separate Sound/Music; volume onlyeffects, bgmvolume classic+ambient appliedonce.",
+  "controls": {
+    "sound": "volume",
+    "music": "bgmvolume",
+    "range": [
+      0,
+      1
+    ],
+    "archive": true,
+    "defaultSound": 0.4,
+    "defaultMusic": 1
+  },
+  "routing": {
+    "effects": "Existing masterGain -> destination",
+    "ambient": "Existing music bus -> destination (bypasses effects)",
+    "classic": "Media.volume1 -> musicGain(bgmvolume) -> destination; directfallback uses media.volume(bgmvolume)"
+  },
+  "sha256": {
+    "src/menu.js": "717d98fcc1b691c7e63d81eba47b1f70741225be32fbe902f9cf55095f809aa2",
+    "src/cd_audio.js": "8a89a58757fda116ca35416c412e0c751a81045b2fc1ff4f07470579651ca2d9",
+    "src/s_ambientgame.js": "810c5e01c434b9e940048d234f81c02b5f4d00c5d0be41efdbc84a183364f93c",
+    "src/snd_dma.js": "faa7bd55aca51df57f97e80d08460f3a2db69ea537d01aa38682d02fd40765f6",
+    "tests/audio_volume_test.js": "36cfa852d7c25a63133fd07b2cc20dbe4233205d780e58975065321a8be28cd9",
+    "tests/options_order_test.js": "1e171b97ffd9d910fd0ce8eeb9fa36d80d8cb255b620657ad89f1cf7eca8f74c",
+    "tests/ambient_game_test.js": "f622afa1844f88ca0b62bd7ba22108528754ce3d46145c9e76f8c72cbfed65bf",
+    "tools/render_credits_preview.mjs": "c802514e015e719a77be31025e5e8533c5f44c6c67de63347cf7d89b73100644",
+    "docs/images/options-music-sound-volume-2026-10-02.png": "4e2251c2b3a91e4ec97239f207df47e9e96273e83def1f39d3b628a9f25157ec",
+    "docs/evidence/audio-volume-tests-2026-10-02.txt": "b54fb707c2630d1e2002d8f6f413c4b5ea816d378d5edcc2d3b89ecde3c83ac0"
+  },
+  "verification": {
+    "publicInterfaceChecks": "17/17 passed",
+    "independentPlanningAndReview": true,
+    "preview": "Actual menu code/software canvas/native glyphs",
+    "audioEndpointMocks": true,
+    "audibleBrowserPlaybackQualified": false,
+    "extraGameInstances": 0
+  },
+  "delivery": "Local working increment; owner acceptance pending"
+}

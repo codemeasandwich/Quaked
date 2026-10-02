@@ -1,0 +1,83 @@
+PASS classic CD music gain is applied once and all0/.5/1 sound/music combinations stay independent
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Cmd_AddCommand: cd already defined
+
+PASS CD direct fallback keeps music independent when WebAudio unavailable
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+Cmd_AddCommand: cd already defined
+
+PASS CD direct fallback keeps music independent when WebAudio routing-fails
+RESULT 3/3 passed (tests/audio_volume_test.js)
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+PASS public gameplay policy excludes classic, title demos, menus, death, intermission, pause, mute and hidden tabs
+PASS authoritative living enemy proximity includes unseen monsters while ignoring corpses and free edicts
+PASS monster engagement, attacks and damage suppress swells until a ten-second combat cooldown ends
+PASS map change resets old damage history and remote fallback recognizes native live/death poses
+PASS public host audio update lazily creates streams only in Newer Game and respects sound lifecycle
+RESULT 13/13 passed (tests/ambient_game_test.js)
+TOTAL 17/17 passed

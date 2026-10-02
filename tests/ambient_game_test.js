@@ -52,10 +52,10 @@ Deno.test( 'public gameplay policy excludes classic, title demos, menus, death, 
 		[ () => { cl.paused = true; }, () => { cl.paused = false; }, 'client pause' ],
 		[ () => { sv.paused = true; }, () => { sv.paused = false; }, 'server pause' ],
 		[ () => { cls.signon = 0; }, () => { cls.signon = SIGNONS; }, 'loading' ],
-		[ () => { sound.bgmvolume.value = 0; }, () => { sound.bgmvolume.value = 1; }, 'music mute' ],
-		[ () => { sound.volume.value = 0; }, () => { sound.volume.value = 1; }, 'master mute' ]
+		[ () => { sound.bgmvolume.value = 0; }, () => { sound.bgmvolume.value = 1; }, 'music mute' ]
 	];
 	for ( const [ set, restore, name ] of cases ) { set(); equal( game.S_AmbientMusicPolicy( 0, false ).active, false, name ); restore(); }
+	sound.volume.value = 0; equal( game.S_AmbientMusicPolicy( 0, false ).active, true, 'sound mute preserves music eligibility' ); sound.volume.value = 1;
 	equal( game.S_AmbientMusicPolicy( 0, true ).active, false, 'hidden' );
 	anim.R_AnimSetClassicPass( true ); equal( game.S_AmbientMusicPolicy( 0, false ).active, false, 'classic scope' ); anim.R_AnimSetClassicPass( false );
 
@@ -110,7 +110,16 @@ Deno.test( 'public host audio update lazily creates streams only in Newer Game a
 		cls.demoplayback = false; cvar.Cvar_SetValue( 'r_hdr', 0 ); game.S_UpdateAmbientMusic(); equal( media.length, 0, 'no classic network/media load' );
 		cvar.Cvar_SetValue( 'r_hdr', 1 ); game.S_UpdateAmbientMusic(); await Promise.resolve(); game.S_UpdateAmbientMusic();
 		equal( media.length, 2, 'two streamed elements' ); equal( media[ 0 ].paused, false, 'real host adapter starts stream' );
-		equal( music.S_GetAmbientMusicPlayer().bus.target, dma.S_GetMasterGain(), 'actual master route' );
+		equal( music.S_GetAmbientMusicPlayer().bus.target, dma.S_GetAudioContext().destination, 'music routes directly to output independently of sound gain' );
+		for ( const level of [ 0, .5, 1 ] ) {
+			sound.volume.value = level; game.S_UpdateAmbientMusic(); await Promise.resolve(); equal( media[ 0 ].paused, false, 'sound volume ' + level + ' preserves ambient playback' );
+		}
+		for ( const level of [ .5, 1, 0 ] ) {
+			sound.bgmvolume.value = level; game.S_UpdateAmbientMusic(); await Promise.resolve();
+			equal( Math.abs( music.S_GetAmbientMusicPlayer().getStatus().volume - music.AMBIENT_BASE_GAIN * level ) < 1e-6, true, 'ambient music gain ' + level + ' applied once' );
+			equal( media.every( m => m.paused ), level === 0, 'ambient music mute is independent of sound' );
+		}
+		sound.bgmvolume.value = 1; game.S_UpdateAmbientMusic(); await Promise.resolve();
 		cvar.Cvar_SetValue( 'nosound', 1 ); game.S_UpdateAmbientMusic(); equal( media.every( m => m.paused ), true, 'nosound mutes ambience' );
 		cvar.Cvar_SetValue( 'nosound', 0 ); game.S_UpdateAmbientMusic(); await Promise.resolve();
 		globalThis.document.hidden = true; events.get( 'visibilitychange' )(); equal( media.every( m => m.paused ), true, 'visibility immediately pauses without host frames' );

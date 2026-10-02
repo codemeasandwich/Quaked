@@ -6,7 +6,7 @@ import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { Cvar_SetValue } from './cvar.js';
 import { COM_CheckParm } from './common.js';
 import { bgmvolume } from './sound.js';
-import { S_GetAudioContext, S_GetMasterGain } from './snd_dma.js';
+import { S_GetAudioContext } from './snd_dma.js';
 
 /*
 ==============================================================================
@@ -132,11 +132,10 @@ export function CDAudio_Play( track, looping ) {
 		musicElement.loop = looping;
 		musicElement.volume = bgmvolume.value;
 
-		// Try to connect through Web Audio for unified volume control
+		// Music has its own gain, independent of the effects volume.
 		const audioContext = S_GetAudioContext();
-		const masterGain = S_GetMasterGain();
 
-		if ( audioContext && masterGain && ! musicSource ) {
+		if ( audioContext && ! musicSource ) {
 
 			try {
 
@@ -157,6 +156,9 @@ export function CDAudio_Play( track, looping ) {
 
 		if ( musicGainNode ) {
 
+			// MediaElement volume also affects a Web Audio source; using both
+			// gains would square the slider setting on a newly started track.
+			musicElement.volume = 1;
 			musicGainNode.gain.value = bgmvolume.value;
 
 		}
@@ -299,6 +301,7 @@ export function CDAudio_Update() {
 
 		if ( musicGainNode ) {
 
+			musicElement.volume = 1;
 			musicGainNode.gain.value = bgmvolume.value;
 
 		} else if ( musicElement ) {

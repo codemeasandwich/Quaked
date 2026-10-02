@@ -118,6 +118,8 @@ On a touch device the game shows on-screen controls. Held sideways the stick is 
 - Dragging anywhere else on the screen looks around, and so does tilting the device. The pause button is at the top right.
 - Newer Game starts with a wider view on a phone: `fov` 100 upright and 120 sideways (until you set your own `fov`; New Game keeps 90).
 
+Options has separate **Sound Volume** (effects, environmental sounds and menus) and **Music Volume** (classic tracks and ambient music) sliders. Both settings are saved. Console equivalents are `volume` and `bgmvolume`. [Routing and verification](docs/audio-volume-controls-2026-10-02.md).
+
 ### Rare crate pictures
 
 In Newer Game one crate in 40 wears a different side picture (`src/r_cratevariants.js`): a Dharma crate with a Half-Life graffiti crate on its other side, or an SCP crate with an SCP-and-graffiti one. Which crates change is chosen afresh each time the game starts (each page load), by the level and where the crate stands, and kept for the session, so a level looks the same on every visit. `r_newer_crates` sets the odds (40 = one in 40, 0 = never; applies from the next level). Ordinary crates also choose among three more common pictures (an eagle, a winged bolt and a winged skull) and their own, all four sides alike. Only the crate sides change: the tops do not. `r_newer_crates 0` switches all of this off.

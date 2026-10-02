@@ -12,7 +12,7 @@ import {
 } from './keys.js';
 import { cl_forwardspeed, cl_backspeed } from './cl_input.js';
 import { sensitivity, m_pitch, lookspring, lookstrafe, cl_color } from './cl_main.js';
-import { volume } from './sound.js';
+import { volume, bgmvolume } from './sound.js';
 import { Cvar_SetValue, Cvar_VariableValue } from './cvar.js';
 import { scr_viewsize, scr_con_current } from './gl_screen.js';
 import { v_gamma } from './view.js';
@@ -1751,6 +1751,9 @@ function M_AdjustSliders( dir ) {
 			if ( volume.value > 1 )
 				Cvar_SetValue( 'volume', 1 );
 			break;
+		case 16: // every music track: classic soundtrack and ambient music
+			Cvar_SetValue( 'bgmvolume', Math.max( 0, Math.min( 1, bgmvolume.value + dir * 0.1 ) ) );
+			break;
 
 		case 8: // always run
 			if ( cl_forwardspeed.value > 200 ) {
@@ -1801,7 +1804,7 @@ function M_AdjustSliders( dir ) {
 
 // Cursor/touch indices remain visible rows; action IDs retain their established
 // meaning across drawing, Enter and slider/toggle dispatch.
-const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ];
+const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12 ];
 const OPTIONS_ITEMS = OPTIONS_ORDER.length;
 function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
 let m_options_cursor = 0;
@@ -1844,6 +1847,9 @@ function M_Options_Draw() {
 	M_Print( 16, optionsY( 7 ), '          Sound Volume' );
 	r = volume.value;
 	M_DrawSlider( 220, optionsY( 7 ), r );
+
+	M_Print( 16, optionsY( 16 ), '          Music Volume' );
+	M_DrawSlider( 220, optionsY( 16 ), bgmvolume.value );
 
 	M_Print( 16, optionsY( 8 ), '            Always Run' );
 	M_DrawCheckbox( 220, optionsY( 8 ), cl_forwardspeed.value > 200 );
@@ -1903,6 +1909,7 @@ function M_Options_Key( key ) {
 					Cbuf_AddText( 'cl_backspeed 400\n' );
 					Cbuf_AddText( 'gamma 1\n' );
 					Cbuf_AddText( 'volume 0.4\n' );
+					Cbuf_AddText( 'bgmvolume 1\n' );
 					break;
 				case 13:
 					M_Menu_Newer_f();

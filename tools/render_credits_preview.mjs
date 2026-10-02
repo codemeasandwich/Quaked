@@ -1,4 +1,4 @@
-// Software-canvas preview of the real public credits menu. No game, browser or
+// Software-canvas preview of the real credits/options menu. No game, browser or
 // server is started. Uses the supplied PNG loader and original Quake charset.
 import { register } from 'node:module';
 import { readFile, writeFile } from 'node:fs/promises';
@@ -6,7 +6,8 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 if ( ! process.env.QUAKED_THREE_MODULE || ! process.env.QUAKED_CANVAS_MODULE ) throw new Error( 'Set QUAKED_THREE_MODULE and QUAKED_CANVAS_MODULE to installed runtime modules.' );
 register( 'data:text/javascript,' + encodeURIComponent( `export async function resolve(s,c,n){if(s==='three')return {url:${JSON.stringify(pathToFileURL(process.env.QUAKED_THREE_MODULE).href)},shortCircuit:true};return n(s,c);}` ) );
 const { createCanvas, Image } = await import( pathToFileURL( process.env.QUAKED_CANVAS_MODULE ).href );
-const height = process.argv.includes( '--small' ) ? 400 : 560;
+const options = process.argv.includes( '--options' );
+const height = process.argv.includes( '--small' ) ? 400 : options ? 480 : 560;
 globalThis.Image = Image;
 globalThis.document = { createElement: () => createCanvas( 1, 1 ) };
 globalThis.window = { devicePixelRatio: 1, innerWidth: 640, innerHeight: height };
@@ -28,6 +29,7 @@ menu.M_Init(); menu.M_SetExternals( { key_dest_get: () => dest, key_dest_set: va
 	Draw_CachePic: draw.Draw_CachePic, Draw_Pic: draw.Draw_Pic, Draw_TransPic: draw.Draw_TransPic, Draw_Character: draw.Draw_Character, Draw_FadeScreen: draw.Draw_FadeScreen, S_LocalSound() {} } );
 draw.Draw_BeginFrame();
 canvas.getContext( '2d' ).fillStyle = '#282522'; canvas.getContext( '2d' ).fillRect( 0, 0, 320, 200 );
-cmd.Cmd_ExecuteString( 'menu_credits' ); menu.M_Draw();
-await writeFile( new URL( '../docs/images/weapon-models-credits' + ( height === 400 ? '-small' : '' ) + '-2026-10-02.png', import.meta.url ), canvas.toBuffer( 'image/png' ) );
-console.log( 'Rendered real credits menu using native glyphs; supplied name sprite', pic.width, 'x', pic.height );
+cmd.Cmd_ExecuteString( options ? 'menu_options' : 'menu_credits' ); menu.M_Draw();
+const name = options ? 'options-music-sound-volume' : 'weapon-models-credits';
+await writeFile( new URL( '../docs/images/' + name + ( height === 400 ? '-small' : '' ) + '-2026-10-02.png', import.meta.url ), canvas.toBuffer( 'image/png' ) );
+console.log( 'Rendered real ' + ( options ? 'options' : 'credits' ) + ' menu using native glyphs.' );

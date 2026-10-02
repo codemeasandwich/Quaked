@@ -7,9 +7,9 @@ import { in_attack } from './cl_input.js';
 import { key_dest, key_game } from './keys.js';
 import { STAT_HEALTH, STAT_ARMOR } from './quakedef.js';
 import { R_NewerGame } from './r_anim.js';
-import { bgmvolume, volume } from './sound.js';
+import { bgmvolume } from './sound.js';
 import { Cvar_VariableValue } from './cvar.js';
-import { S_GetAudioContext, S_GetMasterGain } from './snd_dma.js';
+import { S_GetAudioContext } from './snd_dma.js';
 import { S_AmbientMusicInit, S_GetAmbientMusicPlayer } from './s_ambientmusic.js';
 
 export const AMBIENT_ENEMY_DISTANCE = 512;
@@ -30,7 +30,7 @@ export function S_AmbientMusicPolicy( now, hidden = typeof document !== 'undefin
 	else if ( cl.paused || ( sv.active && sv.paused ) ) reason = 'paused';
 	else if ( key_dest !== key_game ) reason = 'menu or console';
 	else if ( hidden ) reason = 'hidden';
-	else if ( bgmvolume.value <= 0 || volume.value <= 0 || Cvar_VariableValue( 'nosound' ) !== 0 ) reason = 'muted';
+	else if ( bgmvolume.value <= 0 || Cvar_VariableValue( 'nosound' ) !== 0 ) reason = 'muted';
 	if ( world !== cl.worldmodel ) { world = cl.worldmodel; oldHealth = oldArmour = null; combatUntil = 0; }
 	if ( reason !== '' ) {
 
@@ -90,7 +90,9 @@ export function S_AmbientMusicPolicy( now, hidden = typeof document !== 'undefin
 
 export function S_UpdateAmbientMusic() {
 
-	const context = S_GetAudioContext(), output = S_GetMasterGain();
+	// The existing ambient music bus applies bgmvolume once. It must not pass
+	// through the effects gain controlled by the separate Sound Volume slider.
+	const context = S_GetAudioContext(), output = context?.destination;
 	const policy = S_AmbientMusicPolicy( context?.currentTime || 0 );
 	const player = policy.active && context && output ? S_AmbientMusicInit( context, output ) : S_GetAmbientMusicPlayer();
 	player?.update( policy );

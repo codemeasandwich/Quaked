@@ -1199,6 +1199,7 @@ export function S_GetAudioContext() {
 
 export function S_GetMasterGain() {
 
+	// Legacy API name: this is the sound-effects bus, not the music output.
 	return masterGain;
 
 }
