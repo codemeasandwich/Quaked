@@ -69,7 +69,7 @@ Deno.test( 'flashlight toggles preserve water material and cached reflections wh
 			equal( uniforms.uReflect.value, .6, 'beam leaves environment reflection strength intact' );
 			equal( uniforms.uScreenReflect.value, 1, 'beam leaves SSR option intact' );
 			equal( uniforms.uWaterCount.value, 1, 'beam leaves pool optics active' );
-			equal( material.map, texture, 'authored water map retained' ); equal( material.opacity, .12, 'water transparency retained' );
+			equal( material.map, texture, 'authored water map retained' ); equal( material.opacity, .05, 'water transparency retained' );
 			equal( probes.R_WaterProbes()[ 0 ], probe, 'same cached probe' ); equal( cubeDraws, 6, 'beam does not recapture cube' );
 
 		}

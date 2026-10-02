@@ -1,0 +1,67 @@
+{
+  "archive": "supernailgun2.zip",
+  "sha256": "07bf832ebcae0052b802c615c7a3d1c0a59924642fd71c278feef5005f39b1e3",
+  "metadata": {
+    "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
+    "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+    "source": "https://sketchfab.com/3d-models/supernailgun-53ab89b5c3c64cc7bc13b66636c430e2",
+    "title": "Supernailgun"
+  },
+  "axes": [
+    1,
+    -3,
+    2
+  ],
+  "vertices": 3980,
+  "rotationYDegrees": 0,
+  "triangles": 1918,
+  "maps": {
+    "diffuse": "diffuse.png",
+    "normal": "normal.png"
+  },
+  "material": {
+    "baseColorFactor": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "emissiveFactor": [
+      0,
+      0,
+      0
+    ],
+    "doubleSided": true,
+    "style": {
+      "grading": [
+        {
+          "rect": [
+            0.1621,
+            0.40372,
+            0.41618,
+            0.60428
+          ],
+          "balance": [
+            0.96,
+            0.99,
+            1.08
+          ],
+          "gain": 1.0,
+          "contrast": 1.0,
+          "saturation": 1.0
+        }
+      ]
+    },
+    "normalFlipGreen": true
+  },
+  "selectedMesh": "supernailgun_low_skin_0",
+  "geometrySource": "source/supernailgun.zip!supernailgun.fbx",
+  "provenanceSource": "supernailgun.zip!license.txt and asset metadata",
+  "fbx": {
+    "controlPoints": 999,
+    "polygons": 1031,
+    "corners": 3980,
+    "triangles": 1918
+  },
+  "textureFlipY": true
+}

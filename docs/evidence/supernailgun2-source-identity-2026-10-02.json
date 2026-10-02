@@ -1,0 +1,35 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "scope": "Supplied supernailgun2.zip FBX original shape; uniform scale and rigid held8degreeup tilt/-4X placement; mild barebarrel RGB balance only; exact new source images/UV/normals; no piecewise deformation",
+  "sha256": {
+    "tools/fbx_mesh.py": "2e7afa08a56d94d9f6e9fd20095229a8f89d0d76173367f941a8f6da5a9f1d34",
+    "tools/import_weapons.py": "44ad2074796eb476055652a29690859043c7c036f0fd2285562e411afd5626b2",
+    "src/r_weapons.js": "c9e3a8abdd3de49a8eb33ea92b1574472503f9663b46d223b5444861185a3d00",
+    "src/r_newerskins.js": "7da5423373670d0e42bcbbb4ae7cfd5896ea7a9ec372beb125715eaba8eced5b",
+    "tests/supernailgun_profile_test.js": "0035317e3db0f1b3d8129e7711f5b8e6f3655cb069540526d6f65cdbf2b7e4a0",
+    "tests/weapons_test.js": "bd417f04079d102070b7505b0f4bc4e7b128e8e5765b0e3bd3d471a852f94c22",
+    "newer/weapons/v_nail2.json": "57df40a5ffcfc73bc47ab40f9fe2566a04a19cc4dd93478747c083177f8af5ac",
+    "newer/weapons/g_nail2.json": "e583755e8a17b1efcc17d1a86b11fb53dc99569f1665b753f68b56edea018ef3",
+    "newer/weapons/index.json": "b6356e9ad7b5ab34a22ba9f01141892146177d33e42ca7f45e970588ee8ce386",
+    "newer/weapons/supernailgun/diffuse.png": "2d8b893a45ec16628f4afe366610f21a1dfc9dbf8c60ee1c7f40e2bd9976b044",
+    "newer/weapons/supernailgun/normal.png": "373cd88539834f8c35a57569eb05b4ab9701c8919200b8fd88db8bcb0618f669",
+    "docs/images/supernailgun2-source-final-2026-10-02.png": "2e0a2b05fb29a91cdd98eb327238a7eb2cc6130c02bd67852d730cb73e81fefe"
+  },
+  "browser": {
+    "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=nail-profile",
+    "publicStatus": "SUPPLIED MODEL LOADED: progs/v_nail2.mdl; no asset errors",
+    "hud": false,
+    "crosshair": false,
+    "toolbar": false,
+    "errorLog": [],
+    "screenshot": "docs/images/supernailgun2-source-final-2026-10-02.png",
+    "newInstancesForCorrection": 0,
+    "acceptance": "owner visual acceptance pending"
+  },
+  "verification": {
+    "focused": "34/34 passed",
+    "regressions": "53/53 passed",
+    "independentReview": "Source corner positions, normals, UVs, fans, image bytes, ridge spacing and uniform transforms verified; six source-profile checks passed."
+  }
+}

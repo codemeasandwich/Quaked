@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-02",
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "baseHead": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "state": "local uncommitted increment",
+  "sources": {
+    "src/gl_post.js": "3cf873bfd7ba7efc843669fa5027cddf2c6da074966ff5f3b350c930dcb9d4b0",
+    "src/gl_rsurf.js": "c87518444ff3f0d725856f52413ce11bb2049a6aff5f15d8ccd43bbdaf47b49c",
+    "src/gl_rmain.js": "164e2bac6b4d4e69c99cbeaab16384749f25639b3f32c35d4d1a675b1712033e",
+    "src/r_waterprobe.js": "edba139bde98fdefc4fabe87efcc0a9d80f53f436e071af02f5aa289341277a4",
+    "src/r_mist.js": "2187585da96f2f55e995ef94c2322dae12d989ad0022548cbc2e85eb0e6af85b",
+    "src/menu.js": "c6f09a8a76f0b1622fd26782985c2f5159ffa5a071cad48b0820bb2454ab54ec",
+    "src/view.js": "e86491f92d3eeee2f6b6815ac64022ae38fd4cbcda202b87e1718b6e5f2c9138",
+    "src/glquake.js": "58e373c3569fd5cf6d4c031eff48743147ad5400f88f0b34540f9497e7d7eb99",
+    "src/gl_rlight.js": "e0ad5db021495b59f22cdc85a3d7d5c68990c1101e1e6dfac2919d62c764d387",
+    "tests/water_optics_trial.js": "af9c57e7e95c1b505bd7dc466f0005596b0cb6bfd1f800d746954b122164d162",
+    "tests/water_optics_trial.html": "c23b95d71ceb5aa5565417f1a0cd7352df6bf4af356369a74f84a934472626ea",
+    "tests/water_gameplay_trial.js": "7ff4657faa44274bfd330179af00ae304f354ad33fe7eabf3600d3f1a5d5459d",
+    "tests/water_gameplay_trial.html": "50e298b2240eb63e75e1ec897e21150f8b1497f679078ce7fde9132ab2c49ec7",
+    "tests/water_concept_test.js": "20adf0408f11c156f94248e1f9f3bb9bbb24e786980934c4ef6e5ad96809580a",
+    "tests/water_surface_test.js": "47947ac9a1eef900bee4f9eb76f30cee3e92d4f86bad867b811a02700b411ceb",
+    "tests/water_vapour_test.js": "a882127105f83528fa93cd28cb2ee853b08be063e90885696c61bd6bbfffcb27"
+  },
+  "references": [
+    {
+      "path": "/Users/bri/SOURCE/Quaked/Retro Quake Chamber with Underwater Caustics.png",
+      "sha256": "e1acfa6fc20703b35c2ecb9ffd94094fb8082e901148a3cd1e70b05c4deb9bf7",
+      "personallyViewed": true
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/Quake Dungeon Water Reflections.png",
+      "sha256": "acbf371aa73464aa836418f0511740e7c1b15ca667397a0ded7c5c48e0a0cefd",
+      "personallyViewed": true
+    },
+    {
+      "path": "/Users/bri/Downloads/ChatGPT Image Oct 2, 2026, 07_36_08 AM-2.png",
+      "sha256": "5ea7306c1f0b85721230fedb5d0ca042a868c81dc9cab7ef75cdf2d250ad68ac",
+      "personallyViewed": true
+    },
+    {
+      "path": "/Users/bri/Downloads/ChatGPT Image Oct 2, 2026, 07_37_16 AM.png",
+      "sha256": "5ea7306c1f0b85721230fedb5d0ca042a868c81dc9cab7ef75cdf2d250ad68ac",
+      "personallyViewed": true
+    },
+    {
+      "path": "/Users/bri/Downloads/3a46fb8c-5414-49b0-aa90-704684b155ab.png",
+      "sha256": "f76f573a017f09cf843eac7387b9bd3dba451409398ff30ec54bf21b9b4c93ef",
+      "personallyViewed": true
+    },
+    {
+      "path": "/Users/bri/Desktop/Screenshot 2026-10-01 at 23.56.40.png",
+      "sha256": "ecfbbd43a05d32cb667ed22003f684a4965ad83df5bc360bd9f44d6ed9b3e002",
+      "personallyViewed": true,
+      "ownerClassification": "Toxic"
+    },
+    {
+      "path": "/Users/bri/Desktop/Screenshot 2026-10-01 at 23.56.55.png",
+      "sha256": "3e24494207c4df0ec632db0c6b05bb010519df67a5ecc992fea8fc5235b50d4e",
+      "personallyViewed": true,
+      "ownerClassification": "Muddy"
+    }
+  ],
+  "pak0Sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+  "gpu": "Core composite passed 45 checks on no-store local server 8001. The later toxic-stream-only renderer delta was checked with all 14 profile checks and 3 new animation/control checks. Composite source hash stayed unchanged.",
+  "finalMenuDelta": "Only Surface haze label padding changed after the final GPU run; its visual label ends at the existing menu column.",
+  "baselineSources": {
+    "gl_post.js": "79dc3ae2ba544e0f2c1b1813f1f433820a1e0263ee21ef64f7faecf6b74f98c4",
+    "gl_rsurf.js": "c87518444ff3f0d725856f52413ce11bb2049a6aff5f15d8ccd43bbdaf47b49c",
+    "gl_rmain.js": "164e2bac6b4d4e69c99cbeaab16384749f25639b3f32c35d4d1a675b1712033e",
+    "r_waterprobe.js": "edba139bde98fdefc4fabe87efcc0a9d80f53f436e071af02f5aa289341277a4"
+  },
+  "vapourVerification": "After the 45-check concept GPU run, the only renderer delta was r_mist toxic sprite grouping/size/motion/gain. Re-ran all 14 optical-profile checks and 3 new real-GPU vapour checks. gl_post source remains exactly the 45-check identity.",
+  "testedBeforeFinalComments": {
+    "src/gl_post.js": "aa13c973a051f6b2280321fe4774d0d82e59df1c8905a28527723340cb69ffe0",
+    "src/r_mist.js": "c8719440c8299bd4a268a521f8bc2b0ae2d9ef86d7c0352fdbd569b87384202e"
+  },
+  "finalCommentsDelta": "After verification, only two out-of-shader comments were corrected to describe Muddy haze and Toxic appearance overrides. Runtime code and generated GLSL remain unchanged."
+}

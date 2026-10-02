@@ -1,0 +1,71 @@
+PASS viewmodel uses the registered chase camera cvar
+RESULT 1/1 passed (tests/gl_rmain_test.js)
+PASS model clearing disposes only map-owned Three textures
+PASS server texture shim supports map texture disposal
+PASS missing textures use the persistent checkerboard
+RESULT 3/3 passed (tests/gl_model_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+PASS dynamic lights add their proximity blend to the displayed overlay
+PASS dynamic light marks use the renderer frame counter
+PASS inline brush models receive dynamic light marks
+RESULT 3/3 passed (tests/gl_rlight_test.js)
+PASS map setup runs the canonical renderer reset
+PASS map teardown clears persistent entity mesh caches
+PASS map teardown retains owners after entities leave the PVS
+PASS map teardown invalidates cached brush entity groups
+RESULT 4/4 passed (tests/gl_rmisc_test.js)
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+RESULT 7/7 passed (tests/r_anim_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS R_LevelEntities: models, skill, secret doors and plats
+PASS R_LevelEntities: a level you left shows how you left it
+PASS R_FramePrefix
+RESULT 3/3 passed (tests/r_levelents_test.js)
+Added packfile newer.pak (2 files)\n
+PASS the Newer Game pack is only visible while Newer Game is on
+Added packfile newer.pak (1 files)\n
+PASS json comes out of the pack, and from the loose file without one
+PASS LIT files: only the right size and version are taken
+PASS an entity list file must hold entities
+RESULT 4/4 passed (tests/newer_pack_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+PASS public credits screen includes musician within the original menu bounds and preserves source link hit target
+RESULT 1/1 passed (tests/ambient_credits_test.js)
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+TOTAL 53/53 passed

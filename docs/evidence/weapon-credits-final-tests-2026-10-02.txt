@@ -1,0 +1,14 @@
+PASS public credits retain contributors, native-size Japanese picture/fallback and centered white footer inside enlarged box
+PASS public credits click maps enlarged viewport only to centered footer; Enter and Escape retain navigation
+PASS temporary credits sizing restores normal metrics and preference after nested scopes and callback failure
+RESULT 3/3 passed (tests/ambient_credits_test.js)
+PASS weapon startup: ordinary app waits for all optional held/pickup art before removing loading UI and starting demo frames
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+TOTAL 7/7 passed

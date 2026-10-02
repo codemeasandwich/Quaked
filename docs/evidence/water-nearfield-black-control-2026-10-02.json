@@ -1,0 +1,74 @@
+{
+  "checks": [],
+  "failures": [],
+  "frames": [],
+  "performance": null,
+  "reference": {
+    "durationMs": 10140,
+    "frames": 152,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "torchChecks": [
+    {
+      "changed": 2198,
+      "glError": 0,
+      "maximum": 10,
+      "name": "ordinary warm light illuminates the reflected opaque wall",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "torch reflection test is isolated from black transmitted floor and dry ledge",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "lighting off keeps ordinary reflected-light shading inactive",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 2365,
+      "maximum": 14,
+      "name": "Muddy body scatters incident light independently of a black floor and reflections",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 703,
+      "maximum": 2,
+      "name": "Muddy near-surface haze responds to the mist control",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "maximum": 0,
+      "name": "Muddy incident-light sediment and haze do not emit without a source",
+      "passed": true
+    }
+  ],
+  "torchCost": {
+    "costs": [
+      {
+        "frames": 90,
+        "height": 270,
+        "meanMs": 103.50444444451068,
+        "ordinaryLight": false,
+        "width": 480
+      },
+      {
+        "frames": 90,
+        "height": 270,
+        "meanMs": 97.79333333339956,
+        "ordinaryLight": true,
+        "width": 480
+      }
+    ],
+    "method": "one-pixel readback per fixed-time full frame; includes main and reflected receiver lighting, not an isolated SSR cost or gameplay FPS"
+  },
+  "torchFailures": []
+}

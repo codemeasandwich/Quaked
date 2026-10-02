@@ -1,0 +1,331 @@
+{
+  "sceneFrames": 25458,
+  "errors": [],
+  "views": {
+    "startup": 2650,
+    "loading": 1667,
+    "under-near": 7387,
+    "under-mid": 4077,
+    "under-far": 5119,
+    "grazing": 2425,
+    "down": 2133
+  },
+  "pools": [
+    {
+      "kind": 1,
+      "min": [
+        656,
+        768
+      ],
+      "max": [
+        1504,
+        2624
+      ],
+      "z": -456
+    },
+    {
+      "kind": 1,
+      "min": [
+        -16,
+        2640
+      ],
+      "max": [
+        320,
+        3008
+      ],
+      "z": -136
+    },
+    {
+      "kind": 1,
+      "min": [
+        1272,
+        864
+      ],
+      "max": [
+        1352,
+        944
+      ],
+      "z": -432
+    },
+    {
+      "kind": 0,
+      "min": [
+        -108,
+        480
+      ],
+      "max": [
+        1008,
+        1328
+      ],
+      "z": -296
+    }
+  ],
+  "textures": [
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.02671576291322708,
+        0.02671576291322708,
+        0.02671576291322708
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.07061804831027985,
+        0.07061804831027985,
+        0.07061804831027985
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.13038025796413422,
+        0.13038025796413422,
+        0.13038025796413422
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.03750166296958923,
+        0.03750166296958923,
+        0.03750166296958923
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.0503075085580349,
+        0.0503075085580349,
+        0.0503075085580349
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.2104918509721756,
+        0.2104918509721756,
+        0.2104918509721756
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.08219299465417862,
+        0.08219299465417862,
+        0.08219299465417862
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.06518810242414474,
+        0.06518810242414474,
+        0.06518810242414474
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.23115259408950806,
+        0.23115259408950806,
+        0.23115259408950806
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.2874583899974823,
+        0.2874583899974823,
+        0.2874583899974823
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.03750166296958923,
+        0.03750166296958923,
+        0.03750166296958923
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.22069035470485687,
+        0.22069035470485687,
+        0.22069035470485687
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.11537660658359528,
+        0.11537660658359528,
+        0.11537660658359528
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.06518810242414474,
+        0.06518810242414474,
+        0.06518810242414474
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.12,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.33735933899879456,
+        0.33735933899879456,
+        0.33735933899879456
+      ]
+    }
+  ],
+  "captureFrames": 60,
+  "mode": "down",
+  "viewpoint": {
+    "pool": {
+      "min": [
+        -108,
+        480
+      ],
+      "max": [
+        1008,
+        1328
+      ],
+      "z": -296
+    },
+    "eye": [
+      576,
+      1056,
+      -224
+    ],
+    "angles": [
+      65,
+      116.56504821777344,
+      0
+    ],
+    "light": [
+      504,
+      1200,
+      -248
+    ]
+  },
+  "clientTime": 681.943115234375,
+  "paused": false,
+  "options": {
+    "appearance": 0,
+    "water": 1,
+    "lighting": 1,
+    "reflect": 0.8,
+    "flashlight": 0
+  },
+  "probes": 2,
+  "probeLocations": [
+    {
+      "centre": [
+        574.2222222222222,
+        1000,
+        -260
+      ],
+      "currentPool": true,
+      "contents": -1
+    },
+    {
+      "centre": [
+        1083.076923076923,
+        1700.923076923077,
+        -420
+      ],
+      "currentPool": true,
+      "contents": -1
+    }
+  ],
+  "screenBlendsThisFrame": [],
+  "actualEye": {
+    "xyz": [
+      576.03125,
+      1056.03125,
+      -223.96875
+    ],
+    "contents": -1,
+    "nativeBlend": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "liquidBlend": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "lastScreenBlend": {
+    "rgbLinear": [
+      1,
+      0.2140411404715882,
+      0
+    ],
+    "alpha": 0.06300000101327896,
+    "splitDiagnostic": 1
+  }
+}

@@ -20,10 +20,13 @@ import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from './r_anim.j
 import { R_SaveClassicScene, R_ClassicMaterial } from './r_classicstate.js';
 import { R_DemoSplitFull, R_DemoSplitActive, R_DemoSplitClassic, r_demosplit } from './r_demosplit.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from './r_decals.js';
+import { r_newer_weapons } from './r_weapons.js';
+import { R_ShellsSetup, R_ShellsNewMap, R_ShellsFrame } from './r_shells.js';
+import { R_ShellTrace } from './r_shelltrace.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
-import { r_newer_variety, R_NewerSkinsNewMap } from './r_newerskins.js';
+import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial } from './r_newerskins.js';
 import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
@@ -48,7 +51,7 @@ import {
 	cl_static_entities, cl_temp_entities, cl_lightstyle
 } from './client.js';
 import { d_lightstylevalue, r_framecount, set_r_framecount, inc_r_framecount,
-	v_blend, mirrortexturenum, set_mirrortexturenum,
+	v_blend, v_liquid_blend, mirrortexturenum, set_mirrortexturenum,
 	r_norefresh, r_drawentities, r_drawviewmodel, r_speeds,
 	r_fullbright, r_lightmap, r_shadows, r_mirroralpha,
 	r_wateralpha, r_dynamic, r_novis, r_drawworld, r_waterwarp,
@@ -751,8 +754,18 @@ export function R_DrawViewModel() {
 		const baseSlot = slot + 'Base';
 		if ( currententity[ slot ] == null || currententity[ baseSlot ] !== baseMaterial ) {
 
-			currententity[ slot ] = baseMaterial.clone();
-			currententity[ slot ].transparent = true;
+			// A previous clone may still be compiling asynchronously. Retain one
+			// per base until map teardown instead of disposing on a weapon switch.
+			const cacheSlot = slot + 'Cache';
+			if ( ! currententity[ cacheSlot ] ) currententity[ cacheSlot ] = new Map();
+			let clone = currententity[ cacheSlot ].get( baseMaterial );
+			if ( ! clone ) {
+
+				clone = R_CloneAliasMaterial( baseMaterial ); clone.transparent = true;
+				currententity[ cacheSlot ].set( baseMaterial, clone );
+
+			}
+			currententity[ slot ] = clone;
 			currententity[ baseSlot ] = baseMaterial;
 
 		}
@@ -824,6 +837,12 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	_disposeEntityGeometry( shadowGeometry, geometries );
 	_disposeEntityMaterial( viewmodelMaterial, materials );
 	_disposeEntityMaterial( entity._classicViewmodelMaterial, materials );
+	for ( const slot of [ '_viewmodelMaterialCache', '_classicViewmodelMaterialCache' ] ) {
+
+		for ( const material of entity[ slot ]?.values() || [] ) _disposeEntityMaterial( material, materials );
+		entity[ slot ] = null;
+
+	}
 	_disposeEntityMaterial( playerMaterial, materials );
 
 	entity._spriteMesh = null;
@@ -1477,6 +1496,12 @@ export function R_PolyBlend() {
 	if ( renderer == null )
 		return;
 
+	// Per-pixel liquid optics already supply contents colour. Exclude only
+	// that layer: damage, pickups and powerups retain their full contribution.
+	const opticalLiquid = R_WaterActive() && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 );
+	const blend = opticalLiquid ? v_liquid_blend : v_blend;
+	if ( blend[ 3 ] === 0 && ! R_DemoSplitActive() ) return;
+
 	// create overlay geometry on first use
 	if ( polyBlendScene == null ) {
 
@@ -1490,18 +1515,14 @@ export function R_PolyBlend() {
 			depthWrite: false
 		} );
 		polyBlendMesh = new THREE.Mesh( geometry, material );
+		polyBlendMesh.name = 'quake_screen_blend';
 		polyBlendScene.add( polyBlendMesh );
 
 	}
 
-	// update blend color (values are sRGB from Quake's palette, tell Three.js to convert)
-	polyBlendMesh.material.color.setRGB( v_blend[ 0 ], v_blend[ 1 ], v_blend[ 2 ], THREE.SRGBColorSpace );
-	// In the HDR pipeline the water absorbs light itself, so the game's screen
-	// tint is eased while you are in water or slime; otherwise it buries the view
-	// out of the liquid.  Damage and powerup flashes are unaffected.
-	let opacity = v_blend[ 3 ];
-	if ( R_WaterActive() && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
-		opacity *= 0.45;
+	// Palette colours are sRGB; the overlay material converts them once.
+	polyBlendMesh.material.color.setRGB( blend[ 0 ], blend[ 1 ], blend[ 2 ], THREE.SRGBColorSpace );
+	const opacity = blend[ 3 ];
 	polyBlendMesh.material.opacity = opacity;
 	if ( R_DemoSplitActive() ) {
 
@@ -1517,12 +1538,14 @@ export function R_PolyBlend() {
 				renderer.render( polyBlendScene, polyBlendCamera );
 
 			}
+			polyBlendMesh.material.color.setRGB( v_blend[ 0 ], v_blend[ 1 ], v_blend[ 2 ], THREE.SRGBColorSpace );
 			polyBlendMesh.material.opacity = v_blend[ 3 ];
 			renderer.setScissor( vp.lx + ( R_DemoSplitFull() ? 0 : half ), vp.ly, R_DemoSplitFull() ? vp.lw : vp.lw - half, vp.lh );
 			renderer.render( polyBlendScene, polyBlendCamera );
 
 		} finally {
 
+			polyBlendMesh.material.color.setRGB( blend[ 0 ], blend[ 1 ], blend[ 2 ], THREE.SRGBColorSpace );
 			polyBlendMesh.material.opacity = opacity;
 			renderer.setScissor( scissor ); renderer.setScissorTest( scissorTest );
 
@@ -1597,7 +1620,7 @@ function R_ClassicOn() {
 	const previousPass = R_ClassicPassActive(), previousLook = classicLook.value;
 	const previousEntity = currententity, previousPolys = c_alias_polys;
 	const inScene = _entityMeshesInScene, thisFrame = _entityMeshesThisFrame;
-	const blend = Array.from( v_blend );
+	const blend = Array.from( v_blend ), liquidBlend = Array.from( v_liquid_blend );
 	const restoreScene = R_SaveClassicScene( scene, cl.time );
 	// Install rollback before any preparation can throw.
 	_classicRestore = () => {
@@ -1605,7 +1628,7 @@ function R_ClassicOn() {
 		restoreScene();
 		_entityMeshesInScene = inScene; _entityMeshesThisFrame = thisFrame;
 		currententity = previousEntity; c_alias_polys = previousPolys;
-		for ( let i = 0; i < 4; i ++ ) v_blend[ i ] = blend[ i ];
+		for ( let i = 0; i < 4; i ++ ) { v_blend[ i ] = blend[ i ]; v_liquid_blend[ i ] = liquidBlend[ i ]; }
 		classicLook.value = previousLook;
 		R_AnimSetClassicPass( previousPass );
 
@@ -1706,6 +1729,7 @@ export function R_RenderView() {
 
 	// marks on the world
 	R_DecalsFrame();
+	R_ShellsFrame( cl != null ? cl.time : 0 );
 	R_MistFrame( scene, cl != null ? cl.time : 0 );
 
 	// render normal view
@@ -1957,6 +1981,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_portals );
 	Cvar_RegisterVariable( r_flashlight );
 	Cvar_RegisterVariable( r_decals );
+	Cvar_RegisterVariable( r_newer_weapons );
 	// what the server sends you: through water, and through the windows of the
 	// level's own teleporters (a secret seen through one is there to be seen)
 	SV_SetLiquidLinks( () => {
@@ -2091,6 +2116,11 @@ export function R_NewMap() {
 	R_ClearParticles();
 	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
 	R_DecalsClear();
+	let shellBrushes = [];
+	R_ShellsSetup( { scene, client: () => cl, refresh: () => { shellBrushes = cl_entities.filter( e => e?.model?.name?.startsWith( '*' ) ); },
+		trace: ( a, b, radius ) => R_ShellTrace( cl?.worldmodel, a, b, radius, shellBrushes ),
+		entity: id => cl_entities[ id ], light: p => R_LightPoint( p, cl ) } );
+	R_ShellsNewMap( cl?.worldmodel?.name || '' );
 	R_MistClear();
 	R_ScreenDropsReset();
 	R_MuzzleSetProbe( ( p ) => R_LightPoint( p, cl ) );

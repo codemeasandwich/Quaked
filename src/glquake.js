@@ -366,3 +366,5 @@ export function GL_EndRendering() {
 
 // v_blend for dynamic light blend effects
 export let v_blend = new Float32Array( 4 );
+// Same frame flashes, excluding the legacy contents tint for optical liquids.
+export const v_liquid_blend = new Float32Array( 4 );

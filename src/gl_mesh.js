@@ -1,6 +1,7 @@
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';
+import { R_WeaponAsset, R_WeaponRotorFrame } from './r_weapons.js';
 import { R_NewerAliasMaterial, R_EnemyAliasMaterial } from './r_newerskins.js';
 import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
@@ -653,6 +654,12 @@ const _aliasRY = new THREE.Matrix4();
 const _aliasRX = new THREE.Matrix4();
 const _DEG2RAD = Math.PI / 180;
 
+function weaponAliasFrame( weapon, header, pose ) {
+
+	return weapon ? weapon.templates[ pose ] || weapon.templates[ 0 ] : GL_DrawAliasFrame( header, pose );
+
+}
+
 /*
 =================
 R_DrawAliasModel
@@ -671,24 +678,28 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 	const hasLighting = shadedots && shadelight !== undefined;
 
 	// Get cached template (shared positions/normals/uvs/indices per model+pose)
-	const template = GL_DrawAliasFrame( paliashdr, posenum );
+	const weapon = R_WeaponAsset( entity?.model?.name );
+	let template = weaponAliasFrame( weapon, paliashdr, posenum );
 	if ( ! template )
 		return null;
 
 	// Extra frames: blend the pose being left with the one being entered
-	let blend = null;
+	let blend = null, poseBlend = null;
 	if ( entity != null && R_AnimEnabled() ) {
 
 		const state = R_AliasPoseBlend( entity, paliashdr, posenum, cl ? cl.time : 0, _poseInterval );
+		poseBlend = state;
 		if ( state.blend < 1 && state.from !== state.to ) {
 
-			const from = GL_DrawAliasFrame( paliashdr, state.from );
+			const from = weaponAliasFrame( weapon, paliashdr, state.from );
 			if ( from != null && from.vertexCount === template.vertexCount )
 				blend = { from, t: state.blend };
 
 		}
 
 	}
+	const rotorFrame = R_WeaponRotorFrame( weapon, entity, posenum, poseBlend, cl ? cl.time : 0 );
+	if ( rotorFrame ) { template = rotorFrame; blend = null; }
 
 	// Build or update per-entity geometry (shares template attributes, owns color buffer)
 	let geometry = entity ? entity._aliasGeo : null;
@@ -701,9 +712,10 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 		if ( entity != null ) entity._aliasGeo = geometry;
 
 	}
+	if ( rotorFrame ) geometry.boundingBox = geometry.boundingSphere = null;
 
 	// When pose or model changes, swap to the new template's shared attributes
-	if ( entity._aliasPosenum !== posenum || entity._aliasPaliashdr !== paliashdr ) {
+	if ( entity._aliasPosenum !== posenum || entity._aliasPaliashdr !== paliashdr || entity._aliasTemplate !== template ) {
 
 		if ( blend === null ) {
 
@@ -725,6 +737,8 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 
 		entity._aliasPosenum = posenum;
 		entity._aliasPaliashdr = paliashdr;
+		entity._aliasTemplate = template;
+		geometry.boundingBox = geometry.boundingSphere = null;
 
 	}
 
@@ -790,7 +804,14 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 	}
 
 	// Get cached material
-	const material = R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture );
+	const material = weapon ? weapon.material : R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture );
+	if ( weapon && material._quakeNativeSkin ) {
+
+		const original = R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture ).map;
+		material._quakeNativeSkin.texture.value = original;
+		material._quakeNativeSkin.ready.value = original ? 1 : 0;
+
+	}
 
 	// Get or create mesh for this entity
 	let mesh = entity ? entity._aliasMesh : null;

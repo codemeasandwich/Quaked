@@ -34,6 +34,9 @@ import { SV_SeamlessPlacePlayer } from './sv_seamless.js';
 import { SV_ClientPrintf, SV_BroadcastPrintf,
 	Host_ShutdownServer, Host_Shutdown } from './host.js';
 import { COM_FindFile, COM_EnsureFile } from './pak.js';
+import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from './r_shells.js';
+
+const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 
 export let noclip_anglehack = false;
 
@@ -129,6 +132,7 @@ function Host_Map_f() {
 	}
 
 	cls.demonum = - 1; // stop demo loop in case this fails
+	R_ShellsReset(); // explicit map/new game, unlike seamless level travel
 
 	CL_Disconnect();
 	Host_ShutdownServer( false );
@@ -1011,6 +1015,9 @@ function Host_Savegame_f() {
 	}
 
 	// Store in localStorage
+	// A brace-free trailing comment keeps native version-5 saves compatible.
+	// In the same localStorage value, so gameplay and cosmetic state are atomic.
+	lines.push( SHELL_SAVE_PREFIX + btoa( JSON.stringify( R_ShellsSnapshot() ) ) );
 	const saveData = lines.join( '\n' ) + '\n';
 
 	try {
@@ -1202,6 +1209,14 @@ function Host_Loadgame_f() {
 
 	sv.num_edicts = entnum;
 	sv.time = time;
+	const shellLine = allLines.find( line => line.startsWith( SHELL_SAVE_PREFIX ) );
+	let shellData = null;
+	try { if ( shellLine ) shellData = JSON.parse( atob( shellLine.slice( SHELL_SAVE_PREFIX.length ) ) ); } catch ( error ) {
+
+		Con_Printf( 'Saved shotgun shells could not be restored: %s\n', String( error ) );
+
+	}
+	R_ShellsRestore( shellData );
 
 	for ( let i = 0; i < NUM_SPAWN_PARMS; i ++ ) {
 

@@ -1,5 +1,7 @@
 # Four reference-based water appearances
 
+The subsequent [surface-definition refinement](water-surface-definition-2026-10-02.md) updates reflection/ripple/caustic authoring, underwater optics, capture placement and current verification. Measurements below describe this preceding increment.
+
 This working local increment provides Clear, Tinted, Muddy and Toxic water appearances based on the owner's three supplied images. It builds on the textured-water and flashlight corrections, retaining original texture maps/turbulent UVs, rippled reflections, depth-guided refraction and the live flashlight response. It changes liquid rendering, not level contents, swimming, collision or damage.
 
 ## Trying the result

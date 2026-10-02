@@ -31,14 +31,14 @@ import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_TeleportFx } from './r_teleportfx.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
-import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes } from './r_waterprobe.js';
+import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_normals, r_newer_water } from './r_anim.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
 export const r_bloom = new cvar_t( 'r_bloom', '0.9' );
 export const r_heathaze = new cvar_t( 'r_heathaze', '0.6' ); // the shimmer over lava (0 off)
-export const r_mist = new cvar_t( 'r_mist', '0.6' ); // the toxic mist over slime (0 off)
+export const r_mist = new cvar_t( 'r_mist', '0.6' ); // Muddy surface haze and Toxic vapour (0 off)
 // Water appearance: 0 map defaults, 1 clear, 2 tinted, 3 muddy, 4 toxic.
 // Presentation only: contents, swimming and damage remain the map's contract.
 export const r_water_look = new cvar_t( 'r_water_look', '0', true );
@@ -172,7 +172,7 @@ const HDR_EXPOSURE = 1.3; // the lit parts of a level should read as lit, the re
 const OUTDOOR_EXPOSURE = 0.85; // open daylight needs less gain than a dim interior
 const OUTDOOR_BLOOM_THRESHOLD = 2.4; // the sky itself is bright: only real highlights (lava, lights) glow, not the daylight
 const OUTDOOR_BLOOM = 0.5; // and what does glow is softer under the open sky
-const CAUSTIC = 0.6;
+const CAUSTIC = 0.75; // stronger received-light floor patterns, still subdued in sediment
 const BUMP_LIGHT = 0.3; // how much of the normal map's relief takes the direct light (1 = all of it) // brightness of caustics beneath water
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
@@ -486,16 +486,17 @@ function liquidKind( name ) {
 // Shared optical authoring: one source for materials and generated GLSL.
 // Scattering uses received light. Only the toxic profile has intentional glow.
 export const LIQUID_LOOKS = Object.freeze( [
-	Object.freeze( { name: 'Clear', opacity: 0.12, absorption: [ 0.006, 0.0012, 0.00025 ], scatter: [ 0.035, 0.09, 0.14 ], emission: [ 0, 0, 0 ], caustic: 1.15, refraction: 1 } ),
-	Object.freeze( { name: 'Tinted', opacity: 0.16, absorption: [ 0.0065, 0.0011, 0.0045 ], scatter: [ 0.09, 0.25, 0.06 ], emission: [ 0, 0, 0 ], caustic: 1.05, refraction: 1 } ),
-	Object.freeze( { name: 'Muddy', opacity: 0.28, absorption: [ 0.018, 0.028, 0.042 ], scatter: [ 0.38, 0.22, 0.09 ], emission: [ 0, 0, 0 ], caustic: 0.12, refraction: 0.45 } ),
-	Object.freeze( { name: 'Toxic', opacity: 0.22, absorption: [ 0.017, 0.0028, 0.024 ], scatter: [ 0.15, 0.8, 0.025 ], emission: [ 0.035, 0.20, 0.002 ], caustic: 2.6, refraction: 0.8 } )
+	Object.freeze( { name: 'Clear', opacity: 0.05, absorption: [ 0.006, 0.0012, 0.00025 ], scatter: [ 0.035, 0.09, 0.14 ], emission: [ 0, 0, 0 ], caustic: 1.15, refraction: 1, ripple: 0.70, speed: 0.60 } ),
+	Object.freeze( { name: 'Tinted', opacity: 0.08, absorption: [ 0.0065, 0.0011, 0.0045 ], scatter: [ 0.09, 0.25, 0.06 ], emission: [ 0, 0, 0 ], caustic: 1.05, refraction: 1, ripple: 0.65, speed: 0.55 } ),
+	Object.freeze( { name: 'Muddy', opacity: 0.10, absorption: [ 0.009, 0.014, 0.020 ], scatter: [ 0.38, 0.22, 0.09 ], emission: [ 0, 0, 0 ], caustic: 0.65, refraction: 0.45, ripple: 0.60, speed: 0.50 } ),
+	Object.freeze( { name: 'Toxic', opacity: 0.22, absorption: [ 0.017, 0.0028, 0.024 ], scatter: [ 0.15, 0.8, 0.025 ], emission: [ 0.035, 0.20, 0.002 ], caustic: 2.6, refraction: 0.8, ripple: 0.80, speed: 0.70 } )
 ] );
 
-export function R_LiquidLookIndex( kind ) {
+export function R_LiquidLookIndex( kind, mapLook = 0 ) {
 
 	if ( kind === 1 ) return 3; // actual slime always retains its hazard identity
 	const choice = Number.isFinite( r_water_look.value ) ? Math.round( r_water_look.value ) : 0;
+	if ( choice === 0 ) return mapLook;
 	return Math.max( 0, Math.min( 3, choice - 1 ) );
 
 }
@@ -504,8 +505,14 @@ export function R_LiquidOpacity( name, fallback ) {
 
 	if ( r_newer_water.value === 0 ) return fallback;
 	const kind = liquidKind( name );
-	return kind < 0 ? fallback : LIQUID_LOOKS[ R_LiquidLookIndex( kind ) ].opacity;
+	return kind < 0 ? fallback : LIQUID_LOOKS[ R_LiquidLookIndex( kind, liquidMapLook( name ) ) ].opacity;
 
+}
+
+// Stock E1M3's brown sediment water is authored by its texture identity.
+// This affects optics only; contents, movement and damage remain map-owned.
+function liquidMapLook( name ) {
+	return name.toLowerCase() === '*04water1' ? 2 : 0;
 }
 
 // Generated constants keep the GPU's optical values identical to the material
@@ -513,7 +520,7 @@ export function R_LiquidOpacity( name, fallback ) {
 const liquidLookGLSL = [ [ 'Absorption', 'absorption' ], [ 'Scatter', 'scatter' ], [ 'Emission', 'emission' ] ].map( ( [ fn, field ] ) =>
 	`vec3 liquid${fn}( float look ) {
 ` + LIQUID_LOOKS.map( ( p, i ) => `if ( look < ${i + .5} ) return vec3( ${p[ field ].map( n => n.toFixed( 6 ) ).join( ', ' )} );` ).join( '\n' ) + '\nreturn vec3( 0.0 );\n}\n' ).join( '\n' ) +
-	[ [ 'Caustic', 'caustic' ], [ 'Refraction', 'refraction' ] ].map( ( [ fn, field ] ) =>
+	[ [ 'Caustic', 'caustic' ], [ 'Refraction', 'refraction' ], [ 'Ripple', 'ripple' ], [ 'Speed', 'speed' ] ].map( ( [ fn, field ] ) =>
 		`float liquid${fn}( float look ) {
 ` + LIQUID_LOOKS.map( ( p, i ) => `if ( look < ${i + .5} ) return ${p[ field ].toFixed( 6 )};` ).join( '\n' ) + '\nreturn 0.0;\n}\n' ).join( '\n' );
 
@@ -528,7 +535,7 @@ function mergeLiquidFaces( faces ) {
 		for ( let j = i + 1; j < faces.length; j ++ ) {
 
 			const a = faces[ i ], b = faces[ j ];
-			if ( a.kind !== b.kind || Math.abs( a.z - b.z ) > 1.5 ) continue;
+			if ( a.kind !== b.kind || a.mapLook !== b.mapLook || Math.abs( a.z - b.z ) > 1.5 ) continue;
 			if ( a.min[ 0 ] > b.max[ 0 ] + 24 || b.min[ 0 ] > a.max[ 0 ] + 24 ) continue;
 			if ( a.min[ 1 ] > b.max[ 1 ] + 24 || b.min[ 1 ] > a.max[ 1 ] + 24 ) continue;
 			parent[ find( i ) ] = find( j );
@@ -545,10 +552,11 @@ function mergeLiquidFaces( faces ) {
 		const m = merged.get( r );
 		if ( m === undefined ) {
 
-			merged.set( r, { kind: f.kind, min: f.min.slice(), max: f.max.slice(), z: f.z } );
+			merged.set( r, { kind: f.kind, mapLook: f.mapLook || 0, min: f.min.slice(), max: f.max.slice(), z: f.z, probePoints: f.probePoint ? [ f.probePoint ] : [] } );
 
 		} else {
 
+			if ( f.probePoint ) m.probePoints.push( f.probePoint );
 			for ( let a = 0; a < 2; a ++ ) {
 
 				m.min[ a ] = Math.min( m.min[ a ], f.min[ a ] );
@@ -799,7 +807,9 @@ export function R_BuildWorldLights( model ) {
 				const box = polyBounds( surf );
 				if ( info != null && box != null ) {
 
-					liquidFaces.push( { kind: liquid, min: [ box[ 0 ], box[ 1 ] ], max: [ box[ 3 ], box[ 4 ] ], z: info.center[ 2 ] } );
+					const probePoint = [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] + WATER_PROBE_LIFT ];
+					const validProbe = Mod_PointInLeaf( probePoint, model ).contents === - 1;
+					liquidFaces.push( { kind: liquid, mapLook: liquidMapLook( surf.texinfo.texture.name ), min: [ box[ 0 ], box[ 1 ] ], max: [ box[ 3 ], box[ 4 ] ], z: info.center[ 2 ], probePoint: validProbe ? probePoint : null } );
 
 					// the air above this face and the liquid just below it
 					const above = Mod_PointInLeaf( [ info.center[ 0 ], info.center[ 1 ], info.center[ 2 ] + 4 ], model );
@@ -1560,6 +1570,7 @@ uniform float uContrastGain;
 uniform float uContrastPivot;
 uniform float uTime;
 uniform float uCaustic;
+uniform float uUnderwater;
 uniform samplerCube tProbeA;
 uniform samplerCube tProbeB;
 uniform vec3 uProbeCenter[ 2 ];
@@ -1573,6 +1584,7 @@ uniform vec4 uLavaMax[ 4 ];
 uniform float uHeat;
 uniform float uReflect;
 uniform int uWaterCount;
+uniform float uMist;
 uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
 uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner, w = optical look
 
@@ -1599,6 +1611,34 @@ vec3 viewPosAt( vec2 uv ) {
 	float d = texture2D( tDepth, uv ).x;
 	vec4 p = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );
 	return p.xyz / p.w;
+}
+
+// Share ordinary point/torch receiver lighting with confirmed water SSR
+// hits. Cheap incident estimates rank candidates before any shadow sampling.
+vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
+	vec3 L = uLightPos[ index ].xyz - P;
+	float distance = length( L ), range = uLightCol[ index ].w;
+	if ( distance >= range ) return vec3( 0.0 );
+	float facing = max( dot( normal, L / max( distance, 0.001 ) ), 0.0 );
+	if ( facing <= 0.0 ) return vec3( 0.0 );
+	float fall = 1.0 / ( 1.0 + distance * distance / ( 60.0 * 60.0 ) );
+	fall *= 1.0 - smoothstep( 0.55 * range, range, distance );
+	return uLightCol[ index ].rgb * uLightSurface * facing * fall;
+}
+
+float pointSurfaceVisibility( vec3 P, vec3 normal, int index ) {
+	float visibility = 0.0;
+	for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
+		float fraction = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
+		vec3 Q = mix( P + normal * 2.0, uLightPos[ index ].xyz, fraction * 0.95 );
+		if ( Q.z > - uNear ) { visibility += 1.0; continue; }
+		vec4 clip = uProj * vec4( Q, 1.0 );
+		vec2 uv = clip.xy / clip.w * 0.5 + 0.5;
+		if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { visibility += 1.0; continue; }
+		visibility += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
+	}
+	visibility /= float( RELIGHT_STEPS );
+	return visibility * visibility;
 }
 
 // Reuse the solid receiver's cone, falloff and shadow test for reflected
@@ -1638,24 +1678,44 @@ vec3 depthSurfaceNormal( vec2 uv, vec3 P ) {
 	return dot( N, P ) > 0.0 ? - N : N;
 }
 
-// SSR reads the scene before deferred flashlight lighting. Light the real
-// opaque hit's authored colour too; sky and live portals stay as drawn.
-vec3 flashlightReflectionAt( vec2 uv ) {
-	vec3 colour = texture2D( tScene, uv ).rgb;
-	if ( uSpotOn < 0.5 || texture2D( tDepth, uv ).x >= 0.99999 ) return colour;
+// SSR reads the pre-deferred scene. Shade valid opaque reflected receivers
+// with the same material/lighting policy, once AFTER a successful ray hit.
+// Rank up to eight incident candidates, shadow only the strongest three.
+vec3 litReflectionAt( vec2 uv ) {
+	vec3 scene = texture2D( tScene, uv ).rgb;
+	if ( uLighting < 0.5 || ( uCount == 0 && uSpotOn < 0.5 ) || texture2D( tDepth, uv ).x >= 0.99999 ) return scene;
+	vec4 g = texture2D( tNormal, uv ), base = texture2D( tAlbedo, uv );
+	if ( g.a < - 0.5 || base.a < 0.5 ) return scene;
 	vec3 P = viewPosAt( uv );
-	// Most reflected hits are outside the beam. Avoid their albedo/normal
-	// reconstruction and shadow reads entirely.
-	if ( dot( normalize( P - uSpotPos ), uSpotDir ) <= uSpotCone.x ) return colour;
-	vec4 g = texture2D( tNormal, uv );
-	vec4 base = texture2D( tAlbedo, uv );
-	if ( g.a < - 0.5 || base.a < 0.5 ) return colour;
+	if ( - P.z < 8.0 ) return scene;
+	// A flashlight-only miss needs no receiver reconstruction.
+	if ( uCount == 0 && dot( normalize( P - uSpotPos ), uSpotDir ) <= uSpotCone.x ) return scene;
 	vec3 Ng = depthSurfaceNormal( uv, P );
-	vec3 N = g.a > 0.0 ? normalize( g.rgb * 2.0 - 1.0 ) : Ng;
+	// Transparent overlays may leave a blended normal from another depth.
+	vec3 N = abs( g.a + P.z ) < 0.025 * ( - P.z ) + 1.0 ? normalize( g.rgb * 2.0 - 1.0 ) : Ng;
 	if ( dot( N, P ) > 0.0 ) N = - N;
 	vec3 Nl = normalize( mix( Ng, N, uBumpLight ) );
-	float ndl = max( dot( Nl, normalize( uSpotPos - P ) ), 0.0 );
-	if ( ndl > 0.0 ) colour += base.rgb * uSpotCol * 1.15 * ndl * flashlightIrradiance( P, Ng );
+	int first = - 1, second = - 1, third = - 1;
+	float scoreA = 0.0, scoreB = 0.0, scoreC = 0.0;
+	for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
+		if ( i >= uCount ) break;
+		float score = dot( pointSurfaceIncident( P, Nl, i ), vec3( 0.2126, 0.7152, 0.0722 ) );
+		if ( score > scoreA ) { third = second; scoreC = scoreB; second = first; scoreB = scoreA; first = i; scoreA = score; }
+		else if ( score > scoreB ) { third = second; scoreC = scoreB; second = i; scoreB = score; }
+		else if ( score > scoreC ) { third = i; scoreC = score; }
+	}
+	vec3 relit = vec3( 0.0 ), flash = vec3( 0.0 );
+	for ( int k = 0; k < 3; k ++ ) {
+		int index = k == 0 ? first : ( k == 1 ? second : third );
+		if ( index < 0 ) continue;
+		vec3 light = pointSurfaceIncident( P, Nl, index ) * pointSurfaceVisibility( P, Ng, index );
+		relit += light; flash += light * uLightAdd[ index ];
+	}
+	vec3 colour = scene * ( 1.0 + relit ) + relit * uLightFloor * base.rgb + flash * ( base.rgb * 0.3 + scene * 0.6 );
+	if ( uSpotOn > 0.5 ) {
+		float facing = max( dot( Nl, normalize( uSpotPos - P ) ), 0.0 );
+		if ( facing > 0.0 ) colour += base.rgb * uSpotCol * 1.15 * facing * flashlightIrradiance( P, Ng );
+	}
 	return colour;
 }
 
@@ -1679,16 +1739,17 @@ float waterFlashlightSpecular( vec3 P, vec3 N, vec3 V ) {
 // Crossing capillary ripples share world coordinates across every face of a
 // pool. The derivative of wave height bends reflections and refraction alike.
 // Fade wavelengths smaller than a few scene pixels to avoid distant sparkle.
-vec3 waterRippleNormal( vec2 p, float distance ) {
+vec3 waterRippleNormal( vec2 p, float distance, float look ) {
+	float time = uTime * liquidSpeed( look );
 	float footprint = distance * 2.0 * uTexel.y / max( uProj[ 1 ][ 1 ], 0.2 );
 	vec2 slope = vec2( 0.0 );
 	vec2 a = vec2( 0.8, 0.6 );
 	vec2 b = vec2( - 0.45, 0.893 );
 	vec2 c = vec2( 0.933, - 0.36 );
-	slope += a * 0.046 * cos( dot( p, a ) * 0.07 + uTime * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
-	slope += b * 0.046 * cos( dot( p, b ) * 0.145 - uTime * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
-	slope += c * 0.044 * cos( dot( p, c ) * 0.29 + uTime * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
-	return normalize( vec3( - slope, 1.0 ) );
+	slope += a * 0.055 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
+	slope += b * 0.015 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
+	slope += c * 0.009 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
+	return normalize( vec3( - slope * liquidRipple( look ), 1.0 ) );
 }
 
 // Bend the submerged scene before its albedo, normals and deferred lighting
@@ -1697,26 +1758,31 @@ vec3 waterRippleNormal( vec2 p, float distance ) {
 vec2 waterRefractionUv( vec2 uv ) {
 	if ( uWaterCount == 0 || texture2D( tNormal, uv ).a < - 0.5 ) return uv;
 	float rawDepth = texture2D( tDepth, uv ).x;
-	if ( rawDepth >= 0.99999 ) return uv;
+	bool sky = rawDepth >= 0.99999;
 	vec3 P = viewPosAt( uv );
 	vec3 cam = uViewInv[ 3 ].xyz;
 	vec3 hit = ( uViewInv * vec4( P, 1.0 ) ).xyz;
 	vec3 ray = normalize( hit - cam );
-	if ( ray.z >= - 0.001 ) return uv;
+	if ( abs( ray.z ) < 0.001 ) return uv;
 	for ( int i = 0; i < ${MAX_LIQUID_REGIONS}; i ++ ) {
 		if ( i >= uWaterCount ) break;
 		vec4 lo = uWaterMin[ i ];
 		vec4 hi = uWaterMax[ i ];
-		if ( cam.z <= lo.z || hit.z >= lo.z - 0.5 ) continue;
+		bool below = uUnderwater > 0.5 && cam.z < lo.z && cam.z > lo.z - 900.0 && cam.x > lo.x && cam.x < hi.x && cam.y > lo.y && cam.y < hi.y;
+		if ( below ) {
+			if ( ray.z <= 0.001 || ( ! sky && hit.z <= lo.z + 0.5 ) ) continue;
+		} else if ( sky || cam.z <= lo.z || ray.z >= - 0.001 || hit.z >= lo.z - 0.5 ) continue;
 		float tp = ( lo.z - cam.z ) / ray.z;
 		vec3 hp = cam + ray * tp;
 		float shore = min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) );
 		if ( tp <= 0.0 || shore <= 0.0 || tp >= length( hit - cam ) ) continue;
-		vec3 n = waterRippleNormal( hp.xy, tp );
-		vec3 bent = refract( ray, n, 1.0 / 1.333 );
-		float depth = min( lo.z - hit.z, 192.0 );
-		vec3 target = hp + bent * ( depth / max( - bent.z, 0.1 ) );
-		vec3 straight = hp + ray * ( depth / max( - ray.z, 0.1 ) );
+		vec3 n = waterRippleNormal( hp.xy, tp, hi.w ) * ( below ? - 1.0 : 1.0 );
+		vec3 bent = refract( ray, n, below ? 1.333 : 1.0 / 1.333 );
+		// Outside the underwater Snell window there is no transmitted ray.
+		if ( dot( bent, bent ) < 0.0001 ) return uv;
+		float depth = min( abs( lo.z - hit.z ), 192.0 );
+		vec3 target = hp + bent * ( depth / max( abs( bent.z ), 0.1 ) );
+		vec3 straight = hp + ray * ( depth / max( abs( ray.z ), 0.1 ) );
 		mat3 toView = transpose( mat3( uViewInv ) );
 		vec4 qb = uProj * vec4( toView * ( target - cam ), 1.0 );
 		vec4 qs = uProj * vec4( toView * ( straight - cam ), 1.0 );
@@ -1724,12 +1790,38 @@ vec2 waterRefractionUv( vec2 uv ) {
 		vec2 limit = vec2( 0.012 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.012 );
 		vec2 candidate = uv + clamp( offset, - limit, limit ) * smoothstep( 0.0, 6.0, shore ) * liquidRefraction( hi.w );
 		if ( any( lessThan( candidate, vec2( 0.0 ) ) ) || any( greaterThan( candidate, vec2( 1.0 ) ) ) ) return uv;
-		if ( texture2D( tDepth, candidate ).x >= 0.99999 || texture2D( tNormal, candidate ).a < - 0.5 ) return uv;
+		if ( texture2D( tNormal, candidate ).a < - 0.5 ) return uv;
+		bool candidateSky = texture2D( tDepth, candidate ).x >= 0.99999;
+		if ( candidateSky && ( ! below || ! sky ) ) return uv;
 		vec3 checkHit = ( uViewInv * vec4( viewPosAt( candidate ), 1.0 ) ).xyz;
-		if ( checkHit.z >= lo.z - 0.5 || checkHit.x < lo.x || checkHit.x > hi.x || checkHit.y < lo.y || checkHit.y > hi.y ) return uv;
+		if ( below ) {
+			if ( checkHit.z <= lo.z + 0.5 ) return uv;
+			vec3 candidateRay = normalize( checkHit - cam );
+			if ( candidateRay.z <= 0.001 ) return uv;
+			float candidateDistance = ( lo.z - cam.z ) / candidateRay.z;
+			vec3 candidateSurface = cam + candidateRay * candidateDistance;
+			if ( candidateDistance <= 0.0 || candidateDistance >= length( checkHit - cam )
+				|| candidateSurface.x <= lo.x || candidateSurface.x >= hi.x || candidateSurface.y <= lo.y || candidateSurface.y >= hi.y ) return uv;
+			if ( sky && ! candidateSky ) return uv;
+		} else if ( checkHit.z >= lo.z - 0.5 || checkHit.x < lo.x || checkHit.x > hi.x || checkHit.y < lo.y || checkHit.y > hi.y ) return uv;
 		return candidate;
 	}
 	return uv;
+}
+
+// Keep normal-incidence clarity, but broaden the above-water grazing response
+// for the reference's visible surface. From below use water-to-air dielectric
+// Fresnel, including total internal reflection outside the ~49-degree window.
+float waterInterfaceReflectance( float cosine, bool below ) {
+	float c = clamp( cosine, 0.0, 1.0 );
+	if ( ! below ) return 0.02 + 0.98 * pow( 1.0 - c, 2.5 );
+	const float eta = 1.333;
+	float transmittedSin2 = eta * eta * ( 1.0 - c * c );
+	if ( transmittedSin2 >= 1.0 ) return 1.0;
+	float ct = sqrt( max( 0.0, 1.0 - transmittedSin2 ) );
+	float rs = ( eta * c - ct ) / max( eta * c + ct, 0.0001 );
+	float rp = ( eta * ct - c ) / max( eta * ct + c, 0.0001 );
+	return ( rs * rs + rp * rp ) * 0.5;
 }
 
 // keeps values under the knee untouched; rolls highlights off toward white
@@ -1825,6 +1917,22 @@ vec3 probeColor( int which, vec3 hp, vec3 rW ) {
 	float dist = min( min( farT.x, farT.y ), farT.z );
 	vec3 dir = normalize( hp + rW * max( dist, 0.0 ) - uProbeCenter[ which ] );
 	return which == 0 ? textureCube( tProbeA, dir ).rgb : textureCube( tProbeB, dir ).rgb;
+}
+
+// Ineligible depth is empty space for an SSR crossing, including the floor
+// beneath an above-water ray. Each query uses one existing depth sample.
+float reflectionDistanceAt( vec2 uv, bool below, vec4 lo, vec4 hi ) {
+	if ( any( lessThan( uv, vec2( 0.0 ) ) ) || any( greaterThan( uv, vec2( 1.0 ) ) ) ) return 1e6;
+	float depth = texture2D( tDepth, uv ).x;
+	if ( depth >= 0.99999 ) return 1e6;
+	vec4 decoded = uProjInv * vec4( uv * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0 );
+	vec3 P = decoded.xyz / decoded.w;
+	if ( - P.z < 8.0 ) return 1e6;
+	vec3 world = ( uViewInv * vec4( P, 1.0 ) ).xyz;
+	if ( below ) {
+		if ( world.z >= lo.z || world.x < lo.x || world.x > hi.x || world.y < lo.y || world.y > hi.y ) return 1e6;
+	} else if ( world.z < lo.z - 0.5 ) return 1e6;
+	return - P.z;
 }
 
 void main() {
@@ -1956,29 +2064,9 @@ void main() {
 			float jit = noise( gl_FragCoord.xy );
 			for ( int i = 0; i < ${MAX_VOLUME_LIGHTS}; i ++ ) {
 				if ( i >= uCount ) break;
-				vec3 L = uLightPos[ i ].xyz - P;
-				float dist = length( L );
-				float range = uLightCol[ i ].w;
-				if ( dist > range ) continue;
-				float ndl = max( dot( Nl, L / dist ), 0.0 );
-				if ( ndl <= 0.0 ) continue;
-
-				float fall = 1.0 / ( 1.0 + dist * dist / ( 60.0 * 60.0 ) );
-				fall *= 1.0 - smoothstep( 0.55 * range, range, dist );
-
-				float vis = 0.0;
-				for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
-					float s = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
-					vec3 Q = mix( P + Ng * 2.0, uLightPos[ i ].xyz, s * 0.95 );
-					if ( Q.z > - uNear ) { vis += 1.0; continue; }
-					vec4 cq = uProj * vec4( Q, 1.0 );
-					vec2 uv = cq.xy / cq.w * 0.5 + 0.5;
-					if ( uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0 ) { vis += 1.0; continue; }
-					vis += sceneDist( uv ) < ( - Q.z ) - ( 5.0 + 0.012 * ( - Q.z ) ) ? 0.0 : 1.0;
-				}
-				vis /= float( RELIGHT_STEPS );
-
-				vec3 lightHere = uLightCol[ i ].rgb * uLightSurface * ndl * fall * vis * vis;
+				vec3 incident = pointSurfaceIncident( P, Nl, i );
+				if ( dot( incident, vec3( 1.0 ) ) <= 0.0 ) continue;
+				vec3 lightHere = incident * pointSurfaceVisibility( P, Ng, i );
 				relit += lightHere;
 				flashAdd += lightHere * uLightAdd[ i ];
 			}
@@ -2097,7 +2185,33 @@ void main() {
 			vec3 tf = max( t1, t2 );
 			float tEnter = max( max( tn.x, tn.y ), max( tn.z, 0.0 ) );
 			float tExit = min( min( tf.x, tf.y ), min( tf.z, D ) );
+			bool muddy = look > 1.5 && look < 2.5;
+			// A bounded, low sediment layer borrows real incident light. It is
+			// optical scattering, not Toxic's additive particles or emission.
+			float sedimentLight = 0.0, sedimentPath = 0.0;
+			if ( muddy && camW.z > top && texture2D( tNormal, uvd ).a > - 0.5 ) {
+				vec3 fogMin = vec3( lo.xy, top ), fogMax = vec3( hi.xy, top + 18.0 );
+				vec3 f1 = ( fogMin - camW ) * inv, f2 = ( fogMax - camW ) * inv;
+				vec3 fn = min( f1, f2 ), ff = max( f1, f2 );
+				float enter = max( max( fn.x, fn.y ), max( fn.z, 0.0 ) );
+				float exit = min( min( ff.x, ff.y ), min( ff.z, D ) );
+				if ( exit > enter ) {
+					vec3 sampleW = camW + dirW * ( enter + exit ) * 0.5;
+					vec3 sampleV = transpose( mat3( uViewInv ) ) * ( sampleW - camW );
+					vec3 up = transpose( mat3( uViewInv ) ) * vec3( 0.0, 0.0, 1.0 );
+					float strongest = 0.0; int source = - 1;
+					if ( uLighting > 0.5 ) for ( int j = 0; j < ${MAX_VOLUME_LIGHTS}; j ++ ) {
+						if ( j >= uCount ) break;
+						float value = dot( pointSurfaceIncident( sampleV, up, j ), vec3( 0.2126, 0.7152, 0.0722 ) );
+						if ( value > strongest ) { strongest = value; source = j; }
+					}
+					if ( source >= 0 ) sedimentLight = strongest * pointSurfaceVisibility( sampleV, up, source );
+					float margin = min( min( sampleW.x - lo.x, hi.x - sampleW.x ), min( sampleW.y - lo.y, hi.y - sampleW.y ) );
+					sedimentPath = min( exit - enter, 240.0 ) * smoothstep( 0.0, 12.0, margin );
+				}
+			}
 
+			vec3 transmittedReceiver = c;
 			if ( tExit > tEnter ) {
 				vec3 sigma = liquidAbsorption( look );
 				float received = max( dot( c, vec3( 0.2126, 0.7152, 0.0722 ) ), 0.0 );
@@ -2109,15 +2223,19 @@ void main() {
 					for ( int tap = 0; tap < 4; tap ++ ) {
 						float angle = float( tap ) * 1.570796;
 						vec2 uv = clamp( uvd + vec2( cos( angle ), sin( angle ) ) * uTexel * 14.0, uTexel, vec2( 1.0 ) - uTexel );
+						// Pair radiance with the exact depth texel being classified.
+						// Linear colour filtering must not leak a dry marker into fog.
+						uv = ( floor( uv / uTexel ) + 0.5 ) * uTexel;
 						if ( texture2D( tDepth, uv ).x >= 0.99999 || texture2D( tNormal, uv ).a < - 0.5 ) continue;
 						vec3 point = ( uViewInv * vec4( viewPosAt( uv ), 1.0 ) ).xyz;
 						if ( point.z >= top - 0.5 || point.x < lo.x || point.x > hi.x || point.y < lo.y || point.y > hi.y ) continue;
 						softLight += dot( texture2D( tScene, uv ).rgb, vec3( 0.2126, 0.7152, 0.0722 ) ); weight += 1.0;
 					}
 					float direct = max( received - dot( scene, vec3( 0.2126, 0.7152, 0.0722 ) ), 0.0 );
-					received = softLight / weight + direct;
+					received = max( softLight / weight + direct, sedimentLight * 0.45 );
 				}
 				vec3 T = exp( - sigma * ( tExit - tEnter ) );
+				transmittedReceiver = c * T;
 				// Ordinary water scatters received light. Toxic liquid alone emits.
 				c = c * T + ( liquidScatter( look ) * received + liquidEmission( look ) ) * ( 1.0 - T );
 			}
@@ -2132,16 +2250,20 @@ void main() {
 				float facing = 0.06 + 0.94 * smoothstep( 0.3, 0.9, Nw.z ); // on floors, not the walls
 				float fade = exp( - depth / 420.0 ) * smoothstep( 6.0, 40.0, depth );
 				vec3 glow = toxic ? vec3( 0.35, 1.0, 0.16 ) : vec3( 1.0 );
-				c += c * glow * cs * uCaustic * facing * fade * liquidCaustic( look );
+				// Sediment itself must not acquire the floor's caustic pattern.
+				// Only the transmitted Muddy receiver carries it, fading with path.
+				c += ( muddy ? transmittedReceiver : c ) * glow * cs * uCaustic * facing * fade * liquidCaustic( look );
 			}
 
 			// Reflection: water gives back the picture of what is above it, more at a low angle than looking straight down.
 			// The reflected ray is marched across the screen against what is already drawn.
-			if ( ( uReflect > 0.0 || uSpotOn > 0.5 ) && camW.z > top && dirW.z < - 0.001 ) {
+			bool belowSurface = uUnderwater > 0.5 && camW.z < top && camW.z > top - 900.0 && camW.x > lo.x && camW.x < hi.x && camW.y > lo.y && camW.y < hi.y;
+			bool towardSurface = belowSurface ? dirW.z > 0.001 : camW.z > top && dirW.z < - 0.001;
+			if ( ( uReflect > 0.0 || uSpotOn > 0.5 ) && towardSurface && texture2D( tNormal, uvd ).a > - 0.5 ) {
 				float tp = ( top - camW.z ) / dirW.z;
 				vec3 hp = camW + dirW * tp;
-				if ( tp > 0.0 && tp < D + 2.0 && hp.x > lo.x && hp.x < hi.x && hp.y > lo.y && hp.y < hi.y ) {
-					vec3 nW = waterRippleNormal( hp.xy, tp );
+				if ( tp > 0.0 && tp < ( belowSurface ? D - 0.25 : D + 2.0 ) && hp.x > lo.x && hp.x < hi.x && hp.y > lo.y && hp.y < hi.y ) {
+					vec3 nW = waterRippleNormal( hp.xy, tp, hi.w ) * ( belowSurface ? - 1.0 : 1.0 );
 					float edge = smoothstep( 0.0, 6.0, min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) ) );
 					mat3 toView = transpose( mat3( uViewInv ) );
 					vec3 hv = toView * ( hp - camW );
@@ -2157,12 +2279,28 @@ void main() {
 						// nothing found on the screen: what the pool's probe shows (or a dark sky if it has none yet)
 						int pr = uProbeOf[ i ];
 						vec3 fallback = vec3( 0.0 );
-						if ( pr >= 0 ) fallback = probeColor( pr, hp, rW );
+						// Existing probes are captured above the pool. An internal fallback
+						// may only look DOWN at captured submerged radiance, never up at sky.
+						if ( pr >= 0 && ( ! belowSurface || rW.z < - 0.001 ) ) {
+							fallback = probeColor( pr, hp, rW );
+							if ( look > 1.5 && look < 2.5 ) {
+								vec3 spread = vec3( 0.035, 0.0, 0.0 );
+								fallback = fallback * 0.6 + ( probeColor( pr, hp, normalize( rW + spread ) ) + probeColor( pr, hp, normalize( rW - spread ) ) ) * 0.2;
+							}
+						}
 						vec3 refl = fallback;
 						float found = 0.0;
+						bool refinedCrossing = false;
 						float stepLen = 10.0;
 						vec3 pv = hv + rv * 6.0 * ( 0.6 + 0.8 * jit0 );
+						float previousGap = - 1e6;
+						if ( uScreenReflect > 0.0 && pv.z <= - uNear ) {
+							vec4 initial = uProj * vec4( pv, 1.0 );
+							previousGap = - pv.z - reflectionDistanceAt( initial.xy / initial.w * 0.5 + 0.5, belowSurface, lo, hi );
+						}
 						if ( uScreenReflect > 0.0 ) for ( int k = 0; k < 28; k ++ ) {
+							vec3 previous = pv;
+							float gapBefore = previousGap;
 							pv += rv * stepLen;
 							stepLen *= 1.16;
 							if ( pv.z > - uNear ) break;
@@ -2171,25 +2309,68 @@ void main() {
 							if ( uvq.x < 0.0 || uvq.x > 1.0 || uvq.y < 0.0 || uvq.y > 1.0 ) break;
 							float dq = texture2D( tDepth, uvq ).x;
 							if ( dq >= 0.99999 ) {
-								// the sky
+								// Internal reflection stays in water: an above-sky hit is invalid.
+								if ( belowSurface ) break;
 								refl = mix( fallback, texture2D( tScene, uvq ).rgb, uScreenReflect );
 								found = 1.0;
 								break;
 							}
-							float gap = - pv.z - ( - viewPosAt( uvq ).z );
+							vec3 qView = viewPosAt( uvq );
+							if ( - qView.z < 8.0 ) break; // viewmodel's special depth range is not reflected geometry
+							float gap = - pv.z + qView.z;
+							vec3 coarseWorld = ( uViewInv * vec4( qView, 1.0 ) ).xyz;
+							bool eligible = belowSurface ? coarseWorld.z < top && coarseWorld.x >= lo.x && coarseWorld.x <= hi.x && coarseWorld.y >= lo.y && coarseWorld.y <= hi.y : coarseWorld.z >= top - 0.5;
+							previousGap = eligible ? gap : - 1e6;
+							if ( ! eligible ) { if ( belowSurface ) break; else continue; }
 							if ( gap > 0.0 && gap < 60.0 + stepLen ) {
-								refl = mix( fallback, flashlightReflectionAt( uvq ), uScreenReflect * smoothstep( 0.0, 0.08, min( min( uvq.x, 1.0 - uvq.x ), min( uvq.y, 1.0 - uvq.y ) ) ) );
+								if ( gapBefore > 0.0 ) continue; // no front-to-back crossing
+								// Resolve the crossing before reading colour: the coarse
+								// step can jump past a narrow lamp onto the wall behind it.
+								// At most five extra depth taps for this entire reflected ray.
+								if ( ! refinedCrossing ) {
+									refinedCrossing = true;
+									vec3 before = previous, after = pv;
+									for ( int refine = 0; refine < 5; refine ++ ) {
+										vec3 middle = ( before + after ) * 0.5;
+										vec4 clip = uProj * vec4( middle, 1.0 );
+										vec2 sampleUv = clip.xy / clip.w * 0.5 + 0.5;
+										if ( middle.z > - uNear || any( lessThan( sampleUv, vec2( 0.0 ) ) ) || any( greaterThan( sampleUv, vec2( 1.0 ) ) ) ) { before = middle; continue; }
+										float distance = reflectionDistanceAt( sampleUv, belowSurface, lo, hi );
+										if ( - middle.z > distance ) after = middle; else before = middle;
+								}
+								vec4 refined = uProj * vec4( after, 1.0 );
+								uvq = refined.xy / refined.w * 0.5 + 0.5;
+									qView = viewPosAt( uvq );
+								if ( - qView.z < 8.0 ) break;
+								}
+								if ( belowSurface ) {
+									vec3 qWorld = ( uViewInv * vec4( qView, 1.0 ) ).xyz;
+									if ( qWorld.z >= top || qWorld.x < lo.x || qWorld.x > hi.x || qWorld.y < lo.y || qWorld.y > hi.y ) break;
+								} else if ( ( uViewInv * vec4( qView, 1.0 ) ).z < top - 0.5 ) {
+									// A wide depth tolerance can encounter the submerged floor
+									// before the actual wall/marker. Keep seeking an air-side hit.
+									continue;
+								}
+								refl = mix( fallback, litReflectionAt( uvq ), uScreenReflect * smoothstep( 0.0, 0.08, min( min( uvq.x, 1.0 - uvq.x ), min( uvq.y, 1.0 - uvq.y ) ) ) );
 								found = 1.0;
 								break;
 							}
 						}
 						float cosT = clamp( dot( - dirW, nW ), 0.0, 1.0 );
-						float fres = 0.02 + 0.98 * pow( 1.0 - cosT, 5.0 );
-						float k = clamp( fres * 1.45 * uReflect * edge, 0.0, 0.96 );
+						float fres = waterInterfaceReflectance( cosT, belowSurface );
+						float k = clamp( fres * 1.65 * uReflect * edge, 0.0, 0.98 );
+						// TIR has no air transmission. Reflection-off remains an explicit
+						// optics opt-out, but a lower enabled strength cannot open the window.
+						if ( belowSurface && fres >= 1.0 ) k = 1.0;
+						if ( belowSurface ) refl *= exp( - liquidAbsorption( look ) * tp );
 						c = mix( c, min( refl, vec3( 8.0 ) ), k );
 					}
 					c += surfaceLight;
 				}
+			}
+			if ( muddy && sedimentPath > 0.0 ) {
+				float haze = 1.0 - exp( - sedimentPath * 0.0012 * clamp( uMist, 0.0, 1.5 ) );
+				c = mix( c, liquidScatter( look ) * sedimentLight, haze );
 			}
 
 			// below the surface of a pool: no outlines (the pool's walls stand on its edge, so a margin)
@@ -2415,7 +2596,7 @@ function createPipeline() {
 			uContrastGain: { value: 1.4 },
 			uContrastPivot: { value: 0.12 },
 			uTime: { value: 0 },
-			uCaustic: { value: CAUSTIC },
+			uCaustic: { value: CAUSTIC }, uUnderwater: { value: 0 },
 			tProbeA: { value: null },
 			tProbeB: { value: null },
 			uProbeCenter: { value: [ new THREE.Vector3(), new THREE.Vector3() ] },
@@ -2429,6 +2610,7 @@ function createPipeline() {
 			uHeat: { value: 0.6 },
 			uReflect: { value: 0.6 },
 			uWaterCount: { value: 0 },
+			uMist: { value: 0 },
 			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
 			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }
 		}, shared ) ),
@@ -2797,12 +2979,13 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	ranked.sort( ( a, b ) => a.dist - b.dist );
 	const waterCount = r_newer_water.value !== 0 ? Math.min( ranked.length, MAX_LIQUID_REGIONS ) : 0;
 	cm.uWaterCount.value = waterCount;
+	cm.uMist.value = Math.max( 0, r_mist.value );
 	for ( let i = 0; i < waterCount; i ++ ) {
 
 		const r = ranked[ i ].r;
 		cm.uWaterMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, r.kind );
 		cm.uProbeOf.value[ i ] = - 1;
-		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, R_LiquidLookIndex( r.kind ) );
+		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, R_LiquidLookIndex( r.kind, r.mapLook ) );
 
 	}
 
@@ -2833,8 +3016,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	cm.uLavaCount.value = lavaCount;
+	cm.uUnderwater.value = underwater ? 1 : 0;
 	cm.uHeat.value = underwater ? 0 : Math.max( 0, r_heathaze.value );
-	cm.uReflect.value = underwater ? 0 : Math.max( 0, r_reflect.value );
+	cm.uReflect.value = Math.max( 0, r_reflect.value ); // the per-pool interface selects top/underside optics
 
 	// the pools' reflection probes (at most two are used at once)
 	const probeList = R_WaterProbes();

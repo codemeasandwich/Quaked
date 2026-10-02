@@ -372,7 +372,7 @@ CL_PlayDemo_f
 play [demoname]
 ====================
 */
-export function CL_PlayDemo_f() {
+export function CL_PlayDemo_f( attract = false ) {
 
 	if ( cmd_source !== src_command )
 		return;
@@ -409,7 +409,15 @@ export function CL_PlayDemo_f() {
 	// Copy to standalone ArrayBuffer (COM_FindFile returns a view into PAK)
 	const buf = new ArrayBuffer( result.size );
 	new Uint8Array( buf ).set( result.data );
-	CL_PlayDemoFromData( buf );
+	CL_PlayDemoFromData( buf, attract );
+
+}
+
+// Playback intent travels with the queued command, not a global pending flag.
+// The attract loop is the only normal caller of this entry.
+export function CL_PlayAttractDemo_f() {
+
+	CL_PlayDemo_f( true );
 
 }
 
@@ -420,15 +428,16 @@ CL_PlayDemoFromData
 Play a demo from an ArrayBuffer (browser-specific entry point)
 ====================
 */
-export function CL_PlayDemoFromData( data ) {
+export function CL_PlayDemoFromData( data, attract = false ) {
 
 	CL_Disconnect();
 
 	cls.demodata = new Uint8Array( data );
 	cls.demopos = 0;
 
-	// (the title demos are shown half Newer and half classic: the Newer pipeline is on while they play)
-	R_DemoSplitStart();
+	// Only the attract loop requests comparison. Manual/file demos and timedemos
+	// retain a single view, including when opened from an idle title demo.
+	if ( attract ) R_DemoSplitStart();
 	cls.demoplayback = true;
 	cls.state = ca_connected;
 	cls.forcetrack = 0;
@@ -492,6 +501,7 @@ export function CL_TimeDemo_f() {
 	}
 
 	CL_PlayDemo_f();
+	if ( ! cls.demoplayback ) return;
 
 	// cls.td_starttime will be grabbed at the second frame of the demo, so
 	// all the loading time doesn't get counted

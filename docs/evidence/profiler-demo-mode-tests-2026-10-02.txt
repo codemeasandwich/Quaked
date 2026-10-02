@@ -1,0 +1,250 @@
+PASS the frame counter averages half a second of frames
+PASS stage marks and the profiler do nothing while not profiling
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+recording to capture.dem.
+
+<-- server to client keepalive
+
+Completed demo
+
+PASS demo recording writes each received non-keepalive message
+Cmd_AddCommand: +moveup already defined
+
+Cmd_AddCommand: -moveup already defined
+
+Cmd_AddCommand: +movedown already defined
+
+Cmd_AddCommand: -movedown already defined
+
+Cmd_AddCommand: +left already defined
+
+Cmd_AddCommand: -left already defined
+
+Cmd_AddCommand: +right already defined
+
+Cmd_AddCommand: -right already defined
+
+Cmd_AddCommand: +forward already defined
+
+Cmd_AddCommand: -forward already defined
+
+Cmd_AddCommand: +back already defined
+
+Cmd_AddCommand: -back already defined
+
+Cmd_AddCommand: +lookup already defined
+
+Cmd_AddCommand: -lookup already defined
+
+Cmd_AddCommand: +lookdown already defined
+
+Cmd_AddCommand: -lookdown already defined
+
+Cmd_AddCommand: +strafe already defined
+
+Cmd_AddCommand: -strafe already defined
+
+Cmd_AddCommand: +moveleft already defined
+
+Cmd_AddCommand: -moveleft already defined
+
+Cmd_AddCommand: +moveright already defined
+
+Cmd_AddCommand: -moveright already defined
+
+Cmd_AddCommand: +speed already defined
+
+Cmd_AddCommand: -speed already defined
+
+Cmd_AddCommand: +attack already defined
+
+Cmd_AddCommand: -attack already defined
+
+Cmd_AddCommand: +use already defined
+
+Cmd_AddCommand: -use already defined
+
+Cmd_AddCommand: +jump already defined
+
+Cmd_AddCommand: -jump already defined
+
+Cmd_AddCommand: impulse already defined
+
+Cmd_AddCommand: +klook already defined
+
+Cmd_AddCommand: -klook already defined
+
+Cmd_AddCommand: +mlook already defined
+
+Cmd_AddCommand: -mlook already defined
+
+Can't register variable pushlatency, already defined
+
+Can't register variable cl_nopred, already defined
+
+Can't register variable cl_solid_players, already defined
+
+Can't register variable cl_predict_players, already defined
+
+Cmd_AddCommand: _movevars already defined
+
+Can't register variable _cl_name, already defined
+
+Can't register variable _cl_color, already defined
+
+Can't register variable cl_upspeed, already defined
+
+Can't register variable cl_forwardspeed, already defined
+
+Can't register variable cl_backspeed, already defined
+
+Can't register variable cl_sidespeed, already defined
+
+Can't register variable cl_movespeedkey, already defined
+
+Can't register variable cl_yawspeed, already defined
+
+Can't register variable cl_pitchspeed, already defined
+
+Can't register variable cl_anglespeedkey, already defined
+
+Can't register variable cl_shownet, already defined
+
+Can't register variable cl_nolerp, already defined
+
+Can't register variable lookspring, already defined
+
+Can't register variable lookstrafe, already defined
+
+Can't register variable sensitivity, already defined
+
+Can't register variable m_pitch, already defined
+
+Can't register variable m_yaw, already defined
+
+Can't register variable m_forward, already defined
+
+Can't register variable m_side, already defined
+
+Cmd_AddCommand: entities already defined
+
+Cmd_AddCommand: disconnect already defined
+
+Cmd_AddCommand: record already defined
+
+Cmd_AddCommand: stop already defined
+
+Cmd_AddCommand: playdemo already defined
+
+Cmd_AddCommand: playattractdemo already defined
+
+Cmd_AddCommand: timedemo already defined
+
+PASS client initialization registers all demo commands
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo (forcetrack -1)
+
+Playing demo (forcetrack -1)
+
+PASS attract playback compares in menus while manual and file demos remain single-view
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from profiler_mode_missing.dem.
+
+ERROR: couldn't open profiler_mode_missing.dem.
+
+PASS timedemo suppresses forced full-classic and failed loading never sets timedemo
+Playing demo (forcetrack -1)
+
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo (forcetrack -1)
+
+PASS title profiling is enhanced-only and restores the underlying owner mode on cancellation
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from demo2.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from demo3.dem.
+
+Playing demo (forcetrack -1)
+
+---- Performance profile (Newer Game, 800x600) ----
+demo1: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+demo2: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+demo3: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+Overall: 8.3 fps average, 8.3 fps 1% low; 0% of frames within 16.7 ms (60 fps)
+Draw calls avg 0 (max 0), triangles avg 0 (max 0)
+Where the time goes (ms per frame, share):
+  world draw                 40 ms   33.3%
+  audio and the rest         40 ms   33.3%
+Bottleneck: world draw (33.3%): drawing the world into the picture: triangles, materials or resolution. Lower the resolution (r_dynres) or reduce draw calls
+Bottleneck: audio and the rest (33.3%): sound and everything else
+This machine does not hold 60 fps on the demos at this resolution.
+(each stage waits for the graphics card, so this shows where time goes, not the exact frame rate of normal play)
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+PASS completed profiles report measured enhanced mode after classic owner preferences are restored
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+---- Performance profile (Newer Game, 800x600) ----
+demo1: 3 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+Overall: 8.3 fps average, 8.3 fps 1% low; 0% of frames within 16.7 ms (60 fps)
+Draw calls avg 0 (max 0), triangles avg 0 (max 0)
+Where the time goes (ms per frame, share):
+  world draw                 40 ms   33.3%
+  audio and the rest         40 ms   33.3%
+Bottleneck: world draw (33.3%): drawing the world into the picture: triangles, materials or resolution. Lower the resolution (r_dynres) or reduce draw calls
+Bottleneck: audio and the rest (33.3%): sound and everything else
+This machine does not hold 60 fps on the demos at this resolution.
+(each stage waits for the graphics card, so this shows where time goes, not the exact frame rate of normal play)
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+PASS menu cancellation from an active enhanced game restores preferences and reports partial measurements
+Playing demo from profiler_mode_missing.dem.
+
+ERROR: couldn't open profiler_mode_missing.dem.
+
+PASS failed profiler demo loading stops within its bound and restores all preferences
+PASS uncaught frame errors restore profiler settings before propagating the original error
+Host_Error: profiler regression
+
+Host_Error: profiler regression
+
+PASS recovered Host_Error stops profiling through the actual Host_Frame command interface
+23/23 passed

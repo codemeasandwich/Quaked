@@ -23,7 +23,7 @@ import { con_forcedup } from './console.js';
 import { VID_UpdateGamma } from './vid.js';
 import { scr_viewsize } from './gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
-import { v_blend } from './glquake.js';
+import { v_blend, v_liquid_blend } from './glquake.js';
 
 export { v_blend };
 
@@ -526,7 +526,9 @@ function V_CalcPowerupCshift() {
 V_CalcBlend
 =============
 */
-export function V_CalcBlend() {
+// A caller can exclude the legacy contents tint when liquid optics supply
+// absorption/scattering themselves. Native blend and cshift state stay intact.
+export function V_CalcBlend( contentsScale = 1, output = v_blend ) {
 
 	let r = 0;
 	let g = 0;
@@ -538,7 +540,7 @@ export function V_CalcBlend() {
 		if ( gl_cshiftpercent.value === 0 )
 			continue;
 
-		let a2 = ( ( cl.cshifts[ j ].percent * gl_cshiftpercent.value ) / 100.0 ) / 255.0;
+		let a2 = ( ( cl.cshifts[ j ].percent * ( j === CSHIFT_CONTENTS ? contentsScale : 1 ) * gl_cshiftpercent.value ) / 100.0 ) / 255.0;
 
 		if ( a2 === 0 )
 			continue;
@@ -550,15 +552,19 @@ export function V_CalcBlend() {
 
 	}
 
-	v_blend[ 0 ] = r / 255.0;
-	v_blend[ 1 ] = g / 255.0;
-	v_blend[ 2 ] = b / 255.0;
-	v_blend[ 3 ] = a;
-	if ( v_blend[ 3 ] > 1 )
-		v_blend[ 3 ] = 1;
-	if ( v_blend[ 3 ] < 0 )
-		v_blend[ 3 ] = 0;
+	output[ 0 ] = r / 255.0;
+	output[ 1 ] = g / 255.0;
+	output[ 2 ] = b / 255.0;
+	output[ 3 ] = a;
+	if ( output[ 3 ] > 1 )
+		output[ 3 ] = 1;
+	if ( output[ 3 ] < 0 )
+		output[ 3 ] = 0;
 
+	// Keep the paired frame blend ready before dynamic-light proximity flashes
+	// append to both. Recomputing only at presentation would lose those additions.
+	if ( output === v_blend && contentsScale === 1 ) V_CalcBlend( 0, v_liquid_blend );
+	return output;
 }
 
 /*

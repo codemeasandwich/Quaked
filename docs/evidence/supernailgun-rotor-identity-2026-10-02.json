@@ -1,0 +1,95 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "scope": "Held super nailgun barrel-only rotation; receiver/common rear ring/central guide fixed; authored source shape and subtle blue hue preserved; pickup unchanged.",
+  "manifestVersion": 8,
+  "rotor": {
+    "corners": 2176,
+    "stationaryCorners": 1804,
+    "axis": [
+      0.9902680687415704,
+      0.0,
+      0.13917310096006544
+    ],
+    "pivot": [
+      18.251969272998476,
+      -0.030862331390489137,
+      -10.890798896431285
+    ],
+    "anglesRadians": [
+      0.0,
+      -0.7853981633974483,
+      -1.5707963267948966,
+      -2.356194490192345,
+      -3.141592653589793,
+      -3.9269908169872414,
+      -4.71238898038469,
+      -5.497787143782138,
+      -6.283185307179586
+    ]
+  },
+  "pickupMatchesPreviousIdentity": true,
+  "sha256": {
+    "tools/import_weapons.py": "05764a509bcdd66cd19e3a521290065ad5a5fb5973dcb12c356f39aec9008c8d",
+    "src/r_weapons.js": "fcf2908715057d10b6498ca5cb0789cb5b2311093c9a13264b458585dda2a731",
+    "src/gl_mesh.js": "6ee76e003b720d299144b5b47b189597cb4fa1c5235b7087f6e053877b8ef5dd",
+    "tests/supernailgun_profile_test.js": "c2dc4a445703ad5312def47f1b183bc4272b3042d1281fc45e88da0f088d4b94",
+    "tests/weapons_test.js": "175acfa3dc884007f41928a5272b9eb981be7230d5d1204e73bbfbc477aa21ec",
+    "tests/weapon_gameplay_trial.js": "be9d62e0da1045e5fa68b5715543d8b7a41090008ea3215b87bebf3e937e3333",
+    "tests/weapon_gameplay_trial.html": "5214984e4bc8d6fb975ed0884232be7caa3914a9b0b724206da597e0a11c9c57",
+    "newer/weapons/v_nail2.json": "da184d267eac3fa1570d74f93ab8a0cbd2f84b847b2b11241ee91bac33182e31",
+    "newer/weapons/g_nail2.json": "e583755e8a17b1efcc17d1a86b11fb53dc99569f1665b753f68b56edea018ef3",
+    "newer/weapons/index.json": "fba6b1d7da39c7d75b692f344fcbd0c44fe0c83ed9fcb63c79274ddf02ea395f",
+    "docs/images/supernailgun-rotor-cycle-2026-10-02.png": "3361358522ea3b1f06fdf932c84ed0daaed1547348722d4cf32a5577afec9ee4",
+    "docs/images/supernailgun-rotor-clean-2026-10-02.png": "6ec244c9000d89646eb184b29f2b655d77f3bbb78d23a84b16ad577b424f6f08",
+    "docs/evidence/supernailgun-rotor-tests-2026-10-02.txt": "ba43079a1bb42e0a6c13b5eca78e9ebec51bf4b9d4813fe274a0e66e85bfd395",
+    "docs/evidence/supernailgun-rotor-full-regression-tests-2026-10-02.txt": "bd8f6a82b48790c0bf9b69fecf2a69af6d1419690336a0027117d8b1b8af0015"
+  },
+  "verification": {
+    "focused": "35/35 passed",
+    "rendererMenuRegressions": "53/53 passed",
+    "independentPlanning": true,
+    "independentSourceAndPublicDrawReview": "14/14 passed; all9 poses, source receiver/ring fixed, circular midpoints, normals, phase wrap, idle hold, resume, unchanged pickup",
+    "gitDiffCheck": "passed"
+  },
+  "browser": {
+    "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=nail-profile",
+    "actions": [
+      "Fire once",
+      "Fire for1second",
+      "Fire for1second again"
+    ],
+    "observedFiringPoses": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      1,
+      2,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      1,
+      2,
+      3,
+      0
+    ],
+    "samplingIntervalMs": 50,
+    "publicStatus": "SUPPLIED MODEL LOADED: progs/v_nail2.mdl; no asset errors",
+    "errorLog": [],
+    "newInstances": 0,
+    "cleanScreenshot": "docs/images/supernailgun-rotor-clean-2026-10-02.png"
+  },
+  "acceptance": "owner visual acceptance pending",
+  "limitations": "Moving/XR clipping and full game performance not qualified; public phase trace is sampled, not exhaustive."
+}

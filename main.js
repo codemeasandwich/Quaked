@@ -16,6 +16,8 @@ import { scene, camera } from './src/gl_rmain.js';
 import { renderer } from './src/vid.js';
 import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage } from './src/gl_draw.js';
 import { XR_Init } from './src/webxr.js';
+import { R_WeaponsPreload } from './src/r_weapons.js';
+import { M_SetExternals } from './src/menu.js';
 
 const parms = {
 	basedir: '.',
@@ -78,6 +80,11 @@ async function main() {
 
 		await Host_Init( parms );
 
+		// Ready the supplied held/pickup art before the attract demo begins.
+		// Optional failures retain native art; New Game/classic stay native even
+		// though the enhanced assets are resident. No trial-page setup is needed.
+		await R_WeaponsPreload();
+
 		// Remove loading overlay
 		if ( loadingOverlay ) {
 
@@ -94,6 +101,19 @@ async function main() {
 		} catch ( e ) {
 
 			Sys_Printf( 'Warning: Could not load custom menu images\\n' );
+
+		}
+
+		// Supplied native-script name: display-only black key and proportional sizing.
+		try {
+
+			M_SetExternals( { weaponModelsCredit: await Draw_CachePicFromPNG(
+				'gfx/weapon_models_name.lmp', 'assets/credits/dannaki-name.png',
+				{ blackKey: 3, trim: true, displayHeight: 8 } ) } );
+
+		} catch ( e ) {
+
+			Sys_Printf( 'Warning: Could not load the weapon model credit artwork\n' );
 
 		}
 

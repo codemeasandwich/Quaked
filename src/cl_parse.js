@@ -72,6 +72,7 @@ import { set_noclip_anglehack } from './host_cmd.js';
 import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
 import { CL_ParseTEnt } from './cl_tent.js';
 import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from './snd_dma.js';
+import { R_ShellShot } from './r_shells.js';
 import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from './cd_audio.js';
 import { SCR_CenterPrint } from './gl_screen.js';
 
@@ -194,6 +195,9 @@ export function CL_ParseStartSoundPacket() {
 
 	}
 
+	// Shot confirmation is independent of audio being enabled/audible. These
+	// vanilla-progs sounds occur exactly once per shot, including SSG fallback.
+	if ( ! cls.demoplayback ) R_ShellShot( ent, ch, sfx.name, pos );
 	S_StartSound( ent, ch, sfx, pos, volume / 255.0, attenuation );
 
 }

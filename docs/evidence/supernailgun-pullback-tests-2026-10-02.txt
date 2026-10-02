@@ -1,0 +1,88 @@
+PASS super nailgun source: independently decoded new FBX preserves complete authored coordinates, UVs and normals
+PASS super nailgun source: every polygon fan retains source boundary area and winding, including all six hexagons
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun source: held and pickup fit preserve supplied shape and ridges by one uniform scale and rigid transform in every pose
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun source: new outer PNGs, original FBX UV orientation and authored normal detail bind in held/pickup materials and clones
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun source: mild RGB hue balance covers only bare forward tubes and preserves bronze body, source channel variation and exposure
+PASS super nailgun source: restore public test fixtures
+RESULT 6/6 passed (tests/supernailgun_profile_test.js)
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+PASS supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+PASS classic draw and feature toggle restore native geometry and subsequent enhanced draws
+PASS parsed confirmed shotgun sounds emit one or two casings independently of audio and stale weapon stats
+PASS shell BSP sweeps hit the floor and wall with radius clearance
+PASS a casing fired at the original E1M1 spawn settles on the actual map collision hull
+PASS casings settle on BSP floors, exceed instance capacity, never expire, and survive map return and save restoration
+PASS weapon test texture and fetch stubs are restored
+RESULT 7/7 passed (tests/weapons_test.js)
+TOTAL 13/13 passed

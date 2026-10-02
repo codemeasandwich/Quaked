@@ -1,8 +1,8 @@
-// Newer Game: a light toxic mist rising from pools of slime.
+// Newer Game: small, slow vapour streams rising from toxic pools.
 //
-// Soft green wisps climb off the surface, spread a little, and fade out as they go, in a loose cloud over each
-// pool (more over a bigger one).  They are one set of points drawn with the scene, so geometry in front of
-// them hides them as usual; where the slime is is known from the same list of pools the post pass uses
+// Staggered green wisps rise slowly in narrow anchored columns and fade at their ends.
+// Bigger pools have more small streams. They share one points draw, so geometry in front of
+// them hides them as usual; Toxic pool locations come from the same list the post pass uses
 // for tinting what is seen through it.
 
 import * as THREE from 'three';
@@ -62,25 +62,31 @@ function build( scene, regions ) {
 	clear( scene );
 	builtFor = regions; builtLook = R_LiquidLookIndex( 0 );
 
-	const pools = regions.filter( ( r ) => R_LiquidLookIndex( r.kind ) === 3 );
+	const pools = regions.filter( ( r ) => R_LiquidLookIndex( r.kind, r.mapLook ) === 3 );
 	if ( pools.length === 0 ) return;
 
 	let total = 0;
 	for ( const r of pools ) {
 
 		const area = ( r.max[ 0 ] - r.min[ 0 ] ) * ( r.max[ 1 ] - r.min[ 1 ] );
-		const n = Math.max( 10, Math.min( 170, Math.round( area / ( 62 * 62 ) ) ) );
+		const n = Math.max( 8, Math.min( 120, Math.round( area / ( 80 * 80 ) ) ) );
+		let stream = null;
 		for ( let i = 0; i < n && total < MAX_WISPS; i ++, total ++ ) {
 
+			// Four staggered soft sprites share a narrow rising column. The
+			// anchored stream drifts gently, rather than expanding into a cloud.
+			if ( i % 4 === 0 ) stream = {
+				x: r.min[ 0 ] + 12 + Math.random() * Math.max( 1, r.max[ 0 ] - r.min[ 0 ] - 24 ),
+				y: r.min[ 1 ] + 12 + Math.random() * Math.max( 1, r.max[ 1 ] - r.min[ 1 ] - 24 ),
+				phase: Math.random(), rise: 60 + Math.random() * 40,
+				speed: 0.03 + Math.random() * 0.02, sway: Math.random() * 6.28
+			};
 			wisps.push( {
-				x: r.min[ 0 ] + 6 + Math.random() * Math.max( 1, r.max[ 0 ] - r.min[ 0 ] - 12 ),
-				y: r.min[ 1 ] + 6 + Math.random() * Math.max( 1, r.max[ 1 ] - r.min[ 1 ] - 12 ),
+				x: stream.x, y: stream.y,
 				z: r.z,
-				phase: Math.random(),
-				rise: 90 + Math.random() * 90,
-				speed: 0.05 + Math.random() * 0.06, // cycles a second
-				sway: Math.random() * 6.28,
-				strength: 0.5 + Math.random() * 0.5
+				phase: stream.phase + ( i % 4 ) * 0.25,
+				rise: stream.rise, speed: stream.speed, sway: stream.sway,
+				strength: 0.4 + Math.random() * 0.4
 			} );
 
 		}
@@ -96,7 +102,7 @@ function build( scene, regions ) {
 
 	const material = new THREE.PointsMaterial( {
 		map: softTexture(),
-		size: 110,
+		size: 48,
 		sizeAttenuation: true,
 		vertexColors: true,
 		transparent: true,
@@ -139,10 +145,10 @@ export function R_MistFrame( scene, time ) {
 		const age = ( time * w.speed + w.phase ) % 1;
 		// in, hang a while, and out
 		const fade = Math.sin( Math.PI * age );
-		const a = fade * fade * w.strength * amount * 0.065;
+		const a = fade * fade * w.strength * amount * 0.038;
 
-		positions[ i * 3 ] = w.x + Math.sin( time * 0.3 + w.sway ) * ( 10 + age * 24 );
-		positions[ i * 3 + 1 ] = w.y + Math.cos( time * 0.27 + w.sway ) * ( 10 + age * 24 );
+		positions[ i * 3 ] = w.x + Math.sin( time * 0.3 + w.sway ) * ( 3 + age * 8 );
+		positions[ i * 3 + 1 ] = w.y + Math.cos( time * 0.27 + w.sway ) * ( 3 + age * 8 );
 		positions[ i * 3 + 2 ] = w.z + 8 + age * w.rise;
 
 		colors[ i * 3 ] = TINT[ 0 ] * a;

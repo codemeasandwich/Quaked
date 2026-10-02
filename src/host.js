@@ -45,7 +45,7 @@ import { V_RenderView, V_UpdatePalette } from './view.js';
 import { S_LocalSound } from './snd_dma.js';
 import { M_Menu_Main_f } from './menu.js';
 import { R_Efrag_SetExternals } from './gl_refrag.js';
-import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage } from './r_perf.js';
+import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage, R_PerfStop } from './r_perf.js';
 import { R_TeleportFrameEnd } from './r_teleportfx.js';
 import { Host_InitCommands } from './host_cmd.js';
 import { R_SetParticleExternals } from './r_part.js';
@@ -509,6 +509,7 @@ export function Host_Frame( time ) {
 		// Catch and continue to next frame.
 		if ( e.message && e.message.startsWith( 'Host_Error:' ) ) {
 
+			R_PerfStop( 'error' ); // a recovered host error must not leave profiler settings active
 			Con_Printf( '%s\n', e.message );
 
 		} else if ( e.message && e.message.startsWith( 'Host_EndGame:' ) ) {

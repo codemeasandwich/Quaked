@@ -1,0 +1,79 @@
+{
+  "imported": {
+    "status": {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 0,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 0
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "v_shot2"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_shot2.mdl",
+      "frame": 0
+    },
+    "vertices": 1053,
+    "shaderPatched": "quake-imported-alias-v_shot2"
+  },
+  "native": {
+    "status": {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 0,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 0
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "v_shot2"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_shot2.mdl",
+      "frame": 0
+    },
+    "vertices": 250
+  },
+  "shot": {
+    "shells": {
+      "map": "maps/e1m1.bsp",
+      "count": 2,
+      "moving": 0,
+      "maps": [
+        {
+          "name": "maps/e1m1.bsp",
+          "count": 2
+        }
+      ],
+      "ready": true
+    },
+    "weapons": {
+      "ready": [
+        "shell",
+        "v_shot2"
+      ],
+      "failures": {}
+    },
+    "model": "progs/v_shot2.mdl",
+    "frame": 0
+  },
+  "errors": []
+}

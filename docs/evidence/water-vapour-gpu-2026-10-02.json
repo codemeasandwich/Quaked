@@ -1,0 +1,178 @@
+{
+  "checks": [],
+  "failures": [],
+  "frames": [],
+  "lookFailures": [],
+  "looks": [
+    {
+      "glError": 0,
+      "look": "Clear",
+      "luminanceRange": 57.33299999999999,
+      "meanRGB": [
+        45.42995548572925,
+        49.190494893951296,
+        35.63603037444357
+      ],
+      "mist": false,
+      "name": "Clear renders with original texture and immutable liquid kind",
+      "opacity": 0.05,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6190,
+      "maximum": 41,
+      "name": "Clear retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "glError": 0,
+      "look": "Tinted",
+      "luminanceRange": 55.55200000000001,
+      "meanRGB": [
+        44.07672165488348,
+        49.5115213406651,
+        23.11914113642315
+      ],
+      "mist": false,
+      "name": "Tinted renders with original texture and immutable liquid kind",
+      "opacity": 0.08,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6167,
+      "maximum": 41,
+      "name": "Tinted retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "glError": 0,
+      "look": "Muddy",
+      "luminanceRange": 15.8476,
+      "meanRGB": [
+        29.227939251112858,
+        16.770882429955485,
+        2.3621366849960723
+      ],
+      "mist": false,
+      "name": "Muddy renders with original texture and immutable liquid kind",
+      "opacity": 0.1,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6020,
+      "maximum": 35,
+      "name": "Muddy retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "glError": 0,
+      "look": "Toxic",
+      "luminanceRange": 38.05939999999999,
+      "meanRGB": [
+        43.493977481015975,
+        76.29418695993715,
+        0.540062843676355
+      ],
+      "mist": true,
+      "name": "Toxic renders with original texture and immutable liquid kind",
+      "opacity": 0.22,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6363,
+      "maximum": 39,
+      "name": "Toxic retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "clear": 57.33299999999999,
+      "muddy": 15.8476,
+      "name": "clear retains more floor contrast than muddy",
+      "passed": true
+    },
+    {
+      "clear": [
+        45.42995548572925,
+        49.190494893951296,
+        35.63603037444357
+      ],
+      "name": "tint increases green relative to red compared with clear",
+      "passed": true,
+      "tinted": [
+        44.07672165488348,
+        49.5115213406651,
+        23.11914113642315
+      ]
+    },
+    {
+      "muddy": [
+        29.227939251112858,
+        16.770882429955485,
+        2.3621366849960723
+      ],
+      "name": "muddy is warm brown and toxic is vivid green with mist",
+      "passed": true,
+      "toxic": [
+        43.493977481015975,
+        76.29418695993715,
+        0.540062843676355
+      ]
+    },
+    {
+      "maximum": 0,
+      "name": "Clear has no source-free glow",
+      "passed": true
+    },
+    {
+      "maximum": 0,
+      "name": "Tinted has no source-free glow",
+      "passed": true
+    },
+    {
+      "maximum": 0,
+      "name": "Muddy has no source-free glow",
+      "passed": true
+    }
+  ],
+  "performance": null,
+  "reference": {
+    "durationMs": 10140,
+    "frames": 152,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "vapourChecks": [
+    {
+      "glError": 0,
+      "name": "small toxic streams rise slowly with narrow drift and retained geometry",
+      "narrow": true,
+      "passed": true,
+      "rising": 13,
+      "sprites": 13
+    },
+    {
+      "changed": 3151,
+      "maximum": 16,
+      "name": "toxic vapour is visibly rendered and the haze slider hides it",
+      "passed": true,
+      "total": 129600
+    },
+    {
+      "name": "liquids off hides toxic streams in the real scene",
+      "passed": true,
+      "visible": false
+    }
+  ],
+  "vapourFailures": []
+}

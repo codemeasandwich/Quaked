@@ -19,7 +19,7 @@ import { v_gamma } from './view.js';
 import { gl_texturemode, GL_UpdateTextureFiltering } from './glquake.js';
 import { skill, coop, teamplay, deathmatch, svs } from './server.js';
 import { Touch_ExitFullscreen } from './touch.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_WithVirtualSize } from './gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from './quakedef.js';
 import { COM_FindFile } from './pak.js';
 
@@ -250,6 +250,7 @@ let _Draw_ConsoleBackground = null;
 let _Draw_String = null;
 let _Draw_TransPicTranslate = null;
 let _Draw_SubPic = null;
+let _weaponModelsCredit = null;
 let _S_LocalSound = null;
 let _SCR_BeginLoadingPlaque = null;
 let _SCR_EndLoadingPlaque = null;
@@ -258,6 +259,7 @@ let _IN_RequestPointerLock = null;
 let _CL_NextDemo = null;
 
 export function M_SetExternals( externals ) {
+	if ( 'weaponModelsCredit' in externals ) _weaponModelsCredit = externals.weaponModelsCredit;
 
 	if ( externals.key_dest_set ) _key_dest_set = externals.key_dest_set;
 	if ( externals.key_dest_get ) _key_dest_get = externals.key_dest_get;
@@ -1966,7 +1968,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_pillars', label: '          Light pillars', slider: true },
 	{ cvar: 'r_cloudspeed', label: '    Cloud shadow speed', slider: true },
 	{ cvar: 'r_heathaze', label: '      Heat haze (lava)', slider: true },
-	{ cvar: 'r_mist', label: '    Toxic mist (slime)', slider: true },
+	{ cvar: 'r_mist', label: '          Surface haze', slider: true },
 	{ cvar: 'r_reflect', label: '      Water reflections', slider: true },
 	{ cvar: 'r_water_look', label: '      Water appearance', choices: [ 'Map', 'Clear', 'Tinted', 'Muddy', 'Toxic' ] }
 ];
@@ -2475,6 +2477,11 @@ function M_Setup_Key( key ) {
 */
 
 const CREDITS_SOURCE_URL = 'https://github.com/codemeasandwich/Quaked';
+const CREDITS_LINK_TEXT = 'github.com/codemeasandwich/Quaked';
+const CREDITS_LINK_X = ( 320 - CREDITS_LINK_TEXT.length * 8 ) / 2;
+const CREDITS_TITLE = 'Quake by id Software';
+const CREDITS_HEIGHT = 272;
+const CREDITS_TOP = ( 200 - CREDITS_HEIGHT ) / 2; // centre the expanded box in the usual menu space
 
 function M_OpenCreditsSource() {
 
@@ -2493,28 +2500,34 @@ function M_Menu_Credits_f() {
 
 function M_Credits_Draw() {
 
-	M_DrawTextBox( 0, 0, 38, 23 );
-	M_PrintWhite( 16, 12, '  Quake version 1.09 by id Software\n' );
-	M_PrintWhite( 16, 24, 'Programming        Art \n' );
-	M_Print( 16, 32, ' John Carmack       Adrian Carmack\n' );
-	M_Print( 16, 40, ' Michael Abrash     Kevin Cloud\n' );
-	M_Print( 16, 48, ' John Cash          Paul Steed\n' );
-	M_Print( 16, 56, ' Dave \'Zoid\' Kirsch\n' );
-	M_PrintWhite( 16, 64, 'Design             Biz\n' );
-	M_Print( 16, 72, ' John Romero        Jay Wilbur\n' );
-	M_Print( 16, 80, ' Sandy Petersen     Mike Wilson\n' );
-	M_Print( 16, 88, ' American McGee     Donna Jackson\n' );
-	M_Print( 16, 96, ' Tim Willits        Todd Hollenshead\n' );
-	M_PrintWhite( 16, 104, 'Support            Id Mom\n' );
-	M_Print( 16, 112, ' Barrett Alexander  Shawn Green\n' );
-	M_PrintWhite( 16, 120, 'JavaScript port\n' );
-	M_Print( 16, 128, ' mrdoob + claude + codex\n' );
-	M_PrintWhite( 16, 136, 'Enhancements\n' );
-	M_Print( 16, 144, ' Brian Shannon (CodeMeaSandwich)\n' );
-	M_PrintWhite( 16, 152, 'Ambient music' );
-	M_Print( 16, 160, ' Iron Cthulhu Apocalypse' );
-	M_PrintWhite( 16, 172, 'Source code\n' );
-	M_Print( 16, 180, ' github.com/codemeasandwich/Quaked\n' );
+	M_DrawTextBox( 0, CREDITS_TOP, 38, 32 );
+	M_PrintWhite( ( 320 - CREDITS_TITLE.length * 8 ) / 2, CREDITS_TOP + 12, CREDITS_TITLE );
+	M_PrintWhite( 16, CREDITS_TOP + 24, 'Programming        Art \n' );
+	M_Print( 16, CREDITS_TOP + 32, ' John Carmack       Adrian Carmack\n' );
+	M_Print( 16, CREDITS_TOP + 40, ' Michael Abrash     Kevin Cloud\n' );
+	M_Print( 16, CREDITS_TOP + 48, ' John Cash          Paul Steed\n' );
+	M_Print( 16, CREDITS_TOP + 56, ' Dave \'Zoid\' Kirsch\n' );
+	M_PrintWhite( 16, CREDITS_TOP + 72, 'Design             Biz\n' );
+	M_Print( 16, CREDITS_TOP + 80, ' John Romero        Jay Wilbur\n' );
+	M_Print( 16, CREDITS_TOP + 88, ' Sandy Petersen     Mike Wilson\n' );
+	M_Print( 16, CREDITS_TOP + 96, ' American McGee     Donna Jackson\n' );
+	M_Print( 16, CREDITS_TOP + 104, ' Tim Willits        Todd Hollenshead\n' );
+	M_PrintWhite( 16, CREDITS_TOP + 120, 'Support            Id Mom\n' );
+	M_Print( 16, CREDITS_TOP + 128, ' Barrett Alexander  Shawn Green\n' );
+	M_PrintWhite( 16, CREDITS_TOP + 144, 'JavaScript port\n' );
+	M_Print( 16, CREDITS_TOP + 152, ' mrdoob + claude + codex\n' );
+	M_PrintWhite( 16, CREDITS_TOP + 168, 'Enhancements\n' );
+	M_Print( 16, CREDITS_TOP + 176, ' Brian Shannon + Claude + Codex\n' );
+	M_PrintWhite( 16, CREDITS_TOP + 192, 'Ambient music' );
+	M_Print( 16, CREDITS_TOP + 200, ' Iron Cthulhu Apocalypse' );
+	M_PrintWhite( 16, CREDITS_TOP + 216, 'Weapon Models' );
+	if ( _weaponModelsCredit ) {
+
+		M_DrawPic( 24, CREDITS_TOP + 226, _weaponModelsCredit );
+		M_Print( 88, CREDITS_TOP + 226, '(dannaki)' );
+
+	} else M_Print( 16, CREDITS_TOP + 226, ' Dannaki (dannaki)' );
+	M_PrintWhite( CREDITS_LINK_X, CREDITS_TOP + 248, CREDITS_LINK_TEXT );
 
 }
 
@@ -2535,7 +2548,7 @@ function M_Credits_Key( key ) {
 
 function M_Credits_Touch( vx, vy ) {
 
-	if ( vy >= 172 ) {
+	if ( vy >= CREDITS_TOP + 248 && vy < CREDITS_TOP + 256 && vx >= CREDITS_LINK_X && vx < CREDITS_LINK_X + CREDITS_LINK_TEXT.length * 8 ) {
 
 		M_OpenCreditsSource();
 		return;
@@ -2745,7 +2758,7 @@ export function M_Draw() {
 		case m_levelselect: M_LevelSelect_Draw(); break;
 		case m_keys: M_Keys_Draw(); break;
 		case m_video: M_Video_Draw(); break;
-		case m_credits: M_Credits_Draw(); break;
+		case m_credits: Draw_WithVirtualSize( 320, CREDITS_HEIGHT, M_Credits_Draw ); break;
 		case m_quit: M_Quit_Draw(); break;
 		case m_lanconfig: M_LanConfig_Draw(); break;
 		case m_gameoptions: M_GameOptions_Draw(); break;
@@ -2770,6 +2783,13 @@ Converts screen coordinates to virtual 320x200 space and selects menu items.
 ================
 */
 export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
+
+	if ( m_state === m_credits ) return Draw_WithVirtualSize( 320, CREDITS_HEIGHT, () => M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) );
+	return M_TouchInViewport( touchX, touchY, screenWidth, screenHeight );
+
+}
+
+function M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) {
 
 	// If no menu is shown (e.g. during demo playback), show the menu
 	if ( m_state === m_none ) {
@@ -2796,7 +2816,8 @@ export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
 	const vy = vidY - offsetY;
 
 	// Click outside menu area acts like pressing escape (go back)
-	if ( vx < 0 || vx > 320 || vy < 0 || vy > 200 ) {
+	const menuTop = m_state === m_credits ? CREDITS_TOP : 0, menuBottom = m_state === m_credits ? CREDITS_TOP + CREDITS_HEIGHT : 200;
+	if ( vx < 0 || vx > 320 || vy < menuTop || vy > menuBottom ) {
 
 		M_Keydown( K_ESCAPE );
 		return;

@@ -1,0 +1,405 @@
+{
+  "initial": {
+    "shells": {
+      "map": "maps/e1m1.bsp",
+      "count": 0,
+      "moving": 0,
+      "maps": [
+        {
+          "name": "maps/e1m1.bsp",
+          "count": 0
+        }
+      ],
+      "ready": true
+    },
+    "weapons": {
+      "ready": [
+        "shell",
+        "g_rock"
+      ],
+      "failures": {}
+    },
+    "model": "progs/v_shot.mdl",
+    "frame": 0
+  },
+  "shots": [
+    {
+      "id": 2,
+      "before": {
+        "shells": {
+          "map": "maps/e1m1.bsp",
+          "count": 0,
+          "moving": 0,
+          "maps": [
+            {
+              "name": "maps/e1m1.bsp",
+              "count": 0
+            }
+          ],
+          "ready": true
+        },
+        "weapons": {
+          "ready": [
+            "shell",
+            "g_rock"
+          ],
+          "failures": {}
+        },
+        "model": "progs/v_shot.mdl",
+        "frame": 0
+      },
+      "after": {
+        "shells": {
+          "map": "maps/e1m1.bsp",
+          "count": 1,
+          "moving": 0,
+          "maps": [
+            {
+              "name": "maps/e1m1.bsp",
+              "count": 1
+            }
+          ],
+          "ready": true
+        },
+        "weapons": {
+          "ready": [
+            "shell",
+            "g_rock"
+          ],
+          "failures": {}
+        },
+        "model": "progs/v_shot.mdl",
+        "frame": 0
+      }
+    },
+    {
+      "id": 3,
+      "before": {
+        "shells": {
+          "map": "maps/e1m1.bsp",
+          "count": 1,
+          "moving": 0,
+          "maps": [
+            {
+              "name": "maps/e1m1.bsp",
+              "count": 1
+            }
+          ],
+          "ready": true
+        },
+        "weapons": {
+          "ready": [
+            "shell",
+            "g_rock",
+            "v_shot2"
+          ],
+          "failures": {}
+        },
+        "model": "progs/v_shot2.mdl",
+        "frame": 0
+      },
+      "after": {
+        "shells": {
+          "map": "maps/e1m1.bsp",
+          "count": 3,
+          "moving": 0,
+          "maps": [
+            {
+              "name": "maps/e1m1.bsp",
+              "count": 3
+            }
+          ],
+          "ready": true
+        },
+        "weapons": {
+          "ready": [
+            "shell",
+            "g_rock",
+            "v_shot2"
+          ],
+          "failures": {}
+        },
+        "model": "progs/v_shot2.mdl",
+        "frame": 0
+      }
+    }
+  ],
+  "held": [
+    {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 3,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 3
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "g_rock",
+          "v_shot2",
+          "v_axe"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_axe.mdl",
+      "frame": 0
+    },
+    {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 3,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 3
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "g_rock",
+          "v_shot2",
+          "v_axe"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_shot2.mdl",
+      "frame": 0
+    },
+    {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 3,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 3
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "g_rock",
+          "v_shot2",
+          "v_axe",
+          "v_nail2"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_nail2.mdl",
+      "frame": 0
+    },
+    {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 3,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 3
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "g_rock",
+          "v_shot2",
+          "v_axe",
+          "v_nail2",
+          "v_rock"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_rock.mdl",
+      "frame": 0
+    },
+    {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 3,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 3
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "g_rock",
+          "v_shot2",
+          "v_axe",
+          "v_nail2",
+          "v_rock",
+          "v_rock2"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_rock2.mdl",
+      "frame": 0
+    },
+    {
+      "shells": {
+        "map": "maps/e1m1.bsp",
+        "count": 3,
+        "moving": 0,
+        "maps": [
+          {
+            "name": "maps/e1m1.bsp",
+            "count": 3
+          }
+        ],
+        "ready": true
+      },
+      "weapons": {
+        "ready": [
+          "shell",
+          "g_rock",
+          "v_shot2",
+          "v_axe",
+          "v_nail2",
+          "v_rock",
+          "v_rock2",
+          "v_light"
+        ],
+        "failures": {}
+      },
+      "model": "progs/v_light.mdl",
+      "frame": 0
+    }
+  ],
+  "errors": [],
+  "savedHasShells": true,
+  "afterLoad": {
+    "shells": {
+      "map": "maps/e1m1.bsp",
+      "count": 3,
+      "moving": 0,
+      "maps": [
+        {
+          "name": "maps/e1m1.bsp",
+          "count": 3
+        }
+      ],
+      "ready": true
+    },
+    "weapons": {
+      "ready": [
+        "shell",
+        "g_rock",
+        "v_shot2",
+        "v_axe",
+        "v_nail2",
+        "v_rock",
+        "v_rock2",
+        "v_light"
+      ],
+      "failures": {}
+    },
+    "model": "progs/v_light.mdl",
+    "frame": 0
+  },
+  "shellRecords": {
+    "version": 1,
+    "levels": [
+      {
+        "name": "maps/e1m1.bsp",
+        "shells": [
+          {
+            "p": [
+              530.4818115234375,
+              -357.1141662597656,
+              48.578128814697266
+            ],
+            "v": [
+              0,
+              0,
+              0
+            ],
+            "q": [
+              0,
+              0,
+              0.29953513781925445,
+              0.9540852693609729
+            ],
+            "spin": [
+              0.3914080369048212,
+              9.265182394635152,
+              8.468185212578028
+            ],
+            "rest": true,
+            "yaw": 0.6084107667108752
+          },
+          {
+            "p": [
+              532.5436401367188,
+              -360.8419189453125,
+              48.57895278930664
+            ],
+            "v": [
+              0,
+              0,
+              0
+            ],
+            "q": [
+              0,
+              0,
+              0.35992294075239434,
+              0.9329820345109269
+            ],
+            "spin": [
+              0.4939809572835392,
+              9.26336949620995,
+              6.1591800869439695
+            ],
+            "rest": true,
+            "yaw": 0.7363705951063341
+          },
+          {
+            "p": [
+              546.4783935546875,
+              -360.6498718261719,
+              48.5786247253418
+            ],
+            "v": [
+              0,
+              0,
+              0
+            ],
+            "q": [
+              0,
+              0,
+              0.2022809843725047,
+              0.9793275260919048
+            ],
+            "spin": [
+              9.412066081849378,
+              11.108246733781193,
+              2.459142277264223
+            ],
+            "rest": true,
+            "yaw": 0.4073729924570428
+          }
+        ]
+      }
+    ]
+  }
+}

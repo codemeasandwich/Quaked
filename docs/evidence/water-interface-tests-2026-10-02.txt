@@ -1,0 +1,40 @@
+PASS water presentation switches preserve independent optics, native opacity and other liquids
+PASS cached water probes exclude first-person weapon, keep six draws and restore on capture failure
+PASS original water colour/pattern uses contextual cached brightness, live styles and the selected light curve
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+PASS lighting, normal maps and liquids switch independently on existing materials
+PASS Newer menu exposes independent lighting, normals and liquids controls
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+PASS dynamic lights add their proximity blend to the displayed overlay
+PASS dynamic light marks use the renderer frame counter
+PASS inline brush models receive dynamic light marks
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+PASS frame pipeline carries authored albedo separately at scene resolution
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+PASS water appearance menu cycles all choices, bounds invalid settings and archives the selection
+PASS live water looks reuse original materials and preserve physical slime, lava and native boundaries
+PASS flashlight toggles preserve water material and cached reflections while respecting lighting and classic scopes
+PASS water underside keeps live reflection controls, material cues and independent visual boundaries
+PASS mapped water probes choose real air anchors instead of a solid merged centre and skip unsafe pools before budgeting
+PASS contents-free optical screen blend retains full damage, pickup and powerup flashes without mutating native state
+PASS dynamic-light proximity flashes append to both native and contents-free frame blends and reset next frame
+39/39 passed

@@ -1,0 +1,98 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "scope": "Held super nailgun: rigid X translation -4 to -6, preserving uniform scale, 8-degree tilt, all source shape and grading; pickup unchanged.",
+  "placement": {
+    "source": "supernailgun",
+    "fitKind": "uniform-source-shape",
+    "uniformScale": 2.2065098442552147,
+    "offset": [
+      22.500244520803307,
+      -0.030862331390489137,
+      -14.160032158333255
+    ],
+    "pitchUpDegrees": 8.0,
+    "viewTranslation": [
+      -6.0,
+      0.0,
+      0.0
+    ],
+    "nativeMin": [
+      10.516065120697021,
+      -5.23759089037776,
+      -21.572488605976105
+    ],
+    "nativeMax": [
+      36.028231263160706,
+      5.175866227596998,
+      -11.483687072992325
+    ],
+    "poses": 9,
+    "nativePoseRigidRms": [
+      1.1981764056870479e-15,
+      1.0713075998967294,
+      1.0542003479073259,
+      1.0583298851589749,
+      1.195037476455342,
+      1.1995812566017683,
+      1.1812097684188894,
+      1.1918636445646726,
+      1.1947358191947441
+    ],
+    "excludedNativeVertices": [
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106
+    ]
+  },
+  "sha256": {
+    "tools/import_weapons.py": "14bdaca1d7cce5499e93e6be607d28265fe4219e7db23625604ee86b1ab69b18",
+    "newer/weapons/v_nail2.json": "167a3e36ce5474e497bf5aabef34f94f66c8a98aa162539feef5ff5b156e111e",
+    "newer/weapons/g_nail2.json": "e583755e8a17b1efcc17d1a86b11fb53dc99569f1665b753f68b56edea018ef3",
+    "newer/weapons/index.json": "e9c824820cd7d88f45984f5085af903c822134f9c2fab660a2a247b60774375e",
+    "docs/images/supernailgun-pulled-back-2026-10-02.png": "1b9c7a1aac539a2512d9a3a5035ec8c6658bca8e5979b7a47c7d5a01b62669cc",
+    "tests/supernailgun_profile_test.js": "4c67ec09a8c4a025f361692051640db41647d71dbbed406b082313a1b20f23e3",
+    "tests/weapons_test.js": "ba31074b750b91890fefeb9c610d6d3f30f58cc218ca19d678858ffb05cc4717",
+    "docs/evidence/supernailgun-pullback-tests-2026-10-02.txt": "a30bb379869d6d9eafef66d81ea1fef405930d25b38fc011b1f1550b5c97d74a"
+  },
+  "nearPlane": 4,
+  "restViewForwardXMinPerPose": [
+    6.213574,
+    6.72931,
+    6.885703,
+    6.72703,
+    6.682003,
+    6.79101,
+    6.968988,
+    6.788177,
+    6.683108
+  ],
+  "browser": {
+    "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=nail-profile",
+    "publicStatus": "SUPPLIED MODEL LOADED: progs/v_nail2.mdl; no asset errors",
+    "action": "Fire once via visible control",
+    "errorLog": [],
+    "hud": false,
+    "crosshair": false,
+    "toolbar": false,
+    "newInstances": 0,
+    "screenshot": "docs/images/supernailgun-pulled-back-2026-10-02.png"
+  },
+  "acceptance": "owner perspective acceptance pending",
+  "verification": {
+    "focused": "13/13 passed",
+    "independentPlan": "Rigid held X -4 to -6 only",
+    "independentReview": "All source corners/normals and all9poses match independent fit; pickup unchanged",
+    "minimumStationaryNearPlaneClearance": 2.182324,
+    "limitations": "Walking bob and XR not checked"
+  }
+}

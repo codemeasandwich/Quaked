@@ -1,0 +1,647 @@
+{
+  "checks": [
+    {
+      "changed": 13657,
+      "maximum": 31,
+      "name": "animated refraction with reflections disabled",
+      "passed": true,
+      "total": 129600
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "dry foreground ledge is not bent into water",
+      "passed": true,
+      "total": 100
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "water-off stable native surface",
+      "passed": true,
+      "total": 129600
+    },
+    {
+      "changed": 3203,
+      "maximum": 218,
+      "name": "cached probe reflection ripples with SSR disabled",
+      "passed": true,
+      "total": 20860
+    },
+    {
+      "changed": 8987,
+      "maximum": 255,
+      "name": "reflected highlight is present over black transmitted water",
+      "passed": true,
+      "total": 20860
+    },
+    {
+      "maximum": 0,
+      "name": "unlit water and caustics do not glow",
+      "passed": true
+    },
+    {
+      "changed": 8925,
+      "maximum": 109,
+      "name": "water brightness responds to environment",
+      "passed": true,
+      "total": 8925
+    },
+    {
+      "glError": 0,
+      "name": "GPU shader compile/render",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "flashlightChecks": [
+    {
+      "flashlightOff": {
+        "changed": 10942,
+        "maximum": 202,
+        "total": 11119
+      },
+      "flashlightOn": {
+        "changed": 10930,
+        "maximum": 202,
+        "total": 11119
+      },
+      "name": "environment reflection remains present with flashlight on",
+      "passed": true
+    },
+    {
+      "changed": 3404,
+      "maximum": 176,
+      "name": "flashlight produces surface glints over black transmission with reflections off",
+      "passed": true,
+      "total": 20860
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "beam aimed away does not light water",
+      "passed": true,
+      "total": 20860
+    },
+    {
+      "candidates": 1423,
+      "name": "opaque occluder shadows visible water glints",
+      "passed": true,
+      "shadowed": 138
+    },
+    {
+      "changed": 0,
+      "glError": 0,
+      "maximum": 0,
+      "name": "bounded flashlight water response at grazing angle",
+      "passed": true,
+      "total": 2934
+    },
+    {
+      "changed": 14,
+      "glError": 0,
+      "maximum": 21,
+      "name": "bounded flashlight water response at downward angle",
+      "passed": true,
+      "total": 16988
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "lighting off suppresses flashlight contribution",
+      "passed": true,
+      "total": 129600
+    },
+    {
+      "directOnly": {
+        "changed": 0,
+        "maximum": 0,
+        "total": 11119
+      },
+      "name": "flashlight-lit opaque SSR receiver is reflected into water",
+      "passed": true,
+      "reflected": {
+        "changed": 2905,
+        "maximum": 14,
+        "total": 11119
+      }
+    },
+    {
+      "glError": 0,
+      "name": "flashlight water shader compiles and renders",
+      "passed": true
+    }
+  ],
+  "flashlightFailures": [],
+  "frames": [],
+  "interiorProbeDiagnostic": {
+    "changed": 2,
+    "maximum": 13,
+    "name": "blue ledge",
+    "qualification": "Approximate single-box fallback; no exact interior-object coverage claim",
+    "total": 141
+  },
+  "lookFailures": [],
+  "looks": [
+    {
+      "glError": 0,
+      "look": "Clear",
+      "luminanceRange": 57.33299999999999,
+      "meanRGB": [
+        45.435192458758834,
+        49.19416077507201,
+        35.638517936632624
+      ],
+      "mist": false,
+      "name": "Clear renders with original texture and immutable liquid kind",
+      "opacity": 0.05,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6190,
+      "maximum": 41,
+      "name": "Clear retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "glError": 0,
+      "look": "Tinted",
+      "luminanceRange": 55.7646,
+      "meanRGB": [
+        44.08392249279916,
+        49.51675831369469,
+        23.12319979052108
+      ],
+      "mist": false,
+      "name": "Tinted renders with original texture and immutable liquid kind",
+      "opacity": 0.08,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6167,
+      "maximum": 41,
+      "name": "Tinted retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "glError": 0,
+      "look": "Muddy",
+      "luminanceRange": 32.3186,
+      "meanRGB": [
+        44.946582875098194,
+        26.715108667190364,
+        6.663262634197434
+      ],
+      "mist": false,
+      "name": "Muddy renders with original texture and immutable liquid kind",
+      "opacity": 0.1,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6175,
+      "maximum": 35,
+      "name": "Muddy retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "glError": 0,
+      "look": "Toxic",
+      "luminanceRange": 38.05939999999999,
+      "meanRGB": [
+        43.515841843414506,
+        76.32744173867505,
+        0.5525006546216287
+      ],
+      "mist": true,
+      "name": "Toxic renders with original texture and immutable liquid kind",
+      "opacity": 0.22,
+      "passed": true,
+      "physicalKind": 0,
+      "textureRetained": true
+    },
+    {
+      "changed": 6360,
+      "maximum": 39,
+      "name": "Toxic retains environmental reflection",
+      "passed": true,
+      "total": 7638
+    },
+    {
+      "clear": 57.33299999999999,
+      "muddy": 32.3186,
+      "name": "clear retains more floor contrast than muddy",
+      "passed": true
+    },
+    {
+      "clear": [
+        45.435192458758834,
+        49.19416077507201,
+        35.638517936632624
+      ],
+      "name": "tint increases green relative to red compared with clear",
+      "passed": true,
+      "tinted": [
+        44.08392249279916,
+        49.51675831369469,
+        23.12319979052108
+      ]
+    },
+    {
+      "muddy": [
+        44.946582875098194,
+        26.715108667190364,
+        6.663262634197434
+      ],
+      "name": "muddy is warm brown and toxic is vivid green with mist",
+      "passed": true,
+      "toxic": [
+        43.515841843414506,
+        76.32744173867505,
+        0.5525006546216287
+      ]
+    },
+    {
+      "maximum": 0,
+      "name": "Clear has no source-free glow",
+      "passed": true
+    },
+    {
+      "maximum": 0,
+      "name": "Tinted has no source-free glow",
+      "passed": true
+    },
+    {
+      "maximum": 0,
+      "name": "Muddy has no source-free glow",
+      "passed": true
+    }
+  ],
+  "markerChecks": [
+    {
+      "changed": 26,
+      "maximum": 255,
+      "name": "gold lamp contributes in its reflected water region with SSR",
+      "passed": true,
+      "screen": 1,
+      "total": 832
+    },
+    {
+      "channel": 0,
+      "name": "gold lamp has positive reflected colour after subtracting transmission controls",
+      "passed": true,
+      "positive": 26,
+      "transmissionControl": {
+        "changed": 0,
+        "maximum": 0,
+        "total": 832
+      }
+    },
+    {
+      "changed": 20,
+      "maximum": 203,
+      "name": "gold lamp isolated reflected contribution has an animated shimmer",
+      "passed": true,
+      "total": 832
+    },
+    {
+      "changed": 101,
+      "maximum": 255,
+      "name": "red marker contributes in its reflected water region with SSR",
+      "passed": true,
+      "screen": 1,
+      "total": 704
+    },
+    {
+      "channel": 0,
+      "name": "red marker has positive reflected colour after subtracting transmission controls",
+      "passed": true,
+      "positive": 101,
+      "transmissionControl": {
+        "changed": 0,
+        "maximum": 0,
+        "total": 704
+      }
+    },
+    {
+      "changed": 84,
+      "maximum": 255,
+      "name": "red marker isolated reflected contribution has an animated shimmer",
+      "passed": true,
+      "total": 704
+    },
+    {
+      "changed": 57,
+      "maximum": 82,
+      "name": "blue ledge contributes in its reflected water region with SSR",
+      "passed": true,
+      "screen": 1,
+      "total": 141
+    },
+    {
+      "channel": 2,
+      "name": "blue ledge has positive reflected colour after subtracting transmission controls",
+      "passed": true,
+      "positive": 55,
+      "transmissionControl": {
+        "changed": 2,
+        "maximum": 19,
+        "total": 141
+      }
+    },
+    {
+      "changed": 61,
+      "maximum": 80,
+      "name": "blue ledge isolated reflected contribution has an animated shimmer",
+      "passed": true,
+      "total": 141
+    },
+    {
+      "changed": 251,
+      "maximum": 255,
+      "name": "gold lamp contributes in its reflected water region with cached probe only",
+      "passed": true,
+      "screen": 0,
+      "total": 832
+    },
+    {
+      "changed": 49,
+      "maximum": 255,
+      "name": "red marker contributes in its reflected water region with cached probe only",
+      "passed": true,
+      "screen": 0,
+      "total": 704
+    }
+  ],
+  "markerFailures": [],
+  "muddyDepthChecks": [
+    {
+      "angles": [
+        0,
+        60,
+        75
+      ],
+      "contrasts": [
+        52,
+        33.285714285714285,
+        13.428571428571429
+      ],
+      "controls": [
+        79,
+        79,
+        79
+      ],
+      "name": "near Muddy volume retains distinguishable submerged source colours",
+      "passed": true,
+      "redMeans": [
+        171,
+        149.28571428571428,
+        127
+      ],
+      "retained": [
+        0.6582278481012658,
+        0.4213381555153707,
+        0.16998191681735986
+      ]
+    },
+    {
+      "approximateWaterPaths": [
+        64,
+        128,
+        247
+      ],
+      "name": "longer in-water paths progressively obscure the same floor colours",
+      "passed": true,
+      "retained": [
+        0.6582278481012658,
+        0.4213381555153707,
+        0.16998191681735986
+      ]
+    },
+    {
+      "changed": 49,
+      "glError": 0,
+      "maximum": 11,
+      "name": "Clear caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "total": 49
+    },
+    {
+      "changed": 49,
+      "glError": 0,
+      "maximum": 10,
+      "name": "Tinted caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "total": 49
+    },
+    {
+      "changed": 44,
+      "glError": 0,
+      "maximum": 6,
+      "name": "Muddy caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "total": 49
+    },
+    {
+      "changed": 49,
+      "glError": 0,
+      "maximum": 23,
+      "name": "Toxic caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "total": 49
+    }
+  ],
+  "muddyDepthFailures": [],
+  "performance": null,
+  "reference": {
+    "durationMs": 10140,
+    "frames": 152,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "surfaceChecks": [
+    {
+      "angles": [
+        {
+          "angle": 0,
+          "glError": 0,
+          "signal": 34
+        },
+        {
+          "angle": 45,
+          "glError": 0,
+          "signal": 63.93877551020408
+        },
+        {
+          "angle": 75,
+          "glError": 0,
+          "signal": 173.85714285714286
+        },
+        {
+          "angle": 85,
+          "glError": 0,
+          "signal": 204.91836734693877
+        }
+      ],
+      "name": "grazing surface reflection strengthens while perpendicular transmission stays clear",
+      "passed": true
+    },
+    {
+      "lowerStrengthDifference": {
+        "changed": 0,
+        "maximum": 0,
+        "total": 49
+      },
+      "name": "internal reflection suppresses air outside Snell window even at lower enabled strength",
+      "normalWindowMean": 222.22179999999992,
+      "outsideWindowMean": 0,
+      "passed": true
+    },
+    {
+      "enabledMean": 0,
+      "name": "reflection off remains an explicit underwater optics opt-out",
+      "passed": true,
+      "reflectionOffMean": 222.20979999999983
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "dry-view classification prevents a fabricated underside at the same low coordinates",
+      "passed": true,
+      "total": 49
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "opaque foreground before the underside is not replaced by water optics",
+      "passed": true,
+      "total": 49
+    },
+    {
+      "middleToFar": {
+        "changed": 99231,
+        "maximum": 228,
+        "total": 129600
+      },
+      "name": "underside provides changing perspective and attenuation cues at multiple depths",
+      "nearToMiddle": {
+        "changed": 60806,
+        "maximum": 227,
+        "total": 129600
+      },
+      "passed": true
+    },
+    {
+      "beforeMean": 71.52191020408165,
+      "causticMean": 78.00431836734694,
+      "delta": {
+        "changed": 49,
+        "maximum": 11,
+        "total": 49
+      },
+      "name": "received-light caustics illuminate the submerged floor",
+      "passed": true
+    },
+    {
+      "maximum": 0,
+      "name": "stronger clear caustics still do not manufacture light",
+      "passed": true
+    }
+  ],
+  "surfaceFailures": [],
+  "torchChecks": [
+    {
+      "changed": 2198,
+      "glError": 0,
+      "maximum": 10,
+      "name": "ordinary warm light illuminates the reflected opaque wall",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "torch reflection test is isolated from black transmitted floor and dry ledge",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "lighting off keeps ordinary reflected-light shading inactive",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 2365,
+      "maximum": 14,
+      "name": "Muddy body scatters incident light independently of a black floor and reflections",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "changed": 703,
+      "maximum": 2,
+      "name": "Muddy near-surface haze responds to the mist control",
+      "passed": true,
+      "total": 11119
+    },
+    {
+      "maximum": 4,
+      "name": "Muddy incident-light sediment and haze do not emit without a source",
+      "passed": false
+    }
+  ],
+  "torchCost": {
+    "costs": [
+      {
+        "frames": 90,
+        "height": 270,
+        "meanMs": 94.837777777844,
+        "ordinaryLight": false,
+        "width": 480
+      },
+      {
+        "frames": 90,
+        "height": 270,
+        "meanMs": 89.03666666646798,
+        "ordinaryLight": true,
+        "width": 480
+      }
+    ],
+    "method": "one-pixel readback per fixed-time full frame; includes main and reflected receiver lighting, not an isolated SSR cost or gameplay FPS"
+  },
+  "torchFailures": [
+    "Muddy incident-light sediment and haze do not emit without a source"
+  ],
+  "vapourChecks": [
+    {
+      "glError": 0,
+      "name": "small toxic streams rise slowly with narrow drift and retained geometry",
+      "narrow": true,
+      "passed": true,
+      "rising": 13,
+      "sprites": 13
+    },
+    {
+      "changed": 218,
+      "maximum": 3,
+      "name": "toxic vapour is visibly rendered and the haze slider hides it",
+      "passed": true,
+      "total": 129600
+    },
+    {
+      "name": "liquids off hides toxic streams in the real scene",
+      "passed": true,
+      "visible": false
+    }
+  ],
+  "vapourFailures": []
+}

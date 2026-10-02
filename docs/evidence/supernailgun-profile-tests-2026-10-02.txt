@@ -1,0 +1,198 @@
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+PASS supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+PASS classic draw and feature toggle restore native geometry and subsequent enhanced draws
+PASS parsed confirmed shotgun sounds emit one or two casings independently of audio and stale weapon stats
+PASS shell BSP sweeps hit the floor and wall with radius clearance
+PASS a casing fired at the original E1M1 spawn settles on the actual map collision hull
+PASS casings settle on BSP floors, exceed instance capacity, never expire, and survive map return and save restoration
+PASS weapon test texture and fetch stubs are restored
+RESULT 7/7 passed (tests/weapons_test.js)
+PASS review: cloned imported materials retain supplied maps and enhanced surface outputs
+PASS review: raised and rotated brush floors intercept shell sweeps before the world floor
+PASS review: fired casing lands on a lift, follows translation and rotation, survives save, then falls when support disappears
+PASS review: brush rotation updates casing orientation even when its world position stays fixed
+PASS review: malformed saved support is discarded without losing the physical casing
+RESULT 5/5 passed (tests/weapon_review_test.js)
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+PASS refinement: rockets preserve donor orientation and dimensions with exactly a held-only 3-unit rearward offset
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+PASS refinement: original lightning body sampler and axis swap survive actual draw and material cloning
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+PASS refinement: SSG barrel grading preserves original texture detail and wood; lightning wires become brown
+RESULT 3/3 passed (tests/weapons_refinement_test.js)
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: all nine native frames, original skin/UVs and complete hand render in enhanced, classic and New Game modes
+PASS original axe: no replacement role, requests, generated texture or geometry remain; supplied source is preserved
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: classic rollback and feature toggling preserve original art without generating a hand child
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: native swing interpolation preserves complete axe/arm geometry and original skin
+PASS original axe: restore public test fixtures
+RESULT 5/5 passed (tests/axe_original_test.js)
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+PASS weapon startup: ordinary app waits for all optional held/pickup art before removing loading UI and starting demo frames
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+Weapon art fallback: g_rock2 Error: Invalid weapon geometry: g_rock2
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:79:85
+    at async Promise.all (index 7)
+    at async main (main.js:68:3)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:60:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:40:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:39:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:87:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:40:9
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+PASS super nailgun profile: only four barrel assemblies lengthen rearward to original collar profile; receiver ring and every body vertex stay fixed
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun profile: pickup coordinates, complete topology, original UVs and diffuse/normal bitmaps remain unchanged
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+PASS super nailgun profile: all nine held frames rigidly animate the corrected barrels and fixed body together
+PASS super nailgun profile: restore public test fixtures
+RESULT 4/4 passed (tests/supernailgun_profile_test.js)
+TOTAL 32/32 passed

@@ -1,0 +1,637 @@
+PASS public credits retain contributors, native-size Japanese picture/fallback and centered white footer inside enlarged box
+PASS public credits click maps enlarged viewport only to centered footer; Enter and Escape retain navigation
+PASS temporary credits sizing restores normal metrics and preference after nested scopes and callback failure
+RESULT 3/3 passed (tests/ambient_credits_test.js)
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+PASS public gameplay policy excludes classic, title demos, menus, death, intermission, pause, mute and hidden tabs
+PASS authoritative living enemy proximity includes unseen monsters while ignoring corpses and free edicts
+PASS monster engagement, attacks and damage suppress swells until a ten-second combat cooldown ends
+PASS map change resets old damage history and remote fallback recognizes native live/death poses
+PASS public host audio update lazily creates streams only in Newer Game and respects sound lifecycle
+RESULT 13/13 passed (tests/ambient_game_test.js)
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+RESULT 8/8 passed (tests/ambient_music_test.js)
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: all nine native frames, original skin/UVs and complete hand render in enhanced, classic and New Game modes
+PASS original axe: no replacement role, requests, generated texture or geometry remain; supplied source is preserved
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: classic rollback and feature toggling preserve original art without generating a hand child
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: native swing interpolation preserves complete axe/arm geometry and original skin
+PASS original axe: restore public test fixtures
+RESULT 5/5 passed (tests/axe_original_test.js)
+PASS client initialization registers all demo commands
+RESULT 1/1 passed (tests/cl_demo_commands_test.js)
+recording to capture.dem.
+
+<-- server to client keepalive
+
+Completed demo
+
+PASS demo recording writes each received non-keepalive message
+RESULT 1/1 passed (tests/cl_demo_test.js)
+Clearing memory
+
+PASS remote client state changes invalidate map-owned models
+RESULT 1/1 passed (tests/cl_main_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+file:///Users/bri/SOURCE/Quaked/src/render.js:99
+		this.vrect = new vrect_t(); // subwindow in video for refresh
+		                 ^
+
+ReferenceError: Cannot access 'vrect_t' before initialization
+    at new refdef_t (file:///Users/bri/SOURCE/Quaked/src/render.js:99:20)
+    at file:///Users/bri/SOURCE/Quaked/src/render.js:138:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:36:2
+
+Node.js v24.19.0
+PASS every stock enemy, head and gore model has height-driven native relief without replacement art
+PASS native relief respects independent normals, original enemy toggle, lighting and classic pass
+PASS distinct skins and animation-frame textures keep distinct height maps and model-owned diffuse lifetimes
+PASS stored custom enemy height loads in either order, preserves UV and suppresses captions-independent material changes
+PASS failed or mismatched height downloads keep a safe native fallback
+PASS native two/three/five-frame groups use exactly the model loader animation slots
+PASS late custom/native downloads are disposed after shutdown and same-texture reuse
+PASS failed and wrong-size custom heights actively fall back to the matching diffuse
+PASS native height revision changes reject older responses and refresh the same diffuse texture
+RESULT 9/9 passed (tests/enemy_heights_test.js)
+PASS frame pipeline carries authored albedo separately at scene resolution
+RESULT 1/1 passed (tests/flashlight_albedo_test.js)
+R_Init
+R_Init: Three.js renderer ready
+PASS gl_doubleeyes keeps the original console spelling
+RESULT 1/1 passed (tests/gl_doubleeyes_cvar_test.js)
+PASS model clearing disposes only map-owned Three textures
+PASS server texture shim supports map texture disposal
+PASS missing textures use the persistent checkerboard
+RESULT 3/3 passed (tests/gl_model_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS entity lump parser reads key/value pairs
+PASS teleporter surface becomes a portal onto its receiver
+PASS back face of a teleporter portals the other way
+PASS teleport texture without a trigger stays a plain surface
+PASS other turbulent textures are not portals
+RESULT 5/5 passed (tests/gl_portal_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+PASS dynamic lights add their proximity blend to the displayed overlay
+PASS dynamic light marks use the renderer frame counter
+PASS inline brush models receive dynamic light marks
+RESULT 3/3 passed (tests/gl_rlight_test.js)
+PASS viewmodel uses the registered chase camera cvar
+RESULT 1/1 passed (tests/gl_rmain_test.js)
+PASS player skin translation accepts numeric alias model types
+RESULT 1/1 passed (tests/gl_rmisc_skin_test.js)
+PASS map setup runs the canonical renderer reset
+PASS map teardown clears persistent entity mesh caches
+PASS map teardown retains owners after entities leave the PVS
+PASS map teardown invalidates cached brush entity groups
+RESULT 4/4 passed (tests/gl_rmisc_test.js)
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+RESULT 3/3 passed (tests/gl_rsurf_test.js)
+PASS gl_subdivide_size console cvar controls surface subdivision
+RESULT 1/1 passed (tests/gl_subdivide_test.js)
+PASS mouse input uses the registered sensitivity cvar
+RESULT 1/1 passed (tests/in_web_test.js)
+PASS dynamic lighting composition follows scene pixels and presents the split at display size
+PASS full-resolution lighting preserves the direct display path and grade
+RESULT 2/2 passed (tests/lighting_resolution_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+PASS customize controls binds printable and named keys
+RESULT 1/1 passed (tests/menu_test.js)
+PASS client WebTransport keeps reliable and datagram receive sequences separate
+RESULT 1/1 passed (tests/net_webtransport_test.js)
+Added packfile newer.pak (2 files)\n
+PASS the Newer Game pack is only visible while Newer Game is on
+Added packfile newer.pak (1 files)\n
+PASS json comes out of the pack, and from the loose file without one
+PASS LIT files: only the right size and version are taken
+PASS an entity list file must hold entities
+RESULT 4/4 passed (tests/newer_pack_test.js)
+couldn't exec default.cfg
+
+PASS options order, widgets, keyboard and touch dispatch match the visible rows
+RESULT 1/1 passed (tests/options_order_test.js)
+PASS PM_PlayerMove keeps backed-up fraction aligned with endpos
+RESULT 1/1 passed (tests/pmove_test.js)
+file:///Users/bri/SOURCE/Quaked/src/render.js:99
+		this.vrect = new vrect_t(); // subwindow in video for refresh
+		                 ^
+
+ReferenceError: Cannot access 'vrect_t' before initialization
+    at new refdef_t (file:///Users/bri/SOURCE/Quaked/src/render.js:99:20)
+    at file:///Users/bri/SOURCE/Quaked/src/render.js:138:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:36:2
+
+Node.js v24.19.0
+file:///Users/bri/SOURCE/Quaked/src/render.js:99
+		this.vrect = new vrect_t(); // subwindow in video for refresh
+		                 ^
+
+ReferenceError: Cannot access 'vrect_t' before initialization
+    at new refdef_t (file:///Users/bri/SOURCE/Quaked/src/render.js:99:20)
+    at file:///Users/bri/SOURCE/Quaked/src/render.js:138:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:36:2
+
+Node.js v24.19.0
+file:///Users/bri/SOURCE/Quaked/src/render.js:99
+		this.vrect = new vrect_t(); // subwindow in video for refresh
+		                 ^
+
+ReferenceError: Cannot access 'vrect_t' before initialization
+    at new refdef_t (file:///Users/bri/SOURCE/Quaked/src/render.js:99:20)
+    at file:///Users/bri/SOURCE/Quaked/src/render.js:138:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:36:2
+
+Node.js v24.19.0
+file:///Users/bri/SOURCE/Quaked/src/render.js:99
+		this.vrect = new vrect_t(); // subwindow in video for refresh
+		                 ^
+
+ReferenceError: Cannot access 'vrect_t' before initialization
+    at new refdef_t (file:///Users/bri/SOURCE/Quaked/src/render.js:99:20)
+    at file:///Users/bri/SOURCE/Quaked/src/render.js:138:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:36:2
+
+Node.js v24.19.0
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo (forcetrack -1)
+
+Playing demo (forcetrack -1)
+
+PASS attract playback compares in menus while manual and file demos remain single-view
+Playing demo from profiler_mode_test.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from profiler_mode_missing.dem.
+
+ERROR: couldn't open profiler_mode_missing.dem.
+
+PASS timedemo suppresses forced full-classic and failed loading never sets timedemo
+Playing demo (forcetrack -1)
+
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo (forcetrack -1)
+
+PASS title profiling is enhanced-only and restores the underlying owner mode on cancellation
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from demo2.dem.
+
+Playing demo (forcetrack -1)
+
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+Playing demo from demo3.dem.
+
+Playing demo (forcetrack -1)
+
+---- Performance profile (Newer Game, 800x600) ----
+demo1: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+demo2: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+demo3: 1 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+Overall: 8.3 fps average, 8.3 fps 1% low; 0% of frames within 16.7 ms (60 fps)
+Draw calls avg 0 (max 0), triangles avg 0 (max 0)
+Where the time goes (ms per frame, share):
+  world draw                 40 ms   33.3%
+  audio and the rest         40 ms   33.3%
+Bottleneck: world draw (33.3%): drawing the world into the picture: triangles, materials or resolution. Lower the resolution (r_dynres) or reduce draw calls
+Bottleneck: audio and the rest (33.3%): sound and everything else
+This machine does not hold 60 fps on the demos at this resolution.
+(each stage waits for the graphics card, so this shows where time goes, not the exact frame rate of normal play)
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+PASS completed profiles report measured enhanced mode after classic owner preferences are restored
+Playing demo from demo1.dem.
+
+Playing demo (forcetrack -1)
+
+---- Performance profile (Newer Game, 800x600) ----
+demo1: 3 frames, 8.3 fps average, 8.3 fps 1% low, worst 120 ms
+Overall: 8.3 fps average, 8.3 fps 1% low; 0% of frames within 16.7 ms (60 fps)
+Draw calls avg 0 (max 0), triangles avg 0 (max 0)
+Where the time goes (ms per frame, share):
+  world draw                 40 ms   33.3%
+  audio and the rest         40 ms   33.3%
+Bottleneck: world draw (33.3%): drawing the world into the picture: triangles, materials or resolution. Lower the resolution (r_dynres) or reduce draw calls
+Bottleneck: audio and the rest (33.3%): sound and everything else
+This machine does not hold 60 fps on the demos at this resolution.
+(each stage waits for the graphics card, so this shows where time goes, not the exact frame rate of normal play)
+-1 frames %5.1f seconds %5.1f fps
+ 1 -1
+PASS menu cancellation from an active enhanced game restores preferences and reports partial measurements
+Playing demo from profiler_mode_missing.dem.
+
+ERROR: couldn't open profiler_mode_missing.dem.
+
+PASS failed profiler demo loading stops within its bound and restores all preferences
+PASS uncaught frame errors restore profiler settings before propagating the original error
+Host_Error: profiler regression
+
+Host_Error: profiler regression
+
+PASS recovered Host_Error stops profiling through the actual Host_Frame command interface
+RESULT 8/8 passed (tests/profiler_demo_mode_test.js)
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off, Newer Game only, or always
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+RESULT 7/7 passed (tests/r_anim_test.js)
+PASS a different seed makes different crates change
+PASS crate sides are told by name
+PASS about one crate in 40 changes, all its faces use the same box, opposite faces differ
+PASS both boxes turn up, and the choice is the same every time
+PASS crates that touch are one crate; a level name changes the roll
+PASS a crate with a face that is not one whole picture keeps its ordinary picture
+PASS ordinary crates take the common pictures, all four sides alike, in about the share expected
+PASS stacked and neighbouring crates are chosen one by one
+PASS with odds of 1 every crate changes
+RESULT 9/9 passed (tests/r_cratevariants_test.js)
+PASS a point just above a floor finds the floor
+PASS a wall seen from its back face points into the room
+PASS nothing is found too far away, off the surface, behind it, on sky or in solid
+PASS the nearer of two surfaces wins in a corner
+RESULT 4/4 passed (tests/r_decals_test.js)
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+RESULT 3/3 passed (tests/r_demosplit_resolution_test.js)
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+RESULT 3/3 passed (tests/r_flashlight_test.js)
+PASS R_LevelEntities: models, skill, secret doors and plats
+PASS R_LevelEntities: a level you left shows how you left it
+PASS R_FramePrefix
+RESULT 3/3 passed (tests/r_levelents_test.js)
+PASS exit shapes: thin vertical slab, thin horizontal slab, or a pad
+PASS walking through a doorway carries position, velocity and facing to the start
+PASS falling through a pit keeps falling and keeps facing
+PASS pads are not doorways
+PASS the approach side is the one with more room
+PASS a square portal frame is entered from its open side, along either axis
+PASS every Episode 1 exit is a doorway, a portal or a pit (only the finale is not)
+PASS the real Episode 1 maps link up in a chain
+PASS the way back through a crossing undoes it
+RESULT 9/9 passed (tests/r_levelgraph_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS particle physics stays frozen at zero client-time delta
+PASS particles read live gravity from the registered cvar
+RESULT 2/2 passed (tests/r_part_test.js)
+PASS the frame counter averages half a second of frames
+PASS stage marks and the profiler do nothing while not profiling
+RESULT 2/2 passed (tests/r_perf_test.js)
+PASS coming out of water wets the view, and it dries
+PASS going under water washes the drops off, and none show while under
+PASS blood on the lens depends on how near and how big the burst was
+RESULT 3/3 passed (tests/r_screendrops_test.js)
+PASS the picture stretches while the level changes, then snaps back
+PASS a snap without a teleport does nothing
+RESULT 2/2 passed (tests/r_teleportfx_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+PASS super nailgun source: independently decoded new FBX preserves complete authored coordinates, UVs and normals
+PASS super nailgun source: every polygon fan retains source boundary area and winding, including all six hexagons
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun source: held and pickup fit preserve supplied shape and ridges by one uniform scale and rigid transform in every pose
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun source: new outer PNGs, original FBX UV orientation and authored normal detail bind in held/pickup materials and clones
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+PASS super nailgun rotor: public draw interpolates circles and normals without shrinking, holds idle and continues forward across the firing loop
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+PASS super nailgun source: mild RGB hue balance covers only bare forward tubes and preserves bronze body, source channel variation and exposure
+PASS super nailgun source: restore public test fixtures
+RESULT 7/7 passed (tests/supernailgun_profile_test.js)
+PASS SV_StartSound encodes the source edict index
+PASS SV_WriteClientdataToMessage packs an optional items2 field
+RESULT 2/2 passed (tests/sv_main_test.js)
+file:///Users/bri/SOURCE/Quaked/src/render.js:99
+		this.vrect = new vrect_t(); // subwindow in video for refresh
+		                 ^
+
+ReferenceError: Cannot access 'vrect_t' before initialization
+    at new refdef_t (file:///Users/bri/SOURCE/Quaked/src/render.js:99:20)
+    at file:///Users/bri/SOURCE/Quaked/src/render.js:138:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:36:2
+
+Node.js v24.19.0
+PASS shipped start hub portal thresholds are physically reachable or use confirmed backing contact
+RESULT 1/1 passed (tests/sv_portal_hull_test.js)
+PASS camera portal dispatch retains oblique view, lateral crossing, vertical velocity and speed
+PASS camera portal defers hull overlap until origin reaches visible threshold
+PASS portal view angles survive the actual svc_setangle writer despite model pitch compression
+PASS opposite entry face uses its own camera transform after backing out
+PASS floor portal rotates falling momentum and camera forward into receiver frame
+PASS classic, disabled camera portals, multiplayer and non-player touches keep QC unchanged
+PASS disabling visible portals cancels a saved approach before native touch
+PASS blocked receiver offset falls back to original QC destination and side effects
+PASS unmapped hidden trigger and a moved receiver keep native QC dispatch
+PASS QC refusal and mod redirect remain authoritative; receiver restores on exceptions
+RESULT 10/10 passed (tests/sv_portal_motion_test.js)
+PASS every control is on the screen and none overlap
+PASS the buttons are an arc around the forward button in the corner
+PASS portrait has a panel the status bar sits above, landscape does not; the views differ
+PASS the safe area keeps the controls off the notch and the home bar
+PASS the weapon menu offers the weapons held that have ammo
+RESULT 5/5 passed (tests/touch_layout_test.js)
+PASS lighting, normal maps and liquids switch independently on existing materials
+PASS Newer menu exposes independent lighting, normals and liquids controls
+RESULT 2/2 passed (tests/visual_options_test.js)
+PASS ordinary torch sources reach the water compositor within the existing cap and respect independent feature switches
+PASS brown stock water uses a Muddy map default while explicit looks and native paths preserve map identity
+RESULT 2/2 passed (tests/water_concept_test.js)
+PASS water presentation switches preserve independent optics, native opacity and other liquids
+PASS cached water probes exclude first-person weapon, keep six draws and restore on capture failure
+PASS original water colour/pattern uses contextual cached brightness, live styles and the selected light curve
+RESULT 3/3 passed (tests/water_effect_test.js)
+PASS flashlight toggles preserve water material and cached reflections while respecting lighting and classic scopes
+RESULT 1/1 passed (tests/water_flashlight_test.js)
+PASS water appearance menu cycles all choices, bounds invalid settings and archives the selection
+PASS live water looks reuse original materials and preserve physical slime, lava and native boundaries
+RESULT 2/2 passed (tests/water_looks_test.js)
+PASS low shoreline markers retain a safe above-water probe beneath a low ceiling without extra captures
+RESULT 1/1 passed (tests/water_nearfield_test.js)
+PASS water underside keeps live reflection controls, material cues and independent visual boundaries
+PASS mapped water probes choose real air anchors instead of a solid merged centre and skip unsafe pools before budgeting
+PASS contents-free optical screen blend retains full damage, pickup and powerup flashes without mutating native state
+PASS dynamic-light proximity flashes append to both native and contents-free frame blends and reset next frame
+RESULT 4/4 passed (tests/water_surface_test.js)
+PASS toxic vapour forms small slow anchored streams within the shared particle budget and reuses its geometry
+PASS vapour follows Toxic appearance and native slime while respecting slider, classic and liquids-off gates
+RESULT 2/2 passed (tests/water_vapour_test.js)
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+PASS weapon startup: ordinary app waits for all optional held/pickup art before removing loading UI and starting demo frames
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+Weapon art fallback: g_rock2 Error: Invalid weapon geometry: g_rock2
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:80:85
+    at async Promise.all (index 7)
+    at async main (main.js:68:3)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:60:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:40:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:40:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:87:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:40:9
+PASS review: cloned imported materials retain supplied maps and enhanced surface outputs
+PASS review: raised and rotated brush floors intercept shell sweeps before the world floor
+PASS review: fired casing lands on a lift, follows translation and rotation, survives save, then falls when support disappears
+PASS review: brush rotation updates casing orientation even when its world position stays fixed
+PASS review: malformed saved support is discarded without losing the physical casing
+RESULT 5/5 passed (tests/weapon_review_test.js)
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+PASS refinement: rockets preserve donor orientation and dimensions with exactly a held-only 3-unit rearward offset
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+PASS refinement: original lightning body sampler and axis swap survive actual draw and material cloning
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+PASS refinement: SSG barrel grading preserves original texture detail and wood; lightning wires become brown
+RESULT 3/3 passed (tests/weapons_refinement_test.js)
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+PASS supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+PASS classic draw and feature toggle restore native geometry and subsequent enhanced draws
+PASS parsed confirmed shotgun sounds emit one or two casings independently of audio and stale weapon stats
+PASS shell BSP sweeps hit the floor and wall with radius clearance
+PASS a casing fired at the original E1M1 spawn settles on the actual map collision hull
+PASS casings settle on BSP floors, exceed instance capacity, never expire, and survive map return and save restoration
+PASS weapon test texture and fetch stubs are restored
+RESULT 7/7 passed (tests/weapons_test.js)
+PASS SV_RecursiveHullCheck supports hulls deeper than the scratch pool
+RESULT 1/1 passed (tests/world_test.js)
+TOTAL 233/233 passed

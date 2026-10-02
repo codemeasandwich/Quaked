@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { DotProduct, VectorCopy, VectorSubtract, Length } from './mathlib.js';
 import { MAX_LIGHTSTYLES } from './quakedef.js';
 import { MAXLIGHTMAPS, d_lightstylevalue, r_framecount,
-	gl_flashblend, v_blend } from './glquake.js';
+	gl_flashblend, v_blend, v_liquid_blend } from './glquake.js';
 import { r_origin } from './render.js';
 import { cl_dlights } from './client.js';
 import { isXRActive, XR_SCALE } from './webxr.js';
@@ -67,15 +67,18 @@ DYNAMIC LIGHTS BLEND RENDERING
 
 export function AddLightBlend( r, g, b, a2 ) {
 
-	let a;
+	for ( let i = 0; i < 2; i ++ ) {
 
-	v_blend[ 3 ] = a = v_blend[ 3 ] + a2 * ( 1 - v_blend[ 3 ] );
+		const blend = i === 0 ? v_blend : v_liquid_blend;
 
-	const a2f = a2 / a;
+		const a = blend[ 3 ] + a2 * ( 1 - blend[ 3 ] );
+		blend[ 3 ] = a;
+		const fraction = a2 / a;
+		blend[ 0 ] = blend[ 0 ] * ( 1 - fraction ) + r * fraction;
+		blend[ 1 ] = blend[ 1 ] * ( 1 - fraction ) + g * fraction;
+		blend[ 2 ] = blend[ 2 ] * ( 1 - fraction ) + b * fraction;
 
-	v_blend[ 0 ] = v_blend[ 0 ] * ( 1 - a2f ) + r * a2f;
-	v_blend[ 1 ] = v_blend[ 1 ] * ( 1 - a2f ) + g * a2f;
-	v_blend[ 2 ] = v_blend[ 2 ] * ( 1 - a2f ) + b * a2f;
+	}
 
 }
 

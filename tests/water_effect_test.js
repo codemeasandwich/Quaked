@@ -23,13 +23,13 @@ Deno.test( 'water presentation switches preserve independent optics, native opac
 
 		post.R_BuildWorldLights( model() ); for ( const v of options ) vars.Cvar_SetValue( v.name, 0 );
 		vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'r_newer_normals', 1 ); vars.Cvar_SetValue( 'r_newer_water', 1 );
-		equal( post.R_LiquidOpacity( '*water1', 1 ), .12, 'moderate textured surface layer' ); equal( post.R_LiquidOpacity( '*slime0', 1 ), .22, 'toxic slime remains visibly translucent' ); equal( post.R_LiquidOpacity( '*lava1', 1 ), 1, 'lava unchanged' );
+		equal( post.R_LiquidOpacity( '*water1', 1 ), .05, 'moderate textured surface layer' ); equal( post.R_LiquidOpacity( '*slime0', 1 ), .22, 'toxic slime remains visibly translucent' ); equal( post.R_LiquidOpacity( '*lava1', 1 ), 1, 'lava unchanged' );
 		post.R_PostBegin( renderer, true, 320, 200 );
 		const camera = new THREE.PerspectiveCamera( 80, 1.6, 4, 4096 ); camera.up.set( 0, 0, 1 ); camera.position.set( 0, - 160, 48 ); camera.lookAt( 0, 0, 0 ); camera.updateMatrixWorld();
 		post.R_PostFinish( renderer, new THREE.Scene(), camera, { lx: 0, ly: 0, lw: 320, lh: 200 }, 0, [], [], 1, 1, false );
 		equal( uniforms.uLighting.value, 0, 'lighting off' ); equal( uniforms.uWaterCount.value, 1, 'liquid optics retained' ); equal( uniforms.uReflect.value, 0, 'reflections off independently' ); equal( uniforms.uScreenReflect.value, 0, 'SSR option respected' );
 		vars.Cvar_SetValue( 'r_reflect', .6 ); post.R_PostSetUnderwater( true ); post.R_PostFinish( renderer, new THREE.Scene(), camera, { lx: 0, ly: 0, lw: 320, lh: 200 }, 0, [], [], 2, 1, false );
-		equal( uniforms.uReflect.value, 0, 'underwater avoids above-surface reflection' ); post.R_PostSetUnderwater( false );
+		equal( uniforms.uReflect.value, .6, 'underwater keeps strength for per-interface reflection' ); post.R_PostSetUnderwater( false );
 		vars.Cvar_SetValue( 'r_newer_water', 0 ); post.R_PostFinish( renderer, new THREE.Scene(), camera, { lx: 0, ly: 0, lw: 320, lh: 200 }, 0, [], [], 3, 1, false );
 		equal( uniforms.uWaterCount.value, 0, 'water-off bypasses optics' ); equal( post.R_LiquidOpacity( '*water1', .75 ), .75, 'native opacity restored' );
 		anim.R_AnimSetClassicPass( true ); post.classicLook.value = 1; equal( post.R_WaterActive(), false, 'classic pass off' );

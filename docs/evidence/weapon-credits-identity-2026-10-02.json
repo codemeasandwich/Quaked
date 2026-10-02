@@ -1,0 +1,65 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "scope": "Credits: version-free title, blank rows between sections, Weapon Models/nativeJapanese name+handle at8px adjacent, enhanced BrianShannon+Claude+Codex, enlarged320x272box and centered whiteGitHub footer.",
+  "sourcePNGUnchanged": true,
+  "sourceSHA256": "d49ef2c65820b96762e69ae19137e120aa8e0b3edbb3e859760fa0cc11d80e5e",
+  "namePicVirtualSize": [
+    58,
+    8
+  ],
+  "handleGapVirtualPixels": 6,
+  "processing": {
+    "blackKeyMaximumRGB": 3,
+    "trim": true,
+    "nearestNeighbour": true,
+    "displayOnly": true
+  },
+  "sha256": {
+    "main.js": "553f5d4f25f721ddca46f271e5cf669cfa51258d7f0f3ef577cedcc79465bd05",
+    "src/menu.js": "80df61e03d71ee0707aa5a3127130108e22e27361cf312ae34fa19aaacf0eabd",
+    "src/gl_draw.js": "6f83130b9c7438fbcdcf58bee2cf4266f2d6aeabfe37941b6d03f2fef9335876",
+    "tests/ambient_credits_test.js": "0acb95f1d12de3a9906a7451431f8d9c42e12a01ccc964655c4bd0b866a755cc",
+    "tools/render_credits_preview.mjs": "0d684b912ad06403188f525cf2060269dba321ac9ac93c118225a3d402f3c358",
+    "assets/credits/dannaki-name.png": "d49ef2c65820b96762e69ae19137e120aa8e0b3edbb3e859760fa0cc11d80e5e",
+    "docs/images/weapon-models-credits-2026-10-02.png": "8bed7f9aec94b782f8723b28e96009ff10b2a52027a90a78f187a64aa43d3a36",
+    "docs/images/weapon-models-credits-small-2026-10-02.png": "a17e2045aee7640f1385eb6527f26fb26672750fe49163690f2a00ac0ac4968e",
+    "docs/evidence/weapon-credits-final-tests-2026-10-02.txt": "e30d6252b89d1c3b8f9f170f6806d1f4efa5f3ffb036bf6377b6317e6d6ffd6e",
+    "docs/evidence/weapon-credits-spacing-tests-2026-10-02.txt": "9f3c4b499ec9e4fc35febdef92b3d96d68dc09e922bee667a00d514ab2b83070"
+  },
+  "verification": {
+    "finalTests": "3/3 public checks passed after final gap/title change; preceding7/7 layout/startup/menu checks retained",
+    "independentPublicInterfaceTests": "3/3 passed",
+    "independentPlanningAndSourceReview": true,
+    "gitDiffCheck": "passed",
+    "preview": "real menu_credits/M_Draw via software canvas with original Quake charset/box and PNG loader",
+    "viewportSizes": [
+      [
+        640,
+        560
+      ],
+      [
+        640,
+        400
+      ]
+    ],
+    "newGameOrBrowserInstances": 0,
+    "browserGPUPresentationQualified": false
+  },
+  "acceptance": "Owner accepted8pxname; latest version/spacing edit visual acceptance pending",
+  "release": "No commit/push/publication",
+  "finalAdjustment": {
+    "title": "Quake by id Software",
+    "titleCenteredVirtualX": 80,
+    "nameGapBelowHeading": 2,
+    "nameRowVirtualY": 226,
+    "publicChecks": "3/3 passed",
+    "independentReview": true
+  },
+  "assetRelocation": {
+    "path": "assets/credits/dannaki-name.png",
+    "reason": "Owner explicitly ignores entire resources folder",
+    "originalPreserved": "resources/credits/dannaki-name.png",
+    "sourceBytesUnchanged": true
+  }
+}

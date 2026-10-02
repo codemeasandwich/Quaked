@@ -13,7 +13,9 @@ const SIZE = 256;
 const MAX_PROBES = 2;
 const SPREAD = 300; // how far beyond the pool the box reaches
 const HEIGHT_ABOVE = 520;
-const LIFT = 36; // the probe sits this far above the surface
+// Stay above the cube's four-unit near plane but below low shoreline markers.
+// A high capture sees their undersides and can omit them from reflected air rays.
+export const WATER_PROBE_LIFT = 6;
 
 let probes = []; // { region, rt, cam, center, min, max, used }
 let builtFor = null;
@@ -71,7 +73,8 @@ export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, a
 
 	// only the nearest pools get probes (the most that are kept): with more candidates than probes, each frame would
 	// throw one away and draw it again
-	regions = regions.slice( 0, MAX_PROBES );
+	// Exclude mapped pools without safe air before selecting the nearest budget.
+	regions = regions.filter( r => r.probePoints == null || r.probePoints.length > 0 ).slice( 0, MAX_PROBES );
 	if ( regions.length === 0 ) return;
 
 	// and never more than one capture a second
@@ -82,6 +85,7 @@ export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, a
 	_frustum.setFromProjectionMatrix( _m );
 
 	for ( const r of regions ) {
+
 
 		if ( R_WaterProbeFor( r ) !== null ) continue;
 
@@ -107,8 +111,16 @@ function capture( renderer, scene, r, showAll ) {
 	const cam = new THREE.CubeCamera( 4, 5000, rt );
 	cam.up.set( 0, 0, 1 );
 
-	const cx = ( r.min[ 0 ] + r.max[ 0 ] ) / 2, cy = ( r.min[ 1 ] + r.max[ 1 ] ) / 2;
-	cam.position.set( cx, cy, r.z + LIFT );
+	let cx = ( r.min[ 0 ] + r.max[ 0 ] ) / 2, cy = ( r.min[ 1 ] + r.max[ 1 ] ) / 2, cz = r.z + WATER_PROBE_LIFT;
+	// A merged L-shaped pool's box centre can be inside a wall. Map building
+	// supplies actual water-polygon centres verified to be air at capture height.
+	let nearest = null, distance = Infinity;
+	for ( const point of r.probePoints || [] ) {
+		const d = ( point[ 0 ] - cx ) ** 2 + ( point[ 1 ] - cy ) ** 2;
+		if ( d < distance ) { nearest = point; distance = d; }
+	}
+	if ( nearest ) [ cx, cy, cz ] = nearest;
+	cam.position.set( cx, cy, cz );
 	cam.updateMatrixWorld( true );
 
 	showAll( true );
@@ -145,7 +157,7 @@ function capture( renderer, scene, r, showAll ) {
 
 	probes.push( {
 		region: r, rt,
-		center: [ cx, cy, r.z + LIFT ],
+		center: [ cx, cy, cz ],
 		min: [ r.min[ 0 ] - SPREAD, r.min[ 1 ] - SPREAD, r.z - 40 ],
 		max: [ r.max[ 0 ] + SPREAD, r.max[ 1 ] + SPREAD, r.z + HEIGHT_ABOVE ]
 	} );

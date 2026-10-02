@@ -1,0 +1,104 @@
+{
+  "reference": {
+    "frames": 152,
+    "durationMs": 10140,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "frames": [],
+  "failures": [],
+  "checks": [],
+  "performance": null,
+  "surfaceChecks": [
+    {
+      "name": "grazing surface reflection strengthens while perpendicular transmission stays clear",
+      "passed": true,
+      "angles": [
+        {
+          "angle": 0,
+          "signal": 31,
+          "glError": 0
+        },
+        {
+          "angle": 45,
+          "signal": 32.57142857142857,
+          "glError": 0
+        },
+        {
+          "angle": 75,
+          "signal": 137.20408163265307,
+          "glError": 0
+        },
+        {
+          "angle": 85,
+          "signal": 175.87755102040816,
+          "glError": 0
+        }
+      ]
+    },
+    {
+      "name": "internal reflection suppresses air outside Snell window even at lower enabled strength",
+      "passed": false,
+      "normalWindowMean": 217.14960000000008,
+      "outsideWindowMean": 214.44359999999995,
+      "lowerStrengthDifference": {
+        "changed": 0,
+        "total": 49,
+        "maximum": 0
+      }
+    },
+    {
+      "name": "reflection off remains an explicit underwater optics opt-out",
+      "passed": false,
+      "reflectionOffMean": 214.44359999999995,
+      "enabledMean": 214.44359999999995
+    },
+    {
+      "name": "dry-view classification prevents a fabricated underside at the same low coordinates",
+      "passed": true,
+      "changed": 0,
+      "total": 49,
+      "maximum": 0
+    },
+    {
+      "name": "opaque foreground before the underside is not replaced by water optics",
+      "passed": true,
+      "changed": 0,
+      "total": 49,
+      "maximum": 0
+    },
+    {
+      "name": "underside provides changing perspective and attenuation cues at multiple depths",
+      "passed": true,
+      "nearToMiddle": {
+        "changed": 129600,
+        "total": 129600,
+        "maximum": 64
+      },
+      "middleToFar": {
+        "changed": 128233,
+        "total": 129600,
+        "maximum": 46
+      }
+    },
+    {
+      "name": "received-light caustics illuminate the submerged floor",
+      "passed": true,
+      "delta": {
+        "changed": 49,
+        "total": 49,
+        "maximum": 8
+      },
+      "beforeMean": 67.74696734693877,
+      "causticMean": 72.71545306122448
+    },
+    {
+      "name": "stronger clear caustics still do not manufacture light",
+      "passed": true,
+      "maximum": 0
+    }
+  ],
+  "surfaceFailures": [
+    "internal reflection suppresses air outside Snell window even at lower enabled strength",
+    "reflection off remains an explicit underwater optics opt-out"
+  ]
+}

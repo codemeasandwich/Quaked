@@ -43,6 +43,7 @@ let texture_extension_number = 1;
 
 // Cached pics
 const cachepics = {}; // name -> { width, height, data, canvas, texnum }
+let minimumUIWidth = 320, minimumUIHeight = 200;
 
 // 2D overlay canvas
 let overlayCanvas = null;
@@ -60,6 +61,29 @@ export function Draw_WithClipRect( x, y, width, height, draw ) {
 		draw();
 
 	} finally { overlayCtx.restore(); }
+
+}
+
+// Larger menus can fit without changing the owner's UI-size preference.
+// Drawing and pointer mapping must use the same temporary virtual dimensions.
+export function Draw_WithVirtualSize( width, height, draw ) {
+
+	const oldWidth = minimumUIWidth, oldHeight = minimumUIHeight;
+	minimumUIWidth = Math.max( oldWidth, width ); minimumUIHeight = Math.max( oldHeight, height );
+	if ( overlayCtx ) overlayCtx.save();
+	try {
+
+		_calculateUIScale();
+		if ( overlayCtx ) overlayCtx.setTransform( _uiScale, 0, 0, _uiScale, 0, 0 );
+		return draw();
+
+	} finally {
+
+		if ( overlayCtx ) overlayCtx.restore();
+		minimumUIWidth = oldWidth; minimumUIHeight = oldHeight;
+		_calculateUIScale();
+
+	}
 
 }
 
@@ -122,7 +146,7 @@ function _calculateUIScale() {
 	_uiScale = Math.max( 1, Math.floor( physicalHeight / scr_conheight ) );
 
 	// Ensure minimum 320px virtual width so Quake's menus fit
-	while ( _uiScale > 1 && Math.floor( physicalWidth / _uiScale ) < 320 ) {
+	while ( _uiScale > 1 && ( Math.floor( physicalWidth / _uiScale ) < minimumUIWidth || Math.floor( physicalHeight / _uiScale ) < minimumUIHeight ) ) {
 
 		_uiScale --;
 
@@ -1037,27 +1061,52 @@ Call this during initialization to make custom images available via Draw_CachePi
 Returns a Promise that resolves when the image is loaded.
 ================
 */
-export function Draw_CachePicFromPNG( path, url ) {
+export function Draw_CachePicFromPNG( path, url, options = {} ) {
 
 	return new Promise( ( resolve, reject ) => {
 
 		const img = new Image();
 		img.onload = function () {
+			try {
 
-			const cs = document.createElement( 'canvas' );
-			cs.width = img.width;
-			cs.height = img.height;
-			const ctx = cs.getContext( '2d' );
-			ctx.drawImage( img, 0, 0 );
+				const cs = document.createElement( 'canvas' );
+				cs.width = img.width;
+				cs.height = img.height;
+				const ctx = cs.getContext( '2d' );
+				ctx.drawImage( img, 0, 0 );
+				let canvas = cs;
+				if ( options.blackKey !== undefined || options.trim || options.displayHeight ) {
 
-			const pic = {
-				width: img.width,
-				height: img.height,
-				canvas: cs
-			};
+					const pixels = ctx.getImageData( 0, 0, cs.width, cs.height );
+					let left = cs.width, top = cs.height, right = 0, bottom = 0;
+					for ( let y = 0; y < cs.height; y ++ ) for ( let x = 0; x < cs.width; x ++ ) {
 
-			cachepics[ path ] = pic;
-			resolve( pic );
+						const i = ( y * cs.width + x ) * 4, rgba = pixels.data;
+						if ( options.blackKey !== undefined && Math.max( rgba[ i ], rgba[ i + 1 ], rgba[ i + 2 ] ) <= options.blackKey ) rgba[ i + 3 ] = 0;
+						if ( rgba[ i + 3 ] ) { left = Math.min( left, x ); top = Math.min( top, y ); right = Math.max( right, x + 1 ); bottom = Math.max( bottom, y + 1 ); }
+
+					}
+					ctx.putImageData( pixels, 0, 0 );
+					if ( right <= left || bottom <= top ) throw new Error( 'Empty PNG picture: ' + url );
+					if ( ! options.trim ) { left = top = 0; right = cs.width; bottom = cs.height; }
+					canvas = document.createElement( 'canvas' );
+					canvas.height = options.displayHeight || bottom - top;
+					canvas.width = Math.max( 1, Math.round( ( right - left ) * canvas.height / ( bottom - top ) ) );
+					const display = canvas.getContext( '2d' );
+					display.imageSmoothingEnabled = false;
+					display.drawImage( cs, left, top, right - left, bottom - top, 0, 0, canvas.width, canvas.height );
+
+				}
+
+				const pic = {
+					width: canvas.width,
+					height: canvas.height,
+					canvas
+				};
+
+				cachepics[ path ] = pic;
+				resolve( pic );
+			} catch ( error ) { reject( error ); }
 
 		};
 

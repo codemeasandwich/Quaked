@@ -1,0 +1,36 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "manifestVersion": 9,
+  "scope": "Held super nailgun one more unit toward camera: X -6 to -7. Accepted barrel-only rotor remains unchanged.",
+  "sha256": {
+    "tools/import_weapons.py": "34bae33d85d2074855592dc2c749a3d2dde3de9472f765eb1e18f239eb9e30e9",
+    "tests/supernailgun_profile_test.js": "d9f66e29121129adf7176518e3b928a474616cfdb1c372539d23e54045e5d027",
+    "tests/weapons_test.js": "603d71ae2f6e50c333de5e1c7e2a6fc167a0de4a92bf5cf810dd01d000dabc14",
+    "newer/weapons/v_nail2.json": "0bf66edff5acb604083a671893bf6ec1f62fc8551a45894a15a6fd3d8a84f418",
+    "newer/weapons/index.json": "351fe665257cf50a6bc10fbb18c1acabcd7616b1cb6fb324d0888940249debf3",
+    "docs/evidence/supernailgun-camera-pullback-tests-2026-10-02.txt": "2ad1f1c67599b6310ce08f18bc2a2efea11791588423f73f77d1d5778ba38ce7",
+    "src/r_weapons.js": "fcf2908715057d10b6498ca5cb0789cb5b2311093c9a13264b458585dda2a731",
+    "src/gl_mesh.js": "6ee76e003b720d299144b5b47b189597cb4fa1c5235b7087f6e053877b8ef5dd",
+    "newer/weapons/g_nail2.json": "e583755e8a17b1efcc17d1a86b11fb53dc99569f1665b753f68b56edea018ef3"
+  },
+  "previousAssetReproducedExactlyByUndoingOneUnitTranslation": "da184d267eac3fa1570d74f93ab8a0cbd2f84b847b2b11241ee91bac33182e31",
+  "unchangedFilesVerified": [
+    "src/r_weapons.js",
+    "src/gl_mesh.js",
+    "newer/weapons/g_nail2.json"
+  ],
+  "verification": {
+    "focused": "14/14 passed",
+    "independentPlanningAndReview": true,
+    "minimumStationaryNearPlaneClearance": 1.1823240000000004
+  },
+  "browser": {
+    "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=nail-profile",
+    "latestPlacementVisuallyRecaptured": false,
+    "reason": "Existing tab not exposed to current browser controls",
+    "newInstancesOpened": 0,
+    "nextAction": "Owner reloads existing trial and accepts placement"
+  },
+  "limitations": "Walking/turning/XR clipping not qualified."
+}

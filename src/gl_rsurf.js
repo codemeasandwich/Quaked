@@ -269,9 +269,10 @@ function _getWaterMaterial( t, opacity ) {
 
 		opacity = R_LiquidOpacity( t.name, opacity );
 
-		// seen from inside the liquid, the surface is a window to what is above it
+		// Retain a subtle underside texture cue; the compositor supplies the
+		// Snell window and internal reflections rather than making it disappear.
 		if ( opacity < 1 && r_viewleaf != null && ( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 ) )
-			opacity *= 0.4;
+			opacity *= 0.8;
 
 	}
 

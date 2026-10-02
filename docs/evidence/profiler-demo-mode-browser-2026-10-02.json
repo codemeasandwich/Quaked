@@ -1,0 +1,132 @@
+{
+  "idleEnhanced": 2183,
+  "idleClassic": 2183,
+  "runs": [
+    {
+      "mode": "actual Options menu",
+      "before": {
+        "r_hdr": 1,
+        "r_demosplit": 1,
+        "r_dynres": 1,
+        "cl_showfps": 0,
+        "demonum": 1
+      },
+      "enhanced": 180,
+      "classic": 0,
+      "auxiliary": 2323,
+      "splitActive": 0,
+      "maximumMainDrawsPerFrame": 1,
+      "firstProfileSettings": {
+        "r_hdr": 1,
+        "r_demosplit": 0,
+        "r_dynres": 0,
+        "cl_showfps": 1,
+        "demonum": -1
+      },
+      "after": {
+        "r_hdr": 0,
+        "r_demosplit": 1,
+        "r_dynres": 1,
+        "cl_showfps": 0,
+        "demonum": 1
+      },
+      "report": {
+        "newerGame": true,
+        "demos": [
+          {
+            "demo": "demo1",
+            "frames": 175
+          }
+        ]
+      },
+      "bounded": true
+    },
+    {
+      "mode": "all three bounded timedemos",
+      "before": {
+        "r_hdr": 0,
+        "r_demosplit": 1,
+        "r_dynres": 1,
+        "cl_showfps": 0,
+        "demonum": 1
+      },
+      "enhanced": 73,
+      "classic": 0,
+      "auxiliary": 895,
+      "splitActive": 0,
+      "maximumMainDrawsPerFrame": 1,
+      "firstProfileSettings": {
+        "r_hdr": 1,
+        "r_demosplit": 0,
+        "r_dynres": 0,
+        "cl_showfps": 1,
+        "demonum": -1
+      },
+      "after": {
+        "r_hdr": 0,
+        "r_demosplit": 1,
+        "r_dynres": 1,
+        "cl_showfps": 0,
+        "demonum": 1
+      },
+      "report": {
+        "newerGame": true,
+        "demos": [
+          {
+            "demo": "demo1",
+            "frames": 20
+          },
+          {
+            "demo": "demo2",
+            "frames": 20
+          },
+          {
+            "demo": "demo3",
+            "frames": 20
+          }
+        ]
+      },
+      "bounded": false
+    },
+    {
+      "mode": "actual Options menu",
+      "before": {
+        "r_hdr": 0,
+        "r_demosplit": 1,
+        "r_dynres": 1,
+        "cl_showfps": 0,
+        "demonum": -1
+      },
+      "enhanced": 180,
+      "classic": 0,
+      "auxiliary": 2323,
+      "splitActive": 0,
+      "maximumMainDrawsPerFrame": 1,
+      "firstProfileSettings": {
+        "r_hdr": 1,
+        "r_demosplit": 0,
+        "r_dynres": 0,
+        "cl_showfps": 1,
+        "demonum": -1
+      },
+      "after": {
+        "r_hdr": 0,
+        "r_demosplit": 1,
+        "r_dynres": 1,
+        "cl_showfps": 0,
+        "demonum": -1
+      },
+      "report": {
+        "newerGame": true,
+        "demos": [
+          {
+            "demo": "demo1",
+            "frames": 175
+          }
+        ]
+      },
+      "bounded": true
+    }
+  ],
+  "failures": []
+}

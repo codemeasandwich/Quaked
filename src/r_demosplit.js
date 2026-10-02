@@ -1,7 +1,7 @@
 // The title demo, half and half: the left of the screen in Newer Game, the right in the classic look, the same
 // picture of the same demo, drawn live, so the two can be compared.
 //
-// While a demo plays the Newer pipeline is switched on (r_hdr 1) so that its half is real; the setting the
+// While an attract-loop demo plays the Newer pipeline is switched on (r_hdr 1) so that its half is real; the setting the
 // player had is put back when the demo stops, and starting a game sets it itself.  The right half is the same
 // scene drawn again with the Newer lighting left out (the original light curve, no bounce or relief or
 // post effects), with the original textures and skins, at the same scene-render resolution as the enhanced
@@ -10,6 +10,7 @@
 import * as THREE from 'three';
 import { cvar_t, Cvar_Set, Cvar_VariableString } from './cvar.js';
 import { cls } from './client.js';
+import { R_PerfProfiling } from './r_perf.js';
 import { R_NewerTexturesRevert } from './r_newertextures.js';
 
 export const r_demosplit = new cvar_t( 'r_demosplit', '1' );
@@ -17,6 +18,8 @@ export const r_demosplit = new cvar_t( 'r_demosplit', '1' );
 let saved = null;
 
 export function R_DemoSplitActive() {
+
+	if ( R_PerfProfiling() || cls.timedemo ) return false;
 
 	// (r_demosplit 2 draws the classic picture over the whole screen, in any game: for checking it against New Game)
 	return r_demosplit.value === 2 || ( r_demosplit.value !== 0 && cls.demoplayback === true && saved !== null );
@@ -29,10 +32,10 @@ export function R_DemoSplitFull() {
 
 }
 
-// a demo is about to play
+// An attract-loop demo is about to play; manual/timed demos do not call this.
 export function R_DemoSplitStart() {
 
-	if ( r_demosplit.value === 0 || saved !== null ) return;
+	if ( R_PerfProfiling() || r_demosplit.value === 0 || saved !== null ) return;
 	saved = Cvar_VariableString( 'r_hdr' );
 	Cvar_Set( 'r_hdr', '1' );
 

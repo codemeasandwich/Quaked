@@ -1,0 +1,284 @@
+{
+  "sceneFrames": 15769,
+  "errors": [],
+  "views": {
+    "startup": 2650,
+    "loading": 1667,
+    "under-near": 7387,
+    "under-mid": 4065
+  },
+  "pools": [
+    {
+      "kind": 1,
+      "min": [
+        656,
+        768
+      ],
+      "max": [
+        1504,
+        2624
+      ],
+      "z": -456
+    },
+    {
+      "kind": 1,
+      "min": [
+        -16,
+        2640
+      ],
+      "max": [
+        320,
+        3008
+      ],
+      "z": -136
+    },
+    {
+      "kind": 1,
+      "min": [
+        1272,
+        864
+      ],
+      "max": [
+        1352,
+        944
+      ],
+      "z": -432
+    },
+    {
+      "kind": 0,
+      "min": [
+        -108,
+        480
+      ],
+      "max": [
+        1008,
+        1328
+      ],
+      "z": -296
+    }
+  ],
+  "textures": [
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.041543010622262955,
+        0.041543010622262955,
+        0.041543010622262955
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.04581094905734062,
+        0.04581094905734062,
+        0.04581094905734062
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.07061804831027985,
+        0.07061804831027985,
+        0.07061804831027985
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.08219299465417862,
+        0.08219299465417862,
+        0.08219299465417862
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.13825854659080505,
+        0.13825854659080505,
+        0.13825854659080505
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.08219299465417862,
+        0.08219299465417862,
+        0.08219299465417862
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.2104918509721756,
+        0.2104918509721756,
+        0.2104918509721756
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.0073310816660523415,
+        0.0073310816660523415,
+        0.0073310816660523415
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.19088155031204224,
+        0.19088155031204224,
+        0.19088155031204224
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.24187971651554108,
+        0.24187971651554108,
+        0.24187971651554108
+      ]
+    },
+    {
+      "name": "*water0",
+      "opacity": 0.096,
+      "originalMap": true,
+      "vertexColours": true,
+      "rgb": [
+        0.33735933899879456,
+        0.33735933899879456,
+        0.33735933899879456
+      ]
+    }
+  ],
+  "captureFrames": 60,
+  "mode": "under-mid",
+  "viewpoint": {
+    "pool": {
+      "min": [
+        -108,
+        480
+      ],
+      "max": [
+        1008,
+        1328
+      ],
+      "z": -296
+    },
+    "eye": [
+      576,
+      1056,
+      -328
+    ],
+    "angles": [
+      -55,
+      116.56504821777344,
+      0
+    ],
+    "light": [
+      504,
+      1200,
+      -248
+    ]
+  },
+  "clientTime": 386.0669860839844,
+  "paused": false,
+  "options": {
+    "appearance": 0,
+    "water": 1,
+    "lighting": 1,
+    "reflect": 0.8,
+    "flashlight": 0
+  },
+  "probes": 2,
+  "probeLocations": [
+    {
+      "centre": [
+        574.2222222222222,
+        1000,
+        -260
+      ],
+      "currentPool": true,
+      "contents": -1
+    },
+    {
+      "centre": [
+        1083.076923076923,
+        1700.923076923077,
+        -420
+      ],
+      "currentPool": true,
+      "contents": -1
+    }
+  ],
+  "screenBlendsThisFrame": [],
+  "actualEye": {
+    "xyz": [
+      576.03125,
+      1056.03125,
+      -327.96875
+    ],
+    "contents": -3,
+    "nativeBlend": [
+      0.5098039507865906,
+      0.3137255012989044,
+      0.19607843458652496,
+      0.501960813999176
+    ],
+    "liquidBlend": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "lastScreenBlend": {
+    "rgbLinear": [
+      1,
+      0.2140411404715882,
+      0
+    ],
+    "alpha": 0.06300000101327896,
+    "splitDiagnostic": 1
+  }
+}

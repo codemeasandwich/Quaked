@@ -1,0 +1,184 @@
+{
+  "reference": {
+    "frames": 152,
+    "durationMs": 10140,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "frames": [],
+  "failures": [],
+  "checks": [],
+  "performance": null,
+  "markerChecks": [
+    {
+      "name": "gold lamp contributes in its reflected water region with SSR",
+      "passed": true,
+      "changed": 57,
+      "total": 1224,
+      "maximum": 209,
+      "screen": 1
+    },
+    {
+      "name": "gold lamp isolated reflected contribution has an animated shimmer",
+      "passed": true,
+      "changed": 49,
+      "total": 1224,
+      "maximum": 209
+    },
+    {
+      "name": "gold lamp masked response is isolated to reflection",
+      "passed": true,
+      "changed": 0,
+      "total": 1224,
+      "maximum": 0
+    },
+    {
+      "name": "red marker contributes in its reflected water region with SSR",
+      "passed": true,
+      "changed": 101,
+      "total": 972,
+      "maximum": 195,
+      "screen": 1
+    },
+    {
+      "name": "red marker isolated reflected contribution has an animated shimmer",
+      "passed": true,
+      "changed": 72,
+      "total": 972,
+      "maximum": 195
+    },
+    {
+      "name": "red marker masked response is isolated to reflection",
+      "passed": true,
+      "changed": 0,
+      "total": 972,
+      "maximum": 0
+    },
+    {
+      "name": "blue ledge contributes in its reflected water region with SSR",
+      "passed": true,
+      "changed": 121,
+      "total": 299,
+      "maximum": 84,
+      "screen": 1
+    },
+    {
+      "name": "blue ledge isolated reflected contribution has an animated shimmer",
+      "passed": true,
+      "changed": 107,
+      "total": 299,
+      "maximum": 80
+    },
+    {
+      "name": "blue ledge masked response is isolated to reflection",
+      "passed": false,
+      "changed": 62,
+      "total": 299,
+      "maximum": 12
+    },
+    {
+      "name": "gold lamp contributes in its reflected water region with cached probe only",
+      "passed": true,
+      "changed": 364,
+      "total": 1224,
+      "maximum": 215,
+      "screen": 0
+    },
+    {
+      "name": "red marker contributes in its reflected water region with cached probe only",
+      "passed": true,
+      "changed": 79,
+      "total": 972,
+      "maximum": 191,
+      "screen": 0
+    },
+    {
+      "name": "blue ledge contributes in its reflected water region with cached probe only",
+      "passed": true,
+      "changed": 45,
+      "total": 299,
+      "maximum": 3,
+      "screen": 0
+    }
+  ],
+  "markerFailures": [
+    "blue ledge masked response is isolated to reflection"
+  ],
+  "muddyDepthChecks": [
+    {
+      "name": "near Muddy volume retains distinguishable submerged source colours",
+      "passed": true,
+      "angles": [
+        0,
+        60,
+        75
+      ],
+      "contrasts": [
+        52,
+        33.285714285714285,
+        13.428571428571429
+      ],
+      "controls": [
+        79,
+        79,
+        79
+      ],
+      "retained": [
+        0.6582278481012658,
+        0.4213381555153707,
+        0.16998191681735986
+      ],
+      "redMeans": [
+        171,
+        149.28571428571428,
+        127
+      ]
+    },
+    {
+      "name": "longer in-water paths progressively obscure the same floor colours",
+      "passed": true,
+      "retained": [
+        0.6582278481012658,
+        0.4213381555153707,
+        0.16998191681735986
+      ],
+      "approximateWaterPaths": [
+        64,
+        128,
+        247
+      ]
+    },
+    {
+      "name": "Clear caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "changed": 49,
+      "total": 49,
+      "maximum": 11,
+      "glError": 0
+    },
+    {
+      "name": "Tinted caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "changed": 49,
+      "total": 49,
+      "maximum": 10,
+      "glError": 0
+    },
+    {
+      "name": "Muddy caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "changed": 49,
+      "total": 49,
+      "maximum": 5,
+      "glError": 0
+    },
+    {
+      "name": "Toxic caustics remain visible on the transmitted lit floor",
+      "passed": true,
+      "changed": 49,
+      "total": 49,
+      "maximum": 23,
+      "glError": 0
+    }
+  ],
+  "muddyDepthFailures": []
+}

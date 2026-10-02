@@ -43,7 +43,8 @@ export function R_SaveClassicScene( scene, time ) {
 		if ( ! e || entities.has( e ) ) return;
 		entities.set( e, {
 			origin: e.origin && Array.from( e.origin ), angles: e.angles && Array.from( e.angles ),
-			_aliasPosenum: e._aliasPosenum, _aliasBlended: e._aliasBlended, _aliasPaliashdr: e._aliasPaliashdr
+			_aliasPosenum: e._aliasPosenum, _aliasBlended: e._aliasBlended, _aliasPaliashdr: e._aliasPaliashdr,
+			_aliasTemplate: e._aliasTemplate, _aliasColorArray: e._aliasColorArray
 		} );
 		saveGeometry( e._aliasGeo, [ 'color' ] );
 		saveGeometry( e._aliasShadowGeo, [ 'position' ] );
@@ -93,6 +94,7 @@ export function R_SaveClassicScene( scene, time ) {
 
 			}
 			e._aliasPosenum = s._aliasPosenum; e._aliasBlended = s._aliasBlended; e._aliasPaliashdr = s._aliasPaliashdr;
+			e._aliasTemplate = s._aliasTemplate; e._aliasColorArray = s._aliasColorArray;
 
 		}
 		scene.updateMatrixWorld( true );

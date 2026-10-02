@@ -1,0 +1,78 @@
+{
+  "reloadAt": "2026-10-02T10:47:15.950Z",
+  "views": [
+    {
+      "weapon": "super shotgun",
+      "status": "SUPPLIED MODEL LOADED: progs/v_shot2.mdl · 0 shells on this map (0 moving) · no asset errors"
+    },
+    {
+      "weapon": "grenade launcher",
+      "status": "SUPPLIED MODEL LOADED: progs/v_rock.mdl · 0 shells on this map (0 moving) · no asset errors"
+    },
+    {
+      "weapon": "rocket launcher",
+      "status": "SUPPLIED MODEL LOADED: progs/v_rock2.mdl · 0 shells on this map (0 moving) · no asset errors"
+    },
+    {
+      "weapon": "lightning gun",
+      "status": "SUPPLIED MODEL LOADED: progs/v_light.mdl · 0 shells on this map (0 moving) · no asset errors"
+    }
+  ],
+  "shaderErrorsAfterReload": [],
+  "tabs": [
+    {
+      "id": "6",
+      "providerTabId": "af55b009-a953-4b4d-a86a-cbb1b9606cc4",
+      "title": "Quaked",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    }
+  ],
+  "rocketHeldOffset": [
+    -3,
+    0,
+    0
+  ],
+  "rocketAfterOffset": {
+    "status": "SUPPLIED MODEL LOADED: progs/v_rock2.mdl · 6 shells on this map (0 moving) · no asset errors"
+  },
+  "browserErrorsAfterReload": [
+    {
+      "level": "error",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "timestamp": "2026-10-02T10:55:35.075Z",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    },
+    {
+      "level": "error",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "timestamp": "2026-10-02T10:55:35.967Z",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    },
+    {
+      "level": "error",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "timestamp": "2026-10-02T10:55:37.274Z",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    }
+  ],
+  "unclassifiedBrowserDiagnostics": [
+    {
+      "level": "error",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "timestamp": "2026-10-02T10:55:35.075Z",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    },
+    {
+      "level": "error",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "timestamp": "2026-10-02T10:55:35.967Z",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    },
+    {
+      "level": "error",
+      "message": "UnknownError: If you see this error we have a bug. Please report this bug to chromium.",
+      "timestamp": "2026-10-02T10:55:37.274Z",
+      "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=3"
+    }
+  ]
+}

@@ -1,0 +1,764 @@
+{
+  "version": 9,
+  "models": {
+    "v_shot2": {
+      "source": "supershotgun",
+      "scale": [
+        0.317538547226662,
+        0.6276645456681034,
+        0.3817567221701333
+      ],
+      "offset": [
+        8.43665717337608,
+        -0.07301934921356001,
+        -7.598236705332229
+      ],
+      "nativeMin": [
+        2.9704746305942535,
+        -1.6492317840456963,
+        -9.396692216396332
+      ],
+      "nativeMax": [
+        13.998361468315125,
+        1.5031930580735207,
+        -6.128714680671692
+      ],
+      "poses": 7,
+      "nativePoseRigidRms": [
+        1.5038080503959408e-16,
+        0.06410239638895016,
+        0.05331646178126442,
+        0.053721135157302057,
+        0.052091704369095555,
+        0.054472846634421215,
+        0.030117584389783923
+      ],
+      "excludedNativeVertices": [
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ]
+    },
+    "g_shot": {
+      "source": "supershotgun",
+      "scale": [
+        1.2805520551280927,
+        0.829113009885367,
+        1.5169943944927533
+      ],
+      "offset": [
+        1.9918778199197327,
+        0.1315547773003405,
+        32.22302744254815
+      ],
+      "nativeMin": [
+        -20.051843643188477,
+        -1.9505418539047241,
+        25.076468467712402
+      ],
+      "nativeMax": [
+        24.42081417143345,
+        2.2136513721197844,
+        38.06249678134918
+      ],
+      "poses": 1,
+      "nativePoseRigidRms": [
+        4.09284852223519e-15
+      ],
+      "excludedNativeVertices": []
+    },
+    "v_nail2": {
+      "source": "supernailgun",
+      "fitKind": "uniform-source-shape",
+      "uniformScale": 2.2065098442552147,
+      "offset": [
+        22.500244520803307,
+        -0.030862331390489137,
+        -14.160032158333255
+      ],
+      "pitchUpDegrees": 8.0,
+      "viewTranslation": [
+        -7.0,
+        0.0,
+        0.0
+      ],
+      "nativeMin": [
+        10.516065120697021,
+        -5.23759089037776,
+        -21.572488605976105
+      ],
+      "nativeMax": [
+        36.028231263160706,
+        5.175866227596998,
+        -11.483687072992325
+      ],
+      "animationKind": "barrel-rotor",
+      "poses": 9,
+      "nativePoseRigidRms": [
+        1.1981764056870479e-15,
+        1.0713075998967294,
+        1.0542003479073259,
+        1.0583298851589749,
+        1.195037476455342,
+        1.1995812566017683,
+        1.1812097684188894,
+        1.1918636445646726,
+        1.1947358191947441
+      ],
+      "excludedNativeVertices": [
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ]
+    },
+    "g_nail2": {
+      "source": "supernailgun",
+      "fitKind": "uniform-source-shape",
+      "uniformScale": 3.6344952949441156,
+      "offset": [
+        5.5900301005125685,
+        -0.10612533241528227,
+        35.880706198870456
+      ],
+      "pitchUpDegrees": 0.0,
+      "viewTranslation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "nativeMin": [
+        -14.149942398071289,
+        -4.492482662200928,
+        23.985088169574738
+      ],
+      "nativeMax": [
+        27.872914671897888,
+        4.28023199737072,
+        39.97514694929123
+      ],
+      "poses": 1,
+      "nativePoseRigidRms": [
+        3.530444894833187e-15
+      ],
+      "excludedNativeVertices": []
+    },
+    "v_rock": {
+      "source": "grenadelauncher",
+      "fitKind": "barrel-rings",
+      "scale": [
+        1.7535317783678852,
+        2.2395398238948045,
+        1.947252896044279
+      ],
+      "offset": [
+        5.354061961174011,
+        -0.1027528600146373,
+        -11.939002111554146
+      ],
+      "rotation": [
+        0.9972414837918544,
+        -0.015419054758399324,
+        -0.07260630657854833,
+        0.015378349234719467,
+        0.9998811193088694,
+        -0.0011196537221480818,
+        0.07261493909269408,
+        0.0,
+        0.997360050643981
+      ],
+      "sourceRear": [
+        -3.767487513008394,
+        0.0,
+        0.004146694904184289
+      ],
+      "sourceMiddleX": 1.69056016,
+      "sourceFrontX": 6.5332593,
+      "nativeRear": [
+        5.354061961174011,
+        -0.1027528600146373,
+        -11.939002111554146
+      ],
+      "nativeFront": [
+        23.366922706365585,
+        0.17502144817262888,
+        -10.627381198108196
+      ],
+      "nativeSectionSize": [
+        0.2090258580743754,
+        5.098832567286606,
+        4.433373489124483
+      ],
+      "nativeMin": [
+        5.074792802333832,
+        -2.598575748503208,
+        -14.172009617090225
+      ],
+      "nativeMax": [
+        23.785826444625854,
+        2.6749902218580246,
+        -8.31849479675293
+      ],
+      "poses": 7,
+      "nativePoseRigidRms": [
+        3.0055989563671475e-16,
+        0.08815739658732986,
+        0.12784112136275566,
+        0.11428754189550877,
+        0.12331889907635017,
+        0.10614797963867977,
+        0.1299674081869782
+      ],
+      "excludedNativeVertices": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    "g_rock": {
+      "source": "grenadelauncher",
+      "scale": [
+        2.408207070134311,
+        2.2120677553350943,
+        1.5508326125740504
+      ],
+      "offset": [
+        1.3949713868543174,
+        -0.30426908377557993,
+        30.691996765444735
+      ],
+      "nativeMin": [
+        -12.990849494934082,
+        -3.3209445476531982,
+        23.638769388198853
+      ],
+      "nativeMax": [
+        17.800108574330807,
+        2.7124063801020384,
+        33.48825663328171
+      ],
+      "poses": 1,
+      "nativePoseRigidRms": [
+        4.56173390921093e-15
+      ],
+      "excludedNativeVertices": []
+    },
+    "v_rock2": {
+      "source": "rocketlauncher",
+      "scale": [
+        3.2083671700958574,
+        3.480391012238302,
+        3.1506459627781083
+      ],
+      "offset": [
+        23.958806594112524,
+        0.26561663662590007,
+        -13.517150267247988
+      ],
+      "nativeMin": [
+        3.6133622229099274,
+        -5.0931906178593636,
+        -23.15563305467367
+      ],
+      "nativeMax": [
+        50.03922259807587,
+        5.624421045184135,
+        -8.66605757176876
+      ],
+      "viewOffset": [
+        -3.0,
+        0.0,
+        0.0
+      ],
+      "poses": 7,
+      "nativePoseRigidRms": [
+        2.5462545132382786e-15,
+        0.18894110761209287,
+        0.16470395722709202,
+        0.1688223490763151,
+        0.1686597823838917,
+        0.18272300174823625,
+        0.18272300174823625
+      ],
+      "excludedNativeVertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "g_rock2": {
+      "source": "rocketlauncher",
+      "scale": [
+        3.2425098059736763,
+        2.9551455587876814,
+        2.877948879756358
+      ],
+      "offset": [
+        0.14164449512943378,
+        -0.20450967800606623,
+        32.657167586056715
+      ],
+      "nativeMin": [
+        -20.420310974121094,
+        -4.754589080810547,
+        23.852922022342682
+      ],
+      "nativeMax": [
+        26.49960172176361,
+        4.345567308366299,
+        37.088384851813316
+      ],
+      "poses": 1,
+      "nativePoseRigidRms": [
+        3.5458915361680074e-15
+      ],
+      "excludedNativeVertices": []
+    },
+    "v_light": {
+      "source": "thunderbolt",
+      "scale": [
+        1.6256969321042762,
+        2.2681606166702215,
+        0.9435679439792535
+      ],
+      "offset": [
+        15.484784716555962,
+        0.1109348594528905,
+        -10.005621572738232
+      ],
+      "nativeMin": [
+        2.9844178557395935,
+        -6.17598469555378,
+        -15.09354841709137
+      ],
+      "nativeMax": [
+        27.988841474056244,
+        6.397854443639517,
+        -8.235704071819782
+      ],
+      "poses": 5,
+      "nativePoseRigidRms": [
+        4.095422254007698e-15,
+        0.055086554182510655,
+        0.086310352129803,
+        0.05734165915936881,
+        0.086310352129803
+      ],
+      "excludedNativeVertices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "g_light": {
+      "source": "thunderbolt",
+      "scale": [
+        2.2688447872478608,
+        2.269504349249746,
+        1.7064715791744764
+      ],
+      "offset": [
+        3.2367551437817035,
+        0.11643835187409834,
+        33.151562429781166
+      ],
+      "nativeMin": [
+        -14.208927154541016,
+        -6.174205780029297,
+        23.949890613555908
+      ],
+      "nativeMax": [
+        20.68758711218834,
+        6.407082512974739,
+        36.352512538433075
+      ],
+      "poses": 1,
+      "nativePoseRigidRms": [
+        2.676377133688778e-15
+      ],
+      "excludedNativeVertices": []
+    }
+  },
+  "sources": {
+    "supershotgun": {
+      "archive": "supershotgun.zip",
+      "sha256": "e889d49b71eb1bd7413c47ec836788303e1304eb56eaa2d013382246a15c113f",
+      "metadata": {
+        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+        "source": "https://sketchfab.com/3d-models/supershotgun-3df3bb71d79e4eac8126f53a5b54b874",
+        "title": "Supershotgun"
+      },
+      "axes": [
+        1,
+        -3,
+        2
+      ],
+      "vertices": 1053,
+      "rotationYDegrees": 0,
+      "triangles": 1332,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": true,
+        "style": {
+          "grading": [
+            {
+              "rect": [
+                0.0004,
+                0.0004,
+                0.195,
+                0.6271
+              ],
+              "balance": [
+                0.94,
+                0.98,
+                1.14
+              ],
+              "gain": 0.74,
+              "contrast": 1.08,
+              "saturation": 0.85
+            },
+            {
+              "rect": [
+                0.0004,
+                0.6278,
+                0.6271,
+                0.8225
+              ],
+              "balance": [
+                0.94,
+                0.98,
+                1.14
+              ],
+              "gain": 0.74,
+              "contrast": 1.08,
+              "saturation": 0.85
+            }
+          ]
+        }
+      },
+      "selectedMesh": "supershotgun_Skin_0"
+    },
+    "supernailgun": {
+      "archive": "supernailgun2.zip",
+      "sha256": "07bf832ebcae0052b802c615c7a3d1c0a59924642fd71c278feef5005f39b1e3",
+      "metadata": {
+        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+        "source": "https://sketchfab.com/3d-models/supernailgun-53ab89b5c3c64cc7bc13b66636c430e2",
+        "title": "Supernailgun"
+      },
+      "axes": [
+        1,
+        -3,
+        2
+      ],
+      "vertices": 3980,
+      "rotationYDegrees": 0,
+      "triangles": 1918,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": true,
+        "style": {
+          "grading": [
+            {
+              "rect": [
+                0.1621,
+                0.40372,
+                0.41618,
+                0.60428
+              ],
+              "balance": [
+                0.96,
+                0.99,
+                1.08
+              ],
+              "gain": 1.0,
+              "contrast": 1.0,
+              "saturation": 1.0
+            }
+          ]
+        },
+        "normalFlipGreen": true
+      },
+      "selectedMesh": "supernailgun_low_skin_0",
+      "geometrySource": "source/supernailgun.zip!supernailgun.fbx",
+      "provenanceSource": "supernailgun.zip!license.txt and asset metadata",
+      "fbx": {
+        "controlPoints": 999,
+        "polygons": 1031,
+        "corners": 3980,
+        "triangles": 1918
+      },
+      "textureFlipY": true
+    },
+    "grenadelauncher": {
+      "archive": "grenadelauncher.zip",
+      "sha256": "d8317403906d210c5ca4c247e288d67ddbf37466d86cc54d8ed8a8ee36f01498",
+      "metadata": {
+        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+        "source": "https://sketchfab.com/3d-models/grenadelauncher-e9b8f4c575d74190a7840cfe6417dad0",
+        "title": "Grenadelauncher"
+      },
+      "axes": [
+        3,
+        1,
+        2
+      ],
+      "vertices": 1229,
+      "rotationYDegrees": 0,
+      "triangles": 1040,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": true
+      },
+      "selectedMesh": "grenadelauncher_skin_0"
+    },
+    "rocketlauncher": {
+      "archive": "rocketlauncher.zip",
+      "sha256": "c57f9f5234ee7d7ca11494bde4cbb1671ab954dea4000a7f90d3562931ea92cb",
+      "metadata": {
+        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+        "source": "https://sketchfab.com/3d-models/rocketlauncher-e988bdc7c79e450e80984f9b8c192fcd",
+        "title": "Rocketlauncher"
+      },
+      "axes": [
+        1,
+        -3,
+        2
+      ],
+      "vertices": 2345,
+      "rotationYDegrees": 0,
+      "triangles": 2124,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": true
+      },
+      "selectedMesh": "rocketlauncher_l_skin_0"
+    },
+    "thunderbolt": {
+      "archive": "thuderbolt.zip",
+      "sha256": "ba18eee68329cf7041cb8d4a7d5d33fa232b4a540257f47baebc5e7f7c95b78c",
+      "metadata": {
+        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+        "source": "https://sketchfab.com/3d-models/thuderbolt-c1c82903dfb84be187eadac3465b2ef8",
+        "title": "Thuderbolt"
+      },
+      "axes": [
+        -1,
+        3,
+        2
+      ],
+      "vertices": 2147,
+      "rotationYDegrees": 0,
+      "triangles": 2127,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png",
+        "luma": "luma.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "doubleSided": true,
+        "style": {
+          "palette": [
+            {
+              "rect": [
+                0,
+                0,
+                1,
+                1
+              ],
+              "chroma": "blue",
+              "tint": [
+                43,
+                29,
+                19
+              ],
+              "gain": 0.35
+            }
+          ],
+          "originalWrap": {
+            "donorRect": [
+              0.0006815,
+              0.46755749,
+              0.1395174,
+              0.6639235
+            ],
+            "nativeRects": {
+              "v_light": [
+                0.10551948051948051,
+                0.27469135802469136,
+                0.32305194805194803,
+                0.8919753086419753
+              ],
+              "g_light": [
+                0.3555194805194805,
+                0.2951388888888889,
+                0.4788961038961039,
+                0.7951388888888888
+              ]
+            },
+            "swapAxes": true,
+            "opacity": 0.7,
+            "suppressEmission": true
+          }
+        }
+      },
+      "selectedMesh": "Plane.019_skin_0"
+    },
+    "shell": {
+      "archive": "weapon_pack.zip",
+      "sha256": "faa100f20c227c2bec419af8a1d17bc991c939366d24b964c870b56b0d847c57",
+      "metadata": {
+        "author": "rudolfs (https://sketchfab.com/rudolfs)",
+        "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+        "source": "https://sketchfab.com/3d-models/weapon-pack-fdf4611b6bfb4bdb8b404c2cc9107dbd",
+        "title": "Weapon Pack"
+      },
+      "axes": [
+        1,
+        2,
+        3
+      ],
+      "vertices": 81,
+      "rotationYDegrees": 0,
+      "triangles": 80,
+      "maps": {
+        "diffuse": "diffuse.png"
+      },
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": true
+      },
+      "selectedMesh": "shotgun_shell_bullets_0"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "baseline": {
+    "costs": [
+      {
+        "frames": 90,
+        "height": 270,
+        "meanMs": 2.241111110978657,
+        "ordinaryLight": false,
+        "width": 480
+      },
+      {
+        "frames": 90,
+        "height": 270,
+        "meanMs": 3.1077777779764597,
+        "ordinaryLight": true,
+        "width": 480
+      }
+    ],
+    "method": "one-pixel readback per fixed-time full frame; includes main and reflected receiver lighting, not an isolated SSR cost or gameplay FPS"
+  },
+  "currentSamples": [
+    {
+      "costs": [
+        {
+          "frames": 90,
+          "height": 270,
+          "meanMs": 2.723333333267106,
+          "ordinaryLight": false,
+          "width": 480
+        },
+        {
+          "frames": 90,
+          "height": 270,
+          "meanMs": 3.276666666732894,
+          "ordinaryLight": true,
+          "width": 480
+        }
+      ],
+      "method": "one-pixel readback per fixed-time full frame; includes main and reflected receiver lighting, not an isolated SSR cost or gameplay FPS"
+    },
+    {
+      "costs": [
+        {
+          "frames": 90,
+          "height": 270,
+          "meanMs": 2.858888888690206,
+          "ordinaryLight": false,
+          "width": 480
+        },
+        {
+          "frames": 90,
+          "height": 270,
+          "meanMs": 2.3100000000662275,
+          "ordinaryLight": true,
+          "width": 480
+        }
+      ],
+      "method": "one-pixel readback per fixed-time full frame; includes main and reflected receiver lighting, not an isolated SSR cost or gameplay FPS"
+    },
+    {
+      "method": "one-pixel readback per fixed-time full frame; includes main and reflected receiver lighting, not an isolated SSR cost or gameplay FPS",
+      "costs": [
+        {
+          "ordinaryLight": false,
+          "frames": 90,
+          "width": 480,
+          "height": 270,
+          "meanMs": 117.25
+        },
+        {
+          "ordinaryLight": true,
+          "frames": 90,
+          "width": 480,
+          "height": 270,
+          "meanMs": 123.33111111124357
+        }
+      ]
+    }
+  ],
+  "qualification": "Full fixed-size frames include readback and CPU overhead. Gameplay tab closed for these samples. Fresh-load timing is unstable; not a stable overhead estimate or gameplay FPS."
+}

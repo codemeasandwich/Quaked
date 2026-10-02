@@ -1,0 +1,20 @@
+{
+  "sources": {
+    "src/cl_demo.js": "9609eb520e97a542588cc9758ebb3ae01a3a2e87340a7d6849e3bc74bf6787c2",
+    "src/cl_main.js": "e1b5209c813d02df8b50a7383d7c6e0aff6f7a231d22261a4849b0c7830783d4",
+    "src/r_demosplit.js": "8e1a073f1a1332faa4e12084c32614e223762b49b612c8894e9e88e6399825f4",
+    "src/r_perf.js": "5e68f603be36cdda6eb858b37375a9de160a44cba294d99f32e605fc426e8e63",
+    "src/host.js": "07811714b51db91b5201495fc21f321692c4868b567c7d47bf70291ae1f76dda"
+  },
+  "mode": "Local uncommitted increment on 57ce49b",
+  "test_files": [
+    "r_perf_test.js",
+    "r_demosplit_resolution_test.js",
+    "classic_demo_isolation_test.js",
+    "cl_demo_test.js",
+    "cl_demo_commands_test.js",
+    "profiler_demo_mode_test.js"
+  ],
+  "browser_trial": "tests/profiler_demo_trial.html",
+  "measurement": "Actual Options selection via public menu touch interface; render observer separates main camera, classic scope and auxiliary views; live module namespace host frame counter."
+}

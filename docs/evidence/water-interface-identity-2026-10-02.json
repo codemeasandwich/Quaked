@@ -1,0 +1,30 @@
+{
+  "sources": {
+    "src/gl_post.js": "68f0bcba23a63e9f5dd3e7f698606f7e736babcee24761a09cf5a5a50f4104a3",
+    "src/gl_rsurf.js": "c87518444ff3f0d725856f52413ce11bb2049a6aff5f15d8ccd43bbdaf47b49c",
+    "src/gl_rmain.js": "164e2bac6b4d4e69c99cbeaab16384749f25639b3f32c35d4d1a675b1712033e",
+    "src/glquake.js": "58e373c3569fd5cf6d4c031eff48743147ad5400f88f0b34540f9497e7d7eb99",
+    "src/gl_rlight.js": "e0ad5db021495b59f22cdc85a3d7d5c68990c1101e1e6dfac2919d62c764d387",
+    "src/view.js": "e86491f92d3eeee2f6b6815ac64022ae38fd4cbcda202b87e1718b6e5f2c9138",
+    "src/r_waterprobe.js": "edba139bde98fdefc4fabe87efcc0a9d80f53f436e071af02f5aa289341277a4"
+  },
+  "pre_interface_gl_post_sha256": "4beef061010c2528888062f49369835906d38683619a9d54ccf579afc6cd38ed",
+  "references": [
+    {
+      "name": "Screenshot 2026-10-01 at 23.56.40.png",
+      "sha256": "ecfbbd43a05d32cb667ed22003f684a4965ad83df5bc360bd9f44d6ed9b3e002"
+    },
+    {
+      "name": "Screenshot 2026-10-01 at 23.56.55.png",
+      "sha256": "3e24494207c4df0ec632db0c6b05bb010519df67a5ecc992fea8fc5235b50d4e"
+    },
+    {
+      "name": "Screenshot 2026-10-01 at 23.57.03.png",
+      "sha256": "10e3468425a1ddb65e742d09c963553d684b80b3fd64c672ef8d091d413f4c7c"
+    }
+  ],
+  "mode": "Local uncommitted water-surface increment on 57ce49b; separate pending profiler fix preserved",
+  "calibration": "Above-water angles use constant cube radiance with black receiver excluded during capture then restored. Underwater uses a separate real black-receiver capture after public rate-limit wait.",
+  "gpu_checks": 39,
+  "unit_tests": 39
+}

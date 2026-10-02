@@ -1,0 +1,5 @@
+PASS public credits retain contributors, native-size Japanese picture/fallback and centered white footer inside enlarged box
+PASS public credits click maps enlarged viewport only to centered footer; Enter and Escape retain navigation
+PASS temporary credits sizing restores normal metrics and preference after nested scopes and callback failure
+RESULT 3/3 passed (tests/ambient_credits_test.js)
+TOTAL 3/3 passed

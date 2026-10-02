@@ -20,6 +20,7 @@
 // have arrived the original skin is shown.
 
 import * as THREE from 'three';
+import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { cvar_t } from './cvar.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
@@ -351,7 +352,13 @@ function materialFor( set, hasLighting ) {
 
 const VERTEX_ADD = `
 	vQrView = - mvPosition.xyz;
-	vQrNormal = normalize( normalMatrix * normal );`;
+	#ifdef USE_INSTANCING
+		mat3 qrInstance = mat3( instanceMatrix );
+		vec3 qrInstanceNormal = normal / vec3( dot( qrInstance[ 0 ], qrInstance[ 0 ] ), dot( qrInstance[ 1 ], qrInstance[ 1 ] ), dot( qrInstance[ 2 ], qrInstance[ 2 ] ) );
+		vQrNormal = normalize( normalMatrix * ( qrInstance * qrInstanceNormal ) );
+	#else
+		vQrNormal = normalize( normalMatrix * normal );
+	#endif`;
 
 const FRAGMENT_HEAD = `
 layout(location = 1) out highp vec4 gNormal;
@@ -392,8 +399,11 @@ const FRAGMENT_NORMAL = `
 
 const FRAGMENT_LIGHT = `
 	if ( uSkinRelit > 0.5 ) {
-	if ( uHasLuma > 0.5 )
-		outgoingLight += texture2D( qrLuma, vMapUv ).rgb * uLumaBoost;
+	if ( uHasLuma > 0.5 ) {
+		vec3 qrEmission = texture2D( qrLuma, vMapUv ).rgb * uLumaBoost;
+		// imported_emission_style
+		outgoingLight += qrEmission;
+	}
 	if ( uHasGloss > 0.5 ) {
 		float rim = pow( 1.0 - abs( dot( qrN, normalize( vQrView ) ) ), 3.0 );
 		outgoingLight += texture2D( qrGloss, vMapUv ).r * rim * 0.3 * ( outgoingLight + 0.08 );
@@ -410,12 +420,53 @@ function patchShader( set ) {
 		shader.vertexShader = 'varying vec3 vQrView;\nvarying vec3 vQrNormal;\n' +
 			shader.vertexShader.replace( '#include <project_vertex>', '#include <project_vertex>' + VERTEX_ADD );
 
-		shader.fragmentShader = FRAGMENT_HEAD + shader.fragmentShader
-			.replace( '#include <map_fragment>', '#include <map_fragment>' + FRAGMENT_NORMAL )
-			.replace( '#include <opaque_fragment>', FRAGMENT_LIGHT + '#include <opaque_fragment>' )
+		shader.fragmentShader = FRAGMENT_HEAD + ( set.fragmentHead || '' ) + shader.fragmentShader
+			.replace( '#include <map_fragment>', '#include <map_fragment>' + ( set.mapFragment || '' ) + FRAGMENT_NORMAL )
+			.replace( '#include <opaque_fragment>', FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
 			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n	gNormal = vec4( qrN * 0.5 + 0.5, vQrView.z );\n\tgAlbedo = vec4( qrAlbedo, 1.0 );' );
 
 	};
+
+}
+
+// Imported alias geometry uses the same baked-light/normal/albedo contract as
+// custom skins. The caller owns these already-loaded textures and materials.
+export function R_AssetAliasMaterial( maps, key, authored = {} ) {
+
+	const material = new THREE.MeshBasicMaterial( { map: maps.diffuse, vertexColors: true } );
+	const style = R_WeaponStyleGLSL( authored.style, key );
+	material.transparent = style.opacity < 1;
+	if ( authored.baseColorFactor ) material.color.fromArray( authored.baseColorFactor );
+	if ( authored.doubleSided ) material.side = THREE.DoubleSide;
+	const set = { uniforms: {
+		qrNormal: { value: maps.normal || null }, qrLuma: { value: maps.luma || null }, qrGloss: { value: null },
+		uHasNormal: { value: maps.normal ? 1 : 0 }, uHasLuma: { value: maps.luma ? 1 : 0 }, uHasGloss: { value: 0 },
+		uSkinDetail: { get value() { return R_IsNewer() && r_newer_normals.value !== 0 ? 1 : 0; } },
+		uSkinRelit: { get value() { return R_NewerLightingActive() ? 1 : 0; } },
+		uFlipGreen: { value: authored.normalFlipGreen ? 1 : 0 }, uLumaBoost: { value: Math.max( ...( authored.emissiveFactor || [ 0, 0, 0 ] ) ) }
+	} };
+	set.fragmentHead = style.head; set.mapFragment = style.map; set.emissionFragment = style.emission;
+	if ( style.wrap ) {
+
+		set.uniforms.qrNativeSkin = { value: null }; set.uniforms.uHasNativeSkin = { value: 0 };
+		material._quakeNativeSkin = { texture: set.uniforms.qrNativeSkin, ready: set.uniforms.uHasNativeSkin };
+
+	}
+	material.onBeforeCompile = patchShader( set );
+	material.customProgramCacheKey = () => 'quake-imported-alias-' + key;
+	return material;
+
+}
+
+// Three's Material.clone intentionally omits shader callbacks. Alias materials
+// must keep their normal/albedo outputs when the view or instances clone them.
+export function R_CloneAliasMaterial( material ) {
+
+	const clone = material.clone();
+	clone.onBeforeCompile = material.onBeforeCompile;
+	clone.customProgramCacheKey = material.customProgramCacheKey;
+	clone._quakeNativeSkin = material._quakeNativeSkin;
+	return clone;
 
 }
 

@@ -16,6 +16,7 @@
 // It goes to the console, the screen, and a JSON file that is downloaded.
 
 import { cvar_t } from './cvar.js';
+import { R_DemoSplitEnd } from './r_demosplit.js';
 
 export const cl_showfps = new cvar_t( 'cl_showfps', '0' );
 
@@ -165,13 +166,19 @@ export function R_PerfStart( limit ) {
 	if ( profiling || host === null ) return;
 	frameLimit = limit > 0 ? limit : 0; // (0: each demo to its end)
 
-	saved = { dynres: host.getCvar( 'r_dynres' ), showfps: host.getCvar( 'cl_showfps' ) };
+	// End a title demo's temporary HDR override before saving the player's mode.
+	R_DemoSplitEnd();
+	saved = { dynres: host.getCvar( 'r_dynres' ), showfps: host.getCvar( 'cl_showfps' ),
+		hdr: host.getCvar( 'r_hdr' ), split: host.getCvar( 'r_demosplit' ), demonum: host.cls.demonum };
+	host.setCvar( 'r_hdr', 1 );
+	host.setCvar( 'r_demosplit', 0 );
+	host.cls.demonum = - 1; // the profiler alone advances its three demos
 	host.setCvar( 'r_dynres', 0 ); // full resolution: the machine's own speed
 	host.setCvar( 'cl_showfps', 1 );
 
 	profiling = true;
-	run = { demoIndex: - 1, results: [], frames: [], recording: false, wait: 0, started: performance.now(), status: 'starting' };
-	host.log( 'Performance profiler: playing ' + DEMOS.join( ', ' ) + ' as fast as possible (Esc stops)\n' );
+	run = { demoIndex: - 1, results: [], frames: [], recording: false, wait: 0, started: performance.now(), status: 'starting', newerGame: true };
+	host.log( 'Performance profiler: enhanced view only, playing ' + DEMOS.join( ', ' ) + ' as fast as possible (Esc stops)\n' );
 	nextDemo();
 
 }
@@ -187,6 +194,9 @@ export function R_PerfStop( reason ) {
 
 		host.setCvar( 'r_dynres', saved.dynres );
 		host.setCvar( 'cl_showfps', saved.showfps );
+		host.setCvar( 'r_hdr', saved.hdr );
+		host.setCvar( 'r_demosplit', saved.split );
+		host.cls.demonum = saved.demonum;
 		saved = null;
 
 	}
@@ -300,15 +310,24 @@ export function R_PerfPump( frame ) {
 	const t0 = performance.now();
 	let last = t0;
 
-	do {
+	try {
 
-		const now = performance.now();
-		const dt = Math.min( 0.1, ( now - last ) / 1000 );
-		last = now;
-		frame( Math.max( dt, 0.001 ) );
-		tick();
+		do {
 
-	} while ( profiling && performance.now() - t0 < 30 );
+			const now = performance.now();
+			const dt = Math.min( 0.1, ( now - last ) / 1000 );
+			last = now;
+			frame( Math.max( dt, 0.001 ) );
+			tick();
+
+		} while ( profiling && performance.now() - t0 < 30 );
+
+	} catch ( error ) {
+
+		R_PerfStop( 'error' );
+		throw error;
+
+	}
 
 }
 
@@ -345,7 +364,7 @@ const ADVICE = {
 
 function buildReport( r ) {
 
-	const report = { when: new Date().toISOString(), newerGame: host.getCvar( 'r_hdr' ) !== 0, resolution: host.size(), demos: [], summary: {} };
+	const report = { when: new Date().toISOString(), newerGame: r.newerGame, resolution: host.size(), demos: [], summary: {} };
 	const all = [];
 	const stageTotals = {};
 	let calls = 0, tris = 0, frames = 0, maxCalls = 0, maxTris = 0;

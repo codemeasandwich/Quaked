@@ -1,0 +1,22 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "request": "Original Quake axe mesh and all native poses, supplied diffuse texture wrapping, original hand/arm; no donor mesh render or new game instance",
+  "sha256": {
+    "tools/import_weapons.py": "4072d88682fd18ade8b935ebb1a0b8a257de916c25f9b5e937d14359c7ac0552",
+    "tools/run_tests.mjs": "f936c0d04282e784995d97279b4c7b577a3a523725f617eafdf628a4aa902c8b",
+    "src/gl_mesh.js": "333eaa82e612fb5cd71f81c35a66cf92340cab3cf081e304eff588a2274fd1e2",
+    "src/r_weapons.js": "fb94d53d7f5e16d489aa94f2b1a291c8f28eee41766bd93a44d57e039762b0b3",
+    "tests/weapons_test.js": "4e20f580362a8beff7e41cc7306bc4c2f2ec40925cfb48fe8e796a9c143de990",
+    "tests/axe_texture_test.js": "31622fb12f0b8515b6ac837fc466ea30deb115ac744ea0fe88a37de25a728e32",
+    "tests/weapon_gameplay_trial.js": "a943bd7b86b00308f4fef82f72d269a0da88183bc7528c15af8e5a8b8dd1289d",
+    "newer/weapons/index.json": "2e6df034754b98d3ba51e96aae1062b22c3f3a7490bda3ed8e101595ab04641d",
+    "newer/weapons/v_axe.json": "e1dc8988028476d2cd560a391db9ca938573f5a0c49b773051c90c44045afe0a",
+    "newer/weapons/axe/diffuse.png": "1274b2db014898157ea66b4bac07368a96bd515488b3c041800210d1e9a931e2"
+  },
+  "previewVerification": {
+    "mappingServedByteIdentically": true,
+    "url": "http://localhost:8013/newer/weapons/v_axe.json",
+    "browserVisual": "Not verified: this chat has no accessible existing browser tab; none created"
+  }
+}

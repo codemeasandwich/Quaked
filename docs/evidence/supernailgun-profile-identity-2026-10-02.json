@@ -1,0 +1,33 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "57ce49bf21e76fdffe6c602fdc7eb772a62e3d64",
+  "scope": "Held super nailgun bare tubes extended backward, muzzle/rear receiver ring retained; pickup/UV/textures unchanged; HUD-free comparison",
+  "sha256": {
+    "tools/import_weapons.py": "a6b1d6d0a49afae798ada76e6f32005bc923564e69049eac0d0201dd4895f238",
+    "tools/run_tests.mjs": "bc3a1e1c9004cbc3beb52998528d7c2cad8b706e7db63a4dfb2ce68140e02bad",
+    "tests/supernailgun_profile_test.js": "b170f0de246a9086fb3fc0bffbcaebf201c8012fe466d73784659e4879665a7d",
+    "tests/weapon_gameplay_trial.js": "3d120d75a17070fe088a91162ec6411fd5614a62c9fe21af5c7fc9b0c22ddc68",
+    "newer/weapons/v_nail2.json": "ec88501fc268e534e48d4de12047295736be3e449fe51fed0fd0e5ed4b3a99c1",
+    "newer/weapons/g_nail2.json": "e672b8c4586b7cc927f07ab642904a21ac19bfa011f29e8dd3a334740e11ebda",
+    "newer/weapons/index.json": "f0acad7829dc6dfe0eb407af3e03507d30fc12665fb550a9289916e902abb62a",
+    "tests/weapon_gameplay_trial.html": "d988fa4610d9da6f4ccebf635244b630b5033276b8ae995bf527dbf12fd3af41"
+  },
+  "images": {
+    "original": "docs/images/supernailgun-original-clean-2026-10-02.png",
+    "updated": "docs/images/supernailgun-new-clean-2026-10-02.png"
+  },
+  "view": {
+    "url": "http://localhost:8013/tests/weapon_gameplay_trial.html?weapons=nail-profile",
+    "viewsize": 120,
+    "hud": false,
+    "screenshotSize": [
+      1280,
+      720
+    ],
+    "map": "e1m1",
+    "camera": "same stationary start position; no attack or movement issued",
+    "crosshair": false,
+    "trialControlsInCaptures": false,
+    "renderingErrors": []
+  }
+}

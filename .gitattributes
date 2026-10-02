@@ -1,0 +1,4 @@
+# Retained machine output and unified-diff snapshots contain intentional
+# whitespace. Preserve their bytes; source files keep normal whitespace checks.
+/docs/evidence/*.txt -whitespace
+/docs/evidence/*.patch -whitespace

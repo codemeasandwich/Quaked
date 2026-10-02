@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-02",
+  "state": "local uncommitted water increment; concurrent weapon work preserved",
+  "sources": {
+    "src/gl_post.js": "405c3a29ae1a4f613d9b0dd335d5d0cf703f72e34e0cdba35452918007aa87eb",
+    "src/r_waterprobe.js": "70178350cfced8d8a3d707871fa0533868978e7eee99827bdfd7136ddd651f9b",
+    "tests/water_optics_trial.js": "00e0eb7382f8b70e806b8db79b54e2865f2a8e298deba02bf20b543a46636dc7",
+    "tests/water_optics_trial.html": "bb78ce927e0b058adb9dd632b962cdfdb6547a78d056b68e192fb068e1614c4e",
+    "tests/water_gameplay_trial.js": "7ff4657faa44274bfd330179af00ae304f354ad33fe7eabf3600d3f1a5d5459d",
+    "tests/water_gameplay_trial.html": "50e298b2240eb63e75e1ec897e21150f8b1497f679078ce7fde9132ab2c49ec7",
+    "tests/water_nearfield_test.js": "1ff3134a8d1a32e5d6e56a0912535c748e733d713224f94a60ced5a548c39037"
+  },
+  "references": [
+    {
+      "path": "/Users/bri/Desktop/Screenshot 2026-10-01 at 23.56.55.png",
+      "sha256": "3e24494207c4df0ec632db0c6b05bb010519df67a5ecc992fea8fc5235b50d4e",
+      "role": "Muddy target",
+      "personallyViewed": true
+    },
+    {
+      "path": "/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/codex-clipboard-e519f65a-bb80-4ffa-9cf1-f757e4c120d9.png",
+      "sha256": "9ad49a30a4cfc8ff9939d021498b60785e506036b47431561a25ef1698d2d215",
+      "role": "Owner supplied previous oracle",
+      "personallyViewed": true
+    }
+  ],
+  "pak0Sha256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+  "baselineShaderSha256": "3cf873bfd7ba7efc843669fa5027cddf2c6da074966ff5f3b350c930dcb9d4b0",
+  "screenshotQualification": "Actual camera xyz and angles matched; snapshot dimensions are independently recorded. No source image editing or screenshot grading."
+}
