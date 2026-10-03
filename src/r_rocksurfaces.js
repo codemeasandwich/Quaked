@@ -1,6 +1,7 @@
-// World-only continuous sampling charts for natural surfaces. BSP geometry/UVs stay owned
+// Continuous map/rest-space charts for natural world and optional brush surfaces. BSP geometry/UVs stay owned
 // by the original map; charts are a separate, world-anchored sampling space.
 import { seedFrom } from './rockfield.js';
+import { R_RockPreset } from './rockfield_presets.js';
 export const ROCK_TILE_UNITS = 256;
 // One oblique world projection for every bedrock orientation. Audited against
 // native rock faces: walls, slopes and horizontal ceilings all retain area.
@@ -12,6 +13,8 @@ const SKY = 4, TURB = 16;
 // Quake's rockN_N family and uwall1_2 are unworked bedrock. Keep visually
 // reviewed terrain exceptions explicit: several "ground" names are paving.
 export const ROCK_MATERIALS = Object.freeze( {
+ wgrnd1_5: 'ground',
+ wgrnd1_6: 'ground',
  uwall1_2: 'wall',
  bricka2_2: 'wall', // Hard-hub irregular rock artwork; historical name, not brick courses
  ground1_2: 'ground', // organic roots/soil
@@ -20,8 +23,15 @@ export const ROCK_MATERIALS = Object.freeze( {
  wizmet1_7: 'ground', // loose aggregate, despite the name
  wall16_7: 'ground' // loose pebbles, not a constructed wall
 } );
-export function R_RockMaterialProfile( texture ) {
- const name = String( texture?.name || '' ).toLowerCase().replace( /^\+[0-9a-j]/, '' );
+export function R_RockMaterialName( texture ) {
+ return String( texture?.name || '' ).toLowerCase().replace( /^\+[0-9a-j]/, '' ).replace( /\.webp$/, '' );
+}
+export function R_RockMaterialProfile( texture, surface ) {
+ const name = R_RockMaterialName( texture );
+ if ( surface && ( name === 'wgrnd1_5' || name === 'wgrnd1_6' ) && surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ) <= .65 ) return null;
+ // The owner explicitly uses this material on both terrain and walls. Signed
+ // upward slopes are ground; undersides and tunnel roofs remain wall surfaces.
+ if ( name === 'rock4_1' && surface ) return ( surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ) > .65 ) ? 'ground' : 'wall';
  return ROCK_MATERIALS[ name ] || ( /^rock\d+_\d+$/.test( name ) ? 'wall' : null );
 }
 const dot = ( a, b ) => a[ 0 ] * b[ 0 ] + a[ 1 ] * b[ 1 ] + a[ 2 ] * b[ 2 ];
@@ -35,37 +45,90 @@ function vertices( surf ) {
  }
  return out;
 }
-export function R_RockSurfaceCharts( model ) {
- const charts = [], bySurface = new WeakMap(), keys = new Map();
+// Edge sweep, rather than rounded line hashes: no bucket-boundary gaps at
+// fractional BSP T junctions. Bounds prune candidates; exact collinearity and
+// positive segment overlap decide adjacency. Point-only contacts never join.
+const EDGE_EPS = .001;
+function overlap( a, b ) {
+ for ( let k = 0; k < 3; k ++ ) if ( a.lo[ k ] > b.hi[ k ] + EDGE_EPS || b.lo[ k ] > a.hi[ k ] + EDGE_EPS ) return false;
+ // Measure deviation only over the common segment, in both directions.
+ // Testing angular error against one full edge length is asymmetric for a
+ // long edge touching a short BSP fragment and makes union depend on order.
+ const aligned = ( edge, other ) => {
+  const t = other.a.map( ( v, k ) => v - edge.a[ k ] ), cosine = dot( other.d, edge.d );
+  if ( Math.abs( cosine ) < 1e-8 ) return false;
+  const start = dot( t, edge.d ), end = start + cosine * other.length;
+  const lo = Math.max( 0, Math.min( start, end ) ), hi = Math.min( edge.length, Math.max( start, end ) );
+  if ( hi - lo <= EDGE_EPS ) return false;
+  for ( const position of [ lo, hi ] ) {
+   const v = t.map( ( value, k ) => value + other.d[ k ] * ( position - start ) / cosine );
+   const d = edge.d;
+   if ( Math.hypot( d[ 1 ] * v[ 2 ] - d[ 2 ] * v[ 1 ], d[ 2 ] * v[ 0 ] - d[ 0 ] * v[ 2 ], d[ 0 ] * v[ 1 ] - d[ 1 ] * v[ 0 ] ) > EDGE_EPS ) return false;
+  }
+  return true;
+ };
+ return aligned( a, b ) && aligned( b, a );
+}
+export function R_RockSurfaceCharts( model, { includeBrushes = false } = {} ) {
+ const charts = [], bySurface = new WeakMap(), groups = new Map();
  if ( ! model?.surfaces ) return { charts, bySurface };
  const first = model.firstmodelsurface || 0, last = first + ( model.nummodelsurfaces || model.numsurfaces || model.surfaces.length );
- const faces = model.surfaces.slice( first, last ).filter( s => s?.plane && s.polys ).map( surf => ( { surf, flags: surf.flags, polygons: vertices( surf ) } ) );
- for ( const face of faces ) {
-  const { surf } = face, texture = surf.texinfo?.texture;
-  if ( ! texture || face.flags & ( SKY | TURB ) ) continue;
-  const profile = R_RockMaterialProfile( texture );
+ const worldSurfaces = new Set( model.surfaces.slice( first, last ) );
+ for ( const surf of includeBrushes ? model.surfaces : model.surfaces.slice( first, last ) ) {
+  if ( ! surf?.plane || ! surf.polys || surf.flags & ( SKY | TURB ) ) continue;
+  const texture = surf.texinfo?.texture, profile = R_RockMaterialProfile( texture, surf );
   if ( ! profile ) continue;
-  const all = face.polygons.flat(), center = [ 0, 0, 0 ];
-  for ( const v of all ) for ( let k = 0; k < 3; k ++ ) center[ k ] += v[ k ] / all.length;
-  // One world-anchored field across every natural face in this profile,
-  // including angled cliff facets. Shared edge positions always sample the
-  // same height; neither BSP cuts nor a changed face normal reseed the field.
-  const key = profile;
-  let chart = keys.get( key );
-  if ( ! chart ) {
-   const tangent = profile === 'ground' ? [ 1, 0, 0 ] : ROCK_AXIS_U;
-   const bitangent = profile === 'ground' ? [ 0, 1, 0 ] : ROCK_AXIS_V;
-   chart = { id: charts.length + 1, key, profile, seed: seedFrom( ( model.name || '' ) + ':' + key ), tangent, bitangent,
-    amplitude: profile === 'wall' ? .8 : .009, bounds: [ Infinity, Infinity, - Infinity, - Infinity ], surfaces: [] };
-   charts.push( chart ); keys.set( key, chart );
+  const name = R_RockMaterialName( texture ), key = name + ':' + profile;
+  if ( ! groups.has( key ) ) groups.set( key, [] );
+  groups.get( key ).push( { surface: surf, polygons: vertices( surf ), brush: ! worldSurfaces.has( surf ) } );
+ }
+ const components = [];
+ for ( const [ key, faces ] of groups ) {
+  const parent = faces.map( ( _, i ) => i ), root = i => { while ( i !== parent[ i ] ) { parent[ i ] = parent[ parent[ i ] ]; i = parent[ i ]; } return i; };
+  const edges = [];
+  faces.forEach( ( face, index ) => {
+   for ( const polygon of face.polygons ) for ( let j = 0; j < polygon.length; j ++ ) {
+    const a = polygon[ j ], b = polygon[ ( j + 1 ) % polygon.length ], delta = b.map( ( v, k ) => v - a[ k ] ), length = Math.hypot( ...delta );
+    if ( length <= EDGE_EPS ) continue;
+    edges.push( { index, a, d: delta.map( v => v / length ), length, lo: a.map( ( v, k ) => Math.min( v, b[ k ] ) ), hi: a.map( ( v, k ) => Math.max( v, b[ k ] ) ) } );
+   }
+  } );
+  // Use the widest world axis for a bounded interval sweep.
+  const ranges = [ 0, 1, 2 ].map( k => edges.reduce( ( r, e ) => [ Math.min( r[ 0 ], e.lo[ k ] ), Math.max( r[ 1 ], e.hi[ k ] ) ], [ Infinity, -Infinity ] ) );
+  const axis = ranges.map( r => r[ 1 ] - r[ 0 ] ).reduce( ( best, v, k, values ) => v > values[ best ] ? k : best, 0 );
+  edges.sort( ( a, b ) => a.lo[ axis ] - b.lo[ axis ] );
+  let active = [];
+  for ( const edge of edges ) {
+   active = active.filter( other => other.hi[ axis ] + EDGE_EPS >= edge.lo[ axis ] );
+   for ( const other of active ) if ( root( edge.index ) !== root( other.index ) && overlap( edge, other ) ) parent[ root( edge.index ) ] = root( other.index );
+   active.push( edge );
   }
-  const bounds = [ Infinity, Infinity, - Infinity, - Infinity ];
-  for ( const v of all ) {
-   const uv = R_RockCoordinates( chart, v );
-   for ( let k = 0; k < 2; k ++ ) { bounds[ k ] = Math.min( bounds[ k ], uv[ k ] ); bounds[ k + 2 ] = Math.max( bounds[ k + 2 ], uv[ k ] ); }
+  const connected = new Map();
+  faces.forEach( ( face, i ) => { const id = root( i ); if ( ! connected.has( id ) ) connected.set( id, [] ); connected.get( id ).push( face ); } );
+  for ( const members of connected.values() ) {
+   // Full native coverage is known before streaming. Sorted point identities
+   // make seeds independent of traversal, polygon winding and discovery order.
+   const signature = [ ...new Set( members.flatMap( f => f.polygons.flat().map( p => p.join( ',' ) ) ) ) ].sort().join( ';' );
+   components.push( { key: key + ':' + signature, name: key.split( ':' )[ 0 ], profile: key.split( ':' )[ 1 ], members } );
   }
-  for ( let k = 0; k < 2; k ++ ) { chart.bounds[ k ] = Math.min( chart.bounds[ k ], bounds[ k ] ); chart.bounds[ k + 2 ] = Math.max( chart.bounds[ k + 2 ], bounds[ k + 2 ] ); }
-  chart.surfaces.push( { surface: surf, bounds, center } ); bySurface.set( surf, chart );
+ }
+ components.sort( ( a, b ) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0 );
+ for ( const component of components ) {
+  const { key, name, profile, members } = component, config = R_RockPreset( name, profile );
+  const chart = { id: charts.length + 1, key, name, profile, seed: seedFrom( ( model.name || '' ) + ':' + key ), config,
+   tangent: profile === 'ground' ? [ 1, 0, 0 ] : ROCK_AXIS_U, bitangent: profile === 'ground' ? [ 0, 1, 0 ] : ROCK_AXIS_V,
+   amplitude: config.amplitude, bounds: [ Infinity, Infinity, -Infinity, -Infinity ], surfaces: [] };
+  charts.push( chart );
+  for ( const face of members ) {
+   const all = face.polygons.flat(), center = [ 0, 0, 0 ], bounds = [ Infinity, Infinity, -Infinity, -Infinity ];
+   for ( const point of all ) {
+    const uv = R_RockCoordinates( chart, point );
+    for ( let k = 0; k < 3; k ++ ) center[ k ] += point[ k ] / all.length;
+    for ( let k = 0; k < 2; k ++ ) { bounds[ k ] = Math.min( bounds[ k ], uv[ k ] ); bounds[ k + 2 ] = Math.max( bounds[ k + 2 ], uv[ k ] ); }
+   }
+   for ( let k = 0; k < 2; k ++ ) { chart.bounds[ k ] = Math.min( chart.bounds[ k ], bounds[ k ] ); chart.bounds[ k + 2 ] = Math.max( chart.bounds[ k + 2 ], bounds[ k + 2 ] ); }
+   chart.surfaces.push( { surface: face.surface, brush: face.brush, bounds, center } ); bySurface.set( face.surface, chart );
+  }
  }
  return { charts, bySurface };
 }

@@ -1,0 +1,8 @@
+REQUIRED_NATIVE_ROCK_COVERAGE {"maps":21,"totals":{"bricka2_2":80,"rock1_2":840,"rock4_2":267,"uwall1_2":307},"mapCounts":{"maps/start.bsp":{"bricka2_2":80},"maps/e1m1.bsp":{"uwall1_2":307},"maps/e1m4.bsp":{"rock1_2":840},"maps/e1m5.bsp":{"rock4_2":267}},"orientations":{"roof":140,"floor":45,"slope":52},"shared":{"total":3063,"changedTexture":57,"changedPlane":1410,"ceiling":461}}
+PASS every native world piece of all four required materials uses the same maximum bedrock field through real geometry hooks
+Added packfile pak0.pak (339 files)\n
+REQUIRED_ROCK_BRUSH {"map":"maps/e1m4.bsp","model":"*64","firstFace":5940,"faces":8,"rock1_2WorldAndBrush":848,"drawMeshes":1,"workers":2,"maxPending":2}
+PASS the eight native E1M4 rock door faces render maximum rest-space detail, schedule bounded visible tiles and retain native disabled modes
+PASS actual world batches for every requested material bind the procedural shader and obey New Game, normal-off and Classic gates
+RESULT 3/3 passed (tests/rockfield_required_materials_test.js)
+TOTAL 3/3 passed

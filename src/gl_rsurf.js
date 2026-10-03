@@ -1,7 +1,7 @@
 // Ported from: WinQuake/gl_rsurf.c -- surface-related refresh code
 
 import * as THREE from 'three';
-import { R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate } from './r_rockfield.js';
+import { R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen } from './r_rockfield.js';
 import { Sys_Error } from './sys.js';
 import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from './r_anim.js';
 import { DEMON_TEXTURES, R_DemonSurfaceData } from './r_demonrelief.js';
@@ -1750,12 +1750,13 @@ export function R_DrawBrushModel( e ) {
 
 				const baseTex = psurf.texinfo.texture;
 				const lmTex = lightmapTextures[ psurf.lightmaptexturenum ];
+				const rockChart = R_RockfieldChart( psurf );
 
-				// Find existing group with same baseTex and lightmap (object reference match)
+				// Keep disconnected procedural components separate even when texture/lightmap match.
 				let group = null;
 				for ( let g = 0; g < surfaceGroups.length; g ++ ) {
 
-					if ( surfaceGroups[ g ].baseTex === baseTex && surfaceGroups[ g ].lmTex === lmTex ) {
+					if ( surfaceGroups[ g ].baseTex === baseTex && surfaceGroups[ g ].lmTex === lmTex && surfaceGroups[ g ].rockChart === rockChart ) {
 
 						group = surfaceGroups[ g ];
 						break;
@@ -1766,7 +1767,7 @@ export function R_DrawBrushModel( e ) {
 
 				if ( group === null ) {
 
-					group = { polys: [], normals: [], baseTex, lmTex };
+					group = { polys: [], normals: [], baseTex, lmTex, rockChart, surface: psurf };
 					surfaceGroups.push( group );
 
 				}
@@ -1783,6 +1784,7 @@ export function R_DrawBrushModel( e ) {
 				const group = surfaceGroups[ g ];
 				const geom = _mergeGLPolys( group.polys, group.normals );
 				if ( geom == null ) continue;
+				const rockField = R_RockfieldGeometry( geom, group.surface );
 
 				const t = R_TextureAnimation( group.baseTex );
 				const diffuse = ( t != null && t.gl_texture != null ) ? t.gl_texture : null;
@@ -1791,7 +1793,7 @@ export function R_DrawBrushModel( e ) {
 				// Use cached material to avoid shader recompilation
 				const diffuseId = diffuse != null ? diffuse.id : 0;
 				const lmId = lmTex != null ? lmTex.id : 0;
-				const matKey = `${diffuseId}_${lmId}`;
+				const matKey = `${diffuseId}_${lmId}${rockField ? '_rock' : ''}`;
 				let material = _brushMaterialCache.get( matKey );
 				if ( material == null ) {
 
@@ -1801,8 +1803,10 @@ export function R_DrawBrushModel( e ) {
 					_brushMaterialCache.set( matKey, material );
 
 				}
+				if ( rockField && lmTex ) material.userData.rockField = true;
 
 				const mesh = new THREE.Mesh( geom, material );
+				mesh.userData.rockField = rockField;
 				brushGroup.add( mesh );
 
 				// Track surfaces with time-based animation for per-frame material updates
@@ -1848,7 +1852,7 @@ export function R_DrawBrushModel( e ) {
 			// Swap to the correct material (reuse from cache)
 			const diffuseId = diffuse ? diffuse.id : 0;
 			const lmId = anim.lmTex ? anim.lmTex.id : 0;
-			const matKey = `${diffuseId}_${lmId}`;
+			const matKey = `${diffuseId}_${lmId}${child.userData.rockField ? '_rock' : ''}`;
 			let material = _brushMaterialCache.get( matKey );
 			if ( ! material ) {
 
@@ -1858,6 +1862,7 @@ export function R_DrawBrushModel( e ) {
 				_brushMaterialCache.set( matKey, material );
 
 			}
+			if ( child.userData.rockField && anim.lmTex ) material.userData.rockField = true;
 
 			child.material = material;
 
@@ -1891,6 +1896,7 @@ export function R_DrawBrushModel( e ) {
 	// Add to scene (will be removed next frame by R_DrawWorld cleanup)
 	if ( scene && ! brushGroup.parent ) scene.add( brushGroup );
 	brushEntityGroups.push( brushGroup );
+	R_RockfieldBrushSeen( clmodel, brushGroup, r_refdef.vieworg, r_framecount );
 
 	// Upload any modified lightmaps (matches original C: R_BlendLightmaps called
 	// at end of R_DrawBrushModel to ensure brush entity lightmap changes are applied)

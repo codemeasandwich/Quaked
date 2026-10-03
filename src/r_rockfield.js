@@ -1,10 +1,11 @@
-// Stream the owner's continuous RockField through the existing world renderer.
+// Stream the owner's continuous RockField through the existing world/brush renderer.
 // No geometry, albedo or collision data is replaced. Workers are lazy and there
 // are only two outstanding jobs, with no unbounded queue.
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
 import { R_NewerGame, r_newer_normals } from './r_anim.js';
 import { R_RockSurfaceCharts, R_RockCoordinates } from './r_rocksurfaces.js';
+import { R_RockPreset } from './rockfield_presets.js';
 export const r_rockfield = new cvar_t( 'r_rockfield', '1', true );
 export const ROCK_CELLS = 64, ROCK_BORDER = 2, ROCK_SIDE = ROCK_CELLS + 1 + 2 * ROCK_BORDER, ROCK_PAGES = 96;
 export const ROCK_TABLE_SIZE = 2048, ROCK_PROBES = ROCK_PAGES;
@@ -46,7 +47,7 @@ export class RockTileCache {
   if ( ! slot ) return false;
   const job = { key, chart, x, y, id: ++ this.serial, epoch: this.epoch };
   slot.job = job; this.pending.set( key, job );
-  try { slot.worker.postMessage( { id: job.id, x, y, config: { seed: chart.seed, profile: chart.profile, featureSize: chart.profile === 'wall' ? 3 : 2, ...( chart.profile === 'wall' ? { blockiness: 1, warp: .18, fracture: 1.1, detail: .1 } : {} ), cells: ROCK_CELLS, border: ROCK_BORDER } } ); }
+  try { slot.worker.postMessage( { id: job.id, x, y, config: { seed: chart.seed, profile: chart.profile, ...( chart.config || R_RockPreset( chart.name, chart.profile ) ), cells: ROCK_CELLS, border: ROCK_BORDER } } ); }
   catch ( error ) { this.error = String( error.message || error ); this.cancelWorkers(); }
   return false;
  }
@@ -88,12 +89,14 @@ const dummy = new THREE.DataTexture( new Float32Array( 4 ), 1, 1, THREE.RGBAForm
 const dummyHeight = new THREE.DataArrayTexture( new Uint16Array( [ THREE.DataUtils.toHalfFloat( .5 ) ] ), 1, 1, 1 ); dummyHeight.format = THREE.RedFormat; dummyHeight.type = THREE.HalfFloatType; dummyHeight.needsUpdate = true;
 export const rockUniforms = { qrRockPages: { value: dummy }, qrRockHeights: { value: dummyHeight }, qrRockOn: { value: 0 }, qrRockProbes: { value: 1 }, qrRockSun: { value: new THREE.Vector3( -.28, -.18, .94 ).normalize() } };
 export function R_RockfieldBuild( model ) {
- state?.cache?.dispose(); const fields = R_RockSurfaceCharts( model );
- state = { model, ...fields, cache: fields.charts.length ? new RockTileCache() : null };
+ state?.cache?.dispose(); const fields = R_RockSurfaceCharts( model, { includeBrushes: true } );
+ state = { model, ...fields, brushEntries: new WeakMap(), cache: fields.charts.length ? new RockTileCache() : null };
+ for ( const chart of fields.charts ) for ( const face of chart.surfaces ) if ( face.brush ) state.brushEntries.set( face.surface, { face, chart } );
  rockUniforms.qrRockPages.value = state.cache?.pageTexture || dummy; rockUniforms.qrRockHeights.value = state.cache?.heightTexture || dummyHeight;
  rockUniforms.qrRockProbes = state.cache?.probes || { value: 1 };
  rockUniforms.qrRockOn.value = 0; lastUpdate = - Infinity; return fields;
 }
+export function R_RockfieldChart( surface ) { return state?.bySurface.get( surface ); }
 export function R_RockfieldGeometry( geometry, surface ) {
  const chart = state?.bySurface.get( surface );
  if ( ! chart ) return false;
@@ -105,6 +108,23 @@ export function R_RockfieldGeometry( geometry, surface ) {
  geometry.setAttribute( 'rockUv', new THREE.BufferAttribute( uv, 2 ) ); geometry.setAttribute( 'rockInfo', new THREE.BufferAttribute( info, 2 ) ); geometry.setAttribute( 'rockBounds', new THREE.BufferAttribute( bounds, 4 ) );
  return true;
 }
+// Preserve a moving brush's material/rest-space field. At its closed pose it
+// exactly matches the adjacent world; movement carries that detail with the rock.
+// The world scheduler consumes these marks on this/next frame, after entity draw.
+export function R_RockfieldBrushSeen( model, group, origin, frame ) {
+ if ( ! state || ! R_NewerGame() || r_newer_normals.value === 0 || r_rockfield.value <= 0 ) return 0;
+ group.updateMatrixWorld( true );
+ const localEye = new THREE.Vector3( ...origin ).applyMatrix4( group.matrixWorld.clone().invert() );
+ const first = model.firstmodelsurface || 0, last = first + ( model.nummodelsurfaces || 0 );
+ let marked = 0;
+ for ( let i = first; i < last; i ++ ) {
+  const entry = state.brushEntries.get( model.surfaces[ i ] ); if ( ! entry ) continue;
+  const { face, chart } = entry;
+  face.brushSeen = frame; face.brushEye = R_RockCoordinates( chart, localEye.toArray() );
+  face.brushDistance = new THREE.Vector3( ...face.center ).applyMatrix4( group.matrixWorld ).distanceTo( new THREE.Vector3( ...origin ) ); marked ++;
+ }
+ return marked;
+}
 export function R_RockfieldUpdate( origin, frame, now = performance.now() ) {
  const active = R_NewerGame() && r_newer_normals.value !== 0 && r_rockfield.value > 0;
  rockUniforms.qrRockOn.value = active ? Math.min( 1, r_rockfield.value ) : 0;
@@ -114,9 +134,10 @@ export function R_RockfieldUpdate( origin, frame, now = performance.now() ) {
  for ( const chart of state.charts ) {
   const eye = R_RockCoordinates( chart, origin );
   for ( const face of chart.surfaces ) {
-   if ( face.surface.visframe !== frame ) continue;
-   const b = face.bounds, cx = Math.max( b[ 0 ], Math.min( b[ 2 ], eye[ 0 ] ) ), cy = Math.max( b[ 1 ], Math.min( b[ 3 ], eye[ 1 ] ) );
-   const distance = Math.hypot( ...face.center.map( ( v, k ) => v - origin[ k ] ) );
+   if ( face.brush ? face.brushSeen !== frame && face.brushSeen !== frame - 1 : face.surface.visframe !== frame ) continue;
+   const faceEye = face.brush ? face.brushEye : eye;
+   const b = face.bounds, cx = Math.max( b[ 0 ], Math.min( b[ 2 ], faceEye[ 0 ] ) ), cy = Math.max( b[ 1 ], Math.min( b[ 3 ], faceEye[ 1 ] ) );
+   const distance = face.brush ? face.brushDistance : Math.hypot( ...face.center.map( ( v, k ) => v - origin[ k ] ) );
    if ( distance > 1800 ) continue;
    for ( let y = Math.max( Math.floor( b[ 1 ] ), Math.floor( cy ) - 2 ); y <= Math.min( Math.floor( b[ 3 ] ), Math.floor( cy ) + 2 ); y ++ )
     for ( let x = Math.max( Math.floor( b[ 0 ] ), Math.floor( cx ) - 2 ); x <= Math.min( Math.floor( b[ 2 ] ), Math.floor( cx ) + 2 ); x ++ ) {
@@ -125,7 +146,7 @@ export function R_RockfieldUpdate( origin, frame, now = performance.now() ) {
      const halo = chart.profile === 'wall' ? 4 : 1;
      for ( let dy = - halo; dy <= halo; dy ++ ) for ( let dx = - halo; dx <= halo; dx ++ ) {
       const tx = x + dx, ty = y + dy, key = chart.id + ':' + tx + ',' + ty;
-      const priority = Math.hypot( tx + .5 - eye[ 0 ], ty + .5 - eye[ 1 ] ) + distance / 256;
+      const priority = Math.hypot( tx + .5 - faceEye[ 0 ], ty + .5 - faceEye[ 1 ] ) + distance / 256;
       const previous = candidates.get( key ); if ( ! previous || priority < previous.priority ) candidates.set( key, { chart, x: tx, y: ty, priority } );
      }
     }

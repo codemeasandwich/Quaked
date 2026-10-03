@@ -23,7 +23,8 @@ function expectError( fn, type, label ) {
 
 Deno.test( 'extracted RockField public functions reproduce supplied core exactly for both profiles and seed forms', () => {
 
-	equal( rock.VERSION, original.VERSION, 'source version' );
+	equal( original.VERSION, '1.0.0', 'original parity donor version' );
+	equal( rock.VERSION, '1.2.0', 'updated owner donor core version' );
 	equal( JSON.stringify( rock.DEFAULTS ), JSON.stringify( original.DEFAULTS ), 'source defaults' );
 	for ( const seed of [ 73421, -1, 'cliff-east' ] ) {
 

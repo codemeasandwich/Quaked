@@ -1,7 +1,7 @@
-// Faithful extraction of rock-core from the owner-supplied rockfield-v1.0.0.html.
+// Faithful extraction of rock-core from the owner-supplied rockfield-v1.6.0.html (core 1.2.0).
 // The default profile is source-identical. An opt-in blockiness control adds
 // the broad faceted rock masses explicitly requested by the owner.
-const VERSION = '1.0.0';
+const VERSION = '1.2.0';
 const DEFAULTS = Object.freeze({
   seed: 73421, profile: 'wall', featureSize: 1.05,
   warp: 0.70, fracture: 0.65, detail: 0.45,

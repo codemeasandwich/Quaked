@@ -148,7 +148,7 @@ document.querySelector( '#measure' ).onclick = async () => {
 };
 setInterval( () => {
  const state = rock.R_RockfieldStatus(); document.querySelector( '#toggle' ).textContent = 'Relief: ' + ( state.active ? 'on' : 'off' );
- document.querySelector( '#status' ).textContent = state.error || errors.length ? 'Rendering issue — see diagnostics.' : cls.signon !== 4 ? 'Loading the level…' : state.pending ? 'Loading the continuous surface…' : state.active ? 'Continuous natural rock · gentle soil · original textures and geometry.' : 'Original surface detail — procedural layer off.';
+ document.querySelector( '#status' ).textContent = state.error || errors.length ? 'Rendering issue — see diagnostics.' : cls.signon !== 4 ? 'Loading the level…' : state.pending ? 'Loading the continuous surface…' : state.active ? 'Connected rock surfaces · saved relief settings · original textures and geometry.' : 'Original surface detail — procedural layer off.';
  document.querySelector( '#diagnostics' ).textContent = JSON.stringify( { ...state, demonRelief: R_DemonReliefStatus(), level: cl.worldmodel?.name, signon: cls.signon, setupCount, serverActive: sv.active, spawned: svs.clients[ 0 ]?.spawned, demo: cls.demoplayback, viewangles: Array.from( cl.viewangles ), player: Array.from( sv.edicts?.[ 1 ]?.v.origin || [] ), errors }, null, 2 );
 }, 250 );
 start();

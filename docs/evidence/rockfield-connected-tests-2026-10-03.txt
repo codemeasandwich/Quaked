@@ -1,0 +1,10 @@
+PASS same canonical texture and role joins real positive-length T junctions/folds but never corners, gaps or different textures
+Added packfile pak0.pak (339 files)\n
+CONNECTED_BRUSH_FIELDS {"actualDrawMeshes":2,"componentIds":[2,1],"amplitude":0.35}
+PASS actual brush draw keeps disconnected native faces with the same texture/lightmap in separate field geometries and compiled shader paths
+CONNECTED_NATIVE_ROCK {"maps":21,"selected":{"rock4_1:ground":199,"rock4_1:wall":767,"bricka2_2:wall":80,"uwall1_2:wall":307,"wgrnd1_5:ground":96,"rock1_2:wall":848,"wgrnd1_6:ground":126,"rock4_2:wall":267},"components":{"bricka2_2:wall":2,"rock4_1:ground":46,"rock4_1:wall":21,"uwall1_2:wall":3,"wgrnd1_5:ground":10,"rock1_2:wall":7,"wgrnd1_6:ground":9,"rock4_2:wall":3},"excludedGroundSides":73,"sharedEdges":5140,"brushFaces":32}
+PASS all bundled native world and brush faces use their exact material/role preset and connected-field metadata without changing source coordinates
+PASS signed rock4_1 role threshold separates floor from wall while the other donor roles and legacy rock4_2 are explicit
+PASS all six saved1.6 presets dispatch exact64-cell source fields with negative/order/gutter/both-slope seam parity
+RESULT 5/5 passed (tests/rockfield_connected_test.js)
+TOTAL 5/5 passed

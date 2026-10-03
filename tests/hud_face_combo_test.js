@@ -86,7 +86,7 @@ Deno.test( 'HUD portrait: all eight powerup combinations preserve native priorit
 Deno.test( 'HUD portrait: real indexed URLs load combination, ordinary face2 and Quad/grin art while public Draw_Pic keeps 24x24 layout', async () => {
 
 	selected( 3 ); selected( 0 ); selected( 1 ); await flush();
-	for ( const name of [ 'face_invul1', 'face2', 'face_quad' ] ) check( images.includes( 'newer/hud/' + name + '.webp?v=20261002' ), name + ' real indexed image URL requested' );
+	for ( const name of [ 'face_invul1', 'face2', 'face_quad' ] ) check( images.includes( 'newer/hud/' + name + '.webp?v=20261003' ), name + ' real indexed image URL requested' );
 	const combo = selected( 3 ).pic; check( combo._hi?.width === 96, 'higher resolution combination loaded' );
 	const rendered = calls.find( call => call.canvas === overlay && call.args[ 0 ] === combo._hi ); check( rendered, 'public native Draw_Pic uses loaded combination canvas' );
 	equal( rendered.args[ 3 ], 24, 'high-res portrait drawn at native width' ); equal( rendered.args[ 4 ], 24, 'high-res portrait drawn at native height' );

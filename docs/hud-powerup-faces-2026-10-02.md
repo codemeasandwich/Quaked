@@ -13,3 +13,9 @@ Independent planning and public-interface review cover all eight combinations of
 Reload Newer Game with the status bar visible to see the artwork; acquire Quad and Pentagram together to see the combination. Source-dependent older weapon tests are separately blocked by removed donor archives, which this change does not restore. No public push or release is claimed.
 
 The combined focused gate passed **23/23** checks, including **4/4** independently authored HUD cases and the standard-shotgun source/modes/startup checks. [Final results](evidence/shotgun-hud-final-tests-2026-10-02.txt), [source/artwork identity](evidence/shotgun-hud-identity-2026-10-02.json). The retained initial **21/23** run expected the temporary Quad fallback; personal inspection confirmed the existing native `FACE_INVUL1` and the final implementation/tests use that correct native sprite without fabricated pictures. [Retained first run](evidence/shotgun-hud-tests-attempt-01-2026-10-02.txt). This correction changes the fallback expectation, not the flag, image-request, dimension or classic-preservation assertions.
+
+## October 3 artwork refresh
+
+The owner's subsequent `face_quad.webp` update is retained byte-for-byte.
+HUD index version is now `20261003`, so loose-file image URLs refresh after
+reload. Combined Quad + Pentagram selection and the 24x24 layout are unchanged.

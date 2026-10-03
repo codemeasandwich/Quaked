@@ -1,0 +1,284 @@
+Browser tab: 15, Title: "Quaked — continuous rock relief trial", URL: "http://localhost:8013/tests/rockfield_gameplay_trial.html?pos=592,984,-343.969&angles=-30,90,0".
+1 AXWebArea Quaked — continuous rock relief trial, URL: localhost:8013/tests/rockfield_gameplay_trial.html?pos=592,984,-343.969&angles=-30,90,0
+	2 container
+		3 text Continuous natural rock relief
+		4 button Relief: on, ID: toggle
+		5 button Outdoor entrance, ID: position
+		6 button Cliff close-up, ID: cliff
+		7 button Look at roof, ID: roof
+		8 button Restart level, ID: restart
+		9 button Measure on/off frame time, ID: measure
+		10 button Hide controls, ID: hide
+		24 text Connected rock surfaces · saved relief settings · original textures and geometry.
+		12 container
+			13 button (expanded) Diagnostics and measurement, Secondary Actions: Collapse
+				14 text Diagnostics and measurement
+			15 button Inspect visible materials, ID: materials
+			20 text [
+  {
+    "label": "left wall",
+    "texture": "uwall1_2",
+    "continuousRelief": true,
+    "realDisplacement": false,
+    "vertices": 840,
+    "normalMap": true,
+    "normalSize": [
+      256,
+      256
+    ],
+    "carvingReference": false,
+    "programKey": "quake-detail-rock-v1",
+    "gpuBinding": {
+      "carvedProgram": false,
+      "normalWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/uwall1_2.webp",
+    "textureSize": [
+      256,
+      256
+    ],
+    "point": [
+      532.9403516193687,
+      1231.5871573981935,
+      -128
+    ]
+  },
+  {
+    "label": "right wall",
+    "texture": "uwall1_2",
+    "continuousRelief": true,
+    "realDisplacement": false,
+    "vertices": 840,
+    "normalMap": true,
+    "normalSize": [
+      256,
+      256
+    ],
+    "carvingReference": false,
+    "programKey": "quake-detail-rock-v1",
+    "gpuBinding": {
+      "carvedProgram": false,
+      "normalWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/uwall1_2.webp",
+    "textureSize": [
+      256,
+      256
+    ],
+    "point": [
+      647.693848133464,
+      1217.2246074661439,
+      -139.24631024826445
+    ]
+  },
+  {
+    "label": "ahead",
+    "texture": "uwall1_2",
+    "continuousRelief": true,
+    "realDisplacement": false,
+    "vertices": 840,
+    "normalMap": true,
+    "normalSize": [
+      256,
+      256
+    ],
+    "carvingReference": false,
+    "programKey": "quake-detail-rock-v1",
+    "gpuBinding": {
+      "carvedProgram": false,
+      "normalWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/uwall1_2.webp",
+    "textureSize": [
+      256,
+      256
+    ],
+    "point": [
+      592.03125,
+      1283.9765625,
+      -151.92682344992943
+    ]
+  },
+  {
+    "label": "above",
+    "texture": "uwall1_2",
+    "continuousRelief": true,
+    "realDisplacement": false,
+    "vertices": 840,
+    "normalMap": true,
+    "normalSize": [
+      256,
+      256
+    ],
+    "carvingReference": false,
+    "programKey": "quake-detail-rock-v1",
+    "gpuBinding": {
+      "carvedProgram": false,
+      "normalWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/uwall1_2.webp",
+    "textureSize": [
+      256,
+      256
+    ],
+    "point": [
+      592.03125,
+      1126.1165743118092,
+      -127.99999999999997
+    ]
+  },
+  {
+    "label": "below",
+    "texture": "uwall1_2",
+    "continuousRelief": true,
+    "realDisplacement": false,
+    "vertices": 840,
+    "normalMap": true,
+    "normalSize": [
+      256,
+      256
+    ],
+    "carvingReference": false,
+    "programKey": "quake-detail-rock-v1",
+    "gpuBinding": {
+      "carvedProgram": false,
+      "normalWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/uwall1_2.webp",
+    "textureSize": [
+      256,
+      256
+    ],
+    "point": [
+      592.03125,
+      1283.9765625,
+      -274.4701259366591
+    ]
+  }
+]
+			25 text {
+  "charts": 10,
+  "resident": 96,
+  "pending": 0,
+  "maxPages": 96,
+  "error": null,
+  "active": true,
+  "demonRelief": {
+    "eligible": 0,
+    "ready": 0,
+    "triangles": 0,
+    "enabled": true
+  },
+  "level": "maps/e1m1.bsp",
+  "signon": 4,
+  "setupCount": 1,
+  "serverActive": true,
+  "spawned": true,
+  "demo": false,
+  "viewangles": [
+    -29.53125,
+    90,
+    0
+  ],
+  "player": [
+    592,
+    984,
+    -343.968994140625
+  ],
+  "errors": []
+}
+			23 text {
+  "frameDeliveryMeasurement": [
+    {
+      "relief": false,
+      "samples": 59,
+      "meanMs": 33.33220338983061,
+      "medianMs": 17.5,
+      "player": [
+        592,
+        984,
+        -343.968994140625
+      ],
+      "canvas": [
+        762,
+        1654
+      ],
+      "cache": {
+        "charts": 10,
+        "resident": 96,
+        "pending": 0,
+        "maxPages": 96,
+        "error": null,
+        "active": false
+      },
+      "actualGpuAlbedo": {
+        "width": 762,
+        "height": 1654,
+        "valid": 1260348,
+        "alphaBelowOpaquePixels": 0,
+        "minAvailableAlpha": 255,
+        "carvingPixels": 0,
+        "deepCutPixels": 0
+      }
+    },
+    {
+      "relief": true,
+      "samples": 59,
+      "meanMs": 42.3728813559322,
+      "medianMs": 17.60000000000582,
+      "player": [
+        592,
+        984,
+        -343.968994140625
+      ],
+      "canvas": [
+        762,
+        1654
+      ],
+      "cache": {
+        "charts": 10,
+        "resident": 96,
+        "pending": 0,
+        "maxPages": 96,
+        "error": null,
+        "active": true
+      },
+      "actualGpuAlbedo": {
+        "width": 762,
+        "height": 1654,
+        "valid": 1260348,
+        "alphaBelowOpaquePixels": 234737,
+        "minAvailableAlpha": 130,
+        "carvingPixels": 0,
+        "deepCutPixels": 0
+      }
+    }
+  ],
+  "grazingLightProbe": {
+    "direction": [
+      -0.07949286335171643,
+      -0.07949286335171643,
+      0.9936607918964553
+    ],
+    "actualGpuAlbedo": {
+      "width": 762,
+      "height": 1654,
+      "valid": 1260348,
+      "alphaBelowOpaquePixels": 365589,
+      "minAvailableAlpha": 130,
+      "carvingPixels": 0,
+      "deepCutPixels": 0
+    }
+  },
+  "glError": 0,
+  "errors": []
+}
+		17 image
+		18 image
+
+The focused UI element is 1 AXWebArea Quaked — continuous rock relief trial, URL: localhost:8013/tests/rockfield_gameplay_trial.html?pos=592,984,-343.969&angles=-30,90,0

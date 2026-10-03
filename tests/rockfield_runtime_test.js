@@ -1,7 +1,7 @@
 // Real surface charts, geometry, Three textures and public shader hooks. Worker
 // transport and WebGL rendering are observed at their endpoints, not started.
 import * as THREE from 'three';
-import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialProfile, ROCK_AXIS_U, ROCK_AXIS_V } from '../src/r_rocksurfaces.js';
+import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialName, R_RockMaterialProfile, ROCK_AXIS_U, ROCK_AXIS_V } from '../src/r_rocksurfaces.js';
 import { RockTileCache, R_RockPageHash, ROCK_TABLE_SIZE, ROCK_PROBES, ROCK_PAGES, ROCK_SIDE, ROCK_CELLS, ROCK_BORDER, R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldStatus, rockUniforms, r_rockfield } from '../src/r_rockfield.js';
 import { generateTile } from '../src/rockfield.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
@@ -21,6 +21,27 @@ const check = ( value, message ) => { if ( ! value ) throw new Error( message );
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );
 const near = ( a, b, message, tolerance = 1e-8 ) => check( Math.abs( a - b ) <= tolerance, `${message}: ${a} != ${b}` );
 const bytes = array => Buffer.from( array.buffer, array.byteOffset, array.byteLength );
+// Independent numeric oracle: the owner's supplied catalog, not the engine's
+// preset helper. The legacy fallback remains explicit for uncatalogued art.
+const catalog = JSON.parse( /<script id="texture-catalog"[^>]*>([\s\S]*?)<\/script>/.exec( readFileSync( new URL( '../rockfield-v1.6.0.html', import.meta.url ), 'utf8' ) )[ 1 ] );
+// Latest owner screenshot overrides only this material; original donor is preserved.
+catalog.find( item => item.file === 'uwall1_2.webp' ).preset = { profile: 'wall', featureSize: 2.5, warp: .65, fracture: 0, detail: 1.5, cells: 64, amplitude: .8 };
+function expectedPreset( name, profile ) {
+
+	const source = catalog.find( item => item.file === name + '.webp' );
+	return source ? { ...source.preset, profile } : profile === 'wall'
+		? { profile, featureSize: 3, warp: .18, fracture: 1.1, detail: .1, blockiness: 1, cells: 64, amplitude: .8 }
+		: { profile, featureSize: 2, cells: 64, amplitude: .009 };
+
+}
+function assertPreset( chart, label ) {
+
+	const expected = expectedPreset( chart.name, chart.profile );
+	same( JSON.stringify( Object.keys( chart.config ).sort() ), JSON.stringify( Object.keys( expected ).sort() ), label + ' exact saved preset keys' );
+	for ( const [ key, value ] of Object.entries( expected ) ) same( chart.config[ key ], value, label + ' saved preset ' + key );
+	same( chart.amplitude, expected.amplitude, label + ' exact saved relief amplitude' );
+
+}
 function face( name, points, normal = [ 0, 0, 1 ], flags = 0, phase = 0 ) {
 
 	return { flags, plane: { normal, dist: points[ 0 ].reduce( ( sum, value, i ) => sum + value * normal[ i ], 0 ) }, visframe: 7,
@@ -31,13 +52,14 @@ function face( name, points, normal = [ 0, 0, 1 ], flags = 0, phase = 0 ) {
 function scene() {
 
 	const groundA = face( 'ground1_2', [ [ -512, -256, 0 ], [ 0, -256, 0 ], [ 0, 256, 0 ], [ -512, 256, 0 ] ] );
-	const groundB = face( 'ground1_6', [ [ 0, -256, 0 ], [ 512, -256, 0 ], [ 512, 256, 0 ], [ 0, 256, 0 ] ], [ 0, 0, 1 ], 0, .375 );
+	const groundB = face( '+AGROUND1_2.webp', [ [ 0, -256, 0 ], [ 512, -256, 0 ], [ 512, 256, 0 ], [ 0, 256, 0 ] ], [ 0, 0, 1 ], 0, .375 );
+	const differentGround = face( 'ground1_6', [ [ 512, -256, 0 ], [ 768, -256, 0 ], [ 768, 256, 0 ], [ 512, 256, 0 ] ] );
 	const indoors = face( 'ground1_2', [ [ -1000, -256, 0 ], [ -600, -256, 0 ], [ -600, 256, 0 ], [ -1000, 256, 0 ] ] );
 	const roof = face( 'stone1_3', [ [ -1100, -300, 64 ], [ -550, -300, 64 ], [ -550, 300, 64 ], [ -1100, 300, 64 ] ], [ 0, 0, -1 ] );
 	const cliff = face( 'rock4_1', [ [ -256, 512, 0 ], [ 256, 512, 0 ], [ 256, 512, 300 ], [ -256, 512, 300 ] ], [ 0, -1, 0 ] );
-	const otherPlane = face( 'rock4_1', [ [ 512, -256, 0 ], [ 512, 256, 0 ], [ 512, 256, 300 ], [ 512, -256, 300 ] ], [ -1, 0, 0 ] );
+	const otherPlane = face( 'rock4_1', [ [ 256, 512, 0 ], [ 256, 768, 0 ], [ 256, 768, 300 ], [ 256, 512, 300 ] ], [ -1, 0, 0 ] );
 	const sky = face( 'sky1', [ [ -2048, -2048, 512 ], [ 2048, -2048, 512 ], [ 2048, 2048, 512 ], [ -2048, 2048, 512 ] ], [ 0, 0, -1 ], 4 );
-	return { groundA, groundB, indoors, cliff, otherPlane, model: { name: 'maps/rock-test.bsp', surfaces: [ groundA, groundB, indoors, roof, cliff, otherPlane, sky ] } };
+	return { groundA, groundB, differentGround, indoors, cliff, otherPlane, model: { name: 'maps/rock-test.bsp', surfaces: [ groundA, groundB, differentGround, indoors, roof, cliff, otherPlane, sky ] } };
 
 }
 class WorkerDouble {
@@ -70,15 +92,17 @@ function lookup( cache, id, x, y ) {
 
 }
 
-Deno.test( 'natural materials share continuous fields indoors and outdoors across ceilings/floors/slopes, while construction stays native', () => {
+Deno.test( 'connected same-material and role surfaces share fields regardless of UVs or exposure, using owner presets while construction stays native', () => {
 
 	const s = scene(), before = bytes( s.groundA.polys.verts ).toString( 'hex' ), result = R_RockSurfaceCharts( s.model );
-	same( result.charts.length, 2, 'one whole-world ground field and one whole-world cliff field' );
-	same( result.bySurface.get( s.groundA ), result.bySurface.get( s.groundB ), 'coplanar texture and UV changes do not split the field' );
-	same( result.bySurface.get( s.indoors ), result.bySurface.get( s.groundA ), 'organic soil keeps the same field under a solid roof' );
-	same( result.bySurface.get( s.cliff ), result.bySurface.get( s.otherPlane ), 'perpendicular and angled cliff faces never reseed the field' );
+	same( result.charts.length, 4, 'connected pair, different texture, detached indoor piece and connected cliff pair have four fields' );
+	same( result.bySurface.get( s.groundA ), result.bySurface.get( s.groundB ), 'canonical texture aliases and changed UVs retain the connected field' );
+	check( result.bySurface.has( s.indoors ), 'organic soil is eligible under a solid roof' );
+	check( result.bySurface.get( s.indoors ) !== result.bySurface.get( s.groundA ), 'detached same-material geometry has an independent component' );
+	check( result.bySurface.get( s.differentGround ) !== result.bySurface.get( s.groundB ), 'touching different materials remain independently preset' );
+	same( result.bySurface.get( s.cliff ), result.bySurface.get( s.otherPlane ), 'connected perpendicular same-material wall faces never reseed the field' );
 	const ground = result.bySurface.get( s.groundA );
-	same( ground.amplitude, .009, 'ground keeps subtle original amplitude' ); same( result.bySurface.get( s.cliff ).amplitude, .8, 'wall uses donor maximum amplitude' );
+	for ( const field of result.charts ) { assertPreset( field, 'synthetic component' ); same( field.seed, seedFrom( s.model.name + ':' + field.key ), 'seed belongs to map and connected material-role identity' ); }
 	same( JSON.stringify( R_RockCoordinates( ground, [ 0, 128, 0 ] ) ), '[0,0.5]', 'world coordinate scale256 and nativeUV-independent boundary' );
 	const ineligible = [ face( 'stone1_3', [ [ 0, 0, 0 ], [ 50, 0, 0 ], [ 50, 50, 0 ], [ 0, 50, 0 ] ] ), { ...s.groundA, flags: 16 }, { ...s.cliff, flags: 4 } ];
 	const extra = R_RockSurfaceCharts( { ...s.model, surfaces: [ ...s.model.surfaces, ...ineligible ] } );
@@ -89,13 +113,18 @@ Deno.test( 'natural materials share continuous fields indoors and outdoors acros
 	const slope = face( 'rock1_1', [ [ -600, -256, 0 ], [ -600, 256, 0 ], [ -700, 256, 100 ], [ -700, -256, 100 ] ], [ Math.SQRT1_2, 0, Math.SQRT1_2 ] );
 	const bedrock = [ floor, ceiling, tunnel, slope ];
 	const interiorModel = { ...s.model, surfaces: [ ...s.model.surfaces.filter( f => f.flags !== 4 ), ...bedrock ] };
-	const inside = R_RockSurfaceCharts( interiorModel ), rock = inside.bySurface.get( s.cliff );
-	for ( const surface of bedrock ) { same( inside.bySurface.get( surface ), rock, 'floor/roof/tunnel/slope/animated rock keep one field without sky' ); same( inside.bySurface.get( surface ).amplitude, .8, 'rock never changes to dirt strength by orientation' ); }
-	const c0 = R_RockCoordinates( rock, [ -1000, -256, 64 ] ), cx = R_RockCoordinates( rock, [ -999, -256, 64 ] ), cy = R_RockCoordinates( rock, [ -1000, -255, 64 ] );
+	const inside = R_RockSurfaceCharts( interiorModel );
+	for ( const [ surface, profile ] of [ [ floor, 'ground' ], [ ceiling, 'wall' ], [ tunnel, 'wall' ], [ slope, 'wall' ] ] ) {
+		const field = inside.bySurface.get( surface ); check( field, 'floor/roof/tunnel/slope/animated rock remains eligible without sky' );
+		same( field.profile, profile, 'role resolves from actual signed orientation only where owner requires it' ); assertPreset( field, 'interior surface' );
+	}
+	check( inside.bySurface.get( floor ) !== inside.bySurface.get( ceiling ), 'ground/wall role boundary is not falsely joined' );
+	const ceilingChart = inside.bySurface.get( ceiling );
+	const c0 = R_RockCoordinates( ceilingChart, [ -1000, -256, 64 ] ), cx = R_RockCoordinates( ceilingChart, [ -999, -256, 64 ] ), cy = R_RockCoordinates( ceilingChart, [ -1000, -255, 64 ] );
 	check( Math.abs( ( cx[ 0 ] - c0[ 0 ] ) * ( cy[ 1 ] - c0[ 1 ] ) - ( cx[ 1 ] - c0[ 1 ] ) * ( cy[ 0 ] - c0[ 0 ] ) ) > 1e-6, 'horizontal ceiling has genuine2D sampling area' );
 	for ( const name of [ 'rock1_1', 'ROCK4_2', 'uwall1_2', 'bricka2_2', '+0rock1_1', '+Auwall1_2' ] ) same( R_RockMaterialProfile( { name } ), 'wall', 'natural bedrock classification ' + name );
-	for ( const name of [ 'ground1_2', 'ground1_6', 'wswamp1_2', 'wizmet1_7', 'wall16_7' ] ) same( R_RockMaterialProfile( { name } ), 'ground', 'explicit roots/soil/aggregate classification ' + name );
-	for ( const name of [ 'wgrnd1_5', 'wgrnd1_6', 'wswamp1_4', 'wswamp2_1', 'ground1_1', 'groundmadeup', 'brick1_1', 'bricka2_1', 'bricka9_9', 'stone1_3', 'wizmet1_3', 'wall9_8' ] ) same( R_RockMaterialProfile( { name } ), null, 'paving/masonry/metal/unknown ground construction excluded ' + name );
+	for ( const name of [ 'ground1_2', 'ground1_6', 'wswamp1_2', 'wizmet1_7', 'wall16_7', 'wgrnd1_5', 'wgrnd1_6' ] ) same( R_RockMaterialProfile( { name } ), 'ground', 'explicit owner ground-material classification ' + name );
+	for ( const name of [ 'wswamp1_4', 'wswamp2_1', 'ground1_1', 'groundmadeup', 'brick1_1', 'bricka2_1', 'bricka9_9', 'stone1_3', 'wizmet1_3', 'wall9_8' ] ) same( R_RockMaterialProfile( { name } ), null, 'unapproved masonry/metal/unknown construction excluded ' + name );
 	R_RockfieldBuild( s.model );
 	const geometry = DrawGLPoly( s.groundA.polys, s.groundA.plane.normal ), attributes = new Map( Object.entries( geometry.attributes ).map( ( [ name, attribute ] ) => [ name, { attribute, bytes: bytes( attribute.array ).toString( 'hex' ) } ] ) );
 	check( R_RockfieldGeometry( geometry, s.groundA ), 'public geometry gets separate chart attributes' );
@@ -111,7 +140,7 @@ Deno.test( 'natural materials share continuous fields indoors and outdoors acros
 
 } );
 
-Deno.test( 'actual E1M1 cave roofs/floors/slopes and angled rock edges share exact height and derivatives without orientation or texture seeds', () => {
+Deno.test( 'actual E1M1 connected matching cliff pieces share preset height and derivatives across roof/floor/slope edges', () => {
 
 	const savedWorld = cl.worldmodel, savedModels = [ cl.model_precache[ 1 ], cl.model_precache[ 2 ] ];
 	try {
@@ -121,18 +150,19 @@ Deno.test( 'actual E1M1 cave roofs/floors/slopes and angled rock edges share exa
 		VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 		const model = Mod_ForName( 'maps/e1m1.bsp', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null; GL_BuildLightmaps();
 		const fields = R_RockSurfaceCharts( model ), walls = fields.charts.filter( field => field.profile === 'wall' );
-		same( walls.length, 1, 'all actual cliff facets use one field' );
-		const wall = walls[ 0 ]; same( wall.seed, seedFrom( 'maps/e1m1.bsp:wall' ), 'seed belongs only to map and profile' );
-		check( wall.surfaces.some( f => f.surface.texinfo.texture.name === 'uwall1_2' ), 'actual main cliff texture included' );
+			check( walls.length > 0, 'actual cliff components receive fields' );
+			const entries = walls.flatMap( chart => chart.surfaces.map( entry => ( { ...entry, chart } ) ) );
+			same( entries.filter( entry => entry.surface.texinfo.texture.name === 'uwall1_2' ).length, 307, 'all original E1M1 cliff faces included' );
+			for ( const chart of walls ) { same( chart.seed, seedFrom( model.name + ':' + chart.key ), 'seed belongs to map and connected material-role identity' ); assertPreset( chart, 'actual E1M1 cliff' ); }
 		const orientationCounts = { roof: 0, floor: 0, slope: 0 };
 		const originalVertices = new Map(), edges = new Map(), pairs = [];
-		for ( const { surface } of wall.surfaces ) {
+			for ( const { surface, chart } of entries ) {
 
 			const sign = surface.flags & 2 ? -1 : 1, normal = surface.plane.normal.map( value => value * sign );
 			if ( normal[ 2 ] < -.85 ) orientationCounts.roof ++;
 			else if ( normal[ 2 ] > .85 ) orientationCounts.floor ++;
 			else if ( Math.abs( normal[ 2 ] ) > .3 ) orientationCounts.slope ++;
-			same( fields.bySurface.get( surface ).amplitude, .8, 'actual natural rock orientation retains maximum strength' );
+				assertPreset( chart, 'actual natural rock orientation' );
 			for ( let p = surface.polys; p; p = p.next ) {
 
 				originalVertices.set( p, bytes( p.verts ).toString( 'hex' ) );
@@ -141,8 +171,10 @@ Deno.test( 'actual E1M1 cave roofs/floors/slopes and angled rock edges share exa
 
 					const a = points[ i ], b = points[ ( i + 1 ) % points.length ], key = [ a.join( ',' ), b.join( ',' ) ].sort().join( ':' );
 					const previous = edges.get( key );
-					if ( previous && previous.normal.reduce( ( sum, value, k ) => sum + value * normal[ k ], 0 ) < .999 ) pairs.push( { a, b, first: previous.surface, second: surface } );
-					else edges.set( key, { surface, normal } );
+						if ( previous && R_RockMaterialName( previous.surface.texinfo.texture ) === chart.name && previous.chart.profile === chart.profile ) {
+							same( previous.chart, chart, 'positive shared matching edge joins one actual component' );
+							if ( previous.normal.reduce( ( sum, value, k ) => sum + value * normal[ k ], 0 ) < .999 ) pairs.push( { a, b, first: previous.surface, second: surface, chart } );
+						} else edges.set( key, { surface, normal, chart } );
 
 				}
 
@@ -151,13 +183,14 @@ Deno.test( 'actual E1M1 cave roofs/floors/slopes and angled rock edges share exa
 		}
 		check( pairs.length > 0, 'native map has actual differently angled shared cliff edges' );
 		check( orientationCounts.roof && orientationCounts.floor && orientationCounts.slope, 'actual map includes eligible natural roofs, floors and slopes' );
-		const field = createField( { seed: wall.seed, profile: 'wall', featureSize: 3, warp: .18, fracture: 1.1, detail: .1, blockiness: 1, cells: ROCK_CELLS, border: ROCK_BORDER } ), e = 1 / ROCK_CELLS;
-		for ( const { a, b, first, second } of pairs ) for ( const t of [ 0, .25, .5, .75, 1 ] ) {
+			const generated = new Map( walls.map( chart => [ chart, createField( { seed: chart.seed, ...chart.config, cells: ROCK_CELLS, border: ROCK_BORDER } ) ] ) ), e = 1 / ROCK_CELLS;
+			for ( const { a, b, first, second, chart } of pairs ) for ( const t of [ 0, .25, .5, .75, 1 ] ) {
 
 			const point = a.map( ( value, i ) => value + ( b[ i ] - value ) * t );
 			const left = R_RockCoordinates( fields.bySurface.get( first ), point ), right = R_RockCoordinates( fields.bySurface.get( second ), point );
 			same( left[ 0 ], ( ROCK_AXIS_U[ 0 ] * point[ 0 ] + ROCK_AXIS_U[ 1 ] * point[ 1 ] + ROCK_AXIS_U[ 2 ] * point[ 2 ] ) / 256, 'explicit shared obliqueU projection' ); same( left[ 1 ], ( ROCK_AXIS_V[ 0 ] * point[ 0 ] + ROCK_AXIS_V[ 1 ] * point[ 1 ] + ROCK_AXIS_V[ 2 ] * point[ 2 ] ) / 256, 'explicit shared obliqueV projection' );
-			same( field.height( ...left ), field.height( ...right ), 'native angled shared edge exact height' );
+				const field = generated.get( chart );
+				same( field.height( ...left ), field.height( ...right ), 'native matching angled shared edge exact height' );
 			for ( const axis of [ 0, 1 ] ) {
 
 				const derivative = uv => { const plus = uv.slice(), minus = uv.slice(); plus[ axis ] += e; minus[ axis ] -= e; return ( field.height( ...plus ) - field.height( ...minus ) ) / ( 2 * e ); };
@@ -208,11 +241,11 @@ Deno.test( 'all bundled BSP world rock faces are classified independent of sky/o
 		const fields = R_RockSurfaceCharts( { name, surfaces } ); summary.maps ++;
 		for ( const surface of surfaces ) {
 
-			const expected = surface.flags & 20 ? null : R_RockMaterialProfile( surface.texinfo.texture ), field = fields.bySurface.get( surface );
+				const expected = surface.flags & 20 ? null : R_RockMaterialProfile( surface.texinfo.texture, surface ), field = fields.bySurface.get( surface );
 			if ( ! expected ) { check( ! field, 'unclassified native construction stays untouched: ' + surface.texinfo.texture?.name ); continue; }
-			check( field && field.profile === expected, 'every classified native world face gets its field' ); same( field.seed, seedFrom( name + ':' + expected ), 'no plane/orientation/material-local seed' );
-			if ( expected === 'ground' ) { summary.soil ++; same( field.amplitude, .009, 'native aggregate/soil stays subtle' ); continue; }
-			summary.rock ++; same( field.amplitude, .8, 'all native rock orientations retain maximum' );
+				check( field && field.profile === expected, 'every classified native world face gets its field' ); same( field.seed, seedFrom( name + ':' + field.key ), 'component map/name/role identity controls seed' ); assertPreset( field, 'native surface preset' );
+				if ( expected === 'ground' ) { summary.soil ++; continue; }
+				summary.rock ++;
 			const area = Math.abs( cross.reduce( ( sum, value, i ) => sum + value * surface.plane.normal[ i ], 0 ) ); summary.minRockArea = Math.min( summary.minRockArea, area );
 			check( area > .03, 'shared rock projection preserves area on native plane ' + JSON.stringify( surface.plane.normal ) );
 			const z = surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ); if ( z < -.85 ) summary.roof ++; else if ( z > .85 ) summary.floor ++; else if ( Math.abs( z ) > .3 ) summary.slope ++;
@@ -225,7 +258,7 @@ Deno.test( 'all bundled BSP world rock faces are classified independent of sky/o
 
 } );
 
-Deno.test( 'actual START hub rock4_1 and confirmed Hard bricka2_2 faces share maximum relief while metal and construction remain native', () => {
+Deno.test( 'actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact owner presets on connected matching pieces while metal stays native', () => {
 
 	const savedWorld = cl.worldmodel, savedModels = [ cl.model_precache[ 1 ], cl.model_precache[ 2 ] ];
 	try {
@@ -238,20 +271,29 @@ Deno.test( 'actual START hub rock4_1 and confirmed Hard bricka2_2 faces share ma
 		const rockFaces = rock4Faces.concat( hardFaces ), originals = new Map();
 		same( rock4Faces.length, 308, 'all original START rock4_1 world faces present' ); same( hardFaces.length, 80, 'all confirmed START bricka2_2 world faces present' );
 		for ( const surface of rockFaces ) for ( let p = surface.polys; p; p = p.next ) originals.set( p, bytes( p.verts ).toString( 'hex' ) );
-		const fields = R_RockSurfaceCharts( model ), chart = fields.bySurface.get( rockFaces[ 0 ] );
-		same( chart.profile, 'wall', 'hub rock is bedrock' ); same( chart.amplitude, .8, 'hub rock maximum shading depth' ); same( chart.seed, seedFrom( 'maps/start.bsp:wall' ), 'one map/profile seed' );
-		same( chart.tangent, ROCK_AXIS_U, 'hub uses shared world projectionU' ); same( chart.bitangent, ROCK_AXIS_V, 'hub uses shared world projectionV' );
+			const fields = R_RockSurfaceCharts( model );
 		const edges = new Map(), pairs = [];
 		for ( const surface of rockFaces ) {
 
-			same( fields.bySurface.get( surface ), chart, 'every hub rock orientation shares same field' );
+				const chart = fields.bySurface.get( surface ), name = surface.texinfo.texture.name;
+				check( chart, 'every native hub piece receives its component field' );
+				const signedZ = surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 );
+				same( chart.profile, name === 'rock4_1' && signedZ > .65 ? 'ground' : 'wall', 'owner hub material resolves actual role' );
+				assertPreset( chart, 'actual hub material' ); same( chart.seed, seedFrom( model.name + ':' + chart.key ), 'component identity owns hub seed' );
+				if ( chart.profile === 'wall' ) { same( chart.tangent, ROCK_AXIS_U, 'hub wall projectionU' ); same( chart.bitangent, ROCK_AXIS_V, 'hub wall projectionV' ); }
+				else { same( chart.tangent.join(), '1,0,0', 'hub ground projectionU' ); same( chart.bitangent.join(), '0,1,0', 'hub ground projectionV' ); }
 			for ( let p = surface.polys; p; p = p.next ) {
 
 				const points = Array.from( { length: p.numverts }, ( _, i ) => Array.from( p.verts.subarray( i * 7, i * 7 + 3 ) ) );
 				for ( let i = 0; i < points.length; i ++ ) {
 
 					const a = points[ i ], b = points[ ( i + 1 ) % points.length ], key = [ a.join( ',' ), b.join( ',' ) ].sort().join( ':' );
-					if ( edges.has( key ) ) pairs.push( { a, b, left: edges.get( key ), right: surface } ); else edges.set( key, surface );
+						const previous = edges.get( key );
+						if ( previous ) {
+							const leftChart = fields.bySurface.get( previous );
+							if ( leftChart.name === chart.name && leftChart.profile === chart.profile ) { same( leftChart, chart, 'shared matching edge joins same hub component' ); pairs.push( { a, b, left: previous, right: surface, chart } ); }
+							else check( leftChart !== chart, 'different material or role does not force a false shared field' );
+						} else edges.set( key, surface );
 
 				}
 
@@ -259,10 +301,11 @@ Deno.test( 'actual START hub rock4_1 and confirmed Hard bricka2_2 faces share ma
 
 		}
 		check( pairs.length > 0, 'native hub contains shared rock edges' );
-		const field = createField( { seed: chart.seed, profile: 'wall', featureSize: 3, warp: .18, fracture: 1.1, detail: .1, blockiness: 1, cells: ROCK_CELLS, border: ROCK_BORDER } );
+			const generated = new Map( fields.charts.map( chart => [ chart, createField( { seed: chart.seed, ...chart.config, cells: ROCK_CELLS, border: ROCK_BORDER } ) ] ) );
 		for ( const pair of pairs ) for ( const t of [ 0, .5, 1 ] ) {
 
-			const point = pair.a.map( ( value, i ) => value + ( pair.b[ i ] - value ) * t ), left = R_RockCoordinates( fields.bySurface.get( pair.left ), point ), right = R_RockCoordinates( fields.bySurface.get( pair.right ), point );
+				const point = pair.a.map( ( value, i ) => value + ( pair.b[ i ] - value ) * t ), left = R_RockCoordinates( fields.bySurface.get( pair.left ), point ), right = R_RockCoordinates( fields.bySurface.get( pair.right ), point );
+				const field = generated.get( pair.chart );
 			same( field.height( ...left ), field.height( ...right ), 'actual hub shared-edge height' );
 			for ( const axis of [ 0, 1 ] ) {
 
@@ -306,7 +349,7 @@ Deno.test( 'actual START hub rock4_1 and confirmed Hard bricka2_2 faces share ma
 
 			const hits = world.filter( surface => contains( surface, point ) ); check( hits.length > 0, 'live Hard probe resolves to actual native polygon ' + label );
 			check( hits.every( surface => surface.texinfo.texture.name === texture ), 'live Hard probe material identity ' + label );
-			for ( const surface of hits ) if ( texture === 'bricka2_2' ) same( fields.bySurface.get( surface ), chart, 'actual selected Hard wall gets same maximum rock field ' + label ); else check( ! fields.bySurface.has( surface ), 'actual selected metal remains untouched ' + label );
+				for ( const surface of hits ) if ( texture === 'bricka2_2' ) { const chart = fields.bySurface.get( surface ); check( chart && chart.name === 'bricka2_2' && chart.profile === 'wall', 'actual selected Hard wall gets its material-role component ' + label ); assertPreset( chart, 'selected Hard wall ' + label ); } else check( ! fields.bySurface.has( surface ), 'actual selected metal remains untouched ' + label );
 
 		}
 		const index = JSON.parse( readFileSync( new URL( '../newer/textures/index.json', import.meta.url ) ) );

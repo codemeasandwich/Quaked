@@ -1,0 +1,14 @@
+REQUIRED_NATIVE_ROCK_COVERAGE {"maps":21,"totals":{"bricka2_2":80,"rock1_2":840,"rock4_2":267,"uwall1_2":307},"mapCounts":{"maps/start.bsp":{"bricka2_2":80},"maps/e1m1.bsp":{"uwall1_2":307},"maps/e1m4.bsp":{"rock1_2":840},"maps/e1m5.bsp":{"rock4_2":267}},"orientations":{"roof":140,"floor":45,"slope":52},"shared":{"total":3063,"changedTexture":57,"changedPlane":1410,"ceiling":461}}
+PASS every native world piece of all four required materials uses the same maximum bedrock field through real geometry hooks
+Added packfile pak0.pak (339 files)\n
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+PASS actual world batches for every requested material bind the procedural shader and obey New Game, normal-off and Classic gates
+RESULT 2/3 passed (tests/rockfield_required_materials_test.js)
+FAIL the eight native E1M4 rock door faces render maximum rest-space detail, schedule bounded visible tiles and retain native disabled modes Error: closed eye matches world sampling space: -2.3036727080175394,4.568737488683853 != -2.3036728234118695,4.568737422312956
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:21:58)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:22:33)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:118:113
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 2/3 passed

@@ -1,0 +1,51 @@
+PASS extracted RockField public functions reproduce supplied core exactly for both profiles and seed forms
+PASS negative and positive neighbors share exact heights, both tangent slopes and real gutters in every generation order
+BLOCK_SHAPE {"original":{"cuts":426,"flatRatio":0.05286189392613338,"largest":49},"maximum":{"cuts":2516,"flatRatio":0.7670762758773386,"largest":1894}}
+PASS maximum block profile has broad connected flat crowns and deep cuts without repeating or changing the original ground field
+PASS multi-tile regions use one nonrepeating global field and preserve the different wall and ground profiles
+PASS invalid configuration, coordinates, neighbor pairs and oversized exports fail before generating data
+PASS public worker requests return source-identical transferable tiles and correlated errors across configuration changes
+RESULT 6/6 passed (tests/rockfield_test.js)
+Added packfile pak0.pak (339 files)\n
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+PASS tile cache limits jobs to2, deduplicates, ignores cancelled epochs and retains at most96 LRU pages
+PASS GPU half-float pages retain exact shared heights and both slopes with genuine neighboring gutters
+PASS page lookup preserves every resident even under a full96-page hash collision cluster
+PASS public world update only requests visible eligible charts in Newer normals mode and replaces maps without stale jobs
+PASS public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility
+RESULT 5/9 passed (tests/rockfield_runtime_test.js)
+FAIL natural materials share continuous fields indoors and outdoors across ceilings/floors/slopes, while construction stays native Error: one whole-world ground field and one whole-world cliff field: 5 != 2
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:20:60)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:21:47)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:76:2
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+FAIL actual E1M1 cave roofs/floors/slopes and angled rock edges share exact height and derivatives without orientation or texture seeds Error: all actual cliff facets use one field: 3 != 1
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:20:60)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:21:47)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:124:3
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+FAIL all bundled BSP world rock faces are classified independent of sky/orientation and retain nondegenerate shared projection Error: every classified native world face gets its field
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:20:60)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:213:4
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+FAIL actual START hub rock4_1 and confirmed Hard bricka2_2 faces share maximum relief while metal and construction remain native Error: hub rock is bedrock: ground != wall
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:20:60)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:21:47)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_runtime_test.js:242:3
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+Added packfile pak0.pak (339 files)\n
+PASS actual world batches for every requested material bind the procedural shader and obey New Game, normal-off and Classic gates
+RESULT 1/3 passed (tests/rockfield_required_materials_test.js)
+FAIL every native world piece of all four required materials uses the same maximum bedrock field through real geometry hooks Error: one common map-wide wall chart: [object Object] != [object Object]
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:21:58)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:22:33)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:63:70
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+FAIL the eight native E1M4 rock door faces render maximum rest-space detail, schedule bounded visible tiles and retain native disabled modes Error: 840 world plus8 door faces, not classifier-only coverage: 831 != 848
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:21:58)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:22:33)
+    at file:///Users/bri/SOURCE/Quaked/tests/rockfield_required_materials_test.js:107:3
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 12/18 passed

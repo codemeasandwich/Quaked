@@ -1,0 +1,137 @@
+Browser tab: 15, Title: "Quaked — continuous rock relief trial", URL: "http://localhost:8013/tests/rockfield_gameplay_trial.html".
+0 AXWebArea Quaked — continuous rock relief trial, URL: localhost:8013/tests/rockfield_gameplay_trial.html
+	1 container
+		2 text Continuous natural rock relief
+		3 button Relief: on, ID: toggle
+		4 button Outdoor entrance, ID: position
+		5 button Cliff close-up, ID: cliff
+		6 button Look at roof, ID: roof
+		7 button Restart level, ID: restart
+		8 button Measure on/off frame time, ID: measure
+		9 button Hide controls, ID: hide
+		24 text Connected rock surfaces · saved relief settings · original textures and geometry.
+		17 container
+			18 button (expanded) Diagnostics and measurement, Secondary Actions: Collapse
+				19 text Diagnostics and measurement
+			20 button Inspect visible materials, ID: materials
+			25 text {
+  "charts": 10,
+  "resident": 96,
+  "pending": 0,
+  "maxPages": 96,
+  "error": null,
+  "active": true,
+  "demonRelief": {
+    "eligible": 0,
+    "ready": 0,
+    "triangles": 0,
+    "enabled": true
+  },
+  "level": "maps/e1m1.bsp",
+  "signon": 4,
+  "setupCount": 1,
+  "serverActive": true,
+  "spawned": true,
+  "demo": false,
+  "viewangles": [
+    0,
+    90,
+    0
+  ],
+  "player": [
+    128,
+    1008,
+    -199.96875
+  ],
+  "errors": []
+}
+			23 text {
+  "frameDeliveryMeasurement": [
+    {
+      "relief": false,
+      "samples": 59,
+      "meanMs": 48.30508474576271,
+      "medianMs": 49.09999999999127,
+      "player": [
+        128,
+        1008,
+        -199.96875
+      ],
+      "canvas": [
+        762,
+        1654
+      ],
+      "cache": {
+        "charts": 10,
+        "resident": 96,
+        "pending": 0,
+        "maxPages": 96,
+        "error": null,
+        "active": false
+      },
+      "actualGpuAlbedo": {
+        "width": 762,
+        "height": 1654,
+        "valid": 1260348,
+        "alphaBelowOpaquePixels": 0,
+        "minAvailableAlpha": 255,
+        "carvingPixels": 0,
+        "deepCutPixels": 0
+      }
+    },
+    {
+      "relief": true,
+      "samples": 59,
+      "meanMs": 47.74067796610189,
+      "medianMs": 33.29999999998836,
+      "player": [
+        128,
+        1008,
+        -199.96875
+      ],
+      "canvas": [
+        762,
+        1654
+      ],
+      "cache": {
+        "charts": 10,
+        "resident": 96,
+        "pending": 0,
+        "maxPages": 96,
+        "error": null,
+        "active": true
+      },
+      "actualGpuAlbedo": {
+        "width": 762,
+        "height": 1654,
+        "valid": 1260348,
+        "alphaBelowOpaquePixels": 0,
+        "minAvailableAlpha": 255,
+        "carvingPixels": 0,
+        "deepCutPixels": 0
+      }
+    }
+  ],
+  "grazingLightProbe": {
+    "direction": [
+      -0.07949286335171643,
+      -0.07949286335171643,
+      0.9936607918964553
+    ],
+    "actualGpuAlbedo": {
+      "width": 762,
+      "height": 1654,
+      "valid": 1260348,
+      "alphaBelowOpaquePixels": 0,
+      "minAvailableAlpha": 255,
+      "carvingPixels": 0,
+      "deepCutPixels": 0
+    }
+  },
+  "glError": 0,
+  "errors": []
+}
+		14 image
+		15 image
+
+The focused UI element is 0 AXWebArea Quaked — continuous rock relief trial, URL: localhost:8013/tests/rockfield_gameplay_trial.html
