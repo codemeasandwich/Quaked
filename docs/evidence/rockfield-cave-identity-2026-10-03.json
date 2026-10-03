@@ -1,0 +1,77 @@
+{
+  "scope": "All supported natural bedrock world surfaces, exterior/interior, including roof/floor/slope/overhang; no exposure/orientation gates",
+  "materialExclusions": [
+    "brick/cut stone/metal/wood",
+    "wgrnd1_5",
+    "wgrnd1_6",
+    "wswamp1_4",
+    "wswamp2_1",
+    "wswamp2_2",
+    "rock0sid",
+    "rock1sid",
+    "rockettop"
+  ],
+  "rockProjectionU": [
+    0.4839989,
+    -0.8750686,
+    0
+  ],
+  "rockProjectionV": [
+    0.27837972,
+    0.15397133,
+    0.94804935
+  ],
+  "allBundledMapAudit": {
+    "maps": 21,
+    "bedrockFaces": 2360,
+    "soilAggregateFaces": 668,
+    "rockRoofs": 319,
+    "rockFloors": 238,
+    "rockSlopes": 73,
+    "minimumRockProjectionArea": 0.0393990954
+  },
+  "e1m1": {
+    "sharedEdges": 199,
+    "roofs": 38,
+    "floors": 11,
+    "slopes": 2,
+    "roofInspectionOrigin": [
+      592,
+      984,
+      -343.969
+    ],
+    "roofInspectionAngles": [
+      -70,
+      90,
+      0
+    ],
+    "roofFace": 3773,
+    "roofTexture": "uwall1_2",
+    "roofZ": -128,
+    "nativePlayerHull": "CONTENTS_EMPTY"
+  },
+  "checks": "45/45 regression;14/14 independent",
+  "sha256": {
+    "src/r_rocksurfaces.js": "1c54021d50f14efdad4f03659837285783036b472766dfe7c46d3724abd25aef",
+    "src/r_rockfield.js": "2866f44e1d6f65b99d05e1562d6544422e7216892f0954b62c6acc4d196d87e9",
+    "src/r_rockshader.js": "01d0198a34d9ef8fcbbc6edba89a98c3844bc016bfece9604207cc821cff167c",
+    "tests/rockfield_runtime_test.js": "95475d1b2e1b457752c8fc4bd1ffb21471b33ebdaf63414dd38a36c4b3107990",
+    "tests/rockfield_map_test.js": "a23b91272701e4dc71c5477d77e2f7190d468e0f8c4e3e46d76974b8d914542f",
+    "tests/rockfield_gameplay_trial.js": "754ee93d7a7892860335dad6ad1b895b25812c78fcfeaa9dab5300f19b5d6fb6",
+    "tests/rockfield_gameplay_trial.html": "e9944025d4cfdcc468d0d68330bb05e9900b552ed0b5e31c291b907e9782998f",
+    "docs/evidence/rockfield-cave-tests-2026-10-03.txt": "d3991edb16a75be07e25af089f369fd1676f3ddd955083797d83129e5ee17863"
+  },
+  "liveVerification": {
+    "roofPosition": [
+      592,
+      984,
+      -343.968994140625
+    ],
+    "residentPages": 96,
+    "pending": 0,
+    "errors": [],
+    "flashlightUsedForInspection": true,
+    "onImage": "docs/images/rockfield-cave-roof-on-2026-10-03.jpg",
+    "offImage": "docs/images/rockfield-cave-roof-off-2026-10-03.jpg"
+  }
+}

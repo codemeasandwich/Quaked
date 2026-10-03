@@ -1,8 +1,10 @@
 // Ported from: WinQuake/gl_rsurf.c -- surface-related refresh code
 
 import * as THREE from 'three';
+import { R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate } from './r_rockfield.js';
 import { Sys_Error } from './sys.js';
-import { R_NewerGame, R_NewerLightingActive } from './r_anim.js';
+import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from './r_anim.js';
+import { DEMON_TEXTURES, R_DemonSurfaceData } from './r_demonrelief.js';
 
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
@@ -218,6 +220,71 @@ const worldBatchedMeshes = [];
 
 // Animated materials within the cached world batches.
 const worldAnimatedMeshes = [];
+const demonSurfaces = [];
+let demonEnabled = false;
+
+export function R_DemonReliefStatus() {
+
+	return { eligible: demonSurfaces.length, ready: demonSurfaces.filter( s => s.mesh ).length,
+		triangles: demonSurfaces.reduce( ( sum, s ) => sum + ( s.data?.triangles || 0 ), 0 ), enabled: demonEnabled };
+
+}
+
+// Keep native flat surfaces as backing, and retain them unchanged for Classic.
+// Raised decorative meshes share their original PVS leaves and lightmap UVs.
+function R_UpdateDemonSurfaces() {
+
+	const enabled = R_NewerGame() && r_newer_normals.value !== 0 && r_newer_textures.value !== 0;
+	let changed = enabled !== demonEnabled;
+	demonEnabled = enabled;
+	for ( const record of demonSurfaces ) {
+
+		const field = record.surface.texinfo.texture.gl_texture?.userData.newerHeight;
+		if ( record.field !== field ) {
+
+			record.field = field;
+			if ( record.mesh ) {
+
+				record.mesh.geometry.dispose(); record.mesh.material.dispose();
+				record.mesh.parent?.remove( record.mesh );
+				const at = instanceVisInfo.indexOf( record.visibility );
+				if ( at >= 0 ) instanceVisInfo.splice( at, 1 );
+				changed = true;
+
+			}
+			record.mesh = null; record.data = null;
+			const data = R_DemonSurfaceData( record.surface );
+			if ( data ) {
+				const geometry = new THREE.BufferGeometry();
+				geometry.setAttribute( 'position', new THREE.BufferAttribute( data.positions, 3 ) );
+				geometry.setAttribute( 'normal', new THREE.BufferAttribute( data.normals, 3 ) );
+				geometry.setAttribute( 'uv', new THREE.BufferAttribute( data.uvs, 2 ) );
+				geometry.setAttribute( 'uv1', new THREE.BufferAttribute( data.lmuvs, 2 ) );
+				geometry.computeBoundingBox(); geometry.computeBoundingSphere();
+				const material = createQuakeLightmapMaterial( record.surface.texinfo.texture.gl_texture, lightmapTextures[ record.surface.lightmaptexturenum ] );
+				material.userData.realDisplacement = true;
+				material.needsUpdate = true;
+				const mesh = new THREE.Mesh( geometry, material );
+				mesh.name = 'world_' + record.surface.texinfo.texture.name + '_displaced';
+				mesh.userData.newerOnly = true; mesh.castShadow = true; mesh.receiveShadow = true;
+				record.mesh = mesh; record.data = data; record.pvsVisible = true;
+				record.visibility = { leaves: record.leaves, instanceId: 0, batch: { setVisibleAt( _, visible ) {
+
+					record.pvsVisible = visible; mesh.visible = visible && demonEnabled;
+
+				} } };
+				instanceVisInfo.push( record.visibility ); worldGroup.add( mesh );
+				_visibilityNeedsUpdate = true; changed = true;
+
+			}
+
+		}
+		if ( record.mesh ) record.mesh.visible = enabled && record.pvsVisible;
+
+	}
+	if ( changed && cl.worldmodel ) R_BuildSunOccluder( cl.worldmodel );
+
+}
 
 // Pre-allocated scratch arrays to avoid per-frame allocations
 const _cullBoxMaxs = new Float32Array( 3 ); // for R_CullBox in R_RecursiveWorldNode
@@ -2069,7 +2136,9 @@ export function R_DrawWorld() {
 	R_AddPortalReceiverSurfaces( cl_ref.worldmodel );
 
 	// Update mesh visibility based on PVS (leaf visframe set by R_MarkLeaves)
+	R_UpdateDemonSurfaces();
 	R_UpdateWorldVisibility();
+	R_RockfieldUpdate( r_refdef.vieworg, r_framecount );
 
 	DrawTextureChains();
 
@@ -2898,11 +2967,13 @@ function R_BuildWorldMeshes() {
 	}
 
 	const worldmodel = cl_ref.worldmodel;
+	R_RockfieldBuild( worldmodel );
 
 	// Clear previous batch data
 	instanceVisInfo.length = 0;
 	worldBatchedMeshes.length = 0;
 	worldAnimatedMeshes.length = 0;
+	demonSurfaces.length = 0; demonEnabled = false;
 
 	// Build a mapping from surface to ALL leaves that contain it.
 	// A surface is visible if ANY of its containing leaves is visible (PVS).
@@ -2957,6 +3028,7 @@ function R_BuildWorldMeshes() {
 		// Get all leaves that contain this surface
 		const leaves = surfaceToLeaves.get( surf );
 		if ( ! leaves || leaves.length === 0 ) continue;
+		if ( DEMON_TEXTURES.has( t.name ) ) demonSurfaces.push( { surface: surf, leaves, field: null, mesh: null } );
 
 		// Get plane normal, flip if SURF_PLANEBACK (surface faces opposite of plane)
 		let planeNormal = null;
@@ -2978,14 +3050,16 @@ function R_BuildWorldMeshes() {
 		const geom = DrawGLPoly( surf.polys, planeNormal );
 		if ( ! geom ) continue;
 
+		const rockField = R_RockfieldGeometry( geom, surf );
 		const lmNum = surf.lightmaptexturenum;
-		const texKey = ( t._buildId || ( t._buildId = Math.random() ) ) + '_' + lmNum;
+		const texKey = ( t._buildId || ( t._buildId = Math.random() ) ) + '_' + lmNum + ( rockField ? '_rock' : '' );
 
 		if ( ! batchGroups.has( texKey ) ) {
 
 			batchGroups.set( texKey, {
 				texture: t,
 				lmNum: lmNum,
+				rockField,
 				totalVerts: 0,
 				totalGeoms: 0,
 				surfaceData: []
@@ -3015,6 +3089,8 @@ function R_BuildWorldMeshes() {
 		const material = lmTex
 			? createQuakeLightmapMaterial( diffuse, lmTex )
 			: new THREE.MeshBasicMaterial( { map: diffuse } );
+
+		if ( group.rockField && lmTex ) material.userData.rockField = true;
 
 		// Create BatchedMesh with capacity for all geometries in this group
 		const batchedMesh = new THREE.BatchedMesh(
@@ -3142,6 +3218,7 @@ export function GL_BuildLightmaps() {
 
 	worldBatchedMeshes.length = 0;
 	worldAnimatedMeshes.length = 0;
+	demonSurfaces.length = 0; demonEnabled = false;
 
 	// Dispose any other children in worldGroup (water/sky meshes added dynamically)
 	if ( worldGroup ) {

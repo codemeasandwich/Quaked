@@ -1,0 +1,55 @@
+{
+  "sourceArchive": "dem4_4_maps.zip",
+  "archiveSha256": "b6b31e9b6916a9393bb772bebc1db17123db3f02efe1444b884b8297c50bddc8",
+  "savedHeightSha256": "d5e89e6d2a3109e0507b91b53ed65b4ce072f1789296190ecc4b94f87009ef45",
+  "sourceSize": [
+    2048,
+    4096
+  ],
+  "heightFile": "normals/demon-face.webp",
+  "dataFile": "normals/demon-face.r16",
+  "outputSize": [
+    256,
+    512
+  ],
+  "encoding": "uint16 little endian /65535; non-colour",
+  "method": "bilinear saved scalar texel-centres, requantizeduint16; no anatomical redraw",
+  "amplitudeFraction": 0.05,
+  "textures": {
+    "dem4_1": {
+      "albedoSha256": "760bf513bd1de608f0bf3eb50ce75aebb347110f0e0e0376c6dbc581972da4b2",
+      "nativeSize": [
+        64,
+        128
+      ],
+      "outputSize": [
+        256,
+        512
+      ]
+    },
+    "dem4_4": {
+      "albedoSha256": "3171058b412f3ed1ba76e9e5022a64faf56492deac2ec431464ed3c2295e8ad5",
+      "nativeSize": [
+        64,
+        128
+      ],
+      "outputSize": [
+        256,
+        512
+      ]
+    },
+    "dem5_3": {
+      "albedoSha256": "4de19e46b16f0c3cfe0d1467acb78fdbf80987802052cfbde7e068aba77defd3",
+      "nativeSize": [
+        64,
+        128
+      ],
+      "outputSize": [
+        256,
+        512
+      ]
+    }
+  },
+  "ownerDepthMultiplier": 3,
+  "appliedDepthWorld": 9.6
+}

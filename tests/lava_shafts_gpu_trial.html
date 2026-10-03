@@ -1,0 +1,71 @@
+<!doctype html><meta charset="utf-8"><title>Native lava and shaft GPU check</title>
+<style>body{background:#151515;color:white;font:14px system-ui}#views{display:flex;gap:12px;flex-wrap:wrap}figure{margin:0}img{width:320px}pre{white-space:pre-wrap}</style>
+<h2>Native START lava and adjacent surfaces</h2><p>Bounded static draws of original map geometry through the public materials and HDR pipeline. No game, server, new map lights or animation loop. A diagnostic readback observes the actual shaft buffer.</p><div id="views"></div><pre id="report">Running…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script><script type="module">
+try {
+ const surf=await import('../src/gl_rsurf.js'),THREE=await import('three'),post=await import('../src/gl_post.js'),vars=await import('../src/cvar.js'),anim=await import('../src/r_anim.js'),pak=await import('../src/pak.js'),mod=await import('../src/gl_model.js'),vid=await import('../src/vid.js'),client=await import('../src/client.js'),shared=await import('../src/gl_rmain.js');
+ for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_pillars,post.r_bounce,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,anim.r_newer_textures])if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);
+ for(const [k,v]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_volumetric:1,r_pillars:.5,r_bounce:0,r_newer_lighting:1,r_newer_normals:0,r_newer_water:0,r_newer_textures:0}))vars.Cvar_SetValue(k,v);
+ const bytes=await fetch('../pak0.pak').then(r=>r.arrayBuffer());pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);mod.Mod_Init();
+ shared.d_lightstylevalue.fill(264);const model=mod.Mod_ForName('maps/start.bsp',true);client.cl.worldmodel=model;client.cl.model_precache[1]=model;surf.GL_BuildLightmaps();
+ const lights=post.R_BuildWorldLights(model),lavaLights=lights.filter(l=>l.texture?.startsWith('*lava'));
+ const renderer=new THREE.WebGLRenderer({preserveDrawingBuffer:true});renderer.setSize(320,240);renderer.setClearColor(0,0);renderer.toneMapping=THREE.NoToneMapping;
+ const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(65,4/3,4,4096);camera.up.set(0,0,1);const materials=new Map(),geometries=[],lavaMeshes=[],originals=[];
+ post.R_PostBegin(renderer,true,320,240);
+ for(const s of model.surfaces.slice(model.firstmodelsurface,model.firstmodelsurface+model.nummodelsurfaces)){
+  if(s.flags&4||!s.polys||!s.texinfo.texture.gl_texture)continue;
+  const tex=s.texinfo.texture;
+  for(let p=s.polys;p;p=p.next)originals.push({p,values:Array.from(p.verts)});
+  if(s.flags&16){if(!tex.name.startsWith('*lava'))continue;surf.R_DrawSequentialPoly(s);const mesh=s._waterMesh;if(mesh){scene.add(mesh);mesh.userData.nativeSurface=s;lavaMeshes.push(mesh);}continue;}
+  const lm=surf.lightmapTextures[s.lightmaptexturenum],key=tex.gl_texture.id+':'+s.lightmaptexturenum;let material=materials.get(key);
+  if(!material){material=surf.createQuakeLightmapMaterial(tex.gl_texture,lm);materials.set(key,material);}
+  const normal=Array.from(s.plane.normal).map(v=>v*(s.flags&2?-1:1));
+  for(let p=s.polys;p;p=p.next){const geometry=surf.DrawGLPoly(p,normal);if(!geometry)continue;geometries.push(geometry);const mesh=new THREE.Mesh(geometry,material);mesh.userData.nativeSurface=s;scene.add(mesh);}
+ }
+ scene.updateMatrixWorld(true);
+ const ray=new THREE.Raycaster(), hard=[864,1104,-96];let inspection;
+ const candidates=lavaMeshes.slice().sort((a,b)=>a.geometry.boundingBox?.min.x-b.geometry.boundingBox?.min.x);
+ function center(mesh){mesh.geometry.computeBoundingBox();return mesh.geometry.boundingBox.getCenter(new THREE.Vector3());}
+ candidates.sort((a,b)=>center(a).distanceTo(new THREE.Vector3(...hard))-center(b).distanceTo(new THREE.Vector3(...hard)));
+ for(const lava of candidates){const c=center(lava),s=lava.userData.nativeSurface,n=new THREE.Vector3(...s.plane.normal).multiplyScalar(s.flags&2?-1:1);
+  for(const distance of [96,160,240]){const eye=c.clone().addScaledVector(n,distance).add(new THREE.Vector3(0,-distance*.35,48));if(mod.Mod_PointInLeaf(eye.toArray(),model).contents!==-1)continue;
+   camera.position.copy(eye);camera.lookAt(c);camera.updateMatrixWorld(true);ray.setFromCamera(new THREE.Vector2(0,0),camera);const hit=ray.intersectObjects(scene.children,true)[0];if(hit?.object.userData.nativeSurface?.texinfo.texture.name.startsWith('*lava')){inspection={eye:eye.toArray(),target:c.toArray(),texture:texName(hit.object),lava};break;}}
+  if(inspection)break;
+ }
+ function texName(mesh){return mesh.userData.nativeSurface.texinfo.texture.name;}
+ if(!inspection)throw new Error('No verified air-side view of actual START lava');
+ let volumeTarget,composite;
+ const nativeRender=renderer.render.bind(renderer);renderer.render=(s,c)=>{nativeRender(s,c);const m=s.children[0]?.material;if(m?.uniforms?.uScatter)volumeTarget=renderer.getRenderTarget();if(m?.uniforms?.uVolume)composite=m;};
+ const quad=new THREE.Scene(),quadCamera=new THREE.OrthographicCamera(-1,1,1,-1,0,1),readTarget=new THREE.WebGLRenderTarget(320,240,{type:THREE.UnsignedByteType,depthBuffer:false});
+ const encode=new THREE.ShaderMaterial({uniforms:{source:{value:null},gain:{value:1},divisor:{value:1}},vertexShader:'varying vec2 uv0;void main(){uv0=uv;gl_Position=vec4(position,1.);}',fragmentShader:'uniform sampler2D source;uniform float gain,divisor;varying vec2 uv0;void main(){float q=clamp(dot(texture2D(source,uv0).rgb,vec3(.2126,.7152,.0722))*gain/divisor,0.,.999999);float v=floor(q*16777215.+.5);float r=floor(v/65536.),g=floor(mod(v,65536.)/256.),b=mod(v,256.);gl_FragColor=vec4(vec3(r,g,b)/255.,1.);}',depthTest:false,depthWrite:false,toneMapped:false});quad.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),encode));
+ function read(texture,gain=1,divisor=1){encode.uniforms.source.value=texture;encode.uniforms.gain.value=gain;encode.uniforms.divisor.value=divisor;renderer.setRenderTarget(readTarget);renderer.render(quad,quadCamera);const a=new Uint8Array(320*240*4);renderer.readRenderTargetPixels(readTarget,0,0,320,240,a);return Array.from({length:320*240},(_,i)=>(a[i*4]*65536+a[i*4+1]*256+a[i*4+2])/16777215*divisor);}
+ function snap(label){renderer.setRenderTarget(null);const figure=document.createElement('figure'),img=document.createElement('img');img.src=renderer.domElement.toDataURL();const caption=document.createElement('figcaption');caption.textContent=label;figure.append(img,caption);document.querySelector('#views').append(figure);}
+ const results=[];let nativeSource,glowingSource,unlitReceiver,litReceiver;
+ for(const mode of ['native-source','glowing-source','receiver-no-lava','receiver-lit']){
+  vars.Cvar_SetValue('r_pillars',0);post.R_PostBegin(renderer,true,320,240);
+  const boosts=lavaMeshes.map(mesh=>mesh.material.color.r);
+  if(mode==='native-source')lavaMeshes.forEach(mesh=>mesh.material.color.setScalar(1));
+  post.R_PostBind(renderer);renderer.render(scene,camera);const hdr=renderer.getRenderTarget(),source=read(hdr.textures[0],1,16);
+  if(mode==='native-source')nativeSource=source;if(mode==='glowing-source')glowingSource=source;
+  // Disable only derived lava sources for this controlled reference; original
+  // map light entities and geometry stay the same. Restore builder immediately.
+  if(mode==='receiver-no-lava'){const surfaces=model.surfaces.slice(model.firstmodelsurface,model.firstmodelsurface+model.nummodelsurfaces).filter(s=>!s.texinfo.texture.name.startsWith('*lava'));post.R_BuildWorldLights({...model,surfaces,firstmodelsurface:0,nummodelsurfaces:surfaces.length});}
+  post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:320,lh:240},0,shared.d_lightstylevalue,[],0,1,false);const output=renderer.getRenderTarget();
+  // The real final pass renders into the default framebuffer. Copy its PNG for
+  // review; numeric receiver comparison uses its actual displayed byte pixels.
+  const gl=renderer.getContext(),display=new Uint8Array(320*240*4);gl.readPixels(0,0,320,240,gl.RGBA,gl.UNSIGNED_BYTE,display);
+  if(mode==='receiver-no-lava')unlitReceiver=display;if(mode==='receiver-lit')litReceiver=display;
+  snap(mode);results.push({mode,boosts:Array.from(new Set(boosts)),glError:gl.getError()});post.R_BuildWorldLights(model);
+ }
+ let lavaPixels=0,lavaGain=0,receiverPixels=0,receiverIncrease=0;
+ for(let y=4;y<236;y+=4)for(let x=4;x<316;x+=4){
+  ray.setFromCamera(new THREE.Vector2((x+.5)/320*2-1,(y+.5)/240*2-1),camera);const hit=ray.intersectObjects(scene.children,true)[0];if(!hit)continue;const i=y*320+x;
+  if(texName(hit.object).startsWith('*lava')&&nativeSource[i]>.003){lavaPixels++;lavaGain+=glowingSource[i]/nativeSource[i];}
+  else if(!texName(hit.object).startsWith('*')&&hit.point.distanceTo(new THREE.Vector3(...inspection.target))<320){const delta=litReceiver[i*4]-unlitReceiver[i*4];if(delta>1){receiverPixels++;receiverIncrease+=delta;}}
+ }
+ vars.Cvar_SetValue('r_pillars',.5);post.R_PostBegin(renderer,true,320,240);post.R_PostBind(renderer);renderer.render(scene,camera);post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:320,lh:240},0,shared.d_lightstylevalue,[],0,1,false);
+ const shaft1=read(volumeTarget.texture,1),shaft4=read(volumeTarget.texture,composite.uniforms.uVolume.value),mean=a=>a.reduce((s,v)=>s+v,0)/a.length,shaftRatio=mean(shaft4)/mean(shaft1);
+ const unchanged=originals.every(({p,values})=>values.every((v,i)=>v===p.verts[i]));const report={status:lavaPixels>20&&lavaGain/lavaPixels>3&&receiverPixels>5&&Math.abs(shaftRatio-4)<.03&&unchanged&&results.every(r=>r.glError===0)?'PASS':'FAIL',inspection:{eye:inspection.eye,target:inspection.target,texture:inspection.texture},nativeLavaEmitters:lavaLights.length,lavaPixels,lavaMeanRadianceGain:lavaGain/lavaPixels,receiverPixelsBrighter:receiverPixels,receiverMeanRedIncrease:receiverIncrease/receiverPixels,shaftMean1:mean(shaft1),shaftMean4:mean(shaft4),shaftRatio,unchangedNativeGeometryAndUvs:unchanged,results,glError:renderer.getContext().getError()};
+ document.querySelector('#report').textContent=JSON.stringify(report,null,2);renderer.dispose();readTarget.dispose();encode.dispose();for(const g of geometries)g.dispose();for(const m of materials.values())m.dispose();
+}catch(error){document.querySelector('#report').textContent='FAIL '+error.stack;}
+</script>

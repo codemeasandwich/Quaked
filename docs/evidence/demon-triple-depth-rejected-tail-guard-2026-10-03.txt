@@ -1,0 +1,20 @@
+DEMON_PACKAGE {"normalSamples":15969,"maxChannelError":0,"greenFlipAllPixels":true,"sourceWidth":2048,"amplitude":0.05,"sub8bitSamples":130288}
+PASS only three horned plaque materials get enhanced relief; native BSP proportions and original pigment files stay unchanged
+PASS registered materials asynchronously load shared displacement metadata and bounded microdetail while sourceBSP geometryUVs stay untouched
+PASS ordinary detail remains10 layers and original carved-logo reference retains60-layer precedence
+PASS invalid relief metadata is ignored before shader compilation while valid art still loads
+PASS missing or truncated saved16 data cannot silently create geometry from its8-bit preview or poison valid scalar normals
+DEMON_GLOW_PIXELS {"leftEye":583,"rightEye":553,"mouth":2501}
+PASS actual dem5_3 picture supplies both eyes and mouth glow without horns or pigment loss after native had no fullbright mask
+PASS classic comparison and New Game rollback recover exact native plaque pixels and remove enhanced relief
+RESULT 7/7 passed (tests/demon_face_relief_test.js)
+Added packfile pak0.pak (339 files)\n
+ACTUAL_DEMON_MESH {"topVertices":393216,"triangles":133120,"skirtTriangles":2048,"minDepth":1.0833740234375,"maxDepth":8.28363037109375,"changedNormals":275481}
+PASS real native plaque tessellation changes vertex depth/silhouette and normals while barycentric UV/lightmap and collision sources remain intact
+DEMON_TOPOLOGY {"polygons":2,"checkedTopTriangles":262144,"interpolationWorldUnits":{"samples":262144,"mean":0.023343928426659097,"p95":0.06249919732413378,"max":0.20292984644573853},"facetVsSmoothDegrees":{"samples":262144,"mean":4.672318443342558,"p95":10.97088004590493,"max":40.21133605733549},"foreheadError":{"samples":6834,"mean":0.016634086389887212,"p95":0.046051502227807184,"max":0.07949144045512835},"foreheadAngle":{"samples":6834,"mean":3.751993490650371,"p95":10.575356212905483,"max":17.760478579583886}}
+PASS every real top triangle has outward winding, exact projected coverage and no unmatched internal fan edges
+PASS geometry cache, package-clamped tile endpoints and invalid/missing/other-material input preserve safe native fallback
+PASS sun occluder follows exactly the visible Newer texture/normal gates and includes actual raised triangles
+PASS public world draw updates real overlay/PVS, restores native modes, and removes stale geometry when height becomes unavailable
+RESULT 5/5 passed (tests/demon_mesh_test.js)
+TOTAL 12/12 passed

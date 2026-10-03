@@ -6,6 +6,7 @@ import { Sys_FloatTime } from './sys.js';
 import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
+import { r_rockfield } from './r_rockfield.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
 import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
@@ -1972,6 +1973,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_newer_variety );
 	Cvar_RegisterVariable( r_newer_lighting );
 	Cvar_RegisterVariable( r_newer_normals );
+	Cvar_RegisterVariable( r_rockfield );
 	Cvar_RegisterVariable( r_newer_water );
 	Cvar_RegisterVariable( r_newer_enemies );
 	Cvar_RegisterVariable( r_newer_textures );

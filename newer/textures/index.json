@@ -1,5 +1,5 @@
 {
- "version": 2026100204,
+ "version": 2026100307,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -315,7 +315,8 @@
   "stone1_3": "stone1_3.webp",
   "wall16_7": "wall16_7.webp",
   "wall9_8": "wall9_8.webp",
-  "wbrick1_5": "wbrick1_5.webp"
+  "wbrick1_5": "wbrick1_5.webp",
+  "quake": "hub-quaked-logo.webp"
  },
  "normals": {
   "+0_box_side": {
@@ -683,16 +684,61 @@
    "strength": 1.2
   },
   "dem4_1": {
-   "file": "normals/dem4_1.webp",
-   "strength": 1.45
+   "file": "normals/demon-face.webp",
+   "dataFile": "normals/demon-face.r16",
+   "sampling": "clamp",
+   "strength": 2.0,
+   "cap": 1.8,
+   "displacement": {
+    "depth": 9.600000000000001,
+    "step": 0.5,
+    "smoothing": 0.6
+   },
+   "relief": {
+    "depth": 0.02,
+    "layers": 10,
+    "cavityFloor": 0.397385627,
+    "cavityScale": 3,
+    "cavityMin": 0.3
+   }
   },
   "dem4_4": {
-   "file": "normals/dem4_4.webp",
-   "strength": 1.45
+   "file": "normals/demon-face.webp",
+   "dataFile": "normals/demon-face.r16",
+   "sampling": "clamp",
+   "strength": 2.0,
+   "cap": 1.8,
+   "displacement": {
+    "depth": 9.600000000000001,
+    "step": 0.5,
+    "smoothing": 0.6
+   },
+   "relief": {
+    "depth": 0.02,
+    "layers": 10,
+    "cavityFloor": 0.397385627,
+    "cavityScale": 3,
+    "cavityMin": 0.3
+   }
   },
   "dem5_3": {
-   "file": "normals/dem5_3.webp",
-   "strength": 1.45
+   "file": "normals/demon-face.webp",
+   "dataFile": "normals/demon-face.r16",
+   "sampling": "clamp",
+   "strength": 2.0,
+   "cap": 1.8,
+   "displacement": {
+    "depth": 9.600000000000001,
+    "step": 0.5,
+    "smoothing": 0.6
+   },
+   "relief": {
+    "depth": 0.02,
+    "layers": 10,
+    "cavityFloor": 0.397385627,
+    "cavityScale": 3,
+    "cavityMin": 0.3
+   }
   },
   "door01_2": {
    "file": "normals/door01_2.webp",
@@ -1688,6 +1734,18 @@
    "file": "normals/wbrick1_5.webp",
    "strength": 2.4,
    "cap": 2.1
+  },
+  "quake": {
+   "file": "normals/hub-quaked-logo.webp",
+   "strength": 0.565685424949238,
+   "cap": 1.1,
+   "edgeSource": {
+    "file": "normals/wizmet1_2.webp",
+    "offset": [
+     64,
+     0
+    ]
+   }
   }
  }
 }

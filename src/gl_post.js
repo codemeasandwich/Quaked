@@ -26,13 +26,16 @@ import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
+import { R_PatchRockShader, ROCK_PARALLAX_GLSL, ROCK_NORMAL_GLSL } from './r_rockshader.js';
+import { rockUniforms } from './r_rockfield.js';
 import { GL_SetForceLinear } from './glquake.js';
 import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_TeleportFx } from './r_teleportfx.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, WATER_PROBE_LIFT } from './r_waterprobe.js';
-import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_normals, r_newer_water } from './r_anim.js';
+import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures } from './r_anim.js';
+import { R_DemonSurfaceData } from './r_demonrelief.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
 export const r_hdr = new cvar_t( 'r_hdr', '0' );
@@ -151,7 +154,7 @@ export const SUN_SHADOW_LAYER = 3;
 
 // Tunables
 const EMISSIVE_BOOST = 3.0; // fullbright texels, in HDR
-const LAVA_BOOST = 1.1; // lava is a light source: brighter than white, so it blooms
+const LAVA_BOOST = 4.0; // bright lava texels remain above the bloom threshold even at the low pulse
 const LAVA_PULSE = 0.14; // and it breathes, slowly
 const LIGHT_GAIN = 5.0; // radiance per unit of light power
 const SCATTER = 0.03; // point light in-scattering
@@ -161,7 +164,9 @@ const HAZE_DENSITY = 0.000022; // ambient extinction per unit, before the sky sc
 const SPOT_POWER = 1.6; // the flashlight, in the same units as the point lights
 const MAX_RAY = 3600;
 const SUN_COLOR = [ 3.4, 2.7, 1.9 ]; // warm white; tinted by the sky's own colour
-const PILLAR_MAX = 0.35; // the in-scattering multiplier at the slider's far end; the default is half of it
+const PILLAR_MAX = 0.35; // original sun scattering scale, before the shared shaft gain
+const PILLAR_DEFAULT = 0.5;
+const SHAFT_GAIN = 4; // all shaft types share one gain; .5 remains the slider's nominal setting
 const SUN_SCATTER = 0.00003; // sun in-scattering per unit of lit air
 const SUN_SURFACE = 0.6; // direct sun on surfaces (multiplies the lightmapped colour, so this is a gain)
 const SUN_SURFACE_COLOR = [ 1.0, 0.9, 0.76 ];
@@ -238,6 +243,7 @@ function applyGlow( material, boost ) {
 export function R_RegisterGlow( material, boost = EMISSIVE_BOOST ) {
 
 	material.userData.glowBoost = boost;
+	material.userData.baseGlowBoost = boost;
 	// Keep the native tint for the isolated classic demo material.
 	if ( material.color && material.userData.classicGlowColor === undefined )
 		material.userData.classicGlowColor = material.color.toArray();
@@ -367,11 +373,44 @@ function patchDetailShader( shader ) {
 		'lightMapTexel.rgb * lightMapIntensity', 'pow( max( lightMapTexel.rgb, vec3( 0.0 ) ), vec3( mix( uLmGamma, 1.0, uClassic ) ) ) * lightMapIntensity' ) );
 
 	// texture lookups follow the parallax-shifted coordinates
-	f = f.replace( '#include <map_fragment>', PARALLAX_GLSL + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
+	const rock = this.userData.rockField === true;
+	const reference = this.normalMap?.userData.referenceHeight;
+	const relief = this.normalMap?.userData.surfaceRelief;
+	if ( reference ) {
+
+		shader.uniforms.uCarveReference = this.userData.carveUniforms.uCarveReference;
+		shader.uniforms.uCarveReferenceUV = this.userData.carveUniforms.uCarveReferenceUV;
+		f = 'uniform sampler2D uCarveReference;\nuniform vec4 uCarveReferenceUV;\n' + f;
+
+	}
+	let parallax = rock ? ROCK_PARALLAX_GLSL + PARALLAX_GLSL.replace( 'vec2 pUv = vMapUv;', 'vec2 pUv = vMapUv + qrRockUvShift;' ).replace( 'vec2 uv = vMapUv;', 'vec2 uv = pUv;' ) : PARALLAX_GLSL;
+	if ( this.userData.realDisplacement ) parallax = '#ifdef USE_NORMALMAP\nvec2 pUv = vMapUv;\n#endif\n';
+	if ( relief && ! reference ) {
+
+		parallax = parallax.replace( `* ${PARALLAX_DEPTH} *`, `* ${relief.depth} *` )
+			.replace( `const float LAYERS = ${PARALLAX_LAYERS}.0;`, `const float LAYERS = ${relief.layers}.0;` )
+			.replace( `i < ${PARALLAX_LAYERS}`, `i < ${relief.layers}` );
+
+	}
+	if ( reference ) {
+
+		// March the original wall depth plus a deeper virtual cut. Multiplying
+		// the entire parallax amount would also displace the surrounding grain.
+		const depth = uv => `( 1.0 - textureGrad( uCarveReference, fract( ${uv} ) * uCarveReferenceUV.xy + uCarveReferenceUV.zw, gx * uCarveReferenceUV.xy, gy * uCarveReferenceUV.xy ).a + 8.0 * max( 0.0, textureGrad( uCarveReference, fract( ${uv} ) * uCarveReferenceUV.xy + uCarveReferenceUV.zw, gx * uCarveReferenceUV.xy, gy * uCarveReferenceUV.xy ).a - textureGrad( normalMap, ${uv}, gx, gy ).a ) )`;
+		parallax = parallax.replace( `const float LAYERS = ${PARALLAX_LAYERS}.0;`, 'const float LAYERS = 60.0;' )
+			.replace( 'vec2 dUv = P / LAYERS;', 'vec2 dUv = P * 6.0 / LAYERS;' )
+			.replace( 'float layer = 1.0 / LAYERS;', 'float layer = 6.0 / LAYERS;' )
+			.replace( `i < ${PARALLAX_LAYERS}`, 'i < 60' )
+			.replaceAll( '1.0 - textureGrad( normalMap, uv, gx, gy ).a', depth( 'uv' ) )
+			.replaceAll( '1.0 - textureGrad( normalMap, prev, gx, gy ).a', depth( 'prev' ) );
+
+	}
+	f = f.replace( '#include <map_fragment>', parallax + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
 	// depth is for looking at it from a little way off
 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
-		.replace( 'mapN.xy *= normalScale;', 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) ) * ( 1.0 - uClassic );' ) );
+		.replace( 'mapN.xy *= normalScale;', this.userData.realDisplacement ? 'mapN.xy *= 0.0;' : 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) ) * ( 1.0 - uClassic );' ) );
+	if ( rock ) f = f.replace( '#include <emissivemap_fragment>', ROCK_NORMAL_GLSL + '\n#include <emissivemap_fragment>' );
 	f = f.replace( '#include <emissivemap_fragment>', THREE.ShaderChunk.emissivemap_fragment.replace( /vEmissiveMapUv/g, '_pUv' ) );
 	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );\n\tgAlbedo = vec4( gDiffuse, 1.0 );' );
 
@@ -379,7 +418,41 @@ function patchDetailShader( shader ) {
 	f = f.replace( /_pUv/g, 'DETAIL_UV' );
 	f = '#ifdef USE_NORMALMAP\n#define DETAIL_UV pUv\n#else\n#define DETAIL_UV vMapUv\n#endif\n' + f;
 
+	if ( rock ) {
+		f = f.replace( '#include <opaque_fragment>', 'outgoingLight = (outgoingLight - totalEmissiveRadiance) * qrRockAO + totalEmissiveRadiance;\n#include <opaque_fragment>' );
+		f = f.replace( 'vec4( gDiffuse, 1.0 )', 'vec4( gDiffuse, 0.51 + 0.49 * qrRockSunVisibility )' );
+	}
+	if ( reference ) {
+
+		// Height-derived local occlusion inside the cut. The original pigment
+		// and emissive texels are unchanged, and uncarved material stays at 1.
+		f = f.replace( '#include <opaque_fragment>', `
+		float carveBase = texture2D( uCarveReference, fract( DETAIL_UV ) * uCarveReferenceUV.xy + uCarveReferenceUV.zw ).a;
+		float carveDepth = max( 0.0, carveBase - texture2D( normalMap, DETAIL_UV ).a );
+		float carveAO = mix( 1.0, clamp( 1.0 - carveDepth * 3.0, 0.08, 1.0 ), 1.0 - uClassic );
+		outgoingLight = ( outgoingLight - totalEmissiveRadiance ) * carveAO + totalEmissiveRadiance;
+		#include <opaque_fragment>` );
+		// A separate byte-safe alpha band carries recess occlusion to deferred
+		// lights. RGB is still the original pigment; rock's .51..1 band is intact.
+		f = f.replace( 'vec4( gDiffuse, 1.0 )', 'vec4( gDiffuse, 0.1 + 0.39 * carveAO )' );
+
+	}
+	if ( relief && ! reference ) {
+
+		// Sculpted plaques stand above their shallow background. Only cavities
+		// below that plane receive occlusion; raised bone and glowing eyes retain
+		// their authored colour and emissive light.
+		const glFloat = value => Number.isInteger( value ) ? value.toFixed( 1 ) : String( value );
+		f = f.replace( '#include <opaque_fragment>', `
+		float sculptDepth = max( 0.0, ${glFloat( relief.cavityFloor )} - texture2D( normalMap, DETAIL_UV ).a );
+		float sculptAO = mix( 1.0, clamp( 1.0 - sculptDepth * ${glFloat( relief.cavityScale )}, ${glFloat( relief.cavityMin )}, 1.0 ), 1.0 - uClassic );
+		outgoingLight = ( outgoingLight - totalEmissiveRadiance ) * sculptAO + totalEmissiveRadiance;
+		#include <opaque_fragment>` );
+		f = f.replace( 'vec4( gDiffuse, 1.0 )', 'vec4( gDiffuse, 0.1 + 0.39 * sculptAO )' );
+
+	}
 	shader.fragmentShader = f;
+	if ( rock ) R_PatchRockShader( shader );
 
 }
 
@@ -406,14 +479,43 @@ THREE.Material.prototype.onBeforeCompile = patchGBufferShader;
 function applyDetail( material ) {
 
 	const diffuse = material.userData.detailDiffuse;
+	if ( material.emissive !== undefined ) {
+
+		const emission = diffuse?._fullbright || null;
+		if ( material.emissiveMap !== emission ) {
+
+			const changedKind = !! material.emissiveMap !== !! emission;
+			material.emissiveMap = emission;
+			material.emissive.setRGB( emission ? 1 : 0, emission ? 1 : 0, emission ? 1 : 0 );
+			if ( changedKind ) material.needsUpdate = true;
+
+		}
+		if ( glowMaterials.has( material ) && ! lavaMaterials.has( material ) ) {
+
+			material.userData.glowBoost = diffuse?.userData.newerGlowBoost ?? material.userData.baseGlowBoost;
+			applyGlow( material, material.userData.glowBoost );
+
+		}
+
+	}
 	const wanted = detailActive && diffuse != null ? R_NormalMapFor( diffuse ) : null;
 
 	if ( material.normalMap === wanted ) return;
 
 	const changedKind = ( material.normalMap != null ) !== ( wanted != null );
+	const changedCarving = !! material.normalMap?.userData.referenceHeight !== !! wanted?.userData.referenceHeight;
+	const changedRelief = JSON.stringify( material.normalMap?.userData.surfaceRelief ) !== JSON.stringify( wanted?.userData.surfaceRelief );
 	material.normalMap = wanted;
+	if ( wanted?.userData.referenceHeight ) {
+
+		// Cached shader variants share these holders across mode/texture changes.
+		const uniforms = material.userData.carveUniforms ||= { uCarveReference: { value: null }, uCarveReferenceUV: { value: null } };
+		uniforms.uCarveReference.value = wanted.userData.referenceHeight;
+		uniforms.uCarveReferenceUV.value = wanted.userData.referenceUV;
+
+	}
 	if ( material.normalScale !== undefined ) material.normalScale.set( 1, 1 );
-	if ( changedKind ) material.needsUpdate = true;
+	if ( changedKind || changedCarving || changedRelief ) material.needsUpdate = true;
 
 }
 
@@ -421,17 +523,23 @@ function applyDetail( material ) {
 // and always write the normal G-buffer.
 export function R_RegisterDetail( material, diffuse ) {
 
-	material.userData.detailDiffuse = diffuse;
+	bindDetailTexture( material, diffuse );
 	material.onBeforeCompile = patchDetailShader;
 	material.customProgramCacheKey = function () {
 
-		return 'quake-detail';
+		return ( this.userData.rockField ? 'quake-detail-rock-v1' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' );
 
 	};
 
 	applyDetail( material );
 	detailMaterials.add( material );
-	material.addEventListener( 'dispose', () => detailMaterials.delete( material ) );
+	material.addEventListener( 'dispose', () => {
+
+		detailMaterials.delete( material );
+		detailTextureListeners.get( material )?.();
+		detailTextureListeners.delete( material );
+
+	} );
 
 }
 
@@ -439,8 +547,22 @@ export function R_RegisterDetail( material, diffuse ) {
 export function R_RefreshDetail( material, diffuse ) {
 
 	if ( ! detailMaterials.has( material ) ) return;
-	material.userData.detailDiffuse = diffuse;
+	bindDetailTexture( material, diffuse );
 	applyDetail( material );
+
+}
+
+// Async art/height can arrive after world materials compile. Listen on the
+// existing Three texture without a reverse import into the renderer graph.
+// Animation changes and material disposal detach the previous texture listener.
+const detailTextureListeners = new WeakMap();
+function bindDetailTexture( material, diffuse ) {
+
+	detailTextureListeners.get( material )?.();
+	material.userData.detailDiffuse = diffuse;
+	const refresh = () => applyDetail( material );
+	diffuse?.addEventListener( 'newertextureupdated', refresh );
+	detailTextureListeners.set( material, () => diffuse?.removeEventListener( 'newertextureupdated', refresh ) );
 
 }
 
@@ -840,29 +962,39 @@ export function R_BuildWorldLights( model ) {
 			const emission = surfaceEmission( surf );
 			if ( emission == null ) continue;
 
-			const info = polyInfo( surf );
-			if ( info == null || info.area < 64 ) continue;
+			// Large turbulent faces already contain subdivided polygons. Cluster
+			// lava from those actual patches, not one distant pool-centre light.
+			const lava = lname.indexOf( '*lava' ) === 0;
+			const patches = [];
+			if ( lava ) {
+				for ( let p = surf.polys; p; p = p.next ) patches.push( polyInfo( { polys: { numverts: p.numverts, verts: p.verts, next: null } } ) );
+			} else patches.push( polyInfo( surf ) );
+			for ( const info of patches ) {
+				if ( info == null || info.area < 64 ) continue;
 
-			const key = surf.texinfo.texture.name + '|' +
-				Math.floor( info.center[ 0 ] / SURFACE_CELL ) + ',' +
-				Math.floor( info.center[ 1 ] / SURFACE_CELL ) + ',' +
-				Math.floor( info.center[ 2 ] / SURFACE_CELL );
+				const key = surf.texinfo.texture.name + '|' +
+					Math.floor( info.center[ 0 ] / SURFACE_CELL ) + ',' +
+					Math.floor( info.center[ 1 ] / SURFACE_CELL ) + ',' +
+					Math.floor( info.center[ 2 ] / SURFACE_CELL ) +
+					// Opposite lava faces must not average their source into the pool.
+					( lava ? '|' + Array.from( surf.plane.normal ).map( v => v * ( surf.flags & 2 ? -1 : 1 ) ).join( ',' ) : '' );
 
-			let c = clusters.get( key );
-			if ( c === undefined ) {
+				let c = clusters.get( key );
+				if ( c === undefined ) {
 
-				c = { emission, area: 0, sum: [ 0, 0, 0 ], normal: [ 0, 0, 0 ] };
-				clusters.set( key, c );
+					c = { emission, texture: surf.texinfo.texture.name, area: 0, sum: [ 0, 0, 0 ], normal: [ 0, 0, 0 ] };
+					clusters.set( key, c );
 
-			}
+				}
 
-			const sign = ( surf.flags & 2 ) ? - 1 : 1; // SURF_PLANEBACK
-			c.area += info.area;
-			for ( let a = 0; a < 3; a ++ ) {
+				const sign = ( surf.flags & 2 ) ? - 1 : 1; // SURF_PLANEBACK
+				c.area += info.area;
+				for ( let a = 0; a < 3; a ++ ) {
 
-				c.sum[ a ] += info.center[ a ] * info.area;
-				c.normal[ a ] += surf.plane.normal[ a ] * sign * info.area;
+					c.sum[ a ] += info.center[ a ] * info.area;
+					c.normal[ a ] += surf.plane.normal[ a ] * sign * info.area;
 
+				}
 			}
 
 		}
@@ -882,6 +1014,7 @@ export function R_BuildWorldLights( model ) {
 
 			surfaceLights.push( {
 				pos,
+				texture: c.texture, // source provenance; entity/dynamic lamps have no surface texture
 				color: c.emission.color,
 				power: Math.min( 1.1, c.area * c.emission.coverage / ( 64 * 64 ) * 0.5 ),
 				radius: Math.max( 24, Math.min( 110, Math.sqrt( c.area ) * 0.5 ) ),
@@ -897,6 +1030,7 @@ export function R_BuildWorldLights( model ) {
 
 	}
 
+	rockUniforms.qrRockSun.value.set( ...sunDirection ).normalize();
 	return worldLights;
 
 }
@@ -948,6 +1082,14 @@ export function R_BuildSunOccluder( model ) {
 					positions.push( at( idx, 0 ), at( idx, 1 ), at( idx, 2 ) );
 
 			}
+
+		}
+		// The retained wall backing plus its actual raised relief forms the
+		// same occluder seen by the enhanced scene. Classic keeps native geometry.
+		if ( R_NewerGame() && r_newer_normals.value !== 0 && r_newer_textures.value !== 0 ) {
+
+			const relief = R_DemonSurfaceData( surf );
+			if ( relief ) for ( const x of relief.positions ) positions.push( x );
 
 		}
 
@@ -1621,7 +1763,10 @@ vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
 	if ( distance >= range ) return vec3( 0.0 );
 	float facing = max( dot( normal, L / max( distance, 0.001 ) ), 0.0 );
 	if ( facing <= 0.0 ) return vec3( 0.0 );
-	float fall = 1.0 / ( 1.0 + distance * distance / ( 60.0 * 60.0 ) );
+	// Ordinary map lamps (radius28) and dynamic lights (radius40) retain their
+	// sixty-unit falloff. Existing broad surface emitters reach their own edges.
+	float extent = max( 60.0, uLightPos[ index ].w );
+	float fall = 1.0 / ( 1.0 + distance * distance / ( extent * extent ) );
 	fall *= 1.0 - smoothstep( 0.55 * range, range, distance );
 	return uLightCol[ index ].rgb * uLightSurface * facing * fall;
 }
@@ -1678,6 +1823,10 @@ vec3 depthSurfaceNormal( vec2 uv, vec3 P ) {
 	return dot( N, P ) > 0.0 ? - N : N;
 }
 
+float surfaceCarveAO( float tag ) {
+	return tag > 0.05 && tag < 0.5 ? clamp( ( tag - 0.1 ) / 0.39, 0.08, 1.0 ) : 1.0;
+}
+
 // SSR reads the pre-deferred scene. Shade valid opaque reflected receivers
 // with the same material/lighting policy, once AFTER a successful ray hit.
 // Rank up to eight incident candidates, shadow only the strongest three.
@@ -1685,7 +1834,8 @@ vec3 litReflectionAt( vec2 uv ) {
 	vec3 scene = texture2D( tScene, uv ).rgb;
 	if ( uLighting < 0.5 || ( uCount == 0 && uSpotOn < 0.5 ) || texture2D( tDepth, uv ).x >= 0.99999 ) return scene;
 	vec4 g = texture2D( tNormal, uv ), base = texture2D( tAlbedo, uv );
-	if ( g.a < - 0.5 || base.a < 0.5 ) return scene;
+	if ( g.a < - 0.5 || base.a < 0.05 ) return scene;
+	float carveAO = surfaceCarveAO( base.a );
 	vec3 P = viewPosAt( uv );
 	if ( - P.z < 8.0 ) return scene;
 	// A flashlight-only miss needs no receiver reconstruction.
@@ -1711,10 +1861,10 @@ vec3 litReflectionAt( vec2 uv ) {
 		vec3 light = pointSurfaceIncident( P, Nl, index ) * pointSurfaceVisibility( P, Ng, index );
 		relit += light; flash += light * uLightAdd[ index ];
 	}
-	vec3 colour = scene * ( 1.0 + relit ) + relit * uLightFloor * base.rgb + flash * ( base.rgb * 0.3 + scene * 0.6 );
+	vec3 colour = scene * ( 1.0 + relit * carveAO ) + ( relit * uLightFloor * base.rgb + flash * ( base.rgb * 0.3 + scene * 0.6 ) ) * carveAO;
 	if ( uSpotOn > 0.5 ) {
 		float facing = max( dot( Nl, normalize( uSpotPos - P ) ), 0.0 );
-		if ( facing > 0.0 ) colour += base.rgb * uSpotCol * 1.15 * facing * flashlightIrradiance( P, Ng );
+		if ( facing > 0.0 ) colour += base.rgb * uSpotCol * 1.15 * facing * flashlightIrradiance( P, Ng ) * carveAO;
 	}
 	return colour;
 }
@@ -2050,6 +2200,11 @@ void main() {
 		vec3 Nl = normalize( mix( Ng, N, uBumpLight ) );
 
 		if ( uLighting > 0.5 ) {
+			vec4 base = texture2D( tAlbedo, uvd );
+			// 0 is unavailable, .1.. .49 carries carving AO, .51..1 carries
+			// rock sun visibility. Ordinary opaque pixels remain at 1.
+			float rockSunVisibility = base.a > 0.5 ? clamp( ( base.a - 0.51 ) / 0.49, 0.0, 1.0 ) : 1.0;
+			float carveAO = surfaceCarveAO( base.a );
 			vec3 relit = vec3( 0.0 );
 			vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
 
@@ -2057,7 +2212,7 @@ void main() {
 				float ndl = max( dot( Nl, uSunDirV ), 0.0 );
 				if ( ndl > 0.0 ) {
 					vec3 pw = ( uViewInv * vec4( P + Ng * 1.5, 1.0 ) ).xyz;
-					relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookieRGB( pw );
+					relit += uSunSurfaceCol * uSunSurface * ndl * sunLitSoft( pw ) * skyCookieRGB( pw ) * rockSunVisibility;
 				}
 			}
 
@@ -2085,8 +2240,7 @@ void main() {
 
 			// Read the actual unlit material colour. The lit scene has lost it where
 			// the baked lighting is zero; a neutral grey lift cannot reconstruct it.
-			vec4 base = texture2D( tAlbedo, uvd );
-			vec3 albedo = base.a > 0.5 ? base.rgb : scene;
+			vec3 albedo = base.a > 0.05 ? base.rgb : scene;
 			// Bounce light.  What a surface sees of its neighbours on the screen lights it a little: each of a handful of
 			// points round it (out to about 150 units) gives the light it is sending this way, if the two face each
 			// other, less with distance; and the receiver's own colour tints it (a red wall casts red on the floor, and
@@ -2137,14 +2291,14 @@ void main() {
 					vec3 src = ( texture2D( tScene, uvs ).rgb * 2.0 + texture2D( tScene, uvs + ob ).rgb + texture2D( tScene, uvs - ob ).rgb ) * 0.25;
 					if ( beamS > 0.0 ) {
 						vec4 sourceBase = texture2D( tAlbedo, uvs );
-						if ( sourceBase.a > 0.5 ) src += sourceBase.rgb * uSpotCol * 1.15 * beamS;
+						if ( sourceBase.a > 0.05 ) src += sourceBase.rgb * uSpotCol * 1.15 * beamS * surfaceCarveAO( sourceBase.a );
 					}
 					bounce += src / ( 1.0 + 0.9 * max( src.r, max( src.g, src.b ) ) ) * w;
 				}
 				bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
 			}
 			vec3 receiver = albedo * 0.55;
-			c = scene * ( 1.0 + relit ) + bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 );
+			c = scene * ( 1.0 + relit * carveAO ) + ( bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 ) ) * carveAO;
 
 			// what the beam hits is not just brighter, it is richer: colour and contrast rise with it
 			if ( spotMask > 0.0 ) {
@@ -2893,7 +3047,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
 		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
 	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
-	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * PILLAR_MAX * Math.max( 0, r_pillars.value ) * ( 1.4 + 1.0 * bright );
+	// Hold the original nominal sun density. One common compositing gain below
+	// makes sun, point lights and the flashlight respond to the same slider once.
+	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * PILLAR_MAX * PILLAR_DEFAULT * ( 1.4 + 1.0 * bright );
 	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
 	p.volumeMaterial.uniforms.uOpenFog.value = 0.018 - 0.015 * bright;
 	// a bright, clear sky is crisp; a dark one a little hazier
@@ -2919,7 +3075,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	// volumetric pass
-	const volume = lighting ? Math.max( 0, r_volumetric.value ) : 0;
+	const volume = lighting ? Math.max( 0, r_volumetric.value ) * SHAFT_GAIN * Math.max( 0, r_pillars.value ) / PILLAR_DEFAULT : 0;
 	if ( volume > 0 ) runPass( renderer, p.volumeMaterial, p.volume );
 	R_PerfStage( 'light shafts' );
 

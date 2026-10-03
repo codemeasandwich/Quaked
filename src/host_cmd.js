@@ -12,6 +12,7 @@ import { STAT_TOTALSECRETS, STAT_TOTALMONSTERS, STAT_SECRETS, STAT_MONSTERS,
 import { NUM_FOR_EDICT, EDICT_NUM, EDICT_TO_PROG, PR_GetString, pr_global_struct } from './progs.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
 import { ED_NewString, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from './pr_edict.js';
+import { SV_PinnedZombieSpawned } from './sv_pinnedzombies.js';
 import { sv_player } from './sv_phys.js';
 import { FL_GODMODE, FL_NOTARGET,
 	MOVETYPE_WALK, MOVETYPE_FLY, MOVETYPE_NOCLIP } from './sv_phys.js';
@@ -1193,6 +1194,7 @@ function Host_Loadgame_f() {
 			const ent = EDICT_NUM( entnum );
 			ent.free = false;
 			ED_ParseEdict( data, ent );
+			SV_PinnedZombieSpawned( ent );
 
 			// link it into the bsp tree
 			if ( ent.free === false ) {

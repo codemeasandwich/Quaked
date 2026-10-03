@@ -1,0 +1,37 @@
+PASS hub logo retains the real 288x64 START plaque aspect and faithful supplied SVG identity
+PASS logo albedo continues native wall alignment exactly and only SVG strokes lower its existing height
+PASS classic split and restored New Game retain native QUAKE pixels and remove enhanced logo height
+PASS texture update listeners follow animated texture changes and detach on material disposal
+RESULT 4/5 passed (tests/hub_logo_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS frame pipeline carries authored albedo separately at scene resolution
+RESULT 1/1 passed (tests/flashlight_albedo_test.js)
+PASS natural materials share continuous fields indoors and outdoors across ceilings/floors/slopes, while construction stays native
+Added packfile pak0.pak (339 files)\n
+ACTUAL_ANGLED_ROCK_EDGES 199 ORIENTATIONS {"roof":38,"floor":11,"slope":2}
+PASS actual E1M1 cave roofs/floors/slopes and angled rock edges share exact height and derivatives without orientation or texture seeds
+BUNDLED_ROCK_AUDIT {"maps":21,"rock":2440,"soil":668,"roof":319,"floor":240,"slope":73,"minRockArea":0.039399095431629394}
+PASS all bundled BSP world rock faces are classified independent of sky/orientation and retain nondegenerate shared projection
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+HUB_ROCK4_FACES 308 HARD_BRICKA2_2_FACES 80 SHARED_EDGES 363
+PASS actual START hub rock4_1 and confirmed Hard bricka2_2 faces share maximum relief while metal and construction remain native
+PASS tile cache limits jobs to2, deduplicates, ignores cancelled epochs and retains at most96 LRU pages
+PASS GPU half-float pages retain exact shared heights and both slopes with genuine neighboring gutters
+PASS page lookup preserves every resident even under a full96-page hash collision cluster
+PASS public world update only requests visible eligible charts in Newer normals mode and replaces maps without stale jobs
+PASS public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility
+RESULT 9/9 passed (tests/rockfield_runtime_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+TOTAL 24/25 passed

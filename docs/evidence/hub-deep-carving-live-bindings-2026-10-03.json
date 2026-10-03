@@ -1,0 +1,113 @@
+[
+  {
+    "label": "left wall",
+    "texture": "quake",
+    "continuousRelief": false,
+    "normalMap": true,
+    "normalSize": [
+      1152,
+      256
+    ],
+    "carvingReference": true,
+    "programKey": "quake-detail-carved",
+    "gpuBinding": {
+      "carvedProgram": true,
+      "normalWidth": 1152,
+      "referenceWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/hub-quaked-logo.webp",
+    "textureSize": [
+      1152,
+      256
+    ],
+    "point": [
+      469.24342447916695,
+      768,
+      322.82656249999974
+    ]
+  },
+  {
+    "label": "right wall",
+    "texture": "quake",
+    "continuousRelief": false,
+    "normalMap": true,
+    "normalSize": [
+      1152,
+      256
+    ],
+    "carvingReference": true,
+    "programKey": "quake-detail-carved",
+    "gpuBinding": {
+      "carvedProgram": true,
+      "normalWidth": 1152,
+      "referenceWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/hub-quaked-logo.webp",
+    "textureSize": [
+      1152,
+      256
+    ],
+    "point": [
+      618.819075520833,
+      768,
+      322.82656249999974
+    ]
+  },
+  {
+    "label": "ahead",
+    "texture": "quake",
+    "continuousRelief": false,
+    "normalMap": true,
+    "normalSize": [
+      1152,
+      256
+    ],
+    "carvingReference": true,
+    "programKey": "quake-detail-carved",
+    "gpuBinding": {
+      "carvedProgram": true,
+      "normalWidth": 1152,
+      "referenceWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/hub-quaked-logo.webp",
+    "textureSize": [
+      1152,
+      256
+    ],
+    "point": [
+      544.03125,
+      768,
+      294.03125
+    ]
+  },
+  {
+    "label": "below",
+    "texture": "wizmet1_2",
+    "continuousRelief": false,
+    "normalMap": true,
+    "normalSize": [
+      256,
+      256
+    ],
+    "carvingReference": false,
+    "programKey": "quake-detail",
+    "gpuBinding": {
+      "carvedProgram": false,
+      "normalWidth": 256,
+      "classic": 0
+    },
+    "height": "normals/wizmet1_2.webp",
+    "textureSize": [
+      256,
+      256
+    ],
+    "point": [
+      544.03125,
+      1376,
+      -5.957031249998579
+    ]
+  }
+]

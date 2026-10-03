@@ -1,0 +1,30 @@
+PASS hub logo retains the real 288x64 START plaque aspect and faithful supplied SVG identity
+PASS logo albedo continues native wall alignment exactly and only SVG strokes lower its existing height
+PASS public enhanced texture loader installs registered recessed height and derived normals without changing UVs
+PASS classic split and restored New Game retain native QUAKE pixels and remove enhanced logo height
+PASS texture update listeners follow animated texture changes and detach on material disposal
+RESULT 5/5 passed (tests/hub_logo_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+TOTAL 24/24 passed

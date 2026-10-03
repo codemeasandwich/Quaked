@@ -33,6 +33,7 @@ import {
 	RETURN_EDICT,
 } from './progs.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
+import { SV_PinnedZombieSpawned } from './sv_pinnedzombies.js';
 
 //============================================================================
 // Module state
@@ -1069,6 +1070,7 @@ export function ED_LoadFromFile( data ) {
 
 		pr_global_struct.self = EDICT_TO_PROG( ent );
 		PR_ExecuteProgram( pr_functions.indexOf( func ) );
+		SV_PinnedZombieSpawned( ent );
 
 	}
 

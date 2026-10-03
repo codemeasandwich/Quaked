@@ -1,0 +1,79 @@
+Added packfile pak0.pak (339 files)\n
+Programs occupy 403K.
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+0 entities inhibited
+
+PASS native pinned zombie in Newer Game takes real shotgun traces and dies through stock QuakeC gibs without changing monster counts
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+PASS classic pinned zombies retain native immunity and normal walking zombies retain native pain behavior
+Programs occupy 403K.
+
+0 entities inhibited
+
+PASS ordinary save fields retain accumulated pinned damage and restored zombie uses native T_Damage death
+RESULT 3/3 passed (tests/pinned_zombies_test.js)
+PASS ED_Alloc never reuses reserved client edicts
+RESULT 1/1 passed (tests/pr_edict_test.js)
+DONE      
+
+<NO STACK>
+
+bad opcode 99
+
+PASS QuakeC runtime failures use Host_Error
+RESULT 1/1 passed (tests/pr_exec_test.js)
+ADDRESS   28 29 30 
+
+%12s : 
+ 
+<NO FUNCTION>
+
+assignment to world entity
+
+PASS OP_ADDRESS rejects assignments to the active world entity
+RESULT 1/1 passed (tests/pr_address_test.js)
+PASS PF_aim filters teammates with the engine teamplay cvar
+RESULT 1/1 passed (tests/pr_aim_test.js)
+PASS SV_RecursiveHullCheck supports hulls deeper than the scratch pool
+RESULT 1/1 passed (tests/world_test.js)
+PASS SV_StartSound encodes the source edict index
+PASS SV_WriteClientdataToMessage packs an optional items2 field
+RESULT 2/2 passed (tests/sv_main_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+TOTAL 11/11 passed

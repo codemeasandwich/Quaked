@@ -27,6 +27,22 @@ let normals = {}; // name -> { file, strength }: the height map crafted for the 
 let version = '0'; // changes whenever a picture does, so the browser fetches the new one
 let indexPromise = null;
 const pictures = new Map(); // file -> Promise of { data, width, height }
+const scalarFiles = new Map(); // optional saved16-bit linear heights
+
+function loadScalar( file ) {
+
+	if ( ! file ) return Promise.resolve( null );
+	let request = scalarFiles.get( file );
+	if ( ! request ) {
+
+		request = fetch( COM_NewerURL( BASE + file, BASE + file + '?v=' + version ) )
+			.then( response => response.ok ? response.arrayBuffer() : null ).catch( () => null );
+		scalarFiles.set( file, request );
+
+	}
+	return request;
+
+}
 
 function loadIndex() {
 
@@ -87,8 +103,9 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 		// the picture and, when there is one, its crafted height map
 		const crafted = normals[ name ];
-		return Promise.all( [ loadPicture( file ), crafted !== undefined ? loadPicture( crafted.file ) : null ] )
-			.then( ( [ pic, heightPic ] ) => ( pic == null ? null : { pic, heightPic, crafted } ) );
+		return Promise.all( [ loadPicture( file ), crafted !== undefined ? loadPicture( crafted.file ) : null,
+			crafted?.edgeSource ? loadPicture( crafted.edgeSource.file ) : null, loadScalar( crafted?.dataFile ) ] )
+			.then( ( [ pic, heightPic, edgePic, scalar ] ) => ( pic == null ? null : { pic, heightPic, edgePic, scalar, crafted } ) );
 
 	} ).then( ( loaded ) => {
 
@@ -101,23 +118,69 @@ export function R_NewerTextureUpgrade( name, texture ) {
 			// the red of the grey picture is the height
 			const h = new Float32Array( pic.width * pic.height );
 			for ( let i = 0; i < h.length; i ++ ) h[ i ] = loaded.heightPic.data[ i * 4 ] / 255;
+			const scalarReady = loaded.scalar?.byteLength === h.length * 2;
+			if ( scalarReady ) {
+
+				const view = new DataView( loaded.scalar );
+				for ( let i = 0; i < h.length; i ++ ) h[ i ] = view.getUint16( i * 2, true ) / 65535;
+
+			}
 			texture.userData.newerHeight = { file: loaded.crafted.file, strength: loaded.crafted.strength, cap: loaded.crafted.cap || 1.1, data: h, width: pic.width, height: pic.height };
+			texture.userData.newerHeight.dataFile = scalarReady ? loaded.crafted.dataFile : undefined;
+			texture.userData.newerHeight.sampling = loaded.crafted.sampling === 'clamp' ? 'clamp' : 'repeat';
+			const displacement = loaded.crafted.displacement;
+			if ( displacement && ( ! loaded.crafted.dataFile || scalarReady ) && Number.isFinite( displacement.depth ) && displacement.depth > 0 && displacement.depth <= 24 &&
+				Number.isFinite( displacement.step ) && displacement.step >= .5 && displacement.step <= 4 &&
+				( displacement.smoothing === undefined || Number.isFinite( displacement.smoothing ) && displacement.smoothing >= 0 && displacement.smoothing <= 2 ) )
+				texture.userData.newerHeight.displacement = { depth: displacement.depth, step: displacement.step, smoothing: displacement.smoothing || 0 };
+			const relief = loaded.crafted.relief;
+			if ( relief && Number.isFinite( relief.depth ) && relief.depth >= .02 && relief.depth <= .12 &&
+				Number.isInteger( relief.layers ) && relief.layers >= 10 && relief.layers <= 48 &&
+				Number.isFinite( relief.cavityFloor ) && relief.cavityFloor >= 0 && relief.cavityFloor <= 1 &&
+				Number.isFinite( relief.cavityScale ) && relief.cavityScale >= 0 && relief.cavityScale <= 8 &&
+				Number.isFinite( relief.cavityMin ) && relief.cavityMin >= .08 && relief.cavityMin <= 1 ) {
+
+				texture.userData.newerHeight.relief = { depth: relief.depth, layers: relief.layers, cavityFloor: relief.cavityFloor, cavityScale: relief.cavityScale, cavityMin: relief.cavityMin };
+
+			}
+			if ( loaded.edgePic ) {
+
+				const e = loaded.edgePic, data = new Float32Array( e.width * e.height );
+				for ( let i = 0; i < data.length; i ++ ) data[ i ] = e.data[ i * 4 ] / 255;
+				texture.userData.newerHeight.edgeSource = { ...loaded.crafted.edgeSource, data, width: e.width, height: e.height };
+
+			}
 
 		}
 
 		let data = pic.data;
 
 		// the glowing part: where the original glowed, enlarged smoothly
-		const fb = texture._fullbright;
+		const own = GLOW_FROM_PICTURE[ name ];
+		let fb = texture._fullbright;
+		if ( own && fb == null ) {
+
+			// These native demon textures have no fullbright palette pixels.
+			// Keep a transparent native image for the isolated Classic twin.
+			fb = new THREE.DataTexture( new Uint8Array( texture.image.width * texture.image.height * 4 ), texture.image.width, texture.image.height, THREE.RGBAFormat );
+			fb.wrapS = texture.wrapS; fb.wrapT = texture.wrapT;
+			fb.offset.copy( texture.offset ); fb.repeat.copy( texture.repeat );
+			fb.flipY = texture.flipY; fb.colorSpace = THREE.SRGBColorSpace;
+			fb.magFilter = THREE.LinearFilter; fb.minFilter = THREE.LinearMipmapLinearFilter;
+			fb.generateMipmaps = true; fb.userData.newerCreated = true;
+			texture._fullbright = fb;
+			texture.addEventListener( 'dispose', () => fb.dispose() );
+
+		}
 		if ( fb != null && fb.image != null && fb.image.data != null && typeof document !== 'undefined' ) {
 
 			if ( fb.userData.classicImage === undefined ) fb.userData.classicImage = fb.image;
-			const own = GLOW_FROM_PICTURE[ name ];
 			const split = own !== undefined ? R_GlowFromPicture( pic, own ) : splitGlow( fb.image, pic );
 			data = split.diffuse;
 			fb.dispose();
 			fb.image = { data: split.glow, width: pic.width, height: pic.height };
 			fb.needsUpdate = true;
+			texture.userData.newerGlowBoost = own?.boost;
 
 		}
 
@@ -139,6 +202,10 @@ export function R_NewerTextureUpgrade( name, texture ) {
 			texture._normalMap = undefined;
 
 		}
+
+		// Three's texture event avoids importing the renderer back into this
+		// loader (which would introduce a startup cycle through render.js).
+		texture.dispatchEvent( { type: 'newertextureupdated' } );
 
 	} );
 
@@ -234,7 +301,12 @@ function splitGlow( fbImage, pic ) {
 // (so the hazard stripes beside the lights do not glow).
 const GLOW_FROM_PICTURE = {
 	'+0_box_side': { x0: 0.3, x1: 0.7 },
-	'+1_box_side': { x0: 0.3, x1: 0.7 }
+	'+1_box_side': { x0: 0.3, x1: 0.7 },
+	// Crop/select the warm bright pixels of the actual eyes and open mouth.
+	// The face and horns are never redrawn and the bone remains ordinary metal.
+	dem5_3: { type: 'warm-face', boost: 4.5, regions: [
+		[ .17, .43, .41, .49 ], [ .57, .83, .41, .49 ], [ .31, .69, .56, .72 ]
+	] }
 };
 
 export function R_GlowFromPicture( pic, box ) {
@@ -247,10 +319,23 @@ export function R_GlowFromPicture( pic, box ) {
 
 		for ( let x = 0; x < w; x ++ ) {
 
-			if ( x < box.x0 * w || x >= box.x1 * w ) continue;
+			if ( box.type === 'warm-face' ) {
+
+				if ( ! box.regions.some( ( [ x0, x1, y0, y1 ] ) => x >= x0 * w && x < x1 * w && y >= y0 * h && y < y1 * h ) ) continue;
+
+			} else if ( x < box.x0 * w || x >= box.x1 * w ) continue;
 
 			const i = ( y * w + x ) * 4;
 			const r = pic.data[ i ], g = pic.data[ i + 1 ], b = pic.data[ i + 2 ];
+			if ( box.type === 'warm-face' ) {
+
+				if ( r < 150 || g < 45 || r < g * .8 || g < b * 1.4 || r < b * 1.8 ) continue;
+				const amount = Math.min( 1, Math.max( 0, ( r - 150 ) / 60 ) );
+				glow[ i ] = Math.round( r * amount ); glow[ i + 1 ] = Math.round( g * amount ); glow[ i + 2 ] = Math.round( b * amount ); glow[ i + 3 ] = 255;
+				for ( let c = 0; c < 3; c ++ ) diffuse[ i + c ] -= glow[ i + c ];
+				continue;
+
+			}
 			if ( r < 140 || r < g * 2.2 || r < b * 2.2 ) continue;
 
 			glow[ i ] = r; glow[ i + 1 ] = g; glow[ i + 2 ] = b; glow[ i + 3 ] = 255;
@@ -338,13 +423,19 @@ export function R_NewerTexturesRevert() {
 		if ( t._normalMap != null ) { t._normalMap.dispose(); t._normalMap = undefined; }
 
 		const fb = t._fullbright;
-		if ( fb != null && fb.userData.classicImage !== undefined ) {
+		if ( fb?.userData.newerCreated ) {
+
+			fb.dispose(); t._fullbright = null;
+			t.userData.newerGlowBoost = undefined;
+
+		} else if ( fb != null && fb.userData.classicImage !== undefined ) {
 
 			fb.dispose();
 			fb.image = fb.userData.classicImage;
 			fb.needsUpdate = true;
 
 		}
+		t.dispatchEvent( { type: 'newertextureupdated' } );
 
 	}
 

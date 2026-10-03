@@ -225,16 +225,34 @@ function R_SmoothHeight( src, width, height ) {
 
 // Tangent-space normals (RGBA8, height in alpha) from a crafted height field: a height map made offline
 // for one texture (tools/craft_normals.py, which has the same maths), in 0..1, and how steep to make it.
-export function R_NormalsFromCraftedHeight( h0, width, height, strength, capk = 1.1 ) {
+export function R_NormalsFromCraftedHeight( h0, width, height, strength, capk = 1.1, edgeSource = null ) {
 
 	const out = new Uint8Array( width * height * 4 );
 
 	// The heights come as 8-bit greys, so a slope is made of steps: lit from close by, a steep relief turns
 	// into terraces and a jagged skin.  A light blur (two passes of 1 4 6 4 1) takes the steps out and leaves
 	// the shapes.
-	const h = R_SmoothHeight( h0, width, height );
+	// A carving that continues another material needs the real neighboring
+	// heights at its boundaries, rather than wrapping the carved image itself.
+	// Five pixels cover both smoothing passes plus the final normal derivative.
+	const border = edgeSource ? 5 : 0, sw = width + border * 2, sh = height + border * 2;
+	let input = h0;
+	if ( edgeSource ) {
+
+		input = new Float32Array( sw * sh );
+		const mod = ( n, d ) => ( n % d + d ) % d;
+		for ( let y = - border; y < height + border; y ++ ) for ( let x = - border; x < width + border; x ++ ) {
+
+			input[ ( y + border ) * sw + x + border ] = x >= 0 && x < width && y >= 0 && y < height
+				? h0[ y * width + x ]
+				: edgeSource.data[ mod( y + edgeSource.offset[ 1 ], edgeSource.height ) * edgeSource.width + mod( x + edgeSource.offset[ 0 ], edgeSource.width ) ];
+
+		}
+
+	}
+	const h = R_SmoothHeight( input, sw, sh );
 	const sc = strength * Math.sqrt( width * height ) / 8;
-	const at = ( x, y ) => h[ ( ( y + height ) % height ) * width + ( ( x + width ) % width ) ];
+	const at = ( x, y ) => h[ ( ( y + border + sh ) % sh ) * sw + ( ( x + border + sw ) % sw ) ];
 
 	for ( let y = 0; y < height; y ++ ) {
 
@@ -260,7 +278,7 @@ export function R_NormalsFromCraftedHeight( h0, width, height, strength, capk = 
 			out[ o ] = Math.round( ( nx / len * 0.5 + 0.5 ) * 255 );
 			out[ o + 1 ] = Math.round( ( ny / len * 0.5 + 0.5 ) * 255 );
 			out[ o + 2 ] = Math.round( ( 1 / len * 0.5 + 0.5 ) * 255 );
-			out[ o + 3 ] = Math.round( h[ y * width + x ] * 255 );
+			out[ o + 3 ] = Math.round( at( x, y ) * 255 );
 
 		}
 
@@ -311,12 +329,12 @@ export function R_NormalMapFor( diffuse ) {
 	const crafted = diffuse.userData != null ? diffuse.userData.newerHeight : undefined;
 	const useCrafted = crafted != null && crafted.width === width && crafted.height === height;
 
-	const key = useCrafted ? 'crafted:' + crafted.file + ':' + crafted.strength + ':' + crafted.cap
+	const key = useCrafted ? 'crafted:' + crafted.file + ':' + ( crafted.dataFile || '' ) + ':' + crafted.strength + ':' + crafted.cap + ':' + ( crafted.edgeSource?.file || '' )
 		: width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
 	let pixels = generated.get( key );
 	if ( pixels === undefined ) {
 
-		pixels = useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength, crafted.cap )
+		pixels = useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength, crafted.cap, crafted.edgeSource )
 			: R_GenerateNormalData( data, width, height, fb );
 		if ( generated.size >= MAX_GENERATED ) generated.delete( generated.keys().next().value );
 		generated.set( key, pixels );
@@ -333,6 +351,23 @@ export function R_NormalMapFor( diffuse ) {
 	texture.colorSpace = THREE.NoColorSpace; // data, not colour
 	texture.offset.copy( diffuse.offset ); // a picture moved on its faces (crates) moves its relief too
 	texture.needsUpdate = true;
+	if ( useCrafted && crafted.relief ) texture.userData.surfaceRelief = { ...crafted.relief };
+	if ( useCrafted && crafted.edgeSource ) {
+
+		// Keep the uncarved material's smoothed height as a lighting reference.
+		// Only recess depth is shaded; its authored colour stays untouched.
+		const e = crafted.edgeSource;
+		const reference = new THREE.DataTexture( R_NormalsFromCraftedHeight( e.data, e.width, e.height, 0 ), e.width, e.height, THREE.RGBAFormat );
+		reference.wrapS = reference.wrapT = THREE.RepeatWrapping;
+		reference.magFilter = THREE.LinearFilter;
+		reference.minFilter = THREE.LinearMipmapLinearFilter;
+		reference.generateMipmaps = true;
+		reference.needsUpdate = true;
+		texture.userData.referenceHeight = reference;
+		texture.userData.referenceUV = new THREE.Vector4( width / e.width, height / e.height, e.offset[ 0 ] / e.width, e.offset[ 1 ] / e.height );
+		texture.addEventListener( 'dispose', () => reference.dispose() );
+
+	}
 
 	// go away with the texture it belongs to
 	diffuse.addEventListener( 'dispose', function () {

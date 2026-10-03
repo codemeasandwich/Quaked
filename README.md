@@ -192,3 +192,5 @@ Both the existing sound-volume slider (`volume`) and `bgmvolume` govern it; `bgm
 - Ambient music by **Iron Cthulhu Apocalypse**: *Hallucinations (Lovecraftian Dark Ambient Hour)* ([asset credits](music/CREDITS.txt)).
 - Weapon models by **[小林 団那紀](https://sketchfab.com/dannaki_)** (the archives retain the original author metadata, 旦那気 大安 / dannaki_tayan).
 - Shotgun-shell asset: only the shell from Weapon Pack is used. [Source and supplied license](newer/weapons/shell/license.txt).
+
+Newer Game adds a separate continuous procedural relief field to natural rock throughout cliffs, tunnels and caves, with gentle soil detail, preserving the original textures and collision geometry. `r_rockfield 0`/`1` compares the layer. [Implementation, limits and trial](docs/continuous-rockfield-2026-10-02.md).

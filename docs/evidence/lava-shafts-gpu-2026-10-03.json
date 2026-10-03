@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "inspection": {
+    "eye": [
+      816,
+      998.4,
+      32
+    ],
+    "target": [
+      816,
+      1032,
+      -112
+    ],
+    "texture": "*lava1"
+  },
+  "nativeLavaEmitters": 24,
+  "lavaPixels": 3967,
+  "lavaMeanRadianceGain": 4.394726230844269,
+  "receiverPixelsBrighter": 97,
+  "receiverMeanRedIncrease": 2.1752577319587627,
+  "shaftMean1": 0.001036448100426948,
+  "shaftMean4": 0.004145792613581252,
+  "shaftRatio": 4.000000204422643,
+  "unchangedNativeGeometryAndUvs": true,
+  "results": [
+    {
+      "mode": "native-source",
+      "boosts": [
+        4.715790980623929
+      ],
+      "glError": 0
+    },
+    {
+      "mode": "glowing-source",
+      "boosts": [
+        4.398117972503041
+      ],
+      "glError": 0
+    },
+    {
+      "mode": "receiver-no-lava",
+      "boosts": [
+        4.186491406705078
+      ],
+      "glError": 0
+    },
+    {
+      "mode": "receiver-lit",
+      "boosts": [
+        3.994030362809707
+      ],
+      "glError": 0
+    }
+  ],
+  "glError": 0
+}

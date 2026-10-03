@@ -1,0 +1,80 @@
+{
+  "frameDeliveryMeasurement": [
+    {
+      "relief": false,
+      "samples": 59,
+      "meanMs": 86.43898305084736,
+      "medianMs": 83.30000000001746,
+      "player": [
+        137.2001953125,
+        940.9883422851562,
+        -199.96875
+      ],
+      "canvas": [
+        1544,
+        1634
+      ],
+      "cache": {
+        "charts": 2,
+        "resident": 96,
+        "pending": 0,
+        "maxPages": 96,
+        "error": null,
+        "active": false
+      },
+      "actualGpuAlbedo": {
+        "width": 1544,
+        "height": 1638,
+        "valid": 2497744,
+        "alphaBelowOpaquePixels": 621,
+        "minAvailableAlpha": 128
+      }
+    },
+    {
+      "relief": true,
+      "samples": 59,
+      "meanMs": 90.10338983050808,
+      "medianMs": 83.40000000002328,
+      "player": [
+        137.2001953125,
+        940.9883422851562,
+        -199.96875
+      ],
+      "canvas": [
+        1544,
+        1634
+      ],
+      "cache": {
+        "charts": 2,
+        "resident": 96,
+        "pending": 0,
+        "maxPages": 96,
+        "error": null,
+        "active": true
+      },
+      "actualGpuAlbedo": {
+        "width": 1544,
+        "height": 1638,
+        "valid": 2497744,
+        "alphaBelowOpaquePixels": 18968,
+        "minAvailableAlpha": 128
+      }
+    }
+  ],
+  "grazingLightProbe": {
+    "direction": [
+      -0.07949286335171643,
+      -0.07949286335171643,
+      0.9936607918964553
+    ],
+    "actualGpuAlbedo": {
+      "width": 1544,
+      "height": 1638,
+      "valid": 2497744,
+      "alphaBelowOpaquePixels": 21179,
+      "minAvailableAlpha": 128
+    }
+  },
+  "glError": 0,
+  "errors": []
+}

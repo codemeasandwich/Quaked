@@ -1,0 +1,32 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "head": "c865b7540c89251aa17a68d5c2aeb3e995217c43",
+  "committed": false,
+  "files": {
+    "src/gl_post.js": "ea2d7274e7b3d0a0e7f0ce610d7c6b2f395884040271428123494e41f83d81ff",
+    "src/gl_normals.js": "6d465d6027e929b0778ecf67e4de716ee0c6437c7b115cac13459e84b788554e",
+    "src/sv_pinnedzombies.js": "7a0f80d12e06af1caa243e61d430ab774f1a7aa9c4d57f234caf9c665eb0293f",
+    "src/pr_edict.js": "a332adf841d319039a5aedbfef89956fd39ebfeab34a5b93008fe85dd6cd66c8",
+    "src/host_cmd.js": "4a356a57b2c1665fd8a0468e9c0b298939d12440f282a0306afe235799c3a963",
+    "src/r_newertextures.js": "7b175aef38c608fb3cc74304dc5c7fba76a4ca3dc438275cc366893bc5d775eb",
+    "newer/textures/index.json": "f5374eb605af08d33aafccc90ede3f70451173accdfc06bfb92082a04a1710bd",
+    "newer/textures/hub-quaked-logo.webp": "25fd3e17e01cf63683279df6892769797ea0031ff633a85d199bfd5969ee8571",
+    "newer/textures/normals/hub-quaked-logo.webp": "fb0b6412db9b2faff457fbbcfe75407035d615bd83e94bd3c481c2f1a6bc0407",
+    "newer/textures/wizmet1_2.webp": "fafafda094f9c378e062b33231d307a2a91a374b6e32c783b2ca367bfc6360d2",
+    "newer/textures/normals/wizmet1_2.webp": "52640e4db4dd040672c3f948226b5fa7638aa1a95839672f5214e82d523ecb65",
+    "logo.svg": "bca0346e88fa92e301bd21d49287c9eceee097c7e4333ac0051818047e25ceff",
+    "tests/hub_logo_test.js": "42886fc97588f2c33509096fb4ef511e8149786965da58f57e61fa84afc3cf5a",
+    "tests/main_module_graph_test.js": "6f19e0958f686706b2d18a9d45ec61e592a4172f3326e34f88caf11c54c6f15f",
+    "tests/lava_shafts_test.js": "497619580064abf81f02bf4926ceafce83bb1b2bf688adc3117f1afb6e436fb0",
+    "tests/pinned_zombies_test.js": "664b624a0fa9a4f1f77886b71df47bab58635fea0fa6876372f4a9863cdd06d9",
+    "tests/rockfield_gameplay_trial.js": "cf9a132d23582a865a7087aafaa636b2bfdd4ed453c96f0d232b3a9cbfc7ff92"
+  },
+  "finalCombinedTests": "70/70",
+  "independentLogoAndPipelineTests": "10/10",
+  "gpu": "docs/evidence/lava-shafts-gpu-2026-10-03.json",
+  "scope": "Production changes and source identity; live appearance subject to owner acceptance",
+  "finalGate": "docs/evidence/welcome-refinements-six-inch-tests-2026-10-03.txt",
+  "liveCarvingImage": "docs/images/hub-deep-carving-2026-10-03.jpg",
+  "liveBindings": "docs/evidence/hub-deep-carving-live-bindings-2026-10-03.json",
+  "visualDepth": "Approximately 5.7 Quake units at full .56 cut; intended roughly six-inch appearance, virtual rather than geometry"
+}

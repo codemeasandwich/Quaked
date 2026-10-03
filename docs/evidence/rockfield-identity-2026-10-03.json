@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-03",
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "ownerPreset": "maximum large blocky cliff shading; subtle ground",
+  "viewProjectionCap": 0.18,
+  "wallHeightAmplitude": 0.8,
+  "groundHeightAmplitude": 0.009,
+  "tests": "44/44 passed",
+  "independentChecks": "13/13 passed",
+  "liveGlError": 0,
+  "liveBenchmarkQualification": "one fixed-camera full-resolution local frame-delivery sample only",
+  "visualOwnerAcceptance": "pending",
+  "sha256": {
+    "src/rockfield.js": "9f8346c0ae191faac1eff536db849bf511dc3892c9dfbf3e27845224b1bf55a3",
+    "src/rockfield_worker.js": "701d82acd2332ea7af027a4735da59f4d460061dfa922a4c912b885fc1cf59c3",
+    "src/r_rockfield.js": "2866f44e1d6f65b99d05e1562d6544422e7216892f0954b62c6acc4d196d87e9",
+    "src/r_rocksurfaces.js": "920504643230a0826cb7708d1997bccbd42c1917ce20ef0cd4d9d18c89a23bc6",
+    "src/r_rockshader.js": "01d0198a34d9ef8fcbbc6edba89a98c3844bc016bfece9604207cc821cff167c",
+    "src/gl_rsurf.js": "e75c6c05d681e125febf868c50ce0ad33e337c72ff7892702b6a034b659024b2",
+    "src/gl_post.js": "e3e909a9475368149da718a526981d4de928e0e6a37dbb4a2d31aa2b4070538b",
+    "src/gl_rmain.js": "f0fac34bc44e0dbd2d4a031e0227ab0a409bc2a6aea49f070ab91cba99742d2f",
+    "tests/rockfield_gameplay_trial.js": "6904d570c72a42e4220db2421ee3e9a02cb2af005c919560cff723eb5ac7c897",
+    "tests/rockfield_gameplay_trial.html": "585d8049ef18a3452e604ec29836a20192eaae21e76834d94645bbb061a8a1f2",
+    "tests/rockfield_runtime_test.js": "e7e78e71f9529441f0f7c73e16ea83071119d0218590f6365f3c13554d00713b",
+    "tests/rockfield_test.js": "4974ce5792b3c50cbd0668fc20c91f65966e64cbe79a3a50b78fc781845f8890",
+    "tests/rockfield_map_test.js": "66e8d6597ce82dfc68a04fd7efd500bebf6807ac6eb0e5506884aaad9555197e",
+    "docs/evidence/rockfield-tests-2026-10-03.txt": "889b9ab9490bd9fb5784b10702790a58a2c57ce555dcfc6f071ed9fb27814f0e",
+    "docs/evidence/rockfield-live-2026-10-03.json": "5b65ac84774ea06b2c8a7a74dc5dad709770766e61799dfcdd5353e6d0710426"
+  }
+}

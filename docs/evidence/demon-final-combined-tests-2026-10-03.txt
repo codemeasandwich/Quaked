@@ -1,0 +1,180 @@
+DEMON_PACKAGE {"normalSamples":15969,"maxChannelError":0,"greenFlipAllPixels":true,"sourceWidth":2048,"amplitude":0.05,"sub8bitSamples":130288}
+PASS only three horned plaque materials get enhanced relief; native BSP proportions and original pigment files stay unchanged
+PASS registered materials asynchronously load shared displacement metadata and bounded microdetail while sourceBSP geometryUVs stay untouched
+PASS ordinary detail remains10 layers and original carved-logo reference retains60-layer precedence
+PASS invalid relief metadata is ignored before shader compilation while valid art still loads
+PASS missing or truncated saved16 data cannot silently create geometry from its8-bit preview or poison valid scalar normals
+DEMON_GLOW_PIXELS {"leftEye":583,"rightEye":553,"mouth":2501}
+PASS actual dem5_3 picture supplies both eyes and mouth glow without horns or pigment loss after native had no fullbright mask
+PASS classic comparison and New Game rollback recover exact native plaque pixels and remove enhanced relief
+RESULT 7/7 passed (tests/demon_face_relief_test.js)
+Added packfile pak0.pak (339 files)\n
+ACTUAL_DEMON_MESH {"topVertices":393216,"triangles":133120,"skirtTriangles":2048,"minDepth":1.1185302734375,"maxDepth":8.21337890625,"changedNormals":233139}
+PASS real native plaque tessellation changes vertex depth/silhouette and normals while barycentric UV/lightmap and collision sources remain intact
+DEMON_TOPOLOGY {"polygons":2,"checkedTopTriangles":262144,"interpolationWorldUnits":{"samples":262144,"mean":0.01747141812990398,"p95":0.04889834721882558,"max":0.1551197369893922},"facetVsSmoothDegrees":{"samples":262144,"mean":3.5179484943003785,"p95":8.412698694854855,"max":30.65848089237705},"foreheadError":{"samples":6834,"mean":0.013699874814201346,"p95":0.03649366696679124,"max":0.05355841318768828},"foreheadAngle":{"samples":6834,"mean":3.1120781756287186,"p95":8.467427245184773,"max":14.139142649729532}}
+PASS every real top triangle has outward winding, exact projected coverage and no unmatched internal fan edges
+PASS geometry cache, package-clamped tile endpoints and invalid/missing/other-material input preserve safe native fallback
+PASS sun occluder follows exactly the visible Newer texture/normal gates and includes actual raised triangles
+PASS public world draw updates real overlay/PVS, restores native modes, and removes stale geometry when height becomes unavailable
+RESULT 5/5 passed (tests/demon_mesh_test.js)
+Added packfile pak0.pak (339 files)\n
+DEMON_NATIVE_TILE_REGIONS {"checkedVertices":2695956,"checkedTriangles":898652,"faces":[{"map":"e1m2","id":2881,"texture":"dem5_3","tiles":[[-8,-5],[-8,-4],[-8,-3]],"topTriangles":197636,"skirtTriangles":4112,"projectedArea":9216},{"map":"e1m2","id":3242,"texture":"dem5_3","tiles":[[-8,-5],[-8,-4]],"topTriangles":164354,"skirtTriangles":3080,"projectedArea":8192},{"map":"e1m2","id":3246,"texture":"dem5_3","tiles":[[-14,-5],[-14,-4]],"topTriangles":164354,"skirtTriangles":3080,"projectedArea":8192},{"map":"e1m2","id":3452,"texture":"dem5_3","tiles":[[6,-3],[6,-2]],"topTriangles":164354,"skirtTriangles":3080,"projectedArea":8192},{"map":"e1m2","id":4190,"texture":"dem5_3","tiles":[[-6,-3],[-6,-2]],"topTriangles":164354,"skirtTriangles":3080,"projectedArea":8192},{"map":"e1m4","id":5820,"texture":"dem5_3","tiles":[[17,0],[17,1]],"topTriangles":21800,"skirtTriangles":1072,"projectedArea":512},{"map":"e1m4","id":5821,"texture":"dem5_3","tiles":[[17,0],[17,1]],"topTriangles":21800,"skirtTriangles":1072,"projectedArea":512}]}
+PASS all seven stock cross-tile plaques preserve donor registration, barycentric native UV/lightmaps, projected coverage and closed geometry
+RESULT 1/1 passed (tests/demon_tiles_test.js)
+PASS hub logo retains the real 288x64 START plaque aspect and faithful supplied SVG identity
+PASS logo albedo continues native wall alignment exactly and only SVG strokes lower its existing height
+PASS public enhanced texture loader installs registered recessed height and derived normals without changing UVs
+PASS byte-packed carved occlusion stays distinct from rock/ordinary tags and only attenuates new deferred lighting
+PASS classic split and restored New Game retain native QUAKE pixels and remove enhanced logo height
+PASS texture update listeners follow animated texture changes and detach on material disposal
+RESULT 6/6 passed (tests/hub_logo_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+RESULT 3/3 passed (tests/gl_rsurf_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+PASS frame pipeline carries authored albedo separately at scene resolution
+RESULT 1/1 passed (tests/flashlight_albedo_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+PASS default shafts share one4x gain for sun, points and flashlight while the .5 slider stays nominal and off modes stay off
+PASS lava material becomes emissive above bloom range without texture/opacity/physics changes, then returns to native colour
+PASS subdivided lava emits from local surface patches and broad area falloff leaves ordinary lamps unchanged
+Added packfile pak0.pak (339 files)\n
+NATIVE_START_LAVA {"surfaces":30,"emitters":24,"nearHard":[{"pos":[988,1882,-48],"radius":58.787753826796276,"power":1.1},{"pos":[988,1882,32],"radius":48,"power":1.1},{"pos":[988,1902,-48],"radius":58.787753826796276,"power":1.1},{"pos":[988,1902,32],"radius":48,"power":1.1}]}
+PASS actual START lava generates local warm emitters with unchanged native pool geometry and liquid boundaries
+RESULT 4/4 passed (tests/lava_shafts_test.js)
+PASS all26 installed WebPs and registered heights reach the public texture object without changing the64unit UV period
+PASS crafted normals match an independent periodic sine derivative and preserve height at the wrap
+PASS classic pass and normal NewGame preserve native pixels; returning restores all upgraded textures
+RESULT 3/3 passed (tests/level_texture_runtime_test.js)
+PASS natural materials share continuous fields indoors and outdoors across ceilings/floors/slopes, while construction stays native
+Added packfile pak0.pak (339 files)\n
+ACTUAL_ANGLED_ROCK_EDGES 199 ORIENTATIONS {"roof":38,"floor":11,"slope":2}
+PASS actual E1M1 cave roofs/floors/slopes and angled rock edges share exact height and derivatives without orientation or texture seeds
+BUNDLED_ROCK_AUDIT {"maps":21,"rock":2440,"soil":668,"roof":319,"floor":240,"slope":73,"minRockArea":0.039399095431629394}
+PASS all bundled BSP world rock faces are classified independent of sky/orientation and retain nondegenerate shared projection
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+HUB_ROCK4_FACES 308 HARD_BRICKA2_2_FACES 80 SHARED_EDGES 363
+PASS actual START hub rock4_1 and confirmed Hard bricka2_2 faces share maximum relief while metal and construction remain native
+PASS tile cache limits jobs to2, deduplicates, ignores cancelled epochs and retains at most96 LRU pages
+PASS GPU half-float pages retain exact shared heights and both slopes with genuine neighboring gutters
+PASS page lookup preserves every resident even under a full96-page hash collision cluster
+PASS public world update only requests visible eligible charts in Newer normals mode and replaces maps without stale jobs
+PASS public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility
+RESULT 9/9 passed (tests/rockfield_runtime_test.js)
+PASS extracted RockField public functions reproduce supplied core exactly for both profiles and seed forms
+PASS negative and positive neighbors share exact heights, both tangent slopes and real gutters in every generation order
+BLOCK_SHAPE {"original":{"cuts":426,"flatRatio":0.05286189392613338,"largest":49},"maximum":{"cuts":2516,"flatRatio":0.7670762758773386,"largest":1894}}
+PASS maximum block profile has broad connected flat crowns and deep cuts without repeating or changing the original ground field
+PASS multi-tile regions use one nonrepeating global field and preserve the different wall and ground profiles
+PASS invalid configuration, coordinates, neighbor pairs and oversized exports fail before generating data
+PASS public worker requests return source-identical transferable tiles and correlated errors across configuration changes
+RESULT 6/6 passed (tests/rockfield_test.js)
+Added packfile pak0.pak (339 files)\n
+REAL_MAP_CHARTS [{"id":1,"profile":"wall","pieces":307,"bounds":[-6.739564626993132,-0.81445333375,0.12535853750000014,2.347106892265625],"names":["uwall1_2"]},{"id":2,"profile":"ground","pieces":264,"bounds":[-1.8146185874938965,1.875,5.875,11.75],"names":["ground1_2","ground1_6"]}]
+PASS shipped E1M1 assigns continuous natural rock and terrain charts without changing BSP polygons or texture scale
+RESULT 1/1 passed (tests/rockfield_map_test.js)
+Added packfile pak0.pak (339 files)\n
+Programs occupy 403K.
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+0 entities inhibited
+
+PASS native pinned zombie in Newer Game takes real shotgun traces and dies through stock QuakeC gibs without changing monster counts
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+PASS classic pinned zombies retain native immunity and normal walking zombies retain native pain behavior
+Programs occupy 403K.
+
+0 entities inhibited
+
+PASS ordinary save fields retain accumulated pinned damage and restored zombie uses native T_Damage death
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+PASS restoring a legacy living pinned zombie enables native damage only in Newer Game and preserves other saved fields
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+Programs occupy 403K.
+
+0 entities inhibited
+
+PASS restore guard preserves already-mortal damaged, dead, free, and nonnative callback records
+RESULT 5/5 passed (tests/pinned_zombies_test.js)
+TOTAL 78/78 passed
