@@ -1,0 +1,63 @@
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+PASS attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+TOTAL 39/39 passed

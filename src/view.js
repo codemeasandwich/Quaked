@@ -20,6 +20,7 @@ import { cl_forwardspeed } from './cl_input.js';
 import { R_RenderView } from './gl_rmain.js';
 import { R_PushDlights } from './gl_rlight.js';
 import { con_forcedup } from './console.js';
+import { R_DemoLoadingHolding } from './r_demoloading.js';
 import { VID_UpdateGamma } from './vid.js';
 import { scr_viewsize } from './gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
@@ -938,7 +939,7 @@ the entity origin, so any view position inside that will be valid
 */
 export function V_RenderView() {
 
-	if ( con_forcedup )
+	if ( con_forcedup && !(R_DemoLoadingHolding()&&cls.demoplayback&&cls.signon===4&&cl.worldmodel))
 		return;
 
 	// don't allow cheats in multiplayer

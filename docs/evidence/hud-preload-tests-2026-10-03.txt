@@ -1,0 +1,10 @@
+PASS HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests
+PASS HUD image timeout/error resolves preload as native fallback and late images cannot populate lazy sprites
+PASS HUD missing and stalled indices settle preload without late catalog requests
+RESULT 3/3 passed (tests/hud_preload_test.js)
+PASS HUD portrait: all eight powerup combinations preserve native priorities except the enhanced Quad+Invulnerability combination
+PASS HUD portrait: real indexed URLs load combination, ordinary face2 and Quad/grin art while public Draw_Pic keeps 24x24 layout
+PASS HUD portrait: failed optional combination load retains native FACE_INVUL1 pixels at native size
+PASS HUD portrait: restore public fixture globals
+RESULT 4/4 passed (tests/hud_face_combo_test.js)
+TOTAL 7/7 passed

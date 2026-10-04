@@ -1,0 +1,44 @@
+Browser tab: 18, Title: "Quaked", URL: "http://localhost:8013/tests/run_policy_trial.html".
+0 AXWebArea Quaked, URL: localhost:8013/tests/run_policy_trial.html
+	1 container
+		3 text Prepared maps and flashlight run trial
+		4 button Newer hub, ID: hub
+		5 button Easy corridor, ID: easy
+		6 button Normal corridor, ID: normal
+		7 button Hard corridor, ID: hard
+		8 button Nightmare corridor, ID: nightmare
+		9 button Flashlight, ID: flash
+		10 button Restart run, ID: restart
+		11 button Hide controls, ID: hide
+		15 text {
+  "level": "maps/start.bsp",
+  "signon": 4,
+  "skill": 1,
+  "flashlight": 0,
+  "run": {
+    "active": true,
+    "map": "start",
+    "selectedSkill": null,
+    "noticeShown": false,
+    "on": false
+  },
+  "preparedMaps": {
+    "charts": 33,
+    "resident": 96,
+    "pending": 0,
+    "maxPages": 96,
+    "error": null,
+    "active": true,
+    "preparedState": "ready",
+    "preparedTiles": 96,
+    "generatedTiles": 0,
+    "preparedError": null
+  },
+  "nativeCorridor": null,
+  "glError": 0,
+  "errors": []
+}
+		13 image
+		14 image
+
+The focused UI element is 0 AXWebArea Quaked, URL: localhost:8013/tests/run_policy_trial.html

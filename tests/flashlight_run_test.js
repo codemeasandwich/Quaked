@@ -1,0 +1,72 @@
+// Public run policy, command/menu input, native QuakeC builtin and notify UI.
+// No game/server loop or browser is launched.
+import { readFileSync } from 'node:fs';
+import * as run from '../src/r_flashlightrun.js';
+import * as flashlight from '../src/r_flashlight.js';
+import * as vars from '../src/cvar.js';
+import * as commands from '../src/cmd.js';
+import * as menu from '../src/menu.js';
+import * as keys from '../src/keys.js';
+import * as consoleUI from '../src/console.js';
+import { Con_SetPrintFunctions } from '../src/common.js';
+import { cls, ca_connected } from '../src/client.js';
+import * as anim from '../src/r_anim.js';
+import { r_hdr, r_pointshadows } from '../src/gl_post.js';
+import { r_heightshadows } from '../src/r_heightshadows.js';
+import { v_gamma } from '../src/view.js';
+import { cl_showfps } from '../src/r_perf.js';
+import { skill } from '../src/host.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import * as split from '../src/r_demosplit.js';
+import * as progs from '../src/progs.js';
+import { PR_InitBuiltins } from '../src/pr_cmds.js';
+import { OFS_PARM0, OFS_PARM1 } from '../src/pr_comp.js';
+const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
+const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
+const controls = [ r_hdr, skill, flashlight.r_flashlight, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_shadows, r_pointshadows, r_heightshadows, v_gamma, cl_showfps, split.r_demosplit ]; for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
+globalThis.window = { devicePixelRatio: 1, innerWidth: 640, innerHeight: 400 }; // UI sizing only, no browser
+commands.Cbuf_Init(); commands.Cmd_Init(); flashlight.R_FlashlightInit(); menu.M_Init();
+let glyphs = [], time = 100;
+consoleUI.Con_SetExternals( { cls: { signon: 4 }, vid: { width: 640, height: 400 }, getRealtime: () => time, Draw_Character: ( x, y, c ) => glyphs.push( { x, y, c } ) } ); consoleUI.Con_Init(); Con_SetPrintFunctions( consoleUI.Con_Printf, () => {} );
+const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'flashlight-run-fixture', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) );
+function notifications() { glyphs = []; consoleUI.Con_DrawNotify(); const rows = new Map(); for ( const g of glyphs ) { if ( ! rows.has( g.y ) ) rows.set( g.y, [] ); rows.get( g.y ).push( g ); } return [ ...rows ].map( ( [ y, chars ] ) => ( { y, x: Math.min( ...chars.map( g => g.x ) ), text: chars.sort( ( a, b ) => a.x - b.x ).map( g => String.fromCharCode( g.c & 127 ) ).join( '' ).trim() } ) ); }
+function fixture( fn ) { const before = controls.map( v => v.string ), state = cls.state, demo = cls.demoplayback; try { controls.forEach( v => vars.Cvar_Set( v.name, '1' ) ); cls.state = ca_connected; cls.demoplayback = false; anim.R_AnimSetClassicPass( false ); anim.R_AnimSetNewer( true ); anim.R_AnimSetLighting( true ); commands.Cmd_ExecuteString( 'clear' ); consoleUI.Con_ClearNotify(); time ++; return fn(); } finally { run.R_FlashlightRunEnd(); controls.forEach( ( v, i ) => vars.Cvar_Set( v.name, before[ i ] ) ); cls.state = state; cls.demoplayback = demo; anim.R_AnimSetNewer( false ); anim.R_AnimSetLighting( false ); } }
+const update = () => flashlight.R_FlashlightUpdate( [ 0, 0, 24 ], [ 1, 0, 0 ], [ 0, -1, 0 ], [ 0, 0, 1 ] );
+
+Deno.test( 'fresh hub stays off for every skill; fresh/restarted levels choose0/1on and2/3off without consuming the user notice', () => fixture( () => {
+	for ( let value = 0; value < 4; value ++ ) { run.R_FlashlightNewRun( 'start', value, true ); same( flashlight.r_flashlight.value, 0, 'hub always begins off' ); same( run.R_FlashlightRunStatus().noticeShown, false, 'hub automatic off is not user-off' ); run.R_FlashlightNewRun( 'e1m1', value, true ); same( flashlight.r_flashlight.value, value < 2 ? 1 : 0, 'fresh level difficulty default' ); same( notifications().length, 0, 'defaults print no user notice' ); }
+	vars.Cvar_SetValue( 'r_flashlight', 1 ); run.R_FlashlightNewRun( 'e1m1', 2, false ); same( flashlight.r_flashlight.value, 1, 'Classic start leaves preference alone' ); same( run.R_FlashlightRunStatus().active, false, 'Classic has no Newer run' );
+} ) );
+
+Deno.test( 'actual nativeSTART trigger_setskill builtin handles same-valueNormal, all four choices, repeated touches and rejects nonlocal/nonhub skill writes', () => fixture( () => {
+	const bsp = Buffer.from( COM_FindFile( 'maps/start.bsp' ).data ), at = bsp.readInt32LE( 4 ), size = bsp.readInt32LE( 8 ), ents = bsp.subarray( at, at + size ).toString(), choices = [ ...ents.matchAll( /\{([^}]*)\}/g ) ].map( m => Object.fromEntries( [ ...m[ 1 ].matchAll( /"([^"]+)"\s*"([^"]*)"/g ) ].map( m => [ m[ 1 ], m[ 2 ] ] ) ) ).filter( e => e.classname === 'trigger_setskill' ); same( choices.map( e => e.message ).sort().join(), '0,1,2,3', 'actual native corridor selections' );
+	const qc = Buffer.from( COM_FindFile( 'progs.dat' ).data ), functionsAt = qc.readInt32LE( 32 ), functionsCount = qc.readInt32LE( 36 ), stringsAt = qc.readInt32LE( 40 ), globalsAt = qc.readInt32LE( 48 ), statementsAt = qc.readInt32LE( 8 );
+	const functionAt = i => ( { first: qc.readInt32LE( functionsAt + i * 36 ), name: qc.subarray( stringsAt + qc.readInt32LE( functionsAt + i * 36 + 16 ) ).toString().split( '\0' )[ 0 ] } );
+	const touchFunction = Array.from( { length: functionsCount }, ( _, i ) => functionAt( i ) ).find( f => f.name === 'trigger_skill_touch' ); check( touchFunction && touchFunction.first >= 0, 'actual native touch function present' ); let nativeCallsBuiltin72 = false;
+	for ( let i = touchFunction.first; i < touchFunction.first + 32; i ++ ) { const at = statementsAt + i * 8, op = qc.readUInt16LE( at ); if ( ! op ) break; if ( op === 53 ) { const global = qc.readInt16LE( at + 2 ), callee = functionAt( qc.readInt32LE( globalsAt + global * 4 ) ); nativeCallsBuiltin72 ||= callee.name === 'cvar_set' && callee.first === -72; } }
+	check( nativeCallsBuiltin72, 'actual stock corridor touch reaches the public builtin under test' );
+
+	const old = { sv: progs.sv, globals: progs.pr_global_struct, ints: progs.pr_globals_int, strings: progs.pr_strings_data, builtins: progs.pr_builtins, count: progs.pr_numbuiltins }, strings = '\0' + [ 'skill', '0', '1', '2', '3', 'trigger_setskill', 'player', 'worldspawn' ].join( '\0' ) + '\0', globals = new Int32Array( 64 ), world = new progs.edict_t( 0, 128 ), player = new progs.edict_t( 1, 128 ), trigger = new progs.edict_t( 2, 128 ), remote = new progs.edict_t( 3, 128 ), server = { name: 'start', edicts: [ world, player, trigger, remote ], num_edicts: 4, max_edicts: 4 };
+	try { progs.PR_SetSV( server ); progs.PR_SetGlobalStruct( { self: 2, other: 1 } ); progs.PR_SetGlobalsInt( globals ); progs.PR_SetStringsData( new TextEncoder().encode( strings ) ); PR_InitBuiltins(); trigger.v.classname = strings.indexOf( 'trigger_setskill' ); globals[ OFS_PARM0 ] = strings.indexOf( 'skill' ); const touch = value => { globals[ OFS_PARM1 ] = strings.indexOf( String( value ) ); progs.pr_builtins[ 72 ](); };
+		run.R_FlashlightNewRun( 'start', 1, true ); vars.Cvar_SetValue( 'skill', 1 ); touch( 1 ); same( flashlight.r_flashlight.value, 1, 'same-value native Normal selection activates light' ); update(); same( flashlight.R_FlashlightBeam().on, true, 'actual shoulder beam enabled after corridor' ); commands.Cmd_ExecuteString( 'flashlight' ); same( flashlight.r_flashlight.value, 0, 'manual corridor off' ); touch( 1 ); same( flashlight.r_flashlight.value, 0, 'repeated QC touch cannot override manual off' ); touch( 2 ); same( flashlight.r_flashlight.value, 0, 'Hard remains off' ); touch( 0 ); same( flashlight.r_flashlight.value, 1, 'Easy choice on' ); touch( 3 ); same( flashlight.r_flashlight.value, 0, 'Nightmare off' );
+		run.R_FlashlightNewRun( 'start', 1, true ); progs.pr_global_struct.other = 3; touch( 0 ); same( flashlight.r_flashlight.value, 0, 'remote player cannot select local beam' ); progs.pr_global_struct.other = 1; trigger.v.classname = strings.indexOf( 'worldspawn' ); touch( 0 ); same( flashlight.r_flashlight.value, 0, 'spawn/ordinary QC skill normalization is not corridor entry' ); trigger.v.classname = strings.indexOf( 'trigger_setskill' ); server.name = 'e1m1'; touch( 0 ); same( flashlight.r_flashlight.value, 0, 'nonhub skill writes not corridor entry' );
+	} finally { progs.PR_SetSV( old.sv ); progs.PR_SetGlobalStruct( old.globals ); progs.PR_SetGlobalsInt( old.ints ); progs.PR_SetStringsData( old.strings ); progs.PR_SetBuiltins( old.builtins, old.count ); }
+} ) );
+
+Deno.test( 'F/console off prints the native corner status exactly once per run, travel/load preserves it and fresh/restart resets it; demo/classic are excluded', () => fixture( () => {
+	run.R_FlashlightNewRun( 'e1m1', 1, true ); commands.Cmd_ExecuteString( 'flashlight' ); let rows = notifications(); same( rows.filter( r => r.text === 'No duct tape in Mars' ).length, 1, 'first actual F off appears once' ); check( rows.every( r => r.x === 8 && r.y >= 0 && r.y < 32 ), 'existing corner notify placement, no centered overlay' ); commands.Cmd_ExecuteString( 'flashlight' ); commands.Cmd_ExecuteString( 'flashlight' ); same( notifications().filter( r => r.text === 'No duct tape in Mars' ).length, 1, 'later off does not repeat' ); run.R_FlashlightRunMap( 'maps/e1m2.bsp', true ); same( flashlight.r_flashlight.value, 0, 'crosslevel preserves manual off' ); check( run.R_FlashlightRunStatus().noticeShown, 'crosslevel/load keeps run notice counter' );
+	run.R_FlashlightNewRun( 'e1m2', 0, true ); vars.Cvar_SetValue( 'r_flashlight', 0 ); update(); same( notifications().filter( r => r.text === 'No duct tape in Mars' ).length, 2, 'fresh/restart resets once-run notice and direct console change is observed' );
+	commands.Cmd_ExecuteString( 'clear' ); consoleUI.Con_ClearNotify(); run.R_FlashlightNewRun( 'e1m1', 1, true ); cls.demoplayback = true; commands.Cmd_ExecuteString( 'flashlight' ); same( notifications().length, 0, 'demo off prints no run message' ); check( ! run.R_FlashlightRunStatus().noticeShown, 'demo changes consume no run notice' ); cls.demoplayback = false; vars.Cvar_SetValue( 'r_hdr', 0 ); commands.Cmd_ExecuteString( 'flashlight' ); commands.Cmd_ExecuteString( 'flashlight' ); same( notifications().length, 0, 'Classic off prints no Newer run message' );
+} ) );
+
+Deno.test( 'public Newer menu preserves shared lighting defaults while hub/level policy and flashlight checkbox use the run input path', () => fixture( () => {
+	let dest = keys.key_game; const maps = [], modes = []; for ( const name of [ 'maxplayers' ] ) if ( ! commands.Cmd_Exists( name ) ) commands.Cmd_AddCommand( name, () => {} ); commands.Cmd_AddCommand( 'map', () => { const name = commands.Cmd_Argv( 1 ); maps.push( name ); modes.push( vars.Cvar_VariableValue( 'r_hdr' ) ); run.R_FlashlightNewRun( name, vars.Cvar_VariableValue( 'skill' ), vars.Cvar_VariableValue( 'r_hdr' ) !== 0 ); } );
+	menu.M_SetExternals( { key_dest_set: v => { dest = v; }, key_dest_get: () => dest, cls: { demonum: -1 }, sv: { active: false }, svs: { maxclients: 1 }, IN_RequestPointerLock: () => {}, S_LocalSound: () => {}, Draw_CachePic: () => null } ); commands.Cmd_ExecuteString( 'menu_singleplayer' ); menu.M_Keydown( keys.K_ENTER ); commands.Cbuf_Execute(); same( maps.at( -1 ), 'start', 'public Newer start hub command' ); same( modes.at( -1 ), 1, 'Newer HDR unchanged' ); same( flashlight.r_flashlight.value, 0, 'public Newer hub is off' ); for ( const feature of [ anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_shadows, r_pointshadows, r_heightshadows ] ) same( feature.value, 1, 'shared Newer default retained ' + feature.name ); same( v_gamma.value, .75, 'brightness midpoint retained' ); same( cl_showfps.value, 1, 'FPS default retained' );
+	commands.Cmd_ExecuteString( 'menu_singleplayer' ); for ( let i = 0; i < 4; i ++ ) menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( menu.m_state, menu.m_levelselect, 'actual level-select entry via singleplayer row' );
+	for ( let difficulty = 0; difficulty < 4; difficulty ++ ) { vars.Cvar_SetValue( 'skill', difficulty ); if ( difficulty > 0 ) { commands.Cmd_ExecuteString( 'menu_singleplayer' ); menu.M_Keydown( keys.K_ENTER ); } if ( difficulty === 0 ) menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); commands.Cbuf_Execute(); check( maps.at( -1 ) !== 'start', 'selected native level starts directly' ); same( flashlight.r_flashlight.value, difficulty < 2 ? 1 : 0, 'selected level honors actual selected difficulty' ); }
+	run.R_FlashlightNewRun( 'e1m1', 1, true ); commands.Cmd_ExecuteString( 'menu_options' ); menu.M_Keydown( keys.K_ENTER ); same( menu.m_state, menu.m_newer, 'actual options entry opens Newer features' ); for ( let i = 0; i < 8; i ++ ) menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( flashlight.r_flashlight.value, 0, 'actual flashlight options checkbox toggles off' ); same( notifications().filter( r => r.text === 'No duct tape in Mars' ).length, 1, 'menu input gets same once-run notify' );
+} ) );
+
+Deno.test( 'actual attract demo temporaryON/restoreOFF cannot consume a resumed Hard run notice, but the next real user off still can', () => fixture( () => {
+	run.R_FlashlightNewRun( 'e1m1', 2, true ); same( flashlight.r_flashlight.value, 0, 'actual Hard default off' ); cls.demoplayback = true; split.R_DemoSplitStart(); same( flashlight.r_flashlight.value, 1, 'actual enhanced demo still on' ); update(); split.R_DemoSplitEnd(); same( flashlight.r_flashlight.value, 0, 'actual demo restores manual/game off' ); cls.demoplayback = false; run.R_FlashlightRunMap( 'maps/e1m1.bsp', true ); update(); same( run.R_FlashlightRunStatus().noticeShown, false, 'restore and resumed gameplay never count as a user off' ); same( notifications().length, 0, 'no false corner message after demo' ); commands.Cmd_ExecuteString( 'flashlight' ); commands.Cmd_ExecuteString( 'flashlight' ); same( notifications().filter( r => r.text === 'No duct tape in Mars' ).length, 1, 'next genuine user off emits first run notice' );
+} ) );

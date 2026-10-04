@@ -14,14 +14,21 @@ let index = null; // name -> file
 let indexPromise = null;
 let version = '0';
 const canvases = new Map(); // file -> canvas or null (not there)
+const resolvedCanvases = new Map(); // terminal canvas/null, available synchronously after preload
+export const NEWER_HUD_TIMEOUT_MS = 30000;
+let indexState = 'idle', preloadState = 'idle', preloadPromise = null;
+const canvasStates = new Map(), errors = new Map();
 
 function loadIndex() {
 
 	if ( indexPromise === null ) {
 
-		indexPromise = COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
-			.then( ( j ) => { index = j.sprites != null ? j.sprites : {}; version = String( j.version ); return index; } )
-			.catch( () => { index = {}; return index; } );
+		indexState = 'loading'; let timer;
+		indexPromise = Promise.race( [ COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), new Promise( ( _, reject ) => {
+			timer = setTimeout( () => reject( new Error( 'HUD index timed out' ) ), NEWER_HUD_TIMEOUT_MS );
+		} ) ] ).then( ( j ) => { if ( ! j.sprites ) throw new Error( 'Missing HUD manifest' ); index = j.sprites; version = String( j.version ); indexState = 'ready'; return index; } )
+			.catch( error => { errors.set( 'index', String( error.message || error ) ); indexState = 'fallback'; index = {}; return index; } )
+			.finally( () => clearTimeout( timer ) );
 
 	}
 
@@ -31,25 +38,54 @@ function loadIndex() {
 
 function loadCanvas( file ) {
 
-	return new Promise( ( resolve ) => {
+	if ( canvases.has( file ) ) return canvases.get( file );
+	canvasStates.set( file, 'loading' );
+	const request = new Promise( ( resolve ) => {
 
-		if ( typeof Image === 'undefined' || typeof document === 'undefined' ) return resolve( null );
+		if ( typeof Image === 'undefined' || typeof document === 'undefined' ) { canvasStates.set( file, 'fallback' ); resolvedCanvases.set( file, null ); errors.set( file, 'HUD image transport unavailable' ); return resolve( null ); }
 
 		const img = new Image();
+		let terminal = false;
+		const finish = ( canvas, error ) => { if ( terminal ) return; terminal = true; clearTimeout( timer ); img.onload = img.onerror = null;
+			canvasStates.set( file, canvas ? 'ready' : 'fallback' ); resolvedCanvases.set( file, canvas ); if ( error ) errors.set( file, String( error.message || error ) ); resolve( canvas ); };
+		const timer = setTimeout( () => { finish( null, new Error( file + ' timed out' ) ); img.src = ''; }, NEWER_HUD_TIMEOUT_MS );
 		img.onload = () => {
 
+			if ( terminal ) return;
+			try {
 			const c = document.createElement( 'canvas' );
 			c.width = img.width;
 			c.height = img.height;
 			c.getContext( '2d' ).drawImage( img, 0, 0 );
-			resolve( c );
+			finish( c );
+			} catch ( error ) { finish( null, error ); }
 
 		};
-		img.onerror = () => resolve( null );
-		img.src = COM_NewerURL( BASE + file, BASE + file + '?v=' + version );
+		img.onerror = () => finish( null, new Error( 'HUD image unavailable: ' + file ) );
+		try { img.src = COM_NewerURL( BASE + file, BASE + file + '?v=' + version ); } catch ( error ) { finish( null, error ); }
 
 	} );
+	canvases.set( file, request ); return request;
 
+}
+
+// The full console intentionally skips Sbar draws. Start these same cached
+// catalog requests before drawing, so startup cannot reveal a second wave.
+export function R_NewerHudPreload() {
+	if ( ! preloadPromise ) {
+		preloadState = 'loading';
+		preloadPromise = loadIndex().then( entries => Promise.all( [ ...new Set( Object.values( entries ) ) ].map( loadCanvas ) ) )
+			.then( values => { preloadState = errors.size ? 'fallback' : 'ready'; return values; } );
+	}
+	return preloadPromise;
+}
+
+export function R_NewerHudStatus() {
+	let pending = 0, ready = 0, fallback = 0;
+	for ( const value of canvasStates.values() ) { if ( value === 'loading' ) pending ++; else if ( value === 'ready' ) ready ++; else fallback ++; }
+	if ( indexState === 'loading' ) pending ++;
+	return { preload: preloadState, index: indexState, pending, ready, fallback,
+		settled: indexState !== 'loading' && preloadState !== 'loading' && pending === 0, errors: Object.fromEntries( errors ) };
 }
 
 /*
@@ -65,6 +101,13 @@ export function R_NewerHudCanvas( pic ) {
 
 	if ( pic._name === undefined || ! R_NewerGame() || r_newer_hud.value === 0 ) return null;
 	if ( pic._hi !== undefined ) return pic._hi;
+	// Preload can complete behind a console without this picture ever being
+	// drawn. Return its already-decoded canvas on the very first visible lookup.
+	if ( index !== null ) {
+		const file = index[ pic._name ];
+		if ( file === undefined ) { pic._hi = null; return null; }
+		if ( resolvedCanvases.has( file ) ) { pic._hi = resolvedCanvases.get( file ); return pic._hi; }
+	}
 	if ( pic._asked === true ) return null;
 	pic._asked = true;
 
@@ -73,8 +116,7 @@ export function R_NewerHudCanvas( pic ) {
 		const file = idx[ pic._name ];
 		if ( file === undefined ) { pic._hi = null; return; }
 
-		if ( ! canvases.has( file ) ) canvases.set( file, loadCanvas( file ) );
-		return canvases.get( file ).then( ( c ) => { pic._hi = c; } );
+		return loadCanvas( file ).then( ( c ) => { pic._hi = c; } );
 
 	} );
 

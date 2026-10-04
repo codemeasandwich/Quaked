@@ -349,6 +349,7 @@ export function R_NormalMapFor( diffuse ) {
 	texture.generateMipmaps = true;
 	texture.anisotropy = 16;
 	texture.colorSpace = THREE.NoColorSpace; // data, not colour
+	texture.userData.heightSource = true; // alpha was explicitly generated from the scalar height field
 	texture.offset.copy( diffuse.offset ); // a picture moved on its faces (crates) moves its relief too
 	texture.needsUpdate = true;
 	if ( useCrafted && crafted.relief ) texture.userData.surfaceRelief = { ...crafted.relief };

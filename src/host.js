@@ -6,6 +6,7 @@ import { Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 import { svc_print, svc_disconnect } from './protocol.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables } from './cvar.js';
 import { SV_SeamlessFrame } from './sv_seamless.js';
+import { R_WelcomeLoadingHolding } from './r_demoloading.js';
 import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks } from './cmd.js';
 import { Memory_Init } from './zone.js';
 import { V_Init } from './view.js';
@@ -480,10 +481,10 @@ export function Host_ServerFrame() {
 	// move things around and think
 	// always pause in single player if in console or menus
 	if ( ! sv.paused && ( svs.maxclients > 1 || key_dest === key_game ) )
-		SV_Physics();
+		if(!(R_WelcomeLoadingHolding()&&svs.maxclients===1))SV_Physics();
 
 	// has the player gone through a seamless exit?
-	SV_SeamlessFrame();
+	if(!(R_WelcomeLoadingHolding()&&svs.maxclients===1))SV_SeamlessFrame();
 
 	// send all messages to the clients
 	SV_SendClientMessages();

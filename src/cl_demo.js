@@ -1,6 +1,8 @@
 // Ported from: WinQuake/cl_demo.c -- demo recording and playback
 
 import { R_DemoSplitStart, R_DemoSplitEnd } from './r_demosplit.js';
+import { R_DemoLoadingAttract, R_DemoLoadingFreeze, R_DemoLoadingCancel } from './r_demoloading.js';
+import { R_PerfProfiling } from './r_perf.js';
 import { MAX_MSGLEN } from './quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString,
@@ -42,6 +44,7 @@ export function CL_StopPlayback() {
 		return;
 
 	cls.demoplayback = false;
+	R_DemoLoadingCancel();
 	R_DemoSplitEnd();
 	cls.demofile = null;
 	cls.demodata = null;
@@ -150,6 +153,7 @@ export function CL_GetMessage() {
 
 		// decide if it is time to grab the next message
 		if ( cls.signon === SIGNONS ) { // allways grab until fully connected
+			if(R_DemoLoadingFreeze(true,cls.signon,cls.timedemo))return 0;
 
 			if ( cls.timedemo ) {
 
@@ -431,6 +435,7 @@ Play a demo from an ArrayBuffer (browser-specific entry point)
 export function CL_PlayDemoFromData( data, attract = false ) {
 
 	CL_Disconnect();
+	R_DemoLoadingAttract(attract&&!R_PerfProfiling());
 
 	cls.demodata = new Uint8Array( data );
 	cls.demopos = 0;

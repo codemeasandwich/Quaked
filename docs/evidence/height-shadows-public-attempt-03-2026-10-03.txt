@@ -1,0 +1,14 @@
+PASS ten independent visibility slots roundtrip exact3bit values and reject every invalid clear/sentinel without gamma interpretation
+PASS public height frame preserves light slot ordering, copies mutable input and respects scope/default controls
+PASS actual height ray agrees with geometric ridge blockers for point/sun rays and keeps flat/unknown/overhead cases lit
+HEIGHT_SHADER_NATIVE_MODELS 29
+PASS real public world/alias compiler hooks attach only declared scalar heights, preserve colour and distinguish rocks/carving/real geometry/classic
+PASS public pre-HDR frame freezes exact source slots and4MRT packed masks, composition never recaptures/reselects, old callers and off modes remain compatible
+RESULT 5/6 passed (tests/height_shadows_test.js)
+FAIL installed21 native and12 replacement enemy scalar assets reach public asynchronous material height-mask hooks with exact alpha and unchanged diffuse Error: boss replacement installed height decoded
+    at check (file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:13:50)
+    at verify (file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:117:219)
+    at file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:130:304
+    at async fixture (file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:17:349)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+TOTAL 5/6 passed

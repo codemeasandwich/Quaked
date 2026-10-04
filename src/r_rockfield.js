@@ -6,14 +6,20 @@ import { cvar_t } from './cvar.js';
 import { R_NewerGame, r_newer_normals } from './r_anim.js';
 import { R_RockSurfaceCharts, R_RockCoordinates } from './r_rocksurfaces.js';
 import { R_RockPreset } from './rockfield_presets.js';
+import { RockBakeSource } from './r_rockbakes.js';
 export const r_rockfield = new cvar_t( 'r_rockfield', '1', true );
 export const ROCK_CELLS = 64, ROCK_BORDER = 2, ROCK_SIDE = ROCK_CELLS + 1 + 2 * ROCK_BORDER, ROCK_PAGES = 96;
-export const ROCK_TABLE_SIZE = 2048, ROCK_PROBES = ROCK_PAGES;
+export const ROCK_TABLE_SIZE = 4096, ROCK_PROBES = 2048;
+let rockPageLimit=2048;
+export function R_RockfieldSetLimits(renderer){
+ const gl=renderer?.getContext?.();if(gl)rockPageLimit=Math.max(1,Math.min(2048,gl.getParameter(gl.MAX_ARRAY_TEXTURE_LAYERS)||256));
+}
 export function R_RockPageHash( id, x, y ) {
  return ( Math.imul( x, 73856093 ) ^ Math.imul( y, 19349663 ) ^ Math.imul( id, 83492791 ) ) & ( ROCK_TABLE_SIZE - 1 );
 }
 export class RockTileCache {
- constructor( workerFactory = () => new Worker( new URL( './rockfield_worker.js', import.meta.url ), { type: 'module' } ) ) {
+ constructor( workerFactory = () => new Worker( new URL( './rockfield_worker.js', import.meta.url ), { type: 'module' } ), { bakeSource = null } = {} ) {
+  this.bakeSource=bakeSource;this.generated=0;this.prepared=0;this.capacity=ROCK_PAGES;this.protected=new Set();this.batch=false;this.dirty=false;
   this.workerFactory = workerFactory; this.workers = []; this.pending = new Map(); this.tiles = new Map(); this.failed = new Set(); this.epoch = 0; this.serial = 0; this.access = 0; this.error = null; this.probes = { value: 1 };
   const heights = new Uint16Array( ROCK_SIDE * ROCK_SIDE * ROCK_PAGES );
   heights.fill( THREE.DataUtils.toHalfFloat( .5 ) );
@@ -21,7 +27,7 @@ export class RockTileCache {
   this.heightTexture.format = THREE.RedFormat; this.heightTexture.type = THREE.HalfFloatType;
   this.heightTexture.minFilter = this.heightTexture.magFilter = THREE.LinearFilter; this.heightTexture.generateMipmaps = false; this.heightTexture.needsUpdate = true;
   this.table = new Float32Array( ROCK_TABLE_SIZE * 4 );
-  this.pageTexture = new THREE.DataTexture( this.table, 64, 32, THREE.RGBAFormat, THREE.FloatType );
+  this.pageTexture = new THREE.DataTexture( this.table, 64, ROCK_TABLE_SIZE/64, THREE.RGBAFormat, THREE.FloatType );
   this.pageTexture.minFilter = this.pageTexture.magFilter = THREE.NearestFilter; this.pageTexture.generateMipmaps = false; this.pageTexture.needsUpdate = true;
  }
  start() {
@@ -43,9 +49,13 @@ export class RockTileCache {
   const tile = this.tiles.get( key );
   if ( tile ) { tile.used = ++ this.access; return true; }
   if ( this.pending.has( key ) || this.failed.has( key ) ) return false;
+  if(this.bakeSource?.status==='loading')return false;
+  const prepared=this.bakeSource?.tile(chart,x,y);
+  if(prepared){const installed=this.install({key,chart,x,y,epoch:this.epoch},prepared,true);if(installed)this.prepared++;return installed;}
   this.start(); if ( this.error ) return false; const slot = this.workers.find( s => ! s.job );
   if ( ! slot ) return false;
   const job = { key, chart, x, y, id: ++ this.serial, epoch: this.epoch };
+  this.generated++;
   slot.job = job; this.pending.set( key, job );
   try { slot.worker.postMessage( { id: job.id, x, y, config: { seed: chart.seed, profile: chart.profile, ...( chart.config || R_RockPreset( chart.name, chart.profile ) ), cells: ROCK_CELLS, border: ROCK_BORDER } } ); }
   catch ( error ) { this.error = String( error.message || error ); this.cancelWorkers(); }
@@ -59,16 +69,27 @@ export class RockTileCache {
   const result = message.result;
   if ( result?.width !== ROCK_SIDE || result.data?.length !== ROCK_SIDE ** 2 || result.tileX !== job.x || result.tileY !== job.y ||
    Array.from( result.data ).some( h => ! Number.isFinite( h ) || h < 0 || h > 1 ) ) { this.failed.add( job.key ); return; }
+  this.install(job,result.data,false);
+ }
+ install(job,heights,prepared){
   let page = this.tiles.size;
-  if ( page === ROCK_PAGES ) {
+  if ( page === this.capacity ) {
    let oldest;
-   for ( const tile of this.tiles.values() ) if ( ! oldest || tile.used < oldest.used ) oldest = tile;
+   for ( const tile of this.tiles.values() ) if(!this.protected.has(tile.key)&&(!oldest||tile.used<oldest.used))oldest=tile;
+   if(!oldest)return false;
    page = oldest.page; this.tiles.delete( oldest.key );
   }
   const data = this.heightTexture.image.data, offset = page * ROCK_SIDE ** 2;
-  for ( let i = 0; i < result.data.length; i ++ ) data[ offset + i ] = THREE.DataUtils.toHalfFloat( result.data[ i ] );
+  if(prepared)data.set(heights,offset);
+  else for(let i=0;i<heights.length;i++)data[offset+i]=THREE.DataUtils.toHalfFloat(heights[i]);
   this.heightTexture.addLayerUpdate( page ); this.heightTexture.needsUpdate = true;
-  this.tiles.set( job.key, { ...job, page, used: ++ this.access } ); this.rebuildTable();
+  this.tiles.set( job.key, { ...job, page, used: ++ this.access } );if(this.batch)this.dirty=true;else this.rebuildTable();return true;
+ }
+ grow(required){
+  const capacity=Math.min(rockPageLimit,Math.max(this.capacity,required));if(capacity===this.capacity)return;
+  const old=this.heightTexture,data=new Uint16Array(ROCK_SIDE**2*capacity);data.fill(THREE.DataUtils.toHalfFloat(.5));data.set(old.image.data);
+  const texture=new THREE.DataArrayTexture(data,ROCK_SIDE,ROCK_SIDE,capacity);texture.format=THREE.RedFormat;texture.type=THREE.HalfFloatType;texture.minFilter=texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=false;texture.needsUpdate=true;
+  this.heightTexture=texture;this.capacity=capacity;old.dispose();
  }
  rebuildTable() {
   this.table.fill( 0 ); this.probes.value = 1;
@@ -82,7 +103,7 @@ export class RockTileCache {
   }
   this.pageTexture.needsUpdate = true;
  }
- dispose() { this.cancelWorkers(); this.tiles.clear(); this.heightTexture.dispose(); this.pageTexture.dispose(); }
+ dispose() { this.cancelWorkers(); this.bakeSource?.dispose?.(); this.tiles.clear(); this.heightTexture.dispose(); this.pageTexture.dispose(); }
 }
 let state = null, lastUpdate = - Infinity;
 const dummy = new THREE.DataTexture( new Float32Array( 4 ), 1, 1, THREE.RGBAFormat, THREE.FloatType ); dummy.needsUpdate = true;
@@ -90,7 +111,7 @@ const dummyHeight = new THREE.DataArrayTexture( new Uint16Array( [ THREE.DataUti
 export const rockUniforms = { qrRockPages: { value: dummy }, qrRockHeights: { value: dummyHeight }, qrRockOn: { value: 0 }, qrRockProbes: { value: 1 }, qrRockSun: { value: new THREE.Vector3( -.28, -.18, .94 ).normalize() } };
 export function R_RockfieldBuild( model ) {
  state?.cache?.dispose(); const fields = R_RockSurfaceCharts( model, { includeBrushes: true } );
- state = { model, ...fields, brushEntries: new WeakMap(), cache: fields.charts.length ? new RockTileCache() : null };
+ state = { model, ...fields, brushEntries: new WeakMap(), cache: fields.charts.length ? new RockTileCache(undefined,{bakeSource:new RockBakeSource(model.name,fields.charts)}) : null };
  for ( const chart of fields.charts ) for ( const face of chart.surfaces ) if ( face.brush ) state.brushEntries.set( face.surface, { face, chart } );
  rockUniforms.qrRockPages.value = state.cache?.pageTexture || dummy; rockUniforms.qrRockHeights.value = state.cache?.heightTexture || dummyHeight;
  rockUniforms.qrRockProbes = state.cache?.probes || { value: 1 };
@@ -100,13 +121,25 @@ export function R_RockfieldChart( surface ) { return state?.bySurface.get( surfa
 export function R_RockfieldGeometry( geometry, surface ) {
  const chart = state?.bySurface.get( surface );
  if ( ! chart ) return false;
- const p = geometry.getAttribute( 'position' ), uv = new Float32Array( p.count * 2 ), info = new Float32Array( p.count * 2 ), bounds = new Float32Array( p.count * 4 );
+ const p = geometry.getAttribute( 'position' ), uv = new Float32Array( p.count * 2 ), info = new Float32Array( p.count * 2 ), bounds = new Float32Array( p.count * 4 ), wall = new Float32Array( p.count );
  for ( let i = 0; i < p.count; i ++ ) {
   uv.set( R_RockCoordinates( chart, [ p.getX( i ), p.getY( i ), p.getZ( i ) ] ), i * 2 );
+  wall[ i ] = chart.profile === 'wall' ? 1 : 0;
   info.set( [ chart.id, chart.amplitude ], i * 2 ); bounds.set( chart.bounds, i * 4 );
  }
- geometry.setAttribute( 'rockUv', new THREE.BufferAttribute( uv, 2 ) ); geometry.setAttribute( 'rockInfo', new THREE.BufferAttribute( info, 2 ) ); geometry.setAttribute( 'rockBounds', new THREE.BufferAttribute( bounds, 4 ) );
+ geometry.setAttribute( 'rockWall', new THREE.BufferAttribute( wall, 1 ) ); geometry.setAttribute( 'rockUv', new THREE.BufferAttribute( uv, 2 ) ); geometry.setAttribute( 'rockInfo', new THREE.BufferAttribute( info, 2 ) ); geometry.setAttribute( 'rockBounds', new THREE.BufferAttribute( bounds, 4 ) );
+ const clips=R_RockProjectionEdges(surface);
+ for(let edge=0;edge<6;edge++){const values=new Float32Array(p.count*3);for(let i=0;i<p.count;i++)values.set(clips[edge],i*3);geometry.setAttribute('rockClip'+edge,new THREE.BufferAttribute(values,3));}
  return true;
+}
+// Clip view-projected UVs to the actual convex native face. Height coordinates
+// remain continuous at folds; only extrapolation of the pigment is constrained.
+export function R_RockProjectionEdges(surface){
+ const polygon=surface.polys,neutral=()=>Array.from({length:6},()=>[0,0,1]);
+ if(!polygon||polygon.numverts<3||polygon.numverts>6){const edges=neutral();edges[0]=[0,0,-1];return edges;}
+ const uv=Array.from({length:polygon.numverts},(_,i)=>polygon.verts instanceof Float32Array?Array.from(polygon.verts.subarray(i*7+3,i*7+5)):polygon.verts[i].slice(3,5));
+ let area=0;uv.forEach((p,i)=>{const q=uv[(i+1)%uv.length];area+=p[0]*q[1]-q[0]*p[1];});if(Math.abs(area)<1e-10){const edges=neutral();edges[0]=[0,0,-1];return edges;}
+ const sign=area>0?1:-1,edges=neutral();uv.forEach((p,i)=>{const q=uv[(i+1)%uv.length],dx=q[0]-p[0],dy=q[1]-p[1],length=Math.hypot(dx,dy);if(length>1e-8){const x=-dy/length*sign,y=dx/length*sign;edges[i]=[x,y,-x*p[0]-y*p[1]];}});return edges;
 }
 // Preserve a moving brush's material/rest-space field. At its closed pose it
 // exactly matches the adjacent world; movement carries that detail with the rock.
@@ -130,28 +163,27 @@ export function R_RockfieldUpdate( origin, frame, now = performance.now() ) {
  rockUniforms.qrRockOn.value = active ? Math.min( 1, r_rockfield.value ) : 0;
  if ( ! active || ! state?.cache || now - lastUpdate < 100 ) return;
  lastUpdate = now;
- const candidates = new Map();
- for ( const chart of state.charts ) {
-  const eye = R_RockCoordinates( chart, origin );
-  for ( const face of chart.surfaces ) {
-   if ( face.brush ? face.brushSeen !== frame && face.brushSeen !== frame - 1 : face.surface.visframe !== frame ) continue;
-   const faceEye = face.brush ? face.brushEye : eye;
-   const b = face.bounds, cx = Math.max( b[ 0 ], Math.min( b[ 2 ], faceEye[ 0 ] ) ), cy = Math.max( b[ 1 ], Math.min( b[ 3 ], faceEye[ 1 ] ) );
-   const distance = face.brush ? face.brushDistance : Math.hypot( ...face.center.map( ( v, k ) => v - origin[ k ] ) );
-   if ( distance > 1800 ) continue;
-   for ( let y = Math.max( Math.floor( b[ 1 ] ), Math.floor( cy ) - 2 ); y <= Math.min( Math.floor( b[ 3 ] ), Math.floor( cy ) + 2 ); y ++ )
-    for ( let x = Math.max( Math.floor( b[ 0 ] ), Math.floor( cx ) - 2 ); x <= Math.min( Math.floor( b[ 2 ] ), Math.floor( cx ) + 2 ); x ++ ) {
-     // The maximum cliff amplitude can shift a grazing ray by 3.2 pages.
-     // Request its halo too, without expanding the resident/job bounds.
-     const halo = chart.profile === 'wall' ? 4 : 1;
-     for ( let dy = - halo; dy <= halo; dy ++ ) for ( let dx = - halo; dx <= halo; dx ++ ) {
-      const tx = x + dx, ty = y + dy, key = chart.id + ':' + tx + ',' + ty;
-      const priority = Math.hypot( tx + .5 - faceEye[ 0 ], ty + .5 - faceEye[ 1 ] ) + distance / 256;
-      const previous = candidates.get( key ); if ( ! previous || priority < previous.priority ) candidates.set( key, { chart, x: tx, y: ty, priority } );
-     }
-    }
+ const candidates=new Map();
+ for(const chart of state.charts)for(const face of chart.surfaces){
+  const visible=face.brush?face.brushSeen===frame||face.brushSeen===frame-1:face.surface.visframe===frame;
+  let distance=face.brush?face.brushDistance:Infinity;
+  if(!face.brush){
+   if(!face.worldBounds){const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(let polygon=face.surface.polys;polygon;polygon=polygon.next)for(let i=0;i<polygon.numverts;i++)for(let k=0;k<3;k++){const value=polygon.verts instanceof Float32Array?polygon.verts[i*7+k]:polygon.verts[i][k];lo[k]=Math.min(lo[k],value);hi[k]=Math.max(hi[k],value);}face.worldBounds={lo,hi};}
+   distance=Math.hypot(...origin.map((v,k)=>Math.max(face.worldBounds.lo[k]-v,0,v-face.worldBounds.hi[k])));
+  }
+  if(!visible&&distance>512)continue;
+  const b=face.bounds,halo=chart.profile==='wall'?4:1;
+  for(let y=Math.floor(b[1])-halo;y<=Math.floor(b[3])+halo;y++)for(let x=Math.floor(b[0])-halo;x<=Math.floor(b[2])+halo;x++){
+   const interior=x>=Math.floor(b[0])&&x<=Math.floor(b[2])&&y>=Math.floor(b[1])&&y<=Math.floor(b[3]);
+   const priority=(visible?0:2)+(interior?0:1),key=chart.id+':'+x+','+y,old=candidates.get(key);
+   if(!old||priority<old.priority)candidates.set(key,{key,chart,x,y,priority});
   }
  }
- for ( const c of [ ...candidates.values() ].sort( ( a, b ) => a.priority - b.priority ).slice( 0, ROCK_PAGES ) ) state.cache.request( c.chart, c.x, c.y );
+ const cache=state.cache,ordered=[...candidates.values()].sort((a,b)=>a.priority-b.priority||a.chart.id-b.chart.id||a.y-b.y||a.x-b.x);
+ cache.grow(ordered.length);rockUniforms.qrRockHeights.value=cache.heightTexture;
+ const wanted=ordered.slice(0,cache.capacity);cache.protected=new Set(wanted.map(c=>c.key));cache.batch=true;
+ try{for(const c of wanted)cache.request(c.chart,c.x,c.y);}finally{cache.batch=false;if(cache.dirty){cache.dirty=false;cache.rebuildTable();}}
+ state.desired=ordered.length;state.overflow=Math.max(0,ordered.length-cache.capacity);state.missing=wanted.filter(c=>!cache.tiles.has(c.key)).length;state.failedVisible=wanted.filter(c=>cache.failed.has(c.key)).length;
+
 }
-export function R_RockfieldStatus() { return { charts: state?.charts.length || 0, resident: state?.cache?.tiles.size || 0, pending: state?.cache?.pending.size || 0, maxPages: ROCK_PAGES, error: state?.cache?.error || null, active: rockUniforms.qrRockOn.value > 0 }; }
+export function R_RockfieldStatus() { return { charts: state?.charts.length || 0, resident: state?.cache?.tiles.size || 0, pending: state?.cache?.pending.size || 0, failedTiles:state?.cache?.failed.size||0, failedVisibleTiles:state?.failedVisible||0, maxPages: state?.cache?.capacity||ROCK_PAGES, pageLimit:rockPageLimit, desiredTiles:state?.desired||0, missingVisibleTiles:state?.missing||0, overflowTiles:state?.overflow||0, error: state?.cache?.error || null, active: rockUniforms.qrRockOn.value > 0, preparedState:state?.cache?.bakeSource?.status||'none', preparedTiles:state?.cache?.prepared||0, generatedTiles:state?.cache?.generated||0, preparedError:state?.cache?.bakeSource?.entry?.error||null }; }

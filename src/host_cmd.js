@@ -35,6 +35,8 @@ import { SV_SeamlessPlacePlayer } from './sv_seamless.js';
 import { SV_ClientPrintf, SV_BroadcastPrintf,
 	Host_ShutdownServer, Host_Shutdown } from './host.js';
 import { COM_FindFile, COM_EnsureFile } from './pak.js';
+import { R_FlashlightNewRun } from './r_flashlightrun.js';
+import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from './r_demoloading.js';
 import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from './r_shells.js';
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
@@ -106,6 +108,7 @@ function Host_Map_f() {
 
 	if ( cmd_source !== src_command )
 		return;
+	R_DemoLoadingCancel();
 
 	const name = Cmd_Argv( 1 );
 	const filename = 'maps/' + name + '.bsp';
@@ -170,6 +173,10 @@ function Host_Map_f() {
 		Cmd_ExecuteString( 'connect local', src_command );
 
 	}
+	// Connect performs its own disconnect first; begin the run only after that
+	// succeeds. changelevel/seamless travel never enters this fresh-map path.
+	R_FlashlightNewRun( name, current_skill, cls.state === ca_connected && Cvar_VariableValue( 'r_hdr' ) !== 0 );
+	if(cls.state===ca_connected&&svs.maxclients===1&&Cvar_VariableValue('r_hdr')!==0)R_DemoLoadingWelcome();
 
 }
 
@@ -243,6 +250,7 @@ function Host_Reconnect_f() {
 }
 
 function Host_Connect_f() {
+	R_DemoLoadingCancel();
 
 	cls.demonum = - 1; // stop demo loop in case this fails
 	if ( cls.demoplayback ) {

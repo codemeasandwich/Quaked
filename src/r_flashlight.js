@@ -6,7 +6,9 @@
 
 import { cvar_t, Cvar_SetValue, Cvar_VariableValue } from './cvar.js';
 import { Cmd_AddCommand } from './cmd.js';
-import { R_NewerLightingActive } from './r_anim.js';
+import { R_NewerLightingActive, R_NewerGame } from './r_anim.js';
+import { cls, ca_connected } from './client.js';
+import { R_FlashlightRunManualChange, R_FlashlightRunObserve } from './r_flashlightrun.js';
 
 export const r_flashlight = new cvar_t( 'r_flashlight', '0' );
 
@@ -26,7 +28,9 @@ const now = () => ( typeof performance !== 'undefined' ? performance.now() : Dat
 
 export function R_FlashlightToggle() {
 
-	Cvar_SetValue( 'r_flashlight', Cvar_VariableValue( 'r_flashlight' ) !== 0 ? 0 : 1 );
+	const before = Cvar_VariableValue( 'r_flashlight' ) !== 0, after = ! before;
+	Cvar_SetValue( 'r_flashlight', after ? 1 : 0 );
+	R_FlashlightRunManualChange( before, after, cls.state === ca_connected && ! cls.demoplayback && R_NewerGame() );
 
 }
 
@@ -46,6 +50,7 @@ towards where the view points.
 */
 export function R_FlashlightUpdate( origin, forward, right, up ) {
 
+	R_FlashlightRunObserve( r_flashlight.value !== 0, cls.state === ca_connected && ! cls.demoplayback && R_NewerGame() );
 	const t = now();
 	const dt = Math.min( 0.1, Math.max( 0, t - lastTime ) );
 	lastTime = t;

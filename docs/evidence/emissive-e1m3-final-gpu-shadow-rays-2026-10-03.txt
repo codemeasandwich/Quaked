@@ -1,0 +1,224 @@
+Browser tab: 18, Title: "Quaked — E1M3 emissive light trial", URL: "http://localhost:8013/tests/emissive_lighting_trial.html".
+1 AXWebArea Quaked — E1M3 emissive light trial, URL: localhost:8013/tests/emissive_lighting_trial.html
+	2 container
+		3 text E1M3 emissive lighting trial
+		4 button Start, ID: start
+		5 button Around corner, ID: corner
+		6 button Upper landing, ID: landing
+		7 button Beside stairs, ID: stairs
+		8 button Hall tower, ID: tower
+		9 button World shadows: on, ID: shadows
+		10 button Inspection flashlight: on, ID: light
+		11 button Verify shadow rays, ID: probe
+		12 button Measure warm frames, ID: measure
+		13 button Hide controls, ID: hide
+		26 text Native light positions · camera-independent world shadows.
+		21 container
+			22 button (expanded) Diagnostics, Secondary Actions: Collapse
+				23 text Diagnostics
+			27 text {
+  "level": "maps/e1m3.bsp",
+  "setup": true,
+  "player": [
+    -736,
+    -1592,
+    88
+  ],
+  "angles": [
+    0,
+    270,
+    0
+  ],
+  "atlas": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 8,
+    "pending": 0,
+    "requested": 8,
+    "chunks": 263,
+    "triangles": 1073725,
+    "captures": 20,
+    "faceRenders": 120,
+    "failedCaptures": 0,
+    "epoch": 9,
+    "error": null,
+    "disposed": false
+  },
+  "selected": [
+    {
+      "positionView": [
+        16.03125,
+        65.96875,
+        15.96875,
+        28
+      ],
+      "shadow": [
+        0,
+        350.83647796503186
+      ]
+    },
+    {
+      "positionView": [
+        -343.96875,
+        49.96875,
+        -212.03124999999977,
+        28
+      ],
+      "shadow": [
+        1,
+        405.43147968233404
+      ]
+    },
+    {
+      "positionView": [
+        -119.96875,
+        137.96875,
+        -8.031249999999773,
+        28
+      ],
+      "shadow": [
+        2,
+        324.7594670356232
+      ]
+    },
+    {
+      "positionView": [
+        32.03125,
+        89.96875,
+        -168.03125,
+        28
+      ],
+      "shadow": [
+        3,
+        362.7820869396956
+      ]
+    },
+    {
+      "positionView": [
+        184.03125,
+        65.96875,
+        -152.03125,
+        28
+      ],
+      "shadow": [
+        4,
+        324.7594670356232
+      ]
+    },
+    {
+      "positionView": [
+        -115.96875,
+        145.96875,
+        -366.03125,
+        28
+      ],
+      "shadow": [
+        5,
+        490.6244584051392
+      ]
+    },
+    {
+      "positionView": [
+        -151.96875,
+        25.96875,
+        -48.03124999999977,
+        28
+      ],
+      "shadow": [
+        6,
+        324.7594670356232
+      ]
+    },
+    {
+      "positionView": [
+        230.03125,
+        145.96875,
+        -158.03125,
+        28
+      ],
+      "shadow": [
+        7,
+        490.6244584051392
+      ]
+    }
+  ],
+  "errors": []
+}
+			25 text {
+  "source": [
+    -966,
+    -1750,
+    256
+  ],
+  "entry": {
+    "slot": 7,
+    "far": 490.6244584051392,
+    "ready": true
+  },
+  "samples": [
+    {
+      "label": "clear ray at start",
+      "point": [
+        -736,
+        -1592,
+        110
+      ],
+      "blocked": false,
+      "distance": 314.92856332825704,
+      "blockerDistance": 414.05088904216467,
+      "gpuBlocked": false,
+      "bytes": [
+        216,
+        11,
+        142,
+        0
+      ],
+      "face": 0
+    },
+    {
+      "label": "blocked by native corner",
+      "point": [
+        -800,
+        -1648,
+        110
+      ],
+      "blocked": true,
+      "distance": 243.46663015698883,
+      "blockerDistance": 19.978882649933517,
+      "gpuBlocked": true,
+      "bytes": [
+        10,
+        108,
+        182,
+        159
+      ],
+      "face": 0
+    },
+    {
+      "label": "blocked toward stairs",
+      "point": [
+        -656,
+        -1264,
+        142
+      ],
+      "blocked": true,
+      "distance": 587.6155205574476,
+      "blockerDistance": 239.17192842167688,
+      "gpuBlocked": true,
+      "bytes": [
+        124,
+        203,
+        204,
+        128
+      ],
+      "face": 2
+    }
+  ],
+  "allExpected": true,
+  "glError": 0,
+  "errors": []
+}
+		18 image
+		19 image
+
+The focused UI element is 11 button Verify shadow rays, ID: probe

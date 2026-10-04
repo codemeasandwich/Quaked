@@ -1,0 +1,140 @@
+Added packfile pak0.pak (339 files)\n
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+NATIVE_CORRIDOR_BEFORE {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1352,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":0,"run":{"active":true,"map":"start","selectedSkill":null,"noticeShown":false,"on":false}}
+NATIVE_CORRIDOR_DIRECT {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1352,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":1,"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true}}
+NATIVE_CORRIDOR_LINKED {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1329,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":1,"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true}}
+NATIVE_CORRIDOR_ALL {"value":0,"point":[232,1329,48],"startsolid":false,"allsolid":false,"actual":[232,1329,48],"bounds":[[175,1343,-17],[289,1361,113]],"run":{"active":true,"map":"start","selectedSkill":0,"noticeShown":false,"on":true},"flashlight":1}
+NATIVE_CORRIDOR_ALL {"value":1,"point":[544,1329,48],"startsolid":false,"allsolid":false,"actual":[544,1329,48],"bounds":[[487,1343,-17],[601,1361,113]],"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true},"flashlight":1}
+NATIVE_CORRIDOR_ALL {"value":2,"point":[864,1329,48],"startsolid":false,"allsolid":false,"actual":[864,1329,48],"bounds":[[807,1343,-17],[921,1361,113]],"run":{"active":true,"map":"start","selectedSkill":2,"noticeShown":false,"on":false},"flashlight":0}
+NATIVE_CORRIDOR_ALL {"value":3,"point":[988,1905,-16],"startsolid":false,"allsolid":false,"actual":[544,1536,43],"bounds":[[951,1919,-97],[1025,1937,65]],"run":{"active":true,"map":"start","selectedSkill":null,"noticeShown":false,"on":false},"flashlight":0}
+RESULT 0/1 passed (tests/flashlight_native_touch_test.js)
+FAIL real spawned START player and native QC corridor activate flashlight through both public direct touch and actual linked collision dispatch Error: actual linked corridor selects skill 3: null != 3
+    at check (file:///Users/bri/SOURCE/Quaked/tests/flashlight_native_touch_test.js:19:50)
+    at equal (file:///Users/bri/SOURCE/Quaked/tests/flashlight_native_touch_test.js:20:34)
+    at file:///Users/bri/SOURCE/Quaked/tests/flashlight_native_touch_test.js:31:923
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 0/1 passed

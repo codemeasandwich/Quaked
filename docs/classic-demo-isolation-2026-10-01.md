@@ -49,3 +49,14 @@ Hard-refresh the normal game page and let the title demo play. Enable the Newer 
 For repeatable inspection, serve the repository locally and open `/tests/classic_demo_trial.html`. Its controls cover all enhancements, lighting/normals/liquids individually, full-classic mode, native baked lights and optional native shadows. `/tests/classic_demo_colour_trial.html` runs the isolated GPU colour comparison. The observer deliberately reads GPU errors and inspects buffers; use the normal game page to judge playability.
 
 The renderer reuses the current simulation and cached world visibility/geometry. It does not run a second game, add new assets, or change portal movement. The split remains inactive in WebXR. GPU colour memory for the native intermediate is now 8 bytes per pixel rather than 4, in addition to its depth buffer; no unchanged-FPS claim is made. The owner accepted the demonstrated verification. Full-map manual coverage and every optional mod/skin remain outside the focused checks. No deferred job or release has been submitted.
+
+## October 3 strict animation boundary
+
+The owner requested that Classic contain no enhanced enemy/object intermediate
+frames. The split already disabled interpolation, but ordinary Classic could
+previously opt into it via `r_lerpmodels 2`. That exception is removed: values 1 and above
+now enable pose and monster movement smoothing only while Newer Game
+is active. The stored value is retained; toggling modes does not rewrite it.
+Native game frames and original client network interpolation are preserved.
+The earlier paragraph documenting forced interpolation in ordinary Classic
+describes the prior behavior and is superseded by this request.

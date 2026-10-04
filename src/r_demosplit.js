@@ -1,3 +1,5 @@
+import { R_FlashlightRunSync } from './r_flashlightrun.js';
+import { R_DemoLoadingCancel } from './r_demoloading.js';
 // The title demo, half and half: the left of the screen in Newer Game, the right in the classic look, the same
 // picture of the same demo, drawn live, so the two can be compared.
 //
@@ -16,6 +18,15 @@ import { R_NewerTexturesRevert } from './r_newertextures.js';
 export const r_demosplit = new cvar_t( 'r_demosplit', '1' );
 
 let saved = null;
+// The opening comparison demonstrates the Enhanced lighting/shadow defaults.
+const DEMO_FEATURES = [ 'r_flashlight', 'r_newer_lighting', 'r_newer_normals', 'r_newer_shadows', 'r_pointshadows', 'r_heightshadows' ];
+function restoreFeatures() {
+ if ( saved ) {
+  for ( const [ name, value ] of Object.entries( saved.features ) ) Cvar_Set( name, value );
+  R_FlashlightRunSync(); // an automatic demo restore is never a user switch-off
+ }
+}
+
 
 export function R_DemoSplitActive() {
 
@@ -36,15 +47,23 @@ export function R_DemoSplitFull() {
 export function R_DemoSplitStart() {
 
 	if ( R_PerfProfiling() || r_demosplit.value === 0 || saved !== null ) return;
-	saved = Cvar_VariableString( 'r_hdr' );
+	saved = { hdr: Cvar_VariableString( 'r_hdr' ), features: {} };
+	for ( const name of DEMO_FEATURES ) {
+		const previous = Cvar_VariableString( name );
+		if ( previous === '' ) continue; // feature not registered by this renderer
+		saved.features[ name ] = previous; Cvar_Set( name, '1' );
+	}
 	Cvar_Set( 'r_hdr', '1' );
+	R_FlashlightRunSync(); // demo-on does not own the game's once-run message
 
 }
 
 // a game is about to start: what it sets for r_hdr stands (the demo's own switch is not undone behind it), and a classic
 // game gets the original textures back
 export function R_DemoSplitRelease( newer ) {
+	R_DemoLoadingCancel();
 
+	restoreFeatures();
 	saved = null;
 	if ( ! newer ) R_NewerTexturesRevert();
 
@@ -54,7 +73,8 @@ export function R_DemoSplitRelease( newer ) {
 export function R_DemoSplitEnd() {
 
 	if ( saved === null ) return;
-	Cvar_Set( 'r_hdr', saved );
+	Cvar_Set( 'r_hdr', saved.hdr );
+	restoreFeatures();
 	saved = null;
 	// the textures go back to the original game's, as a classic game that follows needs them
 	if ( Cvar_VariableString( 'r_hdr' ) === '0' ) R_NewerTexturesRevert();

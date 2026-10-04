@@ -1,0 +1,3571 @@
+Browser tab: 18, Title: "Height self-shadow GPU proof", URL: "http://localhost:8013/tests/height_shadows_gpu_trial.html".
+1 AXWebArea Height self-shadow GPU proof, URL: localhost:8013/tests/height_shadows_gpu_trial.html
+	2 heading Height self-shadow GPU proof, Value: 1
+		3 text Height self-shadow GPU proof
+	4 text One-shot draws through the production world and imported alias materials into the actual four-attachment HDR target. A gray height field has a white raised ridge at U 0.55–0.57 and a lower valley. Geometry, UVs and brown diffuse pixels stay unchanged. Five complete scanlines per draw compare the mask to independent ray intersections with the raised ridge and check that each shadow band is continuous. Four pixels around geometric transitions are excluded from the numeric oracle. Images below show the production decoder's visibility output; this bounded fixture does not run a game.
+	5 button Run proof, ID: run
+	6 container views
+		7 container
+			8 image
+			9 text world / point: decoded visibility (white = lit)
+		10 container
+			11 image
+			12 text world / sun: decoded visibility (white = lit)
+		13 container
+			14 image
+			15 text world / flashlight: decoded visibility (white = lit)
+		16 container
+			17 image
+			18 text alias / point: decoded visibility (white = lit)
+		19 container
+			20 image
+			21 text alias / sun: decoded visibility (white = lit)
+		22 container
+			23 image
+			24 text alias / flashlight: decoded visibility (white = lit)
+	25 text {
+  "status": "PASS",
+  "checks": 471,
+  "failures": [],
+  "shaderErrors": [],
+  "contract": "Production material + HDR mask + GPU decoder; rock-only contrast helper + gamma; controlled snapshot, no full compositor/map/game claim",
+  "dimensions": [
+    512,
+    512
+  ],
+  "draws": 18,
+  "contrast": [
+    {
+      "kind": 0,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 0.5,
+      "expected": [
+        15,
+        10,
+        5
+      ],
+      "pixel": [
+        15,
+        10,
+        5,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1.3571428571428572,
+      "expected": [
+        42,
+        28,
+        14
+      ],
+      "pixel": [
+        42,
+        28,
+        14,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 2,
+      "expected": [
+        61,
+        41,
+        20
+      ],
+      "pixel": [
+        61,
+        41,
+        20,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 0.5,
+      "expected": [
+        15,
+        10,
+        5
+      ],
+      "pixel": [
+        15,
+        10,
+        5,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1.3571428571428572,
+      "expected": [
+        42,
+        28,
+        14
+      ],
+      "pixel": [
+        42,
+        28,
+        14,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 2,
+      "expected": [
+        61,
+        41,
+        20
+      ],
+      "pixel": [
+        61,
+        41,
+        20,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 0.5,
+      "expected": [
+        15,
+        10,
+        5
+      ],
+      "pixel": [
+        15,
+        10,
+        5,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1.3571428571428572,
+      "expected": [
+        42,
+        28,
+        14
+      ],
+      "pixel": [
+        42,
+        28,
+        14,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 2,
+      "expected": [
+        61,
+        41,
+        20
+      ],
+      "pixel": [
+        61,
+        41,
+        20,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 1,
+      "linearGain": 1,
+      "expected": [
+        31,
+        20,
+        10
+      ],
+      "pixel": [
+        31,
+        20,
+        10,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 0,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 1,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 0.5,
+      "expected": [
+        6,
+        3,
+        1
+      ],
+      "pixel": [
+        6,
+        3,
+        1,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1.3571428571428572,
+      "expected": [
+        23,
+        13,
+        5
+      ],
+      "pixel": [
+        23,
+        13,
+        5,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 2,
+      "expected": [
+        38,
+        22,
+        9
+      ],
+      "pixel": [
+        38,
+        22,
+        9,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 0.5,
+      "expected": [
+        6,
+        3,
+        1
+      ],
+      "pixel": [
+        6,
+        3,
+        1,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1.3571428571428572,
+      "expected": [
+        23,
+        13,
+        5
+      ],
+      "pixel": [
+        23,
+        13,
+        5,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 2,
+      "expected": [
+        38,
+        22,
+        9
+      ],
+      "pixel": [
+        38,
+        22,
+        9,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 0.5,
+      "expected": [
+        6,
+        3,
+        1
+      ],
+      "pixel": [
+        6,
+        3,
+        1,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1.3571428571428572,
+      "expected": [
+        23,
+        13,
+        5
+      ],
+      "pixel": [
+        23,
+        13,
+        5,
+        255
+      ]
+    },
+    {
+      "kind": 2,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 2,
+      "expected": [
+        38,
+        22,
+        9
+      ],
+      "pixel": [
+        38,
+        22,
+        9,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "point",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "point",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "point",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "sun",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "sun",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "sun",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "flashlight",
+      "quantized": 0,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "flashlight",
+      "quantized": 4,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    },
+    {
+      "kind": 3,
+      "source": "flashlight",
+      "quantized": 7,
+      "gamma": 0.75,
+      "linearGain": 1,
+      "expected": [
+        15,
+        9,
+        3
+      ],
+      "pixel": [
+        15,
+        9,
+        3,
+        255
+      ]
+    }
+  ],
+  "results": [
+    {
+      "route": "world",
+      "mode": "height",
+      "source": "point",
+      "sourceIndex": 0,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 164,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 110,
+            "last": 281
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 169,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 105,
+            "last": 281
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 169,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 105,
+            "last": 281
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 164,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 110,
+            "last": 281
+          }
+        ],
+        "compared": 2480,
+        "shadowed": 837,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            248,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "height",
+      "source": "sun",
+      "sourceIndex": 8,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          }
+        ],
+        "compared": 2480,
+        "shadowed": 855,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            120
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "height",
+      "source": "flashlight",
+      "sourceIndex": 9,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 164,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 110,
+            "last": 281
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 169,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 105,
+            "last": 281
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 171,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 103,
+            "last": 281
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 169,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 105,
+            "last": 281
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 164,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 110,
+            "last": 281
+          }
+        ],
+        "compared": 2480,
+        "shadowed": 837,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            71
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "no-height-source",
+      "source": "point",
+      "sourceIndex": 0,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "no-height-source",
+      "source": "sun",
+      "sourceIndex": 8,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "no-height-source",
+      "source": "flashlight",
+      "sourceIndex": 9,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "scope-off",
+      "source": "point",
+      "sourceIndex": 0,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "scope-off",
+      "source": "sun",
+      "sourceIndex": 8,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "world",
+      "mode": "scope-off",
+      "source": "flashlight",
+      "sourceIndex": 9,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "height",
+      "source": "point",
+      "sourceIndex": 0,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 6,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 268,
+            "last": 281
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 6,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 268,
+            "last": 281
+          }
+        ],
+        "compared": 2480,
+        "shadowed": 33,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            248,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "height",
+      "source": "sun",
+      "sourceIndex": 8,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          }
+        ],
+        "compared": 2480,
+        "shadowed": 35,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            120
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "height",
+      "source": "flashlight",
+      "sourceIndex": 9,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 6,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 268,
+            "last": 281
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 7,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 267,
+            "last": 281
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 6,
+            "mismatches": 0,
+            "shadowRuns": 1,
+            "first": 268,
+            "last": 281
+          }
+        ],
+        "compared": 2480,
+        "shadowed": 33,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            71
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            0,
+            0,
+            0,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            127
+          ],
+          "valid": true,
+          "kind": 1,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "no-height-source",
+      "source": "point",
+      "sourceIndex": 0,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "no-height-source",
+      "source": "sun",
+      "sourceIndex": 8,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "no-height-source",
+      "source": "flashlight",
+      "sourceIndex": 9,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "scope-off",
+      "source": "point",
+      "sourceIndex": 0,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "scope-off",
+      "source": "sun",
+      "sourceIndex": 8,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    },
+    {
+      "route": "alias",
+      "mode": "scope-off",
+      "source": "flashlight",
+      "sourceIndex": 9,
+      "band": {
+        "rows": [
+          {
+            "y": 64,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 160,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 256,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 352,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          },
+          {
+            "y": 448,
+            "comparedShadowPixels": 0,
+            "mismatches": 0,
+            "shadowRuns": 0,
+            "first": -1,
+            "last": -1
+          }
+        ],
+        "compared": 2560,
+        "shadowed": 0,
+        "edgeMarginPixels": 4
+      },
+      "probes": {
+        "valley": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "ridge": {
+          "raw": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "valid": false,
+          "kind": 3,
+          "values": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "albedo": [
+            120,
+            80,
+            60,
+            255
+          ],
+          "gpuDecoded": [
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      },
+      "glError": 0
+    }
+  ]
+}
+
+The focused UI element is 1 AXWebArea Height self-shadow GPU proof, URL: localhost:8013/tests/height_shadows_gpu_trial.html

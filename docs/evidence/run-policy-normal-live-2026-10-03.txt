@@ -1,0 +1,72 @@
+Browser tab: 18, Title: "Quaked", URL: "http://localhost:8013/tests/run_policy_trial.html".
+1 AXWebArea Quaked, URL: localhost:8013/tests/run_policy_trial.html
+	2 container
+		4 text Prepared maps and flashlight run trial
+		5 button Newer hub, ID: hub
+		6 button Easy corridor, ID: easy
+		7 button Normal corridor, ID: normal
+		8 button Hard corridor, ID: hard
+		9 button Nightmare corridor, ID: nightmare
+		10 button Flashlight, ID: flash
+		11 button Restart run, ID: restart
+		12 button Hide controls, ID: hide
+		16 text {
+  "level": "maps/start.bsp",
+  "signon": 4,
+  "skill": 1,
+  "flashlight": 1,
+  "run": {
+    "active": true,
+    "map": "start",
+    "selectedSkill": 1,
+    "noticeShown": false,
+    "on": true
+  },
+  "preparedMaps": {
+    "charts": 33,
+    "resident": 96,
+    "pending": 0,
+    "maxPages": 96,
+    "error": null,
+    "active": true,
+    "preparedState": "ready",
+    "preparedTiles": 196,
+    "generatedTiles": 0,
+    "preparedError": null
+  },
+  "nativeCorridor": {
+    "classname": "trigger_setskill",
+    "message": "1",
+    "player": [
+      544,
+      1329,
+      48
+    ],
+    "playerClass": "player",
+    "touch": 429,
+    "solid": 1,
+    "triggerBounds": [
+      [
+        487,
+        1343,
+        -17
+      ],
+      [
+        601,
+        1361,
+        113
+      ]
+    ],
+    "requestedOrigin": [
+      544,
+      1329,
+      48
+    ]
+  },
+  "glError": 0,
+  "errors": []
+}
+		14 image
+		15 image
+
+The focused UI element is 7 button Normal corridor, ID: normal

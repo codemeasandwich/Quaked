@@ -1,0 +1,409 @@
+PASS bake format stores exact generator HALF-U16 values and matching boundary gutters for both roles
+PASS bake decoder rejects stale, truncated, wrong-model, invalid-height and duplicate records
+PASS public bounded deadline aborts a stalled loader, permits fallback and ignores its late successful result
+PASS default public loader fetches the registry file and decompresses real gzip before installing its source
+PASS default gzip loader rejects a valid in-range height bit flip by raw checksum and then generates fallback
+Added packfile newer-prebake-fixture.pak (1 files)\n
+PASS default public prebake loader resolves actual newer PAK bytes through a blob URL and validates gzip payload
+PASS a fourth pending public prefetch aborts the oldest download and its late result cannot become ready
+PASS active public source remains pinned while preview prefetches evict, and cache disposal releases that pin
+PASS public prepared loading blocks workers; ready tiles install exact half values without conversion
+PASS unknown and missing prepared tiles fall back to bounded real generation without hanging
+PASS public loader/decode failures settle to fallback instead of leaving prepared loading stuck
+PASS changed chart signature misses prepared data and falls back without attaching the wrong seed/preset
+PASS prepared GPU cache keeps96 LRU layers and an exact bounded lookup table after eviction
+Added packfile pak0.pak (339 files)\n
+BAKE COVERAGE 29 maps, 144 actual charts, 144 random generator tiles
+PASS packaged prebakes cover all PAK/loose BSPs and match source hashes plus one random real generated tile for every chart
+RESULT 14/14 passed (tests/rockfield_bakes_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+PASS travelling knight dies in E1M3, survives E1M2 return and repeated E1M3 server/baseline restore without resurrection or missing model
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+PASS first-arrival native knight gib death has head resources, and restored heads/gibs/tombstones remain valid
+RESULT 2/2 passed (tests/seamless_corpse_restore_test.js)
+PASS fresh hub stays off for every skill; fresh/restarted levels choose0/1on and2/3off without consuming the user notice
+PASS actual nativeSTART trigger_setskill builtin handles same-valueNormal, all four choices, repeated touches and rejects nonlocal/nonhub skill writes
+PASS F/console off prints the native corner status exactly once per run, travel/load preserves it and fresh/restart resets it; demo/classic are excluded
+PASS public Newer menu preserves shared lighting defaults while hub/level policy and flashlight checkbox use the run input path
+PASS actual attract demo temporaryON/restoreOFF cannot consume a resumed Hard run notice, but the next real user off still can
+RESULT 5/5 passed (tests/flashlight_run_test.js)
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+PASS attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS same canonical texture and role joins real positive-length T junctions/folds but never corners, gaps or different textures
+Added packfile pak0.pak (339 files)\n
+CONNECTED_BRUSH_FIELDS {"actualDrawMeshes":2,"componentIds":[2,1],"amplitude":0.35}
+PASS actual brush draw keeps disconnected native faces with the same texture/lightmap in separate field geometries and compiled shader paths
+CONNECTED_NATIVE_ROCK {"maps":21,"selected":{"rock4_1:ground":199,"rock4_1:wall":767,"bricka2_2:wall":80,"uwall1_2:wall":307,"wgrnd1_5:ground":96,"rock1_2:wall":848,"wgrnd1_6:ground":126,"rock4_2:wall":267},"components":{"bricka2_2:wall":2,"rock4_1:ground":46,"rock4_1:wall":21,"uwall1_2:wall":3,"wgrnd1_5:ground":10,"rock1_2:wall":7,"wgrnd1_6:ground":9,"rock4_2:wall":3},"excludedGroundSides":73,"sharedEdges":5140,"brushFaces":32}
+PASS all bundled native world and brush faces use their exact material/role preset and connected-field metadata without changing source coordinates
+PASS signed rock4_1 role threshold separates floor from wall while the other donor roles and legacy rock4_2 are explicit
+PASS all six current owner presets dispatch exact64-cell source fields with negative/order/gutter/both-slope seam parity
+RESULT 5/5 passed (tests/rockfield_connected_test.js)
+PASS connected same-material and role surfaces share fields regardless of UVs or exposure, using owner presets while construction stays native
+Added packfile pak0.pak (339 files)\n
+ACTUAL_ANGLED_ROCK_EDGES 199 ORIENTATIONS {"roof":38,"floor":11,"slope":2}
+PASS actual E1M1 connected matching cliff pieces share preset height and derivatives across roof/floor/slope edges
+BUNDLED_ROCK_AUDIT {"maps":21,"rock":2244,"soil":1082,"roof":319,"floor":45,"slope":72,"minRockArea":0.039399095431629394}
+PASS all bundled BSP world rock faces are classified independent of sky/orientation and retain nondegenerate shared projection
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+HUB_ROCK4_FACES 308 HARD_BRICKA2_2_FACES 80 SHARED_EDGES 262
+PASS actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact owner presets on connected matching pieces while metal stays native
+PASS tile cache limits jobs to2, deduplicates, ignores cancelled epochs and retains at most96 LRU pages
+PASS GPU half-float pages retain exact shared heights and both slopes with genuine neighboring gutters
+PASS page lookup preserves every resident even under a full96-page hash collision cluster
+PASS public world update only requests visible eligible charts in Newer normals mode and replaces maps without stale jobs
+PASS public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility
+RESULT 9/9 passed (tests/rockfield_runtime_test.js)
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+RESULT 3/3 passed (tests/r_flashlight_test.js)
+PASS camera portal dispatch retains oblique view, lateral crossing, vertical velocity and speed
+PASS camera portal defers hull overlap until origin reaches visible threshold
+PASS portal view angles survive the actual svc_setangle writer despite model pitch compression
+PASS opposite entry face uses its own camera transform after backing out
+PASS floor portal rotates falling momentum and camera forward into receiver frame
+PASS classic, disabled camera portals, multiplayer and non-player touches keep QC unchanged
+PASS disabling visible portals cancels a saved approach before native touch
+PASS blocked receiver offset falls back to original QC destination and side effects
+PASS unmapped hidden trigger and a moved receiver keep native QC dispatch
+PASS QC refusal and mod redirect remain authoritative; receiver restores on exceptions
+RESULT 10/10 passed (tests/sv_portal_motion_test.js)
+PASS shipped start hub portal thresholds are physically reachable or use confirmed backing contact
+RESULT 1/1 passed (tests/sv_portal_hull_test.js)
+PASS entity lump parser reads key/value pairs
+PASS teleporter surface becomes a portal onto its receiver
+PASS back face of a teleporter portals the other way
+PASS teleport texture without a trigger stays a plain surface
+PASS other turbulent textures are not portals
+RESULT 5/5 passed (tests/gl_portal_test.js)
+TOTAL 59/59 passed

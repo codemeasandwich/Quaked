@@ -1,0 +1,28 @@
+Added packfile pak0.pak (339 files)\n
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+PASS normal Classic renders exact native soldier/shambler and animated flame poses at default1 and legacy forced2 after an enhanced blend
+PASS forced2 split Classic uses exact native poses and R_SaveClassicScene restores enhanced attributes, buffers and state at the same tick
+PASS native one-pose armor movement uses game transforms in Classic, and split restoration returns the exact enhanced object display
+CLASSIC_NATIVE_ALIAS_MODELS [{"name":"progs/soldier.mdl","frames":114,"poses":114},{"name":"progs/shambler.mdl","frames":94,"poses":94},{"name":"progs/flame.mdl","frames":1,"poses":6},{"name":"progs/flame2.mdl","frames":2,"poses":17},{"name":"progs/armor.mdl","frames":1,"poses":1}]
+PASS native test models retain all source animation groups and shared geometry templates after Classic draws
+RESULT 4/4 passed (tests/classic_alias_frames_test.js)
+TOTAL 4/4 passed

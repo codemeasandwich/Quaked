@@ -1,0 +1,5 @@
+PASS public flashlight capture uses actual offset every frame, one physical512 view at DPR2, perspective projection and exact renderer restoration
+PASS live mesh and instanced casters are borrowed unchanged, ineligible effects skipped, capture failure cleans temporary clones and preserves renderer
+PASS off/invalid/unavailable/epoch/disposal flashlight captures clear readiness without rendering or modifying the existing point cube cache
+RESULT 3/3 passed (tests/flashlight_world_shadow_test.js)
+TOTAL 3/3 passed

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Height self-shadow GPU proof</title>
+<style>
+body{margin:24px;background:#15191d;color:#eee;font:15px system-ui}button{font:inherit;padding:8px 16px}p{max-width:900px}#views{display:flex;flex-wrap:wrap;gap:16px}figure{margin:0;width:256px}canvas{width:256px;height:256px;image-rendering:pixelated}figcaption{margin:8px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0e1114;padding:16px}
+</style>
+<h1>Height self-shadow GPU proof</h1>
+<p>One-shot draws through the production world and imported alias materials into the actual four-attachment HDR target. A gray height field has a white raised ridge at U 0.55–0.57 and a lower valley. Geometry, UVs and brown diffuse pixels stay unchanged. Five complete scanlines per draw compare the mask to independent ray intersections with the raised ridge and check that each shadow band is continuous. Four pixels around geometric transitions are excluded from the numeric oracle. Images below show the production decoder's visibility output; this bounded fixture does not run a game.</p>
+<button id="run">Run proof</button>
+<div id="views"></div>
+<pre id="report">Loading shaders…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<script type="module" src="height_shadows_gpu_trial.js"></script>
+</html>

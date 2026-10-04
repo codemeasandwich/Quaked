@@ -15,6 +15,9 @@ import { Cmd_AddCommand } from './cmd.js';
 import { key_dest, key_game, key_console, key_message } from './keys.js';
 import { realtime, host_frametime } from './host.js';
 import { renderer } from './vid.js';
+import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed } from './r_demoloading.js';
+import { R_WelcomeLoadingHolding } from './r_demoloading.js';
+import { Draw_Fill } from './gl_draw.js';
 import { R_DemoSplitActive, R_DemoSplitFull } from './r_demosplit.js';
 import { R_ClassicPassActive, R_AnimSetClassicPass } from './r_anim.js';
 import { Draw_WithClipRect } from './gl_draw.js';
@@ -607,6 +610,13 @@ function SCR_SetUpToDrawConsole() {
 
 	if ( scr_drawloading )
 		return; // never a console with loading plaque
+	if(R_DemoLoadingConsoleOverride()){
+		scr_plaque=false;
+		const hold=R_DemoLoadingHolding();Con_SetForcedup(hold);
+		if(hold)scr_con_current=scr_conlines=_vid.height;
+		else{scr_conlines=key_dest===key_console?_vid.height/2:0;scr_con_current=Math.max(scr_conlines,scr_con_current-scr_conspeed.value*host_frametime);if(scr_con_current===0)R_DemoLoadingConsoleClosed();}
+		return;
+	}
 
 	// decide on the height of the console
 	const forcedup = ! _cl.worldmodel || _cls.signon !== SIGNONS;
@@ -924,7 +934,7 @@ export function SCR_UpdateScreen() {
 		return; // not initialized yet
 
 	// changing level mid-game: keep the last frame, show no console
-	if ( SCR_ChangingLevel() ) {
+	if ( SCR_ChangingLevel() && !R_DemoLoadingConsoleOverride() && !R_WelcomeLoadingHolding() ) {
 
 		scr_con_current = 0;
 		return;
@@ -987,6 +997,13 @@ export function SCR_UpdateScreen() {
 		SCR_DrawNotifyString();
 		scr_copyeverything = 1;
 
+	} else if ( R_WelcomeLoadingHolding() ) {
+		// Fresh Newer introduction only: warm/render underneath the existing
+		// loading artwork, with no weak world or HUD shown before it is ready.
+		Draw_Fill(0,0,_vid.width,_vid.height,0);
+		scr_plaque=true;SCR_DrawLoading();scr_plaque=false;
+		if(key_dest===key_console)SCR_DrawConsole();
+		M_Draw();
 	} else if ( scr_drawloading || scr_plaque ) {
 
 		SCR_DrawLoading();
@@ -1026,6 +1043,7 @@ export function SCR_UpdateScreen() {
 
 	// GL_EndRendering
 	if ( _GL_EndRendering ) _GL_EndRendering();
+	if(R_DemoLoadingHolding()&&scr_con_current>0)R_DemoLoadingConsoleDrawn();
 
 	// Capture screenshot after render, while draw buffer is still valid
 	if ( _screenshotPending ) {

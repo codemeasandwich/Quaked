@@ -28,6 +28,13 @@ let version = '0'; // changes whenever a picture does, so the browser fetches th
 let indexPromise = null;
 const pictures = new Map(); // file -> Promise of { data, width, height }
 const scalarFiles = new Map(); // optional saved16-bit linear heights
+export const NEWER_TEXTURE_TIMEOUT_MS = 30000;
+let indexState = 'idle', indexError = null;
+const assetErrors = new Map();
+function bounded( promise, label, cancel = () => {} ) {
+	let timer;
+	return Promise.race( [ promise, new Promise( ( _, reject ) => { timer = setTimeout( () => { cancel(); reject( new Error( label + ' timed out' ) ); }, NEWER_TEXTURE_TIMEOUT_MS ); } ) ] ).finally( () => clearTimeout( timer ) );
+}
 
 function loadScalar( file ) {
 
@@ -35,8 +42,10 @@ function loadScalar( file ) {
 	let request = scalarFiles.get( file );
 	if ( ! request ) {
 
-		request = fetch( COM_NewerURL( BASE + file, BASE + file + '?v=' + version ) )
-			.then( response => response.ok ? response.arrayBuffer() : null ).catch( () => null );
+		const controller = new AbortController();
+		request = bounded( fetch( COM_NewerURL( BASE + file, BASE + file + '?v=' + version ), { signal: controller.signal } )
+			.then( response => { if ( ! response.ok ) throw new Error( 'Height scalar unavailable: ' + file ); return response.arrayBuffer(); } ), file, () => controller.abort() )
+			.catch( error => { assetErrors.set( file, String( error.message || error ) ); return null; } );
 		scalarFiles.set( file, request );
 
 	}
@@ -48,9 +57,10 @@ function loadIndex() {
 
 	if ( indexPromise === null ) {
 
-		indexPromise = COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
-			.then( ( j ) => { index = j.textures != null ? j.textures : {}; normals = j.normals != null ? j.normals : {}; version = String( j.version ); return index; } )
-			.catch( () => { index = {}; return index; } );
+		indexState = 'loading';
+		indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Texture index' )
+			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; version = String( j.version ); indexState = 'ready'; return index; } )
+			.catch( error => { indexError = String( error.message || error ); indexState = 'fallback'; index = {}; return index; } );
 
 	}
 
@@ -68,18 +78,24 @@ function loadPicture( file ) {
 		if ( typeof Image === 'undefined' || typeof document === 'undefined' ) return resolve( null );
 
 		const img = new Image();
+		let terminal = false;
+		const finish = ( value, error ) => { if ( terminal ) return; terminal = true; clearTimeout( timer ); img.onload = img.onerror = null; if ( error ) assetErrors.set( file, String( error.message || error ) ); resolve( value ); };
+		const timer = setTimeout( () => { finish( null, new Error( file + ' timed out' ) ); img.src = ''; }, NEWER_TEXTURE_TIMEOUT_MS );
 		img.onload = () => {
 
+			if ( terminal ) return;
+			try {
 			const canvas = document.createElement( 'canvas' );
 			canvas.width = img.width;
 			canvas.height = img.height;
 			const ctx = canvas.getContext( '2d', { willReadFrequently: true } );
 			ctx.drawImage( img, 0, 0 );
 			const data = ctx.getImageData( 0, 0, img.width, img.height ).data;
-			resolve( { data: new Uint8Array( data.buffer, data.byteOffset, data.byteLength ), width: img.width, height: img.height } );
+			finish( { data: new Uint8Array( data.buffer, data.byteOffset, data.byteLength ), width: img.width, height: img.height } );
+			} catch ( error ) { finish( null, error ); }
 
 		};
-		img.onerror = () => resolve( null );
+		img.onerror = () => finish( null, new Error( 'Texture unavailable: ' + file ) );
 		img.src = COM_NewerURL( BASE + file, BASE + file + '?v=' + version );
 
 	} );
@@ -93,7 +109,7 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	if ( texture == null ) return;
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 ) return;
-	if ( texture.userData == null || texture.userData.newerPicture === true || texture.userData.newerPending === true ) return;
+	if ( texture.userData == null || texture.userData.newerPicture === true || texture.userData.newerPending === true || texture.userData.newerFallback === true ) return;
 	texture.userData.newerPending = true;
 
 	loadIndex().then( ( idx ) => {
@@ -110,7 +126,7 @@ export function R_NewerTextureUpgrade( name, texture ) {
 	} ).then( ( loaded ) => {
 
 		texture.userData.newerPending = false;
-		if ( loaded == null ) return;
+		if ( loaded == null ) { texture.userData.newerFallback = true; return; }
 		const pic = loaded.pic;
 
 		if ( loaded.heightPic != null && loaded.heightPic.width === pic.width && loaded.heightPic.height === pic.height ) {
@@ -207,7 +223,7 @@ export function R_NewerTextureUpgrade( name, texture ) {
 		// loader (which would introduce a startup cycle through render.js).
 		texture.dispatchEvent( { type: 'newertextureupdated' } );
 
-	} );
+	} ).catch( error => { texture.userData.newerPending = false; texture.userData.newerFallback = true; texture.userData.newerError = String( error.message || error ); } );
 
 }
 
@@ -356,8 +372,23 @@ export function R_NewerTextureSettled( name, texture ) {
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 || texture == null ) return true;
 	if ( index === null ) return false;
 	if ( index[ name ] === undefined ) return true;
-	return texture.userData != null && texture.userData.newerPicture === true;
+	return texture.userData != null && ( texture.userData.newerPicture === true || texture.userData.newerFallback === true );
 
+}
+
+// Read-only readiness of the current/preview model's actual material requests.
+// Unknown names and explicit failures settle to native art instead of retrying.
+export function R_NewerTexturesStatus( model ) {
+	const textures = ( model?.textures || [] ).filter( t => t?.gl_texture && t.name.charAt( 0 ) !== '*' && ! t.name.startsWith( 'sky' ) );
+	const on = R_NewerGame() && r_newer_textures.value !== 0; let pending = 0, ready = 0, fallback = 0;
+	for ( const t of textures ) {
+		if ( ! on ) { fallback ++; continue; }
+		if ( t.gl_texture.userData.newerPicture ) ready ++;
+		else if ( t.gl_texture.userData.newerFallback || index !== null && index[ t.name ] === undefined ) fallback ++;
+		else pending ++;
+	}
+	return { index: indexState, pending, ready, fallback, total: textures.length, settled: pending === 0,
+		errors: { ...( indexError ? { index: indexError } : {} ), ...Object.fromEntries( assetErrors ) } };
 }
 
 

@@ -1,0 +1,286 @@
+Browser tab: 17, Title: "Quaked", URL: "http://localhost:8013/tests/intro_loading_trial.html?slow=1".
+1 AXWebArea Quaked, URL: localhost:8013/tests/intro_loading_trial.html?slow=1
+	2 container
+		4 text Actual intro readiness
+		5 link Description: Normal-speed boot, Value: localhost:8013/tests/intro_loading_trial.html?slow=0
+		6 button Fresh Newer welcome, ID: newer
+		7 text {
+  "slow": true,
+  "status": {
+    "phase": "done",
+    "mode": "demo",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 97,
+    "settledFrames": 3,
+    "world": "maps/e1m3.bsp",
+    "pending": [],
+    "fallbacks": []
+  },
+  "consoleHeight": 0,
+  "level": "maps/e1m4.bsp",
+  "signon": 4,
+  "demo": true,
+  "history": [
+    {
+      "ms": 167,
+      "phase": "armed",
+      "mode": "demo",
+      "appReady": false,
+      "consoleSeen": true,
+      "fadeStarted": false,
+      "fadeDone": false,
+      "frames": 0,
+      "settledFrames": 0,
+      "world": "",
+      "pending": [],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 0,
+      "demoTime": 0,
+      "logoOpacity": null
+    },
+    {
+      "ms": 2367,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": false,
+      "frames": 2,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "textures",
+        "enemy and item art",
+        "GPU shaders",
+        "continuous rock relief",
+        "sculpted surfaces",
+        "source shadows"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": "0"
+    },
+    {
+      "ms": 2469,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": false,
+      "frames": 3,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "textures",
+        "enemy and item art",
+        "continuous rock relief",
+        "sculpted surfaces",
+        "source shadows"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": "0"
+    },
+    {
+      "ms": 2879,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": false,
+      "frames": 6,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "textures",
+        "enemy and item art",
+        "sculpted surfaces",
+        "source shadows"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": "0"
+    },
+    {
+      "ms": 3340,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 7,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "textures",
+        "enemy and item art",
+        "sculpted surfaces",
+        "source shadows"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": null
+    },
+    {
+      "ms": 3470,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 8,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "textures",
+        "enemy and item art",
+        "sculpted surfaces"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": null
+    },
+    {
+      "ms": 26064,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 86,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "enemy and item art",
+        "source shadows"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": null
+    },
+    {
+      "ms": 30122,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 93,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "GPU asset upload"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": null
+    },
+    {
+      "ms": 30826,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 94,
+      "settledFrames": 0,
+      "world": "maps/e1m3.bsp",
+      "pending": [
+        "GPU shaders"
+      ],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": null
+    },
+    {
+      "ms": 30986,
+      "phase": "warming",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 95,
+      "settledFrames": 1,
+      "world": "maps/e1m3.bsp",
+      "pending": [],
+      "fallbacks": [],
+      "consoleHeight": 240,
+      "demoPosition": 7975,
+      "demoTime": 1.475305938720703,
+      "logoOpacity": null
+    },
+    {
+      "ms": 31418,
+      "phase": "rolling",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 97,
+      "settledFrames": 3,
+      "world": "maps/e1m3.bsp",
+      "pending": [],
+      "fallbacks": [],
+      "consoleHeight": 225.0900000000017,
+      "demoPosition": 7975,
+      "demoTime": 1.5250059387206973,
+      "logoOpacity": null
+    },
+    {
+      "ms": 32468,
+      "phase": "done",
+      "mode": "demo",
+      "appReady": true,
+      "consoleSeen": true,
+      "fadeStarted": true,
+      "fadeDone": true,
+      "frames": 97,
+      "settledFrames": 3,
+      "world": "maps/e1m3.bsp",
+      "pending": [],
+      "fallbacks": [],
+      "consoleHeight": 0,
+      "demoPosition": 8663,
+      "demoTime": 2.3752059387207045,
+      "logoOpacity": null
+    }
+  ],
+  "gpuErrors": [],
+  "errors": []
+}
+		8 button (collapsed) Captured console during loading, Secondary Actions: Expand
+			9 text Captured console during loading
+		10 image
+		11 image
+
+The focused UI element is 1 AXWebArea Quaked, URL: localhost:8013/tests/intro_loading_trial.html?slow=1

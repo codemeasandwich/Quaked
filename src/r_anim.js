@@ -14,7 +14,8 @@
 import { cvar_t, Cvar_VariableValue } from './cvar.js';
 import { COM_SetNewerActive } from './pak.js';
 
-// 0 = off, 1 = on in Newer Game only (the default), 2 = always
+// 0 = off; values 1 and above enable smoothing only in Newer Game.
+// Legacy value 2 is retained as a preference, but never overrides Classic.
 export const r_lerpmodels = new cvar_t( 'r_lerpmodels', '1' );
 
 // Newer Game's features, each on or off (they apply only while playing Newer
@@ -91,8 +92,7 @@ export function R_IsNewer() {
 
 export function R_AnimEnabled() {
 
-	const v = r_lerpmodels.value;
-	return ! classicPass && ( v >= 2 || ( v >= 1 && newerActive ) );
+	return ! classicPass && newerActive && r_lerpmodels.value >= 1;
 
 }
 

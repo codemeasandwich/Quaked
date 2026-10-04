@@ -1,0 +1,301 @@
+{
+  "version": "quaked-rockfield-1.2.0-1",
+  "sources": {
+    "src/rockfield.js": "992162c49b75d85abee5df33926131be9aab25c8a61015779ced00f331aaf7fd",
+    "src/rockfield_presets.js": "9a0e9b01c8c56b59df4d658a33f27900e85a8a6a41530d477295759c54a1e1c2",
+    "src/r_rocksurfaces.js": "97e5dc993b4f313b218f052b1613b2b3b7e5660435284e932469a4c70e679c5d",
+    "src/rockfield_bake_format.js": "86e3a13b2f7a1ed9fd5f419db4e2c931215cba4e2f593de61bbba59904e19cab"
+  },
+  "levels": {
+    "maps/b_batt0.bsp": {
+      "file": "newer/rockfield/b_batt0.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 107,
+      "bspSha256": "1a6289e1daf96880b9a7cb366cb363bcfc45f277d04d922fc551d2ef05ee5104",
+      "sha256": "7c158c6788e0f0e680fe31e4d1dd2c7358c0e3ed8a98ae2402229a27045a5d93",
+      "rawSha256": "827e1d88f0db41173b505b12aa4a0a4aeb9440c10efe0634f1af8e51096c2cca"
+    },
+    "maps/b_batt1.bsp": {
+      "file": "newer/rockfield/b_batt1.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 108,
+      "bspSha256": "978d4644f3e0361965066cbb3c88597ced748effb0252f0b60d4d6981efb00b7",
+      "sha256": "715228ffd14b2e53cdeef89202fd031e0bc82321a0c4fafd546cf5eb5b5a3e88",
+      "rawSha256": "205ac8bc89c7d8a4a40aeed1f7e88a6118019abe2919b5f3346dc9c7c138c9a3"
+    },
+    "maps/b_bh10.bsp": {
+      "file": "newer/rockfield/b_bh10.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 90,
+      "compressedBytes": 106,
+      "bspSha256": "93ed244c445817cc96ac5a378f4a556ff2e910d40fde654f181534930eaf39d4",
+      "sha256": "a233e5d22a7b52cbd626bc2774d1e1d9bb78d1e887bd935f00a61a9e9e94aac1",
+      "rawSha256": "ac30e8605662768a0a1aa90940ff7227a356a52966a5eae953dbb2c124bf8a57"
+    },
+    "maps/b_bh100.bsp": {
+      "file": "newer/rockfield/b_bh100.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 108,
+      "bspSha256": "74aa7b2f080562dae303a3601872df9a684c5b52e71c8fed2460bbb47ff190c7",
+      "sha256": "20c4bbae1c50cd9021653df8171df33ffd307b47c1f50ab032a81be6644be4c8",
+      "rawSha256": "52bab2524adc303ccc2e805372f9ee420ccf2750a93b3d4c2f7d9ad536305761"
+    },
+    "maps/b_bh25.bsp": {
+      "file": "newer/rockfield/b_bh25.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 90,
+      "compressedBytes": 106,
+      "bspSha256": "cb3ee7125c0cf453be37249127aa99a8bdcc3752fbbaa009f560afa242120777",
+      "sha256": "2f7947b00acf12f83cf041b1c456666f9db54b38d47611c0ea2b6ae5ed99fdb1",
+      "rawSha256": "b8290577264bb958e2b1fa044b77839beb7940672a6e48a5494021f6f0d39b6d"
+    },
+    "maps/b_explob.bsp": {
+      "file": "newer/rockfield/b_explob.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 109,
+      "bspSha256": "d2b6d055bde377a425d082a52046a6e41a609197d6cd56db5cdfafe26314efb8",
+      "sha256": "97068a4210efa27f7f35a16116552e6d8d0bb0abd288b8135b544ba05c2a6c87",
+      "rawSha256": "fcd1fb868b7c85bf187e9b81c5a47f7ced1b2076fb086c591ae69b2a49396064"
+    },
+    "maps/b_nail0.bsp": {
+      "file": "newer/rockfield/b_nail0.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 106,
+      "bspSha256": "1f0a5b113348bd8c843ecbe88196ff518bf06e8afbde3cb4a1b9e445912fea41",
+      "sha256": "93a08d240f7e4added1c51f8b23af14547024c771b45e6142ec75e1768d37acf",
+      "rawSha256": "c42eb1714758ad311e5ec5806864b938232908dc941d11a6e9848e1d55e85492"
+    },
+    "maps/b_nail1.bsp": {
+      "file": "newer/rockfield/b_nail1.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 106,
+      "bspSha256": "90004f3fbb0ca8f2c7d348b79e06984640aa20550cc5897ddfc9b40e0819cfd5",
+      "sha256": "5dbafe0ef8cfc9be2707b94576ec4a0db0f2620601da609d7bf6496e81b6e2b2",
+      "rawSha256": "39792f5bbd0a059a3c0597e51bf11d711ce056cbcd86939bc4599aa07d2c7a70"
+    },
+    "maps/b_rock0.bsp": {
+      "file": "newer/rockfield/b_rock0.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 107,
+      "bspSha256": "14b82cd4e56615875afa3b40d754830e6718c515093731313fe85d871b11e331",
+      "sha256": "b5b419544bcade5b24dae97f32c6ed16a276c434c773f5e4b3010aff98615744",
+      "rawSha256": "400d825ef114d6d77c855bdccdcf94d38974f5e1cc107b453f96c9304d502ba6"
+    },
+    "maps/b_rock1.bsp": {
+      "file": "newer/rockfield/b_rock1.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 107,
+      "bspSha256": "749e46465857d802b527bf5865da60b3ab170dbf6661d81462588e59f1792594",
+      "sha256": "b50af0e6ce15bf4606deace3eac260d8e28b676e86d3c984e9ef8846c5ceb748",
+      "rawSha256": "91106d6148661fe6ba8c532eedaec4958df65b3560d41731884bc7895349e3fd"
+    },
+    "maps/b_shell0.bsp": {
+      "file": "newer/rockfield/b_shell0.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 106,
+      "bspSha256": "ac2e9b3d3b35f7c30c9b1cde66c175fdfd89561970e64368af612442ed5f11c9",
+      "sha256": "af43016b51e546a5e3f8c6418918db15d0000e3779b9f381427e119a0206096f",
+      "rawSha256": "17b19ab2ebffbc706a6437459874e8db9e7df58b4661f83354541c1ac707e36f"
+    },
+    "maps/b_shell1.bsp": {
+      "file": "newer/rockfield/b_shell1.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 105,
+      "bspSha256": "ee35ecc6230c0f0206d88acf8cc270e1de0876ecbe2272085ffa6a6c45651db6",
+      "sha256": "2ee904e37b1e47e97ede4f76531ba4425bfa6622847a4fbc4cf7ce8d59426c99",
+      "rawSha256": "b76c482e995ca9c4cbeb18d1bcbe6a0b62067b381a0129ced54fdb7f36f47ba7"
+    },
+    "maps/baldm6.bsp": {
+      "file": "newer/rockfield/baldm6.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 90,
+      "compressedBytes": 107,
+      "bspSha256": "10aaac8790d57afc7b22af4e51c2ba0aeec31a17fc9db98776bbc693d4ab6a74",
+      "sha256": "591862976f55111508f85ed77b02abcc6641f5d9d044c97569e889f53faba7c3",
+      "rawSha256": "d95b38ff43cbf4ac94d41f039b602d03bdb9289b0e309a0889bdb116073b2998"
+    },
+    "maps/e1m1.bsp": {
+      "file": "newer/rockfield/e1m1.rf.gz",
+      "charts": 10,
+      "tiles": 607,
+      "bytes": 5808386,
+      "compressedBytes": 3721863,
+      "bspSha256": "7b7061ec63c3e8ecb9c0e0a8075f18823efea6578666d57d601c191bcaf16c26",
+      "sha256": "2118f4f7467a7541e8f363554f038039d7a10d78a7ca4acc0bf31e11fdb2af90",
+      "rawSha256": "4db0b8efc95090f1521ff9885fd434ec49dbe6a9a4193d74030230365a10aef0"
+    },
+    "maps/e1m2.bsp": {
+      "file": "newer/rockfield/e1m2.rf.gz",
+      "charts": 11,
+      "tiles": 277,
+      "bytes": 2653204,
+      "compressedBytes": 1456896,
+      "bspSha256": "d0aff066a89cb75bcc4dc729d0130a2ac2ed93287d91e57a5b63ac26dce4fb27",
+      "sha256": "edbd3877cb5f0cd1b4f916a246c66b33437cbd48d778b942ec67c8fae40ce948",
+      "rawSha256": "4af5f1a33dd68be749563a0b6c33b2ac02db2f055f6a4ea02bb92fee4ce7bc9e"
+    },
+    "maps/e1m3.bsp": {
+      "file": "newer/rockfield/e1m3.rf.gz",
+      "charts": 34,
+      "tiles": 1448,
+      "bytes": 13845926,
+      "compressedBytes": 9920835,
+      "bspSha256": "5941c37c67267ae11aff572fdba7f813148cc99da3cfc34d01eea81dc23edfd0",
+      "sha256": "2aad01c24fd277fe5a0c04775a8831e8b57087ca2c7d4a1f3676b8468edd454b",
+      "rawSha256": "1169da77bfef8364c01bc59761afd6fd77de5beed1a101ff6a12cd2fd620568d"
+    },
+    "maps/e1m4.bsp": {
+      "file": "newer/rockfield/e1m4.rf.gz",
+      "charts": 35,
+      "tiles": 1825,
+      "bytes": 17459348,
+      "compressedBytes": 12539176,
+      "bspSha256": "ec6b51b8a7e7ef56b549349c2797f925340a4d94bda55440dd04b039824a140c",
+      "sha256": "ee8b152b6cd17c8cca5b26e6e0c3ff9706d71d76e98da097bcc86041298a8dd7",
+      "rawSha256": "e3083257f8ce35ffe8c12dfff2d9394ba3e8ce5f2405d5500e9a730af140f009"
+    },
+    "maps/e1m5.bsp": {
+      "file": "newer/rockfield/e1m5.rf.gz",
+      "charts": 6,
+      "tiles": 420,
+      "bytes": 4016452,
+      "compressedBytes": 1657224,
+      "bspSha256": "a7fab95ca32b9142b720c9d974b35210cd992f1c46fd3e86723971466d1570d9",
+      "sha256": "fef7fd297df69e05abe1353c9612406bb347665cd4fdfa58fdf2e351486a04d1",
+      "rawSha256": "a675c837a918af6bb6b4b9097f43193e3a57218e1e8f0f0fa1f040b1b9b05714"
+    },
+    "maps/e1m6.bsp": {
+      "file": "newer/rockfield/e1m6.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 88,
+      "compressedBytes": 103,
+      "bspSha256": "6a7fefad7a5a99ec85d98b3f1e9e9dad3d0639d3a0512cc780ba1810be09c7a6",
+      "sha256": "11d018bd3708dbda4a7a3f59124b6532a7323e63dcdc4b13b41626ddeb70d64e",
+      "rawSha256": "680dfbd52827fdac7e9f8278ee1f44d8ff3709641f373e565a5692f0e7035922"
+    },
+    "maps/e1m7.bsp": {
+      "file": "newer/rockfield/e1m7.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 88,
+      "compressedBytes": 103,
+      "bspSha256": "c1f8565fd7b9bb93c23da05c67b98c51d89c71f8b60f9561ca29b28911c1911d",
+      "sha256": "993836020d48e60368d299f0077197cce692ebe909fecd048f3f3168039c3a12",
+      "rawSha256": "6159b85a800af444bbeb493b9ae5ef82de63285f97f100a76dcac7fde9a8c895"
+    },
+    "maps/e1m8.bsp": {
+      "file": "newer/rockfield/e1m8.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 88,
+      "compressedBytes": 103,
+      "bspSha256": "68cb9173303631d70f4b5da3d430c08d2c9932d32500d48e36aa4320a23522fc",
+      "sha256": "f451d2f26c0d41ab0e0e688f64f3f9f061adc72df937c6877f913bb77a3f23bd",
+      "rawSha256": "a08e60446dc5406bd04c9681a25aee9576efa7a331b9d9206c1609ca5f8c1c9a"
+    },
+    "maps/edc.bsp": {
+      "file": "newer/rockfield/edc.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 88,
+      "compressedBytes": 104,
+      "bspSha256": "c3ca4a1b2f54a669677d811b2ef7136ac2527476f1bf4924306011aca145c2c5",
+      "sha256": "999a2725f463062ca927bb0fdb237c6fd8d12221c4b320757d7df6c8115c9159",
+      "rawSha256": "f27321a5faddeaf2bfa01566015f27e4d3d4ac84d743efc2e86c987de32ef9c5"
+    },
+    "maps/efdm9.bsp": {
+      "file": "newer/rockfield/efdm9.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 90,
+      "compressedBytes": 105,
+      "bspSha256": "552a8ad5da33036ad59d49e33cd5f60c78038b495818da028131cfc623999795",
+      "sha256": "f0443b5e141610f9d65cbcab5646dc12c9763a930b392130d142030f4967bd75",
+      "rawSha256": "0aaca2e15ddab13823b6afc55ec640de798c3bb6469bd418fa92d4f79e617e9c"
+    },
+    "maps/naked5.bsp": {
+      "file": "newer/rockfield/naked5.rf.gz",
+      "charts": 15,
+      "tiles": 328,
+      "bytes": 3137878,
+      "compressedBytes": 1716584,
+      "bspSha256": "5438072dcdee94d06549df039098037973e61309aa6f924bcbd41b7ef6f3eab5",
+      "sha256": "756ee8a2c794f84165ebcdb5a17c0cd68fedeb558696f99e6b774e96a02cd74d",
+      "rawSha256": "98d0a83f691341eefeb08e736d3eaea0cd9dd48507410b179497dee9d21d7e4a"
+    },
+    "maps/rapture1.bsp": {
+      "file": "newer/rockfield/rapture1.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 107,
+      "bspSha256": "40d800a199aa8f75c54d1026c0604073b9bbc94870cd363056e7eadc904a89ce",
+      "sha256": "abc3d420d88ebefce9e6064689a31d80e08a1918362b15bd0793163bffe741e1",
+      "rawSha256": "eaa75dbed399444ddf0a1e1889b06d33cf2cbb021e6aa20c05887124e71caa36"
+    },
+    "maps/spinev2.bsp": {
+      "file": "newer/rockfield/spinev2.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 92,
+      "compressedBytes": 106,
+      "bspSha256": "394cfc3b2046f671fc776b75000a605ff9a9dad4fb69ac87d0cb9f2710ff82a5",
+      "sha256": "1d8d905c8d1d0298accbc4c91b188006473738d5873ed466ee0103f55b4bf742",
+      "rawSha256": "eb84e64038980c8c4ef2534769bd60d0d28245a3e8616586d76d5927e1b0ce0c"
+    },
+    "maps/start.bsp": {
+      "file": "newer/rockfield/start.rf.gz",
+      "charts": 33,
+      "tiles": 863,
+      "bytes": 8249754,
+      "compressedBytes": 5868210,
+      "bspSha256": "a4e907bb36bb13e82be5656342a75cfd412e843784014f76a1df5bdcb63896d0",
+      "sha256": "d12b8a418849fe8c53637420c6d58bab19f2784fd12f3be5aca816462d41acb6",
+      "rawSha256": "ac135d9a7406be35011f14be082c81a47eb859c905592985995caff2f63d8474"
+    },
+    "maps/ultrav.bsp": {
+      "file": "newer/rockfield/ultrav.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 90,
+      "compressedBytes": 105,
+      "bspSha256": "9fa52f9f733ae40214207d52399baac780a0d38d257b49cf9e66f9600a19f370",
+      "sha256": "7fb5ac5a05d446260ea61a2db0f1e65ae628d56dfe4f089ff62503d9a36c4c12",
+      "rawSha256": "b2846140c28a40d9d96331db5a7f48e17b88d0477207c1c5fa9f641c0420a851"
+    },
+    "maps/zed.bsp": {
+      "file": "newer/rockfield/zed.rf.gz",
+      "charts": 0,
+      "tiles": 0,
+      "bytes": 88,
+      "compressedBytes": 104,
+      "bspSha256": "9418dbe56a5c6a80663a76ca986c5b9fdd22448457a05e0d2c7e33aaba65a4c3",
+      "sha256": "9a4343fbdb4ff1cda610504b4579a82276394199c56c3a9a24e88d761f5efdbb",
+      "rawSha256": "81050a8c085f48c0fbed8b69626c2bf5a5e95138ee57e2f48ddbacdebefa065b"
+    }
+  }
+}

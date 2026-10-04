@@ -1,4 +1,5 @@
 // Ported from: WinQuake/cl_main.c -- client main loop
+import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from './r_demoloading.js';
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,
@@ -24,6 +25,7 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from './mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
+import { R_FlashlightRunEnd } from './r_flashlightrun.js';
 import { R_DemoSplitEnd } from './r_demosplit.js';
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from './r_muzzle.js';
 import { R_NewerGame } from './r_anim.js';
@@ -228,7 +230,9 @@ export function CL_Disconnect() {
 }
 
 export function CL_Disconnect_f() {
+	R_DemoLoadingCancel();
 
+	R_FlashlightRunEnd(); // explicit exit, unlike load/connect during a run
 	CL_Disconnect();
 	if ( sv.active )
 		Host_ShutdownServer( false );
@@ -1237,6 +1241,7 @@ Read all incoming data from the server
 ===============
 */
 export function CL_ReadFromServer() {
+	if(R_DemoLoadingFreeze(cls.demoplayback,cls.signon,cls.timedemo))return;
 
 	cl.oldtime = cl.time;
 	cl.time += host_frametime;
@@ -1294,7 +1299,7 @@ export function CL_SendCmd() {
 	if ( cls.state !== ca_connected )
 		return;
 
-	if ( cls.signon === SIGNONS ) {
+	if ( cls.signon === SIGNONS && !R_WelcomeLoadingHolding() ) {
 
 		// get basic movement from keyboard
 		const cmd = new usercmd_t();

@@ -1,0 +1,8 @@
+PASS native-face projection constraints preserve landmark samples inside convex faces at folds for both windings without changing field or UVs
+PASS a whole visible distant cliff retains every height page when walking backward and looking away nearby; far invisible surfaces stop requesting
+RESULT 2/3 passed (tests/rock_lighting_stability_test.js)
+FAIL actual rock shader binds original face planes and bounds only projection while lighting bounce uses stable samples and normal packets use nearest data Error: saved depth strengthens cavity shading without a camera-distance term
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rock_lighting_stability_test.js:8:37)
+    at file:///Users/bri/SOURCE/Quaked/tests/rock_lighting_stability_test.js:39:303
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 2/3 passed

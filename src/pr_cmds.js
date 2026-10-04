@@ -36,6 +36,7 @@ import { PR_HostError, PR_RunError } from './pr_exec.js';
 import { SV_Move, SV_LinkEdict, SV_PointContents } from './world.js';
 import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from './sv_move.js';
 import { SV_StartSound, SV_StartParticle, sv_aim } from './sv_main.js';
+import { R_FlashlightSkillSelected } from './r_flashlightrun.js';
 import { SV_GoreOnSetModel } from './sv_gore.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cvar_VariableValue, Cvar_Set } from './cvar.js';
@@ -760,6 +761,13 @@ function PF_cvar_set() {
 	const varName = G_STRING( OFS_PARM0 );
 	const val = G_STRING( OFS_PARM1 );
 	Cvar_Set( varName, val );
+	// Only the local player's actual START corridor touch chooses the light.
+	// Generic skill writes/server initialization and remote players do not.
+	if ( varName === 'skill' && sv.name === 'start' ) {
+		const self = PROG_TO_EDICT( pr_global_struct.self ), other = PROG_TO_EDICT( pr_global_struct.other );
+		if ( self && other && PR_GetString( self.v.classname ) === 'trigger_setskill' && NUM_FOR_EDICT( other ) === 1 )
+			R_FlashlightSkillSelected( sv.name, val );
+	}
 
 }
 

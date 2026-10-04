@@ -68,10 +68,13 @@ Deno.test( 'removing the screen, and pages without the logo, are safe', () => {
 
 } );
 
-Deno.test( 'main.js drives the logo from the pak0.pak download and removes it once ready', async () => {
+Deno.test( 'main.js drives pak progress, then reveals a real startup console only after the frame and conback are ready', async () => {
 
 	const main = await Deno.readTextFile( 'main.js' );
 	check( /COM_FetchPak\( 'pak0\.pak', 'pak0\.pak', value => LoadingScreen_SetProgress\( value \) \)/.test( main ), 'pak0 progress feeds the logo' );
-	check( main.indexOf( 'LoadingScreen_Remove()' ) > main.indexOf( 'await R_WeaponsPreload()' ), 'removed after startup preload, as before' );
+	check( main.indexOf( 'R_DemoLoadingAppReady()' ) > main.indexOf( "await Draw_LoadConbackImage( 'conback.webp' )" ), 'console wallpaper ready or native fallback before app-ready' );
+	check( main.indexOf( 'R_DemoLoadingSplash(()=>LoadingScreen_FadeOut())' ) > main.indexOf( 'else Host_Frame( time )' ), 'fade requested only after actual startup console frame' );
+	check( main.indexOf( 'R_DemoLoadingBoot();' ) < main.lastIndexOf( 'main();' ), 'first-entry scope armed before boot' );
+	check( main.includes( "startup.phase==='done'&&!startup.fadeStarted" ), 'cancelled manual/network entry removes overlay without borrowing demo loading' );
 
 } );

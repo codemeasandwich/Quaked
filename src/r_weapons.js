@@ -11,10 +11,16 @@ export const r_newer_weapons = new cvar_t( 'r_newer_weapons', '1' );
 const BASE = 'newer/weapons/';
 let indexPromise = null, index = null;
 let preloadPromise = null;
+export const WEAPON_ASSET_TIMEOUT_MS = 30000;
+let indexState = 'idle', preloadState = 'idle';
 const requests = new Map();
 const failures = new Map();
 const sourceTextures = new Map();
 const rotorStates = new WeakMap();
+function bounded( promise, label ) {
+	let timer;
+	return Promise.race( [ promise, new Promise( ( _, reject ) => { timer = setTimeout( () => reject( new Error( label + ' timed out' ) ), WEAPON_ASSET_TIMEOUT_MS ); } ) ] ).finally( () => clearTimeout( timer ) );
+}
 
 export function R_WeaponsEnabled() { return R_NewerGame() && r_newer_weapons.value !== 0; }
 
@@ -22,12 +28,16 @@ function texture( path, color, flipY = false ) {
 
 	return new Promise( ( resolve, reject ) => {
 
-		new THREE.TextureLoader().load( COM_NewerURL( BASE + path, BASE + path ), t => {
+		let terminal = false;
+		const fail = error => { if ( terminal ) return; terminal = true; clearTimeout( timer ); reject( error || new Error( 'Weapon texture unavailable: ' + path ) ); };
+		const timer = setTimeout( () => fail( new Error( path + ' timed out' ) ), WEAPON_ASSET_TIMEOUT_MS );
+		try { new THREE.TextureLoader().load( COM_NewerURL( BASE + path, BASE + path ), t => {
 
+			if ( terminal ) { t.dispose(); return; } terminal = true; clearTimeout( timer );
 			t.flipY = flipY; t.colorSpace = color ? THREE.SRGBColorSpace : THREE.NoColorSpace;
 			t.anisotropy = 16; resolve( t );
 
-		}, undefined, reject );
+		}, undefined, fail ); } catch ( error ) { fail( error ); }
 
 	} );
 
@@ -35,16 +45,16 @@ function texture( path, color, flipY = false ) {
 
 export function R_WeaponsLoad() {
 
-	if ( ! indexPromise ) indexPromise = COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ).then( data => {
+	if ( ! indexPromise ) { indexState = 'loading'; indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Weapon manifest' ).then( data => {
 
 		if ( ! data.models || ! data.sources ) throw new Error( 'Missing weapon manifest' );
-		index = data; return data;
+		index = data; indexState = 'ready'; return data;
 
 	} ).catch( error => {
 
-		failures.set( 'manifest', String( error ) ); console.warn( 'Weapon manifest fallback:', error ); throw error;
+		indexState = 'fallback'; failures.set( 'manifest', String( error ) ); console.warn( 'Weapon manifest fallback:', error ); throw error;
 
-	} );
+	} ); }
 	return indexPromise;
 
 }
@@ -54,9 +64,9 @@ export function R_WeaponsLoad() {
 // loading while classic is selected never changes the rendering gate.
 export function R_WeaponsPreload() {
 
-	if ( ! preloadPromise ) preloadPromise = R_WeaponsLoad()
+	if ( ! preloadPromise ) { preloadState = 'loading'; preloadPromise = R_WeaponsLoad()
 		.then( manifest => Promise.all( Object.keys( manifest.models ).concat( 'shell' ).map( R_WeaponLoad ) ) )
-		.catch( () => [] ); // manifest/model diagnostics and native fallback remain
+		.catch( () => [] ).then( assets => { preloadState = failures.size ? 'fallback' : 'ready'; return assets; } ); } // native fallback remains
 	return preloadPromise;
 
 }
@@ -74,7 +84,7 @@ export function R_WeaponLoad( key ) {
 			if ( ! sourceTextures.has( source ) ) sourceTextures.set( source,
 				Promise.all( Object.entries( manifest.sources[ source ].maps ).map( async ( [ kind, file ] ) => [ kind, await texture( source + '/' + file, kind !== 'normal', manifest.sources[ source ].textureFlipY === true ) ] ) ) );
 			const [ data, loaded ] = await Promise.all( [
-				COM_NewerJSON( BASE + key + '.json', BASE + key + '.json' ),
+				bounded( COM_NewerJSON( BASE + key + '.json', BASE + key + '.json' ), 'Weapon geometry ' + key ),
 				sourceTextures.get( source )
 			] );
 			if ( ! data.poses?.length || ! data.indices?.length || ! data.uv?.length ) throw new Error( 'Invalid weapon geometry: ' + key );
@@ -105,14 +115,14 @@ export function R_WeaponLoad( key ) {
 
 			} );
 			const maps = Object.fromEntries( loaded ), material = R_AssetAliasMaterial( maps, key, manifest.sources[ source ].material );
-			const asset = { templates, material, source, key, rotor: data.rotor || null };
+			const asset = { templates, material, source, key, textures: Object.values( maps ).filter( texture => texture?.isTexture ), rotor: data.rotor || null };
 			request.asset = asset; return asset;
 
 		} ).catch( error => {
 
 			failures.set( key, String( error ) ); console.warn( 'Weapon art fallback:', key, error ); return null;
 
-		} );
+		} ).finally( () => { request.settled = true; } );
 		requests.set( key, request );
 
 	}
@@ -228,6 +238,18 @@ export function R_WeaponRotorFrame( asset, entity, pose, poseBlend, time ) {
 export function R_WeaponStatus() {
 
 	return { ready: Array.from( requests ).filter( ( [ , p ] ) => p.asset ).map( ( [ key ] ) => key ),
-		failures: Object.fromEntries( failures ) };
+		failures: Object.fromEntries( failures ), index: indexState, preload: preloadState,
+		pending: Array.from( requests ).filter( ( [ , p ] ) => ! p.settled ).map( ( [ key ] ) => key ),
+		settled: indexState !== 'loading' && preloadState !== 'loading' && Array.from( requests.values() ).every( p => p.settled ) };
 
+}
+
+// Actual ready held/pickup/shell materials; shader warming reuses these objects
+// without requesting new roles, changing rendering gates or replacing assets.
+export function R_WeaponMaterials() {
+	return [ ...new Set( Array.from( requests.values() ).map( request => request.asset?.material ).filter( Boolean ) ) ];
+}
+
+export function R_WeaponTextures() {
+	return [ ...new Set( Array.from( requests.values() ).flatMap( request => request.asset?.textures || [] ) ) ];
 }

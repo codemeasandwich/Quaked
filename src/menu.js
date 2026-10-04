@@ -1,5 +1,7 @@
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
+import { R_FlashlightToggle } from './r_flashlight.js';
+import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from './r_demoloading.js';
 import { R_DemoSplitActive, R_DemoSplitRelease } from './r_demosplit.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cmd_AddCommand } from './cmd.js';
@@ -690,9 +692,10 @@ function M_Main_Key( key ) {
 */
 
 let m_singleplayer_cursor = 0;
-// What a Newer Game starts with: the flashlight on, the brightness at its lowest, and the frame rate showing
-// (all still changeable in the options)
-const NEWER_DEFAULTS = 'r_flashlight 1\ngamma 1\ncl_showfps 1\n';
+// Enhanced starts with brightness at the slider midpoint and FPS showing.
+// The successful fresh-map hook chooses the flashlight for the hub/difficulty.
+const NEWER_DEFAULT_GAMMA = 0.75; // brightness range is gamma1 (dark) to gamma.5 (bright)
+const NEWER_DEFAULTS = `r_newer_lighting 1\nr_newer_normals 1\nr_newer_shadows 1\nr_pointshadows 1\nr_heightshadows 1\ngamma ${NEWER_DEFAULT_GAMMA}\ncl_showfps 1\n`;
 
 const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
@@ -1907,7 +1910,7 @@ function M_Options_Key( key ) {
 					Cbuf_AddText( 'bind MOUSE1 +attack\n' );
 					Cbuf_AddText( 'cl_forwardspeed 400\n' );
 					Cbuf_AddText( 'cl_backspeed 400\n' );
-					Cbuf_AddText( 'gamma 1\n' );
+					Cbuf_AddText( `gamma ${Cvar_VariableValue( 'r_hdr' ) !== 0 ? NEWER_DEFAULT_GAMMA : 1}\n` );
 					Cbuf_AddText( 'volume 0.4\n' );
 					Cbuf_AddText( 'bgmvolume 1\n' );
 					break;
@@ -2057,7 +2060,8 @@ function M_Newer_Toggle( dir ) {
 
 	}
 
-	Cvar_SetValue( f.cvar, Cvar_VariableValue( f.cvar ) !== 0 ? 0 : 1 );
+	if ( f.cvar === 'r_flashlight' ) R_FlashlightToggle();
+	else Cvar_SetValue( f.cvar, Cvar_VariableValue( f.cvar ) !== 0 ? 0 : 1 );
 
 }
 
@@ -2712,6 +2716,7 @@ M_Draw
 // the thin line down the middle and the ENHANCED / CLASSIC labels over the title demo
 function M_DrawSplitMarks() {
 
+	if(R_DemoLoadingConsoleOverride()||R_WelcomeLoadingHolding())return;
 	if ( ! _Draw_Fill ) return;
 	_Draw_Fill( ( _vid.width >> 1 ) - 1, 0, 2, _vid.height, 0, 0.9 );
 	const off = ( _vid.width - 320 ) >> 1;

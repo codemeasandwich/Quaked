@@ -1,3 +1,11 @@
+import { R_RockfieldSetLimits, R_RockfieldStatus } from './r_rockfield.js';
+import { R_IntroLoadingHolding, R_DemoLoadingFrame, R_IntroReadinessChecks } from './r_demoloading.js';
+import { R_NewerTexturesStatus } from './r_newertextures.js';
+import { R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsMaterials, R_NewerSkinsTextures } from './r_newerskins.js';
+import { R_WeaponsPreload, R_WeaponStatus, R_WeaponMaterials, R_WeaponTextures, R_WeaponsEnabled } from './r_weapons.js';
+import { R_NewerHudPreload, R_NewerHudStatus } from './r_newerhud.js';
+import { R_PointShadowStatus, R_WaterStartupStatus } from './gl_post.js';
+import { R_DemonReliefStatus } from './gl_rsurf.js';
 // Ported from: WinQuake/gl_rmain.c -- main GL renderer
 // + WinQuake/glquake.h -- GL definitions
 
@@ -8,6 +16,7 @@ import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_rockfield } from './r_rockfield.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
+import { r_heightshadows, R_HeightShadowScope } from './r_heightshadows.js';
 import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
@@ -24,11 +33,11 @@ import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack 
 import { r_newer_weapons } from './r_weapons.js';
 import { R_ShellsSetup, R_ShellsNewMap, R_ShellsFrame } from './r_shells.js';
 import { R_ShellTrace } from './r_shelltrace.js';
-import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate } from './r_flashlight.js';
+import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate, R_FlashlightBeam } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial } from './r_newerskins.js';
-import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
+import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1006,7 +1015,7 @@ function R_DrawAliasModel( e ) {
 		ambientlight = shadelight = R_LightPoint( e.origin, cl );
 
 		// always give the gun some light
-		if ( e === cl.viewent && ambientlight < 24 )
+		if ( ! R_NewerLightingActive() && e === cl.viewent && ambientlight < 24 )
 			ambientlight = shadelight = 24;
 
 		// add dynamic lights to ambient/shade (gl_rmain.c:482-497)
@@ -1040,7 +1049,7 @@ function R_DrawAliasModel( e ) {
 			const idx = e._entityIndex;
 			if ( idx !== undefined && idx >= 1 && idx <= cl.maxclients ) {
 
-				if ( ambientlight < 8 )
+				if ( ! R_NewerLightingActive() && ambientlight < 8 )
 					ambientlight = shadelight = 8;
 
 			}
@@ -1050,7 +1059,7 @@ function R_DrawAliasModel( e ) {
 		// HACK HACK HACK -- no fullbright colors, so make torches full light
 		const clmodel = e.model;
 		if ( clmodel.name === 'progs/flame2.mdl' || clmodel.name === 'progs/flame.mdl' )
-			ambientlight = shadelight = R_NewerLightingActive() ? 640 : 256; // flames glow past white in HDR
+			ambientlight = shadelight = R_NewerLightingActive() ? 960 : 256; // flames glow past white in HDR
 
 		// select shadedots row based on yaw angle
 		const yaw = e.angles ? e.angles[ 1 ] : 0;
@@ -1719,7 +1728,6 @@ export function R_RenderView() {
 	R_Clear();
 
 	// the shoulder flashlight follows the view with a lag
-	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
 	R_MuzzleSetView( r_refdef.vieworg );
 
 	R_NewerTexturesFrame( cl != null ? cl.worldmodel : null );
@@ -1735,6 +1743,7 @@ export function R_RenderView() {
 
 	// render normal view
 	R_RenderScene();
+	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
 	R_DrawViewModel();
 	R_DrawWaterSurfaces();
 
@@ -1770,7 +1779,8 @@ export function R_RenderView() {
 
 			}
 
-			renderer.render( scene, camera );
+			R_PostLightsFrame( renderer, scene, camera, r_visframecount, d_lightstylevalue, cl_dlights, cl != null ? cl.time : 0, R_MapHasSky() );
+			try { renderer.render( scene, camera ); } finally { R_HeightShadowScope( false ); }
 			R_PerfStage( 'world draw' );
 			// the title demo, half Newer and half classic
 			const split = R_DemoSplitActive();
@@ -1803,6 +1813,7 @@ export function R_RenderView() {
 	R_CleanupWaterMeshes_rsurf();
 
 	R_PerfStage( 'overlays and water' );
+	if(R_IntroLoadingHolding())R_UpdateIntroReadiness();
 
 	if ( r_speeds.value ) {
 
@@ -1949,6 +1960,8 @@ export function R_Init() {
 
 	Cvar_RegisterVariable( r_portals );
 	Cvar_RegisterVariable( r_hdr );
+	Cvar_RegisterVariable( r_pointshadows );
+	Cvar_RegisterVariable( r_heightshadows );
 	Cvar_RegisterVariable( cl_showfps );
 	R_PerfInit( renderer );
 	Cvar_RegisterVariable( r_dynres );
@@ -2005,6 +2018,7 @@ export function R_Init() {
 	R_InitParticles();
 	R_SetParticleExternals( { scene: scene } );
 
+	R_RockfieldSetLimits(renderer);
 	Con_Printf( 'R_Init: Three.js renderer ready' );
 
 }
@@ -2019,6 +2033,31 @@ export function R_Init() {
 // frames, while the screen is still held back, instead of one at a time as they first come
 // into view: each of those is a stall of a good fraction of a second.
 let _needCompile = false;
+let _shaderWarmPending=0,_shaderWarmFailure='',_introWorld=null,_introShaderStamp='';
+const _introWarnings=new Set();
+
+function R_UpdateIntroReadiness(){
+ const model=cl.worldmodel;if(!model)return;
+ const models=cl.model_precache.filter(Boolean);
+ if(_introWorld!==model){_introWorld=model;_introShaderStamp='';R_WeaponsPreload();R_NewerHudPreload();}
+ R_NewerSkinsPrepare(models);
+ const textures=R_NewerTexturesStatus(model),skins=R_NewerSkinsStatus(models),weapons=R_WeaponStatus(),hud=R_NewerHudStatus(),rock=R_RockfieldStatus(),demon=R_DemonReliefStatus(),shadows=R_PointShadowStatus(),water=R_WaterStartupStatus(camera);
+ const enhanced=R_PostActive(),skinRequired=enhanced&&(r_newer_enemies.value!==0||r_newer_normals.value!==0),weaponRequired=R_WeaponsEnabled();
+ const assets=[];
+ if(enhanced&&r_newer_textures.value!==0)assets.push(['textures',textures]);
+ if(skinRequired)assets.push(['enemy and item art',skins]);
+ if(weaponRequired)assets.push(['weapon models',weapons]);
+ if(enhanced&&r_newer_hud.value!==0)assets.push(['status bar',hud]);
+ const {pending,fallbacks}=R_IntroReadinessChecks({assets,shaderPending:enhanced&&_needCompile||_shaderWarmPending>0,shaderFailure:_shaderWarmFailure,rock,demon,shadows,water,captureEnabled:enhanced&&r_newer_lighting.value!==0&&r_pointshadows.value!==0,spotOn:R_FlashlightBeam().on});
+ const stamp=JSON.stringify([model.name,textures.ready,textures.fallback,skins.ready,skins.fallback,weapons.ready,hud.ready,hud.fallback,rock.preparedTiles,rock.resident,demon.ready,demon.triangles]);
+ if(enhanced&&assets.every(([,state])=>state.settled)&&_introShaderStamp!==stamp){
+  _introShaderStamp=stamp;const previous=renderer.getRenderTarget();R_PostBind(renderer);
+  try{R_WarmShaders(renderer,scene,camera,[...(skinRequired?R_NewerSkinsMaterials(models):[]),...(weaponRequired?R_WeaponMaterials():[])],[...(skinRequired?R_NewerSkinsTextures(models):[]),...(weaponRequired?R_WeaponTextures():[])]);}finally{renderer.setRenderTarget(previous);}
+  pending.push('GPU asset upload');
+ }
+ for(const warning of fallbacks)if(!_introWarnings.has(warning)){_introWarnings.add(warning);Con_Printf('Enhanced intro fallback: '+warning+'\n');}
+ R_DemoLoadingFrame({world:model.name,signon:cls.signon,rendered:true,pending,fallbacks,revision:stamp+':'+(renderer.info?.programs?.length||0)});
+}
 
 // The kinds of material that only appear once something spawns, is fired or comes into view
 // (monster skins, sprites, marks, shadows, doors...). Each is a stall of a second or more the
@@ -2026,7 +2065,7 @@ let _needCompile = false;
 // where the browser allows it. Nothing here is ever drawn.
 let _warmGroup = null;
 
-function R_WarmShaders( renderer, scene, camera ) {
+function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTextures=[] ) {
 
 	if ( _warmGroup === null ) {
 
@@ -2071,25 +2110,35 @@ function R_WarmShaders( renderer, scene, camera ) {
 	}
 
 	// they are only in the scene while the programs are being started
-	scene.add( _warmGroup );
+	const extra=[];
 	try {
+	if(renderer.initTexture)for(const texture of new Set(extraTextures))renderer.initTexture(texture);
+	for(const material of extraMaterials){
+		const mesh=new THREE.Mesh(_warmGroup.children[0].geometry,material);mesh.frustumCulled=false;_warmGroup.add(mesh);extra.push(mesh);
+		const textures=new Set();for(const value of Object.values(material))if(value?.isTexture)textures.add(value);for(const uniform of Object.values(material.uniforms||{}))if(uniform?.value?.isTexture)textures.add(uniform.value);
+		if(renderer.initTexture)for(const texture of textures)renderer.initTexture(texture);
+	}
+	scene.add( _warmGroup );
 
 		const started = typeof renderer.compileAsync === 'function' ? renderer.compileAsync( scene, camera ) : renderer.compile( scene, camera );
-		if ( started != null && typeof started.catch === 'function' ) started.catch( () => {} );
+		if(started&&typeof started.then==='function'){_shaderWarmPending++;Promise.resolve(started).catch(error=>{_shaderWarmFailure=String(error.message||error);}).finally(()=>{_shaderWarmPending--;});}
 
 	} catch ( e ) {
 
 		console.warn( 'shader warm-up failed', e );
+		_shaderWarmFailure=String(e.message||e);
 
 	}
 
 	scene.remove( _warmGroup );
+	for(const mesh of extra)_warmGroup.remove(mesh);
 
 }
 
 export function R_NewMap() {
 
 	_needCompile = true;
+	_introWorld=null;_introShaderStamp='';_shaderWarmFailure='';
 
 	// clear old data
 	r_viewleaf = null;

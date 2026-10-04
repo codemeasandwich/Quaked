@@ -1,0 +1,109 @@
+Browser tab: 17, Title: "Quaked — continuous rock relief trial", URL: "http://localhost:8013/tests/rockfield_gameplay_trial.html".
+1 AXWebArea Quaked — continuous rock relief trial, URL: localhost:8013/tests/rockfield_gameplay_trial.html
+	2 container
+		3 text Continuous natural rock relief
+		4 button Relief: on, ID: toggle
+		5 button Outdoor entrance, ID: position
+		6 button Cliff close-up, ID: cliff
+		7 button Step back from cliff, ID: retreat
+		8 button Look at roof, ID: roof
+		9 button Restart level, ID: restart
+		10 button Measure on/off frame time, ID: measure
+		11 button Hide controls, ID: hide
+		24 text Connected rock surfaces · saved relief settings · original textures and geometry.
+		19 container
+			20 button (expanded) Diagnostics and measurement, Secondary Actions: Collapse
+				21 text Diagnostics and measurement
+			22 button Inspect visible materials, ID: materials
+			23 button Inspect GPU shadow masks, ID: shadow-probe
+			25 text {
+  "charts": 10,
+  "resident": 510,
+  "pending": 0,
+  "maxPages": 510,
+  "pageLimit": 2048,
+  "desiredTiles": 482,
+  "missingVisibleTiles": 0,
+  "overflowTiles": 0,
+  "error": null,
+  "active": true,
+  "preparedState": "ready",
+  "preparedTiles": 513,
+  "generatedTiles": 0,
+  "preparedError": null,
+  "demonRelief": {
+    "eligible": 0,
+    "ready": 0,
+    "triangles": 0,
+    "enabled": true
+  },
+  "level": "maps/e1m1.bsp",
+  "signon": 4,
+  "setupCount": 1,
+  "serverActive": true,
+  "spawned": true,
+  "demo": false,
+  "viewangles": [
+    -7.03125,
+    33.75,
+    0
+  ],
+  "player": [
+    128,
+    1008,
+    -199.96875
+  ],
+  "errors": []
+}
+			26 text {
+  "attachments": 4,
+  "maskClasses": {
+    "invalidClear": 5977,
+    "ordinaryHeight": 494502,
+    "rockWall": 408652,
+    "invalidOpaque": 13909
+  },
+  "rockWallSpotVisibilityBins": [
+    1274,
+    35,
+    35,
+    35,
+    33,
+    38,
+    50,
+    407152
+  ],
+  "defaults": {
+    "gamma": 0.75,
+    "r_flashlight": 1,
+    "r_heightshadows": 1,
+    "r_pointshadows": 1
+  },
+  "worldShadows": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 8,
+    "pending": 0,
+    "requested": 8,
+    "chunks": 229,
+    "triangles": 9614,
+    "captures": 28,
+    "faceRenders": 168,
+    "failedCaptures": 0,
+    "spotReady": true,
+    "spotCaptures": 2351,
+    "spotRenders": 2351,
+    "spotFailedCaptures": 0,
+    "spotError": null,
+    "spotDynamicMeshes": 49,
+    "epoch": 9,
+    "error": null,
+    "disposed": false
+  },
+  "glError": 0,
+  "errors": []
+}
+		16 image
+		17 image
+
+The focused UI element is 23 button Inspect GPU shadow masks, ID: shadow-probe

@@ -226,6 +226,7 @@ let demonEnabled = false;
 export function R_DemonReliefStatus() {
 
 	return { eligible: demonSurfaces.length, ready: demonSurfaces.filter( s => s.mesh ).length,
+		pending: demonSurfaces.filter(s=>!s.mesh&&(s.surface.texinfo.texture.gl_texture?.userData.newerPending||s.surface.texinfo.texture.gl_texture?.userData.newerHeight?.displacement)).length,
 		triangles: demonSurfaces.reduce( ( sum, s ) => sum + ( s.data?.triangles || 0 ), 0 ), enabled: demonEnabled };
 
 }

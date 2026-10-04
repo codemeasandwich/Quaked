@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Offset flashlight world-shadow GPU proof</title>
+<style>body{margin:24px;background:#15191d;color:#eee;font:15px system-ui}p{max-width:920px}button{font:inherit;padding:8px 16px}#views{display:flex;flex-wrap:wrap;gap:16px}figure{margin:0;width:256px}img{display:block;width:256px;height:256px}figcaption{margin:8px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0e1114;padding:16px}</style>
+<h1>Offset flashlight world-shadow GPU proof</h1>
+<p>Four one-shot captures use the production spotlight atlas and visibility shader. The light sits away from the camera. A physical box casts a world shadow; a borrowed actor and two instances add their own shadows. Moving the light shifts the shadows. White is lit and black is shadowed. The receipt compares actual GPU pixels against independent geometric ray intersections. This page starts no game or animation loop.</p>
+<button id="run">Run proof</button>
+<div id="views"></div>
+<pre id="report">Loading…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<script type="module" src="flashlight_world_shadow_gpu_trial.js"></script>
+</html>

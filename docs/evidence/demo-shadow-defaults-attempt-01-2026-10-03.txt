@@ -1,0 +1,28 @@
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 3/4 passed (tests/demo_shadow_defaults_test.js)
+FAIL attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight Error: enhanced queued defaults survive release: 0 != 1
+    at check (file:///Users/bri/SOURCE/Quaked/tests/demo_shadow_defaults_test.js:16:50)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/demo_shadow_defaults_test.js:17:33)
+    at file:///Users/bri/SOURCE/Quaked/tests/demo_shadow_defaults_test.js:44:278
+    at fixture (file:///Users/bri/SOURCE/Quaked/tests/demo_shadow_defaults_test.js:25:283)
+    at file:///Users/bri/SOURCE/Quaked/tests/demo_shadow_defaults_test.js:41:147
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 3/4 passed

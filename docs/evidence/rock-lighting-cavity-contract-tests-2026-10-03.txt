@@ -1,0 +1,5 @@
+PASS native-face projection constraints preserve landmark samples inside convex faces at folds for both windings without changing field or UVs
+PASS a whole visible distant cliff retains every height page when walking backward and looking away nearby; far invisible surfaces stop requesting
+PASS actual rock shader binds original face planes and bounds only projection while lighting bounce uses stable samples and normal packets use nearest data
+RESULT 3/3 passed (tests/rock_lighting_stability_test.js)
+TOTAL 3/3 passed

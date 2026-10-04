@@ -18,7 +18,9 @@ import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage
 import { XR_Init } from './src/webxr.js';
 import { R_WeaponsPreload } from './src/r_weapons.js';
 import { M_SetExternals } from './src/menu.js';
-import { LoadingScreen_SetProgress, LoadingScreen_Remove } from './src/loading_screen.js';
+import { LoadingScreen_SetProgress, LoadingScreen_Remove, LoadingScreen_FadeOut } from './src/loading_screen.js';
+import { R_DemoLoadingBoot, R_DemoLoadingAppReady, R_DemoLoadingCancel, R_DemoLoadingSplash, R_DemoLoadingStatus } from './src/r_demoloading.js';
+import { R_NewerHudPreload } from './src/r_newerhud.js';
 
 const parms = {
 	basedir: '.',
@@ -70,10 +72,10 @@ async function main() {
 		// Ready the supplied held/pickup art before the attract demo begins.
 		// Optional failures retain native art; New Game/classic stay native even
 		// though the enhanced assets are resident. No trial-page setup is needed.
-		await R_WeaponsPreload();
-
-		// Remove loading overlay
-		LoadingScreen_Remove();
+		// Optional art initializes behind the real console rather than keeping
+		// the black logo on screen until its downloads have finished.
+		R_WeaponsPreload();
+		R_NewerHudPreload();
 
 		// Preload custom menu images
 		try {
@@ -125,6 +127,7 @@ async function main() {
 		const roomId = urlParams.get( 'room' );
 
 		if ( roomId ) {
+			R_DemoLoadingCancel(); // network/gameplay keeps its established transition
 
 			const serverUrl = urlParams.get( 'server' ) || 'https://wts.mrdoob.com:4433';
 			const connectUrl = serverUrl + '?room=' + encodeURIComponent( roomId );
@@ -161,6 +164,7 @@ async function main() {
 		} );
 
 		let oldtime = performance.now() / 1000;
+		R_DemoLoadingAppReady(); // conback/menu loaded or explicit native fallbacks
 
 		// Use renderer.setAnimationLoop instead of requestAnimationFrame.
 		// This is required for WebXR — Three.js automatically switches to
@@ -174,6 +178,9 @@ async function main() {
 
 			if ( R_PerfProfiling() ) R_PerfPump( Host_Frame );
 			else Host_Frame( time );
+			const startup=R_DemoLoadingStatus();
+			if(startup.mode==='welcome'||startup.phase==='done'&&!startup.fadeStarted)LoadingScreen_Remove();
+			else R_DemoLoadingSplash(()=>LoadingScreen_FadeOut());
 
 		} );
 
@@ -186,4 +193,5 @@ async function main() {
 
 }
 
+R_DemoLoadingBoot();
 main();

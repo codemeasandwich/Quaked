@@ -1,6 +1,7 @@
 // Owner-restored axe: native mesh, UVs, skin, complete arm and animation
 // in every game mode. Decode the original PAK directly; no donated axe art.
 import { readFileSync, existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/gl_mesh.js' );
@@ -117,8 +118,10 @@ Deno.test( 'original axe: no replacement role, requests, generated texture or ge
 	check( ! requested.some( path => /\/axe\/|\/v_axe\.json/.test( path ) ), 'preload, draw and explicit load never request donor axe art' );
 	check( ! existsSync( new URL( '../newer/weapons/v_axe.json', import.meta.url ) ), 'generated axe geometry/wrap file removed' );
 	check( ! existsSync( new URL( '../newer/weapons/axe', import.meta.url ) ), 'generated donor axe textures removed' );
-	const supplied = read( 'quake_axe.glb' );
-	check( supplied.length > 1000 && supplied.readUInt32LE( 0 ) === 0x46546c67 && supplied.readUInt32LE( 8 ) === supplied.length, 'owner supplied GLB source file retained' );
+	// The owner removed donor inputs in 8a927815; preserve that cleanup while
+	// checking the same retained source blob instead of restoring a loose file.
+	const supplied = execFileSync( 'git', [ 'show', '8a927815^:quake_axe.glb' ], { cwd: new URL( '../', import.meta.url ), maxBuffer: 2000000 } );
+	check( supplied.length > 1000 && supplied.readUInt32LE( 0 ) === 0x46546c67 && supplied.readUInt32LE( 8 ) === supplied.length, 'owner supplied GLB source retained in Git history' );
 
 } );
 
@@ -142,6 +145,7 @@ Deno.test( 'original axe: native swing interpolation preserves complete axe/arm 
 	Cvar_SetValue( 'r_hdr', 1 ); const h = nativeAxe(), e = entity(), oldTime = cl.time, oldLerp = anim.r_lerpmodels.value;
 	try {
 
+		anim.R_AnimSetNewer( true ); // renderer begins an Enhanced frame before alias drawing
 		anim.r_lerpmodels.value = 2; cl.time = 40; R_DrawAliasModel( e, h, null );
 		e.frame = 1; cl.time = 40.1; R_DrawAliasModel( e, h, null );
 		cl.time = 40.15; const mesh = R_DrawAliasModel( e, h, null ), from = GL_DrawAliasFrame( h, 0 ), to = GL_DrawAliasFrame( h, 1 );
@@ -155,7 +159,7 @@ Deno.test( 'original axe: native swing interpolation preserves complete axe/arm 
 		same( mesh.geometry.getAttribute( 'uv' ), to.uvAttr, 'swing original texture coordinates' );
 		same( mesh.material.map, h.gl_texturenum[ 0 ], 'swing original texture' ); check( ! mesh.children.length, 'complete swing uses one native mesh' );
 
-	} finally { cl.time = oldTime; anim.r_lerpmodels.value = oldLerp; }
+	} finally { cl.time = oldTime; anim.r_lerpmodels.value = oldLerp; anim.R_AnimSetNewer( false ); }
 
 } );
 

@@ -1,0 +1,18 @@
+PASS boot splash waits for an actual console presentation and app readiness, fades once, and terminal fallback readiness needs three completed draws
+PASS manual intent cancels startup permanently; signon packets/timed demos are never frozen and failed splash has a terminal native fallback
+PASS actual loading DOM fades only on its opacity transition; unrelated events do not remove it and missing/reduced-motion pages terminate
+Added packfile boot-public-native-pak (339 files)\n
+PASS actual first-attract client freezes both clip time and packet cursor after native signon, screen renders behind full native console then rolls away only when terminal
+RESULT 4/5 passed (tests/demo_startup_loading_test.js)
+FAIL actual manual and timed playback commands permanently bypass first-demo scope, and stopping first attract cannot rearm a later loop Error: actual public timed intent entered
+    at check (file:///Users/bri/SOURCE/Quaked/tests/demo_startup_loading_test.js:5:58)
+    at file:///Users/bri/SOURCE/Quaked/tests/demo_startup_loading_test.js:44:467
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS index.html carries logo.svg unchanged, cropped to the artwork
+PASS progress fills the logo from the bottom up and reports it
+PASS removing the screen, and pages without the logo, are safe
+PASS main.js drives pak progress, then reveals a real startup console only after the frame and conback are ready
+RESULT 4/4 passed (tests/loading_screen_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+TOTAL 9/10 passed

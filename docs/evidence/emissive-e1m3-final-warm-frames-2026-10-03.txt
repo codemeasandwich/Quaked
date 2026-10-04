@@ -1,0 +1,194 @@
+Browser tab: 18, Title: "Quaked — E1M3 emissive light trial", URL: "http://localhost:8013/tests/emissive_lighting_trial.html".
+1 AXWebArea Quaked — E1M3 emissive light trial, URL: localhost:8013/tests/emissive_lighting_trial.html
+	2 container
+		3 text E1M3 emissive lighting trial
+		4 button Start, ID: start
+		5 button Around corner, ID: corner
+		6 button Upper landing, ID: landing
+		7 button Beside stairs, ID: stairs
+		8 button Hall tower, ID: tower
+		9 button World shadows: on, ID: shadows
+		10 button Inspection flashlight: on, ID: light
+		11 button Verify shadow rays, ID: probe
+		12 button Measure warm frames, ID: measure
+		13 button Hide controls, ID: hide
+		27 text Native light positions · camera-independent world shadows.
+		21 container
+			22 button (expanded) Diagnostics, Secondary Actions: Collapse
+				23 text Diagnostics
+			28 text {
+  "level": "maps/e1m3.bsp",
+  "setup": true,
+  "player": [
+    -736,
+    -1592,
+    88
+  ],
+  "angles": [
+    0,
+    270,
+    0
+  ],
+  "atlas": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 8,
+    "pending": 0,
+    "requested": 8,
+    "chunks": 263,
+    "triangles": 1073725,
+    "captures": 20,
+    "faceRenders": 120,
+    "failedCaptures": 0,
+    "epoch": 9,
+    "error": null,
+    "disposed": false
+  },
+  "selected": [
+    {
+      "positionView": [
+        16.03125,
+        65.96875,
+        15.96875,
+        28
+      ],
+      "shadow": [
+        0,
+        350.83647796503186
+      ]
+    },
+    {
+      "positionView": [
+        -343.96875,
+        49.96875,
+        -212.03124999999977,
+        28
+      ],
+      "shadow": [
+        1,
+        405.43147968233404
+      ]
+    },
+    {
+      "positionView": [
+        -119.96875,
+        137.96875,
+        -8.031249999999773,
+        28
+      ],
+      "shadow": [
+        2,
+        324.7594670356232
+      ]
+    },
+    {
+      "positionView": [
+        32.03125,
+        89.96875,
+        -168.03125,
+        28
+      ],
+      "shadow": [
+        3,
+        362.7820869396956
+      ]
+    },
+    {
+      "positionView": [
+        184.03125,
+        65.96875,
+        -152.03125,
+        28
+      ],
+      "shadow": [
+        4,
+        324.7594670356232
+      ]
+    },
+    {
+      "positionView": [
+        -115.96875,
+        145.96875,
+        -366.03125,
+        28
+      ],
+      "shadow": [
+        5,
+        490.6244584051392
+      ]
+    },
+    {
+      "positionView": [
+        -151.96875,
+        25.96875,
+        -48.03124999999977,
+        28
+      ],
+      "shadow": [
+        6,
+        324.7594670356232
+      ]
+    },
+    {
+      "positionView": [
+        230.03125,
+        145.96875,
+        -158.03125,
+        28
+      ],
+      "shadow": [
+        7,
+        490.6244584051392
+      ]
+    }
+  ],
+  "errors": []
+}
+			26 text {
+  "frames": 60,
+  "meanMs": 35.55500000000005,
+  "medianMs": 33.39999999999418,
+  "canvas": [
+    2560,
+    1440
+  ],
+  "bounce": 1,
+  "flashlight": 1,
+  "sceneScale": 0.5,
+  "before": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 8,
+    "pending": 0,
+    "requested": 8,
+    "chunks": 263,
+    "triangles": 1073725,
+    "captures": 20,
+    "faceRenders": 120,
+    "failedCaptures": 0,
+    "epoch": 9,
+    "error": null,
+    "disposed": false
+  },
+  "after": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 8,
+    "pending": 0,
+    "requested": 8,
+    "chunks": 263,
+    "triangles": 1073725,
+    "captures": 20,
+    "faceRenders": 120,
+    "failedCaptures": 0,
+    "epoch": 9,
+    "error": null,
+    "disposed": false
+  },
+  "glError": 0,
+  "errors": []
+}
+		18 image
+		19 image
+
+The focused UI element is 1 AXWebArea Quaked — E1M3 emissive light trial, URL: localhost:8013/tests/emissive_lighting_trial.html

@@ -485,6 +485,7 @@ void main() {
 const FRAGMENT_SHADER = `
 layout(location = 1) out highp vec4 gNormal;
 layout(location = 2) out highp vec4 gAlbedo;
+layout(location = 3) out highp vec4 gHeightMask;
 uniform sampler2D map;
 uniform sampler2D portalMap;
 uniform float portalMix;
@@ -519,6 +520,7 @@ void main() {
 	// a window, not a wall: the lighting pass must not light it (alpha < 0 says so)
 	gNormal = vec4( 0.5, 0.5, 1.0, - 1.0 );
 	gAlbedo = vec4( 0.0 );
+	gHeightMask = vec4(1.0);
 }`;
 
 export function R_PortalMaterial( portal, texture ) {

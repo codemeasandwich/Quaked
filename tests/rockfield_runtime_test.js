@@ -463,7 +463,7 @@ Deno.test( 'page lookup preserves every resident even under a full96-page hash c
 
 } );
 
-Deno.test( 'public world update only requests visible eligible charts in Newer normals mode and replaces maps without stale jobs', () => {
+Deno.test( 'public world update retains nearby or visible eligible charts in Newer normals mode and replaces maps without stale jobs', () => {
 
 	const previousWorker = Object.getOwnPropertyDescriptor( globalThis, 'Worker' ), workers = [];
 	const variables = [ post.r_hdr, anim.r_newer_normals, r_rockfield ], saved = variables.map( v => v.string );
@@ -472,7 +472,7 @@ Deno.test( 'public world update only requests visible eligible charts in Newer n
 	try {
 
 		variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); const s = scene(); R_RockfieldBuild( s.model );
-		R_RockfieldUpdate( [ 0, 0, 40 ], 8, 0 ); same( workers.length, 0, 'invisible faces do not generate' );
+		R_RockfieldUpdate( [ 10000, 10000, 40 ], 8, 0 ); same( workers.length, 0, 'distant invisible faces do not generate' );
 		cvar.Cvar_Set( 'r_hdr', '0' ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 101 ); same( workers.length, 0, 'NewGame does not generate' );
 		cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 'r_newer_normals', '0' ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 202 ); same( workers.length, 0, 'normal toggle disables relief' );
 		cvar.Cvar_Set( 'r_newer_normals', '1' ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 303 ); same( workers.length, 2, 'eligible visible charts create two workers' ); same( R_RockfieldStatus().pending, 2, 'visible stream remains bounded' );
@@ -528,7 +528,7 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 			const normalBody = shader.fragmentShader.slice( shader.fragmentShader.indexOf( 'if(qrRockAmp>0.)' ) );
 			check( ! normalBody.includes( 'qrProjectionAmp' ), 'normal/AO/sun shading does not use compressed projection amplitude' );
 			check( normalBody.includes( 'float h=qrRockHeight(qrRockQ)' ) && normalBody.includes( 'tile=floor(qrRockQ)' ), 'shading samples the same capped-ray hit' );
-			check( normalBody.includes( 'qrRockAO=exp(-cavity*qrRockAmp*28.)' ) && normalBody.includes( '(qrRockHeight(p)-1.)*qrRockAmp' ), 'cavity and sun blocker depths retain full maximum amplitude' );
+			check( normalBody.includes( 'exp(-cavity*qrRockAmp*12.)' ) && normalBody.includes( '(qrRockHeight(p)-1.)*qrRockAmp' ), 'cavity and sun blocker depths retain full maximum amplitude' );
 			check( shader.fragmentShader.includes( 'qrRockUvShift=qrUdx*' ) && shader.fragmentShader.includes( 'vec2 pUv = vMapUv + qrRockUvShift;' ), 'world displacement converts back through native UV derivatives' );
 			const uvExpression = /qrRockUvShift=(qrUdx[^;]+);/.exec( shader.fragmentShader )[ 1 ];
 			const qrRdx = { x: 2, y: -1 }, qrRdy = { x: .5, y: 1.5 }, qrUdx = { x: 8, y: 2 }, qrUdy = { x: -1, y: 4 }, det = 3.5;
@@ -539,7 +539,7 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 				near( convert( d, qrRdx, qrRdy, qrUdx, qrUdy, det ), expected[ index ], 'actual shader converts rotated/scaled chart displacement to original UV' );
 
 			}
-			check( shader.fragmentShader.includes( 'normal=normalize(normal-qrRockTbn[0]*dx*qrRockAmp-qrRockTbn[1]*dy*qrRockAmp)' ), 'height derivatives perturb actual normal' );
+			check( shader.fragmentShader.includes( 'qrMacroNormal=normalize(qrFaceNormal-qrRockTbn[0]*dx*qrRockAmp-qrRockTbn[1]*dy*qrRockAmp)' ), 'height derivatives perturb actual normal' );
 			check( shader.fragmentShader.includes( '(z+light.z*t)' ) && shader.fragmentShader.includes( 'qrRockSunVisibility=min' ), 'sun visibility tests actual height-ray blockers' );
 			const encoded = /gAlbedo = vec4\( gDiffuse, ([^;]+) \);/.exec( shader.fragmentShader )[ 1 ];
 			const encode = new Function( 'qrRockSunVisibility', 'return ' + encoded );
@@ -548,7 +548,9 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 			post.R_PostFinish( renderer, new THREE.Scene(), camera, { lx: 0, ly: 0, lw: 320, lh: 200 }, 0, [], [], 0, 1, false );
 			const expression = /float rockSunVisibility = ([^;]+);/.exec( composite.fragmentShader )[ 1 ];
 			const clamp = ( value, lo, hi ) => Math.max( lo, Math.min( hi, value ) );
-			const decode = new Function( 'alpha', 'clamp', 'return ' + expression.replaceAll( 'base.a', 'alpha' ) );
+			const unpack = new Function( 'alpha', 'clamp', 'heightMaskValid', 'receiverHeightVisibility', 'uvd', 'P', 'return ' + expression.replaceAll( 'base.a', 'alpha' ) );
+			const decode = (alpha,clamp) => unpack(alpha,clamp,()=>false,()=>1,{},{});
+			near(unpack(encode(.2),clamp,()=>true,()=>.3,{},{}),.3,'valid combined height mask replaces macro alpha instead of multiplying it twice');
 			near( decode( 1, clamp ), 1, 'ordinary alpha1 retains full sun' );
 			near( decode( 0, clamp ), 1, 'unavailable legacy albedo retains full sun instead of artificial occlusion' );
 			for ( const visibility of [ 0, .1, .5, .9, 1 ] ) {

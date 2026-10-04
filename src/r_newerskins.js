@@ -21,6 +21,7 @@
 
 import * as THREE from 'three';
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
+import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
 import { cvar_t } from './cvar.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
@@ -36,6 +37,33 @@ let skinIndex = null;
 let indexRequested = false;
 let nativeHeights = {};
 let skinVersion = '0';
+export const NEWER_SKIN_TIMEOUT_MS = 30000;
+let indexState = 'idle', indexError = null, indexGeneration = 0, indexTimer = null;
+let indexPromise = null, indexResolve = null;
+const preparations = new Map(), modelIdentities = new WeakMap();
+let modelSerial = 0, preparationEpoch = 0;
+
+// TextureLoader has no abort API. A terminal request rejects late callbacks and
+// disposes late textures; shutdown/revision cancellation also clears its timer.
+function loadSkinTexture( set, key, url, done, failed = () => {} ) {
+	set.loads ||= new Map(); set.cancellations ||= new Set();
+	let terminal = false;
+	const finish = ( error, texture ) => {
+		if ( terminal ) { texture?.dispose(); return; }
+		terminal = true; clearTimeout( timer ); set.cancellations.delete( cancel );
+		if ( ! set.alive ) { texture?.dispose(); set.loads.set( key, { status: 'fallback', error: 'Cancelled' } ); return; }
+		if ( error ) { set.loads.set( key, { status: 'fallback', error: String( error.message || error ) } ); failed(); return; }
+		try { done( texture ); set.loads.set( key, { status: 'ready', error: null } ); }
+		catch ( caught ) { texture.dispose(); set.loads.set( key, { status: 'fallback', error: String( caught.message || caught ) } ); failed(); }
+	};
+	const cancel = () => finish( new Error( 'Cancelled' ) );
+	const timer = setTimeout( () => finish( new Error( key + ' timed out' ) ), NEWER_SKIN_TIMEOUT_MS );
+	set.loads.set( key, { status: 'loading', error: null } ); set.cancellations.add( cancel );
+	try { new THREE.TextureLoader().load( url, texture => finish( null, texture ), undefined, () => finish( new Error( key + ' unavailable' ) ) ); }
+	catch ( error ) { finish( error ); }
+	return cancel;
+}
+function cancelSkinLoads( set ) { for ( const cancel of set.cancellations || [] ) cancel(); }
 
 // Stock Quake enemies, enemy heads and shared gore. Native height generation
 // also covers registered-game models absent from this checkout's shareware pak.
@@ -48,20 +76,33 @@ export const ENEMY_SKIN_MODELS = new Set( [
 
 export function R_NewerSetIndex( index ) {
 
-	skinIndex = index != null && index.models != null ? index.models : null;
+	clearTimeout( indexTimer ); indexGeneration ++;
+	skinIndex = index != null ? index.models || {} : null;
+	indexState = index == null ? 'idle' : index.models ? 'ready' : 'fallback';
+	indexError = index != null && ! index.models ? 'Missing skin manifest' : null;
+	if ( index == null ) indexRequested = false;
 	nativeHeights = index != null && index.nativeHeights != null ? index.nativeHeights : {};
 	skinVersion = String( index != null && index.version != null ? index.version : 0 );
+	indexResolve?.(); indexResolve = null;
+	indexPromise = index == null ? null : Promise.resolve();
 
 }
 
 function requestIndex() {
 
-	if ( indexRequested || typeof fetch === 'undefined' ) return;
-	indexRequested = true;
+	if ( skinIndex !== null || indexRequested ) return indexPromise || Promise.resolve();
+	if ( typeof fetch === 'undefined' ) { skinIndex = {}; indexState = 'fallback'; indexError = 'Skin index transport unavailable'; return Promise.resolve(); }
+	indexPromise = new Promise( resolve => { indexResolve = resolve; } );
+	const requested = indexPromise;
+	indexRequested = true; indexState = 'loading';
+	const generation = ++ indexGeneration;
+	const fallback = error => { if ( generation !== indexGeneration ) return; clearTimeout( indexTimer ); skinIndex = {}; indexState = 'fallback'; indexError = String( error.message || error ); indexGeneration ++; indexResolve?.(); indexResolve = null; };
+	indexTimer = setTimeout( () => fallback( new Error( 'Skin index timed out' ) ), NEWER_SKIN_TIMEOUT_MS );
 
 	COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' )
-		.then( R_NewerSetIndex )
-		.catch( () => { /* no replacement skins available */ } );
+		.then( data => { if ( generation === indexGeneration ) R_NewerSetIndex( data ); } )
+		.catch( fallback );
+	return requested;
 
 }
 
@@ -154,6 +195,7 @@ function createSet( variant, modelKey ) {
 	const key = variant.dir;
 	const set = {
 		key,
+		modelKey, loads: new Map(), cancellations: new Set(),
 		version: skinVersion,
 		alive: true,
 		diffuse: null,
@@ -178,14 +220,12 @@ function createSet( variant, modelKey ) {
 
 	if ( typeof THREE.TextureLoader === 'undefined' || typeof document === 'undefined' ) return set;
 
-	const loader = new THREE.TextureLoader();
-
 	const load = ( name, colour, done ) => {
 
 		const file = variant.maps[ name ];
 		if ( file === undefined ) return;
 
-		loader.load( COM_NewerURL( BASE + key + '/' + file, BASE + key + '/' + file + '?v=' + skinVersion ), ( texture ) => {
+		loadSkinTexture( set, name, COM_NewerURL( BASE + key + '/' + file, BASE + key + '/' + file + '?v=' + skinVersion ), ( texture ) => {
 
 			if ( ! set.alive ) { texture.dispose(); return; }
 			texture.flipY = false; // skins are stored top row first, like Quake's own
@@ -194,10 +234,11 @@ function createSet( variant, modelKey ) {
 			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 			done( texture );
 
-		}, undefined, () => {
+		}, () => {
 
 			if ( ! set.alive ) return;
 			if ( name === 'height' ) { set.heightFailed = true; refreshHeight( set ); }
+			if ( name === 'normal' ) { set.normalFailed = true; refreshHeight( set ); }
 
 		} );
 
@@ -240,7 +281,7 @@ function refreshHeight( set ) {
 
 	if ( ! set.isEnemy || set.diffuse == null ) return;
 	if ( set.heightTexture == null && set.variant.maps.height !== undefined && ! set.heightFailed ) return;
-	if ( set.heightTexture == null && set.variant.maps.normal !== undefined ) return;
+	if ( set.heightTexture == null && set.variant.maps.normal !== undefined && ! set.normalFailed ) return;
 	const pixels = readablePixels( set.diffuse );
 	if ( pixels == null ) return;
 	let stored = readablePixels( set.heightTexture );
@@ -292,6 +333,7 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 		set.onDiffuseDispose = () => {
 
 			set.alive = false;
+			cancelSkinLoads( set );
 
 			for ( const m of set.materials ) if ( m !== null ) m.dispose();
 			if ( set.detailDiffuse !== null ) set.detailDiffuse.dispose();
@@ -313,7 +355,8 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 	if ( stored != null && set.requestedHeight !== requestKey && typeof THREE.TextureLoader !== 'undefined' && typeof document !== 'undefined' ) {
 
 		set.requestedHeight = requestKey;
-		new THREE.TextureLoader().load( COM_NewerURL( BASE + stored.file, BASE + stored.file + '?v=' + skinVersion ), ( height ) => {
+		set.cancelHeight?.();
+		set.cancelHeight = loadSkinTexture( set, 'native-height', COM_NewerURL( BASE + stored.file, BASE + stored.file + '?v=' + skinVersion ), ( height ) => {
 
 			if ( nativeSets.get( texture ) !== set || ! set.alive || set.requestedHeight !== requestKey ) { height.dispose(); return; }
 			height.flipY = false; height.colorSpace = THREE.NoColorSpace;
@@ -322,7 +365,7 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 			set.variant.heightStrength = stored.strength; set.variant.heightCap = stored.cap;
 			refreshHeight( set );
 
-		}, undefined, () => { /* generated height remains active on download failure */ } );
+		} ); // generated height remains active on explicit failure/timeout
 
 	}
 
@@ -340,7 +383,7 @@ function materialFor( set, hasLighting ) {
 		if ( relit || set.isEnemy ) {
 
 			material.onBeforeCompile = patchShader( set );
-			material.customProgramCacheKey = () => 'quake-custom-skin-' + set.key + index;
+			material.customProgramCacheKey = () => 'quake-custom-skin-height-shadow-v1-' + set.key + index;
 
 		}
 		set.materials[ index ] = material;
@@ -363,6 +406,7 @@ const VERTEX_ADD = `
 const FRAGMENT_HEAD = `
 layout(location = 1) out highp vec4 gNormal;
 layout(location = 2) out highp vec4 gAlbedo;
+layout(location = 3) out highp vec4 gHeightMask;
 varying vec3 vQrView;
 varying vec3 vQrNormal;
 uniform sampler2D qrNormal;
@@ -406,7 +450,7 @@ const FRAGMENT_LIGHT = `
 	}
 	if ( uHasGloss > 0.5 ) {
 		float rim = pow( 1.0 - abs( dot( qrN, normalize( vQrView ) ) ), 3.0 );
-		outgoingLight += texture2D( qrGloss, vMapUv ).r * rim * 0.3 * ( outgoingLight + 0.08 );
+		outgoingLight += texture2D( qrGloss, vMapUv ).r * rim * 0.3 * outgoingLight;
 	}
 	}
 `;
@@ -415,15 +459,32 @@ function patchShader( set ) {
 
 	return function ( shader ) {
 
-		Object.assign( shader.uniforms, set.uniforms );
+		Object.assign( shader.uniforms, set.uniforms, heightShadowUniforms );
+		shader.uniforms.uHasSkinHeightShadow = { get value() { return set.uniforms.qrNormal.value?.userData.heightSource ? 1 : 0; } };
 
 		shader.vertexShader = 'varying vec3 vQrView;\nvarying vec3 vQrNormal;\n' +
 			shader.vertexShader.replace( '#include <project_vertex>', '#include <project_vertex>' + VERTEX_ADD );
 
-		shader.fragmentShader = FRAGMENT_HEAD + ( set.fragmentHead || '' ) + shader.fragmentShader
+		shader.fragmentShader = FRAGMENT_HEAD + HEIGHT_SHADOW_GLSL + ( set.fragmentHead || '' ) + shader.fragmentShader
 			.replace( '#include <map_fragment>', '#include <map_fragment>' + ( set.mapFragment || '' ) + FRAGMENT_NORMAL )
-			.replace( '#include <opaque_fragment>', FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
-			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n	gNormal = vec4( qrN * 0.5 + 0.5, vQrView.z );\n\tgAlbedo = vec4( qrAlbedo, 1.0 );' );
+			.replace( '#include <opaque_fragment>', `
+ vec4 skinHeightMask=vec4(1.);HeightShadowContext hctx;
+ hctx.microUv=vMapUv;hctx.macroUv=vec2(0.);
+ hctx.normal=normalize(vQrNormal)*(gl_FrontFacing?1.:-1.);
+ qrHeightGradients(-vQrView,vMapUv,hctx.normal,hctx.microGradU,hctx.microGradV,hctx.microUnit);
+ hctx.macroGradU=vec3(0.);hctx.macroGradV=vec3(0.);hctx.macroUnit=0.;
+ hctx.microAmp=.015;hctx.macroAmp=0.;hctx.microMaxUv=.03;hctx.macroMaxUv=0.;
+ hctx.microValid=uHasSkinHeightShadow*uSkinDetail*uSkinRelit;hctx.macroValid=0.;hctx.macroSun=1.;
+ float unusedSkinDiffuseVisibility;skinHeightMask=qrHeightBuildMask(-vQrView,hctx,unusedSkinDiffuseVisibility);
+ ${this.depthWrite === false ? 'skinHeightMask=vec4(0.);' : this.transparent ? 'skinHeightMask=vec4(1.);' : ''}
+ ` + FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
+			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.transparent || this.depthWrite === false ? 'vec4(0.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( qrAlbedo, 1.0 );\n gHeightMask=skinHeightMask;' );
+
+  shader.fragmentShader = shader.fragmentShader.replace( 'void main() {', `
+ uniform float uHasSkinHeightShadow;
+ float qrShadowHeight(vec2 uv,int layer){return textureLod(qrNormal,uv,0.).a;}
+ bool qrShadowKnown(vec2 uv,int layer){return all(greaterThanEqual(uv,vec2(0.)))&&all(lessThanEqual(uv,vec2(1.)));}
+ void main() {` );
 
 	};
 
@@ -453,7 +514,7 @@ export function R_AssetAliasMaterial( maps, key, authored = {} ) {
 
 	}
 	material.onBeforeCompile = patchShader( set );
-	material.customProgramCacheKey = () => 'quake-imported-alias-' + key;
+	material.customProgramCacheKey = () => 'quake-imported-alias-height-shadow-v1-' + key;
 	return material;
 
 }
@@ -521,9 +582,12 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting, skinnum = 
 
 export function R_NewerSkinsShutdown() {
 
+	preparationEpoch ++; preparations.clear();
+
 	for ( const set of sets.values() ) {
 
 		set.alive = false;
+		cancelSkinLoads( set );
 
 		for ( const m of set.materials ) if ( m !== null ) m.dispose();
 		const ownedNormal = set.detailDiffuse != null ? set.detailDiffuse._normalMap : null;
@@ -539,6 +603,7 @@ export function R_NewerSkinsShutdown() {
 	for ( const [ texture, set ] of nativeSets ) {
 
 		set.alive = false;
+		cancelSkinLoads( set );
 
 		for ( const m of set.materials ) if ( m !== null ) m.dispose();
 		if ( set.detailDiffuse !== null ) set.detailDiffuse.dispose();
@@ -549,4 +614,81 @@ export function R_NewerSkinsShutdown() {
 	}
 	nativeSets.clear();
 
+}
+
+// Actual chosen sets/native animation heights only; callers may restrict this
+// read-only snapshot to the current/demo model precache instead of portal art.
+export function R_NewerSkinsStatus( modelNames ) {
+	const names = modelNames == null ? null : ( Array.isArray( modelNames ) ? modelNames : [ modelNames ] );
+	const keys = names ? new Set( names.map( value => R_NewerModelKey( typeof value === 'string' ? value : value?.name ) ).filter( Boolean ) ) : null;
+	const selected = [ ...sets.values(), ...nativeSets.values() ].filter( set => set.alive && ( ! keys || keys.has( set.modelKey ) ) );
+	let pending = 0, ready = 0, fallback = 0, preparePending = 0; const errors = {};
+	for ( const work of preparations.values() ) if ( ! work.started && ( ! keys || [ ...work.keys ].some( key => keys.has( key ) ) ) ) preparePending ++;
+	pending += preparePending;
+	if ( R_IsNewer() && ( indexState === 'loading' || indexState === 'idle' && keys?.size ) ) pending ++;
+	for ( const set of selected ) for ( const [ name, load ] of set.loads || [] ) {
+		if ( load.status === 'loading' ) pending ++;
+		else if ( load.status === 'ready' ) ready ++;
+		else { fallback ++; if ( load.error ) errors[ set.modelKey + ':' + set.key + ':' + name ] = load.error; }
+	}
+	if ( indexError ) errors.index = indexError;
+	return { index: indexState, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors };
+}
+
+// Startup-only caller-owned preparation: all current-map variants and native
+// skin animation slots share the exact caches used by later actual draws.
+// Promise settlement means requests were started; Status waits for their images.
+export function R_NewerSkinsPrepare( models ) {
+	const current = [ ...new Set( ( models || [] ).filter( model => model && typeof model === 'object' && R_NewerModelKey( model.name ) ) ) ];
+	const custom = R_IsNewer() && r_newer_enemies.value !== 0, native = R_IsNewer() && r_newer_normals.value !== 0;
+	const ids = current.map( model => { if ( ! modelIdentities.has( model ) ) modelIdentities.set( model, ++ modelSerial ); return modelIdentities.get( model ); } ).sort( ( a, b ) => a - b );
+	const key = ids.join( ',' ) + ':' + Number( custom ) + ':' + Number( native ), previous = preparations.get( key );
+	if ( previous && ( ! previous.started || previous.version === skinVersion ) ) return previous.promise;
+	const epoch = preparationEpoch, work = { keys: new Set( current.map( model => R_NewerModelKey( model.name ) ) ), started: false, version: null };
+	preparations.set( key, work );
+	work.promise = ( custom || native ? requestIndex() : Promise.resolve() ).then( () => {
+		if ( epoch !== preparationEpoch ) return { models: [], cancelled: true };
+		for ( const model of current ) {
+			const modelKey = R_NewerModelKey( model.name );
+			if ( custom ) for ( const variant of skinIndex?.[ modelKey ] || [] ) {
+				const setKey = skinVersion + ':' + variant.dir;
+				if ( ! sets.has( setKey ) ) sets.set( setKey, createSet( variant, modelKey ) );
+				sets.get( setKey ).prepared = true;
+			}
+			if ( native && ENEMY_SKIN_MODELS.has( modelKey ) ) {
+				const header = model.cache?.data;
+				for ( let skin = 0; skin < ( header?.numskins || header?.gl_texturenum?.length || 0 ); skin ++ ) {
+					const group = header.gl_texturenum?.[ skin ] || [];
+					for ( let frame = 0; frame < Math.min( 4, group.length ); frame ++ ) if ( group[ frame ]?.isTexture ) {
+						R_EnemyAliasMaterial( group[ frame ], model.name, true, skin, frame );
+						const set = nativeSets.get( group[ frame ] ); if ( set ) set.prepared = true;
+					}
+				}
+			}
+		}
+		work.started = true; work.version = skinVersion;
+		return { models: current.map( model => model.name ), started: true };
+	} ).catch( error => { work.started = true; work.version = skinVersion; indexError = String( error.message || error ); return { models: current.map( model => model.name ), fallback: true }; } );
+	return work.promise;
+}
+
+// Only explicit startup-prepared material families for this precache. These
+// exact cached materials are used by later lit/unlit entity draws; no network,
+// variant choice or future-map preparation is initiated by this getter.
+function preparedSets( models ) {
+	const names = Array.isArray( models ) ? models : [ models ];
+	const keys = new Set( names.map( model => R_NewerModelKey( typeof model === 'string' ? model : model?.name ) ).filter( Boolean ) );
+	return [ ...sets.values(), ...nativeSets.values() ].filter( set => set.prepared && set.alive && set.diffuse !== null && keys.has( set.modelKey ) );
+}
+
+export function R_NewerSkinsMaterials( models ) {
+	return [ ...new Set( preparedSets( models ).flatMap( set => [ materialFor( set, true ), materialFor( set, false ) ] ) ) ];
+}
+
+// Shader callback uniforms are not material.uniforms on MeshBasicMaterial.
+// Expose their actual texture bindings for renderer.initTexture without cloning
+// or storing them in JSON userData, and without requesting any additional art.
+export function R_NewerSkinsTextures( models ) {
+	return [ ...new Set( preparedSets( models ).flatMap( set => [ set.diffuse, set.detailDiffuse, set.heightTexture,
+		...Object.values( set.uniforms ).map( uniform => uniform.value ) ] ).filter( texture => texture?.isTexture ) ) ];
 }

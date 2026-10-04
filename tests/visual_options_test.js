@@ -75,7 +75,8 @@ Deno.test( 'lighting, normal maps and liquids switch independently on existing m
 			{ lx: 0, ly: 0, lw: 320, lh: 200 }, 0, [], [], 0, 1, true );
 		equal( passes.length, 1, 'lighting off skips sun shadow, shafts and bloom passes' );
 		const uniforms = passes[ 0 ];
-		for ( const name of [ 'uLighting', 'uSunOn', 'uCount', 'uBounce', 'uBloom', 'uVolume', 'uEdge', 'uHaze' ] )
+		equal( uniforms.uHaze, undefined, 'global haze removed from all option modes' );
+		for ( const name of [ 'uLighting', 'uSunOn', 'uCount', 'uBounce', 'uBloom', 'uVolume', 'uEdge' ] )
 			equal( uniforms[ name ].value, 0, name );
 		for ( const name of [ 'uExposure', 'uBright', 'uContrastGain' ] ) equal( uniforms[ name ].value, 1, name );
 		equal( uniforms.uCaustic.value > 0, true, 'liquids retain caustics' );

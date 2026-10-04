@@ -1,0 +1,31 @@
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+PASS default shafts share one4x gain for sun, points and flashlight while the .5 slider stays nominal and off modes stay off
+PASS lava material becomes emissive above bloom range without texture/opacity/physics changes, then returns to native colour
+PASS subdivided lava emits from local surface patches and broad area falloff leaves ordinary lamps unchanged
+Added packfile pak0.pak (339 files)\n
+NATIVE_START_LAVA {"surfaces":30,"emitters":24,"nearHard":[{"pos":[988,1882,-48],"radius":58.787753826796276,"power":1.1},{"pos":[988,1882,32],"radius":48,"power":1.1},{"pos":[988,1902,-48],"radius":58.787753826796276,"power":1.1},{"pos":[988,1902,32],"radius":48,"power":1.1}]}
+PASS actual START lava generates local warm emitters with unchanged native pool geometry and liquid boundaries
+RESULT 4/4 passed (tests/lava_shafts_test.js)
+PASS frame pipeline carries authored albedo separately at scene resolution
+RESULT 1/1 passed (tests/flashlight_albedo_test.js)
+TOTAL 23/23 passed

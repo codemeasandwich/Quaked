@@ -1,0 +1,22 @@
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+PASS attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+TOTAL 4/4 passed

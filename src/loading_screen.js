@@ -25,3 +25,17 @@ export function LoadingScreen_Remove( doc = globalThis.document ) {
 	doc?.getElementById( 'loading' )?.remove();
 
 }
+// Fade to the first real console frame, not to an uninitialized canvas. The
+// event owns completion; a bounded timer handles removed/hidden DOM surfaces.
+export function LoadingScreen_FadeOut(doc=globalThis.document,duration=450){
+ const element=doc?.getElementById('loading');if(!element)return Promise.resolve();
+ return new Promise(resolve=>{
+  let timer,finished=false;
+  const finish=()=>{if(finished)return;finished=true;clearTimeout(timer);element.removeEventListener?.('transitionend',end);element.remove();resolve();};
+  const end=event=>{if(event.target===element&&event.propertyName==='opacity')finish();};
+  element.addEventListener?.('transitionend',end);
+  element.style.transition='opacity '+duration+'ms ease';element.style.opacity='1';
+  const begin=()=>{if(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches){finish();return;}element.style.opacity='0';timer=setTimeout(finish,duration+100);};
+  (globalThis.requestAnimationFrame||((fn)=>setTimeout(fn,0)))(begin);
+ });
+}

@@ -1,0 +1,219 @@
+Added packfile pak0.pak (339 files)\n
+E1M3_STATIC_SOURCE_SELECTION [{"classname":"light","position":[-752,-1576,176],"emitter":0},{"classname":"light","position":[-392,-1804,160],"emitter":0},{"classname":"light","position":[-616,-1600,248],"emitter":0},{"classname":"light","position":[-768,-1760,200],"emitter":0},{"classname":"light","position":[-920,-1744,176],"emitter":0},{"classname":"light_flame_large_yellow","position":[-620,-1958,256],"emitter":1},{"classname":"light","position":[-584,-1640,136],"emitter":0},{"classname":"light_flame_large_yellow","position":[-966,-1750,256],"emitter":1}]
+PASS actual E1M3 torches are collected at native air positions and physical-light selection is stable under yaw and flicker
+PASS all six radial face UV projections match independent ninety-degree cameras including negative directions and edge ties
+PASS public atlas captures one cube at DPR2, preserves renderer and borrowed geometry, recovers failure and bounds protected LRU slots
+E1M3_POINT_SHADOW_PIPELINE {"maxSlots":8,"resident":8,"ready":8,"pending":0,"requested":8,"chunks":263,"triangles":8765,"captures":8,"faceRenders":48,"failedCaptures":0,"epoch":3,"error":null,"disposed":false}
+PASS actual post pipeline warms bounded native source shadows once, keeps camera/flicker keys and bypasses GPU jobs in Classic and disabled modes
+E1M3_LIGHT_PATHS {"fire":[-966,-1750,256],"cases":[{"eye":[-736,-1592,110],"blocked":false,"fraction":1,"impact":[0,0,0],"nearestCaster":410.6030635798794},{"eye":[-800,-1648,110],"blocked":true,"fraction":0.08197773921580549,"impact":[-952.3917236328125,-1741.6383056640625,244.03125],"nearestCaster":20.010955903314166},{"eye":[-608,-1600,174],"blocked":false,"fraction":1,"impact":[0,0,0],"nearestCaster":463.68498802675043},{"eye":[-656,-1264,142],"blocked":true,"fraction":0.4073431047182421,"impact":[-839.7236328125,-1552.03125,209.56288146972656],"nearestCaster":239.3989157826638}]}
+PASS native E1M3 source rays distinguish real hidden-world blockers and safe player cameras without altering BSP collision
+PASS full bounced lighting and doubled physical emitter radiance preserve native colour and light a zero-baked receiver through actual uniforms
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+PASS removed haze and source-dependent gloss/native weapon/player lighting stay black without sources while Classic keeps its original24/8 floors
+HAZE_REMOVED_REAL_LIGHTS {"openFog":0,"pointScatter":0,"sunScatter":0.000007700193518463214,"shaftFog":1.3,"spotOn":1,"positiveFloorSources":5}
+PASS removed broad haze leaves real edge sun shafts, default flashlight cone and point-surface illumination active
+PASS actual Newer Game menu defaults enable the public flashlight beam while Classic and lighting-off disable it
+RESULT 9/9 passed (tests/emissive_lights_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+PASS cached world materials advance animated textures
+PASS rebuilding lightmaps disposes old Three textures
+PASS cached water materials track fractional opacity changes
+RESULT 3/3 passed (tests/gl_rsurf_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+Added packfile pak0.pak (339 files)\n
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+PASS normal Classic renders exact native soldier/shambler and animated flame poses at default1 and legacy forced2 after an enhanced blend
+PASS forced2 split Classic uses exact native poses and R_SaveClassicScene restores enhanced attributes, buffers and state at the same tick
+PASS native one-pose armor movement uses game transforms in Classic, and split restoration returns the exact enhanced object display
+CLASSIC_NATIVE_ALIAS_MODELS [{"name":"progs/soldier.mdl","frames":114,"poses":114},{"name":"progs/shambler.mdl","frames":94,"poses":94},{"name":"progs/flame.mdl","frames":1,"poses":6},{"name":"progs/flame2.mdl","frames":2,"poses":17},{"name":"progs/armor.mdl","frames":1,"poses":1}]
+PASS native test models retain all source animation groups and shared geometry templates after Classic draws
+RESULT 4/4 passed (tests/classic_alias_frames_test.js)
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off or Newer Game only, including legacy forced values
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+RESULT 7/7 passed (tests/r_anim_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS every stock enemy, head and gore model has height-driven native relief without replacement art
+PASS native relief respects independent normals, original enemy toggle, lighting and classic pass
+PASS distinct skins and animation-frame textures keep distinct height maps and model-owned diffuse lifetimes
+PASS stored custom enemy height loads in either order, preserves UV and suppresses captions-independent material changes
+PASS failed or mismatched height downloads keep a safe native fallback
+PASS native two/three/five-frame groups use exactly the model loader animation slots
+PASS late custom/native downloads are disposed after shutdown and same-texture reuse
+PASS failed and wrong-size custom heights actively fall back to the matching diffuse
+PASS native height revision changes reject older responses and refresh the same diffuse texture
+RESULT 9/9 passed (tests/enemy_heights_test.js)
+PASS lava material becomes emissive above bloom range without texture/opacity/physics changes, then returns to native colour
+PASS subdivided lava emits from local surface patches and broad area falloff leaves ordinary lamps unchanged
+Added packfile pak0.pak (339 files)\n
+NATIVE_START_LAVA {"surfaces":30,"emitters":24,"nearHard":[{"pos":[988,1882,-48],"radius":58.787753826796276,"power":1.1},{"pos":[988,1882,32],"radius":48,"power":1.1},{"pos":[988,1902,-48],"radius":58.787753826796276,"power":1.1},{"pos":[988,1902,32],"radius":48,"power":1.1}]}
+PASS actual START lava generates local warm emitters with unchanged native pool geometry and liquid boundaries
+RESULT 3/4 passed (tests/lava_shafts_test.js)
+FAIL default shafts share one4x gain for sun, points and flashlight while the .5 slider stays nominal and off modes stay off Error: point nominal scattering unchanged: 0 != 0.03
+    at check (file:///Users/bri/SOURCE/Quaked/tests/lava_shafts_test.js:14:60)
+    at near (file:///Users/bri/SOURCE/Quaked/tests/lava_shafts_test.js:16:35)
+    at file:///Users/bri/SOURCE/Quaked/tests/lava_shafts_test.js:48:3
+    at withControls (file:///Users/bri/SOURCE/Quaked/tests/lava_shafts_test.js:34:226)
+    at file:///Users/bri/SOURCE/Quaked/tests/lava_shafts_test.js:41:141
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+PASS frame pipeline carries authored albedo separately at scene resolution
+RESULT 1/1 passed (tests/flashlight_albedo_test.js)
+PASS flashlight toggles preserve water material and cached reflections while respecting lighting and classic scopes
+RESULT 1/1 passed (tests/water_flashlight_test.js)
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+RESULT 3/3 passed (tests/r_flashlight_test.js)
+PASS dynamic lighting composition follows scene pixels and presents the split at display size
+PASS full-resolution lighting preserves the direct display path and grade
+RESULT 2/2 passed (tests/lighting_resolution_test.js)
+PASS Newer menu exposes independent lighting, normals and liquids controls
+RESULT 1/2 passed (tests/visual_options_test.js)
+FAIL lighting, normal maps and liquids switch independently on existing materials TypeError: Cannot read properties of undefined (reading 'value')
+    at file:///Users/bri/SOURCE/Quaked/tests/visual_options_test.js:79:28
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: all nine native frames, original skin/UVs and complete hand render in enhanced, classic and New Game modes
+PASS original axe: no replacement role, requests, generated texture or geometry remain; supplied source is preserved
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: classic rollback and feature toggling preserve original art without generating a hand child
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: native swing interpolation preserves complete axe/arm geometry and original skin
+PASS original axe: restore public test fixtures
+RESULT 5/5 passed (tests/axe_original_test.js)
+PASS each walking footfall shakes once, at the heel strike, and not between steps
+PASS running footfalls land on run2 and run5
+PASS strength is (1 - distance / 600) squared: a quarter at 300 units, nothing from 600
+PASS several Shamblers stomping together stay within the small-quake limits
+PASS short packet gaps still land their steps; longer jumps never replay one
+PASS starting to walk or run straight onto a contact pose is the first step
+PASS held, non-walking, teleporting, vanished and other-model poses never shake
+PASS a step ends early when the Shambler stops walking, changes model or the level changes
+PASS the player must be on the ground when the foot lands, and feels nothing in the air
+PASS New Game, the setting, demos, pause, death, intermission and menus stop the shake
+PASS small backwards steps in the predicted clock keep the step; a restart forgets it
+PASS with smoothed monster animation the shake waits for the contact pose to be drawn
+PASS V_CalcRefdef moves the eye and weapon together and tilts only the eye
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+TOTAL 93/95 passed

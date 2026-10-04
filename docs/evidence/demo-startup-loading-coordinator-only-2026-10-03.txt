@@ -1,0 +1,5 @@
+PASS boot splash waits for an actual console presentation and app readiness, fades once, and terminal fallback readiness needs three completed draws
+PASS manual intent cancels startup permanently; signon packets/timed demos are never frozen and failed splash has a terminal native fallback
+PASS actual loading DOM fades only on its opacity transition; unrelated events do not remove it and missing/reduced-motion pages terminate
+RESULT 3/3 passed (tests/demo_startup_loading_test.js)
+TOTAL 3/3 passed

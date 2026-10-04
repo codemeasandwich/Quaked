@@ -1,0 +1,47 @@
+PASS startup prepare begins every unseen custom variant and native skin/frame, then actual draws reuse them without another download
+Added packfile pak0.pak (339 files)\n
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+PASS actual native loaded Quake model header prepares stored relief without drawing and keeps native diffuse ownership
+PASS startup preparation respects independent skin/normal gates and shutdown prevents delayed index from preparing a retired map
+RESULT 3/3 passed (tests/skin_prepare_test.js)
+PASS world readiness is selected-model scoped and image timeout permanently settles native without late pixel replacement
+PASS failed or stalled texture manifest is terminal native and ignores late manifest response
+PASS successful world diffuse/height readiness waits for all selected art and explicit image failure settles native
+PASS selected custom and native skin height requests settle with diagnostics and reject late textures
+PASS skin index timeout is terminal and late response cannot create a replacement
+PASS failed authored skin normal is terminal and generates matching relief from the loaded diffuse
+PASS weapon preload status observes concurrent requests, bounds stalled textures, and rejects late art after native fallback
+PASS successful weapon preload exposes terminal readiness and a stalled manifest cannot later enable art
+RESULT 8/8 passed (tests/asset_readiness_test.js)
+Weapon art fallback: v_shot Error: shotgun/d.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-preload:33:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:109:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon art fallback: shell Error: shell/s.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-preload:33:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:109:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Weapon manifest timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-manifest-stall:22:100
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:122:136
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS every stock enemy, head and gore model has height-driven native relief without replacement art
+PASS native relief respects independent normals, original enemy toggle, lighting and classic pass
+PASS distinct skins and animation-frame textures keep distinct height maps and model-owned diffuse lifetimes
+PASS stored custom enemy height loads in either order, preserves UV and suppresses captions-independent material changes
+PASS failed or mismatched height downloads keep a safe native fallback
+PASS native two/three/five-frame groups use exactly the model loader animation slots
+PASS late custom/native downloads are disposed after shutdown and same-texture reuse
+PASS failed and wrong-size custom heights actively fall back to the matching diffuse
+PASS native height revision changes reject older responses and refresh the same diffuse texture
+RESULT 9/9 passed (tests/enemy_heights_test.js)
+TOTAL 20/20 passed

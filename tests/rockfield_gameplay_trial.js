@@ -9,8 +9,10 @@ while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 50 ) );
 const { Cbuf_AddText } = await import( '../src/cmd.js' ), { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/cvar.js' );
 const { cl, cls } = await import( '../src/client.js' ), { sv, svs } = await import( '../src/server.js' );
 const post = await import( '../src/gl_post.js' );
+const { R_HeightShadowDecode } = await import( '../src/r_heightshadows.js' );
 const THREE = await import( 'three' );
 const { SV_LinkEdict } = await import( '../src/world.js' );
+const { SV_HullPointContents } = await import( '../src/world.js' );
 const { R_DemonReliefStatus } = await import( '../src/gl_rsurf.js' );
 const { Mod_PointInLeaf } = await import( '../src/gl_model.js' );
 const drops = await import( '../src/r_screendrops.js' );
@@ -80,6 +82,11 @@ document.querySelector( '#cliff' ).onclick = () => {
  if ( ! sv.active || cls.signon !== 4 ) return;
  cl.viewangles.set( [ -8, 35, 0 ] ); sv.edicts[ 1 ].v.angles = [ -8, 35, 0 ]; sv.edicts[ 1 ].v.fixangle = 1;
 };
+document.querySelector('#retreat').onclick=()=>{
+ if(initialLevel!=='e1m1'||!sv.active||cls.signon!==4)return;
+ const point=[[128,768,-199.96875],[128,512,-199.96875],[128,256,-199.96875]].find(p=>SV_HullPointContents(cl.worldmodel.hulls[1],cl.worldmodel.hulls[1].firstclipnode,p)===-1);
+ if(point)position(point,[-8,35,0]);
+};
 document.querySelector( '#roof' ).onclick = () => {
  if ( ! sv.active || cls.signon !== 4 ) return;
  const yaw = cl.viewangles[ 1 ]; cl.viewangles.set( [ -65, yaw, 0 ] );
@@ -88,7 +95,7 @@ document.querySelector( '#roof' ).onclick = () => {
 function start() {
  const token = ++ generation, oldEdicts = sv.edicts; inspectionMovement = null;
  split.R_DemoSplitRelease( true ); keys.set_key_dest( keys.key_game );
- Cbuf_AddText( 'maxplayers 1\nr_hdr 1\nr_dynres 1\nmap ' + initialLevel + '\n' );
+ Cbuf_AddText( 'maxplayers 1\nr_hdr 1\nr_dynres 1\nr_flashlight 1\nr_heightshadows 1\nr_pointshadows 1\ngamma .75\nmap ' + initialLevel + '\n' );
  const ready = setInterval( () => {
   if ( token !== generation ) { clearInterval( ready ); return; }
   if ( sv.edicts === oldEdicts || ! svs.clients[ 0 ]?.spawned || cls.demoplayback || cls.signon !== 4 || ! sv.active || cl.worldmodel?.name !== 'maps/' + initialLevel + '.bsp' || cl.stats[ 0 ] <= 0 ) return;
@@ -106,6 +113,20 @@ document.querySelector( '#materials' ).onclick = () => {
  document.querySelector( '#materials-report' ).textContent = JSON.stringify( found, null, 2 );
 };
 function toggle() { Cvar_SetValue( 'r_rockfield', Cvar_VariableValue( 'r_rockfield' ) > 0 ? 0 : 1 ); }
+document.querySelector( '#shadow-probe' ).onclick = () => {
+ const renderer=window.renderer, previous=renderer.getRenderTarget();
+ post.R_PostBind(renderer); const target=renderer.getRenderTarget(), counts=[0,0,0,0], rockSpot=[0,0,0,0,0,0,0,0];
+ if(target.textures.length===4) {
+  const bytes=new Uint8Array(target.width*target.height*4);
+  renderer.readRenderTargetPixels(target,0,0,target.width,target.height,bytes,undefined,3);
+  for(let i=0;i<bytes.length;i+=4) {
+   const kind=bytes[i+3]>>>6;counts[kind]++;
+   if(kind===2) rockSpot[Math.round(R_HeightShadowDecode(bytes.subarray(i,i+4),9)*7)]++;
+  }
+ }
+ renderer.setRenderTarget(previous);
+ document.querySelector('#report').textContent=JSON.stringify({attachments:target.textures.length,maskClasses:{invalidClear:counts[0],ordinaryHeight:counts[1],rockWall:counts[2],invalidOpaque:counts[3]},rockWallSpotVisibilityBins:rockSpot,defaults:Object.fromEntries(['gamma','r_flashlight','r_heightshadows','r_pointshadows'].map(name=>[name,Cvar_VariableValue(name)])),worldShadows:post.R_PointShadowStatus(),glError:renderer.getContext().getError(),errors},null,2);
+};
 document.querySelector( '#toggle' ).onclick = toggle; document.querySelector( '#restart' ).onclick = start;
 document.querySelector( '#hide' ).onclick = () => { panel.style.display = 'none'; };
 document.addEventListener( 'keydown', e => { if ( e.key === 'Escape' && panel.style.display === 'none' ) { panel.style.display = ''; e.preventDefault(); e.stopImmediatePropagation(); } }, true );

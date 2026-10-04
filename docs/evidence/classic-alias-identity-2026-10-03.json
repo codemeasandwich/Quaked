@@ -1,0 +1,16 @@
+{
+  "baseCommit": "a1ac867aef4c1255810f7a46efc10c2fe9c84908",
+  "checks": {
+    "regression": 57,
+    "nativeDraw": 4
+  },
+  "files": {
+    "src/r_anim.js": "c4797aedb0f8fc1150c6d8538d1107bf68865f721e34bcbc950c5b62a81d2b54",
+    "src/gl_mesh.js": "6ee76e003b720d299144b5b47b189597cb4fa1c5235b7087f6e053877b8ef5dd",
+    "src/gl_rmain.js": "f0fac34bc44e0dbd2d4a031e0227ab0a409bc2a6aea49f070ab91cba99742d2f",
+    "src/r_classicstate.js": "b4a491470a36453f1c653ccdef6b95d556fefedc1eaaad6fd203d7f1f093b60f",
+    "tests/r_anim_test.js": "5c6ed54dbcf755d52391d6e9fe61fdb44de9f7ca30f7702fda713e064ea0f612",
+    "tests/axe_original_test.js": "3519014a5fda05676be6f0b95b035ca3cf3aab187cdfd6ac55c941b60926a374",
+    "tests/classic_alias_frames_test.js": "6f4536a45bfec8759cfba2e5af7c0b8c58dced7a432b92ab5262afc22d2b3e5f"
+  }
+}

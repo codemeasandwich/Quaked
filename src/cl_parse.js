@@ -54,6 +54,8 @@ import {
 	cl, cls, cl_entities, cl_static_entities, cl_lightstyle,
 	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
 import { VectorCopy } from './mathlib.js';
+import { R_NewerGame } from './r_anim.js';
+import { R_FlashlightRunMap } from './r_flashlightrun.js';
 import { V_ParseDamage } from './view.js';
 import { Mod_ForName } from './gl_model.js';
 import { CL_SetServerState, CL_AcknowledgeCommand, CL_AcknowledgeTransportSequence,
@@ -383,6 +385,7 @@ export function CL_ParseServerInfo() {
 
 	// local state
 	cl_entities[ 0 ].model = cl.worldmodel = cl.model_precache[ 1 ];
+	if ( ! cls.demoplayback ) R_FlashlightRunMap( cl.worldmodel.name, R_NewerGame() ); // travel preserves the run's setting/counter
 
 	R_NewMap( cl );
 

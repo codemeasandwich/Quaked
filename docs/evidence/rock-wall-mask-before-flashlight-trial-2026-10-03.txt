@@ -1,0 +1,36 @@
+Browser tab: 18, Title: "Quaked — continuous rock relief trial", URL: "http://localhost:8013/tests/rockfield_gameplay_trial.html".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 20-21
++		23 text Connected rock surfaces · saved relief settings · original textures and geometry.
++			24 text {
+  "charts": 10,
+  "resident": 96,
+  "pending": 0,
+  "maxPages": 96,
+  "error": null,
+  "active": true,
+  "demonRelief": {
+    "eligible": 0,
+    "ready": 0,
+    "triangles": 0,
+    "enabled": true
+  },
+  "level": "maps/e1m1.bsp",
+  "signon": 4,
+  "setupCount": 1,
+  "serverActive": true,
+  "spawned": true,
+  "demo": false,
+  "viewangles": [
+    0,
+    90,
+    0
+  ],
+  "player": [
+    128,
+    1008,
+    -199.96875
+  ],
+  "errors": []
+}
+The focused UI element is 16 button Inspect GPU shadow masks, ID: shadow-probe

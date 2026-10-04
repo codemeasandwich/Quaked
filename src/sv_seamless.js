@@ -12,8 +12,10 @@
 // Single player only.  0 = off, 1 = Newer Game only (the default), 2 = always.
 
 import { cvar_t } from './cvar.js';
-import { sv, svs } from './server.js';
-import { COM_FindFile, COM_ListFiles } from './pak.js';
+import { sv, svs, ss_loading } from './server.js';
+import { MAX_MODELS, MAX_SOUNDS } from './quakedef.js';
+import { Sys_Error } from './sys.js';
+import { COM_FindFile } from './pak.js';
 import { Ent_Parse } from './lit.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from './world.js';
 import { PR_GetString, EDICT_NUM, EDICT_TO_PROG, pr_global_struct } from './progs.js';
@@ -264,6 +266,43 @@ function SV_ArrivalStart( mapName, start ) {
 // doors stay open.  The states last for as long as the player only moves between
 // levels by crossings; starting a game or any other level change forgets them.
 
+// Named external resources can outlive the native population of the level:
+// travellers, their death/head models, gibs, missiles and sounds. Inline brushes
+// and the source world BSP belong to that world's normal spawn, not a follower.
+function SV_CaptureResources() {
+
+	return {
+		models: sv.model_precache.filter( name => name && name !== sv.modelname && name.charAt( 0 ) !== '*' ),
+		sounds: sv.sound_precache.filter( name => name )
+	};
+
+}
+
+function SV_PrecacheResources( resources ) {
+
+	if ( sv.state !== ss_loading ) Sys_Error( 'SV_Seamless: resources must be precached while the level is loading' );
+	const add = ( list, name, limit, kind ) => {
+
+		if ( ! name || list.includes( name ) ) return;
+		let index = 0;
+		while ( index < limit && list[ index ] != null ) index ++;
+		if ( index === limit ) Sys_Error( 'SV_Seamless: ' + kind + ' precache overflow adding ' + name );
+		if ( kind === 'model' ) {
+
+			if ( ! models?.Mod_ForName ) Sys_Error( 'SV_Seamless: model loader unavailable for ' + name );
+			const model = models.Mod_ForName( name, true );
+			if ( ! model ) Sys_Error( 'SV_Seamless: could not load required model ' + name );
+			sv.models[ index ] = model;
+
+		}
+		list[ index ] = name;
+
+	};
+	for ( const name of resources.models ) add( sv.model_precache, name, MAX_MODELS, 'model' );
+	for ( const name of resources.sounds ) add( sv.sound_precache, name, MAX_SOUNDS, 'sound' );
+
+}
+
 function SV_CaptureLevel() {
 
 	const first = svs.maxclients + 1;
@@ -279,7 +318,7 @@ function SV_CaptureLevel() {
 
 	}
 
-	return { first, time: sv.time, lightstyles: sv.lightstyles.slice(), globals: globals.join( '\n' ), edicts };
+	return { first, time: sv.time, lightstyles: sv.lightstyles.slice(), globals: globals.join( '\n' ), edicts, resources: SV_CaptureResources() };
 
 }
 
@@ -292,6 +331,10 @@ function blockData( text ) {
 }
 
 function SV_RestoreLevel( snap ) {
+
+	// Re-spawning this BSP does not spawn monsters that travelled here. Restore
+	// their complete resources before parsing/linking corpses or making baselines.
+	SV_PrecacheResources( snap.resources );
 
 	// what the level's own entities just spawned is replaced by what was there
 	for ( let i = snap.first; i < sv.num_edicts; i ++ ) {
@@ -312,7 +355,16 @@ function SV_RestoreLevel( snap ) {
 
 		ed.free = false;
 		ED_ParseEdict( data, ed );
-		if ( ed.free === false ) SV_LinkEdict( ed, false );
+		if ( ed.free === false ) {
+
+			// Saved numeric indices belong to the prior server's precache ordering.
+			// Dead bodies/heads/gibs need the same remapping as living entities.
+			const name = PR_GetString( ed.v.model ), index = SV_ModelIndex( name );
+			if ( index < 0 ) Sys_Error( 'SV_Seamless: restored model ' + name + ' not precached' );
+			ed.v.modelindex = index;
+			SV_LinkEdict( ed, false );
+
+		}
 
 	} );
 
@@ -333,8 +385,8 @@ function SV_RestoreLevel( snap ) {
 //
 // Whatever is hunting the player close behind them when they cross is taken out of the
 // level they leave and comes through the doorway after them, a little behind, at about
-// the pace they were keeping.  (A monster whose model the next level has not loaded
-// cannot be shown there, and stays behind.)
+// the pace they were keeping. Their source resources are loaded before arrival,
+// so the destination can run native pain/death/attack callbacks too.
 
 const FOLLOW_RANGE = 700;
 const FOLLOW_MAX = 6;
@@ -369,6 +421,7 @@ function SV_TakeFollowers( player, cur, t ) {
 
 	found.sort( ( a, b ) => a.dist - b.dist );
 	const list = [];
+	const resources = found.length ? SV_CaptureResources() : null;
 
 	for ( const f of found.slice( 0, FOLLOW_MAX ) ) {
 
@@ -382,7 +435,7 @@ function SV_TakeFollowers( player, cur, t ) {
 		if ( t === null ) {
 
 			// a teleporter pad: it walks to the pad and is sent after the player, as late as that took
-			list.push( { text, model, delay: Math.max( Math.hypot( f.rel[ 0 ], f.rel[ 1 ] ) / FOLLOW_SPEED, earliest ), yaw: f.ed.v.angles[ 1 ], pad: true } );
+			list.push( { text, model, resources, delay: Math.max( Math.hypot( f.rel[ 0 ], f.rel[ 1 ] ) / FOLLOW_SPEED, earliest ), yaw: f.ed.v.angles[ 1 ], pad: true } );
 			ED_Free( f.ed );
 			continue;
 
@@ -396,7 +449,7 @@ function SV_TakeFollowers( player, cur, t ) {
 		const run = Math.hypot( to[ 0 ] - from[ 0 ], to[ 1 ] - from[ 1 ] );
 
 		list.push( {
-			text, from, to, run,
+			text, from, to, run, resources,
 			delay: Math.max( run / FOLLOW_SPEED, earliest ),
 			heading: Math.atan2( to[ 1 ] - from[ 1 ], to[ 0 ] - from[ 0 ] ) * 180 / Math.PI,
 			model,
@@ -417,47 +470,13 @@ function SV_TakeFollowers( player, cur, t ) {
 // its sounds are added to the level while it is still loading (nothing can be added later).
 function SV_PrecacheFollowers( followers ) {
 
-	if ( sv.model_precache == null || sv.sound_precache == null ) return;
-
-	const add = ( list, name ) => {
-
-		for ( let i = 0; i < 256 && i < list.length; i ++ ) {
-
-			if ( list[ i ] == null ) {
-
-				list[ i ] = name;
-				return true;
-
-			}
-
-			if ( list[ i ] === name ) return false;
-
-		}
-
-		return false;
-
-	};
-
+	const loaded = new Set();
 	for ( const f of followers ) {
 
-		const m = /"model"\s+"([^"]+)"/.exec( f.text );
-		if ( m === null ) continue;
-
-		if ( add( sv.model_precache, m[ 1 ] ) ) {
-
-			const i = sv.model_precache.indexOf( m[ 1 ] );
-			sv.models[ i ] = models != null && models.Mod_ForName ? models.Mod_ForName( m[ 1 ], true ) : null;
-
-		}
-
-		// the monster's sounds: everything in the folder named after it (soldier/, knight/ ...)
-		const dir = /^progs\/([a-z]+)/.exec( m[ 1 ] );
-		if ( dir === null ) continue;
-		for ( const file of COM_ListFiles( 'sound/' + dir[ 1 ] + '/' ) ) {
-
-			add( sv.sound_precache, file.substring( 6 ) );
-
-		}
+		// One shared source manifest per batch covers mod-specific death/attack
+		// assets too. Inferring only a body model or sound folder loses those.
+		if ( loaded.has( f.resources ) ) continue;
+		SV_PrecacheResources( f.resources ); loaded.add( f.resources );
 
 	}
 
@@ -599,10 +618,7 @@ function SV_PlaceFollowers( player ) {
 		const index = SV_ModelIndex( PR_GetString( ed.v.model ) );
 		if ( index < 0 ) {
 
-			// this level has not loaded that monster
-			ED_Free( ed );
-			f.placed = true;
-			continue;
+			Sys_Error( 'SV_Seamless: follower model ' + PR_GetString( ed.v.model ) + ' not precached' );
 
 		}
 

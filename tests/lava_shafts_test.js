@@ -38,14 +38,14 @@ function withControls( fn ) {
 function leafModel( surfaces ) { const leaf = { contents: -1, visframe: 0 }; return { entities: '', surfaces, firstmodelsurface: 0, nummodelsurfaces: surfaces.length, nodes: [ leaf ], leafs: [ { contents: -2 }, leaf ], numleafs: 1 }; }
 function lavaFace( x, y, size = 192 ) { return { flags: 16, plane: { normal: [ 0, 0, 1 ], dist: 0 }, texinfo: { texture: { name: '*lava1' } }, polys: { numverts: 4, verts: [ [ x, y, 0 ], [ x + size, y, 0 ], [ x + size, y + size, 0 ], [ x, y + size, 0 ] ], next: null } }; }
 
-Deno.test( 'default shafts share one4x gain for sun, points and flashlight while the .5 slider stays nominal and off modes stay off', () => withControls( p => {
+Deno.test( 'default shafts retain one4x sun/flashlight gain with broad point fog removed while the .5 slider stays nominal and off modes stay off', () => withControls( p => {
 
 	const gains = [];
 	for ( const strength of [ .125, .5, 1 ] ) {
 
 		vars.Cvar_SetValue( 'r_pillars', strength ); const final = p.frame( true ), volume = p.draws.find( draw => draw.sun !== undefined );
 		check( volume, 'public frame executes volumetric pass' ); same( final.volume, strength * 8, 'single common shaft compositing gain' );
-		near( volume.point, .03, 'point nominal scattering unchanged' );
+		near( volume.point, 0, 'owner-requested broad point fog is removed' );
 		check( volume.material.fragmentShader.includes( 'uSunCol * lit * uSunScatter' ) && volume.material.fragmentShader.includes( 'result + acc * uScatter' ) && volume.material.fragmentShader.includes( 'result += beam * ds' ), 'all three sources share the same volume texture' );
 		check( final.material.fragmentShader.includes( 'texture2D( tVolume, uvd ).rgb * uVolume' ), 'all shaft colour multiplied once at composition' ); gains.push( { gain: final.volume, sun: volume.sun } );
 
@@ -65,7 +65,7 @@ Deno.test( 'lava material becomes emissive above bloom range without texture/opa
 
 		same( material.map, texture, 'original lava picture' ); same( material.opacity, 1, 'lava remains opaque' ); same( material.depthWrite, true, 'opaque native lava depth retained' );
 		same( post.R_LiquidOpacity( '*lava1', 1 ), 1, 'physical liquid opacity policy unchanged' );
-		for ( let i = 0; i < 8; i ++ ) { post.R_PostBegin( p.renderer, true, 320, 200 ); check( material.color.r > 3.1 && material.color.r < 4.9, 'bounded lava HDR glow stays above outdoor bloom threshold' ); }
+		for ( let i = 0; i < 8; i ++ ) { post.R_PostBegin( p.renderer, true, 320, 200 ); check( material.color.r > 4.7 && material.color.r < 7.3, 'owner-intensified 6x lava HDR glow retains the same bounded pulse above bloom threshold' ); }
 		vars.Cvar_SetValue( 'r_newer_lighting', 0 ); post.R_PostBegin( p.renderer, true, 320, 200 ); near( material.color.r, 1, 'lighting off uses native intensity' );
 		vars.Cvar_SetValue( 'r_hdr', 0 ); post.R_PostBegin( p.renderer, false, 0, 0 ); near( material.color.r, 1, 'Classic native intensity' ); same( material.map, texture, 'texture never replaced by glow' );
 

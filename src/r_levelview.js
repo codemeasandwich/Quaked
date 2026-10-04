@@ -21,6 +21,7 @@ import { r_avertexnormal_dots } from './anorm_dots.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
 import { R_NewerTexturesForModel } from './r_newertextures.js';
+import { R_RockBakePrefetch } from './r_rockbakes.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;
@@ -231,6 +232,7 @@ void main() {
 const SKY_FRAGMENT = `
 layout(location = 1) out highp vec4 gNormal;
 layout(location = 2) out highp vec4 gAlbedo;
+layout(location = 3) out highp vec4 gHeightMask;
 uniform sampler2D tSolid;
 uniform sampler2D tAlpha;
 uniform float uSolid;
@@ -251,6 +253,7 @@ void main() {
 	#include <colorspace_fragment>
 	gNormal = vec4( 0.0 );
 	gAlbedo = vec4( 0.0 );
+	gHeightMask = vec4(1.0);
 }`;
 
 function skyMaterial( model ) {
@@ -562,6 +565,7 @@ in the level's own coordinates; the caller places it.
 ================
 */
 export function R_BuildLevelView( model, origin, entities = [] ) {
+ if(R_NewerLightingActive())R_RockBakePrefetch(model?.name);
 
 	if ( model == null || model.surfaces == null || model.leafs == null ) return null;
 

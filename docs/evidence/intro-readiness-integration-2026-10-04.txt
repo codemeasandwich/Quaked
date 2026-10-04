@@ -1,0 +1,93 @@
+PASS boot splash waits for an actual console presentation and app readiness, fades once, and terminal fallback readiness needs three completed draws
+PASS manual intent cancels startup permanently; signon packets/timed demos are never frozen and failed splash has a terminal native fallback
+PASS actual loading DOM fades only on its opacity transition; unrelated events do not remove it and missing/reduced-motion pages terminate
+Added packfile boot-public-native-pak (339 files)\n
+PASS actual first-attract client freezes both clip time and packet cursor after native signon, screen renders behind full native console then rolls away only when terminal
+PASS actual manual and timed playback commands permanently bypass first-demo scope, and stopping first attract cannot rearm a later loop
+PASS welcome has an opaque native plaque with hidden draws, blocks public movement but sends reliable handshakes, and releases without demo console/fade or changing ordinary crossings
+PASS real Host_ServerFrame holds native world physics only for single-player welcome while reliable preparation continues, then native time advances normally
+PASS public collector excludes disabled stale shadow/rock/demon caches and lists only the caller enabled asset roles
+PASS partial native asset failures cannot conceal other pending images or current source-shadow retries; frame stays held until both finish
+PASS terminal failed visible rock tiles release to native fallback while other missing tiles/jobs/prepared requests continue to block
+PASS GPU shader completion, sculpted surfaces and visible water remain independent readiness blockers despite optional shader failure diagnostics
+RESULT 11/11 passed (tests/demo_startup_loading_test.js)
+PASS index.html carries logo.svg unchanged, cropped to the artwork
+PASS progress fills the logo from the bottom up and reports it
+PASS removing the screen, and pages without the logo, are safe
+PASS main.js drives pak progress, then reveals a real startup console only after the frame and conback are ready
+RESULT 4/4 passed (tests/loading_screen_test.js)
+PASS weapon startup: ordinary app warms held/pickup art behind its first real console, retaining the readiness gate until downloads settle
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+Weapon art fallback: g_rock2 Error: Invalid weapon geometry: g_rock2
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:90:85
+    at async Promise.all (index 8)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:63:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:50:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:90:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+PASS world readiness is selected-model scoped and image timeout permanently settles native without late pixel replacement
+PASS failed or stalled texture manifest is terminal native and ignores late manifest response
+PASS successful world diffuse/height readiness waits for all selected art and explicit image failure settles native
+PASS selected custom and native skin height requests settle with diagnostics and reject late textures
+PASS skin index timeout is terminal and late response cannot create a replacement
+PASS failed authored skin normal is terminal and generates matching relief from the loaded diffuse
+PASS weapon preload status observes concurrent requests, bounds stalled textures, and rejects late art after native fallback
+PASS successful weapon preload exposes terminal readiness and a stalled manifest cannot later enable art
+RESULT 8/8 passed (tests/asset_readiness_test.js)
+Weapon art fallback: v_shot Error: shotgun/d.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-preload:33:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:109:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon art fallback: shell Error: shell/s.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-preload:33:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:109:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Weapon manifest timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-manifest-stall:22:100
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:126:136
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests
+PASS HUD image timeout/error resolves preload as native fallback and late images cannot populate lazy sprites
+PASS HUD missing and stalled indices settle preload without late catalog requests
+RESULT 3/3 passed (tests/hud_preload_test.js)
+PASS startup prepare begins every unseen custom variant and native skin/frame, then actual draws reuse them without another download
+Added packfile pak0.pak (339 files)\n
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+PASS actual native loaded Quake model header prepares stored relief without drawing and keeps native diffuse ownership
+PASS startup preparation respects independent skin/normal gates and shutdown prevents delayed index from preparing a retired map
+RESULT 3/3 passed (tests/skin_prepare_test.js)
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/bri/SOURCE/Quaked/tests/r_prewarm_test.js' imported from /Users/bri/SOURCE/Quaked/tools/run_tests.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at resolve (data:text/javascript,let%20three%3B%20export%20function%20initialize(data)%20%7B%20three%20%3D%20data.three%3B%20%7D%0Aexport%20async%20function%20resolve(specifier%2C%20context%2C%20next)%20%7B%0A%20if%20(specifier%20%3D%3D%3D%20'three')%20return%20%7Burl%3A%20three%2C%20shortCircuit%3A%20true%7D%3B%0A%20return%20next(specifier%2C%20context)%3B%0A%7D:4:9)
+    at nextResolve (node:internal/modules/esm/hooks:785:28)
+    at AsyncLoaderHooksOnLoaderHookWorker.resolve (node:internal/modules/esm/hooks:269:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:251:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:856:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///Users/bri/SOURCE/Quaked/tests/r_prewarm_test.js'
+}
+
+Node.js v24.19.0
+TOTAL 32/32 passed

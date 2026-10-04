@@ -52,6 +52,16 @@ export function R_WaterProbes() {
 	return probes;
 
 }
+export function R_WaterProbeReadiness(camera,regions){
+ _m.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);_frustum.setFromProjectionMatrix(_m);
+ let pending=0,ready=0;
+ for(const r of regions.filter(r=>r.probePoints==null||r.probePoints.length>0).slice(0,MAX_PROBES)){
+  _box.min.set(r.min[0],r.min[1],r.z-4);_box.max.set(r.max[0],r.max[1],r.z+4);
+  if(!_frustum.intersectsBox(_box))continue;
+  if(R_WaterProbeFor(r))ready++;else pending++;
+ }
+ return {pending,ready};
+}
 
 /*
 ================

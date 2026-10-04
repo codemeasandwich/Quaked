@@ -1,0 +1,82 @@
+file:///Users/bri/SOURCE/Quaked/tests/flashlight_run_test.js:17
+import { cl_showfps } from '../src/gl_screen.js';
+         ^^^^^^^^^^
+SyntaxError: The requested module '../src/gl_screen.js' does not provide an export named 'cl_showfps'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)
+    at async node:internal/modules/esm/loader:643:26
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:40:2
+
+Node.js v24.19.0
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+RESULT 3/3 passed (tests/r_flashlight_test.js)
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+PASS attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+Added packfile pak0.pak (339 files)\n
+E1M3_STATIC_SOURCE_SELECTION [{"classname":"light","position":[-752,-1576,176],"emitter":0},{"classname":"light","position":[-392,-1804,160],"emitter":0},{"classname":"light","position":[-616,-1600,248],"emitter":0},{"classname":"light","position":[-768,-1760,200],"emitter":0},{"classname":"light","position":[-920,-1744,176],"emitter":0},{"classname":"light_flame_large_yellow","position":[-620,-1958,256],"emitter":1},{"classname":"light","position":[-584,-1640,136],"emitter":0},{"classname":"light_flame_large_yellow","position":[-966,-1750,256],"emitter":1}]
+PASS actual E1M3 torches are collected at native air positions and physical-light selection is stable under yaw and flicker
+PASS all six radial face UV projections match independent ninety-degree cameras including negative directions and edge ties
+PASS public atlas captures one cube at DPR2, preserves renderer and borrowed geometry, recovers failure and bounds protected LRU slots
+E1M3_POINT_SHADOW_PIPELINE {"maxSlots":8,"resident":8,"ready":8,"pending":0,"requested":8,"chunks":263,"triangles":8765,"captures":8,"faceRenders":48,"failedCaptures":0,"spotReady":false,"spotCaptures":0,"spotRenders":0,"spotFailedCaptures":0,"spotError":null,"spotDynamicMeshes":0,"epoch":3,"error":null,"disposed":false}
+PASS actual post pipeline warms bounded native source shadows once, keeps camera/flicker keys and bypasses GPU jobs in Classic and disabled modes
+E1M3_LIGHT_PATHS {"fire":[-966,-1750,256],"cases":[{"eye":[-736,-1592,110],"blocked":false,"fraction":1,"impact":[0,0,0],"nearestCaster":410.6030635798794},{"eye":[-800,-1648,110],"blocked":true,"fraction":0.08197773921580549,"impact":[-952.3917236328125,-1741.6383056640625,244.03125],"nearestCaster":20.010955903314166},{"eye":[-608,-1600,174],"blocked":false,"fraction":1,"impact":[0,0,0],"nearestCaster":463.68498802675043},{"eye":[-656,-1264,142],"blocked":true,"fraction":0.4073431047182421,"impact":[-839.7236328125,-1552.03125,209.56288146972656],"nearestCaster":239.3989157826638}]}
+PASS native E1M3 source rays distinguish real hidden-world blockers and safe player cameras without altering BSP collision
+PASS full bounced lighting and doubled physical emitter radiance preserve native colour and light a zero-baked receiver through actual uniforms
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+PASS removed haze and source-dependent gloss/native weapon/player lighting stay black without sources while Classic keeps its original24/8 floors
+HAZE_REMOVED_REAL_LIGHTS {"openFog":0,"pointScatter":0,"sunScatter":0.000007700193518463214,"shaftFog":1.3,"spotOn":1,"positiveFloorSources":5}
+PASS removed broad haze leaves real edge sun shafts, default flashlight cone and point-surface illumination active
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_heightshadows"
+
+execing default.cfg
+
+execing default.cfg
+
+PASS actual Newer menu brightness midpoint/flashlight and mode-specific resets preserve Classic preferences and beam gates
+RESULT 9/9 passed (tests/emissive_lights_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+TOTAL 18/18 passed

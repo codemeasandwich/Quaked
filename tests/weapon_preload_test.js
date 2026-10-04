@@ -1,6 +1,7 @@
 // Execute the actual ordinary entry-point body against its host/UI boundaries,
 // using the real optional weapon loader. Hold image decoding to prove that the
-// demo loop cannot start before art is ready. No browser or game is launched.
+// asset-gated intro draws cannot become visible before art is ready. The host
+// loop now warms assets behind the native console. No browser/game is launched.
 import { readFileSync } from 'node:fs';
 import { Script } from 'node:vm';
 await import( '../src/gl_rsurf.js' );
@@ -8,11 +9,12 @@ const THREE = await import( 'three' );
 const weapons = await import( '../src/r_weapons.js' );
 const vars = await import( '../src/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
+const startup = await import( '../src/r_demoloading.js' );
 
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ), 'utf8' );
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 
-Deno.test( 'weapon startup: ordinary app waits for all optional held/pickup art before removing loading UI and starting demo frames', async () => {
+Deno.test( 'weapon startup: ordinary app warms held/pickup art behind its first real console, retaining the readiness gate until downloads settle', async () => {
 
 	const oldFetch = globalThis.fetch, oldLoad = THREE.TextureLoader.prototype.load, oldHdr = r_hdr.string;
 	const images = [], fetched = [], events = [];
@@ -34,18 +36,19 @@ Deno.test( 'weapon startup: ordinary app waits for all optional held/pickup art 
 	try {
 
 		const noop = () => {}, window = { location: { search: '' } };
-		const renderer = { domElement: { width: 800, height: 600 }, setAnimationLoop() { events.push( 'demo loop' ); } };
+		let frame; const renderer = { domElement: { width: 800, height: 600 }, setAnimationLoop( callback ) { frame = callback; events.push( 'demo loop' ); } };
 		const context = {
 			window, renderer, document: { getElementById: id => id === 'loading' ? { remove: () => events.push( 'loading removed' ) } : { style: {} } },
 			console, URLSearchParams, performance,
 			Sys_Init: noop, Sys_Printf: noop, Sys_Error: message => { throw new Error( message ); }, COM_InitArgv: noop,
-			Host_Init: async () => { events.push( 'host initialized' ); }, Host_Frame: noop, Host_Shutdown: noop,
+			Host_Init: async () => { events.push( 'host initialized' ); startup.R_DemoLoadingAttract( true ); }, Host_Frame: () => { events.push( 'native console frame' ); startup.R_DemoLoadingConsoleDrawn(); }, Host_Shutdown: noop,
 			COM_FetchPak: async () => ( {} ), COM_FetchOptionalPak: async () => null, COM_AddPack: noop, COM_SetNewerPack: noop,
 			Cbuf_AddText: noop, Cmd_AddCommand: noop, Cmd_Argc: () => 0, Cmd_Argv: () => '', Con_Printf: noop,
 			Cvar_VariableValue: vars.Cvar_VariableValue, Cvar_SetValue: vars.Cvar_SetValue, key_dest: 0, key_game: 0,
 			R_PerfSetHost: noop, R_PerfStart: noop, R_PerfStop: noop, R_PerfProfiling: () => false, R_PerfPump: noop, R_PerfLastReport: () => null,
 			cls: {}, cl: {}, sv: {}, scene: {}, camera: {}, Draw_CachePicFromPNG: async () => {}, Draw_CacheSinglePlayerMenu: () => ( {} ),
-			Draw_LoadConbackImage: async () => true, XR_Init: noop, R_WeaponsPreload: weapons.R_WeaponsPreload
+			Draw_LoadConbackImage: async () => true, XR_Init: noop, R_WeaponsPreload: weapons.R_WeaponsPreload, R_NewerHudPreload: noop,
+			R_DemoLoadingBoot: startup.R_DemoLoadingBoot, R_DemoLoadingAppReady: startup.R_DemoLoadingAppReady, R_DemoLoadingCancel: startup.R_DemoLoadingCancel, R_DemoLoadingStatus: startup.R_DemoLoadingStatus, R_DemoLoadingSplash: startup.R_DemoLoadingSplash, LoadingScreen_SetProgress: noop, LoadingScreen_Remove: () => events.push( 'loading removed' ), LoadingScreen_FadeOut: () => { events.push( 'logo fade' ); return Promise.resolve(); }
 		};
 		// Imports supply the boundaries above; execute unchanged main() control
 		// flow, including its real preload await and animation-loop scheduling.
@@ -53,12 +56,12 @@ Deno.test( 'weapon startup: ordinary app waits for all optional held/pickup art 
 		const boot = new Script( entry, { filename: 'main.js' } ).runInNewContext( context );
 		for ( let i = 0; i < 40; i ++ ) await Promise.resolve();
 		check( images.length > 0 && events.includes( 'host initialized' ), 'ordinary boot starts real weapon downloads' );
-		check( ! events.includes( 'loading removed' ) && ! events.includes( 'demo loop' ), 'loading/demo cannot bypass pending image decoding' );
+		await boot; check( ! events.includes( 'loading removed' ) && events.includes( 'demo loop' ), 'host loop can warm pending image art but logo is not removed before a real console' ); check( startup.R_DemoLoadingHolding(), 'actual startup scope retains readiness gate while weapon images pending' ); frame( 16 ); await new Promise( resolve => setTimeout( resolve, 0 ) ); check( events.indexOf( 'logo fade' ) > events.indexOf( 'native console frame' ), 'logo fades only after its first real console frame even while optional images download' );
 		check( weapons.R_WeaponsEnabled() === false, 'preload does not enable enhanced art in classic mode' );
 		const one = weapons.R_WeaponsPreload(); check( weapons.R_WeaponsPreload() === one, 'preload promise reused' );
 		for ( const image of images ) image.release();
-		await boot;
-		check( events.indexOf( 'loading removed' ) > events.indexOf( 'host initialized' ) && events.includes( 'demo loop' ), 'ordinary boot finishes and starts rendering after art settles' );
+		await one;
+		check( ! events.includes( 'loading removed' ) && events.includes( 'demo loop' ), 'settled weapon art alone cannot release the full intro readiness gate' );
 		const manifest = JSON.parse( read( 'newer/weapons/index.json' ) ), status = weapons.R_WeaponStatus();
 		for ( const key of Object.keys( manifest.models ) ) {
 
@@ -73,7 +76,7 @@ Deno.test( 'weapon startup: ordinary app waits for all optional held/pickup art 
 		check( weapons.R_WeaponAsset( 'progs/g_rock2.mdl' ) === null, 'missing pickup remains native fallback' );
 		const count = fetched.length; await weapons.R_WeaponsPreload(); check( fetched.length === count, 'completed preload never downloads again' );
 
-	} finally { globalThis.fetch = oldFetch; THREE.TextureLoader.prototype.load = oldLoad; vars.Cvar_Set( 'r_hdr', oldHdr ); }
+	} finally { globalThis.fetch = oldFetch; THREE.TextureLoader.prototype.load = oldLoad; vars.Cvar_Set( 'r_hdr', oldHdr ); startup.R_DemoLoadingCancel(); }
 
 } );
 

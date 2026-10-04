@@ -89,7 +89,7 @@ Deno.test( 'blending arrays interpolates linearly', () => {
 
 } );
 
-Deno.test( 'r_lerpmodels: off, Newer Game only, or always', () => {
+Deno.test( 'r_lerpmodels: off or Newer Game only, including legacy forced values', () => {
 
 	const old = anim.r_lerpmodels.value;
 
@@ -104,7 +104,9 @@ Deno.test( 'r_lerpmodels: off, Newer Game only, or always', () => {
 		assertEqual( anim.R_AnimEnabled(), false, 'switched off' );
 		anim.R_AnimSetNewer( false );
 		anim.r_lerpmodels.value = 2;
-		assertEqual( anim.R_AnimEnabled(), true, 'forced on in classic' );
+		assertEqual( anim.R_AnimEnabled(), false, 'legacy forced preference cannot enable Classic frames' );
+		anim.R_AnimSetNewer( true );
+		assertEqual( anim.R_AnimEnabled(), true, 'legacy positive preference still enables enhanced frames' );
 
 	} finally {
 

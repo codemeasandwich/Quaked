@@ -1,0 +1,114 @@
+PASS a pose change blends over the frame interval
+PASS group frames blend over their own interval
+PASS no blending from a stale or foreign state
+PASS blending arrays interpolates linearly
+PASS r_lerpmodels: off or Newer Game only, including legacy forced values
+PASS Newer Game forces smooth texture filtering without touching the user setting
+PASS walking monsters glide between the game's steps
+RESULT 7/7 passed (tests/r_anim_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: all nine native frames, original skin/UVs and complete hand render in enhanced, classic and New Game modes
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: classic rollback and feature toggling preserve original art without generating a hand child
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS original axe: restore public test fixtures
+RESULT 3/5 passed (tests/axe_original_test.js)
+FAIL original axe: no replacement role, requests, generated texture or geometry remain; supplied source is preserved Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/quake_axe.glb'
+    at Object.openSync (node:fs:622:18)
+    at readFileSync (node:fs:488:35)
+    at read (file:///Users/bri/SOURCE/Quaked/tests/axe_original_test.js:15:22)
+    at file:///Users/bri/SOURCE/Quaked/tests/axe_original_test.js:120:19
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+FAIL original axe: native swing interpolation preserves complete axe/arm geometry and original skin TypeError: Cannot read properties of undefined (reading 'blend')
+    at file:///Users/bri/SOURCE/Quaked/tests/axe_original_test.js:148:22
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+PASS each walking footfall shakes once, at the heel strike, and not between steps
+PASS running footfalls land on run2 and run5
+PASS strength is (1 - distance / 600) squared: a quarter at 300 units, nothing from 600
+PASS several Shamblers stomping together stay within the small-quake limits
+PASS short packet gaps still land their steps; longer jumps never replay one
+PASS starting to walk or run straight onto a contact pose is the first step
+PASS held, non-walking, teleporting, vanished and other-model poses never shake
+PASS a step ends early when the Shambler stops walking, changes model or the level changes
+PASS the player must be on the ground when the foot lands, and feels nothing in the air
+PASS New Game, the setting, demos, pause, death, intermission and menus stop the shake
+PASS small backwards steps in the predicted clock keep the step; a restart forgets it
+PASS with smoothed monster animation the shake waits for the contact pose to be drawn
+PASS V_CalcRefdef moves the eye and weapon together and tilts only the eye
+RESULT 13/13 passed (tests/shambler_steps_test.js)
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+PASS fresh production main entry graph evaluates without a renderer preimport or TDZ
+RESULT 1/1 passed (tests/main_module_graph_test.js)
+TOTAL 38/40 passed
