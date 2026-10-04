@@ -1,0 +1,252 @@
+{
+  "maps": [
+    {
+      "map": "e1m1",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m2",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 0,
+      "measurements": []
+    },
+    {
+      "map": "e1m2",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m3",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 1,
+      "measurements": [
+        {
+          "destination": "e1m3",
+          "model": "*36",
+          "center": [
+            -639.75,
+            -500,
+            480
+          ],
+          "through": [
+            -1,
+            0,
+            0
+          ],
+          "opening": {
+            "axisA": [
+              0,
+              1,
+              0
+            ],
+            "axisB": [
+              0,
+              0,
+              1
+            ],
+            "a0": -88,
+            "a1": 100,
+            "b0": -24,
+            "b1": 152,
+            "shift": [
+              0,
+              0,
+              0
+            ]
+          },
+          "arch": {
+            "near": -31.75,
+            "far": 0.25,
+            "depth": 32
+          },
+          "measured": {
+            "near": -31.75,
+            "far": 0.25,
+            "depth": 32,
+            "throat": [
+              4839,
+              4840,
+              4846
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "map": "e1m3",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m4",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 1,
+      "measurements": [
+        {
+          "destination": "e1m4",
+          "model": "*69",
+          "center": [
+            1340,
+            1023.75,
+            560
+          ],
+          "through": [
+            0,
+            1,
+            0
+          ],
+          "opening": {
+            "axisA": [
+              1,
+              0,
+              0
+            ],
+            "axisB": [
+              0,
+              0,
+              1
+            ],
+            "a0": -88,
+            "a1": 100,
+            "b0": -24,
+            "b1": 152,
+            "shift": [
+              0,
+              0,
+              0
+            ]
+          },
+          "arch": {
+            "near": -31.75,
+            "far": 0.25,
+            "depth": 32
+          },
+          "measured": {
+            "near": -31.75,
+            "far": 0.25,
+            "depth": 32,
+            "throat": [
+              334,
+              319,
+              333
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "map": "e1m4",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m5",
+          "kind": "plane"
+        },
+        {
+          "destination": "e1m8",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 1,
+      "measurements": [
+        {
+          "destination": "e1m5",
+          "model": "*6",
+          "center": [
+            1224,
+            991.75,
+            1408
+          ],
+          "through": [
+            0,
+            1,
+            0
+          ],
+          "opening": {
+            "axisA": [
+              1,
+              0,
+              0
+            ],
+            "axisB": [
+              0,
+              0,
+              1
+            ],
+            "a0": -100,
+            "a1": 88,
+            "b0": -24,
+            "b1": 148,
+            "shift": [
+              0,
+              0,
+              0
+            ]
+          },
+          "arch": {
+            "near": -31.75,
+            "far": 0.25,
+            "depth": 32
+          },
+          "measured": {
+            "near": -31.75,
+            "far": 0.25,
+            "depth": 32,
+            "throat": [
+              357,
+              324,
+              356
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "map": "e1m5",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m6",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 0,
+      "measurements": []
+    },
+    {
+      "map": "e1m6",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m7",
+          "kind": "pit"
+        }
+      ],
+      "forwardPlaneCount": 0,
+      "measurements": []
+    },
+    {
+      "map": "e1m7",
+      "nativeExitKinds": [
+        {
+          "destination": "start",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 0,
+      "measurements": []
+    },
+    {
+      "map": "e1m8",
+      "nativeExitKinds": [
+        {
+          "destination": "e1m5",
+          "kind": "plane"
+        }
+      ],
+      "forwardPlaneCount": 0,
+      "measurements": []
+    }
+  ],
+  "forwardPlanes": 3,
+  "measured": 3,
+  "missing": []
+}

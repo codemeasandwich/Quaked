@@ -22,8 +22,9 @@ import {
 	CONTENTS_CURRENT_0, CONTENTS_CURRENT_DOWN
 } from './bspfile.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
-import { EDICT_TO_PROG, PROG_TO_EDICT, pr_global_struct } from './progs.js';
+import { EDICT_TO_PROG, PROG_TO_EDICT, pr_global_struct, PR_GetString } from './progs.js';
 import { SV_BeginPortalTouch, SV_PreparePortalTouch, SV_FinishPortalTouch, SV_RestorePortalReceiver } from './sv_portal.js';
+import { R_FlashlightSkillSelected } from './r_flashlightrun.js';
 
 // Pre-allocated scratch vectors for SV_RecursiveHullCheck (indexed by recursion depth).
 // Grow this pool on demand because valid BSP hulls can be deeper than the common case.
@@ -448,6 +449,16 @@ export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, cle
 	pr_global_struct.time = sv.time;
 	try {
 
+		// START's existing floor messages cover the corridor entrances. The
+		// skill brushes are at the far end, beside the teleporters: too late
+		// for a light intended to help the player walk down the corridor.
+		// Keep QC's actual difficulty selection and message timing untouched.
+		if ( sv.name === 'start' && svs.maxclients === 1 && ent.index === 1 &&
+			ent.v.health > 0 && PR_GetString( ent.v.classname ) === 'player' &&
+			PR_GetString( touch.v.classname ) === 'trigger_multiple' ) {
+			const hall = /^This hall selects (EASY|NORMAL|HARD) skill$/.exec( PR_GetString( touch.v.message ) );
+			if ( hall ) R_FlashlightSkillSelected( sv.name, [ 'EASY', 'NORMAL', 'HARD' ].indexOf( hall[ 1 ] ) );
+		}
 		execute( touch.v.touch );
 		return SV_FinishPortalTouch( ent, incoming );
 

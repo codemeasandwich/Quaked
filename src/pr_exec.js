@@ -35,6 +35,7 @@ import {
 } from './pr_comp.js';
 import { ED_Print } from './pr_edict.js';
 import { ss_active } from './server.js';
+import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from './sv_axecut.js';
 
 /*
 */
@@ -251,6 +252,7 @@ export function PR_RunError( error, ...args ) {
 	Con_Printf( '%s\n', message );
 
 	pr_depth = 0; // dump the stack so host_error can shutdown functions
+	SV_AxeReset();
 
 	PR_HostError( 'Program error' );
 
@@ -272,6 +274,7 @@ Returns the new program statement counter
 ====================
 */
 export function PR_EnterFunction( f ) {
+	pr_stack[ pr_depth ].axe = SV_AxeFunctionEnter( f, pr_xfunction );
 
 	pr_stack[ pr_depth ].s = pr_xstatement;
 	pr_stack[ pr_depth ].f = pr_xfunction;
@@ -328,6 +331,8 @@ export function PR_LeaveFunction() {
 
 	// up stack
 	pr_depth --;
+	SV_AxeFunctionLeave( pr_stack[ pr_depth ].axe );
+	pr_stack[ pr_depth ].axe = null;
 	PR_SetXFunction( pr_stack[ pr_depth ].f );
 	return pr_stack[ pr_depth ].s;
 

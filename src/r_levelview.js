@@ -22,6 +22,8 @@ import { Cvar_VariableValue } from './cvar.js';
 import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
 import { R_NewerTexturesForModel } from './r_newertextures.js';
 import { R_RockBakePrefetch } from './r_rockbakes.js';
+import { R_AxeCorpsePreview } from './r_axecorpses.js';
+import { Con_DPrintf } from './common.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;
@@ -657,13 +659,20 @@ export function R_BuildLevelView( model, origin, entities = [] ) {
 	// the entities: doors and false walls (brush models, which are not in the
 	// world's leaves), items, monsters and torches
 	const ghosts = [];
+	const cutGhosts = [];
+	const cutFailures = [];
+	const failedCuts = new Set();
 	const seenLeaf = ( p ) => leaves.has( Mod_PointInLeaf( p, model ) );
 
-	for ( const ent of entities ) {
+	// Resolve optional replacements first, even though their owning edicts
+	// follow the original monster/gibs in the native snapshot.
+	for ( const ent of [...entities.filter(e=>e.kind==='axe'),...entities.filter(e=>e.kind!=='axe')] ) {
 
 		const o = ent.origin;
 
-		if ( ent.kind === 'brush' ) {
+		if ( ent.kind === 'axe' ) {
+			try{if(!ent.record)throw Error('Invalid saved axe corpse');if(seenLeaf(ent.origin))cutGhosts.push(R_AxeCorpsePreview(ent.record,model,ent.time));}catch(error){failedCuts.add(ent.cutKey);cutFailures.push(String(error.message));Con_DPrintf('Cut corpse preview unavailable: %s\n',error.message);}
+		} else if ( ent.kind === 'brush' ) {
 
 			const sm = ent.submodel;
 			if ( ! boundsSeen( sm.mins, sm.maxs, o, seenLeaf ) ) continue;
@@ -687,7 +696,7 @@ export function R_BuildLevelView( model, origin, entities = [] ) {
 
 			}
 
-		} else if ( ent.kind === 'alias' ) {
+		} else if ( ent.kind === 'alias' || ent.kind === 'axeFallback' && failedCuts.has(ent.fallbackFor) ) {
 
 			if ( ! seenLeaf( [ o[ 0 ], o[ 1 ], o[ 2 ] + 24 ] ) ) continue;
 			const g = createGhost( ent, model );
@@ -744,16 +753,19 @@ export function R_BuildLevelView( model, origin, entities = [] ) {
 	for ( const child of group.children ) child.matrixAutoUpdate = false;
 
 	for ( const g of ghosts ) group.add( g.mesh );
+	for ( const g of cutGhosts ) group.add( g.mesh );
 
 	return {
 		group,
 		leaves: leaves.size,
 		surfaces: surfaces.size,
 		ghosts,
+		cutFailures,
 		dispose: () => {
 
 			if ( group.parent != null ) group.parent.remove( group );
 			for ( const g of ghosts ) if ( g.e._aliasGeo != null ) g.e._aliasGeo.dispose();
+			for ( const g of cutGhosts ) g.dispose();
 			for ( const d of disposables ) d.dispose();
 
 		}
@@ -882,11 +894,14 @@ function buildView( scene, c, i ) {
 
 	view.anchor = corner( ( o.a0 + o.a1 ) / 2, ( o.b0 + o.b1 ) / 2 );
 	view.map = c.map;
+	// The oblique clipping plane must be the transformed visible plane, even
+	// when the physical crossing threshold is nearer than the recessed window.
+	const receiver = t.position( cc.map( ( value, axis ) => value + shift[ axis ] ) );
 
 	const portal = R_AddLevelPortal( scene,
 		[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],
 		matrix,
-		[ off[ 0 ] + t.dest[ 0 ], off[ 1 ] + t.dest[ 1 ], off[ 2 ] + t.dest[ 2 ] ],
+		[ off[ 0 ] + receiver[ 0 ], off[ 1 ] + receiver[ 1 ], off[ 2 ] + receiver[ 2 ] ],
 		t.direction( t.through ) );
 	portal.crossing = i;
 

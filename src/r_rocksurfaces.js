@@ -106,8 +106,8 @@ export function R_RockSurfaceCharts( model, { includeBrushes = false } = {} ) {
   const connected = new Map();
   faces.forEach( ( face, i ) => { const id = root( i ); if ( ! connected.has( id ) ) connected.set( id, [] ); connected.get( id ).push( face ); } );
   for ( const members of connected.values() ) {
-   // Full native coverage is known before streaming. Sorted point identities
-   // make seeds independent of traversal, polygon winding and discovery order.
+   // Sorted point identities describe coverage, not the random field.
+   // Discovery may change membership without changing any existing height.
    const signature = [ ...new Set( members.flatMap( f => f.polygons.flat().map( p => p.join( ',' ) ) ) ) ].sort().join( ';' );
    components.push( { key: key + ':' + signature, name: key.split( ':' )[ 0 ], profile: key.split( ':' )[ 1 ], members } );
   }
@@ -115,7 +115,9 @@ export function R_RockSurfaceCharts( model, { includeBrushes = false } = {} ) {
  components.sort( ( a, b ) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0 );
  for ( const component of components ) {
   const { key, name, profile, members } = component, config = R_RockPreset( name, profile );
-  const chart = { id: charts.length + 1, key, name, profile, seed: seedFrom( ( model.name || '' ) + ':' + key ), config,
+  // A material/role shares its world field even before disconnected pieces
+  // are discovered to connect. Component IDs remain residency/batching metadata.
+  const chart = { id: charts.length + 1, key, name, profile, seed: seedFrom( ( model.name || '' ) + ':' + name + ':' + profile ), config,
    tangent: profile === 'ground' ? [ 1, 0, 0 ] : ROCK_AXIS_U, bitangent: profile === 'ground' ? [ 0, 1, 0 ] : ROCK_AXIS_V,
    amplitude: config.amplitude, bounds: [ Infinity, Infinity, -Infinity, -Infinity ], surfaces: [] };
   charts.push( chart );

@@ -1,0 +1,33 @@
+{
+  "active": true,
+  "pickups": 1,
+  "kinds": [
+    "ring"
+  ],
+  "map": "maps/e1m3.bsp",
+  "model": "progs/invisibl.mdl",
+  "classic": false,
+  "shadows": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 7,
+    "pending": 1,
+    "requested": 7,
+    "chunks": 263,
+    "triangles": 1073725,
+    "captures": 1079,
+    "faceRenders": 6474,
+    "failedCaptures": 0,
+    "spotReady": false,
+    "spotCaptures": 58,
+    "spotRenders": 58,
+    "spotFailedCaptures": 0,
+    "spotError": null,
+    "spotDynamicMeshes": 0,
+    "epoch": 17,
+    "error": null,
+    "disposed": false
+  },
+  "glError": 0,
+  "runtimeErrors": []
+}

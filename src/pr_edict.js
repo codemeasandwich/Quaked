@@ -34,6 +34,8 @@ import {
 } from './progs.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
 import { SV_PinnedZombieSpawned } from './sv_pinnedzombies.js';
+import { Axe_ParseRecord, Axe_ValidOwnerKey } from './axe_record.js';
+import { SV_AxeReset } from './sv_axecut.js';
 
 //============================================================================
 // Module state
@@ -147,6 +149,9 @@ Marks the edict as free
 =================
 */
 export function ED_Free( ed ) {
+	// Pending (not successfully constructed) cut replacements retain the native
+	// death. Retire their links before this cosmetic edict index can be reused.
+	if(ed._axeCorpse||ed._axeOwnerKey)for(const e of sv.edicts||[])if(e&&e._axeSuppressedBy===ed.index){e._axeSuppressed=false;e._axeSuppressedBy=0;e._axeOwnerKey=null;}
 
 	if ( sv.SV_UnlinkEdict ) {
 
@@ -546,6 +551,10 @@ export function ED_Write( lines, ed ) {
 
 	}
 
+	if(ed._axeCorpse)lines.push('"_newer_axe_corpse" "'+encodeURIComponent(JSON.stringify(ed._axeCorpse))+'"');
+	else if(ed._axeInvalidRecord)lines.push('"_newer_axe_corpse" "invalid"'); // retain fallback ownership across re-saving
+	if(ed._axeSuppressed)lines.push('"_newer_axe_hidden" "'+(ed._axeSuppressedBy||-1)+'"');
+	if(Axe_ValidOwnerKey(ed._axeOwnerKey))lines.push('"_newer_axe_owner" "'+ed._axeOwnerKey+'"');
 	for ( let i = 1; i < progs.numfielddefs; i ++ ) {
 
 		const d = pr_fielddefs[ i ];
@@ -947,6 +956,9 @@ export function ED_ParseEdict( data, ent ) {
 			Sys_Error( 'ED_ParseEntity: closing brace without data' );
 
 		init = true;
+		if(keyname==='_newer_axe_corpse'){ent._axeCorpse=Axe_ParseRecord(com_token);ent._axeInvalidRecord=ent._axeCorpse===null;continue;}
+		if(keyname==='_newer_axe_hidden'){const owner=Number(com_token);ent._axeSuppressed=Number.isInteger(owner)&&owner>=-1&&owner<65536;ent._axeSuppressedBy=owner>0?owner:0;continue;}
+		if(keyname==='_newer_axe_owner'){ent._axeOwnerKey=Axe_ValidOwnerKey(com_token)?com_token:null;continue;}
 
 		// keynames with a leading underscore are used for utility comments,
 		// and are immediately discarded by quake
@@ -1086,6 +1098,7 @@ Loads progs.dat from the provided ArrayBuffer
 ===============
 */
 export function PR_LoadProgs( fileData ) {
+	SV_AxeReset();
 
 	// flush the non-C variable lookup cache
 	for ( let i = 0; i < GEFV_CACHESIZE; i ++ )

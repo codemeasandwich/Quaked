@@ -1,3 +1,6 @@
+import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
+import { R_ArchSurfaceHidden } from './r_archframe.js';
+import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFrame, POWERUP_SHROUD_COMPOSITE_GLSL, POWERUP_COOKIE_GLSL } from './r_powerups.js';
 // HDR lighting pipeline: emissive surfaces, sun and light shafts, relighting
 // and bloom.
 //
@@ -371,6 +374,9 @@ function patchDetailShader( shader ) {
 	shader.uniforms.uLmGamma = lightCurve;
 	shader.uniforms.uLighting = lightingLook;
 	shader.uniforms.uClassic = classicLook;
+	// Resolve replacement pigment over at least a small texel footprint. This
+	// softens baked pinprick grain without changing the image, native UVs or Classic.
+	shader.uniforms.uPigmentMinFootprint = { get value() { return thisMaterial.userData.detailDiffuse?.userData.newerPicture ? 4 : 0; } };
 	Object.assign( shader.uniforms, heightShadowUniforms );
 	shader.uniforms.uHasHeightShadow = { get value() { return thisMaterial.normalMap?.userData.heightSource ? 1 : 0; } };
 
@@ -390,7 +396,6 @@ function patchDetailShader( shader ) {
 
 	}
 	let parallax = rock ? ROCK_PARALLAX_GLSL + PARALLAX_GLSL.replace( 'vec2 pUv = vMapUv;', 'vec2 pUv = vMapUv + qrRockUvShift;' ).replace( 'vec2 uv = vMapUv;', 'vec2 uv = pUv;' ) : PARALLAX_GLSL;
- if(rock)parallax+='\n#ifdef USE_NORMALMAP\npUv=qrRockClipUv(vMapUv,pUv);\n#endif\n';
 	if ( this.userData.realDisplacement ) parallax = '#ifdef USE_NORMALMAP\nvec2 pUv = vMapUv;\n#endif\n';
 	if ( relief && ! reference ) {
 
@@ -412,7 +417,18 @@ function patchDetailShader( shader ) {
 			.replaceAll( '1.0 - textureGrad( normalMap, prev, gx, gy ).a', depth( 'prev' ) );
 
 	}
-	f = f.replace( '#include <map_fragment>', parallax + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
+	const pigment = `
+ #ifdef USE_MAP
+ vec2 qrPigmentDx=dFdx(vMapUv),qrPigmentDy=dFdy(vMapUv);
+ vec2 qrPigmentSize=vec2(textureSize(map,0));
+ // Enforce both footprint axes: widening only the larger derivative leaves
+ // black grain resolved along the minor axis on angled walls.
+ vec2 qrPigmentFootprint=vec2(length(qrPigmentDx*qrPigmentSize),length(qrPigmentDy*qrPigmentSize));
+ vec2 qrPigmentFilter=max(vec2(1.),uPigmentMinFootprint*(1.-uClassic)/max(qrPigmentFootprint,vec2(1e-6)));
+ #endif
+ `;
+ f = 'uniform float uPigmentMinFootprint;\n' + f;
+ f = f.replace( '#include <map_fragment>', pigment + parallax + THREE.ShaderChunk.map_fragment.replace( 'texture2D( map, vMapUv )', 'textureGrad( map, _pUv, qrPigmentDx*qrPigmentFilter.x, qrPigmentDy*qrPigmentFilter.y )' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
 	// depth is for looking at it from a little way off
 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
@@ -463,11 +479,12 @@ function patchDetailShader( shader ) {
  const microDepth = reference ? PARALLAX_DEPTH * 6 : relief?.depth ?? PARALLAX_DEPTH;
  const provider = `
  uniform float uHasHeightShadow;
+ vec2 qrShadowDx,qrShadowDy;
  float qrShadowHeight(vec2 uv,int layer) {
   ${rock ? 'if(layer==1)return qrRockHeight(uv);' : ''}
   #ifdef USE_NORMALMAP
-  float h=textureLod(normalMap,uv,0.).a;
-  ${reference ? 'float b=textureLod(uCarveReference,fract(uv)*uCarveReferenceUV.xy+uCarveReferenceUV.zw,0.).a; return clamp(1.-(1.-b+8.*max(0.,b-h))/6.,0.,1.);' : 'return h;'}
+  float h=textureGrad(normalMap,uv,qrShadowDx,qrShadowDy).a;
+  ${reference ? 'float b=textureGrad(uCarveReference,fract(uv)*uCarveReferenceUV.xy+uCarveReferenceUV.zw,qrShadowDx*uCarveReferenceUV.xy,qrShadowDy*uCarveReferenceUV.xy).a; return clamp(1.-(1.-b+8.*max(0.,b-h))/6.,0.,1.);' : 'return h;'}
   #else
   return 1.;
   #endif
@@ -477,7 +494,7 @@ function patchDetailShader( shader ) {
   return true;
  }
  `;
- f = HEIGHT_SHADOW_GLSL + f.replace( 'void main() {', provider + '\nvoid main() {' );
+ f = HEIGHT_SHADOW_GLSL + f.replace( 'void main() {', provider + '\nvoid main() {\n#ifdef USE_MAP\nqrShadowDx=dFdx(vMapUv);qrShadowDy=dFdy(vMapUv);\n#else\nqrShadowDx=vec2(0.);qrShadowDy=vec2(0.);\n#endif' );
  const ctx = `
  vec4 qrHeightMask=vec4(1.);
  #ifdef USE_NORMALMAP
@@ -578,7 +595,7 @@ export function R_RegisterDetail( material, diffuse ) {
 	material.onBeforeCompile = patchDetailShader;
 	material.customProgramCacheKey = function () {
 
-		return ( this.userData.rockField ? 'quake-detail-rock-v1' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-v1';
+		return ( this.userData.rockField ? 'quake-detail-rock-v1' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-filtered-v2';
 
 	};
 
@@ -1124,6 +1141,7 @@ export function R_BuildSunOccluder( model ) {
 
 		const surf = model.surfaces[ i ];
 		if ( surf == null || surf.polys == null ) continue;
+		if ( R_NewerGame() && R_ArchSurfaceHidden( surf ) ) continue;
 		if ( surf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) continue;
 
 		for ( let p = surf.polys; p; p = p.next ) {
@@ -1406,7 +1424,8 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 	slot.add = add;
 	slot.pos[ 0 ] = vx; slot.pos[ 1 ] = vy; slot.pos[ 2 ] = vz;
 	slot.radius = radius;
-	slot.range = 130 + 170 * Math.sqrt( power );
+	// Pickup pulses change radiance, not receiver reach or shadow residency.
+	slot.range = 130 + 170 * Math.sqrt( source?.powerup ? rankPower : power );
 	slot.color[ 0 ] = color[ 0 ] * power * LIGHT_GAIN;
 	slot.color[ 1 ] = color[ 1 ] * power * LIGHT_GAIN;
 	slot.color[ 2 ] = color[ 2 ] * power * LIGHT_GAIN;
@@ -1451,6 +1470,13 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 
 	}
 
+	// Live pickup sources enter the SAME selection/snapshot/shadow slots as
+	// map lights. Only radiance pulses; ranking and cube range stay stable.
+	for ( const l of R_PowerupLights() ) {
+		const pulse = l.powerup === 'quad' ? R_PowerupPulse( time ) : 1;
+		consider( ...l.pos, l.color, l.power * pulse, l.radius, view, .65, l, l.power );
+	}
+
 	if ( dlights != null ) {
 
 		for ( let i = 0; i < dlights.length; i ++ ) {
@@ -1479,6 +1505,7 @@ export function R_SelectWorldLights( viewMatrix, visframe, styles, dlights, time
 }
 export function R_PointShadowAtlas() { return gpu?.pointShadows || null; }
 export function R_PointShadowStatus() { return gpu?.pointShadows?.status() || { ready: 0, pending: 0, resident: 0, chunks: 0 }; }
+export function R_ReleaseShadowCaster( mesh ) { gpu?.pointShadows?.forgetDynamic( mesh ); }
 
 //============================================================================
 // Shaders
@@ -1515,6 +1542,10 @@ uniform vec3 uSpotCol;
 uniform vec2 uSpotCone;
 uniform vec4 uLightPos[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec4 uLightCol[ ${MAX_VOLUME_LIGHTS} ];
+uniform float uLightCookie[ ${MAX_VOLUME_LIGHTS} ];
+uniform vec4 uLightRotation[ ${MAX_VOLUME_LIGHTS} ];
+uniform float uPowerupTime;
+${POWERUP_COOKIE_GLSL}
 uniform vec3 uSunDirV;
 uniform vec3 uSunDirW;
 uniform vec3 uSunCol;
@@ -1707,6 +1738,8 @@ void main() {
 }`;
 
 const BLOOM_PREFILTER_FRAGMENT = `
+uniform sampler2D tPowerupFire;
+uniform float uPowerupFireOn;
 uniform sampler2D tScene;
 uniform vec2 uTexel;
 uniform float uExposure;
@@ -1714,7 +1747,9 @@ uniform float uThreshold;
 varying vec2 vUv;
 // threshold first, then weight by brightness so single hot pixels can't flicker
 vec4 fetch( vec2 o ) {
-	vec3 c = texture2D( tScene, vUv + o * uTexel ).rgb * uExposure;
+	vec2 uv=vUv+o*uTexel;
+ vec4 fire=uPowerupFireOn>.5?texture2D(tPowerupFire,uv):vec4(0.);
+ vec3 c=(texture2D(tScene,uv).rgb+fire.rgb*(1.-clamp(fire.a,0.,1.)))*uExposure;
 	float l = max( c.r, max( c.g, c.b ) );
 	float soft = clamp( l - uThreshold + 0.5, 0.0, 1.0 );
 	soft = soft * soft * 0.5;
@@ -1761,6 +1796,10 @@ void main() {
 
 const COMPOSITE_FRAGMENT = COMMON_FRAGMENT + `
 #include <common>
+uniform sampler2D tPowerupFire;
+uniform float uPowerupFireOn;
+vec4 powerupFireAt(vec2 uv){return uPowerupFireOn>.5?texture2D(tPowerupFire,uv):vec4(0.);}
+vec3 powerupEmissionAt(vec2 uv){vec4 fire=powerupFireAt(uv);return fire.rgb*(1.-clamp(fire.a,0.,1.));}
 uniform sampler2D tScene;
 uniform sampler2D tNormal;
 uniform sampler2D tAlbedo;
@@ -1835,6 +1874,8 @@ vec3 viewPosAt( vec2 uv ) {
 	return p.xyz / p.w;
 }
 
+${POWERUP_SHROUD_COMPOSITE_GLSL}
+
 // Share ordinary point/torch receiver lighting with confirmed water SSR
 // hits. Cheap incident estimates rank candidates before any shadow sampling.
 vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
@@ -1848,7 +1889,12 @@ vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
 	float extent = max( 60.0, uLightPos[ index ].w );
 	float fall = 1.0 / ( 1.0 + distance * distance / ( extent * extent ) );
 	fall *= 1.0 - smoothstep( 0.55 * range, range, distance );
-	return uLightCol[ index ].rgb * uLightSurface * facing * fall;
+	float cookie=1.;
+	if(uLightCookie[index]>.5){
+	 vec3 direction=(uViewInv*vec4(P-uLightPos[index].xyz,0.)).xyz;
+	 cookie=powerupFlameCookie(powerupLocalDirection(direction,uLightRotation[index]),uPowerupTime);
+	}
+	return uLightCol[ index ].rgb * uLightSurface * facing * fall * cookie;
 }
 
 float pointSurfaceVisibility( vec3 P, vec3 normal, int index ) {
@@ -1948,14 +1994,14 @@ float surfaceCarveAO( float tag ) {
 // Rank up to eight incident candidates, shadow only the strongest three.
 vec3 litReflectionAt( vec2 uv ) {
 	vec3 scene = texture2D( tScene, uv ).rgb;
-	if ( uLighting < 0.5 || ( uCount == 0 && uSpotOn < 0.5 ) || texture2D( tDepth, uv ).x >= 0.99999 ) return scene;
+	if ( uLighting < 0.5 || ( uCount == 0 && uSpotOn < 0.5 ) || texture2D( tDepth, uv ).x >= 0.99999 ) return scene+powerupEmissionAt(uv);
 	vec4 g = texture2D( tNormal, uv ), base = texture2D( tAlbedo, uv );
-	if ( g.a < - 0.5 || base.a < 0.05 ) return scene;
+	if ( g.a < - 0.5 || base.a < 0.05 ) return scene+powerupEmissionAt(uv);
 	float carveAO = surfaceCarveAO( base.a );
 	vec3 P = viewPosAt( uv );
-	if ( - P.z < 8.0 ) return scene;
+	if ( - P.z < 8.0 ) return scene+powerupEmissionAt(uv);
 	// A flashlight-only miss needs no receiver reconstruction.
-	if ( uCount == 0 && dot( normalize( P - uSpotPos ), uSpotDir ) <= uSpotCone.x ) return scene;
+	if ( uCount == 0 && dot( normalize( P - uSpotPos ), uSpotDir ) <= uSpotCone.x ) return scene+powerupEmissionAt(uv);
 	vec3 Ng = depthSurfaceNormal( uv, P );
 	// Transparent overlays may leave a blended normal from another depth.
 	vec3 N = abs( g.a + P.z ) < 0.025 * ( - P.z ) + 1.0 ? normalize( g.rgb * 2.0 - 1.0 ) : Ng;
@@ -1991,7 +2037,7 @@ vec3 litReflectionAt( vec2 uv ) {
    colour+=base.rgb*uSpotCol*1.15*facing*worldBeam*localShadow*carveAO;
   }
 	}
-	return colour*receiverRockContrast(P,uv,shadowedWeight,visibleWeight);
+	return colour*receiverRockContrast(P,uv,shadowedWeight,visibleWeight)+powerupEmissionAt(uv);
 }
 
 // Dielectric GGX glint from the live shoulder light. Its normal is the same
@@ -2024,7 +2070,8 @@ vec3 waterRippleNormal( vec2 p, float distance, float look ) {
 	slope += a * 0.055 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
 	slope += b * 0.015 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
 	slope += c * 0.009 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
-	return normalize( vec3( - slope * liquidRipple( look ), 1.0 ) );
+	// Keep moving reflection definition without a faceted/prismatic surface.
+	return normalize( vec3( - slope * liquidRipple( look ) * 0.65, 1.0 ) );
 }
 
 // Bend the submerged scene before its albedo, normals and deferred lighting
@@ -2062,8 +2109,10 @@ vec2 waterRefractionUv( vec2 uv ) {
 		vec4 qb = uProj * vec4( toView * ( target - cam ), 1.0 );
 		vec4 qs = uProj * vec4( toView * ( straight - cam ), 1.0 );
 		vec2 offset = ( qb.xy / qb.w - qs.xy / qs.w ) * 0.5;
-		vec2 limit = vec2( 0.012 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.012 );
-		vec2 candidate = uv + clamp( offset, - limit, limit ) * smoothstep( 0.0, 6.0, shore ) * liquidRefraction( hi.w );
+		// Refraction is a restrained visual offset, while physical IOR still owns
+		// the underwater Snell window and total internal reflection.
+		vec2 limit = vec2( 0.004 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.004 );
+		vec2 candidate = uv + clamp( offset * 0.35, - limit, limit ) * smoothstep( 0.0, 6.0, shore ) * liquidRefraction( hi.w );
 		if ( any( lessThan( candidate, vec2( 0.0 ) ) ) || any( greaterThan( candidate, vec2( 1.0 ) ) ) ) return uv;
 		if ( texture2D( tNormal, candidate ).a < - 0.5 ) return uv;
 		bool candidateSky = texture2D( tDepth, candidate ).x >= 0.99999;
@@ -2674,7 +2723,13 @@ void main() {
 	// No screen-wide atmospheric haze. Directional shafts and the flashlight
 	// retain their source-shaped volume; point lamps illuminate receivers.
 	c += texture2D( tVolume, uvd ).rgb * uVolume;
-	c += texture2D( tBloom, uvd ).rgb * uBloom;
+	vec4 fire=powerupFireAt(uvd);
+	c += texture2D( tBloom, uvd ).rgb * uBloom * (1.-clamp(fire.a,0.,1.));
+	// tScene contains the black shroud and original glyph. Prevent deferred
+	// light, shafts and bloom from filling the void; add the independently
+	// integrated fire emission afterward, without relighting or recolouring it.
+	c = mix( c, scene, powerupShroudMask( uvd ) );
+	c += fire.rgb*(1.-clamp(fire.a,0.,1.));
 
 	c = max( c * uExposure, 0.0 );
 
@@ -2812,6 +2867,9 @@ function createPipeline() {
 		uPointShadowInfo: { value: Array.from( { length: MAX_VOLUME_LIGHTS }, () => new THREE.Vector2( -1, 0 ) ) },
 		uLightPos: { value: lightPos },
 		uLightCol: { value: lightCol },
+		uLightCookie: { value: new Float32Array( MAX_VOLUME_LIGHTS ) },
+		uLightRotation: { value: Array.from( { length: MAX_VOLUME_LIGHTS }, () => new THREE.Vector4( 0, 0, 0, 1 ) ) },
+		uPowerupTime: { value: 0 },
 		uSunDirV: { value: new THREE.Vector3() },
 		uSunDirW: { value: new THREE.Vector3() },
 		tCookie: { value: null },
@@ -2854,7 +2912,7 @@ function createPipeline() {
 			uScatter: { value: SCATTER }
 		}, shared ) ),
 		prefilterMaterial: makeMaterial( BLOOM_PREFILTER_FRAGMENT, {
-			tScene: { value: null }, uTexel: { value: new THREE.Vector2() },
+			tScene: { value: null }, tPowerupFire: { value: null }, uPowerupFireOn: { value: 0 }, uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uThreshold: { value: 1 }
 		} ),
 		downMaterial: makeMaterial( BLOOM_DOWN_FRAGMENT, {
@@ -2865,6 +2923,7 @@ function createPipeline() {
 			uTexel: { value: new THREE.Vector2() }, uWeight: { value: 1 }
 		} ),
 		compositeMaterial: makeMaterial( COMPOSITE_FRAGMENT, Object.assign( {
+			tPowerupShrouds: { value: null }, uPowerupShroudCount: { value: 0 }, tPowerupFire: { value: null }, uPowerupFireOn: { value: 0 },
 			tScene: { value: null }, tNormal: { value: null }, tAlbedo: { value: null }, tVolume: { value: null }, tBloom: { value: null },
 			uTexel: { value: new THREE.Vector2() },
 			uExposure: { value: 1 }, uBloom: { value: 0.6 }, uVolume: { value: 1 },
@@ -3011,7 +3070,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
  camera.updateMatrixWorld( true );
  if ( glowActive ) selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
  else selectedCount = 0;
- const lights = _selected.slice( 0, selectedCount ).map( light => ( { ...light, pos: light.pos.slice(), worldPos: light.worldPos.slice(), color: light.color.slice() } ) );
+ const lights = _selected.slice( 0, selectedCount ).map( light => ( { ...light, pos: light.pos.slice(), worldPos: light.worldPos.slice(), color: light.color.slice(), powerupRotation: light.source?.rotation?.slice() || [ 0, 0, 0, 1 ] } ) );
  const liveBeam = R_FlashlightBeam();
  const beam = { ...liveBeam, pos: liveBeam.pos.slice(), dir: liveBeam.dir.slice() };
  heightFrameSnapshot = { camera, visframe, time, lights, beam, hasSkyView };
@@ -3033,7 +3092,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
    const aliasOwner=object._quakeOwner,brushOwner=object.parent?._quakeOwner;
    const physicalAlias=aliasOwner?._aliasMesh===object && !/flame|bolt|eyes/.test(aliasOwner.model?.name||'');
    const physicalBrush=brushOwner?._brushGroup===object.parent;
-   if(physicalAlias && r_newer_shadows.value!==0 || physicalBrush)spotCasters.push(object);
+   if((physicalAlias || object.userData.quakeAxePart===true) && r_newer_shadows.value!==0 || physicalBrush)spotCasters.push(object);
   });
   gpu.pointShadows.updateSpot(renderer,{...beam,range:1500,outerCos:FLASHLIGHT_OUTER},spotCasters);
  } else gpu.pointShadows.clearSpot();
@@ -3208,6 +3267,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
  }
  const frame = heightFrameSnapshot;
  selectedCount = frame?.lights.length || 0;
+ const fireFrame=R_DrawPowerupFire( renderer, scene, camera, hdr );
+ R_PerfStage( 'power-up fire' );
 
 
 	sh.tDepth.value = hdr.depthTexture;
@@ -3217,6 +3278,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	sh.uNear.value = camera.near;
 	sh.uFar.value = camera.far;
 	sh.uCount.value = selectedCount;
+	sh.uPowerupTime.value = time;
 
 	// the flashlight, in view space
 	const beam = frame?.beam || R_FlashlightBeam();
@@ -3241,6 +3303,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		sh.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
 		sh.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
 		p.compositeMaterial.uniforms.uLightAdd.value[ i ] = s.add || 0;
+		sh.uLightCookie.value[ i ] = s.source?.cookie || 0;
+		sh.uLightRotation.value[ i ].fromArray( s.powerupRotation );
 
 	}
 
@@ -3298,6 +3362,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 		const pm = p.prefilterMaterial.uniforms;
 		pm.tScene.value = hdr.texture;
+		pm.tPowerupFire.value=fireFrame?.texture||null;pm.uPowerupFireOn.value=fireFrame?.count?1:0;
 		pm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
 		pm.uExposure.value = exposure;
 		pm.uThreshold.value = hasSkyView === true ? OUTDOOR_BLOOM_THRESHOLD : 1.1;
@@ -3331,6 +3396,10 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	// composite to the screen
 	const cm = p.compositeMaterial.uniforms;
+	cm.tPowerupFire.value=fireFrame?.texture||null;cm.uPowerupFireOn.value=fireFrame?.count?1:0;
+	const shrouds = R_PowerupShroudFrame( scene, camera );
+	cm.tPowerupShrouds.value = shrouds.texture; cm.uPowerupShroudCount.value = shrouds.count;
+
 
 	// the pools nearest the camera
 	const cw = camera.matrixWorld.elements;
@@ -3485,6 +3554,8 @@ export function R_PostSetSplit( on ) {
 }
 
 export function R_PostShutdown() {
+
+	R_ClearPowerupFireTarget();
 
 	if ( gpu === null ) return;
 	disposeTargets();

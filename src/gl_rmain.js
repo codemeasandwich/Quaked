@@ -1,11 +1,15 @@
+import { R_CompileSceneAsync } from './r_shaderwarm.js';
 import { R_RockfieldSetLimits, R_RockfieldStatus } from './r_rockfield.js';
 import { R_IntroLoadingHolding, R_DemoLoadingFrame, R_IntroReadinessChecks } from './r_demoloading.js';
 import { R_NewerTexturesStatus } from './r_newertextures.js';
 import { R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsMaterials, R_NewerSkinsTextures } from './r_newerskins.js';
 import { R_WeaponsPreload, R_WeaponStatus, R_WeaponMaterials, R_WeaponTextures, R_WeaponsEnabled } from './r_weapons.js';
 import { R_NewerHudPreload, R_NewerHudStatus } from './r_newerhud.js';
+import { r_powerups, R_PowerupBegin, R_PowerupSeen, R_PowerupEnd, R_PowerupClear } from './r_powerups.js';
+import { R_AxeCorpsesFrame, R_ClearAxeCorpses } from './r_axecorpses.js';
+import { SV_AxeEntitySuppressed } from './sv_axecut.js';
 import { R_PointShadowStatus, R_WaterStartupStatus } from './gl_post.js';
-import { R_DemonReliefStatus } from './gl_rsurf.js';
+import { R_DemonReliefStatus, R_ClassicArchVisibility } from './gl_rsurf.js';
 // Ported from: WinQuake/gl_rmain.c -- main GL renderer
 // + WinQuake/glquake.h -- GL definitions
 
@@ -991,6 +995,7 @@ function R_EntityTeleportFx( e, mesh, scene ) {
 }
 
 function R_DrawAliasModel( e ) {
+	if ( R_IsNewer() && SV_AxeEntitySuppressed( e?._entityIndex ) ) return;
 
 	// gibs leave a pool where they come to rest (Newer Game)
 	if ( e.model != null && ( e.model.flags & 4 ) !== 0 && cl != null ) R_DecalGibTrack( e, cl.time );
@@ -1105,6 +1110,7 @@ function R_DrawAliasModel( e ) {
 		}
 
 		_entityMeshesThisFrame.add( mesh );
+		if ( e !== cl.viewent ) R_PowerupSeen( e, mesh, scene, cl.time );
 
 	}
 
@@ -1575,6 +1581,7 @@ export function R_RenderScene() {
 
 	// Begin new frame: clear the "this frame" set
 	_entityMeshesThisFrame.clear();
+	R_PowerupBegin( scene );
 
 	// portal views are rendered per camera, which XR's stereo pair doesn't allow
 	R_PortalsBeginFrame( isXRActive() === false && envmap === false );
@@ -1591,10 +1598,12 @@ export function R_RenderScene() {
 	R_MarkLeaves(); // done here so we know if we're in water
 
 	R_DrawWorld(); // adds static entities to the list
+	R_AxeCorpsesFrame( scene );
 
 	S_ExtraUpdate(); // don't let sound get messed up if going slow
 
 	R_DrawEntitiesOnList();
+	R_PowerupEnd();
 
 	// Remove entity meshes that were in the scene last frame but not this frame
 	for ( const mesh of _entityMeshesInScene ) {
@@ -1632,10 +1641,11 @@ function R_ClassicOn() {
 	const inScene = _entityMeshesInScene, thisFrame = _entityMeshesThisFrame;
 	const blend = Array.from( v_blend ), liquidBlend = Array.from( v_liquid_blend );
 	const restoreScene = R_SaveClassicScene( scene, cl.time );
+	let restoreArch = () => {};
 	// Install rollback before any preparation can throw.
 	_classicRestore = () => {
 
-		restoreScene();
+		restoreArch(); restoreScene();
 		_entityMeshesInScene = inScene; _entityMeshesThisFrame = thisFrame;
 		currententity = previousEntity; c_alias_polys = previousPolys;
 		for ( let i = 0; i < 4; i ++ ) { v_blend[ i ] = blend[ i ]; v_liquid_blend[ i ] = liquidBlend[ i ]; }
@@ -1647,6 +1657,7 @@ function R_ClassicOn() {
 	_entityMeshesThisFrame = new Set( thisFrame );
 	R_AnimSetClassicPass( true );
 	classicLook.value = 1;
+	restoreArch = R_ClassicArchVisibility();
 
 	R_DrawEntitiesOnList();
 	R_DrawViewModel();
@@ -1654,6 +1665,7 @@ function R_ClassicOn() {
 	R_ClassicLightmapsFrame();
 
 	scene.traverse( o => {
+		if ( o.userData.archHidden ) o.visible = true;
 
 		if ( o.userData.newerOnly || ( o.isPointLight && gl_flashblend.value === 0 ) || o.name === 'quake_decals' || o.name === 'quake_level_portal' || o.name === 'quake_level_view' ) {
 
@@ -1962,6 +1974,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_hdr );
 	Cvar_RegisterVariable( r_pointshadows );
 	Cvar_RegisterVariable( r_heightshadows );
+	Cvar_RegisterVariable( r_powerups );
 	Cvar_RegisterVariable( cl_showfps );
 	R_PerfInit( renderer );
 	Cvar_RegisterVariable( r_dynres );
@@ -2120,7 +2133,7 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 	}
 	scene.add( _warmGroup );
 
-		const started = typeof renderer.compileAsync === 'function' ? renderer.compileAsync( scene, camera ) : renderer.compile( scene, camera );
+		const started = R_CompileSceneAsync( renderer, scene, camera );
 		if(started&&typeof started.then==='function'){_shaderWarmPending++;Promise.resolve(started).catch(error=>{_shaderWarmFailure=String(error.message||error);}).finally(()=>{_shaderWarmPending--;});}
 
 	} catch ( e ) {
@@ -2136,6 +2149,9 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 }
 
 export function R_NewMap() {
+	R_ClearAxeCorpses();
+
+	R_PowerupClear();
 
 	_needCompile = true;
 	_introWorld=null;_introShaderStamp='';_shaderWarmFailure='';

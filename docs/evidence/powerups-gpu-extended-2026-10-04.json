@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "isolatedRingAnimation": {
+    "changedComponents": 77011,
+    "maximum": 52
+  },
+  "fixedWorldReceiverAcrossCameraRotation": {
+    "samples": 12,
+    "medianMaximumRgbDifference": 0,
+    "maximumRgbDifference": 4,
+    "tolerance": 6
+  },
+  "opaqueBlocker": {
+    "ready": true,
+    "slot": 2,
+    "far": 571.6729559300637,
+    "atlas": {
+      "maxSlots": 8,
+      "resident": 3,
+      "ready": 3,
+      "pending": 0,
+      "requested": 3,
+      "chunks": 1,
+      "triangles": 12,
+      "captures": 3,
+      "faceRenders": 18,
+      "failedCaptures": 0,
+      "spotReady": false,
+      "spotCaptures": 0,
+      "spotRenders": 0,
+      "spotFailedCaptures": 0,
+      "spotError": null,
+      "spotDynamicMeshes": 0,
+      "epoch": 1,
+      "error": null,
+      "disposed": false
+    },
+    "imageDifference": {
+      "changedComponents": 3680,
+      "maximum": 47
+    },
+    "glErrors": [
+      0,
+      0
+    ]
+  },
+  "classicSameFramePowerupToggle": {
+    "difference": {
+      "changedComponents": 0,
+      "maximum": 0
+    },
+    "nonblackPixels": 281481,
+    "glError": 0,
+    "availableEnhancedLights": 0
+  }
+}

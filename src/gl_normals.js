@@ -166,6 +166,12 @@ export function R_NormalsFromHeight( h, width, height, strength = NORMAL_STRENGT
 			// u grows with x and v with the row index, the same as the texture coordinates
 			let nx = - gx * 0.125 * scale;
 			let ny = - gy * 0.125 * scale;
+			// The fallback derives height from painted grain, not authored geometry.
+			// Honour its intended tilt limit before high-resolution pixels turn into
+			// near-vertical facets. Crafted-height materials keep their own cap.
+			const slope = Math.hypot( nx, ny );
+			const tilt = 1 / Math.sqrt( 1 + ( slope / MAX_TILT ) ** 2 );
+			nx *= tilt; ny *= tilt;
 			let nz = 1;
 			const len = Math.sqrt( nx * nx + ny * ny + nz * nz );
 			nx /= len; ny /= len; nz /= len;

@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>RockField physical metric check</title>
+<style>body{background:#141821;color:#eee;font:15px system-ui;margin:24px}pre{white-space:pre-wrap}img{width:256px}</style>
+<h2>RockField physical gradient and camera-roll check</h2>
+<p>Four fixed production-shader draws, two view directions and two camera rolls. A known linear diagnostic height field has one analytically expected world normal; real HDR normal readback must agree. Diagnostic data checks the shader metric; the continuity trial separately checks the production procedural worker.</p>
+<div id="views"></div><pre id="report">Running…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<script type="module" src="./rockfield_metric_trial.js"></script>

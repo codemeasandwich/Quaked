@@ -128,6 +128,7 @@ export function R_NewerSetSalt( salt ) {
 	levelSalt = salt >>> 0;
 
 }
+export function R_NewerSkinSalt() { return levelSalt; }
 
 function hash32( a, b ) {
 
@@ -170,7 +171,7 @@ export function R_NewerPickVariant( entity, modelKey, count ) {
 
 	}
 
-	return hash32( levelSalt ^ stringHash( modelKey ), id ) % count;
+	return hash32( ( entity._qrSalt ?? levelSalt ) ^ stringHash( modelKey ), id ) % count;
 
 }
 

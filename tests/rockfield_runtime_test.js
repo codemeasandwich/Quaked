@@ -102,7 +102,7 @@ Deno.test( 'connected same-material and role surfaces share fields regardless of
 	check( result.bySurface.get( s.differentGround ) !== result.bySurface.get( s.groundB ), 'touching different materials remain independently preset' );
 	same( result.bySurface.get( s.cliff ), result.bySurface.get( s.otherPlane ), 'connected perpendicular same-material wall faces never reseed the field' );
 	const ground = result.bySurface.get( s.groundA );
-	for ( const field of result.charts ) { assertPreset( field, 'synthetic component' ); same( field.seed, seedFrom( s.model.name + ':' + field.key ), 'seed belongs to map and connected material-role identity' ); }
+	for ( const field of result.charts ) { assertPreset( field, 'synthetic component' ); same( field.seed, seedFrom( s.model.name + ':' + field.name + ':' + field.profile ), 'seed belongs to map and connected material-role identity' ); }
 	same( JSON.stringify( R_RockCoordinates( ground, [ 0, 128, 0 ] ) ), '[0,0.5]', 'world coordinate scale256 and nativeUV-independent boundary' );
 	const ineligible = [ face( 'stone1_3', [ [ 0, 0, 0 ], [ 50, 0, 0 ], [ 50, 50, 0 ], [ 0, 50, 0 ] ] ), { ...s.groundA, flags: 16 }, { ...s.cliff, flags: 4 } ];
 	const extra = R_RockSurfaceCharts( { ...s.model, surfaces: [ ...s.model.surfaces, ...ineligible ] } );
@@ -153,7 +153,7 @@ Deno.test( 'actual E1M1 connected matching cliff pieces share preset height and 
 			check( walls.length > 0, 'actual cliff components receive fields' );
 			const entries = walls.flatMap( chart => chart.surfaces.map( entry => ( { ...entry, chart } ) ) );
 			same( entries.filter( entry => entry.surface.texinfo.texture.name === 'uwall1_2' ).length, 307, 'all original E1M1 cliff faces included' );
-			for ( const chart of walls ) { same( chart.seed, seedFrom( model.name + ':' + chart.key ), 'seed belongs to map and connected material-role identity' ); assertPreset( chart, 'actual E1M1 cliff' ); }
+			for ( const chart of walls ) { same( chart.seed, seedFrom( model.name + ':' + chart.name + ':' + chart.profile ), 'seed belongs to map and connected material-role identity' ); assertPreset( chart, 'actual E1M1 cliff' ); }
 		const orientationCounts = { roof: 0, floor: 0, slope: 0 };
 		const originalVertices = new Map(), edges = new Map(), pairs = [];
 			for ( const { surface, chart } of entries ) {
@@ -243,7 +243,7 @@ Deno.test( 'all bundled BSP world rock faces are classified independent of sky/o
 
 				const expected = surface.flags & 20 ? null : R_RockMaterialProfile( surface.texinfo.texture, surface ), field = fields.bySurface.get( surface );
 			if ( ! expected ) { check( ! field, 'unclassified native construction stays untouched: ' + surface.texinfo.texture?.name ); continue; }
-				check( field && field.profile === expected, 'every classified native world face gets its field' ); same( field.seed, seedFrom( name + ':' + field.key ), 'component map/name/role identity controls seed' ); assertPreset( field, 'native surface preset' );
+				check( field && field.profile === expected, 'every classified native world face gets its field' ); same( field.seed, seedFrom( name + ':' + field.name + ':' + field.profile ), 'component map/name/role identity controls seed' ); assertPreset( field, 'native surface preset' );
 				if ( expected === 'ground' ) { summary.soil ++; continue; }
 				summary.rock ++;
 			const area = Math.abs( cross.reduce( ( sum, value, i ) => sum + value * surface.plane.normal[ i ], 0 ) ); summary.minRockArea = Math.min( summary.minRockArea, area );
@@ -279,7 +279,7 @@ Deno.test( 'actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact ow
 				check( chart, 'every native hub piece receives its component field' );
 				const signedZ = surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 );
 				same( chart.profile, name === 'rock4_1' && signedZ > .65 ? 'ground' : 'wall', 'owner hub material resolves actual role' );
-				assertPreset( chart, 'actual hub material' ); same( chart.seed, seedFrom( model.name + ':' + chart.key ), 'component identity owns hub seed' );
+				assertPreset( chart, 'actual hub material' ); same( chart.seed, seedFrom( model.name + ':' + chart.name + ':' + chart.profile ), 'component identity owns hub seed' );
 				if ( chart.profile === 'wall' ) { same( chart.tangent, ROCK_AXIS_U, 'hub wall projectionU' ); same( chart.bitangent, ROCK_AXIS_V, 'hub wall projectionV' ); }
 				else { same( chart.tangent.join(), '1,0,0', 'hub ground projectionU' ); same( chart.bitangent.join(), '0,1,0', 'hub ground projectionV' ); }
 			for ( let p = surface.polys; p; p = p.next ) {
@@ -505,9 +505,7 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 			const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.lambert.vertexShader, fragmentShader: THREE.ShaderLib.lambert.fragmentShader }; material.onBeforeCompile( shader );
 			if ( ! rock ) { check( shader.fragmentShader.includes( 'gAlbedo = vec4( gDiffuse, 1.0 )' ), 'ordinary surface alpha remains1' ); continue; }
 			check( shader.vertexShader.includes( 'vRockUv=rockUv' ) && shader.uniforms.qrRockHeights === rockUniforms.qrRockHeights, 'real material receives world-chart attributes and texture uniforms' );
-			const frameBody = /mat3 qrRockFrame\([^)]*\) \{([^}]+)\}/.exec( shader.fragmentShader )[ 1 ];
-			check( ! frameBody.includes( 'vViewPosition' ) && frameBody.includes( 'eyePosition' ), 'frame helper uses its argument before later Three varying declarations' );
-			check( shader.fragmentShader.includes( 'qrRockFrame(normalize(vNormal),vViewPosition)' ), 'public shader passes actual view position to frame helper' );
+			check( shader.fragmentShader.includes( 'qrHeightGradients(-vViewPosition,vRockUv,qrRockN' ) && shader.fragmentShader.includes( 'qrRockGradU*=256.;qrRockGradV*=256.;' ), 'public shader uses physical surface gradients at fixed world amplitude' );
 			check( shader.fragmentShader.includes( 'uClassic<.5' ) && shader.fragmentShader.includes( 'qrPage>=0' ), 'classic and missing-page fallback guard POM' );
 			check( shader.fragmentShader.includes( 'j<=40' ) && shader.fragmentShader.includes( 'float(j)/40.' ), 'maximum depth uses the intended40 bounded march steps' );
 			const projectionExpression = /float qrProjectionAmp=([^;]+);/.exec( shader.fragmentShader )[ 1 ];
@@ -529,17 +527,10 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 			check( ! normalBody.includes( 'qrProjectionAmp' ), 'normal/AO/sun shading does not use compressed projection amplitude' );
 			check( normalBody.includes( 'float h=qrRockHeight(qrRockQ)' ) && normalBody.includes( 'tile=floor(qrRockQ)' ), 'shading samples the same capped-ray hit' );
 			check( normalBody.includes( 'exp(-cavity*qrRockAmp*12.)' ) && normalBody.includes( '(qrRockHeight(p)-1.)*qrRockAmp' ), 'cavity and sun blocker depths retain full maximum amplitude' );
-			check( shader.fragmentShader.includes( 'qrRockUvShift=qrUdx*' ) && shader.fragmentShader.includes( 'vec2 pUv = vMapUv + qrRockUvShift;' ), 'world displacement converts back through native UV derivatives' );
-			const uvExpression = /qrRockUvShift=(qrUdx[^;]+);/.exec( shader.fragmentShader )[ 1 ];
-			const qrRdx = { x: 2, y: -1 }, qrRdy = { x: .5, y: 1.5 }, qrUdx = { x: 8, y: 2 }, qrUdy = { x: -1, y: 4 }, det = 3.5;
-			for ( const [ d, expected ] of [ [ { x: .2, y: -.1 }, [ .8, .2 ] ], [ { x: 0, y: -.35 }, [ .6, -.7 ] ] ] ) for ( const [ component, index ] of [ [ 'x', 0 ], [ 'y', 1 ] ] ) {
-
-				const expression = uvExpression.replaceAll( 'qrUdx', 'qrUdx.' + component ).replaceAll( 'qrUdy', 'qrUdy.' + component );
-				const convert = new Function( 'd', 'qrRdx', 'qrRdy', 'qrUdx', 'qrUdy', 'det', 'return ' + expression );
-				near( convert( d, qrRdx, qrRdy, qrUdx, qrUdy, det ), expected[ index ], 'actual shader converts rotated/scaled chart displacement to original UV' );
-
-			}
-			check( shader.fragmentShader.includes( 'qrMacroNormal=normalize(qrFaceNormal-qrRockTbn[0]*dx*qrRockAmp-qrRockTbn[1]*dy*qrRockAmp)' ), 'height derivatives perturb actual normal' );
+			check( shader.fragmentShader.includes( 'qrRockUvShift=mapStep*hit' ) && shader.fragmentShader.includes( 'vec2 pUv = vMapUv + qrRockUvShift;' ), 'world ray reaches the original texture through its own gradients' );
+			check( !shader.fragmentShader.includes('conditioning') && !shader.fragmentShader.includes('qrRockClip'), 'neither projected-coordinate inversion nor BSP polygon clipping gates relief' );
+			check( shader.fragmentShader.includes('qrRockQ=vRockUv+stepUV*hit*limit') && shader.fragmentShader.includes('qrRockUvShift*=limit'), 'height and pigment accept the same bounded ray distance' );
+			check( shader.fragmentShader.includes( 'qrMacroNormal=normalize(qrFaceNormal-qrRockGradU*dx*qrRockAmp-qrRockGradV*dy*qrRockAmp)' ), 'height derivatives perturb actual normal' );
 			check( shader.fragmentShader.includes( '(z+light.z*t)' ) && shader.fragmentShader.includes( 'qrRockSunVisibility=min' ), 'sun visibility tests actual height-ray blockers' );
 			const encoded = /gAlbedo = vec4\( gDiffuse, ([^;]+) \);/.exec( shader.fragmentShader )[ 1 ];
 			const encode = new Function( 'qrRockSunVisibility', 'return ' + encoded );

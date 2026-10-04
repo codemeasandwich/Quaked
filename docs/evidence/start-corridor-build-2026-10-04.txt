@@ -1,0 +1,133 @@
+---- qbsp / ericw-tools v0.18.1 ----
+Input file: start.map
+Output file: start.bsp
+
+---- LoadMapFile ----
+         7580 faces
+         1275 brushes
+          385 entities
+           73 unique texnames
+          248 texinfo
+
+Opened WAD: start.wad
+Processing hull 0...
+---- Brush_LoadEntity ----
+         1143 brushes
+          942 planes
+---- CSGFaces ----
+         6794 brushfaces
+         7387 csgfaces
+         5909 mergedfaces
+---- SolidBSP ----
+        10308 split nodes
+         4417 solid leafs
+         5579 empty leafs
+          313 water leafs
+            0 detail leafs
+            0 detail illusionary leafs
+            0 detail fence leafs
+            0 illusionary visblocker leafs
+        16053 leaffaces
+        14931 nodefaces
+---- Portalize ----
+         5892 vis leafs
+         5892 vis clusters
+        17595 vis portals
+---- FillOutside ----
+         2873 outleafs
+---- MergeAll ----
+         4414 mergefaces
+---- SolidBSP ----
+         2923 split nodes
+         1558 solid leafs
+         1249 empty leafs
+          117 water leafs
+            0 detail leafs
+            0 detail illusionary leafs
+            0 detail fence leafs
+            0 illusionary visblocker leafs
+         6827 leaffaces
+         5511 nodefaces
+---- Portalize ----
+         1366 vis leafs
+         1366 vis clusters
+         3976 vis portals
+---- Tjunc ----
+         5369 world edges
+        19693 edge points
+         4794 edges added by tjunctions
+            0 faces added by tjunctions
+---- MakeFaceEdges ----
+---- GrowRegions ----
+Processing hull 1...
+Processing hull 2...
+---- WriteBSPFile ----
+Wrote start.bsp
+         1526 planes            30520
+         8125 vertexes          97500
+         3408 nodes             81792
+          197 texinfo            7880
+         6133 faces            122660
+         4946 clipnodes         39568
+         1804 leafs             50512
+         7449 marksurfaces      14898
+        29294 surfedges        117176
+        14892 edges             59568
+           81 textures         597208
+              lightdata             0
+              visdata               0
+              entdata           27863
+
+1.501 seconds elapsed
+Peak memory usage: 50034204 (47.7M)
+---- vis / ericw-tools v0.18.1 ----
+running with 2 threads
+testlevel = 4
+LoadBSPFile: 'start.bsp'
+BSP is version 29
+  1366 leafs
+  3976 portals
+Calculating Base Vis:
+0....1....2....3....4....5....6....7....8....9....
+Calculating Full Vis:
+0....1....2....3....4....5....6....7....8....9....
+average leafs visible: 132
+c_noclip: 0
+c_chains: 9671250
+visdatasize:53316  compressed from 233586
+Writing start.bsp as BSP version 29
+ 23.1 seconds elapsed
+---- light / ericw-tools v0.18.1 ----
+Raytracing backend: Embree
+running with 2 threads
+LoadBSPFile: 'start.bsp'
+BSP is version 29
+--- LoadEntities ---
+WARNING: brush entity with mins (257.00 1673.00 17.0) maxs (279.00 1783.00 47.0) (trigger_onlyregistered) has "killtarget" set to itself
+385 entities read, 267 are lights.
+--- OptionsSummary ---
+Embree_TraceInit: Embree version: 2.15.0
+Embree_TraceInit:
+	271 sky faces
+	5128 solid faces
+	0 filtered faces
+	0 shadow-casting skip faces
+SetupLights: 267 initial lights
+SetupLights: 267 after surface lights
+SetupLights: 267 after jittering
+--- EstimateLightVisibility ---
+0....1....2....3....4....5....6....7....8....9....
+Final count: 267 lights 0 suns in use.
+--- LightWorld ---
+0....1....2....3....4....5....6....7....8....9....
+Lighting Completed.
+
+lightdatasize: 172533
+0 switchable light styles (32 max)
+Writing start.bsp as BSP version 29
+0.651 seconds elapsed
+
+stats:
+2.736924 lights tested, 1.822321 hits per sample point
+0.000000 bounce lights tested, 0.000000 hits per sample point
+0 empty lightmaps

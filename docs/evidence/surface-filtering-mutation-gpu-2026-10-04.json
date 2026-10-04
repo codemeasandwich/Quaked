@@ -1,0 +1,93 @@
+{
+  "status": "FAIL",
+  "mutation": "lod0",
+  "checks": [
+    {
+      "passed": true,
+      "name": "real receiver coverage and valid source mask",
+      "valid": 55200,
+      "count": 55200
+    },
+    {
+      "passed": false,
+      "name": "subpixel grain shadows converge to averaged-height oracle",
+      "meanVisibilityError": 0.6544047619047682
+    },
+    {
+      "passed": true,
+      "name": "resolved broad ridge still casts a material shadow",
+      "coarseShadow": 7200
+    },
+    {
+      "passed": true,
+      "name": "flat-height negative control casts no relief shadows",
+      "flatShadow": 0
+    },
+    {
+      "passed": true,
+      "name": "oracle decodes actual SRGB8 albedo storage",
+      "colorSpace": "srgb"
+    },
+    {
+      "passed": true,
+      "name": "unfiltered native control contains resolved pixel grain",
+      "neighborDifference": 100.21451569442618,
+      "leftMean": 79.79612854821583,
+      "rightMean": 159.56322200370545
+    },
+    {
+      "passed": true,
+      "name": "replacement pigment filtering suppresses fine grain",
+      "neighborDifference": 0,
+      "leftMean": 80.06712191084861,
+      "rightMean": 160.8430697681716
+    },
+    {
+      "passed": true,
+      "name": "broad linear pigment contrast remains readable",
+      "neighborDifference": 0,
+      "leftMean": 80.06712191084861,
+      "rightMean": 160.8430697681716
+    },
+    {
+      "passed": true,
+      "name": "filter preserves linear mean pigment in both broad regions",
+      "native": {
+        "neighborDifference": 100.21451569442618,
+        "leftMean": 79.79612854821583,
+        "rightMean": 159.56322200370545
+      },
+      "upgraded": {
+        "neighborDifference": 0,
+        "leftMean": 80.06712191084861,
+        "rightMean": 160.8430697681716
+      }
+    },
+    {
+      "passed": true,
+      "name": "filtered linear values agree with independently authored two-texel means",
+      "expected": [
+        80,
+        160
+      ],
+      "actual": [
+        80.06712191084861,
+        160.8430697681716
+      ]
+    },
+    {
+      "passed": true,
+      "name": "Classic upgraded material matches original pigment pixel-for-pixel",
+      "classicChanged": 0
+    },
+    {
+      "passed": true,
+      "name": "native geometry, UVs and image bytes immutable"
+    },
+    {
+      "passed": true,
+      "name": "all actual shader variants compile and render without GL errors",
+      "errors": []
+    }
+  ]
+}

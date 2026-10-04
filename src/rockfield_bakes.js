@@ -134,51 +134,51 @@ export const ROCK_BAKES = {
   "file": "newer/rockfield/e1m1.rf.gz",
   "charts": 10,
   "tiles": 607,
-  "bytes": 5808386,
-  "compressedBytes": 3721863,
+  "bytes": 5808384,
+  "compressedBytes": 3801307,
   "bspSha256": "7b7061ec63c3e8ecb9c0e0a8075f18823efea6578666d57d601c191bcaf16c26",
-  "sha256": "2118f4f7467a7541e8f363554f038039d7a10d78a7ca4acc0bf31e11fdb2af90",
-  "rawSha256": "4db0b8efc95090f1521ff9885fd434ec49dbe6a9a4193d74030230365a10aef0"
+  "sha256": "4617c2d4c8bb59ce4557e3180d8627eef49b7e57cbbdb2e4482c10188940ef24",
+  "rawSha256": "8a988e575f09de4314e729202357d4102d14817a1417c3de3db6f2a77c9e74fe"
  },
  "maps/e1m2.bsp": {
   "file": "newer/rockfield/e1m2.rf.gz",
   "charts": 11,
   "tiles": 277,
-  "bytes": 2653204,
-  "compressedBytes": 1456896,
+  "bytes": 2653214,
+  "compressedBytes": 1444303,
   "bspSha256": "d0aff066a89cb75bcc4dc729d0130a2ac2ed93287d91e57a5b63ac26dce4fb27",
-  "sha256": "edbd3877cb5f0cd1b4f916a246c66b33437cbd48d778b942ec67c8fae40ce948",
-  "rawSha256": "4af5f1a33dd68be749563a0b6c33b2ac02db2f055f6a4ea02bb92fee4ce7bc9e"
+  "sha256": "f1709a346ec95cebee3b19c55ade1898fd1f4956afbfd75e487fa57118d7e081",
+  "rawSha256": "84b30249fac9a51090db24a361ed54f0aa01bbd489379530cd0ac02645733846"
  },
  "maps/e1m3.bsp": {
   "file": "newer/rockfield/e1m3.rf.gz",
   "charts": 34,
   "tiles": 1448,
   "bytes": 13845926,
-  "compressedBytes": 9920835,
+  "compressedBytes": 9928908,
   "bspSha256": "5941c37c67267ae11aff572fdba7f813148cc99da3cfc34d01eea81dc23edfd0",
-  "sha256": "2aad01c24fd277fe5a0c04775a8831e8b57087ca2c7d4a1f3676b8468edd454b",
-  "rawSha256": "1169da77bfef8364c01bc59761afd6fd77de5beed1a101ff6a12cd2fd620568d"
+  "sha256": "e973e50c591810d1695a5b8f18750a780ff427b84f4597b59aaae811c62730fd",
+  "rawSha256": "74fe9a9e3ae7e15eafad697bfbc7f619223b60094fc17ef90f8bdeb8491be58d"
  },
  "maps/e1m4.bsp": {
   "file": "newer/rockfield/e1m4.rf.gz",
   "charts": 35,
   "tiles": 1825,
-  "bytes": 17459348,
-  "compressedBytes": 12539176,
+  "bytes": 17459350,
+  "compressedBytes": 12561411,
   "bspSha256": "ec6b51b8a7e7ef56b549349c2797f925340a4d94bda55440dd04b039824a140c",
-  "sha256": "ee8b152b6cd17c8cca5b26e6e0c3ff9706d71d76e98da097bcc86041298a8dd7",
-  "rawSha256": "e3083257f8ce35ffe8c12dfff2d9394ba3e8ce5f2405d5500e9a730af140f009"
+  "sha256": "47d07664f2ac5c66dc382a03c4bf373722bf7d0a3dd27241c409e5bafeb3d72e",
+  "rawSha256": "448fb29e410b23967b2e9645432d4f1e5ed407aba49dcbdd1cd57c3cb3a03157"
  },
  "maps/e1m5.bsp": {
   "file": "newer/rockfield/e1m5.rf.gz",
   "charts": 6,
   "tiles": 420,
   "bytes": 4016452,
-  "compressedBytes": 1657224,
+  "compressedBytes": 1678226,
   "bspSha256": "a7fab95ca32b9142b720c9d974b35210cd992f1c46fd3e86723971466d1570d9",
-  "sha256": "fef7fd297df69e05abe1353c9612406bb347665cd4fdfa58fdf2e351486a04d1",
-  "rawSha256": "a675c837a918af6bb6b4b9097f43193e3a57218e1e8f0f0fa1f040b1b9b05714"
+  "sha256": "8bd4f2cb12e4ecf2592228725ca5c35630037f0e531e0dcc0b10a334bf050084",
+  "rawSha256": "f3f7f899d31a3199180d9ec445010214b4ca048796dc915103c35baf7bc1e0e7"
  },
  "maps/e1m6.bsp": {
   "file": "newer/rockfield/e1m6.rf.gz",
@@ -234,11 +234,11 @@ export const ROCK_BAKES = {
   "file": "newer/rockfield/naked5.rf.gz",
   "charts": 15,
   "tiles": 328,
-  "bytes": 3137878,
-  "compressedBytes": 1716584,
+  "bytes": 3137874,
+  "compressedBytes": 1694607,
   "bspSha256": "5438072dcdee94d06549df039098037973e61309aa6f924bcbd41b7ef6f3eab5",
-  "sha256": "756ee8a2c794f84165ebcdb5a17c0cd68fedeb558696f99e6b774e96a02cd74d",
-  "rawSha256": "98d0a83f691341eefeb08e736d3eaea0cd9dd48507410b179497dee9d21d7e4a"
+  "sha256": "40a41a225d29cf9697d541849256a0ef0d08d7c34ea6969a08a5e2fc051e93ac",
+  "rawSha256": "7a6eeeb78822370bc4e68e35eca89b5c4f05e907dd49eaaed54049f0b3e723b3"
  },
  "maps/rapture1.bsp": {
   "file": "newer/rockfield/rapture1.rf.gz",
@@ -264,11 +264,11 @@ export const ROCK_BAKES = {
   "file": "newer/rockfield/start.rf.gz",
   "charts": 33,
   "tiles": 863,
-  "bytes": 8249754,
-  "compressedBytes": 5868210,
+  "bytes": 8249776,
+  "compressedBytes": 5866412,
   "bspSha256": "a4e907bb36bb13e82be5656342a75cfd412e843784014f76a1df5bdcb63896d0",
-  "sha256": "d12b8a418849fe8c53637420c6d58bab19f2784fd12f3be5aca816462d41acb6",
-  "rawSha256": "ac135d9a7406be35011f14be082c81a47eb859c905592985995caff2f63d8474"
+  "sha256": "a0ec520b7674ad25190dcfd56938fa80dffc20a4a1508377034bdcdc166dff46",
+  "rawSha256": "bc1bef0c619159f719d030d145887b70ad0989d959fa70750c2bc43e8dbbb9e0"
  },
  "maps/ultrav.bsp": {
   "file": "newer/rockfield/ultrav.rf.gz",

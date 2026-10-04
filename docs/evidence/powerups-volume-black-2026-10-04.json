@@ -1,0 +1,217 @@
+{
+  "status": "PASS",
+  "fixedSceneDraws": 10,
+  "isolation": "Only pentagram and black shroud; emissive flames hidden during opacity measurement; independent bright background and opaque foreground panel",
+  "results": [
+    {
+      "configuration": {
+        "angle": 0,
+        "overhead": false,
+        "scale": 1
+      },
+      "actualRaster": [
+        768,
+        480
+      ],
+      "receiverMask": "Independent native geometry raycast at final pixel center, conservative boundary guard, and all four exact bilinear scene texel centres",
+      "excludedBoundarySamples": 2011,
+      "excludedExactFilterSamples": 5,
+      "darkCorePixels": 653,
+      "pixelsAtOrBelow5": 653,
+      "brightestCore": 0,
+      "meanOriginalLitCore": 156.4624808575804,
+      "nativeSymbolPixels": 716,
+      "changedNativeSymbolPixels": 0,
+      "changedNativeSamples": [],
+      "opaquePanelPixels": 199,
+      "changedOpaquePanelPixels": 0,
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "configuration": {
+        "angle": 1.0471975511965976,
+        "overhead": false,
+        "scale": 1
+      },
+      "actualRaster": [
+        768,
+        480
+      ],
+      "receiverMask": "Independent native geometry raycast at final pixel center, conservative boundary guard, and all four exact bilinear scene texel centres",
+      "excludedBoundarySamples": 1697,
+      "excludedExactFilterSamples": 3,
+      "darkCorePixels": 809,
+      "pixelsAtOrBelow5": 809,
+      "brightestCore": 0,
+      "meanOriginalLitCore": 164.59332509270703,
+      "nativeSymbolPixels": 957,
+      "changedNativeSymbolPixels": 0,
+      "changedNativeSamples": [],
+      "opaquePanelPixels": 210,
+      "changedOpaquePanelPixels": 0,
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "configuration": {
+        "angle": 3.141592653589793,
+        "overhead": false,
+        "scale": 1
+      },
+      "actualRaster": [
+        768,
+        480
+      ],
+      "receiverMask": "Independent native geometry raycast at final pixel center, conservative boundary guard, and all four exact bilinear scene texel centres",
+      "excludedBoundarySamples": 2194,
+      "excludedExactFilterSamples": 2,
+      "darkCorePixels": 808,
+      "pixelsAtOrBelow5": 808,
+      "brightestCore": 0,
+      "meanOriginalLitCore": 155.29084158415841,
+      "nativeSymbolPixels": 848,
+      "changedNativeSymbolPixels": 0,
+      "changedNativeSamples": [],
+      "opaquePanelPixels": 222,
+      "changedOpaquePanelPixels": 0,
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "configuration": {
+        "angle": 0.7853981633974483,
+        "overhead": true,
+        "scale": 1
+      },
+      "actualRaster": [
+        768,
+        480
+      ],
+      "receiverMask": "Independent native geometry raycast at final pixel center, conservative boundary guard, and all four exact bilinear scene texel centres",
+      "excludedBoundarySamples": 1122,
+      "excludedExactFilterSamples": 2,
+      "darkCorePixels": 446,
+      "pixelsAtOrBelow5": 446,
+      "brightestCore": 0,
+      "meanOriginalLitCore": 178.05381165919283,
+      "nativeSymbolPixels": 377,
+      "changedNativeSymbolPixels": 0,
+      "changedNativeSamples": [],
+      "opaquePanelPixels": 123,
+      "changedOpaquePanelPixels": 0,
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "configuration": {
+        "angle": 0,
+        "overhead": false,
+        "scale": 0.5
+      },
+      "actualRaster": [
+        384,
+        240
+      ],
+      "receiverMask": "Independent native geometry raycast at final pixel center, conservative boundary guard, and all four exact bilinear scene texel centres",
+      "excludedBoundarySamples": 752,
+      "excludedExactFilterSamples": 1,
+      "darkCorePixels": 59,
+      "pixelsAtOrBelow5": 59,
+      "brightestCore": 0,
+      "meanOriginalLitCore": 158.4915254237288,
+      "nativeSymbolPixels": 46,
+      "changedNativeSymbolPixels": 0,
+      "changedNativeSamples": [],
+      "opaquePanelPixels": 36,
+      "changedOpaquePanelPixels": 0,
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    }
+  ]
+}

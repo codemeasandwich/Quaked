@@ -1,0 +1,81 @@
+{
+  "map": "e1m3",
+  "glError": 0,
+  "viewAngles": [
+    0,
+    90,
+    0
+  ],
+  "newPassage": false,
+  "position": [
+    -736,
+    -1660,
+    88
+  ],
+  "portals": 2,
+  "crossings": [
+    {
+      "map": "e1m2",
+      "back": true,
+      "oneWay": false,
+      "center": [
+        -736,
+        -1564,
+        88
+      ],
+      "opening": {
+        "axisA": [
+          -1,
+          6.123233995736766e-17,
+          0
+        ],
+        "axisB": [
+          0,
+          0,
+          1
+        ],
+        "a0": -96,
+        "a1": 92,
+        "b0": -24,
+        "b1": 160,
+        "shift": [
+          2.6789148731348353e-15,
+          43.75,
+          0
+        ]
+      }
+    },
+    {
+      "map": "e1m4",
+      "back": false,
+      "oneWay": false,
+      "center": [
+        1340,
+        1023.75,
+        560
+      ],
+      "opening": {
+        "axisA": [
+          1,
+          0,
+          0
+        ],
+        "axisB": [
+          0,
+          0,
+          1
+        ],
+        "a0": -88,
+        "a1": 100,
+        "b0": -24,
+        "b1": 152,
+        "shift": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

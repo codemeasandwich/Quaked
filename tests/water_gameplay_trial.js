@@ -2,12 +2,14 @@ const controls = document.querySelector( 'section' ); for ( const event of [ 'mo
 await import( '../main.js' ); while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 20 ) );
 const menu = await import( '../src/menu.js' );
 const { Cbuf_AddText, Cmd_ExecuteString } = await import( '../src/cmd.js' ), cvar = await import( '../src/cvar.js' ), keys = await import( '../src/keys.js' );
-const { sv, MOVETYPE_NOCLIP } = await import( '../src/server.js' ), { cl } = await import( '../src/client.js' );
+const { sv, MOVETYPE_NOCLIP } = await import( '../src/server.js' ), { cl,cls } = await import( '../src/client.js' );
 const blendRuntime = await import( '../src/glquake.js' );
 const viewRuntime = await import( '../src/view.js' ), renderRuntime = await import( '../src/gl_rmain.js' );
 const post = await import( '../src/gl_post.js' ), split = await import( '../src/r_demosplit.js' ), world = await import( '../src/world.js' );
 const probe = await import( '../src/r_waterprobe.js' );
+const loadingRuntime=await import('../src/r_demoloading.js');
 const { Mod_PointInLeaf } = await import( '../src/gl_model.js' );
+window.addEventListener('error',e=>evidence.errors.push(e.message)); window.addEventListener('unhandledrejection',e=>evidence.errors.push(String(e.reason?.stack||e.reason)));
 const evidence = { sceneFrames: 0, errors: [], views: {}, pools: [], textures: [], captureFrames: 0, mode: 'startup', viewpoint: null };
 const renderer = window.renderer, render = renderer.render; let selected = null;
 renderer.render = function ( scene, camera ) {
@@ -32,8 +34,8 @@ renderer.render = function ( scene, camera ) {
 };
 function publish() {
 
-	evidence.clientTime = cl.time; evidence.paused = sv.paused;
-	evidence.options = { appearance: cvar.Cvar_VariableValue( 'r_water_look' ), water: cvar.Cvar_VariableValue( 'r_newer_water' ), lighting: cvar.Cvar_VariableValue( 'r_newer_lighting' ), reflect: cvar.Cvar_VariableValue( 'r_reflect' ), flashlight: cvar.Cvar_VariableValue( 'r_flashlight' ) };
+	evidence.loading=loadingRuntime.R_DemoLoadingStatus();evidence.signon=cls.signon;evidence.serverTime=sv.time;evidence.glError=renderer.getContext().getError(); evidence.clientTime = cl.time; evidence.paused = sv.paused;
+	evidence.options = { appearance: cvar.Cvar_VariableValue( 'r_water_look' ), water: cvar.Cvar_VariableValue( 'r_newer_water' ), lighting: cvar.Cvar_VariableValue( 'r_newer_lighting' ), reflect: cvar.Cvar_VariableValue( 'r_reflect' ), flashlight: cvar.Cvar_VariableValue( 'r_flashlight' ), normals:cvar.Cvar_VariableValue('r_newer_normals'), heightShadows:cvar.Cvar_VariableValue('r_heightshadows'), caustics:cvar.Cvar_VariableValue('r_caustics'), textures:cvar.Cvar_VariableValue('r_newer_textures') };
 
 	evidence.pools = post.R_GetLiquidRegions().map( r => ( { kind: r.kind, mapLook: r.mapLook, min: r.min, max: r.max, z: r.z } ) );
 	evidence.level = cl.worldmodel?.name;
@@ -50,12 +52,13 @@ function startLevel( level ) {
 
 	split.R_DemoSplitRelease( true ); keys.set_key_dest( keys.key_game ); evidence.mode = 'loading';
 	selected = null;
-	Cbuf_AddText( 'maxplayers 1\nr_hdr 1\nr_dynres 1\nr_newer_lighting 1\nr_newer_water 1\nr_reflect 0.6\nr_reflect_screen 1\nr_flashlight 0\nr_water_look 0\nbgmvolume 0\nmap ' + level + '\n' );
+	Cbuf_AddText( 'disconnect\nmaxplayers 1\nr_hdr 1\nr_dynres 1\nr_demosplit 0\nr_newer_lighting 1\nr_newer_normals 1\nr_heightshadows 1\nr_newer_textures 1\nr_newer_water 1\nr_reflect 0.6\nr_reflect_screen 1\nr_flashlight 0\nr_water_look 0\nbgmvolume 0\nmap ' + level + '\n' );
 
 }
 document.querySelector( '#start' ).onclick = () => startLevel( 'e1m1' );
 document.querySelector( '#e1m3' ).onclick = () => startLevel( 'e1m3' );
 document.querySelector( '#camera-apply' ).onclick = () => {
+	if(cls.signon!==4||loadingRuntime.R_IntroLoadingHolding()){evidence.mode='waiting-for-prepared-map';return;}
 	const values = document.querySelector( '#camera-values' ).value.split( /[ ,]+/ ).map( Number );
 	if ( values.length !== 5 || ! values.every( Number.isFinite ) || ! cl.worldmodel ) return;
 	const [ x, y, z, pitch, yaw ] = values, player = sv.edicts?.[ 1 ];
@@ -123,7 +126,7 @@ function place( mode = 'pool', phase = 0 ) {
 }
 for ( const mode of [ 'pool', 'grazing', 'down', 'under', 'under-near', 'under-mid', 'under-far' ] ) document.querySelector( '#' + mode ).onclick = () => place( mode );
 document.querySelector( '#walk' ).onclick = async () => { for ( let i = 0; i < 152; i ++ ) { place( 'grazing', i / 24 ); await new Promise( r => setTimeout( r, i % 3 === 1 ? 60 : 70 ) ); } };
-for ( const [ id, name ] of [ [ 'water', 'r_newer_water' ], [ 'lighting', 'r_newer_lighting' ], [ 'reflection', 'r_reflect' ], [ 'flashlight', 'r_flashlight' ] ] ) document.querySelector( '#' + id ).onclick = () => { cvar.Cvar_SetValue( name, cvar.Cvar_VariableValue( name ) > 0 ? 0 : id === 'reflection' ? .6 : 1 ); evidence.mode = id + '-toggle'; };
+for ( const [ id, name ] of [ [ 'water', 'r_newer_water' ], [ 'lighting', 'r_newer_lighting' ], [ 'normals', 'r_newer_normals' ], [ 'height-shadows', 'r_heightshadows' ], [ 'caustics', 'r_caustics' ], [ 'reflection', 'r_reflect' ], [ 'flashlight', 'r_flashlight' ] ] ) document.querySelector( '#' + id ).onclick = () => { cvar.Cvar_SetValue( name, cvar.Cvar_VariableValue( name ) > 0 ? 0 : id === 'reflection' ? .6 : 1 ); evidence.mode = id + '-toggle'; };
 document.querySelector( '#features-menu' ).onclick = () => { Cmd_ExecuteString( 'menu_options' ); menu.M_Keydown( keys.K_ENTER ); };
 document.querySelector( '#classic-diagnostic' ).onclick = () => { cvar.Cvar_SetValue( 'r_demosplit', cvar.Cvar_VariableValue( 'r_demosplit' ) === 2 ? 0 : 2 ); evidence.mode = 'classic-diagnostic'; };
 document.querySelector( '#pause' ).onclick = () => Cbuf_AddText( 'pause\n' );

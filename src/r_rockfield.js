@@ -128,18 +128,7 @@ export function R_RockfieldGeometry( geometry, surface ) {
   info.set( [ chart.id, chart.amplitude ], i * 2 ); bounds.set( chart.bounds, i * 4 );
  }
  geometry.setAttribute( 'rockWall', new THREE.BufferAttribute( wall, 1 ) ); geometry.setAttribute( 'rockUv', new THREE.BufferAttribute( uv, 2 ) ); geometry.setAttribute( 'rockInfo', new THREE.BufferAttribute( info, 2 ) ); geometry.setAttribute( 'rockBounds', new THREE.BufferAttribute( bounds, 4 ) );
- const clips=R_RockProjectionEdges(surface);
- for(let edge=0;edge<6;edge++){const values=new Float32Array(p.count*3);for(let i=0;i<p.count;i++)values.set(clips[edge],i*3);geometry.setAttribute('rockClip'+edge,new THREE.BufferAttribute(values,3));}
  return true;
-}
-// Clip view-projected UVs to the actual convex native face. Height coordinates
-// remain continuous at folds; only extrapolation of the pigment is constrained.
-export function R_RockProjectionEdges(surface){
- const polygon=surface.polys,neutral=()=>Array.from({length:6},()=>[0,0,1]);
- if(!polygon||polygon.numverts<3||polygon.numverts>6){const edges=neutral();edges[0]=[0,0,-1];return edges;}
- const uv=Array.from({length:polygon.numverts},(_,i)=>polygon.verts instanceof Float32Array?Array.from(polygon.verts.subarray(i*7+3,i*7+5)):polygon.verts[i].slice(3,5));
- let area=0;uv.forEach((p,i)=>{const q=uv[(i+1)%uv.length];area+=p[0]*q[1]-q[0]*p[1];});if(Math.abs(area)<1e-10){const edges=neutral();edges[0]=[0,0,-1];return edges;}
- const sign=area>0?1:-1,edges=neutral();uv.forEach((p,i)=>{const q=uv[(i+1)%uv.length],dx=q[0]-p[0],dy=q[1]-p[1],length=Math.hypot(dx,dy);if(length>1e-8){const x=-dy/length*sign,y=dx/length*sign;edges[i]=[x,y,-x*p[0]-y*p[1]];}});return edges;
 }
 // Preserve a moving brush's material/rest-space field. At its closed pose it
 // exactly matches the adjacent world; movement carries that detail with the rock.
@@ -166,7 +155,9 @@ export function R_RockfieldUpdate( origin, frame, now = performance.now() ) {
  const candidates=new Map();
  for(const chart of state.charts)for(const face of chart.surfaces){
   const visible=face.brush?face.brushSeen===frame||face.brushSeen===frame-1:face.surface.visframe===frame;
-  let distance=face.brush?face.brushDistance:Infinity;
+  // Unseen brush faces have no transformed distance yet. Treat them as
+  // distant until the public draw hook marks them; undefined passes >512.
+  let distance=face.brush?(face.brushDistance??Infinity):Infinity;
   if(!face.brush){
    if(!face.worldBounds){const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(let polygon=face.surface.polys;polygon;polygon=polygon.next)for(let i=0;i<polygon.numverts;i++)for(let k=0;k<3;k++){const value=polygon.verts instanceof Float32Array?polygon.verts[i*7+k]:polygon.verts[i][k];lo[k]=Math.min(lo[k],value);hi[k]=Math.max(hi[k],value);}face.worldBounds={lo,hi};}
    distance=Math.hypot(...origin.map((v,k)=>Math.max(face.worldBounds.lo[k]-v,0,v-face.worldBounds.hi[k])));

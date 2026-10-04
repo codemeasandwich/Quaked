@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
+import { R_RockBakePrefetch } from '../src/r_rockbakes.js';
 import { seedFrom, createField } from '../src/rockfield.js';
 import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialName, R_RockMaterialProfile, ROCK_AXIS_U, ROCK_AXIS_V } from '../src/r_rocksurfaces.js';
 import { R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen, R_RockfieldStatus, ROCK_SIDE, rockUniforms, r_rockfield } from '../src/r_rockfield.js';
@@ -81,7 +82,7 @@ Deno.test( 'every native world piece of the four required materials retains exac
 
 				totals[ name ] ++; perMap[ name ] = ( perMap[ name ] || 0 ) + 1;
 				same( chart.name, R_RockMaterialName( surface.texinfo.texture ), 'chart retains canonical material identity' ); same( chart.profile, R_RockMaterialProfile( surface.texinfo.texture, surface ), 'chart retains resolved role' ); assertPreset( chart, 'required material ' + name );
-				same( chart.seed, seedFrom( model.name + ':' + chart.key ), 'seed belongs to exact connected material-role component' ); same( chart.tangent, ROCK_AXIS_U, 'wall world U basis' ); same( chart.bitangent, ROCK_AXIS_V, 'wall world V basis' );
+				same( chart.seed, seedFrom( model.name + ':' + chart.name + ':' + chart.profile ), 'seed belongs to exact connected material-role component' ); same( chart.tangent, ROCK_AXIS_U, 'wall world U basis' ); same( chart.bitangent, ROCK_AXIS_V, 'wall world V basis' );
 				const z = surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ); if ( z < -.85 ) orientations.roof ++; else if ( z > .85 ) orientations.floor ++; else if ( Math.abs( z ) > .3 ) orientations.slope ++;
 				const source = bytes( surface.polys.verts ), geometry = DrawGLPoly( surface.polys, surface.plane.normal ), original = Object.entries( geometry.attributes ).map( ( [ name, attr ] ) => ( { name, attr, bytes: bytes( attr.array ) } ) ); check( R_RockfieldGeometry( geometry, surface ), 'public world geometry annotation succeeds for ' + name );
 				for ( const saved of original ) { same( geometry.getAttribute( saved.name ), saved.attr, 'original geometry attribute identity retained' ); same( bytes( saved.attr.array ), saved.bytes, 'original geometry/normal/UV/lightmap bytes retained' ); }
@@ -115,7 +116,7 @@ Deno.test( 'every native world piece of the four required materials retains exac
 
 } );
 
-Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space detail per component, schedule bounded tiles and retain native disabled modes', () => {
+Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space detail per component, schedule bounded tiles and retain native disabled modes', async () => {
 
 	const variables = [ post.r_hdr, anim.r_newer_normals, r_rockfield ]; for ( const v of variables ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v ); const saved = variables.map( v => v.string );
 	const oldWorker = Object.getOwnPropertyDescriptor( globalThis, 'Worker' ), oldFrame = main.r_framecount, oldEntity = main.currententity, oldEye = Array.from( r_refdef.vieworg ), oldFrustum = main.frustum.map( p => ( { normal: Array.from( p.normal ), dist: p.dist, type: p.type, signbits: p.signbits } ) ), workers = [];
@@ -129,16 +130,20 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 		cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = door; cl.model_precache[ 3 ] = null; GL_BuildLightmaps();
 		const faces = model.surfaces.slice( 5940, 5948 ), source = faces.map( s => bytes( s.polys.verts ) ), hulls = door.hulls.map( h => JSON.stringify( { planes: h.planes, clipnodes: h.clipnodes, first: h.firstclipnode, last: h.lastclipnode } ) );
 		const worldOnly = R_RockSurfaceCharts( model ), fields = R_RockfieldBuild( model );
+		// Await the real Node fetch fallback before asserting worker dispatch.
+		await R_RockBakePrefetch(model.name)?.promise;
 		const entries = fields.charts.flatMap( chart => chart.surfaces ).filter( e => faces.includes( e.surface ) ), doorCharts = new Set( faces.map( surface => fields.bySurface.get( surface ) ) ); same( entries.length, 8, 'all door pieces included through extended public build' );
 		same( fields.charts.flatMap( chart => chart.surfaces ).filter( e => e.surface.texinfo.texture.name === 'rock1_2' ).length, 848, '840 world plus8 door faces, not classifier-only coverage' );
 		for ( const surface of faces ) { same( surface.texinfo.texture.name, 'rock1_2', 'native door material' ); check( ! worldOnly.bySurface.has( surface ), 'pure world-only API retains its original range' ); const chart = fields.bySurface.get( surface ); check( chart && chart.name === 'rock1_2' && chart.profile === 'wall', 'closed door has actual matching material-role component' ); assertPreset( chart, 'native door component' ); }
 		for ( const e of entries ) check( e.brush && e.brushSeen === undefined, 'brush visibility requires actual drawing' );
-		for ( const chart of doorCharts ) same( chart.seed, seedFrom( model.name + ':' + chart.key ), 'door seed belongs to map/rest-space component, not inline model name' );
+		for ( const chart of doorCharts ) same( chart.seed, seedFrom( model.name + ':' + chart.name + ':' + chart.profile ), 'door seed belongs to map/rest-space component, not inline model name' );
 		for ( const s of model.surfaces ) s.visframe = -1;
 		variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); anim.R_AnimSetClassicPass( false ); main.set_r_framecount( 901 );
 		for ( const p of main.frustum ) { p.normal.fill( 0 ); p.dist = -1e9; p.type = 3; p.signbits = 0; }
 		const entity = new entity_t(); entity.model = door; main.set_currententity( entity );
-		const restEye = [ 0, 1, 2 ].map( k => Math.fround( ( door.mins[ k ] + door.maxs[ k ] ) / 2 + [ 32, 16, 24 ][ k ] ) ); r_refdef.vieworg.set( restEye );
+		// A distant eye isolates brush visibility from nearby-world prefetch;
+		// the frustum above explicitly admits the real brush draw.
+		const restEye = [ 0, 1, 2 ].map( k => Math.fround( ( door.mins[ k ] + door.maxs[ k ] ) / 2 + [ 10000, 10000, 10000 ][ k ] ) ); r_refdef.vieworg.set( restEye );
 		R_RockfieldUpdate( restEye, 901, 1000 ); same( workers.length, 0, 'undrawn invisible brush starts no jobs' );
 		R_DrawBrushModel( entity ); const group = entity._brushGroup; check( group?.children.length, 'actual public brush draw creates native meshes' );
 		let expectedVertices = 0; for ( const surface of faces ) for ( let p = surface.polys; p; p = p.next ) expectedVertices += ( p.numverts - 2 ) * 3;
@@ -199,7 +204,7 @@ Deno.test( 'actual world batches for every requested material bind the procedura
 					for ( let i = first; i < first + 3; i ++ ) { same( info.getX( i ), chart.id, name + ' world triangle never interpolates component identities' ); near( info.getY( i ), expectedPreset( name, chart.profile ).amplitude, name + ' actual world vertices carry exact saved amplitude' ); const expected = R_RockCoordinates( chart, [ position.getX( i ), position.getY( i ), position.getZ( i ) ] ); near( uv.getX( i ), expected[ 0 ], name + ' actual world triangle retains component U', .00001 ); near( uv.getY( i ), expected[ 1 ], name + ' actual world triangle retains component V', .00001 ); }
 				}
 			}
-			for ( const batch of batches ) { same( batch.material.userData.rockField, true, name + ' original renderer automatically marks registered material' ); check( batch.geometry.getAttribute( 'rockUv' ) && batch.geometry.getAttribute( 'rockInfo' ), name + ' actual batched geometry carries field data' ); const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.lambert.vertexShader, fragmentShader: THREE.ShaderLib.lambert.fragmentShader }; batch.material.onBeforeCompile( shader ); same( shader.uniforms.qrRockHeights, rockUniforms.qrRockHeights, name + ' compiled shader uses live shared tile atlas' ); check( shader.vertexShader.includes( 'vRockUv=rockUv' ) && shader.fragmentShader.includes( 'qrRockFrame(normalize(vNormal),vViewPosition)' ), name + ' public compiled shader uses world field' ); check( shader.fragmentShader.includes( 'uClassic<.5' ), name + ' shader Classic guard present' ); }
+			for ( const batch of batches ) { same( batch.material.userData.rockField, true, name + ' original renderer automatically marks registered material' ); check( batch.geometry.getAttribute( 'rockUv' ) && batch.geometry.getAttribute( 'rockInfo' ), name + ' actual batched geometry carries field data' ); const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.lambert.vertexShader, fragmentShader: THREE.ShaderLib.lambert.fragmentShader }; batch.material.onBeforeCompile( shader ); same( shader.uniforms.qrRockHeights, rockUniforms.qrRockHeights, name + ' compiled shader uses live shared tile atlas' ); check( shader.vertexShader.includes( 'vRockUv=rockUv' ) && shader.fragmentShader.includes( 'qrHeightGradients(-vViewPosition,vRockUv,qrRockN' ), name + ' public compiled shader uses world field' ); check( shader.fragmentShader.includes( 'uClassic<.5' ), name + ' shader Classic guard present' ); }
 			cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 'r_newer_normals', '1' ); cvar.Cvar_Set( 'r_rockfield', '1' ); anim.R_AnimSetClassicPass( false ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 1, name + ' enhanced saved-preset field active' );
 			cvar.Cvar_Set( 'r_newer_normals', '0' ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' normal-off disables field' ); cvar.Cvar_Set( 'r_newer_normals', '1' ); anim.R_AnimSetClassicPass( true ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' Classic disables field' ); anim.R_AnimSetClassicPass( false ); cvar.Cvar_Set( 'r_hdr', '0' ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' New Game disables field' );
 			model.hulls.forEach( ( h, i ) => same( JSON.stringify( { planes: h.planes, clipnodes: h.clipnodes } ), hulls[ i ], 'native collision hull unchanged' ) );

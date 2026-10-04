@@ -9,12 +9,6 @@ varying float vRockWall;
 varying vec2 vRockUv;
 varying vec2 vRockInfo;
 varying vec4 vRockBounds;
-varying vec3 vRockClip0;
-varying vec3 vRockClip1;
-varying vec3 vRockClip2;
-varying vec3 vRockClip3;
-varying vec3 vRockClip4;
-varying vec3 vRockClip5;
 uniform sampler2DArray qrRockHeights;
 uniform sampler2D qrRockPages;
 uniform float qrRockOn;
@@ -45,40 +39,24 @@ float qrRockHint(vec2 p, vec2 tile, int page) {
  if(all(greaterThanEqual(d,vec2(-${ROCK_BORDER}.0/${ROCK_CELLS}.0))) && all(lessThanEqual(d,vec2(1.+${ROCK_BORDER}.0/${ROCK_CELLS}.0)))) return qrRockLayer(p,tile,page);
  return qrRockHeight(p);
 }
-mat3 qrRockFrame(vec3 N, vec3 eyePosition) {
- vec3 q0=dFdx(-eyePosition),q1=dFdy(-eyePosition);
- vec2 st0=dFdx(vRockUv),st1=dFdy(vRockUv);
- vec3 T=cross(q1,N)*st0.x+cross(N,q0)*st1.x;
- vec3 B=cross(q1,N)*st0.y+cross(N,q0)*st1.y;
- float scale=inversesqrt(max(max(dot(T,T),dot(B,B)),1e-20));
- return mat3(T*scale,B*scale,N);
-}
-float qrRockClipEdge(vec2 origin,vec2 delta,vec3 edge){
- float distance=dot(edge.xy,origin)+edge.z,travel=dot(edge.xy,delta);
- if(distance<-.00001)return 0.;
- // Taper before reaching an edge. Hard-clamping the hit to the edge would
- // pin many pixels to one texel and stretch it into a mirrored-looking band.
- return travel<-.000001?max(0.,distance)/(max(0.,distance)-travel):1.;
-}
-vec2 qrRockClipUv(vec2 origin,vec2 proposed){
- vec2 delta=proposed-origin;
- float limit=min(min(qrRockClipEdge(origin,delta,vRockClip0),qrRockClipEdge(origin,delta,vRockClip1)),min(qrRockClipEdge(origin,delta,vRockClip2),qrRockClipEdge(origin,delta,vRockClip3)));
- limit=min(limit,min(qrRockClipEdge(origin,delta,vRockClip4),qrRockClipEdge(origin,delta,vRockClip5)));
- return origin+delta*limit;
-}
 `;
 export const ROCK_PARALLAX_GLSL = `
 vec2 qrRockQ=vRockUv,qrRockUvShift=vec2(0.);
 float qrRockAmp=0.,qrRockAO=1.,qrRockSunVisibility=1.;
 // Derivatives are evaluated outside divergent tile/march control flow.
-mat3 qrRockTbn=qrRockFrame(normalize(vNormal),vViewPosition);
-vec2 qrRdx=dFdx(vRockUv),qrRdy=dFdy(vRockUv),qrUdx=dFdx(vMapUv),qrUdy=dFdy(vMapUv);
+vec3 qrRockN=normalize(vNormal)*(gl_FrontFacing?1.:-1.);
+vec3 qrRockGradU,qrRockGradV;float qrRockUnit;
+qrHeightGradients(-vViewPosition,vRockUv,qrRockN,qrRockGradU,qrRockGradV,qrRockUnit);
+// Height amplitudes are fractions of 256 world units, not normalized UV axes.
+qrRockGradU*=256.;qrRockGradV*=256.;
+vec3 qrMapGradU,qrMapGradV;float qrMapUnit;
+qrHeightGradients(-vViewPosition,vMapUv,qrRockN,qrMapGradU,qrMapGradV,qrMapUnit);
+vec2 qrRdx=dFdx(vRockUv),qrRdy=dFdy(vRockUv);
 vec2 qrTile=floor(vRockUv); int qrPage=-1;
 if(qrRockOn>0. && uClassic<.5) qrPage=qrRockPage(qrTile,vRockInfo.x);
-float qrEdge=min(min(vRockUv.x-vRockBounds.x,vRockUv.y-vRockBounds.y),min(vRockBounds.z-vRockUv.x,vRockBounds.w-vRockUv.y));
 if(qrPage>=0 && qrRockOn>0. && uClassic<.5) {
  qrRockAmp=vRockInfo.y*qrRockOn;
- vec3 view=normalize(vViewPosition),V=vec3(dot(view,qrRockTbn[0]),dot(view,qrRockTbn[1]),dot(view,qrRockTbn[2]));
+ vec3 view=normalize(vViewPosition),V=vec3(dot(view,qrRockGradU),dot(view,qrRockGradV),dot(view,qrRockN));
  float qrProjectionAmp=min(qrRockAmp,${ROCK_PROJECTION_CAP});
  vec2 stepUV=-V.xy/max(abs(V.z),.25)*qrProjectionAmp;
  float t0=0.,t1=0.; bool found=false;
@@ -91,21 +69,19 @@ if(qrPage>=0 && qrRockOn>0. && uClassic<.5) {
   for(int j=0;j<3;j++){float t=(t0+t1)*.5;vec2 test=vRockUv+stepUV*t;if(t>=1.-qrRockHeight(test))t1=t;else t0=t;}
   qrRockQ=vRockUv+stepUV*((t0+t1)*.5);
  }
- float det=qrRdx.x*qrRdy.y-qrRdx.y*qrRdy.x;
- float conditioning=abs(det)/max(length(qrRdx)*length(qrRdy),1e-12);
- if(conditioning>.03) {
-  vec2 d=qrRockQ-vRockUv;
-  qrRockUvShift=qrUdx*((d.x*qrRdy.y-d.y*qrRdy.x)/det)+qrUdy*((qrRdx.x*d.y-qrRdx.y*d.x)/det);
-  float requestedShift=length(qrRockUvShift);
-  // A near-singular projection must never magnify into repeated texture
-  // images. Bound only view projection; full depth still shades and shadows.
-  float magnitude=length(qrRockUvShift);
-  qrRockUvShift*=min(1.,.75/max(magnitude,1e-6))*smoothstep(.03,.10,conditioning);
-  qrRockUvShift=qrRockClipUv(vMapUv,vMapUv+qrRockUvShift)-vMapUv;
-  // The normal, cavity and self-shadow field must follow the same accepted
-  // hit as the pigment, rather than a second unconstrained displaced image.
-  qrRockQ=mix(vRockUv,qrRockQ,clamp(length(qrRockUvShift)/max(requestedShift,1e-6),0.,1.));
- }else qrRockQ=vRockUv;
+ // Convert the SAME accepted world ray to native pigment coordinates. Do
+ // not invert projected field UVs: that fails on near-parallel projections
+ // and makes relief depend on camera roll. Both coordinates use one limiter.
+ if(found) {
+  float hit=(t0+t1)*.5;
+  vec2 mapStep=-vec2(dot(view,qrMapGradU),dot(view,qrMapGradV))*256./max(abs(V.z),.25)*qrProjectionAmp;
+  qrRockUvShift=mapStep*hit;
+  float magnitude=length(qrRockUvShift),limit=min(1.,.75/max(magnitude,1e-6));
+  qrRockUvShift*=limit;
+  qrRockQ=vRockUv+stepUV*hit*limit;
+ }
+ // Repeat-wrapped pigment is defined beyond a polygon. Rasterization owns
+ // coverage; clamping here would create seams at every internal BSP edge.
 }
 `;
 export const ROCK_NORMAL_GLSL = `
@@ -115,14 +91,14 @@ if(qrRockAmp>0.) {
   float h=qrRockHeight(qrRockQ),e=max(1./${ROCK_CELLS}.0,max(length(qrRdx),length(qrRdy)));
   float dx=(qrRockHint(qrRockQ+vec2(e,0),tile,page)-qrRockHint(qrRockQ-vec2(e,0),tile,page))/(2.*e);
   float dy=(qrRockHint(qrRockQ+vec2(0,e),tile,page)-qrRockHint(qrRockQ-vec2(0,e),tile,page))/(2.*e);
-  vec3 qrFaceNormal=normalize(vNormal)*(gl_FrontFacing?1.:-1.);
-  vec3 qrMacroNormal=normalize(qrFaceNormal-qrRockTbn[0]*dx*qrRockAmp-qrRockTbn[1]*dy*qrRockAmp);
+  vec3 qrFaceNormal=qrRockN;
+  vec3 qrMacroNormal=normalize(qrFaceNormal-qrRockGradU*dx*qrRockAmp-qrRockGradV*dy*qrRockAmp);
   // Let the continuous formation own the large-scale lighting response. A
   // small amount of authored micro-normal remains, without dominating it as
   // granular sparkles when the direct-light normal contribution is increased.
-  normal=vRockWall>.5?normalize(qrMacroNormal+.2*(normal-qrFaceNormal)):normalize(normal-qrRockTbn[0]*dx*qrRockAmp-qrRockTbn[1]*dy*qrRockAmp);
+  normal=vRockWall>.5?normalize(qrMacroNormal+.2*(normal-qrFaceNormal)):normalize(normal-qrRockGradU*dx*qrRockAmp-qrRockGradV*dy*qrRockAmp);
   vec3 L=mat3(viewMatrix)*qrRockSun;
-  vec3 light=vec3(dot(L,qrRockTbn[0]),dot(L,qrRockTbn[1]),dot(L,qrRockTbn[2]));
+  vec3 light=vec3(dot(L,qrRockGradU),dot(L,qrRockGradV),dot(L,qrRockN));
   if(light.z>.05) {
    float z=(h-1.)*qrRockAmp,travel=min(1.5,(1.-h)*qrRockAmp/max(light.z,.1));
    float shadowSteps=clamp(ceil(travel*length(light.xy)*96.),12.,48.);
@@ -148,5 +124,4 @@ export function R_PatchRockShader( shader ) {
  Object.assign( shader.uniforms, rockUniforms );
  shader.vertexShader = 'attribute float rockWall;\nvarying float vRockWall;\nattribute vec2 rockUv;\nattribute vec2 rockInfo;\nattribute vec4 rockBounds;\nvarying vec2 vRockUv;\nvarying vec2 vRockInfo;\nvarying vec4 vRockBounds;\n' + shader.vertexShader.replace( '#include <begin_vertex>', '#include <begin_vertex>\nvRockWall=rockWall;vRockUv=rockUv;vRockInfo=rockInfo;vRockBounds=rockBounds;' );
  shader.fragmentShader = ROCK_GLSL + shader.fragmentShader;
- for(let i=0;i<6;i++)shader.vertexShader='attribute vec3 rockClip'+i+';\nvarying vec3 vRockClip'+i+';\n'+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvRockClip'+i+'=rockClip'+i+';');
 }

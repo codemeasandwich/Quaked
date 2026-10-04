@@ -38,6 +38,7 @@ import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Mo
 import { SV_StartSound, SV_StartParticle, sv_aim } from './sv_main.js';
 import { R_FlashlightSkillSelected } from './r_flashlightrun.js';
 import { SV_GoreOnSetModel } from './sv_gore.js';
+import { SV_AxeGibSeen } from './sv_axecut.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cvar_VariableValue, Cvar_Set } from './cvar.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from './server.js';
@@ -208,6 +209,7 @@ function PF_setmodel() {
 
 	e.v.model = G_INT( OFS_PARM1 );
 	e.v.modelindex = i;
+	SV_AxeGibSeen( e, m );
 	SV_GoreOnSetModel( e, m );
 
 	// Set mins/maxs from model if available

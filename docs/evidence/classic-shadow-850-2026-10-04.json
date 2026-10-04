@@ -1,0 +1,190 @@
+{
+  "status": "CAPTURED",
+  "packet": 850,
+  "map": "maps/e1m3.bsp",
+  "demoTime": 67.20762634277344,
+  "player": [
+    -710.875,
+    -157.75,
+    -71.875
+  ],
+  "viewAngles": [
+    17.24001121520996,
+    176.3477783203125,
+    0
+  ],
+  "camera": [
+    -710.84375,
+    -157.71875,
+    -49.84375
+  ],
+  "target": [
+    1600,
+    1002
+  ],
+  "nonblackPixels": 791278,
+  "classicLook": 1,
+  "reliefUniforms": {
+    "rock": 1,
+    "heightOn": 0
+  },
+  "nativeShadowCvar": 0,
+  "reliefDisabled": {
+    "changedPixels": 0,
+    "totalPixels": 1603200,
+    "meanLinearRgbDifference": 0,
+    "maximumLinearDifference": 0,
+    "changedBoundsBottomLeft": null
+  },
+  "allNativeShadowsDisabled": {
+    "changedPixels": 0,
+    "totalPixels": 1603200,
+    "meanLinearRgbDifference": 0,
+    "maximumLinearDifference": 0,
+    "changedBoundsBottomLeft": null
+  },
+  "whiteBakedLightmaps": {
+    "changedMaterials": 119,
+    "difference": {
+      "changedPixels": 1409529,
+      "totalPixels": 1603200,
+      "meanLinearRgbDifference": 0.005007049226284483,
+      "maximumLinearDifference": 0.0846405029296875,
+      "changedBoundsBottomLeft": [
+        0,
+        0,
+        1599,
+        1001
+      ]
+    }
+  },
+  "sourceRayWitness": [
+    {
+      "label": "center",
+      "object": "world_wmet2_1_lm5",
+      "point": [
+        -885.0083791045878,
+        -146.60186214069665,
+        -104
+      ],
+      "uv": [
+        -13.828255923509182,
+        2.290654095948386
+      ],
+      "lightmapUv": [
+        0.649898252390338,
+        0.653614190498387
+      ],
+      "materialType": "MeshLambertMaterial",
+      "nativeAtlasSample": {
+        "size": [
+          128,
+          128
+        ],
+        "channel": 1,
+        "uv": [
+          0.649898252390338,
+          0.653614190498387
+        ],
+        "pixel": [
+          83,
+          83
+        ],
+        "values": [
+          103,
+          103,
+          103,
+          255
+        ],
+        "storage": "Uint8Array",
+        "colorSpace": ""
+      }
+    },
+    {
+      "label": "upper right",
+      "object": "world_rock4_1_lm3",
+      "point": [
+        -1097.6206910351375,
+        120,
+        -39.91080000695373
+      ],
+      "uv": [
+        -8.575161648712012,
+        0.31180312505432606
+      ],
+      "lightmapUv": [
+        0.06952114695549926,
+        0.6483939453158953
+      ],
+      "materialType": "MeshLambertMaterial",
+      "nativeAtlasSample": {
+        "size": [
+          128,
+          128
+        ],
+        "channel": 1,
+        "uv": [
+          0.06952114695549926,
+          0.6483939453158953
+        ],
+        "pixel": [
+          8,
+          82
+        ],
+        "values": [
+          80,
+          80,
+          80,
+          255
+        ],
+        "storage": "Uint8Array",
+        "colorSpace": ""
+      }
+    },
+    {
+      "label": "upper left",
+      "object": "world_wswamp2_1_lm9",
+      "point": [
+        -968,
+        -256.63610574510784,
+        -52.20650140007586
+      ],
+      "uv": [
+        -4.00993915226731,
+        0.8157265843761852
+      ],
+      "lightmapUv": [
+        0.44890815149164653,
+        0.28721020576175577
+      ],
+      "materialType": "MeshLambertMaterial",
+      "nativeAtlasSample": {
+        "size": [
+          128,
+          128
+        ],
+        "channel": 1,
+        "uv": [
+          0.44890815149164653,
+          0.28721020576175577
+        ],
+        "pixel": [
+          57,
+          36
+        ],
+        "values": [
+          86,
+          86,
+          86,
+          255
+        ],
+        "storage": "Uint8Array",
+        "colorSpace": ""
+      }
+    }
+  ],
+  "visibleNativeShadowCount": 0,
+  "individualShadowLimit": 32,
+  "nativeShadows": [],
+  "glError": 0
+}

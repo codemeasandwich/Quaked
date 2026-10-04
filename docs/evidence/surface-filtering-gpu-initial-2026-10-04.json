@@ -1,0 +1,76 @@
+{
+  "status": "FAIL",
+  "mutation": null,
+  "checks": [
+    {
+      "passed": true,
+      "name": "real receiver coverage and valid source mask",
+      "valid": 55200,
+      "count": 55200
+    },
+    {
+      "passed": true,
+      "name": "subpixel grain shadows converge to averaged-height oracle",
+      "meanVisibilityError": 0
+    },
+    {
+      "passed": true,
+      "name": "resolved broad ridge still casts a material shadow",
+      "coarseShadow": 7200
+    },
+    {
+      "passed": true,
+      "name": "flat-height negative control casts no relief shadows",
+      "flatShadow": 0
+    },
+    {
+      "passed": true,
+      "name": "unfiltered native control contains resolved pixel grain",
+      "neighborDifference": 76.07555555555555,
+      "leftMean": 143.13333333333333,
+      "rightMean": 203.5911111111111
+    },
+    {
+      "passed": true,
+      "name": "replacement pigment filtering suppresses fine grain",
+      "neighborDifference": 0,
+      "leftMean": 152.67555555555555,
+      "rightMean": 207.07555555555555
+    },
+    {
+      "passed": false,
+      "name": "broad pigment contrast remains readable",
+      "neighborDifference": 0,
+      "leftMean": 152.67555555555555,
+      "rightMean": 207.07555555555555
+    },
+    {
+      "passed": false,
+      "name": "filter preserves mean pigment in both broad regions",
+      "native": {
+        "neighborDifference": 76.07555555555555,
+        "leftMean": 143.13333333333333,
+        "rightMean": 203.5911111111111
+      },
+      "upgraded": {
+        "neighborDifference": 0,
+        "leftMean": 152.67555555555555,
+        "rightMean": 207.07555555555555
+      }
+    },
+    {
+      "passed": true,
+      "name": "Classic upgraded material matches original pigment pixel-for-pixel",
+      "classicChanged": 0
+    },
+    {
+      "passed": true,
+      "name": "native geometry, UVs and image bytes immutable"
+    },
+    {
+      "passed": true,
+      "name": "all actual shader variants compile and render without GL errors",
+      "errors": []
+    }
+  ]
+}

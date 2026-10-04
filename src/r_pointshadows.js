@@ -220,6 +220,12 @@ export class PointShadowAtlas {
 
 	}
 
+	forgetDynamic( source ) {
+		const clone=this._dynamicClones.get(source);if(!clone)return;
+		clone.parent?.remove(clone);clone.geometry=null;
+		this._borrowedClones.delete(clone);this._dynamicClones.delete(source);
+	}
+
 	status() {
 
 		const ready = [ ...this.entries.values() ].filter( entry => entry.ready ).length;

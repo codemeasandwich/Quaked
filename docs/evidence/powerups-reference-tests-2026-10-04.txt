@@ -1,0 +1,153 @@
+PASS exact native pickup kinds, bounded quad pulse, presentation-only source attributes and original gameplay fields
+PASS visible, collected, respawned, replaced and cleared entities retire effect/light state without retaining orphan meshes
+PASS Classic helper redraw does not mutate the enhanced registry, and feature/Newer gates retire effects
+PASS live pickup lights share the existing eight-source budget and stable ranking while quad radiance pulses
+Added packfile pak0.pak (339 files)\n
+R_Init
+Can't register variable r_hdr, already defined
+
+Can't register variable r_powerups, already defined
+
+Can't register variable r_newer_lighting, already defined
+
+R_Init: Three.js renderer ready
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/invulner.mdl...
+
+126 tri 194 vert 423 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+PASS actual public entity draw dispatch attaches effects to native world pickups and excludes held viewmodel
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+PASS real native PAK pickup aliases retain positions, UVs, indices and skin data under effect attachment
+PASS actual post-frame snapshot retains ring cookie slot and live-light radiance while lighting-off disables its compositor path
+PASS visible pentagram metadata includes all shrouds beyond eight lights and exact camera-space billboard geometry without native mutation
+PASS shroud metadata resets for hidden object/ancestor, feature-off, Classic, collection and map clear
+PASS native yaw and actual model matrices drive local flame planes and ring orientation without camera or Classic drift
+PASS every flame anchor lies on an actual native triangle edge and the emissive coating preserves the complete Q and pentagram topology
+PASS replacement native position or index buffers rebuild owned emissions without disposing the native model
+RESULT 12/12 passed (tests/powerups_test.js)
+THREE.Material: parameter 'vertexColors' has value of undefined.
+THREE.Material: parameter 'vertexColors' has value of undefined.
+THREE.Material: parameter 'vertexColors' has value of undefined.
+PASS detachment and repeated disposal requests keep actual material program alive until asynchronous compilation settles
+PASS overlapping compiler promises share one lease and restore exact own dispose descriptor after last settle
+PASS compiler rejection releases pending destruction and propagates original rejection without stranding other material leases
+PASS synchronous compiler throw releases wrappers and requested disposal, while successful no-dispose compilation preserves material
+PASS synchronous fallback calls original compile directly without leases or return-value changes
+RESULT 5/5 passed (tests/shaderwarm_test.js)
+PASS classic scope overrides forced interpolation and every shared Newer gate without changing preferences
+PASS native texture twins isolate filtering, original pixels, crate phase and disposal
+PASS native material variants suppress relief and glow while retaining original fullbright
+PASS scene rollback restores smoothed poses, alias colours, original shadows, lights and membership
+PASS classic atlases use grayscale samples and current light styles without corrupting enhanced cache
+PASS native dynamic lighting uses original intensity and restores enhanced fixed slots
+PASS native baked dynamic light uses full brightness and clears expired contributions
+PASS classic render failures restore scope and all renderer output state
+RESULT 8/8 passed (tests/classic_demo_isolation_test.js)
+Added packfile pak0.pak (339 files)\n
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+PASS normal Classic renders exact native soldier/shambler and animated flame poses at default1 and legacy forced2 after an enhanced blend
+PASS forced2 split Classic uses exact native poses and R_SaveClassicScene restores enhanced attributes, buffers and state at the same tick
+PASS native one-pose armor movement uses game transforms in Classic, and split restoration returns the exact enhanced object display
+CLASSIC_NATIVE_ALIAS_MODELS [{"name":"progs/soldier.mdl","frames":114,"poses":114},{"name":"progs/shambler.mdl","frames":94,"poses":94},{"name":"progs/flame.mdl","frames":1,"poses":6},{"name":"progs/flame2.mdl","frames":2,"poses":17},{"name":"progs/armor.mdl","frames":1,"poses":1}]
+PASS native test models retain all source animation groups and shared geometry templates after Classic draws
+RESULT 4/4 passed (tests/classic_alias_frames_test.js)
+PASS classic split follows exact enhanced target dimensions, reuse and height-only resizing
+PASS classic uses physical viewport fallback and preserves full-classic mode
+PASS post pipeline odd rounding, DPR and actual dynamic scale are shared by both passes
+RESULT 3/3 passed (tests/r_demosplit_resolution_test.js)
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+PASS attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+PASS ten independent visibility slots roundtrip exact3bit values and distinguish generic/rock-wall tags and reject invalid clear/sentinel without gamma interpretation
+PASS actual rock highlights preserve daylight and lift only dim reached light while ordinary and source-free fields stay neutral
+PASS public height frame preserves light slot ordering, copies mutable input and respects scope/default controls
+PASS actual height ray agrees with geometric ridge blockers for point/sun rays and keeps flat/unknown/overhead cases lit
+HEIGHT_SHADER_NATIVE_MODELS 29
+PASS real public world/alias compiler hooks attach only declared scalar heights, preserve colour and distinguish rocks/carving/real geometry/classic
+PASS public pre-HDR frame freezes exact source slots and4MRT packed masks, composition never recaptures/reselects, old callers and off modes remain compatible
+HEIGHT_INSTALLED_ASSETS native=21 replacement=12
+PASS installed21 native and12 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse
+PASS actual public decal, portal and level-view sky materials write all four HDR attachments; multiplicative decals preserve normal distances and every packed slot
+RESULT 8/8 passed (tests/height_shadows_test.js)
+PASS public flashlight capture uses actual offset every frame, one physical512 view at DPR2, perspective projection and exact renderer restoration
+PASS live mesh and instanced casters are borrowed unchanged, ineligible effects skipped, capture failure cleans temporary clones and preserves renderer
+PASS off/invalid/unavailable/epoch/disposal flashlight captures clear readiness without rendering or modifying the existing point cube cache
+RESULT 3/3 passed (tests/flashlight_world_shadow_test.js)
+PASS boot splash waits for an actual console presentation and app readiness, fades once, and terminal fallback readiness needs three completed draws
+PASS manual intent cancels startup permanently; signon packets/timed demos are never frozen and failed splash has a terminal native fallback
+PASS actual loading DOM fades only on its opacity transition; unrelated events do not remove it and missing/reduced-motion pages terminate
+Added packfile boot-public-native-pak (339 files)\n
+PASS actual first-attract client freezes both clip time and packet cursor after native signon, screen renders behind full native console then rolls away only when terminal
+PASS actual manual and timed playback commands permanently bypass first-demo scope, and stopping first attract cannot rearm a later loop
+PASS welcome has an opaque native plaque with hidden draws, blocks public movement but sends reliable handshakes, and releases without demo console/fade or changing ordinary crossings
+PASS real Host_ServerFrame holds native world physics only for single-player welcome while reliable preparation continues, then native time advances normally
+PASS public collector excludes disabled stale shadow/rock/demon caches and lists only the caller enabled asset roles
+PASS partial native asset failures cannot conceal other pending images or current source-shadow retries; frame stays held until both finish
+PASS terminal failed visible rock tiles release to native fallback while other missing tiles/jobs/prepared requests continue to block
+PASS GPU shader completion, sculpted surfaces and visible water remain independent readiness blockers despite optional shader failure diagnostics
+RESULT 11/11 passed (tests/demo_startup_loading_test.js)
+PASS connected same-material and role surfaces share fields regardless of UVs or exposure, using owner presets while construction stays native
+Added packfile pak0.pak (339 files)\n
+ACTUAL_ANGLED_ROCK_EDGES 199 ORIENTATIONS {"roof":38,"floor":11,"slope":2}
+PASS actual E1M1 connected matching cliff pieces share preset height and derivatives across roof/floor/slope edges
+BUNDLED_ROCK_AUDIT {"maps":21,"rock":2244,"soil":1082,"roof":319,"floor":45,"slope":72,"minRockArea":0.039399095431629394}
+PASS all bundled BSP world rock faces are classified independent of sky/orientation and retain nondegenerate shared projection
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+HUB_ROCK4_FACES 308 HARD_BRICKA2_2_FACES 80 SHARED_EDGES 262
+PASS actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact owner presets on connected matching pieces while metal stays native
+PASS tile cache limits jobs to2, deduplicates, ignores cancelled epochs and retains at most96 LRU pages
+PASS GPU half-float pages retain exact shared heights and both slopes with genuine neighboring gutters
+PASS page lookup preserves every resident even under a full96-page hash collision cluster
+PASS public world update retains nearby or visible eligible charts in Newer normals mode and replaces maps without stale jobs
+PASS public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility
+RESULT 9/9 passed (tests/rockfield_runtime_test.js)
+TOTAL 67/67 passed

@@ -1,0 +1,101 @@
+{
+  "reference": {
+    "frames": 152,
+    "durationMs": 10140,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "frames": [],
+  "failures": [],
+  "checks": [],
+  "performance": null,
+  "surfaceChecks": [
+    {
+      "name": "grazing surface reflection strengthens while perpendicular transmission stays clear",
+      "passed": true,
+      "angles": [
+        {
+          "angle": 0,
+          "signal": 34,
+          "glError": 0
+        },
+        {
+          "angle": 45,
+          "signal": 65.16326530612245,
+          "glError": 0
+        },
+        {
+          "angle": 75,
+          "signal": 171.28571428571428,
+          "glError": 0
+        },
+        {
+          "angle": 85,
+          "signal": 206.44897959183675,
+          "glError": 0
+        }
+      ]
+    },
+    {
+      "name": "internal reflection suppresses air outside Snell window even at lower enabled strength",
+      "passed": true,
+      "normalWindowMean": 222.22179999999992,
+      "outsideWindowMean": 0,
+      "lowerStrengthDifference": {
+        "changed": 0,
+        "total": 49,
+        "maximum": 0
+      }
+    },
+    {
+      "name": "reflection off remains an explicit underwater optics opt-out",
+      "passed": true,
+      "reflectionOffMean": 222.20979999999986,
+      "enabledMean": 0
+    },
+    {
+      "name": "dry-view classification prevents a fabricated underside at the same low coordinates",
+      "passed": true,
+      "changed": 0,
+      "total": 49,
+      "maximum": 0
+    },
+    {
+      "name": "opaque foreground before the underside is not replaced by water optics",
+      "passed": true,
+      "changed": 0,
+      "total": 49,
+      "maximum": 0
+    },
+    {
+      "name": "underside provides changing perspective and attenuation cues at multiple depths",
+      "passed": true,
+      "nearToMiddle": {
+        "changed": 61140,
+        "total": 129600,
+        "maximum": 227
+      },
+      "middleToFar": {
+        "changed": 99682,
+        "total": 129600,
+        "maximum": 228
+      }
+    },
+    {
+      "name": "received-light caustics illuminate the submerged floor",
+      "passed": true,
+      "delta": {
+        "changed": 49,
+        "total": 49,
+        "maximum": 11
+      },
+      "beforeMean": 71.60488571428571,
+      "causticMean": 78.3655591836735
+    },
+    {
+      "name": "stronger clear caustics still do not manufacture light",
+      "passed": true,
+      "maximum": 0
+    }
+  ],
+  "surfaceFailures": []
+}

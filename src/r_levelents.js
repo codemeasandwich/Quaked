@@ -7,6 +7,7 @@
 // chosen here the way the QuakeC spawn functions do.
 
 import { R_ParseEntityLump } from './r_levelgraph.js';
+import { Axe_ParseRecord, Axe_ValidOwnerKey } from './axe_record.js';
 
 const MONSTERS = {
 	monster_army: 'soldier', monster_dog: 'dog', monster_ogre: 'ogre', monster_ogre_marksman: 'ogre',
@@ -103,10 +104,22 @@ export function R_LevelEntities( text, snapshot, submodels, skill ) {
 	const worldtype = Math.max( 0, Math.min( 2, parseInt( world.worldtype, 10 ) || 0 ) );
 
 	const out = [];
+	const cutKey=ent=>Axe_ValidOwnerKey(ent._newer_axe_owner)?ent._newer_axe_owner:
+		Number(ent._snapshot_index)>0?'slot:'+ent._snapshot_index:null;
+	const cutOwners=new Set((snapshot||[]).filter(ent=>ent._newer_axe_corpse!==undefined).map(cutKey).filter(Boolean));
 
 	const add = ( ent, fromSnapshot ) => {
+		if(fromSnapshot&&ent._newer_axe_corpse!==undefined){let record=Axe_ParseRecord(ent._newer_axe_corpse);if(record?.key&&Axe_ValidOwnerKey(ent._newer_axe_owner)&&record.key!==ent._newer_axe_owner)record=null;out.push({kind:'axe',record,cutKey:cutKey(ent),origin:record?.origin||vec(ent.origin),time:Number.isFinite(Number(ent._snapshot_time))?Number(ent._snapshot_time):record?.at||0});return;}
+		let fallbackFor=null;
+		if(fromSnapshot&&ent._newer_axe_hidden!==undefined){
+			const owner=Axe_ValidOwnerKey(ent._newer_axe_owner)?ent._newer_axe_owner:Number(ent._newer_axe_hidden)>0?'slot:'+ent._newer_axe_hidden:null;
+			if(!cutOwners.has(owner))return; // an expired, already-replaced corpse
+			fallbackFor=owner;
+		}
 
-		const c = ent.classname;
+		// Native ThrowGib and the size-scaled gore allocator do not assign a
+		// classname. Their explicit saved model still defines a valid corpse.
+		const c = ent.classname ?? (fromSnapshot&&(fallbackFor||/^progs\/(gib[123]|zom_gib|h_[a-z0-9_]+)\.mdl$/.test(ent.model||''))?'':undefined);
 		if ( c === undefined || c.indexOf( 'trigger' ) === 0 || c.indexOf( 'info_' ) === 0 ) return;
 
 		let origin = vec( ent.origin );
@@ -169,7 +182,7 @@ export function R_LevelEntities( text, snapshot, submodels, skill ) {
 
 		}
 
-		out.push( { kind: 'alias', classname: c, model, origin, angles, frame: parseInt( ent.frame, 10 ) || 0, skin, fromSnapshot } );
+		out.push( { kind: fallbackFor?'axeFallback':'alias', ...(fallbackFor?{fallbackFor}:{}), classname: c, model, origin, angles, frame: parseInt( ent.frame, 10 ) || 0, skin, fromSnapshot } );
 
 	};
 

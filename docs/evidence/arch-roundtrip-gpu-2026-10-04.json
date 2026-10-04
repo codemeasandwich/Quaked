@@ -1,0 +1,50 @@
+{
+  "map": "e1m2",
+  "glError": 0,
+  "viewAngles": [
+    0,
+    0,
+    0
+  ],
+  "newPassage": false,
+  "position": [
+    -585.4030151367188,
+    -486.2828369140625,
+    480
+  ],
+  "portals": 1,
+  "crossings": [
+    {
+      "map": "e1m3",
+      "back": false,
+      "oneWay": false,
+      "center": [
+        -639.75,
+        -500,
+        480
+      ],
+      "opening": {
+        "axisA": [
+          0,
+          1,
+          0
+        ],
+        "axisB": [
+          0,
+          0,
+          1
+        ],
+        "a0": -88,
+        "a1": 100,
+        "b0": -24,
+        "b1": 152,
+        "shift": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "errors": []
+}

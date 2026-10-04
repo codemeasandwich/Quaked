@@ -1,0 +1,33 @@
+{
+  "active": true,
+  "pickups": 1,
+  "kinds": [
+    "pentagram"
+  ],
+  "map": "maps/e1m8.bsp",
+  "model": "progs/invulner.mdl",
+  "classic": false,
+  "shadows": {
+    "maxSlots": 8,
+    "resident": 8,
+    "ready": 8,
+    "pending": 0,
+    "requested": 8,
+    "chunks": 269,
+    "triangles": 5938,
+    "captures": 1101,
+    "faceRenders": 6606,
+    "failedCaptures": 0,
+    "spotReady": false,
+    "spotCaptures": 71,
+    "spotRenders": 71,
+    "spotFailedCaptures": 0,
+    "spotError": null,
+    "spotDynamicMeshes": 0,
+    "epoch": 23,
+    "error": null,
+    "disposed": false
+  },
+  "glError": 0,
+  "runtimeErrors": []
+}

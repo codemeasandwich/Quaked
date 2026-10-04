@@ -1,0 +1,37 @@
+{
+  "map": "e1m1",
+  "entryHookLoaded": true,
+  "maxclients": 1,
+  "player": {
+    "index": 1,
+    "health": 100,
+    "classname": "player"
+  },
+  "halls": [],
+  "hdr": 1,
+  "position": [
+    1312,
+    800,
+    -255.89999389648438
+  ],
+  "flashlight": {
+    "active": true,
+    "map": "e1m1",
+    "selectedSkill": null,
+    "noticeShown": false,
+    "on": true
+  },
+  "machine": [
+    {
+      "origin": [
+        1314,
+        450,
+        -200
+      ],
+      "left": 60,
+      "right": 59,
+      "looping": true
+    }
+  ],
+  "errors": []
+}

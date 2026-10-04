@@ -1,0 +1,68 @@
+SURFACE_FALLBACK_NORMAL_BOUNDS [{"size":32,"maxSlope":0.4847358271314817,"alphaMaxError":0},{"size":128,"maxSlope":0.49900264747630757,"alphaMaxError":0},{"size":256,"maxSlope":0.49900264747630757,"alphaMaxError":0}]
+PASS fallback normals bound painted-grain slope while preserving scalar heights, direction and crafted relief
+SURFACE_FILTER_MATERIAL_VARIANTS [{"kind":"ordinary","footprint":4},{"kind":"rock","footprint":4},{"kind":"carved","footprint":4},{"kind":"sculpted","footprint":4},{"kind":"physical","footprint":4},{"kind":"no-normal","footprint":4}]
+PASS actual world shader variants filter micro shadows with stable derivatives and isolate replacement pigment from native and Classic
+PASS real compositor keeps physical water IOR and total internal reflection while limiting apparent refraction travel
+RESULT 3/3 passed (tests/surface_filtering_test.js)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+PASS ten independent visibility slots roundtrip exact3bit values and distinguish generic/rock-wall tags and reject invalid clear/sentinel without gamma interpretation
+PASS actual rock highlights preserve daylight and lift only dim reached light while ordinary and source-free fields stay neutral
+PASS public height frame preserves light slot ordering, copies mutable input and respects scope/default controls
+PASS actual height ray agrees with geometric ridge blockers for point/sun rays and keeps flat/unknown/overhead cases lit
+HEIGHT_SHADER_NATIVE_MODELS 29
+PASS real public world/alias compiler hooks attach only declared scalar heights, preserve colour and distinguish rocks/carving/real geometry/classic
+PASS public pre-HDR frame freezes exact source slots and4MRT packed masks, composition never recaptures/reselects, old callers and off modes remain compatible
+HEIGHT_INSTALLED_ASSETS native=21 replacement=12
+PASS installed21 native and12 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse
+PASS actual public decal, portal and level-view sky materials write all four HDR attachments; multiplicative decals preserve normal distances and every packed slot
+RESULT 8/8 passed (tests/height_shadows_test.js)
+PASS a whole visible distant cliff retains every height page when walking backward and looking away nearby; far invisible surfaces stop requesting
+PASS actual rock shader preserves continuous repeat sampling and bounds only projection while lighting bounce uses stable samples and normal packets use nearest data
+RESULT 2/2 passed (tests/rock_lighting_stability_test.js)
+PASS public charts preserve every original field sample during expansion in all four directions, including negative regions
+PASS connecting previously disconnected regions preserves both existing fields and exact shared-edge samples
+PASS subdivision and T-junction annotations retain native position, normals, texture and lightmap coordinates exactly
+RESULT 3/3 passed (tests/rockfield_continuity_test.js)
+PASS water underside keeps live reflection controls, material cues and independent visual boundaries
+PASS mapped water probes choose real air anchors instead of a solid merged centre and skip unsafe pools before budgeting
+PASS contents-free optical screen blend retains full damage, pickup and powerup flashes without mutating native state
+PASS dynamic-light proximity flashes append to both native and contents-free frame blends and reset next frame
+RESULT 4/4 passed (tests/water_surface_test.js)
+PASS water presentation switches preserve independent optics, native opacity and other liquids
+PASS cached water probes exclude first-person weapon, keep six draws and restore on capture failure
+PASS original water colour/pattern uses contextual cached brightness, live styles and the selected light curve
+RESULT 3/3 passed (tests/water_effect_test.js)
+PASS water appearance menu cycles all choices, bounds invalid settings and archives the selection
+PASS live water looks reuse original materials and preserve physical slime, lava and native boundaries
+RESULT 2/2 passed (tests/water_looks_test.js)
+PASS low shoreline markers retain a safe above-water probe beneath a low ceiling without extra captures
+RESULT 1/1 passed (tests/water_nearfield_test.js)
+PASS ordinary torch sources reach the water compositor within the existing cap and respect independent feature switches
+PASS brown stock water uses a Muddy map default while explicit looks and native paths preserve map identity
+RESULT 2/2 passed (tests/water_concept_test.js)
+PASS flashlight toggles preserve water material and cached reflections while respecting lighting and classic scopes
+RESULT 1/1 passed (tests/water_flashlight_test.js)
+PASS toxic vapour forms small slow anchored streams within the shared particle budget and reuses its geometry
+PASS vapour follows Toxic appearance and native slime while respecting slider, classic and liquids-off gates
+RESULT 2/2 passed (tests/water_vapour_test.js)
+PASS the classic lighting is the default
+PASS light entities become volumetric lights
+PASS emissive textures and lava emit light
+PASS glow materials are boosted only while the pipeline is on
+PASS adjacent water faces merge into one pool; lava and teleporters are not liquids
+PASS liquids are translucent only in the HDR pipeline
+PASS sun shadow casters cover every solid surface, whatever is visible
+PASS liquid links let you see down into a pool and out of it
+PASS the sky decides how bright, what colour and how patterned the light is
+RESULT 9/9 passed (tests/gl_post_test.js)
+TOTAL 49/49 passed

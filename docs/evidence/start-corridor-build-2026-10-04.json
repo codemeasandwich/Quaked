@@ -1,0 +1,26 @@
+{
+  "source_url": "https://rome.ro/s/quake_map_source.zip",
+  "original_map_sha256": "1d680d5a0ac05d3aabffd8f18161a87ab7d9e8a2850abc17b5ff6324e3d18e1f",
+  "compiler": "ericw-tools v0.18.1",
+  "commands": [
+    [
+      "qbsp",
+      "-leaktest",
+      "-nopercent",
+      "start.map"
+    ],
+    [
+      "vis",
+      "-threads",
+      "2",
+      "start.bsp"
+    ],
+    [
+      "light",
+      "-threads",
+      "2",
+      "start.bsp"
+    ]
+  ],
+  "output_sha256": "2492d2fe230a4c8d6aa02cfbe87ab38106ff94295770505960ef276e8760128f"
+}

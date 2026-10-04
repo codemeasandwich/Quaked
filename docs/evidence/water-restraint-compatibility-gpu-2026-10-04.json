@@ -1,0 +1,76 @@
+{
+  "reference": {
+    "frames": 152,
+    "durationMs": 10140,
+    "sourceSha256": "f2fcae232fbb9c8c1c071c553b09e8dcda0aca4d3e82554b1d30e724c1fbf23c"
+  },
+  "frames": [],
+  "failures": [],
+  "checks": [
+    {
+      "name": "animated refraction with reflections disabled",
+      "passed": true,
+      "changed": 1758,
+      "total": 129600,
+      "maximum": 9
+    },
+    {
+      "name": "dry foreground ledge is not bent into water",
+      "passed": true,
+      "changed": 0,
+      "total": 100,
+      "maximum": 0
+    },
+    {
+      "name": "water-off stable native surface",
+      "passed": true,
+      "changed": 0,
+      "total": 129600,
+      "maximum": 0
+    },
+    {
+      "name": "cached probe reflection ripples with SSR disabled",
+      "passed": true,
+      "changed": 1240,
+      "total": 20860,
+      "maximum": 217
+    },
+    {
+      "name": "reflected highlight is present over black transmitted water",
+      "passed": true,
+      "changed": 9058,
+      "total": 20860,
+      "maximum": 255
+    },
+    {
+      "name": "unlit water and caustics do not glow",
+      "passed": true,
+      "maximum": 0
+    },
+    {
+      "name": "water brightness responds to environment",
+      "passed": true,
+      "changed": 8925,
+      "total": 8925,
+      "maximum": 109
+    },
+    {
+      "name": "GPU shader compile/render",
+      "passed": true,
+      "glError": 0
+    }
+  ],
+  "performance": null,
+  "restraint": [
+    {
+      "time": 1,
+      "previousMeanDifference": 13.021849187316814,
+      "currentMeanDifference": 6.693489652722267
+    },
+    {
+      "time": 2.7,
+      "previousMeanDifference": 13.106847855049294,
+      "currentMeanDifference": 6.492983391064926
+    }
+  ]
+}

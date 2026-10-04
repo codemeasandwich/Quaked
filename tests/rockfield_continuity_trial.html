@@ -1,0 +1,9 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>RockField bounded continuity trial</title>
+<style>body{background:#141821;color:#eee;font:15px system-ui;margin:24px}#views{display:grid;grid-template-columns:repeat(4,256px);gap:12px}figure{margin:0}img{width:256px;height:256px}figcaption{font-size:13px}pre{white-space:pre-wrap}h1{font-size:22px}</style>
+<h1>Continuous rock field: unsplit / split / T junction</h1>
+<p>Eight bounded draws using the production worker, mesh shader, HDR attachments and post compositor. Identical texture and original planes; no game or animation loop. PASS requires measured relief and matching rendered pixels across BSP subdivisions.</p>
+<div id="views"></div><pre id="report">Running real worker generation and GPU readback…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<script type="module" src="./rockfield_continuity_trial.js"></script>

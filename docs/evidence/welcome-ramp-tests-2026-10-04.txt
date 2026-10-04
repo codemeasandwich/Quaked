@@ -1,0 +1,525 @@
+Added packfile pak0.pak (339 files)\n
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+FLASHLIGHT_REAL_CORRIDOR_ENTRY [{"label":"EASY","actualEntryPosition":[232,816,8],"entryBounds":[[95,831,-25],[369,1217,-7]],"lateSkillBounds":[[175,1343,-17],[289,1361,113]],"flashlight":1,"nativeSkillStill":1},{"label":"NORMAL","actualEntryPosition":[544,816,8],"entryBounds":[[415,831,-25],[689,1233,-7]],"lateSkillBounds":[[487,1343,-17],[601,1361,113]],"flashlight":1,"nativeSkillStill":1}]
+PASS actual Easy and Normal floor-corridor entry activates light by native movement before skill selection or teleport
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+No duct tape in Mars
+
+No duct tape in Mars
+
+PASS manual off at corridor entry survives repeated native floor touches and the later native skill brush
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS corridor hook rejects nonlocal/dead players, multiplayer, wrong maps/classes/messages and Classic without suppressing QC execution
+RESULT 3/3 passed (tests/flashlight_corridor_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+Server spawned.
+
+NATIVE_EXIT_MACHINE_APPROACH {"message":{"volumeByte":127,"attenuationByte":192},"channelVolume":127,"stockDistanceMultiplier":0.003,"ramp":[{"y":1248,"floor":-343.9650573730469,"eye":[1312,1248,-297.9650573730469],"volumes":[5,5]},{"y":1216,"floor":-327.9650573730469,"eye":[1312,1216,-281.9650573730469],"volumes":[8,8]},{"y":1184,"floor":-311.9650573730469,"eye":[1312,1184,-265.9650573730469],"volumes":[11,11]},{"y":1152,"floor":-295.9650573730469,"eye":[1312,1152,-249.96505737304688],"volumes":[15,15]},{"y":1120,"floor":-279.9650573730469,"eye":[1312,1120,-233.96505737304688],"volumes":[19,19]}],"approach":[59,60]}
+PASS actual native exit-drone channel becomes subtly audible at the BSP ramp bottom and rises along its real floor geometry
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS Classic, other maps, sounds, source positions and dynamic channels retain exact stock attenuation and stereo panning
+Can't register variable nosound, already defined
+
+Can't register variable volume, already defined
+
+Can't register variable precache, already defined
+
+Can't register variable loadas8bit, already defined
+
+Can't register variable bgmvolume, already defined
+
+Can't register variable ambient_level, already defined
+
+Can't register variable ambient_fade, already defined
+
+Can't register variable snd_noextraupdate, already defined
+
+Can't register variable snd_show, already defined
+
+Cmd_AddCommand: play already defined
+
+Cmd_AddCommand: playvol already defined
+
+Cmd_AddCommand: stopsound already defined
+
+Cmd_AddCommand: soundlist already defined
+
+Cmd_AddCommand: soundinfo already defined
+
+PASS native exit loop remains on the existing effects bus, follows master volume once and preserves channel/node identity during approach
+RESULT 3/3 passed (tests/exit_machine_test.js)
+PASS fresh hub stays off for every skill; fresh/restarted levels choose0/1on and2/3off without consuming the user notice
+PASS actual nativeSTART trigger_setskill builtin handles same-valueNormal, all four choices, repeated touches and rejects nonlocal/nonhub skill writes
+PASS F/console off prints the native corner status exactly once per run, travel/load preserves it and fresh/restart resets it; demo/classic are excluded
+PASS public Newer menu preserves shared lighting defaults while hub/level policy and flashlight checkbox use the run input path
+PASS actual attract demo temporaryON/restoreOFF cannot consume a resumed Hard run notice, but the next real user off still can
+RESULT 5/5 passed (tests/flashlight_run_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+NATIVE_CORRIDOR_BEFORE {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1352,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":0,"run":{"active":true,"map":"start","selectedSkill":null,"noticeShown":false,"on":false}}
+NATIVE_CORRIDOR_DIRECT {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1352,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":1,"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true}}
+NATIVE_CORRIDOR_LINKED {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1329,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":1,"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true}}
+NATIVE_CORRIDOR_ALL {"value":0,"point":[232,1329,48],"startsolid":false,"allsolid":false,"actual":[232,1329,48],"bounds":[[175,1343,-17],[289,1361,113]],"run":{"active":true,"map":"start","selectedSkill":0,"noticeShown":false,"on":true},"flashlight":1}
+NATIVE_CORRIDOR_ALL {"value":1,"point":[544,1329,48],"startsolid":false,"allsolid":false,"actual":[544,1329,48],"bounds":[[487,1343,-17],[601,1361,113]],"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true},"flashlight":1}
+NATIVE_CORRIDOR_ALL {"value":2,"point":[864,1329,48],"startsolid":false,"allsolid":false,"actual":[864,1329,48],"bounds":[[807,1343,-17],[921,1361,113]],"run":{"active":true,"map":"start","selectedSkill":2,"noticeShown":false,"on":false},"flashlight":0}
+NATIVE_CORRIDOR_ALL {"value":3,"point":[988,1951,-16],"startsolid":false,"allsolid":false,"actual":[988,1951,-16],"bounds":[[951,1919,-97],[1025,1937,65]],"run":{"active":true,"map":"start","selectedSkill":3,"noticeShown":false,"on":false},"flashlight":0}
+PASS real spawned START player and native QC corridor activate flashlight through both public direct touch and actual linked collision dispatch
+RESULT 1/1 passed (tests/flashlight_native_touch_test.js)
+PASS the flashlight beam trails the view and settles
+PASS the flashlight is off without the Newer lighting
+PASS the muzzle flash is dimmed in a lit room and full in the dark
+RESULT 3/3 passed (tests/r_flashlight_test.js)
+PASS two streamed decks use one master path, bounded random offsets and the real twenty-minute default
+PASS actual media progress crossfades separated sections and caps each source at twenty minutes
+PASS pause, mute and a late play promise cannot leak or advance a partial crossfade
+PASS safe walking produces gentle random swells, then returns to background when unsafe or stationary
+PASS stalled incoming media cannot complete a fade; expired old section recovers to another bounded section
+PASS incoming playback failure recovers without repeating a failing play on every frame
+PASS autoplay rejection waits for a real unlock and shutdown releases every owned node and listener
+PASS short recordings remain bounded and use a proportional overlap
+PASS public gameplay policy excludes classic, title demos, menus, death, intermission, pause, mute and hidden tabs
+PASS authoritative living enemy proximity includes unseen monsters while ignoring corpses and free edicts
+PASS monster engagement, attacks and damage suppress swells until a ten-second combat cooldown ends
+PASS map change resets old damage history and remote fallback recognizes native live/death poses
+PASS public host audio update lazily creates streams only in Newer Game and respects sound lifecycle
+RESULT 13/13 passed (tests/ambient_game_test.js)
+TOTAL 28/28 passed

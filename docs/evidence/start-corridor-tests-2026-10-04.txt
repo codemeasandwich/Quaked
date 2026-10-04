@@ -1,0 +1,245 @@
+Added packfile pak0.pak (339 files)\n
+Added packfile newer/maps.pak (1 files)\n
+PASS public enhanced map registration selects authored START only in Newer and refreshes metadata across mode switches
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+Server spawned.
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+PASS actual server map load synchronizes the map variant before model lookup on Classic to Newer transitions
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+
+ entered the game
+
+START_CORRIDOR_NATIVE_HULLS {"clear":[{"x":-120,"fraction":1,"end":[-120,1408,104]},{"x":-112,"fraction":1,"end":[-112,1408,104]},{"x":-96,"fraction":1,"end":[-96,1408,104]},{"x":-64,"fraction":1,"end":[-64,1408,104]},{"x":-32,"fraction":1,"end":[-32,1408,104]},{"x":-16,"fraction":1,"end":[-16,1408,104]}],"backCap":[-64,1408.03125,104]}
+PASS authored passage clears the real player hull while side frame, bevel and sealed back cap retain collision
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+START_CORRIDOR_NATIVE_ARRIVAL {"moves":27,"sourcePlane":[-64,1436,104],"origin":[480,-388,88],"velocity":[-19,150,7],"view":[12,443,0],"wallBehind":[480,-399.96875,88]}
+PASS native southward movement transfers view and momentum into E1M1 and leaves a solid wall with no reverse crossing
+RESULT 4/4 passed (tests/start_corridor_test.js)
+TOTAL 4/4 passed

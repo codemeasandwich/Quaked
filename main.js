@@ -4,7 +4,7 @@
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/sys.js';
 import { COM_InitArgv } from './src/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/host.js';
-import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack } from './src/pak.js';
+import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/cmd.js';
 import { Con_Printf } from './src/common.js';
 import { Cvar_VariableValue, Cvar_SetValue } from './src/cvar.js';
@@ -67,6 +67,11 @@ async function main() {
 
 		}
 
+		// Small enhanced-only map pack, independent of the optional art bundle.
+		const packedMaps = COM_NewerFile( 'newer/maps.pak' );
+		const newerMaps = packedMaps ? COM_LoadPackFile( 'newer/maps.pak', packedMaps.data.buffer.slice( packedMaps.data.byteOffset, packedMaps.data.byteOffset + packedMaps.size ) ) :
+			await COM_FetchOptionalPak( 'newer/maps.pak', 'newer/maps.pak' );
+		if ( newerMaps ) COM_SetNewerMapsPack( newerMaps );
 		await Host_Init( parms );
 
 		// Ready the supplied held/pickup art before the attract demo begins.

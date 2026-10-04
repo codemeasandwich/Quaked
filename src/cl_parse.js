@@ -13,7 +13,8 @@ import { Con_Printf, Con_DPrintf, SZ_Clear,
 	msg_readcount, msg_badread,
 	net_message, standard_quake } from './common.js';
 import { Sys_Error, Sys_FloatTime } from './sys.js';
-import { COM_FindFile, COM_EnsureFile } from './pak.js';
+import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from './pak.js';
+import { sv, svs } from './server.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cmd_ExecuteString } from './cmd.js';
 import { src_command } from './cmd.js';
@@ -269,6 +270,11 @@ export function CL_ParseServerInfo() {
 	}
 
 	cl.scores = [];
+	// Demo and remote packets must use the server's original map geometry.
+	// Only the paired local loopback connection can share our edited START.
+	const localPeer = cls.netcon?.driver === 0 && !cls.netcon.disconnected && cls.netcon.driverdata != null &&
+		!cls.netcon.driverdata.disconnected && cls.netcon.driverdata === svs.clients?.[0]?.netconnection;
+	COM_SetNewerMapsEnabled( !cls.demoplayback && sv.active && cl.maxclients === 1 && svs.maxclients === 1 && localPeer && sv._newerMapsEnabled === true );
 	for ( let j = 0; j < cl.maxclients; j ++ )
 		cl.scores.push( new scoreboard_t() );
 

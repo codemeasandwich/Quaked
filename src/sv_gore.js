@@ -13,6 +13,7 @@ import { SV_StartParticle } from './sv_main.js';
 import { MSG_WriteByte, MSG_WriteCoord } from './common.js';
 import { svc_temp_entity, TE_GORE } from './protocol.js';
 import { R_NewerGame } from './r_anim.js';
+import { SV_AxeGibSeen } from './sv_axecut.js';
 
 // how much a monster bursts: 1 is a zombie (thin), then by size
 export const GORE_SIZE = {
@@ -91,6 +92,7 @@ export function SV_GoreOnSetModel( e, name ) {
 		g.v.origin = [ o[ 0 ], o[ 1 ], o[ 2 ] ];
 		g.v.model = ED_NewString( name2 );
 		g.v.modelindex = index;
+		SV_AxeGibSeen( g, name2 );
 		g.v.movetype = 6; // MOVETYPE_BOUNCE
 		g.v.solid = 0;
 		const vel = velocityForDamage( dm );

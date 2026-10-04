@@ -135,6 +135,7 @@ export function R_LevelLinks( meta ) {
 
 			exits.push( {
 				map: ent.map,
+				...( ent._seamless_oneway === '1' ? { oneWay: true } : {} ),
 				model: ent.model,
 				mins: sub.mins.slice(),
 				maxs: sub.maxs.slice(),

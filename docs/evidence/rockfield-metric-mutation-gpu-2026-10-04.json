@@ -1,0 +1,87 @@
+{
+  "status": "FAIL",
+  "mutation": "normalized-frame",
+  "fixedDrawCount": 4,
+  "diagnosticHeight": "0.5 + u/16 + v/32",
+  "expectedWorldNormal": [
+    0.34238595123211407,
+    -0.584797970723513,
+    0.7353796256604758
+  ],
+  "quantizationMaximumErrorBound": 0.022054277525455992,
+  "maximumMeanError": 0.003,
+  "results": [
+    {
+      "position": [
+        291.25802805565525,
+        -487.09014381996013,
+        591.8715678984605
+      ],
+      "rollRadians": 0,
+      "samples": 25600,
+      "meanNormalError": 0.007487874503819001,
+      "maximumNormalError": 0.0311575334592333,
+      "measuredWorldNormal": [
+        0.33754587633628935,
+        -0.5816472700776835,
+        0.7401001584384558
+      ],
+      "glError": 0,
+      "pass": false
+    },
+    {
+      "position": [
+        291.25802805565525,
+        -487.09014381996013,
+        591.8715678984605
+      ],
+      "rollRadians": 0.7853981633974483,
+      "samples": 23356,
+      "meanNormalError": 0.00789482875141411,
+      "maximumNormalError": 0.031112170051384027,
+      "measuredWorldNormal": [
+        0.3367717563016983,
+        -0.5820355058150188,
+        0.7401476011827618
+      ],
+      "glError": 0,
+      "pass": false
+    },
+    {
+      "position": [
+        134.78590602811937,
+        -732.0319083251981,
+        467.29224766729016
+      ],
+      "rollRadians": 0,
+      "samples": 23953,
+      "meanNormalError": 0.007743865669897033,
+      "maximumNormalError": 0.030993857523508042,
+      "measuredWorldNormal": [
+        0.3372569744265343,
+        -0.5816607384534167,
+        0.7402213731203909
+      ],
+      "glError": 0,
+      "pass": false
+    },
+    {
+      "position": [
+        134.78590602811937,
+        -732.0319083251981,
+        467.29224766729016
+      ],
+      "rollRadians": 0.7853981633974483,
+      "samples": 21371,
+      "meanNormalError": 0.008175187759896386,
+      "maximumNormalError": 0.031137999529947002,
+      "measuredWorldNormal": [
+        0.33662541782601685,
+        -0.581866075807852,
+        0.7403474414473659
+      ],
+      "glError": 0,
+      "pass": false
+    }
+  ]
+}

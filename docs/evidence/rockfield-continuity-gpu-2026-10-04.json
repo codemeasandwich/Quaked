@@ -1,0 +1,163 @@
+{
+  "status": "PASS",
+  "fixedDrawCount": 8,
+  "unchangedNativeAttributesAndTexture": true,
+  "results": [
+    {
+      "profile": "wall",
+      "pass": true,
+      "actualWorkerTiles": 36,
+      "amplitude": 0.8,
+      "visibility": [
+        {
+          "arrangement": "off",
+          "coveredPixels": 28789,
+          "reliefAvailablePixels": 28789
+        },
+        {
+          "arrangement": "unsplit",
+          "coveredPixels": 28789,
+          "reliefAvailablePixels": 28789
+        },
+        {
+          "arrangement": "split",
+          "coveredPixels": 28789,
+          "reliefAvailablePixels": 28789
+        },
+        {
+          "arrangement": "t-junction",
+          "coveredPixels": 28790,
+          "reliefAvailablePixels": 28790
+        }
+      ],
+      "reliefNormalChange": {
+        "mean": 0.06608525974055131,
+        "maximum": 0.66748046875,
+        "fractionAboveThreshold": 0.4138895670572917,
+        "threshold": 0.01
+      },
+      "comparisons": [
+        {
+          "arrangement": "split",
+          "albedo": {
+            "mean": 0.00274658203125,
+            "maximum": 56,
+            "fractionAboveThreshold": 0.000091552734375,
+            "threshold": 1
+          },
+          "normals": {
+            "mean": 0.00003603481066723665,
+            "maximum": 0.011474609375,
+            "fractionAboveThreshold": 0.000010172526041666666,
+            "threshold": 0.01
+          },
+          "finalImage": {
+            "mean": 0.0013834635416666667,
+            "maximum": 24,
+            "fractionAboveThreshold": 0.000091552734375,
+            "threshold": 3
+          }
+        },
+        {
+          "arrangement": "t-junction",
+          "albedo": {
+            "mean": 0.004023234049479167,
+            "maximum": 91,
+            "fractionAboveThreshold": 0.0001068115234375,
+            "threshold": 1
+          },
+          "normals": {
+            "mean": 0.00005162841019531091,
+            "maximum": 0.8720703125,
+            "fractionAboveThreshold": 0.000035603841145833336,
+            "threshold": 0.01
+          },
+          "finalImage": {
+            "mean": 0.00140380859375,
+            "maximum": 24,
+            "fractionAboveThreshold": 0.000091552734375,
+            "threshold": 3
+          }
+        }
+      ]
+    },
+    {
+      "profile": "ground",
+      "pass": true,
+      "actualWorkerTiles": 36,
+      "amplitude": 0.1,
+      "visibility": [
+        {
+          "arrangement": "off",
+          "coveredPixels": 27242,
+          "reliefAvailablePixels": 27242
+        },
+        {
+          "arrangement": "unsplit",
+          "coveredPixels": 27242,
+          "reliefAvailablePixels": 27242
+        },
+        {
+          "arrangement": "split",
+          "coveredPixels": 27243,
+          "reliefAvailablePixels": 27243
+        },
+        {
+          "arrangement": "t-junction",
+          "coveredPixels": 27243,
+          "reliefAvailablePixels": 27243
+        }
+      ],
+      "reliefNormalChange": {
+        "mean": 0.0363788635780414,
+        "maximum": 0.485107421875,
+        "fractionAboveThreshold": 0.3788553873697917,
+        "threshold": 0.01
+      },
+      "comparisons": [
+        {
+          "arrangement": "split",
+          "albedo": {
+            "mean": 0.008488972981770834,
+            "maximum": 131,
+            "fractionAboveThreshold": 0.000244140625,
+            "threshold": 1
+          },
+          "normals": {
+            "mean": 0.0000621359795331955,
+            "maximum": 0.93408203125,
+            "fractionAboveThreshold": 0.0000152587890625,
+            "threshold": 0.01
+          },
+          "finalImage": {
+            "mean": 0.0035196940104166665,
+            "maximum": 30,
+            "fractionAboveThreshold": 0.000244140625,
+            "threshold": 3
+          }
+        },
+        {
+          "arrangement": "t-junction",
+          "albedo": {
+            "mean": 0.008488972981770834,
+            "maximum": 131,
+            "fractionAboveThreshold": 0.000244140625,
+            "threshold": 1
+          },
+          "normals": {
+            "mean": 0.00006521927813688914,
+            "maximum": 0.93408203125,
+            "fractionAboveThreshold": 0.0000152587890625,
+            "threshold": 0.01
+          },
+          "finalImage": {
+            "mean": 0.0035451253255208335,
+            "maximum": 30,
+            "fractionAboveThreshold": 0.000244140625,
+            "threshold": 3
+          }
+        }
+      ]
+    }
+  ]
+}

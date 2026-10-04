@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>Native pickup effects GPU trial</title>
+<style>body{background:#141821;color:#eee;font:14px system-ui;margin:20px}canvas{display:block;width:100%!important;max-width:768px;height:auto!important}#main{max-width:960px}button{margin:4px}pre{white-space:pre-wrap;overflow-wrap:anywhere}#views{display:flex;flex-wrap:wrap;gap:8px}img{width:384px;max-width:100%}figure{margin:0;max-width:100%}</style>
+<h2>Native Quad / Pentagram / Ring</h2><p>Live procedural volumetric fire on the original models. Animate the fire, rotate the items, or orbit the camera. The symbols stay clear; the black shroud stays behind the pentagram. Checks pause animation and compare actual GPU output.</p>
+<div><button data-focus="0">Quad</button><button data-focus="1">Pentagram</button><button data-focus="2">Ring</button><button data-focus="all">All pickups</button></div>
+<div><button id="animate">Animate fire (20s)</button><span id="animation-status">Paused</span></div>
+<button id="left">Orbit −45°</button><button id="right">Orbit +45°</button><button id="item-rotation">Item rotation +45°</button><button id="above">Above / level</button><button id="time">Time +0.5s</button><button id="toggle">Effects on/off</button><button id="check">Run bounded GPU comparisons</button><button id="extended">Check animation / occlusion / Classic</button><button id="black">Check deep-black shroud</button><button id="volume">Check shader fire volume</button>
+<div id="main"></div><div id="views"></div><pre id="report">Loading native models…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script><script type="module" src="./powerups_gpu_trial.js"></script>

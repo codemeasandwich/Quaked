@@ -48,6 +48,18 @@ let newerPack = null;
 let newerIndex = null; // name -> packfile_t
 let newerActive = false;
 const newerUrls = new Map(); // name -> blob URL
+let newerMaps = new Map(); // separately built geometry; original packs remain intact
+let newerMapsEnabled = false; // only a supported local game explicitly selects these maps
+export function COM_SetNewerMapsEnabled( enabled ) { newerMapsEnabled = enabled === true; }
+
+export function COM_SetNewerMapsPack( pack ) {
+	const maps = new Map();
+	for ( const f of pack?.files || [] ) {
+		if ( ! /^maps\/[a-z0-9_]+\.bsp$/.test( f.name ) ) throw new Error( 'Newer map pack contains non-map entry: ' + f.name );
+		maps.set( f.name, new Uint8Array( pack.data, f.filepos, f.filelen ) );
+	}
+	newerMaps = maps;
+}
 
 // Base path for on-demand loose file fetching
 // Browser: '' (relative URLs like 'maps/foo.bsp')
@@ -161,6 +173,8 @@ Returns { data: Uint8Array, size: number } or null
 export function COM_FindFile( filename ) {
 
 	const search = filename.toLowerCase();
+	const map = newerActive && newerMapsEnabled ? newerMaps.get( search ) : null;
+	if ( map ) return { data: map, size: map.byteLength };
 
 	// Newer Game's own files come first
 	if ( newerActive && newerIndex !== null ) {

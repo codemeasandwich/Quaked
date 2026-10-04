@@ -1,0 +1,159 @@
+{
+  "status": "PASS",
+  "fixedSceneDraws": 7,
+  "stage": "Production separate fire-emission framebuffer captured during R_PostFinish; scene HDR and solid packets read afterward; only volume masters toggled",
+  "proceduralVolumeAnimation": {
+    "times": [
+      1,
+      1.5
+    ],
+    "measured": "RGB of actual separate HalfFloat emission framebuffer; alpha and final scene lighting excluded",
+    "changedRgbComponents": 38944,
+    "maximumLinearRgbDifference": 3.143310546875,
+    "nonfiniteComponents": 0,
+    "unchangedCamera": true,
+    "unchangedNativePose": true,
+    "glErrors": [
+      0,
+      0
+    ],
+    "pass": true
+  },
+  "results": [
+    {
+      "mode": "unoccluded",
+      "unchangedSceneHDR": {
+        "changedComponents": 0,
+        "maximum": 0
+      },
+      "finalImageContribution": {
+        "changedComponents": 30636,
+        "maximum": 202
+      },
+      "actualFirePass": {
+        "sources": 2,
+        "raster": [
+          768,
+          480
+        ],
+        "separateFromSceneHDR": true,
+        "samplesOriginalOpaqueDepth": true,
+        "feedbackFree": true,
+        "emittingPixels": 11114,
+        "nonfinitePixels": 0
+      },
+      "protectedPixels": 938,
+      "changedProtectedPixels": 0,
+      "changedSamples": [],
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "mode": "partial opaque wall",
+      "unchangedSceneHDR": {
+        "changedComponents": 0,
+        "maximum": 0
+      },
+      "finalImageContribution": {
+        "changedComponents": 13573,
+        "maximum": 200
+      },
+      "actualFirePass": {
+        "sources": 2,
+        "raster": [
+          768,
+          480
+        ],
+        "separateFromSceneHDR": true,
+        "samplesOriginalOpaqueDepth": true,
+        "feedbackFree": true,
+        "emittingPixels": 4541,
+        "nonfinitePixels": 0
+      },
+      "protectedPixels": 27612,
+      "changedProtectedPixels": 0,
+      "changedSamples": [],
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    },
+    {
+      "mode": "full opaque wall",
+      "unchangedSceneHDR": {
+        "changedComponents": 0,
+        "maximum": 0
+      },
+      "finalImageContribution": {
+        "changedComponents": 0,
+        "maximum": 0
+      },
+      "actualFirePass": {
+        "sources": 2,
+        "raster": [
+          768,
+          480
+        ],
+        "separateFromSceneHDR": true,
+        "samplesOriginalOpaqueDepth": true,
+        "feedbackFree": true,
+        "emittingPixels": 0,
+        "nonfinitePixels": 0
+      },
+      "protectedPixels": 91537,
+      "changedProtectedPixels": 0,
+      "changedSamples": [],
+      "retainedSolidPackets": {
+        "normals": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "albedo": {
+          "changedComponents": 0,
+          "maximum": 0
+        },
+        "heightMasks": {
+          "changedComponents": 0,
+          "maximum": 0
+        }
+      },
+      "glErrors": [
+        0,
+        0
+      ],
+      "pass": true
+    }
+  ]
+}

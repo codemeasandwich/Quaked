@@ -464,3 +464,39 @@ document.querySelector( '#torch-checks' ).onclick = () => {
 	}
 	publish( evidence.torchFailures.length ? 'FAIL — ordinary reflected-light checks' : 'PASS — ordinary reflected-light checks' ); running = false;
 };
+
+// Compare the current compositor with its previous water constants in this
+// fixture only. Same source pixels, camera, time, absorption and lights.
+let restraintMode='current';
+const restraintSources=new WeakMap(),restraintRender=renderer.render;
+renderer.render=function(scene,camera){
+ const material=scene.children[0]?.material;
+ if(material?.uniforms?.uWaterCount && material.fragmentShader){
+  if(!restraintSources.has(material))restraintSources.set(material,{source:material.fragmentShader,mode:null});
+  const stored=restraintSources.get(material);
+  if(stored.mode!==restraintMode){
+   let source=stored.source;
+   if(restraintMode==='previous')source=source.replace('liquidRipple( look ) * 0.65','liquidRipple( look )').replace('vec2( 0.004 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.004 )','vec2( 0.012 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.012 )').replace('clamp( offset * 0.35,','clamp( offset,');
+   if(restraintMode==='straight')source=source.replace('uvd = waterRefractionUv( uvd );','uvd = uvd;');
+   material.fragmentShader=source;material.needsUpdate=true;stored.mode=restraintMode;
+  }
+ }
+ return restraintRender.call(this,scene,camera);
+};
+document.querySelector('#restraint-checks').onclick=()=>{
+ if(running)return;running=true;evidence.checks=[];evidence.failures=[];flashlightOn=false;flashlightAim=null;surfaceView=null;
+ setEnvironment('dim');cvar.Cvar_SetValue('r_newer_lighting',0);cvar.Cvar_SetValue('r_reflect',0);cvar.Cvar_SetValue('r_caustics',0);cvar.Cvar_SetValue('r_newer_water',1);cvar.Cvar_SetValue('r_water_look',1);
+ const records=[];
+ try{
+  for(const time of [1,2.7]){
+   const draws={};for(const mode of ['straight','previous','current']){restraintMode=mode;const error=draw(time,false,48);draws[mode]=pixels();check('restraint '+mode+' GPU t='+time,error===0,{glError:error});}
+   // Interior submerged checker receiver only: exclude bank/ledge silhouettes.
+   const roi=i=>{const x=i%480,y=Math.floor(i/480);return x>145&&x<285&&y>35&&y<90;};
+   const difference=(a,b)=>{let sum=0,count=0;for(let i=0;i<a.length/4;i++)if(roi(i)){for(let c=0;c<3;c++)sum+=Math.abs(a[i*4+c]-b[i*4+c]);count+=3;}return sum/count;};
+   const previous=difference(draws.previous,draws.straight),current=difference(draws.current,draws.straight);
+   const sample={time,previousMeanDifference:previous,currentMeanDifference:current};records.push(sample);
+   check('current refraction keeps submerged pattern closer to straight receiver t='+time,previous>.1&&current<previous*.85,sample);
+  }
+  evidence.restraint=records;
+ }finally{restraintMode='current';draw(1);running=false;publish(evidence.failures.length?'FAIL — restrained water':'PASS — restrained water');}
+};

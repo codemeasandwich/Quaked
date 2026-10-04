@@ -63,8 +63,10 @@ import { VectorCopy, VectorAdd, DotProduct } from './mathlib.js';
 import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from './gl_model.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from './pr_edict.js';
 import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from './progs.js';
-import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks } from './sv_seamless.js';
+import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled } from './sv_seamless.js';
 import { R_NewerGame } from './r_anim.js';
+import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from './pak.js';
+import { cls, ca_dedicated } from './client.js';
 
 SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf, Mod_ForName } );
 import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
@@ -1553,6 +1555,7 @@ const CARRY_TIMERS = [
 	[ 4194304, 'super_damage_finished', 'super_time' ]
 ];
 let carriedPowerups = null;
+export function SV_ClearCarriedPowerups() { carriedPowerups = null; }
 
 function SV_CapturePowerups( ent ) {
 
@@ -1563,7 +1566,8 @@ function SV_CapturePowerups( ent ) {
 	const timers = [];
 	for ( const [ bit, finished ] of CARRY_TIMERS ) {
 
-		const left = ent.v[ finished ] - now;
+		const field = GetEdictFieldValue( ent, finished );
+		const left = field ? field.accessor.getFloat( field.ofs ) - now : 0;
 		if ( ( ent.v.items & bit ) !== 0 && left > 0 ) timers.push( [ bit, finished, left ] );
 
 	}
@@ -1577,14 +1581,17 @@ export function SV_RestorePowerups( ent ) {
 
 	const timers = carriedPowerups;
 	carriedPowerups = null;
-	if ( ! timers ) return;
+	if ( ! timers || ! R_NewerGame() ) return;
 
 	for ( const [ bit, finished, left ] of timers ) {
 
+		const field = GetEdictFieldValue( ent, finished );
+		if ( ! field ) continue;
 		ent.v.items = ( ent.v.items | 0 ) | bit;
-		ent.v[ finished ] = sv.time + left;
+		field.accessor.setFloat( field.ofs, sv.time + left );
 		const flag = CARRY_TIMERS.find( t => t[ 0 ] === bit )[ 2 ];
-		ent.v[ flag ] = 1; // as when it is picked up: its sound and warnings are due
+		const warning = GetEdictFieldValue( ent, flag );
+		if ( warning ) warning.accessor.setFloat( warning.ofs, 1 );
 
 	}
 
@@ -1680,6 +1687,12 @@ This is called at the start of each level
 */
 export function SV_SpawnServer( server ) {
 
+	// Map commands can follow r_hdr in the same command batch, before a render
+	// frame has synchronized the asset mode. Choose geometry from this game mode.
+	COM_SetNewerActive( R_NewerGame() );
+	const useNewerMaps = R_NewerGame() && cls.state !== ca_dedicated && svs.maxclients === 1 && SV_SeamlessEnabled();
+	COM_SetNewerMapsEnabled( useNewerMaps );
+
 	// let's not have any servers with no name
 	if ( hostname.string.length === 0 )
 		Cvar_Set( 'hostname', 'UNNAMED' );
@@ -1720,6 +1733,7 @@ export function SV_SpawnServer( server ) {
 
 	// clear the server struct
 	Object.assign( sv, new ( sv.constructor )() );
+	sv._newerMapsEnabled = useNewerMaps;
 
 	// Ensure progs.js has references to the canonical server objects
 	PR_SetSV( sv );

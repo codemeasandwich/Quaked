@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen } from './r_rockfield.js';
 import { Sys_Error } from './sys.js';
 import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from './r_anim.js';
+import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArchHidden } from './r_archframe.js';
 import { DEMON_TEXTURES, R_DemonSurfaceData } from './r_demonrelief.js';
 
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
@@ -1895,6 +1896,8 @@ export function R_DrawBrushModel( e ) {
 	}
 
 	// Add to scene (will be removed next frame by R_DrawWorld cleanup)
+	brushGroup.userData.archHidden = R_ArchModelHidden( clmodel.name, clmodel.surfaces );
+	brushGroup.visible = ! ( R_NewerGame() && brushGroup.userData.archHidden );
 	if ( scene && ! brushGroup.parent ) scene.add( brushGroup );
 	brushEntityGroups.push( brushGroup );
 	R_RockfieldBrushSeen( clmodel, brushGroup, r_refdef.vieworg, r_framecount );
@@ -1911,6 +1914,7 @@ export function R_DrawBrushModel( e ) {
 
 // Queue a visible world surface for drawing (by texture chain, or right away)
 function _chainSurface( surf, worldmodel ) {
+	if ( R_NewerGame() && R_ArchSurfaceHidden( surf ) ) return;
 
 	// if sorting by texture, just store it out
 	if ( gl_texsort.value ) {
@@ -3079,7 +3083,7 @@ function R_BuildWorldMeshes() {
 
 		group.totalVerts += vertCount;
 		group.totalGeoms ++;
-		group.surfaceData.push( { geom: geom, leaves: leaves } );
+		group.surfaceData.push( { geom: geom, leaves: leaves, surface: surf } );
 
 	}
 
@@ -3124,6 +3128,7 @@ function R_BuildWorldMeshes() {
 			instanceVisInfo.push( {
 				batch: batchedMesh,
 				instanceId: instanceId,
+				surface: surfData.surface,
 				leaves: surfData.leaves
 			} );
 
@@ -3168,7 +3173,7 @@ export function R_WorldShowAll( all ) {
 
 	if ( all ) {
 
-		for ( const info of instanceVisInfo ) info.batch.setVisibleAt( info.instanceId, true );
+		for ( const info of instanceVisInfo ) info.batch.setVisibleAt( info.instanceId, ! ( R_NewerGame() && R_ArchSurfaceHidden( info.surface ) ) );
 		return;
 
 	}
@@ -3178,7 +3183,26 @@ export function R_WorldShowAll( all ) {
 
 }
 
+let archVisibilityKey = -1;
+const noArchRestore = () => {};
+// Classic draws the same scene without rebuilding its world. Batched instance
+// visibility is not Object3D.visible, so it needs its own exception-safe scope.
+export function R_ClassicArchVisibility() {
+	if(!R_HasArchHidden())return noArchRestore;
+	const saved=[];
+	const restore=()=>{for(const [info,visible] of saved)info.batch.setVisibleAt(info.instanceId,visible);};
+	try {
+		for(const info of instanceVisInfo){
+			if(!R_ArchSurfaceHidden(info.surface))continue;
+			saved.push([info,info.batch.getVisibleAt(info.instanceId)]);
+			info.batch.setVisibleAt(info.instanceId,info.leaves.some(leaf=>leaf.visframe===r_visframecount));
+		}
+	} catch(error) {restore();throw error;}
+	return restore;
+}
 function R_UpdateWorldVisibility() {
+	const key = R_ArchHiddenRevision() * 2 + Number( R_NewerGame() );
+	if ( key !== archVisibilityKey ) { archVisibilityKey = key; _visibilityNeedsUpdate = true; }
 
 	// Skip update if viewleaf hasn't changed (PVS is the same)
 	if ( ! _visibilityNeedsUpdate ) return;
@@ -3201,7 +3225,7 @@ function R_UpdateWorldVisibility() {
 
 		}
 
-		info.batch.setVisibleAt( info.instanceId, visible );
+		info.batch.setVisibleAt( info.instanceId, visible && ! ( R_NewerGame() && R_ArchSurfaceHidden( info.surface ) ) );
 
 	}
 

@@ -1,0 +1,15 @@
+- strong: Continuous natural rock relief
+- 'button "Relief: on"'
+- button "Outdoor entrance"
+- button "Cliff close-up"
+- button "Step back from cliff"
+- button "Look at roof"
+- button "Restart level"
+- button "Measure on/off frame time"
+- button "Hide controls"
+- generic: Connected rock surfaces · saved relief settings · original textures and geometry.
+- generic "Diagnostics and measurement"
+- button "Inspect visible materials"
+- button "Inspect GPU shadow masks" [active]
+- generic: "{ \"charts\": 10, \"resident\": 487, \"pending\": 0, \"failedTiles\": 0, \"failedVisibleTiles\": 0, \"maxPages\": 487, \"pageLimit\": 2048, \"desiredTiles\": 487, \"missingVisibleTiles\": 0, \"overflowTiles\": 0, \"error\": null, \"active\": true, \"preparedState\": \"fallback\", \"preparedTiles\": 0, \"generatedTiles\": 529, \"preparedError\": \"Rock bake load timed out\", \"demonRelief\": { \"eligible\": 0, \"ready\": 0, \"pending\": 0, \"triangles\": 0, \"enabled\": true }, \"level\": \"maps/e1m1.bsp\", \"signon\": 4, \"setupCount\": 2, \"serverActive\": true, \"spawned\": true, \"demo\": false, \"viewangles\": [ -7.03125, 33.75, 0 ], \"player\": [ 128, 768, -199.96875 ], \"errors\": [] }"
+- generic: "{ \"attachments\": 4, \"maskClasses\": { \"invalidClear\": 19049, \"ordinaryHeight\": 322603, \"rockWall\": 567476, \"invalidOpaque\": 13912 }, \"rockWallSpotVisibilityBins\": [ 147, 9, 6, 8, 6, 7, 19, 567274 ], \"defaults\": { \"gamma\": 0.75, \"r_flashlight\": 1, \"r_heightshadows\": 1, \"r_pointshadows\": 1 }, \"worldShadows\": { \"maxSlots\": 8, \"resident\": 8, \"ready\": 8, \"pending\": 0, \"requested\": 8, \"chunks\": 229, \"triangles\": 9614, \"captures\": 46, \"faceRenders\": 276, \"failedCaptures\": 0, \"spotReady\": true, \"spotCaptures\": 1481, \"spotRenders\": 1481, \"spotFailedCaptures\": 0, \"spotError\": null, \"spotDynamicMeshes\": 53, \"epoch\": 11, \"error\": null, \"disposed\": false }, \"glError\": 0, \"errors\": [] }"

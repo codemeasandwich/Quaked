@@ -133,6 +133,7 @@ export class edict_t {
 	clearFields() {
 
 		this._fieldAccessor.clearAll();
+		this._axeCorpse = null; this._axeSuppressed = false; this._axeSuppressedBy = 0; this._axeReady = false; this._axeOwnerKey = null; this._axeInvalidHandled = false; this._axeInvalidRecord = false;
 
 	}
 

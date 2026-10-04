@@ -1,0 +1,196 @@
+{
+  "status": "PASS",
+  "mutation": null,
+  "checks": [
+    {
+      "passed": true,
+      "name": "real receiver coverage and valid source mask",
+      "valid": 55200,
+      "count": 55200
+    },
+    {
+      "passed": true,
+      "name": "subpixel grain shadows converge to averaged-height oracle",
+      "meanVisibilityError": 0
+    },
+    {
+      "passed": true,
+      "name": "resolved broad ridge still casts a material shadow",
+      "coarseShadow": 7200
+    },
+    {
+      "passed": true,
+      "name": "flat-height negative control casts no relief shadows",
+      "flatShadow": 0
+    },
+    {
+      "passed": true,
+      "name": "oracle decodes actual SRGB8 albedo storage",
+      "colorSpace": "srgb"
+    },
+    {
+      "passed": true,
+      "name": "unfiltered native control contains resolved pixel grain",
+      "neighborDifference": 100.21451569442618,
+      "leftMean": 79.79612854821583,
+      "rightMean": 159.56322200370545
+    },
+    {
+      "passed": true,
+      "name": "replacement pigment filtering suppresses fine grain",
+      "neighborDifference": 0,
+      "leftMean": 80.06712191084861,
+      "rightMean": 160.8430697681716
+    },
+    {
+      "passed": true,
+      "name": "broad linear pigment contrast remains readable",
+      "neighborDifference": 0,
+      "leftMean": 80.06712191084861,
+      "rightMean": 160.8430697681716
+    },
+    {
+      "passed": true,
+      "name": "filter preserves linear mean pigment in both broad regions",
+      "native": {
+        "neighborDifference": 100.21451569442618,
+        "leftMean": 79.79612854821583,
+        "rightMean": 159.56322200370545
+      },
+      "upgraded": {
+        "neighborDifference": 0,
+        "leftMean": 80.06712191084861,
+        "rightMean": 160.8430697681716
+      }
+    },
+    {
+      "passed": true,
+      "name": "filtered linear values agree with independently authored two-texel means",
+      "expected": [
+        80,
+        160
+      ],
+      "actual": [
+        80.06712191084861,
+        160.8430697681716
+      ]
+    },
+    {
+      "passed": true,
+      "name": "Classic upgraded material matches original pigment pixel-for-pixel",
+      "classicChanged": 0
+    },
+    {
+      "passed": true,
+      "name": "GPU supports actual oblique anisotropic sampling",
+      "anisotropy": 16
+    },
+    {
+      "passed": true,
+      "name": "unequal UV footprint retains a measurable minor-axis grain control 4,1",
+      "repeat": [
+        4,
+        1
+      ],
+      "native": {
+        "meanAbsoluteGrain": 30.000466622220433,
+        "lowMean": 79.47181169955974,
+        "highMean": 159.9214051254072,
+        "samples": 55552
+      }
+    },
+    {
+      "passed": true,
+      "name": "independent footprint filtering removes minor-axis grain 4,1",
+      "repeat": [
+        4,
+        1
+      ],
+      "upgraded": {
+        "meanAbsoluteGrain": 0.455095839537527,
+        "lowMean": 80.06712191084894,
+        "highMean": 160.84306976818254,
+        "samples": 55552
+      },
+      "native": {
+        "meanAbsoluteGrain": 30.000466622220433,
+        "lowMean": 79.47181169955974,
+        "highMean": 159.9214051254072,
+        "samples": 55552
+      }
+    },
+    {
+      "passed": true,
+      "name": "oblique broad pigment bands keep authored linear color 4,1",
+      "meanAbsoluteGrain": 0.455095839537527,
+      "lowMean": 80.06712191084894,
+      "highMean": 160.84306976818254,
+      "samples": 55552
+    },
+    {
+      "passed": true,
+      "name": "oblique Classic pigment exactly matches native sampling 4,1",
+      "changed": 0
+    },
+    {
+      "passed": true,
+      "name": "unequal UV footprint retains a measurable minor-axis grain control 1,4",
+      "repeat": [
+        1,
+        4
+      ],
+      "native": {
+        "meanAbsoluteGrain": 19.978374965491167,
+        "lowMean": 79.83069013861851,
+        "highMean": 160.6993656289354,
+        "samples": 54560
+      }
+    },
+    {
+      "passed": true,
+      "name": "independent footprint filtering removes minor-axis grain 1,4",
+      "repeat": [
+        1,
+        4
+      ],
+      "upgraded": {
+        "meanAbsoluteGrain": 0.45509583953755944,
+        "lowMean": 80.0671219108487,
+        "highMean": 160.84306976817658,
+        "samples": 54560
+      },
+      "native": {
+        "meanAbsoluteGrain": 19.978374965491167,
+        "lowMean": 79.83069013861851,
+        "highMean": 160.6993656289354,
+        "samples": 54560
+      }
+    },
+    {
+      "passed": true,
+      "name": "oblique broad pigment bands keep authored linear color 1,4",
+      "meanAbsoluteGrain": 0.45509583953755944,
+      "lowMean": 80.0671219108487,
+      "highMean": 160.84306976817658,
+      "samples": 54560
+    },
+    {
+      "passed": true,
+      "name": "oblique Classic pigment exactly matches native sampling 1,4",
+      "changed": 0
+    },
+    {
+      "passed": true,
+      "name": "oblique filtering does not repaint source image"
+    },
+    {
+      "passed": true,
+      "name": "native geometry, UVs and image bytes immutable"
+    },
+    {
+      "passed": true,
+      "name": "all actual shader variants compile and render without GL errors",
+      "errors": []
+    }
+  ]
+}

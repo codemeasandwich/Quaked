@@ -1,0 +1,45 @@
+{
+  "map": "e1m1",
+  "glError": 0,
+  "paused": true,
+  "powerups": {
+    "super_damage_finished": 116.44799333496093,
+    "invincible_finished": -63.51830000000001
+  },
+  "target": {
+    "class": "monster_army",
+    "health": -50,
+    "frame": 0,
+    "model": "progs/h_guard.mdl"
+  },
+  "corpses": [
+    {
+      "model": "progs/soldier.mdl",
+      "frame": 0,
+      "normal": [
+        0.5486421893572127,
+        -0.031872671733498524,
+        0.8354495082612073
+      ],
+      "ready": true,
+      "error": null,
+      "halves": 2,
+      "draws": 20424,
+      "parts": [
+        {
+          "floor": 16.03125,
+          "lowest": 16.53125,
+          "bodyTriangles": 251,
+          "capTriangles": 41
+        },
+        {
+          "floor": 16.03125,
+          "lowest": 16.53125,
+          "bodyTriangles": 179,
+          "capTriangles": 41
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,103 @@
+--- src/gl_post.js before current correction
++++ src/gl_post.js after current correction
+@@ -374,6 +374,9 @@
+ 	shader.uniforms.uLmGamma = lightCurve;
+ 	shader.uniforms.uLighting = lightingLook;
+ 	shader.uniforms.uClassic = classicLook;
++	// Resolve replacement pigment over at least a small texel footprint. This
++	// softens baked pinprick grain without changing the image, native UVs or Classic.
++	shader.uniforms.uPigmentMinFootprint = { get value() { return thisMaterial.userData.detailDiffuse?.userData.newerPicture ? 4 : 0; } };
+ 	Object.assign( shader.uniforms, heightShadowUniforms );
+ 	shader.uniforms.uHasHeightShadow = { get value() { return thisMaterial.normalMap?.userData.heightSource ? 1 : 0; } };
+ 
+@@ -414,7 +417,18 @@
+ 			.replaceAll( '1.0 - textureGrad( normalMap, prev, gx, gy ).a', depth( 'prev' ) );
+ 
+ 	}
+-	f = f.replace( '#include <map_fragment>', parallax + THREE.ShaderChunk.map_fragment.replace( /vMapUv/g, '_pUv' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
++	const pigment = `
++ #ifdef USE_MAP
++ vec2 qrPigmentDx=dFdx(vMapUv),qrPigmentDy=dFdy(vMapUv);
++ vec2 qrPigmentSize=vec2(textureSize(map,0));
++ // Enforce both footprint axes: widening only the larger derivative leaves
++ // black grain resolved along the minor axis on angled walls.
++ vec2 qrPigmentFootprint=vec2(length(qrPigmentDx*qrPigmentSize),length(qrPigmentDy*qrPigmentSize));
++ vec2 qrPigmentFilter=max(vec2(1.),uPigmentMinFootprint*(1.-uClassic)/max(qrPigmentFootprint,vec2(1e-6)));
++ #endif
++ `;
++ f = 'uniform float uPigmentMinFootprint;\n' + f;
++ f = f.replace( '#include <map_fragment>', pigment + parallax + THREE.ShaderChunk.map_fragment.replace( 'texture2D( map, vMapUv )', 'textureGrad( map, _pUv, qrPigmentDx*qrPigmentFilter.x, qrPigmentDy*qrPigmentFilter.y )' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
+ 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
+ 	// depth is for looking at it from a little way off
+ 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
+@@ -465,11 +479,12 @@
+  const microDepth = reference ? PARALLAX_DEPTH * 6 : relief?.depth ?? PARALLAX_DEPTH;
+  const provider = `
+  uniform float uHasHeightShadow;
++ vec2 qrShadowDx,qrShadowDy;
+  float qrShadowHeight(vec2 uv,int layer) {
+   ${rock ? 'if(layer==1)return qrRockHeight(uv);' : ''}
+   #ifdef USE_NORMALMAP
+-  float h=textureLod(normalMap,uv,0.).a;
+-  ${reference ? 'float b=textureLod(uCarveReference,fract(uv)*uCarveReferenceUV.xy+uCarveReferenceUV.zw,0.).a; return clamp(1.-(1.-b+8.*max(0.,b-h))/6.,0.,1.);' : 'return h;'}
++  float h=textureGrad(normalMap,uv,qrShadowDx,qrShadowDy).a;
++  ${reference ? 'float b=textureGrad(uCarveReference,fract(uv)*uCarveReferenceUV.xy+uCarveReferenceUV.zw,qrShadowDx*uCarveReferenceUV.xy,qrShadowDy*uCarveReferenceUV.xy).a; return clamp(1.-(1.-b+8.*max(0.,b-h))/6.,0.,1.);' : 'return h;'}
+   #else
+   return 1.;
+   #endif
+@@ -479,7 +494,7 @@
+   return true;
+  }
+  `;
+- f = HEIGHT_SHADOW_GLSL + f.replace( 'void main() {', provider + '\nvoid main() {' );
++ f = HEIGHT_SHADOW_GLSL + f.replace( 'void main() {', provider + '\nvoid main() {\n#ifdef USE_MAP\nqrShadowDx=dFdx(vMapUv);qrShadowDy=dFdy(vMapUv);\n#else\nqrShadowDx=vec2(0.);qrShadowDy=vec2(0.);\n#endif' );
+  const ctx = `
+  vec4 qrHeightMask=vec4(1.);
+  #ifdef USE_NORMALMAP
+@@ -580,7 +595,7 @@
+ 	material.onBeforeCompile = patchDetailShader;
+ 	material.customProgramCacheKey = function () {
+ 
+-		return ( this.userData.rockField ? 'quake-detail-rock-v1' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-v1';
++		return ( this.userData.rockField ? 'quake-detail-rock-v1' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-filtered-v2';
+ 
+ 	};
+ 
+@@ -2055,7 +2070,8 @@
+ 	slope += a * 0.055 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
+ 	slope += b * 0.015 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
+ 	slope += c * 0.009 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
+-	return normalize( vec3( - slope * liquidRipple( look ), 1.0 ) );
++	// Keep moving reflection definition without a faceted/prismatic surface.
++	return normalize( vec3( - slope * liquidRipple( look ) * 0.65, 1.0 ) );
+ }
+ 
+ // Bend the submerged scene before its albedo, normals and deferred lighting
+@@ -2093,8 +2109,10 @@
+ 		vec4 qb = uProj * vec4( toView * ( target - cam ), 1.0 );
+ 		vec4 qs = uProj * vec4( toView * ( straight - cam ), 1.0 );
+ 		vec2 offset = ( qb.xy / qb.w - qs.xy / qs.w ) * 0.5;
+-		vec2 limit = vec2( 0.012 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.012 );
+-		vec2 candidate = uv + clamp( offset, - limit, limit ) * smoothstep( 0.0, 6.0, shore ) * liquidRefraction( hi.w );
++		// Refraction is a restrained visual offset, while physical IOR still owns
++		// the underwater Snell window and total internal reflection.
++		vec2 limit = vec2( 0.004 * uProj[ 0 ][ 0 ] / uProj[ 1 ][ 1 ], 0.004 );
++		vec2 candidate = uv + clamp( offset * 0.35, - limit, limit ) * smoothstep( 0.0, 6.0, shore ) * liquidRefraction( hi.w );
+ 		if ( any( lessThan( candidate, vec2( 0.0 ) ) ) || any( greaterThan( candidate, vec2( 1.0 ) ) ) ) return uv;
+ 		if ( texture2D( tNormal, candidate ).a < - 0.5 ) return uv;
+ 		bool candidateSky = texture2D( tDepth, candidate ).x >= 0.99999;
+--- src/gl_normals.js before current correction
++++ src/gl_normals.js after current correction
+@@ -166,6 +166,12 @@
+ 			// u grows with x and v with the row index, the same as the texture coordinates
+ 			let nx = - gx * 0.125 * scale;
+ 			let ny = - gy * 0.125 * scale;
++			// The fallback derives height from painted grain, not authored geometry.
++			// Honour its intended tilt limit before high-resolution pixels turn into
++			// near-vertical facets. Crafted-height materials keep their own cap.
++			const slope = Math.hypot( nx, ny );
++			const tilt = 1 / Math.sqrt( 1 + ( slope / MAX_TILT ) ** 2 );
++			nx *= tilt; ny *= tilt;
+ 			let nz = 1;
+ 			const len = Math.sqrt( nx * nx + ny * ny + nz * nz );
+ 			nx /= len; ny /= len; nz /= len;

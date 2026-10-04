@@ -18,6 +18,8 @@ import { S_LoadSound } from './snd_mem.js';
 import { cl } from './client.js';
 import { Mod_PointInLeaf } from './gl_model.js';
 import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from './s_ambientmusic.js';
+import { S_ExitMachineFalloff } from './s_exitmachine.js';
+import { R_NewerGame } from './r_anim.js';
 
 /*
 ==============================================================================
@@ -434,6 +436,7 @@ export function SND_Spatialize( ch ) {
 
 	}
 
+	const machine = S_ExitMachineFalloff( cl.worldmodel?.name, ch, dist, R_NewerGame() );
 	dist *= ch.dist_mult;
 
 	// dot product with normalized source vector gives [-1, 1]
@@ -443,11 +446,11 @@ export function SND_Spatialize( ch ) {
 	let lscale = 1.0 - dot;
 
 	// add in distance effect
-	let scale = ( 1.0 - dist ) * rscale;
+	let scale = ( machine ?? ( 1.0 - dist ) ) * rscale;
 	ch.rightvol = Math.floor( ch.master_vol * scale );
 	if ( ch.rightvol < 0 ) ch.rightvol = 0;
 
-	scale = ( 1.0 - dist ) * lscale;
+	scale = ( machine ?? ( 1.0 - dist ) ) * lscale;
 	ch.leftvol = Math.floor( ch.master_vol * scale );
 	if ( ch.leftvol < 0 ) ch.leftvol = 0;
 

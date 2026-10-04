@@ -1,0 +1,15 @@
+- strong: Continuous natural rock relief
+- 'button "Relief: on"'
+- button "Outdoor entrance"
+- button "Cliff close-up"
+- button "Step back from cliff"
+- button "Look at roof"
+- button "Restart level"
+- button "Measure on/off frame time"
+- button "Hide controls"
+- generic: Connected rock surfaces · saved relief settings · original textures and geometry.
+- generic "Diagnostics and measurement" [active]
+- button "Inspect visible materials"
+- button "Inspect GPU shadow masks"
+- generic: "{ \"charts\": 10, \"resident\": 513, \"pending\": 0, \"failedTiles\": 0, \"failedVisibleTiles\": 0, \"maxPages\": 513, \"pageLimit\": 2048, \"desiredTiles\": 513, \"missingVisibleTiles\": 0, \"overflowTiles\": 0, \"error\": null, \"active\": true, \"preparedState\": \"fallback\", \"preparedTiles\": 0, \"generatedTiles\": 571, \"preparedError\": \"Rock bake load timed out\", \"demonRelief\": { \"eligible\": 0, \"ready\": 0, \"pending\": 0, \"triangles\": 0, \"enabled\": true }, \"level\": \"maps/e1m1.bsp\", \"signon\": 4, \"setupCount\": 3, \"serverActive\": true, \"spawned\": true, \"demo\": false, \"viewangles\": [ 0, 90, 0 ], \"player\": [ 128, 1008, -199.96875 ], \"errors\": [] }"
+- generic: "{ \"frameDeliveryMeasurement\": [ { \"relief\": false, \"samples\": 59, \"meanMs\": 144.92542372881317, \"medianMs\": 149.90000000002328, \"player\": [ 128, 1008, -199.96875 ], \"canvas\": [ 2560, 1440 ], \"cache\": { \"charts\": 10, \"resident\": 513, \"pending\": 0, \"failedTiles\": 0, \"failedVisibleTiles\": 0, \"maxPages\": 513, \"pageLimit\": 2048, \"desiredTiles\": 513, \"missingVisibleTiles\": 0, \"overflowTiles\": 0, \"error\": null, \"active\": false, \"preparedState\": \"fallback\", \"preparedTiles\": 0, \"generatedTiles\": 571, \"preparedError\": \"Rock bake load timed out\" }, \"actualGpuAlbedo\": { \"width\": 2562, \"height\": 1440, \"valid\": 3643654, \"alphaBelowOpaquePixels\": 0, \"minAvailableAlpha\": 255, \"carvingPixels\": 0, \"deepCutPixels\": 0 } }, { \"relief\": true, \"samples\": 59, \"meanMs\": 184.74406779661055, \"medianMs\": 183.29999999998836, \"player\": [ 128, 1008, -199.96875 ], \"canvas\": [ 2560, 1440 ], \"cache\": { \"charts\": 10, \"resident\": 513, \"pending\": 0, \"failedTiles\": 0, \"failedVisibleTiles\": 0, \"maxPages\": 513, \"pageLimit\": 2048, \"desiredTiles\": 513, \"missingVisibleTiles\": 0, \"overflowTiles\": 0, \"error\": null, \"active\": true, \"preparedState\": \"fallback\", \"preparedTiles\": 0, \"generatedTiles\": 571, \"preparedError\": \"Rock bake load timed out\" }, \"actualGpuAlbedo\": { \"width\": 2562, \"height\": 1440, \"valid\": 3643654, \"alphaBelowOpaquePixels\": 391922, \"minAvailableAlpha\": 130, \"carvingPixels\": 0, \"deepCutPixels\": 0 } } ], \"grazingLightProbe\": { \"direction\": [ -0.07949286335171643, -0.07949286335171643, 0.9936607918964553 ], \"actualGpuAlbedo\": { \"width\": 2562, \"height\": 1440, \"valid\": 3643654, \"alphaBelowOpaquePixels\": 438583, \"minAvailableAlpha\": 130, \"carvingPixels\": 0, \"deepCutPixels\": 0 } }, \"glError\": 0, \"errors\": [] }"

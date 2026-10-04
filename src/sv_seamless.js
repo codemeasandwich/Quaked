@@ -26,6 +26,7 @@ import { Cbuf_AddText } from './cmd.js';
 import { Con_DPrintf } from './common.js';
 import { Cvar_VariableValue } from './cvar.js';
 import { r_newer_portals } from './r_anim.js';
+import { R_MeasureArchFrame, R_ClearArchHidden, R_HideArchSurfaces, R_HideArchModel } from './r_archframe.js';
 import { R_AddLevelRunner, R_MoveLevelRunner, R_RemoveLevelRunner, R_ClearLevelRunners } from './r_levelview.js';
 import { R_TeleportFxBegin, R_TeleportFxCapture, R_TeleportFxMode, R_TeleportOverlayShown, R_TeleportFxSnap, R_TeleportFxReset } from './r_teleportfx.js';
 import {
@@ -66,10 +67,10 @@ export function SV_SeamlessEnabled() {
 // links of a map, read straight from its BSP (cached)
 export function SV_LevelLinks( mapName ) {
 
-	if ( metaCache.has( mapName ) ) return metaCache.get( mapName );
-
 	let links = null;
 	const file = COM_FindFile( 'maps/' + mapName + '.bsp' );
+	const cached = metaCache.get( mapName );
+	if ( cached && cached.buffer === file?.data?.buffer && cached.offset === file?.data?.byteOffset && cached.size === file?.size ) return cached.links;
 
 	if ( file != null ) {
 
@@ -91,7 +92,7 @@ export function SV_LevelLinks( mapName ) {
 
 	}
 
-	metaCache.set( mapName, links );
+	metaCache.set( mapName, { buffer: file?.data?.buffer, offset: file?.data?.byteOffset, size: file?.size, links } );
 	return links;
 
 }
@@ -100,7 +101,13 @@ export function SV_LevelLinks( mapName ) {
 function scan( p, dir, limit ) {
 
 	for ( let d = 4; d <= limit; d += 4 )
-		if ( solidAt( [ p[ 0 ] + dir[ 0 ] * d, p[ 1 ] + dir[ 1 ] * d, p[ 2 ] + dir[ 2 ] * d ] ) ) return d - 4;
+		if ( solidAt( [ p[ 0 ] + dir[ 0 ] * d, p[ 1 ] + dir[ 1 ] * d, p[ 2 ] + dir[ 2 ] * d ] ) ) {
+			// Refine the first solid bracket so a portal fills its real opening
+			// instead of leaving a four-unit strip of the backing wall visible.
+			let lo=d-4,hi=d;
+			for(let i=0;i<8;i++){const mid=(lo+hi)/2;if(solidAt(p.map((v,a)=>v+dir[a]*mid)))hi=mid;else lo=mid;}
+			return lo;
+		}
 
 	return limit;
 
@@ -196,7 +203,7 @@ export function SV_LevelSnapshotEntities( mapName ) {
 
 	const snap = levelStates.get( mapName );
 	if ( snap === undefined ) return null;
-	return R_ParseEntityLump( snap.edicts.join( '\n' ) );
+	return R_ParseEntityLump( snap.edicts.join( '\n' ) ).map((ent,index)=>({...ent,_snapshot_time:String(snap.time),_snapshot_index:String(snap.first+index)}));
 
 }
 
@@ -940,6 +947,7 @@ function takeExit( exit ) {
 }
 
 export function SV_SeamlessSetup() {
+	R_ClearArchHidden();
 
 	crossings = [];
 	pads = [];
@@ -980,9 +988,24 @@ export function SV_SeamlessSetup() {
 		if ( inverse !== null && SV_HasReturnMarker( inverse ) ) {
 
 			const o = from.opening;
+			const frame = R_MeasureArchFrame( sv.worldmodel, inverse, true );
+			if ( frame ) {
+				R_HideArchSurfaces( frame.blockers );
+				// Retain the physical brush: the reachable near threshold owns
+				// transfer, while only its presentation becomes transparent.
+				for ( const ed of sv.edicts ) {
+					if ( ! ed || ed.free || ed.v.solid !== 4 || ! /^\*/.test( PR_GetString( ed.v.model ) ) ) continue;
+					const points=[];
+					for(let bits=0;bits<8;bits++)points.push([0,1,2].map(a=>(bits&(1<<a)?ed.v.absmax[a]:ed.v.absmin[a])-inverse.center[a]));
+					const s=points.map(p=>p[0]*inverse.through[0]+p[1]*inverse.through[1]),a=points.map(p=>p[0]*inverse.tangent[0]+p[1]*inverse.tangent[1]),z=points.map(p=>p[2]);
+					if(Math.min(...s)>=frame.near-1&&Math.max(...s)<=frame.far+1&&Math.max(...a)>frame.opening.a0&&Math.min(...a)<frame.opening.a1&&Math.max(...z)>frame.opening.b0&&Math.min(...z)<frame.opening.b1)
+						R_HideArchModel( PR_GetString( ed.v.model ), sv.worldmodel.surfaces );
+				}
+			}
 			crossings.push( {
 				exit: null, map: from.map, transform: inverse, side: 0, back: true,
-				opening: {
+				arch: frame ? { near: frame.near, far: frame.far, depth: frame.depth } : null,
+				opening: frame?.opening || {
 					axisA: inverse.tangent, axisB: [ 0, 0, 1 ], a0: o.a0, a1: o.a1, b0: o.b0, b1: o.b1,
 					// drawn in the wall behind the plane, not on it
 					shift: [ inverse.through[ 0 ] * ( BACK_MARGIN - WINDOW_GAP ), inverse.through[ 1 ] * ( BACK_MARGIN - WINDOW_GAP ), 0 ]
@@ -1022,7 +1045,7 @@ export function SV_SeamlessSetup() {
 		// walked (the window sits where the arch is and hides it), and any door
 		// that was in the way is gone.  A key door stays and the crossing stays
 		// behind it.
-		if ( transform !== null && exit.kind === 'plane' && Math.min( exit.maxs[ 0 ] - exit.mins[ 0 ], exit.maxs[ 1 ] - exit.mins[ 1 ] ) <= ARCH_THICK ) {
+		if ( transform !== null && ! exit.oneWay && exit.kind === 'plane' && Math.min( exit.maxs[ 0 ] - exit.mins[ 0 ], exit.maxs[ 1 ] - exit.mins[ 1 ] ) <= ARCH_THICK ) {
 
 			const depth = SV_TunnelDepth( transform );
 			if ( depth > 4 ) {
@@ -1058,7 +1081,18 @@ export function SV_SeamlessSetup() {
 		if ( taken ) {
 
 			for ( const door of openDoors ) ED_Free( door );
-			crossings.push( { exit, map: exit.map, transform, side, opening: openingOf( transform ) } );
+			let frame = exit.oneWay ? null : R_MeasureArchFrame( sv.worldmodel, transform );
+			// Outgoing travel occurs at the far face, after walking the arch's
+			// thickness. Return travel deliberately retains its reachable near
+			// threshold. Never pull a crossing backwards in front of a key gate.
+			if(frame&&frame.far<.25)frame=null;
+			if(frame){
+				const advance=frame.far-.25;
+				for(let axis=0;axis<3;axis++)transform.center[axis]+=transform.through[axis]*advance;
+				frame.near-=advance;frame.far-=advance;frame.opening.shift=[0,0,0];
+			}
+			crossings.push( { exit, map: exit.map, transform, side, opening: frame?.opening || openingOf( transform ),
+				arch: frame ? { near: frame.near, far: frame.far, depth: frame.depth } : null } );
 
 		}
 
@@ -1127,7 +1161,7 @@ export function SV_SeamlessFrame() {
 				angles: [ va[ 0 ], t.angle( va[ 1 ] ), 0 ],
 				// the doorway just used, for the way back from the other side (going
 				// back through a way back leads to a level that already has this exit)
-				from: c.back === true || t.kind !== 'plane' ? null : { map: sv.name, transform: t, opening: c.opening }
+				from: c.back === true || c.exit?.oneWay || t.kind !== 'plane' ? null : { map: sv.name, transform: t, opening: c.opening }
 			};
 
 			Cbuf_AddText( 'changelevel ' + c.map + '\n' );
@@ -1356,6 +1390,7 @@ export function SV_SeamlessPending() {
 }
 
 export function SV_SeamlessReset() {
+	R_ClearArchHidden();
 
 	crossings = [];
 	pads = [];

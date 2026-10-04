@@ -1,0 +1,4 @@
+<!doctype html><meta charset="utf-8"><title>Surface filtering GPU regression</title>
+<style>body{background:#161a21;color:#eee;font:15px system-ui;margin:20px;max-width:1000px}#views{display:flex;flex-wrap:wrap;gap:12px}figure{margin:0}canvas,img{max-width:100%;image-rendering:auto}figcaption{max-width:256px}pre{white-space:pre-wrap}button{padding:8px}</style>
+<h2>Surface filtering: actual material and MRT readback</h2><p>Bounded draws. Fine height stripes must converge to their averaged surface while a broad ridge still casts shadows. Replacement pigment should lose pixel grain while retaining broad bands; Classic and original pigment stay identical. No game loop or geometry changes.</p><button id="run">Run checks</button><div id="views"></div><pre id="report">Loading…</pre>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script><script type="module" src="./surface_filtering_gpu_trial.js"></script>
