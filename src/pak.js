@@ -104,7 +104,7 @@ export function COM_LoadPackFile( filename, buffer ) {
 	const numpackfiles = Math.floor( dirlen / 64 ); // each dir entry is 64 bytes
 
 	if ( numpackfiles > MAX_FILES_IN_PACK )
-		Sys_Error( filename + ' has too many files (' + numpackfiles + ')' );
+		throw new Error( filename + ' has too many files (' + numpackfiles + ')' );
 
 	const pack = new pack_t();
 	pack.filename = filename;

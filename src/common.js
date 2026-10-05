@@ -2,6 +2,41 @@
 // + WinQuake/common.h -- general definitions
 
 import { Sys_Error } from './sys.js';
+import { cvar_t, Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from './cvar.js';
+import { COM_FindFile } from './pak.js';
+
+// Native WinQuake/common.c pop[] identity, checked as big-endian words.
+// https://github.com/id-Software/Quake/blob/master/WinQuake/common.c
+const REGISTERED_POP = [
+	0,0,0,0,0,0,0,0,
+	0,0,0x6600,0,0,0,0x6600,0,
+	0,0x0066,0,0,0,0,0x0067,0,
+	0,0x6665,0,0,0,0,0x0065,0x6600,
+	0x0063,0x6561,0,0,0,0,0x0061,0x6563,
+	0x0064,0x6561,0,0,0,0,0x0061,0x6564,
+	0x0064,0x6564,0,0x6469,0x6969,0x6400,0x0064,0x6564,
+	0x0063,0x6568,0x6200,0x0064,0x6864,0,0x6268,0x6563,
+	0,0x6567,0x6963,0x0064,0x6764,0x0063,0x6967,0x6500,
+	0,0x6266,0x6769,0x6a68,0x6768,0x6a69,0x6766,0x6200,
+	0,0x0062,0x6566,0x6666,0x6666,0x6666,0x6562,0,
+	0,0,0x0062,0x6364,0x6664,0x6362,0,0,
+	0,0,0,0x0062,0x6662,0,0,0,
+	0,0,0,0x0061,0x6661,0,0,0,
+	0,0,0,0,0x6500,0,0,0,
+	0,0,0,0,0x6400,0,0,0
+];
+
+// Reuse the native registered cvar rather than changing programs or hub gates.
+// This is derived content state, never an archived player preference. Optional
+// missing/corrupt markers keep shareware behavior without making startup fatal.
+export function COM_CheckRegistered() {
+	if ( ! Cvar_FindVar( 'registered' ) ) Cvar_RegisterVariable( new cvar_t( 'registered', '0', false ) );
+	const marker = COM_FindFile( 'gfx/pop.lmp' );
+	const valid = marker?.size === 256 && REGISTERED_POP.every( ( word, i ) =>
+		( marker.data[ i * 2 ] << 8 | marker.data[ i * 2 + 1 ] ) === word );
+	Cvar_Set( 'registered', valid ? '1' : '0' );
+	return valid;
+}
 
 //============================================================================
 // common.h types

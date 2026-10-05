@@ -6,7 +6,7 @@ PACK search path. **Single player > Level Select > E2M1 — The Installation**
 is the first supplied non-shareware level exposed by the existing menu. Choose
 Newer Game or New Game on its Game row, then select E2M1 with Enter or touch.
 This is a bounded loading increment, not qualified acceptance of the complete
-campaign, expansions, or revised registered-game hub behavior.
+campaign or expansions.
 
 ## Trying it
 
@@ -50,10 +50,23 @@ catalogue would require a separately scoped presentation decision.
 `Host_Map_f` checks the selected BSP via `COM_FindFile`, then follows existing
 server/map initialization. There is no JavaScript registered-content switch
 in this path. `PF_cvar` continues to delegate to the existing cvar registry.
-Bundled QuakeC and hub entities are preserved; their episode gates are not
-rewritten. Actual native E2M1 spawn and normal browser player/render readiness
-remain required independent QA, because file resolution and queued menu
-commands alone cannot prove gameplay.
+Bundled QuakeC and hub entities are preserved. `Host_Init` now invokes
+`COM_CheckRegistered` after command initialization and pack installation, before
+native consumers. This faithfully reuses the [native WinQuake registration
+contract](https://github.com/id-Software/Quake/blob/master/WinQuake/common.c):
+register the standard nonarchived `registered` cvar at zero, compare all 128
+big-endian words of `gfx/pop.lmp` against native `pop[]`, then set one only for
+an exact 256-byte marker. A missing or corrupt marker resets zero. This is
+content-derived native state, not a saved preference or URL/entitlement switch.
+The checker uses the existing native search path and does not patch programs.
+
+Independent review found the required compatibility gap in the first candidate:
+bundled QC reads `registered` in `ExitIntermission`, `NextLevel` and
+`trigger_onlyregistered_touch`; the absent cvar returned zero. Mounting full-game
+files alone therefore left ordinary hub and progression behavior shareware-gated.
+The wiring closes that gap through existing cvar/builtin behavior. Actual native
+E2M1 spawn and normal browser player/render readiness remain required independent
+QA; CPU program execution alone cannot prove browser gameplay.
 
 ## Failure behavior
 
@@ -103,3 +116,31 @@ commands. Independent public/native QA and source review must bind their
 results to the committed candidate before Ready; owner acceptance, dev landing
 and release are separate. No compiled build, full suite, rebake, performance
 campaign, integration landing or remote publication was run by this lane.
+
+### Required registration correction
+
+The first candidate's 17/17 results are historical controls, not campaign
+qualification. After the required registration correction the same focused
+command plus `tests/fullgame_registered_test.js` passed **18/18**. That additional
+control executes the actual bundled program via `PR_ExecuteProgram`, including
+builtin cvar lookup. Missing and corrupt markers keep the native registered
+trigger intact and `NextLevel` from START selects E1M1. With the exact owned
+marker, that trigger removes itself and START with completed Episode 1
+(`serverflags=1`) selects E2M1. Programs remain the bundled bytes. This CPU VM
+fixture uses ordinary edicts and globals, not a mocked `Host_Map` or cvar-only
+assertion. It checks the nonarchived default as well.
+
+Two initial native-control failures are retained as fixture corrections: the
+QC-only `attack_finished` field required `GetEdictFieldValue` rather than a JS
+object property; completed Episode 1 is flags1, not flags2. The corrected native
+control passed 1/1, then the combined focused gate passed 18/18. No production
+contract was weakened to make those controls pass.
+
+The malformed optional archive controls also cover the existing 2048-file cap
+and assert that rejection leaves the game DOM unchanged. Count overflow now
+throws ordinary Error within the parser, like other structural rejections;
+calling fatal `Sys_Error` there previously destroyed the DOM before the optional
+fetch catch could decline the archive. Native mandatory startup retains its
+existing entrypoint-owned fatal error handling. All owned marker mutations in
+the negative control affect its in-memory buffer and are restored in `finally`;
+the local archive is never written.

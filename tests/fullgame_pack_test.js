@@ -17,13 +17,16 @@ const entry = ( pack, name ) => {
 Deno.test( 'missing or malformed owned optional archives leave bundled-only availability intact', async () => {
 	check( pak.COM_FindFile( 'maps/e2m1.bsp' ) === null, 'E2M1 absent before owned mount' );
 	const old = globalThis.Deno;
+	const oldDocument = Object.getOwnPropertyDescriptor( globalThis, 'document' );
+	const body = { innerHTML: 'native game remains intact' };
+	Object.defineProperty( globalThis, 'document', { configurable: true, value: { body } } );
 	try {
-		for ( const mode of [ 'missing', 'html', 'directory', 'alignment', 'payload' ] ) {
-			const bytes = new Uint8Array( 76 );
+		for ( const mode of [ 'missing', 'html', 'directory', 'alignment', 'payload', 'count' ] ) {
+			const bytes = new Uint8Array( mode === 'count' ? 12 + 2049 * 64 : 76 );
 			bytes.set( new TextEncoder().encode( mode === 'html' ? '<html' : 'PACK' ) );
 			const view = new DataView( bytes.buffer );
 			view.setInt32( 4, mode === 'directory' ? 1000 : 12, true );
-			view.setInt32( 8, mode === 'alignment' ? 63 : 64, true );
+			view.setInt32( 8, mode === 'count' ? 2049 * 64 : mode === 'alignment' ? 63 : 64, true );
 			bytes.set( new TextEncoder().encode( 'maps/e2m1.bsp' ), 12 );
 			view.setInt32( 68, 1000, true );
 			view.setInt32( 72, 5, true );
@@ -33,8 +36,12 @@ Deno.test( 'missing or malformed owned optional archives leave bundled-only avai
 			} };
 			check( await pak.COM_FetchOptionalPak( 'resources/id1/pak0.pak', 'owned-control' ) === null, mode + ' declines optional pack' );
 			check( pak.COM_FindFile( 'maps/e2m1.bsp' ) === null, mode + ' installs no partial content' );
+			check( body.innerHTML === 'native game remains intact', mode + ' rejection cannot mutate the game DOM' );
 		}
-	} finally { globalThis.Deno = old; }
+	} finally {
+		globalThis.Deno = old;
+		if ( oldDocument ) Object.defineProperty( globalThis, 'document', oldDocument ); else delete globalThis.document;
+	}
 } );
 
 Deno.test( 'owned pack supplies exact E2M1 while all bundled overlapping files retain precedence in both modes', () => {
