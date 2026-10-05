@@ -89,6 +89,11 @@ In Newer Game, every Episode 1 level exit that is an archway, a passageway, a wa
 
 #### New Game and Newer Game
 
+An optional local owned `resources/id1/pak0.pak` now supplies missing native
+content while bundled programs and startup worlds retain priority. The existing
+Level Select exposes E2M1 when present in that archive. See the
+[full-game loading trial, checks and limits](docs/fullgame-pak-2026-10-05.md).
+
 The single-player menu's added **Newer Game** and **Level Select** labels use the original game's letter sprites, composed once with measured spacing and baselines. The original New Game, Load and Save art and the five selection rows are preserved. [Menu lettering fix and verification](docs/single-player-menu-2026-10-01.md).
 
 The single player menu has two ways to start:

@@ -52,13 +52,19 @@ async function main() {
 			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
 		} );
 		const startupPack=COM_FetchOptionalPak(STARTUP_PACK.file,STARTUP_PACK.file).catch(error=>{Sys_Printf('Startup pack not loaded: '+error.message);return null;});
-		const [ pak0, newerPak, hudPak ] = await Promise.all( [ nativePack, optionalPack, startupPack ] );
+		// Local owned content supplies missing native files only. Never replace
+		// this checkout's programs, palette or established startup worlds.
+		const ownedPack = COM_FetchOptionalPak( 'resources/id1/pak0.pak', 'resources/id1/pak0.pak' );
+		const [ pak0, newerPak, hudPak, fullGamePak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack ] );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
 		 if(digest===STARTUP_PACK.sha256)COM_SetNewerStartupPack(hudPak);else Sys_Printf('Startup pack checksum mismatch; loose HUD fallback');
 		}
 		if ( pak0 ) {
 
+			// COM_AddPack gives the last mounted pack priority. Mount the
+			// optional archive first so bundled identities always win.
+			if ( fullGamePak ) COM_AddPack( fullGamePak );
 			COM_AddPack( pak0 );
 			Sys_Printf( 'pak0.pak loaded successfully\\n' );
 
