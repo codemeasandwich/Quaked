@@ -282,7 +282,7 @@ Deno.test( 'prepared GPU cache keeps96 LRU layers and an exact bounded lookup ta
 	} finally { cache.dispose(); }
 } );
 
-Deno.test( 'packaged prebakes cover all PAK/loose BSPs and match source hashes plus one random real generated tile for every chart', async () => {
+Deno.test( 'packaged prebakes retain base PAK/loose coverage and match source hashes plus one real generated tile for every chart in that subset', async () => {
 	const root = new URL( '../', import.meta.url ), manifestPath = new URL( 'newer/rockfield/manifest.json', root );
 	check( existsSync( manifestPath ), 'generated prebake manifest exists; missing assets are not a skip' );
 	const manifest = JSON.parse( readFileSync( manifestPath, 'utf8' ) ); equal( manifest.version, ROCK_BAKE_VERSION, 'manifest version' );
@@ -297,16 +297,24 @@ Deno.test( 'packaged prebakes cover all PAK/loose BSPs and match source hashes p
 		const name = 'maps/' + filename, raw = readFileSync( new URL( name, root ) ), previousFetch = globalThis.fetch;
 		try { globalThis.fetch = async () => new Response( raw ); await COM_PreloadLooseFile( name, name ); } finally { globalThis.fetch = previousFetch; } names.add( name );
 	}
-	equal( JSON.stringify( Object.keys( manifest.levels ).sort() ), JSON.stringify( [ ...names ].sort() ), 'all known maps covered exactly' );
+	// The registry now includes source-distinct expansion maps, including names
+	// such as start.bsp shared by several campaigns. Preserve every original
+	// base/loose proof without claiming this bounded subset audits all packs.
+	for ( const name of names ) check( Array.isArray( manifest.levels[ name ] ) && manifest.levels[ name ].length > 0, name + ' retained in expanded source-bound registry' );
 	equal( JSON.stringify( ROCK_BAKES ), JSON.stringify( manifest.levels ), 'runtime registry is exact manifest' );
 	VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); let testedCharts = 0, testedTiles = 0;
 	for ( const name of [ ...names ].sort() ) {
-		const entry = manifest.levels[ name ], compressed = readFileSync( new URL( entry.file, root ) );
+		const bspSha256 = hash( COM_FindFile( name ).data );
+		// Match the real runtime's first exact-source choice, so a stale legacy
+		// record cannot be hidden by selecting a preferred namespace in tests.
+		const entry = manifest.levels[ name ].find( candidate => candidate.bspSha256 === bspSha256 );
+		check( entry, name + ' exact loaded BSP source is packaged' );
+		const compressed = readFileSync( new URL( entry.file, root ) );
 		equal( compressed.length, entry.compressedBytes, name + ' compressed length' ); equal( hash( compressed ), entry.sha256, name + ' compressed asset hash' );
 		equal( hash( COM_FindFile( name ).data ), entry.bspSha256, name + ' actual BSP identity' );
 		const unpacked = gunzipSync( compressed ); equal( unpacked.length, entry.bytes, name + ' expanded length' );
 		equal( hash( unpacked ), entry.rawSha256, name + ' raw payload identity' );
-		const decoded = RockBakeDecode( arrayBuffer( unpacked ), name ), model = Mod_ForName( name, true );
+		const decoded = RockBakeDecode( arrayBuffer( unpacked ), name, bspSha256 ), model = Mod_ForName( name, true );
 		cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null; GL_BuildLightmaps();
 		const charts = R_RockSurfaceCharts( model, { includeBrushes: true } ).charts;
 		equal( charts.length, entry.charts, name + ' actual chart count' ); equal( decoded.charts.size, charts.length, name + ' stored chart count' );

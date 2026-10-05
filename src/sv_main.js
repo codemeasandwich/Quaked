@@ -93,7 +93,7 @@ for ( let i = 0; i < MAX_MODELS; i ++ )
 const CONTENTS_SOLID = - 2;
 const MAX_MAP_LEAFS = 8192;
 let fatbytes = 0;
-const fatpvs = new Uint8Array( MAX_MAP_LEAFS / 8 );
+let fatpvs = new Uint8Array( MAX_MAP_LEAFS / 8 );
 
 // sv_aim is only used in sv_main.js (not a physics cvar shared with sv_phys/sv_user)
 export const sv_aim = new cvar_t( 'sv_aim', '0.93' );
@@ -663,6 +663,7 @@ given point.
 function SV_FatPVS( org ) {
 
 	fatbytes = ( sv.worldmodel.numleafs + 31 ) >> 3;
+	if(fatbytes>fatpvs.length)fatpvs=new Uint8Array(fatbytes);
 	fatpvs.fill( 0, 0, fatbytes );
 	SV_AddToFatPVS( org, sv.worldmodel.nodes[ 0 ] );
 	if ( R_NewerGame() ) SV_SeeThroughLiquids();

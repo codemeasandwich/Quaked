@@ -1,0 +1,433 @@
+{
+  "originalMeshSourceSHA256": "0d3bae8d42862793f991639f85f329cbfcc781a22b53196c0937ba3f5ddb6f66",
+  "pakSHA256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+  "models": {
+    "progs/boss.mdl": {
+      "sourceSHA256": "4b802488480de2e36130e06ee03a31b2e96046a3ffe12f66e62d9bf4bd2f2eea",
+      "commands": 1871,
+      "vertices": 859,
+      "commandsSHA256": "86e9dd106e0750bd05529ea7304139047627ea8bcba3b15f1354738cff4f347b",
+      "orderSHA256": "cf600985619600dcaa8c3705533f70cdc230638fd91d28f89a7092e3994203d3"
+    },
+    "progs/h_zombie.mdl": {
+      "sourceSHA256": "90f40b2289af7c39ddce145cc214091066e108631fd0811d4d0bfa3a7f5f80c0",
+      "commands": 159,
+      "vertices": 73,
+      "commandsSHA256": "9a65801d0a95a3e7ef5ed838c896b313f9a6452cbf893618c1c3a2a2380ad72a",
+      "orderSHA256": "5821f5b38c594dc9213346f1c04fefa3d636bb404191868f9a442ff66cd52c24"
+    },
+    "progs/zombie.mdl": {
+      "sourceSHA256": "76430f4aebfb39e918f524d81d5012051e49d0749f6f9a692ae7445a15cc8dfe",
+      "commands": 1225,
+      "vertices": 559,
+      "commandsSHA256": "adca795e15416432cb1d19695cbb2033100f953d75a992703402020a37eb73bd",
+      "orderSHA256": "f3acd66f0d4fda992839004945cb995d6feb07e6ccd7505764f19a62c300e84e"
+    },
+    "progs/dog.mdl": {
+      "sourceSHA256": "c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6",
+      "commands": 1518,
+      "vertices": 692,
+      "commandsSHA256": "4545cb7ab77987e989be3fa54ba4772fb4ec7c15607b7099ecdd987a9f46f403",
+      "orderSHA256": "40c6da62c550f4f2f236418229f5fe3c955f875943330814c8107b045da6ad49"
+    },
+    "progs/h_dog.mdl": {
+      "sourceSHA256": "5cfb291af097b8ed3604998ac11e3cca3c1ae92906137674b481c8e8bc0a2dd4",
+      "commands": 312,
+      "vertices": 142,
+      "commandsSHA256": "e550d676d3051ab00f9f15b587b188b2399d14518a6e9ff6c79d4cf02294d966",
+      "orderSHA256": "8bf60090fc2c1d512d51e14012bd7d206826129be781df804393612f09249a81"
+    },
+    "progs/w_spike.mdl": {
+      "sourceSHA256": "50e18757985561d03cb967baae4a7645b9e7184b41d6e30b0a75f1323b71fef9",
+      "commands": 332,
+      "vertices": 150,
+      "commandsSHA256": "6760cade0ea0821536a84809aba017ae919baa399eedc18836fa69b998b92eae",
+      "orderSHA256": "121856a17ce5ed9f3fa552c02b6737bb92ba8c73e8746300eb01cdc96bfd390f"
+    },
+    "progs/h_wizard.mdl": {
+      "sourceSHA256": "424167d8f64b09b9ba3aaf5145a83fd8ca887f3c69cd1189e843f43c60ae7b2d",
+      "commands": 92,
+      "vertices": 42,
+      "commandsSHA256": "b558c6dc73ab9aea72c089ea6c55e7625f44d8b6b7e61863536925fb60c9e5a7",
+      "orderSHA256": "47caa74ab4be4dd43d0a0abb56d2e45c91d6ed293296c1368a69a56062050af5"
+    },
+    "progs/wizard.mdl": {
+      "sourceSHA256": "41a0c51bbd21362874369fb64127886df67d8b0b605aad96574b671445926e2d",
+      "commands": 530,
+      "vertices": 243,
+      "commandsSHA256": "635374ef005875089d82c5772e9a96aa1a39ad088deb036db5278f9bfe081dd3",
+      "orderSHA256": "8282f8564e767d47e9e62f4a7d6a2cda6c78f050a711d9b227e6120529d87a63"
+    },
+    "progs/h_guard.mdl": {
+      "sourceSHA256": "a664e3b12255b48a07ac7191f99126fd038e7c93784731608ac9bcfc3182bf90",
+      "commands": 136,
+      "vertices": 62,
+      "commandsSHA256": "6c7a0ea0de90a3115c667e60272d23b28f1ab42c12ecd56a676d3debe76795ba",
+      "orderSHA256": "13aefdc6c80171b5321bcb4e1bff9543a188b40a6260bf6de25bfd3fc9899d29"
+    },
+    "progs/soldier.mdl": {
+      "sourceSHA256": "1e70eb11aad02793a8fb90ece4a17328605cf9165c7305049ff30fcc21b3ce75",
+      "commands": 1112,
+      "vertices": 510,
+      "commandsSHA256": "c6c988ea54f181a3072f7d0800e0a5e9ffc619dca09ecb4d615c2a1d2e208b20",
+      "orderSHA256": "7f9dcef19117c9d0e02fb3cd5239907e5f935453cfaa6c1d240b3923c09ac394"
+    },
+    "progs/h_knight.mdl": {
+      "sourceSHA256": "8d6a626f89e4fce3f649f7e2aa750c780d85347aa0b991582aa75fa9f0244ac8",
+      "commands": 105,
+      "vertices": 48,
+      "commandsSHA256": "e9a0ca676697707ad17a1352dc8dce46e847c3dd4f0738fa5e1b052b8537621b",
+      "orderSHA256": "27cd09f899b2cf466edafa5bfe3561928883bd66da4bc7e98bf42fc384814683"
+    },
+    "progs/knight.mdl": {
+      "sourceSHA256": "094c278cba9851a940e3e40e4f209f372b916ad7bac68ba13efd7c0d7d676ed1",
+      "commands": 712,
+      "vertices": 327,
+      "commandsSHA256": "689ccd309c7217966228c24b1c475123c6ce8a9f378be7a3363e60e0fa814d2b",
+      "orderSHA256": "d4c8a7a03bd772b3aaaab23c836007d4dc5800d73f4b5f4eb488d7a2856d8727"
+    },
+    "progs/h_shams.mdl": {
+      "sourceSHA256": "8736acc7551dbad35bc1eed0008099fbea718413ed2959493234900d370febba",
+      "commands": 213,
+      "vertices": 96,
+      "commandsSHA256": "eee302d0452475ef96059cffbdd06f8e39e1335f6c817878ce5f92c7766b8362",
+      "orderSHA256": "bbb8c3ed202b1d12ed2f5c98ee98cd39d1163d4e51d715b47e9de0072846458a"
+    },
+    "progs/s_light.mdl": {
+      "sourceSHA256": "88e4f9751b4c6b5baf80cbd5343753fb7b99c183755d3c8ed82b682513d42d4b",
+      "commands": 185,
+      "vertices": 84,
+      "commandsSHA256": "126c92a0e2c67be36da3fd58506948a997019db53791c5c40d194c955ab385a4",
+      "orderSHA256": "af3bdbd467b73a98d6a95df6f6871a51d66fe3a29ae339a673c53ae2a000ce47"
+    },
+    "progs/shambler.mdl": {
+      "sourceSHA256": "45c4f21ce566bd4304222d581a6b015bf01c310035821f927f9b51d94193b8d3",
+      "commands": 944,
+      "vertices": 434,
+      "commandsSHA256": "439d9ee9a50dc0284467c5b5164c2fbf15049c213052000c8c4da17a597ca14f",
+      "orderSHA256": "500695c7005d152891cda77e8a3129d9b0e86f27eb754bba6ead9571f6795867"
+    },
+    "progs/h_demon.mdl": {
+      "sourceSHA256": "7d4486d076bdf77ff9dffd55448c99d4a4b6d6a76c4c747c7256d3bbfa283fb6",
+      "commands": 287,
+      "vertices": 130,
+      "commandsSHA256": "01e9276696727f33b797120715ed79f9ad6c862e4face26dcb637b5f2b05dadb",
+      "orderSHA256": "1b14955d061c73b02bdfb0dfc9d1194a2586ef29972cb95120ce5484d3d1fbc9"
+    },
+    "progs/demon.mdl": {
+      "sourceSHA256": "388209db7e53cb0cde176c9976bb8004d37205a50a77b199cb4878a71e909db9",
+      "commands": 921,
+      "vertices": 423,
+      "commandsSHA256": "cbe7ed031c0adc3925da1ed4739b413b10ced221611255e76cb79f5084f857b5",
+      "orderSHA256": "d2b40d8976362c780f83496189c57e095c4af9996f970f8c4896fcef1d2ee080"
+    },
+    "progs/h_ogre.mdl": {
+      "sourceSHA256": "4bd73cdfa456c5adb9c961b0e7f90127fdefb4c8d5c46148a8ba5aec7346a46a",
+      "commands": 125,
+      "vertices": 56,
+      "commandsSHA256": "e75d8e146cd6c7c6a2de3e811006e49a88f8024f3809ef5feafecf5504c3c866",
+      "orderSHA256": "3c7028e748f7f18852a820f5c36b3b6b9aa66d1dd291547065ab93fd95f5afc5"
+    },
+    "progs/ogre.mdl": {
+      "sourceSHA256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+      "commands": 1058,
+      "vertices": 488,
+      "commandsSHA256": "2459822f8036ccc57f9f265a620848e6c5f9dcad5eeb3e95c0104b99fca96e5a",
+      "orderSHA256": "3c603bd150ced1319d12533c3dcabc5309614991497d2c4b8e8713fa21128b50"
+    },
+    "progs/flame2.mdl": {
+      "sourceSHA256": "fae0d18aa39a24461202767804eea0d9aec11f8962e7c9170fd23289c7af1778",
+      "commands": 308,
+      "vertices": 140,
+      "commandsSHA256": "856c800b41bf41b0712b82e52f1bb67dc26b913c031ceb939cadf5e84f7f361a",
+      "orderSHA256": "28fba03ad0dd20ea1ae5e3b552694fec7e7252e31f23193f3ef9c4a07a2ba987"
+    },
+    "progs/flame.mdl": {
+      "sourceSHA256": "87fab4f530851406e6eed33b50d924689f35a58e5c32f93eb340b07d6bc22b99",
+      "commands": 435,
+      "vertices": 198,
+      "commandsSHA256": "c32574245be9193494a47f465fa53f0e3982ff913ba374fea37d6a0ca86dbc93",
+      "orderSHA256": "7cd7c79287112d6f33fa1f8746ad22e07a9d6fcb1263f0612fde19cff0f07f1c"
+    },
+    "progs/v_light.mdl": {
+      "sourceSHA256": "deab72758b6f696f6e7f101cf66521d02a8804c3395d76c01bdf38e0daed7ded",
+      "commands": 620,
+      "vertices": 282,
+      "commandsSHA256": "7ce3e4683468a7a358fcff79c53640a6ad53951cae8234270c042b40ac697c11",
+      "orderSHA256": "c03a9c9c51ed38790eae6388564047d3862e6aeae4ba71906f40ecba4c20cc3e"
+    },
+    "progs/zom_gib.mdl": {
+      "sourceSHA256": "55cf7733462c0fd3aa35849678d7a7eae6b705ff5be316fcaa44690ae38515ff",
+      "commands": 71,
+      "vertices": 32,
+      "commandsSHA256": "38f5cd44df683e1d1e9b455bdd6730ef7e9a112a832482f68ffce27f1b8f5b6d",
+      "orderSHA256": "e039a5aa6dc27059582b9b930eed283e8b2a3af3f5425f78e3df8a18e88bb972"
+    },
+    "progs/backpack.mdl": {
+      "sourceSHA256": "4aaef7b8d28caa52dc230bed11cdea22f55c00b9b90aae400e1c19f7bf3dbbb6",
+      "commands": 346,
+      "vertices": 160,
+      "commandsSHA256": "9504dd1da4b9c60817edf39b858e87d6ba86dddc07b9923865fde3a4424da57c",
+      "orderSHA256": "56ba56d45fb7ebc594a216464b1fd93c096a5993a3acea9b005298eba7966889"
+    },
+    "progs/s_spike.mdl": {
+      "sourceSHA256": "ce6c16618f236e72f00965a69a8284395b3157788ca988ba5c7b258cdaf2b929",
+      "commands": 19,
+      "vertices": 8,
+      "commandsSHA256": "70849e7dbb13774c297e1c8e82be7af8512652cc03f9da21c8fedc72bf16af60",
+      "orderSHA256": "38d66aab2fa9c66ce68237e3debfe3ee368fd78d43a770384489cce5de219a99"
+    },
+    "progs/spike.mdl": {
+      "sourceSHA256": "5e3be5dff13ec94951aacbd4a453dcbd9c2aebe7e4e6bded2dd70d49d1ddd695",
+      "commands": 19,
+      "vertices": 8,
+      "commandsSHA256": "70849e7dbb13774c297e1c8e82be7af8512652cc03f9da21c8fedc72bf16af60",
+      "orderSHA256": "38d66aab2fa9c66ce68237e3debfe3ee368fd78d43a770384489cce5de219a99"
+    },
+    "progs/grenade.mdl": {
+      "sourceSHA256": "e678f5b59a369395effa37216f86b6d2721b621f11db904f8a384549e19ea796",
+      "commands": 54,
+      "vertices": 24,
+      "commandsSHA256": "8c55d00366a0384bc9617a305b933fe97be94ffd2526606d8182c43c0af1a1eb",
+      "orderSHA256": "04c5983a8bac0eccbda5a63b6c451df3fc8e57b1ad005a07db23abeae15ebbf8"
+    },
+    "progs/missile.mdl": {
+      "sourceSHA256": "c499b24009a16c03672d0018e33a513b0acf058bb8c04bd9edcaf685b8712753",
+      "commands": 222,
+      "vertices": 100,
+      "commandsSHA256": "f74f01d1b7d145b94c777133013595f0781ff440934b4f0d5343594dd43d175c",
+      "orderSHA256": "c168851d5090aebfa1d92c6ce062011cb60fb29e664381eee817ffd265a23f63"
+    },
+    "progs/lavaball.mdl": {
+      "sourceSHA256": "93482f8ebf6f8dfeab7161a0598afd4ebd45f5e9f9a602cea3fcbf665daea4b3",
+      "commands": 71,
+      "vertices": 32,
+      "commandsSHA256": "c719319ee8e10689ca33def62d7ddb734b300187928077f17203cfbce02e13f3",
+      "orderSHA256": "e039a5aa6dc27059582b9b930eed283e8b2a3af3f5425f78e3df8a18e88bb972"
+    },
+    "progs/bolt3.mdl": {
+      "sourceSHA256": "4b5430d4dc0ddd337d0445be765090e3f311a39f270416c4fd3d8e0995ea6fd9",
+      "commands": 88,
+      "vertices": 40,
+      "commandsSHA256": "139100ef0f463bb8d016047b0126365b3695199bfbc52a5aa6d8119fbd54abb2",
+      "orderSHA256": "3d2fa6102e82415768845c7bf56dcabc10ddad7347a3482745daa6dc21cc7225"
+    },
+    "progs/bolt2.mdl": {
+      "sourceSHA256": "8dad5bbf85b647225a6ee6208d6f530ef97bfa094023e499f005ff46b7be4a29",
+      "commands": 88,
+      "vertices": 40,
+      "commandsSHA256": "139100ef0f463bb8d016047b0126365b3695199bfbc52a5aa6d8119fbd54abb2",
+      "orderSHA256": "3d2fa6102e82415768845c7bf56dcabc10ddad7347a3482745daa6dc21cc7225"
+    },
+    "progs/bolt.mdl": {
+      "sourceSHA256": "8765febc701a518d5ce23c7e0cb06a3090f647b83cf9749ca08850c10c707447",
+      "commands": 118,
+      "vertices": 52,
+      "commandsSHA256": "bce37531cf868408864586343a4350c825ac89efe56f0c81f42157dcb5e8df50",
+      "orderSHA256": "d2d89c565519d33262e6452aaf0cf3a55cb3528cf1c1b7ca176ed581ae1550a0"
+    },
+    "progs/v_rock2.mdl": {
+      "sourceSHA256": "13a18f9928e5c8c4079e9ce730824a91f5002588d205e3bb1e22f0bb70f9b1e7",
+      "commands": 449,
+      "vertices": 204,
+      "commandsSHA256": "649357e42aad85a778ce041e5af67dd12b97c33e9b9b17c770ffdb3e951a94b1",
+      "orderSHA256": "8ac981dcf4495874fed9f8aa17b27ff2d535811756b1138331e53edb49b82b7a"
+    },
+    "progs/v_nail2.mdl": {
+      "sourceSHA256": "7c137ed79f6f31b3248996c8cb765065a8c026368daa6a213123bdfd02ff91c3",
+      "commands": 661,
+      "vertices": 302,
+      "commandsSHA256": "19ef0d7d9cc638ffb88f7057a2f455a1394ce1df87b36cd84380799eb5753fcc",
+      "orderSHA256": "f18d82b69c39f94828c2f7dfd57776e8e81f51b899d269aa4c5bd5c3a270334a"
+    },
+    "progs/v_shot2.mdl": {
+      "sourceSHA256": "a268fcdd759290a3f804aa3dd247d0bfaf9482a4a653bac6eced814fc9b32e4e",
+      "commands": 550,
+      "vertices": 250,
+      "commandsSHA256": "762e58be7800dc6cf3a088bad85e5b075a3a27910e7065968aa5689a661b207d",
+      "orderSHA256": "5b990d7262b865aff0c0660e1d99d9ed862c0f19c4289153e3629563ec876741"
+    },
+    "progs/v_rock.mdl": {
+      "sourceSHA256": "a0001badc84263927089953e854edbfa89ccfba5e395487e8310d8ab2f082bcf",
+      "commands": 189,
+      "vertices": 86,
+      "commandsSHA256": "de897a92af3121a281574b2da5e79ef1513305101b8321386ef846a1d63cd051",
+      "orderSHA256": "9841c3c98097018ebb33633bf50f13f01994adad01285c01d5fb96a37f249896"
+    },
+    "progs/v_nail.mdl": {
+      "sourceSHA256": "37f6fbae098657a9c768c9da74dcd287237932d869f34915f1dbe8921c559f4f",
+      "commands": 687,
+      "vertices": 312,
+      "commandsSHA256": "b4090b3fdd5553c2f74da44faa5b83fcee4c0c79e9359b55681c7ce39526894d",
+      "orderSHA256": "c792468544455ad25da388731b6ce3b2975baf974022eb1569fdea67d9edd43f"
+    },
+    "progs/v_shot.mdl": {
+      "sourceSHA256": "4148ac22b3497b6c94331e5867f44327506f8e5bb1fdc7323a4849e428110137",
+      "commands": 412,
+      "vertices": 190,
+      "commandsSHA256": "0b19fd469bac1f12ff145635b91f4b0f993db41d9e9bcba7d4f1f91eec3bb36c",
+      "orderSHA256": "1e18126b25b96b1ebadf5f39eec6dce20e80aecd17d6ddd50db492c845b660bf"
+    },
+    "progs/v_axe.mdl": {
+      "sourceSHA256": "418e5e313bf613e426dbaf7594f786aec6b23ff721fd48be912ccfa3b055a93f",
+      "commands": 629,
+      "vertices": 288,
+      "commandsSHA256": "9d77be5816a8f9de1b0df7e150c6df1a243baf2fa19324c4ae5fb2e68941a002",
+      "orderSHA256": "68fe8b5dad96b35b745bb11eafcd21dd7538b765206767181ce87b071863a629"
+    },
+    "progs/gib3.mdl": {
+      "sourceSHA256": "91e4a4a8024d2e5316a0a41b4623a58dd401257124a0da6a6770ab79507f20ea",
+      "commands": 71,
+      "vertices": 32,
+      "commandsSHA256": "35faed59cf94513563fe9f5d0f0b43c7fbc1c78d584016acd47c5f6e0f0aed38",
+      "orderSHA256": "e039a5aa6dc27059582b9b930eed283e8b2a3af3f5425f78e3df8a18e88bb972"
+    },
+    "progs/gib2.mdl": {
+      "sourceSHA256": "1873a1f225123d86fefeee3137cbc1b48931b41abc6f60853619011c926b5ee2",
+      "commands": 305,
+      "vertices": 138,
+      "commandsSHA256": "d5aea2c96fa15cfe04a7cafede93ff3a36c4b2d85a913167addf8cc91e40b39d",
+      "orderSHA256": "9209e7910bc30a58f18880dd466472ec8b511b11a961b8bb998a72f2d0c745f1"
+    },
+    "progs/gib1.mdl": {
+      "sourceSHA256": "ef335c906b16adfa9ded464d7e9460867e923b1434d295c23c6aa1f3dd0d7c89",
+      "commands": 102,
+      "vertices": 46,
+      "commandsSHA256": "4d9229e0e5cf76d43b2a1db95a70a7a57162820eac935fdf431713c0fc362485",
+      "orderSHA256": "2cd65107e59e569a1b426fa7cbacf0fcd7d5f826b3c55f0dad120d9b3ed892f0"
+    },
+    "progs/h_player.mdl": {
+      "sourceSHA256": "a2563df09987f6db1a8f19cbfe234214310ff3b471048fd340cad03f585fc060",
+      "commands": 141,
+      "vertices": 64,
+      "commandsSHA256": "f0bcb8e4e92975552a4933aa404075437b71d600f2800ca0537cf95db907e04a",
+      "orderSHA256": "4f313cc4e30ea918cae2204707caa8fca289e6117f5ca427159eed02c151e502"
+    },
+    "progs/eyes.mdl": {
+      "sourceSHA256": "7a39c308bc9041464fe4a01d21e011831ed222d26b03670caa558a5e8339cafe",
+      "commands": 53,
+      "vertices": 24,
+      "commandsSHA256": "8d54e4b8ec0927cac7d23446dd13b082714dbea9754257b4b91ff67590d8e5be",
+      "orderSHA256": "b9aeef716779d6c98f1968a41f764dc924cdd7f6077af822a361df2adcd976e8"
+    },
+    "progs/player.mdl": {
+      "sourceSHA256": "10cecfe08d312ff17c63529e280b976c50018f683f541cb03b2048c7a681ebf9",
+      "commands": 1367,
+      "vertices": 628,
+      "commandsSHA256": "f9bcc128d2c23213db1f7efaca7f23010429c86eb45bde679acf65f3535a0b0b",
+      "orderSHA256": "63b9cdf9dfe6188e829f87f8a51092cf55eedb5055a280bf815a761a42ce2ca5"
+    },
+    "progs/quaddama.mdl": {
+      "sourceSHA256": "ac73d8f93e27830142247b9086b4d10c1899bc3f1db2204d08631c49e7d14a2f",
+      "commands": 353,
+      "vertices": 162,
+      "commandsSHA256": "37be9cec9419fba24bde88d433aef7e75f8627881f213182db38c1622a2b6b45",
+      "orderSHA256": "6845a035bff4823bfacc3da35f97befb7cb25b48654058f4f0827d16e17c779c"
+    },
+    "progs/invisibl.mdl": {
+      "sourceSHA256": "dff1ff468c5a55a2df8b816391fc4dec88bdbcf68a4e590af1566091db59d9c9",
+      "commands": 153,
+      "vertices": 74,
+      "commandsSHA256": "b2583c36d6da239fa3504be2a345121a14715fea19c0a00d800e37dad96b87f3",
+      "orderSHA256": "0df103e8923b19a77cc1b19b914b9b5be4af0bde25b332f9d6c57ff2e7302f66"
+    },
+    "progs/suit.mdl": {
+      "sourceSHA256": "17d57805138e93283f133d1d4f42ffe5b61bedb946b62bb96cce6f5c1a7f9acf",
+      "commands": 1062,
+      "vertices": 488,
+      "commandsSHA256": "f3fc1c48c7966f00513cbb7fd95d9d9c9c5c3ac6546e3640637350d64a1bf507",
+      "orderSHA256": "cc69ba7f9833f2a6314dc6e1ad0d3ea445416100041a2e7bf6dbd7750676ae1a"
+    },
+    "progs/invulner.mdl": {
+      "sourceSHA256": "8523e4312ab81bb7349bc7d96b46cd89148a44f8464aaeb08d1c4931d31257ff",
+      "commands": 423,
+      "vertices": 194,
+      "commandsSHA256": "78d105702788c1766b887f77db889002d9c36e8a2bedeffd3e03553311ecf031",
+      "orderSHA256": "c8703ac5cb63057dede28662a561630cb505d5d21d80cbd80bd389d0bd9e8de3"
+    },
+    "progs/end1.mdl": {
+      "sourceSHA256": "7ab024d46a816c076d7be3b2128745cdf9d6032279b08952c3c0323e4b425dcc",
+      "commands": 243,
+      "vertices": 112,
+      "commandsSHA256": "d3f159377081aad1ba407c83b31dc8323e418b8894d00e31b1aa4b7c434ebbc0",
+      "orderSHA256": "68f85ed67512f8414acb89832e277b70a166184ff87d9c0a43794c48240f5b50"
+    },
+    "progs/m_g_key.mdl": {
+      "sourceSHA256": "3ae033c5350e8371e97e670b6d03f7a31861694322feee289776d412523e0932",
+      "commands": 360,
+      "vertices": 162,
+      "commandsSHA256": "2790e5e175b60b8738b8701ad818f0bab0ca793294bbd209a4a5d84698c70676",
+      "orderSHA256": "454b9aa0dee2ce3e69c33d1439a7b043af1e10278b9f1c51ff47e6f23ce33ae4"
+    },
+    "progs/w_g_key.mdl": {
+      "sourceSHA256": "00972fd05a70c6b6479309c746035ba457949abec05ea03f91599200d2f05a04",
+      "commands": 428,
+      "vertices": 194,
+      "commandsSHA256": "f15fa250a15eaf7dd409ded81845bd8b3fd230384254f73adb708059465ecca3",
+      "orderSHA256": "aeba0c40c648255aa5fd0e1a5bcff8b668cbf7052adcb28dd27899ba30ea3a13"
+    },
+    "progs/m_s_key.mdl": {
+      "sourceSHA256": "78351c850a80f7ae77ca2b172c27a8c48514ad18e65ecee1ff959d80f0b5e847",
+      "commands": 360,
+      "vertices": 162,
+      "commandsSHA256": "2790e5e175b60b8738b8701ad818f0bab0ca793294bbd209a4a5d84698c70676",
+      "orderSHA256": "454b9aa0dee2ce3e69c33d1439a7b043af1e10278b9f1c51ff47e6f23ce33ae4"
+    },
+    "progs/w_s_key.mdl": {
+      "sourceSHA256": "6b35bd3814f0ed7cab3b6f85534390583cca4d50adef4520a84c112ce7beb953",
+      "commands": 428,
+      "vertices": 194,
+      "commandsSHA256": "f15fa250a15eaf7dd409ded81845bd8b3fd230384254f73adb708059465ecca3",
+      "orderSHA256": "aeba0c40c648255aa5fd0e1a5bcff8b668cbf7052adcb28dd27899ba30ea3a13"
+    },
+    "progs/g_light.mdl": {
+      "sourceSHA256": "72246bc7f63340bd9b6663864e0130741ce35d56e3f4d32e14b8f767dd65951a",
+      "commands": 843,
+      "vertices": 382,
+      "commandsSHA256": "f2557d7d7ab7ff94be91d7b956566dd3a93bf2f31a7fa4416be58e5b9e3611bc",
+      "orderSHA256": "491f62d612c47303dc79d717ba738aa647bf127e258f0bb652ea5f60fd94c9a3"
+    },
+    "progs/g_rock2.mdl": {
+      "sourceSHA256": "3fbe6b1c959c96fcd07d1469c1b6fefcaca554b0a50c7b72a9ffdcb43e372424",
+      "commands": 643,
+      "vertices": 292,
+      "commandsSHA256": "fa894021db38d3d669ff56ce0da54198cd6b3a3d6378f56f29f91344da615ce7",
+      "orderSHA256": "2ea31ca3791074d412bb047d4e4e76f4b330ce720161d54c0c37dfa6261cd029"
+    },
+    "progs/g_rock.mdl": {
+      "sourceSHA256": "90bb98719c5b3d509a1df75600e3f308edc7a463531889504888727b0cd6e138",
+      "commands": 643,
+      "vertices": 292,
+      "commandsSHA256": "a7249440e1c13b76382b4acf1f63d538654ef0abcbf71bda160fa134bd9437b5",
+      "orderSHA256": "637f0e6f7b5dda422d1a51ff0c07fccf98cfe08266c2efd2285a3d94e478cefb"
+    },
+    "progs/g_nail2.mdl": {
+      "sourceSHA256": "708ee4afc78acc2ac37487e8714e7761de6a49b192524cbb41437c1e52e31685",
+      "commands": 872,
+      "vertices": 398,
+      "commandsSHA256": "905d7b131add08c121834b7e1340ffdbdb38631c2ad9c82207aa0ac49acd55ce",
+      "orderSHA256": "90ae1d3f5f4c12084f61ce2c31952eeaf03b713affce648aa32140e36544115f"
+    },
+    "progs/g_nail.mdl": {
+      "sourceSHA256": "427b48f83493956b49e32024333d4db51b78cf1f79a45f130f98f1e99783e42a",
+      "commands": 815,
+      "vertices": 370,
+      "commandsSHA256": "65eab4c920301cdc22ecd0e7be3a8e532de88dcdd3d10cec45c59dac26623dac",
+      "orderSHA256": "9aca71fa9fc935af6e969b126d0e2afadaf88f28e096ebdf78952381e2a6b4ae"
+    },
+    "progs/g_shot.mdl": {
+      "sourceSHA256": "c89cc90b218ecf06ef9fcfc61a4763fa355133d4afcab02a68b3ba885b2f8255",
+      "commands": 299,
+      "vertices": 136,
+      "commandsSHA256": "a559f78393eff5e0ca581b1fbd2c1dd77dc4fbe3e339df594eae371e94efded1",
+      "orderSHA256": "3daba56a36aa820c1d827bebbacd44981ffc5fc2d622d99195c6e55457cce707"
+    },
+    "progs/armor.mdl": {
+      "sourceSHA256": "c7c0c6fea1a1d8b575388f3045b7dded09953d13ec070c8182e9b28b0506408d",
+      "commands": 315,
+      "vertices": 142,
+      "commandsSHA256": "8b59c0856357dd7433754300f7564e21d924c708a5222d48b0a915ff4c9fd1b8",
+      "orderSHA256": "5c3ef07fd15dd5d9f3b331472136e3fdc3605ef21fc93b15489e8f79fa89929f"
+    }
+  }
+}

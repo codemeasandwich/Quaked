@@ -1,0 +1,5 @@
+import {Worker} from 'node:worker_threads';
+import {R_RockPreset} from '../../src/rockfield_presets.js';
+export function rockModel(){return{name:'maps/rock-durable-public.bsp',bspSourceBytes:new Uint8Array([11,31,79,127,241])};}
+export function rockCharts(){return [0,1].map(i=>({id:i,key:'ground-'+i,name:'wgrnd1_5',profile:'ground',seed:73421+i,config:R_RockPreset('wgrnd1_5','ground'),tangent:[1,0,0],bitangent:[0,1,0],surfaces:[{bounds:i?[-21,36,-21,36]:[0,0,0,0],brush:i===1}]}));}
+export function nativeRockWorkers(){const stats={workers:0,terminated:0,active:0,peak:0,jobs:[],completed:0};return{stats,factory(){stats.workers++;const worker=new Worker(new URL('./rock_prepare_worker.mjs',import.meta.url)),adapter={onmessage:null,onerror:null,postMessage(message){stats.active++;stats.peak=Math.max(stats.peak,stats.active);stats.jobs.push({id:message.id,x:message.x,y:message.y,seed:message.config.seed});worker.postMessage(message);},terminate(){stats.terminated++;worker.terminate();}};worker.on('message',data=>{stats.active--;stats.completed++;adapter.onmessage?.({data});});worker.on('error',e=>adapter.onerror?.(e));return adapter;}};}

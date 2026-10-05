@@ -567,7 +567,7 @@ in the level's own coordinates; the caller places it.
 ================
 */
 export function R_BuildLevelView( model, origin, entities = [] ) {
- if(R_NewerLightingActive())R_RockBakePrefetch(model?.name);
+ if(R_NewerLightingActive())R_RockBakePrefetch(model?.name,undefined,undefined,model?.bspSourceBytes);
 
 	if ( model == null || model.surfaces == null || model.leafs == null ) return null;
 

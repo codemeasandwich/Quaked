@@ -6,6 +6,7 @@ import { Sys_Error } from './sys.js';
 import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from './r_anim.js';
 import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArchHidden } from './r_archframe.js';
 import { DEMON_TEXTURES, R_DemonSurfaceData } from './r_demonrelief.js';
+import { R_DemonBakePrepare, R_DemonBakeSurface, R_DemonBakeStatus } from './r_demonbakes.js';
 
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
@@ -81,7 +82,8 @@ import { realtime } from './host.js';
 
 export const BLOCK_WIDTH = 128;
 export const BLOCK_HEIGHT = 128;
-export const MAX_LIGHTMAPS = 64;
+export let MAX_LIGHTMAPS = 64;
+const BASE_LIGHTMAPS=64,LIGHTMAP_LIMIT=512;
 
 const GL_LUMINANCE = 0x1909;
 const GL_ALPHA = 0x1906;
@@ -151,7 +153,7 @@ for ( let i = 0; i < MAX_LIGHTMAPS; i ++ ) {
 
 // the lightmap texture data needs to be kept in main memory
 // so texsubimage can update properly
-const lightmaps = new Uint8Array( 4 * MAX_LIGHTMAPS * BLOCK_WIDTH * BLOCK_HEIGHT );
+let lightmaps = new Uint8Array( 4 * MAX_LIGHTMAPS * BLOCK_WIDTH * BLOCK_HEIGHT );
 
 // For gl_texsort 0
 let skychain = null; // msurface_t
@@ -226,9 +228,12 @@ let demonEnabled = false;
 
 export function R_DemonReliefStatus() {
 
-	return { eligible: demonSurfaces.length, ready: demonSurfaces.filter( s => s.mesh ).length,
-		pending: demonSurfaces.filter(s=>!s.mesh&&(s.surface.texinfo.texture.gl_texture?.userData.newerPending||s.surface.texinfo.texture.gl_texture?.userData.newerHeight?.displacement)).length,
-		triangles: demonSurfaces.reduce( ( sum, s ) => sum + ( s.data?.triangles || 0 ), 0 ), enabled: demonEnabled };
+	const prepared=R_DemonBakeStatus();
+	return { preparedPending:prepared.pending,preparedPhase:prepared.phase,preparedSource:prepared.source,persistence:prepared.persistence,eligible: demonSurfaces.length, ready: demonSurfaces.filter( s => s.mesh ).length,
+		nativeOnly: demonSurfaces.filter(s=>R_DemonBakeSurface(s.surface).status==='native').length,
+		pending: demonSurfaces.filter(s=>R_DemonBakeSurface(s.surface).status!=='native'&&(['loading','error'].includes(R_DemonBakeSurface(s.surface).status)||!s.mesh&&(s.surface.texinfo.texture.gl_texture?.userData.newerPending||s.surface.texinfo.texture.gl_texture?.userData.newerHeight?.displacement))).length,
+		triangles: demonSurfaces.reduce( ( sum, s ) => sum + ( s.data?.triangles || 0 ), 0 ), enabled: demonEnabled,
+		errors: [prepared.error,...demonSurfaces.map(s=>R_DemonBakeSurface(s.surface).error)].filter(Boolean) };
 
 }
 
@@ -237,14 +242,18 @@ export function R_DemonReliefStatus() {
 function R_UpdateDemonSurfaces() {
 
 	const enabled = R_NewerGame() && r_newer_normals.value !== 0 && r_newer_textures.value !== 0;
+	const bake=enabled?R_DemonBakePrepare(cl.worldmodel,demonSurfaces.map(record=>record.surface)):null;
 	let changed = enabled !== demonEnabled;
 	demonEnabled = enabled;
+	if(!enabled){for(const record of demonSurfaces)if(record.mesh)record.mesh.visible=false;if(changed)R_BuildSunOccluder(cl.worldmodel);return;}
 	for ( const record of demonSurfaces ) {
 
 		const field = record.surface.texinfo.texture.gl_texture?.userData.newerHeight;
-		if ( record.field !== field ) {
+		const prepared=enabled?R_DemonBakeSurface(record.surface):null;
+		if(field?.displacement&&(bake?.status==='loading'||prepared?.status==='loading'))continue;
+		if ( record.field !== field || record.bakeData !== prepared?.data || record.bakeStatus !== prepared?.status ) {
 
-			record.field = field;
+			record.field = field;record.bakeData=prepared?.data;record.bakeStatus=prepared?.status;
 			if ( record.mesh ) {
 
 				record.mesh.geometry.dispose(); record.mesh.material.dispose();
@@ -255,13 +264,24 @@ function R_UpdateDemonSurfaces() {
 
 			}
 			record.mesh = null; record.data = null;
-			const data = R_DemonSurfaceData( record.surface );
+			// Known shipped data failures keep native backing, with explicit diagnostics;
+			// only unprepared/custom source/settings use the runtime generator.
+			const data = ['error','native'].includes(prepared?.status)?null:prepared?.data||R_DemonSurfaceData( record.surface );
 			if ( data ) {
 				const geometry = new THREE.BufferGeometry();
-				geometry.setAttribute( 'position', new THREE.BufferAttribute( data.positions, 3 ) );
-				geometry.setAttribute( 'normal', new THREE.BufferAttribute( data.normals, 3 ) );
-				geometry.setAttribute( 'uv', new THREE.BufferAttribute( data.uvs, 2 ) );
-				geometry.setAttribute( 'uv1', new THREE.BufferAttribute( data.lmuvs, 2 ) );
+    if(data.interleaved){
+     const buffer=new THREE.InterleavedBuffer(data.interleaved,10);
+     geometry.setAttribute('position',new THREE.InterleavedBufferAttribute(buffer,3,0));
+     geometry.setAttribute('normal',new THREE.InterleavedBufferAttribute(buffer,3,3));
+     geometry.setAttribute('uv',new THREE.InterleavedBufferAttribute(buffer,2,6));
+     geometry.setAttribute('uv1',new THREE.InterleavedBufferAttribute(buffer,2,8));
+     geometry.setIndex(new THREE.BufferAttribute(data.indices,1));
+    }else{
+     geometry.setAttribute('position',new THREE.BufferAttribute(data.positions,3));
+     geometry.setAttribute('normal',new THREE.BufferAttribute(data.normals,3));
+     geometry.setAttribute('uv',new THREE.BufferAttribute(data.uvs,2));
+     geometry.setAttribute('uv1',new THREE.BufferAttribute(data.lmuvs,2));
+    }
 				geometry.computeBoundingBox(); geometry.computeBoundingSphere();
 				const material = createQuakeLightmapMaterial( record.surface.texinfo.texture.gl_texture, lightmapTextures[ record.surface.lightmaptexturenum ] );
 				material.userData.realDisplacement = true;
@@ -2660,6 +2680,12 @@ function R_DrawSkyChain( s ) {
 // Returns a texture number and the position inside it
 //============================================================================
 
+function resizeLightmapCapacity(count){
+ const previous=lightmaps,next=new Uint8Array(4*count*BLOCK_WIDTH*BLOCK_HEIGHT);next.set(previous.subarray(0,next.length));lightmaps=next;
+ for(let i=MAX_LIGHTMAPS;i<count;i++){allocated.push(new Int32Array(BLOCK_WIDTH));lightmap_polys.push(null);lightmap_modified.push(false);lightmap_rectchange.push(new glRect_t());}
+ allocated.length=count;lightmap_polys.length=count;lightmap_modified.length=count;lightmap_rectchange.length=count;MAX_LIGHTMAPS=count;
+}
+
 export function AllocBlock( w, h, outX, outY ) {
 
 	for ( let texnum = 0; texnum < MAX_LIGHTMAPS; texnum ++ ) {
@@ -2700,6 +2726,7 @@ export function AllocBlock( w, h, outX, outY ) {
 
 	}
 
+	if(MAX_LIGHTMAPS<LIGHTMAP_LIMIT&&w>0&&h>0&&w<BLOCK_WIDTH&&h<=BLOCK_HEIGHT){resizeLightmapCapacity(Math.min(LIGHTMAP_LIMIT,MAX_LIGHTMAPS*2));return AllocBlock(w,h,outX,outY);}
 	Sys_Error( 'AllocBlock: full' );
 
 }
@@ -2720,7 +2747,9 @@ export function BuildSurfaceDisplayList( fa ) {
 
 	// create glpoly_t equivalent
 	const poly = {
-		next: fa.polys,
+		// One opaque BSP face is rebuilt, not appended. Sky/turb subdivisions
+		// are owned by the loader and are skipped by GL_BuildLightmaps.
+		next: null,
 		flags: fa.flags,
 		numverts: lnumverts,
 		verts: new Float32Array( lnumverts * VERTEXSIZE ),
@@ -3326,6 +3355,8 @@ export function GL_BuildLightmaps() {
 
 	lightmapTextures.length = 0;
 
+	// Each world starts with the original64-atlas policy; grow only when full.
+	if(MAX_LIGHTMAPS!==BASE_LIGHTMAPS)resizeLightmapCapacity(BASE_LIGHTMAPS);
 	// clear allocation
 	for ( let i = 0; i < MAX_LIGHTMAPS; i ++ )
 		allocated[ i ].fill( 0 );

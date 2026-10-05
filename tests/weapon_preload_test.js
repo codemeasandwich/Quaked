@@ -11,6 +11,7 @@ const vars = await import( '../src/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const startup = await import( '../src/r_demoloading.js' );
 
+const { STARTUP_PACK } = await import( '../src/startup_pack.js' );
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ), 'utf8' );
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 
@@ -39,16 +40,16 @@ Deno.test( 'weapon startup: ordinary app warms held/pickup art behind its first 
 		let frame; const renderer = { domElement: { width: 800, height: 600 }, setAnimationLoop( callback ) { frame = callback; events.push( 'demo loop' ); } };
 		const context = {
 			window, renderer, document: { getElementById: id => id === 'loading' ? { remove: () => events.push( 'loading removed' ) } : { style: {} } },
-			console, URLSearchParams, performance,
+			console, URLSearchParams, performance, STARTUP_PACK, crypto: globalThis.crypto,
 			Sys_Init: noop, Sys_Printf: noop, Sys_Error: message => { throw new Error( message ); }, COM_InitArgv: noop,
 			Host_Init: async () => { events.push( 'host initialized' ); startup.R_DemoLoadingAttract( true ); }, Host_Frame: () => { events.push( 'native console frame' ); startup.R_DemoLoadingConsoleDrawn(); }, Host_Shutdown: noop,
-			COM_FetchPak: async () => ( {} ), COM_FetchOptionalPak: async () => null, COM_AddPack: noop, COM_SetNewerPack: noop,
+			COM_FetchPak: async () => ( { files: [] } ), COM_FetchOptionalPak: async () => null, COM_AddPack: noop, COM_SetNewerPack: noop, COM_SetNewerStartupPack: noop,
 			COM_NewerFile: () => null, COM_SetNewerMapsPack: noop, COM_LoadPackFile: () => { throw new Error( 'No embedded map pack was supplied by this startup fixture' ); },
 			Cbuf_AddText: noop, Cmd_AddCommand: noop, Cmd_Argc: () => 0, Cmd_Argv: () => '', Con_Printf: noop,
 			Cvar_VariableValue: vars.Cvar_VariableValue, Cvar_SetValue: vars.Cvar_SetValue, key_dest: 0, key_game: 0,
 			R_PerfSetHost: noop, R_PerfStart: noop, R_PerfStop: noop, R_PerfProfiling: () => false, R_PerfPump: noop, R_PerfLastReport: () => null,
 			cls: {}, cl: {}, sv: {}, scene: {}, camera: {}, Draw_CachePicFromPNG: async () => {}, Draw_CacheSinglePlayerMenu: () => ( {} ),
-			Draw_LoadConbackImage: async () => true, XR_Init: noop, R_WeaponsPreload: weapons.R_WeaponsPreload, R_NewerHudPreload: noop,
+			Draw_LoadConbackImage: async () => true, XR_Init: noop, R_WeaponsPreload: weapons.R_WeaponsPreload, R_NewerHudPreload: noop, R_RockBakePrefetch: name => events.push( 'bake prefetch ' + name ), R_NewerSkinsPrefetchBsp: noop, R_DemonBakePrefetch: noop, R_BspTextureNames: () => [], R_NewerTexturesPrefetch: noop, M_SetExternals: noop,
 			R_DemoLoadingBoot: startup.R_DemoLoadingBoot, R_DemoLoadingAppReady: startup.R_DemoLoadingAppReady, R_DemoLoadingCancel: startup.R_DemoLoadingCancel, R_DemoLoadingStatus: startup.R_DemoLoadingStatus, R_DemoLoadingSplash: startup.R_DemoLoadingSplash, LoadingScreen_SetProgress: noop, LoadingScreen_Remove: () => events.push( 'loading removed' ), LoadingScreen_FadeOut: () => { events.push( 'logo fade' ); return Promise.resolve(); }
 		};
 		// Imports supply the boundaries above; execute unchanged main() control

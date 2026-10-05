@@ -1,0 +1,114 @@
+{
+  "completedAt": "2026-10-05T18:38:21.263451+00:00",
+  "status": "pass",
+  "passed": 87,
+  "total": 87,
+  "headBefore": "212c5800de852d8a1b51b25473bb8064d97d9f56",
+  "headAfter": "212c5800de852d8a1b51b25473bb8064d97d9f56",
+  "sourceBefore": "/private/tmp/quaked-loading-wrapup-source-before.json",
+  "checkedHashes": 184,
+  "drift": [],
+  "log": "/private/tmp/quaked-loading-wrapup-production-gate.log",
+  "suites": [
+    {
+      "file": "tests/rock_retry_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/rock_prepare_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/rockfield_bakes_test.js",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "tests/normal_prepare_test.js",
+      "passed": 10,
+      "total": 10
+    },
+    {
+      "file": "tests/normal_transport_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_normal_prefetch_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_preload_test.js",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "file": "tests/newer_normals_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/startup_collector_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/demo_startup_loading_test.js",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "file": "tests/gl_normals_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/gl_normals_crafted_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_cache_test.js",
+      "passed": 8,
+      "total": 8
+    },
+    {
+      "file": "tests/geometry_copy_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/demon_compact_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/demon_bakes_native_test.js",
+      "passed": 1,
+      "total": 1
+    }
+  ],
+  "scope": [
+    "One bounded retry for current named rock source after transient transport/deadline failure",
+    "Shared failed pins transfer to one replacement; malformed/checksum data never authorize retry",
+    "Dispose during initial/retry awaits cannot repin, retry again or publish stale output",
+    "Production canonical normal transport/prefetch after experimental bundle imports removed",
+    "Existing startup/UI/readiness, normal source identity, field persistence, compact world/sun and point-group geometry compatibility"
+  ],
+  "retainedFailure": "/private/tmp/quaked-rock-retry-initial.log (2/4 before race/classification fixes)",
+  "authorizedProductionEdit": "src/r_rockbakes.js only, under parent explicit lifecycle-fix authority; parent independent review requested",
+  "excludedExperiments": [
+    "normal_bundle_test.js",
+    "normal_startup_packs_test.js",
+    "Experimental normal pack production/helper/assets remain intact but excluded from this gate/release scope"
+  ],
+  "acceptance": "Owner accepted achieved performance and waived strict demo1\u20132second target per parent relay; this gate adds no new timing claim.",
+  "limits": [
+    "Workspace constituent, not yet exported/staged candidate run or commit proof",
+    "No browser profiling or whole corpus rebake",
+    "Earlier complete corpus integrity/source reconciliation receipts remain separately qualified"
+  ]
+}

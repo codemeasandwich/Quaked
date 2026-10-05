@@ -4,7 +4,7 @@
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/sys.js';
 import { COM_InitArgv } from './src/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/host.js';
-import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/pak.js';
+import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/cmd.js';
 import { Con_Printf } from './src/common.js';
 import { Cvar_VariableValue, Cvar_SetValue } from './src/cvar.js';
@@ -16,11 +16,17 @@ import { scene, camera } from './src/gl_rmain.js';
 import { renderer } from './src/vid.js';
 import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage } from './src/gl_draw.js';
 import { XR_Init } from './src/webxr.js';
+import { STARTUP_PACK } from './src/startup_pack.js';
 import { R_WeaponsPreload } from './src/r_weapons.js';
 import { M_SetExternals } from './src/menu.js';
 import { LoadingScreen_SetProgress, LoadingScreen_Remove, LoadingScreen_FadeOut } from './src/loading_screen.js';
 import { R_DemoLoadingBoot, R_DemoLoadingAppReady, R_DemoLoadingCancel, R_DemoLoadingSplash, R_DemoLoadingStatus } from './src/r_demoloading.js';
 import { R_NewerHudPreload } from './src/r_newerhud.js';
+import { R_RockBakePrefetch } from './src/r_rockbakes.js';
+import { R_NewerSkinsPrefetchBsp } from './src/r_newerskins.js';
+import { R_DemonBakePrefetch } from './src/r_demonbakes.js';
+import {R_StartupNormalsPrefetch} from './src/r_normalprefetch.js';
+import { R_NewerTexturesPrefetch, R_BspTextureNames } from './src/r_newertextures.js';
 
 const parms = {
 	basedir: '.',
@@ -35,10 +41,22 @@ async function main() {
 		Sys_Init();
 
 		COM_InitArgv( parms.argv );
+		const urlParams = new URLSearchParams( window.location.search );
+		let hubNormalBytes=null,hubNormalsStarted=false;
 
 		// Load pak0.pak from the same directory; the loading logo fills as it downloads
 		Sys_Printf( 'Loading pak0.pak...\\n' );
-		const pak0 = await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		// Overlap independent transports; native installation order stays intact.
+		const nativePack = COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		const optionalPack = COM_FetchOptionalPak( 'newer.pak', 'newer.pak' ).catch( error => {
+			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
+		} );
+		const startupPack=COM_FetchOptionalPak(STARTUP_PACK.file,STARTUP_PACK.file).catch(error=>{Sys_Printf('Startup pack not loaded: '+error.message);return null;});
+		const [ pak0, newerPak, hudPak ] = await Promise.all( [ nativePack, optionalPack, startupPack ] );
+		if(hudPak){
+		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
+		 if(digest===STARTUP_PACK.sha256)COM_SetNewerStartupPack(hudPak);else Sys_Printf('Startup pack checksum mismatch; loose HUD fallback');
+		}
 		if ( pak0 ) {
 
 			COM_AddPack( pak0 );
@@ -50,28 +68,27 @@ async function main() {
 
 		}
 
-		// Newer Game's own art and data, when it is there (a checkout without it uses the loose files in newer/)
-		try {
-
-			const newerPak = await COM_FetchOptionalPak( 'newer.pak', 'newer.pak' );
-			if ( newerPak ) {
-
-				COM_SetNewerPack( newerPak );
-				Sys_Printf( 'newer.pak loaded\\n' );
-
-			}
-
-		} catch ( e ) {
-
-			Sys_Printf( 'newer.pak not loaded: ' + e.message + '\\n' );
-
+		if ( newerPak ) COM_SetNewerPack( newerPak );
+		// These existing loaders need known asset routing, not a renderer or
+		// native palette. Overlap their transport with map-pack and host setup.
+		R_WeaponsPreload();
+		R_NewerHudPreload();
+		// Start validated current-attract and hub bakes before hidden GPU work
+		// competes with transport/decompression. Prefetch never releases a gate.
+		if ( ! urlParams.has( 'room' ) ) {
+			const demo=pak0?.files.find(file=>file.name==='maps/e1m3.bsp');
+			if(demo){const bytes=new Uint8Array(pak0.data,demo.filepos,demo.filelen);R_RockBakePrefetch('maps/e1m3.bsp',undefined,undefined,bytes);R_StartupNormalsPrefetch('maps/e1m3.bsp',bytes);R_DemonBakePrefetch('maps/e1m3.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}
 		}
 
 		// Small enhanced-only map pack, independent of the optional art bundle.
 		const packedMaps = COM_NewerFile( 'newer/maps.pak' );
 		const newerMaps = packedMaps ? COM_LoadPackFile( 'newer/maps.pak', packedMaps.data.buffer.slice( packedMaps.data.byteOffset, packedMaps.data.byteOffset + packedMaps.size ) ) :
 			await COM_FetchOptionalPak( 'newer/maps.pak', 'newer/maps.pak' );
-		if ( newerMaps ) COM_SetNewerMapsPack( newerMaps );
+		if ( newerMaps ) {
+			COM_SetNewerMapsPack( newerMaps );
+			if(!urlParams.has('room')){const hub=newerMaps.files.find(file=>file.name==='maps/start.bsp');
+			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
+		}
 		await Host_Init( parms );
 
 		// Ready the supplied held/pickup art before the attract demo begins.
@@ -79,9 +96,9 @@ async function main() {
 		// though the enhanced assets are resident. No trial-page setup is needed.
 		// Optional art initializes behind the real console rather than keeping
 		// the black logo on screen until its downloads have finished.
-		R_WeaponsPreload();
-		R_NewerHudPreload();
-
+		// Independent UI loads all settle before AppReady, concurrently.
+		const uiArtwork = [
+		( async () => {
 		// Preload custom menu images
 		try {
 
@@ -94,6 +111,8 @@ async function main() {
 
 		}
 
+		} )(),
+		( async () => {
 		// Supplied native-script name: display-only black key and proportional sizing.
 		try {
 
@@ -107,11 +126,8 @@ async function main() {
 
 		}
 
-		// Compose added labels from native glyphs; preserve the original rows.
-		// This avoids the miscropped letters in older cached spmenu.png artwork.
-		if ( Draw_CacheSinglePlayerMenu() === null )
-			Sys_Printf( 'Warning: Could not build the single player menu image\n' );
-
+		} )(),
+		( async () => {
 		// The banner of the Newer Game features menu
 		try {
 
@@ -123,15 +139,25 @@ async function main() {
 
 		}
 
+		} )(),
+		( async () => {
 		// Console (and menu backdrop) wallpaper; the original conback stays if it fails
 		if ( await Draw_LoadConbackImage( 'conback.webp' ) )
 			Sys_Printf( 'Loaded console wallpaper\n' );
 
+		} )()
+		];
+		// Compose added labels from native glyphs; preserve the original rows.
+		// This avoids the miscropped letters in older cached spmenu.png artwork.
+		if ( Draw_CacheSinglePlayerMenu() === null )
+			Sys_Printf( 'Warning: Could not build the single player menu image\n' );
+
+
 		// Check URL parameters for auto-join
-		const urlParams = new URLSearchParams( window.location.search );
 		const roomId = urlParams.get( 'room' );
 
 		if ( roomId ) {
+			await Promise.all(uiArtwork); // preserve the established network join barrier
 			R_DemoLoadingCancel(); // network/gameplay keeps its established transition
 
 			const serverUrl = urlParams.get( 'server' ) || 'https://wts.mrdoob.com:4433';
@@ -169,7 +195,6 @@ async function main() {
 		} );
 
 		let oldtime = performance.now() / 1000;
-		R_DemoLoadingAppReady(); // conback/menu loaded or explicit native fallbacks
 
 		// Use renderer.setAnimationLoop instead of requestAnimationFrame.
 		// This is required for WebXR — Three.js automatically switches to
@@ -184,10 +209,18 @@ async function main() {
 			if ( R_PerfProfiling() ) R_PerfPump( Host_Frame );
 			else Host_Frame( time );
 			const startup=R_DemoLoadingStatus();
+			// Current demo samples fit the bounded cache. Warming both worlds at
+			// once evicted them before their images could admit those inputs.
+			if(hubNormalBytes&&!hubNormalsStarted&&(startup.mode==='welcome'&&cl.worldmodel?.name==='maps/start.bsp'||startup.mode==='demo'&&startup.phase==='done')){hubNormalsStarted=true;R_StartupNormalsPrefetch('maps/start.bsp',hubNormalBytes);}
 			if(startup.mode==='welcome'||startup.phase==='done'&&!startup.fadeStarted)LoadingScreen_Remove();
 			else R_DemoLoadingSplash(()=>LoadingScreen_FadeOut());
 
 		} );
+
+		// Build/sign on and warm the real world while independent UI images
+		// arrive. Their existing barrier still owns presentation release.
+		await Promise.all(uiArtwork);
+		R_DemoLoadingAppReady();
 
 	} catch ( e ) {
 

@@ -1,0 +1,22 @@
+// Transport hints only. Admission still hashes every actual material input.
+import {readFile,writeFile} from 'node:fs/promises';
+import {R_LevelEntities} from '../src/r_levelents.js';
+import {memberSearch,readMember,sha256} from './pak_members.mjs';
+const manifest=JSON.parse(await readFile('newer/normals/manifest.json','utf8')),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
+const campaigns=[['shareware','pak0.pak'],['newer','newer/maps.pak']],output={};
+const heads={demon:'h_demon',dog:'h_dog',hknight:'h_hellkn',knight:'h_knight',ogre:'h_ogre',shalrath:'h_shal',shambler:'h_shams',enforcer:'h_guard',wizard:'h_wizard',zombie:'h_zombie'};
+for(const[namespace,path]of campaigns){
+ const members=await memberSearch([path]);
+ for(const name of ['maps/e1m3.bsp','maps/start.bsp']){
+  const member=members.get(name),level=manifest.levels[namespace+':'+name];if(!member||!level)continue;
+  const bytes=await readMember(member),bspSha256=sha256(bytes);if(level.bspSha256!==bspSha256||!level.upgradedKeys?.length)throw Error('Rebuild startup normal mode lists '+namespace+':'+name);
+  const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength),text=new TextDecoder().decode(bytes.subarray(view.getInt32(4,true),view.getInt32(4,true)+view.getInt32(8,true))),actors=new Set(['gib1','gib2','gib3','zom_gib']);
+  for(let skill=0;skill<3;skill++)for(const entity of R_LevelEntities(text,null,null,skill)){const match=/^progs\/([^/]+)\.mdl$/.exec(entity.model||'');if(match){actors.add(match[1]);if(heads[match[1]])actors.add(heads[match[1]]);}}
+  const actorKeys=new Set();for(const actor of actors){for(const key of manifest.levels['shareware:progs/'+actor+'.mdl']?.keys||[])actorKeys.add(key);for(const variant of skinIndex.models?.[actor]||[])for(const key of manifest.levels['custom:'+variant.dir]?.keys||[])actorKeys.add(key);}
+  const keys=[...new Set([...level.upgradedKeys,...actorKeys])];for(const key of keys)if(!manifest.samples[key])throw Error('Missing startup normal spec '+key);
+  (output[name]??=[]).push({bspSha256,keys,namespace,actors:[...actors].sort()});
+ }
+}
+await writeFile('src/startup_normal_bakes.js','// Generated exact startup BSP normal transport hints.\nexport const STARTUP_NORMAL_BAKES = '+JSON.stringify(output,null,1)+';\n');
+await writeFile('newer/normals/startup-prefetch.json',JSON.stringify({version:1,levels:output},null,2)+'\n');
+console.log('Prepared startup hints '+Object.values(output).flat().map(s=>s.namespace+':'+s.keys.length).join(', '));

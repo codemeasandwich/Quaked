@@ -2,6 +2,7 @@
 // flashlight. Geometry is borrowed from the existing solid-world occluder and
 // live actor/brush meshes; no BSP, vertex copy or source reparenting.
 import * as THREE from 'three';
+import { ShadowPoseCapture, ShadowPoseEqual } from './shadow_pose.js';
 
 export const POINT_SHADOW_SLOTS = 8;
 export const POINT_SHADOW_SIZE = 128;
@@ -82,6 +83,7 @@ export class PointShadowAtlas {
 	constructor( geometry = null ) {
 
 		this.geometry = null; this.chunks = []; this.triangles = 0;
+		this.frozenPose = null;
 		this.scene = new THREE.Scene();
 		this.material = new THREE.ShaderMaterial( {
 			vertexShader: VERTEX, fragmentShader: FRAGMENT, side: THREE.DoubleSide,
@@ -190,28 +192,31 @@ export class PointShadowAtlas {
 			throw new TypeError( 'Point shadows require a triangle BufferGeometry with position vec3' );
 		this._clearChunks(); this.geometry = geometry; this.invalidate();
 		if ( ! position || ! count ) return this;
-		const groups = new Map();
-		const vertex = corner => index ? index.getX( corner ) : corner;
-		const scale = 3 * POINT_SHADOW_CELL_UNITS;
-		const cell = ( a, b, c ) => Math.floor( ( position.getX( a ) + position.getX( b ) + position.getX( c ) ) / scale ) + ',' +
-			Math.floor( ( position.getY( a ) + position.getY( b ) + position.getY( c ) ) / scale ) + ',' +
-			Math.floor( ( position.getZ( a ) + position.getZ( b ) + position.getZ( c ) ) / scale );
-		// Two bounded passes allocate exactly one Uint32 index per source corner.
-		// Bounds include full triangle vertices, not just their centroid cell.
-		for ( let corner = 0; corner < count; corner += 3 ) {
+		const groups = new Map(),ordered=[],assignments=new Uint32Array(count/3);
+  const raw=position.isBufferAttribute&&!position.normalized&&position.array instanceof Float32Array?position.array:null;
+  const indices=index?.isBufferAttribute&&!index.normalized&&index.itemSize===1?index.array:null;
+  const vertex=corner=>indices?indices[corner]:index?index.getX(corner):corner;
+  const scale=3*POINT_SHADOW_CELL_UNITS;
+  // Read each corner once. Preserve the exact centroid expression, group
+  // insertion/triangle order and Three min/max semantics for source bounds.
+  for(let corner=0;corner<count;corner+=3){
+   const a=vertex(corner),b=vertex(corner+1),c=vertex(corner+2);
+   const ax=raw?raw[a*3]:position.getX(a),ay=raw?raw[a*3+1]:position.getY(a),az=raw?raw[a*3+2]:position.getZ(a);
+   const bx=raw?raw[b*3]:position.getX(b),by=raw?raw[b*3+1]:position.getY(b),bz=raw?raw[b*3+2]:position.getZ(b);
+   const cx=raw?raw[c*3]:position.getX(c),cy=raw?raw[c*3+1]:position.getY(c),cz=raw?raw[c*3+2]:position.getZ(c);
+   const key=Math.floor((ax+bx+cx)/scale)+','+Math.floor((ay+by+cy)/scale)+','+Math.floor((az+bz+cz)/scale);
+   let group=groups.get(key);if(!group){groups.set(key,group={id:ordered.length,count:0,used:0,box:new THREE.Box3()});ordered.push(group);}
+   assignments[corner/3]=group.id;group.count+=3;
+   const min=group.box.min,max=group.box.max;
+   min.set(Math.min(min.x,ax,bx,cx),Math.min(min.y,ay,by,cy),Math.min(min.z,az,bz,cz));
+   max.set(Math.max(max.x,ax,bx,cx),Math.max(max.y,ay,by,cy),Math.max(max.z,az,bz,cz));
+  }
 
-			const a = vertex( corner ), b = vertex( corner + 1 ), c = vertex( corner + 2 ), key = cell( a, b, c );
-			let group = groups.get( key );
-			if ( ! group ) groups.set( key, group = { count: 0, used: 0, box: new THREE.Box3() } );
-			group.count += 3;
-			for ( const id of [ a, b, c ] ) group.box.expandByPoint( this._look.set( position.getX( id ), position.getY( id ), position.getZ( id ) ) );
-
-		}
 		for ( const group of groups.values() ) group.indices = new Uint32Array( group.count );
 		for ( let corner = 0; corner < count; corner += 3 ) {
 
-			const a = vertex( corner ), b = vertex( corner + 1 ), c = vertex( corner + 2 ), group = groups.get( cell( a, b, c ) );
-			group.indices.set( [ a, b, c ], group.used ); group.used += 3;
+			const group=ordered[assignments[corner/3]];
+			group.indices[group.used++]=vertex(corner);group.indices[group.used++]=vertex(corner+1);group.indices[group.used++]=vertex(corner+2);
 
 		}
 		for ( const group of groups.values() ) {
@@ -229,6 +234,7 @@ export class PointShadowAtlas {
 	}
 
 	invalidate() {
+		this.frozenPose = null;
 
 		this.epoch ++; this.entries.clear(); this.slots.fill( null ); this.requested = 0; this.error = null;
 		this.clearSpot(); this.clearSun(); this._clearDynamicClones(); this.pointDynamicMeshes = 0; this.pointGeometryRevision ++;
@@ -442,7 +448,7 @@ export class PointShadowAtlas {
 	// Live sources and submitted model poses are current-frame data: capture
 	// every selected slot (at most eight cubes), never queue a short-lived flash
 	// behind static work or expose an older actor pose after a failed capture.
-	update( renderer, sources = [], dynamicMeshes = [] ) {
+	update( renderer, sources = [], dynamicMeshes = [], { frozenPose = false } = {} ) {
 
 		if ( this.disposed ) return this.status();
 		const clones = [];
@@ -454,7 +460,11 @@ export class PointShadowAtlas {
 			// Invalidating all resident entries also protects a temporarily unselected
 			// light when it returns after an actor moved or disappeared. No per-vertex
 			// revision polling is needed: live alias poses can mutate borrowed buffers.
-			const dynamicFrame = clones.length > 0 || previousDynamicMeshes > 0;
+			const hasDynamic = clones.length > 0 || previousDynamicMeshes > 0;
+			const unchanged = frozenPose && ShadowPoseEqual(this.frozenPose,clones);
+			if(frozenPose&&!unchanged)this.frozenPose=ShadowPoseCapture(clones);
+			else if(!frozenPose)this.frozenPose=null;
+			const dynamicFrame = hasDynamic && !unchanged;
 			if ( dynamicFrame ) {
 
 				this.pointGeometryRevision ++;
@@ -520,12 +530,14 @@ export class PointShadowAtlas {
 				}
 				entry.used = ++ this.access;
 				entry.live = value.live;
-				if ( entry.live ) entry.ready = false;
+				// During an authoritative frozen intro, equal light position/range
+				// and actual caster bytes mean equal depth, even for pulsing colour.
+				if ( entry.live && !frozenPose ) entry.ready = false;
 
 			}
 			const current = selected.map( value => this.entries.get( value.source ) ).filter( Boolean );
-			const captureAll = dynamicFrame || current.some( entry => entry.live );
-			if ( captureAll ) for ( const entry of current ) entry.ready = false;
+			const captureAll = hasDynamic || current.some( entry => entry.live );
+			if ( !frozenPose && captureAll ) for ( const entry of current ) entry.ready = false;
 			const pending = current.filter( entry => ! entry.ready );
 			if ( renderer && ( this.chunks.length || clones.length ) ) {
 

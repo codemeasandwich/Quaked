@@ -1,0 +1,510 @@
+{
+  "completedAt": "2026-10-05T18:54:46.271455+00:00",
+  "status": "pass",
+  "passed": 182,
+  "total": 182,
+  "root": "/private/tmp/quaked-loading-candidate-s_p7t05t",
+  "baseHEAD": "212c5800de852d8a1b51b25473bb8064d97d9f56",
+  "repositoryHEADAtCompletion": "212c5800de852d8a1b51b25473bb8064d97d9f56",
+  "sourceBefore": "/private/tmp/quaked-loading-candidate-refreshed-source-before.json",
+  "checkedHashes": 225,
+  "drift": [],
+  "log": "/private/tmp/quaked-loading-candidate-refreshed-final-gate.log",
+  "logSHA256": "c3f0a1812fb00fb03355d785aeb237a791c6bd361139611fcef373a4349a07db",
+  "suites": [
+    {
+      "file": "tests/rock_retry_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/rock_prepare_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/rockfield_bakes_test.js",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "tests/normal_prepare_test.js",
+      "passed": 10,
+      "total": 10
+    },
+    {
+      "file": "tests/normal_transport_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_normal_prefetch_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_preload_test.js",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "file": "tests/newer_normals_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/startup_collector_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/demo_startup_loading_test.js",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "file": "tests/gl_normals_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/gl_normals_crafted_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_cache_test.js",
+      "passed": 8,
+      "total": 8
+    },
+    {
+      "file": "tests/geometry_copy_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/demon_compact_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/demon_bakes_native_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/bsp2_model_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/bsp2_native_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/bsp2_server_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/alias_mesh_cache_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/alias_mesh_native_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/demon_native_only_test.js",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "file": "tests/demon_native_only_native_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/displacement_store_test.js",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "tests/custom_displacement_test.js",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "file": "tests/custom_arrival_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/startup_water_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/startup_console_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/startup_pack_test.js",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "file": "tests/startup_skins_test.js",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "file": "tests/startup_texture_prefetch_test.js",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "file": "tests/shaderwarm_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/demon_bakes_test.js",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "tests/demon_mesh_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/demon_allocation_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/demon_tiles_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/normal_baker_inputs_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/prepared_transport_test.js",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "file": "tests/height_shadows_test.js",
+      "passed": 8,
+      "total": 8
+    },
+    {
+      "file": "tests/model_pointshadows_test.js",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "tests/flashlight_world_shadow_test.js",
+      "passed": 3,
+      "total": 3
+    }
+  ],
+  "nativeControls": {
+    "ROCK_PERSISTENCE_PROOF": {
+      "pid": 70565,
+      "status": "ready",
+      "source": "disk",
+      "workers": 0,
+      "charts": 2,
+      "sha256": "54f16458825783393edbfecbff1ebcd1524d616dc0eec14e191f9d3513c56437",
+      "parentPID": 70564,
+      "tiles": 18
+    },
+    "COMPACT_NATIVE_LIFECYCLE": {
+      "surfaces": 2,
+      "triangles": 266240,
+      "payloadBytes": 8644680,
+      "gpuBytes": 8643280,
+      "compatibilityAllocations": [
+        0,
+        0
+      ],
+      "skyWaterSurfaces": 160,
+      "transports": 1
+    },
+    "BSP2_NATIVE_PROOF": {
+      "maps": [
+        {
+          "archive": "resources/dopa/pak0.pak",
+          "name": "maps/e5sm1.bsp",
+          "sourceSHA256": "7a1d72d7871f849c798ebe6363a24fb12fd590b9b3a4576dcc9ad42e80a1c336",
+          "vertices": 18817,
+          "faces": 14618,
+          "nodes": 6905,
+          "leaves": 3735,
+          "visLeaves": 3052,
+          "rowBytes": 382,
+          "maxVertex": 18816,
+          "pvsRows": 32,
+          "loaderMS": 90.38179099999999,
+          "lightmapCapacity": 64,
+          "lightmapTextures": 36
+        },
+        {
+          "archive": "resources/mg1/pak0.pak",
+          "name": "maps/hub.bsp",
+          "sourceSHA256": "60a6ce2f18c2760c8b563dc77fa2b28d1de3d8eabd1b68d8120016abf54ee12c",
+          "vertices": 233347,
+          "faces": 173674,
+          "nodes": 96494,
+          "leaves": 69445,
+          "visLeaves": 66426,
+          "rowBytes": 8304,
+          "maxVertex": 233346,
+          "pvsRows": 32,
+          "loaderMS": 1039.513125,
+          "lightmapCapacity": 128,
+          "lightmapTextures": 95
+        }
+      ],
+      "returnToBSP29": {
+        "capacity": 64,
+        "textures": 10,
+        "disposed": 95
+      }
+    },
+    "BSP2_SERVER_PVS": {
+      "leafIndex": 65537,
+      "pvsBit": 65536,
+      "rowBytes": 8193,
+      "linked": [
+        65536
+      ],
+      "entity": 163,
+      "packetBytes": 55,
+      "visibleEntities": 1
+    },
+    "ALIAS_NATIVE_ORIGINAL": {
+      "models": 61,
+      "poseReferences": 620013,
+      "pakSHA256": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+      "oracleSourceSHA256": "0d3bae8d42862793f991639f85f329cbfcc781a22b53196c0937ba3f5ddb6f66",
+      "modelsChecked": [
+        "progs/boss.mdl",
+        "progs/h_zombie.mdl",
+        "progs/zombie.mdl",
+        "progs/dog.mdl",
+        "progs/h_dog.mdl",
+        "progs/w_spike.mdl",
+        "progs/h_wizard.mdl",
+        "progs/wizard.mdl",
+        "progs/h_guard.mdl",
+        "progs/soldier.mdl",
+        "progs/h_knight.mdl",
+        "progs/knight.mdl",
+        "progs/h_shams.mdl",
+        "progs/s_light.mdl",
+        "progs/shambler.mdl",
+        "progs/h_demon.mdl",
+        "progs/demon.mdl",
+        "progs/h_ogre.mdl",
+        "progs/ogre.mdl",
+        "progs/flame2.mdl",
+        "progs/flame.mdl",
+        "progs/v_light.mdl",
+        "progs/zom_gib.mdl",
+        "progs/backpack.mdl",
+        "progs/s_spike.mdl",
+        "progs/spike.mdl",
+        "progs/grenade.mdl",
+        "progs/missile.mdl",
+        "progs/lavaball.mdl",
+        "progs/bolt3.mdl",
+        "progs/bolt2.mdl",
+        "progs/bolt.mdl",
+        "progs/v_rock2.mdl",
+        "progs/v_nail2.mdl",
+        "progs/v_shot2.mdl",
+        "progs/v_rock.mdl",
+        "progs/v_nail.mdl",
+        "progs/v_shot.mdl",
+        "progs/v_axe.mdl",
+        "progs/gib3.mdl",
+        "progs/gib2.mdl",
+        "progs/gib1.mdl",
+        "progs/h_player.mdl",
+        "progs/eyes.mdl",
+        "progs/player.mdl",
+        "progs/quaddama.mdl",
+        "progs/invisibl.mdl",
+        "progs/suit.mdl",
+        "progs/invulner.mdl",
+        "progs/end1.mdl",
+        "progs/m_g_key.mdl",
+        "progs/w_g_key.mdl",
+        "progs/m_s_key.mdl",
+        "progs/w_s_key.mdl",
+        "progs/g_light.mdl",
+        "progs/g_rock2.mdl",
+        "progs/g_rock.mdl",
+        "progs/g_nail2.mdl",
+        "progs/g_nail.mdl",
+        "progs/g_shot.mdl",
+        "progs/armor.mdl"
+      ]
+    },
+    "NATIVE_ONLY_PROOF": {
+      "map": "maps/e3m4.bsp",
+      "face": 5570,
+      "bspSha256": "6e4726f7eba9d4b232dfcdbe9e71740dcf23a0cd55c9434b2c71eda60da5c4e6",
+      "diagnostic": {
+        "reason": "triangle-budget",
+        "required": 315604,
+        "limit": 262144
+      },
+      "status": {
+        "preparedPending": 0,
+        "preparedPhase": "ready",
+        "preparedSource": "shipped",
+        "persistence": null,
+        "eligible": 1,
+        "ready": 0,
+        "nativeOnly": 1,
+        "pending": 0,
+        "triangles": 0,
+        "enabled": true,
+        "errors": []
+      },
+      "baseTriangles": 11085,
+      "generatorReads": 0
+    },
+    "DISPLACEMENT_STORE_RESTART": {
+      "adapter": "native temporary files",
+      "parentPID": 70648,
+      "childPID": 70649,
+      "source": "disk",
+      "rawSHA256": "7f139c226965580b844eb08bfd8c5cf66af03e5db2dfb1797e6f910ed974cb08",
+      "key": "a8448c5c16c65bc953c655436eb4b95ea4759d352b13a5a945bb5184610d8ad6",
+      "records": 1,
+      "phases": [
+        "filesystem",
+        "lock",
+        "read",
+        "generate",
+        "write",
+        "readback",
+        "ready"
+      ],
+      "commitOperations": [
+        {
+          "op": "write",
+          "name": "664c27db210257b4582398a13b467ab5df1b1ca62d11716bac52b6b938cbbcee.gz"
+        },
+        {
+          "op": "close",
+          "name": "664c27db210257b4582398a13b467ab5df1b1ca62d11716bac52b6b938cbbcee.gz"
+        },
+        {
+          "op": "read",
+          "name": "664c27db210257b4582398a13b467ab5df1b1ca62d11716bac52b6b938cbbcee.gz"
+        },
+        {
+          "op": "write",
+          "name": "a8448c5c16c65bc953c655436eb4b95ea4759d352b13a5a945bb5184610d8ad6.json"
+        },
+        {
+          "op": "close",
+          "name": "a8448c5c16c65bc953c655436eb4b95ea4759d352b13a5a945bb5184610d8ad6.json"
+        },
+        {
+          "op": "read",
+          "name": "a8448c5c16c65bc953c655436eb4b95ea4759d352b13a5a945bb5184610d8ad6.json"
+        },
+        {
+          "op": "read",
+          "name": "664c27db210257b4582398a13b467ab5df1b1ca62d11716bac52b6b938cbbcee.gz"
+        }
+      ]
+    },
+    "CUSTOM_RENDERER_RESTART": {
+      "parent": 70650,
+      "child": 70651,
+      "source": "disk",
+      "triangles": 72,
+      "generatorCalls": 0
+    },
+    "CUSTOM_NATIVE_ARRIVAL": {
+      "map": "e1m1",
+      "heldTime": 1,
+      "resumedTime": 1.02,
+      "heldVelocity": [
+        160,
+        0,
+        0
+      ],
+      "resumedVelocity": [
+        147.1999969482422,
+        0,
+        -16
+      ],
+      "rendererPreparation": {
+        "eligible": 0,
+        "pending": 0,
+        "preparedPending": 1,
+        "enabled": true
+      },
+      "scopeControls": [
+        "Classic",
+        "recorded demo",
+        "timed demo",
+        "network transport",
+        "closed client",
+        "closed peer",
+        "unpaired client",
+        "nonreciprocal peer",
+        "stale server slot",
+        "inactive client",
+        "inactive server",
+        "multiplayer",
+        "disconnected client"
+      ],
+      "loopback": true
+    },
+    "STARTUP_CONSOLE_SPEED": {
+      "height": 400,
+      "automaticFrames": 10,
+      "frameSeconds": 0.02,
+      "retractionSeconds": 0.2,
+      "userSpeed": 120,
+      "worldDraws": 48
+    }
+  },
+  "ogreCustody": {
+    "path": "newer/enemies/ogre/custom/diffuse.webp",
+    "baseHEADSha256": "79e1e530d9983ac003d1638e2a15cef5dd17bc725591988f6a66fb0b9a520eb5",
+    "candidateSha256": "79e1e530d9983ac003d1638e2a15cef5dd17bc725591988f6a66fb0b9a520eb5",
+    "workspaceSha256": "af5290302ed3251cbabd0641c8a00dfdb437a0078583c078516b541720c7c933",
+    "candidateMatchesHEAD": true,
+    "workspaceOwnerBytesUntouched": true,
+    "candidateFinalSHA256": "79e1e530d9983ac003d1638e2a15cef5dd17bc725591988f6a66fb0b9a520eb5",
+    "workspaceFinalSHA256": "af5290302ed3251cbabd0641c8a00dfdb437a0078583c078516b541720c7c933"
+  },
+  "resourcesAccess": "Only selected owned PAK members read through resources symlink; archives were not copied, modified or staged.",
+  "retainedFailure": "/private/tmp/quaked-loading-candidate-initial-failed-receipt.json (179/181 before two-file null/anonymous guard refresh)",
+  "scope": "Final exported loading-only candidate CPU/native public-interface gate. Excludes experimental normal bundle code/tests/assets and preserves current212c580 baseline. Parent reviewed runtime retry/null guards.",
+  "acceptance": "Owner accepted achieved performance and authorized wrap-up; strict demo1\u20132second target waived per trusted parent relay.",
+  "limits": [
+    "No new browser performance run or whole-corpus rebake",
+    "No new full corpus streaming scan; prior complete integrity and source reconciliation remain separate",
+    "Not a commit or push receipt; parent owns final staging/runtime closure and landing"
+  ]
+}

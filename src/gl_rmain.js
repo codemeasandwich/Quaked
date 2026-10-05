@@ -1,8 +1,10 @@
+import {sv,svs} from './server.js';
 import { R_RespawnCameraFrame } from './r_respawn.js';
-import { R_CompileSceneAsync } from './r_shaderwarm.js';
+import { R_DemonBakeRelease } from './r_demonbakes.js';
+import { R_CompileSceneAsync, R_ShaderAssetStamp } from './r_shaderwarm.js';
 import { R_RockfieldSetLimits, R_RockfieldStatus } from './r_rockfield.js';
-import { R_IntroLoadingHolding, R_DemoLoadingFrame, R_IntroReadinessChecks } from './r_demoloading.js';
-import { R_NewerTexturesStatus } from './r_newertextures.js';
+import { R_IntroLoadingHolding, R_DemoLoadingWelcome, R_DemoLoadingFrame, R_IntroReadinessChecks } from './r_demoloading.js';
+import { R_NewerTexturesStatus,R_NewerNormalsStatus,R_NewerNormalsPrepare } from './r_newertextures.js';
 import { R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsMaterials, R_NewerSkinsTextures } from './r_newerskins.js';
 import { R_WeaponsPreload, R_WeaponStatus, R_WeaponMaterials, R_WeaponTextures, R_WeaponsEnabled } from './r_weapons.js';
 import { R_NewerHudPreload, R_NewerHudStatus } from './r_newerhud.js';
@@ -64,7 +66,7 @@ import {
 } from './r_part.js';
 import { isXRActive, getXRRig, XR_SetCamera, XR_SCALE, XR_GetControllerWorldPose } from './webxr.js';
 import {
-	cl, cls, cl_visedicts, cl_numvisedicts, cl_dlights, cl_entities,
+	cl, cls, ca_connected, cl_visedicts, cl_numvisedicts, cl_dlights, cl_entities,
 	cl_static_entities, cl_temp_entities, cl_lightstyle
 } from './client.js';
 import { d_lightstylevalue, r_framecount, set_r_framecount, inc_r_framecount,
@@ -1813,7 +1815,7 @@ export function R_RenderView() {
 
 		if ( post ) {
 
-			R_WaterProbesFrame( renderer, scene, camera, R_WorldShowAll );
+			R_WaterProbesFrame( renderer, scene, camera, R_WorldShowAll, { initializing:R_IntroLoadingHolding(), ready:_introWaterReady } );
 
 			R_PostBind( renderer );
 
@@ -2081,7 +2083,7 @@ export function R_Init() {
 // frames, while the screen is still held back, instead of one at a time as they first come
 // into view: each of those is a stall of a good fraction of a second.
 let _needCompile = false;
-let _shaderWarmPending=0,_shaderWarmFailure='',_introWorld=null,_introShaderStamp='';
+let _shaderWarmPending=0,_shaderWarmFailure='',_introWorld=null,_introShaderStamp='',_introWaterReady=false;
 const _introWarnings=new Set();
 
 function R_UpdateIntroReadiness(){
@@ -2092,17 +2094,32 @@ function R_UpdateIntroReadiness(){
  const textures=R_NewerTexturesStatus(model),skins=R_NewerSkinsStatus(models),weapons=R_WeaponStatus(),hud=R_NewerHudStatus(),rock=R_RockfieldStatus(),demon=R_DemonReliefStatus(),shadows=R_PointShadowStatus(),water=R_WaterStartupStatus(camera);
  const enhanced=R_PostActive(),skinRequired=enhanced&&(r_newer_enemies.value!==0||r_newer_normals.value!==0),weaponRequired=R_WeaponsEnabled();
  const assets=[];
+ if(enhanced&&r_newer_normals.value!==0)R_NewerNormalsPrepare(model);
+ if(enhanced&&r_newer_normals.value!==0)assets.push(['surface normal samples',R_NewerNormalsStatus(model)]);
  if(enhanced&&r_newer_textures.value!==0)assets.push(['textures',textures]);
  if(skinRequired)assets.push(['enemy and item art',skins]);
  if(weaponRequired)assets.push(['weapon models',weapons]);
  if(enhanced&&r_newer_hud.value!==0)assets.push(['status bar',hud]);
  const {pending,fallbacks}=R_IntroReadinessChecks({assets,shaderPending:enhanced&&_needCompile||_shaderWarmPending>0,shaderFailure:_shaderWarmFailure,rock,demon,shadows,water,captureEnabled:enhanced&&r_newer_lighting.value!==0&&r_pointshadows.value!==0,spotOn:R_FlashlightBeam().on});
  const stamp=JSON.stringify([model.name,textures.ready,textures.fallback,skins.ready,skins.fallback,weapons.ready,hud.ready,hud.fallback,rock.preparedTiles,rock.resident,demon.ready,demon.triangles]);
- if(enhanced&&assets.every(([,state])=>state.settled)&&_introShaderStamp!==stamp){
-  _introShaderStamp=stamp;const previous=renderer.getRenderTarget();R_PostBind(renderer);
-  try{R_WarmShaders(renderer,scene,camera,[...(skinRequired?R_NewerSkinsMaterials(models):[]),...(weaponRequired?R_WeaponMaterials():[])],[...(skinRequired?R_NewerSkinsTextures(models):[]),...(weaponRequired?R_WeaponTextures():[])]);}finally{renderer.setRenderTarget(previous);}
-  pending.push('GPU asset upload');
+ if(enhanced&&assets.every(([,state])=>state.settled)){
+  const materials=[...(skinRequired?R_NewerSkinsMaterials(models):[]),...(weaponRequired?R_WeaponMaterials():[])];
+  const uploaded=[...(skinRequired?R_NewerSkinsTextures(models):[]),...(weaponRequired?R_WeaponTextures():[])];
+  // Tile residency and sculpted triangle counts affect stable-frame readiness,
+  // not these prepared shader families. Rewarm only changed actual bindings.
+  const uploadStamp=R_ShaderAssetStamp([model.name,textures.ready,textures.fallback,skins.ready,skins.fallback,weapons.ready,hud.ready,hud.fallback],materials,uploaded);
+  if(_introShaderStamp!==uploadStamp){
+   const previous=renderer.getRenderTarget();R_PostBind(renderer);
+   try{R_WarmShaders(renderer,scene,camera,materials,uploaded);}finally{renderer.setRenderTarget(previous);}
+   // Three compiles both sides of transparent DoubleSide materials by changing
+   // their version synchronously. Retain the completed compile's revision.
+   _introShaderStamp=R_ShaderAssetStamp([model.name,textures.ready,textures.fallback,skins.ready,skins.fallback,weapons.ready,hud.ready,hud.fallback],materials,uploaded);
+   pending.push('GPU asset upload');
+  }
  }
+ // This uses the existing readiness results; only water/shadow capture remains
+ // after final current art/geometry/uploads. No gate is released by this hint.
+ _introWaterReady=assets.every(([,state])=>state.settled)&&!pending.some(name=>['GPU shaders','GPU asset upload','continuous rock relief','sculpted surfaces'].includes(name));
  for(const warning of fallbacks)if(!_introWarnings.has(warning)){_introWarnings.add(warning);Con_Printf('Enhanced intro fallback: '+warning+'\n');}
  R_DemoLoadingFrame({world:model.name,signon:cls.signon,rendered:true,pending,fallbacks,revision:stamp+':'+(renderer.info?.programs?.length||0)});
 }
@@ -2184,12 +2201,17 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 }
 
 export function R_NewMap() {
+	R_DemonBakeRelease();
+	// All paired local Newer arrivals share the existing physics/input hold;
+	// network games and recorded/timed demos retain their established clocks.
+	const local=cls.netcon,peer=local?.driverdata;
+	if(r_hdr.value!==0&&sv.active&&svs.maxclients===1&&!cls.demoplayback&&cls.state===ca_connected&&local?.driver===0&&!local.disconnected&&peer?.driverdata===local&&!peer.disconnected&&svs.clients[0]?.active&&svs.clients[0].netconnection===peer)R_DemoLoadingWelcome();
 	R_ClearAxeCorpses();
 
 	R_PowerupClear();
 
 	_needCompile = true;
-	_introWorld=null;_introShaderStamp='';_shaderWarmFailure='';
+	_introWorld=null;_introShaderStamp='';_shaderWarmFailure='';_introWaterReady=false;
 
 	// clear old data
 	r_viewleaf = null;

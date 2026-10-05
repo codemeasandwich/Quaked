@@ -109,7 +109,7 @@ export class edict_t {
 		this.area = new link_t(); // linked to a division node or leaf
 
 		this.num_leafs = 0;
-		this.leafnums = new Int16Array( MAX_ENT_LEAFS );
+		this.leafnums = new Int32Array( MAX_ENT_LEAFS );
 
 		this.baseline = new entity_state_t();
 

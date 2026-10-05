@@ -20,6 +20,7 @@
 // It is generated once per texture on demand, from the texels already in memory.
 
 import * as THREE from 'three';
+import {R_NormalPrepared} from './normal_prepare.js';
 
 // how strongly each blur scale contributes to the height field
 const SCALES = [
@@ -325,8 +326,9 @@ function hashTexels( data ) {
 export function R_NormalMapFor( diffuse ) {
 
 	if ( diffuse == null || diffuse.image == null || diffuse.image.data == null ) return null;
+	const prepared=R_NormalPrepared(diffuse);if(prepared&&prepared.status!=='ready')return null;
+	if(diffuse._normalMap!==undefined&&diffuse._normalPreparedData!==prepared?.data){diffuse._normalMap?.dispose();diffuse._normalMap=undefined;}
 	if ( diffuse._normalMap !== undefined ) return diffuse._normalMap;
-
 	const { width, height, data } = diffuse.image;
 	const fb = diffuse._fullbright != null && diffuse._fullbright.image != null ? diffuse._fullbright.image.data : null;
 
@@ -339,7 +341,7 @@ export function R_NormalMapFor( diffuse ) {
 	const authored = donor && donor.width===width && donor.height===height && donor.data?.length===width*height*4;
 	const key = useCrafted ? 'crafted:' + crafted.file + ':' + ( crafted.dataFile || '' ) + ':' + crafted.strength + ':' + crafted.cap + ':' + ( crafted.edgeSource?.file || '' ) + ':' + ( authored ? donor.file + ':' + hashTexels(donor.data) : '' )
 		: width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
-	let pixels = generated.get( key );
+	let pixels = prepared?.data?.pixels || generated.get( key );
 	if ( pixels === undefined ) {
 
 		pixels = authored ? new Uint8Array(donor.data) : useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength, crafted.cap, crafted.edgeSource )
@@ -372,7 +374,7 @@ export function R_NormalMapFor( diffuse ) {
 		// Keep the uncarved material's smoothed height as a lighting reference.
 		// Only recess depth is shaded; its authored colour stays untouched.
 		const e = crafted.edgeSource;
-		const reference = new THREE.DataTexture( R_NormalsFromCraftedHeight( e.data, e.width, e.height, 0 ), e.width, e.height, THREE.RGBAFormat );
+		const reference = new THREE.DataTexture( prepared?.data?.reference || R_NormalsFromCraftedHeight( e.data, e.width, e.height, 0 ), e.width, e.height, THREE.RGBAFormat );
 		reference.wrapS = reference.wrapT = THREE.RepeatWrapping;
 		reference.magFilter = THREE.LinearFilter;
 		reference.minFilter = THREE.LinearMipmapLinearFilter;
@@ -392,6 +394,7 @@ export function R_NormalMapFor( diffuse ) {
 
 	} );
 
+	diffuse._normalPreparedData=prepared?.data;
 	diffuse._normalMap = texture;
 	return texture;
 

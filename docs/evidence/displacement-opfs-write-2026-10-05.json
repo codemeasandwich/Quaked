@@ -1,0 +1,113 @@
+{
+  "trial": "quaked-public-opfs-trial",
+  "version": 1,
+  "proof": "9948eb73-7677-43fd-98b1-d3de407cb6ab",
+  "pageID": "cbc48ab8-82bf-427a-b26a-4b14ed09df63",
+  "mode": "write",
+  "origin": "http://127.0.0.1:8015",
+  "creatorPageID": null,
+  "started": "2026-10-05T12:04:57.143Z",
+  "limits": {
+    "actionTimeoutMS": 20000,
+    "physicalBrowserRestartTested": false,
+    "gameRendererReadinessTested": false,
+    "storageBackend": "native browser OPFS",
+    "lockingBackend": "native browser Web Locks"
+  },
+  "actions": [
+    {
+      "label": "Cold-key write and readback",
+      "status": "PASS",
+      "elapsedMS": 118.5,
+      "phases": [
+        {
+          "phase": "filesystem",
+          "ms": 99.09999999403954
+        },
+        {
+          "phase": "lock",
+          "ms": 99.30000001192093
+        },
+        {
+          "phase": "read",
+          "ms": 100.59999999403954
+        },
+        {
+          "phase": "generate",
+          "ms": 100.90000000596046
+        },
+        {
+          "phase": "write",
+          "ms": 105.59999999403954
+        },
+        {
+          "phase": "readback",
+          "ms": 113.40000000596046
+        },
+        {
+          "phase": "ready",
+          "ms": 115.09999999403954
+        }
+      ],
+      "coldKey": true,
+      "generatorCalls": 1,
+      "key": "278b708b304ab0d952e402107bd55a09d6c02b5d752403521e62a40ce3347c2d",
+      "source": "generated-and-stored",
+      "persistence": "denied",
+      "generatorVersion": "quaked-sculpt-generator-1",
+      "formatVersion": 1,
+      "settings": "[2,2,\"clamp\",4,2,0]",
+      "bspSha256": "9008425575aca9747b6cf83e3cafefa6e4670c74c4c07995f71e794bb3457605",
+      "fieldSha256": "57c1ebc75047f958fc406aae6e9308e5d531d7260033db0dabcf4cf8a71e4173",
+      "triangles": 72,
+      "attributeHashes": {
+        "positions": "75bc742a7f7e50f12216e4ee497389b73b9c9ac8e788ffae09f4e40bbc2ac546",
+        "normals": "a03ee6ccffe6346d532775753d7978ef713ee4f183b073494a284a11ff38bbcc",
+        "uvs": "5a9b260389e2ce4a648567ece4f16d1c18ffc63110d7e7aa02334c45227d1373",
+        "lmuvs": "4b5cdb3051be699fcbc5e24662c1fcdecf051e92b6f448b232b6595044cba1b8"
+      },
+      "manifest": {
+        "schema": 1,
+        "key": "278b708b304ab0d952e402107bd55a09d6c02b5d752403521e62a40ce3347c2d",
+        "rawBytes": 4556,
+        "compressedBytes": 1892,
+        "rawSha256": "6baa6af50da527b018a6f6887e1d0044c5ad042caa6f32bb8d31a22966cee753",
+        "payloadSha256": "2d8d734b738f0b4682b6eabec4f09e1429995374bc84c8a69e685e27a4b0256d"
+      },
+      "files": {
+        "manifest": {
+          "name": "278b708b304ab0d952e402107bd55a09d6c02b5d752403521e62a40ce3347c2d.json",
+          "bytes": 286,
+          "lastModified": 1791201944237
+        },
+        "payload": {
+          "name": "2d8d734b738f0b4682b6eabec4f09e1429995374bc84c8a69e685e27a4b0256d.gz",
+          "bytes": 1892,
+          "lastModified": 1791201944233
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "/src/displacement_store.js": "3f1a14ff4a25840009791be6644f8c005147b596a65907457d8f389192e70c88",
+    "/src/demon_bake_format.js": "e0663cca1d529e64bc332dce71595ee9e8ef1ba5d6acee3dd3c76a8f36064646",
+    "/src/r_demonrelief.js": "a8fb14d77391b81135244ee10a612cc115b9e0e912aeb73ca4c4a7c06160a46e",
+    "/tests/displacement_store_trial.js": "3b0fa76c2643dcd9d3e2376602df6aa0a6845b4e95acdb66a643fe5e473074df"
+  },
+  "environment": {
+    "secureContext": true,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "opfs": true,
+    "webLocks": true
+  },
+  "summary": {
+    "completedActions": 1,
+    "allCompletedActionsPassed": true,
+    "coldKeyWritten": true,
+    "freshPageDiskVerified": false,
+    "inputAndVersionRekeysVerified": false,
+    "physicalBrowserRestartTested": false
+  },
+  "verificationURL": "http://127.0.0.1:8015/tests/displacement_store_trial.html?proof=9948eb73-7677-43fd-98b1-d3de407cb6ab&phase=verify&creator=cbc48ab8-82bf-427a-b26a-4b14ed09df63&origin=http%3A%2F%2F127.0.0.1%3A8015&expected=%7B%22key%22%3A%22278b708b304ab0d952e402107bd55a09d6c02b5d752403521e62a40ce3347c2d%22%2C%22rawSha256%22%3A%226baa6af50da527b018a6f6887e1d0044c5ad042caa6f32bb8d31a22966cee753%22%2C%22attributeHashes%22%3A%7B%22positions%22%3A%2275bc742a7f7e50f12216e4ee497389b73b9c9ac8e788ffae09f4e40bbc2ac546%22%2C%22normals%22%3A%22a03ee6ccffe6346d532775753d7978ef713ee4f183b073494a284a11ff38bbcc%22%2C%22uvs%22%3A%225a9b260389e2ce4a648567ece4f16d1c18ffc63110d7e7aa02334c45227d1373%22%2C%22lmuvs%22%3A%224b5cdb3051be699fcbc5e24662c1fcdecf051e92b6f448b232b6595044cba1b8%22%7D%2C%22sourceHashes%22%3A%7B%22%2Fsrc%2Fdisplacement_store.js%22%3A%223f1a14ff4a25840009791be6644f8c005147b596a65907457d8f389192e70c88%22%2C%22%2Fsrc%2Fdemon_bake_format.js%22%3A%22e0663cca1d529e64bc332dce71595ee9e8ef1ba5d6acee3dd3c76a8f36064646%22%2C%22%2Fsrc%2Fr_demonrelief.js%22%3A%22a8fb14d77391b81135244ee10a612cc115b9e0e912aeb73ca4c4a7c06160a46e%22%2C%22%2Ftests%2Fdisplacement_store_trial.js%22%3A%223b0fa76c2643dcd9d3e2376602df6aa0a6845b4e95acdb66a643fe5e473074df%22%7D%7D"
+}

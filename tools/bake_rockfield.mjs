@@ -6,6 +6,7 @@ import {pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
+import {memberSearch,readMember,isolatedPack} from './pak_members.mjs';
 import {Worker,isMainThread,parentPort,workerData} from 'node:worker_threads';
 import {RockBakeConfig,RockBakeTileCoordinates,RockBakeEncode,ROCK_BAKE_VERSION} from '../src/rockfield_bake_format.js';
 if(!isMainThread){
@@ -17,31 +18,36 @@ if(!isMainThread){
  const loader="let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}";
  register('data:text/javascript,'+encodeURIComponent(loader),{data:{three}});
  const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js'),{cl}=await import('../src/client.js'),{R_RockSurfaceCharts}=await import('../src/r_rocksurfaces.js');
- const names=new Set(),sources={};
- for(const filename of (await readdir('.')).filter(name=>/^pak\d+\.pak$/.test(name)).sort()){
-  const raw=await readFile(filename),pack=pak.COM_LoadPackFile(filename,raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length));pak.COM_AddPack(pack);
-  for(const file of pack.files)if(/^maps\/[^/]+\.bsp$/.test(file.name))names.add(file.name);
- }
- for(const filename of (await readdir('maps')).filter(name=>name.endsWith('.bsp'))){const name='maps/'+filename,raw=await readFile(name);const previousFetch=globalThis.fetch;try{globalThis.fetch=async()=>new Response(raw);await pak.COM_PreloadLooseFile(name,name);}finally{globalThis.fetch=previousFetch;}names.add(name);}
- vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();
+ const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',planOnly=false;
+ for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--plan')planOnly=true;else throw Error('Unknown argument '+args[i]);}
+ if(!/^[a-z0-9-]+$/.test(namespace))throw Error('Invalid namespace');
+ if(!packs.length&&!loose.length){packs.push(...(await readdir('.')).filter(name=>/^pak\d+\.pak$/.test(name)).sort());loose.push(...(await readdir('maps')).filter(name=>name.endsWith('.bsp')).map(n=>'maps/'+n));}
+ const members=await memberSearch(packs);for(const path of loose)members.set(path,{loose:true,path,name:path});
+ const names=new Set([...members.keys()].filter(name=>/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp(filter).test(name))),sources={};
+ const palette=await memberSearch(['pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));
+ vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();model.R_InitTextures();
  const sourceFiles=['src/rockfield.js','src/rockfield_presets.js','src/r_rocksurfaces.js','src/rockfield_bake_format.js'];for(const name of sourceFiles)sources[name]=createHash('sha256').update(await readFile(name)).digest('hex');
  const plans=[];
  for(const name of [...names].sort()){
-  const world=model.Mod_ForName(name,true);cl.worldmodel=world;cl.model_precache[1]=world;cl.model_precache[2]=null;surface.GL_BuildLightmaps();
+  model.Mod_ClearAll();const bytes=await readMember(members.get(name));pak.COM_AddPack(isolatedPack(name,bytes));const world=model.Mod_ForName(name,true);cl.worldmodel=world;cl.model_precache[1]=world;cl.model_precache[2]=null;surface.GL_BuildLightmaps();
   const charts=R_RockSurfaceCharts(world,{includeBrushes:true}).charts;plans.push({name,charts,tiles:charts.reduce((n,c)=>n+RockBakeTileCoordinates(c).length,0),bspSha256:createHash('sha256').update(pak.COM_FindFile(name).data).digest('hex')});
  }
- if(process.argv.includes('--plan')){console.log(JSON.stringify(plans.map(({name,charts,tiles})=>({name,charts:charts.length,tiles})),null,2));}
+ if(planOnly){console.log(JSON.stringify(plans.map(({name,charts,tiles})=>({name,charts:charts.length,tiles})),null,2));}
  else{
-  await mkdir('newer/rockfield',{recursive:true});const workers=Array.from({length:2},()=>new Worker(new URL(import.meta.url),{workerData:{three}})),manifest={version:ROCK_BAKE_VERSION,sources,levels:{}};
+  await mkdir('newer/rockfield/'+namespace,{recursive:true});const workers=Array.from({length:2},()=>new Worker(new URL(import.meta.url),{workerData:{three}})),manifest=JSON.parse(await readFile('newer/rockfield/manifest.json','utf8'));manifest.sources=sources;const generatorFingerprint=createHash('sha256').update(JSON.stringify(sources)).digest('hex');
   try{for(const plan of plans){
+   const old=manifest.levels[plan.name],previous=(Array.isArray(old)?old:[old]).find(s=>s?.namespace===namespace&&s.bspSha256===plan.bspSha256&&s.generatorFingerprint===generatorFingerprint);
+   if(previous){const saved=await readFile(previous.file).catch(()=>null);if(saved&&createHash('sha256').update(saved).digest('hex')===previous.sha256){console.log('REUSED '+namespace+':'+plan.name);continue;}}
+
    const jobs=plan.charts.flatMap(chart=>RockBakeTileCoordinates(chart).map(([x,y])=>({config:RockBakeConfig(chart),x,y}))),results=new Array(jobs.length);let next=0;
    await Promise.all(workers.map(worker=>new Promise((ok,fail)=>{let active;
     const cleanup=()=>{worker.off('message',message);worker.off('error',error);};
     const dispatch=()=>{if(next===jobs.length){cleanup();ok();return;}active=next++;worker.postMessage({id:active,...jobs[active]});};
     const error=e=>{cleanup();fail(e);};const message=result=>{if(result.error){error(new Error(result.error));return;}if(result.id!==active){error(new Error('Bake worker job mismatch'));return;}results[active]=result.half;dispatch();};worker.on('message',message);worker.on('error',error);dispatch();
    })));
-   const bytes=RockBakeEncode(plan.name,plan.charts,results),compressed=gzipSync(bytes,{level:9}),file='newer/rockfield/'+plan.name.slice(5,-4)+'.rf.gz';await writeFile(file,compressed);
-   manifest.levels[plan.name]={file,charts:plan.charts.length,tiles:jobs.length,bytes:bytes.length,compressedBytes:compressed.length,bspSha256:plan.bspSha256,sha256:createHash('sha256').update(compressed).digest('hex'),rawSha256:createHash('sha256').update(bytes).digest('hex')};
+   const bytes=RockBakeEncode(plan.name,plan.charts,results,{bspSha256:plan.bspSha256}),compressed=gzipSync(bytes,{level:9}),file='newer/rockfield/'+namespace+'/'+plan.name.slice(5,-4)+'.rf.gz';await writeFile(file,compressed);
+   const spec={file,namespace,generatorFingerprint,charts:plan.charts.length,tiles:jobs.length,bytes:bytes.length,compressedBytes:compressed.length,bspSha256:plan.bspSha256,sha256:createHash('sha256').update(compressed).digest('hex'),rawSha256:createHash('sha256').update(bytes).digest('hex')};manifest.levels[plan.name]=(Array.isArray(old)?old:old?[old]:[]).filter(s=>s.namespace!==namespace&&s.bspSha256!==spec.bspSha256).concat(spec);
+   await writeFile('newer/rockfield/manifest.json',JSON.stringify(manifest,null,2)+'\n');await writeFile('src/rockfield_bakes.js','// Generated by tools/bake_rockfield.mjs; rebuild after field/chart/preset changes.\nexport const ROCK_BAKES = '+JSON.stringify(manifest.levels,null,1)+';\n');
    console.log('BAKED '+plan.name+' '+jobs.length+' tiles '+compressed.length+' bytes');
   }}finally{await Promise.all(workers.map(worker=>worker.terminate()));}
   await writeFile('newer/rockfield/manifest.json',JSON.stringify(manifest,null,2)+'\n');

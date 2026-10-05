@@ -26,10 +26,12 @@ import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFram
 // scene's dynamic resolution; only its inexpensive presentation fills the display.
 
 import * as THREE from 'three';
+import { R_IntroLoadingHolding } from './r_demoloading.js';
 import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
+import {R_NormalPrepare,R_NormalPreparationNeeded} from './normal_prepare.js';
 import { R_PatchRockShader, ROCK_PARALLAX_GLSL, ROCK_NORMAL_GLSL } from './r_rockshader.js';
 import { rockUniforms } from './r_rockfield.js';
 import { GL_SetForceLinear } from './glquake.js';
@@ -42,6 +44,7 @@ import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashl
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, R_WaterProbeReadiness, WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures, r_newer_shadows } from './r_anim.js';
 import { R_DemonSurfaceData } from './r_demonrelief.js';
+import { R_DemonBakePrepare, R_DemonBakeSurface } from './r_demonbakes.js';
 import { PointShadowAtlas, POINT_SHADOW_GLSL, POINT_SHADOW_SLOTS, SPOT_WORLD_SHADOW_GLSL, NEAR_SUN_SHADOW_GLSL } from './r_pointshadows.js';
 import { r_heightshadows, heightShadowUniforms, R_HeightShadowFrame, R_HeightShadowScope, HEIGHT_SHADOW_GLSL, HEIGHT_MASK_DECODE_GLSL } from './r_heightshadows.js';
 
@@ -595,7 +598,9 @@ function applyDetail( material ) {
 		}
 
 	}
-	const wanted = detailActive && diffuse != null ? R_NormalMapFor( diffuse ) : null;
+	const waiting=detailActive&&diffuse?.userData.newerPending;
+	if(detailActive&&!waiting&&diffuse?.image?.data&&typeof window!=='undefined'&&R_NormalPreparationNeeded(diffuse))R_NormalPrepare(diffuse);
+	const wanted = detailActive && !waiting && diffuse != null ? R_NormalMapFor( diffuse ) : null;
 
 	if ( material.normalMap === wanted ) return;
 
@@ -1161,13 +1166,14 @@ function disposeOccluder() {
 }
 
 export function R_BuildSunOccluder( model ) {
+	const bake=model&&R_NewerGame()&&r_newer_normals.value!==0&&r_newer_textures.value!==0?R_DemonBakePrepare(model,model.surfaces||[]):null;
 
 	disposeOccluder();
 	if ( model == null || model.surfaces == null ) return 0;
 
 	const first = model.firstmodelsurface || 0;
 	const last = first + ( model.nummodelsurfaces || model.surfaces.length );
-	const positions = [];
+	let positions = [];const chunks=[];
 
 	for ( let i = first; i < last; i ++ ) {
 
@@ -1193,18 +1199,28 @@ export function R_BuildSunOccluder( model ) {
 		// same occluder seen by the enhanced scene. Classic keeps native geometry.
 		if ( R_NewerGame() && r_newer_normals.value !== 0 && r_newer_textures.value !== 0 ) {
 
-			const relief = R_DemonSurfaceData( surf );
-			if ( relief ) for ( const x of relief.positions ) positions.push( x );
+			const prepared=R_DemonBakeSurface(surf);
+			const relief = bake?.status==='loading'||bake?.status==='error'?null:prepared.status==='ready'?prepared.data:prepared.status==='unprepared'?R_DemonSurfaceData(surf):null;
+			if(relief){if(positions.length){chunks.push({positions:new Float32Array(positions)});positions=[];}chunks.push(relief.interleaved?{interleaved:relief.interleaved,indices:relief.indices}:{positions:relief.positions});}
 
 		}
 
 	}
 
-	if ( positions.length === 0 ) return 0;
-
-	const geometry = new THREE.BufferGeometry();
-	geometry.setAttribute( 'position', new THREE.BufferAttribute( new Float32Array( positions ), 3 ) );
-	geometry.computeBoundingSphere();
+	if(positions.length)chunks.push({positions:new Float32Array(positions)});
+ const indexed=chunks.some(c=>c.interleaved);
+ const vertices=chunks.reduce((sum,c)=>sum+(c.interleaved?c.interleaved.length/10:c.positions.length/3),0);
+ const corners=chunks.reduce((sum,c)=>sum+(c.indices?c.indices.length:c.positions.length/3),0);if(!corners)return 0;
+ const combined=new Float32Array(vertices*3),order=indexed?new Uint32Array(corners):null;let base=0,corner=0;
+ for(const c of chunks){
+  const count=c.interleaved?c.interleaved.length/10:c.positions.length/3;
+  if(c.interleaved){for(let i=0;i<count;i++){combined[(base+i)*3]=c.interleaved[i*10];combined[(base+i)*3+1]=c.interleaved[i*10+1];combined[(base+i)*3+2]=c.interleaved[i*10+2];}}
+  else combined.set(c.positions,base*3);
+  if(order){if(c.indices)for(const index of c.indices)order[corner++]=base+index;else for(let i=0;i<count;i++)order[corner++]=base+i;}
+  base+=count;
+ }
+ const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(combined,3));
+ if(order)geometry.setIndex(new THREE.BufferAttribute(order,1));geometry.computeBoundingSphere();
 
 	occluder = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { side: THREE.DoubleSide } ) );
 	occluder.name = 'quake_sun_occluder';
@@ -1212,8 +1228,7 @@ export function R_BuildSunOccluder( model ) {
 	occluder.matrixAutoUpdate = false;
 	gpu?.pointShadows?.setGeometry( geometry );
 
-	return positions.length / 9;
-
+	return corners / 3;
 }
 
 //============================================================================
@@ -3153,7 +3168,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
    object.userData.quakePhysicalAlias=physicalAlias;
    if((physicalAlias||object.userData.quakeAxePart===true)&&r_newer_shadows.value!==0||physicalBrush)spotCasters.push(object);
   });
-  gpu.pointShadows.update(renderer,shadowSources,spotCasters);
+  gpu.pointShadows.update(renderer,shadowSources,spotCasters,{frozenPose:R_IntroLoadingHolding()});
  }
  gpu.pointShadows.updateSun(renderer,{on:glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:sunDirection,focus:camera.position.toArray()},spotCasters);
  sh.tNearSunShadow.value=gpu.pointShadows.sunTexture;sh.uNearSunShadowVP.value.copy(gpu.pointShadows.sunVP);sh.uNearSunShadowOn.value=gpu.pointShadows.sunReady?1:0;
@@ -3285,9 +3300,12 @@ function renderSunShadow( renderer, scene, camera ) {
 }
 
 // Before the frame is drawn: a pool that has just come into view gets its reflection probe
-export function R_WaterProbesFrame( renderer, scene, camera, showAll ) {
+export function R_WaterProbesFrame( renderer, scene, camera, showAll, { initializing = false, ready = true } = {} ) {
 
 	if ( ! R_WaterActive() || r_reflect.value <= 0 || liquidRegions.length === 0 ) return;
+	// A cached intro probe must reflect final enabled art, not an earlier
+	// native texture that is about to be replaced. Normal play is unchanged.
+	if ( initializing && !ready ) return;
 
 	const cw = camera.matrixWorld.elements;
 	const near = [];
@@ -3302,7 +3320,7 @@ export function R_WaterProbesFrame( renderer, scene, camera, showAll ) {
 	}
 
 	near.sort( ( a, b ) => a.dist - b.dist );
-	R_WaterProbeUpdate( renderer, scene, camera, near.map( n => n.r ), showAll, liquidRegions );
+	R_WaterProbeUpdate( renderer, scene, camera, near.map( n => n.r ), showAll, liquidRegions, { initializing } );
 
 }
 

@@ -17,7 +17,7 @@ import { Cmd_AddCommand } from './cmd.js';
 import { key_dest, key_game, key_console, key_message } from './keys.js';
 import { realtime, host_frametime } from './host.js';
 import { renderer } from './vid.js';
-import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed } from './r_demoloading.js';
+import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleSpeed } from './r_demoloading.js';
 import { R_WelcomeLoadingHolding } from './r_demoloading.js';
 import { Draw_Fill } from './gl_draw.js';
 import { R_DemoSplitActive, R_DemoSplitFull } from './r_demosplit.js';
@@ -613,12 +613,18 @@ function SCR_SetUpToDrawConsole() {
 	if ( scr_drawloading )
 		return; // never a console with loading plaque
 	if(R_DemoLoadingConsoleOverride()){
-		scr_plaque=false;
-		const hold=R_DemoLoadingHolding();Con_SetForcedup(hold);
-		if(hold)scr_con_current=scr_conlines=_vid.height;
-		else{scr_conlines=key_dest===key_console?_vid.height/2:0;scr_con_current=Math.max(scr_conlines,scr_con_current-scr_conspeed.value*host_frametime);if(scr_con_current===0)R_DemoLoadingConsoleClosed();}
-		return;
-	}
+  scr_plaque=false;
+  const hold=R_DemoLoadingHolding();Con_SetForcedup(hold);
+  if(!hold&&key_dest===key_console){
+   // The user now owns this console; subsequent manual close uses the native
+   // preference and cannot inherit the automatic intro animation.
+   R_DemoLoadingConsoleClosed();
+  }else{
+   if(hold)scr_con_current=scr_conlines=_vid.height;
+   else{scr_conlines=0;scr_con_current=Math.max(0,scr_con_current-R_DemoLoadingConsoleSpeed(scr_conspeed.value,_vid.height)*host_frametime);if(scr_con_current===0)R_DemoLoadingConsoleClosed();}
+   return;
+  }
+ }
 
 	// decide on the height of the console
 	const forcedup = ! _cl.worldmodel || _cls.signon !== SIGNONS;

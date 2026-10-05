@@ -19,7 +19,9 @@
 // Textures load in the background the first time a skin is chosen; until they
 // have arrived the original skin is shown.
 
+import {R_NormalPrepare} from './normal_prepare.js';
 import * as THREE from 'three';
+import { R_LevelEntities } from './r_levelents.js';
 import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface } from './r_weapon_surface.js';
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
@@ -281,7 +283,7 @@ function readablePixels( texture ) {
 
 function refreshHeight( set ) {
 
-	if ( ! set.isEnemy || set.diffuse == null ) return;
+	if ( ! set.isEnemy || set.diffuse == null || typeof window!=='undefined'&&r_newer_normals.value===0 ) return;
 	if ( set.heightTexture == null && set.variant.maps.height !== undefined && ! set.heightFailed ) return;
 	if ( set.heightTexture == null && set.variant.maps.normal !== undefined && ! set.normalFailed ) return;
 	const pixels = readablePixels( set.diffuse );
@@ -305,15 +307,16 @@ function refreshHeight( set ) {
 	set.detailDiffuse.offset.copy( set.diffuse.offset );
 
 	const height = stored != null ? Float32Array.from( { length: stored.width * stored.height }, ( _, i ) => stored.data[ i * 4 ] / 255 )
-		: R_MultiScaleHeight( R_HeightFromRGBA( pixels.data, pixels.width, pixels.height, null ), pixels.width, pixels.height );
+		: typeof window!=='undefined'?undefined:R_MultiScaleHeight( R_HeightFromRGBA( pixels.data, pixels.width, pixels.height, null ), pixels.width, pixels.height );
 	set.detailDiffuse.userData.newerHeight = {
 		file: 'enemy:' + set.version + ':' + set.key + ( stored != null ? ':stored' : ':generated' ),
-		width: pixels.width, height: pixels.height, data: height,
+		width: pixels.width, height: pixels.height, data: height, derive:stored==null,
 		strength: set.variant.heightStrength ?? 0.65, cap: set.variant.heightCap ?? 0.55
 	};
-	set.uniforms.qrNormal.value = R_NormalMapFor( set.detailDiffuse );
-	set.uniforms.uHasNormal.value = 1;
-	set.uniforms.uFlipGreen.value = 0; // same top-row-first convention as the engine generator
+ const companion=set.detailDiffuse;
+ const bind=()=>{if(!set.alive||set.detailDiffuse!==companion)return;set.uniforms.qrNormal.value=R_NormalMapFor(companion);set.uniforms.uHasNormal.value=set.uniforms.qrNormal.value?1:0;set.uniforms.uFlipGreen.value=0;};
+ if(typeof window!=='undefined'){set.normalWork=R_NormalPrepare(companion);set.normalWork.promise.then(bind);}
+ bind();
 
 }
 
@@ -633,7 +636,7 @@ export function R_NewerSkinsStatus( modelNames ) {
 	const names = modelNames == null ? null : ( Array.isArray( modelNames ) ? modelNames : [ modelNames ] );
 	const keys = names ? new Set( names.map( value => R_NewerModelKey( typeof value === 'string' ? value : value?.name ) ).filter( Boolean ) ) : null;
 	const selected = [ ...sets.values(), ...nativeSets.values() ].filter( set => set.alive && ( ! keys || keys.has( set.modelKey ) ) );
-	let pending = 0, ready = 0, fallback = 0, preparePending = 0; const errors = {};
+	let pending = 0, ready = 0, fallback = 0, preparePending = 0; const errors = {}; const normals={pending:0,ready:0,shipped:0,disk:0,generated:0,errors:{}};
 	for ( const work of preparations.values() ) if ( ! work.started && ( ! keys || [ ...work.keys ].some( key => keys.has( key ) ) ) ) preparePending ++;
 	pending += preparePending;
 	if ( R_IsNewer() && ( indexState === 'loading' || indexState === 'idle' && keys?.size ) ) pending ++;
@@ -642,8 +645,22 @@ export function R_NewerSkinsStatus( modelNames ) {
 		else if ( load.status === 'ready' ) ready ++;
 		else { fallback ++; if ( load.error ) errors[ set.modelKey + ':' + set.key + ':' + name ] = load.error; }
 	}
+	for(const set of selected)if(R_IsNewer()&&r_newer_normals.value!==0&&set.normalWork){if(set.normalWork.status!=='ready'){pending++;normals.pending++;if(set.normalWork.error){errors[set.modelKey+':normal']=set.normalWork.error;normals.errors[set.modelKey]=set.normalWork.error;}}else{normals.ready++;if(set.normalWork.source==='shipped')normals.shipped++;else if(set.normalWork.source==='disk')normals.disk++;else if(set.normalWork.source==='generated-and-stored')normals.generated++;}}
 	if ( indexError ) errors.index = indexError;
-	return { index: indexState, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors };
+	return { index: indexState, normals, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors };
+}
+
+// Only the initial BSP's native entity catalog is inspected before model setup.
+// Start the existing custom-set requests; actual precache preparation/readiness
+// still decides which material families must be uploaded before entry.
+export function R_NewerSkinsPrefetchBsp(bytes){
+ if(!(bytes instanceof Uint8Array)||bytes.length<124)return Promise.resolve();
+ const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength),offset=view.getInt32(4,true),length=view.getInt32(8,true);
+ if(![29,0x32505342,0x42535032].includes(view.getInt32(0,true))||offset<124||length<0||length>4*1024*1024||offset+length>bytes.length)return Promise.resolve();
+ const text=new TextDecoder().decode(bytes.subarray(offset,offset+length)),keys=new Set(['gib1','gib2','gib3','zom_gib']);
+ const heads={demon:'h_demon',dog:'h_dog',hknight:'h_hellkn',knight:'h_knight',ogre:'h_ogre',shalrath:'h_shal',shambler:'h_shams',enforcer:'h_guard',wizard:'h_wizard',zombie:'h_zombie'};
+ for(let skill=0;skill<3;skill++)for(const entity of R_LevelEntities(text,null,null,skill)){const key=R_NewerModelKey(entity.model);if(key){keys.add(key);if(heads[key])keys.add(heads[key]);}}
+ return requestIndex().then(()=>{for(const key of keys)for(const variant of skinIndex?.[key]||[]){const id=skinVersion+':'+variant.dir;if(!sets.has(id))sets.set(id,createSet(variant,key));}});
 }
 
 // Startup-only caller-owned preparation: all current-map variants and native
@@ -664,6 +681,7 @@ export function R_NewerSkinsPrepare( models ) {
 			if ( custom ) for ( const variant of skinIndex?.[ modelKey ] || [] ) {
 				const setKey = skinVersion + ':' + variant.dir;
 				if ( ! sets.has( setKey ) ) sets.set( setKey, createSet( variant, modelKey ) );
+				const set=sets.get(setKey);if(native&&set.isEnemy&&set.diffuse&&!set.normalWork)refreshHeight(set);
 				sets.get( setKey ).prepared = true;
 			}
 			if ( native && ENEMY_SKIN_MODELS.has( modelKey ) ) {

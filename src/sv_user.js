@@ -1,3 +1,4 @@
+import {R_WelcomeLoadingHolding} from './r_demoloading.js';
 // Ported from: WinQuake/sv_user.c -- server code for moving users
 
 import { Sys_Printf } from './sys.js';
@@ -727,6 +728,9 @@ export function SV_RunClients() {
 
 		}
 
+		// Keep reliable signon/messages running, but preserve every player state
+		// component while paired local level data is being prepared.
+		if(svs.maxclients===1&&R_WelcomeLoadingHolding())continue;
 		// always pause in single player if in console or menus
 		if ( ! sv.paused && ( svs.maxclients > 1 || ( _get_key_dest ? _get_key_dest() : 0 ) === key_game ) ) {
 			SV_ClientThink();

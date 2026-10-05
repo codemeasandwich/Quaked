@@ -32,6 +32,7 @@ export function R_WaterProbeClear() {
 	for ( const p of probes ) dispose( p );
 	probes = [];
 	builtFor = null;
+	lastCapture = -1e9;
 
 }
 
@@ -72,7 +73,7 @@ including reflective toxic liquid).  showAll( true ) makes the whole level drawa
 visibility back, since the level normally only holds what the player can see.
 ================
 */
-export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, allRegions ) {
+export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, allRegions, { initializing = false } = {} ) {
 
 	if ( allRegions !== builtFor ) {
 
@@ -89,7 +90,7 @@ export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, a
 
 	// and never more than one capture a second
 	const t = performance.now();
-	if ( t - lastCapture < 1000 ) return;
+	if ( !initializing && t - lastCapture < 1000 ) return;
 
 	_m.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
 	_frustum.setFromProjectionMatrix( _m );

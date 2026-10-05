@@ -60,12 +60,14 @@ of a version 29 BSP, without loading the rest of it.
 */
 export function R_ParseBsp( bytes ) {
 
+	if(!(bytes instanceof Uint8Array)||bytes.byteLength<124)return null;
 	const view = new DataView( bytes.buffer, bytes.byteOffset, bytes.byteLength );
-	if ( view.getInt32( 0, true ) !== 29 ) return null;
+	if(![29,0x32505342,0x42535032].includes(view.getInt32(0,true)))return null;
 
 	const lump = ( i ) => ( { ofs: view.getInt32( 4 + i * 8, true ), len: view.getInt32( 8 + i * 8, true ) } );
 
 	const e = lump( LUMP_ENTITIES );
+	if(e.ofs<0||e.len<0||e.ofs+e.len>bytes.length)return null;
 	let text = '';
 	for ( let i = 0; i < e.len; i ++ ) {
 

@@ -49,7 +49,7 @@ export class RockTileCache {
   const tile = this.tiles.get( key );
   if ( tile ) { tile.used = ++ this.access; return true; }
   if ( this.pending.has( key ) || this.failed.has( key ) ) return false;
-  if(this.bakeSource?.status==='loading')return false;
+  if(['loading','error','unprepared'].includes(this.bakeSource?.status))return false;
   const prepared=this.bakeSource?.tile(chart,x,y);
   if(prepared){const installed=this.install({key,chart,x,y,epoch:this.epoch},prepared,true);if(installed)this.prepared++;return installed;}
   this.start(); if ( this.error ) return false; const slot = this.workers.find( s => ! s.job );
@@ -110,8 +110,9 @@ const dummy = new THREE.DataTexture( new Float32Array( 4 ), 1, 1, THREE.RGBAForm
 const dummyHeight = new THREE.DataArrayTexture( new Uint16Array( [ THREE.DataUtils.toHalfFloat( .5 ) ] ), 1, 1, 1 ); dummyHeight.format = THREE.RedFormat; dummyHeight.type = THREE.HalfFloatType; dummyHeight.needsUpdate = true;
 export const rockUniforms = { qrRockPages: { value: dummy }, qrRockHeights: { value: dummyHeight }, qrRockOn: { value: 0 }, qrRockProbes: { value: 1 }, qrRockSun: { value: new THREE.Vector3( -.28, -.18, .94 ).normalize() } };
 export function R_RockfieldBuild( model ) {
- state?.cache?.dispose(); const fields = R_RockSurfaceCharts( model, { includeBrushes: true } );
- state = { model, ...fields, brushEntries: new WeakMap(), cache: fields.charts.length ? new RockTileCache(undefined,{bakeSource:new RockBakeSource(model.name,fields.charts)}) : null };
+ state?.cache?.dispose();if(!state?.cache)state?.bakeSource?.dispose(); const fields = R_RockSurfaceCharts( model, { includeBrushes: true } );
+ const bakeSource=new RockBakeSource(model,fields.charts);
+ state = { model, ...fields, bakeSource, brushEntries: new WeakMap(), cache: fields.charts.length ? new RockTileCache(undefined,{bakeSource}) : null };
  for ( const chart of fields.charts ) for ( const face of chart.surfaces ) if ( face.brush ) state.brushEntries.set( face.surface, { face, chart } );
  rockUniforms.qrRockPages.value = state.cache?.pageTexture || dummy; rockUniforms.qrRockHeights.value = state.cache?.heightTexture || dummyHeight;
  rockUniforms.qrRockProbes = state.cache?.probes || { value: 1 };
@@ -180,4 +181,4 @@ export function R_RockfieldUpdate( origin, frame, now = performance.now() ) {
  state.desired=ordered.length;state.overflow=Math.max(0,ordered.length-cache.capacity);state.missing=wanted.filter(c=>!cache.tiles.has(c.key)).length;state.failedVisible=wanted.filter(c=>cache.failed.has(c.key)).length;
 
 }
-export function R_RockfieldStatus() { return { charts: state?.charts.length || 0, resident: state?.cache?.tiles.size || 0, pending: state?.cache?.pending.size || 0, failedTiles:state?.cache?.failed.size||0, failedVisibleTiles:state?.failedVisible||0, maxPages: state?.cache?.capacity||ROCK_PAGES, pageLimit:rockPageLimit, desiredTiles:state?.desired||0, missingVisibleTiles:state?.missing||0, overflowTiles:state?.overflow||0, error: state?.cache?.error || null, active: rockUniforms.qrRockOn.value > 0, preparedState:state?.cache?.bakeSource?.status||'none', preparedTiles:state?.cache?.prepared||0, generatedTiles:state?.cache?.generated||0, preparedError:state?.cache?.bakeSource?.entry?.error||null }; }
+export function R_RockfieldStatus() { return { enabled:R_NewerGame()&&r_newer_normals.value!==0&&r_rockfield.value>0, charts: state?.charts.length || 0, resident: state?.cache?.tiles.size || 0, pending: state?.cache?.pending.size || 0, failedTiles:state?.cache?.failed.size||0, failedVisibleTiles:state?.failedVisible||0, maxPages: state?.cache?.capacity||ROCK_PAGES, pageLimit:rockPageLimit, desiredTiles:state?.desired||0, missingVisibleTiles:state?.missing||0, overflowTiles:state?.overflow||0, error: state?.cache?.error || null, active: rockUniforms.qrRockOn.value > 0, preparedState:state?.bakeSource?.status||'none', preparedTiles:state?.cache?.prepared||0, generatedTiles:state?.cache?.generated||0, preparedError:state?.bakeSource?.entry?.error||null }; }

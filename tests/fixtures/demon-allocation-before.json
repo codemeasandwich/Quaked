@@ -1,0 +1,394 @@
+{
+  "sourceSHA256": "59cf94277d294aeb0417a9a5257b48aede7893fc172cd6e3997a466947be37de",
+  "geometry": {
+    "clamp-nonsquare-negative-crossings": {
+      "triangles": 1934,
+      "topVertexCount": 4290,
+      "skirtTriangles": 504,
+      "tileRegions": [
+        {
+          "origin": [
+            -2,
+            0
+          ],
+          "startVertex": 0,
+          "endVertex": 486
+        },
+        {
+          "origin": [
+            -2,
+            1
+          ],
+          "startVertex": 486,
+          "endVertex": 780
+        },
+        {
+          "origin": [
+            -1,
+            0
+          ],
+          "startVertex": 780,
+          "endVertex": 2130
+        },
+        {
+          "origin": [
+            -1,
+            1
+          ],
+          "startVertex": 2130,
+          "endVertex": 3306
+        },
+        {
+          "origin": [
+            0,
+            0
+          ],
+          "startVertex": 3306,
+          "endVertex": 3906
+        },
+        {
+          "origin": [
+            0,
+            1
+          ],
+          "startVertex": 3906,
+          "endVertex": 4290
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 17406,
+          "sha256": "b195ee12b84d23f0b34f32b63ae5f03763f6b1eb2fcdb0b697c6901cebfe9f58"
+        },
+        "normals": {
+          "length": 17406,
+          "sha256": "9b04ddeafe0fcb1fc86859a2a7ec5be92f4f7b1aba58ba071ed9826d0a0e8687"
+        },
+        "uvs": {
+          "length": 11604,
+          "sha256": "b97ea8b490468cdb5b4f39dc048a24da9be7b1b3df51a106ab2a85b6d306bf07"
+        },
+        "lmuvs": {
+          "length": 11604,
+          "sha256": "cea238ea0aa0c488ad3faf2f31da3548af3ab4e31aaa2e165c53c3d4992666e9"
+        }
+      }
+    },
+    "repeat-nonsquare-negative": {
+      "triangles": 1450,
+      "topVertexCount": 3750,
+      "skirtTriangles": 200,
+      "tileRegions": [
+        {
+          "origin": null,
+          "startVertex": 0,
+          "endVertex": 3750
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 13050,
+          "sha256": "ca10d3202f841be046f0409c8cf5585442614cdc80a6cc6b401efd271cada2b2"
+        },
+        "normals": {
+          "length": 13050,
+          "sha256": "982da27122b050e76ecd20b8ea6f66ce800eebeb50bfb7f2f04d96b444e6e017"
+        },
+        "uvs": {
+          "length": 8700,
+          "sha256": "b6386669f74a6662d1e7b51e9fda31f6342265abd058e433ae1c02142d63b97c"
+        },
+        "lmuvs": {
+          "length": 8700,
+          "sha256": "7763c382dc0fabfb4df8ff86f28e87d062d90a0c8bd214acf1b8781b7d85f3f5"
+        }
+      }
+    },
+    "clamp-wall-flipped-smoothed": {
+      "triangles": 1934,
+      "topVertexCount": 4290,
+      "skirtTriangles": 504,
+      "tileRegions": [
+        {
+          "origin": [
+            -2,
+            0
+          ],
+          "startVertex": 0,
+          "endVertex": 486
+        },
+        {
+          "origin": [
+            -2,
+            1
+          ],
+          "startVertex": 486,
+          "endVertex": 780
+        },
+        {
+          "origin": [
+            -1,
+            0
+          ],
+          "startVertex": 780,
+          "endVertex": 2130
+        },
+        {
+          "origin": [
+            -1,
+            1
+          ],
+          "startVertex": 2130,
+          "endVertex": 3306
+        },
+        {
+          "origin": [
+            0,
+            0
+          ],
+          "startVertex": 3306,
+          "endVertex": 3906
+        },
+        {
+          "origin": [
+            0,
+            1
+          ],
+          "startVertex": 3906,
+          "endVertex": 4290
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 17406,
+          "sha256": "1eba7121360d058657fe764121560bf04a4730d02a339314f55f398d4e42c0cd"
+        },
+        "normals": {
+          "length": 17406,
+          "sha256": "817f223626b51689029695c4b935a9b7dc28e87e25a6298ea55f968dbbb0bed2"
+        },
+        "uvs": {
+          "length": 11604,
+          "sha256": "b97ea8b490468cdb5b4f39dc048a24da9be7b1b3df51a106ab2a85b6d306bf07"
+        },
+        "lmuvs": {
+          "length": 11604,
+          "sha256": "cea238ea0aa0c488ad3faf2f31da3548af3ab4e31aaa2e165c53c3d4992666e9"
+        }
+      }
+    },
+    "repeat-oblique-scaled-smoothed": {
+      "triangles": 1450,
+      "topVertexCount": 3750,
+      "skirtTriangles": 200,
+      "tileRegions": [
+        {
+          "origin": null,
+          "startVertex": 0,
+          "endVertex": 3750
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 13050,
+          "sha256": "13132de2161494138a251b6fc081c3c4ba290bf5cc8f24ed5039b0c98b945e9e"
+        },
+        "normals": {
+          "length": 13050,
+          "sha256": "f73bc5b7b4b41497fed8b82720fd7ff6958144291f018b34850f62de7c007857"
+        },
+        "uvs": {
+          "length": 8700,
+          "sha256": "90a0359c8aad34d528bbb7ef4a408976187cd4e6d1a0f3fdfc7a153347c10b57"
+        },
+        "lmuvs": {
+          "length": 8700,
+          "sha256": "7763c382dc0fabfb4df8ff86f28e87d062d90a0c8bd214acf1b8781b7d85f3f5"
+        }
+      }
+    },
+    "clamp-oblique-triangle": {
+      "triangles": 2695,
+      "topVertexCount": 7203,
+      "skirtTriangles": 294,
+      "tileRegions": [
+        {
+          "origin": [
+            -2,
+            3
+          ],
+          "startVertex": 0,
+          "endVertex": 7203
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 24255,
+          "sha256": "160f0b1d4832b092e71079a47ddccd8e68e291afc11bea34eb15f9726984e1ad"
+        },
+        "normals": {
+          "length": 24255,
+          "sha256": "138c66a25911f5f8e4955a346ac3cd754b5ef37101e645622353d1a12188785d"
+        },
+        "uvs": {
+          "length": 16170,
+          "sha256": "6d43ebc7f997c3877b4b33f090a62fbfa2dc7e16261a4730462336cfa8a243c8"
+        },
+        "lmuvs": {
+          "length": 16170,
+          "sha256": "30256a879652b8f0d0efc275edd172a787c6b7ba10071db41e9edd0005a47459"
+        }
+      }
+    },
+    "repeat-multiple-polygons": {
+      "triangles": 104,
+      "topVertexCount": 144,
+      "skirtTriangles": 56,
+      "tileRegions": [
+        {
+          "origin": null,
+          "startVertex": 0,
+          "endVertex": 96
+        },
+        {
+          "origin": null,
+          "startVertex": 96,
+          "endVertex": 144
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 936,
+          "sha256": "339a53ba72327688e9f88b3c24680f4ad4deff1ce891da67aa3d7782cf185941"
+        },
+        "normals": {
+          "length": 936,
+          "sha256": "b6c93ef4568a50a01596963734c89920ff9c2050bd56c60d8ef44b006d1b1f0b"
+        },
+        "uvs": {
+          "length": 624,
+          "sha256": "41dd452552587c8e72727ae17f4602b55fc16da0b1827d89ccb96f36c8e1d861"
+        },
+        "lmuvs": {
+          "length": 624,
+          "sha256": "0b10b99b61d8fb338912ff6eb841e03ea61d94bb3324ea7330160ff0d76d7258"
+        }
+      }
+    },
+    "clamp-hexagon": {
+      "triangles": 3748,
+      "topVertexCount": 9936,
+      "skirtTriangles": 436,
+      "tileRegions": [
+        {
+          "origin": [
+            0,
+            0
+          ],
+          "startVertex": 0,
+          "endVertex": 9876
+        },
+        {
+          "origin": [
+            0,
+            1
+          ],
+          "startVertex": 9876,
+          "endVertex": 9888
+        },
+        {
+          "origin": [
+            1,
+            0
+          ],
+          "startVertex": 9888,
+          "endVertex": 9936
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 33732,
+          "sha256": "196dfac649b1cdbe9d48379f2b6548df858210d6aa267082c2744326921132eb"
+        },
+        "normals": {
+          "length": 33732,
+          "sha256": "8f7f304ae86695e96120945ac704f6083cc4c88389654e892582497b986bc4ee"
+        },
+        "uvs": {
+          "length": 22488,
+          "sha256": "97abb7e6c2e04b41e738033f2a72c957c8bf284f7861099cc7a851bb3722a6c7"
+        },
+        "lmuvs": {
+          "length": 22488,
+          "sha256": "5628b7f088e4ec46783d6ba9006cac2090005e2c2f1b0356b0fa4e4154ddc025"
+        }
+      }
+    },
+    "repeat-degenerate-edge": {
+      "triangles": 179,
+      "topVertexCount": 369,
+      "skirtTriangles": 56,
+      "tileRegions": [
+        {
+          "origin": null,
+          "startVertex": 0,
+          "endVertex": 369
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 1611,
+          "sha256": "e0a9b14c2b9103f843b3b72711afa9af541cff78203d6c9f900342fd6a8a785a"
+        },
+        "normals": {
+          "length": 1611,
+          "sha256": "8a7593bd05e9acf5b41d85b2a08486b9a9834a24369a9bc9e95f734acc18ab00"
+        },
+        "uvs": {
+          "length": 1074,
+          "sha256": "a99cbdae6cec3ffd6e5eaecc951d4c21292eaad681d16a3d386051cf3e58e5f4"
+        },
+        "lmuvs": {
+          "length": 1074,
+          "sha256": "fd068c45461e4ba3f5d22553ca4c7e14c8f128bccf983fcc68b5678d0bc3c8b1"
+        }
+      }
+    },
+    "repeat-count-cap-256": {
+      "triangles": 67072,
+      "topVertexCount": 196608,
+      "skirtTriangles": 1536,
+      "tileRegions": [
+        {
+          "origin": null,
+          "startVertex": 0,
+          "endVertex": 196608
+        }
+      ],
+      "arrays": {
+        "positions": {
+          "length": 603648,
+          "sha256": "38edced7a8713b4ef59c60dcbee5f77d4a5aaeb71bffa2b707b438382a92ce14"
+        },
+        "normals": {
+          "length": 603648,
+          "sha256": "6ae8b9b6a1f231c990ca405a5ae60f22cd38385ac11033de224d4e2fb16e29a7"
+        },
+        "uvs": {
+          "length": 402432,
+          "sha256": "0f074f44bd695f86bb15d25872d1fb51a31289e624c02e290c49a84f0d893f64"
+        },
+        "lmuvs": {
+          "length": 402432,
+          "sha256": "208edb6e2b0f21e682ff638e9a781913b6d9e213946fcc449611f0c9099e665f"
+        }
+      }
+    },
+    "clamp-tile-budget-reject": null,
+    "repeat-closed-skirt-budget-reject": null,
+    "unsupported-texture-reject": null,
+    "invalid-depth-reject": null,
+    "invalid-step-reject": null
+  },
+  "samplerSHA256": "61b9f235f3bd30960d1f3e679ea040a9f704cbe29ab893ccd3fe7fbe0cb4e320"
+}

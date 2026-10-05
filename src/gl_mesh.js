@@ -1,3 +1,4 @@
+import { R_AliasMeshLookup, R_AliasMeshRemember } from './r_aliasmeshcache.js';
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';
@@ -314,10 +315,15 @@ export function GL_MakeAliasModelDisplayLists( m, hdr ) {
 
 	// Build command lists from scratch
 	Con_Printf( 'meshing %s...\n', m.name );
-	BuildTris();
+	const prepared=R_AliasMeshLookup(hdr);
+	if(prepared){
+	 numorder=prepared.order.length;numcommands=prepared.commands.length;
+	 vertexorder.set(prepared.order);commands.set(prepared.commands);allverts+=numorder;alltris+=pheader.numtris;
+	}else{BuildTris();R_AliasMeshRemember(hdr,commands.subarray(0,numcommands),vertexorder.subarray(0,numorder));}
 
 	// save the data out
 	paliashdr.poseverts_count = numorder;
+	paliashdr.meshVertexOrder = vertexorder.slice(0,numorder); // immutable offline record, never pose data
 
 	// Copy commands
 	paliashdr.commands = new Int32Array( numcommands );

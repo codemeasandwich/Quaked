@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quaked · OPFS displacement proof</title>
+<style>
+:root{color-scheme:dark;font:15px/1.5 system-ui,sans-serif;background:#11151c;color:#e8edf4}*{box-sizing:border-box}body{margin:0;padding:24px}main{max-width:1000px;margin:auto}h1{font-size:24px;margin:0 0 10px}p{max-width:80ch;color:#bdc9d9}button,.button{font:inherit;display:inline-block;padding:9px 13px;margin:4px 8px 4px 0;background:#22344b;border:1px solid #526b88;border-radius:5px;color:#f3f7ff;text-decoration:none;cursor:pointer}button:disabled{opacity:.45;cursor:default}a{color:#b7d7ff}.status{padding:12px;border-left:4px solid #91a9c5;background:#1a2330;margin:16px 0}.status[data-state="pass"]{border-color:#74dba2}.status[data-state="fail"]{border-color:#ff967f}.grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px}canvas{background:#0c1118;width:100%;height:auto;border:1px solid #34475e}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:600px;overflow:auto;background:#0b1119;padding:16px;border:1px solid #34475e;font:12px/1.45 ui-monospace,monospace}code{overflow-wrap:anywhere}.quiet{font-size:13px;color:#9aaabd}[hidden]{display:none!important}#checks li{margin:5px 0}@media(max-width:650px){body{padding:14px}.grid{grid-template-columns:1fr}canvas{max-width:400px}button,.button{width:100%;text-align:center}}
+</style>
+</head>
+<body><main>
+<h1>Displacement cache · real browser files</h1>
+<p>This bounded trial uses the browser’s OPFS and Web Locks through the production <code>DisplacementStore</code> API. It writes a small generated surface under a fresh trial key, then verifies reuse in a new page on the same origin.</p>
+<p class="quiet">The proof covers a fresh document within this browser session. It does not claim a physical browser restart or game-renderer readiness. Only this trial’s uniquely named files are created; game cache files are neither enumerated nor changed.</p>
+<div id="status" class="status" role="status" data-state="idle">Preparing public API checks…</div>
+<div class="grid"><section>
+<p><strong>Origin:</strong> <code id="origin"></code><br><strong>Proof:</strong> <code id="proof"></code><br><strong>This page:</strong> <code id="page-id"></code></p>
+<div><button id="write" disabled>1. Write a cold test key</button><button id="verify" disabled>2. Verify disk reuse</button><button id="rekey" disabled>3. Check input and version keys</button><button id="cancel" disabled>Cancel current check</button></div>
+<p><a id="new-page" class="button" target="_blank" rel="noopener" hidden>Open a new verification page</a><a id="new-proof" class="button">Start a fresh proof</a><button id="save" disabled>Save JSON receipt</button></p>
+<p class="quiet" id="instructions"></p><ul id="checks"></ul>
+</section><section><canvas id="geometry" width="320" height="230" aria-label="Decoded synthetic displacement geometry"></canvas><p class="quiet" id="geometry-caption">Geometry appears only after a verified cache result.</p></section></div>
+<details open><summary>Source-bound receipt</summary><pre id="report">No filesystem check has run.</pre></details>
+</main><script type="module" src="./displacement_store_trial.js?v=opfs-public-1"></script></body>
+</html>

@@ -1,3 +1,4 @@
+import {R_DemonBakeRelease} from './r_demonbakes.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
 import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from './r_demoloading.js';
 
@@ -187,6 +188,8 @@ This is also called on Host_Error, so it shouldn't cause any errors
 =====================
 */
 export function CL_Disconnect() {
+	R_DemonBakeRelease();
+	if(R_WelcomeLoadingHolding())R_DemoLoadingCancel();
 
 	// stop sounds (especially looping!)
 	S_StopAllSounds( true );

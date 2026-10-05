@@ -316,6 +316,8 @@ export function GL_UpdateTextureFiltering() {
 			texture.anisotropy = gl_forcelinear ? 16 : 1;
 			texture.magFilter = filter;
 			texture.minFilter = texture.generateMipmaps ? mipFilter : filter;
+			// Sampler changes require a GPU refresh, not new scalar/normal pixels.
+			texture.userData.normalSamplerUpdates=(texture.userData.normalSamplerUpdates||0)+1;
 			texture.needsUpdate = true;
 
 		}

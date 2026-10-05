@@ -3,6 +3,7 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { R_DemonHeight, R_DemonSurfaceData, R_DemonGeometryField } from '../src/r_demonrelief.js';
+import { R_DemonBakePrefetch, R_DemonBakePrepare, R_DemonBakeSurface } from '../src/r_demonbakes.js';
 import * as surf from '../src/gl_rsurf.js';
 import * as post from '../src/gl_post.js';
 import * as main from '../src/gl_rmain.js';
@@ -27,6 +28,17 @@ THREE.Group.prototype.add = function ( ...objects ) { if ( this.name === 'quake_
 try { surf.GL_BuildLightmaps(); } finally { delete THREE.Group.prototype.add; }
 const faces = model.surfaces.slice( model.firstmodelsurface, model.firstmodelsurface + model.nummodelsurfaces ).filter( s => s.texinfo.texture.name === 'dem4_1' );
 check( faces.length > 0 && worldGroup, 'real native plaque surfaces and world group exist' );
+// The shipped source now enters through prepared geometry. Decode its actual
+// artifact rather than bypassing the new asynchronous admission contract.
+globalThis.fetch = async url => new Response( read( String( url ).split( '?' )[ 0 ] ), { status: 200 } );
+const preparedEntry = R_DemonBakePrefetch( model.name, model.bspSourceBytes );
+await preparedEntry.promise; check( preparedEntry.status === 'ready', 'actual installed native displacement artifact validates' );
+async function prepareFaces() {
+ R_DemonBakePrepare( model, faces );
+ for ( let i = 0; i < 300 && faces.some( s => R_DemonBakeSurface( s ).status === 'loading' ); i ++ ) await new Promise( r => setTimeout( r, 0 ) );
+ check( faces.every( s => R_DemonBakeSurface( s ).status === 'ready' ), 'actual prepared source/recipe/height hashes settle' );
+}
+
 const textures = new Set( faces.map( s => s.texinfo.texture.gl_texture ) );
 const sourceSnapshot = faces.map( s => { const p = []; for ( let poly = s.polys; poly; poly = poly.next ) p.push( [ poly, Array.from( poly.verts ).join() ] ); return p; } ).flat();
 const hullSnapshot = model.hulls.map( hull => JSON.stringify( { planes: hull.planes, clipnodes: hull.clipnodes, first: hull.firstclipnode, last: hull.lastclipnode } ) );
@@ -154,9 +166,9 @@ Deno.test( 'geometry cache, package-clamped tile endpoints and invalid/missing/o
 
 } );
 
-Deno.test( 'sun occluder follows exactly the visible Newer texture/normal gates and includes actual raised triangles', () => {
+Deno.test( 'sun occluder follows exactly the visible Newer texture/normal gates and includes actual raised triangles', async () => {
 
-	on(); for ( const t of textures ) t.userData.newerHeight = field;
+	on(); for ( const t of textures ) t.userData.newerHeight = field; await prepareFaces();
 	vars.Cvar_Set( 'r_newer_normals', '0' ); const nativeCount = post.R_BuildSunOccluder( model );
 	vars.Cvar_Set( 'r_newer_normals', '1' ); const enhanced = post.R_BuildSunOccluder( model ), extra = faces.reduce( ( sum, face ) => sum + R_DemonSurfaceData( face ).triangles, 0 ); same( enhanced, nativeCount + extra, 'sun caster contains every actual raised triangle and retained backing' );
 	vars.Cvar_Set( 'r_newer_textures', '0' ); same( post.R_BuildSunOccluder( model ), nativeCount, 'textureoff removes raised shadows' ); vars.Cvar_Set( 'r_newer_textures', '1' );
@@ -164,12 +176,12 @@ Deno.test( 'sun occluder follows exactly the visible Newer texture/normal gates 
 
 } );
 
-Deno.test( 'public world draw updates real overlay/PVS, restores native modes, and removes stale geometry when height becomes unavailable', () => {
+Deno.test( 'public world draw updates real overlay/PVS, restores native modes, and removes stale geometry when height becomes unavailable', async () => {
 
 	on(); for ( const t of textures ) delete t.userData.newerHeight;
 	main.set_r_worldentity( new entity_t() ); main.set_r_viewleaf( null ); r_refdef.vieworg.set( [ 512, 224, 64 ] ); main.d_lightstylevalue.fill( 264 );
 	surf.R_MarkLeaves(); surf.R_DrawWorld(); same( surf.R_DemonReliefStatus().ready, 0, 'before async height native backing remains' );
-	for ( const t of textures ) t.userData.newerHeight = { ...field, displacement: { ...field.displacement } };
+	for ( const t of textures ) t.userData.newerHeight = { ...field, displacement: { ...field.displacement } }; await prepareFaces();
 	surf.R_DrawWorld(); check( surf.R_DemonReliefStatus().ready > 0, 'new height produces actual overlay through existing world path' );
 	const overlays = worldGroup.children.filter( child => child.userData.realDisplacement || child.material?.userData.realDisplacement ); check( overlays.length > 0 && overlays.some( child => child.visible ), 'actual separate meshes render with native PVS' );
 	for ( const mesh of overlays ) { check( mesh.userData.newerOnly && mesh.castShadow, 'overlay correctly marked for native comparison and shadows' ); const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.lambert.vertexShader, fragmentShader: THREE.ShaderLib.lambert.fragmentShader }; mesh.material.onBeforeCompile( shader ); check( ! shader.fragmentShader.includes( 'vec2 dUv' ) && shader.fragmentShader.includes( 'mapN.xy *= 0.0' ), 'actual mesh does not double macroPOM or macro normal' ); }

@@ -2,6 +2,8 @@
 // the original BSP polygons, lightmap coordinates and collision hulls stay intact.
 // Native UVs anchor repeated plaques; the nonseamless donor is clamped within
 // clipped tile regions, with closed edges rather than opposite-edge blending.
+// Bump with any semantic sampling/tessellation change; durable keys bind it.
+export const DEMON_GENERATOR_VERSION='quaked-sculpt-generator-1';
 export const DEMON_TEXTURES = new Set( [ 'dem4_1', 'dem4_4', 'dem5_3' ] );
 const cache = new WeakMap();
 const filtered = new WeakMap();
@@ -62,18 +64,18 @@ export function R_DemonGeometryField( surface ) {
 
 export function R_DemonHeight( field, u, v ) {
 
-	const clamp = field.sampling === 'clamp';
-	const local = ( value, k ) => clamp ? Math.min( 1, Math.max( 0, value - ( field.tileOrigin?.[ k ] || 0 ) ) ) : mod( value, 1 );
-	const x = local( u, 0 ) * field.width - .5, y = local( v, 1 ) * field.height - .5;
-	const ix = Math.floor( x ), iy = Math.floor( y ), fx = x - ix, fy = y - iy;
-	const index = ( n, size ) => clamp ? Math.min( size - 1, Math.max( 0, n ) ) : mod( n, size );
-	const at = ( a, b ) => field.data[ index( b, field.height ) * field.width + index( a, field.width ) ];
-	return ( at( ix, iy ) * ( 1 - fx ) + at( ix + 1, iy ) * fx ) * ( 1 - fy ) +
-		( at( ix, iy + 1 ) * ( 1 - fx ) + at( ix + 1, iy + 1 ) * fx ) * fy;
-
+	const clamp = field.sampling === 'clamp', width = field.width, height = field.height;
+ const lu = clamp ? Math.min(1,Math.max(0,u-(field.tileOrigin?.[0]||0))) : mod(u,1);
+ const lv = clamp ? Math.min(1,Math.max(0,v-(field.tileOrigin?.[1]||0))) : mod(v,1);
+ const x=lu*width-.5,y=lv*height-.5,ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy;
+ const x0=clamp?Math.min(width-1,Math.max(0,ix)):mod(ix,width),x1=clamp?Math.min(width-1,Math.max(0,ix+1)):mod(ix+1,width);
+ const y0=(clamp?Math.min(height-1,Math.max(0,iy)):mod(iy,height))*width,y1=(clamp?Math.min(height-1,Math.max(0,iy+1)):mod(iy+1,height))*width;
+ const data=field.data;
+ return (data[y0+x0]*(1-fx)+data[y0+x1]*fx)*(1-fy)+(data[y1+x0]*(1-fx)+data[y1+x1]*fx)*fy;
 }
 
-export function R_DemonSurfaceData( surface ) {
+export function R_DemonSurfaceData( surface, diagnostic = null ) {
+ if(diagnostic)for(const key of Object.keys(diagnostic))delete diagnostic[key];
 
 	const texture = surface?.texinfo?.texture;
 	const field = R_DemonGeometryField( surface );
@@ -88,7 +90,7 @@ export function R_DemonSurfaceData( surface ) {
 	const sign = surface.flags & 2 ? - 1 : 1;
 	const n = Array.from( surface.plane.normal, x => x * sign );
 	const vectors = surface.texinfo.vecs;
-	const positions = [], normals = [], uvs = [], lmuvs = [];
+	let positions, normals, uvs, lmuvs, vertexCount = 0;
 	let triangles = 0, activeField = field;
 	const polygonCounts = new Map(), polygons = [], tileRegions = [];
 	const clip = ( polygon, axis, boundary, greater ) => {
@@ -120,7 +122,7 @@ export function R_DemonSurfaceData( surface ) {
 		const max = [ 3, 4 ].map( k => Math.max( ...vertices.map( v => v[ k ] ) ) );
 		const u0 = Math.floor( min[ 0 ] ), u1 = Math.ceil( max[ 0 ] ) - 1;
 		const v0 = Math.floor( min[ 1 ] ), v1 = Math.ceil( max[ 1 ] ) - 1;
-		if ( ( u1 - u0 + 1 ) * ( v1 - v0 + 1 ) > 16 ) return null;
+		if ( ( u1 - u0 + 1 ) * ( v1 - v0 + 1 ) > 16 ) { if(diagnostic)Object.assign(diagnostic,{reason:'tile-budget',required:(u1-u0+1)*(v1-v0+1),limit:16}); return null; }
 		// Native BSP pieces can cross a texture boundary. Split there before
 		// sampling this nonseamless donor, preserving all seven source coordinates.
 		for ( let u = u0; u <= u1; u ++ ) for ( let v = v0; v <= v1; v ++ ) {
@@ -132,57 +134,75 @@ export function R_DemonSurfaceData( surface ) {
 		}
 
 	}
-	const emit = ( tri, a, b ) => {
-
-		const vertex = new Array( 7 );
-		for ( let k = 0; k < 7; k ++ ) vertex[ k ] = tri[ 0 ][ k ] * ( 1 - a - b ) + tri[ 1 ][ k ] * a + tri[ 2 ][ k ] * b;
-		const u = vertex[ 3 ], v = vertex[ 4 ];
-		const offset = .05 + depth * R_DemonHeight( activeField, u, v );
-		for ( let k = 0; k < 3; k ++ ) positions.push( vertex[ k ] + n[ k ] * offset );
-		// Differentiate the actual field in world units. The mesh's geometric
-		// normals, rather than a second macro normal/POM layer, own its lighting.
-		const eu = 1 / activeField.width, ev = 1 / activeField.height;
-		const span = ( value, epsilon, k ) => activeField.sampling === 'clamp'
-			? Math.max( epsilon, Math.min( 1, value - activeField.tileOrigin[ k ] + epsilon ) - Math.max( 0, value - activeField.tileOrigin[ k ] - epsilon ) ) : epsilon * 2;
-		const du = depth * ( R_DemonHeight( activeField, u + eu, v ) - R_DemonHeight( activeField, u - eu, v ) ) / ( span( u, eu, 0 ) * texture.width );
-		const dv = depth * ( R_DemonHeight( activeField, u, v + ev ) - R_DemonHeight( activeField, u, v - ev ) ) / ( span( v, ev, 1 ) * texture.height );
-		const g = n.map( ( _, k ) => du * vectors[ 0 ][ k ] + dv * vectors[ 1 ][ k ] );
-		const normalComponent = g.reduce( ( sum, x, k ) => sum + x * n[ k ], 0 );
-		const normal = n.map( ( x, k ) => x - g[ k ] + normalComponent * x );
-		const len = Math.hypot( ...normal );
-		normals.push( ...normal.map( x => x / len ) );
-		uvs.push( u, v ); lmuvs.push( vertex[ 5 ], vertex[ 6 ] );
-
-	};
+ // Size the original triangulation once, then write final GPU arrays directly.
+ // No per-vertex JS arrays, spreading or growable multi-million-value buffers.
+ let totalTriangles=0;
+ for(const p of polygons){
+  p.tris=[];
+  for(let i=1;i<p.vertices.length-1;i++){
+   const tri=[p.vertices[0],p.vertices[i+1],p.vertices[i]];
+   const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2]);
+   const count=Math.min(256,Math.max(1,Math.ceil(Math.max(distance(tri[0],tri[1]),distance(tri[1],tri[2]),distance(tri[2],tri[0]))/step)));
+   polygonCounts.set(p,Math.max(polygonCounts.get(p)||1,count));
+   p.tris.push({tri,count});totalTriangles+=count*count;
+  }
+  for(let i=0;i<p.vertices.length;i++){
+   const a=p.vertices[i],b=p.vertices[(i+1)%p.vertices.length],ex=b[0]-a[0],ey=b[1]-a[1],ez=b[2]-a[2];
+   if(Math.hypot(n[1]*ez-n[2]*ey,n[2]*ex-n[0]*ez,n[0]*ey-n[1]*ex)>=1e-6)totalTriangles+=2*(polygonCounts.get(p)||1);
+  }
+  if(totalTriangles>262144){if(diagnostic)Object.assign(diagnostic,{reason:'triangle-budget',required:totalTriangles,limit:262144});return null;}
+ }
+ positions=new Float32Array(totalTriangles*9);normals=new Float32Array(totalTriangles*9);
+ uvs=new Float32Array(totalTriangles*6);lmuvs=new Float32Array(totalTriangles*6);
+ const emit = (tri,a,b) => {
+  const c=1-a-b,t0=tri[0],t1=tri[1],t2=tri[2];
+  const u=t0[3]*c+t1[3]*a+t2[3]*b,v=t0[4]*c+t1[4]*a+t2[4]*b;
+  const offset=.05+depth*R_DemonHeight(activeField,u,v),i=vertexCount*3,j=vertexCount*2;
+  positions[i]=t0[0]*c+t1[0]*a+t2[0]*b+n[0]*offset;
+  positions[i+1]=t0[1]*c+t1[1]*a+t2[1]*b+n[1]*offset;
+  positions[i+2]=t0[2]*c+t1[2]*a+t2[2]*b+n[2]*offset;
+  const eu=1/activeField.width,ev=1/activeField.height;
+  const su=activeField.sampling==='clamp'?Math.max(eu,Math.min(1,u-activeField.tileOrigin[0]+eu)-Math.max(0,u-activeField.tileOrigin[0]-eu)):eu*2;
+  const sv=activeField.sampling==='clamp'?Math.max(ev,Math.min(1,v-activeField.tileOrigin[1]+ev)-Math.max(0,v-activeField.tileOrigin[1]-ev)):ev*2;
+  const du=depth*(R_DemonHeight(activeField,u+eu,v)-R_DemonHeight(activeField,u-eu,v))/(su*texture.width);
+  const dv=depth*(R_DemonHeight(activeField,u,v+ev)-R_DemonHeight(activeField,u,v-ev))/(sv*texture.height);
+  const g0=du*vectors[0][0]+dv*vectors[1][0],g1=du*vectors[0][1]+dv*vectors[1][1],g2=du*vectors[0][2]+dv*vectors[1][2];
+  const component=((0+g0*n[0])+g1*n[1])+g2*n[2];
+  const nx=n[0]-g0+component*n[0],ny=n[1]-g1+component*n[1],nz=n[2]-g2+component*n[2],length=Math.hypot(nx,ny,nz);
+  normals[i]=nx/length;normals[i+1]=ny/length;normals[i+2]=nz/length;
+  uvs[j]=u;uvs[j+1]=v;lmuvs[j]=t0[5]*c+t1[5]*a+t2[5]*b;lmuvs[j+1]=t0[6]*c+t1[6]*a+t2[6]*b;
+  vertexCount++;
+ };
 	for ( const p of polygons ) {
 
 		activeField = p.field;
-		const region = { origin: activeField.tileOrigin || null, startVertex: positions.length / 3 };
-		const at = i => p.vertices[ i ];
-		for ( let i = 1; i < p.vertices.length - 1; i ++ ) {
+		const region = { origin: activeField.tileOrigin || null, startVertex: vertexCount };
+		for ( const {tri,count} of p.tris ) {
+   triangles += count * count;
+   // Six adjacent triangle vertices share one lattice sample. Evaluate its
+   // height/normal once at identical barycentric coordinates, then copy those
+   // final Float32 bytes into the original non-indexed triangle ordering.
+   const output={positions,normals,uvs,lmuvs,vertexCount};
+   const samples=(count+1)*(count+2)/2;
+   positions=new Float32Array(samples*3);normals=new Float32Array(samples*3);
+   uvs=new Float32Array(samples*2);lmuvs=new Float32Array(samples*2);vertexCount=0;
+   for(let a=0;a<=count;a++)for(let b=0;b<=count-a;b++)emit(tri,a/count,b/count);
+   const grid={positions,normals,uvs,lmuvs};
+   ({positions,normals,uvs,lmuvs,vertexCount}=output);
+   const copy=(a,b)=>{
+    const source=a*(count+1)-a*(a-1)/2+b,si=source*3,sj=source*2,i=vertexCount*3,j=vertexCount*2;
+    for(let k=0;k<3;k++){positions[i+k]=grid.positions[si+k];normals[i+k]=grid.normals[si+k];}
+    uvs[j]=grid.uvs[sj];uvs[j+1]=grid.uvs[sj+1];lmuvs[j]=grid.lmuvs[sj];lmuvs[j+1]=grid.lmuvs[sj+1];vertexCount++;
+   };
+   for(let a=0;a<count;a++)for(let b=0;b<count-a;b++){
+    copy(a,b);copy(a+1,b);copy(a,b+1);
+    if(a+b<count-1){copy(a+1,b);copy(a+1,b+1);copy(a,b+1);}
+   }
+  }
 
-			const tri = [ at( 0 ), at( i + 1 ), at( i ) ];
-			const distance = ( a, b ) => Math.hypot( ...a.slice( 0, 3 ).map( ( x, k ) => x - b[ k ] ) );
-			const count = Math.min( 256, Math.max( 1, Math.ceil( Math.max( distance( tri[ 0 ], tri[ 1 ] ), distance( tri[ 1 ], tri[ 2 ] ), distance( tri[ 2 ], tri[ 0 ] ) ) / step ) ) );
-			polygonCounts.set( p, Math.max( polygonCounts.get( p ) || 1, count ) );
-			triangles += count * count;
-			if ( triangles > 262144 ) return null; // unsupported giant/modded face keeps its original
-			for ( let a = 0; a < count; a ++ ) for ( let b = 0; b < count - a; b ++ ) {
-
-				emit( tri, a / count, b / count ); emit( tri, ( a + 1 ) / count, b / count ); emit( tri, a / count, ( b + 1 ) / count );
-				if ( a + b < count - 1 ) {
-
-					emit( tri, ( a + 1 ) / count, b / count ); emit( tri, ( a + 1 ) / count, ( b + 1 ) / count ); emit( tri, a / count, ( b + 1 ) / count );
-
-				}
-
-			}
-
-		}
-
-		region.endVertex = positions.length / 3; tileRegions.push( region );
+		region.endVertex = vertexCount; tileRegions.push( region );
 	}
-	const topVertexCount = positions.length / 3;
+	const topVertexCount = vertexCount;
 	let skirtTriangles = 0;
 	// Close each plaque edge down to the retained wall backing.
 	for ( const p of polygons ) for ( let i = 0; i < p.vertices.length; i ++ ) {
@@ -198,8 +218,9 @@ export function R_DemonSurfaceData( surface ) {
 		const put = ( vertex, raised ) => {
 
 			const offset = raised ? .05 + depth * R_DemonHeight( activeField, vertex[ 3 ], vertex[ 4 ] ) : 0;
-			positions.push( ...vertex.slice( 0, 3 ).map( ( x, k ) => x + n[ k ] * offset ) );
-			normals.push( ...normal ); uvs.push( vertex[ 3 ], vertex[ 4 ] ); lmuvs.push( vertex[ 5 ], vertex[ 6 ] );
+			const i=vertexCount*3,j=vertexCount*2;
+   for(let k=0;k<3;k++){positions[i+k]=vertex[k]+n[k]*offset;normals[i+k]=normal[k];}
+   uvs[j]=vertex[3];uvs[j+1]=vertex[4];lmuvs[j]=vertex[5];lmuvs[j+1]=vertex[6];vertexCount++;
 
 		};
 		for ( let j = 0; j < count; j ++ ) {
@@ -214,8 +235,8 @@ export function R_DemonSurfaceData( surface ) {
 
 	}
 	triangles += skirtTriangles;
-	if ( triangles > 262144 ) return null; // include closed edges in the total budget
-	const data = { positions: new Float32Array( positions ), normals: new Float32Array( normals ), uvs: new Float32Array( uvs ), lmuvs: new Float32Array( lmuvs ), triangles, topVertexCount, skirtTriangles, tileRegions };
+	if ( triangles > 262144 ) { if(diagnostic)Object.assign(diagnostic,{reason:'triangle-budget',required:triangles,limit:262144}); return null; } // include closed edges in the total budget
+	const data = { positions, normals, uvs, lmuvs, triangles, topVertexCount, skirtTriangles, tileRegions };
 	cache.set( surface, { field, data, depth, step } );
 	return data;
 

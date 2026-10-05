@@ -197,7 +197,7 @@ export class medge_t {
 
 	constructor() {
 
-		this.v = new Uint16Array( 2 );
+		this.v = new Uint32Array( 2 );
 		this.cachededgeoffset = 0;
 
 	}
@@ -328,7 +328,7 @@ export class dclipnode_t {
 	constructor() {
 
 		this.planenum = 0;
-		this.children = new Int16Array( 2 );
+		this.children = new Int32Array( 2 );
 
 	}
 
@@ -624,7 +624,7 @@ export class model_t {
 let loadmodel = null;
 let loadname = '';
 
-const mod_novis = new Uint8Array( MAX_MAP_LEAFS / 8 );
+let mod_novis = new Uint8Array( MAX_MAP_LEAFS / 8 );
 
 const MAX_MOD_KNOWN = 512;
 const mod_known = [];
@@ -652,9 +652,11 @@ let r_notexture_mip = null;
 
 // mod_base: Uint8Array - the raw file bytes of the BSP currently being loaded
 let mod_base = null;
+// BSP2 layouts follow QuakeSpasm Quake/bspfile.h (32-bit indices).
+let bspWide=false,bspFloatBounds=false;
 
 // Decompressed visibility buffer (reused)
-const decompressed = new Uint8Array( MAX_MAP_LEAFS / 8 );
+let decompressed = new Uint8Array( MAX_MAP_LEAFS / 8 );
 
 // ============================================================================
 // Stub functions for GL operations not yet ported
@@ -983,6 +985,7 @@ export function Mod_PointInLeaf( p, model ) {
 export function Mod_DecompressVis( _in, inOffset, model ) {
 
 	const row = ( model.numleafs + 7 ) >> 3;
+	if(row>decompressed.length)decompressed=new Uint8Array(row);
 	let outIdx = 0;
 
 	if ( _in === null ) {
@@ -998,6 +1001,7 @@ export function Mod_DecompressVis( _in, inOffset, model ) {
 
 	while ( outIdx < row ) {
 
+		if(pos<0||pos>=_in.length)Sys_Error('Truncated BSP visibility');
 		if ( _in[ pos ] ) {
 
 			decompressed[ outIdx ] = _in[ pos ];
@@ -1008,6 +1012,7 @@ export function Mod_DecompressVis( _in, inOffset, model ) {
 		}
 
 		const c = _in[ pos + 1 ];
+		if(!c||outIdx+c>row)Sys_Error('Invalid BSP visibility run');
 		pos += 2;
 		for ( let j = 0; j < c; j ++ ) {
 
@@ -1028,8 +1033,7 @@ export function Mod_DecompressVis( _in, inOffset, model ) {
 
 export function Mod_LeafPVS( leaf, model ) {
 
-	if ( leaf === model.leafs[ 0 ] )
-		return mod_novis;
+	if ( leaf === model.leafs[ 0 ] ){const row=(model.numleafs+7)>>3;if(row>mod_novis.length){mod_novis=new Uint8Array(row);mod_novis.fill(255);}return mod_novis;}
 	return Mod_DecompressVis( leaf.compressed_vis, leaf.compressed_vis_offset, model );
 
 }
@@ -1552,11 +1556,12 @@ function Mod_LoadVertexes( fileofs, filelen ) {
 // ============================================================================
 
 function Mod_LoadEdges( fileofs, filelen ) {
+ const recordSize=bspWide?(8):SIZEOF_DEDGE;
 
-	if ( filelen % SIZEOF_DEDGE )
+	if ( filelen % recordSize )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / SIZEOF_DEDGE;
+	const count = filelen / recordSize;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count + 1 );
 
@@ -1566,9 +1571,10 @@ function Mod_LoadEdges( fileofs, filelen ) {
 	for ( let i = 0; i < count; i ++ ) {
 
 		const e = new medge_t();
-		const base = i * SIZEOF_DEDGE;
-		e.v[ 0 ] = view.getUint16( base, true );
-		e.v[ 1 ] = view.getUint16( base + 2, true );
+		const base = i * recordSize;
+		e.v[ 0 ] = bspWide?view.getUint32(base,true):view.getUint16(base,true);
+		e.v[ 1 ] = bspWide?view.getUint32(base+4,true):view.getUint16(base+2,true);
+		if(e.v[0]>=loadmodel.numvertexes||e.v[1]>=loadmodel.numvertexes)Sys_Error('Invalid BSP edge vertex');
 		out[ i ] = e;
 
 	}
@@ -1767,11 +1773,12 @@ function CalcSurfaceExtents( s ) {
 // ============================================================================
 
 function Mod_LoadFaces( fileofs, filelen ) {
+ const recordSize=bspWide?(28):SIZEOF_DFACE;
 
-	if ( filelen % SIZEOF_DFACE )
+	if ( filelen % recordSize )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / SIZEOF_DFACE;
+	const count = filelen / recordSize;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count );
 
@@ -1781,28 +1788,30 @@ function Mod_LoadFaces( fileofs, filelen ) {
 	for ( let surfnum = 0; surfnum < count; surfnum ++ ) {
 
 		const s = new msurface_t();
-		const base = surfnum * SIZEOF_DFACE;
+		const base = surfnum * recordSize;
 
-		s.firstedge = view.getInt32( base + 4, true );
-		s.numedges = view.getInt16( base + 8, true );
+		s.firstedge = view.getInt32(base+(bspWide?8:4),true);
+		s.numedges = bspWide?view.getInt32(base+12,true):view.getInt16(base+8,true);
 		s.flags = 0;
 
-		const planenum = view.getUint16( base, true );
-		const side = view.getInt16( base + 2, true );
+		const planenum = bspWide?view.getUint32(base,true):view.getUint16(base,true);
+		const side = bspWide?view.getInt32(base+4,true):view.getInt16(base+2,true);
 		if ( side )
 			s.flags |= SURF_PLANEBACK;
 
+		if(planenum>=loadmodel.numplanes)Sys_Error('Invalid BSP face plane');
 		s.plane = loadmodel.planes[ planenum ];
 
-		s.texinfo = loadmodel.texinfo[ view.getInt16( base + 10, true ) ];
+		s.texinfo = loadmodel.texinfo[ bspWide?view.getInt32(base+16,true):view.getInt16(base+10,true) ];
 
+if(!s.texinfo||s.firstedge<0||s.numedges<3||s.firstedge+s.numedges>loadmodel.numsurfedges)Sys_Error('Invalid BSP face references');
 		CalcSurfaceExtents( s );
 
 		// lighting info
 		for ( let i = 0; i < MAXLIGHTMAPS; i ++ )
-			s.styles[ i ] = mod_base[ fileofs + base + 12 + i ];
+			s.styles[ i ] = mod_base[ fileofs+base+(bspWide?20:12)+i ];
 
-		const lightofs = view.getInt32( base + 16, true );
+		const lightofs = view.getInt32(base+(bspWide?24:16),true);
 		if ( lightofs === - 1 ) {
 
 			s.samples = null;
@@ -1978,13 +1987,20 @@ function Mod_CrateVariants( surfaces ) {
 // ============================================================================
 
 function Mod_SetParent( node, parent ) {
-
-	node.parent = parent;
-	if ( node.contents < 0 )
-		return;
-	Mod_SetParent( node.children[ 0 ], node );
-	Mod_SetParent( node.children[ 1 ], node );
-
+ // Preserve left-first native parent assignment, including shared solid leaves,
+ // while rejecting cyclic/non-tree node graphs without recursive stack growth.
+ const stack=[{node,parent,exit:false}],visiting=new Set(),finished=new Set();
+ let steps=0;
+ while(stack.length){
+  if(++steps>loadmodel.numnodes*3+1)Sys_Error('Invalid BSP parent traversal');
+  const item=stack.pop(),current=item.node;
+  if(!current)Sys_Error('Missing BSP child');
+  if(item.exit){visiting.delete(current);finished.add(current);continue;}
+  if(current.contents<0){current.parent=item.parent;continue;}
+  if(visiting.has(current)||finished.has(current))Sys_Error('Cyclic/non-tree BSP nodes');
+  current.parent=item.parent;visiting.add(current);
+  stack.push({node:current,exit:true},{node:current.children[1],parent:current,exit:false},{node:current.children[0],parent:current,exit:false});
+ }
 }
 
 // ============================================================================
@@ -1992,11 +2008,12 @@ function Mod_SetParent( node, parent ) {
 // ============================================================================
 
 function Mod_LoadNodes( fileofs, filelen ) {
+ const recordSize=bspWide?(bspFloatBounds?44:32):SIZEOF_DNODE;
 
-	if ( filelen % SIZEOF_DNODE )
+	if ( filelen % recordSize )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / SIZEOF_DNODE;
+	const count = filelen / recordSize;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count );
 
@@ -2006,24 +2023,25 @@ function Mod_LoadNodes( fileofs, filelen ) {
 	for ( let i = 0; i < count; i ++ ) {
 
 		const node = new mnode_t();
-		const base = i * SIZEOF_DNODE;
+		const base = i * recordSize;
 
 		for ( let j = 0; j < 3; j ++ ) {
 
-			node.minmaxs[ j ] = view.getInt16( base + 8 + j * 2, true );
-			node.minmaxs[ 3 + j ] = view.getInt16( base + 14 + j * 2, true );
+			node.minmaxs[ j ] = bspFloatBounds?view.getFloat32(base+12+j*4,true):view.getInt16(base+(bspWide?12:8)+j*2,true);
+			node.minmaxs[ 3 + j ] = bspFloatBounds?view.getFloat32(base+24+j*4,true):view.getInt16(base+(bspWide?18:14)+j*2,true);
 
 		}
 
 		const p = view.getInt32( base, true );
+		if(p<0||p>=loadmodel.numplanes)Sys_Error('Invalid BSP node plane');
 		node.plane = loadmodel.planes[ p ];
 
-		node.firstsurface = view.getUint16( base + 20, true );
-		node.numsurfaces = view.getUint16( base + 22, true );
+		node.firstsurface = bspWide?view.getUint32(base+(bspFloatBounds?36:24),true):view.getUint16(base+20,true);
+		node.numsurfaces = bspWide?view.getUint32(base+(bspFloatBounds?40:28),true):view.getUint16(base+22,true);
 
 		for ( let j = 0; j < 2; j ++ ) {
 
-			const child = view.getInt16( base + 4 + j * 2, true );
+			const child = bspWide?view.getInt32(base+4+j*4,true):view.getInt16(base+4+j*2,true);
 			if ( child >= 0 ) {
 
 				node.children[ j ] = null; // will be resolved after all nodes created
@@ -2050,6 +2068,7 @@ function Mod_LoadNodes( fileofs, filelen ) {
 		for ( let j = 0; j < 2; j ++ ) {
 
 			const ci = node._childIndex[ j ];
+			if(!ci||ci.index<0||ci.index>=(ci.type==='node'?loadmodel.nodes.length:loadmodel.leafs.length))Sys_Error('Invalid BSP node child');
 			if ( ci.type === 'node' ) {
 
 				node.children[ j ] = loadmodel.nodes[ ci.index ];
@@ -2075,11 +2094,12 @@ function Mod_LoadNodes( fileofs, filelen ) {
 // ============================================================================
 
 function Mod_LoadLeafs( fileofs, filelen ) {
+ const recordSize=bspWide?(bspFloatBounds?44:32):SIZEOF_DLEAF;
 
-	if ( filelen % SIZEOF_DLEAF )
+	if ( filelen % recordSize )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / SIZEOF_DLEAF;
+	const count = filelen / recordSize;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count );
 
@@ -2090,20 +2110,21 @@ function Mod_LoadLeafs( fileofs, filelen ) {
 
 		const leaf = new mleaf_t();
 		leaf._leafIndex = i; // store index for PVS checks (C uses pointer arithmetic: leaf - sv.worldmodel->leafs)
-		const base = i * SIZEOF_DLEAF;
+		const base = i * recordSize;
 
 		for ( let j = 0; j < 3; j ++ ) {
 
-			leaf.minmaxs[ j ] = view.getInt16( base + 8 + j * 2, true );
-			leaf.minmaxs[ 3 + j ] = view.getInt16( base + 14 + j * 2, true );
+			leaf.minmaxs[ j ] = bspFloatBounds?view.getFloat32(base+8+j*4,true):view.getInt16(base+8+j*2,true);
+			leaf.minmaxs[ 3 + j ] = bspFloatBounds?view.getFloat32(base+20+j*4,true):view.getInt16(base+14+j*2,true);
 
 		}
 
 		leaf.contents = view.getInt32( base, true );
 
-		const firstmarksurfaceIdx = view.getUint16( base + 20, true );
-		leaf.nummarksurfaces = view.getUint16( base + 22, true );
+		const firstmarksurfaceIdx = bspWide?view.getUint32(base+(bspFloatBounds?32:20),true):view.getUint16(base+20,true);
+		leaf.nummarksurfaces = bspWide?view.getUint32(base+(bspFloatBounds?36:24),true):view.getUint16(base+22,true);
 
+		if(firstmarksurfaceIdx>loadmodel.marksurfaces.length||leaf.nummarksurfaces>loadmodel.marksurfaces.length-firstmarksurfaceIdx)Sys_Error('Invalid BSP leaf marksurface range');
 		// In C: leaf->firstmarksurface = loadmodel->marksurfaces + firstmarksurface;
 		// This is a pointer into the marksurfaces array (which is an array of msurface_t*)
 		// In JS we store the sub-array so leaf.firstmarksurface[j] works like C
@@ -2126,7 +2147,7 @@ function Mod_LoadLeafs( fileofs, filelen ) {
 		leaf.efrags = null;
 
 		for ( let j = 0; j < 4; j ++ )
-			leaf.ambient_sound_level[ j ] = mod_base[ fileofs + base + 24 + j ];
+			leaf.ambient_sound_level[ j ] = mod_base[ fileofs+base+(bspWide?(bspFloatBounds?40:28):24)+j ];
 
 		// gl underwater warp
 		if ( leaf.contents !== CONTENTS_EMPTY ) {
@@ -2150,11 +2171,12 @@ function Mod_LoadLeafs( fileofs, filelen ) {
 // ============================================================================
 
 function Mod_LoadClipnodes( fileofs, filelen ) {
+ const recordSize=bspWide?(12):SIZEOF_DCLIPNODE;
 
-	if ( filelen % SIZEOF_DCLIPNODE )
+	if ( filelen % recordSize )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / SIZEOF_DCLIPNODE;
+	const count = filelen / recordSize;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count );
 
@@ -2190,12 +2212,13 @@ function Mod_LoadClipnodes( fileofs, filelen ) {
 	for ( let i = 0; i < count; i ++ ) {
 
 		const cn = new dclipnode_t();
-		const base = i * SIZEOF_DCLIPNODE;
+		const base = i * recordSize;
 
 		cn.planenum = view.getInt32( base, true );
-		cn.children[ 0 ] = view.getInt16( base + 4, true );
-		cn.children[ 1 ] = view.getInt16( base + 6, true );
+		cn.children[ 0 ] = bspWide?view.getInt32(base+4,true):view.getInt16(base+4,true);
+		cn.children[ 1 ] = bspWide?view.getInt32(base+8,true):view.getInt16(base+6,true);
 
+		if(cn.planenum<0||cn.planenum>=loadmodel.numplanes||cn.children.some(child=>child>=count))Sys_Error('Invalid BSP collision references');
 		out[ i ] = cn;
 
 	}
@@ -2215,6 +2238,8 @@ function Mod_MakeHull0() {
 	const _in = loadmodel.nodes;
 	const count = loadmodel.numnodes;
 	const out = new Array( count );
+	const nodeIndices=new Map(loadmodel.nodes.map((node,i)=>[node,i]));
+	const planeIndices=new Map(loadmodel.planes.slice(0,loadmodel.numplanes).map((plane,i)=>[plane,i]));
 
 	hull.clipnodes = out;
 	hull.firstclipnode = 0;
@@ -2226,7 +2251,7 @@ function Mod_MakeHull0() {
 		const cn = new dclipnode_t();
 		const node = _in[ i ];
 
-		cn.planenum = loadmodel.planes.indexOf( node.plane );
+		cn.planenum = planeIndices.get(node.plane);
 
 		for ( let j = 0; j < 2; j ++ ) {
 
@@ -2234,7 +2259,7 @@ function Mod_MakeHull0() {
 			if ( child.contents < 0 )
 				cn.children[ j ] = child.contents;
 			else
-				cn.children[ j ] = loadmodel.nodes.indexOf( child );
+				cn.children[ j ] = nodeIndices.get(child);
 
 		}
 
@@ -2249,11 +2274,12 @@ function Mod_MakeHull0() {
 // ============================================================================
 
 function Mod_LoadMarksurfaces( fileofs, filelen ) {
+ const recordSize=bspWide?4:2;
 
-	if ( filelen % 2 )
+	if ( filelen % recordSize )
 		Sys_Error( 'MOD_LoadBmodel: funny lump size in ' + loadmodel.name );
 
-	const count = filelen / 2;
+	const count = filelen / recordSize;
 	const view = new DataView( mod_base.buffer, mod_base.byteOffset + fileofs, filelen );
 	const out = new Array( count );
 
@@ -2262,7 +2288,7 @@ function Mod_LoadMarksurfaces( fileofs, filelen ) {
 
 	for ( let i = 0; i < count; i ++ ) {
 
-		const j = view.getUint16( i * 2, true );
+		const j = bspWide?view.getUint32(i*4,true):view.getUint16(i*2,true);
 		if ( j >= loadmodel.numsurfaces )
 			Sys_Error( 'Mod_ParseMarksurfaces: bad surface number' );
 		out[ i ] = loadmodel.surfaces[ j ];
@@ -2341,11 +2367,14 @@ function Mod_LoadBrushModel( mod, buffer ) {
 	const view = new DataView( buffer );
 
 	const version = view.getInt32( 0, true );
-	if ( version !== BSPVERSION )
+	if ( version !== BSPVERSION && version!==0x32505342 && version!==0x42535032 )
 		Sys_Error( 'Mod_LoadBrushModel: ' + mod.name + ' has wrong version number (' + version + ' should be ' + BSPVERSION + ')' );
 
 	// swap all the lumps
+	bspWide=version!==BSPVERSION;bspFloatBounds=version===0x32505342;
+	mod.bspVersion=version;
 	mod_base = bytes;
+	mod.bspSourceBytes = bytes; // immutable loaded-source identity, including preview/reload
 
 	// Read lump directory: version (4 bytes) + HEADER_LUMPS * 2 ints (fileofs, filelen)
 	const lumps = [];
@@ -2358,6 +2387,7 @@ function Mod_LoadBrushModel( mod, buffer ) {
 
 	}
 
+	for(const lump of lumps)if(lump.fileofs<0||lump.filelen<0||lump.fileofs+lump.filelen>bytes.length)Sys_Error('Invalid BSP lump bounds');
 	// load into heap (order matters! same as original C code)
 	Mod_LoadVertexes( lumps[ LUMP_VERTEXES ].fileofs, lumps[ LUMP_VERTEXES ].filelen );
 	Mod_LoadEdges( lumps[ LUMP_EDGES ].fileofs, lumps[ LUMP_EDGES ].filelen );

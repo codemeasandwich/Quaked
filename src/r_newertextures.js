@@ -12,6 +12,7 @@
 // map (the picture's glowing part, drawn at full brightness whatever the light), so
 // the original glowing area, enlarged, picks the glowing part out of the new picture.
 
+import {R_NormalPrepared,R_NormalPrepare,R_NormalPreparationNeeded} from './normal_prepare.js';
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 import * as THREE from 'three';
@@ -104,6 +105,39 @@ function loadPicture( file ) {
 	pictures.set( file, p );
 	return p;
 
+}
+
+// Start only named initial-world art before renderer/model construction. These
+// are the same decoded-picture/scalar caches used by actual upgrades below;
+// prefetch does not create textures, change native pixels or settle a gate.
+export function R_NewerTexturesPrefetch(names){
+ return loadIndex().then(idx=>Promise.all([...new Set(names)].flatMap(name=>{
+  const file=idx[name],crafted=normals[name];
+  return file===undefined?[]:[loadPicture(file),crafted?loadPicture(crafted.file):null,
+   crafted?.edgeSource?loadPicture(crafted.edgeSource.file):null,loadScalar(crafted?.dataFile)];
+ })));
+}
+
+// Read only BSP29's texture directory, without loading models or a palette.
+// Invalid/absent data is an empty optional prefetch; the real loader remains
+// responsible for map validation and every actual texture readiness decision.
+export function R_BspTextureNames(bytes){
+ if(!(bytes instanceof Uint8Array)||bytes.byteLength<124)return [];
+ const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
+ if(![29,0x32505342,0x42535032].includes(view.getInt32(0,true)))return [];
+ const offset=view.getInt32(20,true),length=view.getInt32(24,true);
+ if(offset<124||length<4||offset+length>bytes.byteLength)return [];
+ const count=view.getInt32(offset,true);
+ if(count<0||count>4096||4+count*4>length)return [];
+ const names=[];
+ for(let i=0;i<count;i++){
+  const at=view.getInt32(offset+4+i*4,true);
+  if(at===-1)continue;
+  if(at<4+count*4||at+40>length)return [];
+  let name='';for(let j=0;j<16;j++){const c=bytes[offset+at+j];if(!c)break;name+=String.fromCharCode(c);}
+  if(name&&name[0]!=='*'&&!name.startsWith('sky'))names.push(name);
+ }
+ return [...new Set(names)];
 }
 
 // Match original palette colour and dimensions, including split fullbright texels.
@@ -499,4 +533,19 @@ export function R_NewerTexturesRevert() {
 
 	upgraded.clear();
 
+}
+
+// Normal readiness is independent of whether authored high-resolution colour
+// replacement is enabled. Only current model textures own this gate.
+export function R_NewerNormalsStatus(model){
+ let pending=0,ready=0,shipped=0,generated=0;const errors={};
+ for(const t of new Set([...(model?.textures||[]),...(model?.texinfo||[]).map(info=>info?.texture)])){if(!t?.gl_texture||t.name.startsWith('*')||t.name.startsWith('sky'))continue;if(t.gl_texture.userData.newerPending){pending++;continue;}const work=R_NormalPrepared(t.gl_texture);
+  if(work?.status==='ready'){ready++;if(work.source==='shipped')shipped++;else if(work.source==='generated-and-stored')generated++;}
+  else{pending++;if(work?.error)errors[t.name]=work.error;}
+ }
+ return {pending,ready,shipped,generated,settled:pending===0,errors};
+}
+
+export function R_NewerNormalsPrepare(model){
+ for(const t of new Set([...(model?.textures||[]),...(model?.texinfo||[]).map(info=>info?.texture)]))if(t?.gl_texture&&!t.name.startsWith('*')&&!t.name.startsWith('sky')&&!t.gl_texture.userData.newerPending&&R_NormalPreparationNeeded(t.gl_texture))R_NormalPrepare(t.gl_texture);
 }

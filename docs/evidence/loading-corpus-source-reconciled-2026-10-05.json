@@ -1,0 +1,125 @@
+{
+  "reconciledAt": "2026-10-05T17:39:42.169049+00:00",
+  "status": "source-reconciled",
+  "priorIntegrityReceipt": "/private/tmp/quaked-prepared-corpus-audit-parts.json",
+  "priorReceiptSHA256": "af6ca9e08c36cfedcde1be8b3073044e5b663eb6e0a32a24fd5bf0690f20e0a9",
+  "priorStatusPreserved": "fail",
+  "priorIntegrityCounts": {
+    "maps": 159,
+    "rockVariants": 147,
+    "sculptVariants": 159,
+    "normalMapVariants": 159,
+    "normalLevels": 229,
+    "normalSamples": 1886,
+    "nativeOnly": 24
+  },
+  "priorBytes": {
+    "compressed": 1123811004,
+    "raw": 2224439762
+  },
+  "changedSinceAudit": [
+    {
+      "path": "src/gl_model.js",
+      "before": "89a9c712612bb792fe42756c96514d982dac3b0b67a42cdd769b6c6eb688f976",
+      "after": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488"
+    }
+  ],
+  "checks": [
+    {
+      "manifest": "newer/rockfield/manifest.json",
+      "path": "src/rockfield.js",
+      "expected": "992162c49b75d85abee5df33926131be9aab25c8a61015779ced00f331aaf7fd",
+      "actual": "992162c49b75d85abee5df33926131be9aab25c8a61015779ced00f331aaf7fd",
+      "match": true
+    },
+    {
+      "manifest": "newer/rockfield/manifest.json",
+      "path": "src/rockfield_presets.js",
+      "expected": "9a0e9b01c8c56b59df4d658a33f27900e85a8a6a41530d477295759c54a1e1c2",
+      "actual": "9a0e9b01c8c56b59df4d658a33f27900e85a8a6a41530d477295759c54a1e1c2",
+      "match": true
+    },
+    {
+      "manifest": "newer/rockfield/manifest.json",
+      "path": "src/r_rocksurfaces.js",
+      "expected": "064011c4167c99ad767e978ef856d1500f9d28029269ccfd97eae6cd27f9ed91",
+      "actual": "064011c4167c99ad767e978ef856d1500f9d28029269ccfd97eae6cd27f9ed91",
+      "match": true
+    },
+    {
+      "manifest": "newer/rockfield/manifest.json",
+      "path": "src/rockfield_bake_format.js",
+      "expected": "a93c30f06e8148a99284774aca738508d4ae25d25ec874a204815e823893fafd",
+      "actual": "a93c30f06e8148a99284774aca738508d4ae25d25ec874a204815e823893fafd",
+      "match": true
+    },
+    {
+      "manifest": "newer/displacement/manifest.json",
+      "path": "src/r_demonrelief.js",
+      "expected": "8e0202e29999f917078c83b1650182aa4c71d9bf6fa335b4dec27cc0784468dc",
+      "actual": "8e0202e29999f917078c83b1650182aa4c71d9bf6fa335b4dec27cc0784468dc",
+      "match": true
+    },
+    {
+      "manifest": "newer/displacement/manifest.json",
+      "path": "src/demon_bake_format.js",
+      "expected": "713c04e0d06fd76fc285eb5fd834a3d2d29174fc3d12ed27a450e9983ebe46c3",
+      "actual": "713c04e0d06fd76fc285eb5fd834a3d2d29174fc3d12ed27a450e9983ebe46c3",
+      "match": true
+    },
+    {
+      "manifest": "newer/displacement/manifest.json",
+      "path": "src/gl_model.js",
+      "expected": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488",
+      "actual": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488",
+      "match": true
+    },
+    {
+      "manifest": "newer/displacement/manifest.json",
+      "path": "src/gl_rsurf.js",
+      "expected": "a7a8c69cf5e3d77f55b1ef40d1c05662384573b90c774cb370d44f43a8ab45cb",
+      "actual": "a7a8c69cf5e3d77f55b1ef40d1c05662384573b90c774cb370d44f43a8ab45cb",
+      "match": true
+    },
+    {
+      "manifest": "newer/displacement/manifest.json",
+      "path": "newer/textures/index.json",
+      "expected": "e7a50d1ab8c3dcf1c8dc3e54024392fbfcd072bd4a80c3c64451632966629901",
+      "actual": "e7a50d1ab8c3dcf1c8dc3e54024392fbfcd072bd4a80c3c64451632966629901",
+      "match": true
+    },
+    {
+      "manifest": "newer/displacement/manifest.json",
+      "path": "newer/textures/normals/demon-face.r16",
+      "expected": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e",
+      "actual": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e",
+      "match": true
+    }
+  ],
+  "currentSourceHashes": {
+    "newer/displacement/corpus.json": "bbdd2d715e790b95ba7ddcfe458db2b39f882613f2c81dae55c245daa6140937",
+    "newer/rockfield/manifest.json": "77dd7ecf7c6473ddb156b41a2bea6d65c3d41d4b390d9db71809001389cff363",
+    "newer/displacement/manifest.json": "9b590e2534e90ebcea171800ae13ceb597f97597e3e6b2ca37d6c27c21f812c3",
+    "newer/normals/manifest.json": "9b289bc691e764d9e4fba92f0b4cbdb15cd067f76a99e0ce0b8985bbc63a7d6a",
+    "newer/textures/index.json": "e7a50d1ab8c3dcf1c8dc3e54024392fbfcd072bd4a80c3c64451632966629901",
+    "src/rockfield_bakes.js": "d3f8a1e5dff13d06917048a7c9ae8fb86450e6da97bdbf6efc390efec4ebc3e9",
+    "src/demon_bakes.js": "1c58986752a10a0f3cd252f2cfb29cf7d4bd7f4e7f57a76b9deba44bc1fde329",
+    "src/normal_bakes.js": "1ed35d6048b9fe48207d955337bb8626bf2606a51cfd0c88f27c83d3d6a1e061",
+    "src/rockfield.js": "992162c49b75d85abee5df33926131be9aab25c8a61015779ced00f331aaf7fd",
+    "src/rockfield_presets.js": "9a0e9b01c8c56b59df4d658a33f27900e85a8a6a41530d477295759c54a1e1c2",
+    "src/r_rocksurfaces.js": "064011c4167c99ad767e978ef856d1500f9d28029269ccfd97eae6cd27f9ed91",
+    "src/rockfield_bake_format.js": "a93c30f06e8148a99284774aca738508d4ae25d25ec874a204815e823893fafd",
+    "src/r_demonrelief.js": "8e0202e29999f917078c83b1650182aa4c71d9bf6fa335b4dec27cc0784468dc",
+    "src/demon_bake_format.js": "713c04e0d06fd76fc285eb5fd834a3d2d29174fc3d12ed27a450e9983ebe46c3",
+    "src/gl_model.js": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488",
+    "src/gl_rsurf.js": "a7a8c69cf5e3d77f55b1ef40d1c05662384573b90c774cb370d44f43a8ab45cb",
+    "newer/textures/normals/demon-face.r16": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e"
+  },
+  "fullPayloadBytesReread": false,
+  "qualification": "Completed streamed integrity constituent is now reconciled with restored current generator source. This is a new source check, not a rerun of2.22GB payload scanning. All audit-bound manifests/registries and other source hashes are unchanged. Earlier failed receipt remains intact.",
+  "limits": [
+    "No expansion gameplay or GPU/timing proof",
+    "Current candidate still needs its own scope/source verification",
+    "New grouped startup packs are separately checked by focused tests"
+  ]
+}

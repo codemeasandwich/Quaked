@@ -45,6 +45,7 @@ const virtualFiles = new Map();
 // like pak0.pak: it is looked at first, and only while Newer Game is on, so New Game
 // stays exactly the original. Its files keep the names they have as loose files ("newer/...").
 let newerPack = null;
+let startupPack=null,startupIndex=new Map();
 let newerIndex = null; // name -> packfile_t
 let newerActive = false;
 const newerUrls = new Map(); // name -> blob URL
@@ -255,6 +256,23 @@ export function COM_SetNewerPack( pack ) {
 
 }
 
+// Small startup transport bundle; explicit full Newer pack entries retain priority.
+// Logical paths remain unchanged, and loose files remain the optional fallback.
+export function COM_SetNewerStartupPack(pack){
+ const next=new Map();
+ if(pack){
+  const entry=pack.files.find(f=>f.name==='startup/index.json');if(!entry)throw Error('Missing startup alias index');
+  const index=JSON.parse(new TextDecoder().decode(new Uint8Array(pack.data,entry.filepos,entry.filelen)));
+  if(index.version!==1||!index.files||typeof index.files!=='object')throw Error('Invalid startup alias index');
+  for(const [name,alias]of Object.entries(index.files)){
+   if(!/^newer\/hud\/[a-zA-Z0-9_./-]+$/.test(name)||name.split('/').some(part=>part==='.'||part==='..')||!/^startup\/\d+\.(png|webp|json)$/.test(alias))throw Error('Invalid startup alias path');
+   const file=pack.files.find(f=>f.name===alias);if(!file)throw Error('Missing startup alias payload');next.set(name.toLowerCase(),file);
+  }
+ }
+ for(const [name,url]of newerUrls)if(startupIndex.has(name)){URL.revokeObjectURL(url);newerUrls.delete(name);}
+ startupPack=pack;startupIndex=next;
+}
+
 export function COM_NewerPackLoaded() {
 
 	return newerPack !== null;
@@ -276,10 +294,8 @@ A file of the Newer Game pack: { data, size } or null.
 =================
 */
 export function COM_NewerFile( name ) {
-
-	if ( newerIndex === null ) return null;
-	const nf = newerIndex.get( name.toLowerCase() );
-	return nf === undefined ? null : { data: new Uint8Array( newerPack.data, nf.filepos, nf.filelen ), size: nf.filelen };
+ const key=name.toLowerCase(),file=newerIndex?.get(key);if(file)return {data:new Uint8Array(newerPack.data,file.filepos,file.filelen),size:file.filelen};
+ const startup=startupIndex.get(key);return startup?{data:new Uint8Array(startupPack.data,startup.filepos,startup.filelen),size:startup.filelen}:null;
 
 }
 

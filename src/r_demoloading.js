@@ -33,6 +33,9 @@ export function R_DemoLoadingFrame(snapshot){
  // completed frame to be followed by two stable draws, not just signon4.
  if(settledFrames>=3)phase=mode==='demo'?'rolling':'done';
 }
+// Retract only the automatic startup console in 200 ms after the real readiness
+// gate. Ordinary/user-opened console speed retains its native preference.
+export function R_DemoLoadingConsoleSpeed(speed,height){return Math.max(speed,height/.2);}
 export function R_DemoLoadingConsoleClosed(){if(phase==='rolling')phase='done';}
 export function R_DemoLoadingStatus(){return{phase,mode,appReady,consoleSeen,fadeStarted,fadeDone,frames,settledFrames,world,pending:blocking.slice(),fallbacks:fallbacks.slice()};}
 // Readiness observes only enabled first-level mechanisms. A terminal optional
@@ -44,10 +47,11 @@ export function R_IntroReadinessChecks(frame){
  if(frame.shaderFailure)fallbacks.push('Shader warm-up: '+frame.shaderFailure);
  const rock=frame.rock||{},demon=frame.demon||{},shadows=frame.shadows||{},water=frame.water||{};
  if(rock.error||rock.failedTiles)fallbacks.push('Rock relief uses native fallback: '+(rock.error||rock.failedTiles+' failed tiles'));
- if(rock.active&&(rock.preparedState==='loading'||rock.pending||!rock.error&&rock.missingVisibleTiles>(rock.failedVisibleTiles||0)))pending.push('continuous rock relief');
- if(rock.preparedError)fallbacks.push('Prepared rock data: '+rock.preparedError+'; generated fallback');
+ if((rock.enabled??rock.active)&&(rock.preparedState==='error'||rock.preparedState==='loading'||rock.pending||!rock.error&&rock.missingVisibleTiles>(rock.failedVisibleTiles||0)))pending.push('continuous rock relief');
+ if(rock.preparedError)fallbacks.push('Prepared rock data: '+rock.preparedError+'; entry held');
  if(rock.overflowTiles)fallbacks.push('Rock working set exceeds this GPU; '+rock.overflowTiles+' halo/region tiles outside its budget');
- if(demon.enabled&&demon.pending)pending.push('sculpted surfaces');
+ for(const error of demon.errors||[])fallbacks.push('Prepared displacement: '+error);
+ if(demon.enabled&&(demon.pending||demon.preparedPending))pending.push('sculpted surfaces');
  if(frame.captureEnabled){if(shadows.error||shadows.spotError)fallbacks.push('Shadow initialization is still retrying: '+(shadows.error||shadows.spotError));if(shadows.pending||frame.spotOn&&!shadows.spotReady)pending.push('source shadows');}
  if(water.pending)pending.push('water reflections');
  return {pending,fallbacks};
