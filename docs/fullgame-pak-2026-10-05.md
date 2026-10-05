@@ -144,3 +144,97 @@ fetch catch could decline the archive. Native mandatory startup retains its
 existing entrypoint-owned fatal error handling. All owned marker mutations in
 the negative control affect its in-memory buffer and are restored in `finally`;
 the local archive is never written.
+
+## Required HDR ownership correction after native qualification failed
+
+The `71083e2` source review and 18/18 CPU controls remain historical evidence.
+Independent cold browser QA reached the exact E2M1 BSP and player, but its
+strict qualification failed: actual HDR was zero, normals remained unsettled,
+enhanced relief was inactive, and the demo coordinator had not observed the
+required frames. An observer-only PASS was rejected. File resolution, native
+spawn and the earlier focused counts did not qualify the normal Newer game.
+
+Before changing production source, the feature lane reproduced one concrete
+cause through existing public menu, command-buffer, cvar and demo APIs. Queue
+`playattractdemo hdr_ownership` followed by `wait`, then select E2M1 through
+the real Level Select touch controls. The menu queues its mode and map commands
+behind that pending attract command. Execute the first command-buffer slice to
+start the real header-only attract demo; execute the second slice to apply the
+explicit mode and reach the real `CL_Disconnect` boundary used by map launch.
+The fixture's map endpoint invokes this actual disconnect API; it does not
+spawn a native world or claim browser/GPU readiness.
+
+| Mode | Before selection | Attract starts | Explicit queued mode | After demo disconnect on `71083e2` | After correction |
+| --- | --- | --- | --- | --- | --- |
+| Newer | 0 | 1 | 1 | 0, incorrect | 1 |
+| Classic | 1 | 1 | 0 | 1, incorrect | 0 |
+
+This is an observed causal trace, rather than an inference from source strings.
+`R_DemoSplitRelease` cleared only the currently active scope. A pending attract
+could start afterward and save the previous HDR value in its private snapshot.
+When map launch disconnected the demo, `R_DemoSplitEnd` unconditionally restored
+that snapshot over the already applied explicit choice. A same-value ordinary
+console HDR choice had the same problem. The definitive pre-edit public
+baseline failed four controls and passed two (**2/6**, terminal exit 1).
+
+The repair adds `r_hdr` to the existing borrowed demo-preference loop in
+`src/r_demosplit.js`. It removes the separate HDR snapshot and unconditional
+ordinary `Cvar_Set` restoration. No additional state, flag, manager, cvar,
+renderer, transport ordering or asynchronous mechanism is introduced.
+`Cvar_SetTemporary` and `Cvar_RestoreTemporary` already provide the required
+ownership contract for the flashlight and sixteen Newer features:
+
+- Attract presentation borrows HDR without claiming it as a user choice.
+- Demo-only end restores the exact original string while the borrow is owned.
+- An ordinary menu/console set, including the same effective value, ends the
+  borrow; subsequent demo end cannot overwrite that explicit choice.
+- Release restores any remaining borrowed settings and drops the current
+  comparison scope. A later queued attract uses the same contract and yields
+  when the selected mode command runs.
+- Configuration serialization and storage preserve the underlying archived
+  owner value while a setting is borrowed. HDR's existing nonarchived
+  declaration is unchanged; the test temporarily enables its archive field
+  solely to exercise the generic config contract, then restores it.
+- Manual/file/timed demos keep their existing non-attract behavior. Ordinary
+  disconnect and the actual host `connect local` command stop the demo through
+  the same ownership boundary. No remote connection is opened by these checks.
+
+The new `tests/demo_hdr_ownership_test.js` passes **7/7** public lifecycle
+controls: Newer/Classic selection before pending attract; both choices during
+active attract and explicit same-value ownership; actual local connection;
+untouched demo restoration/idempotence; config/storage custody; and ordinary
+disconnect/manual/file/timed boundaries. The local connection fixture uses the
+existing in-memory loopback driver, allocates no server/browser process and
+closes its sockets in `finally`. A first added connection-control run failed
+because its fixture omitted the normal single-player `svs.maxclients` capacity;
+the fixture now supplies and restores that existing state. Production network
+code was unchanged.
+
+The maintained focused command for this correction is:
+
+```sh
+QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs \
+node tools/run_tests.mjs tests/demo_hdr_ownership_test.js \
+  tests/demo_shadow_defaults_test.js tests/profiler_demo_mode_test.js \
+  tests/newer_start_test.js tests/singleplayer_menu_test.js
+```
+
+It checks the real demo/default/profiler/menu/cvar APIs without a compiled/full
+suite, new browser, rebake or performance campaign. All **27/27** focused checks
+passed (7 HDR ownership, 4 demo defaults, 8 profiler lifecycle, 6 Newer launch
+and archived preferences, 2 existing single-player menu controls). The final
+command terminated with exit 0; `git diff --check` passed. Baseline RED and subsequent
+green logs are retained in the feature lane's Bluey outbox. The first baseline
+iteration (4/6) is also retained: some direct playback calls omitted
+`src_command`; they were corrected before production editing, producing the
+definitive 2/6 RED above. None of these fixture corrections changed the product
+contract or weakened assertions.
+
+This new source still requires exact-candidate independent source review and
+normal-game native/browser qualification. The observed HDR overwrite is fixed
+by the CPU controls; those controls do not establish that all browser normals,
+materials, coordinator frames or player presentation are ready. The previously
+failed cold receipts and the `71083e2` registered/PACK receipts remain intact.
+Owned archive, bundled program/palette/world bytes and those loading fixes are
+unchanged. The new bounded repair retains the card's original 19:53 clock and
+has a 21:35 UTC source stop; it grants no further retry, landing or release.
