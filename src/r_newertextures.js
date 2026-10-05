@@ -23,6 +23,7 @@ const upgraded = new Set();
 const BASE = 'newer/textures/';
 
 let index = null; // name -> file
+let glass = {}; // native-RGBA identity -> per-window authored/generated material
 let normals = {}; // name -> { file, strength }: the height map crafted for the texture (tools/craft_normals.py)
 let version = '0'; // changes whenever a picture does, so the browser fetches the new one
 let indexPromise = null;
@@ -59,7 +60,7 @@ function loadIndex() {
 
 		indexState = 'loading';
 		indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Texture index' )
-			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; version = String( j.version ); indexState = 'ready'; return index; } )
+			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; version = String( j.version ); indexState = 'ready'; return index; } )
 			.catch( error => { indexError = String( error.message || error ); indexState = 'fallback'; index = {}; return index; } );
 
 	}
@@ -105,6 +106,19 @@ function loadPicture( file ) {
 
 }
 
+// Match original palette colour and dimensions, including split fullbright texels.
+// Expansion packs reuse names for different windows; names alone are unsafe.
+export function R_GlassTextureKey( texture ) {
+ const image=texture?.userData?.classicImage||texture?.image,fb=texture?._fullbright?.userData?.classicImage||texture?._fullbright?.image;
+ if(!image?.data||image.data.length!==image.width*image.height*4)return '';
+ let a=2166136261,b=3339675911;
+ for(let i=0;i<image.data.length;i++){
+  const at=i-i%4,byte=i%4!==3&&fb?.data?.[at+3]?fb.data[i]:image.data[i];
+  a=Math.imul(a^byte,16777619)>>>0;b=Math.imul(b^byte,2246822519)>>>0;
+ }
+ return image.width+'x'+image.height+':'+a.toString(16).padStart(8,'0')+b.toString(16).padStart(8,'0');
+}
+
 export function R_NewerTextureUpgrade( name, texture ) {
 
 	if ( texture == null ) return;
@@ -114,14 +128,16 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	loadIndex().then( ( idx ) => {
 
-		const file = idx[ name ];
+		const variant = glass[ name ]?.[ R_GlassTextureKey( texture ) ];
+		if ( glass[ name ] && !variant ) return null;
+		const file = variant?.file || idx[ name ];
 		if ( file === undefined ) return null;
 
 		// the picture and, when there is one, its crafted height map
-		const crafted = normals[ name ];
+		const crafted = variant ? { file: variant.heightFile, normalFile: variant.normalFile, glossFile: variant.glossFile, strength: 1, cap: 1.1 } : normals[ name ];
 		return Promise.all( [ loadPicture( file ), crafted !== undefined ? loadPicture( crafted.file ) : null,
-			crafted?.edgeSource ? loadPicture( crafted.edgeSource.file ) : null, loadScalar( crafted?.dataFile ) ] )
-			.then( ( [ pic, heightPic, edgePic, scalar ] ) => ( pic == null ? null : { pic, heightPic, edgePic, scalar, crafted } ) );
+			crafted?.edgeSource ? loadPicture( crafted.edgeSource.file ) : null, loadScalar( crafted?.dataFile ), crafted?.normalFile ? loadPicture( crafted.normalFile ) : null, crafted?.glossFile ? loadPicture( crafted.glossFile ) : null ] )
+			.then( ( [ pic, heightPic, edgePic, scalar, normalPic, glossPic ] ) => ( pic == null ? null : { pic, heightPic, edgePic, scalar, normalPic, glossPic, crafted } ) );
 
 	} ).then( ( loaded ) => {
 
@@ -131,9 +147,9 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 		if ( loaded.heightPic != null && loaded.heightPic.width === pic.width && loaded.heightPic.height === pic.height ) {
 
-			// the red of the grey picture is the height
+			// Grey authored heights use red; supplied tangent normals keep their authored alpha height.
 			const h = new Float32Array( pic.width * pic.height );
-			for ( let i = 0; i < h.length; i ++ ) h[ i ] = loaded.heightPic.data[ i * 4 ] / 255;
+			for ( let i = 0; i < h.length; i ++ ) h[ i ] = loaded.heightPic.data[ i * 4 + ( loaded.crafted.normalFile === loaded.crafted.file ? 3 : 0 ) ] / 255;
 			const scalarReady = loaded.scalar?.byteLength === h.length * 2;
 			if ( scalarReady ) {
 
@@ -143,6 +159,17 @@ export function R_NewerTextureUpgrade( name, texture ) {
 			}
 			texture.userData.newerHeight = { file: loaded.crafted.file, strength: loaded.crafted.strength, cap: loaded.crafted.cap || 1.1, data: h, width: pic.width, height: pic.height };
 			texture.userData.newerHeight.dataFile = scalarReady ? loaded.crafted.dataFile : undefined;
+   // Optional authored normals are accepted only as a complete registered image.
+   // A missing gloss keeps relief and falls back to matte, never a shiny placeholder.
+   const donor = loaded.normalPic, glossPic = loaded.glossPic;
+   if(donor && donor.width===pic.width && donor.height===pic.height) {
+    const bytes=new Uint8Array(donor.data);
+    for(let i=0;i<h.length;i++)bytes[i*4+3]=Math.round(h[i]*255);
+    texture.userData.newerHeight.authoredNormal={file:loaded.crafted.normalFile,...donor,data:bytes};
+    if(glossPic && glossPic.width===pic.width && glossPic.height===pic.height)
+     texture.userData.newerHeight.authoredGloss={file:loaded.crafted.glossFile,...glossPic};
+   }
+
 			texture.userData.newerHeight.sampling = loaded.crafted.sampling === 'clamp' ? 'clamp' : 'repeat';
 			const displacement = loaded.crafted.displacement;
 			if ( displacement && ( ! loaded.crafted.dataFile || scalarReady ) && Number.isFinite( displacement.depth ) && displacement.depth > 0 && displacement.depth <= 24 &&
@@ -371,7 +398,7 @@ export function R_NewerTextureSettled( name, texture ) {
 
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 || texture == null ) return true;
 	if ( index === null ) return false;
-	if ( index[ name ] === undefined ) return true;
+	if ( index[ name ] === undefined && !glass[ name ] ) return true;
 	return texture.userData != null && ( texture.userData.newerPicture === true || texture.userData.newerFallback === true );
 
 }
@@ -384,7 +411,7 @@ export function R_NewerTexturesStatus( model ) {
 	for ( const t of textures ) {
 		if ( ! on ) { fallback ++; continue; }
 		if ( t.gl_texture.userData.newerPicture ) ready ++;
-		else if ( t.gl_texture.userData.newerFallback || index !== null && index[ t.name ] === undefined ) fallback ++;
+		else if ( t.gl_texture.userData.newerFallback || index !== null && index[ t.name ] === undefined && !glass[ t.name ] ) fallback ++;
 		else pending ++;
 	}
 	return { index: indexState, pending, ready, fallback, total: textures.length, settled: pending === 0,

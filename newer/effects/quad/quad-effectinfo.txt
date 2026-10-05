@@ -1,0 +1,75 @@
+////////////////
+///quaddamage///
+////////////////
+
+//quaddamage - central effect 1
+effect quad		
+countabsolute 20
+type spark
+tex 61 61
+color 0x629dff 0x0018ff
+size 0.1 0.3
+sizeincrease -0.05
+alpha 100 200 190
+stretchfactor 4
+bounce -1
+originoffset 0 0 35	
+originjitter 15 15 15
+velocityjitter -20 -20 -20
+airfriction -0.5
+
+//quaddamage - central effect 2
+effect quad		
+countabsolute 15
+type spark
+tex 61 61
+color 0x629dff 0x0018ff
+size 0.1 0.3
+sizeincrease -0.05
+alpha 100 200 210
+stretchfactor 4
+bounce -1
+originoffset 0 0 35		
+originjitter 1 1 1
+velocityjitter 20 20 0
+airfriction -0.5
+
+//quaddamage - central effect 3
+effect quad		
+countabsolute 10
+type spark
+tex 61 61
+color 0x629dff 0x0018ff
+size 0.0005 0.0001
+sizeincrease -5
+alpha 100 200 210
+stretchfactor -4
+airfriction 0.5
+liquidfriction 0.5
+bounce -1
+originoffset 0 0 35		
+originjitter 1 1 1
+velocityjitter 20 20 -20
+
+//quaddamage - lower sparks
+effect quad		
+countabsolute 30
+type static
+tex 0 7
+color 0x629dff 0x0018ff
+size 0.1 0.3
+sizeincrease -0.05
+alpha 100 150 210
+stretchfactor 4
+bounce -1		
+originjitter 1 1 14
+originoffset 0 0 15
+velocityjitter 15 15 0
+rotate 0 10 -20 20
+airfriction 20
+
+//quaddamage light
+effect quad
+lightradius 80
+lightcolor 0 0 1.1
+lightshadow 1

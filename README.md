@@ -201,7 +201,7 @@ Both the existing sound-volume slider (`volume`) and `bgmvolume` govern it; `bgm
 - Weapon models by **[小林 団那紀](https://sketchfab.com/dannaki_)** (the archives retain the original author metadata, 旦那気 大安 / dannaki_tayan).
 - Shotgun-shell asset: only the shell from Weapon Pack is used. [Source and supplied license](newer/weapons/shell/license.txt).
 
-Newer Game gives the three artifact pickups distinct shader effects: white flames with a gently pulsing purple glow for quad damage, yellow flames and a view-relative dark shroud for invulnerability, and animated yellow flame projections around the invisibility ring. `r_powerups 0`/`1` compares the layer; Classic and pickup gameplay stay native. [Implementation, verification and trials](docs/powerup-flames-2026-10-04.md).
+Newer Game gives the three artifact pickups distinct shader effects: the retained white flames with gently pulsing blue Quad Damage illumination, yellow flames and a view-relative dark shroud for invulnerability, and animated yellow flame projections around the invisibility ring. `r_powerups 0`/`1` compares the layer; Classic and pickup gameplay stay native. [Original flame implementation](docs/powerup-flames-2026-10-04.md), [blue Quad port, verification and trials](docs/quad-blue-effect-2026-10-05.md).
 
 Newer Game adds a separate continuous procedural relief field to natural rock throughout cliffs, tunnels and caves, with gentle soil detail, preserving the original textures and collision geometry. `r_rockfield 0`/`1` compares the layer. [Implementation, limits and trial](docs/continuous-rockfield-2026-10-02.md). [Continuity and lighting correction, current verification and remaining limits](docs/rockfield-correction-2026-10-04.md).
 
@@ -220,3 +220,7 @@ Fresh Newer welcome starts with flashlight and crosshair off. Easy corridor entr
 The [studio logo](docs/studio-logo-2026-10-04.md) appears at the bottom-right of the initial black loading screen and active game menus, with responsive safe-area placement and a smaller footprint beside the Bestiary when needed.
 
 The [progressive Bestiarium](docs/bestiary-progress-2026-10-04.md) uses authored heading crops over blank locked-entry bodies, reveals five inner-cover pieces from their matching discoveries, and uses the revised dedication and menu sheet.
+
+Bubbled stained-glass materials use donor or generated normal/height maps across the base game and installed resource expansions, with pane-scoped live-light highlights and native Classic rendering. [Coverage, source identities, verification and trial](docs/glass-materials-2026-10-05.md).
+
+The regular nailgun now uses the supplied Quake archive model in Newer Game, including all nine held firing poses and its matching pickup. Classic and the weapon-art switch retain native art. [Source fidelity, verification and trials](docs/nailgun-source-2026-10-05.md).

@@ -150,11 +150,10 @@ export function R_PowerupSeen( entity, nativeMesh, scene, time ) {
  if ( record && ( record.kind !== kind || record.model !== entity.model || record.nativePosition !== nativeMesh.geometry.attributes.position || record.nativeIndex !== nativeMesh.geometry.index ) ) { dispose( entity, record ); record = null; }
  if ( !record ) {
   const group = new THREE.Group(); group.name = 'powerup_' + kind; group.userData.newerOnly = true;
-  record = { kind, group, model: entity.model, nativePosition: nativeMesh.geometry.attributes.position, nativeIndex: nativeMesh.geometry.index, seen: true, source: { pos: [ 0, 0, 0 ], color: kind === 'quad' ? [ .55, .08, 1 ] : [ 1, .65, .08 ],
-   power: kind === 'quad' ? 1.2 : kind === 'ring' ? 2 : 1, radius: kind === 'ring' ? 90 : 70, emitter: 1, powerup: kind, rotation: [ 0, 0, 0, 1 ], cookie: kind === 'ring' ? 1 : 0 } };
+  record = { kind, group, model: entity.model, nativePosition: nativeMesh.geometry.attributes.position, nativeIndex: nativeMesh.geometry.index, seen: true, source: { pos: [ 0, 0, 0 ], color: kind === 'quad' ? [ 0, 0, 1.1 ] : [ 1, .65, .08 ],
+   power: kind === 'quad' ? 1.2 : kind === 'ring' ? 2 : 1, radius: kind === 'quad' ? 80 : kind === 'ring' ? 90 : 70, emitter: 1, powerup: kind, rotation: [ 0, 0, 0, 1 ], cookie: kind === 'ring' ? 1 : 0 } };
   if ( kind === 'quad' ) {
-   sprite( record, 1, [ .7, .08, 1.8 ], 78, 78, 0, 8 );
-   nativeFire( record, nativeMesh.geometry, [ 1.5, 1.5, 1.5 ], [ .7, .06, 1.4 ] );
+   nativeFire( record, nativeMesh.geometry, [ 1.5, 1.5, 1.5 ], [ .12, .28, 1.1 ] );
   } else if ( kind === 'pentagram' ) {
    sprite( record, 2, [ 0, 0, 0 ], 100, 116, 4, 25 );
    nativeFire( record, nativeMesh.geometry, [ 2.0, 1.25, .06 ], [ 2.2, 1.3, .035 ] );

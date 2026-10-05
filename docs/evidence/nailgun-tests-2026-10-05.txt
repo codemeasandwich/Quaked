@@ -1,0 +1,109 @@
+(node:89562) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS review: cloned imported materials retain supplied maps and enhanced surface outputs
+PASS review: raised and rotated brush floors intercept shell sweeps before the world floor
+PASS review: fired casing lands on a lift, follows translation and rotation, survives save, then falls when support disappears
+PASS review: brush rotation updates casing orientation even when its world position stays fixed
+PASS review: malformed saved support is discarded without losing the physical casing
+RESULT 5/5 passed (tests/weapon_review_test.js)
+(node:89573) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+meshing progs/v_shot.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/g_light.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/v_axe.mdl...
+
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all six pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+(node:89578) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS weapon startup: ordinary app warms held/pickup art behind its first real console, retaining the readiness gate until downloads settle
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+(node:89581) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Weapon art fallback: g_rock2 Error: Invalid weapon geometry: g_rock2
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:90:85
+    at async Promise.all (index 8)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:65:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:50:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:92:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS independent donor MDL6 and MD3 decoding proves every emitted pose, vertex normal, UV seam and triangle preserves source shape
+PASS independent atlas decode proves held skin exact bytes and pickup TGA diffuse/normal top-row sampling without incompatible held normal
+Added packfile ordinary-nailgun-native-test (339 files)\n
+meshing progs/v_nail.mdl...
+
+meshing progs/g_nail.mdl...
+
+PASS independent real weapon load and native alias draw preserve all ordinary nailgun poses, Classic, toggle and pickup identity
+PASS independent ordinary nailgun addition preserves every previously imported weapon geometry and texture including Super Nailgun
+RESULT 4/4 passed (/private/tmp/nailgun-port/nailgun_source_test.mjs)
+(node:89596) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+TOTAL 17/17 passed

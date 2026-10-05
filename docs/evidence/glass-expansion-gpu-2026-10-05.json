@@ -1,0 +1,284 @@
+{
+  "status": "PASS",
+  "rows": [
+    {
+      "campaign": "hipnotic",
+      "status": "PASS",
+      "entry": {
+        "name": "window01_1",
+        "key": "64x192:d4193b0d4846e7e7",
+        "nativeFile": "glass/e1b69288318f49644e9e47a5-native.png",
+        "campaigns": [
+          "ad",
+          "hipnotic",
+          "id1",
+          "mg1",
+          "quoth"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "db8156c78a2ab08363f723d7b91ac7978f6b0bac348ffb4df128af85734f9425"
+      },
+      "glassPixels": 62404,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 181342,
+      "normalResponseRgbChanges": 176877,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "rogue",
+      "status": "PASS",
+      "entry": {
+        "name": "window01_3",
+        "key": "64x192:9931f858d5865f0a",
+        "nativeFile": "glass/22b72f50d1c4b31d9731b418-native.png",
+        "campaigns": [
+          "ad",
+          "hipnotic",
+          "id1",
+          "mg1",
+          "rogue"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "81362094c084aa72f2f2707ae28159bc6fd465aaffc06bb715ccab99e56af0c8"
+      },
+      "glassPixels": 63609,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 184218,
+      "normalResponseRgbChanges": 180904,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "dopa",
+      "status": "PASS",
+      "entry": {
+        "name": "window01_4",
+        "key": "64x192:523ed0a9a8d3d90b",
+        "nativeFile": "glass/6e64b1dd1b89929c42da8d77-native.png",
+        "campaigns": [
+          "ad",
+          "dopa",
+          "hipnotic",
+          "id1",
+          "quoth",
+          "rogue"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "eeadf9e1924dd7bb67bccd2a51e2fcd2d025bcb51336a0dc8a8bb6d39caf1b00"
+      },
+      "glassPixels": 64339,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 184868,
+      "normalResponseRgbChanges": 179338,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "mg1",
+      "status": "PASS",
+      "entry": {
+        "name": "window01_1",
+        "key": "64x192:d4193b0d4846e7e7",
+        "nativeFile": "glass/e1b69288318f49644e9e47a5-native.png",
+        "campaigns": [
+          "ad",
+          "hipnotic",
+          "id1",
+          "mg1",
+          "quoth"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "db8156c78a2ab08363f723d7b91ac7978f6b0bac348ffb4df128af85734f9425"
+      },
+      "glassPixels": 62404,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 181342,
+      "normalResponseRgbChanges": 176877,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "ad",
+      "status": "PASS",
+      "entry": {
+        "name": "brick1glass1",
+        "key": "64x256:c34d2a91608874eb",
+        "nativeFile": "glass/dc5fe3027327fe11e71cb4a2-native.png",
+        "campaigns": [
+          "ad"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "dc0c79d2f6bc33ecbd3d5ccf577db7ee93355321cf401470c50b77dc5312a927"
+      },
+      "glassPixels": 40386,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 109755,
+      "normalResponseRgbChanges": 108696,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "quoth",
+      "status": "PASS",
+      "entry": {
+        "name": "wind_dagg",
+        "key": "64x256:9bb550a9b2d8d90b",
+        "nativeFile": "glass/499a6567785fa71c10cffed0-native.png",
+        "campaigns": [
+          "quoth"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "b66c38007c6c9f890830d5cb67f7ddc4fa507ca24c504d222596ea823a43901c"
+      },
+      "glassPixels": 30119,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 69860,
+      "normalResponseRgbChanges": 64770,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "malice",
+      "status": "PASS",
+      "entry": {
+        "name": "Window2",
+        "key": "64x96:aa3bcc1646bf8a4c",
+        "nativeFile": "glass/885481e7c6409c77942b145e-native.png",
+        "campaigns": [
+          "malice"
+        ],
+        "class": "plain_glass",
+        "assembledNormalSha256": "b00de1698d4e418b26df33f770f681e2c7b766777a83a17e73158b9097993777"
+      },
+      "glassPixels": 0,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 123221,
+      "normalResponseRgbChanges": 54396,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "aopfm_v2",
+      "status": "PASS",
+      "entry": {
+        "name": "Window01",
+        "key": "64x192:348c68cc10392a3e",
+        "nativeFile": "glass/9c8c6c59f9a867ce78c00c96-native.png",
+        "campaigns": [
+          "aopfm_v2"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "bb5e2d162b30bfe36f05dbd19d39e96057e3e2334bc8aee7882b8a708087d723"
+      },
+      "glassPixels": 27529,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 75386,
+      "normalResponseRgbChanges": 75555,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    },
+    {
+      "campaign": "xmen",
+      "status": "PASS",
+      "entry": {
+        "name": "stainedx_js",
+        "key": "64x64:c747905e66de4004",
+        "nativeFile": "glass/e4487e7aed03fee9cfc32b29-native.png",
+        "campaigns": [
+          "xmen"
+        ],
+        "class": "stained_mosaic",
+        "assembledNormalSha256": "da98eeb0875a0c6964984363ad9a037c107a659846425715eeb23bdfd2d8ec09"
+      },
+      "glassPixels": 52790,
+      "tagPixelsWithNormalsOff": 0,
+      "movingLightRgbChanges": 85032,
+      "normalResponseRgbChanges": 92515,
+      "classicRgbChanges": 0,
+      "glErrors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decodedNormalSha256Exact": true,
+      "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+      "errors": []
+    }
+  ],
+  "errors": []
+}

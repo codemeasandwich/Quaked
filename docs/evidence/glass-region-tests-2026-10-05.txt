@@ -1,0 +1,127 @@
+(node:58308) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS a flat texture gives flat normals
+PASS normals tilt away from rising height, in texture-coordinate space
+PASS normals are unit length and height fills the alpha range
+PASS the result tiles: a feature on one edge shapes the opposite edge
+PASS fullbright texels count towards the height
+RESULT 5/5 passed (tests/gl_normals_test.js)
+(node:58319) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS a flat crafted height gives flat normals and keeps the height in alpha
+PASS crafted normals lean away from rising height, in texture coordinates
+PASS stronger relief leans further, and no facet is steeper than the cap allows
+PASS the crafted height map wraps, because textures tile
+RESULT 4/4 passed (tests/gl_normals_crafted_test.js)
+(node:58330) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58332) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+file:///Users/bri/SOURCE/Quaked/tests/level_texture_runtime_test.js:12
+if ( ! process.env.QUAKED_CANVAS_MODULE ) throw new Error( 'Set QUAKED_CANVAS_MODULE to installed @napi-rs/canvas/index.js.' );
+                                                ^
+
+Error: Set QUAKED_CANVAS_MODULE to installed @napi-rs/canvas/index.js.
+    at file:///Users/bri/SOURCE/Quaked/tests/level_texture_runtime_test.js:12:49
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:40:2
+
+Node.js v24.13.0
+PASS bounded BSP29 texture-directory prefetch handles real native views, duplicate names and unsupported directories without touching a model
+PASS named prefetch shares exact decoded pigment/height/edge/scalar caches while actual textures and startup readiness remain authoritative
+PASS optional prefetch failure remains a recorded native fallback and cannot conceal another actual texture still loading
+RESULT 3/3 passed (tests/startup_texture_prefetch_test.js)
+(node:58334) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+meshing progs/v_shot.mdl...
+
+PASS actual opaque held clone keeps physical receiver metadata and only applies compressed display depth to the main camera
+meshing progs/g_shot.mdl...
+
+meshing progs/player.mdl...
+
+PASS native pickups, native player colormap and imported alias materials all carry real receiver data without sharing held coating state
+PASS enhanced alias CPU colors contain baked light only so a live explosion is not added as unshadowed grayscale before deferred lighting
+PASS surface blood persists indefinitely and water alone washes; wet film dries on unpaused game time
+PASS public native damage and blood particle events coat only enabled, nearby, visible surfaces
+PASS surface snapshot restores in place across clocks and malformed data is atomic; demos cannot wash live custody
+PASS public HDR target keeps normal and actor packets unmultisampled with all four attachments even when micro normals are disabled
+RESULT 7/7 passed (tests/model_lighting_test.js)
+(node:58339) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS exact native pickup kinds, bounded quad pulse, presentation-only source attributes and original gameplay fields
+PASS visible, collected, respawned, replaced and cleared entities retire effect/light state without retaining orphan meshes
+PASS Classic helper redraw does not mutate the enhanced registry, and feature/Newer gates retire effects
+PASS live pickup lights share the existing eight-source budget and stable ranking while quad radiance pulses
+Added packfile pak0.pak (339 files)\n
+R_Init
+Can't register variable r_hdr, already defined
+
+Can't register variable r_powerups, already defined
+
+Can't register variable r_newer_lighting, already defined
+
+R_Init: Three.js renderer ready
+meshing progs/quaddama.mdl...
+
+meshing progs/invulner.mdl...
+
+meshing progs/invisibl.mdl...
+
+PASS actual public entity draw dispatch attaches effects to native world pickups and excludes held viewmodel
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+PASS real native PAK pickup aliases retain positions, UVs, indices and skin data under effect attachment
+PASS actual post-frame snapshot retains ring cookie slot and live-light radiance while lighting-off disables its compositor path
+PASS visible pentagram metadata includes all shrouds beyond eight lights and exact camera-space billboard geometry without native mutation
+PASS shroud metadata resets for hidden object/ancestor, feature-off, Classic, collection and map clear
+PASS native yaw and actual model matrices drive local fire volume and ring orientation without camera or Classic drift
+PASS volumetric fuel distances match independent native triangle geometry and coating preserves the complete Q and pentagram topology
+PASS replacement native position or index buffers rebuild owned emissions without disposing the native model
+PASS volume renderer separates emission from opaque depth, follows resolution and camera projection, and restores all state on failure
+RESULT 13/13 passed (tests/powerups_test.js)
+(node:58345) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Added packfile native-glass-id1 (2 files)\n
+Added packfile native-glass-hipnotic (2 files)\n
+Added packfile native-glass-rogue (2 files)\n
+Added packfile native-glass-dopa (2 files)\n
+Added packfile native-glass-mg1 (2 files)\n
+Added packfile native-glass-ad (2 files)\n
+Added packfile native-glass-quoth (2 files)\n
+Added packfile native-glass-malice (2 files)\n
+Added packfile native-glass-aopfm_v2 (2 files)\n
+Added packfile native-glass-xmen (2 files)\n
+NATIVE_GLASS_INTERFACE [{"game":"id1","map":"maps/e4m6.bsp","materials":4,"fullbright":0},{"game":"hipnotic","map":"maps/hip2m6.bsp","materials":5,"fullbright":0},{"game":"rogue","map":"maps/r1m7.bsp","materials":4,"fullbright":0},{"game":"dopa","map":"maps/e5start.bsp","materials":2,"fullbright":0},{"game":"mg1","map":"maps/mge5m2.bsp","materials":4,"fullbright":0},{"game":"ad","map":"maps/ad_akalakha.bsp","materials":20,"fullbright":0},{"game":"quoth","map":"maps/breakable.bsp","materials":11,"fullbright":0},{"game":"malice","map":"maps/d10.bsp","materials":3,"fullbright":0},{"game":"aopfm_v2","map":"maps/aop1m5.bsp","materials":7,"fullbright":7},{"game":"xmen","map":"maps/x2m1.bsp","materials":2,"fullbright":0}]
+PASS native public BSP loaders select exact glass catalog variants across all ten campaign sources
+RESULT 1/1 passed (tests/glass_native_interface_test.js)
+(node:58358) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS independent public normal selection preserves source bytes, separates donor identities and owns gloss disposal
+PASS independent authored gloss dimension mismatch cannot tag unrelated texels as glass
+PASS independent donor loader remains asynchronous and preserves native Classic image and offset
+PASS independent missing or mismatched donor normals keep successful diffuse and generated relief fallback
+PASS independent separate opaque normal and height decode preserves nonzero RGB at zero height
+PASS independent content-bound selection reconstructs native fullbright pixels and rejects unrelated same-name variants
+PASS independent actual material compiler isolates glass mask, Classic and native material behavior
+PASS independent actual PNG decode restores canonical ordinary normals outside every reviewed pane across all 130 materials
+PASS independent visually reviewed 58 materials constrain aperture G to pane openings and reject whole-texture masks
+RESULT 9/9 passed (/private/tmp/glass-port/glass_region_assets_test.mjs)
+(node:58367) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+TOTAL 42/42 passed

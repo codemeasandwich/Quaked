@@ -261,12 +261,12 @@ function checkGrenadeBarrel( positions, header ) {
 
 Deno.test( 'supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors', () => {
 
-	equal( Object.keys( manifest.models ).length, 11, 'eleven replacement firearm roles' );
+	equal( Object.keys( manifest.models ).length, 13, 'thirteen replacement firearm roles' );
 	check( ! manifest.models.v_axe && weapons.R_WeaponAsset( 'progs/v_axe.mdl' ) === null, 'owner-restored axe always uses original art' );
 	equal( pendingDrawCount, pendingHeader.posedata[ 0 ].length, 'pending art draws original geometry' );
 	for ( const key of Object.keys( manifest.models ) ) {
 
-		const h = nativeHeader( key ), bounds = key === 'v_shot' ? shotgunBarrelBounds( h ) : key === 'v_nail2' || key === 'g_nail2' ? uniformNailgunBounds( h, key ) : nativeBounds( h );
+		const h = nativeHeader( key ), bounds = manifest.models[key].fitKind === 'source-quake-coordinates' ? { min: manifest.models[key].sourceMin, max: manifest.models[key].sourceMax } : key === 'v_shot' ? shotgunBarrelBounds( h ) : key === 'v_nail2' || key === 'g_nail2' ? uniformNailgunBounds( h, key ) : nativeBounds( h );
 		const e = { frame: 0, model: { name: 'progs/' + key + '.mdl' }, origin: [ 31, - 9, 40 ], angles: [ 17, 73, 11 ] };
 		const mesh = R_DrawAliasModel( e, h, new Float32Array( 162 ).fill( 1 ), 0.7 );
 		check( mesh.isMesh, key + ' renders an actual mesh' );
@@ -277,6 +277,8 @@ Deno.test( 'supplied weapons match native fits, authorized held rocket offset an
 
 			if ( key !== 'v_rock' ) {
 
+				// New nailgun bounds retain authored source coordinates (independently
+				// decoded in nailgun_source_test); previous native fitting contracts remain.
 				// Rocket shifts intact; SNG's entire source shape uses the exact
 				// uniform scale/rigid pose computed above, with no sectional edits.
 				const offset = key === 'v_rock2' && axis === 0 ? - 3 : 0;
@@ -301,6 +303,7 @@ Deno.test( 'supplied weapons match native fits, authorized held rocket offset an
 			e.frame = frame; const posed = R_DrawAliasModel( e, h, null );
 			check( posed.geometry.getAttribute( 'position' ).array.every( Number.isFinite ), key + ' finite native pose ' + frame );
 			const positions = posed.geometry.getAttribute( 'position' ).array;
+			if ( manifest.models[key].fitKind === 'source-quake-coordinates' ) continue; // Authored deformation is checked byte-for-byte by the independent donor decoder.
 			// Rigid native pose retargeting must preserve the imported model's
 			// proportions throughout firing and swing animation.
 			for ( let i = 0; i < positions.length - 3; i += Math.max( 3, Math.floor( positions.length / 21 ) * 3 ) ) {
@@ -318,7 +321,7 @@ Deno.test( 'supplied weapons match native fits, authorized held rocket offset an
 	check( requestedTextures.every( p => ! /weapon_pack|pistol|knife|ammo_box|uzi/.test( p ) ), 'unrequested pack art excluded' );
 	equal( weapons.R_WeaponAsset( 'progs/v_shot.mdl' )?.source, 'shotgun', 'supplied standard shotgun now active' );
 	equal( manifest.models.g_shot.source, 'supershotgun', 'existing pickup stays super shotgun' );
-	check( weapons.R_WeaponAsset( 'progs/v_nail.mdl' ) === null, 'original nailgun retained' );
+	equal( weapons.R_WeaponAsset( 'progs/v_nail.mdl' )?.source, 'nailgun', 'supplied regular nailgun active' );
 
 } );
 

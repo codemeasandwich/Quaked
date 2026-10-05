@@ -16,7 +16,7 @@ const oldLoad = THREE.TextureLoader.prototype.load;
 THREE.TextureLoader.prototype.load = function ( path, ...args ) { return oldLoad.call( this, path.startsWith( 'newer/' ) ? '../' + path : path, ...args ); };
 const index = await weapons.R_WeaponsLoad(), keys = Object.keys( index.models );
 await Promise.all( keys.map( weapons.R_WeaponLoad ) );
-const renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } ); renderer.setSize( 1200, 900 ); document.body.append( renderer.domElement );
+const renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } ); const rows = Math.ceil( keys.length / 4 ); renderer.setSize( 1200, rows * 300 ); document.body.append( renderer.domElement );
 renderer.setScissorTest( true );
 const views = [], evidence = [];
 for ( const [ i, key ] of keys.entries() ) {
@@ -29,7 +29,8 @@ for ( const [ i, key ] of keys.entries() ) {
 	const center = box.getCenter( new THREE.Vector3() ), size = box.getSize( new THREE.Vector3() );
 	const scene = new THREE.Scene(); scene.background = new THREE.Color( 0x252a30 );
 	const camera = new THREE.OrthographicCamera( - 32, 32, 24, - 24, .1, 1000 ); camera.up.set( 0, 0, 1 );
-	camera.position.copy( center ).add( new THREE.Vector3( size.x * .2, - 150, size.z * .25 ) ); camera.lookAt( center );
+	camera.position.copy( center ).add( new THREE.Vector3( size.x * .2, - 150, size.z * .25 ) ); if ( fit.fitKind === 'source-quake-coordinates' && key === 'g_nail' ) camera.position.copy( center ).add( new THREE.Vector3( 100, - 110, 40 ) );
+	camera.lookAt( center );
 	scene.add( new THREE.Box3Helper( box, 0x00ffff ) );
 	const drawn = mesh.R_DrawAliasModel( entity, header, normals.r_avertexnormal_dots[ 0 ], .8 ); scene.add( drawn );
 	drawn.geometry.computeBoundingBox();
@@ -43,7 +44,7 @@ function render() {
 	for ( const { entity, header, scene, camera, i } of views ) {
 
 		mesh.R_DrawAliasModel( entity, header, normals.r_avertexnormal_dots[ 0 ], .8 );
-		renderer.setViewport( i % 4 * 300, 600 - Math.floor( i / 4 ) * 300, 300, 300 ); renderer.setScissor( i % 4 * 300, 600 - Math.floor( i / 4 ) * 300, 300, 300 ); renderer.render( scene, camera );
+		renderer.setViewport( i % 4 * 300, ( rows - 1 - Math.floor( i / 4 ) ) * 300, 300, 300 ); renderer.setScissor( i % 4 * 300, ( rows - 1 - Math.floor( i / 4 ) ) * 300, 300, 300 ); renderer.render( scene, camera );
 
 	}
 

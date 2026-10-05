@@ -100,19 +100,19 @@ menu.M_SetExternals( { cls, sv: { active: false }, key_dest_get: () => destinati
 cmd.Cmd_AddCommand( 'maxplayers', () => same( cmd.Cmd_Argv( 1 ), '1', 'menu single-player command' ) );
 cmd.Cmd_AddCommand( 'map', () => { same( cmd.Cmd_Argv( 1 ), 'start', 'actual menu map dispatch' ); dispatched.push( vars.Cvar_VariableValue( 'r_hdr' ) ); } );
 
-Deno.test( 'weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models', () => {
+Deno.test( 'weapon modes: actual Newer Game menu commands select all replacement held weapons and all six pickup models', () => {
 
 	cls.demoplayback = false; cls.timedemo = false; vars.Cvar_SetValue( 'r_hdr', 0 );
 	cmd.Cmd_ExecuteString( 'menu_singleplayer', cmd.src_command ); same( menu.m_state, menu.m_singleplayer, 'public single-player menu' );
 	menu.M_Keydown( K_ENTER ); cmd.Cbuf_Execute();
 	same( destination, key_game, 'menu returns control to game' ); same( dispatched.at( - 1 ), 1, 'Newer mode applies before map dispatch' );
-	same( keys.filter( key => key.startsWith( 'g_' ) ).sort().join( ',' ), 'g_light,g_nail2,g_rock,g_rock2,g_shot', 'all five supplied pickup roles registered' );
-	same( keys.length, 11, 'eleven firearm replacements registered' );
+	same( keys.filter( key => key.startsWith( 'g_' ) ).sort().join( ',' ), 'g_light,g_nail,g_nail2,g_rock,g_rock2,g_shot', 'all six supplied pickup roles registered' );
+	same( keys.length, 13, 'thirteen firearm replacements registered' );
 	same( manifest.models.v_shot.source, 'shotgun', 'standard shotgun held replacement registered' );
 	same( manifest.models.g_shot.source, 'supershotgun', 'super shotgun pickup preserved' );
-	check( ! manifest.models.v_nail && ! manifest.models.g_shot1, 'original nailgun retained; no invented single-shotgun pickup' );
+	check( manifest.models.v_nail && manifest.models.g_nail && ! manifest.models.g_shot1, 'supplied nailgun roles present; no invented single-shotgun pickup' );
 	check( ! manifest.models.v_axe && ! manifest.sources.axe, 'axe excluded from replacement assets' );
-	same( roles.length, 12, 'all firearm roles and original axe covered' ); drawRoles( true );
+	same( roles.length, 14, 'all firearm roles and original axe covered' ); drawRoles( true );
 
 } );
 

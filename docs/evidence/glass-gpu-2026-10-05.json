@@ -1,0 +1,35 @@
+{
+  "result": {
+    "status": "PASS",
+    "entry": {
+      "name": "window02_1",
+      "key": "64x192:d154d1d83afd8dc2",
+      "nativeFile": "glass/2f08c1c83860d4303e4cb437-native.png",
+      "campaigns": [
+        "dopa",
+        "id1",
+        "mg1",
+        "quoth",
+        "rogue"
+      ],
+      "class": "stained_mosaic",
+      "assembledNormalSha256": "8d5584e9acfd44f92f5f3ae01747a77a898e897b20074eafce23532e863d26b6"
+    },
+    "glassPixels": 55031,
+    "tagPixelsWithNormalsOff": 0,
+    "movingLightRgbChanges": 162157,
+    "normalResponseRgbChanges": 162029,
+    "classicRgbChanges": 0,
+    "glErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "decodedNormalSha256Exact": true,
+    "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+    "errors": []
+  },
+  "errors": []
+}

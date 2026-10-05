@@ -1,5 +1,5 @@
 {
- "version": 2026100307,
+ "version": 2026100502,
  "textures": {
   "afloor3_1": "afloor3_1.webp",
   "ceiling1_3": "ceiling1_3.webp",
@@ -1747,5 +1747,1397 @@
     ]
    }
   }
+ },
+ "glass": {
+ "32glass": {
+  "256x32:f642a047c796608d": {
+   "file": "glass/a196e8d3a24b755f-diffuse.png",
+   "normalFile": "glass/a196e8d3a24b755f-normal.png",
+   "glossFile": "glass/a196e8d3a24b755f-gloss.png",
+   "heightFile": "glass/a196e8d3a24b755f-height.png",
+   "nativeFile": "glass/a196e8d3a24b755f-native.png",
+   "assembledNormalSha256": "ff79affeff90d1c3a2134de11949630287a140be42cd8a716f8e70334e2c7b95",
+   "regionGlass": false
+  }
+ },
+ "Window01": {
+  "64x192:348c68cc10392a3e": {
+   "file": "glass/9c8c6c59f9a867ce-diffuse.png",
+   "normalFile": "glass/9c8c6c59f9a867ce-normal.png",
+   "glossFile": "glass/9c8c6c59f9a867ce-gloss.png",
+   "heightFile": "glass/9c8c6c59f9a867ce-height.png",
+   "nativeFile": "glass/9c8c6c59f9a867ce-native.png",
+   "assembledNormalSha256": "cb789aff73350b64e96e865731878a9c0121e6206e913eccd293df22763499ad",
+   "regionGlass": true
+  }
+ },
+ "Window02": {
+  "64x192:5ffe28e59cca0a2f": {
+   "file": "glass/297de301e1495ef6-diffuse.png",
+   "normalFile": "glass/297de301e1495ef6-normal.png",
+   "glossFile": "glass/297de301e1495ef6-gloss.png",
+   "heightFile": "glass/297de301e1495ef6-height.png",
+   "nativeFile": "glass/297de301e1495ef6-native.png",
+   "assembledNormalSha256": "99bcc893f557f8e36305420b8a78da4bce7e4893ea2accf5db96417ecb0d1b8e",
+   "regionGlass": true
+  }
+ },
+ "Window2": {
+  "64x96:aa3bcc1646bf8a4c": {
+   "file": "glass/885481e7c6409c77-diffuse.png",
+   "normalFile": "glass/885481e7c6409c77-normal.png",
+   "glossFile": "glass/885481e7c6409c77-gloss.png",
+   "heightFile": "glass/885481e7c6409c77-height.png",
+   "nativeFile": "glass/885481e7c6409c77-native.png",
+   "assembledNormalSha256": "872f981d8634ae53174b5d97f43f43ab46a136cab68fc6005011e347533dd48f",
+   "regionGlass": false
+  }
+ },
+ "brick1glass1": {
+  "64x256:c34d2a91608874eb": {
+   "file": "glass/dc5fe3027327fe11-diffuse.png",
+   "normalFile": "glass/dc5fe3027327fe11-normal.png",
+   "glossFile": "glass/dc5fe3027327fe11-gloss.png",
+   "heightFile": "glass/dc5fe3027327fe11-height.png",
+   "nativeFile": "glass/dc5fe3027327fe11-native.png",
+   "assembledNormalSha256": "ee9e8a632c868028e68f4dfed4e4738a64a531aa97cedb6ab48a394c51a5d784",
+   "regionGlass": true
+  }
+ },
+ "brick1wind1": {
+  "128x256:cc7d6e6a6d82a738": {
+   "file": "glass/4f6827d5053e0443-diffuse.png",
+   "normalFile": "glass/4f6827d5053e0443-normal.png",
+   "glossFile": "glass/4f6827d5053e0443-gloss.png",
+   "heightFile": "glass/4f6827d5053e0443-height.png",
+   "nativeFile": "glass/4f6827d5053e0443-native.png",
+   "assembledNormalSha256": "b27ace989f158e883e31db70742265b6024ec0912bfee743c5e91d48789f5aab",
+   "regionGlass": false
+  },
+  "256x256:a9390741b6c0bd6b": {
+   "file": "glass/381cc697ac08809e-diffuse.png",
+   "normalFile": "glass/381cc697ac08809e-normal.png",
+   "glossFile": "glass/381cc697ac08809e-gloss.png",
+   "heightFile": "glass/381cc697ac08809e-height.png",
+   "nativeFile": "glass/381cc697ac08809e-native.png",
+   "assembledNormalSha256": "71f746e2b605701b13a53a23d6d30cf04d2543496559caaa6cfecdaac371024f",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind1": {
+  "64x64:3fe14575cb4135f7": {
+   "file": "glass/a382fc0ece32efd0-diffuse.png",
+   "normalFile": "glass/a382fc0ece32efd0-normal.png",
+   "glossFile": "glass/a382fc0ece32efd0-gloss.png",
+   "heightFile": "glass/a382fc0ece32efd0-height.png",
+   "nativeFile": "glass/a382fc0ece32efd0-native.png",
+   "assembledNormalSha256": "dbeccf02862d9e47b34110076c11ba444fb9782d2895b13e6b4bc445e19a536f",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind2": {
+  "64x64:d326093d1cbbc89f": {
+   "file": "glass/c7feb96b806faf7b-diffuse.png",
+   "normalFile": "glass/c7feb96b806faf7b-normal.png",
+   "glossFile": "glass/c7feb96b806faf7b-gloss.png",
+   "heightFile": "glass/c7feb96b806faf7b-height.png",
+   "nativeFile": "glass/c7feb96b806faf7b-native.png",
+   "assembledNormalSha256": "0aeab4fd20172f6a3f335412f229453d3d0e99ec301748b7794aed3649efc50f",
+   "regionGlass": true
+  },
+  "64x64:f6a9de95fc2a3827": {
+   "file": "glass/b22e63cdf6ea1077-diffuse.png",
+   "normalFile": "glass/b22e63cdf6ea1077-normal.png",
+   "glossFile": "glass/b22e63cdf6ea1077-gloss.png",
+   "heightFile": "glass/b22e63cdf6ea1077-height.png",
+   "nativeFile": "glass/b22e63cdf6ea1077-native.png",
+   "assembledNormalSha256": "349e8140b3988a1a6ee6238f65420386c5c2a70f81f554ffe0e804b1136c8b16",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind3": {
+  "128x128:15df4bae0ea4dd04": {
+   "file": "glass/27c7ea3665f3b101-diffuse.png",
+   "normalFile": "glass/27c7ea3665f3b101-normal.png",
+   "glossFile": "glass/27c7ea3665f3b101-gloss.png",
+   "heightFile": "glass/27c7ea3665f3b101-height.png",
+   "nativeFile": "glass/27c7ea3665f3b101-native.png",
+   "assembledNormalSha256": "2b32d307458961937700202890f41ae23c4c515ed9f4e55adf44d7c8a03a297c",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind3b": {
+  "64x128:f4a8e2c3349a9231": {
+   "file": "glass/d2ce13c3e0e4684d-diffuse.png",
+   "normalFile": "glass/d2ce13c3e0e4684d-normal.png",
+   "glossFile": "glass/d2ce13c3e0e4684d-gloss.png",
+   "heightFile": "glass/d2ce13c3e0e4684d-height.png",
+   "nativeFile": "glass/d2ce13c3e0e4684d-native.png",
+   "assembledNormalSha256": "8b5053e5b0b3114ae46775cdba2550bd21304074436a0e0f7fa0d687eb48cbb0",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind4": {
+  "128x128:d913ca1a2e7ea9a8": {
+   "file": "glass/0ed1b16bde911eef-diffuse.png",
+   "normalFile": "glass/0ed1b16bde911eef-normal.png",
+   "glossFile": "glass/0ed1b16bde911eef-gloss.png",
+   "heightFile": "glass/0ed1b16bde911eef-height.png",
+   "nativeFile": "glass/0ed1b16bde911eef-native.png",
+   "assembledNormalSha256": "7969812b5a3f89ea4bdf6ef0ebc73b15790c9f6cc0a06603c4a647f7526a5f10",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind5": {
+  "128x128:f0c67b4f37d08b0d": {
+   "file": "glass/8bd6d0a309950c8c-diffuse.png",
+   "normalFile": "glass/8bd6d0a309950c8c-normal.png",
+   "glossFile": "glass/8bd6d0a309950c8c-gloss.png",
+   "heightFile": "glass/8bd6d0a309950c8c-height.png",
+   "nativeFile": "glass/8bd6d0a309950c8c-native.png",
+   "assembledNormalSha256": "5f585f2e64497218f9b59e5fca2cb636cf215b9e85d59522e30c40b3d51c7b67",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind5d": {
+  "128x128:a237eecac6dea5f0": {
+   "file": "glass/2dd86e0df0655098-diffuse.png",
+   "normalFile": "glass/2dd86e0df0655098-normal.png",
+   "glossFile": "glass/2dd86e0df0655098-gloss.png",
+   "heightFile": "glass/2dd86e0df0655098-height.png",
+   "nativeFile": "glass/2dd86e0df0655098-native.png",
+   "assembledNormalSha256": "fbeddb216863b3a858a5622585ae84766d039879d94fd7982aed062665c35fd7",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind5w": {
+  "128x128:870d5ea48a9d0aee": {
+   "file": "glass/8a27bc0bee3d796a-diffuse.png",
+   "normalFile": "glass/8a27bc0bee3d796a-normal.png",
+   "glossFile": "glass/8a27bc0bee3d796a-gloss.png",
+   "heightFile": "glass/8a27bc0bee3d796a-height.png",
+   "nativeFile": "glass/8a27bc0bee3d796a-native.png",
+   "assembledNormalSha256": "e8a5c0420fbd328e15fbac03de78341de974f1de1418fca836753802ca8671b7",
+   "regionGlass": false
+  }
+ },
+ "city5_3wind7": {
+  "64x64:a4d3385b4786cde9": {
+   "file": "glass/bfc4835636696468-diffuse.png",
+   "normalFile": "glass/bfc4835636696468-normal.png",
+   "glossFile": "glass/bfc4835636696468-gloss.png",
+   "heightFile": "glass/bfc4835636696468-height.png",
+   "nativeFile": "glass/bfc4835636696468-native.png",
+   "assembledNormalSha256": "8900cb01f70c9e4a16aeb1a517c2d6120c37e38b5592feea937d7213929b06ac",
+   "regionGlass": true
+  }
+ },
+ "city5_3wind7b": {
+  "64x64:1f50f1802adf18a2": {
+   "file": "glass/2799d3891d0a8b18-diffuse.png",
+   "normalFile": "glass/2799d3891d0a8b18-normal.png",
+   "glossFile": "glass/2799d3891d0a8b18-gloss.png",
+   "heightFile": "glass/2799d3891d0a8b18-height.png",
+   "nativeFile": "glass/2799d3891d0a8b18-native.png",
+   "assembledNormalSha256": "baa0486ebc554190257f1861bd33e30bd9ae5606b2050b5888da20ff1303b993",
+   "regionGlass": true
+  }
+ },
+ "dk3_window1": {
+  "128x128:934d134da1a7157f": {
+   "file": "glass/920ffb14ea4bc315-diffuse.png",
+   "normalFile": "glass/920ffb14ea4bc315-normal.png",
+   "glossFile": "glass/920ffb14ea4bc315-gloss.png",
+   "heightFile": "glass/920ffb14ea4bc315-height.png",
+   "nativeFile": "glass/920ffb14ea4bc315-native.png",
+   "assembledNormalSha256": "5cea6d1c5cb22face2cc5246813fb022c13c11953011ad7be9a6988459f1cb1d",
+   "regionGlass": true
+  }
+ },
+ "dk3_window4": {
+  "64x128:484ccfc1249e4343": {
+   "file": "glass/a468887674f68b40-diffuse.png",
+   "normalFile": "glass/a468887674f68b40-normal.png",
+   "glossFile": "glass/a468887674f68b40-gloss.png",
+   "heightFile": "glass/a468887674f68b40-height.png",
+   "nativeFile": "glass/a468887674f68b40-native.png",
+   "assembledNormalSha256": "b8adb9411d26d4438e3d06f8ef0869b3ed4391772e97a2c92024ea469909141a",
+   "regionGlass": false
+  }
+ },
+ "dwindow1_1": {
+  "128x128:30761fbd9657c4bf": {
+   "file": "glass/14b1914407ce2c05-diffuse.png",
+   "normalFile": "glass/14b1914407ce2c05-normal.png",
+   "glossFile": "glass/14b1914407ce2c05-gloss.png",
+   "heightFile": "glass/14b1914407ce2c05-height.png",
+   "nativeFile": "glass/14b1914407ce2c05-native.png",
+   "assembledNormalSha256": "1740a6153b0f856835a69de9d03b6590f3a10a120a100001e120eaf6102fdd4d",
+   "regionGlass": false
+  }
+ },
+ "dwindow1_2a": {
+  "128x128:1f9a386819fecfaa": {
+   "file": "glass/43b31337407c22aa-diffuse.png",
+   "normalFile": "glass/43b31337407c22aa-normal.png",
+   "glossFile": "glass/43b31337407c22aa-gloss.png",
+   "heightFile": "glass/43b31337407c22aa-height.png",
+   "nativeFile": "glass/43b31337407c22aa-native.png",
+   "assembledNormalSha256": "91e9076f7c82a4bcc765a9cfd8621dc9f866ebd31191a2fdeb6e7591f2170694",
+   "regionGlass": false
+  }
+ },
+ "glass01t": {
+  "64x64:4c97ddc531702907": {
+   "file": "glass/068683bf8ad03492-diffuse.png",
+   "normalFile": "glass/068683bf8ad03492-normal.png",
+   "glossFile": "glass/068683bf8ad03492-gloss.png",
+   "heightFile": "glass/068683bf8ad03492-height.png",
+   "nativeFile": "glass/068683bf8ad03492-native.png",
+   "assembledNormalSha256": "0a765284eb6bb1dd6e4b13d1040bd9bb45c5aca59d8302253d9f16df6b67afef",
+   "regionGlass": false
+  }
+ },
+ "glass2": {
+  "128x128:f49491397099e0fb": {
+   "file": "glass/68dc1a88c7b974f2-diffuse.png",
+   "normalFile": "glass/68dc1a88c7b974f2-normal.png",
+   "glossFile": "glass/68dc1a88c7b974f2-gloss.png",
+   "heightFile": "glass/68dc1a88c7b974f2-height.png",
+   "nativeFile": "glass/68dc1a88c7b974f2-native.png",
+   "assembledNormalSha256": "be272ab0744a46525fcea692416ca6219727995be4e2d4feb92f71af7b974831",
+   "regionGlass": false
+  }
+ },
+ "mire_wind1": {
+  "32x64:2473e7d45f01b506": {
+   "file": "glass/61857239afa57f75-diffuse.png",
+   "normalFile": "glass/61857239afa57f75-normal.png",
+   "glossFile": "glass/61857239afa57f75-gloss.png",
+   "heightFile": "glass/61857239afa57f75-height.png",
+   "nativeFile": "glass/61857239afa57f75-native.png",
+   "assembledNormalSha256": "6d66dc4b0d4f555bcb5b7c10eca912848729aa8894a72b24568e35b8d3fa5b66",
+   "regionGlass": true
+  }
+ },
+ "stainedx_js": {
+  "64x64:c747905e66de4004": {
+   "file": "glass/e4487e7aed03fee9-diffuse.png",
+   "normalFile": "glass/e4487e7aed03fee9-normal.png",
+   "glossFile": "glass/e4487e7aed03fee9-gloss.png",
+   "heightFile": "glass/e4487e7aed03fee9-height.png",
+   "nativeFile": "glass/e4487e7aed03fee9-native.png",
+   "assembledNormalSha256": "a5b5a2a0ddbd1624f78bc1edc595d55da6e3392bfd978454fdf469a1cc88fa46",
+   "regionGlass": true
+  }
+ },
+ "tallwindow1": {
+  "32x64:2473e7d45f01b506": {
+   "file": "glass/7a9a7fbc1ab310be-diffuse.png",
+   "normalFile": "glass/7a9a7fbc1ab310be-normal.png",
+   "glossFile": "glass/7a9a7fbc1ab310be-gloss.png",
+   "heightFile": "glass/7a9a7fbc1ab310be-height.png",
+   "nativeFile": "glass/7a9a7fbc1ab310be-native.png",
+   "assembledNormalSha256": "6d66dc4b0d4f555bcb5b7c10eca912848729aa8894a72b24568e35b8d3fa5b66",
+   "regionGlass": true
+  }
+ },
+ "wind02a_330": {
+  "128x256:05ed8db20d683e58": {
+   "file": "glass/6ea3861a1906db96-diffuse.png",
+   "normalFile": "glass/6ea3861a1906db96-normal.png",
+   "glossFile": "glass/6ea3861a1906db96-gloss.png",
+   "heightFile": "glass/6ea3861a1906db96-height.png",
+   "nativeFile": "glass/6ea3861a1906db96-native.png",
+   "assembledNormalSha256": "5e27e806ff5d7310e285dfb712b5aa3abb06ff2e5b56538f3ecb6187ef5b1e34",
+   "regionGlass": true
+  }
+ },
+ "wind02a_340": {
+  "128x256:d94c3c0df1ec878f": {
+   "file": "glass/801195699e6e8b32-diffuse.png",
+   "normalFile": "glass/801195699e6e8b32-normal.png",
+   "glossFile": "glass/801195699e6e8b32-gloss.png",
+   "heightFile": "glass/801195699e6e8b32-height.png",
+   "nativeFile": "glass/801195699e6e8b32-native.png",
+   "assembledNormalSha256": "40869e8599f50968f7fdbb0ac0ee5fca0efb53cd1628700146187cd49245b144",
+   "regionGlass": true
+  }
+ },
+ "wind02b_330": {
+  "128x256:135c9391ad5ee81b": {
+   "file": "glass/9a7bd1b1154f9454-diffuse.png",
+   "normalFile": "glass/9a7bd1b1154f9454-normal.png",
+   "glossFile": "glass/9a7bd1b1154f9454-gloss.png",
+   "heightFile": "glass/9a7bd1b1154f9454-height.png",
+   "nativeFile": "glass/9a7bd1b1154f9454-native.png",
+   "assembledNormalSha256": "abcb11e9cd007404958e89992c19d920f6af423a06fe5450a94c7616374c086b",
+   "regionGlass": true
+  }
+ },
+ "wind02b_340": {
+  "128x256:136457b6e9b39ce4": {
+   "file": "glass/f6ab6dae6864d054-diffuse.png",
+   "normalFile": "glass/f6ab6dae6864d054-normal.png",
+   "glossFile": "glass/f6ab6dae6864d054-gloss.png",
+   "heightFile": "glass/f6ab6dae6864d054-height.png",
+   "nativeFile": "glass/f6ab6dae6864d054-native.png",
+   "assembledNormalSha256": "0b47f612937c3c8d17953c431e01fd6255cc56b4fcf8b1484d304f36d2710e88",
+   "regionGlass": true
+  }
+ },
+ "wind02c_330": {
+  "128x256:fea70c7db8db3787": {
+   "file": "glass/26edd126ae55aec3-diffuse.png",
+   "normalFile": "glass/26edd126ae55aec3-normal.png",
+   "glossFile": "glass/26edd126ae55aec3-gloss.png",
+   "heightFile": "glass/26edd126ae55aec3-height.png",
+   "nativeFile": "glass/26edd126ae55aec3-native.png",
+   "assembledNormalSha256": "58d3817168411d94fbb7861558044d31ea671cfdbb1fe536cf1c95491b7bd774",
+   "regionGlass": true
+  }
+ },
+ "wind02c_340": {
+  "128x256:8e88c3ca7c57e5d8": {
+   "file": "glass/89e220a3eec0145c-diffuse.png",
+   "normalFile": "glass/89e220a3eec0145c-normal.png",
+   "glossFile": "glass/89e220a3eec0145c-gloss.png",
+   "heightFile": "glass/89e220a3eec0145c-height.png",
+   "nativeFile": "glass/89e220a3eec0145c-native.png",
+   "assembledNormalSha256": "130a4924fbb034e6bb738deabedc86527c3dab005e7e7922fb821684f735a445",
+   "regionGlass": true
+  }
+ },
+ "wind02d_340": {
+  "128x256:b337e1371cf7206d": {
+   "file": "glass/03d63f5765ac20b1-diffuse.png",
+   "normalFile": "glass/03d63f5765ac20b1-normal.png",
+   "glossFile": "glass/03d63f5765ac20b1-gloss.png",
+   "heightFile": "glass/03d63f5765ac20b1-height.png",
+   "nativeFile": "glass/03d63f5765ac20b1-native.png",
+   "assembledNormalSha256": "7533d8df663b64d0f8fb81140a8adede4538641dc62c40db69a6ba3cf9357645",
+   "regionGlass": false
+  }
+ },
+ "wind02r_340": {
+  "256x256:ea170ae4b62b2f4e": {
+   "file": "glass/a23750625246ca6a-diffuse.png",
+   "normalFile": "glass/a23750625246ca6a-normal.png",
+   "glossFile": "glass/a23750625246ca6a-gloss.png",
+   "heightFile": "glass/a23750625246ca6a-height.png",
+   "nativeFile": "glass/a23750625246ca6a-native.png",
+   "assembledNormalSha256": "7ee19da997d8c92da1a0a78d4096abc82ac32684931c9bdcf6fd2a236ec135c5",
+   "regionGlass": true
+  }
+ },
+ "wind_dagg": {
+  "64x256:9bb550a9b2d8d90b": {
+   "file": "glass/499a6567785fa71c-diffuse.png",
+   "normalFile": "glass/499a6567785fa71c-normal.png",
+   "glossFile": "glass/499a6567785fa71c-gloss.png",
+   "heightFile": "glass/499a6567785fa71c-height.png",
+   "nativeFile": "glass/499a6567785fa71c-native.png",
+   "assembledNormalSha256": "9362959a990c76158159aa6d639ce3f155dbcc9ecfd1ed35a6ae0ac4d0560d7d",
+   "regionGlass": true
+  }
+ },
+ "windbrk1_3": {
+  "64x192:6f7d7792609d33f0": {
+   "file": "glass/788ac868c4d78fb6-diffuse.png",
+   "normalFile": "glass/788ac868c4d78fb6-normal.png",
+   "glossFile": "glass/788ac868c4d78fb6-gloss.png",
+   "heightFile": "glass/788ac868c4d78fb6-height.png",
+   "nativeFile": "glass/788ac868c4d78fb6-native.png",
+   "assembledNormalSha256": "de06cda778cc10927c90ce842c2f18941830d7fbe37b73cbd55c38cbd650fb8a",
+   "regionGlass": true
+  }
+ },
+ "window01_1": {
+  "64x192:d4193b0d4846e7e7": {
+   "file": "glass/e1b69288318f4964-diffuse.png",
+   "normalFile": "glass/e1b69288318f4964-normal.png",
+   "glossFile": "glass/e1b69288318f4964-gloss.png",
+   "heightFile": "glass/e1b69288318f4964-height.png",
+   "nativeFile": "glass/e1b69288318f4964-native.png",
+   "assembledNormalSha256": "e1c00fb2c851c5b664deb111fc9ecb2aa13ce5d84993751ae831817965a27ffb",
+   "regionGlass": true
+  },
+  "64x192:348c68cc10392a3e": {
+   "file": "glass/00f6709df719eaf8-diffuse.png",
+   "normalFile": "glass/00f6709df719eaf8-normal.png",
+   "glossFile": "glass/00f6709df719eaf8-gloss.png",
+   "heightFile": "glass/00f6709df719eaf8-height.png",
+   "nativeFile": "glass/00f6709df719eaf8-native.png",
+   "assembledNormalSha256": "cb789aff73350b64e96e865731878a9c0121e6206e913eccd293df22763499ad",
+   "regionGlass": true
+  }
+ },
+ "window01_2": {
+  "64x192:d503799052ba5ca2": {
+   "file": "glass/c27fec20f9b2d085-diffuse.png",
+   "normalFile": "glass/c27fec20f9b2d085-normal.png",
+   "glossFile": "glass/c27fec20f9b2d085-gloss.png",
+   "heightFile": "glass/c27fec20f9b2d085-height.png",
+   "nativeFile": "glass/c27fec20f9b2d085-native.png",
+   "assembledNormalSha256": "f35f995e9d65085cfd81704b6c073b12a3fbee9b1eec863bf29912c195393fd4",
+   "regionGlass": true
+  },
+  "64x192:5ffe28e59cca0a2f": {
+   "file": "glass/6cd6dee02a5b7a5b-diffuse.png",
+   "normalFile": "glass/6cd6dee02a5b7a5b-normal.png",
+   "glossFile": "glass/6cd6dee02a5b7a5b-gloss.png",
+   "heightFile": "glass/6cd6dee02a5b7a5b-height.png",
+   "nativeFile": "glass/6cd6dee02a5b7a5b-native.png",
+   "assembledNormalSha256": "99bcc893f557f8e36305420b8a78da4bce7e4893ea2accf5db96417ecb0d1b8e",
+   "regionGlass": true
+  }
+ },
+ "window01_3": {
+  "64x192:9931f858d5865f0a": {
+   "file": "glass/22b72f50d1c4b31d-diffuse.png",
+   "normalFile": "glass/22b72f50d1c4b31d-normal.png",
+   "glossFile": "glass/22b72f50d1c4b31d-gloss.png",
+   "heightFile": "glass/22b72f50d1c4b31d-height.png",
+   "nativeFile": "glass/22b72f50d1c4b31d-native.png",
+   "assembledNormalSha256": "4eacd85add08fbfa3ab1276ecbaf503ea96457b8d954b7a59c3ac8b68290bb77",
+   "regionGlass": true
+  },
+  "64x256:b6d87858fb4b5f0a": {
+   "file": "glass/1e2f37c2599da5fd-diffuse.png",
+   "normalFile": "glass/1e2f37c2599da5fd-normal.png",
+   "glossFile": "glass/1e2f37c2599da5fd-gloss.png",
+   "heightFile": "glass/1e2f37c2599da5fd-height.png",
+   "nativeFile": "glass/1e2f37c2599da5fd-native.png",
+   "assembledNormalSha256": "350938e64868847b7cc5b2c1da26f4fedfb22a9ad49ec67b334abdb859ab5bc0",
+   "regionGlass": true
+  }
+ },
+ "window01_4": {
+  "64x192:523ed0a9a8d3d90b": {
+   "file": "glass/6e64b1dd1b89929c-diffuse.png",
+   "normalFile": "glass/6e64b1dd1b89929c-normal.png",
+   "glossFile": "glass/6e64b1dd1b89929c-gloss.png",
+   "heightFile": "glass/6e64b1dd1b89929c-height.png",
+   "nativeFile": "glass/6e64b1dd1b89929c-native.png",
+   "assembledNormalSha256": "d653543a2a67509a8ecc650fa057e3f6634283e1cdf612fe33fe3308b2a0879e",
+   "regionGlass": true
+  },
+  "64x192:5ffe28e59cca0a2f": {
+   "file": "glass/54bb1d12da8f3081-diffuse.png",
+   "normalFile": "glass/54bb1d12da8f3081-normal.png",
+   "glossFile": "glass/54bb1d12da8f3081-gloss.png",
+   "heightFile": "glass/54bb1d12da8f3081-height.png",
+   "nativeFile": "glass/54bb1d12da8f3081-native.png",
+   "assembledNormalSha256": "99bcc893f557f8e36305420b8a78da4bce7e4893ea2accf5db96417ecb0d1b8e",
+   "regionGlass": true
+  },
+  "64x256:6fe550a9ce98d90b": {
+   "file": "glass/e925e7f3b5309679-diffuse.png",
+   "normalFile": "glass/e925e7f3b5309679-normal.png",
+   "glossFile": "glass/e925e7f3b5309679-gloss.png",
+   "heightFile": "glass/e925e7f3b5309679-height.png",
+   "nativeFile": "glass/e925e7f3b5309679-native.png",
+   "assembledNormalSha256": "d59eaf40d54889fa430fc928b73ebf9b8ec89ec13e43f6f635813ca2a334d1ad",
+   "regionGlass": true
+  }
+ },
+ "window01_4dd": {
+  "128x256:1277c3bb6435b6a9": {
+   "file": "glass/e861add81cc19183-diffuse.png",
+   "normalFile": "glass/e861add81cc19183-normal.png",
+   "glossFile": "glass/e861add81cc19183-gloss.png",
+   "heightFile": "glass/e861add81cc19183-height.png",
+   "nativeFile": "glass/e861add81cc19183-native.png",
+   "assembledNormalSha256": "92e7f47616bcb8b8e5d31707c753573af7ee3111db9f02ee3a2f648f9afd9881",
+   "regionGlass": true
+  }
+ },
+ "window01_4sh": {
+  "256x128:72c1b92a62cb7068": {
+   "file": "glass/ea5b2de2c21f7a3a-diffuse.png",
+   "normalFile": "glass/ea5b2de2c21f7a3a-normal.png",
+   "glossFile": "glass/ea5b2de2c21f7a3a-gloss.png",
+   "heightFile": "glass/ea5b2de2c21f7a3a-height.png",
+   "nativeFile": "glass/ea5b2de2c21f7a3a-native.png",
+   "assembledNormalSha256": "fe6bbe63df667a6259c5c0a04f8ee981584f48b371118670884511955e3e4250",
+   "regionGlass": true
+  }
+ },
+ "window01_4tall": {
+  "128x256:743aa594544687e6": {
+   "file": "glass/0e2200724736b7b3-diffuse.png",
+   "normalFile": "glass/0e2200724736b7b3-normal.png",
+   "glossFile": "glass/0e2200724736b7b3-gloss.png",
+   "heightFile": "glass/0e2200724736b7b3-height.png",
+   "nativeFile": "glass/0e2200724736b7b3-native.png",
+   "assembledNormalSha256": "830d6a6cc031cf52f2badcdd15349fd1210dfdd3fc17c80ed1ed01abe702c6cf",
+   "regionGlass": true
+  }
+ },
+ "window01_5tall": {
+  "128x256:98fbfa9d50217d9f": {
+   "file": "glass/a6285136d6ba858f-diffuse.png",
+   "normalFile": "glass/a6285136d6ba858f-normal.png",
+   "glossFile": "glass/a6285136d6ba858f-gloss.png",
+   "heightFile": "glass/a6285136d6ba858f-height.png",
+   "nativeFile": "glass/a6285136d6ba858f-native.png",
+   "assembledNormalSha256": "9f91267b391da4f0df1f94a7bf32096395640f9c847d68de46ca7702ce3e253f",
+   "regionGlass": true
+  }
+ },
+ "window02_1": {
+  "64x256:93daf1d8d996edc2": {
+   "file": "glass/be5f41fe9fdd17dd-diffuse.png",
+   "normalFile": "glass/be5f41fe9fdd17dd-normal.png",
+   "glossFile": "glass/be5f41fe9fdd17dd-gloss.png",
+   "heightFile": "glass/be5f41fe9fdd17dd-height.png",
+   "nativeFile": "glass/be5f41fe9fdd17dd-native.png",
+   "assembledNormalSha256": "6589690c1fa83e1e3bb293c3258a2b01575ac0da8625ea242ed98029c4170da2",
+   "regionGlass": true
+  },
+  "64x192:d154d1d83afd8dc2": {
+   "file": "glass/2f08c1c83860d430-diffuse.png",
+   "normalFile": "glass/2f08c1c83860d430-normal.png",
+   "glossFile": "glass/2f08c1c83860d430-gloss.png",
+   "heightFile": "glass/2f08c1c83860d430-height.png",
+   "nativeFile": "glass/2f08c1c83860d430-native.png",
+   "assembledNormalSha256": "67928d52e41491da2683ff9a83819edb7876367d28584195401a93ffe75857e1",
+   "regionGlass": true
+  },
+  "64x192:348c68cc10392a3e": {
+   "file": "glass/efeaf378d9f989ed-diffuse.png",
+   "normalFile": "glass/efeaf378d9f989ed-normal.png",
+   "glossFile": "glass/efeaf378d9f989ed-gloss.png",
+   "heightFile": "glass/efeaf378d9f989ed-height.png",
+   "nativeFile": "glass/efeaf378d9f989ed-native.png",
+   "assembledNormalSha256": "cb789aff73350b64e96e865731878a9c0121e6206e913eccd293df22763499ad",
+   "regionGlass": true
+  }
+ },
+ "window02_2": {
+  "128x128:9f3a7dca676d73f8": {
+   "file": "glass/7cc02ee7cd2e38ed-diffuse.png",
+   "normalFile": "glass/7cc02ee7cd2e38ed-normal.png",
+   "glossFile": "glass/7cc02ee7cd2e38ed-gloss.png",
+   "heightFile": "glass/7cc02ee7cd2e38ed-height.png",
+   "nativeFile": "glass/7cc02ee7cd2e38ed-native.png",
+   "assembledNormalSha256": "1c945ec434b6b867352d26667a12d4e4a28f87efe217ad5e7d7c7ab34b69f108",
+   "regionGlass": false
+  }
+ },
+ "window03": {
+  "256x192:5e7fde8dc456647f": {
+   "file": "glass/2fd7052d4517c673-diffuse.png",
+   "normalFile": "glass/2fd7052d4517c673-normal.png",
+   "glossFile": "glass/2fd7052d4517c673-gloss.png",
+   "heightFile": "glass/2fd7052d4517c673-height.png",
+   "nativeFile": "glass/2fd7052d4517c673-native.png",
+   "assembledNormalSha256": "7e0723b82debd2f07d2dd443a408470edd0fa8663f6cad1f36d9ece3391080bf",
+   "regionGlass": true
+  },
+  "256x192:cc595db37b8159a1": {
+   "file": "glass/653f114cb40503ee-diffuse.png",
+   "normalFile": "glass/653f114cb40503ee-normal.png",
+   "glossFile": "glass/653f114cb40503ee-gloss.png",
+   "heightFile": "glass/653f114cb40503ee-height.png",
+   "nativeFile": "glass/653f114cb40503ee-native.png",
+   "assembledNormalSha256": "c0f07111e2b0666e9ad524d8245032f3dc9b48a272d03c71509071d6eaf38948",
+   "regionGlass": true
+  },
+  "256x256:238e78ebc4e565a9": {
+   "file": "glass/c211ae733d7ff19f-diffuse.png",
+   "normalFile": "glass/c211ae733d7ff19f-normal.png",
+   "glossFile": "glass/c211ae733d7ff19f-gloss.png",
+   "heightFile": "glass/c211ae733d7ff19f-height.png",
+   "nativeFile": "glass/c211ae733d7ff19f-native.png",
+   "assembledNormalSha256": "e429bcfb4cdf277a2bb9ce35c30cf350b063720d86e11c2ae028d0a60d71a540",
+   "regionGlass": true
+  },
+  "256x192:fa174557ca98ead5": {
+   "file": "glass/a673211ae3bffe59-diffuse.png",
+   "normalFile": "glass/a673211ae3bffe59-normal.png",
+   "glossFile": "glass/a673211ae3bffe59-gloss.png",
+   "heightFile": "glass/a673211ae3bffe59-height.png",
+   "nativeFile": "glass/a673211ae3bffe59-native.png",
+   "assembledNormalSha256": "242abd6e9746653909b5c93a6b20acc7664cc13ffdc3e8e1d664b01df5730438",
+   "regionGlass": true
+  }
+ },
+ "window030": {
+  "256x192:5e7fde8dc456647f": {
+   "file": "glass/4fdc0811eb7c1650-diffuse.png",
+   "normalFile": "glass/4fdc0811eb7c1650-normal.png",
+   "glossFile": "glass/4fdc0811eb7c1650-gloss.png",
+   "heightFile": "glass/4fdc0811eb7c1650-height.png",
+   "nativeFile": "glass/4fdc0811eb7c1650-native.png",
+   "assembledNormalSha256": "7e0723b82debd2f07d2dd443a408470edd0fa8663f6cad1f36d9ece3391080bf",
+   "regionGlass": true
+  },
+  "256x192:fa174557ca98ead5": {
+   "file": "glass/8e7c721091a9cdfd-diffuse.png",
+   "normalFile": "glass/8e7c721091a9cdfd-normal.png",
+   "glossFile": "glass/8e7c721091a9cdfd-gloss.png",
+   "heightFile": "glass/8e7c721091a9cdfd-height.png",
+   "nativeFile": "glass/8e7c721091a9cdfd-native.png",
+   "assembledNormalSha256": "242abd6e9746653909b5c93a6b20acc7664cc13ffdc3e8e1d664b01df5730438",
+   "regionGlass": true
+  }
+ },
+ "window031": {
+  "256x192:5e7fde8dc456647f": {
+   "file": "glass/aca3a888c85f28ff-diffuse.png",
+   "normalFile": "glass/aca3a888c85f28ff-normal.png",
+   "glossFile": "glass/aca3a888c85f28ff-gloss.png",
+   "heightFile": "glass/aca3a888c85f28ff-height.png",
+   "nativeFile": "glass/aca3a888c85f28ff-native.png",
+   "assembledNormalSha256": "7e0723b82debd2f07d2dd443a408470edd0fa8663f6cad1f36d9ece3391080bf",
+   "regionGlass": true
+  }
+ },
+ "window03_d": {
+  "256x256:78dd303c957a923e": {
+   "file": "glass/8ee32f14570394b1-diffuse.png",
+   "normalFile": "glass/8ee32f14570394b1-normal.png",
+   "glossFile": "glass/8ee32f14570394b1-gloss.png",
+   "heightFile": "glass/8ee32f14570394b1-height.png",
+   "nativeFile": "glass/8ee32f14570394b1-native.png",
+   "assembledNormalSha256": "32c69332940193449661b099056209c013e12d1ae3a02078265d604758c9edf9",
+   "regionGlass": true
+  }
+ },
+ "window03d": {
+  "256x256:9b46d1cbf662ce89": {
+   "file": "glass/11ef80310d636145-diffuse.png",
+   "normalFile": "glass/11ef80310d636145-normal.png",
+   "glossFile": "glass/11ef80310d636145-gloss.png",
+   "heightFile": "glass/11ef80310d636145-height.png",
+   "nativeFile": "glass/11ef80310d636145-native.png",
+   "assembledNormalSha256": "e32cd475b0d03ea5bfb29e2b8eb2717556ce9363db64d1b95e66cc47aa859873",
+   "regionGlass": true
+  }
+ },
+ "window03k": {
+  "256x256:f21722134a9ad441": {
+   "file": "glass/bcb41bf0d2da3e67-diffuse.png",
+   "normalFile": "glass/bcb41bf0d2da3e67-normal.png",
+   "glossFile": "glass/bcb41bf0d2da3e67-gloss.png",
+   "heightFile": "glass/bcb41bf0d2da3e67-height.png",
+   "nativeFile": "glass/bcb41bf0d2da3e67-native.png",
+   "assembledNormalSha256": "89184e34c75749014da0e83a7fbec726973e5e05efc0c352690ef20db3efb50b",
+   "regionGlass": true
+  }
+ },
+ "window03r": {
+  "256x256:20fa326394886d99": {
+   "file": "glass/b1546e8fa1c11ae7-diffuse.png",
+   "normalFile": "glass/b1546e8fa1c11ae7-normal.png",
+   "glossFile": "glass/b1546e8fa1c11ae7-gloss.png",
+   "heightFile": "glass/b1546e8fa1c11ae7-height.png",
+   "nativeFile": "glass/b1546e8fa1c11ae7-native.png",
+   "assembledNormalSha256": "b324cbc6776943c3f09c86e53a1639f2cc5e36aa5c801430c075b0e9705e879e",
+   "regionGlass": true
+  }
+ },
+ "window03w": {
+  "256x256:be83387c73d62cae": {
+   "file": "glass/17238eefabbc7c67-diffuse.png",
+   "normalFile": "glass/17238eefabbc7c67-normal.png",
+   "glossFile": "glass/17238eefabbc7c67-gloss.png",
+   "heightFile": "glass/17238eefabbc7c67-height.png",
+   "nativeFile": "glass/17238eefabbc7c67-native.png",
+   "assembledNormalSha256": "200388e62dc9b3db8bff533440a8c989c5b744897d438d52335c02601f90a16f",
+   "regionGlass": true
+  }
+ },
+ "window03y": {
+  "256x256:66dff67e0c3e20d4": {
+   "file": "glass/cae4fa6ee9e1e49b-diffuse.png",
+   "normalFile": "glass/cae4fa6ee9e1e49b-normal.png",
+   "glossFile": "glass/cae4fa6ee9e1e49b-gloss.png",
+   "heightFile": "glass/cae4fa6ee9e1e49b-height.png",
+   "nativeFile": "glass/cae4fa6ee9e1e49b-native.png",
+   "assembledNormalSha256": "b6dad30ffb6ba912a052570e61363a2637ca9faf16764657bf25b563b3f376eb",
+   "regionGlass": true
+  }
+ },
+ "window0_1": {
+  "64x64:34aebb95176238cf": {
+   "file": "glass/331dfa0d32571d6e-diffuse.png",
+   "normalFile": "glass/331dfa0d32571d6e-normal.png",
+   "glossFile": "glass/331dfa0d32571d6e-gloss.png",
+   "heightFile": "glass/331dfa0d32571d6e-height.png",
+   "nativeFile": "glass/331dfa0d32571d6e-native.png",
+   "assembledNormalSha256": "ba4d42172f9f3307ddd86add95ccb45e8905e9079945a673731c4b9f2fc43f56",
+   "regionGlass": false
+  }
+ },
+ "window1_1": {
+  "64x128:d0ce846c8e67794e": {
+   "file": "glass/5cc5df1c244e5777-diffuse.png",
+   "normalFile": "glass/5cc5df1c244e5777-normal.png",
+   "glossFile": "glass/5cc5df1c244e5777-gloss.png",
+   "heightFile": "glass/5cc5df1c244e5777-height.png",
+   "nativeFile": "glass/5cc5df1c244e5777-native.png",
+   "assembledNormalSha256": "5d6ef65fc5b5b97e1c6f93434a7d5d509f17f26e830fcc4392e0ea48d5effe6d",
+   "regionGlass": false
+  }
+ },
+ "window1_1a": {
+  "128x128:9e982c7274ed4a78": {
+   "file": "glass/c73e7d9a33a598d2-diffuse.png",
+   "normalFile": "glass/c73e7d9a33a598d2-normal.png",
+   "glossFile": "glass/c73e7d9a33a598d2-gloss.png",
+   "heightFile": "glass/c73e7d9a33a598d2-height.png",
+   "nativeFile": "glass/c73e7d9a33a598d2-native.png",
+   "assembledNormalSha256": "4c4ad943168c9ea55158dc0b9fd00f2b880f89df84ec52df4efe3be8473ba7d3",
+   "regionGlass": true
+  }
+ },
+ "window1_1b": {
+  "256x128:5e4292284385ac5a": {
+   "file": "glass/72b7aeee45341beb-diffuse.png",
+   "normalFile": "glass/72b7aeee45341beb-normal.png",
+   "glossFile": "glass/72b7aeee45341beb-gloss.png",
+   "heightFile": "glass/72b7aeee45341beb-height.png",
+   "nativeFile": "glass/72b7aeee45341beb-native.png",
+   "assembledNormalSha256": "5995d8b02b40fe99ccc53fa4da18852a5e3e9c2e3080308c5c35081d5c09c270",
+   "regionGlass": true
+  },
+  "256x128:df9785578b1585bd": {
+   "file": "glass/2ae23bc037f8918f-diffuse.png",
+   "normalFile": "glass/2ae23bc037f8918f-normal.png",
+   "glossFile": "glass/2ae23bc037f8918f-gloss.png",
+   "heightFile": "glass/2ae23bc037f8918f-height.png",
+   "nativeFile": "glass/2ae23bc037f8918f-native.png",
+   "assembledNormalSha256": "441c9ad830217183096f41a4480c7a5adb16e7a5a5695aa0c967db62bca9628c",
+   "regionGlass": true
+  }
+ },
+ "window1_2": {
+  "64x64:12a0933767a92b95": {
+   "file": "glass/2a952e65d554f458-diffuse.png",
+   "normalFile": "glass/2a952e65d554f458-normal.png",
+   "glossFile": "glass/2a952e65d554f458-gloss.png",
+   "heightFile": "glass/2a952e65d554f458-height.png",
+   "nativeFile": "glass/2a952e65d554f458-native.png",
+   "assembledNormalSha256": "86c1e07a464b76499e29a5b53b1cb920b3650cc62d64e216ba5287b94f92d4f1",
+   "regionGlass": true
+  }
+ },
+ "window1_3": {
+  "64x64:156b1af4336bfc86": {
+   "file": "glass/9d5e79750fba26d2-diffuse.png",
+   "normalFile": "glass/9d5e79750fba26d2-normal.png",
+   "glossFile": "glass/9d5e79750fba26d2-gloss.png",
+   "heightFile": "glass/9d5e79750fba26d2-height.png",
+   "nativeFile": "glass/9d5e79750fba26d2-native.png",
+   "assembledNormalSha256": "be3074022592853f29861ea1978d465c507dcf331673a9e917ab61c752b226ea",
+   "regionGlass": true
+  },
+  "64x64:05dabbdedb8d6824": {
+   "file": "glass/5a926f01cd77c157-diffuse.png",
+   "normalFile": "glass/5a926f01cd77c157-normal.png",
+   "glossFile": "glass/5a926f01cd77c157-gloss.png",
+   "heightFile": "glass/5a926f01cd77c157-height.png",
+   "nativeFile": "glass/5a926f01cd77c157-native.png",
+   "assembledNormalSha256": "54a6a7eb1a201a40a5f8a3d9b5fb39e81aca59344d25e6a763ed2df487c79228",
+   "regionGlass": true
+  }
+ },
+ "window1_3b": {
+  "64x64:2f2c421b60818df9": {
+   "file": "glass/0ca47a373db46e11-diffuse.png",
+   "normalFile": "glass/0ca47a373db46e11-normal.png",
+   "glossFile": "glass/0ca47a373db46e11-gloss.png",
+   "heightFile": "glass/0ca47a373db46e11-height.png",
+   "nativeFile": "glass/0ca47a373db46e11-native.png",
+   "assembledNormalSha256": "386c83d2279b9efaf43dc7fbef6d9d2aeeb20c629894a57d8b720b3ba9088abf",
+   "regionGlass": true
+  }
+ },
+ "window1_4": {
+  "64x64:323e199982874f3b": {
+   "file": "glass/4da788bf2072b83f-diffuse.png",
+   "normalFile": "glass/4da788bf2072b83f-normal.png",
+   "glossFile": "glass/4da788bf2072b83f-gloss.png",
+   "heightFile": "glass/4da788bf2072b83f-height.png",
+   "nativeFile": "glass/4da788bf2072b83f-native.png",
+   "assembledNormalSha256": "b7cfb18f1edf3fcfb5ec1db08517ad4330333f83fd15b10b08eceb93ae6e0794",
+   "regionGlass": true
+  }
+ },
+ "window1a": {
+  "64x256:c34d2a91608874eb": {
+   "file": "glass/7c3f1075ce7f2515-diffuse.png",
+   "normalFile": "glass/7c3f1075ce7f2515-normal.png",
+   "glossFile": "glass/7c3f1075ce7f2515-gloss.png",
+   "heightFile": "glass/7c3f1075ce7f2515-height.png",
+   "nativeFile": "glass/7c3f1075ce7f2515-native.png",
+   "assembledNormalSha256": "937954a58afb532eabb042987eeb3ef089086d6a2f6ec161c641f3937195e601",
+   "regionGlass": true
+  }
+ },
+ "window1ah": {
+  "64x256:1aecab078d390ea5": {
+   "file": "glass/a922d3f20d691343-diffuse.png",
+   "normalFile": "glass/a922d3f20d691343-normal.png",
+   "glossFile": "glass/a922d3f20d691343-gloss.png",
+   "heightFile": "glass/a922d3f20d691343-height.png",
+   "nativeFile": "glass/a922d3f20d691343-native.png",
+   "assembledNormalSha256": "60386b7d010a3f408b09dd54f6e539d88cf1a1dee77568e3a3be41230f7aa23d",
+   "regionGlass": true
+  },
+  "64x256:f2f4aeeee6beb6c4": {
+   "file": "glass/23ad057339409cde-diffuse.png",
+   "normalFile": "glass/23ad057339409cde-normal.png",
+   "glossFile": "glass/23ad057339409cde-gloss.png",
+   "heightFile": "glass/23ad057339409cde-height.png",
+   "nativeFile": "glass/23ad057339409cde-native.png",
+   "assembledNormalSha256": "57770af03039c8cdbd77c22d4806d3d5afd0999f0c16cc69fcdbcb8502a1cc25",
+   "regionGlass": true
+  }
+ },
+ "window1aj": {
+  "64x256:6cc20a4259ee1268": {
+   "file": "glass/393ba41598aaf0e4-diffuse.png",
+   "normalFile": "glass/393ba41598aaf0e4-normal.png",
+   "glossFile": "glass/393ba41598aaf0e4-gloss.png",
+   "heightFile": "glass/393ba41598aaf0e4-height.png",
+   "nativeFile": "glass/393ba41598aaf0e4-native.png",
+   "assembledNormalSha256": "14902332192de73f4dc293c00c7619251510a6888bdaee7be898ae7c68d830ae",
+   "regionGlass": true
+  }
+ },
+ "window1c": {
+  "64x256:08064e63b031f189": {
+   "file": "glass/bb0875293ab75259-diffuse.png",
+   "normalFile": "glass/bb0875293ab75259-normal.png",
+   "glossFile": "glass/bb0875293ab75259-gloss.png",
+   "heightFile": "glass/bb0875293ab75259-height.png",
+   "nativeFile": "glass/bb0875293ab75259-native.png",
+   "assembledNormalSha256": "97c78980f2e4247eb88c08ab1ef8dc8373ca0cdb203497a4d2c820a434b8031f",
+   "regionGlass": true
+  }
+ },
+ "window1d": {
+  "128x256:f456fcb5333fdfb7": {
+   "file": "glass/99eb7dd95b7907ba-diffuse.png",
+   "normalFile": "glass/99eb7dd95b7907ba-normal.png",
+   "glossFile": "glass/99eb7dd95b7907ba-gloss.png",
+   "heightFile": "glass/99eb7dd95b7907ba-height.png",
+   "nativeFile": "glass/99eb7dd95b7907ba-native.png",
+   "assembledNormalSha256": "d15c2495227519fbdd57605fcf27d45ef8dd7bfaa294ad473b43dcd56bba03f9",
+   "regionGlass": true
+  }
+ },
+ "window1d3": {
+  "128x256:315e7a06b2617ddc": {
+   "file": "glass/ec19573357f181e8-diffuse.png",
+   "normalFile": "glass/ec19573357f181e8-normal.png",
+   "glossFile": "glass/ec19573357f181e8-gloss.png",
+   "heightFile": "glass/ec19573357f181e8-height.png",
+   "nativeFile": "glass/ec19573357f181e8-native.png",
+   "assembledNormalSha256": "5b08db019e40a1a619ee00b6364bc63ef992221e44220af5d9380ccefc68b50b",
+   "regionGlass": true
+  }
+ },
+ "window1h": {
+  "128x256:b381de45aac4eae7": {
+   "file": "glass/326cfcabdb880f08-diffuse.png",
+   "normalFile": "glass/326cfcabdb880f08-normal.png",
+   "glossFile": "glass/326cfcabdb880f08-gloss.png",
+   "heightFile": "glass/326cfcabdb880f08-height.png",
+   "nativeFile": "glass/326cfcabdb880f08-native.png",
+   "assembledNormalSha256": "246639ab9e41c03d6d6890bf2813dbb65172c28384cf61313b479594a72c79d7",
+   "regionGlass": true
+  }
+ },
+ "window1h_d": {
+  "128x256:5b637ecdfa5a0c3f": {
+   "file": "glass/a8bf8235787f4fd2-diffuse.png",
+   "normalFile": "glass/a8bf8235787f4fd2-normal.png",
+   "glossFile": "glass/a8bf8235787f4fd2-gloss.png",
+   "heightFile": "glass/a8bf8235787f4fd2-height.png",
+   "nativeFile": "glass/a8bf8235787f4fd2-native.png",
+   "assembledNormalSha256": "11643226e9ee2cf087396f0ed178a56848451405a0a371b1d668807b82c02178",
+   "regionGlass": true
+  }
+ },
+ "window1sa": {
+  "128x256:e0ce486a10020b80": {
+   "file": "glass/5e7335bd958a2564-diffuse.png",
+   "normalFile": "glass/5e7335bd958a2564-normal.png",
+   "glossFile": "glass/5e7335bd958a2564-gloss.png",
+   "heightFile": "glass/5e7335bd958a2564-height.png",
+   "nativeFile": "glass/5e7335bd958a2564-native.png",
+   "assembledNormalSha256": "db37e00993a6ce05a7092dccae0513e05d70d8c33f857b832377df7347741c49",
+   "regionGlass": false
+  }
+ },
+ "window1sac23": {
+  "128x256:900e5db5dbce1eaf": {
+   "file": "glass/0407f18d3636fbb7-diffuse.png",
+   "normalFile": "glass/0407f18d3636fbb7-normal.png",
+   "glossFile": "glass/0407f18d3636fbb7-gloss.png",
+   "heightFile": "glass/0407f18d3636fbb7-height.png",
+   "nativeFile": "glass/0407f18d3636fbb7-native.png",
+   "assembledNormalSha256": "cd34bd09fcb02d6cf2451877b1a90455bf9d21143f427f36bfe7cfb339feb6a8",
+   "regionGlass": false
+  }
+ },
+ "window1sasw": {
+  "128x256:cfc0e472513254f0": {
+   "file": "glass/cd49596b96bcb51a-diffuse.png",
+   "normalFile": "glass/cd49596b96bcb51a-normal.png",
+   "glossFile": "glass/cd49596b96bcb51a-gloss.png",
+   "heightFile": "glass/cd49596b96bcb51a-height.png",
+   "nativeFile": "glass/cd49596b96bcb51a-native.png",
+   "assembledNormalSha256": "90afbd20b57baca1fd87973e2761bf31096a27ff04017d0a5252c60f5309b3f6",
+   "regionGlass": false
+  }
+ },
+ "window1saswh": {
+  "128x256:c85e8163819851c1": {
+   "file": "glass/197ef988f7d47db6-diffuse.png",
+   "normalFile": "glass/197ef988f7d47db6-normal.png",
+   "glossFile": "glass/197ef988f7d47db6-gloss.png",
+   "heightFile": "glass/197ef988f7d47db6-height.png",
+   "nativeFile": "glass/197ef988f7d47db6-native.png",
+   "assembledNormalSha256": "487446a0e8035159c6e96746dfbcb5f00cc6653534177cc0e018f3cb9f024b86",
+   "regionGlass": false
+  }
+ },
+ "window1sb": {
+  "64x128:6f5b7fb08a303862": {
+   "file": "glass/98c980bcf5697a15-diffuse.png",
+   "normalFile": "glass/98c980bcf5697a15-normal.png",
+   "glossFile": "glass/98c980bcf5697a15-gloss.png",
+   "heightFile": "glass/98c980bcf5697a15-height.png",
+   "nativeFile": "glass/98c980bcf5697a15-native.png",
+   "assembledNormalSha256": "4477f0f0caa4b993ad2416362a4a0658e9e7655dfc1f5226083a4aae7d39cc6d",
+   "regionGlass": false
+  }
+ },
+ "window1slot": {
+  "128x256:e0ce486a10020b80": {
+   "file": "glass/ecf328e62289b490-diffuse.png",
+   "normalFile": "glass/ecf328e62289b490-normal.png",
+   "glossFile": "glass/ecf328e62289b490-gloss.png",
+   "heightFile": "glass/ecf328e62289b490-height.png",
+   "nativeFile": "glass/ecf328e62289b490-native.png",
+   "assembledNormalSha256": "db37e00993a6ce05a7092dccae0513e05d70d8c33f857b832377df7347741c49",
+   "regionGlass": false
+  },
+  "128x256:e9418ee2ba245c70": {
+   "file": "glass/329ddd719c46fa5b-diffuse.png",
+   "normalFile": "glass/329ddd719c46fa5b-normal.png",
+   "glossFile": "glass/329ddd719c46fa5b-gloss.png",
+   "heightFile": "glass/329ddd719c46fa5b-height.png",
+   "nativeFile": "glass/329ddd719c46fa5b-native.png",
+   "assembledNormalSha256": "746c9a7b19c2b909f7472b890416f5cf300690ee7e638f1d0a1b6f4ade62e474",
+   "regionGlass": false
+  }
+ },
+ "window1slot_d": {
+  "128x256:59f659b5fb9ba857": {
+   "file": "glass/a1dae93b5e238f72-diffuse.png",
+   "normalFile": "glass/a1dae93b5e238f72-normal.png",
+   "glossFile": "glass/a1dae93b5e238f72-gloss.png",
+   "heightFile": "glass/a1dae93b5e238f72-height.png",
+   "nativeFile": "glass/a1dae93b5e238f72-native.png",
+   "assembledNormalSha256": "d72044dab8b73045309acc892572ba56dfa340d5aece81c8fe19bc7460e1af3f",
+   "regionGlass": false
+  }
+ },
+ "window2_1": {
+  "64x192:afc21851d31c2283": {
+   "file": "glass/a5241a08cbbec6b4-diffuse.png",
+   "normalFile": "glass/a5241a08cbbec6b4-normal.png",
+   "glossFile": "glass/a5241a08cbbec6b4-gloss.png",
+   "heightFile": "glass/a5241a08cbbec6b4-height.png",
+   "nativeFile": "glass/a5241a08cbbec6b4-native.png",
+   "assembledNormalSha256": "f0df452e9a2d9a750b8cf9b68fd69f7003b11aefc18e970ba8c90a0b7f597610",
+   "regionGlass": true
+  }
+ },
+ "window2_2": {
+  "64x192:8df5b04c6b28cf46": {
+   "file": "glass/c7e130ecdd04c48c-diffuse.png",
+   "normalFile": "glass/c7e130ecdd04c48c-normal.png",
+   "glossFile": "glass/c7e130ecdd04c48c-gloss.png",
+   "heightFile": "glass/c7e130ecdd04c48c-height.png",
+   "nativeFile": "glass/c7e130ecdd04c48c-native.png",
+   "assembledNormalSha256": "cc6bb41d60ce1926d980bdf3d97dd4597769ba2b9607238d7fbf19dd1163fb66",
+   "regionGlass": true
+  }
+ },
+ "window2_3": {
+  "64x192:e5cc063f8b2fe5f5": {
+   "file": "glass/816d7f7cb1d9788d-diffuse.png",
+   "normalFile": "glass/816d7f7cb1d9788d-normal.png",
+   "glossFile": "glass/816d7f7cb1d9788d-gloss.png",
+   "heightFile": "glass/816d7f7cb1d9788d-height.png",
+   "nativeFile": "glass/816d7f7cb1d9788d-native.png",
+   "assembledNormalSha256": "73404bb7f068f64dfb3e93ad48987d82c7e52daf5adb7d55ec93c2cde9810c3f",
+   "regionGlass": true
+  }
+ },
+ "window2_4": {
+  "64x192:a1545a954e7d792f": {
+   "file": "glass/9c71effebccdcceb-diffuse.png",
+   "normalFile": "glass/9c71effebccdcceb-normal.png",
+   "glossFile": "glass/9c71effebccdcceb-gloss.png",
+   "heightFile": "glass/9c71effebccdcceb-height.png",
+   "nativeFile": "glass/9c71effebccdcceb-native.png",
+   "assembledNormalSha256": "68e9c685d4c6142242ac59791e08d9c5cf36fa4240a6a1b110485c560ba93437",
+   "regionGlass": true
+  }
+ },
+ "window2a": {
+  "128x256:6949a7c6578a56fc": {
+   "file": "glass/7ef9be2de8edbe50-diffuse.png",
+   "normalFile": "glass/7ef9be2de8edbe50-normal.png",
+   "glossFile": "glass/7ef9be2de8edbe50-gloss.png",
+   "heightFile": "glass/7ef9be2de8edbe50-height.png",
+   "nativeFile": "glass/7ef9be2de8edbe50-native.png",
+   "assembledNormalSha256": "4a3f30cf4e21167223517214e4ac455c5a4fbdf4dd76fb9c874e03f94bf5594b",
+   "regionGlass": true
+  },
+  "128x256:df79d8192b777c23": {
+   "file": "glass/ad8f64fa7d20e3d4-diffuse.png",
+   "normalFile": "glass/ad8f64fa7d20e3d4-normal.png",
+   "glossFile": "glass/ad8f64fa7d20e3d4-gloss.png",
+   "heightFile": "glass/ad8f64fa7d20e3d4-height.png",
+   "nativeFile": "glass/ad8f64fa7d20e3d4-native.png",
+   "assembledNormalSha256": "6aa267b30d23afcc8a7fbc05e12bdd72d9216229cb5fb8a0e4e837b0f9d9fab4",
+   "regionGlass": true
+  }
+ },
+ "window2b": {
+  "128x256:977bf84a9d1017d8": {
+   "file": "glass/4b8204e01cafdf18-diffuse.png",
+   "normalFile": "glass/4b8204e01cafdf18-normal.png",
+   "glossFile": "glass/4b8204e01cafdf18-gloss.png",
+   "heightFile": "glass/4b8204e01cafdf18-height.png",
+   "nativeFile": "glass/4b8204e01cafdf18-native.png",
+   "assembledNormalSha256": "bed71a7c2652b226e8ebb80015fbc492f6a6bc6e875de076f2fe718af73e2100",
+   "regionGlass": true
+  }
+ },
+ "window2c": {
+  "128x256:95cfdb470193224d": {
+   "file": "glass/469d7f88c734ccc1-diffuse.png",
+   "normalFile": "glass/469d7f88c734ccc1-normal.png",
+   "glossFile": "glass/469d7f88c734ccc1-gloss.png",
+   "heightFile": "glass/469d7f88c734ccc1-height.png",
+   "nativeFile": "glass/469d7f88c734ccc1-native.png",
+   "assembledNormalSha256": "08b1f1c3cfd9a76806c97810c644fb04cf778d7d674739650baa5766dea68172",
+   "regionGlass": true
+  }
+ },
+ "window2c1": {
+  "128x256:4fc635b81ca8173a": {
+   "file": "glass/e73d3275dc0480d1-diffuse.png",
+   "normalFile": "glass/e73d3275dc0480d1-normal.png",
+   "glossFile": "glass/e73d3275dc0480d1-gloss.png",
+   "heightFile": "glass/e73d3275dc0480d1-height.png",
+   "nativeFile": "glass/e73d3275dc0480d1-native.png",
+   "assembledNormalSha256": "3a8561ed672b363e54750e16fb9c9e33152bf1539437def0c0cfcdc6af778a8b",
+   "regionGlass": true
+  }
+ },
+ "window2c_c": {
+  "256x256:44d909693fad26fb": {
+   "file": "glass/ee87421aadbbd2d7-diffuse.png",
+   "normalFile": "glass/ee87421aadbbd2d7-normal.png",
+   "glossFile": "glass/ee87421aadbbd2d7-gloss.png",
+   "heightFile": "glass/ee87421aadbbd2d7-height.png",
+   "nativeFile": "glass/ee87421aadbbd2d7-native.png",
+   "assembledNormalSha256": "9ae208ed6d84365fe13ce46ee0cb7f75026e3f1f75f484e792f1dafaa8373404",
+   "regionGlass": true
+  }
+ },
+ "window2c_e": {
+  "128x256:2097a371d772ab9b": {
+   "file": "glass/3d7a14f0de580229-diffuse.png",
+   "normalFile": "glass/3d7a14f0de580229-normal.png",
+   "glossFile": "glass/3d7a14f0de580229-gloss.png",
+   "heightFile": "glass/3d7a14f0de580229-height.png",
+   "nativeFile": "glass/3d7a14f0de580229-native.png",
+   "assembledNormalSha256": "9f5cd6bcc82c0dd6bbc19b95c0c3073c807fc5b2fc28654ff57725336a4eeffb",
+   "regionGlass": true
+  }
+ },
+ "window2c_f": {
+  "128x256:8b7230c11a7f5ec3": {
+   "file": "glass/10edf65f2d201c35-diffuse.png",
+   "normalFile": "glass/10edf65f2d201c35-normal.png",
+   "glossFile": "glass/10edf65f2d201c35-gloss.png",
+   "heightFile": "glass/10edf65f2d201c35-height.png",
+   "nativeFile": "glass/10edf65f2d201c35-native.png",
+   "assembledNormalSha256": "d366b9f86db7778fbc23bae4243bf7d1d6eb270b0f50783d621b3ba51d5dc36f",
+   "regionGlass": true
+  }
+ },
+ "window2cc": {
+  "128x256:0f4a29f6a520400c": {
+   "file": "glass/8313a2ea2d779da5-diffuse.png",
+   "normalFile": "glass/8313a2ea2d779da5-normal.png",
+   "glossFile": "glass/8313a2ea2d779da5-gloss.png",
+   "heightFile": "glass/8313a2ea2d779da5-height.png",
+   "nativeFile": "glass/8313a2ea2d779da5-native.png",
+   "assembledNormalSha256": "8e0004ec4ee98daf56091fdb69f4a8b267dc88b2a98e9a3c1cdc17b32ae2cf4e",
+   "regionGlass": false
+  }
+ },
+ "window2cg": {
+  "128x256:8f516ecf0d32daad": {
+   "file": "glass/fd944da2474127fd-diffuse.png",
+   "normalFile": "glass/fd944da2474127fd-normal.png",
+   "glossFile": "glass/fd944da2474127fd-gloss.png",
+   "heightFile": "glass/fd944da2474127fd-height.png",
+   "nativeFile": "glass/fd944da2474127fd-native.png",
+   "assembledNormalSha256": "25d25ac58464dce4b3302bba2037a4b3449b4da960502b2e10e62f8cca7b67d2",
+   "regionGlass": false
+  }
+ },
+ "window2cga": {
+  "128x256:50987d494990b423": {
+   "file": "glass/b654150d360cf8e9-diffuse.png",
+   "normalFile": "glass/b654150d360cf8e9-normal.png",
+   "glossFile": "glass/b654150d360cf8e9-gloss.png",
+   "heightFile": "glass/b654150d360cf8e9-height.png",
+   "nativeFile": "glass/b654150d360cf8e9-native.png",
+   "assembledNormalSha256": "3769e5eca878a4468ade8ffc062e8591faede0810eeea5c9d5bef258aca85296",
+   "regionGlass": false
+  }
+ },
+ "window2ch": {
+  "128x256:620f6c0e0f90f784": {
+   "file": "glass/cc7b16e48d1b9a41-diffuse.png",
+   "normalFile": "glass/cc7b16e48d1b9a41-normal.png",
+   "glossFile": "glass/cc7b16e48d1b9a41-gloss.png",
+   "heightFile": "glass/cc7b16e48d1b9a41-height.png",
+   "nativeFile": "glass/cc7b16e48d1b9a41-native.png",
+   "assembledNormalSha256": "a3771ed97df20ff7633d621a3b741b7e0dd2ce3b751058dcff792212786493fc",
+   "regionGlass": false
+  }
+ },
+ "window2sh": {
+  "128x256:15a6bea194e0f36b": {
+   "file": "glass/c098b148122e818f-diffuse.png",
+   "normalFile": "glass/c098b148122e818f-normal.png",
+   "glossFile": "glass/c098b148122e818f-gloss.png",
+   "heightFile": "glass/c098b148122e818f-height.png",
+   "nativeFile": "glass/c098b148122e818f-native.png",
+   "assembledNormalSha256": "8001a70515b7cf72d45b96a2e2c91140a5ebad7ca879cec96b3255a3b0042b08",
+   "regionGlass": false
+  }
+ },
+ "window2td": {
+  "128x256:e98d0faf30a9f2ad": {
+   "file": "glass/d0be81df63cdc140-diffuse.png",
+   "normalFile": "glass/d0be81df63cdc140-normal.png",
+   "glossFile": "glass/d0be81df63cdc140-gloss.png",
+   "heightFile": "glass/d0be81df63cdc140-height.png",
+   "nativeFile": "glass/d0be81df63cdc140-native.png",
+   "assembledNormalSha256": "802ec06c00e6a951e00f2a2dff8a86600ad1147a0bf58571955ce9478fb5d610",
+   "regionGlass": false
+  }
+ },
+ "window3a": {
+  "64x256:3f83b06967333363": {
+   "file": "glass/af70c9687d93ccd4-diffuse.png",
+   "normalFile": "glass/af70c9687d93ccd4-normal.png",
+   "glossFile": "glass/af70c9687d93ccd4-gloss.png",
+   "heightFile": "glass/af70c9687d93ccd4-height.png",
+   "nativeFile": "glass/af70c9687d93ccd4-native.png",
+   "assembledNormalSha256": "0b3a7231f851917be658649adf608e051ed2578322e00302295dddfd1686927a",
+   "regionGlass": true
+  }
+ },
+ "window3b": {
+  "64x128:5336dbd98b4233cb": {
+   "file": "glass/fdf1b14459af7d0e-diffuse.png",
+   "normalFile": "glass/fdf1b14459af7d0e-normal.png",
+   "glossFile": "glass/fdf1b14459af7d0e-gloss.png",
+   "heightFile": "glass/fdf1b14459af7d0e-height.png",
+   "nativeFile": "glass/fdf1b14459af7d0e-native.png",
+   "assembledNormalSha256": "669d07a94327486293904f41028c093c26f331d7c5bd23d6d6e064cd02b5dcec",
+   "regionGlass": true
+  },
+  "64x256:344d97ed54be8b2f": {
+   "file": "glass/5c8ef24d87f25baa-diffuse.png",
+   "normalFile": "glass/5c8ef24d87f25baa-normal.png",
+   "glossFile": "glass/5c8ef24d87f25baa-gloss.png",
+   "heightFile": "glass/5c8ef24d87f25baa-height.png",
+   "nativeFile": "glass/5c8ef24d87f25baa-native.png",
+   "assembledNormalSha256": "625bcfdb2e69582aec03388521f442b3ed6cbea8ac8e2a3077ba739837ed550b",
+   "regionGlass": true
+  }
+ },
+ "window4a": {
+  "64x256:48a30e49a3b6a85b": {
+   "file": "glass/97c026f172adf475-diffuse.png",
+   "normalFile": "glass/97c026f172adf475-normal.png",
+   "glossFile": "glass/97c026f172adf475-gloss.png",
+   "heightFile": "glass/97c026f172adf475-height.png",
+   "nativeFile": "glass/97c026f172adf475-native.png",
+   "assembledNormalSha256": "2593223bda97138fce929b36b1f49fcf7616844c846200e66c0258839338b372",
+   "regionGlass": true
+  }
+ },
+ "window4b": {
+  "64x256:a1d046d972c2ea13": {
+   "file": "glass/be55de985b8c8084-diffuse.png",
+   "normalFile": "glass/be55de985b8c8084-normal.png",
+   "glossFile": "glass/be55de985b8c8084-gloss.png",
+   "heightFile": "glass/be55de985b8c8084-height.png",
+   "nativeFile": "glass/be55de985b8c8084-native.png",
+   "assembledNormalSha256": "eb2364addbb929ebae2d0cc2843aa6feec5ee0d19d648ce0efe9af9ff4b1f8ef",
+   "regionGlass": true
+  }
+ },
+ "window666_9": {
+  "64x192:d154d1d83afd8dc2": {
+   "file": "glass/d4c584aee3f0be95-diffuse.png",
+   "normalFile": "glass/d4c584aee3f0be95-normal.png",
+   "glossFile": "glass/d4c584aee3f0be95-gloss.png",
+   "heightFile": "glass/d4c584aee3f0be95-height.png",
+   "nativeFile": "glass/d4c584aee3f0be95-native.png",
+   "assembledNormalSha256": "093b14aaa07ab3d4f91c1e2bc3438997265bf1286a8570d3bf09c12881c68d25",
+   "regionGlass": true
+  }
+ },
+ "window8a": {
+  "128x64:9d703acea7b1571c": {
+   "file": "glass/5fb230884f98efbe-diffuse.png",
+   "normalFile": "glass/5fb230884f98efbe-normal.png",
+   "glossFile": "glass/5fb230884f98efbe-gloss.png",
+   "heightFile": "glass/5fb230884f98efbe-height.png",
+   "nativeFile": "glass/5fb230884f98efbe-native.png",
+   "assembledNormalSha256": "1bebc74410f8c958a750856abfd453cc6dfac0382cfd37c4214846a43fb637c6",
+   "regionGlass": true
+  }
+ },
+ "window8c1": {
+  "128x64:5b223847d543167d": {
+   "file": "glass/54054d91647fa0dc-diffuse.png",
+   "normalFile": "glass/54054d91647fa0dc-normal.png",
+   "glossFile": "glass/54054d91647fa0dc-gloss.png",
+   "heightFile": "glass/54054d91647fa0dc-height.png",
+   "nativeFile": "glass/54054d91647fa0dc-native.png",
+   "assembledNormalSha256": "07862abfab9d37bff1f3d8dd7c17df35941bd8085ed55cedcbe8ffd65aa68f07",
+   "regionGlass": true
+  }
+ },
+ "window8s": {
+  "64x64:9c6096037b1856c9": {
+   "file": "glass/efbe7bd2225425fe-diffuse.png",
+   "normalFile": "glass/efbe7bd2225425fe-normal.png",
+   "glossFile": "glass/efbe7bd2225425fe-gloss.png",
+   "heightFile": "glass/efbe7bd2225425fe-height.png",
+   "nativeFile": "glass/efbe7bd2225425fe-native.png",
+   "assembledNormalSha256": "177a7d8aa89be17816dd02a8dda8ec629bb9e36cc555fe348f7c313d539fdaca",
+   "regionGlass": true
+  }
+ },
+ "window8u": {
+  "64x64:cdc23cb68fb591ec": {
+   "file": "glass/4936a6099b7106df-diffuse.png",
+   "normalFile": "glass/4936a6099b7106df-normal.png",
+   "glossFile": "glass/4936a6099b7106df-gloss.png",
+   "heightFile": "glass/4936a6099b7106df-height.png",
+   "nativeFile": "glass/4936a6099b7106df-native.png",
+   "assembledNormalSha256": "c34b1a36edc3feb32abb86fe2f6fec9fa2ce28bedb1e3db06270aa61d24ab74e",
+   "regionGlass": false
+  },
+  "64x64:d663b11a9d925488": {
+   "file": "glass/8bd215d95ba14426-diffuse.png",
+   "normalFile": "glass/8bd215d95ba14426-normal.png",
+   "glossFile": "glass/8bd215d95ba14426-gloss.png",
+   "heightFile": "glass/8bd215d95ba14426-height.png",
+   "nativeFile": "glass/8bd215d95ba14426-native.png",
+   "assembledNormalSha256": "67cc508059fcbe171877093b0d0a8823837a5c865525849de634466c01d396a6",
+   "regionGlass": false
+  }
+ },
+ "window_blue1_2": {
+  "512x512:dfa75a7507bf1ecf": {
+   "file": "glass/f575c3162d1ef854-diffuse.png",
+   "normalFile": "glass/f575c3162d1ef854-normal.png",
+   "glossFile": "glass/f575c3162d1ef854-gloss.png",
+   "heightFile": "glass/f575c3162d1ef854-height.png",
+   "nativeFile": "glass/f575c3162d1ef854-native.png",
+   "assembledNormalSha256": "74f17bc44f372bbe1a165e0a3d7b53996fa6e62c19029ec652aecca652e4c812",
+   "regionGlass": false
+  }
+ },
+ "windowc1_7": {
+  "64x64:33a2a7b92cdd0cab": {
+   "file": "glass/72490015056c191d-diffuse.png",
+   "normalFile": "glass/72490015056c191d-normal.png",
+   "glossFile": "glass/72490015056c191d-gloss.png",
+   "heightFile": "glass/72490015056c191d-height.png",
+   "nativeFile": "glass/72490015056c191d-native.png",
+   "assembledNormalSha256": "a22820fac891f5d7777d5b3de05c36bf44e54ee32525786a07991fbb8a07d75e",
+   "regionGlass": false
+  }
+ },
+ "windowl1": {
+  "256x256:b7d6209daebc88a7": {
+   "file": "glass/76203863c5888c97-diffuse.png",
+   "normalFile": "glass/76203863c5888c97-normal.png",
+   "glossFile": "glass/76203863c5888c97-gloss.png",
+   "heightFile": "glass/76203863c5888c97-height.png",
+   "nativeFile": "glass/76203863c5888c97-native.png",
+   "assembledNormalSha256": "e7c48d5377efe8071fdc79964e9d02df8bf3482e2dd6c256040517aa3a5851b1",
+   "regionGlass": true
+  }
+ },
+ "windowsqr1b": {
+  "64x64:7eb5da85cb86114f": {
+   "file": "glass/8117cf38087d949f-diffuse.png",
+   "normalFile": "glass/8117cf38087d949f-normal.png",
+   "glossFile": "glass/8117cf38087d949f-gloss.png",
+   "heightFile": "glass/8117cf38087d949f-height.png",
+   "nativeFile": "glass/8117cf38087d949f-native.png",
+   "assembledNormalSha256": "d4cfb52ee27d3f984fd37ebfcdbb9a2b3f95b5390fc8bba6b56049d9bda7d29d",
+   "regionGlass": true
+  }
+ },
+ "windr1": {
+  "64x64:6115c53ab8fe0da8": {
+   "file": "glass/a203b6a3d0e88e17-diffuse.png",
+   "normalFile": "glass/a203b6a3d0e88e17-normal.png",
+   "glossFile": "glass/a203b6a3d0e88e17-gloss.png",
+   "heightFile": "glass/a203b6a3d0e88e17-height.png",
+   "nativeFile": "glass/a203b6a3d0e88e17-native.png",
+   "assembledNormalSha256": "f80f6578aa4554d76d9e69aa6eeb837441b32a12fdbe94119a5bd6e9f1994e34",
+   "regionGlass": false
+  }
+ },
+ "windr2": {
+  "64x64:c63b631d9950603f": {
+   "file": "glass/74d037d1edcd171f-diffuse.png",
+   "normalFile": "glass/74d037d1edcd171f-normal.png",
+   "glossFile": "glass/74d037d1edcd171f-gloss.png",
+   "heightFile": "glass/74d037d1edcd171f-height.png",
+   "nativeFile": "glass/74d037d1edcd171f-native.png",
+   "assembledNormalSha256": "acd9d20afb5daf40466a705ce50119f4645abe8fe7cb7bbc5c1c48206118d5bc",
+   "regionGlass": false
+  }
+ },
+ "windr3": {
+  "32x32:5c8ab4a825882272": {
+   "file": "glass/7484fd4421f5200a-diffuse.png",
+   "normalFile": "glass/7484fd4421f5200a-normal.png",
+   "glossFile": "glass/7484fd4421f5200a-gloss.png",
+   "heightFile": "glass/7484fd4421f5200a-height.png",
+   "nativeFile": "glass/7484fd4421f5200a-native.png",
+   "assembledNormalSha256": "bb360eec3b61e95583418a2292a3d3a8967e66da3a68b2905f8ef9359ed819bc",
+   "regionGlass": false
+  }
  }
+}
 }

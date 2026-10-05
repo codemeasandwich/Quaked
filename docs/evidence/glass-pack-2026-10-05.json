@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "packEntries": 5,
+  "checks": [
+    {
+      "name": "newer/textures/index.json",
+      "bytes": 90215,
+      "sha256": "1932f83b5ef1292f9051d4760ef337df39be0510df926897235500612d230d60"
+    },
+    {
+      "name": "newer/textures/glass/be5f41fe9fdd17dd-diffuse.png",
+      "bytes": 102413,
+      "sha256": "e7062d9ab83ec484ca6f060c4fb768a467a00778694982f4af4c32f19afbac1d"
+    },
+    {
+      "name": "newer/textures/glass/be5f41fe9fdd17dd-normal.png",
+      "bytes": 111413,
+      "sha256": "b4f128f3c4d24d613ffd5981097bcad3720d6e588f603e9fba5a3e1645d1b172"
+    },
+    {
+      "name": "newer/textures/glass/be5f41fe9fdd17dd-height.png",
+      "bytes": 29860,
+      "sha256": "608c78f1c175e0e1aebf9924b38ce9828f93681cd939fbed3618be15b05bd4f4"
+    },
+    {
+      "name": "newer/textures/glass/be5f41fe9fdd17dd-gloss.png",
+      "bytes": 5430,
+      "sha256": "3db0f690af14fc09113b5f5298cd8c463464bef147f92e510c226ccbd9f71f4a"
+    }
+  ],
+  "scope": "Real PACK loader, packed asset URL lookup and byte-exact Blob fetch; no loose fallback available."
+}

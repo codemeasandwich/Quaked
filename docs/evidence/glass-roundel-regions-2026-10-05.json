@@ -1,0 +1,38 @@
+{
+  "result": {
+    "status": "PASS",
+    "entry": {
+      "name": "window03",
+      "key": "256x192:cc595db37b8159a1",
+      "nativeFile": "glass/653f114cb40503ee-native.png",
+      "campaigns": [
+        "dopa",
+        "id1"
+      ],
+      "class": "stained_mosaic",
+      "assembledNormalSha256": "c0f07111e2b0666e9ad524d8245032f3dc9b48a272d03c71509071d6eaf38948",
+      "regionGlass": true
+    },
+    "frameScope": {
+      "ordinaryPixels": 102631,
+      "falseGlassTags": 0,
+      "marginUv": 0.02
+    },
+    "glassPixels": 9455,
+    "tagPixelsWithNormalsOff": 0,
+    "movingLightRgbChanges": 219853,
+    "normalResponseRgbChanges": 250434,
+    "classicRgbChanges": 0,
+    "glErrors": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "decodedNormalSha256Exact": true,
+    "decodedNormalAlpha": "assembled from separately decoded opaque RGB + height",
+    "errors": []
+  },
+  "errors": []
+}

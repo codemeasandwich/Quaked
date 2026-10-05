@@ -92,7 +92,7 @@ Deno.test( 'live pickup lights share the existing eight-source budget and stable
 		const first = post.R_SelectWorldLights( camera.matrixWorldInverse, 1, [], [], 0 ), later = post.R_SelectWorldLights( camera.matrixWorldInverse, 1, [], [], 1 );
 		same( first.length, 8, 'existing eight-light cap unchanged' );
 		for ( let i = 0; i < first.length; i ++ ) { same( first[ i ].source, later[ i ].source, 'pulsing does not reorder source identities' ); same( first[ i ].score, later[ i ].score, 'pulsing does not alter rank score' ); same( first[ i ].range, later[ i ].range, 'pulsing does not resize receiver lighting reach' ); }
-		const quad = first.find( l => l.source.powerup === 'quad' ), pulse = later.find( l => l.source === quad.source ); check( quad.color[ 0 ] !== pulse.color[ 0 ], 'actual selected radiance changes with pulse' );
+		const quad = first.find( l => l.source.powerup === 'quad' ), pulse = later.find( l => l.source === quad.source ); check( quad.color[ 2 ] !== pulse.color[ 2 ], 'actual selected radiance changes with pulse' );
 		const ring = first.find( l => l.source.powerup === 'ring' ); check( ring?.source.cookie === 1, 'ring cookie survives actual selected slot' );
 		camera.rotation.y = Math.PI; camera.updateMatrixWorld(); const turned = post.R_SelectWorldLights( camera.matrixWorldInverse, 1, [], [], 1 ); check( turned.every( l => first.some( original => l.source === original.source ) ), 'camera turning keeps world-space source membership' );
 		vars.Cvar_SetValue( 'r_powerups', 0 ); same( post.R_SelectWorldLights( camera.matrixWorldInverse, 1, [], [], 1 ).length, 0, 'off source does not occupy slot' );

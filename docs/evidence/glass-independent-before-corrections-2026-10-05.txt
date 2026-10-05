@@ -1,0 +1,35 @@
+(node:16290) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS independent public normal selection preserves source bytes, separates donor identities and owns gloss disposal
+PASS independent authored gloss dimension mismatch cannot tag unrelated texels as glass
+PASS independent missing or mismatched donor normals keep successful diffuse and generated relief fallback
+PASS independent actual material compiler isolates glass mask, Classic and native material behavior
+RESULT 4/7 passed (/private/tmp/glass-port/public-tests.mjs)
+(node:16291) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL independent donor loader remains asynchronous and preserves native Classic image and offset Error: donor RGB normal and height alpha exact: 20dcb4ffe642b4ff5ab4f5ffaa4bf5ff != 20dcb411e642b4595ab4f596aa4bf5e6
+    at check (file:///private/tmp/glass-port/public-tests.mjs:8:33)
+    at same (file:///private/tmp/glass-port/public-tests.mjs:8:57)
+    at equal (file:///private/tmp/glass-port/public-tests.mjs:8:106)
+    at file:///private/tmp/glass-port/public-tests.mjs:44:39
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async loaderFixture (file:///private/tmp/glass-port/public-tests.mjs:36:116)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+FAIL independent separate opaque normal and height decode preserves nonzero RGB at zero height Error: zero scalar height retains authored normal RGB instead of transparent-black decode: 20dcb4ffe642b4ff5ab4f5ffaa4bf5ff != 20dcb400e642b4595ab4f596aa4bf5e6
+    at check (file:///private/tmp/glass-port/public-tests.mjs:8:33)
+    at same (file:///private/tmp/glass-port/public-tests.mjs:8:57)
+    at equal (file:///private/tmp/glass-port/public-tests.mjs:8:106)
+    at file:///private/tmp/glass-port/public-tests.mjs:54:143
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async loaderFixture (file:///private/tmp/glass-port/public-tests.mjs:36:116)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+FAIL independent content-bound selection reconstructs native fullbright pixels and rejects unrelated same-name variants Error: unmatched same-name variant takes existing native fallback: undefined != true
+    at check (file:///private/tmp/glass-port/public-tests.mjs:8:33)
+    at same (file:///private/tmp/glass-port/public-tests.mjs:8:57)
+    at file:///private/tmp/glass-port/public-tests.mjs:60:120
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async loaderFixture (file:///private/tmp/glass-port/public-tests.mjs:36:116)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+TOTAL 4/7 passed

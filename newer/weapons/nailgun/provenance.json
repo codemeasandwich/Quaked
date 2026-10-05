@@ -1,0 +1,4990 @@
+{
+  "archive": "/Users/bri/Downloads/Quake/Id1/PAK3.pk3",
+  "models": {
+    "v_nail": {
+      "format": "MDL6",
+      "sourceVertices": 727,
+      "vertices": 727,
+      "triangles": 681,
+      "frames": 9,
+      "frameNames": [
+        "base1",
+        "base2",
+        "base3",
+        "base4",
+        "base5",
+        "base6",
+        "base7",
+        "base8",
+        "base9"
+      ],
+      "sourceVertexForEmitted": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467,
+        468,
+        469,
+        470,
+        471,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498,
+        499,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        509,
+        510,
+        511,
+        512,
+        513,
+        514,
+        515,
+        516,
+        517,
+        518,
+        519,
+        520,
+        521,
+        522,
+        523,
+        524,
+        525,
+        526,
+        527,
+        528,
+        529,
+        530,
+        531,
+        532,
+        533,
+        534,
+        535,
+        536,
+        537,
+        538,
+        539,
+        540,
+        541,
+        542,
+        543,
+        544,
+        545,
+        546,
+        547,
+        548,
+        549,
+        550,
+        551,
+        552,
+        553,
+        554,
+        555,
+        556,
+        557,
+        558,
+        559,
+        560,
+        561,
+        562,
+        563,
+        564,
+        565,
+        566,
+        567,
+        568,
+        569,
+        570,
+        571,
+        572,
+        573,
+        574,
+        575,
+        576,
+        577,
+        578,
+        579,
+        580,
+        581,
+        582,
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594,
+        595,
+        596,
+        597,
+        598,
+        599,
+        600,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        607,
+        608,
+        609,
+        610,
+        611,
+        612,
+        613,
+        614,
+        615,
+        616,
+        617,
+        618,
+        619,
+        620,
+        621,
+        622,
+        623,
+        624,
+        625,
+        626,
+        627,
+        628,
+        629,
+        630,
+        631,
+        632,
+        633,
+        634,
+        635,
+        636,
+        637,
+        638,
+        639,
+        640,
+        641,
+        642,
+        643,
+        644,
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653,
+        654,
+        655,
+        656,
+        657,
+        658,
+        659,
+        660,
+        661,
+        662,
+        663,
+        664,
+        665,
+        666,
+        667,
+        668,
+        669,
+        670,
+        671,
+        672,
+        673,
+        674,
+        675,
+        676,
+        677,
+        678,
+        679,
+        680,
+        681,
+        682,
+        683,
+        684,
+        685,
+        686,
+        687,
+        688,
+        689,
+        690,
+        691,
+        692,
+        693,
+        694,
+        695,
+        696,
+        697,
+        698,
+        699,
+        700,
+        701,
+        702,
+        703,
+        704,
+        705,
+        706,
+        707,
+        708,
+        709,
+        710,
+        711,
+        712,
+        713,
+        714,
+        715,
+        716,
+        717,
+        718,
+        719,
+        720,
+        721,
+        722,
+        723,
+        724,
+        725,
+        726
+      ],
+      "seamVariants": [
+        {
+          "sourceVertex": 0,
+          "backSeam": false,
+          "emitted": 0
+        },
+        {
+          "sourceVertex": 1,
+          "backSeam": false,
+          "emitted": 1
+        },
+        {
+          "sourceVertex": 2,
+          "backSeam": false,
+          "emitted": 2
+        },
+        {
+          "sourceVertex": 3,
+          "backSeam": false,
+          "emitted": 3
+        },
+        {
+          "sourceVertex": 4,
+          "backSeam": false,
+          "emitted": 4
+        },
+        {
+          "sourceVertex": 5,
+          "backSeam": false,
+          "emitted": 5
+        },
+        {
+          "sourceVertex": 6,
+          "backSeam": false,
+          "emitted": 6
+        },
+        {
+          "sourceVertex": 7,
+          "backSeam": false,
+          "emitted": 7
+        },
+        {
+          "sourceVertex": 8,
+          "backSeam": false,
+          "emitted": 8
+        },
+        {
+          "sourceVertex": 9,
+          "backSeam": false,
+          "emitted": 9
+        },
+        {
+          "sourceVertex": 10,
+          "backSeam": false,
+          "emitted": 10
+        },
+        {
+          "sourceVertex": 11,
+          "backSeam": false,
+          "emitted": 11
+        },
+        {
+          "sourceVertex": 12,
+          "backSeam": false,
+          "emitted": 12
+        },
+        {
+          "sourceVertex": 13,
+          "backSeam": false,
+          "emitted": 13
+        },
+        {
+          "sourceVertex": 14,
+          "backSeam": false,
+          "emitted": 14
+        },
+        {
+          "sourceVertex": 15,
+          "backSeam": false,
+          "emitted": 15
+        },
+        {
+          "sourceVertex": 16,
+          "backSeam": false,
+          "emitted": 16
+        },
+        {
+          "sourceVertex": 17,
+          "backSeam": false,
+          "emitted": 17
+        },
+        {
+          "sourceVertex": 18,
+          "backSeam": false,
+          "emitted": 18
+        },
+        {
+          "sourceVertex": 19,
+          "backSeam": false,
+          "emitted": 19
+        },
+        {
+          "sourceVertex": 20,
+          "backSeam": false,
+          "emitted": 20
+        },
+        {
+          "sourceVertex": 21,
+          "backSeam": false,
+          "emitted": 21
+        },
+        {
+          "sourceVertex": 22,
+          "backSeam": false,
+          "emitted": 22
+        },
+        {
+          "sourceVertex": 23,
+          "backSeam": false,
+          "emitted": 23
+        },
+        {
+          "sourceVertex": 24,
+          "backSeam": false,
+          "emitted": 24
+        },
+        {
+          "sourceVertex": 25,
+          "backSeam": false,
+          "emitted": 25
+        },
+        {
+          "sourceVertex": 26,
+          "backSeam": false,
+          "emitted": 26
+        },
+        {
+          "sourceVertex": 27,
+          "backSeam": false,
+          "emitted": 27
+        },
+        {
+          "sourceVertex": 28,
+          "backSeam": false,
+          "emitted": 28
+        },
+        {
+          "sourceVertex": 29,
+          "backSeam": false,
+          "emitted": 29
+        },
+        {
+          "sourceVertex": 30,
+          "backSeam": false,
+          "emitted": 30
+        },
+        {
+          "sourceVertex": 31,
+          "backSeam": false,
+          "emitted": 31
+        },
+        {
+          "sourceVertex": 32,
+          "backSeam": false,
+          "emitted": 32
+        },
+        {
+          "sourceVertex": 33,
+          "backSeam": false,
+          "emitted": 33
+        },
+        {
+          "sourceVertex": 34,
+          "backSeam": false,
+          "emitted": 34
+        },
+        {
+          "sourceVertex": 35,
+          "backSeam": false,
+          "emitted": 35
+        },
+        {
+          "sourceVertex": 36,
+          "backSeam": false,
+          "emitted": 36
+        },
+        {
+          "sourceVertex": 37,
+          "backSeam": false,
+          "emitted": 37
+        },
+        {
+          "sourceVertex": 38,
+          "backSeam": false,
+          "emitted": 38
+        },
+        {
+          "sourceVertex": 39,
+          "backSeam": false,
+          "emitted": 39
+        },
+        {
+          "sourceVertex": 40,
+          "backSeam": false,
+          "emitted": 40
+        },
+        {
+          "sourceVertex": 41,
+          "backSeam": false,
+          "emitted": 41
+        },
+        {
+          "sourceVertex": 42,
+          "backSeam": false,
+          "emitted": 42
+        },
+        {
+          "sourceVertex": 43,
+          "backSeam": false,
+          "emitted": 43
+        },
+        {
+          "sourceVertex": 44,
+          "backSeam": false,
+          "emitted": 44
+        },
+        {
+          "sourceVertex": 45,
+          "backSeam": false,
+          "emitted": 45
+        },
+        {
+          "sourceVertex": 46,
+          "backSeam": false,
+          "emitted": 46
+        },
+        {
+          "sourceVertex": 47,
+          "backSeam": false,
+          "emitted": 47
+        },
+        {
+          "sourceVertex": 48,
+          "backSeam": false,
+          "emitted": 48
+        },
+        {
+          "sourceVertex": 49,
+          "backSeam": false,
+          "emitted": 49
+        },
+        {
+          "sourceVertex": 50,
+          "backSeam": false,
+          "emitted": 50
+        },
+        {
+          "sourceVertex": 51,
+          "backSeam": false,
+          "emitted": 51
+        },
+        {
+          "sourceVertex": 52,
+          "backSeam": false,
+          "emitted": 52
+        },
+        {
+          "sourceVertex": 53,
+          "backSeam": false,
+          "emitted": 53
+        },
+        {
+          "sourceVertex": 54,
+          "backSeam": false,
+          "emitted": 54
+        },
+        {
+          "sourceVertex": 55,
+          "backSeam": false,
+          "emitted": 55
+        },
+        {
+          "sourceVertex": 56,
+          "backSeam": false,
+          "emitted": 56
+        },
+        {
+          "sourceVertex": 57,
+          "backSeam": false,
+          "emitted": 57
+        },
+        {
+          "sourceVertex": 58,
+          "backSeam": false,
+          "emitted": 58
+        },
+        {
+          "sourceVertex": 59,
+          "backSeam": false,
+          "emitted": 59
+        },
+        {
+          "sourceVertex": 60,
+          "backSeam": false,
+          "emitted": 60
+        },
+        {
+          "sourceVertex": 61,
+          "backSeam": false,
+          "emitted": 61
+        },
+        {
+          "sourceVertex": 62,
+          "backSeam": false,
+          "emitted": 62
+        },
+        {
+          "sourceVertex": 63,
+          "backSeam": false,
+          "emitted": 63
+        },
+        {
+          "sourceVertex": 64,
+          "backSeam": false,
+          "emitted": 64
+        },
+        {
+          "sourceVertex": 65,
+          "backSeam": false,
+          "emitted": 65
+        },
+        {
+          "sourceVertex": 66,
+          "backSeam": false,
+          "emitted": 66
+        },
+        {
+          "sourceVertex": 67,
+          "backSeam": false,
+          "emitted": 67
+        },
+        {
+          "sourceVertex": 68,
+          "backSeam": false,
+          "emitted": 68
+        },
+        {
+          "sourceVertex": 69,
+          "backSeam": false,
+          "emitted": 69
+        },
+        {
+          "sourceVertex": 70,
+          "backSeam": false,
+          "emitted": 70
+        },
+        {
+          "sourceVertex": 71,
+          "backSeam": false,
+          "emitted": 71
+        },
+        {
+          "sourceVertex": 72,
+          "backSeam": false,
+          "emitted": 72
+        },
+        {
+          "sourceVertex": 73,
+          "backSeam": false,
+          "emitted": 73
+        },
+        {
+          "sourceVertex": 74,
+          "backSeam": false,
+          "emitted": 74
+        },
+        {
+          "sourceVertex": 75,
+          "backSeam": false,
+          "emitted": 75
+        },
+        {
+          "sourceVertex": 76,
+          "backSeam": false,
+          "emitted": 76
+        },
+        {
+          "sourceVertex": 77,
+          "backSeam": false,
+          "emitted": 77
+        },
+        {
+          "sourceVertex": 78,
+          "backSeam": false,
+          "emitted": 78
+        },
+        {
+          "sourceVertex": 79,
+          "backSeam": false,
+          "emitted": 79
+        },
+        {
+          "sourceVertex": 80,
+          "backSeam": false,
+          "emitted": 80
+        },
+        {
+          "sourceVertex": 81,
+          "backSeam": false,
+          "emitted": 81
+        },
+        {
+          "sourceVertex": 82,
+          "backSeam": false,
+          "emitted": 82
+        },
+        {
+          "sourceVertex": 83,
+          "backSeam": false,
+          "emitted": 83
+        },
+        {
+          "sourceVertex": 84,
+          "backSeam": false,
+          "emitted": 84
+        },
+        {
+          "sourceVertex": 85,
+          "backSeam": false,
+          "emitted": 85
+        },
+        {
+          "sourceVertex": 86,
+          "backSeam": false,
+          "emitted": 86
+        },
+        {
+          "sourceVertex": 87,
+          "backSeam": false,
+          "emitted": 87
+        },
+        {
+          "sourceVertex": 88,
+          "backSeam": false,
+          "emitted": 88
+        },
+        {
+          "sourceVertex": 89,
+          "backSeam": false,
+          "emitted": 89
+        },
+        {
+          "sourceVertex": 90,
+          "backSeam": false,
+          "emitted": 90
+        },
+        {
+          "sourceVertex": 91,
+          "backSeam": false,
+          "emitted": 91
+        },
+        {
+          "sourceVertex": 92,
+          "backSeam": false,
+          "emitted": 92
+        },
+        {
+          "sourceVertex": 93,
+          "backSeam": false,
+          "emitted": 93
+        },
+        {
+          "sourceVertex": 94,
+          "backSeam": false,
+          "emitted": 94
+        },
+        {
+          "sourceVertex": 95,
+          "backSeam": false,
+          "emitted": 95
+        },
+        {
+          "sourceVertex": 96,
+          "backSeam": false,
+          "emitted": 96
+        },
+        {
+          "sourceVertex": 97,
+          "backSeam": false,
+          "emitted": 97
+        },
+        {
+          "sourceVertex": 98,
+          "backSeam": false,
+          "emitted": 98
+        },
+        {
+          "sourceVertex": 99,
+          "backSeam": false,
+          "emitted": 99
+        },
+        {
+          "sourceVertex": 100,
+          "backSeam": false,
+          "emitted": 100
+        },
+        {
+          "sourceVertex": 101,
+          "backSeam": false,
+          "emitted": 101
+        },
+        {
+          "sourceVertex": 102,
+          "backSeam": false,
+          "emitted": 102
+        },
+        {
+          "sourceVertex": 103,
+          "backSeam": false,
+          "emitted": 103
+        },
+        {
+          "sourceVertex": 104,
+          "backSeam": false,
+          "emitted": 104
+        },
+        {
+          "sourceVertex": 105,
+          "backSeam": false,
+          "emitted": 105
+        },
+        {
+          "sourceVertex": 106,
+          "backSeam": false,
+          "emitted": 106
+        },
+        {
+          "sourceVertex": 107,
+          "backSeam": false,
+          "emitted": 107
+        },
+        {
+          "sourceVertex": 108,
+          "backSeam": false,
+          "emitted": 108
+        },
+        {
+          "sourceVertex": 109,
+          "backSeam": false,
+          "emitted": 109
+        },
+        {
+          "sourceVertex": 110,
+          "backSeam": false,
+          "emitted": 110
+        },
+        {
+          "sourceVertex": 111,
+          "backSeam": false,
+          "emitted": 111
+        },
+        {
+          "sourceVertex": 112,
+          "backSeam": false,
+          "emitted": 112
+        },
+        {
+          "sourceVertex": 113,
+          "backSeam": false,
+          "emitted": 113
+        },
+        {
+          "sourceVertex": 114,
+          "backSeam": false,
+          "emitted": 114
+        },
+        {
+          "sourceVertex": 115,
+          "backSeam": false,
+          "emitted": 115
+        },
+        {
+          "sourceVertex": 116,
+          "backSeam": false,
+          "emitted": 116
+        },
+        {
+          "sourceVertex": 117,
+          "backSeam": false,
+          "emitted": 117
+        },
+        {
+          "sourceVertex": 118,
+          "backSeam": false,
+          "emitted": 118
+        },
+        {
+          "sourceVertex": 119,
+          "backSeam": false,
+          "emitted": 119
+        },
+        {
+          "sourceVertex": 120,
+          "backSeam": false,
+          "emitted": 120
+        },
+        {
+          "sourceVertex": 121,
+          "backSeam": false,
+          "emitted": 121
+        },
+        {
+          "sourceVertex": 122,
+          "backSeam": false,
+          "emitted": 122
+        },
+        {
+          "sourceVertex": 123,
+          "backSeam": false,
+          "emitted": 123
+        },
+        {
+          "sourceVertex": 124,
+          "backSeam": false,
+          "emitted": 124
+        },
+        {
+          "sourceVertex": 125,
+          "backSeam": false,
+          "emitted": 125
+        },
+        {
+          "sourceVertex": 126,
+          "backSeam": false,
+          "emitted": 126
+        },
+        {
+          "sourceVertex": 127,
+          "backSeam": false,
+          "emitted": 127
+        },
+        {
+          "sourceVertex": 128,
+          "backSeam": false,
+          "emitted": 128
+        },
+        {
+          "sourceVertex": 129,
+          "backSeam": false,
+          "emitted": 129
+        },
+        {
+          "sourceVertex": 130,
+          "backSeam": false,
+          "emitted": 130
+        },
+        {
+          "sourceVertex": 131,
+          "backSeam": false,
+          "emitted": 131
+        },
+        {
+          "sourceVertex": 132,
+          "backSeam": false,
+          "emitted": 132
+        },
+        {
+          "sourceVertex": 133,
+          "backSeam": false,
+          "emitted": 133
+        },
+        {
+          "sourceVertex": 134,
+          "backSeam": false,
+          "emitted": 134
+        },
+        {
+          "sourceVertex": 135,
+          "backSeam": false,
+          "emitted": 135
+        },
+        {
+          "sourceVertex": 136,
+          "backSeam": false,
+          "emitted": 136
+        },
+        {
+          "sourceVertex": 137,
+          "backSeam": false,
+          "emitted": 137
+        },
+        {
+          "sourceVertex": 138,
+          "backSeam": false,
+          "emitted": 138
+        },
+        {
+          "sourceVertex": 139,
+          "backSeam": false,
+          "emitted": 139
+        },
+        {
+          "sourceVertex": 140,
+          "backSeam": false,
+          "emitted": 140
+        },
+        {
+          "sourceVertex": 141,
+          "backSeam": false,
+          "emitted": 141
+        },
+        {
+          "sourceVertex": 142,
+          "backSeam": false,
+          "emitted": 142
+        },
+        {
+          "sourceVertex": 143,
+          "backSeam": false,
+          "emitted": 143
+        },
+        {
+          "sourceVertex": 144,
+          "backSeam": false,
+          "emitted": 144
+        },
+        {
+          "sourceVertex": 145,
+          "backSeam": false,
+          "emitted": 145
+        },
+        {
+          "sourceVertex": 146,
+          "backSeam": false,
+          "emitted": 146
+        },
+        {
+          "sourceVertex": 147,
+          "backSeam": false,
+          "emitted": 147
+        },
+        {
+          "sourceVertex": 148,
+          "backSeam": false,
+          "emitted": 148
+        },
+        {
+          "sourceVertex": 149,
+          "backSeam": false,
+          "emitted": 149
+        },
+        {
+          "sourceVertex": 150,
+          "backSeam": false,
+          "emitted": 150
+        },
+        {
+          "sourceVertex": 151,
+          "backSeam": false,
+          "emitted": 151
+        },
+        {
+          "sourceVertex": 152,
+          "backSeam": false,
+          "emitted": 152
+        },
+        {
+          "sourceVertex": 153,
+          "backSeam": false,
+          "emitted": 153
+        },
+        {
+          "sourceVertex": 154,
+          "backSeam": false,
+          "emitted": 154
+        },
+        {
+          "sourceVertex": 155,
+          "backSeam": false,
+          "emitted": 155
+        },
+        {
+          "sourceVertex": 156,
+          "backSeam": false,
+          "emitted": 156
+        },
+        {
+          "sourceVertex": 157,
+          "backSeam": false,
+          "emitted": 157
+        },
+        {
+          "sourceVertex": 158,
+          "backSeam": false,
+          "emitted": 158
+        },
+        {
+          "sourceVertex": 159,
+          "backSeam": false,
+          "emitted": 159
+        },
+        {
+          "sourceVertex": 160,
+          "backSeam": false,
+          "emitted": 160
+        },
+        {
+          "sourceVertex": 161,
+          "backSeam": false,
+          "emitted": 161
+        },
+        {
+          "sourceVertex": 162,
+          "backSeam": false,
+          "emitted": 162
+        },
+        {
+          "sourceVertex": 163,
+          "backSeam": false,
+          "emitted": 163
+        },
+        {
+          "sourceVertex": 164,
+          "backSeam": false,
+          "emitted": 164
+        },
+        {
+          "sourceVertex": 165,
+          "backSeam": false,
+          "emitted": 165
+        },
+        {
+          "sourceVertex": 166,
+          "backSeam": false,
+          "emitted": 166
+        },
+        {
+          "sourceVertex": 167,
+          "backSeam": false,
+          "emitted": 167
+        },
+        {
+          "sourceVertex": 168,
+          "backSeam": false,
+          "emitted": 168
+        },
+        {
+          "sourceVertex": 169,
+          "backSeam": false,
+          "emitted": 169
+        },
+        {
+          "sourceVertex": 170,
+          "backSeam": false,
+          "emitted": 170
+        },
+        {
+          "sourceVertex": 171,
+          "backSeam": false,
+          "emitted": 171
+        },
+        {
+          "sourceVertex": 172,
+          "backSeam": false,
+          "emitted": 172
+        },
+        {
+          "sourceVertex": 173,
+          "backSeam": false,
+          "emitted": 173
+        },
+        {
+          "sourceVertex": 174,
+          "backSeam": false,
+          "emitted": 174
+        },
+        {
+          "sourceVertex": 175,
+          "backSeam": false,
+          "emitted": 175
+        },
+        {
+          "sourceVertex": 176,
+          "backSeam": false,
+          "emitted": 176
+        },
+        {
+          "sourceVertex": 177,
+          "backSeam": false,
+          "emitted": 177
+        },
+        {
+          "sourceVertex": 178,
+          "backSeam": false,
+          "emitted": 178
+        },
+        {
+          "sourceVertex": 179,
+          "backSeam": false,
+          "emitted": 179
+        },
+        {
+          "sourceVertex": 180,
+          "backSeam": false,
+          "emitted": 180
+        },
+        {
+          "sourceVertex": 181,
+          "backSeam": false,
+          "emitted": 181
+        },
+        {
+          "sourceVertex": 182,
+          "backSeam": false,
+          "emitted": 182
+        },
+        {
+          "sourceVertex": 183,
+          "backSeam": false,
+          "emitted": 183
+        },
+        {
+          "sourceVertex": 184,
+          "backSeam": false,
+          "emitted": 184
+        },
+        {
+          "sourceVertex": 185,
+          "backSeam": false,
+          "emitted": 185
+        },
+        {
+          "sourceVertex": 186,
+          "backSeam": false,
+          "emitted": 186
+        },
+        {
+          "sourceVertex": 187,
+          "backSeam": false,
+          "emitted": 187
+        },
+        {
+          "sourceVertex": 188,
+          "backSeam": false,
+          "emitted": 188
+        },
+        {
+          "sourceVertex": 189,
+          "backSeam": false,
+          "emitted": 189
+        },
+        {
+          "sourceVertex": 190,
+          "backSeam": false,
+          "emitted": 190
+        },
+        {
+          "sourceVertex": 191,
+          "backSeam": false,
+          "emitted": 191
+        },
+        {
+          "sourceVertex": 192,
+          "backSeam": false,
+          "emitted": 192
+        },
+        {
+          "sourceVertex": 193,
+          "backSeam": false,
+          "emitted": 193
+        },
+        {
+          "sourceVertex": 194,
+          "backSeam": false,
+          "emitted": 194
+        },
+        {
+          "sourceVertex": 195,
+          "backSeam": false,
+          "emitted": 195
+        },
+        {
+          "sourceVertex": 196,
+          "backSeam": false,
+          "emitted": 196
+        },
+        {
+          "sourceVertex": 197,
+          "backSeam": false,
+          "emitted": 197
+        },
+        {
+          "sourceVertex": 198,
+          "backSeam": false,
+          "emitted": 198
+        },
+        {
+          "sourceVertex": 199,
+          "backSeam": false,
+          "emitted": 199
+        },
+        {
+          "sourceVertex": 200,
+          "backSeam": false,
+          "emitted": 200
+        },
+        {
+          "sourceVertex": 201,
+          "backSeam": false,
+          "emitted": 201
+        },
+        {
+          "sourceVertex": 202,
+          "backSeam": false,
+          "emitted": 202
+        },
+        {
+          "sourceVertex": 203,
+          "backSeam": false,
+          "emitted": 203
+        },
+        {
+          "sourceVertex": 204,
+          "backSeam": false,
+          "emitted": 204
+        },
+        {
+          "sourceVertex": 205,
+          "backSeam": false,
+          "emitted": 205
+        },
+        {
+          "sourceVertex": 206,
+          "backSeam": false,
+          "emitted": 206
+        },
+        {
+          "sourceVertex": 207,
+          "backSeam": false,
+          "emitted": 207
+        },
+        {
+          "sourceVertex": 208,
+          "backSeam": false,
+          "emitted": 208
+        },
+        {
+          "sourceVertex": 209,
+          "backSeam": false,
+          "emitted": 209
+        },
+        {
+          "sourceVertex": 210,
+          "backSeam": false,
+          "emitted": 210
+        },
+        {
+          "sourceVertex": 211,
+          "backSeam": false,
+          "emitted": 211
+        },
+        {
+          "sourceVertex": 212,
+          "backSeam": false,
+          "emitted": 212
+        },
+        {
+          "sourceVertex": 213,
+          "backSeam": false,
+          "emitted": 213
+        },
+        {
+          "sourceVertex": 214,
+          "backSeam": false,
+          "emitted": 214
+        },
+        {
+          "sourceVertex": 215,
+          "backSeam": false,
+          "emitted": 215
+        },
+        {
+          "sourceVertex": 216,
+          "backSeam": false,
+          "emitted": 216
+        },
+        {
+          "sourceVertex": 217,
+          "backSeam": false,
+          "emitted": 217
+        },
+        {
+          "sourceVertex": 218,
+          "backSeam": false,
+          "emitted": 218
+        },
+        {
+          "sourceVertex": 219,
+          "backSeam": false,
+          "emitted": 219
+        },
+        {
+          "sourceVertex": 220,
+          "backSeam": false,
+          "emitted": 220
+        },
+        {
+          "sourceVertex": 221,
+          "backSeam": false,
+          "emitted": 221
+        },
+        {
+          "sourceVertex": 222,
+          "backSeam": false,
+          "emitted": 222
+        },
+        {
+          "sourceVertex": 223,
+          "backSeam": false,
+          "emitted": 223
+        },
+        {
+          "sourceVertex": 224,
+          "backSeam": false,
+          "emitted": 224
+        },
+        {
+          "sourceVertex": 225,
+          "backSeam": false,
+          "emitted": 225
+        },
+        {
+          "sourceVertex": 226,
+          "backSeam": false,
+          "emitted": 226
+        },
+        {
+          "sourceVertex": 227,
+          "backSeam": false,
+          "emitted": 227
+        },
+        {
+          "sourceVertex": 228,
+          "backSeam": false,
+          "emitted": 228
+        },
+        {
+          "sourceVertex": 229,
+          "backSeam": false,
+          "emitted": 229
+        },
+        {
+          "sourceVertex": 230,
+          "backSeam": false,
+          "emitted": 230
+        },
+        {
+          "sourceVertex": 231,
+          "backSeam": false,
+          "emitted": 231
+        },
+        {
+          "sourceVertex": 232,
+          "backSeam": false,
+          "emitted": 232
+        },
+        {
+          "sourceVertex": 233,
+          "backSeam": false,
+          "emitted": 233
+        },
+        {
+          "sourceVertex": 234,
+          "backSeam": false,
+          "emitted": 234
+        },
+        {
+          "sourceVertex": 235,
+          "backSeam": false,
+          "emitted": 235
+        },
+        {
+          "sourceVertex": 236,
+          "backSeam": false,
+          "emitted": 236
+        },
+        {
+          "sourceVertex": 237,
+          "backSeam": false,
+          "emitted": 237
+        },
+        {
+          "sourceVertex": 238,
+          "backSeam": false,
+          "emitted": 238
+        },
+        {
+          "sourceVertex": 239,
+          "backSeam": false,
+          "emitted": 239
+        },
+        {
+          "sourceVertex": 240,
+          "backSeam": false,
+          "emitted": 240
+        },
+        {
+          "sourceVertex": 241,
+          "backSeam": false,
+          "emitted": 241
+        },
+        {
+          "sourceVertex": 242,
+          "backSeam": false,
+          "emitted": 242
+        },
+        {
+          "sourceVertex": 243,
+          "backSeam": false,
+          "emitted": 243
+        },
+        {
+          "sourceVertex": 244,
+          "backSeam": false,
+          "emitted": 244
+        },
+        {
+          "sourceVertex": 245,
+          "backSeam": false,
+          "emitted": 245
+        },
+        {
+          "sourceVertex": 246,
+          "backSeam": false,
+          "emitted": 246
+        },
+        {
+          "sourceVertex": 247,
+          "backSeam": false,
+          "emitted": 247
+        },
+        {
+          "sourceVertex": 248,
+          "backSeam": false,
+          "emitted": 248
+        },
+        {
+          "sourceVertex": 249,
+          "backSeam": false,
+          "emitted": 249
+        },
+        {
+          "sourceVertex": 250,
+          "backSeam": false,
+          "emitted": 250
+        },
+        {
+          "sourceVertex": 251,
+          "backSeam": false,
+          "emitted": 251
+        },
+        {
+          "sourceVertex": 252,
+          "backSeam": false,
+          "emitted": 252
+        },
+        {
+          "sourceVertex": 253,
+          "backSeam": false,
+          "emitted": 253
+        },
+        {
+          "sourceVertex": 254,
+          "backSeam": false,
+          "emitted": 254
+        },
+        {
+          "sourceVertex": 255,
+          "backSeam": false,
+          "emitted": 255
+        },
+        {
+          "sourceVertex": 256,
+          "backSeam": false,
+          "emitted": 256
+        },
+        {
+          "sourceVertex": 257,
+          "backSeam": false,
+          "emitted": 257
+        },
+        {
+          "sourceVertex": 258,
+          "backSeam": false,
+          "emitted": 258
+        },
+        {
+          "sourceVertex": 259,
+          "backSeam": false,
+          "emitted": 259
+        },
+        {
+          "sourceVertex": 260,
+          "backSeam": false,
+          "emitted": 260
+        },
+        {
+          "sourceVertex": 261,
+          "backSeam": false,
+          "emitted": 261
+        },
+        {
+          "sourceVertex": 262,
+          "backSeam": false,
+          "emitted": 262
+        },
+        {
+          "sourceVertex": 263,
+          "backSeam": false,
+          "emitted": 263
+        },
+        {
+          "sourceVertex": 264,
+          "backSeam": false,
+          "emitted": 264
+        },
+        {
+          "sourceVertex": 265,
+          "backSeam": false,
+          "emitted": 265
+        },
+        {
+          "sourceVertex": 266,
+          "backSeam": false,
+          "emitted": 266
+        },
+        {
+          "sourceVertex": 267,
+          "backSeam": false,
+          "emitted": 267
+        },
+        {
+          "sourceVertex": 268,
+          "backSeam": false,
+          "emitted": 268
+        },
+        {
+          "sourceVertex": 269,
+          "backSeam": false,
+          "emitted": 269
+        },
+        {
+          "sourceVertex": 270,
+          "backSeam": false,
+          "emitted": 270
+        },
+        {
+          "sourceVertex": 271,
+          "backSeam": false,
+          "emitted": 271
+        },
+        {
+          "sourceVertex": 272,
+          "backSeam": false,
+          "emitted": 272
+        },
+        {
+          "sourceVertex": 273,
+          "backSeam": false,
+          "emitted": 273
+        },
+        {
+          "sourceVertex": 274,
+          "backSeam": false,
+          "emitted": 274
+        },
+        {
+          "sourceVertex": 275,
+          "backSeam": false,
+          "emitted": 275
+        },
+        {
+          "sourceVertex": 276,
+          "backSeam": false,
+          "emitted": 276
+        },
+        {
+          "sourceVertex": 277,
+          "backSeam": false,
+          "emitted": 277
+        },
+        {
+          "sourceVertex": 278,
+          "backSeam": false,
+          "emitted": 278
+        },
+        {
+          "sourceVertex": 279,
+          "backSeam": false,
+          "emitted": 279
+        },
+        {
+          "sourceVertex": 280,
+          "backSeam": false,
+          "emitted": 280
+        },
+        {
+          "sourceVertex": 281,
+          "backSeam": false,
+          "emitted": 281
+        },
+        {
+          "sourceVertex": 282,
+          "backSeam": false,
+          "emitted": 282
+        },
+        {
+          "sourceVertex": 283,
+          "backSeam": false,
+          "emitted": 283
+        },
+        {
+          "sourceVertex": 284,
+          "backSeam": false,
+          "emitted": 284
+        },
+        {
+          "sourceVertex": 285,
+          "backSeam": false,
+          "emitted": 285
+        },
+        {
+          "sourceVertex": 286,
+          "backSeam": false,
+          "emitted": 286
+        },
+        {
+          "sourceVertex": 287,
+          "backSeam": false,
+          "emitted": 287
+        },
+        {
+          "sourceVertex": 288,
+          "backSeam": false,
+          "emitted": 288
+        },
+        {
+          "sourceVertex": 289,
+          "backSeam": false,
+          "emitted": 289
+        },
+        {
+          "sourceVertex": 290,
+          "backSeam": false,
+          "emitted": 290
+        },
+        {
+          "sourceVertex": 291,
+          "backSeam": false,
+          "emitted": 291
+        },
+        {
+          "sourceVertex": 292,
+          "backSeam": false,
+          "emitted": 292
+        },
+        {
+          "sourceVertex": 293,
+          "backSeam": false,
+          "emitted": 293
+        },
+        {
+          "sourceVertex": 294,
+          "backSeam": false,
+          "emitted": 294
+        },
+        {
+          "sourceVertex": 295,
+          "backSeam": false,
+          "emitted": 295
+        },
+        {
+          "sourceVertex": 296,
+          "backSeam": false,
+          "emitted": 296
+        },
+        {
+          "sourceVertex": 297,
+          "backSeam": false,
+          "emitted": 297
+        },
+        {
+          "sourceVertex": 298,
+          "backSeam": false,
+          "emitted": 298
+        },
+        {
+          "sourceVertex": 299,
+          "backSeam": false,
+          "emitted": 299
+        },
+        {
+          "sourceVertex": 300,
+          "backSeam": false,
+          "emitted": 300
+        },
+        {
+          "sourceVertex": 301,
+          "backSeam": false,
+          "emitted": 301
+        },
+        {
+          "sourceVertex": 302,
+          "backSeam": false,
+          "emitted": 302
+        },
+        {
+          "sourceVertex": 303,
+          "backSeam": false,
+          "emitted": 303
+        },
+        {
+          "sourceVertex": 304,
+          "backSeam": false,
+          "emitted": 304
+        },
+        {
+          "sourceVertex": 305,
+          "backSeam": false,
+          "emitted": 305
+        },
+        {
+          "sourceVertex": 306,
+          "backSeam": false,
+          "emitted": 306
+        },
+        {
+          "sourceVertex": 307,
+          "backSeam": false,
+          "emitted": 307
+        },
+        {
+          "sourceVertex": 308,
+          "backSeam": false,
+          "emitted": 308
+        },
+        {
+          "sourceVertex": 309,
+          "backSeam": false,
+          "emitted": 309
+        },
+        {
+          "sourceVertex": 310,
+          "backSeam": false,
+          "emitted": 310
+        },
+        {
+          "sourceVertex": 311,
+          "backSeam": false,
+          "emitted": 311
+        },
+        {
+          "sourceVertex": 312,
+          "backSeam": false,
+          "emitted": 312
+        },
+        {
+          "sourceVertex": 313,
+          "backSeam": false,
+          "emitted": 313
+        },
+        {
+          "sourceVertex": 314,
+          "backSeam": false,
+          "emitted": 314
+        },
+        {
+          "sourceVertex": 315,
+          "backSeam": false,
+          "emitted": 315
+        },
+        {
+          "sourceVertex": 316,
+          "backSeam": false,
+          "emitted": 316
+        },
+        {
+          "sourceVertex": 317,
+          "backSeam": false,
+          "emitted": 317
+        },
+        {
+          "sourceVertex": 318,
+          "backSeam": false,
+          "emitted": 318
+        },
+        {
+          "sourceVertex": 319,
+          "backSeam": false,
+          "emitted": 319
+        },
+        {
+          "sourceVertex": 320,
+          "backSeam": false,
+          "emitted": 320
+        },
+        {
+          "sourceVertex": 321,
+          "backSeam": false,
+          "emitted": 321
+        },
+        {
+          "sourceVertex": 322,
+          "backSeam": false,
+          "emitted": 322
+        },
+        {
+          "sourceVertex": 323,
+          "backSeam": false,
+          "emitted": 323
+        },
+        {
+          "sourceVertex": 324,
+          "backSeam": false,
+          "emitted": 324
+        },
+        {
+          "sourceVertex": 325,
+          "backSeam": false,
+          "emitted": 325
+        },
+        {
+          "sourceVertex": 326,
+          "backSeam": false,
+          "emitted": 326
+        },
+        {
+          "sourceVertex": 327,
+          "backSeam": false,
+          "emitted": 327
+        },
+        {
+          "sourceVertex": 328,
+          "backSeam": false,
+          "emitted": 328
+        },
+        {
+          "sourceVertex": 329,
+          "backSeam": false,
+          "emitted": 329
+        },
+        {
+          "sourceVertex": 330,
+          "backSeam": false,
+          "emitted": 330
+        },
+        {
+          "sourceVertex": 331,
+          "backSeam": false,
+          "emitted": 331
+        },
+        {
+          "sourceVertex": 332,
+          "backSeam": false,
+          "emitted": 332
+        },
+        {
+          "sourceVertex": 333,
+          "backSeam": false,
+          "emitted": 333
+        },
+        {
+          "sourceVertex": 334,
+          "backSeam": false,
+          "emitted": 334
+        },
+        {
+          "sourceVertex": 335,
+          "backSeam": false,
+          "emitted": 335
+        },
+        {
+          "sourceVertex": 336,
+          "backSeam": false,
+          "emitted": 336
+        },
+        {
+          "sourceVertex": 337,
+          "backSeam": false,
+          "emitted": 337
+        },
+        {
+          "sourceVertex": 338,
+          "backSeam": false,
+          "emitted": 338
+        },
+        {
+          "sourceVertex": 339,
+          "backSeam": false,
+          "emitted": 339
+        },
+        {
+          "sourceVertex": 340,
+          "backSeam": false,
+          "emitted": 340
+        },
+        {
+          "sourceVertex": 341,
+          "backSeam": false,
+          "emitted": 341
+        },
+        {
+          "sourceVertex": 342,
+          "backSeam": false,
+          "emitted": 342
+        },
+        {
+          "sourceVertex": 343,
+          "backSeam": false,
+          "emitted": 343
+        },
+        {
+          "sourceVertex": 344,
+          "backSeam": false,
+          "emitted": 344
+        },
+        {
+          "sourceVertex": 345,
+          "backSeam": false,
+          "emitted": 345
+        },
+        {
+          "sourceVertex": 346,
+          "backSeam": false,
+          "emitted": 346
+        },
+        {
+          "sourceVertex": 347,
+          "backSeam": false,
+          "emitted": 347
+        },
+        {
+          "sourceVertex": 348,
+          "backSeam": false,
+          "emitted": 348
+        },
+        {
+          "sourceVertex": 349,
+          "backSeam": false,
+          "emitted": 349
+        },
+        {
+          "sourceVertex": 350,
+          "backSeam": false,
+          "emitted": 350
+        },
+        {
+          "sourceVertex": 351,
+          "backSeam": false,
+          "emitted": 351
+        },
+        {
+          "sourceVertex": 352,
+          "backSeam": false,
+          "emitted": 352
+        },
+        {
+          "sourceVertex": 353,
+          "backSeam": false,
+          "emitted": 353
+        },
+        {
+          "sourceVertex": 354,
+          "backSeam": false,
+          "emitted": 354
+        },
+        {
+          "sourceVertex": 355,
+          "backSeam": false,
+          "emitted": 355
+        },
+        {
+          "sourceVertex": 356,
+          "backSeam": false,
+          "emitted": 356
+        },
+        {
+          "sourceVertex": 357,
+          "backSeam": false,
+          "emitted": 357
+        },
+        {
+          "sourceVertex": 358,
+          "backSeam": false,
+          "emitted": 358
+        },
+        {
+          "sourceVertex": 359,
+          "backSeam": false,
+          "emitted": 359
+        },
+        {
+          "sourceVertex": 360,
+          "backSeam": false,
+          "emitted": 360
+        },
+        {
+          "sourceVertex": 361,
+          "backSeam": false,
+          "emitted": 361
+        },
+        {
+          "sourceVertex": 362,
+          "backSeam": false,
+          "emitted": 362
+        },
+        {
+          "sourceVertex": 363,
+          "backSeam": false,
+          "emitted": 363
+        },
+        {
+          "sourceVertex": 364,
+          "backSeam": false,
+          "emitted": 364
+        },
+        {
+          "sourceVertex": 365,
+          "backSeam": false,
+          "emitted": 365
+        },
+        {
+          "sourceVertex": 366,
+          "backSeam": false,
+          "emitted": 366
+        },
+        {
+          "sourceVertex": 367,
+          "backSeam": false,
+          "emitted": 367
+        },
+        {
+          "sourceVertex": 368,
+          "backSeam": false,
+          "emitted": 368
+        },
+        {
+          "sourceVertex": 369,
+          "backSeam": false,
+          "emitted": 369
+        },
+        {
+          "sourceVertex": 370,
+          "backSeam": false,
+          "emitted": 370
+        },
+        {
+          "sourceVertex": 371,
+          "backSeam": false,
+          "emitted": 371
+        },
+        {
+          "sourceVertex": 372,
+          "backSeam": false,
+          "emitted": 372
+        },
+        {
+          "sourceVertex": 373,
+          "backSeam": false,
+          "emitted": 373
+        },
+        {
+          "sourceVertex": 374,
+          "backSeam": false,
+          "emitted": 374
+        },
+        {
+          "sourceVertex": 375,
+          "backSeam": false,
+          "emitted": 375
+        },
+        {
+          "sourceVertex": 376,
+          "backSeam": false,
+          "emitted": 376
+        },
+        {
+          "sourceVertex": 377,
+          "backSeam": false,
+          "emitted": 377
+        },
+        {
+          "sourceVertex": 378,
+          "backSeam": false,
+          "emitted": 378
+        },
+        {
+          "sourceVertex": 379,
+          "backSeam": false,
+          "emitted": 379
+        },
+        {
+          "sourceVertex": 380,
+          "backSeam": false,
+          "emitted": 380
+        },
+        {
+          "sourceVertex": 381,
+          "backSeam": false,
+          "emitted": 381
+        },
+        {
+          "sourceVertex": 382,
+          "backSeam": false,
+          "emitted": 382
+        },
+        {
+          "sourceVertex": 383,
+          "backSeam": false,
+          "emitted": 383
+        },
+        {
+          "sourceVertex": 384,
+          "backSeam": false,
+          "emitted": 384
+        },
+        {
+          "sourceVertex": 385,
+          "backSeam": false,
+          "emitted": 385
+        },
+        {
+          "sourceVertex": 386,
+          "backSeam": false,
+          "emitted": 386
+        },
+        {
+          "sourceVertex": 387,
+          "backSeam": false,
+          "emitted": 387
+        },
+        {
+          "sourceVertex": 388,
+          "backSeam": false,
+          "emitted": 388
+        },
+        {
+          "sourceVertex": 389,
+          "backSeam": false,
+          "emitted": 389
+        },
+        {
+          "sourceVertex": 390,
+          "backSeam": false,
+          "emitted": 390
+        },
+        {
+          "sourceVertex": 391,
+          "backSeam": false,
+          "emitted": 391
+        },
+        {
+          "sourceVertex": 392,
+          "backSeam": false,
+          "emitted": 392
+        },
+        {
+          "sourceVertex": 393,
+          "backSeam": false,
+          "emitted": 393
+        },
+        {
+          "sourceVertex": 394,
+          "backSeam": false,
+          "emitted": 394
+        },
+        {
+          "sourceVertex": 395,
+          "backSeam": false,
+          "emitted": 395
+        },
+        {
+          "sourceVertex": 396,
+          "backSeam": false,
+          "emitted": 396
+        },
+        {
+          "sourceVertex": 397,
+          "backSeam": false,
+          "emitted": 397
+        },
+        {
+          "sourceVertex": 398,
+          "backSeam": false,
+          "emitted": 398
+        },
+        {
+          "sourceVertex": 399,
+          "backSeam": false,
+          "emitted": 399
+        },
+        {
+          "sourceVertex": 400,
+          "backSeam": false,
+          "emitted": 400
+        },
+        {
+          "sourceVertex": 401,
+          "backSeam": false,
+          "emitted": 401
+        },
+        {
+          "sourceVertex": 402,
+          "backSeam": false,
+          "emitted": 402
+        },
+        {
+          "sourceVertex": 403,
+          "backSeam": false,
+          "emitted": 403
+        },
+        {
+          "sourceVertex": 404,
+          "backSeam": false,
+          "emitted": 404
+        },
+        {
+          "sourceVertex": 405,
+          "backSeam": false,
+          "emitted": 405
+        },
+        {
+          "sourceVertex": 406,
+          "backSeam": false,
+          "emitted": 406
+        },
+        {
+          "sourceVertex": 407,
+          "backSeam": false,
+          "emitted": 407
+        },
+        {
+          "sourceVertex": 408,
+          "backSeam": false,
+          "emitted": 408
+        },
+        {
+          "sourceVertex": 409,
+          "backSeam": false,
+          "emitted": 409
+        },
+        {
+          "sourceVertex": 410,
+          "backSeam": false,
+          "emitted": 410
+        },
+        {
+          "sourceVertex": 411,
+          "backSeam": false,
+          "emitted": 411
+        },
+        {
+          "sourceVertex": 412,
+          "backSeam": false,
+          "emitted": 412
+        },
+        {
+          "sourceVertex": 413,
+          "backSeam": false,
+          "emitted": 413
+        },
+        {
+          "sourceVertex": 414,
+          "backSeam": false,
+          "emitted": 414
+        },
+        {
+          "sourceVertex": 415,
+          "backSeam": false,
+          "emitted": 415
+        },
+        {
+          "sourceVertex": 416,
+          "backSeam": false,
+          "emitted": 416
+        },
+        {
+          "sourceVertex": 417,
+          "backSeam": false,
+          "emitted": 417
+        },
+        {
+          "sourceVertex": 418,
+          "backSeam": false,
+          "emitted": 418
+        },
+        {
+          "sourceVertex": 419,
+          "backSeam": false,
+          "emitted": 419
+        },
+        {
+          "sourceVertex": 420,
+          "backSeam": false,
+          "emitted": 420
+        },
+        {
+          "sourceVertex": 421,
+          "backSeam": false,
+          "emitted": 421
+        },
+        {
+          "sourceVertex": 422,
+          "backSeam": false,
+          "emitted": 422
+        },
+        {
+          "sourceVertex": 423,
+          "backSeam": false,
+          "emitted": 423
+        },
+        {
+          "sourceVertex": 424,
+          "backSeam": false,
+          "emitted": 424
+        },
+        {
+          "sourceVertex": 425,
+          "backSeam": false,
+          "emitted": 425
+        },
+        {
+          "sourceVertex": 426,
+          "backSeam": false,
+          "emitted": 426
+        },
+        {
+          "sourceVertex": 427,
+          "backSeam": false,
+          "emitted": 427
+        },
+        {
+          "sourceVertex": 428,
+          "backSeam": false,
+          "emitted": 428
+        },
+        {
+          "sourceVertex": 429,
+          "backSeam": false,
+          "emitted": 429
+        },
+        {
+          "sourceVertex": 430,
+          "backSeam": false,
+          "emitted": 430
+        },
+        {
+          "sourceVertex": 431,
+          "backSeam": false,
+          "emitted": 431
+        },
+        {
+          "sourceVertex": 432,
+          "backSeam": false,
+          "emitted": 432
+        },
+        {
+          "sourceVertex": 433,
+          "backSeam": false,
+          "emitted": 433
+        },
+        {
+          "sourceVertex": 434,
+          "backSeam": false,
+          "emitted": 434
+        },
+        {
+          "sourceVertex": 435,
+          "backSeam": false,
+          "emitted": 435
+        },
+        {
+          "sourceVertex": 436,
+          "backSeam": false,
+          "emitted": 436
+        },
+        {
+          "sourceVertex": 437,
+          "backSeam": false,
+          "emitted": 437
+        },
+        {
+          "sourceVertex": 438,
+          "backSeam": false,
+          "emitted": 438
+        },
+        {
+          "sourceVertex": 439,
+          "backSeam": false,
+          "emitted": 439
+        },
+        {
+          "sourceVertex": 440,
+          "backSeam": false,
+          "emitted": 440
+        },
+        {
+          "sourceVertex": 441,
+          "backSeam": false,
+          "emitted": 441
+        },
+        {
+          "sourceVertex": 442,
+          "backSeam": false,
+          "emitted": 442
+        },
+        {
+          "sourceVertex": 443,
+          "backSeam": false,
+          "emitted": 443
+        },
+        {
+          "sourceVertex": 444,
+          "backSeam": false,
+          "emitted": 444
+        },
+        {
+          "sourceVertex": 445,
+          "backSeam": false,
+          "emitted": 445
+        },
+        {
+          "sourceVertex": 446,
+          "backSeam": false,
+          "emitted": 446
+        },
+        {
+          "sourceVertex": 447,
+          "backSeam": false,
+          "emitted": 447
+        },
+        {
+          "sourceVertex": 448,
+          "backSeam": false,
+          "emitted": 448
+        },
+        {
+          "sourceVertex": 449,
+          "backSeam": false,
+          "emitted": 449
+        },
+        {
+          "sourceVertex": 450,
+          "backSeam": false,
+          "emitted": 450
+        },
+        {
+          "sourceVertex": 451,
+          "backSeam": false,
+          "emitted": 451
+        },
+        {
+          "sourceVertex": 452,
+          "backSeam": false,
+          "emitted": 452
+        },
+        {
+          "sourceVertex": 453,
+          "backSeam": false,
+          "emitted": 453
+        },
+        {
+          "sourceVertex": 454,
+          "backSeam": false,
+          "emitted": 454
+        },
+        {
+          "sourceVertex": 455,
+          "backSeam": false,
+          "emitted": 455
+        },
+        {
+          "sourceVertex": 456,
+          "backSeam": false,
+          "emitted": 456
+        },
+        {
+          "sourceVertex": 457,
+          "backSeam": false,
+          "emitted": 457
+        },
+        {
+          "sourceVertex": 458,
+          "backSeam": false,
+          "emitted": 458
+        },
+        {
+          "sourceVertex": 459,
+          "backSeam": false,
+          "emitted": 459
+        },
+        {
+          "sourceVertex": 460,
+          "backSeam": false,
+          "emitted": 460
+        },
+        {
+          "sourceVertex": 461,
+          "backSeam": false,
+          "emitted": 461
+        },
+        {
+          "sourceVertex": 462,
+          "backSeam": false,
+          "emitted": 462
+        },
+        {
+          "sourceVertex": 463,
+          "backSeam": false,
+          "emitted": 463
+        },
+        {
+          "sourceVertex": 464,
+          "backSeam": false,
+          "emitted": 464
+        },
+        {
+          "sourceVertex": 465,
+          "backSeam": false,
+          "emitted": 465
+        },
+        {
+          "sourceVertex": 466,
+          "backSeam": false,
+          "emitted": 466
+        },
+        {
+          "sourceVertex": 467,
+          "backSeam": false,
+          "emitted": 467
+        },
+        {
+          "sourceVertex": 468,
+          "backSeam": false,
+          "emitted": 468
+        },
+        {
+          "sourceVertex": 469,
+          "backSeam": false,
+          "emitted": 469
+        },
+        {
+          "sourceVertex": 470,
+          "backSeam": false,
+          "emitted": 470
+        },
+        {
+          "sourceVertex": 471,
+          "backSeam": false,
+          "emitted": 471
+        },
+        {
+          "sourceVertex": 472,
+          "backSeam": false,
+          "emitted": 472
+        },
+        {
+          "sourceVertex": 473,
+          "backSeam": false,
+          "emitted": 473
+        },
+        {
+          "sourceVertex": 474,
+          "backSeam": false,
+          "emitted": 474
+        },
+        {
+          "sourceVertex": 475,
+          "backSeam": false,
+          "emitted": 475
+        },
+        {
+          "sourceVertex": 476,
+          "backSeam": false,
+          "emitted": 476
+        },
+        {
+          "sourceVertex": 477,
+          "backSeam": false,
+          "emitted": 477
+        },
+        {
+          "sourceVertex": 478,
+          "backSeam": false,
+          "emitted": 478
+        },
+        {
+          "sourceVertex": 479,
+          "backSeam": false,
+          "emitted": 479
+        },
+        {
+          "sourceVertex": 480,
+          "backSeam": false,
+          "emitted": 480
+        },
+        {
+          "sourceVertex": 481,
+          "backSeam": false,
+          "emitted": 481
+        },
+        {
+          "sourceVertex": 482,
+          "backSeam": false,
+          "emitted": 482
+        },
+        {
+          "sourceVertex": 483,
+          "backSeam": false,
+          "emitted": 483
+        },
+        {
+          "sourceVertex": 484,
+          "backSeam": false,
+          "emitted": 484
+        },
+        {
+          "sourceVertex": 485,
+          "backSeam": false,
+          "emitted": 485
+        },
+        {
+          "sourceVertex": 486,
+          "backSeam": false,
+          "emitted": 486
+        },
+        {
+          "sourceVertex": 487,
+          "backSeam": false,
+          "emitted": 487
+        },
+        {
+          "sourceVertex": 488,
+          "backSeam": false,
+          "emitted": 488
+        },
+        {
+          "sourceVertex": 489,
+          "backSeam": false,
+          "emitted": 489
+        },
+        {
+          "sourceVertex": 490,
+          "backSeam": false,
+          "emitted": 490
+        },
+        {
+          "sourceVertex": 491,
+          "backSeam": false,
+          "emitted": 491
+        },
+        {
+          "sourceVertex": 492,
+          "backSeam": false,
+          "emitted": 492
+        },
+        {
+          "sourceVertex": 493,
+          "backSeam": false,
+          "emitted": 493
+        },
+        {
+          "sourceVertex": 494,
+          "backSeam": false,
+          "emitted": 494
+        },
+        {
+          "sourceVertex": 495,
+          "backSeam": false,
+          "emitted": 495
+        },
+        {
+          "sourceVertex": 496,
+          "backSeam": false,
+          "emitted": 496
+        },
+        {
+          "sourceVertex": 497,
+          "backSeam": false,
+          "emitted": 497
+        },
+        {
+          "sourceVertex": 498,
+          "backSeam": false,
+          "emitted": 498
+        },
+        {
+          "sourceVertex": 499,
+          "backSeam": false,
+          "emitted": 499
+        },
+        {
+          "sourceVertex": 500,
+          "backSeam": false,
+          "emitted": 500
+        },
+        {
+          "sourceVertex": 501,
+          "backSeam": false,
+          "emitted": 501
+        },
+        {
+          "sourceVertex": 502,
+          "backSeam": false,
+          "emitted": 502
+        },
+        {
+          "sourceVertex": 503,
+          "backSeam": false,
+          "emitted": 503
+        },
+        {
+          "sourceVertex": 504,
+          "backSeam": false,
+          "emitted": 504
+        },
+        {
+          "sourceVertex": 505,
+          "backSeam": false,
+          "emitted": 505
+        },
+        {
+          "sourceVertex": 506,
+          "backSeam": false,
+          "emitted": 506
+        },
+        {
+          "sourceVertex": 507,
+          "backSeam": false,
+          "emitted": 507
+        },
+        {
+          "sourceVertex": 508,
+          "backSeam": false,
+          "emitted": 508
+        },
+        {
+          "sourceVertex": 509,
+          "backSeam": false,
+          "emitted": 509
+        },
+        {
+          "sourceVertex": 510,
+          "backSeam": false,
+          "emitted": 510
+        },
+        {
+          "sourceVertex": 511,
+          "backSeam": false,
+          "emitted": 511
+        },
+        {
+          "sourceVertex": 512,
+          "backSeam": false,
+          "emitted": 512
+        },
+        {
+          "sourceVertex": 513,
+          "backSeam": false,
+          "emitted": 513
+        },
+        {
+          "sourceVertex": 514,
+          "backSeam": false,
+          "emitted": 514
+        },
+        {
+          "sourceVertex": 515,
+          "backSeam": false,
+          "emitted": 515
+        },
+        {
+          "sourceVertex": 516,
+          "backSeam": false,
+          "emitted": 516
+        },
+        {
+          "sourceVertex": 517,
+          "backSeam": false,
+          "emitted": 517
+        },
+        {
+          "sourceVertex": 518,
+          "backSeam": false,
+          "emitted": 518
+        },
+        {
+          "sourceVertex": 519,
+          "backSeam": false,
+          "emitted": 519
+        },
+        {
+          "sourceVertex": 520,
+          "backSeam": false,
+          "emitted": 520
+        },
+        {
+          "sourceVertex": 521,
+          "backSeam": false,
+          "emitted": 521
+        },
+        {
+          "sourceVertex": 522,
+          "backSeam": false,
+          "emitted": 522
+        },
+        {
+          "sourceVertex": 523,
+          "backSeam": false,
+          "emitted": 523
+        },
+        {
+          "sourceVertex": 524,
+          "backSeam": false,
+          "emitted": 524
+        },
+        {
+          "sourceVertex": 525,
+          "backSeam": false,
+          "emitted": 525
+        },
+        {
+          "sourceVertex": 526,
+          "backSeam": false,
+          "emitted": 526
+        },
+        {
+          "sourceVertex": 527,
+          "backSeam": false,
+          "emitted": 527
+        },
+        {
+          "sourceVertex": 528,
+          "backSeam": false,
+          "emitted": 528
+        },
+        {
+          "sourceVertex": 529,
+          "backSeam": false,
+          "emitted": 529
+        },
+        {
+          "sourceVertex": 530,
+          "backSeam": false,
+          "emitted": 530
+        },
+        {
+          "sourceVertex": 531,
+          "backSeam": false,
+          "emitted": 531
+        },
+        {
+          "sourceVertex": 532,
+          "backSeam": false,
+          "emitted": 532
+        },
+        {
+          "sourceVertex": 533,
+          "backSeam": false,
+          "emitted": 533
+        },
+        {
+          "sourceVertex": 534,
+          "backSeam": false,
+          "emitted": 534
+        },
+        {
+          "sourceVertex": 535,
+          "backSeam": false,
+          "emitted": 535
+        },
+        {
+          "sourceVertex": 536,
+          "backSeam": false,
+          "emitted": 536
+        },
+        {
+          "sourceVertex": 537,
+          "backSeam": false,
+          "emitted": 537
+        },
+        {
+          "sourceVertex": 538,
+          "backSeam": false,
+          "emitted": 538
+        },
+        {
+          "sourceVertex": 539,
+          "backSeam": false,
+          "emitted": 539
+        },
+        {
+          "sourceVertex": 540,
+          "backSeam": false,
+          "emitted": 540
+        },
+        {
+          "sourceVertex": 541,
+          "backSeam": false,
+          "emitted": 541
+        },
+        {
+          "sourceVertex": 542,
+          "backSeam": false,
+          "emitted": 542
+        },
+        {
+          "sourceVertex": 543,
+          "backSeam": false,
+          "emitted": 543
+        },
+        {
+          "sourceVertex": 544,
+          "backSeam": false,
+          "emitted": 544
+        },
+        {
+          "sourceVertex": 545,
+          "backSeam": false,
+          "emitted": 545
+        },
+        {
+          "sourceVertex": 546,
+          "backSeam": false,
+          "emitted": 546
+        },
+        {
+          "sourceVertex": 547,
+          "backSeam": false,
+          "emitted": 547
+        },
+        {
+          "sourceVertex": 548,
+          "backSeam": false,
+          "emitted": 548
+        },
+        {
+          "sourceVertex": 549,
+          "backSeam": false,
+          "emitted": 549
+        },
+        {
+          "sourceVertex": 550,
+          "backSeam": false,
+          "emitted": 550
+        },
+        {
+          "sourceVertex": 551,
+          "backSeam": false,
+          "emitted": 551
+        },
+        {
+          "sourceVertex": 552,
+          "backSeam": false,
+          "emitted": 552
+        },
+        {
+          "sourceVertex": 553,
+          "backSeam": false,
+          "emitted": 553
+        },
+        {
+          "sourceVertex": 554,
+          "backSeam": false,
+          "emitted": 554
+        },
+        {
+          "sourceVertex": 555,
+          "backSeam": false,
+          "emitted": 555
+        },
+        {
+          "sourceVertex": 556,
+          "backSeam": false,
+          "emitted": 556
+        },
+        {
+          "sourceVertex": 557,
+          "backSeam": false,
+          "emitted": 557
+        },
+        {
+          "sourceVertex": 558,
+          "backSeam": false,
+          "emitted": 558
+        },
+        {
+          "sourceVertex": 559,
+          "backSeam": false,
+          "emitted": 559
+        },
+        {
+          "sourceVertex": 560,
+          "backSeam": false,
+          "emitted": 560
+        },
+        {
+          "sourceVertex": 561,
+          "backSeam": false,
+          "emitted": 561
+        },
+        {
+          "sourceVertex": 562,
+          "backSeam": false,
+          "emitted": 562
+        },
+        {
+          "sourceVertex": 563,
+          "backSeam": false,
+          "emitted": 563
+        },
+        {
+          "sourceVertex": 564,
+          "backSeam": false,
+          "emitted": 564
+        },
+        {
+          "sourceVertex": 565,
+          "backSeam": false,
+          "emitted": 565
+        },
+        {
+          "sourceVertex": 566,
+          "backSeam": false,
+          "emitted": 566
+        },
+        {
+          "sourceVertex": 567,
+          "backSeam": false,
+          "emitted": 567
+        },
+        {
+          "sourceVertex": 568,
+          "backSeam": false,
+          "emitted": 568
+        },
+        {
+          "sourceVertex": 569,
+          "backSeam": false,
+          "emitted": 569
+        },
+        {
+          "sourceVertex": 570,
+          "backSeam": false,
+          "emitted": 570
+        },
+        {
+          "sourceVertex": 571,
+          "backSeam": false,
+          "emitted": 571
+        },
+        {
+          "sourceVertex": 572,
+          "backSeam": false,
+          "emitted": 572
+        },
+        {
+          "sourceVertex": 573,
+          "backSeam": false,
+          "emitted": 573
+        },
+        {
+          "sourceVertex": 574,
+          "backSeam": false,
+          "emitted": 574
+        },
+        {
+          "sourceVertex": 575,
+          "backSeam": false,
+          "emitted": 575
+        },
+        {
+          "sourceVertex": 576,
+          "backSeam": false,
+          "emitted": 576
+        },
+        {
+          "sourceVertex": 577,
+          "backSeam": false,
+          "emitted": 577
+        },
+        {
+          "sourceVertex": 578,
+          "backSeam": false,
+          "emitted": 578
+        },
+        {
+          "sourceVertex": 579,
+          "backSeam": false,
+          "emitted": 579
+        },
+        {
+          "sourceVertex": 580,
+          "backSeam": false,
+          "emitted": 580
+        },
+        {
+          "sourceVertex": 581,
+          "backSeam": false,
+          "emitted": 581
+        },
+        {
+          "sourceVertex": 582,
+          "backSeam": false,
+          "emitted": 582
+        },
+        {
+          "sourceVertex": 583,
+          "backSeam": false,
+          "emitted": 583
+        },
+        {
+          "sourceVertex": 584,
+          "backSeam": false,
+          "emitted": 584
+        },
+        {
+          "sourceVertex": 585,
+          "backSeam": false,
+          "emitted": 585
+        },
+        {
+          "sourceVertex": 586,
+          "backSeam": false,
+          "emitted": 586
+        },
+        {
+          "sourceVertex": 587,
+          "backSeam": false,
+          "emitted": 587
+        },
+        {
+          "sourceVertex": 588,
+          "backSeam": false,
+          "emitted": 588
+        },
+        {
+          "sourceVertex": 589,
+          "backSeam": false,
+          "emitted": 589
+        },
+        {
+          "sourceVertex": 590,
+          "backSeam": false,
+          "emitted": 590
+        },
+        {
+          "sourceVertex": 591,
+          "backSeam": false,
+          "emitted": 591
+        },
+        {
+          "sourceVertex": 592,
+          "backSeam": false,
+          "emitted": 592
+        },
+        {
+          "sourceVertex": 593,
+          "backSeam": false,
+          "emitted": 593
+        },
+        {
+          "sourceVertex": 594,
+          "backSeam": false,
+          "emitted": 594
+        },
+        {
+          "sourceVertex": 595,
+          "backSeam": false,
+          "emitted": 595
+        },
+        {
+          "sourceVertex": 596,
+          "backSeam": false,
+          "emitted": 596
+        },
+        {
+          "sourceVertex": 597,
+          "backSeam": false,
+          "emitted": 597
+        },
+        {
+          "sourceVertex": 598,
+          "backSeam": false,
+          "emitted": 598
+        },
+        {
+          "sourceVertex": 599,
+          "backSeam": false,
+          "emitted": 599
+        },
+        {
+          "sourceVertex": 600,
+          "backSeam": false,
+          "emitted": 600
+        },
+        {
+          "sourceVertex": 601,
+          "backSeam": false,
+          "emitted": 601
+        },
+        {
+          "sourceVertex": 602,
+          "backSeam": false,
+          "emitted": 602
+        },
+        {
+          "sourceVertex": 603,
+          "backSeam": false,
+          "emitted": 603
+        },
+        {
+          "sourceVertex": 604,
+          "backSeam": false,
+          "emitted": 604
+        },
+        {
+          "sourceVertex": 605,
+          "backSeam": false,
+          "emitted": 605
+        },
+        {
+          "sourceVertex": 606,
+          "backSeam": false,
+          "emitted": 606
+        },
+        {
+          "sourceVertex": 607,
+          "backSeam": false,
+          "emitted": 607
+        },
+        {
+          "sourceVertex": 608,
+          "backSeam": false,
+          "emitted": 608
+        },
+        {
+          "sourceVertex": 609,
+          "backSeam": false,
+          "emitted": 609
+        },
+        {
+          "sourceVertex": 610,
+          "backSeam": false,
+          "emitted": 610
+        },
+        {
+          "sourceVertex": 611,
+          "backSeam": false,
+          "emitted": 611
+        },
+        {
+          "sourceVertex": 612,
+          "backSeam": false,
+          "emitted": 612
+        },
+        {
+          "sourceVertex": 613,
+          "backSeam": false,
+          "emitted": 613
+        },
+        {
+          "sourceVertex": 614,
+          "backSeam": false,
+          "emitted": 614
+        },
+        {
+          "sourceVertex": 615,
+          "backSeam": false,
+          "emitted": 615
+        },
+        {
+          "sourceVertex": 616,
+          "backSeam": false,
+          "emitted": 616
+        },
+        {
+          "sourceVertex": 617,
+          "backSeam": false,
+          "emitted": 617
+        },
+        {
+          "sourceVertex": 618,
+          "backSeam": false,
+          "emitted": 618
+        },
+        {
+          "sourceVertex": 619,
+          "backSeam": false,
+          "emitted": 619
+        },
+        {
+          "sourceVertex": 620,
+          "backSeam": false,
+          "emitted": 620
+        },
+        {
+          "sourceVertex": 621,
+          "backSeam": false,
+          "emitted": 621
+        },
+        {
+          "sourceVertex": 622,
+          "backSeam": false,
+          "emitted": 622
+        },
+        {
+          "sourceVertex": 623,
+          "backSeam": false,
+          "emitted": 623
+        },
+        {
+          "sourceVertex": 624,
+          "backSeam": false,
+          "emitted": 624
+        },
+        {
+          "sourceVertex": 625,
+          "backSeam": false,
+          "emitted": 625
+        },
+        {
+          "sourceVertex": 626,
+          "backSeam": false,
+          "emitted": 626
+        },
+        {
+          "sourceVertex": 627,
+          "backSeam": false,
+          "emitted": 627
+        },
+        {
+          "sourceVertex": 628,
+          "backSeam": false,
+          "emitted": 628
+        },
+        {
+          "sourceVertex": 629,
+          "backSeam": false,
+          "emitted": 629
+        },
+        {
+          "sourceVertex": 630,
+          "backSeam": false,
+          "emitted": 630
+        },
+        {
+          "sourceVertex": 631,
+          "backSeam": false,
+          "emitted": 631
+        },
+        {
+          "sourceVertex": 632,
+          "backSeam": false,
+          "emitted": 632
+        },
+        {
+          "sourceVertex": 633,
+          "backSeam": false,
+          "emitted": 633
+        },
+        {
+          "sourceVertex": 634,
+          "backSeam": false,
+          "emitted": 634
+        },
+        {
+          "sourceVertex": 635,
+          "backSeam": false,
+          "emitted": 635
+        },
+        {
+          "sourceVertex": 636,
+          "backSeam": false,
+          "emitted": 636
+        },
+        {
+          "sourceVertex": 637,
+          "backSeam": false,
+          "emitted": 637
+        },
+        {
+          "sourceVertex": 638,
+          "backSeam": false,
+          "emitted": 638
+        },
+        {
+          "sourceVertex": 639,
+          "backSeam": false,
+          "emitted": 639
+        },
+        {
+          "sourceVertex": 640,
+          "backSeam": false,
+          "emitted": 640
+        },
+        {
+          "sourceVertex": 641,
+          "backSeam": false,
+          "emitted": 641
+        },
+        {
+          "sourceVertex": 642,
+          "backSeam": false,
+          "emitted": 642
+        },
+        {
+          "sourceVertex": 643,
+          "backSeam": false,
+          "emitted": 643
+        },
+        {
+          "sourceVertex": 644,
+          "backSeam": false,
+          "emitted": 644
+        },
+        {
+          "sourceVertex": 645,
+          "backSeam": false,
+          "emitted": 645
+        },
+        {
+          "sourceVertex": 646,
+          "backSeam": false,
+          "emitted": 646
+        },
+        {
+          "sourceVertex": 647,
+          "backSeam": false,
+          "emitted": 647
+        },
+        {
+          "sourceVertex": 648,
+          "backSeam": false,
+          "emitted": 648
+        },
+        {
+          "sourceVertex": 649,
+          "backSeam": false,
+          "emitted": 649
+        },
+        {
+          "sourceVertex": 650,
+          "backSeam": false,
+          "emitted": 650
+        },
+        {
+          "sourceVertex": 651,
+          "backSeam": false,
+          "emitted": 651
+        },
+        {
+          "sourceVertex": 652,
+          "backSeam": false,
+          "emitted": 652
+        },
+        {
+          "sourceVertex": 653,
+          "backSeam": false,
+          "emitted": 653
+        },
+        {
+          "sourceVertex": 654,
+          "backSeam": false,
+          "emitted": 654
+        },
+        {
+          "sourceVertex": 655,
+          "backSeam": false,
+          "emitted": 655
+        },
+        {
+          "sourceVertex": 656,
+          "backSeam": false,
+          "emitted": 656
+        },
+        {
+          "sourceVertex": 657,
+          "backSeam": false,
+          "emitted": 657
+        },
+        {
+          "sourceVertex": 658,
+          "backSeam": false,
+          "emitted": 658
+        },
+        {
+          "sourceVertex": 659,
+          "backSeam": false,
+          "emitted": 659
+        },
+        {
+          "sourceVertex": 660,
+          "backSeam": false,
+          "emitted": 660
+        },
+        {
+          "sourceVertex": 661,
+          "backSeam": false,
+          "emitted": 661
+        },
+        {
+          "sourceVertex": 662,
+          "backSeam": false,
+          "emitted": 662
+        },
+        {
+          "sourceVertex": 663,
+          "backSeam": false,
+          "emitted": 663
+        },
+        {
+          "sourceVertex": 664,
+          "backSeam": false,
+          "emitted": 664
+        },
+        {
+          "sourceVertex": 665,
+          "backSeam": false,
+          "emitted": 665
+        },
+        {
+          "sourceVertex": 666,
+          "backSeam": false,
+          "emitted": 666
+        },
+        {
+          "sourceVertex": 667,
+          "backSeam": false,
+          "emitted": 667
+        },
+        {
+          "sourceVertex": 668,
+          "backSeam": false,
+          "emitted": 668
+        },
+        {
+          "sourceVertex": 669,
+          "backSeam": false,
+          "emitted": 669
+        },
+        {
+          "sourceVertex": 670,
+          "backSeam": false,
+          "emitted": 670
+        },
+        {
+          "sourceVertex": 671,
+          "backSeam": false,
+          "emitted": 671
+        },
+        {
+          "sourceVertex": 672,
+          "backSeam": false,
+          "emitted": 672
+        },
+        {
+          "sourceVertex": 673,
+          "backSeam": false,
+          "emitted": 673
+        },
+        {
+          "sourceVertex": 674,
+          "backSeam": false,
+          "emitted": 674
+        },
+        {
+          "sourceVertex": 675,
+          "backSeam": false,
+          "emitted": 675
+        },
+        {
+          "sourceVertex": 676,
+          "backSeam": false,
+          "emitted": 676
+        },
+        {
+          "sourceVertex": 677,
+          "backSeam": false,
+          "emitted": 677
+        },
+        {
+          "sourceVertex": 678,
+          "backSeam": false,
+          "emitted": 678
+        },
+        {
+          "sourceVertex": 679,
+          "backSeam": false,
+          "emitted": 679
+        },
+        {
+          "sourceVertex": 680,
+          "backSeam": false,
+          "emitted": 680
+        },
+        {
+          "sourceVertex": 681,
+          "backSeam": false,
+          "emitted": 681
+        },
+        {
+          "sourceVertex": 682,
+          "backSeam": false,
+          "emitted": 682
+        },
+        {
+          "sourceVertex": 683,
+          "backSeam": false,
+          "emitted": 683
+        },
+        {
+          "sourceVertex": 684,
+          "backSeam": false,
+          "emitted": 684
+        },
+        {
+          "sourceVertex": 685,
+          "backSeam": false,
+          "emitted": 685
+        },
+        {
+          "sourceVertex": 686,
+          "backSeam": false,
+          "emitted": 686
+        },
+        {
+          "sourceVertex": 687,
+          "backSeam": false,
+          "emitted": 687
+        },
+        {
+          "sourceVertex": 688,
+          "backSeam": false,
+          "emitted": 688
+        },
+        {
+          "sourceVertex": 689,
+          "backSeam": false,
+          "emitted": 689
+        },
+        {
+          "sourceVertex": 690,
+          "backSeam": false,
+          "emitted": 690
+        },
+        {
+          "sourceVertex": 691,
+          "backSeam": false,
+          "emitted": 691
+        },
+        {
+          "sourceVertex": 692,
+          "backSeam": false,
+          "emitted": 692
+        },
+        {
+          "sourceVertex": 693,
+          "backSeam": false,
+          "emitted": 693
+        },
+        {
+          "sourceVertex": 694,
+          "backSeam": false,
+          "emitted": 694
+        },
+        {
+          "sourceVertex": 695,
+          "backSeam": false,
+          "emitted": 695
+        },
+        {
+          "sourceVertex": 696,
+          "backSeam": false,
+          "emitted": 696
+        },
+        {
+          "sourceVertex": 697,
+          "backSeam": false,
+          "emitted": 697
+        },
+        {
+          "sourceVertex": 698,
+          "backSeam": false,
+          "emitted": 698
+        },
+        {
+          "sourceVertex": 699,
+          "backSeam": false,
+          "emitted": 699
+        },
+        {
+          "sourceVertex": 700,
+          "backSeam": false,
+          "emitted": 700
+        },
+        {
+          "sourceVertex": 701,
+          "backSeam": false,
+          "emitted": 701
+        },
+        {
+          "sourceVertex": 702,
+          "backSeam": false,
+          "emitted": 702
+        },
+        {
+          "sourceVertex": 703,
+          "backSeam": false,
+          "emitted": 703
+        },
+        {
+          "sourceVertex": 704,
+          "backSeam": false,
+          "emitted": 704
+        },
+        {
+          "sourceVertex": 705,
+          "backSeam": false,
+          "emitted": 705
+        },
+        {
+          "sourceVertex": 706,
+          "backSeam": false,
+          "emitted": 706
+        },
+        {
+          "sourceVertex": 707,
+          "backSeam": false,
+          "emitted": 707
+        },
+        {
+          "sourceVertex": 708,
+          "backSeam": false,
+          "emitted": 708
+        },
+        {
+          "sourceVertex": 709,
+          "backSeam": false,
+          "emitted": 709
+        },
+        {
+          "sourceVertex": 710,
+          "backSeam": false,
+          "emitted": 710
+        },
+        {
+          "sourceVertex": 711,
+          "backSeam": false,
+          "emitted": 711
+        },
+        {
+          "sourceVertex": 712,
+          "backSeam": false,
+          "emitted": 712
+        },
+        {
+          "sourceVertex": 713,
+          "backSeam": false,
+          "emitted": 713
+        },
+        {
+          "sourceVertex": 714,
+          "backSeam": false,
+          "emitted": 714
+        },
+        {
+          "sourceVertex": 715,
+          "backSeam": false,
+          "emitted": 715
+        },
+        {
+          "sourceVertex": 716,
+          "backSeam": false,
+          "emitted": 716
+        },
+        {
+          "sourceVertex": 717,
+          "backSeam": false,
+          "emitted": 717
+        },
+        {
+          "sourceVertex": 718,
+          "backSeam": false,
+          "emitted": 718
+        },
+        {
+          "sourceVertex": 719,
+          "backSeam": false,
+          "emitted": 719
+        },
+        {
+          "sourceVertex": 720,
+          "backSeam": false,
+          "emitted": 720
+        },
+        {
+          "sourceVertex": 721,
+          "backSeam": false,
+          "emitted": 721
+        },
+        {
+          "sourceVertex": 722,
+          "backSeam": false,
+          "emitted": 722
+        },
+        {
+          "sourceVertex": 723,
+          "backSeam": false,
+          "emitted": 723
+        },
+        {
+          "sourceVertex": 724,
+          "backSeam": false,
+          "emitted": 724
+        },
+        {
+          "sourceVertex": 725,
+          "backSeam": false,
+          "emitted": 725
+        },
+        {
+          "sourceVertex": 726,
+          "backSeam": false,
+          "emitted": 726
+        }
+      ],
+      "reverseWinding": true,
+      "normalOrientation": {
+        "positive": 0,
+        "negative": 664,
+        "degenerate": 17
+      },
+      "archiveEntry": "progs/v_nail.mdl",
+      "sourceSHA256": "403e75374cf71822bb203a695f47b008e905003a2de7160800f27d10b2a4ca5b",
+      "outputSHA256": "78e06d580fdb533d6f6b4cbf2046be3145775d26ada0f582457fc5387ac554a7",
+      "sourceBounds": {
+        "min": [
+          6.00547518581152,
+          -6.48014485090971,
+          -24.190148886293173
+        ],
+        "max": [
+          30.79629358649254,
+          6.640145480632782,
+          -11.924318201839924
+        ]
+      },
+      "transform": {
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "offset": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "g_nail": {
+      "format": "MD3v15",
+      "sourceVertices": 499,
+      "vertices": 499,
+      "triangles": 444,
+      "frames": 1,
+      "shader": "g_nail.tga",
+      "sourceVertexForEmitted": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        309,
+        310,
+        311,
+        312,
+        313,
+        314,
+        315,
+        316,
+        317,
+        318,
+        319,
+        320,
+        321,
+        322,
+        323,
+        324,
+        325,
+        326,
+        327,
+        328,
+        329,
+        330,
+        331,
+        332,
+        333,
+        334,
+        335,
+        336,
+        337,
+        338,
+        339,
+        340,
+        341,
+        342,
+        343,
+        344,
+        345,
+        346,
+        347,
+        348,
+        349,
+        350,
+        351,
+        352,
+        353,
+        354,
+        355,
+        356,
+        357,
+        358,
+        359,
+        360,
+        361,
+        362,
+        363,
+        364,
+        365,
+        366,
+        367,
+        368,
+        369,
+        370,
+        371,
+        372,
+        373,
+        374,
+        375,
+        376,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        392,
+        393,
+        394,
+        395,
+        396,
+        397,
+        398,
+        399,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        423,
+        424,
+        425,
+        426,
+        427,
+        428,
+        429,
+        430,
+        431,
+        432,
+        433,
+        434,
+        435,
+        436,
+        437,
+        438,
+        439,
+        440,
+        441,
+        442,
+        443,
+        444,
+        445,
+        446,
+        447,
+        448,
+        449,
+        450,
+        451,
+        452,
+        453,
+        454,
+        455,
+        456,
+        457,
+        458,
+        459,
+        460,
+        461,
+        462,
+        463,
+        464,
+        465,
+        466,
+        467,
+        468,
+        469,
+        470,
+        471,
+        472,
+        473,
+        474,
+        475,
+        476,
+        477,
+        478,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        497,
+        498
+      ],
+      "reverseWinding": true,
+      "normalOrientation": {
+        "positive": 0,
+        "negative": 444,
+        "degenerate": 0
+      },
+      "archiveEntry": "progs/g_nail.mdl",
+      "sourceSHA256": "9d3a3ac5eb1cb81ec65616a309c91217ee909c8437d0bca5cf1135f28c2f7e69",
+      "outputSHA256": "9d770b98baea9d21677d63ba70d64ca83f9aafaea793b44156fa31fa789c78a8",
+      "sourceBounds": {
+        "min": [
+          -6.3125,
+          -10.875,
+          22.671875
+        ],
+        "max": [
+          6.296875,
+          16.6875,
+          36.703125
+        ]
+      },
+      "transform": {
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "offset": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "textures": {
+    "nailgun": {
+      "diffuse": {
+        "archiveEntry": "progs/v_nail.mdl_0.png",
+        "file": "diffuse.png",
+        "sourceSHA256": "d01a254c30193a9ab2ff4f732bcbe324148a74df2dc84b67c9d9f65898cf1590",
+        "outputSHA256": "d01a254c30193a9ab2ff4f732bcbe324148a74df2dc84b67c9d9f65898cf1590"
+      }
+    },
+    "nailgun_pickup": {
+      "diffuse": {
+        "archiveEntry": "textures/g_nail.tga",
+        "file": "diffuse.png",
+        "sourceSHA256": "1a9b73e02b2ebfe5c3ee14aa038c2a8e3bbbbb7a964c73767c0fdd4e4572b0d8",
+        "outputSHA256": "213325e037dde936acfa4bcc12c2ab8943e05e4f4f634286620755eff7f33d13"
+      },
+      "normal": {
+        "archiveEntry": "textures/g_nail_norm.tga",
+        "file": "normal.png",
+        "sourceSHA256": "8a9f6c4ca44366afd9b9ddc5d748e6b6de1e453cf00723ecc1a661e761a45777",
+        "outputSHA256": "ad38f18001d4ad87f6be18de0fb20bbe04cf88ea5db4d9fd6736ac1ead091202"
+      }
+    }
+  },
+  "heldNormalPolicy": "Authored MDL vertex normals retained; incompatible textures/v_nail_norm.tga atlas is not bound.",
+  "mapping": "Identity Quake coordinates and source pose index; seam duplication and CCW winding conversion only."
+}

@@ -1,0 +1,1175 @@
+{
+  "source": "actual PNG canvas decode and public R_GenerateNormalData",
+  "materials": [
+    {
+      "reviewId": 0,
+      "name": "32glass",
+      "panes": 0,
+      "outside": 32768,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ff79affeff90d1c3a2134de11949630287a140be42cd8a716f8e70334e2c7b95"
+    },
+    {
+      "reviewId": 1,
+      "name": "Window01",
+      "panes": 15201,
+      "outside": 33951,
+      "lead": 30427,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "cb789aff73350b64e96e865731878a9c0121e6206e913eccd293df22763499ad"
+    },
+    {
+      "reviewId": 2,
+      "name": "Window02",
+      "panes": 22471,
+      "outside": 26681,
+      "lead": 23157,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "99bcc893f557f8e36305420b8a78da4bce7e4893ea2accf5db96417ecb0d1b8e"
+    },
+    {
+      "reviewId": 3,
+      "name": "Window2",
+      "panes": 0,
+      "outside": 98304,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "872f981d8634ae53174b5d97f43f43ab46a136cab68fc6005011e347533dd48f"
+    },
+    {
+      "reviewId": 4,
+      "name": "brick1glass1",
+      "panes": 22829,
+      "outside": 42707,
+      "lead": 16119,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ee9e8a632c868028e68f4dfed4e4738a64a531aa97cedb6ab48a394c51a5d784"
+    },
+    {
+      "reviewId": 5,
+      "name": "brick1wind1",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b27ace989f158e883e31db70742265b6024ec0912bfee743c5e91d48789f5aab"
+    },
+    {
+      "reviewId": 6,
+      "name": "brick1wind1",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "71f746e2b605701b13a53a23d6d30cf04d2543496559caaa6cfecdaac371024f"
+    },
+    {
+      "reviewId": 7,
+      "name": "city5_3wind1",
+      "panes": 4288,
+      "outside": 61248,
+      "lead": 6992,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "dbeccf02862d9e47b34110076c11ba444fb9782d2895b13e6b4bc445e19a536f"
+    },
+    {
+      "reviewId": 8,
+      "name": "city5_3wind2",
+      "panes": 21312,
+      "outside": 44224,
+      "lead": 17188,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0aeab4fd20172f6a3f335412f229453d3d0e99ec301748b7794aed3649efc50f"
+    },
+    {
+      "reviewId": 9,
+      "name": "city5_3wind2",
+      "panes": 21311,
+      "outside": 44225,
+      "lead": 17189,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "349e8140b3988a1a6ee6238f65420386c5c2a70f81f554ffe0e804b1136c8b16"
+    },
+    {
+      "reviewId": 10,
+      "name": "city5_3wind3",
+      "panes": 68708,
+      "outside": 193436,
+      "lead": 56456,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "2b32d307458961937700202890f41ae23c4c515ed9f4e55adf44d7c8a03a297c"
+    },
+    {
+      "reviewId": 11,
+      "name": "city5_3wind3b",
+      "panes": 33333,
+      "outside": 97739,
+      "lead": 26987,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8b5053e5b0b3114ae46775cdba2550bd21304074436a0e0f7fa0d687eb48cbb0"
+    },
+    {
+      "reviewId": 12,
+      "name": "city5_3wind4",
+      "panes": 51341,
+      "outside": 210803,
+      "lead": 73823,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7969812b5a3f89ea4bdf6ef0ebc73b15790c9f6cc0a06603c4a647f7526a5f10"
+    },
+    {
+      "reviewId": 13,
+      "name": "city5_3wind5",
+      "panes": 71649,
+      "outside": 190495,
+      "lead": 63563,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5f585f2e64497218f9b59e5fca2cb636cf215b9e85d59522e30c40b3d51c7b67"
+    },
+    {
+      "reviewId": 14,
+      "name": "city5_3wind5d",
+      "panes": 23033,
+      "outside": 239111,
+      "lead": 16791,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "fbeddb216863b3a858a5622585ae84766d039879d94fd7982aed062665c35fd7"
+    },
+    {
+      "reviewId": 15,
+      "name": "city5_3wind5w",
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e8a5c0420fbd328e15fbac03de78341de974f1de1418fca836753802ca8671b7"
+    },
+    {
+      "reviewId": 16,
+      "name": "city5_3wind7",
+      "panes": 19098,
+      "outside": 46438,
+      "lead": 13990,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8900cb01f70c9e4a16aeb1a517c2d6120c37e38b5592feea937d7213929b06ac"
+    },
+    {
+      "reviewId": 17,
+      "name": "city5_3wind7b",
+      "panes": 14836,
+      "outside": 50700,
+      "lead": 18252,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "baa0486ebc554190257f1861bd33e30bd9ae5606b2050b5888da20ff1303b993"
+    },
+    {
+      "reviewId": 18,
+      "name": "dk3_window1",
+      "panes": 82294,
+      "outside": 179850,
+      "lead": 59167,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5cea6d1c5cb22face2cc5246813fb022c13c11953011ad7be9a6988459f1cb1d"
+    },
+    {
+      "reviewId": 19,
+      "name": "dk3_window4",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b8adb9411d26d4438e3d06f8ef0869b3ed4391772e97a2c92024ea469909141a"
+    },
+    {
+      "reviewId": 20,
+      "name": "dwindow1_1",
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1740a6153b0f856835a69de9d03b6590f3a10a120a100001e120eaf6102fdd4d"
+    },
+    {
+      "reviewId": 21,
+      "name": "dwindow1_2a",
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "91e9076f7c82a4bcc765a9cfd8621dc9f866ebd31191a2fdeb6e7591f2170694"
+    },
+    {
+      "reviewId": 22,
+      "name": "glass01t",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0a765284eb6bb1dd6e4b13d1040bd9bb45c5aca59d8302253d9f16df6b67afef"
+    },
+    {
+      "reviewId": 23,
+      "name": "glass2",
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "be272ab0744a46525fcea692416ca6219727995be4e2d4feb92f71af7b974831"
+    },
+    {
+      "reviewId": 24,
+      "name": "mire_wind1",
+      "panes": 11977,
+      "outside": 20791,
+      "lead": 11543,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6d66dc4b0d4f555bcb5b7c10eca912848729aa8894a72b24568e35b8d3fa5b66"
+    },
+    {
+      "reviewId": 25,
+      "name": "stainedx_js",
+      "panes": 23720,
+      "outside": 41816,
+      "lead": 37280,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a5b5a2a0ddbd1624f78bc1edc595d55da6e3392bfd978454fdf469a1cc88fa46"
+    },
+    {
+      "reviewId": 26,
+      "name": "tallwindow1",
+      "panes": 11977,
+      "outside": 20791,
+      "lead": 11543,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6d66dc4b0d4f555bcb5b7c10eca912848729aa8894a72b24568e35b8d3fa5b66"
+    },
+    {
+      "reviewId": 27,
+      "name": "wind02a_330",
+      "panes": 17182,
+      "outside": 113890,
+      "lead": 16462,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5e27e806ff5d7310e285dfb712b5aa3abb06ff2e5b56538f3ecb6187ef5b1e34"
+    },
+    {
+      "reviewId": 28,
+      "name": "wind02a_340",
+      "panes": 17182,
+      "outside": 113890,
+      "lead": 16462,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "40869e8599f50968f7fdbb0ac0ee5fca0efb53cd1628700146187cd49245b144"
+    },
+    {
+      "reviewId": 29,
+      "name": "wind02b_330",
+      "panes": 8435,
+      "outside": 122637,
+      "lead": 25209,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "abcb11e9cd007404958e89992c19d920f6af423a06fe5450a94c7616374c086b"
+    },
+    {
+      "reviewId": 30,
+      "name": "wind02b_340",
+      "panes": 8435,
+      "outside": 122637,
+      "lead": 25209,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0b47f612937c3c8d17953c431e01fd6255cc56b4fcf8b1484d304f36d2710e88"
+    },
+    {
+      "reviewId": 31,
+      "name": "wind02c_330",
+      "panes": 15758,
+      "outside": 115314,
+      "lead": 17886,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "58d3817168411d94fbb7861558044d31ea671cfdbb1fe536cf1c95491b7bd774"
+    },
+    {
+      "reviewId": 32,
+      "name": "wind02c_340",
+      "panes": 15758,
+      "outside": 115314,
+      "lead": 17886,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "130a4924fbb034e6bb738deabedc86527c3dab005e7e7922fb821684f735a445"
+    },
+    {
+      "reviewId": 33,
+      "name": "wind02d_340",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7533d8df663b64d0f8fb81140a8adede4538641dc62c40db69a6ba3cf9357645"
+    },
+    {
+      "reviewId": 34,
+      "name": "wind02r_340",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7ee19da997d8c92da1a0a78d4096abc82ac32684931c9bdcf6fd2a236ec135c5"
+    },
+    {
+      "reviewId": 35,
+      "name": "wind_dagg",
+      "panes": 23004,
+      "outside": 42532,
+      "lead": 22136,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "9362959a990c76158159aa6d639ce3f155dbcc9ecfd1ed35a6ae0ac4d0560d7d"
+    },
+    {
+      "reviewId": 36,
+      "name": "windbrk1_3",
+      "panes": 19752,
+      "outside": 29400,
+      "lead": 25876,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "de06cda778cc10927c90ce842c2f18941830d7fbe37b73cbd55c38cbd650fb8a"
+    },
+    {
+      "reviewId": 37,
+      "name": "window01_1",
+      "panes": 286834,
+      "outside": 499598,
+      "lead": 440286,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e1c00fb2c851c5b664deb111fc9ecb2aa13ce5d84993751ae831817965a27ffb"
+    },
+    {
+      "reviewId": 38,
+      "name": "window01_1",
+      "panes": 15201,
+      "outside": 33951,
+      "lead": 30427,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "cb789aff73350b64e96e865731878a9c0121e6206e913eccd293df22763499ad"
+    },
+    {
+      "reviewId": 39,
+      "name": "window01_2",
+      "panes": 316306,
+      "outside": 470126,
+      "lead": 410814,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f35f995e9d65085cfd81704b6c073b12a3fbee9b1eec863bf29912c195393fd4"
+    },
+    {
+      "reviewId": 40,
+      "name": "window01_2",
+      "panes": 22471,
+      "outside": 26681,
+      "lead": 23157,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "99bcc893f557f8e36305420b8a78da4bce7e4893ea2accf5db96417ecb0d1b8e"
+    },
+    {
+      "reviewId": 41,
+      "name": "window01_3",
+      "panes": 362275,
+      "outside": 424157,
+      "lead": 364845,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4eacd85add08fbfa3ab1276ecbaf503ea96457b8d954b7a59c3ac8b68290bb77"
+    },
+    {
+      "reviewId": 42,
+      "name": "window01_3",
+      "panes": 21127,
+      "outside": 44409,
+      "lead": 23647,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "350938e64868847b7cc5b2c1da26f4fedfb22a9ad49ec67b334abdb859ab5bc0"
+    },
+    {
+      "reviewId": 43,
+      "name": "window01_4",
+      "panes": 418181,
+      "outside": 368251,
+      "lead": 308939,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d653543a2a67509a8ecc650fa057e3f6634283e1cdf612fe33fe3308b2a0879e"
+    },
+    {
+      "reviewId": 44,
+      "name": "window01_4",
+      "panes": 22471,
+      "outside": 26681,
+      "lead": 23157,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "99bcc893f557f8e36305420b8a78da4bce7e4893ea2accf5db96417ecb0d1b8e"
+    },
+    {
+      "reviewId": 45,
+      "name": "window01_4",
+      "panes": 22808,
+      "outside": 42728,
+      "lead": 21966,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d59eaf40d54889fa430fc928b73ebf9b8ec89ec13e43f6f635813ca2a334d1ad"
+    },
+    {
+      "reviewId": 46,
+      "name": "window01_4dd",
+      "panes": 40586,
+      "outside": 90486,
+      "lead": 36271,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "92e7f47616bcb8b8e5d31707c753573af7ee3111db9f02ee3a2f648f9afd9881"
+    },
+    {
+      "reviewId": 47,
+      "name": "window01_4sh",
+      "panes": 26085,
+      "outside": 104987,
+      "lead": 21811,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "fe6bbe63df667a6259c5c0a04f8ee981584f48b371118670884511955e3e4250"
+    },
+    {
+      "reviewId": 48,
+      "name": "window01_4tall",
+      "panes": 50234,
+      "outside": 80838,
+      "lead": 51340,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "830d6a6cc031cf52f2badcdd15349fd1210dfdd3fc17c80ed1ed01abe702c6cf"
+    },
+    {
+      "reviewId": 49,
+      "name": "window01_5tall",
+      "panes": 38341,
+      "outside": 92731,
+      "lead": 63233,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "9f91267b391da4f0df1f94a7bf32096395640f9c847d68de46ca7702ce3e253f"
+    },
+    {
+      "reviewId": 50,
+      "name": "window02_1",
+      "panes": 26030,
+      "outside": 39506,
+      "lead": 19110,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6589690c1fa83e1e3bb293c3258a2b01575ac0da8625ea242ed98029c4170da2"
+    },
+    {
+      "reviewId": 51,
+      "name": "window02_1",
+      "panes": 421929,
+      "outside": 364503,
+      "lead": 305191,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "67928d52e41491da2683ff9a83819edb7876367d28584195401a93ffe75857e1"
+    },
+    {
+      "reviewId": 52,
+      "name": "window02_1",
+      "panes": 15201,
+      "outside": 33951,
+      "lead": 30427,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "cb789aff73350b64e96e865731878a9c0121e6206e913eccd293df22763499ad"
+    },
+    {
+      "reviewId": 53,
+      "name": "window02_2",
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1c945ec434b6b867352d26667a12d4e4a28f87efe217ad5e7d7c7ab34b69f108"
+    },
+    {
+      "reviewId": 54,
+      "name": "window03",
+      "panes": 10634,
+      "outside": 185974,
+      "lead": 5633,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7e0723b82debd2f07d2dd443a408470edd0fa8663f6cad1f36d9ece3391080bf"
+    },
+    {
+      "reviewId": 55,
+      "name": "window03",
+      "panes": 15662,
+      "outside": 180946,
+      "lead": 4649,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "c0f07111e2b0666e9ad524d8245032f3dc9b48a272d03c71509071d6eaf38948"
+    },
+    {
+      "reviewId": 56,
+      "name": "window03",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e429bcfb4cdf277a2bb9ce35c30cf350b063720d86e11c2ae028d0a60d71a540"
+    },
+    {
+      "reviewId": 57,
+      "name": "window03",
+      "panes": 17816,
+      "outside": 178792,
+      "lead": 13342,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "242abd6e9746653909b5c93a6b20acc7664cc13ffdc3e8e1d664b01df5730438"
+    },
+    {
+      "reviewId": 58,
+      "name": "window030",
+      "panes": 10634,
+      "outside": 185974,
+      "lead": 5633,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7e0723b82debd2f07d2dd443a408470edd0fa8663f6cad1f36d9ece3391080bf"
+    },
+    {
+      "reviewId": 59,
+      "name": "window030",
+      "panes": 17816,
+      "outside": 178792,
+      "lead": 13342,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "242abd6e9746653909b5c93a6b20acc7664cc13ffdc3e8e1d664b01df5730438"
+    },
+    {
+      "reviewId": 60,
+      "name": "window031",
+      "panes": 10634,
+      "outside": 185974,
+      "lead": 5633,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "7e0723b82debd2f07d2dd443a408470edd0fa8663f6cad1f36d9ece3391080bf"
+    },
+    {
+      "reviewId": 61,
+      "name": "window03_d",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "32c69332940193449661b099056209c013e12d1ae3a02078265d604758c9edf9"
+    },
+    {
+      "reviewId": 62,
+      "name": "window03d",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e32cd475b0d03ea5bfb29e2b8eb2717556ce9363db64d1b95e66cc47aa859873"
+    },
+    {
+      "reviewId": 63,
+      "name": "window03k",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "89184e34c75749014da0e83a7fbec726973e5e05efc0c352690ef20db3efb50b"
+    },
+    {
+      "reviewId": 64,
+      "name": "window03r",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b324cbc6776943c3f09c86e53a1639f2cc5e36aa5c801430c075b0e9705e879e"
+    },
+    {
+      "reviewId": 65,
+      "name": "window03w",
+      "panes": 15662,
+      "outside": 246482,
+      "lead": 4919,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "200388e62dc9b3db8bff533440a8c989c5b744897d438d52335c02601f90a16f"
+    },
+    {
+      "reviewId": 66,
+      "name": "window03y",
+      "panes": 17953,
+      "outside": 244191,
+      "lead": 5293,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b6dad30ffb6ba912a052570e61363a2637ca9faf16764657bf25b563b3f376eb"
+    },
+    {
+      "reviewId": 67,
+      "name": "window0_1",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "ba4d42172f9f3307ddd86add95ccb45e8905e9079945a673731c4b9f2fc43f56"
+    },
+    {
+      "reviewId": 68,
+      "name": "window1_1",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5d6ef65fc5b5b97e1c6f93434a7d5d509f17f26e830fcc4392e0ea48d5effe6d"
+    },
+    {
+      "reviewId": 69,
+      "name": "window1_1a",
+      "panes": 69225,
+      "outside": 192919,
+      "lead": 71286,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4c4ad943168c9ea55158dc0b9fd00f2b880f89df84ec52df4efe3be8473ba7d3"
+    },
+    {
+      "reviewId": 70,
+      "name": "window1_1b",
+      "panes": 33957,
+      "outside": 97115,
+      "lead": 36854,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5995d8b02b40fe99ccc53fa4da18852a5e3e9c2e3080308c5c35081d5c09c270"
+    },
+    {
+      "reviewId": 71,
+      "name": "window1_1b",
+      "panes": 34000,
+      "outside": 97072,
+      "lead": 36811,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "441c9ad830217183096f41a4480c7a5adb16e7a5a5695aa0c967db62bca9628c"
+    },
+    {
+      "reviewId": 72,
+      "name": "window1_2",
+      "panes": 67540,
+      "outside": 194604,
+      "lead": 74960,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "86c1e07a464b76499e29a5b53b1cb920b3650cc62d64e216ba5287b94f92d4f1"
+    },
+    {
+      "reviewId": 73,
+      "name": "window1_3",
+      "panes": 67613,
+      "outside": 194531,
+      "lead": 74887,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "be3074022592853f29861ea1978d465c507dcf331673a9e917ab61c752b226ea"
+    },
+    {
+      "reviewId": 74,
+      "name": "window1_3",
+      "panes": 10191,
+      "outside": 55345,
+      "lead": 12009,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "54a6a7eb1a201a40a5f8a3d9b5fb39e81aca59344d25e6a763ed2df487c79228"
+    },
+    {
+      "reviewId": 75,
+      "name": "window1_3b",
+      "panes": 19961,
+      "outside": 45575,
+      "lead": 16138,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "386c83d2279b9efaf43dc7fbef6d9d2aeeb20c629894a57d8b720b3ba9088abf"
+    },
+    {
+      "reviewId": 76,
+      "name": "window1_4",
+      "panes": 20509,
+      "outside": 45027,
+      "lead": 7881,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "b7cfb18f1edf3fcfb5ec1db08517ad4330333f83fd15b10b08eceb93ae6e0794"
+    },
+    {
+      "reviewId": 77,
+      "name": "window1a",
+      "panes": 22745,
+      "outside": 42791,
+      "lead": 14877,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "937954a58afb532eabb042987eeb3ef089086d6a2f6ec161c641f3937195e601"
+    },
+    {
+      "reviewId": 78,
+      "name": "window1ah",
+      "panes": 13090,
+      "outside": 52446,
+      "lead": 9101,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "60386b7d010a3f408b09dd54f6e539d88cf1a1dee77568e3a3be41230f7aa23d"
+    },
+    {
+      "reviewId": 79,
+      "name": "window1ah",
+      "panes": 13146,
+      "outside": 52390,
+      "lead": 9045,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "57770af03039c8cdbd77c22d4806d3d5afd0999f0c16cc69fcdbcb8502a1cc25"
+    },
+    {
+      "reviewId": 80,
+      "name": "window1aj",
+      "panes": 22950,
+      "outside": 42586,
+      "lead": 22040,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "14902332192de73f4dc293c00c7619251510a6888bdaee7be898ae7c68d830ae"
+    },
+    {
+      "reviewId": 81,
+      "name": "window1c",
+      "panes": 20334,
+      "outside": 45202,
+      "lead": 17918,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "97c78980f2e4247eb88c08ab1ef8dc8373ca0cdb203497a4d2c820a434b8031f"
+    },
+    {
+      "reviewId": 82,
+      "name": "window1d",
+      "panes": 9850,
+      "outside": 121222,
+      "lead": 11983,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d15c2495227519fbdd57605fcf27d45ef8dd7bfaa294ad473b43dcd56bba03f9"
+    },
+    {
+      "reviewId": 83,
+      "name": "window1d3",
+      "panes": 9850,
+      "outside": 121222,
+      "lead": 11983,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "5b08db019e40a1a619ee00b6364bc63ef992221e44220af5d9380ccefc68b50b"
+    },
+    {
+      "reviewId": 84,
+      "name": "window1h",
+      "panes": 9850,
+      "outside": 121222,
+      "lead": 11983,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "246639ab9e41c03d6d6890bf2813dbb65172c28384cf61313b479594a72c79d7"
+    },
+    {
+      "reviewId": 85,
+      "name": "window1h_d",
+      "panes": 9850,
+      "outside": 121222,
+      "lead": 11983,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "11643226e9ee2cf087396f0ed178a56848451405a0a371b1d668807b82c02178"
+    },
+    {
+      "reviewId": 86,
+      "name": "window1sa",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "db37e00993a6ce05a7092dccae0513e05d70d8c33f857b832377df7347741c49"
+    },
+    {
+      "reviewId": 87,
+      "name": "window1sac23",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "cd34bd09fcb02d6cf2451877b1a90455bf9d21143f427f36bfe7cfb339feb6a8"
+    },
+    {
+      "reviewId": 88,
+      "name": "window1sasw",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "90afbd20b57baca1fd87973e2761bf31096a27ff04017d0a5252c60f5309b3f6"
+    },
+    {
+      "reviewId": 89,
+      "name": "window1saswh",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "487446a0e8035159c6e96746dfbcb5f00cc6653534177cc0e018f3cb9f024b86"
+    },
+    {
+      "reviewId": 90,
+      "name": "window1sb",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4477f0f0caa4b993ad2416362a4a0658e9e7655dfc1f5226083a4aae7d39cc6d"
+    },
+    {
+      "reviewId": 91,
+      "name": "window1slot",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "db37e00993a6ce05a7092dccae0513e05d70d8c33f857b832377df7347741c49"
+    },
+    {
+      "reviewId": 92,
+      "name": "window1slot",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "746c9a7b19c2b909f7472b890416f5cf300690ee7e638f1d0a1b6f4ade62e474"
+    },
+    {
+      "reviewId": 93,
+      "name": "window1slot_d",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d72044dab8b73045309acc892572ba56dfa340d5aece81c8fe19bc7460e1af3f"
+    },
+    {
+      "reviewId": 94,
+      "name": "window2_1",
+      "panes": 34889,
+      "outside": 161719,
+      "lead": 155611,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f0df452e9a2d9a750b8cf9b68fd69f7003b11aefc18e970ba8c90a0b7f597610"
+    },
+    {
+      "reviewId": 95,
+      "name": "window2_2",
+      "panes": 51700,
+      "outside": 144908,
+      "lead": 138800,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "cc6bb41d60ce1926d980bdf3d97dd4597769ba2b9607238d7fbf19dd1163fb66"
+    },
+    {
+      "reviewId": 96,
+      "name": "window2_3",
+      "panes": 40228,
+      "outside": 156380,
+      "lead": 150272,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "73404bb7f068f64dfb3e93ad48987d82c7e52daf5adb7d55ec93c2cde9810c3f"
+    },
+    {
+      "reviewId": 97,
+      "name": "window2_4",
+      "panes": 70404,
+      "outside": 126204,
+      "lead": 120096,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "68e9c685d4c6142242ac59791e08d9c5cf36fa4240a6a1b110485c560ba93437"
+    },
+    {
+      "reviewId": 98,
+      "name": "window2a",
+      "panes": 24069,
+      "outside": 107003,
+      "lead": 18935,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "4a3f30cf4e21167223517214e4ac455c5a4fbdf4dd76fb9c874e03f94bf5594b"
+    },
+    {
+      "reviewId": 99,
+      "name": "window2a",
+      "panes": 24169,
+      "outside": 106903,
+      "lead": 18835,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "6aa267b30d23afcc8a7fbc05e12bdd72d9216229cb5fb8a0e4e837b0f9d9fab4"
+    },
+    {
+      "reviewId": 100,
+      "name": "window2b",
+      "panes": 19381,
+      "outside": 111691,
+      "lead": 23623,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "bed71a7c2652b226e8ebb80015fbc492f6a6bc6e875de076f2fe718af73e2100"
+    },
+    {
+      "reviewId": 101,
+      "name": "window2c",
+      "panes": 20946,
+      "outside": 110126,
+      "lead": 22058,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "08b1f1c3cfd9a76806c97810c644fb04cf778d7d674739650baa5766dea68172"
+    },
+    {
+      "reviewId": 102,
+      "name": "window2c1",
+      "panes": 20908,
+      "outside": 110164,
+      "lead": 22096,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "3a8561ed672b363e54750e16fb9c9e33152bf1539437def0c0cfcdc6af778a8b"
+    },
+    {
+      "reviewId": 103,
+      "name": "window2c_c",
+      "panes": 41882,
+      "outside": 220262,
+      "lead": 42706,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "9ae208ed6d84365fe13ce46ee0cb7f75026e3f1f75f484e792f1dafaa8373404"
+    },
+    {
+      "reviewId": 104,
+      "name": "window2c_e",
+      "panes": 20908,
+      "outside": 110164,
+      "lead": 22096,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "9f5cd6bcc82c0dd6bbc19b95c0c3073c807fc5b2fc28654ff57725336a4eeffb"
+    },
+    {
+      "reviewId": 105,
+      "name": "window2c_f",
+      "panes": 20908,
+      "outside": 110164,
+      "lead": 22096,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d366b9f86db7778fbc23bae4243bf7d1d6eb270b0f50783d621b3ba51d5dc36f"
+    },
+    {
+      "reviewId": 106,
+      "name": "window2cc",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8e0004ec4ee98daf56091fdb69f4a8b267dc88b2a98e9a3c1cdc17b32ae2cf4e"
+    },
+    {
+      "reviewId": 107,
+      "name": "window2cg",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "25d25ac58464dce4b3302bba2037a4b3449b4da960502b2e10e62f8cca7b67d2"
+    },
+    {
+      "reviewId": 108,
+      "name": "window2cga",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "3769e5eca878a4468ade8ffc062e8591faede0810eeea5c9d5bef258aca85296"
+    },
+    {
+      "reviewId": 109,
+      "name": "window2ch",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a3771ed97df20ff7633d621a3b741b7e0dd2ce3b751058dcff792212786493fc"
+    },
+    {
+      "reviewId": 110,
+      "name": "window2sh",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "8001a70515b7cf72d45b96a2e2c91140a5ebad7ca879cec96b3255a3b0042b08"
+    },
+    {
+      "reviewId": 111,
+      "name": "window2td",
+      "panes": 0,
+      "outside": 131072,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "802ec06c00e6a951e00f2a2dff8a86600ad1147a0bf58571955ce9478fb5d610"
+    },
+    {
+      "reviewId": 112,
+      "name": "window3a",
+      "panes": 18405,
+      "outside": 47131,
+      "lead": 19847,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "0b3a7231f851917be658649adf608e051ed2578322e00302295dddfd1686927a"
+    },
+    {
+      "reviewId": 113,
+      "name": "window3b",
+      "panes": 55816,
+      "outside": 75256,
+      "lead": 56588,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "669d07a94327486293904f41028c093c26f331d7c5bd23d6d6e064cd02b5dcec"
+    },
+    {
+      "reviewId": 114,
+      "name": "window3b",
+      "panes": 27224,
+      "outside": 38312,
+      "lead": 32720,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "625bcfdb2e69582aec03388521f442b3ed6cbea8ac8e2a3077ba739837ed550b"
+    },
+    {
+      "reviewId": 115,
+      "name": "window4a",
+      "panes": 15693,
+      "outside": 49843,
+      "lead": 22559,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "2593223bda97138fce929b36b1f49fcf7616844c846200e66c0258839338b372"
+    },
+    {
+      "reviewId": 116,
+      "name": "window4b",
+      "panes": 26155,
+      "outside": 39381,
+      "lead": 33789,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "eb2364addbb929ebae2d0cc2843aa6feec5ee0d19d648ce0efe9af9ff4b1f8ef"
+    },
+    {
+      "reviewId": 117,
+      "name": "window666_9",
+      "panes": 26543,
+      "outside": 22609,
+      "lead": 21589,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "093b14aaa07ab3d4f91c1e2bc3438997265bf1286a8570d3bf09c12881c68d25"
+    },
+    {
+      "reviewId": 118,
+      "name": "window8a",
+      "panes": 34372,
+      "outside": 96700,
+      "lead": 32228,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "1bebc74410f8c958a750856abfd453cc6dfac0382cfd37c4214846a43fb637c6"
+    },
+    {
+      "reviewId": 119,
+      "name": "window8c1",
+      "panes": 40345,
+      "outside": 90727,
+      "lead": 47943,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "07862abfab9d37bff1f3d8dd7c17df35941bd8085ed55cedcbe8ffd65aa68f07"
+    },
+    {
+      "reviewId": 120,
+      "name": "window8s",
+      "panes": 19963,
+      "outside": 45573,
+      "lead": 15193,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "177a7d8aa89be17816dd02a8dda8ec629bb9e36cc555fe348f7c313d539fdaca"
+    },
+    {
+      "reviewId": 121,
+      "name": "window8u",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "c34b1a36edc3feb32abb86fe2f6fec9fa2ce28bedb1e3db06270aa61d24ab74e"
+    },
+    {
+      "reviewId": 122,
+      "name": "window8u",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "67cc508059fcbe171877093b0d0a8823837a5c865525849de634466c01d396a6"
+    },
+    {
+      "reviewId": 123,
+      "name": "window_blue1_2",
+      "panes": 0,
+      "outside": 262144,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "74f17bc44f372bbe1a165e0a3d7b53996fa6e62c19029ec652aecca652e4c812"
+    },
+    {
+      "reviewId": 124,
+      "name": "windowc1_7",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "a22820fac891f5d7777d5b3de05c36bf44e54ee32525786a07991fbb8a07d75e"
+    },
+    {
+      "reviewId": 125,
+      "name": "windowl1",
+      "panes": 13420,
+      "outside": 248724,
+      "lead": 4299,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "e7c48d5377efe8071fdc79964e9d02df8bf3482e2dd6c256040517aa3a5851b1"
+    },
+    {
+      "reviewId": 126,
+      "name": "windowsqr1b",
+      "panes": 19963,
+      "outside": 45573,
+      "lead": 15193,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "d4cfb52ee27d3f984fd37ebfcdbb9a2b3f95b5390fc8bba6b56049d9bda7d29d"
+    },
+    {
+      "reviewId": 127,
+      "name": "windr1",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "f80f6578aa4554d76d9e69aa6eeb837441b32a12fdbe94119a5bd6e9f1994e34"
+    },
+    {
+      "reviewId": 128,
+      "name": "windr2",
+      "panes": 0,
+      "outside": 65536,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "acd9d20afb5daf40466a705ce50119f4645abe8fe7cb7bbc5c1c48206118d5bc"
+    },
+    {
+      "reviewId": 129,
+      "name": "windr3",
+      "panes": 0,
+      "outside": 16384,
+      "lead": 0,
+      "canonicalOutsideExact": true,
+      "assembledSHA256": "bb360eec3b61e95583418a2292a3d3a8967e66da3a68b2905f8ef9359ed819bc"
+    }
+  ]
+}

@@ -391,6 +391,7 @@ function patchDetailShader( shader ) {
 	const rock = this.userData.rockField === true;
 	const reference = this.normalMap?.userData.referenceHeight;
 	const relief = this.normalMap?.userData.surfaceRelief;
+ const glass = this.normalMap?.userData.glassGloss;
 	if ( reference ) {
 
 		shader.uniforms.uCarveReference = this.userData.carveUniforms.uCarveReference;
@@ -422,7 +423,7 @@ function patchDetailShader( shader ) {
 			.replaceAll( '1.0 - textureGrad( normalMap, prev, gx, gy ).a', depth( 'prev' ) );
 
 	}
-	const pigment = `
+	let pigment = `
  #ifdef USE_MAP
  vec2 qrPigmentDx=dFdx(vMapUv),qrPigmentDy=dFdy(vMapUv);
  vec2 qrPigmentSize=vec2(textureSize(map,0));
@@ -432,17 +433,34 @@ function patchDetailShader( shader ) {
  vec2 qrPigmentFilter=max(vec2(1.),uPigmentMinFootprint*(1.-uClassic)/max(qrPigmentFootprint,vec2(1e-6)));
  #endif
  `;
+ if(glass) pigment=pigment.replace('uPigmentMinFootprint*(1.-uClassic)', 'mix(uPigmentMinFootprint,1.,step(.5,texture2D(uGlassGloss,pUv).g))*(1.-uClassic)');
  f = 'uniform float uPigmentMinFootprint;\n' + f;
- f = f.replace( '#include <map_fragment>', ( rock ? parallax + pigment.replace( /vMapUv/g, 'qrRockBaseUv' ) : pigment + parallax ) + THREE.ShaderChunk.map_fragment.replace( 'texture2D( map, vMapUv )', 'textureGrad( map, _pUv, qrPigmentDx*qrPigmentFilter.x, qrPigmentDy*qrPigmentFilter.y )' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
+ f = f.replace( '#include <map_fragment>', ( rock ? parallax + pigment.replace( /vMapUv/g, 'qrRockBaseUv' ) : glass ? parallax + pigment : pigment + parallax ) + THREE.ShaderChunk.map_fragment.replace( 'texture2D( map, vMapUv )', 'textureGrad( map, _pUv, qrPigmentDx*qrPigmentFilter.x, qrPigmentDy*qrPigmentFilter.y )' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
 	// depth is for looking at it from a little way off
 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
-		.replace( 'mapN.xy *= normalScale;', this.userData.realDisplacement ? 'mapN.xy *= 0.0;' : 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) ) * ( 1.0 - uClassic );' ) );
+		.replace( 'mapN.xy *= normalScale;', this.userData.realDisplacement ? 'mapN.xy *= 0.0;' : glass ? 'mapN.xy *= normalScale * mix(mix(0.4,1.0,smoothstep(24.0,150.0,length(vViewPosition))),1.0,step(.08,texture2D(uGlassGloss,pUv).r)*step(.5,texture2D(uGlassGloss,pUv).g)) * (1.0-uClassic);' : 'mapN.xy *= normalScale * mix( 0.4, 1.0, smoothstep( 24.0, 150.0, length( vViewPosition ) ) ) * ( 1.0 - uClassic );' ) );
 	if ( rock ) f = f.replace( '#include <emissivemap_fragment>', ROCK_NORMAL_GLSL + '\n#include <emissivemap_fragment>' );
 	f = f.replace( '#include <emissivemap_fragment>', THREE.ShaderChunk.emissivemap_fragment.replace( /vEmissiveMapUv/g, '_pUv' ) );
 	f = f.replace( '#include <opaque_fragment>', '#include <opaque_fragment>\n	gNormal = vec4( normalize( normal ) * 0.5 + 0.5, vViewPosition.z );\n\tgAlbedo = vec4( gDiffuse, 1.0 );' );
 
-	// without a normal map there is no parallax; keep the names valid
+	// Glass tag occupies the byte-safe gap between carving and rock masks.
+ // RGBA8 cannot carry tags above one. Only the supplied glossy pane mask is tagged.
+ if(glass){
+  shader.uniforms.uGlassGloss=this.userData.glassUniforms.uGlassGloss;
+  f='uniform sampler2D uGlassGloss;\n'+f;
+  f=f.replace('#include <opaque_fragment>', `
+  // Keep dark leading out of the clear coat. Fullbright panes retain their
+  // original pigment even when their base map was split to black.
+  vec3 qrGlassPigment=textureGrad(map,_pUv,dFdx(vMapUv),dFdy(vMapUv)).rgb;
+  #ifdef USE_EMISSIVEMAP
+  qrGlassPigment+=textureGrad(emissiveMap,_pUv,dFdx(vMapUv),dFdy(vMapUv)).rgb;
+  #endif
+  float qrGlassPane=step(0.08,texture2D(uGlassGloss,_pUv).r)*step(0.5,texture2D(uGlassGloss,_pUv).g)*step(0.035,max(qrGlassPigment.r,max(qrGlassPigment.g,qrGlassPigment.b)))*(1.0-uClassic);
+  #include <opaque_fragment>`);
+  f=f.replace('vec4( gDiffuse, 1.0 )','vec4( gDiffuse, mix(1.0,0.5,qrGlassPane) )');
+ }
+ // without a normal map there is no parallax; keep the names valid
 	f = f.replace( /_pUv/g, 'DETAIL_UV' );
 	f = '#ifdef USE_NORMALMAP\n#define DETAIL_UV pUv\n#else\n#define DETAIL_UV vMapUv\n#endif\n' + f;
 
@@ -584,7 +602,10 @@ function applyDetail( material ) {
 	const changedKind = ( material.normalMap != null ) !== ( wanted != null );
 	const changedCarving = !! material.normalMap?.userData.referenceHeight !== !! wanted?.userData.referenceHeight;
 	const changedRelief = JSON.stringify( material.normalMap?.userData.surfaceRelief ) !== JSON.stringify( wanted?.userData.surfaceRelief );
-	material.normalMap = wanted;
+	const changedGlass=!!material.normalMap?.userData.glassGloss !== !!wanted?.userData.glassGloss;
+ material.normalMap = wanted;
+ const glassUniforms=material.userData.glassUniforms ||= {uGlassGloss:{value:null}};
+ glassUniforms.uGlassGloss.value=wanted?.userData.glassGloss||null;
 	if ( wanted?.userData.referenceHeight ) {
 
 		// Cached shader variants share these holders across mode/texture changes.
@@ -594,7 +615,7 @@ function applyDetail( material ) {
 
 	}
 	if ( material.normalScale !== undefined ) material.normalScale.set( 1, 1 );
-	if ( changedKind || changedCarving || changedRelief ) material.needsUpdate = true;
+	if ( changedKind || changedCarving || changedRelief || changedGlass ) material.needsUpdate = true;
 
 }
 
@@ -606,7 +627,7 @@ export function R_RegisterDetail( material, diffuse ) {
 	material.onBeforeCompile = patchDetailShader;
 	material.customProgramCacheKey = function () {
 
-		return ( this.userData.rockField ? 'quake-detail-rock-v2-bandwarp' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-filtered-v2';
+		return ( this.userData.rockField ? 'quake-detail-rock-v2-bandwarp' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + ( this.normalMap?.userData.glassGloss ? '-glass-v2-regions' : '' ) + '-height-shadow-filtered-v2';
 
 	};
 
@@ -1886,6 +1907,7 @@ float caustic( vec2 uv, float t ) {
 bool heldReceiver(vec4 packet){return packet.a < -2.;}
 float receiverDistance(vec4 packet){return heldReceiver(packet)?-packet.a-2.:packet.a;}
 bool actorReceiver(float tag){return tag>.05&&tag<.095;}
+bool glassReceiver(float tag){return tag>.495&&tag<.505;}
 vec3 viewPosAt( vec2 uv ) {
  vec4 packet=texture2D(tNormal,uv);
  if(heldReceiver(packet)){
@@ -2400,19 +2422,20 @@ void main() {
 		vec3 Ng = normalize( cross( dxG, dyG ) );
 		if ( dot( Ng, P ) > 0.0 ) Ng = - Ng;
 		bool actor=actorReceiver(texture2D(tAlbedo,uvd).a);
+  bool glass=glassReceiver(texture2D(tAlbedo,uvd).a);
   if(actor)Ng=N;
-  vec3 Nl = actor?N:normalize( mix( Ng, N, receiverReliefNormalMix(uvd,uBumpLight) ) );
+  vec3 Nl = actor||glass?N:normalize( mix( Ng, N, receiverReliefNormalMix(uvd,uBumpLight) ) );
 
 		if ( uLighting > 0.5 ) {
 			vec4 base = texture2D( tAlbedo, uvd );
 			// 0 is unavailable, .1.. .49 carries carving AO, .51..1 carries
 			// rock sun visibility. Ordinary opaque pixels remain at 1.
-			float rockSunVisibility = heightMaskValid(uvd) ? receiverHeightVisibility(P,uvd,8) : ( base.a > 0.5 ? clamp( ( base.a - 0.51 ) / 0.49, 0.0, 1.0 ) : 1.0 );
+			float rockSunVisibility = heightMaskValid(uvd) ? receiverHeightVisibility(P,uvd,8) : ( glass ? 1.0 : ( base.a > 0.5 ? clamp( ( base.a - 0.51 ) / 0.49, 0.0, 1.0 ) : 1.0 ) );
 			float carveAO = surfaceCarveAO( base.a );
 			vec3 relit = vec3( 0.0 );
    float visibleReliefWeight=0.,shadowedReliefWeight=0.;
 			vec3 surfaceSpecular=vec3(0.);
-   float film=actor&&base.a>.07?uActorWet*uActorWet:0.;
+   float film=glass?1.:(actor&&base.a>.07?uActorWet*uActorWet:0.);
    vec3 V=normalize(-P);
    vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
 
@@ -2425,7 +2448,7 @@ void main() {
      float sunWeight=dot(incidentSun,vec3(.2126,.7152,.0722));
      visibleReliefWeight+=sunWeight;shadowedReliefWeight+=sunWeight*rockSunVisibility;
      relit+=incidentSun*rockSunVisibility;
-     if(film>0.)surfaceSpecular+=uSunSurfaceCol*pow(max(dot(Nl,normalize(uSunDirV+V)),0.),48.)*sunVisibility*skyCookieRGB(pw)*rockSunVisibility;
+     if(film>0.)surfaceSpecular+=uSunSurfaceCol*pow(max(dot(Nl,normalize(uSunDirV+V)),0.),glass?24.:48.)*sunVisibility*skyCookieRGB(pw)*rockSunVisibility;
 				}
 			}
 
@@ -2439,7 +2462,7 @@ void main() {
     visibleReliefWeight+=weight;shadowedReliefWeight+=weight*localShadow;
     vec3 lightHere=reached*localShadow;
 				relit += lightHere;
-    if(film>0.)surfaceSpecular+=uLightCol[i].rgb*pow(max(dot(Nl,normalize(normalize(uLightPos[i].xyz-P)+V)),0.),48.)*pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow*pow(max(0.,1.-length(uLightPos[i].xyz-P)/uLightCol[i].a),2.);
+    if(film>0.)surfaceSpecular+=uLightCol[i].rgb*pow(max(dot(Nl,normalize(normalize(uLightPos[i].xyz-P)+V)),0.),glass?24.:48.)*pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow*pow(max(0.,1.-length(uLightPos[i].xyz-P)/uLightCol[i].a),2.);
 				flashAdd += lightHere * uLightAdd[ i ];
 			}
 
@@ -2453,7 +2476,7 @@ void main() {
      float beam=worldBeam*localShadow,weight=dot(uSpotCol,vec3(.2126,.7152,.0722))*sndl*worldBeam;
      visibleReliefWeight+=weight;shadowedReliefWeight+=weight*localShadow;
 					spot = uSpotCol * sndl * beam;
-     if(film>0.)surfaceSpecular+=uSpotCol*pow(max(dot(Nl,normalize(normalize(Ls)+V)),0.),48.)*beam;
+     if(film>0.)surfaceSpecular+=uSpotCol*pow(max(dot(Nl,normalize(normalize(Ls)+V)),0.),glass?24.:48.)*beam;
 					spotMask = clamp( sndl * beam * 1.6, 0.0, 1.0 );
 				}
 			}
@@ -2518,6 +2541,7 @@ void main() {
 			vec3 receiver = albedo * 0.55;
 			c = actor ? scene + albedo*(relit*.55+spot*1.15+flashAdd*.3+bounce*.55)+surfaceSpecular*film*.16 : scene * ( 1.0 + relit * carveAO ) + ( bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 ) ) * carveAO;
 
+   if(glass)c+=surfaceSpecular*.12;
    c*=receiverRockContrast(P,uvd,shadowedReliefWeight,visibleReliefWeight);
 
 			// what the beam hits is not just brighter, it is richer: colour and contrast rise with it

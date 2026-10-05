@@ -335,12 +335,14 @@ export function R_NormalMapFor( diffuse ) {
 	const crafted = diffuse.userData != null ? diffuse.userData.newerHeight : undefined;
 	const useCrafted = crafted != null && crafted.width === width && crafted.height === height;
 
-	const key = useCrafted ? 'crafted:' + crafted.file + ':' + ( crafted.dataFile || '' ) + ':' + crafted.strength + ':' + crafted.cap + ':' + ( crafted.edgeSource?.file || '' )
+	const donor = useCrafted ? crafted.authoredNormal : null;
+	const authored = donor && donor.width===width && donor.height===height && donor.data?.length===width*height*4;
+	const key = useCrafted ? 'crafted:' + crafted.file + ':' + ( crafted.dataFile || '' ) + ':' + crafted.strength + ':' + crafted.cap + ':' + ( crafted.edgeSource?.file || '' ) + ':' + ( authored ? donor.file + ':' + hashTexels(donor.data) : '' )
 		: width + 'x' + height + ':' + hashTexels( data ) + ( fb !== null ? ':' + hashTexels( fb ) : '' );
 	let pixels = generated.get( key );
 	if ( pixels === undefined ) {
 
-		pixels = useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength, crafted.cap, crafted.edgeSource )
+		pixels = authored ? new Uint8Array(donor.data) : useCrafted ? R_NormalsFromCraftedHeight( crafted.data, width, height, crafted.strength, crafted.cap, crafted.edgeSource )
 			: R_GenerateNormalData( data, width, height, fb );
 		if ( generated.size >= MAX_GENERATED ) generated.delete( generated.keys().next().value );
 		generated.set( key, pixels );
@@ -355,7 +357,13 @@ export function R_NormalMapFor( diffuse ) {
 	texture.generateMipmaps = true;
 	texture.anisotropy = 16;
 	texture.colorSpace = THREE.NoColorSpace; // data, not colour
-	texture.userData.heightSource = true; // alpha was explicitly generated from the scalar height field
+	const gloss=authored?crafted.authoredGloss:null;
+ if(gloss && gloss.width===width && gloss.height===height && gloss.data?.length===width*height*4 && gloss.data.some((v,i)=>i%4===0&&v>20)){
+  const map=new THREE.DataTexture(new Uint8Array(gloss.data),width,height,THREE.RGBAFormat);
+  map.wrapS=map.wrapT=THREE.RepeatWrapping;map.magFilter=THREE.LinearFilter;map.minFilter=THREE.LinearMipmapLinearFilter;map.generateMipmaps=true;map.colorSpace=THREE.NoColorSpace;map.offset.copy(diffuse.offset);map.needsUpdate=true;
+  texture.userData.glassGloss=map;texture.addEventListener('dispose',()=>map.dispose());
+ }
+ texture.userData.heightSource = true; // alpha was explicitly generated from the scalar height field
 	texture.offset.copy( diffuse.offset ); // a picture moved on its faces (crates) moves its relief too
 	texture.needsUpdate = true;
 	if ( useCrafted && crafted.relief ) texture.userData.surfaceRelief = { ...crafted.relief };

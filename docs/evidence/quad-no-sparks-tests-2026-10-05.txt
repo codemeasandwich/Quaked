@@ -1,0 +1,47 @@
+(node:75990) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS exact native pickup kinds, bounded quad pulse, presentation-only source attributes and original gameplay fields
+PASS visible, collected, respawned, replaced and cleared entities retire effect/light state without retaining orphan meshes
+PASS Classic helper redraw does not mutate the enhanced registry, and feature/Newer gates retire effects
+PASS live pickup lights share the existing eight-source budget and stable ranking while quad radiance pulses
+Added packfile pak0.pak (339 files)\n
+R_Init
+Can't register variable r_hdr, already defined
+
+Can't register variable r_powerups, already defined
+
+Can't register variable r_newer_lighting, already defined
+
+R_Init: Three.js renderer ready
+meshing progs/quaddama.mdl...
+
+meshing progs/invulner.mdl...
+
+meshing progs/invisibl.mdl...
+
+PASS actual public entity draw dispatch attaches effects to native world pickups and excludes held viewmodel
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+PASS real native PAK pickup aliases retain positions, UVs, indices and skin data under effect attachment
+PASS actual post-frame snapshot retains ring cookie slot and live-light radiance while lighting-off disables its compositor path
+PASS visible pentagram metadata includes all shrouds beyond eight lights and exact camera-space billboard geometry without native mutation
+PASS shroud metadata resets for hidden object/ancestor, feature-off, Classic, collection and map clear
+PASS native yaw and actual model matrices drive local fire volume and ring orientation without camera or Classic drift
+PASS volumetric fuel distances match independent native triangle geometry and coating preserves the complete Q and pentagram topology
+PASS replacement native position or index buffers rebuild owned emissions without disposing the native model
+PASS volume renderer separates emission from opaque depth, follows resolution and camera projection, and restores all state on failure
+RESULT 13/13 passed (tests/powerups_test.js)
+(node:75999) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS independent quad public frame preserves native model and exact white flame while installing blue donor light
+PASS spark-free Quad retains stable animated white flame under repeated simulation time
+PASS independent Classic public redraw leaves quad registry and flame geometry untouched
+PASS independent collection and feature disable retire all owned quad resources once
+RESULT 4/4 passed (tests/quad_donor_test.js)
+(node:76009) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+TOTAL 17/17 passed

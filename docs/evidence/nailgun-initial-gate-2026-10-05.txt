@@ -1,0 +1,154 @@
+(node:87999) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_shot2.mdl...
+
+PASS classic draw and feature toggle restore native geometry and subsequent enhanced draws
+PASS parsed confirmed shotgun sounds emit one or two casings independently of audio and stale weapon stats
+PASS shell BSP sweeps hit the floor and wall with radius clearance
+PASS a casing fired at the original E1M1 spawn settles on the actual map collision hull
+PASS casings settle on BSP floors, exceed instance capacity, never expire, and survive map return and save restoration
+PASS weapon test texture and fetch stubs are restored
+RESULT 6/7 passed (tests/weapons_test.js)
+(node:88008) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+THREE.Material: parameter 'map' has value of undefined.
+FAIL supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/supernailgun.zip'
+    at Object.openSync (node:fs:559:18)
+    at readFileSync (node:fs:443:35)
+    at bytes (file:///Users/bri/SOURCE/Quaked/tests/weapons_test.js:22:33)
+    at uniformNailgunBounds (file:///Users/bri/SOURCE/Quaked/tests/weapons_test.js:126:15)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapons_test.js:269:271
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+THREE.Material: parameter 'map' has value of undefined.
+PASS review: cloned imported materials retain supplied maps and enhanced surface outputs
+PASS review: raised and rotated brush floors intercept shell sweeps before the world floor
+PASS review: fired casing lands on a lift, follows translation and rotation, survives save, then falls when support disappears
+PASS review: brush rotation updates casing orientation even when its world position stays fixed
+PASS review: malformed saved support is discarded without losing the physical casing
+RESULT 5/5 passed (tests/weapon_review_test.js)
+(node:88024) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+meshing progs/v_shot.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/g_light.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/v_axe.mdl...
+
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 5/6 passed (tests/weapon_modes_test.js)
+(node:88036) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+FAIL weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models Error: all firearm roles and original axe covered: 14 != 12
+    at check (file:///Users/bri/SOURCE/Quaked/tests/weapon_modes_test.js:19:55)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/weapon_modes_test.js:20:44)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapon_modes_test.js:115:2
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+PASS weapon startup: ordinary app warms held/pickup art behind its first real console, retaining the readiness gate until downloads settle
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+(node:88040) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Weapon art fallback: g_rock2 Error: Invalid weapon geometry: g_rock2
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:90:85
+    at async Promise.all (index 8)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:65:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:50:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:92:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+(node:88054) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+node:fs:559
+  return binding.open(
+                 ^
+
+Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/supernailgun2.zip'
+    at Object.openSync (node:fs:559:18)
+    at readFileSync (node:fs:443:35)
+    at read (file:///Users/bri/SOURCE/Quaked/tests/supernailgun_profile_test.js:18:22)
+    at archive (file:///Users/bri/SOURCE/Quaked/tests/supernailgun_profile_test.js:28:47)
+    at file:///Users/bri/SOURCE/Quaked/tests/supernailgun_profile_test.js:144:15
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/bri/SOURCE/Quaked/supernailgun2.zip'
+}
+
+Node.js v24.13.0
+TOTAL 18/20 passed

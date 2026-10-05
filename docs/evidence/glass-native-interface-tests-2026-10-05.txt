@@ -1,0 +1,20 @@
+(node:29094) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+Added packfile native-glass-id1 (2 files)\n
+Added packfile native-glass-hipnotic (2 files)\n
+Added packfile native-glass-rogue (2 files)\n
+Added packfile native-glass-dopa (2 files)\n
+Added packfile native-glass-mg1 (2 files)\n
+Added packfile native-glass-ad (2 files)\n
+Added packfile native-glass-quoth (2 files)\n
+Added packfile native-glass-malice (2 files)\n
+Added packfile native-glass-aopfm_v2 (2 files)\n
+Added packfile native-glass-xmen (2 files)\n
+NATIVE_GLASS_INTERFACE [{"game":"id1","map":"maps/e4m6.bsp","materials":4,"fullbright":0},{"game":"hipnotic","map":"maps/hip2m6.bsp","materials":5,"fullbright":0},{"game":"rogue","map":"maps/r1m7.bsp","materials":4,"fullbright":0},{"game":"dopa","map":"maps/e5start.bsp","materials":2,"fullbright":0},{"game":"mg1","map":"maps/mge5m2.bsp","materials":4,"fullbright":0},{"game":"ad","map":"maps/ad_akalakha.bsp","materials":20,"fullbright":0},{"game":"quoth","map":"maps/breakable.bsp","materials":11,"fullbright":0},{"game":"malice","map":"maps/d10.bsp","materials":3,"fullbright":0},{"game":"aopfm_v2","map":"maps/aop1m5.bsp","materials":7,"fullbright":7},{"game":"xmen","map":"maps/x2m1.bsp","materials":2,"fullbright":0}]
+PASS native public BSP loaders select exact glass catalog variants across all ten campaign sources
+RESULT 1/1 passed (/private/tmp/glass-port/native-interface-tests.mjs)
+(node:29103) ExperimentalWarning: `--experimental-loader` may be removed in the future; instead use `register()`:
+--import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("/private/tmp/quad-module-loader.mjs", pathToFileURL("./"));'
+(Use `node --trace-warnings ...` to show where the warning was created)
+TOTAL 1/1 passed

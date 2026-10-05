@@ -2,3 +2,6 @@
 # whitespace. Preserve their bytes; source files keep normal whitespace checks.
 /docs/evidence/*.txt -whitespace
 /docs/evidence/*.patch -whitespace
+
+# Exact donor excerpt retains its original CRLF and spacing for hash verification.
+/newer/effects/quad/quad-effectinfo.txt -whitespace

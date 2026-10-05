@@ -1,0 +1,681 @@
+{
+  "checked": "mandatory native BSP29 acceptance; exact unsupported BSP2 rejection; every source texture identity verified against actual palette and catalog",
+  "nativeAcceptedCampaigns": 10,
+  "unsupportedNativeCampaigns": 0,
+  "sourceVerifiedCampaigns": 10,
+  "campaigns": [
+    {
+      "game": "id1",
+      "map": "maps/e4m6.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 113297613,
+        "length": 1220124
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "943c854be61574f9d218e0377598515221c49dd110dda3c8f2e666eb936478c7",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 1221032,
+      "selected": [
+        {
+          "name": "window01_4",
+          "key": "64x192:523ed0a9a8d3d90b",
+          "fullbright": false,
+          "file": "glass/6e64b1dd1b89929c-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_1",
+          "key": "64x192:d4193b0d4846e7e7",
+          "fullbright": false,
+          "file": "glass/e1b69288318f4964-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_3",
+          "key": "64x192:9931f858d5865f0a",
+          "fullbright": false,
+          "file": "glass/22b72f50d1c4b31d-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_2",
+          "key": "64x192:d503799052ba5ca2",
+          "fullbright": false,
+          "file": "glass/c27fec20f9b2d085-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "hipnotic",
+      "map": "maps/hip2m6.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/hipnotic/pak0.pak",
+        "start": 54545216,
+        "length": 1940268
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "93026302bda4c3c1a505893d5194e4eae6396d171828f3c1902f5432b9904505",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 1941176,
+      "selected": [
+        {
+          "name": "window01_3",
+          "key": "64x192:9931f858d5865f0a",
+          "fullbright": false,
+          "file": "glass/22b72f50d1c4b31d-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1_3",
+          "key": "64x64:156b1af4336bfc86",
+          "fullbright": false,
+          "file": "glass/9d5e79750fba26d2-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_4",
+          "key": "64x192:523ed0a9a8d3d90b",
+          "fullbright": false,
+          "file": "glass/6e64b1dd1b89929c-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_1",
+          "key": "64x192:d4193b0d4846e7e7",
+          "fullbright": false,
+          "file": "glass/e1b69288318f4964-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_2",
+          "key": "64x192:d503799052ba5ca2",
+          "fullbright": false,
+          "file": "glass/c27fec20f9b2d085-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "map": "maps/r1m7.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/rogue/pak0.pak",
+        "start": 13572995,
+        "length": 2077996
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "c16175ca29a9648e3af8954813f871f435507beeaf37c6d1b0d340811971d79c",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 2078904,
+      "selected": [
+        {
+          "name": "window1_2",
+          "key": "64x64:12a0933767a92b95",
+          "fullbright": false,
+          "file": "glass/2a952e65d554f458-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_3",
+          "key": "64x192:9931f858d5865f0a",
+          "fullbright": false,
+          "file": "glass/22b72f50d1c4b31d-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2_1",
+          "key": "64x192:afc21851d31c2283",
+          "fullbright": false,
+          "file": "glass/a5241a08cbbec6b4-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window02_1",
+          "key": "64x192:d154d1d83afd8dc2",
+          "fullbright": false,
+          "file": "glass/2f08c1c83860d430-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "dopa",
+      "map": "maps/e5start.bsp",
+      "bspVersion": 844124994,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/dopa/pak0.pak",
+        "start": 37223372,
+        "length": 1347088
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "5dc74f163d6c2f088c66148c78dfaf457422bf598b251a656d1a8d4f61446a46",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 1347996,
+      "selected": [
+        {
+          "name": "window02_1",
+          "key": "64x192:d154d1d83afd8dc2",
+          "fullbright": false,
+          "file": "glass/2f08c1c83860d430-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_4",
+          "key": "64x192:523ed0a9a8d3d90b",
+          "fullbright": false,
+          "file": "glass/6e64b1dd1b89929c-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "mg1",
+      "map": "maps/mge5m2.bsp",
+      "bspVersion": 844124994,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/mg1/pak0.pak",
+        "start": 709968473,
+        "length": 18490096
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 18491004,
+      "selected": [
+        {
+          "name": "window0_1",
+          "key": "64x64:34aebb95176238cf",
+          "fullbright": false,
+          "file": "glass/331dfa0d32571d6e-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window02_1",
+          "key": "64x192:d154d1d83afd8dc2",
+          "fullbright": false,
+          "file": "glass/2f08c1c83860d430-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_3",
+          "key": "64x192:9931f858d5865f0a",
+          "fullbright": false,
+          "file": "glass/22b72f50d1c4b31d-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_1",
+          "key": "64x192:d4193b0d4846e7e7",
+          "fullbright": false,
+          "file": "glass/e1b69288318f4964-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "ad",
+      "map": "maps/ad_akalakha.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/ad/pak2.pak",
+        "start": 95002,
+        "length": 7351464
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "5184a1ae668d384f5221cd82dbf863a26658ea20adb1b101fdca2c1d49c91ec1",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 7352372,
+      "selected": [
+        {
+          "name": "window1sb",
+          "key": "64x128:6f5b7fb08a303862",
+          "fullbright": false,
+          "file": "glass/98c980bcf5697a15-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1sa",
+          "key": "128x256:e0ce486a10020b80",
+          "fullbright": false,
+          "file": "glass/5e7335bd958a2564-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2cc",
+          "key": "128x256:0f4a29f6a520400c",
+          "fullbright": false,
+          "file": "glass/8313a2ea2d779da5-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2cga",
+          "key": "128x256:50987d494990b423",
+          "fullbright": false,
+          "file": "glass/b654150d360cf8e9-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_4dd",
+          "key": "128x256:1277c3bb6435b6a9",
+          "fullbright": false,
+          "file": "glass/e861add81cc19183-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_4sh",
+          "key": "256x128:72c1b92a62cb7068",
+          "fullbright": false,
+          "file": "glass/ea5b2de2c21f7a3a-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2cg",
+          "key": "128x256:8f516ecf0d32daad",
+          "fullbright": false,
+          "file": "glass/fd944da2474127fd-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1sac23",
+          "key": "128x256:900e5db5dbce1eaf",
+          "fullbright": false,
+          "file": "glass/0407f18d3636fbb7-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window03",
+          "key": "256x256:238e78ebc4e565a9",
+          "fullbright": false,
+          "file": "glass/c211ae733d7ff19f-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window03d",
+          "key": "256x256:9b46d1cbf662ce89",
+          "fullbright": false,
+          "file": "glass/11ef80310d636145-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window03r",
+          "key": "256x256:20fa326394886d99",
+          "fullbright": false,
+          "file": "glass/b1546e8fa1c11ae7-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1saswh",
+          "key": "128x256:c85e8163819851c1",
+          "fullbright": false,
+          "file": "glass/197ef988f7d47db6-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2b",
+          "key": "128x256:977bf84a9d1017d8",
+          "fullbright": false,
+          "file": "glass/4b8204e01cafdf18-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2a",
+          "key": "128x256:df79d8192b777c23",
+          "fullbright": false,
+          "file": "glass/ad8f64fa7d20e3d4-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1_2",
+          "key": "64x64:12a0933767a92b95",
+          "fullbright": false,
+          "file": "glass/2a952e65d554f458-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window03w",
+          "key": "256x256:be83387c73d62cae",
+          "fullbright": false,
+          "file": "glass/17238eefabbc7c67-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2ch",
+          "key": "128x256:620f6c0e0f90f784",
+          "fullbright": false,
+          "file": "glass/cc7b16e48d1b9a41-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2sh",
+          "key": "128x256:15a6bea194e0f36b",
+          "fullbright": false,
+          "file": "glass/c098b148122e818f-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1_1b",
+          "key": "256x128:df9785578b1585bd",
+          "fullbright": false,
+          "file": "glass/2ae23bc037f8918f-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_4",
+          "key": "64x256:6fe550a9ce98d90b",
+          "fullbright": false,
+          "file": "glass/e925e7f3b5309679-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "quoth",
+      "map": "maps/breakable.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/quoth/pak1.pak",
+        "start": 79735943,
+        "length": 1924412
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "1b7c46e6581380db7416e943ee4c31763de08159bc08aa1e1ccc0fb2eaf8f810",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 1925320,
+      "selected": [
+        {
+          "name": "32glass",
+          "key": "256x32:f642a047c796608d",
+          "fullbright": false,
+          "file": "glass/a196e8d3a24b755f-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1_2",
+          "key": "64x64:12a0933767a92b95",
+          "fullbright": false,
+          "file": "glass/2a952e65d554f458-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2_3",
+          "key": "64x192:e5cc063f8b2fe5f5",
+          "fullbright": false,
+          "file": "glass/816d7f7cb1d9788d-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2_4",
+          "key": "64x192:a1545a954e7d792f",
+          "fullbright": false,
+          "file": "glass/9c71effebccdcceb-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2_2",
+          "key": "64x192:8df5b04c6b28cf46",
+          "fullbright": false,
+          "file": "glass/c7e130ecdd04c48c-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window2_1",
+          "key": "64x192:afc21851d31c2283",
+          "fullbright": false,
+          "file": "glass/a5241a08cbbec6b4-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_2",
+          "key": "64x192:d503799052ba5ca2",
+          "fullbright": false,
+          "file": "glass/c27fec20f9b2d085-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_1",
+          "key": "64x192:d4193b0d4846e7e7",
+          "fullbright": false,
+          "file": "glass/e1b69288318f4964-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_3",
+          "key": "64x192:9931f858d5865f0a",
+          "fullbright": false,
+          "file": "glass/22b72f50d1c4b31d-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window02_1",
+          "key": "64x192:d154d1d83afd8dc2",
+          "fullbright": false,
+          "file": "glass/2f08c1c83860d430-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_4",
+          "key": "64x192:523ed0a9a8d3d90b",
+          "fullbright": false,
+          "file": "glass/6e64b1dd1b89929c-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "malice",
+      "map": "maps/d10.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/malice/pak3.pak",
+        "start": 2160392,
+        "length": 2276900
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/malice/pak0.pak",
+        "start": 592259,
+        "length": 768
+      },
+      "mapSHA256": "54ad59a2132e1a8b6bb89797b731a69f61506873dbcba7984052a8ef63cc089f",
+      "paletteSHA256": "61146dec8f3bb34a989c2cd1678c37bd70ccc6f30bc03246b3ec0d32e30bf7d3",
+      "carrierBytes": 2277808,
+      "selected": [
+        {
+          "name": "windr2",
+          "key": "64x64:c63b631d9950603f",
+          "fullbright": false,
+          "file": "glass/74d037d1edcd171f-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "windr1",
+          "key": "64x64:6115c53ab8fe0da8",
+          "fullbright": false,
+          "file": "glass/a203b6a3d0e88e17-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "windr3",
+          "key": "32x32:5c8ab4a825882272",
+          "fullbright": false,
+          "file": "glass/7484fd4421f5200a-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "aopfm_v2",
+      "map": "maps/aop1m5.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/aopfm_v2/pak1.pak",
+        "start": 7528468,
+        "length": 2510632
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/id1/pak0.pak",
+        "start": 21750182,
+        "length": 768
+      },
+      "mapSHA256": "d521c9e4e3ec7baaf94d2ee45a0842841708da6416a151b2e0d6e14311e311cc",
+      "paletteSHA256": "6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe",
+      "carrierBytes": 2511540,
+      "selected": [
+        {
+          "name": "window01_4",
+          "key": "64x192:5ffe28e59cca0a2f",
+          "fullbright": true,
+          "file": "glass/54bb1d12da8f3081-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_2",
+          "key": "64x192:5ffe28e59cca0a2f",
+          "fullbright": true,
+          "file": "glass/6cd6dee02a5b7a5b-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window02_1",
+          "key": "64x192:348c68cc10392a3e",
+          "fullbright": true,
+          "file": "glass/efeaf378d9f989ed-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window1_3",
+          "key": "64x64:05dabbdedb8d6824",
+          "fullbright": true,
+          "file": "glass/5a926f01cd77c157-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window031",
+          "key": "256x192:5e7fde8dc456647f",
+          "fullbright": true,
+          "file": "glass/aca3a888c85f28ff-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window030",
+          "key": "256x192:5e7fde8dc456647f",
+          "fullbright": true,
+          "file": "glass/4fdc0811eb7c1650-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "window01_1",
+          "key": "64x192:348c68cc10392a3e",
+          "fullbright": true,
+          "file": "glass/00f6709df719eaf8-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    },
+    {
+      "game": "xmen",
+      "map": "maps/x2m1.bsp",
+      "bspVersion": 29,
+      "nativeLoaderAccepted": true,
+      "nativeLoaderError": null,
+      "sourceIdentityVerified": true,
+      "source": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/xmen/pak3.pak",
+        "start": 11473855,
+        "length": 2662114
+      },
+      "paletteSource": {
+        "path": "/Users/bri/SOURCE/Quaked/resources/xmen/pak0.pak",
+        "start": 6365751,
+        "length": 768
+      },
+      "mapSHA256": "14ff2ae682ad2a61e0535868ee877d07cbcc229c5c7187c53f220f53f4d5b8cb",
+      "paletteSHA256": "d9a1129ff3efdfc75cdb96c5bd50503dec570d2a1ba42a93a2513093a1b8765c",
+      "carrierBytes": 2663022,
+      "selected": [
+        {
+          "name": "window1_1",
+          "key": "64x128:d0ce846c8e67794e",
+          "fullbright": false,
+          "file": "glass/5cc5df1c244e5777-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        },
+        {
+          "name": "dwindow1_2a",
+          "key": "128x128:1f9a386819fecfaa",
+          "fullbright": false,
+          "file": "glass/43b31337407c22aa-diffuse.png",
+          "identityPath": "native Mod_ForName"
+        }
+      ]
+    }
+  ],
+  "totalMaterials": 62,
+  "implementationSourceSHA256": {
+    "src/gl_model.js": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488",
+    "src/r_newertextures.js": "13309c477e0fa2668aaf6462246035f4292f4e40ffbfef34beda70746fde007f",
+    "newer/textures/index.json": "e7a50d1ab8c3dcf1c8dc3e54024392fbfcd072bd4a80c3c64451632966629901"
+  },
+  "testSourceSHA256": "638075fb5283dae5a3b03b0f45e8f230c12e9c56c315ff54f1063c6aa5a3ed33",
+  "nativeAcceptedMaterials": 62,
+  "sourceOnlyMaterials": 0
+}

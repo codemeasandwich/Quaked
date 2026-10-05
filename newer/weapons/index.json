@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "models": {
     "v_shot": {
       "source": "shotgun",
@@ -507,6 +507,90 @@
         2.676377133688778e-15
       ],
       "excludedNativeVertices": []
+    },
+    "v_nail": {
+      "source": "nailgun",
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "fitKind": "source-quake-coordinates",
+      "poses": 9,
+      "nativeMin": [
+        5.301379680633545,
+        -6.04471492767334,
+        -16.932537078857422
+      ],
+      "nativeMax": [
+        30.64663577079773,
+        5.8903458416461945,
+        -11.572882987558842
+      ],
+      "sourceMin": [
+        6.00547518581152,
+        -6.48014485090971,
+        -24.190148886293173
+      ],
+      "sourceMax": [
+        30.79629358649254,
+        6.640145480632782,
+        -11.924318201839924
+      ],
+      "sourcePoseMapping": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "g_nail": {
+      "source": "nailgun_pickup",
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0,
+        0
+      ],
+      "fitKind": "source-quake-coordinates",
+      "poses": 1,
+      "nativeMin": [
+        -10.193262100219727,
+        -6.459175109863281,
+        23.908587485551834
+      ],
+      "nativeMax": [
+        16.680596359074116,
+        6.294222097843885,
+        36.72704704105854
+      ],
+      "sourceMin": [
+        -6.3125,
+        -10.875,
+        22.671875
+      ],
+      "sourceMax": [
+        6.296875,
+        16.6875,
+        36.703125
+      ],
+      "sourcePoseMapping": [
+        0
+      ]
     }
   },
   "sources": {
@@ -514,7 +598,7 @@
       "archive": "shotgun.zip",
       "sha256": "75247259150089b1b0b47c98cc8ac61ecbc346cfbd56d36fb1006b7e5a9ede54",
       "metadata": {
-        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
         "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
         "source": "https://sketchfab.com/3d-models/shotgun-9f58537324794d53b317676555f41fc9",
         "title": "Shotgun"
@@ -551,7 +635,7 @@
       "archive": "supershotgun.zip",
       "sha256": "e889d49b71eb1bd7413c47ec836788303e1304eb56eaa2d013382246a15c113f",
       "metadata": {
-        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
         "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
         "source": "https://sketchfab.com/3d-models/supershotgun-3df3bb71d79e4eac8126f53a5b54b874",
         "title": "Supershotgun"
@@ -624,7 +708,7 @@
       "archive": "supernailgun2.zip",
       "sha256": "07bf832ebcae0052b802c615c7a3d1c0a59924642fd71c278feef5005f39b1e3",
       "metadata": {
-        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
         "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
         "source": "https://sketchfab.com/3d-models/supernailgun-53ab89b5c3c64cc7bc13b66636c430e2",
         "title": "Supernailgun"
@@ -691,7 +775,7 @@
       "archive": "grenadelauncher.zip",
       "sha256": "d8317403906d210c5ca4c247e288d67ddbf37466d86cc54d8ed8a8ee36f01498",
       "metadata": {
-        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
         "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
         "source": "https://sketchfab.com/3d-models/grenadelauncher-e9b8f4c575d74190a7840cfe6417dad0",
         "title": "Grenadelauncher"
@@ -728,7 +812,7 @@
       "archive": "rocketlauncher.zip",
       "sha256": "c57f9f5234ee7d7ca11494bde4cbb1671ab954dea4000a7f90d3562931ea92cb",
       "metadata": {
-        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
         "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
         "source": "https://sketchfab.com/3d-models/rocketlauncher-e988bdc7c79e450e80984f9b8c192fcd",
         "title": "Rocketlauncher"
@@ -765,7 +849,7 @@
       "archive": "thuderbolt.zip",
       "sha256": "ba18eee68329cf7041cb8d4a7d5d33fa232b4a540257f47baebc5e7f7c95b78c",
       "metadata": {
-        "author": "旦那気 大安 (https://sketchfab.com/dannaki_tayan)",
+        "author": "\u65e6\u90a3\u6c17 \u5927\u5b89 (https://sketchfab.com/dannaki_tayan)",
         "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
         "source": "https://sketchfab.com/3d-models/thuderbolt-c1c82903dfb84be187eadac3465b2ef8",
         "title": "Thuderbolt"
@@ -878,6 +962,69 @@
         "doubleSided": true
       },
       "selectedMesh": "shotgun_shell_bullets_0"
+    },
+    "nailgun": {
+      "archive": "/Users/bri/Downloads/Quake/Id1/PAK3.pk3",
+      "archiveEntry": "progs/v_nail.mdl",
+      "sha256": "403e75374cf71822bb203a695f47b008e905003a2de7160800f27d10b2a4ca5b",
+      "axes": [
+        1,
+        2,
+        3
+      ],
+      "vertices": 727,
+      "triangles": 681,
+      "maps": {
+        "diffuse": "diffuse.png"
+      },
+      "textureFlipY": false,
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": false
+      },
+      "fitKind": "source-quake-coordinates"
+    },
+    "nailgun_pickup": {
+      "archive": "/Users/bri/Downloads/Quake/Id1/PAK3.pk3",
+      "archiveEntry": "progs/g_nail.mdl",
+      "sha256": "9d3a3ac5eb1cb81ec65616a309c91217ee909c8437d0bca5cf1135f28c2f7e69",
+      "axes": [
+        1,
+        2,
+        3
+      ],
+      "vertices": 499,
+      "triangles": 444,
+      "maps": {
+        "diffuse": "diffuse.png",
+        "normal": "normal.png"
+      },
+      "textureFlipY": false,
+      "material": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "emissiveFactor": [
+          0,
+          0,
+          0
+        ],
+        "doubleSided": false
+      },
+      "fitKind": "source-quake-coordinates"
     }
   }
 }
