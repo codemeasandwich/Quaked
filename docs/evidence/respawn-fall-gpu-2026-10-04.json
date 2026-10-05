@@ -1,0 +1,190 @@
+{
+  "map": "e1m1",
+  "signon": 4,
+  "ready": true,
+  "loading": {
+    "phase": "done",
+    "mode": "welcome",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 23,
+    "settledFrames": 3,
+    "world": "maps/e1m1.bsp",
+    "pending": [],
+    "fallbacks": []
+  },
+  "time": 86.4316999999996,
+  "health": 100,
+  "weapon": 0,
+  "weapons": [],
+  "ammo": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "powerups": 0,
+  "timers": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "position": [
+    130.5812530517578,
+    841.9039306640625,
+    -199.96875
+  ],
+  "deaths": 1,
+  "sequence": {
+    "at": 85.68169999999961,
+    "sourcePivot": [
+      130.6125030517578,
+      841.9351806640625,
+      -221.9375
+    ],
+    "destinationPivot": [
+      480.03125,
+      -351.96875,
+      67.03125
+    ],
+    "sourceDrift": [
+      0,
+      0,
+      0
+    ],
+    "destinationDrift": [
+      0,
+      0,
+      0
+    ],
+    "angles": [
+      0,
+      0,
+      0
+    ],
+    "frame": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "radius": 44,
+    "descent": 0.03125,
+    "turn": 2.6,
+    "respawned": false,
+    "objectives": 0,
+    "damage": 2,
+    "destinationDrop": 17
+  },
+  "head": [
+    130.6125030517578,
+    834.86962890625,
+    -178.51882934570312
+  ],
+  "nativeCameraQuaternion": [
+    -0.5386511886552827,
+    0.4580992217415907,
+    0.5386511886552827,
+    -0.4580992217415907
+  ],
+  "presentationQuaternion": [
+    -0.5386511885147435,
+    0.4580992201334373,
+    0.5386511885147435,
+    -0.4580992201334373
+  ],
+  "livingEnemies": 23,
+  "alertedEnemies": 0,
+  "inspectionProtection": true,
+  "drops": [
+    {
+      "id": "e1m1:1:85.68169999999961:162",
+      "weapon": 1,
+      "ammo": "ammo_shells",
+      "amount": 10,
+      "position": [
+        166.87486267089844,
+        841.9039306640625,
+        -219.96875
+      ],
+      "settled": true
+    },
+    {
+      "id": "e1m1:1:85.68169999999961:165",
+      "weapon": 2,
+      "ammo": "ammo_shells",
+      "amount": 9,
+      "position": [
+        101.23229217529297,
+        868.7901611328125,
+        -219.96875
+      ],
+      "settled": true
+    },
+    {
+      "id": "e1m1:1:85.68169999999961:166",
+      "weapon": 4,
+      "ammo": "ammo_nails",
+      "amount": 31,
+      "position": [
+        134.38812255859375,
+        798.5264892578125,
+        -219.96875
+      ],
+      "settled": true
+    },
+    {
+      "id": "e1m1:1:85.68169999999961:167",
+      "weapon": 8,
+      "ammo": "ammo_nails",
+      "amount": 30,
+      "position": [
+        159.5084991455078,
+        879.63427734375,
+        -219.96875
+      ],
+      "settled": true
+    },
+    {
+      "id": "e1m1:1:85.68169999999961:168",
+      "weapon": 16,
+      "ammo": "ammo_rockets",
+      "amount": 4,
+      "position": [
+        79.5462417602539,
+        832.8765869140625,
+        -219.96875
+      ],
+      "settled": true
+    },
+    {
+      "id": "e1m1:1:85.68169999999961:169",
+      "weapon": 32,
+      "ammo": "ammo_rockets",
+      "amount": 3,
+      "position": [
+        178.0965118408203,
+        811.6785278320312,
+        -219.96875
+      ],
+      "settled": true
+    },
+    {
+      "id": "e1m1:1:85.68169999999961:170",
+      "weapon": 64,
+      "ammo": "ammo_cells",
+      "amount": 13,
+      "position": [
+        114.84142303466797,
+        900.4556884765625,
+        -219.96875
+      ],
+      "settled": true
+    }
+  ],
+  "glError": 0,
+  "errors": []
+}

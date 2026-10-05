@@ -1,0 +1,130 @@
+// Persistent discovery belongs to the browser profile, not a game/save/map.
+export const BESTIARY_ENTRIES = Object.freeze( [
+ ['dog','The Rottweiler',['monster_dog'],'rottweiler.png'],
+ ['grunt','The Grunt',['monster_army'],'grunt.png'],
+ ['enforcer','The Enforcer',['monster_enforcer'],'enforcer.png'],
+ ['knight','The Knight',['monster_knight'],'knight.png'],
+ ['death_knight','The Death Knight',['monster_hell_knight'],'death-knight.png'],
+ ['rotfish','The Rotfish',['monster_fish'],'rotfish.png'],
+ ['zombie','The Zombie',['monster_zombie'],'zombie.png'],
+ ['scrag','The Scrag',['monster_wizard'],'scrag.png'],
+ ['ogre','The Ogre',['monster_ogre','monster_ogre_marksman'],'ogre.png'],
+ ['spawn','The Spawn',['monster_tarbaby'],'spawn.png'],
+ ['fiend','The Fiend',['monster_demon1'],'fiend.png'],
+ ['vore','The Vore',['monster_shalrath'],'vore.png'],
+ ['shambler','The Shambler',['monster_shambler'],'shambler.png'],
+ ['chthon','Chthon',['monster_boss'],'chthon.png'],
+ ['shub','Shub-Niggurath',['monster_oldone'],'shub.png'],
+ ['centroid','The Centroid',['monster_scourge'],'centroid.png',16],
+ ['electric_eel','The Electric Eel',['monster_eel'],'electric-eel.png',20],
+ ['phantom_swordsman','Phantom Swordsman',['monster_sword'],'phantom-swordsman.png',21],
+ ['multi_grenade_ogre','Multi-Grenade Ogre',['monster_ogre'],'multi-grenade-ogre.png',22],
+ ['chthon_sleeper','Chthon — The Sleeper',['monster_boss'],'chthon-sleeper.png',46],
+ ['shub_awakened','Shub-Niggurath — Awakened',['monster_oldone_new'],'shub-awakened.png',47],
+ ['splitting_spawn','The Splitting Spawn',['monster_tarbaby'],'splitting-spawn.png',45],
+ ['infected_death_knight','The Infected Death Knight',['monster_hell_knight'],'infected-death-knight.png',44],
+ ['overlord','The Overlord',['monster_super_wrath'],'overlord.png',29],
+ ['infected_enforcer','The Infected Enforcer',['monster_enforcer'],'infected-enforcer.png',43],
+ ['egyptian_guardian','The Egyptian Guardian',['monster_morph'],'egyptian-guardian.png',32],
+ ['dragon','The Dragon',['monster_dragon'],'dragon.png',34],
+ ['infected_knight','The Infected Knight',['monster_knight'],'infected-knight.png',42],
+ ['infected_grunt','The Infected Grunt',['monster_army'],'infected-grunt.png',41],
+ ['ranged_death_knight','The Ranged Death Knight',['monster_ranged_knight'],'ranged-death-knight.png',40],
+ ['demo_dog','The Demo Dog',['monster_dog'],'demo-dog.png',37],
+ ['mummy','The Mummy',['monster_mummy'],'mummy.png',28],
+ ['statue_knight','The Statue Knight',['monster_knight'],'statue-knight.png',26],
+ ['statue_death_knight','Statue Death Knight',['monster_hell_knight'],'statue-death-knight.png',27],
+ ['rocket_ogre','The Rocket Ogre',['monster_ogre'],'rocket-ogre.png',36],
+ ['gremlin','The Gremlin',['monster_gremlin'],'gremlin.png',17],
+ ['blood_shambler','The Blood Shambler',['monster_super_shambler'],'blood-shambler.png',38],
+ ['hell_spawn','The Hell Spawn',['monster_tarbaby'],'hell-spawn.png',23],
+ ['wrath','The Wrath',['monster_wrath'],'wrath.png',24],
+ ['spike_mine','The Spike Mine',['trap_spike_mine'],'spike-mine.png',18],
+ ['orb','The Orb',['monster_orb'],'orb.png',39],
+ ['armagon','Armagon',['monster_armagon'],'armagon.png',19],
+ ['hephaestus','Hephaestus',['monster_lava_man'],'hephaestus.png',30],
+ ['chthon_vengeance','Chthon — Vengeance',['monster_boss'],'chthon-vengeance.png',35],
+ ['guardian','The Guardian',['monster_morph'],'guardian.png',25],
+ ['quakes_guardian','Quake’s Guardian',['monster_morph'],'quakes-guardian.png',31],
+ ['quakes_high_priest','Quake’s High Priest',['monster_morph'],'quakes-high-priest.png',33]
+ ].map( ( [ id,title,classes,image,folio ],i ) => Object.freeze( { id,title,classes:Object.freeze(classes),image,folio:folio??i+1 } ) ) );
+// Rogue reuses Ogre's classname. Do not attribute a base-game Ogre to the
+// expansion merely because a map sets an otherwise unused spawnflag/skin.
+const variants=new Set(['multi_grenade_ogre','chthon_sleeper','shub_awakened','splitting_spawn','infected_death_knight','overlord','infected_enforcer','egyptian_guardian','dragon','infected_knight',
+ 'infected_grunt','ranged_death_knight','demo_dog','mummy','statue_knight','statue_death_knight','rocket_ogre','gremlin','blood_shambler','hell_spawn','wrath','spike_mine','orb','armagon','hephaestus','chthon_vengeance','guardian','quakes_guardian','quakes_high_priest']);
+const additionalModels={monster_ranged_knight:['ranged_death_knight','progs/rknight.mdl'],monster_mummy:['mummy','progs/mummy.mdl'],monster_gremlin:['gremlin','progs/grem.mdl'],monster_super_shambler:['blood_shambler','progs/shambler_blood.mdl'],monster_wrath:['wrath','progs/wrath.mdl'],monster_orb:['orb','progs/teleporter_eye_blink.mdl'],monster_armagon:['armagon','progs/armalegs.mdl'],monster_lava_man:['hephaestus','progs/lavaman.mdl']};
+export function Bestiary_Identify(classname,{rogueOgre=false,spawnflags=0,model='',skin=0,infected=0,slime=0,deathFunction='',hellSpawn=false,splittingSpawn=false,rogueStatues=false,owner=0}={}){
+ const entry=id=>BESTIARY_ENTRIES.find(e=>e.id===id);
+ // Owner keeps the earlier Chthon and final-boss Sleeper as separate pages.
+ // The final initializer rewrites its class; its death callback stays distinct.
+ if(classname==='monster_boss'&&model==='progs/boss.mdl'&&deathFunction==='boss_final_death1')return entry('chthon_sleeper');
+ if(classname==='monster_boss'&&model==='progs/boss.mdl'&&(spawnflags&2)&&deathFunction==='boss_death1')return entry('chthon_vengeance');
+ // Dawn rewrites infected/slime initializers to ordinary classnames. Actual
+ // native state and callback identity distinguish them before base fallback.
+ if(infected===1){
+  if(classname==='monster_army'&&model==='progs/soldier.mdl'&&deathFunction==='army_infected_die')return entry('infected_grunt');
+  if(classname==='monster_knight'&&model==='progs/knight.mdl'&&deathFunction==='knight_infected_die')return entry('infected_knight');
+  if(classname==='monster_enforcer'&&model==='progs/enforcer.mdl'&&deathFunction==='enforcer_infected_die')return entry('infected_enforcer');
+  if(classname==='monster_hell_knight'&&model==='progs/hknight.mdl'&&deathFunction==='hknight_infected_die')return entry('infected_death_knight');
+ }
+ if(classname==='monster_dog'&&model==='progs/dog_explosive.mdl'&&deathFunction==='demodog_die')return entry('demo_dog');
+ if(classname==='monster_ogre'&&model==='progs/ogre_rocket.mdl')return entry('rocket_ogre');
+ if(rogueStatues&&(spawnflags&2)&&skin===1){
+  if(classname==='monster_knight'&&model==='progs/knight.mdl')return entry('statue_knight');
+  if(classname==='monster_hell_knight'&&model==='progs/hknight.mdl')return entry('statue_death_knight');
+ }
+ if(classname==='monster_tarbaby'&&model==='progs/tarbaby.mdl'&&splittingSpawn&&slime>0)return entry('splitting_spawn');
+ // The original temporarily disables th_pain during mitosis, and offspring
+ // keep the Hell Spawn skin without dividing. Loaded QC plus skin is stable.
+ if(classname==='monster_tarbaby'&&model==='progs/tarbaby.mdl'&&(skin===1||skin===2)&&hellSpawn)return entry('hell_spawn');
+ if(classname==='monster_oldone_new'&&model==='progs/oldone.mdl')return entry('shub_awakened');
+ if(classname==='monster_super_wrath'&&model==='progs/s_wrath.mdl')return entry('overlord');
+ if(classname==='monster_dragon'&&model==='progs/dragon.mdl')return entry('dragon');
+ // Guardian children inherit the boss model but have an owner. Distinguish
+ // them by ownership, never damage-dependent health or changing skin/effects.
+ if(classname==='monster_morph'&&['progs/morph_eg.mdl','progs/morph_gr.mdl','progs/morph_az.mdl'].includes(model)){
+  if(owner>0)return entry('guardian');
+  if(owner===0)return entry(model==='progs/morph_eg.mdl'?'egyptian_guardian':model==='progs/morph_gr.mdl'?'quakes_guardian':'quakes_high_priest');
+ }
+ if(classname==='trap_spike_mine'&&model==='progs/spikmine.mdl'&&deathFunction==='spikemine_Touch')return entry('spike_mine');
+ const additional=Object.hasOwn(additionalModels,classname)&&additionalModels[classname];
+ if(additional&&model===additional[1])return entry(additional[0]);
+ if(classname==='monster_ogre'&&rogueOgre&&(spawnflags&2)&&model==='progs/ogre.mdl'&&skin===1)return BESTIARY_ENTRIES.find(e=>e.id==='multi_grenade_ogre');
+ return BESTIARY_ENTRIES.find(e=>!variants.has(e.id)&&e.classes.includes(classname))||null;
+}
+// The owner's Contents defines completion independently of art loading or
+// installed mission packs. Existing browser-profile IDs stay stable.
+export const BESTIARY_COLLECTION_IDS = Object.freeze([
+ 'grunt','infected_grunt','enforcer','infected_enforcer','knight','infected_knight',
+ 'death_knight','ranged_death_knight','infected_death_knight','dog','demo_dog',
+ 'rotfish','electric_eel','dragon','zombie','mummy','phantom_swordsman',
+ 'statue_knight','statue_death_knight','scrag','ogre','multi_grenade_ogre',
+ 'rocket_ogre','fiend','gremlin','vore','shambler','blood_shambler','spawn',
+ 'hell_spawn','splitting_spawn','wrath','overlord','centroid','spike_mine','orb',
+ 'armagon','hephaestus','chthon','chthon_vengeance','chthon_sleeper','guardian',
+ 'quakes_guardian','egyptian_guardian','quakes_high_priest','shub','shub_awakened'
+]);
+const known=new Set(BESTIARY_COLLECTION_IDS),catalogKnown=new Set(BESTIARY_ENTRIES.map(e=>e.id)),encounterKnown=new Set(BESTIARY_ENTRIES.filter(e=>e.classes.length).map(e=>e.id));
+export class BestiaryJournal {
+ constructor({storage=()=>globalThis.localStorage,key='quaked.bestiary.v1'}={}){this.storage=storage;this.key=key;this.unlocked=new Set();this.storageStatus='ready';this.reload();}
+ _store(){try{const store=typeof this.storage==='function'?this.storage():this.storage;if(!store?.getItem||!store?.setItem)throw Error('Storage unavailable');return store;}catch{this.storageStatus='unavailable';return null;}}
+ reload(){const store=this._store();if(!store)return;try{const text=store.getItem(this.key);if(!text)return;const data=JSON.parse(text);if(data?.version!==1||!Array.isArray(data.unlocked)||data.unlocked.some(id=>typeof id!=='string'))return;for(const id of data.unlocked)if(known.has(id))this.unlocked.add(id);}catch{this.storageStatus='unavailable';}}
+ has(id){return this.unlocked.has(id);}
+ unlock(id){if(!known.has(id))return false;this.reload();if(this.has(id))return false;this.unlocked.add(id);const store=this._store();if(store)try{store.setItem(this.key,JSON.stringify({version:1,unlocked:[...this.unlocked].sort()}));this.storageStatus='ready';}catch{this.storageStatus='unavailable';}return true;}
+ complete(){return BESTIARY_COLLECTION_IDS.every(id=>this.has(id));}
+ snapshot(){return {unlocked:[...BESTIARY_ENTRIES.map(e=>e.id),...BESTIARY_COLLECTION_IDS.filter(id=>!catalogKnown.has(id))].filter(id=>this.has(id)),complete:this.complete(),storageStatus:this.storageStatus};}
+}
+const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
+export class BestiaryEncounter {
+ constructor({random=Math.random}={}){this.random=random;this.cancel();}
+ start(entry,now){if(this.phase!=='idle'||!entry||!encounterKnown.has(entry.id))return false;this.entry=entry;this.side=this.random()<.5?'left':'right';this.at=now;this.phase='enter';this.tick(now);return true;}
+ dismiss(now){if(this.phase!=='hold')return false;this.phase='return';this.at=now;this.tick(now);return true;}
+ cancel(){this.phase='idle';this.entry=null;this.side='left';this.at=0;this.value={phase:'idle',entry:null,side:'left',progress:0,opacity:0,scale:1};return this.value;}
+ tick(now){let t=Math.max(0,now-this.at);if(this.phase==='enter'&&t>=.75){this.phase='hold';this.at=now;t=0;}if(this.phase==='return'&&t>=.45)return this.cancel();let progress=0,opacity=0,scale=1;
+  if(this.phase==='enter'){progress=smooth(t/.65);opacity=smooth((t-.25)/.5);scale=1-smooth(t/.55);}
+  if(this.phase==='hold'){progress=opacity=1;scale=0;}
+  if(this.phase==='return'){progress=1-smooth(t/.45);opacity=1-smooth(t/.18);scale=0;}
+  return this.value={phase:this.phase,entry:this.entry,side:this.side,progress,opacity,scale};
+ }
+ snapshot(){return this.value;}
+}

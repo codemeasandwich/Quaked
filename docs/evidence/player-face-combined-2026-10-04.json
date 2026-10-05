@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "dead": false,
+  "expression": "pain",
+  "health": 7,
+  "healthPercent": 35,
+  "invisibility": false,
+  "invulnerability": true,
+  "layers": {
+    "base": "base_normal_head_left",
+    "blood": {
+      "asset": "blood_h7_pain_left"
+    },
+    "expression": "expression_pain_left",
+    "eyes": {
+      "asset": "eyes_wispy_mixed_pain_head_left"
+    },
+    "gaze": null,
+    "mask": null
+  },
+  "look": "head_left",
+  "missing": [],
+  "strength": true,
+  "target": "head_left",
+  "time": 0.08
+}

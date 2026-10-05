@@ -7,6 +7,7 @@
 
 import { R_NewerGame, r_newer_hud } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import { R_PlayerFacePreload, R_PlayerFaceStatus } from './r_playerface.js';
 
 const BASE = 'newer/hud/';
 
@@ -74,18 +75,21 @@ function loadCanvas( file ) {
 export function R_NewerHudPreload() {
 	if ( ! preloadPromise ) {
 		preloadState = 'loading';
-		preloadPromise = loadIndex().then( entries => Promise.all( [ ...new Set( Object.values( entries ) ) ].map( loadCanvas ) ) )
-			.then( values => { preloadState = errors.size ? 'fallback' : 'ready'; return values; } );
+		preloadPromise = Promise.all( [
+			loadIndex().then( entries => Promise.all( [ ...new Set( Object.values( entries ) ) ].map( loadCanvas ) ) ),
+			R_PlayerFacePreload()
+		] ).then( ( [ values ] ) => { preloadState = errors.size || R_PlayerFaceStatus().errors.length ? 'fallback' : 'ready'; return values; } );
 	}
 	return preloadPromise;
 }
 
 export function R_NewerHudStatus() {
+	const face = R_PlayerFaceStatus();
 	let pending = 0, ready = 0, fallback = 0;
 	for ( const value of canvasStates.values() ) { if ( value === 'loading' ) pending ++; else if ( value === 'ready' ) ready ++; else fallback ++; }
 	if ( indexState === 'loading' ) pending ++;
-	return { preload: preloadState, index: indexState, pending, ready, fallback,
-		settled: indexState !== 'loading' && preloadState !== 'loading' && pending === 0, errors: Object.fromEntries( errors ) };
+	return { preload: preloadState, index: indexState, pending: pending + face.pending, ready, fallback, face,
+		settled: indexState !== 'loading' && preloadState !== 'loading' && pending === 0 && face.settled, errors: Object.fromEntries( errors ) };
 }
 
 /*

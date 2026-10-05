@@ -1,0 +1,73 @@
+{
+  "map": "e1m1",
+  "signon": 4,
+  "ready": true,
+  "loading": {
+    "phase": "done",
+    "mode": "welcome",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 23,
+    "settledFrames": 3,
+    "world": "maps/e1m1.bsp",
+    "pending": [],
+    "fallbacks": []
+  },
+  "time": 84.58179999999965,
+  "health": 100,
+  "weapon": 4,
+  "weapons": [
+    "Shotgun",
+    "Double-barrelled shotgun",
+    "Nailgun",
+    "Super nailgun",
+    "Grenade launcher",
+    "Rocket launcher",
+    "Thunderbolt"
+  ],
+  "ammo": [
+    19,
+    61,
+    7,
+    13
+  ],
+  "powerups": 7864320,
+  "timers": [
+    192.3448944091797,
+    192.3448944091797,
+    192.3448944091797,
+    192.3448944091797
+  ],
+  "position": [
+    120.51022338867188,
+    851.496337890625,
+    -199.96875
+  ],
+  "deaths": 0,
+  "sequence": null,
+  "head": [
+    120.53125,
+    851.40625,
+    -175.65802001953125
+  ],
+  "nativeCameraQuaternion": [
+    0.47548568918912953,
+    -0.5193387923284816,
+    -0.479497239338586,
+    0.5237203208638147
+  ],
+  "presentationQuaternion": [
+    0.4754856846753866,
+    -0.5193387947439572,
+    -0.47949724102159,
+    0.5237203206658316
+  ],
+  "livingEnemies": 23,
+  "alertedEnemies": 1,
+  "inspectionProtection": true,
+  "drops": [],
+  "glError": 0,
+  "errors": []
+}

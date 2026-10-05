@@ -1,0 +1,247 @@
+{
+  "assets": {
+    "failures": {},
+    "index": "ready",
+    "pending": [],
+    "preload": "ready",
+    "ready": [
+      "v_shot",
+      "v_shot2",
+      "g_shot",
+      "v_nail2",
+      "g_nail2",
+      "v_rock",
+      "g_rock",
+      "v_rock2",
+      "g_rock2",
+      "v_light",
+      "g_light",
+      "shell"
+    ],
+    "settled": true
+  },
+  "errors": [
+    "UnknownError: If you see this error we have a bug. Please report this bug to chromium."
+  ],
+  "eye": [
+    128.03125,
+    1008.03125,
+    -177.84375
+  ],
+  "eyeContents": -1,
+  "glError": 0,
+  "heldReceiver": {
+    "quakePlayerSurface": true,
+    "quakeViewmodel": true
+  },
+  "loading": {
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeDone": true,
+    "fadeStarted": true,
+    "fallbacks": [],
+    "frames": 19,
+    "mode": "welcome",
+    "pending": [],
+    "phase": "done",
+    "settledFrames": 3,
+    "world": "maps/e1m1.bsp"
+  },
+  "map": "e1m1",
+  "measure": [
+    {
+      "atlas": {
+        "captures": 15644,
+        "chunks": 229,
+        "disposed": false,
+        "epoch": 11,
+        "error": null,
+        "faceRenders": 93864,
+        "failedCaptures": 0,
+        "maxSlots": 8,
+        "pending": 0,
+        "pointDynamicMeshes": 38,
+        "pointGeometryRevision": 1966,
+        "ready": 8,
+        "requested": 8,
+        "resident": 8,
+        "spotCaptures": 22,
+        "spotDynamicMeshes": 0,
+        "spotError": null,
+        "spotFailedCaptures": 0,
+        "spotReady": false,
+        "spotRenders": 22,
+        "sunCaptures": 1959,
+        "sunDynamicMeshes": 0,
+        "sunError": null,
+        "sunFailedCaptures": 0,
+        "sunReady": false,
+        "sunRenders": 1959,
+        "triangles": 9614
+      },
+      "canvas": [
+        2560,
+        1440
+      ],
+      "meanMs": 38.88974358974389,
+      "samples": 39,
+      "shadows": 0
+    },
+    {
+      "atlas": {
+        "captures": 16044,
+        "chunks": 229,
+        "disposed": false,
+        "epoch": 11,
+        "error": null,
+        "faceRenders": 96264,
+        "failedCaptures": 0,
+        "maxSlots": 8,
+        "pending": 0,
+        "pointDynamicMeshes": 38,
+        "pointGeometryRevision": 2016,
+        "ready": 8,
+        "requested": 8,
+        "resident": 8,
+        "spotCaptures": 22,
+        "spotDynamicMeshes": 0,
+        "spotError": null,
+        "spotFailedCaptures": 0,
+        "spotReady": false,
+        "spotRenders": 22,
+        "sunCaptures": 2009,
+        "sunDynamicMeshes": 38,
+        "sunError": null,
+        "sunFailedCaptures": 0,
+        "sunReady": true,
+        "sunRenders": 2009,
+        "triangles": 9614
+      },
+      "canvas": [
+        2560,
+        1440
+      ],
+      "meanMs": 46.579487179486584,
+      "samples": 39,
+      "shadows": 1
+    }
+  ],
+  "position": [
+    128,
+    1008,
+    -199.9499969482422
+  ],
+  "ready": true,
+  "shadows": {
+    "captures": 17660,
+    "chunks": 229,
+    "disposed": false,
+    "epoch": 11,
+    "error": null,
+    "faceRenders": 105960,
+    "failedCaptures": 0,
+    "maxSlots": 8,
+    "pending": 0,
+    "pointDynamicMeshes": 38,
+    "pointGeometryRevision": 2218,
+    "ready": 8,
+    "requested": 8,
+    "resident": 8,
+    "spotCaptures": 22,
+    "spotDynamicMeshes": 0,
+    "spotError": null,
+    "spotFailedCaptures": 0,
+    "spotReady": false,
+    "spotRenders": 22,
+    "sunCaptures": 2211,
+    "sunDynamicMeshes": 38,
+    "sunError": null,
+    "sunFailedCaptures": 0,
+    "sunReady": true,
+    "sunRenders": 2211,
+    "triangles": 9614
+  },
+  "signon": 4,
+  "surface": {
+    "blood": 0,
+    "inWater": false,
+    "serial": 1,
+    "spots": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "version": 1,
+    "wet": 0
+  },
+  "weapon": "progs/v_shot.mdl"
+}

@@ -1,3 +1,4 @@
+import { SV_RespawnInventoryStats } from './sv_respawn.js';
 // Ported from: WinQuake/cl_parse.c -- parse a message received from the server
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
@@ -18,6 +19,7 @@ import { sv, svs } from './server.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cmd_ExecuteString } from './cmd.js';
 import { src_command } from './cmd.js';
+import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from './r_facegame.js';
 import {
 	PROTOCOL_VERSION,
 	svc_bad, svc_nop, svc_disconnect, svc_updatestat, svc_version,
@@ -951,6 +953,7 @@ export function CL_ParseClientdata( bits ) {
 		for ( let j = 0; j < 32; j ++ )
 			if ( ( i & ( 1 << j ) ) && ! ( cl.items & ( 1 << j ) ) )
 				cl.item_gettime[ j ] = cl.time;
+		R_FaceInventory( cl.items, i );
 		cl.items = i;
 
 	}
@@ -988,6 +991,7 @@ export function CL_ParseClientdata( bits ) {
 	i = MSG_ReadShort();
 	if ( cl.stats[ STAT_HEALTH ] !== i ) {
 
+		R_FaceHealthChanged( i );
 		cl.stats[ STAT_HEALTH ] = i;
 		// Sbar_Changed();
 
@@ -1068,6 +1072,8 @@ export function CL_ParseClientdata( bits ) {
 		CL_SetServerState( ent.msg_origins[ 0 ], cl.mvelocity[ 0 ], cl.onground );
 
 	}
+
+	SV_RespawnInventoryStats( cl );
 
 }
 
@@ -1426,6 +1432,7 @@ export function CL_ParseServerMessage() {
 
 			case svc_foundsecret:
 				cl.stats[ STAT_SECRETS ] ++;
+				R_FaceSecret();
 				break;
 
 			case svc_updatestat:

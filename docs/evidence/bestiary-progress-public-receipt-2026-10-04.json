@@ -1,0 +1,55 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "date": "2026-10-04",
+  "command": "QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs node tools/run_tests.mjs tests/bestiary_progress_test.js tests/main_menu_art_test.js tests/studio_logo_test.js tests/loading_screen_test.js tests/menu_test.js tests/singleplayer_menu_test.js tests/demo_startup_loading_test.js tests/newer_start_test.js tests/bestiary_book_test.js tests/bestiary_test.js tests/bestiary_assets_test.js tests/bestiary_native_test.js tests/touch_layout_test.js tests/model_lighting_test.js",
+  "log": "/private/tmp/quaked-bestiary-progress-menu-final.log",
+  "exitCode": 0,
+  "passed": 88,
+  "total": 88,
+  "results": [
+    "5/5 passed (tests/bestiary_progress_test.js)",
+    "2/2 passed (tests/main_menu_art_test.js)",
+    "5/5 passed (tests/studio_logo_test.js)",
+    "4/4 passed (tests/loading_screen_test.js)",
+    "1/1 passed (tests/menu_test.js)",
+    "2/2 passed (tests/singleplayer_menu_test.js)",
+    "11/11 passed (tests/demo_startup_loading_test.js)",
+    "6/6 passed (tests/newer_start_test.js)",
+    "10/10 passed (tests/bestiary_book_test.js)",
+    "14/14 passed (tests/bestiary_test.js)",
+    "10/10 passed (tests/bestiary_assets_test.js)",
+    "6/6 passed (tests/bestiary_native_test.js)",
+    "5/5 passed (tests/touch_layout_test.js)",
+    "7/7 passed (tests/model_lighting_test.js)"
+  ],
+  "sourceManifest": "/private/tmp/quaked-bestiary-progress-menu-source-sha256.json",
+  "hashCount": 274,
+  "sourceOrTestModifiedAfterGateStarted": [],
+  "progressPixels": {
+    "combinations": 32,
+    "comparedInteriorPixels": 49808096,
+    "excludedBoundaryPixelsPerCombination": 16361,
+    "changedPixels": 21597548
+  },
+  "independentGuideRegistration": "/private/tmp/quaked-front-guide-registration.json",
+  "independentGuideCutProof": "/private/tmp/quaked-front-guide-cuts-proof.json",
+  "rawArtCopyProof": "/private/tmp/quaked-bestiary-progress-art-proof.json",
+  "derivedHeaderBindingProof": "/private/tmp/quaked-bestiary-header-bindings.json",
+  "menuSheetOriginalByteMatch": true,
+  "retainedBeforeReview": "/private/tmp/quaked-bestiary-progress-menu-initial.log (86/86 before two optional-image fallback fixes and significant Continue-tail crop correction)",
+  "reviewRegression": "/private/tmp/quaked-bestiary-progress-review-regression.log (22/22)",
+  "coverage": [
+    "All32 independent pixel-mask states with exact blank and clean endpoints; all5 clean source intentionally replaces differing blank title band.",
+    "Actual persistent getter restores existing progress, ignores related Ogre variants for base-Ogre fragment, caches unchanged masks, loads clean source once and reserves Complete Edition for all47.",
+    "All47 header PNGs are pixel-exact original top196/240 rows; locked book draws blank plus corresponding original header without raw body requests; unavailable header uses honest text instead of template FolioXIV.",
+    "Failed blank art cannot block all5 clean source; partial states never reveal full art when their background fails.",
+    "Actual PNG loader and menu keyboard/touch routes follow Continue(optional),Single Player,Multiplayer,Bestiarium,Options,Credits,Quit; out-of-game crop removes significant Continue tail and retains Single Player source strokes.",
+    "Existing native field/capability/owner adapter, host pause, profile, startup, studio-logo book collision and model-lighting regressions retained."
+  ],
+  "limits": [
+    "Two-pixel polygon-edge band excluded from exact region pixel equality because Canvas2D clipping antialiases boundaries; all0/all5 endpoints are exact source images.",
+    "The guide is cropped at its bottom; registered visible cuts match475/476 sampled red-stroke points and lower cut continuation follows the authored straight line.",
+    "Real-canvas book/menu rendering uses controlled browser/menu dependencies; actual browser visual acceptance is separately parent-owned.",
+    "Mission-pack/Dawn mappings retain researched classifier/adapter coverage, not installed-pack gameplay qualification."
+  ]
+}

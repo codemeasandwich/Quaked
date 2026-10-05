@@ -7,10 +7,13 @@ export const POINT_SHADOW_SLOTS = 8;
 export const POINT_SHADOW_SIZE = 128;
 export const POINT_SHADOW_CELL_UNITS = 256;
 export const POINT_SHADOW_FAR_LIMIT = 4096;
-export const POINT_SHADOW_BIAS = 2;
+export const POINT_SHADOW_BIAS = 2; // maximum; nearby receivers use a smaller radial bias
 export const SPOT_SHADOW_SIZE = 512;
 export const SPOT_SHADOW_BIAS = 1;
-const WIDTH = POINT_SHADOW_SIZE * 6, HEIGHT = POINT_SHADOW_SIZE * POINT_SHADOW_SLOTS;
+export const NEAR_SUN_SHADOW_SIZE = 512;
+export const NEAR_SUN_SHADOW_EXTENT = 96;
+export const NEAR_SUN_SHADOW_Y = POINT_SHADOW_SIZE * POINT_SHADOW_SLOTS;
+const WIDTH = POINT_SHADOW_SIZE * 6, HEIGHT = NEAR_SUN_SHADOW_Y + NEAR_SUN_SHADOW_SIZE;
 const DIRECTIONS = [ [ 1, 0, 0 ], [ -1, 0, 0 ], [ 0, 1, 0 ], [ 0, -1, 0 ], [ 0, 0, 1 ], [ 0, 0, -1 ] ];
 const UPS = [ [ 0, 0, 1 ], [ 0, 0, 1 ], [ 0, 0, 1 ], [ 0, 0, 1 ], [ 0, 1, 0 ], [ 0, 1, 0 ] ];
 const ABSENT = Object.freeze( { slot: -1, far: 0, ready: false } );
@@ -69,6 +72,10 @@ void main() {
  gl_FragColor=packDepthToRGBA(clamp(length(pointShadowWorld-pointShadowLight)/pointShadowFar,0.,1.));
 }
 `;
+const SUN_FRAGMENT = `
+#include <packing>
+void main() { gl_FragColor=packDepthToRGBA(gl_FragCoord.z); }
+`;
 
 export class PointShadowAtlas {
 
@@ -102,9 +109,23 @@ export class PointShadowAtlas {
 		this.spotTarget.texture.colorSpace = THREE.NoColorSpace;
 		this.spotTarget.texture.internalFormat = 'RGBA8';
 		this.spotCamera = new THREE.PerspectiveCamera( 48, 1, 1, 1500 );
+		// The broad world sun map cannot resolve a one-unit weapon barrel. This
+		// single close orthographic view supplements it for model receivers only.
+		// Reserve the top512 rows of the point atlas instead of consuming another
+		// compositor sampler (WebGL2's guaranteed fragment limit is sixteen).
+		// Both regions store RGBA-packed depth; only their comparison units differ.
+		this.sunTarget = this.target;
+		this.sunMaterial = new THREE.ShaderMaterial( { vertexShader: VERTEX, fragmentShader: SUN_FRAGMENT,
+			side: THREE.DoubleSide, blending: THREE.NoBlending, depthTest: true, depthWrite: true, toneMapped: false } );
+		this.sunMaterial.onBeforeCompile = () => {};
+		this.sunMaterial.customProgramCacheKey = () => 'quake-near-model-sun-depth-v1';
+		this.sunCamera = new THREE.OrthographicCamera( -NEAR_SUN_SHADOW_EXTENT, NEAR_SUN_SHADOW_EXTENT, NEAR_SUN_SHADOW_EXTENT, -NEAR_SUN_SHADOW_EXTENT, .1, 512 );
+		this._sunVP = new THREE.Matrix4(); this.sunReady = false;
+		this.sunCaptures = 0; this.sunRenders = 0; this.sunFailedCaptures = 0; this.sunDynamicMeshes = 0; this.sunError = null;
 		this._spotVP = new THREE.Matrix4(); this.spotReady = false;
 		this.spotCaptures = 0; this.spotRenders = 0; this.spotFailedCaptures = 0;
 		this.spotError = null; this.spotDynamicMeshes = 0;
+		this.pointDynamicMeshes = 0; this.pointGeometryRevision = 0;
 		this._dynamicClones = new WeakMap(); this._borrowedClones = new Set();
 		this.cameras = DIRECTIONS.map( ( _, face ) => {
 
@@ -123,6 +144,8 @@ export class PointShadowAtlas {
 	get texture() { return this.target.texture; }
 	get spotTexture() { return this.spotTarget.texture; }
 	get spotVP() { return this._spotVP; }
+	get sunTexture() { return this.sunTarget.texture; }
+	get sunVP() { return this._sunVP; }
 
 	_clearDynamicClones() {
 
@@ -208,7 +231,7 @@ export class PointShadowAtlas {
 	invalidate() {
 
 		this.epoch ++; this.entries.clear(); this.slots.fill( null ); this.requested = 0; this.error = null;
-		this.clearSpot(); this._clearDynamicClones();
+		this.clearSpot(); this.clearSun(); this._clearDynamicClones(); this.pointDynamicMeshes = 0; this.pointGeometryRevision ++;
 		return this;
 
 	}
@@ -231,9 +254,12 @@ export class PointShadowAtlas {
 		const ready = [ ...this.entries.values() ].filter( entry => entry.ready ).length;
 		return { maxSlots: POINT_SHADOW_SLOTS, resident: this.entries.size, ready, pending: this.entries.size - ready,
 			requested: this.requested, chunks: this.chunks.length, triangles: this.triangles,
+			pointDynamicMeshes: this.pointDynamicMeshes, pointGeometryRevision: this.pointGeometryRevision,
 			captures: this.captures, faceRenders: this.faceRenders, failedCaptures: this.failedCaptures,
 			spotReady: this.spotReady, spotCaptures: this.spotCaptures, spotRenders: this.spotRenders,
 			spotFailedCaptures: this.spotFailedCaptures, spotError: this.spotError, spotDynamicMeshes: this.spotDynamicMeshes,
+			sunReady: this.sunReady, sunCaptures: this.sunCaptures, sunRenders: this.sunRenders,
+			sunFailedCaptures: this.sunFailedCaptures, sunError: this.sunError, sunDynamicMeshes: this.sunDynamicMeshes,
 			epoch: this.epoch, error: this.error, disposed: this.disposed };
 
 	}
@@ -242,6 +268,111 @@ export class PointShadowAtlas {
 
 		this.spotReady = false; this.spotError = null; this.spotDynamicMeshes = 0;
 		return this;
+
+	}
+
+	clearSun() {
+
+		this.sunReady = false; this.sunError = null; this.sunDynamicMeshes = 0;
+		return this;
+
+	}
+
+	// direction points FROM the receiver TOWARD the sun. Focus is the main
+	// camera's world eye, never the displayed weapon's compressed raster depth.
+	// Capture one current-frame view; caller combines it with the broad world
+	// sun visibility only for actors, retaining the original world lighting.
+	updateSun( renderer, sun, dynamicMeshes = [] ) {
+
+		this.clearSun(); if ( this.disposed ) return this.status();
+		const focus = coordinates( sun?.focus ), direction = coordinates( sun?.direction );
+		const length = direction && Math.hypot( ...direction );
+		if ( ! sun?.on || ! renderer || ! focus || ! direction || ! Number.isFinite( length ) || length < 1e-8 ) return this.status();
+		const clones = [];
+		try {
+
+			this._borrowDynamicMeshes( dynamicMeshes, clones ); this.sunDynamicMeshes = clones.length;
+			if ( ! this.chunks.length && ! clones.length ) return this.status();
+			const camera = this.sunCamera;
+			camera.position.set( ...focus ).addScaledVector( this._look.fromArray( direction ), 256 / length );
+			camera.up.set( 0, 0, 1 ); if ( Math.abs( direction[ 2 ] / length ) > .99 ) camera.up.set( 0, 1, 0 );
+			camera.lookAt( ...focus ); camera.updateMatrixWorld( true );
+			this._captureSun( renderer );
+			this._sunVP.multiplyMatrices( camera.projectionMatrix, camera.matrixWorldInverse );
+			this.sunReady = true; this.sunCaptures ++;
+
+		} catch ( error ) { this.sunFailedCaptures ++; this.sunError = String( error?.message || error ); }
+		finally { for ( const clone of clones ) this.scene.remove( clone ); }
+		return this.status();
+
+	}
+
+	_captureSun( renderer ) {
+
+		const target = renderer.getRenderTarget(), face = renderer.getActiveCubeFace?.() || 0, mip = renderer.getActiveMipmapLevel?.() || 0;
+		const viewport = renderer.getViewport( new THREE.Vector4() ), scissor = renderer.getScissor( new THREE.Vector4() );
+		const scissorTest = renderer.getScissorTest(), clearColor = renderer.getClearColor( new THREE.Color() ), clearAlpha = renderer.getClearAlpha();
+		const autoClear = renderer.autoClear, xrEnabled = renderer.xr?.enabled, override = this.scene.overrideMaterial, capture = this.sunTarget;
+		const captureViewport = capture.viewport.clone(), captureScissor = capture.scissor.clone(), captureScissorTest = capture.scissorTest;
+		try {
+
+			if ( renderer.xr ) renderer.xr.enabled = false;
+			renderer.autoClear = false; renderer.setClearColor( 0xffffff, 1 ); this.scene.overrideMaterial = this.sunMaterial;
+			capture.viewport.set( 0, NEAR_SUN_SHADOW_Y, NEAR_SUN_SHADOW_SIZE, NEAR_SUN_SHADOW_SIZE ); capture.scissor.copy( capture.viewport ); capture.scissorTest = true;
+			renderer.setRenderTarget( capture ); renderer.clear( true, true, false ); renderer.render( this.scene, this.sunCamera ); this.sunRenders ++;
+
+		} finally {
+
+			this.scene.overrideMaterial = override;
+			try {
+
+				capture.viewport.copy( captureViewport ); capture.scissor.copy( captureScissor ); capture.scissorTest = captureScissorTest;
+				renderer.setViewport( viewport ); renderer.setScissor( scissor ); renderer.setScissorTest( scissorTest );
+				renderer.setClearColor( clearColor, clearAlpha ); renderer.setRenderTarget( target, face, mip );
+
+			} finally { renderer.autoClear = autoClear; if ( renderer.xr ) renderer.xr.enabled = xrEnabled; }
+
+		}
+
+	}
+
+	// Both point and spot captures borrow the same current pose/instance data.
+	// These private meshes deliberately have no source render callbacks: a held
+	// weapon's compressed main-camera depth must never enter a shadow capture.
+	// Callers update matrixWorld before submission; source ownership is untouched.
+	_borrowDynamicMeshes( dynamicMeshes, clones ) {
+
+		const seen = new Set();
+		for ( const source of dynamicMeshes ) {
+
+			if ( ! source?.isMesh || source.isSkinnedMesh || source.isBatchedMesh || ! source.geometry?.getAttribute( 'position' ) ||
+				! source.visible || seen.has( source ) || this.chunks.includes( source ) ) continue;
+			const materials = Array.isArray( source.material ) ? source.material : [ source.material ];
+			// Sorting/glass styling can mark an otherwise physical alias transparent.
+			// Only explicit caller tags admit those solids; decorative effects and
+			// every non-depth-writing material remain excluded.
+			if ( materials.some( material => ! material || material.transparent && ! material.userData?.quakeViewmodel && source.userData?.quakePhysicalAlias !== true || material.depthWrite === false || material.visible === false ) ) continue;
+			let hidden = false;
+			for ( let parent = source.parent; parent; parent = parent.parent ) if ( ! parent.visible ) { hidden = true; break; }
+			if ( hidden ) continue;
+			seen.add( source ); let clone = this._dynamicClones.get( source );
+			if ( ! clone ) {
+
+				clone = new THREE.Mesh( source.geometry, this.material ); clone.name = 'quake_flashlight_borrowed_caster';
+				clone.matrixAutoUpdate = false; clone.frustumCulled = false;
+				this._dynamicClones.set( source, clone ); this._borrowedClones.add( clone );
+
+			}
+			clone.geometry = source.geometry; clone.matrix.copy( source.matrixWorld ); clone.matrixWorld.copy( source.matrixWorld );
+			if ( source.isInstancedMesh ) {
+
+				clone.isInstancedMesh = true; clone.count = source.count; clone.instanceMatrix = source.instanceMatrix;
+				clone.instanceColor = null; clone.morphTexture = null;
+
+			}
+			clones.push( clone ); this.scene.add( clone );
+
+		}
 
 	}
 
@@ -255,36 +386,10 @@ export class PointShadowAtlas {
 		const length = direction && Math.hypot( ...direction ), inputRange = beam?.range ?? 1500, outerCos = beam?.outerCos ?? .92;
 		if ( ! beam?.on || ! renderer || ! position || ! length || length < 1e-8 ||
 			! Number.isFinite( inputRange ) || inputRange <= 1 || ! Number.isFinite( outerCos ) || outerCos <= 0 || outerCos >= 1 ) return this.status();
-		const far = Math.min( POINT_SHADOW_FAR_LIMIT, inputRange ), clones = [], seen = new Set();
+		const far = Math.min( POINT_SHADOW_FAR_LIMIT, inputRange ), clones = [];
 		try {
 
-			for ( const source of dynamicMeshes ) {
-
-				if ( ! source?.isMesh || source.isSkinnedMesh || source.isBatchedMesh || ! source.geometry?.getAttribute( 'position' ) ||
-					! source.visible || seen.has( source ) || this.chunks.includes( source ) ) continue;
-				const materials = Array.isArray( source.material ) ? source.material : [ source.material ];
-				if ( materials.some( material => ! material || material.transparent || material.depthWrite === false || material.visible === false ) ) continue;
-				let hidden = false;
-				for ( let parent = source.parent; parent; parent = parent.parent ) if ( ! parent.visible ) { hidden = true; break; }
-				if ( hidden ) continue;
-				seen.add( source ); let clone = this._dynamicClones.get( source );
-				if ( ! clone ) {
-
-					clone = new THREE.Mesh( source.geometry, this.material ); clone.name = 'quake_flashlight_borrowed_caster';
-					clone.matrixAutoUpdate = false; clone.frustumCulled = false;
-					this._dynamicClones.set( source, clone ); this._borrowedClones.add( clone );
-
-				}
-				clone.geometry = source.geometry; clone.matrix.copy( source.matrixWorld ); clone.matrixWorld.copy( source.matrixWorld );
-				if ( source.isInstancedMesh ) {
-
-					clone.isInstancedMesh = true; clone.count = source.count; clone.instanceMatrix = source.instanceMatrix;
-					clone.instanceColor = null; clone.morphTexture = null;
-
-				}
-				clones.push( clone ); this.scene.add( clone );
-
-			}
+			this._borrowDynamicMeshes( dynamicMeshes, clones );
 			this.spotDynamicMeshes = clones.length;
 			if ( ! this.chunks.length && ! clones.length ) return this.status();
 			const camera = this.spotCamera;
@@ -333,76 +438,113 @@ export class PointShadowAtlas {
 
 	}
 
-	update( renderer, sources = [] ) {
+	// Static-only callers keep the existing one-new-cube-per-update budget.
+	// Live sources and submitted model poses are current-frame data: capture
+	// every selected slot (at most eight cubes), never queue a short-lived flash
+	// behind static work or expose an older actor pose after a failed capture.
+	update( renderer, sources = [], dynamicMeshes = [] ) {
 
 		if ( this.disposed ) return this.status();
-		const normalize = item => {
+		const clones = [];
+		const previousDynamicMeshes = this.pointDynamicMeshes;
+		this.pointDynamicMeshes = 0;
+		try {
+			this._borrowDynamicMeshes( dynamicMeshes, clones );
+			this.pointDynamicMeshes = clones.length;
+			// Invalidating all resident entries also protects a temporarily unselected
+			// light when it returns after an actor moved or disappeared. No per-vertex
+			// revision polling is needed: live alias poses can mutate borrowed buffers.
+			const dynamicFrame = clones.length > 0 || previousDynamicMeshes > 0;
+			if ( dynamicFrame ) {
 
-			const position = coordinates( item?.position ), far = item?.far;
-			return item?.source != null && position && Number.isFinite( far ) && far > 0
-				? { source: item.source, position, far: Math.min( POINT_SHADOW_FAR_LIMIT, far ) } : null;
-
-		};
-		const selected = [], protectedSources = new Set();
-		// Preserve every requested resident before choosing new sources, even when
-		// an oversized caller list places newcomers ahead of its existing slots.
-		for ( const item of sources ) {
-
-			const value = normalize( item );
-			if ( ! value && item?.source != null ) {
-
-				// An explicitly invalid current pose/range must not expose that
-				// source's previously captured cube as if it were still current.
-				const old = this.entries.get( item.source );
-				if ( old ) { this.entries.delete( item.source ); this.slots[ old.slot ] = null; }
+				this.pointGeometryRevision ++;
+				for ( const entry of this.entries.values() ) entry.ready = false;
 
 			}
-			if ( value && this.entries.has( value.source ) && ! protectedSources.has( value.source ) ) {
+			const normalize = item => {
 
-				selected.push( value ); protectedSources.add( value.source );
+				const position = coordinates( item?.position ), far = item?.far;
+				return item?.source != null && position && Number.isFinite( far ) && far > 0
+					? { source: item.source, position, far: Math.min( POINT_SHADOW_FAR_LIMIT, far ), live: item.live === true || item.source.live === true } : null;
 
-			}
+			};
+			const selected = [], protectedSources = new Set();
+			// Preserve every requested resident before choosing new sources, even when
+			// an oversized caller list places newcomers ahead of its existing slots.
+			for ( const item of sources ) {
 
-		}
-		for ( const item of sources ) {
+				const value = normalize( item );
+				if ( ! value && item?.source != null ) {
 
-			if ( selected.length >= POINT_SHADOW_SLOTS ) break;
-			const value = normalize( item );
-			if ( value && ! protectedSources.has( value.source ) ) { selected.push( value ); protectedSources.add( value.source ); }
-
-		}
-		this.requested = selected.length;
-		for ( const value of selected ) {
-
-			let entry = this.entries.get( value.source );
-			if ( ! entry ) {
-
-				let slot = this.slots.findIndex( entry => entry === null );
-				if ( slot < 0 ) {
-
-					let oldest;
-					for ( const resident of this.entries.values() ) if ( ! protectedSources.has( resident.source ) && ( ! oldest || resident.used < oldest.used ) ) oldest = resident;
-					if ( ! oldest ) continue;
-					slot = oldest.slot; this.entries.delete( oldest.source );
+					// An explicitly invalid current pose/range must not expose that
+					// source's previously captured cube as if it were still current.
+					const old = this.entries.get( item.source );
+					if ( old ) { this.entries.delete( item.source ); this.slots[ old.slot ] = null; }
 
 				}
-				entry = { ...value, slot, ready: false, used: 0 }; this.entries.set( value.source, entry ); this.slots[ slot ] = entry;
+				if ( value && selected.length < POINT_SHADOW_SLOTS && this.entries.has( value.source ) && ! protectedSources.has( value.source ) ) {
 
-			} else if ( entry.far !== value.far || value.position.some( ( coordinate, i ) => coordinate !== entry.position[ i ] ) ) {
+					selected.push( value ); protectedSources.add( value.source );
 
-				entry.position = value.position; entry.far = value.far; entry.ready = false;
+				}
 
 			}
-			entry.used = ++ this.access;
+			for ( const item of sources ) {
 
-		}
-		const pending = selected.map( value => this.entries.get( value.source ) ).find( entry => entry && ! entry.ready );
-		if ( pending && renderer && this.chunks.length ) {
+				if ( selected.length >= POINT_SHADOW_SLOTS ) break;
+				const value = normalize( item );
+				if ( value && ! protectedSources.has( value.source ) ) { selected.push( value ); protectedSources.add( value.source ); }
 
-			try { this._capture( renderer, pending ); pending.ready = true; this.captures ++; this.error = null; }
-			catch ( error ) { this.failedCaptures ++; this.error = String( error?.message || error ); }
+			}
+			this.requested = selected.length;
+			for ( const value of selected ) {
 
-		}
+				let entry = this.entries.get( value.source );
+				if ( ! entry ) {
+
+					let slot = this.slots.findIndex( entry => entry === null );
+					if ( slot < 0 ) {
+
+						let oldest;
+						for ( const resident of this.entries.values() ) if ( ! protectedSources.has( resident.source ) && ( ! oldest || resident.used < oldest.used ) ) oldest = resident;
+						if ( ! oldest ) continue;
+						slot = oldest.slot; this.entries.delete( oldest.source );
+
+					}
+					entry = { ...value, slot, ready: false, used: 0 }; this.entries.set( value.source, entry ); this.slots[ slot ] = entry;
+
+				} else if ( entry.far !== value.far || value.position.some( ( coordinate, i ) => coordinate !== entry.position[ i ] ) ) {
+
+					entry.position = value.position; entry.far = value.far; entry.ready = false;
+
+				}
+				entry.used = ++ this.access;
+				entry.live = value.live;
+				if ( entry.live ) entry.ready = false;
+
+			}
+			const current = selected.map( value => this.entries.get( value.source ) ).filter( Boolean );
+			const captureAll = dynamicFrame || current.some( entry => entry.live );
+			if ( captureAll ) for ( const entry of current ) entry.ready = false;
+			const pending = current.filter( entry => ! entry.ready );
+			if ( renderer && ( this.chunks.length || clones.length ) ) {
+
+				this.error = null;
+				for ( const entry of captureAll ? pending : pending.slice( 0, 1 ) ) {
+
+					try { this._capture( renderer, entry ); entry.ready = true; this.captures ++; }
+					catch ( error ) { this.failedCaptures ++; this.error = String( error?.message || error ); }
+
+				}
+
+			}
+		} catch ( error ) {
+
+			// A malformed borrowed pose must not leak clones or an old ready cube.
+			for ( const entry of this.entries.values() ) entry.ready = false;
+			this.failedCaptures ++; this.error = String( error?.message || error );
+
+		} finally { for ( const clone of clones ) this.scene.remove( clone ); }
 		return this.status();
 
 	}
@@ -453,7 +595,7 @@ export class PointShadowAtlas {
 
 		if ( this.disposed ) return;
 		this.invalidate(); this._clearChunks(); this.geometry = null;
-		this.target.dispose(); this.spotTarget.dispose(); this.material.dispose(); this.disposed = true;
+		this.target.dispose(); this.spotTarget.dispose(); this.material.dispose(); this.sunMaterial.dispose(); this.disposed = true;
 
 	}
 
@@ -476,14 +618,17 @@ float pointShadowTap(vec2 faceUv,vec2 offset,int face,float slot,float distanceW
  vec2 local=clamp(faceUv+offset/side,vec2(.5/side),vec2(1.-.5/side));
  vec2 uv=(vec2(float(face)*side,slot*side)+local*side)/vec2(${WIDTH}.0,${HEIGHT}.0);
  float blocker=unpackRGBAToDepth(texture2D(tPointShadow,uv))*farWorld;
- return distanceWorld-${POINT_SHADOW_BIAS}.0<=blocker?1.:0.;
+ // A fixed two-unit bias erases thin nearby gun/actor shadows. Scale with
+ // receiver distance, retaining the existing world-scale maximum farther out.
+ float bias=clamp(distanceWorld*.0025,.08,${POINT_SHADOW_BIAS}.0);
+ return distanceWorld-bias<=blocker?1.:0.;
 }
 float pointWorldVisibility(vec3 receiverWorld,vec3 lightWorld,int index) {
  if(index<0||index>=${POINT_SHADOW_SLOTS})return 1.;
  vec2 info=uPointShadowInfo[index];
  if(info.x<0.||info.x>=${POINT_SHADOW_SLOTS}.||info.y<=0.)return 1.;
  vec3 delta=receiverWorld-lightWorld;float distanceWorld=length(delta);
- if(distanceWorld<=${POINT_SHADOW_BIAS}.0||distanceWorld>=info.y)return 1.;
+ if(distanceWorld<=.08||distanceWorld>=info.y)return 1.;
  int face;vec2 uv;pointShadowFaceUV(delta,face,uv);
  float value=pointShadowTap(uv,vec2(0.),face,info.x,distanceWorld,info.y);
  value+=pointShadowTap(uv,vec2(1.,0.),face,info.x,distanceWorld,info.y);
@@ -518,5 +663,33 @@ float spotWorldVisibility(vec3 receiverWorld){
  value+=spotShadowTap(uv,vec2(1.,0.),distanceWorld);value+=spotShadowTap(uv,vec2(-1.,0.),distanceWorld);
  value+=spotShadowTap(uv,vec2(0.,1.),distanceWorld);value+=spotShadowTap(uv,vec2(0.,-1.),distanceWorld);
  return value*.2;
+}
+`;
+
+// Supplemental close directional view. Outside its focus volume it returns
+// lit; the caller retains the ordinary global sun shadow in every case.
+// Insert after POINT_SHADOW_GLSL (which declares the shared tPointShadow), then
+// use min(globalSun,nearSunVisibility). The reserved region needs no new sampler.
+export const NEAR_SUN_SHADOW_GLSL = `
+uniform mat4 uNearSunShadowVP;
+uniform float uNearSunShadowOn;
+float nearSunShadowTap(vec2 uv,vec2 offset,float depth){
+ const float side=${NEAR_SUN_SHADOW_SIZE}.0;
+ vec2 local=clamp(uv+offset/side,vec2(.5/side),vec2(1.-.5/side));
+ vec2 sampleUv=(vec2(0.,${NEAR_SUN_SHADOW_Y}.0)+local*side)/vec2(${WIDTH}.0,${HEIGHT}.0);
+ float blocker=unpackRGBAToDepth(texture2D(tPointShadow,sampleUv));
+ return depth-.0002<=blocker?1.:0.;
+}
+float nearSunVisibility(vec3 receiverWorld){
+ if(uNearSunShadowOn<.5)return 1.;
+ vec4 clip=uNearSunShadowVP*vec4(receiverWorld,1.);
+ if(clip.w<=0.)return 1.;vec3 projected=clip.xyz/clip.w;
+ if(any(greaterThan(abs(projected),vec3(1.))))return 1.;
+ vec2 uv=projected.xy*.5+.5;float depth=projected.z*.5+.5;
+ float value=nearSunShadowTap(uv,vec2(-.5,-.5),depth);
+ value+=nearSunShadowTap(uv,vec2(.5,-.5),depth);
+ value+=nearSunShadowTap(uv,vec2(-.5,.5),depth);
+ value+=nearSunShadowTap(uv,vec2(.5,.5),depth);
+ return value*.25;
 }
 `;

@@ -1,3 +1,4 @@
+import { SV_RespawnFrame } from './sv_respawn.js';
 // Ported from: WinQuake/sv_phys.c -- server physics
 
 import { SV_SeamlessHolding } from './sv_seamless.js';
@@ -1315,6 +1316,8 @@ export function SV_Physics_Client( ent, num ) {
 	// arrived through a seamless exit and the client is still loading
 	if ( SV_SeamlessHolding( num ) )
 		return;
+
+	if ( SV_RespawnFrame( ent ) ) return;
 
 	//
 	// call standard client pre-think

@@ -1,0 +1,30 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "date": "2026-10-04",
+  "command": "QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs node tools/run_tests.mjs tests/bestiary_test.js tests/bestiary_book_test.js tests/bestiary_assets_test.js tests/bestiary_native_test.js tests/menu_test.js tests/singleplayer_menu_test.js tests/touch_layout_test.js tests/demo_startup_loading_test.js tests/newer_start_test.js tests/model_lighting_test.js",
+  "log": "/private/tmp/quaked-bestiary-expanded-initial.log",
+  "exitCode": 0,
+  "passed": 55,
+  "total": 55,
+  "results": [
+    "8/8 passed (tests/bestiary_test.js)",
+    "7/7 passed (tests/bestiary_book_test.js)",
+    "4/4 passed (tests/bestiary_assets_test.js)",
+    "4/4 passed (tests/bestiary_native_test.js)",
+    "1/1 passed (tests/menu_test.js)",
+    "2/2 passed (tests/singleplayer_menu_test.js)",
+    "5/5 passed (tests/touch_layout_test.js)",
+    "11/11 passed (tests/demo_startup_loading_test.js)",
+    "6/6 passed (tests/newer_start_test.js)",
+    "7/7 passed (tests/model_lighting_test.js)"
+  ],
+  "sourceManifest": "/private/tmp/quaked-bestiary-expanded-source-sha256.json",
+  "hashCount": 172,
+  "sourceOrTestModifiedAfterGateStarted": [],
+  "artCopyProof": "/private/tmp/quaked-bestiary-expanded-art-copy-proof.json",
+  "limits": [
+    "Expansion classifier tested against explicit researched inputs; no installed mission-pack PAK, so no expansion gameplay claimed.",
+    "Canvas book presentation uses actual production module with controlled runtime endpoints; native encounter tests separately exercise real base-game PAK and public runtime.",
+    "Browser visual verification is parent-owned and separate from this CPU receipt."
+  ]
+}

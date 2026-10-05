@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-05",
+  "candidateRoot": "/private/tmp/quaked-scoped-candidate-obnkmk_x",
+  "qualification": "exported staged candidate, with exact code/assets read from this export; source repository used read-only solely for git-show HEAD artwork oracle",
+  "node": {
+    "path": "/Users/bri/.nvm/versions/node/v24.13.0/bin/node",
+    "version": "v24.13.0"
+  },
+  "threeModule": "/private/tmp/quaked-three.module.mjs",
+  "runtime": {
+    "log": "/private/tmp/quaked-staged-candidate-runtime-node24.log",
+    "testFiles": [
+      "tests/bestiary_progress_test.js",
+      "tests/main_menu_art_test.js",
+      "tests/studio_logo_test.js",
+      "tests/loading_screen_test.js",
+      "tests/menu_test.js",
+      "tests/singleplayer_menu_test.js",
+      "tests/demo_startup_loading_test.js",
+      "tests/newer_start_test.js",
+      "tests/bestiary_book_test.js",
+      "tests/bestiary_test.js",
+      "tests/bestiary_assets_test.js",
+      "tests/bestiary_native_test.js",
+      "tests/touch_layout_test.js",
+      "tests/model_lighting_test.js",
+      "tests/face_state_test.js",
+      "tests/face_game_test.js",
+      "tests/face_native_test.js",
+      "tests/hud_face_combo_test.js",
+      "tests/hud_preload_test.js",
+      "tests/player_face_preload_test.js",
+      "tests/player_face_failure_test.js",
+      "tests/respawn_native_test.js",
+      "tests/respawn_remains_test.js",
+      "tests/model_surface_native_test.js",
+      "tests/model_pointshadows_test.js",
+      "tests/welcome_aids_test.js",
+      "tests/flashlight_run_test.js",
+      "tests/flashlight_corridor_test.js",
+      "tests/flashlight_native_touch_test.js",
+      "tests/exit_machine_test.js",
+      "tests/rock_bands_test.js",
+      "tests/rockfield_continuity_test.js",
+      "tests/rockfield_map_test.js",
+      "tests/rockfield_bakes_test.js",
+      "tests/height_shadows_test.js",
+      "tests/surface_filtering_test.js",
+      "tests/emissive_lights_test.js"
+    ],
+    "exitCode": 0,
+    "passed": 217,
+    "total": 217,
+    "results": [
+      "5/5 passed (tests/bestiary_progress_test.js)",
+      "2/2 passed (tests/main_menu_art_test.js)",
+      "5/5 passed (tests/studio_logo_test.js)",
+      "4/4 passed (tests/loading_screen_test.js)",
+      "1/1 passed (tests/menu_test.js)",
+      "2/2 passed (tests/singleplayer_menu_test.js)",
+      "11/11 passed (tests/demo_startup_loading_test.js)",
+      "6/6 passed (tests/newer_start_test.js)",
+      "10/10 passed (tests/bestiary_book_test.js)",
+      "14/14 passed (tests/bestiary_test.js)",
+      "10/10 passed (tests/bestiary_assets_test.js)",
+      "6/6 passed (tests/bestiary_native_test.js)",
+      "5/5 passed (tests/touch_layout_test.js)",
+      "7/7 passed (tests/model_lighting_test.js)",
+      "10/10 passed (tests/face_state_test.js)",
+      "4/4 passed (tests/face_game_test.js)",
+      "8/8 passed (tests/face_native_test.js)",
+      "4/4 passed (tests/hud_face_combo_test.js)",
+      "3/3 passed (tests/hud_preload_test.js)",
+      "3/3 passed (tests/player_face_preload_test.js)",
+      "2/2 passed (tests/player_face_failure_test.js)",
+      "17/17 passed (tests/respawn_native_test.js)",
+      "7/7 passed (tests/respawn_remains_test.js)",
+      "5/5 passed (tests/model_surface_native_test.js)",
+      "9/9 passed (tests/model_pointshadows_test.js)",
+      "5/5 passed (tests/welcome_aids_test.js)",
+      "5/5 passed (tests/flashlight_run_test.js)",
+      "3/3 passed (tests/flashlight_corridor_test.js)",
+      "1/1 passed (tests/flashlight_native_touch_test.js)",
+      "3/3 passed (tests/exit_machine_test.js)",
+      "2/2 passed (tests/rock_bands_test.js)",
+      "3/3 passed (tests/rockfield_continuity_test.js)",
+      "1/1 passed (tests/rockfield_map_test.js)",
+      "14/14 passed (tests/rockfield_bakes_test.js)",
+      "8/8 passed (tests/height_shadows_test.js)",
+      "3/3 passed (tests/surface_filtering_test.js)",
+      "9/9 passed (tests/emissive_lights_test.js)"
+    ],
+    "optionalAlternatesObserved": 0
+  },
+  "donorComparison": {
+    "log": "/private/tmp/quaked-staged-candidate-donor-final.log",
+    "testFiles": [
+      "tests/rockfield_test.js",
+      "tests/rockfield_connected_test.js",
+      "tests/rockfield_runtime_test.js",
+      "tests/rockfield_required_materials_test.js"
+    ],
+    "exitCode": 0,
+    "passed": 23,
+    "total": 23,
+    "results": [
+      "6/6 passed (tests/rockfield_test.js)",
+      "5/5 passed (tests/rockfield_connected_test.js)",
+      "9/9 passed (tests/rockfield_runtime_test.js)",
+      "3/3 passed (tests/rockfield_required_materials_test.js)"
+    ],
+    "environment": {
+      "GIT_DIR": "/Users/bri/SOURCE/Quaked/.git",
+      "GIT_WORK_TREE": "/private/tmp/quaked-scoped-candidate-obnkmk_x"
+    },
+    "headByteOracle": "038fe593277e771a104a5412c611aedaadb6a206",
+    "headUnchangedBeforeAfter": true,
+    "gitOperations": "read-only rev-parse and test git show; no Git or index mutation"
+  },
+  "distinctTotalPassed": 240,
+  "distinctTotalRun": 240,
+  "sourceBinding": {
+    "coreManifest": "/private/tmp/quaked-staged-candidate-core-sha256.json",
+    "coreFiles": 295,
+    "fullExportManifest": "/private/tmp/quaked-staged-candidate-full-sha256.json",
+    "fullExportFiles": 2468,
+    "symlinks": {},
+    "differencesFromEarlierWorkspaceGate": [
+      "newer/bestiary/SOURCE.json",
+      "src/respawn_motion.js"
+    ],
+    "differenceContext": "Parent-authorized runtime provenance alternate removal and respawn_motion whitespace cleanup, both qualified by exported run."
+  },
+  "candidateFilesModifiedAfterVerificationStarted": [],
+  "exclusions": {
+    "bestiaryAlternatesPresent": false,
+    "respawnReferenceBundlePresent": false,
+    "preservedHeadDonorHTMLPresent": [
+      [
+        "rockfield-v1.0.0.html",
+        true
+      ],
+      [
+        "rockfield-v1.6.0.html",
+        true
+      ]
+    ]
+  },
+  "retainedFailures": [
+    {
+      "log": "/private/tmp/quaked-staged-candidate-runtime.log",
+      "result": "0/0, exit1 before assertions",
+      "cause": "Export directory selected Node20.8.1 instead of workspace Node24.13.0; corrected by exact executable path, no source edits."
+    },
+    {
+      "log": "/private/tmp/quaked-staged-candidate-donor-comparison.log",
+      "result": "22/23, exit1",
+      "cause": "Plain export lacks Git metadata required for original HEAD-artwork byte comparison; rerun with explicit read-only source GIT_DIR and candidate GIT_WORK_TREE."
+    }
+  ],
+  "limits": [
+    "Only the41 enumerated suites are qualified; this is not a claim that every repository test or unavailable archive-based authoring conversion was run.",
+    "Native base-game, shader/material public and real Canvas2D checks do not replace separately retained browser/GPU acceptance.",
+    "This report verifies the exported candidate; parent owns final staged-index/export comparison and authorized commit."
+  ]
+}

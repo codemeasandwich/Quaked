@@ -1,0 +1,600 @@
+PASS bestiary catalog preserves fifteen base-game identities and appends supplied folios without changing prior identities or printed numbering
+PASS journal persists exact known discoveries across instances and merges independent tabs without replacing earlier progress
+PASS expanded classifier recognizes verified classes while requiring every Rogue multi-grenade discriminator
+PASS malformed or unsupported journal records never unlock unknown pages and cannot erase already known in-memory progress
+PASS unavailable or quota-limited storage keeps current-play discoveries usable without throwing or crossing storage origins
+PASS encounter cancellation cannot clear journal progress and reloading a run preserves discoveries when artwork becomes available
+PASS encounter decelerates boundedly before holding and remains fully paused through the camera return
+PASS encounter rejects early dismissal and reentry, chooses both sides, and cancellation restores time without changing progress
+PASS completion requires all forty-seven supplied collection identities rather than a partial catalog or forty-six plus an unknown
+PASS collection completion reloads shared version1 progress and cannot erase known future identities on an unrelated discovery
+PASS all forty-seven catalog identities preserve unique saved snapshots and bounded encounter admission
+PASS new variant folios require researched resolved models and native variant state without stealing ordinary enemies
+PASS final folios classify actual resolved native variants while rejecting unverified aliases and missing capabilities
+PASS native Guardian ownership distinguishes all lesser forms from resolved bosses without health or spawnflag guesses
+RESULT 14/14 passed (tests/bestiary_test.js)
+PASS book preserves cover and front matter then visits all forty-seven individual locked rectos with supplied parchment versos
+PASS all known authored creature images remain on their own rectos and never become parchment backs or leak onto locked neighbors
+PASS every forward and backward interior turn uses the supplied parchment reverse instead of another creature image
+PASS encounter clips exactly the opposite screen half and held art is unwarped for either random camera side
+PASS completed inner artwork changes only the inner recto while original outer cover and supplied parchment stay unchanged
+PASS book and encounter restore caller transform and alpha even when an image draw fails inside a cover turn
+PASS actual main menu appends Bestiary without changing original actions or Continue and routes full-viewport book input
+PASS late decoded encounter art keeps its bounded ripple until opacity finishes even after simulation already holds
+PASS dedication belongs only to the first left-hand page including both turn directions and never leaks onto creature backs
+RESULT 9/9 passed (tests/bestiary_book_test.js)
+PASS all fifty-three canonical bestiary PNGs retain exact owner bytes, including the earlier nine-page corpus
+PASS public cover and frontispiece decode without discovery or journal writes while every undiscovered monster image stays gated
+PASS previously discovered Spawn Chthon and Shub use their new supplied artwork without changing legacy IDs or storage version
+PASS front matter failure settles once and late callbacks cannot replace terminal fallback or mutate discovery progress
+PASS public inner cover changes only after forty-seven discoveries and keeps normal artwork while completed artwork loads or fails
+PASS complete collection retains normal inner cover when its optional completed-image request fails
+PASS revised canonical Egyptian Guardian retains the exact earlier illustration as an explicit alternate
+PASS failed dedication loading cannot clear progress or disturb decoded inner and parchment caches
+RESULT 8/8 passed (tests/bestiary_assets_test.js)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+CL_ParseStartSoundPacket: sound_num 67 not precached
+
+CL_ParseStartSoundPacket: sound_num 69 not precached
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+CL_ParseStartSoundPacket: sound_num 69 not precached
+
+BESTIARY_NATIVE_VIEW {"map":"e1m1","id":"grunt","classname":"monster_army","player":[128,576,24.03125],"enemy":[0,576,24.03125],"target":[2.131662368774414,577.4904928207397,24.28819465637207]}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual native living enemy discovery rejects unsupported scopes, hidden aliases, dead bodies, rear views and opaque BSP before unlocking once
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FlushEntityPacket
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+BESTIARY_NATIVE_VIEW {"map":"e1m2","id":"knight","classname":"monster_knight","player":[-624,-312,480.03125],"enemy":[-368,-312,480.03125],"target":[-369.88021137304554,-316.22301778880217,479.23491954803467]}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual renderer camera borrows orientation and FOV while native player pose stays untouched and fresh dismiss input is consumed through its release
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FlushEntityPacket
+
+CL_ParseStartSoundPacket: sound_num 96 not precached
+
+CL_ParseStartSoundPacket: sound_num 96 not precached
+
+BESTIARY_NATIVE_VIEW {"map":"e1m3","id":"zombie","classname":"monster_zombie","player":[-199.73406982421875,-1214.014892578125,112.03125],"enemy":[-199.73406982421875,-1470.014892578125,112.03125],"target":[-201.71631310031665,-1471.7673624878498,108.12978458404541]}
+CL_ParseStartSoundPacket: sound_num 100 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 100 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 79 not precached
+
+CL_ParseStartSoundPacket: sound_num 97 not precached
+
+CL_ParseStartSoundPacket: sound_num 112 not precached
+
+CL_ParseStartSoundPacket: sound_num 94 not precached
+
+BESTIARY_NATIVE_PAUSE {"id":"zombie","frozen":{"server":2.0500000000000003,"client":2.049999952316284,"qc":2.048835515975952,"particles":914},"resumed":{"server":2.15,"client":2.1500000953674316,"qc":2.1106040477752686,"frametime":0.04999999999999982},"ammo":25}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS real Host_Frame freezes server and client clocks, due native AI and live particles throughout hold/return, then restores existing timescale without firing dismissal
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FlushEntityPacket
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+CL_ParseStartSoundPacket: sound_num 68 not precached
+
+CL_ParseStartSoundPacket: sound_num 66 not precached
+
+BESTIARY_NATIVE_VIEW {"map":"e1m2","id":"knight","classname":"monster_knight","player":[-624,-312,480.03125],"enemy":[-368,-312,480.03125],"target":[-369.88021137304554,-316.22301778880217,479.23491954803467]}
+BESTIARY_NATIVE_FIELD_BRIDGE {"thDieOffset":117,"infectedFixtureOffset":160,"nativeThDieProperty":"undefined","infectedCallbackIndex":2091,"sleeperCallbackIndex":2092,"programFunctions":2091}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FlushEntityPacket
+
+BESTIARY_NATIVE_VIEW {"map":"e1m2","id":"knight","classname":"monster_knight","player":[-624,-312,480.03125],"enemy":[-368,-312,480.03125],"target":[-369.75688396233124,-316.3463458738661,479.23491954803467]}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS public native observation reads extended QuakeC death callbacks and optional variant fields rather than absent JavaScript properties
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FlushEntityPacket
+
+BESTIARY_NATIVE_VIEW {"map":"e1m2","id":"knight","classname":"monster_knight","player":[-624,-312,480.03125],"enemy":[-368,-312,480.03125],"target":[-369.75688396233124,-316.3463458738661,479.23491954803467]}
+BESTIARY_NATIVE_CAPABILITY_BRIDGE {"nativeOwner":1,"guardianOwnerZero":0,"requiresBothStatueRoutines":true,"hellSpawnRoutine":"tbaby_mitosis","stockProgramRestored":true}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS public native observation transports Guardian owners and refreshes program-specific statue and Hell Spawn capability gates
+PASS restore bestiary native fixture boundaries
+RESULT 6/6 passed (tests/bestiary_native_test.js)
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:50:48
+PASS customize controls binds printable and named keys
+RESULT 1/1 passed (tests/menu_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_weapons"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+PASS every control is on the screen and none overlap
+PASS the buttons are an arc around the forward button in the corner
+PASS portrait has a panel the status bar sits above, landscape does not; the views differ
+PASS the safe area keeps the controls off the notch and the home bar
+PASS the weapon menu offers the weapons held that have ammo
+RESULT 5/5 passed (tests/touch_layout_test.js)
+PASS boot splash waits for an actual console presentation and app readiness, fades once, and terminal fallback readiness needs three completed draws
+PASS manual intent cancels startup permanently; signon packets/timed demos are never frozen and failed splash has a terminal native fallback
+PASS actual loading DOM fades only on its opacity transition; unrelated events do not remove it and missing/reduced-motion pages terminate
+Added packfile boot-public-native-pak (339 files)\n
+PASS actual first-attract client freezes both clip time and packet cursor after native signon, screen renders behind full native console then rolls away only when terminal
+PASS actual manual and timed playback commands permanently bypass first-demo scope, and stopping first attract cannot rearm a later loop
+PASS welcome has an opaque native plaque with hidden draws, blocks public movement but sends reliable handshakes, and releases without demo console/fade or changing ordinary crossings
+PASS real Host_ServerFrame holds native world physics only for single-player welcome while reliable preparation continues, then native time advances normally
+PASS public collector excludes disabled stale shadow/rock/demon caches and lists only the caller enabled asset roles
+PASS partial native asset failures cannot conceal other pending images or current source-shadow retries; frame stays held until both finish
+PASS terminal failed visible rock tiles release to native fallback while other missing tiles/jobs/prepared requests continue to block
+PASS GPU shader completion, sculpted surfaces and visible water remain independent readiness blockers despite optional shader failure diagnostics
+RESULT 11/11 passed (tests/demo_startup_loading_test.js)
+Added packfile pak0.pak (339 files)\n
+NEWER_MENU_START_BASELINE {"action":"map","map":"start","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"}
+PASS archived disabled rock and power-ups plus other disabled enhancements are restored by public Newer Game before actual map command dispatch
+NEWER_LEVEL_SELECT_BASELINE {"newer":{"action":"map","map":"e1m2","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"},"classic":{"action":"map","map":"e1m1","hdr":"0","features":{"r_newer_lighting":"0","r_newer_normals":"0","r_newer_shadows":"0","r_pointshadows":"0","r_heightshadows":"0","r_rockfield":"0.4","r_powerups":"0","r_newer_weapons":"0","r_newer_textures":"0","r_newer_water":"0","r_newer_enemies":"0","r_newer_portals":"0","r_newer_hud":"0","r_decals":"0","r_lerpmodels":"2","r_newer_variety":"0"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":0,"textureReady":0,"textureFallback":1,"archivedRock":"0.4","archivedPowerups":"0"}}
+PASS public Newer Level Select restores the same literal sixteen-feature baseline while both Classic entry paths preserve choices
+PASS opening or canceling menus does not reset settings and real in-session feature toggles remain effective until an explicit new launch
+PASS attract comparison temporarily enables the full baseline and restores exact preferences, while explicit Newer launch survives later demo cleanup
+NEWER_DEMO_ARCHIVE_CUSTODY {"archived":["r_rockfield","r_powerups","r_heightshadows"],"persisted":{"r_rockfield":"0.375","r_powerups":"1","r_heightshadows":"0"}}
+PASS temporary attract defaults preserve actual archived storage and serialized configuration while normal configuration save/load still roundtrips
+PASS explicit same-value enable and explicit disable during a demo outlast scope restoration for archived and nonarchived features
+RESULT 6/6 passed (tests/newer_start_test.js)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+PASS actual opaque held clone keeps physical receiver metadata and only applies compressed display depth to the main camera
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+PASS native pickups, native player colormap and imported alias materials all carry real receiver data without sharing held coating state
+PASS enhanced alias CPU colors contain baked light only so a live explosion is not added as unshadowed grayscale before deferred lighting
+PASS surface blood persists indefinitely and water alone washes; wet film dries on unpaused game time
+PASS public native damage and blood particle events coat only enabled, nearby, visible surfaces
+PASS surface snapshot restores in place across clocks and malformed data is atomic; demos cannot wash live custody
+PASS public HDR target keeps normal and actor packets unmultisampled with all four attachments even when micro normals are disabled
+RESULT 7/7 passed (tests/model_lighting_test.js)
+TOTAL 69/69 passed

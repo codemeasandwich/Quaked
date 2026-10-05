@@ -1,0 +1,170 @@
+{
+  "assets": {
+    "failures": {},
+    "index": "ready",
+    "pending": [],
+    "preload": "ready",
+    "ready": [
+      "v_shot",
+      "v_shot2",
+      "g_shot",
+      "v_nail2",
+      "g_nail2",
+      "v_rock",
+      "g_rock",
+      "v_rock2",
+      "g_rock2",
+      "v_light",
+      "g_light",
+      "shell"
+    ],
+    "settled": true
+  },
+  "errors": [
+    "UnknownError: If you see this error we have a bug. Please report this bug to chromium."
+  ],
+  "eye": [
+    128.03125,
+    1008.03125,
+    -177.84375
+  ],
+  "eyeContents": -1,
+  "glError": 0,
+  "heldReceiver": {
+    "quakePlayerSurface": true,
+    "quakeViewmodel": true
+  },
+  "loading": {
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeDone": true,
+    "fadeStarted": true,
+    "fallbacks": [],
+    "frames": 19,
+    "mode": "welcome",
+    "pending": [],
+    "phase": "done",
+    "settledFrames": 3,
+    "world": "maps/e1m1.bsp"
+  },
+  "map": "e1m1",
+  "measure": null,
+  "position": [
+    128,
+    1008,
+    -199.9499969482422
+  ],
+  "ready": true,
+  "shadows": {
+    "captures": 13132,
+    "chunks": 229,
+    "disposed": false,
+    "epoch": 11,
+    "error": null,
+    "faceRenders": 78792,
+    "failedCaptures": 0,
+    "maxSlots": 8,
+    "pending": 0,
+    "pointDynamicMeshes": 38,
+    "pointGeometryRevision": 1652,
+    "ready": 8,
+    "requested": 8,
+    "resident": 8,
+    "spotCaptures": 22,
+    "spotDynamicMeshes": 0,
+    "spotError": null,
+    "spotFailedCaptures": 0,
+    "spotReady": false,
+    "spotRenders": 22,
+    "sunCaptures": 1645,
+    "sunDynamicMeshes": 38,
+    "sunError": null,
+    "sunFailedCaptures": 0,
+    "sunReady": true,
+    "sunRenders": 1645,
+    "triangles": 9614
+  },
+  "signon": 4,
+  "surface": {
+    "blood": 0.47619047619047616,
+    "inWater": false,
+    "serial": 1,
+    "spots": [
+      [
+        0.18637404791404744,
+        0.5088903421109003,
+        0.07746327490080149,
+        0.6761904761904762
+      ],
+      [
+        0.17591570181166072,
+        0.5092297046949548,
+        0.12196391004952604,
+        0.6761904761904762
+      ],
+      [
+        0.15041753820468923,
+        0.49845181045508213,
+        0.12860248143551872,
+        0.6761904761904762
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "version": 1,
+    "wet": 0
+  },
+  "weapon": "progs/v_shot.mdl"
+}

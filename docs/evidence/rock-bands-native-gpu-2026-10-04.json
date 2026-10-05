@@ -1,0 +1,240 @@
+{
+  "gpu": {
+    "attachments": 4,
+    "defaults": {
+      "gamma": 0.75,
+      "r_flashlight": 0,
+      "r_heightshadows": 1,
+      "r_pointshadows": 1
+    },
+    "errors": [],
+    "glError": 0,
+    "maskClasses": {
+      "invalidClear": 0,
+      "invalidOpaque": 69342,
+      "ordinaryHeight": 64657,
+      "rockWall": 789041
+    },
+    "rockWallSpotVisibilityBins": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      789041
+    ],
+    "worldShadows": {
+      "captures": 36,
+      "chunks": 228,
+      "disposed": false,
+      "epoch": 13,
+      "error": null,
+      "faceRenders": 216,
+      "failedCaptures": 0,
+      "maxSlots": 8,
+      "pending": 0,
+      "ready": 8,
+      "requested": 8,
+      "resident": 8,
+      "spotCaptures": 36,
+      "spotDynamicMeshes": 0,
+      "spotError": null,
+      "spotFailedCaptures": 0,
+      "spotReady": false,
+      "spotRenders": 36,
+      "triangles": 276566
+    }
+  },
+  "materials": [
+    {
+      "carvingReference": false,
+      "continuousRelief": true,
+      "gpuBinding": {
+        "carvedProgram": false,
+        "classic": 0,
+        "normalWidth": 256
+      },
+      "height": "normals/bricka2_2.webp",
+      "label": "left wall",
+      "normalMap": true,
+      "normalSize": [
+        256,
+        256
+      ],
+      "point": [
+        1008,
+        1113.6908154296875,
+        3.751562499999956
+      ],
+      "programKey": "quake-detail-rock-v2-bandwarp-height-shadow-filtered-v2",
+      "realDisplacement": false,
+      "texture": "bricka2_2",
+      "textureSize": [
+        256,
+        256
+      ],
+      "vertices": 282
+    },
+    {
+      "carvingReference": false,
+      "continuousRelief": true,
+      "gpuBinding": {
+        "carvedProgram": false,
+        "classic": 0,
+        "normalWidth": 256
+      },
+      "height": "normals/bricka2_2.webp",
+      "label": "right wall",
+      "normalMap": true,
+      "normalSize": [
+        256,
+        256
+      ],
+      "point": [
+        1008,
+        902.3716845703124,
+        3.751562499999956
+      ],
+      "programKey": "quake-detail-rock-v2-bandwarp-height-shadow-filtered-v2",
+      "realDisplacement": false,
+      "texture": "bricka2_2",
+      "textureSize": [
+        256,
+        256
+      ],
+      "vertices": 282
+    },
+    {
+      "carvingReference": false,
+      "continuousRelief": true,
+      "gpuBinding": {
+        "carvedProgram": false,
+        "classic": 0,
+        "normalWidth": 256
+      },
+      "height": "normals/bricka2_2.webp",
+      "label": "ahead",
+      "normalMap": true,
+      "normalSize": [
+        256,
+        256
+      ],
+      "point": [
+        1008,
+        1008.03125,
+        -17.84375
+      ],
+      "programKey": "quake-detail-rock-v2-bandwarp-height-shadow-filtered-v2",
+      "realDisplacement": false,
+      "texture": "bricka2_2",
+      "textureSize": [
+        256,
+        256
+      ],
+      "vertices": 282
+    },
+    {
+      "carvingReference": false,
+      "continuousRelief": true,
+      "gpuBinding": {
+        "carvedProgram": false,
+        "classic": 0,
+        "normalWidth": 256
+      },
+      "height": "normals/bricka2_2.webp",
+      "label": "above",
+      "normalMap": true,
+      "normalSize": [
+        256,
+        256
+      ],
+      "point": [
+        1008,
+        1008.03125,
+        46.942187499999875
+      ],
+      "programKey": "quake-detail-rock-v2-bandwarp-height-shadow-filtered-v2",
+      "realDisplacement": false,
+      "texture": "bricka2_2",
+      "textureSize": [
+        256,
+        256
+      ],
+      "vertices": 282
+    },
+    {
+      "carvingReference": false,
+      "continuousRelief": true,
+      "gpuBinding": {
+        "carvedProgram": false,
+        "classic": 0,
+        "normalWidth": 256
+      },
+      "height": "normals/bricka2_2.webp",
+      "label": "below",
+      "normalMap": true,
+      "normalSize": [
+        256,
+        256
+      ],
+      "point": [
+        1008,
+        1008.03125,
+        -71.83203124999986
+      ],
+      "programKey": "quake-detail-rock-v2-bandwarp-height-shadow-filtered-v2",
+      "realDisplacement": false,
+      "texture": "bricka2_2",
+      "textureSize": [
+        256,
+        256
+      ],
+      "vertices": 282
+    }
+  ],
+  "state": {
+    "active": true,
+    "bandWarp": 1,
+    "charts": 33,
+    "demo": false,
+    "demonRelief": {
+      "eligible": 2,
+      "enabled": true,
+      "pending": 0,
+      "ready": 2,
+      "triangles": 266240
+    },
+    "desiredTiles": 241,
+    "error": null,
+    "errors": [],
+    "failedTiles": 0,
+    "failedVisibleTiles": 0,
+    "generatedTiles": 241,
+    "level": "maps/start.bsp",
+    "maxPages": 843,
+    "missingVisibleTiles": 0,
+    "overflowTiles": 0,
+    "pageLimit": 2048,
+    "pending": 0,
+    "player": [
+      864,
+      1008,
+      -39.96900177001953
+    ],
+    "preparedError": "Rock bake load timed out",
+    "preparedState": "fallback",
+    "preparedTiles": 0,
+    "resident": 241,
+    "serverActive": true,
+    "setupCount": 2,
+    "signon": 4,
+    "spawned": true,
+    "viewangles": [
+      0,
+      0,
+      0
+    ]
+  }
+}

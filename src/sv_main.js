@@ -1,3 +1,4 @@
+import { SV_RespawnPrecache, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel } from './sv_respawn.js';
 // Ported from: WinQuake/sv_main.c -- server main program
 
 import { Sys_Error } from './sys.js';
@@ -1555,7 +1556,7 @@ const CARRY_TIMERS = [
 	[ 4194304, 'super_damage_finished', 'super_time' ]
 ];
 let carriedPowerups = null;
-export function SV_ClearCarriedPowerups() { carriedPowerups = null; }
+export function SV_ClearCarriedPowerups() { carriedPowerups = null; SV_RespawnClearTravel(); }
 
 function SV_CapturePowerups( ent ) {
 
@@ -1609,7 +1610,7 @@ export function SV_SaveSpawnparms() {
 
 		// call the progs to get default spawn parms for the new client
 		pr_global_struct.self = EDICT_TO_PROG( client.edict );
-		if ( i === 0 ) SV_CapturePowerups( client.edict );
+		if ( i === 0 ) { SV_CapturePowerups( client.edict ); SV_RespawnCaptureTravel( client.edict ); }
 		PR_ExecuteProgram( pr_global_struct.SetChangeParms );
 		for ( let j = 0; j < NUM_SPAWN_PARMS; j ++ )
 			client.spawn_parms[ j ] = pr_global_struct[ 'parm' + ( j + 1 ) ];
@@ -1745,6 +1746,7 @@ export function SV_SpawnServer( server ) {
 	// load progs to get entity field count
 	const progsData = COM_LoadFile( 'progs.dat' );
 	PR_LoadProgs( progsData );
+	SV_RespawnWorldStart();
 
 	// Wire up sv_phys.js with server state and cross-module callbacks
 	// (must be after PR_LoadProgs so pr_global_struct is valid)
@@ -1863,6 +1865,7 @@ export function SV_SpawnServer( server ) {
 
 	}
 
+	SV_RespawnPrecache();
 	sv.active = true;
 
 	// all setup is completed, any further precache statements are errors

@@ -1,0 +1,526 @@
+{
+  "checks": [
+    {
+      "maximum": 0,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "name": "actual held receiver coverage",
+      "passed": true,
+      "pixels": 1542
+    },
+    {
+      "maximum": 0,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "name": "non-emissive held body remains dark without baked or dynamic light",
+      "passed": true,
+      "pixels": 1542
+    },
+    {
+      "clippedFirstHits": 0,
+      "depthError": 0.015626906870572554,
+      "glError": 0,
+      "name": "compressed display depth retains actual model position and interpolated normal",
+      "normalError": 0.0009335423260967656,
+      "passed": true,
+      "positionError": 0.01763031790275356,
+      "samples": 91,
+      "worstSample": {
+        "hitDepths": [
+          16.640626906870573
+        ],
+        "packetDepth": 16.625,
+        "pixel": [
+          231,
+          15
+        ],
+        "selected": 0
+      }
+    },
+    {
+      "maximum": 27,
+      "mean": [
+        5.0810635538261995,
+        0,
+        0
+      ],
+      "name": "held body receives real red point lighting",
+      "passed": true,
+      "pixels": 1542
+    },
+    {
+      "maximum": 29,
+      "mean": [
+        0,
+        0,
+        4.577172503242542
+      ],
+      "name": "held body receives real blue point lighting",
+      "passed": true,
+      "pixels": 1542
+    },
+    {
+      "name": "physical blocker is outside the viewing frustum",
+      "passed": true
+    },
+    {
+      "blocked": {
+        "maximum": 0,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "pixels": 1542
+      },
+      "lit": {
+        "maximum": 27,
+        "mean": [
+          5.0810635538261995,
+          0,
+          0
+        ],
+        "pixels": 1542
+      },
+      "name": "off-screen world geometry shadows the real point source",
+      "passed": true,
+      "shadow": {
+        "captures": 3,
+        "chunks": 3,
+        "disposed": false,
+        "epoch": 7,
+        "error": null,
+        "faceRenders": 18,
+        "failedCaptures": 0,
+        "maxSlots": 8,
+        "pending": 0,
+        "pointDynamicMeshes": 1,
+        "pointGeometryRevision": 11,
+        "ready": 1,
+        "requested": 1,
+        "resident": 1,
+        "spotCaptures": 0,
+        "spotDynamicMeshes": 0,
+        "spotError": null,
+        "spotFailedCaptures": 0,
+        "spotReady": false,
+        "spotRenders": 0,
+        "sunCaptures": 0,
+        "sunDynamicMeshes": 0,
+        "sunError": null,
+        "sunFailedCaptures": 0,
+        "sunReady": false,
+        "sunRenders": 0,
+        "triangles": 4
+      }
+    },
+    {
+      "blocked": 38,
+      "glError": 0,
+      "heldLightProbe": {
+        "channels": [
+          "linearAlbedoMaximum",
+          "incidentMaximum",
+          "worldVisibility",
+          "NdotL"
+        ],
+        "glError": 0,
+        "litFacing": 980,
+        "litReached": 1030,
+        "maximum": [
+          0.10451770573854446,
+          0.5100271105766296,
+          1,
+          0.977333128452301
+        ],
+        "mean": [
+          0.02458836794885216,
+          0.21410913219214592,
+          0.5843061055944587,
+          0.4177380971134617
+        ],
+        "samples": 1542
+      },
+      "lit": 191,
+      "name": "native posed weapon casts its own point shadow on independently ray-confirmed visible surfaces",
+      "passed": true,
+      "verifiedBlocked": 36,
+      "verifiedLit": 115,
+      "witnesses": [
+        {
+          "gap": 2.7200846250730706,
+          "pixel": [
+            211,
+            1
+          ],
+          "visibility": 0.20000000298023224
+        },
+        {
+          "gap": 2.551471437590152,
+          "pixel": [
+            213,
+            1
+          ],
+          "visibility": 0.20000000298023224
+        },
+        {
+          "gap": 2.3886723074877665,
+          "pixel": [
+            215,
+            1
+          ],
+          "visibility": 0.20000000298023224
+        },
+        {
+          "gap": 2.2297400913346053,
+          "pixel": [
+            217,
+            1
+          ],
+          "visibility": 0.20000000298023224
+        },
+        {
+          "gap": 2.5855792046631905,
+          "pixel": [
+            213,
+            3
+          ],
+          "visibility": 0.20000000298023224
+        },
+        {
+          "gap": 2.4199217047056862,
+          "pixel": [
+            215,
+            3
+          ],
+          "visibility": 0.20000000298023224
+        }
+      ]
+    },
+    {
+      "dark": {
+        "maximum": 0,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "pixels": 1522
+      },
+      "lightProbe": {
+        "channels": [
+          "linearAlbedoMaximum",
+          "incidentMaximum",
+          "worldVisibility",
+          "NdotL"
+        ],
+        "glError": 0,
+        "litFacing": 786,
+        "litReached": 840,
+        "maximum": [
+          0.010989011265337467,
+          0.537557065486908,
+          1,
+          0.9972200989723206
+        ],
+        "mean": [
+          0.0025785428988312846,
+          0.1467702078036248,
+          0.4800262863058768,
+          0.2891398548014259
+        ],
+        "samples": 1522
+      },
+      "lit": {
+        "maximum": 13,
+        "mean": [
+          0,
+          0,
+          0.22930354796320632
+        ],
+        "pixels": 1522
+      },
+      "name": "native dark pickup responds only to the real blue source without an arbitrary pigment brightness floor",
+      "passed": true
+    },
+    {
+      "doubleEnergy": 0.16233534755883738,
+      "firstEnergy": 0.08116767377941869,
+      "glErrors": [
+        0,
+        0
+      ],
+      "maximumRelativeError": 0,
+      "name": "actual pre-exposure compositor radiance doubles with the same source at fixed native pigment and geometry",
+      "passed": true,
+      "positiveSamples": 49
+    },
+    {
+      "maximumByteError": 0.950778800510335,
+      "name": "transparent actor albedo retains authored color coverage",
+      "passed": true,
+      "samples": 1542
+    },
+    {
+      "color0Changes": 0,
+      "metrics": {
+        "maximum": 17,
+        "mean": [
+          0,
+          0,
+          2.262645914396887
+        ],
+        "pixels": 1542
+      },
+      "name": "transparent physical alias repairs unblended packets without touching authored color0",
+      "oracle": {
+        "clippedFirstHits": 0,
+        "depthError": 0.015626906870572554,
+        "glError": 0,
+        "normalError": 0.0009335423260967656,
+        "positionError": 0.01763031790275356,
+        "samples": 91,
+        "worstSample": {
+          "hitDepths": [
+            16.640626906870573
+          ],
+          "packetDepth": 16.625,
+          "pixel": [
+            231,
+            15
+          ],
+          "selected": 0
+        }
+      },
+      "passed": true
+    },
+    {
+      "maximum": 55,
+      "mean": [
+        13.518806744487678,
+        11.130998702983138,
+        9.180285343709468
+      ],
+      "name": "held body receives directional light",
+      "passed": true,
+      "pixels": 1542
+    },
+    {
+      "blocked": {
+        "maximum": 0,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "pixels": 1542
+      },
+      "moved": {
+        "maximum": 27,
+        "mean": [
+          5.0810635538261995,
+          0,
+          0
+        ],
+        "pixels": 1542
+      },
+      "name": "moving physical actor refreshes the same point-light shadow",
+      "passed": true,
+      "shadow": {
+        "captures": 9,
+        "chunks": 2,
+        "disposed": false,
+        "epoch": 19,
+        "error": null,
+        "faceRenders": 54,
+        "failedCaptures": 0,
+        "maxSlots": 8,
+        "pending": 0,
+        "pointDynamicMeshes": 2,
+        "pointGeometryRevision": 31,
+        "ready": 1,
+        "requested": 1,
+        "resident": 1,
+        "spotCaptures": 0,
+        "spotDynamicMeshes": 0,
+        "spotError": null,
+        "spotFailedCaptures": 0,
+        "spotReady": false,
+        "spotRenders": 0,
+        "sunCaptures": 1,
+        "sunDynamicMeshes": 0,
+        "sunError": null,
+        "sunFailedCaptures": 0,
+        "sunReady": false,
+        "sunRenders": 1,
+        "triangles": 2
+      }
+    },
+    {
+      "blocked": {
+        "maximum": 0,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "pixels": 1542
+      },
+      "moved": {
+        "maximum": 55,
+        "mean": [
+          13.518806744487678,
+          11.130998702983138,
+          9.180285343709468
+        ],
+        "pixels": 1542
+      },
+      "name": "near directional atlas resolves moving physical actor shadow on held geometry",
+      "passed": true,
+      "shadow": {
+        "captures": 9,
+        "chunks": 2,
+        "disposed": false,
+        "epoch": 21,
+        "error": null,
+        "faceRenders": 54,
+        "failedCaptures": 0,
+        "maxSlots": 8,
+        "pending": 0,
+        "pointDynamicMeshes": 2,
+        "pointGeometryRevision": 35,
+        "ready": 0,
+        "requested": 0,
+        "resident": 0,
+        "spotCaptures": 0,
+        "spotDynamicMeshes": 0,
+        "spotError": null,
+        "spotFailedCaptures": 0,
+        "spotReady": false,
+        "spotRenders": 0,
+        "sunCaptures": 3,
+        "sunDynamicMeshes": 2,
+        "sunError": null,
+        "sunFailedCaptures": 0,
+        "sunReady": true,
+        "sunRenders": 3,
+        "triangles": 2
+      }
+    },
+    {
+      "maximum": 41,
+      "mean": [
+        9.06225680933852,
+        5.250972762645914,
+        1.916342412451362
+      ],
+      "name": "live explosion contributes its actual warm radiance",
+      "passed": true,
+      "pixels": 1542
+    },
+    {
+      "blocked": {
+        "maximum": 0,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "pixels": 1542
+      },
+      "lit": {
+        "maximum": 41,
+        "mean": [
+          9.06225680933852,
+          5.250972762645914,
+          1.916342412451362
+        ],
+        "pixels": 1542
+      },
+      "name": "explosion source uses real world shadow visibility",
+      "passed": true
+    },
+    {
+      "changed": 144,
+      "maximum": 9,
+      "name": "actual cached held shader displays blood",
+      "passed": true,
+      "sum": 305
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "world pickup never shares held coating",
+      "passed": true,
+      "sum": 0
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "blood has no age-driven fading in actual shader",
+      "passed": true,
+      "sum": 0
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "water restores original native pigment exactly",
+      "passed": true,
+      "sum": 0
+    },
+    {
+      "changed": 1767,
+      "maximum": 253,
+      "name": "emerging film contributes actual lit specular response",
+      "passed": true,
+      "specular": {
+        "ndv": 0.3021439715924237,
+        "pixel": [
+          252,
+          4
+        ],
+        "position": [
+          29.530895333126203,
+          15.892069427548355,
+          13.945409656967929
+        ]
+      },
+      "sum": 261894
+    },
+    {
+      "changed": 0,
+      "maximum": 0,
+      "name": "natural drying restores exact dry appearance",
+      "passed": true,
+      "sum": 0
+    },
+    {
+      "model": "held",
+      "name": "native model positions and UVs remain unchanged",
+      "passed": true
+    },
+    {
+      "model": "pickup",
+      "name": "native model positions and UVs remain unchanged",
+      "passed": true
+    },
+    {
+      "errors": [],
+      "name": "actual alias and compositor programs compile without GL errors",
+      "passed": true
+    },
+    {
+      "name": "real held callback restores default depth range",
+      "passed": true
+    }
+  ],
+  "draws": 32,
+  "scope": "Actual native held/pickup geometry and production scene/compositor; neutral presentation brightness/contrast1 isolates physical response. Independent ray oracle. Transparent color-coverage oracle uses the actual SRGB attachment transfer function. Actual point/explosion world occlusion, directional sunlight, persistent blood, water washing and wet drying. Dark native pickup uses spectral purity plus exact pre-exposure source-radiance doubling, not a shared display-brightness floor. Moving actor point/near-sun shadows and independently ray-confirmed native self-shadow samples. Native save/load remains separate integration coverage.",
+  "status": "PASS"
+}

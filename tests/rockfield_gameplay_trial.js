@@ -18,6 +18,19 @@ const { Mod_PointInLeaf } = await import( '../src/gl_model.js' );
 const drops = await import( '../src/r_screendrops.js' );
 const keys = await import( '../src/keys.js' ), split = await import( '../src/r_demosplit.js' ), rock = await import( '../src/r_rockfield.js' );
 let generation = 0, setupCount = 0, inspectionMovement = null;
+// Trial-only A/B switch uses the production shader's uniform holder.
+const { rockBandWarpOn } = await import('../src/r_rockshader.js');
+document.querySelector('#band-warp').onclick = () => {
+ rockBandWarpOn.value = 1-rockBandWarpOn.value;
+ document.querySelector('#band-warp').textContent = 'Break up bands: '+(rockBandWarpOn.value?'on':'off');
+};
+document.querySelector( '#wall-band' ).onclick = () => {
+ if ( !sv.active || cls.signon !== 4 || !sv.edicts?.[1] ) return;
+ Cvar_SetValue('scr_centertime',0);
+ position( [864,1008,-39.969], [0,0,0] );
+ inspectionMovement = sv.edicts[1].v.movetype; sv.edicts[1].v.movetype = 0;
+};
+
 const viewParams = new URLSearchParams( location.search );
 const initialLevel = [ 'start', 'e1m1', 'e1m2', 'e1m6' ].includes( viewParams.get( 'level' ) ) ? viewParams.get( 'level' ) : 'e1m1';
 function viewVector( key, fallback ) {
@@ -33,7 +46,7 @@ function position( target = initialPosition, angles = initialAngles ) {
  const player = sv.edicts[ 1 ];
  if ( inspectionMovement !== null ) { player.v.movetype = inspectionMovement; inspectionMovement = null; }
  player.v.flags |= 64 | 128;
- player.v.origin = target; player.v.velocity = [ 0, 0, 0 ]; player.v.angles = angles; player.v.fixangle = 1; cl.viewangles.set( angles ); SV_LinkEdict( player, false ); drops.R_ScreenDropsClear(); setupCount ++;
+ player.v.origin = target; player.v.velocity = [ 0, 0, 0 ]; player.v.angles = angles; player.v.v_angle = angles; player.v.fixangle = 1; cl.viewangles.set( angles ); SV_LinkEdict( player, false ); drops.R_ScreenDropsClear(); setupCount ++;
 }
 document.querySelector( "#position" ).onclick = () => position( initialLevel === 'start' ? [ 864, 792, -39.969 ] : [ 128, 1008, -199.95 ], [ 0, 90, 0 ] );
 if ( initialLevel === 'start' ) { document.querySelector( '#position' ).textContent = 'Hard entrance'; document.querySelector( '#logo' ).hidden = false;  }
@@ -101,6 +114,7 @@ function start() {
   if ( sv.edicts === oldEdicts || ! svs.clients[ 0 ]?.spawned || cls.demoplayback || cls.signon !== 4 || ! sv.active || cl.worldmodel?.name !== 'maps/' + initialLevel + '.bsp' || cl.stats[ 0 ] <= 0 ) return;
   clearInterval( ready ); split.R_DemoSplitRelease( true ); Cvar_SetValue( 'r_hdr', 1 ); Cvar_SetValue( 'r_rockfield', 1 );
   position();
+  if (viewParams.get('inspect') === 'bands') document.querySelector('#wall-band').onclick();
  }, 100 );
 }
 document.querySelector( '#materials' ).onclick = () => {
@@ -170,6 +184,6 @@ document.querySelector( '#measure' ).onclick = async () => {
 setInterval( () => {
  const state = rock.R_RockfieldStatus(); document.querySelector( '#toggle' ).textContent = 'Relief: ' + ( state.active ? 'on' : 'off' );
  document.querySelector( '#status' ).textContent = state.error || errors.length ? 'Rendering issue — see diagnostics.' : cls.signon !== 4 ? 'Loading the level…' : state.pending ? 'Loading the continuous surface…' : state.active ? 'Connected rock surfaces · saved relief settings · original textures and geometry.' : 'Original surface detail — procedural layer off.';
- document.querySelector( '#diagnostics' ).textContent = JSON.stringify( { ...state, demonRelief: R_DemonReliefStatus(), level: cl.worldmodel?.name, signon: cls.signon, setupCount, serverActive: sv.active, spawned: svs.clients[ 0 ]?.spawned, demo: cls.demoplayback, viewangles: Array.from( cl.viewangles ), player: Array.from( sv.edicts?.[ 1 ]?.v.origin || [] ), errors }, null, 2 );
+ document.querySelector( '#diagnostics' ).textContent = JSON.stringify( { ...state, bandWarp: rockBandWarpOn.value, demonRelief: R_DemonReliefStatus(), level: cl.worldmodel?.name, signon: cls.signon, setupCount, serverActive: sv.active, spawned: svs.clients[ 0 ]?.spawned, demo: cls.demoplayback, viewangles: Array.from( cl.viewangles ), player: Array.from( sv.edicts?.[ 1 ]?.v.origin || [] ), errors }, null, 2 );
 }, 250 );
 start();

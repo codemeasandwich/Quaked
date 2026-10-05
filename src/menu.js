@@ -1,7 +1,10 @@
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
+import { NEWER_ENABLED_FEATURES } from './newer_defaults.js';
+import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from './r_bestiary_book.js';
 import { R_FlashlightToggle } from './r_flashlight.js';
 import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from './r_demoloading.js';
+import { Draw_StudioLogo } from './studio_logo.js';
 import { R_DemoSplitActive, R_DemoSplitRelease } from './r_demosplit.js';
 import { Cbuf_AddText } from './cmd.js';
 import { Cmd_AddCommand } from './cmd.js';
@@ -55,6 +58,7 @@ export const m_slist = 18;
 export const m_credits = 19;
 export const m_newer = 20;
 export const m_levelselect = 21;
+export const m_bestiary = 22;
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -535,7 +539,7 @@ export function M_ToggleMenu_f() {
 */
 
 let m_main_cursor = 0;
-const MAIN_ITEMS = 5;
+const MAIN_ITEMS = 6; // Single Player, Multiplayer, Bestiarium, Options, Credits, Quit
 
 // Check if we're currently playing (not watching demos)
 function M_InGame() {
@@ -570,41 +574,35 @@ function M_Main_Draw() {
 
 	const inGame = M_InGame();
 	const itemCount = inGame ? MAIN_ITEMS + 1 : MAIN_ITEMS;
+	m_main_cursor = Math.min( m_main_cursor, itemCount - 1 );
 
 	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/ttl_main.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
 
-	// Use the extended menu image (Continue + 5 items) if available, otherwise fall back to PAK images
+	// The supplied seven-row sheet matches the same 20px hit/keyboard rows.
 	const extPic = _Draw_CachePic( 'gfx/mainmenu_ext.lmp' );
 
 	if ( extPic != null ) {
 
 		if ( inGame ) {
 
-			// Draw full image (Continue + 5 items)
+			// Continue is only shown while playing.
 			M_DrawTransPic( 72, 32, extPic );
 
 		} else {
 
-			// Skip the Continue row (first 21px), draw only the 5 regular items
-			M_DrawSubPic( 72, 32, extPic, 21, 112 );
+			// Continue's pointed descender reaches row20 in the scaled artwork.
+			// Skip that last pixel as well; the remaining action grid stays20px.
+			M_DrawSubPic( 72, 32, extPic, 21, 119 );
 
 		}
 
 	} else {
 
-		// Fallback to original PAK images
-		if ( inGame ) {
-
-			M_DrawTransPic( 72, 32, _Draw_CachePic( 'gfx/continue.lmp' ) );
-			M_DrawTransPic( 72, 52, _Draw_CachePic( 'gfx/mainmenu.lmp' ) );
-
-		} else {
-
-			M_DrawTransPic( 72, 32, _Draw_CachePic( 'gfx/mainmenu.lmp' ) );
-
-		}
+		const labels=['SINGLE PLAYER','MULTIPLAYER','BESTIARIUM','OPTIONS','CREDITS','QUIT'];
+		if(inGame)labels.unshift('CONTINUE');
+		labels.forEach((label,i)=>M_PrintWhite(80,37+i*20,label));
 
 	}
 
@@ -617,6 +615,7 @@ function M_Main_Key( key ) {
 
 	const inGame = M_InGame();
 	const itemCount = inGame ? MAIN_ITEMS + 1 : MAIN_ITEMS;
+	m_main_cursor = Math.min( m_main_cursor, itemCount - 1 );
 
 	switch ( key ) {
 
@@ -664,12 +663,15 @@ function M_Main_Key( key ) {
 					M_Menu_MultiPlayer_f();
 					break;
 				case 2:
-					M_Menu_Options_f();
+					M_Menu_Bestiary_f();
 					break;
 				case 3:
-					M_Menu_Credits_f();
+					M_Menu_Options_f();
 					break;
 				case 4:
+					M_Menu_Credits_f();
+					break;
+				case 5:
 					// Exit fullscreen when entering quit menu
 					Touch_ExitFullscreen();
 					M_Menu_Quit_f();
@@ -680,6 +682,23 @@ function M_Main_Key( key ) {
 			break;
 
 	}
+
+}
+
+export function M_Menu_Bestiary_f() {
+
+	if ( getKeyDest() !== key_menu ) { m_save_demonum = _cls.demonum; _cls.demonum = -1; }
+	R_BestiaryBookOpen();
+	setKeyDest( key_menu );
+	m_state = m_bestiary;
+	m_entersound = true;
+
+}
+
+function M_Bestiary_Key( key ) {
+
+	if ( key === K_ESCAPE ) { M_Menu_Main_f(); return; }
+	if ( R_BestiaryBookKey( key ) && _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
 
 }
 
@@ -695,7 +714,7 @@ let m_singleplayer_cursor = 0;
 // Enhanced starts with brightness at the slider midpoint and FPS showing.
 // The successful fresh-map hook chooses the flashlight for the hub/difficulty.
 const NEWER_DEFAULT_GAMMA = 0.75; // brightness range is gamma1 (dark) to gamma.5 (bright)
-const NEWER_DEFAULTS = `r_newer_lighting 1\nr_newer_normals 1\nr_newer_shadows 1\nr_pointshadows 1\nr_heightshadows 1\ngamma ${NEWER_DEFAULT_GAMMA}\ncl_showfps 1\n`;
+const NEWER_DEFAULTS = NEWER_ENABLED_FEATURES.map( name => name + ' 1\n' ).join( '' ) + `gamma ${NEWER_DEFAULT_GAMMA}\ncl_showfps 1\n`;
 
 const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
@@ -2671,6 +2690,7 @@ export function M_Init() {
 	Cmd_AddCommand( 'menu_video', M_Menu_Video_f );
 	Cmd_AddCommand( 'help', M_Menu_Credits_f );
 	Cmd_AddCommand( 'menu_credits', M_Menu_Credits_f );
+	Cmd_AddCommand( 'menu_bestiary', M_Menu_Bestiary_f );
 	Cmd_AddCommand( 'menu_quit', M_Menu_Quit_f );
 	Cmd_AddCommand( 'menu_lanconfig', M_Menu_LanConfig_f );
 	Cmd_AddCommand( 'menu_gameoptions', M_Menu_GameOptions_f );
@@ -2699,6 +2719,7 @@ export function M_Keydown( key ) {
 		case m_keys: M_Keys_Key( key ); return;
 		case m_video: M_Video_Key( key ); return;
 		case m_credits: M_Credits_Key( key ); return;
+		case m_bestiary: M_Bestiary_Key( key ); return;
 		case m_quit: M_Quit_Key( key ); return;
 		case m_lanconfig: M_LanConfig_Key( key ); return;
 		case m_gameoptions: M_GameOptions_Key( key ); return;
@@ -2771,6 +2792,7 @@ export function M_Draw() {
 		case m_keys: M_Keys_Draw(); break;
 		case m_video: M_Video_Draw(); break;
 		case m_credits: Draw_WithVirtualSize( 320, CREDITS_HEIGHT, M_Credits_Draw ); break;
+		case m_bestiary: R_BestiaryBookDraw(); break;
 		case m_quit: M_Quit_Draw(); break;
 		case m_lanconfig: M_LanConfig_Draw(); break;
 		case m_gameoptions: M_GameOptions_Draw(); break;
@@ -2784,6 +2806,8 @@ export function M_Draw() {
 
 	}
 
+	Draw_StudioLogo( m_state === m_bestiary ? R_BestiaryBookCorner() : null );
+
 }
 
 /*
@@ -2796,6 +2820,8 @@ Converts screen coordinates to virtual 320x200 space and selects menu items.
 */
 export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
 
+	// The book uses the full overlay, not the centered 320x200 menu sheet.
+	if ( m_state === m_bestiary ) return R_BestiaryBookTouch( touchX, touchY, screenWidth, screenHeight );
 	if ( m_state === m_credits ) return Draw_WithVirtualSize( 320, CREDITS_HEIGHT, () => M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) );
 	return M_TouchInViewport( touchX, touchY, screenWidth, screenHeight );
 

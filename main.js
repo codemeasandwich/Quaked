@@ -85,7 +85,7 @@ async function main() {
 		// Preload custom menu images
 		try {
 
-			await Draw_CachePicFromPNG( 'gfx/mainmenu_ext.lmp', 'mainmenu.png' );
+			await Draw_CachePicFromPNG( 'gfx/mainmenu_ext.lmp', 'newer/ui/mainmenu-bestiarium.png', { displayHeight:140 } );
 			Sys_Printf( 'Loaded custom menu images\\n' );
 
 		} catch ( e ) {

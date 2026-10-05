@@ -1,0 +1,522 @@
+{
+  "description": "Exact title-only crops of supplied folios; regenerate with tools/build_bestiary_headers.mjs.",
+  "files": {
+    "dog.png": {
+      "source": "rottweiler.png",
+      "sourceSha256": "e763d40b17723043a289563450e1fe09199fa119db8374078246a086ca4ffeaa",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "1601dfd3b8cda9b5adaa8e83cd3be4753cb0ed690fe94d682423c7fa62c9ff29"
+    },
+    "grunt.png": {
+      "source": "grunt.png",
+      "sourceSha256": "48b1941dfd21cc5c6fda11993b2a0b6337285b1230653b66f2479d9693782154",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "25a5abc26a7f2f9748e95d6edbe6be8506539ba264430c6a9de8a4d68360d42b"
+    },
+    "enforcer.png": {
+      "source": "enforcer.png",
+      "sourceSha256": "d9c07d69e362a973fd8dd59cc6bfaf0d3e559818ad9980264d0a0617d7a7a0db",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "8978375ede9bd79400c0eba7cd5e9fcee6708af63bd2a1e70422d7eaccd4a1d5"
+    },
+    "knight.png": {
+      "source": "knight.png",
+      "sourceSha256": "ee63b9f54bccdf1630f4a37e914cf3c4e3a90eda676a0c757ad524cd66f3fee2",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "17d4242ffe2e7c2e78cd06c4e8fa796767a6bcc223f5fa7515a35d399b6bd7bf"
+    },
+    "death_knight.png": {
+      "source": "death-knight.png",
+      "sourceSha256": "e869dfbdf44e75503b8d231527b893aba5cda3f10c91f13b3d5bb81822ada9ae",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "ce0264f3aa3d794e1282f123d64a03f94a7b2e0a7687ce156b26ba2359a68a17"
+    },
+    "rotfish.png": {
+      "source": "rotfish.png",
+      "sourceSha256": "5bd5632823cbce6cf8828e93c4bbba8e4fd40eabc8fb3985b4807f816dfdf0ca",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "3aaeac5ff185c518dce0417c2e880c4fb6ca2430bfae8896bfeac7593a7ed531"
+    },
+    "zombie.png": {
+      "source": "zombie.png",
+      "sourceSha256": "f263c7acf07c232ceeabd3623ef75f4997716d24d9b3de76a07a1cd2b239bc55",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "a20700970167c4102f559097e536e7ebebce25c5db46fc0c6f6d60b60b3ff64f"
+    },
+    "scrag.png": {
+      "source": "scrag.png",
+      "sourceSha256": "eed301c42c50f8b7f3d3592a044d9d7067e248498415dab112c11ff1baee31f2",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "cc37ccba552bb397eae83a90cdf0142b8b9a7a68caa5c59cce7bf4d0eec44469"
+    },
+    "ogre.png": {
+      "source": "ogre.png",
+      "sourceSha256": "48befe8d2928008a77372a221f8609a7ff2a6b4ad6d978d06d782e168e810b06",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "1dc0bec4e10c81d0b71087190a2a66c5abd2a6ce1d0792add928dee410086a22"
+    },
+    "spawn.png": {
+      "source": "spawn.png",
+      "sourceSha256": "4cef2f8e041296f5d5a178c77cc5e2d01841b2241a46b804c7604074b6df91aa",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "b98805331d18ace6d267e6ae051a1d119f3e770a1bfa869f810f3e66229c34b6"
+    },
+    "fiend.png": {
+      "source": "fiend.png",
+      "sourceSha256": "857fb8d4ac0043085fe02435f63245f5b9a39e1209efb788d16fe36c4bead0c0",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "ecf5a967ac23494ab9202e30d6372474926c614283bca1e3390cbeb550a5780b"
+    },
+    "vore.png": {
+      "source": "vore.png",
+      "sourceSha256": "54c5566bfbe1eb9b9a9b7e6ea921d749a530d88df2fccad00b05c96cdadd344b",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "d85aac63e8296aa8829fc02b7e3b9f40113df156cd9f1f6a58200853c92fc831"
+    },
+    "shambler.png": {
+      "source": "shambler.png",
+      "sourceSha256": "22dad6724f776c890fe4aa842b0ca8172188645ca4c79786e5f4dce129095c58",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "b21b63030c36e0ad27646c0fee4fbec452d4d06a9fa3eb184994aef38bfcfba2"
+    },
+    "chthon.png": {
+      "source": "chthon.png",
+      "sourceSha256": "0fd9a40d62170913edfb622a4d143a15da4f7e001121d456ef4a59f920c01e53",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "5eafa8de87e8177b7dd572205eb31f2ab1706ff0900a9bafb0941cd1f7444f63"
+    },
+    "shub.png": {
+      "source": "shub.png",
+      "sourceSha256": "5b1974151852a7b9fb8063df7a856aff147d012d5236deb999f4a71095dd2214",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "fc6d82945bfd30050e23c837e34995f963b80d660fc834a4c76093d2074a95aa"
+    },
+    "centroid.png": {
+      "source": "centroid.png",
+      "sourceSha256": "9fcdf07e1fc40b48822798fb0793f34574e984b54b1eb98775a8027ce82c0940",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "c10a200460933156bc57d791cf8cda413e263e4c3464a53eb5b888b3be2a2209"
+    },
+    "electric_eel.png": {
+      "source": "electric-eel.png",
+      "sourceSha256": "caef09e8b2c4dd6c5e4a17340b2b0dea2603501a0e60ef79617bdf98e307ceac",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "a5524b1403020b87bd464228fde7ee6c4ea10cb3d60740d77c815d8045a6b47e"
+    },
+    "phantom_swordsman.png": {
+      "source": "phantom-swordsman.png",
+      "sourceSha256": "9a78f7dc139a150cf8d5f16abf394590517057043855a949aff68adb59284cd8",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "6be781d4f849c2db5ef69fcda8d71c1e12a84c3883b7ba03cc5b6d3376f35982"
+    },
+    "multi_grenade_ogre.png": {
+      "source": "multi-grenade-ogre.png",
+      "sourceSha256": "d77fe7359d1743d09f771cb3af1dab99a3602494eb269623c75d65c0aad633b9",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "497283b47df9d504d44ec149ff0cd2984772d00a219ac3ba1993078dbc8564e5"
+    },
+    "chthon_sleeper.png": {
+      "source": "chthon-sleeper.png",
+      "sourceSha256": "111a646d1878898c83d1cd6d5310605ed47d73d6e61f104c9b847545d12692c8",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "26c4006c76b5432e85dc37b14c0f3fb608a1b503396b569c57988ce3de21f6c0"
+    },
+    "shub_awakened.png": {
+      "source": "shub-awakened.png",
+      "sourceSha256": "5e7a576e58406ebc24edcc0f25da6d796766a0324fb2a483c0a253483db6fbc3",
+      "crop": [
+        0,
+        0,
+        1024,
+        240
+      ],
+      "sha256": "30cc3657b904daa37551248406c6d1cd5796d1bcae4958391240903d4a7c4b20"
+    },
+    "splitting_spawn.png": {
+      "source": "splitting-spawn.png",
+      "sourceSha256": "ba117f6b636e47c55769caeee2c5e928a06d3f0625799ac0b4e21d3da64773cf",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "03a6781d9dfb8f18cd3498038f4ed3746adda48b5f05ad83743f47e2db79e070"
+    },
+    "infected_death_knight.png": {
+      "source": "infected-death-knight.png",
+      "sourceSha256": "1f73907a79e687c6b4cc2017c26810b93249b2e6a68ee81b0ccc23417d1fc2e1",
+      "crop": [
+        0,
+        0,
+        1024,
+        240
+      ],
+      "sha256": "6b3f908a77c19ac546f85ca050b2d6c4515e5635df55461c0fb8e6732b23dc85"
+    },
+    "overlord.png": {
+      "source": "overlord.png",
+      "sourceSha256": "84441c7406178fee7b63e463310d00c26d4748db173af41d5ae63a97dd9e260a",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "bd4af123d8898cd3aed04a20ad0b49cca16331cfdf0609348ed9107b64300b8b"
+    },
+    "infected_enforcer.png": {
+      "source": "infected-enforcer.png",
+      "sourceSha256": "0ad8a50b8272a85f7852a5982e5c1c06f41a79ed42c8aabe3c478e3eca734e83",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "26719b09909dc666b8dd1765ab277b833120259c0feb64d85b97702517fa3849"
+    },
+    "egyptian_guardian.png": {
+      "source": "egyptian-guardian.png",
+      "sourceSha256": "14d154bd13d10d6bf4125e11151c048235d658d576de53f437b11390ad922bf6",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "1ceaea56027196fecf69685a32d2456a070a0ff421dd16b3678232af0870b6ac"
+    },
+    "dragon.png": {
+      "source": "dragon.png",
+      "sourceSha256": "8f5ff2d88aec41f07664cb3b297932774f68eb9fc4a4e3c8c096a37bd9cc9124",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "c8097ec4b792daef3a571d34e871200de390b93e1162b0a5cfbd0273d5ed69d4"
+    },
+    "infected_knight.png": {
+      "source": "infected-knight.png",
+      "sourceSha256": "fff06816196c83cf2bd6d62a92599f75abb5a277fb9b797609431a47136c3e4d",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "4cc5a56653ca5e356e69e219cc7281d59f5e6877d845b938dad576d301fb05b3"
+    },
+    "infected_grunt.png": {
+      "source": "infected-grunt.png",
+      "sourceSha256": "3f8e6f93ccc1bd8096ee07a1151c6d33f062ec15461b35477bfc9fd76d6ac5ae",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "f056932ba15033f9d3db9ce5c6e09e6c9faf05744dba460343ecffba33f6a441"
+    },
+    "ranged_death_knight.png": {
+      "source": "ranged-death-knight.png",
+      "sourceSha256": "d3dc05ac2e047503425975bec6d316691ecae9745fe89f65dffd2a361f88ab3e",
+      "crop": [
+        0,
+        0,
+        1024,
+        240
+      ],
+      "sha256": "cbcb8f9391dbe5a6ff375764ee84704fe1d30e10e5f1f7a04bb56540debc3ed9"
+    },
+    "demo_dog.png": {
+      "source": "demo-dog.png",
+      "sourceSha256": "44484c928ef79a076efe5958979386cd0440dd2ced93780ce420b8107e206bb8",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "6aea4a7536f117d2e28d1d0db40980310e544f0cd39533c09ae273b90c3c3061"
+    },
+    "mummy.png": {
+      "source": "mummy.png",
+      "sourceSha256": "70ee3c002c6d1ffc942dc93e6198bba7637d49a1a521b0a9e7eafb741585db44",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "142bbb14b5bcfcdd0acd10bf0e8341583f3a08a21213f7fec51167bee87ec806"
+    },
+    "statue_knight.png": {
+      "source": "statue-knight.png",
+      "sourceSha256": "c0b4468a71c03e63e42871344f367ebc323cd69aa307730c8ee0774499765e3f",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "b8e343c677a56b05d94929b54c5a05605a4bdeba2afb73ed11c0734cefce80b1"
+    },
+    "statue_death_knight.png": {
+      "source": "statue-death-knight.png",
+      "sourceSha256": "f3e494d4be6d39fce11961b5540612b7d55fdd914b860b792c57c1705e7191a6",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "705f94e3c3c6cf99b6b1163a2ef9a7029477852f6d67876ec9fc5468c816c4b7"
+    },
+    "rocket_ogre.png": {
+      "source": "rocket-ogre.png",
+      "sourceSha256": "387fb616eb6b3bd70ce24ae8ce8b1db97f144758d8d54b819853ac118e3ff50d",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "bb3f6ac135ab7b61b68d8a3bc8b3eb4a53b7dc46a9f3db8ea8cf00aa6432bdf5"
+    },
+    "gremlin.png": {
+      "source": "gremlin.png",
+      "sourceSha256": "ef60830c02f916671b13ab9c87aec99031beb8216bae1842f02ff0b24f4cb1c0",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "051bab86b75fedc62f40e774e485920e737ed450f9b73e5e5af3b0157dcfa399"
+    },
+    "blood_shambler.png": {
+      "source": "blood-shambler.png",
+      "sourceSha256": "9435c386c4e59cfd7b90466a0f80e70ecd355c5099d6714e1e561a158e49f3b9",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "b7273a996e0185c6b27ef2d1f9d28ee9804b479e68f0e563c2c1a84cb7970971"
+    },
+    "hell_spawn.png": {
+      "source": "hell-spawn.png",
+      "sourceSha256": "58485f2066013d931bc0f0dc118502b1c645a2a9ff8d0487535369ac49b18aa8",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "1e55e652d29289bfd39e2ec4862a879a6ecea90f3e701155f7d553f103c01926"
+    },
+    "wrath.png": {
+      "source": "wrath.png",
+      "sourceSha256": "0cc040672985bb08b6ed142d5bc39770dc9f80c7ce2d70ad7c8b83e30a692e2d",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "8c42c80b2ae0b1b87ccce7794d6f1ab3b1ca7d93db2947991e2e07278e6e41f8"
+    },
+    "spike_mine.png": {
+      "source": "spike-mine.png",
+      "sourceSha256": "21f51c78e2cf59232b0973a0ed01c1dc25251750121163da9c9d9dcdcf762a12",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "c211a8ca3761045da4107b07e4fd705ffcd503252d54e0a87d09b31623446836"
+    },
+    "orb.png": {
+      "source": "orb.png",
+      "sourceSha256": "a3024aa5f4c028d3c5e1682b780c9d504f46ac86fa60b99c78502bedae3bf193",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "eabda0c88d0a69d9c68ae010a1acde4c2b5229ba15504c47fad23e7ed26201c9"
+    },
+    "armagon.png": {
+      "source": "armagon.png",
+      "sourceSha256": "baedf903d233a3686b7f0e8403e727611f7740d03f0d2a69556815344d1507cb",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "b9699487ebd89338122e6068711c6c743cd2fe7da0568d97be8426cd1cdd004f"
+    },
+    "hephaestus.png": {
+      "source": "hephaestus.png",
+      "sourceSha256": "d2f7896eeadcedee8d3c0bf269dd1df124c08b198fe98bd64874f56c7688e0f8",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "a034c866c372b47f8f114c2a43bd5e160c0a136bdaf16fa6beea33a866b5a9bf"
+    },
+    "chthon_vengeance.png": {
+      "source": "chthon-vengeance.png",
+      "sourceSha256": "3ef043dabfc709a9729db692d63ef4b1b3ad520cb44b69ea70aa8b75f1674808",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "f7a269da0dfbd4be20ab394dd6df77e8ca1f14c4962794869e2f75da4434dab9"
+    },
+    "guardian.png": {
+      "source": "guardian.png",
+      "sourceSha256": "c77f92c7355276b8c4dd4b44d6ee3d03b46cfe90ffdb1309f6596224a7b7ee62",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "9f5eaad224c63509f0a16dffdd4c6faa5d58ffe6ce2a07614b2593f9d48d3a60"
+    },
+    "quakes_guardian.png": {
+      "source": "quakes-guardian.png",
+      "sourceSha256": "2361c80c604149f626ca82e6109b6e5adc98cd37f3cdea7d1e59366f88c30bd7",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "bb845c297b51726ab2408b57fa39d53f53fe4bf3261707b7edc81c3b94a792ba"
+    },
+    "quakes_high_priest.png": {
+      "source": "quakes-high-priest.png",
+      "sourceSha256": "1b9406472c5a827b00bd4a120c339f38273d330ef12aacd56cc2962a2f566a11",
+      "crop": [
+        0,
+        0,
+        1024,
+        196
+      ],
+      "sha256": "3b6d2ffb79e7635d2733d0b15df7db1d5e87a7a799814fa69a03ebde5af791e8"
+    }
+  }
+}

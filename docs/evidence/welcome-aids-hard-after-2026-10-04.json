@@ -1,0 +1,91 @@
+{
+  "map": "start",
+  "entryHookLoaded": true,
+  "maxclients": 1,
+  "player": {
+    "index": 1,
+    "health": 100,
+    "classname": "player"
+  },
+  "halls": [
+    {
+      "classname": "trigger_multiple",
+      "message": "This hall selects NORMAL skill"
+    },
+    {
+      "classname": "trigger_multiple",
+      "message": "This hall selects EASY skill"
+    },
+    {
+      "classname": "trigger_multiple",
+      "message": "This hall selects HARD skill"
+    }
+  ],
+  "hdr": 1,
+  "demo": false,
+  "connected": 2,
+  "skill": 1,
+  "crosshair": 0,
+  "ready": true,
+  "loading": {
+    "phase": "done",
+    "mode": "welcome",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 28,
+    "settledFrames": 3,
+    "world": "maps/start.bsp",
+    "pending": [],
+    "fallbacks": [
+      "Prepared rock data: Rock bake load timed out; generated fallback"
+    ]
+  },
+  "position": [
+    864,
+    792,
+    8
+  ],
+  "flashlight": {
+    "active": true,
+    "map": "start",
+    "selectedSkill": 2,
+    "noticeShown": false,
+    "on": false,
+    "crosshair": false
+  },
+  "machine": [
+    {
+      "origin": [
+        -622,
+        2362,
+        200
+      ],
+      "left": 0,
+      "right": 0,
+      "looping": false
+    },
+    {
+      "origin": [
+        1546,
+        3146,
+        296
+      ],
+      "left": 0,
+      "right": 0,
+      "looping": false
+    },
+    {
+      "origin": [
+        2106,
+        1730,
+        -184
+      ],
+      "left": 0,
+      "right": 0,
+      "looping": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,15 @@
+Added packfile pak0.pak (339 files)\n
+NEWER_MENU_START_BASELINE {"action":"map","map":"start","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"}
+PASS archived disabled rock and power-ups plus other disabled enhancements are restored by public Newer Game before actual map command dispatch
+NEWER_LEVEL_SELECT_BASELINE {"newer":{"action":"map","map":"e1m2","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"},"classic":{"action":"map","map":"e1m1","hdr":"0","features":{"r_newer_lighting":"0","r_newer_normals":"0","r_newer_shadows":"0","r_pointshadows":"0","r_heightshadows":"0","r_rockfield":"0.4","r_powerups":"0","r_newer_weapons":"0","r_newer_textures":"0","r_newer_water":"0","r_newer_enemies":"0","r_newer_portals":"0","r_newer_hud":"0","r_decals":"0","r_lerpmodels":"2","r_newer_variety":"0"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":0,"textureReady":0,"textureFallback":1,"archivedRock":"0.4","archivedPowerups":"0"}}
+PASS public Newer Level Select restores the same literal sixteen-feature baseline while both Classic entry paths preserve choices
+PASS attract comparison temporarily enables the full baseline and restores exact preferences, while explicit Newer launch survives later demo cleanup
+RESULT 3/4 passed (tests/newer_start_test.js)
+FAIL opening or canceling menus does not reset settings and real in-session feature toggles remain effective until an explicit new launch Error: actual in-session texture toggle works: 0.000000 != 0
+    at check (file:///Users/bri/SOURCE/Quaked/tests/newer_start_test.js:27:33)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/newer_start_test.js:27:58)
+    at file:///Users/bri/SOURCE/Quaked/tests/newer_start_test.js:76:208
+    at fixture (file:///Users/bri/SOURCE/Quaked/tests/newer_start_test.js:56:2)
+    at file:///Users/bri/SOURCE/Quaked/tests/newer_start_test.js:74:150
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 3/4 passed

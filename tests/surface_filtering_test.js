@@ -42,7 +42,7 @@ Deno.test('actual world shader variants filter micro shadows with stable derivat
   const before=diffuse.image.data.slice(),shader=compile(material),source=shader.fragmentShader;
   check(source.includes('textureGrad(normalMap,uv,qrShadowDx,qrShadowDy).a'),kind+' shadow uses actual screen footprint');
   check(!source.includes('textureLod(normalMap,uv,0.)'),kind+' no forced full-resolution shadow samples');
-  const main=source.indexOf('void main() {'),capture=source.indexOf('qrShadowDx=dFdx(vMapUv);',main),branch=source.indexOf('#include <clipping_planes_fragment>',main);check(capture>main&&capture<branch,kind+' derivatives captured before per-fragment clipping/branching');
+  const main=source.indexOf('void main() {'),capture=source.indexOf(kind==='rock'?'qrShadowDx=dFdx(qrRockBaseUv);':'qrShadowDx=dFdx(vMapUv);',main),branch=source.indexOf('#include <clipping_planes_fragment>',main);check(capture>main&&capture<branch,kind+' derivatives captured before per-fragment clipping/branching');
   if(kind==='carved')check(source.includes('qrShadowDx*uCarveReferenceUV.xy,qrShadowDy*uCarveReferenceUV.xy'), 'carved reference footprint follows its real atlas transform');
   if(kind==='rock')check(source.includes('if(layer==1)return qrRockHeight(uv);'),'macro height retains its separate continuous field path');
   same(shader.uniforms.uPigmentMinFootprint.value,0,kind+' native pigment unchanged');diffuse.userData.newerPicture=true;const footprint=shader.uniforms.uPigmentMinFootprint.value;check(footprint>1&&footprint<=4,kind+' upgraded pigment uses a small bounded footprint');

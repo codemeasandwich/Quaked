@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base href="../">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<title>Quaked — clockwise respawn</title>
+	<link rel="icon" type="image/svg+xml" href="icon.svg">
+	<link rel="apple-touch-icon" href="icon.png">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		html, body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: #000;
+		}
+		canvas {
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+		#loading {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 100;
+			background: #000;
+		}
+		#loading-bar {
+			width: 200px;
+			height: 2px;
+			background: #333;
+		}
+		#loading-progress {
+			width: 0%;
+			height: 100%;
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="loading">
+		<div id="loading-bar"><div id="loading-progress"></div></div>
+	</div>
+	<script type="importmap">
+	{
+		"imports": {
+			"three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js",
+			"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"
+		}
+	}
+	</script>
+	<section style="position:fixed;top:8px;left:8px;z-index:200;color:white;background:#111e;padding:8px;font:12px monospace;max-width:630px">
+<b>Clockwise respawn — native Quake</b>
+<button id="start">New E1M1 trial</button><button id="courtyard">Inspect courtyard death</button><button id="arm">Arm seven weapons</button><button id="die">Die</button><button id="return">Return near last death</button>
+<button id="ammo-only">Axe with stored ammo</button><button id="gib">Gib death</button><button id="remains">Inspect last remains</button>
+<label><input type="checkbox" id="protect" checked>Protect inspection player</label>
+<p id="status">Loading…</p><p>Walk over settled drops to recover exact ammo. Bodies and actual gib pieces stay at each death site. Axe-only stored ammo uses one backpack. Enemies remain aware and pursue.</p>
+<details><summary>Diagnostics</summary><pre id="report" style="white-space:pre-wrap;max-height:45vh;overflow:auto"></pre></details><details><summary>Last animated sequence</summary><pre id="motion-report"></pre><div id="captures"></div></details></section><script type="module" src="tests/respawn_trial.js"></script></body></html>

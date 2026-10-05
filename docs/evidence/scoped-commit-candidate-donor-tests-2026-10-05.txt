@@ -1,0 +1,45 @@
+EXPORTED_CANDIDATE /private/tmp/quaked-scoped-candidate-obnkmk_x
+READ_ONLY_HEAD_BYTE_ORACLE 038fe593277e771a104a5412c611aedaadb6a206
+GIT_WORK_TREE /private/tmp/quaked-scoped-candidate-obnkmk_x
+PASS extracted RockField public functions reproduce supplied core exactly for both profiles and seed forms
+PASS negative and positive neighbors share exact heights, both tangent slopes and real gutters in every generation order
+BLOCK_SHAPE {"original":{"cuts":426,"flatRatio":0.05286189392613338,"largest":49},"maximum":{"cuts":2516,"flatRatio":0.7670762758773386,"largest":1894}}
+PASS maximum block profile has broad connected flat crowns and deep cuts without repeating or changing the original ground field
+PASS multi-tile regions use one nonrepeating global field and preserve the different wall and ground profiles
+PASS invalid configuration, coordinates, neighbor pairs and oversized exports fail before generating data
+PASS public worker requests return source-identical transferable tiles and correlated errors across configuration changes
+RESULT 6/6 passed (tests/rockfield_test.js)
+PASS same canonical texture and role joins real positive-length T junctions/folds but never corners, gaps or different textures
+Added packfile pak0.pak (339 files)\n
+CONNECTED_BRUSH_FIELDS {"actualDrawMeshes":2,"componentIds":[2,1],"amplitude":0.35}
+PASS actual brush draw keeps disconnected native faces with the same texture/lightmap in separate field geometries and compiled shader paths
+CONNECTED_NATIVE_ROCK {"maps":21,"selected":{"rock4_1:ground":199,"rock4_1:wall":767,"bricka2_2:wall":80,"uwall1_2:wall":307,"wgrnd1_5:ground":96,"rock1_2:wall":848,"wgrnd1_6:ground":126,"rock4_2:wall":267},"components":{"bricka2_2:wall":2,"rock4_1:ground":46,"rock4_1:wall":21,"uwall1_2:wall":3,"wgrnd1_5:ground":10,"rock1_2:wall":7,"wgrnd1_6:ground":9,"rock4_2:wall":3},"excludedGroundSides":73,"sharedEdges":5140,"brushFaces":32}
+PASS all bundled native world and brush faces use their exact material/role preset and connected-field metadata without changing source coordinates
+PASS signed rock4_1 role threshold separates floor from wall while the other donor roles and legacy rock4_2 are explicit
+PASS all six current owner presets dispatch exact64-cell source fields with negative/order/gutter/both-slope seam parity
+RESULT 5/5 passed (tests/rockfield_connected_test.js)
+PASS connected same-material and role surfaces share fields regardless of UVs or exposure, using owner presets while construction stays native
+Added packfile pak0.pak (339 files)\n
+ACTUAL_ANGLED_ROCK_EDGES 199 ORIENTATIONS {"roof":38,"floor":11,"slope":2}
+PASS actual E1M1 connected matching cliff pieces share preset height and derivatives across roof/floor/slope edges
+BUNDLED_ROCK_AUDIT {"maps":21,"rock":2244,"soil":1082,"roof":319,"floor":45,"slope":72,"minRockArea":0.039399095431629394}
+PASS all bundled BSP world rock faces are classified independent of sky/orientation and retain nondegenerate shared projection
+Added packfile pak0.pak (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+HUB_ROCK4_FACES 308 HARD_BRICKA2_2_FACES 80 SHARED_EDGES 262
+PASS actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact owner presets on connected matching pieces while metal stays native
+PASS tile cache limits jobs to2, deduplicates, ignores cancelled epochs and retains at most96 LRU pages
+PASS GPU half-float pages retain exact shared heights and both slopes with genuine neighboring gutters
+PASS page lookup preserves every resident even under a full96-page hash collision cluster
+PASS public world update retains nearby or visible eligible charts in Newer normals mode and replaces maps without stale jobs
+PASS public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility
+RESULT 9/9 passed (tests/rockfield_runtime_test.js)
+REQUIRED_NATIVE_ROCK_COVERAGE {"maps":21,"totals":{"bricka2_2":80,"rock1_2":840,"rock4_2":267,"uwall1_2":307},"mapCounts":{"maps/start.bsp":{"bricka2_2":80},"maps/e1m1.bsp":{"uwall1_2":307},"maps/e1m4.bsp":{"rock1_2":840},"maps/e1m5.bsp":{"rock4_2":267}},"orientations":{"roof":140,"floor":45,"slope":52},"shared":{"total":3006,"changedTexture":16,"changedRole":0,"changedPlane":1353,"ceiling":461}}
+PASS every native world piece of the four required materials retains exact owner presets and connected matching-edge continuity through real geometry hooks
+Added packfile pak0.pak (339 files)\n
+REQUIRED_ROCK_BRUSH {"map":"maps/e1m4.bsp","model":"*64","firstFace":5940,"faces":8,"rock1_2WorldAndBrush":848,"drawMeshes":1,"workers":2,"maxPending":2}
+PASS the eight native E1M4 rock door faces render exact saved rest-space detail per component, schedule bounded tiles and retain native disabled modes
+PASS actual world batches for every requested material bind the procedural shader and obey New Game, normal-off and Classic gates
+RESULT 3/3 passed (tests/rockfield_required_materials_test.js)
+TOTAL 23/23 passed

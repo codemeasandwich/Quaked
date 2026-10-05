@@ -32,6 +32,14 @@ Confirming **Quit** opens [this project’s GitHub page](https://github.com/code
 
 ### Features
 
+Newer Game's local [first-sighting bestiary](docs/bestiary-2026-10-04.md) slows and pauses for a new enemy, frames it beside its folio, and resumes on a fresh key/shoot press. The menu book keeps discoveries across plays in this browser. Its [complete 47-creature artwork and dedication](docs/bestiary-complete-2026-10-04.md) are installed: outer cover → dedication/inner illustration → Contents → individual creature pages with parchment backs. Complete Edition requires all 47 discoveries. Expansion/Dawn gameplay remains unverified.
+
+Newer Game's local [persistent death remains](docs/death-remains-2026-10-04.md) keep the player's body or actual gib pieces beside recoverable weapons. Axe-only stored ammo is held in one backpack; recovering the shotgun restores its exact remaining shells and selects it. Owner visual acceptance is pending.
+
+The local [Gloom Hood layered face](docs/gloom-hood-face-2026-10-04.md) composes head, gaze, expression, ten injury stages and independent powered eyes in Newer Game. Directional damage, sustained firing and occasional rewards drive its reactions; Classic keeps its original portraits. Owner visual acceptance is pending.
+
+Newer Game's local [model lighting, persistent blood and water drying trial](docs/model-lighting-blood-wet-2026-10-04.md) adds source-colored light and dynamic shadows to physical objects and held weapons. Player blood remains until water washes it away; the wet gun briefly shines as it dries. Verification and renderer limits are recorded in the feature document; owner visual acceptance is pending.
+
 The local [water near-field correction](docs/water-nearfield-2026-10-02.md) restores nearby Muddy transmission, strengthens transmitted caustics and checks individual reflected markers and shimmer. It remains pending owner visual acceptance.
 
 #### Live portals
@@ -200,3 +208,15 @@ Newer Game adds a separate continuous procedural relief field to natural rock th
 Newer Game now activates the flashlight at the Easy/Normal corridor entrances and brings in E1M1’s exit-machine sound along its approach ramp. The welcome hall’s Episode 1 machine is replaced by a one-way passage into E1M1. Measured arch depth is preserved, with outgoing crossings at the far face and reachable return thresholds in front of hidden bars. Fatal quad axe hits split the enemy along the native blade’s swing plane; quad plus pentagram makes axe strikes gib damageable enemies. Saves and return views retain the cut remains. [Implementation, native verification and playable trials](docs/welcome-travel-axe-2026-10-04.md).
 
 Newer water uses restrained ripple/refraction distortion. Wall detail filters subpixel height shadows and replacement pigment grain, with bounded fallback normals. [Correction and verification](docs/water-wall-restraint-2026-10-04.md).
+
+Newer Game deaths scatter every carried ranged weapon with conserved ammunition, remove power-ups, and use a continuous clockwise fall/contact/respawn/rise. Respawn gives 100 health and only an axe, while living enemies learn the starting position. Uncollected drops persist through deaths, saves and level travel. [Implementation, coordinate interpretation, verification and native trial](docs/clockwise-respawn-2026-10-04.md).
+
+Welcome-level brown rock breaks up its painted horizontal repeats with a continuous shader sampling offset while preserving original texture pixels and geometry. [Implementation, native comparison and verification](docs/rock-wall-bands-2026-10-04.md).
+
+Normal Newer Game and Newer Level Select enable the full enhancement baseline before loading, including saved rock relief and power-up effects. Title comparison settings preserve player preferences across configuration saving. [Startup fix, native verification and controls](docs/newer-game-startup-2026-10-04.md).
+
+Fresh Newer welcome starts with flashlight and crosshair off. Easy corridor entry enables both, Normal enables only the flashlight, and Hard enables neither. Direct levels, load, respawn and travel retain current choices. [Policy, native trigger/save verification and playable comparison](docs/welcome-aids-2026-10-04.md).
+
+The [studio logo](docs/studio-logo-2026-10-04.md) appears at the bottom-right of the initial black loading screen and active game menus, with responsive safe-area placement and a smaller footprint beside the Bestiary when needed.
+
+The [progressive Bestiarium](docs/bestiary-progress-2026-10-04.md) uses authored heading crops over blank locked-entry bodies, reveals five inner-cover pieces from their matching discoveries, and uses the revised dedication and menu sheet.

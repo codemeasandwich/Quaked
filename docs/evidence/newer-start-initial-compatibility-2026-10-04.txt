@@ -1,0 +1,82 @@
+Added packfile pak0.pak (339 files)\n
+NEWER_MENU_START_BASELINE {"action":"map","map":"start","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"}
+PASS archived disabled rock and power-ups plus other disabled enhancements are restored by public Newer Game before actual map command dispatch
+NEWER_LEVEL_SELECT_BASELINE {"newer":{"action":"map","map":"e1m2","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"},"classic":{"action":"map","map":"e1m1","hdr":"0","features":{"r_newer_lighting":"0","r_newer_normals":"0","r_newer_shadows":"0","r_pointshadows":"0","r_heightshadows":"0","r_rockfield":"0.4","r_powerups":"0","r_newer_weapons":"0","r_newer_textures":"0","r_newer_water":"0","r_newer_enemies":"0","r_newer_portals":"0","r_newer_hud":"0","r_decals":"0","r_lerpmodels":"2","r_newer_variety":"0"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":0,"textureReady":0,"textureFallback":1,"archivedRock":"0.4","archivedPowerups":"0"}}
+PASS public Newer Level Select restores the same literal sixteen-feature baseline while both Classic entry paths preserve choices
+PASS opening or canceling menus does not reset settings and real in-session feature toggles remain effective until an explicit new launch
+PASS attract comparison temporarily enables the full baseline and restores exact preferences, while explicit Newer launch survives later demo cleanup
+RESULT 4/4 passed (tests/newer_start_test.js)
+PASS customize controls binds printable and named keys
+RESULT 1/1 passed (tests/menu_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_weapons"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS first public attract playback enables real enhanced flashlight and Classic half suppresses it, then stopping restores manual preferences
+PASS attract preference scope is idempotent and Release preserves game defaults while Classic release restores pre-demo flashlight
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+Playing demo from demo_shadow_test.dem.
+
+Playing demo (forcetrack -1)
+
+PASS manual, timed and explicitly disabled demo playback never install attract flashlight preferences
+PASS profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts
+RESULT 4/4 passed (tests/demo_shadow_defaults_test.js)
+PASS boot splash waits for an actual console presentation and app readiness, fades once, and terminal fallback readiness needs three completed draws
+PASS manual intent cancels startup permanently; signon packets/timed demos are never frozen and failed splash has a terminal native fallback
+PASS actual loading DOM fades only on its opacity transition; unrelated events do not remove it and missing/reduced-motion pages terminate
+Added packfile boot-public-native-pak (339 files)\n
+PASS actual first-attract client freezes both clip time and packet cursor after native signon, screen renders behind full native console then rolls away only when terminal
+PASS actual manual and timed playback commands permanently bypass first-demo scope, and stopping first attract cannot rearm a later loop
+PASS welcome has an opaque native plaque with hidden draws, blocks public movement but sends reliable handshakes, and releases without demo console/fade or changing ordinary crossings
+PASS real Host_ServerFrame holds native world physics only for single-player welcome while reliable preparation continues, then native time advances normally
+PASS public collector excludes disabled stale shadow/rock/demon caches and lists only the caller enabled asset roles
+PASS partial native asset failures cannot conceal other pending images or current source-shadow retries; frame stays held until both finish
+PASS terminal failed visible rock tiles release to native fallback while other missing tiles/jobs/prepared requests continue to block
+PASS GPU shader completion, sculpted surfaces and visible water remain independent readiness blockers despite optional shader failure diagnostics
+RESULT 11/11 passed (tests/demo_startup_loading_test.js)
+TOTAL 23/23 passed

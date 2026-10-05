@@ -8,6 +8,7 @@ import { M_Keydown, M_ToggleMenu_f } from './menu.js';
 import { SCR_UpdateScreen } from './gl_screen.js';
 import { Sys_Error } from './sys.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
+import { R_BestiaryKey } from './r_bestiary.js';
 
 /*
 ==============================================================================
@@ -776,8 +777,10 @@ Should NOT be called during an interrupt!
 ===================
 */
 export function Key_Event( key, down ) {
+	const wasDown = keydown[ key ];
 
 	keydown[ key ] = down;
+	if ( R_BestiaryKey( key, down, wasDown ) ) { if ( ! down ) key_repeats[ key ] = 0; return; }
 
 	if ( ! down )
 		key_repeats[ key ] = 0;

@@ -1,0 +1,4926 @@
+Added packfile pak0.pak (339 files)\n
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+
+ died
+
+
+ died
+
+PASS native starting shotgun remains beside a persistent death body and is recoverable after the actual axe-only respawn
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+
+ suicides
+
+
+ suicides
+
+
+ suicides
+
+
+ suicides
+
+
+ suicides
+
+
+ died
+
+RESPAWN_PERSISTENT_NATIVE_REMAINS {"bodyDeaths":6,"gibModels":["progs/h_player.mdl","progs/gib1.mdl","progs/gib2.mdl","progs/gib3.mdl"],"retained":10,"uniqueIds":10}
+PASS six native body deaths and a gib death remain independent beyond body-queue reuse and all original gib expiry deadlines
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+
+ suicides
+
+PASS axe-only ammunition uses one native backpack carrying all four pools, atomically rejects overflow and recovers without weapon grants or refills
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+
+ died
+
+PASS native entity save records preserve persistent remains and both legacy weapon and multi-pool backpack payloads
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+
+ died
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+PASS native seamless departure preview and return retain every persistent corpse and gib without replaying a death
+Cmd_AddCommand: restart already defined
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+
+ died
+
+Saving game to independent_persistent_remains...
+
+done.
+
+NET_Init complete
+
+Loading game from independent_persistent_remains...
+
+Sending clc_disconnect
+
+
+ left the game with 
+-3
+ frags
+
+Client  removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+Loading game from independent_persistent_remains...
+
+Sending clc_disconnect
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+PASS actual Host save/load restores persistent death remains and native model resources in Newer and Classic
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+PASS native death reserves corpse plus every weapon slot atomically before relinquishing any inventory
+RESULT 7/7 passed (tests/respawn_remains_test.js)
+Sys_Error: ED_Alloc: no free edicts
+Added packfile pak0.pak (339 files)\n
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+RESPAWN_NATIVE_SMOKE {"drops":[{"version":1,"id":"e1m1:1:1:164","weapon":1,"ammo":"ammo_shells","amount":10,"born":1},{"version":1,"id":"e1m1:1:1:165","weapon":2,"ammo":"ammo_shells","amount":9,"born":1},{"version":1,"id":"e1m1:1:1:166","weapon":4,"ammo":"ammo_nails","amount":31,"born":1},{"version":1,"id":"e1m1:1:1:167","weapon":8,"ammo":"ammo_nails","amount":30,"born":1},{"version":1,"id":"e1m1:1:1:168","weapon":16,"ammo":"ammo_rockets","amount":4,"born":1},{"version":1,"id":"e1m1:1:1:169","weapon":32,"ammo":"ammo_rockets","amount":3,"born":1},{"version":1,"id":"e1m1:1:1:170","weapon":64,"ammo":"ammo_cells","amount":13,"born":1}],"ammo":[19,61,7,13],"health":100,"items":4096,"alerted":23}
+PASS native lethal damage drops seven ranged weapons with exact shared pools and no axe, then physics respawns with100health and axe only
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+RESPAWN_NATIVE_ALERTS {"living":22,"alerted":22,"dead":130}
+PASS native kill command removes all active power timers immediately and contact alerts every living native monster but not dead ones
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+
+ died
+
+
+ died
+
+SZ_GetSpace: overflow
+
+ died
+
+
+ died
+
+
+ died
+
+
+ died
+
+SZ_GetSpace: overflow
+
+ died
+
+
+ died
+
+
+ died
+
+
+ died
+
+SZ_GetSpace: overflow
+
+ died
+
+RESPAWN_TWELVE_NATIVE_CYCLES {"deaths":12,"uniqueDrops":84,"conservedBeforeAxeControl":"17,61,7,13","shellsSpent":12}
+PASS real toss and trigger recovery conserves shared ammo across twelve deaths and native shots without dropping fresh axes
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+
+ died
+
+PASS zero-ammo weapons and orphan ammo remain recoverable, older drops have no native expiry and overflow recovery never clamps stored pools
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+RESPAWN_SAVE_PHASES {"airborneDrops":7,"conserved":"19,61,7,13","deaths":2,"alerted":23}
+PASS native save serialization roundtrips airborne drops and active death phases without duplicating contact or inventory
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+RESPAWN_NATIVE_SEAMLESS_DROPS {"remaining":6,"consumed":"e1m2:1:1.02:226","previewModels":["progs/g_shot.mdl","progs/g_nail.mdl","progs/g_nail2.mdl","progs/g_rock.mdl","progs/g_rock2.mdl","progs/g_light.mdl"]}
+PASS actual seamless departure, portal snapshot and return preserve unclaimed drops and consumed absence with native model remapping
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+NET_Init complete
+
+
+ died
+
+PASS exact over-byte ammo statistics reach only the authenticated local loopback player and unsupported contexts keep native behavior
+R_Init
+Can't register variable r_hdr, already defined
+
+R_Init: Three.js renderer ready
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+
+ died
+
+RESPAWN_ACTUAL_VIEW_CONTINUITY [{"angles":[0,0,0],"death":1,"velocityError":0.7629775991440296,"velocityBound":0.8508803437537249,"locationJump":764.0755372349645,"orientationDot":0.9999970797556569,"releaseJump":0},{"angles":[0,0,0],"death":2,"velocityError":0.7629775991440296,"velocityBound":0.8508803437537249,"locationJump":764.0755372349645,"orientationDot":0.9999970797556572,"releaseJump":0},{"angles":[0,0,0],"death":3,"velocityError":0.7629775991440296,"velocityBound":0.8508803437537249,"locationJump":764.0755372349645,"orientationDot":0.9999970797556569,"releaseJump":0},{"angles":[25,123,0],"death":1,"velocityError":0.7363371121873585,"velocityBound":0.8508803437537249,"locationJump":1597.3300842750284,"orientationDot":0.9999970724674501,"releaseJump":0},{"angles":[25,123,0],"death":2,"velocityError":0.7363371121011194,"velocityBound":0.8508803437537249,"locationJump":1597.3300842750282,"orientationDot":0.9999970618141716,"releaseJump":0},{"angles":[25,123,0],"death":3,"velocityError":0.7363371121873585,"velocityBound":0.8508803437537249,"locationJump":1597.3300842750284,"orientationDot":0.9999970724674501,"releaseJump":0}]
+PASS actual native view and renderer camera follow the rigid clockwise arc with proper transported bases and continuous head velocity through repeated contacts
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+PASS turning Newer off before or after contact finishes owned cleanup and existing drop custody while later Classic deaths remain native
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+RESPAWN_START_PINNED_ALERT [{"index":28,"origin":"1004,1048,124","movetype":0,"solid":3,"think":1211,"frame":192},{"index":29,"origin":"1004,928,72","movetype":0,"solid":3,"think":1211,"frame":192},{"index":30,"origin":"708,992,52","movetype":0,"solid":3,"think":1211,"frame":192},{"index":31,"origin":"708,1116,120","movetype":0,"solid":3,"think":1211,"frame":192},{"index":45,"origin":"1776,1608,-228","movetype":0,"solid":3,"think":1211,"frame":192},{"index":46,"origin":"1776,1848,-228","movetype":0,"solid":3,"think":1211,"frame":192},{"index":58,"origin":"-336,1808,-264","movetype":0,"solid":3,"think":1211,"frame":192},{"index":59,"origin":"120,1808,-264","movetype":0,"solid":3,"think":1211,"frame":192},{"index":60,"origin":"-96,1608,-264","movetype":0,"solid":3,"think":1211,"frame":192}]
+PASS actual START pinned zombies without monster flags receive the native respawn target while retaining their authored pinned state
+Cmd_AddCommand: restart already defined
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+Can't savegame with a dead player
+
+Saving game to independent_respawn_owned...
+
+done.
+
+Can't register variable net_messagetimeout, already defined
+
+Can't register variable hostname, already defined
+
+Cmd_AddCommand: slist already defined
+
+Cmd_AddCommand: listen already defined
+
+Cmd_AddCommand: maxplayers already defined
+
+Cmd_AddCommand: port already defined
+
+NET_Init complete
+
+Loading game from independent_respawn_owned...
+
+Sending clc_disconnect
+
+
+ left the game with 
+-1
+ frags
+
+Client  removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+RESPAWN_PUBLIC_HOST_LOAD {"enhanced":true,"drops":6,"models":[{"name":"progs/g_shot.mdl","index":99},{"name":"progs/g_nail.mdl","index":86},{"name":"progs/g_nail2.mdl","index":101},{"name":"progs/g_rock.mdl","index":102},{"name":"progs/g_rock2.mdl","index":103},{"name":"progs/g_light.mdl","index":104}],"headerBytes":2955}
+Loading game from independent_respawn_owned...
+
+Sending clc_disconnect
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+RESPAWN_PUBLIC_HOST_LOAD {"enhanced":false,"drops":6,"models":[{"name":"progs/g_shot.mdl","index":99},{"name":"progs/g_nail.mdl","index":86},{"name":"progs/g_nail2.mdl","index":101},{"name":"progs/g_rock.mdl","index":102},{"name":"progs/g_rock2.mdl","index":103},{"name":"progs/g_light.mdl","index":104}],"headerBytes":2955}
+PASS public save/load after contact retains exact persistent payloads and precaches their real models before Newer and Classic connection headers
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+PASS enabling Newer after a real Classic spawn uses the original checkpoint rather than the later death location
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+RESPAWN_NATIVE_INVENTORY_TRAVEL [{"recoverAll":false,"ammo":[0,0,0,0],"weapon":4096,"frame":[-1,0,0,6.123233995736766e-17],"nativeParms":[4096,100,0,25,0,0,0,4096,0,0,0,0,0,0,0,0]},{"recoverAll":true,"ammo":[301,407,211,509],"weapon":32,"frame":[-1,0,0,6.123233995736766e-17],"nativeParms":[5247,100,0,301,407,211,509,32,0,0,0,0,0,0,0,0]}]
+PASS actual crossing and native spawn-parameter travel preserve admitted axe-only zero ammo, recovered overflow and presentation frame without hidden refills
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ died
+
+RESPAWN_NATIVE_CLEARANCE_REGRESSION [{"kind":"low-native-brush","samples":258,"oldFailures":23,"plannedFailures":0,"descent":-23.981246948242188,"destinationDrop":17,"sourceDrift":[0,0,0],"destinationDrift":[0,0,0]},{"kind":"uneven-native-floor","samples":258,"oldFailures":2,"plannedFailures":0,"descent":-3.9620819091796875,"destinationDrop":17,"sourceDrift":[0,0,0],"destinationDrift":[0,0,0]}]
+PASS actual native low brush and uneven floor reject the old clear-height-ray arc while complete planned head sweeps stay outside BSP solids
+Cmd_AddCommand: v_cshift already defined
+
+Cmd_AddCommand: bf already defined
+
+Cmd_AddCommand: centerview already defined
+
+Can't register variable lcd_x, already defined
+
+Can't register variable lcd_yaw, already defined
+
+Can't register variable v_centermove, already defined
+
+Can't register variable v_centerspeed, already defined
+
+Can't register variable v_iyaw_cycle, already defined
+
+Can't register variable v_iroll_cycle, already defined
+
+Can't register variable v_ipitch_cycle, already defined
+
+Can't register variable v_iyaw_level, already defined
+
+Can't register variable v_iroll_level, already defined
+
+Can't register variable v_ipitch_level, already defined
+
+Can't register variable v_idlescale, already defined
+
+Can't register variable gl_cshiftpercent, already defined
+
+Can't register variable scr_ofsx, already defined
+
+Can't register variable scr_ofsy, already defined
+
+Can't register variable scr_ofsz, already defined
+
+Can't register variable cl_rollspeed, already defined
+
+Can't register variable cl_rollangle, already defined
+
+Can't register variable cl_bob, already defined
+
+Can't register variable cl_bobcycle, already defined
+
+Can't register variable cl_bobup, already defined
+
+Can't register variable v_kicktime, already defined
+
+Can't register variable v_kickroll, already defined
+
+Can't register variable v_kickpitch, already defined
+
+Can't register variable v_shamblersteps, already defined
+
+Can't register variable crosshair, already defined
+
+Can't register variable cl_crossx, already defined
+
+Can't register variable cl_crossy, already defined
+
+Can't register variable gamma, already defined
+
+R_Init
+Can't register variable r_portals, already defined
+
+Can't register variable r_hdr, already defined
+
+Can't register variable r_pointshadows, already defined
+
+Can't register variable r_heightshadows, already defined
+
+Can't register variable r_powerups, already defined
+
+Can't register variable cl_showfps, already defined
+
+Can't register variable r_dynres, already defined
+
+Can't register variable r_fps_target, already defined
+
+Can't register variable r_newdark, already defined
+
+Can't register variable r_newedges, already defined
+
+Can't register variable r_bloom, already defined
+
+Can't register variable r_bounce, already defined
+
+Can't register variable r_cloudspeed, already defined
+
+Can't register variable r_pillars, already defined
+
+Can't register variable r_heathaze, already defined
+
+Can't register variable r_mist, already defined
+
+Can't register variable r_reflect, already defined
+
+Can't register variable r_water_look, already defined
+
+Can't register variable r_reflect_screen, already defined
+
+Can't register variable r_demosplit, already defined
+
+Can't register variable r_volumetric, already defined
+
+Can't register variable r_caustics, already defined
+
+Can't register variable r_newbright, already defined
+
+Can't register variable r_newcontrast, already defined
+
+Can't register variable r_lerpmodels, already defined
+
+Can't register variable r_newer_variety, already defined
+
+Can't register variable r_newer_lighting, already defined
+
+Can't register variable r_newer_normals, already defined
+
+Can't register variable r_rockfield, already defined
+
+Can't register variable r_newer_water, already defined
+
+Can't register variable r_newer_enemies, already defined
+
+Can't register variable r_newer_textures, already defined
+
+Can't register variable r_newer_hud, already defined
+
+Can't register variable r_newer_shadows, already defined
+
+Can't register variable r_newer_crates, already defined
+
+Can't register variable r_newer_portals, already defined
+
+Can't register variable r_flashlight, already defined
+
+Can't register variable r_decals, already defined
+
+Can't register variable r_newer_weapons, already defined
+
+Cmd_AddCommand: flashlight already defined
+
+R_Init: Three.js renderer ready
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+RESPAWN_CLIENTKILL_REAL_HELD_MESH [{"god":false,"alive":{"serverHealth":100,"clientHealth":100,"model":"progs/v_shot.mdl","heldVisible":true,"heldInScene":true},"immediate":{"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false},"phases":[{"age":0.1,"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false},{"age":0.75,"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false},{"age":1.5190000000000001,"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false}],"contact":{"serverHealth":100,"clientHealth":100,"model":"progs/v_axe.mdl","heldVisible":true,"heldInScene":true}},{"god":true,"alive":{"serverHealth":100,"clientHealth":100,"model":"progs/v_shot.mdl","heldVisible":true,"heldInScene":true},"immediate":{"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false},"phases":[{"age":0.1,"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false},{"age":0.75,"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false},{"age":1.5190000000000001,"serverHealth":0,"clientHealth":0,"model":"","heldVisible":false,"heldInScene":false}],"contact":{"serverHealth":100,"clientHealth":100,"model":"progs/v_axe.mdl","heldVisible":true,"heldInScene":true}}]
+PASS actual native ClientKill keeps server and wire health dead until contact and removes the real held alias mesh with or without inspection godmode
+Cmd_AddCommand: v_cshift already defined
+
+Cmd_AddCommand: bf already defined
+
+Cmd_AddCommand: centerview already defined
+
+Can't register variable lcd_x, already defined
+
+Can't register variable lcd_yaw, already defined
+
+Can't register variable v_centermove, already defined
+
+Can't register variable v_centerspeed, already defined
+
+Can't register variable v_iyaw_cycle, already defined
+
+Can't register variable v_iroll_cycle, already defined
+
+Can't register variable v_ipitch_cycle, already defined
+
+Can't register variable v_iyaw_level, already defined
+
+Can't register variable v_iroll_level, already defined
+
+Can't register variable v_ipitch_level, already defined
+
+Can't register variable v_idlescale, already defined
+
+Can't register variable gl_cshiftpercent, already defined
+
+Can't register variable scr_ofsx, already defined
+
+Can't register variable scr_ofsy, already defined
+
+Can't register variable scr_ofsz, already defined
+
+Can't register variable cl_rollspeed, already defined
+
+Can't register variable cl_rollangle, already defined
+
+Can't register variable cl_bob, already defined
+
+Can't register variable cl_bobcycle, already defined
+
+Can't register variable cl_bobup, already defined
+
+Can't register variable v_kicktime, already defined
+
+Can't register variable v_kickroll, already defined
+
+Can't register variable v_kickpitch, already defined
+
+Can't register variable v_shamblersteps, already defined
+
+Can't register variable crosshair, already defined
+
+Can't register variable cl_crossx, already defined
+
+Can't register variable cl_crossy, already defined
+
+Can't register variable gamma, already defined
+
+R_Init
+Can't register variable r_portals, already defined
+
+Can't register variable r_hdr, already defined
+
+Can't register variable r_pointshadows, already defined
+
+Can't register variable r_heightshadows, already defined
+
+Can't register variable r_powerups, already defined
+
+Can't register variable cl_showfps, already defined
+
+Can't register variable r_dynres, already defined
+
+Can't register variable r_fps_target, already defined
+
+Can't register variable r_newdark, already defined
+
+Can't register variable r_newedges, already defined
+
+Can't register variable r_bloom, already defined
+
+Can't register variable r_bounce, already defined
+
+Can't register variable r_cloudspeed, already defined
+
+Can't register variable r_pillars, already defined
+
+Can't register variable r_heathaze, already defined
+
+Can't register variable r_mist, already defined
+
+Can't register variable r_reflect, already defined
+
+Can't register variable r_water_look, already defined
+
+Can't register variable r_reflect_screen, already defined
+
+Can't register variable r_demosplit, already defined
+
+Can't register variable r_volumetric, already defined
+
+Can't register variable r_caustics, already defined
+
+Can't register variable r_newbright, already defined
+
+Can't register variable r_newcontrast, already defined
+
+Can't register variable r_lerpmodels, already defined
+
+Can't register variable r_newer_variety, already defined
+
+Can't register variable r_newer_lighting, already defined
+
+Can't register variable r_newer_normals, already defined
+
+Can't register variable r_rockfield, already defined
+
+Can't register variable r_newer_water, already defined
+
+Can't register variable r_newer_enemies, already defined
+
+Can't register variable r_newer_textures, already defined
+
+Can't register variable r_newer_hud, already defined
+
+Can't register variable r_newer_shadows, already defined
+
+Can't register variable r_newer_crates, already defined
+
+Can't register variable r_newer_portals, already defined
+
+Can't register variable r_flashlight, already defined
+
+Can't register variable r_decals, already defined
+
+Can't register variable r_newer_weapons, already defined
+
+Cmd_AddCommand: flashlight already defined
+
+R_Init: Three.js renderer ready
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+
+ suicides
+
+RESPAWN_FULL_PHYSICS_PHASE_COHERENCE [{"profile":[0.1],"steps":30,"oldClockLeadFrames":1,"transitions":[{"processedAge":1.5000000000000013,"clockAge":1.6000000000000014,"viewAfter":false,"physicalAfter":false,"health":0,"oldCameraWouldBeAfter":true},{"processedAge":1.6000000000000014,"clockAge":1.7000000000000015,"contact":true,"health":100}]},{"profile":[0.06,0.11,0.08],"steps":36,"oldClockLeadFrames":1,"transitions":[{"processedAge":1.5000000000000004,"clockAge":1.5600000000000005,"viewAfter":false,"physicalAfter":false,"health":0,"oldCameraWouldBeAfter":true},{"processedAge":1.5600000000000005,"clockAge":1.6700000000000004,"contact":true,"health":100}]}]
+PASS full native physics clock advancement cannot move the camera into the next death phase before body health teleport and presentation frame
+RESULT 16/17 passed (tests/respawn_native_test.js)
+FAIL partial recovery redrops only current ranged ownership while original native weapon pickup preserves recovered over-cap ammunition Error: partial recovery owns exactly one ranged weapon: 4354 != 4098
+    at check (file:///Users/bri/SOURCE/Quaked/tests/respawn_native_test.js:38:33)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/respawn_native_test.js:38:58)
+    at file:///Users/bri/SOURCE/Quaked/tests/respawn_native_test.js:159:251
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js:50:48
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_NATIVE_DAMAGE {"a":[{"kind":"damage","time":1,"map":"e1m1","loss":10,"amount":10,"before":100,"after":90,"armorLoss":0,"source":[248,2392,48.03125],"origin":[480,-352,89],"viewAngles":[3,91,0]},{"kind":"damage","time":1,"map":"e1m1","loss":25,"amount":25,"before":120,"after":95,"armorLoss":0,"source":[248,2392,48.03125],"origin":[480,-352,89],"viewAngles":[3,91,0]}],"armor":{"kind":"damage","time":1,"map":"e1m1","loss":14,"amount":20,"before":95,"after":81,"armorLoss":6,"source":[248,2392,48.03125],"origin":[480,-352,89],"viewAngles":[3,91,0]}}
+PASS native paired damage events preserve individual loss through same-frame healing and capture impact context
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_NATIVE_SHOTS [{"kind":"shot","time":1,"map":"e1m1","weapon":4096,"cadence":0.5,"function":"player_axed1"},{"kind":"shot","time":2,"map":"e1m1","weapon":1,"cadence":0.5,"function":"W_FireShotgun"},{"kind":"shot","time":3,"map":"e1m1","weapon":2,"cadence":0.7,"function":"W_FireSuperShotgun"},{"kind":"shot","time":4,"map":"e1m1","weapon":4,"cadence":0.2,"function":"W_FireSpikes"},{"kind":"shot","time":5,"map":"e1m1","weapon":8,"cadence":0.2,"function":"W_FireSuperSpikes"},{"kind":"shot","time":6,"map":"e1m1","weapon":16,"cadence":0.6,"function":"W_FireGrenade"},{"kind":"shot","time":7,"map":"e1m1","weapon":32,"cadence":0.8,"function":"W_FireRocket"},{"kind":"shot","time":8,"map":"e1m1","weapon":64,"cadence":0.1,"function":"W_FireLightning"}]
+PASS actual native weapon discharge and axe swing events exclude dry and released fire and deduplicate fallback calls
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native event bridge excludes demo, remote and multiplayer and clears queued events on actual world reload
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_PUBLIC_ADAPTER_TIMING PASS
+PASS public face adapter keeps native impact intervals and releases focused attack tail despite a nonzero weapon frame
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_NATIVE_REWARD [{"kind":"reward","time":2,"map":"e1m1","power":"quad","entity":47}]
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual native powerup touch reports first pickup and active-power refresh exactly once without inventing dry repeated touches
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS public face adapter uses actual impact separation across separate native receipt batches
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual native reward expires while HUD is not sampled and cannot be restarted by deferred drain
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ was shot by a Grunt
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+-1
+ frags
+
+Client unconnected removed
+
+PASS actual native damage/clientdata death and respawn packets reset face and clear stale events without HUD draws
+RESULT 8/8 passed (tests/face_native_test.js)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Saving game to model_surface_native...
+
+done.
+
+Loading game from model_surface_native...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+MODEL_SURFACE_NATIVE_SAVE {"map":"e1m1","savedWet":0.875,"blood":0.4,"spots":3,"waterWitness":[1312,1100,-368],"airWitness":[480,-352,111],"paired":true}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS real Host save/load atomically roundtrips blood spots and wet state, then actual air frames dry only the wet film
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Saving game to model_surface_old_source...
+
+done.
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Loading game from model_surface_legacy...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+MODEL_SURFACE_LEGACY_LOAD {"time":100.6,"blood":0.4,"wet":0.875}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS old native saves without coating metadata retain current blood and film across load and the first renderer frame
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ suicides
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+MODEL_SURFACE_NATIVE_TRAVEL {"map":"e1m2","health":100,"blood":0,"wet":0,"waterWitness":[1776,1144,102]}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native player death/respawn and collision-driven seamless round trip retain coating until a real underwater frame
+PASS UV contact seeds bounded clusters at the exact hit without overwriting older splats and preserves the three-argument context fallback
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+MODEL_SURFACE_CONTACT_NATIVE {"air":[480,-352,111],"blocked":[480,-352,47],"uv":[0.49999999999999856,0.49999999999999944],"poseShift":40}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual frame contact callback follows transformed and in-place posed triangles, rejects hidden meshes and BSP-occluded spray
+RESULT 5/5 passed (tests/model_surface_native_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SV_StartSound: items/protect3.wav not precacheed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS native axe miss, normal hit, nonfatal Quad, expired Quad and pentagram-only preserve stock damage without cut records
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS both native lethal Quad swing frames record actual target pose only after Killed and retain native death bookkeeping
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS Quad plus pentagram raises real native axe damage to lethal gib outcome while native immunity and excluded modes remain authoritative
+PASS cut normal matches independently decoded native blade edge and swept pose rather than a generic body axis
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+NATIVE_ZOMBIE_QUAD_BOUNDARY {"health":60,"model":"progs/zombie.mdl","cuts":0,"suppressed":false,"think":"zombie_paine2"}
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+PASS actual native zombie knockdown is not a confirmed fatal slice, while low-health Quad and combo preserve gib deaths
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SV_StartSound: fish/death.wav not precacheed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS native fish and tarbaby death callbacks retain their behavior and receive real common-gib fallback on combined axe kills
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m7
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/boss.mdl...
+
+555 tri 859 vert 1871 cmd
+
+meshing progs/end1.mdl...
+
+76 tri 112 vert 243 cmd
+
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+meshing progs/s_light.mdl...
+
+52 tri 84 vert 185 cmd
+
+meshing progs/h_shams.mdl...
+
+56 tri 96 vert 213 cmd
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+
+ entered the game
+
+NATIVE_AXE_MONSTER_COVERAGE [{"map":"e1m1","target":"monster_army","model":"progs/soldier.mdl","healthAfter":-60},{"map":"e1m1","target":"monster_dog","model":"progs/dog.mdl","healthAfter":-60},{"map":"e1m2","target":"monster_knight","model":"progs/knight.mdl","healthAfter":-60},{"map":"e1m2","target":"monster_ogre","model":"progs/ogre.mdl","healthAfter":-60},{"map":"e1m2","target":"monster_demon1","model":"progs/demon.mdl","healthAfter":-60},{"map":"e1m7","target":"monster_shambler","model":"progs/shambler.mdl","healthAfter":-60},{"map":"e1m3","target":"monster_wizard","model":"progs/wizard.mdl","healthAfter":-60}]
+PASS Quad axe fatal strikes reach native death and cut metadata for every other available projectile-damageable monster type
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+powerup-carry-test
+ entered the game
+
+NATIVE_POWERUP_TRAVEL_AXE {"destination":"e1m2","quadFinished":13.5,"pentagramFinished":8.25,"destinationTime":1.5,"targetHealth":-99}
+PASS active-client native spawn-parameter travel restores real Quad/Pentagram timers once and the carried combo drives native lethal axe damage
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+Server spawned.
+
+powerup-carry-test
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+Server spawned.
+
+powerup-carry-test
+ entered the game
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+powerup-carry-test
+ entered the game
+
+PASS Classic capture/restore and explicit fresh-run clearing cannot inherit enhanced travel timers
+RESULT 9/9 passed (tests/axe_powerups_test.js)
+Added packfile pak0.pak (339 files)\n
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+SOLDIER_CUT_PLANE {"swing":3,"normal":[0.2838221868354487,-0.9572110604122163,0.05649736351781702],"point":[2.1319457141240914,1.349969188170545,0.3793899934572678]}
+SOLDIER_CUT_PLANE {"swing":7,"normal":[0.20576220854009672,-0.5095939880756136,0.8354495082612073],"point":[2.131867654145796,1.3504168052428813,0.3801689456020112]}
+PASS native soldier posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+NATIVE_OPPOSITE_FACE_WITNESS {"model":"dog","nativeVertices":[[-14.926361083984375,-0.26019006967544556,-0.8986998796463013],[-16.52370834350586,-0.26019006967544556,2.424207925796509],[-15.884769439697266,2.4467296600341797,0.4304632544517517]],"oppositeNormalDot":-1.0000000000000002}
+NATIVE_INHERITED_TOPOLOGY {"model":"dog","nonmanifoldEdges":2,"scope":"Original non-cut defects retained; new cut-plane seams and caps must still close"}
+PASS native dog posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+NATIVE_INHERITED_TOPOLOGY {"model":"knight","nonmanifoldEdges":3,"scope":"Original non-cut defects retained; new cut-plane seams and caps must still close"}
+PASS native knight posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+PASS native ogre posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+NATIVE_INHERITED_TOPOLOGY {"model":"demon","nonmanifoldEdges":3,"scope":"Original non-cut defects retained; new cut-plane seams and caps must still close"}
+PASS native demon posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+PASS native shambler posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+NATIVE_OPPOSITE_FACE_WITNESS {"model":"zombie","nativeVertices":[[-0.909166157245636,0.09981274604797363,20.630674362182617],[1.1125962734222412,1.691003680229187,20.872371673583984],[-0.909166157245636,1.4921047687530518,20.388978958129883]],"oppositeNormalDot":-1.0000000000000002}
+NATIVE_INHERITED_TOPOLOGY {"model":"zombie","nonmanifoldEdges":3,"scope":"Original non-cut defects retained; new cut-plane seams and caps must still close"}
+PASS native zombie posed bisections retain skin attributes and close both blade-oriented cut caps
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+NATIVE_INHERITED_TOPOLOGY {"model":"wizard","nonmanifoldEdges":3,"scope":"Original non-cut defects retained; new cut-plane seams and caps must still close"}
+PASS native wizard posed bisections retain skin attributes and close both blade-oriented cut caps
+PASS nested cut loops keep the real central hole open while both torus halves are watertight
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+PASS cut metadata saves and validates, real native renderer makes two capped halves, Classic hides effects and expiry disposes owned resources only
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+PASS failed replacement keeps native death visible and a recycled same-index ready corpse cannot suppress the old target
+NATIVE_BISECT_ALL_FRAMES {"attempts":1718,"coverage":[{"name":"soldier","frames":114},{"name":"dog","frames":86},{"name":"knight","frames":97},{"name":"ogre","frames":147},{"name":"demon","frames":69},{"name":"shambler","frames":94},{"name":"zombie","frames":198},{"name":"wizard","frames":54}],"failures":[]}
+PASS every available native monster animation frame constructively splits on both actual axe impact planes
+PASS concave containment rejects a false nested hole when a second closed contour crosses the U-shaped notch
+NATIVE_CUT_PROVENANCE_62 {"coverage":[{"model":"dog","frame":1,"swing":7,"checkedNativeSegments":122,"checkedCapBoundaries":118,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":2,"swing":7,"checkedNativeSegments":92,"checkedCapBoundaries":88,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":6,"swing":7,"checkedNativeSegments":114,"checkedCapBoundaries":108,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":11,"swing":7,"checkedNativeSegments":128,"checkedCapBoundaries":124,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":12,"swing":7,"checkedNativeSegments":138,"checkedCapBoundaries":134,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":14,"swing":7,"checkedNativeSegments":116,"checkedCapBoundaries":112,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":15,"swing":7,"checkedNativeSegments":220,"checkedCapBoundaries":216,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":17,"swing":7,"checkedNativeSegments":114,"checkedCapBoundaries":110,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":30,"swing":7,"checkedNativeSegments":118,"checkedCapBoundaries":114,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":51,"swing":7,"checkedNativeSegments":116,"checkedCapBoundaries":112,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":53,"swing":7,"checkedNativeSegments":136,"checkedCapBoundaries":132,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":56,"swing":7,"checkedNativeSegments":132,"checkedCapBoundaries":128,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":57,"swing":7,"checkedNativeSegments":132,"checkedCapBoundaries":128,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":58,"swing":7,"checkedNativeSegments":130,"checkedCapBoundaries":126,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":59,"swing":7,"checkedNativeSegments":136,"checkedCapBoundaries":132,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":60,"swing":7,"checkedNativeSegments":116,"checkedCapBoundaries":112,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":65,"swing":7,"checkedNativeSegments":152,"checkedCapBoundaries":148,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"dog","frame":68,"swing":7,"checkedNativeSegments":132,"checkedCapBoundaries":128,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":12,"swing":3,"checkedNativeSegments":104,"checkedCapBoundaries":102,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":13,"swing":3,"checkedNativeSegments":112,"checkedCapBoundaries":110,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":14,"swing":3,"checkedNativeSegments":98,"checkedCapBoundaries":96,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":18,"swing":3,"checkedNativeSegments":106,"checkedCapBoundaries":102,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":25,"swing":3,"checkedNativeSegments":82,"checkedCapBoundaries":80,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":1.7763568394002505e-15}]},{"model":"knight","frame":27,"swing":3,"checkedNativeSegments":94,"checkedCapBoundaries":92,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":44,"swing":3,"checkedNativeSegments":182,"checkedCapBoundaries":178,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":45,"swing":3,"checkedNativeSegments":184,"checkedCapBoundaries":180,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":47,"swing":3,"checkedNativeSegments":140,"checkedCapBoundaries":134,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":52,"swing":3,"checkedNativeSegments":118,"checkedCapBoundaries":116,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":59,"swing":3,"checkedNativeSegments":88,"checkedCapBoundaries":84,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":60,"swing":3,"checkedNativeSegments":106,"checkedCapBoundaries":104,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":3.552713678800501e-15}]},{"model":"knight","frame":63,"swing":3,"checkedNativeSegments":102,"checkedCapBoundaries":100,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":3.552713678800501e-15}]},{"model":"knight","frame":64,"swing":3,"checkedNativeSegments":106,"checkedCapBoundaries":104,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":65,"swing":3,"checkedNativeSegments":102,"checkedCapBoundaries":100,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":71,"swing":3,"checkedNativeSegments":110,"checkedCapBoundaries":108,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":72,"swing":3,"checkedNativeSegments":106,"checkedCapBoundaries":104,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":73,"swing":3,"checkedNativeSegments":106,"checkedCapBoundaries":104,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":74,"swing":3,"checkedNativeSegments":102,"checkedCapBoundaries":100,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":75,"swing":3,"checkedNativeSegments":98,"checkedCapBoundaries":96,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[126],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"knight","frame":82,"swing":3,"checkedNativeSegments":62,"checkedCapBoundaries":60,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":78,"swing":7,"checkedNativeSegments":96,"checkedCapBoundaries":94,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":81,"swing":7,"checkedNativeSegments":98,"checkedCapBoundaries":96,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":83,"swing":7,"checkedNativeSegments":118,"checkedCapBoundaries":116,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":84,"swing":7,"checkedNativeSegments":110,"checkedCapBoundaries":108,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"knight","frame":85,"swing":7,"checkedNativeSegments":110,"checkedCapBoundaries":108,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":13,"swing":3,"checkedNativeSegments":114,"checkedCapBoundaries":112,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":14,"swing":3,"checkedNativeSegments":88,"checkedCapBoundaries":86,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[169],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":3.552713678800501e-15}]},{"model":"demon","frame":15,"swing":3,"checkedNativeSegments":68,"checkedCapBoundaries":66,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":20,"swing":3,"checkedNativeSegments":92,"checkedCapBoundaries":90,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":22,"swing":3,"checkedNativeSegments":82,"checkedCapBoundaries":80,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[169],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"demon","frame":23,"swing":3,"checkedNativeSegments":124,"checkedCapBoundaries":122,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[169],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":0}]},{"model":"demon","frame":25,"swing":3,"checkedNativeSegments":104,"checkedCapBoundaries":102,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":27,"swing":3,"checkedNativeSegments":66,"checkedCapBoundaries":64,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":29,"swing":3,"checkedNativeSegments":70,"checkedCapBoundaries":68,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":30,"swing":3,"checkedNativeSegments":70,"checkedCapBoundaries":68,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":38,"swing":3,"checkedNativeSegments":92,"checkedCapBoundaries":90,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":60,"swing":3,"checkedNativeSegments":120,"checkedCapBoundaries":118,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":61,"swing":3,"checkedNativeSegments":102,"checkedCapBoundaries":100,"openSheetExemptions":2,"originalSheetWitnesses":[{"triangles":[169],"openEdges":1,"attachmentEdges":2,"maximumPlaneDeviation":3.552713678800501e-15}]},{"model":"demon","frame":24,"swing":7,"checkedNativeSegments":100,"checkedCapBoundaries":98,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":49,"swing":7,"checkedNativeSegments":134,"checkedCapBoundaries":132,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"demon","frame":53,"swing":7,"checkedNativeSegments":136,"checkedCapBoundaries":134,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"zombie","frame":93,"swing":3,"checkedNativeSegments":80,"checkedCapBoundaries":76,"openSheetExemptions":0,"originalSheetWitnesses":[]},{"model":"zombie","frame":137,"swing":7,"checkedNativeSegments":96,"checkedCapBoundaries":94,"openSheetExemptions":0,"originalSheetWitnesses":[]}],"failures":[]}
+PASS all62 originally failing cuts cover every native solid cut segment and every cap boundary has native provenance
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+PASS saved cut corpse reappears as two identically settled and skinned halves in the real native level preview without active-world mutation
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Cut corpse preview unavailable: Cut corpse model unavailable: progs/missing_preview_cut.mdl
+
+Cut corpse preview unavailable: Invalid saved axe corpse
+
+PASS portal snapshots keep a native fallback only for a present failed cut owner, with stable owner-key save round trips
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Cut corpse preview unavailable: Invalid saved axe corpse
+
+PASS failed reconstruction rebinds previously latched native fallback and a different same-index owner key cannot hide it
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+NATIVE_THROWGIB_PREVIEW_FALLBACK [{"index":163,"classname":"","model":"progs/gib1.mdl"},{"index":164,"classname":"","model":"progs/gib1.mdl"},{"index":165,"classname":"","model":"progs/gib2.mdl"},{"index":166,"classname":"","model":"progs/gib3.mdl"},{"index":167,"classname":"","model":"progs/gib1.mdl"},{"index":168,"classname":"","model":"progs/gib2.mdl"},{"index":169,"classname":"","model":"progs/gib3.mdl"}]
+Cut corpse preview unavailable: Invalid saved axe corpse
+
+PASS a real classless native ThrowGib edict remains available as preview fallback for a failed matching cut owner
+RESULT 18/18 passed (tests/bisect_test.js)
+Added packfile pak0.pak (339 files)\n
+Added packfile newer/maps.pak (1 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+Cvar_Set: variable deathmatch not found
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+WELCOME_NATIVE_AID_MATRIX [{"label":"EASY","position":[232,815,8],"steps":6,"aids":[1,1],"entranceBounds":[[95,831,-25],[369,1217,-7]],"lateY":1343},{"label":"NORMAL","position":[544,815,8],"steps":6,"aids":[1,0],"entranceBounds":[[415,831,-25],[689,1233,-7]],"lateY":1343},{"label":"HARD","position":[864,783,8],"steps":6,"aids":[0,0],"entranceBounds":[[727,799,-25],[1001,1249,-7]],"lateY":1343}]
+PASS actual Newer menu and fresh Host map START reset both aids, and native Easy Normal Hard entrances apply their exact matrix before skill or teleport
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+No duct tape in Mars
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+No duct tape in Mars
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+PASS manual flashlight and crosshair choices survive repeated actual corridor contact and the later native skill trigger
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/h_guard.mdl...
+
+40 tri 62 vert 136 cmd
+
+meshing progs/quaddama.mdl...
+
+106 tri 162 vert 353 cmd
+
+meshing progs/h_dog.mdl...
+
+88 tri 142 vert 312 cmd
+
+meshing progs/dog.mdl...
+
+426 tri 692 vert 1518 cmd
+
+meshing progs/suit.mdl...
+
+318 tri 488 vert 1062 cmd
+
+46 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/ogre.mdl...
+
+326 tri 488 vert 1058 cmd
+
+meshing progs/h_ogre.mdl...
+
+32 tri 56 vert 125 cmd
+
+meshing progs/knight.mdl...
+
+213 tri 327 vert 712 cmd
+
+meshing progs/h_knight.mdl...
+
+32 tri 48 vert 105 cmd
+
+meshing progs/w_s_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/demon.mdl...
+
+275 tri 423 vert 921 cmd
+
+meshing progs/h_demon.mdl...
+
+78 tri 130 vert 287 cmd
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/w_g_key.mdl...
+
+116 tri 194 vert 428 cmd
+
+meshing progs/wizard.mdl...
+
+157 tri 243 vert 530 cmd
+
+meshing progs/h_wizard.mdl...
+
+28 tri 42 vert 92 cmd
+
+meshing progs/w_spike.mdl...
+
+88 tri 150 vert 332 cmd
+
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+meshing progs/s_light.mdl...
+
+52 tri 84 vert 185 cmd
+
+meshing progs/h_shams.mdl...
+
+56 tri 96 vert 213 cmd
+
+meshing progs/invisibl.mdl...
+
+66 tri 74 vert 153 cmd
+
+41 entities inhibited
+
+seamless: 1 exit(s) on e1m3
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m4
+
+Clearing memory
+
+Programs occupy 403K.
+
+30 entities inhibited
+
+seamless: 1 exit(s) on e1m4
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m5
+
+Clearing memory
+
+Programs occupy 403K.
+
+99 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m6
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/m_g_key.mdl...
+
+92 tri 162 vert 360 cmd
+
+meshing progs/m_s_key.mdl...
+
+92 tri 162 vert 360 cmd
+
+26 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m7
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/boss.mdl...
+
+555 tri 859 vert 1871 cmd
+
+meshing progs/end1.mdl...
+
+76 tri 112 vert 243 cmd
+
+41 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m8
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/invulner.mdl...
+
+126 tri 194 vert 423 cmd
+
+16 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+WELCOME_DIRECT_LEVEL_PRESERVATION [{"map":"e1m1","skill":0,"aids":[0,1]},{"map":"e1m2","skill":1,"aids":[1,0]},{"map":"e1m3","skill":2,"aids":[0,1]},{"map":"e1m4","skill":3,"aids":[1,0]},{"map":"e1m5","skill":0,"aids":[0,1]},{"map":"e1m6","skill":1,"aids":[1,0]},{"map":"e1m7","skill":2,"aids":[0,1]},{"map":"e1m8","skill":3,"aids":[1,0]}]
+PASS Classic START and direct non-START map commands preserve both aids at every difficulty instead of installing welcome defaults
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+No duct tape in Mars
+
+Saving game to welcome_floor...
+
+done.
+
+Loading game from welcome_floor...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+No duct tape in Mars
+
+Saving game to welcome_late...
+
+done.
+
+Loading game from welcome_late...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+PASS real save/load inside Easy floor or late skill contact preserves manual-off aids and seeds only contact deduplication even after cold run reset
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+seamless: 1 exit(s) on start
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ suicides
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+-2
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+WELCOME_TRAVEL_RESPAWN_PRESERVATION {"map":"e1m2","aids":[0,1],"health":100}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native respawn and an actual seamless round trip preserve both aids without treating arrival as fresh START
+RESULT 5/5 passed (tests/welcome_aids_test.js)
+Added packfile pak0.pak (339 files)\n
+NEWER_MENU_START_BASELINE {"action":"map","map":"start","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"}
+PASS archived disabled rock and power-ups plus other disabled enhancements are restored by public Newer Game before actual map command dispatch
+NEWER_LEVEL_SELECT_BASELINE {"newer":{"action":"map","map":"e1m2","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"},"classic":{"action":"map","map":"e1m1","hdr":"0","features":{"r_newer_lighting":"0","r_newer_normals":"0","r_newer_shadows":"0","r_pointshadows":"0","r_heightshadows":"0","r_rockfield":"0.4","r_powerups":"0","r_newer_weapons":"0","r_newer_textures":"0","r_newer_water":"0","r_newer_enemies":"0","r_newer_portals":"0","r_newer_hud":"0","r_decals":"0","r_lerpmodels":"2","r_newer_variety":"0"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":0,"textureReady":0,"textureFallback":1,"archivedRock":"0.4","archivedPowerups":"0"}}
+PASS public Newer Level Select restores the same literal sixteen-feature baseline while both Classic entry paths preserve choices
+PASS opening or canceling menus does not reset settings and real in-session feature toggles remain effective until an explicit new launch
+PASS attract comparison temporarily enables the full baseline and restores exact preferences, while explicit Newer launch survives later demo cleanup
+NEWER_DEMO_ARCHIVE_CUSTODY {"archived":["r_rockfield","r_powerups","r_heightshadows"],"persisted":{"r_rockfield":"0.375","r_powerups":"1","r_heightshadows":"0"}}
+PASS temporary attract defaults preserve actual archived storage and serialized configuration while normal configuration save/load still roundtrips
+PASS explicit same-value enable and explicit disable during a demo outlast scope restoration for archived and nonarchived features
+RESULT 6/6 passed (tests/newer_start_test.js)
+PASS fresh welcome stays off for every skill; direct/restarted levels preserve the prior light without consuming the user notice
+PASS actual nativeSTART trigger_setskill builtin handles same-valueNormal, all four choices, repeated touches and rejects nonlocal/nonhub skill writes
+PASS F/console off prints the native corner status exactly once per run, travel/load preserves it and fresh/restart resets it; demo/classic are excluded
+PASS public Newer menu preserves shared lighting defaults while hub/level policy and flashlight checkbox use the run input path
+PASS actual attract demo temporaryON/restoreOFF cannot consume a resumed Hard run notice, but the next real user off still can
+RESULT 5/5 passed (tests/flashlight_run_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+
+ entered the game
+
+FLASHLIGHT_REAL_CORRIDOR_ENTRY [{"label":"EASY","actualEntryPosition":[232,816,8],"entryBounds":[[95,831,-25],[369,1217,-7]],"lateSkillBounds":[[175,1343,-17],[289,1361,113]],"flashlight":1,"nativeSkillStill":1},{"label":"NORMAL","actualEntryPosition":[544,816,8],"entryBounds":[[415,831,-25],[689,1233,-7]],"lateSkillBounds":[[487,1343,-17],[601,1361,113]],"flashlight":1,"nativeSkillStill":1}]
+PASS actual Easy and Normal floor-corridor entry activates light by native movement before skill selection or teleport
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+No duct tape in Mars
+
+No duct tape in Mars
+
+PASS manual off at corridor entry survives repeated native floor touches and the later native skill brush
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS corridor hook rejects nonlocal/dead players, multiplayer, wrong maps/classes/messages and Classic without suppressing QC execution
+RESULT 3/3 passed (tests/flashlight_corridor_test.js)
+TOTAL 82/83 passed

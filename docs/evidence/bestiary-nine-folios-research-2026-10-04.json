@@ -1,0 +1,85 @@
+{
+  "primary": "https://github.com/id-Software/quake-rerelease-qc",
+  "archive": "/private/tmp/quaked-official-rerelease-qc.zip",
+  "archive_sha256": "4fde61899dce653391e2278d8f4863684d00b0e9a73323954ffce316b4c454fd",
+  "sources": {
+    "quakec_rogue__dragon.qc": "90bcf78eeb5d9ee0a5cacd14475d3ca1adab695857f771a4c304d117c61238ce",
+    "quakec_rogue__s_wrath.qc": "703f2d4fdbc06d1fe47d7272418373adc490cd0c443d9ce1fba70b8fd1e49ba3",
+    "quakec_mg3__monsters__mg3_hknight_infected.qc": "7cafb5d1de334628cf5566e7ee8f21970ee1360e813e9c3f232a0d51a45174b1",
+    "quakec_mg3__defs.qc": "6e6571276449d31a1cf62624e3ba9b11b8341034d9d1c8db20843f1d698c4632",
+    "quakec_mg3__monsters__boss_final.qc": "5f21409be7ea4b7e5d01b85cc3ed28918119005b39dba6e4041e3e3dc812cad2",
+    "quakec_mg3__monsters__oldone.qc": "f43fb193f76a37b723e91a4405dba1422846b2d6c2856a19a72e46175af998ec",
+    "quakec_mg3__monsters__tarbaby.qc": "4ea1fffa4a534a6785b5f7c52f28ed6f84ce7b6ab9b70093e8c001356598df2b",
+    "quakec_mg3__monsters__mg3_knight_infected.qc": "3828a187143eb996da36896045d0783fb8d2299fd3d8edd14af696527d5026f2",
+    "quakec_mg3__monsters__mg3_oldone_new.qc": "b560526c392cf485219ee804eeabbfef59f9bb71a356482a81dd9f54e98b4efc",
+    "quakec_mg3__monsters__mg3_enforcer_infected.qc": "64dc0ddadc01a899547236ecb182645db4e67408ebe62989037934374e3a4eb3",
+    "quakec_rogue__morph.qc": "e0d4c2d3c616fc1591659e24137c633a4863118ff586e906a80a5e3bdd5a5245"
+  },
+  "verified": {
+    "overlord": {
+      "class": "monster_super_wrath",
+      "model": "progs/s_wrath.mdl",
+      "source": "quakec_rogue/s_wrath.qc:514-562"
+    },
+    "egyptian_guardian": {
+      "class": "monster_morph",
+      "model": "progs/morph_eg.mdl",
+      "source": "quakec_rogue/morph.qc:446-481,535-583",
+      "note": "Resolved model avoids flags2 Aztec overriding flags4 Egypt; children inherit model."
+    },
+    "dragon": {
+      "class": "monster_dragon",
+      "model": "progs/dragon.mdl",
+      "source": "quakec_rogue/dragon.qc:758-790",
+      "excluded": "monster_dragon_dead"
+    },
+    "infected_knight": {
+      "class": "monster_knight",
+      "model": "progs/knight.mdl",
+      "infected": 1,
+      "th_die": "knight_infected_die",
+      "source": "quakec_mg3/monsters/mg3_knight_infected.qc:68-116"
+    },
+    "infected_enforcer": {
+      "class": "monster_enforcer",
+      "model": "progs/enforcer.mdl",
+      "infected": 1,
+      "th_die": "enforcer_infected_die",
+      "source": "quakec_mg3/monsters/mg3_enforcer_infected.qc:72-119"
+    },
+    "infected_death_knight": {
+      "class": "monster_hell_knight",
+      "model": "progs/hknight.mdl",
+      "infected": 1,
+      "th_die": "hknight_infected_die",
+      "source": "quakec_mg3/monsters/mg3_hknight_infected.qc:196-266"
+    },
+    "splitting_spawn": {
+      "class": "monster_tarbaby",
+      "model": "progs/tarbaby.mdl",
+      "slime": ">0",
+      "capabilities": [
+        "SlimeMissile",
+        "SlimeMissileTouch"
+      ],
+      "source": "quakec_mg3/monsters/tarbaby.qc:208-265,345-359,392-403",
+      "note": "Initializer monster_slime rewrites class and sets slime2; generations decrement to0. Zero descendants cannot be classified as splitting by this discriminator."
+    },
+    "shub_awakened": {
+      "class": "monster_oldone_new",
+      "model": "progs/oldone.mdl",
+      "th_die": "oldnew_finale_1",
+      "source": "quakec_mg3/monsters/mg3_oldone_new.qc:552-616"
+    }
+  },
+  "unproven_human_label": {
+    "chthon_sleeper": {
+      "candidate_runtime_class": "monster_boss",
+      "model": "progs/boss.mdl",
+      "th_die": "boss_final_death1",
+      "source": "quakec_mg3/monsters/boss_final.qc:1204-1290",
+      "note": "monster_boss_final initializer rewrites classname. No Sleeper label exists in source; mapping authored title to this boss requires owner authority or map/localization evidence."
+    }
+  },
+  "limits": "Installed checkout has onlybase/Newer PAKs; no native expansion runtime claim. Primary archive includes modern rerelease/mg3 code and doesnot establish enginecompatibility."
+}

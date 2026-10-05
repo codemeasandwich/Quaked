@@ -31,15 +31,17 @@ Deno.test( 'review: cloned imported materials retain supplied maps and enhanced 
 	const original = R_AssetAliasMaterial( maps, 'review' );
 	try {
 
-		for ( const transparent of [ false, true ] ) {
+		for ( const transparent of [ false, true ] ) for ( const held of [ false, true ] ) {
 
-			const material = R_CloneAliasMaterial( original ); material.transparent = transparent;
+			const material = R_CloneAliasMaterial( original ); material.transparent = transparent; material.userData.quakeViewmodel = held;
 			const compiled = shader(); material.onBeforeCompile( compiled );
 			check( compiled.uniforms.qrNormal.value === maps.normal, 'normal map survives clone' );
 			check( compiled.uniforms.qrLuma.value === maps.luma, 'emissive map survives clone' );
-			check( compiled.fragmentShader.includes( 'gNormal = vec4( qrN' ), 'analytic normal written' );
+			if ( held ) check( /gNormal\s*=\s*vec4\(qrN\*0\.5\+0\.5,-vQrView\.z-2\.\)/.test( compiled.fragmentShader ), 'held clone writes physical normal and distinct true-depth packet' );
+			else if ( transparent ) check( /gNormal\s*=\s*vec4\(0\.\)/.test( compiled.fragmentShader ), 'authored translucent color pass marks blended receiver data unavailable until separate repair' );
+			else check( /gNormal\s*=\s*vec4\(qrN\*0\.5\+0\.5,vQrView\.z\)/.test( compiled.fragmentShader ), 'opaque world alias writes analytic normal and true depth' );
 			check( compiled.fragmentShader.includes( 'gAlbedo = vec4( qrAlbedo' ), 'unlit albedo written even for held transparency' );
-			check( material.customProgramCacheKey() === original.customProgramCacheKey(), 'shader cache identity preserved' );
+			check( held ? material.customProgramCacheKey() !== original.customProgramCacheKey() : material.customProgramCacheKey() === original.customProgramCacheKey(), 'ordinary clone retains cache identity while held data contract has its own program' );
 			material.dispose();
 
 		}

@@ -43,6 +43,7 @@ Deno.test( 'weapon startup: ordinary app warms held/pickup art behind its first 
 			Sys_Init: noop, Sys_Printf: noop, Sys_Error: message => { throw new Error( message ); }, COM_InitArgv: noop,
 			Host_Init: async () => { events.push( 'host initialized' ); startup.R_DemoLoadingAttract( true ); }, Host_Frame: () => { events.push( 'native console frame' ); startup.R_DemoLoadingConsoleDrawn(); }, Host_Shutdown: noop,
 			COM_FetchPak: async () => ( {} ), COM_FetchOptionalPak: async () => null, COM_AddPack: noop, COM_SetNewerPack: noop,
+			COM_NewerFile: () => null, COM_SetNewerMapsPack: noop, COM_LoadPackFile: () => { throw new Error( 'No embedded map pack was supplied by this startup fixture' ); },
 			Cbuf_AddText: noop, Cmd_AddCommand: noop, Cmd_Argc: () => 0, Cmd_Argv: () => '', Con_Printf: noop,
 			Cvar_VariableValue: vars.Cvar_VariableValue, Cvar_SetValue: vars.Cvar_SetValue, key_dest: 0, key_game: 0,
 			R_PerfSetHost: noop, R_PerfStart: noop, R_PerfStop: noop, R_PerfProfiling: () => false, R_PerfPump: noop, R_PerfLastReport: () => null,

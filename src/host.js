@@ -7,6 +7,7 @@ import { svc_print, svc_disconnect } from './protocol.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables } from './cvar.js';
 import { SV_SeamlessFrame } from './sv_seamless.js';
 import { R_WelcomeLoadingHolding } from './r_demoloading.js';
+import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from './r_bestiary.js';
 import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks } from './cmd.js';
 import { Memory_Init } from './zone.js';
 import { V_Init } from './view.js';
@@ -480,11 +481,11 @@ export function Host_ServerFrame() {
 
 	// move things around and think
 	// always pause in single player if in console or menus
-	if ( ! sv.paused && ( svs.maxclients > 1 || key_dest === key_game ) )
+	if ( ! sv.paused && ! R_BestiaryFrozen() && ( svs.maxclients > 1 || key_dest === key_game ) )
 		if(!(R_WelcomeLoadingHolding()&&svs.maxclients===1))SV_Physics();
 
 	// has the player gone through a seamless exit?
-	if(!(R_WelcomeLoadingHolding()&&svs.maxclients===1))SV_SeamlessFrame();
+	if(!R_BestiaryFrozen()&&!(R_WelcomeLoadingHolding()&&svs.maxclients===1))SV_SeamlessFrame();
 
 	// send all messages to the clients
 	SV_SendClientMessages();
@@ -650,6 +651,8 @@ function _Host_FilterTime( time ) {
 	// slow motion (single player only: a network game cannot run at its own speed)
 	if ( host_timescale.value > 0 && host_timescale.value < 1 && sv.active && svs.maxclients === 1 )
 		host_frametime *= host_timescale.value;
+	R_BestiaryFrame( realtime );
+	host_frametime *= R_BestiaryTimeScale();
 
 	return true;
 

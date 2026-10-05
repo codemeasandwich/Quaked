@@ -8,6 +8,7 @@ import { cl as client_cl } from './client.js';
 import { GL_TextureLinear, GL_RegisterTexture } from './glquake.js';
 import { isXRActive, XR_SCALE } from './webxr.js';
 import { R_DecalBloodSpray, R_DecalBloodLanded } from './r_decals.js';
+import { R_WeaponSurfaceBloodAt } from './r_weapon_surface.js';
 import { R_ScreenDropsBloodAt } from './r_screendrops.js';
 
 const MAX_PARTICLES = 2048;
@@ -357,7 +358,8 @@ export function R_RunParticleEffect( org, dir, color, count ) {
 			if ( i === 0 && color === 73 ) {
 
 				R_DecalBloodSpray( org, dir, count );
-				R_ScreenDropsBloodAt( org, count ); // and on the lens, if it was close
+				R_ScreenDropsBloodAt( org, count );
+    R_WeaponSurfaceBloodAt(org,count); // and on the lens, if it was close
 
 			}
 

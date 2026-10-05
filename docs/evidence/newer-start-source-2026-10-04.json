@@ -1,0 +1,34 @@
+{
+  "branch": "main",
+  "head": "038fe593277e771a104a5412c611aedaadb6a206",
+  "sourceGateIdentityVerified": true,
+  "tests": 63,
+  "nativeEntryPaths": [
+    "Newer Game -> START",
+    "Newer Level Select -> E1M1",
+    "New Game -> START"
+  ],
+  "sha256": {
+    "src/newer_defaults.js": "34e3ac87da8e9cb77a682c4f3b24a77e50fd5180a89db736c3df005afc741f69",
+    "src/menu.js": "0f31eac4ec9f481fe824448b53eb2f2f1e9719c25759aef38f5ad80267948265",
+    "src/r_demosplit.js": "c263218635786aa6483a82d5a77c420a9723238793b4ad743b30b6281f4c5100",
+    "src/cvar.js": "5e63ce81633351e6fdaa87bf7d62ab4a8f3cf12aeb571a5d4b0401717cdd856b",
+    "tests/newer_start_test.js": "4d74c05b132d75ac524eb87054f48b3e1029ad93b441f1270a00353cce432412",
+    "tests/newer_start_trial.html": "aeaca5f77ebc14b56f88c321a7105ec9411e9b1eb73690796f0db019eafbd8f2",
+    "tests/newer_start_trial.js": "4e10d8da199231e1d250b74bed9473b78801424d7e25a679387702bb662f5b75",
+    "docs/newer-game-startup-2026-10-04.md": "b12ef0afc2600a1191365e3972a4fec38c762c6d4e9f5d18c6f6cf29a6a98319",
+    "docs/evidence/newer-start-initial-public-test-2026-10-04.txt": "7c58b264e13c059ab6c231ea91c5135db23409c06d67a0ace0bb6f477ca874f7",
+    "docs/evidence/newer-start-native-hub-2026-10-04.json": "0cacc14749a6720c17f55e4dc418cfba46abf30b4c19beb2dd0b581b50a331e9",
+    "docs/evidence/newer-start-native-hub-2026-10-04.jpg": "7eca3fc38812069eebd9fd117f894ccbdf24a1085c060e32c5dd6c446f84ff8b",
+    "docs/evidence/newer-start-initial-compatibility-2026-10-04.txt": "242fb441e4f4673d0365bb48af07a42f5fe3fd0cb0e76eea3d870a85097c45e9",
+    "docs/evidence/newer-start-native-levelselect-2026-10-04.json": "8625f50cd51c67d0c340cec58da7b9757af970b74e96cf37c0983fec05f8cba6",
+    "docs/evidence/newer-start-native-classic-2026-10-04.json": "be0997bc9912a9d94ffa9a50338cb4376abb3666ad2e9a54b0d8efa612a928a2",
+    "docs/evidence/newer-start-native-classic-2026-10-04.jpg": "e3ce88a75ebfcadd53f9496b57c20d461ba83c37447e7751fa92b6d87a606d07",
+    "docs/evidence/newer-start-final-compatibility-2026-10-04.txt": "60fdb16605d73758f6e87597bb89f74e59870e5d660e07c878a2f4ebf122e560",
+    "docs/evidence/newer-start-public-persistence-2026-10-04.txt": "f0259751c571804418eb8da790beb9226054aa55cd8618ac3456780d4bf6c3a7",
+    "docs/evidence/newer-start-final-source-2026-10-04.sha256": "cfc2badef87133c1b17f354678af7ff660ac6f9a0ffb6d5c81939f770180156a",
+    "docs/evidence/newer-start-native-levelselect-2026-10-04.jpg": "bf6079d34ed264ac0b4ccece3d36801c799d7d3ad1a6739e40a50d171515f867",
+    "docs/evidence/newer-start-ordinary-game-2026-10-04.jpg": "2178eae8b8b2a65f075232626aa234b2f92efabdf78c96bc78032a87526b0f9e"
+  },
+  "ordinaryPageMenuLaunchVerified": true
+}

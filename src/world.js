@@ -1,3 +1,4 @@
+import { SV_RespawnDropTouch } from './sv_respawn.js';
 // Ported from: WinQuake/world.c + world.h -- world query functions
 
 /*
@@ -432,6 +433,8 @@ export function SV_TouchLinks( ent, node ) {
 // The public trigger dispatch keeps QC's self/other context and touch behavior
 // together. Optional executors let focused tests use the same entry point.
 export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, clearAt = null ) {
+	const recovered = SV_RespawnDropTouch( ent, touch );
+	if ( recovered !== null ) return false; // custom payload touch never teleports the player
 
 	const crossing = SV_BeginPortalTouch( ent, touch, SV_PortalBackingContact );
 	if ( crossing === false ) return false;

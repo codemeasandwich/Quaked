@@ -1,3 +1,4 @@
+import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from './respawn_record.js';
 // Ported from: WinQuake/pr_edict.c -- entity dictionary
 
 import { Sys_Error } from './sys.js';
@@ -551,6 +552,9 @@ export function ED_Write( lines, ed ) {
 
 	}
 
+	if(ed._respawn)lines.push('"_clockwise_player" "'+encodeURIComponent(JSON.stringify(ed._respawn))+'"');
+	if(ed._respawnDrop)lines.push('"_clockwise_drop" "'+encodeURIComponent(JSON.stringify(ed._respawnDrop))+'"');
+	if(ed._respawnRemains)lines.push('"_clockwise_remains" "'+encodeURIComponent(JSON.stringify(ed._respawnRemains))+'"');
 	if(ed._axeCorpse)lines.push('"_newer_axe_corpse" "'+encodeURIComponent(JSON.stringify(ed._axeCorpse))+'"');
 	else if(ed._axeInvalidRecord)lines.push('"_newer_axe_corpse" "invalid"'); // retain fallback ownership across re-saving
 	if(ed._axeSuppressed)lines.push('"_newer_axe_hidden" "'+(ed._axeSuppressedBy||-1)+'"');
@@ -956,6 +960,9 @@ export function ED_ParseEdict( data, ent ) {
 			Sys_Error( 'ED_ParseEntity: closing brace without data' );
 
 		init = true;
+		if(keyname==='_clockwise_player'){ent._respawn=Respawn_ParsePlayer(com_token);continue;}
+		if(keyname==='_clockwise_drop'){ent._respawnDrop=Respawn_ParseDrop(com_token);continue;}
+		if(keyname==='_clockwise_remains'){ent._respawnRemains=Respawn_ParseRemains(com_token);continue;}
 		if(keyname==='_newer_axe_corpse'){ent._axeCorpse=Axe_ParseRecord(com_token);ent._axeInvalidRecord=ent._axeCorpse===null;continue;}
 		if(keyname==='_newer_axe_hidden'){const owner=Number(com_token);ent._axeSuppressed=Number.isInteger(owner)&&owner>=-1&&owner<65536;ent._axeSuppressedBy=owner>0?owner:0;continue;}
 		if(keyname==='_newer_axe_owner'){ent._axeOwnerKey=Axe_ValidOwnerKey(com_token)?com_token:null;continue;}

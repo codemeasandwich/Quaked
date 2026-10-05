@@ -2,7 +2,7 @@
 
 import * as THREE from 'three';
 import { R_WeaponAsset, R_WeaponRotorFrame } from './r_weapons.js';
-import { R_NewerAliasMaterial, R_EnemyAliasMaterial } from './r_newerskins.js';
+import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from './r_newerskins.js';
 import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cl } from './client.js';
@@ -573,10 +573,8 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 
 			}
 
-			entity._playerMaterial = new THREE.MeshBasicMaterial( {
-				map: playerSkinTexture,
-				vertexColors: hasLighting
-			} );
+			entity._playerMaterial = R_AssetAliasMaterial({diffuse:playerSkinTexture},'native-player');
+   entity._playerMaterial.vertexColors=hasLighting;
 			entity._playerSkinTexture = playerSkinTexture;
 
 		}
@@ -628,17 +626,13 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 
 	if ( texture ) {
 
-		material = new THREE.MeshBasicMaterial( {
-			map: texture,
-			vertexColors: hasLighting
-		} );
+		material = R_AssetAliasMaterial({diffuse:texture},'native-alias');
+  material.vertexColors=hasLighting;
 
 	} else {
 
-		material = new THREE.MeshBasicMaterial( {
-			color: 0xcccccc,
-			vertexColors: hasLighting
-		} );
+		material = R_AssetAliasMaterial({},'native-alias-colour');
+  material.color.setHex(0xcccccc);material.vertexColors=hasLighting;
 
 	}
 

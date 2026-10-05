@@ -1,0 +1,155 @@
+{
+  "primary": "https://github.com/id-Software/quake-rerelease-qc",
+  "mappings": {
+    "infected_grunt": {
+      "source": "quakec_mg3/monsters/mg3_soldier_infected.qc:69-126",
+      "classname": "monster_army",
+      "model": "progs/soldier.mdl",
+      "discriminator": "infected==1 and th_die=army_infected_die",
+      "sha256": "3c62040d5511edd81c158a7218bbdad089d8066bb8b7129c90a0707984e71429"
+    },
+    "ranged_death_knight": {
+      "source": "quakec_mg3/monsters/mg3_rknight.qc:476-528",
+      "classname": "monster_ranged_knight",
+      "model": "progs/rknight.mdl",
+      "discriminator": "",
+      "sha256": "9695b6913eddb15e810d5f164f8cfaeec42b76de25b3a8f7b9a94826547976ab"
+    },
+    "demo_dog": {
+      "source": "quakec_mg3/monsters/mg3_demodog.qc:438-471",
+      "classname": "monster_dog",
+      "model": "progs/dog_explosive.mdl",
+      "discriminator": "th_die=demodog_die",
+      "sha256": "f557e8db313f835d7a767f5dc36e028366a63aa416e6882f3b69b5bd6a405dc1"
+    },
+    "mummy": {
+      "source": "quakec_rogue/mummy.qc:472-530",
+      "classname": "monster_mummy",
+      "model": "progs/mummy.mdl",
+      "discriminator": "",
+      "sha256": "7abd53d302204550c3863e05b443325fa3106a19454cdb0b867d1a120e4c9d12"
+    },
+    "statue_knight": {
+      "source": "quakec_rogue/knight.qc:309-388",
+      "classname": "monster_knight",
+      "model": "progs/knight.mdl",
+      "discriminator": "spawnflags&2,skin1,loadedknight_pause",
+      "sha256": "d1ce2638ad4bfb3ffbf52f0df3b1b953a81491771c41afa70f3e1f8cb594c961"
+    },
+    "statue_death_knight": {
+      "source": "quakec_rogue/hknight.qc:478-579",
+      "classname": "monster_hell_knight",
+      "model": "progs/hknight.mdl",
+      "discriminator": "spawnflags&2,skin1,loadedhknight_pause",
+      "sha256": "f8e7ba44f52c14a159c0c49fd267e1202645859f5b3816ab1c164b0aed881e4e"
+    },
+    "rocket_ogre": {
+      "source": "quakec_mg3/monsters/ogre.qc:558-608",
+      "classname": "monster_ogre",
+      "model": "progs/ogre_rocket.mdl",
+      "discriminator": "projectile callback OgreFireRocket; initializer rewritesclassname",
+      "sha256": "5c0eb71bcc752df150af8e6026b806f351d9869ad9f8cdb51f79e0377854be86"
+    },
+    "gremlin": {
+      "source": "quakec_hipnotic/hipgrem.qc:1500-1541",
+      "classname": "monster_gremlin",
+      "model": "progs/grem.mdl",
+      "discriminator": "",
+      "sha256": "4a577fc899bb97011a181d7d05b03206a079f68e6a3f93c28d707ddddcdda929"
+    },
+    "blood_shambler": {
+      "source": "quakec_mg3/monsters/mg3_super_shambler.qc:565-620",
+      "classname": "monster_super_shambler",
+      "model": "progs/shambler_blood.mdl",
+      "discriminator": "th_die=supsham_die",
+      "sha256": "8cd5c69ea178aaa8250af711061f9ab9168d264fd5220c2008be6918ef60d2fc"
+    },
+    "hell_spawn": {
+      "source": "quakec_rogue/tarbaby.qc:286-365",
+      "classname": "monster_tarbaby",
+      "model": "progs/tarbaby.mdl",
+      "discriminator": "skin1or2 with th_pain=tbaby_mitosis orloadedcapability; RNGcanassignwithoutspawnflags",
+      "sha256": "6e6550ddbe29e1650523abe27da1fa8114e6c869c17e0a4bb816d138834b4954"
+    },
+    "wrath": {
+      "source": "quakec_rogue/wrath.qc:221-259",
+      "classname": "monster_wrath",
+      "model": "progs/wrath.mdl",
+      "discriminator": "",
+      "sha256": "747db0ad37af4f66289569a083f7e88b185e09086efd8529085753ad7f262f16"
+    },
+    "spike_mine": {
+      "source": "quakec_hipnotic/hipitems.qc:348-389",
+      "classname": "trap_spike_mine",
+      "model": "progs/spikmine.mdl",
+      "discriminator": "th_die=spikemine_Touch; doNOTuseplaceholdermonster_spikemine",
+      "sha256": "f5c8a1b0fda07c0448999cb0907d10bfee5d907cdd681496188d63ed8751deca"
+    },
+    "orb": {
+      "source": "quakec_mg3/monsters/mg3_orb.qc:423-461",
+      "classname": "monster_orb",
+      "model": "progs/teleporter_eye_blink.mdl",
+      "discriminator": "",
+      "sha256": "657888af730246c4330e7bdb6f484682a5229a5e1a6451fe72890ed172ba64e7"
+    },
+    "armagon": {
+      "source": "quakec_hipnotic/hiparma.qc:900-986",
+      "classname": "monster_armagon",
+      "model": "progs/armalegs.mdl",
+      "discriminator": "armabodyisseparateclasslesscosmeticentity",
+      "sha256": "6e9d03b5798985e4f73c4e66d85dde858b7d045e365878a6af43855f62344a82"
+    },
+    "hephaestus": {
+      "source": "quakec_rogue/lavaman.qc:420-503",
+      "classname": "monster_lava_man",
+      "model": "progs/lavaman.mdl",
+      "discriminator": "humanlabelconfirmedquakec_rogue/client.qc1988-1989",
+      "sha256": "64a8377ac63e19958487d322d865b006112cb0542c02c38c375ca572c0f1a3bf"
+    },
+    "chthon_vengeance": {
+      "source": "quakec_mg1/monsters/boss.qc:56,291-321",
+      "classname": "monster_boss",
+      "model": "progs/boss.mdl",
+      "discriminator": "spawnflags&2 and th_die=boss_death1; suppliedVengeancelabelnotliteralQCname",
+      "sha256": "798676282b71d544f8e9dda30406967551cf45c79dfa73a61670b814cb57266b"
+    }
+  },
+  "guardian_source": {
+    "source": "quakec_rogue/morph.qc:446-481,535-583",
+    "sha256": "e0d4c2d3c616fc1591659e24137c633a4863118ff586e906a80a5e3bdd5a5245",
+    "nativeclass": "monster_morph",
+    "owner_branch": "owner!=world: summonedchild; owner==world:originalboss",
+    "resolved_models": {
+      "Aztec": "progs/morph_az.mdl",
+      "Egyptian": "progs/morph_eg.mdl",
+      "Greek": "progs/morph_gr.mdl"
+    },
+    "original1997": "samebranchprogs/morph.qc445-480",
+    "qualification": "Supplied author captions visually verified: general Guardian covers all3forms; QuakesGuardian explicitlyGreek; Egyptian Guardian explicitlystrongboss; QuakesHighPriest explicitlyAztec. Native original-versus-child and3resolvedmodels verified fromofficialQC andoriginal1997QC. Installedexpansionruntimeunavailable.",
+    "author_art": {
+      "guardian": {
+        "path": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/codex-clipboard-06e39e9a-0c19-4afc-87b8-2551f07c00d1.png",
+        "sha256": "c77f92c7355276b8c4dd4b44d6ee3d03b46cfe90ffdb1309f6596224a7b7ee62"
+      },
+      "quakes_guardian": {
+        "path": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/codex-clipboard-a15a87e6-f10f-4dd2-9c93-38b0cee94218.png",
+        "sha256": "2361c80c604149f626ca82e6109b6e5adc98cd37f3cdea7d1e59366f88c30bd7"
+      },
+      "egyptian_guardian": {
+        "path": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/codex-clipboard-8cfdb554-b943-4eb2-828c-6e3c450ac136.png",
+        "sha256": "14d154bd13d10d6bf4125e11151c048235d658d576de53f437b11390ad922bf6"
+      },
+      "quakes_high_priest": {
+        "path": "/private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/codex-clipboard-6a7962be-6de3-4deb-9316-aef7968daa07.png",
+        "sha256": "1b9406472c5a827b00bd4a120c339f38273d330ef12aacd56cc2962a2f566a11"
+      }
+    },
+    "resolved_author_mapping": {
+      "guardian": "monster_morph, owner>0, model one of morph_az/morph_eg/morph_gr",
+      "quakes_guardian": "monster_morph,owner0,progs/morph_gr.mdl",
+      "egyptian_guardian": "monster_morph,owner0,progs/morph_eg.mdl",
+      "quakes_high_priest": "monster_morph,owner0,progs/morph_az.mdl"
+    }
+  },
+  "runtime_limit": "No installed expansion packs; source and classifier tests do not establish mission-pack engine support."
+}

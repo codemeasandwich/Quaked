@@ -51,6 +51,7 @@ let codeToQuakeKey = {}; // built in IN_Init to avoid circular dep in Deno
 */
 
 // Mouse state (replaces DirectInput mouse in in_win.c)
+import { R_BestiaryInputLocked } from './r_bestiary.js';
 let mouse_x = 0;
 let mouse_y = 0;
 let old_mouse_x = 0;
@@ -236,7 +237,7 @@ function GP_Poll( cmd ) {
 	GP_KeyEdge( K_RIGHTARROW, GP_ButtonDown( gp, 15 ), _gpPrev, 'dr' );
 
 	// Gameplay movement/look (skip in menus; skip when cmd is missing)
-	if ( ! cmd || key_dest !== key_game || cls.demoplayback ) return;
+	if ( ! cmd || key_dest !== key_game || cls.demoplayback || R_BestiaryInputLocked() ) return;
 
 	const moveDeadzone = 0.15;
 	const lookDeadzone = 0.12;
@@ -389,6 +390,7 @@ function handleKeyUp( event ) {
 }
 
 function handleMouseMove( event ) {
+	if ( R_BestiaryInputLocked() ) { mx_accum = my_accum = old_mouse_x = old_mouse_y = 0; return; }
 
 	if ( ! in_initialized || ! mouseactive ) return;
 
@@ -740,6 +742,7 @@ Returns accumulated movement since last call.
 ===========
 */
 export function IN_MouseMove() {
+	if ( R_BestiaryInputLocked() ) { mx_accum = my_accum = old_mouse_x = old_mouse_y = 0; return { mx: 0, my: 0 }; }
 
 	if ( ! mouseactive ) {
 
@@ -785,6 +788,7 @@ In the original, this called IN_MouseMove and IN_JoyMove.
 ===========
 */
 export function IN_Move( cmd ) {
+	if ( R_BestiaryInputLocked() ) { IN_MouseMove();Touch_GetLookDelta();GP_Poll(null);if(cmd)cmd.forwardmove=cmd.sidemove=cmd.upmove=0;return; }
 
 	let { mx, my } = IN_MouseMove();
 

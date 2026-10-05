@@ -1,3 +1,4 @@
+import { NEWER_ENABLED_FEATURES } from './newer_defaults.js';
 import { R_FlashlightRunSync } from './r_flashlightrun.js';
 import { R_DemoLoadingCancel } from './r_demoloading.js';
 // The title demo, half and half: the left of the screen in Newer Game, the right in the classic look, the same
@@ -10,7 +11,7 @@ import { R_DemoLoadingCancel } from './r_demoloading.js';
 // half. The scene is drawn again with Newer switched off (see R_ClassicOn in gl_rmain.js).
 
 import * as THREE from 'three';
-import { cvar_t, Cvar_Set, Cvar_VariableString } from './cvar.js';
+import { cvar_t, Cvar_Set, Cvar_SetTemporary, Cvar_RestoreTemporary, Cvar_VariableString } from './cvar.js';
 import { cls } from './client.js';
 import { R_PerfProfiling } from './r_perf.js';
 import { R_NewerTexturesRevert } from './r_newertextures.js';
@@ -19,10 +20,10 @@ export const r_demosplit = new cvar_t( 'r_demosplit', '1' );
 
 let saved = null;
 // The opening comparison demonstrates the Enhanced lighting/shadow defaults.
-const DEMO_FEATURES = [ 'r_flashlight', 'r_newer_lighting', 'r_newer_normals', 'r_newer_shadows', 'r_pointshadows', 'r_heightshadows' ];
+const DEMO_FEATURES = [ 'r_flashlight', ...NEWER_ENABLED_FEATURES ];
 function restoreFeatures() {
  if ( saved ) {
-  for ( const [ name, value ] of Object.entries( saved.features ) ) Cvar_Set( name, value );
+  for ( const name of Object.keys( saved.features ) ) Cvar_RestoreTemporary( name );
   R_FlashlightRunSync(); // an automatic demo restore is never a user switch-off
  }
 }
@@ -51,7 +52,7 @@ export function R_DemoSplitStart() {
 	for ( const name of DEMO_FEATURES ) {
 		const previous = Cvar_VariableString( name );
 		if ( previous === '' ) continue; // feature not registered by this renderer
-		saved.features[ name ] = previous; Cvar_Set( name, '1' );
+		saved.features[ name ] = previous; Cvar_SetTemporary( name, '1' );
 	}
 	Cvar_Set( 'r_hdr', '1' );
 	R_FlashlightRunSync(); // demo-on does not own the game's once-run message

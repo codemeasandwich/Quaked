@@ -4,6 +4,33 @@ import { rockUniforms, ROCK_CELLS, ROCK_BORDER, ROCK_SIDE, ROCK_TABLE_SIZE } fro
 // Compress view parallax at extreme depth to preserve readable native texture
 // grain. The full height still drives normals, cavities and directional shadows.
 export const ROCK_PROJECTION_CAP = .18;
+// A painted mid-tile fissure must not become a straight repeated course.
+// Distort sampling only, with a continuous seeded rest-space function. No
+// image edits, tile-local randomness, streamed-page dependency or time drift.
+export const rockBandWarpOn = { value: 1 };
+export const ROCK_BAND_WARP_GLSL = `
+varying vec2 vRockWarp;
+uniform float qrRockBandWarpOn;
+uniform float uClassic;
+float qrRockBandHash(ivec2 p,uint seed) {
+ uint h=uint(p.x)*73856093u ^ uint(p.y)*19349663u ^ seed;
+ h^=h>>16u;h*=2246822519u;h^=h>>13u;h*=3266489917u;h^=h>>16u;
+ return float(h&65535u)/65535.;
+}
+float qrRockBandNoise(vec2 p,uint seed) {
+ ivec2 i=ivec2(floor(p));vec2 f=fract(p);
+ f=f*f*f*(f*(f*6.-15.)+10.);
+ return mix(mix(qrRockBandHash(i,seed),qrRockBandHash(i+ivec2(1,0),seed),f.x),
+            mix(qrRockBandHash(i+ivec2(0,1),seed),qrRockBandHash(i+ivec2(1,1),seed),f.x),f.y);
+}
+vec2 qrRockBandOffset(vec2 p) {
+ if(vRockWarp.y<=0. || qrRockBandWarpOn<=0. || qrRockOn<=0. || uClassic>=.5)return vec2(0.);
+ uint seed=uint(floor(vRockWarp.x+.5));
+ vec2 a=vec2(qrRockBandNoise(p*2.,seed),qrRockBandNoise(p*2.,seed^1013u));
+ vec2 b=vec2(qrRockBandNoise(p*5.,seed^7919u),qrRockBandNoise(p*5.,seed^104729u));
+ return ((a-.5)*1.7+(b-.5)*.3)*vRockWarp.y*qrRockBandWarpOn*qrRockOn*(1.-uClassic);
+}
+`;
 export const ROCK_GLSL = `
 varying float vRockWall;
 varying vec2 vRockUv;
@@ -122,6 +149,7 @@ if(qrRockAmp>0.) {
 `;
 export function R_PatchRockShader( shader ) {
  Object.assign( shader.uniforms, rockUniforms );
- shader.vertexShader = 'attribute float rockWall;\nvarying float vRockWall;\nattribute vec2 rockUv;\nattribute vec2 rockInfo;\nattribute vec4 rockBounds;\nvarying vec2 vRockUv;\nvarying vec2 vRockInfo;\nvarying vec4 vRockBounds;\n' + shader.vertexShader.replace( '#include <begin_vertex>', '#include <begin_vertex>\nvRockWall=rockWall;vRockUv=rockUv;vRockInfo=rockInfo;vRockBounds=rockBounds;' );
- shader.fragmentShader = ROCK_GLSL + shader.fragmentShader;
+ shader.uniforms.qrRockBandWarpOn = rockBandWarpOn;
+ shader.vertexShader = 'attribute vec2 rockWarp;\nvarying vec2 vRockWarp;\nattribute float rockWall;\nvarying float vRockWall;\nattribute vec2 rockUv;\nattribute vec2 rockInfo;\nattribute vec4 rockBounds;\nvarying vec2 vRockUv;\nvarying vec2 vRockInfo;\nvarying vec4 vRockBounds;\n' + shader.vertexShader.replace( '#include <begin_vertex>', '#include <begin_vertex>\nvRockWarp=rockWarp;vRockWall=rockWall;vRockUv=rockUv;vRockInfo=rockInfo;vRockBounds=rockBounds;' );
+ shader.fragmentShader = ROCK_GLSL + ROCK_BAND_WARP_GLSL + shader.fragmentShader.replace( 'uniform float uClassic;', '' );
 }

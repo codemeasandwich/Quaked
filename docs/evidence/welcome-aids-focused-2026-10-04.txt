@@ -1,0 +1,364 @@
+PASS fresh welcome stays off for every skill; direct/restarted levels preserve the prior light without consuming the user notice
+PASS actual nativeSTART trigger_setskill builtin handles same-valueNormal, all four choices, repeated touches and rejects nonlocal/nonhub skill writes
+PASS F/console off prints the native corner status exactly once per run, travel/load preserves it and fresh/restart resets it; demo/classic are excluded
+PASS public Newer menu preserves shared lighting defaults while hub/level policy and flashlight checkbox use the run input path
+PASS actual attract demo temporaryON/restoreOFF cannot consume a resumed Hard run notice, but the next real user off still can
+RESULT 5/5 passed (tests/flashlight_run_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+
+ entered the game
+
+FLASHLIGHT_REAL_CORRIDOR_ENTRY [{"label":"EASY","actualEntryPosition":[232,816,8],"entryBounds":[[95,831,-25],[369,1217,-7]],"lateSkillBounds":[[175,1343,-17],[289,1361,113]],"flashlight":1,"nativeSkillStill":1},{"label":"NORMAL","actualEntryPosition":[544,816,8],"entryBounds":[[415,831,-25],[689,1233,-7]],"lateSkillBounds":[[487,1343,-17],[601,1361,113]],"flashlight":1,"nativeSkillStill":1}]
+PASS actual Easy and Normal floor-corridor entry activates light by native movement before skill selection or teleport
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+No duct tape in Mars
+
+No duct tape in Mars
+
+PASS manual off at corridor entry survives repeated native floor touches and the later native skill brush
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+40 entities inhibited
+
+Server spawned.
+
+
+ entered the game
+
+PASS corridor hook rejects nonlocal/dead players, multiplayer, wrong maps/classes/messages and Classic without suppressing QC execution
+RESULT 3/3 passed (tests/flashlight_corridor_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: start
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+meshing progs/eyes.mdl...
+
+16 tri 24 vert 53 cmd
+
+meshing progs/h_player.mdl...
+
+40 tri 64 vert 141 cmd
+
+meshing progs/gib1.mdl...
+
+28 tri 46 vert 102 cmd
+
+meshing progs/gib2.mdl...
+
+82 tri 138 vert 305 cmd
+
+meshing progs/gib3.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_nail.mdl...
+
+188 tri 312 vert 687 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/bolt.mdl...
+
+26 tri 52 vert 118 cmd
+
+meshing progs/bolt2.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/bolt3.mdl...
+
+26 tri 40 vert 88 cmd
+
+meshing progs/lavaball.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/missile.mdl...
+
+58 tri 100 vert 222 cmd
+
+meshing progs/grenade.mdl...
+
+14 tri 24 vert 54 cmd
+
+meshing progs/spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/s_spike.mdl...
+
+4 tri 8 vert 19 cmd
+
+meshing progs/backpack.mdl...
+
+110 tri 160 vert 346 cmd
+
+meshing progs/zom_gib.mdl...
+
+20 tri 32 vert 71 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/zombie.mdl...
+
+347 tri 559 vert 1225 cmd
+
+meshing progs/h_zombie.mdl...
+
+49 tri 73 vert 159 cmd
+
+40 entities inhibited
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/g_nail.mdl...
+
+222 tri 370 vert 815 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+Server spawned.
+
+
+ entered the game
+
+NATIVE_CORRIDOR_BEFORE {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1352,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":0,"run":{"active":true,"map":"start","selectedSkill":null,"noticeShown":false,"on":false,"crosshair":false}}
+NATIVE_CORRIDOR_DIRECT {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1352,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":1,"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true,"crosshair":false}}
+NATIVE_CORRIDOR_LINKED {"server":"start","playerIndex":1,"playerClass":"player","playerFree":false,"playerSolid":3,"triggerIndex":22,"triggerClass":"trigger_setskill","message":"1","touch":429,"origin":[544,1329,48],"bounds":[[487,1343,-17],[601,1361,113]],"linked":true,"self":1,"other":0,"skill":1,"flashlight":1,"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true,"crosshair":false}}
+NATIVE_CORRIDOR_ALL {"value":0,"point":[232,1329,48],"startsolid":false,"allsolid":false,"actual":[232,1329,48],"bounds":[[175,1343,-17],[289,1361,113]],"run":{"active":true,"map":"start","selectedSkill":0,"noticeShown":false,"on":true,"crosshair":false},"flashlight":1}
+NATIVE_CORRIDOR_ALL {"value":1,"point":[544,1329,48],"startsolid":false,"allsolid":false,"actual":[544,1329,48],"bounds":[[487,1343,-17],[601,1361,113]],"run":{"active":true,"map":"start","selectedSkill":1,"noticeShown":false,"on":true,"crosshair":false},"flashlight":1}
+NATIVE_CORRIDOR_ALL {"value":2,"point":[864,1329,48],"startsolid":false,"allsolid":false,"actual":[864,1329,48],"bounds":[[807,1343,-17],[921,1361,113]],"run":{"active":true,"map":"start","selectedSkill":2,"noticeShown":false,"on":false,"crosshair":false},"flashlight":0}
+NATIVE_CORRIDOR_ALL {"value":3,"point":[988,1951,-16],"startsolid":false,"allsolid":false,"actual":[988,1951,-16],"bounds":[[951,1919,-97],[1025,1937,65]],"run":{"active":true,"map":"start","selectedSkill":3,"noticeShown":false,"on":false,"crosshair":false},"flashlight":0}
+PASS real spawned START player and native QC corridor activate flashlight through both public direct touch and actual linked collision dispatch
+RESULT 1/1 passed (tests/flashlight_native_touch_test.js)
+Added packfile pak0.pak (339 files)\n
+NEWER_MENU_START_BASELINE {"action":"map","map":"start","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"}
+PASS archived disabled rock and power-ups plus other disabled enhancements are restored by public Newer Game before actual map command dispatch
+NEWER_LEVEL_SELECT_BASELINE {"newer":{"action":"map","map":"e1m2","hdr":"1","features":{"r_newer_lighting":"1","r_newer_normals":"1","r_newer_shadows":"1","r_pointshadows":"1","r_heightshadows":"1","r_rockfield":"1","r_powerups":"1","r_newer_weapons":"1","r_newer_textures":"1","r_newer_water":"1","r_newer_enemies":"1","r_newer_portals":"1","r_newer_hud":"1","r_decals":"1","r_lerpmodels":"1","r_newer_variety":"1"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":1,"textureReady":1,"textureFallback":0,"archivedRock":"1","archivedPowerups":"1"},"classic":{"action":"map","map":"e1m1","hdr":"0","features":{"r_newer_lighting":"0","r_newer_normals":"0","r_newer_shadows":"0","r_pointshadows":"0","r_heightshadows":"0","r_rockfield":"0.4","r_powerups":"0","r_newer_weapons":"0","r_newer_textures":"0","r_newer_water":"0","r_newer_enemies":"0","r_newer_portals":"0","r_newer_hud":"0","r_decals":"0","r_lerpmodels":"2","r_newer_variety":"0"},"preserved":{"r_water_look":"3","r_pillars":"0.23","r_cloudspeed":"0.37","r_heathaze":"0.42","r_mist":"0.31","r_reflect":"0.28","r_flashlight":"0"},"skill":"2","fieldOn":0,"textureReady":0,"textureFallback":1,"archivedRock":"0.4","archivedPowerups":"0"}}
+PASS public Newer Level Select restores the same literal sixteen-feature baseline while both Classic entry paths preserve choices
+PASS opening or canceling menus does not reset settings and real in-session feature toggles remain effective until an explicit new launch
+PASS attract comparison temporarily enables the full baseline and restores exact preferences, while explicit Newer launch survives later demo cleanup
+NEWER_DEMO_ARCHIVE_CUSTODY {"archived":["r_rockfield","r_powerups","r_heightshadows"],"persisted":{"r_rockfield":"0.375","r_powerups":"1","r_heightshadows":"0"}}
+PASS temporary attract defaults preserve actual archived storage and serialized configuration while normal configuration save/load still roundtrips
+PASS explicit same-value enable and explicit disable during a demo outlast scope restoration for archived and nonarchived features
+RESULT 6/6 passed (tests/newer_start_test.js)
+PASS load menu discovers and opens browser save slots
+RESULT 1/1 passed (tests/menu_save_test.js)
+TOTAL 16/16 passed

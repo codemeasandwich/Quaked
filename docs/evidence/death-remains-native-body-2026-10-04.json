@@ -1,0 +1,103 @@
+{
+  "alertedEnemies": 23,
+  "ammo": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "deaths": 1,
+  "drops": [
+    {
+      "ammo": "ammo_shells",
+      "amount": 25,
+      "id": "e1m1:1:22.838099999999976:165",
+      "pools": [
+        25,
+        0,
+        0,
+        0
+      ],
+      "position": [
+        164.91464233398438,
+        1008,
+        -219.96875
+      ],
+      "settled": true,
+      "weapon": 1
+    }
+  ],
+  "errors": [],
+  "glError": 0,
+  "head": [
+    480.03125,
+    -351.96875,
+    110.03125
+  ],
+  "health": 100,
+  "inspectionProtection": true,
+  "livingEnemies": 23,
+  "loading": {
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeDone": true,
+    "fadeStarted": true,
+    "fallbacks": [],
+    "frames": 27,
+    "mode": "welcome",
+    "pending": [],
+    "phase": "done",
+    "settledFrames": 3,
+    "world": "maps/e1m1.bsp"
+  },
+  "map": "e1m1",
+  "nativeCameraQuaternion": [
+    0.7071067811865475,
+    -2.1648902350543357e-17,
+    -2.1648902350543357e-17,
+    0.7071067811865476
+  ],
+  "position": [
+    480,
+    -352,
+    88.03125
+  ],
+  "powerups": 0,
+  "presentationQuaternion": [
+    -2.1648902350543357e-17,
+    0.7071067811865476,
+    -0.7071067811865475,
+    -6.494670327300596e-17
+  ],
+  "ready": true,
+  "remains": [
+    {
+      "frame": 60,
+      "model": "progs/player.mdl",
+      "nextthink": -1,
+      "position": [
+        128,
+        1008,
+        -199.96875
+      ],
+      "record": {
+        "born": 22.838099999999976,
+        "id": "e1m1:1:22.838099999999976:162",
+        "kind": "body",
+        "version": 1
+      },
+      "think": 247
+    }
+  ],
+  "sequence": null,
+  "signon": 4,
+  "time": 158.57249999999914,
+  "timers": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "weapon": 4096,
+  "weapons": []
+}

@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "tests": 78,
+  "files": [
+    {
+      "file": "tests/bestiary_test.js",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "file": "tests/bestiary_book_test.js",
+      "passed": 6,
+      "total": 6
+    },
+    {
+      "file": "tests/bestiary_native_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/menu_test.js",
+      "passed": 1,
+      "total": 1
+    },
+    {
+      "file": "tests/singleplayer_menu_test.js",
+      "passed": 2,
+      "total": 2
+    },
+    {
+      "file": "tests/touch_layout_test.js",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "file": "tests/demo_startup_loading_test.js",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "file": "tests/newer_start_test.js",
+      "passed": 6,
+      "total": 6
+    },
+    {
+      "file": "tests/model_lighting_test.js",
+      "passed": 7,
+      "total": 7
+    },
+    {
+      "file": "tests/respawn_native_test.js",
+      "passed": 17,
+      "total": 17
+    },
+    {
+      "file": "tests/face_game_test.js",
+      "passed": 4,
+      "total": 4
+    },
+    {
+      "file": "tests/face_native_test.js",
+      "passed": 8,
+      "total": 8
+    }
+  ],
+  "log": "/private/tmp/quaked-bestiary-final-compatibility.log",
+  "sourceManifest": "/private/tmp/quaked-bestiary-final-source-sha256.json",
+  "productionOrTestChangedDuringRun": [],
+  "hashedFiles": 165,
+  "suppliedPages": 9,
+  "scope": "CPU public controller/book/native-host/material/menu compatibility. Native browser visibility and supplied-page visual acceptance are separate parent-owned receipts. Corrected portrait source test uses public bestiary marker; actual live capture is assigned by the existing post-frame shadow record, not an invented source.live property."
+}

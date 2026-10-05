@@ -1,0 +1,43 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "date": "2026-10-04",
+  "command": "QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs node tools/run_tests.mjs tests/bestiary_test.js tests/bestiary_book_test.js tests/bestiary_assets_test.js tests/bestiary_native_test.js tests/menu_test.js tests/singleplayer_menu_test.js tests/touch_layout_test.js tests/demo_startup_loading_test.js tests/newer_start_test.js tests/model_lighting_test.js",
+  "log": "/private/tmp/quaked-bestiary-contents-qualified.log",
+  "exitCode": 0,
+  "passed": 60,
+  "total": 60,
+  "results": [
+    "10/10 passed (tests/bestiary_test.js)",
+    "8/8 passed (tests/bestiary_book_test.js)",
+    "6/6 passed (tests/bestiary_assets_test.js)",
+    "4/4 passed (tests/bestiary_native_test.js)",
+    "1/1 passed (tests/menu_test.js)",
+    "2/2 passed (tests/singleplayer_menu_test.js)",
+    "5/5 passed (tests/touch_layout_test.js)",
+    "11/11 passed (tests/demo_startup_loading_test.js)",
+    "6/6 passed (tests/newer_start_test.js)",
+    "7/7 passed (tests/model_lighting_test.js)"
+  ],
+  "sourceManifest": "/private/tmp/quaked-bestiary-contents-source-sha256.json",
+  "hashCount": 174,
+  "sourceOrTestModifiedAfterGateStarted": [],
+  "artCopyProof": "/private/tmp/quaked-bestiary-contents-art-proof.json",
+  "priorFailures": [
+    {
+      "log": "/private/tmp/quaked-bestiary-contents-initial.log",
+      "result": "58/60",
+      "cause": "Test omission loop reinserted grunt as duplicate; pure journal test incorrectly skipped explicit reload. Runtime cross-tab loader passed."
+    },
+    {
+      "log": "/private/tmp/quaked-bestiary-contents-final.log",
+      "result": "50/50 executed, process exit1",
+      "cause": "Test correction introduced syntax error in state suite; not a passing full gate."
+    }
+  ],
+  "limits": [
+    "47-ID completion and artwork selection are verified public-state contracts; only19 encounter entries currently have native mappings, so remaining28 are not claimed discoverable in gameplay.",
+    "Mission-pack classifier verified against explicit researched inputs; no expansion PAK installed or expansion gameplay claimed.",
+    "Book uses production presentation in a real-canvas VM with controlled runtime endpoints; actual base-game native encounter integration tested separately.",
+    "Parent owns browser visual proof."
+  ]
+}

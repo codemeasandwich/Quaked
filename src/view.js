@@ -1,3 +1,6 @@
+import { R_PlayerSurfaceBlood } from './r_weapon_surface.js';
+import { R_FaceDamage } from './r_facegame.js';
+import { SV_RespawnView } from './sv_respawn.js';
 // Ported from: WinQuake/view.c -- player eye positioning
 
 import { PITCH, YAW, ROLL,
@@ -346,10 +349,12 @@ export function V_ParseDamage() {
 
 	const armor = MSG_ReadByte();
 	const blood = MSG_ReadByte();
+ if(blood>0)R_PlayerSurfaceBlood(blood);
 	// Use cached buffer to avoid per-call allocations (Golden Rule #4)
 	const from = _damage_from;
 	for ( let i = 0; i < 3; i ++ )
 		from[ i ] = MSG_ReadCoord();
+	R_FaceDamage( armor, blood, from, cl_simorg, cl_simangles );
 
 	let count = blood * 0.5 + armor * 0.5;
 	if ( count < 10 )
@@ -926,6 +931,17 @@ export function V_CalcRefdef() {
 
 	if ( Cvar_VariableValue( 'chase_active' ) !== 0 && _Chase_Update != null )
 		_Chase_Update();
+	// Apply after native death roll, punch, bob, bounds and chase. The camera
+	// follows the rigid head arc instead of the corpse/viewheight interpolation.
+	const respawn = SV_RespawnView();
+	if ( respawn ) {
+		VectorCopy( respawn.eye, r_refdef.vieworg );
+		VectorCopy( respawn.angles, r_refdef.viewangles );
+		VectorCopy( respawn.eye, view.origin );
+		VectorCopy( respawn.angles, view.angles );
+		view.angles[PITCH] = -respawn.angles[PITCH]; // native alias/viewmodel pitch convention
+		_oldz = playerorg[2];
+	}
 
 }
 

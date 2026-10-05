@@ -1,0 +1,33 @@
+PASS impact angle boundaries use five ordered poses and immediate expressions with adjacent-only reaction movement
+PASS two-hundred millisecond damage direction arbitration picks greatest damage and latest tie without delaying pain
+PASS direction holds one second; pain lasts point-two seconds and heavy shock uses actual health loss above twenty without small-hit refresh
+PASS idle glances are bounded eye-only events independent of movement and return through the front
+PASS focused firing requires two seconds of real fresh shot cadence, stops after point-three, and ignores attack without actual shots
+PASS reward grin lasts two seconds without recentering, powers coexist with each health band, and death freezes then respawn resets
+PASS reaction priorities override grin and focus while all expression deadlines continue independently
+PASS same-direction pellets do not restart adjacent steps and repeated rewards replace their deadline rather than queue
+PASS paused game time freezes reactions and pose progress; backward clocks reset old state safely
+PASS queued observations retain true impact windows and expired event deadlines without rewinding display time
+RESULT 10/10 passed (tests/face_state_test.js)
+PASS native damage packet uses impact-time predicted view orientation and immediate reaction, not later camera turns
+PASS actual clientdata and secret packets grin only for eligible post-signon pickups or discovery; ammo healing and routine kills do not
+PASS adapter requires genuine shot evidence and isolates demo reactions from the continuing live face
+PASS real clientdata death and respawn reset a hidden HUD before its next draw or damage event
+RESULT 4/4 passed (tests/face_game_test.js)
+PASS HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests
+PASS HUD image timeout/error resolves preload as native fallback and late images cannot populate lazy sprites
+PASS HUD missing and stalled indices settle preload without late catalog requests
+RESULT 3/3 passed (tests/hud_preload_test.js)
+PASS HUD portrait: pending layered artwork preserves existing native fallback priorities and ignores obsolete kill grin state
+PASS HUD portrait: ready donor layers use the real Draw_Pic path at native24px while Classic and HUD-off retain original sprites
+PASS HUD portrait: failed optional combination load retains native FACE_INVUL1 pixels at native size
+PASS HUD portrait: restore public fixture globals
+RESULT 4/4 passed (tests/hud_face_combo_test.js)
+PASS real face manifest starts every unique donor image once and settles only after the complete bounded batch
+PASS failed or timed-out donor sources settle as fallback and late callbacks cannot resurrect incomplete portraits
+PASS stalled or invalid face manifests settle and late manifest completion cannot start an image wave
+RESULT 3/3 passed (tests/player_face_preload_test.js)
+PASS terminal canonical-head failure preserves real native fallback priorities for every enhanced and Classic power combination
+PASS restore terminal face fallback fixture
+RESULT 2/2 passed (tests/player_face_failure_test.js)
+TOTAL 26/26 passed

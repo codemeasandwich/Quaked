@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-04",
+  "primary": "https://github.com/id-Software/quake-rerelease-qc",
+  "original_comparison": "https://github.com/maddes-b/QuakeC-releases/tree/rogue-original",
+  "files": {
+    "/private/tmp/quaked-official-rerelease-qc.zip": "4fde61899dce653391e2278d8f4863684d00b0e9a73323954ffce316b4c454fd",
+    "/private/tmp/quaked-original-rogue-qc.zip": "4b5cbd81a7b65846386c6e86add394b9a4156f9e97ee8ea2531205cd19d7f52c",
+    "/private/tmp/quaked-official-hipnotic-hipscrge.qc": "91a690ac186f81956af598a1a0141abd8853c1a1daa97be913ea70135989a15d",
+    "/private/tmp/quaked-official-rogue-eel.qc": "c222516d0220c35f78fb9edba12d1095564e72558995ad93f1ebfeadf7ae5319",
+    "/private/tmp/quaked-official-rogue-ogre.qc": "12ab985d8909aa8ec3243127b0c21204073bd8ad468d3239a824d4b8a37a404d"
+  },
+  "mappings": {
+    "centroid": {
+      "classname": "monster_scourge",
+      "model": "progs/scor.mdl",
+      "source": "quakec_hipnotic/hipscrge.qc:481-529"
+    },
+    "electric_eel": {
+      "classname": "monster_eel",
+      "model": "progs/eel2.mdl",
+      "source": "quakec_rogue/eel.qc:204-241"
+    },
+    "phantom_swordsman": {
+      "classname": "monster_sword",
+      "model": "progs/sword.mdl",
+      "source": "quakec_rogue/invis_sw.qc:164-204"
+    },
+    "multi_grenade_ogre": {
+      "classname": "monster_ogre",
+      "model": "progs/ogre.mdl",
+      "resolved_spawnflags_bit": 2,
+      "skin": 1,
+      "source": "quakec_rogue/ogre.qc:71,142-157,463-521",
+      "notes": "QC can randomly set bit2 at spawn. Original1997 Rogue code agrees. Distinguish actual Rogue QC capability from unrelated customgame flags."
+    }
+  },
+  "unsupported_local": "common.rogue and hipnotic initialize false and are never assigned. main.js initializes empty argv and mounts base pak0 plus Newer packs. No installed mission-pack PAK found. This research does not prove runnable mission packs."
+}

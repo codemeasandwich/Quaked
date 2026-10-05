@@ -1,0 +1,66 @@
+{
+  "status": "PASS via source-identical constituent runs",
+  "distinctCases": 83,
+  "producerChangedAfterBroadGate": [],
+  "onlyChangedFile": [
+    "tests/respawn_native_test.js"
+  ],
+  "note": "The broad run remains82/83 FAILED due an obsolete whole-items ownership assertion. The corrected native inventory/HUD-bit contract was rerun17/17; every other file passed unchanged in the broad run. This is not a claim of one subsequent83-case invocation.",
+  "files": {
+    "tests/respawn_remains_test.js": {
+      "passed": 7,
+      "total": 7,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/respawn_native_test.js": {
+      "passed": 17,
+      "total": 17,
+      "receipt": "docs/evidence/death-remains-respawn-corrected-2026-10-04.txt"
+    },
+    "tests/face_native_test.js": {
+      "passed": 8,
+      "total": 8,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/model_surface_native_test.js": {
+      "passed": 5,
+      "total": 5,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/axe_powerups_test.js": {
+      "passed": 9,
+      "total": 9,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/bisect_test.js": {
+      "passed": 18,
+      "total": 18,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/welcome_aids_test.js": {
+      "passed": 5,
+      "total": 5,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/newer_start_test.js": {
+      "passed": 6,
+      "total": 6,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/flashlight_run_test.js": {
+      "passed": 5,
+      "total": 5,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    },
+    "tests/flashlight_corridor_test.js": {
+      "passed": 3,
+      "total": 3,
+      "receipt": "docs/evidence/death-remains-broad-2026-10-04.txt"
+    }
+  },
+  "sourceManifest": "docs/evidence/death-remains-verified-source-2026-10-04.sha256.json",
+  "nativeAssetHashes": {
+    "pak0.pak": "35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af",
+    "newer/maps.pak": "6a5e2ae85dcd094163ee059bdf417c0e8c02c750207de343fa518aa7df9b7e9c"
+  }
+}

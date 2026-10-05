@@ -641,6 +641,11 @@ export function Draw_Pic( x, y, pic ) {
 	if ( ! overlayCtx || ! pic ) return;
 
 	if ( pic.canvas ) {
+		if ( pic._layeredFace ) {
+			overlayCtx.imageSmoothingEnabled = false;
+			overlayCtx.drawImage( pic.canvas, x, y, pic.width, pic.height );
+			return;
+		}
 
 		// Newer Game: a higher resolution picture, at the sprite's own size, smoothed
 		const hi = pic._name !== undefined ? R_NewerHudCanvas( pic ) : null;

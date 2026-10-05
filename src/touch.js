@@ -13,7 +13,8 @@
 //
 // Dragging anywhere else on the screen looks around, and so does tilting the device (gyroscope).
 
-import { K_ESCAPE, Key_Event } from './keys.js';
+import { K_ESCAPE, K_ENTER, K_MOUSE1, Key_Event } from './keys.js';
+import { R_BestiaryInputLocked } from './r_bestiary.js';
 import { in_attack, in_jump } from './cl_input.js';
 import { S_UnlockAudio } from './snd_dma.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
@@ -77,6 +78,8 @@ let pauseButton = null;
 let weaponMenu = null;
 let weaponList = null;
 let weaponMenuOpen = false;
+const bestiaryTouches=new Map();
+export function Touch_WeaponMenuActive(){return weaponMenuOpen;}
 let probe = null; // measures the safe area insets
 let layout = null;
 
@@ -435,6 +438,9 @@ Touch event handlers
 function onTouchStart( e ) {
 
 	e.preventDefault();
+	if(R_BestiaryInputLocked()){
+		S_UnlockAudio();for(const touch of e.changedTouches){const key=e.currentTarget===fireButton?K_MOUSE1:K_ENTER;bestiaryTouches.set(touch.identifier,key);Key_Event(key,true);}return;
+	}
 
 	// Unlock audio on first user gesture
 	S_UnlockAudio();
@@ -530,6 +536,7 @@ function onTouchEnd( e ) {
 	e.preventDefault();
 
 	for ( const touch of e.changedTouches ) {
+		if(bestiaryTouches.has(touch.identifier)){Key_Event(bestiaryTouches.get(touch.identifier),false);bestiaryTouches.delete(touch.identifier);continue;}
 
 		const target = e.currentTarget;
 

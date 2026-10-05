@@ -1,4 +1,5 @@
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
+import { R_BestiaryPortraitLight } from './r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
 import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFrame, POWERUP_SHROUD_COMPOSITE_GLSL, POWERUP_COOKIE_GLSL } from './r_powerups.js';
 // HDR lighting pipeline: emissive surfaces, sun and light shafts, relighting
@@ -32,6 +33,8 @@ import { R_NormalMapFor } from './gl_normals.js';
 import { R_PatchRockShader, ROCK_PARALLAX_GLSL, ROCK_NORMAL_GLSL } from './r_rockshader.js';
 import { rockUniforms } from './r_rockfield.js';
 import { GL_SetForceLinear } from './glquake.js';
+import { R_AliasReceiverPass } from './r_newerskins.js';
+import { R_ActiveWeaponSurface } from './r_weapon_surface.js';
 import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_TeleportFx } from './r_teleportfx.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
@@ -39,7 +42,7 @@ import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashl
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, R_WaterProbeReadiness, WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures, r_newer_shadows } from './r_anim.js';
 import { R_DemonSurfaceData } from './r_demonrelief.js';
-import { PointShadowAtlas, POINT_SHADOW_GLSL, POINT_SHADOW_SLOTS, SPOT_WORLD_SHADOW_GLSL } from './r_pointshadows.js';
+import { PointShadowAtlas, POINT_SHADOW_GLSL, POINT_SHADOW_SLOTS, SPOT_WORLD_SHADOW_GLSL, NEAR_SUN_SHADOW_GLSL } from './r_pointshadows.js';
 import { r_heightshadows, heightShadowUniforms, R_HeightShadowFrame, R_HeightShadowScope, HEIGHT_SHADOW_GLSL, HEIGHT_MASK_DECODE_GLSL } from './r_heightshadows.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
@@ -395,7 +398,9 @@ function patchDetailShader( shader ) {
 		f = 'uniform sampler2D uCarveReference;\nuniform vec4 uCarveReferenceUV;\n' + f;
 
 	}
-	let parallax = rock ? ROCK_PARALLAX_GLSL + PARALLAX_GLSL.replace( 'vec2 pUv = vMapUv;', 'vec2 pUv = vMapUv + qrRockUvShift;' ).replace( 'vec2 uv = vMapUv;', 'vec2 uv = pUv;' ) : PARALLAX_GLSL;
+	let parallax = rock ? ROCK_PARALLAX_GLSL + PARALLAX_GLSL.replace( /vMapUv/g, 'qrRockBaseUv' )
+  .replace( 'vec2 pUv = qrRockBaseUv;', 'vec2 pUv = vMapUv + qrRockUvShift + qrRockBandOffset(qrRockQ);' )
+  .replace( 'vec2 uv = qrRockBaseUv;', 'vec2 uv = pUv;' ) : PARALLAX_GLSL;
 	if ( this.userData.realDisplacement ) parallax = '#ifdef USE_NORMALMAP\nvec2 pUv = vMapUv;\n#endif\n';
 	if ( relief && ! reference ) {
 
@@ -428,7 +433,7 @@ function patchDetailShader( shader ) {
  #endif
  `;
  f = 'uniform float uPigmentMinFootprint;\n' + f;
- f = f.replace( '#include <map_fragment>', pigment + parallax + THREE.ShaderChunk.map_fragment.replace( 'texture2D( map, vMapUv )', 'textureGrad( map, _pUv, qrPigmentDx*qrPigmentFilter.x, qrPigmentDy*qrPigmentFilter.y )' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
+ f = f.replace( '#include <map_fragment>', ( rock ? parallax + pigment.replace( /vMapUv/g, 'qrRockBaseUv' ) : pigment + parallax ) + THREE.ShaderChunk.map_fragment.replace( 'texture2D( map, vMapUv )', 'textureGrad( map, _pUv, qrPigmentDx*qrPigmentFilter.x, qrPigmentDy*qrPigmentFilter.y )' ) + '\nvec3 gDiffuse = diffuseColor.rgb;' );
 	// the relief is softer the nearer it is: close up, a wall should be smooth but for small flaws; the full
 	// depth is for looking at it from a little way off
 	f = f.replace( '#include <normal_fragment_maps>', THREE.ShaderChunk.normal_fragment_maps.replace( /vNormalMapUv/g, '_pUv' )
@@ -520,7 +525,13 @@ function patchDetailShader( shader ) {
  f = f.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n gHeightMask=qrHeightMask;' + ( this.transparent || this.depthWrite === false ? '\n gNormal=vec4(0.);' : '' ) );
 
 	shader.fragmentShader = f;
-	if ( rock ) R_PatchRockShader( shader );
+	if ( rock ) {
+  // Warped rest coordinates own the micro sampler metric, while macro POM
+  // still converts its physical view ray through the native map gradients.
+  shader.fragmentShader = shader.fragmentShader.replace( 'qrShadowDx=dFdx(vMapUv);qrShadowDy=dFdy(vMapUv);', 'vec2 qrRockBaseUv=vMapUv+qrRockBandOffset(vRockUv);\nqrShadowDx=dFdx(qrRockBaseUv);qrShadowDy=dFdy(qrRockBaseUv);' )
+   .replace( 'qrHeightGradients(-vViewPosition,vMapUv,hctx.normal', 'qrHeightGradients(-vViewPosition,qrRockBaseUv,hctx.normal' );
+  R_PatchRockShader( shader );
+ }
 
 }
 
@@ -595,7 +606,7 @@ export function R_RegisterDetail( material, diffuse ) {
 	material.onBeforeCompile = patchDetailShader;
 	material.customProgramCacheKey = function () {
 
-		return ( this.userData.rockField ? 'quake-detail-rock-v1' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-filtered-v2';
+		return ( this.userData.rockField ? 'quake-detail-rock-v2-bandwarp' : 'quake-detail' ) + ( this.normalMap?.userData.referenceHeight ? '-carved' : '' ) + ( this.normalMap?.userData.surfaceRelief ? '-sculpted:' + JSON.stringify( this.normalMap.userData.surfaceRelief ) : '' ) + ( this.userData.realDisplacement ? '-displaced' : '' ) + '-height-shadow-filtered-v2';
 
 	};
 
@@ -1402,7 +1413,7 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 	const dist2 = vx * vx + vy * vy + vz * vz;
 	// Receiver lighting must not change when the camera turns at one location.
 	// Visible flames receive priority over invisible baked-light helper entities.
-	const score = rankPower / ( dist2 + 6000 ) * ( source?.emitter === 1 ? 4 : 1 );
+	const score = rankPower / ( dist2 + 6000 ) * ( source?.bestiary ? 16 : source?.emitter === 1 ? 4 : 1 );
 
 	let slot = null;
 	if ( selectedCount < MAX_VOLUME_LIGHTS ) {
@@ -1425,7 +1436,7 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 	slot.pos[ 0 ] = vx; slot.pos[ 1 ] = vy; slot.pos[ 2 ] = vz;
 	slot.radius = radius;
 	// Pickup pulses change radiance, not receiver reach or shadow residency.
-	slot.range = 130 + 170 * Math.sqrt( source?.powerup ? rankPower : power );
+	slot.range = 130 + 170 * Math.sqrt( source?.powerup || source?.bestiary ? rankPower : power );
 	slot.color[ 0 ] = color[ 0 ] * power * LIGHT_GAIN;
 	slot.color[ 1 ] = color[ 1 ] * power * LIGHT_GAIN;
 	slot.color[ 2 ] = color[ 2 ] * power * LIGHT_GAIN;
@@ -1476,6 +1487,8 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 		const pulse = l.powerup === 'quad' ? R_PowerupPulse( time ) : 1;
 		consider( ...l.pos, l.color, l.power * pulse, l.radius, view, .65, l, l.power );
 	}
+	const portrait=R_BestiaryPortraitLight();
+	if(portrait&&portrait.fade>0)consider(...portrait.pos,portrait.color,portrait.power*portrait.fade,portrait.radius,view,0,portrait,portrait.power);
 
 	if ( dlights != null ) {
 
@@ -1489,7 +1502,7 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 			// an ordinary light fades over its last 0.3 s; a flash is only 0.1 s long and full strength until it is gone
 			const fade = Math.min( 1, ( d.die - time ) / ( muzzle ? 0.1 : 0.3 ) );
 			consider( d.origin[ 0 ], d.origin[ 1 ], d.origin[ 2 ], muzzle ? MUZZLE_COLOR : DLIGHT_COLOR,
-				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER * ( d.flashScale === undefined ? 1 : d.flashScale ) : 1 ), 40, view, muzzle ? 1 : 0 );
+				d.radius / 300 * 1.4 * fade * ( muzzle ? MUZZLE_POWER * ( d.flashScale === undefined ? 1 : d.flashScale ) : 1 ), 40, view, 1, d, d.radius / 300 * 1.4 * (muzzle?MUZZLE_POWER:1) );
 
 		}
 
@@ -1524,6 +1537,7 @@ precision highp float;
 #include <packing>
 ${POINT_SHADOW_GLSL}
 ${SPOT_WORLD_SHADOW_GLSL}
+${NEAR_SUN_SHADOW_GLSL}
 uniform sampler2D tDepth;
 ${HEIGHT_MASK_DECODE_GLSL}
 uniform sampler2D tSunShadow;
@@ -1818,6 +1832,7 @@ uniform float uEdge;
 uniform float uDropDensity;
 uniform float uDropBlood;
 uniform float uBumpLight;
+uniform float uActorWet;
 uniform float uLighting;
 uniform float uOffscreen;
 uniform float uTeleStretch;
@@ -1868,10 +1883,18 @@ float caustic( vec2 uv, float t ) {
 	return pow( abs( c ), 8.0 );
 }
 
+bool heldReceiver(vec4 packet){return packet.a < -2.;}
+float receiverDistance(vec4 packet){return heldReceiver(packet)?-packet.a-2.:packet.a;}
+bool actorReceiver(float tag){return tag>.05&&tag<.095;}
 vec3 viewPosAt( vec2 uv ) {
-	float d = texture2D( tDepth, uv ).x;
-	vec4 p = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );
-	return p.xyz / p.w;
+ vec4 packet=texture2D(tNormal,uv);
+ if(heldReceiver(packet)){
+  vec4 ray=uProjInv*vec4(uv*2.-1.,1.,1.);vec3 r=ray.xyz/ray.w;
+  return r*(receiverDistance(packet)/max(-r.z,1e-6));
+ }
+ float d=texture2D(tDepth,uv).x;
+ vec4 p=uProjInv*vec4(uv*2.-1.,d*2.-1.,1.);
+ return p.xyz/p.w;
 }
 
 ${POWERUP_SHROUD_COMPOSITE_GLSL}
@@ -1897,15 +1920,15 @@ vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
 	return uLightCol[ index ].rgb * uLightSurface * facing * fall * cookie;
 }
 
-float pointSurfaceVisibility( vec3 P, vec3 normal, int index ) {
+float pointSurfaceVisibility( vec3 P, vec3 normal, int index, float bias ) {
  // Hidden static columns/walls cannot leak light. Keep the existing screen
  // test as well, so current actors and moving brush doors retain occlusion.
  float worldVisibility = 1.0;
  if ( uPointShadowInfo[ index ].x >= 0.0 ) {
-  vec3 receiver = ( uViewInv * vec4( P + normal * 1.0, 1.0 ) ).xyz;
+  vec3 receiver = ( uViewInv * vec4( P + normal * bias, 1.0 ) ).xyz;
   vec3 source = ( uViewInv * vec4( uLightPos[ index ].xyz, 1.0 ) ).xyz;
   worldVisibility = pointWorldVisibility( receiver, source, index );
-  if ( worldVisibility <= 0.0 ) return 0.0;
+  return worldVisibility;
  }
  float visibility = 0.0;
 	for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
@@ -1921,16 +1944,18 @@ float pointSurfaceVisibility( vec3 P, vec3 normal, int index ) {
 	return worldVisibility * visibility * visibility;
 }
 
+float pointSurfaceVisibility(vec3 P,vec3 normal,int index){return pointSurfaceVisibility(P,normal,index,1.);}
+
 float receiverHeightVisibility(vec3 P,vec2 uv,int index) {
  vec4 packet=texture2D(tNormal,uv);
- if(packet.a<=0. || abs(packet.a+P.z)>.025*(-P.z)+1.)return 1.;
+ if(receiverDistance(packet)<=0. || abs(receiverDistance(packet)+P.z)>.025*(-P.z)+1.)return 1.;
  return heightMaskVisibility(uv,index);
 }
 float receiverRockContrast(vec3 P,vec2 uv,float shadowedWeight,float visibleWeight) {
  // A transparent foreground depth writer can leave the background's packed
  // mask intact. Only the matching solid receiver owns the rock-wall tag.
  vec4 packet=texture2D(tNormal,uv);
- if(packet.a<=0. || abs(packet.a+P.z)>.025*(-P.z)+1.)return 1.;
+ if(receiverDistance(packet)<=0. || abs(receiverDistance(packet)+P.z)>.025*(-P.z)+1.)return 1.;
  float gain=heightRockContrast(uv,shadowedWeight,visibleWeight);
  if(gain>1.){
   float existingLight=dot(texture2D(tScene,uv).rgb,vec3(.2126,.7152,.0722));
@@ -1944,7 +1969,7 @@ float receiverReliefNormalMix(vec2 uv,float baseMix){
  return tag==128u?.8:baseMix;
 }
 float pointHeightSurfaceVisibility(vec3 P,vec3 normal,int index,vec2 uv) {
- return pointSurfaceVisibility(P,normal,index)*receiverHeightVisibility(P,uv,index);
+ return pointSurfaceVisibility(P,normal,index,actorReceiver(texture2D(tAlbedo,uv).a)?.1:1.)*receiverHeightVisibility(P,uv,index);
 }
 
 // Reuse the solid receiver's cone, falloff and shadow test for reflected
@@ -1959,6 +1984,7 @@ float flashlightIrradiance( vec3 P, vec3 offsetNormal ) {
 	if ( cone <= 0.0 ) return 0.0;
 	float fall = 1.0 / ( 1.0 + distance * distance / ( 280.0 * 280.0 ) );
 	fall *= 1.0 - smoothstep( 800.0, 1500.0, distance );
+ if(uSpotWorldShadowOn>.5){vec3 receiver=(uViewInv*vec4(P+offsetNormal*.1,1.)).xyz;return fall*cone*spotWorldVisibility(receiver);}
 	float visibility = 0.0;
 	for ( int k = 0; k < RELIGHT_STEPS; k ++ ) {
 		float fraction = ( float( k ) + 0.5 ) / float( RELIGHT_STEPS );
@@ -1986,7 +2012,7 @@ vec3 depthSurfaceNormal( vec2 uv, vec3 P ) {
 }
 
 float surfaceCarveAO( float tag ) {
-	return tag > 0.05 && tag < 0.5 ? clamp( ( tag - 0.1 ) / 0.39, 0.08, 1.0 ) : 1.0;
+	return tag >= 0.1 && tag < 0.5 ? clamp( ( tag - 0.1 ) / 0.39, 0.08, 1.0 ) : 1.0;
 }
 
 // SSR reads the pre-deferred scene. Shade valid opaque reflected receivers
@@ -2248,6 +2274,7 @@ vec3 probeColor( int which, vec3 hp, vec3 rW ) {
 float reflectionDistanceAt( vec2 uv, bool below, vec4 lo, vec4 hi ) {
 	if ( any( lessThan( uv, vec2( 0.0 ) ) ) || any( greaterThan( uv, vec2( 1.0 ) ) ) ) return 1e6;
 	float depth = texture2D( tDepth, uv ).x;
+ if(heldReceiver(texture2D(tNormal,uv)))return 1e6;
 	if ( depth >= 0.99999 ) return 1e6;
 	vec4 decoded = uProjInv * vec4( uv * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0 );
 	vec3 P = decoded.xyz / decoded.w;
@@ -2279,7 +2306,7 @@ void main() {
 	}
 	// Heat haze: over a pool of lava the air shimmers, and whatever is seen through that column of air wobbles.  Each
 	// pool is a box from its surface up; the longer the sight line runs through it, the more the picture is bent.
-	if ( uLavaCount > 0 && uHeat > 0.0 ) {
+	if ( uLavaCount > 0 && uHeat > 0.0 && !heldReceiver(texture2D(tNormal,uvd)) ) {
 		float d0 = texture2D( tDepth, uvd ).x;
 		vec4 r0 = uProjInv * vec4( uvd * 2.0 - 1.0, 1.0, 1.0 );
 		vec3 dv0 = normalize( r0.xyz / r0.w );
@@ -2334,6 +2361,7 @@ void main() {
 	vec4 r = uProjInv * vec4( uvd * 2.0 - 1.0, 1.0, 1.0 );
 	vec3 dirV = normalize( r.xyz / r.w );
 	float D = d >= 0.99999 ? uMaxRay : min( - perspectiveDepthToViewZ( d, uNear, uFar ) / max( - dirV.z, 0.05 ), uMaxRay );
+ if(heldReceiver(texture2D(tNormal,uvd)))D=receiverDistance(texture2D(tNormal,uvd))/max(-dirV.z,.05);
 
 	vec3 c = scene;
 	vec3 Nw = vec3( 0.0, 0.0, 1.0 );
@@ -2343,12 +2371,12 @@ void main() {
 	// Direct light from the sun and the nearby lights, applied to what the
 	// classic lightmaps already put on the surface.
 	// alpha < 0 in the normal buffer marks a window onto another level: leave it as drawn
-	if ( d < 0.99999 && texture2D( tNormal, uvd ).a > - 0.5 ) {
+	if ( d < 0.99999 && ( texture2D( tNormal, uvd ).a > - 0.5 || heldReceiver(texture2D(tNormal,uvd)) ) ) {
 		vec3 P = viewPosAt( uvd );
 		vec3 N;
 		vec4 g = texture2D( tNormal, uvd );
 		float here = - P.z;
-		if ( here > 8.0 && abs( g.a - here ) < 0.025 * here + 1.0 ) {
+		if ( (heldReceiver(g)||actorReceiver(texture2D(tAlbedo,uvd).a)||here>8.0) && abs( receiverDistance(g) - here ) < 0.025 * here + 1.0 ) {
 			// the surface's own (normal-mapped) normal, written while it was drawn
 			N = normalize( g.rgb * 2.0 - 1.0 );
 			if ( dot( N, P ) > 0.0 ) N = - N;
@@ -2371,7 +2399,9 @@ void main() {
 		// full on (a white speckle) and the other side not at all (harsh contrast).
 		vec3 Ng = normalize( cross( dxG, dyG ) );
 		if ( dot( Ng, P ) > 0.0 ) Ng = - Ng;
-		vec3 Nl = normalize( mix( Ng, N, receiverReliefNormalMix(uvd,uBumpLight) ) );
+		bool actor=actorReceiver(texture2D(tAlbedo,uvd).a);
+  if(actor)Ng=N;
+  vec3 Nl = actor?N:normalize( mix( Ng, N, receiverReliefNormalMix(uvd,uBumpLight) ) );
 
 		if ( uLighting > 0.5 ) {
 			vec4 base = texture2D( tAlbedo, uvd );
@@ -2381,16 +2411,21 @@ void main() {
 			float carveAO = surfaceCarveAO( base.a );
 			vec3 relit = vec3( 0.0 );
    float visibleReliefWeight=0.,shadowedReliefWeight=0.;
-			vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
+			vec3 surfaceSpecular=vec3(0.);
+   float film=actor&&base.a>.07?uActorWet*uActorWet:0.;
+   vec3 V=normalize(-P);
+   vec3 flashAdd = vec3( 0.0 ); // light from a muzzle flash, which shows even on a dark surface
 
 			if ( uSunOn > 0.5 ) {
 				float ndl = max( dot( Nl, uSunDirV ), 0.0 );
 				if ( ndl > 0.0 ) {
 					vec3 pw = ( uViewInv * vec4( P + Ng * 1.5, 1.0 ) ).xyz;
-					vec3 incidentSun=uSunSurfaceCol*uSunSurface*ndl*sunLitSoft(pw)*skyCookieRGB(pw);
+					float sunVisibility=actor?min(sunLitSoft(pw),nearSunVisibility((uViewInv*vec4(P,1.)).xyz+Nw*.08)):sunLitSoft(pw);
+     vec3 incidentSun=uSunSurfaceCol*uSunSurface*ndl*sunVisibility*skyCookieRGB(pw);
      float sunWeight=dot(incidentSun,vec3(.2126,.7152,.0722));
      visibleReliefWeight+=sunWeight;shadowedReliefWeight+=sunWeight*rockSunVisibility;
      relit+=incidentSun*rockSunVisibility;
+     if(film>0.)surfaceSpecular+=uSunSurfaceCol*pow(max(dot(Nl,normalize(uSunDirV+V)),0.),48.)*sunVisibility*skyCookieRGB(pw)*rockSunVisibility;
 				}
 			}
 
@@ -2399,11 +2434,12 @@ void main() {
 				if ( i >= uCount ) break;
 				vec3 incident = pointSurfaceIncident( P, Nl, i );
 				if ( dot( incident, vec3( 1.0 ) ) <= 0.0 ) continue;
-				vec3 reached=incident*pointSurfaceVisibility(P,Ng,i);
+				vec3 reached=incident*pointSurfaceVisibility(P,Ng,i,actor?.1:1.);
     float localShadow=receiverHeightVisibility(P,uvd,i),weight=dot(reached,vec3(.2126,.7152,.0722));
     visibleReliefWeight+=weight;shadowedReliefWeight+=weight*localShadow;
     vec3 lightHere=reached*localShadow;
 				relit += lightHere;
+    if(film>0.)surfaceSpecular+=uLightCol[i].rgb*pow(max(dot(Nl,normalize(normalize(uLightPos[i].xyz-P)+V)),0.),48.)*pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow*pow(max(0.,1.-length(uLightPos[i].xyz-P)/uLightCol[i].a),2.);
 				flashAdd += lightHere * uLightAdd[ i ];
 			}
 
@@ -2417,6 +2453,7 @@ void main() {
      float beam=worldBeam*localShadow,weight=dot(uSpotCol,vec3(.2126,.7152,.0722))*sndl*worldBeam;
      visibleReliefWeight+=weight;shadowedReliefWeight+=weight*localShadow;
 					spot = uSpotCol * sndl * beam;
+     if(film>0.)surfaceSpecular+=uSpotCol*pow(max(dot(Nl,normalize(normalize(Ls)+V)),0.),48.)*beam;
 					spotMask = clamp( sndl * beam * 1.6, 0.0, 1.0 );
 				}
 			}
@@ -2479,7 +2516,7 @@ void main() {
 				bounce *= uBounce * 22.0 / float( BOUNCE_SAMPLES );
 			}
 			vec3 receiver = albedo * 0.55;
-			c = scene * ( 1.0 + relit * carveAO ) + ( bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 ) ) * carveAO;
+			c = actor ? scene + albedo*(relit*.55+spot*1.15+flashAdd*.3+bounce*.55)+surfaceSpecular*film*.16 : scene * ( 1.0 + relit * carveAO ) + ( bounce * receiver + relit * uLightFloor * albedo + spot * albedo * 1.15 + flashAdd * ( 0.3 * albedo + scene * 0.6 ) ) * carveAO;
 
    c*=receiverRockContrast(P,uvd,shadowedReliefWeight,visibleReliefWeight);
 
@@ -2493,7 +2530,7 @@ void main() {
 		} // advanced lighting
 
 		// corners and edges
-		if ( uEdge > 0.0 ) creaseK = creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
+		if ( uEdge > 0.0 && !actorReceiver(texture2D(tAlbedo,uvd).a) ) creaseK = creaseAccent( P, normalize( cross( dxG, dyG ) ) * ( dot( normalize( cross( dxG, dyG ) ), P ) > 0.0 ? - 1.0 : 1.0 ) );
 	}
 
 	// Liquids: water and slime take light out of any ray that travels through
@@ -2859,7 +2896,8 @@ function createPipeline() {
 		uSpotCone: { value: new THREE.Vector2( FLASHLIGHT_OUTER, FLASHLIGHT_INNER ) },
 		tHeightShadow: { value: null },
 		uHeightMasks: { value: 0 },
-		tSpotShadow: { value: null },
+		tNearSunShadow: { value: null }, uNearSunShadowVP: { value: new THREE.Matrix4() }, uNearSunShadowOn: { value: 0 },
+  tSpotShadow: { value: null },
 		uSpotShadowVP: { value: new THREE.Matrix4() },
 		uSpotShadowLightWorld: { value: new THREE.Vector4() },
 		uSpotWorldShadowOn: { value: 0 },
@@ -2935,7 +2973,7 @@ function createPipeline() {
 			uEdge: { value: 1 },
 			uDropDensity: { value: 0 },
 			uDropBlood: { value: 0 },
-			uBumpLight: { value: BUMP_LIGHT },
+			uActorWet: { value: 0 }, uBumpLight: { value: BUMP_LIGHT },
 			uLighting: lightingLook,
 			uOffscreen: { value: 0 },
 			uTeleStretch: { value: 0 },
@@ -3002,8 +3040,10 @@ function ensureTargets( width, height ) {
 
 	const heightMasks = glowActive && detailActive && r_heightshadows.value !== 0;
 	// Packed visibility is data: MSAA averaging would mix unrelated source bits.
-	const samples = heightMasks ? 0 : samplesFor( dyn.scale );
-	const count = glowActive ? ( heightMasks ? 4 : 3 ) : 2; // authored colour is consumed only by lighting
+	// Receiver classes and true view depth are data even with micro relief off.
+ // Multisample resolution would average a model packet with background.
+ const samples = 0;
+	const count = glowActive ? 4 : 2; // authored colour is consumed only by lighting
 	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples && gpu.hdr.textures.length === count ) return;
 
 	disposeTargets();
@@ -3075,25 +3115,31 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
  const beam = { ...liveBeam, pos: liveBeam.pos.slice(), dir: liveBeam.dir.slice() };
  heightFrameSnapshot = { camera, visframe, time, lights, beam, hasSkyView };
  const sh = gpu.shared, shadowSources = [];
- for ( const light of lights ) if ( light.source ) shadowSources.push( { source: light.source, position: light.source.pos,
-  far: 130 + 170 * Math.sqrt( light.source.power * ( light.source.emitter === 1 ? EMITTER_LIGHT_GAIN : 1 ) * 2.25 ) } );
- if ( glowActive && r_pointshadows.value !== 0 ) gpu.pointShadows.update( renderer, shadowSources );
+ for ( const light of lights ) if ( light.source ) shadowSources.push( { source: light.source, position: light.worldPos,
+  far: light.source.pos?130+170*Math.sqrt(light.source.power*(light.source.emitter===1?EMITTER_LIGHT_GAIN:1)*2.25):light.range*1.5, live: !light.source.pos||light.source.bestiary===true } );
+ shadowSources.sort((a,b)=>Number(b.live)-Number(a.live));
+ const spotCasters=[];
+ if(glowActive&&r_pointshadows.value!==0){
+  scene.updateMatrixWorld(true);
+  scene.traverse(object=>{
+   if(!object.isMesh||!object.visible)return;
+   const aliasOwner=object._quakeOwner,brushOwner=object.parent?._quakeOwner;
+   const physicalAlias=aliasOwner?._aliasMesh===object&&!/flame|bolt|eyes/.test(aliasOwner.model?.name||'');
+   const physicalBrush=brushOwner?._brushGroup===object.parent;
+   object.userData.quakePhysicalAlias=physicalAlias;
+   if((physicalAlias||object.userData.quakeAxePart===true)&&r_newer_shadows.value!==0||physicalBrush)spotCasters.push(object);
+  });
+  gpu.pointShadows.update(renderer,shadowSources,spotCasters);
+ }
+ gpu.pointShadows.updateSun(renderer,{on:glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:sunDirection,focus:camera.position.toArray()},spotCasters);
+ sh.tNearSunShadow.value=gpu.pointShadows.sunTexture;sh.uNearSunShadowVP.value.copy(gpu.pointShadows.sunVP);sh.uNearSunShadowOn.value=gpu.pointShadows.sunReady?1:0;
  sh.tPointShadow.value = gpu.pointShadows.target.texture;
  for ( let i = 0; i < MAX_VOLUME_LIGHTS; i ++ ) {
   const source = lights[ i ]?.source;
   const shadow = glowActive && r_pointshadows.value !== 0 && source ? gpu.pointShadows.lookup( source ) : null;
   sh.uPointShadowInfo.value[ i ].set( shadow?.ready ? shadow.slot : -1, shadow?.far || 0 );
  }
- const spotCasters=[];
  if(glowActive && beam.on && r_pointshadows.value!==0) {
-  scene.updateMatrixWorld(true);
-  scene.traverse(object=>{
-   if(!object.isMesh || object.userData.quakeViewmodel)return;
-   const aliasOwner=object._quakeOwner,brushOwner=object.parent?._quakeOwner;
-   const physicalAlias=aliasOwner?._aliasMesh===object && !/flame|bolt|eyes/.test(aliasOwner.model?.name||'');
-   const physicalBrush=brushOwner?._brushGroup===object.parent;
-   if((physicalAlias || object.userData.quakeAxePart===true) && r_newer_shadows.value!==0 || physicalBrush)spotCasters.push(object);
-  });
   gpu.pointShadows.updateSpot(renderer,{...beam,range:1500,outerCos:FLASHLIGHT_OUTER},spotCasters);
  } else gpu.pointShadows.clearSpot();
  sh.tSpotShadow.value=gpu.pointShadows.spotTexture;
@@ -3267,6 +3313,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
  }
  const frame = heightFrameSnapshot;
  selectedCount = frame?.lights.length || 0;
+ R_AliasReceiverPass(renderer,scene,camera,hdr);
  const fireFrame=R_DrawPowerupFire( renderer, scene, camera, hdr );
  R_PerfStage( 'power-up fire' );
 
@@ -3491,6 +3538,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	cm.uTeleChroma.value = tele.chroma;
 	cm.uDropAge.value = drops.age;
 	cm.uTime.value = time;
+ cm.uActorWet.value=R_ActiveWeaponSurface().wet;
 	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
 	cm.tScene.value = hdr.textures[ 0 ];
 	cm.tNormal.value = hdr.textures[ 1 ];

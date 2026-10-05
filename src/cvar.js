@@ -166,6 +166,33 @@ Cvar_Set
 */
 export function Cvar_Set( var_name, value ) {
 
+ Cvar_SetInternal( var_name, value, false );
+
+}
+
+// A presentation scope can borrow an archived value without saving it as the
+// player's choice. Both immediate storage and config serialization retain the
+// pre-scope value. An ordinary Set (including an unchanged explicit value)
+// ends the borrow and records the user's/new game's actual choice.
+export function Cvar_SetTemporary( var_name, value ) {
+
+ Cvar_SetInternal( var_name, value, true );
+
+}
+
+// Release only a value still owned by the presentation scope. An explicit
+// console/menu change has already cleared the borrow and must not be undone.
+export function Cvar_RestoreTemporary( var_name ) {
+
+ const variable = Cvar_FindVar( var_name );
+ if ( variable?._temporaryString === undefined ) return false;
+ Cvar_Set( var_name, variable._temporaryString );
+ return true;
+
+}
+
+function Cvar_SetInternal( var_name, value, temporary ) {
+
 	const _var = Cvar_FindVar( var_name );
 	if ( ! _var ) {
 
@@ -175,7 +202,11 @@ export function Cvar_Set( var_name, value ) {
 
 	}
 
-	const changed = ( _var.string !== value );
+	const borrowed = _var._temporaryString !== undefined;
+ if ( temporary ) {
+  if ( ! borrowed ) _var._temporaryString = _var.string;
+ } else delete _var._temporaryString;
+ const changed = ( _var.string !== value );
 
 	_var.string = value;
 	_var.value = Q_atof( _var.string );
@@ -191,7 +222,7 @@ export function Cvar_Set( var_name, value ) {
 	}
 
 	// Save to localStorage if this cvar should be archived
-	if ( _var.archive && changed ) {
+	if ( _var.archive && ! temporary && ( changed || borrowed ) ) {
 
 		Cvar_SaveToStorage( _var );
 
@@ -306,7 +337,7 @@ export function Cvar_WriteVariables() {
 	while ( _var ) {
 
 		if ( _var.archive )
-			lines.push( _var.name + ' "' + _var.string + '"\n' );
+			lines.push( _var.name + ' "' + ( _var._temporaryString ?? _var.string ) + '"\n' );
 		_var = _var.next;
 
 	}

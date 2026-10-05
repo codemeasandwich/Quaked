@@ -1,0 +1,162 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "date": "2026-10-04",
+  "command": "QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs node tools/run_tests.mjs tests/studio_logo_test.js tests/loading_screen_test.js tests/menu_test.js tests/singleplayer_menu_test.js tests/demo_startup_loading_test.js tests/newer_start_test.js tests/bestiary_book_test.js tests/bestiary_test.js tests/bestiary_assets_test.js tests/bestiary_native_test.js tests/touch_layout_test.js tests/model_lighting_test.js",
+  "log": "/private/tmp/quaked-studio-logo-book-reservation-final.log",
+  "exitCode": 0,
+  "passed": 78,
+  "total": 78,
+  "results": [
+    "5/5 passed (tests/studio_logo_test.js)",
+    "4/4 passed (tests/loading_screen_test.js)",
+    "1/1 passed (tests/menu_test.js)",
+    "2/2 passed (tests/singleplayer_menu_test.js)",
+    "11/11 passed (tests/demo_startup_loading_test.js)",
+    "6/6 passed (tests/newer_start_test.js)",
+    "9/9 passed (tests/bestiary_book_test.js)",
+    "14/14 passed (tests/bestiary_test.js)",
+    "8/8 passed (tests/bestiary_assets_test.js)",
+    "6/6 passed (tests/bestiary_native_test.js)",
+    "5/5 passed (tests/touch_layout_test.js)",
+    "7/7 passed (tests/model_lighting_test.js)"
+  ],
+  "sourceManifest": "/private/tmp/quaked-studio-logo-reserved-source-sha256.json",
+  "hashCount": 216,
+  "sourceOrTestModifiedAfterGateStarted": [],
+  "bookCollisionProof": [
+    {
+      "viewport": {
+        "width": 640,
+        "height": 480
+      },
+      "corner": {
+        "right": 578.4,
+        "bottom": 457.6
+      },
+      "logo": {
+        "x": 578.4,
+        "y": 418.4,
+        "w": 45.60000000000002,
+        "h": 45.60000000000002
+      },
+      "logoPixels": 1060,
+      "overwritten": 0
+    },
+    {
+      "viewport": {
+        "width": 800,
+        "height": 600
+      },
+      "corner": {
+        "right": 722.4,
+        "bottom": 565.6
+      },
+      "logo": {
+        "x": 722.4,
+        "y": 522.4,
+        "w": 61.60000000000002,
+        "h": 61.60000000000002
+      },
+      "logoPixels": 1943,
+      "overwritten": 0
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 780
+      },
+      "corner": {
+        "right": 335.625,
+        "bottom": 535.725
+      },
+      "logo": {
+        "x": 272,
+        "y": 692,
+        "w": 72,
+        "h": 72
+      },
+      "logoPixels": 2663,
+      "overwritten": 0
+    },
+    {
+      "viewport": {
+        "width": 640,
+        "height": 480,
+        "dprX": 2
+      },
+      "corner": {
+        "right": 578.4,
+        "bottom": 457.6
+      },
+      "logo": {
+        "x": 1156.8,
+        "y": 836.8,
+        "w": 91.20000000000005,
+        "h": 91.20000000000005
+      },
+      "logoPixels": 4246,
+      "overwritten": 0
+    },
+    {
+      "viewport": {
+        "width": 400,
+        "height": 860,
+        "dprX": 3,
+        "safeRight": 34,
+        "safeBottom": 40
+      },
+      "corner": {
+        "right": 373.125,
+        "bottom": 591.825
+      },
+      "logo": {
+        "x": 858,
+        "y": 2220,
+        "w": 240,
+        "h": 240
+      },
+      "logoPixels": 29415,
+      "overwritten": 0
+    },
+    {
+      "viewport": {
+        "width": 700,
+        "height": 400,
+        "dprX": 2,
+        "dprY": 3
+      },
+      "corner": {
+        "right": 672.4,
+        "bottom": 377.06666666666666
+      },
+      "logo": {
+        "x": 1344.8,
+        "y": 1117.1999999999998,
+        "w": 23.200000000000045,
+        "h": 34.80000000000007
+      },
+      "logoPixels": 416,
+      "overwritten": 0
+    }
+  ],
+  "oldPlacementPositiveControl": "640x480 unreserved96px logo rectangle[528,368,96,96] intersects actual book rendering; current reservation reduces to45.6px and overwrites0 book pixels.",
+  "studioAsset": {
+    "matchesOriginalBytes": true,
+    "sha256": "07ce5e05295e20d104cc337dffcb4eeee690471710fc64d71d9f8251717b4aec",
+    "dimensions": [
+      1254,
+      1254
+    ]
+  },
+  "retainedBeforeReservation": "/private/tmp/quaked-studio-logo-public-receipt.json (77/77 constituents before overlap fix; not final reserved-layout evidence)",
+  "coverage": [
+    "Actual shared R_BestiaryBookCorner plus production book draw on real Canvas2D at six wide/narrow/portrait/DPR/safe-area configurations.",
+    "Independent measured page rectangles and Canvas2D footer text extents do not overlap logo rectangle; actual before/after pixel readback confirms zero book pixel changes and nonempty logo.",
+    "Actual M_Draw body forwards reservation only for Bestiary; other active menus retain normal size and inactive/console states invoke no logo callback.",
+    "Loading SVG, image bytes, bounded decode/failure cache, state restoration, existing native/menu/startup/bestiary/model controls retained."
+  ],
+  "limits": [
+    "M_Draw body is evaluated under controlled surrounding menu callbacks; separate public navigation tests exercise real command/menu flow.",
+    "Canvas2D render/layout verification complements parent-owned actual browser screenshots; it does not itself claim browser visual acceptance."
+  ]
+}

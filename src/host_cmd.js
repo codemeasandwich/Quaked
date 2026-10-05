@@ -1,3 +1,5 @@
+import { weaponSurface } from './r_weapon_surface.js';
+import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from './sv_respawn.js';
 // Ported from: WinQuake/host_cmd.c
 
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from './sys.js';
@@ -35,7 +37,7 @@ import { SV_SeamlessPlacePlayer } from './sv_seamless.js';
 import { SV_ClientPrintf, SV_BroadcastPrintf,
 	Host_ShutdownServer, Host_Shutdown } from './host.js';
 import { COM_FindFile, COM_EnsureFile } from './pak.js';
-import { R_FlashlightNewRun } from './r_flashlightrun.js';
+import { R_FlashlightNewRun, R_FlashlightRunLoaded } from './r_flashlightrun.js';
 import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from './r_demoloading.js';
 import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from './r_shells.js';
 
@@ -1028,6 +1030,7 @@ function Host_Savegame_f() {
 	// A brace-free trailing comment keeps native version-5 saves compatible.
 	// In the same localStorage value, so gameplay and cosmetic state are atomic.
 	lines.push( SHELL_SAVE_PREFIX + btoa( JSON.stringify( R_ShellsSnapshot() ) ) );
+ lines.push('// weapon-surface '+btoa(JSON.stringify(weaponSurface.snapshot())));
 	const saveData = lines.join( '\n' ) + '\n';
 
 	try {
@@ -1145,6 +1148,7 @@ function Host_Loadgame_f() {
 	}
 
 	CL_Disconnect();
+	SV_RespawnClearTravel();
 
 	SV_SpawnServer( mapname );
 
@@ -1203,6 +1207,7 @@ function Host_Loadgame_f() {
 			const ent = EDICT_NUM( entnum );
 			ent.free = false;
 			ED_ParseEdict( data, ent );
+			SV_RespawnRestoreDropModel( ent );
 			SV_PinnedZombieSpawned( ent );
 
 			// link it into the bsp tree
@@ -1219,7 +1224,25 @@ function Host_Loadgame_f() {
 	}
 
 	sv.num_edicts = entnum;
+
+ // Loaded START may resume inside a floor-message or late skill brush. Such
+ // existing contact must not reapply automatic aids over a manual choice.
+ let occupiedSkill = null;
+ const loadedPlayer = sv.edicts[ 1 ];
+ if ( mapname === 'start' && svs.maxclients === 1 && loadedPlayer && ! loadedPlayer.free && loadedPlayer.v.health > 0 ) {
+  const trigger = sv.edicts.slice( 0, entnum ).find( e => e && ! e.free &&
+   ( PR_GetString(e.v.classname) === 'trigger_setskill' && /^[0-3]$/.test(PR_GetString(e.v.message)) || /^This hall selects (EASY|NORMAL|HARD) skill$/.test(PR_GetString(e.v.message)) && PR_GetString(e.v.classname) === 'trigger_multiple' ) &&
+   [0,1,2].every(k => loadedPlayer.v.absmax[k] >= e.v.absmin[k] && loadedPlayer.v.absmin[k] <= e.v.absmax[k]) );
+  if ( trigger ) {
+   const hall = /^This hall selects (EASY|NORMAL|HARD) skill$/.exec( PR_GetString(trigger.v.message) );
+   occupiedSkill = hall ? ['EASY','NORMAL','HARD'].indexOf(hall[1]) : Number(PR_GetString(trigger.v.message));
+  }
+ }
+ R_FlashlightRunLoaded( mapname, Cvar_VariableValue('r_hdr') !== 0, occupiedSkill );
 	sv.time = time;
+	const surfaceLine=allLines.find(line=>line.startsWith('// weapon-surface '));
+ try{if(surfaceLine&&!weaponSurface.restore(JSON.parse(atob(surfaceLine.slice('// weapon-surface '.length))),sv.time))Con_Printf('Saved weapon surface invalid; current coating retained.\n');}catch(error){Con_Printf('Saved weapon surface could not be restored: %s\n',String(error));}
+	weaponSurface.last=sv.time; // Rebase legacy/invalid sidecars too, never age against the previous map clock.
 	const shellLine = allLines.find( line => line.startsWith( SHELL_SAVE_PREFIX ) );
 	let shellData = null;
 	try { if ( shellLine ) shellData = JSON.parse( atob( shellLine.slice( SHELL_SAVE_PREFIX.length ) ) ); } catch ( error ) {
@@ -1389,6 +1412,7 @@ function Host_Spawn_f() {
 
 			PR_ExecuteProgram( pr_global_struct.PutClientInServer );
 
+			SV_RespawnFinishTravel( ent );
 			SV_RestorePowerups( ent );
 
 			// arriving through a seamless exit: keep the way you were moving

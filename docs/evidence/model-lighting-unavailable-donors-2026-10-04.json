@@ -1,0 +1,48 @@
+{
+  "unavailableDonorInputs": [
+    {
+      "path": "/Users/bri/SOURCE/Quaked/supernailgun.zip",
+      "exists": false,
+      "gitTracked": false
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/rocketlauncher.zip",
+      "exists": false,
+      "gitTracked": false
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/thuderbolt.zip",
+      "exists": false,
+      "gitTracked": false
+    },
+    {
+      "path": "/Users/bri/SOURCE/Quaked/supershotgun.zip",
+      "exists": false,
+      "gitTracked": false
+    }
+  ],
+  "affectedTests": [
+    {
+      "file": "tests/weapons_test.js",
+      "case": "supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors",
+      "input": "supernailgun.zip"
+    },
+    {
+      "file": "tests/weapons_refinement_test.js",
+      "case": "refinement: rockets preserve donor orientation and dimensions with exactly a held-only 3-unit rearward offset",
+      "input": "rocketlauncher.zip"
+    },
+    {
+      "file": "tests/weapons_refinement_test.js",
+      "case": "refinement: original lightning body sampler and axis swap survive actual draw and material cloning",
+      "input": "thuderbolt.zip"
+    },
+    {
+      "file": "tests/weapons_refinement_test.js",
+      "case": "refinement: SSG barrel grading preserves original texture detail and wood; lightning wires become brown",
+      "input": "supershotgun.zip"
+    }
+  ],
+  "newerWeaponsChangedPaths": [],
+  "policy": "No archive restored and no test skipped by editing. Maintained renderer gate excludes the two donor-conversion test files. Initial71/78 remains a failed broad gate receipt."
+}

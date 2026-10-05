@@ -1,0 +1,275 @@
+{
+  "status": "FAIL",
+  "draws": 20,
+  "checks": [
+    {
+      "passed": true,
+      "name": "actual held receiver coverage",
+      "pixels": 1577,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "maximum": 0
+    },
+    {
+      "passed": true,
+      "name": "non-emissive held body remains dark without baked or dynamic light",
+      "pixels": 1577,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "maximum": 0
+    },
+    {
+      "passed": false,
+      "name": "compressed display depth retains actual model position and interpolated normal",
+      "samples": 91,
+      "depthError": 10.538229939879344,
+      "positionError": 12.07380777174649,
+      "normalError": 1.5242294046457354,
+      "glError": 0
+    },
+    {
+      "passed": false,
+      "name": "held body receives real red point lighting",
+      "pixels": 1577,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "maximum": 0
+    },
+    {
+      "passed": false,
+      "name": "held body receives real blue point lighting",
+      "pixels": 1577,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "maximum": 0
+    },
+    {
+      "passed": true,
+      "name": "physical blocker is outside the viewing frustum"
+    },
+    {
+      "passed": false,
+      "name": "off-screen world geometry shadows the real point source",
+      "lit": {
+        "pixels": 1577,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      },
+      "blocked": {
+        "pixels": 1577,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      },
+      "shadow": {
+        "maxSlots": 8,
+        "resident": 1,
+        "ready": 1,
+        "pending": 0,
+        "requested": 1,
+        "chunks": 3,
+        "triangles": 4,
+        "pointDynamicMeshes": 1,
+        "pointGeometryRevision": 11,
+        "captures": 3,
+        "faceRenders": 18,
+        "failedCaptures": 0,
+        "spotReady": false,
+        "spotCaptures": 0,
+        "spotRenders": 0,
+        "spotFailedCaptures": 0,
+        "spotError": null,
+        "spotDynamicMeshes": 0,
+        "sunReady": false,
+        "sunCaptures": 0,
+        "sunRenders": 0,
+        "sunFailedCaptures": 0,
+        "sunError": null,
+        "sunDynamicMeshes": 0,
+        "epoch": 7,
+        "error": null,
+        "disposed": false
+      }
+    },
+    {
+      "passed": false,
+      "name": "native pickup shares non-emissive colored-light contract",
+      "dark": {
+        "pixels": 1489,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      },
+      "lit": {
+        "pixels": 1489,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      }
+    },
+    {
+      "passed": false,
+      "name": "transparent actor albedo retains authored color coverage",
+      "samples": 0,
+      "maximumByteError": 0
+    },
+    {
+      "passed": false,
+      "name": "transparent physical alias repairs unblended packets without touching authored color0",
+      "metrics": {
+        "pixels": 0,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      },
+      "color0Changes": 0,
+      "oracle": {
+        "samples": 0,
+        "depthError": 0,
+        "positionError": 0,
+        "normalError": 0,
+        "glError": 0
+      }
+    },
+    {
+      "passed": false,
+      "name": "held body receives directional light",
+      "pixels": 1577,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "maximum": 0
+    },
+    {
+      "passed": false,
+      "name": "live explosion contributes its actual warm radiance",
+      "pixels": 1577,
+      "mean": [
+        0,
+        0,
+        0
+      ],
+      "maximum": 0
+    },
+    {
+      "passed": false,
+      "name": "explosion source uses real world shadow visibility",
+      "lit": {
+        "pixels": 1577,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      },
+      "blocked": {
+        "pixels": 1577,
+        "mean": [
+          0,
+          0,
+          0
+        ],
+        "maximum": 0
+      }
+    },
+    {
+      "passed": false,
+      "name": "actual cached held shader displays blood",
+      "changed": 0,
+      "maximum": 0,
+      "sum": 0
+    },
+    {
+      "passed": true,
+      "name": "world pickup never shares held coating",
+      "changed": 0,
+      "maximum": 0,
+      "sum": 0
+    },
+    {
+      "passed": true,
+      "name": "blood has no age-driven fading in actual shader",
+      "changed": 0,
+      "maximum": 0,
+      "sum": 0
+    },
+    {
+      "passed": true,
+      "name": "water restores original native pigment exactly",
+      "changed": 0,
+      "maximum": 0,
+      "sum": 0
+    },
+    {
+      "passed": false,
+      "name": "emerging film contributes actual lit specular response",
+      "changed": 0,
+      "maximum": 0,
+      "sum": 0
+    },
+    {
+      "passed": true,
+      "name": "natural drying restores exact dry appearance",
+      "changed": 0,
+      "maximum": 0,
+      "sum": 0
+    },
+    {
+      "passed": true,
+      "name": "native model positions and UVs remain unchanged",
+      "model": "held"
+    },
+    {
+      "passed": true,
+      "name": "native model positions and UVs remain unchanged",
+      "model": "pickup"
+    },
+    {
+      "passed": false,
+      "name": "actual alias and compositor programs compile without GL errors",
+      "errors": [
+        {
+          "program": "FRAGMENT shader texture image units count exceeds MAX_TEXTURE_IMAGE_UNITS(16)\n",
+          "vertex": "",
+          "fragment": ""
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "name": "real held callback restores default depth range"
+    }
+  ],
+  "scope": "Actual native held/pickup geometry and production scene/compositor; independent ray oracle. Actual point/explosion world occlusion, directional sunlight, persistent blood, water washing and wet drying. Dynamic actor/self-shadow topology and native save/load are separate coverage; this fixture does not claim those."
+}

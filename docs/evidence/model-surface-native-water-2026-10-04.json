@@ -1,0 +1,170 @@
+{
+  "assets": {
+    "failures": {},
+    "index": "ready",
+    "pending": [],
+    "preload": "ready",
+    "ready": [
+      "v_shot",
+      "v_shot2",
+      "g_shot",
+      "v_nail2",
+      "g_nail2",
+      "v_rock",
+      "g_rock",
+      "v_rock2",
+      "g_rock2",
+      "v_light",
+      "g_light",
+      "shell"
+    ],
+    "settled": true
+  },
+  "errors": [
+    "UnknownError: If you see this error we have a bug. Please report this bug to chromium."
+  ],
+  "eye": [
+    588.03125,
+    1008.03125,
+    -315.96875
+  ],
+  "eyeContents": -3,
+  "glError": 0,
+  "heldReceiver": {
+    "quakePlayerSurface": true,
+    "quakeViewmodel": true
+  },
+  "loading": {
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeDone": true,
+    "fadeStarted": true,
+    "fallbacks": [],
+    "frames": 19,
+    "mode": "welcome",
+    "pending": [],
+    "phase": "done",
+    "settledFrames": 3,
+    "world": "maps/e1m1.bsp"
+  },
+  "map": "e1m1",
+  "measure": null,
+  "position": [
+    588,
+    1008,
+    -338
+  ],
+  "ready": true,
+  "shadows": {
+    "captures": 15428,
+    "chunks": 229,
+    "disposed": false,
+    "epoch": 11,
+    "error": null,
+    "faceRenders": 92568,
+    "failedCaptures": 0,
+    "maxSlots": 8,
+    "pending": 0,
+    "pointDynamicMeshes": 38,
+    "pointGeometryRevision": 1939,
+    "ready": 8,
+    "requested": 8,
+    "resident": 8,
+    "spotCaptures": 22,
+    "spotDynamicMeshes": 0,
+    "spotError": null,
+    "spotFailedCaptures": 0,
+    "spotReady": false,
+    "spotRenders": 22,
+    "sunCaptures": 1932,
+    "sunDynamicMeshes": 38,
+    "sunError": null,
+    "sunFailedCaptures": 0,
+    "sunReady": true,
+    "sunRenders": 1932,
+    "triangles": 9614
+  },
+  "signon": 4,
+  "surface": {
+    "blood": 0,
+    "inWater": true,
+    "serial": 1,
+    "spots": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "version": 1,
+    "wet": 0
+  },
+  "weapon": "progs/v_shot.mdl"
+}

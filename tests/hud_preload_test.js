@@ -1,5 +1,8 @@
 // Public HUD preload/status uses the existing lazy sprite canvas cache. No game
 // or RAF loop is started; only fetch/image/deadline endpoints are controlled.
+import { readFileSync } from 'node:fs';
+const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
+const faceSources=new Set(faceManifest.assets.map(a=>a.source).filter(Boolean));
 import { r_hdr } from '../src/gl_post.js';
 import { R_AnimSetClassicPass, r_newer_hud } from '../src/r_anim.js';
 import { Cvar_RegisterVariable, Cvar_FindVar } from '../src/cvar.js';
@@ -22,13 +25,13 @@ async function fixture( fn ) {
 }
 
 Deno.test( 'HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests', async () => fixture( async env => {
-	globalThis.fetch = async () => ( { ok: true, json: async () => ( { version: 7, sprites: { face1: 'face.webp', face2: 'face.webp', num_0: 'zero.webp' } } ) } );
+	globalThis.fetch = async path => ( { ok: true, json: async () => String(path).includes('/playerface/manifest.json')?faceManifest:({ version: 7, sprites: { face1: 'face.webp', face2: 'face.webp', num_0: 'zero.webp' } }) } );
 	const hud = await import( '../src/r_newerhud.js?preload-success' ), preload = hud.R_NewerHudPreload(); equal( hud.R_NewerHudPreload(), preload, 'preloadidempotent' );
-	await flush(); equal( env.images.length, 2, 'unique catalog images, no Sbar draws needed' ); equal( hud.R_NewerHudStatus().pending, 2, 'both images pending' ); check( ! hud.R_NewerHudStatus().settled, 'preload holds until images terminal' );
-	const pic = { _name: 'face1', width: 24, height: 24 }; equal( hud.R_NewerHudCanvas( pic ), null, 'lazy native until decoded' ); await flush(); equal( env.images.length, 2, 'lazy request shares existing preload promise' );
+	await flush(); equal( env.images.length, 2+faceSources.size, 'unique catalog plus all donor source images start without Sbar draws' ); equal( hud.R_NewerHudStatus().pending, 3, 'two catalog images and one shared face batch pending' ); check( ! hud.R_NewerHudStatus().settled, 'preload holds until images terminal' );
+	const pic = { _name: 'face1', width: 24, height: 24 }; equal( hud.R_NewerHudCanvas( pic ), null, 'lazy native until decoded' ); await flush(); equal( env.images.length, 2+faceSources.size, 'lazy request shares existing preload promise' );
 	for ( const image of env.images ) image.onload(); await preload; await flush();
-	const status = hud.R_NewerHudStatus(); equal( status.preload, 'ready', 'preload ready' ); check( status.settled && status.ready === 2 && status.pending === 0, 'alluniqueartready' );
-	const alias = { _name: 'face2' }; equal( hud.R_NewerHudCanvas( alias ), pic._hi, 'first unseen HUD lookup returns enhancedcanvas synchronously without a tick' ); equal( alias._hi, pic._hi, 'same file shares actualcanvas' ); equal( env.images.length, 2, 'firstlive lookup makesnoextraImage' ); equal( pic._hi.width, 96, 'actual decoded canvas retained' ); equal( env.timers.size, 0, 'success timers cleared' );
+	const status = hud.R_NewerHudStatus(); equal( status.preload, 'ready', 'preload ready' ); check( status.settled && status.ready === 2 && status.pending === 0 && status.face.state === 'ready', 'catalog and full donor face batch are ready' );
+	const alias = { _name: 'face2' }; equal( hud.R_NewerHudCanvas( alias ), pic._hi, 'first unseen HUD lookup returns enhancedcanvas synchronously without a tick' ); equal( alias._hi, pic._hi, 'same file shares actualcanvas' ); equal( env.images.length, 2+faceSources.size, 'firstlive lookup makesnoextraImage' ); equal( pic._hi.width, 96, 'actual decoded canvas retained' ); equal( env.timers.size, 0, 'success timers cleared' );
 	equal( hud.R_NewerHudCanvas( { _name: 'unknown' } ), null, 'unknownsprite terminalnative immediately' );
 	r_newer_hud.value = 0; equal( hud.R_NewerHudCanvas( pic ), null, 'preload never bypasses HUD option gate' );
 } ) );

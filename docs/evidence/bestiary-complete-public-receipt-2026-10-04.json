@@ -1,0 +1,57 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "date": "2026-10-04",
+  "command": "QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs node tools/run_tests.mjs tests/bestiary_test.js tests/bestiary_book_test.js tests/bestiary_assets_test.js tests/bestiary_native_test.js tests/menu_test.js tests/singleplayer_menu_test.js tests/touch_layout_test.js tests/demo_startup_loading_test.js tests/newer_start_test.js tests/model_lighting_test.js",
+  "log": "/private/tmp/quaked-bestiary-dedication-initial.log",
+  "exitCode": 0,
+  "passed": 69,
+  "total": 69,
+  "results": [
+    "14/14 passed (tests/bestiary_test.js)",
+    "9/9 passed (tests/bestiary_book_test.js)",
+    "8/8 passed (tests/bestiary_assets_test.js)",
+    "6/6 passed (tests/bestiary_native_test.js)",
+    "1/1 passed (tests/menu_test.js)",
+    "2/2 passed (tests/singleplayer_menu_test.js)",
+    "5/5 passed (tests/touch_layout_test.js)",
+    "11/11 passed (tests/demo_startup_loading_test.js)",
+    "6/6 passed (tests/newer_start_test.js)",
+    "7/7 passed (tests/model_lighting_test.js)"
+  ],
+  "sourceManifest": "/private/tmp/quaked-bestiary-complete-source-sha256.json",
+  "hashCount": 208,
+  "sourceOrTestModifiedAfterGateStarted": [],
+  "artCopyProof": "/private/tmp/quaked-bestiary-complete-art-proof.json",
+  "art": {
+    "canonical": 53,
+    "creatureFolios": 47,
+    "frontMatterAndVerso": 6,
+    "retainedOriginalEgyptianAlternate": 1,
+    "all54MatchOriginalSources": true,
+    "previousCanonicalOnlyIntentionalChange": "egyptian-guardian.png"
+  },
+  "nativeTransportProof": {
+    "QCDeathFieldOffset": 117,
+    "optionalInfectedFixtureOffset": 160,
+    "typedOwnerPlayerIndex": 1,
+    "stockOwner": 0,
+    "bothStatueRoutinesRequired": true,
+    "hellSpawnCapability": "tbaby_mitosis",
+    "capabilityCacheResetsToStock": true,
+    "originalBugFieldProbeRetained": true,
+    "scope": "Real base-game native edict/posed alias/LOS/local connection; metadata tuples/function-table names are controlled adapter inputs, never executed variant AI. Optional infected declaration aliases saved wait scalar and is restored."
+  },
+  "ownerMutation": {
+    "log": "/private/tmp/quaked-bestiary-native-owner-mutation.log",
+    "loader": "/private/tmp/quaked-bestiary-owner-mutation.mjs",
+    "mutation": "native owner replaced by0 during module loading only",
+    "exitCode": 1,
+    "result": "5/6; only new owner/capability bridge fails with quakes_guardian != guardian",
+    "workspaceSourceModified": false
+  },
+  "limits": [
+    "All47 entries have supplied artwork and researched classifier mappings; actual installed mission-pack/Dawn gameplay is not claimed. Native gameplay tests use shipped base-game PAK.",
+    "Full collection completion is a typed persistent-state contract; this test does not simulate physically discovering every expansion creature.",
+    "Real-canvas book tests invoke production presentation with controlled image/journal endpoints; browser visual verification is separate and parent-owned."
+  ]
+}

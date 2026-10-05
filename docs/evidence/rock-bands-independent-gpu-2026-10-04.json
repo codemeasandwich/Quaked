@@ -1,0 +1,240 @@
+{
+  "status": "PASS",
+  "draws": 26,
+  "scope": "Installed pigment/height, perspective subdivision and integer UV-phase identity; isolated warp has no resident macro pages. Does not claim fractional authored UV-phase jumps are identical.",
+  "checks": [
+    {
+      "passed": true,
+      "name": "Unwarped installed pigment stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Unwarped installed pigment real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Unwarped installed pigment GL0"
+    },
+    {
+      "passed": true,
+      "name": "Continuous warp, same installed pixels stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Continuous warp, same installed pixels real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Continuous warp, same installed pixels GL0"
+    },
+    {
+      "passed": true,
+      "name": "Identical repeat draw stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Identical repeat draw real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Identical repeat draw GL0"
+    },
+    {
+      "passed": true,
+      "name": "Split faces + integer UV phase stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Split faces + integer UV phase real visible surface coverage",
+      "covered": 97779
+    },
+    {
+      "passed": true,
+      "name": "Split faces + integer UV phase GL0"
+    },
+    {
+      "passed": true,
+      "name": "T junction + integer UV phase stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "T junction + integer UV phase real visible surface coverage",
+      "covered": 97779
+    },
+    {
+      "passed": true,
+      "name": "T junction + integer UV phase GL0"
+    },
+    {
+      "passed": true,
+      "name": "actual pigment sampling changes with warp enabled",
+      "mean": 10.92904324001736,
+      "maximum": 105,
+      "changedFraction": 0.6202663845486112
+    },
+    {
+      "passed": true,
+      "name": "repeat draw deterministic"
+    },
+    {
+      "passed": true,
+      "name": "split perspective shader continuity across native subdivisions",
+      "albedo": {
+        "mean": 0.00728126808449074,
+        "maximum": 32,
+        "changedFraction": 0.000006781684027777777
+      },
+      "normals": {
+        "mean": 0.00009892739493537832,
+        "maximum": 0.96044921875,
+        "changedFraction": 0.000006781684027777777
+      },
+      "screen": {
+        "mean": 0.0009200484664351852,
+        "maximum": 1,
+        "changedFraction": 0
+      },
+      "shadowMeanError": 0
+    },
+    {
+      "passed": true,
+      "name": "T junction perspective shader continuity across native subdivisions",
+      "albedo": {
+        "mean": 0.010674370659722222,
+        "maximum": 32,
+        "changedFraction": 0.000006781684027777777
+      },
+      "normals": {
+        "mean": 0.00013996912511410537,
+        "maximum": 0.96044921875,
+        "changedFraction": 0.000006781684027777777
+      },
+      "screen": {
+        "mean": 0.0013405128761574073,
+        "maximum": 1,
+        "changedFraction": 0
+      },
+      "shadowMeanError": 0
+    },
+    {
+      "passed": true,
+      "name": "Classic switch, warp off stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Classic switch, warp off real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Classic switch, warp off GL0"
+    },
+    {
+      "passed": true,
+      "name": "Classic switch, warp on stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Classic switch, warp on real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Classic switch, warp on GL0"
+    },
+    {
+      "passed": true,
+      "name": "Classic retains exact original sampling"
+    },
+    {
+      "passed": true,
+      "name": "Field disabled identity stable map/material seed"
+    },
+    {
+      "passed": true,
+      "name": "Field disabled identity real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Field disabled identity GL0"
+    },
+    {
+      "passed": true,
+      "name": "field-off retains exact unwarped pigment"
+    },
+    {
+      "passed": true,
+      "name": "Other material control off real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Other material control off GL0"
+    },
+    {
+      "passed": true,
+      "name": "Other material control on real visible surface coverage",
+      "covered": 97780
+    },
+    {
+      "passed": true,
+      "name": "Other material control on GL0"
+    },
+    {
+      "passed": true,
+      "name": "non-target material sampling remains exact"
+    },
+    {
+      "passed": true,
+      "name": "GPU helper deterministic at negative coordinates and midlines"
+    },
+    {
+      "passed": true,
+      "name": "warp stays within declared native-tile amplitude"
+    },
+    {
+      "passed": true,
+      "name": "no warp jump at negative tile boundaries or painted midtile lines",
+      "maxSeam": 0.000004563480615615845
+    },
+    {
+      "passed": true,
+      "name": "quintic noise retains smooth lattice-boundary slopes",
+      "maxSlope": 0.0005960464477539062
+    },
+    {
+      "passed": true,
+      "name": "same painted midtile fissure receives different continuous vertical offsets along the wall",
+      "nativeTileOffsetRange": 0.2824198976159096
+    },
+    {
+      "passed": true,
+      "name": "different seed changes deterministic warp"
+    },
+    {
+      "passed": true,
+      "name": "production GPU helper exact off identity qrRockBandWarpOn"
+    },
+    {
+      "passed": true,
+      "name": "production GPU helper exact off identity qrRockOn"
+    },
+    {
+      "passed": true,
+      "name": "production GPU helper exact off identity uClassic"
+    },
+    {
+      "passed": true,
+      "name": "original pigment height pixels and native geometry/UV attributes unchanged"
+    },
+    {
+      "passed": true,
+      "name": "all production material and helper shaders compile cleanly",
+      "errors": []
+    }
+  ]
+}

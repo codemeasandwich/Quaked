@@ -52,10 +52,23 @@
 		#loading-logo .logo-fill {
 			fill: #fff;
 		}
+		:root {
+			--studio-safe-right: env(safe-area-inset-right, 0px);
+			--studio-safe-bottom: env(safe-area-inset-bottom, 0px);
+		}
+		#loading-studio-logo {
+			position: absolute;
+			right: max(16px, env(safe-area-inset-right, 0px));
+			bottom: max(16px, env(safe-area-inset-bottom, 0px));
+			width: min(128px, 20vw, 20vh);
+			height: auto;
+			pointer-events: none;
+		}
 	</style>
 </head>
 <body>
 	<div id="loading" role="progressbar" aria-label="Loading Quaked" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+		<img id="loading-studio-logo" src="newer/ui/studio-logo.png" alt="Stronger Faster Better Harder Game Studio" onerror="this.hidden=true">
 		<!-- logo.svg's paths, cropped to the artwork; tests/loading_screen_test.js keeps them in step. -->
 		<svg id="loading-logo" viewBox="12.73 117.06 148.7 32.51" aria-hidden="true">
 			<defs>

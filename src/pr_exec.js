@@ -35,7 +35,9 @@ import {
 } from './pr_comp.js';
 import { ED_Print } from './pr_edict.js';
 import { ss_active } from './server.js';
+import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from './sv_respawn.js';
 import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from './sv_axecut.js';
+import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from './sv_faceevents.js';
 
 /*
 */
@@ -253,6 +255,7 @@ export function PR_RunError( error, ...args ) {
 
 	pr_depth = 0; // dump the stack so host_error can shutdown functions
 	SV_AxeReset();
+	SV_FaceReset();
 
 	PR_HostError( 'Program error' );
 
@@ -274,7 +277,9 @@ Returns the new program statement counter
 ====================
 */
 export function PR_EnterFunction( f ) {
+	pr_stack[ pr_depth ].face = SV_FaceFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].axe = SV_AxeFunctionEnter( f, pr_xfunction );
+	pr_stack[ pr_depth ].respawn = SV_RespawnFunctionEnter( f, pr_xfunction );
 
 	pr_stack[ pr_depth ].s = pr_xstatement;
 	pr_stack[ pr_depth ].f = pr_xfunction;
@@ -306,7 +311,7 @@ export function PR_EnterFunction( f ) {
 	}
 
 	PR_SetXFunction( f );
-	return f.first_statement - 1; // offset the s++
+	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? ( f.first_statement - 1 ); // offset the s++
 
 }
 
@@ -331,6 +336,10 @@ export function PR_LeaveFunction() {
 
 	// up stack
 	pr_depth --;
+	SV_FaceFunctionLeave( pr_stack[ pr_depth ].face );
+	pr_stack[ pr_depth ].face = null;
+	SV_RespawnFunctionLeave( pr_stack[ pr_depth ].respawn );
+	pr_stack[ pr_depth ].respawn = null;
 	SV_AxeFunctionLeave( pr_stack[ pr_depth ].axe );
 	pr_stack[ pr_depth ].axe = null;
 	PR_SetXFunction( pr_stack[ pr_depth ].f );

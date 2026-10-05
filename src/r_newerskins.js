@@ -20,6 +20,7 @@
 // have arrived the original skin is shown.
 
 import * as THREE from 'three';
+import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface } from './r_weapon_surface.js';
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
 import { cvar_t } from './cvar.js';
@@ -395,7 +396,8 @@ function materialFor( set, hasLighting ) {
 }
 
 const VERTEX_ADD = `
-	vQrView = - mvPosition.xyz;
+	vActorUv=uv;
+ vQrView = - mvPosition.xyz;
 	#ifdef USE_INSTANCING
 		mat3 qrInstance = mat3( instanceMatrix );
 		vec3 qrInstanceNormal = normal / vec3( dot( qrInstance[ 0 ], qrInstance[ 0 ] ), dot( qrInstance[ 1 ], qrInstance[ 1 ] ), dot( qrInstance[ 2 ], qrInstance[ 2 ] ) );
@@ -408,6 +410,10 @@ const FRAGMENT_HEAD = `
 layout(location = 1) out highp vec4 gNormal;
 layout(location = 2) out highp vec4 gAlbedo;
 layout(location = 3) out highp vec4 gHeightMask;
+varying vec2 vActorUv;
+#ifndef USE_MAP
+#define vMapUv vActorUv
+#endif
 varying vec3 vQrView;
 varying vec3 vQrNormal;
 uniform sampler2D qrNormal;
@@ -423,7 +429,8 @@ uniform float uLumaBoost;
 `;
 
 const FRAGMENT_NORMAL = `
-	vec3 qrAlbedo = diffuseColor.rgb; // before baked vertex lighting
+	float qrCoverage=diffuseColor.a;
+ vec3 qrAlbedo = diffuseColor.rgb; // before baked vertex lighting
 	vec3 qrN = normalize( vQrNormal );
 	if ( uHasNormal > 0.5 && uSkinDetail > 0.5 ) {
 		vec3 q0 = dFdx( - vQrView );
@@ -461,13 +468,16 @@ function patchShader( set ) {
 	return function ( shader ) {
 
 		Object.assign( shader.uniforms, set.uniforms, heightShadowUniforms );
+  const surface=this.userData.quakePlayerSurface===true;
+  shader.uniforms.uActorCoatOn={get value(){return surface&&R_IsNewer()?1:0;}};
+  shader.uniforms.uActorBloodSpots={get value(){return R_ActiveWeaponSurface().spots;}};
 		shader.uniforms.uHasSkinHeightShadow = { get value() { return set.uniforms.qrNormal.value?.userData.heightSource ? 1 : 0; } };
 
-		shader.vertexShader = 'varying vec3 vQrView;\nvarying vec3 vQrNormal;\n' +
+		shader.vertexShader = 'varying vec2 vActorUv;\nvarying vec3 vQrView;\nvarying vec3 vQrNormal;\n' +
 			shader.vertexShader.replace( '#include <project_vertex>', '#include <project_vertex>' + VERTEX_ADD );
 
-		shader.fragmentShader = FRAGMENT_HEAD + HEIGHT_SHADOW_GLSL + ( set.fragmentHead || '' ) + shader.fragmentShader
-			.replace( '#include <map_fragment>', '#include <map_fragment>' + ( set.mapFragment || '' ) + FRAGMENT_NORMAL )
+		shader.fragmentShader = FRAGMENT_HEAD + ACTOR_COAT_GLSL + HEIGHT_SHADOW_GLSL + ( set.fragmentHead || '' ) + shader.fragmentShader
+			.replace( '#include <map_fragment>', '#include <map_fragment>' + ( set.mapFragment || '' ) + ACTOR_COAT_MAP_GLSL + FRAGMENT_NORMAL )
 			.replace( '#include <opaque_fragment>', `
  vec4 skinHeightMask=vec4(1.);HeightShadowContext hctx;
  hctx.microUv=vMapUv;hctx.macroUv=vec2(0.);
@@ -477,9 +487,9 @@ function patchShader( set ) {
  hctx.microAmp=.015;hctx.macroAmp=0.;hctx.microMaxUv=.03;hctx.macroMaxUv=0.;
  hctx.microValid=uHasSkinHeightShadow*uSkinDetail*uSkinRelit;hctx.macroValid=0.;hctx.macroSun=1.;
  float unusedSkinDiffuseVisibility;skinHeightMask=qrHeightBuildMask(-vQrView,hctx,unusedSkinDiffuseVisibility);
- ${this.depthWrite === false ? 'skinHeightMask=vec4(0.);' : this.transparent ? 'skinHeightMask=vec4(1.);' : ''}
+ ${this.depthWrite === false ? 'skinHeightMask=vec4(0.);' : this.transparent && !this.userData.quakeViewmodel ? 'skinHeightMask=vec4(1.);' : ''}
  ` + FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
-			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.transparent || this.depthWrite === false ? 'vec4(0.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( qrAlbedo, 1.0 );\n gHeightMask=skinHeightMask;' );
+			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.depthWrite === false || this.transparent && !this.userData.quakeViewmodel ? 'vec4(0.)' : this.userData.quakeViewmodel ? 'vec4(qrN*0.5+0.5,-vQrView.z-2.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( '+(this.userData.quakeReceiverOnly?'qrAlbedo*qrCoverage':'qrAlbedo')+', '+(surface?'0.08':'0.06')+' );\n gHeightMask=skinHeightMask;' );
 
   shader.fragmentShader = shader.fragmentShader.replace( 'void main() {', `
  uniform float uHasSkinHeightShadow;
@@ -526,7 +536,7 @@ export function R_CloneAliasMaterial( material ) {
 
 	const clone = material.clone();
 	clone.onBeforeCompile = material.onBeforeCompile;
-	clone.customProgramCacheKey = material.customProgramCacheKey;
+	clone.customProgramCacheKey = function(){return material.customProgramCacheKey.call(this)+(this.userData.quakeViewmodel?'-held-receiver':'')+(this.userData.quakePlayerSurface?'-player-surface':'')+(this.userData.quakeReceiverOnly?'-receiver-data':'');};
 	clone._quakeNativeSkin = material._quakeNativeSkin;
 	return clone;
 
@@ -692,4 +702,36 @@ export function R_NewerSkinsMaterials( models ) {
 export function R_NewerSkinsTextures( models ) {
 	return [ ...new Set( preparedSets( models ).flatMap( set => [ set.diffuse, set.detailDiffuse, set.heightTexture,
 		...Object.values( set.uniforms ).map( uniform => uniform.value ) ] ).filter( texture => texture?.isTexture ) ) ];
+}
+
+// Translucent alias colour uses its authored blend, but normal/depth/albedo
+// packets are data, never blend coverage. Repair only these three attachments
+// with the same posed geometry; colour0 and source meshes remain untouched.
+const receiverScene=new THREE.Scene(),receiverCopies=new WeakMap();
+export function R_ReleaseAliasReceiver(source){
+ const record=receiverCopies.get(source);if(!record)return;
+ record.base.removeEventListener('dispose',record.listener);record.mesh.material.dispose();record.mesh.geometry=null;receiverCopies.delete(source);
+}
+export function R_AliasReceiverPass(renderer,scene,camera,target){
+ if(!renderer?.isWebGLRenderer||!target?.textures||target.textures.length!==4)return 0;
+ const borrowed=[];scene.updateMatrixWorld(true);
+ scene.traverse(source=>{
+  if(!source.isMesh||!source.visible||source._quakeOwner?._aliasMesh!==source||!source.material.transparent||source.material.depthWrite===false)return;
+  for(let p=source.parent;p;p=p.parent)if(!p.visible)return;
+  let record=receiverCopies.get(source);
+  if(!record||record.base!==source.material){
+   if(record){record.base.removeEventListener('dispose',record.listener);record.mesh.material.dispose();}
+   const base=source.material,material=R_CloneAliasMaterial(base);material.transparent=false;material.blending=THREE.NoBlending;material.userData.quakeReceiverOnly=true;
+   record={base,mesh:new THREE.Mesh(source.geometry,material),listener:null};record.mesh.matrixAutoUpdate=false;
+   record.listener=()=>{base.removeEventListener('dispose',record.listener);material.dispose();if(receiverCopies.get(source)===record)receiverCopies.delete(source);};
+   receiverCopies.set(source,record);base.addEventListener('dispose',record.listener);
+  }
+  const copy=record.mesh;copy.geometry=source.geometry;copy.matrix.copy(source.matrixWorld);copy.renderOrder=source.renderOrder;
+  const held=source.userData.quakeViewmodel===true;copy.onBeforeRender=r=>{if(held)r.getContext().depthRange(0,.3);};copy.onAfterRender=r=>{if(held)r.getContext().depthRange(0,1);};receiverScene.add(copy);borrowed.push(copy);
+ });
+ if(!borrowed.length)return 0;
+ const gl=renderer.getContext(),oldClear=renderer.autoClear,oldTarget=renderer.getRenderTarget(),range=gl.getParameter(gl.DEPTH_RANGE);
+ try{renderer.autoClear=false;renderer.setRenderTarget(target);gl.drawBuffers([gl.NONE,gl.COLOR_ATTACHMENT1,gl.COLOR_ATTACHMENT2,gl.COLOR_ATTACHMENT3]);renderer.render(receiverScene,camera);}
+ finally{gl.depthRange(range[0],range[1]);gl.drawBuffers([gl.COLOR_ATTACHMENT0,gl.COLOR_ATTACHMENT1,gl.COLOR_ATTACHMENT2,gl.COLOR_ATTACHMENT3]);for(const m of borrowed)receiverScene.remove(m);renderer.autoClear=oldClear;renderer.setRenderTarget(oldTarget);}
+ return borrowed.length;
 }

@@ -1,0 +1,19 @@
+PASS HUD image timeout/error resolves preload as native fallback and late images cannot populate lazy sprites
+PASS HUD missing and stalled indices settle preload without late catalog requests
+RESULT 2/3 passed (tests/hud_preload_test.js)
+FAIL HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests Error: preload ready: fallback != ready
+    at check (file:///Users/bri/SOURCE/Quaked/tests/hud_preload_test.js:6:58)
+    at equal (file:///Users/bri/SOURCE/Quaked/tests/hud_preload_test.js:7:34)
+    at file:///Users/bri/SOURCE/Quaked/tests/hud_preload_test.js:30:41
+    at async fixture (file:///Users/bri/SOURCE/Quaked/tests/hud_preload_test.js:19:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS HUD portrait: real indexed URLs load combination, ordinary face2 and Quad/grin art while public Draw_Pic keeps 24x24 layout
+PASS HUD portrait: failed optional combination load retains native FACE_INVUL1 pixels at native size
+PASS HUD portrait: restore public fixture globals
+RESULT 3/4 passed (tests/hud_face_combo_test.js)
+FAIL HUD portrait: all eight powerup combinations preserve native priorities except the enhanced Quad+Invulnerability combination Error: existing enhanced grin uses revised Quad artwork: face2 != face_quad
+    at check (file:///Users/bri/SOURCE/Quaked/tests/hud_face_combo_test.js:14:55)
+    at equal (file:///Users/bri/SOURCE/Quaked/tests/hud_face_combo_test.js:15:33)
+    at file:///Users/bri/SOURCE/Quaked/tests/hud_face_combo_test.js:82:24
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 5/7 passed

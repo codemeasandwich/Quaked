@@ -121,12 +121,15 @@ export function R_RockfieldChart( surface ) { return state?.bySurface.get( surfa
 export function R_RockfieldGeometry( geometry, surface ) {
  const chart = state?.bySurface.get( surface );
  if ( ! chart ) return false;
- const p = geometry.getAttribute( 'position' ), uv = new Float32Array( p.count * 2 ), info = new Float32Array( p.count * 2 ), bounds = new Float32Array( p.count * 4 ), wall = new Float32Array( p.count );
+ const p = geometry.getAttribute( 'position' ), uv = new Float32Array( p.count * 2 ), info = new Float32Array( p.count * 2 ), bounds = new Float32Array( p.count * 4 ), wall = new Float32Array( p.count ), warp = new Float32Array( p.count * 2 );
  for ( let i = 0; i < p.count; i ++ ) {
   uv.set( R_RockCoordinates( chart, [ p.getX( i ), p.getY( i ), p.getZ( i ) ] ), i * 2 );
   wall[ i ] = chart.profile === 'wall' ? 1 : 0;
+  // Stable map/material seed, independent of component order and page residency.
+  warp.set( [ chart.seed & 65535, chart.name === 'bricka2_2' && chart.profile === 'wall' ? .20 : 0 ], i * 2 );
   info.set( [ chart.id, chart.amplitude ], i * 2 ); bounds.set( chart.bounds, i * 4 );
  }
+ geometry.setAttribute( 'rockWarp', new THREE.BufferAttribute( warp, 2 ) );
  geometry.setAttribute( 'rockWall', new THREE.BufferAttribute( wall, 1 ) ); geometry.setAttribute( 'rockUv', new THREE.BufferAttribute( uv, 2 ) ); geometry.setAttribute( 'rockInfo', new THREE.BufferAttribute( info, 2 ) ); geometry.setAttribute( 'rockBounds', new THREE.BufferAttribute( bounds, 4 ) );
  return true;
 }

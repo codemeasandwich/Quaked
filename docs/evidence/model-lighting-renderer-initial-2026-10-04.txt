@@ -1,0 +1,337 @@
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+PASS actual opaque held clone keeps physical receiver metadata and only applies compressed display depth to the main camera
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+PASS native pickups, native player colormap and imported alias materials all carry real receiver data without sharing held coating state
+PASS enhanced alias CPU colors contain baked light only so a live explosion is not added as unshadowed grayscale before deferred lighting
+PASS surface blood persists indefinitely and water alone washes; wet film dries on unpaused game time
+PASS public native damage and blood particle events coat only enabled, nearby, visible surfaces
+PASS surface snapshot restores in place across clocks and malformed data is atomic; demos cannot wash live custody
+PASS public HDR target keeps normal and actor packets unmultisampled with all four attachments even when micro normals are disabled
+RESULT 7/7 passed (tests/model_lighting_test.js)
+Added packfile pak0.pak (339 files)\n
+E1M3_STATIC_SOURCE_SELECTION [{"classname":"light","position":[-752,-1576,176],"emitter":0},{"classname":"light","position":[-392,-1804,160],"emitter":0},{"classname":"light","position":[-616,-1600,248],"emitter":0},{"classname":"light","position":[-768,-1760,200],"emitter":0},{"classname":"light","position":[-920,-1744,176],"emitter":0},{"classname":"light_flame_large_yellow","position":[-620,-1958,256],"emitter":1},{"classname":"light","position":[-584,-1640,136],"emitter":0},{"classname":"light_flame_large_yellow","position":[-966,-1750,256],"emitter":1}]
+PASS actual E1M3 torches are collected at native air positions and physical-light selection is stable under yaw and flicker
+PASS all six radial face UV projections match independent ninety-degree cameras including negative directions and edge ties
+PASS public atlas captures one cube at DPR2, preserves renderer and borrowed geometry, recovers failure and bounds protected LRU slots
+E1M3_POINT_SHADOW_PIPELINE {"maxSlots":8,"resident":8,"ready":8,"pending":0,"requested":8,"chunks":263,"triangles":8765,"pointDynamicMeshes":0,"pointGeometryRevision":3,"captures":8,"faceRenders":48,"failedCaptures":0,"spotReady":false,"spotCaptures":0,"spotRenders":0,"spotFailedCaptures":0,"spotError":null,"spotDynamicMeshes":0,"sunReady":false,"sunCaptures":0,"sunRenders":0,"sunFailedCaptures":0,"sunError":null,"sunDynamicMeshes":0,"epoch":3,"error":null,"disposed":false}
+PASS actual post pipeline warms bounded native source shadows once, keeps camera/flicker keys and bypasses GPU jobs in Classic and disabled modes
+E1M3_LIGHT_PATHS {"fire":[-966,-1750,256],"cases":[{"eye":[-736,-1592,110],"blocked":false,"fraction":1,"impact":[0,0,0],"nearestCaster":410.6030635798794},{"eye":[-800,-1648,110],"blocked":true,"fraction":0.08197773921580549,"impact":[-952.3917236328125,-1741.6383056640625,244.03125],"nearestCaster":20.010955903314166},{"eye":[-608,-1600,174],"blocked":false,"fraction":1,"impact":[0,0,0],"nearestCaster":463.68498802675043},{"eye":[-656,-1264,142],"blocked":true,"fraction":0.4073431047182421,"impact":[-839.7236328125,-1552.03125,209.56288146972656],"nearestCaster":239.3989157826638}]}
+PASS native E1M3 source rays distinguish real hidden-world blockers and safe player cameras without altering BSP collision
+PASS full bounced lighting and doubled physical emitter radiance preserve native colour and light a zero-baked receiver through actual uniforms
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/player.mdl...
+
+408 tri 628 vert 1367 cmd
+
+PASS removed haze and source-dependent gloss/native weapon/player lighting stay black without sources while Classic keeps its original24/8 floors
+HAZE_REMOVED_REAL_LIGHTS {"openFog":0,"pointScatter":0,"sunScatter":0.000007700193518463214,"shaftFog":1.3,"spotOn":1,"positiveFloorSources":5}
+PASS removed broad haze leaves real edge sun shafts, default flashlight cone and point-surface illumination active
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+execing default.cfg
+
+execing default.cfg
+
+PASS actual Newer menu brightness midpoint/flashlight and mode-specific resets preserve Classic preferences and beam gates
+RESULT 9/9 passed (tests/emissive_lights_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS player skin translation accepts numeric alias model types
+RESULT 1/1 passed (tests/gl_rmisc_skin_test.js)
+Added packfile pak0.pak (339 files)\n
+meshing progs/soldier.mdl...
+
+328 tri 510 vert 1112 cmd
+
+meshing progs/shambler.mdl...
+
+284 tri 434 vert 944 cmd
+
+meshing progs/flame.mdl...
+
+122 tri 198 vert 435 cmd
+
+meshing progs/flame2.mdl...
+
+86 tri 140 vert 308 cmd
+
+meshing progs/armor.mdl...
+
+82 tri 142 vert 315 cmd
+
+PASS normal Classic renders exact native soldier/shambler and animated flame poses at default1 and legacy forced2 after an enhanced blend
+PASS forced2 split Classic uses exact native poses and R_SaveClassicScene restores enhanced attributes, buffers and state at the same tick
+PASS native one-pose armor movement uses game transforms in Classic, and split restoration returns the exact enhanced object display
+CLASSIC_NATIVE_ALIAS_MODELS [{"name":"progs/soldier.mdl","frames":114,"poses":114},{"name":"progs/shambler.mdl","frames":94,"poses":94},{"name":"progs/flame.mdl","frames":1,"poses":6},{"name":"progs/flame2.mdl","frames":2,"poses":17},{"name":"progs/armor.mdl","frames":1,"poses":1}]
+PASS native test models retain all source animation groups and shared geometry templates after Classic draws
+RESULT 4/4 passed (tests/classic_alias_frames_test.js)
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/g_nail2.mdl...
+
+248 tri 398 vert 872 cmd
+
+meshing progs/v_rock.mdl...
+
+54 tri 86 vert 189 cmd
+
+meshing progs/g_rock.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_rock2.mdl...
+
+124 tri 204 vert 449 cmd
+
+meshing progs/g_rock2.mdl...
+
+176 tri 292 vert 643 cmd
+
+meshing progs/v_light.mdl...
+
+172 tri 282 vert 620 cmd
+
+meshing progs/g_light.mdl...
+
+226 tri 382 vert 843 cmd
+
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all five pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 1/2 passed (tests/weapon_preload_test.js)
+Three-Quake Fatal Error: ReferenceError: COM_NewerFile is not defined
+    at main (main.js:50:22)
+FAIL weapon startup: ordinary app warms held/pickup art behind its first real console, retaining the readiness gate until downloads settle Error: ordinary boot starts real weapon downloads
+    at check (file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:15:55)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:58:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Missing weapon manifest
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?missing-preload-manifest:50:48
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:90:3
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:43
+			Sys_Init: noop, Sys_Printf: noop, Sys_Error: message => { throw new Error( message ); }, COM_InitArgv: noop,
+			                                                                ^
+
+Error: COM_NewerFile is not defined
+    at Sys_Error (file:///Users/bri/SOURCE/Quaked/tests/weapon_preload_test.js:43:68)
+    at main (main.js:174:3)
+
+Node.js v24.13.0
+meshing progs/v_axe.mdl...
+
+184 tri 288 vert 629 cmd
+
+meshing progs/v_shot.mdl...
+
+128 tri 190 vert 412 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+meshing progs/g_shot.mdl...
+
+84 tri 136 vert 299 cmd
+
+meshing progs/v_nail2.mdl...
+
+190 tri 302 vert 661 cmd
+
+meshing progs/v_shot2.mdl...
+
+152 tri 250 vert 550 cmd
+
+PASS classic draw and feature toggle restore native geometry and subsequent enhanced draws
+PASS parsed confirmed shotgun sounds emit one or two casings independently of audio and stale weapon stats
+PASS shell BSP sweeps hit the floor and wall with radius clearance
+PASS a casing fired at the original E1M1 spawn settles on the actual map collision hull
+PASS casings settle on BSP floors, exceed instance capacity, never expire, and survive map return and save restoration
+PASS weapon test texture and fetch stubs are restored
+RESULT 6/7 passed (tests/weapons_test.js)
+THREE.Material: parameter 'map' has value of undefined.
+FAIL supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/supernailgun.zip'
+    at Object.openSync (node:fs:559:18)
+    at readFileSync (node:fs:443:35)
+    at bytes (file:///Users/bri/SOURCE/Quaked/tests/weapons_test.js:22:33)
+    at uniformNailgunBounds (file:///Users/bri/SOURCE/Quaked/tests/weapons_test.js:126:15)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapons_test.js:269:130
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+THREE.Material: parameter 'map' has value of undefined.
+RESULT 0/3 passed (tests/weapons_refinement_test.js)
+FAIL refinement: rockets preserve donor orientation and dimensions with exactly a held-only 3-unit rearward offset Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/rocketlauncher.zip'
+    at Object.openSync (node:fs:559:18)
+    at readFileSync (node:fs:443:35)
+    at read (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:17:22)
+    at archive (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:27:16)
+    at donor (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:49:18)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:171:17
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+FAIL refinement: original lightning body sampler and axis swap survive actual draw and material cloning Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/thuderbolt.zip'
+    at Object.openSync (node:fs:559:18)
+    at readFileSync (node:fs:443:35)
+    at read (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:17:22)
+    at archive (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:27:16)
+    at donor (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:49:18)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:216:17
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+FAIL refinement: SSG barrel grading preserves original texture detail and wood; lightning wires become brown Error: ENOENT: no such file or directory, open '/Users/bri/SOURCE/Quaked/supershotgun.zip'
+    at Object.openSync (node:fs:559:18)
+    at readFileSync (node:fs:443:35)
+    at read (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:17:22)
+    at archive (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:27:16)
+    at donor (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:49:18)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:252:23
+    at withAssets (file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:158:9)
+    at async file:///Users/bri/SOURCE/Quaked/tests/weapons_refinement_test.js:249:2
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS review: raised and rotated brush floors intercept shell sweeps before the world floor
+PASS review: fired casing lands on a lift, follows translation and rotation, survives save, then falls when support disappears
+PASS review: brush rotation updates casing orientation even when its world position stays fixed
+PASS review: malformed saved support is discarded without losing the physical casing
+RESULT 4/5 passed (tests/weapon_review_test.js)
+FAIL review: cloned imported materials retain supplied maps and enhanced surface outputs Error: analytic normal written
+    at check (file:///Users/bri/SOURCE/Quaked/tests/weapon_review_test.js:14:55)
+    at file:///Users/bri/SOURCE/Quaked/tests/weapon_review_test.js:40:4
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+PASS coming out of water wets the view, and it dries
+PASS going under water washes the drops off, and none show while under
+PASS blood on the lens depends on how near and how big the burst was
+RESULT 3/3 passed (tests/r_screendrops_test.js)
+PASS ten independent visibility slots roundtrip exact3bit values and distinguish generic/rock-wall tags and reject invalid clear/sentinel without gamma interpretation
+PASS actual rock highlights preserve daylight and lift only dim reached light while ordinary and source-free fields stay neutral
+PASS public height frame preserves light slot ordering, copies mutable input and respects scope/default controls
+PASS actual height ray agrees with geometric ridge blockers for point/sun rays and keeps flat/unknown/overhead cases lit
+HEIGHT_SHADER_NATIVE_MODELS 29
+PASS real public world/alias compiler hooks attach only declared scalar heights, preserve colour and distinguish rocks/carving/real geometry/classic
+HEIGHT_INSTALLED_ASSETS native=21 replacement=12
+PASS installed21 native and12 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse
+PASS actual public decal, portal and level-view sky materials write all four HDR attachments; multiplicative decals preserve normal distances and every packed slot
+RESULT 7/8 passed (tests/height_shadows_test.js)
+FAIL public pre-HDR frame freezes exact source slots and4MRT packed masks, composition never recaptures/reselects, old callers and off modes remain compatible Error: actual point/sun/spot direct lighting consumes its own source visibility
+    at check (file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:13:50)
+    at file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:115:2
+    at fixture (file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:17:355)
+    at file:///Users/bri/SOURCE/Quaked/tests/height_shadows_test.js:107:175
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+SURFACE_FALLBACK_NORMAL_BOUNDS [{"size":32,"maxSlope":0.4847358271314817,"alphaMaxError":0},{"size":128,"maxSlope":0.49900264747630757,"alphaMaxError":0},{"size":256,"maxSlope":0.49900264747630757,"alphaMaxError":0}]
+PASS fallback normals bound painted-grain slope while preserving scalar heights, direction and crafted relief
+SURFACE_FILTER_MATERIAL_VARIANTS [{"kind":"ordinary","footprint":4},{"kind":"rock","footprint":4},{"kind":"carved","footprint":4},{"kind":"sculpted","footprint":4},{"kind":"physical","footprint":4},{"kind":"no-normal","footprint":4}]
+PASS actual world shader variants filter micro shadows with stable derivatives and isolate replacement pigment from native and Classic
+PASS real compositor keeps physical water IOR and total internal reflection while limiting apparent refraction travel
+RESULT 3/3 passed (tests/surface_filtering_test.js)
+PASS static point captures keep one-cube budget while live transient sources refresh every selected slot within eight cubes
+PASS rejected nonphysical effects do not spend the live-caster refresh budget
+PASS explicit physical alias tag admits transparent sorting but never decorative, hidden or non-depth-writing effects
+PASS current actor, brush and held geometry is borrowed without source callbacks, filtered and refreshed after movement or pose mutation
+PASS caster disappearance invalidates unselected cubes and failed captures cannot expose old poses; every exit restores render state
+PASS point and spot captures share current instance data without owning its geometry or instance buffers
+PASS near sun captures one focused orthographic view with current physical models, exact projection and ordinary callback-free depth
+PASS near sun rejects invalid scopes and hidden/effect casters, clears stale captures on failure and disposes only its own resources
+PASS shared shadow atlas point and focused sun captures clear only their nonoverlapping reserved rectangles
+RESULT 9/9 passed (tests/model_pointshadows_test.js)
+PASS public flashlight capture uses actual offset every frame, one physical512 view at DPR2, perspective projection and exact renderer restoration
+PASS live mesh and instanced casters are borrowed unchanged, ineligible effects skipped, capture failure cleans temporary clones and preserves renderer
+PASS off/invalid/unavailable/epoch/disposal flashlight captures clear readiness without rendering or modifying the existing point cube cache
+RESULT 3/3 passed (tests/flashlight_world_shadow_test.js)
+TOTAL 71/78 passed

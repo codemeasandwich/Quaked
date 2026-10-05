@@ -527,7 +527,7 @@ Deno.test( 'public material/compositor shader preserves UV conversion and ordina
 			check( ! normalBody.includes( 'qrProjectionAmp' ), 'normal/AO/sun shading does not use compressed projection amplitude' );
 			check( normalBody.includes( 'float h=qrRockHeight(qrRockQ)' ) && normalBody.includes( 'tile=floor(qrRockQ)' ), 'shading samples the same capped-ray hit' );
 			check( normalBody.includes( 'exp(-cavity*qrRockAmp*12.)' ) && normalBody.includes( '(qrRockHeight(p)-1.)*qrRockAmp' ), 'cavity and sun blocker depths retain full maximum amplitude' );
-			check( shader.fragmentShader.includes( 'qrRockUvShift=mapStep*hit' ) && shader.fragmentShader.includes( 'vec2 pUv = vMapUv + qrRockUvShift;' ), 'world ray reaches the original texture through its own gradients' );
+			check( shader.fragmentShader.includes( 'qrRockUvShift=mapStep*hit' ) && shader.fragmentShader.includes( 'vec2 pUv = vMapUv + qrRockUvShift + qrRockBandOffset(qrRockQ);' ), 'world ray reaches the original texture through its own gradients' );
 			check( !shader.fragmentShader.includes('conditioning') && !shader.fragmentShader.includes('qrRockClip'), 'neither projected-coordinate inversion nor BSP polygon clipping gates relief' );
 			check( shader.fragmentShader.includes('qrRockQ=vRockUv+stepUV*hit*limit') && shader.fragmentShader.includes('qrRockUvShift*=limit'), 'height and pigment accept the same bounded ray distance' );
 			check( shader.fragmentShader.includes( 'qrMacroNormal=normalize(qrFaceNormal-qrRockGradU*dx*qrRockAmp-qrRockGradV*dy*qrRockAmp)' ), 'height derivatives perturb actual normal' );

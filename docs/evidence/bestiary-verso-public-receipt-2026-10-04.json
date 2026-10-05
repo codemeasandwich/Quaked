@@ -1,0 +1,58 @@
+{
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "date": "2026-10-04",
+  "command": "QUAKED_THREE_MODULE=/private/tmp/quaked-three.module.mjs node tools/run_tests.mjs tests/bestiary_test.js tests/bestiary_book_test.js tests/bestiary_assets_test.js tests/bestiary_native_test.js tests/menu_test.js tests/singleplayer_menu_test.js tests/touch_layout_test.js tests/demo_startup_loading_test.js tests/newer_start_test.js tests/model_lighting_test.js",
+  "log": "/private/tmp/quaked-bestiary-verso-final-native-bridge.log",
+  "exitCode": 0,
+  "passed": 63,
+  "total": 63,
+  "results": [
+    "12/12 passed (tests/bestiary_test.js)",
+    "8/8 passed (tests/bestiary_book_test.js)",
+    "6/6 passed (tests/bestiary_assets_test.js)",
+    "5/5 passed (tests/bestiary_native_test.js)",
+    "1/1 passed (tests/menu_test.js)",
+    "2/2 passed (tests/singleplayer_menu_test.js)",
+    "5/5 passed (tests/touch_layout_test.js)",
+    "11/11 passed (tests/demo_startup_loading_test.js)",
+    "6/6 passed (tests/newer_start_test.js)",
+    "7/7 passed (tests/model_lighting_test.js)"
+  ],
+  "sourceManifest": "/private/tmp/quaked-bestiary-verso-native-bridge-source-sha256.json",
+  "hashCount": 184,
+  "sourceOrTestModifiedAfterGateStarted": [],
+  "artCopyProof": "/private/tmp/quaked-bestiary-verso-art-proof.json",
+  "nativeBridge": {
+    "actualLoadedThDieFieldOffset": 117,
+    "fixtureInfectedScalarOffset": 160,
+    "actualThDieConvenienceProperty": "undefined",
+    "positive": "Typed callback index and optional float resolve infected and Sleeper through public R_BestiaryObserve; native map reload removes fixture declarations and callback-name records.",
+    "scope": "Base-game native edict/mesh/LOS; optional infected declaration temporarily aliases saved wait field; function names appended without executing variant AI; Sleeper metadata staged on same visible edict. This proves field transport, not Dawn gameplay.",
+    "oldBugMutation": {
+      "log": "/private/tmp/quaked-bestiary-qc-bridge-mutation.log",
+      "exitCode": 1,
+      "result": "4/5; only native field bridge case fails",
+      "loader": "/private/tmp/quaked-bestiary-thdie-mutation.mjs",
+      "workspaceSourceModified": false
+    }
+  },
+  "retainedEarlierReceipts": [
+    {
+      "log": "/private/tmp/quaked-bestiary-verso-initial.log",
+      "result": "62/62 before native field-read fix; did not cover adapter regression"
+    },
+    {
+      "log": "/private/tmp/quaked-bestiary-qc-bridge-initial.log",
+      "result": "4/5; fixture reused presentation clock within admission cooldown; corrected to monotonic clock"
+    },
+    {
+      "log": "/private/tmp/quaked-bestiary-qc-bridge-corrected.log",
+      "result": "5/5"
+    }
+  ],
+  "limits": [
+    "All28 display entries have researched classifier-input mappings; native gameplay integration runs shipped base-game PAK, not unavailable mission-pack or Dawn gameplay.",
+    "Full47 completion state remains independently verified;19 collection-only identities have no encounter mappings.",
+    "Book presentation uses actual production module and real canvas with controlled runtime endpoints; browser verification parent-owned."
+  ]
+}

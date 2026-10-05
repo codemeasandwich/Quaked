@@ -1,0 +1,268 @@
+{
+  "checks": [
+    {
+      "errors": [],
+      "name": "all installed donor assets settled successfully",
+      "passed": true,
+      "pending": 0,
+      "settled": true,
+      "state": "ready"
+    },
+    {
+      "count": 2000,
+      "missing": [],
+      "name": "all2000 expression/pose/health/power combinations retain exact registered donor layers",
+      "nonempty": 2000,
+      "passed": true,
+      "wrong": []
+    },
+    {
+      "name": "eight power combinations coexist with the same injury stage",
+      "passed": true,
+      "power": [
+        {
+          "blood": true,
+          "complete": true,
+          "effect": null,
+          "invisible": false,
+          "mask": 0
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": "purple",
+          "invisible": false,
+          "mask": 1
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": "yellow",
+          "invisible": false,
+          "mask": 2
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": "mixed",
+          "invisible": false,
+          "mask": 3
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": null,
+          "invisible": true,
+          "mask": 4
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": "purple",
+          "invisible": true,
+          "mask": 5
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": "yellow",
+          "invisible": true,
+          "mask": 6
+        },
+        {
+          "blood": true,
+          "complete": true,
+          "effect": "mixed",
+          "invisible": true,
+          "mask": 7
+        }
+      ]
+    },
+    {
+      "gaze": [
+        {
+          "canonicalBase": true,
+          "changed": 82,
+          "expression": "normal",
+          "look": "eyes_left",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 82,
+          "expression": "normal",
+          "look": "eyes_right",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 82,
+          "expression": "pain",
+          "look": "eyes_left",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 82,
+          "expression": "pain",
+          "look": "eyes_right",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 91,
+          "expression": "mischievous_excited",
+          "look": "eyes_left",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 91,
+          "expression": "mischievous_excited",
+          "look": "eyes_right",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 124,
+          "expression": "shocked",
+          "look": "eyes_left",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 120,
+          "expression": "shocked",
+          "look": "eyes_right",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 35,
+          "expression": "focused_determined",
+          "look": "eyes_left",
+          "outside": 0
+        },
+        {
+          "canonicalBase": true,
+          "changed": 34,
+          "expression": "focused_determined",
+          "look": "eyes_right",
+          "outside": 0
+        }
+      ],
+      "name": "eye glances reuse canonical head and alter only registered eye openings (one-pixel antialias boundary)",
+      "passed": true
+    },
+    {
+      "blood": [
+        {
+          "changed": 11170,
+          "complete": true,
+          "exact": true,
+          "expression": "normal"
+        },
+        {
+          "changed": 10367,
+          "complete": true,
+          "exact": true,
+          "expression": "pain"
+        },
+        {
+          "changed": 9163,
+          "complete": true,
+          "exact": true,
+          "expression": "mischievous_excited"
+        },
+        {
+          "changed": 9138,
+          "complete": true,
+          "exact": true,
+          "expression": "shocked"
+        },
+        {
+          "changed": 9754,
+          "complete": true,
+          "exact": true,
+          "expression": "focused_determined"
+        }
+      ],
+      "name": "health selects one complete registered donor decal with no added blood generation",
+      "passed": true
+    },
+    {
+      "name": "real public controller drives neighboring poses and immediate shock independently of canvas",
+      "passed": true,
+      "samples": [
+        {
+          "dead": false,
+          "expression": "shocked",
+          "health": 3,
+          "healthPercent": 79,
+          "invisibility": false,
+          "invulnerability": false,
+          "look": "front",
+          "strength": false,
+          "target": "head_right"
+        },
+        {
+          "dead": false,
+          "expression": "shocked",
+          "health": 3,
+          "healthPercent": 79,
+          "invisibility": false,
+          "invulnerability": false,
+          "look": "eyes_right",
+          "strength": false,
+          "target": "head_right"
+        },
+        {
+          "dead": false,
+          "expression": "shocked",
+          "health": 3,
+          "healthPercent": 79,
+          "invisibility": false,
+          "invulnerability": false,
+          "look": "head_right",
+          "strength": false,
+          "target": "head_right"
+        },
+        {
+          "dead": false,
+          "expression": "shocked",
+          "health": 3,
+          "healthPercent": 79,
+          "invisibility": false,
+          "invulnerability": false,
+          "look": "head_right",
+          "strength": false,
+          "target": "head_right"
+        },
+        {
+          "dead": false,
+          "expression": "shocked",
+          "health": 3,
+          "healthPercent": 79,
+          "invisibility": false,
+          "invulnerability": false,
+          "look": "head_right",
+          "strength": false,
+          "target": "head_right"
+        },
+        {
+          "dead": false,
+          "expression": "normal",
+          "health": 3,
+          "healthPercent": 79,
+          "invisibility": false,
+          "invulnerability": false,
+          "look": "head_right",
+          "strength": false,
+          "target": "front"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual installed donor canvas composition and public controller. No game loop. Anatomical nose clearance is shown for owner visual review, not inferred from an invented pixel mask; native event adapter integration is separate.",
+  "status": "PASS"
+}

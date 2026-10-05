@@ -5,6 +5,7 @@ import { Con_Printf, Q_atoi, SZ_Clear,
 	MSG_WriteByte, MSG_WriteFloat, MSG_WriteShort, MSG_WriteAngle,
 	net_message } from './common.js';
 import { Cmd_AddCommand, Cmd_Argv } from './cmd.js';
+import { R_BestiaryInputLocked } from './r_bestiary.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { clc_move, clc_delta, PE_UPDATE_BACKUP } from './protocol.js';
 import { SIGNONS,
@@ -81,6 +82,12 @@ export const in_jump = new kbutton_t();
 export const in_attack = new kbutton_t();
 export const in_up = new kbutton_t();
 export const in_down = new kbutton_t();
+export function CL_SuspendGameButtons() {
+	for ( const button of [in_left,in_right,in_forward,in_back,in_lookup,in_lookdown,in_moveleft,in_moveright,in_strafe,in_speed,in_use,in_jump,in_attack,in_up,in_down] ) {
+		button.state=0;button.down[0]=button.down[1]=0;
+	}
+	in_impulse=0;
+}
 
 let in_impulse = 0;
 
@@ -315,6 +322,7 @@ export function CL_BaseMove( cmd ) {
 	if ( cls.signon !== SIGNONS )
 		return;
 
+	if ( R_BestiaryInputLocked() ) { cmd.forwardmove = cmd.sidemove = cmd.upmove = 0; cmd.viewangles.set( cl.viewangles ); return; }
 	CL_AdjustAngles();
 
 	cmd.viewangles.fill( 0 );
@@ -406,9 +414,10 @@ export function CL_SendMove( cmd ) {
 		bits |= 2;
 	in_jump.state &= ~2;
 
+	if ( R_BestiaryInputLocked() ) bits = 0;
 	MSG_WriteByte( buf, bits );
 
-	MSG_WriteByte( buf, in_impulse );
+	MSG_WriteByte( buf, R_BestiaryInputLocked() ? 0 : in_impulse );
 	in_impulse = 0;
 
 	//

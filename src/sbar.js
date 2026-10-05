@@ -1,4 +1,6 @@
 import { R_NewerGame, r_newer_hud } from './r_anim.js';
+import { R_PlayerFaceFrame } from './r_facegame.js';
+import { R_PlayerFacePreload, R_PlayerFaceCompose } from './r_playerface.js';
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
 
 import { Cmd_AddCommand } from './cmd.js';
@@ -74,6 +76,7 @@ let sb_face_quad = null;
 let sb_face_quad_invuln = null;
 let sb_face_invuln = null;
 let sb_face_invis_invuln = null;
+let layeredFaceKey = null, layeredFacePic = null, layeredFaceState = null;
 
 let sb_showscores = false;
 export let sb_lines = 0; // scan lines to draw
@@ -734,6 +737,16 @@ Returns the health face to display
 ===============
 */
 function Sbar_DrawFace() {
+	if ( R_NewerGame() && r_newer_hud.value !== 0 ) {
+		R_PlayerFacePreload();
+		const state = layeredFaceState || R_PlayerFaceFrame( _cl ), key = [ state.look, state.expression, state.health, state.strength, state.invulnerability, state.invisibility ].join( ':' );
+		if ( key !== layeredFaceKey || ! layeredFacePic ) {
+			const rendered = R_PlayerFaceCompose( state );
+			if ( rendered.complete ) { layeredFaceKey = key; layeredFacePic = { canvas: rendered.canvas, width: 24, height: 24, _layeredFace: true }; }
+			else { layeredFaceKey = null; layeredFacePic = null; }
+		}
+		if ( layeredFacePic ) { sb_updates = 0; Sbar_DrawPic( 112, 0, layeredFacePic ); return; }
+	}
 
 	// PGM 01/19/97 - team color drawing (rogue only) is not ported
 
@@ -772,14 +785,6 @@ function Sbar_DrawFace() {
 	if ( _cl.items & IT_INVULNERABILITY ) {
 
 		Sbar_DrawPic( 112, 0, sb_face_invuln );
-		return;
-
-	}
-
-	// Newer Game: the grin of someone who has just blown a monster apart (the evil face of the quad)
-	if ( R_NewerGame() && _cl.grintime !== undefined && _cl.time <= _cl.grintime && _cl.time > _cl.faceanimtime ) {
-
-		Sbar_DrawPic( 112, 0, sb_face_quad );
 		return;
 
 	}
@@ -824,6 +829,8 @@ Sbar_Draw
 ===============
 */
 export function Sbar_Draw() {
+	// Gaze/death timers continue even while the scoreboard hides the portrait.
+	layeredFaceState = R_NewerGame() && r_newer_hud.value !== 0 ? R_PlayerFaceFrame( _cl ) : null;
 
 	// Force redraw every frame — canvas overlay is cleared each frame
 	sb_updates = 0;
@@ -836,7 +843,7 @@ export function Sbar_Draw() {
 
 	}
 
-	if ( sb_showscores || _cl.stats[ STAT_HEALTH ] <= 0 ) {
+	if ( sb_showscores || _cl.stats[ STAT_HEALTH ] <= 0 && ! ( R_NewerGame() && r_newer_hud.value !== 0 ) ) {
 
 		Sbar_DrawPic( 0, 0, sb_scorebar );
 		Sbar_DrawScoreboard();

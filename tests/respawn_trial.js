@@ -1,0 +1,50 @@
+const controls=document.querySelector('section'),status=document.querySelector('#status'),errors=[];
+for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])controls.addEventListener(type,e=>e.stopPropagation());
+window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
+await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
+const {Cbuf_AddText}=await import('../src/cmd.js'),{sv,FL_GODMODE,FL_MONSTER}=await import('../src/server.js'),{cl,cls}=await import('../src/client.js');
+const progs=await import('../src/progs.js'),{PR_ExecuteProgram}=await import('../src/pr_exec.js'),{ED_FindFunction,GetEdictFieldValue}=await import('../src/pr_edict.js');
+const {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS}=await import('../src/world.js'),loading=await import('../src/r_demoloading.js'),split=await import('../src/r_demosplit.js'),keys=await import('../src/keys.js');
+const {renderer}=await import('../src/vid.js');
+const renderRuntime=await import('../src/gl_rmain.js');
+const {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo}=await import('../src/respawn_record.js');
+const {OFS_PARM0}=await import('../src/pr_comp.js');
+let ready=false,generation=0,lastDeath=null,lastAngles=null,previouslyActive=false;
+function call(name){const previous=progs.pr_global_struct.self;try{progs.pr_global_struct.self=progs.EDICT_TO_PROG(sv.edicts[1]);const f=ED_FindFunction(name);PR_ExecuteProgram(progs.pr_functions.indexOf(f));}finally{progs.pr_global_struct.self=previous;}}
+function field(e,n,value){const f=GetEdictFieldValue(e,n);if(f){if(value!==undefined)f.accessor.setFloat(f.ofs,value);return f.accessor.getFloat(f.ofs);}return 0;}
+function start(){ready=false;const old=sv.edicts?.[1],token=++generation;lastDeath=null;split.R_DemoSplitRelease(true);keys.set_key_dest(keys.key_game);Cbuf_AddText('disconnect\nmaxplayers 1\nr_hdr 1\nr_demosplit 0\nsv_seamless 1\nskill 1\nbgmvolume 0\nmap e1m1\n');status.textContent='Preparing the native level…';const until=performance.now()+120000,timer=setInterval(()=>{if(token!==generation||performance.now()>until){clearInterval(timer);return;}if(sv.edicts?.[1]===old||cls.signon!==4||loading.R_IntroLoadingHolding())return;clearInterval(timer);ready=true;status.textContent='Arm the loadout, die, then walk back to recover the scattered weapons.';},100);}
+document.querySelector('#start').onclick=start;
+document.querySelector('#courtyard').onclick=()=>{const p=sv.edicts?.[1];if(!ready||p._respawn?.sequence)return;const point=[128,1008,-199.95],fit=SV_Move(point,p.v.mins,p.v.maxs,point,MOVE_NOMONSTERS,p);if(fit.startsolid||fit.allsolid)return;p.v.origin=point;p.v.velocity=[0,0,0];p.v.v_angle=[0,90,0];p.v.angles=[0,90,0];p.v.fixangle=1;SV_LinkEdict(p,false);status.textContent='At the native courtyard. Arm the loadout and die to return to the indoor level start.';};
+document.querySelector('#arm').onclick=()=>{const p=sv.edicts?.[1];if(!ready||p._respawn?.sequence||p.v.health<=0)return;p.v.items|=4096|127;p.v.weapon=4;RESPAWN_AMMO.forEach((a,i)=>p.v[a]=[19,61,7,13][i]);for(const n of ['super_damage_finished','invincible_finished','invisible_finished','radsuit_finished'])field(p,n,sv.time+120);p.v.items|=524288|1048576|2097152|4194304;call('W_SetCurrentAmmo');status.textContent='Seven weapons, 19 shells, 61 nails, 7 rockets, 13 cells, and all four power-ups.';};
+document.querySelector('#die').onclick=()=>{const p=sv.edicts?.[1];if(!ready||p._respawn?.sequence||p.v.health<=0)return;lastDeath=Array.from(p.v.origin);lastAngles=Array.from(p.v.v_angle);call('ClientKill');status.textContent='Native death: no axe or power-up drop. Clockwise fall → contact teleport → clockwise rise.';};
+document.querySelector('#ammo-only').onclick=()=>{const p=sv.edicts?.[1];if(!ready||p._respawn?.sequence||p.v.health<=0)return;p.v.items=4096;p.v.weapon=4096;RESPAWN_AMMO.forEach((a,i)=>p.v[a]=[19,61,7,13][i]);call('W_SetCurrentAmmo');status.textContent='Axe only, with 19 shells, 61 nails, 7 rockets and 13 cells: next death leaves one ammo backpack.';};
+document.querySelector('#gib').onclick=()=>{const p=sv.edicts?.[1];if(!ready||p._respawn?.sequence||p.v.health<=0)return;lastDeath=Array.from(p.v.origin);lastAngles=Array.from(p.v.v_angle);p.v.flags&=~FL_GODMODE;p.v.takedamage=2;p.v.armorvalue=0;p.v.armortype=0;for(const n of ['invincible_finished','invisible_finished','super_damage_finished','radsuit_finished'])field(p,n,0);const world=sv.edicts[0];progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PROG(p);progs.pr_globals_int[OFS_PARM0+3]=progs.EDICT_TO_PROG(world);progs.pr_globals_int[OFS_PARM0+6]=progs.EDICT_TO_PROG(world);progs.pr_globals_float[OFS_PARM0+9]=p.v.health+100;call('T_Damage');status.textContent='Actual lethal QuakeC damage: native head and three gib pieces are retained.';};
+document.querySelector('#remains').onclick=()=>{const p=sv.edicts?.[1];if(!ready||!lastDeath||p._respawn?.sequence)return;const yaw=lastAngles[1]*Math.PI/180,point=[lastDeath[0]-Math.cos(yaw)*96,lastDeath[1]-Math.sin(yaw)*96,lastDeath[2]],fit=SV_Move(point,p.v.mins,p.v.maxs,point,MOVE_NOMONSTERS,p);if(fit.startsolid||fit.allsolid){status.textContent='Inspection viewpoint is blocked; return near the death site and walk around it.';return;}p.v.origin=point;p.v.velocity=[0,0,0];p.v.v_angle=[20,lastAngles[1],0];p.v.angles=p.v.v_angle;p.v.fixangle=1;SV_LinkEdict(p,false);status.textContent='Native remains and pickups at the last death site, viewed without walking over them.';};
+document.querySelector('#return').onclick=()=>{const p=sv.edicts?.[1];if(!ready||!lastDeath||p._respawn?.sequence)return;const fit=SV_Move(lastDeath,p.v.mins,p.v.maxs,lastDeath,MOVE_NOMONSTERS,p);if(fit.startsolid||fit.allsolid)return;p.v.origin=lastDeath;p.v.velocity=[0,0,0];p.v.v_angle=lastAngles;p.v.angles=lastAngles;p.v.fixangle=1;SV_LinkEdict(p,false);status.textContent='Inspection shortcut returned near the death site. Walk over each pickup.';};
+setInterval(()=>{const p=sv.edicts?.[1];if(!p)return;const active=!!p._respawn?.sequence;if(!active){const protectedPlayer=document.querySelector('#protect').checked;if(protectedPlayer)p.v.flags|=FL_GODMODE;else p.v.flags&=~FL_GODMODE;p.v.takedamage=protectedPlayer?0:2;}else p.v.flags&=~FL_GODMODE;
+ if(previouslyActive&&!active)status.textContent='Standing: 100 health, axe only. The living enemies are pursuing the starting position.';previouslyActive=active;
+ const drops=(sv.edicts||[]).filter(e=>e&&!e.free&&e._respawnDrop),enemies=(sv.edicts||[]).filter(e=>e&&!e.free&&e.v.health>0&&((e.v.flags&FL_MONSTER)||progs.PR_GetString(e.v.classname).startsWith('monster_')));
+ const camera=renderRuntime.camera,presentation=camera?.userData.clockwisePresentation;
+ document.querySelector('#report').textContent=JSON.stringify({map:sv.name,signon:cls.signon,ready,loading:loading.R_DemoLoadingStatus(),time:sv.time,health:p.v.health,weapon:p.v.weapon,weapons:RESPAWN_WEAPONS.filter(w=>p.v.items&w.bit).map(w=>w.name),ammo:RESPAWN_AMMO.map(a=>p.v[a]),powerups:p.v.items&7864320,timers:['super_damage_finished','invincible_finished','invisible_finished','radsuit_finished'].map(n=>field(p,n)),position:Array.from(p.v.origin),deaths:p._respawn?.deaths,sequence:p._respawn?.sequence,head:camera?.position.toArray(),nativeCameraQuaternion:camera?.quaternion.toArray(),presentationQuaternion:presentation?.quaternion.toArray(),livingEnemies:enemies.length,alertedEnemies:enemies.filter(e=>e.v.enemy===progs.EDICT_TO_PROG(p)).length,inspectionProtection:document.querySelector('#protect').checked,drops:drops.map(e=>({id:e._respawnDrop.id,weapon:e._respawnDrop.weapon,ammo:e._respawnDrop.ammo,amount:e._respawnDrop.amount,pools:Respawn_DropAmmo(e._respawnDrop),position:Array.from(e.v.origin),settled:!!(e.v.flags&512)})),remains:(sv.edicts||[]).filter(e=>e&&!e.free&&e._respawnRemains).map(e=>({record:e._respawnRemains,model:progs.PR_GetString(e.v.model),frame:e.v.frame,position:Array.from(e.v.origin),think:e.v.think,nextthink:e.v.nextthink})),glError:renderer?.getContext().getError(),errors},null,2);
+},100);
+await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);start();
+
+// Test-only actual-renderer telemetry; no timeline scrubbing or game-time edits.
+let capturedSequence=null,motion=null;
+function recordMotion(){
+ const p=sv.edicts?.[1],s=p?._respawn?.sequence,cam=renderRuntime.camera;
+ if(s&&s!==capturedSequence){capturedSequence=s;motion={started:s.at,source:Array.from(p.v.origin),rows:[],captures:[],errors:[]};document.querySelector('#captures').replaceChildren();}
+ if(motion&&!motion.finished&&cam){
+  const age=sv.time-motion.started,presentation=cam.userData.clockwisePresentation;
+  motion.rows.push({time:sv.time,age,health:p.v.health,deadflag:p.v.deadflag,weapon:p.v.weapon,weaponmodel:progs.PR_GetString(p.v.weaponmodel),powerups:p.v.items&7864320,player:Array.from(p.v.origin),head:cam.position.toArray(),nativeQuaternion:cam.quaternion.toArray(),presentationQuaternion:presentation?.quaternion.toArray(),after:!!s?.respawned});
+  const turn=capturedSequence.turn,cut=.22+turn/2;
+  for(const[label,t]of [['fall',.22+turn*.18],['contact-before',cut-.08],['contact-after',cut+.08],['rise',.22+turn*.8],['standing',.22+turn+.02]]){
+   if(age<t||motion.captures.some(c=>c.label===label))continue;
+   const img=document.createElement('img');img.alt='Actual '+label+' game frame';img.dataset.phase=label;img.style.width='160px';img.src=renderer.domElement.toDataURL('image/png');document.querySelector('#captures').append(img);motion.captures.push({label,age,health:p.v.health,head:cam.position.toArray()});
+  }
+  if(!s&&age>.22+turn){motion.finished=true;motion.end={health:p.v.health,weapon:p.v.weapon,ammo:RESPAWN_AMMO.map(a=>p.v[a]),powerups:p.v.items&7864320};}
+  document.querySelector('#motion-report').textContent=JSON.stringify(motion);
+ }
+ requestAnimationFrame(recordMotion);
+}
+requestAnimationFrame(recordMotion);

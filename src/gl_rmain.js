@@ -1,3 +1,4 @@
+import { R_RespawnCameraFrame } from './r_respawn.js';
 import { R_CompileSceneAsync } from './r_shaderwarm.js';
 import { R_RockfieldSetLimits, R_RockfieldStatus } from './r_rockfield.js';
 import { R_IntroLoadingHolding, R_DemoLoadingFrame, R_IntroReadinessChecks } from './r_demoloading.js';
@@ -21,12 +22,13 @@ import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_rockfield } from './r_rockfield.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
 import { r_heightshadows, R_HeightShadowScope } from './r_heightshadows.js';
-import { R_AnimEnabled, R_NewerLightingActive, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
+import { R_AnimEnabled, R_NewerLightingActive, R_NewerGame, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
 import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
 import { CL_TeleportSpots } from './cl_tent.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
+import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { R_ClassicTexture } from './r_newertextures.js';
@@ -37,10 +39,11 @@ import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack 
 import { r_newer_weapons } from './r_weapons.js';
 import { R_ShellsSetup, R_ShellsNewMap, R_ShellsFrame } from './r_shells.js';
 import { R_ShellTrace } from './r_shelltrace.js';
+import { R_BestiaryApplyCamera, R_BestiaryObserve, R_BestiaryInputLocked } from './r_bestiary.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate, R_FlashlightBeam } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
-import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial } from './r_newerskins.js';
+import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial, R_ReleaseAliasReceiver } from './r_newerskins.js';
 import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
@@ -61,7 +64,7 @@ import {
 } from './r_part.js';
 import { isXRActive, getXRRig, XR_SetCamera, XR_SCALE, XR_GetControllerWorldPose } from './webxr.js';
 import {
-	cl, cl_visedicts, cl_numvisedicts, cl_dlights, cl_entities,
+	cl, cls, cl_visedicts, cl_numvisedicts, cl_dlights, cl_entities,
 	cl_static_entities, cl_temp_entities, cl_lightstyle
 } from './client.js';
 import { d_lightstylevalue, r_framecount, set_r_framecount, inc_r_framecount,
@@ -301,6 +304,17 @@ export function R_SetFrustum() {
 // R_SetupFrame
 //============================================================================
 
+const _bloodRay=new THREE.Raycaster(),_bloodBox=new THREE.Box3(),_bloodCentre=new THREE.Vector3(),_bloodOrigin=new THREE.Vector3();
+const _surfaceBloodContact=point=>{
+ const mesh=cl.viewent?._aliasMesh;if(!mesh||!mesh.visible||mesh.parent!==scene||!point)return null;
+ for(let p=mesh.parent;p;p=p.parent)if(!p.visible)return null;
+ mesh.geometry.computeBoundingBox();mesh.geometry.computeBoundingSphere();
+ mesh.updateMatrixWorld(true);_bloodBox.setFromObject(mesh);_bloodBox.getCenter(_bloodCentre);_bloodOrigin.fromArray(point);
+ const distance=_bloodCentre.distanceTo(_bloodOrigin);if(distance<.001)return null;
+ _bloodRay.set(_bloodOrigin,_bloodCentre.sub(_bloodOrigin).normalize());_bloodRay.far=distance+100;
+ const hit=_bloodRay.intersectObject(mesh,false)[0];return hit?.uv?[hit.uv.x,hit.uv.y]:null;
+};
+const _surfaceBloodVisible=(a,b)=>{const trace=R_ShellTrace(cl.worldmodel,a,b,0,cl_entities);return !trace.startsolid&&!trace.allsolid&&trace.fraction>=.999;};
 export function R_SetupFrame() {
 
 	// don't allow cheats in multiplayer
@@ -327,6 +341,8 @@ export function R_SetupFrame() {
 		r_viewleaf = Mod_PointInLeaf( r_origin, cl.worldmodel );
 		R_ScreenDropsSetView( r_origin );
 		R_ScreenDropsView( r_viewleaf.contents );
+  R_WeaponSurfaceContext(R_NewerGame(),r_origin,_surfaceBloodVisible,_surfaceBloodContact);
+  if(cls.signon===4)R_WeaponSurfaceFrame(cl.time,r_viewleaf.contents,cl.paused);
 		R_PostSetUnderwater( r_viewleaf.contents === - 3 || r_viewleaf.contents === - 4 || r_viewleaf.contents === - 5 );
 
 	}
@@ -537,6 +553,13 @@ export function R_SetupGL() {
 
 	}
 
+	R_RespawnCameraFrame( camera );
+	if ( R_BestiaryApplyCamera( camera ) ) {
+		const e=camera.matrixWorld.elements;
+		vpn.set([-e[8],-e[9],-e[10]]);vright.set([e[0],e[1],e[2]]);vup.set([e[4],e[5],e[6]]);
+		R_SetFrustum();
+	}
+
 	// Store world matrix for later use (mirror rendering, etc.)
 	const elements = camera.matrixWorldInverse.elements;
 	for ( let i = 0; i < 16; i ++ ) {
@@ -653,13 +676,15 @@ export function R_DrawEntitiesOnList() {
 const SHADEDOT_QUANT = 16;
 
 // Cached callbacks for viewmodel depthRange hack (no closures in render loop)
-function _viewmodelBeforeRender( r ) {
+function _viewmodelBeforeRender( r, scene, drawCamera ) {
+ if(drawCamera!==camera)return;
 
 	r.getContext().depthRange( 0, 0.3 );
 
 }
 
-function _viewmodelAfterRender( r ) {
+function _viewmodelAfterRender( r, scene, drawCamera ) {
+ if(drawCamera!==camera)return;
 
 	r.getContext().depthRange( 0, 1 );
 
@@ -686,6 +711,7 @@ const _xrWeaponAlignQuat = new THREE.Quaternion().setFromRotationMatrix(
 );
 
 export function R_DrawViewModel() {
+	if ( R_BestiaryInputLocked() ) { const mesh=cl?.viewent?._aliasMesh;if(mesh?.parent===scene)scene.remove(mesh);return; }
 
 	if ( r_drawviewmodel.value === 0 )
 		return;
@@ -775,7 +801,9 @@ export function R_DrawViewModel() {
 			let clone = currententity[ cacheSlot ].get( baseMaterial );
 			if ( ! clone ) {
 
-				clone = R_CloneAliasMaterial( baseMaterial ); clone.transparent = true;
+				clone = R_CloneAliasMaterial( baseMaterial );
+    if(slot==='_classicViewmodelMaterial')clone.transparent=true;
+    else {clone.userData.quakeViewmodel=true;clone.userData.quakePlayerSurface=true;}
 				currententity[ cacheSlot ].set( baseMaterial, clone );
 
 			}
@@ -836,6 +864,7 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	const shadowMesh = entity._aliasShadowMesh;
 	const aliasGeometry = entity._aliasGeo;
 	const shadowGeometry = entity._aliasShadowGeo;
+	if(entity._aliasMesh)R_ReleaseAliasReceiver(entity._aliasMesh);
 	const viewmodelMaterial = entity._viewmodelMaterial;
 	const playerMaterial = entity._playerMaterial;
 	if ( spriteMesh == null && aliasMesh == null && shadowMesh == null &&
@@ -851,7 +880,7 @@ function _clearEntityMeshCache( entity, geometries, materials ) {
 	_disposeEntityGeometry( shadowGeometry, geometries );
 	_disposeEntityMaterial( viewmodelMaterial, materials );
 	_disposeEntityMaterial( entity._classicViewmodelMaterial, materials );
-	for ( const slot of [ '_viewmodelMaterialCache', '_classicViewmodelMaterialCache' ] ) {
+	for ( const slot of [ '_viewmodelMaterialCache', '_classicViewmodelMaterialCache', '_playerCoatMaterialCache' ] ) {
 
 		for ( const material of entity[ slot ]?.values() || [] ) _disposeEntityMaterial( material, materials );
 		entity[ slot ] = null;
@@ -1024,7 +1053,7 @@ function R_DrawAliasModel( e ) {
 			ambientlight = shadelight = 24;
 
 		// add dynamic lights to ambient/shade (gl_rmain.c:482-497)
-		for ( let lnum = 0; lnum < MAX_DLIGHTS; lnum ++ ) {
+		for ( let lnum = 0; !R_NewerLightingActive() && lnum < MAX_DLIGHTS; lnum ++ ) {
 
 			if ( cl_dlights[ lnum ].die >= cl.time ) {
 
@@ -1092,10 +1121,15 @@ function R_DrawAliasModel( e ) {
 	if ( mesh != null ) {
 
 		// Newer Game: the sun's light is blocked by monsters and items too
-		if ( R_IsNewer() && e !== cl.viewent && r_newer_shadows.value !== 0 ) mesh.layers.enable( SUN_SHADOW_LAYER );
+		if ( R_IsNewer() && r_newer_shadows.value !== 0 ) mesh.layers.enable( SUN_SHADOW_LAYER );
 		else mesh.layers.disable( SUN_SHADOW_LAYER );
 
-		mesh._quakeOwner = e;
+		if(R_IsNewer() && e!==cl.viewent && e._entityIndex===cl.viewentity){
+   const base=mesh.material,cache=e._playerCoatMaterialCache ||= new Map();let clone=cache.get(base);
+   if(!clone){clone=R_CloneAliasMaterial(base);clone.userData.quakePlayerSurface=true;cache.set(base,clone);}
+   mesh.material=clone;
+  }
+  mesh._quakeOwner = e;
 		mesh.userData.quakeViewmodel = e === cl.viewent;
 		_entityMeshCacheOwners.add( e );
 
@@ -1604,6 +1638,7 @@ export function R_RenderScene() {
 
 	R_DrawEntitiesOnList();
 	R_PowerupEnd();
+	R_BestiaryObserve( scene, camera, cl_visedicts.slice( 0, cl_numvisedicts ) );
 
 	// Remove entity meshes that were in the scene last frame but not this frame
 	for ( const mesh of _entityMeshesInScene ) {
