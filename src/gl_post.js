@@ -1,3 +1,4 @@
+import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
 import { R_BestiaryPortraitLight } from './r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
@@ -962,10 +963,10 @@ export function R_BuildWorldLights( model ) {
 
 	if ( model == null || model.nodes == null ) return worldLights;
 
+	const entities = model.entities != null ? R_ParseEntityLump( model.entities ) : [];
 	// light entities
 	if ( model.entities != null ) {
 
-		const entities = R_ParseEntityLump( model.entities );
 
 		const world = entities.find( e => e.classname === 'worldspawn' );
 		if ( world != null && world._sun_mangle != null ) {
@@ -1001,6 +1002,17 @@ export function R_BuildWorldLights( model ) {
 		}
 
 	}
+
+	const fixturePairs=R_ExitFixturePairs(model,entities,worldLights,{info:polyInfo,bounds:polyBounds,leaf:Mod_PointInLeaf});
+ const fixtureFaces=new Set(fixturePairs.map(pair=>pair.face));
+ for(const pair of fixturePairs){
+  const light=pair.helper;
+  light.fixture={face:pair.face,authoredPosition:light.pos.slice(),panelCenter:pair.center};
+  light.pos=pair.position;light.direction=pair.direction;light.cone=pair.cone;
+  light.priority=4; // source membership only; retain authored radiance/style
+  light.radius=96; // calibrated spread/falloff, not an authored BSP cone
+  light.leaf=Mod_PointInLeaf(light.pos,model);
+ }
 
 	// emissive surfaces (lava, light panels, glowing buttons...)
 	if ( model.surfaces != null ) {
@@ -1066,6 +1078,7 @@ export function R_BuildWorldLights( model ) {
 
 			}
 
+			if(fixtureFaces.has(i))continue; // matched physical source already owns its added light
 			const emission = surfaceEmission( surf );
 			if ( emission == null ) continue;
 
@@ -1449,7 +1462,7 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 	const dist2 = vx * vx + vy * vy + vz * vz;
 	// Receiver lighting must not change when the camera turns at one location.
 	// Visible flames receive priority over invisible baked-light helper entities.
-	const score = rankPower / ( dist2 + 6000 ) * ( source?.bestiary ? 16 : source?.emitter === 1 ? 4 : 1 );
+	const score = rankPower / ( dist2 + 6000 ) * ( source?.bestiary ? 16 : source?.priority || ( source?.emitter === 1 ? 4 : 1 ) );
 
 	let slot = null;
 	if ( selectedCount < MAX_VOLUME_LIGHTS ) {
@@ -1468,6 +1481,12 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 
 	slot.score = score;
 	slot.source = source; slot.worldPos[ 0 ] = px; slot.worldPos[ 1 ] = py; slot.worldPos[ 2 ] = pz;
+ const shape=R_LightCone(source?.direction,source?.cone);
+ slot.direction=shape?.direction || [0,0,0];slot.cone=shape?.cone || [1,1];
+ slot.viewDirection=shape?[
+ view[0]*shape.direction[0]+view[4]*shape.direction[1]+view[8]*shape.direction[2],
+ view[1]*shape.direction[0]+view[5]*shape.direction[1]+view[9]*shape.direction[2],
+ view[2]*shape.direction[0]+view[6]*shape.direction[1]+view[10]*shape.direction[2]]:[0,0,0];
 	slot.add = add;
 	slot.pos[ 0 ] = vx; slot.pos[ 1 ] = vy; slot.pos[ 2 ] = vz;
 	slot.radius = radius;
@@ -1550,7 +1569,7 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 // selection without allocating snapshots every frame.
 export function R_SelectWorldLights( viewMatrix, visframe, styles, dlights, time ) {
  selectLights( viewMatrix, visframe, styles, dlights, time );
- return _selected.slice( 0, selectedCount ).map( light => ( { source: light.source, position: light.worldPos.slice(), color: light.color.slice(), range: light.range, score: light.score } ) );
+ return _selected.slice( 0, selectedCount ).map( light => ( { source: light.source, position: light.worldPos.slice(), color: light.color.slice(), range: light.range, score: light.score, direction:light.direction.slice(), cone:light.cone.slice() } ) );
 }
 export function R_PointShadowAtlas() { return gpu?.pointShadows || null; }
 export function R_PointShadowStatus() { return gpu?.pointShadows?.status() || { ready: 0, pending: 0, resident: 0, chunks: 0 }; }
@@ -1594,6 +1613,9 @@ uniform vec4 uLightPos[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec4 uLightCol[ ${MAX_VOLUME_LIGHTS} ];
 uniform float uLightCookie[ ${MAX_VOLUME_LIGHTS} ];
 uniform vec4 uLightRotation[ ${MAX_VOLUME_LIGHTS} ];
+uniform vec3 uLightDirection[ ${MAX_VOLUME_LIGHTS} ];
+uniform vec2 uLightCone[ ${MAX_VOLUME_LIGHTS} ];
+${POINT_CONE_GLSL}
 uniform float uPowerupTime;
 ${POWERUP_COOKIE_GLSL}
 uniform vec3 uSunDirV;
@@ -1739,8 +1761,21 @@ void main() {
 		if ( integral <= 0.0 ) continue;
 
 		vec3 Q = dirV * clamp( t0, 0.0, D );
+  bool directional=dot(uLightDirection[i],uLightDirection[i])>.5;
+  if(directional){
+   float begin=max(0.,t0-range),end=min(D,t0+range),stepLength=max(0.,end-begin)/12.;
+   integral=0.;float peak=0.;
+   for(int k=0;k<12;k++){
+    vec3 sampleV=dirV*(begin+(float(k)+.5)*stepLength);vec3 delta=sampleV-L;
+    float distance=length(delta),weight=pointCone(sampleV,i)*(1.-smoothstep(.25*range,range,distance))*stepLength/(dot(delta,delta)+R*R);
+    if(weight<=0.)continue;
+    if(uPointShadowInfo[i].x>=0.)weight*=pointWorldVisibility((uViewInv*vec4(sampleV,1.)).xyz,(uViewInv*vec4(L,1.)).xyz,i);
+    integral+=weight;if(weight>peak){peak=weight;Q=sampleV;}
+   }
+   if(integral<=0.)continue;
+  }
 		float worldVisibility = 1.0;
-  if ( uPointShadowInfo[ i ].x >= 0.0 ) {
+  if ( !directional && uPointShadowInfo[ i ].x >= 0.0 ) {
    vec3 receiver = ( uViewInv * vec4( Q, 1.0 ) ).xyz;
    vec3 source = ( uViewInv * vec4( L, 1.0 ) ).xyz;
    worldVisibility = pointWorldVisibility( receiver, source, i );
@@ -1954,7 +1989,7 @@ vec3 pointSurfaceIncident( vec3 P, vec3 normal, int index ) {
 	 vec3 direction=(uViewInv*vec4(P-uLightPos[index].xyz,0.)).xyz;
 	 cookie=powerupFlameCookie(powerupLocalDirection(direction,uLightRotation[index]),uPowerupTime);
 	}
-	return uLightCol[ index ].rgb * uLightSurface * facing * fall * cookie;
+	return uLightCol[ index ].rgb * uLightSurface * facing * fall * cookie * pointCone(P,index);
 }
 
 float pointSurfaceVisibility( vec3 P, vec3 normal, int index, float bias ) {
@@ -2477,7 +2512,7 @@ void main() {
     visibleReliefWeight+=weight;shadowedReliefWeight+=weight*localShadow;
     vec3 lightHere=reached*localShadow;
 				relit += lightHere;
-    if(film>0.)surfaceSpecular+=uLightCol[i].rgb*pow(max(dot(Nl,normalize(normalize(uLightPos[i].xyz-P)+V)),0.),glass?24.:48.)*pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow*pow(max(0.,1.-length(uLightPos[i].xyz-P)/uLightCol[i].a),2.);
+    if(film>0.)surfaceSpecular+=uLightCol[i].rgb*pointCone(P,i)*pow(max(dot(Nl,normalize(normalize(uLightPos[i].xyz-P)+V)),0.),glass?24.:48.)*pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow*pow(max(0.,1.-length(uLightPos[i].xyz-P)/uLightCol[i].a),2.);
 				flashAdd += lightHere * uLightAdd[ i ];
 			}
 
@@ -2945,6 +2980,8 @@ function createPipeline() {
 		uLightPos: { value: lightPos },
 		uLightCol: { value: lightCol },
 		uLightCookie: { value: new Float32Array( MAX_VOLUME_LIGHTS ) },
+		uLightDirection: { value: Array.from({length:MAX_VOLUME_LIGHTS},()=>new THREE.Vector3()) },
+  uLightCone: { value: Array.from({length:MAX_VOLUME_LIGHTS},()=>new THREE.Vector2(1,1)) },
 		uLightRotation: { value: Array.from( { length: MAX_VOLUME_LIGHTS }, () => new THREE.Vector4( 0, 0, 0, 1 ) ) },
 		uPowerupTime: { value: 0 },
 		uSunDirV: { value: new THREE.Vector3() },
@@ -3149,7 +3186,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
  camera.updateMatrixWorld( true );
  if ( glowActive ) selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
  else selectedCount = 0;
- const lights = _selected.slice( 0, selectedCount ).map( light => ( { ...light, pos: light.pos.slice(), worldPos: light.worldPos.slice(), color: light.color.slice(), powerupRotation: light.source?.rotation?.slice() || [ 0, 0, 0, 1 ] } ) );
+ const lights = _selected.slice( 0, selectedCount ).map( light => ( { ...light, pos: light.pos.slice(), worldPos: light.worldPos.slice(), color: light.color.slice(), direction:light.direction.slice(), viewDirection:light.viewDirection.slice(), cone:light.cone.slice(), powerupRotation: light.source?.rotation?.slice() || [ 0, 0, 0, 1 ] } ) );
  const liveBeam = R_FlashlightBeam();
  const beam = { ...liveBeam, pos: liveBeam.pos.slice(), dir: liveBeam.dir.slice() };
  heightFrameSnapshot = { camera, visframe, time, lights, beam, hasSkyView };
@@ -3188,7 +3225,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
  const masks = glowActive && detailActive && r_heightshadows.value !== 0 && gpu.hdr?.textures.length === 4;
  sh.tHeightShadow.value = masks ? gpu.hdr.textures[ 3 ] : null; sh.uHeightMasks.value = masks ? 1 : 0;
  R_HeightShadowFrame( {
-  points: lights.map( light => ( { position: light.worldPos, range: light.range, color: light.color } ) ),
+  points: lights.map( light => ( { position: light.worldPos, range: light.range, color: light.color, direction:light.direction, cone:light.cone } ) ),
   sun: { direction: sunDirection, on: glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
   spot: { position: beam.pos, range: 1500, direction: beam.dir, cone: [ FLASHLIGHT_INNER, FLASHLIGHT_OUTER ], on: glowActive && beam.on,
    color: [ SPOT_POWER, SPOT_POWER * .985, SPOT_POWER * .96 ] }
@@ -3394,6 +3431,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		p.compositeMaterial.uniforms.uLightAdd.value[ i ] = s.add || 0;
 		sh.uLightCookie.value[ i ] = s.source?.cookie || 0;
 		sh.uLightRotation.value[ i ].fromArray( s.powerupRotation );
+  sh.uLightDirection.value[i].fromArray(s.viewDirection);
+  sh.uLightCone.value[i].fromArray(s.cone);
 
 	}
 
