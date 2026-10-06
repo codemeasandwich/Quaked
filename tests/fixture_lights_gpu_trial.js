@@ -66,10 +66,19 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
   function roi(image,point){const p=new THREE.Vector3(...point).project(image.camera),x=Math.round((p.x*.5+.5)*W),y=Math.round((p.y*.5+.5)*H);let count=0,sum=0,linear=0,cone=0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const px=x+dx,py=y+dy;if(px<0||py<0||px>=W||py>=H)continue;const i=(py*W+px)*4;if(image.normal[i+3]<=0||image.albedo[i+3]<250)continue;count++;sum+=image.pixels[i]+image.pixels[i+1]+image.pixels[i+2];linear+=image.incident[i]+image.incident[i+1]+image.incident[i+2];cone+=image.incident[i+3];}return{point,ndc:p.toArray(),pixels:count,mean:sum/Math.max(1,count),linear:linear/Math.max(1,count),cone:cone/Math.max(1,count)};}
   const inside=[1340,1648,-431],outside=[1312,1740,-431],innerCone=roi(single,inside),innerPoint=roi(isotropic,inside),outerCone=roi(single,outside),outerPoint=roi(isotropic,outside);
   verify(innerCone.pixels>=10&&outerCone.pixels>=10&&innerCone.linear>1e-5&&Math.abs(innerCone.linear-innerPoint.linear)<innerPoint.linear*.05&&innerCone.cone>.99&&outerCone.cone<.001&&outerPoint.linear>1e-5&&outerCone.linear<outerPoint.linear*.01,'native floor pool retains core and rejects outside-cone light',{innerCone,innerPoint,outerCone,outerPoint});
-  const volume=draw('Bounded directional shafts',{actorY:1800,volume:1});
+  const rampOrigin=[1312,1200,-252],rampAngles=[55,90,0];
+  const rampCone=draw('Isolated native ramp fixture: cone',{origin:rampOrigin,angles:rampAngles,actorY:3000,oneFixture:2867}),rampPoint=draw('Same ramp fixture: isotropic control',{origin:rampOrigin,angles:rampAngles,actorY:3000,oneFixture:2867,isotropic:true});
+  const rampInner=roi(rampCone,[1340,1264,-351]),rampInnerPoint=roi(rampPoint,[1340,1264,-351]),rampOuter=roi(rampCone,[1312,1400,-419]),rampOuterPoint=roi(rampPoint,[1312,1400,-419]);
+  verify(rampInner.pixels>=10&&rampOuter.pixels>=10&&rampInner.linear>1e-5&&rampInner.cone>.99&&Math.abs(rampInner.linear-rampInnerPoint.linear)<rampInnerPoint.linear*.05&&rampOuter.cone<.001&&rampOuterPoint.linear>1e-5&&rampOuter.linear<rampOuterPoint.linear*.01,'native sloped ramp receives positive core and rejects outside-cone light',{rampInner,rampInnerPoint,rampOuter,rampOuterPoint});
+  const receivers=[];
+  for(const [face,y,z]of [[2763,1648,-432],[2795,1520,-432],[2852,1392,-416],[2867,1264,-352],[3023,1136,-288],[3050,960,-280]]){
+   const image=draw('Native floor/ramp receiver under fixture '+face,{origin:[1312,y-64,z+100],angles:[55,90,0],actorY:3000,oneFixture:face}),core=roi(image,[1340,y,z+1]);
+   verify(core.pixels>=10&&core.linear>1e-5&&core.cone>.99&&image.glError===0,'positive native ground receiver for physical fixture '+face,core);receivers.push({face,...core});
+  }
+  const volume=draw('Existing volume pass: no point scattering enabled',{actorY:1800,volume:1});
   const classicBefore=draw('Classic original control',{classic:true,directional:false,actorY:1800}),classicAfter=draw('Classic fixture metadata control',{classic:true,directional:true,actorY:1800});
   const classic=difference(classicBefore,classicAfter);verify(classic.energy===0,'Classic pixels unchanged by optional fixture metadata',classic);
-  verify([before,after,ramp,blocked,noActorShadow,moved,single,isotropic,volume,classicBefore,classicAfter].every(r=>r.glError===0)&&errors.length===0,'world/alias/volume compositor shader and GL controls',{errors});
+  verify([before,after,ramp,blocked,noActorShadow,moved,single,isotropic,rampCone,rampPoint,volume,classicBefore,classicAfter].every(r=>r.glError===0)&&errors.length===0,'world/alias/volume compositor shader and GL controls',{errors});
   verify(after.frame.lights.length<=8&&after.shadow.maxSlots===8,'existing eight source/cube slots remain bounded',{selected:after.frame.lights.length,shadow:after.shadow});
   verify(world.bspSourceBytes.every((v,i)=>v===original[i]),'native BSP bytes unchanged');
  }catch(error){checks.push({passed:false,name:String(error),stack:error.stack});}

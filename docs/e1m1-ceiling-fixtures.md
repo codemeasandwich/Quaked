@@ -31,9 +31,11 @@ shadow atlas, sampler, manager, flashlight target or runtime asset is added.
 Directions rotate with the camera as vectors and are copied with the frozen
 pre-HDR snapshot. Absent/invalid directions remain isotropic. World/alias
 receiver lighting, separate specular highlights, reflection incident-light
-ranking and height-source weights use the same cone. Cone volumes integrate
-twelve samples on the clipped view ray and sample existing cube visibility;
-ordinary point volumes retain their analytic path. The flashlight continues
+ranking and height-source weights use the same cone. The optional cone volume path uses twelve clipped-ray samples and existing
+cube visibility, while ordinary points retain their analytic path. The current
+renderer deliberately sets point `SCATTER=0`, so neither path contributes
+point-light shafts in normal presentation. This change does not enable broad
+point fog or claim visible fixture shafts. The flashlight continues
 to own its single independent spot target. Live sources and actors keep
 existing selection and refresh budgets.
 
