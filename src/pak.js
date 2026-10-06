@@ -77,6 +77,7 @@ Returns a pack_t or null
 */
 export function COM_LoadPackFile( filename, buffer ) {
 
+	if ( buffer.byteLength < 12 ) throw new Error( filename + ' has a truncated pack header' );
 	const view = new DataView( buffer );
 
 	// Check header
@@ -94,11 +95,16 @@ export function COM_LoadPackFile( filename, buffer ) {
 
 	const dirofs = view.getInt32( 4, true );
 	const dirlen = view.getInt32( 8, true );
+	// Reject corruption here, while COM_FetchOptionalPak can still decline
+	// the entire optional archive. Deferred payload views must never fail
+	// after a malformed pack has already entered the search path.
+	if ( dirofs < 12 || dirlen < 0 || dirlen % 64 !== 0 || dirofs > buffer.byteLength - dirlen )
+		throw new Error( filename + ' has an invalid pack directory' );
 
 	const numpackfiles = Math.floor( dirlen / 64 ); // each dir entry is 64 bytes
 
 	if ( numpackfiles > MAX_FILES_IN_PACK )
-		Sys_Error( filename + ' has too many files (' + numpackfiles + ')' );
+		throw new Error( filename + ' has too many files (' + numpackfiles + ')' );
 
 	const pack = new pack_t();
 	pack.filename = filename;
@@ -124,6 +130,8 @@ export function COM_LoadPackFile( filename, buffer ) {
 		file.name = name.toLowerCase();
 		file.filepos = view.getInt32( entryOffset + 56, true );
 		file.filelen = view.getInt32( entryOffset + 60, true );
+		if ( file.filepos < 0 || file.filelen < 0 || file.filepos > buffer.byteLength - file.filelen )
+			throw new Error( filename + ' has an invalid payload: ' + file.name );
 
 		pack.files.push( file );
 

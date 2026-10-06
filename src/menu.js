@@ -831,7 +831,10 @@ export const LEVEL_SELECT_LEVELS = [
 	{ map: 'e1m5', name: 'Gloom Keep' },
 	{ map: 'e1m6', name: 'The Door to Chthon' },
 	{ map: 'e1m7', name: 'The House of Chthon' },
-	{ map: 'e1m8', name: 'Ziggurat Vertigo' }
+	{ map: 'e1m8', name: 'Ziggurat Vertigo' },
+	// First full-game trial; the existing availability filter hides it when
+	// the local owned archive is absent. Both existing game modes can use it.
+	{ map: 'e2m1', name: 'The Installation' }
 ];
 const SKILL_NAMES = [ 'Easy', 'Normal', 'Hard', 'Nightmare' ];
 const LEVELSELECT_ROWS = 2; // mode and skill come before the levels

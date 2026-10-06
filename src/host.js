@@ -1,7 +1,7 @@
 // Ported from: WinQuake/host.c -- coordinates spawning and killing of local servers
 
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from './sys.js';
-import { Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
+import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString } from './common.js';
 import { svc_print, svc_disconnect } from './protocol.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables } from './cvar.js';
@@ -232,6 +232,7 @@ export async function Host_Init( parms ) {
 	Memory_Init();
 	Cbuf_Init();
 	Cmd_Init();
+	COM_CheckRegistered();
 	V_Init();
 	Chase_Init();
 	Host_InitLocal();

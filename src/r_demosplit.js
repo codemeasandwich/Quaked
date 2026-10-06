@@ -11,7 +11,7 @@ import { R_DemoLoadingCancel } from './r_demoloading.js';
 // half. The scene is drawn again with Newer switched off (see R_ClassicOn in gl_rmain.js).
 
 import * as THREE from 'three';
-import { cvar_t, Cvar_Set, Cvar_SetTemporary, Cvar_RestoreTemporary, Cvar_VariableString } from './cvar.js';
+import { cvar_t, Cvar_SetTemporary, Cvar_RestoreTemporary, Cvar_VariableString } from './cvar.js';
 import { cls } from './client.js';
 import { R_PerfProfiling } from './r_perf.js';
 import { R_NewerTexturesRevert } from './r_newertextures.js';
@@ -19,8 +19,11 @@ import { R_NewerTexturesRevert } from './r_newertextures.js';
 export const r_demosplit = new cvar_t( 'r_demosplit', '1' );
 
 let saved = null;
-// The opening comparison demonstrates the Enhanced lighting/shadow defaults.
-const DEMO_FEATURES = [ 'r_flashlight', ...NEWER_ENABLED_FEATURES ];
+// HDR shares the existing temporary cvar ownership contract with the feature
+// defaults: ordinary menu/console sets (including the same value) end the
+// borrow. A queued attract may start after menu Release, so a private HDR
+// snapshot would otherwise undo the explicit launch on the later disconnect.
+const DEMO_FEATURES = [ 'r_hdr', 'r_flashlight', ...NEWER_ENABLED_FEATURES ];
 function restoreFeatures() {
  if ( saved ) {
   for ( const name of Object.keys( saved.features ) ) Cvar_RestoreTemporary( name );
@@ -48,13 +51,12 @@ export function R_DemoSplitFull() {
 export function R_DemoSplitStart() {
 
 	if ( R_PerfProfiling() || r_demosplit.value === 0 || saved !== null ) return;
-	saved = { hdr: Cvar_VariableString( 'r_hdr' ), features: {} };
+	saved = { features: {} };
 	for ( const name of DEMO_FEATURES ) {
 		const previous = Cvar_VariableString( name );
 		if ( previous === '' ) continue; // feature not registered by this renderer
 		saved.features[ name ] = previous; Cvar_SetTemporary( name, '1' );
 	}
-	Cvar_Set( 'r_hdr', '1' );
 	R_FlashlightRunSync(); // demo-on does not own the game's once-run message
 
 }
@@ -74,7 +76,6 @@ export function R_DemoSplitRelease( newer ) {
 export function R_DemoSplitEnd() {
 
 	if ( saved === null ) return;
-	Cvar_Set( 'r_hdr', saved.hdr );
 	restoreFeatures();
 	saved = null;
 	// the textures go back to the original game's, as a classic game that follows needs them
