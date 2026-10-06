@@ -47,9 +47,14 @@ for(const[name,entry]of members)if(!skins&&/^maps\/[^/]+\.bsp$/.test(name)&&new 
 
 if(skins){
  const THREE=await import('three'),{ENEMY_SKIN_MODELS}=await import('../src/r_newerskins.js'),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
- const selectedVariants=Object.entries(skinIndex.models||{}).flatMap(([key,variants])=>ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl')?variants.filter(variant=>variantFilter===null||variant.dir===variantFilter).map(variant=>({key,variant})):[]);
+ const runsCustom=namespace==='shareware'||variantFilter!==null;
+ const selectedVariants=runsCustom?Object.entries(skinIndex.models||{}).flatMap(([key,variants])=>ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl')?variants.filter(variant=>variantFilter===null||variant.dir===variantFilter).map(variant=>({key,variant})):[]):[];
  if(variantFilter!==null&&!selectedVariants.length)throw Error('No matching custom skin variant: '+variantFilter);
- for(const {key,variant}of selectedVariants)if(variant.nativeModelSha256){const native=members.get('progs/'+key+'.mdl');if(!native||sha256(await readMember(native))!==variant.nativeModelSha256)throw Error('Native identity mismatch for constrained skin '+variant.dir);}
+ const eligibleCustom=new Set();
+ for(const {key,variant}of selectedVariants){
+  if(variant.nativeModelSha256){const native=members.get('progs/'+key+'.mdl'),matches=!!native&&sha256(await readMember(native))===variant.nativeModelSha256;if(!matches){if(variantFilter!==null)throw Error('Native identity mismatch for constrained skin '+variant.dir);continue;}}
+  eligibleCustom.add(variant);
+ }
  const image=async path=>{const img=new FileImage();if(path==='newer/enemies/ogre/custom/diffuse.webp'){const original=spawnSync('git',['show','HEAD:'+path],{maxBuffer:16*1024*1024});if(original.status!==0)throw Error('Cannot retain scoped Ogre source');img.src=original.stdout;}else img.src=path;await img.decode();const c=canvas.createCanvas(img.width,img.height),ctx=c.getContext('2d');ctx.drawImage(img,0,0);return {width:img.width,height:img.height,data:ctx.getImageData(0,0,img.width,img.height).data};};
  const companion=(pixels,height,strength=.65,cap=.55)=>{const t=new THREE.DataTexture(pixels.data,pixels.width,pixels.height,THREE.RGBAFormat);t.userData.newerHeight={width:pixels.width,height:pixels.height,derive:!height,data:height?Float32Array.from({length:height.width*height.height},(_,i)=>height.data[i*4]/255):undefined,strength,cap};return t;};
  for(const[name,entry]of members)if(/^progs\/[^/]+\.mdl$/.test(name)&&new RegExp(filter).test(name)){
@@ -65,7 +70,7 @@ if(skins){
   manifest.levels[namespace+':'+name]={modelSha256:sha256(bytes),keys:[...keys]};console.log('BAKED SKIN NORMALS '+namespace+':'+name+' '+keys.size+' variants');
  }
  if(namespace==='shareware'||variantFilter!==null)for(const[key,variants]of Object.entries(skinIndex.models||{}))if(ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl'))for(const variant of variants){
-  if(variantFilter!==null&&variant.dir!==variantFilter)continue;
+  if(!eligibleCustom.has(variant))continue;
   if(!variant.maps.diffuse||!variant.maps.height)continue;
   const diffuse=await image('newer/enemies/'+variant.dir+'/'+variant.maps.diffuse),height=await image('newer/enemies/'+variant.dir+'/'+variant.maps.height);
   if(diffuse.width!==height.width||diffuse.height!==height.height)throw Error('Canonical enemy height alignment mismatch '+key);
