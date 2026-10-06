@@ -20,7 +20,7 @@ window.addEventListener('error',e=>errors.push({runtime:e.message}));window.addE
 const styles=new Array(64).fill(264),options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_bounce,post.r_volumetric,post.r_pointshadows,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,anim.r_newer_textures,anim.r_newer_enemies,anim.r_newer_shadows,r_rockfield,r_newer_weapons,r_flashlight];
 const verify=(value,name,evidence={})=>checks.push({passed:!!value,name,...evidence});
 const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('');
-function draw(label,{origin=[1312,1550,-365],angles=[35,90,0],directional=true,classic=false,actorY=1648,volume=0,actorShadows=true,oneFixture=null,isotropic=false}={}){
+function draw(label,{origin=[1312,1550,-365],angles=[35,90,0],directional=true,classic=false,actorY=1648,volume=0,actorShadows=true,oneFixture=null,isotropic=false,held=true}={}){
  cl.time=10;cl.worldmodel=world;r_refdef.vrect.width=W;r_refdef.vrect.height=H;r_refdef.fov_y=65;r_refdef.fov_x=90;r_refdef.vieworg.set(origin);r_refdef.viewangles.set(angles);
  vars.Cvar_SetValue('r_hdr',classic?0:1);vars.Cvar_SetValue('r_volumetric',volume);vars.Cvar_SetValue('r_newer_shadows',1);
  // Baseline deliberately uses the same loaded geometry with source admission
@@ -31,7 +31,7 @@ function draw(label,{origin=[1312,1550,-365],angles=[35,90,0],directional=true,c
  surf.R_DrawWorld();surf.R_WorldShowAll(true);
  actor.origin.set([1312,actorY,-432-actor.model.mins[2]]);actor.angles.set([0,270,0]);actor.frame=0;
  const mesh=R_DrawAliasModel(actor,actor.model.cache.data,new Float32Array(256).fill(1),0);if(mesh.parent!==main.scene)main.scene.add(mesh);mesh._quakeOwner=actorShadows?actor:null; // controlled caller admission; held caster unchangedmesh.layers.enable(post.SUN_SHADOW_LAYER);mesh.visible=true;
- cl.viewent.origin.set(origin);cl.viewent.angles.set([0,angles[1],0]);cl.stats[0]=100;cl.items=0;main.R_DrawViewModel();
+ cl.viewent.origin.set(origin);cl.viewent.angles.set([0,angles[1],0]);cl.stats[0]=100;cl.items=0;if(held)main.R_DrawViewModel();else if(cl.viewent._aliasMesh)cl.viewent._aliasMesh.visible=false;
  let frame,target;
  for(let i=0;i<8;i++){
   frame=post.R_PostLightsFrame(renderer,main.scene,main.camera,main.r_visframecount,styles,[],10,false);
@@ -67,7 +67,7 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
   const inside=[1340,1648,-431],outside=[1312,1740,-431],innerCone=roi(single,inside),innerPoint=roi(isotropic,inside),outerCone=roi(single,outside),outerPoint=roi(isotropic,outside);
   verify(innerCone.pixels>=10&&outerCone.pixels>=10&&innerCone.linear>1e-5&&Math.abs(innerCone.linear-innerPoint.linear)<innerPoint.linear*.05&&innerCone.cone>.99&&outerCone.cone<.001&&outerPoint.linear>1e-5&&outerCone.linear<outerPoint.linear*.01,'native floor pool retains core and rejects outside-cone light',{innerCone,innerPoint,outerCone,outerPoint});
   const rampOrigin=[1312,1200,-252],rampAngles=[55,90,0];
-  const rampCone=draw('Isolated native ramp fixture: cone',{origin:rampOrigin,angles:rampAngles,actorY:3000,oneFixture:2867}),rampPoint=draw('Same ramp fixture: isotropic control',{origin:rampOrigin,angles:rampAngles,actorY:3000,oneFixture:2867,isotropic:true});
+  const rampCone=draw('Isolated native ramp fixture: cone',{origin:rampOrigin,angles:rampAngles,actorY:3000,oneFixture:2867,held:false}),rampPoint=draw('Same ramp fixture: isotropic control',{origin:rampOrigin,angles:rampAngles,actorY:3000,oneFixture:2867,isotropic:true,held:false});
   const rampInner=roi(rampCone,[1340,1264,-351]),rampInnerPoint=roi(rampPoint,[1340,1264,-351]),rampOuter=roi(rampCone,[1312,1400,-419]),rampOuterPoint=roi(rampPoint,[1312,1400,-419]);
   verify(rampInner.pixels>=10&&rampOuter.pixels>=10&&rampInner.linear>1e-5&&rampInner.cone>.99&&Math.abs(rampInner.linear-rampInnerPoint.linear)<rampInnerPoint.linear*.05&&rampOuter.cone<.001&&rampOuterPoint.linear>1e-5&&rampOuter.linear<rampOuterPoint.linear*.01,'native sloped ramp receives positive core and rejects outside-cone light',{rampInner,rampInnerPoint,rampOuter,rampOuterPoint});
   const receivers=[];
@@ -83,7 +83,7 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
   verify(world.bspSourceBytes.every((v,i)=>v===original[i]),'native BSP bytes unchanged');
  }catch(error){checks.push({passed:false,name:String(error),stack:error.stack});}
  finally{renderer.setRenderTarget(null);button.disabled=false;}
- const result={status:checks.every(c=>c.passed)?'PASS':'FAIL',source:identity,draws,elapsedMs:performance.now()-start,checks,scope:'Actual native world and MDL production rendering with controlled cameras/actor placement; not gameplay navigation or combat qualification.'};report.textContent=JSON.stringify(result,null,2);window.fixtureLightingResult=result;
+ const result={status:checks.every(c=>c.passed)?'PASS':'FAIL',source:identity,draws,elapsedMs:performance.now()-start,checks,scope:'Actual native world and MDL production rendering with controlled cameras/actor placement. Isolated ramp radiometry hides the unchanged held mesh to remove foreground occlusion; fixed actor-shadow controls retain it. Not gameplay navigation or combat qualification.'};report.textContent=JSON.stringify(result,null,2);window.fixtureLightingResult=result;
 }
 try{
  main.R_Init();for(const c of options)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
