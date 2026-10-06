@@ -51,12 +51,12 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
   const changed=difference(before,after);verify(changed.changed>100,'actual floor presentation changes with fixture cones',changed);
   const ramp=draw('Ramp: fixture pools',{origin:[1312,1200,-245],angles:[30,270,0],actorY:3000});
   const blocked=draw('Native actor: shadows enabled',{actorY:1648}),noActorShadow=draw('Same posed native actor: caster toggle off',{actorY:1648,actorShadows:false});
-  let groundChanged=0,groundEnergy=0;
-  for(let i=0;i<W*H;i++){if(blocked.albedo[i*4+3]>12||noActorShadow.albedo[i*4+3]>12||blocked.normal[i*4+3]<=0||noActorShadow.normal[i*4+3]<=0)continue;let d=0;for(let c=0;c<3;c++)d+=Math.abs(blocked.pixels[i*4+c]-noActorShadow.pixels[i*4+c]);if(d>6)groundChanged++;groundEnergy+=d;}
+  let groundChanged=0,groundEnergy=0; // opaque world tag=1; aliases use .06/.08
+  for(let i=0;i<W*H;i++){if(blocked.albedo[i*4+3]<250||noActorShadow.albedo[i*4+3]<250||blocked.normal[i*4+3]<=0||noActorShadow.normal[i*4+3]<=0)continue;let d=0;for(let c=0;c<3;c++)d+=Math.abs(blocked.pixels[i*4+c]-noActorShadow.pixels[i*4+c]);if(d>6)groundChanged++;groundEnergy+=d;}
   verify(groundChanged>10&&blocked.shadow.pointDynamicMeshes>0,'fixed native actor changes world receiver shadow pixels; actor pixels excluded',{groundChanged,groundEnergy});
   const moved=draw('Native actor moved aside',{actorY:1800});
   const single=draw('Isolated native fixture: downward cone',{actorY:2000,oneFixture:2763}),isotropic=draw('Same native fixture: isotropic control',{actorY:2000,oneFixture:2763,isotropic:true});
-  function roi(image,point){const p=new THREE.Vector3(...point).project(image.camera),x=Math.round((p.x*.5+.5)*W),y=Math.round((p.y*.5+.5)*H);let count=0,sum=0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const px=x+dx,py=y+dy;if(px<0||py<0||px>=W||py>=H)continue;const i=(py*W+px)*4;if(image.normal[i+3]<=0||image.albedo[i+3]>12)continue;count++;sum+=image.pixels[i]+image.pixels[i+1]+image.pixels[i+2];}return{point,ndc:p.toArray(),pixels:count,mean:sum/Math.max(1,count)};}
+  function roi(image,point){const p=new THREE.Vector3(...point).project(image.camera),x=Math.round((p.x*.5+.5)*W),y=Math.round((p.y*.5+.5)*H);let count=0,sum=0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const px=x+dx,py=y+dy;if(px<0||py<0||px>=W||py>=H)continue;const i=(py*W+px)*4;if(image.normal[i+3]<=0||image.albedo[i+3]<250)continue;count++;sum+=image.pixels[i]+image.pixels[i+1]+image.pixels[i+2];}return{point,ndc:p.toArray(),pixels:count,mean:sum/Math.max(1,count)};}
   const inside=[1340,1648,-431],outside=[1312,1740,-431],innerCone=roi(single,inside),innerPoint=roi(isotropic,inside),outerCone=roi(single,outside),outerPoint=roi(isotropic,outside);
   verify(innerCone.pixels>=10&&outerCone.pixels>=10&&Math.abs(innerCone.mean-innerPoint.mean)<8&&outerPoint.mean>outerCone.mean+2,'native floor pool retains core and rejects outside-cone light',{innerCone,innerPoint,outerCone,outerPoint});
   const volume=draw('Bounded directional shafts',{actorY:1800,volume:1});
