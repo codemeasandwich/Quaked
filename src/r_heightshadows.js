@@ -1,3 +1,4 @@
+import { R_LightCone } from './r_fixturelights.js';
 // Local virtual-height self-shadowing shared by world and alias materials.
 // Callers own height samplers and the frozen pre-HDR light ordering. This module
 // neither imports the renderer pipeline nor changes geometry/albedo/emission.
@@ -18,6 +19,8 @@ export const heightShadowUniforms = {
 
 	uHeightShadowOn: { value: 0 }, uHeightCount: { value: 0 },
 	uHeightPointWorld: { value: Array.from( { length: HEIGHT_SHADOW_POINTS }, () => new THREE.Vector4() ) },
+	uHeightPointDirection: { value: Array.from({length:HEIGHT_SHADOW_POINTS},()=>new THREE.Vector3()) },
+ uHeightPointCone: { value: Array.from({length:HEIGHT_SHADOW_POINTS},()=>new THREE.Vector2(1,1)) },
 	uHeightPointColor: { value: Array.from( { length: HEIGHT_SHADOW_POINTS }, () => new THREE.Vector3() ) },
 	uHeightSunDirWorld: { value: new THREE.Vector3() }, uHeightSunOn: { value: 0 }, uHeightSunColor: { value: new THREE.Vector3() },
 	uHeightSpotPosWorld: { value: new THREE.Vector4() }, uHeightSpotDirWorld: { value: new THREE.Vector3() },
@@ -59,6 +62,9 @@ export function R_HeightShadowFrame( snapshot = {} ) {
 		const item = i < count ? points[ i ] : null, position = vector( item?.position ), far = range( item?.range );
 		heightShadowUniforms.uHeightPointWorld.value[ i ].set( ...( position || [ 0, 0, 0 ] ), position ? far : 0 );
 		heightShadowUniforms.uHeightPointColor.value[ i ].fromArray( position && far ? color( item?.color ) : [ 0, 0, 0 ] );
+  const shape=R_LightCone(item?.direction,item?.cone);
+  heightShadowUniforms.uHeightPointDirection.value[i].fromArray(shape?.direction||[0,0,0]);
+  heightShadowUniforms.uHeightPointCone.value[i].fromArray(shape?.cone||[1,1]);
 
 	}
 	const sun = snapshot.sun, sunDirection = direction( sun?.direction );
@@ -119,6 +125,8 @@ uniform float uHeightShadowOn;
 uniform int uHeightCount;
 uniform vec4 uHeightPointWorld[${HEIGHT_SHADOW_POINTS}];
 uniform vec3 uHeightPointColor[${HEIGHT_SHADOW_POINTS}];
+uniform vec3 uHeightPointDirection[${HEIGHT_SHADOW_POINTS}];
+uniform vec2 uHeightPointCone[${HEIGHT_SHADOW_POINTS}];
 uniform vec3 uHeightSunDirWorld;
 uniform float uHeightSunOn;
 uniform vec3 uHeightSunColor;
@@ -204,7 +212,9 @@ vec4 qrHeightBuildMask(vec3 P,HeightShadowContext context,out float diffuseVisib
     vec3 light=(viewMatrix*vec4(point.xyz,1.)).xyz;vec3 delta=light-P;float distanceToLight=length(delta);
     if(distanceToLight>1e-6&&distanceToLight<point.w){
      float facing=dot(delta/distanceToLight,N);
-     if(facing>0.){weight=intensity*facing*pow(max(0.,1.-distanceToLight/point.w),2.);visibility=qrHeightLayers(P,context,light,true,false);}
+     vec3 coneDirection=mat3(viewMatrix)*uHeightPointDirection[index];float cone=1.;
+     if(dot(coneDirection,coneDirection)>.5)cone=smoothstep(uHeightPointCone[index].y,uHeightPointCone[index].x,dot(-delta/distanceToLight,coneDirection));
+     if(facing>0.&&cone>0.){weight=intensity*facing*cone*pow(max(0.,1.-distanceToLight/point.w),2.);visibility=qrHeightLayers(P,context,light,true,false);}
     }
    }
   }
