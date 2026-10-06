@@ -117,6 +117,19 @@ export function R_NewerModelKey( modelName ) {
 
 }
 
+// Existing variants stay filename/skin compatible. A constrained variant may
+// be selected only after its actual loaded native model identity is ready.
+export function R_NewerVariantMatchesModel(variant,model){
+ const expected=variant?.nativeModelSha256;
+ if(expected===undefined)return true;
+ return typeof expected==='string'&&/^[a-f0-9]{64}$/.test(expected)&&model?.aliasSourceIdentity?.state==='ready'&&model.aliasSourceIdentity.sha256===expected;
+}
+function setMatchesModels(set,models){
+ if(set.variant?.nativeModelSha256===undefined||models==null)return true;
+ const current=Array.isArray(models)?models:[models];
+ return current.some(model=>typeof model==='object'&&model&&R_NewerModelKey(model.name)===set.modelKey&&R_NewerVariantMatchesModel(set.variant,model));
+}
+
 let levelSalt = ( Math.random() * 0xffffffff ) >>> 0;
 
 // a fresh roll for every monster whenever a level starts
@@ -571,8 +584,11 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting, skinnum = 
 	// a variant with a "skin" number is for that skin of the model only (the armor's
 	// green, yellow and red); the others are the model's skin 0
 	if ( all._bySkin === undefined ) all._bySkin = {};
-	let variants = all._bySkin[ skinnum ];
-	if ( variants === undefined ) variants = all._bySkin[ skinnum ] = all.filter( ( v ) => ( v.skin || 0 ) === skinnum );
+ const constrained=all.some(variant=>variant.nativeModelSha256!==undefined);
+ const identity=entity?.model?.aliasSourceIdentity;
+ const cacheKey=constrained?skinnum+':'+(identity?.state==='ready'?identity.sha256:'pending'):skinnum;
+ let variants=all._bySkin[cacheKey];
+ if(variants===undefined)variants=all._bySkin[cacheKey]=all.filter(variant=>(variant.skin||0)===skinnum&&R_NewerVariantMatchesModel(variant,entity?.model));
 	if ( variants.length === 0 ) return null;
 
 	const variant = variants[ R_NewerPickVariant( entity, key, variants.length ) ];
@@ -635,9 +651,9 @@ export function R_NewerSkinsShutdown() {
 export function R_NewerSkinsStatus( modelNames ) {
 	const names = modelNames == null ? null : ( Array.isArray( modelNames ) ? modelNames : [ modelNames ] );
 	const keys = names ? new Set( names.map( value => R_NewerModelKey( typeof value === 'string' ? value : value?.name ) ).filter( Boolean ) ) : null;
-	const selected = [ ...sets.values(), ...nativeSets.values() ].filter( set => set.alive && ( ! keys || keys.has( set.modelKey ) ) );
+	const selected = [ ...sets.values(), ...nativeSets.values() ].filter( set => set.alive && ( ! keys || keys.has( set.modelKey ) ) && setMatchesModels(set,modelNames) );
 	let pending = 0, ready = 0, fallback = 0, preparePending = 0; const errors = {}; const normals={pending:0,ready:0,shipped:0,disk:0,generated:0,errors:{}};
-	for ( const work of preparations.values() ) if ( ! work.started && ( ! keys || [ ...work.keys ].some( key => keys.has( key ) ) ) ) preparePending ++;
+	for ( const work of preparations.values() ) if ( ! work.started && ( ! work.isCurrent || work.isCurrent() ) && ( ! keys || [ ...work.keys ].some( key => keys.has( key ) ) ) ) preparePending ++;
 	pending += preparePending;
 	if ( R_IsNewer() && ( indexState === 'loading' || indexState === 'idle' && keys?.size ) ) pending ++;
 	for ( const set of selected ) for ( const [ name, load ] of set.loads || [] ) {
@@ -660,7 +676,7 @@ export function R_NewerSkinsPrefetchBsp(bytes){
  const text=new TextDecoder().decode(bytes.subarray(offset,offset+length)),keys=new Set(['gib1','gib2','gib3','zom_gib']);
  const heads={demon:'h_demon',dog:'h_dog',hknight:'h_hellkn',knight:'h_knight',ogre:'h_ogre',shalrath:'h_shal',shambler:'h_shams',enforcer:'h_guard',wizard:'h_wizard',zombie:'h_zombie'};
  for(let skill=0;skill<3;skill++)for(const entity of R_LevelEntities(text,null,null,skill)){const key=R_NewerModelKey(entity.model);if(key){keys.add(key);if(heads[key])keys.add(heads[key]);}}
- return requestIndex().then(()=>{for(const key of keys)for(const variant of skinIndex?.[key]||[]){const id=skinVersion+':'+variant.dir;if(!sets.has(id))sets.set(id,createSet(variant,key));}});
+ return requestIndex().then(()=>{for(const key of keys)for(const variant of skinIndex?.[key]||[]){if(variant.nativeModelSha256!==undefined)continue;const id=skinVersion+':'+variant.dir;if(!sets.has(id))sets.set(id,createSet(variant,key));}});
 }
 
 // Startup-only caller-owned preparation: all current-map variants and native
@@ -669,16 +685,26 @@ export function R_NewerSkinsPrefetchBsp(bytes){
 export function R_NewerSkinsPrepare( models ) {
 	const current = [ ...new Set( ( models || [] ).filter( model => model && typeof model === 'object' && R_NewerModelKey( model.name ) ) ) ];
 	const custom = R_IsNewer() && r_newer_enemies.value !== 0, native = R_IsNewer() && r_newer_normals.value !== 0;
-	const ids = current.map( model => { if ( ! modelIdentities.has( model ) ) modelIdentities.set( model, ++ modelSerial ); return modelIdentities.get( model ); } ).sort( ( a, b ) => a - b );
+	const sourceIdentities=current.map(model=>model.aliasSourceIdentity);
+ const identityId=object=>{if(!object||typeof object!=='object')return 0;if(!modelIdentities.has(object))modelIdentities.set(object,++modelSerial);return modelIdentities.get(object);};
+ const ids=current.map((model,i)=>identityId(model)+'@'+identityId(sourceIdentities[i])).sort();
+ const sameSources=()=>current.every((model,i)=>model.aliasSourceIdentity===sourceIdentities[i]);
 	const key = ids.join( ',' ) + ':' + Number( custom ) + ':' + Number( native ), previous = preparations.get( key );
 	if ( previous && ( ! previous.started || previous.version === skinVersion ) ) return previous.promise;
-	const epoch = preparationEpoch, work = { keys: new Set( current.map( model => R_NewerModelKey( model.name ) ) ), started: false, version: null };
+	const epoch = preparationEpoch, work = { keys: new Set( current.map( model => R_NewerModelKey( model.name ) ) ), started: false, version: null, isCurrent:sameSources };
 	preparations.set( key, work );
 	work.promise = ( custom || native ? requestIndex() : Promise.resolve() ).then( () => {
-		if ( epoch !== preparationEpoch ) return { models: [], cancelled: true };
+  // Reuse the preparation promise/epoch so identity work cannot reveal a
+  // half-loaded custom skin or start requests after shutdown.
+  if(epoch!==preparationEpoch||!sameSources())return false;
+  const required=custom?current.filter(model=>(skinIndex?.[R_NewerModelKey(model.name)]||[]).some(variant=>variant.nativeModelSha256!==undefined)):[];
+  return Promise.all(required.map(model=>model.aliasSourceIdentity?.promise)).then(()=>true);
+ }).then( allowed => {
+  if(!allowed||epoch!==preparationEpoch||!sameSources()){work.started=true;work.version=skinVersion;work.cancelled=true;return {models:[],cancelled:true};}
 		for ( const model of current ) {
 			const modelKey = R_NewerModelKey( model.name );
 			if ( custom ) for ( const variant of skinIndex?.[ modelKey ] || [] ) {
+    if(!R_NewerVariantMatchesModel(variant,model))continue;
 				const setKey = skinVersion + ':' + variant.dir;
 				if ( ! sets.has( setKey ) ) sets.set( setKey, createSet( variant, modelKey ) );
 				const set=sets.get(setKey);if(native&&set.isEnemy&&set.diffuse&&!set.normalWork)refreshHeight(set);
@@ -707,7 +733,7 @@ export function R_NewerSkinsPrepare( models ) {
 function preparedSets( models ) {
 	const names = Array.isArray( models ) ? models : [ models ];
 	const keys = new Set( names.map( model => R_NewerModelKey( typeof model === 'string' ? model : model?.name ) ).filter( Boolean ) );
-	return [ ...sets.values(), ...nativeSets.values() ].filter( set => set.prepared && set.alive && set.diffuse !== null && keys.has( set.modelKey ) );
+	return [ ...sets.values(), ...nativeSets.values() ].filter( set => set.prepared && set.alive && set.diffuse !== null && keys.has( set.modelKey ) && setMatchesModels(set,models) );
 }
 
 export function R_NewerSkinsMaterials( models ) {

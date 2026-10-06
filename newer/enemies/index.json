@@ -187,9 +187,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "shalrath": [
+   {
+    "dir": "shalrath/custom",
+    "skin": 0,
+    "nativeModelSha256": "da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 21,
+ "version": 22,
  "nativeHeights": {
   "gib1": [
    [

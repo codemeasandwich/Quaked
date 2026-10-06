@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "model": "progs/shalrath.mdl",
+  "nativeModelSha256": "da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee",
+  "source": "Gemini_Generated_Image_ea7a33a03-2346-46b.jpeg",
+  "sourceSha256": "f702e38e2e415eb791734b43f8f79a6d28f8f9a873c392584252f3a66c6faabc",
+  "skin": 0,
+  "skinFrame": 0,
+  "factor": 5,
+  "dimensions": [
+    1060,
+    975
+  ],
+  "parts": [
+    {
+      "name": "front connected body",
+      "src": [
+        10,
+        8,
+        500,
+        930
+      ],
+      "dst": [
+        3,
+        3,
+        103,
+        192
+      ],
+      "seed": [
+        255,
+        350
+      ]
+    },
+    {
+      "name": "back connected body",
+      "src": [
+        526,
+        10,
+        1012,
+        931
+      ],
+      "dst": [
+        109,
+        3,
+        209,
+        192
+      ],
+      "seed": [
+        768,
+        350
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "front connected body",
+      "body_pixels": 176860
+    },
+    {
+      "name": "back connected body",
+      "body_pixels": 172244
+    }
+  ],
+  "fit": {
+    "surface_pixels": 334921,
+    "direct_supplied_pixels": 334022,
+    "edge_fill_pixels": 899,
+    "surface_coverage": 1.0,
+    "source_matte_seed_pixels": 0
+  },
+  "darkSuppliedSurfaceSamples": 68,
+  "nativeTexturePixelsUsed": 0,
+  "separateHead": "Unchanged native h_shal model/skin",
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "update_head_skins.fit",
+    "fit_skin.spread",
+    "uv_footprint",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.webp": "9dfb0b3a7ae996723d75d0c722fc1450fd960f64068328ffb6b0b7523eebdfe0",
+    "height.webp": "de8568797d8e464978abf8e01ae018b617fe575582f499ffc189161e697a0d34"
+  }
+}
