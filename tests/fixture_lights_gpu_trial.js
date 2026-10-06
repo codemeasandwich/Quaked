@@ -6,6 +6,7 @@ import * as surf from '../src/gl_rsurf.js';
 import * as anim from '../src/r_anim.js';
 import * as vars from '../src/cvar.js';
 import { r_flashlight } from '../src/r_flashlight.js';
+import { r_rockfield } from '../src/r_rockfield.js';
 import { r_newer_weapons } from '../src/r_weapons.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
@@ -14,13 +15,14 @@ import { cl } from '../src/client.js';
 import { r_refdef, entity_t } from '../src/render.js';
 import { R_DrawAliasModel } from '../src/gl_mesh.js';
 const W=640,H=400,report=document.querySelector('#report'),button=document.querySelector('#run'),views=document.querySelector('#views');
-const errors=[],checks=[];let renderer,world,actor,draws=0,composite;
-const styles=new Array(64).fill(264),options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_bounce,post.r_volumetric,post.r_pointshadows,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,anim.r_newer_shadows,r_newer_weapons,r_flashlight];
+const errors=[],checks=[];
+window.addEventListener('error',e=>errors.push({runtime:e.message}));window.addEventListener('unhandledrejection',e=>errors.push({rejection:String(e.reason)}));let renderer,world,actor,draws=0,composite;
+const styles=new Array(64).fill(264),options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_bounce,post.r_volumetric,post.r_pointshadows,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,anim.r_newer_textures,anim.r_newer_enemies,anim.r_newer_shadows,r_rockfield,r_newer_weapons,r_flashlight];
 const verify=(value,name,evidence={})=>checks.push({passed:!!value,name,...evidence});
 const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('');
 function draw(label,{origin=[1312,1550,-365],angles=[35,90,0],directional=true,classic=false,actorY=1648,volume=0,actorShadows=true,oneFixture=null,isotropic=false}={}){
  cl.time=10;cl.worldmodel=world;r_refdef.vrect.width=W;r_refdef.vrect.height=H;r_refdef.fov_y=65;r_refdef.fov_x=90;r_refdef.vieworg.set(origin);r_refdef.viewangles.set(angles);
- vars.Cvar_SetValue('r_hdr',classic?0:1);vars.Cvar_SetValue('r_volumetric',volume);vars.Cvar_SetValue('r_newer_shadows',actorShadows?1:0);
+ vars.Cvar_SetValue('r_hdr',classic?0:1);vars.Cvar_SetValue('r_volumetric',volume);vars.Cvar_SetValue('r_newer_shadows',1);
  // Baseline deliberately uses the same loaded geometry with source admission
  // absent, reproducing the old helper/clustering path; never alters BSP bytes.
  const sources=post.R_BuildWorldLights(directional?world:{...world,bspSourceBytes:null});
@@ -28,7 +30,7 @@ function draw(label,{origin=[1312,1550,-365],angles=[35,90,0],directional=true,c
  main.R_SetupFrame();main.R_SetupGL();post.R_PostBegin(renderer,!classic,W,H);
  surf.R_DrawWorld();surf.R_WorldShowAll(true);
  actor.origin.set([1312,actorY,-432-actor.model.mins[2]]);actor.angles.set([0,270,0]);actor.frame=0;
- const mesh=R_DrawAliasModel(actor,actor.model.cache.data,new Float32Array(256).fill(1),0);if(mesh.parent!==main.scene)main.scene.add(mesh);mesh._quakeOwner=actor;mesh.layers.enable(post.SUN_SHADOW_LAYER);mesh.visible=true;
+ const mesh=R_DrawAliasModel(actor,actor.model.cache.data,new Float32Array(256).fill(1),0);if(mesh.parent!==main.scene)main.scene.add(mesh);mesh._quakeOwner=actorShadows?actor:null; // controlled caller admission; held caster unchangedmesh.layers.enable(post.SUN_SHADOW_LAYER);mesh.visible=true;
  cl.viewent.origin.set(origin);cl.viewent.angles.set([0,angles[1],0]);cl.stats[0]=100;cl.items=0;main.R_DrawViewModel();
  let frame,target;
  for(let i=0;i<8;i++){
@@ -76,7 +78,7 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
 }
 try{
  main.R_Init();for(const c of options)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
- for(const [name,value]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_bounce:0,r_volumetric:0,r_pointshadows:1,r_newer_lighting:1,r_newer_normals:0,r_newer_water:0,r_newer_shadows:1,r_newer_weapons:0,r_flashlight:0}))vars.Cvar_SetTemporary(name,String(value));
+ for(const [name,value]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_bounce:0,r_volumetric:0,r_pointshadows:1,r_newer_lighting:1,r_newer_normals:0,r_newer_water:0,r_newer_textures:0,r_newer_enemies:0,r_rockfield:0,r_newer_shadows:1,r_newer_weapons:0,r_flashlight:0}))vars.Cvar_SetTemporary(name,String(value));
  const response=await fetch(new URL('../pak0.pak',import.meta.url));if(!response.ok)throw Error('Bundled native pack missing');COM_AddPack(COM_LoadPackFile('pak0.pak',await response.arrayBuffer()));VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);vid.fullbright=224;Mod_Init();
  world=Mod_ForName('maps/e1m1.bsp',true);cl.worldmodel=world;cl.model_precache[1]=world;cl.model_precache[2]=null;main.R_NewMap();
  actor=new entity_t();actor.model=Mod_ForName('progs/soldier.mdl',true);cl.viewent.model=Mod_ForName('progs/v_shot.mdl',true);
