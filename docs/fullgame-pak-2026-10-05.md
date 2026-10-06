@@ -238,3 +238,36 @@ failed cold receipts and the `71083e2` registered/PACK receipts remain intact.
 Owned archive, bundled program/palette/world bytes and those loading fixes are
 unchanged. The new bounded repair retains the card's original 19:53 clock and
 has a 21:35 UTC source stop; it grants no further retry, landing or release.
+
+## Presented-frame qualification, 6 October
+
+The owner requested completion of the existing selected cards. The frozen
+5865e8c source was exercised through ordinary public single-player and Level
+Select actions in three bounded browser trials: owned Newer E2M1, owned
+Classic E2M1, and Classic shareware E1M1 with the optional owned archive absent.
+All three passed with same-frame world/HUD PNG captures, native signon 4, a
+living player at 100 health, advancing server time and gameplay input restored.
+The current loaded E2M1 BSP matched the resolved owned file SHA-256
+`de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a`;
+bundled program identity remained
+`f2619787f9aa0f057246eea1665b622b4691b5c5a800b1a46133d1fe8b771580`.
+
+Newer retained HDR 1 and all sixteen enhancement settings. Its welcome
+coordinator settled three frames for the actual E2M1 world; texture, normal,
+skin, weapon, HUD, shadow and water roles settled without errors. This map
+has zero eligible rock/sculpt charts, so those ready empty roles are not
+evidence of visible sculpting. Classic used HDR 0. The absent-pack control
+retained registered 0 and omitted E2M1 from Level Select. Actual scene/camera
+draws and default-framebuffer pixels were checked, rather than a final
+fullscreen pass's triangle counter. Shader/runtime errors and GL errors were
+zero. Browser pointer-lock denial was retained separately; these receipts
+qualify rendering and native game readiness, not physical mouse capture.
+
+Two earlier pages expired before a menu action and were retained as failures.
+The observer then used separate finite boot/selection and selected-game
+watchdogs, without changing product readiness gates. Immutable JSON/PNG
+receipts and independent review are retained outside the distribution at
+`/private/tmp/quaked-fullgame-presented-5865-oct6/`. Each terminal observer
+stopped its renderer and restored hooks; the owned tab and localhost server
+were closed after the controls. This is a first-level loading increment,
+not full-campaign completion, timing qualification or production release.
