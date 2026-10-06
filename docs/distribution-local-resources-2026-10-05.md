@@ -1,3 +1,11 @@
+# Current forward distribution policy
+
+The complete 6 October classification below supersedes the historical
+043a93 single-rule increment. It covers 1,917 exact paths; 14 already-tracked
+files remain tracked. Local bytes and history are untouched.
+
+## Historical 043a93 increment, superseded 6 October
+
 # Distribution classification: local developer resources
 
 The first working increment for task `[9a]` adds one exact root ignore rule:
@@ -44,3 +52,44 @@ Baseline reproduction limits remain: the owner-deleted `rockfield-v1.0.0.html`/`
 Existing GPL code notices, third-party weapon licenses, shell attribution and music/HUD/texture provenance remain required. Asset possession and functional classification do not establish redistribution rights. `font.zip` had no license/README/credit-named member in the bounded archive-directory inventory; it stays held. Private MDLs/owned-game archives are not copied into public source. Legal notices `[10]`, enhancement packaging `[9b]`, independent review and landing remain separate work. This increment is a source-only Git-policy handoff, not qualified public distribution or full-card completion.
 
 The change adds one literal rule and maintained documentation, so it scales with Git's existing policy, preserves runtime performance and avoids a competing mechanism. Narrow scope and explicit holds keep maintenance and security boundaries reviewable.
+
+## Complete forward classification, 6 October
+
+The owner selected this existing card for completion. The source audit at
+`b536c935` identified 1,917 exact local-only paths: 1,865 obsolete normal,
+sculpt and rock payloads, original enemy fitting sheets, standalone donor
+examples, unused reference art/copies, superseded menu rasters and an unused
+normal-bundle experiment. The machine-readable
+[classification](distribution-local-only.json) records each path, reason,
+content hash, audit presence and whether it was already tracked. Ignore rules
+are anchored exact paths; no blanket image, ZIP, docs, source or asset rules
+were added. File bytes remain local for later selected work.
+
+Runtime manifests and generated registries agree on 1,886 normal payloads,
+162 sculpt parts and 147 rock payloads; all remain publishable. Maintained
+engine/server source, tests, importer/build tools, required donor ZIPs,
+licenses, provenance, technical documentation and the owner-designated public
+infographic remain retained. Unused is not inferred merely from lack of a
+runtime URL: required reproduction and license material is part of source
+distribution. Existing deleted owner source files are neither restored nor
+staged as deletions by this change; the modified Ogre remains untouched.
+
+Fourteen classified developer files were already tracked at the audit. They
+remain tracked: `.gitignore` cannot untrack files or purge existing commits.
+This card finishes classification and future-addition protection only. The
+separate 9c history-removal card and 9b asset-archive card remain Backlog under
+the owner's current stop on new intake. This document does not claim a
+purged history or an enhancement archive. The audit also preserves existing
+missing developer prototypes and the existing `deno.json` server-source gap;
+it does not silently substitute or remove those inputs.
+
+Verify the public policy with `python3 tools/check_distribution_policy.py`.
+An optional `--preservation-root /absolute/local/checkout` verifies all
+present-at-audit developer hashes without modifying them. Full original
+classification and private native-resource inventory remain in the
+coordinator's temporary evidence, rather than the public distribution.
+
+The first public policy check exposed a tracked Python bytecode cache already
+matched by the baseline `__pycache__/` rule. It is now classified explicitly
+as a fourteenth tracked local-only file; the failure remains in the private
+verification record. No cache file was deleted or untracked.
