@@ -2802,6 +2802,17 @@ function Mod_LoadAliasModel( mod, buffer ) {
 	if ( version !== ALIAS_VERSION )
 		Sys_Error( mod.name + ' has wrong version number (' + version + ' should be ' + ALIAS_VERSION + ')' );
 
+ // Alias identity belongs to the exact loaded bytes, not its filename or a
+ // future pack lookup. Copy once before asynchronous hashing; native decode,
+ // geometry and Classic skins stay synchronous and unchanged.
+ const sourceBytes=bytes.slice(),identity={state:'pending',sha256:null,error:null,promise:null};
+ mod.aliasSourceIdentity=identity;
+ identity.promise=Promise.resolve().then(()=>{
+  if(!globalThis.crypto?.subtle)throw new Error('Alias source digest unavailable');
+  return globalThis.crypto.subtle.digest('SHA-256',sourceBytes);
+ }).then(hash=>{identity.sha256=Array.from(new Uint8Array(hash),v=>v.toString(16).padStart(2,'0')).join('');identity.state='ready';return identity.sha256;})
+ .catch(error=>{identity.state='unavailable';identity.error=String(error.message||error);return null;});
+
 	const numframes = view.getInt32( 68, true ); // offset of numframes in mdl_t
 
 	// Allocate header

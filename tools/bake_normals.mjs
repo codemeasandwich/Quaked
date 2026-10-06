@@ -8,8 +8,8 @@ import {pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {gzipSync} from 'node:zlib';
 import {memberSearch,readMember,isolatedPack,sha256} from './pak_members.mjs';
-const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',skins=false;
-for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--skins')skins=true;else throw Error('Unknown argument '+args[i]);}
+const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',skins=false,variantFilter=null;
+for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--skins')skins=true;else if(args[i]==='--variant')variantFilter=args[++i];else throw Error('Unknown argument '+args[i]);}
 if(!process.env.QUAKED_THREE_MODULE||!process.env.QUAKED_CANVAS_MODULE)throw Error('Use existing Three and canvas runtime paths');
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
@@ -47,6 +47,14 @@ for(const[name,entry]of members)if(!skins&&/^maps\/[^/]+\.bsp$/.test(name)&&new 
 
 if(skins){
  const THREE=await import('three'),{ENEMY_SKIN_MODELS}=await import('../src/r_newerskins.js'),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
+ const runsCustom=namespace==='shareware'||variantFilter!==null;
+ const selectedVariants=runsCustom?Object.entries(skinIndex.models||{}).flatMap(([key,variants])=>ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl')?variants.filter(variant=>variantFilter===null||variant.dir===variantFilter).map(variant=>({key,variant})):[]):[];
+ if(variantFilter!==null&&!selectedVariants.length)throw Error('No matching custom skin variant: '+variantFilter);
+ const eligibleCustom=new Set();
+ for(const {key,variant}of selectedVariants){
+  if(variant.nativeModelSha256){const native=members.get('progs/'+key+'.mdl'),matches=!!native&&sha256(await readMember(native))===variant.nativeModelSha256;if(!matches){if(variantFilter!==null)throw Error('Native identity mismatch for constrained skin '+variant.dir);continue;}}
+  eligibleCustom.add(variant);
+ }
  const image=async path=>{const img=new FileImage();if(path==='newer/enemies/ogre/custom/diffuse.webp'){const original=spawnSync('git',['show','HEAD:'+path],{maxBuffer:16*1024*1024});if(original.status!==0)throw Error('Cannot retain scoped Ogre source');img.src=original.stdout;}else img.src=path;await img.decode();const c=canvas.createCanvas(img.width,img.height),ctx=c.getContext('2d');ctx.drawImage(img,0,0);return {width:img.width,height:img.height,data:ctx.getImageData(0,0,img.width,img.height).data};};
  const companion=(pixels,height,strength=.65,cap=.55)=>{const t=new THREE.DataTexture(pixels.data,pixels.width,pixels.height,THREE.RGBAFormat);t.userData.newerHeight={width:pixels.width,height:pixels.height,derive:!height,data:height?Float32Array.from({length:height.width*height.height},(_,i)=>height.data[i*4]/255):undefined,strength,cap};return t;};
  for(const[name,entry]of members)if(/^progs\/[^/]+\.mdl$/.test(name)&&new RegExp(filter).test(name)){
@@ -61,7 +69,8 @@ if(skins){
   }
   manifest.levels[namespace+':'+name]={modelSha256:sha256(bytes),keys:[...keys]};console.log('BAKED SKIN NORMALS '+namespace+':'+name+' '+keys.size+' variants');
  }
- if(namespace==='shareware')for(const[key,variants]of Object.entries(skinIndex.models||{}))if(ENEMY_SKIN_MODELS.has(key))for(const variant of variants){
+ if(namespace==='shareware'||variantFilter!==null)for(const[key,variants]of Object.entries(skinIndex.models||{}))if(ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl'))for(const variant of variants){
+  if(!eligibleCustom.has(variant))continue;
   if(!variant.maps.diffuse||!variant.maps.height)continue;
   const diffuse=await image('newer/enemies/'+variant.dir+'/'+variant.maps.diffuse),height=await image('newer/enemies/'+variant.dir+'/'+variant.maps.height);
   if(diffuse.width!==height.width||diffuse.height!==height.height)throw Error('Canonical enemy height alignment mismatch '+key);

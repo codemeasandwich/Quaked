@@ -38522,6 +38522,28 @@
       "height": 256,
       "bytes": 524468,
       "compressedBytes": 293655
+    },
+    "51edc80e42298cefeff47e6ea68cbfcf2494795b006dd2c9494aa42f3b4710f4": {
+      "file": "newer/normals/51edc80e42298cefeff47e6ea68cbfcf2494795b006dd2c9494aa42f3b4710f4.nm.gz",
+      "input": {
+        "width": 1060,
+        "height": 975,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "c2e64163bf8cb4f8888ffb1d633ab15462ac774ed47ee6d668d6c0dbe81a5182",
+        "fullbright": null,
+        "scalar": "4e63e736c2d3c7bfaab97a8dab7f45a8d7190ec4724273b6cfd4a1359388195f",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "b7471b5bd25cee165d865ac23ce9c4a82aa0d105e02e04cb3d7c0f726af76ad7",
+      "rawSha256": "843cb5d3e15127600ddf3df44dd7f701c917b2d5f79d623570bd99cfc50b038f",
+      "width": 1060,
+      "height": 975,
+      "bytes": 8268184,
+      "compressedBytes": 3561838
     }
   },
   "levels": {
@@ -69313,6 +69335,17 @@
       "keys": [
         "945d5046c02257a1c445683a77e3660f23875d5d0ce3c0dea0efef1ca96f060c",
         "d0ae4927029e10138a35b3e727fb51af7fe73cfd645a32f39bceda8defb1993b"
+      ]
+    },
+    "quake:progs/shalrath.mdl": {
+      "modelSha256": "da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee",
+      "keys": [
+        "7db153e229ee38f6d760d106635895dca371c1415c67c286c7d76f290f282089"
+      ]
+    },
+    "custom:shalrath/custom": {
+      "keys": [
+        "51edc80e42298cefeff47e6ea68cbfcf2494795b006dd2c9494aa42f3b4710f4"
       ]
     }
   }
