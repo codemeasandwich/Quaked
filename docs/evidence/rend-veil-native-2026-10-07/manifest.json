@@ -1,0 +1,174 @@
+{
+  "profile": "native E1M2 skill2 t143\u2192t142 fiend closet; original walls; r_newdark1,r_newbright1.5 inspection curve; no readiness fallback",
+  "captures": [
+    {
+      "age": 0.25,
+      "receipt": "0.25.json",
+      "image": "0.25.png",
+      "renderer": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 1,
+            "phase": "intro",
+            "age": 0.25,
+            "progress": 0,
+            "focused": false,
+            "scale": 7.439907147334172,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              322.57504652096674
+            ],
+            "restored": false
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 1.1,
+      "receipt": "1.10.json",
+      "image": "1.10.png",
+      "renderer": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 1,
+            "phase": "appearance",
+            "age": 1.1,
+            "progress": 0.6480000000000001,
+            "focused": false,
+            "scale": 7.439907147334172,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              322.57504652096674
+            ],
+            "restored": false
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 1.8,
+      "receipt": "1.80.json",
+      "image": "1.80.png",
+      "renderer": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 1,
+            "phase": "unwind",
+            "age": 1.7999999999999998,
+            "progress": 1,
+            "focused": false,
+            "scale": 7.439907147334172,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              322.57504652096674
+            ],
+            "restored": false
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 2.55,
+      "receipt": "2.55.json",
+      "image": "2.55.png",
+      "renderer": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 1,
+            "phase": "remnants",
+            "age": 2.55,
+            "progress": 1,
+            "focused": true,
+            "scale": 7.439907147334172,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              322.57504652096674
+            ],
+            "restored": true
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 2.75,
+      "receipt": "2.75.json",
+      "image": "2.75.png",
+      "renderer": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 1,
+            "phase": "remnants",
+            "age": 2.75,
+            "progress": 1,
+            "focused": true,
+            "scale": 7.439907147334172,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              322.57504652096674
+            ],
+            "restored": true
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 2.9,
+      "receipt": "2.90.json",
+      "image": "2.90.png",
+      "renderer": {
+        "active": 0,
+        "pooled": 1,
+        "states": []
+      },
+      "errors": []
+    }
+  ],
+  "source": {
+    "src/rend_veil/shader-common.js": "2b39165252fa9317ff64bbcb8def8999b7649b5c75d21a91f4a624950d7e8c71",
+    "src/rend_veil/glyph-data.js": "68c07477102b3456b56b8efbc8428c1395dd221d2a8d2cea8a1694bb43ff6bea",
+    "src/rend_veil/optics-shader.js": "0468b58d5e21f6d5f0108c5f51c6bc30d7d529ddb205958966a15633991d41c9",
+    "src/rend_veil/local-effects.js": "a5f3fe40147a55271345cbaa145ff8d2abde8bacab1f2d6c1af9ee5dd76cfbe2",
+    "src/rend_veil/config.js": "279c4687699517203fbeeec5e9ef541a315e8945bb9425f9851b8ad4e2f99e1a",
+    "src/rend_veil/timeline.js": "120a6cd5054cb56c5dbfb9fab68f06f560976849b842b0ad16228926d6d6916a",
+    "src/rend_veil/frame.js": "42187eb0b85426f04b4faca6fd156dc73d889bb3e36c261b2fd9a83f7ca9cf6b",
+    "src/rend_veil/material-binding.js": "a75d9644313d8fd2981c945bccde51de685a35a2c2602ea40994442ae0aa0e16",
+    "src/r_rendveil.js": "9f08417fe4dba72b6a2f7d1cce08c49637ef0530c640d39bce6705f6f8d83897",
+    "src/r_rendveil_optics.js": "6ce8d38d83096733f5a86c1b6d74e468040421d4e9eb6b8903488b16e7a92efc",
+    "src/gl_rmain.js": "ea7660795286870251759e1b3e640bbe174bbd6b379e9e4abde3ecda93a672cf",
+    "src/gl_post.js": "11cc1863774239084c2c61e1785b17834f96a7c639033a0d5be8199a8f53cca1",
+    "src/r_pointshadows.js": "cf72d6513b6540020c23d8b5c1f3142166a929f4ed6007a3d2175771e171e30a",
+    "src/sv_rendveil.js": "cc256218ce5e561f3d58ba94e8aa7e92312db1f0d3ef39130dceb9f8c7a8c5d7",
+    "src/world.js": "b96e97d186891be3cfeb93dfe6c6f03eb1a4bf8d9efe4e9347331555896c9372",
+    "src/sv_phys.js": "41e5870793f1aa928335272eeb3a355793ec05a74220f52aa24eff904931e3bc",
+    "src/cl_main.js": "7bc900f482411264db0628559a0c20298f2de7ebfaa8e78974ad6d46328319eb",
+    "src/cl_parse.js": "646590c95124328bb13cf2b82dec6261c1502b2ac4a60956d43c3419af06de03",
+    "tests/rend_veil_gameplay_trial.js": "d582fe4f33ff25014ba4822fa9c9d505341010d89ced8e071be3fd90eeb6839d",
+    "tests/rend_veil_gameplay_trial.html": "9eb572428f4ee27664ef84178946bb99239f0d5279d9069cb470c16241154889"
+  },
+  "scope": "Stage buttons pause/seek fixture clock. Native activation proved by independently authored physics tests; automatic browser replay is separate."
+}

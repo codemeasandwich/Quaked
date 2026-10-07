@@ -1,0 +1,21 @@
+Independent two-frame public fixture initial run, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Exit code: 1
+Test source SHA256: 53321a9030890c87beaa1d7179fdb88be3009bc9312a582ba73bf4d31ad6cff3
+Implementation src/r_rendveil.js SHA256: ac79079dd0cb76df67b49042b329e3d61ab9b4b6ae4bc81d48b46dae3cd922cf
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+RESULT 3/4 passed (tests/rend_veil_capture_state_test.js)
+FAIL public Rend doubles destination FX while preserving native body vertices and finite dim light reach Error: body lower bounds measured in destination FX coordinates:x: -0.4499999999999999 != -0.3999999999999999
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:9:56)
+    at near (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:12:43)
+    at nearPoint (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:13:90)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:102:2
+    at fixture (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:57:3)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:94:121
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 3/4 passed
+
+Failure analysis: initial fixture expected raw vertex bounds. The supplied material-binding getEffectBounds() deliberately expands by .10 body-reference units. Root's 2x FX frame correctly halves that conservative padding to .05 FX units. Correct the fixture's padding expectation, retain raw vertex extent checks, and rerun; no production source correction is needed for this observation.

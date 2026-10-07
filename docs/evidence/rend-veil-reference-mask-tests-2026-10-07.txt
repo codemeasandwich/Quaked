@@ -1,0 +1,24 @@
+Independent supplied-reference programme/progression fixture, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Test command exit code: 0
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public local ink preserves receiver metadata while rune letters keep additive colour-only output
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+PASS public body and shadow programs reuse supplied radial coverage and post-posed transforms through Appearance and Focus
+PASS native optical protection explicitly keeps formed opaque pixels visible before Unwind
+RESULT 8/8 passed (tests/rend_veil_capture_state_test.js)
+TOTAL 8/8 passed
+
+SHA256 674c5dba24c10b24c1d6f5b9354e626e4375b6cd6c49716556c5c130510583e1 src/r_rendveil.js
+SHA256 f3d9d40bc0e563e9d112ed5570394322e415ce28e9ce464cb9e7eec84f7d6eb0 src/rend_veil/material-binding.js
+SHA256 c59f0c7ea2705ac3c311a63d404de757b923e2eae9039f4fefa0b6bafae219b8 src/rend_veil/optics-shader.js
+SHA256 125163a7e6dcf87a6449b78d87981ad49eb23e969a5e07af7a6a6ee28d6d124f tests/rend_veil_capture_state_test.js
+SHA256 8258cd66ba4a0633e32795ce8a20d6f2cb108167d747906442568657c7583e33 tools/summoning_reference/quaked-rend-the-veil-v1.0.0.html
+SHA256 120a6cd5054cb56c5dbfb9fab68f06f560976849b842b0ad16228926d6d6916a src/rend_veil/timeline.js
+Other runtime identities remain in the earlier capture/two-frame receipts.
+
+Qualification: supplied HTML chunk comparison; actual public binding, material shader-source callbacks, real Three geometry/matrices and scalar uniforms. No GLSL compilation, numeric pixel coverage/raster execution, actual MDL or GPU image claim. The separate optical test explicitly qualifies a native protection override, not reference equality. The initial obsolete distanceRGBA fixture-library failure is retained in rend-veil-reference-mask-initial-tests-2026-10-07.txt. No production source was edited by this reviewer.

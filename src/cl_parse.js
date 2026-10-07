@@ -1,4 +1,5 @@
 import { SV_RespawnInventoryStats } from './sv_respawn.js';
+import { SV_RendVeilClientRecord } from './sv_rendveil.js';
 // Ported from: WinQuake/cl_parse.c -- parse a message received from the server
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
@@ -756,6 +757,9 @@ export function CL_ParseUpdate( bits ) {
 		num = MSG_ReadByte();
 
 	const ent = CL_EntityNum( num );
+	// Local native spawn identity also survives same-model slot reuse and PVS gaps.
+	ent._rendVeil = SV_RendVeilClientRecord( num );
+	ent._rendVeilTime = ent._rendVeil ? sv.time : null;
 
 	for ( let i = 0; i < 16; i ++ )
 		if ( bits & ( 1 << i ) )

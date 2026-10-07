@@ -46,13 +46,15 @@ import { R_AliasReceiverPass } from './r_newerskins.js';
 import { R_ActiveWeaponSurface } from './r_weapon_surface.js';
 import { R_ScreenDropsUpdate } from './r_screendrops.js';
 import { R_TeleportFx } from './r_teleportfx.js';
+import { R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights } from './r_rendveil.js';
+import { R_RendVeilOptics, R_RendVeilOpticsShutdown } from './r_rendveil_optics.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, R_WaterProbeReadiness, WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures, r_newer_shadows } from './r_anim.js';
 import { R_DemonSurfaceData } from './r_demonrelief.js';
 import { R_DemonBakePrepare, R_DemonBakeSurface } from './r_demonbakes.js';
-import { PointShadowAtlas, POINT_SHADOW_GLSL, POINT_SHADOW_SLOTS, SPOT_WORLD_SHADOW_GLSL, NEAR_SUN_SHADOW_GLSL } from './r_pointshadows.js';
+import { PointShadowAtlas, R_CreateShadowCaptureMaterial, POINT_SHADOW_GLSL, POINT_SHADOW_SLOTS, SPOT_WORLD_SHADOW_GLSL, NEAR_SUN_SHADOW_GLSL } from './r_pointshadows.js';
 import { r_heightshadows, heightShadowUniforms, R_HeightShadowFrame, R_HeightShadowScope, HEIGHT_SHADOW_GLSL, HEIGHT_MASK_DECODE_GLSL } from './r_heightshadows.js';
 
 // 0 = the classic lighting, 1 = the HDR pipeline ("Newer Game"); switchable at any time
@@ -1506,7 +1508,7 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 	slot.pos[ 0 ] = vx; slot.pos[ 1 ] = vy; slot.pos[ 2 ] = vz;
 	slot.radius = radius;
 	// Pickup pulses change radiance, not receiver reach or shadow residency.
-	slot.range = 130 + 170 * Math.sqrt( source?.powerup || source?.bestiary ? rankPower : power );
+	slot.range = source?.rendVeil ? source.range : 130 + 170 * Math.sqrt( source?.powerup || source?.bestiary ? rankPower : power );
 	slot.color[ 0 ] = color[ 0 ] * power * LIGHT_GAIN;
 	slot.color[ 1 ] = color[ 1 ] * power * LIGHT_GAIN;
 	slot.color[ 2 ] = color[ 2 ] * power * LIGHT_GAIN;
@@ -1557,6 +1559,7 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 		const pulse = l.powerup === 'quad' ? R_PowerupPulse( time ) : 1;
 		consider( ...l.pos, l.color, l.power * pulse, l.radius, view, .65, l, l.power );
 	}
+	for(const l of R_RendVeilLights())consider(...l.origin,l.color,l.power,l.radius,view,0,l,l.power);
 	const portrait=R_BestiaryPortraitLight();
 	if(portrait&&portrait.fade>0)consider(...portrait.pos,portrait.color,portrait.power*portrait.fade,portrait.radius,view,0,portrait,portrait.power);
 
@@ -3102,7 +3105,7 @@ function createPipeline() {
 			minFilter: THREE.NearestFilter,
 			magFilter: THREE.NearestFilter
 		} ),
-		sunOverride: new THREE.MeshBasicMaterial( { colorWrite: false, side: THREE.DoubleSide } ),
+		sunOverride: R_CreateShadowCaptureMaterial( 'void main(){gl_FragColor=vec4(1.);}', {}, { colorWrite: false } ),
 		volumeMaterial: makeMaterial( VOLUME_FRAGMENT, Object.assign( {
 			uSunScatter: { value: SUN_SCATTER },
 			uOpenFog: { value: 0 },
@@ -3733,8 +3736,12 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	const visionOn=vision!==0 || R_QuadVisionActive();
 	const waves = R_WaterActive() && R_WaterWavesLive() > 0; // (ripples on the water bend the finished picture: the present pass, card [W1])
 	const upscale = (lighting && dyn.scale < 1) || visionOn || waves;
-	cm.uOffscreen.value = upscale ? 1 : 0;
-	if ( upscale ) {
+	// Rend the Veil consumes the existing linear composite, even when Newer
+	// lighting is disabled. Its local optics never repeat bloom/display grading.
+	const rendFields = R_NewerGame() ? R_RendVeilFields() : [];
+	const offscreen = upscale || rendFields.length > 0;
+	cm.uOffscreen.value = offscreen ? 1 : 0;
+	if ( offscreen ) {
 
 		const count=visionOn?2:1;
 		if (p.composite===null || p.composite.textures.length!==count) {
@@ -3745,7 +3752,10 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		R_PerfStage( 'final lighting pass' );
 		const shown = p.presentMaterial.uniforms;
 		const coordinates=visionOn?p.composite.textures[1]:null;
-		const visionSource=R_PowerVisionRender(renderer,p.composite.texture,hdr,camera,vision,cl,coordinates);
+		const veiled = rendFields.length > 0
+			? R_RendVeilOptics( renderer, p.composite.texture, hdr.depthTexture, R_RendVeilBackgroundDepth(), camera, rendFields )
+			: p.composite.texture;
+		const visionSource=R_PowerVisionRender(renderer,veiled,hdr,camera,vision,cl,coordinates);
 		shown.tComposite.value = R_QuadVisionRender(renderer,visionSource,hdr,camera,scene,coordinates);
 		shown.uBright.value = cm.uBright.value;
 		shown.uContrastGain.value = cm.uContrastGain.value;
@@ -3757,7 +3767,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	renderer.setRenderTarget( null );
 	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
-	gpu.mesh.material = upscale ? p.presentMaterial : p.compositeMaterial;
+	gpu.mesh.material = offscreen ? p.presentMaterial : p.compositeMaterial;
 	if ( splitLeft ) {
 
 		renderer.setScissor( viewport.lx, viewport.ly, Math.floor( viewport.lw / 2 ), viewport.lh );
@@ -3785,6 +3795,7 @@ export function R_PostShutdown() {
 	R_QuadVisionReset();
 
 	R_ClearPowerupFireTarget();
+	R_RendVeilOpticsShutdown();
 
 	if ( gpu === null ) return;
 	disposeTargets();

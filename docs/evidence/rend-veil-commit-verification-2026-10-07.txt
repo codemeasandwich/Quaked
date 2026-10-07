@@ -1,0 +1,671 @@
+Current candidate pre-commit verification
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js tests/rend_veil_native_test.js tests/model_pointshadows_test.js tests/flashlight_world_shadow_test.js tests/alias_mesh_cache_test.js tests/enemy_face_material_test.js tests/enemy_face_native_test.js tests/seamless_corpse_restore_test.js
+
+Candidate SHA256:
+{
+  "src/cl_main.js": "7bc900f482411264db0628559a0c20298f2de7ebfaa8e78974ad6d46328319eb",
+  "src/cl_parse.js": "646590c95124328bb13cf2b82dec6261c1502b2ac4a60956d43c3419af06de03",
+  "src/cl_tent.js": "b89011c03e86d2b6ec81f4a3406d329b0e7b368e51b23dcd36d2295d118b2660",
+  "src/gl_post.js": "11cc1863774239084c2c61e1785b17834f96a7c639033a0d5be8199a8f53cca1",
+  "src/gl_rmain.js": "e0911f6d5869882f832cec1614d02f367aa2c6bf017b7d0914fd8ceea905f2b4",
+  "src/pr_cmds.js": "80a3e138f9711e0ecd3ad7a2657f67bcf5412540e9b51fe8b19237b32b275da6",
+  "src/pr_edict.js": "26ad6f22f8772efdf5b1a0b6c58fc196a8e761ff2ca24882a34a362f8eaf8041",
+  "src/progs.js": "397b4026ee979bb310176d8f541dba6f4d67a9d7be216b21a138eea5416ebfd3",
+  "src/r_levelents.js": "e5487bf8a3d60eae7c6951160fe045c667f4106dcfdf0cb58651f12dd6632db3",
+  "src/r_levelview.js": "c0aebb928f11da9b3b029e1a945f119c3f1ce0b3b2ff8729ea1a3620f1a6840f",
+  "src/r_pointshadows.js": "cf72d6513b6540020c23d8b5c1f3142166a929f4ed6007a3d2175771e171e30a",
+  "src/r_rendveil.js": "b9c712921a305ef93cc29c9f4052b1ee9ff9a4b186a842b7c65308c29162229b",
+  "src/r_rendveil_optics.js": "6ce8d38d83096733f5a86c1b6d74e468040421d4e9eb6b8903488b16e7a92efc",
+  "src/rend_veil/config.js": "279c4687699517203fbeeec5e9ef541a315e8945bb9425f9851b8ad4e2f99e1a",
+  "src/rend_veil/frame.js": "42187eb0b85426f04b4faca6fd156dc73d889bb3e36c261b2fd9a83f7ca9cf6b",
+  "src/rend_veil/glyph-data.js": "68c07477102b3456b56b8efbc8428c1395dd221d2a8d2cea8a1694bb43ff6bea",
+  "src/rend_veil/local-effects.js": "14e1dd31ae729a10c4bd56ebcba2e59b92f6c128127d80de2bd97e5231e30517",
+  "src/rend_veil/material-binding.js": "b3d75ec418a075c969f0595c7accf4fd78a5724f762ab59351e0bc1670ef6afd",
+  "src/rend_veil/optics-shader.js": "3a9380b8b50f374d96d1fba3b69135bb7291c53ec947dea5ec84094f6889f96e",
+  "src/rend_veil/shader-common.js": "2b39165252fa9317ff64bbcb8def8999b7649b5c75d21a91f4a624950d7e8c71",
+  "src/rend_veil/timeline.js": "120a6cd5054cb56c5dbfb9fab68f06f560976849b842b0ad16228926d6d6916a",
+  "src/rend_veil_state.js": "28a6e32174ca7d4c2347ea6d02783410fc5f2c6f35477a873c63ea95bd19ae7b",
+  "src/sv_phys.js": "41e5870793f1aa928335272eeb3a355793ec05a74220f52aa24eff904931e3bc",
+  "src/sv_rendveil.js": "cf8a1745f115b2de73566e88286d80f73c2759b40abd09308ddcedae200013b6",
+  "src/sv_seamless.js": "e9139c71973d60dc2b3b84c7c0176eb95a82104cc0b11370ebe80957ed383f5b",
+  "src/world.js": "80cbabd0c759cb321982b0175d5af6bced6c2045afe3ae9a1ecb3f470f038b72",
+  "tests/rend_veil_capture_state_test.js": "04bd2b5784376ad08c2da7a53818dd9cf2c3a8e77b038a26c609a6a30681f055",
+  "tests/rend_veil_gameplay_trial.html": "b4a00fd2ac4926bd22a33e239cd35ce82871d17f7eb0e74685b5fdf7830687b4",
+  "tests/rend_veil_gameplay_trial.js": "061fdcaa51fc60bc0e123e4409c2926b429860a846f18ebfd8a884dd7125aa59",
+  "tests/rend_veil_native_test.js": "89375fc51b58b48ce6b6072daaf9d03d49e1a1d51bde57827f61b03559e0064d"
+}
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public local ink preserves receiver metadata while rune letters keep additive colour-only output
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+PASS public body and shadow programs reuse supplied radial coverage and post-posed transforms through Appearance and Focus
+PASS native optical protection restores the supplied matched-Unwind receiver behavior
+PASS public native long-body reveal fit covers the whole radial input without changing model vertices or shadow ownership
+PASS public changed pose attribute version refreshes live whole-model fit for body and borrowed shadow without scaling geometry
+RESULT 10/10 passed (tests/rend_veil_capture_state_test.js)
+Added packfile rend-veil-native-pak0 (339 files)\n
+NET_Init complete
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/quaddama.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+meshing progs/g_nail.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_ARRIVAL_CLOCK {"map":"e1m2","trigger":49,"targetname":"t53","monster":177,"classname":"monster_army","start":1,"focusAt":2.5,"totalDuration":2.8,"resumedFrame":1}
+PASS actual E1M2 named stock QC arrival holds only its native AI through2.5Focus then retains a finite2.8tail
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+PASS native failed, dead and unnamed teleport touches cannot fabricate or retrigger an arrival rite
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_SCOPE_CONTROLS ["Classic","Classic split pass","demo","timedemo","remote driver","closed client","closed server peer","unpaired client","nonreciprocal peer","stale server connection","inactive local client","multiplayer","modified QuakeC"]
+PASS public local authority gate and native touch preserve Classic, remote, demo and stale-peer behavior
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_SAVE_RECORD {"version":1,"start":1.0002,"model":"progs/soldier.mdl","origin":[1408,-688,312.03125],"floorZ":288.03125}
+PASS actual ED save/parse roundtrip preserves active finite record and rejects malformed or recycled metadata
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_CLIENT_CLOCK {"monster":177,"start":1.0002,"nativeTime":3.8002,"unrelatedClientTime":100.29999999999998,"expiredRecord":null,"expiredClock":null}
+PASS actual NQ and public QW update paths carry the same authoritative server clock and retire the expired effect
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_GROUNDED_FOCUS [{"classname":"monster_army","receiver":[1408,-688,476],"settled":[1408,-688,312.03125],"groundentity":0,"savedOrigin":[1408,-688,312.03125]},{"classname":"monster_knight","receiver":[1408,-688,476],"settled":[1408,-688,312.03125],"groundentity":0,"savedOrigin":[1408,-688,312.03125]}]
+PASS actual walking soldier and knight arrivals are grounded before holding and cannot drop at the Focus gravity tick
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+meshing progs/wizard.mdl...
+
+meshing progs/h_wizard.mdl...
+
+meshing progs/w_spike.mdl...
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_FLY_SWIM_POLICY [{"classname":"monster_wizard","nativeFlag":1,"swimmingInitializer":null,"origin":[1408,-688,476],"savedOrigin":[1408,-688,476]},{"classname":"monster_army","nativeFlag":2,"swimmingInitializer":"swimmonster_start","origin":[1408,-688,476],"savedOrigin":[1408,-688,476]}]
+PASS actual stock wizard and native swim-initialized soldier preserve flying and swimming floor policies
+RESULT 7/7 passed (tests/rend_veil_native_test.js)
+PASS static point captures keep one-cube budget while live transient sources refresh every selected slot within eight cubes
+PASS rejected nonphysical effects do not spend the live-caster refresh budget
+PASS explicit physical alias tag admits transparent sorting but never decorative, hidden or non-depth-writing effects
+PASS current actor, brush and held geometry is borrowed without source callbacks, filtered and refreshed after movement or pose mutation
+PASS caster disappearance invalidates unselected cubes and failed captures cannot expose old poses; every exit restores render state
+PASS point and spot captures share current instance data without owning its geometry or instance buffers
+PASS near sun captures one focused orthographic view with current physical models, exact projection and ordinary callback-free depth
+PASS near sun rejects invalid scopes and hidden/effect casters, clears stale captures on failure and disposes only its own resources
+PASS shared shadow atlas point and focused sun captures clear only their nonoverlapping reserved rectangles
+RESULT 9/9 passed (tests/model_pointshadows_test.js)
+PASS public flashlight capture uses actual offset every frame, one physical512 view at DPR2, perspective projection and exact renderer restoration
+PASS live mesh and instanced casters are borrowed unchanged, ineligible effects skipped, capture failure cleans temporary clones and preserves renderer
+PASS off/invalid/unavailable/epoch/disposal flashlight captures clear readiness without rendering or modifying the existing point cube cache
+RESULT 3/3 passed (tests/flashlight_world_shadow_test.js)
+meshing public-original...
+
+2 tri 6 vert 15 cmd
+
+meshing public-current-poses...
+
+PASS alias cache reuses only command/order bytes and public display-list construction always references current header poses
+meshing public-invalidation...
+
+PASS cache authority includes active ordered topology, facesfront, ST/seam and skin dimensions but excludes unused native scratch-array tails
+meshing public-validate...
+
+PASS malformed command primitives, nonfinite UVs, illegal order entries and missing represented triangles cannot become prepared alias lists
+meshing public-bound-source...
+
+PASS runtime alias cache owns copied input arrays and remains bounded after more than64 distinct valid model layouts
+RESULT 4/4 passed (tests/alias_mesh_cache_test.js)
+PASS all individual face choices share the actual body and one sheet; preparation returns actual draw bindings
+PASS failed or late face sheet retains base skin and assigned identity
+PASS Classic, enemy gate, lighting and variety switches retain individual identity
+OGRE_PUBLIC_ALIGNMENT_PIXEL_AFFINE [{"face":1,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":2,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":3,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":4,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":5,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":6,"measuredRoll":3.000000000000008,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":7,"measuredRoll":-3.000000000000008,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":8,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":9,"measuredRoll":-5.000000000000002,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":10,"measuredRoll":6.000000000000004,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":11,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":12,"measuredRoll":-16.000000000000004,"sourcePixelSize":[188,247],"samplingScale":0.8500000000000003}]
+PASS public ogre material alignment is a conformal rotation in non-square source pixels and keeps the model mask fixed
+OGRE_PUBLIC_ALIGNMENT_LANDMARK_RESIDUALS [{"face":1,"sourceEarAxisDegrees":-0.2908390223505519,"displayedResidualDegrees":-0.2908390223505519},{"face":2,"sourceEarAxisDegrees":0.2822429362708571,"displayedResidualDegrees":0.2822429362708571},{"face":3,"sourceEarAxisDegrees":-0.2864765102770745,"displayedResidualDegrees":-0.2864765102770745},{"face":4,"sourceEarAxisDegrees":0.2822429362708571,"displayedResidualDegrees":0.28224293627085717},{"face":5,"sourceEarAxisDegrees":-0.5846305207051778,"displayedResidualDegrees":-0.5846305207051778},{"face":6,"sourceEarAxisDegrees":1.6929784376289005,"displayedResidualDegrees":-1.3070215623710977},{"face":7,"sourceEarAxisDegrees":-2.905920999653342,"displayedResidualDegrees":0.09407900034665537},{"face":8,"sourceEarAxisDegrees":0.2850512775838264,"displayedResidualDegrees":0.2850512775838264},{"face":9,"sourceEarAxisDegrees":-6.536633648797066,"displayedResidualDegrees":-1.536633648797064},{"face":10,"sourceEarAxisDegrees":6.1155035662854065,"displayedResidualDegrees":0.11550356628540488},{"face":11,"sourceEarAxisDegrees":-0.2808594146833859,"displayedResidualDegrees":-0.280859414683386},{"face":12,"sourceEarAxisDegrees":-15.004920382860224,"displayedResidualDegrees":0.9950796171397795}]
+PASS actual public inverse bindings level annotated ogre head/ear axes within two degrees and recenter tilted eye pivots
+OGRE_PUBLIC_ALIGNMENT_IDENTITY_CONTROLS 31
+PASS upright ogre choices and every grunt/knight face retain finite identity sampling defaults
+RESULT 6/6 passed (tests/enemy_face_material_test.js)
+Added packfile enemy-face-native-pak0 (339 files)\n
+Programs occupy 403K.
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+ENEMY_FACE_NATIVE_INDIVIDUALS [{"classname":"monster_army","index":2,"seed":0},{"classname":"monster_army","index":3,"seed":1},{"classname":"monster_army","index":4,"seed":2},{"classname":"monster_army","index":5,"seed":3},{"classname":"monster_army","index":6,"seed":4},{"classname":"monster_army","index":7,"seed":5},{"classname":"monster_army","index":8,"seed":6},{"classname":"monster_army","index":9,"seed":7},{"classname":"monster_army","index":10,"seed":8},{"classname":"monster_army","index":11,"seed":9},{"classname":"monster_army","index":12,"seed":10},{"classname":"monster_army","index":13,"seed":11},{"classname":"monster_ogre","index":14,"seed":0},{"classname":"monster_ogre","index":15,"seed":1},{"classname":"monster_ogre","index":16,"seed":2},{"classname":"monster_ogre","index":17,"seed":3},{"classname":"monster_ogre","index":18,"seed":4},{"classname":"monster_ogre","index":19,"seed":5},{"classname":"monster_ogre","index":20,"seed":6},{"classname":"monster_ogre","index":21,"seed":7},{"classname":"monster_ogre","index":22,"seed":8},{"classname":"monster_ogre","index":23,"seed":9},{"classname":"monster_ogre","index":24,"seed":10},{"classname":"monster_ogre","index":25,"seed":11},{"classname":"monster_knight","index":26,"seed":0},{"classname":"monster_knight","index":27,"seed":1},{"classname":"monster_knight","index":28,"seed":2},{"classname":"monster_knight","index":29,"seed":3},{"classname":"monster_knight","index":30,"seed":4},{"classname":"monster_knight","index":31,"seed":5},{"classname":"monster_knight","index":32,"seed":6},{"classname":"monster_knight","index":33,"seed":7},{"classname":"monster_knight","index":34,"seed":8},{"classname":"monster_knight","index":35,"seed":9},{"classname":"monster_knight","index":36,"seed":10},{"classname":"monster_knight","index":37,"seed":11}]
+PASS native spawn independently chooses all twelve faces for every target class in one level
+Programs occupy 403K.
+
+PASS native model/animation refresh, level name and clocks cannot reroll an existing individual
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RECYCLED {"slot":2,"priorSeed":29,"nextSeed":42}
+PASS ED_Free and ED_Alloc recycle an actual native slot with a fresh individual face
+Programs occupy 403K.
+
+PASS native ED_Write and ED_ParseEdict preserve zero and maximum seeds and reject malformed save metadata
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_SNAPSHOT [{"model":"progs/soldier.mdl","faceSeed":0},{"model":"progs/ogre.mdl","faceSeed":19},{"model":"progs/knight.mdl","faceSeed":38}]
+PASS actual serialized native entities retain individual seed in public portal snapshot descriptors
+PASS public axe corpse parser preserves individual face metadata while rejecting invalid bounds and retaining legacy records
+Programs occupy 403K.
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+Programs occupy 403K.
+
+PASS unsupported native model spawns do not receive a face and Classic keeps original native gameplay fields
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_army","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_ogre","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_knight","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+PASS native per-individual face entropy never consumes the stock QuakeC Math.random stream
+Programs occupy 403K.
+
+ENEMY_FACE_PUBLIC_FOLLOWER_GHOSTS [{"model":"progs/soldier.mdl","faceSeed":0,"ghostFaceSeed":0},{"model":"progs/ogre.mdl","faceSeed":17,"ghostFaceSeed":17},{"model":"progs/knight.mdl","faceSeed":4294967295,"ghostFaceSeed":4294967295}]
+PASS public delayed follower runner retains zero and unsigned identity through real native ghost attachment, relocation and rebuild
+Programs occupy 403K.
+
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"4294967295","seed":4294967295,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"4294967295","seed":4294967295,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"4294967295","seed":4294967295,"updates":12}
+PASS legacy and malformed native saves get one persistent server identity through repeated real client entity updates
+Programs occupy 403K.
+
+ENEMY_FACE_QW_PUBLIC_RELINK {"slot":2,"originalSeed":57,"replacementSeed":0,"sameModelObject":true,"absentSequence":6,"returnedSequence":80,"invisibleSequence":82,"visibleSequence":83}
+PASS public QW CL_RelinkEntities copies native individual identity across same-model slot recycling and packet visibility gaps
+RESULT 11/11 passed (tests/enemy_face_native_test.js)
+Added packfile pak0.pak (339 files)\n
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/quaddama.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+meshing progs/g_nail.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/zombie.mdl...
+
+meshing progs/h_zombie.mdl...
+
+meshing progs/w_g_key.mdl...
+
+meshing progs/wizard.mdl...
+
+meshing progs/h_wizard.mdl...
+
+meshing progs/w_spike.mdl...
+
+meshing progs/invisibl.mdl...
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+PASS travelling knight dies in E1M3, survives E1M2 return and repeated E1M3 server/baseline restore without resurrection or missing model
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+SpawnServer: e1m3
+
+Clearing memory
+
+Programs occupy 403K.
+
+75 entities inhibited
+
+seamless: 2 exit(s) on e1m3
+
+Server spawned.
+
+PASS first-arrival native knight gib death has head resources, and restored heads/gibs/tombstones remain valid
+RESULT 2/2 passed (tests/seamless_corpse_restore_test.js)
+TOTAL 52/52 passed

@@ -2,6 +2,7 @@ import {R_DemonBakeRelease} from './r_demonbakes.js';
 import {R_PowerVisionReset} from './r_powervision.js';
 import {R_QuadVisionReset} from './r_quadvision.js';
 import {R_FaceGameReset} from './r_facegame.js';
+import { SV_RendVeilClientRecord } from './sv_rendveil.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
 import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from './r_demoloading.js';
 
@@ -739,6 +740,10 @@ function CL_LinkPacketEntities( frac ) {
 
 		// Use the cl_entities entry directly for rendering (it has the Three.js mesh cache)
 		const ent = cl_entities[ s1.number ];
+		// Local play normally uses QW packet entities, not CL_ParseUpdate.
+		// Copy the native lifetime identity on this path too, including slot reuse.
+		ent._rendVeil = SV_RendVeilClientRecord( s1.number );
+		ent._rendVeilTime = ent._rendVeil ? sv.time : null;
 
 		// Update entity fields from packet entity state
 		const model = cl.model_precache[ s1.modelindex ];

@@ -3,6 +3,7 @@
 // live actor/brush meshes; no BSP, vertex copy or source reparenting.
 import * as THREE from 'three';
 import { ShadowPoseCapture, ShadowPoseEqual } from './shadow_pose.js';
+import { R_RendVeilShadowShader, R_RendVeilShadowObject, R_RendVeilShadowVersion } from './r_rendveil.js';
 
 export const POINT_SHADOW_SLOTS = 8;
 export const POINT_SHADOW_SIZE = 128;
@@ -78,22 +79,37 @@ const SUN_FRAGMENT = `
 void main() { gl_FragColor=packDepthToRGBA(gl_FragCoord.z); }
 `;
 
+// Reuse the existing one-attachment captures. Patch once before construction so
+// the shared uniforms exist even on the first object's first draw; bind every
+// object (including unmodified world chunks) without copying viewmodel callbacks.
+export function R_CreateShadowCaptureMaterial( fragmentShader, uniforms = {}, options = {} ) {
+	const shader = { vertexShader: VERTEX, fragmentShader, uniforms };
+	const rendUniforms = R_RendVeilShadowShader( shader );
+	const material = new THREE.ShaderMaterial( {
+		vertexShader: shader.vertexShader, fragmentShader: shader.fragmentShader, uniforms: shader.uniforms,
+		side: THREE.DoubleSide, blending: THREE.NoBlending, depthTest: true, depthWrite: true, toneMapped: false, ...options
+	} );
+	material.onBeforeCompile = () => {}; // This data capture never writes main-view MRT packets.
+	material.onBeforeRender = ( _renderer, _scene, _camera, _geometry, object ) => {
+		R_RendVeilShadowObject( object, rendUniforms ); material.uniformsNeedUpdate = true;
+	};
+	material.customProgramCacheKey = () => 'quake-shadow-capture-rend-veil-v1';
+	return material;
+}
+
 export class PointShadowAtlas {
 
 	constructor( geometry = null ) {
 
 		this.geometry = null; this.chunks = []; this.triangles = 0;
-		this.frozenPose = null;
+		this.frozenPose = null; this.frozenRendVersions = null;
 		this.scene = new THREE.Scene();
-		this.material = new THREE.ShaderMaterial( {
-			vertexShader: VERTEX, fragmentShader: FRAGMENT, side: THREE.DoubleSide,
-			blending: THREE.NoBlending, depthTest: true, depthWrite: true, toneMapped: false,
-			uniforms: { pointShadowLight: { value: new THREE.Vector3() }, pointShadowFar: { value: 1 } }
-		} );
+		this.material = R_CreateShadowCaptureMaterial( FRAGMENT,
+			{ pointShadowLight: { value: new THREE.Vector3() }, pointShadowFar: { value: 1 } } );
 		// The engine patches ordinary materials for MRT output; this private
 		// one-attachment data capture must retain only its packed-distance output.
 		this.material.onBeforeCompile = () => {};
-		this.material.customProgramCacheKey = () => 'quake-static-point-shadow-radial-v1';
+		this.material.customProgramCacheKey = () => 'quake-static-point-shadow-radial-rend-veil-v1';
 		this.target = new THREE.WebGLRenderTarget( WIDTH, HEIGHT, {
 			format: THREE.RGBAFormat, type: THREE.UnsignedByteType,
 			minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter,
@@ -117,10 +133,9 @@ export class PointShadowAtlas {
 		// compositor sampler (WebGL2's guaranteed fragment limit is sixteen).
 		// Both regions store RGBA-packed depth; only their comparison units differ.
 		this.sunTarget = this.target;
-		this.sunMaterial = new THREE.ShaderMaterial( { vertexShader: VERTEX, fragmentShader: SUN_FRAGMENT,
-			side: THREE.DoubleSide, blending: THREE.NoBlending, depthTest: true, depthWrite: true, toneMapped: false } );
+		this.sunMaterial = R_CreateShadowCaptureMaterial( SUN_FRAGMENT );
 		this.sunMaterial.onBeforeCompile = () => {};
-		this.sunMaterial.customProgramCacheKey = () => 'quake-near-model-sun-depth-v1';
+		this.sunMaterial.customProgramCacheKey = () => 'quake-near-model-sun-depth-rend-veil-v1';
 		this.sunCamera = new THREE.OrthographicCamera( -NEAR_SUN_SHADOW_EXTENT, NEAR_SUN_SHADOW_EXTENT, NEAR_SUN_SHADOW_EXTENT, -NEAR_SUN_SHADOW_EXTENT, .1, 512 );
 		this._sunVP = new THREE.Matrix4(); this.sunReady = false;
 		this.sunCaptures = 0; this.sunRenders = 0; this.sunFailedCaptures = 0; this.sunDynamicMeshes = 0; this.sunError = null;
@@ -234,7 +249,7 @@ export class PointShadowAtlas {
 	}
 
 	invalidate() {
-		this.frozenPose = null;
+		this.frozenPose = null; this.frozenRendVersions = null;
 
 		this.epoch ++; this.entries.clear(); this.slots.fill( null ); this.requested = 0; this.error = null;
 		this.clearSpot(); this.clearSun(); this._clearDynamicClones(); this.pointDynamicMeshes = 0; this.pointGeometryRevision ++;
@@ -370,6 +385,8 @@ export class PointShadowAtlas {
 
 			}
 			clone.geometry = source.geometry; clone.matrix.copy( source.matrixWorld ); clone.matrixWorld.copy( source.matrixWorld );
+			// Explicit identity for the reveal adapter, never source render callbacks.
+			clone.userData.rendVeilSource = source;
 			if ( source.isInstancedMesh ) {
 
 				clone.isInstancedMesh = true; clone.count = source.count; clone.instanceMatrix = source.instanceMatrix;
@@ -461,9 +478,14 @@ export class PointShadowAtlas {
 			// light when it returns after an actor moved or disappeared. No per-vertex
 			// revision polling is needed: live alias poses can mutate borrowed buffers.
 			const hasDynamic = clones.length > 0 || previousDynamicMeshes > 0;
-			const unchanged = frozenPose && ShadowPoseEqual(this.frozenPose,clones);
-			if(frozenPose&&!unchanged)this.frozenPose=ShadowPoseCapture(clones);
-			else if(!frozenPose)this.frozenPose=null;
+			// GPU reveal/coating can change while geometry bytes and transforms stay
+			// identical. Include that state in the existing frozen-capture qualification.
+			const rendVersions = clones.map( clone => R_RendVeilShadowVersion( clone.userData.rendVeilSource ) );
+			const sameRend = this.frozenRendVersions?.length === rendVersions.length
+				&& this.frozenRendVersions.every( ( value, i ) => value === rendVersions[ i ] );
+			const unchanged = frozenPose && sameRend && ShadowPoseEqual(this.frozenPose,clones);
+			if(frozenPose&&!unchanged){this.frozenPose=ShadowPoseCapture(clones);this.frozenRendVersions=rendVersions;}
+			else if(!frozenPose){this.frozenPose=null;this.frozenRendVersions=null;}
 			const dynamicFrame = hasDynamic && !unchanged;
 			if ( dynamicFrame ) {
 

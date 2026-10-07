@@ -1,3 +1,4 @@
+import {R_RendVeilSeen,R_RendVeilRelease,R_RendVeilClear,R_RendVeilBegin,R_RendVeilEnd,R_RendVeilCapture} from './r_rendveil.js';
 import {sv,svs} from './server.js';
 import { R_RespawnCameraFrame } from './r_respawn.js';
 import { R_DemonBakeRelease } from './r_demonbakes.js';
@@ -878,6 +879,7 @@ function _detachEntityMesh( mesh ) {
 function _clearEntityMeshCache( entity, geometries, materials ) {
 
 	if ( entity == null ) return;
+	R_RendVeilRelease(entity);
 
 	const spriteMesh = entity._spriteMesh;
 	const aliasMesh = entity._aliasMesh;
@@ -964,110 +966,6 @@ function R_ShotgunMuzzles( count ) {
 
 const _fireballView = [ 0, 0 ], _fireballForward = new Float32Array( 3 ), _fireballRight = new Float32Array( 3 ), _fireballUp = new Float32Array( 3 );
 
-// A monster that has come through a teleporter arrives the way the player does: stretched upwards and split
-// into red and blue, and snaps into place.
-const TELE_FX_TIME = 0.5;
-const _teleTint = [ new THREE.Color( 1, 0.15, 0.1 ), new THREE.Color( 0.1, 0.35, 1 ) ];
-
-function R_EntityTeleportFx( e, mesh, scene ) {
-
-	if ( ! R_IsNewer() ) { mesh.scale.setScalar( 1 ); return; }
-
-	if ( e._telefx === undefined && CL_TeleportSpots.length > 0 && e.origin != null ) {
-
-		for ( const sp of CL_TeleportSpots ) {
-
-			if ( cl.time - sp.time > 0.3 || cl.time < sp.time ) continue;
-			const dx = e.origin[ 0 ] - sp.pos[ 0 ], dy = e.origin[ 1 ] - sp.pos[ 1 ], dz = e.origin[ 2 ] - sp.pos[ 2 ];
-			if ( dx * dx + dy * dy + dz * dz < 40 * 40 ) {
-
-				e._telefx = sp.time;
-				break;
-
-			}
-
-		}
-
-	}
-
-	const age = e._telefx !== undefined ? cl.time - e._telefx : - 1;
-	const extras = e._telefxMeshes;
-
-	if ( age < 0 || age > TELE_FX_TIME ) {
-
-		if ( extras !== undefined ) {
-
-			for ( const m of extras ) {
-
-				if ( m.parent != null ) m.parent.remove( m );
-				m.material.dispose();
-
-			}
-
-			e._telefxMeshes = undefined;
-
-		}
-
-		if ( age > TELE_FX_TIME ) {
-
-			mesh.scale.set( 1, 1, 1 );
-			e._telefx = undefined;
-
-		}
-
-		return;
-
-	}
-
-	const k = 1 - age / TELE_FX_TIME;
-	const ease = k * k * ( 3 - 2 * k );
-	const stretch = 1 + 2.4 * ease;
-	const width = 1 / Math.sqrt( stretch );
-	const feet = 24; // a monster's origin is about this far above its feet
-
-	mesh.scale.set( width, width, stretch );
-	mesh.position.z += ( stretch - 1 ) * feet;
-
-	if ( extras === undefined ) {
-
-		e._telefxMeshes = _teleTint.map( ( c ) => {
-
-			const mat = mesh.material.clone();
-			mat.color = c.clone();
-			mat.transparent = true;
-			mat.blending = THREE.AdditiveBlending;
-			mat.depthWrite = false;
-			const m = new THREE.Mesh( mesh.geometry, mat );
-			m.userData.newerOnly = true;
-			m.renderOrder = 2;
-			scene.add( m );
-			return m;
-
-		} );
-
-	}
-
-	// each colour is stretched a little more than the last, so they come apart along the stretch
-	e._telefxMeshes.forEach( ( m, i ) => {
-
-		const sgn = i === 0 ? 1 : - 1;
-		const extra = 1 + ( i === 0 ? 0.18 : - 0.1 ) * ease;
-		m.geometry = mesh.geometry;
-		m.quaternion.copy( mesh.quaternion );
-		m.scale.set( width, width, stretch * extra );
-		m.position.set(
-			mesh.position.x + vright[ 0 ] * sgn * 9 * ease,
-			mesh.position.y + vright[ 1 ] * sgn * 9 * ease,
-			mesh.position.z + ( extra - 1 ) * stretch * feet
-		);
-		m.material.opacity = 0.75 * ease;
-		m.visible = true;
-		_entityMeshesThisFrame.add( m );
-		_entityMeshesInScene.add( m );
-
-	} );
-
-}
 
 function R_DrawAliasModel( e ) {
 	if ( R_IsNewer() && SV_AxeEntitySuppressed( e?._entityIndex ) ) return;
@@ -1199,7 +1097,7 @@ function R_DrawAliasModel( e ) {
 
 	}
 
-	if ( mesh && scene && e !== cl.viewent ) R_EntityTeleportFx( e, mesh, scene );
+	if ( mesh && scene && e !== cl.viewent ) R_RendVeilSeen( e, mesh, scene );
 
 	// Draw shadow (Ported from WinQuake/gl_rmain.c:579-591); Newer Game casts it from the
 	// lights that really shine on the model instead
@@ -1667,6 +1565,7 @@ export function R_RenderScene() {
 	// Begin new frame: clear the "this frame" set
 	_entityMeshesThisFrame.clear();
 	R_PowerupBegin( scene );
+	R_RendVeilBegin(scene);
 
 	// portal views are rendered per camera, which XR's stereo pair doesn't allow
 	R_PortalsBeginFrame( isXRActive() === false && envmap === false );
@@ -1691,6 +1590,7 @@ export function R_RenderScene() {
 	R_DrawEntitiesOnList();
 	R_TorchFireFlush( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the list: it is this frame's torches)
 	R_PowerupEnd();
+	R_RendVeilEnd(scene);
 	R_BestiaryObserve( scene, camera, cl_visedicts.slice( 0, cl_numvisedicts ) );
 
 	// Remove entity meshes that were in the scene last frame but not this frame
@@ -1893,6 +1793,7 @@ export function R_RenderView() {
 			}
 
 			R_PostLightsFrame( renderer, scene, camera, r_visframecount, d_lightstylevalue, cl_dlights, cl != null ? cl.time : 0, R_MapHasSky() );
+			R_RendVeilCapture(renderer,scene,camera);
 			try { renderer.render( scene, camera ); } finally { R_HeightShadowScope( false ); }
 			R_PerfStage( 'world draw' );
 			// the title demo, half Newer and half classic
@@ -2331,6 +2232,7 @@ export function R_NewMap() {
 	// Clean up all cached entity resources from the previous map. Static
 	// entities keep their JS identity across CL_ClearState, so invalidate the
 	// owner-side caches as well as the scene tracking sets.
+	R_RendVeilClear();
 	const geometries = new Set();
 	const materials = new Set();
 	for ( const owner of _entityMeshCacheOwners )

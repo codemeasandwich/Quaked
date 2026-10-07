@@ -1,0 +1,24 @@
+Independent MRT ink public fixture initial run, 7 October 2026.
+Runner: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+The runner reported 5/6 and a failure. The enclosing shell returned 0 because it ended with read-only source hashes after the runner; that shell status is not a test pass.
+Relevant source hashes were unchanged before/after the run:
+SHA256 f10481d640edbc85712b9f63610d58c27b3029f3b7c4c2f3738f117aa2c2fdce src/r_rendveil.js
+SHA256 44fa0e7425e6226fc3e548b8b9383c854f15efe8cd5e1ab195f33a38311c0b7d src/rend_veil/material-binding.js
+SHA256 14e1dd31ae729a10c4bd56ebcba2e59b92f6c128127d80de2bd97e5231e30517 src/rend_veil/local-effects.js
+SHA256 72b9376e71707fa3df342f9ba28e647d49518021f368a36d06b01055ff1d1f00 tests/rend_veil_capture_state_test.js
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+RESULT 5/6 passed (tests/rend_veil_capture_state_test.js)
+FAIL public local ink preserves receiver metadata while rune letters keep additive colour-only output Error: actual seal coverage explicitly excludes its rune-letter channel
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:9:56)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:184:4
+    at fixture (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:92:3)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:175:118
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+TOTAL 5/6 passed
+
+Fixture failure analysis: the seal/pool/veil share the SummoningSystem uniform object, including uSeal. The test incorrectly classified every shared binding as a seal program. Classify by the actual fragment sampler declaration; retain the three receiver packet/blend invariants and distinct seal rune-channel coverage assertions. No production edit is required for this observation.

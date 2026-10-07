@@ -13,6 +13,8 @@ import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from './gl_model.js'
 import { R_BuildLightMap, createQuakeLightmapMaterial } from './gl_rsurf.js';
 import { R_RegisterGlow } from './gl_post.js';
 import { R_NewerLightingActive } from './r_anim.js';
+import { R_IsNewer } from './r_anim.js';
+import { R_RendVeilSeen, R_RendVeilRelease } from './r_rendveil.js';
 import { R_AddLevelPortal, R_ClearLevelPortals, R_RemoveLevelPortal } from './gl_portal.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { R_LightPoint } from './gl_rlight.js';
@@ -353,7 +355,9 @@ function createGhost( ent, world ) {
 	const hdr = m != null && m.cache != null ? m.cache.data : null;
 	if ( hdr == null || hdr.posedata == null ) return null;
 
-	const e = { model: m, frame: ent.frame, skinnum: ent.skin, origin: ent.origin.slice(), angles: ent.angles.slice() };
+	const e = { _rendVeil: ent.rendVeil ?? null, _rendVeilTime: ent.rendVeilTime ?? null,
+		_rendVeilSnapshot: true,
+		model: m, frame: ent.frame, skinnum: ent.skin, origin: ent.origin.slice(), angles: ent.angles.slice() };
 	const frames = hdr.frames || [];
 
 	// monsters from the level's own list start standing about
@@ -376,7 +380,7 @@ function createGhost( ent, world ) {
 	// idle loops play on; anything else (a death, an attack) is left as it was
 	let seq = null;
 	const cur = frames[ e.frame ];
-	if ( cur != null && [ 'stand', 'walk', 'swim', 'idle', 'fly', 'flame' ].indexOf( R_FramePrefix( cur.name ) ) >= 0 ) {
+	if ( ! e._rendVeil && cur != null && [ 'stand', 'walk', 'swim', 'idle', 'fly', 'flame' ].indexOf( R_FramePrefix( cur.name ) ) >= 0 ) {
 
 		const prefix = R_FramePrefix( cur.name );
 		const list = [];
@@ -406,6 +410,33 @@ function createGhost( ent, world ) {
 
 }
 
+function releaseGhostRite( g ) {
+	R_RendVeilRelease( g.e );
+	g.rendScene?.removeFromParent();
+	g.rendScene = null;
+}
+
+function drawGhostRite( g, mesh ) {
+	if ( ! g.e._rendVeil || ! Number.isFinite( g.e._rendVeilTime ) || ! R_IsNewer() ) {
+		releaseGhostRite( g );
+		return;
+	}
+	// bindThreeSubject places its ghosts in render-world coordinates. Keep an
+	// identity sibling of the translated view group, avoiding a doubled offset.
+	let root = mesh.parent;
+	while ( root?.parent ) root = root.parent;
+	if ( ! root?.isScene ) return; // the view has not been attached yet
+	if ( g.rendScene?.parent !== root ) {
+		releaseGhostRite( g );
+		g.rendScene = new THREE.Group();
+		g.rendScene.name = 'Rend the Veil / frozen level snapshot';
+		root.add( g.rendScene );
+	}
+	// A saved level does not own a running server clock. Reproduce exactly its
+	// saved stage until the level is restored; rendering never releases its AI.
+	R_RendVeilSeen( g.e, mesh, g.rendScene );
+}
+
 function ghostDraw( g, time ) {
 
 	const e = g.e;
@@ -428,6 +459,7 @@ function ghostDraw( g, time ) {
 	if ( mesh == null ) return false;
 
 	g.mesh = mesh;
+	drawGhostRite( g, mesh );
 	g.last = time;
 	return true;
 
@@ -445,7 +477,7 @@ export function R_UpdateLevelViewEntities( camera, time ) {
 
 		for ( const g of v.ghosts ) {
 
-			if ( g.seq === null && ! g.spin && ! g.flame && time - g.last < 1 ) continue; // (a flame burns on every frame)
+			if ( ! g.e._rendVeil && g.seq === null && ! g.spin && ! g.flame && time - g.last < 1 ) continue; // (a flame burns on every frame)
 			ghostDraw( g, time );
 
 		}
@@ -533,6 +565,7 @@ export function R_RemoveLevelRunner( r ) {
 	if ( r.g == null || r.view == null ) return;
 
 	r.view.ghosts = r.view.ghosts.filter( ( g ) => g !== r.g );
+	releaseGhostRite( r.g );
 	if ( r.g.mesh.parent != null ) r.g.mesh.parent.remove( r.g.mesh );
 	if ( r.g.e._aliasGeo != null ) r.g.e._aliasGeo.dispose();
 	r.g = null;
@@ -764,7 +797,10 @@ export function R_BuildLevelView( model, origin, entities = [] ) {
 		dispose: () => {
 
 			if ( group.parent != null ) group.parent.remove( group );
-			for ( const g of ghosts ) if ( g.e._aliasGeo != null ) g.e._aliasGeo.dispose();
+			for ( const g of ghosts ) {
+				releaseGhostRite( g );
+				if ( g.e._aliasGeo != null ) g.e._aliasGeo.dispose();
+			}
 			for ( const g of cutGhosts ) g.dispose();
 			for ( const d of disposables ) d.dispose();
 

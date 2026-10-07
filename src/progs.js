@@ -134,6 +134,7 @@ export class edict_t {
 
 		this._fieldAccessor.clearAll();
 		this._respawnAmmoPending = false; this._respawnStart = null; this._respawn = null; this._respawnDrop = null; this._respawnAlert = null; this._respawnRemains = null; this._cheatPowers = 0;
+		this._rendVeil = null;
 		this._axeCorpse = null; this._axeSuppressed = false; this._axeSuppressedBy = 0; this._axeReady = false; this._axeOwnerKey = null; this._axeInvalidHandled = false; this._axeInvalidRecord = false;
 
 	}

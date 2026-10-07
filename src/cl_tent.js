@@ -269,8 +269,8 @@ export function CL_ParseTEnt() {
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			// no white particle burst; the teleport sound comes from the server.  A monster that has
-			// come through gets the screen's own effect: see R_EntityTeleportFx
+			// The server owns teleport sound. Named local monster arrivals use an
+			// authoritative individual Rend the Veil record; this spot list is legacy visual data.
 			CL_TeleportSpots.push( { pos: [ pos[ 0 ], pos[ 1 ], pos[ 2 ] ], time: cl.time } );
 			if ( CL_TeleportSpots.length > 8 ) CL_TeleportSpots.shift();
 			break;
