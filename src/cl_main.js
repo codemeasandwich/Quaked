@@ -727,6 +727,9 @@ function CL_LinkPacketEntities( frac ) {
 
 		// Use the cl_entities entry directly for rendering (it has the Three.js mesh cache)
 		const ent = cl_entities[ s1.number ];
+		// Local play normally uses QW packet entities, not CL_ParseUpdate.
+		// Copy the native lifetime identity on this path too, including slot reuse.
+		if ( sv.active && ! cls.demoplayback ) ent._faceSeed = sv.edicts[ s1.number ]?._faceSeed ?? null;
 
 		// Update entity fields from packet entity state
 		const model = cl.model_precache[ s1.modelindex ];

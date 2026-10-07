@@ -17,7 +17,7 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 	const data=entity._axeCorpse,model=Mod_ForName(data.model,false),header=model?.cache?.data;
 	if(data.key&&entity._axeOwnerKey&&data.key!==entity._axeOwnerKey)throw Error('Saved cut owner mismatch');
 	if(!header)throw Error('Cut corpse model unavailable: '+data.model);
-	const fake={model,_entityIndex:data.entityIndex,_qrSalt:data.skinSalt,origin:data.origin.slice(),angles:data.angles.slice(),frame:data.frame,skinnum:data.skin};
+	const fake={_faceSeed:data.faceSeed??null,model,_entityIndex:data.entityIndex,_qrSalt:data.skinSalt,origin:data.origin.slice(),angles:data.angles.slice(),frame:data.frame,skinnum:data.skin};
 	const shade=Math.max(.12,Math.min(.64,R_LightPoint(data.origin,{worldmodel:world})/200));
 	const source=R_DrawAliasModel(fake,header,r_avertexnormal_dots[((data.angles[1]*16/360)|0)&15],shade);
 	if(!source)throw Error('Cut corpse pose unavailable');

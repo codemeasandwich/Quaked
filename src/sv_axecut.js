@@ -28,6 +28,7 @@ export function SV_AxeFunctionEnter(fn,caller){
 	const token={previous:active,target,combo,normal,killed:false,gibs:new Set(),record:{version:1,kind:'slice',model:PR_GetString(target.v.model),entityIndex:target.index,frame:target.v.frame|0,skin:target.v.skin|0,origin:Array.from(target.v.origin),angles:Array.from(target.v.angles),normal,at:sv.time}};
 	active=token;
 	token.record.skinSalt=R_NewerSkinSalt();
+	if(target._faceSeed!=null)token.record.faceSeed=target._faceSeed;
 	if(combo)pr_globals_float[OFS_PARM3]=(Math.max(0,target.v.health)+Math.max(0,target.v.armorvalue)+1000)/4+1;
 	return token;
 }

@@ -20,6 +20,7 @@
 // have arrived the original skin is shown.
 
 import {R_NormalPrepare} from './normal_prepare.js';
+import { Face_Index, FACE_FRAGMENT_HEAD, FACE_MAP_FRAGMENT } from './enemy_face.js';
 import * as THREE from 'three';
 import { R_LevelEntities } from './r_levelents.js';
 import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface } from './r_weapon_surface.js';
@@ -208,6 +209,7 @@ function createSet( variant, modelKey ) {
 		variant,
 		isEnemy: ENEMY_SKIN_MODELS.has( modelKey ),
 		materials: [ null, null, null, null ], // [ lit, unlit ] with the Newer lighting, then without
+		faces: new Map(),
 		uniforms: {
 			qrNormal: { value: null },
 			qrLuma: { value: null },
@@ -259,6 +261,16 @@ function createSet( variant, modelKey ) {
 	} );
 	load( 'luma', true, ( t ) => { set.uniforms.qrLuma.value = t; set.uniforms.uHasLuma.value = 1; } );
 	load( 'gloss', false, ( t ) => { set.uniforms.qrGloss.value = t; set.uniforms.uHasGloss.value = 1; } );
+	if ( variant.faces ) {
+		set.uniforms.qrFaceSheet = { value: null };
+		set.uniforms.uHasFace = { value: 0 };
+		const path = BASE + variant.faces.sheet;
+		loadSkinTexture( set, 'face-sheet', COM_NewerURL( path, path + '?v=' + skinVersion ), texture => {
+			texture.flipY = false; texture.colorSpace = THREE.SRGBColorSpace;
+			texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping; texture.anisotropy = 16;
+			set.uniforms.qrFaceSheet.value = texture; set.uniforms.uHasFace.value = 1;
+		} );
+	}
 
 	return set;
 
@@ -388,7 +400,7 @@ function materialFor( set, hasLighting ) {
 		if ( relit || set.isEnemy ) {
 
 			material.onBeforeCompile = patchShader( set );
-			material.customProgramCacheKey = () => 'quake-custom-skin-height-shadow-v1-' + set.key + index;
+			material.customProgramCacheKey = () => 'quake-custom-skin-height-shadow-v1-' + ( set.programKey || set.key ) + index;
 
 		}
 		set.materials[ index ] = material;
@@ -396,6 +408,35 @@ function materialFor( set, hasLighting ) {
 	}
 	return set.materials[ index ];
 
+}
+
+// All individuals with the same face share a material; every face shares the
+// model's original body, relief and one source sheet. No per-enemy textures.
+function faceSetFor( set, index ) {
+	if ( set.faces.has( index ) ) return set.faces.get( index );
+	const spec = set.variant.faces;
+	const rect = ( box, size ) => new THREE.Vector4( box[ 0 ] / size[ 0 ], box[ 1 ] / size[ 1 ], ( box[ 2 ] - box[ 0 ] ) / size[ 0 ], ( box[ 3 ] - box[ 1 ] ) / size[ 1 ] );
+	const patches = spec.patches.slice( 0, 4 );
+	const alignment = spec.alignments?.[ index ] || {};
+	const angle = ( alignment.rollDegrees || 0 ) * Math.PI / 180, scale = alignment.scale ?? 1;
+	const pivot = alignment.sourcePivot || [ .5, .5 ], target = alignment.targetPivot || pivot;
+	const box = spec.rects[ index ];
+	const face = { ...set, key: set.key + ':face:' + index, programKey: set.key + ':faces-v2', materials: [ null, null, null, null ],
+		fragmentHead: FACE_FRAGMENT_HEAD, mapFragment: FACE_MAP_FRAGMENT,
+		uniforms: { ...set.uniforms,
+			uFaceSource: { value: rect( spec.rects[ index ], spec.sheetSize ) },
+			uFaceColorBalance: { value: new THREE.Vector3( ...( spec.colorBalance || [ 1, 1, 1 ] ) ) },
+			uFaceAlignment: { value: new THREE.Vector4( Math.cos( angle ) * scale, Math.sin( angle ) * scale, ...pivot ) },
+			uFaceTargetPivot: { value: new THREE.Vector2( ...target ) },
+			uFacePixelSize: { value: new THREE.Vector2( box[ 2 ] - box[ 0 ], box[ 3 ] - box[ 1 ] ) },
+			uFaceDest: { value: Array.from( { length: 4 }, ( _, i ) => patches[ i ] ? rect( patches[ i ].dest, spec.atlasSize ) : new THREE.Vector4() ) },
+			uFaceSample: { value: Array.from( { length: 4 }, ( _, i ) => new THREE.Vector4( ...( patches[ i ]?.sample || [ 0, 0, 1, 1 ] ) ) ) },
+			uFacePolygon: { value: spec.polygon.map( point => new THREE.Vector2( ...point ) ) }
+		} };
+	// Node/shim preparation without DOM still supplies a valid disabled binding.
+	face.uniforms.qrFaceSheet ||= { value: null }; face.uniforms.uHasFace ||= { value: 0 };
+	set.faces.set( index, face );
+	return face;
 }
 
 const VERTEX_ADD = `
@@ -494,6 +535,12 @@ function patchShader( set ) {
  ` + FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
 			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.depthWrite === false || this.transparent && !this.userData.quakeViewmodel ? 'vec4(0.)' : this.userData.quakeViewmodel ? 'vec4(qrN*0.5+0.5,-vQrView.z-2.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( '+(this.userData.quakeReceiverOnly?'qrAlbedo*qrCoverage':'qrAlbedo')+', '+(surface?'0.08':'0.06')+' );\n gHeightMask=skinHeightMask;' );
 
+  if ( set.mapFragment === FACE_MAP_FRAGMENT ) {
+			shader.fragmentShader = shader.fragmentShader
+				.replace( 'vec3 mapN = texture2D( qrNormal, vMapUv ).xyz * 2.0 - 1.0;', 'vec3 mapN = texture2D( qrNormal, vMapUv ).xyz * 2.0 - 1.0; mapN = mix( mapN, vec3(0.,0.,1.), qrFaceCoverage );' )
+				.replace( 'hctx.microValid=uHasSkinHeightShadow*uSkinDetail*uSkinRelit;', 'hctx.microValid=uHasSkinHeightShadow*uSkinDetail*uSkinRelit*(1.-qrFaceCoverage);' );
+		}
+
   shader.fragmentShader = shader.fragmentShader.replace( 'void main() {', `
  uniform float uHasSkinHeightShadow;
  float qrShadowHeight(vec2 uv,int layer){return textureLod(qrNormal,uv,0.).a;}
@@ -590,7 +637,8 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting, skinnum = 
 
 	// with the Newer lighting the skin is relit by the pipeline; without it (the
 	// classic lighting) it is the same picture lit the classic way
-	return materialFor( set, hasLighting );
+	const faces = variant.faces;
+	return materialFor( faces ? faceSetFor( set, Face_Index( entity, modelName, faces.rects.length, r_newer_variety.value !== 0 ) ) : set, hasLighting );
 
 }
 
@@ -603,7 +651,9 @@ export function R_NewerSkinsShutdown() {
 		set.alive = false;
 		cancelSkinLoads( set );
 
+		for ( const face of set.faces.values() ) for ( const m of face.materials ) if ( m !== null ) m.dispose();
 		for ( const m of set.materials ) if ( m !== null ) m.dispose();
+		set.uniforms.qrFaceSheet?.value?.dispose();
 		const ownedNormal = set.detailDiffuse != null ? set.detailDiffuse._normalMap : null;
 		if ( set.diffuse !== null ) set.diffuse.dispose();
 		if ( set.detailDiffuse !== null ) set.detailDiffuse.dispose();
@@ -711,7 +761,10 @@ function preparedSets( models ) {
 }
 
 export function R_NewerSkinsMaterials( models ) {
-	return [ ...new Set( preparedSets( models ).flatMap( set => [ materialFor( set, true ), materialFor( set, false ) ] ) ) ];
+	return [ ...new Set( preparedSets( models ).flatMap( set => {
+		const families = set.variant.faces ? set.variant.faces.rects.map( ( _, i ) => faceSetFor( set, i ) ) : [ set ];
+		return families.flatMap( family => [ materialFor( family, true ), materialFor( family, false ) ] );
+	} ) ) ];
 }
 
 // Shader callback uniforms are not material.uniforms on MeshBasicMaterial.

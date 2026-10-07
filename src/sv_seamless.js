@@ -442,7 +442,7 @@ function SV_TakeFollowers( player, cur, t ) {
 		if ( t === null ) {
 
 			// a teleporter pad: it walks to the pad and is sent after the player, as late as that took
-			list.push( { text, model, resources, delay: Math.max( Math.hypot( f.rel[ 0 ], f.rel[ 1 ] ) / FOLLOW_SPEED, earliest ), yaw: f.ed.v.angles[ 1 ], pad: true } );
+			list.push( { text, model, resources, faceSeed: f.ed._faceSeed ?? null, delay: Math.max( Math.hypot( f.rel[ 0 ], f.rel[ 1 ] ) / FOLLOW_SPEED, earliest ), yaw: f.ed.v.angles[ 1 ], pad: true } );
 			ED_Free( f.ed );
 			continue;
 
@@ -456,7 +456,7 @@ function SV_TakeFollowers( player, cur, t ) {
 		const run = Math.hypot( to[ 0 ] - from[ 0 ], to[ 1 ] - from[ 1 ] );
 
 		list.push( {
-			text, from, to, run, resources,
+			text, from, to, run, resources, faceSeed: f.ed._faceSeed ?? null,
 			delay: Math.max( run / FOLLOW_SPEED, earliest ),
 			heading: Math.atan2( to[ 1 ] - from[ 1 ], to[ 0 ] - from[ 0 ] ) * 180 / Math.PI,
 			model,
@@ -531,7 +531,7 @@ function SV_QueueFollowers( arrival ) {
 	arrivals = { at: sv.time, t: arrival.transform, from: arrival.fromMap, list: arrival.followers.map( ( f ) => ( { ...f, placed: false, tries: 0, runner: null } ) ) };
 
 	// until it gets here, each is seen through the doorway, running for it
-	for ( const f of arrivals.list ) f.runner = R_AddLevelRunner( arrival.fromMap, f.model, f.skin, f.classname, f.from, f.heading );
+	for ( const f of arrivals.list ) f.runner = R_AddLevelRunner( arrival.fromMap, f.model, f.skin, f.classname, f.from, f.heading, f.faceSeed );
 
 }
 

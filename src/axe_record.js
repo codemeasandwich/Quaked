@@ -1,3 +1,4 @@
+import { Face_Seed } from './enemy_face.js';
 // Optional save metadata, ignored by the original Quake underscore-key rule.
 // Validate before allocating geometry from a save, and never retain stale data
 // when an edict slot is recycled.
@@ -10,10 +11,11 @@ export function Axe_ParseRecord(encoded){
 		if(!Number.isInteger(r.entityIndex)||r.entityIndex<1||r.entityIndex>=65536)return null;
 		for(const name of ['origin','angles','normal'])if(!Array.isArray(r[name])||r[name].length!==3||r[name].some(v=>!Number.isFinite(v)||Math.abs(v)>1e6))return null;
 		if(Math.abs(Math.hypot(...r.normal)-1)>.001)return null;
+		if(r.faceSeed!==undefined&&Face_Seed(r.faceSeed)===null)return null;
 		if(r.skinSalt!==undefined&&(!Number.isInteger(r.skinSalt)||r.skinSalt<0||r.skinSalt>0xffffffff))return null;
 		if(r.key!==undefined&&(!Axe_ValidOwnerKey(r.key)||Number(r.key.split('@')[1])!==r.at))return null;
 		if(r.floor!==undefined&&(!Array.isArray(r.floor)||r.floor.length!==2||r.floor.some(v=>!Number.isFinite(v)||Math.abs(v)>1e6)))return null;
 		return {version:1,kind:'slice',model:r.model,entityIndex:r.entityIndex,frame:r.frame,skin:r.skin,at:r.at,origin:r.origin,angles:r.angles,normal:r.normal,
-			...(r.key===undefined?{}:{key:r.key}),...(r.skinSalt===undefined?{}:{skinSalt:r.skinSalt}),...(r.floor===undefined?{}:{floor:r.floor})};
+			...(r.faceSeed===undefined?{}:{faceSeed:r.faceSeed}),...(r.key===undefined?{}:{key:r.key}),...(r.skinSalt===undefined?{}:{skinSalt:r.skinSalt}),...(r.floor===undefined?{}:{floor:r.floor})};
 	}catch{return null;}
 }

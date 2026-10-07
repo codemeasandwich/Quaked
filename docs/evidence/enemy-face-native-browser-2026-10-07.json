@@ -1,0 +1,208 @@
+{
+  "loading": {
+    "phase": "warming",
+    "mode": "welcome",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 3845,
+    "settledFrames": 0,
+    "world": "maps/e1m2.bsp",
+    "pending": [
+      "sculpted surfaces",
+      "water reflections"
+    ],
+    "fallbacks": [
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out",
+      "Prepared displacement: Displacement load timed out"
+    ]
+  },
+  "ready": false,
+  "sequence": 3839,
+  "clientTime": 1,
+  "serverTime": 1,
+  "paused": false,
+  "active": true,
+  "demo": false,
+  "map": "e1m2",
+  "signon": 4,
+  "target": null,
+  "individuals": [
+    {
+      "index": 14,
+      "model": "progs/ogre.mdl",
+      "seed": 3047412052,
+      "clientSeed": 3047412052,
+      "drawn": true
+    },
+    {
+      "index": 22,
+      "model": "progs/soldier.mdl",
+      "seed": 4036951806,
+      "drawn": false
+    },
+    {
+      "index": 29,
+      "model": "progs/soldier.mdl",
+      "seed": 3667313297,
+      "clientSeed": 3667313297,
+      "drawn": true
+    },
+    {
+      "index": 33,
+      "model": "progs/knight.mdl",
+      "seed": 3433743124,
+      "drawn": false
+    },
+    {
+      "index": 41,
+      "model": "progs/ogre.mdl",
+      "seed": 1572948780,
+      "clientSeed": 1572948780,
+      "drawn": true
+    },
+    {
+      "index": 53,
+      "model": "progs/knight.mdl",
+      "seed": 3864777600,
+      "drawn": false
+    },
+    {
+      "index": 54,
+      "model": "progs/knight.mdl",
+      "seed": 1498681986,
+      "drawn": false
+    },
+    {
+      "index": 91,
+      "model": "progs/soldier.mdl",
+      "seed": 1631231137,
+      "clientSeed": 1631231137,
+      "drawn": true
+    },
+    {
+      "index": 93,
+      "model": "progs/ogre.mdl",
+      "seed": 947520446,
+      "clientSeed": 947520446,
+      "drawn": true
+    },
+    {
+      "index": 98,
+      "model": "progs/ogre.mdl",
+      "seed": 3713444487,
+      "drawn": false
+    },
+    {
+      "index": 107,
+      "model": "progs/soldier.mdl",
+      "seed": 110569725,
+      "drawn": false
+    },
+    {
+      "index": 108,
+      "model": "progs/soldier.mdl",
+      "seed": 1042424863,
+      "clientSeed": 1042424863,
+      "drawn": true
+    },
+    {
+      "index": 113,
+      "model": "progs/ogre.mdl",
+      "seed": 2611542959,
+      "drawn": false
+    },
+    {
+      "index": 143,
+      "model": "progs/knight.mdl",
+      "seed": 1053314500,
+      "drawn": false
+    },
+    {
+      "index": 146,
+      "model": "progs/soldier.mdl",
+      "seed": 1669704339,
+      "clientSeed": 1669704339,
+      "drawn": true
+    },
+    {
+      "index": 162,
+      "model": "progs/soldier.mdl",
+      "seed": 2664963763,
+      "clientSeed": 2664963763,
+      "drawn": true
+    },
+    {
+      "index": 163,
+      "model": "progs/soldier.mdl",
+      "seed": 2270101816,
+      "clientSeed": 2270101816,
+      "drawn": true
+    },
+    {
+      "index": 173,
+      "model": "progs/soldier.mdl",
+      "seed": 3872890,
+      "clientSeed": 3872890,
+      "drawn": true
+    },
+    {
+      "index": 176,
+      "model": "progs/soldier.mdl",
+      "seed": 693313126,
+      "clientSeed": 693313126,
+      "drawn": true
+    },
+    {
+      "index": 177,
+      "model": "progs/soldier.mdl",
+      "seed": 672549973,
+      "drawn": false
+    },
+    {
+      "index": 180,
+      "model": "progs/soldier.mdl",
+      "seed": 2797252455,
+      "drawn": false
+    },
+    {
+      "index": 206,
+      "model": "progs/ogre.mdl",
+      "seed": 2766752247,
+      "drawn": false
+    },
+    {
+      "index": 207,
+      "model": "progs/knight.mdl",
+      "seed": 1283652061,
+      "drawn": false
+    }
+  ],
+  "skins": {
+    "index": "ready",
+    "normals": {
+      "pending": 0,
+      "ready": 26,
+      "shipped": 25,
+      "disk": 1,
+      "generated": 0,
+      "errors": {}
+    },
+    "preparePending": 0,
+    "pending": 0,
+    "ready": 43,
+    "fallback": 0,
+    "total": 43,
+    "settled": true,
+    "errors": {}
+  },
+  "glError": 0,
+  "errors": []
+}

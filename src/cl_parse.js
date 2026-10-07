@@ -756,6 +756,8 @@ export function CL_ParseUpdate( bits ) {
 		num = MSG_ReadByte();
 
 	const ent = CL_EntityNum( num );
+	// Local native spawn identity also survives same-model slot reuse and PVS gaps.
+	if ( sv.active && ! cls.demoplayback ) ent._faceSeed = sv.edicts[ num ]?._faceSeed ?? null;
 
 	for ( let i = 0; i < 16; i ++ )
 		if ( bits & ( 1 << i ) )

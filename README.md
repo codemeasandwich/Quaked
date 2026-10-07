@@ -32,6 +32,8 @@ Confirming **Quit** opens [this project’s GitHub page](https://github.com/code
 
 ### Features
 
+The local [individual enemy face trial](docs/enemy-face-overlays-2026-10-07.md) gives each grunt, ogre and knight a randomly chosen face that stays with that individual. The gallery shows all36 choices, with the ogre palette matched to its head; verification and remaining full-game loading and owner-acceptance limits are recorded in the feature document.
+
 Newer Game's local [first-sighting bestiary](docs/bestiary-2026-10-04.md) slows and pauses for a new enemy, frames it beside its folio, and resumes on a fresh key/shoot press. The menu book keeps discoveries across plays in this browser. Its [complete 47-creature artwork and dedication](docs/bestiary-complete-2026-10-04.md) are installed: outer cover → dedication/inner illustration → Contents → individual creature pages with parchment backs. Complete Edition requires all 47 discoveries. Expansion/Dawn gameplay remains unverified.
 
 Newer Game's local [persistent death remains](docs/death-remains-2026-10-04.md) keep the player's body or actual gib pieces beside recoverable weapons. Axe-only stored ammo is held in one backpack; recovering the shotgun restores its exact remaining shells and selects it. Owner visual acceptance is pending.

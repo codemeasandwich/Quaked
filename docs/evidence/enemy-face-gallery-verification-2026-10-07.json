@@ -1,0 +1,44 @@
+{
+  "models": [
+    {
+      "model": "soldier",
+      "faces": 12,
+      "colorBalance": [
+        1,
+        1,
+        1
+      ],
+      "glError": 0,
+      "errors": [],
+      "receipt": "docs/evidence/enemy-face-grunt-gallery-2026-10-07.json"
+    },
+    {
+      "model": "ogre",
+      "faces": 12,
+      "colorBalance": [
+        0.9101815,
+        1.15067627,
+        1.05761025
+      ],
+      "glError": 0,
+      "errors": [],
+      "receipt": "docs/evidence/enemy-face-ogre-gallery-2026-10-07.json"
+    },
+    {
+      "model": "knight",
+      "faces": 12,
+      "colorBalance": [
+        1,
+        1,
+        1
+      ],
+      "glError": 0,
+      "errors": [],
+      "receipt": "docs/evidence/enemy-face-knight-gallery-2026-10-07.json"
+    }
+  ],
+  "faces": 36,
+  "animation": "grunts native frame86 observed with original seeds0..11 and GL0",
+  "classic": "Classic faceShader false, original seeds0..11 retained, GL0",
+  "qualification": "Actual production loader, native MDL geometry and material GPU draws in gallery; default full-game readiness hold recorded separately"
+}

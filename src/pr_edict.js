@@ -1,3 +1,4 @@
+import { Face_Seed, Face_ParseSeed, Face_Assign } from './enemy_face.js';
 import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from './respawn_record.js';
 // Ported from: WinQuake/pr_edict.c -- entity dictionary
 
@@ -552,6 +553,7 @@ export function ED_Write( lines, ed ) {
 
 	}
 
+	if(Face_Seed(ed._faceSeed)!==null)lines.push('"_newer_face_seed" "'+ed._faceSeed+'"');
 	if(ed._respawn)lines.push('"_clockwise_player" "'+encodeURIComponent(JSON.stringify(ed._respawn))+'"');
 	if(ed._respawnDrop)lines.push('"_clockwise_drop" "'+encodeURIComponent(JSON.stringify(ed._respawnDrop))+'"');
 	if(ed._respawnRemains)lines.push('"_clockwise_remains" "'+encodeURIComponent(JSON.stringify(ed._respawnRemains))+'"');
@@ -960,6 +962,7 @@ export function ED_ParseEdict( data, ent ) {
 			Sys_Error( 'ED_ParseEntity: closing brace without data' );
 
 		init = true;
+		if(keyname==='_newer_face_seed'){ent._faceSeed=Face_ParseSeed(com_token);continue;}
 		if(keyname==='_clockwise_player'){ent._respawn=Respawn_ParsePlayer(com_token);continue;}
 		if(keyname==='_clockwise_drop'){ent._respawnDrop=Respawn_ParseDrop(com_token);continue;}
 		if(keyname==='_clockwise_remains'){ent._respawnRemains=Respawn_ParseRemains(com_token);continue;}
@@ -997,6 +1000,10 @@ export function ED_ParseEdict( data, ent ) {
 
 	if ( ! init )
 		ent.free = true;
+	else
+		// Legacy or malformed cosmetic metadata gets one new server identity.
+		// Normal save restore does not execute the QuakeC setmodel spawn hook.
+		Face_Assign( ent, PR_GetString( ent.v.model ) );
 
 	return data;
 

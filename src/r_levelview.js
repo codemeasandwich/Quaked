@@ -353,7 +353,7 @@ function createGhost( ent, world ) {
 	const hdr = m != null && m.cache != null ? m.cache.data : null;
 	if ( hdr == null || hdr.posedata == null ) return null;
 
-	const e = { model: m, frame: ent.frame, skinnum: ent.skin, origin: ent.origin.slice(), angles: ent.angles.slice() };
+	const e = { _faceSeed: ent.faceSeed ?? null, model: m, frame: ent.frame, skinnum: ent.skin, origin: ent.origin.slice(), angles: ent.angles.slice() };
 	const frames = hdr.frames || [];
 
 	// monsters from the level's own list start standing about
@@ -491,7 +491,7 @@ function R_AttachRunner( r, view ) {
 
 	}
 
-	const g = createGhost( { model: r.model, frame: seq !== null ? seq[ 0 ] : 0, skin: r.skin, origin: r.pos.slice(), angles: [ 0, r.yaw, 0 ], classname: r.classname, fromSnapshot: true }, view.world );
+	const g = createGhost( { model: r.model, frame: seq !== null ? seq[ 0 ] : 0, skin: r.skin, origin: r.pos.slice(), angles: [ 0, r.yaw, 0 ], classname: r.classname, fromSnapshot: true, faceSeed: r.faceSeed }, view.world );
 	if ( g === null ) return;
 
 	g.seq = seq;
@@ -510,9 +510,9 @@ function R_AttachRunners( view ) {
 }
 
 // map: the level the monster is in (as the view knows it), pos/yaw in that level's coordinates
-export function R_AddLevelRunner( map, model, skin, classname, pos, yaw ) {
+export function R_AddLevelRunner( map, model, skin, classname, pos, yaw, faceSeed = null ) {
 
-	const r = { map, model, skin, classname, pos: pos.slice(), yaw, g: null, view: null };
+	const r = { map, model, skin, classname, faceSeed, pos: pos.slice(), yaw, g: null, view: null };
 	runners.push( r );
 	for ( const v of views ) if ( v.map === map && r.g == null && v.world !== undefined ) R_AttachRunner( r, v );
 	return r;

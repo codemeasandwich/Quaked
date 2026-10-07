@@ -1,3 +1,4 @@
+import { Face_Assign } from './enemy_face.js';
 // Ported from: WinQuake/pr_cmds.c -- QuakeC built-in functions
 
 import {
@@ -209,6 +210,7 @@ function PF_setmodel() {
 
 	e.v.model = G_INT( OFS_PARM1 );
 	e.v.modelindex = i;
+	Face_Assign( e, m );
 	SV_AxeGibSeen( e, m );
 	SV_GoreOnSetModel( e, m );
 
