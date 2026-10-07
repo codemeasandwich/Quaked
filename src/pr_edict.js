@@ -1,4 +1,5 @@
 import { Face_Seed, Face_ParseSeed, Face_Assign } from './enemy_face.js';
+import { Rend_ValidRecord, Rend_ParseRecord } from './sv_rendveil.js';
 import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from './respawn_record.js';
 // Ported from: WinQuake/pr_edict.c -- entity dictionary
 
@@ -554,6 +555,7 @@ export function ED_Write( lines, ed ) {
 	}
 
 	if(Face_Seed(ed._faceSeed)!==null)lines.push('"_newer_face_seed" "'+ed._faceSeed+'"');
+	if(Rend_ValidRecord(ed._rendVeil)&&ed.v.health>0&&PR_GetString(ed.v.model)===ed._rendVeil.model)lines.push('"_newer_rend_veil" "'+encodeURIComponent(JSON.stringify(ed._rendVeil))+'"');
 	if(ed._respawn)lines.push('"_clockwise_player" "'+encodeURIComponent(JSON.stringify(ed._respawn))+'"');
 	if(ed._respawnDrop)lines.push('"_clockwise_drop" "'+encodeURIComponent(JSON.stringify(ed._respawnDrop))+'"');
 	if(ed._respawnRemains)lines.push('"_clockwise_remains" "'+encodeURIComponent(JSON.stringify(ed._respawnRemains))+'"');
@@ -963,6 +965,7 @@ export function ED_ParseEdict( data, ent ) {
 
 		init = true;
 		if(keyname==='_newer_face_seed'){ent._faceSeed=Face_ParseSeed(com_token);continue;}
+		if(keyname==='_newer_rend_veil'){ent._rendVeil=Rend_ParseRecord(com_token);continue;}
 		if(keyname==='_clockwise_player'){ent._respawn=Respawn_ParsePlayer(com_token);continue;}
 		if(keyname==='_clockwise_drop'){ent._respawnDrop=Respawn_ParseDrop(com_token);continue;}
 		if(keyname==='_clockwise_remains'){ent._respawnRemains=Respawn_ParseRemains(com_token);continue;}

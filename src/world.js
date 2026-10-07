@@ -1,4 +1,5 @@
 import { SV_RespawnDropTouch } from './sv_respawn.js';
+import { SV_RendVeilTouchBegin, SV_RendVeilTouchEnd } from './sv_rendveil.js';
 // Ported from: WinQuake/world.c + world.h -- world query functions
 
 /*
@@ -16,7 +17,7 @@ import {
 	sv, svs,
 	SOLID_NOT, SOLID_TRIGGER, SOLID_BBOX, SOLID_SLIDEBOX, SOLID_BSP,
 	MOVETYPE_PUSH,
-	FL_ITEM, FL_MONSTER
+	FL_ITEM, FL_MONSTER, FL_ONGROUND
 } from './server.js';
 import {
 	CONTENTS_EMPTY, CONTENTS_SOLID, CONTENTS_WATER,
@@ -432,9 +433,22 @@ export function SV_TouchLinks( ent, node ) {
 
 // The public trigger dispatch keeps QC's self/other context and touch behavior
 // together. Optional executors let focused tests use the same entry point.
+// Shared stock droptofloor operation: trace the native collision hull, then
+// link without firing another touch. QC and grounded arrivals use the same path.
+export function SV_DropToFloor( ent ) {
+ const end=new Float32Array(ent.v.origin);end[2]-=256;
+ const trace=SV_Move(ent.v.origin,ent.v.mins,ent.v.maxs,end,MOVE_NORMAL,ent);
+ if(trace.fraction===1||trace.allsolid)return false;
+ VectorCopy(trace.endpos,ent.v.origin);SV_LinkEdict(ent,false);
+ ent.v.flags=(ent.v.flags|0)|FL_ONGROUND;ent.v.groundentity=EDICT_TO_PROG(trace.ent);
+ return true;
+}
+
 export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, clearAt = null ) {
 	const recovered = SV_RespawnDropTouch( ent, touch );
 	if ( recovered !== null ) return false; // custom payload touch never teleports the player
+	const rite = SV_RendVeilTouchBegin( ent, touch );
+	if ( rite === false ) return false; // a held arrival cannot restart its own rite
 
 	const crossing = SV_BeginPortalTouch( ent, touch, SV_PortalBackingContact );
 	if ( crossing === false ) return false;
@@ -463,7 +477,9 @@ export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, cle
 			if ( hall ) R_FlashlightSkillSelected( sv.name, [ 'EASY', 'NORMAL', 'HARD' ].indexOf( hall[ 1 ] ) );
 		}
 		execute( touch.v.touch );
-		return SV_FinishPortalTouch( ent, incoming );
+		const crossed = SV_FinishPortalTouch( ent, incoming );
+		SV_RendVeilTouchEnd( rite );
+		return crossed;
 
 	} finally {
 

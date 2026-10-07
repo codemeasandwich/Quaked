@@ -1,0 +1,4 @@
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+RESULT 2/2 passed (tests/rend_veil_capture_state_test.js)
+TOTAL 2/2 passed

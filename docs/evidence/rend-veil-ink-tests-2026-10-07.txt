@@ -1,0 +1,20 @@
+Independent public MRT ink/receiver-data fixture, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Test command exit code: 0
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public local ink preserves receiver metadata while rune letters keep additive colour-only output
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+RESULT 6/6 passed (tests/rend_veil_capture_state_test.js)
+TOTAL 6/6 passed
+
+SHA256 f10481d640edbc85712b9f63610d58c27b3029f3b7c4c2f3738f117aa2c2fdce src/r_rendveil.js
+SHA256 44fa0e7425e6226fc3e548b8b9383c854f15efe8cd5e1ab195f33a38311c0b7d src/rend_veil/material-binding.js
+SHA256 14e1dd31ae729a10c4bd56ebcba2e59b92f6c128127d80de2bd97e5231e30517 src/rend_veil/local-effects.js
+SHA256 ceac27cd03b50f63c27f93d78fcd7c8a4af213bf2ee2450ce53567c2ab795072 tests/rend_veil_capture_state_test.js
+The three relevant production module hashes above match those observed before the initial run and after the successful corrected run. Runner/Three identities remain those in rend-veil-background-capture-tests-2026-10-07.txt.
+
+Qualification: actual public Seen graph, actual Three material blend properties, actual composed ghost shader callback, and numerical blend-factor evaluation of sample receiver packets. No WebGL shader compilation, framebuffer execution, GPU readback or palette appearance claim. Six tests include the prior four capture/two-frame checks plus two ink receiver checks. Initial shared-uniform classification failure is retained in rend-veil-ink-initial-tests-2026-10-07.txt. No production source was edited by this reviewer.

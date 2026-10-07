@@ -1,0 +1,24 @@
+Independent supplied-reference program fixture initial run, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Test command exit code: 1
+Test source SHA256: bbab210cd94f8ade49f2c6bd7b09a7883074f5080bca1ac4214e65b52b5512d0
+Material binding SHA256: f3d9d40bc0e563e9d112ed5570394322e415ce28e9ce464cb9e7eec84f7d6eb0
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public local ink preserves receiver metadata while rune letters keep additive colour-only output
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+PASS native optical protection explicitly keeps formed opaque pixels visible before Unwind
+RESULT 7/8 passed (tests/rend_veil_capture_state_test.js)
+FAIL public body and shadow programs reuse supplied radial coverage and post-posed transforms through Appearance and Focus Error: actual Three shader library exists
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:11:56)
+    at program (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:225:45)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:229:116
+    at fixture (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:94:3)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_capture_state_test.js:223:2
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+TOTAL 7/8 passed
+
+Fixture failure analysis: Three.js 0.183.0 exports the MeshDistanceMaterial shader library as distance, not the older distanceRGBA key used initially by this fixture. Exact reference mask/vertex/radial field comparisons had passed before the missing-library error. Correct the fixture's library key and rerun; no production edit is required for this observation.

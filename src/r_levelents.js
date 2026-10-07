@@ -1,4 +1,5 @@
 import { Face_ParseSeed } from './enemy_face.js';
+import { Rend_ParseRecord } from './sv_rendveil.js';
 // What stands in another level, for drawing it from here (see r_levelview.js):
 // its monsters, items, torches and brush entities (secret doors, false walls,
 // doors, buttons), from the level's entity list or, for a level you have been in,
@@ -183,7 +184,10 @@ export function R_LevelEntities( text, snapshot, submodels, skill ) {
 
 		}
 
-		out.push( { kind: fallbackFor?'axeFallback':'alias', ...(fallbackFor?{fallbackFor}:{}), classname: c, model, origin, angles, frame: parseInt( ent.frame, 10 ) || 0, skin, fromSnapshot, faceSeed: Face_ParseSeed( ent._newer_face_seed ) } );
+		const rendVeil = fromSnapshot && Number( ent.health ) > 0 && c.startsWith( 'monster_' ) ? Rend_ParseRecord( ent._newer_rend_veil ) : null;
+		const snapshotTime = Number( ent._snapshot_time );
+		out.push( { kind: fallbackFor?'axeFallback':'alias', ...(fallbackFor?{fallbackFor}:{}), classname: c, model, origin, angles, frame: parseInt( ent.frame, 10 ) || 0, skin, fromSnapshot, faceSeed: Face_ParseSeed( ent._newer_face_seed ),
+			rendVeil: rendVeil?.model === model ? rendVeil : null, rendVeilTime: Number.isFinite( snapshotTime ) ? snapshotTime : null } );
 
 	};
 

@@ -12,6 +12,7 @@
 // Single player only.  0 = off, 1 = Newer Game only (the default), 2 = always.
 
 import { cvar_t } from './cvar.js';
+import { SV_RendVeilHolding } from './sv_rendveil.js';
 import { sv, svs, ss_loading } from './server.js';
 import { MAX_MODELS, MAX_SOUNDS } from './quakedef.js';
 import { Sys_Error } from './sys.js';
@@ -414,6 +415,7 @@ function SV_TakeFollowers( player, cur, t ) {
 
 		const ed = EDICT_NUM( i );
 		if ( ed.free ) continue;
+		if ( SV_RendVeilHolding( ed ) ) continue; // no active pursuit before Focus
 
 		const cls = PR_GetString( ed.v.classname );
 		if ( cls.indexOf( 'monster_' ) !== 0 || NO_FOLLOW.test( cls ) ) continue;
@@ -621,6 +623,9 @@ function SV_PlaceFollowers( player ) {
 
 		const ed = ED_Alloc();
 		ED_ParseEdict( data, ed );
+		// Only already-activated monsters are followers. Their completed rite's
+		// remnants belong to the prior arrival position and prior map clock.
+		ed._rendVeil = null;
 
 		const index = SV_ModelIndex( PR_GetString( ed.v.model ) );
 		if ( index < 0 ) {

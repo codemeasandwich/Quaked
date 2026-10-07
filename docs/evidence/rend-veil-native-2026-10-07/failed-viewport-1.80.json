@@ -1,0 +1,127 @@
+{
+  "test": "actual E1M2 stock QC named closet, inspection original walls",
+  "ready": true,
+  "map": "e1m2",
+  "serverTime": 2.8157999999999985,
+  "age": 1.7999999999999998,
+  "paused": true,
+  "signon": 4,
+  "demo": false,
+  "playerOrigin": [
+    -264,
+    139,
+    338
+  ],
+  "clientPlayerOrigin": {
+    "0": -264,
+    "1": 139,
+    "2": 338
+  },
+  "camera": [
+    -263.96875,
+    139.03125,
+    360.03125
+  ],
+  "cameraDirection": [
+    5.765294714520545e-17,
+    0.9415440610817745,
+    -0.33688986485443534
+  ],
+  "meshPosition": [
+    -264,
+    224,
+    330
+  ],
+  "meshVisible": true,
+  "meshBox": {
+    "min": [
+      -42.710914611816406,
+      -17.73676109313965,
+      -24.908735275268555
+    ],
+    "max": [
+      40.8424186706543,
+      18.22460174560547,
+      13.77878189086914
+    ]
+  },
+  "meshScale": [
+    1,
+    1,
+    1
+  ],
+  "viewangles": [
+    19.6875,
+    90,
+    0
+  ],
+  "monster": {
+    "index": 212,
+    "model": "progs/demon.mdl",
+    "origin": [
+      -264,
+      224,
+      330
+    ],
+    "frame": 0,
+    "nextthink": 1.1158000230789185,
+    "health": 300,
+    "record": {
+      "version": 1,
+      "start": 1.0157999999999987,
+      "model": "progs/demon.mdl",
+      "origin": [
+        -264,
+        224,
+        330
+      ]
+    },
+    "clientRecord": {
+      "version": 1,
+      "start": 1.0157999999999987,
+      "model": "progs/demon.mdl",
+      "origin": [
+        -264,
+        224,
+        330
+      ]
+    },
+    "clientClock": 2.8157999999999985,
+    "drawn": true
+  },
+  "renderer": {
+    "active": 1,
+    "pooled": 1,
+    "states": [
+      {
+        "model": "progs/demon.mdl",
+        "start": 1.0157999999999987,
+        "phase": "unwind",
+        "age": 1.7999999999999998,
+        "progress": 1,
+        "focused": false,
+        "scale": 7.439907147334172,
+        "center": [
+          -263.7560796737671,
+          224.93424797058105,
+          322.57504652096674
+        ],
+        "restored": false
+      }
+    ]
+  },
+  "loading": {
+    "phase": "done",
+    "mode": "welcome",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 17,
+    "settledFrames": 3,
+    "world": "maps/e1m2.bsp",
+    "pending": [],
+    "fallbacks": []
+  },
+  "errors": []
+}

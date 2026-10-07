@@ -1,4 +1,5 @@
 import { SV_RespawnFrame } from './sv_respawn.js';
+import { SV_RendVeilHolding } from './sv_rendveil.js';
 // Ported from: WinQuake/sv_phys.c -- server physics
 
 import { SV_SeamlessHolding } from './sv_seamless.js';
@@ -319,6 +320,9 @@ Returns false if the entity removed itself.
 =============
 */
 export function SV_RunThink( ent ) {
+	// Preserve the pending native thinker for the first Focus tick, including
+	// callers that use this public think entry point outside SV_Physics.
+	if ( SV_RendVeilHolding( ent ) ) return true;
 
 	let thinktime;
 
@@ -1653,6 +1657,10 @@ export function SV_Physics() {
 			SV_LinkEdict( ent, true ); // force retouch even for stationary
 
 		}
+
+		// Native retouch/telefrags above remain active. Only this monster's
+		// thinker and movement wait; overdue nextthink runs normally at Focus.
+		if ( SV_RendVeilHolding( ent ) ) continue;
 
 		if ( i > 0 && i <= svs.maxclients )
 			SV_Physics_Client( ent, i );

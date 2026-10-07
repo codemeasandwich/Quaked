@@ -34,7 +34,7 @@ import {
 	ED_FindFunction, ED_FindField,
 } from './pr_edict.js';
 import { PR_HostError, PR_RunError } from './pr_exec.js';
-import { SV_Move, SV_LinkEdict, SV_PointContents } from './world.js';
+import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from './world.js';
 import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from './sv_move.js';
 import { SV_StartSound, SV_StartParticle, sv_aim } from './sv_main.js';
 import { R_FlashlightSkillSelected } from './r_flashlightrun.js';
@@ -1055,25 +1055,7 @@ function PF_droptofloor() {
 
 	const ent = PROG_TO_EDICT( pr_global_struct.self );
 
-	const end = new Float32Array( 3 );
-	VectorCopy( ent.v.origin, end );
-	end[ 2 ] -= 256;
-
-	const trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, end, false, ent );
-
-	if ( trace.fraction === 1 || trace.allsolid ) {
-
-		G_FLOAT_SET( OFS_RETURN, 0 );
-
-	} else {
-
-		VectorCopy( trace.endpos, ent.v.origin );
-		SV_LinkEdict( ent, false );
-		ent.v.flags = ( ent.v.flags | 0 ) | FL_ONGROUND;
-		ent.v.groundentity = EDICT_TO_PROG( trace.ent );
-		G_FLOAT_SET( OFS_RETURN, 1 );
-
-	}
+	G_FLOAT_SET( OFS_RETURN, SV_DropToFloor( ent ) ? 1 : 0 );
 
 }
 

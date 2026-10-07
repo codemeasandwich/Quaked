@@ -1,4 +1,5 @@
 import {R_DemonBakeRelease} from './r_demonbakes.js';
+import { SV_RendVeilClientRecord } from './sv_rendveil.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
 import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from './r_demoloading.js';
 
@@ -730,6 +731,8 @@ function CL_LinkPacketEntities( frac ) {
 		// Local play normally uses QW packet entities, not CL_ParseUpdate.
 		// Copy the native lifetime identity on this path too, including slot reuse.
 		if ( sv.active && ! cls.demoplayback ) ent._faceSeed = sv.edicts[ s1.number ]?._faceSeed ?? null;
+		ent._rendVeil = SV_RendVeilClientRecord( s1.number );
+		ent._rendVeilTime = ent._rendVeil ? sv.time : null;
 
 		// Update entity fields from packet entity state
 		const model = cl.model_precache[ s1.modelindex ];

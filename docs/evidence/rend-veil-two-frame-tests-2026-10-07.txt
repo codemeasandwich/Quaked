@@ -1,0 +1,22 @@
+Independent two-frame public fixture final narrow run, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Exit code: 0
+Source hashes below were identical immediately before and after this run.
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+RESULT 4/4 passed (tests/rend_veil_capture_state_test.js)
+TOTAL 4/4 passed
+
+SHA256 ac79079dd0cb76df67b49042b329e3d61ab9b4b6ae4bc81d48b46dae3cd922cf src/r_rendveil.js
+SHA256 93b43c365a28370fcd61a6e505f547d1e04e790377c2cfb1c7d6225f20218da8 src/rend_veil/material-binding.js
+SHA256 14e1dd31ae729a10c4bd56ebcba2e59b92f6c128127d80de2bd97e5231e30517 src/rend_veil/local-effects.js
+SHA256 cf72d6513b6540020c23d8b5c1f3142166a929f4ed6007a3d2175771e171e30a src/r_pointshadows.js
+SHA256 a63a97aa64412357c1a4d2cc82e0db59ef9a3110b31ea76c14a3e43d9856dc7e tests/rend_veil_capture_state_test.js
+SHA256 42187eb0b85426f04b4faca6fd156dc73d889bb3e36c261b2fd9a83f7ca9cf6b src/rend_veil/frame.js
+SHA256 279c4687699517203fbeeec5e9ef541a315e8945bb9425f9851b8ad4e2f99e1a src/rend_veil/config.js
+Runner/Three identities remain those retained in rend-veil-background-capture-tests-2026-10-07.txt.
+
+Qualification: actual public renderer/effect/light/capture-material APIs, real Three matrices/geometry and representative 16x16x52 body vertices, with recording renderer/canvas stub. This proves CPU/data/uniform contracts, not WebGL compilation, palette appearance or native MDL pixels. The four tests include the earlier two capture-state checks, not six distinct tests. Initial padding-expectation failure is retained in rend-veil-two-frame-initial-tests-2026-10-07.txt; no production edit was made by this reviewer.

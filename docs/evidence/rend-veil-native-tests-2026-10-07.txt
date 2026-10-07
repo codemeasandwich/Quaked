@@ -1,0 +1,456 @@
+Independent Rend the Veil native public-interface receipt
+UTC execution: 2026-10-07T12:52:59.122878+00:00
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_native_test.js
+Scope: actual stock E1M2 named t53/t54 teleport_use/teleport_touch through public SV_RunTriggerTouch, reciprocal native loopback client, public server physics/think clock, scope controls and actual native save parse. No renderer/GPU proof.
+Prior bootstrap attempted before src/r_rendveil.js existed: ERR_MODULE_NOT_FOUND,0/0. No implementation edits by verifier.
+Initial executable run observed3/4: nonreciprocal peer incorrectly admitted; report sent to parent. This live receipt rerun records current source/result below, preserving observed failure obligation.
+SHA256 24a69a7e19bac410d64072f3293f431090b9377f18ef2bd4aa8eb6a6f3ee975b tests/rend_veil_native_test.js
+SHA256 7cb16e76ec5be7dc84d342b2b9c37ebebbb644d93e2f56c72decdac1bebec650 src/sv_rendveil.js
+SHA256 28a6e32174ca7d4c2347ea6d02783410fc5f2c6f35477a873c63ea95bd19ae7b src/rend_veil_state.js
+SHA256 b96e97d186891be3cfeb93dfe6c6f03eb1a4bf8d9efe4e9347331555896c9372 src/world.js
+SHA256 41e5870793f1aa928335272eeb3a355793ec05a74220f52aa24eff904931e3bc src/sv_phys.js
+SHA256 26ad6f22f8772efdf5b1a0b6c58fc196a8e761ff2ca24882a34a362f8eaf8041 src/pr_edict.js
+SHA256 397b4026ee979bb310176d8f541dba6f4d67a9d7be216b21a138eea5416ebfd3 src/progs.js
+SHA256 da9a768cf62ef2dc7cc9ed96fe8f24c16de3fd3fbbcafa033b1383d39fe07e9e src/cl_main.js
+SHA256 9f02e36633de71e8b573a19c56c202eec450c8017c11234f129aaff88933ff53 src/r_rendveil.js
+SHA256 8258cd66ba4a0633e32795ce8a20d6f2cb108167d747906442568657c7583e33 tools/summoning_reference/quaked-rend-the-veil-v1.0.0.html
+SHA256 8f2925437ee8dbe752f8787e0e75f47727793fea87c77420dc7698a97a2cdbbc tools/run_tests.mjs
+SHA256 35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af pak0.pak
+SHA256 d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29 /private/tmp/quaked-face-runtime/three.module.js
+Exit code: 1
+--- stdout ---
+Added packfile rend-veil-native-pak0 (339 files)\n
+NET_Init complete
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/quaddama.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+meshing progs/g_nail.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_ARRIVAL_CLOCK {"map":"e1m2","trigger":49,"targetname":"t53","monster":177,"classname":"monster_army","start":1,"focusAt":2.5,"totalDuration":2.8,"resumedFrame":1}
+PASS actual E1M2 named stock QC arrival holds only its native AI through2.5Focus then retains a finite2.8tail
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+PASS native failed, dead and unnamed teleport touches cannot fabricate or retrigger an arrival rite
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_SAVE_RECORD {"version":1,"start":1.0002,"model":"progs/soldier.mdl","origin":[1408,-688,476]}
+PASS actual ED save/parse roundtrip preserves active finite record and rejects malformed or recycled metadata
+RESULT 3/4 passed (tests/rend_veil_native_test.js)
+TOTAL 3/4 passed
+
+--- stderr ---
+FAIL public local authority gate and native touch preserve Classic, remote, demo and stale-peer behavior Error: unsupported scope rejected: nonreciprocal peer
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rend_veil_native_test.js:25:58)
+    at file:///Users/bri/SOURCE/Quaked/tests/rend_veil_native_test.js:138:19
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:15
+
+
+=== Corrected independent native and clock bridge receipt; initial failure preserved above ===
+UTC execution: 2026-10-07T12:59:57.479552+00:00
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_native_test.js
+Initial nonreciprocal-peer failure is corrected in production by the implementation owner; public negative control now rejects it. Verifier has made no production edits.
+Five meaningful public-interface checks: actual E1M2 named stock QC teleport into receiver; per-individual SV_Physics/SV_RunThink hold until2.5Focus with native world clock and unrelated same-type thinker continuing; finite2.8tail; failed/dead/unnamed/retrigger controls; thirteen unsupported scopes preserve native destination without a hold; actual ED serialization/parse, invalid bounds and recycled-slot retirement; actual NQ byte update and public QW frame/renderer handoff carry authoritative server time while client clock is deliberately unrelated100seconds.
+Scope qualification: no browser/GPU test, no rendered shadow proof, no QW socket/byte parser claimed. Source review separately reported missing clock bindings and shadow override hook/cache invalidation wiring; clock source and public test now verified, shadow review/visual completion remains implementation/review owners.
+SHA256 209d591d74f5787206c8dca24ca4296569a5ef4f32919adb75c3f8d816aa05b9 tests/rend_veil_native_test.js
+SHA256 cc256218ce5e561f3d58ba94e8aa7e92312db1f0d3ef39130dceb9f8c7a8c5d7 src/sv_rendveil.js
+SHA256 28a6e32174ca7d4c2347ea6d02783410fc5f2c6f35477a873c63ea95bd19ae7b src/rend_veil_state.js
+SHA256 279c4687699517203fbeeec5e9ef541a315e8945bb9425f9851b8ad4e2f99e1a src/rend_veil/config.js
+SHA256 120a6cd5054cb56c5dbfb9fab68f06f560976849b842b0ad16228926d6d6916a src/rend_veil/timeline.js
+SHA256 b96e97d186891be3cfeb93dfe6c6f03eb1a4bf8d9efe4e9347331555896c9372 src/world.js
+SHA256 41e5870793f1aa928335272eeb3a355793ec05a74220f52aa24eff904931e3bc src/sv_phys.js
+SHA256 26ad6f22f8772efdf5b1a0b6c58fc196a8e761ff2ca24882a34a362f8eaf8041 src/pr_edict.js
+SHA256 397b4026ee979bb310176d8f541dba6f4d67a9d7be216b21a138eea5416ebfd3 src/progs.js
+SHA256 7bc900f482411264db0628559a0c20298f2de7ebfaa8e78974ad6d46328319eb src/cl_main.js
+SHA256 646590c95124328bb13cf2b82dec6261c1502b2ac4a60956d43c3419af06de03 src/cl_parse.js
+SHA256 1c0dafeae126608ecb5895528cf77ef547ecb394561c2313a6a1a299e689390f src/r_rendveil.js
+SHA256 8258cd66ba4a0633e32795ce8a20d6f2cb108167d747906442568657c7583e33 tools/summoning_reference/quaked-rend-the-veil-v1.0.0.html
+SHA256 8f2925437ee8dbe752f8787e0e75f47727793fea87c77420dc7698a97a2cdbbc tools/run_tests.mjs
+SHA256 35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af pak0.pak
+SHA256 d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29 /private/tmp/quaked-face-runtime/three.module.js
+Exit code: 0
+--- stdout ---
+Added packfile rend-veil-native-pak0 (339 files)\n
+NET_Init complete
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/flame.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/quaddama.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+meshing progs/g_nail.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_ARRIVAL_CLOCK {"map":"e1m2","trigger":49,"targetname":"t53","monster":177,"classname":"monster_army","start":1,"focusAt":2.5,"totalDuration":2.8,"resumedFrame":1}
+PASS actual E1M2 named stock QC arrival holds only its native AI through2.5Focus then retains a finite2.8tail
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+PASS native failed, dead and unnamed teleport touches cannot fabricate or retrigger an arrival rite
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_SCOPE_CONTROLS ["Classic","Classic split pass","demo","timedemo","remote driver","closed client","closed server peer","unpaired client","nonreciprocal peer","stale server connection","inactive local client","multiplayer","modified QuakeC"]
+PASS public local authority gate and native touch preserve Classic, remote, demo and stale-peer behavior
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_SAVE_RECORD {"version":1,"start":1.0002,"model":"progs/soldier.mdl","origin":[1408,-688,476]}
+PASS actual ED save/parse roundtrip preserves active finite record and rejects malformed or recycled metadata
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+
+ entered the game
+
+REND_NATIVE_CLIENT_CLOCK {"monster":177,"start":1.0002,"nativeTime":3.8002,"unrelatedClientTime":100.29999999999998,"expiredRecord":null,"expiredClock":null}
+PASS actual NQ and public QW update paths carry the same authoritative server clock and retire the expired effect
+RESULT 5/5 passed (tests/rend_veil_native_test.js)
+TOTAL 5/5 passed
+
+--- stderr ---
+
+
+=== Bounded final shadow wiring source reread (no GPU execution claimed) ===
+UTC reread: 2026-10-07T13:01:52.085787+00:00
+Earlier source findings: custom shadow exports had no callers and normal byte/transform frozen-pose caching ignored reveal progress. Implementation owner/review lane corrected the source; verifier made no production edits.
+Current caller trace: R_CreateShadowCaptureMaterial patches the existing one-attachment capture vertex/fragment; its per-object onBeforeRender calls R_RendVeilShadowObject. Existing point/spot borrowed clones retain original rendVeilSource; frozen point reuse includes R_RendVeilShadowVersion age alongside unchanged pose bytes. Near-sun material and gl_post sunOverride use the same helper.
+r_rendveil shader adapter recognizes the actual atlas vec4 local=vec4(position,1.); vertex anchor and injects canonical reveal/deformation; ordinary-object binding resets transformation matrices to identity. No further bounded source defect found in these paths. This is source review, not rendered shadow acceptance or GPU proof.
+SHA256 1c0dafeae126608ecb5895528cf77ef547ecb394561c2313a6a1a299e689390f src/r_rendveil.js
+SHA256 cf72d6513b6540020c23d8b5c1f3142166a929f4ed6007a3d2175771e171e30a src/r_pointshadows.js
+SHA256 804fb5ef48887923dc6dcf8feffae294f39e1d401290913b7f33e64d1ba000ba src/gl_post.js

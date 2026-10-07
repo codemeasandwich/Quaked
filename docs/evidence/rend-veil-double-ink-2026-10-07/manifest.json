@@ -1,0 +1,151 @@
+{
+  "ownerRequest": "Twice-size effect; bright effect highlights become black except rune letters",
+  "loadedAt": "2026-10-07T14:44:28.176Z",
+  "profile": "actual E1M2 skill2 t143\u2192t142 native fiend; original walls; explicit mild display curve",
+  "frames": [
+    {
+      "age": 0.25,
+      "states": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 2.1,
+            "phase": "intro",
+            "age": 0.25,
+            "progress": 0,
+            "focused": false,
+            "scale": 14.879814294668344,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              340.058828317202
+            ],
+            "restored": false
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 1.1,
+      "states": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 1,
+            "phase": "appearance",
+            "age": 1.1,
+            "progress": 0.6480000000000001,
+            "focused": false,
+            "scale": 14.879814294668344,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              340.058828317202
+            ],
+            "restored": false
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 1.8,
+      "states": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 2.1,
+            "phase": "unwind",
+            "age": 1.8000000000000003,
+            "progress": 1,
+            "focused": false,
+            "scale": 14.879814294668344,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              340.058828317202
+            ],
+            "restored": false
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 2.55,
+      "states": {
+        "active": 1,
+        "pooled": 1,
+        "states": [
+          {
+            "model": "progs/demon.mdl",
+            "start": 2.1,
+            "phase": "remnants",
+            "age": 2.5500000000000003,
+            "progress": 1,
+            "focused": true,
+            "scale": 14.879814294668344,
+            "center": [
+              -263.7560796737671,
+              224.93424797058105,
+              340.058828317202
+            ],
+            "restored": true
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "age": 2.9,
+      "states": {
+        "active": 0,
+        "pooled": 1,
+        "states": []
+      },
+      "errors": []
+    }
+  ],
+  "gpuErrorsAndWarningsSinceFreshLoad": [],
+  "source": {
+    "src/rend_veil/shader-common.js": "2b39165252fa9317ff64bbcb8def8999b7649b5c75d21a91f4a624950d7e8c71",
+    "src/rend_veil/glyph-data.js": "68c07477102b3456b56b8efbc8428c1395dd221d2a8d2cea8a1694bb43ff6bea",
+    "src/rend_veil/optics-shader.js": "3a9380b8b50f374d96d1fba3b69135bb7291c53ec947dea5ec84094f6889f96e",
+    "src/rend_veil/local-effects.js": "14e1dd31ae729a10c4bd56ebcba2e59b92f6c128127d80de2bd97e5231e30517",
+    "src/rend_veil/config.js": "279c4687699517203fbeeec5e9ef541a315e8945bb9425f9851b8ad4e2f99e1a",
+    "src/rend_veil/timeline.js": "120a6cd5054cb56c5dbfb9fab68f06f560976849b842b0ad16228926d6d6916a",
+    "src/rend_veil/frame.js": "42187eb0b85426f04b4faca6fd156dc73d889bb3e36c261b2fd9a83f7ca9cf6b",
+    "src/rend_veil/material-binding.js": "44fa0e7425e6226fc3e548b8b9383c854f15efe8cd5e1ab195f33a38311c0b7d",
+    "src/r_rendveil.js": "f10481d640edbc85712b9f63610d58c27b3029f3b7c4c2f3738f117aa2c2fdce",
+    "src/r_rendveil_optics.js": "6ce8d38d83096733f5a86c1b6d74e468040421d4e9eb6b8903488b16e7a92efc",
+    "src/gl_rmain.js": "e0911f6d5869882f832cec1614d02f367aa2c6bf017b7d0914fd8ceea905f2b4",
+    "src/gl_post.js": "11cc1863774239084c2c61e1785b17834f96a7c639033a0d5be8199a8f53cca1",
+    "src/r_pointshadows.js": "cf72d6513b6540020c23d8b5c1f3142166a929f4ed6007a3d2175771e171e30a",
+    "src/sv_rendveil.js": "cc256218ce5e561f3d58ba94e8aa7e92312db1f0d3ef39130dceb9f8c7a8c5d7",
+    "src/world.js": "b96e97d186891be3cfeb93dfe6c6f03eb1a4bf8d9efe4e9347331555896c9372",
+    "src/sv_phys.js": "41e5870793f1aa928335272eeb3a355793ec05a74220f52aa24eff904931e3bc",
+    "src/cl_main.js": "7bc900f482411264db0628559a0c20298f2de7ebfaa8e78974ad6d46328319eb",
+    "src/cl_parse.js": "646590c95124328bb13cf2b82dec6261c1502b2ac4a60956d43c3419af06de03",
+    "tests/rend_veil_gameplay_trial.js": "4744e301f5b4dc4152e106108d6a8098d9e2d0099a852eec92cacc806f767d0f",
+    "tests/rend_veil_gameplay_trial.html": "76ee42559ccd60b75d3947548b8403f77dda20afd761337b39f47e681b4ffb3c"
+  },
+  "acceptance": "Earlier bright trial rejected; revised trial awaiting owner acceptance; no landing/release claimed",
+  "loadingRetry": {
+    "failedLoad": "2026-10-07T14:21:16.309Z",
+    "failure": "demon prepared normal timed out; enemy art/water readiness remained held",
+    "recoveredLoad": "2026-10-07T14:26:03.388Z",
+    "resolution": "ordinary page reload; readiness gate unchanged; latest verified load done with no pending/fallbacks"
+  },
+  "tests": {
+    "result": "46/46 passed",
+    "receipt": "../rend-veil-regressions-2026-10-07.txt",
+    "receiptSha256": "9fd5836dfde5ba284e72b2d04c1c81ecbc756aad59931dea07e8cbc136ada4cb"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "file": "forbidden-summoning-v2.0.6.html",
+  "sha256": "f81f8661d78f3c60594e930e472f0ae76db903193d594c1aade9f90da9edfc9b",
+  "preset": "Rend the Veil",
+  "version": "2.0.6",
+  "source": "Owner supplied /Users/bri/Downloads/forbidden-summoning-v2.0.6.html",
+  "adaptation": "Effective defaults + preset, analytical timeline and procedural shader/layer sources retained. Existing Quake native actor/render/grade replace reference subject/chamber/pipeline.",
+  "integrationReference": {
+    "path": "quaked-rend-the-veil-v1.0.0.html",
+    "sha256": "8258cd66ba4a0633e32795ce8a20d6f2cb108167d747906442568657c7583e33",
+    "productionModules": "src/rend_veil",
+    "excluded": "Embedded Three.js, preview creature, mock bridge host, standalone renderer"
+  }
+}

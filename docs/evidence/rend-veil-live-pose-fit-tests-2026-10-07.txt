@@ -1,0 +1,24 @@
+Independent live pose/input-fit public fixture, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Test command exit code: 0
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public local ink preserves receiver metadata while rune letters keep additive colour-only output
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+PASS public body and shadow programs reuse supplied radial coverage and post-posed transforms through Appearance and Focus
+PASS native optical protection restores the supplied matched-Unwind receiver behavior
+PASS public native long-body reveal fit covers the whole radial input without changing model vertices or shadow ownership
+PASS public changed pose attribute version refreshes live whole-model fit for body and borrowed shadow without scaling geometry
+RESULT 10/10 passed (tests/rend_veil_capture_state_test.js)
+TOTAL 10/10 passed
+
+SHA256 b9c712921a305ef93cc29c9f4052b1ee9ff9a4b186a842b7c65308c29162229b src/r_rendveil.js
+SHA256 b3d75ec418a075c969f0595c7accf4fd78a5724f762ab59351e0bc1670ef6afd src/rend_veil/material-binding.js
+SHA256 3a9380b8b50f374d96d1fba3b69135bb7291c53ec947dea5ec84094f6889f96e src/rend_veil/optics-shader.js
+SHA256 04bd2b5784376ad08c2da7a53818dd9cf2c3a8e77b038a26c609a6a30681f055 tests/rend_veil_capture_state_test.js
+Preserved reference/runner/Three and other stable identities remain in prior receipts.
+
+Qualification: actual public Seen binding/capture-material callbacks with real Three geometry, an actual BufferAttribute pose-byte mutation and needsUpdate version advance. This proves the refreshed CPU/input-uniform contract, not every native MDL animation, GLSL execution or GPU appearance. No production/browser source was edited by this reviewer. Ten tests include the preceding nine plus this one live-pose case, not an additional broad-suite execution claim.

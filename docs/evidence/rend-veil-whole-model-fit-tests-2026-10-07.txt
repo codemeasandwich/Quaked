@@ -1,0 +1,23 @@
+Independent native-input fit public fixture, 7 October 2026.
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/rend_veil_capture_state_test.js
+Test command exit code: 0
+
+PASS public Rend background capture restores physical HDR viewport at DPR2 with offset logical defaults
+PASS public Rend background capture restores visibility/state after render failure and can capture again
+PASS public Rend doubles destination FX while preserving native body vertices and finite dim light reach
+PASS public shadow capture keeps full-size body coordinates and clock uniforms distinct from doubled FX
+PASS public local ink preserves receiver metadata while rune letters keep additive colour-only output
+PASS public ghost shader darkens covered albedo without corrupting signed depth or receiver class alpha
+PASS public body and shadow programs reuse supplied radial coverage and post-posed transforms through Appearance and Focus
+PASS native optical protection restores the supplied matched-Unwind receiver behavior
+PASS public native long-body reveal fit covers the whole radial input without changing model vertices or shadow ownership
+RESULT 9/9 passed (tests/rend_veil_capture_state_test.js)
+TOTAL 9/9 passed
+
+SHA256 10cce31859807bd65949fa64defb11242f4a7618ff8992214cd20868e75bece2 src/r_rendveil.js
+SHA256 799b32e943c1c0963ab7d7d8feebcef6a457ff3f3aa17de480b362f87ceee9a7 src/rend_veil/material-binding.js
+SHA256 3a9380b8b50f374d96d1fba3b69135bb7291c53ec947dea5ec84094f6889f96e src/rend_veil/optics-shader.js
+SHA256 5ca5b0a65ece7e9a8321d6a2415d736e7a116920524245a1a70e4f59eb5226a6 tests/rend_veil_capture_state_test.js
+Preserved reference, Three/runner and other stable identities remain in preceding fixture receipts.
+
+Qualification: actual public Seen binding, source shader callbacks, real Three matrices and a representative native-like 83x16x38 long body. Every registered posed vertex is inspected, but no actual native MDL animation or GPU raster is executed. Input fitting is a documented native-model adapter; supplied radial field/mask/progress and original vertex transform remain unchanged. The optical test now requires original source protection. No production or browser source was edited by this reviewer.
