@@ -60,7 +60,7 @@ detent alignment, because whether the four barrels are interchangeable under a q
   (rotor state and geometry through the public draw, firing speed, coast, refire, settling). It needs the local
   `supernailgun2.zip`, which is not on this machine, so **that rewritten test has not been run**; the same behaviour is
   checked on the synthetic asset and in the real game.
-* Real game (Chromium on Metal, e1m1, the real imported super nailgun with its 2,176 rotor vertices): holding fire gave a
-  steady -7.85 rad/s; releasing it decayed -5.84, -4.18, -2.89, -2.07, -1.43, -1.02, -0.73, -0.51, -0.36, -0.25 rad/s over
-  1.5 s with the angle still advancing smoothly. That sampling was done with the earlier 0.45 s constant and an ad hoc
-  script that is not kept in the repository (an unrecorded observation); no photograph of the barrels mid-coast was taken.
+* Real game (Chromium on Metal, e1m1, the real imported super nailgun with its 2,176 rotor vertices, final constants):
+  holding fire gave a steady -7.85 rad/s; releasing it decayed -4.31, -1.21, -0.34 rad/s and 0 over about a second, the
+  angle advancing about 1.6 rad (a quarter of a turn) and then holding still. The sampling used an ad hoc script that is not kept
+  in the repository (an unrecorded observation); no photograph of the barrels mid-coast was taken.
