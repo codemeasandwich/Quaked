@@ -24,7 +24,7 @@ import { v_gamma } from './view.js';
 import { gl_texturemode, GL_UpdateTextureFiltering } from './glquake.js';
 import { skill, coop, teamplay, deathmatch, svs } from './server.js';
 import { Touch_ExitFullscreen } from './touch.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_WithVirtualSize } from './gl_draw.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from './gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from './quakedef.js';
 import { COM_FindFile } from './pak.js';
 
@@ -2514,6 +2514,7 @@ const CREDITS_LINK_TEXT = 'github.com/codemeasandwich/Quaked';
 const CREDITS_LINK_X = ( 320 - CREDITS_LINK_TEXT.length * 8 ) / 2;
 const CREDITS_TITLE = 'Quake by id Software';
 const CREDITS_HEIGHT = 272;
+const CREDITS_SCALE = .75; // 25% smaller in both dimensions; preserve all native content.
 const CREDITS_TOP = ( 200 - CREDITS_HEIGHT ) / 2; // centre the expanded box in the usual menu space
 
 function M_OpenCreditsSource() {
@@ -2794,7 +2795,7 @@ export function M_Draw() {
 		case m_levelselect: M_LevelSelect_Draw(); break;
 		case m_keys: M_Keys_Draw(); break;
 		case m_video: M_Video_Draw(); break;
-		case m_credits: Draw_WithVirtualSize( 320, CREDITS_HEIGHT, M_Credits_Draw ); break;
+		case m_credits: Draw_WithVirtualSize( 320, CREDITS_HEIGHT, M_Credits_Draw, CREDITS_SCALE ); break;
 		case m_bestiary: R_BestiaryBookDraw(); break;
 		case m_quit: M_Quit_Draw(); break;
 		case m_lanconfig: M_LanConfig_Draw(); break;
@@ -2825,7 +2826,7 @@ export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
 
 	// The book uses the full overlay, not the centered 320x200 menu sheet.
 	if ( m_state === m_bestiary ) return R_BestiaryBookTouch( touchX, touchY, screenWidth, screenHeight );
-	if ( m_state === m_credits ) return Draw_WithVirtualSize( 320, CREDITS_HEIGHT, () => M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) );
+	if ( m_state === m_credits ) return Draw_WithVirtualSize( 320, CREDITS_HEIGHT, () => M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ), CREDITS_SCALE );
 	return M_TouchInViewport( touchX, touchY, screenWidth, screenHeight );
 
 }
@@ -2845,14 +2846,17 @@ function M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) {
 	// _vid is the logical rendering size the menu uses
 
 	// Map click position proportionally from element space to _vid space
-	const vidX = ( touchX / screenWidth ) * _vid.width;
-	const vidY = ( touchY / screenHeight ) * _vid.height;
+	// Fractionally scaled credits can have ceil-rounded virtual dimensions.
+	// Invert the actual framebuffer transform, not that rounded extent.
+	const credits = m_state === m_credits, dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+	const vidX = ( touchX / screenWidth ) * ( credits ? Math.floor( _realVid.width * dpr ) / Draw_GetUIScale() : _vid.width );
+	const vidY = ( touchY / screenHeight ) * ( credits ? Math.floor( _realVid.height * dpr ) / Draw_GetUIScale() : _vid.height );
 
 	// Menu is drawn centered: drawing X = menuX + (_vid.width - 320) / 2
 	//                         drawing Y = menuY + (_vid.height - 200) / 2
 	// So to convert click to menu space: menuX = vidX - offsetX, menuY = vidY - offsetY
-	const offsetX = ( _vid.width - 320 ) / 2;
-	const offsetY = ( _vid.height - 200 ) / 2;
+	const offsetX = m_state === m_credits ? ( _vid.width - 320 ) >> 1 : ( _vid.width - 320 ) / 2;
+	const offsetY = m_state === m_credits ? ( _vid.height - 200 ) >> 1 : ( _vid.height - 200 ) / 2;
 	const vx = vidX - offsetX;
 	const vy = vidY - offsetY;
 

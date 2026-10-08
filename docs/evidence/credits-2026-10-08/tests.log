@@ -1,0 +1,69 @@
+Added packfile credits-test-pak0 (339 files)\n
+PASS public credits retain contributors, native-size Japanese picture/fallback and centered white footer inside reduced box
+Cmd_AddCommand: scr_conheight already defined
+
+Cmd_AddCommand: uiscale+ already defined
+
+Cmd_AddCommand: uiscale- already defined
+
+PASS public credits click maps reduced viewport only to centered footer; Enter and Escape retain navigation
+Cmd_AddCommand: scr_conheight already defined
+
+Cmd_AddCommand: uiscale+ already defined
+
+Cmd_AddCommand: uiscale- already defined
+
+PASS temporary credits sizing restores normal metrics and preference after nested scopes and callback failure
+Cmd_AddCommand: scr_conheight already defined
+
+Cmd_AddCommand: uiscale+ already defined
+
+Cmd_AddCommand: uiscale- already defined
+
+PASS public credits render at 75 percent baseline width and height and keep footer touch aligned after DPI and viewport changes
+Cmd_AddCommand: scr_conheight already defined
+
+Cmd_AddCommand: uiscale+ already defined
+
+Cmd_AddCommand: uiscale- already defined
+
+PASS scoped relative UI sizing restores canvas transform and metrics through nested errors and rejects invalid scales
+RESULT 5/5 passed (tests/ambient_credits_test.js)
+PASS customize controls binds printable and named keys
+RESULT 1/1 passed (tests/menu_test.js)
+PASS native menu composition preserves sources, dimensions and missing-art fallback
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_weapons"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS single-player menu keeps five cursor rows and Newer/classic/load/save/level actions
+RESULT 2/2 passed (tests/singleplayer_menu_test.js)
+TOTAL 8/8 passed

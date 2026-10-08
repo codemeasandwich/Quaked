@@ -44,6 +44,7 @@ let texture_extension_number = 1;
 // Cached pics
 const cachepics = {}; // name -> { width, height, data, canvas, texnum }
 let minimumUIWidth = 320, minimumUIHeight = 200;
+let scopedUIScale = 1;
 
 // 2D overlay canvas
 let overlayCanvas = null;
@@ -66,10 +67,12 @@ export function Draw_WithClipRect( x, y, width, height, draw ) {
 
 // Larger menus can fit without changing the owner's UI-size preference.
 // Drawing and pointer mapping must use the same temporary virtual dimensions.
-export function Draw_WithVirtualSize( width, height, draw ) {
+export function Draw_WithVirtualSize( width, height, draw, scale = 1 ) {
 
-	const oldWidth = minimumUIWidth, oldHeight = minimumUIHeight;
+	if ( ! Number.isFinite( scale ) || scale <= 0 || scale > 1 ) throw new RangeError( 'UI scope scale must be greater than zero and at most one' );
+	const oldWidth = minimumUIWidth, oldHeight = minimumUIHeight, oldScale = scopedUIScale;
 	minimumUIWidth = Math.max( oldWidth, width ); minimumUIHeight = Math.max( oldHeight, height );
+	scopedUIScale *= scale;
 	if ( overlayCtx ) overlayCtx.save();
 	try {
 
@@ -81,6 +84,7 @@ export function Draw_WithVirtualSize( width, height, draw ) {
 
 		if ( overlayCtx ) overlayCtx.restore();
 		minimumUIWidth = oldWidth; minimumUIHeight = oldHeight;
+		scopedUIScale = oldScale;
 		_calculateUIScale();
 
 	}
@@ -152,6 +156,9 @@ function _calculateUIScale() {
 
 	}
 
+	// Apply relative menu sizing AFTER the baseline integer fit. Increasing
+	// the minimum virtual size instead would jump between integer scales.
+	_uiScale *= scopedUIScale;
 	_virtualWidth = Math.ceil( physicalWidth / _uiScale );
 	_virtualHeight = Math.ceil( physicalHeight / _uiScale );
 
