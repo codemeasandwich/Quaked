@@ -1,9 +1,9 @@
 // First-sighting presentation borrows the renderer camera. It never moves the
 // player, changes their view angles, or writes pause/timescale preferences.
 import * as THREE from 'three';
-import {BESTIARY_ENTRIES,BestiaryJournal,BestiaryEncounter,Bestiary_Identify} from './bestiary_state.js';
+import {BESTIARY_ENTRIES,BestiaryJournal,BestiaryEncounter,Bestiary_Identify,Bestiary_FacesPlayer} from './bestiary_state.js';
 import {cl,cls,cl_entities,ca_connected} from './client.js';
-import {sv,svs} from './server.js';
+import {sv,svs,MOVETYPE_NONE} from './server.js';
 import {PR_GetString,pr_functions} from './progs.js';
 import {GetEdictFieldValue} from './pr_edict.js';
 import {Bestiary_ComposeFrontispiece,Bestiary_FrontispieceMask} from './bestiary_art.js';
@@ -31,6 +31,20 @@ function nativeEntry(native){
  // th_die is an extended QuakeC function field, not a built-in entvars slot.
  return Bestiary_Identify(PR_GetString(native.v.classname),{rogueOgre,splittingSpawn,rogueStatues,hellSpawn,owner:native.v.owner,spawnflags:native.v.spawnflags,model:PR_GetString(native.v.model),skin:native.v.skin,
   infected:nativeFloat(native,'infected'),slime:nativeFloat(native,'slime'),deathFunction:nativeFunction(native,'th_die')});
+}
+function nativeDiscoverable(native,entry) {
+ const v=native.v,think=nativeFunction(native,'think');
+ // The pinned-zombie damage fix deliberately changes takedamage and th_pain;
+ // those fields cannot be used to decide whether it is still crucified.
+ if(PR_GetString(v.classname)==='monster_zombie'&&PR_GetString(v.model)==='progs/zombie.mdl'&&
+  (v.spawnflags&1)&&v.movetype===MOVETYPE_NONE&&/^zombie_cruc[1-6]$/.test(think))return false;
+ if(entry.id==='statue_knight'||entry.id==='statue_death_knight') {
+  // Rogue's pause1 thinkers wait. Unsuffixed pause functions ACTIVATE the
+  // monster, replacing these callbacks while retaining its statue identity.
+  const waits=name=>name==='knight_pause1'||name==='hknight_pause1';
+  if(waits(think)||['th_stand','th_walk','th_run'].some(field=>waits(nativeFunction(native,field))))return false;
+ }
+ return true;
 }
 export function R_BestiaryEntries(){return BESTIARY_ENTRIES;}
 export function R_BestiarySnapshot(){journal.reload();const state=encounter.snapshot(),loaded=imageAt.get(state.entry?.id);
@@ -109,6 +123,7 @@ export function R_BestiaryObserve(scene,camera,entities){
  for(const entity of entities){if(!entity)continue;let index=ids.get(entity);if(index===undefined){index=cl_entities.indexOf(entity);if(index>=0)ids.set(entity,index);}
   const native=sv.edicts?.[index];if(!native||native.free||native.v.health<=0||native.v.deadflag!==0)continue;
   const entry=nativeEntry(native);if(!entry||journal.has(entry.id))continue;
+  if(!nativeDiscoverable(native,entry)||!Bestiary_FacesPlayer(native.v.angles,native.v.origin,sv.edicts[1].v.origin))continue;
   const mesh=entity._aliasMesh;if(!mesh||mesh.parent!==scene||!mesh.visible)continue;let visible=true;for(let p=mesh.parent;p;p=p.parent)if(!p.visible)visible=false;if(!visible)continue;
   // Alias animation mutates positions; event-time bounds must use this pose.
   mesh.traverse(o=>{if(o.geometry){o.geometry.computeBoundingBox();o.geometry.computeBoundingSphere();}});mesh.updateWorldMatrix(true,true);bounds.setFromObject(mesh);

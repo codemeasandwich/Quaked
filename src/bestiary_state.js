@@ -1,4 +1,14 @@
 // Persistent discovery belongs to the browser profile, not a game/save/map.
+export function Bestiary_FacesPlayer(angles,origin,playerOrigin) {
+ for(let i=0;i<3;i++)if(!Number.isFinite(angles?.[i])||!Number.isFinite(origin?.[i])||!Number.isFinite(playerOrigin?.[i]))return false;
+ const dx=playerOrigin[0]-origin[0],dy=playerOrigin[1]-origin[1],dz=playerOrigin[2]-origin[2],distance=Math.hypot(dx,dy,dz);
+ if(distance<1e-6)return false;
+ // Alias +X uses Rz(yaw)*Ry(-pitch)*Rx(roll), so its forward Z is +sin(pitch).
+ // Body orientation and native origins are independent of pose bounds/camera
+ // borrowing. The tiny dot tolerance accommodates native float coordinates.
+ const pitch=angles[0]*Math.PI/180,yaw=angles[1]*Math.PI/180,cp=Math.cos(pitch);
+ return (cp*Math.cos(yaw)*dx+cp*Math.sin(yaw)*dy+Math.sin(pitch)*dz)/distance>=Math.cos(89*Math.PI/180)-1e-7;
+}
 export const BESTIARY_ENTRIES = Object.freeze( [
  ['dog','The Rottweiler',['monster_dog'],'rottweiler.png'],
  ['grunt','The Grunt',['monster_army'],'grunt.png'],

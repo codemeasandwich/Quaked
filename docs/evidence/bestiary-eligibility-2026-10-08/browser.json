@@ -1,0 +1,39 @@
+{
+  "method": "Native E1M1, explicitly staged player/enemy, model smoothing disabled while staging under server pause. Page-local memory storage; owner journal untouched.",
+  "cases": [
+    {
+      "angle": 180,
+      "allowed": true,
+      "facing": false,
+      "accepted": false,
+      "unlocked": false
+    },
+    {
+      "angle": 90,
+      "allowed": true,
+      "facing": false,
+      "accepted": false,
+      "unlocked": false
+    },
+    {
+      "angle": 0,
+      "allowed": true,
+      "facing": true,
+      "accepted": true,
+      "phase": "enter",
+      "unlocked": true
+    },
+    {
+      "angle": 0,
+      "allowed": true,
+      "facing": true,
+      "accepted": false,
+      "phase": "idle",
+      "unlocked": true
+    }
+  ],
+  "revealObserved": "grunt hold phase; dismissed and repeat did not retrigger",
+  "browserErrors": [],
+  "testTabClosed": true,
+  "initialTrialCorrection": "First paused fixture retained old smoothed rendered orientation. Reloaded with test-only r_lerpmodels0; final screenshots showed actual back/side/front corresponding to native angles."
+}
