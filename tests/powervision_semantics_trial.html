@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><title>Power vision MRT semantic test</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<style>body{background:#171717;color:#ddd;font:14px monospace}pre{white-space:pre-wrap}</style>
+<h1>Power vision MRT semantic test</h1><p>Finite GPU readback of actual adapted mask/depth helpers. No gameplay or animation loop.</p><pre id="result">Running…</pre>
+<script type="module">
+import * as THREE from 'three';
+import {PowerVisionAdapt} from '../src/r_powervision.js';
+import {UNSEEN_FRAGMENT} from '../src/powervision_shaders.js';
+const output=document.querySelector('#result'),errors=[],owned=[];let renderer;
+const check=(value,message)=>{if(!value)throw Error(message);};
+try{
+ renderer=new THREE.WebGLRenderer();renderer.setSize(8,1);renderer.debug.onShaderError=(gl,program,vertex,fragment)=>errors.push(gl.getProgramInfoLog(program)+'\n'+gl.getShaderInfoLog(fragment));
+ const adapted=PowerVisionAdapt(UNSEEN_FRAGMENT),helpers=adapted.match(/vec4 visionEncodeUV[\s\S]*?return vec4\(depth\);\s*\}/)?.[0];check(helpers,'actual adapter helper definitions located');
+ const cases=[{label:'enemy',tag:.065,packet:100,depth:.8,subject:1},{label:'pickup',tag:.06,packet:100,depth:.8,subject:0},{label:'player coat',tag:.08,packet:100,depth:.8,subject:0},{label:'world',tag:1,packet:100,depth:.8,subject:0},{label:'held near',tag:.08,packet:-6,depth:.01,subject:0,distance:4},{label:'held mid',tag:.08,packet:-66,depth:.12,subject:0,distance:64},{label:'held far',tag:.08,packet:-2050,depth:.2,subject:0,distance:2048},{label:'held far plane',tag:.08,packet:-4098,depth:.3,subject:0,distance:4096}];
+ const rgba=new Uint8Array(cases.length*4),normal=new Uint16Array(cases.length*4),depth=new Float32Array(cases.length);
+ cases.forEach((c,i)=>{rgba.set([10,20,30,Math.round(c.tag*255)],i*4);normal.set([.5,.5,1,c.packet].map(THREE.DataUtils.toHalfFloat),i*4);depth[i]=c.depth;});
+ const texture=(data,format,type)=>{const t=new THREE.DataTexture(data,cases.length,1,format,type);t.minFilter=t.magFilter=THREE.NearestFilter;t.needsUpdate=true;owned.push(t);return t;};
+ const material=new THREE.RawShaderMaterial({glslVersion:THREE.GLSL3,depthTest:false,depthWrite:false,blending:THREE.NoBlending,uniforms:{tAlbedo:{value:texture(rgba,THREE.RGBAFormat,THREE.UnsignedByteType)},tNormal:{value:texture(normal,THREE.RGBAFormat,THREE.HalfFloatType)},tDepth:{value:texture(depth,THREE.RedFormat,THREE.FloatType)},uNear:{value:4},uFar:{value:4096}},vertexShader:'precision highp float; in vec3 position; out vec2 vUv; void main(){vUv=position.xy*.5+.5;gl_Position=vec4(position,1.);}',fragmentShader:`precision highp float;uniform sampler2D tAlbedo,tNormal,tDepth;uniform float uNear,uFar;in vec2 vUv;out vec4 color;\n${helpers}\nvoid main(){float d=visionDepthPacket(vUv).r;float z=uNear*uFar/(uFar-d*(uFar-uNear));color=vec4(visionMask(vUv).r,z/uFar,d,float(texture(tNormal,vUv).a < -1.5));}`});owned.push(material);
+ const geometry=new THREE.PlaneGeometry(2,2);owned.push(geometry);const scene=new THREE.Scene();scene.add(new THREE.Mesh(geometry,material));const target=new THREE.WebGLRenderTarget(cases.length,1,{type:THREE.FloatType,depthBuffer:false,minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter});owned.push(target);
+ renderer.setRenderTarget(target);renderer.render(scene,new THREE.Camera());const pixels=new Float32Array(cases.length*4);renderer.readRenderTargetPixels(target,0,0,cases.length,1,pixels);check(!errors.length,'shader compilation succeeds');
+ const results=cases.map((c,i)=>{const actual=Array.from(pixels.slice(i*4,i*4+4)),distance=c.distance? -THREE.DataUtils.fromHalfFloat(normal[i*4+3])-2 : 4*4096/(4096-depth[i]*(4096-4));check(actual.every(Number.isFinite),c.label+' finite output');check(Math.abs(actual[0]-c.subject)<1e-6,c.label+' subject classification survives actual UNORM8 tag quantization');check(Math.abs(actual[1]*4096-distance)<Math.max(.002,distance*.0002),c.label+' uses true native view distance');check(actual[3]===(c.distance?1:0),c.label+' viewmodel protection classification');if(!c.distance)check(Math.abs(actual[2]-depth[i])<1e-6,c.label+' world hardware depth unchanged');return{label:c.label,storedTag:rgba[i*4+3]/255,subject:actual[0],actualDistance:actual[1]*4096,expectedDistance:distance,originalDistance:c.distance??distance,protected:actual[3]};});
+ const gl=renderer.getContext();check(gl.getError()===gl.NO_ERROR,'no GPU error');output.textContent=JSON.stringify({passed:true,cases:results.length,results},null,2);
+}catch(error){output.textContent=JSON.stringify({passed:false,error:error.stack,errors},null,2);}finally{renderer?.setRenderTarget(null);owned.forEach(resource=>resource.dispose());renderer?.dispose();}
+</script>

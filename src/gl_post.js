@@ -27,6 +27,11 @@ import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFram
 // scene's dynamic resolution; only its inexpensive presentation fills the display.
 
 import * as THREE from 'three';
+import { cl } from './client.js';
+import { PowerVisionMode } from './powervision_state.js';
+import { R_PowerVisionRender, R_PowerVisionReset } from './r_powervision.js';
+import { VISION_UV_PACK_GLSL } from './vision_coordinates.js';
+import { R_QuadVisionActive, R_QuadVisionRender, R_QuadVisionReset } from './r_quadvision.js';
 import { R_IntroLoadingHolding } from './r_demoloading.js';
 import { cvar_t } from './cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
@@ -1880,6 +1885,8 @@ void main() {
 }`;
 
 const COMPOSITE_FRAGMENT = COMMON_FRAGMENT + `
+layout(location = 1) out highp vec4 visionCoordinates;
+${VISION_UV_PACK_GLSL}
 #include <common>
 uniform sampler2D tPowerupFire;
 uniform float uPowerupFireOn;
@@ -2880,6 +2887,7 @@ void main() {
 		shown = max( uContrastPivot + ( shown - uContrastPivot ) * uContrastGain, 0.0 );
 		gl_FragColor = vec4( shown, 1.0 );
 	}
+	visionCoordinates=visionEncodeUV(clamp(uvd,uTexel*.5,1.-uTexel*.5));
 }`;
 
 // The composite target stores linear colour. Convert and grade exactly once,
@@ -2923,13 +2931,17 @@ function makeRT( width, height, options ) {
 
 function makeMaterial( fragment, uniforms ) {
 
-	return new THREE.ShaderMaterial( {
+	const material = new THREE.ShaderMaterial( {
 		uniforms,
 		vertexShader: QUAD_VERTEX,
 		fragmentShader: fragment,
 		depthTest: false,
 		depthWrite: false
 	} );
+	// Fullscreen passes own their outputs. The world-material prototype hook
+	// must not attach a second G-buffer declaration to the optical UV output.
+	material.onBeforeCompile=()=>{};
+	return material;
 
 }
 
@@ -3119,7 +3131,7 @@ function ensureTargets( width, height ) {
 	// Receiver classes and true view depth are data even with micro relief off.
  // Multisample resolution would average a model packet with background.
  const samples = 0;
-	const count = glowActive ? 4 : 2; // authored colour is consumed only by lighting
+	const count = glowActive || PowerVisionMode(cl, R_NewerGame()) ? 4 : 2; // vision also consumes unlit pigment
 	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples && gpu.hdr.textures.length === count ) return;
 
 	disposeTargets();
@@ -3249,7 +3261,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	// The shared targets serve three independent visual options. Turning lighting
 	// off keeps relief and liquid compositing available without relighting the world.
 	const newer = enabled && r_hdr.value !== 0;
-	const wanted = r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0;
+	const wanted = r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0 || PowerVisionMode(cl,newer) !== 0 || R_QuadVisionActive();
 	const active = newer && wanted && R_PostSupported( renderer ) && width > 8 && height > 8;
 	postActive = active;
 	const lighting = active && r_newer_lighting.value !== 0;
@@ -3263,7 +3275,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	if ( lighting ) pulseLava( performance.now() / 1000 );
 	skySeen = false;
 
-	if ( active === false ) return false;
+	if ( active === false ) { R_PowerVisionReset(); R_QuadVisionReset(); return false; }
 
 	if ( gpu === null ) gpu = createPipeline();
 	dynResUpdate( performance.now() / 1000 );
@@ -3642,20 +3654,28 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	// Previously the expensive ray marches/bounce still ran at full device-pixel
 	// resolution when the scene shrank. At half scale that did four times the
 	// scene's work, preventing dynamic resolution from meeting its frame budget.
-	const upscale = lighting && dyn.scale < 1;
+	const vision = PowerVisionMode(cl, R_NewerGame());
+	const visionOn=vision!==0 || R_QuadVisionActive();
+	const upscale = (lighting && dyn.scale < 1) || visionOn;
 	cm.uOffscreen.value = upscale ? 1 : 0;
 	if ( upscale ) {
 
-		if ( p.composite === null ) p.composite = makeRT( hdr.width, hdr.height );
+		const count=visionOn?2:1;
+		if (p.composite===null || p.composite.textures.length!==count) {
+			p.composite?.dispose();p.composite=makeRT(hdr.width,hdr.height,{count});
+			if(visionOn){const t=p.composite.textures[1];t.type=THREE.UnsignedByteType;t.minFilter=t.magFilter=THREE.NearestFilter;t.userData.visionEncoded=true;}
+		}
 		runPass( renderer, p.compositeMaterial, p.composite );
 		R_PerfStage( 'final lighting pass' );
 		const shown = p.presentMaterial.uniforms;
-		shown.tComposite.value = p.composite.texture;
+		const coordinates=visionOn?p.composite.textures[1]:null;
+		const visionSource=R_PowerVisionRender(renderer,p.composite.texture,hdr,camera,vision,cl,coordinates);
+		shown.tComposite.value = R_QuadVisionRender(renderer,visionSource,hdr,camera,scene,coordinates);
 		shown.uBright.value = cm.uBright.value;
 		shown.uContrastGain.value = cm.uContrastGain.value;
 		shown.uContrastPivot.value = cm.uContrastPivot.value;
 
-	}
+	} else { R_PowerVisionReset(); R_QuadVisionReset(); }
 
 	renderer.setRenderTarget( null );
 	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
@@ -3683,6 +3703,8 @@ export function R_PostSetSplit( on ) {
 }
 
 export function R_PostShutdown() {
+	R_PowerVisionReset(true);
+	R_QuadVisionReset();
 
 	R_ClearPowerupFireTarget();
 

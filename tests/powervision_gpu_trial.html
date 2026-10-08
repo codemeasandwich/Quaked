@@ -1,0 +1,30 @@
+<!doctype html><meta charset="utf-8"><title>Power-up vision GPU check</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
+<style>body{background:#171717;color:white;font:14px monospace}canvas{width:640px;height:360px;display:block}</style>
+<h1>Power-up vision shader check</h1><p>Finite synthetic MRT test; no gameplay or background animation.</p>
+<pre id="result">Running…</pre>
+<script type="module">
+import * as THREE from 'three';
+import {R_PowerVisionRender,R_PowerVisionReset,R_PowerVisionStatus} from '../src/r_powervision.js';
+const result=document.querySelector('#result'),errors=[];
+try {
+ const renderer=new THREE.WebGLRenderer();renderer.setSize(640,360);document.body.append(renderer.domElement);
+ renderer.debug.onShaderError=(gl,program,vertex,fragment)=>errors.push(gl.getProgramInfoLog(program)+'\n'+gl.getShaderInfoLog(fragment));
+ const texture=(data,format=THREE.RGBAFormat)=>{const t=new THREE.DataTexture(new Float32Array(data),2,2,format,THREE.FloatType);t.needsUpdate=true;return t;};
+ const colour=texture(Array(4).fill([.2,.3,.4,1]).flat()),normal=texture(Array(4).fill([.5,.5,1,100]).flat());
+ const albedo=texture([[.1,.1,.1,.065],[.8,.6,.3,.065],[.2,.3,.4,1],[.2,.3,.4,.06]].flat());
+ const depth=texture([.97,.97,.99,.99],THREE.RedFormat),hdr={width:640,height:360,textures:[colour,normal,albedo],depthTexture:depth};
+ const camera=new THREE.PerspectiveCamera(75,640/360,4,4096);camera.updateMatrixWorld();
+ const client={time:10,worldmodel:{},viewentity:1};
+ const scene=new THREE.Scene(),quad=new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.MeshBasicMaterial());scene.add(quad);
+ const screen=new THREE.Camera(),states=[];
+ for(const mode of [1,1,2,0]) {
+  client.time+=.016;const output=R_PowerVisionRender(renderer,colour,hdr,camera,mode,client);
+  quad.material.map=output;quad.material.needsUpdate=true;renderer.setRenderTarget(null);renderer.render(scene,screen);
+  states.push(R_PowerVisionStatus());
+ }
+ const gl=renderer.getContext(),glError=gl.getError();
+ result.textContent=JSON.stringify({passed:errors.length===0&&glError===gl.NO_ERROR,errors,glError,states},null,2);
+ R_PowerVisionReset(true);[colour,normal,albedo,depth].forEach(t=>t.dispose());quad.geometry.dispose();quad.material.dispose();
+} catch(error){result.textContent=JSON.stringify({passed:false,error:error.stack},null,2);}
+</script>

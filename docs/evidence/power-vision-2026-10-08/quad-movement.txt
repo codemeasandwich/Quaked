@@ -1,0 +1,242 @@
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/quaddama.mdl...
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+meshing progs/g_shot.mdl...
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+QUAD_NATIVE_SPEED [{"water":0,"command":100,"first":10,"steady":100,"quadFirst":15,"quadSteady":150,"ratio":1.5},{"water":0,"command":200,"first":20,"steady":200,"quadFirst":30,"quadSteady":300,"ratio":1.5},{"water":0,"command":500,"first":32,"steady":320,"quadFirst":48,"quadSteady":480,"ratio":1.5},{"water":2,"command":100,"first":7,"steady":70,"quadFirst":10.5,"quadSteady":105,"ratio":1.5},{"water":2,"command":200,"first":14,"steady":140,"quadFirst":21,"quadSteady":210,"ratio":1.5},{"water":2,"command":500,"first":22.399999618530273,"steady":224,"quadFirst":33.599998474121094,"quadSteady":336,"ratio":1.5}]
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native QC Quad touch scales actual ground and water intent 1.5 including commands below speed cap
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+QUAD_NATIVE_LIFECYCLE {"firstTimer":31.020000457763672,"expiredAt":36.03000045776367,"items":4353}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native Quad renewal does not stack and QC expiry Classic death and nonwalking modes restore native movement
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+QUAD_NATIVE_APEX_SAMPLE {"position":[480,2736,-56],"normal":{"height":44.220004081726074,"first":262,"steps":66,"dt":0.01,"start":-56,"apex":-11.779995918273926},"boosted":{"height":66.330002784729,"first":321.7804870605469,"steps":81,"dt":0.01,"start":-56,"apex":10.330002784729004},"ratio":1.4999999245169653}
+QUAD_NATIVE_APEX_SAMPLE {"position":[480,2736,-56],"normal":{"height":42.87999629974365,"first":254,"steps":32,"dt":0.02,"start":-56,"apex":-13.120003700256348},"boosted":{"height":64.32000160217285,"first":312.79998779296875,"steps":40,"dt":0.02,"start":-56,"apex":8.320001602172852},"ratio":1.5000001668040577}
+QUAD_NATIVE_APEX [{"position":[480,2736,-56],"normal":{"height":44.220004081726074,"first":262,"steps":66,"dt":0.01,"start":-56,"apex":-11.779995918273926},"boosted":{"height":66.330002784729,"first":321.7804870605469,"steps":81,"dt":0.01,"start":-56,"apex":10.330002784729004},"ratio":1.4999999245169653},{"position":[480,2736,-56],"normal":{"height":42.87999629974365,"first":254,"steps":32,"dt":0.02,"start":-56,"apex":-13.120003700256348},"boosted":{"height":64.32000160217285,"first":312.79998779296875,"steps":40,"dt":0.02,"start":-56,"apex":8.320001602172852},"ratio":1.5000001668040577}]
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native QC and collision gravity produce a measured 1.5 Quad jump height without held-button stacking
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS Quad jump guard rejects held airborne swimming and unaccepted native impulses
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+QUAD_NATIVE_GRAVITY_APEX [{"gravity":400,"dt":0.016666666666666666,"normal":{"height":88.88886260986328,"first":263.3333435058594,"steps":79,"dt":0.016666666666666666,"start":-56,"apex":32.88886260986328},"boosted":{"height":133.3333740234375,"first":323.26531982421875,"steps":97,"dt":0.016666666666666666,"start":-56,"apex":77.3333740234375},"ratio":1.5000009012224955},{"gravity":1200,"dt":0.013888888888888888,"normal":{"height":28.518503189086914,"first":253.3333282470703,"steps":31,"dt":0.013888888888888888,"start":-56,"apex":-27.481496810913086},"boosted":{"height":42.77779006958008,"first":312.10528564453125,"steps":38,"dt":0.013888888888888888,"start":-56,"apex":-13.222209930419922},"ratio":1.5000012373002003},{"gravity":800,"dt":0.03333333333333333,"normal":{"height":41.111104011535645,"first":243.3333282470703,"steps":19,"dt":0.03333333333333333,"start":-56,"apex":-14.888895988464355},"boosted":{"height":61.666666984558105,"first":300.8333435058594,"steps":23,"dt":0.03333333333333333,"start":-56,"apex":5.6666669845581055},"ratio":1.5000002667711048}]
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS measured Quad apex respects native gravity setting across fixed simulation step sizes
+RESULT 5/5 passed (tests/quad_movement_native_test.js)
+TOTAL 5/5 passed

@@ -1,0 +1,37 @@
+{
+  "method": "Coordinator CUA readback from finite GPU fixture DOM results; raw fixture code is committed and rerunnable",
+  "optical": {
+    "passed": true,
+    "reports": 19,
+    "uv16Samples": 12288,
+    "maxUVError": 7.565094775813241e-06,
+    "maxInverseResidualPixels": 0.5022773742675781,
+    "invalidFieldPixelsRejectedEach": 6144
+  },
+  "quad": {
+    "passed": true,
+    "nearEnergy": 379.571032714824,
+    "farEnergy": 103.3084106445367,
+    "nearEdge": 0.2784430695971775,
+    "farEdge": 0.21710910816448137,
+    "visibleChanged": 0,
+    "heldChanged": 0,
+    "identityCentroid": 63.50746194040886,
+    "shiftedCentroid": 39.63285499192514,
+    "expectedShift": -24,
+    "wrongDepth": 0,
+    "wrongHeld": 0
+  },
+  "nativeFinal": {
+    "ringEnemy": 92,
+    "ringSight": 1,
+    "pentagramEnemy": 49,
+    "pentagramSight": 1,
+    "quadEnemy": 34,
+    "quadSight": 0.7811279296875,
+    "glError": 0,
+    "runtimeErrors": [],
+    "testTabsClosed": true
+  },
+  "retainedFailure": "Initial optical composite compile failed because global world G-buffer hook declared output location1 twice. Fixed fullscreen material hook; final native reload succeeded."
+}

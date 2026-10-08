@@ -1,4 +1,5 @@
 import { SV_RespawnFrame } from './sv_respawn.js';
+import { SV_QuadJumpBegin, SV_QuadJumpEnd } from './sv_quadmovement.js';
 // Ported from: WinQuake/sv_phys.c -- server physics
 
 import { SV_SeamlessHolding } from './sv_seamless.js';
@@ -1324,7 +1325,9 @@ export function SV_Physics_Client( ent, num ) {
 	//
 	pr_global_struct.time = sv.time;
 	pr_global_struct.self = EDICT_TO_PROG( ent );
+	const quadJump=SV_QuadJumpBegin(ent);
 	PR_ExecuteProgram( pr_global_struct.PlayerPreThink );
+	SV_QuadJumpEnd(ent,quadJump);
 
 	SV_SoftenTeleportLaunch( ent );
 

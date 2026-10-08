@@ -1,4 +1,7 @@
 import { R_PlayerSurfaceBlood } from './r_weapon_surface.js';
+import { PowerVisionMode } from './powervision_state.js';
+import { R_PostActive } from './gl_post.js';
+import { R_QuadVisionActive } from './r_quadvision.js';
 import { R_FaceDamage } from './r_facegame.js';
 import { SV_RespawnView } from './sv_respawn.js';
 // Ported from: WinQuake/view.c -- player eye positioning
@@ -494,6 +497,16 @@ V_CalcPowerupCshift
 =============
 */
 function V_CalcPowerupCshift() {
+	if (R_PostActive() && R_QuadVisionActive()) {
+		cl.cshifts[CSHIFT_POWERUP].percent=0;
+		return;
+	}
+	// These two supplied vision modes replace their old full-screen tint.
+	// Quad/suit precedence and damage, pickup and liquid cshifts stay native.
+	if (!(cl.items & (IT_QUAD | IT_SUIT)) && PowerVisionMode(cl,R_PostActive())) {
+		cl.cshifts[CSHIFT_POWERUP].percent=0;
+		return;
+	}
 
 	if ( cl.items & IT_QUAD ) {
 

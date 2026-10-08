@@ -1,4 +1,5 @@
 import {R_WelcomeLoadingHolding} from './r_demoloading.js';
+import {SV_QuadMovementScale} from './sv_quadmovement.js';
 // Ported from: WinQuake/sv_user.c -- server code for moving users
 
 import { Sys_Printf } from './sys.js';
@@ -282,6 +283,7 @@ SV_WaterMove
 ===================
 */
 export function SV_WaterMove() {
+	const quadScale=SV_QuadMovementScale(sv_player), maxspeed=sv_maxspeed.value*quadScale;
 
 	// Use cached buffer instead of allocating per-call
 	const wishvel = _watermove_wishvel;
@@ -292,18 +294,18 @@ export function SV_WaterMove() {
 	AngleVectors( sv_player.v.v_angle, forward, right, up );
 
 	for ( let i = 0; i < 3; i ++ )
-		wishvel[ i ] = forward[ i ] * cmd.forwardmove + right[ i ] * cmd.sidemove;
+		wishvel[ i ] = (forward[ i ] * cmd.forwardmove + right[ i ] * cmd.sidemove)*quadScale;
 
 	if ( cmd.forwardmove === 0 && cmd.sidemove === 0 && cmd.upmove === 0 )
 		wishvel[ 2 ] -= 60; // drift towards bottom
 	else
-		wishvel[ 2 ] += cmd.upmove;
+		wishvel[ 2 ] += cmd.upmove*quadScale;
 
 	let _wishspeed = Length( wishvel );
-	if ( _wishspeed > sv_maxspeed.value ) {
+	if ( _wishspeed > maxspeed ) {
 
-		VectorScale( wishvel, sv_maxspeed.value / _wishspeed, wishvel );
-		_wishspeed = sv_maxspeed.value;
+		VectorScale( wishvel, maxspeed / _wishspeed, wishvel );
+		_wishspeed = maxspeed;
 
 	}
 
@@ -373,6 +375,7 @@ SV_AirMove
 ===================
 */
 export function SV_AirMove() {
+	const quadScale=SV_QuadMovementScale(sv_player), maxspeed=sv_maxspeed.value*quadScale;
 
 	// Use cached buffer instead of allocating per-call
 	const wishvel = _airmove_wishvel;
@@ -387,7 +390,7 @@ export function SV_AirMove() {
 		fmove = 0;
 
 	for ( let i = 0; i < 3; i ++ )
-		wishvel[ i ] = forward[ i ] * fmove + right[ i ] * smove;
+		wishvel[ i ] = (forward[ i ] * fmove + right[ i ] * smove)*quadScale;
 
 	if ( ( sv_player.v.movetype | 0 ) !== MOVETYPE_WALK )
 		wishvel[ 2 ] = cmd.upmove;
@@ -396,10 +399,10 @@ export function SV_AirMove() {
 
 	VectorCopy( wishvel, wishdir );
 	wishspeed = VectorNormalize( wishdir );
-	if ( wishspeed > sv_maxspeed.value ) {
+	if ( wishspeed > maxspeed ) {
 
-		VectorScale( wishvel, sv_maxspeed.value / wishspeed, wishvel );
-		wishspeed = sv_maxspeed.value;
+		VectorScale( wishvel, maxspeed / wishspeed, wishvel );
+		wishspeed = maxspeed;
 
 	}
 

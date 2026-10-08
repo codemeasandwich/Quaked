@@ -1,4 +1,6 @@
 import {R_DemonBakeRelease} from './r_demonbakes.js';
+import {R_PowerVisionReset} from './r_powervision.js';
+import {R_QuadVisionReset} from './r_quadvision.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
 import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from './r_demoloading.js';
 
@@ -70,6 +72,8 @@ CL_ClearState
 =====================
 */
 export function CL_ClearState() {
+	R_PowerVisionReset();
+	R_QuadVisionReset();
 
 	if ( sv.active === false )
 		Host_ClearMemory();

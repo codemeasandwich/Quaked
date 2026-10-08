@@ -1,0 +1,23 @@
+{
+  "method": "Observed DOM receipts from real native gameplay trial via CUA; player staged onto actual pickup; native QC timers untouched. Not a save/load or traversal test.",
+  "ring": {
+    "map": "maps/e1m3.bsp",
+    "activated": 93.1152,
+    "nativeExpiry": 122.98269653320312,
+    "cleared": 123.0659,
+    "activeItems": 528641
+  },
+  "pentagram": {
+    "map": "maps/e1m8.bsp",
+    "activated": 166.59970000000007,
+    "nativeExpiry": 196.49859619140625,
+    "cleared": 196.56620000000007,
+    "activeItems": 1052929
+  },
+  "inactiveItems": 4353,
+  "glError": 0,
+  "runtimeErrors": [],
+  "testTabsClosed": true,
+  "remaining": [],
+  "qualification": "Lifecycle receipts from initial native run; final optical/subject views and independent save/overlap checks recorded separately in gpu-summary and combined-tests."
+}

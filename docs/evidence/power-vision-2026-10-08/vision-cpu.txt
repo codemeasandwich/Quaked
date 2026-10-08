@@ -1,0 +1,14 @@
+PASS vision uses authoritative bits and clears on expiry, death and Classic
+PASS history rejects mode/map/size changes, time reversal and camera cuts
+PASS donor shader bodies remain exact and ABI helpers precede their callers
+RESULT 3/3 passed (tests/powervision_state_test.js)
+PASS public vision follows native expiry and renders paused views without repeated history feedback
+PASS public vision clears temporal history across map view camera time and framebuffer changes
+PASS failed history rendering restores caller target and never promotes an incomplete history target
+PASS public HDR admission allocates unfiltered semantic MRT only while native vision is active with other features off
+PASS public palette update suppresses only active vision tint and retains native Quad Suit and other cshifts
+PASS native enemy material exports vision subject and true-depth packets with relief off and preserves held and pickup semantics
+PASS native vision wrapper can acquire relief after normals are enabled without replacing native diffuse
+PASS actual post finish feeds vision the completed linear composite and presents its output before expiry restores native composition
+RESULT 8/8 passed (tests/powervision_runtime_test.js)
+TOTAL 11/11 passed

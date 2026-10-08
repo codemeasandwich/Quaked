@@ -1867,6 +1867,17 @@ export function SV_SpawnServer( server ) {
 	}
 
 	SV_RespawnPrecache();
+	// Enhanced travel/save restoration can retain powers whose pickup entity
+	// is absent in this map. Reserve their native warning/expiry sounds before
+	// serverinfo is sent; changing the sound table after signon is too late.
+	if (R_NewerGame() && svs.maxclients===1 && pr_crc===24778) {
+		for (const sound of ['items/inv2.wav','items/inv3.wav','items/protect2.wav','items/protect3.wav','items/damage2.wav','items/damage3.wav','items/suit2.wav']) {
+			if (sv.sound_precache.includes(sound)) continue;
+			let slot=1;while(slot<MAX_SOUNDS && sv.sound_precache[slot])slot++;
+			if(slot===MAX_SOUNDS)Sys_Error('Power-up carry sound precache overflow');
+			sv.sound_precache[slot]=sound;
+		}
+	}
 	sv.active = true;
 
 	// all setup is completed, any further precache statements are errors

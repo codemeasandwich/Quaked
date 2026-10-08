@@ -26,6 +26,8 @@ import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface } from './r
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
 import { cvar_t } from './cvar.js';
+import { cl } from './client.js';
+import { PowerVisionMode } from './powervision_state.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 import { R_NormalMapFor, R_HeightFromRGBA, R_MultiScaleHeight } from './gl_normals.js';
@@ -338,7 +340,7 @@ const nativeSets = new Map(); // selected native Texture -> detail/material set
 export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum = 0, frame = 0 ) {
 
 	const key = R_NewerModelKey( modelName );
-	if ( ! R_IsNewer() || r_newer_normals.value === 0 || ! ENEMY_SKIN_MODELS.has( key ) || texture == null ) return null;
+	if ( ! R_IsNewer() || (r_newer_normals.value === 0 && !PowerVisionMode(cl,true)) || ! ENEMY_SKIN_MODELS.has( key ) || texture == null ) return null;
 	if ( skinIndex === null ) requestIndex();
 	let set = nativeSets.get( texture );
 	if ( set === undefined ) {
@@ -364,6 +366,10 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 	}
 
 	const groups = nativeHeights[ key ];
+	// Vision can create a pigment-only set while normal mapping is disabled.
+	// Prepare its relief on the first later enabled use, without regenerating
+	// an existing companion every frame.
+	if (r_newer_normals.value !== 0 && set.detailDiffuse === null) refreshHeight(set);
 	const list = groups != null ? ( groups[ skinnum ] || groups[ 0 ] ) : null;
 	// Match gl_model's j & 3 animation slots, including groups longer than four.
 	const stored = list != null && list.length > 0 ? ( list.length <= 4 ? list[ frame % list.length ]
@@ -401,7 +407,7 @@ function materialFor( set, hasLighting ) {
 		if ( relit || set.isEnemy ) {
 
 			material.onBeforeCompile = patchShader( set );
-			material.customProgramCacheKey = () => 'quake-custom-skin-height-shadow-v1-' + set.key + index;
+			material.customProgramCacheKey = () => 'quake-custom-skin-vision-v2-' + set.key + index;
 
 		}
 		set.materials[ index ] = material;
@@ -505,7 +511,7 @@ function patchShader( set ) {
  float unusedSkinDiffuseVisibility;skinHeightMask=qrHeightBuildMask(-vQrView,hctx,unusedSkinDiffuseVisibility);
  ${this.depthWrite === false ? 'skinHeightMask=vec4(0.);' : this.transparent && !this.userData.quakeViewmodel ? 'skinHeightMask=vec4(1.);' : ''}
  ` + FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
-			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.depthWrite === false || this.transparent && !this.userData.quakeViewmodel ? 'vec4(0.)' : this.userData.quakeViewmodel ? 'vec4(qrN*0.5+0.5,-vQrView.z-2.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( '+(this.userData.quakeReceiverOnly?'qrAlbedo*qrCoverage':'qrAlbedo')+', '+(surface?'0.08':'0.06')+' );\n gHeightMask=skinHeightMask;' );
+			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.depthWrite === false || this.transparent && !this.userData.quakeViewmodel ? 'vec4(0.)' : this.userData.quakeViewmodel ? 'vec4(qrN*0.5+0.5,-vQrView.z-2.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( '+(this.userData.quakeReceiverOnly?'qrAlbedo*qrCoverage':'qrAlbedo')+', '+(surface?'0.08':set.isEnemy?'0.065':'0.06')+' );\n gHeightMask=skinHeightMask;' );
 
   shader.fragmentShader = shader.fragmentShader.replace( 'void main() {', `
  uniform float uHasSkinHeightShadow;
