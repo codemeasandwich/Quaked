@@ -1,6 +1,28 @@
 // Gloom Hood behavior is independent of the artwork and of player movement.
 // Time is game time: pause freezes reactions, and a restored clock resets them.
 export const FACE_LOOKS = Object.freeze( [ 'head_left', 'eyes_left', 'front', 'eyes_right', 'head_right' ] );
+// Owner amendment: entering water shows W1 immediately; W10 starts at 90%
+// air use. A source-preview caller without submersion retains its raw stages.
+export function faceWaterStage(percent,submerged=false) {
+	const n=Number(percent),used=Number.isFinite(n)?Math.max(0,Math.min(100,n)):0;
+	return Math.min(10,Math.floor(used/10)+(submerged?1:0));
+}
+export class FaceWaterState {
+	constructor(){this.reset();}
+	reset(){this.epoch=null;this.time=-Infinity;this.submerged=false;this.stage=0;this.drainStart=null;this.drainFrom=0;}
+	frame({time,epoch,submerged,stage,enabled=true}) {
+		if(!enabled){this.reset();return 0;}
+		if(this.epoch!==epoch||time<this.time)this.reset();
+		this.epoch=epoch;this.time=time;
+		if(submerged){this.stage=stage;this.drainStart=null;}
+		else {
+			if(this.submerged){this.drainStart=time;this.drainFrom=this.stage;}
+			if(this.drainStart!==null)this.stage=Math.max(0,this.drainFrom-Math.floor((time-this.drainStart+1e-9)/.05));
+		}
+		this.submerged=submerged;
+		return this.stage;
+	}
+}
 export function faceHealthStage( percent ) {
 	return Math.min( 10, Math.floor( ( 100 - Math.max( 0, Math.min( 100, Math.round( percent ) ) ) ) / 10 ) + 1 );
 }

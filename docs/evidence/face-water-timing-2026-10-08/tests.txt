@@ -1,0 +1,386 @@
+PASS submersion immediately shows W1 and full visor starts at ninety percent air used
+PASS surface drain reverses one frame every fifty game milliseconds and cancels on reentry
+RESULT 2/2 passed (tests/face_water_entry_test.js)
+PASS v4.4 periodic blink uses the complete 150 ms closure and bounded injected interval
+PASS v4.4 blink pause and clock reversal preserve timing without wall-clock callbacks
+PASS v4.4 Quad, Pentagram and their overlap cancel blinking and restart only after all expire
+PASS v4.4 death has priority over blink and stale powers until actual positive-health respawn
+RESULT 4/4 passed (tests/face_v44_state_test.js)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/quaddama.mdl...
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+meshing progs/g_shot.mdl...
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_V44_NATIVE_AIR {"deadline":13,"submergedStages":11,"surface":[480,-352,89],"healthAfterNativeDrowning":96}
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 actual BSP submersion follows native air deadline and only QC can cause drowning
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ suicides
+
+FACE_V44_NATIVE_SUIT {"firstExpiry":37,"renewedExpiry":46,"airAfterExpiry":58.0099983215332}
+Sending clc_disconnect
+
+unconnected
+ left the game with
+-2
+ frags
+
+Client unconnected removed
+
+PASS v4.4 actual suit pickup renewal and expiry control equipment and refill native air underwater
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Saving game to face_v44_air...
+
+done.
+
+Loading game from face_v44_air...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Saving game to face_v44_suit...
+
+done.
+
+Loading game from face_v44_suit...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 actual host save/load restores native air and active suit without a HUD timer sidecar
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 paused native host freezes air and unknown demo or remote state never borrows local air
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 public clear-client and demo-file changes discard an active blink even with a forward clock
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ suicides
+
+Sending clc_disconnect
+
+unconnected
+ left the game with
+-2
+ frags
+
+Client unconnected removed
+
+PASS hidden HUD death and same-map native respawn cannot drain stale water
+RESULT 6/6 passed (tests/face_v44_native_test.js)
+PASS v4.4 source identity manifest and all 271 PNG extractions are exact
+FACE_V44_LAYER_PARITY 285/285
+PASS all 285 source layers have identical availability and native-sized pixel composition
+FACE_V44_HEALTH_PARITY 750/750
+PASS all 25 poses and ten health stages match source across open blink dead and representative powers/equipment
+FACE_V44_POWER_PARITY 600/600
+PASS each pose preserves every invisibility and power combination with open blink and dead eyes
+FACE_V44_WATER_PARITY 2750/2750
+PASS all water stages and representative opacity values preserve source mask geometry and layer order across every pose
+FACE_V44_WATER_OVERLAY_PARITY 100/100 {"helmet_left_opacity50":{"interior":4121,"covered":4121,"exterior":5095,"bleed":0},"helmet_left_opacity100":{"interior":4121,"covered":4121,"exterior":5095,"bleed":0},"diving_left_opacity50":{"interior":3277,"covered":3277,"exterior":5939,"bleed":0},"diving_left_opacity100":{"interior":3277,"covered":3277,"exterior":5939,"bleed":0},"helmet_front_opacity50":{"interior":4094,"covered":4094,"exterior":5122,"bleed":0},"helmet_front_opacity100":{"interior":4094,"covered":4094,"exterior":5122,"bleed":0},"diving_front_opacity50":{"interior":3005,"covered":3005,"exterior":6211,"bleed":0},"diving_front_opacity100":{"interior":3005,"covered":3005,"exterior":6211,"bleed":0},"helmet_right_opacity50":{"interior":4125,"covered":4125,"exterior":5091,"bleed":0},"helmet_right_opacity100":{"interior":4125,"covered":4125,"exterior":5091,"bleed":0},"diving_right_opacity50":{"interior":3067,"covered":3067,"exterior":6149,"bleed":0},"diving_right_opacity100":{"interior":3067,"covered":3067,"exterior":6149,"bleed":0}}
+PASS W10 water-only output matches donor and fills each helmet or diving mask without exterior bleed
+FACE_WATER_ENTRY_DRAIN_PARITY 850/850
+PASS owner entry and draining stages select the exact existing source water frames
+PASS restore v4.4 composition test endpoints
+RESULT 8/8 passed (tests/face_v44_composition_test.js)
+TOTAL 20/20 passed

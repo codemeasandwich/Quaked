@@ -1,6 +1,7 @@
 // Canvas layer composition ported from the owner-supplied v4.4.0 face kit.
 // Keep full-cell origins, nearest sampling, manifest registration and layer order.
 import { validatePlayerFaceManifest } from './playerface_manifest.js';
+import { faceWaterStage } from './face_state.js';
 import { COM_NewerJSON, COM_NewerURL } from './pak.js';
 let M, SIZE=96, assets, poses, ready=false, loading=null;
 const images=new Map(),failed=new Set(),cache=new Map();
@@ -123,10 +124,12 @@ const HEALTH_LEVELS=10;
   const n=Number(value);return Number.isFinite(n)?Math.max(0,Math.min(100,n)):fallback;
  }
  function waterPercentLabel(value) {return String(Math.floor(clampWaterPercent(value)*10)/10);}
- export function waterStageForPercent(value) {return Math.min(10,Math.floor(clampWaterPercent(value)/10));}
+ export function waterStageForPercent(value,submerged=false) {return faceWaterStage(value,submerged);}
  export function waterSelection(value={}) {
   const waterPercent=clampWaterPercent(value.waterPercent??(Number(value.waterStage||0)*10));
-  return {waterPercent,waterStage:waterStageForPercent(waterPercent),waterOpacity:Math.round(clampWaterPercent(value.waterOpacity??50,50))};
+  const visual=value.waterVisualStage;
+  const waterStage=Number.isInteger(visual)&&visual>=0&&visual<=10?visual:waterStageForPercent(waterPercent,value.waterSubmerged===true);
+  return {waterPercent,waterStage,waterOpacity:Math.round(clampWaterPercent(value.waterOpacity??50,50))};
  }
  function waterNodeFor(value,pose) {
   const water=waterSelection(value);

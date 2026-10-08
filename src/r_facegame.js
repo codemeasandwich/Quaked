@@ -1,5 +1,5 @@
 // Gameplay adapter: events choose expression/attention; movement never does.
-import { FaceState } from './face_state.js';
+import { FaceState, FaceWaterState, faceWaterStage } from './face_state.js';
 import { cl, cls } from './client.js';
 import { in_attack } from './cl_input.js';
 import { sv, MOVETYPE_NOCLIP } from './server.js';
@@ -7,9 +7,10 @@ import { GetEdictFieldValue } from './pr_edict.js';
 import { SV_FaceDrain, SV_FaceLocalActive, SV_FaceReset } from './sv_faceevents.js';
 import { IT_AXE, IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT, STAT_HEALTH, STAT_WEAPONFRAME } from './quakedef.js';
 const live = new FaceState(), demo = new FaceState();
+const waterVisual=new FaceWaterState();
 let liveWorld, demoWorld, lastFrame = -1, lastWeaponFrame = 0;
 let liveEdicts, demoFile;
-export function R_FaceGameReset(){live.reset();demo.reset();liveWorld=demoWorld=liveEdicts=demoFile=undefined;lastFrame=-1;lastWeaponFrame=0;}
+export function R_FaceGameReset(){live.reset();demo.reset();waterVisual.reset();liveWorld=demoWorld=liveEdicts=demoFile=undefined;lastFrame=-1;lastWeaponFrame=0;}
 function controller( client = cl ) {
 	const playback = cls.demoplayback, state = playback ? demo : live;
 	if ( playback ? demoWorld !== client.worldmodel || demoFile!==cls.demofile : liveWorld !== client.worldmodel || liveEdicts!==sv.edicts ) {
@@ -41,6 +42,7 @@ export function R_FaceSecret() { if ( cls.signon === 4 ) controller().reward( cl
 // Health transitions must reach the controller even with HUD/console hidden.
 export function R_FaceHealthChanged( health ) {
 	const state = controller(), respawning = state.dead && health > 0;
+	if(health<=0 || respawning)waterVisual.reset();
 	state.life( health, cl.time );
 	if ( respawning && ! cls.demoplayback ) SV_FaceReset();
 }
@@ -48,16 +50,18 @@ export function R_FaceShot( cadence = .6 ) { controller().shot( { time: cl.time,
 
 // Stock native WaterMove refreshes air_finished=time+12 below waterlevel3;
 // CheckPowerups refreshes it while the suit timer is active. Read that clock,
-// never start a second HUD timer or infer head submersion from SU_INWATER.
+// never start a second breathing timer or infer head submersion from SU_INWATER.
 export function R_FaceWater(client=cl) {
 	const known=client===cl && !cls.demoplayback && SV_FaceLocalActive() && client.worldmodel===sv.worldmodel;
 	const p=known?sv.edicts[1]:null,field=p&&GetEdictFieldValue(p,'air_finished');
 	let waterPercent=0;
-	if(field && p.v.waterlevel===3 && p.v.health>0 && p.v.movetype!==MOVETYPE_NOCLIP) {
+	const waterSubmerged=!!(field && p.v.waterlevel===3 && p.v.health>0 && p.v.movetype!==MOVETYPE_NOCLIP);
+	if(waterSubmerged) {
 		const air=field.accessor.getFloat(field.ofs);
 		if(Number.isFinite(air))waterPercent=Math.max(0,Math.min(100,(12-(air-sv.time))/12*100));
 	}
-	return {waterPercent,waterStage:Math.min(10,Math.floor(waterPercent/10)),waterOpacity:50,waterKnown:!!(known&&field)};
+	const stage=waterVisual.frame({time:client.time,epoch:sv.edicts,submerged:waterSubmerged,stage:faceWaterStage(waterPercent,waterSubmerged),enabled:!!(known&&field&&p.v.health>0&&p.v.movetype!==MOVETYPE_NOCLIP)});
+	return {waterPercent,waterSubmerged,waterStage:stage,waterVisualStage:stage,waterOpacity:50,waterKnown:!!(known&&field)};
 }
 export function R_PlayerFaceFrame( client = cl ) {
 	const state = controller( client ), native = ! cls.demoplayback && SV_FaceLocalActive();

@@ -39,4 +39,21 @@ Deno.test('all water stages and representative opacity values preserve source ma
 Deno.test('W10 water-only output matches donor and fills each helmet or diving mask without exterior bleed',()=>{
  let cases=0;const coverage=new Map();for(const pose of manifest.poses)for(const divingSuit of[false,true])for(const opacity of[50,100]){const state={expression:pose.expression,look:pose.look,health:10,eyeState:'dead',invisibility:true,strength:true,invulnerability:true,divingSuit,waterPercent:100,waterOpacity:opacity},label=pose.id+' '+(divingSuit?'diving':'helmet')+' W10 opacity'+opacity,expected=source.renderWaterOverlay(state),actual=face.R_PlayerFaceWaterOverlay(state);assert.equal(expected.complete,true,label+' donor water complete');assert.equal(actual.complete,true,label+' actual water complete');const output=pixels(actual.canvas);assert.ok(output.equals(pixels(expected.canvas)),label+' exact donor water-only pixels');const selected=source.selection(state),maskLayer=source.renderLayer(selected.layers.water.clip_mask),mask=pixels(maskLayer.canvas);assert.equal(maskLayer.complete,true,label+' reviewed interior mask available');let interior=0,covered=0,exterior=0,bleed=0;for(let i=3;i<output.length;i+=4){if(mask[i]>0){interior++;if(output[i]>0)covered++;}else{exterior++;if(output[i]>0)bleed++;}}assert.ok(interior>0&&exterior>0,label+' nonempty interior and exterior witnesses');assert.equal(covered,interior,label+' full W10 covers every mask pixel');assert.equal(bleed,0,label+' no water reaches mask exterior');coverage.set((divingSuit?'diving':'helmet')+'_'+pose.head_direction+'_opacity'+opacity,{interior,covered,exterior,bleed});cases++;}assert.equal(cases,100);assert.equal(coverage.size,12);console.log('FACE_V44_WATER_OVERLAY_PARITY '+cases+'/'+cases+' '+JSON.stringify(Object.fromEntries(coverage)));
 });
+Deno.test('owner entry and draining stages select the exact existing source water frames',()=>{
+ let cases=0;
+ for(const pose of manifest.poses)for(const divingSuit of[false,true]){
+  const base={expression:pose.expression,look:pose.look,health:1,eyeState:'open',divingSuit,waterOpacity:50};
+  for(const[percent,stage]of[[0,1],[9.999,1],[10,2],[89.999,9],[90,10],[100,10]]){
+   const actual=face.R_PlayerFaceCompose({...base,waterSubmerged:true,waterPercent:percent});
+   const expected=source.renderComposite({...base,waterPercent:stage*10});
+   assert.ok(actual.complete&&expected.complete);assert.equal(actual.selection.waterStage,stage);assert.ok(pixels(actual.canvas).equals(pixels(expected.canvas)));cases++;
+  }
+  for(let stage=10;stage>=0;stage--){
+   const actual=face.R_PlayerFaceCompose({...base,waterSubmerged:false,waterPercent:0,waterVisualStage:stage});
+   const expected=source.renderComposite({...base,waterPercent:stage*10});
+   assert.ok(actual.complete&&expected.complete);assert.equal(actual.selection.waterStage,stage);assert.ok(pixels(actual.canvas).equals(pixels(expected.canvas)));cases++;
+  }
+ }
+ assert.equal(cases,850);console.log('FACE_WATER_ENTRY_DRAIN_PARITY '+cases+'/'+cases);
+});
 Deno.test('restore v4.4 composition test endpoints',()=>{globalThis.fetch=oldFetch;for(const key of['Image','document'])if(descriptors[key])Object.defineProperty(globalThis,key,descriptors[key]);else delete globalThis[key];});

@@ -88,24 +88,26 @@ Deno.test('v4.4 actual BSP submersion follows native air deadline and only QC ca
  near(deadline-sv.time,12,'native WaterMove supplies twelve seconds');submerged(p);const health=p.v.health;
  for(let stage=0;stage<=9;stage++){
   sv.time=deadline-12+stage*1.2+.00001;native(p,'WaterMove');const value=observe(p);
-  same(value.waterKnown,true,'native air is known');same(value.waterStage,stage,'actual native air stage '+stage);
+  same(value.waterKnown,true,'native air is known');same(value.waterStage,stage+1,'immediate underwater indicator and early-full stage '+stage);
   near(value.waterPercent,stage*10,'percentage follows deadline',.001);same(value.divingSuit,false,'water cannot fabricate equipment');same(p.v.health,health,'air use before threshold causes no damage');
+  if(stage===9){near(deadline-sv.time,1.2,'full visor leaves the final tenth of native air',.001);same(value.waterStage,10,'visor already full before choking');}
  }
  sv.time=deadline;native(p,'WaterMove');same(observe(p).waterStage,10,'deadline is full-water stage');same(p.v.health,health,'strict native drowning comparison has not fired at equality');
  const before=snapshot(p);for(let i=0;i<20;i++)R_FaceWater();same(snapshot(p),before,'repeated water-only reads never apply drowning');
  sv.time=deadline+.01;native(p,'WaterMove');check(p.v.health<health,'only actual QC past deadline applies drowning');same(observe(p).waterStage,10,'drowning keeps full-water display');
- p.v.origin=surface;SV_CheckWater(p);native(p,'WaterMove');near(field(p,'air_finished')-sv.time,12,'native surfacing replenishes air');same(observe(p).waterStage,0,'surface returns clear face');
+ p.v.origin=surface;SV_CheckWater(p);native(p,'WaterMove');near(field(p,'air_finished')-sv.time,12,'native surfacing replenishes air');same(observe(p).waterStage,10,'surface starts draining the displayed frame');
+ const surfacedAt=sv.time;for(let i=1;i<=10;i++){sv.time=surfacedAt+i*.05;native(p,'WaterMove');same(observe(p).waterStage,10-i,'native surface drain frame '+i);near(field(p,'air_finished')-sv.time,12,'draining never consumes native air');}
  console.log('FACE_V44_NATIVE_AIR '+JSON.stringify({deadline,submergedStages:11,surface:surface,healthAfterNativeDrowning:p.v.health}));
  acknowledge();CL_Disconnect_f();
 });
 
 Deno.test('v4.4 actual suit pickup renewal and expiry control equipment and refill native air underwater',async()=>{
  const p=await fresh();SV_CheckWater(p);native(p,'WaterMove');submerged(p);const initialAir=field(p,'air_finished');
- sv.time=initialAir-6;native(p,'WaterMove');same(observe(p).waterStage,5,'unsuited submerged half reserve control');
- collectSuit(p);native(p,'CheckPowerups');let state=observe(p);check(state.divingSuit,'actual clientdata turns equipment on');same(state.waterStage,0,'native suit replenishment keeps water clear');
+ sv.time=initialAir-6;native(p,'WaterMove');same(observe(p).waterStage,6,'unsuited submerged half reserve control');
+ collectSuit(p);native(p,'CheckPowerups');let state=observe(p);check(state.divingSuit,'actual clientdata turns equipment on');same(state.waterStage,1,'native suit replenishment retains immediate underwater indicator');
  const firstExpiry=field(p,'radsuit_finished');advancePowers(p,sv.time+9);collectSuit(p,true);native(p,'CheckPowerups');check(field(p,'radsuit_finished')>firstExpiry,'native renewal extends timer without new ownership bit');
- const expiry=field(p,'radsuit_finished');advancePowers(p,expiry+.01);state=observe(p);same(state.divingSuit,false,'actual expiry clientdata removes equipment');same(state.waterStage,0,'expiry leaves last native refreshed reserve');
- const air=field(p,'air_finished');sv.time=air-6;native(p,'WaterMove');same(observe(p).waterStage,5,'air starts depleting only after suit refill ends');
+ const expiry=field(p,'radsuit_finished');advancePowers(p,expiry+.01);state=observe(p);same(state.divingSuit,false,'actual expiry clientdata removes equipment');same(state.waterStage,1,'expiry retains entry indicator with refreshed reserve');
+ const air=field(p,'air_finished');sv.time=air-6;native(p,'WaterMove');same(observe(p).waterStage,6,'air starts depleting only after suit refill ends');
  const mode=p.v.movetype;p.v.movetype=MOVETYPE_NOCLIP;same(observe(p).waterStage,0,'noclip cannot display inferred drowning');p.v.movetype=mode;
  native(p,'ClientKill');wire(p);state=R_PlayerFaceFrame();same(state.eyeState,'dead','native death closes eyes');same(state.expression,'focused_determined','native death uses requested expression');same(state.waterStage,0,'dead player does not continue water progression');
  console.log('FACE_V44_NATIVE_SUIT '+JSON.stringify({firstExpiry,renewedExpiry:expiry,airAfterExpiry:air}));
@@ -162,5 +164,19 @@ Deno.test('v4.4 public clear-client and demo-file changes discard an active blin
   same(R_PlayerFaceFrame().eyeState,'open','different demo resets blink despite same world and forward time');
   same(R_FaceWater().waterKnown,false,'demo lifecycle never opens native server air access');
  }finally{cls.demoplayback=false;cls.demofile=oldFile;}
+ acknowledge();CL_Disconnect_f();
+});
+
+Deno.test('hidden HUD death and same-map native respawn cannot drain stale water',async()=>{
+ const p=await fresh();SV_CheckWater(p);native(p,'WaterMove');submerged(p);
+ sv.time=field(p,'air_finished')-1.199;native(p,'WaterMove');same(observe(p).waterStage,10,'last visible frame was full');
+ const edicts=sv.edicts;
+ // Process real clientdata health changes, but deliberately do not draw/read
+ // a face while dead: the hidden-HUD notification must clear its water state.
+ native(p,'ClientKill');wire(p);check(p.v.health<=0,'actual native death');
+ native(p,'PutClientInServer');SV_CheckWater(p);wire(p);
+ same(sv.edicts,edicts,'same-map respawn does not replace the epoch');
+ check(p.v.health>0&&p.v.waterlevel<3,'actual respawn is alive and surfaced');
+ same(R_PlayerFaceFrame().waterStage,0,'no stale full visor or drain on first visible respawn frame');
  acknowledge();CL_Disconnect_f();
 });
