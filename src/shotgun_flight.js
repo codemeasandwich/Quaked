@@ -18,8 +18,10 @@ export const SHOTGUN = Object.freeze( {
 	airSpeed: 62 * 2, underwaterSpeed: 34 * 2, // SHOTGUN_PELLET_MOTION x speedScale
 	drag: .45,                                 // underwater drag, fire() line 513
 	trailSeconds: .016, maxTrail: .95,         // SHOTGUN_PELLET_MOTION
-	maxPellets: 256, maxBubbles: 1800,         // the source's constructor defaults
+	maxPellets: 256, maxBubbles: 1800, maxSmoke: 96, // the source's constructor defaults
 	muzzleBubbles: 4,                          // fire(): four small bubbles escape each barrel under water
+	smokePerBarrel: 3,                         // fire(): three tiny delayed wisps per barrel in air
+	smokeRise: .5,                             // owner's tuning (8 Oct 2026): the smoke climbs half as high as the source's (its .18 a second, and the .035 + .05 a stretch)
 	wakeLimit: 2.4,                            // update(): a wake bubble older than this when emitted is skipped
 	seed: 84391                                // the source's default seed (cosmetic randomness only)
 } );

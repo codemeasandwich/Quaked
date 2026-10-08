@@ -2300,7 +2300,7 @@ export function R_NewMap() {
 	R_FireballClear();
 	R_TorchFireSetup( { scene } );
 	R_TorchFireClear();
-	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles } );
+	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
 	R_ShotgunClear();
 	R_DecalsClear();
 	let shellBrushes = [];

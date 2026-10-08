@@ -4,8 +4,8 @@ Card T-cc141b2c, "[20] Shotgun fire: subtle visible pellets and underwater bubbl
 `5182679`. In single-player Newer Game every blast of the shotgun and the super shotgun, and of the
 soldiers' shotguns, shows the supplied pellets flying at twice the supplied speed, and **the shot's damage,
 blood and puffs arrive when its pellets do**, as a nail or a rocket landing. Under water the pellets leave
-the supplied bubble wake. Classic Quake and everything else are as before. (The supplied muzzle-smoke wisps
-are card [30b], which reuses this event path.)
+the supplied bubble wake. Classic Quake and everything else are as before. Card [30b], the supplied delayed muzzle-smoke wisps, uses
+the same event path and is described under "Muzzle smoke" below.
 
 ## Owner direction that changed the first design (8 Oct 2026)
 
@@ -29,8 +29,8 @@ never have the delay.
   `8b1569225ae56f2e53a6f5748435e77699aa7e0f1c8c0082a12cfc3d0a401adf` (gitignored; local, never edited or
   distributed). Class `ShotgunEffect`; extraction map and line numbers (checked against the hashed file) in
   `newer/effects/shotgun/provenance.json`. No texture or asset is used: only code is taken.
-* Only the pellet (kind 0) and bubble (kind 1) shader branches are drawn. The source's muzzle flash,
-  impact flash, smoke and wall-burn kinds are not drawn here.
+* Only the pellet (kind 0), bubble (kind 1) and smoke (kind 2) shader branches are drawn. The source's muzzle
+  flash, impact flash and wall-burn kinds are not drawn here.
 
 ## How the picture gets the game's rays
 
@@ -125,9 +125,33 @@ that moved away is still hit; one that was removed is skipped.
 6. In first person the pellets fly almost along the line of sight, so most are small bright dots that spread
    away from the muzzle (a streak is foreshortened); they read as streaks near the gun and from the side.
 
+## Muzzle smoke (card [30b])
+
+In air each barrel leaves the source's three tiny, light smoke wisps (`makeSmoke`, from `fire()` line 532 and
+`render()` line 608). They are **delayed** (born 26, 73 and 120 ms after the shot), placed **in the world** at the
+muzzle point where the shot was fired, a few hundredths of a source unit along the barrel's shot direction, and
+detached from the gun for good: a later gun movement, weapon switch or view change cannot carry them. Each rises
+(the source's 0.18 source units a second along world +Z, **halved by owner request**: 0.09, so the smoke climbs half as high
+as the source's, with the stretch of each quad along the climb halved too: `SHOTGUN.smokeRise`), drifts a little, grows from about 0.9 to 1.9 Quake units in radius,
+and is most opaque half way through its 0.55-0.79 s life (peak alpha 0.19). The shader branch is the source's
+kind 2: a noise-broken soft ellipse with a grey ramp. The pool is the source's 96. There is **no smoke under
+water** (the source makes none; the bubbles and wake are the underwater picture), no persistent cloud at rest,
+and none in Classic, with `r_shotgunfx 0`, or in demos and multiplayer (the same gate as the pellets). It is the
+same function of `cl.time` as everything else here, so pause freezes it, and it is cleared on a map change and
+on a clock jump back. A soldier's shot leaves smoke from his ray start; the super shotgun's one-shell fallback
+smokes from the single muzzle point of the super shotgun model, midway between its barrels. It is cosmetic: no gameplay depends on it. Smoke or bubbles are decided **at each barrel** (the contents at the muzzle
+point, found with the level's own leaf lookup; lava is not water), not at the game's ray start, which is at
+chest height (about 15 units above the player's origin, nearly 40 above the feet) and can be on the other side of
+the surface from the gun when someone wades; the super shotgun's two barrels are decided one by one.
+
+Seen from the first-person camera the wisps are only about 20 units from the eye, so six of them from the
+super shotgun overlap into a small soft cloud in front of the gun for about half a second (photographed in
+e1m1, captures kept outside the repository); the size is the source's at 24 Quake units per source unit. If that reads as too heavy, the source's
+art-unit tuning would be a same-scene comparison with the original demo, which has not been made.
+
 ## Bounds and cleanup
 
-At most 256 pellets and 1,800 bubbles (the source's defaults), preallocated instance buffers (the per-frame path
+At most 256 pellets, 1,800 bubbles and 96 smoke wisps (the source's defaults), preallocated instance buffers (the per-frame path
 allocates only small scratch such as the drained queue; a blast allocates its pellets once). Water along a ray
 is sampled over the whole ray (found once per ray and kept for both the event and the schedule). Everything is a
 function of `cl.time`, so pause freezes it, and the server's schedule is a function of `sv.time`. The pools and
@@ -142,8 +166,8 @@ own resets. The event queue is drained every frame even when the effect is off.
 * **Other players' and other monsters' guns.** Only the local player and `monster_army` (the only monster that
   shoots bullets) are observed.
 * **Other levels seen through portals** have no running game logic.
-* A blast fired from the water's surface is called "submerged" by where the game's ray starts (about 15 units
-  above the feet), not at the drawn muzzle; a few muzzle bubbles may show just above the surface.
+* The `submerged` flag of an event is where the game's ray starts; the picture decides smoke and bubbles at the
+  drawn muzzle instead (see Muzzle smoke).
 
 ## Verification (what was run)
 
@@ -160,7 +184,7 @@ own resets. The event queue is drained every frame even when the effect is off.
   already paid for still land after a switch to Classic, a blast at 200, 400 and 600 units is one application on
   its target that lands when the last pellet does (1 ms steps), an entity freed and reused in flight is skipped,
   and the server's wait equals the drawn pellet's flight; and armour sees one application of the blast's total.
-* `tests/shotgun_test.js` (11): the random stream, pellet distance, trail length and time at a distance equal
+* `tests/shotgun_test.js` (16): the random stream, pellet distance, trail length and time at a distance equal
   the source's own functions (the source class run in a sandbox) at the source's speed, in air and water, over
   1,500 comparisons, and the port's speeds are exactly double; a bubble's placement and a pellet's wake equal the
   source's, with a long step and 144 fps steps giving the same births; the shaders' statements are the source's;
@@ -181,6 +205,17 @@ own resets. The event queue is drained every frame even when the effect is off.
 * Full suite: see the card for the final figures; the failing files are the same 15 (they need
   `QUAKED_OWNED_PAK` or weapon `.zip` fixtures not present here).
 
+### What the muzzle-smoke tests check
+
+The source's `fire()` run in a sandbox gives the same wisps (life, radius, seed, drift, birth, position in the source's
+axes) as `makeSmoke` for single and double barrels and several seeds (27 wisps), and the same wisps again through
+`R_ShotgunFire` for the blast's own stream; the render statements of the source for position, radius, stretch and
+opacity are present in the source text; the vertex shader's bubble/wisp branch and the fragment branch with its noise
+helpers are the source's; drawn kind-2 rows come from the fire-time muzzle after the gun and view have moved, with the
+climb in world +Z (halved), the seed and age in the right slots; none under water or per wet barrel; pool 96 (the
+source's default); cleared by a map change, the switch (even with no pellets about), Classic and a clock jump back; and
+a real super shotgun blast through the native QuakeC gives six wisps. Mutations of each of these fail a test.
+
 ## Known limits and open items
 
 * A soldier's pellets were verified by events, counts, positions, damage timing and an end-to-end frame, but a
@@ -193,4 +228,6 @@ own resets. The event queue is drained every frame even when the effect is off.
   ray start (the chest) to the hit: the drawn pellet is 10-25 units shorter, so it lands 3-8 ms before the
   damage (under a frame). A test pins that they agree exactly when the muzzle is the ray start.
 * Wall-contact output of the source (`consumeWallContacts`) belongs to cards [30c] and [33].
-* No frame-cost measurement of the layer was made (at most 2,056 instances).
+* No frame-cost measurement of the layer was made (at most 2,152 instances).
+* The wisps are anchored in the world and, like everything here, have no near-camera fade (the source has none): running
+  forward while firing can carry the camera through a wisp for a frame or two as a faint grey patch.

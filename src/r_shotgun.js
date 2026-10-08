@@ -29,18 +29,20 @@
 //    flies at air speed through the air and at water speed with drag through the water, and leaves bubbles
 //    only while it is in water.
 //  * The muzzle is the front of the viewmodel's own geometry (viewModelMuzzles), not the player's origin.
-// The source's muzzle smoke, flash and impact kinds are not drawn here (smoke is the next card's).
+// The source's muzzle flash and impact kinds are not drawn here. In air each barrel also leaves the source's three tiny
+// delayed smoke wisps in the world at the muzzle where the shot was fired (card [30b]); under water there is none.
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
 import { R_NewerGame } from './r_anim.js';
 import { SV_FaceDrain } from './sv_faceevents.js';
 import { MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
+const CONTENTS_WATER = - 3, CONTENTS_SLIME = - 4; // (bspfile.js; lava is not water)
 import { SHOTGUN, sgRandom, clamp, pelletDistance, pelletTimeAt, pelletInWater, pelletTrailLength, makePellet, pelletDraws, pelletStream } from './shotgun_flight.js';
 
 // (the flight maths is shotgun_flight.js, shared with the server's damage schedule; re-exported for the tests)
 export { SHOTGUN, sgRandom, pelletDistance, pelletTimeAt, pelletInWater, pelletTrailLength, makePellet, pelletDraws, pelletStream };
 
-// 0 draws no pellets or bubbles
+// 0 draws no pellets, bubbles or smoke
 export const r_shotgunfx = new cvar_t( 'r_shotgunfx', '1' );
 const K = SHOTGUN.unit;
 
@@ -60,6 +62,37 @@ export function bubbleAt( b, a, out ) {
 	out[ 0 ] = b.ox + K * ( b.dx * settle + wobble );
 	out[ 1 ] = b.oy + K * ( b.dy * settle + Math.sin( a * 2.7 ) * .009 );
 	out[ 2 ] = b.oz + K * ( b.rise * a + .06 * a * a );
+	return out;
+
+}
+
+// fire() of the source, line 532: the tiny delayed wisps of a shot in air, three for each barrel, anchored in the
+// world at the muzzle where the shot was fired (not to the recoiling gun or its later aim). `axis` is the barrel's
+// shot direction (Quake unit vector), `cosmetic` the barrel's stream of cosmetic draws (four per wisp, in the
+// source's order: life, radius, seed, drift). Positions in Quake units; the rest in the source's units.
+export function makeSmoke( origin, axis, born, cosmetic ) {
+
+	const list = [];
+	for ( let i = 0; i < SHOTGUN.smokePerBarrel; i ++ ) {
+
+		const ahead = ( .025 + i * .017 ) * K, life = .55 + cosmetic() * .24, radius = .036 + cosmetic() * .014, seed = cosmetic() * 30, drift = ( cosmetic() - .5 ) * .035;
+		list.push( { ox: origin[ 0 ] + axis[ 0 ] * ahead, oy: origin[ 1 ] + axis[ 1 ] * ahead, oz: origin[ 2 ] + axis[ 2 ] * ahead, born: born + .026 + i * .047, life, radius, seed, drift } );
+
+	}
+	return list;
+
+}
+// render() of the source, line 608: where a wisp is `a` seconds after birth (source +Y is Quake +Z, source +Z is Quake +Y),
+// its radius, its upward motion (all in Quake units) and its opacity. The climb (the .18 a second and the stretch of
+// the quad along it) is multiplied by SHOTGUN.smokeRise = .5: the owner asked for half the height.
+export function smokeAt( s, a, out ) {
+
+	out.x = s.ox + K * ( s.drift * a + Math.sin( a * 6 + s.seed ) * .012 * a );
+	out.y = s.oy + K * ( a * .05 );
+	out.z = s.oz + K * ( a * .18 * SHOTGUN.smokeRise );
+	out.radius = ( s.radius + a * .045 ) * K;
+	out.rise = ( .035 + a * .05 ) * SHOTGUN.smokeRise * K;
+	out.alpha = .19 * Math.sin( clamp( a / s.life, 0, 1 ) * Math.PI );
 	return out;
 
 }
@@ -103,7 +136,7 @@ export function viewModelMuzzles( mesh, template, count ) {
 }
 
 // ---------------------------------------------------------------------------
-// Shaders: the source's, for the two kinds drawn here (0 pellet streak, 1 bubble)
+// Shaders: the source's, for the three kinds drawn here (0 pellet streak, 1 bubble, 2 smoke wisp)
 // ---------------------------------------------------------------------------
 
 const VERTEX = `
@@ -145,7 +178,7 @@ void main(){
   vec2 direction=length(motion)>.001?normalize(motion):vec2(0.,1.);
   vec2 across=vec2(direction.y,-direction.x);
   float radiusPx=aPositionRadius.w*S*uProjectionScale/max(clip.w,nearW);
-  radiusPx=max(radiusPx,.65);
+  radiusPx=max(radiusPx,kind<1.5?.65:.25);
   vec2 pixelOffset=across*q.x*radiusPx+direction*(q.y*(radiusPx+lengthPx*.35)-lengthPx*.12);
   clip.xy+=pixelOffset*2./uViewport*clip.w;
   if(clip.w<nearW)clip=vec4(2.,2.,2.,1.);
@@ -156,11 +189,13 @@ void main(){
 const FRAGMENT = `
 #include <clipping_planes_pars_fragment>
 varying vec2 vUV;varying vec4 vData;
-uniform float uGlow;
+uniform float uGlow,uTime;
 ${MRT_OUT}
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+1.),f.x),f.y);}
 void main(){
  #include <clipping_planes_fragment>
- vec2 p=vUV;float kind=vData.x,opacity=vData.y;
+ vec2 p=vUV;float kind=vData.x,opacity=vData.y,seed=vData.z;
  float r=length(p),alpha=0.;vec3 radiance=vec3(0.);
  if(kind<.5){
   float along=clamp(p.y,0.,1.);
@@ -171,6 +206,13 @@ void main(){
   float halo=exp(-p.x*p.x*5.5)*fade*(1.-smoothstep(.65,1.,abs(p.x)));
   alpha=core*.30*opacity;
   radiance=(vec3(1.70,1.43,1.02)*core+vec3(.14,.083,.033)*halo*uGlow)*opacity;
+ }else if(kind>1.5){
+  // Delayed, light wisps, rather than an opaque muzzle explosion.
+  p.x+=sin(p.y*5.+seed*9.+uTime*1.8)*.13;
+  float n=noise(p*3.7+vec2(seed*17.,-uTime*.4));
+  float body=exp(-dot(p*vec2(1.25,.87),p*vec2(1.25,.87))*3.7);
+  alpha=body*smoothstep(.12,.72,n)*opacity*(1.-smoothstep(.6,1.,r));
+  radiance=mix(vec3(.30,.34,.36),vec3(.61,.65,.66),n)*alpha;
  }else{
   float ring=exp(-pow((r-.77)/.085,2.));
   float inside=1.-smoothstep(.70,.88,r);
@@ -191,21 +233,21 @@ export const SHOTGUN_SHADERS = Object.freeze( { vertex: VERTEX, fragment: FRAGME
 // ---------------------------------------------------------------------------
 
 const ORDER = 10; // after the scorch decals (5) and the Fireball layers (6-9)
-const pellets = [], bubbles = [];
-let deps = null, group = null, fx = null, lastTime = 0, serial = 0, drawn = { pellets: 0, bubbles: 0 };
-const CAPACITY = SHOTGUN.maxPellets + SHOTGUN.maxBubbles;
+const pellets = [], bubbles = [], smoke = [];
+let deps = null, group = null, fx = null, lastTime = 0, serial = 0, drawn = { pellets: 0, bubbles: 0, smoke: 0 };
+const CAPACITY = SHOTGUN.maxPellets + SHOTGUN.maxBubbles + SHOTGUN.maxSmoke;
 const rows = new Float32Array( CAPACITY * 12 ), depths = new Float32Array( CAPACITY ), order = new Uint16Array( CAPACITY );
 const byDepth = ( a, b ) => depths[ b ] - depths[ a ];
 const instanced = [];
 
-// The caller supplies the scene, the client and a function giving the viewmodel's muzzle points
-// (muzzles( count ) -> [ [ x, y, z ], ... ] | null).
+// The caller supplies the scene, a function giving the viewmodel's muzzle points (muzzles( count ) -> [ [ x, y, z ], ... ] |
+// null) and a function giving the contents of a point (contents( [ x, y, z ] ) -> the BSP contents number).
 export function R_ShotgunSetup( externals ) { deps = externals; }
 
 function build() {
 
 	fx = layer( 'shotgun_fx', CAPACITY, { aPositionRadius: 4, aMotionKind: 4, aProperties: 4 },
-		material( VERTEX, FRAGMENT, { uViewport: { value: new THREE.Vector2( 1280, 720 ) }, uGlow: { value: 1 } }, THREE.NormalBlending ), ORDER );
+		material( VERTEX, FRAGMENT, { uViewport: { value: new THREE.Vector2( 1280, 720 ) }, uGlow: { value: 1 }, uTime: { value: 0 } }, THREE.NormalBlending ), ORDER );
 	for ( const a of Object.values( fx.geometry.attributes ) ) if ( a.isInstancedBufferAttribute ) instanced.push( a );
 	group = new THREE.Group(); group.name = 'quake_shotgun'; group.userData.newerOnly = true;
 	group.add( fx.mesh );
@@ -214,51 +256,65 @@ function build() {
 
 export function R_ShotgunClear() {
 
-	pellets.length = 0; bubbles.length = 0; lastTime = 0; drawn = { pellets: 0, bubbles: 0 };
+	pellets.length = 0; bubbles.length = 0; smoke.length = 0; lastTime = 0; drawn = { pellets: 0, bubbles: 0, smoke: 0 };
 	if ( group ) { group.visible = false; fx.geometry.instanceCount = 0; }
 
 }
 
 const unitOf = ( a, b, out ) => { const x = b[ 0 ] - a[ 0 ], y = b[ 1 ] - a[ 1 ], z = b[ 2 ] - a[ 2 ], n = Math.hypot( x, y, z ); if ( n < 1e-6 ) return null; out[ 0 ] = x / n; out[ 1 ] = y / n; out[ 2 ] = z / n; return n; };
 
-// One native blast (an event of sv_shotrays.js) becomes pellets (and, under water, muzzle bubbles) at `time`.
-// `muzzles` are the barrel points (one, or two for the super shotgun's two-barrel blast).
+// The point a pellet or wisp leaves from: the barrel's muzzle, or, for a target closer than the muzzle's reach (the
+// pellet would fly backwards from inside it), the game's own ray start.
+function launchPoint( muzzle, ray ) {
+
+	const ex = ray.end[ 0 ] - muzzle[ 0 ], ey = ray.end[ 1 ] - muzzle[ 1 ], ez = ray.end[ 2 ] - muzzle[ 2 ];
+	return ex * ( ray.end[ 0 ] - ray.start[ 0 ] ) + ey * ( ray.end[ 1 ] - ray.start[ 1 ] ) + ez * ( ray.end[ 2 ] - ray.start[ 2 ] ) <= 0 ? ray.start : muzzle;
+
+}
+
+// Is this barrel under water? Decided at the barrel itself (the game's ray starts at chest height, which can be
+// on the other side of the surface from the gun); without a way to look, the event's own answer.
+function barrelWet( point, event ) {
+
+	const c = deps?.contents?.( point );
+	return c === undefined || c === null ? event.submerged === true : c === CONTENTS_WATER || c === CONTENTS_SLIME;
+
+}
+
+// One native blast (an event of sv_shotrays.js) becomes pellets, and at each barrel muzzle bubbles (under water) or
+// smoke (in air), at `time`. `muzzles` are the barrel points (one, or two for the super shotgun's two-barrel blast).
 export function R_ShotgunFire( event, muzzles, time ) {
 
 	const double = event.function === 'W_FireSuperShotgun', barrels = double ? 2 : 1; // (the one-shell fallback is the single gun's blast)
 	if ( ! muzzles || muzzles.length < barrels ) return 0;
-	const id = event.id, dir = [ 0, 0, 0 ], underwater = event.submerged === true;
+	const id = event.id, dir = [ 0, 0, 0 ], wet = [];
+	for ( let b = 0; b < barrels; b ++ ) wet.push( barrelWet( muzzles[ b ], event ) );
 	let made = 0;
 	event.rays.forEach( ( ray, i ) => {
 
-		const barrel = double ? i % 2 : 0;
-		let from = muzzles[ barrel ];
-		// a target closer than the muzzle's reach would have the pellet fly backwards from inside it: leave from the game's own start
-		const ex = ray.end[ 0 ] - from[ 0 ], ey = ray.end[ 1 ] - from[ 1 ], ez = ray.end[ 2 ] - from[ 2 ];
-		if ( ex * ( ray.end[ 0 ] - ray.start[ 0 ] ) + ey * ( ray.end[ 1 ] - ray.start[ 1 ] ) + ez * ( ray.end[ 2 ] - ray.start[ 2 ] ) <= 0 ) from = ray.start;
+		const barrel = double ? i % 2 : 0, from = launchPoint( muzzles[ barrel ], ray );
 		const length = unitOf( from, ray.end, dir );
 		if ( length === null ) return;
 		const native = Math.hypot( ray.end[ 0 ] - ray.start[ 0 ], ray.end[ 1 ] - ray.start[ 1 ], ray.end[ 2 ] - ray.start[ 2 ] ) || 1;
 		const su = length / K;
 		// water spans, native-ray distances in Quake units -> distances along this pellet's path in source units
 		const spans = ray.water.map( ( [ a, b ] ) => [ a / native * su, b / native * su ] );
-		pellets.push( makePellet( { id, barrel, origin: from, dir, distance: su, waterSpans: spans, underwater, born: time, c: pelletDraws( pelletStream( id, i ) ) } ) );
+		pellets.push( makePellet( { id, barrel, origin: from, dir, distance: su, waterSpans: spans, underwater: wet[ barrel ], born: time, c: pelletDraws( pelletStream( id, i ) ) } ) );
 		made ++;
 
 	} );
 	if ( pellets.length > SHOTGUN.maxPellets ) pellets.splice( 0, pellets.length - SHOTGUN.maxPellets );
-	if ( underwater ) {
+	const base = ( SHOTGUN.seed + id * 7919 ) >>> 0;
+	for ( let b = 0; b < barrels; b ++ ) {
 
-		const base = ( SHOTGUN.seed + id * 7919 ) >>> 0;
-		for ( let b = 0; b < barrels; b ++ ) {
-
-			const cosmetic = sgRandom( base + b * 7121 + 99 ), ray = event.rays[ Math.min( b, event.rays.length - 1 ) ], axis = [ 0, 0, 0 ];
-			if ( unitOf( muzzles[ b ], ray.end, axis ) === null ) continue;
-			for ( let i = 0; i < SHOTGUN.muzzleBubbles; i ++ ) bubbles.push( makeBubble( muzzles[ b ], axis, time + i * .018, cosmetic(), .6 ) );
-
-		}
+		// (the source's per-barrel stream of cosmetic draws; the two branches never both run for one barrel)
+		const cosmetic = sgRandom( base + b * 7121 + 99 ), ray = event.rays[ Math.min( b, event.rays.length - 1 ) ], axis = [ 0, 0, 0 ], from = launchPoint( muzzles[ b ], ray );
+		if ( unitOf( from, ray.end, axis ) === null ) continue;
+		if ( wet[ b ] ) for ( let i = 0; i < SHOTGUN.muzzleBubbles; i ++ ) bubbles.push( makeBubble( from, axis, time + i * .018, cosmetic(), .6 ) );
+		else smoke.push( ...makeSmoke( from, axis, time, cosmetic ) ); // in air: three tiny delayed wisps (never under water)
 
 	}
+	if ( smoke.length > SHOTGUN.maxSmoke ) smoke.splice( 0, smoke.length - SHOTGUN.maxSmoke );
 	return made;
 
 }
@@ -285,7 +341,7 @@ export function emitWake( p, time, birth ) {
 }
 const birthBubble = b => { bubbles.push( b ); };
 
-// Advance to `time`: wakes are emitted, finished pellets and bubbles are dropped. In place, no allocation
+// Advance to `time`: wakes are emitted, finished pellets, bubbles and smoke wisps are dropped. In place, no allocation
 // in the steady state (a shot allocates its pellets once).
 function update( time ) {
 
@@ -301,11 +357,14 @@ function update( time ) {
 	keep = 0;
 	for ( let i = 0; i < bubbles.length; i ++ ) { const b = bubbles[ i ]; if ( time - b.born < b.life ) bubbles[ keep ++ ] = b; }
 	bubbles.length = keep;
+	keep = 0;
+	for ( let i = 0; i < smoke.length; i ++ ) { const s = smoke[ i ]; if ( time - s.born < s.life ) smoke[ keep ++ ] = s; }
+	smoke.length = keep;
 	if ( bubbles.length > SHOTGUN.maxBubbles ) { bubbles.sort( ( a, b ) => a.born - b.born ); bubbles.splice( 0, bubbles.length - SHOTGUN.maxBubbles ); }
 
 }
 
-const _pos = [ 0, 0, 0 ];
+const _pos = [ 0, 0, 0 ], _smoke = { x: 0, y: 0, z: 0, radius: 0, rise: 0, alpha: 0 };
 
 // Every frame, after the viewmodel has been placed (its muzzle is wanted) and before the scene renders.
 // `forward` is the view's forward vector, `viewSize` the target being rendered.
@@ -316,8 +375,8 @@ export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 	const enabled = r_shotgunfx.value !== 0 && R_NewerGame();
 	// (the queue is always emptied: events must not pile up while the effect is off)
 	const events = SV_FaceDrain( 'rays' );
-	if ( ! enabled ) { if ( pellets.length || bubbles.length ) R_ShotgunClear(); else if ( group ) group.visible = false; return; }
-	if ( time < lastTime - 1 ) { pellets.length = 0; bubbles.length = 0; } // the clock jumped back (a demo loop, a new game)
+	if ( ! enabled ) { if ( pellets.length || bubbles.length || smoke.length ) R_ShotgunClear(); else if ( group ) group.visible = false; return; }
+	if ( time < lastTime - 1 ) { pellets.length = 0; bubbles.length = 0; smoke.length = 0; } // the clock jumped back (a demo loop, a new game)
 	lastTime = time;
 	for ( const event of events ) {
 
@@ -327,7 +386,7 @@ export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 
 	}
 	update( time );
-	if ( pellets.length === 0 && bubbles.length === 0 ) { if ( group ) { group.visible = false; fx.geometry.instanceCount = 0; } return; }
+	if ( pellets.length === 0 && bubbles.length === 0 && smoke.length === 0 ) { if ( group ) { group.visible = false; fx.geometry.instanceCount = 0; } return; }
 	if ( group === null ) build();
 	if ( group.parent !== scene ) scene.add( group );
 	group.visible = true;
@@ -366,7 +425,18 @@ export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 		bubbleCount ++;
 
 	}
-	drawn = { pellets: pelletCount, bubbles: bubbleCount };
+	let smokeCount = 0;
+	for ( const s of smoke ) {
+
+		const a = time - s.born;
+		if ( a < 0 || n >= CAPACITY ) continue;
+		smokeAt( s, a, _smoke );
+		if ( ! ( _smoke.alpha > .0005 ) ) continue;
+		put( _smoke.x, _smoke.y, _smoke.z, _smoke.radius, 0, 0, _smoke.rise, 2, _smoke.alpha, s.seed, a / s.life );
+		smokeCount ++;
+
+	}
+	drawn = { pellets: pelletCount, bubbles: bubbleCount, smoke: smokeCount };
 	for ( let i = 0; i < n; i ++ ) order[ i ] = i;
 	order.subarray( 0, n ).sort( byDepth );
 	const A = fx.arrays;
@@ -380,6 +450,7 @@ export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 	}
 	fx.geometry.instanceCount = n;
 	for ( const a of instanced ) a.needsUpdate = true;
+	fx.mesh.material.uniforms.uTime.value = time;
 	if ( viewSize ) fx.mesh.material.uniforms.uViewport.value.set( viewSize[ 0 ], viewSize[ 1 ] );
 	if ( n === 0 ) group.visible = false;
 
@@ -388,8 +459,9 @@ export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 // Diagnostic read-only views for tests and the browser trial.
 export function R_ShotgunSnapshot() {
 
-	return { pellets: pellets.length, bubbles: bubbles.length, drawn: { ...drawn }, instances: fx?.geometry.instanceCount ?? 0, visible: group?.visible ?? false, group: group !== null };
+	return { pellets: pellets.length, bubbles: bubbles.length, smoke: smoke.length, drawn: { ...drawn }, instances: fx?.geometry.instanceCount ?? 0, visible: group?.visible ?? false, group: group !== null };
 
 }
 export const R_ShotgunPellets = () => pellets;
 export const R_ShotgunBubbles = () => bubbles;
+export const R_ShotgunSmoke = () => smoke;

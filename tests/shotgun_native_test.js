@@ -133,6 +133,7 @@ Deno.test('end to end: a real blast becomes pellets on the next frame, once, and
  sgfx.R_ShotgunSetup({scene,muzzles:n=>Array.from({length:n},(_,i)=>[p.v.origin[0]+20,p.v.origin[1]+i*6,p.v.origin[2]+20])});sgfx.R_ShotgunClear();sgfx.r_shotgunfx.value=1;
  equip(p,2,50);native(p,'W_Attack');
  sgfx.R_ShotgunFrame(1,eye,fwd,view);same(sgfx.R_ShotgunSnapshot().pellets,14,'the real super shotgun blast: fourteen pellets on the next frame');
+ same(sgfx.R_ShotgunSmoke().length,6,'and its muzzle smoke: three wisps at each of the two barrels');
  sgfx.R_ShotgunFrame(1.01,eye,fwd,view);same(sgfx.R_ShotgunSnapshot().pellets,14,'and not drawn twice');
  sgfx.R_ShotgunClear();
  const soldier=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='monster_army');soldier.v.enemy=progs.EDICT_TO_PROG(p);p.v.origin=[soldier.v.origin[0]+160,soldier.v.origin[1],soldier.v.origin[2]];SV_LinkEdict(p,false);
