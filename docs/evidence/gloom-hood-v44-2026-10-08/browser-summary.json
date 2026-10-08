@@ -1,0 +1,33 @@
+{
+  "method": "Observed actual browser DOM receipts and screenshots from cold native startup; no timer overrides. Full source/native tests are in tests.txt.",
+  "status": {
+    "state": "ready",
+    "version": "4.4.0",
+    "assets": 285,
+    "loadedImages": 270,
+    "errors": []
+  },
+  "observed": {
+    "periodicBlink": true,
+    "quadPoweredBlinks": 0,
+    "nativeSuitOverlay": true,
+    "waterStageFull": 10,
+    "waterOpacity": 50,
+    "surfaceWaterStage": 0,
+    "updatedBlood": true,
+    "death": {
+      "expression": "focused_determined",
+      "eyeState": "dead",
+      "healthPercent": 0
+    },
+    "respawn": {
+      "healthPercent": 100,
+      "eyeState": "open",
+      "periodicBlinkResumed": true
+    }
+  },
+  "glError": 0,
+  "runtimeErrors": [],
+  "gameTabClosed": true,
+  "limits": "Player staged/protected for pickup inspection. Native damage and exact150ms boundaries are tested separately; screenshots/DOM samples are frame-limited."
+}

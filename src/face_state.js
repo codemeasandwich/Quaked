@@ -19,6 +19,8 @@ export class FaceState {
 		this.attackStart = null; this.attackUntil = this.focusUntil = this.idleBlockedUntil = -Infinity;
 		this.wasAttacking = false; this.dead = false; this.glancePose = 2; this.glanceUntil = -Infinity;
 		this.nextGlance = time + 1.5 + this.random() * 1.5;
+		this.blinkUntil=-Infinity;this.blinkBlocked=false;
+		this.nextBlink=time+3+this.random()*3;
 	}
 	_clock( time ) { if ( time < this.lastTime ) this.reset( time ); this.lastTime = time; }
 	life( health, time ) {
@@ -48,6 +50,13 @@ export class FaceState {
 		this.attackUntil = time + Math.max( .05, Math.min( 2, cadence ) ) + .12;
 	}
 	_target( pose, time ) { if ( pose !== this.targetPose ) { this.targetPose = pose; this.stepTime = time; } }
+	_eyes(time,powered) {
+		if(this.dead){this.blinkUntil=-Infinity;this.nextBlink=Infinity;return 'dead';}
+		if(powered){this.blinkBlocked=true;this.blinkUntil=-Infinity;this.nextBlink=Infinity;return 'open';}
+		if(this.blinkBlocked){this.blinkBlocked=false;this.nextBlink=time+3+this.random()*3;}
+		if(time>=this.nextBlink){this.blinkUntil=time+.15;this.nextBlink=time+3+this.random()*3;}
+		return time<this.blinkUntil-1e-9?'blink':'open';
+	}
 	frame( { time, health = 100, attacking = false, strength = false, invulnerability = false, invisibility = false } ) {
 		this.life( health, time );
 		const active = ! this.dead && attacking && time <= this.attackUntil;
@@ -80,10 +89,10 @@ export class FaceState {
 				this.pose += Math.sign( this.targetPose - this.pose ) * count; this.stepTime = time;
 			}
 		}
-		const expression = this.dead || time < this.shockUntil ? 'shocked' : time < this.painUntil ? 'pain' :
+		const expression = this.dead ? 'focused_determined' : time < this.shockUntil ? 'shocked' : time < this.painUntil ? 'pain' :
 			time < this.grinUntil ? 'mischievous_excited' : active && this.attackStart !== null && time - this.attackStart >= 2 - 1e-9 || time < this.focusUntil ? 'focused_determined' : 'normal';
 		const healthPercent = Math.max( 0, Math.min( 100, Math.round( Number.isFinite( health ) ? health : 100 ) ) );
-		return { look: FACE_LOOKS[ this.pose ], target: FACE_LOOKS[ this.targetPose ], expression,
+		return { look: FACE_LOOKS[ this.pose ], target: FACE_LOOKS[ this.targetPose ], expression,eyeState:this._eyes(time,strength||invulnerability),
 			health: faceHealthStage( healthPercent ), healthPercent, strength, invulnerability, invisibility, dead: this.dead };
 	}
 }

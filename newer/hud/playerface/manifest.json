@@ -1,6 +1,6 @@
 {
   "name": "Player face layers",
-  "version": "4.1.0",
+  "version": "4.4.0",
   "cell_size": 96,
   "sampling": "nearest",
   "registration_status": "reviewed",
@@ -2083,6 +2083,366 @@
       "rows": 1,
       "cell_width": 96,
       "cell_height": 96
+    },
+    "closure_blink_normal_left": {
+      "file": "source/eye-closure/closure_blink_normal_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_normal_front": {
+      "file": "source/eye-closure/closure_blink_normal_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_normal_right": {
+      "file": "source/eye-closure/closure_blink_normal_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_pain_left": {
+      "file": "source/eye-closure/closure_blink_pain_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_pain_front": {
+      "file": "source/eye-closure/closure_blink_pain_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_pain_right": {
+      "file": "source/eye-closure/closure_blink_pain_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_mischievous_excited_left": {
+      "file": "source/eye-closure/closure_blink_mischievous_excited_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_mischievous_excited_front": {
+      "file": "source/eye-closure/closure_blink_mischievous_excited_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_mischievous_excited_right": {
+      "file": "source/eye-closure/closure_blink_mischievous_excited_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_shocked_left": {
+      "file": "source/eye-closure/closure_blink_shocked_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_shocked_front": {
+      "file": "source/eye-closure/closure_blink_shocked_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_shocked_right": {
+      "file": "source/eye-closure/closure_blink_shocked_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_focused_determined_left": {
+      "file": "source/eye-closure/closure_blink_focused_determined_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_focused_determined_front": {
+      "file": "source/eye-closure/closure_blink_focused_determined_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_blink_focused_determined_right": {
+      "file": "source/eye-closure/closure_blink_focused_determined_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_normal_left": {
+      "file": "source/eye-closure/closure_dead_normal_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_normal_front": {
+      "file": "source/eye-closure/closure_dead_normal_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_normal_right": {
+      "file": "source/eye-closure/closure_dead_normal_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_pain_left": {
+      "file": "source/eye-closure/closure_dead_pain_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_pain_front": {
+      "file": "source/eye-closure/closure_dead_pain_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_pain_right": {
+      "file": "source/eye-closure/closure_dead_pain_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_mischievous_excited_left": {
+      "file": "source/eye-closure/closure_dead_mischievous_excited_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_mischievous_excited_front": {
+      "file": "source/eye-closure/closure_dead_mischievous_excited_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_mischievous_excited_right": {
+      "file": "source/eye-closure/closure_dead_mischievous_excited_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_shocked_left": {
+      "file": "source/eye-closure/closure_dead_shocked_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_shocked_front": {
+      "file": "source/eye-closure/closure_dead_shocked_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_shocked_right": {
+      "file": "source/eye-closure/closure_dead_shocked_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_focused_determined_left": {
+      "file": "source/eye-closure/closure_dead_focused_determined_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_focused_determined_front": {
+      "file": "source/eye-closure/closure_dead_focused_determined_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "closure_dead_focused_determined_right": {
+      "file": "source/eye-closure/closure_dead_focused_determined_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "equipment_diving_left": {
+      "file": "source/diving-suit/equipment_diving_left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "equipment_diving_front": {
+      "file": "source/diving-suit/equipment_diving_front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "equipment_diving_right": {
+      "file": "source/diving-suit/equipment_diving_right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_shared_atlas": {
+      "file": "assets/water-shared-atlas-96.png",
+      "width": 480,
+      "height": 192,
+      "columns": 5,
+      "rows": 2,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_mask_helmet_left": {
+      "file": "assets/water-mask-helmet-left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_mask_diving_left": {
+      "file": "assets/water-mask-diving-left.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_mask_helmet_front": {
+      "file": "assets/water-mask-helmet-front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_mask_diving_front": {
+      "file": "assets/water-mask-diving-front.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_mask_helmet_right": {
+      "file": "assets/water-mask-helmet-right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
+    },
+    "water_mask_diving_right": {
+      "file": "assets/water-mask-diving-right.png",
+      "width": 96,
+      "height": 96,
+      "columns": 1,
+      "rows": 1,
+      "cell_width": 96,
+      "cell_height": 96
     }
   },
   "poses": [
@@ -2155,7 +2515,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_left"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_normal_left"
+        },
+        "dead": {
+          "asset": "closure_dead_normal_left"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "normal_eyes_left",
@@ -2295,7 +2669,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_normal_front"
+        },
+        "dead": {
+          "asset": "closure_dead_normal_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "normal_front",
@@ -2435,7 +2823,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_normal_front"
+        },
+        "dead": {
+          "asset": "closure_dead_normal_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "normal_eyes_right",
@@ -2575,7 +2977,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_normal_front"
+        },
+        "dead": {
+          "asset": "closure_dead_normal_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "normal_head_right",
@@ -2646,7 +3062,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_right"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_normal_right"
+        },
+        "dead": {
+          "asset": "closure_dead_normal_right"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "pain_head_left",
@@ -2717,7 +3147,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_left"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_pain_left"
+        },
+        "dead": {
+          "asset": "closure_dead_pain_left"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "pain_eyes_left",
@@ -2857,7 +3301,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_pain_front"
+        },
+        "dead": {
+          "asset": "closure_dead_pain_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "pain_front",
@@ -2997,7 +3455,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_pain_front"
+        },
+        "dead": {
+          "asset": "closure_dead_pain_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "pain_eyes_right",
@@ -3137,7 +3609,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_pain_front"
+        },
+        "dead": {
+          "asset": "closure_dead_pain_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "pain_head_right",
@@ -3208,7 +3694,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_right"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_pain_right"
+        },
+        "dead": {
+          "asset": "closure_dead_pain_right"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "mischievous_excited_head_left",
@@ -3356,7 +3856,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_left"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_mischievous_excited_left"
+        },
+        "dead": {
+          "asset": "closure_dead_mischievous_excited_left"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "mischievous_excited_eyes_left",
@@ -3512,7 +4026,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_mischievous_excited_front"
+        },
+        "dead": {
+          "asset": "closure_dead_mischievous_excited_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "mischievous_excited_front",
@@ -3668,7 +4196,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_mischievous_excited_front"
+        },
+        "dead": {
+          "asset": "closure_dead_mischievous_excited_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "mischievous_excited_eyes_right",
@@ -3824,7 +4366,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_mischievous_excited_front"
+        },
+        "dead": {
+          "asset": "closure_dead_mischievous_excited_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "mischievous_excited_head_right",
@@ -3976,7 +4532,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_right"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_mischievous_excited_right"
+        },
+        "dead": {
+          "asset": "closure_dead_mischievous_excited_right"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "shocked_head_left",
@@ -4132,7 +4702,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_left"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_shocked_left"
+        },
+        "dead": {
+          "asset": "closure_dead_shocked_left"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "shocked_eyes_left",
@@ -4296,7 +4880,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_shocked_front"
+        },
+        "dead": {
+          "asset": "closure_dead_shocked_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "shocked_front",
@@ -4460,7 +5058,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_shocked_front"
+        },
+        "dead": {
+          "asset": "closure_dead_shocked_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "shocked_eyes_right",
@@ -4624,7 +5236,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_shocked_front"
+        },
+        "dead": {
+          "asset": "closure_dead_shocked_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "shocked_head_right",
@@ -4784,7 +5410,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_right"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_shocked_right"
+        },
+        "dead": {
+          "asset": "closure_dead_shocked_right"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "focused_determined_head_left",
@@ -4932,7 +5572,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_left"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_focused_determined_left"
+        },
+        "dead": {
+          "asset": "closure_dead_focused_determined_left"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "focused_determined_eyes_left",
@@ -5080,7 +5734,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_focused_determined_front"
+        },
+        "dead": {
+          "asset": "closure_dead_focused_determined_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "focused_determined_front",
@@ -5228,7 +5896,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_focused_determined_front"
+        },
+        "dead": {
+          "asset": "closure_dead_focused_determined_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "focused_determined_eyes_right",
@@ -5376,7 +6058,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_front"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_focused_determined_front"
+        },
+        "dead": {
+          "asset": "closure_dead_focused_determined_front"
+        }
+      },
+      "closure_registration": "final_raster"
     },
     {
       "id": "focused_determined_head_right",
@@ -5524,7 +6220,21 @@
       ],
       "expression_support_polygon": null,
       "blood_registration": "fitted_raster",
-      "power_registration": "final_raster"
+      "power_registration": "final_raster",
+      "equipment_layers": {
+        "diving_suit": {
+          "asset": "equipment_diving_right"
+        }
+      },
+      "closure_layers": {
+        "blink": {
+          "asset": "closure_blink_focused_determined_right"
+        },
+        "dead": {
+          "asset": "closure_dead_focused_determined_right"
+        }
+      },
+      "closure_registration": "final_raster"
     }
   ],
   "assets": [
@@ -9254,6 +9964,590 @@
       "reference_pose": "focused_determined_head_right"
     },
     {
+      "id": "closure_blink_normal_left",
+      "kind": "closure",
+      "source": "closure_blink_normal_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_head_left"
+    },
+    {
+      "id": "closure_blink_normal_front",
+      "kind": "closure",
+      "source": "closure_blink_normal_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_front"
+    },
+    {
+      "id": "closure_blink_normal_right",
+      "kind": "closure",
+      "source": "closure_blink_normal_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_head_right"
+    },
+    {
+      "id": "closure_blink_pain_left",
+      "kind": "closure",
+      "source": "closure_blink_pain_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "pain_head_left"
+    },
+    {
+      "id": "closure_blink_pain_front",
+      "kind": "closure",
+      "source": "closure_blink_pain_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "pain_front"
+    },
+    {
+      "id": "closure_blink_pain_right",
+      "kind": "closure",
+      "source": "closure_blink_pain_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "pain_head_right"
+    },
+    {
+      "id": "closure_blink_mischievous_excited_left",
+      "kind": "closure",
+      "source": "closure_blink_mischievous_excited_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "mischievous_excited_head_left"
+    },
+    {
+      "id": "closure_blink_mischievous_excited_front",
+      "kind": "closure",
+      "source": "closure_blink_mischievous_excited_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "mischievous_excited_front"
+    },
+    {
+      "id": "closure_blink_mischievous_excited_right",
+      "kind": "closure",
+      "source": "closure_blink_mischievous_excited_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "mischievous_excited_head_right"
+    },
+    {
+      "id": "closure_blink_shocked_left",
+      "kind": "closure",
+      "source": "closure_blink_shocked_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "shocked_head_left"
+    },
+    {
+      "id": "closure_blink_shocked_front",
+      "kind": "closure",
+      "source": "closure_blink_shocked_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "shocked_front"
+    },
+    {
+      "id": "closure_blink_shocked_right",
+      "kind": "closure",
+      "source": "closure_blink_shocked_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "shocked_head_right"
+    },
+    {
+      "id": "closure_blink_focused_determined_left",
+      "kind": "closure",
+      "source": "closure_blink_focused_determined_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "focused_determined_head_left"
+    },
+    {
+      "id": "closure_blink_focused_determined_front",
+      "kind": "closure",
+      "source": "closure_blink_focused_determined_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "focused_determined_front"
+    },
+    {
+      "id": "closure_blink_focused_determined_right",
+      "kind": "closure",
+      "source": "closure_blink_focused_determined_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "focused_determined_head_right"
+    },
+    {
+      "id": "closure_dead_normal_left",
+      "kind": "closure",
+      "source": "closure_dead_normal_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_head_left"
+    },
+    {
+      "id": "closure_dead_normal_front",
+      "kind": "closure",
+      "source": "closure_dead_normal_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_front"
+    },
+    {
+      "id": "closure_dead_normal_right",
+      "kind": "closure",
+      "source": "closure_dead_normal_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_head_right"
+    },
+    {
+      "id": "closure_dead_pain_left",
+      "kind": "closure",
+      "source": "closure_dead_pain_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "pain_head_left"
+    },
+    {
+      "id": "closure_dead_pain_front",
+      "kind": "closure",
+      "source": "closure_dead_pain_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "pain_front"
+    },
+    {
+      "id": "closure_dead_pain_right",
+      "kind": "closure",
+      "source": "closure_dead_pain_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "pain_head_right"
+    },
+    {
+      "id": "closure_dead_mischievous_excited_left",
+      "kind": "closure",
+      "source": "closure_dead_mischievous_excited_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "mischievous_excited_head_left"
+    },
+    {
+      "id": "closure_dead_mischievous_excited_front",
+      "kind": "closure",
+      "source": "closure_dead_mischievous_excited_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "mischievous_excited_front"
+    },
+    {
+      "id": "closure_dead_mischievous_excited_right",
+      "kind": "closure",
+      "source": "closure_dead_mischievous_excited_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "mischievous_excited_head_right"
+    },
+    {
+      "id": "closure_dead_shocked_left",
+      "kind": "closure",
+      "source": "closure_dead_shocked_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "shocked_head_left"
+    },
+    {
+      "id": "closure_dead_shocked_front",
+      "kind": "closure",
+      "source": "closure_dead_shocked_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "shocked_front"
+    },
+    {
+      "id": "closure_dead_shocked_right",
+      "kind": "closure",
+      "source": "closure_dead_shocked_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "shocked_head_right"
+    },
+    {
+      "id": "closure_dead_focused_determined_left",
+      "kind": "closure",
+      "source": "closure_dead_focused_determined_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "focused_determined_head_left"
+    },
+    {
+      "id": "closure_dead_focused_determined_front",
+      "kind": "closure",
+      "source": "closure_dead_focused_determined_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "focused_determined_front"
+    },
+    {
+      "id": "closure_dead_focused_determined_right",
+      "kind": "closure",
+      "source": "closure_dead_focused_determined_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "focused_determined_head_right"
+    },
+    {
+      "id": "equipment_diving_left",
+      "kind": "equipment",
+      "source": "equipment_diving_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_head_left",
+      "visor_tint": {
+        "rgb": [
+          45,
+          75,
+          30
+        ],
+        "alpha": 153
+      },
+      "visor_glint": {
+        "rgb": [
+          205,
+          210,
+          180
+        ],
+        "alpha": 153,
+        "pixels": [
+          [
+            17,
+            29
+          ],
+          [
+            18,
+            29
+          ],
+          [
+            19,
+            29
+          ],
+          [
+            16,
+            30
+          ],
+          [
+            17,
+            30
+          ],
+          [
+            15,
+            31
+          ]
+        ]
+      }
+    },
+    {
+      "id": "equipment_diving_front",
+      "kind": "equipment",
+      "source": "equipment_diving_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_eyes_left",
+      "visor_tint": {
+        "rgb": [
+          45,
+          75,
+          30
+        ],
+        "alpha": 153
+      },
+      "visor_glint": {
+        "rgb": [
+          205,
+          210,
+          180
+        ],
+        "alpha": 153,
+        "pixels": [
+          [
+            19,
+            34
+          ],
+          [
+            18,
+            35
+          ],
+          [
+            17,
+            36
+          ],
+          [
+            17,
+            37
+          ],
+          [
+            16,
+            38
+          ]
+        ]
+      }
+    },
+    {
+      "id": "equipment_diving_right",
+      "kind": "equipment",
+      "source": "equipment_diving_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "reference_pose": "normal_head_right",
+      "visor_tint": {
+        "rgb": [
+          45,
+          75,
+          30
+        ],
+        "alpha": 153
+      },
+      "visor_glint": {
+        "rgb": [
+          205,
+          210,
+          180
+        ],
+        "alpha": 153,
+        "pixels": [
+          [
+            28,
+            30
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            27,
+            31
+          ],
+          [
+            28,
+            31
+          ],
+          [
+            26,
+            32
+          ]
+        ]
+      }
+    },
+    {
       "id": "gaze_normal_eyes_left",
       "kind": "gaze",
       "parts": [
@@ -9470,6 +10764,234 @@
       "placement": {},
       "available": true,
       "reference_pose": "normal_eyes_right"
+    },
+    {
+      "id": "water_010",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 1,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_020",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        96,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 2,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_030",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        192,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 3,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_040",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        288,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 4,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_050",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        384,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 5,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_060",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        0,
+        96,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 6,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_070",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        96,
+        96,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 7,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_080",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        192,
+        96,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 8,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_090",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        288,
+        96,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 9,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_100",
+      "kind": "water",
+      "source": "water_shared_atlas",
+      "source_rect": [
+        384,
+        96,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {},
+      "stage": 10,
+      "shared_across": "all expressions, looks, health, eye states and powers"
+    },
+    {
+      "id": "water_mask_helmet_left",
+      "kind": "water_mask",
+      "source": "water_mask_helmet_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {}
+    },
+    {
+      "id": "water_mask_diving_left",
+      "kind": "water_mask",
+      "source": "water_mask_diving_left",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {}
+    },
+    {
+      "id": "water_mask_helmet_front",
+      "kind": "water_mask",
+      "source": "water_mask_helmet_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {}
+    },
+    {
+      "id": "water_mask_diving_front",
+      "kind": "water_mask",
+      "source": "water_mask_diving_front",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {}
+    },
+    {
+      "id": "water_mask_helmet_right",
+      "kind": "water_mask",
+      "source": "water_mask_helmet_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {}
+    },
+    {
+      "id": "water_mask_diving_right",
+      "kind": "water_mask",
+      "source": "water_mask_diving_right",
+      "source_rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "available": true,
+      "placement": {}
     }
   ],
   "health": {
@@ -9563,15 +11085,18 @@
     "order": [
       "canonical normal head",
       "expression overlay",
-      "ordinary gaze patch",
+      "ordinary gaze patch if eyeState is open",
+      "blink or dead closure overlay if selected",
       "invisibility mask if active",
       "selected blood decal with mouth exclusions",
-      "selected power-eye effect"
+      "selected power-eye effect if eyeState is open",
+      "shared transparent water overlay, clipped to helmet/visor interior",
+      "equipment overlay if enabled"
     ],
     "blend": "source-over",
     "background": "transparent",
     "invisibility_preserves": "metal frame; face skin, ordinary eyes and eyebrows are covered by the mask",
-    "gaze_reuse": "Eye-only glances keep the same canonical head and expression overlay; only pixels inside the eye openings change.",
+    "gaze_reuse": "Eye-only glances keep the same canonical head and expression overlay; only pixels inside the eye openings change. Closed eyes suppress gaze patches and reuse the frontal closure.",
     "eye_choice": {
       "neither": "none",
       "strength": "purple",
@@ -9584,9 +11109,13 @@
     "power_selection": "Final eye PNGs are full native96 canvases. Draw the selected pose/color asset at(0,0) without legacy placement, clipping or recoloring.",
     "power_semantics": {
       "purple": "Strength: purple eye cores with purple wisps.",
-      "yellow": "Invulnerability: golden eye cores in both eyes, with no wisps.",
-      "mixed": "Strength and invulnerability: golden eye cores in both eyes with purple strength wisps."
-    }
+      "yellow": "Invulnerability: reflective gold eye openings with dark socket shadows that fade through alpha at the outer edge, no wisps.",
+      "mixed": "Strength and invulnerability: reflective gold eyes and dark socket shadows with purple strength wisps."
+    },
+    "eye_state_selection": "Open draws ordinary gaze and selected power eyes. Blink or dead draws the selected pose.closure_layers PNG at(0,0), after expression and before invisibility/blood; ordinary gaze, powered eye cores and wisps are suppressed. Power selections remain active and reappear when eyeState returns to open.",
+    "closure_reuse": "Each eye state has one fitted eyelid patch per expression and physical head direction. Eyes-left, front and eyes-right share the same frontal patch. Draw full native96 PNGs directly without clipping, transforms or trimming.",
+    "equipment_selection": "Diving suit is off by default. When enabled, draw the head-direction equipment PNG last, after eye closures or power eyes, at the shared origin. All frontal looks share one helmet. Dark olive-brown glass fills only the enclosed transparent visor cavity, with a small pale olive glint fitted to each head direction. Exports bake the tint and glint into the equipment PNG; draw this PNG once.",
+    "water_selection": "Select one shared W1\u2013W10 frame from air timer percentage, opacity-adjust its alpha and fit it into the selected helmet interior. W0 has no water. Draw after face decals/powers and before diving equipment."
   },
   "placement_schema": {
     "keys": "asset IDs",
@@ -9604,21 +11133,33 @@
     "expression": 12,
     "gaze": 8,
     "eyes": 75,
-    "planned_assets": 236,
-    "available_assets": 236,
+    "closure": 30,
+    "equipment": 3,
+    "planned_assets": 285,
+    "available_assets": 285,
     "poses": 25,
     "expressions": 5,
     "health_levels": 10,
-    "combinations": 2000,
-    "poses_with_all_layers": 25
+    "eye_state_count": 3,
+    "equipment_count": 2,
+    "combinations": 132000,
+    "poses_with_all_layers": 25,
+    "water": 10,
+    "water_mask": 6,
+    "water_state_count": 11
   },
   "notes": [
     "Shared full-cell origins; never independently trim layers.",
     "PNG exports contain no labels or preview backgrounds.",
-    "Expression and ordinary gaze are distinct transparent layers.",
+    "Expression, ordinary gaze and blink/dead closures are distinct transparent layers.",
     "Ten health stages span100% through0%; percentage changes within a band select the same sprite layers.",
-    "Final blood and power raster nodes are drawn directly; registration is already baked into their transparent canvases.",
-    "Registration status applies to the current build."
+    "Final blood, closure and power raster nodes are drawn directly; registration is already baked into their transparent canvases.",
+    "The 12,000 logical configurations include selected powers and glances that intentionally render alike while eyes are closed.",
+    "Registration status applies to the current build.",
+    "V4.4.0 adds a ten-frame reusable water material plus a clear state, not new face portraits.",
+    "The 132,000 logical configurations exclude the continuous water-opacity control and percentage changes within each ten-percent band.",
+    "Builder opens with 50% air used for a visible preview; water omitted by a renderComposite caller means dry.",
+    "Original face, blood, expression, power, eye-closure and equipment source pixels are unchanged."
   ],
   "expressions": [
     "normal",
@@ -9637,18 +11178,206 @@
     },
     "yellow": {
       "name": "Invulnerability",
-      "label": "Golden eyes",
+      "label": "Metallic gold eyes + dark sockets",
       "eye_core_color": "golden",
       "wisp_color": null,
-      "applies_to": "both_eyes"
+      "applies_to": "both_eyes",
+      "eye_material": "metallic_gold_eye_surface",
+      "socket_shadow": "dark_charcoal_plum_brown"
     },
     "mixed": {
       "name": "Strength + invulnerability",
-      "label": "Golden eyes + purple wisps",
+      "label": "Gold eyes + purple wisps",
       "eye_core_color": "golden",
       "wisp_color": "purple",
-      "applies_to": "both_eyes"
+      "applies_to": "both_eyes",
+      "eye_material": "metallic_gold_eye_surface",
+      "socket_shadow": "dark_charcoal_plum_brown"
     }
+  },
+  "equipment_modes": {
+    "none": {
+      "label": "None",
+      "divingSuit": false
+    },
+    "diving_suit": {
+      "label": "Diving suit",
+      "divingSuit": true,
+      "state_key": "divingSuit",
+      "default": false,
+      "composition": "after_eyes",
+      "by_head_direction": {
+        "left": {
+          "asset": "equipment_diving_left"
+        },
+        "front": {
+          "asset": "equipment_diving_front"
+        },
+        "right": {
+          "asset": "equipment_diving_right"
+        }
+      },
+      "visor_tint": {
+        "rgb": [
+          45,
+          75,
+          30
+        ],
+        "alpha": 153
+      },
+      "visor_tint_mask": "enclosed_alpha_zero_4_connected",
+      "visor_tint_baked_in_exports": true,
+      "visor_glints_by_head_direction": {
+        "left": {
+          "rgb": [
+            205,
+            210,
+            180
+          ],
+          "alpha": 153,
+          "pixels": [
+            [
+              17,
+              29
+            ],
+            [
+              18,
+              29
+            ],
+            [
+              19,
+              29
+            ],
+            [
+              16,
+              30
+            ],
+            [
+              17,
+              30
+            ],
+            [
+              15,
+              31
+            ]
+          ]
+        },
+        "front": {
+          "rgb": [
+            205,
+            210,
+            180
+          ],
+          "alpha": 153,
+          "pixels": [
+            [
+              19,
+              34
+            ],
+            [
+              18,
+              35
+            ],
+            [
+              17,
+              36
+            ],
+            [
+              17,
+              37
+            ],
+            [
+              16,
+              38
+            ]
+          ]
+        },
+        "right": {
+          "rgb": [
+            205,
+            210,
+            180
+          ],
+          "alpha": 153,
+          "pixels": [
+            [
+              28,
+              30
+            ],
+            [
+              29,
+              30
+            ],
+            [
+              30,
+              30
+            ],
+            [
+              27,
+              31
+            ],
+            [
+              28,
+              31
+            ],
+            [
+              26,
+              32
+            ]
+          ]
+        }
+      },
+      "visor_glint_mask": "enclosed_alpha_zero_4_connected",
+      "visor_glint_baked_in_exports": true
+    }
+  },
+  "equipment_count": 2,
+  "eye_states": {
+    "open": {
+      "label": "Open",
+      "closure_layer": null,
+      "ordinary_gaze": true,
+      "power_eyes": true
+    },
+    "blink": {
+      "label": "Blink",
+      "closure_layer": "blink",
+      "ordinary_gaze": false,
+      "power_eyes": false,
+      "held_when_selected": true,
+      "preview_duration_ms": 150
+    },
+    "dead": {
+      "label": "Dead",
+      "closure_layer": "dead",
+      "ordinary_gaze": false,
+      "power_eyes": false,
+      "held_when_selected": true
+    }
+  },
+  "eye_state_count": 3,
+  "eye_state_control": {
+    "state_key": "eyeState",
+    "default": "open",
+    "order": [
+      "open",
+      "blink",
+      "dead"
+    ],
+    "invalid_value": "open",
+    "preview_blink_ms": 150,
+    "independent_of": [
+      "expression",
+      "look",
+      "health",
+      "healthPercent",
+      "invisibility",
+      "strength",
+      "invulnerability",
+      "divingSuit"
+    ],
+    "dead_selection": "Holds the dead eyelid layer; it does not change health or the selected expression.",
+    "preview_blink": "Briefly selects blink, then restores the previous eye state. Later explicit eye-state choices cancel the pending restoration; other settings are preserved."
   },
   "node_schema": {
     "asset": "reference to an exported reusable layer",
@@ -9657,5 +11386,252 @@
     "exclude_polygons": "final native canvas polygons removed from this node only",
     "source": "embedded source ID for raw raster parts",
     "unavailable": "true only while art or placement is pending"
+  },
+  "water": {
+    "levels": 10,
+    "clear_stage": 0,
+    "percent_key": "waterPercent",
+    "stage_setter": "waterStage",
+    "opacity_key": "waterOpacity",
+    "builder_default_percent": 50,
+    "missing_percent_default": 0,
+    "default_body_opacity": 50,
+    "threshold_percent": 100,
+    "percent_to_stage": "min(10, floor(clamp(waterPercent, 0, 100) / 10))",
+    "atlas_size": [
+      480,
+      192
+    ],
+    "cell_size": 96,
+    "columns": 5,
+    "rows": 2,
+    "frames": [
+      {
+        "stage": 1,
+        "air_used_percent": 10,
+        "asset": "water_010",
+        "rect": [
+          0,
+          0,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 2,
+        "air_used_percent": 20,
+        "asset": "water_020",
+        "rect": [
+          96,
+          0,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 3,
+        "air_used_percent": 30,
+        "asset": "water_030",
+        "rect": [
+          192,
+          0,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 4,
+        "air_used_percent": 40,
+        "asset": "water_040",
+        "rect": [
+          288,
+          0,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 5,
+        "air_used_percent": 50,
+        "asset": "water_050",
+        "rect": [
+          384,
+          0,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 6,
+        "air_used_percent": 60,
+        "asset": "water_060",
+        "rect": [
+          0,
+          96,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 7,
+        "air_used_percent": 70,
+        "asset": "water_070",
+        "rect": [
+          96,
+          96,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 8,
+        "air_used_percent": 80,
+        "asset": "water_080",
+        "rect": [
+          192,
+          96,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 9,
+        "air_used_percent": 90,
+        "asset": "water_090",
+        "rect": [
+          288,
+          96,
+          96,
+          96
+        ]
+      },
+      {
+        "stage": 10,
+        "air_used_percent": 100,
+        "asset": "water_100",
+        "rect": [
+          384,
+          96,
+          96,
+          96
+        ]
+      }
+    ],
+    "targets": {
+      "helmet_left": {
+        "mask_asset": "water_mask_helmet_left",
+        "rect": [
+          10,
+          16,
+          76,
+          75
+        ],
+        "mask_bounds": [
+          11,
+          17,
+          82,
+          89
+        ]
+      },
+      "diving_left": {
+        "mask_asset": "water_mask_diving_left",
+        "rect": [
+          11,
+          27,
+          67,
+          55
+        ],
+        "mask_bounds": [
+          11,
+          27,
+          78,
+          82
+        ]
+      },
+      "helmet_front": {
+        "mask_asset": "water_mask_helmet_front",
+        "rect": [
+          10,
+          16,
+          76,
+          75
+        ],
+        "mask_bounds": [
+          12,
+          18,
+          84,
+          90
+        ]
+      },
+      "diving_front": {
+        "mask_asset": "water_mask_diving_front",
+        "rect": [
+          14,
+          33,
+          68,
+          48
+        ],
+        "mask_bounds": [
+          14,
+          33,
+          82,
+          81
+        ]
+      },
+      "helmet_right": {
+        "mask_asset": "water_mask_helmet_right",
+        "rect": [
+          10,
+          16,
+          76,
+          75
+        ],
+        "mask_bounds": [
+          14,
+          18,
+          85,
+          89
+        ]
+      },
+      "diving_right": {
+        "mask_asset": "water_mask_diving_right",
+        "rect": [
+          23,
+          27,
+          64,
+          54
+        ],
+        "mask_bounds": [
+          23,
+          27,
+          87,
+          81
+        ]
+      }
+    },
+    "alpha": "straight RGBA; body 128/255 at 50%, source highlights up to 230/255",
+    "composition": "after power eyes, before optional diving equipment; destination-in helmet/visor interior mask",
+    "mask_independent_of": [
+      "expression",
+      "look eye glances",
+      "health",
+      "eyeState",
+      "power modes"
+    ],
+    "independent_of": [
+      "health",
+      "healthPercent",
+      "expression",
+      "look",
+      "eyeState",
+      "invisibility",
+      "strength",
+      "invulnerability"
+    ],
+    "timer_preview_seconds": 12,
+    "timer_preview_semantics": "0..100% in ten steps. Leaves the final state at 100%, never changes health or eye state. Manual water changes cancel preview.",
+    "source_cleaning": "Source crest/bubble highlights retained. All low-frequency portrait shading replaced with independent fluid color. Detached fringe removed.",
+    "full_stage": "All interior mask pixels covered at W10; water never paints the metal frame.",
+    "no_baked_face": true
   }
 }

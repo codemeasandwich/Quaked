@@ -2,15 +2,19 @@
 import { FaceState } from './face_state.js';
 import { cl, cls } from './client.js';
 import { in_attack } from './cl_input.js';
-import { sv } from './server.js';
+import { sv, MOVETYPE_NOCLIP } from './server.js';
+import { GetEdictFieldValue } from './pr_edict.js';
 import { SV_FaceDrain, SV_FaceLocalActive, SV_FaceReset } from './sv_faceevents.js';
-import { IT_AXE, IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, STAT_HEALTH, STAT_WEAPONFRAME } from './quakedef.js';
+import { IT_AXE, IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT, STAT_HEALTH, STAT_WEAPONFRAME } from './quakedef.js';
 const live = new FaceState(), demo = new FaceState();
 let liveWorld, demoWorld, lastFrame = -1, lastWeaponFrame = 0;
+let liveEdicts, demoFile;
+export function R_FaceGameReset(){live.reset();demo.reset();liveWorld=demoWorld=liveEdicts=demoFile=undefined;lastFrame=-1;lastWeaponFrame=0;}
 function controller( client = cl ) {
 	const playback = cls.demoplayback, state = playback ? demo : live;
-	if ( playback ? demoWorld !== client.worldmodel : liveWorld !== client.worldmodel ) {
+	if ( playback ? demoWorld !== client.worldmodel || demoFile!==cls.demofile : liveWorld !== client.worldmodel || liveEdicts!==sv.edicts ) {
 		state.reset( client.time ); if ( playback ) demoWorld = client.worldmodel; else liveWorld = client.worldmodel;
+		if(playback)demoFile=cls.demofile;else liveEdicts=sv.edicts;
 		lastFrame = -1; lastWeaponFrame = 0;
 	}
 	return state;
@@ -41,6 +45,20 @@ export function R_FaceHealthChanged( health ) {
 	if ( respawning && ! cls.demoplayback ) SV_FaceReset();
 }
 export function R_FaceShot( cadence = .6 ) { controller().shot( { time: cl.time, cadence } ); }
+
+// Stock native WaterMove refreshes air_finished=time+12 below waterlevel3;
+// CheckPowerups refreshes it while the suit timer is active. Read that clock,
+// never start a second HUD timer or infer head submersion from SU_INWATER.
+export function R_FaceWater(client=cl) {
+	const known=client===cl && !cls.demoplayback && SV_FaceLocalActive() && client.worldmodel===sv.worldmodel;
+	const p=known?sv.edicts[1]:null,field=p&&GetEdictFieldValue(p,'air_finished');
+	let waterPercent=0;
+	if(field && p.v.waterlevel===3 && p.v.health>0 && p.v.movetype!==MOVETYPE_NOCLIP) {
+		const air=field.accessor.getFloat(field.ofs);
+		if(Number.isFinite(air))waterPercent=Math.max(0,Math.min(100,(12-(air-sv.time))/12*100));
+	}
+	return {waterPercent,waterStage:Math.min(10,Math.floor(waterPercent/10)),waterOpacity:50,waterKnown:!!(known&&field)};
+}
 export function R_PlayerFaceFrame( client = cl ) {
 	const state = controller( client ), native = ! cls.demoplayback && SV_FaceLocalActive();
 	const shots = cls.demoplayback ? [] : SV_FaceDrain( 'shot' );
@@ -53,7 +71,7 @@ export function R_PlayerFaceFrame( client = cl ) {
 	const weaponFrame = client.stats[ STAT_WEAPONFRAME ];
 	if ( ! native && client.time !== lastFrame && weaponFrame > 0 && weaponFrame !== lastWeaponFrame && ! shots.length ) state.shot( { time: client.time, cadence: .6 } );
 	lastFrame = client.time; lastWeaponFrame = weaponFrame;
-	return state.frame( { time: client.time, health: client.stats[ STAT_HEALTH ],
+	return {...state.frame( { time: client.time, health: client.stats[ STAT_HEALTH ],
 		attacking: native ? Boolean( in_attack.state & 1 ) : cls.demoplayback ? weaponFrame > 0 : Boolean( in_attack.state & 1 ) || weaponFrame > 0,
-		strength: Boolean( client.items & IT_QUAD ), invulnerability: Boolean( client.items & IT_INVULNERABILITY ), invisibility: Boolean( client.items & IT_INVISIBILITY ) } );
+		strength: Boolean( client.items & IT_QUAD ), invulnerability: Boolean( client.items & IT_INVULNERABILITY ), invisibility: Boolean( client.items & IT_INVISIBILITY ) } ),divingSuit:Boolean(client.items&IT_SUIT),...R_FaceWater(client)};
 }

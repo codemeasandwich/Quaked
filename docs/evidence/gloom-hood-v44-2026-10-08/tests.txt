@@ -1,0 +1,803 @@
+PASS impact angle boundaries use five ordered poses and immediate expressions with adjacent-only reaction movement
+PASS two-hundred millisecond damage direction arbitration picks greatest damage and latest tie without delaying pain
+PASS direction holds one second; pain lasts point-two seconds and heavy shock uses actual health loss above twenty without small-hit refresh
+PASS idle glances are bounded eye-only events independent of movement and return through the front
+PASS focused firing requires two seconds of real fresh shot cadence, stops after point-three, and ignores attack without actual shots
+PASS reward grin lasts two seconds without recentering, powers coexist with each health band, and death freezes then respawn resets
+PASS reaction priorities override grin and focus while all expression deadlines continue independently
+PASS same-direction pellets do not restart adjacent steps and repeated rewards replace their deadline rather than queue
+PASS paused game time freezes reactions and pose progress; backward clocks reset old state safely
+PASS queued observations retain true impact windows and expired event deadlines without rewinding display time
+RESULT 10/10 passed (tests/face_state_test.js)
+PASS native damage packet uses impact-time predicted view orientation and immediate reaction, not later camera turns
+PASS actual clientdata and secret packets grin only for eligible post-signon pickups or discovery; ammo healing and routine kills do not
+PASS adapter requires genuine shot evidence and isolates demo reactions from the continuing live face
+PASS real clientdata death and respawn reset a hidden HUD before its next draw or damage event
+RESULT 4/4 passed (tests/face_game_test.js)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/quaddama.mdl...
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+meshing progs/g_shot.mdl...
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_NATIVE_DAMAGE {"a":[{"kind":"damage","time":1,"map":"e1m1","loss":10,"amount":10,"before":100,"after":90,"armorLoss":0,"source":[248,2392,48.03125],"origin":[480,-352,89],"viewAngles":[3,91,0]},{"kind":"damage","time":1,"map":"e1m1","loss":25,"amount":25,"before":120,"after":95,"armorLoss":0,"source":[248,2392,48.03125],"origin":[480,-352,89],"viewAngles":[3,91,0]}],"armor":{"kind":"damage","time":1,"map":"e1m1","loss":14,"amount":20,"before":95,"after":81,"armorLoss":6,"source":[248,2392,48.03125],"origin":[480,-352,89],"viewAngles":[3,91,0]}}
+PASS native paired damage events preserve individual loss through same-frame healing and capture impact context
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_NATIVE_SHOTS [{"kind":"shot","time":1,"map":"e1m1","weapon":4096,"cadence":0.5,"function":"player_axec1"},{"kind":"shot","time":2,"map":"e1m1","weapon":1,"cadence":0.5,"function":"W_FireShotgun"},{"kind":"shot","time":3,"map":"e1m1","weapon":2,"cadence":0.7,"function":"W_FireSuperShotgun"},{"kind":"shot","time":4,"map":"e1m1","weapon":4,"cadence":0.2,"function":"W_FireSpikes"},{"kind":"shot","time":5,"map":"e1m1","weapon":8,"cadence":0.2,"function":"W_FireSuperSpikes"},{"kind":"shot","time":6,"map":"e1m1","weapon":16,"cadence":0.6,"function":"W_FireGrenade"},{"kind":"shot","time":7,"map":"e1m1","weapon":32,"cadence":0.8,"function":"W_FireRocket"},{"kind":"shot","time":8,"map":"e1m1","weapon":64,"cadence":0.1,"function":"W_FireLightning"}]
+PASS actual native weapon discharge and axe swing events exclude dry and released fire and deduplicate fallback calls
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m2
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/flame.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+meshing progs/w_s_key.mdl...
+
+meshing progs/flame2.mdl...
+
+meshing progs/demon.mdl...
+
+meshing progs/h_demon.mdl...
+
+52 entities inhibited
+
+seamless: 1 exit(s) on e1m2
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS native event bridge excludes demo, remote and multiplayer and clears queued events on actual world reload
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_PUBLIC_ADAPTER_TIMING PASS
+PASS public face adapter keeps native impact intervals and releases focused attack tail despite a nonzero weapon frame
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_NATIVE_REWARD [{"kind":"reward","time":2,"map":"e1m1","power":"quad","entity":47}]
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual native powerup touch reports first pickup and active-power refresh exactly once without inventing dry repeated touches
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS public face adapter uses actual impact separation across separate native receipt batches
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS actual native reward expires while HUD is not sampled and cannot be restarted by deferred drain
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ was shot by a Grunt
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+-1
+ frags
+
+Client unconnected removed
+
+PASS actual native damage/clientdata death and respawn packets reset face and clear stale events without HUD draws
+RESULT 8/8 passed (tests/face_native_test.js)
+PASS HUD portrait: pending layered artwork preserves existing native fallback priorities and ignores obsolete kill grin state
+PASS HUD portrait: ready donor layers use the real Draw_Pic path at native24px while Classic and HUD-off retain original sprites
+PASS HUD portrait: failed optional combination load retains native FACE_INVUL1 pixels at native size
+PASS HUD portrait: restore public fixture globals
+RESULT 4/4 passed (tests/hud_face_combo_test.js)
+PASS real face manifest starts every unique donor image once and settles only after the complete bounded batch
+PASS failed or timed-out donor sources settle as fallback and late callbacks cannot resurrect incomplete portraits
+PASS stalled or invalid face manifests settle and late manifest completion cannot start an image wave
+RESULT 3/3 passed (tests/player_face_preload_test.js)
+PASS v4.4 periodic blink uses the complete 150 ms closure and bounded injected interval
+PASS v4.4 blink pause and clock reversal preserve timing without wall-clock callbacks
+PASS v4.4 Quad, Pentagram and their overlap cancel blinking and restart only after all expire
+PASS v4.4 death has priority over blink and stale powers until actual positive-health respawn
+RESULT 4/4 passed (tests/face_v44_state_test.js)
+Added packfile pak0.pak (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+NET_Init complete
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+meshing progs/player.mdl...
+
+meshing progs/eyes.mdl...
+
+meshing progs/h_player.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/v_axe.mdl...
+
+meshing progs/v_shot.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/bolt.mdl...
+
+meshing progs/bolt2.mdl...
+
+meshing progs/bolt3.mdl...
+
+meshing progs/lavaball.mdl...
+
+meshing progs/missile.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/spike.mdl...
+
+meshing progs/s_spike.mdl...
+
+meshing progs/backpack.mdl...
+
+meshing progs/zom_gib.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/armor.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/quaddama.mdl...
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+meshing progs/suit.mdl...
+
+meshing progs/g_shot.mdl...
+
+33 entities inhibited
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/g_light.mdl...
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+FACE_V44_NATIVE_AIR {"deadline":13,"submergedStages":11,"surface":[480,-352,89],"healthAfterNativeDrowning":96}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 actual BSP submersion follows native air deadline and only QC can cause drowning
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+unconnected
+ suicides
+
+FACE_V44_NATIVE_SUIT {"firstExpiry":37,"renewedExpiry":46,"airAfterExpiry":58.0099983215332}
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+-2
+ frags
+
+Client unconnected removed
+
+PASS v4.4 actual suit pickup renewal and expiry control equipment and refill native air underwater
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Saving game to face_v44_air...
+
+done.
+
+Loading game from face_v44_air...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Saving game to face_v44_suit...
+
+done.
+
+Loading game from face_v44_suit...
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 actual host save/load restores native air and active suit without a HUD timer sidecar
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 paused native host freezes air and unknown demo or remote state never borrows local air
+SpawnServer: e1m1
+
+Clearing memory
+
+Programs occupy 403K.
+
+33 entities inhibited
+
+Server spawned.
+
+Connecting to local...
+
+CL_EstablishConnection: connected to local
+
+Client LOCAL connected
+
+unconnected
+ entered the game
+
+unconnected entered the game
+
+Sending clc_disconnect
+
+unconnected
+ left the game with 
+0
+ frags
+
+Client unconnected removed
+
+PASS v4.4 public clear-client and demo-file changes discard an active blink even with a forward clock
+RESULT 5/5 passed (tests/face_v44_native_test.js)
+PASS v4.4 source identity manifest and all 271 PNG extractions are exact
+FACE_V44_LAYER_PARITY 285/285
+PASS all 285 source layers have identical availability and native-sized pixel composition
+FACE_V44_HEALTH_PARITY 750/750
+PASS all 25 poses and ten health stages match source across open blink dead and representative powers/equipment
+FACE_V44_POWER_PARITY 600/600
+PASS each pose preserves every invisibility and power combination with open blink and dead eyes
+FACE_V44_WATER_PARITY 2750/2750
+PASS all water stages and representative opacity values preserve source mask geometry and layer order across every pose
+FACE_V44_WATER_OVERLAY_PARITY 100/100 {"helmet_left_opacity50":{"interior":4121,"covered":4121,"exterior":5095,"bleed":0},"helmet_left_opacity100":{"interior":4121,"covered":4121,"exterior":5095,"bleed":0},"diving_left_opacity50":{"interior":3277,"covered":3277,"exterior":5939,"bleed":0},"diving_left_opacity100":{"interior":3277,"covered":3277,"exterior":5939,"bleed":0},"helmet_front_opacity50":{"interior":4094,"covered":4094,"exterior":5122,"bleed":0},"helmet_front_opacity100":{"interior":4094,"covered":4094,"exterior":5122,"bleed":0},"diving_front_opacity50":{"interior":3005,"covered":3005,"exterior":6211,"bleed":0},"diving_front_opacity100":{"interior":3005,"covered":3005,"exterior":6211,"bleed":0},"helmet_right_opacity50":{"interior":4125,"covered":4125,"exterior":5091,"bleed":0},"helmet_right_opacity100":{"interior":4125,"covered":4125,"exterior":5091,"bleed":0},"diving_right_opacity50":{"interior":3067,"covered":3067,"exterior":6149,"bleed":0},"diving_right_opacity100":{"interior":3067,"covered":3067,"exterior":6149,"bleed":0}}
+PASS W10 water-only output matches donor and fills each helmet or diving mask without exterior bleed
+PASS restore v4.4 composition test endpoints
+RESULT 7/7 passed (tests/face_v44_composition_test.js)
+PASS v4.4 preload starts every referenced source once and remains unready while the final mask is missing
+PASS missing water_shared_atlas settles fallback and late callbacks never cache incomplete water
+PASS missing water_mask_helmet_front settles fallback and late callbacks never cache incomplete water
+PASS v4.4 validator rejects malformed mandatory health eye power water and layer registrations
+PASS every canonical pose identity rejects renamed IDs or mismatched look expression and head direction before publishing
+RESULT 5/5 passed (tests/face_v44_readiness_test.js)
+Added packfile v44-real-startup (288 files)\n
+PASS mounting current startup invalidates stale face blobs and pins all 270 referenced images while other override precedence survives
+RESULT 1/1 passed (tests/face_v44_startup_test.js)
+Added packfile independent-startup-pack (288 files)\n
+PASS startup PACK contains exactly the287 manifest-referenced canonical HUD sources with every original byte and provenance hash intact
+Added packfile independent-startup-pack (288 files)\n
+PASS explicit full art pack retains priority over startup aliases and null reset invalidates only optional routing while loose fallback remains usable
+Added packfile independent-startup-pack (288 files)\n
+PASS malformed startup aliases are rejected atomically without replacing previously valid routing
+RESULT 3/3 passed (tests/startup_pack_test.js)
+TOTAL 54/54 passed

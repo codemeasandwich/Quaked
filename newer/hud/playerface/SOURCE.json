@@ -1,238 +1,1094 @@
 {
-  "source": "player-face-layers-v4.1.0.html",
-  "version": "4.1.0",
-  "sha256": "f35939bb527926e7b99444b66b5c3dc03e2ec4a2f1e5341dfc05c9592267b526",
+  "source": "player-face-layers-v4.4.0.html",
+  "sha256": "90c759c0051f2fd3dc19d752f24e220a39aece467f13aeff370605e871f073a3",
+  "version": "4.4.0",
+  "manifestNodes": 285,
+  "poses": 25,
   "images": {
-    "bases": "723645d6c28e106fdf07912c69704312e3f136ae825311d2f6b361a42396d5ce",
-    "effects": "d74d25e3c0592fb26899f9ec838d0eebe591699bc66c6c3b389258f278f2c81b",
-    "blood": "c6f84fe44efa0090907bd3fe376085bc33ac791e12cd40c1ab6368a8669e8216",
-    "expression_pain_left": "23b19ff2f4a77a8f357a8d21509315e3522be78de97eb863e2f7bd7f3fa34966",
-    "expression_pain_front": "c5aa73bf04815fffa085c782d1d35552d51ba29da9f455ee01617d679cfe59ce",
-    "expression_pain_right": "5f00f6343976ea8dd98bd5f0862138d02adcabe3b2ecb75a4a3001fa7ceb4bc3",
-    "expression_mischievous_excited_left": "d084e2656a080619a145ae998a7cc2413208d74449321e59d2c7e91bdb171f5f",
-    "expression_mischievous_excited_front": "2ec548c2e7f82eda34821686c3c4403680e9f9c476ad9c3557ee71d8a258ff19",
-    "expression_mischievous_excited_right": "7e81761831e3b845f50109e942a57be58d4f0e941e78151213ef9a099e83c0ea",
-    "expression_shocked_left": "bafdb4f447ea44ca344e980a3fa219d88a92878a330cc275d887fd8d309a43fe",
-    "expression_shocked_front": "adf30df40ca8d38e77ceaddef884585fe73e2449490b843a9def8deb63452df5",
-    "expression_shocked_right": "b09bd89ed9078d6cf5ac9f8b5785cb87b8a5bcaa3a2b60532cfac19d9a1fa89d",
-    "expression_focused_determined_left": "2bb75093c4baf9ad0934ef7f838aea079dbcddd547bdfa91f2bec2075f5bb3f3",
-    "expression_focused_determined_front": "cec9c4d371a7bc4103a815140f83beb5b41c84c2de2a5e7248e60f7770ddae36",
-    "expression_focused_determined_right": "5149d918531c2060db26f2455304f424f26f805655e722b3d5e5394cc3c60366",
-    "gaze_mischievous_excited_eyes_left": "442d6710b2a076d0dc64dcbce1b22eda02bd45d378cfa49692e545ffab7e3f88",
-    "gaze_mischievous_excited_eyes_right": "b44c672640f31bd4865407e9ac8177fdd917bc9a4f8c6bcc50da963df508e604",
-    "gaze_shocked_eyes_left": "05b0b5f9d8a614facf6c281e69852ea73f38097f64561a46d8b944c6b77b0964",
-    "gaze_shocked_eyes_right": "3b173485f896ccbbb86b5008e6a14f99f378dab11e35ea935ed7cd1ca6d73a2e",
-    "gaze_focused_determined_eyes_left": "c24b45454c73924af78f9482ecd36ddc51a6a862aaad68c515623818346d7b8c",
-    "gaze_focused_determined_eyes_right": "3f82938d840b10f95919e9524799585bb9ccb1de845bdb3630ea86f6ec977413",
-    "blood_h2_normal_left": "4c26edf39b8b6f08b225a2c19c43eca8e8bb4e841ff6ae260516a3f0434aa156",
-    "blood_h3_normal_left": "a7388eea545bb6a4b2d8eca05f2e04a9f7670a5a07cdec3e525bc4cf6597edc6",
-    "blood_h4_normal_left": "3f809045c32a48baee6af066afe1d152fdf0b4c475cdf089b47a65c1abca3e79",
-    "blood_h5_normal_left": "ac039684725401763ba8c8a81fd29adb9ded36161f5c75f29f56f4f702e4f786",
-    "blood_h6_normal_left": "d6e87e6c1e2042d6950b4d72e269a92928aea6451323bb12e06e32bc8a522025",
-    "blood_h7_normal_left": "ded20ecece078cef375d242605da296dad2c4dca77327c9b75e81574e846cf81",
-    "blood_h8_normal_left": "643c416b6d51e4a21f09237cd14a79279541c9e892e61f85c4742657e452a229",
-    "blood_h9_normal_left": "e303e12869477c570c2717babce5dc1c151dabddc4ba5a8f2215e04b9e897bdf",
-    "blood_h10_normal_left": "8d2699961cf5c98d5b96947e81de5d3464c02dcc77409ab5ec1fcfaaaf3db6b3",
-    "blood_h2_normal_front": "0f8a04f268bb5ad0a040f55e8e5b31b5ee50c1a172fbbbd39174b512816338fa",
-    "blood_h3_normal_front": "067d9491fce5f35a7aba997f63f8b4f940f115ecd72a2103242ea3e7780e3edd",
-    "blood_h4_normal_front": "63811fe9d81edea675f0b8ae2dbd3c100025660849ec9d69fcb55653f6853ff7",
-    "blood_h5_normal_front": "2583238ae94f8230d263d16dc8fe79cb201e38093804b43f413df281247ea32c",
-    "blood_h6_normal_front": "92e8047d39d201a351c55c1b0e21b1392c8083085dc9b206feb677113c9742a1",
-    "blood_h7_normal_front": "b43aae92d4ced62d843d9bb4fa229fd41b2e2c6dd6d6969edf536a185f63b670",
-    "blood_h8_normal_front": "2904f14fde0a777dfa11dc7411acd23daf7067cde9f4c347f7e949f5e365a6ab",
-    "blood_h9_normal_front": "8a833736732abe7a8113bf685168b492e3b5d6b058d7b287c07430df16ddc310",
-    "blood_h10_normal_front": "01258daa48ec2d3635e51639b4c89ae0563bc30ef594d1aadd13ef30d42319a9",
-    "blood_h2_normal_right": "d695969f0f1856ec777f7edbb8a1d68f54d54aade2713cbf664f69c575840c86",
-    "blood_h3_normal_right": "ee91011db32f4365638d48fb5204e88ecd0394b7427394330e92bbd9e07576de",
-    "blood_h4_normal_right": "7923aba9fd2e803a474d80c1f7095a3060770fe7d8efa3c64480700347c9ea00",
-    "blood_h5_normal_right": "1a6dcdf4d9a9697d85de70ea6e0b7b18a98594899a2de098d6f8a82332d82921",
-    "blood_h6_normal_right": "179916629dc3e967e3e319351a442fc2e6840db7fe92e7cb7c7ed01a41d64e45",
-    "blood_h7_normal_right": "6c8a071871ee49f932d55c6a347fd5108a8242f088442dc57787864c03940582",
-    "blood_h8_normal_right": "eb123e15f1f30870c2ad4ba67b9346393ed20dde42d5040f059149c264d5e9bc",
-    "blood_h9_normal_right": "93dc3839254c13dfa886816b9a0416a6ac37b0f74a0dfd71edbb6e787081d5b1",
-    "blood_h10_normal_right": "5f293a21ddd808fe3fa495b2293566c0c8d8c575a2d46b713d7bcc790e124f7f",
-    "blood_h2_pain_left": "4c26edf39b8b6f08b225a2c19c43eca8e8bb4e841ff6ae260516a3f0434aa156",
-    "blood_h3_pain_left": "98dc71eed51abba4bd253717c6fc858edabb1ac6f3072a2640242771db5f968e",
-    "blood_h4_pain_left": "2a9fafb501e07aae0d8bccfdaee759a18ba726c33745f3940acdd326fdd01535",
-    "blood_h5_pain_left": "547b45a558266e853bea4c88446eeaca87128e09ced48ebd9087e159a9595a4f",
-    "blood_h6_pain_left": "d2e2ce2681eaaca59cea4919e21ebe4c92b2a95b6fc0da3de6504f04c8f151e8",
-    "blood_h7_pain_left": "faa1eed8aa909d0ac9f6b204e75ee8781e9ee35cdacfba355816120c2a42e588",
-    "blood_h8_pain_left": "d6e39183e3e49dc7e41261ed8d49cf7572026d34ecd2f7a9c6621163dcb6ae44",
-    "blood_h9_pain_left": "a5768a8be0a904b2015b4fd8bfb9e174463693af4b6cfacff0e464acb9e76ab9",
-    "blood_h10_pain_left": "b28848eab7fe8749a0b0079f742db624488a4464cfa092003db6421c77520342",
-    "blood_h2_pain_front": "0f8a04f268bb5ad0a040f55e8e5b31b5ee50c1a172fbbbd39174b512816338fa",
-    "blood_h3_pain_front": "eef94abcab46a61e51014275af8d175269155b392a59c07754d423e3b151fc29",
-    "blood_h4_pain_front": "37f0cdde87e0bcab6c83d377f6098eb44e82b45c30f755e72082d9be559fbd4f",
-    "blood_h5_pain_front": "18e217807f65cde49774db224e45f78fb6c6141c02f8d058b45f90209194fa6b",
-    "blood_h6_pain_front": "4cbaff77f70b0f4da8339df2fb89928bebbffcbe331a82c4ef9e366712fad43b",
-    "blood_h7_pain_front": "4cdead42f457153a8d383f61ee9c0aa5d1a7e9a2d8ea584cb7133b0e66378dc9",
-    "blood_h8_pain_front": "3e4f86f587b3f164d4834900ee98553f14b072d6b2b923c39e2dbff43d981de2",
-    "blood_h9_pain_front": "27240607d4256cb189c9fd11aea53d1f2d771f0980398948e228cf527255262f",
-    "blood_h10_pain_front": "a0e1fb8a5ef859750918ccdb04e5a6889423037842a88aaaf7d94de7f79d696b",
-    "blood_h2_pain_right": "d695969f0f1856ec777f7edbb8a1d68f54d54aade2713cbf664f69c575840c86",
-    "blood_h3_pain_right": "30aba50ef18229168615f7d170d63d65617c8dc9a23691706f52e1ef1535ef29",
-    "blood_h4_pain_right": "9a9fe3273629b0f553f1c6abb919b1b087fb2d928485851d66ecc389772ab8fb",
-    "blood_h5_pain_right": "11f5c1127a9b1996355a8413985d99caff74cd7facdbd688273102e19583c5a9",
-    "blood_h6_pain_right": "5f9ce2b82cdc8be0a87701998e4a5e392d0139ba538c577dea2e1383033888e6",
-    "blood_h7_pain_right": "64b2a413e62d5d2856fb8553a65f8e3122d9aecb1dab7ea0e5e5ebdb41d97ed3",
-    "blood_h8_pain_right": "7fc0261f774c119617b1bcd9782989fcf95154aa1a20c91fd36a994f2ef71abf",
-    "blood_h9_pain_right": "5da295e95be41ce62ebc033bcbc31ec879f969dd33d5eb6236a0e7e32c98eea7",
-    "blood_h10_pain_right": "1c2551c95672839aa9b180ffaf98823c4134131dd1500ec15eb76195a941330f",
-    "blood_h2_mischievous_excited_left": "b831c7057ee980d0bc8608b746b5394e95ea57ff849da4bddd0f3452ac4d9a05",
-    "blood_h3_mischievous_excited_left": "739110a844b252306cb199c4bd73c20221be50769b7cab4251d8a26d8a76f6fe",
-    "blood_h4_mischievous_excited_left": "d2a5d85a4b9f1161613d2d85e548d50749c915e54c0797264a29190974332af3",
-    "blood_h5_mischievous_excited_left": "c05519f9d4302e6d80f8207d797b20e2dbf02c6a079901aa27798fcec229d80e",
-    "blood_h6_mischievous_excited_left": "86570322e2e3c1d3d15819d742552c7c41881f7f70868108ee900be5e6cc28dc",
-    "blood_h7_mischievous_excited_left": "85d0cc87d5ded1b41a4becb30c9b030d168e00c81a8b4163b8da971462d3bc45",
-    "blood_h8_mischievous_excited_left": "204396ddfca985d6d253f25a2f6912ab3de8b4f509c88a8e34b187e0f881c6d1",
-    "blood_h9_mischievous_excited_left": "447c942004e72acd9908f89bb903576a39599822ce28f23737ce6fa79ab56d78",
-    "blood_h10_mischievous_excited_left": "e8608c3fc22f67e5239d80a616107df7d374caf094980e0455f645290ae9f555",
-    "blood_h2_mischievous_excited_front": "c4dce13d5183650e551f4f44996241adb24f013b7498fc04acab16e3f0b66209",
-    "blood_h3_mischievous_excited_front": "fd86d7e052a6b20de954a5915bc2af77f8ac272c2d8c375ebe0262c1258584e0",
-    "blood_h4_mischievous_excited_front": "643b46b12b5718762090d8d4c5e872336c988eb14b3e887fd24b0369b2dee7f8",
-    "blood_h5_mischievous_excited_front": "5827084bad4966a8bfed47f36f4e11a956dfe10fe25ac36753f32f29962cfe70",
-    "blood_h6_mischievous_excited_front": "c2f2fca8ccff006d79f50a52e7f39ffb4b7f8634adc8f967f2e5e006c181028f",
-    "blood_h7_mischievous_excited_front": "0a2c71c47c6b0f38ebe587775bc427dab06459b2b88a5bb94fa42ed8d2ddf29d",
-    "blood_h8_mischievous_excited_front": "971360fda805cf7f2111a1df4ea5e8806a0eed68054b641db6040b0ac6d1fbd8",
-    "blood_h9_mischievous_excited_front": "76bb793fa413309cc09a3b6cf44ae7013f25391c4a2b3d853f0bb42237746603",
-    "blood_h10_mischievous_excited_front": "fb5c342ca6bfaf0efa6b835c009ae34d3468d9478f098aee763d04b6e58a2028",
-    "blood_h2_mischievous_excited_right": "dd99506b8a547370e20e478326bce5ee1be1973f9237b3246c55f8a3bb9eea7a",
-    "blood_h3_mischievous_excited_right": "ef1f3946dd49511b11fabf478f372700a1661e3055ac5384449d5157d4e8ee6a",
-    "blood_h4_mischievous_excited_right": "a3607ca6677ab547266d3439c0a6f56cabadd873b97f1b931f247a4a83d6530b",
-    "blood_h5_mischievous_excited_right": "f1b66571b9efdeb04bca7aebc506e96e6a2998bf5fffdce44ccba61eb0f68fc7",
-    "blood_h6_mischievous_excited_right": "f1f1ce6c727e6d2b8389c2f7cb81dd5818029aeda3c98d826f4a7324ebcbb156",
-    "blood_h7_mischievous_excited_right": "d4882624453380c0aa8fed94d13fa451d7c17177a34cae1126b243885ee03efc",
-    "blood_h8_mischievous_excited_right": "50c694b14ef855142ed5f362027386110572f8c9d736b98bff915a61a51bc340",
-    "blood_h9_mischievous_excited_right": "bafe56854241d03a226815b781def09fd2cb085385236ed1509fc17c081e667d",
-    "blood_h10_mischievous_excited_right": "7f7479803b95b5f8c16f579317995fa2297d2d47907fc4f3ceb2f330fc41a3e9",
-    "blood_h2_shocked_left": "7f678f86308ce14f731f8ff60dba67a1209eb6da753ae5c23f13258c1c756cd1",
-    "blood_h3_shocked_left": "141a7cbc60dd7988a30a2a6d3b9b1d15f780d0c2d0fef79a83100493c89ceb86",
-    "blood_h4_shocked_left": "2e7a9580400bdfe410263afff64baaf1ab7935ba273a8152f0dbda252a386a3f",
-    "blood_h5_shocked_left": "9f7981664211ff1bfba713cd2dc6fb9cfe0e6ad0896c3817f53cd6f7eb681447",
-    "blood_h6_shocked_left": "2da454bf871214797e3d08d5051c6e63667b119b7c5db8bacb42e358c59f83b3",
-    "blood_h7_shocked_left": "206f24bfacda8cc3d4d613c18df1aa6782a6d05cef42ab0cfb12501b62d2cb12",
-    "blood_h8_shocked_left": "530d8170121c436fe3ab10d6080c49cab1361646c80b73f5d6c12ea140f7c0ec",
-    "blood_h9_shocked_left": "2a7d78553e2ded4eba8890307daf9e683f7f40c2047959f6b67f51c878e3800e",
-    "blood_h10_shocked_left": "0b774a19d0c9660b595c2e4a6f22b20e53ac4f241b00d8b4b1a1ebaee00992c1",
-    "blood_h2_shocked_front": "6257859c407effe0fdcb9ec8c4f388811ae7c6d2bc1cb6ed0fc0e76b4ddba518",
-    "blood_h3_shocked_front": "f677e4c1f1b8c98e98d65b5c5a2bf2ca6d268faa21cfcfb318a7a976f808dc60",
-    "blood_h4_shocked_front": "4ad04ebe38a1078c0e5fe1e4e429e77f2381d9be77470f2db55ec3bf49be3f8f",
-    "blood_h5_shocked_front": "458d5f26039efb60ed067c83abc2d6485c1d8a9f94ae9cbf10854e97f4919bf1",
-    "blood_h6_shocked_front": "e51217a0be46755b5f560072d823b25b08ea464b725f6e2ad896b29c59d88102",
-    "blood_h7_shocked_front": "a4ec29bd7e98c453705acab8834ad73e8b1f5418d2877b381d9d3f1b9ff52e0e",
-    "blood_h8_shocked_front": "bd34e3abd21451b4def67639b7a64343cf796c03e15374ca3b1581d9e128c5ab",
-    "blood_h9_shocked_front": "1009cc21594aa91b8ca16473e13ce4b7f5283ac0c77311a1b0a81a2d982ef114",
-    "blood_h10_shocked_front": "90cc804ecbe209c6ae4208bee6d301366be0af902e5958c153b9e05cf18b3815",
-    "blood_h2_shocked_right": "5233bb1b5bf6426c9c8c7ebf8db3ac36ae796f9458932dee680530cf159ba5b4",
-    "blood_h3_shocked_right": "615eb797dae0b2e25b472c9a6c31cd818627327748e247d461f5611936b589c8",
-    "blood_h4_shocked_right": "6fc0d932ba5d1483c986ae22708d53d2dd949114c3a6e4ee332d42ca0df75809",
-    "blood_h5_shocked_right": "55f6c72e6aa84c7d773a789a7503be85c804265420944d646ad5d18980383c30",
-    "blood_h6_shocked_right": "cec03847ad1d3a8733916d7d34160e78e52d60513dc687d0c18237bb17cc9c4c",
-    "blood_h7_shocked_right": "3dda3f81acf6d14b2b48184b1584f7275a986461d8b5d21799007137ecc3eecb",
-    "blood_h8_shocked_right": "56edb673744a9d268299c6245bb55ba0baa3a72460bf8ddaa01c32e69a6d4ebe",
-    "blood_h9_shocked_right": "86e014de0ac4496f5f068362e951c7866ef413d99046d1a7a48f90bbab454b2c",
-    "blood_h10_shocked_right": "8542dd33cffa43228794d0f75b2768fda30a6f2f05db450b7eee4a5dc29f53b6",
-    "blood_h2_focused_determined_left": "d8745d3764ba0253f8ad01aed3ecd32f856e7a280fc163c2f7ada9df5db8bfd0",
-    "blood_h3_focused_determined_left": "342873537ce76a9bb6ba69c2005e97b403c5b231e1abc1d7c56a86a752b8b4b8",
-    "blood_h4_focused_determined_left": "33882bef3294402fd5ced6df09a3faffb064fc8d07939e0c0e30af33d7d9d434",
-    "blood_h5_focused_determined_left": "9263e14e055a0ebc4007b969706ab57273e4f74353238911ec92bc4d7d2b579e",
-    "blood_h6_focused_determined_left": "e12e75839ea99e57c0b4c571ce7ca62d7ab5f6469f44b525588a2414340111e6",
-    "blood_h7_focused_determined_left": "0ad150d58b0de23f182ccb9a98d9e136580ae5c018525dea7019fccb12894113",
-    "blood_h8_focused_determined_left": "0b9a0fc4ab5887c5a88565635f3d5e0a8776f3ed88814c74527198fff853d5ca",
-    "blood_h9_focused_determined_left": "bba57a68ededb42025b1580468e295d7e1192dd5645aab2b033e32ebb21c7980",
-    "blood_h10_focused_determined_left": "f47a9b0d191ae4c3b9b8c5ff4de3ee75e633b2284dcd404cfc2b3116abf37570",
-    "blood_h2_focused_determined_front": "8923805d59fad3bbfad27c1ebfd08ab5f5431a6fa17ae911b9ccfd7c25b70b16",
-    "blood_h3_focused_determined_front": "ddd5a4da3c8ec2a255b814be70cc4a7e820db51f61b16dc3743a645b3d10a33e",
-    "blood_h4_focused_determined_front": "f64017be870c47fb4d89799a4f68c471d7a73ff460103cc2fac4021eb8b58915",
-    "blood_h5_focused_determined_front": "bb698b4144a1734f1b891bfe599a3c5e0d52ad1672b0fb3126cf6e02372f6d34",
-    "blood_h6_focused_determined_front": "3a100ebcb5eedc4d83d760118d967376137607a332d131f2568edf375bddc280",
-    "blood_h7_focused_determined_front": "3b06a0c46c9d75580bb8a7a116ace487abf151914ee05cbe2690cbeccb41b9db",
-    "blood_h8_focused_determined_front": "3512e4488b096193bbcf7277a276f1999cf8a83365ca6aae6fb3f380224d65dc",
-    "blood_h9_focused_determined_front": "f861a3c8385d491b501bcc54f15fe7b948d2636fed14d142b5345353b85befd0",
-    "blood_h10_focused_determined_front": "c038d5f2f09d5e6fdf7945c7e791fdf8c504317cabf107408b816ae4b3db4699",
-    "blood_h2_focused_determined_right": "3a04fb9c1e154dbce3c9b44dd3e1249ad9126fefc6e7cffad2c3b7272544038a",
-    "blood_h3_focused_determined_right": "caa8b4292aa4d351dae0b40b10b3f69e46c60af6daa3cbbf23f0693a7feeee38",
-    "blood_h4_focused_determined_right": "7ce6df8a86030a91e0425eea3370625eb317c69d4b77979f8aa5529104215bce",
-    "blood_h5_focused_determined_right": "31632dba64c592d3ff065acb1e5d1e6a16ad28ff24c29923745a40372a041036",
-    "blood_h6_focused_determined_right": "ba50021fc36069a339e338bcfce7e41f5188c96bf9cd007b8667a9c921061504",
-    "blood_h7_focused_determined_right": "4f1107a6cf663eaffce3d9f43d67b8063e46926df88d806912c7abd927b088ac",
-    "blood_h8_focused_determined_right": "8c063bd96ca4e5ec49e4f17ace079979fa5bd85c9453f73249e64531c526c03c",
-    "blood_h9_focused_determined_right": "f36bea544c762e5a9400477f1d307e04a3ddd74e83373b1bfb2f486e049f074e",
-    "blood_h10_focused_determined_right": "7bbb929aacb58efd491369640e2efa19eb410a80dc9d14641cfc07c4aa89f5ff",
-    "eyes_wispy_purple_normal_head_left": "d02a594d404f6daf6a4ed38a4a235984651b46ed3c835800ad29539224d3f670",
-    "eyes_wispy_yellow_normal_head_left": "6f7321b6f3cf7d6185dfb156dead57e58a29ad58fcabe493dddd851ea41f2ccc",
-    "eyes_wispy_mixed_normal_head_left": "9438ecbc50ff4dea95935275f2acdf5682dc050f3b1dafd4da360895b3d38c41",
-    "eyes_wispy_purple_normal_eyes_left": "7b1a4c582910df44abdb0e924d16b2207abb110f11dca1d8624f65ae50be3ff0",
-    "eyes_wispy_yellow_normal_eyes_left": "3dd4a878e2db5f139668b92a5c3942040137074a034ba5b88704f4f971ba4750",
-    "eyes_wispy_mixed_normal_eyes_left": "8190d27aa446a2b9c5a1bfc8bc36852b2bb66dc19863f624c0e3d10cfe1c5db4",
-    "eyes_wispy_purple_normal_front": "c066b17367c9c31e8803e87c55dc0a55a0b9e565ff71b0d88d5c6a26cd992ea4",
-    "eyes_wispy_yellow_normal_front": "dae185667d09a92bf30ac30e3faee7ce27b78cd10823fff72a4e14ee256afa76",
-    "eyes_wispy_mixed_normal_front": "a6a696fbf312eb607d34cf82124d07dcf3440f9333483afd63464d249a33739e",
-    "eyes_wispy_purple_normal_eyes_right": "659cf76103d76d06c5307642c0567d4e9d3ff84fa3464cf4f4276e4bdfd6c0d8",
-    "eyes_wispy_yellow_normal_eyes_right": "014a015ea2d0ae46622b2ffe3609a8e05cb87450b187ee9e42727276d48c9213",
-    "eyes_wispy_mixed_normal_eyes_right": "a1853f38c17c4d4419a23788379e1a295319a00ae8320d680c94cec02de85014",
-    "eyes_wispy_purple_normal_head_right": "59d619200ac23c0e791e5fb01c3795c664f0e0ea3f1088dc0972df08950169c3",
-    "eyes_wispy_yellow_normal_head_right": "5a836bb0b6b3e8456bb33697ce46f6863ace45ce92d44f9618f6a79f8128e63a",
-    "eyes_wispy_mixed_normal_head_right": "e0c57ef992749598d0f94cc4dc906bb2dd3c89725824ff1385574d551d8b2d60",
-    "eyes_wispy_purple_pain_head_left": "d02a594d404f6daf6a4ed38a4a235984651b46ed3c835800ad29539224d3f670",
-    "eyes_wispy_yellow_pain_head_left": "6f7321b6f3cf7d6185dfb156dead57e58a29ad58fcabe493dddd851ea41f2ccc",
-    "eyes_wispy_mixed_pain_head_left": "9438ecbc50ff4dea95935275f2acdf5682dc050f3b1dafd4da360895b3d38c41",
-    "eyes_wispy_purple_pain_eyes_left": "7b1a4c582910df44abdb0e924d16b2207abb110f11dca1d8624f65ae50be3ff0",
-    "eyes_wispy_yellow_pain_eyes_left": "3dd4a878e2db5f139668b92a5c3942040137074a034ba5b88704f4f971ba4750",
-    "eyes_wispy_mixed_pain_eyes_left": "8190d27aa446a2b9c5a1bfc8bc36852b2bb66dc19863f624c0e3d10cfe1c5db4",
-    "eyes_wispy_purple_pain_front": "c066b17367c9c31e8803e87c55dc0a55a0b9e565ff71b0d88d5c6a26cd992ea4",
-    "eyes_wispy_yellow_pain_front": "dae185667d09a92bf30ac30e3faee7ce27b78cd10823fff72a4e14ee256afa76",
-    "eyes_wispy_mixed_pain_front": "a6a696fbf312eb607d34cf82124d07dcf3440f9333483afd63464d249a33739e",
-    "eyes_wispy_purple_pain_eyes_right": "659cf76103d76d06c5307642c0567d4e9d3ff84fa3464cf4f4276e4bdfd6c0d8",
-    "eyes_wispy_yellow_pain_eyes_right": "014a015ea2d0ae46622b2ffe3609a8e05cb87450b187ee9e42727276d48c9213",
-    "eyes_wispy_mixed_pain_eyes_right": "a1853f38c17c4d4419a23788379e1a295319a00ae8320d680c94cec02de85014",
-    "eyes_wispy_purple_pain_head_right": "59d619200ac23c0e791e5fb01c3795c664f0e0ea3f1088dc0972df08950169c3",
-    "eyes_wispy_yellow_pain_head_right": "5a836bb0b6b3e8456bb33697ce46f6863ace45ce92d44f9618f6a79f8128e63a",
-    "eyes_wispy_mixed_pain_head_right": "e0c57ef992749598d0f94cc4dc906bb2dd3c89725824ff1385574d551d8b2d60",
-    "eyes_wispy_purple_mischievous_excited_head_left": "2b29a4a312975bbcab6a44952214870bf87e767933b1405c5f01a99537f88cc0",
-    "eyes_wispy_yellow_mischievous_excited_head_left": "20b25e388cbdea556f63443108f24819eb87df48c2d3be279b18ae42a7fcaec2",
-    "eyes_wispy_mixed_mischievous_excited_head_left": "7bd02db7d7127034d4fae2c14c878060c4d5fcabf6cb5b17f0202f6c7d29373d",
-    "eyes_wispy_purple_mischievous_excited_eyes_left": "7416f70b03ad2fda398a9b816a0c599a5d8c46228fc1c5319e0ff56eb3c33c8a",
-    "eyes_wispy_yellow_mischievous_excited_eyes_left": "ef2efdf4da9d68ff82fb316141e4a8d5aa94e1cff6cde9aec473356e6652cb73",
-    "eyes_wispy_mixed_mischievous_excited_eyes_left": "cd19d8540d37946765c74eb6d2a27781b6c1c8daa6c99635c38c22d8e816e1a8",
-    "eyes_wispy_purple_mischievous_excited_front": "a7375618ee9e89c2de3d497e02d3baa87dd9837f68062161cef3a8c793ef8861",
-    "eyes_wispy_yellow_mischievous_excited_front": "f3ae305ab4fcc4c187eef232b6cc7e951846b0f748cbc6af7e220fd7d165d184",
-    "eyes_wispy_mixed_mischievous_excited_front": "7e0187c425b81d672d5ae7869fc2aed5d545a484693cf33ec59f023722b5929b",
-    "eyes_wispy_purple_mischievous_excited_eyes_right": "69f88b3197154417ff0ee5853780485a3b47a7a97ccf0316345818d68a49a6d5",
-    "eyes_wispy_yellow_mischievous_excited_eyes_right": "f28db32d8cd01d6de26225b241c7baace9c4cea0f399a53dcbf2410019610e91",
-    "eyes_wispy_mixed_mischievous_excited_eyes_right": "54dc97c8d25ab2d4f45201d2c1f4884b46864a0f2ed89fded7da781342334982",
-    "eyes_wispy_purple_mischievous_excited_head_right": "f3ef4b5a73715b0fa2e3b168d5d744823319e5561fa09a23f523f7fdeab929c2",
-    "eyes_wispy_yellow_mischievous_excited_head_right": "e1bded5190d91feb005d0f7926224b4e0d5e79b0b7d5ce0f9016b4fa650daab6",
-    "eyes_wispy_mixed_mischievous_excited_head_right": "740a642bb8b50f13324816c5d896ca2ba9b66f2edad7ff4979462922653b2ec0",
-    "eyes_wispy_purple_shocked_head_left": "e60c3fc99ccd4de63005531037caa0b3323be62eb69ef26df3dc8c50f6b10637",
-    "eyes_wispy_yellow_shocked_head_left": "056a52d0a017d3253acfa210aec68a31c45c5130e8e3aa422d41e30d6cec7495",
-    "eyes_wispy_mixed_shocked_head_left": "df90393f1d840de906d51d0a37ed6d6b34dc89f9c01ed5ed8193066c6e9949f6",
-    "eyes_wispy_purple_shocked_eyes_left": "9bdc53c2d74fd99667b14363fa3262354c9d755d97c85a6c36e799dd37d3d7e3",
-    "eyes_wispy_yellow_shocked_eyes_left": "4343149deec8c8f108770ed0a8ef020c4c2c0bf84be297f4980fb5b8aaa073a1",
-    "eyes_wispy_mixed_shocked_eyes_left": "baac36ed18e991da4b57203268eb8321cc5716cf002baeda103f9550954095a1",
-    "eyes_wispy_purple_shocked_front": "6797400c1bf0653ee2498f479367ed1a9465e0c3aa2b3fea8665e6e2568f5d62",
-    "eyes_wispy_yellow_shocked_front": "6e54b65b435447ec5b9e97f55ac7c77351fa7b652535b5d3a67981d7f3d7764a",
-    "eyes_wispy_mixed_shocked_front": "2c3881a42ffa5a417661b94f09d3318f3bfdb32632d9f1db24c9dcca8d6c6daa",
-    "eyes_wispy_purple_shocked_eyes_right": "8dd4a082c7febd9c53638d819ea0f954f7c952192dceb39bda93f165071c0d04",
-    "eyes_wispy_yellow_shocked_eyes_right": "46d80a38be919fc89beeaad7dce8bc4d61a04c38aedd81df1bd2fc58c63cb4b5",
-    "eyes_wispy_mixed_shocked_eyes_right": "053d554b536a3fac4476bf295894ca943a3ae0013640a28f0b480ff7193280a4",
-    "eyes_wispy_purple_shocked_head_right": "b3e92172db9fe01973c77401548d91283d7e46d1d47cffe2ca6698979f6c158c",
-    "eyes_wispy_yellow_shocked_head_right": "cf721479052676a87d40039c3d9771b77193dcafe452736235587bc2d009daf5",
-    "eyes_wispy_mixed_shocked_head_right": "a3f95ceeb93616b300ca0a784c1acb7f79c2b426d93ee5c61beeb8df2d284e89",
-    "eyes_wispy_purple_focused_determined_head_left": "af967535a93257530efd0a346a6f8e24648920cc105cca400d5af1909a8f77c4",
-    "eyes_wispy_yellow_focused_determined_head_left": "6d40ad98d3cfee17559b439216b80b2f0f806aff30d41cf0075e2f9e040ccbda",
-    "eyes_wispy_mixed_focused_determined_head_left": "4fb35aa8a69f4819f367c550f33a638171dd8668ed9073d29d6faf9fdc6e268f",
-    "eyes_wispy_purple_focused_determined_eyes_left": "75a6e942bb0f6347fe3e89e69878f70f991f1d904b6b01c2bb970f8c49c4f930",
-    "eyes_wispy_yellow_focused_determined_eyes_left": "dfd429c6274ae1d7a3274f67d775198bd3d394021fe34d9bfb1810ab9e0ce1fe",
-    "eyes_wispy_mixed_focused_determined_eyes_left": "7206a83884814105d6a23dd386e8c5f12afbe1e3d275e5a2e1715c429ce8629d",
-    "eyes_wispy_purple_focused_determined_front": "c41ad279a54d3bb43053c240739d5bb775725fad7b09fff958a6c506ae8a1e55",
-    "eyes_wispy_yellow_focused_determined_front": "7da89171f6e5f25fcc675c65e737addf60b7be61b894ea8d25b57adf99ded0d7",
-    "eyes_wispy_mixed_focused_determined_front": "e5dc2b2f9edac8dd0c5832a6c3f4305b6635663f9080a3b1f2604a897e69e12a",
-    "eyes_wispy_purple_focused_determined_eyes_right": "e586ab10b2884482c4131c051fe5684ab4d9cd8f58f16c7e357f98fd096d1da7",
-    "eyes_wispy_yellow_focused_determined_eyes_right": "904aa48884d02ce5659b1922b9a7cbc31248f14f3e8cde6134ccb6a6322d2bf5",
-    "eyes_wispy_mixed_focused_determined_eyes_right": "2062402ec0035bdeeff34a6ce824b642e853aa4a7135b377a2419d7d1c29e9fb",
-    "eyes_wispy_purple_focused_determined_head_right": "140ea62854f7cafa7f9825e4e6b90fb933b44bf152bdae69647024271f73c0c4",
-    "eyes_wispy_yellow_focused_determined_head_right": "776f2d0ddf0f3d97bb8836ee5b175d4f2e818a7047929be603c40698549ad4b5",
-    "eyes_wispy_mixed_focused_determined_head_right": "777265dfc2c01a4326c313d4744d5957794a34ad7001964d43c133cc7b8c078a"
-  }
+    "bases": {
+      "sha256": "723645d6c28e106fdf07912c69704312e3f136ae825311d2f6b361a42396d5ce",
+      "bytes": 1799761
+    },
+    "effects": {
+      "sha256": "d74d25e3c0592fb26899f9ec838d0eebe591699bc66c6c3b389258f278f2c81b",
+      "bytes": 1893058
+    },
+    "blood": {
+      "sha256": "c6f84fe44efa0090907bd3fe376085bc33ac791e12cd40c1ab6368a8669e8216",
+      "bytes": 1763076
+    },
+    "expression_pain_left": {
+      "sha256": "23b19ff2f4a77a8f357a8d21509315e3522be78de97eb863e2f7bd7f3fa34966",
+      "bytes": 2131
+    },
+    "expression_pain_front": {
+      "sha256": "c5aa73bf04815fffa085c782d1d35552d51ba29da9f455ee01617d679cfe59ce",
+      "bytes": 2298
+    },
+    "expression_pain_right": {
+      "sha256": "5f00f6343976ea8dd98bd5f0862138d02adcabe3b2ecb75a4a3001fa7ceb4bc3",
+      "bytes": 2143
+    },
+    "expression_mischievous_excited_left": {
+      "sha256": "d084e2656a080619a145ae998a7cc2413208d74449321e59d2c7e91bdb171f5f",
+      "bytes": 8368
+    },
+    "expression_mischievous_excited_front": {
+      "sha256": "2ec548c2e7f82eda34821686c3c4403680e9f9c476ad9c3557ee71d8a258ff19",
+      "bytes": 8425
+    },
+    "expression_mischievous_excited_right": {
+      "sha256": "7e81761831e3b845f50109e942a57be58d4f0e941e78151213ef9a099e83c0ea",
+      "bytes": 8381
+    },
+    "expression_shocked_left": {
+      "sha256": "bafdb4f447ea44ca344e980a3fa219d88a92878a330cc275d887fd8d309a43fe",
+      "bytes": 8377
+    },
+    "expression_shocked_front": {
+      "sha256": "adf30df40ca8d38e77ceaddef884585fe73e2449490b843a9def8deb63452df5",
+      "bytes": 8393
+    },
+    "expression_shocked_right": {
+      "sha256": "b09bd89ed9078d6cf5ac9f8b5785cb87b8a5bcaa3a2b60532cfac19d9a1fa89d",
+      "bytes": 8294
+    },
+    "expression_focused_determined_left": {
+      "sha256": "2bb75093c4baf9ad0934ef7f838aea079dbcddd547bdfa91f2bec2075f5bb3f3",
+      "bytes": 8166
+    },
+    "expression_focused_determined_front": {
+      "sha256": "cec9c4d371a7bc4103a815140f83beb5b41c84c2de2a5e7248e60f7770ddae36",
+      "bytes": 8185
+    },
+    "expression_focused_determined_right": {
+      "sha256": "5149d918531c2060db26f2455304f424f26f805655e722b3d5e5394cc3c60366",
+      "bytes": 8020
+    },
+    "gaze_mischievous_excited_eyes_left": {
+      "sha256": "442d6710b2a076d0dc64dcbce1b22eda02bd45d378cfa49692e545ffab7e3f88",
+      "bytes": 528
+    },
+    "gaze_mischievous_excited_eyes_right": {
+      "sha256": "b44c672640f31bd4865407e9ac8177fdd917bc9a4f8c6bcc50da963df508e604",
+      "bytes": 542
+    },
+    "gaze_shocked_eyes_left": {
+      "sha256": "05b0b5f9d8a614facf6c281e69852ea73f38097f64561a46d8b944c6b77b0964",
+      "bytes": 685
+    },
+    "gaze_shocked_eyes_right": {
+      "sha256": "3b173485f896ccbbb86b5008e6a14f99f378dab11e35ea935ed7cd1ca6d73a2e",
+      "bytes": 693
+    },
+    "gaze_focused_determined_eyes_left": {
+      "sha256": "c24b45454c73924af78f9482ecd36ddc51a6a862aaad68c515623818346d7b8c",
+      "bytes": 316
+    },
+    "gaze_focused_determined_eyes_right": {
+      "sha256": "3f82938d840b10f95919e9524799585bb9ccb1de845bdb3630ea86f6ec977413",
+      "bytes": 320
+    },
+    "blood_h2_normal_left": {
+      "sha256": "4c26edf39b8b6f08b225a2c19c43eca8e8bb4e841ff6ae260516a3f0434aa156",
+      "bytes": 849
+    },
+    "blood_h3_normal_left": {
+      "sha256": "a7388eea545bb6a4b2d8eca05f2e04a9f7670a5a07cdec3e525bc4cf6597edc6",
+      "bytes": 2490
+    },
+    "blood_h4_normal_left": {
+      "sha256": "3f809045c32a48baee6af066afe1d152fdf0b4c475cdf089b47a65c1abca3e79",
+      "bytes": 3274
+    },
+    "blood_h5_normal_left": {
+      "sha256": "ac039684725401763ba8c8a81fd29adb9ded36161f5c75f29f56f4f702e4f786",
+      "bytes": 5046
+    },
+    "blood_h6_normal_left": {
+      "sha256": "585d6221fc8dc267b842d74b4e98ee56fde3a5f75c7ec7ec6408de10ea0ee962",
+      "bytes": 6224
+    },
+    "blood_h7_normal_left": {
+      "sha256": "4d5800228ca76408416514993b65b083f6a7ac29f0bc311242f2e6b11d23ddd9",
+      "bytes": 6917
+    },
+    "blood_h8_normal_left": {
+      "sha256": "903e7a94a36fa34020026918ae7597b1eecfdb4161c4e7001c816693f30bc499",
+      "bytes": 7822
+    },
+    "blood_h9_normal_left": {
+      "sha256": "147153ccdfa87c2ddafa761fd078f13714f044c770932066798bf706d0daf217",
+      "bytes": 8121
+    },
+    "blood_h10_normal_left": {
+      "sha256": "d65974fdd5eccf414018e4cfe47b806f1d8b0f32cb10ce8a9d87471b6b5d492c",
+      "bytes": 8296
+    },
+    "blood_h2_normal_front": {
+      "sha256": "0f8a04f268bb5ad0a040f55e8e5b31b5ee50c1a172fbbbd39174b512816338fa",
+      "bytes": 961
+    },
+    "blood_h3_normal_front": {
+      "sha256": "067d9491fce5f35a7aba997f63f8b4f940f115ecd72a2103242ea3e7780e3edd",
+      "bytes": 2796
+    },
+    "blood_h4_normal_front": {
+      "sha256": "63811fe9d81edea675f0b8ae2dbd3c100025660849ec9d69fcb55653f6853ff7",
+      "bytes": 3647
+    },
+    "blood_h5_normal_front": {
+      "sha256": "2583238ae94f8230d263d16dc8fe79cb201e38093804b43f413df281247ea32c",
+      "bytes": 5568
+    },
+    "blood_h6_normal_front": {
+      "sha256": "0d4b5d8592cecdc56996515dcf89b895765bce5dede2d61c1f71c87930369a9a",
+      "bytes": 6619
+    },
+    "blood_h7_normal_front": {
+      "sha256": "c100858123ba5aa65795dfe0ea81660604b0a3b095b13194162dafd6465bdf61",
+      "bytes": 7191
+    },
+    "blood_h8_normal_front": {
+      "sha256": "d527914ac0ea19b25788a0bbfae04dbe7f8a7802a50710ee07bcc0ae5c33f5ed",
+      "bytes": 8044
+    },
+    "blood_h9_normal_front": {
+      "sha256": "ab0aeac80697550e634a95f17264afb7307f00b264086621cb95bc35ab8a4e75",
+      "bytes": 8302
+    },
+    "blood_h10_normal_front": {
+      "sha256": "85094357af323a18a1ba9fc7eef1f67cbb081e586f84a4dd5154e730d4559560",
+      "bytes": 8434
+    },
+    "blood_h2_normal_right": {
+      "sha256": "d695969f0f1856ec777f7edbb8a1d68f54d54aade2713cbf664f69c575840c86",
+      "bytes": 1113
+    },
+    "blood_h3_normal_right": {
+      "sha256": "ee91011db32f4365638d48fb5204e88ecd0394b7427394330e92bbd9e07576de",
+      "bytes": 2925
+    },
+    "blood_h4_normal_right": {
+      "sha256": "7923aba9fd2e803a474d80c1f7095a3060770fe7d8efa3c64480700347c9ea00",
+      "bytes": 3839
+    },
+    "blood_h5_normal_right": {
+      "sha256": "1a6dcdf4d9a9697d85de70ea6e0b7b18a98594899a2de098d6f8a82332d82921",
+      "bytes": 5440
+    },
+    "blood_h6_normal_right": {
+      "sha256": "bb5fb932aa67b30b7c549a9d1b1a9e40c75acb97567d8babc011884d142cb696",
+      "bytes": 6563
+    },
+    "blood_h7_normal_right": {
+      "sha256": "aa8819ab815f93937f575e4ad4b6a9a0ac06c22b35f381d1f43effe94a2f0134",
+      "bytes": 7062
+    },
+    "blood_h8_normal_right": {
+      "sha256": "30e385a6cf592d51e27a47966fd439aecd137f97482203719dd2376d14c53abf",
+      "bytes": 7907
+    },
+    "blood_h9_normal_right": {
+      "sha256": "cdb1609d1156327aa4f2cecc81619bd982b6263211451393c23ac7c6491ef0ae",
+      "bytes": 8125
+    },
+    "blood_h10_normal_right": {
+      "sha256": "5890962d5d225e03190d8554fd9249b0e9632a2a1fb74ae2d47dd48ef1585c02",
+      "bytes": 8179
+    },
+    "blood_h2_pain_left": {
+      "sha256": "4c26edf39b8b6f08b225a2c19c43eca8e8bb4e841ff6ae260516a3f0434aa156",
+      "bytes": 849
+    },
+    "blood_h3_pain_left": {
+      "sha256": "98dc71eed51abba4bd253717c6fc858edabb1ac6f3072a2640242771db5f968e",
+      "bytes": 2309
+    },
+    "blood_h4_pain_left": {
+      "sha256": "2a9fafb501e07aae0d8bccfdaee759a18ba726c33745f3940acdd326fdd01535",
+      "bytes": 3100
+    },
+    "blood_h5_pain_left": {
+      "sha256": "547b45a558266e853bea4c88446eeaca87128e09ced48ebd9087e159a9595a4f",
+      "bytes": 4941
+    },
+    "blood_h6_pain_left": {
+      "sha256": "dd1e1a31e72a57c6e2bbf46d7642d444af5c8720895df5101f297abb77bcded5",
+      "bytes": 6129
+    },
+    "blood_h7_pain_left": {
+      "sha256": "5b4d188b8e7d5a4337f3ad950ad78f2b6df2cfd1645b2919d37d67c53a27431a",
+      "bytes": 6792
+    },
+    "blood_h8_pain_left": {
+      "sha256": "54741728b1919bf915c5e94838f8079b2d8c314d66adc0bdec2563e98ffd7212",
+      "bytes": 7698
+    },
+    "blood_h9_pain_left": {
+      "sha256": "804245277ef4c64eacd4f4cc92644a747808608a21c9fa4193321bbeb4bc32d3",
+      "bytes": 7984
+    },
+    "blood_h10_pain_left": {
+      "sha256": "2444a4e11cd8fa61e138d5995f456b1d7dd17d12c38a391f046e4f267f937caf",
+      "bytes": 8154
+    },
+    "blood_h2_pain_front": {
+      "sha256": "0f8a04f268bb5ad0a040f55e8e5b31b5ee50c1a172fbbbd39174b512816338fa",
+      "bytes": 961
+    },
+    "blood_h3_pain_front": {
+      "sha256": "eef94abcab46a61e51014275af8d175269155b392a59c07754d423e3b151fc29",
+      "bytes": 2669
+    },
+    "blood_h4_pain_front": {
+      "sha256": "37f0cdde87e0bcab6c83d377f6098eb44e82b45c30f755e72082d9be559fbd4f",
+      "bytes": 3549
+    },
+    "blood_h5_pain_front": {
+      "sha256": "18e217807f65cde49774db224e45f78fb6c6141c02f8d058b45f90209194fa6b",
+      "bytes": 5542
+    },
+    "blood_h6_pain_front": {
+      "sha256": "eadc8a4eee9348a9447dd37f7ba438cc271d7ecd1ed4815aa2a0a63d42db394c",
+      "bytes": 6542
+    },
+    "blood_h7_pain_front": {
+      "sha256": "0859dda24716d2ab3e846e5c5d2acdec6fb5224acb84bbf278554cbf2873ce80",
+      "bytes": 7134
+    },
+    "blood_h8_pain_front": {
+      "sha256": "64f5fcc0991ce0112f3cc05ee1a06485e33e039e836b7d43447bd1ec7f339195",
+      "bytes": 7947
+    },
+    "blood_h9_pain_front": {
+      "sha256": "65e7eb17c0272ab883956329892bc5bd08aff8fb531bab3f7c8b5e2450b7bb5b",
+      "bytes": 8189
+    },
+    "blood_h10_pain_front": {
+      "sha256": "d338082fa9f94b4fb344d6374a40320cc192e971a436dd98f78e7850728b83f0",
+      "bytes": 8294
+    },
+    "blood_h2_pain_right": {
+      "sha256": "d695969f0f1856ec777f7edbb8a1d68f54d54aade2713cbf664f69c575840c86",
+      "bytes": 1113
+    },
+    "blood_h3_pain_right": {
+      "sha256": "30aba50ef18229168615f7d170d63d65617c8dc9a23691706f52e1ef1535ef29",
+      "bytes": 2820
+    },
+    "blood_h4_pain_right": {
+      "sha256": "9a9fe3273629b0f553f1c6abb919b1b087fb2d928485851d66ecc389772ab8fb",
+      "bytes": 3699
+    },
+    "blood_h5_pain_right": {
+      "sha256": "11f5c1127a9b1996355a8413985d99caff74cd7facdbd688273102e19583c5a9",
+      "bytes": 5378
+    },
+    "blood_h6_pain_right": {
+      "sha256": "2dc61880c55afeb05caa9da36a75c2f6f216794b928e8d51cb5ea8f7e39206b0",
+      "bytes": 6500
+    },
+    "blood_h7_pain_right": {
+      "sha256": "3bdf29fac5c8a916cf51921f7f06ca92d27906d2eb17066bbb3e7126d65ec34a",
+      "bytes": 7017
+    },
+    "blood_h8_pain_right": {
+      "sha256": "5e672cc339122ccb287677680cc6ffd7ec2181a82a7ec796a0b7c7d7a4369c14",
+      "bytes": 7824
+    },
+    "blood_h9_pain_right": {
+      "sha256": "88414618fe4982ec3016a2cfdbe3454b69674a0e36c12d6d5362d3562ab34bb5",
+      "bytes": 8055
+    },
+    "blood_h10_pain_right": {
+      "sha256": "1d6b2a86e46031508d524ed35c56279fc5ab39d332bfbf29e58aaebdf67fe6ed",
+      "bytes": 8100
+    },
+    "blood_h2_mischievous_excited_left": {
+      "sha256": "b831c7057ee980d0bc8608b746b5394e95ea57ff849da4bddd0f3452ac4d9a05",
+      "bytes": 853
+    },
+    "blood_h3_mischievous_excited_left": {
+      "sha256": "739110a844b252306cb199c4bd73c20221be50769b7cab4251d8a26d8a76f6fe",
+      "bytes": 2310
+    },
+    "blood_h4_mischievous_excited_left": {
+      "sha256": "d2a5d85a4b9f1161613d2d85e548d50749c915e54c0797264a29190974332af3",
+      "bytes": 3158
+    },
+    "blood_h5_mischievous_excited_left": {
+      "sha256": "c05519f9d4302e6d80f8207d797b20e2dbf02c6a079901aa27798fcec229d80e",
+      "bytes": 4866
+    },
+    "blood_h6_mischievous_excited_left": {
+      "sha256": "7ed991f5b39c5cc48406b317af10e4329a97c50de166c999b446405cba57d921",
+      "bytes": 6019
+    },
+    "blood_h7_mischievous_excited_left": {
+      "sha256": "671a349ec1fc210211035dbda9e168c6ab75c8ceca56f61425de2d168f03ce59",
+      "bytes": 6724
+    },
+    "blood_h8_mischievous_excited_left": {
+      "sha256": "727f4550fe2143d7d1b6bd4fbb4cb1c8c1bcaeb670b67dd24653581e3896cf07",
+      "bytes": 7587
+    },
+    "blood_h9_mischievous_excited_left": {
+      "sha256": "7c0ba76bb76b753b0209dad60c19a193d06ed69e49eecc01a39f26234da536b7",
+      "bytes": 7893
+    },
+    "blood_h10_mischievous_excited_left": {
+      "sha256": "26492b3306fa790040b2bd0d60dc28b14e8bb548410f3e81d8bd094c6785060a",
+      "bytes": 8089
+    },
+    "blood_h2_mischievous_excited_front": {
+      "sha256": "c4dce13d5183650e551f4f44996241adb24f013b7498fc04acab16e3f0b66209",
+      "bytes": 951
+    },
+    "blood_h3_mischievous_excited_front": {
+      "sha256": "fd86d7e052a6b20de954a5915bc2af77f8ac272c2d8c375ebe0262c1258584e0",
+      "bytes": 2610
+    },
+    "blood_h4_mischievous_excited_front": {
+      "sha256": "643b46b12b5718762090d8d4c5e872336c988eb14b3e887fd24b0369b2dee7f8",
+      "bytes": 3549
+    },
+    "blood_h5_mischievous_excited_front": {
+      "sha256": "5827084bad4966a8bfed47f36f4e11a956dfe10fe25ac36753f32f29962cfe70",
+      "bytes": 5361
+    },
+    "blood_h6_mischievous_excited_front": {
+      "sha256": "e55445d1285b93c9d9dd9e92c304c097dbb564d0cd26b1c3d28fd70476b306bf",
+      "bytes": 6347
+    },
+    "blood_h7_mischievous_excited_front": {
+      "sha256": "b1d55c51fdd3b5075b1ec8bf83ac0bcece9b13c2d00c472c5e643cd6b4911a0e",
+      "bytes": 7022
+    },
+    "blood_h8_mischievous_excited_front": {
+      "sha256": "6dea0bb06f2465efda69204642e032fead425b1cfa31ef28c20c394118a377ec",
+      "bytes": 7776
+    },
+    "blood_h9_mischievous_excited_front": {
+      "sha256": "dd668640140ad9a98ff291b855f8bafab3b0dca35a58872848971a53459ebbb8",
+      "bytes": 8036
+    },
+    "blood_h10_mischievous_excited_front": {
+      "sha256": "97c229c880b4d16491a75a187c0d4481279058e265c47d169ee994656bc32c0b",
+      "bytes": 8143
+    },
+    "blood_h2_mischievous_excited_right": {
+      "sha256": "dd99506b8a547370e20e478326bce5ee1be1973f9237b3246c55f8a3bb9eea7a",
+      "bytes": 1118
+    },
+    "blood_h3_mischievous_excited_right": {
+      "sha256": "ef1f3946dd49511b11fabf478f372700a1661e3055ac5384449d5157d4e8ee6a",
+      "bytes": 2791
+    },
+    "blood_h4_mischievous_excited_right": {
+      "sha256": "a3607ca6677ab547266d3439c0a6f56cabadd873b97f1b931f247a4a83d6530b",
+      "bytes": 3750
+    },
+    "blood_h5_mischievous_excited_right": {
+      "sha256": "f1b66571b9efdeb04bca7aebc506e96e6a2998bf5fffdce44ccba61eb0f68fc7",
+      "bytes": 5263
+    },
+    "blood_h6_mischievous_excited_right": {
+      "sha256": "cbedd01412694c585b1314cb31495a62601f84b498b905b7e7d3153f02752b8f",
+      "bytes": 6381
+    },
+    "blood_h7_mischievous_excited_right": {
+      "sha256": "79ba155790c38465e912a536463b0c25a0aeb796c67c70ff6da61e10011ed7c0",
+      "bytes": 6922
+    },
+    "blood_h8_mischievous_excited_right": {
+      "sha256": "243785998af62ea3890e8dbd58c11bb3d1e3b6ac17139d505511102f1ee2e768",
+      "bytes": 7652
+    },
+    "blood_h9_mischievous_excited_right": {
+      "sha256": "95262a11368abaefb75f2fec1f1883daeb2347a20d88d61a365539bfa66e82d4",
+      "bytes": 7815
+    },
+    "blood_h10_mischievous_excited_right": {
+      "sha256": "d816065f99a5698fa29a49f8d8b9d8c614f18dd2a69f11e19a7733a839665aa1",
+      "bytes": 7910
+    },
+    "blood_h2_shocked_left": {
+      "sha256": "7f678f86308ce14f731f8ff60dba67a1209eb6da753ae5c23f13258c1c756cd1",
+      "bytes": 844
+    },
+    "blood_h3_shocked_left": {
+      "sha256": "141a7cbc60dd7988a30a2a6d3b9b1d15f780d0c2d0fef79a83100493c89ceb86",
+      "bytes": 2338
+    },
+    "blood_h4_shocked_left": {
+      "sha256": "2e7a9580400bdfe410263afff64baaf1ab7935ba273a8152f0dbda252a386a3f",
+      "bytes": 3053
+    },
+    "blood_h5_shocked_left": {
+      "sha256": "9f7981664211ff1bfba713cd2dc6fb9cfe0e6ad0896c3817f53cd6f7eb681447",
+      "bytes": 4805
+    },
+    "blood_h6_shocked_left": {
+      "sha256": "73f40058cd9d985ae313046bc20c0b89153871581df0eb688a9db27ecc5a4e28",
+      "bytes": 5900
+    },
+    "blood_h7_shocked_left": {
+      "sha256": "34e404ead495b4a08298cb992346b202dcb46565d970f4ebfe4f4793ee2590f9",
+      "bytes": 6554
+    },
+    "blood_h8_shocked_left": {
+      "sha256": "1553a573cb13b4c77ff39bdfc0541d1daa5becce55221e606e34f9fb012412dc",
+      "bytes": 7400
+    },
+    "blood_h9_shocked_left": {
+      "sha256": "72720135e6be3e03e0fdcae7004303d16aea1633fd952edbe9623499f804937c",
+      "bytes": 7731
+    },
+    "blood_h10_shocked_left": {
+      "sha256": "9455d23c152c683ba4677a4ebee11e284c1f87ac2a5b6fb5363889376163e9a3",
+      "bytes": 7885
+    },
+    "blood_h2_shocked_front": {
+      "sha256": "6257859c407effe0fdcb9ec8c4f388811ae7c6d2bc1cb6ed0fc0e76b4ddba518",
+      "bytes": 958
+    },
+    "blood_h3_shocked_front": {
+      "sha256": "f677e4c1f1b8c98e98d65b5c5a2bf2ca6d268faa21cfcfb318a7a976f808dc60",
+      "bytes": 2664
+    },
+    "blood_h4_shocked_front": {
+      "sha256": "4ad04ebe38a1078c0e5fe1e4e429e77f2381d9be77470f2db55ec3bf49be3f8f",
+      "bytes": 3472
+    },
+    "blood_h5_shocked_front": {
+      "sha256": "458d5f26039efb60ed067c83abc2d6485c1d8a9f94ae9cbf10854e97f4919bf1",
+      "bytes": 5286
+    },
+    "blood_h6_shocked_front": {
+      "sha256": "b50bb7596bdae3fe45fbfd595777c536a4590719ccf5809ff7649feedbc6785b",
+      "bytes": 6230
+    },
+    "blood_h7_shocked_front": {
+      "sha256": "85f4fbe72d8bfd2c44bb35b18dc984b723bda70fc7929cd78e1baece96d3f347",
+      "bytes": 6825
+    },
+    "blood_h8_shocked_front": {
+      "sha256": "02bbd56d8a432a8e10abd388cd6bceddd3ca201cb4fcad9852fc1fdb7e3d349e",
+      "bytes": 7626
+    },
+    "blood_h9_shocked_front": {
+      "sha256": "af611d043751cdf3ef98af95001f4d2086dec5ff88c29bd598ccb8980839385e",
+      "bytes": 7893
+    },
+    "blood_h10_shocked_front": {
+      "sha256": "c7c9977a6d63e6849af40422d7339b74038a8498d6b2bd85f7891a74b4894f8e",
+      "bytes": 8016
+    },
+    "blood_h2_shocked_right": {
+      "sha256": "5233bb1b5bf6426c9c8c7ebf8db3ac36ae796f9458932dee680530cf159ba5b4",
+      "bytes": 1114
+    },
+    "blood_h3_shocked_right": {
+      "sha256": "615eb797dae0b2e25b472c9a6c31cd818627327748e247d461f5611936b589c8",
+      "bytes": 2805
+    },
+    "blood_h4_shocked_right": {
+      "sha256": "6fc0d932ba5d1483c986ae22708d53d2dd949114c3a6e4ee332d42ca0df75809",
+      "bytes": 3620
+    },
+    "blood_h5_shocked_right": {
+      "sha256": "55f6c72e6aa84c7d773a789a7503be85c804265420944d646ad5d18980383c30",
+      "bytes": 5187
+    },
+    "blood_h6_shocked_right": {
+      "sha256": "cde4b7ebb1aba65770e19c83bacf5dc16f6823d37189f59c229e43417ad6f721",
+      "bytes": 6174
+    },
+    "blood_h7_shocked_right": {
+      "sha256": "577cb91ffa014cec81277c1207e80a0ab9550d53a080aacf68c865a250b7b139",
+      "bytes": 6693
+    },
+    "blood_h8_shocked_right": {
+      "sha256": "6f21c0ae7cdc1b3874f7de80de45b44a3e0988fc73b91bf8657c633bdfdd8ce2",
+      "bytes": 7519
+    },
+    "blood_h9_shocked_right": {
+      "sha256": "4cbc9f3597c0a12c4eeb4bfdef851e809db28f98861cf842e9fc5d18d1b8f1f1",
+      "bytes": 7764
+    },
+    "blood_h10_shocked_right": {
+      "sha256": "781e4ea8635ea77062487b7b9e640f29dfb8a4882563b2ca6977e98c0a7ae838",
+      "bytes": 7809
+    },
+    "blood_h2_focused_determined_left": {
+      "sha256": "d8745d3764ba0253f8ad01aed3ecd32f856e7a280fc163c2f7ada9df5db8bfd0",
+      "bytes": 884
+    },
+    "blood_h3_focused_determined_left": {
+      "sha256": "342873537ce76a9bb6ba69c2005e97b403c5b231e1abc1d7c56a86a752b8b4b8",
+      "bytes": 2551
+    },
+    "blood_h4_focused_determined_left": {
+      "sha256": "33882bef3294402fd5ced6df09a3faffb064fc8d07939e0c0e30af33d7d9d434",
+      "bytes": 3308
+    },
+    "blood_h5_focused_determined_left": {
+      "sha256": "9263e14e055a0ebc4007b969706ab57273e4f74353238911ec92bc4d7d2b579e",
+      "bytes": 5143
+    },
+    "blood_h6_focused_determined_left": {
+      "sha256": "785f1a3c1b96e6af939738f4ba625bca27c6fb890135671ac87ad0cf0af894a4",
+      "bytes": 6251
+    },
+    "blood_h7_focused_determined_left": {
+      "sha256": "6ce22ec12a9ab9e24fbda0802b1b6ea534ebb373d137c7bb33da1a2b44834b0b",
+      "bytes": 6923
+    },
+    "blood_h8_focused_determined_left": {
+      "sha256": "e1d1f77c7e163aec0921549011a375c21ed051e5c0151e007a4902047a71e1e8",
+      "bytes": 7869
+    },
+    "blood_h9_focused_determined_left": {
+      "sha256": "4c3bbab5d7d941b7cf1a18fc800e8c8f0a19fa33eeaee72acd0981b1ea77bb76",
+      "bytes": 8222
+    },
+    "blood_h10_focused_determined_left": {
+      "sha256": "bea1ae27e29902119e85b54aae9fbe2a0604c2604dd715998210e84972daa26e",
+      "bytes": 8421
+    },
+    "blood_h2_focused_determined_front": {
+      "sha256": "8923805d59fad3bbfad27c1ebfd08ab5f5431a6fa17ae911b9ccfd7c25b70b16",
+      "bytes": 1026
+    },
+    "blood_h3_focused_determined_front": {
+      "sha256": "ddd5a4da3c8ec2a255b814be70cc4a7e820db51f61b16dc3743a645b3d10a33e",
+      "bytes": 2909
+    },
+    "blood_h4_focused_determined_front": {
+      "sha256": "f64017be870c47fb4d89799a4f68c471d7a73ff460103cc2fac4021eb8b58915",
+      "bytes": 3711
+    },
+    "blood_h5_focused_determined_front": {
+      "sha256": "bb698b4144a1734f1b891bfe599a3c5e0d52ad1672b0fb3126cf6e02372f6d34",
+      "bytes": 5641
+    },
+    "blood_h6_focused_determined_front": {
+      "sha256": "053b8e4c749cbb8a2e97cb27313a6eb7d0bc79262887bdb82057c2bb21b4a578",
+      "bytes": 6593
+    },
+    "blood_h7_focused_determined_front": {
+      "sha256": "9fdfca8be30674186ca72072a2bd2b3a6c3267dd2ecc8949e7c4f96c6b8a47ac",
+      "bytes": 7222
+    },
+    "blood_h8_focused_determined_front": {
+      "sha256": "b2588bbfaacb76738c1bda6892bd34a934d504f03abae7fe253ae6fdf597d476",
+      "bytes": 8083
+    },
+    "blood_h9_focused_determined_front": {
+      "sha256": "b26dbf5b1f0378c0034b900ddd58986bc2667aed3818cd73e74f04dbbd9235a2",
+      "bytes": 8313
+    },
+    "blood_h10_focused_determined_front": {
+      "sha256": "e0769eb6f2710ffebeb83d90cf8fe79e195ad982c8dc28dc0a1ffc651169e202",
+      "bytes": 8404
+    },
+    "blood_h2_focused_determined_right": {
+      "sha256": "3a04fb9c1e154dbce3c9b44dd3e1249ad9126fefc6e7cffad2c3b7272544038a",
+      "bytes": 1128
+    },
+    "blood_h3_focused_determined_right": {
+      "sha256": "caa8b4292aa4d351dae0b40b10b3f69e46c60af6daa3cbbf23f0693a7feeee38",
+      "bytes": 3046
+    },
+    "blood_h4_focused_determined_right": {
+      "sha256": "7ce6df8a86030a91e0425eea3370625eb317c69d4b77979f8aa5529104215bce",
+      "bytes": 3962
+    },
+    "blood_h5_focused_determined_right": {
+      "sha256": "31632dba64c592d3ff065acb1e5d1e6a16ad28ff24c29923745a40372a041036",
+      "bytes": 5597
+    },
+    "blood_h6_focused_determined_right": {
+      "sha256": "7903f1ff3cacefdd0259fd513c756d495230e6413182db73cc4956207544bf66",
+      "bytes": 6636
+    },
+    "blood_h7_focused_determined_right": {
+      "sha256": "77925beb4773994e79cedfdf3c8b09d8f99439fa890a7bd7d14eff570442be0c",
+      "bytes": 7217
+    },
+    "blood_h8_focused_determined_right": {
+      "sha256": "67d5c09f9253127554d086604805295c94791d3e83c6d22d2cd0442fe6560c4f",
+      "bytes": 8098
+    },
+    "blood_h9_focused_determined_right": {
+      "sha256": "f9c1d2312633ca2055c1cac2b338a232a2c2242b4f4e36e8cc6894dee4eadd56",
+      "bytes": 8278
+    },
+    "blood_h10_focused_determined_right": {
+      "sha256": "56239ed2778b7ef4301de6308bd223ce42ce11832e888a2377e0a291738b032b",
+      "bytes": 8391
+    },
+    "eyes_wispy_purple_normal_head_left": {
+      "sha256": "d02a594d404f6daf6a4ed38a4a235984651b46ed3c835800ad29539224d3f670",
+      "bytes": 1822
+    },
+    "eyes_wispy_yellow_normal_head_left": {
+      "sha256": "46ebc082a2ce4f4eecd35429ccc80baa7d322b449ce289d1d5ef2cf7a06a9714",
+      "bytes": 1154
+    },
+    "eyes_wispy_mixed_normal_head_left": {
+      "sha256": "3022a1961a4a00bb2707b3c378f99bd2e6e948a54915178cb4739a9a4ac7ae4d",
+      "bytes": 2202
+    },
+    "eyes_wispy_purple_normal_eyes_left": {
+      "sha256": "7b1a4c582910df44abdb0e924d16b2207abb110f11dca1d8624f65ae50be3ff0",
+      "bytes": 1933
+    },
+    "eyes_wispy_yellow_normal_eyes_left": {
+      "sha256": "6ff21ded8b13f360bbb52b21247e0112b833d9711e925ceb53cb39e784107af6",
+      "bytes": 1213
+    },
+    "eyes_wispy_mixed_normal_eyes_left": {
+      "sha256": "8d648e68e4d8a268514c10c8f7762106492c56459d7aa05eb6e80268a6739c5a",
+      "bytes": 2373
+    },
+    "eyes_wispy_purple_normal_front": {
+      "sha256": "c066b17367c9c31e8803e87c55dc0a55a0b9e565ff71b0d88d5c6a26cd992ea4",
+      "bytes": 1961
+    },
+    "eyes_wispy_yellow_normal_front": {
+      "sha256": "5f8f838b7ff9d12525344404b5e1d736564fa03b5c8c927b12772728bb8a5b5d",
+      "bytes": 1249
+    },
+    "eyes_wispy_mixed_normal_front": {
+      "sha256": "8030c329663668c7a69056f0afc68bc6ce214d2a565b99ed1b559916b3e647e9",
+      "bytes": 2360
+    },
+    "eyes_wispy_purple_normal_eyes_right": {
+      "sha256": "659cf76103d76d06c5307642c0567d4e9d3ff84fa3464cf4f4276e4bdfd6c0d8",
+      "bytes": 1974
+    },
+    "eyes_wispy_yellow_normal_eyes_right": {
+      "sha256": "ac8585b8a6c85e82dcbff354e2839dca6f695d8b60e0e5ab66682e83d6580ff3",
+      "bytes": 1226
+    },
+    "eyes_wispy_mixed_normal_eyes_right": {
+      "sha256": "813c6a7ae55171ee4cb250d2d783479ad94c9f433ed14ccac5bbbbeba9a878e7",
+      "bytes": 2370
+    },
+    "eyes_wispy_purple_normal_head_right": {
+      "sha256": "59d619200ac23c0e791e5fb01c3795c664f0e0ea3f1088dc0972df08950169c3",
+      "bytes": 1833
+    },
+    "eyes_wispy_yellow_normal_head_right": {
+      "sha256": "370f2cb86ffaf10bdf0876e3ec39f0e1496a19f9453c36e125d42cb7080b5b8e",
+      "bytes": 1193
+    },
+    "eyes_wispy_mixed_normal_head_right": {
+      "sha256": "93287081bb8f8378558cd320b0c8b56bf366bda25137d5eb885bc3dfc54f3957",
+      "bytes": 2215
+    },
+    "eyes_wispy_purple_pain_head_left": {
+      "sha256": "d02a594d404f6daf6a4ed38a4a235984651b46ed3c835800ad29539224d3f670",
+      "bytes": 1822
+    },
+    "eyes_wispy_yellow_pain_head_left": {
+      "sha256": "46ebc082a2ce4f4eecd35429ccc80baa7d322b449ce289d1d5ef2cf7a06a9714",
+      "bytes": 1154
+    },
+    "eyes_wispy_mixed_pain_head_left": {
+      "sha256": "3022a1961a4a00bb2707b3c378f99bd2e6e948a54915178cb4739a9a4ac7ae4d",
+      "bytes": 2202
+    },
+    "eyes_wispy_purple_pain_eyes_left": {
+      "sha256": "7b1a4c582910df44abdb0e924d16b2207abb110f11dca1d8624f65ae50be3ff0",
+      "bytes": 1933
+    },
+    "eyes_wispy_yellow_pain_eyes_left": {
+      "sha256": "6ff21ded8b13f360bbb52b21247e0112b833d9711e925ceb53cb39e784107af6",
+      "bytes": 1213
+    },
+    "eyes_wispy_mixed_pain_eyes_left": {
+      "sha256": "8d648e68e4d8a268514c10c8f7762106492c56459d7aa05eb6e80268a6739c5a",
+      "bytes": 2373
+    },
+    "eyes_wispy_purple_pain_front": {
+      "sha256": "c066b17367c9c31e8803e87c55dc0a55a0b9e565ff71b0d88d5c6a26cd992ea4",
+      "bytes": 1961
+    },
+    "eyes_wispy_yellow_pain_front": {
+      "sha256": "5f8f838b7ff9d12525344404b5e1d736564fa03b5c8c927b12772728bb8a5b5d",
+      "bytes": 1249
+    },
+    "eyes_wispy_mixed_pain_front": {
+      "sha256": "8030c329663668c7a69056f0afc68bc6ce214d2a565b99ed1b559916b3e647e9",
+      "bytes": 2360
+    },
+    "eyes_wispy_purple_pain_eyes_right": {
+      "sha256": "659cf76103d76d06c5307642c0567d4e9d3ff84fa3464cf4f4276e4bdfd6c0d8",
+      "bytes": 1974
+    },
+    "eyes_wispy_yellow_pain_eyes_right": {
+      "sha256": "ac8585b8a6c85e82dcbff354e2839dca6f695d8b60e0e5ab66682e83d6580ff3",
+      "bytes": 1226
+    },
+    "eyes_wispy_mixed_pain_eyes_right": {
+      "sha256": "813c6a7ae55171ee4cb250d2d783479ad94c9f433ed14ccac5bbbbeba9a878e7",
+      "bytes": 2370
+    },
+    "eyes_wispy_purple_pain_head_right": {
+      "sha256": "59d619200ac23c0e791e5fb01c3795c664f0e0ea3f1088dc0972df08950169c3",
+      "bytes": 1833
+    },
+    "eyes_wispy_yellow_pain_head_right": {
+      "sha256": "370f2cb86ffaf10bdf0876e3ec39f0e1496a19f9453c36e125d42cb7080b5b8e",
+      "bytes": 1193
+    },
+    "eyes_wispy_mixed_pain_head_right": {
+      "sha256": "93287081bb8f8378558cd320b0c8b56bf366bda25137d5eb885bc3dfc54f3957",
+      "bytes": 2215
+    },
+    "eyes_wispy_purple_mischievous_excited_head_left": {
+      "sha256": "2b29a4a312975bbcab6a44952214870bf87e767933b1405c5f01a99537f88cc0",
+      "bytes": 1843
+    },
+    "eyes_wispy_yellow_mischievous_excited_head_left": {
+      "sha256": "bd2151d359bb1e0430ad864b9b1ac5ecce133ea5ea088b397aef3bdffeb07849",
+      "bytes": 1279
+    },
+    "eyes_wispy_mixed_mischievous_excited_head_left": {
+      "sha256": "4fed030c30b222d60cca70fd325ec0bb0fb0a6cfd7a8bc1eec402c8feba1c35b",
+      "bytes": 2291
+    },
+    "eyes_wispy_purple_mischievous_excited_eyes_left": {
+      "sha256": "7416f70b03ad2fda398a9b816a0c599a5d8c46228fc1c5319e0ff56eb3c33c8a",
+      "bytes": 1973
+    },
+    "eyes_wispy_yellow_mischievous_excited_eyes_left": {
+      "sha256": "62eeb6e8acf2acdc46f1c6761a80dbcca3c1a7f3af075aaac5cc3e57672baef5",
+      "bytes": 1198
+    },
+    "eyes_wispy_mixed_mischievous_excited_eyes_left": {
+      "sha256": "95bbb80b3ee14285828a43521c26d0932a683995bfef67299b974dfbb46162f5",
+      "bytes": 2340
+    },
+    "eyes_wispy_purple_mischievous_excited_front": {
+      "sha256": "a7375618ee9e89c2de3d497e02d3baa87dd9837f68062161cef3a8c793ef8861",
+      "bytes": 1931
+    },
+    "eyes_wispy_yellow_mischievous_excited_front": {
+      "sha256": "2dcb7955863c0a9c0946a12c5b20549b85be80570c4a9119dee49b48d346477f",
+      "bytes": 1206
+    },
+    "eyes_wispy_mixed_mischievous_excited_front": {
+      "sha256": "ff418f6ca84e3b5216111a7d6a88b65d83fc139f4c7b4ec1d118fe1969dbde85",
+      "bytes": 2303
+    },
+    "eyes_wispy_purple_mischievous_excited_eyes_right": {
+      "sha256": "69f88b3197154417ff0ee5853780485a3b47a7a97ccf0316345818d68a49a6d5",
+      "bytes": 2010
+    },
+    "eyes_wispy_yellow_mischievous_excited_eyes_right": {
+      "sha256": "67dc00858601806b0c8db23bfaa884daefa643b4ea7138a50b5097bef5b246c1",
+      "bytes": 1181
+    },
+    "eyes_wispy_mixed_mischievous_excited_eyes_right": {
+      "sha256": "7b9572a0b29648eb7c6d834b847537029ead37b1750886e2ad0447d5512b16b1",
+      "bytes": 2340
+    },
+    "eyes_wispy_purple_mischievous_excited_head_right": {
+      "sha256": "f3ef4b5a73715b0fa2e3b168d5d744823319e5561fa09a23f523f7fdeab929c2",
+      "bytes": 1856
+    },
+    "eyes_wispy_yellow_mischievous_excited_head_right": {
+      "sha256": "6ecb4b72750125191ed834290364d147ac793b20c580ff36f8502e413d6199da",
+      "bytes": 1199
+    },
+    "eyes_wispy_mixed_mischievous_excited_head_right": {
+      "sha256": "c97348fe00742b5b0e0b2049fea08647362b8c19ba96a4630c137d0210d8a03f",
+      "bytes": 2225
+    },
+    "eyes_wispy_purple_shocked_head_left": {
+      "sha256": "e60c3fc99ccd4de63005531037caa0b3323be62eb69ef26df3dc8c50f6b10637",
+      "bytes": 1841
+    },
+    "eyes_wispy_yellow_shocked_head_left": {
+      "sha256": "270ccc1b45ac2e5638044bd7f4108c6ac84b6098fd8d1583411aa57a4a96d969",
+      "bytes": 1313
+    },
+    "eyes_wispy_mixed_shocked_head_left": {
+      "sha256": "d9a24550bad9066d8a331c960116589b5788a0e831dcfd1e5b529719570576ff",
+      "bytes": 2264
+    },
+    "eyes_wispy_purple_shocked_eyes_left": {
+      "sha256": "9bdc53c2d74fd99667b14363fa3262354c9d755d97c85a6c36e799dd37d3d7e3",
+      "bytes": 1967
+    },
+    "eyes_wispy_yellow_shocked_eyes_left": {
+      "sha256": "ea0d71b7668f272b19cf9779f490d7933077ade7f96c1f0123d117bf4728c6e7",
+      "bytes": 1303
+    },
+    "eyes_wispy_mixed_shocked_eyes_left": {
+      "sha256": "cd9ee4e04923503e46e0b8de8dfa43863b63c7f21299cf41f0d43b61b5eb53c5",
+      "bytes": 2406
+    },
+    "eyes_wispy_purple_shocked_front": {
+      "sha256": "6797400c1bf0653ee2498f479367ed1a9465e0c3aa2b3fea8665e6e2568f5d62",
+      "bytes": 1975
+    },
+    "eyes_wispy_yellow_shocked_front": {
+      "sha256": "a1922b9832788a02cfd1963e27b515f4a900fa4e19a519728cf3dca0bbab9315",
+      "bytes": 1334
+    },
+    "eyes_wispy_mixed_shocked_front": {
+      "sha256": "510c3220609926661c1baf92e95781d3c91f63dfdb904ba8426268d037207e5f",
+      "bytes": 2455
+    },
+    "eyes_wispy_purple_shocked_eyes_right": {
+      "sha256": "8dd4a082c7febd9c53638d819ea0f954f7c952192dceb39bda93f165071c0d04",
+      "bytes": 1937
+    },
+    "eyes_wispy_yellow_shocked_eyes_right": {
+      "sha256": "dfe4ca461bd8eb7ffd0a80642f078864bd2292985ab84b27401a39695dbdfbf5",
+      "bytes": 1310
+    },
+    "eyes_wispy_mixed_shocked_eyes_right": {
+      "sha256": "f1c0901900c90acb2d1509dae05963f6b09172ff355d446da7a54fe5a1c324b7",
+      "bytes": 2424
+    },
+    "eyes_wispy_purple_shocked_head_right": {
+      "sha256": "b3e92172db9fe01973c77401548d91283d7e46d1d47cffe2ca6698979f6c158c",
+      "bytes": 1844
+    },
+    "eyes_wispy_yellow_shocked_head_right": {
+      "sha256": "654746cf4f1b9fbc01daad3e2f7cef22dc85751ccad0f27740e1d02d27522150",
+      "bytes": 1362
+    },
+    "eyes_wispy_mixed_shocked_head_right": {
+      "sha256": "22062d0a5d57acd362baafaac52eee0410c6641e53aac18a5a049be2a5ac7ad5",
+      "bytes": 2350
+    },
+    "eyes_wispy_purple_focused_determined_head_left": {
+      "sha256": "af967535a93257530efd0a346a6f8e24648920cc105cca400d5af1909a8f77c4",
+      "bytes": 1827
+    },
+    "eyes_wispy_yellow_focused_determined_head_left": {
+      "sha256": "c0449eac3f0f40b313cf7849d0276ded7ac19f3e68f55bb6df95d7a3563a399e",
+      "bytes": 1189
+    },
+    "eyes_wispy_mixed_focused_determined_head_left": {
+      "sha256": "86c61cc3fa4af78820bef0497bc1257b487a0097b1342d81af30ba5281124758",
+      "bytes": 2189
+    },
+    "eyes_wispy_purple_focused_determined_eyes_left": {
+      "sha256": "75a6e942bb0f6347fe3e89e69878f70f991f1d904b6b01c2bb970f8c49c4f930",
+      "bytes": 1929
+    },
+    "eyes_wispy_yellow_focused_determined_eyes_left": {
+      "sha256": "8d7bd30f5e49b176b83b725fca554a46083035ca067181afb8dad9685c14a150",
+      "bytes": 1262
+    },
+    "eyes_wispy_mixed_focused_determined_eyes_left": {
+      "sha256": "ccddbbcb972ba4ecddcd1d1f3820c0e3761014174b23a6cd8fdd86d2ccebb331",
+      "bytes": 2370
+    },
+    "eyes_wispy_purple_focused_determined_front": {
+      "sha256": "c41ad279a54d3bb43053c240739d5bb775725fad7b09fff958a6c506ae8a1e55",
+      "bytes": 1878
+    },
+    "eyes_wispy_yellow_focused_determined_front": {
+      "sha256": "a5a92107c90897f3102a47fb27b57dd3a1e2e6bb269d14c2665d645aa060fb08",
+      "bytes": 1277
+    },
+    "eyes_wispy_mixed_focused_determined_front": {
+      "sha256": "3095cba996436dc75c825fe0f010b938e6a9398a75aa0775084edfb10e7f392e",
+      "bytes": 2387
+    },
+    "eyes_wispy_purple_focused_determined_eyes_right": {
+      "sha256": "e586ab10b2884482c4131c051fe5684ab4d9cd8f58f16c7e357f98fd096d1da7",
+      "bytes": 1945
+    },
+    "eyes_wispy_yellow_focused_determined_eyes_right": {
+      "sha256": "a6eb250e3a659f224da1591fbe33c2aa3d4569cea8bc720f0b778f7c07bc2932",
+      "bytes": 1276
+    },
+    "eyes_wispy_mixed_focused_determined_eyes_right": {
+      "sha256": "7b964a4c07d04eb373ec1a5a7485eb016c96b1af945ec16538f1d9b34f530e0e",
+      "bytes": 2396
+    },
+    "eyes_wispy_purple_focused_determined_head_right": {
+      "sha256": "140ea62854f7cafa7f9825e4e6b90fb933b44bf152bdae69647024271f73c0c4",
+      "bytes": 1884
+    },
+    "eyes_wispy_yellow_focused_determined_head_right": {
+      "sha256": "3044a4047a9c91147e36da016b4073d96d931596f887568afb3ccdd28151a3c0",
+      "bytes": 1208
+    },
+    "eyes_wispy_mixed_focused_determined_head_right": {
+      "sha256": "eb981cc3804611fc4296c67a423432801d82f4aade72899eb03c2b9457b7ae89",
+      "bytes": 2249
+    },
+    "closure_blink_normal_left": {
+      "sha256": "5d3777eb29fc2dfdb704b4f82f0c3e18dc4ff918a40da65cf2b1c56ddb620ccc",
+      "bytes": 933
+    },
+    "closure_blink_normal_front": {
+      "sha256": "cba6409ff1417d595fdef22f92d82a0a3c96029c171464e37d194c7eeae0c98d",
+      "bytes": 756
+    },
+    "closure_blink_normal_right": {
+      "sha256": "3ee2d181e31085e646d7ce3e580184250686e52ee82bfcfe4853726279e9cc61",
+      "bytes": 933
+    },
+    "closure_blink_pain_left": {
+      "sha256": "5d3777eb29fc2dfdb704b4f82f0c3e18dc4ff918a40da65cf2b1c56ddb620ccc",
+      "bytes": 933
+    },
+    "closure_blink_pain_front": {
+      "sha256": "cba6409ff1417d595fdef22f92d82a0a3c96029c171464e37d194c7eeae0c98d",
+      "bytes": 756
+    },
+    "closure_blink_pain_right": {
+      "sha256": "3ee2d181e31085e646d7ce3e580184250686e52ee82bfcfe4853726279e9cc61",
+      "bytes": 933
+    },
+    "closure_blink_mischievous_excited_left": {
+      "sha256": "9ccf53fa31b9452aa56efe52398e33d2ada051a5cca02e493661e0877f31d9f4",
+      "bytes": 913
+    },
+    "closure_blink_mischievous_excited_front": {
+      "sha256": "763d46e24689fae1dca697d2d3a60c034d004339333607c5a5d49394c587fd9e",
+      "bytes": 838
+    },
+    "closure_blink_mischievous_excited_right": {
+      "sha256": "91f48f0fa7fbb69d31f6780dbbb2041e5ad66ecbc6f78b9ffdcd99ab8ec3c3a2",
+      "bytes": 917
+    },
+    "closure_blink_shocked_left": {
+      "sha256": "5c735f495613351e03ca52701588676b4cae4a302b45d39a80e1bc12315908f1",
+      "bytes": 965
+    },
+    "closure_blink_shocked_front": {
+      "sha256": "8d8fd32830eb287e1c697eb0580ff366368c1be8ec9791e5764ce56bd8f5a477",
+      "bytes": 982
+    },
+    "closure_blink_shocked_right": {
+      "sha256": "89dc7d8fa6cbec596d29e5e4ed7e62fb599978680f1fdb0c0bb69e42b02e32bc",
+      "bytes": 1021
+    },
+    "closure_blink_focused_determined_left": {
+      "sha256": "59b1e93443c739eb32a9c05db775183726fcbfa88fe60240cee8c8f824086ba6",
+      "bytes": 626
+    },
+    "closure_blink_focused_determined_front": {
+      "sha256": "b403d1a6afcaad5d1585a7ab71e75664351935f7b6c4d47de493d8745973f558",
+      "bytes": 603
+    },
+    "closure_blink_focused_determined_right": {
+      "sha256": "95ff7d0b8621dfda14b7e3ae689833287f2cd39c34e710e9428bf375adbd75c4",
+      "bytes": 660
+    },
+    "closure_dead_normal_left": {
+      "sha256": "60526b69d3fcbb3da6f0136954cef2288e40d34ab9c1a71dff36e6f1737e666a",
+      "bytes": 769
+    },
+    "closure_dead_normal_front": {
+      "sha256": "19ef760ab2dffd0b15448d11f1604800b781e1cbd31ae65d12bff96c1ecec29b",
+      "bytes": 713
+    },
+    "closure_dead_normal_right": {
+      "sha256": "3abc6323ef35dc3435321656c7e444a6566220a4775e844808fd25e56d19a77f",
+      "bytes": 780
+    },
+    "closure_dead_pain_left": {
+      "sha256": "60526b69d3fcbb3da6f0136954cef2288e40d34ab9c1a71dff36e6f1737e666a",
+      "bytes": 769
+    },
+    "closure_dead_pain_front": {
+      "sha256": "19ef760ab2dffd0b15448d11f1604800b781e1cbd31ae65d12bff96c1ecec29b",
+      "bytes": 713
+    },
+    "closure_dead_pain_right": {
+      "sha256": "3abc6323ef35dc3435321656c7e444a6566220a4775e844808fd25e56d19a77f",
+      "bytes": 780
+    },
+    "closure_dead_mischievous_excited_left": {
+      "sha256": "87ae3f76a0ead9b512999e64b08d582390ba5702cbfcfc39dec7450bb51a9014",
+      "bytes": 851
+    },
+    "closure_dead_mischievous_excited_front": {
+      "sha256": "b1fbdda89279ea5502f65164c1c82995f9f2e48509445394e73415c6b8e21217",
+      "bytes": 801
+    },
+    "closure_dead_mischievous_excited_right": {
+      "sha256": "7fb137435b269828b7d17dbff18284346ca7ab41732ebfdc45c9202db992659b",
+      "bytes": 911
+    },
+    "closure_dead_shocked_left": {
+      "sha256": "74b94dc573cd1e685c181dfc34c5079ab66a80c5f893739cf4fc0fc2d9908bcf",
+      "bytes": 918
+    },
+    "closure_dead_shocked_front": {
+      "sha256": "22d66d3e6a4b649a4b7e9002f32f899fa9aaeec863df31b1d6fc69fcd04473d7",
+      "bytes": 937
+    },
+    "closure_dead_shocked_right": {
+      "sha256": "855e8d5e1bbdfda12645b827b0f86d0647bd2cf745b8b4a1719f8b1ea930d876",
+      "bytes": 1007
+    },
+    "closure_dead_focused_determined_left": {
+      "sha256": "1ab24524252dab68061eecb94c1eb0ea59a8e63a565d4135b6f1f336f3983f70",
+      "bytes": 651
+    },
+    "closure_dead_focused_determined_front": {
+      "sha256": "b1fc76b7910113f7c321955b6c5bada5735cad8d3278b62bc8c8d95fad9b4201",
+      "bytes": 592
+    },
+    "closure_dead_focused_determined_right": {
+      "sha256": "b633623884b3ffba1da42bbce3a0c83bc4d5a70a8a299f20b6fb78e8c06ef461",
+      "bytes": 649
+    },
+    "equipment_diving_left": {
+      "sha256": "c368c1fe703181435b08ece1dc6f8c7fa59c270f94a3bed3d3e3ae5b454455c5",
+      "bytes": 11741
+    },
+    "equipment_diving_front": {
+      "sha256": "e362e5d7ee67a2622df228939cdcd136f441e6ab90199a3ffef1a28ae17c2ec1",
+      "bytes": 13751
+    },
+    "equipment_diving_right": {
+      "sha256": "e8f0da173f827f0e4727872bbaa5fa18acbe7dddde9d58e155ff98b081b07b15",
+      "bytes": 12826
+    },
+    "water_shared_atlas": {
+      "sha256": "e475b8a933df3685d8ec7b6849e1eaf57d9a471ceef5cf030df78de63defee3c",
+      "bytes": 52221
+    },
+    "water_mask_helmet_left": {
+      "sha256": "bf0fcdc650602f7d396b19b0e87f10514b8cc1d4b5ca03c41c40c37c134599b5",
+      "bytes": 549
+    },
+    "water_mask_diving_left": {
+      "sha256": "d12290a594aa42eba3a428fae8fe8325733d94e60be6cfbc6153d30e2caccfbb",
+      "bytes": 442
+    },
+    "water_mask_helmet_front": {
+      "sha256": "2b9c45ec812ffd80ea6895fd0973a28a24c1707b2ad1bd5b90bbf9566eabdf34",
+      "bytes": 543
+    },
+    "water_mask_diving_front": {
+      "sha256": "8821b1e3e43f101f98fad3f1050ec7d70451cc86fcc881230cd070106d8c9479",
+      "bytes": 426
+    },
+    "water_mask_helmet_right": {
+      "sha256": "722caeba15846734d5018cc45fafe11cfd4af82c2b1fb547cc65b10f07f26428",
+      "bytes": 542
+    },
+    "water_mask_diving_right": {
+      "sha256": "2bec7bb86149e2d618efa7afb4f940d40d14f58ab6d808613c2eff3aeaa9666e",
+      "bytes": 446
+    }
+  },
+  "method": "Exact embedded PNG decoding; no raster edits. Historical unused files retained."
 }

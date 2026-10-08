@@ -739,7 +739,7 @@ Returns the health face to display
 function Sbar_DrawFace() {
 	if ( R_NewerGame() && r_newer_hud.value !== 0 ) {
 		R_PlayerFacePreload();
-		const state = layeredFaceState || R_PlayerFaceFrame( _cl ), key = [ state.look, state.expression, state.health, state.strength, state.invulnerability, state.invisibility ].join( ':' );
+		const state = layeredFaceState || R_PlayerFaceFrame( _cl ), key = [ state.look, state.expression, state.health, state.strength, state.invulnerability, state.invisibility,state.eyeState,state.divingSuit,state.waterStage,state.waterOpacity ].join( ':' );
 		if ( key !== layeredFaceKey || ! layeredFacePic ) {
 			const rendered = R_PlayerFaceCompose( state );
 			if ( rendered.complete ) { layeredFaceKey = key; layeredFacePic = { canvas: rendered.canvas, width: 24, height: 24, _layeredFace: true }; }

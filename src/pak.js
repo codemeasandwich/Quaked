@@ -264,7 +264,8 @@ export function COM_SetNewerPack( pack ) {
 
 }
 
-// Small startup transport bundle; explicit full Newer pack entries retain priority.
+// Small startup transport bundle; full Newer pack entries retain priority
+// except the engine-pinned, complete player-face composition kit.
 // Logical paths remain unchanged, and loose files remain the optional fallback.
 export function COM_SetNewerStartupPack(pack){
  const next=new Map();
@@ -277,7 +278,7 @@ export function COM_SetNewerStartupPack(pack){
    const file=pack.files.find(f=>f.name===alias);if(!file)throw Error('Missing startup alias payload');next.set(name.toLowerCase(),file);
   }
  }
- for(const [name,url]of newerUrls)if(startupIndex.has(name)){URL.revokeObjectURL(url);newerUrls.delete(name);}
+ for(const [name,url]of newerUrls)if(startupIndex.has(name.toLowerCase()) || name.toLowerCase().startsWith('newer/hud/playerface/')&&next.has(name.toLowerCase())){URL.revokeObjectURL(url);newerUrls.delete(name);}
  startupPack=pack;startupIndex=next;
 }
 
@@ -302,7 +303,13 @@ A file of the Newer Game pack: { data, size } or null.
 =================
 */
 export function COM_NewerFile( name ) {
- const key=name.toLowerCase(),file=newerIndex?.get(key);if(file)return {data:new Uint8Array(newerPack.data,file.filepos,file.filelen),size:file.filelen};
+ const key=name.toLowerCase();
+ // The engine-pinned startup face kit is one versioned composition unit.
+ // An older optional newer.pak must not replace its manifest or a subset of
+ // its rasters. Other optional-pack asset precedence remains unchanged.
+ const face=key.startsWith('newer/hud/playerface/')?startupIndex.get(key):null;
+ if(face)return {data:new Uint8Array(startupPack.data,face.filepos,face.filelen),size:face.filelen};
+ const file=newerIndex?.get(key);if(file)return {data:new Uint8Array(newerPack.data,file.filepos,file.filelen),size:file.filelen};
  const startup=startupIndex.get(key);return startup?{data:new Uint8Array(startupPack.data,startup.filepos,startup.filelen),size:startup.filelen}:null;
 
 }
