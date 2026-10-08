@@ -1649,6 +1649,92 @@ export function R_BuildLightMap( surf, dest, destOffset, stride, bytes = lightma
 // Euler object reused for brush entity rotation (avoid per-frame allocation)
 const _brushEuler = new THREE.Euler( 0, 0, 0, 'ZYX' );
 
+// Real displacement for a demon plaque that belongs to a brush entity (a door, a plat, a secret wall),
+// such as the e1m4 door with dem5_3 on both faces. The world's plaques are meshes in the world batch with
+// the world's PVS (R_UpdateDemonSurfaces); an entity's surfaces are not part of that, and move, so the
+// raised surface is a child of the entity's cached group and follows its transform. It is generated at
+// run time from the same sculpted field as the world's (R_DemonSurfaceData: the prepared bakes are keyed to
+// the world model) the first time the textures are ready, and the entity's own flat face stays as its
+// backing. Only the large faces (a plaque, not the narrow strips on the edge of a door slab) are raised.
+const DEMON_BRUSH_MIN_TILES = .5; // (polygon texture coordinates are in tiles of the texture: a 64-unit plaque spans 1, the 8-unit edge of a door slab .125)
+
+function R_BrushDemonCandidates( clmodel ) {
+
+	const list = [];
+	if ( ! clmodel.surfaces || ! clmodel.nummodelsurfaces ) return list;
+	for ( let i = 0; i < clmodel.nummodelsurfaces; i ++ ) {
+
+		const surface = clmodel.surfaces[ clmodel.firstmodelsurface + i ];
+		if ( ! surface || ! surface.polys || ! DEMON_TEXTURES.has( surface.texinfo?.texture?.name ) ) continue;
+		let lo = [ Infinity, Infinity ], hi = [ - Infinity, - Infinity ];
+		for ( let p = surface.polys; p; p = p.next ) for ( let v = 0; v < p.numverts; v ++ ) for ( let k = 0; k < 2; k ++ ) {
+
+			const x = p.verts instanceof Float32Array ? p.verts[ v * 7 + 3 + k ] : p.verts[ v ][ 3 + k ];
+			if ( x < lo[ k ] ) lo[ k ] = x;
+			if ( x > hi[ k ] ) hi[ k ] = x;
+
+		}
+		if ( hi[ 0 ] - lo[ 0 ] >= DEMON_BRUSH_MIN_TILES && hi[ 1 ] - lo[ 1 ] >= DEMON_BRUSH_MIN_TILES ) list.push( { surface, field: null, mesh: null } );
+
+	}
+	return list;
+
+}
+
+function R_UpdateBrushDemon( e, brushGroup, clmodel ) {
+
+	let records = e._demonRelief;
+	if ( records === undefined ) records = e._demonRelief = R_BrushDemonCandidates( clmodel );
+	if ( records.length === 0 ) return;
+	const enabled = R_NewerGame() && r_newer_normals.value !== 0 && r_newer_textures.value !== 0;
+	for ( const record of records ) {
+
+		if ( ! enabled ) { if ( record.mesh ) record.mesh.visible = false; continue; }
+		const field = record.surface.texinfo.texture.gl_texture?.userData.newerHeight;
+		if ( record.field !== field ) {
+
+			record.field = field;
+			if ( record.mesh ) { brushGroup.remove( record.mesh ); record.mesh.geometry.dispose(); record.mesh.material.dispose(); record.mesh = null; }
+			const data = field?.displacement ? R_DemonSurfaceData( record.surface ) : null;
+			if ( data ) {
+
+				const geometry = new THREE.BufferGeometry();
+				if ( data.interleaved ) {
+
+					const buffer = new THREE.InterleavedBuffer( data.interleaved, 10 );
+					geometry.setAttribute( 'position', new THREE.InterleavedBufferAttribute( buffer, 3, 0 ) );
+					geometry.setAttribute( 'normal', new THREE.InterleavedBufferAttribute( buffer, 3, 3 ) );
+					geometry.setAttribute( 'uv', new THREE.InterleavedBufferAttribute( buffer, 2, 6 ) );
+					geometry.setAttribute( 'uv1', new THREE.InterleavedBufferAttribute( buffer, 2, 8 ) );
+					geometry.setIndex( new THREE.BufferAttribute( data.indices, 1 ) );
+
+				} else {
+
+					geometry.setAttribute( 'position', new THREE.BufferAttribute( data.positions, 3 ) );
+					geometry.setAttribute( 'normal', new THREE.BufferAttribute( data.normals, 3 ) );
+					geometry.setAttribute( 'uv', new THREE.BufferAttribute( data.uvs, 2 ) );
+					geometry.setAttribute( 'uv1', new THREE.BufferAttribute( data.lmuvs, 2 ) );
+
+				}
+				geometry.computeBoundingBox(); geometry.computeBoundingSphere();
+				const material = createQuakeLightmapMaterial( record.surface.texinfo.texture.gl_texture, lightmapTextures[ record.surface.lightmaptexturenum ] );
+				material.userData.realDisplacement = true;
+				material.needsUpdate = true;
+				const mesh = new THREE.Mesh( geometry, material );
+				mesh.name = 'brush_' + record.surface.texinfo.texture.name + '_displaced';
+				mesh.userData.newerOnly = true; mesh.userData.ownMaterial = true; mesh.receiveShadow = true;
+				brushGroup.add( mesh );
+				record.mesh = mesh;
+
+			}
+
+		}
+		if ( record.mesh ) record.mesh.visible = true;
+
+	}
+
+}
+
 export function R_DrawBrushModel( e ) {
 
 	// Use pre-allocated scratch arrays to avoid per-call allocations
@@ -1723,12 +1809,14 @@ export function R_DrawBrushModel( e ) {
 		for ( const child of brushGroup.children ) {
 
 			if ( child.geometry ) child.geometry.dispose();
-			// Don't dispose materials - they're cached in _brushMaterialCache
+			// Don't dispose materials - they're cached in _brushMaterialCache (a demon relief owns its own)
+			if ( child.userData.ownMaterial ) child.material.dispose();
 
 		}
 		brushGroup = null;
 		e._brushGroup = null;
 		e._brushAnimSurfaces = null;
+		e._demonRelief = undefined;
 
 	}
 
@@ -1853,6 +1941,9 @@ export function R_DrawBrushModel( e ) {
 		_allBrushEntityGroups.add( brushGroup );
 
 	}
+
+	// A demon plaque on this entity gets its real relief once its textures are ready (a child of the cached group)
+	R_UpdateBrushDemon( e, brushGroup, clmodel );
 
 	// Update materials for surfaces with time-based texture animation
 	// Geometry stays cached — only materials are swapped each frame
@@ -3333,8 +3424,10 @@ export function GL_BuildLightmaps() {
 		for ( const child of group.children ) {
 
 			if ( child.geometry ) child.geometry.dispose();
+			if ( child.userData.ownMaterial ) child.material.dispose();
 
 		}
+		if ( owner != null ) owner._demonRelief = undefined;
 
 	}
 
