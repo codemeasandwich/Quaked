@@ -9,7 +9,7 @@ import {PR_ExecuteProgram} from './pr_exec.js';
 import {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS} from './world.js';
 import {Mod_ForName} from './gl_model.js';
 import {COM_FindFile} from './pak.js';
-import {sv_gravity} from './sv_phys.js';
+import {sv_gravity,SV_CheckWater} from './sv_phys.js';
 import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from './respawn_motion.js';
 import {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo} from './respawn_record.js';
 import {IT_AXE,IT_KEY1,IT_KEY2,IT_INVISIBILITY,IT_INVULNERABILITY,IT_QUAD,IT_SUIT,STAT_AMMO,STAT_SHELLS,STAT_NAILS,STAT_ROCKETS,STAT_CELLS} from './quakedef.js';
@@ -116,7 +116,14 @@ function contact(p,state,s){
  s.respawned=true;state.frame=Respawn_NextFrame(s.frame,s.angles);
  callNative(p,pr_global_struct.PutClientInServer);p._respawn=state;p.v.origin=state.start;p.v.angles=s.angles;p.v.v_angle=s.angles;p.v.fixangle=1;
  p.v.health=100;p.v.items=IT_AXE|s.objectives;p.v.weapon=IT_AXE;p.v.armorvalue=0;p.v.armortype=0;p.v.deadflag=0;p.v.effects=0;p.v.velocity=[0,0,0];p.v.punchangle=[0,0,0];
- for(const a of RESPAWN_AMMO)p.v[a]=0;powersOff(p);callNative(p,fnIndex('W_SetCurrentAmmo'));p.v.movetype=MOVETYPE_NONE;p.v.takedamage=0;p.v.solid=SOLID_SLIDEBOX;p.v.button0=p.v.button1=p.v.button2=p.v.impulse=0;field(p,'attack_finished',sv.time+RESPAWN_TURN);SV_LinkEdict(p,false);s.alerted=SV_RespawnAlert(p);
+ for(const a of RESPAWN_AMMO)p.v[a]=0;powersOff(p);callNative(p,fnIndex('W_SetCurrentAmmo'));p.v.movetype=MOVETYPE_NONE;p.v.takedamage=0;p.v.solid=SOLID_SLIDEBOX;p.v.button0=p.v.button1=p.v.button2=p.v.impulse=0;field(p,'attack_finished',sv.time+RESPAWN_TURN);SV_LinkEdict(p,false);
+ // The player is now somewhere else, but nothing recomputes waterlevel/watertype until the first full physics pass after the sequence,
+ // and that pass runs the player's QuakeC (WaterMove) before SV_CheckWater: a death in slime or lava left the old liquid on the new dry
+ // ground, so the first tick hurt (12 in slime, 30 in lava), and meanwhile (SV_RespawnFrame returns early for the whole rise) the face
+ // and the clientdata water flag showed a submerged player. Refresh them for the destination now; a destination that really is wet is
+ // seen as wet and obeys the native rules. (The old damage timer has always expired by then; clearing it is hygiene.)
+ field(p,'dmgtime',0);SV_CheckWater(p);
+ s.alerted=SV_RespawnAlert(p);
 }
 export function SV_RespawnFrame(p){SV_RespawnFinishTravel(p);const state=p._respawn,s=state?.sequence;if(!s)return false;
  // Admission is Newer-only. Once admitted, finish ownership even if the
@@ -128,7 +135,7 @@ export function SV_RespawnFrame(p){SV_RespawnFinishTravel(p);const state=p._resp
  if(pose.after&&!s.respawned)contact(p,state,s);
  if(!s.respawned){p.v.health=Math.min(0,p.v.health);p.v.weaponmodel=0;p.v.weaponframe=0;p.v.takedamage=0;}
  p.v.movetype=MOVETYPE_NONE;p.v.velocity=[0,0,0];p.v.button0=p.v.button1=p.v.button2=p.v.impulse=0;p.v.view_ofs=pose.eye.map((v,i)=>v-p.v.origin[i]);
- if(pose.complete){state.sequence=null;p.v.movetype=MOVETYPE_WALK;p.v.takedamage=2;p.v.view_ofs=[0,0,22];p.v.v_angle=s.angles;p.v.angles=s.angles;p.v.fixangle=1;field(p,'attack_finished',sv.time);SV_LinkEdict(p,false);return true;}SV_LinkEdict(p,false);return true;
+ if(pose.complete){state.sequence=null;p.v.movetype=MOVETYPE_WALK;p.v.takedamage=2;p.v.view_ofs=[0,0,22];SV_CheckWater(p); /* (idempotent: also covers a game saved during the rise by a build without the refresh at contact) */p.v.v_angle=s.angles;p.v.angles=s.angles;p.v.fixangle=1;field(p,'attack_finished',sv.time);SV_LinkEdict(p,false);return true;}SV_LinkEdict(p,false);return true;
 }
 export function SV_RespawnDropTouch(p,e){const d=e?._respawnDrop;if(!d)return null;if(e.free||p.index!==1||p.v.health<=0||p._respawn?.sequence||!localContext()||!(e.v.flags&FL_ONGROUND)||sv.time<d.born+.25)return false;
  for(let i=0;i<3;i++)if(p.v.absmin[i]>e.v.absmax[i]||p.v.absmax[i]<e.v.absmin[i])return false;

@@ -184,3 +184,5 @@ completed for the preceding enhancements; no new publication is inferred here.
 Owner visual acceptance and gameplay performance qualification remain separate.
 The current chat owns the final live proof and acceptance; no unattended job is
 claimed to be running. Unrelated owner artwork and model files remain untouched.
+
+**Update 2026-10-08 (card [41]):** at contact the water state of the player (`waterlevel`, `watertype`) is refreshed for the destination, and again when the sequence completes, so a death in slime or lava no longer hurts the respawned player on dry ground. See `docs/respawn-hazard-state-2026-10-08.md`.
