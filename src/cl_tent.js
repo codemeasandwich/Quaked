@@ -202,13 +202,19 @@ export function CL_ParseTEnt() {
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			R_ParticleExplosion( pos );
+			// (the Fireball drives its own dynamic light from the supplied curve; the native
+			// one-shot light would only double it)
+			const fireball = R_ParticleExplosion( pos );
 			R_DecalScorch( pos );
-			const dl = CL_AllocDlight( 0 );
-			VectorCopy( pos, dl.origin );
-			dl.radius = 350;
-			dl.die = cl.time + 0.5;
-			dl.decay = 300;
+			if ( ! fireball ) {
+
+				const dl = CL_AllocDlight( 0 );
+				VectorCopy( pos, dl.origin );
+				dl.radius = 350;
+				dl.die = cl.time + 0.5;
+				dl.decay = 300;
+
+			}
 			S_StartSound( - 1, 0, cl_sfx_r_exp3, pos, 1, 1 );
 			break;
 
@@ -276,12 +282,15 @@ export function CL_ParseTEnt() {
 			pos[ 2 ] = MSG_ReadCoord();
 			const colorStart = MSG_ReadByte();
 			const colorLength = MSG_ReadByte();
-			R_ParticleExplosion2( pos, colorStart, colorLength );
-			const dl2 = CL_AllocDlight( 0 );
-			VectorCopy( pos, dl2.origin );
-			dl2.radius = 350;
-			dl2.die = cl.time + 0.5;
-			dl2.decay = 300;
+			if ( ! R_ParticleExplosion2( pos, colorStart, colorLength ) ) {
+
+				const dl2 = CL_AllocDlight( 0 );
+				VectorCopy( pos, dl2.origin );
+				dl2.radius = 350;
+				dl2.die = cl.time + 0.5;
+				dl2.decay = 300;
+
+			}
 			S_StartSound( - 1, 0, cl_sfx_r_exp3, pos, 1, 1 );
 			break;
 

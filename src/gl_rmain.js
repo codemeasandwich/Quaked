@@ -33,6 +33,8 @@ import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities }
 import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
+import { r_fireball, R_FireballSetup, R_FireballFrame, R_FireballClear } from './r_fireball.js';
+import { CL_AllocDlight } from './cl_main.js';
 import { R_ClassicTexture } from './r_newertextures.js';
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from './r_anim.js';
 import { R_SaveClassicScene, R_ClassicMaterial } from './r_classicstate.js';
@@ -924,6 +926,7 @@ const _setupgl_right = new Float32Array( 3 );
 const _setupgl_up = new Float32Array( 3 );
 const _setupgl_matrix = new THREE.Matrix4();
 const _setupgl_drawingBufferSize = new THREE.Vector2();
+const _fireballView = [ 0, 0 ], _fireballForward = new Float32Array( 3 ), _fireballRight = new Float32Array( 3 ), _fireballUp = new Float32Array( 3 );
 
 // A monster that has come through a teleporter arrives the way the player does: stretched upwards and split
 // into red and blue, and snaps into place.
@@ -1708,6 +1711,8 @@ function R_ClassicOn() {
 
 	scene.traverse( o => {
 		if ( o.userData.archHidden ) o.visible = true;
+		// the title demo's Classic-only explosion particles: shown in this pass alone
+		if ( o.userData.classicOnly ) { o.visible = true; return; }
 
 		if ( o.userData.newerOnly || ( o.isPointLight && gl_flashblend.value === 0 ) || o.name === 'quake_decals' || o.name === 'quake_level_portal' || o.name === 'quake_level_view' ) {
 
@@ -1794,6 +1799,13 @@ export function R_RenderView() {
 	R_DecalsFrame();
 	R_ShellsFrame( cl != null ? cl.time : 0 );
 	R_MistFrame( scene, cl != null ? cl.time : 0 );
+	// (the view's forward vector is worked out here: vpn is only brought up to date by R_SetupFrame,
+	// inside R_RenderScene, so it would be the last frame's; the spark width follows the target
+	// actually rendered, which dynamic resolution shrinks)
+	AngleVectors( r_refdef.viewangles, _fireballForward, _fireballRight, _fireballUp );
+	_fireballView[ 0 ] = r_refdef.vrect.width * r_refdef.vrectScale * R_DynResScale();
+	_fireballView[ 1 ] = r_refdef.vrect.height * r_refdef.vrectScale * R_DynResScale();
+	R_FireballFrame( cl != null ? cl.time : 0, r_refdef.vieworg, _fireballForward, _fireballView );
 
 	// render normal view
 	R_RenderScene();
@@ -2029,6 +2041,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_pillars );
 	Cvar_RegisterVariable( r_heathaze );
 	Cvar_RegisterVariable( r_mist );
+	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
@@ -2244,6 +2257,8 @@ export function R_NewMap() {
 
 	R_ClearParticles();
 	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
+	R_FireballSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, allocDlight: CL_AllocDlight } );
+	R_FireballClear();
 	R_DecalsClear();
 	let shellBrushes = [];
 	R_ShellsSetup( { scene, client: () => cl, refresh: () => { shellBrushes = cl_entities.filter( e => e?.model?.name?.startsWith( '*' ) ); },

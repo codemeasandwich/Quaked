@@ -47,6 +47,8 @@ class particle_t {
 		this.ramp = 0;
 		this.die = - 1;
 		this.type = pt_static;
+		// drawn only in the title demo's Classic half (see R_ParticleExplosion)
+		this.classicOnly = false;
 
 	}
 
@@ -70,6 +72,12 @@ let pointsMesh = null;
 let particleTexture = null;
 
 const positionArray = new Float32Array( MAX_PARTICLES * 3 );
+// the Classic-only batch (the title demo's split view): its own buffers and mesh, hidden unless
+// the Classic pass shows it, so the Newer half never draws these particles
+const classicPositionArray = new Float32Array( MAX_PARTICLES * 3 );
+const classicColorArray = new Float32Array( MAX_PARTICLES * 3 );
+let classicGeometry = null;
+let classicMesh = null;
 const colorArray = new Float32Array( MAX_PARTICLES * 3 );
 
 let tracercount = 0;
@@ -190,6 +198,7 @@ function allocParticle() {
 	p.ramp = 0;
 	p.die = - 1;
 	p.type = pt_static;
+	p.classicOnly = false;
 
 	return p;
 
@@ -200,7 +209,7 @@ function allocParticle() {
 R_ParticleExplosion
 ===============
 */
-export function R_ParticleExplosion( org ) {
+export function R_ParticleExplosion( org, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
 
@@ -208,6 +217,7 @@ export function R_ParticleExplosion( org ) {
 
 		const p = allocParticle();
 		if ( ! p ) return;
+		p.classicOnly = classicOnly;
 
 		p.die = client_cl.time + 5;
 		p.color = ramp1[ 0 ];
@@ -244,7 +254,7 @@ export function R_ParticleExplosion( org ) {
 R_ParticleExplosion2
 ===============
 */
-export function R_ParticleExplosion2( org, colorStart, colorLength ) {
+export function R_ParticleExplosion2( org, colorStart, colorLength, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
 	let colorMod = 0;
@@ -253,6 +263,7 @@ export function R_ParticleExplosion2( org, colorStart, colorLength ) {
 
 		const p = allocParticle();
 		if ( ! p ) return;
+		p.classicOnly = classicOnly;
 
 		p.die = client_cl.time + 0.3;
 		p.color = colorStart + ( colorMod % colorLength );
@@ -275,7 +286,7 @@ export function R_ParticleExplosion2( org, colorStart, colorLength ) {
 R_BlobExplosion
 ===============
 */
-export function R_BlobExplosion( org ) {
+export function R_BlobExplosion( org, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
 
@@ -283,6 +294,7 @@ export function R_BlobExplosion( org ) {
 
 		const p = allocParticle();
 		if ( ! p ) return;
+		p.classicOnly = classicOnly;
 
 		p.die = client_cl.time + 1 + ( Math.random() * 8 | 0 ) * 0.05;
 
@@ -679,7 +691,7 @@ export function R_DrawParticles() {
 	}
 
 	// Walk active list, remove dead and update physics
-	let count = 0;
+	let count = 0, classicCount = 0;
 	let prevIdx = - 1;
 	let idx = activeList;
 
@@ -710,17 +722,19 @@ export function R_DrawParticles() {
 		const p = particles[ idx ];
 
 		// Store position for rendering (raw Quake coordinates — camera uses them too)
-		positionArray[ count * 3 ] = p.org[ 0 ];
-		positionArray[ count * 3 + 1 ] = p.org[ 1 ];
-		positionArray[ count * 3 + 2 ] = p.org[ 2 ];
+		const classic = p.classicOnly === true, positions = classic ? classicPositionArray : positionArray, colors = classic ? classicColorArray : colorArray;
+		const slot = classic ? classicCount : count;
+		positions[ slot * 3 ] = p.org[ 0 ];
+		positions[ slot * 3 + 1 ] = p.org[ 1 ];
+		positions[ slot * 3 + 2 ] = p.org[ 2 ];
 
 		// Convert palette color to linear RGB (palette is sRGB, Three.js expects linear)
 		const rgba = d_8to24table[ p.color & 0xff ];
-		colorArray[ count * 3 ] = srgbToLinear[ rgba & 0xff ];
-		colorArray[ count * 3 + 1 ] = srgbToLinear[ ( rgba >> 8 ) & 0xff ];
-		colorArray[ count * 3 + 2 ] = srgbToLinear[ ( rgba >> 16 ) & 0xff ];
+		colors[ slot * 3 ] = srgbToLinear[ rgba & 0xff ];
+		colors[ slot * 3 + 1 ] = srgbToLinear[ ( rgba >> 8 ) & 0xff ];
+		colors[ slot * 3 + 2 ] = srgbToLinear[ ( rgba >> 16 ) & 0xff ];
 
-		count ++;
+		if ( classic ) classicCount ++; else count ++;
 
 		// Update physics
 		const bloody = ( p.type === pt_grav || p.type === pt_slowgrav ) && p.color >= 64 && p.color <= 79;
@@ -804,23 +818,22 @@ export function R_DrawParticles() {
 	}
 
 	// Render particles as THREE.Points
+	presentParticles( count, false );
+	presentParticles( classicCount, true );
+
+}
+
+function presentParticles( count, classic ) {
+
+	const mesh = classic ? classicMesh : pointsMesh;
 	if ( count === 0 ) {
 
-		if ( pointsMesh && pointsMesh.parent ) {
-
-			_scene.remove( pointsMesh );
-
-		}
-
+		if ( mesh && mesh.parent ) _scene.remove( mesh );
 		return;
 
 	}
 
-	if ( ! pointsGeometry ) {
-
-		pointsGeometry = new THREE.BufferGeometry();
-		pointsGeometry.setAttribute( 'position', new THREE.BufferAttribute( positionArray, 3 ) );
-		pointsGeometry.setAttribute( 'color', new THREE.BufferAttribute( colorArray, 3 ) );
+	if ( ! pointsMaterial ) {
 
 		pointsMaterial = new THREE.PointsMaterial( {
 			size: 3, // Original Quake uses 1.5 world unit triangle (spans 1.5 in up + right)
@@ -831,23 +844,31 @@ export function R_DrawParticles() {
 			map: particleTexture
 		} );
 
-		pointsMesh = new THREE.Points( pointsGeometry, pointsMaterial );
-		pointsMesh.frustumCulled = false;
+	}
+
+	if ( classic ? ! classicGeometry : ! pointsGeometry ) {
+
+		const geometry = new THREE.BufferGeometry();
+		geometry.setAttribute( 'position', new THREE.BufferAttribute( classic ? classicPositionArray : positionArray, 3 ) );
+		geometry.setAttribute( 'color', new THREE.BufferAttribute( classic ? classicColorArray : colorArray, 3 ) );
+		const created = new THREE.Points( geometry, pointsMaterial );
+		created.frustumCulled = false;
+		if ( classic ) { classicGeometry = geometry; classicMesh = created; created.userData.classicOnly = true; } else { pointsGeometry = geometry; pointsMesh = created; }
 
 	}
+
+	const geometry = classic ? classicGeometry : pointsGeometry, points = classic ? classicMesh : pointsMesh;
 
 	// In XR mode, scene.scale = 1/XR_SCALE but PointsMaterial.size is not
 	// affected by parent scale. Divide size to match meter-space distances.
 	pointsMaterial.size = isXRActive() ? 3 / XR_SCALE : 3;
 
-	pointsGeometry.attributes.position.needsUpdate = true;
-	pointsGeometry.attributes.color.needsUpdate = true;
-	pointsGeometry.setDrawRange( 0, count );
+	geometry.attributes.position.needsUpdate = true;
+	geometry.attributes.color.needsUpdate = true;
+	geometry.setDrawRange( 0, count );
+	// the Classic-only batch is invisible to every pass except the Classic one, which switches it on
+	if ( classic ) points.visible = false;
 
-	if ( ! pointsMesh.parent ) {
-
-		_scene.add( pointsMesh );
-
-	}
+	if ( ! points.parent ) _scene.add( points );
 
 }

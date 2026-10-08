@@ -13,6 +13,8 @@ import {
 	R_LavaSplash as _R_LavaSplash,
 	R_TeleportSplash as _R_TeleportSplash
 } from './r_part.js';
+import { R_FireballSpawn } from './r_fireball.js';
+import { R_DemoSplitActive } from './r_demosplit.js';
 
 //============================================================================
 // Constants
@@ -242,21 +244,38 @@ export function R_EntityParticles( ent ) {
 
 }
 
+// Tar baby (blob) explosion: the Fireball too (it never had a dynamic light, so none is added).
+// Every explosion wrapper returns true when the Fireball took the event, so its caller
+// knows whether the native particles (and the native light it pairs with) were used.
 export function R_BlobExplosion( org ) {
 
-	_R_BlobExplosion( org );
+	return explosion( org, { light: false }, classicOnly => _R_BlobExplosion( org, classicOnly ) );
 
 }
 
+// One explosion: the Fireball when it takes the event, otherwise the native particles. In the title
+// demo's split view the Classic half hides everything Newer, so the original explosion is spawned
+// too, flagged to draw in that half only (the Newer half would otherwise show both).
+function explosion( org, options, native ) {
+
+	if ( ! R_FireballSpawn( org, options ) ) { native( false ); return false; }
+	if ( R_DemoSplitActive() ) native( true );
+	return true;
+
+}
+
+// An ordinary explosion (rocket, grenade): the supplied Fireball in Newer Game,
+// otherwise (Classic, textures still loading) the native particles.
 export function R_ParticleExplosion( org ) {
 
-	_R_ParticleExplosion( org );
+	return explosion( org, {}, classicOnly => _R_ParticleExplosion( org, classicOnly ) );
 
 }
 
+// Colour-mapped explosion: the Fireball too (the colour range is not used by it).
 export function R_ParticleExplosion2( org, colorStart, colorLength ) {
 
-	_R_ParticleExplosion2( org, colorStart, colorLength );
+	return explosion( org, {}, classicOnly => _R_ParticleExplosion2( org, colorStart, colorLength, classicOnly ) );
 
 }
 

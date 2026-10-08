@@ -1,0 +1,36 @@
+{
+  "source_file": "fieldlab-fx-3d-updated.html (owner-supplied, kept local, not distributed)",
+  "source_sha256": "7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6",
+  "source_bytes": 1340464,
+  "effect": "04 Fireball (mode 'explosion')",
+  "extraction": "ASSETS.smoke and ASSETS.noise (base64 PNG data URIs on source line 39) decoded byte-for-byte; no re-encoding or editing",
+  "files": {
+    "smoke-atlas.png": {
+      "sha256": "3caa75491378500a9576f25ebfc39e6811761e09a5023b4f3bb679643666bf88",
+      "width": 512,
+      "height": 512,
+      "bytes": 450559,
+      "use": "4x4 atlas of 16 smoke/flame impostor tiles (puff shader uAtlas)"
+    },
+    "noise.png": {
+      "sha256": "9d51a6b6ade6aef5ad0d434119ba89fcb247f72e24de344e1d69283daf25230d",
+      "width": 256,
+      "height": 256,
+      "bytes": 115568,
+      "use": "tiling noise (puff flow/heat, shock ring; uNoise)"
+    }
+  },
+  "source_references": {
+    "puffVert": 102,
+    "puff": 106,
+    "shock": 125,
+    "puffs": 145,
+    "burstClouds": 194,
+    "burstSparks": 196,
+    "light": 202,
+    "render": "203-218",
+    "configs.explosion": 231,
+    "defaults": "explosion:{size:1.6,flash:1,smoke:.15,sparks:1.8}",
+    "quality": "medium: clouds 40, sparkCap 300"
+  }
+}
