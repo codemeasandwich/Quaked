@@ -22,7 +22,7 @@
 import {R_NormalPrepare} from './normal_prepare.js';
 import * as THREE from 'three';
 import { R_LevelEntities } from './r_levelents.js';
-import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface } from './r_weapon_surface.js';
+import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface, R_PlayerBodySurface } from './r_weapon_surface.js';
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
 import { cvar_t } from './cvar.js';
@@ -492,7 +492,8 @@ function patchShader( set ) {
 		Object.assign( shader.uniforms, set.uniforms, heightShadowUniforms );
   const surface=this.userData.quakePlayerSurface===true;
   shader.uniforms.uActorCoatOn={get value(){return surface&&R_IsNewer()?1:0;}};
-  shader.uniforms.uActorBloodSpots={get value(){return R_ActiveWeaponSurface().spots;}};
+  const held=this.userData.quakeViewmodel===true; // the held weapon shows its own coating; the player's body (chase camera) shows the body's
+  shader.uniforms.uActorBloodSpots={get value(){return (held?R_ActiveWeaponSurface():R_PlayerBodySurface()).spots;}};
 		shader.uniforms.uHasSkinHeightShadow = { get value() { return set.uniforms.qrNormal.value?.userData.heightSource ? 1 : 0; } };
 
 		shader.vertexShader = 'varying vec2 vActorUv;\nvarying vec3 vQrView;\nvarying vec3 vQrNormal;\n' +

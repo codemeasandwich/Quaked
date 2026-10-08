@@ -35,6 +35,7 @@ Held weapons, shotgun pellets, shells, the death and respawn rules.
 - [Clockwise death, persistent weapons and exact ammunition](clockwise-respawn-2026-10-04.md)
 - [Persistent player death remains and ammunition backpack](death-remains-2026-10-04.md)
 - [Held-weapon framing — T-13733908](held-framing-2026-10-08.md)
+- [Held-weapon blood stays with its weapon](held-weapon-blood-2026-10-09.md)
 - [Updated status-bar portraits and Quad + Pentagram selection](hud-powerup-faces-2026-10-02.md)
 - [Supplied ordinary nailgun — 2026-10-05](nailgun-source-2026-10-05.md)
 - [Destructible pinned zombies — 2026-10-03](pinned-zombies-2026-10-03.md)

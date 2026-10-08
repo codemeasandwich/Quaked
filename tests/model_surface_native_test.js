@@ -26,7 +26,7 @@ import { r_refdef } from '../src/render.js';
 import { r_hdr } from '../src/gl_post.js';
 import * as travel from '../src/sv_seamless.js';
 import { R_DemoLoadingCancel } from '../src/r_demoloading.js';
-import { weaponSurface, WeaponSurfaceState, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt } from '../src/r_weapon_surface.js';
+import { weaponSurface, weaponKey, WeaponSurfaceState, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt } from '../src/r_weapon_surface.js';
 
 const check = ( value, label ) => { if ( !value ) throw Error( label ); };
 const same = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} !== ${expected}` );
@@ -58,6 +58,10 @@ function finishConnect() {
 async function command( value ) { acknowledge(); cmd.Cmd_ExecuteString( value, cmd.src_command ); await Promise.resolve(); return finishConnect(); }
 async function fresh( map = 'e1m1' ) { vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'skill', 1 ); vars.Cvar_SetValue( 'sv_seamless', 1 ); return command( 'map '+map ); }
 function frame( point, time = sv.time, paused = false ) {
+ // V_CalcRefdef draws the weapon named by STAT_WEAPON, which the server sets from the player's weaponmodel ("" when
+ // dead). This CPU fixture does not parse client packets, so it reads the same field from the native player edict.
+ const weapon = svs.clients[0]?.edict ? text( svs.clients[0].edict.v.weaponmodel ) : '';
+ cl.viewent.model = weapon ? { name: weapon } : null;
  cl.worldmodel = sv.worldmodel; cl.time = time; cl.paused = paused; r_refdef.vieworg.set( point ); r_refdef.viewangles.set( [0,0,0] ); R_SetupFrame();
 }
 function eye( player ) { return Array.from( player.v.origin, ( value, i ) => value + player.v.view_ofs[i] ); }
@@ -86,7 +90,7 @@ Deno.test( 'real Host save/load atomically roundtrips blood spots and wet state,
  let player = await fresh(); const { air, water } = wetBlood( player, sv.time+5 ), saved = snapshot(), savedCoat = coat(), savedWet = weaponSurface.wet;
  acknowledge(); cmd.Cmd_ExecuteString( 'save model_surface_native', cmd.src_command );
  const data = storage.get( 'quake_save_model_surface_native' ); check( data?.startsWith('5\n'), 'actual native version5 save produced' );
- const line = data.split('\n').find( l => l.startsWith('// weapon-surface ') ); check( line, 'atomic native save contains coating sidecar' ); same( JSON.stringify(JSON.parse(atob(line.slice('// weapon-surface '.length)))), saved, 'host serialized exact held coating' );
+ const line = data.split('\n').find( l => l.startsWith('// weapon-surface ') ); check( line, 'atomic native save contains coating sidecar' ); same( JSON.stringify(JSON.parse(atob(line.slice('// weapon-surface '.length)))), JSON.stringify( { version: 2, body: weaponSurface.body.snapshot(), weapons: { [ weaponKey() ]: JSON.parse( saved ) } } ), 'host serialized the body and the exact held coating, filed under the weapon drawn' );
  frame( water, sv.time+10 ); same( weaponSurface.blood, 0, 'control proves live coating changed before reload' );
  player = await command( 'load model_surface_native' ); same( snapshot(), saved, 'full native load and server signon restore every coating field' ); near( weaponSurface.last, sv.time, 'restore clock rebased to actual saved server time' );
  frame( eye(player), sv.time ); same( snapshot(), saved, 'first renderer frame after load has no artificial drying step' );
@@ -95,34 +99,54 @@ Deno.test( 'real Host save/load atomically roundtrips blood spots and wet state,
  console.log('MODEL_SURFACE_NATIVE_SAVE '+JSON.stringify({map:sv.name,savedWet,blood:weaponSurface.blood,spots:weaponSurface.spots.filter(s=>s.w>0).length,waterWitness:water,airWitness:air,paired:cls.netcon.driverdata===svs.clients[0].netconnection}));
 } ) );
 
+Deno.test( 'real Host save/load keeps each weapon\'s own blood: the weapon in hand and one put away both come back', async () => isolatedSaves( async storage => {
+ let player = await fresh(); const { air } = wetBlood( player, sv.time+5 ); const held = weaponKey();
+ check( held === 'progs/v_shot.mdl', 'the native start holds the shotgun model: '+held );
+ const heldCoat = coat(), nail = { name: 'progs/v_nail.mdl' };
+ cl.viewent.model = nail; same( weaponSurface.blood, 0, 'a different weapon starts clean' );
+ check( R_PlayerSurfaceBlood( 12 ), 'blood event reaches the other weapon' ); const otherCoat = coat(); check( otherCoat !== heldCoat, 'the two weapons carry different coatings' );
+ frame( air ); same( weaponKey(), held, 'the next frame draws the native weapon again' ); same( coat(), heldCoat, 'and shows its coating before saving' );
+ acknowledge(); cmd.Cmd_ExecuteString( 'save model_surface_two_weapons', cmd.src_command );
+ const line = storage.get( 'quake_save_model_surface_two_weapons' ).split( '\n' ).find( l => l.startsWith( '// weapon-surface ' ) );
+ same( Object.keys( JSON.parse( atob( line.slice( '// weapon-surface '.length ) ) ).weapons ).sort().join(), 'progs/v_nail.mdl,progs/v_shot.mdl', 'the save carries both bloody weapons by model' );
+ weaponSurface.restoreAll( { version: 2, body: new WeaponSurfaceState().snapshot(), weapons: {} }, sv.time ); same( weaponSurface.blood, 0, 'control: coatings cleared before loading' );
+ player = await command( 'load model_surface_two_weapons' ); frame( eye( player ), sv.time );
+ same( weaponKey(), held, 'the loaded player holds the same weapon' ); same( coat(), heldCoat, 'the weapon in hand has its blood after the load' );
+ cl.viewent.model = nail; same( coat(), otherCoat, 'the weapon put away has its own blood after the load' );
+} ) );
+
 Deno.test( 'old native saves without coating metadata retain current blood and film across load and the first renderer frame', async () => isolatedSaves( async storage => {
  let player = await fresh(); wetBlood( player, 100 ); acknowledge(); cmd.Cmd_ExecuteString('save model_surface_old_source',cmd.src_command);
  const original = storage.get('quake_save_model_surface_old_source'); check(original?.includes('// weapon-surface '),'source save has metadata to remove');
  storage.set('quake_save_model_surface_legacy', original.split('\n').filter(line=>!line.startsWith('// weapon-surface ')).join('\n'));
  // A legacy save can advance the level clock as well as rewind it. Its lack
  // of cosmetic metadata must not turn that clock jump into seconds of drying.
- player = await fresh(); wetBlood( player, sv.time+1 ); const kept = snapshot();
+ player = await fresh(); wetBlood( player, sv.time+1 ); const kept = snapshot(), keptBody = JSON.stringify( weaponSurface.body.snapshot() );
  player = await command('load model_surface_legacy'); same(snapshot(),kept,'legacy load leaves current coating intact');
- frame(eye(player),sv.time); same(snapshot(),kept,'first legacy-load frame preserves coating rather than applying saved clock jump');
+ frame(eye(player),sv.time); same(snapshot(),kept,'first legacy-load frame preserves coating rather than applying saved clock jump'); same(JSON.stringify(weaponSurface.body.snapshot()),keptBody,'the body coating is rebased too: no drying step from the clock jump');
  console.log('MODEL_SURFACE_LEGACY_LOAD '+JSON.stringify({time:sv.time,blood:weaponSurface.blood,wet:weaponSurface.wet}));
 } ) );
 
 Deno.test( 'native player death/respawn and collision-driven seamless round trip retain coating until a real underwater frame', async () => {
  try {
-  let player = await fresh('e1m2'); wetBlood(player); const beforeCoat = coat();
+  // Death scatters the shotgun and respawn gives only the axe: the shotgun's blood stays the shotgun's, the axe is a
+  // different, clean weapon, and the player's body coating carries through death, respawn and travel.
+  const kept = () => JSON.stringify( [ weaponSurface.body, weaponSurface.state( 'progs/v_shot.mdl' ) ].map( s => ( { blood: s.blood, serial: s.serial, spots: s.spots.map( v => v.toArray() ) } ) ) );
+  let player = await fresh('e1m2'); wetBlood(player); same( weaponKey(), 'progs/v_shot.mdl', 'native start holds the shotgun' ); const beforeCoat = kept();
   progs.pr_global_struct.self = progs.EDICT_TO_PROG(player); progs.pr_global_struct.time = sv.time;
   const die = ED_FindFunction('ClientKill'); check(die,'actual native death function present'); PR_ExecuteProgram(progs.pr_functions.indexOf(die));
   const sequence = player._respawn?.sequence; check(sequence,'native death enters enhanced respawn');
-  for ( const time of [sequence.at+.22+sequence.turn/2+.001,sequence.at+.22+sequence.turn+.001] ) { sv.time=time; SV_SetFrametime(.001); SV_Physics_Client(player,1); frame(eye(player)); same(coat(),beforeCoat,'native respawn and actual dry renderer frame preserve blood'); }
+  for ( const time of [sequence.at+.22+sequence.turn/2+.001,sequence.at+.22+sequence.turn+.001] ) { sv.time=time; SV_SetFrametime(.001); SV_Physics_Client(player,1); frame(eye(player)); same(kept(),beforeCoat,'native respawn and actual dry renderer frame preserve the body and shotgun blood'); }
   same(player.v.health,100,'actual native respawn completed'); check(!player._respawn.sequence,'sequence released');
+  same(weaponKey(),'progs/v_axe.mdl','respawn holds the axe'); same(weaponSurface.blood,0,'the respawn axe carries none of the shotgun\'s blood');
   for ( const destination of ['e1m3','e1m2'] ) {
    const crossing=travel.SV_SeamlessCrossings().find(c=>c.map===destination); check(crossing,'native passage exists '+destination);
    player.v.origin=crossing.transform.center.map((v,i)=>v-crossing.transform.through[i]*32); player.v.velocity=crossing.transform.through.map(v=>v*120); SV_LinkEdict(player,false); travel.SV_SeamlessFrame();
    for(let step=0;step<18&&!travel.SV_SeamlessPending();step++){sv.time+=.1;const trace=SV_PushEntity(player,crossing.transform.through.map(v=>v*4));check(!trace.startsolid,'native collision approach stays outside solids');travel.SV_SeamlessFrame();}
    same(travel.SV_SeamlessPending()?.map,destination,'actual movement queues transition'); acknowledge(); cmd.Cbuf_Execute(); await Promise.resolve(); player=finishConnect(); travel.SV_SeamlessHolding(1);sv.time+=5;
-   frame(eye(player)); same(coat(),beforeCoat,'actual seamless host command and renderer arrival retain blood'); same(sv.name,destination,'destination world actually loaded');
+   frame(eye(player)); same(kept(),beforeCoat,'actual seamless host command and renderer arrival retain the body and shotgun blood'); same(sv.name,destination,'destination world actually loaded');
   }
-  const wet = waterPoint(); frame(wet,sv.time+.1); same(weaponSurface.blood,0,'native water leaf finally washes persistent blood'); check(weaponSurface.spots.every(s=>s.w===0),'submersion clears all surface splats');
+  const wet = waterPoint(); frame(wet,sv.time+.1); same(weaponSurface.body.blood,0,'native water leaf finally washes the body\'s persistent blood'); check(weaponSurface.state('progs/v_shot.mdl').blood>0,'the scattered shotgun, not in hand, is not washed'); same(weaponSurface.blood,0,'the axe in hand is clean'); check(weaponSurface.spots.every(s=>s.w===0),'submersion clears all surface splats');
   frame(eye(player),sv.time+.2); same(weaponSurface.wet,1,'water exit starts short wet film'); frame(eye(player),sv.time+4.2); same(weaponSurface.wet,0,'wet shine dries over four game seconds');
   console.log('MODEL_SURFACE_NATIVE_TRAVEL '+JSON.stringify({map:sv.name,health:player.v.health,blood:weaponSurface.blood,wet:weaponSurface.wet,waterWitness:wet}));
  } finally { acknowledge(); CL_Disconnect_f(); travel.SV_SeamlessReset(); }
@@ -136,8 +160,9 @@ Deno.test( 'UV contact seeds bounded clusters at the exact hit without overwriti
  const first=state.spots.slice(0,3).map(s=>s.toArray().join());state.add(.2,[.1,.9]);same(state.spots.slice(0,3).map(s=>s.toArray().join()).join('|'),first.join('|'),'later contact does not overwrite existing splats');
  for(let i=0;i<4;i++)state.add(.1,[.9,.1]);same(state.spots.length,12,'many contacts stay bounded');same(state.spots.slice(0,3).map(s=>[s.x,s.y].join()).join('|'),first.map(s=>s.split(',').slice(0,2).join()).join('|'),'saturation retains existing cluster positions');check(state.spots.every(s=>s.z<=.22&&s.w<=1),'saturated radii and opacity remain bounded');
  const saved=weaponSurface.snapshot(),last=weaponSurface.last;
+ const oldModel=cl.viewent.model;cl.viewent.model={name:'progs/v_shot.mdl'};
  try{weaponSurface.restore(new WeaponSurfaceState().snapshot(),0);R_WeaponSurfaceContext(true,[0,0,0],()=>true);const expected=new WeaponSurfaceState();expected.add(.2);check(R_PlayerSurfaceBlood(11),'original three-argument context still accepts player blood');same(snapshot(),JSON.stringify(expected.snapshot()),'no contact callback retains original deterministic random placement');}
- finally{weaponSurface.restore(saved,last);R_WeaponSurfaceContext(false,null,null);}
+ finally{weaponSurface.restore(saved,last);R_WeaponSurfaceContext(false,null,null);cl.viewent.model=oldModel;}
 } );
 
 Deno.test( 'actual frame contact callback follows transformed and in-place posed triangles, rejects hidden meshes and BSP-occluded spray', async () => {

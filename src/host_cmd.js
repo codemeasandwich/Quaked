@@ -1030,7 +1030,7 @@ function Host_Savegame_f() {
 	// A brace-free trailing comment keeps native version-5 saves compatible.
 	// In the same localStorage value, so gameplay and cosmetic state are atomic.
 	lines.push( SHELL_SAVE_PREFIX + btoa( JSON.stringify( R_ShellsSnapshot() ) ) );
- lines.push('// weapon-surface '+btoa(JSON.stringify(weaponSurface.snapshot())));
+ lines.push('// weapon-surface '+btoa(JSON.stringify(weaponSurface.snapshotAll())));
 	const saveData = lines.join( '\n' ) + '\n';
 
 	try {
@@ -1241,7 +1241,7 @@ function Host_Loadgame_f() {
  R_FlashlightRunLoaded( mapname, Cvar_VariableValue('r_hdr') !== 0, occupiedSkill );
 	sv.time = time;
 	const surfaceLine=allLines.find(line=>line.startsWith('// weapon-surface '));
- try{if(surfaceLine&&!weaponSurface.restore(JSON.parse(atob(surfaceLine.slice('// weapon-surface '.length))),sv.time))Con_Printf('Saved weapon surface invalid; current coating retained.\n');}catch(error){Con_Printf('Saved weapon surface could not be restored: %s\n',String(error));}
+ try{if(surfaceLine&&!weaponSurface.restoreAll(JSON.parse(atob(surfaceLine.slice('// weapon-surface '.length))),sv.time))Con_Printf('Saved weapon surface invalid; current coating retained.\n');}catch(error){Con_Printf('Saved weapon surface could not be restored: %s\n',String(error));}
 	weaponSurface.last=sv.time; // Rebase legacy/invalid sidecars too, never age against the previous map clock.
 	const shellLine = allLines.find( line => line.startsWith( SHELL_SAVE_PREFIX ) );
 	let shellData = null;
