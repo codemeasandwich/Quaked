@@ -1,0 +1,60 @@
+SURFACE_FALLBACK_NORMAL_BOUNDS [{"size":32,"maxSlope":0.4847358271314817,"alphaMaxError":0},{"size":128,"maxSlope":0.49900264747630757,"alphaMaxError":0},{"size":256,"maxSlope":0.49900264747630757,"alphaMaxError":0}]
+PASS fallback normals bound painted-grain slope while preserving scalar heights, direction and crafted relief
+SURFACE_FILTER_MATERIAL_VARIANTS [{"kind":"ordinary","footprint":2},{"kind":"rock","footprint":2},{"kind":"carved","footprint":2},{"kind":"sculpted","footprint":2},{"kind":"physical","footprint":2},{"kind":"no-normal","footprint":2}]
+PASS actual world shader variants filter micro shadows with stable derivatives and isolate replacement pigment from native and Classic
+PASS real compositor keeps physical water IOR and total internal reflection while limiting apparent refraction travel
+RESULT 3/3 passed (tests/surface_filtering_test.js)
+PASS actual offline skin image helper waits for decoded pixels before reading canvas; removing await recreates the original empty input
+Added packfile normal-baker-native-source (339 files)\n
+Can't register variable gl_subdivide_size, already defined
+
+NORMAL_PALETTE_WITNESS {"texture":"wswamp2_1","runtimeFullbright":224,"correctKey":"0b6fbc0eb1ccc62fcd02599c35e543e0d012626b8386f062e61cd10ca4e176f3","oldKey":"1f9f6bd20033c4092cc5da5e5142c3985a7e79364ee42628e5d0b024f7dba84d"}
+PASS actual baker palette initialization matches runtime224 fullbright boundary and prevents old all-black native normal inputs
+RESULT 2/2 passed (tests/normal_baker_inputs_test.js)
+PASS world readiness is selected-model scoped and image timeout permanently settles native without late pixel replacement
+PASS failed or stalled texture manifest is terminal native and ignores late manifest response
+PASS successful world diffuse/height readiness waits for all selected art and explicit image failure settles native
+PASS selected custom and native skin height requests settle with diagnostics and reject late textures
+PASS skin index timeout is terminal and late response cannot create a replacement
+PASS failed authored skin normal is terminal and generates matching relief from the loaded diffuse
+PASS weapon preload status observes concurrent requests, bounds stalled textures, and rejects late art after native fallback
+PASS successful weapon preload exposes terminal readiness and a stalled manifest cannot later enable art
+RESULT 8/8 passed (tests/asset_readiness_test.js)
+Weapon art fallback: v_shot Error: shotgun/d.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-preload:33:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:109:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon art fallback: shell Error: shell/s.webp timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-preload:33:41
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:109:6
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+Weapon manifest fallback: Error: Weapon manifest timed out
+    at file:///Users/bri/SOURCE/Quaked/src/r_weapons.js?readiness-manifest-stall:22:100
+    at Object.expire (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:111)
+    at file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:126:136
+    at async endpoints (file:///Users/bri/SOURCE/Quaked/tests/asset_readiness_test.js:24:8)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+PASS ten independent visibility slots roundtrip exact3bit values and distinguish generic/rock-wall tags and reject invalid clear/sentinel without gamma interpretation
+PASS actual rock highlights preserve daylight and lift only dim reached light while ordinary and source-free fields stay neutral
+PASS public height frame preserves light slot ordering, copies mutable input and respects scope/default controls
+PASS actual height ray agrees with geometric ridge blockers for point/sun rays and keeps flat/unknown/overhead cases lit
+HEIGHT_SHADER_NATIVE_MODELS 29
+PASS real public world/alias compiler hooks attach only declared scalar heights, preserve colour and distinguish rocks/carving/real geometry/classic
+PASS public pre-HDR frame freezes exact source slots and4MRT packed masks, composition never recaptures/reselects, old callers and off modes remain compatible
+meshing progs/shalrath.mdl...
+
+414 tri 620 vert 1344 cmd
+
+meshing progs/oldone.mdl...
+
+364 tri 562 vert 1224 cmd
+
+HEIGHT_INSTALLED_ASSETS native=21 replacement=14
+PASS installed21 native and14 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse
+PASS actual public decal, portal and level-view sky materials write all four HDR attachments; multiplicative decals preserve normal distances and every packed slot
+RESULT 8/8 passed (tests/height_shadows_test.js)
+TOTAL 21/21 passed

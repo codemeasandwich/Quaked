@@ -386,9 +386,11 @@ function patchDetailShader( shader ) {
 	shader.uniforms.uLmGamma = lightCurve;
 	shader.uniforms.uLighting = lightingLook;
 	shader.uniforms.uClassic = classicLook;
-	// Resolve replacement pigment over at least a small texel footprint. This
-	// softens baked pinprick grain without changing the image, native UVs or Classic.
-	shader.uniforms.uPigmentMinFootprint = { get value() { return thisMaterial.userData.detailDiffuse?.userData.newerPicture ? 4 : 0; } };
+	// Average one-texel pigment grain while retaining authored two-texel features.
+	// Four texels forced mip 2 even close up, hiding most of a 4x replacement's
+	// added detail. Keep the source, native UVs, normal/height sampling and Classic
+	// untouched; larger screen footprints still select their natural mip levels.
+	shader.uniforms.uPigmentMinFootprint = { get value() { return thisMaterial.userData.detailDiffuse?.userData.newerPicture ? 2 : 0; } };
 	Object.assign( shader.uniforms, heightShadowUniforms );
 	shader.uniforms.uHasHeightShadow = { get value() { return thisMaterial.normalMap?.userData.heightSource ? 1 : 0; } };
 

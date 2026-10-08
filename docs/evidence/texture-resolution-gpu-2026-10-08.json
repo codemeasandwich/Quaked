@@ -1,0 +1,1446 @@
+{
+  "status": "PASS",
+  "recommendation": {
+    "floor": 2,
+    "basis": "Smallest tested footprint satisfying the unchanged checker suppression and linear-mean oracle; inspect real-art and line-pair retention metrics alongside this constraint.",
+    "twoTexelContrast": 143.8229559082157,
+    "naturalTwoTexelContrast": 192.4868977283547,
+    "currentTwoTexelContrast": 0
+  },
+  "framebuffer": {
+    "realArt": 512,
+    "legacyChecker": 256,
+    "dpr": 1,
+    "dynamicResolution": 0
+  },
+  "anisotropy": 16,
+  "deviceMaxTextureSize": 16384,
+  "checks": [
+    {
+      "passed": true,
+      "name": "tech01_1 authored decoded dimensions",
+      "width": 256,
+      "height": 256,
+      "fileSHA": "c1e1b845b69276b6bab78927f0a90a36220f35bd96ee45fa5fb217c3b290324f"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid authored decoded dimensions",
+      "width": 128,
+      "height": 128,
+      "fileSHA": "3b5750f5d4193c458c2a04b7f81b7d2a307cd9d1afe159db997511ea5f8a973e"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 GPU preserves actual mip0 and generated mip2 dimensions",
+      "gpuTextureSize": [
+        256,
+        256,
+        64,
+        64
+      ]
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near actual production default is two texels",
+      "actualDefault": 2
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near unoverridden default exactly matches measured floor2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near normal MRT unchanged at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near Classic exact at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near normal MRT unchanged at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near Classic exact at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near normal MRT unchanged at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 near Classic exact at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 normal cache object unchanged"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique actual production default is two texels",
+      "actualDefault": 2
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique unoverridden default exactly matches measured floor2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique normal MRT unchanged at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique Classic exact at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique normal MRT unchanged at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique Classic exact at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique normal MRT unchanged at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 oblique Classic exact at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 normal cache object unchanged"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far actual production default is two texels",
+      "actualDefault": 2
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far unoverridden default exactly matches measured floor2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far normal MRT unchanged at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far Classic exact at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far normal MRT unchanged at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far Classic exact at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far normal MRT unchanged at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 far Classic exact at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 normal cache object unchanged"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 source RGBA pixels unchanged"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 authored normal pixels unchanged"
+    },
+    {
+      "passed": true,
+      "name": "tech01_1 normal-generation source identity unchanged"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid GPU preserves actual mip0 and generated mip2 dimensions",
+      "gpuTextureSize": [
+        128,
+        128,
+        32,
+        32
+      ]
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near actual production default is two texels",
+      "actualDefault": 2
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near unoverridden default exactly matches measured floor2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near normal MRT unchanged at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near Classic exact at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near normal MRT unchanged at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near Classic exact at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near normal MRT unchanged at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid near Classic exact at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid normal cache object unchanged"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique actual production default is two texels",
+      "actualDefault": 2
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique unoverridden default exactly matches measured floor2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique normal MRT unchanged at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique Classic exact at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique normal MRT unchanged at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique Classic exact at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique normal MRT unchanged at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid oblique Classic exact at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid normal cache object unchanged"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far actual production default is two texels",
+      "actualDefault": 2
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far unoverridden default exactly matches measured floor2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far normal MRT unchanged at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far Classic exact at floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far normal MRT unchanged at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far Classic exact at floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far normal MRT unchanged at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid far Classic exact at floor 1"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid normal cache object unchanged"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid source RGBA pixels unchanged"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid authored normal pixels unchanged"
+    },
+    {
+      "passed": true,
+      "name": "shot0sid normal-generation source identity unchanged"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "resolved two-texel feature positive control",
+      "2texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      },
+      "4texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      },
+      "8texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      }
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "legacy checker Classic remains exact floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "legacy checker Classic remains exact floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "legacy checker Classic remains exact floor 1"
+    },
+    {
+      "passed": true,
+      "name": "unchanged legacy native grain positive control",
+      "neighborDifference": 100.21451569442618,
+      "leftMean": 79.79612854821583,
+      "rightMean": 159.56322200370545
+    },
+    {
+      "passed": true,
+      "name": "current floor4 still meets unchanged original grain oracle",
+      "neighborDifference": 0,
+      "leftMean": 80.06712191084861,
+      "rightMean": 160.8430697681716,
+      "passesOriginalGrainSuppression": true,
+      "passesOriginalMeans": true,
+      "classicChanged": 0
+    },
+    {
+      "passed": true,
+      "name": "geometry and native UVs remain exact"
+    },
+    {
+      "passed": true,
+      "name": "all actual world-material variants render without GPU errors",
+      "errors": []
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "bounded temporal minification coverage tech01_1 floor 4",
+      "samples": 26896
+    },
+    {
+      "passed": true,
+      "name": "bounded temporal minification coverage tech01_1 floor 2",
+      "samples": 26896
+    },
+    {
+      "passed": true,
+      "name": "bounded temporal minification coverage tech01_1 floor 1",
+      "samples": 26896
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "bounded render timings recorded tech01_1 floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "bounded render timings recorded tech01_1 floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "bounded render timings recorded tech01_1 floor 1"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 256"
+    },
+    {
+      "passed": true,
+      "name": "bounded temporal minification coverage shot0sid floor 4",
+      "samples": 26896
+    },
+    {
+      "passed": true,
+      "name": "bounded temporal minification coverage shot0sid floor 2",
+      "samples": 26896
+    },
+    {
+      "passed": true,
+      "name": "bounded temporal minification coverage shot0sid floor 1",
+      "samples": 26896
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "bounded render timings recorded shot0sid floor 4"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "bounded render timings recorded shot0sid floor 2"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "fixed framebuffer 512"
+    },
+    {
+      "passed": true,
+      "name": "bounded render timings recorded shot0sid floor 1"
+    }
+  ],
+  "metrics": [
+    {
+      "asset": "tech01_1",
+      "pose": "near",
+      "floor": 4,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 248004,
+      "mean": 14.099177492526579,
+      "rmsVsNatural": 12.562536705289903,
+      "gradient": 1.2523591728494758,
+      "gradientVsNatural": 0.44289905515300765,
+      "fineDetail": 0.17640272325495632
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "near",
+      "floor": 2,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 248004,
+      "mean": 14.108630483921893,
+      "rmsVsNatural": 6.210156023945315,
+      "gradient": 2.103659407720122,
+      "gradientVsNatural": 0.7439629015716581,
+      "fineDetail": 0.39966869723460774
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "near",
+      "floor": 1,
+      "submitAndFinishMs": 9.600000001490116,
+      "samples": 248004,
+      "mean": 14.107807279550206,
+      "rmsVsNatural": 0,
+      "gradient": 2.827640199902493,
+      "gradientVsNatural": 1,
+      "fineDetail": 0.7262160630381469
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "oblique",
+      "floor": 4,
+      "submitAndFinishMs": 0,
+      "samples": 158036,
+      "mean": 14.41892817111637,
+      "rmsVsNatural": 12.214617812505354,
+      "gradient": 1.2931867897937335,
+      "gradientVsNatural": 0.4551969983727329,
+      "fineDetail": 0.23531642534353328
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "oblique",
+      "floor": 2,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 158036,
+      "mean": 14.423541641071592,
+      "rmsVsNatural": 5.5926047864028305,
+      "gradient": 2.1673846087286073,
+      "gradientVsNatural": 0.762911418519737,
+      "fineDetail": 0.5242897046497382
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "oblique",
+      "floor": 1,
+      "submitAndFinishMs": 0.09999999403953552,
+      "samples": 158036,
+      "mean": 14.411587437564318,
+      "rmsVsNatural": 0,
+      "gradient": 2.8409387461180535,
+      "gradientVsNatural": 1,
+      "fineDetail": 0.8524229102698222
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "far",
+      "floor": 4,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 3600,
+      "mean": 14.265608428700284,
+      "rmsVsNatural": 0,
+      "gradient": 7.597976865953048,
+      "gradientVsNatural": 1,
+      "fineDetail": 4.740694484530807
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "far",
+      "floor": 2,
+      "submitAndFinishMs": 0,
+      "samples": 3600,
+      "mean": 14.265608428700284,
+      "rmsVsNatural": 0,
+      "gradient": 7.597976865953048,
+      "gradientVsNatural": 1,
+      "fineDetail": 4.740694484530807
+    },
+    {
+      "asset": "tech01_1",
+      "pose": "far",
+      "floor": 1,
+      "submitAndFinishMs": 0,
+      "samples": 3600,
+      "mean": 14.265608428700284,
+      "rmsVsNatural": 0,
+      "gradient": 7.597976865953048,
+      "gradientVsNatural": 1,
+      "fineDetail": 4.740694484530807
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "near",
+      "floor": 4,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 248004,
+      "mean": 7.1509086525028875,
+      "rmsVsNatural": 6.821844683997296,
+      "gradient": 0.22030279194832106,
+      "gradientVsNatural": 0.4140932507910908,
+      "fineDetail": 0.04778090424484228
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "near",
+      "floor": 2,
+      "submitAndFinishMs": 0,
+      "samples": 248004,
+      "mean": 7.125497871447336,
+      "rmsVsNatural": 4.29791103408107,
+      "gradient": 0.36230599559067816,
+      "gradientVsNatural": 0.6810102866532913,
+      "fineDetail": 0.06769940317961234
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "near",
+      "floor": 1,
+      "submitAndFinishMs": 0.19999999552965164,
+      "samples": 248004,
+      "mean": 7.083821459519795,
+      "rmsVsNatural": 0,
+      "gradient": 0.5320125153632688,
+      "gradientVsNatural": 1,
+      "fineDetail": 0.11604111936056986
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "oblique",
+      "floor": 4,
+      "submitAndFinishMs": 0,
+      "samples": 158036,
+      "mean": 9.27140087341577,
+      "rmsVsNatural": 7.978389397816077,
+      "gradient": 0.3143012326900402,
+      "gradientVsNatural": 0.43450483938475215,
+      "fineDetail": 0.06566924427839452
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "oblique",
+      "floor": 2,
+      "submitAndFinishMs": 0,
+      "samples": 158036,
+      "mean": 9.250771450788505,
+      "rmsVsNatural": 4.682256407053344,
+      "gradient": 0.5042239648276038,
+      "gradientVsNatural": 0.6970629767380595,
+      "fineDetail": 0.10322273193147871
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "oblique",
+      "floor": 1,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 158036,
+      "mean": 9.236746752941722,
+      "rmsVsNatural": 0,
+      "gradient": 0.7233549645501827,
+      "gradientVsNatural": 1,
+      "fineDetail": 0.17591242248603878
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "far",
+      "floor": 4,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 3600,
+      "mean": 7.198339135512042,
+      "rmsVsNatural": 3.849615314650869,
+      "gradient": 1.6095922759212407,
+      "gradientVsNatural": 0.6987466077841197,
+      "fineDetail": 0.6376965759305555
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "far",
+      "floor": 2,
+      "submitAndFinishMs": 0.10000000149011612,
+      "samples": 3600,
+      "mean": 7.098205634700941,
+      "rmsVsNatural": 0,
+      "gradient": 2.303542168205459,
+      "gradientVsNatural": 1,
+      "fineDetail": 1.3103521766552848
+    },
+    {
+      "asset": "shot0sid",
+      "pose": "far",
+      "floor": 1,
+      "submitAndFinishMs": 0.09999999403953552,
+      "samples": 3600,
+      "mean": 7.098205634700941,
+      "rmsVsNatural": 0,
+      "gradient": 2.303542168205459,
+      "gradientVsNatural": 1,
+      "fineDetail": 1.3103521766552848
+    }
+  ],
+  "temporalMinification": [
+    {
+      "asset": "tech01_1",
+      "floor": 4,
+      "framebuffer": 256,
+      "distance": 192,
+      "phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reference": "four natural-mip subpixel renders per phase",
+      "samples": 26896,
+      "rmsVsSpatialReference": 2.33618776522549,
+      "temporalDeltaErrorRMS": 0.9043372520114094,
+      "actualFrameDeltaRMS": 1.725095780059957
+    },
+    {
+      "asset": "tech01_1",
+      "floor": 2,
+      "framebuffer": 256,
+      "distance": 192,
+      "phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reference": "four natural-mip subpixel renders per phase",
+      "samples": 26896,
+      "rmsVsSpatialReference": 1.607657583356077,
+      "temporalDeltaErrorRMS": 0.8594709236853533,
+      "actualFrameDeltaRMS": 2.3508045846775336
+    },
+    {
+      "asset": "tech01_1",
+      "floor": 1,
+      "framebuffer": 256,
+      "distance": 192,
+      "phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reference": "four natural-mip subpixel renders per phase",
+      "samples": 26896,
+      "rmsVsSpatialReference": 1.607657583356077,
+      "temporalDeltaErrorRMS": 0.8594709236853533,
+      "actualFrameDeltaRMS": 2.3508045846775336
+    },
+    {
+      "asset": "shot0sid",
+      "floor": 4,
+      "framebuffer": 256,
+      "distance": 192,
+      "phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reference": "four natural-mip subpixel renders per phase",
+      "samples": 26896,
+      "rmsVsSpatialReference": 4.343935593321445,
+      "temporalDeltaErrorRMS": 1.0206852182235764,
+      "actualFrameDeltaRMS": 1.0247441914331166
+    },
+    {
+      "asset": "shot0sid",
+      "floor": 2,
+      "framebuffer": 256,
+      "distance": 192,
+      "phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reference": "four natural-mip subpixel renders per phase",
+      "samples": 26896,
+      "rmsVsSpatialReference": 1.091138849886805,
+      "temporalDeltaErrorRMS": 0.53664517200484,
+      "actualFrameDeltaRMS": 1.579281111991705
+    },
+    {
+      "asset": "shot0sid",
+      "floor": 1,
+      "framebuffer": 256,
+      "distance": 192,
+      "phases": [
+        0,
+        0.25,
+        0.5,
+        0.75
+      ],
+      "reference": "four natural-mip subpixel renders per phase",
+      "samples": 26896,
+      "rmsVsSpatialReference": 0.5411310356363586,
+      "temporalDeltaErrorRMS": 0.3269358223421052,
+      "actualFrameDeltaRMS": 1.6794217301506003
+    }
+  ],
+  "renderTiming": [
+    {
+      "asset": "tech01_1",
+      "floor": 4,
+      "framebuffer": 512,
+      "samples": [
+        0,
+        0,
+        0
+      ],
+      "medianMs": 0,
+      "measurement": "CPU wall time around clear + render submission + gl.finish; warm shader, excludes pixel readback; not pure GPU timer"
+    },
+    {
+      "asset": "tech01_1",
+      "floor": 2,
+      "framebuffer": 512,
+      "samples": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0
+      ],
+      "medianMs": 0.10000000149011612,
+      "measurement": "CPU wall time around clear + render submission + gl.finish; warm shader, excludes pixel readback; not pure GPU timer"
+    },
+    {
+      "asset": "tech01_1",
+      "floor": 1,
+      "framebuffer": 512,
+      "samples": [
+        0,
+        0,
+        0
+      ],
+      "medianMs": 0,
+      "measurement": "CPU wall time around clear + render submission + gl.finish; warm shader, excludes pixel readback; not pure GPU timer"
+    },
+    {
+      "asset": "shot0sid",
+      "floor": 4,
+      "framebuffer": 512,
+      "samples": [
+        0,
+        0.10000000149011612,
+        0
+      ],
+      "medianMs": 0,
+      "measurement": "CPU wall time around clear + render submission + gl.finish; warm shader, excludes pixel readback; not pure GPU timer"
+    },
+    {
+      "asset": "shot0sid",
+      "floor": 2,
+      "framebuffer": 512,
+      "samples": [
+        0,
+        0,
+        0
+      ],
+      "medianMs": 0,
+      "measurement": "CPU wall time around clear + render submission + gl.finish; warm shader, excludes pixel readback; not pure GPU timer"
+    },
+    {
+      "asset": "shot0sid",
+      "floor": 1,
+      "framebuffer": 512,
+      "samples": [
+        0.10000000149011612,
+        0,
+        0
+      ],
+      "medianMs": 0,
+      "measurement": "CPU wall time around clear + render submission + gl.finish; warm shader, excludes pixel readback; not pure GPU timer"
+    }
+  ],
+  "narrowFeatureContrast": {
+    "1": {
+      "2texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      },
+      "4texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      },
+      "8texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      }
+    },
+    "2": {
+      "2texel": {
+        "p05": 55.97918093096365,
+        "p95": 199.80213683917935,
+        "contrast": 143.8229559082157
+      },
+      "4texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      },
+      "8texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      }
+    },
+    "4": {
+      "2texel": {
+        "p05": 128.236046798305,
+        "p95": 128.236046798305,
+        "contrast": 0
+      },
+      "4texel": {
+        "p05": 43.71748068686976,
+        "p95": 211.84631857753692,
+        "contrast": 168.12883789066717
+      },
+      "8texel": {
+        "p05": 31.816813478042373,
+        "p95": 224.30371120639708,
+        "contrast": 192.4868977283547
+      }
+    }
+  },
+  "legacyGrain": {
+    "native": {
+      "neighborDifference": 100.21451569442618,
+      "leftMean": 79.79612854821583,
+      "rightMean": 159.56322200370545
+    },
+    "floors": {
+      "1": {
+        "neighborDifference": 100.21451569442618,
+        "leftMean": 79.79612854821583,
+        "rightMean": 159.56322200370545,
+        "passesOriginalGrainSuppression": false,
+        "passesOriginalMeans": true,
+        "classicChanged": 0
+      },
+      "2": {
+        "neighborDifference": 0,
+        "leftMean": 80.06712191084861,
+        "rightMean": 160.8430697681716,
+        "passesOriginalGrainSuppression": true,
+        "passesOriginalMeans": true,
+        "classicChanged": 0
+      },
+      "4": {
+        "neighborDifference": 0,
+        "leftMean": 80.06712191084861,
+        "rightMean": 160.8430697681716,
+        "passesOriginalGrainSuppression": true,
+        "passesOriginalMeans": true,
+        "classicChanged": 0
+      }
+    }
+  },
+  "qualification": "Finite material-plane readback; actual world/ammo framebuffer and owner appearance acceptance are separate."
+}

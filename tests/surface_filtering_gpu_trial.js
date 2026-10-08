@@ -16,6 +16,7 @@ const geometry=new THREE.PlaneGeometry(32,32);geometry.setAttribute('uv1',geomet
 const surface=new THREE.Mesh(geometry);scene.add(surface);
 const texture=(data,w,h)=>{const t=new THREE.DataTexture(data,w,h);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.minFilter=THREE.LinearMipmapLinearFilter;t.magFilter=THREE.LinearFilter;t.generateMipmaps=true;t.needsUpdate=true;return t;};
 const solid=texture(new Uint8Array([96,96,96,255]),1,1),lightmap=texture(new Uint8Array([128,128,128,255]),1,1);lightmap.channel=1;
+const fixtureNormals=new WeakMap(),normalBindings=[];
 function material(diffuse,normal){
  diffuse._normalMap=normal;const m=createQuakeLightmapMaterial(diffuse,lightmap);
  if(mutation==='lod0'||mutation==='scalar-footprint'){
@@ -26,14 +27,14 @@ function material(diffuse,normal){
     .replace('vec2 qrPigmentFilter=max(vec2(1.),uPigmentMinFootprint*(1.-uClassic)/max(qrPigmentFootprint,vec2(1e-6)));','float qrPigmentFilter=max(1.,uPigmentMinFootprint*(1.-uClassic)/max(qrPigmentFootprint,1e-6));')
     .replaceAll('qrPigmentFilter.x','qrPigmentFilter').replaceAll('qrPigmentFilter.y','qrPigmentFilter');
   };m.customProgramCacheKey=()=> 'explicit-old-filter-control-'+mutation;
- }return m;
+ }fixtureNormals.set(m,normal);return m;
 }
 
 const field=(noisy,ridge)=>{const w=2048,h=16,p=new Uint8Array(w*h*4);for(let y=0;y<h;y++)for(let x=0;x<w;x++){const a=ridge&&x>=1120&&x<1248?255:noisy?(x%2?255:0):128;p.set([128,128,255,a],(y*w+x)*4);}const t=texture(p,w,h);t.userData.heightSource=true;return t;};
 const fields=[field(true,true),field(false,true),field(false,false)],shadowMaterials=fields.map(n=>material(solid.clone(),n));
-// Give each material its immutable explicit normal: the diffuse's normal-map
-// cache is shared only during public material creation, never overwritten later.
-shadowMaterials.forEach((m,i)=>{m.normalMap=fields[i];});
+// R_PostBegin legitimately refreshes asynchronous production normal bindings.
+// Install this test's immutable analytic height fields after that boundary so
+// the noisy/averaged/ridge oracles cannot be replaced by generated solid height.
 const pigments=new Uint8Array(256*256*4);for(let y=0;y<256;y++)for(let x=0;x<256;x++){const c=(x<128?80:160)+((x+y)%2?50:-50);pigments.set([c,c,c,255],(y*256+x)*4);}const pigment=texture(pigments,256,256),pigmentBefore=pigments.slice();
 const flat=texture(new Uint8Array([128,128,255,255]),1,1);flat.userData.heightSource=true;const pigmentMaterial=material(pigment,flat);
 // Independent directional grain: unlike a checker product, filtering one axis
@@ -43,7 +44,7 @@ for(let y=0;y<256;y++)for(let x=0;x<256;x++){const c=(y<128?80:160)+(x%2?20:-20)
 const directionalTexture=texture(directionalBytes,256,256);directionalTexture.anisotropy=Math.min(16,renderer.capabilities.getMaxAnisotropy());directionalTexture.needsUpdate=true;
 const directionalBefore=directionalBytes.slice(),directionalMaterial=material(directionalTexture,flat);
 
-function draw(m,{classic=false,shadows=true}={}){post.classicLook.value=classic?1:0;surface.material=m;post.R_PostBegin(renderer,true,W,H);post.classicLook.value=classic?1:0;height.R_HeightShadowFrame({points:[],sun:{direction:[1,0,.07],on:true,color:[1,1,1]},spot:{on:false}});height.R_HeightShadowScope(shadows&&!classic);post.R_PostBind(renderer);const target=renderer.getRenderTarget();renderer.clear();renderer.render(scene,camera);const mask=new Uint8Array(W*H*4),albedo=new Uint8Array(W*H*4);renderer.readRenderTargetPixels(target,0,0,W,H,mask,undefined,3);renderer.readRenderTargetPixels(target,0,0,W,H,albedo,undefined,2);return{mask,albedo,albedoColorSpace:target.textures[2].colorSpace};}
+function draw(m,{classic=false,shadows=true}={}){post.classicLook.value=classic?1:0;surface.material=m;post.R_PostBegin(renderer,true,W,H);const supplied=fixtureNormals.get(m),retained=m.normalMap===supplied;if(!retained){m.normalMap=supplied;m.needsUpdate=true;}normalBindings.push({retainedAcrossPostBegin:retained,actualSuppliedHeight:m.normalMap===supplied&&supplied.userData.heightSource===true});post.classicLook.value=classic?1:0;height.R_HeightShadowFrame({points:[],sun:{direction:[1,0,.07],on:true,color:[1,1,1]},spot:{on:false}});height.R_HeightShadowScope(shadows&&!classic);post.R_PostBind(renderer);const target=renderer.getRenderTarget();renderer.clear();renderer.render(scene,camera);const mask=new Uint8Array(W*H*4),albedo=new Uint8Array(W*H*4);renderer.readRenderTargetPixels(target,0,0,W,H,mask,undefined,3);renderer.readRenderTargetPixels(target,0,0,W,H,albedo,undefined,2);return{mask,albedo,albedoColorSpace:target.textures[2].colorSpace};}
 function visibility(bytes,i){const word=bytes[i*4]+bytes[i*4+1]*256+bytes[i*4+2]*65536+bytes[i*4+3]*16777216;const kind=Math.floor(word/1073741824);return kind===1||kind===2?Math.floor(word/16777216)%8/7:1;}
 function picture(label,data,mask=false){const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d'),image=ctx.createImageData(W,H);for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=y*W+x,o=((H-1-y)*W+x)*4;if(mask){const v=Math.round(visibility(data,i)*255);image.data.set([v,v,v,255],o);}else image.data.set([data[i*4],data[i*4+1],data[i*4+2],255],o);}ctx.putImageData(image,0,0);const figure=document.createElement('figure'),caption=document.createElement('figcaption');caption.textContent=label;figure.append(canvas,caption);views.append(figure);}
 // Attachment 2 is SRGB8 storage. Decode each actual readback sample BEFORE
@@ -74,12 +75,12 @@ function directionalProof(check){
 async function run(){button.disabled=true;views.replaceChildren();const checks=[],check=(passed,name,data={})=>checks.push({passed,name,...data});try{
  const noisy=draw(shadowMaterials[0]),average=draw(shadowMaterials[1]),flatDraw=draw(shadowMaterials[2]);let difference=0,count=0,coarseShadow=0,flatShadow=0,valid=0;
  for(let y=8;y<H-8;y++)for(let x=8;x<W-8;x++){if(Math.abs(x-140)<3||Math.abs(x-156)<3)continue;const i=y*W+x,a=visibility(noisy.mask,i),b=visibility(average.mask,i),c=visibility(flatDraw.mask,i);difference+=Math.abs(a-b);count++;if(b<.5)coarseShadow++;if(c<.999)flatShadow++;if(Math.floor(noisy.mask[i*4+3]/64)===1)valid++;}
- check(valid>count*.99,'real receiver coverage and valid source mask',{valid,count});check(difference/count<.025,'subpixel grain shadows converge to averaged-height oracle',{meanVisibilityError:difference/count});check(coarseShadow>500,'resolved broad ridge still casts a material shadow',{coarseShadow});check(flatShadow===0,'flat-height negative control casts no relief shadows',{flatShadow});picture('Fine stripes + broad ridge (visibility)',noisy.mask,true);picture('Averaged field + same ridge (oracle)',average.mask,true);
+ check(normalBindings.every(row=>row.actualSuppliedHeight),'every draw uses its explicit analytic height fixture',{normalBindings});check(valid>count*.99,'real receiver coverage and valid source mask',{valid,count});check(difference/count<.025,'subpixel grain shadows converge to averaged-height oracle',{meanVisibilityError:difference/count});check(coarseShadow>500,'resolved broad ridge still casts a material shadow',{coarseShadow});check(flatShadow===0,'flat-height negative control casts no relief shadows',{flatShadow});picture('Fine stripes + broad ridge (visibility)',noisy.mask,true);picture('Averaged field + same ridge (oracle)',average.mask,true);
  pigment.userData.newerPicture=false;const native=draw(pigmentMaterial,{shadows:false});pigment.userData.newerPicture=true;const upgraded=draw(pigmentMaterial,{shadows:false}),classic=draw(pigmentMaterial,{classic:true,shadows:false});const n=stats(native.albedo),u=stats(upgraded.albedo);let classicChanged=0;for(let i=0;i<native.albedo.length;i++)if(native.albedo[i]!==classic.albedo[i])classicChanged++;
  check(native.albedoColorSpace===THREE.SRGBColorSpace,'oracle decodes actual SRGB8 albedo storage',{colorSpace:native.albedoColorSpace});check(n.neighborDifference>40,'unfiltered native control contains resolved pixel grain',n);check(u.neighborDifference<n.neighborDifference*.35,'replacement pigment filtering suppresses fine grain',u);check(u.rightMean-u.leftMean>65,'broad linear pigment contrast remains readable',u);check(Math.abs(u.leftMean-n.leftMean)<2&&Math.abs(u.rightMean-n.rightMean)<2,'filter preserves linear mean pigment in both broad regions',{native:n,upgraded:u});check(Math.abs(u.leftMean-80)<2&&Math.abs(u.rightMean-160)<2,'filtered linear values agree with independently authored two-texel means',{expected:[80,160],actual:[u.leftMean,u.rightMean]});check(classicChanged===0,'Classic upgraded material matches original pigment pixel-for-pixel',{classicChanged});picture('Original sampling control',native.albedo);picture('Replacement sampling, same bytes',upgraded.albedo);
  directionalProof(check);
  check(positions.every((v,i)=>v===geometry.attributes.position.array[i])&&uvs.every((v,i)=>v===geometry.attributes.uv.array[i])&&pigmentBefore.every((v,i)=>v===pigments[i]),'native geometry, UVs and image bytes immutable');check(errors.length===0&&gl.getError()===gl.NO_ERROR,'all actual shader variants compile and render without GL errors',{errors});
  }catch(error){checks.push({passed:false,name:String(error),stack:error.stack});}finally{post.classicLook.value=0;height.R_HeightShadowScope(false);button.disabled=false;}
- const result={status:checks.every(c=>c.passed)?'PASS':'FAIL',mutation,checks};window.surfaceFilteringResult=result;report.textContent=JSON.stringify(result,null,2);
+ const result={status:checks.every(c=>c.passed)?'PASS':'FAIL',mutation,normalBindings,checks};window.surfaceFilteringResult=result;report.textContent=JSON.stringify(result,null,2);
 }
 button.onclick=run;await run();

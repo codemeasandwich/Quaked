@@ -2,6 +2,10 @@
 // No browser, game or WebGL instance is started.
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
+import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
+import {COM_AddPack} from '../src/pak.js';
+import {VID_SetPalette} from '../src/vid.js';
+import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import * as height from '../src/r_heightshadows.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
@@ -129,7 +133,7 @@ Deno.test( 'public pre-HDR frame freezes exact source slots and4MRT packed masks
 
 } ) );
 
-Deno.test( 'installed21 native and12 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse', () => fixture( async () => {
+Deno.test( 'installed21 native and14 replacement enemy scalar assets reach public asynchronous material height-mask hooks with filtered alpha and unchanged diffuse', () => fixture( async () => {
 
 	const sharp = ( await import( process.env.QUAKED_SHARP_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp/dist/index.mjs' ) ).default;
 	const index = JSON.parse( readFileSync( new URL( '../newer/enemies/index.json', import.meta.url ) ) ), pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
@@ -156,12 +160,19 @@ Deno.test( 'installed21 native and12 replacement enemy scalar assets reach publi
 			const texture = nativeSkin( key ), original = Buffer.from( texture.image.data ), material = skins.R_EnemyAliasMaterial( texture, 'progs/' + key + '.mdl', true, 0, 0 ); await drain(); verify( material, 'newer/enemies/' + groups[ 0 ][ 0 ].file, key ); check( Buffer.from( texture.image.data ).equals( original ), key + ' native diffuse untouched' ); texture.dispose(); nativeCount ++;
 
 		}
+		// Source-constrained variants require the same actual loaded MDL identity
+		// as production. A bare filename must not bypass that admission contract.
+		const constrainedModels=new Map(),owned=await pakDirectory(process.env.QUAKED_OWNED_PAK||new URL('../resources/id1/pak0.pak',import.meta.url).pathname);
+		COM_AddPack(isolatedPack('gfx/palette.lmp',palette));VID_SetPalette(palette);Mod_Init();
+		for(const[key,variants]of Object.entries(index.models))if(variants.some(v=>v.maps.height&&v.nativeModelSha256)){
+			const name='progs/'+key+'.mdl';check(owned.has(name),'owned native source exists for constrained '+key);COM_AddPack(isolatedPack(name,await readMember(owned.get(name))));const model=Mod_ForName(name,true);await model.aliasSourceIdentity.promise;check(variants.some(v=>v.nativeModelSha256===model.aliasSourceIdentity.sha256),key+' actual owned model satisfies manifest identity');constrainedModels.set(key,model);
+		}
 		for ( const [ key, variants ] of Object.entries( index.models ) ) {
 
-			const variant = variants.find( v => v.maps.height ); if ( ! variant ) continue; const entity = { _entityIndex: customCount + 1 }; skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); await drain(); const material = skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); verify( material, 'newer/enemies/' + variant.dir + '/' + variant.maps.height, key + ' replacement' ); const diffuse = decoded.get( 'newer/enemies/' + variant.dir + '/' + variant.maps.diffuse ); check( Buffer.from( material.map.image.data ).equals( diffuse.data ), key + ' replacement diffuse untouched' ); customCount ++;
+			const variant = variants.find( v => v.maps.height ); if ( ! variant ) continue; const entity = { _entityIndex: customCount + 1, model:constrainedModels.get(key) }; skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); await drain(); const material = skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); verify( material, 'newer/enemies/' + variant.dir + '/' + variant.maps.height, key + ' replacement' ); const diffuse = decoded.get( 'newer/enemies/' + variant.dir + '/' + variant.maps.diffuse ); check( Buffer.from( material.map.image.data ).equals( diffuse.data ), key + ' replacement diffuse untouched' ); customCount ++;
 
 		}
-		same( nativeCount, 21, 'every installed native model height path covered' ); same( customCount, 12, 'every installed replacement height path covered' ); console.log( `HEIGHT_INSTALLED_ASSETS native=${nativeCount} replacement=${customCount}` );
+		same( nativeCount, 21, 'every installed native model height path covered' ); same( customCount, 14, 'every installed replacement height path covered' ); console.log( `HEIGHT_INSTALLED_ASSETS native=${nativeCount} replacement=${customCount}` );
 
 	} finally { await drain(); THREE.TextureLoader.prototype.load = oldLoad; if ( doc ) Object.defineProperty( globalThis, 'document', doc ); else delete globalThis.document; }
 

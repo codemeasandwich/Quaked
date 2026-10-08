@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><base href="../"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quaked texture resolution trial</title>
+<style>*{box-sizing:border-box;margin:0}html,body{width:100%;height:100%;overflow:hidden;background:#000}canvas{display:block;position:fixed;inset:0;width:100%;height:100%}#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000;z-index:100}#loading-bar{width:200px;height:2px;background:#333}#loading-progress{width:0;height:100%;background:white}section{position:fixed;left:8px;top:8px;z-index:200;max-width:min(720px,95vw);max-height:44vh;overflow:auto;color:#eee;background:#10141ee8;padding:10px;font:12px/1.4 monospace}button,select{font:inherit;padding:5px;margin:2px}pre{white-space:pre-wrap;font-size:10px}details{margin-top:5px}a{color:#bcd}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}</script></head>
+<body><div id="loading"><div id="loading-bar"><div id="loading-progress"></div></div></div>
+<section><strong>Native E1M1 texture comparison</strong><br>
+<button id="start">Restart E1M1</button>
+<label>Surface <select id="subject"><option value="wall">World tech01_1</option><option value="shell">Native shell pickup</option></select></label>
+<label>View <select id="view"><option value="near">Near</option><option value="oblique">Oblique</option><option value="far">Far</option></select></label>
+<button id="current">Production 2</button><button id="old">Previous 4</button><button id="classic">Classic: off</button><button id="dynres">Dynamic resolution: off</button><button id="hide">Hide controls (Esc restores)</button>
+<button id="download-receipt">Download receipt</button>
+<button id="download-frame">Download game frame PNG</button>
+<div id="status">Starting bounded native setup…</div><details><summary>Source, material and framebuffer receipt</summary><pre id="receipt"></pre></details>
+<p>Same authored assets, native geometry and lighting. Only the fixture's comparison uniform changes. Normal movement keys remain native.</p></section>
+<script type="module" src="tests/texture_resolution_gameplay_trial.js"></script></body></html>
