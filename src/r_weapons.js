@@ -115,7 +115,9 @@ export function R_WeaponLoad( key ) {
 
 			} );
 			const maps = Object.fromEntries( loaded ), material = R_AssetAliasMaterial( maps, key, manifest.sources[ source ].material );
-			const asset = { templates, material, source, key, textures: Object.values( maps ).filter( texture => texture?.isTexture ), rotor: data.rotor || null };
+			const cameraPullback=manifest.models[key]?.cameraPullback;
+			const asset = { templates, material, source, key, textures: Object.values( maps ).filter( texture => texture?.isTexture ), rotor: data.rotor || null,
+				cameraPullback:key.startsWith('v_') && Number.isFinite(cameraPullback) && cameraPullback>=0 ? cameraPullback : 0 };
 			request.asset = asset; return asset;
 
 		} ).catch( error => {
@@ -141,6 +143,13 @@ export function R_WeaponAsset( modelName ) {
 	const asset = requests.get( key )?.asset || null;
 	return asset;
 
+}
+
+// Ready imported held art only. Baked fitting offsets remain part of the
+// asset; this independent runtime adjustment follows the actual camera axis.
+export function R_WeaponHeldPullback(modelName) {
+	if(R_ClassicPassActive())return 0;
+	return R_WeaponAsset(modelName)?.cameraPullback || 0;
 }
 
 // One existing alias mesh, with only the four barrel assemblies animated.

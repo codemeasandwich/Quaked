@@ -294,7 +294,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     native = native_models()
     manifest = json.loads((OUT / 'index.json').read_text()) if args.only else {'models': {}, 'sources': {}}
-    manifest['version'] = 11
+    manifest['version'] = max(13, manifest.get('version', 0))
     for key, (filename, models, axes) in SOURCES.items():
         if args.only and key != args.only: continue
         path = ROOT / filename
@@ -363,6 +363,9 @@ def main():
                 # eye without changing size, orientation or pickup placement.
                 fitted += np.array([-3.0, 0.0, 0.0])
                 calibration['viewOffset'] = [-3.0, 0.0, 0.0]
+            if model in ('v_rock2', 'v_nail2'):
+                # Runtime camera-space framing; never bake this into poses.
+                calibration['cameraPullback'] = 0.5 if model == 'v_rock2' else 1.0
             output = {'poses': [np.round(rigid_pose(fitted, poses[0][selected], p[selected]), 6).flatten().tolist() for p in poses],
                       'uv': np.round(uv, 7).flatten().tolist(), 'indices': indices.tolist()}
             if authored_normals is not None:

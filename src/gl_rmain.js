@@ -6,7 +6,7 @@ import { R_RockfieldSetLimits, R_RockfieldStatus } from './r_rockfield.js';
 import { R_IntroLoadingHolding, R_DemoLoadingWelcome, R_DemoLoadingFrame, R_IntroReadinessChecks } from './r_demoloading.js';
 import { R_NewerTexturesStatus,R_NewerNormalsStatus,R_NewerNormalsPrepare } from './r_newertextures.js';
 import { R_NewerSkinsPrepare, R_NewerSkinsStatus, R_NewerSkinsMaterials, R_NewerSkinsTextures } from './r_newerskins.js';
-import { R_WeaponsPreload, R_WeaponStatus, R_WeaponMaterials, R_WeaponTextures, R_WeaponsEnabled } from './r_weapons.js';
+import { R_WeaponsPreload, R_WeaponStatus, R_WeaponMaterials, R_WeaponTextures, R_WeaponsEnabled, R_WeaponHeldPullback } from './r_weapons.js';
 import { R_NewerHudPreload, R_NewerHudStatus } from './r_newerhud.js';
 import { r_powerups, R_PowerupBegin, R_PowerupSeen, R_PowerupEnd, R_PowerupClear } from './r_powerups.js';
 import { R_AxeCorpsesFrame, R_ClearAxeCorpses } from './r_axecorpses.js';
@@ -676,6 +676,7 @@ export function R_DrawEntitiesOnList() {
 //============================================================================
 
 const SHADEDOT_QUANT = 16;
+const _heldPullbackDirection = new THREE.Vector3();
 
 // Cached callbacks for viewmodel depthRange hack (no closures in render loop)
 function _viewmodelBeforeRender( r, scene, drawCamera ) {
@@ -819,6 +820,10 @@ export function R_DrawViewModel() {
 
 		mesh.onBeforeRender = _viewmodelBeforeRender;
 		mesh.onAfterRender = _viewmodelAfterRender;
+		// Base drawing resets mesh.position each frame. Move only the render
+		// mesh, leaving native entity origin, firing and baked pose data intact.
+		const pullback=R_WeaponHeldPullback(currententity.model.name);
+		if(pullback){camera.getWorldDirection(_heldPullbackDirection);mesh.position.addScaledVector(_heldPullbackDirection,-pullback);}
 
 	}
 

@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "models": {
     "v_shot": {
       "source": "shotgun",
@@ -209,7 +209,8 @@
         104,
         105,
         106
-      ]
+      ],
+      "cameraPullback": 1.0
     },
     "g_nail2": {
       "source": "supernailgun",
@@ -401,7 +402,8 @@
         9,
         10,
         11
-      ]
+      ],
+      "cameraPullback": 0.5
     },
     "g_rock2": {
       "source": "rocketlauncher",

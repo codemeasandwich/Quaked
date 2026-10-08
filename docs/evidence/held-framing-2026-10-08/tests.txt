@@ -1,0 +1,93 @@
+Added packfile held-framing-native (339 files)\n
+R_Init
+R_Init: Three.js renderer ready
+PASS ready manifest publishes held-only pullbacks and keeps prior baked fitting untouched
+meshing progs/v_rock2.mdl...
+
+meshing progs/v_nail2.mdl...
+
+PASS actual held draw applies exact camera-backward deltas at varied orientations once per frame
+meshing progs/v_shot.mdl...
+
+meshing progs/v_axe.mdl...
+
+PASS Classic disabled replacements and fallback never acquire held pullback
+HELD_FRAMING_CLIP {"key":"v_rock2","fov":75,"samples":2268,"minDepth":-17.728229268841538,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":3,"minDepth":-17.728229268841538,"near":4,"visibleNearCut":0},"stationaryDepth":0.06959782447046625}
+HELD_FRAMING_CLIP {"key":"v_rock2","fov":90,"samples":2268,"minDepth":-17.728229268841538,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":3,"minDepth":-17.728229268841538,"near":4,"visibleNearCut":0},"stationaryDepth":0.06959782447046625}
+HELD_FRAMING_CLIP {"key":"v_rock2","fov":110,"samples":2268,"minDepth":-17.728229268841538,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":3,"minDepth":-17.728229268841538,"near":4,"visibleNearCut":0},"stationaryDepth":0.06959782447046625}
+HELD_FRAMING_CLIP {"key":"v_nail2","fov":75,"samples":2916,"minDepth":1.7665116748576972,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":0,"minDepth":1.7665116748576972,"near":4,"visibleNearCut":0},"stationaryDepth":4.169809806743927}
+HELD_FRAMING_CLIP {"key":"v_nail2","fov":90,"samples":2916,"minDepth":1.7665116748576972,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":0,"minDepth":1.7665116748576972,"near":4,"visibleNearCut":0},"stationaryDepth":4.169809806743927}
+HELD_FRAMING_CLIP {"key":"v_nail2","fov":110,"samples":2916,"minDepth":1.7665116748576972,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":0,"minDepth":1.7665116748576972,"near":4,"visibleNearCut":0},"stationaryDepth":4.169809806743927}
+HELD_FRAMING_CLIP_SUMMARY [{"key":"v_rock2","fov":75,"samples":2268,"minDepth":-17.728229268841538,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":3,"minDepth":-17.728229268841538,"near":4,"visibleNearCut":0},"stationaryDepth":0.06959782447046625},{"key":"v_rock2","fov":90,"samples":2268,"minDepth":-17.728229268841538,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":3,"minDepth":-17.728229268841538,"near":4,"visibleNearCut":0},"stationaryDepth":0.06959782447046625},{"key":"v_rock2","fov":110,"samples":2268,"minDepth":-17.728229268841538,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":3,"minDepth":-17.728229268841538,"near":4,"visibleNearCut":0},"stationaryDepth":0.06959782447046625},{"key":"v_nail2","fov":75,"samples":2916,"minDepth":1.7665116748576972,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":0,"minDepth":1.7665116748576972,"near":4,"visibleNearCut":0},"stationaryDepth":4.169809806743927},{"key":"v_nail2","fov":90,"samples":2916,"minDepth":1.7665116748576972,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":0,"minDepth":1.7665116748576972,"near":4,"visibleNearCut":0},"stationaryDepth":4.169809806743927},{"key":"v_nail2","fov":110,"samples":2916,"minDepth":1.7665116748576972,"visibleNearCut":0,"worst":{"pitch":45,"speed":320,"sample":26,"pose":0,"minDepth":1.7665116748576972,"near":4,"visibleNearCut":0},"stationaryDepth":4.169809806743927}]
+PASS actual native bob and all imported held poses retain visible near-plane clearance
+PASS public asset loader rejects malformed or pickup pullback metadata and waits for ready geometry
+RESULT 5/5 passed (tests/held_framing_test.js)
+meshing progs/v_shot.mdl...
+
+meshing progs/v_shot2.mdl...
+
+meshing progs/g_shot.mdl...
+
+meshing progs/v_nail2.mdl...
+
+meshing progs/g_nail2.mdl...
+
+meshing progs/v_rock.mdl...
+
+meshing progs/g_rock.mdl...
+
+meshing progs/v_rock2.mdl...
+
+meshing progs/g_rock2.mdl...
+
+meshing progs/v_light.mdl...
+
+meshing progs/g_light.mdl...
+
+meshing progs/v_nail.mdl...
+
+meshing progs/g_nail.mdl...
+
+meshing progs/v_axe.mdl...
+
+Unknown command "r_newer_lighting"
+
+Unknown command "r_newer_normals"
+
+Unknown command "r_newer_shadows"
+
+Unknown command "r_pointshadows"
+
+Unknown command "r_heightshadows"
+
+Unknown command "r_rockfield"
+
+Unknown command "r_powerups"
+
+Unknown command "r_newer_textures"
+
+Unknown command "r_newer_water"
+
+Unknown command "r_newer_enemies"
+
+Unknown command "r_newer_portals"
+
+Unknown command "r_newer_hud"
+
+Unknown command "r_decals"
+
+Unknown command "r_lerpmodels"
+
+Unknown command "r_newer_variety"
+
+PASS weapon modes: actual Newer Game menu commands select all replacement held weapons and all six pickup models
+PASS weapon modes: actual New Game menu commands restore native models and textures for every weapon role
+PASS weapon modes: enhanced attract half uses all replacements; native right half and rollback preserve every held/pickup role
+PASS weapon modes: failed classic demo render restores enhanced art for all roles before propagating error
+PASS weapon modes: disabled weapons feature restores all original roles even in Newer mode
+PASS weapon modes: restore public test fixtures
+RESULT 6/6 passed (tests/weapon_modes_test.js)
+PASS weapon startup: ordinary app warms held/pickup art behind its first real console, retaining the readiness gate until downloads settle
+PASS weapon startup: missing optional manifest resolves without blocking the app and preserves diagnostics
+RESULT 2/2 passed (tests/weapon_preload_test.js)
+TOTAL 13/13 passed
