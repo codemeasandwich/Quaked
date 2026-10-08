@@ -152,10 +152,25 @@ export function R_WeaponHeldPullback(modelName) {
 	return R_WeaponAsset(modelName)?.cameraPullback || 0;
 }
 
+// The super nailgun's barrels: a rotor with a continuous angle and angular velocity (owner request, card [45]).
+// While the game says the weapon is firing (any pose but the idle pose 0) the speed eases up to the firing speed, the
+// stored poses' own rate (the poses step 45 degrees each 0.1 s weapon frame: -pi/4 / 0.1 = about 7.85 rad/s, 1.25
+// turns a second, a full turn in eight frames). When firing stops the barrels keep turning in the same direction and
+// the speed decays smoothly to nothing (time constant `spinDown`): a coast of speed x constant, about 2 rad or a third
+// of a turn, mostly over within three quarters of a second. Firing again eases from the current angle and speed with
+// no snap. Both are exact exponential approaches integrated over the game-time step, so they do not depend on the
+// frame rate; the same game time (a pause, a second render pass) integrates nothing, and the state is never thrown
+// away by a teleport, a clock that jumps back or a long gap: the angle and speed simply carry on (a rollback only
+// re-anchors the time). It is released only when the weapon is no longer a rotor asset, and restarted when the asset
+// changes. The numbers are small, documented tuning values, not measured from the original game.
+export const ROTOR = Object.freeze( { step: .1, spinUp: .06, spinDown: .25, stopBelow: .1 } );
+
 // One existing alias mesh, with only the four barrel assemblies animated.
-// Interpolate an angle, never vertices: chord interpolation collapses the
+// Rotate an angle, never interpolate vertices: chord interpolation collapses the
 // barrel spacing and radius between stored poses. Rest arrays remain shared
-// and immutable; each drawn entity owns its rotating attributes.
+// and immutable; each drawn entity owns its rotating attributes. (The stored poses only fix the firing speed and
+// direction and the angle a fresh state starts from; the rest of the model does not change between poses. Because the
+// angle is integrated, `r_lerpmodels` no longer changes how the barrels turn: they are always smooth.)
 export function R_WeaponRotorFrame( asset, entity, pose, poseBlend, time ) {
 
 	if ( ! asset?.rotor || ! entity ) {
@@ -164,51 +179,41 @@ export function R_WeaponRotorFrame( asset, entity, pose, poseBlend, time ) {
 		return null;
 
 	}
-	const rotor = asset.rotor, rest = asset.templates[ 0 ], origin = entity.origin;
+	const rotor = asset.rotor, rest = asset.templates[ 0 ], turn = 2 * Math.PI;
+	const firing = pose !== 0;
+	// the stored poses' step, wrapped into (-pi, pi]: its sign is the firing direction
+	let stored = rotor.angles.length > 2 ? ( rotor.angles[ 2 ] - rotor.angles[ 1 ] ) % turn : NaN;
+	if ( stored > Math.PI ) stored -= turn; else if ( stored <= - Math.PI ) stored += turn;
+	const fireSpeed = Number.isFinite( stored ) && stored !== 0 ? stored / ROTOR.step : - Math.PI / 4 / ROTOR.step;
+	if ( ! Number.isFinite( time ) ) return rotorStates.get( entity )?.template ?? null;
 	let state = rotorStates.get( entity );
-	if ( ! state || state.asset !== asset || time < state.time || time - state.time > .25 ||
-		( origin && state.origin && Math.hypot( ...origin.map( ( value, i ) => value - state.origin[ i ] ) ) > 96 ) ||
-		( poseBlend && state.poseBlend !== poseBlend ) ) {
+	if ( ! state || state.asset !== asset ) {
 
 		const template = { ...rest,
 			posAttr: new THREE.BufferAttribute( rest.posAttr.array.slice(), 3 ),
 			normalAttr: new THREE.BufferAttribute( rest.normalAttr.array.slice(), 3 ),
 			lightnormalindices: rest.lightnormalindices.slice() };
-		const angle = rotor.angles[ pose ] ?? 0;
-		state = { asset, template, pose, from: angle, target: angle, angle: NaN, time,
-			poseBlend, origin: origin ? origin.slice() : null };
+		// a fresh entity or a new asset: start from the pose's own angle, at the speed the pose implies
+		state = { asset, template, value: rotor.angles[ pose ] ?? 0, omega: firing ? fireSpeed : 0, applied: NaN, time };
 		rotorStates.set( entity, state );
 
 	}
-	if ( pose !== state.pose ) {
+	// (a clock that went back only re-anchors the time: the barrels carry on from where they are)
+	const dt = Math.max( 0, time - state.time );
+	if ( dt > 0 ) {
 
-		state.from = state.target;
-		// Idle stops at the settled orientation. Resuming firing advances in
-		// the original direction, including the last-pose -> idle -> shot loop.
-		let delta = 0;
-		if ( pose !== 0 ) {
-
-			const turn = 2 * Math.PI;
-			delta = ( ( rotor.angles[ pose ] - rotor.angles[ state.pose ] ) % turn + turn ) % turn;
-			if ( delta > 0 ) delta -= turn;
-
-		}
-		state.target += delta;
-		state.pose = pose;
+		// exact exponential approach of the speed to its goal, and the angle that travelled
+		const goal = firing ? fireSpeed : 0, k = 1 / ( firing ? ROTOR.spinUp : ROTOR.spinDown ), decay = Math.exp( - k * dt );
+		state.value += goal * dt + ( state.omega - goal ) * ( 1 - decay ) / k;
+		state.omega = goal + ( state.omega - goal ) * decay;
+		if ( ! firing && Math.abs( state.omega ) < ROTOR.stopBelow ) state.omega = 0;
 
 	}
 	state.time = time;
-	if ( origin ) {
+	const angle = state.value;
+	if ( angle !== state.applied ) {
 
-		if ( ! state.origin ) state.origin = origin.slice();
-		else for ( let i = 0; i < 3; i ++ ) state.origin[ i ] = origin[ i ];
-
-	}
-	const blend = poseBlend && poseBlend.from !== poseBlend.to ? poseBlend.blend : 1;
-	const angle = state.from + ( state.target - state.from ) * blend;
-	if ( angle !== state.angle ) {
-
-		state.angle = angle;
+		state.applied = angle;
 		const c = Math.cos( angle ), s = Math.sin( angle ), k = 1 - c;
 		const [ ax, ay, az ] = rotor.axis, [ px, py, pz ] = rotor.pivot;
 		const positions = state.template.posAttr.array, normals = state.template.normalAttr.array;
@@ -241,6 +246,14 @@ export function R_WeaponRotorFrame( asset, entity, pose, poseBlend, time ) {
 
 	}
 	return state.template;
+
+}
+
+// Read-only view of an entity's rotor (angle and speed), for tests.
+export function R_WeaponRotorState( entity ) {
+
+	const state = rotorStates.get( entity );
+	return state ? { angle: state.value, omega: state.omega, time: state.time } : null;
 
 }
 

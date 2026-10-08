@@ -406,17 +406,20 @@ Deno.test( 'super nailgun source: new outer PNGs, original FBX UV orientation an
 
 } );
 
-Deno.test( 'super nailgun rotor: public draw interpolates circles and normals without shrinking, holds idle and continues forward across the firing loop', () => {
+Deno.test( 'super nailgun rotor: public draw turns rigid barrels about the real axis, spins up while firing, coasts down after firing and refires without a snap', () => {
 
 	const oldTime = cl.time, oldLerp = r_lerpmodels.value, h = header( 'v_nail2' ), fit = uniformFit( h, true );
 	const e = { frame: 0, skinnum: 0, model: { name: 'progs/v_nail2.mdl' }, origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ] };
 	const marker = barrelParts[ 0 ][ 0 ], radius = p => new THREE.Vector3( ...p ).sub( fit.pivot ).cross( fit.axis ).length();
-	function at( time, frame, angle ) {
+	// draw one frame through the public path and check the geometry against the rotor's own angle (rigid barrels about
+	// the fitted axis and pivot, stationary receiver and ring, authored normals, radius kept)
+	function draw( time, frame ) {
 
 		cl.time = time; e.frame = frame; const mesh = R_DrawAliasModel( e, h, null ), positions = mesh.geometry.getAttribute( 'position' ), normals = mesh.geometry.getAttribute( 'normal' );
+		const state = weapons.R_WeaponRotorState( e ); check( state, 'the held super nailgun has a rotor state' );
 		for ( let id = 0; id < source.positions.length; id ++ ) {
 
-			const expected = rotorExpected( fit, id, angle ), expectedNormal = rotorExpected( fit, id, angle, true );
+			const expected = rotorExpected( fit, id, state.angle ), expectedNormal = rotorExpected( fit, id, state.angle, true );
 			for ( let axis = 0; axis < 3; axis ++ ) {
 
 				near( positions.array[ id * 3 + axis ], expected[ axis ], 'public angular draw; stationary receiver/ring and rigid rotating barrels', .000025 );
@@ -425,21 +428,22 @@ Deno.test( 'super nailgun rotor: public draw interpolates circles and normals wi
 			}
 
 		}
-		near( radius( Array.from( positions.array.slice( marker * 3, marker * 3 + 3 ) ) ), radius( fit.positions[ marker ] ), 'midpoint keeps source barrel radius; no vertex-lerp collapse', .00001 );
+		near( radius( Array.from( positions.array.slice( marker * 3, marker * 3 + 3 ) ) ), radius( fit.positions[ marker ] ), 'the barrel keeps its source radius at every angle; no vertex-lerp collapse', .00001 );
+		return state;
 
 	}
 	try {
 
-		r_lerpmodels.value = 2; at( 40, 0, 0 ); at( 40.1, 2, 0 ); at( 40.15, 2, - Math.PI / 4 ); at( 40.2, 2, - Math.PI / 2 );
-		for ( let frame = 3; frame <= 8; frame ++ ) {
-
-			const start = 40.2 + ( frame - 2 ) * .1;
-			at( start, frame, - ( frame - 1 ) * Math.PI / 4 ); at( start + .05, frame, - ( frame - .5 ) * Math.PI / 4 );
-
-		}
-		at( 40.9, 0, - 2 * Math.PI ); at( 40.95, 0, - 2 * Math.PI ); at( 41.1, 1, - 2 * Math.PI );
-		at( 41.15, 1, - 2 * Math.PI - Math.PI / 8 ); at( 41.2, 1, - 2 * Math.PI - Math.PI / 4 );
-		at( 41.21, 0, - 2 * Math.PI - Math.PI / 4 ); at( 41.26, 0, - 2 * Math.PI - Math.PI / 4 );
+		r_lerpmodels.value = 2; const fire = - Math.PI / 4 / .1;
+		const idle = draw( 40, 0 ); near( idle.angle, 0, 1e-12, 'a fresh idle weapon is at the rest angle' ); same( idle.omega, 0, 'at rest' );
+		let state = idle, t = 40; for ( let i = 0; i < 24; i ++ ) { t += 1 / 24; state = draw( t, 1 + i % 8 ); } // a second of fire through the frame loop
+		near( state.omega, fire, Math.abs( fire ) * .01, 'firing turns the barrels at the stored poses\' rate, in their direction' );
+		const fired = state; let previous = fired;
+		for ( let i = 0; i < 12; i ++ ) { t += 1 / 24; state = draw( t, 0 ); check( state.angle <= previous.angle && Math.abs( state.omega ) <= Math.abs( previous.omega ), 'coasting: the same direction, the speed only falling' ); previous = state; }
+		check( fired.angle - state.angle > .2 * Math.PI && Math.abs( state.omega ) < Math.abs( fired.omega ) * .2, 'after half a second the barrels have coasted a fraction of a turn and nearly stopped' );
+		const mid = state; t += 1 / 24; state = draw( t, 3 ); check( state.angle < mid.angle && Math.abs( state.omega ) > Math.abs( mid.omega ) && Math.abs( state.omega ) < Math.abs( fire ), 'firing again continues from the current angle and speed (no snap)' );
+		for ( let i = 0; i < 40; i ++ ) { t += 1 / 24; state = draw( t, 0 ); } same( state.omega, 0, 'idle eventually settles with zero speed' );
+		const settled = state.angle; t += 1; same( draw( t, 0 ).angle, settled, 'and stays at that angle' );
 
 	} finally { cl.time = oldTime; r_lerpmodels.value = oldLerp; }
 

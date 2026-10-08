@@ -89,6 +89,8 @@ Torches and fire pits get the supplied flame as well: a living, noise-eroded fla
 
 Shotgun and super shotgun blasts (and the soldiers' shotguns) show the supplied pellets in single-player Newer Game: small glowing streaks, flying at twice the supplied speed from the gun's muzzle along the very rays the game traced, and the shot's damage, blood and puffs arrive when the pellets do, like a nail or a rocket landing (`sv_shotdelay 0` keeps the instant hitscan). In air each barrel also leaves a few tiny wisps of muzzle smoke that drift up a short way; under water the pellets instead slow, leave a wake of small rising bubbles, and a few bubbles escape the muzzle. Ammunition, spread and firing cadence are untouched; Classic Quake, demos, remote and multiplayer games are unchanged, and `r_shotgunfx 0` turns the picture off. See `docs/shotgun-pellets-2026-10-08.md`.
 
+The held super nailgun's barrels no longer stop dead when you let go: they keep turning and slow smoothly to a stop, and start again from where they are. See `docs/super-nailgun-coast-2026-10-08.md`.
+
 #### Lens drops, lava glow and level changes
 
 Coming out of water leaves the view beaded with clear drops that refract and slightly blur the picture, some running down before they dry; being close to a body bursting does the same with blood. Drops clear quickly and are suppressed underwater. Lava glows and breathes, and lights what is around it. In Newer Game, loading or changing level no longer automatically opens the console. Changing level keeps the last frame on screen; it is simply the new level when it is ready.
