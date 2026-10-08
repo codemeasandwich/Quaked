@@ -1,7 +1,7 @@
 // Book presentation only. The runtime owns discovery, persistence, camera and
 // simulation timing. Discovered folios are blitted unchanged; locked folios
 // combine the supplied blank template with a separate authored title crop.
-import { Draw_GetOverlayCanvas } from './gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from './gl_draw.js';
 import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from './keys.js';
 import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading } from './r_bestiary.js';
 
@@ -121,12 +121,28 @@ export function R_BestiaryBookOpen() { R_BestiaryCancel(); spread = 0; turn = nu
 export function R_BestiaryBookCorner() {
  const s = surface(); if ( !s ) return null;
  const boxes = layout(s.width,s.height,s.unit);
- return { right:(boxes.right.x+boxes.right.w)*(s.canvas.clientWidth||s.width)/s.width,
+ // Bitmap labels round their start to a physical pixel; reserve the possible
+ // half-pixel extension as well, so the corner logo never touches the label.
+ return { right:Math.ceil(boxes.right.x+boxes.right.w+.5)*(s.canvas.clientWidth||s.width)/s.width,
   bottom:(boxes.bottom+40*s.unit)*(s.canvas.clientHeight||s.height)/s.height };
 }
 function flip( direction ) {
  const maximum = 2+R_BestiaryEntries().length, target = clamp(spread+direction,0,maximum);
  if ( target !== spread ) { turn = { from:spread,to:target,at:now() }; spread = target; }
+}
+function navigation( ctx, boxes, unit, width, maximum ) {
+ const pics=Draw_CacheBookNavigation();if(!pics)return;
+ const previous=pics.previous,next=spread===0?pics.open:pics.next,exit=pics.exit;
+ const halfSpan=width/2-boxes.left.x,gap=8*unit;
+ // Keep original outer/center anchors. Fit BOTH gaps; sum-of-widths alone
+ // would allow a long left label to collide with the centered exit hint.
+ const fit=Math.min((halfSpan-gap)/(previous.width+exit.width/2),(halfSpan-gap)/(next.width+exit.width/2));
+ let scale=Math.min(Math.max(1,Math.floor(14*unit/8)),fit);if(scale>=1)scale=Math.floor(scale);if(scale<=0)return;
+ const y=Math.round(boxes.bottom+22*unit-4*scale);
+ ctx.imageSmoothingEnabled=false;
+ const blit=(pic,x,enabled)=>{ctx.globalAlpha=enabled?1:.4;ctx.drawImage(pic.canvas,Math.round(x),y,pic.width*scale,pic.height*scale);};
+ blit(previous,boxes.left.x,spread>0);blit(next,boxes.right.x+boxes.right.w-next.width*scale,spread<maximum);blit(exit,(width-exit.width*scale)/2,true);
+ ctx.globalAlpha=1;
 }
 export function R_BestiaryBookKey( key ) {
  if ( key === K_LEFTARROW ) { flip(-1); return true; }
@@ -148,12 +164,8 @@ export function R_BestiaryBookDraw() {
   ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha = 1;
   if ( turn && progress < 1 ) drawTurn(ctx,turn,progress,entries,boxes,unlocked,unit);
   else { turn = null; drawSpread(ctx,spread,entries,boxes,unlocked,unit); }
-  ctx.textBaseline = 'middle'; ctx.font = `${14*unit}px Georgia, serif`;
-  ctx.textAlign = 'left'; ctx.fillStyle = spread > 0 ? '#e3d4b9' : '#766e60';
-  ctx.fillText('←  Previous',boxes.left.x,boxes.bottom+22*unit);
-  ctx.textAlign = 'right'; ctx.fillStyle = spread < maximum ? '#e3d4b9' : '#766e60';
-  ctx.fillText(spread===0?'Open  →':'Next  →',boxes.right.x+boxes.right.w,boxes.bottom+22*unit);
-  ctx.textAlign = 'center'; ctx.fillStyle = '#d2c3a7'; ctx.fillText('Esc · Main menu',width/2,boxes.bottom+22*unit);
+  navigation(ctx,boxes,unit,width,maximum);
+  ctx.textBaseline = 'middle'; ctx.textAlign = 'center'; ctx.fillStyle = '#d2c3a7';
   if ( snapshot.storageStatus === 'unavailable' ) {
    ctx.font = `${11*unit}px Georgia, serif`; ctx.fillText('Progress is kept for this session only.',width/2,boxes.bottom+40*unit);
   }

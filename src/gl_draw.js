@@ -8,7 +8,7 @@ import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from './pak.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { R_NewerHudCanvas } from './r_newerhud.js';
-import { BuildSinglePlayerMenuArt } from './menu_art.js';
+import { BuildSinglePlayerMenuArt, BuildMenuTextArt } from './menu_art.js';
 
 /*
 ==============================================================================
@@ -1061,6 +1061,24 @@ export function Draw_CacheSinglePlayerMenu() {
 		() => document.createElement( 'canvas' ) );
 	if ( pic !== null ) cachepics[ path ] = pic;
 	return pic;
+
+}
+
+let bookNavigationCharset = null, bookNavigationPics = null;
+export function Draw_CacheBookNavigation() {
+
+	// Before Draw_Init there is no decoded source. Do not cache that absence:
+	// the first ready draw must recover, and a replaced atlas invalidates all four.
+	if ( ! char_canvas ) return null;
+	if ( bookNavigationCharset !== char_canvas ) {
+
+		bookNavigationPics = Object.fromEntries( Object.entries( {
+			previous: '< PREVIOUS', open: 'OPEN >', next: 'NEXT >', exit: 'ESC - MAIN MENU'
+		} ).map( ( [ key, text ] ) => [ key, BuildMenuTextArt( char_canvas, text, () => document.createElement( 'canvas' ) ) ] ) );
+		bookNavigationCharset = char_canvas;
+
+	}
+	return bookNavigationPics;
 
 }
 

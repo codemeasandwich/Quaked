@@ -1,0 +1,37 @@
+PASS book preserves cover and front matter then visits all forty-seven individual locked rectos with supplied parchment versos
+PASS all known authored creature images remain on their own rectos and never become parchment backs or leak onto locked neighbors
+PASS every forward and backward interior turn uses the supplied parchment reverse instead of another creature image
+PASS encounter clips exactly the opposite screen half and held art is unwarped for either random camera side
+PASS completed inner artwork changes only the inner recto while original outer cover and supplied parchment stay unchanged
+PASS book and encounter restore caller transform and alpha even when an image draw fails inside a cover turn
+PASS actual main menu uses authored Bestiarium position and preserves Continue and full-viewport book input
+PASS late decoded encounter art keeps its bounded ripple until opacity finishes even after simulation already holds
+PASS dedication belongs only to the first left-hand page including both turn directions and never leaks onto creature backs
+PASS missing locked header cannot expose the blank template fixed folio and missing blank cannot stretch a title into a body
+PASS bitmap footer preserves original page navigation, first and last dimming, and cold source recovery
+PASS bitmap footer stays separated below pages with equal aspect and branding reservation at narrow and high-DPI sizes
+PASS bitmap footer restores caller canvas state when navigation drawing fails
+RESULT 13/13 passed (tests/bestiary_book_test.js)
+Added packfile book-navigation-native-source (339 files)\n
+Cmd_AddCommand: scr_conheight already defined
+
+Cmd_AddCommand: uiscale+ already defined
+
+Cmd_AddCommand: uiscale- already defined
+
+PASS book navigation cache recovers after cold source, copies exact native pixels and reuses four pictures per decoded atlas
+PASS native menu text builder rejects unsupported strings and leaves absent or invalid atlas recoverable
+RESULT 2/2 passed (tests/bestiary_navigation_test.js)
+PASS studio PNG is unchanged and present inside the initial black loading overlay with bounded safe-area layout
+PASS actual studio canvas draw preserves source aspect and bottom-right safe margins over CSS and device-pixel viewport sizes
+PASS studio loader settles on error or timeout without retry waves and rendering restores state even on draw exceptions
+PASS unchanged public M_Draw body draws studio pixels after every active menu, and never for inactive gameplay or console states
+STUDIO_BOOK_RESERVATION {"viewport":{"width":640,"height":480},"corner":{"right":579,"bottom":457.6},"logo":{"x":579,"y":419,"w":45,"h":45},"logoPixels":1026,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":800,"height":600},"corner":{"right":723,"bottom":565.6},"logo":{"x":723,"y":523,"w":61,"h":61},"logoPixels":1907,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":360,"height":780},"corner":{"right":337,"bottom":535.725},"logo":{"x":272,"y":692,"w":72,"h":72},"logoPixels":2663,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":640,"height":480,"dprX":2},"corner":{"right":579,"bottom":457.6},"logo":{"x":1158,"y":838,"w":90,"h":90},"logoPixels":4137,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":400,"height":860,"dprX":3,"safeRight":34,"safeBottom":40},"corner":{"right":373.3333333333333,"bottom":591.825},"logo":{"x":858,"y":2220,"w":240,"h":240},"logoPixels":29415,"overwritten":0}
+STUDIO_BOOK_RESERVATION {"viewport":{"width":700,"height":400,"dprX":2,"dprY":3},"corner":{"right":673,"bottom":377.06666666666666},"logo":{"x":1346,"y":1119,"w":22,"h":33},"logoPixels":366,"overwritten":0}
+PASS studio logo avoids actual book pages and measured bitmap footer at small, portrait and device-pixel-scaled sizes
+RESULT 5/5 passed (tests/studio_logo_test.js)
+TOTAL 20/20 passed

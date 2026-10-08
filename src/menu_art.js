@@ -1,6 +1,26 @@
 // Single-player lettering assembled once from Quake's own menu sprites.
 // Keep native pixels and baselines: centring each letter's ink box clips
 // descenders and shifts small capitals relative to their neighbours.
+// Short labels use the complete native menu/console bitmap alphabet. Copy
+// authored cells verbatim into transparent pictures; never rasterize a web font.
+export function BuildMenuTextArt( charset, text, makeCanvas ) {
+
+	if ( ! charset || charset.width !== 128 || charset.height !== 128 ) return null;
+	if ( typeof text !== 'string' || ! /^[\x20-\x7e]{1,64}$/.test( text ) ) throw new RangeError( 'Menu image text must be 1–64 printable native glyphs' );
+	const canvas = makeCanvas();
+	canvas.width = text.length * 8; canvas.height = 8;
+	const ctx = canvas.getContext( '2d' );
+	ctx.imageSmoothingEnabled = false;
+	for ( let i = 0; i < text.length; i ++ ) {
+
+		const code = text.charCodeAt( i );
+		ctx.drawImage( charset, ( code & 15 ) * 8, ( code >> 4 ) * 8, 8, 8, i * 8, 0, 8, 8 );
+
+	}
+	return { width: canvas.width, height: canvas.height, canvas };
+
+}
+
 export function BuildSinglePlayerMenuArt( single, main, multi, network, makeCanvas ) {
 
 	if ( ! single?.canvas || ! main?.canvas || ! multi?.canvas || ! network?.canvas ) return null;
