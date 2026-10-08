@@ -1,0 +1,24 @@
+{
+  "source_file": "arc-weapons-wall-canvas-shotgun.html (owner-supplied, kept local, not distributed)",
+  "source_sha256": "8b1569225ae56f2e53a6f5748435e77699aa7e0f1c8c0082a12cfc3d0a401adf",
+  "source_bytes": 141122,
+  "effect": "ShotgunEffect: pellets (kind 0) and bubbles (kind 1); smoke (kind 2) is the next card's",
+  "extraction": "code only: no textures or other assets are used or extracted",
+  "files": {},
+  "source_references": {
+    "SHOTGUN_PRESETS": 332,
+    "SHOTGUN_PELLET_MOTION": 340,
+    "vertex shader": 348,
+    "fragment shader": 402,
+    "sgRandom": 461,
+    "sgDistance / sgTimeAt": "463-464",
+    "class ShotgunEffect": "466-633",
+    "fire": "499-541",
+    "_addBubble": 542,
+    "update": "553-581",
+    "_pelletTrailLength": 590,
+    "render": "599-629"
+  },
+  "doc": "docs/shotgun-pellets-2026-10-08.md",
+  "adaptations": "speeds doubled (owner, 8 Oct 2026); no range cap; damage delayed to pellet arrival (src/sv_shotdelay.js)"
+}

@@ -40,6 +40,7 @@ import { R_FlashlightSkillSelected } from './r_flashlightrun.js';
 import { SV_GoreOnSetModel } from './sv_gore.js';
 import { SV_AxeGibSeen } from './sv_axecut.js';
 import { Cbuf_AddText } from './cmd.js';
+import { SV_FaceShotTrace } from './sv_faceevents.js';
 import { Cvar_VariableValue, Cvar_Set } from './cvar.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from './server.js';
 import { Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
@@ -571,6 +572,7 @@ function PF_traceline() {
 		pr_global_struct.trace_ent = EDICT_TO_PROG( sv.edicts[ 0 ] );
 	pr_global_struct.trace_inopen = trace.inopen ? 1 : 0;
 	pr_global_struct.trace_inwater = trace.inwater ? 1 : 0;
+	SV_FaceShotTrace( v1, v2, trace ); // (reports the trace, changing nothing: the shotgun's rays, for the pellets and their damage schedule)
 
 }
 

@@ -311,7 +311,9 @@ export function PR_EnterFunction( f ) {
 	}
 
 	PR_SetXFunction( f );
-	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? ( f.first_statement - 1 ); // offset the s++
+	// (a hook may have the interpreter run SUB_Null in the function's place: the respawn sequence, and a shotgun
+	// pellet's TraceAttack that waits for its flight, sv_shotdelay.js)
+	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? pr_stack[ pr_depth - 1 ].face?.skip ?? ( f.first_statement - 1 ); // offset the s++
 
 }
 

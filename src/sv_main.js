@@ -11,6 +11,7 @@ import {
 } from './common.js';
 import { Cmd_AddCommand, Cmd_ExecuteString, Cbuf_InsertText } from './cmd.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_SetValue } from './cvar.js';
+import { sv_shotdelay } from './sv_shotdelay.js';
 import {
 	MAX_MODELS, MAX_SOUNDS, MAX_DATAGRAM, MAX_EDICTS, MAX_MSGLEN,
 	STAT_PING
@@ -110,6 +111,7 @@ export function SV_Init() {
 	PR_SetHostError( Host_Error );
 	Cvar_RegisterVariable( sv_maxvelocity );
 	Cvar_RegisterVariable( sv_gravity );
+	Cvar_RegisterVariable( sv_shotdelay );
 	Cvar_RegisterVariable( sv_friction );
 	Cvar_RegisterVariable( sv_edgefriction );
 	Cvar_RegisterVariable( sv_stopspeed );

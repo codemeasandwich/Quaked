@@ -34,6 +34,7 @@ import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_fireball, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear } from './r_fireball.js';
+import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
 import { R_ClassicTexture } from './r_newertextures.js';
@@ -750,6 +751,7 @@ export function R_DrawViewModel() {
 	const mesh = currententity._aliasMesh;
 	if ( mesh == null )
 		return;
+	_gunPlacedFrame = r_framecount; // (the gun is placed this frame: the shotgun's muzzle may be read from it)
 
 	// In XR mode: position weapon at controller.
 	// Scene is scaled 1/XR_SCALE (meters). Controller world pos is in meters.
@@ -927,6 +929,31 @@ const _setupgl_right = new Float32Array( 3 );
 const _setupgl_up = new Float32Array( 3 );
 const _setupgl_matrix = new THREE.Matrix4();
 const _setupgl_drawingBufferSize = new THREE.Vector2();
+// The muzzle point(s) of the viewmodel in world space for the shotgun's pellets (r_shotgun.js): the front of the
+// gun's own geometry; before the first frame has placed a gun, a point in front of the eye.
+let _gunPlacedFrame = - 1;
+function R_ShotgunMuzzles( count ) {
+
+	// only a gun that was placed this frame (not hidden by the ring of shadows, the chase camera or r_drawviewmodel 0)
+	// and that is a shotgun: otherwise its mesh is wherever it was last drawn
+	const e = cl?.viewent, mesh = e?._aliasMesh;
+	if ( mesh != null && e._aliasTemplate != null && _gunPlacedFrame === r_framecount && /v_shot2?\.mdl$|shotgun/i.test( e.model?.name ?? '' ) ) {
+
+		const points = viewModelMuzzles( mesh, e._aliasTemplate, count );
+		if ( points != null ) return points;
+
+	}
+	const o = r_refdef.vieworg, list = [];
+	for ( let i = 0; i < count; i ++ ) {
+
+		const side = count === 2 ? ( i === 0 ? - 3 : 3 ) : 0;
+		list.push( [ o[ 0 ] + vpn[ 0 ] * 18 + vright[ 0 ] * ( 4 + side ) - vup[ 0 ] * 6, o[ 1 ] + vpn[ 1 ] * 18 + vright[ 1 ] * ( 4 + side ) - vup[ 1 ] * 6, o[ 2 ] + vpn[ 2 ] * 18 + vright[ 2 ] * ( 4 + side ) - vup[ 2 ] * 6 ] );
+
+	}
+	return list;
+
+}
+
 const _fireballView = [ 0, 0 ], _fireballForward = new Float32Array( 3 ), _fireballRight = new Float32Array( 3 ), _fireballUp = new Float32Array( 3 );
 
 // A monster that has come through a teleporter arrives the way the player does: stretched upwards and split
@@ -1819,6 +1846,7 @@ export function R_RenderView() {
 	R_RenderScene();
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
 	R_DrawViewModel();
+	R_ShotgunFrame( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the gun is placed: the pellets leave its muzzle)
 	R_DrawWaterSurfaces();
 
 	// render mirror view
@@ -2052,6 +2080,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_torchfire );
+	Cvar_RegisterVariable( r_shotgunfx );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
@@ -2271,6 +2300,8 @@ export function R_NewMap() {
 	R_FireballClear();
 	R_TorchFireSetup( { scene } );
 	R_TorchFireClear();
+	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles } );
+	R_ShotgunClear();
 	R_DecalsClear();
 	let shellBrushes = [];
 	R_ShellsSetup( { scene, client: () => cl, refresh: () => { shellBrushes = cl_entities.filter( e => e?.model?.name?.startsWith( '*' ) ); },

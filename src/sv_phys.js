@@ -13,6 +13,7 @@ import { vec3_origin, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorM
 import { MAX_EDICTS, YAW } from './quakedef.js';
 import { PR_GetString } from './progs.js';
 import { trace_t } from './world.js';
+import { SV_ShotDelayRun } from './sv_shotdelay.js';
 
 /*
 
@@ -1641,6 +1642,7 @@ export function SV_Physics() {
 	pr_global_struct.other = EDICT_TO_PROG( sv.edicts[ 0 ] );
 	pr_global_struct.time = sv.time;
 	PR_ExecuteProgram( pr_global_struct.StartFrame );
+	SV_ShotDelayRun(); // shotgun pellets whose flight is over deal their damage now (sv_shotdelay.js)
 
 	//
 	// treat each object in turn

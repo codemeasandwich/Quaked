@@ -1,15 +1,18 @@
-// Read-only native-QC observations for the local HUD face. A damage callback
+// Native-QC observations for the local HUD face and for the shotgun's pellets. A damage callback
 // is observed separately from later healing/clientdata, and a dry-fire weapon
-// switch is not a shot. This bridge never modifies entities, QC globals or RNG.
+// switch is not a shot. The observation changes nothing in the game, with one deliberate exception: the
+// TraceAttack of a pellet of an observed shotgun blast waits for its pellet (traceAttackEnter, sv_shotdelay.js).
 import { sv, svs } from './server.js';
 import { cls, ca_connected } from './client.js';
 import { R_NewerGame } from './r_anim.js';
-import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT } from './progs.js';
+import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, pr_xfunction } from './progs.js';
 import { OFS_PARM0, OFS_PARM1 } from './pr_comp.js';
-import { GetEdictFieldValue } from './pr_edict.js';
+import { GetEdictFieldValue, ED_FindFunction } from './pr_edict.js';
+import { shotRaysNew, shotRayRecord, shotRayEvent, shotBlastId } from './sv_shotrays.js';
+import { shotDelayCapture } from './sv_shotdelay.js';
 import { IT_AXE, IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN, IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING } from './quakedef.js';
 
-const LIMIT = 256, queues = { damage: [], shot: [], reward: [] }, names = new WeakMap();
+const LIMIT = 256, queues = { damage: [], shot: [], reward: [], rays: [] }, names = new WeakMap();
 const POWERS = new Map( [
  [ 'item_artifact_super_damage', [ 'quad', 'super_damage_finished' ] ],
  [ 'item_artifact_invulnerability', [ 'invulnerability', 'invincible_finished' ] ],
@@ -22,6 +25,9 @@ const FIRE_AMMO = new Map( [
  [ 'W_FireSpikes', 'ammo_nails' ], [ 'W_FireSuperSpikes', 'ammo_nails' ],
  [ 'W_FireGrenade', 'ammo_rockets' ], [ 'W_FireRocket', 'ammo_rockets' ], [ 'W_FireLightning', 'ammo_cells' ]
 ] );
+const SHOTGUNS = new Set( [ 'W_FireShotgun', 'W_FireSuperShotgun' ] );
+// the soldier's shotgun: army_fire is one FireBullets( 4, ... ) of the stock progs.dat (the only monster that shoots bullets)
+const SOLDIER_FIRE = 'army_fire';
 const AXE_STARTS = new Set( [ 'player_axe1', 'player_axeb1', 'player_axec1', 'player_axed1' ] );
 const CADENCE = new Map( [ [ IT_AXE, .5 ], [ IT_SHOTGUN, .5 ], [ IT_SUPER_SHOTGUN, .7 ],
  [ IT_NAILGUN, .2 ], [ IT_SUPER_NAILGUN, .2 ], [ IT_GRENADE_LAUNCHER, .6 ], [ IT_ROCKET_LAUNCHER, .8 ], [ IT_LIGHTNING, .1 ] ] );
@@ -30,7 +36,7 @@ function name( fn ) { if ( !fn ) return ''; let value = names.get( fn ); if ( va
 const vector = value => value?.length >= 3 && [ value[0], value[1], value[2] ].every( Number.isFinite ) ? Array.from( value ).slice( 0, 3 ) : null;
 
 export function SV_FaceReset() {
- queues.damage.length = queues.shot.length = queues.reward.length = 0; activeShot = null; epoch ++;
+ queues.damage.length = queues.shot.length = queues.reward.length = queues.rays.length = 0; activeShot = null; epoch ++;
  program = pr_functions; world = sv.edicts; map = sv.name;
 }
 function syncEpoch() { if ( program !== pr_functions || world !== sv.edicts || map !== sv.name ) SV_FaceReset(); }
@@ -46,12 +52,14 @@ export function SV_FaceLocalActive() {
 export function SV_FaceDrain( kind ) {
  syncEpoch();
  if ( !SV_FaceLocalActive() ) { SV_FaceReset(); return []; }
- return kind === 'damage' || kind === 'shot' || kind === 'reward' ? queues[kind].splice( 0 ) : [];
+ return kind === 'damage' || kind === 'shot' || kind === 'reward' || kind === 'rays' ? queues[kind].splice( 0 ) : [];
 }
 function emit( event ) { const queue = queues[event.kind]; if ( queue.length >= LIMIT ) queue.shift(); queue.push( event ); }
 
 export function SV_FaceFunctionEnter( fn, caller ) {
  const functionName = name( fn ), ammo = FIRE_AMMO.get( functionName ), axe = AXE_STARTS.has( functionName ) && name( caller ) === 'W_Attack';
+ if ( functionName === SOLDIER_FIRE ) return soldierEnter( fn );
+ if ( functionName === 'TraceAttack' ) return traceAttackEnter( caller );
  if ( functionName !== 'T_Damage' && functionName !== 'powerup_touch' && !ammo && !axe ) return null;
  syncEpoch(); if ( !SV_FaceLocalActive() ) return null;
  const player = svs.clients[0].edict;
@@ -76,13 +84,38 @@ export function SV_FaceFunctionEnter( fn, caller ) {
  const weapon = player.v.weapon|0;
  if ( axe ) return weapon === IT_AXE ? { kind:'axe', epoch, time:sv.time, map:sv.name, weapon, function:functionName } : null;
  const before = player.v[ammo]; if ( !Number.isFinite(before) || before <= 0 ) return null;
- const token = { kind:'shot', epoch, player, time:sv.time, map:sv.name, weapon, function:functionName, ammo, before, previous:activeShot, childShot:false };
+ const token = { kind:'shot', epoch, player, time:sv.time, map:sv.name, weapon, function:functionName, ammo, before, previous:activeShot, childShot:false,
+  rays: SHOTGUNS.has( functionName ) ? shotRaysNew() : null, id: shotBlastId() };
+ activeShot = token; return token;
+}
+
+// FireBullets calling TraceAttack for a pellet that hit something, during an observed blast: its damage, blood and
+// puff wait for the pellet's flight (sv_shotdelay.js), which has the interpreter run SUB_Null instead. Anything else
+// calling TraceAttack, or no observed blast, runs as always.
+function traceAttackEnter( caller ) {
+ if ( !activeShot?.rays || name( caller ) !== 'FireBullets' ) return null;
+ if ( !shotDelayCapture( activeShot ) ) return null;
+ return { kind:'trace', epoch, skip: ED_FindFunction( 'SUB_Null' ).first_statement - 1 };
+}
+
+// A soldier firing his shotgun. Observed like the player's: read-only, local single-player Newer Game only.
+function soldierEnter() {
+ syncEpoch(); if ( !SV_FaceLocalActive() ) return null;
+ const soldier = PROG_TO_EDICT( pr_global_struct.self );
+ if ( !soldier || soldier.free || PR_GetString( soldier.v.classname ) !== 'monster_army' ) return null;
+ const token = { kind:'soldier', epoch, soldier, time:sv.time, map:sv.name, weapon:0, function:SOLDIER_FIRE, previous:activeShot, rays:shotRaysNew(), id:shotBlastId() };
  activeShot = token; return token;
 }
 
 export function SV_FaceFunctionLeave( token ) {
  if ( !token || token.epoch !== epoch ) return;
- if ( token.kind === 'shot' ) activeShot = token.previous;
+ if ( token.kind === 'trace' ) return;
+ if ( token.kind === 'shot' || token.kind === 'soldier' ) activeShot = token.previous;
+ if ( token.kind === 'soldier' ) {
+  syncEpoch(); if ( token.epoch !== epoch || !SV_FaceLocalActive() ) return;
+  const event = shotRayEvent( token, token.rays ); if ( event ) emit( { ...event, enemy: token.soldier.index } );
+  return;
+ }
  syncEpoch(); if ( token.epoch !== epoch || !SV_FaceLocalActive() ) return;
  if ( token.kind === 'reward' ) {
   if ( timer(token.player,token.field) !== token.before || token.player.v.items !== token.items || token.pickup.v.solid !== 1 )
@@ -106,4 +139,14 @@ export function SV_FaceFunctionLeave( token ) {
   if ( token.childShot ) return;
  }
  emit( { kind:'shot', time:token.time, map:token.map, weapon:token.weapon, cadence:CADENCE.get(token.weapon) || .5, function:token.function } );
+ if ( token.rays ) { const rays = shotRayEvent( token, token.rays ); if ( rays ) emit( rays ); }
+}
+
+// PF_traceline reports every traceline here. While an observed blast (a local player's shotgun or a soldier's army_fire) runs, it is one of that
+// blast's rays (FireBullets' own); nothing else is recorded, and the trace itself is never touched.
+export const SV_FaceShotActive = () => !! activeShot?.rays;
+export function SV_FaceShotTrace( v1, v2, trace ) {
+ // (only FireBullets' own pellet traces: the explosion of a barrel a pellet kills runs T_RadiusDamage inside the
+ // same weapon function, and its CanDamage traces are not pellets)
+ if ( activeShot?.rays && name( pr_xfunction ) === 'FireBullets' ) shotRayRecord( activeShot.rays, v1, v2, trace );
 }
