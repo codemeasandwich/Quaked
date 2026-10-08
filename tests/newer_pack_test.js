@@ -111,6 +111,7 @@ Deno.test( 'LIT files: only the right size and version are taken', () => {
 	assertEqual( lit[ 14 ], 15, 'last' );
 
 	assertEqual( Lit_Parse( file, mono + 1 ), null, 'too short for that map' );
+	assertEqual( Lit_Parse( file, mono - 1 ), null, 'too long: another map layout' );
 	assertEqual( Lit_Parse( file.slice( 0, 6 ), mono ), null, 'no data' );
 
 	const wrong = file.slice();

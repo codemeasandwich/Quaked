@@ -14,7 +14,11 @@ export function Lit_Parse( bytes, monoLength ) {
 
 	const view = new DataView( bytes.buffer, bytes.byteOffset, bytes.byteLength );
 	if ( view.getUint32( 0, true ) !== LIT_MAGIC || view.getInt32( 4, true ) !== 1 ) return null;
-	if ( bytes.length - 8 < monoLength * 3 ) return null;
+	// A larger lighting lump belongs to a different BSP layout too. Pack
+	// fallback can find a same-named .lit from another edition of the map;
+	// truncating it assigns unrelated samples to faces and creates black panels.
+	// Reject either mismatch so Mod_LoadLighting retains the BSP's own light.
+	if ( bytes.length - 8 !== monoLength * 3 ) return null;
 
 	return bytes.slice( 8, 8 + monoLength * 3 );
 
