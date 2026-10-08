@@ -26,7 +26,7 @@ function webgl(){
 
 async function fixture(run,{failure=false,pics={}}={}){
  const names=['window','document','Image','HTMLCanvasElement','matchMedia','requestAnimationFrame','cancelAnimationFrame','ResizeObserver'],saved=Object.fromEntries(names.map(name=>[name,Object.getOwnPropertyDescriptor(globalThis,name)]));
- const copies=[],fallback=[],opened=[],listeners=[],context={save(){},restore(){},setTransform(...args){this.transform=args;},clearRect(){},fillRect(){},putImageData(){},createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4),width:w,height:h}),drawImage(...args){copies.push({args,transform:this.transform?.slice()});}};
+ const copies=[],fallback=[],opened=[],listeners=[],context={save(){},restore(){},setTransform(...args){this.transform=args;},clearRect(){},fillRect(){},putImageData(){},createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4),width:w,height:h}),drawImage(...args){copies.push({args,transform:this.transform?.slice(),shadow:{blur:this.shadowBlur,offset:this.shadowOffsetX,color:this.shadowColor}});}};
  class Canvas extends EventTarget {constructor(){super();this.width=1280;this.height=800;this.style={};}getContext(kind){return kind==='webgl2'?(failure?null:(this.gl||=webgl())):context;}getBoundingClientRect(){return {x:0,y:0,left:0,top:0,width:0,height:0};}addEventListener(type,...args){listeners.push(type);return super.addEventListener(type,...args);}}
  const win=new EventTarget();Object.assign(win,{devicePixelRatio:1,innerWidth:1280,innerHeight:800,open:url=>opened.push(url)});
  const doc=new EventTarget();Object.assign(doc,{hidden:false,fullscreenElement:null,createElement:()=>new Canvas(),body:{appendChild(){}}});
@@ -136,7 +136,7 @@ Deno.test('pictures without a replacement are layered above the renderer, not hi
  same(gpu.MainMenu_Image(10,10,{width:8,height:8,path:'gfx/bigbox.lmp',canvas:{width:8,height:8}}),false,'portrait frame stays native so the translated portrait remains visible');
  gpu.MainMenu_End(1);
  const order=api.copies.slice(frameBefore).map(c=>c.args[0]?.gl?'renderer':'picture');
- same(order.join(),'renderer,picture','this frame copies the renderer output first and the picture after it, so panels cannot cover it');
+ same(order.filter((v,i)=>v!==order[i-1]).join(),'renderer,picture','this frame copies the renderer output (its soft shadow passes then the crisp image) first and the picture after it, so panels cannot cover it');
 }));
 
 Deno.test('WebGL failure leaves the native menu drawing, keyboard and touch functional',()=>fixture(async api=>{
@@ -243,4 +243,23 @@ Deno.test('hiding the menu releases the screen-sized renderer buffers and the ne
  same(canvas.width+'x'+canvas.height,'1x1','closed menu keeps no screen-sized canvas');
  api.open();for(let i=0;i<3;i++)api.render();
  same(canvas.width,api.overlay.width,'reopening restores the overlay-sized canvas');
+}));
+
+Deno.test('everything the menu draws gets a large soft black drop shadow, laid down before the crisp image',()=>fixture(async api=>{
+ check((await api.ready()).ready,'ready');
+ const scale=draw.Draw_GetUIScale();
+ api.open();const before=api.copies.length;gpu.MainMenu_SetVisible(true);gpu.MainMenu_Begin();gpu.MainMenu_End(1);
+ const mine=api.copies.slice(before).filter(c=>c.args[0]?.gl),shadow=gpu.MainMenu_Shadow;
+ same(mine.length,shadow.length+1,'one shadow-only pass per entry, then the crisp image');
+ shadow.forEach(([blur,alpha],i)=>{
+  const c=mine[i];
+  same(c.shadow.blur,blur*scale,'shadow pass '+i+' blur scales with the UI scale');
+  check(c.shadow.color===`rgba(0,0,0,${alpha})`,'black shadow, alpha '+alpha+': '+c.shadow.color);
+  check(c.args[1]<0&&c.shadow.offset===-c.args[1],'the image is drawn off-canvas and its shadow offset back, so only the blurred shadow lands on screen');
+  same(c.transform.join(),'1,0,0,1,0,0','identity transform: physical pixels');
+ });
+ const crisp=mine.at(-1);
+ same(crisp.args[1],0,'the crisp image is drawn in place');check(!crisp.shadow.blur,'with no shadow of its own (reset after the passes)');
+ check(shadow.every(([blur],i)=>i===0||blur<=shadow[i-1][0]),'widest, softest pass first: '+shadow.map(s=>s[0]));
+ check(shadow[0][0]>=24,'large and soft: the widest blur is '+shadow[0][0]+' virtual units');
 }));

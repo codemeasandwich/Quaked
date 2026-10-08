@@ -84,6 +84,12 @@ function physical( x, y ) {
 // where the original artwork was and only gets sharper.
 // ---------------------------------------------------------------------------
 
+// A large soft black drop shadow behind everything the menu draws (text, plaques, boxes, sliders,
+// the selector), so lettering reads over a bright scene without a panel: [ blur in virtual units, alpha ], widest
+// first. Thin letters add little to a blur, so the wide pass is stacked twice to build a dark halo that
+// fades out about half its blur size from the edge of the lettering.
+const SHADOW = [ [ 34, 1 ], [ 34, 1 ], [ 16, 1 ], [ 8, .9 ] ];
+export const MainMenu_Shadow = SHADOW; // read-only, for tests and tools
 const MAIN_ROWS = [ 'Single Player', 'Multiplayer', 'Bestiarium', 'Options', 'Credits', 'Quit' ];
 // Measured against the stock sheets: the donor's capitals carry more swash than the
 // sprites' ink, so equal ink height reads ~10% heavier; this restores the original rhythm.
@@ -388,7 +394,8 @@ export function MainMenu_End( timeSeconds ) {
 
 		size = [ canvas.width, canvas.height ];
 		if ( renderer.frame( size[ 0 ], size[ 1 ], timeSeconds * 1000, commands, 0 ) === false ) return false;
-		Draw_FullResolutionCanvas( renderer.canvas );
+		const scale = Draw_GetUIScale();
+		Draw_FullResolutionCanvas( renderer.canvas, SHADOW.map( ( [ blur, alpha ] ) => [ blur * scale, alpha ] ) );
 		// Logo artwork (the id mark) stays the original pixels, unsmoothed.
 		for ( const b of blits ) Draw_FullResolutionImage( b.pic.canvas, b.sx, b.sy, b.sw, b.sh, b.dx, b.dy, b.dw, b.dh, !! b.smooth );
 		presented = true; return true;

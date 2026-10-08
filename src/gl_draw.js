@@ -52,7 +52,11 @@ let overlayCtx = null;
 
 // GPU menu output is already at backing-store resolution. Do not send it
 // through the 320x200 HUD transform or apply a second color/scale conversion.
-export function Draw_FullResolutionCanvas( source ) {
+// `shadow` is an optional list of [ blur in physical pixels, alpha ]: a soft black drop shadow of
+// everything opaque in `source`, laid down first so it fades from behind the image into the scene.
+// Each pass draws the image off-canvas with the shadow offset back onto it, so only the blurred
+// shadow reaches the screen; the image itself is then drawn once, crisp.
+export function Draw_FullResolutionCanvas( source, shadow = null ) {
 
 	if ( ! overlayCtx ) return;
 	overlayCtx.save();
@@ -61,6 +65,19 @@ export function Draw_FullResolutionCanvas( source ) {
 		overlayCtx.setTransform( 1, 0, 0, 1, 0, 0 );
 		overlayCtx.globalAlpha = 1;
 		overlayCtx.globalCompositeOperation = 'source-over';
+		if ( shadow ) {
+
+			const away = ( source.width || 0 ) + 1024;
+			overlayCtx.shadowOffsetX = away; overlayCtx.shadowOffsetY = 0;
+			for ( const [ blur, alpha ] of shadow ) {
+
+				overlayCtx.shadowBlur = blur; overlayCtx.shadowColor = 'rgba(0,0,0,' + alpha + ')';
+				overlayCtx.drawImage( source, - away, 0 );
+
+			}
+			overlayCtx.shadowColor = 'rgba(0,0,0,0)'; overlayCtx.shadowBlur = 0; overlayCtx.shadowOffsetX = 0;
+
+		}
 		overlayCtx.drawImage( source, 0, 0 );
 
 	} finally { overlayCtx.restore(); }

@@ -46,6 +46,24 @@ A few constants are hand-measured against the stock art and named in the source:
 Engine "white" text (`M_PrintWhite`) uses a dedicated donor kind 3 (stock white);
 donor kinds 0–2 are untouched so the donor parity test stays meaningful.
 
+## Drop shadow (readability over the playfield)
+
+The menu has no background panel, so text over a bright scene can be hard to read. Owner
+direction (8 Oct 2026): instead of a panel, give **every menu element a large soft black
+drop shadow** that blurs into a dark area behind the text and fades off. The renderer's
+whole output is copied to the overlay by `Draw_FullResolutionCanvas( canvas, shadow )`
+(`src/gl_draw.js`); with a `shadow` list of `[ blur px, alpha ]` it first draws the image
+once per entry **off-canvas** with the 2D context's shadow offset back, so only the blurred
+black shadow lands on screen, then clears the shadow state and draws the crisp image in
+place. Because the shadow comes from the copied pixels' alpha, it follows the glyphs,
+plaques, sliders and selector exactly, including whatever the supplied renderer adds.
+The strengths are `SHADOW` in `src/menu_webgl.js` (virtual units, scaled by the UI scale):
+`[ [ 34, 1 ], [ 34, 1 ], [ 16, 1 ], [ 8, .9 ] ]` (wide halo stacked twice, a medium one, a
+tight one). A first, lighter version (`[22,.85],[9,.8]` ) was too faint and was strengthened
+by eye. Measured on a bright scene (`r_newbright 8`): luminance of the text block 34.0 →
+22.8, scene away from the text unchanged (32.3 → 32.2). The few native pictures still
+copied after the renderer (see above) and the id mark blit are not shadowed.
+
 Pictures with no replacement (for example the Credits weapon-model credit) are
 queued and copied **after** the WebGL output, unsmoothed like the native raster, so
 panels cannot cover them. The
@@ -94,7 +112,9 @@ font, but you must ALWAYS include this file!!". `docs/newer/menu-webgl/` holds
   RGB; it now compares premultiplied colour and alpha.)
 * Node tests: `tests/menu_webgl_test.js` (routing exactly once per action,
   sheet placement against measured ink, the 8-unit grid, deferred pictures,
-  WebGL-failure fallback, close/destroy), plus `menu_test`, `main_menu_art_test`,
+  WebGL-failure fallback, close/destroy, and the drop shadow: one shadow-only off-canvas
+  pass per `SHADOW` entry with blur scaled by the UI scale, black, widest first, then one
+  crisp copy with no shadow left set), plus `menu_test`, `main_menu_art_test`,
   `singleplayer_menu_test`, `menu_save_test` and `studio_logo_test`.
   Run with `QUAKED_THREE_MODULE=<three.module.js> node tools/run_tests.mjs <files>`.
 
@@ -107,10 +127,14 @@ font, but you must ALWAYS include this file!!". `docs/newer/menu-webgl/` holds
   helpers; a plaque with no known title keeps its native raster.
 * Case-sensitive text (player name while editing, save names, the credits URL) is
   displayed in capitals because the fixed-grid glyph set is uppercase.
-* **Owner decision needed:** the Enhanced-features screen previously drew a dark
-  readability panel behind its ~20 rows (commit edb07c7). The skinned menu does not
-  draw it, following "no background". If that screen is hard to read over a bright
-  scene, restore it by drawing the panel as a `well` command in `M_Newer_Draw`.
+* The Enhanced-features screen's old dark readability panel (commit edb07c7) is not
+  drawn; the drop shadow above replaces it, as the owner chose.
+* Cost of the shadow: four blurred full-screen copies per menu frame. Headless Chromium on
+  Metal at 1920×1080, 600 frames per run, two runs per variant: median frame time unchanged
+  within noise (about 17-19 ms with the live game behind the menu either way); 90th
+  percentile 22.5/25.0 ms without the shadow and 30.5/30.4 ms with it. Fewer passes
+  were not clearly cheaper (two passes 29.7/29.2 ms, one 27.8/28.6 ms), so the stronger look was kept. The menu is a
+  pause-style screen; not measured on a real display with vsync or in VR.
 * Copy submission time is not a GPU performance measurement.
 * The full repository suite has pre-existing failures that need local archives
   (`QUAKED_OWNED_PAK`, weapon `.zip` fixtures) and rendering fixtures; they fail
