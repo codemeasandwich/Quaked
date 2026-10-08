@@ -32,5 +32,34 @@
     "configs.explosion": 231,
     "defaults": "explosion:{size:1.6,flash:1,smoke:.15,sparks:1.8}",
     "quality": "medium: clouds 40, sparkCap 300"
+  },
+  "also_used_by": {
+    "01 RPG smoke (rocket and grenade trails)": {
+      "source_references": {
+        "emitSmoke": 191,
+        "updateSmoke": 192,
+        "smokeList": 193,
+        "puffVert": 102,
+        "puff": 106,
+        "render": 212,
+        "configs.smoke": 228
+      },
+      "doc": "docs/rocket-grenade-smoke-2026-10-08.md"
+    },
+    "02 Wall torch (torches and fire pits)": {
+      "source_references": {
+        "cardVert": 112,
+        "fire": "115-119",
+        "card": 147,
+        "torchEmbers": 197,
+        "torchSmoke": 198,
+        "light": 202,
+        "render": 213,
+        "configs.fire": 229,
+        "defaults": "fire:{size:1,turbulence:1.6,glow:1.8,wind:0}"
+      },
+      "files_used": "noise.png (the flame shader's seamless noise), smoke-atlas.png (the faint torch smoke); the flame itself is procedural",
+      "doc": "docs/torch-fire-2026-10-08.md"
+    }
   }
 }

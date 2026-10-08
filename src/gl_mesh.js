@@ -712,10 +712,27 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 		if ( entity != null ) entity._aliasGeo = geometry;
 
 	}
+	// An entity that owns a mesh in the scene but was not drawn natively in the Newer pass (a torch whose flame
+	// the supplied effect draws, which keeps only its fire-base shadow) has its state put back by the title demo's
+	// classic pass without a colour array, while the geometry the classic pass made stays: make the two agree.
+	if ( entity._aliasColorArray == null ) {
+
+		const kept = geometry.getAttribute( 'color' );
+		if ( kept != null && kept.array.length >= template.vertexCount * 3 ) entity._aliasColorArray = kept.array; // (no new buffer each frame)
+		else {
+
+			entity._aliasColorArray = new Float32Array( template.vertexCount * 3 );
+			geometry.setAttribute( 'color', new THREE.BufferAttribute( entity._aliasColorArray, 3 ) );
+
+		}
+		entity._aliasPosenum = undefined;
+
+	}
 	if ( rotorFrame ) geometry.boundingBox = geometry.boundingSphere = null;
 
 	// When pose or model changes, swap to the new template's shared attributes
-	if ( entity._aliasPosenum !== posenum || entity._aliasPaliashdr !== paliashdr || entity._aliasTemplate !== template ) {
+	// (`_aliasPart`: the caller draws only part of the model, as r_torchfire.js does for a torch's handle)
+	if ( entity._aliasPosenum !== posenum || entity._aliasPaliashdr !== paliashdr || entity._aliasTemplate !== template || entity._aliasPartDrawn !== ( entity._aliasPart ?? null ) ) {
 
 		if ( blend === null ) {
 
@@ -725,7 +742,7 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 		}
 
 		geometry.setAttribute( 'uv', template.uvAttr );
-		geometry.setIndex( template.indices );
+		geometry.setIndex( entity._aliasPart != null ? entity._aliasPart( template ) : template.indices );
 
 		// Resize color buffer if vertex count changed between poses
 		if ( entity._aliasColorArray.length < template.vertexCount * 3 ) {
@@ -738,6 +755,7 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 		entity._aliasPosenum = posenum;
 		entity._aliasPaliashdr = paliashdr;
 		entity._aliasTemplate = template;
+		entity._aliasPartDrawn = entity._aliasPart ?? null;
 		geometry.boundingBox = geometry.boundingSphere = null;
 
 	}

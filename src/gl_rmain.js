@@ -34,6 +34,7 @@ import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_fireball, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear } from './r_fireball.js';
+import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
 import { R_ClassicTexture } from './r_newertextures.js';
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from './r_anim.js';
@@ -1127,7 +1128,12 @@ function R_DrawAliasModel( e ) {
 
 	}
 
-	const mesh = R_DrawAliasModel_mesh( e, paliashdr, shadedots, shadelight );
+	// Newer Game: the supplied flame takes a torch or fire pit (r_torchfire.js); its native model is not
+	// built. The container's shadow below still follows from the entity.
+	const torch = R_TorchFire( e );
+	// (a torch's handle is hardware and stays: only the flame triangles are left out)
+	e._aliasPart = torch === TORCH_HANDLE ? torchParts( e.model.name, paliashdr ).select : null;
+	const mesh = torch === TORCH_WHOLE ? null : R_DrawAliasModel_mesh( e, paliashdr, shadedots, shadelight );
 	if ( mesh != null ) {
 
 		// Newer Game: the sun's light is blocked by monsters and items too
@@ -1163,7 +1169,7 @@ function R_DrawAliasModel( e ) {
 	// Draw shadow (Ported from WinQuake/gl_rmain.c:579-591); Newer Game casts it from the
 	// lights that really shine on the model instead
 	const newerShadow = R_NewerLightingActive() && r_newer_shadows.value !== 0;
-	if ( ( newerShadow || r_shadows.value !== 0 ) && e !== cl.viewent && mesh != null && scene != null ) {
+	if ( ( newerShadow || r_shadows.value !== 0 ) && e !== cl.viewent && ( mesh != null || torch === TORCH_WHOLE ) && scene != null ) {
 
 		const shadowMesh = newerShadow ? R_LightShadow( e, paliashdr ) :
 			GL_DrawAliasShadow( e, paliashdr, e._aliasPosenum || 0, lightspot, _shadevector );
@@ -1646,7 +1652,9 @@ export function R_RenderScene() {
 
 	S_ExtraUpdate(); // don't let sound get messed up if going slow
 
+	R_TorchFireBegin();
 	R_DrawEntitiesOnList();
+	R_TorchFireFlush( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the list: it is this frame's torches)
 	R_PowerupEnd();
 	R_BestiaryObserve( scene, camera, cl_visedicts.slice( 0, cl_numvisedicts ) );
 
@@ -2043,6 +2051,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_mist );
 	Cvar_RegisterVariable( r_fireball );
 	Cvar_RegisterVariable( r_smoketrails );
+	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
@@ -2260,6 +2269,8 @@ export function R_NewMap() {
 	R_DecalsSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, lightPoint: R_LightPoint } );
 	R_FireballSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf, allocDlight: CL_AllocDlight } );
 	R_FireballClear();
+	R_TorchFireSetup( { scene } );
+	R_TorchFireClear();
 	R_DecalsClear();
 	let shellBrushes = [];
 	R_ShellsSetup( { scene, client: () => cl, refresh: () => { shellBrushes = cl_entities.filter( e => e?.model?.name?.startsWith( '*' ) ); },

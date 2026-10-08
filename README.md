@@ -85,6 +85,8 @@ In Newer Game every explosion (rockets, grenades, tar babies and colour-mapped b
 
 Rocket and grenade trails use the supplied smoke too: a thin, soft wisp that follows the missile, spaced by distance so it looks the same at any frame rate, with a small exhaust glow behind a rocket (`r_smoketrails 0` brings back the original trail; Classic Quake always has it). See `docs/rocket-grenade-smoke-2026-10-08.md`.
 
+Torches and fire pits get the supplied flame as well: a living, noise-eroded flame that stays upright and faces you, with rising embers and a wisp of smoke, sized from each torch's own model (small and large pit flames differ) and laid over the original flame model so its glow gives the fire a body. The braziers and brackets are untouched and the light is still the map's own. Classic Quake keeps the original flames, as does Newer Game with `r_torchfire 0` (`r_torchfire 2` replaces the original flame with the supplied one, keeping a wall torch's handle). See `docs/torch-fire-2026-10-08.md`.
+
 #### Lens drops, lava glow and level changes
 
 Coming out of water leaves the view beaded with clear drops that refract and slightly blur the picture, some running down before they dry; being close to a body bursting does the same with blood. Drops clear quickly and are suppressed underwater. Lava glows and breathes, and lights what is around it. In Newer Game, loading or changing level no longer automatically opens the console. Changing level keeps the last frame on screen; it is simply the new level when it is ready.

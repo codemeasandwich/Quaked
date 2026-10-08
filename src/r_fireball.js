@@ -138,14 +138,14 @@ const LIGHT_PEAK = 3.15, LIGHT_RADIUS = 350, LIGHT_RADIUS_MIN = 200, LIGHT_CUTOF
 // never overwrites opaque receiver packets, as in r_quadparticles.js).
 // ---------------------------------------------------------------------------
 
-const MRT_OUT = `
+export const MRT_OUT = `
 layout(location=1) out highp vec4 gNormal;
 layout(location=2) out highp vec4 gAlbedo;
 layout(location=3) out highp vec4 gHeightMask;
 `;
-const MRT_ZERO = 'gNormal=vec4(0.);gAlbedo=vec4(0.);gHeightMask=vec4(0.);';
+export const MRT_ZERO = 'gNormal=vec4(0.);gAlbedo=vec4(0.);gHeightMask=vec4(0.);';
 
-const PUFF_VERTEX = `
+export const PUFF_VERTEX = `
 #include <clipping_planes_pars_vertex>
 attribute vec4 aPosSize,aInfo,aTint;
 varying vec2 vUV;varying vec4 vInfo,vTint;
@@ -160,7 +160,7 @@ void main(){
  gl_Position=projectionMatrix*mv;
  vUV=p*.5+.5;vInfo=aInfo;vTint=aTint;
 }`;
-const PUFF_FRAGMENT = `
+export const PUFF_FRAGMENT = `
 #include <clipping_planes_pars_fragment>
 uniform sampler2D uAtlas,uNoise;uniform float uTime;
 varying vec2 vUV;varying vec4 vInfo,vTint;
@@ -214,7 +214,7 @@ void main(){
  ${MRT_ZERO}
 }`;
 
-const SPARK_VERTEX = `
+export const SPARK_VERTEX = `
 #include <clipping_planes_pars_vertex>
 attribute vec4 aStart,aEnd,aColor;
 uniform vec2 uResolution;
@@ -234,7 +234,7 @@ void main(){
  gl_Position=c;
  vUV=p;vColor=vec4(aColor.rgb*aColor.a,aEnd.w);
 }`;
-const SPARK_FRAGMENT = `
+export const SPARK_FRAGMENT = `
 #include <clipping_planes_pars_fragment>
 varying vec2 vUV;varying vec4 vColor;
 ${MRT_OUT}
@@ -304,7 +304,8 @@ const quadGeometry = () => {
 
 };
 
-function layer( name, capacity, attributes, material, order ) {
+// (layer and material are shared with r_torchfire.js, which draws the torch flames the same way)
+export function layer( name, capacity, attributes, material, order ) {
 
 	const geometry = quadGeometry();
 	const arrays = {};
@@ -322,7 +323,7 @@ function layer( name, capacity, attributes, material, order ) {
 
 }
 
-function material( vertexShader, fragmentShader, uniforms, blending ) {
+export function material( vertexShader, fragmentShader, uniforms, blending ) {
 
 	return new THREE.ShaderMaterial( { uniforms, vertexShader, fragmentShader, transparent: true, depthTest: true, depthWrite: false,
 		side: THREE.DoubleSide, toneMapped: false, clipping: true, blending,
@@ -364,6 +365,18 @@ export function R_FireballTextures( atlasTexture, noiseTexture ) {
 		ring.mesh.material.uniforms.uNoise.value = noise;
 
 	}
+
+}
+
+// The two textures, loaded on first use and shared with r_torchfire.js. `ready` is false until both are
+// present (and for good if either failed), and the caller then keeps its native picture.
+let _assets = null;
+export function R_FireballAssets() {
+
+	loadTextures();
+	if ( ! ready ) return null;
+	if ( _assets === null || _assets.atlas !== atlas || _assets.noise !== noise ) _assets = { atlas, noise }; // (one object while the textures stay, so callers can tell when they change)
+	return _assets;
 
 }
 
