@@ -1,0 +1,66 @@
+{
+  "ready": true,
+  "map": "maps/end.bsp",
+  "signon": 4,
+  "newer": true,
+  "loading": {
+    "phase": "done",
+    "mode": "welcome",
+    "appReady": true,
+    "consoleSeen": true,
+    "fadeStarted": true,
+    "fadeDone": true,
+    "frames": 17,
+    "settledFrames": 3,
+    "world": "maps/end.bsp",
+    "pending": [],
+    "fallbacks": []
+  },
+  "player": {
+    "position": [
+      -175.96875,
+      111.9949951171875,
+      -20.933380126953125
+    ],
+    "angles": [
+      0,
+      180,
+      0
+    ],
+    "health": 95
+  },
+  "boss": {
+    "index": 10,
+    "health": 40000,
+    "frame": 0,
+    "position": [
+      -752,
+      2032,
+      72.03125
+    ]
+  },
+  "draw": null,
+  "skins": {
+    "index": "ready",
+    "normals": {
+      "pending": 0,
+      "ready": 18,
+      "shipped": 18,
+      "disk": 0,
+      "generated": 0,
+      "errors": {}
+    },
+    "preparePending": 0,
+    "pending": 0,
+    "ready": 21,
+    "fallback": 0,
+    "total": 21,
+    "settled": true,
+    "errors": {}
+  },
+  "folio": "idle",
+  "movement": null,
+  "errors": [
+    "UnknownError: If you see this error we have a bug. Please report this bug to chromium."
+  ]
+}

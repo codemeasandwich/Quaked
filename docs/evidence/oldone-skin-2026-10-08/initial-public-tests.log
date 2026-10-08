@@ -1,0 +1,26 @@
+meshing progs/oldone.mdl...
+
+364 tri 562 vert 1224 cmd
+
+PASS owned Old One public loader preserves every native UV triangle and all 67 poses with exact source identity
+PASS actual Old One assets retain approved provenance and every other enemy manifest entry
+meshing progs/oldone.mdl...
+
+PASS actual manifest admits only matching Old One skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Old One image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Old One shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/oldone_skin_identity_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 7/8 passed (tests/r_newerskins_test.js)
+FAIL every file the skin index names exists Error: the seventeen custom skins are indexed: expected 17, got 19
+    at assertEqual (file:///Users/bri/SOURCE/Quaked/tests/r_newerskins_test.js:7:9)
+    at file:///Users/bri/SOURCE/Quaked/tests/r_newerskins_test.js:141:2
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:44:9
+TOTAL 13/14 passed

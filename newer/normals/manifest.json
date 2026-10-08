@@ -38544,6 +38544,28 @@
       "height": 975,
       "bytes": 8268184,
       "compressedBytes": 3561838
+    },
+    "c5c13f810dcd6f4d17b6ad5f7f55bc1e5c760945783841f49be8d4be2ca4b4f0": {
+      "file": "newer/normals/c5c13f810dcd6f4d17b6ad5f7f55bc1e5c760945783841f49be8d4be2ca4b4f0.nm.gz",
+      "input": {
+        "width": 1140,
+        "height": 975,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "5ba162f9c161b42599e8c5cf7761e1d91111507aa4acaa53a9e2e89c188e5505",
+        "fullbright": null,
+        "scalar": "63b775ca4611ec6e519ac9fea8092d6adbd5282d500633d56c6f64b7237e72ce",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "e3ae7805bfc0c1a84b0e4712f1796da1429105768271a30e5e6693a02748ca71",
+      "rawSha256": "d50c657cc227332ccc8bd2b14807632bea4b74f61545729275a9da5a4ccc2cec",
+      "width": 1140,
+      "height": 975,
+      "bytes": 8892184,
+      "compressedBytes": 4026044
     }
   },
   "levels": {
@@ -69346,6 +69368,17 @@
     "custom:shalrath/custom": {
       "keys": [
         "51edc80e42298cefeff47e6ea68cbfcf2494795b006dd2c9494aa42f3b4710f4"
+      ]
+    },
+    "quake:progs/oldone.mdl": {
+      "modelSha256": "81966deede395272b220ae664ccdbf1c78fc5db79b56d19eb9b45dc2f807e407",
+      "keys": [
+        "62b4f026eea512623bceddc0c18cbc2ec0bfe9aa87666e1e3af1c32d605d621e"
+      ]
+    },
+    "custom:oldone/custom": {
+      "keys": [
+        "c5c13f810dcd6f4d17b6ad5f7f55bc1e5c760945783841f49be8d4be2ca4b4f0"
       ]
     }
   }

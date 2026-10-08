@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "model": "progs/oldone.mdl",
+  "nativeModelSha256": "81966deede395272b220ae664ccdbf1c78fc5db79b56d19eb9b45dc2f807e407",
+  "source": "Gemini_Generated_Image_yxpwpxyxpwpxyxp.jpeg",
+  "sourceSha256": "cdafa316b50ab65c2a48f38d5354da34ae190eebc1bb69954bd0d3342ddc5a6d",
+  "skin": 0,
+  "skinFrame": 0,
+  "poses": 67,
+  "vertices": 182,
+  "triangles": 364,
+  "factor": 5,
+  "dimensions": [
+    1140,
+    975
+  ],
+  "parts": [
+    {
+      "name": "complete authored front/back atlas",
+      "src": [
+        0,
+        0,
+        1120,
+        958
+      ],
+      "dst": [
+        0,
+        0,
+        228,
+        195
+      ]
+    }
+  ],
+  "background": [
+    20,
+    20,
+    15
+  ],
+  "bleed": 10,
+  "fit": {
+    "surface_pixels": 420858,
+    "direct_supplied_pixels": 420858,
+    "edge_fill_pixels": 0,
+    "surface_coverage": 1.0,
+    "source_matte_seed_pixels": 0
+  },
+  "nativeTexturePixelsUsed": 0,
+  "authoredBlackSurfacePixels": 249,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "update_head_skins.fit",
+    "fit_skin.spread",
+    "uv_footprint",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.webp": "f5d54b4d70addac58b773c5bf07574e49d6f37f29e435d92d482627857b74905",
+    "height.webp": "673bf8ca67543ebe52141fd3b23ba418c81bf75db089d8080c8d0457314a0bb5"
+  }
+}
