@@ -1,0 +1,47 @@
+{
+  "source": "quake-menu-final.html",
+  "sourceSha256": "0c17c95648f1bcfa20fe2d882814ed11577d2f423cf7682a19535fb889d1f8ce",
+  "sourceBytes": 1223210,
+  "includedScripts": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "excludedScripts": {
+    "4": "optional HTML editor controls",
+    "5": "notices preserved as exact files"
+  },
+  "scriptSha256": [
+    "06916f721607737db479637b32a72d5ba837343bceb63a054d33f3db3df79baa",
+    "0c64b8237c04baf1896f671e815fee9d72108c8459b3f4ef07fa0d81894464f8",
+    "c99168ce65b432af3949757d148d338839bc868542cd6445cd2073c6cfb7d6ce",
+    "eb826fde81f6d02e6503ad652e8fa314df99092f090e97c799b99a4772c8a053"
+  ],
+  "fontAtlasSha256": "42a05709f7e80efeece50eb45595e9fef190bb60462ebdf73ff9275a38d3d4b8",
+  "fontDimensions": [
+    4096,
+    4096
+  ],
+  "glyphs": 218,
+  "moduleSha256": "d06bf5a3c77e86e088fd1f552fa3768d0dfd7cba21baa237a5f8fa617a2d86b7",
+  "adaptations": [
+    "ESM exports replace window font/shader/loader/renderer registration",
+    "externalFrame defaults false; true retains only context lifecycle listeners",
+    "frame accepts bounded physical pixels and finite millisecond timestamps without DPR rescaling",
+    "optional native text, panel, selector and slider commands reuse donor glyph, plaque and solid-Q materials with transparent gameplay overlay alpha",
+    "shared original selector step serves RAF and external frames with original reduced-motion policy",
+    "font readiness and generation guards prevent late upload/restoration after disposal",
+    "idempotent resource cleanup handles partial program construction and restoration failure",
+    "external capture restores caller framebuffer dimensions"
+  ],
+  "preserved": [
+    "font atlas bytes",
+    "font metrics",
+    "all GLSL strings",
+    "layout/typography arithmetic",
+    "selector distance-field algorithm",
+    "default standalone input/RAF behavior"
+  ],
+  "verificationLimits": "Extraction identity and syntax are not GPU presentation or owner acceptance."
+}

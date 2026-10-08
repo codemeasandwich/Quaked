@@ -1,6 +1,8 @@
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
 import { NEWER_ENABLED_FEATURES } from './newer_defaults.js';
+import { MainMenu_Begin, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_TextBox,
+	MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text } from './menu_webgl.js';
 import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from './r_bestiary_book.js';
 import { R_FlashlightToggle } from './r_flashlight.js';
 import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from './r_demoloading.js';
@@ -326,12 +328,16 @@ Draws one solid graphics character
 */
 function M_DrawCharacter( cx, line, num ) {
 
+	const x = cx + ( ( _vid.width - 320 ) >> 1 ), y = line + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_Glyph( x, y, num ) ) return;
 	if ( _Draw_Character )
-		_Draw_Character( cx + ( ( _vid.width - 320 ) >> 1 ), line + ( ( _vid.height - 200 ) >> 1 ), num );
+		_Draw_Character( x, y, num );
 
 }
 
 function M_Print( cx, cy, str ) {
+
+	if ( MainMenu_Text( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), str, 0 ) ) return;
 
 	for ( let i = 0; i < str.length; i ++ ) {
 
@@ -344,6 +350,8 @@ function M_Print( cx, cy, str ) {
 
 function M_PrintWhite( cx, cy, str ) {
 
+	if ( MainMenu_Text( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), str, 2 ) ) return;
+
 	for ( let i = 0; i < str.length; i ++ ) {
 
 		M_DrawCharacter( cx, cy, str.charCodeAt( i ) );
@@ -355,22 +363,28 @@ function M_PrintWhite( cx, cy, str ) {
 
 function M_DrawTransPic( x, y, pic ) {
 
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_Image( dx, dy, pic ) ) return;
 	if ( _Draw_TransPic && pic )
-		_Draw_TransPic( x + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ), pic );
+		_Draw_TransPic( dx, dy, pic );
 
 }
 
 function M_DrawSubPic( x, y, pic, srcY, srcH ) {
 
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_Image( dx, dy, pic, srcY ) ) return;
 	if ( _Draw_SubPic && pic )
-		_Draw_SubPic( x + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ), pic, srcY, srcH );
+		_Draw_SubPic( dx, dy, pic, srcY, srcH );
 
 }
 
 function M_DrawPic( x, y, pic ) {
 
+	const dx = x + ( ( _vid.width - 320 ) >> 1 ), dy = y + ( ( _vid.height - 200 ) >> 1 );
+	if ( MainMenu_Image( dx, dy, pic ) ) return;
 	if ( _Draw_Pic && pic )
-		_Draw_Pic( x + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ), pic );
+		_Draw_Pic( dx, dy, pic );
 
 }
 
@@ -384,6 +398,10 @@ function M_DrawTransPicTranslate( x, y, pic ) {
 }
 
 function M_DrawTextBox( x, y, width, lines ) {
+
+	if ( MainMenu_TextBox( x + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ),
+		( width + 2 ) * 8, ( lines + 2 ) * 8,
+		_Draw_CachePic && _Draw_CachePic( 'gfx/box_tl.lmp' ), _Draw_CachePic && _Draw_CachePic( 'gfx/box_br.lmp' ) ) ) return;
 
 	if ( ! _Draw_CachePic ) return;
 
@@ -573,6 +591,7 @@ function M_Main_Draw() {
 	if ( ! _Draw_CachePic ) return;
 
 	const inGame = M_InGame();
+	MainMenu_SetInGame( inGame );
 	const itemCount = inGame ? MAIN_ITEMS + 1 : MAIN_ITEMS;
 	m_main_cursor = Math.min( m_main_cursor, itemCount - 1 );
 
@@ -1712,6 +1731,8 @@ const SLIDER_RANGE = 10;
 
 function M_DrawSlider( x, y, range ) {
 
+	if ( MainMenu_Slider( x - 8 + ( ( _vid.width - 320 ) >> 1 ), y + ( ( _vid.height - 200 ) >> 1 ), ( SLIDER_RANGE + 2 ) * 8, range ) ) return;
+
 	if ( range < 0 )
 		range = 0;
 	if ( range > 1 )
@@ -2022,7 +2043,7 @@ function M_Newer_Draw() {
 	if ( ! _Draw_CachePic ) return;
 
 	// a dark panel behind the list: the picture of the game behind the menu made it hard to read
-	if ( _Draw_Fill ) {
+	if ( _Draw_Fill && ! MainMenu_Skinned() ) {
 
 		const ox = ( _vid.width - 320 ) >> 1, oy = ( _vid.height - 200 ) >> 1;
 		_Draw_Fill( ox + 8, oy + 2, 304, 192, 0, 0.82 );
@@ -2752,11 +2773,15 @@ function M_DrawSplitMarks() {
 
 export function M_Draw() {
 
+	MainMenu_SetVisible( m_state !== m_none && m_state !== m_bestiary && getKeyDest() === key_menu );
+
 	// (also while the menu is not up)
 	if ( ( m_state === m_none || getKeyDest() !== key_menu ) && R_DemoSplitActive() ) M_DrawSplitMarks();
 
 	if ( m_state === m_none || getKeyDest() !== key_menu )
 		return;
+
+	MainMenu_Begin();
 
 	if ( ! m_recursiveDraw ) {
 
@@ -2802,6 +2827,8 @@ export function M_Draw() {
 		case m_gameoptions: M_GameOptions_Draw(); break;
 
 	}
+
+	MainMenu_End( _realtime_get() );
 
 	if ( m_entersound ) {
 

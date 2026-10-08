@@ -17,6 +17,7 @@ import { COM_LoadFile } from './pak.js';
 import { Key_Init, Key_WriteBindings } from './keys.js';
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from './console.js';
 import { M_Init, M_SetExternals } from './menu.js';
+import { MainMenu_Destroy } from './menu_webgl.js';
 import { PR_Init } from './pr_edict.js';
 import { Mod_Init, Mod_ClearAll, R_InitTextures } from './gl_model.js';
 import { NET_Init, NET_Poll, NET_Shutdown, NET_SendMessage, NET_CanSendMessage,
@@ -835,6 +836,8 @@ Cleanly shut down everything
 ================
 */
 export function Host_Shutdown() {
+
+	MainMenu_Destroy();
 
 	if ( ! host_initialized )
 		return;

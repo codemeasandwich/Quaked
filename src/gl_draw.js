@@ -50,6 +50,38 @@ let scopedUIScale = 1;
 let overlayCanvas = null;
 let overlayCtx = null;
 
+// GPU menu output is already at backing-store resolution. Do not send it
+// through the 320x200 HUD transform or apply a second color/scale conversion.
+export function Draw_FullResolutionCanvas( source ) {
+
+	if ( ! overlayCtx ) return;
+	overlayCtx.save();
+	try {
+
+		overlayCtx.setTransform( 1, 0, 0, 1, 0, 0 );
+		overlayCtx.globalAlpha = 1;
+		overlayCtx.globalCompositeOperation = 'source-over';
+		overlayCtx.drawImage( source, 0, 0 );
+
+	} finally { overlayCtx.restore(); }
+
+}
+
+// Unsmoothed copy of a source rectangle to physical overlay pixels (logo artwork).
+export function Draw_FullResolutionImage( source, sx, sy, sw, sh, dx, dy, dw, dh, smooth = false ) {
+
+	if ( ! overlayCtx || ! source ) return;
+	overlayCtx.save();
+	try {
+
+		overlayCtx.setTransform( 1, 0, 0, 1, 0, 0 );
+		overlayCtx.imageSmoothingEnabled = smooth;
+		overlayCtx.drawImage( source, sx, sy, sw, sh, dx, dy, dw, dh );
+
+	} finally { overlayCtx.restore(); }
+
+}
+
 // Coordinates use the same virtual canvas space as HUD drawing. Always restore
 // the caller's clip/transform, including when a drawing callback fails.
 export function Draw_WithClipRect( x, y, width, height, draw ) {
@@ -1059,7 +1091,7 @@ export function Draw_CacheSinglePlayerMenu() {
 		Draw_CachePic( 'gfx/sp_menu.lmp' ), Draw_CachePic( 'gfx/mainmenu.lmp' ),
 		Draw_CachePic( 'gfx/mp_menu.lmp' ), Draw_CachePic( 'gfx/netmen4.lmp' ),
 		() => document.createElement( 'canvas' ) );
-	if ( pic !== null ) cachepics[ path ] = pic;
+	if ( pic !== null ) { pic.path = path; cachepics[ path ] = pic; }
 	return pic;
 
 }
@@ -1131,7 +1163,8 @@ export function Draw_CachePicFromPNG( path, url, options = {} ) {
 				const pic = {
 					width: canvas.width,
 					height: canvas.height,
-					canvas
+					canvas,
+					path
 				};
 
 				cachepics[ path ] = pic;
@@ -1196,7 +1229,8 @@ export function Draw_CachePic( path ) {
 	const pic = {
 		width: width,
 		height: height,
-		canvas: cs
+		canvas: cs,
+		path
 	};
 
 	cachepics[ path ] = pic;
