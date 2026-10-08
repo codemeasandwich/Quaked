@@ -862,7 +862,7 @@ function CL_LinkPacketEntities( frac ) {
 
 				if ( model.flags & 0x01 ) { // EF_ROCKET
 
-					R_RocketTrail( _peOldorg, ent.origin, 0 );
+					R_RocketTrail( _peOldorg, ent.origin, 0, s1.number );
 					const dl = CL_AllocDlight( s1.number );
 					VectorCopy( ent.origin, dl.origin );
 					dl.radius = 200;
@@ -870,7 +870,7 @@ function CL_LinkPacketEntities( frac ) {
 
 				} else if ( model.flags & 0x02 ) { // EF_GRENADE
 
-					R_RocketTrail( _peOldorg, ent.origin, 1 );
+					R_RocketTrail( _peOldorg, ent.origin, 1, s1.number );
 
 				} else if ( model.flags & 0x04 ) { // EF_GIB
 
@@ -1206,14 +1206,14 @@ export function CL_RelinkEntities() {
 				R_RocketTrail( _relinkOldorg, ent.origin, 5 );
 			else if ( ent.model.flags & 0x01 ) { // EF_ROCKET
 
-				R_RocketTrail( _relinkOldorg, ent.origin, 0 );
+				R_RocketTrail( _relinkOldorg, ent.origin, 0, i );
 				const dl = CL_AllocDlight( i );
 				VectorCopy( ent.origin, dl.origin );
 				dl.radius = 200;
 				dl.die = cl.time + 0.01;
 
 			} else if ( ent.model.flags & 0x02 ) // EF_GRENADE
-				R_RocketTrail( _relinkOldorg, ent.origin, 1 );
+				R_RocketTrail( _relinkOldorg, ent.origin, 1, i );
 			else if ( ent.model.flags & 0x80 ) // EF_TRACER3
 				R_RocketTrail( _relinkOldorg, ent.origin, 6 );
 

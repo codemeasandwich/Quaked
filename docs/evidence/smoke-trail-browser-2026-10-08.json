@@ -1,0 +1,40 @@
+{
+  "what": "Real-game runs of a rocket fired down the E1M1 start corridor (Chromium on Metal, Newer Game, supplied smoke): total smoke puffs after the rocket hit the far wall, at three CPU-throttled frame rates. Console output of tests/fireball_trial.js driven by the session capture script; screenshots are not retained.",
+  "date": "2026-10-08",
+  "baseline": "3f35ae813a3dddde49c8f28ba45938d39ff8a088 + uncommitted smoke trail work",
+  "source_sha256": "7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6",
+  "runs": [
+    {
+      "cpu_throttle": 1,
+      "render_fps": 61.3,
+      "smoke_puffs": [
+        361,
+        362
+      ],
+      "bursts": 1,
+      "errors": 0
+    },
+    {
+      "cpu_throttle": 3,
+      "render_fps": 43.3,
+      "smoke_puffs": [
+        350,
+        356
+      ],
+      "bursts": 1,
+      "errors": 0
+    },
+    {
+      "cpu_throttle": 8,
+      "render_fps": 13.3,
+      "smoke_puffs": [
+        328,
+        345
+      ],
+      "bursts": 1,
+      "errors": 0
+    }
+  ],
+  "reading": "About 360 puffs (a ~1,090-unit flight at 3-unit spacing) at 61 fps. The few-percent shortfall at low frame rates is the missile's unobserved first frame (about 77 units at 13 fps), not emission error. Exact frame-rate independence of the emission itself is asserted in tests/smoketrail_test.js (7..1000 fps, identical positions and birth times).",
+  "caveat": "A single run per setting; counts vary by a few puffs run to run because the first sighting of the missile depends on frame timing."
+}

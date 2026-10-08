@@ -1,26 +1,33 @@
-// "04 Fireball" from the owner-supplied FieldLab FX3D source, ported onto Quaked's
-// renderer. Source file SHA-256 7e35fc80...c7d6 (kept local); extraction map and
-// asset provenance are in newer/effects/fireball/provenance.json and
-// docs/explosions-fireball-2026-10-08.md.
+// The supplied FieldLab FX3D effects, ported onto Quaked's renderer: "04 Fireball" (explosions)
+// and, through r_smoketrail.js, "01 RPG smoke" (rocket and grenade trails). Source file SHA-256
+// 7e35fc80...c7d6 (kept local). The two share one puff shader, atlas and noise texture in the
+// source, so this module owns the one puff layer, the flash/exhaust glow layer, the spark and
+// ring layers, and the textures. Extraction maps and provenance:
+// newer/effects/fireball/provenance.json, docs/explosions-fireball-2026-10-08.md and
+// docs/rocket-grenade-smoke-2026-10-08.md.
 //
-// Ownership: cl_tent.js still owns the temp entity, sound, native dynamic light,
-// scorch decal and damage timing. This module only replaces the *particle
-// picture* of an ordinary TE_EXPLOSION, in Newer Game, once its two textures have
-// loaded. Everything else (Classic, assets not ready, no scene, tar and
-// colour-mapped explosions) keeps the native particles.
+// Ownership: cl_tent.js still owns the temp entity, sound, scorch decal and damage timing, and
+// cl_main.js the missile's motion and light. This module only replaces the *particle picture*
+// of an explosion (ordinary, colour-mapped and tar) and of a rocket or grenade trail, in Newer
+// Game, once its two textures have loaded. Everything else (Classic, assets not ready, no scene,
+// the cvars r_fireball / r_smoketrails at 0) keeps the native particles.
 //
-// The effect is analytic in the burst's age, exactly as in the source: the cloud,
-// spark, flash and ring functions below are the source's own, evaluated per frame
-// and written into fixed-size instance buffers. Nothing is simulated or retained
-// per particle, so a burst costs no allocation after the first frame.
+// The explosion is analytic in the burst's age, exactly as in the source: the cloud, spark, flash
+// and ring functions below are the source's own, evaluated per frame and written into fixed-size
+// instance buffers. Nothing is simulated or retained per particle, and the per-frame path writes
+// scalars into preallocated typed arrays.
 import * as THREE from 'three';
 import { COM_NewerURL } from './pak.js';
 import { cvar_t } from './cvar.js';
+import { clamp, mix, smooth, hashJS } from './fx_math.js';
+import { SMOKE, alphaBoost, forEachSmoke, R_SmokeTrailEmit, R_SmokeTrailClear, R_SmokeTrailCount } from './r_smoketrail.js';
 import { R_NewerGame } from './r_anim.js';
 import { R_DecalSurface } from './r_decals.js';
 
 // 0 puts the native particles back for every explosion
 export const r_fireball = new cvar_t( 'r_fireball', '1' );
+// 0 puts the native rocket and grenade trail back
+export const r_smoketrails = new cvar_t( 'r_smoketrails', '1' );
 
 // Source defaults for mode "explosion" at quality "medium".
 export const FIREBALL = Object.freeze( {
@@ -33,10 +40,6 @@ export const FIREBALL = Object.freeze( {
 	maxBursts: 6
 } );
 
-const clamp = ( v, a, b ) => Math.max( a, Math.min( b, v ) );
-const mix = ( a, b, t ) => a + ( b - a ) * t;
-const smooth = ( a, b, v ) => { const t = clamp( ( v - a ) / ( b - a ), 0, 1 ); return t * t * ( 3 - 2 * t ); };
-export const hashJS = n => { const r = Math.sin( n * 127.1 + 31.7 ) * 43758.5453; return r - Math.floor( r ); };
 
 // ---------------------------------------------------------------------------
 // The source's functions, in source units, y up, relative to the detonation point.
@@ -282,6 +285,7 @@ void main(){
 // (puffs, ring, glow, sparks).
 const ORDER_PUFF = 6, ORDER_RING = 7, ORDER_GLOW = 8, ORDER_SPARK = 9;
 const CONTENTS_SOLID = - 2;
+const NOSE_GLOWS = 16; // rocket exhausts lit in one frame
 const FLOOR_PROBE_STEP = 4, FLOOR_PROBE_MAX = 192;
 
 let deps = null, group = null, ready = false, texturesRequested = false;
@@ -334,14 +338,16 @@ function build() {
 	const cap = FIREBALL.maxBursts, empty = new THREE.DataTexture( new Uint8Array( 4 ), 1, 1 );
 	empty.needsUpdate = true;
 	const common = () => ( { uAtlas: { value: atlas || empty }, uNoise: { value: noise || empty }, uTime: { value: 0 } } );
-	puff = layer( 'fireball_clouds', cap * FIREBALL.clouds, { aPosSize: 4, aInfo: 4, aTint: 4 },
+	puff = layer( 'fireball_clouds', cap * FIREBALL.clouds + SMOKE.cap, { aPosSize: 4, aInfo: 4, aTint: 4 },
 		material( PUFF_VERTEX, PUFF_FRAGMENT, common(), THREE.NormalBlending ), ORDER_PUFF );
-	glow = layer( 'fireball_flash', cap, { aPosSize: 4, aColor: 4 },
+	glow = layer( 'fireball_flash', cap + NOSE_GLOWS, { aPosSize: 4, aColor: 4 },
 		material( GLOW_VERTEX, GLOW_FRAGMENT, {}, THREE.AdditiveBlending ), ORDER_GLOW );
 	spark = layer( 'fireball_sparks', cap * Math.min( FIREBALL.sparkCap, Math.round( 86 * FIREBALL.sparks ) ), { aStart: 4, aEnd: 4, aColor: 4 },
 		material( SPARK_VERTEX, SPARK_FRAGMENT, { uResolution: { value: new THREE.Vector2( 1280, 720 ) } }, THREE.AdditiveBlending ), ORDER_SPARK );
 	ring = layer( 'fireball_ring', cap, { aCenterRadius: 4, aAxisU: 4, aAxisV: 4 },
 		material( RING_VERTEX, RING_FRAGMENT, { uNoise: { value: noise || empty } }, THREE.AdditiveBlending ), ORDER_RING );
+	_instanced.length = 0;
+	for ( const l of [ puff, glow, spark, ring ] ) for ( const attribute of Object.values( l.geometry.attributes ) ) if ( attribute.isInstancedBufferAttribute ) _instanced.push( attribute );
 	group = new THREE.Group(); group.name = 'quake_fireball'; group.userData.newerOnly = true;
 	for ( const l of [ ring, puff, glow, spark ] ) group.add( l.mesh );
 
@@ -392,7 +398,7 @@ export function R_FireballSetup( externals ) {
 
 export function R_FireballClear() {
 
-	bursts.length = 0;
+	bursts.length = 0; R_SmokeTrailClear(); _noseCount = 0; _lastTime = 0; // (a new level's clock starts over)
 	if ( group ) {
 
 		group.visible = false;
@@ -487,10 +493,12 @@ function driveLight( b, age, time ) {
 }
 
 // Per-frame scratch: nothing below allocates.
-const PUFF_STRIDE = 12;
-const _puffRows = new Float32Array( FIREBALL.maxBursts * FIREBALL.clouds * PUFF_STRIDE );
-const _puffDepth = new Float32Array( FIREBALL.maxBursts * FIREBALL.clouds );
-const _puffOrder = new Uint16Array( FIREBALL.maxBursts * FIREBALL.clouds );
+const _instanced = []; // every instanced attribute, collected once when the layers are built
+const byDepth = ( a, b ) => _puffDepth[ b ] - _puffDepth[ a ];
+const PUFF_STRIDE = 12, PUFF_MAX = FIREBALL.maxBursts * FIREBALL.clouds + SMOKE.cap;
+const _puffRows = new Float32Array( PUFF_MAX * PUFF_STRIDE );
+const _puffDepth = new Float32Array( PUFF_MAX );
+const _puffOrder = new Uint16Array( PUFF_MAX );
 
 // The state the emit callbacks share for the frame being built (module level, so the
 // callbacks are created once and never close over a single call's variables).
@@ -520,18 +528,65 @@ function emitSpark( sx, sy, sz, tx, ty, tz, width, alpha, r, g, b, brightness ) 
 
 }
 
+// 01 RPG smoke puffs come in the source's space (y up, source units); same row format as the clouds.
+function emitSmokePuff( x, y, z, size, angle, alpha, heat, tile, r, g, b, seed ) {
+
+	if ( _f.puffs >= puff.capacity ) return;
+	const K = SMOKE.unit, o = _f.puffs * PUFF_STRIDE, wx = x * K, wy = z * K, wz = y * K;
+	// puffs right at the eye fade out: a missile leaves the player's own muzzle, and an end-on trail would
+	// otherwise be a wall of white
+	const near = SMOKE.nearFade, d = Math.hypot( wx - _f.ex, wy - _f.ey, wz - _f.ez ), fade = smooth( near[ 0 ], near[ 1 ], d );
+	_puffRows[ o ] = wx; _puffRows[ o + 1 ] = wy; _puffRows[ o + 2 ] = wz; _puffRows[ o + 3 ] = size * K * SMOKE.sizeScale;
+	_puffRows[ o + 4 ] = angle; _puffRows[ o + 5 ] = Math.min( alpha * alphaBoost, .94 ) * fade; _puffRows[ o + 6 ] = heat; _puffRows[ o + 7 ] = tile;
+	_puffRows[ o + 8 ] = r; _puffRows[ o + 9 ] = g; _puffRows[ o + 10 ] = b; _puffRows[ o + 11 ] = seed;
+	_puffDepth[ _f.puffs ] = ( wx - _f.ex ) * _f.fx + ( wy - _f.ey ) * _f.fy + ( wz - _f.ez ) * _f.fz;
+	_f.puffs ++;
+
+}
+
+// Rocket exhausts seen this frame (the source's glow card behind the nose, render 212)
+const _nose = new Float32Array( NOSE_GLOWS * 3 );
+let _noseCount = 0, _noseStamp = 0, _lastTime = 0;
+
+// A rocket (type 0) or grenade (type 1) moved from `start` to `end` this frame: the supplied
+// smoke trail replaces the native one. `key` is the entity number (each trail has its own
+// carried spacing). Returns false when the native trail must be used (Classic, textures not
+// loaded, no scene, r_smoketrails 0).
+export function R_SmokeTrail( start, end, rocket, key ) {
+
+	if ( deps == null || ! deps.scene || r_smoketrails.value === 0 || ! R_NewerGame() ) return false;
+	loadTextures();
+	if ( ! ready ) return false;
+	const cl = deps.cl?.();
+	if ( cl == null ) return false;
+	const step = cl.time - cl.oldtime, dt = step > 0 ? Math.min( .25, step ) : 0; // (never NaN)
+	R_SmokeTrailEmit( start, end, rocket, key, cl.time, dt );
+	_noseStamp = cl.time;
+	const dx = end[ 0 ] - start[ 0 ], dy = end[ 1 ] - start[ 1 ], dz = end[ 2 ] - start[ 2 ], length = Math.hypot( dx, dy, dz );
+	if ( rocket && length > 1e-6 && length <= SMOKE.jump && _noseCount < NOSE_GLOWS ) {
+
+		const back = .47 * FIREBALL.unit / length, o = _noseCount ++ * 3;
+		_nose[ o ] = end[ 0 ] - dx * back; _nose[ o + 1 ] = end[ 1 ] - dy * back; _nose[ o + 2 ] = end[ 2 ] - dz * back;
+
+	}
+	return true;
+
+}
+
 // Every frame, before the scene renders. `forward` must be the view's current forward
 // vector (not last frame's) so the puffs sort correctly the frame the view turns.
 export function R_FireballFrame( time, eye, forward, viewSize ) {
 
 	const scene = deps?.scene;
 	if ( ! scene ) return;
-	if ( ! R_NewerGame() ) { bursts.length = 0; if ( group ) group.visible = false; return; }
+	if ( ! R_NewerGame() ) { bursts.length = 0; R_SmokeTrailClear(); _noseCount = 0; if ( group ) group.visible = false; return; }
+	if ( time < _lastTime - REWIND_DROP ) R_SmokeTrailClear(); // the clock jumped back (a demo loop, a new game)
+	_lastTime = time;
 	for ( const b of bursts ) if ( b.start === null ) b.start = time;
 	// A burst ends after its duration, or when the clock has jumped back by more than a
 	// moment (a demo loop or a new game). Small backward steps are normal and never end it.
 	for ( let i = bursts.length - 1; i >= 0; i -- ) if ( time - bursts[ i ].start > FIREBALL.duration || bursts[ i ].start - time > REWIND_DROP ) bursts.splice( i, 1 );
-	if ( bursts.length === 0 ) { if ( group ) group.visible = false; return; }
+	if ( bursts.length === 0 && R_SmokeTrailCount() === 0 && _noseCount === 0 ) { if ( group ) group.visible = false; return; }
 	if ( group === null ) build();
 	if ( group.parent !== scene ) scene.add( group );
 	group.visible = true;
@@ -570,11 +625,24 @@ export function R_FireballFrame( time, eye, forward, viewSize ) {
 		driveLight( b, age, time );
 
 	}
+	forEachSmoke( time, SMOKE, SMOKE.timeScale, emitSmokePuff );
+	// exhaust glows are for the frame they were made in: client updates with no render in between (a
+	// level loading) must not pile them up for a later frame
+	if ( Math.abs( time - _noseStamp ) > .25 ) _noseCount = 0;
+	for ( let n = 0; n < _noseCount && glows < glow.capacity; n ++ ) {
+
+		const o = glows * 4, G = glow.arrays;
+		G.aPosSize[ o ] = _nose[ n * 3 ]; G.aPosSize[ o + 1 ] = _nose[ n * 3 + 1 ]; G.aPosSize[ o + 2 ] = _nose[ n * 3 + 2 ]; G.aPosSize[ o + 3 ] = .165 * K;
+		G.aColor[ o ] = 1; G.aColor[ o + 1 ] = .35; G.aColor[ o + 2 ] = .035; G.aColor[ o + 3 ] = .7;
+		glows ++;
+
+	}
+	_noseCount = 0;
 	const puffs = _f.puffs, sparks = _f.sparks, rows = _puffRows;
 
 // puffs back to front, as the source sorts them
 	for ( let i = 0; i < puffs; i ++ ) _puffOrder[ i ] = i;
-	_puffOrder.subarray( 0, puffs ).sort( ( a, b ) => _puffDepth[ b ] - _puffDepth[ a ] );
+	_puffOrder.subarray( 0, puffs ).sort( byDepth );
 	const P = puff.arrays;
 	for ( let n = 0; n < puffs; n ++ ) {
 
@@ -586,7 +654,9 @@ export function R_FireballFrame( time, eye, forward, viewSize ) {
 	}
 	puff.geometry.instanceCount = puffs; glow.geometry.instanceCount = glows;
 	spark.geometry.instanceCount = sparks; ring.geometry.instanceCount = rings;
-	for ( const l of [ puff, glow, spark, ring ] ) for ( const attribute of Object.values( l.geometry.attributes ) ) if ( attribute.isInstancedBufferAttribute ) attribute.needsUpdate = true;
+	for ( const attribute of _instanced ) attribute.needsUpdate = true;
+	// the last puffs just expired: nothing left to draw this frame
+	if ( puffs === 0 && glows === 0 && sparks === 0 && rings === 0 ) group.visible = false;
 	puff.mesh.material.uniforms.uTime.value = time;
 	if ( viewSize ) spark.mesh.material.uniforms.uResolution.value.set( viewSize[ 0 ], viewSize[ 1 ] );
 
@@ -595,7 +665,7 @@ export function R_FireballFrame( time, eye, forward, viewSize ) {
 // Diagnostic read-only view for tests and the browser trial.
 export function R_FireballSnapshot() {
 
-	return { ready, bursts: bursts.length, group: group !== null,
+	return { ready, bursts: bursts.length, smoke: R_SmokeTrailCount(), group: group !== null,
 		puffs: puff?.geometry.instanceCount ?? 0, sparks: spark?.geometry.instanceCount ?? 0,
 		glows: glow?.geometry.instanceCount ?? 0, rings: ring?.geometry.instanceCount ?? 0,
 		capacity: puff ? { puffs: puff.capacity, sparks: spark.capacity } : null };

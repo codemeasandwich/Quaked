@@ -83,6 +83,8 @@ Newer lighting is lit by its sources: the baked light is curved (`r_newdark`, 2.
 
 In Newer Game every explosion (rockets, grenades, tar babies and colour-mapped blasts) is the supplied "Fireball": a white flash, a rolling orange fireball that cools into smoke, falling sparks, a shock ring on the surface it hit, and a warm light that follows the same curve. It replaces only the picture; sound, damage, timing and the scorch mark are unchanged. Classic Quake keeps its original particles, as does Newer Game with `r_fireball 0`. At most six fireballs are live at once (while the oldest is under 1.5 s old, a further explosion uses the original particles), and they clear on every level change. In the title demo's Newer | Classic split, the enhanced half shows the Fireball and the classic half the original explosion. See `docs/explosions-fireball-2026-10-08.md`.
 
+Rocket and grenade trails use the supplied smoke too: a thin, soft wisp that follows the missile, spaced by distance so it looks the same at any frame rate, with a small exhaust glow behind a rocket (`r_smoketrails 0` brings back the original trail; Classic Quake always has it). See `docs/rocket-grenade-smoke-2026-10-08.md`.
+
 #### Lens drops, lava glow and level changes
 
 Coming out of water leaves the view beaded with clear drops that refract and slightly blur the picture, some running down before they dry; being close to a body bursting does the same with blood. Drops clear quickly and are suppressed underwater. Lava glows and breathes, and lights what is around it. In Newer Game, loading or changing level no longer automatically opens the console. Changing level keeps the last frame on screen; it is simply the new level when it is ready.

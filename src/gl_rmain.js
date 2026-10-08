@@ -33,7 +33,7 @@ import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities }
 import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
-import { r_fireball, R_FireballSetup, R_FireballFrame, R_FireballClear } from './r_fireball.js';
+import { r_fireball, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear } from './r_fireball.js';
 import { CL_AllocDlight } from './cl_main.js';
 import { R_ClassicTexture } from './r_newertextures.js';
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from './r_anim.js';
@@ -2042,6 +2042,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_heathaze );
 	Cvar_RegisterVariable( r_mist );
 	Cvar_RegisterVariable( r_fireball );
+	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );

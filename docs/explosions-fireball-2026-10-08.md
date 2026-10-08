@@ -109,6 +109,13 @@ that draws the burst, small backward steps never end a burst, and only a rewind 
 than a second does. `tests/fireball_test.js` pins the exact case (spawn at 10.000,
 first frame at 9.995) and fails against the old behaviour.
 
+## Shared puff layer
+
+The source uses one puff shader and one pair of textures for the Fireball and for the RPG smoke,
+so `r_fireball.js` also draws the rocket/grenade smoke trails (`r_smoketrail.js`, card
+T-f90bdd2c, `docs/rocket-grenade-smoke-2026-10-08.md`) in the same layer, depth-sorted together
+with the explosion clouds.
+
 ## Differences from the source (deliberate or known)
 
 * **No soft-depth fade.** The source fades puffs, flash and sparks against its opaque

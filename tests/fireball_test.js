@@ -8,7 +8,8 @@ import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/cvar.js';
 import * as fb from '../src/r_fireball.js';
-import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion } from '../src/render.js';
+import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion, R_RocketTrail } from '../src/render.js';
+import * as smoke from '../src/r_smoketrail.js';
 import { r_demosplit } from '../src/r_demosplit.js';
 import * as part from '../src/r_part.js';
 import { cl as clientState } from '../src/client.js';
@@ -35,12 +36,12 @@ const textures = () => [ new THREE.DataTexture( new Uint8Array( 4 ), 1, 1 ), new
 function setup( { ready = true, time = { now: 10 } } = {} ) {
 
 	const scene = new THREE.Scene(), w = world(), lights = new Map();
-	fb.R_FireballSetup( { scene, cl: () => ( { time: time.now, worldmodel: w.model } ), pointInLeaf: w.pointInLeaf,
+	fb.R_FireballSetup( { scene, cl: () => ( { time: time.now, oldtime: time.now - .05, worldmodel: w.model } ), pointInLeaf: w.pointInLeaf,
 		allocDlight: key => { const l = lights.get( key ) || { origin: new Float32Array( 3 ), radius: 0, die: 0, decay: 0 }; lights.set( key, l ); return l; } } );
 	fb.R_FireballClear();
 	if ( ready ) fb.R_FireballTextures( ...textures() ); else fb.R_FireballTextures( null, null );
 	newer( true );
-	r_demosplit.value = 1; fb.r_fireball.value = 1;
+	r_demosplit.value = 1; fb.r_fireball.value = 1; fb.r_smoketrails.value = 1;
 	return { scene, time, lights, group: () => scene.children.find( c => c.name === 'quake_fireball' ) };
 
 }
@@ -343,5 +344,157 @@ Deno.test( 'title-demo split: the enhanced half gets the Fireball, the classic h
 	same( classic.length, 1, 'Classic: one native batch' );
 	check( ! classic[ 0 ].classicOnly && classic[ 0 ].count === 1024, 'ordinary visible particles, as before' );
 	same( fb.R_FireballActive(), 0, 'no Fireball in Classic' );
+
+} );
+
+// ---- 01 RPG smoke on rocket and grenade trails --------------------------------------------
+
+const fly = ( env, from, to, type, key, frames = 1 ) => {
+
+	for ( let k = 0; k < frames; k ++ ) {
+
+		const a = from.map( ( v, i ) => v + ( to[ i ] - v ) * k / frames ), b = from.map( ( v, i ) => v + ( to[ i ] - v ) * ( k + 1 ) / frames );
+		env.time.now += .02; R_RocketTrail( a, b, type, key );
+
+	}
+
+};
+
+Deno.test( 'rocket and grenade trails use the supplied smoke in Newer Game; everything else keeps the native trail', () => {
+
+	const env = setup(); smoke.R_SmokeTrailClear();
+	fly( env, [ 0, 0, 100 ], [ 40, 0, 100 ], 0, 7 ); check( smoke.R_SmokeTrailCount() > 0, 'rocket (type 0) -> supplied smoke' );
+	const n = smoke.R_SmokeTrailCount();
+	fly( env, [ 0, 50, 100 ], [ 40, 50, 100 ], 1, 8 ); check( smoke.R_SmokeTrailCount() > n, 'grenade (type 1) -> supplied smoke' );
+	const m = smoke.R_SmokeTrailCount();
+	for ( const type of [ 2, 3, 4, 5, 6 ] ) fly( env, [ 0, 0, 100 ], [ 40, 0, 100 ], type, 9 );
+	same( smoke.R_SmokeTrailCount(), m, 'blood, tracer and voor trails are untouched' );
+	newer( false ); fly( env, [ 0, 0, 100 ], [ 40, 0, 100 ], 0, 10 );
+	same( smoke.R_SmokeTrailCount(), m, 'Classic keeps the native trail' );
+	newer( true ); fb.r_smoketrails.value = 0;
+	const off = particles( env, () => fly( env, [ 0, 0, 100 ], [ 40, 0, 100 ], 0, 11 ) );
+	same( smoke.R_SmokeTrailCount(), m, 'r_smoketrails 0: no supplied smoke' );
+	same( off.length, 1, 'r_smoketrails 0 puts the native trail back (one visible native batch)' ); check( ! off[ 0 ].classicOnly, 'as ordinary particles' );
+	fb.r_smoketrails.value = 1; fb.R_FireballTextures( null, null );
+	const loading = particles( env, () => fly( env, [ 0, 0, 100 ], [ 40, 0, 100 ], 0, 12 ) );
+	same( smoke.R_SmokeTrailCount(), m, 'textures not loaded: no supplied smoke' ); same( loading.length, 1, 'textures not loaded: the native trail' );
+	fb.R_FireballTextures( ...textures() );
+	const nokey = particles( env, () => { env.time.now += .02; R_RocketTrail( [ 0, 0, 100 ], [ 40, 0, 100 ], 0 ); } );
+	same( smoke.R_SmokeTrailCount(), m, 'a call without an entity number never shares a carry: no supplied smoke' ); same( nokey.length, 1, '...it keeps the native trail' );
+
+} );
+
+Deno.test( 'smoke puffs are drawn in the shared puff layer in world coordinates, with the rocket\'s exhaust glow', () => {
+
+	const env = setup(); smoke.R_SmokeTrailClear();
+	for ( let k = 0; k < 10; k ++ ) { // one segment per rendered frame, as the game does
+		env.time.now += .02; R_RocketTrail( [ k * 40, 0, 100 ], [ ( k + 1 ) * 40, 0, 100 ], 0, 7 ); fb.R_FireballFrame( env.time.now, ...view );
+	}
+	const snap = fb.R_FireballSnapshot(), K = fb.FIREBALL.unit;
+	check( snap.puffs > 60 && snap.smoke === snap.puffs, `the trail's puffs are drawn: ${snap.puffs}` );
+	same( snap.glows, 1, 'one exhaust glow for the one rocket' );
+	const pos = mesh( env, 'fireball_clouds' ).geometry.attributes.aPosSize.array, info = mesh( env, 'fireball_clouds' ).geometry.attributes.aInfo.array;
+	for ( let i = 0; i < snap.puffs; i ++ ) {
+
+		check( pos[ i * 4 ] > - 20 && pos[ i * 4 ] < 420 && Math.abs( pos[ i * 4 + 1 ] ) < 40 && pos[ i * 4 + 2 ] > 90 && pos[ i * 4 + 2 ] < 150, 'puff lies along the flight path (Quake axes, z up)' );
+		check( pos[ i * 4 + 3 ] > 0 && pos[ i * 4 + 3 ] < 20 * K * .6, 'puff size in world units' );
+		check( info[ i * 4 + 1 ] >= 0 && info[ i * 4 + 1 ] <= .94 && info[ i * 4 + 2 ] === - 1, 'translucent smoke (heat -1: not flame)' );
+
+	}
+	let visible = 0;
+	for ( let i = 0; i < snap.puffs; i ++ ) if ( info[ i * 4 + 1 ] > 0 ) visible ++;
+	check( visible > snap.puffs * .8, `most puffs are already visible (the newest fade in over .08 s): ${visible}/${snap.puffs}` );
+	const g = mesh( env, 'fireball_flash' ).geometry.attributes, gp = g.aPosSize.array, gc = g.aColor.array;
+	near( gp[ 0 ], 400 - .47 * K, 1e-3, 'glow sits .47 source units behind the nose' ); near( gp[ 3 ], .165 * K, 1e-5, 'glow size' );
+	check( gc[ 0 ] === 1 && Math.abs( gc[ 1 ] - .35 ) < 1e-6 && Math.abs( gc[ 3 ] - .7 ) < 1e-6, 'the source\'s exhaust colour' );
+	// a grenade has no exhaust glow
+	fb.R_FireballClear(); env.time.now += .02; R_RocketTrail( [ 0, 0, 100 ], [ 30, 0, 100 ], 1, 3 ); fb.R_FireballFrame( env.time.now, ...view );
+	same( fb.R_FireballSnapshot().glows, 0, 'no glow behind a grenade' );
+	// the glow exists only on frames the rocket moved
+	R_RocketTrail( [ 0, 0, 100 ], [ 30, 0, 100 ], 0, 3 ); env.time.now += .02; fb.R_FireballFrame( env.time.now, ...view ); env.time.now += .02; fb.R_FireballFrame( env.time.now, ...view );
+	same( fb.R_FireballSnapshot().glows, 0, 'a rocket that has stopped leaves no glow behind' );
+
+} );
+
+Deno.test( 'smoke puffs are scaled, boosted and faded near the eye exactly as documented', () => {
+
+	const env = setup(); smoke.R_SmokeTrailClear();
+	const K = smoke.SMOKE.unit, eye = view[ 0 ];
+	// a flight that starts 40 units from the eye and runs away from it
+	for ( let k = 0; k < 8; k ++ ) { env.time.now += .02; R_RocketTrail( [ eye[ 0 ] + 40 + k * 40, eye[ 1 ], eye[ 2 ] ], [ eye[ 0 ] + 80 + k * 40, eye[ 1 ], eye[ 2 ] ], 1, 5 ); fb.R_FireballFrame( env.time.now, ...view ); }
+	const expected = [];
+	smoke.forEachSmoke( env.time.now, smoke.SMOKE, smoke.SMOKE.timeScale, ( x, y, z, size, angle, alpha ) => {
+
+		const w = [ x * K, z * K, y * K ], d = Math.hypot( w[ 0 ] - eye[ 0 ], w[ 1 ] - eye[ 1 ], w[ 2 ] - eye[ 2 ] );
+		const s = Math.min( Math.max( ( d - 24 ) / ( 110 - 24 ), 0 ), 1 );
+		expected.push( { w, size: size * K * smoke.SMOKE.sizeScale, alpha: Math.min( alpha * smoke.alphaBoost, .94 ) * s * s * ( 3 - 2 * s ), d } );
+
+	} );
+	const pos = mesh( env, 'fireball_clouds' ).geometry.attributes.aPosSize.array, info = mesh( env, 'fireball_clouds' ).geometry.attributes.aInfo.array, n = fb.R_FireballSnapshot().puffs;
+	same( n, expected.length, 'one instance per live puff' );
+	let near1 = 0, far1 = 0;
+	for ( const e of expected ) {
+
+		let hit = - 1;
+		for ( let i = 0; i < n; i ++ ) if ( Math.hypot( pos[ i * 4 ] - e.w[ 0 ], pos[ i * 4 + 1 ] - e.w[ 1 ], pos[ i * 4 + 2 ] - e.w[ 2 ] ) < 1e-2 ) { hit = i; break; }
+		check( hit >= 0, 'every puff is at its source-space position scaled to world units' );
+		near( pos[ hit * 4 + 3 ], e.size, 1e-3, 'size = source size x unit x sizeScale' );
+		near( info[ hit * 4 + 1 ], e.alpha, 1e-5, 'alpha = source alpha x alphaBoost, faded near the eye' );
+		if ( e.d < 60 ) near1 ++; if ( e.d > 150 ) far1 ++;
+
+	}
+	check( near1 > 0 && far1 > 0, `the sample covers puffs inside the fade and well outside it: ${near1}/${far1}` );
+	check( smoke.alphaBoost > 1.5 && smoke.alphaBoost < 3.5, 'alphaBoost compensates the wider spacing for the larger puffs: ' + smoke.alphaBoost );
+
+} );
+
+Deno.test( 'trail smoke and explosion clouds are sorted together, expire, and clear on Classic, a clock jump and a map change', () => {
+
+	const env = setup(); smoke.R_SmokeTrailClear();
+	fly( env, [ 0, 0, 100 ], [ 300, 0, 100 ], 0, 7, 8 );
+	fb.R_FireballSpawn( [ 150, 0, 100 ] ); fb.R_FireballFrame( env.time.now, ...view );
+	env.time.now += .3; fb.R_FireballFrame( env.time.now, ...view );
+	const pos = mesh( env, 'fireball_clouds' ).geometry.attributes.aPosSize.array, snap = fb.R_FireballSnapshot();
+	check( snap.puffs > snap.smoke, 'explosion clouds and smoke share the layer' );
+	let last = Infinity;
+	for ( let i = 0; i < snap.puffs; i ++ ) { const d = pos[ i * 4 ] - view[ 0 ][ 0 ]; check( d <= last + 1e-3, 'all puffs sorted far to near' ); last = d; }
+	check( snap.puffs <= snap.capacity.puffs, 'inside the preallocated buffer' );
+	env.time.now += 8 / smoke.SMOKE.timeScale + 5; fb.R_FireballFrame( env.time.now, ...view );
+	same( fb.R_FireballSnapshot().puffs, 0, 'everything has expired' ); same( env.group().visible, false, 'nothing drawn' );
+	fly( env, [ 0, 0, 100 ], [ 300, 0, 100 ], 0, 7, 8 ); newer( false ); fb.R_FireballFrame( env.time.now, ...view );
+	same( smoke.R_SmokeTrailCount(), 0, 'switching to Classic mid-trail removes the smoke' ); newer( true );
+	fly( env, [ 0, 0, 100 ], [ 300, 0, 100 ], 0, 7, 8 ); fb.R_FireballFrame( env.time.now, ...view );
+	env.time.now -= 30; fb.R_FireballFrame( env.time.now, ...view );
+	same( smoke.R_SmokeTrailCount(), 0, 'a clock jump back of seconds (demo loop, new game) clears the smoke' );
+	fly( env, [ 0, 0, 100 ], [ 300, 0, 100 ], 0, 7, 8 ); fb.R_FireballClear();
+	same( smoke.R_SmokeTrailCount(), 0, 'a map change clears the smoke' );
+
+} );
+
+Deno.test( 'title-demo split: trails get the supplied smoke for the enhanced half and a hidden native trail for the classic half', () => {
+
+	const env = setup(); smoke.R_SmokeTrailClear();
+	r_demosplit.value = 2;
+	const split = particles( env, () => fly( env, [ 0, 0, 100 ], [ 30, 0, 100 ], 0, 7 ) );
+	r_demosplit.value = 1;
+	check( smoke.R_SmokeTrailCount() > 0, 'the supplied smoke exists for the Newer half' );
+	same( split.length, 1, 'one native batch' ); check( split[ 0 ].classicOnly && ! split[ 0 ].visible, 'it is the Classic-only mesh' );
+	same( particles( env, () => fly( env, [ 0, 0, 100 ], [ 30, 0, 100 ], 0, 8 ) ).length, 0, 'outside the split the native trail is not drawn at all' );
+	newer( false );
+	const classic = particles( env, () => fly( env, [ 0, 0, 100 ], [ 30, 0, 100 ], 0, 9 ) );
+	same( classic.length, 1, 'Classic: the native trail' ); check( ! classic[ 0 ].classicOnly, 'as ordinary visible particles' );
+
+} );
+
+Deno.test( 'the engine passes each missile\'s entity number so every trail keeps its own spacing', () => {
+
+	const text = readFileSync( new URL( '../src/cl_main.js', import.meta.url ), 'utf8' );
+	check( /R_RocketTrail\( _peOldorg, ent\.origin, 0, s1\.number \)/.test( text ), 'live rocket trail call passes the entity number' );
+	check( /R_RocketTrail\( _peOldorg, ent\.origin, 1, s1\.number \)/.test( text ), 'live grenade trail call passes the entity number' );
+	check( /R_RocketTrail\( _relinkOldorg, ent\.origin, 0, i \)/.test( text ), 'demo-playback rocket trail call passes the entity number' );
+	check( /R_RocketTrail\( _relinkOldorg, ent\.origin, 1, i \)/.test( text ), 'demo-playback grenade trail call passes the entity number' );
+	const calls = [ ...text.matchAll( /R_RocketTrail\( ([^)]*) \)/g ) ].map( m => m[ 1 ].split( ',' ).map( v => v.trim() ) ).filter( a => a[ 2 ] === '0' || a[ 2 ] === '1' );
+	same( calls.length, 4, 'there are exactly four rocket/grenade trail call sites' );
+	check( calls.every( a => a.length === 4 ), 'and every one passes a key' );
 
 } );

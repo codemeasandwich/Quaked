@@ -13,7 +13,7 @@ import {
 	R_LavaSplash as _R_LavaSplash,
 	R_TeleportSplash as _R_TeleportSplash
 } from './r_part.js';
-import { R_FireballSpawn } from './r_fireball.js';
+import { R_FireballSpawn, R_SmokeTrail } from './r_fireball.js';
 import { R_DemoSplitActive } from './r_demosplit.js';
 
 //============================================================================
@@ -232,7 +232,21 @@ export function R_RunParticleEffect( org, dir, color, count ) {
 
 }
 
-export function R_RocketTrail( start, end, type ) {
+// Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by
+// distance along each frame's segment; `key` is the entity number, so every missile carries its
+// own spacing (a call without one keeps the native trail). Everything else, and Classic, keeps the native trail. In the title demo's split
+// view the Classic half hides everything Newer, so the native trail is also spawned there,
+// flagged to draw in that half only.
+export function R_RocketTrail( start, end, type, key ) {
+
+	// (no entity number, no supplied smoke: its spacing is carried per missile, and two missiles must
+	// never share a carry)
+	if ( ( type === 0 || type === 1 ) && key !== undefined && R_SmokeTrail( start, end, type === 0, key ) ) {
+
+		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
+		return;
+
+	}
 
 	_R_RocketTrail( start, end, type );
 

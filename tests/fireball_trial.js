@@ -24,6 +24,15 @@ window.fireballTrial={
   demo.CL_PlayDemoFromData(file.data.buffer.slice(file.data.byteOffset,file.data.byteOffset+file.data.length),true);
   await until(()=>cls.demoplayback&&cls.signon===4&&cl.worldmodel,'demo signon');
   await until(()=>fb.R_FireballSnapshot().ready,'fireball textures');return {active:split.R_DemoSplitActive()};},
+ // A synthetic missile flying ACROSS the view (so the trail is seen from the side, as in the source's
+ // own frames): one segment per rendered frame through the real R_RocketTrail, with the entity key.
+ synthTrail({type=0,speed=700,ahead=170,span=230,key=77}={}){const o=render.r_refdef.vieworg,f=render.vpn,r=render.vright;
+  const at=s=>[o[0]+f[0]*ahead+r[0]*(s-span/2),o[1]+f[1]*ahead+r[1]*(s-span/2),o[2]+f[2]*ahead+r[2]*(s-span/2)+20];
+  let s=0,last=cl.time;const state={frames:0,done:false};
+  (function step(){if(state.done)return;const now=cl.time,dt=now-last;
+   if(dt>0&&!cl.paused){const a=at(s),b=at(Math.min(span,s+speed*dt));render.R_RocketTrail(a,b,type,key);s=Math.min(span,s+speed*dt);last=now;state.frames++;if(s>=span){state.done=true;return;}}
+   requestAnimationFrame(step);})();
+  return state;},
  paused(){return !!cl.paused;},
  time(){return cl.time;},
  // explode ahead of the view, `dist` units forward and `lift` up; returns the spawn time

@@ -483,7 +483,7 @@ export function R_TeleportSplash( org ) {
 R_RocketTrail
 ===============
 */
-export function R_RocketTrail( start, end, type ) {
+export function R_RocketTrail( start, end, type, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
 
@@ -511,6 +511,7 @@ export function R_RocketTrail( start, end, type ) {
 
 		const p = allocParticle();
 		if ( ! p ) return;
+		p.classicOnly = classicOnly;
 
 		p.vel[ 0 ] = 0; p.vel[ 1 ] = 0; p.vel[ 2 ] = 0;
 		p.die = client_cl.time + 2;
