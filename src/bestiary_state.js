@@ -148,7 +148,7 @@ const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
 export class BestiaryEncounter {
  constructor({random=Math.random}={}){this.random=random;this.cancel();}
  start(entry,now){if(this.phase!=='idle'||!entry||!encounterKnown.has(entry.id))return false;this.entry=entry;this.side=this.random()<.5?'left':'right';this.at=now;this.phase='enter';this.tick(now);return true;}
- dismiss(now){if(this.phase!=='hold')return false;this.phase='return';this.at=now;this.tick(now);return true;}
+ dismiss(now){if(this.phase!=='hold')return false;this.heldPaused=this.value.paused;this.phase='return';this.at=now;this.tick(now);return true;}
  cancel(){this.phase='idle';this.entry=null;this.side='left';this.at=0;this.value={phase:'idle',entry:null,side:'left',progress:0,opacity:0,scale:1,t:0,paused:0};return this.value;}
  tick(now){let t=Math.max(0,now-this.at);if(this.phase==='enter'&&t>=.75){this.phase='hold';this.at=now;t=0;}if(this.phase==='return'&&t>=.45)return this.cancel();let progress=0,opacity=0,scale=1;
   if(this.phase==='enter'){progress=smooth(t/.65);opacity=smooth((t-.25)/.5);scale=1-smooth(t/.55);}
@@ -156,7 +156,8 @@ export class BestiaryEncounter {
   if(this.phase==='return'){progress=1-smooth(t/.45);opacity=1-smooth(t/.18);scale=0;}
   // t: seconds in this phase; paused: seconds since the game came to a stop (its time scale reaches 0 at .55 s into the enter
   // phase), the page's own clocks (card [1]: the paper rolls up with the camera, the drawing begins when the game stops)
-  const paused=this.phase==='enter'?Math.max(0,t-.55):this.phase==='hold'?.2+t:Infinity;
+  // (dismissed: the drawing stays as far as it had got while the page fades)
+  const paused=this.phase==='enter'?Math.max(0,t-.55):this.phase==='hold'?.2+t:this.heldPaused??Infinity;
   return this.value={phase:this.phase,entry:this.entry,side:this.side,progress,opacity,scale,t,paused};
  }
  snapshot(){return this.value;}

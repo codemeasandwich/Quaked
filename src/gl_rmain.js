@@ -37,7 +37,7 @@ import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear, R_FireballReplacesSprite } from './r_fireball.js';
 import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset, R_ImpactRippleListen } from './r_impactripples.js';
 import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from './r_waves.js';
-import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear } from './r_lightning.js';
+import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear, R_LightningTakesBeam } from './r_lightning.js';
 import { CL_PlayerLightning } from './cl_tent.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
@@ -645,6 +645,7 @@ export function R_DrawEntitiesOnList() {
 		switch ( currententity.model.type ) {
 
 			case mod_alias:
+				if ( currententity._playerLightning === true && R_LightningTakesBeam() ) break; // drawn by r_lightning.js (card [30a])
 				R_DrawAliasModel( currententity );
 				break;
 

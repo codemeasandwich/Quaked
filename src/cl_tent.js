@@ -18,7 +18,6 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
-import { R_LightningTakesBeam } from './r_lightning.js';
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
@@ -320,6 +319,7 @@ function CL_NewTempEntity() {
 
 	// clear entity
 	ent.forcelink = false;
+	ent._playerLightning = false;
 	ent.model = null;
 	ent.frame = 0;
 	ent.colormap = null;
@@ -339,24 +339,31 @@ function CL_NewTempEntity() {
 
 /*
 =================
-CL_UpdateTEnts
+CL_PlayerLightning
+
+The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
+(r_lightning.js, card [30a]) and its burn on the walls (r_wallburn.js, card [30c]): { start, end } or null. Other beams
+(the Shambler's, Chthon's, the grapple's) are not it.
 =================
 */
-// The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
-// (r_lightning.js, card [30a]): { end } or null. Other beams (the Shambler's, Chthon's, the grapple's) are not it.
 export function CL_PlayerLightning() {
 
 	const serverTime = cl.mtime[ 0 ];
 	for ( let i = 0; i < MAX_BEAMS; i ++ ) {
 
 		const b = cl_beams[ i ];
-		if ( b.model != null && b.endtime >= serverTime && b.entity === cl.viewentity && b.model.name === 'progs/bolt2.mdl' ) return { end: Array.from( b.end ) };
+		if ( b.model != null && b.endtime >= serverTime && b.entity === cl.viewentity && b.model.name === 'progs/bolt2.mdl' ) return { start: Array.from( b.start ), end: Array.from( b.end ) };
 
 	}
 	return null;
 
 }
 
+/*
+=================
+CL_UpdateTEnts
+=================
+*/
 export function CL_UpdateTEnts() {
 
 	num_temp_entities = 0;
@@ -377,10 +384,12 @@ export function CL_UpdateTEnts() {
 		if ( b.entity === cl.viewentity ) {
 
 			VectorCopy( cl_entities[ cl.viewentity ].origin, b.start );
-			// the Newer Game draws the player's own lightning gun beam itself (r_lightning.js): no bolt models for it
-			if ( b.model.name === 'progs/bolt2.mdl' && R_LightningTakesBeam() ) continue;
 
 		}
+		// the player's own lightning gun beam: the Newer Game draws it itself (r_lightning.js), so its bolt models are
+		// marked and left out when the entities are drawn, in the Newer pass only (the Classic pass, or half of the
+		// title demo's split, still draws them)
+		const playerLightning = b.entity === cl.viewentity && b.model.name === 'progs/bolt2.mdl';
 
 		// calculate pitch and yaw
 		const dist = new Float32Array( 3 );
@@ -419,6 +428,7 @@ export function CL_UpdateTEnts() {
 				return;
 			VectorCopy( org, ent.origin );
 			ent.model = b.model;
+			ent._playerLightning = playerLightning;
 			ent.angles[ 0 ] = pitch;
 			ent.angles[ 1 ] = yaw;
 			ent.angles[ 2 ] = ( Math.random() * 360 ) | 0;

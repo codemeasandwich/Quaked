@@ -52,9 +52,9 @@ Deno.test( 'the supplied noise texture: the source\'s own generator, seed 897234
 	same( t.image.width, 256, 'size' ); for ( let i = 0; i < 8; i ++ ) same( t.image.data[ i ], Math.floor( r() * 256 ), 'byte ' + i );
 } );
 
-// the event: only the player's own lightning gun beam (TE_LIGHTNING2 from the view entity) is taken; its bolt models are not
-// added while the beam is drawn here; the Shambler's (TE_LIGHTNING1) stays native
-Deno.test( 'only the player\'s own TE_LIGHTNING2 is taken, and only its native bolts are left out', async () => {
+// the event: only the player's own lightning gun beam (TE_LIGHTNING2 from the view entity) is taken; its bolt models are
+// marked for the Newer pass to leave out (R_DrawEntitiesOnList), the Classic pass keeps them; the Shambler's are not marked
+Deno.test( 'only the player\'s own TE_LIGHTNING2 is taken, and only its native bolts are marked to be left out, in the Newer pass alone', async () => {
 	const client = await import( '../src/client.js' ), tent = await import( '../src/cl_tent.js' );
 	const { cl, cl_beams, cl_entities } = client;
 	cl.viewentity = 1; cl.mtime[ 0 ] = 10; if ( ! cl_entities[ 1 ] ) throw new Error( 'no client entity 1' ); cl_entities[ 1 ].origin.set( [ 0, 0, 0 ] );
@@ -63,11 +63,56 @@ Deno.test( 'only the player\'s own TE_LIGHTNING2 is taken, and only its native b
 	setBeam( 0, 1, 'progs/bolt2.mdl', [ 300, 0, 0 ] ); setBeam( 1, 5, 'progs/bolt.mdl', [ 0, 300, 0 ] );
 	same( tent.CL_PlayerLightning()?.end.join(), '300,0,0', 'the player\'s own beam' );
 	cl_beams[ 0 ].entity = 7; same( tent.CL_PlayerLightning(), null, 'another entity\'s TE_LIGHTNING2 is not the player\'s' ); cl_beams[ 0 ].entity = 1;
+	cl_beams[ 0 ].model = { name: 'progs/bolt3.mdl' }; same( tent.CL_PlayerLightning(), null, 'the player\'s bolt3 (not the lightning gun) is not taken' ); cl_beams[ 0 ].model = { name: 'progs/bolt2.mdl' };
 	cl.mtime[ 0 ] = 10.3; same( tent.CL_PlayerLightning(), null, 'over at its server time' ); cl.mtime[ 0 ] = 10;
-	const count = () => { client.set_cl_numvisedicts( 0 ); tent.CL_UpdateTEnts(); return client.cl_numvisedicts; };
-	L.R_LightningClear(); const both = count();
-	beam = { end: [ 300, 0, 0 ] }; L.R_LightningFrame( 30 ); L.R_LightningFrame( 30.05 ); same( L.R_LightningTakesBeam(), true, 'drawn here' );
-	const shamblerOnly = count();
-	check( both > shamblerOnly && shamblerOnly > 0, 'the player\'s bolts are left out (' + both + ' -> ' + shamblerOnly + '), the Shambler\'s stay' );
+	client.set_cl_numvisedicts( 0 ); tent.CL_UpdateTEnts();
+	const added = client.cl_visedicts.slice( 0, client.cl_numvisedicts ), mine = added.filter( e => e._playerLightning === true );
+	check( mine.length > 0 && mine.every( e => e.model.name === 'progs/bolt2.mdl' ), 'the player\'s bolts are added (for the Classic pass) and marked: ' + mine.length );
+	check( added.some( e => e.model.name === 'progs/bolt.mdl' && e._playerLightning === false ), 'the Shambler\'s are added unmarked' );
+	L.R_LightningClear(); same( L.R_LightningTakesBeam(), false, 'nothing held yet: the bolts are drawn' );
+	beam = { end: [ 300, 0, 0 ] }; L.R_LightningFrame( 30 ); same( L.R_LightningTakesBeam(), true, 'the gun held and a beam: drawn here, the marked bolts left out' );
+	R_AnimSetClassicPass( true ); same( L.R_LightningTakesBeam(), false, 'the Classic pass (half the title demo\'s split) draws the bolts' ); R_AnimSetClassicPass( false );
+	beam = null; same( L.R_LightningTakesBeam(), false, 'the beam over: none to leave out' ); beam = { end };
 	for ( const b of cl_beams ) { b.model = null; b.endtime = 0; } L.R_LightningClear();
+} );
+
+// review of [30a]: a gun turned away from the view and set off from it, so the gun's frame and the view's differ
+Deno.test( 'built in the right frames: the hood recessed along the gun\'s own axes, every strip facing the eye, the channel spaced evenly on the screen, the hood\'s tuned strength, the power ramp and the light', () => {
+	const turned = new THREE.Matrix4().makeRotationZ( 30 * Math.PI / 180 ).setPosition( 18, - 4, - 6 );
+	const e = turned.elements, fwd = [ e[ 0 ], e[ 1 ], e[ 2 ] ], up = [ e[ 8 ], e[ 9 ], e[ 10 ] ];
+	const save = beam; beam = { end };
+	const setup = matrix => L.R_LightningSetup( { scene, camera: () => camera, muzzle: () => ( { point: muzzle, matrix } ), beam: () => beam, allocDlight: key => { const d = { key, origin: [ 0, 0, 0 ], radius: 0, die: 0, decay: 0 }; lights.push( d ); return d; } } );
+	setup( turned ); L.R_LightningClear(); L.R_LightningFrame( 40 );
+	const m = mesh(), d = m.geometry.attributes.position.data.array, at = i => [ d[ i * 9 ], d[ i * 9 + 1 ], d[ i * 9 + 2 ] ];
+	let n = m.geometry.drawRange.count;
+	const firstMain = ( () => { for ( let i = 0; i < n; i ++ ) if ( d[ i * 9 + 6 ] === 0 ) return d[ i * 9 + 5 ]; } )();
+	check( Math.abs( firstMain - .05 * .9 ) < 1e-6, 'the first frame: the source\'s power ramp starts low (' + firstMain + ')' );
+	for ( let t = 40; t <= 40.5; t += 1 / 60 ) L.R_LightningFrame( t );
+	n = m.geometry.drawRange.count;
+	// the hood's root: PLASMA_HOOD_OFFSET ( 0, -.08, .24 ) in the gun's frame (x right, y up, z back), K = 12
+	const expect = [ 0, 1, 2 ].map( k => muzzle[ k ] - .08 * 12 * up[ k ] - .24 * 12 * fwd[ k ] );
+	let hoodRoot = null, mainA = null, hoodA = null;
+	for ( let i = 0; i + 1 < n; i += 6 ) {
+		const kind = d[ i * 9 + 6 ];
+		if ( kind === 1 && d[ i * 9 + 8 ] === 0 && hoodRoot === null ) { const a = at( i ), b = at( i + 1 ); hoodRoot = a.map( ( x, k ) => ( x + b[ k ] ) / 2 ); hoodA = d[ i * 9 + 5 ]; }
+		if ( kind === 0 && mainA === null ) mainA = d[ i * 9 + 5 ];
+	}
+	check( hoodRoot && dist( hoodRoot, expect ) < 1e-3, 'the hood\'s root is recessed along the gun\'s own axes: ' + hoodRoot + ' vs ' + expect );
+	check( Math.abs( hoodA / mainA - .73 * L.lightningTune.hood / .9 ) < 1e-3, 'the hood at its tuned strength (' + hoodA / mainA + ')' );
+	check( mainA > .8, 'risen to full power (' + mainA + ')' );
+	// every strip's width lies across the line of sight
+	const eye = [ 0, 0, 0 ];
+	for ( let i = 0; i + 1 < n; i += 6 ) {
+		const a = at( i ), b = at( i + 1 ), c = a.map( ( x, k ) => ( x + b[ k ] ) / 2 ), w = b.map( ( x, k ) => x - a[ k ] ), v = eye.map( ( x, k ) => x - c[ k ] );
+		const lw = Math.hypot( ...w ), lv = Math.hypot( ...v ); if ( lw < 1e-6 ) continue;
+		check( Math.abs( ( w[ 0 ] * v[ 0 ] + w[ 1 ] * v[ 1 ] + w[ 2 ] * v[ 2 ] ) / lw / lv ) < 1e-3, 'strip ' + i / 6 + ' faces the eye' );
+	}
+	// the main channel's points, evenly spaced on the screen (the source's depth spacing), not evenly in the world
+	const centres = []; for ( let i = 0; i + 1 < n; i += 6 ) if ( d[ i * 9 + 6 ] === 0 ) { const a = at( i ), b = at( i + 1 ); centres.push( a.map( ( x, k ) => ( x + b[ k ] ) / 2 ) ); }
+	const screen = centres.map( p => new THREE.Vector3( ...p ).project( camera ) ), axis = new THREE.Vector2( screen.at( - 1 ).x - screen[ 0 ].x, screen.at( - 1 ).y - screen[ 0 ].y ).normalize();
+	const steps = screen.slice( 1 ).map( ( p, i ) => ( p.x - screen[ i ].x ) * axis.x + ( p.y - screen[ i ].y ) * axis.y );
+	const median = a => a.slice().sort( ( x, y ) => x - y )[ a.length >> 1 ], near = median( steps.slice( 0, 12 ) ), far = median( steps.slice( - 12 ) );
+	check( near / far < 2.5 && far / near < 2.5, 'even on the screen: near ' + near.toFixed( 4 ) + ', far ' + far.toFixed( 4 ) );
+	const light = lights.at( - 1 ); same( light.radius, L.LIGHTNING.light.radius, 'the light\'s radius' ); same( light.key, L.LIGHTNING.light.key, 'and its key' );
+	beam = save; L.R_LightningClear(); setup( gunMatrix );
 } );

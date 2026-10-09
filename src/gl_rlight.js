@@ -1,6 +1,7 @@
 // Ported from: WinQuake/gl_rlight.c -- dynamic lighting
 
-import { R_NewerLightingActive } from './r_anim.js';
+import { R_NewerLightingActive, R_ClassicPassActive } from './r_anim.js';
+import { LIGHTNING } from './r_lightning.js';
 import * as THREE from 'three';
 import { DotProduct, VectorCopy, VectorSubtract, Length } from './mathlib.js';
 import { MAX_LIGHTSTYLES } from './quakedef.js';
@@ -224,8 +225,9 @@ export function R_RenderDlights( cl, scene ) {
 		const l = cl_dlights[ i ];
 		const pooledLight = _dlightPool[ i ];
 
-		// Check if this dlight is active
-		const isActive = l != null && l.die >= cl.time && l.radius > 0;
+		// Check if this dlight is active (the Newer lightning beam's light belongs to its pass alone: not the Classic
+		// half of the title demo's split, card [30a])
+		const isActive = l != null && l.die >= cl.time && l.radius > 0 && ! ( l.key === LIGHTNING.light.key && R_ClassicPassActive() );
 
 		if ( isActive ) {
 

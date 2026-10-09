@@ -3,7 +3,7 @@
 // combine the supplied blank template with a separate authored title crop.
 import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from './gl_draw.js';
 import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from './keys.js';
-import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiarySpreads, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry } from './r_bestiary.js';
+import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiarySpreads, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry, R_BestiaryArtLoading } from './r_bestiary.js';
 
 const TURN_MS = 320, WAIT_MS = 10000;
 let spread = 0, turn = null, pending = null;
@@ -116,7 +116,8 @@ function needs( index, entries, unlocked ) {
  }
  return { images, ids };
 }
-const ready = need => need.images.every( image => image && ( image.naturalWidth || image.width ) > 0 );
+// (and none of its art still loading: a composite such as the frontispiece stands in for an image still on its way)
+const ready = need => need.images.every( image => image && ( image.naturalWidth || image.width ) > 0 ) && ! R_BestiaryArtLoading( need.ids );
 
 export function R_BestiaryBookOpen() { R_BestiaryCancel(); spread = 0; turn = null; pending = null; }
 // Reserve the actual book/footer extent for corner branding. Report CSS units
@@ -131,19 +132,24 @@ export function R_BestiaryBookCorner() {
 }
 // One admission policy for the keyboard and touch (card [7]): no turn while one is running or waiting; a turn starts only when its
 // destination's images are all present (until then the current spread stays, whole); a failed image (or a wait past WAIT_MS)
-// shows a deliberate message, and the same press again tries the failed images once more.
+// shows a deliberate message, and the same press again tries the failed images once more; if they fail again, the next press
+// turns anyway and the page's own fallbacks (its blank folio and heading, or its title) stand in, so no image can shut the
+// rest of the book.  Returns whether the press did anything.
 function flip( direction ) {
  const entries = R_BestiaryEntries(), maximum = 2+R_BestiarySpreads().length, target = clamp(spread+direction,0,maximum);
- if ( turn && now()-turn.at < TURN_MS ) return;
+ if ( turn && now()-turn.at < TURN_MS ) return false;
  if ( pending ) {
-  if ( pending.failed && Math.sign(pending.target-spread) === Math.sign(direction) ) { R_BestiaryArtRetry(pending.ids); pending.failed = false; pending.at = now(); }
-  else if ( Math.sign(pending.target-spread) !== Math.sign(direction) ) pending = null; // (the other way: give up waiting)
-  return;
+  if ( Math.sign(pending.target-spread) !== Math.sign(direction) ) { pending = null; return true; } // (the other way: give up waiting)
+  if ( !pending.failed ) return false;
+  if ( pending.retried ) { turn = { from:spread,to:pending.target,at:now() }; spread = pending.target; pending = null; return true; }
+  R_BestiaryArtRetry(pending.ids); pending.failed = false; pending.retried = true; pending.at = now();
+  return true;
  }
- if ( target === spread ) return;
+ if ( target === spread ) return false;
  const need = needs(target,entries,new Set(R_BestiarySnapshot().unlocked || []));
  if ( ready(need) ) { turn = { from:spread,to:target,at:now() }; spread = target; }
- else pending = { target, at:now(), ids:need.ids, failed:false };
+ else pending = { target, at:now(), ids:need.ids, failed:false, retried:false };
+ return true;
 }
 function admit( entries, unlocked ) {
  if ( !pending ) return;
@@ -166,8 +172,9 @@ function navigation( ctx, boxes, unit, width, maximum ) {
  ctx.globalAlpha=1;
 }
 export function R_BestiaryBookKey( key ) {
- if ( key === K_LEFTARROW ) { flip(-1); return true; }
- if ( key === K_RIGHTARROW || key === K_ENTER ) { flip(1); return true; }
+ // (true only when the press did something: the menu's click sound is for those)
+ if ( key === K_LEFTARROW ) return flip(-1);
+ if ( key === K_RIGHTARROW || key === K_ENTER ) return flip(1);
  return false; // Escape belongs to the existing menu's return-to-main behavior.
 }
 export function R_BestiaryBookTouch( x, y, width, height ) {
@@ -190,7 +197,7 @@ export function R_BestiaryBookDraw() {
   ctx.textBaseline = 'middle'; ctx.textAlign = 'center'; ctx.fillStyle = '#d2c3a7';
   // one note under the book (the line the studio logo keeps clear): a waiting turn first, else the storage notice
   ctx.font = `${11*unit}px Georgia, serif`;
-  if ( pending ) ctx.fillText( pending.failed ? 'This page could not be loaded. Press again to try once more.' : 'Turning the page\u2026', width/2, boxes.bottom+40*unit );
+  if ( pending ) ctx.fillText( pending.failed ? ( pending.retried ? 'This page could not be loaded. Press again to turn to it without its pictures.' : 'This page could not be loaded. Press again to try once more.' ) : 'Turning the page\u2026', width/2, boxes.bottom+40*unit );
   else if ( snapshot.storageStatus === 'unavailable' ) ctx.fillText('Progress is kept for this session only.',width/2,boxes.bottom+40*unit);
  } finally { ctx.restore(); }
  return true;

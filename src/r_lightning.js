@@ -25,7 +25,7 @@ import { R_NewerGame } from './r_anim.js';
 import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
 
 export const r_newer_lightning = new cvar_t( 'r_newer_lightning', '1', true );
-export const LIGHTNING = Object.freeze( { K: 12, energy: 1, chaos: 1, branches: 1, maxFloats: 350000, light: { key: 0x4c47, radius: 260 } } );
+export const LIGHTNING = Object.freeze( { K: 12, energy: 1, chaos: 1, branches: 1, maxFloats: 64000, light: { key: 0x4c47, radius: 260 } } );
 // Fitted to the game against a capture of the supplied page (docs/lightning-2026-10-09.md): in Quake the beam runs almost
 // straight into the screen from a muzzle near its middle, so the channel, the hood and the arcs overlap far more than in the
 // supplied scene (a gun low on the screen firing up at a wall). The hood is dimmed (its supplied brightness covered the
@@ -84,7 +84,7 @@ void main() {
  ${ MRT_ZERO }
 }`;
 
-let deps = null, mesh = null, geometry = null, data = null, cursor = 0, power = 0, last = null, noise = null;
+let deps = null, mesh = null, geometry = null, data = null, cursor = 0, power = 0, last = null, noise = null, gunHeld = false;
 const view = { eye: [ 0, 0, 0 ], right: [ 1, 0, 0 ], up: [ 0, 0, 1 ], forward: [ 0, 1, 0 ] };
 export const lightningStats = { floats: 0, drawn: 0 };
 // externals: scene; camera (THREE camera); muzzle() -> { point: [x,y,z], matrix: THREE.Matrix4 } | null (the held v_light);
@@ -215,8 +215,10 @@ export function R_LightningFrame( time ) {
 	const dt = last === null ? 0 : clamp( time - last, 0, .15 ); last = time;
 	const beam = R_LightningEnabled() ? deps.beam?.() : null, gun = beam ? deps.muzzle?.() : null;
 	const wanted = beam && gun ? 1 : 0;
-	power = mix( power, wanted, 1 - Math.exp( - dt * ( wanted ? 34 : 18 ) ) );
-	if ( ! wanted ) power = Math.min( power, 0 ); // (the server's beam is over: nothing to draw it to)
+	gunHeld = gun != null;
+	// the source's rise (34 a second); its fall (18) is not used: when the server's beam is over there is nothing to
+	// draw it to, so it goes at once
+	power = wanted ? mix( power, 1, 1 - Math.exp( - dt * 34 ) ) : 0;
 	if ( mesh === null ) { if ( ! wanted ) return 0; build(); }
 	if ( mesh.parent !== deps.scene ) deps.scene?.add( mesh );
 	if ( ! wanted ) { mesh.visible = false; lightningStats.floats = 0; return 0; }
@@ -224,7 +226,7 @@ export function R_LightningFrame( time ) {
 	const e = camera.matrixWorld.elements;
 	view.eye = [ e[ 12 ], e[ 13 ], e[ 14 ] ]; view.right = norm( [ e[ 0 ], e[ 1 ], e[ 2 ] ] ); view.up = norm( [ e[ 4 ], e[ 5 ], e[ 6 ] ] ); view.forward = norm( [ - e[ 8 ], - e[ 9 ], - e[ 10 ] ] );
 	buildElectricity( time, gun.point, beam.end, gun.matrix, Math.max( power, .05 ) );
-	geometry.attributes.position.data.needsUpdate = true;
+	const buffer = geometry.attributes.position.data; buffer.clearUpdateRanges(); buffer.addUpdateRange( 0, cursor ); buffer.needsUpdate = true; // (only what was built)
 	geometry.setDrawRange( 0, cursor / 9 );
 	mesh.material.uniforms.uTime.value = time; mesh.visible = cursor > 0;
 	lightningStats.floats = cursor; lightningStats.drawn ++;
@@ -233,7 +235,8 @@ export function R_LightningFrame( time ) {
 	return cursor;
 }
 
-// is the beam drawn here (last frame)? Then the native bolt models for it are not added (cl_tent.js)
-export const R_LightningTakesBeam = () => R_LightningEnabled() && mesh !== null && mesh.visible === true;
+// is the player's beam drawn here this frame? Then its native bolt models are left out (R_DrawEntitiesOnList, which runs
+// before the gun is placed: whether the gun was held is the last frame's, the beam and the pass are this frame's)
+export const R_LightningTakesBeam = () => R_LightningEnabled() && gunHeld && deps?.beam?.() != null;
 
-export function R_LightningClear() { power = 0; last = null; cursor = 0; if ( mesh ) { mesh.visible = false; mesh.parent?.remove( mesh ); } lightningStats.floats = 0; }
+export function R_LightningClear() { power = 0; last = null; cursor = 0; gunHeld = false; if ( mesh ) { mesh.visible = false; mesh.parent?.remove( mesh ); } lightningStats.floats = 0; }

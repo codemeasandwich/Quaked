@@ -51,7 +51,7 @@ export function R_BestiaryEntries(){return BESTIARY_ENTRIES;}
 export function R_BestiarySpreads(){return BESTIARY_SPREADS;}
 export function R_BestiarySnapshot(){journal.reload();const state=encounter.snapshot(),loaded=imageAt.get(state.entry?.id);
  const age=loaded===undefined?1:Math.max(0,Math.min(1,(clock-loaded)/.35));
- return {...state,opacity:state.opacity*age,imageAge:age,enemyIndex:target?.native.index??null,...journal.snapshot()};}
+ return {...state,imageAge:age,enemyIndex:target?.native.index??null,...journal.snapshot()};}
 function artwork(id,file){
  if(!imageStates.has(id)&&typeof Image!=='undefined'){
   imageStates.set(id,'loading');const image=new Image();let terminal=false;
@@ -63,6 +63,7 @@ function artwork(id,file){
 }
 // The book's admission of a page turn (card [7]): has any of these images failed, and try those again
 export function R_BestiaryArtFailed(ids){return ids.some(id=>imageStates.get(id)==='fallback');}
+export function R_BestiaryArtLoading(ids){return ids.some(id=>imageStates.get(id)==='loading');}
 export function R_BestiaryArtRetry(ids){for(const id of ids)if(imageStates.get(id)==='fallback')imageStates.delete(id);}
 export function R_BestiaryCover(){return artwork('cover','cover.png');}
 export function R_BestiaryFrontispiece(){
