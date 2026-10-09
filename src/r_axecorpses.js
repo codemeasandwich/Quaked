@@ -9,6 +9,12 @@ import {r_avertexnormal_dots} from './anorm_dots.js';
 import {R_LightPoint} from './gl_rlight.js';
 import {SV_Move,MOVE_NOMONSTERS,SV_HullPointContents} from './world.js';
 import {R_BisectGeometry} from './r_bisect.js';
+import {R_CloneAliasMaterial} from './r_newerskins.js';
+// The cut faces (card [18]): the body's own skin at the cut (r_bisect.js carries the skin coordinates and lighting colour to the
+// cap), under a restrained red tint, not a flat red.
+export const CAP_TINT=Object.freeze([1,.66,.6]);
+// A half rests on the ground under it: five floor samples around where it lands give a plane (a slope tilts it), saved with the cut.
+const FOOT=10;
 const records=new Map();
 function restoreNativeFallback(entity){for(const e of sv.edicts||[])if(e&&!e.free&&e._axeSuppressed&&entity._axeOwnerKey&&e._axeOwnerKey===entity._axeOwnerKey)e._axeSuppressedBy=entity.index;}
 function dispose(record){record.group?.parent?.remove(record.group);for(const part of record.parts||[])for(const mesh of part.piece.children)R_ReleaseShadowCaster(mesh);for(const g of record.geometry||[])g.dispose();record.capMaterial?.dispose();record.entity._axeReady=false;}
@@ -29,7 +35,9 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 	let split;try{split=R_BisectGeometry(source.geometry,n.toArray(),center.toArray());}finally{fake._aliasGeo?.dispose();}
 	if(split.some(p=>!p.body.getAttribute('position').count||!p.cap.getAttribute('position').count)){for(const p of split){p.body.dispose();p.cap.dispose();}throw Error('Cut did not form two closed body halves');}
 	const group=new THREE.Group();group.name='quake_axe_bisection';group.userData.newerOnly=true;
-	const capMaterial=new THREE.MeshBasicMaterial({color:0x7b2020,side:THREE.FrontSide});
+	let capMaterial;
+	if(source.material?.isMeshBasicMaterial&&source.geometry.getAttribute('uv')){capMaterial=R_CloneAliasMaterial(source.material);capMaterial.color.multiply(new THREE.Color(...CAP_TINT));capMaterial.side=THREE.FrontSide;capMaterial.userData.quakeAxeCap=true;}
+	else capMaterial=new THREE.MeshBasicMaterial({color:0x7b2020,side:THREE.FrontSide}); // (no skin to continue: the old flat cut)
 	const record={entity,data,group,capMaterial,geometry:split.flatMap(p=>[p.body,p.cap]),parts:[],normal:new THREE.Vector3(...data.normal),draws:0,error:null};
 	try {
 	for(let i=0;i<2;i++){
@@ -41,15 +49,22 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 		body.castShadow=cap.castShadow=true;body.receiveShadow=cap.receiveShadow=true;piece.add(body,cap);group.add(piece);
 		const worldPivot=pivot.clone().applyQuaternion(source.quaternion).add(new THREE.Vector3(...data.origin));
 		const offset=i===0?1:-1,x=worldPivot.x+data.normal[0]*offset*22,y=worldPivot.y+data.normal[1]*offset*22;
-		let floor=data.floor?.[i];
+		let floor=data.floor?.[i],slope=data.slope?.[i];
 		if(!Number.isFinite(floor)){
-			if(latch){const trace=SV_Move([x,y,data.origin[2]+8],[0,0,0],[0,0,0],[x,y,data.origin[2]-512],MOVE_NOMONSTERS,entity);floor=!trace.startsolid&&trace.fraction<1?trace.endpos[2]:data.origin[2]+model.mins[2];}
+			slope=null;
+			if(latch){
+				const down=(px,py)=>{const t=SV_Move([px,py,data.origin[2]+8],[0,0,0],[0,0,0],[px,py,data.origin[2]-512],MOVE_NOMONSTERS,entity);return !t.startsolid&&t.fraction<1?[px,py,t.endpos[2]]:null;};
+				const hits=[[0,0],[FOOT,0],[-FOOT,0],[0,FOOT],[0,-FOOT]].map(([dx,dy])=>down(x+dx,y+dy)).filter(Boolean);
+				floor=hits[0]&&hits[0][0]===x&&hits[0][1]===y?hits[0][2]:hits.length?Math.max(...hits.map(h=>h[2])):data.origin[2]+model.mins[2];
+				slope=R_AxeFloorSlope(hits);
+			}
 			else {floor=data.origin[2]+model.mins[2];const hull=world?.hulls?.[0];if(hull)for(let z=data.origin[2]+8;z>data.origin[2]-512;z-=2)if(SV_HullPointContents(hull,hull.firstclipnode,[x,y,z])===-2){floor=z+2;break;}}
 		}
+		if(!Array.isArray(slope)||slope.length!==3)slope=[0,0,1];
 		const axis=new THREE.Vector3(1,0,0).cross(n).normalize();if(axis.lengthSq()<.1)axis.set(0,1,0);
-		record.parts.push({piece,pivot:worldPivot,quaternion:source.quaternion.clone(),axis,positions:part.body.attributes.position.array,floor,sign:offset,lastEase:-1,minimum:0});
+		record.parts.push({piece,pivot:worldPivot,quaternion:source.quaternion.clone(),axis,positions:part.body.attributes.position.array,floor,slope,rest:[x,y],sign:offset,lastEase:-1,minimum:0});
 	}
-	data.floor=record.parts.map(p=>p.floor);
+	data.floor=record.parts.map(p=>p.floor);data.slope=record.parts.map(p=>p.slope.slice());
 	scene.add(group);
 	entity._axeReady=true;
 	// Latch successful replacement before removing native drawables. A failed
@@ -59,23 +74,37 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 	return record;
 	}catch(error){dispose(record);throw error;}
 }
-const turn=new THREE.Quaternion();
+// the ground's plane from floor hits (least squares z = a x + b y + c); too steep or too few: level
+export function R_AxeFloorSlope(hits){
+	if(hits.length<3)return [0,0,1];
+	const mx=hits.reduce((s,h)=>s+h[0],0)/hits.length,my=hits.reduce((s,h)=>s+h[1],0)/hits.length,mz=hits.reduce((s,h)=>s+h[2],0)/hits.length;
+	let xx=0,xy=0,yy=0,xz=0,yz=0;for(const [px,py,pz] of hits){const dx=px-mx,dy=py-my,dz=pz-mz;xx+=dx*dx;xy+=dx*dy;yy+=dy*dy;xz+=dx*dz;yz+=dy*dz;}
+	const det=xx*yy-xy*xy;if(Math.abs(det)<1e-6)return [0,0,1];
+	const a=(xz*yy-yz*xy)/det,b=(yz*xx-xz*xy)/det,l=Math.hypot(a,b,1),n=[-a/l,-b/l,1/l];
+	return n[2]<.7?[0,0,1]:n.map(v=>Math.round(v*1e6)/1e6);
+}
+const turn=new THREE.Quaternion(),tilt=new THREE.Quaternion(),up=new THREE.Vector3(0,0,1),ground=new THREE.Vector3(),local=new THREE.Vector3(),inverse=new THREE.Quaternion();
 function settle(record,time){
 	const age=Math.max(0,time-record.data.at),ease=Math.min(1,age/.65);
 	for(const part of record.parts){
 		for(const mesh of part.piece.children){if(r_newer_shadows.value!==0)mesh.layers.enable(SUN_SHADOW_LAYER);else mesh.layers.disable(SUN_SHADOW_LAYER);}
-		part.piece.quaternion.copy(part.quaternion).multiply(turn.setFromAxisAngle(part.axis,part.sign*.8*ease));
+		// falling over, and (as it lands) lying along the ground's slope
+		ground.fromArray(part.slope);tilt.setFromUnitVectors(up,ground);tilt.slerp(inverse.identity(),1-ease);
+		part.piece.quaternion.copy(tilt).multiply(turn.copy(part.quaternion).multiply(inverse.setFromAxisAngle(part.axis,part.sign*.8*ease)));
 		part.piece.position.copy(part.pivot).addScaledVector(record.normal,part.sign*22*ease);
 		part.piece.position.z-=Math.min(512,age*age*220);
 		if(part.lastEase!==ease){
-			const q=part.piece.quaternion,a=2*(q.x*q.z-q.y*q.w),b=2*(q.y*q.z+q.x*q.w),c=1-2*(q.x*q.x+q.y*q.y),p=part.positions;
-			part.minimum=Infinity;for(let i=0;i<p.length;i+=3)part.minimum=Math.min(part.minimum,a*p[i]+b*p[i+1]+c*p[i+2]);part.lastEase=ease;
+			// the lowest point of the half across the ground's plane (its normal brought into the half's own frame)
+			local.copy(ground).applyQuaternion(inverse.copy(part.piece.quaternion).invert());const p=part.positions;
+			part.minimum=Infinity;for(let i=0;i<p.length;i+=3)part.minimum=Math.min(part.minimum,local.x*p[i]+local.y*p[i+1]+local.z*p[i+2]);part.lastEase=ease;
 		}
-		part.piece.position.z=Math.max(part.piece.position.z,part.floor-part.minimum+.5);
+		// resting on the plane through the floor point under where it lands, never through it
+		const pos=part.piece.position,d=ground.x*part.rest[0]+ground.y*part.rest[1]+ground.z*part.floor;
+		pos.z=Math.max(pos.z,(d+.5-part.minimum-ground.x*pos.x-ground.y*pos.y)/ground.z);
 	}
 }
 export function R_AxeCorpsePreview(data,world,time){
-	const copy={...data,origin:data.origin.slice(),angles:data.angles.slice(),normal:data.normal.slice(),...(data.floor?{floor:data.floor.slice()}:{})};
+	const copy={...data,origin:data.origin.slice(),angles:data.angles.slice(),normal:data.normal.slice(),...(data.floor?{floor:data.floor.slice()}:{}),...(data.slope?{slope:data.slope.map(n=>n.slice())}:{})};
 	const owner={index:-1,_axeCorpse:copy},container=new THREE.Group(),record=build(owner,container,world,false);
 	settle(record,time);
 	for(const part of record.parts)for(const mesh of part.piece.children){mesh.layers.disable(SUN_SHADOW_LAYER);mesh.userData.quakeAxePart=false;}

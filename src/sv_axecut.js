@@ -51,7 +51,7 @@ export function SV_AxeFunctionLeave(token){
 		}
 		return;
 	}
-	const corpse=ED_Alloc();corpse.v.classname=ED_NewString('info_notnull');corpse.v.origin=token.record.origin;corpse.v.movetype=0;corpse.v.solid=0;corpse._axeCorpse=token.record;token.record.key=corpse.index+'@'+token.record.at;corpse._axeOwnerKey=token.record.key;removal(corpse);SV_LinkEdict(corpse,false);
+	const corpse=ED_Alloc();corpse.v.classname=ED_NewString('info_notnull');corpse.v.origin=token.record.origin;corpse.v.movetype=0;corpse.v.solid=0;corpse._axeCorpse=token.record;token.record.key=corpse.index+'@'+token.record.at;corpse._axeOwnerKey=token.record.key; /* (the halves stay, as any corpse does: card [18]) */SV_LinkEdict(corpse,false);
 	for(const e of new Set([token.target,...token.gibs])){e._axeSuppressed=true;e._axeSuppressedBy=corpse.index;e._axeOwnerKey=token.record.key;}
 }
 export function SV_AxeEntitySuppressed(index){

@@ -486,3 +486,77 @@ Deno.test( 'a real classless native ThrowGib edict remains available as preview 
 	} finally { view?.dispose(); corpses.R_ClearAxeCorpses(); }
 
 } );
+
+// Card [18]: the cut faces continue the body's skin, and a half rests on the ground's slope
+Deno.test( 'a cut face carries the body\'s own skin coordinates and lighting at its contour, drawn with the body\'s skin under a red tint', () => {
+
+	const entity = new entity_t(); entity.model = Mod_ForName( 'progs/soldier.mdl', true ); entity.frame = 0; const mesh = R_DrawAliasModel( entity, entity.model.cache.data ), geometry = mesh.geometry; geometry.computeBoundingBox();
+	const normal = R_AxeSwingNormal( pak.COM_FindFile( 'progs/v_axe.mdl' ).data, 3, [ 0, 0, 0 ] ), point = geometry.boundingBox.getCenter( new THREE.Vector3() ).toArray();
+	const halves = R_BisectGeometry( geometry, normal, point );
+	try {
+
+		for ( const part of halves ) {
+
+			const cap = part.cap, body = part.body;
+			check( cap.getAttribute( 'uv' ) && cap.getAttribute( 'uv' ).count === cap.getAttribute( 'position' ).count, 'the cap has skin coordinates' );
+			// every cap point is a point of the body's cut edge, with one of the skin coordinates the body has there
+			const uvs = new Map(); const bp = body.getAttribute( 'position' ), bu = body.getAttribute( 'uv' );
+			for ( let i = 0; i < bp.count; i ++ ) { const k = key( [ bp.getX( i ), bp.getY( i ), bp.getZ( i ) ] ); if ( ! uvs.has( k ) ) uvs.set( k, [] ); uvs.get( k ).push( [ bu.getX( i ), bu.getY( i ) ] ); }
+			const cp = cap.getAttribute( 'position' ), cu = cap.getAttribute( 'uv' );
+			for ( let i = 0; i < cp.count; i ++ ) {
+				const at = uvs.get( key( [ cp.getX( i ), cp.getY( i ), cp.getZ( i ) ] ) );
+				check( at && at.some( ( [ u, v ] ) => Math.abs( u - cu.getX( i ) ) < 1e-5 && Math.abs( v - cu.getY( i ) ) < 1e-5 ), 'cap point ' + i + ' uses the body\'s skin coordinate there' );
+			}
+			if ( geometry.getAttribute( 'color' ) ) same( cap.getAttribute( 'color' )?.count, cp.count, 'and its lighting colour' );
+
+		}
+
+	} finally { for ( const part of halves ) { part.body.dispose(); part.cap.dispose(); } }
+
+	const f = corpseFixture();
+	try {
+
+		corpses.R_AxeCorpsesFrame( f.scene );
+		const group = f.scene.getObjectByName( 'quake_axe_bisection' ), cap = group.children[ 0 ].children[ 1 ].material, body = group.children[ 0 ].children[ 0 ].material;
+		same( cap.map, body.map, 'the cap is drawn with the body\'s skin' ); check( cap !== body, 'its own material' );
+		const tint = corpses.CAP_TINT; check( Math.abs( cap.color.r - body.color.r * tint[ 0 ] ) < 1e-6 && Math.abs( cap.color.g - body.color.g * tint[ 1 ] ) < 1e-6 && Math.abs( cap.color.b - body.color.b * tint[ 2 ] ) < 1e-6, 'under a restrained red tint' );
+		check( tint[ 1 ] > .5 && tint[ 2 ] > .5, 'restrained: the skin still shows' );
+
+	} finally { corpses.R_ClearAxeCorpses(); }
+
+} );
+
+Deno.test( 'the ground\'s slope comes from the floor samples, a half rests on that slope (never through it, never hovering), and a bad saved slope is refused', () => {
+
+	// a 20 degree ramp rising along +x
+	const g = Math.tan( 20 * Math.PI / 180 ), hits = [ [ 0, 0 ], [ 10, 0 ], [ - 10, 0 ], [ 0, 10 ], [ 0, - 10 ] ].map( ( [ x, y ] ) => [ x, y, 5 + g * x ] );
+	const n = corpses.R_AxeFloorSlope( hits );
+	check( Math.abs( n[ 0 ] + Math.sin( 20 * Math.PI / 180 ) ) < 1e-4 && Math.abs( n[ 2 ] - Math.cos( 20 * Math.PI / 180 ) ) < 1e-4, 'the ramp\'s normal: ' + n );
+	same( corpses.R_AxeFloorSlope( hits.slice( 0, 2 ) ).join(), '0,0,1', 'too few samples: level' );
+	same( corpses.R_AxeFloorSlope( hits.map( ( [ x, y ] ) => [ x, y, x * 3 ] ) ).join(), '0,0,1', 'a wall, not a floor: level' );
+	const f = corpseFixture();
+	try {
+
+		const data = f.owner._axeCorpse;
+		corpses.R_AxeCorpsesFrame( f.scene ); // (latches the floor heights)
+		const slope = [ n, n ], copy = { ...data, slope };
+		const preview = corpses.R_AxeCorpsePreview( copy, cl.worldmodel, data.at + 5 );
+		try {
+
+			preview.mesh.updateMatrixWorld( true );
+			preview.mesh.children.forEach( ( piece, i ) => {
+				const body = piece.children[ 0 ], p = body.geometry.getAttribute( 'position' ), v = new THREE.Vector3(), normal = new THREE.Vector3( ...n );
+				const rest = piece.position;
+				let lowest = Infinity; for ( let k = 0; k < p.count; k ++ ) { v.fromBufferAttribute( p, k ).applyMatrix4( body.matrixWorld ); lowest = Math.min( lowest, normal.dot( v ) ); }
+				// (the plane through the floor point under where it rests)
+				const planeAt = normal.x * rest.x + normal.y * rest.y + normal.z * copy.floor[ i ];
+				check( lowest - planeAt > .3 && lowest - planeAt < 1.5, 'half ' + i + ' rests on the slope: ' + ( lowest - planeAt ).toFixed( 3 ) + ' above it' );
+			} );
+
+		} finally { preview.dispose(); }
+		same( Axe_ParseRecord( encodeURIComponent( JSON.stringify( { ...data, slope } ) ) )?.slope?.[ 0 ]?.join(), n.join(), 'a saved slope is kept' );
+		for ( const bad of [ [ [ 0, 0, 1 ] ], [ [ 1, 0, 0 ], [ 0, 0, 1 ] ], [ [ 0, 0, 2 ], [ 0, 0, 1 ] ], [ [ 0, 0, 1 ], [ 0, 0, 'x' ] ] ] ) same( Axe_ParseRecord( encodeURIComponent( JSON.stringify( { ...data, slope: bad } ) ) ), null, 'a bad saved slope is refused: ' + JSON.stringify( bad ) );
+
+	} finally { corpses.R_ClearAxeCorpses(); }
+
+} );

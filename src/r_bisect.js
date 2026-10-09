@@ -1,5 +1,7 @@
 // Split immutable alias triangles along a plane, retaining interpolated skin
-// coordinates and closing every cut contour (including nested holes).
+// coordinates and closing every cut contour (including nested holes). The caps
+// carry the cut's own interpolated attributes (skin coordinates, lighting
+// colour) at their contour points, so they can be drawn with the body's skin.
 import * as THREE from 'three';
 const EPS=1e-6, key=p=>p.map(v=>Math.round(v*10000)).join(',');
 export function R_BisectGeometry(geometry,normal,point){
@@ -23,10 +25,10 @@ export function R_BisectGeometry(geometry,normal,point){
 	const emit=(out,v)=>{for(const name of names)out[name].push(...v[name]);};
 	for(let i=0;i<count;i+=3){
 		const tri=[0,1,2].map(j=>vertex(index?index.getX(i+j):i+j)),d=tri.map(distance),cut=[];
-		for(let j=0;j<3;j++){const k=(j+1)%3;if(d[j]*d[k]<-EPS*EPS)cut.push(lerp(tri[j],tri[k],d[j]/(d[j]-d[k])).position);else if(Math.abs(d[j])<=EPS)cut.push(tri[j].position);}
-		const unique=[...new Map(cut.map(v=>[key(v),v])).values()];
+		for(let j=0;j<3;j++){const k=(j+1)%3;if(d[j]*d[k]<-EPS*EPS)cut.push(lerp(tri[j],tri[k],d[j]/(d[j]-d[k])));else if(Math.abs(d[j])<=EPS)cut.push(tri[j]);}
+		const unique=[...new Map(cut.map(v=>[key(v.position),v])).values()];
 		if(!sheet.has(i)&&unique.length===2&&d.some(v=>Math.abs(v)>EPS)){
-			const a=key(unique[0]),b=key(unique[1]),edge=[a,b].sort().join('|');points.set(a,unique[0]);points.set(b,unique[1]);segments.set(edge,[a,b]);
+			const a=key(unique[0].position),b=key(unique[1].position),edge=[a,b].sort().join('|');if(!points.has(a))points.set(a,unique[0]);if(!points.has(b))points.set(b,unique[1]);segments.set(edge,[a,b]);
 		}
 		for(let side=0;side<2;side++){
 			const sign=side===0?1:-1,poly=[];
@@ -41,7 +43,7 @@ export function R_BisectGeometry(geometry,normal,point){
 	// boundary. Prune that branch only from the cap graph (never from the skin).
 	const leaves=[...adjacency].filter(([,edges])=>edges.size<2).map(([id])=>id);
 	while(leaves.length){const id=leaves.pop(),edges=adjacency.get(id);if(!edges||edges.size>1)continue;for(const next of edges){adjacency.get(next).delete(id);if(adjacency.get(next).size<2)leaves.push(next);}adjacency.delete(id);}
-	const projectedPoint=id=>{const p=points.get(id);return [u.x*p[0]+u.y*p[1]+u.z*p[2],v.x*p[0]+v.y*p[1]+v.z*p[2]];};
+	const projectedPoint=id=>{const p=points.get(id).position;return [u.x*p[0]+u.y*p[1]+u.z*p[2],v.x*p[0]+v.y*p[1]+v.z*p[2]];};
 	const ordered=new Map([...adjacency].map(([id,edges])=>{const p=projectedPoint(id);return [id,[...edges].sort((a,b)=>{const x=projectedPoint(a),y=projectedPoint(b);return Math.atan2(x[1]-p[1],x[0]-p[0])-Math.atan2(y[1]-p[1],y[0]-p[0]);})];}));
 	const visited=new Set(),loops=[];
 	// Walk planar half-edges. For an ordinary closed contour this is identical
@@ -67,7 +69,7 @@ export function R_BisectGeometry(geometry,normal,point){
 			}else{at.set(id,path.length);path.push(id);}
 		}
 	}
-	const projected=loops.map(loop=>loop.map(p=>new THREE.Vector2(u.x*p[0]+u.y*p[1]+u.z*p[2],v.x*p[0]+v.y*p[1]+v.z*p[2])));
+	const projected=loops.map(loop=>loop.map(({position:p})=>new THREE.Vector2(u.x*p[0]+u.y*p[1]+u.z*p[2],v.x*p[0]+v.y*p[1]+v.z*p[2])));
 	const contains=(poly,p)=>{let hit=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if((a.y>p.y)!==(b.y>p.y)&&p.x<(b.x-a.x)*(p.y-a.y)/(b.y-a.y)+a.x)hit=!hit;}return hit;};
 	// A partially overlapping contour is not a hole. Vertices alone do not
 	// prove containment in a concave outline: test every interval of each edge
@@ -93,17 +95,17 @@ export function R_BisectGeometry(geometry,normal,point){
 		if(depths[i]%2)continue;
 		const holes=loops.map((_,j)=>j).filter(j=>depths[j]===depths[i]+1&&encloses(projected[i],projected[j]));
 		const flat=[...loops[i],...holes.flatMap(j=>loops[j])],triangles=THREE.ShapeUtils.triangulateShape(projected[i],holes.map(j=>projected[j]));
-		for(const tri of triangles){const a=new THREE.Vector3(...flat[tri[0]]),ab=new THREE.Vector3(...flat[tri[1]]).sub(a),ac=new THREE.Vector3(...flat[tri[2]]).sub(a),area=ab.clone().cross(ac).dot(n);
+		for(const tri of triangles){const a=new THREE.Vector3(...flat[tri[0]].position),ab=new THREE.Vector3(...flat[tri[1]].position).sub(a),ac=new THREE.Vector3(...flat[tri[2]].position).sub(a),area=ab.clone().cross(ac).dot(n);
 			// Native positions and output buffers are Float32. Earcut can retain
 			// a contour triangle collinear at that precision; omit that overlapping
 			// sliver using Float32's relative epsilon, not a world-size cutoff.
 			if(Math.abs(area)<=2**-23*Math.max(ab.lengthSq(),ac.lengthSq()))continue;
 			if(area<0)tri.reverse();
-			caps[0].push(...flat[tri[2]],...flat[tri[1]],...flat[tri[0]]);caps[1].push(...flat[tri[0]],...flat[tri[1]],...flat[tri[2]]);}
+			caps[0].push(flat[tri[2]],flat[tri[1]],flat[tri[0]]);caps[1].push(flat[tri[0]],flat[tri[1]],flat[tri[2]]);}
 	}
 	return output.map((out,side)=>{
 		const body=new THREE.BufferGeometry();for(const name of names)body.setAttribute(name,new THREE.Float32BufferAttribute(out[name],geometry.attributes[name].itemSize));body.normalizeNormals();body.computeBoundingBox();body.computeBoundingSphere();
-		const cap=new THREE.BufferGeometry();cap.setAttribute('position',new THREE.Float32BufferAttribute(caps[side],3));cap.computeVertexNormals();cap.computeBoundingBox();cap.computeBoundingSphere();
+		const cap=new THREE.BufferGeometry();for(const name of names)if(name!=='normal')cap.setAttribute(name,new THREE.Float32BufferAttribute(caps[side].flatMap(v=>v[name]),geometry.attributes[name].itemSize));cap.computeVertexNormals();cap.computeBoundingBox();cap.computeBoundingSphere();
 		return {body,cap,contours:loops.length};
 	});
 }

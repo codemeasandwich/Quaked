@@ -13,7 +13,9 @@ export function Axe_ParseRecord(encoded){
 		if(r.skinSalt!==undefined&&(!Number.isInteger(r.skinSalt)||r.skinSalt<0||r.skinSalt>0xffffffff))return null;
 		if(r.key!==undefined&&(!Axe_ValidOwnerKey(r.key)||Number(r.key.split('@')[1])!==r.at))return null;
 		if(r.floor!==undefined&&(!Array.isArray(r.floor)||r.floor.length!==2||r.floor.some(v=>!Number.isFinite(v)||Math.abs(v)>1e6)))return null;
+		// each half's ground plane (its unit normal, pointing up): card [18]
+		if(r.slope!==undefined&&(!Array.isArray(r.slope)||r.slope.length!==2||r.slope.some(n=>!Array.isArray(n)||n.length!==3||n.some(v=>!Number.isFinite(v))||Math.abs(Math.hypot(...n)-1)>.001||n[2]<.7)))return null;
 		return {version:1,kind:'slice',model:r.model,entityIndex:r.entityIndex,frame:r.frame,skin:r.skin,at:r.at,origin:r.origin,angles:r.angles,normal:r.normal,
-			...(r.key===undefined?{}:{key:r.key}),...(r.skinSalt===undefined?{}:{skinSalt:r.skinSalt}),...(r.floor===undefined?{}:{floor:r.floor})};
+			...(r.key===undefined?{}:{key:r.key}),...(r.skinSalt===undefined?{}:{skinSalt:r.skinSalt}),...(r.floor===undefined?{}:{floor:r.floor}),...(r.slope===undefined?{}:{slope:r.slope})};
 	}catch{return null;}
 }
