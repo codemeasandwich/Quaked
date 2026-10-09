@@ -39,6 +39,7 @@ import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRip
 import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from './r_waves.js';
 import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear, R_LightningTakesBeam } from './r_lightning.js';
 import { CL_PlayerLightning } from './cl_tent.js';
+import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear } from './r_wallburn.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
@@ -1775,6 +1776,7 @@ export function R_RenderView() {
 	R_DrawViewModel();
 	R_ShotgunFrame( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the gun is placed: the pellets leave its muzzle)
 	R_LightningFrame( cl != null ? cl.time : 0 ); // (after the gun is placed: the beam leaves its muzzle, card [30a])
+	R_WallBurnFrame( cl != null ? cl.time : 0 ); // (the beam's and the pellets' burn on the walls, card [30c])
 	R_DrawWaterSurfaces();
 
 	// render mirror view
@@ -2013,6 +2015,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_shotgunfx );
 	Cvar_RegisterVariable( r_impactripples );
 	Cvar_RegisterVariable( r_newer_lightning );
+	Cvar_RegisterVariable( r_newer_wallburn );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
@@ -2234,6 +2237,7 @@ export function R_NewMap() {
 	R_TorchFireClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
 	R_LightningSetup( { scene, camera: () => camera, muzzle: R_LightningMuzzle, beam: CL_PlayerLightning, allocDlight: CL_AllocDlight } );
+	R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => cl, pointInLeaf: Mod_PointInLeaf, beam: CL_PlayerLightning, entities: () => cl_visedicts.slice( 0, cl_numvisedicts ) } );
 	R_WavesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), waterOn: R_WaterActive } );
 	R_ImpactRippleListen( R_WaveImpact );
 	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
@@ -2300,6 +2304,7 @@ export function R_NewMap() {
 	R_ImpactRippleReset();
 	R_WavesReset();
 	R_LightningClear();
+	R_WallBurnClear();
 
 }
 

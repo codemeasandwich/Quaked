@@ -32,11 +32,14 @@ Starting a game, the menu, loading and the options screen.
 
 Held weapons, shotgun pellets, shells, the death and respawn rules.
 
+- [Powered-axe halves: they stay, rest on slopes, and their cut faces show the skin](axe-halves-2026-10-09.md)
+- [Burn marks on the walls](burn-decals.md)
 - [Clockwise death, persistent weapons and exact ammunition](clockwise-respawn-2026-10-04.md)
 - [Persistent player death remains and ammunition backpack](death-remains-2026-10-04.md)
 - [Held-weapon framing — T-13733908](held-framing-2026-10-08.md)
 - [Held-weapon blood stays with its weapon](held-weapon-blood-2026-10-09.md)
 - [Updated status-bar portraits and Quad + Pentagram selection](hud-powerup-faces-2026-10-02.md)
+- [Melee hits on the player bleed, and throw nothing](melee-blood-2026-10-09.md)
 - [Supplied ordinary nailgun — 2026-10-05](nailgun-source-2026-10-05.md)
 - [Destructible pinned zombies — 2026-10-03](pinned-zombies-2026-10-03.md)
 - [Power-up vision integration](power-up-vision.md)
@@ -49,6 +52,7 @@ Held weapons, shotgun pellets, shells, the death and respawn rules.
 - [The way back is shut once you respawn](respawn-return-closed-2026-10-09.md)
 - [The Ring of Shadows hides you from monsters already hunting you](ring-unseen-2026-10-09.md)
 - [Shotgun pellets, underwater bubbles, and damage that arrives with them](shotgun-pellets-2026-10-08.md)
+- [Shotgun pickups: a wider super shotgun, and the basic shotgun's own drop](shotgun-pickups-2026-10-09.md)
 - [Held super nailgun: the barrels coast and spin down after firing](super-nailgun-coast-2026-10-08.md)
 - [Weapon Models credits](weapon-models-credits-2026-10-02.md)
 - [Supplied weapons and permanent shotgun casings](weapons-and-shells-2026-10-02.md)
@@ -59,11 +63,14 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 
 - [First-sighting bestiary — working local increment](bestiary-2026-10-04.md)
 - [Bestiarium cover, opening page and additional folios](bestiary-artwork-2026-10-04.md)
+- [Bestiary book: the cover turns like a page, and a turn waits for its pages](bestiary-book-turns-2026-10-09.md)
 - [Complete artwork and cover dedication — 4 October 2026](bestiary-complete-2026-10-04.md)
 - [Contents and Complete Edition — 4 October 2026](bestiary-contents-2026-10-04.md)
 - [Bestiarium discovery eligibility — T-15cbb0a7](bestiary-discovery-2026-10-08.md)
+- [The first-discovery page: frame first, a diagonal roll, drawn when the game stops, no matte](bestiary-encounter-2026-10-09.md)
 - [Native Bestiarium navigation images](bestiary-navigation.md)
 - [Progressive inner illustration, locked folios and authored menu](bestiary-progress-2026-10-04.md)
+- [Bestiary family spreads](bestiary-spreads-2026-10-09.md)
 - [Nine folios and parchment page backs — 4 October 2026](bestiary-verso-2026-10-04.md)
 - [Demon plaques on moving brush entities get their relief too](demon-brush-relief-2026-10-08.md)
 - [Real displacement for the horned demon plaques](demon-displacement-2026-10-03.md)
@@ -78,6 +85,8 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 - [Material-aware height authoring — custom Shambler trial](height-authoring-refinement.md)
 - [Source-bound Shub-Niggurath skin](oldone-skin.md)
 - [Procedural surface enhancement, in plain words](procedural-surface-enhancement.md)
+- [A knocked-down zombie can be finished off](prone-zombies-2026-10-09.md)
+- [Rend the Veil — native monster-closet arrivals](rend-the-veil.md)
 - [Shambler footfall tremor](shambler-footfalls-2026-10-02.md)
 - [Source-bound Vore body skin](vore-body-skin.md)
 - [More visible water surfaces and undersides](water-surface-definition-2026-10-02.md)
@@ -92,8 +101,10 @@ Level textures, rock relief, seams, seamless levels and portals.
 - [Continuous procedural natural rock and terrain relief](continuous-rockfield-2026-10-02.md)
 - [Equal resolution in the startup demo](demo-resolution-2026-10-01.md)
 - [E1M1 exit corridor ceiling fixtures](e1m1-ceiling-fixtures.md)
+- [Lifts, buttons and monsters no longer vanish in busy levels](entity-limit-2026-10-09.md)
 - [Level Select by episode, and a Cheats menu in Options](level-select-cheats-2026-10-09.md)
 - [City/Church and Wizard texture updates](level-texture-update-2026-10-02.md)
+- [Teleporter-pad exits show the next level](pad-windows-2026-10-09.md)
 - [Camera teleporters: no stall when a sill or frame holds the player back](portal-frame-stall-2026-10-09.md)
 - [Doors and false walls in a portal's preview](portal-receiver-brushes-2026-10-09.md)
 - [Prepared continuous rock fields — 2026-10-03](prepared-rock-maps-2026-10-03.md)
@@ -126,6 +137,7 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 - [Stronger shafts and local lava illumination](lava-and-shafts-2026-10-03.md)
 - [Coloured-lighting map compatibility — 8 October 2026](lighting-map-compatibility.md)
 - [Lighting performance investigation](lighting-performance-2026-10-01.md)
+- [The lightning gun's beam](lightning-2026-10-09.md)
 - [Models, held weapons, blood and water — local working trial](model-lighting-blood-wet-2026-10-04.md)
 - [Torches and fire pits: the supplied "02 Wall torch" flame](torch-fire-2026-10-08.md)
 - [Water concept increment, 2 October 2026](water-concepts-2026-10-02.md)
@@ -144,10 +156,3 @@ Commit scopes, delivery records and handoffs.
 - [Reviewed delivery — 2026-10-01](delivery-2026-10-01.md)
 - [Enhanced surfaces, pickups, travel and axe: commit record](enhancements-commit-2026-10-04.md)
 - [Scoped functionality commit](scoped-commit-2026-10-05.md)
-
-## Other
-
-Documents that no topic rule claims yet.
-
-- [Lifts, buttons and monsters no longer vanish in busy levels](entity-limit-2026-10-09.md)
-- [Teleporter-pad exits show the next level](pad-windows-2026-10-09.md)

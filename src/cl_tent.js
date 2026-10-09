@@ -18,6 +18,7 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
+import { R_WallBurnShot } from './r_wallburn.js';
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
@@ -194,7 +195,7 @@ export function CL_ParseTEnt() {
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
 			R_RunParticleEffect( pos, vec3_origin, 0, 20 );
-			R_DecalShot( pos );
+			if ( ! R_WallBurnShot( pos ) ) R_DecalShot( pos ); // (Newer Game: the pellet's burn on the wall, card [30c])
 			break;
 
 		case TE_EXPLOSION: { // rocket explosion
