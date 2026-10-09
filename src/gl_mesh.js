@@ -678,7 +678,7 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 	const hasLighting = shadedots && shadelight !== undefined;
 
 	// Get cached template (shared positions/normals/uvs/indices per model+pose)
-	const weapon = R_WeaponAsset( entity?.model?.name );
+	const weapon = R_WeaponAsset( entity?.model?.name, entity?.skinnum | 0 );
 	let template = weaponAliasFrame( weapon, paliashdr, posenum );
 	if ( ! template )
 		return null;

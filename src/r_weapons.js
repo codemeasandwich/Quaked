@@ -132,10 +132,19 @@ export function R_WeaponLoad( key ) {
 
 }
 
-export function R_WeaponAsset( modelName ) {
+// `skin`: a pickup MDL's skin can name a different role: skin 1 of g_shot.mdl is the basic shotgun's drop (role g_shot1,
+// respawn_record.js), which has no MDL of its own
+const SKIN_ROLES = Object.freeze( { g_shot: { 1: 'g_shot1' } } );
+export function R_WeaponRole( modelName, skin = 0 ) {
+
+	const key = /^progs\/([vg]_[a-z0-9]+)\.mdl$/.exec( modelName || '' )?.[ 1 ] ?? null;
+	return key && skin && SKIN_ROLES[ key ]?.[ skin ] ? SKIN_ROLES[ key ][ skin ] : key;
+
+}
+export function R_WeaponAsset( modelName, skin = 0 ) {
 
 	if ( ! R_WeaponsEnabled() ) return null;
-	const key = /^progs\/([vg]_[a-z0-9]+)\.mdl$/.exec( modelName || '' )?.[ 1 ];
+	const key = R_WeaponRole( modelName, skin );
 	if ( ! key ) return null;
 	if ( ! index ) { R_WeaponsLoad().catch( () => {} ); return null; }
 	if ( ! index.models[ key ] ) return null;

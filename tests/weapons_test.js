@@ -261,12 +261,16 @@ function checkGrenadeBarrel( positions, header ) {
 
 Deno.test( 'supplied weapons match native fits, authorized held rocket offset and held grenade barrel anchors', () => {
 
-	equal( Object.keys( manifest.models ).length, 13, 'thirteen replacement firearm roles' );
+	// (thirteen fitted to their own MDLs, and the basic shotgun's drop, g_shot1, fitted to the super shotgun pickup's MDL: card [12])
+	equal( Object.keys( manifest.models ).length, 14, 'fourteen replacement firearm roles' );
 	check( ! manifest.models.v_axe && weapons.R_WeaponAsset( 'progs/v_axe.mdl' ) === null, 'owner-restored axe always uses original art' );
 	equal( pendingDrawCount, pendingHeader.posedata[ 0 ].length, 'pending art draws original geometry' );
 	for ( const key of Object.keys( manifest.models ) ) {
 
-		const h = nativeHeader( key ), bounds = manifest.models[key].fitKind === 'source-quake-coordinates' ? { min: manifest.models[key].sourceMin, max: manifest.models[key].sourceMax } : key === 'v_shot' ? shotgunBarrelBounds( h ) : key === 'v_nail2' || key === 'g_nail2' ? uniformNailgunBounds( h, key ) : nativeBounds( h );
+		const h = nativeHeader( manifest.models[ key ].nativeModel ?? key ), fitted = manifest.models[key].fitKind === 'source-quake-coordinates' ? { min: manifest.models[key].sourceMin, max: manifest.models[key].sourceMax } : key === 'v_shot' ? shotgunBarrelBounds( h ) : key === 'v_nail2' || key === 'g_nail2' ? uniformNailgunBounds( h, key ) : nativeBounds( h );
+		// the super shotgun pickup is twice as wide across as its native box (owner request, card [12]): the box widened about its middle
+		const across = manifest.models[ key ].transverseScale ?? 1, bounds = across === 1 ? fitted : { min: fitted.min.slice(), max: fitted.max.slice() };
+		if ( across !== 1 ) { const c = ( fitted.min[ 1 ] + fitted.max[ 1 ] ) / 2, half = ( fitted.max[ 1 ] - fitted.min[ 1 ] ) / 2 * across; bounds.min[ 1 ] = c - half; bounds.max[ 1 ] = c + half; }
 		const e = { frame: 0, model: { name: 'progs/' + key + '.mdl' }, origin: [ 31, - 9, 40 ], angles: [ 17, 73, 11 ] };
 		const mesh = R_DrawAliasModel( e, h, new Float32Array( 162 ).fill( 1 ), 0.7 );
 		check( mesh.isMesh, key + ' renders an actual mesh' );

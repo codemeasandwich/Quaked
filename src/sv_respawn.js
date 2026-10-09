@@ -61,14 +61,14 @@ export function SV_RespawnPrecache(){if(!localContext())return;for(const n of ne
 export function SV_RespawnDropInventory(p){
  const state=p._respawn||initialize(p),weapons=RESPAWN_WEAPONS.filter(w=>(p.v.items|0)&w.bit),payloads=[],orphan=[0,0,0,0];
  for(const ammo of RESPAWN_AMMO){const total=Math.max(0,Math.floor(p.v[ammo])),matching=weapons.filter(w=>w.ammo===ammo);
-  if(matching.length){const each=Math.floor(total/matching.length),remainder=total%matching.length;matching.forEach((w,i)=>payloads.push({weapon:w.bit,ammo,amount:each+(i<remainder?1:0),model:w.model}));}
+  if(matching.length){const each=Math.floor(total/matching.length),remainder=total%matching.length;matching.forEach((w,i)=>payloads.push({weapon:w.bit,ammo,amount:each+(i<remainder?1:0),model:w.model,skin:w.skin||0}));}
   else if(total)orphan[RESPAWN_AMMO.indexOf(ammo)]=total;
  }
  if(orphan.some(x=>x>0))payloads.push({weapon:0,pools:orphan,model:'progs/backpack.mdl'});
  // Allocate all payloads before relinquishing inventory. Partial allocation
  // failures cannot silently consume ammunition or leave a duplicated half-drop.
  const allocated=[];try{for(const data of payloads){const e=ED_Alloc();allocated.push(e);const i=payloads.indexOf(data),angle=(state.deaths*2.399963+i*2.399963),origin=Array.from(p.v.origin);
-  e.v.classname=ED_NewString('dropped_weapon');e.v.model=ED_NewString(data.model);e.v.modelindex=sv.model_precache.indexOf(data.model);if(e.v.modelindex<1)throw Error('Respawn drop model unavailable: '+data.model);
+  e.v.classname=ED_NewString('dropped_weapon');e.v.model=ED_NewString(data.model);e.v.modelindex=sv.model_precache.indexOf(data.model);if(e.v.modelindex<1)throw Error('Respawn drop model unavailable: '+data.model);e.v.skin=data.skin||0;
   e.v.origin=origin;e.v.mins=[-8,-8,-4];e.v.maxs=[8,8,12];e.v.size=[16,16,16];e.v.movetype=MOVETYPE_TOSS;e.v.solid=SOLID_TRIGGER;e.v.touch=fnIndex('SUB_Null');e.v.velocity=[Math.cos(angle)*(80+i*5),Math.sin(angle)*(80+i*5),170+i*8];e.v.angles=[0,angle*180/Math.PI,0];
   e._respawnDrop={version:data.pools?2:1,id:sv.name+':'+(state.deaths+1)+':'+sv.time+':'+e.index,weapon:data.weapon,...(data.pools?{pools:data.pools.slice()}:{ammo:data.ammo,amount:data.amount}),born:sv.time};SV_LinkEdict(e,false);
  }}catch(error){for(const e of allocated)ED_Free(e);throw error;}
@@ -273,7 +273,7 @@ export function SV_RespawnInventoryStats(target){const p=svs.clients?.[0]?.edict
 export function SV_RespawnRestoreDropModel(e){
  // a saved Fiend or Shambler (a guard among them) keeps its model by name: its table position can differ between the saving and the loading game
  if(localContext()&&GUARDS.has(PR_GetString(e.v.classname))&&e.v.model){const at=sv.model_precache.indexOf(PR_GetString(e.v.model));if(at>0)e.v.modelindex=at;}
- if(!e._respawnDrop||!localContext())return;SV_RespawnPrecache();const model=RESPAWN_WEAPONS.find(w=>w.bit===e._respawnDrop.weapon)?.model||'progs/backpack.mdl';e.v.model=ED_NewString(model);e.v.modelindex=sv.model_precache.indexOf(model);}
+ if(!e._respawnDrop||!localContext())return;SV_RespawnPrecache();const kind=RESPAWN_WEAPONS.find(w=>w.bit===e._respawnDrop.weapon),model=kind?.model||'progs/backpack.mdl';e.v.model=ED_NewString(model);e.v.modelindex=sv.model_precache.indexOf(model);e.v.skin=kind?.skin||0;}
 
 // Plan only at death, using bounded real BSP sweeps of the complete head arc.
 // A sliding foot pivot preserves a rigid body radius in constrained corridors.

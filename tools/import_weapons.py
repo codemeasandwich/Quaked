@@ -19,7 +19,7 @@ from fbx_mesh import read_mesh
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'newer/weapons'
 SOURCES = {
-    'shotgun': ('shotgun.zip', ['v_shot'], [-1, 3, 2]),
+    'shotgun': ('shotgun.zip', ['v_shot', 'g_shot1'], [-1, 3, 2]),
     'supershotgun': ('supershotgun.zip', ['v_shot2', 'g_shot'], [1, -3, 2]),
     'supernailgun': ('supernailgun2.zip', ['v_nail2', 'g_nail2'], [1, -3, 2]),
     'grenadelauncher': ('grenadelauncher.zip', ['v_rock', 'g_rock'], [3, 1, 2]),
@@ -152,6 +152,51 @@ def extract(doc, buffers, wanted=None):
     for node in doc['scenes'][doc.get('scene', 0)]['nodes']: visit(node, np.eye(4))
     if len(parts) != 1: raise ValueError(f'Expected one selected primitive, got {len(parts)}')
     return parts[0]
+
+
+# Pickup roles with no MDL of their own: the basic shotgun has never had a pickup model in Quake. Its death drop (sv_respawn.js,
+# skin 1 of progs/g_shot.mdl) is drawn as `g_shot1`: the basic shotgun's own art fitted to the super shotgun pickup's native box.
+NATIVE_OF = {'g_shot1': 'g_shot'}
+# Owner request item 12: the super shotgun pickup twice as wide across its barrels (the native Y axis), its length unchanged.
+TRANSVERSE = {'g_shot': 2.0}
+
+
+def widen(fitted, model, calibration):
+    factor = TRANSVERSE.get(model)
+    if not factor: return fitted
+    centre = (fitted[:, 1].min() + fitted[:, 1].max()) / 2
+    fitted = fitted.copy(); fitted[:, 1] = centre + (fitted[:, 1] - centre) * factor
+    calibration['transverseScale'] = factor
+    return fitted
+
+
+def unfit_shotgun_barrel(held, calibration):
+    # The inverse of fit_shotgun_barrel's rigid frame: back to the plain per-axis fit of the supplied mesh (an affine copy of it,
+    # so a per-axis fit of this equals a per-axis fit of the source)
+    c = calibration['barrelCorrection']
+    return (held - np.array(c['nativeFront'])) @ np.array(c['rotation']) + np.array(c['fittedCapCenter'])
+
+
+def derive_pickups():
+    # From the baked files alone (the supplied archives are not needed): the basic shotgun pickup from the held shotgun's rest
+    # pose, and the super shotgun pickup widened. Idempotent: the super shotgun pickup is refitted to its native box first.
+    manifest = json.loads((OUT / 'index.json').read_text())
+    held = json.loads((OUT / 'v_shot.json').read_text())
+    rest = unfit_shotgun_barrel(np.array(held['poses'][0]).reshape(-1, 3), manifest['models']['v_shot'])
+    target = np.array([manifest['models']['g_shot']['nativeMin'], manifest['models']['g_shot']['nativeMax']])
+    fitted, calibration = fit(rest, target)
+    calibration['nativeModel'] = 'g_shot'
+    (OUT / 'g_shot1.json').write_text(json.dumps({'poses': [np.round(fitted, 6).flatten().tolist()], 'uv': held['uv'], 'indices': held['indices']}, separators=(',', ':')) + '\n')
+    manifest['models']['g_shot1'] = {'source': 'shotgun', **calibration, 'poses': 1, 'nativePoseRigidRms': [0.0], 'excludedNativeVertices': manifest['models']['g_shot'].get('excludedNativeVertices', [])}
+    pickup = json.loads((OUT / 'g_shot.json').read_text())
+    points = np.array(pickup['poses'][0]).reshape(-1, 3)
+    entry = manifest['models']['g_shot']
+    points, refit = fit(points, np.array([entry['nativeMin'], entry['nativeMax']]))
+    points = widen(points, 'g_shot', entry)
+    pickup['poses'] = [np.round(points, 6).flatten().tolist()]
+    (OUT / 'g_shot.json').write_text(json.dumps(pickup, separators=(',', ':')) + '\n')
+    (OUT / 'index.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
+    print('Derived g_shot1 (basic shotgun pickup) and widened g_shot x%.1f across.' % TRANSVERSE['g_shot'])
 
 
 def fit(points, target):
@@ -290,7 +335,9 @@ def rigid_normals(normals, rest, pose):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--only', choices=list(SOURCES), help='Update one supplied source in an existing manifest')
+    parser.add_argument('--derive-pickups', action='store_true', help='Only derive g_shot1 and widen g_shot from the baked files')
     args = parser.parse_args()
+    if args.derive_pickups: derive_pickups(); return
     OUT.mkdir(parents=True, exist_ok=True)
     native = native_models()
     manifest = json.loads((OUT / 'index.json').read_text()) if args.only else {'models': {}, 'sources': {}}
@@ -352,12 +399,14 @@ def main():
         (directory / 'source.json').write_text(json.dumps(record, indent=2) + '\n')
         if read: (directory / 'license.txt').write_bytes(read('license.txt'))
         for model in models:
-            original = native['progs/' + model + '.mdl']
+            original = native['progs/' + NATIVE_OF.get(model, model) + '.mdl']
             poses = native_poses(original)
             selected, excluded = weapon_vertices(original, model, poses[0])
-            if key == 'shotgun': fitted, calibration = fit_shotgun_barrel(xyz, poses[0][selected], poses[0])
+            if model in NATIVE_OF: fitted, calibration = fit(xyz, poses[0][selected]); calibration['nativeModel'] = NATIVE_OF[model]
+            elif key == 'shotgun': fitted, calibration = fit_shotgun_barrel(xyz, poses[0][selected], poses[0])
             elif key == 'supernailgun': fitted, calibration = fit_uniform(xyz, poses[0][selected], model == 'v_nail2')
             else: fitted, calibration = fit_grenade_barrel(xyz, poses[0]) if model == 'v_rock' else fit(xyz, poses[0][selected])
+            fitted = widen(fitted, model, calibration)
             if model == 'v_rock2':
                 # Owner-requested held silhouette refinement: move toward the
                 # eye without changing size, orientation or pickup placement.

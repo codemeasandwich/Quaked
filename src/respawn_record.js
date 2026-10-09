@@ -1,7 +1,9 @@
 // Private save metadata contains values only; no executable callbacks/models
 // may be supplied by it. Native QC and the loaded server own execution.
+// The basic shotgun has never had a pickup model in Quake: its drop is skin 1 of the super shotgun's pickup MDL, which Newer Game
+// draws as the basic shotgun's own art (r_weapons.js, role g_shot1; the native MDL has one skin, so Classic shows it as before).
 export const RESPAWN_WEAPONS=Object.freeze([
- {bit:1,name:'Shotgun',ammo:'ammo_shells',model:'progs/g_shot.mdl'},
+ {bit:1,name:'Shotgun',ammo:'ammo_shells',model:'progs/g_shot.mdl',skin:1},
  {bit:2,name:'Double-barrelled shotgun',ammo:'ammo_shells',model:'progs/g_shot.mdl'},
  {bit:4,name:'Nailgun',ammo:'ammo_nails',model:'progs/g_nail.mdl'},
  {bit:8,name:'Super nailgun',ammo:'ammo_nails',model:'progs/g_nail2.mdl'},
