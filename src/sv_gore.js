@@ -108,9 +108,9 @@ export function SV_GoreOnSetModel( e, name ) {
 
 	}
 
-	// a shower of blood, more for more
-	SV_StartParticle( o, [ 0, 0, 1 ], BLOOD, Math.min( 255, 30 * size ) );
-	if ( size > 2 ) SV_StartParticle( o, [ 0, 0, 0.5 ], BLOOD, Math.min( 255, 20 * size ) );
+	// a shower of blood, more for more (never count 255: the client takes that as an exploding box's blast)
+	SV_StartParticle( o, [ 0, 0, 1 ], BLOOD, Math.min( 254, 30 * size ) );
+	if ( size > 2 ) SV_StartParticle( o, [ 0, 0, 0.5 ], BLOOD, Math.min( 254, 20 * size ) );
 
 	// for the client: the pool (from size 2 up) and the grin
 	MSG_WriteByte( sv.datagram, svc_temp_entity );

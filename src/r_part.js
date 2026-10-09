@@ -326,7 +326,7 @@ export function R_BlobExplosion( org, classicOnly = false ) {
 R_RunParticleEffect
 ===============
 */
-export function R_RunParticleEffect( org, dir, color, count ) {
+export function R_RunParticleEffect( org, dir, color, count, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
 
@@ -334,6 +334,7 @@ export function R_RunParticleEffect( org, dir, color, count ) {
 
 		const p = allocParticle();
 		if ( ! p ) return;
+		p.classicOnly = classicOnly;
 
 		if ( count === 1024 ) {
 

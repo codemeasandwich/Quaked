@@ -203,6 +203,9 @@ export function R_NewMap() {
 // Particle effect stubs
 //============================================================================
 
+// a stock explosive box's origin is its corner on the floor (the box is 32 x 32 and 64 or 32 tall); its blast is centred about here
+const BOX_CENTRE = [ 16, 16, 20 ];
+
 export function R_ParseParticleEffect() {
 
 	const org = new Float32Array( 3 );
@@ -221,6 +224,18 @@ export function R_ParseParticleEffect() {
 		count = 1024;
 	else
 		count = msgcount;
+
+	// A message count of 255 is QuakeC's particle(origin, dir, color, 255): the blast of an exploding box (misc_explobox's
+	// barrel_explode), which the game pairs with the s_explod sprite. In Newer Game it is the Fireball too, like every
+	// other explosion (the sprite is then hidden: R_FireballReplacesSprite). Anything else is an ordinary particle effect.
+	if ( msgcount === 255 ) {
+
+		// (the Fireball is centred on the box, not on its corner on the floor: the particle message gives the box's origin)
+		const centre = [ org[ 0 ] + BOX_CENTRE[ 0 ], org[ 1 ] + BOX_CENTRE[ 1 ], org[ 2 ] + BOX_CENTRE[ 2 ] ];
+		explosion( centre, {}, classicOnly => _R_RunParticleEffect( org, dir, color, count, classicOnly ) );
+		return;
+
+	}
 
 	_R_RunParticleEffect( org, dir, color, count );
 

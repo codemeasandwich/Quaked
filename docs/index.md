@@ -71,6 +71,7 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 - [Source-bound Shub-Niggurath skin](oldone-skin.md)
 - [Shambler footfall tremor](shambler-footfalls-2026-10-02.md)
 - [Source-bound Vore body skin](vore-body-skin.md)
+- [More visible water surfaces and undersides](water-surface-definition-2026-10-02.md)
 
 ## Worlds, rock and textures
 
@@ -105,6 +106,7 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 
 - [E1M3 emissive lighting and source-based illumination](emissive-lighting-2026-10-03.md)
 - [Explosions: the supplied "04 Fireball"](explosions-fireball-2026-10-08.md)
+- [Explosions: boxes, the ring, and transparency](explosions-unified-2026-10-09.md)
 - [Flashlight defaults and run status](flashlight-run-policy.md)
 - [Flashlight in water reflections](flashlight-water-2026-10-02.md)
 - [Bubbled stained glass — base game and resource expansions — 2026-10-05](glass-materials-2026-10-05.md)
@@ -119,7 +121,6 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 - [Four reference-based water appearances](water-looks-2026-10-02.md)
 - [Muddy near-field transmission and reflected markers](water-nearfield-2026-10-02.md)
 - [Textured, reflective Newer water](water-optics-2026-10-02.md)
-- [More visible water surfaces and undersides](water-surface-definition-2026-10-02.md)
 - [Water distortion and wall grain correction](water-wall-restraint-2026-10-04.md)
 
 ## Project history and process

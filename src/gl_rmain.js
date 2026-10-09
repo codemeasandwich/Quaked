@@ -33,7 +33,7 @@ import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities }
 import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
-import { r_fireball, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear } from './r_fireball.js';
+import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear, R_FireballReplacesSprite } from './r_fireball.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
@@ -666,6 +666,7 @@ export function R_DrawEntitiesOnList() {
 		switch ( currententity.model.type ) {
 
 			case mod_sprite:
+				if ( R_FireballReplacesSprite( currententity ) ) break; // the Fireball is this explosion
 				R_DrawSpriteModel( currententity );
 				break;
 
@@ -2078,6 +2079,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_heathaze );
 	Cvar_RegisterVariable( r_mist );
 	Cvar_RegisterVariable( r_fireball );
+	Cvar_RegisterVariable( r_fireballalpha );
 	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_shotgunfx );

@@ -171,3 +171,7 @@ with the explosion clouds.
   light restored when it declined) has no unit test; it is exercised by the real rocket
   run.
 * Real GPU timing in VR is untested; the per-frame cost is a few thousand scalar writes.
+
+## Update, 9 October 2026
+
+The shock ring described above as a flat disc on the surface now faces the camera and is centred on the explosion, the clouds are semi-transparent (`r_fireballalpha`), exploding boxes use the Fireball, and the explosion sprite is hidden while a Fireball stands in for it: see [explosions-unified-2026-10-09.md](explosions-unified-2026-10-09.md).

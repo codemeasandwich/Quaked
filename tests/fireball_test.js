@@ -145,10 +145,74 @@ Deno.test( 'a frame writes world-space Quake coordinates: rising clouds, flash, 
 	let last = Infinity;
 	for ( let i = 0; i < snap.puffs; i ++ ) { const d = pos[ i * 4 ] - view[ 0 ][ 0 ]; check( d <= last + 1e-4, 'puffs sorted far to near' ); last = d; }
 	const ru = mesh( env, 'fireball_ring' ).geometry.attributes, c = ru.aCenterRadius.array, u = ru.aAxisU.array, v = ru.aAxisV.array;
-	near( c[ 2 ], 1.2, 1e-6, 'ring lies on the floor, a hair above it' );
-	const n = [ u[ 1 ] * v[ 2 ] - u[ 2 ] * v[ 1 ], u[ 2 ] * v[ 0 ] - u[ 0 ] * v[ 2 ], u[ 0 ] * v[ 1 ] - u[ 1 ] * v[ 0 ] ];
-	near( Math.abs( n[ 2 ] ), 1, 1e-6, 'ring basis spans the floor plane' );
+	near( c[ 0 ], origin[ 0 ], 1e-6, 'the ring is centred on the explosion (x)' ); near( c[ 1 ], origin[ 1 ], 1e-6, 'and y' ); near( c[ 2 ], origin[ 2 ], 1e-6, 'and z' );
+	const n = [ u[ 1 ] * v[ 2 ] - u[ 2 ] * v[ 1 ], u[ 2 ] * v[ 0 ] - u[ 0 ] * v[ 2 ], u[ 0 ] * v[ 1 ] - u[ 1 ] * v[ 0 ] ], toEye = view[ 0 ].map( ( e, i ) => e - origin[ i ] ), el = Math.hypot( ...toEye );
+	near( Math.abs( n[ 0 ] * toEye[ 0 ] + n[ 1 ] * toEye[ 1 ] + n[ 2 ] * toEye[ 2 ] ) / el, 1, 1e-5, 'the ring faces the camera (its normal is the view direction)' );
 	near( c[ 3 ], fb.fireballRingRadius( .15 ) * fb.FIREBALL.unit, 1e-6, 'ring radius follows the source curve' );
+
+} );
+
+Deno.test( 'the ring faces the camera from any side, above and below: always a circle, never an edge-on line', () => {
+
+	const origin = [ 100, 200, 3 ];
+	for ( const eye of [ [ - 400, 0, 100 ], [ 500, 700, 5 ], [ 100, 200, 900 ], [ 100, 200, - 900 ], [ 101, 200, 3.5 ], [ 100.0001, 200, 903 ], [ 1e-3 + 100, 200, 3 ] ] ) {
+
+		const env = setup(); check( fb.R_FireballSpawn( origin ), 'spawned' );
+		fb.R_FireballFrame( env.time.now, eye, [ 1, 0, 0 ], [ 1280, 720 ] ); env.time.now = 10.15; fb.R_FireballFrame( env.time.now, eye, [ 1, 0, 0 ], [ 1280, 720 ] );
+		const a = mesh( env, 'fireball_ring' ).geometry.attributes, u = a.aAxisU.array, v = a.aAxisV.array;
+		same( fb.R_FireballSnapshot().rings, 1, 'ring present from ' + eye );
+		const un = Math.hypot( u[ 0 ], u[ 1 ], u[ 2 ] ), vn = Math.hypot( v[ 0 ], v[ 1 ], v[ 2 ] ), dot = u[ 0 ] * v[ 0 ] + u[ 1 ] * v[ 1 ] + u[ 2 ] * v[ 2 ];
+		near( un, 1, 1e-5, 'u is a unit vector from ' + eye ); near( vn, 1, 1e-5, 'v is a unit vector from ' + eye ); near( dot, 0, 1e-5, 'u and v are perpendicular from ' + eye );
+		const toEye = eye.map( ( e, i ) => e - origin[ i ] ), el = Math.hypot( ...toEye );
+		if ( el > 0.01 ) { const n = [ u[ 1 ] * v[ 2 ] - u[ 2 ] * v[ 1 ], u[ 2 ] * v[ 0 ] - u[ 0 ] * v[ 2 ], u[ 0 ] * v[ 1 ] - u[ 1 ] * v[ 0 ] ]; near( Math.abs( n[ 0 ] * toEye[ 0 ] + n[ 1 ] * toEye[ 1 ] + n[ 2 ] * toEye[ 2 ] ) / el, 1, 1e-3, 'normal along the view direction from ' + eye ); }
+		fb.R_FireballClear();
+
+	}
+
+} );
+
+Deno.test( 'r_fireballalpha scales the explosion clouds\' opacity (default 0.7, clamped to 0..1) and nothing else', () => {
+
+	const rows = value => {
+
+		const env = setup(); fb.r_fireballalpha.value = value; check( fb.R_FireballSpawn( [ 100, 200, 3 ] ), 'spawned' );
+		fb.R_FireballFrame( env.time.now, ...view ); env.time.now = 10.3; fb.R_FireballFrame( env.time.now, ...view );
+		const snap = fb.R_FireballSnapshot(), info = mesh( env, 'fireball_clouds' ).geometry.attributes.aInfo.array;
+		const alphas = []; for ( let i = 0; i < snap.puffs; i ++ ) alphas.push( info[ i * 4 + 1 ] );
+		const glow = mesh( env, 'fireball_flash' ).geometry.attributes.aColor.array[ 3 ], ring = mesh( env, 'fireball_ring' ).geometry.attributes.aAxisU.array[ 3 ];
+		fb.R_FireballClear(); return { alphas, glow, ring };
+
+	};
+	same( fb.r_fireballalpha.string, '0.7', 'the default is 0.7' );
+	const full = rows( 1 ), seven = rows( 0.7 ), half = rows( 0.5 ), none = rows( 0 ), high = rows( 5 ), low = rows( - 3 ), junk = rows( NaN );
+	check( full.alphas.length > 10, 'there are clouds to compare' );
+	for ( let i = 0; i < full.alphas.length; i ++ ) {
+
+		near( seven.alphas[ i ], full.alphas[ i ] * 0.7, 1e-5, 'cloud ' + i + ' at 0.7' ); near( half.alphas[ i ], full.alphas[ i ] * 0.5, 1e-5, 'cloud ' + i + ' at 0.5' );
+		same( none.alphas[ i ], 0, 'cloud ' + i + ' at 0' ); near( high.alphas[ i ], full.alphas[ i ], 1e-6, 'above 1 is clamped to 1' ); same( low.alphas[ i ], 0, 'below 0 is clamped to 0' ); near( junk.alphas[ i ], full.alphas[ i ], 1e-6, 'a non-number means the source\'s own alpha' );
+
+	}
+	same( seven.glow, full.glow, 'the flash is not scaled' ); same( seven.ring, full.ring, 'nor is the ring' );
+	fb.r_fireballalpha.value = 0.7;
+
+} );
+
+Deno.test( 'the ring fades out as the eye comes inside it, so a burst beside the player does not sweep a band across the screen', () => {
+
+	const origin = [ 100, 200, 3 ], near = ( eye, age ) => {
+
+		const env = setup(); check( fb.R_FireballSpawn( origin ), 'spawned' );
+		fb.R_FireballFrame( env.time.now, eye, [ 1, 0, 0 ], [ 1280, 720 ] ); env.time.now = 10 + age; fb.R_FireballFrame( env.time.now, eye, [ 1, 0, 0 ], [ 1280, 720 ] );
+		const a = mesh( env, 'fireball_ring' ).geometry.attributes, out = { fade: a.aAxisV.array[ 3 ], radius: a.aCenterRadius.array[ 3 ], rings: fb.R_FireballSnapshot().rings };
+		fb.R_FireballClear(); return out;
+
+	};
+	const far = near( [ - 400, 200, 3 ], .15 ); same( far.rings, 1, 'a ring' ); same( far.fade, 1, 'whole from well outside its radius' );
+	const close = near( [ 100.5, 200, 3.5 ], .15 ); same( close.fade, 0, 'gone with the eye at the burst (well inside the ring)' );
+	// at a growing radius the same eye is inside later: the ring passes the camera and fades rather than sweeping across
+	const early = near( [ 100 + 50, 200, 3 ], .02 ), late = near( [ 100 + 50, 200, 3 ], .9 );
+	check( early.fade > late.fade, 'the same eye: whole while the ring is small (' + early.fade.toFixed( 2 ) + '), fading as it grows past (' + late.fade.toFixed( 2 ) + ')' );
+	check( late.fade >= 0 && late.fade <= 1 && early.fade <= 1, 'always within 0 to 1' );
 
 } );
 
@@ -194,6 +258,79 @@ Deno.test( 'every explosion family uses the Fireball in Newer Game and the nativ
 	same( R_ParticleExplosion( [ 0, 0, 40 ] ), true, 'in the demo split the Newer half still gets the Fireball' );
 	r_demosplit.value = 1;
 	env.group();
+
+} );
+
+Deno.test( 'an exploding box (particle message with count 255) is the Fireball in Newer Game, and its sprite is hidden only while a Fireball stands in for it', async () => {
+
+	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/common.js' ), net = await import( '../src/net.js' );
+	const feed = ( count, org = [ 10, 20, 30 ] ) => {
+
+		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
+		for ( const v of org ) common.MSG_WriteCoord( net.net_message, v );
+		for ( let i = 0; i < 3; i ++ ) common.MSG_WriteChar( net.net_message, 0 );
+		common.MSG_WriteByte( net.net_message, count ); common.MSG_WriteByte( net.net_message, 75 );
+		common.MSG_BeginReading(); R_ParseParticleEffect();
+
+	};
+	const sprite = ( at = [ 10, 20, 62 ] ) => ( { model: { name: 'progs/s_explod.spr' }, origin: at } ); // the box's sprite rises 32 above its origin
+	const env = setup();
+	feed( 255 ); same( fb.R_FireballActive(), 1, 'a box blast spawns one Fireball' );
+	feed( 8 ); feed( 254 ); feed( 200 ); same( fb.R_FireballActive(), 1, 'ordinary particle effects (counts 8, 200 and 254) do not' );
+	check( fb.R_FireballReplacesSprite( sprite() ), 'the explosion sprite is hidden while the Fireball takes the blast' );
+	check( ! fb.R_FireballReplacesSprite( sprite( [ 900, 20, 62 ] ) ), 'a sprite far from any burst is drawn' );
+	check( ! fb.R_FireballReplacesSprite( { model: { name: 'progs/s_bubble.spr' }, origin: [ 10, 20, 62 ] } ) && ! fb.R_FireballReplacesSprite( undefined ) && ! fb.R_FireballReplacesSprite( { model: { name: 'progs/s_explod.spr' } } ), 'other sprites, nothing and an entity without an origin are drawn' );
+	env.time.now = 10 + 1.2; check( ! fb.R_FireballReplacesSprite( sprite() ), 'a sprite long after the burst is drawn' ); env.time.now = 10;
+	fb.r_fireball.value = 0; check( ! fb.R_FireballReplacesSprite( sprite() ), 'r_fireball 0 keeps the sprite' ); fb.r_fireball.value = 1;
+	newer( false ); check( ! fb.R_FireballReplacesSprite( sprite() ), 'Classic keeps the sprite' ); fb.R_FireballClear();
+	feed( 255 ); same( fb.R_FireballActive(), 0, 'Classic: no Fireball' ); newer( true );
+	// the burst is centred on the box, not on its corner on the floor
+	fb.R_FireballClear(); feed( 255, [ 0, 0, 0 ] ); fb.R_FireballFrame( env.time.now, ...view ); const origins = fb.R_FireballSnapshot(); void origins;
+	check( fb.R_FireballReplacesSprite( sprite( [ 0, 0, 32 ] ) ), 'the sprite at the box (32 up) is covered by the burst placed at the box centre' );
+	fb.R_FireballFrame( env.time.now, ...view ); env.time.now = 10.05; fb.R_FireballFrame( env.time.now, ...view );
+	const light = [ ...env.lights.values() ].find( l => l.radius > 0 ); check( light, 'the blast has a light' );
+	near( light.origin[ 0 ], 16, 1e-3, 'the blast is centred on the box (x)' ); near( light.origin[ 1 ], 16, 1e-3, 'and y' ); near( light.origin[ 2 ], 20 + .4 * fb.FIREBALL.unit, 1e-3, 'and 20 above the floor corner (the light sits .4 units above the centre)' );
+	// no Fireball spawned -> no hiding: textures not loaded, and a full pool
+	setup( { ready: false } ); feed( 255 ); same( fb.R_FireballActive(), 0, 'no textures: no Fireball' ); check( ! fb.R_FireballReplacesSprite( sprite() ), 'so the sprite is drawn' );
+	const env2 = setup(); for ( let i = 0; i < fb.FIREBALL.maxBursts; i ++ ) check( fb.R_FireballSpawn( [ 500 + i * 400, 0, 40 ] ), 'burst ' + i );
+	check( ! fb.R_FireballSpawn( [ 9000, 0, 40 ] ), 'the pool is full and refuses the next' ); feed( 255, [ 7000, 7000, 0 ] );
+	check( ! fb.R_FireballReplacesSprite( sprite( [ 7000, 7000, 62 ] ) ), 'a blast the Fireball could not take keeps its sprite' ); env2.group();
+	// title demo split
+	setup(); r_demosplit.value = 2; feed( 255 ); check( fb.R_FireballReplacesSprite( sprite() ), 'in the split the Newer half hides the sprite (the Classic pass, where Newer is off, draws it)' ); r_demosplit.value = 1;
+
+} );
+
+Deno.test( 'a box blast keeps its native particles for Classic and for a pool that cannot take it, and drops them when the Fireball does', async () => {
+
+	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/common.js' ), net = await import( '../src/net.js' );
+	const feed = ( count, org = [ 10, 20, 30 ] ) => {
+
+		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
+		for ( const v of org ) common.MSG_WriteCoord( net.net_message, v );
+		for ( let i = 0; i < 3; i ++ ) common.MSG_WriteChar( net.net_message, 0 );
+		common.MSG_WriteByte( net.net_message, count ); common.MSG_WriteByte( net.net_message, 75 );
+		common.MSG_BeginReading(); R_ParseParticleEffect();
+
+	};
+	const total = out => out.reduce( ( n, m ) => n + m.count, 0 );
+	let env = setup(); same( total( particles( env, () => feed( 255 ) ) ), 0, 'Newer with the Fireball: no native particles' );
+	newer( false ); env = setup(); newer( false ); check( total( particles( env, () => feed( 255 ) ) ) >= 1000, 'Classic: the native 1024-particle burst' );
+	newer( true ); env = setup( { ready: false } ); check( total( particles( env, () => feed( 255 ) ) ) >= 1000, 'Newer before the textures load: the native burst' );
+	env = setup(); for ( let i = 0; i < fb.FIREBALL.maxBursts; i ++ ) fb.R_FireballSpawn( [ 500 + i * 400, 0, 40 ] );
+	check( total( particles( env, () => feed( 255 ) ) ) >= 1000, 'a full pool: the native burst' );
+	// the title demo split: the Classic half keeps its particles (flagged classic-only), the Newer half has the Fireball
+	env = setup(); r_demosplit.value = 2; const split = particles( env, () => feed( 255 ) ); r_demosplit.value = 1;
+	check( split.some( m => m.classicOnly && m.count >= 1000 ), 'split: the Classic half gets the native burst' ); check( ! split.some( m => ! m.classicOnly && m.count > 0 ), 'and the Newer half none' );
+	// the light: a box blast lights the room like a rocket's
+	env = setup(); feed( 255 ); fb.R_FireballFrame( env.time.now, ...view ); env.time.now = 10.1; fb.R_FireballFrame( env.time.now, ...view ); check( env.lights.size >= 1, 'a box blast has the Fireball\'s dynamic light' );
+
+} );
+
+Deno.test( 'the sprite draw asks the Fireball, and the particle parser routes count 255 (read from the source)', () => {
+
+	const rmain = readFileSync( new URL( '../src/gl_rmain.js', import.meta.url ), 'utf8' ), render = readFileSync( new URL( '../src/render.js', import.meta.url ), 'utf8' );
+	check( /case mod_sprite:\s*if \( R_FireballReplacesSprite\( currententity \) \) break;[^\n]*\s*R_DrawSpriteModel/.test( rmain ), 'the sprite case skips a sprite the Fireball replaces' );
+	check( /msgcount === 255/.test( render ), 'the parser routes count 255' );
 
 } );
 

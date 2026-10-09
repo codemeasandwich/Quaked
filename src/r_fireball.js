@@ -22,12 +22,16 @@ import { cvar_t } from './cvar.js';
 import { clamp, mix, smooth, hashJS } from './fx_math.js';
 import { SMOKE, alphaBoost, forEachSmoke, R_SmokeTrailEmit, R_SmokeTrailClear, R_SmokeTrailCount } from './r_smoketrail.js';
 import { R_NewerGame } from './r_anim.js';
+import { R_DemoSplitActive } from './r_demosplit.js';
 import { R_DecalSurface } from './r_decals.js';
 
 // 0 puts the native particles back for every explosion
 export const r_fireball = new cvar_t( 'r_fireball', '1' );
 // 0 puts the native rocket and grenade trail back
 export const r_smoketrails = new cvar_t( 'r_smoketrails', '1' );
+// How opaque the explosion's clouds are, 0 to 1 (1 is the supplied source's own alpha). Below 1 the fireball reads as a gas
+// you can see the level through, not a solid cut-out; the flash, sparks and ring are not affected. Owner tuning (9 Oct 2026).
+export const r_fireballalpha = new cvar_t( 'r_fireballalpha', '0.7', true );
 
 // Source defaults for mode "explosion" at quality "medium".
 export const FIREBALL = Object.freeze( {
@@ -251,19 +255,19 @@ void main(){
 const RING_VERTEX = `
 #include <clipping_planes_pars_vertex>
 attribute vec4 aCenterRadius,aAxisU,aAxisV;
-varying vec2 vUV;varying float vAge;
+varying vec2 vUV;varying float vAge,vNear;
 void main(){
  vec2 p=position.xy;
  vec3 world=aCenterRadius.xyz+(aAxisU.xyz*p.x+aAxisV.xyz*p.y)*aCenterRadius.w;
  vec4 mvPosition=modelViewMatrix*vec4(world,1.);
  #include <clipping_planes_vertex>
  gl_Position=projectionMatrix*mvPosition;
- vUV=p*.5+.5;vAge=aAxisU.w;
+ vUV=p*.5+.5;vAge=aAxisU.w;vNear=aAxisV.w;
 }`;
 const RING_FRAGMENT = `
 #include <clipping_planes_pars_fragment>
 uniform sampler2D uNoise;
-varying vec2 vUV;varying float vAge;
+varying vec2 vUV;varying float vAge,vNear;
 ${MRT_OUT}
 float sq(float x){return x*x;}
 void main(){
@@ -271,7 +275,7 @@ void main(){
  vec2 p=vUV*2.-1.;float r=length(p);
  float n=texture2D(uNoise,p*2.+vAge*.1).g;
  float band=exp(-sq((r-.76-(n-.5)*.035)/.038));
- float fade=(1.-smoothstep(.12,1.,vAge))*smoothstep(0.,.04,vAge);
+ float fade=(1.-smoothstep(.12,1.,vAge))*smoothstep(0.,.04,vAge)*vNear;
  gl_FragColor=vec4(vec3(.74,.52,.24)*band*fade*.62,0.);
  ${MRT_ZERO}
 }`;
@@ -456,6 +460,29 @@ function ringPlane( origin, worldmodel ) {
 
 }
 
+// The game's own explosion sprite (BecomeExplosion: exploding boxes and others) is not drawn while the Fireball is
+// taking its place: a burst of ours was spawned within the last second near the sprite. When no Fireball was spawned
+// (Classic, r_fireball 0, textures not loaded, a full pool, or an explosion that sent no message of its own, such as a
+// mod's) the sprite is drawn as the game made it. `ent` is the sprite's entity.
+export function R_FireballReplacesSprite( ent ) {
+
+	if ( ent == null || deps == null || ! ready || r_fireball.value === 0 || ! R_NewerGame() || bursts.length === 0 ) return false;
+	if ( typeof ent.model?.name !== 'string' || ! ent.model.name.endsWith( 'progs/s_explod.spr' ) || ent.origin == null ) return false;
+	const cl = deps.cl?.(); if ( cl == null ) return false;
+	for ( const b of bursts ) {
+
+		if ( cl.time - b.spawned > SPRITE_BURST_WINDOW || cl.time < b.spawned - .5 ) continue;
+		const dx = ent.origin[ 0 ] - b.origin[ 0 ], dy = ent.origin[ 1 ] - b.origin[ 1 ], dz = ent.origin[ 2 ] - b.origin[ 2 ];
+		if ( dx * dx + dy * dy + dz * dz <= SPRITE_BURST_REACH * SPRITE_BURST_REACH ) return true;
+
+	}
+	return false;
+
+}
+// the ring fades out as the eye comes inside it: gone at 0.3 of its radius, whole at 0.9 (a burst beside the player does not sweep a band across the view)
+const RING_NEAR_FADE = [ 0.3, 0.9 ];
+const SPRITE_BURST_WINDOW = 1, SPRITE_BURST_REACH = 128; // seconds, Quake units (a missile that stopped can be interpolated about a frame's travel away)
+
 // Replace one explosion's particles. Returns false when the native particles must be
 // used: Classic, textures not loaded, no scene, r_fireball 0, or a pool full of young
 // bursts. (During the title demo's split view the caller also spawns Classic-only native
@@ -518,12 +545,14 @@ const _puffOrder = new Uint16Array( PUFF_MAX );
 const _f = { puffs: 0, sparks: 0, ox: 0, oy: 0, oz: 0, ex: 0, ey: 0, ez: 0, fx: 0, fy: 0, fz: 0 };
 
 // source (x, y-up, z) -> Quake (x, y, z-up): world = origin + ( x, z, y ) * unit
+let _cloudOpacity = 1; // r_fireballalpha for this frame
+
 function emitCloud( x, y, z, size, angle, alpha, heat, tile, r, g, b, seed ) {
 
 	if ( _f.puffs >= puff.capacity ) return;
 	const K = FIREBALL.unit, o = _f.puffs * PUFF_STRIDE, wx = _f.ox + x * K, wy = _f.oy + z * K, wz = _f.oz + y * K;
 	_puffRows[ o ] = wx; _puffRows[ o + 1 ] = wy; _puffRows[ o + 2 ] = wz; _puffRows[ o + 3 ] = size * K;
-	_puffRows[ o + 4 ] = angle; _puffRows[ o + 5 ] = alpha; _puffRows[ o + 6 ] = heat; _puffRows[ o + 7 ] = tile;
+	_puffRows[ o + 4 ] = angle; _puffRows[ o + 5 ] = alpha * _cloudOpacity; _puffRows[ o + 6 ] = heat; _puffRows[ o + 7 ] = tile;
 	_puffRows[ o + 8 ] = r; _puffRows[ o + 9 ] = g; _puffRows[ o + 10 ] = b; _puffRows[ o + 11 ] = seed;
 	_puffDepth[ _f.puffs ] = ( wx - _f.ex ) * _f.fx + ( wy - _f.ey ) * _f.fy + ( wz - _f.ez ) * _f.fz;
 	_f.puffs ++;
@@ -606,6 +635,7 @@ export function R_FireballFrame( time, eye, forward, viewSize ) {
 
 	const K = FIREBALL.unit;
 	_f.puffs = 0; _f.sparks = 0;
+	_cloudOpacity = Number.isFinite( r_fireballalpha.value ) ? Math.min( 1, Math.max( 0, r_fireballalpha.value ) ) : 1;
 	_f.ex = eye[ 0 ]; _f.ey = eye[ 1 ]; _f.ez = eye[ 2 ]; _f.fx = forward[ 0 ]; _f.fy = forward[ 1 ]; _f.fz = forward[ 2 ];
 	let glows = 0, rings = 0;
 	for ( const b of bursts ) {
@@ -627,11 +657,31 @@ export function R_FireballFrame( time, eye, forward, viewSize ) {
 		// (the ring's own fade reaches zero at age 1)
 		if ( b.plane && age < 1 && rings < ring.capacity ) {
 
-			const o = rings * 4, c = b.plane.center, u = b.plane.u, v = b.plane.v, A = ring.arrays;
+			// The ring faces the camera every frame, so it reads as a circle at any angle (a flat disc on the surface turned to a
+			// line at a shallow angle). It is centred on the explosion: a shock sphere seen end-on, which the level's geometry
+			// cuts by depth (a burst on a floor shows the half above it). It fades as the eye comes inside its radius, so a
+			// burst beside the player does not sweep a band across the screen. (A burst on top of the eye keeps the surface's plane.)
+			const o = rings * 4, c = b.origin, A = ring.arrays;
+			const dx = eye[ 0 ] - c[ 0 ], dy = eye[ 1 ] - c[ 1 ], dz = eye[ 2 ] - c[ 2 ], dl = Math.hypot( dx, dy, dz ), radius = fireballRingRadius( age ) * K;
+			if ( dl > 1e-3 ) {
+
+				const nx = dx / dl, ny = dy / dl, nz = dz / dl;
+				let ux = ny, uy = - nx; // up (0,0,1) x facing
+				const ul = Math.hypot( ux, uy );
+				if ( ul < 1e-4 ) { ux = 1; uy = 0; } else { ux /= ul; uy /= ul; }
+				A.aAxisU[ o ] = ux; A.aAxisU[ o + 1 ] = uy; A.aAxisU[ o + 2 ] = 0;
+				A.aAxisV[ o ] = - nz * uy; A.aAxisV[ o + 1 ] = nz * ux; A.aAxisV[ o + 2 ] = nx * uy - ny * ux; // (facing x u)
+
+			} else {
+
+				const u = b.plane.u, v = b.plane.v;
+				A.aAxisU[ o ] = u[ 0 ]; A.aAxisU[ o + 1 ] = u[ 1 ]; A.aAxisU[ o + 2 ] = u[ 2 ];
+				A.aAxisV[ o ] = v[ 0 ]; A.aAxisV[ o + 1 ] = v[ 1 ]; A.aAxisV[ o + 2 ] = v[ 2 ];
+
+			}
 			A.aCenterRadius[ o ] = c[ 0 ]; A.aCenterRadius[ o + 1 ] = c[ 1 ]; A.aCenterRadius[ o + 2 ] = c[ 2 ];
-			A.aCenterRadius[ o + 3 ] = fireballRingRadius( age ) * K;
-			A.aAxisU[ o ] = u[ 0 ]; A.aAxisU[ o + 1 ] = u[ 1 ]; A.aAxisU[ o + 2 ] = u[ 2 ]; A.aAxisU[ o + 3 ] = age;
-			A.aAxisV[ o ] = v[ 0 ]; A.aAxisV[ o + 1 ] = v[ 1 ]; A.aAxisV[ o + 2 ] = v[ 2 ]; A.aAxisV[ o + 3 ] = 0;
+			A.aCenterRadius[ o + 3 ] = radius; A.aAxisU[ o + 3 ] = age;
+			A.aAxisV[ o + 3 ] = clamp( ( dl - RING_NEAR_FADE[ 0 ] * radius ) / ( ( RING_NEAR_FADE[ 1 ] - RING_NEAR_FADE[ 0 ] ) * radius ), 0, 1 ); // 0 with the eye well inside the ring, 1 outside
 			rings ++;
 
 		}
