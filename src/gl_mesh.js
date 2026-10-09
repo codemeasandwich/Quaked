@@ -4,7 +4,7 @@ import { R_AliasMeshLookup, R_AliasMeshRemember } from './r_aliasmeshcache.js';
 import * as THREE from 'three';
 import { R_WeaponAsset, R_WeaponRotorFrame } from './r_weapons.js';
 import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from './r_newerskins.js';
-import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
+import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, R_BlendArrays3, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cl } from './client.js';
 import { R_GetPlayerSkinTexture } from './gl_rmisc.js';
@@ -694,8 +694,18 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 		if ( state.blend < 1 && state.from !== state.to ) {
 
 			const from = weaponAliasFrame( weapon, paliashdr, state.from );
-			if ( from != null && from.vertexCount === template.vertexCount )
-				blend = { from, t: state.blend };
+			if ( from != null && from.vertexCount === template.vertexCount ) {
+
+				blend = { from, t: state.blend, lead: null };
+				// a change that came early: start from the pose that was on screen (card [43])
+				if ( state.lead !== null && state.lead !== undefined ) {
+
+					const a = weaponAliasFrame( weapon, paliashdr, state.lead.from ), b = weaponAliasFrame( weapon, paliashdr, state.lead.to );
+					if ( a != null && b != null && a.vertexCount === template.vertexCount && b.vertexCount === template.vertexCount ) blend.lead = { a, b, t: state.lead.t };
+
+				}
+
+			}
 
 		}
 
@@ -773,8 +783,17 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 
 		}
 
-		R_BlendArrays( entity._aliasBlendPos.array, blend.from.posAttr.array, template.posAttr.array, blend.t );
-		R_BlendArrays( entity._aliasBlendNormal.array, blend.from.normalAttr.array, template.normalAttr.array, blend.t );
+		if ( blend.lead !== null ) {
+
+			R_BlendArrays3( entity._aliasBlendPos.array, blend.lead.a.posAttr.array, blend.lead.b.posAttr.array, blend.lead.t, template.posAttr.array, blend.t );
+			R_BlendArrays3( entity._aliasBlendNormal.array, blend.lead.a.normalAttr.array, blend.lead.b.normalAttr.array, blend.lead.t, template.normalAttr.array, blend.t );
+
+		} else {
+
+			R_BlendArrays( entity._aliasBlendPos.array, blend.from.posAttr.array, template.posAttr.array, blend.t );
+			R_BlendArrays( entity._aliasBlendNormal.array, blend.from.normalAttr.array, template.normalAttr.array, blend.t );
+
+		}
 		entity._aliasBlendPos.needsUpdate = true;
 		entity._aliasBlendNormal.needsUpdate = true;
 

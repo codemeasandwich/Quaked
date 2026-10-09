@@ -61,6 +61,7 @@ Held weapons, shotgun pellets, shells, the death and respawn rules.
 
 Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 
+- [Enemy animation: jumps and deaths audited, early frames no longer snap](animation-audit-2026-10-10.md)
 - [First-sighting bestiary — working local increment](bestiary-2026-10-04.md)
 - [Bestiarium cover, opening page and additional folios](bestiary-artwork-2026-10-04.md)
 - [Bestiary book: the cover turns like a page, and a turn waits for its pages](bestiary-book-turns-2026-10-09.md)

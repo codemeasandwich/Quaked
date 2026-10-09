@@ -43,6 +43,34 @@ Deno.test( 'a pose change blends over the frame interval', () => {
 
 } );
 
+// card [43]: a quarter to a third of the game's frame changes arrive a server frame early (about 0.083 s after the
+// last, measured in the browser on a dog's leap and a dog's and a Grunt's death); the next blend must start from the
+// pose on screen, not snap the rest of the way to the last frame first
+Deno.test( 'a pose change that comes early starts from the pose on screen, with no jump', () => {
+
+	const e = { origin: [ 0, 0, 0 ] }, poses = { 3: [ 0, 0, 0 ], 4: [ 10, 0, 0 ], 5: [ 10, 10, 0 ] };
+	const shown = s => { const out = [ 0, 0, 0 ];
+		if ( s.lead ) anim.R_BlendArrays3( out, poses[ s.lead.from ], poses[ s.lead.to ], s.lead.t, poses[ s.to ], s.blend );
+		else anim.R_BlendArrays( out, poses[ s.from ], poses[ s.to ], s.blend ); return out; };
+	anim.R_AliasPoseBlend( e, model, 3, 20.0, 0.1 );
+	anim.R_AliasPoseBlend( e, model, 4, 20.1, 0.1 );
+	let s = anim.R_AliasPoseBlend( e, model, 4, 20.1833, 0.1 ); const before = shown( s );
+	assertNear( before[ 0 ], 8.33, .01, 'five sixths of the way to pose 4' );
+	s = anim.R_AliasPoseBlend( e, model, 5, 20.1833, 0.1 );
+	assertEqual( s.from, 4, 'the next blend leaves pose 4' ); assertEqual( s.to, 5, 'for pose 5' );
+	assertNear( s.lead?.t, .833, .001, 'and remembers where it was on the way to 4' );
+	const after = shown( s );
+	for ( let k = 0; k < 3; k ++ ) assertNear( after[ k ], before[ k ], 1e-6, 'the pose on screen does not jump (' + k + ')' );
+	s = anim.R_AliasPoseBlend( e, model, 5, 20.2333, 0.1 ); const mid = shown( s );
+	assertNear( mid[ 0 ], 8.33 + ( 10 - 8.33 ) * .5, .01, 'halfway on, from where it was' ); assertNear( mid[ 1 ], 5, .01, 'and towards 5' );
+	s = anim.R_AliasPoseBlend( e, model, 5, 20.3, 0.1 ); assertEqual( s.blend, 1, 'arrived' ); assertEqual( s.lead, null, 'the lead is done with' );
+	// a change that comes on time or late leaves nothing to carry
+	s = anim.R_AliasPoseBlend( e, model, 3, 20.4167, 0.1 ); assertEqual( s.lead, null, 'late (pose 5 settled): no lead' );
+	// a fresh state (stale, foreign, a teleport) has none
+	s = anim.R_AliasPoseBlend( e, model, 4, 20.45, 0.1 ); s = anim.R_AliasPoseBlend( e, model, 5, 21.5, 0.1 ); assertEqual( s.lead, null, 'restarted: no lead' );
+
+} );
+
 Deno.test( 'group frames blend over their own interval', () => {
 
 	const e = { origin: [ 0, 0, 0 ] };
