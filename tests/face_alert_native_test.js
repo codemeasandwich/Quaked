@@ -1,3 +1,4 @@
+// (look names are the artwork's own, from the character's point of view: head_right/eyes_right look toward the screen's left)
 // The face glances toward an off-screen enemy that has just noticed the player (card [F1]). Real QuakeC FoundTarget on a real
 // connected local game, the real event hooks and the real face state; the sight sound is the game's own (FoundTarget -> SightSound).
 // Hidden-HUD lifecycle and stock maps as in face_native_test.js.
@@ -89,7 +90,7 @@ Deno.test('the face looks toward an off-screen enemy and ignores one on screen, 
   same(faceAlertOnScreenLimit(),FACE_ALERT_ONSCREEN,'fallback when no field of view is known');
   const ahead=await faceAt(300,0),left=await faceAt(0,300),right=await faceAt(0,-300),behind=await faceAt(-300,0);
   same(ahead.target,'front','an enemy straight ahead is on screen: the face stays at the front');
-  same(left.target,'head_left','an enemy to the left turns the head left');same(right.target,'head_right','an enemy to the right turns the head right');
+  same(left.target,'head_right','an enemy to the left turns the head left');same(right.target,'head_left','an enemy to the right turns the head right');
   same(behind.target,'front','directly behind reads as the centred pose, like damage from behind');
   for(const f of [left,right])same(f.expression,'normal','a glance is not pain');
   // the live horizontal field of view: limit = half of it plus the margin
@@ -106,7 +107,7 @@ Deno.test('a visible monster waking first does not hide the unseen one that wake
  r_refdef.fov_x=0;const p=await start(),[m,n]=monsters();
  notice(p,m,300,0);sv.time+=.1;notice(p,n,0,300); // one straight ahead, then one to the left a tenth of a second later
  const state=new FaceState({random:()=>.99});state.reset(50);R_FaceAlerts(state,{time:50});
- same(state.frame({time:50.01,health:100}).target,'head_left','the face turns to the monster it cannot see');
+ same(state.frame({time:50.01,health:100}).target,'head_right','the face turns to the monster it cannot see');
 });
 
 Deno.test('the client converts the event time to its own clock, and glances once per half second after the filter',async()=>{
@@ -114,23 +115,23 @@ Deno.test('the client converts the event time to its own clock, and glances once
  // an event that happened 1.2 s of game time before it is shown has already run its second: no glance (without the conversion it would start now)
  notice(p,m,0,300);const state=new FaceState({random:()=>.99});state.reset(50);sv.time+=1.2;R_FaceAlerts(state,{time:50});
  same(state.frame({time:50.01,health:100}).target,'front','a notice 1.2 s old is over');
- const half=new FaceState({random:()=>.99});half.reset(50);sv.time+=1;notice(p,m,0,300);sv.time+=.5;R_FaceAlerts(half,{time:50});same(half.frame({time:50.01,health:100}).target,'head_left','a notice 0.5 s old is still being shown');
- const fresh=new FaceState({random:()=>.99});fresh.reset(50);sv.time+=1;notice(p,m,0,300);R_FaceAlerts(fresh,{time:50});same(fresh.frame({time:50.01,health:100}).target,'head_left','a fresh one is shown');
+ const half=new FaceState({random:()=>.99});half.reset(50);sv.time+=1;notice(p,m,0,300);sv.time+=.5;R_FaceAlerts(half,{time:50});same(half.frame({time:50.01,health:100}).target,'head_right','a notice 0.5 s old is still being shown');
+ const fresh=new FaceState({random:()=>.99});fresh.reset(50);sv.time+=1;notice(p,m,0,300);R_FaceAlerts(fresh,{time:50});same(fresh.frame({time:50.01,health:100}).target,'head_right','a fresh one is shown');
  // one glance per half second at the face
- const g=new FaceState({random:()=>.99});g.reset(60);g.alert({time:60,angle:90});g.alert({time:60.3,angle:-90});same(g.frame({time:60.31,health:100}).target,'head_right','a second alert within half a second is ignored');
- g.alert({time:60.6,angle:-90});same(g.frame({time:60.61,health:100}).target,'head_left','one after half a second counts');
+ const g=new FaceState({random:()=>.99});g.reset(60);g.alert({time:60,angle:90});g.alert({time:60.3,angle:-90});same(g.frame({time:60.31,health:100}).target,'head_left','a second alert within half a second is ignored');
+ g.alert({time:60.6,angle:-90});same(g.frame({time:60.61,health:100}).target,'head_right','one after half a second counts');
 });
 
 Deno.test('FaceState.alert: a one-second directional glance that damage overrides and that never shows pain',()=>{
  const f=new FaceState({random:()=>.99});f.reset(10);
  f.alert({time:10,angle:90});let s=f.frame({time:10.01,health:100});
- same(s.target,'head_right','a sound 90 degrees to the right turns the head right');same(s.expression,'normal','no pain');
- s=f.frame({time:10.9,health:100});same(s.target,'head_right','still looking at 0.9 s');
+ same(s.target,'head_left','a sound 90 degrees to the right turns the head right');same(s.expression,'normal','no pain');
+ s=f.frame({time:10.9,health:100});same(s.target,'head_left','still looking at 0.9 s');
  s=f.frame({time:11.2,health:100});same(s.target,'front','back to the front after a second');
  const g=new FaceState({random:()=>.99});g.reset(20);g.damage({time:20,healthLoss:10,amount:10,angle:-90});g.alert({time:20.1,angle:90});
- const d=g.frame({time:20.11,health:90});same(d.expression,'pain','the damage reaction is untouched');same(d.target,'head_left','and still looks at the attacker');
+ const d=g.frame({time:20.11,health:90});same(d.expression,'pain','the damage reaction is untouched');same(d.target,'head_right','and still looks at the attacker');
  const h=new FaceState({random:()=>.99});h.reset(30);h.alert({time:30,angle:90});h.damage({time:30.2,healthLoss:10,amount:10,angle:-90});
- const after=h.frame({time:30.21,health:90});same(after.expression,'pain','damage after an alert takes over');same(after.target,'head_left','and looks at the attacker');
+ const after=h.frame({time:30.21,health:90});same(after.expression,'pain','damage after an alert takes over');same(after.target,'head_right','and looks at the attacker');
  const k=new FaceState({random:()=>.99});k.reset(40);k.alert({time:40,angle:NaN});same(k.frame({time:40.01,health:100}).target,'front','a junk angle is ignored');
  k.life(0,41);k.alert({time:41,angle:90});const dead=k.frame({time:41.01,health:0});same(dead.dead,true,'dead');same(dead.target,'front','a dead face does not glance');
 });

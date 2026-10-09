@@ -52,3 +52,11 @@ status bar looks toward where it came from.
 No browser capture of the face animating. Pitch is ignored (a monster far below a player looking steeply down can be on
 screen yet 90 degrees to the side by yaw). A monster the player shoots while it is asleep also queues an alert
 (`T_Damage` calls `FoundTarget`); it is on screen in practice, so the filter drops it.
+
+## Correction, 9 October 2026: the head turned the wrong way
+
+The owner reported that the head did not move toward the sound. In the real game it moved, but **away** from it: the face artwork names its looks from the character's own point of view (`head_left` looks toward the screen's right), while the code used the names as the player's left. A Soldier on the player's left made the head look to the screen's right. The same mix-up made damage reactions look away from the attacker. `faceDirection` (`src/face_state.js`) now maps something on the player's left to the right-named looks, so the head turns toward it on screen, for alerts and for damage alike; the tests' expected look names were mirrored to match (the intended direction of each case is unchanged).
+
+![With a Soldier on the player's left, the face turns toward the screen's left](images/face-alert-turns-left.png)
+
+*Six frames 120 ms apart after a Soldier on the player's left noticed them (all other monsters held still): the head turns to the screen's left and comes back.* Checked in the browser (E1M2, the alert's angle -90, the looks front, eyes_right, head_right, then back), and the face suites pass (57 tests).

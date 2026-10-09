@@ -1,3 +1,4 @@
+// (look names are the artwork's own, from the character's point of view: head_right/eyes_right look toward the screen's left)
 // Stock QuakeC events through actual local host/loopback commands. This tests
 // the gameplay observer and public HUD adapter, not an alternate combat path.
 // Native damage packets and server spawn/begin exercise hidden-HUD lifecycle.
@@ -66,7 +67,7 @@ const Q=await import('../src/quakedef.js');
 function portrait(p,t){cl.worldmodel=sv.worldmodel;cl.time=t;cl.stats[Q.STAT_HEALTH]=p.v.health;cl.stats[Q.STAT_AMMO]=p.v.currentammo;cl.stats[Q.STAT_ACTIVEWEAPON]=p.v.weapon;cl.stats[Q.STAT_WEAPONFRAME]=p.v.weaponframe;cl.items=p.v.items;return gameface.R_PlayerFaceFrame();}
 Deno.test('public face adapter keeps native impact intervals and releases focused attack tail despite a nonzero weapon frame',async()=>{
  let p=await fresh('e1m1');face.SV_FaceReset();p.v.armorvalue=0;p.v.armortype=0;p.v.v_angle=[0,0,0];portrait(p,1);
- const enemy=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname).startsWith('monster_'));enemy.v.origin=[p.v.origin[0],p.v.origin[1]+80,p.v.origin[2]];sv.time=1;hit(p,enemy,15);enemy.v.origin=[p.v.origin[0],p.v.origin[1]-80,p.v.origin[2]];sv.time=1.4;hit(p,enemy,5);cl.time=1.5;gameface.R_FaceDamage(0,20,enemy.v.origin,p.v.origin,p.v.v_angle);same(portrait(p,1.5).target,'head_right','older >200ms hit cannot dominate delayed native batch');
+ const enemy=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname).startsWith('monster_'));enemy.v.origin=[p.v.origin[0],p.v.origin[1]+80,p.v.origin[2]];sv.time=1;hit(p,enemy,15);enemy.v.origin=[p.v.origin[0],p.v.origin[1]-80,p.v.origin[2]];sv.time=1.4;hit(p,enemy,5);cl.time=1.5;gameface.R_FaceDamage(0,20,enemy.v.origin,p.v.origin,p.v.v_angle);same(portrait(p,1.5).target,'head_left','older >200ms hit cannot dominate delayed native batch');
  p=await fresh('e1m1');face.SV_FaceReset();equip(p,1);in_attack.state=1;
  for(const time of[1,1.5,2,2.5,3]){sv.time=time;native(p,'W_Attack');portrait(p,time);}
  same(portrait(p,3).expression,'focused_determined','two seconds of confirmed usable native shots focus');in_attack.state=0;p.v.weaponframe=1;portrait(p,3.01);same(portrait(p,3.32).expression,'normal','released input finishes .3s focus tail despite residual animation');
@@ -83,8 +84,8 @@ Deno.test('actual native powerup touch reports first pickup and active-power ref
 Deno.test('public face adapter uses actual impact separation across separate native receipt batches',async()=>{
  const p=await fresh('e1m1');face.SV_FaceReset();p.v.armorvalue=0;p.v.armortype=0;p.v.v_angle=[0,0,0];portrait(p,1);
  const enemy=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname).startsWith('monster_'));
- enemy.v.origin=[p.v.origin[0],p.v.origin[1]+80,p.v.origin[2]];sv.time=1;hit(p,enemy,15);cl.time=1.10;gameface.R_FaceDamage(0,15,enemy.v.origin,p.v.origin,p.v.v_angle);same(portrait(p,1.10).target,'head_left','first impact turns left');
- enemy.v.origin=[p.v.origin[0],p.v.origin[1]-80,p.v.origin[2]];sv.time=1.24;hit(p,enemy,5);cl.time=1.26;gameface.R_FaceDamage(0,5,enemy.v.origin,p.v.origin,p.v.v_angle);same(portrait(p,1.26).target,'head_right','240ms actual impact gap is outside200ms despite160ms receipt gap');acknowledge();CL_Disconnect_f();
+ enemy.v.origin=[p.v.origin[0],p.v.origin[1]+80,p.v.origin[2]];sv.time=1;hit(p,enemy,15);cl.time=1.10;gameface.R_FaceDamage(0,15,enemy.v.origin,p.v.origin,p.v.v_angle);same(portrait(p,1.10).target,'head_right','first impact turns left');
+ enemy.v.origin=[p.v.origin[0],p.v.origin[1]-80,p.v.origin[2]];sv.time=1.24;hit(p,enemy,5);cl.time=1.26;gameface.R_FaceDamage(0,5,enemy.v.origin,p.v.origin,p.v.v_angle);same(portrait(p,1.26).target,'head_left','240ms actual impact gap is outside200ms despite160ms receipt gap');acknowledge();CL_Disconnect_f();
 });
 const {SV_WriteClientdataToMessage}=await import('../src/sv_main.js');
 const {sizebuf_t,SZ_Alloc,COM_SetNetMessage}=await import('../src/common.js');

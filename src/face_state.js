@@ -30,8 +30,11 @@ export function faceDirection( angle ) {
 	if ( ! Number.isFinite( angle ) ) return 2;
 	const signed = ( ( angle + 180 ) % 360 + 360 ) % 360 - 180, a = Math.abs( signed );
 	if ( a <= 15 || a >= 165 ) return 2;
-	if ( a <= 45 ) return signed < 0 ? 1 : 3;
-	return signed < 0 ? 0 : 4;
+	// The artwork names its looks from the character's own point of view: head_left/eyes_left (poses 0 and 1) look toward the
+	// screen's right, head_right/eyes_right (4 and 3) toward the screen's left. Something on the player's left (negative)
+	// therefore takes the right-named looks, so the head turns toward it on screen (owner report, 9 Oct 2026).
+	if ( a <= 45 ) return signed < 0 ? 3 : 1;
+	return signed < 0 ? 4 : 0;
 }
 export class FaceState {
 	constructor( { random = Math.random } = {} ) { this.random = random; this.reset(); }
