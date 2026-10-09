@@ -20,7 +20,7 @@ OUT = DOCS / 'index.md'
 # (heading, one-line description, file-name pattern); first match wins
 TOPICS = [
 	('Playing and menus', 'Starting a game, the menu, loading and the options screen.',
-	 r'single-player-menu|game-menu|loading-|studio-logo|credits-sizing|newer-game-startup|enhanced-landing|options-|audio-volume|ambient-music|intro-readiness|visual-options|asset-readiness|fullgame|distribution|welcome-'),
+	 r'single-player-menu|game-menu|gamepad|loading-|studio-logo|credits-sizing|newer-game-startup|enhanced-landing|options-|audio-volume|ambient-music|intro-readiness|visual-options|asset-readiness|fullgame|distribution|welcome-'),
 	('Weapons and combat', 'Held weapons, shotgun pellets, shells, the death and respawn rules.',
 	 r'weapon|nailgun|shotgun|super-nailgun|held-framing|clockwise-respawn|respawn-|death-remains|pinned-zombies|powerup|power-up|quad|ring-unseen|axe-|burn-decals|melee-'),
 	('Enemies, skins and faces', 'Custom enemy skins, heights, heads, the Bestiary and the player portrait.',

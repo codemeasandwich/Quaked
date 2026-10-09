@@ -45,7 +45,7 @@ Newer Game's parts can be switched off one by one in **Options > Newer Game feat
 | Esc | Menu, options and saved games |
 | ` (backtick) | Console |
 
-Every key can be changed under Options. A game controller is supported, and so is touch:
+Every key can be changed under Options. A game controller is supported ([buttons, pairing and what was tested](docs/gamepad-2026-10-10.md)), and so is touch:
 
 ### Phones and tablets
 

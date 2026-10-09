@@ -76,27 +76,6 @@ let isQuest = false;
 let _xrPrevLeftTrigger = false;
 let _xrPrevRightTrigger = false;
 
-// Gamepad button edge detection (standard mapping)
-let _gpPrev = null;
-
-function GP_ReleaseAll() {
-
-	// If a controller disconnects mid-press, make sure nothing gets "stuck" down.
-	Key_Event( K_SPACE, false );
-	Key_Event( K_ENTER, false );
-	Key_Event( K_ESCAPE, false );
-	Key_Event( K_TAB, false );
-	Key_Event( K_SHIFT, false );
-	Key_Event( K_CTRL, false );
-	Key_Event( K_MOUSE1, false );
-	Key_Event( 'r'.charCodeAt( 0 ), false );
-	Key_Event( K_UPARROW, false );
-	Key_Event( K_DOWNARROW, false );
-	Key_Event( K_LEFTARROW, false );
-	Key_Event( K_RIGHTARROW, false );
-
-}
-
 function requestPointerLock() {
 
 	if ( pointerLocked || isQuest || targetElement == null ) return;
@@ -113,6 +92,25 @@ function requestFullscreen() {
 
 }
 
+// Gamepads (card [36]): the browser's Gamepad API, standard mapping. A Bluetooth controller is paired in the operating
+// system; the browser lists it once a button is pressed with the page focused. One controller plays at a time: the one
+// already playing while it stays connected, else the first connected with the standard mapping, else the first connected.
+// Each button sends the key it means where it was pressed (A is jump in the game, Enter in a menu) and, when let go,
+// releases that same key, even if a menu opened in between; a key two buttons hold goes up when both are let go. When the
+// controller goes away (or another takes over) only the keys it holds are released, never the keyboard's or the mouse's.
+const SLASH = '/'.charCodeAt( 0 ); // default.cfg: "impulse 10", change weapon
+// [ standard index, name, key in the game, key in a menu, trigger? ] (built on first use: the key codes come from keys.js,
+// which this module's import cycle evaluates later)
+let gpButtons = null;
+const GP_BUTTONS = () => gpButtons ??= [
+	[ 0, 'a', K_SPACE, K_ENTER ], [ 1, 'b', K_ESCAPE, K_ESCAPE ], [ 2, 'x', SLASH, SLASH ], [ 3, 'y', K_TAB, K_TAB ],
+	[ 4, 'lb', K_SHIFT, K_SHIFT ], [ 5, 'rb', K_CTRL, K_CTRL ],
+	[ 6, 'lt', K_SPACE, K_ENTER, true ], [ 7, 'rt', K_MOUSE1, K_MOUSE1, true ],
+	[ 8, 'back', K_ESCAPE, K_ESCAPE ], [ 9, 'start', K_ESCAPE, K_ESCAPE ],
+	[ 12, 'du', K_UPARROW, K_UPARROW ], [ 13, 'dd', K_DOWNARROW, K_DOWNARROW ], [ 14, 'dl', K_LEFTARROW, K_LEFTARROW ], [ 15, 'dr', K_RIGHTARROW, K_RIGHTARROW ]
+];
+const gpState = { index: null, id: null, sent: new Map(), owned: new Map(), noticed: new Set() };
+
 function GP_GetPrimary() {
 
 	if ( typeof navigator === 'undefined' || navigator.getGamepads == null ) return null;
@@ -120,13 +118,9 @@ function GP_GetPrimary() {
 	const gamepads = navigator.getGamepads();
 	if ( ! gamepads ) return null;
 
-	for ( const gp of gamepads ) {
-
-		if ( gp && gp.connected ) return gp;
-
-	}
-
-	return null;
+	const connected = Array.from( gamepads ).filter( gp => gp && gp.connected );
+	return connected.find( gp => gp.index === gpState.index && gp.id === gpState.id )
+		|| connected.find( gp => gp.mapping === 'standard' ) || connected[ 0 ] || null;
 
 }
 
@@ -155,89 +149,74 @@ function GP_ButtonValue( gp, index ) {
 
 }
 
-function GP_KeyEdge( quakeKey, isDown, prev, storeKey ) {
+// a key the controller holds: down with the first button holding it, up with the last
+function GP_Press( key, keyEvent ) {
 
-	if ( quakeKey === 0 ) return;
-
-	const wasDown = prev[ storeKey ];
-	if ( isDown !== wasDown ) {
-
-		Key_Event( quakeKey, isDown );
-		prev[ storeKey ] = isDown;
-
-	}
+	const n = gpState.owned.get( key ) || 0;
+	gpState.owned.set( key, n + 1 );
+	if ( n === 0 ) keyEvent( key, true );
 
 }
 
-function GP_Poll( cmd ) {
+function GP_Release( key, keyEvent ) {
+
+	const n = gpState.owned.get( key ) || 0;
+	if ( n <= 1 ) { gpState.owned.delete( key ); if ( n === 1 ) keyEvent( key, false ); } else gpState.owned.set( key, n - 1 );
+
+}
+
+// the controller went away or another took over: release what it holds, and only that
+function GP_ReleaseOwned( keyEvent ) {
+
+	for ( const key of gpState.owned.keys() ) keyEvent( key, false );
+	gpState.owned.clear(); gpState.sent.clear();
+
+}
+
+/*
+================
+IN_GamepadPoll
+
+Once a frame (IN_Move; with no command while the Bestiary holds the input): the buttons as key presses and, in the game,
+the sticks as movement and look. keyEvent is Key_Event (a check passes its own). Returns the controller used, or null.
+================
+*/
+export function IN_GamepadPoll( cmd, keyEvent = Key_Event ) {
 
 	const gp = GP_GetPrimary();
 	if ( ! gp ) {
 
-		if ( _gpPrev != null ) GP_ReleaseAll();
-		_gpPrev = null;
-		return;
+		if ( gpState.index !== null ) { GP_ReleaseOwned( keyEvent ); gpState.index = null; gpState.id = null; }
+		return null;
 
 	}
 
-	if ( _gpPrev == null || _gpPrev.index !== gp.index ) {
+	if ( gp.index !== gpState.index || gp.id !== gpState.id ) {
 
-		_gpPrev = {
-			index: gp.index,
-			a: false,
-			b: false,
-			x: false,
-			y: false,
-			lb: false,
-			rb: false,
-			lt: false,
-			rt: false,
-			back: false,
-			start: false,
-			du: false,
-			dd: false,
-			dl: false,
-			dr: false,
-		};
+		GP_ReleaseOwned( keyEvent );
+		gpState.index = gp.index; gpState.id = gp.id;
+		if ( gp.mapping !== 'standard' && ! gpState.noticed.has( gp.id ) ) {
+
+			gpState.noticed.add( gp.id );
+			Con_Printf( 'Controller "' + gp.id + '" has no standard button layout: its buttons may not match\n' );
+
+		}
 
 	}
 
-	// Menu navigation / global buttons
-	// Standard mapping: 0 A, 1 B, 2 X, 3 Y, 4 LB, 5 RB, 6 LT, 7 RT, 8 Back, 9 Start,
-	// 10 LS, 11 RS, 12-15 D-pad.
+	// Standard mapping: 0 A, 1 B, 2 X, 3 Y, 4 LB, 5 RB, 6 LT, 7 RT, 8 Back, 9 Start, 10 LS, 11 RS, 12-15 D-pad.
 	const inMenu = key_dest === key_menu;
+	for ( const [ index, name, gameKey, menuKey, trigger ] of GP_BUTTONS() ) {
 
-	// A: Enter in menu, Jump in game
-	GP_KeyEdge( inMenu ? K_ENTER : K_SPACE, GP_ButtonDown( gp, 0 ), _gpPrev, 'a' );
-	// B: Escape
-	GP_KeyEdge( K_ESCAPE, GP_ButtonDown( gp, 1 ), _gpPrev, 'b' );
-	// X: Reload (default 'r')
-	GP_KeyEdge( 'r'.charCodeAt( 0 ), GP_ButtonDown( gp, 2 ), _gpPrev, 'x' );
-	// Y: Toggle score (default Tab)
-	GP_KeyEdge( K_TAB, GP_ButtonDown( gp, 3 ), _gpPrev, 'y' );
+		const down = trigger ? GP_ButtonValue( gp, index ) > 0.5 : GP_ButtonDown( gp, index );
+		const sent = gpState.sent.get( name );
+		if ( down && sent === undefined ) { const key = inMenu ? menuKey : gameKey; gpState.sent.set( name, key ); GP_Press( key, keyEvent ); }
+		else if ( ! down && sent !== undefined ) { gpState.sent.delete( name ); GP_Release( sent, keyEvent ); }
 
-	// LB/RB: Shift/Ctrl (often bound to run/crouch in configs; harmless if unbound)
-	GP_KeyEdge( K_SHIFT, GP_ButtonDown( gp, 4 ), _gpPrev, 'lb' );
-	GP_KeyEdge( K_CTRL, GP_ButtonDown( gp, 5 ), _gpPrev, 'rb' );
-
-	// Triggers: jump/attack (in-game), Enter/attack (menu)
-	const ltDown = GP_ButtonValue( gp, 6 ) > 0.5;
-	const rtDown = GP_ButtonValue( gp, 7 ) > 0.5;
-	GP_KeyEdge( inMenu ? K_ENTER : K_SPACE, ltDown, _gpPrev, 'lt' );
-	GP_KeyEdge( K_MOUSE1, rtDown, _gpPrev, 'rt' );
-
-	// Back/Start: Escape
-	GP_KeyEdge( K_ESCAPE, GP_ButtonDown( gp, 8 ), _gpPrev, 'back' );
-	GP_KeyEdge( K_ESCAPE, GP_ButtonDown( gp, 9 ), _gpPrev, 'start' );
-
-	// D-pad: arrow keys
-	GP_KeyEdge( K_UPARROW, GP_ButtonDown( gp, 12 ), _gpPrev, 'du' );
-	GP_KeyEdge( K_DOWNARROW, GP_ButtonDown( gp, 13 ), _gpPrev, 'dd' );
-	GP_KeyEdge( K_LEFTARROW, GP_ButtonDown( gp, 14 ), _gpPrev, 'dl' );
-	GP_KeyEdge( K_RIGHTARROW, GP_ButtonDown( gp, 15 ), _gpPrev, 'dr' );
+	}
 
 	// Gameplay movement/look (skip in menus; skip when cmd is missing)
-	if ( ! cmd || key_dest !== key_game || cls.demoplayback || R_BestiaryInputLocked() ) return;
+	if ( ! cmd || key_dest !== key_game || cls.demoplayback || R_BestiaryInputLocked() ) return gp;
 
 	const moveDeadzone = 0.15;
 	const lookDeadzone = 0.12;
@@ -268,6 +247,8 @@ function GP_Poll( cmd ) {
 			cl.viewangles[ PITCH ] = - 70;
 
 	}
+
+	return gp;
 
 }
 
@@ -788,7 +769,7 @@ In the original, this called IN_MouseMove and IN_JoyMove.
 ===========
 */
 export function IN_Move( cmd ) {
-	if ( R_BestiaryInputLocked() ) { IN_MouseMove();Touch_GetLookDelta();GP_Poll(null);if(cmd)cmd.forwardmove=cmd.sidemove=cmd.upmove=0;return; }
+	if ( R_BestiaryInputLocked() ) { IN_MouseMove();Touch_GetLookDelta();IN_GamepadPoll(null);if(cmd)cmd.forwardmove=cmd.sidemove=cmd.upmove=0;return; }
 
 	let { mx, my } = IN_MouseMove();
 
@@ -904,7 +885,7 @@ export function IN_Move( cmd ) {
 	// Standard Gamepad API input (non-XR)
 	if ( ! isXRActive() ) {
 
-		GP_Poll( cmd );
+		IN_GamepadPoll( cmd );
 
 	}
 

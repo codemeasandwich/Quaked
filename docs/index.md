@@ -16,6 +16,7 @@ Starting a game, the menu, loading and the options screen.
 - [Enhanced rendering and startup landing](enhanced-landing-2026-10-04.md)
 - [Local owned full-game content: first E2M1 trial](fullgame-pak-2026-10-05.md)
 - [Supplied WebGL2 menu system](game-menu-webgl-2026-10-08.md)
+- [Game controllers](gamepad-2026-10-10.md)
 - [Opening demo and fresh Newer Game readiness](intro-readiness.md)
 - [Loading logo](loading-logo-2026-10-02.md)
 - [Loading optimization and prepared-data work](loading-optimization-2026-10-05.md)
