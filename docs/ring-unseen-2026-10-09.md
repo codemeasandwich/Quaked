@@ -7,6 +7,18 @@ In stock Quake the Ring of Shadows only stops monsters *noticing* you: a monster
 * **Unseen.** The moment you have the Ring (picked up, or switched on in Options > Cheats), every monster hunting you loses track of you and goes back to its patrol or its stand, as a Quake monster does when its enemy dies. While the Ring lasts none of them finds you again (Quake's own rule: a monster cannot notice an invisible player).
 * **Heard, not seen.** A monster you hurt while unseen turns on **the place you were when you fired**, not on you. It goes there and attacks that spot with its ordinary attacks (so standing still where you fired is still dangerous). Monsters hurt by the same shot share the spot; a later shot from somewhere else gives a new spot. After 5 seconds without a new hit, or when the Ring ends, it gives up and goes back to its patrol or stand; once you are visible again it can notice you in the ordinary way.
 
+## Your gun in the Unseen World
+
+Quake hides your gun while you have the Ring. In Newer Game's Unseen World vision the gun is now drawn and rendered **the same way as the enemies**: a pale, glowing apparition. (Owner request, 9 October 2026.)
+
+| Without the Ring | With the Ring: the gun and the Soldiers alike |
+| --- | --- |
+| ![The shotgun and two Soldiers, normal view](images/unseen-gun-before.png) | ![The shotgun and the Soldiers as pale apparitions](images/unseen-gun-in-unseen-world.png) |
+
+How: `R_DrawViewModel` (`src/gl_rmain.js`) no longer skips the gun when the Ring's vision is on; the gun's material writes its pigment tag from a shared uniform (`R_HeldVisionTag` in `src/r_newerskins.js`), the enemies' subject tag .065 in the Unseen World and its usual .08 otherwise, so the vision treats it as a subject; and the Unseen pass no longer passes the gun's pixels through untouched (`uProtectViewmodel` 0 for that pass only, `src/r_powervision.js`). The trail-history pass still keeps the gun out, so it leaves no echo as you turn. Classic hides the gun as Quake does, and the Pentagram's Demon vision is unchanged.
+
+Checked: in the browser (E1M2, monsters held still) the gun is a pale apparition like the two Soldiers with the Ring, and normal without it; the gun's tag is .065 there. `tests/powervision_runtime_test.js` (9/9, updated: the held tag is now the uniform, .08 by default) and `tests/unseen_gun_test.js` (2, which only checks the source wiring; the picture is the real check). Not checked: every weapon model by eye (the shotgun was), and the gun while firing.
+
 ## How
 
 `src/sv_unseen.js`. Two hooks on the game's own QuakeC functions (`pr_exec.js`, as for the respawn and face events): `W_Attack` records where you were when you fired; `T_Damage`, when it leaves a monster you hurt with you as its enemy while you have the Ring, gives it an invisible spot entity (`unseen_spot`: not solid, cannot be damaged) at that position as its enemy and goal. A per-frame check (`SV_UnseenFrame`, from the host frame, also while a menu holds the game) drops any monster still hunting an unseen player, and removes spots that have expired or once the Ring ends, first sending their monsters back to patrol or stand. No monster code is replaced: it is the game's own AI working on a different enemy. Spots in a saved game are picked up again when it is loaded. Local single player with the stock progs only.

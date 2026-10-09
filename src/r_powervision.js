@@ -112,7 +112,11 @@ export function R_PowerVisionRender(renderer, source, hdr, camera, mode, client,
 	const saved=renderer.getRenderTarget();
 	const render=(material,output)=>{p.mesh.material=material;renderer.setRenderTarget(output);renderer.render(p.scene,p.camera);};
 	try {
+		// The held gun: the Unseen World draws it as it draws the enemies (gl_rmain tags it a subject); Demon vision keeps it
+		// as it is. The history pass always keeps it out of the trails: it moves with the eye, so its echo would smear.
+		u.uProtectViewmodel.value=mode===1?0:1;
 		render(p.materials[mode===1?0:2],p.current);
+		u.uProtectViewmodel.value=1;
 		if (mode===1) {
 			u.tCurrent.value=p.current.texture; u.tHistory.value=p.history[p.index].texture;
 			const next=1-p.index;

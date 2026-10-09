@@ -485,6 +485,10 @@ const FRAGMENT_LIGHT = `
 	}
 `;
 
+// The held weapon's pigment tag in the scene's material buffer: .08 (a held/player coat) normally, .065 (an enemy subject)
+// while the Ring's Unseen World vision is on, so the vision draws the gun as it draws the enemies (gl_rmain.js sets it each frame).
+export const R_HeldVisionTag = { value: .08 };
+
 function patchShader( set ) {
 
 	return function ( shader ) {
@@ -494,6 +498,7 @@ function patchShader( set ) {
   shader.uniforms.uActorCoatOn={get value(){return surface&&R_IsNewer()?1:0;}};
   const held=this.userData.quakeViewmodel===true; // the held weapon shows its own coating; the player's body (chase camera) shows the body's
   shader.uniforms.uActorBloodSpots={get value(){return (held?R_ActiveWeaponSurface():R_PlayerBodySurface()).spots;}};
+  shader.uniforms.uHeldVisionTag=R_HeldVisionTag;
 		shader.uniforms.uHasSkinHeightShadow = { get value() { return set.uniforms.qrNormal.value?.userData.heightSource ? 1 : 0; } };
 
 		shader.vertexShader = 'varying vec2 vActorUv;\nvarying vec3 vQrView;\nvarying vec3 vQrNormal;\n' +
@@ -512,10 +517,11 @@ function patchShader( set ) {
  float unusedSkinDiffuseVisibility;skinHeightMask=qrHeightBuildMask(-vQrView,hctx,unusedSkinDiffuseVisibility);
  ${this.depthWrite === false ? 'skinHeightMask=vec4(0.);' : this.transparent && !this.userData.quakeViewmodel ? 'skinHeightMask=vec4(1.);' : ''}
  ` + FRAGMENT_LIGHT.replace( '// imported_emission_style', set.emissionFragment || '' ) + '#include <opaque_fragment>' )
-			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.depthWrite === false || this.transparent && !this.userData.quakeViewmodel ? 'vec4(0.)' : this.userData.quakeViewmodel ? 'vec4(qrN*0.5+0.5,-vQrView.z-2.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( '+(this.userData.quakeReceiverOnly?'qrAlbedo*qrCoverage':'qrAlbedo')+', '+(surface?'0.08':set.isEnemy?'0.065':'0.06')+' );\n gHeightMask=skinHeightMask;' );
+			.replace( '#include <colorspace_fragment>', '#include <colorspace_fragment>\n\tgNormal = ' + ( this.depthWrite === false || this.transparent && !this.userData.quakeViewmodel ? 'vec4(0.)' : this.userData.quakeViewmodel ? 'vec4(qrN*0.5+0.5,-vQrView.z-2.)' : 'vec4(qrN*0.5+0.5,vQrView.z)' ) + ';\n\tgAlbedo = vec4( '+(this.userData.quakeReceiverOnly?'qrAlbedo*qrCoverage':'qrAlbedo')+', '+(held?'uHeldVisionTag':surface?'0.08':set.isEnemy?'0.065':'0.06')+' );\n gHeightMask=skinHeightMask;' );
 
   shader.fragmentShader = shader.fragmentShader.replace( 'void main() {', `
  uniform float uHasSkinHeightShadow;
+ uniform float uHeldVisionTag;
  float qrShadowHeight(vec2 uv,int layer){return textureLod(qrNormal,uv,0.).a;}
  bool qrShadowKnown(vec2 uv,int layer){return all(greaterThanEqual(uv,vec2(0.)))&&all(lessThanEqual(uv,vec2(1.)));}
  void main() {` );
