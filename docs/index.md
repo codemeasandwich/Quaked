@@ -155,6 +155,7 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 
 Commit scopes, delivery records and handoffs.
 
+- [Architecture baseline: subsystems, cycles and the debt to close](architecture-baseline-2026-10-10.md)
 - [Chat art commit scope — 2026-10-05](chat-art-commit-2026-10-05.md)
 - [Combined work checkpoint](commit-all-work-2026-10-02.md)
 - [Reviewed delivery — 2026-10-01](delivery-2026-10-01.md)
