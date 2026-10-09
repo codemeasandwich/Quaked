@@ -1,5 +1,6 @@
 import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
 import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL, waterWave, R_WaveTexture, R_WaterWavesLive } from './r_waves.js';
+import { CLOAK_GLSL, R_CloakPending, R_CloakRender } from './r_cloak.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
 import { R_BestiaryPortraitLight } from './r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
@@ -2924,6 +2925,9 @@ uniform mat4 uProjInv;
 uniform mat4 uViewInv;
 uniform vec4 uWaterWave[ ${WAVE_WATER.fields} ]; // xy = the field's corner, z = the surface height, w = cell size (0: unused)
 ${WAVE_GLSL}
+// Invisibility, seen (cards [6] and [27], r_cloak.js): what a cloaked gun or body covers is the frame bent through it
+uniform vec2 uCloakResolution;
+${CLOAK_GLSL}
 // the rippling water a pixel shows: its ray meets a live field's surface in front of what the pixel shows. xy = the slope there,
 // z = the height, w = 1 (0: no rippling water); hit = the point on the surface. Fields that overlap (a second hit near the edge
 // of the first's square) add up: the waves are linear and each hit went into one field.
@@ -2976,6 +2980,8 @@ void main() {
 	}
 	gl_FragColor = texture2D( tComposite, uv );
 	gl_FragColor.rgb = gl_FragColor.rgb * ( 1.0 + facing ) + glint * ( 0.3 + 0.9 * dot( gl_FragColor.rgb, vec3( 0.2126, 0.7152, 0.0722 ) ) );
+	vec4 cloaked = cloakAt( vUv, uCloakResolution );
+	if ( cloaked.a > 0.5 ) gl_FragColor = vec4( cloaked.rgb, 1.0 );
 	#include <colorspace_fragment>
 	vec3 shown = gl_FragColor.rgb * uBright;
 	shown = max( uContrastPivot + ( shown - uContrastPivot ) * uContrastGain, 0.0 );
@@ -3172,6 +3178,7 @@ function createPipeline() {
 			tComposite: { value: null }, uBright: { value: 1 },
 			uWaves: { value: 0 }, tDepth: shared.tDepth, tNormal: { value: null }, uProj: shared.uProj, uProjInv: shared.uProjInv, uViewInv: shared.uViewInv,
 			uWaterWave: { value: waterWave }, tWaves: { value: R_WaveTexture() },
+			tCloak: { value: null }, uCloak: { value: 0 }, uCloakTime: { value: 0 }, uCloakResolution: { value: new THREE.Vector2( 1, 1 ) },
 			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 }
 		} )
 	};
@@ -3735,7 +3742,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	const vision = PowerVisionMode(cl, R_NewerGame());
 	const visionOn=vision!==0 || R_QuadVisionActive();
 	const waves = R_WaterActive() && R_WaterWavesLive() > 0; // (ripples on the water bend the finished picture: the present pass, card [W1])
-	const upscale = (lighting && dyn.scale < 1) || visionOn || waves;
+	const cloak = R_CloakPending(); // (a cloaked gun or body: the present pass bends the frame through it, cards [6] and [27])
+	const upscale = (lighting && dyn.scale < 1) || visionOn || waves || cloak;
 	// Rend the Veil consumes the existing linear composite, even when Newer
 	// lighting is disabled. Its local optics never repeat bloom/display grading.
 	const rendFields = R_NewerGame() ? R_RendVeilFields() : [];
@@ -3762,6 +3770,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		shown.uContrastPivot.value = cm.uContrastPivot.value;
 		shown.uWaves.value = waves ? 1 : 0;
 		shown.tNormal.value = cm.tNormal.value;
+		const cloakTexture = R_CloakRender( renderer, camera, hdr.width, hdr.height );
+		shown.tCloak.value = cloakTexture ?? shown.tComposite.value; shown.uCloak.value = cloakTexture ? 1 : 0;
+		shown.uCloakTime.value = cl?.time ?? 0; shown.uCloakResolution.value.set( hdr.width, hdr.height );
 
 	} else { R_PowerVisionReset(); R_QuadVisionReset(); }
 

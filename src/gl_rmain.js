@@ -57,12 +57,13 @@ import { PowerVisionMode } from './powervision_state.js';
 import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
+import { r_cloak, R_CloakSubmit } from './r_cloak.js';
 import {
 	M_PI, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorMA,
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
 } from './mathlib.js';
 import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, R_ClassicSurfaceMaterial, R_ClassicLightmapsFrame, R_ClassicLightmap } from './gl_rsurf.js';
-import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
+import { Mod_PointInLeaf, Mod_LeafPVS, Mod_ForName, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
 import { r_avertexnormal_dots } from './anorm_dots.js';
@@ -659,6 +660,8 @@ export function R_DrawEntitiesOnList() {
 
 	}
 
+	R_CloakBodyFrame();
+
 	// second pass: draw sprites separately because of alpha blending
 	for ( let i = 0; i < cl_numvisedicts; i ++ ) {
 
@@ -678,6 +681,24 @@ export function R_DrawEntitiesOnList() {
 
 	}
 
+}
+
+// Invisibility, seen (cards [6] and [27], r_cloak.js). Newer Game, with the post passes, when the Unseen World vision is not
+// drawing the player: the held gun (R_DrawViewModel) and, in the chase view, the player's own body are cloaked. The body is a
+// renderer-only player model at the player's place and pose (the server's model stays the eyes, which still show); it never
+// joins the scene, only the cloak's target.
+function R_Cloaked() {
+	return cl != null && ( cl.items & 524288 ) !== 0 && R_IsNewer() && R_PostActive() && r_cloak.value !== 0 && PowerVisionMode( cl, R_PostActive() ) !== 1;
+}
+let _cloakBody = null;
+function R_CloakBodyFrame() {
+	if ( chase_active.value === 0 || ! R_Cloaked() || cl.stats == null || cl.stats[ 0 ] <= 0 ) return;
+	const me = cl_entities?.[ cl.viewentity ], model = Mod_ForName( 'progs/player.mdl', false ), header = model?.cache?.data;
+	if ( ! me || ! header?.posedata ) return;
+	if ( _cloakBody === null ) _cloakBody = new entity_t();
+	_cloakBody.model = model; _cloakBody.origin = me.origin; _cloakBody.angles = me.angles; _cloakBody.frame = me.frame | 0; _cloakBody.skinnum = 0;
+	const mesh = R_DrawAliasModel_mesh( _cloakBody, header, null, 0 );
+	if ( mesh ) R_CloakSubmit( mesh );
 }
 
 //============================================================================
@@ -744,7 +765,8 @@ export function R_DrawViewModel() {
 	// vision renders it as it renders the enemies; Classic (and Newer without the vision pass) keeps it hidden.
 	const unseenWorld = R_NewerGame() && PowerVisionMode( cl, R_PostActive() ) === 1;
 	R_HeldVisionTag.value = unseenWorld ? .065 : .08;
-	if ( ( cl.items & 524288 ) && ! unseenWorld ) // IT_INVISIBILITY
+	const cloaked = R_Cloaked() && ! isXRActive();
+	if ( ( cl.items & 524288 ) && ! unseenWorld && ! cloaked ) // IT_INVISIBILITY
 		return;
 
 	if ( cl.stats != null && cl.stats[ 0 ] <= 0 ) // STAT_HEALTH
@@ -838,6 +860,9 @@ export function R_DrawViewModel() {
 		// mesh, leaving native entity origin, firing and baked pose data intact.
 		const pullback=R_WeaponHeldPullback(currententity.model.name);
 		if(pullback){camera.getWorldDirection(_heldPullbackDirection);mesh.position.addScaledVector(_heldPullbackDirection,-pullback);}
+		// with the Ring (and no vision drawing it), the gun is a cloaked silhouette: not in the scene or its shadows, only the cloak's
+		mesh.visible = ! cloaked;
+		if ( cloaked ) R_CloakSubmit( mesh );
 
 	}
 
@@ -1995,6 +2020,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_shotgunfx );
 	Cvar_RegisterVariable( r_impactripples );
+	Cvar_RegisterVariable( r_cloak );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
