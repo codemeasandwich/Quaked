@@ -40,6 +40,7 @@ import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from './sv_axec
 import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from './sv_faceevents.js';
 import { SV_UnseenFunctionEnter, SV_UnseenFunctionLeave } from './sv_unseen.js';
 import { SV_MeleeSprayEnter } from './sv_meleespray.js';
+import { SV_ProneZombieEnter, SV_ProneZombieLeave } from './sv_pronezombie.js';
 
 /*
 */
@@ -284,6 +285,7 @@ export function PR_EnterFunction( f ) {
 	pr_stack[ pr_depth ].respawn = SV_RespawnFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].unseen = SV_UnseenFunctionEnter( f );
 	pr_stack[ pr_depth ].melee = SV_MeleeSprayEnter( f );
+	pr_stack[ pr_depth ].prone = SV_ProneZombieEnter( f );
 
 	pr_stack[ pr_depth ].s = pr_xstatement;
 	pr_stack[ pr_depth ].f = pr_xfunction;
@@ -349,6 +351,8 @@ export function PR_LeaveFunction() {
 	SV_AxeFunctionLeave( pr_stack[ pr_depth ].axe );
 	pr_stack[ pr_depth ].axe = null;
 	SV_UnseenFunctionLeave( pr_stack[ pr_depth ].unseen );
+	SV_ProneZombieLeave( pr_stack[ pr_depth ].prone );
+	pr_stack[ pr_depth ].prone = null;
 	pr_stack[ pr_depth ].unseen = null;
 	PR_SetXFunction( pr_stack[ pr_depth ].f );
 	return pr_stack[ pr_depth ].s;
