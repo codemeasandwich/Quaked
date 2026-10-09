@@ -15,12 +15,14 @@ Deno.test( 'a box in a visible portal\'s receiver is kept, one elsewhere or behi
 	try {
 		const [ p ] = portal.R_BuildPortals( model ); check( p, 'a portal' );
 		p.destLeafs = [ leafIn ]; delete p._destLeafSet; p.srcLeaf.visframe = 7;
-		const at = point => point[ 0 ] > 1000 ? leafIn : leafOut;
-		const inside = [ 1100, 0, 0 ], insideMax = [ 1120, 20, 20 ], outside = [ 0, 0, 0 ], outsideMax = [ 20, 20, 20 ];
+		const at = point => point[ 0 ] > 1000 && point[ 0 ] < 1100 ? leafIn : leafOut;
+		const inside = [ 1040, 0, 0 ], insideMax = [ 1060, 20, 20 ], outside = [ 0, 0, 0 ], outsideMax = [ 20, 20, 20 ];
 		portal.R_PortalsBeginFrame( true );
 		check( portal.R_BoxInPortalReceiver( inside, insideMax, at, 7 ), 'a box in a receiver leaf, portal in view' );
 		check( ! portal.R_BoxInPortalReceiver( outside, outsideMax, at, 7 ), 'a box in no receiver leaf' );
-		check( portal.R_BoxInPortalReceiver( [ 990, 0, 0 ], [ 1100, 20, 20 ], at, 7 ), 'a box with one corner in a receiver leaf (a thin door in a wall)' );
+		check( portal.R_BoxInPortalReceiver( [ 1050, 0, 0 ], [ 1300, 20, 20 ], at, 7 ), 'a box with only a corner in a receiver leaf (a thin door in a wall)' );
+		check( portal.R_BoxInPortalReceiver( [ 900, 0, 0 ], [ 1200, 20, 20 ], at, 7 ), 'a box with only its centre in a receiver leaf' );
+		const src = p.srcLeaf; p.srcLeaf = null; check( ! portal.R_BoxInPortalReceiver( inside, insideMax, at, 7 ), 'a portal with no source leaf is never in view' ); p.srcLeaf = src;
 		check( ! portal.R_BoxInPortalReceiver( inside, insideMax, at, 8 ), 'the portal is not in the main view this frame' );
 		portal.R_PortalsBeginFrame( false ); check( ! portal.R_BoxInPortalReceiver( inside, insideMax, at, 7 ), 'portals switched off' ); portal.R_PortalsBeginFrame( true );
 	} finally { portal.R_ClearPortals(); }

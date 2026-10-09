@@ -25,11 +25,12 @@ the preview. No entity is hidden by class or by scene; the arch surface removal 
 * `gl_portal_test`, `gl_rsurf_test` and `arch_depth_test` pass.
 * Real browser, E1M5: before, doors `*20` to `*23` were not in the scene and the Shambler showed; after, all four are in the scene and
   the window shows the door.
+* 6 mutants (portal view ignored, null source leaf passing, corners only, centre only, switched-off portals, always true) are all caught.
 * A before/after scan of all 22 windows of the `start` map at Nightmare changed no picture noticeably.
 
 ## Not done or not checked
 
 The **START Nightmare false-floor tunnel** in the card was not reproduced: no window in the start map showed a difference with the
 change, so either the scene needs a particular state or it is a different cause. The brush-entity fix is general and would cover a
-false floor that is a brush entity, but that is not shown. No mutation checks beyond the unit test, no independent review, and no
+false floor that is a brush entity, but that is not shown. No independent review, and no
 paired captures after a barrier opens.
