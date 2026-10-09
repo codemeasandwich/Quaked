@@ -2,7 +2,7 @@
 // is observed separately from later healing/clientdata, and a dry-fire weapon
 // switch is not a shot. The observation changes nothing in the game, with one deliberate exception: the
 // TraceAttack of a pellet of an observed shotgun blast waits for its pellet (traceAttackEnter, sv_shotdelay.js).
-import { sv, svs } from './server.js';
+import { sv, svs, FL_MONSTER } from './server.js';
 import { cls, ca_connected } from './client.js';
 import { R_NewerGame } from './r_anim.js';
 import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, pr_xfunction } from './progs.js';
@@ -12,7 +12,7 @@ import { shotRaysNew, shotRayRecord, shotRayEvent, shotBlastId } from './sv_shot
 import { shotDelayCapture } from './sv_shotdelay.js';
 import { IT_AXE, IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN, IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING } from './quakedef.js';
 
-const LIMIT = 256, queues = { damage: [], shot: [], reward: [], rays: [] }, names = new WeakMap();
+const LIMIT = 256, queues = { damage: [], shot: [], reward: [], rays: [], alert: [] }, names = new WeakMap();
 const POWERS = new Map( [
  [ 'item_artifact_super_damage', [ 'quad', 'super_damage_finished' ] ],
  [ 'item_artifact_invulnerability', [ 'invulnerability', 'invincible_finished' ] ],
@@ -36,7 +36,7 @@ function name( fn ) { if ( !fn ) return ''; let value = names.get( fn ); if ( va
 const vector = value => value?.length >= 3 && [ value[0], value[1], value[2] ].every( Number.isFinite ) ? Array.from( value ).slice( 0, 3 ) : null;
 
 export function SV_FaceReset() {
- queues.damage.length = queues.shot.length = queues.reward.length = queues.rays.length = 0; activeShot = null; epoch ++;
+ queues.damage.length = queues.shot.length = queues.reward.length = queues.rays.length = queues.alert.length = 0; activeShot = null; epoch ++;
  program = pr_functions; world = sv.edicts; map = sv.name;
 }
 function syncEpoch() { if ( program !== pr_functions || world !== sv.edicts || map !== sv.name ) SV_FaceReset(); }
@@ -52,7 +52,7 @@ export function SV_FaceLocalActive() {
 export function SV_FaceDrain( kind ) {
  syncEpoch();
  if ( !SV_FaceLocalActive() ) { SV_FaceReset(); return []; }
- return kind === 'damage' || kind === 'shot' || kind === 'reward' || kind === 'rays' ? queues[kind].splice( 0 ) : [];
+ return kind === 'damage' || kind === 'shot' || kind === 'reward' || kind === 'rays' || kind === 'alert' ? queues[kind].splice( 0 ) : [];
 }
 function emit( event ) { const queue = queues[event.kind]; if ( queue.length >= LIMIT ) queue.shift(); queue.push( event ); }
 
@@ -60,6 +60,7 @@ export function SV_FaceFunctionEnter( fn, caller ) {
  const functionName = name( fn ), ammo = FIRE_AMMO.get( functionName ), axe = AXE_STARTS.has( functionName ) && name( caller ) === 'W_Attack';
  if ( functionName === SOLDIER_FIRE ) return soldierEnter( fn );
  if ( functionName === 'TraceAttack' ) return traceAttackEnter( caller );
+ if ( functionName === 'FoundTarget' ) return alertEnter();
  if ( functionName !== 'T_Damage' && functionName !== 'powerup_touch' && !ammo && !axe ) return null;
  syncEpoch(); if ( !SV_FaceLocalActive() ) return null;
  const player = svs.clients[0].edict;
@@ -96,6 +97,21 @@ function traceAttackEnter( caller ) {
  if ( !activeShot?.rays || name( caller ) !== 'FireBullets' ) return null;
  if ( !shotDelayCapture( activeShot ) ) return null;
  return { kind:'trace', epoch, skip: ED_FindFunction( 'SUB_Null' ).first_statement - 1 };
+}
+
+// A monster that has just noticed the player: its FoundTarget runs (it plays the sight sound). FoundTarget is called from
+// FindTarget (the monster sees or hears the player), from T_Damage (the player hurt a monster that had a different enemy)
+// and from monster_use (a trigger or alarm wakes it). The HUD face looks toward it when it is off screen. Read-only. Not during
+// the respawn sequence, whose own alert wakes the whole level. Every event is queued (the queue is bounded); the client picks
+// the ones the player cannot see and glances once per half second (R_FaceAlerts), so a visible monster cannot hide an unseen one.
+function alertEnter() {
+ syncEpoch(); if ( !SV_FaceLocalActive() ) return null;
+ const monster = PROG_TO_EDICT( pr_global_struct.self ), player = svs.clients[0].edict;
+ if ( !monster || monster.free || monster === player || !( monster.v.flags & FL_MONSTER ) || PROG_TO_EDICT( monster.v.enemy ) !== player ) return null;
+ if ( player.v.health <= 0 || player._respawn?.sequence ) return null;
+ emit( { kind:'alert', time:sv.time, map:sv.name, enemy:monster.index, source:vector( [0,1,2].map( i => monster.v.origin[i] + .5*(monster.v.mins[i]+monster.v.maxs[i]) ) ),
+  origin:vector( player.v.origin ), viewAngles:vector( player.v.v_angle ) } );
+ return null;
 }
 
 // A soldier firing his shotgun. Observed like the player's: read-only, local single-player Newer Game only.

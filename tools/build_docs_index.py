@@ -24,7 +24,7 @@ TOPICS = [
 	('Weapons and combat', 'Held weapons, shotgun pellets, shells, the death and respawn rules.',
 	 r'weapon|nailgun|shotgun|super-nailgun|held-framing|clockwise-respawn|respawn-|death-remains|pinned-zombies|powerup|power-up|quad'),
 	('Enemies, skins and faces', 'Custom enemy skins, heights, heads, the Bestiary and the player portrait.',
-	 r'enemy|hud-|head-skins|height-authoring|demon|oldone|vore|bestiary|gloom-hood|shambler|zombie'),
+	 r'enemy|face-|hud-|head-skins|height-authoring|demon|oldone|vore|bestiary|gloom-hood|shambler|zombie'),
 	('Worlds, rock and textures', 'Level textures, rock relief, seams, seamless levels and portals.',
 	 r'rock|texture|seam|level-|portal|e1m1|prepared-|seamless|classic-|demo-|profiler'),
 	('Light, water and fire', 'Lighting, shadows, water, lava, glass and the fire and explosion effects.',

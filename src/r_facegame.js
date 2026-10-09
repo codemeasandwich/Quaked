@@ -1,6 +1,7 @@
 // Gameplay adapter: events choose expression/attention; movement never does.
 import { FaceState, FaceWaterState, faceWaterStage } from './face_state.js';
 import { cl, cls } from './client.js';
+import { r_refdef } from './render.js';
 import { in_attack } from './cl_input.js';
 import { sv, MOVETYPE_NOCLIP } from './server.js';
 import { GetEdictFieldValue } from './pr_edict.js';
@@ -32,6 +33,21 @@ export function R_FaceDamage( armor, blood, from, origin, angles ) {
 		for ( const event of events ) state.damage( { time: cl.time - Math.max( 0, sv.time - event.time ), receivedTime: cl.time, impactTime: event.time, healthLoss: event.loss, amount: event.amount ?? event.loss,
 			angle: event.angle === null ? null : faceImpactAngle( event.source, event.origin, event.viewAngles ) } );
 	} else if ( cls.demoplayback || ! SV_FaceLocalActive() ) state.damage( { time: cl.time, healthLoss: blood, amount: armor + blood, angle: faceImpactAngle( from, origin, angles ) } );
+}
+// An enemy within half the horizontal field of view (plus a margin) of where the player was looking is on screen, and seeing
+// it is enough; only one the player cannot see makes the face turn toward its sound. The live horizontal field of view is used
+// (it widens on wide screens and for the Newer phone settings); FACE_ALERT_ONSCREEN is the fallback when it is not known.
+export const FACE_ALERT_ONSCREEN = 55, FACE_ALERT_MARGIN = 5;
+export const faceAlertOnScreenLimit = () => Number.isFinite( r_refdef.fov_x ) && r_refdef.fov_x > 20 && r_refdef.fov_x < 180 ? r_refdef.fov_x / 2 + FACE_ALERT_MARGIN : FACE_ALERT_ONSCREEN;
+export function R_FaceAlerts( state, client = cl ) {
+	if ( cls.demoplayback ) return;
+	const limit = faceAlertOnScreenLimit();
+	for ( const event of SV_FaceDrain( 'alert' ) ) {
+		if ( ! event.source || ! event.origin || ! event.viewAngles ) continue;
+		const angle = faceImpactAngle( event.source, event.origin, event.viewAngles );
+		if ( angle === null || Math.abs( ( ( angle + 180 ) % 360 + 360 ) % 360 - 180 ) <= limit ) continue;
+		state.alert( { time: client.time - Math.max( 0, sv.time - event.time ), receivedTime: client.time, angle } );
+	}
 }
 export function R_FaceInventory( before, after ) {
 	// Initial spawn inventory is a baseline, not a reward; signon guards that.
@@ -75,6 +91,7 @@ export function R_PlayerFaceFrame( client = cl ) {
 	const weaponFrame = client.stats[ STAT_WEAPONFRAME ];
 	if ( ! native && client.time !== lastFrame && weaponFrame > 0 && weaponFrame !== lastWeaponFrame && ! shots.length ) state.shot( { time: client.time, cadence: .6 } );
 	lastFrame = client.time; lastWeaponFrame = weaponFrame;
+	R_FaceAlerts( state, client );
 	return {...state.frame( { time: client.time, health: client.stats[ STAT_HEALTH ],
 		attacking: native ? Boolean( in_attack.state & 1 ) : cls.demoplayback ? weaponFrame > 0 : Boolean( in_attack.state & 1 ) || weaponFrame > 0,
 		strength: Boolean( client.items & IT_QUAD ), invulnerability: Boolean( client.items & IT_INVULNERABILITY ), invisibility: Boolean( client.items & IT_INVISIBILITY ) } ),divingSuit:Boolean(client.items&IT_SUIT),...R_FaceWater(client)};

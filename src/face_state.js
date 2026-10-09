@@ -37,7 +37,7 @@ export class FaceState {
 	constructor( { random = Math.random } = {} ) { this.random = random; this.reset(); }
 	reset( time = 0 ) {
 		this.pose = this.targetPose = 2; this.stepTime = time; this.lastTime = time;
-		this.hits = []; this.hitUntil = this.painUntil = this.shockUntil = this.grinUntil = -Infinity;
+		this.hits = []; this.hitUntil = this.painUntil = this.shockUntil = this.grinUntil = -Infinity; this.hitIsAlert = false; this.lastAlert = -Infinity;
 		this.attackStart = null; this.attackUntil = this.focusUntil = this.idleBlockedUntil = -Infinity;
 		this.wasAttacking = false; this.dead = false; this.glancePose = 2; this.glanceUntil = -Infinity;
 		this.nextGlance = time + 1.5 + this.random() * 1.5;
@@ -60,10 +60,20 @@ export class FaceState {
 		let best = -1, chosen = 2;
 		// Iterating oldest to latest and accepting ties implements latest-hit ties.
 		for ( const hit of this.hits ) { const sum = totals.get( hit.pose ); if ( sum >= best ) { best = sum; chosen = hit.pose; } }
-		this.hitPose = chosen; this.hitUntil = time + 1; this.painUntil = time + .2;
+		this.hitPose = chosen; this.hitUntil = time + 1; this.painUntil = time + .2; this.hitIsAlert = false;
 		if ( healthLoss > 20 ) this.shockUntil = time + 1;
 		this.glancePose = 2; this.glanceUntil = -Infinity;
 		this._target( chosen, receivedTime );
+	}
+	// An enemy that is off screen has just noticed the player (its sight sound): the face glances toward where the sound
+	// came from, for a second. It is a reaction without pain, and it never replaces a reaction to damage that is under way.
+	alert( { time, receivedTime = time, angle = null } ) {
+		this._clock( receivedTime ); if ( this.dead || ! Number.isFinite( angle ) ) return;
+		if ( time - this.lastAlert < .5 ) return; // one glance per half second: a room waking at once is one glance
+		if ( time < this.hitUntil && ! this.hitIsAlert ) return; // a reaction to damage is under way and owns the face
+		this.lastAlert = time; this.hitPose = faceDirection( angle ); this.hitUntil = time + 1; this.hits = []; this.hitIsAlert = true;
+		this.glancePose = 2; this.glanceUntil = -Infinity;
+		this._target( this.hitPose, receivedTime );
 	}
 	reward( time, receivedTime = time ) { this._clock( receivedTime ); if ( ! this.dead ) this.grinUntil = time + 2; }
 	shot( { time, receivedTime = time, cadence = .6 } ) {
