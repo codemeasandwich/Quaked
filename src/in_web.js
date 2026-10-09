@@ -119,8 +119,11 @@ function GP_GetPrimary() {
 	if ( ! gamepads ) return null;
 
 	const connected = Array.from( gamepads ).filter( gp => gp && gp.connected );
-	return connected.find( gp => gp.index === gpState.index && gp.id === gpState.id )
-		|| connected.find( gp => gp.mapping === 'standard' ) || connected[ 0 ] || null;
+	const current = connected.find( gp => gp.index === gpState.index && gp.id === gpState.id ), standard = connected.find( gp => gp.mapping === 'standard' );
+	// (a standard pad takes over from a nonstandard device that holds nothing: some systems list a pad's motion sensor or
+	// touchpad as a device of its own)
+	if ( current && ( current.mapping === 'standard' || ! standard || gpState.owned.size > 0 ) ) return current;
+	return standard || connected[ 0 ] || null;
 
 }
 
@@ -150,26 +153,36 @@ function GP_ButtonValue( gp, index ) {
 }
 
 // a key the controller holds: down with the first button holding it, up with the last
+// (the keys go to Key_Event as the controller's, 'pad': a key the keyboard, mouse or touch screen also holds stays down
+// until they all let go)
 function GP_Press( key, keyEvent ) {
 
 	const n = gpState.owned.get( key ) || 0;
 	gpState.owned.set( key, n + 1 );
-	if ( n === 0 ) keyEvent( key, true );
+	if ( n === 0 ) keyEvent( key, true, 'pad' );
 
 }
 
 function GP_Release( key, keyEvent ) {
 
 	const n = gpState.owned.get( key ) || 0;
-	if ( n <= 1 ) { gpState.owned.delete( key ); if ( n === 1 ) keyEvent( key, false ); } else gpState.owned.set( key, n - 1 );
+	if ( n <= 1 ) { gpState.owned.delete( key ); if ( n === 1 ) keyEvent( key, false, 'pad' ); } else gpState.owned.set( key, n - 1 );
 
 }
 
-// the controller went away or another took over: release what it holds, and only that
+// the controller went away or another took over (or WebXR began): release what it holds, and only that
 function GP_ReleaseOwned( keyEvent ) {
 
-	for ( const key of gpState.owned.keys() ) keyEvent( key, false );
+	const keys = [ ...gpState.owned.keys() ];
 	gpState.owned.clear(); gpState.sent.clear();
+	for ( const key of keys ) keyEvent( key, false, 'pad' );
+
+}
+
+// WebXR has its own controllers: the gamepad lets go of everything and is chosen afresh afterwards
+export function IN_GamepadRelease( keyEvent = Key_Event ) {
+
+	GP_ReleaseOwned( keyEvent ); gpState.index = null; gpState.id = null;
 
 }
 
@@ -177,11 +190,12 @@ function GP_ReleaseOwned( keyEvent ) {
 ================
 IN_GamepadPoll
 
-Once a frame (IN_Move; with no command while the Bestiary holds the input): the buttons as key presses and, in the game,
-the sticks as movement and look. keyEvent is Key_Event (a check passes its own). Returns the controller used, or null.
+Every host frame (IN_Commands, with no command: the buttons, in menus and between levels too) and again when a command
+is built (IN_Move: the sticks as movement and look, in the game). keyEvent is Key_Event, print Con_Printf (a check passes
+its own). Reading twice in a frame changes nothing: each button remembers what it sent. Returns the controller, or null.
 ================
 */
-export function IN_GamepadPoll( cmd, keyEvent = Key_Event ) {
+export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) {
 
 	const gp = GP_GetPrimary();
 	if ( ! gp ) {
@@ -198,7 +212,7 @@ export function IN_GamepadPoll( cmd, keyEvent = Key_Event ) {
 		if ( gp.mapping !== 'standard' && ! gpState.noticed.has( gp.id ) ) {
 
 			gpState.noticed.add( gp.id );
-			Con_Printf( 'Controller "' + gp.id + '" has no standard button layout: its buttons may not match\n' );
+			print( 'Controller "' + gp.id + '" has no standard button layout: its buttons may not match\n' );
 
 		}
 
@@ -693,12 +707,14 @@ export function IN_Shutdown() {
 ===========
 IN_Commands
 
-Joystick button events in original. Not needed for browser.
+Joystick button events in the original: here the game controller's buttons, every host frame, so a controller works
+the menus with no level running (card [36]); in WebXR its own controllers take over and the gamepad lets go.
 ===========
 */
 export function IN_Commands() {
 
-	// No joystick handling needed in browser
+	if ( isXRActive() ) IN_GamepadRelease();
+	else IN_GamepadPoll( null );
 
 }
 
@@ -769,7 +785,7 @@ In the original, this called IN_MouseMove and IN_JoyMove.
 ===========
 */
 export function IN_Move( cmd ) {
-	if ( R_BestiaryInputLocked() ) { IN_MouseMove();Touch_GetLookDelta();IN_GamepadPoll(null);if(cmd)cmd.forwardmove=cmd.sidemove=cmd.upmove=0;return; }
+	if ( R_BestiaryInputLocked() ) { IN_MouseMove();Touch_GetLookDelta();if(isXRActive())IN_GamepadRelease();else IN_GamepadPoll(null);if(cmd)cmd.forwardmove=cmd.sidemove=cmd.upmove=0;return; }
 
 	let { mx, my } = IN_MouseMove();
 
@@ -866,7 +882,7 @@ export function IN_Move( cmd ) {
 		const leftDown = xrInput.leftTrigger > 0.5;
 		if ( leftDown !== _xrPrevLeftTrigger ) {
 
-			Key_Event( K_SPACE, leftDown );
+			Key_Event( K_SPACE, leftDown, 'xr' );
 			_xrPrevLeftTrigger = leftDown;
 
 		}
@@ -875,19 +891,16 @@ export function IN_Move( cmd ) {
 		const rightDown = xrInput.rightTrigger > 0.5;
 		if ( rightDown !== _xrPrevRightTrigger ) {
 
-			Key_Event( K_MOUSE1, rightDown );
+			Key_Event( K_MOUSE1, rightDown, 'xr' );
 			_xrPrevRightTrigger = rightDown;
 
 		}
 
 	}
 
-	// Standard Gamepad API input (non-XR)
-	if ( ! isXRActive() ) {
-
-		IN_GamepadPoll( cmd );
-
-	}
+	// Standard Gamepad API input (non-XR; in XR the gamepad has let go of everything)
+	if ( ! isXRActive() ) IN_GamepadPoll( cmd );
+	else IN_GamepadRelease();
 
 }
 

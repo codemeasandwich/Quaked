@@ -776,7 +776,27 @@ Called by the system between frames for both key up and key down events
 Should NOT be called during an interrupt!
 ===================
 */
-export function Key_Event( key, down ) {
+// Which devices hold each key down (card [36]): the keyboard and mouse ('kbd', the default), the touch screen, a game
+// controller ('pad') and WebXR controllers press the same keys. A key goes down with its first holder and up with its last,
+// so one device letting go never cuts an action another still holds; a holder's own repeats pass as before.
+const keyHolders = new Map();
+
+export function Key_Event( key, down, source = 'kbd' ) {
+
+	let holders = keyHolders.get( key );
+	if ( down ) {
+
+		if ( holders === undefined ) keyHolders.set( key, holders = new Set() );
+		if ( holders.size > 0 && ! holders.has( source ) ) { holders.add( source ); return; } // (already down: another device holds it)
+		holders.add( source );
+
+	} else if ( holders !== undefined && holders.size > 0 ) {
+
+		holders.delete( source );
+		if ( holders.size > 0 ) return; // (still held by another device)
+
+	}
+
 	const wasDown = keydown[ key ];
 
 	keydown[ key ] = down;
@@ -945,6 +965,7 @@ Key_ClearStates
 */
 export function Key_ClearStates() {
 
+	keyHolders.clear();
 	for ( let i = 0; i < 256; i ++ ) {
 
 		keydown[ i ] = false;

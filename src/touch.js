@@ -439,7 +439,7 @@ function onTouchStart( e ) {
 
 	e.preventDefault();
 	if(R_BestiaryInputLocked()){
-		S_UnlockAudio();for(const touch of e.changedTouches){const key=e.currentTarget===fireButton?K_MOUSE1:K_ENTER;bestiaryTouches.set(touch.identifier,key);Key_Event(key,true);}return;
+		S_UnlockAudio();for(const touch of e.changedTouches){const key=e.currentTarget===fireButton?K_MOUSE1:K_ENTER;bestiaryTouches.set(touch.identifier,key);Key_Event(key,true,'touch');}return;
 	}
 
 	// Unlock audio on first user gesture
@@ -536,7 +536,7 @@ function onTouchEnd( e ) {
 	e.preventDefault();
 
 	for ( const touch of e.changedTouches ) {
-		if(bestiaryTouches.has(touch.identifier)){Key_Event(bestiaryTouches.get(touch.identifier),false);bestiaryTouches.delete(touch.identifier);continue;}
+		if(bestiaryTouches.has(touch.identifier)){Key_Event(bestiaryTouches.get(touch.identifier),false,'touch');bestiaryTouches.delete(touch.identifier);continue;}
 
 		const target = e.currentTarget;
 

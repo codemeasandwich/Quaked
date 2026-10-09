@@ -37,14 +37,14 @@ Deno.test( 'triggers at half travel; a disconnect or another controller taking o
 	pads = [ q ]; poll(); same( events.sort().join(), [ '-' + K_MOUSE1, '-' + K_SPACE ].sort().join(), 'pad 0 gone: only its fire and jump come up (the keyboard\'s keys are not touched)' );
 	press( q, 7 ); poll(); same( events.join(), '+' + K_MOUSE1, 'the other controller plays on, from nothing held' );
 	pads = []; poll(); same( events.join(), '-' + K_MOUSE1, 'all gone: its fire comes up' ); poll(); same( events.join(), '', 'and nothing more' );
-	pads = []; poll(); same( events.length, 0, 'no controller ever: no key events at all' );
 } );
 
 Deno.test( 'the controller playing stays while connected; a standard layout is preferred to a nonstandard one', () => {
 	reset(); const odd = pad( 0, { mapping: '', id: 'Odd' } ), std = pad( 1 );
 	pads = [ odd, std ]; same( poll()?.id, 'Pad 1', 'standard preferred' );
 	pads = [ odd ]; same( poll()?.id, 'Odd', 'only the nonstandard one: it is used' );
-	pads = [ odd, std ]; same( poll()?.id, 'Odd', 'and kept while it stays connected' );
+	press( odd, 0 ); poll(); pads = [ odd, std ]; same( poll()?.id, 'Odd', 'kept while it holds a key' );
+	press( odd, 0, false ); poll(); same( poll()?.id, 'Pad 1', 'holding nothing, it gives way to the standard pad' );
 	reset(); const a = pad( 0 ), b = pad( 1 ); pads = [ a, b ]; same( poll()?.index, 0, 'the first' ); pads = [ b, a ]; same( poll()?.index, 0, 'kept when the list reorders' );
 } );
 
@@ -57,4 +57,52 @@ Deno.test( 'sticks: deadzones, then movement and look in the game; nothing in a 
 	check( Math.abs( half / c.sidemove - .5 ) < 1e-9, 'rescaled from the deadzone\'s edge: 0.575 is half (' + half / c.sidemove + ')' );
 	keys.set_key_dest( keys.key_menu ); p.axes = [ 1, - 1, 0, 0 ]; c = cmd(); poll( c ); same( c.forwardmove + c.sidemove, 0, 'in a menu: no movement' );
 	keys.set_key_dest( keys.key_game );
+} );
+
+// review of [36]: through the real Key_Event and bindings, a key the keyboard and the controller both hold stays down
+// until both let go; the buttons are read every host frame (IN_Commands), with no level running
+Deno.test( 'keyboard and controller on the same key: neither cuts the other (real Key_Event, bindings and buttons)', async () => {
+	const cmd = await import( '../src/cmd.js' ), cli = await import( '../src/cl_input.js' );
+	cmd.Cbuf_Init(); if ( ! cmd.Cmd_Exists( '+jump' ) ) cli.CL_InitInput();
+	reset(); keys.Key_ClearStates(); keys.Key_SetBinding( K_SPACE, '+jump' ); keys.Key_SetBinding( keys.K_CTRL, '+attack' );
+	const run = () => cmd.Cbuf_Execute(), held = b => ( b.state & 1 ) !== 0;
+	const p = pad( 0 ); pads = [ p ];
+	keys.Key_Event( K_SPACE, true ); run(); check( held( cli.in_jump ), 'keyboard Space: jump held' );
+	press( p, 0 ); input.IN_GamepadPoll( null ); run(); press( p, 0, false ); input.IN_GamepadPoll( null ); run();
+	check( held( cli.in_jump ), 'pad A tapped while Space is held: still jumping' );
+	keys.Key_Event( K_SPACE, false ); run(); check( ! held( cli.in_jump ), 'Space let go: jump released' );
+	press( p, 0 ); input.IN_GamepadPoll( null ); run(); keys.Key_Event( K_SPACE, true ); keys.Key_Event( K_SPACE, false ); run();
+	check( held( cli.in_jump ), 'Space tapped while pad A is held: still jumping' ); press( p, 0, false ); input.IN_GamepadPoll( null ); run(); check( ! held( cli.in_jump ), 'A let go: released' );
+	keys.Key_Event( keys.K_CTRL, true ); press( p, 5 ); input.IN_GamepadPoll( null ); run(); pads = []; input.IN_GamepadPoll( null ); run();
+	check( held( cli.in_attack ), 'Ctrl held, the pad (holding RB) disconnects: still firing' ); keys.Key_Event( keys.K_CTRL, false ); run(); check( ! held( cli.in_attack ), 'Ctrl let go: stops' );
+} );
+
+Deno.test( 'the buttons are read every host frame, with no level running; WebXR makes the controller let go', async () => {
+	const cmd = await import( '../src/cmd.js' ), vars = await import( '../src/cvar.js' );
+	reset(); keys.Key_ClearStates(); cmd.Cbuf_Init();
+	if ( ! vars.Cvar_FindVar( 'gp_probe' ) ) vars.Cvar_RegisterVariable( new vars.cvar_t( 'gp_probe', '0' ) );
+	keys.Key_SetBinding( '/'.charCodeAt( 0 ), 'gp_probe 7' ); vars.Cvar_SetValue( 'gp_probe', 0 );
+	const p = pad( 0 ); pads = [ p ]; press( p, 2 ); input.IN_Commands(); cmd.Cbuf_Execute();
+	same( vars.Cvar_VariableValue( 'gp_probe' ), 7, 'X pressed, only the host frame ran (no level, no command built): its binding ran' );
+	press( p, 2, false ); input.IN_Commands();
+	// held, then WebXR: released at once
+	events = []; press( p, 7 ); input.IN_GamepadPoll( null, sink ); input.IN_GamepadRelease( sink ); same( events.join(), '+' + K_MOUSE1 + ',-' + K_MOUSE1, 'fire released when WebXR takes over' );
+	reset();
+} );
+
+Deno.test( 'look: right stick turns and tilts the view by the look settings; no sticks in a demo; the layout note once; a new id at the same index is a new controller', async () => {
+	const host = await import( '../src/host.js' ), client = await import( '../src/client.js' ), vars = await import( '../src/cvar.js' ), cli = await import( '../src/cl_input.js' );
+	for ( const c of [ cli.cl_yawspeed, cli.cl_pitchspeed, cli.cl_forwardspeed, cli.cl_sidespeed ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );
+	reset(); const p = pad( 0 ); pads = [ p ]; host.set_host_frametime( .1 );
+	const cmd = () => ( { forwardmove: 0, sidemove: 0, upmove: 0 } );
+	client.cl.viewangles[ 1 ] = 0; client.cl.viewangles[ 0 ] = 0; p.axes = [ 0, 0, 1, 0 ]; poll( cmd() );
+	check( Math.abs( client.cl.viewangles[ 1 ] + cli.cl_yawspeed.value * .1 ) < 1e-6, 'right stick right: turns right by cl_yawspeed x frame time (' + client.cl.viewangles[ 1 ] + ')' );
+	p.axes = [ 0, 0, 0, 1 ]; poll( cmd() ); check( client.cl.viewangles[ 0 ] > 0, 'right stick down: looks down' );
+	client.cl.viewangles[ 1 ] = 0; client.cls.demoplayback = true; p.axes = [ 1, 1, 1, 0 ]; const c = cmd(); poll( c );
+	same( c.forwardmove + c.sidemove + client.cl.viewangles[ 1 ], 0, 'a demo playing: the sticks do nothing' ); client.cls.demoplayback = false;
+	reset(); const printed = []; const odd = pad( 0, { mapping: '', id: 'Odd once' } ); pads = [ odd ];
+	for ( let i = 0; i < 3; i ++ ) input.IN_GamepadPoll( null, sink, m => printed.push( m ) ); same( printed.length, 1, 'the nonstandard layout is noted once' );
+	const fresh = pad( 0, { id: 'Another' } ); press( odd, 0 ); input.IN_GamepadPoll( null, sink ); events = []; pads = [ fresh ]; input.IN_GamepadPoll( null, sink );
+	same( events.join(), '-' + K_SPACE, 'a different controller at the same index: the old one\'s keys released' );
+	host.set_host_frametime( 0 ); reset();
 } );
