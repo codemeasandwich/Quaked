@@ -3,10 +3,10 @@
 // combine the supplied blank template with a separate authored title crop.
 import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from './gl_draw.js';
 import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from './keys.js';
-import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading } from './r_bestiary.js';
+import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry } from './r_bestiary.js';
 
-const TURN_MS = 320;
-let spread = 0, turn = null;
+const TURN_MS = 320, WAIT_MS = 10000;
+let spread = 0, turn = null, pending = null;
 const now = () => typeof performance !== 'undefined' ? performance.now() : Date.now();
 const clamp = ( value, low, high ) => Math.max( low, Math.min( high, value ) );
 const rect = ( x, y, w, h ) => ( { x, y, w, h } );
@@ -70,19 +70,17 @@ function drawSpread( ctx, index, entries, boxes, unlocked, unit ) {
  ctx.fillStyle = 'rgba(25,15,8,.20)';
  ctx.fillRect(boxes.middle-3*unit,boxes.left.y,6*unit,boxes.left.h);
 }
+// One face of a leaf: the closed book (index 0) has only its cover, on the right; every other spread is bookPage's.
+function face( ctx, index, right, entries, box, unlocked, unit ) {
+ if ( index === 0 ) { if ( right ) cover(ctx,box,unit); return; }
+ bookPage(ctx,index,right,entries,box,unlocked,unit);
+}
 function drawTurn( ctx, motion, progress, entries, boxes, unlocked, unit ) {
- // The supplied cover fades into the frontispiece; interior pages turn
- // about their spine. Neither transition changes any supplied image pixels.
- if ( motion.from === 0 || motion.to === 0 ) {
-  ctx.save();
-  try { ctx.globalAlpha = progress; drawSpread(ctx,motion.to,entries,boxes,unlocked,unit); } finally { ctx.restore(); }
-  ctx.save();
-  try { ctx.globalAlpha = 1-progress; drawSpread(ctx,motion.from,entries,boxes,unlocked,unit); } finally { ctx.restore(); }
-  return;
- }
+ // Every leaf, the cover too (card [7]), turns about the spine: its front, then (past half way) its back. The cover's back is
+ // the dedication, beside the inner illustration. No supplied image's pixels change.
  const forward = motion.to > motion.from;
- bookPage(ctx,forward?motion.from:motion.to,false,entries,boxes.left,unlocked,unit);
- bookPage(ctx,forward?motion.to:motion.from,true,entries,boxes.right,unlocked,unit);
+ face(ctx,forward?motion.from:motion.to,false,entries,boxes.left,unlocked,unit);
+ face(ctx,forward?motion.to:motion.from,true,entries,boxes.right,unlocked,unit);
  const front = progress < .5, scale = Math.max( .002, Math.abs(Math.cos(progress*Math.PI)) );
  const index = front ? motion.from : motion.to, right = forward === front;
  const side = forward === front ? 1 : -1, box = side > 0 ? boxes.right : boxes.left;
@@ -90,12 +88,24 @@ function drawTurn( ctx, motion, progress, entries, boxes, unlocked, unit ) {
  try {
   const hinge = side > 0 ? box.x : box.x+box.w;
   ctx.translate(hinge,0); ctx.scale(scale,1); ctx.translate(-hinge,0);
-  bookPage(ctx,index,right,entries,box,unlocked,unit);
-  ctx.fillStyle = `rgba(25,15,8,${.24*(1-scale)})`; ctx.fillRect(box.x,box.y,box.w,box.h);
+  face(ctx,index,right,entries,box,unlocked,unit);
+  if ( index !== 0 || right ) { ctx.fillStyle = `rgba(25,15,8,${.24*(1-scale)})`; ctx.fillRect(box.x,box.y,box.w,box.h); }
  } finally { ctx.restore(); }
 }
 
-export function R_BestiaryBookOpen() { R_BestiaryCancel(); spread = 0; turn = null; }
+// What a spread needs before it may be shown (card [7]): its images (null while loading or failed) and their art ids.
+function needs( index, entries, unlocked ) {
+ if ( index === 0 ) return { images:[R_BestiaryCover()], ids:['cover'] };
+ if ( index === 1 ) return { images:[R_BestiaryDedication(),R_BestiaryFrontispiece()], ids:['dedication','frontispiece-blank','frontispiece','frontispiece-complete'] };
+ if ( index === 2 ) return { images:[R_BestiaryVerso(),R_BestiaryContents()], ids:['verso','contents'] };
+ const entry = entries[index-3]; if ( !entry ) return { images:[], ids:[] };
+ const page = entry.image && unlocked.has(entry.id);
+ return page ? { images:[R_BestiaryVerso(),R_BestiaryPage(entry.id)], ids:['verso',entry.id] }
+  : { images:[R_BestiaryVerso(),R_BestiaryEntryBlank(),R_BestiaryHeading(entry.id)], ids:['verso','entry-blank','heading-'+entry.id] };
+}
+const ready = need => need.images.every( image => image && ( image.naturalWidth || image.width ) > 0 );
+
+export function R_BestiaryBookOpen() { R_BestiaryCancel(); spread = 0; turn = null; pending = null; }
 // Reserve the actual book/footer extent for corner branding. Report CSS units
 // from the same layout used for drawing, rather than duplicating that layout.
 export function R_BestiaryBookCorner() {
@@ -106,9 +116,27 @@ export function R_BestiaryBookCorner() {
  return { right:Math.ceil(boxes.right.x+boxes.right.w+.5)*(s.canvas.clientWidth||s.width)/s.width,
   bottom:(boxes.bottom+40*s.unit)*(s.canvas.clientHeight||s.height)/s.height };
 }
+// One admission policy for the keyboard and touch (card [7]): no turn while one is running or waiting; a turn starts only when its
+// destination's images are all present (until then the current spread stays, whole); a failed image (or a wait past WAIT_MS)
+// shows a deliberate message, and the same press again tries the failed images once more.
 function flip( direction ) {
- const maximum = 2+R_BestiaryEntries().length, target = clamp(spread+direction,0,maximum);
- if ( target !== spread ) { turn = { from:spread,to:target,at:now() }; spread = target; }
+ const entries = R_BestiaryEntries(), maximum = 2+entries.length, target = clamp(spread+direction,0,maximum);
+ if ( turn && now()-turn.at < TURN_MS ) return;
+ if ( pending ) {
+  if ( pending.failed && Math.sign(pending.target-spread) === Math.sign(direction) ) { R_BestiaryArtRetry(pending.ids); pending.failed = false; pending.at = now(); }
+  else if ( Math.sign(pending.target-spread) !== Math.sign(direction) ) pending = null; // (the other way: give up waiting)
+  return;
+ }
+ if ( target === spread ) return;
+ const need = needs(target,entries,new Set(R_BestiarySnapshot().unlocked || []));
+ if ( ready(need) ) { turn = { from:spread,to:target,at:now() }; spread = target; }
+ else pending = { target, at:now(), ids:need.ids, failed:false };
+}
+function admit( entries, unlocked ) {
+ if ( !pending ) return;
+ const need = needs(pending.target,entries,unlocked);
+ if ( ready(need) ) { turn = { from:spread,to:pending.target,at:now() }; spread = pending.target; pending = null; return; }
+ if ( R_BestiaryArtFailed(need.ids) || now()-pending.at > WAIT_MS ) pending.failed = true;
 }
 function navigation( ctx, boxes, unit, width, maximum ) {
  const pics=Draw_CacheBookNavigation();if(!pics)return;
@@ -137,6 +165,7 @@ export function R_BestiaryBookDraw() {
  const s = surface(); if ( !s ) return false;
  const snapshot = R_BestiarySnapshot(), entries = R_BestiaryEntries(), unlocked = new Set(snapshot.unlocked || []);
  const maximum = 2+entries.length; spread = clamp(spread,0,maximum);
+ if ( !turn || now()-turn.at >= TURN_MS ) admit(entries,unlocked); // (a waiting turn starts once its pages are all there)
  const { ctx,width,height,unit } = s, boxes = layout(width,height,unit);
  const progress = turn ? clamp((now()-turn.at)/TURN_MS,0,1) : 1;
  ctx.save();
@@ -146,6 +175,10 @@ export function R_BestiaryBookDraw() {
   else { turn = null; drawSpread(ctx,spread,entries,boxes,unlocked,unit); }
   navigation(ctx,boxes,unit,width,maximum);
   ctx.textBaseline = 'middle'; ctx.textAlign = 'center'; ctx.fillStyle = '#d2c3a7';
+  if ( pending ) {
+   ctx.font = `${11*unit}px Georgia, serif`;
+   ctx.fillText( pending.failed ? 'This page could not be loaded. Press again to try once more.' : 'Turning the page\u2026', width/2, boxes.bottom+40*unit );
+  }
   if ( snapshot.storageStatus === 'unavailable' ) {
    ctx.font = `${11*unit}px Georgia, serif`; ctx.fillText('Progress is kept for this session only.',width/2,boxes.bottom+40*unit);
   }

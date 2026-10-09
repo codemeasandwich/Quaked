@@ -59,6 +59,9 @@ function artwork(id,file){
  }
  return images.get(id)||null;
 }
+// The book's admission of a page turn (card [7]): has any of these images failed, and try those again
+export function R_BestiaryArtFailed(ids){return ids.some(id=>imageStates.get(id)==='fallback');}
+export function R_BestiaryArtRetry(ids){for(const id of ids)if(imageStates.get(id)==='fallback')imageStates.delete(id);}
 export function R_BestiaryCover(){return artwork('cover','cover.png');}
 export function R_BestiaryFrontispiece(){
  journal.reload();
