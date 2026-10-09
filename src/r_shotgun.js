@@ -37,6 +37,7 @@ import { R_NewerGame } from './r_anim.js';
 import { SV_FaceDrain } from './sv_faceevents.js';
 import { MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 const CONTENTS_WATER = - 3, CONTENTS_SLIME = - 4; // (bspfile.js; lava is not water)
+import { R_ImpactSegment, STRENGTH } from './r_impactripples.js';
 import { SHOTGUN, sgRandom, clamp, pelletDistance, pelletTimeAt, pelletInWater, pelletTrailLength, makePellet, pelletDraws, pelletStream } from './shotgun_flight.js';
 
 // (the flight maths is shotgun_flight.js, shared with the server's damage schedule; re-exported for the tests)
@@ -350,6 +351,15 @@ function update( time ) {
 
 		const p = pellets[ i ], age = Math.max( 0, time - p.born );
 		if ( p.wet ) emitWake( p, time, birthBubble );
+		// the stretch it flew this frame: crossing a pool or a portal leaves a ring where it did (card [W1])
+		const head = Math.min( p.distance, pelletDistance( p, age ) ) * K, tail = p.ripple ?? 0;
+		if ( head > tail ) {
+
+			R_ImpactSegment( p.origin[ 0 ] + p.direction[ 0 ] * tail, p.origin[ 1 ] + p.direction[ 1 ] * tail, p.origin[ 2 ] + p.direction[ 2 ] * tail,
+				p.origin[ 0 ] + p.direction[ 0 ] * head, p.origin[ 1 ] + p.direction[ 1 ] * head, p.origin[ 2 ] + p.direction[ 2 ] * head, time, STRENGTH.pellet );
+			p.ripple = head;
+
+		}
 		if ( age < p.life ) pellets[ keep ++ ] = p;
 
 	}

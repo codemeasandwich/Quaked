@@ -1,4 +1,5 @@
 import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
+import { RIPPLE, waterRows, waterAmp } from './r_impactripples.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
 import { R_BestiaryPortraitLight } from './r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
@@ -1947,6 +1948,8 @@ uniform vec4 uLavaMax[ 4 ];
 uniform float uHeat;
 uniform float uReflect;
 uniform int uWaterCount;
+uniform vec4 uImpact[ 8 ]; // impact rings on the water: xyz = where, w = age in seconds (negative: unused)
+uniform vec4 uImpactAmp[ 2 ]; // each ring's strength (packed four to a vector: uniform slots are scarce)
 uniform float uMist;
 uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
 uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner, w = optical look
@@ -2171,10 +2174,30 @@ float waterFlashlightSpecular( vec3 P, vec3 N, vec3 V ) {
 	return min( distribution * masking * fresnel / max( 4.0 * nv, 0.001 ), 8.0 );
 }
 
+// Rings that spread from the points where something crossed the surface (card [W1]): a wave front travelling outwards and fading.
+// xy = the slope it adds to the surface (it bends reflections and refraction like the capillary ripples), z = the crest's
+// brightness, a splash of foam and spray that shows however dark the pool is.
+vec3 waterImpactRings( vec3 p3, float footprint ) {
+	vec3 sum = vec3( 0.0 );
+	for ( int i = 0; i < 8; i ++ ) {
+		vec4 e = uImpact[ i ];
+		if ( e.w < 0.0 || abs( p3.z - e.z ) > 8.0 ) continue;
+		vec2 dv = p3.xy - e.xy;
+		float r = length( dv );
+		float x = r - e.w * ${RIPPLE.waterSpeed.toFixed( 1 )};
+		// a packet of two or three crests: short in front of the wave front, a longer wake behind it
+		float env = exp( - e.w * 1.8 ) * exp( - x * x * ( x < 0.0 ? 0.0035 : 0.025 ) ) * uImpactAmp[ i >> 2 ][ i & 3 ] * smoothstep( 0.0, 0.05, e.w );
+		sum.xy += dv / max( r, 0.001 ) * 0.35 * cos( x * 0.4 ) * env * ( 1.0 - smoothstep( 5.0, 18.0, footprint ) );
+		sum.z += env * pow( max( cos( x * 0.4 ), 0.0 ), 2.0 );
+	}
+	return sum;
+}
+
 // Crossing capillary ripples share world coordinates across every face of a
 // pool. The derivative of wave height bends reflections and refraction alike.
 // Fade wavelengths smaller than a few scene pixels to avoid distant sparkle.
-vec3 waterRippleNormal( vec2 p, float distance, float look ) {
+vec3 waterRippleNormal( vec3 p3, float distance, float look ) {
+	vec2 p = p3.xy;
 	float time = uTime * liquidSpeed( look );
 	float footprint = distance * 2.0 * uTexel.y / max( uProj[ 1 ][ 1 ], 0.2 );
 	vec2 slope = vec2( 0.0 );
@@ -2184,6 +2207,8 @@ vec3 waterRippleNormal( vec2 p, float distance, float look ) {
 	slope += a * 0.055 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
 	slope += b * 0.015 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
 	slope += c * 0.009 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
+	// Rings from things that crossed the surface (card [W1]).
+	slope += waterImpactRings( p3, footprint ).xy;
 	// Keep moving reflection definition without a faceted/prismatic surface.
 	return normalize( vec3( - slope * liquidRipple( look ) * 0.65, 1.0 ) );
 }
@@ -2212,7 +2237,7 @@ vec2 waterRefractionUv( vec2 uv ) {
 		vec3 hp = cam + ray * tp;
 		float shore = min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) );
 		if ( tp <= 0.0 || shore <= 0.0 || tp >= length( hit - cam ) ) continue;
-		vec3 n = waterRippleNormal( hp.xy, tp, hi.w ) * ( below ? - 1.0 : 1.0 );
+		vec3 n = waterRippleNormal( hp, tp, hi.w ) * ( below ? - 1.0 : 1.0 );
 		vec3 bent = refract( ray, n, below ? 1.333 : 1.0 / 1.333 );
 		// Outside the underwater Snell window there is no transmitted ray.
 		if ( dot( bent, bent ) < 0.0001 ) return uv;
@@ -2727,7 +2752,7 @@ void main() {
 				float tp = ( top - camW.z ) / dirW.z;
 				vec3 hp = camW + dirW * tp;
 				if ( tp > 0.0 && tp < ( belowSurface ? D - 0.25 : D + 2.0 ) && hp.x > lo.x && hp.x < hi.x && hp.y > lo.y && hp.y < hi.y ) {
-					vec3 nW = waterRippleNormal( hp.xy, tp, hi.w ) * ( belowSurface ? - 1.0 : 1.0 );
+					vec3 nW = waterRippleNormal( hp, tp, hi.w ) * ( belowSurface ? - 1.0 : 1.0 );
 					float edge = smoothstep( 0.0, 6.0, min( min( hp.x - lo.x, hi.x - hp.x ), min( hp.y - lo.y, hi.y - hp.y ) ) );
 					mat3 toView = transpose( mat3( uViewInv ) );
 					vec3 hv = toView * ( hp - camW );
@@ -2829,7 +2854,7 @@ void main() {
 						if ( belowSurface ) refl *= exp( - liquidAbsorption( look ) * tp );
 						c = mix( c, min( refl, vec3( 8.0 ) ), k );
 					}
-					c += surfaceLight;
+					c += surfaceLight + vec3( 0.55, 0.68, 0.80 ) * waterImpactRings( hp, tp * 2.0 * uTexel.y / max( uProj[ 1 ][ 1 ], 0.2 ) ).z * 0.16 * edge;
 				}
 			}
 			if ( muddy && sedimentPath > 0.0 ) {
@@ -3097,6 +3122,8 @@ function createPipeline() {
 			uHeat: { value: 0.6 },
 			uReflect: { value: 0.6 },
 			uWaterCount: { value: 0 },
+			uImpact: { value: waterRows },
+			uImpactAmp: { value: waterAmp },
 			uMist: { value: 0 },
 			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
 			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }

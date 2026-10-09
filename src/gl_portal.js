@@ -10,6 +10,7 @@
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
+import { RIPPLE, metalRows, metalAmp } from './r_impactripples.js';
 import { R_NewerGame, r_newer_portals } from './r_anim.js';
 import { COM_Parse, com_token } from './common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
@@ -241,6 +242,37 @@ export function R_ClearPortals() {
 
 }
 
+// The planes of the teleporters' windows that can be hit, for impact ripples: { normal, center, min, max } in this level's
+// coordinates, from each window's visible surface (its trigger box can lie beside it). A teleporter brush has a face on each
+// side and sometimes two planes a few units apart: parallel planes close together over the same box are one window. Built when the
+// portals change. (Doorways onto the next level are seamless: no ring shows their seam.)
+let _planes = [], _planesFor = null, _planesCount = - 1;
+export function R_ImpactPortalPlanes() {
+
+	if ( ! portalsEnabled ) return NO_PLANES;
+	if ( _planesFor !== portals || _planesCount !== portals.length ) {
+
+		_planes = []; _planesFor = portals; _planesCount = portals.length;
+		for ( const p of portals ) {
+
+			const plane = { normal: p.normal, center: p.center, min: p.surfMins ?? p.triggerMins, max: p.surfMaxs ?? p.triggerMaxs };
+			const same = _planes.some( q => {
+
+				const along = Math.abs( ( plane.center[ 0 ] - q.center[ 0 ] ) * q.normal[ 0 ] + ( plane.center[ 1 ] - q.center[ 1 ] ) * q.normal[ 1 ] + ( plane.center[ 2 ] - q.center[ 2 ] ) * q.normal[ 2 ] );
+				const parallel = Math.abs( plane.normal[ 0 ] * q.normal[ 0 ] + plane.normal[ 1 ] * q.normal[ 1 ] + plane.normal[ 2 ] * q.normal[ 2 ] ) > .999;
+				return parallel && along <= 12 && [ 0, 1, 2 ].every( a => plane.min[ a ] <= q.max[ a ] + 12 && plane.max[ a ] >= q.min[ a ] - 12 );
+
+			} );
+			if ( ! same ) _planes.push( plane );
+
+		}
+
+	}
+	return _planes;
+
+}
+const NO_PLANES = [];
+
 export function R_GetPortals() {
 
 	return portals;
@@ -381,6 +413,7 @@ export function R_BuildPortals( model ) {
 			triggerMins: g.trigger.mins,
 			triggerMaxs: g.trigger.maxs,
 			surfaces: g.surfaces,
+			surfMins: g.mins, surfMaxs: g.maxs, // the visible surface's own box (the trigger's can lie beside it)
 			center: C,
 			normal: n,
 			dest: D,
@@ -476,8 +509,10 @@ function getDummyTexture() {
 const VERTEX_SHADER = `
 varying vec2 vUv;
 varying vec4 vClip;
+varying vec3 vLocal;
 void main() {
 	vUv = uv;
+	vLocal = position;
 	vClip = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 	gl_Position = vClip;
 }`;
@@ -491,11 +526,32 @@ uniform sampler2D portalMap;
 uniform float portalMix;
 uniform float seamless;
 uniform float time;
+uniform vec4 uMetal[ 8 ]; // impact rings: xyz = where, w = age in seconds (negative: unused)
+uniform float uMetalAmp[ 8 ];
 varying vec2 vUv;
 varying vec4 vClip;
+varying vec3 vLocal;
 void main() {
 	vec3 base = texture2D( map, vUv ).rgb;
 	vec3 col = base;
+	// Metallic impact rings (card [W1]): a ring spreads from where something hit, bending the view and catching the light like
+	// struck sheet metal. The direction to bend is the screen-space gradient of the distance from the hit.
+	vec2 metalBend = vec2( 0.0 );
+	float metalRing = 0.0, metalFlash = 0.0;
+	for ( int i = 0; i < 8; i ++ ) {
+		vec4 e = uMetal[ i ];
+		float d = distance( vLocal, e.xyz );
+		vec2 g = vec2( dFdx( d ), dFdy( d ) );
+		if ( e.w < 0.0 ) continue;
+		float x = d - e.w * ${RIPPLE.metalSpeed.toFixed( 1 )};
+		// a packet of two or three crests, short ahead of the front and longer behind it, fading quickly like struck sheet metal
+		float env = exp( - e.w * 2.6 ) * exp( - x * x * ( x < 0.0 ? 0.004 : 0.03 ) ) * uMetalAmp[ i ] * smoothstep( 0.0, 0.04, e.w );
+		float w = cos( x * 0.5 ) * env;
+		float gl = length( g );
+		if ( gl > 1e-6 ) metalBend += g / gl * w;
+		metalRing += max( w, 0.0 ) * max( w, 0.0 );
+		metalFlash += exp( - d * 0.12 ) * exp( - e.w * 9.0 ) * uMetalAmp[ i ];
+	}
 	if ( portalMix > 0.0 ) {
 		// The receiver's view was rendered with this camera's projection, so the
 		// same screen position shows the same ray: the surface is a cut-out.
@@ -504,7 +560,7 @@ void main() {
 			sin( suv.y * 90.0 + time * 3.1 ) + sin( suv.y * 37.0 - time * 2.3 ),
 			cos( suv.x * 80.0 + time * 2.7 ) + cos( suv.x * 41.0 + time * 1.9 ) ) * 0.0012;
 		rip *= 1.0 - seamless;
-		vec2 uv = clamp( suv + rip + ( base.rg - 0.5 ) * 0.004, 0.002, 0.998 );
+		vec2 uv = clamp( suv + rip + ( base.rg - 0.5 ) * 0.004 + metalBend * 0.012, 0.002, 0.998 );
 		vec3 view = vec3(
 			texture2D( portalMap, uv + rip * 0.6 ).r,
 			texture2D( portalMap, uv ).g,
@@ -514,6 +570,7 @@ void main() {
 		if ( seamless < 0.5 ) view = view * ( 0.95 + 0.05 * pulse ) + base * vec3( 0.55, 0.8, 1.0 ) * ( 0.05 + 0.07 * pulse );
 		col = mix( base, view, portalMix );
 	}
+	col += vec3( 0.78, 0.86, 1.0 ) * ( metalRing * 0.55 + metalFlash * 0.45 );
 	gl_FragColor = vec4( col, 1.0 );
 	#include <tonemapping_fragment>
 	#include <colorspace_fragment>
@@ -533,7 +590,9 @@ export function R_PortalMaterial( portal, texture ) {
 				portalMap: { value: null },
 				portalMix: { value: 0 },
 				seamless: { value: portal.level === true ? 1 : 0 },
-				time: { value: 0 }
+				time: { value: 0 },
+				uMetal: { value: metalRows },
+				uMetalAmp: { value: metalAmp }
 			},
 			vertexShader: VERTEX_SHADER,
 			fragmentShader: FRAGMENT_SHADER,
@@ -848,6 +907,12 @@ export function R_AddLevelPortal( scene, corners, matrix, dest, forward ) {
 		activeFrame: - 1,
 		mesh: null
 	};
+	// the opening's plane and box (this level's coordinates), for impact ripples
+	{
+		const u = [ 0, 1, 2 ].map( a => corners[ 1 ][ a ] - corners[ 0 ][ a ] ), v = [ 0, 1, 2 ].map( a => corners[ 3 ][ a ] - corners[ 0 ][ a ] );
+		const n = [ u[ 1 ] * v[ 2 ] - u[ 2 ] * v[ 1 ], u[ 2 ] * v[ 0 ] - u[ 0 ] * v[ 2 ], u[ 0 ] * v[ 1 ] - u[ 1 ] * v[ 0 ] ], len = Math.hypot( ...n ) || 1;
+		portal.plane = { normal: n.map( x => x / len ), center: portal.center, min: [ 0, 1, 2 ].map( a => Math.min( ...corners.map( c => c[ a ] ) ) ), max: [ 0, 1, 2 ].map( a => Math.max( ...corners.map( c => c[ a ] ) ) ) };
+	}
 
 	// no swirl to fall back on: a dark window until the view has been rendered
 	const material = R_PortalMaterial( portal, null );

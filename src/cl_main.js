@@ -29,6 +29,7 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from './mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
+import { R_ImpactMissile } from './r_impactripples.js';
 import { R_FlashlightRunEnd } from './r_flashlightrun.js';
 import { R_DemoSplitEnd } from './r_demosplit.js';
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from './r_muzzle.js';
@@ -661,7 +662,12 @@ const _peFv = new Float32Array( 3 );
 const _peRv = new Float32Array( 3 );
 const _peUv = new Float32Array( 3 );
 
+// (a missile's ring needs the entity to have been linked on the previous frame too: a reused slot keeps the last occupant's origin)
+let _rippleFrame = 0;
+
 function CL_LinkPacketEntities( frac ) {
+
+	_rippleFrame ++;
 
 	const seq = CL_GetServerSequence();
 	if ( CL_GetValidSequence() === 0 )
@@ -840,6 +846,14 @@ function CL_LinkPacketEntities( frac ) {
 
 		// Mark as updated this frame
 		ent.msgtime = cl.mtime[ 0 ];
+
+		// a rocket, grenade or nail crossing a pool or a portal leaves a ring (card [W1])
+		if ( model != null ) {
+
+			if ( ent._rippleFrame === _rippleFrame - 1 && ! ent.forcelink ) R_ImpactMissile( model, _peOldorg, ent.origin, cl.time );
+			ent._rippleFrame = _rippleFrame;
+
+		}
 
 		// particle trails
 		if ( model != null && model.flags !== 0 ) {
@@ -1191,6 +1205,9 @@ export function CL_RelinkEntities() {
 			dl.die = cl.time + 0.001;
 
 		}
+
+		// a rocket, grenade or nail crossing a pool or a portal leaves a ring (card [W1]; demos: the entity's own forcelink says it is new)
+		if ( ent.model != null && ! ent.forcelink ) R_ImpactMissile( ent.model, _relinkOldorg, ent.origin, cl.time );
 
 		// Particle trails based on model flags
 		// Ported from WinQuake/cl_main.c:587-606

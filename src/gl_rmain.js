@@ -22,7 +22,7 @@ import { Con_Printf } from './common.js';
 import { PITCH, YAW, ROLL } from './quakedef.js';
 import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
 import { r_rockfield } from './r_rockfield.js';
-import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix } from './gl_portal.js';
+import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix, R_ImpactPortalPlanes } from './gl_portal.js';
 import { r_heightshadows, R_HeightShadowScope } from './r_heightshadows.js';
 import { R_AnimEnabled, R_NewerLightingActive, R_NewerGame, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from './r_anim.js';
 import { R_NewerTexturesFrame } from './r_newertextures.js';
@@ -34,6 +34,7 @@ import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear, R_FireballReplacesSprite } from './r_fireball.js';
+import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset } from './r_impactripples.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
@@ -1844,6 +1845,7 @@ export function R_RenderView() {
 	_fireballView[ 1 ] = r_refdef.vrect.height * r_refdef.vrectScale * R_DynResScale();
 	R_FireballFrame( cl != null ? cl.time : 0, r_refdef.vieworg, _fireballForward, _fireballView );
 
+	R_ImpactRippleFrame( cl != null ? cl.time : 0 ); // (the rings the shaders read this frame)
 	// render normal view
 	R_RenderScene();
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
@@ -2084,6 +2086,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_shotgunfx );
+	Cvar_RegisterVariable( r_impactripples );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
@@ -2303,6 +2306,7 @@ export function R_NewMap() {
 	R_FireballClear();
 	R_TorchFireSetup( { scene } );
 	R_TorchFireClear();
+	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
 	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
 	R_ShotgunClear();
 	R_DecalsClear();
@@ -2363,6 +2367,7 @@ export function R_NewMap() {
 
 	// the next level, seen through this level's doorway and pit exits
 	R_SetupLevelViews( scene, SV_SeamlessCrossings() );
+	R_ImpactRippleReset();
 
 }
 

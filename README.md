@@ -69,7 +69,7 @@ The repository includes the free shareware `pak0.pak` (Episode 1). In your own l
 A short tour; each line links the document that says how it was made and checked.
 
 - **Light and shadow**: torches, lamps and lava light the rooms, with sun shafts, bloom and a shoulder flashlight. [Lighting](docs/emissive-lighting-2026-10-03.md), [flashlight](docs/flashlight-run-policy.md).
-- **Water you can see into**: clear, tinted, muddy or toxic, with ripples, reflections and drops on the lens when you come out. [Water](docs/water-optics-2026-10-02.md).
+- **Water you can see into**: clear, tinted, muddy or toxic, with ripples (shots leave rings where they cross the surface), reflections and drops on the lens when you come out. [Water](docs/water-optics-2026-10-02.md).
 - **Fire**: [explosions](docs/explosions-fireball-2026-10-08.md), [rocket smoke](docs/rocket-grenade-smoke-2026-10-08.md), [torch flames](docs/torch-fire-2026-10-08.md) and [shotgun pellets](docs/shotgun-pellets-2026-10-08.md) with muzzle smoke and underwater bubbles.
 - **New art**: [wall textures](docs/level-texture-update-2026-10-02.md) with [relief](docs/continuous-rockfield-2026-10-02.md), [custom enemy skins](docs/enemy-heights-2026-10-01.md), [3D weapons and shells](docs/weapons-and-shells-2026-10-02.md), a [layered status-bar face](docs/gloom-hood-face-2026-10-04.md) and [real displacement on the demon plaques](docs/demon-displacement-2026-10-03.md).
 - **Joined-up levels**: [seamless travel](docs/technical-notes.md#seamless-levels) and [live teleporter windows](docs/technical-notes.md#live-portals).
