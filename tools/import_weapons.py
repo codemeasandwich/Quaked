@@ -185,6 +185,11 @@ def derive_pickups():
     rest = unfit_shotgun_barrel(np.array(held['poses'][0]).reshape(-1, 3), manifest['models']['v_shot'])
     target = np.array([manifest['models']['g_shot']['nativeMin'], manifest['models']['g_shot']['nativeMax']])
     fitted, calibration = fit(rest, target)
+    # record the mapping from the supplied mesh, as a full import does: this fit (s, o) composed with the held shotgun's plain fit
+    # (sv, ov): source * sv + ov, then * s + o
+    held_fit = manifest['models']['v_shot']
+    s, o, sv, ov = (np.array(calibration['scale']), np.array(calibration['offset']), np.array(held_fit['scale']), np.array(held_fit['offset']))
+    calibration['scale'], calibration['offset'] = (s * sv).tolist(), (s * ov + o).tolist()
     calibration['nativeModel'] = 'g_shot'
     (OUT / 'g_shot1.json').write_text(json.dumps({'poses': [np.round(fitted, 6).flatten().tolist()], 'uv': held['uv'], 'indices': held['indices']}, separators=(',', ':')) + '\n')
     manifest['models']['g_shot1'] = {'source': 'shotgun', **calibration, 'poses': 1, 'nativePoseRigidRms': [0.0], 'excludedNativeVertices': manifest['models']['g_shot'].get('excludedNativeVertices', [])}

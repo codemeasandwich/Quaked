@@ -14,10 +14,12 @@ Card [12] (owner request). Newer Game; Classic keeps the native MDLs.
   `g_shot1` (`R_WeaponRole` in `src/r_weapons.js`): the basic shotgun's own supplied art fitted to the pickup MDL's native box.
   The native MDL has one skin, so with the Newer weapons off it shows as before. Picking it up gives the weapon and shells its
   drop record says, as before. No new model is precached.
-* **How the art was made**: the supplied archives are not in this checkout, so `tools/import_weapons.py --derive-pickups`
-  derives both from the baked files: the held shotgun's rest pose is taken back through its own rigid barrel frame to the plain
+* **How the art was made**: the supplied archives are not all in this checkout (`shotgun.zip` is; `supershotgun.zip` and others
+  are not), so `tools/import_weapons.py --derive-pickups` derives both from the baked files: the held shotgun's rest pose is taken back through its own rigid barrel frame to the plain
   per-axis fit of the supplied mesh, and fitted to the pickup box (an affine copy of the source, so the same as fitting the
-  source); the super shotgun pickup is refitted to its box and widened. Running it again gives the same files. A full import
+  source; review confirmed it against `shotgun.zip` to 2e-6 units); the super shotgun pickup is refitted to its box and widened.
+  The manifest records `g_shot1`'s mapping from the supplied mesh (this fit composed with the held shotgun's), the same as a
+  full import writes. Running it again gives the same files. A full import
   (`tools/import_weapons.py`, with the archives) does the same through `NATIVE_OF` and `TRANSVERSE`.
 
 ## Checks
@@ -27,9 +29,14 @@ Card [12] (owner request). Newer Game; Classic keeps the native MDLs.
   real death drops on E1M1 (`SV_RespawnDropInventory`): the basic shotgun as `g_shot.mdl` skin 1, the super shotgun skin 0, the
   shells shared with none lost, and a restored save sets the skins again; the renderer's role for skin 1 is `g_shot1`, for skin
   0 `g_shot`, and other pickups ignore the skin.
-* `tests/weapons_test.js` updated: fourteen roles; the super shotgun pickup's fitted box is its native box widened twice across;
-  the basic pickup is fitted to the super shotgun pickup's MDL. (This suite still stops later on the missing supplied archives,
-  as before.) Respawn and the other weapon suites pass.
+* `tests/weapon_modes_test.js` draws every role through the real renderer: `g_shot1` as `g_shot.mdl` skin 1, which must give the
+  shotgun art's 745 vertices (fails if the renderer ignores the skin). `held_framing`, `weapon_modes` and `shotgun_source` updated
+  for the fourteenth role and the card's new rule (`shotgun_source` still fails one test it failed before, an interpolation
+  midpoint). `tests/weapons_test.js` updated likewise, but it stops earlier on a missing supplied archive, so its pickup checks
+  do not run here.
+* Independent review: the first delivery broke `weapon_modes` and `held_framing` (both green before) while I reported the weapon
+  suites passing; it also found the draw line untested and a mod's real second skin would have been taken over. Fixed: the
+  tests above, and a skin only names another role when the MDL does not have that skin.
 * Browser, E1M1: both drops, the roles `g_shot1` and `g_shot` loaded and drawn (picture above).
 
 ## Not checked

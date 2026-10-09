@@ -141,7 +141,7 @@ released with their owned geometry.
 
 Native death callbacks still run before the visual substitution. Thus scores,
 targets, drops and special deaths keep their native semantics. A private cosmetic
-edict owns the two pieces for thirty seconds; they separate, tilt and settle on
+edict owns the two pieces for thirty seconds (updated by card [18], 9 Oct 2026: they now stay, as any corpse does, unless entities are running out; see `docs/axe-halves-2026-10-09.md`); they separate, tilt and settle on
 floor probes. This is bounded cosmetic motion, not general rigid-body physics.
 The native body/gibs become hidden in Enhanced only after valid replacement
 geometry is built. A construction failure leaves the native death visible and

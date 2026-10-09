@@ -36,7 +36,7 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 	if(split.some(p=>!p.body.getAttribute('position').count||!p.cap.getAttribute('position').count)){for(const p of split){p.body.dispose();p.cap.dispose();}throw Error('Cut did not form two closed body halves');}
 	const group=new THREE.Group();group.name='quake_axe_bisection';group.userData.newerOnly=true;
 	let capMaterial;
-	if(source.material?.isMeshBasicMaterial&&source.geometry.getAttribute('uv')){capMaterial=R_CloneAliasMaterial(source.material);capMaterial.color.multiply(new THREE.Color(...CAP_TINT));capMaterial.side=THREE.FrontSide;capMaterial.userData.quakeAxeCap=true;}
+	if(source.material?.isMeshBasicMaterial&&source.material.map&&source.geometry.getAttribute('uv')){capMaterial=R_CloneAliasMaterial(source.material);capMaterial.color.multiply(new THREE.Color(...CAP_TINT));capMaterial.side=THREE.FrontSide;capMaterial.userData.quakeAxeCap=true;}
 	else capMaterial=new THREE.MeshBasicMaterial({color:0x7b2020,side:THREE.FrontSide}); // (no skin to continue: the old flat cut)
 	const record={entity,data,group,capMaterial,geometry:split.flatMap(p=>[p.body,p.cap]),parts:[],normal:new THREE.Vector3(...data.normal),draws:0,error:null};
 	try {
@@ -55,8 +55,9 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 			if(latch){
 				const down=(px,py)=>{const t=SV_Move([px,py,data.origin[2]+8],[0,0,0],[0,0,0],[px,py,data.origin[2]-512],MOVE_NOMONSTERS,entity);return !t.startsolid&&t.fraction<1?[px,py,t.endpos[2]]:null;};
 				const hits=[[0,0],[FOOT,0],[-FOOT,0],[0,FOOT],[0,-FOOT]].map(([dx,dy])=>down(x+dx,y+dy)).filter(Boolean);
-				floor=hits[0]&&hits[0][0]===x&&hits[0][1]===y?hits[0][2]:hits.length?Math.max(...hits.map(h=>h[2])):data.origin[2]+model.mins[2];
-				slope=R_AxeFloorSlope(hits);
+				const plane=fitPlane(hits);slope=plane?.normal??[0,0,1];
+				// the rest height: the fitted ground under the half's middle; else the floor hit there; else the highest hit
+				floor=plane?plane.at(x,y):hits[0]&&hits[0][0]===x&&hits[0][1]===y?hits[0][2]:hits.length?Math.max(...hits.map(h=>h[2])):data.origin[2]+model.mins[2];
 			}
 			else {floor=data.origin[2]+model.mins[2];const hull=world?.hulls?.[0];if(hull)for(let z=data.origin[2]+8;z>data.origin[2]-512;z-=2)if(SV_HullPointContents(hull,hull.firstclipnode,[x,y,z])===-2){floor=z+2;break;}}
 		}
@@ -74,15 +75,20 @@ function build(entity,scene,world=cl.worldmodel,latch=true){
 	return record;
 	}catch(error){dispose(record);throw error;}
 }
-// the ground's plane from floor hits (least squares z = a x + b y + c); too steep or too few: level
-export function R_AxeFloorSlope(hits){
-	if(hits.length<3)return [0,0,1];
+// the ground's plane from floor hits (least squares z = a x + b y + c). Too few hits, too steep, or not one plane (a step, a
+// ledge: a hit more than PLANAR units off the fit) is level ground: no slope is made up from a stair.
+const PLANAR=1;
+function fitPlane(hits){
+	if(hits.length<3)return null;
 	const mx=hits.reduce((s,h)=>s+h[0],0)/hits.length,my=hits.reduce((s,h)=>s+h[1],0)/hits.length,mz=hits.reduce((s,h)=>s+h[2],0)/hits.length;
 	let xx=0,xy=0,yy=0,xz=0,yz=0;for(const [px,py,pz] of hits){const dx=px-mx,dy=py-my,dz=pz-mz;xx+=dx*dx;xy+=dx*dy;yy+=dy*dy;xz+=dx*dz;yz+=dy*dz;}
-	const det=xx*yy-xy*xy;if(Math.abs(det)<1e-6)return [0,0,1];
-	const a=(xz*yy-yz*xy)/det,b=(yz*xx-xz*xy)/det,l=Math.hypot(a,b,1),n=[-a/l,-b/l,1/l];
-	return n[2]<.7?[0,0,1]:n.map(v=>Math.round(v*1e6)/1e6);
+	const det=xx*yy-xy*xy;if(Math.abs(det)<1e-6)return null;
+	const a=(xz*yy-yz*xy)/det,b=(yz*xx-xz*xy)/det,at=(x,y)=>mz+a*(x-mx)+b*(y-my);
+	if(hits.some(h=>Math.abs(h[2]-at(h[0],h[1]))>PLANAR))return null;
+	const l=Math.hypot(a,b,1),n=[-a/l,-b/l,1/l];
+	return n[2]<.7?null:{normal:n.map(v=>Math.round(v*1e6)/1e6),at};
 }
+export function R_AxeFloorSlope(hits){return fitPlane(hits)?.normal??[0,0,1];}
 const turn=new THREE.Quaternion(),tilt=new THREE.Quaternion(),up=new THREE.Vector3(0,0,1),ground=new THREE.Vector3(),local=new THREE.Vector3(),inverse=new THREE.Quaternion();
 function settle(record,time){
 	const age=Math.max(0,time-record.data.at),ease=Math.min(1,age/.65);

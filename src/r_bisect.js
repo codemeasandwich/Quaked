@@ -4,6 +4,15 @@
 // colour) at their contour points, so they can be drawn with the body's skin.
 import * as THREE from 'three';
 const EPS=1e-6, key=p=>p.map(v=>Math.round(v*10000)).join(',');
+// A Quake skin holds the body's back in its right half (the back's skin coordinates are the front's plus a half, the 'onseam'
+// rule). A cap triangle that joins front and back points would stretch the skin across both halves: its odd points are moved
+// into the half the others are in, so each cap triangle samples one stretch of skin (card [18] review).
+function oneHalf(tri){
+	const us=tri.map(v=>v.uv?.[0]);if(us.some(u=>u===undefined))return tri;
+	if(Math.max(...us)-Math.min(...us)<=.35)return tri;
+	const back=us.filter(u=>u>=.5).length>=2;
+	return tri.map(v=>{const u=v.uv[0];if((u>=.5)===back)return v;return {...v,uv:[u+(back?.5:-.5),v.uv[1]]};});
+}
 export function R_BisectGeometry(geometry,normal,point){
 	const n=new THREE.Vector3(...normal).normalize(),p=new THREE.Vector3(...point),constant=n.dot(p);
 	const names=Object.keys(geometry.attributes).filter(name=>!geometry.attributes[name].isInterleavedBufferAttribute);
@@ -101,7 +110,7 @@ export function R_BisectGeometry(geometry,normal,point){
 			// sliver using Float32's relative epsilon, not a world-size cutoff.
 			if(Math.abs(area)<=2**-23*Math.max(ab.lengthSq(),ac.lengthSq()))continue;
 			if(area<0)tri.reverse();
-			caps[0].push(flat[tri[2]],flat[tri[1]],flat[tri[0]]);caps[1].push(flat[tri[0]],flat[tri[1]],flat[tri[2]]);}
+			const t=oneHalf([flat[tri[0]],flat[tri[1]],flat[tri[2]]]);caps[0].push(t[2],t[1],t[0]);caps[1].push(t[0],t[1],t[2]);}
 	}
 	return output.map((out,side)=>{
 		const body=new THREE.BufferGeometry();for(const name of names)body.setAttribute(name,new THREE.Float32BufferAttribute(out[name],geometry.attributes[name].itemSize));body.normalizeNormals();body.computeBoundingBox();body.computeBoundingSphere();

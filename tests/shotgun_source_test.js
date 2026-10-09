@@ -204,14 +204,15 @@ Deno.test( 'standard shotgun source port preserves the supplied topology, UVs, t
 
 } );
 
-Deno.test( 'standard shotgun source is held-only; original classic/New Game/toggle art and unchanged super shotgun pickup remain', () => {
+Deno.test( 'standard shotgun source: held and basic-drop roles; original classic/New Game/toggle art and the card [12] super shotgun pickup', () => {
 
-	equal( Object.keys( manifest.models ).length, 11, 'eleven supplied firearm roles' );
-	equal( Object.keys( manifest.models ).filter( key => manifest.models[ key ].source === 'shotgun' ).join( ',' ), 'v_shot', 'new shotgun has one real held role' );
+	equal( Object.keys( manifest.models ).length, 14, 'fourteen firearm roles (eleven at the shotgun port; the nailgun and its pickup, then g_shot1 of card [12])' );
+	// card [12] (owner request): the shotgun's art also draws the basic shotgun's death drop (g_shot1, skin 1 of g_shot.mdl)
+	equal( Object.keys( manifest.models ).filter( key => manifest.models[ key ].source === 'shotgun' ).join( ',' ), 'v_shot,g_shot1', 'shotgun art: the held role and the basic shotgun drop' );
 	equal( manifest.models.g_shot.source, 'supershotgun', 'existing native pickup identity remains SSG' );
-	// Independently measured from git 8e4fefc:newer/weapons/g_shot.json; no Git
-	// process or deleted input archive is required when executing this check.
-	equal( createHash( 'sha256' ).update( bytes( 'newer/weapons/g_shot.json' ) ).digest( 'hex' ), '5f040138ed80da2debcd0632e0defc1f1d94f24bcf4c484bc201ffd79972a067', 'SSG pickup bytes unchanged from accepted pre-SG commit' );
+	// Card [12] widened the SSG pickup twice across (tools/import_weapons.py --derive-pickups); pinned at that commit. (Before:
+	// 5f040138ed80da2debcd0632e0defc1f1d94f24bcf4c484bc201ffd79972a067, from git 8e4fefc.)
+	equal( createHash( 'sha256' ).update( bytes( 'newer/weapons/g_shot.json' ) ).digest( 'hex' ), '9581185f3f5430ff1f33dbfc073958ae9c3adb4ff3821944c974b240f77222ab', 'SSG pickup bytes as card [12] made them' );
 	check( weapons.R_WeaponAsset( 'progs/v_nail.mdl' ) === null && weapons.R_WeaponAsset( 'progs/v_axe.mdl' ) === null, 'original nailgun and axe retained' );
 	const h = nativeHeader( 'v_shot' ), e = { frame: 0, skinnum: 0, model: { name: 'progs/v_shot.mdl' }, origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ] };
 	const mesh = R_DrawAliasModel( e, h, null ), enhanced = mesh.geometry.getAttribute( 'position' );

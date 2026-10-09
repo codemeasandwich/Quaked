@@ -64,7 +64,8 @@ THREE.TextureLoader.prototype.load = function ( path, done ) {
 weapons.r_newer_weapons.value = 1; anim.r_lerpmodels.value = 0;
 const manifest = await weapons.R_WeaponsLoad(), keys = Object.keys( manifest.models );
 await Promise.all( keys.map( key => weapons.R_WeaponLoad( key ) ) );
-const roles = keys.concat( 'v_axe' ).map( ( key, i ) => ( { key, header: nativeHeader( key ), entity: { frame: 0, skinnum: 0, model: { name: 'progs/' + key + '.mdl' }, origin: [ i * 100, 20, 40 ], angles: [ 0, 73, 0 ] } } ) );
+// (a role with no MDL of its own is drawn as its native model's extra skin: g_shot1 is skin 1 of g_shot.mdl, card [12])
+const roles = keys.concat( 'v_axe' ).map( ( key, i ) => { const native = manifest.models[ key ]?.nativeModel ?? key; return { key, header: nativeHeader( native ), entity: { frame: 0, skinnum: native === key ? 0 : 1, model: { name: 'progs/' + native + '.mdl' }, origin: [ i * 100, 20, 40 ], angles: [ 0, 73, 0 ] } }; } );
 const scene = new THREE.Scene();
 function drawRoles( enhanced ) {
 
@@ -106,13 +107,15 @@ Deno.test( 'weapon modes: actual Newer Game menu commands select all replacement
 	cmd.Cmd_ExecuteString( 'menu_singleplayer', cmd.src_command ); same( menu.m_state, menu.m_singleplayer, 'public single-player menu' );
 	menu.M_Keydown( K_ENTER ); cmd.Cbuf_Execute();
 	same( destination, key_game, 'menu returns control to game' ); same( dispatched.at( - 1 ), 1, 'Newer mode applies before map dispatch' );
-	same( keys.filter( key => key.startsWith( 'g_' ) ).sort().join( ',' ), 'g_light,g_nail,g_nail2,g_rock,g_rock2,g_shot', 'all six supplied pickup roles registered' );
-	same( keys.length, 13, 'thirteen firearm replacements registered' );
+	same( keys.filter( key => key.startsWith( 'g_' ) ).sort().join( ',' ), 'g_light,g_nail,g_nail2,g_rock,g_rock2,g_shot,g_shot1', 'all seven pickup roles registered (the six supplied, and the basic shotgun drop g_shot1 of card [12])' );
+	same( keys.length, 14, 'fourteen firearm replacements registered (with g_shot1, card [12])' );
 	same( manifest.models.v_shot.source, 'shotgun', 'standard shotgun held replacement registered' );
 	same( manifest.models.g_shot.source, 'supershotgun', 'super shotgun pickup preserved' );
-	check( manifest.models.v_nail && manifest.models.g_nail && ! manifest.models.g_shot1, 'supplied nailgun roles present; no invented single-shotgun pickup' );
+	check( manifest.models.v_nail && manifest.models.g_nail, 'supplied nailgun roles present' );
+	// card [12] (owner request) replaced the earlier rule of no basic shotgun pickup: its drop is the shotgun's own art, on g_shot.mdl skin 1
+	same( manifest.models.g_shot1?.source, 'shotgun', 'the basic shotgun drop uses the supplied shotgun art' ); same( manifest.models.g_shot1?.nativeModel, 'g_shot', 'fitted to the pickup MDL' );
 	check( ! manifest.models.v_axe && ! manifest.sources.axe, 'axe excluded from replacement assets' );
-	same( roles.length, 14, 'all firearm roles and original axe covered' ); drawRoles( true );
+	same( roles.length, 15, 'all firearm roles and original axe covered' ); drawRoles( true );
 
 } );
 

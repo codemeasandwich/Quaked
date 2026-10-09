@@ -505,7 +505,8 @@ Deno.test( 'a cut face carries the body\'s own skin coordinates and lighting at 
 			const cp = cap.getAttribute( 'position' ), cu = cap.getAttribute( 'uv' );
 			for ( let i = 0; i < cp.count; i ++ ) {
 				const at = uvs.get( key( [ cp.getX( i ), cp.getY( i ), cp.getZ( i ) ] ) );
-				check( at && at.some( ( [ u, v ] ) => Math.abs( u - cu.getX( i ) ) < 1e-5 && Math.abs( v - cu.getY( i ) ) < 1e-5 ), 'cap point ' + i + ' uses the body\'s skin coordinate there' );
+				// (or that coordinate in the skin's other half: a cap triangle keeps to one half, front or back, see oneHalf)
+				check( at && at.some( ( [ u, v ] ) => [ 0, .5, - .5 ].some( d => Math.abs( u + d - cu.getX( i ) ) < 1e-5 ) && Math.abs( v - cu.getY( i ) ) < 1e-5 ), 'cap point ' + i + ' uses the body\'s skin coordinate there' );
 			}
 			if ( geometry.getAttribute( 'color' ) ) same( cap.getAttribute( 'color' )?.count, cp.count, 'and its lighting colour' );
 
@@ -557,6 +558,37 @@ Deno.test( 'the ground\'s slope comes from the floor samples, a half rests on th
 		same( Axe_ParseRecord( encodeURIComponent( JSON.stringify( { ...data, slope } ) ) )?.slope?.[ 0 ]?.join(), n.join(), 'a saved slope is kept' );
 		for ( const bad of [ [ [ 0, 0, 1 ] ], [ [ 1, 0, 0 ], [ 0, 0, 1 ] ], [ [ 0, 0, 2 ], [ 0, 0, 1 ] ], [ [ 0, 0, 1 ], [ 0, 0, 'x' ] ] ] ) same( Axe_ParseRecord( encodeURIComponent( JSON.stringify( { ...data, slope: bad } ) ) ), null, 'a bad saved slope is refused: ' + JSON.stringify( bad ) );
 
+	} finally { corpses.R_ClearAxeCorpses(); }
+
+} );
+
+Deno.test( 'every cut face triangle keeps to one stretch of skin (front or back half), on six monsters', () => {
+
+	for ( const name of [ 'soldier', 'dog', 'ogre', 'knight', 'zombie', 'demon' ] ) {
+		const entity = new entity_t(); entity.model = Mod_ForName( 'progs/' + name + '.mdl', true ); entity.frame = 0; const mesh = R_DrawAliasModel( entity, entity.model.cache.data ), geometry = mesh.geometry; geometry.computeBoundingBox();
+		const normal = R_AxeSwingNormal( pak.COM_FindFile( 'progs/v_axe.mdl' ).data, 3, [ 0, 0, 0 ] ), point = geometry.boundingBox.getCenter( new THREE.Vector3() ).toArray();
+		const halves = R_BisectGeometry( geometry, normal, point );
+		try {
+			for ( const part of halves ) { const u = part.cap.getAttribute( 'uv' ); let worst = 0; for ( let i = 0; i < u.count; i += 3 ) { const s = [ u.getX( i ), u.getX( i + 1 ), u.getX( i + 2 ) ]; worst = Math.max( worst, Math.max( ...s ) - Math.min( ...s ) ); } check( worst <= .35, name + ': widest cap triangle spans ' + worst.toFixed( 3 ) + ' of the skin' ); }
+		} finally { for ( const part of halves ) { part.body.dispose(); part.cap.dispose(); } }
+	}
+
+} );
+
+Deno.test( 'a half turns to lie along the slope at rest (and not at the start); a stair is level ground, not a slope', () => {
+
+	const n = corpses.R_AxeFloorSlope( [ [ 0, 0 ], [ 10, 0 ], [ - 10, 0 ], [ 0, 10 ], [ 0, - 10 ] ].map( ( [ x, y ] ) => [ x, y, 5 + Math.tan( .3 ) * x ] ) );
+	same( corpses.R_AxeFloorSlope( [ [ 0, 0, 0 ], [ 10, 0, 16 ], [ - 10, 0, 0 ], [ 0, 10, 0 ], [ 0, - 10, 0 ] ] ).join(), '0,0,1', 'a 16-unit step: level' );
+	same( corpses.R_AxeFloorSlope( [ [ 0, 0, 0 ], [ 10, 0, 8 ], [ - 10, 0, 0 ], [ 0, 10, 0 ], [ 0, - 10, 0 ] ] ).join(), '0,0,1', 'an 8-unit step: level' );
+	const f = corpseFixture();
+	try {
+		const data = f.owner._axeCorpse; corpses.R_AxeCorpsesFrame( f.scene );
+		const view = ( slope, time ) => { const p = corpses.R_AxeCorpsePreview( { ...data, slope }, cl.worldmodel, time ); const q = p.mesh.children.map( c => c.quaternion.clone() ); p.dispose(); return q; };
+		const tilt = new THREE.Quaternion().setFromUnitVectors( new THREE.Vector3( 0, 0, 1 ), new THREE.Vector3( ...n ) );
+		const level = view( [ [ 0, 0, 1 ], [ 0, 0, 1 ] ], data.at + 5 ), sloped = view( [ n, n ], data.at + 5 );
+		sloped.forEach( ( q, i ) => check( Math.abs( q.dot( tilt.clone().multiply( level[ i ] ) ) ) > .9999, 'half ' + i + ' at rest: the level pose turned onto the slope' ) );
+		const start = view( [ n, n ], data.at ), levelStart = view( [ [ 0, 0, 1 ], [ 0, 0, 1 ] ], data.at );
+		start.forEach( ( q, i ) => check( Math.abs( q.dot( levelStart[ i ] ) ) > .9999, 'half ' + i + ' at the cut: not yet turned' ) );
 	} finally { corpses.R_ClearAxeCorpses(); }
 
 } );
