@@ -98,3 +98,19 @@ Deno.test('saved while down: the save holds the lying box (solid and size are th
  const c=spawn('e1m3',true,false);const y=zombies()[0];sv.time=10;knockDown(c,y);same(y.v.solid,prone.SOLID_NOT,'Classic: SOLID_NOT as in Quake');
  travel.SV_SeamlessReset();
 });
+
+Deno.test('a rocket aimed near a lying zombie is aimed at what lies there, not over it at its standing height',()=>{
+ const p=spawn('e1m3');const z=zombies()[5];sv.time=10;knockDown(p,z);
+ // the player 140 units off, looking at the zombie's standing origin (the autoaim cone takes it from there)
+ let placed=false;for(const a of [0,90,180,270]){const r=a*Math.PI/180,o=z.v.origin;p.v.origin=[o[0]+Math.cos(r)*140,o[1]+Math.sin(r)*140,o[2]+24];p.v.solid=3;SV_LinkEdict(p,false);if(SV_TestEntityPosition(p))continue;
+  const sight=SV_Move([p.v.origin[0],p.v.origin[1],p.v.origin[2]+16],[0,0,0],[0,0,0],[o[0],o[1],o[2]-18],0,p);if(sight.fraction<.97&&sight.ent!==z)continue;placed=true;break;}
+ check(placed,'room to shoot from');
+ const d=[0,1,2].map(a=>z.v.origin[a]-p.v.origin[a]),yaw=Math.atan2(d[1],d[0])*180/Math.PI,pitch=-Math.atan2(d[2]-16,Math.hypot(d[0],d[1]))*180/Math.PI;
+ p.v.v_angle=[pitch,yaw,0];p.v.ammo_rockets=10;
+ const before=sv.edicts.filter(e=>e&&!e.free&&text(e.v.classname)==='missile');call(p,'W_FireRocket');
+ const m=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='missile'&&!before.includes(e));check(m,'a rocket');
+ // where its line passes the zombie: within the lying box's height
+ const v=m.v.velocity,s=m.v.origin,t=((z.v.origin[0]-s[0])*v[0]+(z.v.origin[1]-s[1])*v[1])/(v[0]*v[0]+v[1]*v[1]),zAt=s[2]+v[2]*t;
+ check(zAt>z.v.absmin[2]-1&&zAt<z.v.absmax[2]+1,'the rocket passes through the lying zombie ('+zAt.toFixed(1)+' in '+z.v.absmin[2]+'..'+z.v.absmax[2]+')');
+ travel.SV_SeamlessReset();
+});

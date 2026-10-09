@@ -9,15 +9,20 @@ before the game's own stand-up test in `zombie_paine12`. Damage follows the game
 on every hit, so only 60+ at once kills it (a rocket or grenade, a quad blast); then the game's own `zombie_die` throws its head
 and gibs once and counts one kill. A smaller hit does nothing and it gets up on time.
 
+Quake's autoaim (`PF_aim`, `src/pr_cmds.js`) aims at a target's origin, which for a lying zombie is its standing middle, 18
+units over the box: a rocket aimed near it flew over. For a lying zombie only, autoaim now aims at the box's middle from the
+height the shot leaves at; every other target keeps Quake's exact aim.
+
 ## Checks
 
-* `tests/prone_zombie_native_test.js` (4), real zombies on E1M3: lying hittable and low; a trace down at it hits it; a 20-point
+* `tests/prone_zombie_native_test.js` (5), real zombies on E1M3: lying hittable and low; a trace down at it hits it; a 20-point
   hit does nothing; a 110-point hit gibs it once with one kill and nothing gets up; a blast (`T_RadiusDamage`) gibs it; left alone
   it stands with its own box; with the player on it, it stays down and hittable; the save holds the lying box; Classic stays
   SOLID_NOT. Mutants (no lying box; no standing box restored) fail. Pinned-zombie and axe suites pass.
-* Browser, E1M3: a zombie knocked down is SOLID_BBOX with the low box and health 60.
+* A fifth test: a rocket fired near a lying zombie passes through its box (fails without the aim change: 110 units, over the box).
+* Browser, E1M3: a zombie knocked down is SOLID_BBOX with the low box and health 60; a real rocket fired at it gibs it (its head
+  flies, the kill is counted). Before the aim change the same rocket flew over it.
 
 ## Not checked
 
-A real rocket fired at a downed zombie in the browser did not kill it in my one scripted try (the aim at a lying target is the
-likely cause; not investigated). Whether smaller hits should add up while it is down is the owner's call (Quake's rule is kept).
+Whether smaller hits should add up while it is down is the owner's call (Quake's rule is kept).
