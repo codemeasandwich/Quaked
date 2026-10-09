@@ -919,6 +919,53 @@ function SV_ExitIsTeleporter( exit ) {
 
 }
 
+// A window onto the next level in a teleporter pad's slipgate (card [B2]). The pad itself still teleports as before; this is the
+// picture. The window is the largest upright teleporter surface within reach of the exit's trigger (the slipgate's face),
+// taken on the side the trigger is on, 1 unit in front of it, and it looks from the next level's arrival point the way a player
+// walking through would face. Null when the exit has no upright teleporter surface (E1M4's exit to E1M5) or the next level
+// cannot be read.
+function SV_PadWindow( exit ) {
+
+	const model = sv.worldmodel, there = SV_LevelLinks( exit.map );
+	if ( model == null || model.surfaces == null || there === null || there.start === null ) return null;
+	const reach = 48, trigger = [ 0, 1, 2 ].map( a => ( exit.mins[ a ] + exit.maxs[ a ] ) * .5 );
+	// (turbulent surfaces come cut into strips: coplanar pieces facing the same way are one face)
+	const faces = new Map();
+	for ( const surf of model.surfaces ) {
+
+		if ( surf.texinfo?.texture == null || ! TELEPORTER_TEXTURE.test( surf.texinfo.texture.name ) || surf.plane == null ) continue;
+		const sign = ( surf.flags & 2 ) ? - 1 : 1, n = [ 0, 1, 2 ].map( a => surf.plane.normal[ a ] * sign ); // SURF_PLANEBACK
+		const axis = Math.abs( n[ 0 ] ) > .99 ? 0 : Math.abs( n[ 1 ] ) > .99 ? 1 : - 1;
+		if ( axis < 0 ) continue; // upright and square to the map's axes only
+		const mn = [ 1e9, 1e9, 1e9 ], mx = [ - 1e9, - 1e9, - 1e9 ];
+		for ( let i = 0; i < surf.numedges; i ++ ) {
+
+			const l = model.surfedges[ surf.firstedge + i ], e = model.edges[ Math.abs( l ) ], v = model.vertexes[ l > 0 ? e.v[ 0 ] : e.v[ 1 ] ].position;
+			for ( let a = 0; a < 3; a ++ ) { mn[ a ] = Math.min( mn[ a ], v[ a ] ); mx[ a ] = Math.max( mx[ a ], v[ a ] ); }
+
+		}
+		if ( [ 0, 1, 2 ].some( a => mx[ a ] < exit.mins[ a ] - reach || mn[ a ] > exit.maxs[ a ] + reach ) ) continue;
+		// the face toward the trigger (a slipgate brush has one each way)
+		if ( ( trigger[ axis ] - mn[ axis ] ) * n[ axis ] <= 0 ) continue;
+		const key = axis + ':' + Math.sign( n[ axis ] ) + ':' + Math.round( mn[ axis ] );
+		const face = faces.get( key ) ?? { axis, n, mn: mn.slice(), mx: mx.slice(), area: 0 };
+		for ( let a = 0; a < 3; a ++ ) { face.mn[ a ] = Math.min( face.mn[ a ], mn[ a ] ); face.mx[ a ] = Math.max( face.mx[ a ], mx[ a ] ); }
+		face.area += ( mx[ 2 ] - mn[ 2 ] ) * ( mx[ 1 - axis ] - mn[ 1 - axis ] );
+		faces.set( key, face );
+
+	}
+	let best = null;
+	for ( const face of faces.values() ) if ( best === null || face.area > best.area ) best = face;
+	if ( best === null ) return null;
+	const { axis, n, mn, mx } = best, at = mn[ axis ] + n[ axis ];
+	const box = { mins: mn.slice(), maxs: mx.slice() }; box.mins[ axis ] = at - 1; box.maxs[ axis ] = at + 1;
+	const centre = [ 0, 1, 2 ].map( a => ( box.mins[ a ] + box.maxs[ a ] ) * .5 );
+	const transform = R_CrossingTransform( box, n[ axis ], SV_ArrivalStart( exit.map, there.start ), floorBelow( centre ), axis );
+	if ( transform === null ) return null;
+	return { exit, map: exit.map, transform, side: n[ axis ], opening: openingOf( transform ), arch: null, viewOnly: true };
+
+}
+
 // stop the game's own exit from firing; whoever asks takes over.  Triggers clear
 // their model name when they spawn, so this one is found by its box: the game makes
 // it one unit bigger than the brush all round.
@@ -1021,7 +1068,14 @@ export function SV_SeamlessSetup() {
 		if ( exit.kind === 'pad' || SV_ExitIsTeleporter( exit ) ) {
 
 			// a teleporter pad: it stays a pad, and the teleport is at once
-			if ( SV_LevelLinks( exit.map ) !== null && takeExit( exit ) ) pads.push( { exit, map: exit.map } );
+			if ( SV_LevelLinks( exit.map ) !== null && takeExit( exit ) ) {
+
+				pads.push( { exit, map: exit.map } );
+				// and its slipgate shows the next level (owner request, 9 Oct 2026): a window only, never crossed by walking
+				const window = SV_PadWindow( exit );
+				if ( window !== null ) crossings.push( window );
+
+			}
 			continue;
 
 		}
@@ -1134,7 +1188,7 @@ export function SV_SeamlessFrame() {
 
 		for ( const c of crossings ) {
 
-			if ( c.closed === true || c.transform.crossed( lastOrigin, cur ) === false ) continue;
+			if ( c.closed === true || c.viewOnly === true || c.transform.crossed( lastOrigin, cur ) === false ) continue;
 
 			const t = c.transform;
 			const va = ent.v.v_angle;

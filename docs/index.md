@@ -150,3 +150,4 @@ Commit scopes, delivery records and handoffs.
 Documents that no topic rule claims yet.
 
 - [Lifts, buttons and monsters no longer vanish in busy levels](entity-limit-2026-10-09.md)
+- [Teleporter-pad exits show the next level](pad-windows-2026-10-09.md)
