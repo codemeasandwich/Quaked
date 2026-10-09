@@ -43,34 +43,14 @@ function fitImage( image, box ) {
  const scale = Math.min( box.w/width, box.h/height );
  return { sourceWidth:width, sourceHeight:height, ...rect(box.x+(box.w-width*scale)/2,box.y+(box.h-height*scale)/2,width*scale,height*scale) };
 }
-function page( ctx, entry, box, unlocked, unit, ripple = 0, clock = 0 ) {
+function page( ctx, entry, box, unlocked, unit ) {
  ctx.fillStyle = '#e6dbc2'; ctx.fillRect( box.x, box.y, box.w, box.h );
  if ( !entry ) return;
  const image = unlocked.has(entry.id) ? R_BestiaryPage(entry.id) : null;
  const imageBox = image && fitImage(image,box);
- if ( !imageBox ) {
-  const blank=R_BestiaryEntryBlank(),blankBox=blank&&fitImage(blank,box);
-  const heading=R_BestiaryHeading(entry.id),sourceWidth=heading&&(heading.naturalWidth||heading.width),sourceHeight=heading&&(heading.naturalHeight||heading.height);
-  if(blankBox&&sourceWidth>0&&sourceHeight>0){
-   ctx.drawImage(blank,blankBox.x,blankBox.y,blankBox.w,blankBox.h);
-   ctx.drawImage(heading,blankBox.x,blankBox.y,blankBox.w,blankBox.w*sourceHeight/sourceWidth);
-  }else title(ctx,entry.title,box,unit,'#31271e',.12);
-  return;
- }
+ if ( !imageBox ) { frame(ctx,entry,box,unit); return; }
  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
- if ( ripple <= .001 ) { ctx.drawImage(image,imageBox.x,imageBox.y,imageBox.w,imageBox.h); return; }
- // A bounded display-only ripple. The source PNG and its aspect ratio remain
- // intact; the final held page uses one ordinary unwarped draw.
- ctx.save();
- try {
-  ctx.beginPath(); ctx.rect(box.x,box.y,box.w,box.h); ctx.clip();
-  const rows = 32;
-  for ( let i = 0; i < rows; i ++ ) {
-   const fraction = i/rows, shift = Math.sin(fraction*19-clock*7)*ripple*unit*7;
-   ctx.drawImage(image,0,imageBox.sourceHeight*fraction,imageBox.sourceWidth,imageBox.sourceHeight/rows,
-    imageBox.x+shift,imageBox.y+imageBox.h*fraction,imageBox.w,imageBox.h/rows);
-  }
- } finally { ctx.restore(); }
+ ctx.drawImage(image,imageBox.x,imageBox.y,imageBox.w,imageBox.h);
 }
 // Front matter is always available and does not participate in discovery.
 // Index0 is the outer cover,1 the inner illustration,2 Contents,3+i a creature.
@@ -173,21 +153,67 @@ export function R_BestiaryBookDraw() {
  return true;
 }
 
+// The first-discovery page (cards [1] and [39]). Its own clocks follow the encounter's phases, not one progress value:
+//  * at once: the authored frame and title (the supplied blank folio and the entry's heading crop);
+//  * while the camera moves (the enter phase's first ROLL seconds): the paper rolls up diagonally from its lower-left corner,
+//    its curl travelling to the upper right;
+//  * from the moment the game stops (snapshot.paused): the illustration and the handwriting are revealed over REVEAL seconds,
+//    line by line from the top, as if drawn and written; the camera and the roll may still be moving;
+//  * settled: one plain draw of the supplied page, unchanged.
+// Only the paper is drawn, with a soft shadow at its edges: the rest of its half of the screen shows the live world (no matte).
+// Each frame is drawn from the snapshot alone, so a cancel, a new encounter or a resize leaves nothing behind.
+export const ROLL = .65, REVEAL = 1.6;
+const smooth = x => { const t = clamp(x,0,1); return t*t*(3-2*t); };
+function frame( ctx, entry, box, unit ) {
+ const blank=R_BestiaryEntryBlank(),blankBox=blank&&fitImage(blank,box);
+ const heading=R_BestiaryHeading(entry.id),sourceWidth=heading&&(heading.naturalWidth||heading.width),sourceHeight=heading&&(heading.naturalHeight||heading.height);
+ if(blankBox&&sourceWidth>0&&sourceHeight>0){ctx.drawImage(blank,blankBox.x,blankBox.y,blankBox.w,blankBox.h);ctx.drawImage(heading,blankBox.x,blankBox.y,blankBox.w,blankBox.w*sourceHeight/sourceWidth);}
+ else { ctx.fillStyle = '#e6dbc2'; ctx.fillRect( box.x, box.y, box.w, box.h ); title(ctx,entry.title,box,unit,'#31271e',.12); }
+}
+function reveal( ctx, image, box, amount ) {
+ const imageBox = fitImage(image,box); if ( !imageBox ) return;
+ ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+ if ( amount >= 1 ) { ctx.drawImage(image,imageBox.x,imageBox.y,imageBox.w,imageBox.h); return; }
+ // line by line from the top: each band fades in quickly (a sharp writing edge, so the blank folio and the finished page are
+ // seen together only briefly), the bands overlapping
+ const rows = 24, alpha = ctx.globalAlpha;
+ for ( let i = 0; i < rows; i ++ ) {
+  const a = clamp((amount - i/rows*.88)/.12,0,1); if ( a <= 0 ) break;
+  ctx.globalAlpha = alpha*a;
+  ctx.drawImage(image,0,imageBox.sourceHeight*i/rows,imageBox.sourceWidth,imageBox.sourceHeight/rows,imageBox.x,imageBox.y+imageBox.h*i/rows,imageBox.w,imageBox.h/rows);
+ }
+ ctx.globalAlpha = alpha;
+}
 export function R_BestiaryEncounterDraw() {
  const snapshot = R_BestiarySnapshot();
- if ( snapshot.phase === 'idle' || !snapshot.entry || !(snapshot.opacity > 0) ) return false;
+ if ( snapshot.phase === 'idle' || !snapshot.entry ) return false;
  const s = surface(); if ( !s ) return false;
- const {ctx,width,height,unit} = s, opacity = clamp(snapshot.opacity,0,1), half = width/2;
+ const {ctx,width,height,unit} = s, half = width/2;
  const x = snapshot.side === 'left' ? half : 0, margin = Math.min(16*unit,half*.07);
  const h = Math.min(height-2*margin,(half-2*margin)*1.5), w = h*2/3;
  const box = rect(x+(half-w)/2,(height-h)/2,w,h);
+ const roll = snapshot.phase === 'enter' ? smooth((snapshot.t ?? 1)/ROLL) : 1;
+ const drawn = clamp((snapshot.paused ?? Infinity)/REVEAL,0,1);
+ const opacity = snapshot.phase === 'return' ? clamp(snapshot.opacity,0,1) : 1;
+ if ( !(opacity > 0) ) return false;
  ctx.save();
  try {
   ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha = opacity;
   ctx.beginPath(); ctx.rect(x,0,half,height); ctx.clip();
-  ctx.fillStyle = '#191715'; ctx.fillRect(x,0,half,height);
-  page(ctx,snapshot.entry,box,new Set(snapshot.unlocked || []),unit,
-   1-Math.min(clamp(snapshot.progress,0,1),opacity),now()/1000);
+  // the unrolled part: below the diagonal through the lower-left corner, swept up to the upper right
+  const reach = roll*(box.w+box.h), bottom = box.y+box.h;
+  if ( roll < 1 ) { ctx.beginPath(); ctx.moveTo(box.x-1,bottom+1); ctx.lineTo(box.x+reach,bottom+1); ctx.lineTo(box.x-1,bottom-reach); ctx.closePath(); ctx.clip(); }
+  // the paper's own soft shadow on the world
+  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 18*unit; ctx.shadowOffsetY = 4*unit; ctx.fillStyle = '#e6dbc2'; ctx.fillRect(box.x,box.y,box.w,box.h); ctx.restore();
+  frame(ctx,snapshot.entry,box,unit);
+  const unlocked = new Set(snapshot.unlocked || []), image = unlocked.has(snapshot.entry.id) ? R_BestiaryPage(snapshot.entry.id) : null;
+  if ( image && drawn > 0 ) { const age = clamp(snapshot.imageAge ?? 1,0,1); ctx.globalAlpha = opacity*age; reveal(ctx,image,box,age < 1 ? Math.min(drawn,age) : drawn); ctx.globalAlpha = opacity; }
+  // the curl: a shaded band along the rolling edge
+  if ( roll < 1 ) {
+   const g = ctx.createLinearGradient(box.x+reach/2-6*unit,bottom-reach/2-6*unit,box.x+reach/2+6*unit,bottom-reach/2+6*unit);
+   g.addColorStop(0,'rgba(255,248,230,0)'); g.addColorStop(.55,'rgba(255,248,230,.55)'); g.addColorStop(.8,'rgba(60,40,20,.45)'); g.addColorStop(1,'rgba(60,40,20,0)');
+   ctx.save(); ctx.strokeStyle = g; ctx.lineWidth = 14*unit; ctx.beginPath(); ctx.moveTo(box.x+reach,bottom); ctx.lineTo(box.x,bottom-reach); ctx.stroke(); ctx.restore();
+  }
  } finally { ctx.restore(); }
  return true;
 }

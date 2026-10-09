@@ -49,7 +49,7 @@ function nativeDiscoverable(native,entry) {
 export function R_BestiaryEntries(){return BESTIARY_ENTRIES;}
 export function R_BestiarySnapshot(){journal.reload();const state=encounter.snapshot(),loaded=imageAt.get(state.entry?.id);
  const age=loaded===undefined?1:Math.max(0,Math.min(1,(clock-loaded)/.35));
- return {...state,opacity:state.opacity*age,enemyIndex:target?.native.index??null,...journal.snapshot()};}
+ return {...state,opacity:state.opacity*age,imageAge:age,enemyIndex:target?.native.index??null,...journal.snapshot()};}
 function artwork(id,file){
  if(!imageStates.has(id)&&typeof Image!=='undefined'){
   imageStates.set(id,'loading');const image=new Image();let terminal=false;
