@@ -33,7 +33,9 @@ A.plane = B.plane = far.plane = wallPlane;
 const side = face( [ 0, 1, 0 ], 128, [ [ 352, 128, 0 ], [ 600, 128, 0 ], [ 600, 128, 128 ], [ 352, 128, 128 ] ], true );
 const floor = face( [ 0, 0, 1 ], 0, [ [ 352, 0, 0 ], [ 600, 0, 0 ], [ 600, 700, 0 ], [ 352, 700, 0 ] ] );
 const sky = { ...face( [ 0, 0, - 1 ], 400, [ [ 352, 0, 400 ], [ 600, 0, 400 ], [ 600, 128, 400 ], [ 352, 128, 400 ] ] ), flags: 4 };
-const surfaces = [ A, B, far, side, floor, sky ];
+// a face of the next room on the side wall's plane (x 200..340), where a corner contact taken from the wrong plane lands
+const nextRoom = face( [ 0, 1, 0 ], 128, [ [ 200, 128, 0 ], [ 340, 128, 0 ], [ 340, 128, 128 ], [ 200, 128, 128 ] ], true ); nextRoom.plane = side.plane;
+const surfaces = [ A, B, far, side, floor, sky, nextRoom ];
 const leaf = { contents: - 1, firstmarksurface: surfaces, nummarksurfaces: surfaces.length };
 const world = { leafs: [ leaf ], surfaces, firstmodelsurface: 0, nummodelsurfaces: surfaces.length };
 
@@ -42,20 +44,30 @@ const passes = [];
 const renderer = {
 	autoClear: true, target: null, getRenderTarget() { return this.target; }, setRenderTarget( t ) { this.target = t; },
 	getClearColor: c => c, getClearAlpha: () => 1, setClearColor() {}, clear() { passes.push( { clear: true } ); },
+	xr: { enabled: true },
 	render( scene ) { const m = scene.children[ 0 ].material, u = m.uniforms; passes.push( { heat: 'uCooling' in u, cooling: u.uCooling?.value, count: u.uCount.value, scissor: this.target.scissor.toArray(), autoClear: this.autoClear,
+		xr: this.xr.enabled, reads: u.uPreviousHeat?.value, writes: this.target.texture, blendEquation: m.blendEquation,
 		strokes: Array.from( { length: u.uCount.value }, ( _, k ) => ( { seg: u.uSeg.value[ k ].toArray(), radius: u.uRadius.value[ k ], tile: u.uTile.value[ k ].toArray() } ) ) } ); },
 	readRenderTargetPixels() {}
 };
-let beam = null, entities = [], blocker = null;
+let beam = null, entities = [], blocker = null, self = null;
 const scene = new THREE.Scene();
-W.R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => ( { worldmodel: world, viewentity: 1 } ), pointInLeaf: () => leaf, beam: () => beam, entities: () => entities,
-	trace: ( s, q ) => { if ( blocker && blocker( s, q ) ) return blocker( s, q ); const t = ( 352 - s[ 0 ] ) / ( q[ 0 ] - s[ 0 ] ); return t > 0 ? [ 352, s[ 1 ] + ( q[ 1 ] - s[ 1 ] ) * t, s[ 2 ] + ( q[ 2 ] - s[ 2 ] ) * t ] : null; } } );
+// the ray cast: the nearest of the main wall (x = 352, facing +x), the side wall (y = 128, facing -y) and the floor, with
+// the plane it struck ( { point, normal, dist }, as R_WallBurnTrace ); blocker( s, q ) can put something in the way
+const planes = [ { normal: [ 1, 0, 0 ], dist: 352 }, { normal: [ 0, - 1, 0 ], dist: - 128 }, { normal: [ 0, 0, 1 ], dist: 0 } ];
+function cast( s, q ) {
+	const blocked = blocker && blocker( s, q ); if ( blocked ) return { point: blocked, normal: [ - 1, 0, 0 ], dist: - 400 };
+	const d = [ q[ 0 ] - s[ 0 ], q[ 1 ] - s[ 1 ], q[ 2 ] - s[ 2 ] ]; let best = null;
+	for ( const p of planes ) { const dn = p.normal[ 0 ] * d[ 0 ] + p.normal[ 1 ] * d[ 1 ] + p.normal[ 2 ] * d[ 2 ]; if ( dn >= 0 ) continue; const t = ( p.dist - ( p.normal[ 0 ] * s[ 0 ] + p.normal[ 1 ] * s[ 1 ] + p.normal[ 2 ] * s[ 2 ] ) ) / dn; if ( t > 0 && ( best === null || t < best.t ) ) best = { t, p }; }
+	return best && { point: s.map( ( x, k ) => x + d[ k ] * best.t ), normal: best.p.normal, dist: best.p.dist };
+}
+W.R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => ( { worldmodel: world, viewentity: 1 } ), pointInLeaf: () => leaf, beam: () => beam, entities: () => entities, self: () => self, trace: cast } );
 const start = [ 500, 60, 64 ];
 const aim = ( y, z ) => { beam = { start, end: [ 352, y, z ] }; };
 let clock = 100;
 const frame = ( dt = 1 / 60 ) => { clock += dt; passes.length = 0; W.R_WallBurnFrame( clock ); return passes.slice(); };
 const strokesOf = list => list.filter( p => ! p.heat && p.count ).flatMap( p => p.strokes );
-const reset = () => { W.R_WallBurnClear(); beam = null; entities = []; blocker = null; frame(); };
+const reset = () => { W.R_WallBurnClear(); beam = null; entities = []; blocker = null; self = null; frame(); };
 
 Deno.test( 'charts: one plane is one chart (the BSP\'s split faces share it), cut into cells that each take an atlas slot when first marked; repeated textures elsewhere are their own cells', () => {
 	reset();
@@ -87,21 +99,32 @@ Deno.test( 'the beam: one continuous stroke while it stays on the wall, crossing
 	const isDot = list => list.every( k => k.seg[ 0 ] === k.seg[ 2 ] && k.seg[ 1 ] === k.seg[ 3 ] );
 	beam = null; frame(); same( W.R_WallBurnState().beam, null, 'release: the pen lifts' ); aim( 80, 64 ); check( isDot( strokesOf( frame() ) ), 'pressed again: a new dot, not joined to before' );
 	beam = { start, end: [ 352 + 300, 80, 64 ] }; frame(); same( W.R_WallBurnState().beam, null, 'a miss (nothing there): lifted' ); aim( 82, 64 ); check( isDot( strokesOf( frame() ) ), 'and not joined across it' );
-	entities = [ { keynum: 5, origin: [ 420, 81, 40 ], model: { name: 'progs/ogre.mdl', mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, 32 ] } } ];
+	entities = [ { origin: [ 420, 81, 40 ], model: { name: 'progs/ogre.mdl', mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, 32 ] } } ];
 	aim( 84, 64 ); frame(); same( W.R_WallBurnState().beam, null, 'an Ogre in the beam: lifted (the game\'s beam passes through it; the wall behind is not painted)' );
 	// its frame's own box: standing, it blocks; lying dead (a low box), the beam over it reaches the wall
 	const frames = [ { bboxmin: { v: [ 0, 0, 0 ] }, bboxmax: { v: [ 255, 255, 255 ] } }, { bboxmin: { v: [ 0, 0, 0 ] }, bboxmax: { v: [ 255, 255, 30 ] } } ];
-	const ogre = { keynum: 5, frame: 0, origin: [ 420, 81, 40 ], model: { name: 'progs/ogre.mdl', cache: { data: { frames, scale: [ 32 / 255, 32 / 255, 56 / 255 ], scale_origin: [ - 16, - 16, - 24 ] } } } };
+	const ogre = { frame: 0, origin: [ 420, 81, 40 ], model: { name: 'progs/ogre.mdl', cache: { data: { frames, scale: [ 32 / 255, 32 / 255, 56 / 255 ], scale_origin: [ - 16, - 16, - 24 ] } } } };
 	entities = [ ogre ]; aim( 84, 64 ); frame(); same( W.R_WallBurnState().beam, null, 'standing (its frame\'s box): lifted' );
 	ogre.frame = 1; aim( 84, 64 ); frame(); check( W.R_WallBurnState().beam !== null, 'lying dead (its frame\'s box below the beam): the wall is painted' );
-	entities = [ { keynum: 1, origin: [ 420, 81, 40 ], model: { name: 'progs/player.mdl', mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, 32 ] } } ];
-	aim( 84, 64 ); check( strokesOf( frame() ).length > 0, 'the player\'s own body does not lift it' ); entities = [];
+	self = { origin: [ 420, 81, 40 ], model: { name: 'progs/player.mdl', mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, 32 ] } }; entities = [ self ];
+	aim( 84, 64 ); check( strokesOf( frame() ).length > 0, 'the player\'s own body (the chase view draws it) does not lift it' );
+	entities = [ { origin: [ 500, 60, 50 ], model: { name: 'progs/player.mdl', mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, 32 ] } } ];
+	aim( 84, 64 ); check( strokesOf( frame() ).length > 0, 'nor any body the beam starts inside' ); entities = []; self = null;
 	aim( 86, 64 ); frame(); beam = { start, end: [ 400, 128, 64 ] }; check( isDot( strokesOf( frame() ) ), 'onto the side wall (a new plane): a new dot' );
 	const breaks = W.wallBurnStats.beamBreaks; check( breaks >= 1, 'counted as a break' );
 	// a pillar between two contacts on the same wall: the sweep's check meets something else
 	aim( 20, 64 ); frame(); blocker = ( s0, q ) => q[ 1 ] > 25 && q[ 1 ] < 35 ? [ 400, q[ 1 ], q[ 2 ] ] : null;
 	aim( 40, 64 ); check( isDot( strokesOf( frame() ) ), 'something in between: not joined through it (breakBefore)' );
 	blocker = null; aim( 45, 64 ); check( ! isDot( strokesOf( frame() ) ), 'and joined again after it' );
+	// review of [30c]: half a unit from the corner, the side wall is the nearer surface; the contact is still the main wall
+	// where the beam struck it (from its own ray), never the side wall's plane far behind (the next room's face)
+	beam = null; frame(); beam = { start: [ 500, 126, 64 ], end: [ 352, 127.5, 64 ] }; frame();
+	const pen = W.R_WallBurnState().beam; check( pen && pen.basis.n[ 0 ] === 1, 'on the main wall' );
+	near( Math.hypot( pen.point[ 0 ] - 352, pen.point[ 1 ] - 127.5, pen.point[ 2 ] - 64 ), 0, 1e-6, 'at the point struck' );
+	check( ! W.R_WallBurnState().cells.some( c => c.pieces.some( piece => piece.some( v => v.p[ 0 ] < 350 ) ) ), 'nothing taken in the next room' );
+	// paused: the server's beam stays, but nothing is painted and the pen does not move
+	aim( 60, 64 ); frame(); const held = W.R_WallBurnState().beam; aim( 70, 64 );
+	same( frame( 0 ).length, 0, 'paused: no passes at all' ); same( W.R_WallBurnState().beam, held, 'the pen where it was' );
 } );
 
 Deno.test( 'pellets: each its own dot (breakBefore), the source\'s pellet brush, queued to the next frame; they never touch the beam\'s pen', () => {
@@ -122,10 +145,16 @@ Deno.test( 'heat: the whole canvas cools by one global 16-bit step a pass (4.2 s
 	same( heat.length, 1, 'one heat pass' ); same( marks.length, 1, 'one marks pass' ); same( W.R_WallBurnState().heatRemaining, 4.2, 'fresh heat lasts the source\'s cooling time' );
 	near( heat[ 0 ].cooling * 65535, Math.floor( .1 / 4.2 * 65535 ), 1, 'cooled by dt / 4.2 in 16-bit steps' );
 	same( heat[ 0 ].autoClear, false, 'the passes never clear their target' );
+	check( heat[ 0 ].reads && heat[ 0 ].reads !== heat[ 0 ].writes, 'the heat pass reads the last heat and writes the other target (ping-pong)' );
+	same( marks[ 0 ].blendEquation, THREE.MaxEquation, 'the groove and burn are MAX-blended: painting can only darken' );
+	check( p.every( x => x.clear || x.xr === false ) && renderer.xr.enabled === true, 'WebXR is off for the atlas passes and restored after' );
+	const g = W.R_WallBurnState().gpu; same( g.heatShown, g.heatTargets[ W.R_WallBurnState().front ].texture, 'the wall shows the heat just written' );
+	same( g.heatShown, heat[ 0 ].writes, '(the target this frame wrote)' ); same( g.marksShown, g.permanentTarget.texture, 'and the marks target' );
 	check( marks[ 0 ].scissor[ 2 ] > 0 && marks[ 0 ].scissor[ 2 ] < 64, 'the marks pass is scissored to the pen\'s bounds: ' + marks[ 0 ].scissor );
 	same( heat[ 0 ].scissor[ 3 ], 128, 'the heat pass covers only the atlas rows in use' );
 	beam = null; let total = 0;
 	for ( let i = 0; i < 50; i ++ ) { p = frame( .1 ); total += p.filter( x => x.heat ).reduce( ( a, x ) => a + x.cooling, 0 ); check( p.every( x => x.heat || x.clear ), 'cooling: no marks pass (the permanent layers are never touched)' ); }
+	{ const g = W.R_WallBurnState().gpu; same( g.heatShown, g.heatTargets[ W.R_WallBurnState().front ].texture, 'after many swaps the wall still shows the latest heat' ); }
 	near( W.R_WallBurnState().heatRemaining, 0, 1e-9, 'cold after 4.2 s' ); check( total * 65535 >= 65535 - 2, 'the heat stepped down a whole 16-bit range: ' + total * 65535 );
 	same( frame( .1 ).length, 0, 'cold and nothing new: no passes at all' );
 	aim( 40, 64 ); frame( .1 ); beam = null; const before = W.R_WallBurnState().heatRemaining; same( frame( 0 ).length, 0, 'paused (the clock stands): nothing cools' ); same( W.R_WallBurnState().heatRemaining, before, 'still hot' );
@@ -152,10 +181,14 @@ Deno.test( 'bounded: a 2048 atlas of 256 cells; when all are taken no new wall i
 	for ( const f of extra ) for ( let x = 24; x < 480; x += 48 ) for ( let y = 24; y < 480; y += 48 ) { if ( W.R_WallBurnShot( [ x, y, f.plane.dist + 2 ] ) ) taken ++; else refused ++; if ( W.R_WallBurnState().queued.length > 200 ) frame(); }
 	same( W.R_WallBurnState().cells.length, 256, 'every slot taken, and no more' ); check( refused > 0 && W.wallBurnStats.full > 0, 'the rest refused (' + refused + '): the caller draws its own mark' );
 	check( W.R_WallBurnShot( [ 24, 24, 6 ] ), 'a cell already held is still painted' );
+	// the 256th cell is (5, 5) on the third floor (z = 12); (5, 6) was refused. A pellet on their edge is left to the decal
+	// whole, not cut off at the held cell's edge
+	frame(); const before = W.R_WallBurnState().queued.length;
+	same( W.R_WallBurnShot( [ 264, 6 * 48 - .3, 14 ] ), false, 'a pellet reaching a refused cell: the decal' ); same( W.R_WallBurnState().queued.length, before, 'nothing queued' );
 	W.R_WallBurnClear(); same( W.R_WallBurnState().cells.length, 0, 'a new map: the cells go' ); same( W.R_WallBurnState().heatRemaining, 0, 'and the heat' );
 	frame(); const p = frame(); same( p.length, 0, 'nothing to paint' );
 	W.R_WallBurnShot( [ 356, 30, 30 ] ); const q = frame(); check( q.some( x => x.clear ), 'the atlas is cleared on the next use' );
-	surfaces.splice( 6 ); world.nummodelsurfaces = leaf.nummarksurfaces = surfaces.length;
+	surfaces.splice( 7 ); world.nummodelsurfaces = leaf.nummarksurfaces = surfaces.length;
 } );
 
 Deno.test( 'Newer Game only: Classic and the switch take nothing (the pellets keep their ordinary marks) and hide the burn', () => {
@@ -169,4 +202,25 @@ Deno.test( 'Newer Game only: Classic and the switch take nothing (the pellets ke
 	for ( let i = 0; i < position.length; i += 3 ) near( position[ i ], 352.1, 1e-4, 'lifted a tenth of a unit off the wall' );
 	same( scene.getObjectByName( 'quake_wallburn_heat' ).visible, true, 'hot: the heat layer drawn' );
 	W.R_WallBurnClear(); same( scene.getObjectByName( 'quake_wallburn' ), undefined, 'cleared with the level: out of the scene' );
+} );
+
+// review of [30c]: the real ray cast (the level's own hull 0, as the beam's plane and the sweep's occluder checks use)
+Deno.test( 'the level\'s own hull: the beam\'s ray in E1M1 meets the wall the browser trial burned, with that wall\'s plane facing back along the ray; rays in the open meet nothing', async () => {
+	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/pak.js' ), { VID_SetPalette } = await import( '../src/vid.js' ), { Mod_Init, Mod_ForName } = await import( '../src/gl_model.js' );
+	const data = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
+	VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+	const e1m1 = Mod_ForName( 'maps/e1m1.bsp', true );
+	W.R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => ( { worldmodel: e1m1, viewentity: 1 } ), pointInLeaf: () => leaf, beam: () => null, entities: () => [] } );
+	try {
+		// (the wall the browser trial burned: the server's beam from [445.5,60.125,40] ended at [416,-10.875,56], on the wall
+		// x = 416, eleven units from the corner with the wall y = 0, which the first version's nearest-surface lookup took)
+		const hit = W.R_WallBurnTrace( [ 445.5, 60.125, 40 ], [ 416, - 10.875, 56 ] );
+		check( hit !== null, 'it meets the wall' ); near( hit.point[ 0 ], 416, .1, 'on the wall x = 416 (' + hit.point + ')' );
+		near( hit.normal[ 0 ], 1, 1e-6, 'its plane faces back along the ray' ); near( hit.dist, 416, 1e-6, 'the plane x = 416' );
+		same( W.R_WallBurnTrace( [ 445.5, 60.125, 40 ], [ 445.5, 40, 40 ] ), null, 'twenty units of open room: nothing' );
+		// (a 600-unit ray down the corridor the first trial fired into ends in the air: the server's beam's range, no wall)
+		same( W.R_WallBurnTrace( [ 480, - 352, 88 ], [ 480, 248, 104 ] ), null, 'the beam\'s full range in the open: nothing' );
+	} finally {
+		W.R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => ( { worldmodel: world, viewentity: 1 } ), pointInLeaf: () => leaf, beam: () => beam, entities: () => entities, self: () => self, trace: cast } );
+	}
 } );

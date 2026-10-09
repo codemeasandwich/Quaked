@@ -85,10 +85,11 @@ R_DecalSurface
 The surface a point is just in front of: within maxDist of a surface's plane and
 over the surface itself.  Fills and returns a shared record ( surf, dist, normal,
 the point on the surface, and how far it is to the surface's nearest edge ) or
-null.
+null.  accept( surf, normal ), if given, limits it to the surfaces it allows (the
+wall burn's: only the plane its beam struck).
 ================
 */
-export function R_DecalSurface( model, p, maxDist, pointInLeaf ) {
+export function R_DecalSurface( model, p, maxDist, pointInLeaf, accept = null ) {
 
 	if ( model == null || model.leafs == null ) return null;
 
@@ -108,6 +109,7 @@ export function R_DecalSurface( model, p, maxDist, pointInLeaf ) {
 		const n = s.plane.normal;
 		const dist = sign * ( n[ 0 ] * p[ 0 ] + n[ 1 ] * p[ 1 ] + n[ 2 ] * p[ 2 ] - s.plane.dist );
 		if ( dist < - 0.5 || dist >= bestDist ) continue;
+		if ( accept !== null && ! accept( s, sign ) ) continue;
 
 		// the point on the plane, and whether it is over the surface
 		const qx = p[ 0 ] - n[ 0 ] * sign * dist, qy = p[ 1 ] - n[ 1 ] * sign * dist, qz = p[ 2 ] - n[ 2 ] * sign * dist;

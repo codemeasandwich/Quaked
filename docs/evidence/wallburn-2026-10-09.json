@@ -1,0 +1,15 @@
+{
+  "card": "[30c] burn marks on the walls",
+  "browser": "Chrome for Testing 1217 headless, ANGLE Metal, 900x560, tests/shotgun_trial.html, e1m1, Newer Game",
+  "beamSweep": {
+    "player": [445.5, 60.125, 40],
+    "serverBeamEnd": [416, -10.875, 56],
+    "pen": { "planeNormal": [1, 0, 0], "planeDist": 416, "point": [416, -10.875, 56] },
+    "readWhileFiring": { "groove": 1, "burn": 1, "heat": 1 },
+    "readAfter5_5s": { "groove": 1, "burn": 1, "heat": 0 },
+    "firstVersionPen": { "planeNormal": [0, 1, 0], "planeDist": 0, "point": [407.25, 0, 56], "note": "nearest-surface lookup took the corner's other wall, eleven units off; fixed after review" }
+  },
+  "grunt": { "inBeam": { "strokes": 0, "pen": null }, "movedAside": { "strokes": 36 } },
+  "superShotgun": { "pelletsTaken": 13 },
+  "images": ["images/wallburn-2026-10-09.jpg"]
+}

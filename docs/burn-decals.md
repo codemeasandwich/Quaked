@@ -32,7 +32,7 @@ The game reuses that design, its shaders and its numbers. What differs, and why:
 | Atlas use | Fixed tiles, padding left empty | Cells taken when first marked; padding painted too, so cells meet without a seam |
 | Strokes per pass | One | Up to sixteen at once (the same result: the passes take the maximum) |
 | Groove and burn | Two R8 targets | The red and green of one RG8 target |
-| Groove relief | The wall's normal is bent along the groove | Not reproduced: Quake's walls are lit by lightmaps, and an overlay cannot bend the normal |
+| Groove relief | The wall's normal is bent along the groove | Not reproduced: the marks are an overlay that multiplies the wall's targets, and a multiplier cannot bend the normal the game's lights read (doing it would mean writing the groove into the world's own material); a deviation for the owner to accept |
 | Wall colour | The wall shader mixes towards charcoal | A multiplier of the wall's colour (the charcoal, about 0.002, is taken as black) |
 | Heat light | Added by the wall shader | An additive layer over the wall, taken by the game's bloom |
 
@@ -42,8 +42,12 @@ The game reuses that design, its shaders and its numbers. What differs, and why:
    server's trace met the level). A pellet: each `TE_GUNSHOT` (the player's shotguns and the Grunts'), which the server places
    4 units in front of the wall it struck.
 2. **The wall.** The level's own surface under the point (`R_DecalSurface`, the decals' finder: the surfaces of the leaf the
-   point is in, not the sky or liquids). The beam's end arrives rounded to an eighth of a unit and can lie just inside the
-   wall, so it is looked up a unit back along the beam; the contact is where the beam's line meets that wall's plane.
+   point is in, not the sky or liquids). For the beam, the plane comes first from the beam's own ray (`R_WallBurnTrace`, the
+   level's hull 0, from the beam's start through its end), and only a surface on that plane is taken: near a corner the
+   nearest surface to the end can be the floor or the side wall, whose plane the beam meets far away (the first version did
+   exactly that, eleven units off, in the E1M1 trial). The end arrives rounded to an eighth of a unit and can lie just
+   inside the wall, so it is looked up a unit back along the beam; the contact is where the beam's line meets that plane,
+   and a contact more than four units from where the ray struck is refused (the pen lifts).
 3. **The chart.** A chart is one side of a world plane, with fixed axes in it (U and V, the same construction as the decals'
    axes). Faces the BSP split from one wall lie on one plane, so they share one chart and a stroke crosses their seams.
    Texture coordinates are never used: the same texture repeats on many walls, but a chart position is unique.
@@ -85,7 +89,8 @@ The beam's pen is lifted, and the next contact starts a new dot rather than join
   own faces and are not marked);
 * **a monster stands in the beam** (or another player). The game's own trace passes through monsters, so the server's end
   is the wall behind them; the client checks the beam against each monster's box for its current frame (so a corpse lying
-  on the floor does not stop the beam marking the wall above it) and lifts the pen rather than paint the wall behind;
+  on the floor does not stop the beam marking the wall above it) and lifts the pen rather than paint the wall behind. The
+  player's own body (drawn in the chase view) and any box the beam starts inside are not counted;
 * **the wall changes** (another plane: round a corner, onto the floor);
 * **something lies in between** the last contact and this one on the same wall (a pillar, a doorway's edge, a gap): the
   sweep between them is checked from the beam's start every 2 units (at most 32 checks), and anything that is not this same
@@ -95,18 +100,30 @@ A pellet is always its own dot: never joined to another pellet or to the beam, a
 
 ## Lifetime and limits
 
-* **Game time.** Cooling follows the client's clock: paused, nothing cools and nothing is painted.
+* **Game time.** Cooling follows the client's clock. Paused (the clock stands while the server's beam stays), nothing
+  cools, nothing is painted and the beam's pen stays where it was.
 * **A new level** (or loading a saved game) clears every mark, cell and the beam's pen; the atlas is cleared at its next
   use. Marks are not saved with the game and are not kept when you return to a level.
 * **Memory.** 25 MB of GPU memory (2048 x 2048: one RG8 for the marks, two RG8 for the heat), taken at the first mark and
-  kept for the session. Losing the WebGL context loses the marks.
+  kept for the session (the first mark of a session creates the targets and compiles four shaders, outside the game's
+  shader warm-up, so it may stall a frame). Losing the WebGL context loses the marks. The drawn pieces are rebuilt when a
+  cell is added, releasing the last buffers.
+* **WebXR.** The atlas passes switch three's XR rendering off while they run (as the shadow and water passes do), so they
+  paint the atlas, not each eye; the marks in a headset are otherwise unchecked.
 * **The bound.** When all 256 cells are taken, no new wall is marked: pellets fall back to the ordinary bullet-hole decal
-  (which lasts 90 s), and the beam marks only cells it already has. Nothing is evicted.
+  (which lasts 90 s), all or nothing (a pellet reaching a refused cell is left wholly to its decal, never cut at a cell's
+  edge), and the beam marks only cells it already has. Nothing is evicted.
 * **Off** with `r_newer_wallburn 0` (pellets then make bullet-hole decals, as in Classic). The nailguns keep their
-  bullet-hole decals; the burn is for the lightning gun and the shotguns, as in the supplied page.
+  bullet-hole decals; the burn is for the lightning gun and the shotguns.
+* **Awaiting the owner.** Two choices made here are the owner's to confirm: a pellet the burn takes makes no bullet-hole
+  decal (the burn replaces it, as the supplied page's shotgun has no hole), and the Grunts' pellets burn as the player's
+  do (`TE_GUNSHOT` does not say who fired; the supplied page has only the player's gun).
+* **The erosion noise** is fixed on the plane but wraps every 1200 units (25 cells), where a line crossing it can change
+  width by up to a tenth.
 * **Failures.** A contact with no wall, no cell or no room is dropped (a pellet then makes its decal). Without a renderer
   the queue is dropped. Diagnostics: `R_WallBurnRead( point )` reads the groove, burn and heat where a point lies (a
-  blocking readback, as the supplied `readPixel`; never used by the game), `R_WallBurnState()` and `wallBurnStats`.
+  blocking readback, as the supplied `readPixel`; never used by the game; `R_WallBurnRead( point, from )` takes the wall
+  from the ray from `from`, as the beam does), `R_WallBurnState()` and `wallBurnStats`.
 
 ## Interfaces
 
@@ -119,16 +136,25 @@ A pellet is always its own dot: never joined to another pellet or to the beam, a
 
 ## Checks
 
-* `tests/wallburn_test.js` (7), with a small built level and a renderer that records each pass: one plane is one chart
+* `tests/wallburn_test.js` (8), with a small built level and a renderer that records each pass: one plane is one chart
   (a pellet on a cell boundary paints both cells; the cell over the BSP's split holds a piece of each face; a wall of the
   same texture elsewhere is its own cell; between walls, the sky and the air take nothing); the beam's strokes and every
-  break above (release, miss, a standing Ogre, not a dead one or the player, a new wall, something in between, joined again
-  after it); pellets as dots that never disturb the beam; the heat's 16-bit cooling (4.2 s from white, nothing while
-  paused, no marks pass while cooling, scissors, no clears); passes of sixteen; the 256-cell bound with the decal fallback;
-  Classic and the switch. Each of seven deliberate breaks of the code (no occluder break, no monster check, joining across
-  planes, joining pellets, no cooling, no bound, no painted padding) fails it.
-* Browser, E1M1 (picture above): the lightning gun swept along a wall 70 units away: the atlas read back gives groove
-  0.75, burn 1 and heat 0.94 while firing, and after 5.5 s heat 0 with the groove and burn unchanged; the screenshots show
+  break above (release, miss, a standing Ogre, not a dead one, not the player's own body or a box the beam starts in, a
+  new wall, something in between, joined again after it); half a unit from a corner, the contact on the wall struck, not
+  the side wall's plane (nothing taken in the next room); paused, no passes and the pen kept; pellets as dots that never
+  disturb the beam; the heat's 16-bit cooling (4.2 s from white, no marks pass while cooling, scissors, no clears), the
+  heat pass reading one target and writing the other, the wall showing the target just written after every swap, MAX
+  blending for the groove and burn, WebXR off during the passes and restored; passes of sixteen; the 256-cell bound with
+  the decal fallback, all or nothing for a pellet; Classic and the switch; and the real hull-0 ray cast on E1M1 (the wall
+  the browser trial burned, and rays in the open). These checks fail when their part of the code is broken (checked by
+  deliberately breaking each: the occluder break, the monster check, joining across planes, joining pellets, cooling, the
+  bound, the plane from the ray, the player's own body, WebXR, pause, the pellet's all-or-nothing, MAX blending, the
+  ping-pong read and the shown heat target). The shader's own painting of a cell's padding is not checked by them (the
+  padding is reached by queueing the neighbouring cell, which is).
+* Browser, E1M1 (picture above; receipts in [evidence/wallburn-2026-10-09.json](evidence/wallburn-2026-10-09.json)): the
+  lightning gun swept along a wall 70 units away: after the review's fix the pen lies on the plane the beam struck (x = 416)
+  at its end, and the atlas read back there gives groove 1, burn 1 and heat 1 while firing; after 5.5 s heat 0 with the
+  groove and burn unchanged; the screenshots show
   the hot line, its reddening and the black groove left. With a Grunt moved into the beam, no stroke was painted; moved
   aside, the beam marked the wall again. The super shotgun's pellets left hot dots (13 taken). The supplied page captured
   at the same moments for comparison.
@@ -136,5 +162,6 @@ A pellet is always its own dot: never joined to another pellet or to the beam, a
 ## Not checked
 
 A door or lift in the beam's path in the browser (the module looks up only the level's own faces, so it should lift the
-pen; only the unit test's sky and air cases were run), the atlas filling up in a real level, a lost WebGL context, WebXR,
-and frame cost on a phone. How dark, wide and bright the marks should be is the owner's to judge.
+pen; only the unit test's sky and air cases were run), the chase view in the browser, the atlas filling up in a real level,
+a lost WebGL context, a WebXR headset, and frame cost on a phone. How dark, wide and bright the marks should be is the
+owner's to judge.

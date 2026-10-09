@@ -76,8 +76,8 @@ export const wallBurnStats = { cells: 0, full: 0, strokes: 0, passes: 0, beamBre
 
 // externals: scene; renderer() (THREE.WebGLRenderer); cl() (the client state: worldmodel, viewentity);
 // pointInLeaf( p, model ); beam() -> { start, end } | null (the player's own TE_LIGHTNING2);
-// entities() -> the client entities drawn this frame; trace( s, q ) (optional: where a ray from s through q meets the
-// level, else the world's own hull)
+// entities() -> the client entities drawn this frame; self() -> the player's own client entity; trace( s, q )
+// (optional: R_WallBurnTrace's { point, normal, dist }, else the world's own hull)
 export function R_WallBurnSetup( externals ) { deps = externals; }
 export const R_WallBurnEnabled = () => deps !== null && R_NewerGame() && r_newer_wallburn.value !== 0;
 
@@ -243,12 +243,17 @@ function segmentBoxDistance( a, b, x0, y0, x1, y1 ) {
 
 }
 
-// the wall a point lies on: its plane side and the point in that chart, or null (sky, water, air, a door)
-function wallAt( p, maxDist ) {
+// the wall a point lies on: its plane side and the point in that chart, or null (sky, water, air, a door); plane, if
+// given ( { normal, dist } ), admits only a surface on that plane
+function wallAt( p, maxDist, plane = null ) {
 
 	const cl = deps.cl();
 	if ( cl == null || cl.worldmodel == null ) return null;
-	const hit = R_DecalSurface( cl.worldmodel, p, maxDist, deps.pointInLeaf );
+	const accept = plane === null ? null : ( s, sign ) => {
+		const n = s.plane.normal;
+		return n[ 0 ] * sign * plane.normal[ 0 ] + n[ 1 ] * sign * plane.normal[ 1 ] + n[ 2 ] * sign * plane.normal[ 2 ] > .999 && Math.abs( s.plane.dist * sign - plane.dist ) < 1;
+	};
+	const hit = R_DecalSurface( cl.worldmodel, p, maxDist, deps.pointInLeaf, accept );
 	if ( hit === null ) return null;
 	const basis = basisOf( hit.surf.plane, ( hit.surf.flags & SURF_PLANEBACK ) !== 0 ), q = [ hit.px, hit.py, hit.pz ];
 	return { basis, uv: [ dot( q, basis.U ), dot( q, basis.V ) ], point: q };
@@ -275,7 +280,10 @@ export function R_WallBurnShot( p ) {
 	const wall = wallAt( p, WALLBURN.pelletDist );
 	if ( wall === null ) return false;
 	const radius = Math.max( .042, ( .030 + Math.random() * .006 ) * 2.15 ); // the source's pellet: max( .042, radius * 2.15 )
-	if ( stroke( wall.basis, wall.uv, wall.uv, radius ) === 0 ) return false;
+	// all or nothing: a pellet reaching a cell the atlas has no room for is left wholly to the caller's decal (never a dot
+	// cut off at the cell's edge)
+	const queued = queue.length, full = wallBurnStats.full;
+	if ( stroke( wall.basis, wall.uv, wall.uv, radius ) === 0 || wallBurnStats.full !== full ) { queue.length = queued; return false; }
 	wallBurnStats.pellets ++;
 	return true;
 
@@ -297,17 +305,34 @@ function boxOf( e ) {
 
 }
 
-// whether the beam from s to q passes through a monster
-function monsterBetween( s, q ) {
+// the monsters' boxes this frame, as [ lo, hi ] in the world: not the player's own body (drawn in the chase view) nor
+// any box the beam starts inside
+let monsters = [];
+function monsterBoxes( start ) {
 
-	const view = deps.cl()?.viewentity;
+	const self = deps.self?.(), out = [];
 	for ( const e of deps.entities() ) {
 
 		const m = e?.model;
-		if ( m == null || ! MONSTER.test( m.name || '' ) || e.keynum === view ) continue;
+		if ( m == null || e === self || ! MONSTER.test( m.name || '' ) ) continue;
 		const box = boxOf( e );
 		if ( box === null ) continue;
-		const lo = [ 0, 1, 2 ].map( i => e.origin[ i ] + box[ 0 ][ i ] ), hi = [ 0, 1, 2 ].map( i => e.origin[ i ] + box[ 1 ][ i ] );
+		const lo = [ e.origin[ 0 ] + box[ 0 ][ 0 ], e.origin[ 1 ] + box[ 0 ][ 1 ], e.origin[ 2 ] + box[ 0 ][ 2 ] ];
+		const hi = [ e.origin[ 0 ] + box[ 1 ][ 0 ], e.origin[ 1 ] + box[ 1 ][ 1 ], e.origin[ 2 ] + box[ 1 ][ 2 ] ];
+		if ( start[ 0 ] >= lo[ 0 ] && start[ 0 ] <= hi[ 0 ] && start[ 1 ] >= lo[ 1 ] && start[ 1 ] <= hi[ 1 ] && start[ 2 ] >= lo[ 2 ] && start[ 2 ] <= hi[ 2 ] ) continue;
+		out.push( lo, hi );
+
+	}
+	return out;
+
+}
+
+// whether the beam from s to q passes through one of this frame's monster boxes
+function monsterBetween( s, q ) {
+
+	for ( let k = 0; k < monsters.length; k += 2 ) {
+
+		const lo = monsters[ k ], hi = monsters[ k + 1 ];
 		let t0 = 0, t1 = 1, hit = true;
 		for ( let i = 0; i < 3 && hit; i ++ ) {
 
@@ -326,15 +351,17 @@ function monsterBetween( s, q ) {
 
 }
 
-// where a ray from s through q first meets the level, or null
-function traceWorld( s, q ) {
+// where a ray from s through q (and 4 units on) first meets the level: { point, normal, dist } (the plane it struck,
+// facing the ray), or null
+export function R_WallBurnTrace( s, q ) {
 
-	const hull = deps.cl()?.worldmodel?.hulls?.[ 0 ];
+	const hull = deps?.cl()?.worldmodel?.hulls?.[ 0 ];
 	if ( ! hull ) return null;
 	const d = unit( [ q[ 0 ] - s[ 0 ], q[ 1 ] - s[ 1 ], q[ 2 ] - s[ 2 ] ] ), e = [ q[ 0 ] + d[ 0 ] * 4, q[ 1 ] + d[ 1 ] * 4, q[ 2 ] + d[ 2 ] * 4 ];
 	const t = new trace_t(); t.allsolid = true; t.endpos.set( e );
 	SV_RecursiveHullCheck( hull, hull.firstclipnode, 0, 1, s, e, t );
-	return t.fraction < 1 && ! t.startsolid ? Array.from( t.endpos ) : null;
+	if ( ! ( t.fraction < 1 ) || t.startsolid ) return null;
+	return { point: Array.from( t.endpos ), normal: Array.from( t.plane.normal ), dist: t.plane.dist };
 
 }
 
@@ -344,17 +371,23 @@ function beamContact() {
 
 	const b = deps.beam?.();
 	if ( b == null || b.start == null ) return null;
+	monsters = monsterBoxes( b.start );
 	if ( monsterBetween( b.start, b.end ) ) return null;
+	// the plane the beam struck, from its own ray (the nearest surface to its end could be the floor or the side wall
+	// at a corner, whose plane the beam meets far away)
+	const trace = deps.trace ?? R_WallBurnTrace, struck = trace( b.start, b.end );
+	if ( struck === null ) return null;
 	// (the end arrives rounded to an eighth of a unit, so it can lie just inside the wall: looked up a unit back along the beam)
 	const back = unit( [ b.start[ 0 ] - b.end[ 0 ], b.start[ 1 ] - b.end[ 1 ], b.start[ 2 ] - b.end[ 2 ] ] );
-	const wall = wallAt( [ b.end[ 0 ] + back[ 0 ], b.end[ 1 ] + back[ 1 ], b.end[ 2 ] + back[ 2 ] ], WALLBURN.beamDist );
+	const wall = wallAt( [ struck.point[ 0 ] + back[ 0 ], struck.point[ 1 ] + back[ 1 ], struck.point[ 2 ] + back[ 2 ] ], WALLBURN.beamDist, struck );
 	if ( wall === null ) return null;
 	// the contact is where the beam's line meets that wall's plane (not the nearest point to where it was looked up)
 	const n = wall.basis.n, along = dot( n, back );
-	if ( along > 1e-6 ) {
-		const t = ( wall.basis.d - dot( n, b.end ) ) / along, q = [ b.end[ 0 ] + back[ 0 ] * t, b.end[ 1 ] + back[ 1 ] * t, b.end[ 2 ] + back[ 2 ] * t ];
-		wall.point = q; wall.uv = [ dot( q, wall.basis.U ), dot( q, wall.basis.V ) ];
-	}
+	if ( ! ( along > 1e-3 ) ) return null;
+	const t = ( wall.basis.d - dot( n, struck.point ) ) / along;
+	if ( Math.abs( t ) > WALLBURN.beamDist + 1 ) return null; // (never far from where the beam struck)
+	const q = [ struck.point[ 0 ] + back[ 0 ] * t, struck.point[ 1 ] + back[ 1 ] * t, struck.point[ 2 ] + back[ 2 ] * t ];
+	wall.point = q; wall.uv = [ dot( q, wall.basis.U ), dot( q, wall.basis.V ) ];
 	wall.breakBefore = false;
 	if ( beam !== null && beam.basis === wall.basis ) {
 
@@ -363,8 +396,8 @@ function beamContact() {
 		for ( let i = 1; i < steps; i ++ ) {
 
 			const t = i / steps, q = from.map( ( x, k ) => x + ( to[ k ] - x ) * t );
-			const hit = ( deps.trace ?? traceWorld )( b.start, q );
-			if ( hit === null || Math.abs( dot( hit, wall.basis.n ) - wall.basis.d ) > 1 || Math.hypot( hit[ 0 ] - q[ 0 ], hit[ 1 ] - q[ 1 ], hit[ 2 ] - q[ 2 ] ) > 4 || monsterBetween( b.start, q ) ) { wall.breakBefore = true; break; }
+			const hit = trace( b.start, q )?.point;
+			if ( hit == null || Math.abs( dot( hit, wall.basis.n ) - wall.basis.d ) > 1 || Math.hypot( hit[ 0 ] - q[ 0 ], hit[ 1 ] - q[ 1 ], hit[ 2 ] - q[ 2 ] ) > 4 || monsterBetween( b.start, q ) ) { wall.breakBefore = true; break; }
 
 		}
 
@@ -467,11 +500,13 @@ function ensureGPU() {
 // run one of the passes into a render target, scissored to [ x, y, w, h ] texels, leaving the renderer as it was
 function pass( materialFor, into, box ) {
 
-	const { renderer, quad, scene, camera } = gpu, previous = renderer.getRenderTarget(), autoClear = renderer.autoClear;
+	const { renderer, quad, scene, camera } = gpu, previous = renderer.getRenderTarget(), autoClear = renderer.autoClear, xr = renderer.xr?.enabled;
 	quad.material = materialFor;
 	into.scissor.set( box[ 0 ], box[ 1 ], box[ 2 ], box[ 3 ] ); into.scissorTest = true;
 	try {
 
+		// (an atlas pass, not a view: in WebXR three would draw it once per eye with the headset's cameras)
+		if ( renderer.xr ) renderer.xr.enabled = false;
 		renderer.autoClear = false;
 		renderer.setRenderTarget( into );
 		renderer.render( scene, camera );
@@ -481,6 +516,7 @@ function pass( materialFor, into, box ) {
 
 		renderer.autoClear = autoClear;
 		renderer.setRenderTarget( previous );
+		if ( renderer.xr ) renderer.xr.enabled = xr;
 
 	}
 
@@ -488,9 +524,10 @@ function pass( materialFor, into, box ) {
 
 function clearGPU() {
 
-	const { renderer } = gpu, previous = renderer.getRenderTarget(), color = renderer.getClearColor( new THREE.Color() ), alpha = renderer.getClearAlpha();
+	const { renderer } = gpu, previous = renderer.getRenderTarget(), color = renderer.getClearColor( new THREE.Color() ), alpha = renderer.getClearAlpha(), xr = renderer.xr?.enabled;
 	try {
 
+		if ( renderer.xr ) renderer.xr.enabled = false;
 		renderer.setClearColor( 0x000000, 0 );
 		for ( const t of [ gpu.permanentTarget, ...gpu.heatTargets ] ) { t.scissorTest = false; renderer.setRenderTarget( t ); renderer.clear( true, false, false ); }
 
@@ -498,6 +535,7 @@ function clearGPU() {
 
 		renderer.setClearColor( color, alpha );
 		renderer.setRenderTarget( previous );
+		if ( renderer.xr ) renderer.xr.enabled = xr;
 
 	}
 	needsClear = false;
@@ -623,6 +661,7 @@ function rebuildGeometry() {
 		}
 
 	}
+	geometry.dispose(); // (the last buffers go now, not when the collector finds them)
 	geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
 	geometry.setAttribute( 'aAtlas', new THREE.Float32BufferAttribute( atlas, 2 ) );
 	geometry.setIndex( index );
@@ -645,6 +684,8 @@ clock: paused, nothing cools), and the walls' drawn pieces brought up to date.
 */
 export function R_WallBurnFrame( time ) {
 
+	// (paused: the client's clock stands, the server's beam stays; nothing is painted and nothing cools)
+	const paused = lastTime !== null && time === lastTime;
 	const dt = lastTime === null ? 0 : Math.max( 0, time - lastTime );
 	lastTime = time;
 	if ( R_WallBurnEnabled() === false ) {
@@ -657,8 +698,9 @@ export function R_WallBurnFrame( time ) {
 
 	// the beam: one continuous stroke while it stays on one wall; the pen lifted on release, a miss, a monster in
 	// the way, a new wall or anything else in between
-	const contact = beamContact();
-	if ( contact === null ) beam = null;
+	const contact = paused ? undefined : beamContact();
+	if ( contact === undefined ) { /* paused: the pen stays as it was */ }
+	else if ( contact === null ) beam = null;
 	else {
 
 		const joined = beam !== null && beam.basis === contact.basis && contact.breakBefore === false;
@@ -706,20 +748,23 @@ export function R_WallBurnClear() {
 }
 
 // for checks: the cells, the beam's pen, the heat left, what is queued
-export const R_WallBurnState = () => ( { cells: cellList.slice(), beam, heatRemaining, queued: queue.slice(), front, gpu: gpu !== null } );
+export const R_WallBurnState = () => ( { cells: cellList.slice(), beam, heatRemaining, queued: queue.slice(), front,
+	gpu: gpu && { permanent: gpu.permanent, heatPass: gpu.heatPass, heatTargets: gpu.heatTargets, permanentTarget: gpu.permanentTarget, heatShown: heat?.material.uniforms.uHeat.value, marksShown: marks?.material.uniforms.uMarks.value } } );
 
 /*
 ================
 R_WallBurnRead
 
 Diagnostics only (the source's readPixel, a blocking readback never used by the live loop): the groove, burn and
-heat where a world point lies on its wall, or null where nothing marks it.
+heat where a world point lies on its wall, or null where nothing marks it.  from, if given, is where a ray to the
+point starts (the beam's start): the wall is then the plane that ray strikes, as the beam's contact takes it.
 ================
 */
-export function R_WallBurnRead( p ) {
+export function R_WallBurnRead( p, from = null ) {
 
 	if ( gpu === null || deps === null ) return null;
-	const wall = wallAt( p, WALLBURN.pelletDist );
+	const struck = from === null ? null : ( deps.trace ?? R_WallBurnTrace )( from, p );
+	const wall = struck === null ? wallAt( p, WALLBURN.pelletDist ) : wallAt( struck.point.map( ( x, k ) => x + struck.normal[ k ] ), WALLBURN.beamDist, struck );
 	if ( wall === null ) return null;
 	const C = WALLBURN.cell, cell = cells.get( wall.basis.id + ':' + Math.floor( wall.uv[ 0 ] / C ) + ':' + Math.floor( wall.uv[ 1 ] / C ) );
 	if ( cell === undefined ) return null;

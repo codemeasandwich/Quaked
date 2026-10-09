@@ -2237,7 +2237,7 @@ export function R_NewMap() {
 	R_TorchFireClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
 	R_LightningSetup( { scene, camera: () => camera, muzzle: R_LightningMuzzle, beam: CL_PlayerLightning, allocDlight: CL_AllocDlight } );
-	R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => cl, pointInLeaf: Mod_PointInLeaf, beam: CL_PlayerLightning, entities: () => cl_visedicts.slice( 0, cl_numvisedicts ) } );
+	R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => cl, pointInLeaf: Mod_PointInLeaf, beam: CL_PlayerLightning, entities: () => cl_visedicts.slice( 0, cl_numvisedicts ), self: () => cl_entities[ cl?.viewentity ] } );
 	R_WavesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), waterOn: R_WaterActive } );
 	R_ImpactRippleListen( R_WaveImpact );
 	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
