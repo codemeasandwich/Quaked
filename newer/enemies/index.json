@@ -243,9 +243,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "hknight": [
+   {
+    "dir": "hknight/custom",
+    "skin": 0,
+    "nativeModelSha256": "78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 25,
+ "version": 26,
  "nativeHeights": {
   "gib1": [
    [

@@ -1,0 +1,392 @@
+{
+  "schema": 1,
+  "model": "progs/hknight.mdl",
+  "nativeModelSha256": "78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a",
+  "source": "Gemini_Generated_Image_8q8whb8q8whb8q8w.jpeg",
+  "sourceSha256": "b1d2fee5599f855a05081926e9fba84eca0aab84ddc43835a33a04581d23aca8",
+  "skin": 0,
+  "skinFrame": 0,
+  "poses": 166,
+  "vertices": 250,
+  "triangles": 452,
+  "factor": 5,
+  "dimensions": [
+    1540,
+    770
+  ],
+  "bleed": 24,
+  "edge": 3,
+  "toolchain": {
+    "python": "3.9.6",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "scipy": "1.11.4"
+  },
+  "fit": {
+    "background": [
+      22,
+      26,
+      29
+    ],
+    "parts": [
+      {
+        "src": [
+          5,
+          276,
+          316,
+          654
+        ],
+        "wholeSheetBox": [
+          5,
+          295,
+          338,
+          699
+        ],
+        "fittedBox": [
+          8,
+          292,
+          335,
+          699
+        ],
+        "edgesMoved": [
+          3,
+          -3,
+          -3,
+          0
+        ],
+        "scale": [
+          1.0514,
+          1.0767
+        ],
+        "detailAgreementAtWholeSheet": 0.2745,
+        "detailAgreement": 0.3037,
+        "surfacePixels": 17450,
+        "surfaceBeyondArt": 1245,
+        "surfaceBeyondArtMaxDistance": 15.56,
+        "waiver": "front sword: drawn grip about half the native width"
+      },
+      {
+        "src": [
+          102,
+          12,
+          708,
+          717
+        ],
+        "wholeSheetBox": [
+          109,
+          13,
+          757,
+          767
+        ],
+        "fittedBox": [
+          107,
+          14,
+          757,
+          764
+        ],
+        "edgesMoved": [
+          -2,
+          1,
+          0,
+          -3
+        ],
+        "scale": [
+          1.0726,
+          1.0638
+        ],
+        "detailAgreementAtWholeSheet": 0.5302,
+        "detailAgreement": 0.5888,
+        "surfacePixels": 184185,
+        "surfaceBeyondArt": 717,
+        "surfaceBeyondArtMaxDistance": 4.47
+      },
+      {
+        "src": [
+          526,
+          402,
+          591,
+          484
+        ],
+        "wholeSheetBox": [
+          563,
+          430,
+          632,
+          518
+        ],
+        "fittedBox": [
+          565,
+          426,
+          629,
+          518
+        ],
+        "edgesMoved": [
+          2,
+          -4,
+          -3,
+          0
+        ],
+        "scale": [
+          0.9846,
+          1.122
+        ],
+        "detailAgreementAtWholeSheet": 0.5272,
+        "detailAgreement": 0.6422,
+        "surfacePixels": 1858,
+        "surfaceBeyondArt": 33,
+        "surfaceBeyondArtMaxDistance": 4.0
+      },
+      {
+        "src": [
+          545,
+          312,
+          610,
+          393
+        ],
+        "wholeSheetBox": [
+          583,
+          334,
+          652,
+          420
+        ],
+        "fittedBox": [
+          583,
+          335,
+          646,
+          420
+        ],
+        "edgesMoved": [
+          0,
+          1,
+          -6,
+          0
+        ],
+        "scale": [
+          0.9692,
+          1.0494
+        ],
+        "detailAgreementAtWholeSheet": 0.4329,
+        "detailAgreement": 0.5137,
+        "surfacePixels": 1943,
+        "surfaceBeyondArt": 267,
+        "surfaceBeyondArtMaxDistance": 5.83
+      },
+      {
+        "src": [
+          725,
+          276,
+          1037,
+          655
+        ],
+        "wholeSheetBox": [
+          775,
+          295,
+          1109,
+          700
+        ],
+        "fittedBox": [
+          776,
+          288,
+          1107,
+          701
+        ],
+        "edgesMoved": [
+          1,
+          -7,
+          -2,
+          1
+        ],
+        "scale": [
+          1.0609,
+          1.0897
+        ],
+        "detailAgreementAtWholeSheet": 0.2188,
+        "detailAgreement": 0.2579,
+        "surfacePixels": 17450,
+        "surfaceBeyondArt": 1335,
+        "surfaceBeyondArtMaxDistance": 16.97,
+        "waiver": "back sword: drawn grip about half the native width"
+      },
+      {
+        "src": [
+          819,
+          12,
+          1429,
+          717
+        ],
+        "wholeSheetBox": [
+          876,
+          13,
+          1528,
+          767
+        ],
+        "fittedBox": [
+          875,
+          14,
+          1527,
+          765
+        ],
+        "edgesMoved": [
+          -1,
+          1,
+          -1,
+          -2
+        ],
+        "scale": [
+          1.0689,
+          1.0652
+        ],
+        "detailAgreementAtWholeSheet": 0.4894,
+        "detailAgreement": 0.5298,
+        "surfacePixels": 184180,
+        "surfaceBeyondArt": 734,
+        "surfaceBeyondArtMaxDistance": 5.66
+      },
+      {
+        "src": [
+          1246,
+          402,
+          1312,
+          483
+        ],
+        "wholeSheetBox": [
+          1333,
+          430,
+          1403,
+          517
+        ],
+        "fittedBox": [
+          1332,
+          424,
+          1400,
+          517
+        ],
+        "edgesMoved": [
+          -1,
+          -6,
+          -3,
+          0
+        ],
+        "scale": [
+          1.0303,
+          1.1481
+        ],
+        "detailAgreementAtWholeSheet": 0.3121,
+        "detailAgreement": 0.6276,
+        "surfacePixels": 1886,
+        "surfaceBeyondArt": 24,
+        "surfaceBeyondArtMaxDistance": 2.83
+      },
+      {
+        "src": [
+          1266,
+          313,
+          1330,
+          393
+        ],
+        "wholeSheetBox": [
+          1354,
+          335,
+          1422,
+          420
+        ],
+        "fittedBox": [
+          1354,
+          336,
+          1416,
+          420
+        ],
+        "edgesMoved": [
+          0,
+          1,
+          -6,
+          0
+        ],
+        "scale": [
+          0.9688,
+          1.05
+        ],
+        "detailAgreementAtWholeSheet": 0.3612,
+        "detailAgreement": 0.4925,
+        "surfacePixels": 1968,
+        "surfaceBeyondArt": 270,
+        "surfaceBeyondArtMaxDistance": 6.71
+      }
+    ],
+    "unusedArt": [
+      {
+        "src": [
+          11,
+          69,
+          97,
+          358
+        ],
+        "wholeSheetBox": [
+          12,
+          74,
+          104,
+          383
+        ],
+        "sourcePixels": 11138,
+        "surfacePixels": 0
+      },
+      {
+        "src": [
+          717,
+          65,
+          827,
+          186
+        ],
+        "wholeSheetBox": [
+          767,
+          70,
+          884,
+          199
+        ],
+        "sourcePixels": 8166,
+        "surfacePixels": 0
+      },
+      {
+        "src": [
+          1321,
+          374,
+          1412,
+          692
+        ],
+        "wholeSheetBox": [
+          1413,
+          400,
+          1510,
+          740
+        ],
+        "sourcePixels": 11608,
+        "surfacePixels": 0
+      }
+    ],
+    "units": "canvas pixels (native texels x 5)",
+    "surface_pixels": 410920,
+    "direct_supplied_surface_pixels": 406295,
+    "carried_edge_surface_pixels": 4625,
+    "native_surface_pixels": 0,
+    "native_pixels_in_file": 0,
+    "background_coloured_surface_pixels": 0
+  },
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "tool": "tools/texture_sheets/fit_registered.py hknight",
+  "reuse": [
+    "fit_enforcer.register",
+    "fit_enforcer.detail",
+    "fit_enforcer.islands",
+    "fit_enforcer.native_skin",
+    "fit_skin.spread",
+    "uv_footprint",
+    "height_for",
+    "fit_vore.member"
+  ],
+  "files": {
+    "diffuse.webp": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+    "height.webp": "2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592"
+  }
+}

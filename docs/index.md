@@ -67,6 +67,7 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 - [Demon plaques on moving brush entities get their relief too](demon-brush-relief-2026-10-08.md)
 - [Real displacement for the horned demon plaques](demon-displacement-2026-10-03.md)
 - [Shambler skin and enemy height maps — 2026-10-01](enemy-heights-2026-10-01.md)
+- [Death Knight skin fitted to its native model](enemy-skin-death-knight-2026-10-09.md)
 - [Enforcer skin fitted to its native model](enemy-skin-enforcer-2026-10-09.md)
 - [Spawn skin fitted to its native model](enemy-skin-spawn-2026-10-09.md)
 - [The status-bar face turns toward an off-screen enemy that has just noticed you](face-alert-2026-10-09.md)
