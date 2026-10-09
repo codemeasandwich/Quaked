@@ -40,7 +40,9 @@ function angles( portal, a ) {
 
 // null = ordinary QC touch; false = overlapping hull, not yet across the
 // visible threshold; object = preserve this incoming frame if QC teleports.
-export function SV_BeginPortalTouch( ent, trigger, atBackingContact = null ) {
+// `atObstruction` (optional) reports a hull held short of the threshold by a sill or frame that is not the surface's
+// own backing wall; the player then crosses from the projected origin rather than waiting (card [14]).
+export function SV_BeginPortalTouch( ent, trigger, atBackingContact = null, atObstruction = null ) {
 
 	if ( svs.maxclients > 1 || Cvar_VariableValue( 'r_hdr' ) === 0 || r_newer_portals.value === 0 || r_portals.value === 0 || ! R_PortalsActive() ||
 		( ent.v.flags & FL_CLIENT ) === 0 || PR_GetString( trigger.v.classname ) !== 'trigger_teleport' ) {
@@ -99,7 +101,12 @@ export function SV_BeginPortalTouch( ent, trigger, atBackingContact = null ) {
 	if ( portal === null ) return null;
 	const distance = DotProduct( ent.v.origin, portal.normal ) - DotProduct( portal.center, portal.normal );
 	const backing = distance > 0 && atBackingContact && atBackingContact( ent, portal, distance );
-	if ( distance > 0 && ! backing ) {
+	// Held short of the surface by a sill or frame that faces it and cannot be stepped over: no waiting for an origin
+	// that can never arrive. The player crosses by camera from the point of their origin projected onto the
+	// threshold (a short forward pop, but the view and velocity stay continuous), gated by the receiver clearance as
+	// ever; if that is blocked the touch falls to stock QC.
+	const obstructed = distance > 0 && ! backing && atObstruction !== null && atObstruction( ent, portal, distance );
+	if ( distance > 0 && ! backing && ! obstructed ) {
 
 		approaches.set( ent, { trigger, portal } );
 		return false;
@@ -107,7 +114,7 @@ export function SV_BeginPortalTouch( ent, trigger, atBackingContact = null ) {
 	}
 	approaches.delete( ent );
 	const velocity = Array.from( ent.v.velocity );
-	if ( backing && beforeImpact ) {
+	if ( ( backing || obstructed ) && beforeImpact ) {
 
 		const before = DotProduct( beforeImpact, portal.normal );
 		const current = DotProduct( velocity, portal.normal );
@@ -121,7 +128,7 @@ export function SV_BeginPortalTouch( ent, trigger, atBackingContact = null ) {
 	return {
 		portal,
 		receiver,
-		origin: Array.from( ent.v.origin ),
+		origin: obstructed ? ent.v.origin.map( ( v, i ) => v - portal.normal[ i ] * distance ) : Array.from( ent.v.origin ),
 		velocity,
 		viewAngles: Array.from( ent.v.v_angle ),
 		teleportTime: ent.v.teleport_time

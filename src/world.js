@@ -24,6 +24,7 @@ import {
 } from './bspfile.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
 import { EDICT_TO_PROG, PROG_TO_EDICT, pr_global_struct, PR_GetString } from './progs.js';
+import { SV_PortalMoveRead } from './sv_portalmotion.js';
 import { SV_BeginPortalTouch, SV_PreparePortalTouch, SV_FinishPortalTouch, SV_RestorePortalReceiver } from './sv_portal.js';
 import { R_FlashlightSkillSelected } from './r_flashlightrun.js';
 
@@ -436,7 +437,7 @@ export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, cle
 	const recovered = SV_RespawnDropTouch( ent, touch );
 	if ( recovered !== null ) return false; // custom payload touch never teleports the player
 
-	const crossing = SV_BeginPortalTouch( ent, touch, SV_PortalBackingContact );
+	const crossing = SV_BeginPortalTouch( ent, touch, SV_PortalBackingContact, SV_PortalObstructed );
 	if ( crossing === false ) return false;
 	const incoming = SV_PreparePortalTouch( crossing, clearAt || ( origin => {
 
@@ -494,6 +495,55 @@ export function SV_PortalBackingContact( ent, portal, distance ) {
 	let remaining = 0;
 	for ( let i = 0; i < 3; i ++ ) remaining += ( ent.v.origin[ i ] - trace.endpos[ i ] ) * n[ i ];
 	return remaining >= - epsilon && remaining <= epsilon;
+
+}
+
+const STEPSIZE = 18; // sv_phys.js's step height (QC walkmove), not imported: sv_phys imports this file
+
+// The hull overlaps a mapped camera portal's trigger but is held short of the visible threshold by a sill or frame
+// that a step cannot climb (the start hub's skill arches: a lip higher than a step, and a
+// 48-unit opening for a 32-unit hull). Its origin can never reach the threshold from there, and the lip is not the
+// surface's own backing wall, so without this the player stood still until they slid into line (card [14]). Not
+// obstructed: a step the next walk move climbs, a frame the hull slides past, or a hull still approaching.
+export function SV_PortalObstructed( ent, portal, distance ) {
+
+	if ( ! sv.worldmodel?.hulls || ! ( distance > 0 ) ) return false;
+	if ( SV_PortalMoveRead( ent, sv.time )?.stepping ) return false; // a step attempt that may be undone: the frame's final link decides
+	const n = portal.normal, epsilon = 1 / 16; // two BSP clipping epsilons
+	const toward = ( origin, reach ) => {
+
+		const end = origin.map( ( v, i ) => v - n[ i ] * reach );
+		return SV_Move( origin, ent.v.mins, ent.v.maxs, end, MOVE_NOMONSTERS, ent );
+
+	};
+	const advance = ( origin, trace ) => {
+
+		let advanced = 0;
+		for ( let i = 0; i < 3; i ++ ) advanced += ( origin[ i ] - trace.endpos[ i ] ) * n[ i ];
+		return advanced;
+
+	};
+	const trace = toward( ent.v.origin, distance + 0.5 );
+	if ( trace.startsolid || trace.allsolid || trace.fraction >= 1 ) return false;
+	// Held means the sweep, and every sweep below, advances no further than the clipping epsilon: a hull with room
+	// to advance is still approaching, a hull a step or a slide from getting through is not held.
+	if ( advance( ent.v.origin, trace ) > epsilon ) return false;
+	// Could the walk move step over it? Same sweep from one step higher (a start inside a ceiling cannot step).
+	// (a margin of an eighth of a unit: a step of exactly STEPSIZE leaves the raised hull flush with its top)
+	const up = Array.from( ent.v.origin ); up[ 2 ] += STEPSIZE + 0.125;
+	const raised = toward( up, distance + 0.5 );
+	if ( ! raised.startsolid && ! raised.allsolid && ( raised.fraction >= 1 || advance( up, raised ) > epsilon ) ) return false;
+	// Or slide past it? The walk move slips a hull a couple of units sideways along a chamfered or angled frame; a
+	// barrier across the whole opening (a sill) stops every nudge too.
+	const side = Math.abs( n[ 2 ] ) < 0.7 ? [ n[ 1 ], - n[ 0 ], 0 ] : [ 1, 0, 0 ], sl = Math.hypot( side[ 0 ], side[ 1 ] ) || 1;
+	for ( const nudge of [ - 2.5, 2.5 ] ) {
+
+		const shifted = ent.v.origin.map( ( v, i ) => v + side[ i ] / sl * nudge );
+		const slid = toward( shifted, distance + 0.5 );
+		if ( ! slid.startsolid && ! slid.allsolid && ( slid.fraction >= 1 || advance( shifted, slid ) > epsilon ) ) return false;
+
+	}
+	return true;
 
 }
 

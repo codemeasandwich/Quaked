@@ -3,7 +3,7 @@ import { SV_QuadJumpBegin, SV_QuadJumpEnd } from './sv_quadmovement.js';
 // Ported from: WinQuake/sv_phys.c -- server physics
 
 import { SV_SeamlessHolding } from './sv_seamless.js';
-import { SV_PortalMoveStart, SV_PortalMoveEnd } from './sv_portalmotion.js';
+import { SV_PortalMoveStart, SV_PortalMoveEnd, SV_PortalMoveStepping } from './sv_portalmotion.js';
 import { Sys_Error } from './sys.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cvar_t } from './cvar.js';
@@ -1211,6 +1211,9 @@ export function SV_WalkMove( ent ) {
 	VectorCopy( ent.v.origin, nosteporg );
 	VectorCopy( ent.v.velocity, nostepvel );
 
+	SV_PortalMoveStepping( ent, sv.time, true );
+	try {
+
 	//
 	// try moving up and forward to go up a step
 	//
@@ -1268,6 +1271,12 @@ export function SV_WalkMove( ent ) {
 		// cause the player to hop up higher on a slope too steep to climb
 		VectorCopy( nosteporg, ent.v.origin );
 		VectorCopy( nostepvel, ent.v.velocity );
+
+	}
+
+	} finally {
+
+		SV_PortalMoveStepping( ent, sv.time, false );
 
 	}
 

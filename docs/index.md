@@ -82,6 +82,7 @@ Level textures, rock relief, seams, seamless levels and portals.
 - [Equal resolution in the startup demo](demo-resolution-2026-10-01.md)
 - [E1M1 exit corridor ceiling fixtures](e1m1-ceiling-fixtures.md)
 - [City/Church and Wizard texture updates](level-texture-update-2026-10-02.md)
+- [Camera teleporters: no stall when a sill or frame holds the player back](portal-frame-stall-2026-10-09.md)
 - [Prepared continuous rock fields — 2026-10-03](prepared-rock-maps-2026-10-03.md)
 - [Enhanced-only demo profiling](profiler-demo-mode-2026-10-02.md)
 - [Rock visibility, lighting and corner sampling — working increment](rock-lighting-stability-2026-10-03.md)

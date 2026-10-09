@@ -23,3 +23,13 @@ export function SV_PortalMoveRead( ent, time ) {
 	return motion?.time === time ? motion : null;
 
 }
+
+// The walk move's step attempt (up, forward, down, and possibly undone) links the player at positions that may be
+// discarded. A portal touch decided there could teleport twice in one frame, so the obstruction fallback ignores
+// them; the frame's final link still decides.
+export function SV_PortalMoveStepping( ent, time, stepping ) {
+
+	const motion = SV_PortalMoveRead( ent, time );
+	if ( motion ) motion.stepping = stepping;
+
+}
