@@ -1074,21 +1074,23 @@ function M_LevelSelect_Touch( vx, vy ) {
 
 			CHEATS MENU (inside Options)
 
-The game's own cheat commands (god, noclip, notarget, fly, impulse 9, give, impulse 255), as toggles and
-quick gives. They work only in a local single-player game (the game itself ignores them in deathmatch and
-co-op); there is nothing to unlock or record, and the menu says whether any was used in this game.
+Cheats as switches and quick gives: the game's own noclip, notarget and fly; the three power-ups (Ring, Quad, Pentagram)
+as switches that stay on until switched off (sv_cheats.js); all weapons and full health. Each takes effect at once, so
+the game under the menu shows it. Local single-player only; there is nothing to unlock or record, and the menu says
+whether any was used in this game.
 ==============================================================================
 */
 
-// FL_GODMODE 64, FL_NOTARGET 128, MOVETYPE_FLY 5, MOVETYPE_NOCLIP 8
+// FL_NOTARGET 128, MOVETYPE_FLY 5, MOVETYPE_NOCLIP 8; the power switches are kept on the player (_cheatPowers bits 1, 2, 4)
 export const CHEATS = [
-	{ label: 'God mode', command: 'god', on: ( p ) => ( p.v.flags & 64 ) !== 0 },
 	{ label: 'No clip', command: 'noclip', on: ( p ) => p.v.movetype === 8 },
 	{ label: 'No target', command: 'notarget', on: ( p ) => ( p.v.flags & 128 ) !== 0 },
 	{ label: 'Fly', command: 'fly', on: ( p ) => p.v.movetype === 5 },
-	{ label: 'All weapons and ammo', command: 'impulse 9' },
-	{ label: 'Full health', command: 'give h 100' },
-	{ label: 'Quad Damage', command: 'impulse 255' }
+	{ label: 'Invisibility (Ring)', command: 'cheat_power ring', on: ( p ) => ( ( p._cheatPowers | 0 ) & 1 ) !== 0 },
+	{ label: 'Invincibility (Quad)', command: 'cheat_power quad', on: ( p ) => ( ( p._cheatPowers | 0 ) & 2 ) !== 0 },
+	{ label: 'Invulnerability (Pentagram)', command: 'cheat_power pentagram', on: ( p ) => ( ( p._cheatPowers | 0 ) & 4 ) !== 0 },
+	{ label: 'All weapons and ammo', command: 'cheat_weapons' },
+	{ label: 'Full health', command: 'give h 100' }
 ];
 const CHEATS_ROW_Y = 48;
 let m_cheats_cursor = 0;
@@ -1123,25 +1125,21 @@ function M_Cheats_Draw() {
 	for ( let i = 0; i < CHEATS.length; i ++ ) {
 
 		const c = CHEATS[ i ], y = CHEATS_ROW_Y + i * 8;
-		if ( c.on ) {
-
-			M_Print( 168 - c.label.length * 8, y, c.label );
-			M_Print( 184, y, player && c.on( player ) ? 'on' : 'off' );
-
-		} else M_Print( 64, y, c.label );
+		M_Print( 56, y, c.label ); // (clear of the plaque on the left; the longest label and its state fit the 320-pixel menu)
+		if ( c.on ) M_Print( 280, y, player && c.on( player ) ? 'on' : 'off' );
 
 	}
-	M_DrawCharacter( 40, CHEATS_ROW_Y + m_cheats_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+	M_DrawCharacter( 44, CHEATS_ROW_Y + m_cheats_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 	const y = CHEATS_ROW_Y + CHEATS.length * 8 + 16;
 	if ( ! cheatsAvailable() ) {
 
-		M_PrintWhite( 16, y, 'Cheats need a single player game.' );
-		M_Print( 16, y + 8, 'Start one, then open this menu again.' );
+		M_PrintWhite( 56, y, 'Cheats need a single player game.' );
+		M_Print( 56, y + 8, 'Start one and come back.' );
 
 	} else {
 
-		M_Print( 16, y, 'Cheats used in this game: ' );
-		M_PrintWhite( 16 + 26 * 8, y, cheatsUsedIn === cheatsGame() ? 'yes' : 'no' );
+		M_Print( 56, y, 'Cheats used in this game: ' );
+		M_PrintWhite( 56 + 26 * 8, y, cheatsUsedIn === cheatsGame() ? 'yes' : 'no' );
 
 	}
 
@@ -1151,7 +1149,7 @@ function M_Cheats_Apply() {
 
 	if ( ! cheatsAvailable() ) return;
 	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
-	Cbuf_AddText( CHEATS[ m_cheats_cursor ].command + '\n' );
+	Cbuf_AddText( CHEATS[ m_cheats_cursor ].command + '\n' ); // (run this frame: the commands act at once, also while the menu holds the game)
 	cheatsUsedIn = cheatsGame();
 
 }
@@ -1176,7 +1174,7 @@ function M_Cheats_Key( key ) {
 
 		case K_LEFTARROW:
 		case K_RIGHTARROW:
-			if ( CHEATS[ m_cheats_cursor ].on ) M_Cheats_Apply(); // arrows toggle the switches; the one-shot gives need Enter or a tap
+			if ( CHEATS[ m_cheats_cursor ].on ) M_Cheats_Apply(); // arrows toggle the switches; the gives need Enter or a tap
 			break;
 
 		case K_ENTER:

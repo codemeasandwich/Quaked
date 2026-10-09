@@ -23,27 +23,27 @@ wrapping round; the levels listed below are that episode's, with their names.
 
 ## Options > Cheats
 
-A new last row in Options, **Cheats**, opens a small menu of the game's own cheat commands:
+A last row in Options, **Cheats**, opens a small menu (changed 9 October 2026 at the owner's request: God mode removed, the three power-ups added as switches):
 
 | Row | Command | Shown |
 |---|---|---|
-| God mode, No clip, No target, Fly | `god`, `noclip`, `notarget`, `fly` | on/off, read from the player's flags and movement |
-| All weapons and ammo | `impulse 9` | |
+| No clip, No target, Fly | the game's own `noclip`, `notarget`, `fly` | on/off, read from the player's movement and flags |
+| Invisibility (Ring), Invincibility (Quad), Invulnerability (Pentagram) | `cheat_power ring`, `cheat_power quad`, `cheat_power pentagram` | on/off, the switch |
+| All weapons and ammo | `cheat_weapons` | |
 | Full health | `give h 100` | |
-| Quad Damage | `impulse 255` | |
 
-* They work only in a local single-player game: the menu refuses and says "Cheats need a single player game" when there is no
-  game, in multiplayer, in deathmatch or in co-op. (The game's own `god`, `noclip`, `notarget`, `fly` and `give` only refuse in
-  deathmatch, and `impulse 9` and `impulse 255` refuse in co-op too; the menu's own single-player check is what blocks the rest.)
-  After a co-op session `coop` can stay set, so the menu may refuse in what is really a single-player game.
-* The menu says **"Cheats used in this game: yes/no"**, counting only cheats used from this menu (not typed in the console).
-  It starts again for every map load and every loaded game (it is keyed to the game's entity list, not the map name).
-  There are no achievements or unlocks and the respawn rules are not affected, but the switches are fields of the player
-  and so are kept in a save game.
-* A one-shot give (all weapons, full health, Quad Damage) needs Enter or a tap; the arrow keys only flip the switches.
-  `impulse 9` and `impulse 255` take effect when the menu closes (single-player time stops while a menu is open) and are
-  dropped during the respawn rise, which clears the player's impulse every frame.
-* Up and down move (wrapping); Enter, left, right and a tap apply the row; Escape returns to Options.
+(The row names are the owner's. The Quad is Quad Damage: it multiplies the player's damage; the Pentagram is what makes the player take none.)
+
+* **The power-ups stay on until switched off.** Switching one on gives the game's real power-up: its item and its timer, so the game's own rules apply (the Ring hides the player from monsters and shows the eyes, the Quad multiplies damage, the Pentagram stops damage). The timer is kept 30 seconds ahead every server frame (`src/sv_cheats.js`, `SV_CheatsFrame` from the host frame), so it never runs out and never plays the running-out warning. Switching it off removes the item, the timer, the glow and the eyes at once. A death clears power-ups as usual; a switch still on puts its power back once the respawn has finished. The switches are kept with the player in a saved game.
+* **Each takes effect at once, under the menu.** A single-player game stops its physics while a menu is open, so the game's own `impulse 255`/`impulse 9` used to act only when the menu closed. The new commands change the player directly, and the client update the server sends every frame (also while paused) carries it to the picture: in Newer Game the Ring's Unseen World vision and the eyes face, the Quad's purple face and glow, the Pentagram's Demon vision and 666 health show behind the menu immediately; switching off returns the picture at once.
+
+| Ring on, menu open | Quad on | Pentagram on |
+|---|---|---|
+| ![Unseen World vision behind the menu](images/cheats-ring-on.png) | ![The purple Quad face behind the menu](images/cheats-quad-on.png) | ![Demon vision and 666 behind the menu](images/cheats-pentagram-on.png) |
+
+* They work only in a local single-player game: the menu, and the commands themselves, refuse and say "Cheats need a single player game" when there is no game, in multiplayer, in deathmatch or in co-op. After a co-op session `coop` can stay set, so the menu may refuse in what is really a single-player game.
+* The menu says **"Cheats used in this game: yes/no"**, counting only cheats used from this menu. It starts again for every map load and every loaded game.
+* A give (all weapons, full health) needs Enter or a tap; the arrow keys only flip the switches. Up and down move (wrapping); Enter, left, right and a tap apply the row; Escape returns to Options. The rows start clear of the Quake plaque on the left.
 
 ## Checks
 
@@ -54,6 +54,8 @@ A new last row in Options, **Cheats**, opens a small menu of the game's own chea
   remembered, and `end` and E4M8 launch; a fourth test reads what is drawn (the Episode row at y 64 with its name at x 184,
   level row i at y 84 + 8 i, nothing at the old row, the Introduction's single row); touch steps the episode, starts a tapped level and ignores taps between the rows. The full-game part
   prints whether it ran (it ran in this evidence).
+* `tests/cheats_native_test.js` (5, real QuakeC and server): switching each power on gives its item, its timer and (Quad, Pentagram) its glow, and the very next client update carries it with no physics run; a minute of real play never lets a timer near its warning, the game shows the Ring's eyes, switching off removes item, timer and eyes at once and they stay off while the other power is untouched; the Pentagram stops 500 damage and damage lands again once it is off; the switches are saved and loaded (malformed values refused), cleared by a death and back after the respawn; all weapons at once; nothing in multiplayer or deathmatch.
+* Browser (E1M1, Newer Game): with Options > Cheats open and the game held (server time unchanged), each switch changed the server's and the client's items in the same moment and the picture behind the menu showed it (pictures above); switching off restored it.
 * `tests/cheats_menu_test.js` (2): the row is last in Options and opens the menu (keys and touch), Escape returns; each row
   sends its game command, the states read from the player's flags, the note says "no" then "yes" and starts again for a
   new game on the same map (and is not reset by a map name alone), the arrows do not fire the one-shot gives, the cursor wraps

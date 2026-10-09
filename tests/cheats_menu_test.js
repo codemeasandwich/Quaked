@@ -31,9 +31,9 @@ Deno.test( 'the cheats run the game\'s own commands, show their state, say when 
 	const oldWindow = Object.getOwnPropertyDescriptor( globalThis, 'window' ); Object.defineProperty( globalThis, 'window', { configurable: true, value: { devicePixelRatio: 1 } } );
 	try {
 
-		const commands = [], glyphs = [], player = { v: { flags: 0, movetype: 3 } }, server = { active: true, name: 'e1m1', edicts: [ {}, player ] }, svs = { maxclients: 1 };
+		const commands = [], glyphs = [], player = { v: { flags: 0, movetype: 3 }, _cheatPowers: 0 }, server = { active: true, name: 'e1m1', edicts: [ {}, player ] }, svs = { maxclients: 1 };
 		cmd.Cbuf_Init(); cmd.Cmd_Init(); keys.Key_Init(); menu.M_Init();
-		for ( const name of [ 'god', 'noclip', 'notarget', 'fly', 'impulse', 'give' ] ) cmd.Cmd_AddCommand( name, () => commands.push( [ name, ...Array.from( { length: cmd.Cmd_Argc() - 1 }, ( _, i ) => cmd.Cmd_Argv( i + 1 ) ) ].join( ' ' ) ) );
+		for ( const name of [ 'god', 'noclip', 'notarget', 'fly', 'impulse', 'give', 'cheat_power', 'cheat_weapons' ] ) cmd.Cmd_AddCommand( name, () => commands.push( [ name, ...Array.from( { length: cmd.Cmd_Argc() - 1 }, ( _, i ) => cmd.Cmd_Argv( i + 1 ) ) ].join( ' ' ) ) );
 		menu.M_SetExternals( { key_dest_set: keys.set_key_dest, key_dest_get: () => keys.key_dest, cls: { demonum: - 1 }, sv: server, svs, Draw_CachePic: () => ( { width: 0, height: 0 } ), Draw_TransPic: () => {}, Draw_Pic: () => {}, Draw_Character: ( x, y, code ) => glyphs.push( { x, y, code } ), Draw_FadeScreen: () => {}, S_LocalSound: () => {}, realtime_get: () => 0 } );
 		const dx = ( draw.Draw_GetVirtualWidth() - 320 ) >> 1, dy = ( draw.Draw_GetVirtualHeight() - 200 ) >> 1, w = draw.Draw_GetVirtualWidth(), h = draw.Draw_GetVirtualHeight();
 		const text = y => { let out = '', last = null; for ( const g of glyphs.filter( g => g.y === y + dy ).sort( ( a, b ) => a.x - b.x ) ) { if ( last !== null && g.x - last > 8 ) out += ' '; out += String.fromCharCode( g.code >= 128 ? g.code - 128 : g.code ); last = g.x; } return out.trim(); }; // (spaces are not drawn: a gap is one)
@@ -41,24 +41,29 @@ Deno.test( 'the cheats run the game\'s own commands, show their state, say when 
 		const status = () => { screen(); return text( 48 + menu.CHEATS.length * 8 + 16 ); }; // (draws first: the note is read from the frame)
 		const open = () => { cmd.Cmd_ExecuteString( 'menu_options' ); menu.M_TouchInput( 201 + dx, 32 + dy + 17 * 8 + 2, w, h ); check( menu.m_state === menu.m_cheats, 'Cheats opened' ); };
 		const run = () => { cmd.Cbuf_Execute(); const out = commands.slice(); commands.length = 0; return out; };
-		same( menu.CHEATS.map( c => c.command ), [ 'god', 'noclip', 'notarget', 'fly', 'impulse 9', 'give h 100', 'impulse 255' ], 'the game\'s own commands' );
+		same( menu.CHEATS.map( c => c.command ), [ 'noclip', 'notarget', 'fly', 'cheat_power ring', 'cheat_power quad', 'cheat_power pentagram', 'cheat_weapons', 'give h 100' ], 'the commands, God mode gone' );
 
 		open(); let rows = screen();
-		same( rows.slice( 0, 4 ), [ 'God mode off', 'No clip off', 'No target off', 'Fly off' ], 'toggles start off' ); same( rows[ 4 ], 'All weapons and ammo', 'the quick gives' );
+		same( rows.slice( 0, 6 ), [ 'No clip off', 'No target off', 'Fly off', 'Invisibility (Ring) off', 'Invincibility (Quad) off', 'Invulnerability (Pentagram) off' ], 'the switches start off' ); same( rows.slice( 6 ), [ 'All weapons and ammo', 'Full health' ], 'the quick gives' );
+		check( glyphs.filter( g => g.y - dy >= 48 ).every( g => g.x - dx >= 44 && g.x - dx + 8 <= 320 ), 'every row is clear of the plaque (left of x 44) and fits the 320-pixel menu' );
 		check( status().startsWith( 'Cheats used in this game: no' ), 'none used yet: ' + status() );
-		// toggles: Enter, Right and Left all apply the command; the state read from the player
-		menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'god' ], 'Enter on God mode sends god' ); check( status().startsWith( 'Cheats used in this game: yes' ), 'now used: ' + status() );
-		player.v.flags |= 64; same( screen()[ 0 ], 'God mode on', 'the flag the game set shows as on' );
-		menu.M_Keydown( keys.K_RIGHTARROW ); menu.M_Keydown( keys.K_LEFTARROW ); same( run(), [ 'god', 'god' ], 'Right and Left apply too' );
-		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'noclip' ], 'the next row is noclip' ); player.v.movetype = 8; same( screen()[ 1 ], 'No clip on', 'noclip shown from the movement type' );
-		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'notarget' ], 'notarget' ); player.v.flags |= 128; same( screen()[ 2 ], 'No target on', 'notarget shown' );
-		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'fly' ], 'fly' ); player.v.movetype = 5; same( screen()[ 3 ], 'Fly on', 'fly shown' );
-		for ( const [ row, want ] of [ [ 4, 'impulse 9' ], [ 5, 'give h 100' ], [ 6, 'impulse 255' ] ] ) { menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ want ], 'row ' + row + ' sends ' + want ); }
-		menu.M_Keydown( keys.K_RIGHTARROW ); menu.M_Keydown( keys.K_LEFTARROW ); same( run(), [], 'the arrows do not fire a one-shot give (Quad Damage); Enter and a tap do' );
-		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'god' ], 'the cursor wraps from the last row to the first' );
-		menu.M_Keydown( keys.K_UPARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'impulse 255' ], 'and up from the first to the last' );
+		// switches: Enter, Right and Left all apply the command; the state read from the player
+		menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'noclip' ], 'Enter on No clip sends noclip' ); check( status().startsWith( 'Cheats used in this game: yes' ), 'now used: ' + status() );
+		player.v.movetype = 8; same( screen()[ 0 ], 'No clip on', 'noclip shown from the movement type' );
+		menu.M_Keydown( keys.K_RIGHTARROW ); menu.M_Keydown( keys.K_LEFTARROW ); same( run(), [ 'noclip', 'noclip' ], 'Right and Left apply too' );
+		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'notarget' ], 'notarget' ); player.v.flags |= 128; same( screen()[ 1 ], 'No target on', 'notarget shown' );
+		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'fly' ], 'fly' ); player.v.movetype = 5; same( screen()[ 2 ], 'Fly on', 'fly shown' );
+		for ( const [ row, name, bit ] of [ [ 3, 'ring', 1 ], [ 4, 'quad', 2 ], [ 5, 'pentagram', 4 ] ] ) {
+			menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'cheat_power ' + name ], 'row ' + row + ' switches the ' + name );
+			player._cheatPowers |= bit; check( screen()[ row ].endsWith( ' on' ), name + ' shown on' ); player._cheatPowers &= ~ bit; check( screen()[ row ].endsWith( ' off' ), name + ' shown off' );
+			menu.M_Keydown( keys.K_RIGHTARROW ); same( run(), [ 'cheat_power ' + name ], 'the arrows switch it too' );
+		}
+		for ( const [ row, want ] of [ [ 6, 'cheat_weapons' ], [ 7, 'give h 100' ] ] ) { menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ want ], 'row ' + row + ' sends ' + want ); }
+		menu.M_Keydown( keys.K_RIGHTARROW ); menu.M_Keydown( keys.K_LEFTARROW ); same( run(), [], 'the arrows do not fire a give; Enter and a tap do' );
+		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'noclip' ], 'the cursor wraps from the last row to the first' );
+		menu.M_Keydown( keys.K_UPARROW ); menu.M_Keydown( keys.K_ENTER ); same( run(), [ 'give h 100' ], 'and up from the first to the last' );
 		// touch
-		menu.M_TouchInput( 120 + dx, 48 + dy + 2 * 8 + 2, w, h ); same( run(), [ 'notarget' ], 'a tap on a row applies it' );
+		menu.M_TouchInput( 120 + dx, 48 + dy + 2 * 8 + 2, w, h ); same( run(), [ 'fly' ], 'a tap on a row applies it' );
 		// a different game: the "used" note starts again
 		server.edicts = [ {}, player ]; check( status().startsWith( 'Cheats used in this game: no' ), 'a new game (a new entity list, here on the same map) starts the note again: ' + status() );
 		menu.M_Keydown( keys.K_ENTER ); run(); check( status().startsWith( 'Cheats used in this game: yes' ), 'used again in the new game' ); server.name = 'e1m2'; check( status().startsWith( 'Cheats used in this game: yes' ), 'a map name alone does not reset it: ' + status() );
@@ -67,7 +72,7 @@ Deno.test( 'the cheats run the game\'s own commands, show their state, say when 
 			[ 'deathmatch', () => cvar.Cvar_SetValue( 'deathmatch', 1 ), () => cvar.Cvar_SetValue( 'deathmatch', 0 ) ], [ 'coop', () => cvar.Cvar_SetValue( 'coop', 1 ), () => cvar.Cvar_SetValue( 'coop', 0 ) ] ] ) {
 
 			setup(); screen(); menu.M_Keydown( keys.K_ENTER ); same( run(), [], label + ': nothing is sent' );
-			check( status().startsWith( 'Cheats need a single player game' ), label + ': the menu says so: ' + status() ); same( screen().slice( 0, 4 ).every( r => r.endsWith( 'off' ) ), true, label + ': toggles read off' ); undo();
+			check( status().startsWith( 'Cheats need a single player game' ), label + ': the menu says so: ' + status() ); same( screen().slice( 0, 6 ).every( r => r.endsWith( 'off' ) ), true, label + ': switches read off' ); undo();
 
 		}
 		menu.M_Keydown( keys.K_ESCAPE ); same( menu.m_state, menu.m_options, 'Escape returns to Options' );

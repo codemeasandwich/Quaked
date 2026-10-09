@@ -553,6 +553,7 @@ export function ED_Write( lines, ed ) {
 	}
 
 	if(ed._respawn)lines.push('"_clockwise_player" "'+encodeURIComponent(JSON.stringify(ed._respawn))+'"');
+	if(ed._cheatPowers)lines.push('"_cheat_powers" "'+(ed._cheatPowers|0)+'"');
 	if(ed._respawnDrop)lines.push('"_clockwise_drop" "'+encodeURIComponent(JSON.stringify(ed._respawnDrop))+'"');
 	if(ed._respawnRemains)lines.push('"_clockwise_remains" "'+encodeURIComponent(JSON.stringify(ed._respawnRemains))+'"');
 	if(ed._axeCorpse)lines.push('"_newer_axe_corpse" "'+encodeURIComponent(JSON.stringify(ed._axeCorpse))+'"');
@@ -961,6 +962,7 @@ export function ED_ParseEdict( data, ent ) {
 
 		init = true;
 		if(keyname==='_clockwise_player'){ent._respawn=Respawn_ParsePlayer(com_token);continue;}
+		if(keyname==='_cheat_powers'){const v=Number(com_token);ent._cheatPowers=Number.isInteger(v)&&v>=0&&v<8?v:0;continue;}
 		if(keyname==='_clockwise_drop'){ent._respawnDrop=Respawn_ParseDrop(com_token);continue;}
 		if(keyname==='_clockwise_remains'){ent._respawnRemains=Respawn_ParseRemains(com_token);continue;}
 		if(keyname==='_newer_axe_corpse'){ent._axeCorpse=Axe_ParseRecord(com_token);ent._axeInvalidRecord=ent._axeCorpse===null;continue;}

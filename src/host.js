@@ -1,5 +1,6 @@
 // Ported from: WinQuake/host.c -- coordinates spawning and killing of local servers
 
+import { SV_CheatsInit, SV_CheatsFrame } from './sv_cheats.js';
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from './sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString } from './common.js';
@@ -167,6 +168,7 @@ Host_InitLocal
 function Host_InitLocal() {
 
 	Host_InitCommands();
+	SV_CheatsInit(); // (cheat_power, cheat_weapons: Options > Cheats)
 
 	Cvar_RegisterVariable( host_framerate );
 	Cvar_RegisterVariable( host_timescale );
@@ -488,6 +490,9 @@ export function Host_ServerFrame() {
 
 	// has the player gone through a seamless exit?
 	if(!R_BestiaryFrozen()&&!(R_WelcomeLoadingHolding()&&svs.maxclients===1))SV_SeamlessFrame();
+
+	// switched-on cheat power-ups stay on (also while a menu holds the game, so the picture under it shows them at once)
+	SV_CheatsFrame();
 
 	// send all messages to the clients
 	SV_SendClientMessages();
