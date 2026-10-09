@@ -74,17 +74,17 @@ Deno.test( 'existing Level Select keyboard controls launch supplied E2M1 in Newe
 		for ( let i = 0; i < 4; i ++ ) menu.M_Keydown( keys.K_DOWNARROW );
 		menu.M_Keydown( keys.K_ENTER );
 		check( menu.m_state === menu.m_levelselect, 'existing public menu opens' );
-		const available = menu.LEVEL_SELECT_LEVELS.filter( level => pak.COM_FindFile( 'maps/' + level.map + '.bsp' ) );
-		const index = available.findIndex( level => level.map === 'e2m1' );
-		for ( let i = 0; i < index; i ++ ) menu.M_Keydown( keys.K_DOWNARROW );
+		// The menu opens on the first level of its default episode (Episode 1). Go up to the Episode row, step to Episode 2
+		// (the next one), come back down to its first level, E2M1, and start it.
+		menu.M_Keydown( keys.K_UPARROW ); menu.M_Keydown( keys.K_RIGHTARROW ); menu.M_Keydown( keys.K_DOWNARROW );
 		menu.M_Keydown( keys.K_ENTER ); cmd.Cbuf_Execute();
 		check( commands.some( ( [ name, value ] ) => name === 'map' && value === 'e2m1' ), 'Newer queues real E2M1' );
 		check( commands.some( ( [ name, value ] ) => name === 'r_hdr' && value === '1' ), 'Newer mode preserved' );
 		commands.length = 0;
-		// Cursor remains at E2M1. Wrap once to the existing mode row,
-		// switch to Classic, then return through skill and available maps.
-		menu.M_Keydown( keys.K_DOWNARROW ); menu.M_Keydown( keys.K_ENTER );
-		for ( let i = 0; i < index + 2; i ++ ) menu.M_Keydown( keys.K_DOWNARROW );
+		// The cursor is on E2M1 and the episode is remembered. Go up to the mode row, switch to Classic, and come back down.
+		for ( let i = 0; i < 3; i ++ ) menu.M_Keydown( keys.K_UPARROW );
+		menu.M_Keydown( keys.K_ENTER );
+		for ( let i = 0; i < 3; i ++ ) menu.M_Keydown( keys.K_DOWNARROW );
 		menu.M_Keydown( keys.K_ENTER ); cmd.Cbuf_Execute();
 		check( commands.some( ( [ name, value ] ) => name === 'map' && value === 'e2m1' ), 'Classic queues same real E2M1' );
 		check( commands.some( ( [ name, value ] ) => name === 'r_hdr' && value === '0' ), 'Classic mode preserved' );

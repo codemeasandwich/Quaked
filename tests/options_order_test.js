@@ -1,6 +1,6 @@
 await import('../src/gl_rsurf.js');
 const cmd=await import('../src/cmd.js'),menu=await import('../src/menu.js'),keys=await import('../src/keys.js'),draw=await import('../src/gl_draw.js'),cvar=await import('../src/cvar.js');
-const expected=['Newer Game features','Customize controls','Performance profiler','Go to console','Reset to defaults','FPS counter','Texture Filtering','Screen size','Brightness','Mouse Speed','Sound Volume','Music Volume','Always Run','Invert Mouse','Lookspring','Lookstrafe','Crosshair'];
+const expected=['Newer Game features','Customize controls','Performance profiler','Go to console','Reset to defaults','FPS counter','Texture Filtering','Screen size','Brightness','Mouse Speed','Sound Volume','Music Volume','Always Run','Invert Mouse','Lookspring','Lookstrafe','Crosshair','Cheats'];
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 Deno.test('options order, widgets, keyboard and touch dispatch match the visible rows',async()=>{
  const anim=await import('../src/r_anim.js'),post=await import('../src/gl_post.js'),screen=await import('../src/gl_screen.js'),glq=await import('../src/glquake.js'),view=await import('../src/view.js'),input=await import('../src/cl_input.js'),client=await import('../src/cl_main.js'),sound=await import('../src/sound.js');
@@ -15,7 +15,7 @@ Deno.test('options order, widgets, keyboard and touch dispatch match the visible
   const dx=(draw.Draw_GetVirtualWidth()-320)>>1,dy=(draw.Draw_GetVirtualHeight()-200)>>1,w=draw.Draw_GetVirtualWidth(),h=draw.Draw_GetVirtualHeight();
   function touch(row){cmd.Cmd_ExecuteString('menu_options');menu.M_TouchInput(201+dx,32+dy+row*8+2,w,h);}
   cvar.Cvar_SetValue('cl_showfps',1);cvar.Cvar_SetValue('gl_texturemode',0);cmd.Cmd_ExecuteString('menu_options');menu.M_Draw();
-  for(let row=0;row<17;row++){const label=glyphs.filter(g=>g.y===32+dy+row*8&&g.x>=16+dx&&g.x<200+dx&&g.code>=128).map(g=>String.fromCharCode(g.code-128)).join('').trim();equal(label,expected[row],'visible label '+row);}
+  for(let row=0;row<18;row++){const label=glyphs.filter(g=>g.y===32+dy+row*8&&g.x>=16+dx&&g.x<200+dx&&g.code>=128).map(g=>String.fromCharCode(g.code-128)).join('').trim();equal(label,expected[row],'visible label '+row);}
   for(const [row,text] of [[5,'on'],[6,'off']])equal(glyphs.filter(g=>g.y===32+dy+row*8&&g.x>=220+dx&&g.code>=128).map(g=>String.fromCharCode(g.code-128)).join('').trim(),text,'checkbox shares label row '+row);
   touch(0);equal(menu.m_state,menu.m_newer,'top row opens features');menu.M_Keydown(keys.K_ESCAPE);
   touch(1);equal(menu.m_state,menu.m_keys,'second row customizes controls');menu.M_Keydown(keys.K_ESCAPE);
@@ -34,6 +34,6 @@ Deno.test('options order, widgets, keyboard and touch dispatch match the visible
   }
   cvar.Cvar_SetValue('volume',.4);cvar.Cvar_SetValue('bgmvolume',.5);const archived=cvar.Cvar_WriteVariables();equal(archived.includes('volume "0.400000"\n'),true,'sound volume archived');equal(archived.includes('bgmvolume "0.500000"\n'),true,'music volume archived separately');equal(storage.get('quake_cvar_volume'),'0.400000','sound setting persisted');equal(storage.get('quake_cvar_bgmvolume'),'0.500000','music setting persisted independently');
   glyphs.length=0;menu.M_Draw();equal(glyphs.find(g=>g.code===131&&g.y===32+dy+10*8).x,220+dx+28,'sound knob matches its own volume');equal(glyphs.find(g=>g.code===131&&g.y===32+dy+11*8).x,220+dx+36,'music knob matches its own volume');
-  touch(0);menu.M_Keydown(keys.K_ESCAPE);menu.M_Keydown(keys.K_UPARROW);glyphs.length=0;menu.M_Draw();equal(glyphs.find(g=>g.x===200+dx&&g.code===12).y,32+dy+16*8,'up wraps last visible row');menu.M_Keydown(keys.K_DOWNARROW);glyphs.length=0;menu.M_Draw();equal(glyphs.find(g=>g.x===200+dx&&g.code===12).y,32+dy,'down wraps first row');
+  touch(0);menu.M_Keydown(keys.K_ESCAPE);menu.M_Keydown(keys.K_UPARROW);glyphs.length=0;menu.M_Draw();equal(glyphs.find(g=>g.x===200+dx&&g.code===12).y,32+dy+17*8,'up wraps last visible row');menu.M_Keydown(keys.K_DOWNARROW);glyphs.length=0;menu.M_Draw();equal(glyphs.find(g=>g.x===200+dx&&g.code===12).y,32+dy,'down wraps first row');
  }finally{vars.forEach((v,i)=>cvar.Cvar_Set(v.name,saved[i]));cvar.Cvar_SetValue('cl_showfps',fps);cvar.Cvar_SetValue('crosshair',cross);keys.keybindings.splice(0,keys.keybindings.length,...bindings);keys.set_key_dest(oldDest);if(oldWindow)Object.defineProperty(globalThis,'window',oldWindow);else delete globalThis.window;if(oldStorage)Object.defineProperty(globalThis,'localStorage',oldStorage);else delete globalThis.localStorage;}
 });

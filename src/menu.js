@@ -61,6 +61,7 @@ export const m_credits = 19;
 export const m_newer = 20;
 export const m_levelselect = 21;
 export const m_bestiary = 22;
+export const m_cheats = 23;
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -841,29 +842,88 @@ Start any level directly: pick Newer Game or New Game, the skill, and the level.
 ==============================================================================
 */
 
+// Every stock map by episode (0 is the Introduction hub). Only the maps this copy of the game has are offered, and an
+// episode appears only if at least one of its maps does: the shareware pak0.pak has the Introduction and Episode 1; a
+// registered copy's maps (the 2021 re-release's pak0.pak at resources/id1/pak0.pak; the original release keeps Episodes 2 to 4 in pak1.pak, which is not read) add Episodes 2 to 4.
 export const LEVEL_SELECT_LEVELS = [
-	{ map: 'start', name: 'Introduction' },
-	{ map: 'e1m1', name: 'The Slipgate Complex' },
-	{ map: 'e1m2', name: 'Castle of the Damned' },
-	{ map: 'e1m3', name: 'The Necropolis' },
-	{ map: 'e1m4', name: 'The Grisly Grotto' },
-	{ map: 'e1m5', name: 'Gloom Keep' },
-	{ map: 'e1m6', name: 'The Door to Chthon' },
-	{ map: 'e1m7', name: 'The House of Chthon' },
-	{ map: 'e1m8', name: 'Ziggurat Vertigo' },
-	// First full-game trial; the existing availability filter hides it when
-	// the local owned archive is absent. Both existing game modes can use it.
-	{ map: 'e2m1', name: 'The Installation' }
+	{ episode: 0, map: 'start', name: 'Introduction' },
+	{ episode: 1, map: 'e1m1', name: 'The Slipgate Complex' },
+	{ episode: 1, map: 'e1m2', name: 'Castle of the Damned' },
+	{ episode: 1, map: 'e1m3', name: 'The Necropolis' },
+	{ episode: 1, map: 'e1m4', name: 'The Grisly Grotto' },
+	{ episode: 1, map: 'e1m5', name: 'Gloom Keep' },
+	{ episode: 1, map: 'e1m6', name: 'The Door to Chthon' },
+	{ episode: 1, map: 'e1m7', name: 'The House of Chthon' },
+	{ episode: 1, map: 'e1m8', name: 'Ziggurat Vertigo' },
+	{ episode: 2, map: 'e2m1', name: 'The Installation' },
+	{ episode: 2, map: 'e2m2', name: 'The Ogre Citadel' },
+	{ episode: 2, map: 'e2m3', name: 'The Crypt of Decay' },
+	{ episode: 2, map: 'e2m4', name: 'The Ebon Fortress' },
+	{ episode: 2, map: 'e2m5', name: 'The Wizard\'s Manse' },
+	{ episode: 2, map: 'e2m6', name: 'The Dismal Oubliette' },
+	{ episode: 2, map: 'e2m7', name: 'The Underearth' },
+	{ episode: 3, map: 'e3m1', name: 'Termination Central' },
+	{ episode: 3, map: 'e3m2', name: 'The Vaults of Zin' },
+	{ episode: 3, map: 'e3m3', name: 'The Tomb of Terror' },
+	{ episode: 3, map: 'e3m4', name: 'Satan\'s Dark Delight' },
+	{ episode: 3, map: 'e3m5', name: 'The Wind Tunnels' },
+	{ episode: 3, map: 'e3m6', name: 'Chambers of Torment' },
+	{ episode: 3, map: 'e3m7', name: 'The Haunted Halls' },
+	{ episode: 4, map: 'e4m1', name: 'The Sewage System' },
+	{ episode: 4, map: 'e4m2', name: 'The Tower of Despair' },
+	{ episode: 4, map: 'e4m3', name: 'The Elder God Shrine' },
+	{ episode: 4, map: 'e4m4', name: 'The Palace of Hate' },
+	{ episode: 4, map: 'e4m5', name: 'Hell\'s Atrium' },
+	{ episode: 4, map: 'e4m6', name: 'The Pain Maze' },
+	{ episode: 4, map: 'e4m7', name: 'Azure Agony' },
+	{ episode: 4, map: 'e4m8', name: 'The Nameless City' },
+	{ episode: 4, map: 'end', name: 'Shub-Niggurath\'s Pit' }
+];
+// short enough to sit at the value column (x 184) of the 320-wide menu
+export const LEVEL_SELECT_EPISODES = [
+	{ episode: 0, name: 'Introduction' },
+	{ episode: 1, name: 'E1 Doomed' },
+	{ episode: 2, name: 'E2 Black Magic' },
+	{ episode: 3, name: 'E3 Netherworld' },
+	{ episode: 4, name: 'E4 Elder World' }
 ];
 const SKILL_NAMES = [ 'Easy', 'Normal', 'Hard', 'Nightmare' ];
-const LEVELSELECT_ROWS = 2; // mode and skill come before the levels
-let m_levelselect_cursor = 2;
+const LEVELSELECT_ROWS = 3; // mode, skill and episode come before the levels
+const LEVELSELECT_LEVEL_Y = 84, LEVELSELECT_ROW_Y = 48;
+let m_levelselect_cursor = LEVELSELECT_ROWS;
 let m_levelselect_newer = true;
+let m_levelselect_episode = 1;
 
+const levelAvailable = ( l ) => COM_FindFile( 'maps/' + l.map + '.bsp' ) !== null;
+
+// the episodes this copy of the game has at least one map of
+function levelSelectEpisodes() {
+
+	return LEVEL_SELECT_EPISODES.filter( ( e ) => LEVEL_SELECT_LEVELS.some( ( l ) => l.episode === e.episode && levelAvailable( l ) ) );
+
+}
+
+// the selected episode, or the first one there is if it is not in this copy (Episode 1 is the usual start)
+function levelSelectEpisode() {
+
+	const episodes = levelSelectEpisodes();
+	if ( episodes.some( ( e ) => e.episode === m_levelselect_episode ) ) return m_levelselect_episode;
+	return ( episodes.find( ( e ) => e.episode === 1 ) || episodes[ 0 ] || { episode: m_levelselect_episode } ).episode;
+
+}
+
+// the maps of the selected episode that this copy of the game has
 function levelSelectLevels() {
 
-	// only the ones this copy of the game has
-	return LEVEL_SELECT_LEVELS.filter( ( l ) => COM_FindFile( 'maps/' + l.map + '.bsp' ) !== null );
+	const episode = levelSelectEpisode();
+	return LEVEL_SELECT_LEVELS.filter( ( l ) => l.episode === episode && levelAvailable( l ) );
+
+}
+
+// what Level Select offers right now: the episodes, the selected one and its levels (the menu's own view, for tests)
+export function M_LevelSelectOffer() {
+
+	return { episodes: levelSelectEpisodes().map( ( e ) => e.episode ), episode: levelSelectEpisode(), levels: levelSelectLevels().map( ( l ) => l.map ), cursor: m_levelselect_cursor };
 
 }
 
@@ -892,15 +952,18 @@ function M_LevelSelect_Draw() {
 	M_Print( 16, 56, '           Skill' );
 	const skill = Math.max( 0, Math.min( 3, Math.round( Cvar_VariableValue( 'skill' ) ) ) );
 	M_PrintWhite( 184, 56, SKILL_NAMES[ skill ] );
+	M_Print( 16, 64, '         Episode' );
+	const episode = levelSelectEpisode();
+	M_PrintWhite( 184, 64, ( LEVEL_SELECT_EPISODES.find( ( e ) => e.episode === episode ) || { name: '' } ).name );
 
 	for ( let i = 0; i < levels.length; i ++ ) {
 
-		M_Print( 64, 76 + i * 8, levels[ i ].map.toUpperCase().padEnd( 6 ) );
-		M_PrintWhite( 112, 76 + i * 8, levels[ i ].name );
+		M_Print( 64, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].map.toUpperCase().padEnd( 6 ) );
+		M_PrintWhite( 112, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].name );
 
 	}
 
-	const y = m_levelselect_cursor < LEVELSELECT_ROWS ? 48 + m_levelselect_cursor * 8 : 76 + ( m_levelselect_cursor - LEVELSELECT_ROWS ) * 8;
+	const y = m_levelselect_cursor < LEVELSELECT_ROWS ? LEVELSELECT_ROW_Y + m_levelselect_cursor * 8 : LEVELSELECT_LEVEL_Y + ( m_levelselect_cursor - LEVELSELECT_ROWS ) * 8;
 	M_DrawCharacter( m_levelselect_cursor < LEVELSELECT_ROWS ? 168 : 48, y, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
 }
@@ -915,6 +978,13 @@ function M_LevelSelect_Change( dir ) {
 
 		const skill = Math.max( 0, Math.min( 3, Math.round( Cvar_VariableValue( 'skill' ) ) ) );
 		Cvar_SetValue( 'skill', ( skill + dir + 4 ) % 4 );
+
+	} else if ( m_levelselect_cursor === 2 ) {
+
+		const episodes = levelSelectEpisodes();
+		if ( episodes.length < 2 ) return true; // nothing to choose between
+		const at = Math.max( 0, episodes.findIndex( ( e ) => e.episode === levelSelectEpisode() ) );
+		m_levelselect_episode = episodes[ ( at + dir + episodes.length ) % episodes.length ].episode;
 
 	} else {
 
@@ -985,15 +1055,144 @@ function M_LevelSelect_Key( key ) {
 
 function M_LevelSelect_Touch( vx, vy ) {
 
-	if ( vy >= 48 && vy < 64 ) {
+	if ( vy >= LEVELSELECT_ROW_Y && vy < LEVELSELECT_ROW_Y + LEVELSELECT_ROWS * 8 ) {
 
-		m_levelselect_cursor = Math.floor( ( vy - 48 ) / 8 );
+		m_levelselect_cursor = Math.floor( ( vy - LEVELSELECT_ROW_Y ) / 8 );
 		M_LevelSelect_Change( 1 );
 
-	} else if ( vy >= 76 && vy < 76 + levelSelectLevels().length * 8 ) {
+	} else if ( vy >= LEVELSELECT_LEVEL_Y && vy < LEVELSELECT_LEVEL_Y + levelSelectLevels().length * 8 ) {
 
-		m_levelselect_cursor = LEVELSELECT_ROWS + Math.floor( ( vy - 76 ) / 8 );
+		m_levelselect_cursor = LEVELSELECT_ROWS + Math.floor( ( vy - LEVELSELECT_LEVEL_Y ) / 8 );
 		M_LevelSelect_Start();
+
+	}
+
+}
+
+/*
+==============================================================================
+
+			CHEATS MENU (inside Options)
+
+The game's own cheat commands (god, noclip, notarget, fly, impulse 9, give, impulse 255), as toggles and
+quick gives. They work only in a local single-player game (the game itself ignores them in deathmatch and
+co-op); there is nothing to unlock or record, and the menu says whether any was used in this game.
+==============================================================================
+*/
+
+// FL_GODMODE 64, FL_NOTARGET 128, MOVETYPE_FLY 5, MOVETYPE_NOCLIP 8
+export const CHEATS = [
+	{ label: 'God mode', command: 'god', on: ( p ) => ( p.v.flags & 64 ) !== 0 },
+	{ label: 'No clip', command: 'noclip', on: ( p ) => p.v.movetype === 8 },
+	{ label: 'No target', command: 'notarget', on: ( p ) => ( p.v.flags & 128 ) !== 0 },
+	{ label: 'Fly', command: 'fly', on: ( p ) => p.v.movetype === 5 },
+	{ label: 'All weapons and ammo', command: 'impulse 9' },
+	{ label: 'Full health', command: 'give h 100' },
+	{ label: 'Quad Damage', command: 'impulse 255' }
+];
+const CHEATS_ROW_Y = 48;
+let m_cheats_cursor = 0;
+let cheatsUsedIn = null; // the entity list of the game (one per map or save load) in which a cheat was last used from this menu
+
+function cheatsAvailable() {
+
+	return _sv.active === true && _svs.maxclients === 1 && Cvar_VariableValue( 'deathmatch' ) === 0 && Cvar_VariableValue( 'coop' ) === 0;
+
+}
+
+const cheatsGame = () => _sv.edicts; // a new array for every map load and every loaded game
+
+function M_Menu_Cheats_f() {
+
+	setKeyDest( key_menu );
+	m_state = m_cheats;
+	m_entersound = true;
+
+}
+
+function M_Cheats_Draw() {
+
+	if ( ! _Draw_CachePic ) return;
+
+	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+	const p = _Draw_CachePic( 'gfx/p_option.lmp' );
+	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+	M_PrintWhite( 128, 32, 'Cheats' );
+
+	const player = cheatsAvailable() ? _sv.edicts?.[ 1 ] : null;
+	for ( let i = 0; i < CHEATS.length; i ++ ) {
+
+		const c = CHEATS[ i ], y = CHEATS_ROW_Y + i * 8;
+		if ( c.on ) {
+
+			M_Print( 168 - c.label.length * 8, y, c.label );
+			M_Print( 184, y, player && c.on( player ) ? 'on' : 'off' );
+
+		} else M_Print( 64, y, c.label );
+
+	}
+	M_DrawCharacter( 40, CHEATS_ROW_Y + m_cheats_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+	const y = CHEATS_ROW_Y + CHEATS.length * 8 + 16;
+	if ( ! cheatsAvailable() ) {
+
+		M_PrintWhite( 16, y, 'Cheats need a single player game.' );
+		M_Print( 16, y + 8, 'Start one, then open this menu again.' );
+
+	} else {
+
+		M_Print( 16, y, 'Cheats used in this game: ' );
+		M_PrintWhite( 16 + 26 * 8, y, cheatsUsedIn === cheatsGame() ? 'yes' : 'no' );
+
+	}
+
+}
+
+function M_Cheats_Apply() {
+
+	if ( ! cheatsAvailable() ) return;
+	if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
+	Cbuf_AddText( CHEATS[ m_cheats_cursor ].command + '\n' );
+	cheatsUsedIn = cheatsGame();
+
+}
+
+function M_Cheats_Key( key ) {
+
+	switch ( key ) {
+
+		case K_ESCAPE:
+			M_Menu_Options_f();
+			break;
+
+		case K_UPARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			if ( -- m_cheats_cursor < 0 ) m_cheats_cursor = CHEATS.length - 1;
+			break;
+
+		case K_DOWNARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			if ( ++ m_cheats_cursor >= CHEATS.length ) m_cheats_cursor = 0;
+			break;
+
+		case K_LEFTARROW:
+		case K_RIGHTARROW:
+			if ( CHEATS[ m_cheats_cursor ].on ) M_Cheats_Apply(); // arrows toggle the switches; the one-shot gives need Enter or a tap
+			break;
+
+		case K_ENTER:
+			M_Cheats_Apply();
+			break;
+
+	}
+
+}
+
+function M_Cheats_Touch( vx, vy ) {
+
+	if ( vy >= CHEATS_ROW_Y && vy < CHEATS_ROW_Y + CHEATS.length * 8 ) {
+
+		m_cheats_cursor = Math.floor( ( vy - CHEATS_ROW_Y ) / 8 );
+		M_Cheats_Apply();
 
 	}
 
@@ -1850,7 +2049,7 @@ function M_AdjustSliders( dir ) {
 
 // Cursor/touch indices remain visible rows; action IDs retain their established
 // meaning across drawing, Enter and slider/toggle dispatch.
-const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12 ];
+const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17 ];
 const OPTIONS_ITEMS = OPTIONS_ORDER.length;
 function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
 let m_options_cursor = 0;
@@ -1919,6 +2118,8 @@ function M_Options_Draw() {
 
 	M_Print( 16, optionsY( 15 ), '  Performance profiler' );
 
+	M_Print( 16, optionsY( 17 ), '                Cheats' );
+
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
@@ -1959,6 +2160,9 @@ function M_Options_Key( key ) {
 					break;
 				case 13:
 					M_Menu_Newer_f();
+					break;
+				case 17:
+					M_Menu_Cheats_f();
 					break;
 				case 15:
 					// leave the menu and run the demos flat out
@@ -2741,6 +2945,7 @@ export function M_Keydown( key ) {
 		case m_options: M_Options_Key( key ); return;
 		case m_newer: M_Newer_Key( key ); return;
 		case m_levelselect: M_LevelSelect_Key( key ); return;
+		case m_cheats: M_Cheats_Key( key ); return;
 		case m_keys: M_Keys_Key( key ); return;
 		case m_video: M_Video_Key( key ); return;
 		case m_credits: M_Credits_Key( key ); return;
@@ -2818,6 +3023,7 @@ export function M_Draw() {
 		case m_options: M_Options_Draw(); break;
 		case m_newer: M_Newer_Draw(); break;
 		case m_levelselect: M_LevelSelect_Draw(); break;
+		case m_cheats: M_Cheats_Draw(); break;
 		case m_keys: M_Keys_Draw(); break;
 		case m_video: M_Video_Draw(); break;
 		case m_credits: Draw_WithVirtualSize( 320, CREDITS_HEIGHT, M_Credits_Draw, CREDITS_SCALE ); break;
@@ -2926,6 +3132,10 @@ function M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) {
 
 		case m_levelselect:
 			M_LevelSelect_Touch( vx, vy );
+			break;
+
+		case m_cheats:
+			M_Cheats_Touch( vx, vy );
 			break;
 
 		case m_keys:

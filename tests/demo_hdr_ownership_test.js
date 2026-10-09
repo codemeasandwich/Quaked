@@ -46,8 +46,9 @@ function select( newer ) {
 	execute( 'menu_singleplayer' ); touch( 100, 32 + 4 * 20 + 4 );
 	same( menu.m_state, menu.m_levelselect, 'public Level Select opened' );
 	if ( modeNewer !== newer ) { touch( 190, 52 ); modeNewer = newer; }
-	const levels = menu.LEVEL_SELECT_LEVELS.filter( level => [ 'start', 'e2m1' ].includes( level.map ) );
-	touch( 120, 76 + levels.findIndex( level => level.map === 'e2m1' ) * 8 + 2 );
+	// choose Episode 2 (the episode row, one step on from the default Episode 1), then its first level, E2M1
+	touch( 190, 68 );
+	touch( 120, 84 + 2 );
 	same( dest, keys.key_game, 'real menu selection returns game input' );
 	snap( 'public-selection-queued' );
 }

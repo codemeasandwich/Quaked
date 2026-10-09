@@ -17,8 +17,9 @@ canonical `resources` directory may be borrowed for read-only testing; record
 and later remove only that link. Never copy, stage or publish the archive.
 No such link was created by the feature lane's focused checks.
 
-Open Single player, select Level Select, choose Game and Skill, and scroll down
-one row past E1M8 to E2M1. Select it. New Game retains Classic rendering; Newer
+Open Single player, select Level Select, choose Game and Skill, step the Episode row to
+Episode 2 and select E2M1 (Level Select now lists every episode the loaded data has:
+[level-select-cheats-2026-10-09.md](level-select-cheats-2026-10-09.md)). Select it. New Game retains Classic rendering; Newer
 Game retains its established defaults. `map e2m1` is also available through the
 existing console command, using the current game mode. Without the local
 archive the E2M1 row is hidden and bundled startup continues normally.
