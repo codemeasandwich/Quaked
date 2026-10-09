@@ -140,6 +140,12 @@ Deno.test( 'brown stock water uses a Muddy map default while explicit looks and 
 		equal( clear.opacity, post.LIQUID_LOOKS[ 0 ].opacity, 'Map chooses Clear material coverage for normal water' );
 		equal( brown.opacity, post.LIQUID_LOOKS[ 2 ].opacity, 'Map chooses Muddy material coverage for brown water' );
 		equal( post.R_LiquidOpacity( '*04WATER1', .75 ), brown.opacity, 'stock name policy is case insensitive' );
+		// Episode 3's murky water (*04mwat1/2) is water: Muddy coverage, and the surface takes the level's baked brightness (vertex colours)
+		// as every Newer water does; a lava or teleporter surface does not. (Each needs its own texture: the material cache is keyed by it.)
+		const fresh = name => ( { name, gl_texture: new THREE.DataTexture( new Uint8Array( [ 80, 64, 32, 255 ] ), 1, 1 ) } );
+		for ( const name of [ '*04mwat1', '*04mwat2', '*water2', '*04awater1' ] ) equal( surf.R_LiquidSurfaceMaterial( fresh( name ), .75 ).vertexColors, true, name + ' surface uses baked brightness like other Newer water' );
+		for ( const name of [ '*lava1', '*teleport', '*slime0' ] ) equal( surf.R_LiquidSurfaceMaterial( fresh( name ), .75 ).vertexColors, false, name + ' is not clear water' );
+		equal( surf.R_LiquidSurfaceMaterial( fresh( '*04mwat2' ), .75 ).opacity, post.LIQUID_LOOKS[ 2 ].opacity, 'murky water has the Muddy coverage' );
 		for ( const choice of [ 0, 1, 2, 4, 0 ] ) {
 
 			vars.Cvar_SetValue( 'r_water_look', choice ); frame(); const ids = new Map();

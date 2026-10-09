@@ -708,12 +708,18 @@ export function R_GetLiquidLinks() {
 }
 
 // 0 water, 1 slime, -1 not a see-through liquid (lava is opaque, teleporters are portals)
+// Stock Quake's water textures: *water0-2, *04water1/2, *04awater1 and, in Episode 3 (E3M3 to E3M5), *04mwat1/2 (murky
+// water, the name has no "water" in it). Anything else starting with '*' is slime, lava or a teleporter.
+// Murky water (Episode 3) is brown sediment like E1M3's *04water1, so it shares that look (see liquidMapLook).
+const MURKY_WATER = /mwat/i;
+export const R_IsWaterTextureName = name => name.charAt( 0 ) === '*' && /water|mwat/i.test( name ) && ! /slime|lava|teleport/i.test( name );
+
 function liquidKind( name ) {
 
 	const n = name.toLowerCase();
 	if ( n.charAt( 0 ) !== '*' || n.indexOf( 'lava' ) >= 0 || n.indexOf( 'teleport' ) >= 0 ) return - 1;
 	if ( n.indexOf( 'slime' ) >= 0 ) return 1;
-	if ( n.indexOf( 'water' ) >= 0 ) return 0;
+	if ( R_IsWaterTextureName( n ) ) return 0;
 	return - 1;
 
 }
@@ -747,7 +753,8 @@ export function R_LiquidOpacity( name, fallback ) {
 // Stock E1M3's brown sediment water is authored by its texture identity.
 // This affects optics only; contents, movement and damage remain map-owned.
 function liquidMapLook( name ) {
-	return name.toLowerCase() === '*04water1' ? 2 : 0;
+	const n = name.toLowerCase();
+	return n === '*04water1' || MURKY_WATER.test( n ) ? 2 : 0; // brown sediment: E1M3's water and E3's murky water
 }
 
 // Generated constants keep the GPU's optical values identical to the material

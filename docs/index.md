@@ -115,6 +115,7 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 - [Models, held weapons, blood and water — local working trial](model-lighting-blood-wet-2026-10-04.md)
 - [Torches and fire pits: the supplied "02 Wall torch" flame](torch-fire-2026-10-08.md)
 - [Water concept increment, 2 October 2026](water-concepts-2026-10-02.md)
+- [Episode 3 water gets the Newer liquid treatment](water-episode3-2026-10-09.md)
 - [Four reference-based water appearances](water-looks-2026-10-02.md)
 - [Muddy near-field transmission and reflected markers](water-nearfield-2026-10-02.md)
 - [Textured, reflective Newer water](water-optics-2026-10-02.md)

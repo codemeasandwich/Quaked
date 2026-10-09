@@ -45,7 +45,7 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_GetLiquidLinks, r_newdark } from './gl_post.js';
+import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, R_GetLiquidLinks, r_newdark } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
 import { R_MarkLights, R_LightPointValue } from './gl_rlight.js';
 import {
@@ -376,7 +376,7 @@ function _getWaterMaterial( t, opacity ) {
 		// Keep the original texture and its turbulent UVs. Only clear Newer water
 		// takes contextual baked brightness from its geometry instead of glowing
 		// fullbright; reflections and refraction remain in the compositor.
-		const clearWater = hdr && t != null && /water/i.test( t.name ) && ! /slime|lava|teleport/i.test( t.name );
+		const clearWater = hdr && t != null && R_IsWaterTextureName( t.name );
 
 		material = new THREE.MeshBasicMaterial( {
 			map: ( t && t.gl_texture ) ? t.gl_texture : null,
