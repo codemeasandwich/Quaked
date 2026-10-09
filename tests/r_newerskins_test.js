@@ -138,8 +138,8 @@ Deno.test( 'every file the skin index names exists', async () => {
 
 	}
 
-	assertEqual( variants, 20, 'the twenty custom skins are indexed' );
-	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'armor,backpack,boss,demon,enforcer,h_demon,h_dog,h_shams,knight,ogre,oldone,shalrath,shambler,soldier,suit,wizard,zom_gib,zombie', 'only retained custom models are indexed' );
+	assertEqual( variants, 21, 'the twenty-one custom skins are indexed' );
+	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'armor,backpack,boss,demon,enforcer,h_demon,h_dog,h_shams,knight,ogre,oldone,shalrath,shambler,soldier,suit,tarbaby,wizard,zom_gib,zombie', 'only retained custom models are indexed' );
 	for ( const [ model, list ] of Object.entries( index.models ) )
 		assertEqual( list[ 0 ].dir, model + '/custom', 'retains the custom skin directory' );
 
@@ -171,7 +171,7 @@ Deno.test( 'a skin listed for a skin number is used for that skin only (the armo
 
 } );
 
-// (enforcer, oldone and shalrath have skins bound to their native model's bytes: an entity with no model identity, as here, keeps the original)
+// (enforcer, oldone, shalrath and tarbaby have skins bound to their native model's bytes: an entity with no model identity, as here, keeps the original)
 Deno.test( 'removed pack models fall back to original skins with the shipped manifest', async () => {
 
 	const index = JSON.parse( await Deno.readTextFile( new URL( '../newer/enemies/index.json', import.meta.url ) ) );

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "model": "progs/tarbaby.mdl",
+  "nativeModelSha256": "9933ee9b251e4c32a22129e2a9cda8cebfd2f317aeb2961a0591a098e9e823ea",
+  "source": "Gemini_Generated_Image_tcot82tcot82tcot.jpeg",
+  "sourceSha256": "f871111cbd78c3ec7185373875fadfc1ea58133d5b983253984c3b00168e4751",
+  "skin": 0,
+  "skinFrame": 0,
+  "poses": 61,
+  "vertices": 130,
+  "triangles": 256,
+  "factor": 5,
+  "dimensions": [
+    1520,
+    970
+  ],
+  "background": "blue screen",
+  "bleed": 24,
+  "fringe": 3,
+  "toolchain": {
+    "python": "3.9.6",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "scipy": "1.11.4"
+  },
+  "fit": {
+    "parts": [
+      {
+        "name": "front",
+        "src": [
+          0,
+          5,
+          633,
+          816
+        ],
+        "wholeSheetBox": [
+          0,
+          6,
+          752,
+          970
+        ],
+        "fittedBox": [
+          4,
+          11,
+          749,
+          964
+        ],
+        "edgesMoved": [
+          4,
+          5,
+          -3,
+          -6
+        ],
+        "scale": [
+          1.1769,
+          1.1751
+        ],
+        "detailAgreementAtWholeSheet": 0.3482,
+        "detailAgreement": 0.7543,
+        "surfacePixels": 216298,
+        "surfaceBeyondArt": 413,
+        "surfaceBeyondArtMaxDistance": 3.0
+      },
+      {
+        "name": "back",
+        "src": [
+          653,
+          5,
+          1279,
+          816
+        ],
+        "wholeSheetBox": [
+          776,
+          6,
+          1520,
+          970
+        ],
+        "fittedBox": [
+          772,
+          12,
+          1508,
+          963
+        ],
+        "edgesMoved": [
+          -4,
+          6,
+          -12,
+          -7
+        ],
+        "scale": [
+          1.1757,
+          1.1726
+        ],
+        "detailAgreementAtWholeSheet": 0.0399,
+        "detailAgreement": 0.769,
+        "surfacePixels": 216420,
+        "surfaceBeyondArt": 1010,
+        "surfaceBeyondArtMaxDistance": 4.0
+      }
+    ],
+    "units": "canvas pixels (native texels x 5)",
+    "surface_pixels": 432718,
+    "direct_supplied_surface_pixels": 431295,
+    "carried_edge_surface_pixels": 1423,
+    "native_surface_pixels": 0,
+    "native_pixels_in_file": 0,
+    "blue_screen_surface_pixels": 0,
+    "blue_screen_pixels_in_file": 0
+  },
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_enforcer.register",
+    "fit_skin.spread",
+    "uv_footprint",
+    "height_for",
+    "fit_vore.member"
+  ],
+  "files": {
+    "diffuse.webp": "95e9bd8d3a9f30fe28f2d15617bd7f4061c93086582415940144b1f56ea3d389",
+    "height.webp": "dfc80b188f46bee146ea3824e13759a7017bd4e5e12f7152bdcc2f04331a5e95"
+  }
+}

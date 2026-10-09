@@ -38588,6 +38588,28 @@
       "height": 975,
       "bytes": 11544184,
       "compressedBytes": 5787379
+    },
+    "6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c": {
+      "file": "newer/normals/6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c.nm.gz",
+      "input": {
+        "width": 1520,
+        "height": 970,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "a843770a4e33af15c47ee21b30f48ddeccb26e29a1c5626d9ce073afb00a32b5",
+        "fullbright": null,
+        "scalar": "57ef0e4e38437bcb6b44609ef54df550dd0641bbc879d51620f9a5912b6957d3",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "f4bb59a486de9575fec7934974838e6defc273cb7d77993d4d327e3ff3e1cdef",
+      "rawSha256": "fbbc39071f26572fc41d0a4383fed6cb2c841bba24ab83fa408511ea0e6e7388",
+      "width": 1520,
+      "height": 970,
+      "bytes": 11795384,
+      "compressedBytes": 4097782
     }
   },
   "levels": {
@@ -69406,6 +69428,11 @@
     "custom:enforcer/custom": {
       "keys": [
         "b5446b9428a605242d2c77377cab6ae2156e75cd0a9dcd892a1304638100a2d5"
+      ]
+    },
+    "custom:tarbaby/custom": {
+      "keys": [
+        "6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c"
       ]
     }
   }

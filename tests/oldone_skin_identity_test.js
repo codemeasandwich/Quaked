@@ -62,10 +62,10 @@ Deno.test( 'actual Old One assets retain approved provenance and every other ene
  same( JSON.stringify( provenance.dimensions ), '[1140,975]', 'fivefold native atlas dimensions' ); same( provenance.nativeTexturePixelsUsed, 0, 'no native pigment reported' ); same( provenance.fit.surface_coverage, 1, 'all UV surface pixels covered' ); same( provenance.fit.direct_supplied_pixels, provenance.fit.surface_pixels, 'all surface pixels directly supplied' ); same( provenance.fit.source_matte_seed_pixels, 0, 'source matte excluded' );
  same( JSON.stringify( provenance.parts ), JSON.stringify( [ { name: 'complete authored front/back atlas', src: [ 0, 0, 1120, 958 ], dst: [ 0, 0, 228, 195 ] } ] ), 'complete source atlas mapping retained' );
  for ( const file of [ 'diffuse.webp', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
- same( index.version, 24, 'skin cache revision' ); same( index.models.oldone.length, 1, 'single approved Old One variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' ); same( approved.heightStrength, .65, 'stored height strength' ); same( approved.heightCap, .55, 'stored height cap' );
- const other = structuredClone( index ); delete other.version; delete other.models.oldone; delete other.models.enforcer; // (the Enforcer skin was added after this one, in version 24)
+ same( index.version, 25, 'skin cache revision' ); same( index.models.oldone.length, 1, 'single approved Old One variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' ); same( approved.heightStrength, .65, 'stored height strength' ); same( approved.heightCap, .55, 'stored height cap' );
+ const other = structuredClone( index ); delete other.version; delete other.models.oldone; delete other.models.enforcer; delete other.models.tarbaby; // (the Enforcer skin was added after this one, in version 24)
  // Baseline Dev 10f6369de9613a1dbc64b049f53baa46cea43075; excluding this skin, the later
- // Enforcer skin and the cache revision proves all the entries before them intact.
+ // Enforcer and Spawn skins and the cache revision proves all the entries before them intact.
  same( sha( JSON.stringify( other ) ), '96a0c7c83425850e4bf37976cbcd1518e21ccf9391b090d4ae8942773a975fe7', 'all other enemy variants and native height mappings unchanged' );
 } );
 Deno.test( 'actual manifest admits only matching Old One skin zero and preserves native geometry through preparation and selection', async () => fixture( async ( skins, requests ) => {

@@ -229,9 +229,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "tarbaby": [
+   {
+    "dir": "tarbaby/custom",
+    "skin": 0,
+    "nativeModelSha256": "9933ee9b251e4c32a22129e2a9cda8cebfd2f317aeb2961a0591a098e9e823ea",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 24,
+ "version": 25,
  "nativeHeights": {
   "gib1": [
    [
