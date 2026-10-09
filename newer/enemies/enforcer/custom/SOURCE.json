@@ -1,0 +1,408 @@
+{
+  "schema": 1,
+  "model": "progs/enforcer.mdl",
+  "nativeModelSha256": "01eee88d78a0fe8014b86c57b45c235b59548bccc3436c97d8f59c420e865677",
+  "source": "Gemini_Generated_Image_hy0b7qhy0b7qhy0b.jpeg",
+  "sourceSha256": "5046d3115bb3498a3dba44484223d1a9560f981bec8f02365b1961623156edcb",
+  "skin": 0,
+  "skinFrame": 0,
+  "poses": 102,
+  "vertices": 222,
+  "triangles": 424,
+  "factor": 5,
+  "dimensions": [
+    1480,
+    975
+  ],
+  "bleed": 14,
+  "edge": 3,
+  "toolchain": {
+    "python": "3.9.6",
+    "pillow": "10.1.0",
+    "numpy": "1.26.2",
+    "scipy": "1.11.4"
+  },
+  "fit": {
+    "parts": [
+      {
+        "name": "back body",
+        "src": [
+          648,
+          8,
+          1183,
+          812
+        ],
+        "nativeBox": [
+          150,
+          1,
+          273,
+          186
+        ],
+        "outlineBox": [
+          750,
+          5,
+          1365,
+          930
+        ],
+        "fittedBox": [
+          751,
+          16,
+          1366,
+          944
+        ],
+        "edgesMoved": [
+          1,
+          11,
+          1,
+          14
+        ],
+        "scale": [
+          1.1495,
+          1.1542
+        ],
+        "detailAgreementAtOutline": -0.1663,
+        "detailAgreement": 0.6979,
+        "surfacePixels": 316267,
+        "surfaceBeyondArt": 674,
+        "surfaceBeyondArtMaxDistance": 7.28
+      },
+      {
+        "name": "front body",
+        "src": [
+          7,
+          8,
+          541,
+          817
+        ],
+        "nativeBox": [
+          2,
+          2,
+          125,
+          186
+        ],
+        "outlineBox": [
+          10,
+          10,
+          625,
+          930
+        ],
+        "fittedBox": [
+          9,
+          17,
+          627,
+          949
+        ],
+        "edgesMoved": [
+          -1,
+          7,
+          2,
+          19
+        ],
+        "scale": [
+          1.1573,
+          1.152
+        ],
+        "detailAgreementAtOutline": -0.1557,
+        "detailAgreement": 0.6864,
+        "surfacePixels": 316271,
+        "surfaceBeyondArt": 267,
+        "surfaceBeyondArtMaxDistance": 4.47
+      },
+      {
+        "name": "front pack",
+        "src": [
+          426,
+          590,
+          624,
+          789
+        ],
+        "nativeBox": [
+          99,
+          138,
+          144,
+          183
+        ],
+        "outlineBox": [
+          495,
+          690,
+          720,
+          915
+        ],
+        "fittedBox": [
+          494,
+          688,
+          722,
+          916
+        ],
+        "edgesMoved": [
+          -1,
+          -2,
+          2,
+          1
+        ],
+        "scale": [
+          1.1515,
+          1.1457
+        ],
+        "detailAgreementAtOutline": 0.7333,
+        "detailAgreement": 0.811,
+        "surfacePixels": 39918,
+        "surfaceBeyondArt": 13,
+        "surfaceBeyondArtMaxDistance": 1.0
+      },
+      {
+        "name": "back pack",
+        "src": [
+          1067,
+          590,
+          1263,
+          789
+        ],
+        "nativeBox": [
+          247,
+          138,
+          292,
+          183
+        ],
+        "outlineBox": [
+          1235,
+          690,
+          1460,
+          915
+        ],
+        "fittedBox": [
+          1233,
+          687,
+          1460,
+          917
+        ],
+        "edgesMoved": [
+          -2,
+          -3,
+          0,
+          2
+        ],
+        "scale": [
+          1.1582,
+          1.1558
+        ],
+        "detailAgreementAtOutline": 0.657,
+        "detailAgreement": 0.8115,
+        "surfacePixels": 39920,
+        "surfaceBeyondArt": 8,
+        "surfaceBeyondArtMaxDistance": 2.0
+      },
+      {
+        "name": "front gun",
+        "src": [
+          35,
+          505,
+          125,
+          825
+        ],
+        "nativeBox": [
+          9,
+          118,
+          29,
+          191
+        ],
+        "outlineBox": [
+          45,
+          590,
+          145,
+          955
+        ],
+        "fittedBox": [
+          43,
+          589,
+          145,
+          958
+        ],
+        "edgesMoved": [
+          -2,
+          -1,
+          0,
+          3
+        ],
+        "scale": [
+          1.1333,
+          1.1531
+        ],
+        "detailAgreementAtOutline": 0.5888,
+        "detailAgreement": 0.8598,
+        "surfacePixels": 29648,
+        "surfaceBeyondArt": 311,
+        "surfaceBeyondArtMaxDistance": 3.0
+      },
+      {
+        "name": "back gun",
+        "src": [
+          677,
+          504,
+          766,
+          825
+        ],
+        "nativeBox": [
+          157,
+          118,
+          177,
+          191
+        ],
+        "outlineBox": [
+          785,
+          590,
+          885,
+          955
+        ],
+        "fittedBox": [
+          783,
+          588,
+          886,
+          958
+        ],
+        "edgesMoved": [
+          -2,
+          -2,
+          1,
+          3
+        ],
+        "scale": [
+          1.1573,
+          1.1526
+        ],
+        "detailAgreementAtOutline": 0.5406,
+        "detailAgreement": 0.8682,
+        "surfacePixels": 29649,
+        "surfaceBeyondArt": 364,
+        "surfaceBeyondArtMaxDistance": 6.4
+      },
+      {
+        "name": "front barrel",
+        "src": [
+          415,
+          503,
+          619,
+          578
+        ],
+        "nativeBox": [
+          97,
+          118,
+          143,
+          134
+        ],
+        "outlineBox": [
+          485,
+          590,
+          715,
+          670
+        ],
+        "fittedBox": [
+          481,
+          587,
+          716,
+          673
+        ],
+        "edgesMoved": [
+          -4,
+          -3,
+          1,
+          3
+        ],
+        "scale": [
+          1.152,
+          1.1467
+        ],
+        "detailAgreementAtOutline": 0.6286,
+        "detailAgreement": 0.8394,
+        "surfacePixels": 13432,
+        "surfaceBeyondArt": 30,
+        "surfaceBeyondArtMaxDistance": 1.0
+      },
+      {
+        "name": "back barrel",
+        "src": [
+          1056,
+          503,
+          1261,
+          578
+        ],
+        "nativeBox": [
+          245,
+          118,
+          291,
+          134
+        ],
+        "outlineBox": [
+          1225,
+          590,
+          1455,
+          670
+        ],
+        "fittedBox": [
+          1221,
+          587,
+          1457,
+          673
+        ],
+        "edgesMoved": [
+          -4,
+          -3,
+          2,
+          3
+        ],
+        "scale": [
+          1.1512,
+          1.1467
+        ],
+        "detailAgreementAtOutline": 0.5732,
+        "detailAgreement": 0.8191,
+        "surfacePixels": 13427,
+        "surfaceBeyondArt": 86,
+        "surfaceBeyondArtMaxDistance": 1.0
+      }
+    ],
+    "nativeKept": [
+      {
+        "name": "muzzle flash: native pixels (the sheet has none)",
+        "nativeBox": [
+          7,
+          9,
+          50,
+          24
+        ],
+        "nativeTexels": 435
+      },
+      {
+        "name": "muzzle flash: native pixels (the sheet has none)",
+        "nativeBox": [
+          155,
+          9,
+          198,
+          24
+        ],
+        "nativeTexels": 431
+      }
+    ],
+    "units": "canvas pixels (native texels x 5) unless a name says native",
+    "surface_pixels": 819238,
+    "direct_supplied_surface_pixels": 796779,
+    "carried_edge_surface_pixels": 1753,
+    "native_surface_pixels": 20706,
+    "native_pixels_in_file": 24506,
+    "flash_surface_pixels_not_native": 0
+  },
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_skin.spread",
+    "uv_footprint",
+    "height_for",
+    "fit_vore.member"
+  ],
+  "files": {
+    "diffuse.webp": "e82869428978103cb4f9e44b0fade06fcba0675d3d10e8efa72a1cd3e9cf8ab9",
+    "height.webp": "31a9a1c2d36f6a7cadcd903c4afe324c1956b18a8fea9325e96e3ae981d25e90"
+  }
+}

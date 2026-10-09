@@ -215,9 +215,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "enforcer": [
+   {
+    "dir": "enforcer/custom",
+    "skin": 0,
+    "nativeModelSha256": "01eee88d78a0fe8014b86c57b45c235b59548bccc3436c97d8f59c420e865677",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 23,
+ "version": 24,
  "nativeHeights": {
   "gib1": [
    [
