@@ -46,7 +46,7 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
 import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, R_GetLiquidLinks, r_newdark } from './gl_post.js';
-import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from './gl_portal.js';
+import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial, R_BoxInPortalReceiver } from './gl_portal.js';
 import { R_MarkLights, R_LightPointValue } from './gl_rlight.js';
 import {
 	r_refdef, r_origin, vpn, vright, vup
@@ -73,7 +73,7 @@ import {
 	DotProduct, VectorCopy, VectorSubtract, VectorAdd, VectorNormalize,
 	AngleVectors, Length
 } from './mathlib.js';
-import { Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
+import { Mod_LeafPVS, Mod_PointInLeaf, solidskytexture, alphaskytexture } from './gl_model.js';
 import { realtime } from './host.js';
 
 //============================================================================
@@ -1735,6 +1735,8 @@ function R_UpdateBrushDemon( e, brushGroup, clmodel ) {
 
 }
 
+const _brushLeafOf = p => Mod_PointInLeaf( p, cl.worldmodel );
+
 export function R_DrawBrushModel( e ) {
 
 	// Use pre-allocated scratch arrays to avoid per-call allocations
@@ -1763,7 +1765,8 @@ export function R_DrawBrushModel( e ) {
 
 	}
 
-	if ( R_CullBox( mins, maxs ) )
+	// (outside the main view but in what a visible portal shows: drawn, so it hides what is behind it in the preview too)
+	if ( R_CullBox( mins, maxs ) && ! ( R_PortalsActive() && R_BoxInPortalReceiver( mins, maxs, _brushLeafOf, r_visframecount ) ) )
 		return;
 
 	// Calculate dynamic lighting for non-instanced brush models.

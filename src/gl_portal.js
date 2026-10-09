@@ -273,6 +273,33 @@ export function R_ImpactPortalPlanes() {
 }
 const NO_PLANES = [];
 
+// Does the box lie in what a visible camera portal shows (a leaf the receiver can see)? A brush entity (a door, a false wall or floor,
+// a lift) is only drawn when the main view's frustum reaches it; one in the receiver's view and outside the main view's would be
+// missing from the picture through the portal, and whatever stands behind it would show through (card [15]). `pointInLeaf( point )`
+// gives the leaf of a point and `visframe` the frame stamp of the portals' source leaves that are in the main view. The centre and
+// the eight corners are looked at (a thin door's centre can lie in a wall's leaf).
+const _corner = [ 0, 0, 0 ];
+export function R_BoxInPortalReceiver( mins, maxs, pointInLeaf, visframe ) {
+
+	if ( ! portalsEnabled || portals.length === 0 ) return false;
+	for ( const portal of portals ) {
+
+		if ( portal.srcLeaf == null || portal.srcLeaf.visframe !== visframe ) continue;
+		let set = portal._destLeafSet;
+		if ( set === undefined ) set = portal._destLeafSet = new Set( portal.destLeafs );
+		for ( let k = 0; k < 9; k ++ ) {
+
+			if ( k === 8 ) { _corner[ 0 ] = ( mins[ 0 ] + maxs[ 0 ] ) / 2; _corner[ 1 ] = ( mins[ 1 ] + maxs[ 1 ] ) / 2; _corner[ 2 ] = ( mins[ 2 ] + maxs[ 2 ] ) / 2; }
+			else { _corner[ 0 ] = k & 1 ? maxs[ 0 ] : mins[ 0 ]; _corner[ 1 ] = k & 2 ? maxs[ 1 ] : mins[ 1 ]; _corner[ 2 ] = k & 4 ? maxs[ 2 ] : mins[ 2 ]; }
+			if ( set.has( pointInLeaf( _corner ) ) ) return true;
+
+		}
+
+	}
+	return false;
+
+}
+
 export function R_GetPortals() {
 
 	return portals;

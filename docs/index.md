@@ -89,6 +89,7 @@ Level textures, rock relief, seams, seamless levels and portals.
 - [Level Select by episode, and a Cheats menu in Options](level-select-cheats-2026-10-09.md)
 - [City/Church and Wizard texture updates](level-texture-update-2026-10-02.md)
 - [Camera teleporters: no stall when a sill or frame holds the player back](portal-frame-stall-2026-10-09.md)
+- [Doors and false walls in a portal's preview](portal-receiver-brushes-2026-10-09.md)
 - [Prepared continuous rock fields — 2026-10-03](prepared-rock-maps-2026-10-03.md)
 - [Enhanced-only demo profiling](profiler-demo-mode-2026-10-02.md)
 - [Rock visibility, lighting and corner sampling — working increment](rock-lighting-stability-2026-10-03.md)
