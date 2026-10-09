@@ -172,7 +172,7 @@ Deno.test( 'installed21 native and14 replacement enemy scalar assets reach publi
 			const variant = variants.find( v => v.maps.height ); if ( ! variant ) continue; const entity = { _entityIndex: customCount + 1, model:constrainedModels.get(key) }; skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); await drain(); const material = skins.R_NewerAliasMaterial( entity, 'progs/' + key + '.mdl', true ); verify( material, 'newer/enemies/' + variant.dir + '/' + variant.maps.height, key + ' replacement' ); const diffuse = decoded.get( 'newer/enemies/' + variant.dir + '/' + variant.maps.diffuse ); check( Buffer.from( material.map.image.data ).equals( diffuse.data ), key + ' replacement diffuse untouched' ); customCount ++;
 
 		}
-		same( nativeCount, 21, 'every installed native model height path covered' ); same( customCount, 14, 'every installed replacement height path covered' ); console.log( `HEIGHT_INSTALLED_ASSETS native=${nativeCount} replacement=${customCount}` );
+		same( nativeCount, 21, 'every installed native model height path covered' ); same( customCount, 17, 'every installed replacement height path covered (14, then the Enforcer, Spawn and Death Knight skins of 9 Oct 2026)' ); console.log( `HEIGHT_INSTALLED_ASSETS native=${nativeCount} replacement=${customCount}` );
 
 	} finally { await drain(); THREE.TextureLoader.prototype.load = oldLoad; if ( doc ) Object.defineProperty( globalThis, 'document', doc ); else delete globalThis.document; }
 

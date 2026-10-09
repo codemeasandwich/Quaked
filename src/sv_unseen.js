@@ -79,10 +79,11 @@ function freeMarker( e ) {
 
 // QuakeC function hooks (pr_exec.js): the player's W_Attack (where they fired from) and T_Damage (a monster they hurt).
 export function SV_UnseenFunctionEnter( fn ) {
-	if ( program !== pr_functions ) functions();
+	// (called for every QuakeC function: cheap checks first, and no progs lookups outside a local stock game)
+	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null;
+	if ( program !== pr_functions || world !== sv.edicts ) functions();
 	if ( fn !== fnDamage && fn !== fnAttack ) return null;
-	if ( ! SV_UnseenActive() ) return null;
-	functions();
+	if ( ! R_NewerGame() ) return null;
 	const p = player();
 	if ( fn === fnAttack ) { if ( PROG_TO_EDICT( pr_global_struct.self ) === p ) lastShot = { origin: Array.from( p.v.origin ), time: sv.time }; return null; }
 	const target = PROG_TO_EDICT( pr_globals_int[ OFS_PARM0 ] ), attacker = PROG_TO_EDICT( pr_globals_int[ OFS_PARM2 ] );
