@@ -85,10 +85,12 @@ Deno.test('a blast reaches a lying zombie (T_RadiusDamage), which it never did',
 Deno.test('left alone it gets up on time, standing as the game made it; if something is on it, it stays down and hittable',()=>{
  const p=spawn('e1m3');const z=zombies()[2];sv.time=10;knockDown(p,z);
  think(z,sv.time+5.4);check(z.v.solid!==prone.SOLID_BBOX&&z.v.maxs[2]===prone.STAND.maxs[2],'it stood up with its own box (solid '+z.v.solid+', maxs '+z.v.maxs[2]+')');
- const q=zombies()[3];knockDown(p,q);
- // the player standing on it: the game's own stand-up test fails, it lies down again, still hittable
- p.v.origin=[q.v.origin[0],q.v.origin[1],q.v.origin[2]];p.v.solid=3;SV_LinkEdict(p,false);
- think(q,sv.time+5.4);same(q.v.solid,prone.SOLID_BBOX,'blocked: down again and hittable');same(q.v.maxs[2],prone.PRONE.maxs[2],'low again');
+ // the player standing on top of it (not in it), on a zombie with room above it: the game's own stand-up test fails, it lies down
+ // again, still hittable
+ const top=e=>[e.v.origin[0],e.v.origin[1],e.v.origin[2]+prone.PRONE.maxs[2]-p.v.mins[2]+.1];p.v.solid=3;
+ let q=null;for(const e of zombies().slice(3,12)){p.v.origin=[0,0,-4096];SV_LinkEdict(p,false);knockDown(p,e);p.v.origin=top(e);SV_LinkEdict(p,false);if(!SV_TestEntityPosition(p)){q=e;break;}}check(q,'a zombie with room above it');
+ p.v.origin=top(q);SV_LinkEdict(p,false);check(!SV_TestEntityPosition(p),'the player stands on it, not in it');
+ think(q,sv.time+5.4);same(q.v.solid,prone.SOLID_BBOX,'blocked: down again and hittable');same(q.v.maxs[2],prone.PRONE.maxs[2],'low again');check(!SV_TestEntityPosition(p),'and the player is still free');
  travel.SV_SeamlessReset();
 });
 
@@ -112,5 +114,24 @@ Deno.test('a rocket aimed near a lying zombie is aimed at what lies there, not o
  // where its line passes the zombie: within the lying box's height
  const v=m.v.velocity,s=m.v.origin,t=((z.v.origin[0]-s[0])*v[0]+(z.v.origin[1]-s[1])*v[1])/(v[0]*v[0]+v[1]*v[1]),zAt=s[2]+v[2]*t;
  check(zAt>z.v.absmin[2]-1&&zAt<z.v.absmax[2]+1,'the rocket passes through the lying zombie ('+zAt.toFixed(1)+' in '+z.v.absmin[2]+'..'+z.v.absmax[2]+')');
+ travel.SV_SeamlessReset();
+});
+
+// (review cases)
+Deno.test('hit while down by someone not its enemy, it turns on them but stays down and stands on its own time, with its standing box',()=>{
+ const p=spawn('e1m3');const z=zombies()[6],ogre=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='monster_ogre'&&e.v.health>0);sv.time=10;
+ damage(z,ogre,30);think(z,sv.time+1.05);same(z.v.solid,prone.SOLID_BBOX,'down');same(progs.PROG_TO_EDICT(z.v.enemy),ogre,'its enemy is the ogre');
+ damage(z,p,10);same(progs.PROG_TO_EDICT(z.v.enemy),p,'it turns on the player');same(z.v.solid,prone.SOLID_BBOX,'but stays down');check(text(progs.pr_functions[z.v.think]?.s_name??0)!=='zombie_run1','and does not start running');
+ think(z,sv.time+5.4);same(z.v.maxs[2],prone.STAND.maxs[2],'it stood up with its standing box');same(z.v.solid,prone.SOLID_SLIDEBOX,'solid as a standing monster');
+ travel.SV_SeamlessReset();
+});
+Deno.test('a zombie lying in a Newer save stands up whole in Classic; a lying box is never made around a player',()=>{
+ let p=spawn('e1m3');let z=zombies()[7];sv.time=10;knockDown(p,z);same(z.v.solid,prone.SOLID_BBOX,'down (Newer)');
+ vars.Cvar_SetValue('r_hdr',0);think(z,sv.time+5.4);same(z.v.maxs[2],prone.STAND.maxs[2],'Classic: it stood with its standing box');vars.Cvar_SetValue('r_hdr',1);
+ travel.SV_SeamlessReset();
+ // a zombie down in Quake's own way (Classic), the player standing in it; the Newer stand-up attempt fails because of the player
+ p=spawn('e1m3',true,false);z=zombies()[8];sv.time=10;knockDown(p,z);same(z.v.solid,prone.SOLID_NOT,'down as in Quake');
+ p.v.origin=Array.from(z.v.origin);p.v.solid=3;SV_LinkEdict(p,false);vars.Cvar_SetValue('r_hdr',1);
+ think(z,sv.time+5.4);check(!SV_TestEntityPosition(p),'the player is not shut inside it');same(z.v.solid,prone.SOLID_NOT,'it stays as Quake has it');
  travel.SV_SeamlessReset();
 });

@@ -12,45 +12,64 @@
 // A smaller hit does nothing, as before, and it gets up on time. When it tries to stand, it is given back its standing box and
 // SOLID_NOT first, so the game's own stand-up test runs exactly as written; if that fails it lies down again, still hittable.
 //
-// Everything is the game's own state: solid, mins and maxs are entity fields, saved and loaded with the game. Local single player
-// with the stock progs (the frame function names are the game's), Newer Game only.
+// Being hittable while down opens a path the stock zombie never took: T_Damage turns a monster on a new attacker (FoundTarget,
+// which starts it running). A lying zombie does not get up for that: its enemy changes (T_Damage set it), FoundTarget is not run,
+// and it stands on its own time and then goes for whoever hit it. And should any other zombie behaviour run while it is still in
+// its lying box, it is given its standing box first. A lying box is only made where it fits: never around a player or anything
+// else (then it stays SOLID_NOT, as in Quake). Lying solid, it also stops projectiles, touches triggers if moved, and blocks a
+// closing door (whose damage then does nothing to it, as above).
+//
+// Everything is the game's own state: solid, mins and maxs are entity fields, saved and loaded with the game. The standing box is
+// given back at its stand-up in any mode, so a Newer save loaded in Classic never leaves a short zombie. Local single player with
+// the stock progs (the frame function names are the game's).
 
 import { sv, svs } from './server.js';
 import { R_NewerGame } from './r_anim.js';
 import { pr_crc, pr_functions, pr_global_struct, PR_GetString, PROG_TO_EDICT } from './progs.js';
 import { ED_FindFunction } from './pr_edict.js';
-import { SV_LinkEdict } from './world.js';
+import { SV_LinkEdict, SV_Move, MOVE_NORMAL } from './world.js';
 
-export const SOLID_NOT = 0, SOLID_BBOX = 2;
+export const SOLID_NOT = 0, SOLID_BBOX = 2, SOLID_SLIDEBOX = 3;
 export const STAND = Object.freeze( { mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, 40 ] } ); // the zombie's own setsize
 export const PRONE = Object.freeze( { mins: [ - 16, - 16, - 24 ], maxs: [ 16, 16, - 12 ] } );
 
-let program = null, lying = null, standing = null;
+let program = null, lying = null, standing = null, waking = null, nothing = null, zombieFns = null;
 function functions() {
 	if ( program === pr_functions ) return;
 	program = pr_functions;
 	lying = new Set( [ 'zombie_paine10', 'zombie_paine11', 'zombie_paine12' ].map( n => ED_FindFunction( n ) ).filter( Boolean ) );
 	standing = ED_FindFunction( 'zombie_paine12' );
+	waking = ED_FindFunction( 'FoundTarget' ); nothing = ED_FindFunction( 'SUB_Null' );
+	// (its behaviours as a standing monster: walking, running, standing, attacking, the lesser pain animations; not zombie_pain,
+	// which every hit runs and which returns at once while it lies, nor its fall and rise)
+	zombieFns = new Set( pr_functions.filter( f => f && /^zombie_(stand|walk|run|att|pain[a-d])/.test( PR_GetString( f.s_name ) ) ) );
 }
 export const SV_ProneZombieActive = () => sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && R_NewerGame();
 const zombie = e => !! e && ! e.free && e.v.health > 0 && PR_GetString( e.v.classname ) === 'monster_zombie' && PR_GetString( e.v.model ) === 'progs/zombie.mdl';
 function box( e, b, solid ) { e.v.mins = b.mins.slice(); e.v.maxs = b.maxs.slice(); for ( let a = 0; a < 3; a ++ ) e.v.size[ a ] = b.maxs[ a ] - b.mins[ a ]; e.v.solid = solid; SV_LinkEdict( e, false ); }
 export const SV_ZombieProne = e => zombie( e ) && e.v.solid === SOLID_BBOX && e.v.maxs[ 2 ] === PRONE.maxs[ 2 ];
+// does the lying box fit where it lies (nothing solid in it but the zombie itself)?
+function fits( e ) { const t = SV_Move( e.v.origin, PRONE.mins, PRONE.maxs, e.v.origin, MOVE_NORMAL, e ); return ! t.startsolid && ! t.allsolid; }
 
 // QuakeC function hooks (pr_exec.js)
 export function SV_ProneZombieEnter( f ) {
 	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null;
 	functions();
-	if ( ! lying.has( f ) || ! R_NewerGame() ) return null;
+	if ( f !== waking && ! zombieFns.has( f ) && ! lying.has( f ) ) return null;
 	const self = PROG_TO_EDICT( pr_global_struct.self );
 	if ( ! zombie( self ) ) return null;
-	// standing up: the game's own test, from the state it expects (non-solid, its standing box)
-	if ( f === standing && SV_ZombieProne( self ) ) box( self, STAND, SOLID_NOT );
-	return { self };
+	const prone = SV_ZombieProne( self );
+	// turned on a new attacker while lying: the enemy is already set, it does not get up for it (stock: it could not be hit)
+	if ( f === waking ) return prone && nothing ? { skip: nothing.first_statement - 1 } : null;
+	// standing up (any mode): the game's own test, from the state it expects (non-solid, its standing box)
+	if ( prone && f === standing ) box( self, STAND, SOLID_NOT );
+	// any other zombie behaviour while still in the lying box: its standing box first
+	else if ( prone && ! lying.has( f ) ) box( self, STAND, SOLID_SLIDEBOX );
+	return lying.has( f ) && R_NewerGame() ? { self } : null;
 }
 export function SV_ProneZombieLeave( token ) {
 	if ( ! token ) return;
 	const self = token.self;
-	// still down (or it could not stand): lying there, hittable
-	if ( zombie( self ) && self.v.solid === SOLID_NOT ) box( self, PRONE, SOLID_BBOX );
+	// still down (or it could not stand): lying there, hittable, where the box fits
+	if ( zombie( self ) && self.v.solid === SOLID_NOT && fits( self ) ) box( self, PRONE, SOLID_BBOX );
 }

@@ -1252,8 +1252,8 @@ function PF_aim() {
 	if ( bestent != null ) {
 
 		VectorSubtract( bestent.v.origin, ent.v.origin, dir );
-		// a knocked-down zombie lies below its origin (card [40], sv_pronezombie.js): aim at what lies there, from the height
-		// the shot leaves at (the trace's start), not at its standing height over it
+		// a knocked-down zombie lies below its origin (card [40], sv_pronezombie.js): aim at what lies there, from the trace's start
+		// (20 units up; shots leave 15 to 16 units up, still well inside the lying box), not at its standing height over it
 		if ( SV_ZombieProne( bestent ) ) for ( let j = 0; j < 3; j ++ ) dir[ j ] = bestent.v.origin[ j ] + 0.5 * ( bestent.v.mins[ j ] + bestent.v.maxs[ j ] ) - start[ j ];
 		const dist = DotProduct( dir, pr_global_struct.v_forward );
 		VectorScale( pr_global_struct.v_forward, dist, end );

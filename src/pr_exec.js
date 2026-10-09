@@ -318,8 +318,9 @@ export function PR_EnterFunction( f ) {
 
 	PR_SetXFunction( f );
 	// (a hook may have the interpreter run SUB_Null in the function's place: the respawn sequence, a shotgun
-	// pellet's TraceAttack that waits for its flight, sv_shotdelay.js, and a melee blow's meat spray off the player, sv_meleespray.js)
-	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? pr_stack[ pr_depth - 1 ].face?.skip ?? pr_stack[ pr_depth - 1 ].melee?.skip ?? ( f.first_statement - 1 ); // offset the s++
+	// pellet's TraceAttack that waits for its flight, sv_shotdelay.js, a melee blow's meat spray off the player, sv_meleespray.js, and a lying zombie turned on a new attacker,
+	// sv_pronezombie.js)
+	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? pr_stack[ pr_depth - 1 ].face?.skip ?? pr_stack[ pr_depth - 1 ].melee?.skip ?? pr_stack[ pr_depth - 1 ].prone?.skip ?? ( f.first_statement - 1 ); // offset the s++
 
 }
 

@@ -5,9 +5,10 @@ Newer Game only; Classic keeps Quake's.
 
 ## What threw the chunks
 
-In the stock QuakeC, a melee blow that lands calls `SpawnMeatSpray( org, vel )` on its victim: the ogre's chainsaw on its side
-swings, the shambler's `ShamClaw`, the fiend's claws (and the hell knight's side swings in the registered game). It throws a
-flying chunk of meat (`progs/zom_gib.mdl`, which trails blood) from the victim. The knight's sword (`ai_melee`) never threw
+In the stock QuakeC four melee functions call `SpawnMeatSpray( org, vel )` on their victim when the blow lands (found by
+scanning the progs' bytecode in review): the ogre's `chainsaw` on its side swings, the fiend's `Demon_Melee`, the shambler's
+`ShamClaw` and its smash (`sham_smash10`, twice: two bursts of blood). It throws a flying chunk of meat (`progs/zom_gib.mdl`,
+which trails blood) from the victim. The knight's and the hell knight's swords (`ai_melee`, `ai_melee_side`) never threw
 anything. A death that gibs the player is a different call (`ThrowGib`), untouched.
 
 ## What happens now
@@ -16,7 +17,8 @@ anything. A death that gibs the player is a different call (`ThrowGib`), untouch
 respawn sequence and the shotgun's delayed pellets are hooked). When the attacker's enemy is a player, the function does
 nothing (`SUB_Null` runs in its place) and the same spot bleeds instead, with the game's own blood particles (colour 73, the
 call `SpawnBlood` makes, 24 of them), moving the way the chunk would have. A monster hitting a monster still throws its chunk.
-The damage is untouched: the spray never was part of the rules.
+The damage is untouched: the spray never was part of the rules. Local single player with the stock progs (as the other
+function hooks).
 
 The choice of case was the owner's open question on the card; this follows the card's own words (blood yes, chunks of the
 player no; a death that gibs still gibs). If the owner wants lethal blows to leave the body whole too, that is a separate rule.
@@ -33,4 +35,5 @@ player no; a death that gibs still gibs). If the owner wants lethal blows to lea
 
 ## Not checked
 
-The fiend and the hell knight in the browser (the same function and the same hook; the fiend is not in the shareware maps).
+The fiend in the browser (the same hook; the fiend is not in the shareware maps). Independent review: the comment and this
+doc named the wrong callers and the hook was not limited to the stock progs; both corrected.
