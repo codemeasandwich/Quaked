@@ -188,13 +188,10 @@ export function R_BestiaryBookDraw() {
   else { turn = null; drawSpread(ctx,spread,entries,boxes,unlocked,unit); }
   navigation(ctx,boxes,unit,width,maximum);
   ctx.textBaseline = 'middle'; ctx.textAlign = 'center'; ctx.fillStyle = '#d2c3a7';
-  if ( pending ) {
-   ctx.font = `${11*unit}px Georgia, serif`;
-   ctx.fillText( pending.failed ? 'This page could not be loaded. Press again to try once more.' : 'Turning the page\u2026', width/2, boxes.bottom+40*unit );
-  }
-  if ( snapshot.storageStatus === 'unavailable' ) {
-   ctx.font = `${11*unit}px Georgia, serif`; ctx.fillText('Progress is kept for this session only.',width/2,boxes.bottom+40*unit);
-  }
+  // one note under the book (the line the studio logo keeps clear): a waiting turn first, else the storage notice
+  ctx.font = `${11*unit}px Georgia, serif`;
+  if ( pending ) ctx.fillText( pending.failed ? 'This page could not be loaded. Press again to try once more.' : 'Turning the page\u2026', width/2, boxes.bottom+40*unit );
+  else if ( snapshot.storageStatus === 'unavailable' ) ctx.fillText('Progress is kept for this session only.',width/2,boxes.bottom+40*unit);
  } finally { ctx.restore(); }
  return true;
 }
