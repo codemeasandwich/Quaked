@@ -26,6 +26,7 @@ import { r_refdef } from '../src/render.js';
 import { r_hdr } from '../src/gl_post.js';
 import * as travel from '../src/sv_seamless.js';
 import { R_DemoLoadingCancel } from '../src/r_demoloading.js';
+import { sv_respawnguard } from '../src/sv_respawn.js';
 import { weaponSurface, weaponKey, WeaponSurfaceState, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt } from '../src/r_weapon_surface.js';
 
 const check = ( value, label ) => { if ( !value ) throw Error( label ); };
@@ -56,7 +57,7 @@ function finishConnect() {
  return client.edict;
 }
 async function command( value ) { acknowledge(); cmd.Cmd_ExecuteString( value, cmd.src_command ); await Promise.resolve(); return finishConnect(); }
-async function fresh( map = 'e1m1' ) { vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'skill', 2 ); /* Hard: this test is about the blood coating through a full-health respawn; Normal's reduced respawn health is tested in respawn_health_native_test.js */ vars.Cvar_SetValue( 'sv_seamless', 1 ); return command( 'map '+map ); }
+async function fresh( map = 'e1m1' ) { vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'skill', 2 ); /* Hard: this test is about the blood coating through a full-health respawn; Normal's reduced health is tested in respawn_health_native_test.js, and the guard monster is off here (respawn_guard_native_test.js) */ sv_respawnguard.value = 0; vars.Cvar_SetValue( 'sv_seamless', 1 ); return command( 'map '+map ); }
 function frame( point, time = sv.time, paused = false ) {
  // V_CalcRefdef draws the weapon named by STAT_WEAPON, which the server sets from the player's weaponmodel ("" when
  // dead). This CPU fixture does not parse client packets, so it reads the same field from the native player edict.

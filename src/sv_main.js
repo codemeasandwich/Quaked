@@ -1,4 +1,4 @@
-import { SV_RespawnPrecache, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel } from './sv_respawn.js';
+import { SV_RespawnPrecache, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from './sv_respawn.js';
 // Ported from: WinQuake/sv_main.c -- server main program
 
 import { Sys_Error } from './sys.js';
@@ -112,6 +112,7 @@ export function SV_Init() {
 	Cvar_RegisterVariable( sv_maxvelocity );
 	Cvar_RegisterVariable( sv_gravity );
 	Cvar_RegisterVariable( sv_shotdelay );
+	Cvar_RegisterVariable( sv_respawnguard );
 	Cvar_RegisterVariable( sv_friction );
 	Cvar_RegisterVariable( sv_edgefriction );
 	Cvar_RegisterVariable( sv_stopspeed );
@@ -1869,6 +1870,7 @@ export function SV_SpawnServer( server ) {
 	}
 
 	SV_RespawnPrecache();
+	SV_RespawnReserveGuards(); // (after the level's own spawn functions have precached, with the tables as they are)
 	// Enhanced travel/save restoration can retain powers whose pickup entity
 	// is absent in this map. Reserve their native warning/expiry sounds before
 	// serverinfo is sent; changing the sound table after signon is too late.

@@ -42,6 +42,7 @@ Held weapons, shotgun pellets, shells, the death and respawn rules.
 - [Power-up vision integration](power-up-vision.md)
 - [Power-up flame effects](powerup-flames-2026-10-04.md)
 - [Quad Damage blue spark port — 2026-10-05](quad-blue-effect-2026-10-05.md)
+- [A guard monster at the death location](respawn-guard-2026-10-09.md)
 - [Respawn after slime or lava: no carried-over hazard damage](respawn-hazard-state-2026-10-08.md)
 - [Normal difficulty: falling respawn health, topped up by new levels](respawn-health-2026-10-09.md)
 - [Shotgun pellets, underwater bubbles, and damage that arrives with them](shotgun-pellets-2026-10-08.md)

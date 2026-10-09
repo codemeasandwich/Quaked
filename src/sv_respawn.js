@@ -1,20 +1,22 @@
 // Native single-player death coordinator. QC retains damage/death callbacks;
 // only its backpack/restart are replaced while this coordinator owns a death.
-import {sv,svs,FL_MONSTER,FL_ONGROUND,MOVETYPE_NONE,MOVETYPE_WALK,MOVETYPE_TOSS,SOLID_NOT,SOLID_TRIGGER,SOLID_SLIDEBOX} from './server.js';
+import {sv,svs,FL_MONSTER,FL_ONGROUND,MOVETYPE_NONE,MOVETYPE_WALK,MOVETYPE_TOSS,SOLID_NOT,SOLID_TRIGGER,SOLID_SLIDEBOX,ss_loading} from './server.js';
 import {cls,ca_dedicated} from './client.js';
 import {R_NewerGame} from './r_anim.js';
 import {pr_crc,PR_GetString,pr_functions,pr_global_struct,pr_globals_int,EDICT_TO_PROG,PROG_TO_EDICT} from './progs.js';
 import {ED_Alloc,ED_Free,ED_FindFunction,ED_NewString,GetEdictFieldValue} from './pr_edict.js';
 import {PR_ExecuteProgram} from './pr_exec.js';
-import {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS} from './world.js';
-import {Cvar_VariableValue} from './cvar.js';
+import {SV_Move,SV_LinkEdict,SV_PointContents,MOVE_NOMONSTERS,MOVE_NORMAL} from './world.js';
+import {svc_updatestat} from './protocol.js';
+import {MSG_WriteByte,MSG_WriteLong} from './common.js';
+import {Cvar_VariableValue,cvar_t} from './cvar.js';
 import {Respawn_NoticeSet,Respawn_NoticeClear,RESPAWN_MINUS,RESPAWN_PLUS} from './respawn_notice.js';
 import {Mod_ForName} from './gl_model.js';
 import {COM_FindFile} from './pak.js';
 import {sv_gravity,SV_CheckWater} from './sv_phys.js';
 import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from './respawn_motion.js';
 import {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo} from './respawn_record.js';
-import {IT_AXE,IT_KEY1,IT_KEY2,IT_INVISIBILITY,IT_INVULNERABILITY,IT_QUAD,IT_SUIT,STAT_AMMO,STAT_SHELLS,STAT_NAILS,STAT_ROCKETS,STAT_CELLS} from './quakedef.js';
+import {IT_AXE,IT_KEY1,IT_KEY2,IT_INVISIBILITY,IT_INVULNERABILITY,IT_QUAD,IT_SUIT,STAT_AMMO,STAT_SHELLS,STAT_NAILS,STAT_ROCKETS,STAT_CELLS,STAT_TOTALMONSTERS} from './quakedef.js';
 const WEAPON_BITS=127|IT_AXE,POWERS=IT_INVISIBILITY|IT_INVULNERABILITY|IT_QUAD|IT_SUIT;
 const TIMER_FIELDS=['invisible_finished','invincible_finished','super_damage_finished','radsuit_finished','invisible_time','invincible_time','super_time','rad_time'];
 const names=new WeakMap();
@@ -131,6 +133,71 @@ export function SV_RespawnAlert(p){const found=fnIndex('FoundTarget');let alerte
  // pinned actors still receive the target without being given a NULL thinker.
  const run=field(e,'th_run',undefined,true);if(found&&run>0&&run<pr_functions.length&&e.v.movetype!==MOVETYPE_NONE)callNative(e,found);e._respawnAlert=sv.time;alerted++;
  }return alerted;}
+// A guard left where the player fell (card [2]): after a completed respawn one native Fiend (Normal) or Shambler (Hard and
+// Nightmare) is spawned at the death location, waiting in its ordinary idle; Easy gets none. The game's own spawn function
+// makes it (so it is a real monster: counted in the total and the kills, saved, with its normal behaviour), after the alert pass
+// of the same moment so it is not alerted with the rest. A monster's models and sounds can only be precached while a level
+// loads, so at load (SV_RespawnReserveGuards, from SV_SpawnServer) the spawn function is run once on a throwaway entity to
+// reserve them, when both tables have room or the model is already there; with no room, or with the stock monster missing,
+// there is simply no guard of that kind in that level. The difficulty is the one the level loaded with.
+// The spot must be real: empty air, room for the hull with the world, the monsters and the player all counted, ground below, a
+// clear path from the death point, and not near where the player respawns (nobody is put beside a fresh respawn).
+// 0 leaves no guard (the stock respawn only)
+export const sv_respawnguard=new cvar_t('sv_respawnguard','1');
+const GUARD_ROOM={models:8,sounds:24},GUARD_HULL=[[-32,-32,-24],[32,32,64]],GUARD_KEEP_AWAY=128;
+const GUARDS=new Map([['monster_demon1','progs/demon.mdl'],['monster_shambler','progs/shambler.mdl']]);
+let guardReady=new Set(),guardSkill=1;
+const guardClass=()=>{if(!(sv_respawnguard.value>0))return null;return guardSkill===1?'monster_demon1':guardSkill>=2?'monster_shambler':null;};
+const freeSlots=a=>a.reduce((n,v)=>n+(v?0:1),0);
+// the game's spawn function on entity e, allowed to precache what was reserved at load; keepTotal puts total_monsters back (the
+// throwaway at load), otherwise the new monster stays counted
+function runSpawn(e,f,keepTotal){
+ const self=pr_global_struct.self,total=pr_global_struct.total_monsters,state=sv.state;
+ try{pr_global_struct.self=EDICT_TO_PROG(e);sv.state=ss_loading;PR_ExecuteProgram(pr_functions.indexOf(f));}
+ finally{pr_global_struct.self=self;sv.state=state;if(keepTotal&&Number.isFinite(total))pr_global_struct.total_monsters=total;}
+}
+export function SV_RespawnReserveGuards(){
+ guardReady=new Set();if(!localContext())return;guardSkill=Math.round(Cvar_VariableValue('skill'));
+ for(const [name,model] of GUARDS){
+  // (a monster the level already has is already reserved, and costs nothing)
+  const f=ED_FindFunction(name);if(!f||(!sv.model_precache.includes(model)&&(freeSlots(sv.model_precache)<GUARD_ROOM.models||freeSlots(sv.sound_precache)<GUARD_ROOM.sounds)))continue;
+  let e=null;const count=sv.num_edicts;
+  try{e=ED_Alloc();e.v.classname=ED_NewString(name);runSpawn(e,f,true);guardReady.add(name);}catch(error){/* not reserved: no guard of this kind here */}
+  // wipe the throwaway completely (its fields are the spawn function's) and take a slot past the end of the list back out of it
+  finally{if(e){if(!e.free)ED_Free(e);new Uint8Array(e._fieldBuffer).fill(0);if(e.index>=count)sv.num_edicts=count;}}
+ }
+}
+export const SV_RespawnGuardsReady=()=>Array.from(guardReady);
+export const SV_RespawnGuardSpot=(p,point)=>guardSpot(p,point); // (the placement rules, for tests)
+// the nearest valid standing spot to the death place
+function guardSpot(p,[x,y,z]){
+ const [mins,maxs]=GUARD_HULL,world=sv.edicts[0],offsets=[[0,0,0],[0,0,16],[0,0,32]];
+ for(const r of[48,96])for(let k=0;k<8;k++){const a=k*Math.PI/4;offsets.push([Math.cos(a)*r,Math.sin(a)*r,0],[Math.cos(a)*r,Math.sin(a)*r,24]);}
+ for(const [dx,dy,dz] of offsets){
+  const at=[x+dx,y+dy,z+dz];if(SV_PointContents(at)!==-1)continue;
+  if(Math.hypot(at[0]-p.v.origin[0],at[1]-p.v.origin[1],at[2]-p.v.origin[2])<GUARD_KEEP_AWAY)continue;
+  // room for the hull with the world, every monster and the player (the player is not the entity passed, so it counts)
+  const here=SV_Move(at,mins,maxs,at,MOVE_NORMAL,world);if(here.startsolid||here.allsolid)continue;
+  // a ring offset must not be across a thin wall from the death point
+  const path=SV_Move([x,y,z],[-1,-1,-1],[1,1,1],at,MOVE_NOMONSTERS,world);if(path.fraction<1)continue;
+  const down=SV_Move(at,mins,maxs,[at[0],at[1],at[2]-256],MOVE_NOMONSTERS,world);if(down.startsolid||down.fraction>=1||SV_PointContents(down.endpos)!==-1)continue;
+  return at;
+ }
+ return null;
+}
+function spawnGuard(p,s){
+ if(s.guarded)return null;s.guarded=true;
+ const name=guardClass(),f=name&&guardReady.has(name)?ED_FindFunction(name):null;if(!f)return null;
+ const bias=1/32,spot=guardSpot(p,[s.sourcePivot[0]-bias,s.sourcePivot[1]-bias,s.sourcePivot[2]-2-bias-p.v.mins[2]]);if(!spot)return null;
+ let e=null;
+ try{
+  e=ED_Alloc();e.v.classname=ED_NewString(name);e.v.origin=spot;e.v.angles=[0,Math.atan2(s.destinationPivot[1]-spot[1],s.destinationPivot[0]-spot[0])*180/Math.PI,0];runSpawn(e,f,false);
+  // the client learns the new total (it only hears it at signon otherwise)
+  MSG_WriteByte(sv.reliable_datagram,svc_updatestat);MSG_WriteByte(sv.reliable_datagram,STAT_TOTALMONSTERS);MSG_WriteLong(sv.reliable_datagram,pr_global_struct.total_monsters);
+  return e;
+ }catch(error){if(e&&!e.free)ED_Free(e);return null;}
+}
+
 function contact(p,state,s){
  s.respawned=true;state.frame=Respawn_NextFrame(s.frame,s.angles);
  callNative(p,pr_global_struct.PutClientInServer);p._respawn=state;p.v.origin=state.start;p.v.angles=s.angles;p.v.v_angle=s.angles;p.v.fixangle=1;
@@ -143,6 +210,7 @@ function contact(p,state,s){
  // seen as wet and obeys the native rules. (The old damage timer has always expired by then; clearing it is hygiene.)
  field(p,'dmgtime',0);SV_CheckWater(p);
  s.alerted=SV_RespawnAlert(p);
+ spawnGuard(p,s); // after the alert pass: the guard waits in its ordinary idle
 }
 export function SV_RespawnFrame(p){SV_RespawnFinishTravel(p);const state=p._respawn,s=state?.sequence;if(!s)return false;
  // Admission is Newer-only. Once admitted, finish ownership even if the
@@ -177,7 +245,10 @@ export function SV_RespawnInventoryStats(target){const p=svs.clients?.[0]?.edict
 
 // Called only after validating an owned save payload, before reconnect sends
 // its model list. Classic loading of an Enhanced save retains those resources.
-export function SV_RespawnRestoreDropModel(e){if(!e._respawnDrop||!localContext())return;SV_RespawnPrecache();const model=RESPAWN_WEAPONS.find(w=>w.bit===e._respawnDrop.weapon)?.model||'progs/backpack.mdl';e.v.model=ED_NewString(model);e.v.modelindex=sv.model_precache.indexOf(model);}
+export function SV_RespawnRestoreDropModel(e){
+ // a saved Fiend or Shambler (a guard among them) keeps its model by name: its table position can differ between the saving and the loading game
+ if(localContext()&&GUARDS.has(PR_GetString(e.v.classname))&&e.v.model){const at=sv.model_precache.indexOf(PR_GetString(e.v.model));if(at>0)e.v.modelindex=at;}
+ if(!e._respawnDrop||!localContext())return;SV_RespawnPrecache();const model=RESPAWN_WEAPONS.find(w=>w.bit===e._respawnDrop.weapon)?.model||'progs/backpack.mdl';e.v.model=ED_NewString(model);e.v.modelindex=sv.model_precache.indexOf(model);}
 
 // Plan only at death, using bounded real BSP sweeps of the complete head arc.
 // A sliding foot pivot preserves a rigid body radius in constrained corridors.

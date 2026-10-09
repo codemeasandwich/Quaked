@@ -190,3 +190,5 @@ claimed to be running. Unrelated owner artwork and model files remain untouched.
 ## Update, 9 October 2026
 
 The 100 health this sequence gives at contact is now the rule for Easy, Hard and Nightmare only. On Normal the respawn health falls by 10 at each completed respawn (to a floor of 60) and is topped up by 10 on the first arrival in a new level; see [respawn health on Normal](respawn-health-2026-10-09.md). Tests that check a full-health respawn run on Hard.
+
+Also since 9 October 2026: a guard monster (a Fiend on Normal, a Shambler on Hard and Nightmare) is left at the death location after the respawn lands: [respawn-guard-2026-10-09.md](respawn-guard-2026-10-09.md).
