@@ -58,6 +58,26 @@ export const BESTIARY_ENTRIES = Object.freeze( [
  ['quakes_guardian','Quake’s Guardian',['monster_morph'],'quakes-guardian.png',31],
  ['quakes_high_priest','Quake’s High Priest',['monster_morph'],'quakes-high-priest.png',33]
  ].map( ( [ id,title,classes,image,folio ],i ) => Object.freeze( { id,title,classes:Object.freeze(classes),image,folio:folio??i+1 } ) ) );
+// The book's spreads (card [19]): a base creature on the left page and its relative on the right, families in consecutive
+// spreads. Display order only: discoveries stay keyed by entry id and every entry's folio number is unchanged. null is a
+// deliberate blank page (parchment): the Rocket Ogre has no fourth ogre beside it, Armagon and Chthon the Sleeper no relative
+// left. The table of contents artwork (contents.png) follows the old order and is stale until the owner regenerates it.
+export const BESTIARY_SPREADS = Object.freeze( [
+ [ 'dog', 'demo_dog' ], [ 'grunt', 'infected_grunt' ], [ 'enforcer', 'infected_enforcer' ],
+ [ 'knight', 'infected_knight' ], [ 'statue_knight', 'phantom_swordsman' ],
+ [ 'death_knight', 'infected_death_knight' ], [ 'statue_death_knight', 'ranged_death_knight' ],
+ [ 'ogre', 'multi_grenade_ogre' ], [ 'rocket_ogre', null ],
+ [ 'zombie', 'mummy' ], [ 'rotfish', 'electric_eel' ], [ 'scrag', 'orb' ], [ 'wrath', 'overlord' ],
+ [ 'spawn', 'hell_spawn' ], [ 'splitting_spawn', 'spike_mine' ], [ 'fiend', 'gremlin' ], [ 'vore', 'centroid' ],
+ [ 'shambler', 'blood_shambler' ], [ 'guardian', 'egyptian_guardian' ], [ 'quakes_guardian', 'quakes_high_priest' ],
+ [ 'dragon', 'hephaestus' ], [ 'armagon', null ],
+ [ 'chthon', 'chthon_vengeance' ], [ 'chthon_sleeper', null ], [ 'shub', 'shub_awakened' ]
+].map( pair => Object.freeze( pair.map( id => id === null ? null : BESTIARY_ENTRIES.find( e => e.id === id ) ) ) ) );
+// the final mapping, for the owner's new contents page: book spread, page side, entry id, title, folio
+export function Bestiary_SpreadMapping() {
+ return BESTIARY_SPREADS.flatMap( ( pair, i ) => pair.map( ( entry, side ) => ( { spread: i + 3, side: side ? 'right' : 'left', id: entry?.id ?? null, title: entry?.title ?? null, folio: entry?.folio ?? null } ) ) );
+}
+
 // Rogue reuses Ogre's classname. Do not attribute a base-game Ogre to the
 // expansion merely because a map sets an otherwise unused spawnflag/skin.
 const variants=new Set(['multi_grenade_ogre','chthon_sleeper','shub_awakened','splitting_spawn','infected_death_knight','overlord','infected_enforcer','egyptian_guardian','dragon','infected_knight',

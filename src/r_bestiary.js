@@ -1,7 +1,7 @@
 // First-sighting presentation borrows the renderer camera. It never moves the
 // player, changes their view angles, or writes pause/timescale preferences.
 import * as THREE from 'three';
-import {BESTIARY_ENTRIES,BestiaryJournal,BestiaryEncounter,Bestiary_Identify,Bestiary_FacesPlayer} from './bestiary_state.js';
+import {BESTIARY_ENTRIES,BESTIARY_SPREADS,BestiaryJournal,BestiaryEncounter,Bestiary_Identify,Bestiary_FacesPlayer} from './bestiary_state.js';
 import {cl,cls,cl_entities,ca_connected} from './client.js';
 import {sv,svs,MOVETYPE_NONE} from './server.js';
 import {PR_GetString,pr_functions} from './progs.js';
@@ -47,6 +47,8 @@ function nativeDiscoverable(native,entry) {
  return true;
 }
 export function R_BestiaryEntries(){return BESTIARY_ENTRIES;}
+// the book's family spreads (card [19]): [ left entry, right entry ], null a blank page
+export function R_BestiarySpreads(){return BESTIARY_SPREADS;}
 export function R_BestiarySnapshot(){journal.reload();const state=encounter.snapshot(),loaded=imageAt.get(state.entry?.id);
  const age=loaded===undefined?1:Math.max(0,Math.min(1,(clock-loaded)/.35));
  return {...state,opacity:state.opacity*age,imageAge:age,enemyIndex:target?.native.index??null,...journal.snapshot()};}

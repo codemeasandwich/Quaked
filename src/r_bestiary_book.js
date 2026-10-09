@@ -3,7 +3,7 @@
 // combine the supplied blank template with a separate authored title crop.
 import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from './gl_draw.js';
 import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from './keys.js';
-import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry } from './r_bestiary.js';
+import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiarySpreads, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry } from './r_bestiary.js';
 
 const TURN_MS = 320, WAIT_MS = 10000;
 let spread = 0, turn = null, pending = null;
@@ -53,11 +53,20 @@ function page( ctx, entry, box, unlocked, unit ) {
  ctx.drawImage(image,imageBox.x,imageBox.y,imageBox.w,imageBox.h);
 }
 // Front matter is always available and does not participate in discovery.
-// Index0 is the outer cover,1 the inner illustration,2 Contents,3+i a creature.
-// The cover's reverse is the dedication beside the inner illustration. All
-// later leaf reverses use parchment; the same mapping serves both turn faces.
+// Index 0 is the outer cover, 1 the inner illustration, 2 Contents, 3+i the
+// family spread i (card [19]): a base creature on the left page, its relative on
+// the right; a missing one is a blank parchment page. The cover's reverse is the
+// dedication beside the inner illustration. The same mapping serves both turn
+// faces: a leaf's back is the next spread's left page.
 function bookPage( ctx, index, right, entries, box, unlocked, unit ) {
- if ( right && index > 2 ) { page(ctx,entries[index-3],box,unlocked,unit); return; }
+ if ( index > 2 ) {
+  const entry = R_BestiarySpreads()[index-3]?.[right?1:0];
+  if ( entry ) { page(ctx,entry,box,unlocked,unit); return; }
+  ctx.fillStyle = '#e6dbc2'; ctx.fillRect(box.x,box.y,box.w,box.h);
+  const parchment = R_BestiaryVerso(), parchmentBox = parchment && fitImage(parchment,box);
+  if ( parchmentBox ) ctx.drawImage(parchment,parchmentBox.x,parchmentBox.y,parchmentBox.w,parchmentBox.h);
+  return;
+ }
  ctx.fillStyle = '#e6dbc2'; ctx.fillRect(box.x,box.y,box.w,box.h);
  const image = !right ? (index === 1 ? R_BestiaryDedication() : R_BestiaryVerso()) : index === 1 ? R_BestiaryFrontispiece() : R_BestiaryContents(), imageBox = image && fitImage(image,box);
  if ( imageBox ) ctx.drawImage(image,imageBox.x,imageBox.y,imageBox.w,imageBox.h);
@@ -98,10 +107,14 @@ function needs( index, entries, unlocked ) {
  if ( index === 0 ) return { images:[R_BestiaryCover()], ids:['cover'] };
  if ( index === 1 ) return { images:[R_BestiaryDedication(),R_BestiaryFrontispiece()], ids:['dedication','frontispiece-blank','frontispiece','frontispiece-complete'] };
  if ( index === 2 ) return { images:[R_BestiaryVerso(),R_BestiaryContents()], ids:['verso','contents'] };
- const entry = entries[index-3]; if ( !entry ) return { images:[], ids:[] };
- const page = entry.image && unlocked.has(entry.id);
- return page ? { images:[R_BestiaryVerso(),R_BestiaryPage(entry.id)], ids:['verso',entry.id] }
-  : { images:[R_BestiaryVerso(),R_BestiaryEntryBlank(),R_BestiaryHeading(entry.id)], ids:['verso','entry-blank','heading-'+entry.id] };
+ const pair = R_BestiarySpreads()[index-3]; if ( !pair ) return { images:[], ids:[] };
+ const images = [], ids = [];
+ for ( const entry of pair ) {
+  if ( !entry ) { images.push(R_BestiaryVerso()); ids.push('verso'); }
+  else if ( entry.image && unlocked.has(entry.id) ) { images.push(R_BestiaryPage(entry.id)); ids.push(entry.id); }
+  else { images.push(R_BestiaryEntryBlank(),R_BestiaryHeading(entry.id)); ids.push('entry-blank','heading-'+entry.id); }
+ }
+ return { images, ids };
 }
 const ready = need => need.images.every( image => image && ( image.naturalWidth || image.width ) > 0 );
 
@@ -120,7 +133,7 @@ export function R_BestiaryBookCorner() {
 // destination's images are all present (until then the current spread stays, whole); a failed image (or a wait past WAIT_MS)
 // shows a deliberate message, and the same press again tries the failed images once more.
 function flip( direction ) {
- const entries = R_BestiaryEntries(), maximum = 2+entries.length, target = clamp(spread+direction,0,maximum);
+ const entries = R_BestiaryEntries(), maximum = 2+R_BestiarySpreads().length, target = clamp(spread+direction,0,maximum);
  if ( turn && now()-turn.at < TURN_MS ) return;
  if ( pending ) {
   if ( pending.failed && Math.sign(pending.target-spread) === Math.sign(direction) ) { R_BestiaryArtRetry(pending.ids); pending.failed = false; pending.at = now(); }
@@ -164,7 +177,7 @@ export function R_BestiaryBookTouch( x, y, width, height ) {
 export function R_BestiaryBookDraw() {
  const s = surface(); if ( !s ) return false;
  const snapshot = R_BestiarySnapshot(), entries = R_BestiaryEntries(), unlocked = new Set(snapshot.unlocked || []);
- const maximum = 2+entries.length; spread = clamp(spread,0,maximum);
+ const maximum = 2+R_BestiarySpreads().length; spread = clamp(spread,0,maximum);
  if ( !turn || now()-turn.at >= TURN_MS ) admit(entries,unlocked); // (a waiting turn starts once its pages are all there)
  const { ctx,width,height,unit } = s, boxes = layout(width,height,unit);
  const progress = turn ? clamp((now()-turn.at)/TURN_MS,0,1) : 1;
