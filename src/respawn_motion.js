@@ -9,16 +9,26 @@ const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const smooth=x=>{x=clamp(x);return x*x*x*(x*(x*6-15)+10);};
 const basis=angles=>{const yaw=angles[1]*Math.PI/180;return {f:new THREE.Vector3(Math.cos(yaw),Math.sin(yaw),0),r:new THREE.Vector3(Math.sin(yaw),-Math.cos(yaw),0),u:new THREE.Vector3(0,0,1)};};
 export function Respawn_NextFrame(frame,angles){const q=new THREE.Quaternion().fromArray(frame);return q.multiply(new THREE.Quaternion().setFromAxisAngle(basis(angles).f,-Math.PI)).normalize().toArray();}
+// the facing `progress` (0..1) of the way through the rise: yaw by the shorter way round, pitch straight
+export function facingAt(sequence,progress){
+ const from=sequence.angles,to=sequence.riseAngles;if(!to||progress<=0)return from;
+ const s=smooth(progress),dyaw=((to[1]-from[1])%360+540)%360-180;
+ return [from[0]+(to[0]-from[0])*s,from[1]+dyaw*s,0];
+}
 export function Respawn_Sample(sequence,time){
  const duration=sequence.turn||RESPAWN_TURN,t=Math.max(0,time-sequence.at),u=clamp((t-RESPAWN_DELAY)/duration);
  // The supplied integral of a raised cosine: zero velocity at both upright
  // endpoints, maximum continuous clockwise velocity at the contact midpoint.
  const theta=Math.PI*(u-Math.sin(2*Math.PI*u)/(2*Math.PI));
  const omega=u>0&&u<1?Math.PI*(1-Math.cos(2*Math.PI*u))/duration:0;
- const after=t>=RESPAWN_DELAY+duration/2,localRoll=theta-(after?Math.PI:0),b=basis(sequence.angles);
+ const after=t>=RESPAWN_DELAY+duration/2,localRoll=theta-(after?Math.PI:0);
+ // Card [35]: during the rise the facing turns from the facing at death to the facing into the level, smoothly from zero at the
+ // contact (so the transported camera stays continuous across the cut) to the full turn when upright. The fall is unchanged.
+ const facing=facingAt(sequence,after?clamp(2*u-1):0),b=basis(facing);
+ // (velocity below is the roll's and the drift's; it leaves out the yaw rate of this turn. Nothing reads it but tests of the fall.)
  const upBody=b.u.clone().multiplyScalar(Math.cos(localRoll)).addScaledVector(b.r,Math.sin(localRoll));
  const right=b.r.clone().multiplyScalar(Math.cos(localRoll)).addScaledVector(b.u,-Math.sin(localRoll));
- const pitch=sequence.angles[0]*Math.PI/180;
+ const pitch=facing[0]*Math.PI/180;
  const forward=b.f.clone().multiplyScalar(Math.cos(pitch)).addScaledVector(upBody,-Math.sin(pitch));
  const up=upBody.clone().multiplyScalar(Math.cos(pitch)).addScaledVector(b.f,Math.sin(pitch));
  const q=new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(right,up,forward.clone().negate()));

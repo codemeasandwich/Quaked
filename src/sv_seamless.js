@@ -1429,6 +1429,27 @@ export function SV_SeamlessCloseReturn() {
 
 }
 
+// The yaw of a player who has just come into this level through its way back and is facing into it (card [35]): away from the
+// doorway, if a way back (open or already shut) lies within ENTRY_REACH of `point` (the respawn spot); otherwise null, and the
+// respawn uses the level's own start orientation.
+const ENTRY_REACH = 512;
+export function SV_SeamlessEntryYaw( point ) {
+
+	if ( point == null ) return null;
+	let best = null, bestDistance = ENTRY_REACH;
+	for ( const c of crossings ) {
+
+		if ( c.back !== true ) continue;
+		const t = c.transform, d = Math.hypot( t.center[ 0 ] - point[ 0 ], t.center[ 1 ] - point[ 1 ], t.center[ 2 ] - point[ 2 ] );
+		if ( d < bestDistance ) { best = c; bestDistance = d; }
+
+	}
+	if ( best === null ) return null;
+	const through = best.transform.through; // (into the doorway, towards the previous level)
+	return Math.atan2( - through[ 1 ], - through[ 0 ] ) * 180 / Math.PI;
+
+}
+
 export function SV_SeamlessCrossings() {
 
 	return crossings;

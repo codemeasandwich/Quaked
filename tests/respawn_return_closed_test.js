@@ -17,7 +17,7 @@ import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../s
 import { SV_Physics, SV_Physics_Client, SV_Physics_Toss, SV_SetPlayer, SV_SetFrametime, SV_PushEntity, sv_gravity } from '../src/sv_phys.js';
 import * as travel from '../src/sv_seamless.js';
 import * as respawn from '../src/sv_respawn.js';
-import {Respawn_DropAmmo} from '../src/respawn_record.js';
+import {Respawn_DropAmmo,Respawn_ParsePlayer} from '../src/respawn_record.js';
 import * as vars from '../src/cvar.js';
 import { Cbuf_Init, Cbuf_Execute, Cmd_AddCommand, Cmd_ExecuteString, src_command } from '../src/cmd.js';
 import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/common.js';
@@ -131,3 +131,54 @@ Deno.test('monsters that followed the player into the level do not step out of t
   const snap=travel.SV_LevelSnapshotEntities('e1m2');check(snap&&snap.some(e=>e.classname===name),'it is back in E1M2 as it was left');travel.SV_SeamlessReset();}
 });
 
+
+// Card [35]: the respawn rises facing into the level, its back to the way back (open or shut), or along the level's own start
+// orientation where there is no way back. The turn happens during the rise (tests/respawn_native_test.js checks its continuity).
+function restore(e,saved){ED_ParseEdict(saved.slice(saved.indexOf('{')+1),e);SV_LinkEdict(e,false);}
+const yawDiff=(a,b)=>Math.abs(((a-b)%360+540)%360-180);
+Deno.test('a respawn rises facing away from the way back, whatever way the player faced at death, also once the way back is shut',()=>{
+ const {p,back}=arrive();const t=back.transform,entry=Math.atan2(-t.through[1],-t.through[0])*180/Math.PI;
+ // the level's own start spot is turned a quarter away, so the way back (not the start orientation) must be what decides
+ const spot=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='info_player_start');spot.v.angles[1]=entry+90;
+ for(const deathYaw of [0,90,200,300]){
+  inventory(p);p.v.v_angle=[30,deathYaw,0];p.v.angles=[0,deathYaw,0];kill(p);const s=p._respawn.sequence;check(s.riseAngles,'the sequence records the facing to rise to');
+  // half way through the rise the view has turned part of the way, by the shorter way round
+  const mid=Respawn_Sample(s,s.at+.22+s.turn*.75),midYaw=mid.angles[1],whole=yawDiff(deathYaw,entry);
+  if(whole>20)check(Math.abs(yawDiff(midYaw,deathYaw)+yawDiff(midYaw,entry)-whole)<.5&&yawDiff(midYaw,deathYaw)>1&&yawDiff(midYaw,entry)>1,'mid-rise facing '+midYaw.toFixed(1)+' lies between '+deathYaw+' and '+entry.toFixed(1)+' the short way');
+  finish(p);
+  check(yawDiff(p.v.angles[1],entry)<.01,'death facing '+deathYaw+': rises facing into the level ('+p.v.angles[1].toFixed(2)+' vs '+entry.toFixed(2)+')');check(yawDiff(p.v.v_angle[1],entry)<.01,'the view angle too');same(p.v.angles[0],0,'level pitch');same(p.v.fixangle,1,'the client is told');
+  same(back.closed,true,'(the way back is shut after the first death and still gives the facing)');
+ }
+ travel.SV_SeamlessReset();
+});
+
+Deno.test('with no way back the respawn rises along the level\'s own start orientation; the facing survives a save made mid-death',()=>{
+ respawn.sv_respawnguard.value=0;const p=spawn('e1m3');check(!travel.SV_SeamlessCrossings().some(c=>c.back),'no way back');
+ const start=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='info_player_start');const yaw=start.v.angles[1];
+ inventory(p);p.v.v_angle=[10,yaw+137,0];kill(p);const s=p._respawn.sequence;check(yawDiff(s.riseAngles[1],yaw)<1e-6,'the rise target is the start orientation');
+ // a save made during the fall keeps the target
+ const lines=[];ED_Write(lines,p);const saved=lines.join('\n');check(saved.includes('riseAngles'),'the target is in the saved game');restore(p,saved);check(yawDiff(p._respawn.sequence.riseAngles[1],yaw)<1e-6,'and back after loading it');
+ finish(p);check(yawDiff(p.v.angles[1],yaw)<.01,'rises along the start orientation ('+p.v.angles[1]+' vs '+yaw+')');
+ // a malformed target is refused by the save reader
+ const record=JSON.parse(JSON.stringify(p._respawn));record.sequence={...s,riseAngles:[0,'x',0]};check(Respawn_ParsePlayer(JSON.stringify(record))===null,'a malformed rise target makes the record invalid');record.sequence={...s};check(Respawn_ParsePlayer(JSON.stringify(record))!==null,'a well-formed one is accepted');delete record.sequence.riseAngles;check(Respawn_ParsePlayer(JSON.stringify(record))!==null,'and an old save without one still loads (it rises as it fell)');
+ travel.SV_SeamlessReset();
+});
+
+const STEP=360/256;
+// The client is told its final view angle in a byte; the rise eases to a yaw the byte can carry exactly, so the view the client
+// is left with is the one the rise ended on: no snap at the hand-off, whatever the start spot's yaw.
+function clientView(p){SV_SetPlayer(p);const packet=new sizebuf_t();SZ_Alloc(packet,4096);SV_WriteClientdataToMessage(p,packet);COM_SetNetMessage(packet);CL_ParseServerMessage();return Array.from(cl.viewangles);}
+Deno.test('the client is left exactly where the rise ended, also for a start spot facing an odd yaw; forward exits never steer the facing',()=>{
+ for(const yaw of [270,30,61.7,-133.3,179.99999999999997]){
+  respawn.sv_respawnguard.value=0;const p=spawn('e1m3');cl.viewentity=1;cl.maxclients=1;
+  const start=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='info_player_start');start.v.angles[1]=yaw;
+  inventory(p);p.v.v_angle=[10,yaw+100,0];kill(p);const s=p._respawn.sequence,last=Respawn_Sample(s,s.at+.22+s.turn-1e-4);
+  check(yawDiff(s.riseAngles[1],yaw)<STEP/2+1e-9,'spot '+yaw+': the rise ends within half a step of the spot ('+s.riseAngles[1]+')');
+  finish(p);const view=clientView(p);
+  check(yawDiff(view[1],s.riseAngles[1])<1e-6,'spot '+yaw+': the client decodes the very yaw the rise ended on ('+view[1]+' vs '+s.riseAngles[1]+')');
+  check(yawDiff(view[1],last.angles[1])<.05&&Math.abs(view[0]-last.angles[0])<.05,'and it matches the last drawn rise pose ('+last.angles.map(v=>v.toFixed(3))+')');
+  travel.SV_SeamlessReset();
+ }
+ // a fresh E1M2 has a forward exit and no way back: the facing is never taken from the forward exit
+ respawn.sv_respawnguard.value=0;spawn('e1m2');const fwd=travel.SV_SeamlessCrossings().find(c=>c.back!==true);check(fwd,'a forward exit');same(travel.SV_SeamlessEntryYaw(fwd.transform.center),null,'standing on a forward exit gives no facing');travel.SV_SeamlessReset();
+});

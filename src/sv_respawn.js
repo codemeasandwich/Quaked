@@ -75,11 +75,13 @@ export function SV_RespawnDropInventory(p){
  for(const ammo of RESPAWN_AMMO)p.v[ammo]=0;p.v.currentammo=0;p.v.weapon=0;p.v.items=(p.v.items|0)&~WEAPON_BITS;powersOff(p);state.deaths++;state.custody=true;return allocated;
 }
 function begin(p){if(p._respawn?.sequence)return;const state=p._respawn||initialize(p),source=Array.from(p.v.origin),angles=Array.from(p.v.v_angle);angles[2]=0;
+ // the fall follows the facing at death; during the rise, after the cut to the start, the view turns smoothly to face into the level
+ const rise=entryAngles(state);
  const foot=source[2]+p.v.mins[2],floor=ground(p,[source[0],source[1],foot]),radius=Math.max(8,p.v.view_ofs[2]-p.v.mins[2]-2),descent=Math.max(0,foot-floor);
  // Match native V_CalcRefdef's node-line bias and exact standing eye.
  const bias=1/32,destination=[state.start[0]+bias,state.start[1]+bias,state.start[2]+22+bias-radius],sourcePivot=[source[0]+bias,source[1]+bias,foot+2+bias],turn=Math.max(RESPAWN_TURN,2*Math.sqrt(2*descent/Math.max(1,sv_gravity.value)));
  const sourceEye=[source[0]+bias,source[1]+bias,source[2]+p.v.view_ofs[2]+bias],destinationEye=[...destination];destinationEye[2]+=radius;
- const sequence={at:sv.time,sourcePivot,destinationPivot:destination,sourceDrift:driftFor(p,sourceEye,radius,angles),destinationDrift:driftFor(p,destinationEye,radius,[angles[0],angles[1]+180,0]),angles,frame:state.frame.slice(),radius,descent,turn,respawned:false,objectives:(p.v.items|0)&(IT_KEY1|IT_KEY2),damage:2};
+ const sequence={at:sv.time,sourcePivot,destinationPivot:destination,sourceDrift:driftFor(p,sourceEye,radius,angles),destinationDrift:driftFor(p,destinationEye,radius,[angles[0],angles[1]+180,0]),angles,riseAngles:rise,frame:state.frame.slice(),radius,descent,turn,respawned:false,objectives:(p.v.items|0)&(IT_KEY1|IT_KEY2),damage:2};
  SV_RespawnPlanMotion(p,sequence);
  const body=ED_Alloc();
  try{SV_RespawnDropInventory(p);}catch(error){ED_Free(body);throw error;}
@@ -127,7 +129,7 @@ export function SV_RespawnFunctionEnter(f,caller){
  if((n==='DropBackpack'&&['PlayerDie','ClientKill'].includes(name(caller))||n==='respawn')&&p._respawn?.sequence){const noop=ED_FindFunction('SUB_Null');return {skip:noop.first_statement-1};}
  return null;
 }
-export function SV_RespawnFunctionLeave(token){if(token?.death&&token.death._respawn?.sequence&&!token.death._respawn.sequence.respawned){retainDeath(token.death,token.before);token.death.v.health=Math.min(0,token.death.v.health);token.death.v.weapon=0;token.death.v.weaponmodel=0;token.death.v.weaponframe=0;token.death.v.takedamage=0;}if(token?.spawn){token.spawn._respawnStart={origin:Array.from(token.spawn.v.origin),angles:Array.from(token.spawn.v.v_angle)};if(SV_RespawnAllowed()&&!token.spawn._respawn)initialize(token.spawn);restoreTravel(token.spawn);}if(token?.overflow)RESPAWN_AMMO.forEach((a,i)=>{if(token.values[i])token.overflow.v[a]=Math.max(token.values[i],token.overflow.v[a]);});}
+export function SV_RespawnFunctionLeave(token){if(token?.death&&token.death._respawn?.sequence&&!token.death._respawn.sequence.respawned){retainDeath(token.death,token.before);token.death.v.health=Math.min(0,token.death.v.health);token.death.v.weapon=0;token.death.v.weaponmodel=0;token.death.v.weaponframe=0;token.death.v.takedamage=0;}if(token?.spawn){token.spawn._respawnStart={origin:Array.from(token.spawn.v.origin),angles:Array.from(token.spawn.v.angles)}; /* (PutClientInServer sets angles from the spawn spot, not v_angle) */if(SV_RespawnAllowed()&&!token.spawn._respawn)initialize(token.spawn);restoreTravel(token.spawn);}if(token?.overflow)RESPAWN_AMMO.forEach((a,i)=>{if(token.values[i])token.overflow.v[a]=Math.max(token.values[i],token.overflow.v[a]);});}
 export function SV_RespawnAlert(p){const found=fnIndex('FoundTarget');let alerted=0;for(const e of sv.edicts||[]){if(!e||e.free||(!(e.v.flags&FL_MONSTER)&&!PR_GetString(e.v.classname).startsWith('monster_'))||e.v.health<=0||e.v.deadflag!==0)continue;e.v.enemy=EDICT_TO_PROG(p);field(e,'goalentity',EDICT_TO_PROG(p),true);field(e,'last_seen',sv.time);field(e,'show_hostile',sv.time+1);
  // Native running callbacks preserve swimming/flying/ground AI. Scripted or
  // pinned actors still receive the target without being given a NULL thinker.
@@ -158,6 +160,26 @@ function runSpawn(e,f,keepTotal){
 }
 let respawnLanded=null;
 export const SV_SetRespawnLandedHook=fn=>{respawnLanded=fn;};
+// The direction a respawn ends up facing (card [35]): forward into the level, the way a player entering it would. Where the level
+// was entered through a way back (a doorway from the previous level near the start, open or already shut), it is away from that
+// doorway; otherwise it is the level's own start orientation (info_player_start's yaw). Pitch and roll are level. sv_main sets
+// the hook that knows the ways back (this module does not import the seamless/renderer chain).
+let respawnEntryYaw=null;
+export const SV_SetRespawnEntryHook=fn=>{respawnEntryYaw=fn;};
+function entryAngles(state){
+ const way=respawnEntryYaw?.(state.start);
+ // otherwise the spawn spot the respawn point came from (QuakeC may choose info_player_start2 or testplayerstart), found by
+ // position; failing that the recorded start angles (a game saved before these were read from the spot has zeros there)
+ const spot=sv.edicts?.find(e=>e&&!e.free&&/^(info_player_start2?|testplayerstart)$/.test(PR_GetString(e.v.classname))&&[0,1,2].every(i=>Math.abs(e.v.origin[i]+(i===2?1:0)-state.start[i])<.5));
+ const yaw=Number.isFinite(way)?way:Number(spot?.v.angles[1]??state.startAngles?.[1])||0;
+ return [0,wireYaw(yaw),0];
+}
+// The client is told its final view angle in a byte (MSG_WriteAngle: whole degrees, then 360/256 steps, toward zero). The rise
+// therefore eases to the nearest yaw the client can be given exactly, and the final server angle is a value that encodes to it,
+// so the hand-off has no snap (SV_RespawnWireAngle).
+const STEP=360/256;
+function wireYaw(yaw){let k=Math.round((((yaw%360)+540)%360-180)/STEP);if(k>=128)k-=256;return k*STEP;}
+export function SV_RespawnWireAngle(yaw){const k=Math.round(yaw/STEP);return k>=0?Math.ceil(k*STEP):Math.floor(k*STEP);}
 export function SV_RespawnReserveGuards(){
  guardReady=new Set();if(!localContext())return;guardSkill=Math.round(Cvar_VariableValue('skill'));
  for(const [name,model] of GUARDS){
@@ -225,7 +247,7 @@ export function SV_RespawnFrame(p){SV_RespawnFinishTravel(p);const state=p._resp
  if(pose.after&&!s.respawned)contact(p,state,s);
  if(!s.respawned){p.v.health=Math.min(0,p.v.health);p.v.weaponmodel=0;p.v.weaponframe=0;p.v.takedamage=0;}
  p.v.movetype=MOVETYPE_NONE;p.v.velocity=[0,0,0];p.v.button0=p.v.button1=p.v.button2=p.v.impulse=0;p.v.view_ofs=pose.eye.map((v,i)=>v-p.v.origin[i]);
- if(pose.complete){state.sequence=null;p.v.movetype=MOVETYPE_WALK;p.v.takedamage=2;p.v.view_ofs=[0,0,22];SV_CheckWater(p); /* (idempotent: also covers a game saved during the rise by a build without the refresh at contact) */p.v.v_angle=s.angles;p.v.angles=s.angles;p.v.fixangle=1;field(p,'attack_finished',sv.time);SV_LinkEdict(p,false);return true;}SV_LinkEdict(p,false);return true;
+ if(pose.complete){state.sequence=null;p.v.movetype=MOVETYPE_WALK;p.v.takedamage=2;p.v.view_ofs=[0,0,22];SV_CheckWater(p); /* (idempotent: also covers a game saved during the rise by a build without the refresh at contact) */{const r=s.riseAngles;const end=r?[Math.max(-90,Math.min(90,r[0])),SV_RespawnWireAngle(r[1]),0]:s.angles;p.v.v_angle=end;p.v.angles=end;}p.v.fixangle=1;field(p,'attack_finished',sv.time); /* (the rise ends facing into the level; a death saved before card [35] ends as it fell) */SV_LinkEdict(p,false);return true;}SV_LinkEdict(p,false);return true;
 }
 export function SV_RespawnDropTouch(p,e){const d=e?._respawnDrop;if(!d)return null;if(e.free||p.index!==1||p.v.health<=0||p._respawn?.sequence||!localContext()||!(e.v.flags&FL_ONGROUND)||sv.time<d.born+.25)return false;
  for(let i=0;i<3;i++)if(p.v.absmin[i]>e.v.absmax[i]||p.v.absmax[i]<e.v.absmin[i])return false;
@@ -257,11 +279,11 @@ export function SV_RespawnRestoreDropModel(e){
 // A sliding foot pivot preserves a rigid body radius in constrained corridors.
 // Both contact points borrow their actual offset floor, not the standing floor.
 export function SV_RespawnPlanMotion(p,s){
- const yaw=s.angles[1]*Math.PI/180,right=[Math.sin(yaw),-Math.cos(yaw),0];
+ const rightOf=angles=>{const yaw=angles[1]*Math.PI/180;return [Math.sin(yaw),-Math.cos(yaw),0];};
  const floorAt=(xy,z)=>{const tr=SV_Move([xy[0],xy[1],z+1],[0,0,0],[0,0,0],[xy[0],xy[1],z-8192],MOVE_NOMONSTERS,p);return !tr.startsolid&&!tr.allsolid&&tr.fraction<1&&tr.plane.normal[2]>.5?tr.endpos[2]:null;};
  const collisionFree=(after)=>{const cut=RESPAWN_DELAY+s.turn/2;let previous=null;for(let i=0;i<=64;i++){const age=after?cut+1e-7+s.turn*i/128:RESPAWN_DELAY+s.turn*i/128-1e-7;const eye=Respawn_Sample(s,s.at+Math.max(0,age)).eye;const trace=SV_Move(previous||eye,[-1,-1,-1],[1,1,1],eye,MOVE_NOMONSTERS,p);if(trace.startsolid||trace.allsolid||trace.fraction<1)return false;previous=eye;}return true;};
  for(const after of [false,true]){
-  const pivot=after?s.destinationPivot:s.sourcePivot,contactSign=after?-1:1,sourceZ=s.sourcePivot[2]+s.radius;
+  const pivot=after?s.destinationPivot:s.sourcePivot,contactSign=after?-1:1,sourceZ=s.sourcePivot[2]+s.radius,right=rightOf(s.angles);
   const initialDrift=after?s.destinationDrift:s.sourceDrift;let found=false;
   // Preserve an unobstructed original arc. Only constrained paths get a
   // progressively shifted pivot; all samples still share one rigid radius.
