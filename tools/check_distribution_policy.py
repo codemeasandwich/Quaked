@@ -30,7 +30,7 @@ assert ignored(paths) == paths, 'classified path missing an effective exact igno
 tracked = set(git('ls-files', '-z').stdout.decode().rstrip('\0').split('\0'))
 assert not ignored(tracked - paths), 'required tracked source matched local-only policy'
 assert not ignored(paths, no_index=False) & tracked, 'Git must retain already tracked developer files'
-controls = {'Procedural Surface Enhancement Infographic.png', 'newer/ui/studio-logo.png',
+controls = {'assets/docs/procedural-surface-enhancement.png', 'newer/ui/studio-logo.png',
             'logo.svg', 'shotgun.zip', 'dem4_4_maps.zip', 'LICENSE', 'README.md',
             'docs/future-public-guide.md', 'src/future-engine.js', 'newer/future-runtime.png',
             'newer/enemies/ogre/custom/diffuse.webp', 'server/README.md', 'music/CREDITS.txt'}

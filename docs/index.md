@@ -72,6 +72,7 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 - [Four supplied head/gib skins — 2026-10-01](head-skins-2026-10-01.md)
 - [Material-aware height authoring — custom Shambler trial](height-authoring-refinement.md)
 - [Source-bound Shub-Niggurath skin](oldone-skin.md)
+- [Procedural surface enhancement, in plain words](procedural-surface-enhancement.md)
 - [Shambler footfall tremor](shambler-footfalls-2026-10-02.md)
 - [Source-bound Vore body skin](vore-body-skin.md)
 - [More visible water surfaces and undersides](water-surface-definition-2026-10-02.md)

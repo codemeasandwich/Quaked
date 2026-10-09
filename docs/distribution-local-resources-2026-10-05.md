@@ -32,7 +32,7 @@ The effective classification is conservative:
 | Other 27 original candidate paths | Retain with an exclusion hold. No ignore rule is approved for them; donor/provenance and owner-requested work need review. |
 | Engine/server source, runtime assets and manifests | Retain. Existing packed/loose transport, gameplay, Classic presentation, save data and source/program paths are unchanged. |
 | Import/test tools, donor ZIPs, source recipes and notices | Retain for reproduction and provenance. Runtime non-use does not make source disposable. |
-| Technical documentation and `Procedural Surface Enhancement Infographic.png` | Retain as public project documentation under `[32a]`/`[32b]`; this rule cannot match them. |
+| Technical documentation and `assets/docs/procedural-surface-enhancement.png` (moved there unchanged from the repository root) | Retain as public project documentation under `[32a]`/`[32b]`; this rule cannot match them. |
 | Existing `resources/`, desktop and Python caches | Existing local-only policy remains. Private native installations are not approved public assets. |
 
 The 27 retained candidates include the other seven Gemini sheets; the water-reference PNGs, cover and deleted JPEG; UUID and other root artwork; `arc-weapons-wall-canvas-shotgun.html`, `demon-vision.html`, `fieldlab-fx-3d-updated.html`, both root menu HTMLs, `font.zip` and the supplied shield GLB. The machine-readable evidence records each exact path, its effective retain/hold action, provenance references and owner-task links where established. Missing filename references alone authorize neither exclusion nor disposal. Assigned feature work keeps access to its source materials.
