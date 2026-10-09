@@ -34,7 +34,8 @@ import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear, R_FireballReplacesSprite } from './r_fireball.js';
-import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset } from './r_impactripples.js';
+import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset, R_ImpactRippleListen } from './r_impactripples.js';
+import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from './r_waves.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
@@ -1850,7 +1851,8 @@ export function R_RenderView() {
 	_fireballView[ 1 ] = r_refdef.vrect.height * r_refdef.vrectScale * R_DynResScale();
 	R_FireballFrame( cl != null ? cl.time : 0, r_refdef.vieworg, _fireballForward, _fireballView );
 
-	R_ImpactRippleFrame( cl != null ? cl.time : 0 ); // (the rings the shaders read this frame)
+	R_ImpactRippleFrame( cl != null ? cl.time : 0 ); // (the detector's list of hits, aged)
+	R_WavesFrame( cl != null ? cl.time : 0 ); // (and the ripples they make, stepped to now)
 	// render normal view
 	R_RenderScene();
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
@@ -2312,6 +2314,8 @@ export function R_NewMap() {
 	R_TorchFireSetup( { scene } );
 	R_TorchFireClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
+	R_WavesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), waterOn: R_WaterActive } );
+	R_ImpactRippleListen( R_WaveImpact );
 	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
 	R_ShotgunClear();
 	R_DecalsClear();
@@ -2373,6 +2377,7 @@ export function R_NewMap() {
 	// the next level, seen through this level's doorway and pit exits
 	R_SetupLevelViews( scene, SV_SeamlessCrossings() );
 	R_ImpactRippleReset();
+	R_WavesReset();
 
 }
 

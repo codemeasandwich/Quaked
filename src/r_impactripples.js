@@ -1,19 +1,20 @@
-// Impact ripples (card [W1], Newer Game): something fast that crosses the surface of a pool leaves a ring that spreads over the
-// water, and something that hits a standing portal (a teleporter's window or a doorway onto the next level) leaves a metallic
-// ring that spreads over the portal. The renderer draws the rings (the water look in gl_post.js, the portal surface in
-// gl_portal.js); this module decides when and where, and keeps the short list both read.
+// Impact ripples (card [W1], Newer Game): something fast that crosses the surface of a pool, or hits a standing portal (a
+// teleporter's window, a slipgate's window onto the next level), disturbs it. This module decides when and where, keeps a short
+// list of the hits, and tells the listener (r_waves.js, set up by gl_rmain.js), which runs the real ripples: wave fields that
+// spread, add up and come back off the edges, drawn by gl_post.js (water) and gl_portal.js (portals). (The packed rows below are
+// the list as it stands; the shaders no longer draw rings from them.)
 //
 // Where the events come from, all on the client side of the picture and only for what is drawn:
 //  * a missile on its way (a rocket, a grenade, a nail), from CL_LinkPacketEntities (live games) and CL_RelinkEntities (demos): the segment it moved this frame;
-//  * a shotgun pellet, from r_shotgun.js: the segment the pellet flew this frame (so the ring appears when the pellet is
+//  * a shotgun pellet, from r_shotgun.js: the segment the pellet flew this frame (so the ripple starts when the pellet is
 //    there, not when the shot was fired).
 // R_ImpactSegment( from, to ) looks at one segment: if its ends are on different sides of a liquid surface the point where it
 // crosses is found (bisection on the BSP contents), and if it passes through a portal's opening the point on the portal is.
-// Nothing here reaches the game: it is picture only, never saved, and gone with a new level. (Pellet rings come from the
+// Nothing here reaches the game: it is picture only, never saved, and gone with a new level. (Pellet ripples come from the
 // shotgun effect's pellets, so `r_shotgunfx 0` also stops those.)
 //
-// Cost: at most MAX_WATER + MAX_METAL rings alive (the oldest is dropped), two point-contents lookups per moving missile or
-// pellet per frame and one plane test per portal; `r_impactripples 0` turns it all off, and Classic Quake has none.
+// Cost: a list of at most MAX_WATER + MAX_METAL hits (the oldest is dropped), two point-contents lookups per moving missile or
+// pellet per frame and one plane test per portal (the ripples' own cost is r_waves.js's); `r_impactripples 0` turns it all off, and Classic Quake has none.
 
 import { cvar_t } from './cvar.js';
 import { R_NewerGame } from './r_anim.js';
@@ -22,8 +23,8 @@ export const r_impactripples = new cvar_t( 'r_impactripples', '1', true );
 
 export const RIPPLE = Object.freeze( {
 	maxWater: 8, maxMetal: 8,
-	waterLife: 2.6, metalLife: 1.8, // seconds a ring lasts
-	waterSpeed: 62, metalSpeed: 150, // how fast it spreads, Quake units a second (read by the shaders)
+	waterLife: 2.6, metalLife: 1.8, // seconds a hit stays in the list
+	waterSpeed: 62, metalSpeed: 150, // (the first version's ring speeds; the ripples' are r_waves.js's WATER and METAL)
 	liquidTop: - 3, liquidBottom: - 4, // BSP contents: water and slime (lava has no water optics to draw a ring on)
 	portalMargin: 4, // the opening is taken this much larger, so a hit on its frame counts
 	bisect: 8
@@ -40,7 +41,11 @@ const events = []; // { kind: 0 water | 1 metal, x, y, z, t0, strength }
 export function R_ImpactRippleReset() { events.length = 0; }
 export const R_ImpactRippleCount = () => events.length;
 
-export function R_AddImpactRipple( kind, x, y, z, strength, time ) {
+// whoever draws the ripples (r_waves.js) hears of each one; `plane` is the portal's, for a metal one
+let listener = null;
+export function R_ImpactRippleListen( fn ) { listener = fn; }
+
+export function R_AddImpactRipple( kind, x, y, z, strength, time, plane = null ) {
 
 	const max = kind === 0 ? RIPPLE.maxWater : RIPPLE.maxMetal;
 	let alive = 0, oldest = - 1;
@@ -53,6 +58,7 @@ export function R_AddImpactRipple( kind, x, y, z, strength, time ) {
 	}
 	if ( alive >= max && oldest >= 0 ) events.splice( oldest, 1 );
 	events.push( { kind, x, y, z, t0: time, strength } );
+	if ( listener !== null ) listener( kind, x, y, z, strength, time, plane );
 
 }
 
@@ -109,7 +115,7 @@ export function R_ImpactSegment( ax, ay, az, bx, by, bz, time, strength ) {
 			if ( ( da > 0 && db > 0 ) || ( da < 0 && db < 0 ) || da === db ) continue;
 			const t = da / ( da - db ), x = ax + ( bx - ax ) * t, y = ay + ( by - ay ) * t, z = az + ( bz - az ) * t, m = RIPPLE.portalMargin;
 			if ( x < portal.min[ 0 ] - m || x > portal.max[ 0 ] + m || y < portal.min[ 1 ] - m || y > portal.max[ 1 ] + m || z < portal.min[ 2 ] - m || z > portal.max[ 2 ] + m ) continue;
-			R_AddImpactRipple( 1, x, y, z, strength, time );
+			R_AddImpactRipple( 1, x, y, z, strength, time, portal );
 			made ++;
 
 		}

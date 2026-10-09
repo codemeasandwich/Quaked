@@ -1,5 +1,5 @@
 import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
-import { RIPPLE, waterRows, waterAmp } from './r_impactripples.js';
+import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL, waterWave, R_WaveTexture, R_WaterWavesLive } from './r_waves.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
 import { R_BestiaryPortraitLight } from './r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
@@ -1948,8 +1948,6 @@ uniform vec4 uLavaMax[ 4 ];
 uniform float uHeat;
 uniform float uReflect;
 uniform int uWaterCount;
-uniform vec4 uImpact[ 8 ]; // impact rings on the water: xyz = where, w = age in seconds (negative: unused)
-uniform vec4 uImpactAmp[ 2 ]; // each ring's strength (packed four to a vector: uniform slots are scarce)
 uniform float uMist;
 uniform vec4 uWaterMin[ ${MAX_LIQUID_REGIONS} ]; // xy = min corner, z = surface height, w = kind
 uniform vec4 uWaterMax[ ${MAX_LIQUID_REGIONS} ]; // xy = max corner, w = optical look
@@ -2174,25 +2172,6 @@ float waterFlashlightSpecular( vec3 P, vec3 N, vec3 V ) {
 	return min( distribution * masking * fresnel / max( 4.0 * nv, 0.001 ), 8.0 );
 }
 
-// Rings that spread from the points where something crossed the surface (card [W1]): a wave front travelling outwards and fading.
-// xy = the slope it adds to the surface (it bends reflections and refraction like the capillary ripples), z = the crest's
-// brightness, a splash of foam and spray that shows however dark the pool is.
-vec3 waterImpactRings( vec3 p3, float footprint ) {
-	vec3 sum = vec3( 0.0 );
-	for ( int i = 0; i < 8; i ++ ) {
-		vec4 e = uImpact[ i ];
-		if ( e.w < 0.0 || abs( p3.z - e.z ) > 8.0 ) continue;
-		vec2 dv = p3.xy - e.xy;
-		float r = length( dv );
-		float x = r - e.w * ${RIPPLE.waterSpeed.toFixed( 1 )};
-		// a packet of two or three crests: short in front of the wave front, a longer wake behind it
-		float env = exp( - e.w * 1.8 ) * exp( - x * x * ( x < 0.0 ? 0.0035 : 0.025 ) ) * uImpactAmp[ i >> 2 ][ i & 3 ] * smoothstep( 0.0, 0.05, e.w );
-		sum.xy += dv / max( r, 0.001 ) * 0.35 * cos( x * 0.4 ) * env * ( 1.0 - smoothstep( 5.0, 18.0, footprint ) );
-		sum.z += env * pow( max( cos( x * 0.4 ), 0.0 ), 2.0 );
-	}
-	return sum;
-}
-
 // Crossing capillary ripples share world coordinates across every face of a
 // pool. The derivative of wave height bends reflections and refraction alike.
 // Fade wavelengths smaller than a few scene pixels to avoid distant sparkle.
@@ -2207,9 +2186,8 @@ vec3 waterRippleNormal( vec3 p3, float distance, float look ) {
 	slope += a * 0.055 * cos( dot( p, a ) * 0.07 + time * 0.8 ) * ( 1.0 - smoothstep( 9.0, 36.0, footprint ) );
 	slope += b * 0.015 * cos( dot( p, b ) * 0.145 - time * 1.2 ) * ( 1.0 - smoothstep( 4.0, 17.0, footprint ) );
 	slope += c * 0.009 * ( look > 1.5 && look < 2.5 ? 0.35 : 0.65 ) * cos( dot( p, c ) * 0.29 + time * 1.8 ) * ( 1.0 - smoothstep( 2.0, 8.0, footprint ) );
-	// Rings from things that crossed the surface (card [W1]).
-	slope += waterImpactRings( p3, footprint ).xy;
-	// Keep moving reflection definition without a faceted/prismatic surface.
+	// Keep moving reflection definition without a faceted/prismatic surface. (The ripples from impacts, card [W1], bend the
+	// finished picture of the water in the present pass: PRESENT_FRAGMENT.)
 	return normalize( vec3( - slope * liquidRipple( look ) * 0.65, 1.0 ) );
 }
 
@@ -2854,7 +2832,7 @@ void main() {
 						if ( belowSurface ) refl *= exp( - liquidAbsorption( look ) * tp );
 						c = mix( c, min( refl, vec3( 8.0 ) ), k );
 					}
-					c += surfaceLight + vec3( 0.55, 0.68, 0.80 ) * waterImpactRings( hp, tp * 2.0 * uTexel.y / max( uProj[ 1 ][ 1 ], 0.2 ) ).z * 0.16 * edge;
+					c += surfaceLight;
 				}
 			}
 			if ( muddy && sedimentPath > 0.0 ) {
@@ -2932,8 +2910,69 @@ uniform float uBright;
 uniform float uContrastGain;
 uniform float uContrastPivot;
 varying vec2 vUv;
+// Ripples on water (card [W1]): while r_waves.js has a field live, the finished picture of the water is bent by the water's real
+// slope there, the reflection and what is seen below the surface alike, and the light glints off the crests. (Done here, not in
+// the composite: that pass already uses all sixteen of its texture units.)
+uniform float uWaves;
+uniform sampler2D tDepth;
+uniform sampler2D tNormal;
+uniform mat4 uProj;
+uniform mat4 uProjInv;
+uniform mat4 uViewInv;
+uniform vec4 uWaterWave[ ${WAVE_WATER.fields} ]; // xy = the field's corner, z = the surface height, w = cell size (0: unused)
+${WAVE_GLSL}
+// the rippling water a pixel shows: its ray meets a live field's surface in front of what the pixel shows. xy = the slope there,
+// z = the height, w = 1 (0: no rippling water); hit = the point on the surface. Fields that overlap (a second hit near the edge
+// of the first's square) add up: the waves are linear and each hit went into one field.
+vec4 rippleAt( vec2 uv, out vec3 hit ) {
+	hit = vec3( 0.0 );
+	if ( texture2D( tNormal, uv ).a < - 0.5 ) return vec4( 0.0 ); // a window or the gun
+	vec4 v = uProjInv * vec4( uv * 2.0 - 1.0, texture2D( tDepth, uv ).x * 2.0 - 1.0, 1.0 );
+	vec3 cam = uViewInv[ 3 ].xyz, ray = ( uViewInv * vec4( v.xyz / v.w, 1.0 ) ).xyz - cam;
+	if ( abs( ray.z ) < 1e-4 ) return vec4( 0.0 );
+	vec4 sum = vec4( 0.0 );
+	for ( int i = 0; i < ${WAVE_WATER.fields}; i ++ ) {
+		vec4 w = uWaterWave[ i ];
+		if ( w.w <= 0.0 ) continue;
+		float t = ( w.z - cam.z ) / ray.z;
+		if ( t <= 0.0 || t >= 1.0 ) continue;
+		if ( sum.w > 0.0 && abs( cam.z + ray.z * t - hit.z ) > 2.0 ) continue; // (another level of water)
+		vec3 at = cam + ray * t;
+		vec2 st = ( at.xy - w.xy ) / w.w;
+		if ( st.x < 1.0 || st.y < 1.0 || st.x > ${ ( WAVE_SIZE - 1 ).toFixed( 1 ) } || st.y > ${ ( WAVE_SIZE - 1 ).toFixed( 1 ) } ) continue;
+		vec3 s = waveSample( float( i ), st, w.w );
+		sum += vec4( s.yz, s.x, 1.0 );
+		hit = at;
+	}
+	return vec4( sum.xyz, min( sum.w, 1.0 ) );
+}
+vec2 screenOf( vec3 p ) {
+	vec4 q = uProj * vec4( transpose( mat3( uViewInv ) ) * ( p - uViewInv[ 3 ].xyz ), 1.0 );
+	return q.xy / q.w * 0.5 + 0.5;
+}
 void main() {
-	gl_FragColor = texture2D( tComposite, vUv );
+	vec2 uv = vUv;
+	float glint = 0.0, facing = 0.0;
+	if ( uWaves > 0.5 ) {
+		vec3 hit, other;
+		vec4 r = rippleAt( vUv, hit );
+		if ( r.w > 0.0 ) {
+			// what the surface shows moves across it with the slope (60 units for a slope of 1), in perspective
+			vec2 offset = screenOf( hit - vec3( r.xy * 60.0, 0.0 ) ) - screenOf( hit );
+			offset = clamp( offset, vec2( - 0.06 ), vec2( 0.06 ) );
+			// only ever from more of the water (never the bank, the gun, or a wall standing in the pool)
+			if ( rippleAt( vUv + offset, other ).w > 0.0 ) uv = vUv + offset;
+			else if ( rippleAt( vUv + offset * 0.5, other ).w > 0.0 ) uv = vUv + offset * 0.5;
+			// a sharp highlight on the crests, the light from above caught by the tilted water
+			vec3 n = normalize( vec3( - r.xy, 1.0 ) ), dir = normalize( hit - uViewInv[ 3 ].xyz );
+			glint = pow( max( dot( reflect( dir, n ), normalize( vec3( 0.25, 0.15, 1.0 ) ) ), 0.0 ), 90.0 ) * smoothstep( 0.03, 0.2, length( r.xy ) );
+			// a slope turned toward the eye mirrors more of the light overhead, one turned away more of the dark: the crests and
+			// troughs read as light and shade, as on real water
+			facing = clamp( dot( r.xy, normalize( dir.xy + vec2( 1e-5 ) ) ) * 2.2, - 0.45, 0.6 );
+		}
+	}
+	gl_FragColor = texture2D( tComposite, uv );
+	gl_FragColor.rgb = gl_FragColor.rgb * ( 1.0 + facing ) + glint * ( 0.3 + 0.9 * dot( gl_FragColor.rgb, vec3( 0.2126, 0.7152, 0.0722 ) ) );
 	#include <colorspace_fragment>
 	vec3 shown = gl_FragColor.rgb * uBright;
 	shown = max( uContrastPivot + ( shown - uContrastPivot ) * uContrastGain, 0.0 );
@@ -3122,14 +3161,14 @@ function createPipeline() {
 			uHeat: { value: 0.6 },
 			uReflect: { value: 0.6 },
 			uWaterCount: { value: 0 },
-			uImpact: { value: waterRows },
-			uImpactAmp: { value: waterAmp },
 			uMist: { value: 0 },
 			uWaterMin: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) },
 			uWaterMax: { value: Array.from( { length: MAX_LIQUID_REGIONS }, () => new THREE.Vector4() ) }
 		}, shared ) ),
 		presentMaterial: makeMaterial( PRESENT_FRAGMENT, {
 			tComposite: { value: null }, uBright: { value: 1 },
+			uWaves: { value: 0 }, tDepth: shared.tDepth, tNormal: { value: null }, uProj: shared.uProj, uProjInv: shared.uProjInv, uViewInv: shared.uViewInv,
+			uWaterWave: { value: waterWave }, tWaves: { value: R_WaveTexture() },
 			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 }
 		} )
 	};
@@ -3692,7 +3731,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	// scene's work, preventing dynamic resolution from meeting its frame budget.
 	const vision = PowerVisionMode(cl, R_NewerGame());
 	const visionOn=vision!==0 || R_QuadVisionActive();
-	const upscale = (lighting && dyn.scale < 1) || visionOn;
+	const waves = R_WaterActive() && R_WaterWavesLive() > 0; // (ripples on the water bend the finished picture: the present pass, card [W1])
+	const upscale = (lighting && dyn.scale < 1) || visionOn || waves;
 	cm.uOffscreen.value = upscale ? 1 : 0;
 	if ( upscale ) {
 
@@ -3710,6 +3750,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		shown.uBright.value = cm.uBright.value;
 		shown.uContrastGain.value = cm.uContrastGain.value;
 		shown.uContrastPivot.value = cm.uContrastPivot.value;
+		shown.uWaves.value = waves ? 1 : 0;
+		shown.tNormal.value = cm.tNormal.value;
 
 	} else { R_PowerVisionReset(); R_QuadVisionReset(); }
 

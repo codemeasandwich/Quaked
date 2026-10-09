@@ -10,7 +10,7 @@
 
 import * as THREE from 'three';
 import { cvar_t } from './cvar.js';
-import { RIPPLE, metalRows, metalAmp } from './r_impactripples.js';
+import { WATER as WAVE_WATER, METAL as WAVE_METAL, WAVE_GLSL, metalWave, R_WaveTexture } from './r_waves.js';
 import { R_NewerGame, r_newer_portals } from './r_anim.js';
 import { COM_Parse, com_token } from './common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
@@ -246,17 +246,20 @@ export function R_ClearPortals() {
 // The planes of the teleporters' windows that can be hit, for impact ripples: { normal, center, min, max } in this level's
 // coordinates, from each window's visible surface (its trigger box can lie beside it). A teleporter brush has a face on each
 // side and sometimes two planes a few units apart: parallel planes close together over the same box are one window. Built when the
-// portals change. (Doorways onto the next level are seamless: no ring shows their seam.)
-let _planes = [], _planesFor = null, _planesCount = - 1;
+// portals change. (Doorways onto the next level are seamless: no ring shows their seam. A slipgate's window onto the next level is
+// a portal you walk through like a teleporter's, and is hit like one: its plane carries the window's outline.)
+let _planes = [], _planesFor = null, _planesCount = - 1, _gatesFor = null, _gatesCount = - 1;
 export function R_ImpactPortalPlanes() {
 
-	if ( ! portalsEnabled ) return NO_PLANES;
-	if ( _planesFor !== portals || _planesCount !== portals.length ) {
+	const cameras = portalsEnabled ? portals : NO_PLANES;
+	if ( _planesFor !== cameras || _planesCount !== cameras.length || _gatesFor !== levelPortals || _gatesCount !== levelPortals.length ) {
 
-		_planes = []; _planesFor = portals; _planesCount = portals.length;
-		for ( const p of portals ) {
+		_planes = []; _planesFor = cameras; _planesCount = cameras.length; _gatesFor = levelPortals; _gatesCount = levelPortals.length;
+		if ( portalsEnabled ) for ( const p of levelPortals ) if ( p.slipgate === true && p.plane ) _planes.push( p.plane );
+		for ( const p of cameras ) {
 
-			const plane = { normal: p.normal, center: p.center, min: p.surfMins ?? p.triggerMins, max: p.surfMaxs ?? p.triggerMaxs };
+			// (one object per portal for its life: a ripple field is keyed to it, r_waves.js)
+			const plane = p._impactPlane ??= { normal: p.normal, center: p.center, min: p.surfMins ?? p.triggerMins, max: p.surfMaxs ?? p.triggerMaxs };
 			const same = _planes.some( q => {
 
 				const along = Math.abs( ( plane.center[ 0 ] - q.center[ 0 ] ) * q.normal[ 0 ] + ( plane.center[ 1 ] - q.center[ 1 ] ) * q.normal[ 1 ] + ( plane.center[ 2 ] - q.center[ 2 ] ) * q.normal[ 2 ] );
@@ -573,9 +576,13 @@ const VERTEX_SHADER = `
 varying vec2 vUv;
 varying vec4 vClip;
 varying vec3 vLocal;
+varying vec3 vView;
+varying mat3 vToView;
 void main() {
 	vUv = uv;
 	vLocal = position;
+	vView = ( modelViewMatrix * vec4( position, 1.0 ) ).xyz;
+	vToView = mat3( modelViewMatrix );
 	vClip = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 	gl_Position = vClip;
 }`;
@@ -589,32 +596,36 @@ uniform sampler2D portalMap;
 uniform float portalMix;
 uniform float seamless;
 uniform float time;
-uniform vec4 uMetal[ 8 ]; // impact rings: xyz = where, w = age in seconds (negative: unused)
-uniform float uMetalAmp[ 8 ];
+uniform vec4 uMetalO[ ${WAVE_METAL.fields} ]; // ripple fields on windows (r_waves.js): xyz = corner, w = cell size (0: unused)
+uniform vec4 uMetalU[ ${WAVE_METAL.fields} ]; // the field's axis across the window, w = its cells along it
+uniform vec4 uMetalV[ ${WAVE_METAL.fields} ]; // and up it
+${WAVE_GLSL}
 varying vec2 vUv;
 varying vec4 vClip;
 varying vec3 vLocal;
+varying vec3 vView;
+varying mat3 vToView;
 void main() {
 	vec3 base = texture2D( map, vUv ).rgb;
 	vec3 col = base;
-	// Metallic impact rings (card [W1]): a ring spreads from where something hit, bending the view and catching the light like
-	// struck sheet metal. The direction to bend is the screen-space gradient of the distance from the hit.
-	vec2 metalBend = vec2( 0.0 );
-	float metalRing = 0.0, metalFlash = 0.0;
-	for ( int i = 0; i < 8; i ++ ) {
-		vec4 e = uMetal[ i ];
-		float d = distance( vLocal, e.xyz );
-		vec2 g = vec2( dFdx( d ), dFdy( d ) );
-		if ( e.w < 0.0 ) continue;
-		float x = d - e.w * ${RIPPLE.metalSpeed.toFixed( 1 )};
-		// a packet of two or three crests, short ahead of the front and longer behind it, fading quickly like struck sheet metal
-		float env = exp( - e.w * 2.6 ) * exp( - x * x * ( x < 0.0 ? 0.004 : 0.03 ) ) * uMetalAmp[ i ] * smoothstep( 0.0, 0.04, e.w );
-		float w = cos( x * 0.5 ) * env;
-		float gl = length( g );
-		if ( gl > 1e-6 ) metalBend += g / gl * w;
-		metalRing += max( w, 0.0 ) * max( w, 0.0 );
-		metalFlash += exp( - d * 0.12 ) * exp( - e.w * 9.0 ) * uMetalAmp[ i ];
+	// Metallic ripples (card [W1]): the window is a sheet of liquid metal held in its frame. Where something hit it, r_waves.js runs
+	// a wave field over it; here its slope tilts the surface, which bends the view through the window (as a refracting surface
+	// would) and catches the light on the crests (as polished metal would). The waves add up and come back off the frame.
+	vec3 tilt = vec3( 0.0 ), N = vec3( 0.0 );
+	for ( int i = 0; i < ${WAVE_METAL.fields}; i ++ ) {
+		vec4 o = uMetalO[ i ];
+		if ( o.w <= 0.0 ) continue;
+		vec3 d = vLocal - o.xyz, U = uMetalU[ i ].xyz, V = uMetalV[ i ].xyz;
+		if ( abs( dot( d, cross( U, V ) ) ) > 13.0 ) continue; // another window (a window's faces lie up to 12 units apart: one field)
+		vec2 st = vec2( dot( d, U ), dot( d, V ) ) / o.w;
+		if ( st.x < 1.0 || st.y < 1.0 || st.x > uMetalU[ i ].w - 1.0 || st.y > uMetalV[ i ].w - 1.0 ) continue;
+		vec3 w = waveSample( float( i + ${WAVE_WATER.fields} ), st, o.w );
+		tilt += U * w.y + V * w.z;
+		N = cross( U, V );
 	}
+	vec3 tiltV = vToView * tilt;
+	float strength = smoothstep( 0.01, 0.25, length( tilt ) );
+	vec2 metalBend = tiltV.xy;
 	if ( portalMix > 0.0 ) {
 		// The receiver's view was rendered with this camera's projection, so the
 		// same screen position shows the same ray: the surface is a cut-out.
@@ -623,7 +634,7 @@ void main() {
 			sin( suv.y * 90.0 + time * 3.1 ) + sin( suv.y * 37.0 - time * 2.3 ),
 			cos( suv.x * 80.0 + time * 2.7 ) + cos( suv.x * 41.0 + time * 1.9 ) ) * 0.0012;
 		rip *= 1.0 - seamless;
-		vec2 uv = clamp( suv + rip + ( base.rg - 0.5 ) * 0.004 + metalBend * 0.012, 0.002, 0.998 );
+		vec2 uv = clamp( suv + rip + ( base.rg - 0.5 ) * 0.004 + metalBend * 0.16, 0.002, 0.998 );
 		vec3 view = vec3(
 			texture2D( portalMap, uv + rip * 0.6 ).r,
 			texture2D( portalMap, uv ).g,
@@ -633,7 +644,19 @@ void main() {
 		if ( seamless < 0.5 ) view = view * ( 0.95 + 0.05 * pulse ) + base * vec3( 0.55, 0.8, 1.0 ) * ( 0.05 + 0.07 * pulse );
 		col = mix( base, view, portalMix );
 	}
-	col += vec3( 0.78, 0.86, 1.0 ) * ( metalRing * 0.55 + metalFlash * 0.45 );
+	if ( strength > 0.0 ) {
+		// polished metal: the tilted surface reflects a bright overhead and a dark floor, and the light glints off the crests
+		// (the height runs along the window's normal: the surface's normal is that less the slope, turned to face the eye)
+		vec3 nV = normalize( vToView * ( N - tilt ) );
+		if ( dot( nV, vView ) > 0.0 ) nV = normalize( vToView * ( tilt - N ) );
+		vec3 r = reflect( normalize( vView ), nV );
+		// (relative to the flat window: a flat sheet shows the view as it is; only the tilt mirrors the bright overhead or the dark)
+		vec3 r0 = reflect( normalize( vView ), normalize( vToView * N ) * sign( - dot( vToView * N, vView ) ) );
+		float lift = clamp( ( r.y - r0.y ) * 2.5, - 1.0, 1.0 );
+		vec3 chrome = lift > 0.0 ? vec3( 0.80, 0.86, 0.95 ) * lift : col * lift * 0.8;
+		float glint = pow( max( dot( r, normalize( vec3( 0.25, 0.75, 0.6 ) ) ), 0.0 ), 64.0 ) - pow( max( dot( r0, normalize( vec3( 0.25, 0.75, 0.6 ) ) ), 0.0 ), 64.0 );
+		col += ( chrome * 0.9 + vec3( 1.0, 0.97, 0.92 ) * max( glint, 0.0 ) * 2.2 ) * strength;
+	}
 	gl_FragColor = vec4( col, 1.0 );
 	#include <tonemapping_fragment>
 	#include <colorspace_fragment>
@@ -654,8 +677,10 @@ export function R_PortalMaterial( portal, texture ) {
 				portalMix: { value: 0 },
 				seamless: { value: portal.level === true ? 1 : 0 },
 				time: { value: 0 },
-				uMetal: { value: metalRows },
-				uMetalAmp: { value: metalAmp }
+				uMetalO: { value: metalWave.origin },
+				uMetalU: { value: metalWave.u },
+				uMetalV: { value: metalWave.v },
+				tWaves: { value: R_WaveTexture() }
 			},
 			vertexShader: VERTEX_SHADER,
 			fragmentShader: FRAGMENT_SHADER,
@@ -976,6 +1001,8 @@ export function R_AddLevelPortal( scene, corners, matrix, dest, forward, polygon
 		const u = [ 0, 1, 2 ].map( a => corners[ 1 ][ a ] - corners[ 0 ][ a ] ), v = [ 0, 1, 2 ].map( a => corners[ 3 ][ a ] - corners[ 0 ][ a ] );
 		const n = [ u[ 1 ] * v[ 2 ] - u[ 2 ] * v[ 1 ], u[ 2 ] * v[ 0 ] - u[ 0 ] * v[ 2 ], u[ 0 ] * v[ 1 ] - u[ 1 ] * v[ 0 ] ], len = Math.hypot( ...n ) || 1;
 		portal.plane = { normal: n.map( x => x / len ), center: portal.center, min: [ 0, 1, 2 ].map( a => Math.min( ...corners.map( c => c[ a ] ) ) ), max: [ 0, 1, 2 ].map( a => Math.max( ...corners.map( c => c[ a ] ) ) ) };
+		// a slipgate's window (its own polygons): hit like a teleporter's, its ripples held by its outline (r_waves.js)
+		if ( polygons?.length ) { portal.slipgate = true; portal.plane.polygons = polygons; }
 	}
 
 	// no swirl to fall back on: a dark window until the view has been rendered
