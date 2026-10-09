@@ -156,6 +156,8 @@ function runSpawn(e,f,keepTotal){
  try{pr_global_struct.self=EDICT_TO_PROG(e);sv.state=ss_loading;PR_ExecuteProgram(pr_functions.indexOf(f));}
  finally{pr_global_struct.self=self;sv.state=state;if(keepTotal&&Number.isFinite(total))pr_global_struct.total_monsters=total;}
 }
+let respawnLanded=null;
+export const SV_SetRespawnLandedHook=fn=>{respawnLanded=fn;};
 export function SV_RespawnReserveGuards(){
  guardReady=new Set();if(!localContext())return;guardSkill=Math.round(Cvar_VariableValue('skill'));
  for(const [name,model] of GUARDS){
@@ -209,6 +211,7 @@ function contact(p,state,s){
  // and the clientdata water flag showed a submerged player. Refresh them for the destination now; a destination that really is wet is
  // seen as wet and obeys the native rules. (The old damage timer has always expired by then; clearing it is hygiene.)
  field(p,'dmgtime',0);SV_CheckWater(p);
+ respawnLanded?.(); // the way back to the level the player came from is shut for good (card [3]; registered by sv_main, so this module does not import the seamless/renderer chain)
  s.alerted=SV_RespawnAlert(p);
  spawnGuard(p,s); // after the alert pass: the guard waits in its ordinary idle
 }

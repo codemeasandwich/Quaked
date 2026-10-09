@@ -13,7 +13,7 @@ import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from './gl_model.js'
 import { R_BuildLightMap, createQuakeLightmapMaterial } from './gl_rsurf.js';
 import { R_RegisterGlow } from './gl_post.js';
 import { R_NewerLightingActive } from './r_anim.js';
-import { R_AddLevelPortal, R_ClearLevelPortals } from './gl_portal.js';
+import { R_AddLevelPortal, R_ClearLevelPortals, R_RemoveLevelPortal } from './gl_portal.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { R_LightPoint } from './gl_rlight.js';
 import { R_DrawAliasModel } from './gl_mesh.js';
@@ -807,6 +807,7 @@ let setupGeneration = 0;
 export function R_ClearLevelViews() {
 
 	setupGeneration ++;
+	viewCrossings = []; removedPortals.clear();
 	for ( const r of runners ) { r.g = null; r.view = null; } // they are attached again when the views are built
 
 	for ( const v of views ) v.dispose();
@@ -828,6 +829,7 @@ export function R_SetupLevelViews( scene, crossings ) {
 
 	R_ClearLevelViews();
 	if ( scene == null ) return;
+	viewCrossings = crossings;
 
 	// one view per timeslice, after the frame that starts the level: building them
 	// is work that need not stall the arrival
@@ -845,11 +847,15 @@ export function R_SetupLevelViews( scene, crossings ) {
 
 }
 
+// the crossings the views were set up for; a crossing the server has shut (closed) loses its window and view
+let viewCrossings = [];
+const removedPortals = new Set(); // (crossings whose window has already been taken out)
+
 function buildView( scene, c, i ) {
 
 	const t = c.transform;
 	const o = c.opening;
-	if ( o === undefined ) return;
+	if ( o === undefined || c.closed === true ) return;
 
 	const model = Mod_LoadForPreview( 'maps/' + c.map + '.bsp' );
 	let entities = [];
@@ -894,6 +900,7 @@ function buildView( scene, c, i ) {
 
 	view.anchor = corner( ( o.a0 + o.a1 ) / 2, ( o.b0 + o.b1 ) / 2 );
 	view.map = c.map;
+	view.crossing = i;
 	// The oblique clipping plane must be the transformed visible plane, even
 	// when the physical crossing threshold is nearer than the recessed window.
 	const receiver = t.position( cc.map( ( value, axis ) => value + shift[ axis ] ) );
@@ -930,6 +937,23 @@ function R_PrewarmNormalMaps( model ) {
 	};
 
 	setTimeout( step, 60 );
+
+}
+
+// Every frame: drop the window and the view of any crossing the server has shut (the way back, once a respawn has landed).
+export function R_SyncLevelViews() {
+
+	for ( let i = views.length - 1; i >= 0; i -- ) {
+
+		const v = views[ i ];
+		if ( viewCrossings[ v.crossing ]?.closed !== true ) continue;
+		for ( const r of runners ) if ( r.view === v ) { r.g = null; r.view = null; }
+		v.dispose();
+		views.splice( i, 1 );
+
+	}
+
+	for ( let k = 0; k < viewCrossings.length; k ++ ) if ( viewCrossings[ k ]?.closed === true && ! removedPortals.has( k ) ) { removedPortals.add( k ); R_RemoveLevelPortal( k ); }
 
 }
 

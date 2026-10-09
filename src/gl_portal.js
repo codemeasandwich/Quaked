@@ -773,6 +773,26 @@ export function R_LevelPortalMatrix( index ) {
 
 }
 
+// the window of crossing number `index` goes (its crossing was shut)
+export function R_RemoveLevelPortal( index ) {
+
+	for ( const p of levelPortals.filter( ( p ) => p.crossing === index ) ) {
+
+		if ( p.mesh != null ) {
+
+			if ( p.mesh.parent != null ) p.mesh.parent.remove( p.mesh );
+			p.mesh.geometry.dispose();
+
+		}
+
+		if ( p.material !== null ) p.material.dispose();
+
+	}
+
+	levelPortals = levelPortals.filter( ( p ) => p.crossing !== index );
+
+}
+
 export function R_ClearLevelPortals() {
 
 	for ( const p of levelPortals ) {

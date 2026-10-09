@@ -1134,7 +1134,7 @@ export function SV_SeamlessFrame() {
 
 		for ( const c of crossings ) {
 
-			if ( c.transform.crossed( lastOrigin, cur ) === false ) continue;
+			if ( c.closed === true || c.transform.crossed( lastOrigin, cur ) === false ) continue;
 
 			const t = c.transform;
 			const va = ent.v.v_angle;
@@ -1185,7 +1185,7 @@ function SV_WarmNearExits( ent ) {
 
 	};
 
-	for ( const c of crossings ) if ( near( c.transform.center ) ) warmLevelHook( c.map );
+	for ( const c of crossings ) if ( c.closed !== true && near( c.transform.center ) ) warmLevelHook( c.map );
 
 	for ( const p of pads ) {
 
@@ -1403,6 +1403,29 @@ export function SV_SeamlessReset() {
 	lastOrigin = null;
 	metaCache.clear();
 	levelStates.clear();
+
+}
+
+// The way back to the level the player came from is shut for good in this level (card [3]; called when a respawn lands).
+// The crossing stays in the list, flagged, so the numbers the picture holds for the others do not change: it is no longer
+// crossed or warmed, the arch surfaces that were hidden for its window are drawn again (the wall the brush always was), and
+// the renderer drops its window and view when it sees the flag (R_SyncLevelViews). Only the return route is touched: forward
+// exits, pads and the other crossings are as they were. Nothing reopens it in this level; arriving again from elsewhere, or
+// loading a game, builds a way back afresh only after a crossing arrival, as it always did. Returns how many were shut.
+export function SV_SeamlessCloseReturn() {
+
+	let shut = 0;
+	for ( const c of crossings ) {
+
+		if ( c.back !== true || c.closed === true ) continue;
+		c.closed = true; shut ++;
+		// monsters that followed the player and are still on their way through would step out of a doorway that is shut: put
+		// them back in the level they came from, as when the player walks back (and take their figures out of the window)
+		if ( arrivals !== null && arrivals.from === c.map ) SV_ReturnFollowers( c.map );
+
+	}
+	if ( shut > 0 ) R_ClearArchHidden(); // (the only arch surfaces ever hidden are the way back's)
+	return shut;
 
 }
 

@@ -245,7 +245,7 @@ function R_UpdateDemonSurfaces() {
 	const bake=enabled?R_DemonBakePrepare(cl.worldmodel,demonSurfaces.map(record=>record.surface)):null;
 	let changed = enabled !== demonEnabled;
 	demonEnabled = enabled;
-	if(!enabled){for(const record of demonSurfaces)if(record.mesh)record.mesh.visible=false;if(changed)R_BuildSunOccluder(cl.worldmodel);return;}
+	if(!enabled){for(const record of demonSurfaces)if(record.mesh)record.mesh.visible=false;if(changed)R_BuildWorldOccluder(cl.worldmodel);return;}
 	for ( const record of demonSurfaces ) {
 
 		const field = record.surface.texinfo.texture.gl_texture?.userData.newerHeight;
@@ -304,7 +304,7 @@ function R_UpdateDemonSurfaces() {
 		if ( record.mesh ) record.mesh.visible = enabled && record.pvsVisible;
 
 	}
-	if ( changed && cl.worldmodel ) R_BuildSunOccluder( cl.worldmodel );
+	if ( changed && cl.worldmodel ) R_BuildWorldOccluder( cl.worldmodel );
 
 }
 
@@ -3304,6 +3304,10 @@ export function R_WorldShowAll( all ) {
 }
 
 let archVisibilityKey = -1;
+// The shadow-casting geometry leaves out the hidden arch surfaces, so it is rebuilt whenever they change (the way back shutting
+// draws its wall again: that wall must shadow too). occluderRevision is the arch revision it was built for.
+let occluderRevision = -1;
+function R_BuildWorldOccluder( model ) { occluderRevision = R_ArchHiddenRevision(); return R_BuildSunOccluder( model ); }
 const noArchRestore = () => {};
 // Classic draws the same scene without rebuilding its world. Batched instance
 // visibility is not Object3D.visible, so it needs its own exception-safe scope.
@@ -3321,6 +3325,7 @@ export function R_ClassicArchVisibility() {
 	return restore;
 }
 function R_UpdateWorldVisibility() {
+	if ( cl.worldmodel && R_ArchHiddenRevision() !== occluderRevision ) R_BuildWorldOccluder( cl.worldmodel );
 	const key = R_ArchHiddenRevision() * 2 + Number( R_NewerGame() );
 	if ( key !== archVisibilityKey ) { archVisibilityKey = key; _visibilityNeedsUpdate = true; }
 
@@ -3560,7 +3565,7 @@ export function GL_BuildLightmaps() {
 
 	// lights and emitters for the HDR pipeline's volumetrics
 	R_BuildWorldLights( cl_ref.worldmodel );
-	R_BuildSunOccluder( cl_ref.worldmodel );
+	R_BuildWorldOccluder( cl_ref.worldmodel );
 
 }
 

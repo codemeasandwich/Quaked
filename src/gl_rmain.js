@@ -29,7 +29,7 @@ import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
 import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
 import { CL_TeleportSpots } from './cl_tent.js';
-import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from './r_levelview.js';
+import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities, R_SyncLevelViews } from './r_levelview.js';
 import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
 import { R_MistFrame, R_MistClear } from './r_mist.js';
@@ -1830,6 +1830,7 @@ export function R_RenderView() {
 
 	// what moves in the other levels seen through their windows
 	if ( cl != null && r_newer_portals.value !== 0 ) R_UpdateLevelViewEntities( r_refdef.vieworg, cl.time );
+	R_SyncLevelViews(); // (a way back the server has shut loses its window)
 
 	// marks on the world
 	R_DecalsFrame();

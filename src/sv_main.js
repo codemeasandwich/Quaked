@@ -1,4 +1,4 @@
-import { SV_RespawnPrecache, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from './sv_respawn.js';
+import { SV_RespawnPrecache, SV_SetRespawnLandedHook, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from './sv_respawn.js';
 // Ported from: WinQuake/sv_main.c -- server main program
 
 import { Sys_Error } from './sys.js';
@@ -65,7 +65,7 @@ import { VectorCopy, VectorAdd, DotProduct } from './mathlib.js';
 import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from './gl_model.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from './pr_edict.js';
 import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from './progs.js';
-import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled } from './sv_seamless.js';
+import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled, SV_SeamlessCloseReturn } from './sv_seamless.js';
 import { R_NewerGame } from './r_anim.js';
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from './pak.js';
 import { cls, ca_dedicated } from './client.js';
@@ -1870,6 +1870,7 @@ export function SV_SpawnServer( server ) {
 	}
 
 	SV_RespawnPrecache();
+	SV_SetRespawnLandedHook( SV_SeamlessCloseReturn ); // a landed respawn shuts the way back to the previous level (card [3]; set here, not at load: the modules import each other)
 	SV_RespawnReserveGuards(); // (after the level's own spawn functions have precached, with the tables as they are)
 	// Enhanced travel/save restoration can retain powers whose pickup entity
 	// is absent in this map. Reserve their native warning/expiry sounds before
