@@ -194,6 +194,10 @@ export const PE_EFFECTS = ( 1 << 6 );
 export const PE_SOLID = ( 1 << 7 ); // entity should be solid for prediction
 
 // Packet entities constants
-export const MAX_PACKET_ENTITIES = 64; // max entities in a single packet
+export const MAX_PACKET_ENTITIES = 64; // max entities in a single packet sent over the network (QuakeWorld's limit)
+// A local game (the in-memory loopback link) has no packet size limit to respect: its packets carry up to this many entities,
+// so a full-game level with many things in view does not drop the highest-numbered ones (lifts, buttons and monsters that
+// flickered in and out of the picture as the player moved while still working physically). The arrays are sized for it.
+export const MAX_PACKET_ENTITIES_LOCAL = 512;
 export const PE_UPDATE_BACKUP = 64; // must be power of 2
 export const PE_UPDATE_MASK = PE_UPDATE_BACKUP - 1;

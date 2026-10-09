@@ -19,6 +19,7 @@ export const ON_EPSILON = 0.1; // point on plane side epsilon
 
 export const MAX_MSGLEN = 8000; // max length of a reliable message
 export const MAX_DATAGRAM = 1024; // max length of unreliable message
+export const MAX_DATAGRAM_LOCAL = 32000; // max length of a local game's per-frame message (loopback: no network packet limit)
 
 //
 // per-level limits

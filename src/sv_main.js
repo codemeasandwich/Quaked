@@ -13,7 +13,7 @@ import { Cmd_AddCommand, Cmd_ExecuteString, Cbuf_InsertText } from './cmd.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_SetValue } from './cvar.js';
 import { sv_shotdelay } from './sv_shotdelay.js';
 import {
-	MAX_MODELS, MAX_SOUNDS, MAX_DATAGRAM, MAX_EDICTS, MAX_MSGLEN,
+	MAX_MODELS, MAX_SOUNDS, MAX_DATAGRAM, MAX_DATAGRAM_LOCAL, MAX_EDICTS, MAX_MSGLEN,
 	STAT_PING
 } from './quakedef.js';
 import {
@@ -38,7 +38,7 @@ import {
 	PE_ENT_BITS, PE_ENT_MASK, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3,
 	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
 	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS, PE_SOLID,
-	MAX_PACKET_ENTITIES, PE_UPDATE_MASK
+	MAX_PACKET_ENTITIES, MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_MASK
 } from './protocol.js';
 import {
 	sv, svs, ss_loading, ss_active,
@@ -889,7 +889,7 @@ function SV_WriteEntitiesToClient( client, clent, pvs, msg ) {
 			continue;
 
 		// add to the packetentities
-		if ( pack.num_entities >= MAX_PACKET_ENTITIES )
+		if ( pack.num_entities >= ( localClient( client ) ? MAX_PACKET_ENTITIES_LOCAL : MAX_PACKET_ENTITIES ) )
 			continue; // all full
 
 		const state = pack.entities[ pack.num_entities ];
@@ -1291,8 +1291,10 @@ SV_SendClientDatagram
 =======================
 */
 // Cached buffers for SV_SendClientDatagram (avoid per-frame allocations)
-const _scdBuf = new Uint8Array( MAX_DATAGRAM );
+const _scdBuf = new Uint8Array( MAX_DATAGRAM_LOCAL );
 const _scdMsg = { allowoverflow: false, overflowed: false, data: _scdBuf, maxsize: MAX_DATAGRAM, cursize: 0 };
+// a client on the in-memory loopback link (driver 0) is the local game: no network packet limit applies to it
+const localClient = client => client?.netconnection?.driver === 0;
 const _scdOrg = new Float32Array( 3 );
 
 // Cached buffers for SV_SendNop (avoid per-call allocations)
@@ -1313,6 +1315,7 @@ function SV_SendClientDatagram( client ) {
 	_scdMsg.allowoverflow = false;
 	_scdMsg.overflowed = false;
 	_scdMsg.cursize = 0;
+	_scdMsg.maxsize = localClient( client ) ? MAX_DATAGRAM_LOCAL : MAX_DATAGRAM;
 
 	MSG_WriteByte( _scdMsg, svc_time );
 	MSG_WriteFloat( _scdMsg, sv.time );

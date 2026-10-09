@@ -2,7 +2,7 @@
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_LIGHTSTYLES, MAX_DATAGRAM, MAX_MSGLEN, entity_state_t } from './quakedef.js';
 import { sizebuf_t } from './common.js';
-import { MAX_PACKET_ENTITIES, PE_UPDATE_BACKUP } from './protocol.js';
+import { MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP } from './protocol.js';
 
 //============================================================================
 // Server state enum
@@ -83,7 +83,7 @@ export class client_frame_t {
 
 		this.senttime = 0;
 		this.entities = { num_entities: 0, entities: [] };
-		for ( let i = 0; i < MAX_PACKET_ENTITIES; i ++ ) {
+		for ( let i = 0; i < MAX_PACKET_ENTITIES_LOCAL; i ++ ) {
 
 			this.entities.entities.push( new entity_state_t() );
 

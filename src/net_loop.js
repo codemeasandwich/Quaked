@@ -3,7 +3,7 @@
 import { Con_Printf, SZ_Clear, SZ_Write } from './common.js';
 import { Sys_Error } from './sys.js';
 import {
-	NET_MAXMESSAGE,
+	NET_MAXMESSAGE, NET_LOOP_MAXMESSAGE,
 	net_message,
 	qsocket_t,
 	net_activeconnections,
@@ -205,7 +205,7 @@ export function Loop_SendMessage( sock, data ) {
 	const peer = sock.driverdata;
 	const bufferLength = peer.receiveMessageLength;
 
-	if ( ( bufferLength + data.cursize + 4 ) > NET_MAXMESSAGE )
+	if ( ( bufferLength + data.cursize + 4 ) > NET_LOOP_MAXMESSAGE )
 		Sys_Error( 'Loop_SendMessage: overflow\n' );
 
 	const offset = bufferLength;
@@ -244,7 +244,7 @@ export function Loop_SendUnreliableMessage( sock, data ) {
 	const peer = sock.driverdata;
 	const bufferLength = peer.receiveMessageLength;
 
-	if ( ( bufferLength + data.cursize + 4 ) > NET_MAXMESSAGE )
+	if ( ( bufferLength + data.cursize + 4 ) > NET_LOOP_MAXMESSAGE )
 		return 0;
 
 	const offset = bufferLength;

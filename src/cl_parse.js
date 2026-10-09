@@ -49,7 +49,7 @@ import {
 	PE_ENT_BITS, PE_ENT_MASK, PE_ORIGIN1, PE_ORIGIN2, PE_ORIGIN3,
 	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
 	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS, PE_SOLID,
-	MAX_PACKET_ENTITIES, PE_UPDATE_BACKUP, PE_UPDATE_MASK
+	MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP, PE_UPDATE_MASK
 } from './protocol.js';
 import {
 	SIGNONS, MAX_STATIC_ENTITIES, MAX_DLIGHTS,
@@ -587,7 +587,7 @@ function CL_ParsePacketEntities( delta ) {
 			// copy all the rest of the entities from the old packet
 			while ( oldindex < oldp.num_entities ) {
 
-				if ( newindex >= MAX_PACKET_ENTITIES ) {
+				if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
 					Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 					return;
@@ -619,7 +619,7 @@ function CL_ParsePacketEntities( delta ) {
 			}
 
 			// copy one of the old entities over to the new packet unchanged
-			if ( newindex >= MAX_PACKET_ENTITIES ) {
+			if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
 				Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 				return;
@@ -651,7 +651,7 @@ function CL_ParsePacketEntities( delta ) {
 
 			}
 
-			if ( newindex >= MAX_PACKET_ENTITIES ) {
+			if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
 				Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 				return;
@@ -681,7 +681,7 @@ function CL_ParsePacketEntities( delta ) {
 
 			}
 
-			if ( newindex >= MAX_PACKET_ENTITIES ) {
+			if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
 				Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 				return;

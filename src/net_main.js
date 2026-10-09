@@ -5,7 +5,7 @@ import { Con_Printf, Con_DPrintf, SZ_Alloc, COM_CheckParm, com_argc, com_argv, Q
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cbuf_AddText } from './cmd.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set } from './cvar.js';
 import {
-	NET_NAMELEN, NET_MAXMESSAGE, MAX_NET_DRIVERS,
+	NET_NAMELEN, NET_MAXMESSAGE, NET_LOOP_MAXMESSAGE, MAX_NET_DRIVERS,
 	qsocket_t,
 	net_activeSockets, net_freeSockets, net_numsockets,
 	set_net_activeSockets, set_net_freeSockets, set_net_numsockets,
@@ -842,7 +842,7 @@ export function NET_Init() {
 	}
 
 	// allocate space for network message buffer
-	SZ_Alloc( net_message, NET_MAXMESSAGE );
+	SZ_Alloc( net_message, NET_LOOP_MAXMESSAGE ); // (a local game's packets can be larger than a network one's)
 
 	// Share the canonical net_message with common.js (MSG_Read* functions)
 	COM_SetNetMessage( net_message );

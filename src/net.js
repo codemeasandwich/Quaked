@@ -10,6 +10,8 @@ import { sizebuf_t } from './common.js';
 export const NET_NAMELEN = 64;
 
 export const NET_MAXMESSAGE = 8192;
+// the in-memory loopback link of a local game carries larger packets (MAX_DATAGRAM_LOCAL); its buffers are this size
+export const NET_LOOP_MAXMESSAGE = 65536;
 export const NET_HEADERSIZE = ( 2 * 4 ); // 2 * sizeof(unsigned int)
 export const NET_DATAGRAMSIZE = ( MAX_DATAGRAM + NET_HEADERSIZE );
 
@@ -67,12 +69,12 @@ export class qsocket_t {
 		this.sendSequence = 0;
 		this.unreliableSendSequence = 0;
 		this.sendMessageLength = 0;
-		this.sendMessage = new Uint8Array( NET_MAXMESSAGE );
+		this.sendMessage = new Uint8Array( NET_LOOP_MAXMESSAGE );
 
 		this.receiveSequence = 0;
 		this.unreliableReceiveSequence = 0;
 		this.receiveMessageLength = 0;
-		this.receiveMessage = new Uint8Array( NET_MAXMESSAGE );
+		this.receiveMessage = new Uint8Array( NET_LOOP_MAXMESSAGE );
 
 		this.addr = null;
 		this.address = '';
