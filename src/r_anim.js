@@ -3,7 +3,8 @@
 // Quake animates alias models by stepping between stored poses, usually one
 // step every 0.1 s (10 fps), and the original draws whichever pose is current.
 // Here the vertices are blended between the pose being left and the pose being
-// entered, so the motion runs at the display's frame rate.
+// entered (or, when the game changes pose before a blend is done, from the pose
+// that was on screen), so the motion runs at the display's frame rate.
 //
 // The state lives on the entity: which pose it was showing, which it is
 // heading for and when that started.  It resets, and does not blend, when a
@@ -104,9 +105,10 @@ target is the pose the game says the entity is in now; interval is how long the
 frame lasts (a group frame has its own; otherwise Quake's 0.1 s).  Returns the
 state with .from, .to and .blend (0..1), and .lead: null, or, when the game
 changed pose before the last blend was done (a think that lands a server frame
-early, about 0.083 s after the last, does so on a third of changes), the pose that
-was on screen then, { from, to, t }: the blend starts from there rather than
-snapping the rest of the way to .from (card [43]).
+early, about 0.083 s after the last: about one change in seven in the browser
+audit), { from, to, t }, the two poses and how far between them the blend had got.
+The mesh (gl_mesh.js) then starts the new blend from the pose it had on screen
+rather than snapping the rest of the way to .from (card [43]).
 ================
 */
 export function R_AliasPoseBlend( entity, model, target, time, interval ) {
@@ -127,9 +129,11 @@ export function R_AliasPoseBlend( entity, model, target, time, interval ) {
 
 	if ( target !== s.to ) {
 
-		// the pose on screen when the change came (one level: an older lead's share is left out, a second-order remainder)
+		// how far the last blend had got (by its own interval) when the change came: short of the end, an early change
+		// (the mesh keeps the pose it drew; these two poses and t rebuild it when it has none). Rounding on a change
+		// that comes on time is not early.
 		const t = ( time - s.start ) / ( s.interval > 0 ? s.interval : ANIM_STEP );
-		s.lead = s.from !== s.to && t < 1 ? { from: s.from, to: s.to, t: t < 0 ? 0 : t } : null;
+		s.lead = s.from !== s.to && t < 1 - 1e-6 ? { from: s.from, to: s.to, t: t < 0 ? 0 : t } : null;
 		s.from = s.to;
 		s.to = target;
 		s.start = time;
@@ -271,13 +275,6 @@ export function R_SmoothMove( entity, time ) {
 
 	s.shown = [ o[ 0 ], o[ 1 ], o[ 2 ] ];
 	s.shownA = [ a[ 0 ], a[ 1 ], a[ 2 ] ];
-
-}
-
-// out = ( a .. b at u ) .. c at t: a blend that starts from a blend (the lead pose, R_AliasPoseBlend)
-export function R_BlendArrays3( out, a, b, u, c, t ) {
-
-	for ( let i = 0; i < out.length; i ++ ) { const from = a[ i ] + ( b[ i ] - a[ i ] ) * u; out[ i ] = from + ( c[ i ] - from ) * t; }
 
 }
 

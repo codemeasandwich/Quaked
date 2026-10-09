@@ -4,7 +4,7 @@ import { R_AliasMeshLookup, R_AliasMeshRemember } from './r_aliasmeshcache.js';
 import * as THREE from 'three';
 import { R_WeaponAsset, R_WeaponRotorFrame } from './r_weapons.js';
 import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from './r_newerskins.js';
-import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, R_BlendArrays3, ANIM_STEP } from './r_anim.js';
+import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './common.js';
 import { cl } from './client.js';
 import { R_GetPlayerSkinTexture } from './gl_rmisc.js';
@@ -697,11 +697,35 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 			if ( from != null && from.vertexCount === template.vertexCount ) {
 
 				blend = { from, t: state.blend, lead: null };
-				// a change that came early: start from the pose that was on screen (card [43])
+				// a change that came early: start from the pose that was on screen (card [43]). At the first draw after the
+				// change, what this entity last drew (its blended pose) is kept as the lead and the new blend leaves it, so
+				// however many changes come early in a row the picture never jumps; not blended last draw, the lead is
+				// rebuilt from the two poses R_AliasPoseBlend names
 				if ( state.lead !== null && state.lead !== undefined ) {
 
-					const a = weaponAliasFrame( weapon, paliashdr, state.lead.from ), b = weaponAliasFrame( weapon, paliashdr, state.lead.to );
-					if ( a != null && b != null && a.vertexCount === template.vertexCount && b.vertexCount === template.vertexCount ) blend.lead = { a, b, t: state.lead.t };
+					const n = template.vertexCount * 3;
+					if ( entity._aliasLeadStart !== state.start || entity._aliasLeadPos == null || entity._aliasLeadPos.length !== n ) {
+
+						if ( entity._aliasLeadPos == null || entity._aliasLeadPos.length !== n ) { entity._aliasLeadPos = new Float32Array( n ); entity._aliasLeadNormal = new Float32Array( n ); }
+						if ( entity._aliasBlended === true && entity._aliasBlendPos != null && entity._aliasBlendPos.array.length === n ) {
+
+							entity._aliasLeadPos.set( entity._aliasBlendPos.array ); entity._aliasLeadNormal.set( entity._aliasBlendNormal.array );
+
+						} else {
+
+							const a = weaponAliasFrame( weapon, paliashdr, state.lead.from ), b = weaponAliasFrame( weapon, paliashdr, state.lead.to );
+							if ( a != null && b != null && a.vertexCount === template.vertexCount && b.vertexCount === template.vertexCount ) {
+
+								R_BlendArrays( entity._aliasLeadPos, a.posAttr.array, b.posAttr.array, state.lead.t );
+								R_BlendArrays( entity._aliasLeadNormal, a.normalAttr.array, b.normalAttr.array, state.lead.t );
+
+							} else { entity._aliasLeadPos.set( from.posAttr.array ); entity._aliasLeadNormal.set( from.normalAttr.array ); }
+
+						}
+						entity._aliasLeadStart = state.start;
+
+					}
+					blend.lead = { pos: entity._aliasLeadPos, normal: entity._aliasLeadNormal };
 
 				}
 
@@ -785,8 +809,8 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 
 		if ( blend.lead !== null ) {
 
-			R_BlendArrays3( entity._aliasBlendPos.array, blend.lead.a.posAttr.array, blend.lead.b.posAttr.array, blend.lead.t, template.posAttr.array, blend.t );
-			R_BlendArrays3( entity._aliasBlendNormal.array, blend.lead.a.normalAttr.array, blend.lead.b.normalAttr.array, blend.lead.t, template.normalAttr.array, blend.t );
+			R_BlendArrays( entity._aliasBlendPos.array, blend.lead.pos, template.posAttr.array, blend.t );
+			R_BlendArrays( entity._aliasBlendNormal.array, blend.lead.normal, template.normalAttr.array, blend.t );
 
 		} else {
 

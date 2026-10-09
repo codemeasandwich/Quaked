@@ -43,14 +43,15 @@ Deno.test( 'a pose change blends over the frame interval', () => {
 
 } );
 
-// card [43]: a quarter to a third of the game's frame changes arrive a server frame early (about 0.083 s after the
-// last, measured in the browser on a dog's leap and a dog's and a Grunt's death); the next blend must start from the
-// pose on screen, not snap the rest of the way to the last frame first
+// card [43]: some of the game's frame changes arrive a server frame early (about 0.083 s after the last: 7 of 47 in
+// the browser audit of a dog's leap and a dog's and a Grunt's death); the next blend must start from the pose on screen,
+// not snap the rest of the way to the last frame first (the mesh side is tested with real models in
+// classic_alias_frames_test.js)
 Deno.test( 'a pose change that comes early starts from the pose on screen, with no jump', () => {
 
 	const e = { origin: [ 0, 0, 0 ] }, poses = { 3: [ 0, 0, 0 ], 4: [ 10, 0, 0 ], 5: [ 10, 10, 0 ] };
-	const shown = s => { const out = [ 0, 0, 0 ];
-		if ( s.lead ) anim.R_BlendArrays3( out, poses[ s.lead.from ], poses[ s.lead.to ], s.lead.t, poses[ s.to ], s.blend );
+	const shown = s => { const out = [ 0, 0, 0 ], lead = [ 0, 0, 0 ];
+		if ( s.lead ) { anim.R_BlendArrays( lead, poses[ s.lead.from ], poses[ s.lead.to ], s.lead.t ); anim.R_BlendArrays( out, lead, poses[ s.to ], s.blend ); }
 		else anim.R_BlendArrays( out, poses[ s.from ], poses[ s.to ], s.blend ); return out; };
 	anim.R_AliasPoseBlend( e, model, 3, 20.0, 0.1 );
 	anim.R_AliasPoseBlend( e, model, 4, 20.1, 0.1 );
@@ -68,6 +69,12 @@ Deno.test( 'a pose change that comes early starts from the pose on screen, with 
 	s = anim.R_AliasPoseBlend( e, model, 3, 20.4167, 0.1 ); assertEqual( s.lead, null, 'late (pose 5 settled): no lead' );
 	// a fresh state (stale, foreign, a teleport) has none
 	s = anim.R_AliasPoseBlend( e, model, 4, 20.45, 0.1 ); s = anim.R_AliasPoseBlend( e, model, 5, 21.5, 0.1 ); assertEqual( s.lead, null, 'restarted: no lead' );
+	// how far it had got is by the last frame's own interval, not the next one's (a group frame's can differ)
+	const g = { origin: [ 0, 0, 0 ] }; anim.R_AliasPoseBlend( g, model, 3, 30, 0.1 ); anim.R_AliasPoseBlend( g, model, 4, 30.1, 0.1 );
+	s = anim.R_AliasPoseBlend( g, model, 5, 30.1833, 0.2 ); assertNear( s.lead?.t, .833, .001, 'the 0.1 s frame was five sixths done (not 0.42 by the next frame\'s 0.2 s)' );
+	// a change exactly on time is not early, whatever the rounding
+	const h = { origin: [ 0, 0, 0 ] }; anim.R_AliasPoseBlend( h, model, 3, 20.0, 0.1 ); anim.R_AliasPoseBlend( h, model, 4, 20.1, 0.1 );
+	s = anim.R_AliasPoseBlend( h, model, 5, 20.2, 0.1 ); assertEqual( s.lead, null, 'on time (20.1 to 20.2): no lead' );
 
 } );
 

@@ -16,30 +16,39 @@ whether the state was restarted).
   Every death ends holding its final pose (blend 1, steady), with no restarts. The leaps keep one blend state throughout:
   a Fiend's leap does not trip the 96-unit "teleport" restart.
 * **One defect: early frames snapped.** Quake's monsters think every 0.1 s, but the server runs in steps of its own frame
-  (about 1/60 s). So a frame change often arrives one step early, 0.083 s after the last. Measured at each change, the
-  blend had reached 0.83 in 3 of 30 changes in the Rottweiler's leap, 1 of 8 in its death and 3 of 9 in the Grunt's.
+  (about 1/60 s). So a frame change sometimes arrives one step early, 0.083 s after the last. Measured at each change,
+  the blend had reached 0.83 in 3 of 30 changes in the Rottweiler's leap, 1 of 8 in its death and 3 of 9 in the Grunt's
+  (7 of 47, about one in seven).
   The next blend then started from the last frame's pose, so the model jumped the remaining sixth of the way in one
   drawn frame. This happens in every animation, walks included, and is easiest to see in a leap or a fall.
 
 ## The fix
 
-When the game changes pose before the last blend is done, `R_AliasPoseBlend` now records the pose that was on screen
-(`lead: { from, to, t }`: the two frames and how far between them). The mesh starts the new blend from that pose
-(`R_BlendArrays3`: the lead pose, then on to the new frame), so nothing jumps. The lead keeps one level only: a second
-early change replaces it, leaving a second-order remainder of a few per cent. The lead is dropped once the blend arrives,
-and whenever the state restarts (first sight, a different model, a stale or foreign state, a teleport). Shadows read the
-blended positions as before.
+When the game changes pose before the last blend is done (short of its end by its own interval; rounding on a change
+that comes on time does not count), `R_AliasPoseBlend` marks the change early (`lead: { from, to, t }`: the two frames and
+how far between them). At the first draw after it, the mesh keeps what it drew last (its blended positions and normals)
+and the new blend leaves exactly that, however many early changes come in a row. Only when the entity was not blended at
+its last draw is the lead rebuilt from the two frames and t. The lead is dropped once the blend arrives, and whenever the
+state restarts (first sight, a different model, a stale or foreign state, a teleport). Shadows read the blended positions
+as before.
 
 ## Checks
 
-* `tests/r_anim_test.js`: a change arriving at 0.0833 s records the lead at 0.833, and the pose on screen is the same
-  either side of the change. Halfway on, the pose is halfway from there to the new frame. The lead is gone on arrival, for
-  a late change and after a restart. Removing the lead makes it fail. The suite's other failure (texture filtering) is a
-  known existing one, unrelated.
+* `tests/classic_alias_frames_test.js`, the real Grunt through `R_DrawAliasModel`: at an early change the drawn positions
+  and normals are byte-for-byte what was on screen; a draw later, every vertex is exactly the blend from that pose to the
+  new frame; a second early change in a row again draws exactly what was on screen; on arrival the new frame is drawn
+  exactly. It fails when the mesh ignores the lead, when it rebuilds the lead instead of keeping what it drew, and when it
+  re-takes the lead at every draw.
+* `tests/r_anim_test.js`: a change arriving at 0.0833 s is marked early at 0.833, measured by the last frame's own
+  interval (0.833, not 0.42, when the next frame lasts 0.2 s); a change on time is not early; the lead is gone on arrival,
+  for a late change and after a restart. Each fails when its part is broken. The suite's other failure (texture filtering)
+  is a known existing one, unrelated.
 * Animation suites unchanged: `alias_mesh_cache`, `alias_mesh_native`, `classic_alias_frames`, `weapon_rotor` and
   `model_lighting` all pass; `gl_model` keeps its known existing failure.
-* Browser (the trial above, after the fix): the lead is used at early changes in the Rottweiler's leap and death, the
-  Grunt's death and the Fiend's leap, with no errors and the deaths still holding their last pose.
+* Browser (the trial above, after the fix): early changes are marked in the Rottweiler's leap and death, the Grunt's
+  death and the Fiend's leap, with no errors and the deaths still holding their last pose. The trial script and the
+  numbers above: [evidence/animation-audit-trial-2026-10-10.mjs](evidence/animation-audit-trial-2026-10-10.mjs),
+  [evidence/animation-audit-2026-10-10.json](evidence/animation-audit-2026-10-10.json).
 
 ## Not checked
 

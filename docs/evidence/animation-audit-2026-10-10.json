@@ -1,0 +1,16 @@
+{
+  "card": "[43] enemy animation audit",
+  "browser": "Chrome for Testing 1217 headless, ANGLE Metal, 900x560, tests/shotgun_trial.html, Newer Game, Bestiary pre-unlocked",
+  "measure": "blend reached when each frame change arrived: (new blend start - last blend start) / last interval; below 0.99 = cut short (the pose then snapped the rest, before the fix)",
+  "e1m1_before_fix": {
+    "monster_dog:dog_leap1": { "cutShort": 3, "changes": 30, "cuts": [0.833, 0.835, 0.828] },
+    "monster_dog:dog_die1": { "cutShort": 1, "changes": 8, "cuts": [0.831], "finalPoseHeld": true },
+    "monster_army:army_die1": { "cutShort": 3, "changes": 9, "cuts": [0.838, 0.989, 0.844], "finalPoseHeld": true }
+  },
+  "e1m2_after_fix_undersampled": {
+    "note": "samples slower than frames on this machine; used only for restarts and final holds",
+    "monster_demon1:demon1_jump1": { "restarts": 0 },
+    "monster_ogre:ogre_die1": { "finalPoseHeld": true },
+    "monster_knight:knight_die1": { "finalPoseHeld": true }
+  }
+}

@@ -43,7 +43,7 @@ function mode( newer, preference, classicPass = false ) { cvar.Cvar_Set( 'r_hdr'
 function fixture( fn ) { const strings = controls.map( v => v.string ), old = { time: cl.time, newer: anim.R_IsNewer(), classic: anim.R_ClassicPassActive() }; try { fn(); } finally { controls.forEach( ( v, i ) => cvar.Cvar_Set( v.name, strings[ i ] ) ); cl.time = old.time; anim.R_AnimSetNewer( old.newer ); anim.R_AnimSetClassicPass( old.classic ); } }
 const dots = Float32Array.from( { length: 162 }, ( _, i ) => .1 + i / 200 );
 const draw = ( e, h ) => R_DrawAliasModel( e, h, dots, .63 );
-function poseState( e ) { const s = e._aliasLerp; return JSON.stringify( { from: s.from, to: s.to, start: s.start, interval: s.interval, lastTime: s.lastTime, blend: s.blend, origin: s.origin } ); }
+function poseState( e ) { const s = e._aliasLerp; return JSON.stringify( { from: s.from, to: s.to, start: s.start, interval: s.interval, lastTime: s.lastTime, blend: s.blend, origin: s.origin, lead: s.lead } ); }
 function exactNative( mesh, header, pose, label ) { const native = GL_DrawAliasFrame( header, pose ); for ( const [ name, expected ] of [ [ 'position', native.posAttr ], [ 'normal', native.normalAttr ], [ 'uv', native.uvAttr ] ] ) { same( mesh.geometry.getAttribute( name ), expected, label + ' native attribute identity ' + name ); check( bytes( mesh.geometry.getAttribute( name ).array ).equals( witnesses.get( header )[ pose ][ name ] ), label + ' exact immutable original native bytes ' + name ); } }
 function blended( asset, preference ) {
 
@@ -110,3 +110,24 @@ Deno.test( 'native test models retain all source animation groups and shared geo
 	console.log( 'CLASSIC_NATIVE_ALIAS_MODELS ' + JSON.stringify( assets.map( a => ( { name: a.name, frames: a.header.numframes, poses: a.header.numposes } ) ) ) );
 
 } );
+
+// card [43]: frame changes that come early, twice running, on the real Grunt: what is drawn never jumps, and the next
+// blend leaves exactly what was on screen (the mesh keeps it), not the last frame's pose
+Deno.test( 'enhanced: early frame changes on a real model draw on from the pose on screen, exactly, however many come in a row', () => fixture( () => {
+	const asset = assets[ 0 ], h = asset.header, e = new entity_t(); e.model = asset.model; mode( true, 1 );
+	const positions = () => Float32Array.from( draw( e, h ).geometry.getAttribute( 'position' ).array );
+	const normals = () => Float32Array.from( e._aliasGeo.getAttribute( 'normal' ).array );
+	e.frame = 0; cl.time = 50; draw( e, h ); e.frame = 1; cl.time = 50.1; draw( e, h );
+	cl.time = 50.1833; const before = positions(), beforeN = normals(); near( e._aliasLerp.blend, .833, 'five sixths of the way to frame 1', 1e-3 );
+	e.frame = 2; const after = positions(); check( e._aliasLerp.lead !== null, 'an early change' );
+	check( bytes( after ).equals( bytes( before ) ) && bytes( normals() ).equals( bytes( beforeN ) ), 'the change draws exactly what was on screen (positions and normals)' );
+	const two = GL_DrawAliasFrame( h, e._aliasLerp.to ).posAttr.array;
+	cl.time = 50.2083; positions(); // (a draw on the way: the lead stays the pose of the change, not of the last draw)
+	cl.time = 50.2333; const half = positions(), t = e._aliasLerp.blend; near( t, .5, 'halfway', 1e-3 );
+	for ( let i = 0; i < half.length; i ++ ) same( half[ i ], Math.fround( before[ i ] + ( two[ i ] - before[ i ] ) * t ), 'from the pose on screen towards frame 2, vertex ' + i );
+	// a second early change before that blend is done: again no jump, from what is now on screen
+	cl.time = 50.2666; const again = positions(); e.frame = 3; const next = positions();
+	check( bytes( next ).equals( bytes( again ) ), 'a second early change in a row draws exactly what was on screen' );
+	cl.time = 50.40; positions(); same( e._aliasLerp.blend, 1, 'arrived' ); same( e._aliasLerp.lead, null, 'the lead is done with' );
+	const three = GL_DrawAliasFrame( h, 3 ).posAttr.array; check( bytes( Float32Array.from( e._aliasGeo.getAttribute( 'position' ).array ) ).equals( bytes( three ) ), 'and frame 3 is drawn exactly' );
+} ) );
