@@ -126,3 +126,5 @@ QUAKED_THREE_MODULE=/path/to/three.module.js node tools/run_tests.mjs \
 The native trial is `tests/powervision_gameplay_trial.html`; it offers actual
 power-up collection and an explicitly staged wall-separated enemy viewpoint.
 The finite GPU trials run without gameplay or a background animation loop.
+
+Since 9 October 2026 the Ring also hides you from monsters already hunting you, and a monster you hurt hunts where you fired from: [ring-unseen-2026-10-09.md](ring-unseen-2026-10-09.md).

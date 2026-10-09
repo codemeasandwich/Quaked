@@ -1,6 +1,7 @@
 // Ported from: WinQuake/host.c -- coordinates spawning and killing of local servers
 
 import { SV_CheatsInit, SV_CheatsFrame } from './sv_cheats.js';
+import { SV_UnseenFrame } from './sv_unseen.js';
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from './sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString } from './common.js';
@@ -493,6 +494,8 @@ export function Host_ServerFrame() {
 
 	// switched-on cheat power-ups stay on (also while a menu holds the game, so the picture under it shows them at once)
 	SV_CheatsFrame();
+	// the Ring: no monster keeps hunting an unseen player; one the player hurts hunts where they fired from (sv_unseen.js)
+	SV_UnseenFrame();
 
 	// send all messages to the clients
 	SV_SendClientMessages();

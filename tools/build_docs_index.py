@@ -22,7 +22,7 @@ TOPICS = [
 	('Playing and menus', 'Starting a game, the menu, loading and the options screen.',
 	 r'single-player-menu|game-menu|loading-|studio-logo|credits-sizing|newer-game-startup|enhanced-landing|options-|audio-volume|ambient-music|intro-readiness|visual-options|asset-readiness|fullgame|distribution|welcome-'),
 	('Weapons and combat', 'Held weapons, shotgun pellets, shells, the death and respawn rules.',
-	 r'weapon|nailgun|shotgun|super-nailgun|held-framing|clockwise-respawn|respawn-|death-remains|pinned-zombies|powerup|power-up|quad'),
+	 r'weapon|nailgun|shotgun|super-nailgun|held-framing|clockwise-respawn|respawn-|death-remains|pinned-zombies|powerup|power-up|quad|ring-unseen'),
 	('Enemies, skins and faces', 'Custom enemy skins, heights, heads, the Bestiary and the player portrait.',
 	 r'enemy|face-|hud-|head-skins|height-authoring|demon|oldone|vore|bestiary|gloom-hood|shambler|zombie'),
 	('Worlds, rock and textures', 'Level textures, rock relief, seams, seamless levels and portals.',

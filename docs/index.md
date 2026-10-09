@@ -47,6 +47,7 @@ Held weapons, shotgun pellets, shells, the death and respawn rules.
 - [Respawn after slime or lava: no carried-over hazard damage](respawn-hazard-state-2026-10-08.md)
 - [Normal difficulty: falling respawn health, topped up by new levels](respawn-health-2026-10-09.md)
 - [The way back is shut once you respawn](respawn-return-closed-2026-10-09.md)
+- [The Ring of Shadows hides you from monsters already hunting you](ring-unseen-2026-10-09.md)
 - [Shotgun pellets, underwater bubbles, and damage that arrives with them](shotgun-pellets-2026-10-08.md)
 - [Held super nailgun: the barrels coast and spin down after firing](super-nailgun-coast-2026-10-08.md)
 - [Weapon Models credits](weapon-models-credits-2026-10-02.md)
