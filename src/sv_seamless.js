@@ -919,50 +919,90 @@ function SV_ExitIsTeleporter( exit ) {
 
 }
 
-// A window onto the next level in a teleporter pad's slipgate (card [B2]). The pad itself still teleports as before; this is the
-// picture. The window is the largest upright teleporter surface within reach of the exit's trigger (the slipgate's face),
-// taken on the side the trigger is on, 1 unit in front of it, and it looks from the next level's arrival point the way a player
-// walking through would face. Null when the exit has no upright teleporter surface (E1M4's exit to E1M5) or the next level
-// cannot be read.
-function SV_PadWindow( exit ) {
+// Windows onto the next level in a teleporter pad's slipgate (card [B2]). The pad itself still teleports as before; this is the
+// picture. A gate is the upright teleporter or slipgate surfaces within reach of the exit's trigger. Turbulent surfaces come cut
+// into strips, so coplanar pieces facing the same way are one face; a gate brush is thin with a face each way on both of its
+// planes, and only the OUTER faces (nothing of the gate further along their normal) are seen by a player, so each outer face of
+// a doorway's size gets a window: a ring you can walk round gets one on each side. The window is the face's own polygons, 1 unit
+// in front of it (so it has the gate's exact shape and nothing pokes out of it), and it looks from the next level's arrival point
+// the way a player walking through would face. Returns [] when the exit has no upright teleporter surface (E1M4's exit to E1M5).
+export function SV_PadWindows( exit ) {
 
 	const model = sv.worldmodel, there = SV_LevelLinks( exit.map );
-	if ( model == null || model.surfaces == null || there === null || there.start === null ) return null;
-	const reach = 48, trigger = [ 0, 1, 2 ].map( a => ( exit.mins[ a ] + exit.maxs[ a ] ) * .5 );
-	// (turbulent surfaces come cut into strips: coplanar pieces facing the same way are one face)
-	const faces = new Map();
+	if ( model == null || model.surfaces == null || there === null || there.start === null ) return [];
+	// the pieces of slipgate surface near the exit (the compiler cuts one face into several)
+	const pieces = [];
 	for ( const surf of model.surfaces ) {
 
 		if ( surf.texinfo?.texture == null || ! TELEPORTER_TEXTURE.test( surf.texinfo.texture.name ) || surf.plane == null ) continue;
 		const sign = ( surf.flags & 2 ) ? - 1 : 1, n = [ 0, 1, 2 ].map( a => surf.plane.normal[ a ] * sign ); // SURF_PLANEBACK
-		const axis = Math.abs( n[ 0 ] ) > .99 ? 0 : Math.abs( n[ 1 ] ) > .99 ? 1 : - 1;
-		if ( axis < 0 ) continue; // upright and square to the map's axes only
-		const mn = [ 1e9, 1e9, 1e9 ], mx = [ - 1e9, - 1e9, - 1e9 ];
+		const axis = Math.abs( n[ 0 ] ) > .9999 ? 0 : Math.abs( n[ 1 ] ) > .9999 ? 1 : - 1;
+		if ( axis < 0 ) continue; // upright and square to the map's axes only (the window's transform is)
+		const polygon = [], mn = [ 1e9, 1e9, 1e9 ], mx = [ - 1e9, - 1e9, - 1e9 ];
 		for ( let i = 0; i < surf.numedges; i ++ ) {
 
 			const l = model.surfedges[ surf.firstedge + i ], e = model.edges[ Math.abs( l ) ], v = model.vertexes[ l > 0 ? e.v[ 0 ] : e.v[ 1 ] ].position;
+			polygon.push( [ v[ 0 ], v[ 1 ], v[ 2 ] ] );
 			for ( let a = 0; a < 3; a ++ ) { mn[ a ] = Math.min( mn[ a ], v[ a ] ); mx[ a ] = Math.max( mx[ a ], v[ a ] ); }
 
 		}
-		if ( [ 0, 1, 2 ].some( a => mx[ a ] < exit.mins[ a ] - reach || mn[ a ] > exit.maxs[ a ] + reach ) ) continue;
-		// the face toward the trigger (a slipgate brush has one each way)
-		if ( ( trigger[ axis ] - mn[ axis ] ) * n[ axis ] <= 0 ) continue;
-		const key = axis + ':' + Math.sign( n[ axis ] ) + ':' + Math.round( mn[ axis ] );
-		const face = faces.get( key ) ?? { axis, n, mn: mn.slice(), mx: mx.slice(), area: 0 };
+		// the gate is the surface the exit's trigger stands against: its plane within 24 units of the trigger (a decorative
+		// slipgate panel on a nearby wall is not; E1M1 has one 41 units off)
+		const plane = mn[ axis ], off = plane < exit.mins[ axis ] ? exit.mins[ axis ] - plane : plane > exit.maxs[ axis ] ? plane - exit.maxs[ axis ] : 0;
+		if ( off > 24 ) continue;
+		// a face is seen from the side the trigger reaches out on (a wall slipgate: its front only; a ring the trigger passes
+		// through: both sides)
+		if ( ( n[ axis ] > 0 ? exit.maxs[ axis ] - plane : plane - exit.mins[ axis ] ) <= 0 ) continue;
+		const across = 1 - axis;
+		// overlapping the trigger across and up; or (below) joined to a piece that does: E4M1's exit is a low pad and its gate is
+		// cut in two at z 160, the upper piece clear of the trigger
+		const over = Math.min( mx[ across ], exit.maxs[ across ] ) > Math.max( mn[ across ], exit.mins[ across ] ) - 16 && Math.min( mx[ 2 ], exit.maxs[ 2 ] ) > Math.max( mn[ 2 ], exit.mins[ 2 ] ) - 16;
+		pieces.push( { key: axis + ':' + Math.sign( n[ axis ] ) + ':' + plane, axis, n, plane, mn, mx, polygon, in: over } );
+
+	}
+	for ( let grew = true; grew; ) {
+
+		grew = false;
+		for ( const q of pieces ) if ( ! q.in && pieces.some( r => r.in && r.key === q.key && [ 0, 1, 2 ].every( a => q.mn[ a ] <= r.mx[ a ] + 1 && q.mx[ a ] >= r.mn[ a ] - 1 ) ) ) q.in = grew = true;
+
+	}
+	// coplanar pieces facing the same way are one face
+	const faces = new Map();
+	for ( const { key, axis, n, plane, mn, mx, polygon } of pieces.filter( q => q.in ) ) {
+
+		const face = faces.get( key ) ?? { axis, n, plane, mn: mn.slice(), mx: mx.slice(), area: 0, polygons: [] };
 		for ( let a = 0; a < 3; a ++ ) { face.mn[ a ] = Math.min( face.mn[ a ], mn[ a ] ); face.mx[ a ] = Math.max( face.mx[ a ], mx[ a ] ); }
 		face.area += ( mx[ 2 ] - mn[ 2 ] ) * ( mx[ 1 - axis ] - mn[ 1 - axis ] );
+		face.polygons.push( polygon );
 		faces.set( key, face );
 
 	}
-	let best = null;
-	for ( const face of faces.values() ) if ( best === null || face.area > best.area ) best = face;
-	if ( best === null ) return null;
-	const { axis, n, mn, mx } = best, at = mn[ axis ] + n[ axis ];
-	const box = { mins: mn.slice(), maxs: mx.slice() }; box.mins[ axis ] = at - 1; box.maxs[ axis ] = at + 1;
-	const centre = [ 0, 1, 2 ].map( a => ( box.mins[ a ] + box.maxs[ a ] ) * .5 );
-	const transform = R_CrossingTransform( box, n[ axis ], SV_ArrivalStart( exit.map, there.start ), floorBelow( centre ), axis );
-	if ( transform === null ) return null;
-	return { exit, map: exit.map, transform, side: n[ axis ], opening: openingOf( transform ), arch: null, viewOnly: true };
+	// doorway-sized faces only (a slipgate's frame and trims carry slipgate textures too: slipside, sliptopsd), and faces that
+	// fill most of their own outline (the start map's frame corners are four 16-unit squares on one plane, whose outline is
+	// doorway-sized but which hid the gate behind them)
+	const all = [ ...faces.values() ].filter( f => f.mx[ 2 ] - f.mn[ 2 ] >= 48 && f.mx[ 1 - f.axis ] - f.mn[ 1 - f.axis ] >= 40 &&
+		f.area >= .5 * ( f.mx[ 2 ] - f.mn[ 2 ] ) * ( f.mx[ 1 - f.axis ] - f.mn[ 1 - f.axis ] ) );
+	// outer: no other face of the gate on the same axis lies ahead of it (within 32 units) overlapping it
+	const outer = all.filter( f => ! all.some( g => g !== f && g.axis === f.axis && ( g.plane - f.plane ) * f.n[ f.axis ] > 0 && ( g.plane - f.plane ) * f.n[ f.axis ] <= 32 &&
+		[ 0, 1, 2 ].every( a => a === f.axis || ( g.mn[ a ] < f.mx[ a ] && g.mx[ a ] > f.mn[ a ] ) ) ) );
+	// at most one window facing each way: the largest outer face (a wall slipgate has one, a free-standing ring two)
+	const facing = new Map();
+	for ( const f of outer ) { const k = f.axis + ':' + Math.sign( f.n[ f.axis ] ); if ( ! facing.has( k ) || facing.get( k ).area < f.area ) facing.set( k, f ); }
+	const windows = [];
+	for ( const f of facing.values() ) {
+
+		const { axis, n, mn, mx } = f, at = f.plane + n[ axis ];
+		const box = { mins: mn.slice(), maxs: mx.slice() }; box.mins[ axis ] = at - 1; box.maxs[ axis ] = at + 1;
+		const centre = [ 0, 1, 2 ].map( a => ( box.mins[ a ] + box.maxs[ a ] ) * .5 );
+		// (the window looks INTO the face: the walking direction is against its normal; R_CrossingTransform's through is -side)
+		const transform = R_CrossingTransform( box, n[ axis ], SV_ArrivalStart( exit.map, there.start ), floorBelow( centre ), axis );
+		if ( transform === null ) continue;
+		const opening = openingOf( transform );
+		opening.polygons = f.polygons.map( poly => poly.map( v => v.map( ( c, a ) => c + n[ a ] ) ) );
+		windows.push( { exit, map: exit.map, transform, side: n[ axis ], opening, arch: null, viewOnly: true } );
+
+	}
+	return windows;
 
 }
 
@@ -1072,8 +1112,7 @@ export function SV_SeamlessSetup() {
 
 				pads.push( { exit, map: exit.map } );
 				// and its slipgate shows the next level (owner request, 9 Oct 2026): a window only, never crossed by walking
-				const window = SV_PadWindow( exit );
-				if ( window !== null ) crossings.push( window );
+				for ( const window of SV_PadWindows( exit ) ) crossings.push( window );
 
 			}
 			continue;

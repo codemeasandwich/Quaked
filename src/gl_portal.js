@@ -26,6 +26,7 @@ const SURF_DRAWSKY = 4;
 const PLAYER_ORIGIN_HEIGHT = 24; // hull origin above the floor
 const TELEPORT_DEST_HEIGHT = 27; // trigger_teleport places the player at dest + '0 0 27'
 const TRIGGER_SLOP = 24; // how far a trigger may be from the surface it belongs to
+const GATE_GAP = 8; // the faces of one level-exit gate lie this close together
 
 const MAX_PORTAL_VIEWS = 3; // portal views rendered per frame
 const PORTAL_RT_SCALE = 0.75; // render target size relative to the 3D viewport
@@ -339,6 +340,19 @@ export function R_BuildPortals( model ) {
 
 	}
 
+	// a level exit's gate (a trigger_changelevel at it) shows the next level (r_levelview.js), not a view within this one, even when
+	// a trigger_teleport lies near it too (E1M4's secret exit gate): its surfaces are left out here, the whole gate (E3M6's has two
+	// planes 4 units apart, a teleport trigger behind one and the exit's in front of the other). When no window is built for it
+	// (seamless travel off, a game with other players, the next level unreadable) the gate keeps the plain teleporter look.
+	const exits = [];
+	for ( const ent of ents ) {
+
+		if ( ent.classname !== 'trigger_changelevel' || ent.model == null || ent.model.charAt( 0 ) !== '*' ) continue;
+		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
+		if ( sub != null ) exits.push( sub );
+
+	}
+
 	if ( triggers.length === 0 ) return portals;
 
 	// Link every "*teleport" surface of the world to the trigger it belongs to
@@ -372,6 +386,7 @@ export function R_BuildPortals( model ) {
 		}
 
 		if ( best < 0 ) continue;
+		const atExit = exits.some( x => boxGap( smins, smaxs, x.mins, x.maxs ) <= Math.min( bestGap, TRIGGER_SLOP ) );
 
 		const sign = ( surf.flags & SURF_PLANEBACK ) ? - 1 : 1;
 		const n = [
@@ -388,12 +403,13 @@ export function R_BuildPortals( model ) {
 
 			g = {
 				trigger: triggers[ best ], n, dist, surfaces: [],
-				mins: [ 99999, 99999, 99999 ], maxs: [ - 99999, - 99999, - 99999 ]
+				mins: [ 99999, 99999, 99999 ], maxs: [ - 99999, - 99999, - 99999 ], gate: false
 			};
 			groups.set( key, g );
 
 		}
 
+		if ( atExit ) g.gate = true;
 		g.surfaces.push( surf );
 		for ( let a = 0; a < 3; a ++ ) {
 
@@ -403,6 +419,26 @@ export function R_BuildPortals( model ) {
 		}
 
 	}
+
+	// the rest of a gate: a parallel face within GATE_GAP units of one at the exit
+	for ( let grew = true; grew; ) {
+
+		grew = false;
+		for ( const g of groups.values() ) {
+
+			if ( g.gate ) continue;
+			for ( const h of groups.values() ) {
+
+				if ( ! h.gate || Math.abs( g.n[ 0 ] * h.n[ 0 ] + g.n[ 1 ] * h.n[ 1 ] + g.n[ 2 ] * h.n[ 2 ] ) < 0.99 || boxGap( g.mins, g.maxs, h.mins, h.maxs ) > GATE_GAP ) continue;
+				g.gate = grew = true;
+				break;
+
+			}
+
+		}
+
+	}
+	for ( const [ key, g ] of groups ) if ( g.gate ) groups.delete( key );
 
 	for ( const g of groups.values() ) {
 
@@ -909,16 +945,17 @@ dest      where the exit plane lands in the scene
 forward   the direction of travel across it, in the scene
 ================
 */
-export function R_AddLevelPortal( scene, corners, matrix, dest, forward ) {
+export function R_AddLevelPortal( scene, corners, matrix, dest, forward, polygons = null ) {
 
-	const positions = new Float32Array( [
+	// the rectangle, or the given polygons (each a convex fan, as a BSP face is)
+	const positions = polygons?.length ? new Float32Array( polygons.flatMap( poly => poly.slice( 1, - 1 ).flatMap( ( v, k ) => [ ...poly[ 0 ], ...v, ...poly[ k + 2 ] ] ) ) ) : new Float32Array( [
 		...corners[ 0 ], ...corners[ 1 ], ...corners[ 2 ],
 		...corners[ 0 ], ...corners[ 2 ], ...corners[ 3 ]
 	] );
 
 	const geometry = new THREE.BufferGeometry();
 	geometry.setAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
-	geometry.setAttribute( 'uv', new THREE.BufferAttribute( new Float32Array( 12 ), 2 ) );
+	geometry.setAttribute( 'uv', new THREE.BufferAttribute( new Float32Array( positions.length / 3 * 2 ), 2 ) );
 	geometry.computeBoundingSphere();
 
 	const portal = {

@@ -160,3 +160,32 @@ Deno.test( 'other turbulent textures are not portals', () => {
 	assertEqual( portal.R_BuildPortals( makeModel( [ surf ], ENTITIES ) ).length, 0, 'no portals' );
 
 } );
+
+// E1M4's secret exit (card [B2]): a slipgate with both a trigger_teleport and a trigger_changelevel at it is a level exit; it
+// shows the next level (r_levelview.js), never a camera view into this level
+Deno.test( 'a teleporter surface at a level exit is left to the next level\'s window', () => {
+
+	const exit = ENTITIES + '{\n"classname" "trigger_changelevel"\n"map" "e1m8"\n"model" "*2"\n}\n';
+	const at = makeSurface( '*teleport', 100, 1 ), model = makeModel( [ at ], exit );
+	model.submodels[ 2 ] = { mins: [ 92, - 36, - 4 ], maxs: [ 108, 36, 116 ] };
+	try { assertEqual( portal.R_BuildPortals( model ).length, 0, 'the exit gate is not a camera portal' ); } finally { portal.R_ClearPortals(); }
+
+	// a level exit elsewhere in the map leaves the teleporter its portal
+	const away = makeSurface( '*teleport', 100, 1 ), elsewhere = makeModel( [ away ], exit );
+	elsewhere.submodels[ 2 ] = { mins: [ 900, 900, 0 ], maxs: [ 960, 960, 100 ] };
+	try { assertEqual( portal.R_BuildPortals( elsewhere ).length, 1, 'an ordinary teleporter keeps its portal' ); } finally { portal.R_ClearPortals(); }
+
+	// an exit 10 units off, its own teleporter trigger nearer (at it): still a teleporter
+	const near = makeSurface( '*teleport', 100, 1 ), beside = makeModel( [ near ], exit );
+	beside.submodels[ 2 ] = { mins: [ 70, - 36, - 4 ], maxs: [ 80, 36, 116 ] };
+	beside.submodels[ 1 ] = { mins: [ 100, - 40, - 8 ], maxs: [ 110, 40, 120 ] };
+	try { assertEqual( portal.R_BuildPortals( beside ).length, 1, 'a teleporter whose own trigger is nearer than an exit keeps its portal' ); } finally { portal.R_ClearPortals(); }
+
+	// E3M6's gate: two planes 4 units apart, the exit's trigger in front of one and a teleport trigger behind the other; the whole
+	// gate is the exit's
+	const front = makeSurface( '*teleport', 100, 1 ), back = makeSurface( '*teleport', 96, - 1 ), gate = makeModel( [ front, back ], exit );
+	gate.submodels[ 1 ] = { mins: [ 80, - 40, - 8 ], maxs: [ 86, 40, 120 ] }; // the teleport trigger, behind (10 from the back plane, 14 from the front)
+	gate.submodels[ 2 ] = { mins: [ 110, - 36, - 4 ], maxs: [ 116, 36, 116 ] }; // the exit, in front (10 from the front plane)
+	try { assertEqual( portal.R_BuildPortals( gate ).length, 0, 'no face of the gate is a camera portal' ); } finally { portal.R_ClearPortals(); }
+
+} );

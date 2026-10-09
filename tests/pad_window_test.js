@@ -59,11 +59,18 @@ const stuck=e=>!!SV_TestEntityPosition(e);
 const flush=ms=>new Promise(r=>setTimeout(r,ms));
 
 
+// the window is the slipgate surface's own shape, laid one unit in front of it: every vertex on the window's plane
+function onPlane(w,map){check(w.opening.polygons?.length>0,map+': the window has the gate surface\'s shape');const t=w.transform,d=t.center.reduce((s,v,a)=>s+v*t.through[a],0);
+ for(const poly of w.opening.polygons){check(poly.length>=3,map+': each piece is a polygon');for(const v of poly)near(v.reduce((s,c,a)=>s+c*t.through[a],0),d,map+': on the window plane',1e-3);}}
 Deno.test('a teleporter-pad exit gets a view-only window onto the next level, in its slipgate, on the side the player comes from',()=>{
- for(const [map,next] of [['e1m8','e1m5'],['e1m4','e1m8']]){
+ // E1M8: a wall slipgate, seen from its front only (its back face, inside the wall, gets none)
+ // E1M4's secret exit: a free-standing ring the trigger passes through, seen from both sides
+ for(const [map,next,count] of [['e1m8','e1m5',1],['e1m4','e1m8',2]]){
   const p=spawn(map);const w=travel.SV_SeamlessCrossings().filter(c=>c.viewOnly);
-  same(w.length,1,map+': one window');same(w[0].map,next,map+': onto '+next);check(w[0].opening&&w[0].opening.a1-w[0].opening.a0>32&&w[0].opening.b1-w[0].opening.b0>48,map+': a doorway-sized opening');
-  same(w[0].transform.kind,'plane',map+': an upright window');check(Math.abs(w[0].transform.through[2])<1e-9,map+': level');
+  same(w.length,count,map+': windows');
+  for(const c of w){same(c.map,next,map+': onto '+next);check(c.opening&&c.opening.a1-c.opening.a0>32&&c.opening.b1-c.opening.b0>48,map+': a doorway-sized opening');
+   same(c.transform.kind,'plane',map+': an upright window');check(Math.abs(c.transform.through[2])<1e-9,map+': level');onPlane(c,map);}
+  if(count===2)near(w[0].transform.through.reduce((s,v,a)=>s+v*w[1].transform.through[a],0),-1,map+': the two sides face opposite ways');
   travel.SV_SeamlessReset();
  }
  // E1M4's ordinary exit to E1M5 has no slipgate: it stays what it was (a walk-through crossing), and gets no extra window
@@ -76,6 +83,28 @@ Deno.test('walking into the window is not a seamless crossing: the pad keeps its
 
 Deno.test('the renderer builds a view for the window',async()=>{
  const p=spawn('e1m8');const scene=new THREE.Scene();const crossings=travel.SV_SeamlessCrossings();
- try{R_ClearPortals();R_SetupLevelViews(scene,crossings);const deadline=performance.now()+30000;while(R_LevelViewCount()<1&&performance.now()<deadline)await flush(20);same(R_LevelViewCount(),1,'a view of E1M5 is built');check(R_LevelPortalMatrix(crossings.indexOf(crossings.find(c=>c.viewOnly))),'with its window');}
+ try{R_ClearPortals();R_SetupLevelViews(scene,crossings);const deadline=performance.now()+30000;while(R_LevelViewCount()<1&&performance.now()<deadline)await flush(20);same(R_LevelViewCount(),1,'a view of E1M5 is built');check(R_LevelPortalMatrix(crossings.indexOf(crossings.find(c=>c.viewOnly))),'with its window');
+  // the window drawn is the gate surface's own shape (its polygons, each a fan), not the rectangle around it: a rectangle put the
+  // next level's picture in the corners of E1M4's round ring (the owner's report)
+  const w=crossings.find(c=>c.viewOnly),meshes=scene.children.filter(m=>m.name==='quake_level_portal');same(meshes.length,1,'one window mesh');
+  const pos=meshes[0].geometry.getAttribute('position'),fan=w.opening.polygons.flatMap(poly=>poly.slice(1,-1).flatMap((v,k)=>[poly[0],v,poly[k+2]]));
+  same(pos.count,fan.length,'one vertex per fan corner');same(meshes[0].geometry.getAttribute('uv').count,pos.count,'and a uv for each');
+  fan.forEach((v,k)=>[0,1,2].forEach(a=>near(pos.array[k*3+a],v[a],'vertex '+k,1e-3)));}
  finally{R_ClearLevelViews();R_ClearPortals();travel.SV_SeamlessReset();}
+});
+
+// The start map's episode gates (registered game only: the episodes' first levels must exist). Their slipgate frames have small
+// corner pieces on a plane just in front of the gate; those once hid the gate itself and the gates got no window.
+Deno.test('the start map\'s episode gates show their episodes',()=>{
+ if(!process.env.QUAKED_OWNED_PAK){console.log('skipped: QUAKED_OWNED_PAK is not set');return;}
+ // the owned archive's levels and models (the registered start map, the episodes); the game code stays this repository's
+ const owned=readFileSync(process.env.QUAKED_OWNED_PAK),levels=pak.COM_LoadPackFile('owned/pak0.pak',owned.buffer.slice(owned.byteOffset,owned.byteOffset+owned.length));
+ levels.files=levels.files.filter(f=>f.name!=='progs.dat');pak.COM_AddPack(levels);
+ const p=spawn('start');
+ const w=travel.SV_SeamlessCrossings().filter(c=>c.viewOnly);
+ // (the stock start map: its Episode 1 exit is a slipgate too; the Newer Game's own start map makes that one a walk-through)
+ same(w.map(c=>c.map).sort().join(),'e1m1,e2m1,e3m1,e4m1','one window at each episode gate');for(const c of w)onPlane(c,'start to '+c.map);travel.SV_SeamlessReset();
+ // E4M1: its exit is a low pad and its gate is cut in two at z 160; the window is the whole gate (it was once the lower strip only)
+ spawn('e4m1');const e4=travel.SV_SeamlessCrossings().filter(c=>c.viewOnly);same(e4.length,1,'E4M1: one window');onPlane(e4[0],'E4M1');
+ const zs=e4[0].opening.polygons.flat().map(v=>v[2]);check(Math.min(...zs)<=96&&Math.max(...zs)>=256,'E4M1: the window runs the gate\'s full height ('+Math.min(...zs)+' to '+Math.max(...zs)+')');travel.SV_SeamlessReset();
 });

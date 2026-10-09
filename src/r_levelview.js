@@ -909,7 +909,8 @@ function buildView( scene, c, i ) {
 		[ corner( o.a0, o.b0 ), corner( o.a1, o.b0 ), corner( o.a1, o.b1 ), corner( o.a0, o.b1 ) ],
 		matrix,
 		[ off[ 0 ] + receiver[ 0 ], off[ 1 ] + receiver[ 1 ], off[ 2 ] + receiver[ 2 ] ],
-		t.direction( t.through ) );
+		t.direction( t.through ),
+		o.polygons ); // (a slipgate's window is its own surface's shape: R_AddLevelPortal draws these instead of the rectangle)
 	portal.crossing = i;
 
 	views.push( view );
