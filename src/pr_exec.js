@@ -39,6 +39,7 @@ import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from './sv_respawn.j
 import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from './sv_axecut.js';
 import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from './sv_faceevents.js';
 import { SV_UnseenFunctionEnter, SV_UnseenFunctionLeave } from './sv_unseen.js';
+import { SV_MeleeSprayEnter } from './sv_meleespray.js';
 
 /*
 */
@@ -282,6 +283,7 @@ export function PR_EnterFunction( f ) {
 	pr_stack[ pr_depth ].axe = SV_AxeFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].respawn = SV_RespawnFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].unseen = SV_UnseenFunctionEnter( f );
+	pr_stack[ pr_depth ].melee = SV_MeleeSprayEnter( f );
 
 	pr_stack[ pr_depth ].s = pr_xstatement;
 	pr_stack[ pr_depth ].f = pr_xfunction;
@@ -313,9 +315,9 @@ export function PR_EnterFunction( f ) {
 	}
 
 	PR_SetXFunction( f );
-	// (a hook may have the interpreter run SUB_Null in the function's place: the respawn sequence, and a shotgun
-	// pellet's TraceAttack that waits for its flight, sv_shotdelay.js)
-	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? pr_stack[ pr_depth - 1 ].face?.skip ?? ( f.first_statement - 1 ); // offset the s++
+	// (a hook may have the interpreter run SUB_Null in the function's place: the respawn sequence, a shotgun
+	// pellet's TraceAttack that waits for its flight, sv_shotdelay.js, and a melee blow's meat spray off the player, sv_meleespray.js)
+	return pr_stack[ pr_depth - 1 ].respawn?.skip ?? pr_stack[ pr_depth - 1 ].face?.skip ?? pr_stack[ pr_depth - 1 ].melee?.skip ?? ( f.first_statement - 1 ); // offset the s++
 
 }
 
