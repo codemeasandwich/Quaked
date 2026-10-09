@@ -18,6 +18,7 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
+import { R_LightningTakesBeam } from './r_lightning.js';
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
@@ -341,6 +342,21 @@ function CL_NewTempEntity() {
 CL_UpdateTEnts
 =================
 */
+// The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
+// (r_lightning.js, card [30a]): { end } or null. Other beams (the Shambler's, Chthon's, the grapple's) are not it.
+export function CL_PlayerLightning() {
+
+	const serverTime = cl.mtime[ 0 ];
+	for ( let i = 0; i < MAX_BEAMS; i ++ ) {
+
+		const b = cl_beams[ i ];
+		if ( b.model != null && b.endtime >= serverTime && b.entity === cl.viewentity && b.model.name === 'progs/bolt2.mdl' ) return { end: Array.from( b.end ) };
+
+	}
+	return null;
+
+}
+
 export function CL_UpdateTEnts() {
 
 	num_temp_entities = 0;
@@ -361,6 +377,8 @@ export function CL_UpdateTEnts() {
 		if ( b.entity === cl.viewentity ) {
 
 			VectorCopy( cl_entities[ cl.viewentity ].origin, b.start );
+			// the Newer Game draws the player's own lightning gun beam itself (r_lightning.js): no bolt models for it
+			if ( b.model.name === 'progs/bolt2.mdl' && R_LightningTakesBeam() ) continue;
 
 		}
 

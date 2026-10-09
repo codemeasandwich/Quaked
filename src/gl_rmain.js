@@ -37,6 +37,8 @@ import { R_MistFrame, R_MistClear } from './r_mist.js';
 import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_FireballFrame, R_FireballClear, R_FireballReplacesSprite } from './r_fireball.js';
 import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset, R_ImpactRippleListen } from './r_impactripples.js';
 import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from './r_waves.js';
+import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear } from './r_lightning.js';
+import { CL_PlayerLightning } from './cl_tent.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
 import { CL_AllocDlight } from './cl_main.js';
@@ -942,6 +944,19 @@ const _setupgl_drawingBufferSize = new THREE.Vector2();
 // The muzzle point(s) of the viewmodel in world space for the shotgun's pellets (r_shotgun.js): the front of the
 // gun's own geometry; before the first frame has placed a gun, a point in front of the eye.
 let _gunPlacedFrame = - 1;
+// the held lightning gun's muzzle (the front of its own geometry) and its placement, for the beam (r_lightning.js): only a gun
+// placed this frame
+function R_LightningMuzzle() {
+
+	const e = cl?.viewent, mesh = e?._aliasMesh;
+	if ( mesh == null || e._aliasTemplate == null || _gunPlacedFrame !== r_framecount || ! /v_light\.mdl$/.test( e.model?.name ?? '' ) ) return null;
+	const points = viewModelMuzzles( mesh, e._aliasTemplate, 1 );
+	if ( points == null ) return null;
+	if ( mesh.matrixAutoUpdate ) mesh.updateMatrix();
+	return { point: points[ 0 ], matrix: mesh.matrix };
+
+}
+
 function R_ShotgunMuzzles( count ) {
 
 	// only a gun that was placed this frame (not hidden by the ring of shadows, the chase camera or r_drawviewmodel 0)
@@ -1758,6 +1773,7 @@ export function R_RenderView() {
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
 	R_DrawViewModel();
 	R_ShotgunFrame( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the gun is placed: the pellets leave its muzzle)
+	R_LightningFrame( cl != null ? cl.time : 0 ); // (after the gun is placed: the beam leaves its muzzle, card [30a])
 	R_DrawWaterSurfaces();
 
 	// render mirror view
@@ -1995,6 +2011,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_shotgunfx );
 	Cvar_RegisterVariable( r_impactripples );
+	Cvar_RegisterVariable( r_newer_lightning );
 	Cvar_RegisterVariable( r_reflect );
 	Cvar_RegisterVariable( r_water_look );
 	Cvar_RegisterVariable( r_reflect_screen );
@@ -2215,6 +2232,7 @@ export function R_NewMap() {
 	R_TorchFireSetup( { scene } );
 	R_TorchFireClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
+	R_LightningSetup( { scene, camera: () => camera, muzzle: R_LightningMuzzle, beam: CL_PlayerLightning, allocDlight: CL_AllocDlight } );
 	R_WavesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), waterOn: R_WaterActive } );
 	R_ImpactRippleListen( R_WaveImpact );
 	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
@@ -2280,6 +2298,7 @@ export function R_NewMap() {
 	R_SetupLevelViews( scene, SV_SeamlessCrossings() );
 	R_ImpactRippleReset();
 	R_WavesReset();
+	R_LightningClear();
 
 }
 
