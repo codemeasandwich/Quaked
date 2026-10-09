@@ -2225,6 +2225,7 @@ const NEWER_FEATURES = [
 	{ cvar: 'r_heathaze', label: '      Heat haze (lava)', slider: true },
 	{ cvar: 'r_mist', label: '          Surface haze', slider: true },
 	{ cvar: 'r_reflect', label: '      Water reflections', slider: true },
+	{ cvar: 'r_dof', label: '        Depth of field', slider: true },
 	{ cvar: 'r_water_look', label: '      Water appearance', choices: [ 'Map', 'Clear', 'Tinted', 'Muddy', 'Toxic' ] }
 ];
 let m_newer_cursor = 0;

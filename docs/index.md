@@ -128,6 +128,7 @@ Level textures, rock relief, seams, seamless levels and portals.
 Lighting, shadows, water, lava, glass and the fire and explosion effects.
 
 - [Water caustics against the dungeon reference: what was found](caustics-investigation-2026-10-10.md)
+- [Depth of field with autofocus](depth-of-field-2026-10-10.md)
 - [E1M3 emissive lighting and source-based illumination](emissive-lighting-2026-10-03.md)
 - [Explosions: the supplied "04 Fireball"](explosions-fireball-2026-10-08.md)
 - [Explosions: boxes, the ring, and transparency](explosions-unified-2026-10-09.md)

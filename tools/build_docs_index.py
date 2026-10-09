@@ -28,7 +28,7 @@ TOPICS = [
 	('Worlds, rock and textures', 'Level textures, rock relief, seams, seamless levels and portals.',
 	 r'rock|texture|seam|level-|portal|e1m1|prepared-|seamless|classic-|demo-|profiler|pad-windows|entity-limit'),
 	('Light, water and fire', 'Lighting, shadows, water, lava, glass and the fire and explosion effects.',
-	 r'light|emissive|shadow|water|lava|glass|explosions|ripple|rocket-grenade|torch-fire|flashlight|model-lighting|height-map|caustics'),
+	 r'light|emissive|shadow|water|lava|glass|explosions|ripple|rocket-grenade|torch-fire|flashlight|model-lighting|height-map|caustics|depth-of-field'),
 	('Project history and process', 'Commit scopes, delivery records and handoffs.',
 	 r'commit|delivery|handoff|scoped'),
 ]

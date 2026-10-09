@@ -49,6 +49,7 @@ import { R_TeleportFx } from './r_teleportfx.js';
 import { R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights } from './r_rendveil.js';
 import { R_RendVeilOptics, R_RendVeilOpticsShutdown } from './r_rendveil_optics.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
+import { R_DofFocus, R_DofCircle } from './r_dof.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, R_WaterProbeReadiness, WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures, r_newer_shadows } from './r_anim.js';
@@ -2953,6 +2954,34 @@ vec2 screenOf( vec3 p ) {
 	vec4 q = uProj * vec4( transpose( mat3( uViewInv ) ) * ( p - uViewInv[ 3 ].xyz ), 1.0 );
 	return q.xy / q.w * 0.5 + 0.5;
 }
+// Depth of field (card [38], r_dof.js): uDof.x = focus distance (0 off), y = strength in composite pixels, z = the largest
+// circle; uDofTexel = one composite pixel. The held gun (G-buffer packet a < -2) is never blurred nor blurred into.
+uniform vec3 uDof;
+uniform vec2 uDofTexel;
+float dofDepth( vec2 uv ) {
+	float d = texture2D( tDepth, uv ).x;
+	if ( d >= 0.99999 ) return 1e5; // the sky: as far as can be
+	vec4 v = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );
+	return max( - v.z / v.w, 1.0 );
+}
+bool dofHeld( vec2 uv ) { return texture2D( tNormal, uv ).a < - 2.0; }
+float dofCircle( float z ) { return min( uDof.z, uDof.y * abs( 1.0 - uDof.x / z ) ); }
+vec3 dofGather( vec2 uv, vec3 base ) {
+	if ( dofHeld( uv ) ) return base;
+	float z = dofDepth( uv ), c = dofCircle( z );
+	if ( c < 0.5 ) return base;
+	vec3 sum = base; float total = 1.0;
+	for ( int i = 0; i < 16; i ++ ) {
+		float r = sqrt( ( float( i ) + 0.5 ) / 16.0 ), a = float( i ) * 2.39996;
+		vec2 at = uv + vec2( cos( a ), sin( a ) ) * r * c * uDofTexel;
+		if ( dofHeld( at ) ) continue;
+		float sz = dofDepth( at );
+		// a nearer sample counts only as far as its own circle reaches here (a sharp thing in front keeps its edge)
+		float w = sz < z ? clamp( dofCircle( sz ) / max( r * c, 1e-3 ), 0.0, 1.0 ) : 1.0;
+		sum += texture2D( tComposite, at ).rgb * w; total += w;
+	}
+	return sum / total;
+}
 void main() {
 	vec2 uv = vUv;
 	float glint = 0.0, facing = 0.0;
@@ -2975,6 +3004,7 @@ void main() {
 		}
 	}
 	gl_FragColor = texture2D( tComposite, uv );
+	if ( uDof.x > 0.0 ) gl_FragColor.rgb = dofGather( uv, gl_FragColor.rgb );
 	gl_FragColor.rgb = gl_FragColor.rgb * ( 1.0 + facing ) + glint * ( 0.3 + 0.9 * dot( gl_FragColor.rgb, vec3( 0.2126, 0.7152, 0.0722 ) ) );
 	#include <colorspace_fragment>
 	vec3 shown = gl_FragColor.rgb * uBright;
@@ -3172,7 +3202,8 @@ function createPipeline() {
 			tComposite: { value: null }, uBright: { value: 1 },
 			uWaves: { value: 0 }, tDepth: shared.tDepth, tNormal: { value: null }, uProj: shared.uProj, uProjInv: shared.uProjInv, uViewInv: shared.uViewInv,
 			uWaterWave: { value: waterWave }, tWaves: { value: R_WaveTexture() },
-			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 }
+			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 },
+			uDof: { value: new THREE.Vector3() }, uDofTexel: { value: new THREE.Vector2() }
 		} )
 	};
 
@@ -3739,7 +3770,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	// Rend the Veil consumes the existing linear composite, even when Newer
 	// lighting is disabled. Its local optics never repeat bloom/display grading.
 	const rendFields = R_NewerGame() ? R_RendVeilFields() : [];
-	const offscreen = upscale || rendFields.length > 0;
+	const dofFocus = R_DofFocus(); // (depth of field is drawn by the present pass, card [38])
+	const offscreen = upscale || rendFields.length > 0 || dofFocus > 0;
 	cm.uOffscreen.value = offscreen ? 1 : 0;
 	if ( offscreen ) {
 
@@ -3762,6 +3794,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		shown.uContrastPivot.value = cm.uContrastPivot.value;
 		shown.uWaves.value = waves ? 1 : 0;
 		shown.tNormal.value = cm.tNormal.value;
+		const [ dofPx, dofMax ] = R_DofCircle( hdr.height );
+		shown.uDof.value.set( dofFocus, dofPx, dofMax ); shown.uDofTexel.value.set( 1 / hdr.width, 1 / hdr.height );
 
 	} else { R_PowerVisionReset(); R_QuadVisionReset(); }
 
