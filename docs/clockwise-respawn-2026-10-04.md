@@ -186,3 +186,7 @@ The current chat owns the final live proof and acceptance; no unattended job is
 claimed to be running. Unrelated owner artwork and model files remain untouched.
 
 **Update 2026-10-08 (card [41]):** at contact the water state of the player (`waterlevel`, `watertype`) is refreshed for the destination, and again when the sequence completes, so a death in slime or lava no longer hurts the respawned player on dry ground. See `docs/respawn-hazard-state-2026-10-08.md`.
+
+## Update, 9 October 2026
+
+The 100 health this sequence gives at contact is now the rule for Easy, Hard and Nightmare only. On Normal the respawn health falls by 10 at each completed respawn (to a floor of 60) and is topped up by 10 on the first arrival in a new level; see [respawn health on Normal](respawn-health-2026-10-09.md). Tests that check a full-health respawn run on Hard.

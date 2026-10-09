@@ -25,4 +25,6 @@ export function Respawn_ParseDrop(text){const d=parse(text);
 }
 export function Respawn_ParseRemains(text){const r=parse(text);return r?.version===1&&['body','head','gib'].includes(r.kind)&&typeof r.id==='string'&&r.id.length<200&&number(r.born)?r:null;}
 export function Respawn_ParsePlayer(text){const r=parse(text);if(r?.version!==1||!vec(r.start)||!vec(r.startAngles)||!quat(r.frame)||!Number.isInteger(r.deaths)||r.deaths<0)return null;
+ if(r.respawnHealth!==undefined&&!(Number.isInteger(r.respawnHealth)&&r.respawnHealth>=60&&r.respawnHealth<=100))return null;
+ if(r.visited!==undefined&&!(Array.isArray(r.visited)&&r.visited.length<=512&&r.visited.every(v=>typeof v==='string'&&v.length>0&&v.length<=160)))return null;
  const s=r.sequence;if(s!==null&&(!s||!number(s.at)||!vec(s.sourcePivot)||!vec(s.destinationPivot)||!vec(s.angles)||!quat(s.frame)||!number(s.radius)||s.radius<1||!number(s.turn)||s.turn<.1||s.turn>60||!Number.isFinite(s.descent)||Math.abs(s.descent)>1e7||!vec(s.sourceDrift)||!vec(s.destinationDrift)||(s.motionTime!==undefined&&!number(s.motionTime))||(s.destinationDrop!==undefined&&(!Number.isFinite(s.destinationDrop)||Math.abs(s.destinationDrop)>1e7))||(s.remainsRetained!==undefined&&typeof s.remainsRetained!=='boolean')||typeof s.respawned!=='boolean'||!Number.isInteger(s.objectives)))return null;return r;}

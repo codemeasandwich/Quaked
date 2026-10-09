@@ -7,6 +7,8 @@ import {pr_crc,PR_GetString,pr_functions,pr_global_struct,pr_globals_int,EDICT_T
 import {ED_Alloc,ED_Free,ED_FindFunction,ED_NewString,GetEdictFieldValue} from './pr_edict.js';
 import {PR_ExecuteProgram} from './pr_exec.js';
 import {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS} from './world.js';
+import {Cvar_VariableValue} from './cvar.js';
+import {Respawn_NoticeSet,Respawn_NoticeClear,RESPAWN_MINUS,RESPAWN_PLUS} from './respawn_notice.js';
 import {Mod_ForName} from './gl_model.js';
 import {COM_FindFile} from './pak.js';
 import {sv_gravity,SV_CheckWater} from './sv_phys.js';
@@ -28,7 +30,24 @@ function field(e,n,value,integer=false){const f=slot(e,n);if(f){if(value!==undef
 const localContext=()=>svs.maxclients===1&&cls.state!==ca_dedicated&&!cls.demoplayback&&pr_crc===24778;
 export function SV_RespawnAllowed(){return localContext()&&R_NewerGame();}
 function powersOff(p){p.v.items=(p.v.items|0)&~POWERS;for(const n of TIMER_FIELDS)field(p,n,0);p.v.effects&=~12;}
-function initialize(p){const start=sv.edicts?.find(e=>e&&!e.free&&PR_GetString(e.v.classname)==='info_player_start');const location=p._respawnStart?.origin||Array.from(start?.v.origin||p.v.origin).map((v,i)=>v+(i===2?1:0));return p._respawn={version:1,start:location.slice(),startAngles:Array.from(p._respawnStart?.angles||start?.v.angles||p.v.v_angle),frame:[0,0,0,1],deaths:0,custody:false,sequence:null};}
+// Normal difficulty respawn health (card [4]): the entitlement starts at 100, each completed respawn takes 10 off down
+// to 60, and arriving by changelevel in a level not seen before in this run gives 10 back up to 100. It is its own
+// number (state.respawnHealth), apart from current health and pickups. Other difficulties keep 100 and never touch it.
+export const RESPAWN_HEALTH_MAX=100,RESPAWN_HEALTH_MIN=60,RESPAWN_HEALTH_STEP=10,NORMAL_SKILL=1,MAX_VISITED=512;
+const normal=()=>Math.round(Cvar_VariableValue('skill'))===NORMAL_SKILL;
+// A level's identity: the progs CRC and the map's path. This engine has one map namespace (no game directories), and this
+// system only runs on the stock progs, so today that is the bare map name; the CRC and the path keep it from being confused
+// if a different progs or a map location ever appears (a content hash of the map would be needed for two same-named maps).
+export const levelKey=()=>pr_crc+':'+String(sv.modelname||'maps/'+sv.name+'.bsp');
+function entitlement(state){return Number.isInteger(state.respawnHealth)?state.respawnHealth:RESPAWN_HEALTH_MAX;}
+// the health a respawn completing now gives, updating the entitlement and announcing a decrease
+function respawnHealth(state){
+ if(!normal())return 100;
+ const before=entitlement(state),after=Math.max(RESPAWN_HEALTH_MIN,before-RESPAWN_HEALTH_STEP);
+ state.respawnHealth=after;if(after<before)Respawn_NoticeSet(RESPAWN_MINUS,sv.time);
+ return after;
+}
+function initialize(p){const start=sv.edicts?.find(e=>e&&!e.free&&PR_GetString(e.v.classname)==='info_player_start');const location=p._respawnStart?.origin||Array.from(start?.v.origin||p.v.origin).map((v,i)=>v+(i===2?1:0));return p._respawn={version:1,start:location.slice(),startAngles:Array.from(p._respawnStart?.angles||start?.v.angles||p.v.v_angle),frame:[0,0,0,1],deaths:0,custody:false,sequence:null,respawnHealth:RESPAWN_HEALTH_MAX,visited:[levelKey()]};}
 function ground(p,point){const trace=SV_Move([point[0],point[1],point[2]+1],[0,0,0],[0,0,0],[point[0],point[1],point[2]-8192],MOVE_NOMONSTERS,p);return !trace.startsolid&&!trace.allsolid&&trace.fraction<1?trace.endpos[2]:point[2];}
 function pivotFor(p,origin){const feet=origin[2]+p.v.mins[2];return [origin[0],origin[1],ground(p,[origin[0],origin[1],feet])+2];}
 function driftFor(p,eye,radius,angles){const yaw=angles[1]*Math.PI/180,right=[Math.sin(yaw),-Math.cos(yaw),0],end=eye.map((v,i)=>v+right[i]*(radius+2));const tr=SV_Move(eye,[-1,-1,-1],[1,1,1],end,MOVE_NOMONSTERS,p);const need=Math.max(0,radius+2-(radius+2)*tr.fraction);return right.map(v=>-v*need);}
@@ -115,7 +134,7 @@ export function SV_RespawnAlert(p){const found=fnIndex('FoundTarget');let alerte
 function contact(p,state,s){
  s.respawned=true;state.frame=Respawn_NextFrame(s.frame,s.angles);
  callNative(p,pr_global_struct.PutClientInServer);p._respawn=state;p.v.origin=state.start;p.v.angles=s.angles;p.v.v_angle=s.angles;p.v.fixangle=1;
- p.v.health=100;p.v.items=IT_AXE|s.objectives;p.v.weapon=IT_AXE;p.v.armorvalue=0;p.v.armortype=0;p.v.deadflag=0;p.v.effects=0;p.v.velocity=[0,0,0];p.v.punchangle=[0,0,0];
+ p.v.health=respawnHealth(state);p.v.items=IT_AXE|s.objectives;p.v.weapon=IT_AXE;p.v.armorvalue=0;p.v.armortype=0;p.v.deadflag=0;p.v.effects=0;p.v.velocity=[0,0,0];p.v.punchangle=[0,0,0];
  for(const a of RESPAWN_AMMO)p.v[a]=0;powersOff(p);callNative(p,fnIndex('W_SetCurrentAmmo'));p.v.movetype=MOVETYPE_NONE;p.v.takedamage=0;p.v.solid=SOLID_SLIDEBOX;p.v.button0=p.v.button1=p.v.button2=p.v.impulse=0;field(p,'attack_finished',sv.time+RESPAWN_TURN);SV_LinkEdict(p,false);
  // The player is now somewhere else, but nothing recomputes waterlevel/watertype until the first full physics pass after the sequence,
  // and that pass runs the player's QuakeC (WaterMove) before SV_CheckWater: a death in slime or lava left the old liquid on the new dry
@@ -192,8 +211,22 @@ export function SV_RespawnPlanMotion(p,s){
 // Carry only admitted inventory custody. Stock SetChangeParms grants minimum
 // shells; a recovered/axe-only inventory must not acquire that hidden refill.
 let travelInventory=null,worldEpoch=0;
-export function SV_RespawnWorldStart(){worldEpoch++;}
-export function SV_RespawnClearTravel(){travelInventory=null;}
-export function SV_RespawnCaptureTravel(p){travelInventory=null;if(!localContext()||!p?._respawn||(!p._respawn.custody&&!p._respawn.deaths)||p._respawn.sequence)return;travelInventory={epoch:worldEpoch,frame:p._respawn.frame.slice(),deaths:p._respawn.deaths,weapons:(p.v.items|0)&WEAPON_BITS,weapon:p.v.weapon,ammo:RESPAWN_AMMO.map(a=>p.v[a])};}
-function restoreTravel(p){const data=travelInventory;if(!data||data.epoch===worldEpoch||!localContext()||p._respawn?.sequence)return;travelInventory=null;const state=p._respawn||initialize(p);state.frame=data.frame;state.deaths=data.deaths;state.custody=true;p.v.items=((p.v.items|0)&~WEAPON_BITS)|data.weapons;p.v.weapon=data.weapon;RESPAWN_AMMO.forEach((a,i)=>p.v[a]=data.ammo[i]);p._respawnAmmoPending=true;}
+export function SV_RespawnWorldStart(){worldEpoch++;Respawn_NoticeClear();}
+export function SV_RespawnClearTravel(){travelInventory=null;Respawn_NoticeClear();}
+export function SV_RespawnCaptureTravel(p){travelInventory=null;if(!localContext()||!p?._respawn)return;const s=p._respawn;
+ // Weapons and ammunition travel only after a death and never from the middle of one (the old rule). Progress (the respawn-health
+ // entitlement and the levels seen) always travels: an unfinished death is not a completed respawn, so a level change in the middle of
+ // one neither takes health nor gives it back, and cannot make a later return visit pay.
+ const inventory=!s.sequence&&(s.custody||s.deaths)?{frame:s.frame.slice(),deaths:s.deaths,weapons:(p.v.items|0)&WEAPON_BITS,weapon:p.v.weapon,ammo:RESPAWN_AMMO.map(a=>p.v[a])}:null;
+ const seen=[...new Set([...(Array.isArray(s.visited)?s.visited:[]),levelKey()])].slice(-MAX_VISITED); // the newest 512, matching what a save accepts
+ travelInventory={epoch:worldEpoch,inventory,respawnHealth:entitlement(s),visited:seen};}
+function restoreTravel(p){const data=travelInventory;if(!data||data.epoch===worldEpoch||!localContext()||p._respawn?.sequence)return;
+ // Classic Quake (Newer off) neither keeps nor rewards the run: the data waits for the next arrival in Newer Game.
+ if(!data.inventory&&!SV_RespawnAllowed())return;
+ travelInventory=null;const state=p._respawn||initialize(p);
+ if(data.inventory){state.frame=data.inventory.frame;state.deaths=data.inventory.deaths;state.custody=true;p.v.items=((p.v.items|0)&~WEAPON_BITS)|data.inventory.weapons;p.v.weapon=data.inventory.weapon;RESPAWN_AMMO.forEach((a,i)=>p.v[a]=data.inventory.ammo[i]);p._respawnAmmoPending=true;}
+ // the first arrival in a level not seen before in this run gives 10 respawn health back (Normal only; a return visit, a reload and Level Select never do)
+ state.respawnHealth=data.respawnHealth;state.visited=data.visited.slice();
+ const here=levelKey();
+ if(!state.visited.includes(here)){state.visited.push(here);if(state.visited.length>MAX_VISITED)state.visited.shift();if(normal()&&SV_RespawnAllowed()){const before=entitlement(state),after=Math.min(RESPAWN_HEALTH_MAX,before+RESPAWN_HEALTH_STEP);state.respawnHealth=after;if(after>before)Respawn_NoticeSet(RESPAWN_PLUS,sv.time);}}}
 export function SV_RespawnFinishTravel(p){if(p._respawnAmmoPending&&localContext()){p._respawnAmmoPending=false;callNative(p,fnIndex('W_SetCurrentAmmo'));}}

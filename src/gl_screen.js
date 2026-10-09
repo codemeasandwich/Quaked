@@ -13,6 +13,7 @@ import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, 
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
+import { Respawn_NoticeAt } from './respawn_notice.js';
 import { Cmd_AddCommand } from './cmd.js';
 import { key_dest, key_game, key_console, key_message } from './keys.js';
 import { realtime, host_frametime } from './host.js';
@@ -783,6 +784,15 @@ function SCR_DrawPerf() {
 
 }
 
+// The respawn-health rule's corner message (card [4]), just under the FPS line at the top right.
+export function SCR_DrawRespawnNotice() {
+
+	if ( _cls.demoplayback || key_dest !== key_game ) return; // not over a demo, the menu or the console
+	const text = Respawn_NoticeAt( _cl.time );
+	if ( text !== null ) Draw_String( _vid.width - text.length * 8 - 8, 16, text );
+
+}
+
 function SCR_TileClear() {
 
 	if ( _r_refdef.vrect.x > 0 ) {
@@ -1044,6 +1054,7 @@ export function SCR_UpdateScreen() {
 	}
 
 	SCR_DrawPerf();
+	SCR_DrawRespawnNotice();
 	R_BestiaryEncounterDraw();
 
 	R_PerfStage( '2D screen and menus' );

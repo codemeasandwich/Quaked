@@ -178,7 +178,7 @@ Newer Game now activates the flashlight at the Easy/Normal corridor entrances an
 
 Newer water uses restrained ripple/refraction distortion. Wall detail filters subpixel height shadows and replacement pigment grain, with bounded fallback normals. [Correction and verification](water-wall-restraint-2026-10-04.md).
 
-Newer Game deaths scatter every carried ranged weapon with conserved ammunition, remove power-ups, and use a continuous clockwise fall/contact/respawn/rise. Respawn gives 100 health and only an axe, while living enemies learn the starting position. Uncollected drops persist through deaths, saves and level travel. [Implementation, coordinate interpretation, verification and native trial](clockwise-respawn-2026-10-04.md).
+Newer Game deaths scatter every carried ranged weapon with conserved ammunition, remove power-ups, and use a continuous clockwise fall/contact/respawn/rise. Respawn gives only an axe, and 100 health on Easy, Hard and Nightmare or, on Normal, [a falling amount (90 down to 60, topped up by new levels)](respawn-health-2026-10-09.md); living enemies learn the starting position. Uncollected drops persist through deaths, saves and level travel. [Implementation, coordinate interpretation, verification and native trial](clockwise-respawn-2026-10-04.md).
 
 Welcome-level brown rock breaks up its painted horizontal repeats with a continuous shader sampling offset while preserving original texture pixels and geometry. [Implementation, native comparison and verification](rock-wall-bands-2026-10-04.md).
 
