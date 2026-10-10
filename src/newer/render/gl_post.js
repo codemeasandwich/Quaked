@@ -6,7 +6,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `occluder`, `gpu`, `heightFrameSnapshot`, `splitLeft`.
+ * State: no mutable exports; module-level variables `heightFrameSnapshot`, `splitLeft`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -84,6 +84,8 @@ import { skyState, sunFromAngles, buildSkyCookie, cookieNorm, cookieMean, cookie
 export { R_AnalyseSky, R_SkyBrightness, R_GetSkyInfo, R_PostNoteSky, R_MapHasSky } from './r_post_sky.js';
 import { R_BuildWorldLights, R_GetWorldLights, R_FireFlicker, R_PostSetPortraitLight, R_SelectWorldLights, selectLights, _selected, R_PostSelectedCount, R_PostSetSelectedCount } from './r_post_lights.js';
 export { R_BuildWorldLights, R_GetWorldLights, R_FireFlicker, R_PostSetPortraitLight, R_SelectWorldLights } from './r_post_lights.js';
+import { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseShadowCaster, R_PostOccluder, R_PostRenderSunShadow, R_PostShadowsFrame } from './r_post_shadows.js';
+export { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseShadowCaster } from './r_post_shadows.js';
 
 const DYNRES_MIN = 0.5;
 const dyn = { scale: 1, last: 0, sum: 0, frames: 0, cool: 0, probing: false, probeEvery: 240, since: 0 };
@@ -162,129 +164,9 @@ function dynResUpdate( now ) {
 
 
 //============================================================================
-// Sun occluder
-//
-// The sun's shadow map must contain the whole map, not just what happens to be
-// visible or loaded this frame: a ceiling that is not being drawn would let the
-// sun through into a closed room.  So the shadow casters are their own static
-// mesh, built once per map from every solid world surface (no sky, no liquids),
-// and only ever seen by the shadow camera.
-//============================================================================
-
-let occluder = null;
-
-function disposeOccluder() {
-
-	if ( occluder === null ) return;
-	if ( occluder.parent != null ) occluder.parent.remove( occluder );
-	gpu?.pointShadows?.setGeometry( null );
-	occluder.geometry.dispose();
-	occluder = null;
-
-}
-
-/**
- * Builds the sun occluder for a map: one static mesh, on `SUN_SHADOW_LAYER` only, of every solid world surface
- * (no sky, no liquids, no hidden arch surfaces in Newer), with the retained wall relief in Newer Game when
- * normals and textures are on. Disposes the previous occluder first and gives the geometry to the point-shadow
- * atlas. Called by gl_rsurf.js `R_BuildWorldOccluder` and when demon relief bakes arrive (r_demonbakes.js).
- * Kept until the next build.
- *
- * @param {?object} model the world brush model
- * @returns {number} the number of triangles in the occluder; 0 when there is no model or nothing to cast
- */
-export function R_BuildSunOccluder( model ) {
-	const bake=model&&R_NewerGame()&&r_newer_normals.value!==0&&r_newer_textures.value!==0?R_DemonBakePrepare(model,model.surfaces||[]):null;
-
-	disposeOccluder();
-	if ( model == null || model.surfaces == null ) return 0;
-
-	const first = model.firstmodelsurface || 0;
-	const last = first + ( model.nummodelsurfaces || model.surfaces.length );
-	let positions = [];const chunks=[];
-
-	for ( let i = first; i < last; i ++ ) {
-
-		const surf = model.surfaces[ i ];
-		if ( surf == null || surf.polys == null ) continue;
-		if ( R_NewerGame() && R_ArchSurfaceHidden( surf ) ) continue;
-		if ( surf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) continue;
-
-		for ( let p = surf.polys; p; p = p.next ) {
-
-			const v = p.verts;
-			const at = ( n, k ) => v instanceof Float32Array ? v[ n * 7 + k ] : v[ n ][ k ];
-
-			for ( let n = 2; n < p.numverts; n ++ ) {
-
-				for ( const idx of [ 0, n - 1, n ] )
-					positions.push( at( idx, 0 ), at( idx, 1 ), at( idx, 2 ) );
-
-			}
-
-		}
-		// The retained wall backing plus its actual raised relief forms the
-		// same occluder seen by the enhanced scene. Classic keeps native geometry.
-		if ( R_NewerGame() && r_newer_normals.value !== 0 && r_newer_textures.value !== 0 ) {
-
-			const prepared=R_DemonBakeSurface(surf);
-			const relief = bake?.status==='loading'||bake?.status==='error'?null:prepared.status==='ready'?prepared.data:prepared.status==='unprepared'?R_DemonSurfaceData(surf):null;
-			if(relief){if(positions.length){chunks.push({positions:new Float32Array(positions)});positions=[];}chunks.push(relief.interleaved?{interleaved:relief.interleaved,indices:relief.indices}:{positions:relief.positions});}
-
-		}
-
-	}
-
-	if(positions.length)chunks.push({positions:new Float32Array(positions)});
- const indexed=chunks.some(c=>c.interleaved);
- const vertices=chunks.reduce((sum,c)=>sum+(c.interleaved?c.interleaved.length/10:c.positions.length/3),0);
- const corners=chunks.reduce((sum,c)=>sum+(c.indices?c.indices.length:c.positions.length/3),0);if(!corners)return 0;
- const combined=new Float32Array(vertices*3),order=indexed?new Uint32Array(corners):null;let base=0,corner=0;
- for(const c of chunks){
-  const count=c.interleaved?c.interleaved.length/10:c.positions.length/3;
-  if(c.interleaved){for(let i=0;i<count;i++){combined[(base+i)*3]=c.interleaved[i*10];combined[(base+i)*3+1]=c.interleaved[i*10+1];combined[(base+i)*3+2]=c.interleaved[i*10+2];}}
-  else combined.set(c.positions,base*3);
-  if(order){if(c.indices)for(const index of c.indices)order[corner++]=base+index;else for(let i=0;i<count;i++)order[corner++]=base+i;}
-  base+=count;
- }
- const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(combined,3));
- if(order)geometry.setIndex(new THREE.BufferAttribute(order,1));geometry.computeBoundingSphere();
-
-	occluder = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { side: THREE.DoubleSide } ) );
-	occluder.name = 'quake_sun_occluder';
-	if ( occluder.layers !== undefined ) occluder.layers.set( SUN_SHADOW_LAYER ); // invisible to every ordinary camera
-	occluder.matrixAutoUpdate = false;
-	gpu?.pointShadows?.setGeometry( geometry );
-
-	return corners / 3;
-}
-
-/**
- * Direct access to the point-shadow atlas, for GPU trials (not used by the engine).
- *
- * @returns {?PointShadowAtlas} the pipeline's live atlas, or null before the pipeline exists
- */
-export function R_PointShadowAtlas() { return gpu?.pointShadows || null; }
-/**
- * Point-shadow residency for the start-up status (gl_rmain.js).
- *
- * @returns {object} the atlas's `status()` (counts of ready, pending and resident slots, chunks, captures...), or
- *   `{ ready: 0, pending: 0, resident: 0, chunks: 0 }` before the pipeline exists
- */
-export function R_PointShadowStatus() { return gpu?.pointShadows?.status() || { ready: 0, pending: 0, resident: 0, chunks: 0 }; }
-/**
- * Makes the point-shadow atlas drop its borrowed clone of a dynamic caster (r_axecorpses.js, as a mesh is disposed),
- * so no reference to its geometry is kept. Does nothing before the pipeline exists.
- *
- * @param {THREE.Mesh} mesh the mesh previously drawn as a dynamic caster
- */
-export function R_ReleaseShadowCaster( mesh ) { gpu?.pointShadows?.forgetDynamic( mesh ); }
-
-//============================================================================
 // Pipeline
 //============================================================================
 
-let gpu = null;
 
 function makeRT( width, height, options ) {
 
@@ -386,7 +268,7 @@ function createPipeline() {
 
 	return {
 		width: 0, height: 0,
-		pointShadows: new PointShadowAtlas( occluder?.geometry ),
+		pointShadows: new PointShadowAtlas( R_PostOccluder()?.geometry ),
 		scene, mesh, shared,
 		camera: new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 ),
 		hdr: null, volume: null, composite: null, down: [], up: [],
@@ -478,19 +360,19 @@ function createPipeline() {
 
 function disposeTargets() {
 
-	if ( gpu.hdr === null ) return;
-	gpu.hdr.dispose();
-	gpu.hdr.depthTexture.dispose();
-	gpu.volume.dispose();
-	if ( gpu.composite !== null ) gpu.composite.dispose();
-	gpu.composite = null;
-	if ( gpu.dof !== null ) gpu.dof.dispose();
-	gpu.dof = null;
-	for ( const rt of gpu.down ) rt.dispose();
-	for ( const rt of gpu.up ) rt.dispose();
-	gpu.hdr = null;
-	gpu.down = [];
-	gpu.up = [];
+	if ( postState.gpu.hdr === null ) return;
+	postState.gpu.hdr.dispose();
+	postState.gpu.hdr.depthTexture.dispose();
+	postState.gpu.volume.dispose();
+	if ( postState.gpu.composite !== null ) postState.gpu.composite.dispose();
+	postState.gpu.composite = null;
+	if ( postState.gpu.dof !== null ) postState.gpu.dof.dispose();
+	postState.gpu.dof = null;
+	for ( const rt of postState.gpu.down ) rt.dispose();
+	for ( const rt of postState.gpu.up ) rt.dispose();
+	postState.gpu.hdr = null;
+	postState.gpu.down = [];
+	postState.gpu.up = [];
 
 }
 
@@ -510,43 +392,43 @@ function ensureTargets( width, height ) {
  // Multisample resolution would average a model packet with background.
  const samples = 0;
 	const count = postState.glowActive || PowerVisionMode(cl, R_NewerGame()) ? 4 : 2; // vision also consumes unlit pigment
-	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples && gpu.hdr.textures.length === count ) return;
+	if ( postState.gpu.hdr !== null && postState.gpu.width === width && postState.gpu.height === height && postState.gpu.samples === samples && postState.gpu.hdr.textures.length === count ) return;
 
 	disposeTargets();
-	gpu.width = width;
-	gpu.height = height;
-	gpu.samples = samples;
+	postState.gpu.width = width;
+	postState.gpu.height = height;
+	postState.gpu.samples = samples;
 
 	const depth = new THREE.DepthTexture( width, height );
-	gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples, count } );
+	postState.gpu.hdr = makeRT( width, height, { depthBuffer: true, depthTexture: depth, samples, count } );
  // A normal packet's alpha is view distance. Linear interpolation across
  // different receivers creates a second, invalid apparent lighting surface.
- gpu.hdr.textures[1].minFilter=gpu.hdr.textures[1].magFilter=THREE.NearestFilter;
+ postState.gpu.hdr.textures[1].minFilter=postState.gpu.hdr.textures[1].magFilter=THREE.NearestFilter;
 	// SRGB8 storage preserves dark authored texels at half the bandwidth of HDR.
 	// The attachment encodes linear shader output and texture reads decode it;
 	// alpha marks valid surfaces. No extra geometry pass or baked-light floor.
 	if ( count >= 3 ) {
 
-		gpu.hdr.textures[ 2 ].type = THREE.UnsignedByteType;
-		gpu.hdr.textures[ 2 ].colorSpace = THREE.SRGBColorSpace;
-		gpu.hdr.textures[ 2 ].minFilter = THREE.NearestFilter;
-		gpu.hdr.textures[ 2 ].magFilter = THREE.NearestFilter;
+		postState.gpu.hdr.textures[ 2 ].type = THREE.UnsignedByteType;
+		postState.gpu.hdr.textures[ 2 ].colorSpace = THREE.SRGBColorSpace;
+		postState.gpu.hdr.textures[ 2 ].minFilter = THREE.NearestFilter;
+		postState.gpu.hdr.textures[ 2 ].magFilter = THREE.NearestFilter;
 
 	}
  if ( heightMasks ) {
-  const mask = gpu.hdr.textures[ 3 ];
+  const mask = postState.gpu.hdr.textures[ 3 ];
   mask.type = THREE.UnsignedByteType; mask.format = THREE.RGBAFormat;
   mask.colorSpace = THREE.NoColorSpace; mask.internalFormat = 'RGBA8';
   mask.minFilter = mask.magFilter = THREE.NearestFilter; mask.generateMipmaps = false;
   mask.name = 'quake_height_light_visibility';
  }
-	gpu.volume = makeRT( Math.ceil( width * 0.75 ), Math.ceil( height * 0.75 ) );
+	postState.gpu.volume = makeRT( Math.ceil( width * 0.75 ), Math.ceil( height * 0.75 ) );
 
 	let w = Math.ceil( width / 2 ), h = Math.ceil( height / 2 );
 	for ( let i = 0; i < BLOOM_LEVELS; i ++ ) {
 
-		gpu.down.push( makeRT( w, h ) );
-		if ( i < BLOOM_LEVELS - 1 ) gpu.up.push( makeRT( w, h ) );
+		postState.gpu.down.push( makeRT( w, h ) );
+		if ( i < BLOOM_LEVELS - 1 ) postState.gpu.up.push( makeRT( w, h ) );
 		w = Math.max( 1, Math.ceil( w / 2 ) );
 		h = Math.max( 1, Math.ceil( h / 2 ) );
 
@@ -556,9 +438,9 @@ function ensureTargets( width, height ) {
 
 function runPass( renderer, material, target ) {
 
-	gpu.mesh.material = material;
+	postState.gpu.mesh.material = material;
 	renderer.setRenderTarget( target );
-	renderer.render( gpu.scene, gpu.camera );
+	renderer.render( postState.gpu.scene, postState.gpu.camera );
 
 }
 
@@ -595,7 +477,7 @@ let heightFrameSnapshot = null;
  *   hasSkyView: boolean }} the frame snapshot (copied lights and beam), or null when the pipeline does not exist
  */
 export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dlights, time, hasSkyView ) {
- if ( ! gpu ) { heightFrameSnapshot = null; R_HeightShadowScope( false ); return null; }
+ if ( ! postState.gpu ) { heightFrameSnapshot = null; R_HeightShadowScope( false ); return null; }
  camera.updateMatrixWorld( true );
  if ( postState.glowActive ) selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
  else R_PostSetSelectedCount( 0 );
@@ -603,47 +485,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
  const liveBeam = R_FlashlightBeam();
  const beam = { ...liveBeam, pos: liveBeam.pos.slice(), dir: liveBeam.dir.slice() };
  heightFrameSnapshot = { camera, visframe, time, lights, beam, hasSkyView };
- const sh = gpu.shared, shadowSources = [];
- for ( const light of lights ) if ( light.source ) shadowSources.push( { source: light.source, position: light.worldPos,
-  far: light.source.pos?130+170*Math.sqrt(light.source.power*(light.source.emitter===1?EMITTER_LIGHT_GAIN:1)*2.25):light.range*1.5, live: !light.source.pos||light.source.bestiary===true } );
- shadowSources.sort((a,b)=>Number(b.live)-Number(a.live));
- const spotCasters=[];
- if(postState.glowActive&&r_pointshadows.value!==0){
-  scene.updateMatrixWorld(true);
-  scene.traverse(object=>{
-   if(!object.isMesh||!object.visible)return;
-   const aliasOwner=object._quakeOwner,brushOwner=object.parent?._quakeOwner;
-   const physicalAlias=aliasOwner?._aliasMesh===object&&!/flame|bolt|eyes/.test(aliasOwner.model?.name||'');
-   const physicalBrush=brushOwner?._brushGroup===object.parent;
-   object.userData.quakePhysicalAlias=physicalAlias;
-   if((physicalAlias||object.userData.quakeAxePart===true)&&r_newer_shadows.value!==0||physicalBrush)spotCasters.push(object);
-  });
-  gpu.pointShadows.update(renderer,shadowSources,spotCasters,{frozenPose:R_IntroLoadingHolding()});
- }
- gpu.pointShadows.updateSun(renderer,{on:postState.glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:skyState.sunDirection,focus:camera.position.toArray()},spotCasters);
- sh.tNearSunShadow.value=gpu.pointShadows.sunTexture;sh.uNearSunShadowVP.value.copy(gpu.pointShadows.sunVP);sh.uNearSunShadowOn.value=gpu.pointShadows.sunReady?1:0;
- sh.tPointShadow.value = gpu.pointShadows.target.texture;
- for ( let i = 0; i < MAX_VOLUME_LIGHTS; i ++ ) {
-  const source = lights[ i ]?.source;
-  const shadow = postState.glowActive && r_pointshadows.value !== 0 && source ? gpu.pointShadows.lookup( source ) : null;
-  sh.uPointShadowInfo.value[ i ].set( shadow?.ready ? shadow.slot : -1, shadow?.far || 0 );
- }
- if(postState.glowActive && beam.on && r_pointshadows.value!==0) {
-  gpu.pointShadows.updateSpot(renderer,{...beam,range:1500,outerCos:FLASHLIGHT_OUTER},spotCasters);
- } else gpu.pointShadows.clearSpot();
- sh.tSpotShadow.value=gpu.pointShadows.spotTexture;
- sh.uSpotShadowVP.value.copy(gpu.pointShadows.spotVP);
- sh.uSpotShadowLightWorld.value.set(...beam.pos,1500);
- sh.uSpotWorldShadowOn.value=postState.glowActive && beam.on && r_pointshadows.value!==0 && gpu.pointShadows.spotReady?1:0;
- const masks = postState.glowActive && postState.detailActive && r_heightshadows.value !== 0 && gpu.hdr?.textures.length === 4;
- sh.tHeightShadow.value = masks ? gpu.hdr.textures[ 3 ] : null; sh.uHeightMasks.value = masks ? 1 : 0;
- R_HeightShadowFrame( {
-  points: lights.map( light => ( { position: light.worldPos, range: light.range, color: light.color, direction:light.direction, cone:light.cone } ) ),
-  sun: { direction: skyState.sunDirection, on: postState.glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
-  spot: { position: beam.pos, range: 1500, direction: beam.dir, cone: [ FLASHLIGHT_INNER, FLASHLIGHT_OUTER ], on: postState.glowActive && beam.on,
-   color: [ SPOT_POWER, SPOT_POWER * .985, SPOT_POWER * .96 ] }
- } );
- R_HeightShadowScope( masks );
+ R_PostShadowsFrame( renderer, scene, camera, lights, beam, hasSkyView );
  return heightFrameSnapshot;
 }
 
@@ -692,7 +534,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 
 	if ( active === false ) { R_PowerVisionReset(); R_QuadVisionReset(); return false; }
 
-	if ( gpu === null ) gpu = createPipeline();
+	if ( postState.gpu === null ) postState.gpu = createPipeline();
 	dynResUpdate( performance.now() / 1000 );
 	ensureTargets( Math.max( 16, Math.round( width * dyn.scale / 2 ) * 2 ), Math.max( 16, Math.round( height * dyn.scale / 2 ) * 2 ) );
 	return true;
@@ -707,67 +549,12 @@ export function R_PostBegin( renderer, enabled, width, height ) {
  */
 export function R_PostBind( renderer ) {
 
-	renderer.setRenderTarget( gpu.hdr );
+	renderer.setRenderTarget( postState.gpu.hdr );
 
 }
 
-const _sunRight = new THREE.Vector3();
-const _sunUp = new THREE.Vector3();
-const _sunCenter = new THREE.Vector3();
-const _sunDir = new THREE.Vector3();
 const _clearColor = new THREE.Color();
 
-// Depth of the world as the sun sees it.  Sky is not on the shadow layer, so
-// skylights and windows let the light through.
-function renderSunShadow( renderer, scene, camera ) {
-
-	const p = gpu;
-	const cam = p.sunCamera;
-
-	_sunDir.set( skyState.sunDirection[ 0 ], skyState.sunDirection[ 1 ], skyState.sunDirection[ 2 ] ).normalize();
-
-	const e = camera.matrixWorld.elements;
-	_sunCenter.set( e[ 12 ], e[ 13 ], e[ 14 ] );
-
-	cam.up.set( 0, 0, 1 );
-	if ( Math.abs( _sunDir.z ) > 0.95 ) cam.up.set( 1, 0, 0 );
-
-	// snap the centre to whole shadow texels so the shadows don't crawl
-	cam.position.copy( _sunCenter ).addScaledVector( _sunDir, SUN_SHADOW_DEPTH );
-	cam.lookAt( _sunCenter );
-	cam.updateMatrixWorld( true );
-	const m = cam.matrixWorld.elements;
-	_sunRight.set( m[ 0 ], m[ 1 ], m[ 2 ] );
-	_sunUp.set( m[ 4 ], m[ 5 ], m[ 6 ] );
-	const texel = ( SUN_SHADOW_EXTENT * 2 ) / SUN_SHADOW_SIZE;
-	const cr = _sunCenter.dot( _sunRight ), cu = _sunCenter.dot( _sunUp );
-	_sunCenter.addScaledVector( _sunRight, - ( cr - Math.round( cr / texel ) * texel ) );
-	_sunCenter.addScaledVector( _sunUp, - ( cu - Math.round( cu / texel ) * texel ) );
-	cam.position.copy( _sunCenter ).addScaledVector( _sunDir, SUN_SHADOW_DEPTH );
-	cam.lookAt( _sunCenter );
-	cam.updateMatrixWorld( true );
-	cam.matrixWorldInverse.copy( cam.matrixWorld ).invert();
-
-	cam.layers.set( SUN_SHADOW_LAYER );
-	if ( occluder !== null && occluder.parent !== scene ) scene.add( occluder );
-
-	renderer.getClearColor( _clearColor );
-	const clearAlpha = renderer.getClearAlpha();
-	const override = scene.overrideMaterial;
-
-	scene.overrideMaterial = p.sunOverride;
-	renderer.setRenderTarget( p.sunTarget );
-	renderer.setClearColor( 0xffffff, 1 );
-	renderer.clear( true, true, false );
-	renderer.render( scene, cam );
-
-	scene.overrideMaterial = override;
-	renderer.setClearColor( _clearColor, clearAlpha );
-
-	p.shared.uSunVP.value.multiplyMatrices( cam.projectionMatrix, cam.matrixWorldInverse );
-	p.shared.tSunShadow.value = p.sunTarget.depthTexture;
-
-}
 
 /*
 ================
@@ -795,7 +582,7 @@ rectangle in logical pixels ( lx, ly, lw, lh ).
  */
 export function R_PostFinish( renderer, scene, camera, viewport, visframe, styles, dlights, time, exposure, hasSkyView ) {
 
-	const p = gpu;
+	const p = postState.gpu;
 	const hdr = p.hdr;
 	const sh = p.shared;
 
@@ -890,7 +677,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 			e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
 			e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
 		sh.uSunDirW.value.set( sd[ 0 ], sd[ 1 ], sd[ 2 ] ).normalize();
-		renderSunShadow( renderer, scene, camera );
+		R_PostRenderSunShadow( renderer, scene, camera );
 		R_PerfStage( 'sun shadow' );
 
 	}
@@ -1105,7 +892,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	renderer.setRenderTarget( null );
 	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
-	gpu.mesh.material = offscreen ? p.presentMaterial : p.compositeMaterial;
+	postState.gpu.mesh.material = offscreen ? p.presentMaterial : p.compositeMaterial;
 	if ( splitLeft ) {
 
 		renderer.setScissor( viewport.lx, viewport.ly, Math.floor( viewport.lw / 2 ), viewport.lh );
@@ -1146,11 +933,11 @@ export function R_PostShutdown() {
 	R_ClearPowerupFireTarget();
 	R_RendVeilOpticsShutdown();
 
-	if ( gpu === null ) return;
+	if ( postState.gpu === null ) return;
 	disposeTargets();
-	gpu.pointShadows.dispose();
-	gpu.sunTarget.dispose();
-	gpu.sunTarget.depthTexture.dispose();
-	gpu = null;
+	postState.gpu.pointShadows.dispose();
+	postState.gpu.sunTarget.dispose();
+	postState.gpu.sunTarget.depthTexture.dispose();
+	postState.gpu = null;
 
 }

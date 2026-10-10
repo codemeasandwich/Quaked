@@ -11,14 +11,17 @@
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
  * `postState.glowActive` and `postState.detailActive` are written by the G-buffer stage, `postState.postActive` by
- * `R_PostBegin` and `postState.underwater` by `R_PostSetUnderwater`. The holders `lightCurve`, `lightingLook` and
- * `classicLook` are given to shaders as uniforms, so they stay the same objects for the page's life.
+ * `R_PostBegin`, `postState.underwater` by `R_PostSetUnderwater` and `postState.gpu` by `R_PostBegin` and
+ * `R_PostShutdown`. The holders `lightCurve`, `lightingLook` and `classicLook` are given to shaders as uniforms, so
+ * they stay the same objects for the page's life.
  */
 import { r_newer_water } from '../mode.js';
 
 /** The flags the stages share: advanced lighting with its emissive boost, the shared HDR targets in use (also needed
- * by normals and liquids), relief detail, and the eye under water, slime or lava (no lens drops, no edge outlines). */
-export const postState = { glowActive: false, postActive: false, detailActive: false, underwater: false };
+ * by normals and liquids), relief detail, the eye under water, slime or lava (no lens drops, no edge outlines), and
+ * the pipeline's render targets and materials (`gpu`: made by the first `R_PostBegin` that draws, freed by
+ * `R_PostShutdown`; null between). */
+export const postState = { glowActive: false, postActive: false, detailActive: false, underwater: false, gpu: null };
 
 /** The light curve, shared with the lit world materials' shader. */
 export const lightCurve = { value: 1 };
