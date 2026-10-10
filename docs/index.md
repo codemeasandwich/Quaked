@@ -171,6 +171,7 @@ Commit scopes, delivery records and handoffs.
 
 Documents that no topic rule claims yet.
 
+- [Code findings from the JSDoc pass, checked and fixed (card (44m)), 10 October 2026](code-findings-2026-10-10.md)
 - [The episodes: Dimension of the Past plays, Dimension of the Machine not yet (card (34c)), 10 October 2026](episodes-2026-10-10.md)
 - [Game catalogue: which games are installed, found without downloading them (card (34b), 10 Oct 2026)](game-catalogue-2026-10-10.md)
 - [Choosing the game: the shareware or the full Quake (card (34c), first increment, 10 Oct 2026)](game-selection-2026-10-10.md)
