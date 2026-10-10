@@ -18,6 +18,7 @@ if(!isMainThread){
  const loader="let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}";
  register('data:text/javascript,'+encodeURIComponent(loader),{data:{three}});
  const surface=await import('../src/engine/render/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js'),{cl}=await import('../src/engine/client/client.js'),{R_RockSurfaceCharts}=await import('../src/newer/render/r_rocksurfaces.js');
+ await import('../src/newer/install.js'); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
  const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',planOnly=false;
  for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--plan')planOnly=true;else throw Error('Unknown argument '+args[i]);}
  if(!/^[a-z0-9-]+$/.test(namespace))throw Error('Invalid namespace');

@@ -6,6 +6,7 @@ import * as mode from '../src/newer/mode.js';
 import * as rock from '../src/newer/render/r_rockfield.js';
 import { ROCK_AXIS_U, ROCK_AXIS_V } from '../src/newer/render/r_rocksurfaces.js';
 import { DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 
 const report = document.querySelector( '#report' ), owned = [];
 // Explicit mutation control only for proving this diagnostic catches the old

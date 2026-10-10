@@ -10,10 +10,10 @@
  *
  * Errors: calls `PR_RunError` at 13 places.
  */
-import { Face_Assign } from '../../newer/render/enemy_face.js';
+import { Face_Assign } from '../common/hooks.js'; // installed by newer/render/enemy_face.js
 // Ported from: WinQuake/pr_cmds.c -- QuakeC built-in functions
 
-import { SV_ZombieProne } from '../../newer/gameplay/sv_pronezombie.js';
+import { SV_ZombieProne } from '../common/hooks.js'; // installed by newer/gameplay/sv_pronezombie.js
 import {
 	Con_Printf, Con_DPrintf,
 	MSG_WriteByte, MSG_WriteChar, MSG_WriteShort, MSG_WriteLong,
@@ -50,11 +50,11 @@ import { PR_HostError, PR_RunError } from './pr_exec.js';
 import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from '../server/world.js';
 import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from '../server/sv_move.js';
 import { SV_StartSound, SV_StartParticle, sv_aim } from '../server/sv_main.js';
-import { R_FlashlightSkillSelected } from '../../newer/render/r_flashlightrun.js';
-import { SV_GoreOnSetModel } from '../../newer/gameplay/sv_gore.js';
-import { SV_AxeGibSeen } from '../../newer/gameplay/sv_axecut.js';
+import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
+import { SV_GoreOnSetModel } from '../common/hooks.js'; // installed by newer/gameplay/sv_gore.js
+import { SV_AxeGibSeen } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
 import { Cbuf_AddText } from '../common/cmd.js';
-import { SV_FaceShotTrace } from '../../newer/gameplay/sv_faceevents.js';
+import { SV_FaceShotTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from '../server/server.js';
 import { Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from '../render/gl_model.js';

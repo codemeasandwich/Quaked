@@ -3,6 +3,7 @@
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}</script>
 <h1>Classic output colour parity</h1><pre id="result">Running…</pre>
 <script type="module">
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import('../src/engine/render/gl_rsurf.js');
 const THREE=await import('three'),split=await import('../src/newer/render/r_demosplit.js');
 const renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});renderer.setSize(128,128);renderer.toneMapping=THREE.LinearToneMapping;renderer.toneMappingExposure=1.5;renderer.setClearColor(0,1);document.body.appendChild(renderer.domElement);

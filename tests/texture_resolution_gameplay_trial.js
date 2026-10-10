@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Real native map/player/brush materials. The only filter override is a
 // fixture-local uniform wrapper; Classic and production source remain intact.
 const panel=document.querySelector('section'), statusNode=document.querySelector('#status'), receiptNode=document.querySelector('#receipt');

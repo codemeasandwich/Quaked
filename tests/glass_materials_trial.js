@@ -6,6 +6,7 @@ import * as mode from '../src/newer/mode.js';
 import {R_ClassicMaterial} from '../src/newer/render/r_classicstate.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 import {R_NewerTextureUpgrade,R_GlassTextureKey,R_ClassicTexture} from '../src/newer/render/r_newertextures.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const W=360,H=480,report=document.querySelector('#report'),errors=[];
 window.addEventListener('error',e=>errors.push(e.message));
 for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_pointshadows,post.r_newbright,post.r_newcontrast,mode.r_newer_normals,mode.r_newer_lighting,mode.r_newer_textures])if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);

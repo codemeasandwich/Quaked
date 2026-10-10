@@ -22,9 +22,9 @@ import { d_8to24table } from './vid.js';
 import { cl as client_cl } from '../client/client.js';
 import { GL_TextureLinear, GL_RegisterTexture } from './glquake.js';
 import { isXRActive, XR_SCALE } from '../../platform/webxr.js';
-import { R_DecalBloodSpray, R_DecalBloodLanded } from '../../newer/render/r_decals.js';
-import { R_WeaponSurfaceBloodAt } from '../../newer/render/r_weapon_surface.js';
-import { R_ScreenDropsBloodAt } from '../../newer/render/r_screendrops.js';
+import { R_DecalBloodSpray, R_DecalBloodLanded } from '../common/hooks.js'; // installed by newer/render/r_decals.js
+import { R_WeaponSurfaceBloodAt } from '../common/hooks.js'; // installed by newer/render/r_weapon_surface.js
+import { R_ScreenDropsBloodAt } from '../common/hooks.js'; // installed by newer/render/r_screendrops.js
 
 const MAX_PARTICLES = 2048;
 

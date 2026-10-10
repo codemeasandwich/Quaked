@@ -16,12 +16,12 @@
 // Ported from: WinQuake/gl_rsurf.c -- surface-related refresh code
 
 import * as THREE from 'three';
-import { R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen } from '../../newer/render/r_rockfield.js';
+import { R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen } from '../common/hooks.js'; // installed by newer/render/r_rockfield.js
 import { Sys_Error } from '../common/sys.js';
-import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from '../../newer/mode.js';
-import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArchHidden } from '../../newer/render/r_archframe.js';
-import { DEMON_TEXTURES, R_DemonSurfaceData } from '../../newer/render/r_demonrelief.js';
-import { R_DemonBakePrepare, R_DemonBakeSurface, R_DemonBakeStatus } from '../../newer/assets/r_demonbakes.js';
+import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from '../common/hooks.js'; // installed by newer/mode.js
+import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArchHidden } from '../common/hooks.js'; // installed by newer/render/r_archframe.js
+import { DEMON_TEXTURES, R_DemonSurfaceData } from '../common/hooks.js'; // installed by newer/render/r_demonrelief.js
+import { R_DemonBakePrepare, R_DemonBakeSurface, R_DemonBakeStatus } from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
 
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
@@ -60,8 +60,8 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 }
 import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../client/client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
-import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, R_GetLiquidLinks, r_newdark } from '../../newer/render/gl_post.js';
-import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial, R_BoxInPortalReceiver } from '../../newer/render/gl_portal.js';
+import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, R_GetLiquidLinks, r_newdark } from '../common/hooks.js'; // installed by newer/render/gl_post.js
+import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial, R_BoxInPortalReceiver } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { R_MarkLights, R_LightPointValue } from './gl_rlight.js';
 import {
 	r_refdef, r_origin, vpn, vright, vup

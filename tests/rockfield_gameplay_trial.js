@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // One real, ordinary client/server. No synthetic geometry or extra game loop.
 const panel = document.querySelector( 'section' ), errors = [];
 const originalError = console.error;

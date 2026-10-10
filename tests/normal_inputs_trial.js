@@ -8,6 +8,7 @@ import * as mode from '../src/newer/mode.js';
 import {R_NewerTexturesForModel,R_NewerTexturesStatus} from '../src/newer/render/r_newertextures.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
 import {NormalInputs,NormalInputWitness,R_NormalPrepared} from '../src/newer/assets/normal_prepare.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const button=document.querySelector('#run'),save=document.querySelector('#save'),output=document.querySelector('#report');let report,controller,stopped=false;
 const fields=['width','height','crafted','derive','strength','cap','rgba','fullbright','scalar','edge','authored'];
 const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),n=>n.toString(16).padStart(2,'0')).join('');

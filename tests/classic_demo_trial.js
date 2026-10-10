@@ -1,6 +1,7 @@
 // Observe the actual application's scene render and subsequent classic blit.
 // Readback is only for this trial; production rendering has no GPU readbacks.
 import * as THREE from 'three';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import( '../main.js' );
 const draw = await import( '../src/engine/render/gl_draw.js' );
 const sbar = await import( '../src/engine/client/sbar.js' );

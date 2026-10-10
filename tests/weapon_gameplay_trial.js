@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Owner-tryable real client/server trial. Shots go through ordinary commands,
 // QuakeC weapon execution and CL_ParseStartSoundPacket; no synthetic casings.
 const panel = document.querySelector( 'section' );

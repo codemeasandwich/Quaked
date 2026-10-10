@@ -16,6 +16,7 @@ p { color:#b8c4c2; margin:8px 0; } #evidence { display:none; }
 <div id="status">Loading the twelve replacements…</div><div id="tiles"></div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
 <script type="module">
+import './src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const status = document.querySelector('#status');
 let checks = 0;
 function check(ok, label) { if (!ok) throw new Error(label); checks++; }

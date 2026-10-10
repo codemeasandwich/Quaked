@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Reuse the native weapon trial. Baseline is a page-local metadata override;
 // geometry, game files and the production manifest are never changed here.
 await import('./weapon_gameplay_trial.js');

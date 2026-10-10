@@ -5,6 +5,7 @@ import * as height from '../src/newer/render/r_heightshadows.js';
 import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const W=256,H=256, report=document.querySelector('#report'), views=document.querySelector('#views'), button=document.querySelector('#run');
 const mutation=new URLSearchParams(location.search).get('mutation');
 for(const c of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,height.r_heightshadows])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);

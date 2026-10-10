@@ -43,6 +43,7 @@ import {
 	WT_GetMaxPendingWrites,
 } from './net_webtransport_server.ts';
 import { NET_NewQSocket, NET_FreeQSocket } from '../src/engine/net/net_main.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 
 // Reduce log write volume in production. Keep only allowlisted lines.
 globalThis.__THREE_QUAKE_QUIET_LOGS = true;

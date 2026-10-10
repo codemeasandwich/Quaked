@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const controls = document.querySelector( 'section' ); for ( const event of [ 'mousedown', 'mouseup', 'keydown', 'keyup', 'touchstart', 'touchend', 'pointerdown', 'pointerup' ] ) controls.addEventListener( event, e => e.stopPropagation() );
 await import( '../main.js' ); while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 20 ) );
 const menu = await import( '../src/engine/client/menu.js' );

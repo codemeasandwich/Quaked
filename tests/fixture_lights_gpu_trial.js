@@ -14,6 +14,7 @@ import { VID_SetPalette, vid } from '../src/engine/render/vid.js';
 import { cl } from '../src/engine/client/client.js';
 import { r_refdef, entity_t } from '../src/engine/render/render.js';
 import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const W=640,H=400,report=document.querySelector('#report'),button=document.querySelector('#run'),views=document.querySelector('#views');
 const errors=[],checks=[];
 window.addEventListener('error',e=>errors.push({runtime:e.message}));window.addEventListener('unhandledrejection',e=>errors.push({rejection:String(e.reason)}));let renderer,world,actor,draws=0,composite;

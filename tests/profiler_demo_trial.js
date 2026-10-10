@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Observe the real menu command and renderer. Auxiliary shadow/probe/portal
 // views are counted separately from the one main camera scene presentation.
 const controls = document.querySelector( 'section' );

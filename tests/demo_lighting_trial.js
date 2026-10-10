@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Observe the actual main entry and native opening demo; no replacement map,
 // server, synthetic renderer or extra animation loop.
 const errors=[],panel=document.querySelector('section');

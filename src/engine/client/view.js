@@ -11,12 +11,12 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-import { R_PlayerSurfaceBlood } from '../../newer/render/r_weapon_surface.js';
-import { PowerVisionMode } from '../../newer/gameplay/powervision_state.js';
-import { R_PostActive } from '../../newer/render/gl_post.js';
-import { R_QuadVisionActive } from '../../newer/render/r_quadvision.js';
-import { R_FaceDamage } from '../../newer/ui/r_facegame.js';
-import { SV_RespawnView } from '../../newer/gameplay/sv_respawn.js';
+import { R_PlayerSurfaceBlood } from '../common/hooks.js'; // installed by newer/render/r_weapon_surface.js
+import { PowerVisionMode } from '../common/hooks.js'; // installed by newer/gameplay/powervision_state.js
+import { R_PostActive } from '../common/hooks.js'; // installed by newer/render/gl_post.js
+import { R_QuadVisionActive } from '../common/hooks.js'; // installed by newer/render/r_quadvision.js
+import { R_FaceDamage } from '../common/hooks.js'; // installed by newer/ui/r_facegame.js
+import { SV_RespawnView } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 // Ported from: WinQuake/view.c -- player eye positioning
 
 import { PITCH, YAW, ROLL,
@@ -39,12 +39,12 @@ import { cl_forwardspeed } from './cl_input.js';
 import { R_RenderView } from '../render/gl_rmain.js';
 import { R_PushDlights } from '../render/gl_rlight.js';
 import { con_forcedup } from '../common/console.js';
-import { R_DemoLoadingHolding } from '../../newer/ui/r_demoloading.js';
+import { R_DemoLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { VID_UpdateGamma } from '../render/vid.js';
 import { scr_viewsize } from '../render/gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
 import { v_blend, v_liquid_blend } from '../render/glquake.js';
-import { V_ShamblerStepShake, v_shamblersteps } from '../../newer/render/v_shamblersteps.js';
+import { V_ShamblerStepShake, v_shamblersteps } from '../common/hooks.js'; // installed by newer/render/v_shamblersteps.js
 
 export { v_blend };
 

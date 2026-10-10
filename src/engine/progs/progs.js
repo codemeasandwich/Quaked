@@ -7,9 +7,8 @@
  * Types: exported classes `EdictFieldAccessor`, `edict_t`.
  *
  * State: mutable exports `progs`, `pr_functions`, `pr_strings`, `pr_strings_data`, `pr_globaldefs`, `pr_fielddefs`,
- * `pr_statements`, `pr_global_struct`, `pr_globals`, `pr_globals_float`, `pr_globals_int`, `pr_edict_size`, `pr_crc`,
- * `pr_string_temp_ofs`, `sv`, `svs`, `pr_builtins`, `pr_numbuiltins`, `pr_argc`, `pr_trace`, `pr_xfunction`,
- * `pr_xstatement`.
+ * `pr_statements`, `pr_global_struct`, `pr_globals`, `pr_globals_float`, `pr_globals_int`, `pr_edict_size` and 10
+ * more.
  *
  * Errors: throws at 2 places.
  *

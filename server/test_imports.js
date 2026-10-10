@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Test that Deno can import the existing JS modules from src/
 // Run with: deno run --allow-read --allow-net --config ../deno.json test_imports.js ("three" is the browser's own module)
 

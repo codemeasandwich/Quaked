@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const panel=document.querySelector('section'),errors=[];for(const t of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(t,e=>e.stopPropagation());window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
 const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/engine/client/menu.js'),draw=await import('../src/engine/render/gl_draw.js'),vars=await import('../src/engine/common/cvar.js');

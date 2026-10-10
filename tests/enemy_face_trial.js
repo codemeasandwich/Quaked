@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import( '../src/engine/render/gl_rsurf.js' );
 const pak = await import( '../src/engine/common/pak.js' ), models = await import( '../src/engine/render/gl_model.js' ), mesh = await import( '../src/engine/render/gl_mesh.js' );
 const skins = await import( '../src/newer/render/r_newerskins.js' ), newerMode = await import( '../src/newer/mode.js' ), face = await import( '../src/newer/render/enemy_face.js' );

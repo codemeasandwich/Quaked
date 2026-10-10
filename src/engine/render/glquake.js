@@ -6,12 +6,8 @@
  * Types: exported classes `gltexture_t`, `glpoly_t`, `glvert_t`, `particle_t`.
  *
  * State: mutable exports `texture_extension_number`, `texture_mode`, `gldepthmin`, `gldepthmax`, `currenttexture`,
- * `cnttextures`, `particletexture`, `playertextures`, `gltextures`, `numgltextures`, `glv`, `glx`, `gly`, `glwidth`,
- * `glheight`, `r_worldentity`, `r_cache_thrash`, `modelorg`, `r_entorigin`, `currententity`, `r_visframecount`,
- * `r_framecount`, `frustum`, `c_brush_polys`, `c_alias_polys`, `vup`, `vpn`, `vright`, `r_origin`, `r_refdef`,
- * `r_viewleaf`, `r_oldviewleaf`, `r_notexture_mip`, `d_lightstylevalue`, `envmap`, `skytexturenum`,
- * `mirrortexturenum`, `mirror`, `mirror_plane`, `r_world_matrix`, `gl_lightmap_format`, `gl_solid_format`,
- * `gl_alpha_format`, `gl_mtexable`, `v_blend`; module-level variables `gl_forcelinear`.
+ * `cnttextures`, `particletexture`, `playertextures`, `gltextures`, `numgltextures`, `glv`, `glx` and 33 more;
+ * module-level variables `gl_forcelinear`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */

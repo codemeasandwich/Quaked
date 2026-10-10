@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // One native game. Buttons move the player into real difficulty trigger volumes,
 // so the shipped QuakeC touch function, not a replacement rule, selects skill.
 const panel=document.querySelector('section'),errors=[];

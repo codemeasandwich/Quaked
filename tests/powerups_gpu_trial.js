@@ -12,6 +12,7 @@ import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { entity_t } from '../src/engine/render/render.js';
 import { cl } from '../src/engine/client/client.js';
 import { R_ClassicMaterial } from '../src/newer/render/r_classicstate.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 
 const report = document.querySelector( '#report' ), width = 768, heightPixels = 480;
 try {

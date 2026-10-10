@@ -6,21 +6,20 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: mutable exports `sv`, `svs`, `sv_player`, `pr_global_struct`, `host_frametime`, `pr_strings`, `SV_Move`,
- * `SV_TestEntityPosition`, `SV_LinkEdict`, `SV_PointContents`, `SV_StartSound`, `PR_ExecuteProgram`, `EDICT_TO_PROG`,
- * `PROG_TO_EDICT`, `NEXT_EDICT`, `GetEdictFieldValue`.
+ * `SV_TestEntityPosition`, `SV_LinkEdict`, `SV_PointContents`, `SV_StartSound`, `PR_ExecuteProgram` and 4 more.
  *
  * Errors: calls `Sys_Error` (fatal) at 3 places.
  *
  * Its mutable exports are dependencies injected by `SV_SetState`, `SV_SetCallbacks`, `SV_SetFrametime` and
  * `SV_SetPlayer` (the server, its globals, tracing and QuakeC entry points), not physics settings.
  */
-import { SV_RespawnFrame } from '../../newer/gameplay/sv_respawn.js';
-import { SV_QuadJumpBegin, SV_QuadJumpEnd } from '../../newer/gameplay/sv_quadmovement.js';
-import { SV_RendVeilHolding } from '../../newer/gameplay/sv_rendveil.js';
+import { SV_RespawnFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
+import { SV_QuadJumpBegin, SV_QuadJumpEnd } from '../common/hooks.js'; // installed by newer/gameplay/sv_quadmovement.js
+import { SV_RendVeilHolding } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
 // Ported from: WinQuake/sv_phys.c -- server physics
 
-import { SV_SeamlessHolding } from '../../newer/gameplay/sv_seamless.js';
-import { SV_PortalMoveStart, SV_PortalMoveEnd, SV_PortalMoveStepping } from '../../newer/gameplay/sv_portalmotion.js';
+import { SV_SeamlessHolding } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
+import { SV_PortalMoveStart, SV_PortalMoveEnd, SV_PortalMoveStepping } from '../common/hooks.js'; // installed by newer/gameplay/sv_portalmotion.js
 import { Sys_Error } from '../common/sys.js';
 import { Con_Printf, Con_DPrintf } from '../common/common.js';
 import { cvar_t } from '../common/cvar.js';
@@ -30,7 +29,7 @@ import { vec3_origin, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorM
 import { MAX_EDICTS, YAW } from '../common/quakedef.js';
 import { PR_GetString } from '../progs/progs.js';
 import { trace_t } from './world.js';
-import { SV_ShotDelayRun } from '../../newer/gameplay/sv_shotdelay.js';
+import { SV_ShotDelayRun } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
 
 /*
 

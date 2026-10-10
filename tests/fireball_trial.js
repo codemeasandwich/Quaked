@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Drives one ordinary game instance so a browser run can photograph the Fireball
 // at exact burst ages. The game's own `pause` freezes cl.time, which is what the
 // effect is a function of, so a paused frame IS that age. No gameplay is altered.

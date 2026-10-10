@@ -28,6 +28,7 @@ import { R_NewerSkinsPrefetchBsp } from './src/newer/render/r_newerskins.js';
 import { R_DemonBakePrefetch } from './src/newer/assets/r_demonbakes.js';
 import {R_StartupNormalsPrefetch} from './src/newer/assets/r_normalprefetch.js';
 import { R_NewerTexturesPrefetch, R_BspTextureNames } from './src/newer/render/r_newertextures.js';
+import './src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 
 const parms = {
 	basedir: '.',

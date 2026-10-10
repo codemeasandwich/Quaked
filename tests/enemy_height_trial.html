@@ -4,6 +4,7 @@
 <div id="status">Loading real models and skins…</div><canvas id="view"></canvas><pre id="evidence"></pre>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script>
 <script type="module">
+import './src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const status=document.querySelector('#status');let checks=0;
 const trialControls=[...document.querySelectorAll('header button,header select,header input')];trialControls.forEach(c=>c.disabled=true);
 function check(value,label){if(!value)throw new Error(label);checks++;}

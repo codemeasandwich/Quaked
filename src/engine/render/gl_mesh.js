@@ -11,13 +11,14 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-import { R_AliasMeshLookup, R_AliasMeshRemember } from '../../newer/assets/r_aliasmeshcache.js';
+import { R_AliasMeshLookup, R_AliasMeshRemember } from '../common/hooks.js'; // installed by newer/assets/r_aliasmeshcache.js
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';
-import { R_WeaponAsset, R_WeaponRotorFrame } from '../../newer/render/r_weapons.js';
-import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from '../../newer/render/r_newerskins.js';
-import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from '../../newer/render/r_anim.js';
+import { R_WeaponAsset, R_WeaponRotorFrame } from '../common/hooks.js'; // installed by newer/render/r_weapons.js
+import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from '../common/hooks.js'; // installed by newer/render/r_newerskins.js
+import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays } from '../common/hooks.js'; // installed by newer/render/r_anim.js
+import { ANIM_STEP } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf } from '../common/common.js';
 import { cl } from '../client/client.js';
 import { R_GetPlayerSkinTexture } from './gl_rmisc.js';

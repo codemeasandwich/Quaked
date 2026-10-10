@@ -10,13 +10,13 @@
  *
  * Errors: calls `Host_Error` at 2 places; catches at 2 places.
  */
-import {R_DemonBakeRelease} from '../../newer/assets/r_demonbakes.js';
-import {R_PowerVisionReset} from '../../newer/render/r_powervision.js';
-import {R_QuadVisionReset} from '../../newer/render/r_quadvision.js';
-import {R_FaceGameReset} from '../../newer/ui/r_facegame.js';
-import { SV_RendVeilClientRecord } from '../../newer/gameplay/sv_rendveil.js';
+import {R_DemonBakeRelease} from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
+import {R_PowerVisionReset} from '../common/hooks.js'; // installed by newer/render/r_powervision.js
+import {R_QuadVisionReset} from '../common/hooks.js'; // installed by newer/render/r_quadvision.js
+import {R_FaceGameReset} from '../common/hooks.js'; // installed by newer/ui/r_facegame.js
+import { SV_RendVeilClientRecord } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
 // Ported from: WinQuake/cl_main.c -- client main loop
-import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
+import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,
@@ -42,11 +42,11 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from '../common/mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from '../render/render.js';
-import { R_ImpactMissile } from '../../newer/render/r_impactripples.js';
-import { R_FlashlightRunEnd } from '../../newer/render/r_flashlightrun.js';
-import { R_DemoSplitEnd } from '../../newer/render/r_demosplit.js';
-import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../../newer/render/r_muzzle.js';
-import { R_NewerGame } from '../../newer/mode.js';
+import { R_ImpactMissile } from '../common/hooks.js'; // installed by newer/render/r_impactripples.js
+import { R_FlashlightRunEnd } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
+import { R_DemoSplitEnd } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
+import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../common/hooks.js'; // installed by newer/render/r_muzzle.js
+import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from '../server/host.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';

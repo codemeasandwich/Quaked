@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Inspection fixture ONLY. Stock QC owns the real closet transfer, production
 // physics owns the hold. The phase buttons pause/seek this local test clock.
 const panel=document.querySelector('#veil-controls'),status=document.querySelector('#veil-status'),errors=[],loadedAt=new Date().toISOString();

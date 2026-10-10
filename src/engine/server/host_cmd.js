@@ -13,8 +13,8 @@
  * Saved games are kept in localStorage; a failed save or load is caught and reported on the console. A map not yet
  * loaded is fetched first and the command reissued.
  */
-import { weaponSurface } from '../../newer/render/r_weapon_surface.js';
-import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from '../../newer/gameplay/sv_respawn.js';
+import { weaponSurface } from '../common/hooks.js'; // installed by newer/render/r_weapon_surface.js
+import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 // Ported from: WinQuake/host_cmd.c
 
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from '../common/sys.js';
@@ -29,7 +29,7 @@ import { STAT_TOTALSECRETS, STAT_TOTALMONSTERS, STAT_SECRETS, STAT_MONSTERS,
 import { NUM_FOR_EDICT, EDICT_NUM, EDICT_TO_PROG, PR_GetString, pr_global_struct } from '../progs/progs.js';
 import { PR_ExecuteProgram } from '../progs/pr_exec.js';
 import { ED_NewString, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from '../progs/pr_edict.js';
-import { SV_PinnedZombieSpawned } from '../../newer/gameplay/sv_pinnedzombies.js';
+import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
 import { sv_player } from './sv_phys.js';
 import { FL_GODMODE, FL_NOTARGET,
 	MOVETYPE_WALK, MOVETYPE_FLY, MOVETYPE_NOCLIP } from './sv_phys.js';
@@ -48,13 +48,13 @@ import { CL_StopPlayback } from '../client/cl_demo.js';
 import { SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { hostname } from '../net/net_main.js';
 import { SV_LinkEdict } from './world.js';
-import { SV_SeamlessPlacePlayer } from '../../newer/gameplay/sv_seamless.js';
+import { SV_SeamlessPlacePlayer } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
 import { SV_ClientPrintf, SV_BroadcastPrintf,
 	Host_ShutdownServer, Host_Shutdown } from './host.js';
 import { COM_FindFile, COM_EnsureFile } from '../common/pak.js';
-import { R_FlashlightNewRun, R_FlashlightRunLoaded } from '../../newer/render/r_flashlightrun.js';
-import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../../newer/ui/r_demoloading.js';
-import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../../newer/render/r_shells.js';
+import { R_FlashlightNewRun, R_FlashlightRunLoaded } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
+import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
+import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../common/hooks.js'; // installed by newer/render/r_shells.js
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 

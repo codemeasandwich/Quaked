@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Owner trial uses the native server's actual pickups and QuakeC touch logic.
 // It only positions/protects the test player; it does not fabricate an item.
 const panel=document.querySelector('section'),status=document.querySelector('#status'),runtimeErrors=[];

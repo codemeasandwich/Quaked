@@ -9,6 +9,7 @@ if(!process.env.QUAKED_THREE_MODULE)throw Error('Set QUAKED_THREE_MODULE');
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
 await import('../src/engine/render/gl_rsurf.js');const pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js');
+await import('../src/newer/install.js'); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
 const files=process.argv.slice(2);if(!files.length)files.push('pak0.pak');const names=new Set(),archives=[];
 const raw=await readFile('pak0.pak');pak.COM_AddPack(pak.COM_LoadPackFile('palette',raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length)));
 for(const file of files){const b=await readFile(file),pack=pak.COM_LoadPackFile(file,b.buffer.slice(b.byteOffset,b.byteOffset+b.length));pak.COM_AddPack(pack);archives.push({file,sha256:createHash('sha256').update(b).digest('hex')});for(const f of pack.files)if(/^progs\/[^/]+\.mdl$/.test(f.name))names.add(f.name);}

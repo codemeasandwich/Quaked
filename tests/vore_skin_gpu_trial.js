@@ -10,6 +10,7 @@ import * as post from '../src/newer/render/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {vid,VID_SetPalette} from '../src/engine/render/vid.js';
 import {entity_t} from '../src/engine/render/render.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const W=640,H=640,button=document.querySelector('#run'),report=document.querySelector('#report'),views=document.querySelector('#views');
 const errors=[],checks=[],owned=[],options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_bounce,post.r_volumetric,post.r_newbright,post.r_newcontrast,post.r_pointshadows,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_enemies,mode.r_newer_shadows,anim.r_lerpmodels];
 window.addEventListener('error',event=>errors.push({runtime:event.message}));window.addEventListener('unhandledrejection',event=>errors.push({rejection:String(event.reason)}));

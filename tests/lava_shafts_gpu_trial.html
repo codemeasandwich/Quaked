@@ -2,6 +2,7 @@
 <style>body{background:#151515;color:white;font:14px system-ui}#views{display:flex;gap:12px;flex-wrap:wrap}figure{margin:0}img{width:320px}pre{white-space:pre-wrap}</style>
 <h2>Native START lava and adjacent surfaces</h2><p>Bounded static draws of original map geometry through the public materials and HDR pipeline. No game, server, new map lights or animation loop. A diagnostic readback observes the actual shaft buffer.</p><div id="views"></div><pre id="report">Running…</pre>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script><script type="module">
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 try {
  const surf=await import('../src/engine/render/gl_rsurf.js'),THREE=await import('three'),post=await import('../src/newer/render/gl_post.js'),vars=await import('../src/engine/common/cvar.js'),newerMode = await import('../src/newer/mode.js'),pak=await import('../src/engine/common/pak.js'),mod=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js'),client=await import('../src/engine/client/client.js'),shared=await import('../src/engine/render/gl_rmain.js');
  for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_pillars,post.r_bounce,newerMode.r_newer_lighting,newerMode.r_newer_normals,newerMode.r_newer_water,newerMode.r_newer_textures])if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);

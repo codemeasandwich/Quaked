@@ -7,6 +7,7 @@ import * as vars from '../src/engine/common/cvar.js';
 import * as mode from '../src/newer/mode.js';
 import * as rock from '../src/newer/render/r_rockfield.js';
 import { DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 
 const size = 256, report = document.querySelector( '#report' );
 const owned = [];

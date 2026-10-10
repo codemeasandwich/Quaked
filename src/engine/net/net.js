@@ -7,9 +7,7 @@
  *
  * State: mutable exports `net_activeSockets`, `net_freeSockets`, `net_numsockets`, `net_numdrivers`,
  * `net_numlandrivers`, `DEFAULTnet_hostport`, `net_hostport`, `net_driverlevel`, `serialAvailable`, `ipxAvailable`,
- * `tcpipAvailable`, `my_ipx_address`, `my_tcpip_address`, `net_time`, `net_activeconnections`, `messagesSent`,
- * `messagesReceived`, `unreliableMessagesSent`, `unreliableMessagesReceived`, `hostCacheCount`, `slistInProgress`,
- * `slistSilent`, `slistLocal`.
+ * `tcpipAvailable`, `my_ipx_address` and 11 more.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */

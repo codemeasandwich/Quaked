@@ -49,12 +49,12 @@ import {
 } from './pr_comp.js';
 import { ED_Print } from './pr_edict.js';
 import { ss_active } from '../server/server.js';
-import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../../newer/gameplay/sv_respawn.js';
-import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from '../../newer/gameplay/sv_axecut.js';
-import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from '../../newer/gameplay/sv_faceevents.js';
-import { SV_UnseenFunctionEnter, SV_UnseenFunctionLeave } from '../../newer/gameplay/sv_unseen.js';
-import { SV_MeleeSprayEnter } from '../../newer/gameplay/sv_meleespray.js';
-import { SV_ProneZombieEnter, SV_ProneZombieLeave } from '../../newer/gameplay/sv_pronezombie.js';
+import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
+import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
+import { SV_FaceFunctionEnter, SV_FaceFunctionLeave, SV_FaceReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
+import { SV_UnseenFunctionEnter, SV_UnseenFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_unseen.js
+import { SV_MeleeSprayEnter } from '../common/hooks.js'; // installed by newer/gameplay/sv_meleespray.js
+import { SV_ProneZombieEnter, SV_ProneZombieLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_pronezombie.js
 
 /*
 */

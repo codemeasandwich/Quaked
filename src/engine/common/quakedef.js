@@ -16,6 +16,8 @@ export const GLQUAKE_VERSION = 1.00;
 
 export const GAMENAME = 'id1'; // directory to look in by default
 
+export const ANIM_STEP = 0.1; // seconds between frames in Quake's own animations (QuakeC's 0.1 s think)
+
 //
 // angles
 //

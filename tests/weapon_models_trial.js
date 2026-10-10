@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import( '../src/engine/render/gl_rsurf.js' ); // established renderer import order
 const pak = await import( '../src/engine/common/pak.js' ), model = await import( '../src/engine/render/gl_model.js' );
 const mesh = await import( '../src/engine/render/gl_mesh.js' ), weapons = await import( '../src/newer/render/r_weapons.js' );

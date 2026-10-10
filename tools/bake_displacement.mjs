@@ -16,6 +16,7 @@ if(!/^[a-z0-9-]+$/.test(namespace)||(!packs.length&&!loose.length)||!process.env
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
 const surface=await import('../src/engine/render/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js'),{cl}=await import('../src/engine/client/client.js');
+await import('../src/newer/install.js'); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
 const sha=b=>createHash('sha256').update(b).digest('hex'),names=new Set(),archives=[];
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{loose:true,path,name:path});const palette=await memberSearch(['pak0.pak']);
 pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));

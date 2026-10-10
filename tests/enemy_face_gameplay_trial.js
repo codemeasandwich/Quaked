@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Public console/native spawn/renderer trial. Only this test page moves the
 // camera and holds monsters for inspection; production gameplay is unchanged.
 const panel = document.querySelector( '#face-controls' ), status = document.querySelector( '#face-status' ), errors = [];

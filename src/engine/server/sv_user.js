@@ -15,8 +15,8 @@
  * Its mutable exports are dependencies injected by `SV_User_SetCallbacks`; a client message it cannot read drops that
  * client (`SV_DropClient`).
  */
-import {R_WelcomeLoadingHolding} from '../../newer/ui/r_demoloading.js';
-import {SV_QuadMovementScale} from '../../newer/gameplay/sv_quadmovement.js';
+import {R_WelcomeLoadingHolding} from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
+import {SV_QuadMovementScale} from '../common/hooks.js'; // installed by newer/gameplay/sv_quadmovement.js
 // Ported from: WinQuake/sv_user.c -- server code for moving users
 
 import { Sys_Printf } from '../common/sys.js';

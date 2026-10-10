@@ -267,6 +267,34 @@ they use 85 of `three`'s names, and the stand-in had 31.
 * `tests/server_config_test.js` pins both import maps to `index.html`'s `three` and the task to `server/`; it fails on
   the old configuration.
 
+## [44g], step 7: the engine calls Newer through named hooks (debt D1b)
+
+No module in `src/engine` or `src/platform` imports `src/newer` any more. Where 30 of them imported 407 Newer names
+(179 import statements: functions, cvars, classes and tables), they import the same names from
+`src/engine/common/hooks.js`, and `src/newer/install.js` fills them once at startup with Newer's own exports.
+
+* Why a new module, when the plan says to reuse what exists: nothing in the engine already carries calls the other way.
+  The existing `R_DecalsSetup` / `R_WallBurnSetup` hand-overs run from the engine into Newer (the engine imports the
+  Newer module and gives it engine functions), the direction this debt removes. The hooks are `export let` live
+  bindings, so no call site changed: only each import's source (a trailing comment names the Newer module that
+  installs it). Calls cost nothing more.
+* Two Newer values the engine used as its modules loaded, before any install can run, are moved instead: `ANIM_STEP`
+  (Quake's own 0.1 s frame step) is in `engine/common/quakedef.js` (re-exported by `r_anim.js`), and the menu builds
+  Newer Game's default commands when they are used.
+* Every entry point that runs engine code installs Newer: the page (`main.js`), the room server, the test harness
+  (after its renderer bootstrap), the trial pages and the bake tools (those with a module loader install after it).
+  Each one that reached Newer before installs it now, so every page, tool and server loads what it loaded before.
+  Until installed, a function hook throws, naming itself; `Hooks_Install` refuses a table with a hook missing or
+  unknown.
+* The graph: engine → Newer and platform → Newer are empty; the large cycle is 44 modules, the engine's own (D1a),
+  where it was 84.
+* Checked: `tests/hooks_test.js` (nothing imports Newer; every hook installed with Newer's own export; a partial or
+  unknown table refused); the full suite; the page starts Newer Game and Classic; all 70 trial pages load with the same errors as on `Dev`
+  (which also found a trial step 2 had missed, fixed on its own);
+  a browser joined the room server (sign-on 4); two bake tools re-run give byte-identical output.
+* Not changed: the room server still installs all of Newer, as it loaded all of it before. Installing only what it
+  needs (no renderer) is now one import to change, but needs hooks with Classic defaults first.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

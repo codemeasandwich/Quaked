@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // One ordinary native E1M3 client/server, with observation-only shader receipts.
 const errors = [], panel = document.querySelector( 'section' );
 window.addEventListener( 'error', event => errors.push( event.message ) );

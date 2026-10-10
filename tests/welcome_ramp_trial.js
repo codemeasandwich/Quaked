@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Actual game and native corridor touches; no alternate renderer or sound bus.
 const panel=document.querySelector('section'),status=document.querySelector('#status'),errors=[];
 for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(type,e=>e.stopPropagation());

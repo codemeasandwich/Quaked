@@ -10,8 +10,8 @@
  *
  * Errors: calls `Sys_Error` (fatal) at 5 places.
  */
-import { SV_RespawnDropTouch } from '../../newer/gameplay/sv_respawn.js';
-import { SV_RendVeilTouchBegin, SV_RendVeilTouchEnd } from '../../newer/gameplay/sv_rendveil.js';
+import { SV_RespawnDropTouch } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
+import { SV_RendVeilTouchBegin, SV_RendVeilTouchEnd } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
 // Ported from: WinQuake/world.c + world.h -- world query functions
 
 /*
@@ -37,9 +37,9 @@ import {
 } from '../common/bspfile.js';
 import { PR_ExecuteProgram } from '../progs/pr_exec.js';
 import { EDICT_TO_PROG, PROG_TO_EDICT, pr_global_struct, PR_GetString } from '../progs/progs.js';
-import { SV_PortalMoveRead } from '../../newer/gameplay/sv_portalmotion.js';
-import { SV_BeginPortalTouch, SV_PreparePortalTouch, SV_FinishPortalTouch, SV_RestorePortalReceiver } from '../../newer/gameplay/sv_portal.js';
-import { R_FlashlightSkillSelected } from '../../newer/render/r_flashlightrun.js';
+import { SV_PortalMoveRead } from '../common/hooks.js'; // installed by newer/gameplay/sv_portalmotion.js
+import { SV_BeginPortalTouch, SV_PreparePortalTouch, SV_FinishPortalTouch, SV_RestorePortalReceiver } from '../common/hooks.js'; // installed by newer/gameplay/sv_portal.js
+import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 
 // Pre-allocated scratch vectors for SV_RecursiveHullCheck (indexed by recursion depth).
 // Grow this pool on demand because valid BSP hulls can be deeper than the common case.

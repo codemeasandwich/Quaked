@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // One real main entry/client. Optional slow=1 delays only first-world texture
 // and skin manifests to make console hold visible; it does not fake readiness.
 const errors=[],history=[],gpuErrors=[];window.addEventListener('error',e=>errors.push(e.message));

@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Controlled in-game trial, using the actual renderer and option cvars.
 await import('../main.js');
 const vid=await import('../src/engine/render/vid.js');

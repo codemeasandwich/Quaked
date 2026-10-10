@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Keep trial buttons from also reaching the game's document-level input handlers.
 const controls=document.querySelector('section');
 for(const event of ['mousedown','mouseup','keydown','keyup','touchstart','touchend','pointerdown','pointerup'])controls.addEventListener(event,e=>e.stopPropagation());

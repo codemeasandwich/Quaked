@@ -2,6 +2,7 @@
 // Native entities/player are explicitly staged with model smoothing disabled
 // while the server is paused; this is not spontaneous AI/turn interpolation proof.
 import {BESTIARY_ENTRIES,Bestiary_FacesPlayer} from '../src/newer/ui/bestiary_state.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const storage=new Map([['quaked.bestiary.v1',JSON.stringify({version:1,unlocked:BESTIARY_ENTRIES.filter(e=>e.id!=='grunt').map(e=>e.id)})]]);
 Object.defineProperty(window,'localStorage',{configurable:true,value:{getItem:k=>storage.get(k)??null,setItem:(k,v)=>storage.set(k,String(v)),removeItem:k=>storage.delete(k),clear:()=>storage.clear(),key:i=>[...storage.keys()][i]??null,get length(){return storage.size;}}});
 const panel=document.querySelector('section'),status=document.querySelector('#status'),report=document.querySelector('#report');

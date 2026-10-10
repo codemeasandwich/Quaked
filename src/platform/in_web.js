@@ -31,7 +31,7 @@ import { Con_Printf } from '../engine/common/console.js';
 import { cl, cls, ca_connected } from '../engine/client/client.js';
 import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from '../engine/client/cl_main.js';
 import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from '../engine/client/cl_input.js';
-import { R_NewerGame } from '../newer/mode.js';
+import { R_NewerGame } from '../engine/common/hooks.js'; // installed by newer/mode.js
 import { V_StopPitchDrift } from '../engine/client/view.js';
 import { host_frametime } from '../engine/server/host.js';
 import { PITCH, YAW } from '../engine/common/quakedef.js';
@@ -64,7 +64,7 @@ let codeToQuakeKey = {}; // built in IN_Init to avoid circular dep in Deno
 */
 
 // Mouse state (replaces DirectInput mouse in in_win.c)
-import { R_BestiaryInputLocked } from '../newer/ui/r_bestiary.js';
+import { R_BestiaryInputLocked } from '../engine/common/hooks.js'; // installed by newer/ui/r_bestiary.js
 let mouse_x = 0;
 let mouse_y = 0;
 let old_mouse_x = 0;

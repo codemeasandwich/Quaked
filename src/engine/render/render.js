@@ -24,8 +24,8 @@ import {
 	R_LavaSplash as _R_LavaSplash,
 	R_TeleportSplash as _R_TeleportSplash
 } from './r_part.js';
-import { R_FireballSpawn, R_SmokeTrail } from '../../newer/render/r_fireball.js';
-import { R_DemoSplitActive } from '../../newer/render/r_demosplit.js';
+import { R_FireballSpawn, R_SmokeTrail } from '../common/hooks.js'; // installed by newer/render/r_fireball.js
+import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 
 //============================================================================
 // Constants

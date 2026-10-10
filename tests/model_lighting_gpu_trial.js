@@ -14,6 +14,7 @@ import {r_refdef,entity_t} from '../src/engine/render/render.js';
 import {R_DrawAliasModel} from '../src/engine/render/gl_mesh.js';
 import {R_CloneAliasMaterial} from '../src/newer/render/r_newerskins.js';
 import {weaponSurface,WeaponSurfaceState} from '../src/newer/render/r_weapon_surface.js';
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const W=480,H=320,report=document.querySelector('#report'),button=document.querySelector('#run'),errors=[],owned=[];let renderer,draws=0,composite=null;
 const options=[post.r_hdr,post.r_newbright,post.r_newcontrast,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_pointshadows,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,mode.r_newer_shadows,r_newer_weapons,r_flashlight];
 const bodyVertexSnapshot=new WeakMap();

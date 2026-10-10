@@ -32,9 +32,9 @@ import {
 import { S_LoadSound } from './snd_mem.js';
 import { cl } from '../client/client.js';
 import { Mod_PointInLeaf } from '../render/gl_model.js';
-import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from '../../newer/sound/s_ambientmusic.js';
-import { S_ExitMachineFalloff } from '../../newer/sound/s_exitmachine.js';
-import { R_NewerGame } from '../../newer/mode.js';
+import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from '../common/hooks.js'; // installed by newer/sound/s_ambientmusic.js
+import { S_ExitMachineFalloff } from '../common/hooks.js'; // installed by newer/sound/s_exitmachine.js
+import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 
 /*
 ==============================================================================

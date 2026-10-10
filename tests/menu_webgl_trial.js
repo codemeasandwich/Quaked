@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // One ordinary game instance. Native menu.js owns all menu input and routes;
 // this fixture only issues explicit commands and samples public diagnostics.
 const panel=document.querySelector('section'),statusNode=document.querySelector('#status'),receiptNode=document.querySelector('#receipt');

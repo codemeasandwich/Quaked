@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Actual game/HUD startup and QC pickups. Only the trial player's position is
 // staged; native air, power-up durations, damage and facial state are not set.
 await import('./powerups_gameplay_trial.js');

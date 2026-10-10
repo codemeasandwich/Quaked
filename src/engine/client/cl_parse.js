@@ -10,8 +10,8 @@
  *
  * Errors: calls `Sys_Error` (fatal) at 4 places; calls `Host_Error` at 11 places.
  */
-import { SV_RespawnInventoryStats } from '../../newer/gameplay/sv_respawn.js';
-import { SV_RendVeilClientRecord } from '../../newer/gameplay/sv_rendveil.js';
+import { SV_RespawnInventoryStats } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
+import { SV_RendVeilClientRecord } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
 // Ported from: WinQuake/cl_parse.c -- parse a message received from the server
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
@@ -32,7 +32,7 @@ import { sv, svs } from '../server/server.js';
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cmd_ExecuteString } from '../common/cmd.js';
 import { src_command } from '../common/cmd.js';
-import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../../newer/ui/r_facegame.js';
+import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../common/hooks.js'; // installed by newer/ui/r_facegame.js
 import {
 	PROTOCOL_VERSION,
 	svc_bad, svc_nop, svc_disconnect, svc_updatestat, svc_version,
@@ -70,8 +70,8 @@ import {
 	cl, cls, cl_entities, cl_static_entities, cl_lightstyle,
 	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
 import { VectorCopy } from '../common/mathlib.js';
-import { R_NewerGame } from '../../newer/mode.js';
-import { R_FlashlightRunMap } from '../../newer/render/r_flashlightrun.js';
+import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
+import { R_FlashlightRunMap } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 import { V_ParseDamage } from './view.js';
 import { Mod_ForName } from '../render/gl_model.js';
 import { CL_SetServerState, CL_AcknowledgeCommand, CL_AcknowledgeTransportSequence,
@@ -90,7 +90,7 @@ import { set_noclip_anglehack } from '../server/host_cmd.js';
 import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
 import { CL_ParseTEnt } from './cl_tent.js';
 import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from '../sound/snd_dma.js';
-import { R_ShellShot } from '../../newer/render/r_shells.js';
+import { R_ShellShot } from '../common/hooks.js'; // installed by newer/render/r_shells.js
 import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from '../sound/cd_audio.js';
 import { SCR_CenterPrint } from '../render/gl_screen.js';
 

@@ -15,9 +15,9 @@
  * Newer Game's private save keys (`_newer_face_seed`, `_newer_axe_corpse`, `_clockwise_*`, the rend veil) are parsed
  * here; a malformed one is ignored and the native fields still load.
  */
-import { Face_Seed, Face_ParseSeed, Face_Assign } from '../../newer/render/enemy_face.js';
-import { Rend_ValidRecord, Rend_ParseRecord } from '../../newer/gameplay/sv_rendveil.js';
-import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from '../../newer/gameplay/respawn_record.js';
+import { Face_Seed, Face_ParseSeed, Face_Assign } from '../common/hooks.js'; // installed by newer/render/enemy_face.js
+import { Rend_ValidRecord, Rend_ParseRecord } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
+import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from '../common/hooks.js'; // installed by newer/gameplay/respawn_record.js
 // Ported from: WinQuake/pr_edict.c -- entity dictionary
 
 import { Sys_Error } from '../common/sys.js';
@@ -53,9 +53,9 @@ import {
 	RETURN_EDICT,
 } from './progs.js';
 import { PR_ExecuteProgram } from './pr_exec.js';
-import { SV_PinnedZombieSpawned } from '../../newer/gameplay/sv_pinnedzombies.js';
-import { Axe_ParseRecord, Axe_ValidOwnerKey } from '../../newer/gameplay/axe_record.js';
-import { SV_AxeReset } from '../../newer/gameplay/sv_axecut.js';
+import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
+import { Axe_ParseRecord, Axe_ValidOwnerKey } from '../common/hooks.js'; // installed by newer/gameplay/axe_record.js
+import { SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
 
 //============================================================================
 // Module state

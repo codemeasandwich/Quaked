@@ -1,5 +1,6 @@
 <!doctype html><meta charset="utf-8"><title>Rockfield bounded GPU check</title><style>body{background:#151515;color:white;font:14px system-ui}#views{display:flex;gap:16px}img{width:384px}pre{white-space:pre-wrap}</style><h2>Controlled height-field shadow check</h2><p>Two fixed draws through Quaked's real material and HDR buffer. Diagnostic heights, unchanged plane and checker texture. No game instance or animation loop.</p><div id="views"></div><pre id="report">Running…</pre>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script><script type="module">
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 try {
  await import('../src/engine/render/gl_rsurf.js');
  const THREE=await import('three'),post=await import('../src/newer/render/gl_post.js'),vars=await import('../src/engine/common/cvar.js'),mode = await import('../src/newer/mode.js'),rock=await import('../src/newer/render/r_rockfield.js');

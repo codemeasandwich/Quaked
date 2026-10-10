@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Deliberately no main.js, Quake server, RAF loop, asset downloads or synthetic
 // renderer. Every fixture draw uses the current production material callbacks.
 await import( '../src/engine/render/gl_rsurf.js' ); // production import order avoids its cycle

@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Browser trial of the public native menu and real Canvas2D/PAK artwork.
 // Baseline is a replay of the unchanged native primitives at the former scale;
 // it is a comparison control, not an alternate production menu implementation.

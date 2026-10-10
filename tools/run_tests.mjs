@@ -37,6 +37,8 @@ export async function resolve(specifier, context, next) {
 	// browser entry does. Direct leaf imports otherwise reach cyclic render
 	// definitions before vrect_t is initialized under the real Three runtime.
 	await import( '../src/engine/render/gl_rsurf.js' );
+	// Newer Game plugs into the engine's hooks, as the page's entry does (src/engine/common/hooks.js, card [44g] D1b).
+	await import( '../src/newer/install.js' );
 	await import( pathToFileURL( resolve( files[ 1 ] ) ).href );
 	let passed = 0;
 	for ( const { name, fn } of tests ) {

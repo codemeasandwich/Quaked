@@ -23,8 +23,8 @@ import { W_GetLumpName } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
-import { R_NewerHudCanvas } from '../../newer/ui/r_newerhud.js';
-import { BuildSinglePlayerMenuArt, BuildMenuTextArt } from '../../newer/ui/menu_art.js';
+import { R_NewerHudCanvas } from '../common/hooks.js'; // installed by newer/ui/r_newerhud.js
+import { BuildSinglePlayerMenuArt, BuildMenuTextArt } from '../common/hooks.js'; // installed by newer/ui/menu_art.js
 
 /*
 ==============================================================================

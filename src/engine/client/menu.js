@@ -16,14 +16,14 @@
  */
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
-import { NEWER_ENABLED_FEATURES } from '../../newer/ui/newer_defaults.js';
+import { NEWER_ENABLED_FEATURES } from '../common/hooks.js'; // installed by newer/ui/newer_defaults.js
 import { MainMenu_Begin, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_TextBox,
-	MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text } from '../../newer/ui/menu_webgl.js';
-import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from '../../newer/ui/r_bestiary_book.js';
-import { R_FlashlightToggle } from '../../newer/render/r_flashlight.js';
-import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
-import { Draw_StudioLogo } from '../../newer/ui/studio_logo.js';
-import { R_DemoSplitActive, R_DemoSplitRelease } from '../../newer/render/r_demosplit.js';
+	MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
+import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
+import { R_FlashlightToggle } from '../common/hooks.js'; // installed by newer/render/r_flashlight.js
+import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
+import { Draw_StudioLogo } from '../common/hooks.js'; // installed by newer/ui/studio_logo.js
+import { R_DemoSplitActive, R_DemoSplitRelease } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { Con_Printf, Con_ToggleConsole_f } from '../common/console.js';
@@ -750,7 +750,8 @@ let m_singleplayer_cursor = 0;
 // Enhanced starts with brightness at the slider midpoint and FPS showing.
 // The successful fresh-map hook chooses the flashlight for the hub/difficulty.
 const NEWER_DEFAULT_GAMMA = 0.75; // brightness range is gamma1 (dark) to gamma.5 (bright)
-const NEWER_DEFAULTS = NEWER_ENABLED_FEATURES.map( name => name + ' 1\n' ).join( '' ) + `gamma ${NEWER_DEFAULT_GAMMA}\ncl_showfps 1\n`;
+// built when used: the feature list is Newer's, installed after this module loads
+const newerDefaults = () => NEWER_ENABLED_FEATURES.map( name => name + ' 1\n' ).join( '' ) + `gamma ${NEWER_DEFAULT_GAMMA}\ncl_showfps 1\n`;
 
 const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
@@ -827,7 +828,7 @@ function M_SinglePlayer_Key( key ) {
 					Cbuf_AddText( 'maxplayers 1\n' );
 					// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
 					Cbuf_AddText( ( m_singleplayer_cursor === 0 ? 'r_hdr 1\n' : 'r_hdr 0\n' ) );
-					if ( m_singleplayer_cursor === 0 ) Cbuf_AddText( NEWER_DEFAULTS );
+					if ( m_singleplayer_cursor === 0 ) Cbuf_AddText( newerDefaults() );
 					R_DemoSplitRelease( m_singleplayer_cursor === 0 );
 					Cbuf_AddText( 'map start\n' );
 					break;
@@ -1027,7 +1028,7 @@ function M_LevelSelect_Start() {
 	Cbuf_AddText( 'maxplayers 1\n' );
 	// New Game keeps the classic lighting, Newer Game uses the HDR pipeline
 	Cbuf_AddText( m_levelselect_newer ? 'r_hdr 1\n' : 'r_hdr 0\n' );
-	if ( m_levelselect_newer ) Cbuf_AddText( NEWER_DEFAULTS );
+	if ( m_levelselect_newer ) Cbuf_AddText( newerDefaults() );
 	R_DemoSplitRelease( m_levelselect_newer );
 	Cbuf_AddText( 'map ' + level.map + '\n' );
 

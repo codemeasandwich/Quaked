@@ -20,6 +20,7 @@ globalThis.fetch=async url=>{
  const path=String(url).split('?')[0];try{const data=await readFile(path);return new Response(data);}catch{return new Response(null,{status:404});}
 };
 const surface=await import('../src/engine/render/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js');
+await import('../src/newer/install.js'); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
 const textures=await import('../src/newer/render/r_newertextures.js'),cvar=await import('../src/engine/common/cvar.js'),{r_hdr}=await import('../src/newer/render/gl_post.js');
 const {NormalInputs,NormalInputKey,NormalGenerate}=await import('../src/newer/assets/normal_prepare.js'),{NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION}=await import('../src/newer/assets/normal_bake_format.js');
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{path,name:path,loose:true});

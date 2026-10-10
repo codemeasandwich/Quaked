@@ -71,6 +71,7 @@
 <pre id="resolution-evidence" style="white-space:pre-wrap;margin:6px 0 0"></pre></section>
 <script type="module">
 import * as THREE from 'three';
+import './src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import('./main.js');
 const vid=await import('./src/engine/render/vid.js');
 while(vid.renderer==null)await new Promise(resolve=>setTimeout(resolve,10));

@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import( '../main.js' );
 const { Cbuf_AddText } = await import( '../src/engine/common/cmd.js' );
 const { Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );

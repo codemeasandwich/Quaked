@@ -11,8 +11,8 @@
  */
 // Ported from: WinQuake/gl_rlight.c -- dynamic lighting
 
-import { R_NewerLightingActive, R_ClassicPassActive } from '../../newer/mode.js';
-import { LIGHTNING } from '../../newer/render/r_lightning.js';
+import { R_NewerLightingActive, R_ClassicPassActive } from '../common/hooks.js'; // installed by newer/mode.js
+import { LIGHTNING } from '../common/hooks.js'; // installed by newer/render/r_lightning.js
 import * as THREE from 'three';
 import { DotProduct, VectorCopy, VectorSubtract, Length } from '../common/mathlib.js';
 import { MAX_LIGHTSTYLES } from '../common/quakedef.js';

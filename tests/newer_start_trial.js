@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // One ordinary engine. The buttons enter the actual public menus; no direct
 // map commands or post-signon feature enabling can hide a launch wiring bug.
 const panel=document.querySelector('section'),errors=[];

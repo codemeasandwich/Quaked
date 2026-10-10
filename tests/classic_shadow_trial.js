@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Public native demo parser + real Classic render endpoint. Diagnostic draws
 // never advance the simulation and restore every temporary switch/visibility.
 const panel = document.querySelector( 'section' ), status = document.querySelector( '#status' ), report = document.querySelector( '#report' );

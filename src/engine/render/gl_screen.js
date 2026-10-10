@@ -19,26 +19,26 @@
 
 import { Con_Printf, Con_CheckResize, Con_DrawConsole, Con_DrawNotify, Con_ClearNotify,
 	con_forcedup, Con_SetForcedup, con_initialized } from '../common/console.js';
-import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from '../../newer/render/r_perf.js';
+import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from '../common/hooks.js'; // installed by newer/render/r_perf.js
 import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines, Sbar_SetYOffset } from '../client/sbar.js';
 import { Touch_BottomInset } from '../../platform/touch.js';
 import { M_Draw } from '../client/menu.js';
-import { R_BestiaryInputLocked } from '../../newer/ui/r_bestiary.js';
-import { R_BestiaryEncounterDraw } from '../../newer/ui/r_bestiary_book.js';
+import { R_BestiaryInputLocked } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
+import { R_BestiaryEncounterDraw } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
-import { Respawn_NoticeAt } from '../../newer/ui/respawn_notice.js';
+import { Respawn_NoticeAt } from '../common/hooks.js'; // installed by newer/ui/respawn_notice.js
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { key_dest, key_game, key_console, key_message } from '../client/keys.js';
 import { realtime, host_frametime } from '../server/host.js';
 import { renderer } from './vid.js';
-import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleSpeed } from '../../newer/ui/r_demoloading.js';
-import { R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
+import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleSpeed } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
+import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { Draw_Fill } from './gl_draw.js';
-import { R_DemoSplitActive, R_DemoSplitFull } from '../../newer/render/r_demosplit.js';
-import { R_ClassicPassActive, R_AnimSetClassicPass } from '../../newer/mode.js';
+import { R_DemoSplitActive, R_DemoSplitFull } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
+import { R_ClassicPassActive, R_AnimSetClassicPass } from '../common/hooks.js'; // installed by newer/mode.js
 import { Draw_WithClipRect } from './gl_draw.js';
 import { r_refdef as _r_refdef_canonical } from './render.js';
 

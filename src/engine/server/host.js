@@ -18,16 +18,16 @@
  */
 // Ported from: WinQuake/host.c -- coordinates spawning and killing of local servers
 
-import { SV_CheatsInit, SV_CheatsFrame } from '../../newer/gameplay/sv_cheats.js';
-import { SV_UnseenFrame } from '../../newer/gameplay/sv_unseen.js';
+import { SV_CheatsInit, SV_CheatsFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_cheats.js
+import { SV_UnseenFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_unseen.js
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from '../common/sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString } from '../common/common.js';
 import { svc_print, svc_disconnect } from '../common/protocol.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults } from '../common/cvar.js';
-import { SV_SeamlessFrame } from '../../newer/gameplay/sv_seamless.js';
-import { R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
-import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../../newer/ui/r_bestiary.js';
+import { SV_SeamlessFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
+import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
+import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
 import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks } from '../common/cmd.js';
 import { Memory_Init } from '../common/zone.js';
 import { V_Init } from '../client/view.js';
@@ -37,7 +37,7 @@ import { COM_LoadFile } from '../common/pak.js';
 import { Key_Init, Key_WriteBindings } from '../client/keys.js';
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from '../common/console.js';
 import { M_Init, M_SetExternals } from '../client/menu.js';
-import { MainMenu_Destroy } from '../../newer/ui/menu_webgl.js';
+import { MainMenu_Destroy } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { PR_Init } from '../progs/pr_edict.js';
 import { Mod_Init, Mod_ClearAll, R_InitTextures } from '../render/gl_model.js';
 import { NET_Init, NET_Poll, NET_Shutdown, NET_SendMessage, NET_CanSendMessage,
@@ -54,7 +54,7 @@ import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_Con
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
-import { S_UpdateAmbientMusic } from '../../newer/sound/s_ambientgame.js';
+import { S_UpdateAmbientMusic } from '../common/hooks.js'; // installed by newer/sound/s_ambientgame.js
 import { Sbar_Init, Sbar_SetExternals } from '../client/sbar.js';
 import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, CL_NextDemo, cl_name } from '../client/cl_main.js';
 import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock } from '../../platform/in_web.js';
@@ -68,8 +68,8 @@ import { V_RenderView, V_UpdatePalette } from '../client/view.js';
 import { S_LocalSound } from '../sound/snd_dma.js';
 import { M_Menu_Main_f } from '../client/menu.js';
 import { R_Efrag_SetExternals } from '../render/gl_refrag.js';
-import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage, R_PerfStop } from '../../newer/render/r_perf.js';
-import { R_TeleportFrameEnd } from '../../newer/render/r_teleportfx.js';
+import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage, R_PerfStop } from '../common/hooks.js'; // installed by newer/render/r_perf.js
+import { R_TeleportFrameEnd } from '../common/hooks.js'; // installed by newer/render/r_teleportfx.js
 import { Host_InitCommands } from './host_cmd.js';
 import { R_SetParticleExternals } from '../render/r_part.js';
 

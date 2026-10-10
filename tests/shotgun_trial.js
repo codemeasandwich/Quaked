@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Drives one ordinary game instance so a browser run can photograph the shotgun pellets and bubbles. Real
 // weapons are selected and fired through the game's own impulses and attack button. The game's `pause`
 // freezes cl.time, which the effect is a function of, so a paused frame is that moment of the flight.

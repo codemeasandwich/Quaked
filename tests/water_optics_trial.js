@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' ), newerMode = await import( '../src/newer/mode.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), cvar = await import( '../src/engine/common/cvar.js' ), quake = await import( '../src/engine/render/glquake.js' );

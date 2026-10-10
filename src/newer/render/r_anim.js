@@ -25,12 +25,13 @@
 
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_IsNewer } from '../mode.js';
+import { ANIM_STEP } from '../../engine/common/quakedef.js';
 
 // 0 = off; values 1 and above enable smoothing only in Newer Game.
 // Legacy value 2 is retained as a preference, but never overrides Classic.
 export const r_lerpmodels = new cvar_t( 'r_lerpmodels', '1' );
 
-export const ANIM_STEP = 0.1; // seconds between frames in Quake's own animations
+export { ANIM_STEP }; // seconds between frames in Quake's own animations (engine/common/quakedef.js)
 const STALE = 0.25; // not drawn for this long: start again without blending
 const JUMP = 96; // a move this big in one frame is a teleport
 
