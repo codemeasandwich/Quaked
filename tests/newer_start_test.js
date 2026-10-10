@@ -38,7 +38,7 @@ const initiallyRegistered={rock:!!vars.Cvar_FindVar('r_rockfield'),powerups:!!va
 for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
 const archivedRegistration={rock:rock.r_rockfield.value,powerups:r_powerups.value};
 if(priorStorage)Object.defineProperty(globalThis,'localStorage',priorStorage);else delete globalThis.localStorage;
-const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));COM_AddPack(COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
+const bytes=readFileSync(new URL('../games/shareware/pak0.pak',import.meta.url));COM_AddPack(COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
 cmd.Cbuf_Init();cmd.Cmd_Init();menu.M_Init();
 const values=names=>Object.fromEntries(names.map(name=>[name,vars.Cvar_VariableString(name)]));let context=null;
 cmd.Cmd_AddCommand('disconnect',()=>{context.events.push({action:'disconnect'});context.server.active=false;split.R_DemoSplitEnd();cls.demoplayback=false;});

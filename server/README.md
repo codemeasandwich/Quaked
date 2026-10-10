@@ -29,7 +29,8 @@ openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -keyout key.p
 
 ### 2. Place Game Data
 
-Make sure `pak0.pak` is in the parent directory (`../pak0.pak` from the server folder).
+The shareware `pak0.pak` ships in `games/shareware/` (`../games/shareware/pak0.pak` from the server folder); a copy
+left at the repository's root (an older layout) is tried next.
 
 ### 3. Run a Room Server
 
@@ -39,7 +40,7 @@ From the repository's root:
 deno task server -cert cert.pem -key key.pem -direct   # paths from server/, where step 1 made them
 ```
 
-The task runs it from `server/` (where it reads `../pak0.pak`) with the root `deno.json`, whose import map gives it the
+The task runs it from `server/` (where it reads `../games/shareware/pak0.pak`) with the root `deno.json`, whose import map gives it the
 same `three` the browser loads (the engine's modules use it as they load). The lobby spawns rooms with that same file.
 
 `three` comes from jsDelivr, so the first start fetches it (Deno then caches it). The root `deno.lock` pins both of its
@@ -54,7 +55,7 @@ deno cache --config deno.json server/game_server.js
 
 ```bash
 cd server
-deno task lobby -cert cert.pem -key key.pem -pak ../pak0.pak
+deno task lobby -cert cert.pem -key key.pem -pak ../games/shareware/pak0.pak
 ```
 
 ## Command Line Options
@@ -66,14 +67,14 @@ Room server (`game_server.js`):
 | `-port <port>` | 4433 | Server port |
 | `-maxclients <num>` | 4 | Maximum players |
 | `-map <name>` | start | Starting map |
-| `-pak <path>` | ../pak0.pak | Path to pak0.pak |
+| `-pak <path>` | ../games/shareware/pak0.pak | Path to the game's pak0.pak (`…/pak0.pak` at the same root is tried next) |
 | `-cert <path>` | the production certificate | TLS certificate file |
 | `-key <path>` | the production key | TLS private key file |
 | `-direct` | off | Accept connections directly, without the lobby protocol |
 | `-room <id>` | none | Set by the lobby: the room this process serves (implies `-direct`) |
 | `-idletimeout <s>` | 300 | Seconds a lobby room waits empty before exiting |
 
-Lobby (`lobby_server.js`): `-port` (4433), `-cert`, `-key` and `-pak` (/opt/three-quake/pak0.pak), passed on to the
+Lobby (`lobby_server.js`): `-port` (4433), `-cert`, `-key` and `-pak` (/opt/three-quake/games/shareware/pak0.pak), passed on to the
 rooms it starts.
 
 ### Example

@@ -76,7 +76,7 @@ Deno.test( 'inside a wall the focus holds; along the ray the sky focuses far and
 
 Deno.test( 'the real E1M1 hull: a ray at the sky stops on its face, and knowing the sky faces makes it focus far', async () => {
 	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/engine/common/pak.js' ), { VID_SetPalette } = await import( '../src/engine/render/vid.js' ), M = await import( '../src/engine/render/gl_model.js' );
-	const data = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
+	const data = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
 	VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); M.Mod_Init();
 	const e1m1 = M.Mod_ForName( 'maps/e1m1.bsp', true ), at = p => M.Mod_PointInLeaf( p, e1m1 ).contents;
 	// an open point whose ray straight up stops on a sky face (E1M1 draws its sky on solid brushes), found in the map

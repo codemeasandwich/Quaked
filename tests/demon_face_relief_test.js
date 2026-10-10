@@ -21,7 +21,7 @@ const DISPLACEMENT = { depth: .05 * 64 * 3, step: .5, smoothing: .6 }, scalarByt
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const same = ( a, b, message ) => check( a === b, `${message}: ${a} != ${b}` );
 const near = ( a, b, message, epsilon = 1e-8 ) => check( Math.abs( a - b ) <= epsilon, `${message}: ${a} != ${b}` );
-const pack = read( 'pak0.pak' ), maps = [], native = new Map(); let palette;
+const pack = read( 'games/shareware/pak0.pak' ), maps = [], native = new Map(); let palette;
 for ( let p = pack.readInt32LE( 4 ), end = p + pack.readInt32LE( 8 ); p < end; p += 64 ) {
 
 	const name = pack.subarray( p, p + 56 ).toString().split( '\0' )[ 0 ], start = pack.readInt32LE( p + 56 ), data = pack.subarray( start, start + pack.readInt32LE( p + 60 ) );

@@ -18,7 +18,7 @@ const check = ( value, message ) => { if ( ! value ) throw new Error( message );
 const equal = ( a, b, message ) => check( a === b, `${message}: ${a} != ${b}` );
 const index = JSON.parse( read( 'newer/textures/index.json' ) );
 const record = JSON.parse( read( 'docs/evidence/hub-logo-assets-2026-10-03.json' ) );
-const pak = read( 'pak0.pak' );
+const pak = read( 'games/shareware/pak0.pak' );
 function packFile( name ) {
 
 	const offset = pak.readInt32LE( 4 ), length = pak.readInt32LE( 8 );

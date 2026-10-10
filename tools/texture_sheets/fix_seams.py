@@ -47,7 +47,7 @@ SIDES = 'tblr'
 LIMIT = 0.8
 
 
-def native_textures(pak=ROOT / 'pak0.pak'):
+def native_textures(pak=ROOT / 'games/shareware/pak0.pak'):
     """name -> RGB array of every miptex in pak0's maps (the originals)."""
     data = pak.read_bytes()
     _, off, ln = struct.unpack('<4sii', data[:12])

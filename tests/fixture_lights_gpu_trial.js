@@ -89,7 +89,7 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
 try{
  main.R_Init();for(const c of options)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
  for(const [name,value]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_bounce:0,r_volumetric:0,r_pointshadows:1,r_newer_lighting:1,r_newer_normals:0,r_newer_water:0,r_newer_textures:0,r_newer_enemies:0,r_rockfield:0,r_newer_shadows:1,r_newer_weapons:0,r_flashlight:0}))vars.Cvar_SetTemporary(name,String(value));
- const response=await fetch(new URL('../pak0.pak',import.meta.url));if(!response.ok)throw Error('Bundled native pack missing');COM_AddPack(COM_LoadPackFile('pak0.pak',await response.arrayBuffer()));VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);vid.fullbright=224;Mod_Init();
+ const response=await fetch(new URL('../games/shareware/pak0.pak',import.meta.url));if(!response.ok)throw Error('Bundled native pack missing');COM_AddPack(COM_LoadPackFile('pak0.pak',await response.arrayBuffer()));VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);vid.fullbright=224;Mod_Init();
  world=Mod_ForName('maps/e1m1.bsp',true);cl.worldmodel=world;cl.model_precache[1]=world;cl.model_precache[2]=null;main.R_NewMap();
  actor=new entity_t();actor.model=Mod_ForName('progs/soldier.mdl',true);cl.viewent.model=Mod_ForName('progs/v_shot.mdl',true);
  renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(W,H);renderer.autoClear=false;renderer.setClearColor(0,0);

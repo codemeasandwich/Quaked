@@ -25,7 +25,7 @@ if(!isMainThread){
  if(!packs.length&&!loose.length){packs.push(...(await readdir('.')).filter(name=>/^pak\d+\.pak$/.test(name)).sort());loose.push(...(await readdir('maps')).filter(name=>name.endsWith('.bsp')).map(n=>'maps/'+n));}
  const members=await memberSearch(packs);for(const path of loose)members.set(path,{loose:true,path,name:path});
  const names=new Set([...members.keys()].filter(name=>/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp(filter).test(name))),sources={};
- const palette=await memberSearch(['pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));
+ const palette=await memberSearch(['games/shareware/pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));
  vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();model.R_InitTextures();
  const sourceFiles=['src/newer/assets/rockfield.js','src/newer/assets/rockfield_presets.js','src/newer/render/r_rocksurfaces.js','src/newer/assets/rockfield_bake_format.js'];for(const name of sourceFiles)sources[name]=createHash('sha256').update(await readFile(name)).digest('hex');
  const plans=[];

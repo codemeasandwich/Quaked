@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pack the world (wall, door, panel, switch...) textures of pak0.pak into sheets.
 
-    python3 make_sheets.py pak0.pak out_dir
+    python3 make_sheets.py games/shareware/pak0.pak out_dir
 
 Writes out_dir/<group>_<n>.png and out_dir/manifest.json (where each texture is).
 Every texture has a border around it (its own edge pixels repeated) so an upscaler

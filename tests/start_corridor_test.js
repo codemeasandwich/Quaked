@@ -33,7 +33,7 @@ const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );
 const near = ( a, b, label ) => check( Math.abs( a - b ) < .001, `${label}: ${a} != ${b}` );
 const hash = data => createHash( 'sha256' ).update( data ).digest( 'hex' );
 const text = index => progs.PR_GetString( index );
-const nativeBytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ), nativeHash = hash( nativeBytes );
+const nativeBytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ), nativeHash = hash( nativeBytes );
 const enhancedBytes = readFileSync( new URL( '../newer/maps.pak', import.meta.url ) ), enhancedHash = hash( enhancedBytes );
 const loaded = bytes => bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength );
 pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', loaded( nativeBytes ) ) );
@@ -156,7 +156,7 @@ Deno.test( 'native southward movement transfers view and momentum into E1M1 and 
 	check( ! trace( destination, destination.v.origin, destination.v.origin ).startsolid, 'actual destination player hull is clear' ); check( ! travel.SV_SeamlessCrossings().some( c => c.map === 'start' || c.back ), 'E1M1 exposes no synthetic return to START' );
 	const backwards = Array.from( destination.v.origin ); backwards[ 1 ] -= 160; const wall = trace( destination, destination.v.origin, backwards ); check( ! wall.startsolid && wall.fraction < 1, 'native wall physically blocks walking back behind arrival' );
 	console.log( 'START_CORRIDOR_NATIVE_ARRIVAL ' + JSON.stringify( { moves, sourcePlane: crossing.transform.center, origin: Array.from( destination.v.origin ), velocity: Array.from( destination.v.velocity ), view: Array.from( destination.v.v_angle ), wallBehind: Array.from( wall.endpos ) } ) );
-	same( hash( readFileSync( new URL( '../pak0.pak', import.meta.url ) ) ), nativeHash, 'original native pack file is byte-identical after all loads and travel' ); same( hash( readFileSync( new URL( '../newer/maps.pak', import.meta.url ) ) ), enhancedHash, 'compiled enhanced pack unchanged by runtime travel' );
+	same( hash( readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) ), nativeHash, 'original native pack file is byte-identical after all loads and travel' ); same( hash( readFileSync( new URL( '../newer/maps.pak', import.meta.url ) ) ), enhancedHash, 'compiled enhanced pack unchanged by runtime travel' );
 	travel.SV_SeamlessReset(); Cbuf_Init();
 
 } );

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract the original pickup-item textures from pak0.pak at native size, in the game palette.
 
-    python3 extract_items.py pak0.pak out_dir
+    python3 extract_items.py games/shareware/pak0.pak out_dir
 
 Two kinds of pickup: models (armor, weapons, keys, powerups, backpack, runes: the skin sheet of each
 progs/*.mdl) and boxes (health and ammo boxes: the textures inside maps/b_*.bsp).

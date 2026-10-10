@@ -62,7 +62,9 @@ Options has separate **Sound Volume** (effects, environmental sounds and menus) 
 
 ## Game data
 
-The repository includes the free shareware `pak0.pak` (Episode 1). In your own local copy only (not the online page), you can add content from a Quake you own: copy the 2021 re-release's `id1/pak0.pak` to `resources/id1/pak0.pak`. It is read in addition to the shareware data and never uploaded or committed. Level Select then offers Episodes 2 to 4 (choose the episode, then the level); so far only E2M1 has been played through, the full campaign is not verified, and copies that split the data into `pak0.pak` and `pak1.pak` are not supported. [How it is loaded, what was tried and what is not covered](docs/fullgame-pak-2026-10-05.md).
+The repository includes the free shareware `pak0.pak` (Episode 1), in `games/shareware/`. The `games/` folder has a
+folder for each Quake game and add-on, with a README saying what goes there ([games/README.md](games/README.md)); what
+you put in them stays out of Git, and the game does not read them yet. In your own local copy only (not the online page), you can add content from a Quake you own: copy the 2021 re-release's `id1/pak0.pak` to `resources/id1/pak0.pak`. It is read in addition to the shareware data and never uploaded or committed. Level Select then offers Episodes 2 to 4 (choose the episode, then the level); so far only E2M1 has been played through, the full campaign is not verified, and copies that split the data into `pak0.pak` and `pak1.pak` are not supported. [How it is loaded, what was tried and what is not covered](docs/fullgame-pak-2026-10-05.md).
 
 ## What Newer Game adds
 

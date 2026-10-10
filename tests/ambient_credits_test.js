@@ -16,7 +16,7 @@ function bounds( rectangles ) {
 }
 cmd.Cbuf_Init(); cmd.Cmd_Init(); menu.M_Init();
 const pak = await import( '../src/engine/common/pak.js' ), wad = await import( '../src/engine/common/wad.js' );
-const raw = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const raw = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 pak.COM_AddPack( pak.COM_LoadPackFile( 'credits-test-pak0', raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 const gfx = pak.COM_FindFile( 'gfx.wad' ).data;
 wad.W_LoadWadFile( gfx.buffer.slice( gfx.byteOffset, gfx.byteOffset + gfx.length ) );

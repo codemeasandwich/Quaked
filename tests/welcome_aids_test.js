@@ -31,7 +31,7 @@ import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const aids=()=>[r_flashlight.value,crosshair.value],expect=(a,m)=>same(aids().join(),a.join(),m),setAids=(f,c)=>{vars.Cvar_SetValue('r_flashlight',f);vars.Cvar_SetValue('crosshair',c);};
-for(const path of ['pak0.pak','newer/maps.pak']){const b=readFileSync(new URL('../'+path,import.meta.url)),p=pak.COM_LoadPackFile(path,b.buffer.slice(b.byteOffset,b.byteOffset+b.length));if(path==='pak0.pak')pak.COM_AddPack(p);else pak.COM_SetNewerMapsPack(p);}
+for(const path of ['games/shareware/pak0.pak','newer/maps.pak']){const b=readFileSync(new URL('../'+path,import.meta.url)),p=pak.COM_LoadPackFile(path,b.buffer.slice(b.byteOffset,b.byteOffset+b.length));if(path==='games/shareware/pak0.pak')pak.COM_AddPack(p);else pak.COM_SetNewerMapsPack(p);}
 VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();PR_InitBuiltins();cmd.Cbuf_Init();cmd.Cmd_Init();CL_Init();R_Init();V_Init();Host_InitCommands();menu.M_Init();
 for(const c of[skill,sv_gravity,travel.sv_seamless])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
 svs.maxclients=svs.maxclientslimit=1;svs.clients=[new client_t()];NET_Init();cls.state=ca_disconnected;cls.demoplayback=false;

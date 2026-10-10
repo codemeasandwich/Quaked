@@ -19,7 +19,7 @@ const { R_SaveClassicScene } = await import( '../src/newer/render/r_classicstate
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function same( actual, expected, label ) { check( actual === expected, `${label}: ${actual} != ${expected}` ); }
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ) );
-const pak = read( 'pak0.pak' ), files = new Map();
+const pak = read( 'games/shareware/pak0.pak' ), files = new Map();
 for ( let o = pak.readInt32LE( 4 ), end = o + pak.readInt32LE( 8 ); o < end; o += 64 ) {
 
 	const name = pak.subarray( o, o + 56 ).toString().split( '\0' )[ 0 ], start = pak.readInt32LE( o + 56 );

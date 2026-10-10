@@ -10,7 +10,7 @@ import * as M from '../src/engine/render/gl_model.js';
 import { R_TracePoint, R_TraceSwept } from '../src/engine/render/r_trace.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, near = ( a, b, e, m ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );
-const data = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const data = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
 VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); M.Mod_Init();
 const e1m1 = M.Mod_ForName( 'maps/e1m1.bsp', true ), contents = p => M.Mod_PointInLeaf( p, e1m1 ).contents;

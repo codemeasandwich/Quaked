@@ -20,7 +20,7 @@ const near = ( a, b, eps, label ) => { if ( ! ( Math.abs( a - b ) <= eps ) ) thr
 const same = ( a, b, label ) => { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); };
 const K = sg.SHOTGUN.unit;
 
-const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data );
 Cvar_RegisterVariable( new cvar_t( 'r_hdr', '1' ) );

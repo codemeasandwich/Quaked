@@ -207,7 +207,7 @@ Deno.test( 'Newer Game only: Classic and the switch take nothing (the pellets ke
 // review of [30c]: the real ray cast (the level's own hull 0, as the beam's plane and the sweep's occluder checks use)
 Deno.test( 'the level\'s own hull: the beam\'s ray in E1M1 meets the wall the browser trial burned, with that wall\'s plane facing back along the ray; rays in the open meet nothing', async () => {
 	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/engine/common/pak.js' ), { VID_SetPalette } = await import( '../src/engine/render/vid.js' ), { Mod_Init, Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
-	const data = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
+	const data = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
 	VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const e1m1 = Mod_ForName( 'maps/e1m1.bsp', true );
 	W.R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => ( { worldmodel: e1m1, viewentity: 1 } ), pointInLeaf: () => leaf, beam: () => null, entities: () => [] } );

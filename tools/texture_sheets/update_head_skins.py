@@ -102,7 +102,7 @@ def fit(original,source,spec,data,factor,bleed):
 
 
 def main():
-    recipe=json.loads((HERE/'sources/head-skins-2026-10-01.json').read_text());pak=read_pak(ROOT/'pak0.pak')
+    recipe=json.loads((HERE/'sources/head-skins-2026-10-01.json').read_text());pak=read_pak(ROOT/'games/shareware/pak0.pak')
     palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3);prepared=[]
     for model,spec in recipe['models'].items():
         file=HERE/'sources'/spec['source']

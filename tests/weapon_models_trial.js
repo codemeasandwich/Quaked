@@ -7,7 +7,7 @@ const mode = await import( '../src/newer/mode.js' ), vars = await import( '../sr
 const normals = await import( '../src/engine/common/anorm_dots.js' );
 const hdr = ( await import( '../src/newer/render/gl_post.js' ) ).r_hdr;
 vars.Cvar_RegisterVariable( hdr ); vars.Cvar_RegisterVariable( weapons.r_newer_weapons ); vars.Cvar_SetValue( 'r_hdr', 1 ); mode.R_AnimSetNewer( true );
-pak.COM_AddPack( await pak.COM_FetchPak( '../pak0.pak', 'pak0.pak' ) );
+pak.COM_AddPack( await pak.COM_FetchPak( '../games/shareware/pak0.pak', 'pak0.pak' ) );
 const vid = await import( '../src/engine/render/vid.js' ); vid.VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); model.Mod_Init();
 // Gallery lives under tests/, unlike the root-based game. Resolve art through
 // the ordinary pack reader so public production loaders use unchanged paths.

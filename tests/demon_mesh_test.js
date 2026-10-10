@@ -21,7 +21,7 @@ const near = ( a, b, label, epsilon = .005 ) => check( Math.abs( a - b ) <= epsi
 const read = file => readFileSync( new URL( '../' + file, import.meta.url ) );
 const scalar = read( 'newer/textures/normals/demon-face.r16' );
 const field = { width: 256, height: 512, data: Float32Array.from( { length: 256 * 512 }, ( _, i ) => scalar.readUInt16LE( i * 2 ) / 65535 ), displacement: { depth: .05 * 64 * 3, step: .5, smoothing: .6 }, file: 'normals/demon-face.webp', dataFile: 'normals/demon-face.r16', sampling: 'clamp', strength: 2, cap: 1.8 };
-const pack = read( 'pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+const pack = read( 'games/shareware/pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 const model = Mod_ForName( 'maps/start.bsp', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null;
 let worldGroup; const add = THREE.Group.prototype.add;
 THREE.Group.prototype.add = function ( ...objects ) { if ( this.name === 'quake_world' ) worldGroup = this; return add.apply( this, objects ); };

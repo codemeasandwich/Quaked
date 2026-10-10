@@ -137,7 +137,7 @@ def height_for(image, target, model):
 
 
 def main():
-    pak = read_pak(ROOT/'pak0.pak'); palette = np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
+    pak = read_pak(ROOT/'games/shareware/pak0.pak'); palette = np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
     native = {name[6:-4]:native_skins(data,palette) for name,data in pak.items() if name.startswith('progs/') and name.endswith('.mdl') and name[6:-4] in ENEMIES}
     source_hash = hashlib.sha256((HERE/'sources/shambler-2026-10-01.png').read_bytes()).hexdigest()
     if '--heights-only' not in sys.argv:source_hash = fit_shambler(native['shambler'][0][0],pak['progs/shambler.mdl'])

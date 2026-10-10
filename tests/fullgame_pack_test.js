@@ -48,7 +48,7 @@ Deno.test( 'owned pack supplies exact E2M1 while all bundled overlapping files r
 	const ownedPath = process.env.QUAKED_OWNED_PAK;
 	check( ownedPath, 'Set QUAKED_OWNED_PAK to the read-only owned archive' );
 	const owned = pak.COM_LoadPackFile( 'owned-local', buffer( readFileSync( ownedPath ) ) );
-	const bundled = pak.COM_LoadPackFile( 'pak0.pak', buffer( readFileSync( new URL( '../pak0.pak', import.meta.url ) ) ) );
+	const bundled = pak.COM_LoadPackFile( 'pak0.pak', buffer( readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) ) );
 	check( entry( owned, 'maps/e2m1.bsp' ) && ! entry( bundled, 'maps/e2m1.bsp' ), 'actual native corpus gap' );
 	pak.COM_AddPack( owned );
 	pak.COM_AddPack( bundled );

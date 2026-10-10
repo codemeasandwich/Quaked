@@ -104,7 +104,7 @@ Deno.test( 'live pickup lights share the existing eight-source budget and stable
 Deno.test( 'actual public entity draw dispatch attaches effects to native world pickups and excludes held viewmodel', async () => {
 
 	setup(); const main = await import( '../src/engine/render/gl_rmain.js' ), client = await import( '../src/engine/client/client.js' );
-	const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+	const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	main.R_Init(); const savedWorld = client.cl.worldmodel, savedView = client.cl.viewent, savedCount = client.cl_numvisedicts, savedList = client.cl_visedicts.slice();
 	try {
 
@@ -125,7 +125,7 @@ Deno.test( 'actual public entity draw dispatch attaches effects to native world 
 
 Deno.test( 'real native PAK pickup aliases retain positions, UVs, indices and skin data under effect attachment', () => {
 
-	setup(); const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+	setup(); const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const scene = new THREE.Scene();
 	try {
 

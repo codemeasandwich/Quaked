@@ -38,7 +38,7 @@ Deno.test( 'with only the shareware maps: the Introduction and Episode 1; Episod
 	const restore = win();
 	try {
 
-		pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', buffer( readFileSync( new URL( '../pak0.pak', import.meta.url ) ) ) ) );
+		pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', buffer( readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) ) ) );
 		open();
 		let o = menu.M_LevelSelectOffer();
 		same( o.episodes, [ 0, 1 ], 'the shareware copy has the Introduction and Episode 1' ); same( o.episode, 1, 'the default is Episode 1' );
@@ -104,7 +104,7 @@ Deno.test( 'what Level Select draws: the Episode row at y 64 with its name at x 
 	const restore = win();
 	try {
 
-		if ( pak.COM_FindFile( 'maps/e1m1.bsp' ) === null ) pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', buffer( readFileSync( new URL( '../pak0.pak', import.meta.url ) ) ) ) );
+		if ( pak.COM_FindFile( 'maps/e1m1.bsp' ) === null ) pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', buffer( readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) ) ) );
 		open();
 		const glyphs = [];
 		menu.M_SetExternals( { key_dest_set: value => { dest = value; }, key_dest_get: () => dest, cls: { demonum: - 1 }, sv: { active: false }, svs: { maxclients: 1 }, Draw_CachePic: () => ( { width: 0, height: 0 } ), Draw_TransPic: () => {}, Draw_Pic: () => {}, Draw_Character: ( x, y, code ) => glyphs.push( { x, y, code } ), Draw_FadeScreen: () => {}, S_LocalSound: () => {}, realtime_get: () => 0 } );

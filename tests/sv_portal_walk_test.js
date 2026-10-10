@@ -45,7 +45,7 @@ const out=[];
 // [portal, lateral offset, yaw]: entries with a step or a frame the walk move slides past (they keep the camera crossing)
 const E1M5=[[5,-12,0]]; // held 20 units short by a frame, clear exit: the player crosses from the origin projected onto the threshold
 const E1M2=[[1,-12,0],[1,0,0],[1,12,0],[3,-12,0],[3,0,0],[3,12,0],[5,-8,0],[7,-14,0],[7,-12,-15],[10,-10,35]];
-const pak0=await loadPak('../pak0.pak');
+const pak0=await loadPak('../games/shareware/pak0.pak');
 const maps=[['start',pak0,'maps/start.bsp'],['e1m2',pak0,'maps/e1m2.bsp'],['e1m5',pak0,'maps/e1m5.bsp']];
 for(const [label,pak,name] of maps){
  const {portals,collisionModel}=build(findBsp(pak,name));

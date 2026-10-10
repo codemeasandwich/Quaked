@@ -145,7 +145,7 @@ Deno.test( 'actual E1M1 connected matching cliff pieces share preset height and 
 	const savedWorld = cl.worldmodel, savedModels = [ cl.model_precache[ 1 ], cl.model_precache[ 2 ] ];
 	try {
 
-		const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+		const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 		COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) );
 		VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 		const model = Mod_ForName( 'maps/e1m1.bsp', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null; GL_BuildLightmaps();
@@ -212,7 +212,7 @@ Deno.test( 'all bundled BSP world rock faces are classified independent of sky/o
 	// Decode native BSP face, edge, vertex, plane and miptexture records directly
 	// rather than loading/rendering every map. The real public chart builder then
 	// sees original world geometry and its material names.
-	const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+	const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 	const cross = [ ROCK_AXIS_U[ 1 ] * ROCK_AXIS_V[ 2 ] - ROCK_AXIS_U[ 2 ] * ROCK_AXIS_V[ 1 ], ROCK_AXIS_U[ 2 ] * ROCK_AXIS_V[ 0 ] - ROCK_AXIS_U[ 0 ] * ROCK_AXIS_V[ 2 ], ROCK_AXIS_U[ 0 ] * ROCK_AXIS_V[ 1 ] - ROCK_AXIS_U[ 1 ] * ROCK_AXIS_V[ 0 ] ];
 	const summary = { maps: 0, rock: 0, soil: 0, roof: 0, floor: 0, slope: 0, minRockArea: Infinity };
 	for ( let directory = pak.readInt32LE( 4 ), end = directory + pak.readInt32LE( 8 ); directory < end; directory += 64 ) {
@@ -263,7 +263,7 @@ Deno.test( 'actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact ow
 	const savedWorld = cl.worldmodel, savedModels = [ cl.model_precache[ 1 ], cl.model_precache[ 2 ] ];
 	try {
 
-		const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) );
+		const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) );
 		VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 		const model = Mod_ForName( 'maps/start.bsp', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null; GL_BuildLightmaps();
 		const first = model.firstmodelsurface || 0, last = first + model.nummodelsurfaces, world = model.surfaces.slice( first, last );

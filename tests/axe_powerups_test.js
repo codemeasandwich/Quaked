@@ -29,7 +29,7 @@ const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );
 const text = index => progs.PR_GetString( index );
 function field( entity, name, value, integer = false ) { const slot = GetEdictFieldValue( entity, name ); check( slot, 'native QC field exists: ' + name ); if ( integer ) slot.accessor.setInt32( slot.ofs, value ); else slot.accessor.setFloat( slot.ofs, value ); }
 function readField( entity, name ) { const slot = GetEdictFieldValue( entity, name ); check( slot, 'native QC field exists: ' + name ); return slot.accessor.getFloat( slot.ofs ); }
-const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) ); VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
+const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) ); VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
 for ( const value of [ r_hdr, skill, sv_gravity ] ) if ( ! vars.Cvar_FindVar( value.name ) ) vars.Cvar_RegisterVariable( value );
 function fixture( options = {} ) {
 

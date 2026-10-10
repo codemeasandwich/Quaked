@@ -36,7 +36,7 @@ Object.defineProperty( globalThis, 'Image', { configurable: true, value: class {
 
 } } );
 globalThis.fetch = async path => { try { return { ok: true, json: async () => JSON.parse((String(path).startsWith('file:')?readFileSync(new URL(String(path).split('?')[0])):read(String(path).split('?')[0])).toString()) }; } catch { return { ok: false }; } };
-const pak = read( 'pak0.pak' ), entries = [], native = new Map();
+const pak = read( 'games/shareware/pak0.pak' ), entries = [], native = new Map();
 for ( let offset = pak.readInt32LE( 4 ), end = offset + pak.readInt32LE( 8 ); offset < end; offset += 64 ) {
 
 	const name = pak.subarray( offset, offset + 56 ).toString().split( '\0' )[ 0 ], filepos = pak.readInt32LE( offset + 56 ), filelen = pak.readInt32LE( offset + 60 );

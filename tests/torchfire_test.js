@@ -27,7 +27,7 @@ const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const near = ( a, b, eps, label ) => { if ( ! ( Math.abs( a - b ) <= eps ) ) throw new Error( `${label}: ${a} != ${b}` ); };
 const same = ( a, b, label ) => { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); };
 
-const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data );
 const model = name => Mod_ForName( name, true );

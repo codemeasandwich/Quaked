@@ -2,7 +2,7 @@
 """Author the enhanced START passage from Romero's original source archive.
 
 Usage: python3 tools/build_start_corridor.py SOURCE.zip ERICW_BIN [OUTPUT_DIR]
-Reads owned pak0.pak for original textures; never changes it or newer.pak.
+Reads the shareware games/shareware/pak0.pak for original textures; never changes it or newer.pak.
 The original source release notice is in tools/maps/quake-source-release.txt.
 """
 import hashlib, json, re, struct, subprocess, sys, zipfile
@@ -93,7 +93,7 @@ def main():
     archive=Path(sys.argv[1]); tools=Path(sys.argv[2]).resolve(); out=Path(sys.argv[3] if len(sys.argv)>3 else ROOT/'newer/maps').resolve();out.mkdir(parents=True,exist_ok=True)
     source=zipfile.ZipFile(archive).read('START.MAP');text=source.decode('ascii')
     assert hashlib.sha256(source).hexdigest()=='1d680d5a0ac05d3aabffd8f18161a87ab7d9e8a2850abc17b5ff6324e3d18e1f', 'Unexpected original START source; re-audit brush identities'
-    (out/'start.map').write_text(author(text));(out/'start.wad').write_bytes(texture_wad(ROOT/'pak0.pak'))
+    (out/'start.map').write_text(author(text));(out/'start.wad').write_bytes(texture_wad(ROOT/'games/shareware/pak0.pak'))
     commands=[['qbsp','-leaktest','-nopercent','start.map'],['vis','-threads','2','start.bsp'],['light','-threads','2','start.bsp']]
     with (out/'start-build.log').open('w') as log:
         for name,*args in commands: subprocess.run([str(tools/name),*args],cwd=out,stdout=log,stderr=subprocess.STDOUT,check=True)

@@ -90,7 +90,7 @@ Deno.test( 'subdivided lava emits from local surface patches and broad area fall
 
 Deno.test( 'actual START lava generates local warm emitters with unchanged native pool geometry and liquid boundaries', () => {
 
-	const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+	const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const previous = cl.worldmodel, previousModels = [ cl.model_precache[ 1 ], cl.model_precache[ 2 ] ];
 	try {
 

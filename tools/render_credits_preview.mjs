@@ -15,7 +15,7 @@ await import( '../src/engine/render/gl_rsurf.js' );
 await import( '../src/newer/install.js' ); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
 const pak = await import( '../src/engine/common/pak.js' ), wad = await import( '../src/engine/common/wad.js' ), vid = await import( '../src/engine/render/vid.js' );
 const draw = await import( '../src/engine/render/gl_draw.js' ), menu = await import( '../src/engine/client/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
-const raw = await readFile( new URL( '../pak0.pak', import.meta.url ) );
+const raw = await readFile( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 const gfx = pak.COM_FindFile( 'gfx.wad' ).data;
 wad.W_LoadWadFile( gfx.buffer.slice( gfx.byteOffset, gfx.byteOffset + gfx.length ) );

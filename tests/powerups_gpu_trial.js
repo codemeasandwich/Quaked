@@ -19,7 +19,7 @@ try {
 
 	for ( const variable of [ power.r_powerups, post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, post.r_pointshadows, height.r_heightshadows, newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_water ] ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 	for ( const [ name, value ] of Object.entries( { r_powerups: 1, r_hdr: 1, r_dynres: 0, r_bloom: 0, r_volumetric: 0, r_bounce: 0, r_pointshadows: 0, r_heightshadows: 1, r_newer_lighting: 1, r_newer_normals: 1, r_newer_water: 0 } ) ) vars.Cvar_SetValue( name, value );
-	const response = await fetch( '../pak0.pak' ); if ( ! response.ok ) throw new Error( 'Native PAK fetch failed' );
+	const response = await fetch( '../games/shareware/pak0.pak' ); if ( ! response.ok ) throw new Error( 'Native PAK fetch failed' );
 	COM_AddPack( COM_LoadPackFile( 'pak0.pak', await response.arrayBuffer() ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	post.R_BuildWorldLights( { nodes: [ { contents: -1, visframe: 1 } ], entities: '', surfaces: [] } ); post.R_BuildSunOccluder( { surfaces: [] } );
 	const renderer = new THREE.WebGLRenderer( { preserveDrawingBuffer: true, antialias: false } ); renderer.setSize( width, heightPixels ); renderer.setClearColor( 0, 0 ); renderer.autoClear = false; document.querySelector( '#main' ).append( renderer.domElement );

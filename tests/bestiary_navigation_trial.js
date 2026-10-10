@@ -3,7 +3,7 @@ import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (s
 await import('../src/engine/render/gl_rsurf.js');
 const [draw,menu,cmd,keys,pak,wad,vidModule,bestiary]=await Promise.all(['engine/render/gl_draw','engine/client/menu','engine/common/cmd','engine/client/keys','engine/common/pak','engine/common/wad','engine/render/vid','newer/ui/r_bestiary'].map(n=>import('../src/'+n+'.js')));
 const canvas=document.querySelector('#book'),ctx=canvas.getContext('2d'),report=document.querySelector('#report'),vid={width:innerWidth,height:innerHeight};
-const bytes=await(await fetch('../pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('book-nav-trial',bytes));
+const bytes=await(await fetch('../games/shareware/pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('book-nav-trial',bytes));
 const gfx=pak.COM_FindFile('gfx.wad').data;wad.W_LoadWadFile(gfx.buffer.slice(gfx.byteOffset,gfx.byteOffset+gfx.byteLength));const palette=pak.COM_FindFile('gfx/palette.lmp').data;vidModule.VID_SetPalette(palette);
 draw.Draw_SetExternals({vid,host_basepal:palette});cmd.Cbuf_Init();cmd.Cmd_Init();draw.Draw_Init(canvas);menu.M_Init();let destination=keys.key_game;
 menu.M_SetExternals({vid,key_dest_get:()=>destination,key_dest_set:v=>{destination=v;},cls:{demonum:-1},Draw_CachePic:draw.Draw_CachePic,Draw_TransPic:draw.Draw_TransPic,Draw_Pic:draw.Draw_Pic,Draw_Character:draw.Draw_Character,Draw_FadeScreen(){},S_LocalSound(){}});

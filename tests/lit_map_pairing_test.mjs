@@ -41,7 +41,7 @@ test('short, trailing-byte, malformed and empty lighting use native fallback', (
 });
 
 test('local campaign BSPs only accept matching-size coloured lighting', {
-	skip: !existsSync('resources/id1/pak0.pak') || !existsSync('pak0.pak') || !existsSync('newer/maps.pak')
+	skip: !existsSync('resources/id1/pak0.pak') || !existsSync('games/shareware/pak0.pak') || !existsSync('newer/maps.pak')
 }, () => {
 	function pack(path) {
 		const data = readFileSync(path), files = new Map();
@@ -56,7 +56,7 @@ test('local campaign BSPs only accept matching-size coloured lighting', {
 	}
 	const owned = pack('resources/id1/pak0.pak');
 	let accepted = 0, rejected = 0;
-	for (const files of [owned, pack('pak0.pak'), pack('newer/maps.pak')]) {
+	for (const files of [owned, pack('games/shareware/pak0.pak'), pack('newer/maps.pak')]) {
 		for (const [name, bsp] of files) {
 			if (!/^maps\/(?:e[1-4]m\d+|start|end)\.bsp$/.test(name)) continue;
 			const source = owned.get(name.replace(/\.bsp$/, '.lit'));

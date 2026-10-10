@@ -9,7 +9,7 @@ import { cl } from '../src/engine/client/client.js';
 import { R_RockSurfaceCharts } from '../src/newer/render/r_rocksurfaces.js';
 import { R_RockfieldStatus } from '../src/newer/render/r_rockfield.js';
 Deno.test( 'shipped E1M1 assigns continuous natural rock and terrain charts without changing BSP polygons or texture scale', () => {
- const bytes = readFileSync( 'pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) );
+ const bytes = readFileSync( 'games/shareware/pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) );
  VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
  const model = Mod_ForName( 'maps/e1m1.bsp', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null;
  GL_BuildLightmaps();

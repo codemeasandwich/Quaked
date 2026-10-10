@@ -47,7 +47,7 @@ function assertPreset( chart, label ) {
 	same( chart.amplitude, expected.amplitude, label + ' exact owner amplitude' );
 
 }
-const pack = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const pack = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 const digest = () => createHash( 'sha256' ).update( pack ).digest( 'hex' ), packBefore = digest();
 const models = [], firstMap = new Map();
 let nativeInstalled = false;

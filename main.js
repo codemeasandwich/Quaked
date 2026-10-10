@@ -46,10 +46,11 @@ async function main() {
 		const urlParams = new URLSearchParams( window.location.search );
 		let hubNormalBytes=null,hubNormalsStarted=false;
 
-		// Load pak0.pak from the same directory; the loading logo fills as it downloads
+		// Load the shareware pak0.pak from games/shareware/ (card [34a]; a deployment that still serves it at the root is
+		// tried next); the loading logo fills as it downloads
 		Sys_Printf( 'Loading pak0.pak...\\n' );
 		// Overlap independent transports; native installation order stays intact.
-		const nativePack = COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		const nativePack = COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		const optionalPack = COM_FetchOptionalPak( 'newer.pak', 'newer.pak' ).catch( error => {
 			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
 		} );
@@ -57,7 +58,8 @@ async function main() {
 		// Local owned content supplies missing native files only. Never replace
 		// this checkout's programs, palette or established startup worlds.
 		const ownedPack = COM_FetchOptionalPak( 'resources/id1/pak0.pak', 'resources/id1/pak0.pak' );
-		const [ pak0, newerPak, hudPak, fullGamePak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack ] );
+		const [ sharewarePak, newerPak, hudPak, fullGamePak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack ] );
+		const pak0 = sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
 		 if(digest===STARTUP_PACK.sha256)COM_SetNewerStartupPack(hudPak);else Sys_Printf('Startup pack checksum mismatch; loose HUD fallback');

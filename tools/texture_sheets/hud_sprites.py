@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract the status bar's sprites from pak0.pak (gfx.wad) and pack them into sheets.
 
-    python3 hud_sprites.py pak0.pak out_dir
+    python3 hud_sprites.py games/shareware/pak0.pak out_dir
 
 out_dir/individual/<name>.png   every sprite on its own, with transparency
 out_dir/sheets/<group>_<n>.png  themed sheets (transparent pixels black, 4 px border)

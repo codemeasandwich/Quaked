@@ -6,7 +6,7 @@ import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 
 Deno.test('native loader falls back for E1M3 but preserves matching E2M1 RGB', () => {
-	for (const path of ['resources/id1/pak0.pak', 'pak0.pak']) {
+	for (const path of ['resources/id1/pak0.pak', 'games/shareware/pak0.pak']) {
 		const bytes = readFileSync(path);
 		COM_AddPack(COM_LoadPackFile(path, bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.length)));
 	}

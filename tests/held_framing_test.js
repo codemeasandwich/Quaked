@@ -22,7 +22,7 @@ const check=(value,message)=>{if(!value)throw Error(message);},same=(a,b,message
 const read=path=>readFileSync(new URL('../'+path,import.meta.url)),oldFetch=globalThis.fetch,oldLoad=THREE.TextureLoader.prototype.load;
 globalThis.fetch=async path=>{try{return{ok:true,json:async()=>JSON.parse(read(String(path).split('?')[0]))};}catch{return{ok:false};}};
 THREE.TextureLoader.prototype.load=function(path,done){const texture=new THREE.DataTexture(new Uint8Array([160,100,60,255]),1,1);queueMicrotask(()=>done(texture));return texture;};
-const raw=read('pak0.pak');pak.COM_AddPack(pak.COM_LoadPackFile('held-framing-native',raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length)));VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();main.R_Init();view.V_Init();
+const raw=read('games/shareware/pak0.pak');pak.COM_AddPack(pak.COM_LoadPackFile('held-framing-native',raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length)));VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();main.R_Init();view.V_Init();
 for(const variable of[r_hdr,weapons.r_newer_weapons])if(!vars.Cvar_FindVar(variable.name))vars.Cvar_RegisterVariable(variable);
 vars.Cvar_SetValue('r_hdr',1);weapons.r_newer_weapons.value=1;mode.R_AnimSetNewer(true);anim.r_lerpmodels.value=0;mode.R_AnimSetClassicPass(false);
 const manifest=await weapons.R_WeaponsLoad();await Promise.all(Object.keys(manifest.models).map(key=>weapons.R_WeaponLoad(key)));

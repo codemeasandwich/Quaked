@@ -21,7 +21,7 @@ import {R_InitParticles,R_SetParticleExternals,R_ClearParticles,R_RunParticleEff
 import {cls,cl,cl_entities,cl_visedicts,cl_dlights,set_cl_numvisedicts} from '../src/engine/client/client.js';
 import {r_refdef,entity_t} from '../src/engine/render/render.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
-const b=readFileSync(new URL('../pak0.pak',import.meta.url));pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',b.buffer.slice(b.byteOffset,b.byteOffset+b.length)));VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();main.R_Init();
+const b=readFileSync(new URL('../games/shareware/pak0.pak',import.meta.url));pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',b.buffer.slice(b.byteOffset,b.byteOffset+b.length)));VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();main.R_Init();
 const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_enemies,r_newer_weapons];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
 function compile(m){const s={uniforms:{},vertexShader:THREE.ShaderLib.basic.vertexShader,fragmentShader:THREE.ShaderLib.basic.fragmentShader};m.onBeforeCompile(s);return s;}
 function mock(){let target=null;return{capabilities:{isWebGL2:true},extensions:{has:()=>true},getRenderTarget:()=>target,setRenderTarget:t=>target=t};}

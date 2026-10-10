@@ -24,7 +24,7 @@ import { SZ_Alloc } from '../src/engine/common/common.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );
 const text = index => progs.PR_GetString( index );
-const pack = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.byteLength ) ) );
+const pack = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.byteLength ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
 for ( const variable of [ r_hdr, skill, sv_gravity, r_flashlight ] ) if ( ! Cvar_FindVar( variable.name ) ) Cvar_RegisterVariable( variable );
 

@@ -16,7 +16,7 @@ const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '..
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function near( a, b, label, epsilon = 0.00002 ) { check( Number.isFinite( a ) && Math.abs( a - b ) <= epsilon, `${label}: ${a} != ${b}` ); }
 const read = file => readFileSync( new URL( '../' + file, import.meta.url ) );
-const pak = read( 'pak0.pak' ), files = new Map();
+const pak = read( 'games/shareware/pak0.pak' ), files = new Map();
 for ( let offset = pak.readInt32LE( 4 ), end = offset + pak.readInt32LE( 8 ); offset < end; offset += 64 ) {
 
 	const name = pak.subarray( offset, offset + 56 ).toString().split( '\0' )[ 0 ];

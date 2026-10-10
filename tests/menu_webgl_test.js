@@ -11,7 +11,7 @@ import * as pak from '../src/engine/common/pak.js';
 import {W_LoadWadFile} from '../src/engine/common/wad.js';
 const check=(value,label)=>{if(!value)throw Error(label);};
 const same=(a,b,label)=>check(a===b,`${label}: ${a} != ${b}`);
-const raw=readFileSync(new URL('../pak0.pak',import.meta.url));
+const raw=readFileSync(new URL('../games/shareware/pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('menu-public-test',raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length)));
 const wad=pak.COM_FindFile('gfx.wad').data;W_LoadWadFile(wad.buffer.slice(wad.byteOffset,wad.byteOffset+wad.length));
 cmd.Cbuf_Init();cmd.Cmd_Init();menu.M_Init();

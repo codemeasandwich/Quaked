@@ -25,7 +25,7 @@ import {SV_RunClients} from '../src/engine/server/sv_user.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
-const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
+const bytes=readFileSync(new URL('../games/shareware/pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
 VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();PR_InitBuiltins();SV_Init();cmd.Cbuf_Init();cmd.Cmd_Init();CL_Init();R_Init();V_Init();Host_InitCommands();
 for(const c of[skill,sv_gravity,travel.sv_seamless])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);

@@ -17,7 +17,7 @@ Deno.test( 'book navigation cache recovers after cold source, copies exact nativ
  Object.defineProperty( globalThis, 'window', { configurable: true, value: { devicePixelRatio: 1 } } );
  try {
   same( draw.Draw_CacheBookNavigation(), null, 'no decoded source before Draw_Init' ); same( draw.Draw_CacheBookNavigation(), null, 'cold retry remains safe' ); same( created.length, 0, 'cold access allocates nothing' );
-  const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+  const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
   pak.COM_AddPack( pak.COM_LoadPackFile( 'book-navigation-native-source', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) );
   const gfx = pak.COM_FindFile( 'gfx.wad' ).data; wad.W_LoadWadFile( gfx.buffer.slice( gfx.byteOffset, gfx.byteOffset + gfx.length ) );
   const palette = pak.COM_FindFile( 'gfx/palette.lmp' ).data; vid.VID_SetPalette( palette );

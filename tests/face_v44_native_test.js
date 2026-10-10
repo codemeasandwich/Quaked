@@ -36,7 +36,7 @@ const check=(value,label)=>{if(!value)throw Error(label);};
 const same=(actual,expected,label)=>check(actual===expected,`${label}: ${actual} != ${expected}`);
 const near=(actual,expected,label,epsilon=.0001)=>check(Math.abs(actual-expected)<epsilon,`${label}: ${actual} != ${expected}`);
 const text=index=>progs.PR_GetString(index);
-const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
+const bytes=readFileSync(new URL('../games/shareware/pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
 VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);Mod_Init();PR_InitBuiltins();
 cmd.Cbuf_Init();cmd.Cmd_Init();CL_Init();R_Init();V_Init();Host_InitCommands();

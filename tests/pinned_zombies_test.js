@@ -23,7 +23,7 @@ const text = index => progs.PR_GetString( index );
 const functionName = index => text( progs.pr_functions[ index ].s_name );
 function callback( entity, name ) { const field = GetEdictFieldValue( entity, name ); return field.accessor.getInt32( field.ofs ); }
 
-const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );

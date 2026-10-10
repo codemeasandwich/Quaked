@@ -57,7 +57,7 @@ globalThis.addEventListener('unhandledrejection', (event) => {
 
 // Server configuration
 const CONFIG = {
-	pakPath: '../pak0.pak',
+	pakPath: '../games/shareware/pak0.pak',
 	port: 4433,
 	certFile: '/etc/letsencrypt/live/wts.mrdoob.com/fullchain.pem',
 	keyFile: '/etc/letsencrypt/live/wts.mrdoob.com/privkey.pem',
@@ -230,7 +230,9 @@ async function Host_Init_Server() {
 
 	// Load PAK file
 	Sys_Printf('Loading game data...\n');
-	const pak = await COM_FetchPak(CONFIG.pakPath, 'pak0.pak');
+	// the shareware pak lives in games/shareware/ (card [34a]); a deployment that still keeps it at its root is tried next
+	let pak = await COM_FetchPak(CONFIG.pakPath, 'pak0.pak');
+	if (!pak && /games\/shareware\/pak0\.pak$/.test(CONFIG.pakPath)) pak = await COM_FetchPak(CONFIG.pakPath.replace(/games\/shareware\/pak0\.pak$/, 'pak0.pak'), 'pak0.pak');
 	if (!pak) {
 		throw new Error('Failed to load ' + CONFIG.pakPath);
 	}

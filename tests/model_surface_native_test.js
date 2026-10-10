@@ -35,7 +35,7 @@ const near = ( actual, expected, label ) => check( Math.abs( actual-expected ) <
 const text = index => progs.PR_GetString( index );
 const snapshot = () => JSON.stringify( weaponSurface.snapshot() );
 const coat = () => JSON.stringify( { blood: weaponSurface.blood, serial: weaponSurface.serial, spots: weaponSurface.spots.map( s => s.toArray() ) } );
-const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset+bytes.byteLength ) ) );
+const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset+bytes.byteLength ) ) );
 VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); cmd.Cbuf_Init(); cmd.Cmd_Init(); CL_Init(); R_Init(); V_Init(); Host_InitCommands();
 for ( const variable of [ skill, sv_gravity, travel.sv_seamless ] ) if ( !vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 svs.maxclients = svs.maxclientslimit = 1; svs.clients = [ new client_t() ]; NET_Init(); cls.state = ca_disconnected; cls.demoplayback = false;

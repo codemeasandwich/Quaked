@@ -43,7 +43,7 @@ const usedPorts = new Set<number>();
 // Configuration (set by main server)
 let certFile = '/etc/letsencrypt/live/wts.mrdoob.com/fullchain.pem';
 let keyFile = '/etc/letsencrypt/live/wts.mrdoob.com/privkey.pem';
-let pakPath = '/opt/three-quake/pak0.pak';
+let pakPath = '/opt/three-quake/games/shareware/pak0.pak';
 let denoPath = '/root/.deno/bin/deno';
 
 /**

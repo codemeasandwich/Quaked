@@ -58,7 +58,7 @@ Deno.test( 'same canonical texture and role joins real positive-length T junctio
 
 Deno.test( 'actual brush draw keeps disconnected native faces with the same texture/lightmap in separate field geometries and compiled shader paths', () => {
 
-	const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+	const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const model = Mod_ForName( 'maps/e1m4.bsp', true ), nativeDoor = Mod_ForName( '*64', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = nativeDoor; cl.model_precache[ 3 ] = null; GL_BuildLightmaps();
 	const originalFields = R_RockSurfaceCharts( model, { includeBrushes: true } ), candidates = model.surfaces.filter( s => s.texinfo.texture.name === 'rock1_2' ); let pair;
 	for ( const a of candidates ) { const b = candidates.find( b => a !== b && a.lightmaptexturenum === b.lightmaptexturenum && originalFields.bySurface.get( a ) !== originalFields.bySurface.get( b ) ); if ( b ) { pair = [ a, b ]; break; } }
@@ -89,7 +89,7 @@ Deno.test( 'actual brush draw keeps disconnected native faces with the same text
 
 Deno.test( 'all bundled native world and brush faces use their exact material/role preset and connected-field metadata without changing source coordinates', () => {
 
-	const pack = readFileSync( new URL( '../pak0.pak', import.meta.url ) ), hash = () => createHash( 'sha256' ).update( pack ).digest( 'hex' ), beforePack = hash(), summary = { maps: 0, selected: {}, components: {}, excludedGroundSides: 0, sharedEdges: 0, brushFaces: 0 };
+	const pack = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ), hash = () => createHash( 'sha256' ).update( pack ).digest( 'hex' ), beforePack = hash(), summary = { maps: 0, selected: {}, components: {}, excludedGroundSides: 0, sharedEdges: 0, brushFaces: 0 };
 	const names = new Set( [ ...catalog.map( i => canonical( i.file ) ), 'rock4_2' ] );
 	for ( let directory = pack.readInt32LE( 4 ), end = directory + pack.readInt32LE( 8 ); directory < end; directory += 64 ) {
 

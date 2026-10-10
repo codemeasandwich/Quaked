@@ -6,6 +6,15 @@ __pycache__/
 # Local owned game installations and native executables.
 /resources/
 
+# Games (card [34a]): one folder per game or add-on under games/. Only the shareware pak and the folders' README files
+# are tracked; any game you own that you put there stays local.
+/games/*
+!/games/README.md
+!/games/*/
+/games/*/*
+!/games/*/README.md
+!/games/shareware/pak0.pak
+
 # Exact audited developer inputs and obsolete outputs.
 # Classification/provenance: docs/distribution-local-only.json.
 # Existing tracked files are unchanged; this policy governs future additions.

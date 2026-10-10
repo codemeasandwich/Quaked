@@ -31,7 +31,7 @@ import { R_SaveClassicScene } from '../src/newer/render/r_classicstate.js';
 const check = ( v, label ) => { if ( ! v ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );
 const near = ( a, b, label, epsilon = .001 ) => check( Math.abs( a - b ) < epsilon, `${label}: ${a} != ${b}` );
-const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
+const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
 for ( const value of [ r_hdr, skill, sv_gravity, travel.sv_seamless ] ) if ( ! vars.Cvar_FindVar( value.name ) ) vars.Cvar_RegisterVariable( value );
 
 function spawn( map, reset = true ) {

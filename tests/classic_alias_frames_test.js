@@ -20,7 +20,7 @@ const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 const near = ( a, b, label, tolerance = 1e-6 ) => check( Math.abs( a - b ) <= tolerance, `${label}: ${a} != ${b}` );
 const bytes = a => Buffer.from( a.buffer, a.byteOffset, a.byteLength );
-const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 const names = [ 'progs/soldier.mdl', 'progs/shambler.mdl', 'progs/flame.mdl', 'progs/flame2.mdl', 'progs/armor.mdl' ];
 const assets = names.map( name => { const model = Mod_ForName( name, true ); return { name, model, header: model.cache.data }; } );
 // Independent native vertex/normal witnesses, captured before any enhanced draw.

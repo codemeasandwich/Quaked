@@ -14,7 +14,7 @@ const read = file => readFileSync( new URL( '../' + file, import.meta.url ) );
 const raw = read( 'newer/textures/normals/demon-face.r16' );
 const config = JSON.parse( read( 'newer/textures/index.json' ) ).normals.dem4_1;
 const field = { width: 256, height: 512, data: Float32Array.from( { length: 256 * 512 }, ( _, i ) => raw.readUInt16LE( i * 2 ) / 65535 ), displacement: { ...config.displacement }, sampling: 'clamp' };
-const pack = read( 'pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
+const pack = read( 'games/shareware/pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 const crossers = { e1m2: [ 2881, 3242, 3246, 3452, 4190 ], e1m4: [ 5820, 5821 ] };
 function sampled( f, u, v, origin ) {
 

@@ -30,7 +30,7 @@ import { entity_state_t } from '../src/engine/common/quakedef.js';
 const check = ( value, label ) => { if ( ! value ) throw Error( label ); };
 const same = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} !== ${expected}` );
 const text = index => progs.PR_GetString( index );
-const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'rend-veil-native-pak0', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init(); SV_Init();
 for ( const variable of [ r_hdr, skill, sv_gravity ] ) if ( ! Cvar_FindVar( variable.name ) ) Cvar_RegisterVariable( variable );

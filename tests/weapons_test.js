@@ -46,7 +46,7 @@ anim.r_lerpmodels.value = 0;
 // Decode original rest vertices independently of the generated manifest. The
 // draw boundary receives original coordinates and the public native display
 // list builder's actual reordered topology and UVs.
-const pak = bytes( 'pak0.pak' ), directory = pak.readInt32LE( 4 ), directorySize = pak.readInt32LE( 8 );
+const pak = bytes( 'games/shareware/pak0.pak' ), directory = pak.readInt32LE( 4 ), directorySize = pak.readInt32LE( 8 );
 const nativeFiles = new Map();
 for ( let i = directory; i < directory + directorySize; i += 64 ) {
 

@@ -10,8 +10,8 @@ const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
 await import('../src/engine/render/gl_rsurf.js');const pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js');
 await import('../src/newer/install.js'); // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js), after the loader and the renderer's bootstrap
-const files=process.argv.slice(2);if(!files.length)files.push('pak0.pak');const names=new Set(),archives=[];
-const raw=await readFile('pak0.pak');pak.COM_AddPack(pak.COM_LoadPackFile('palette',raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length)));
+const files=process.argv.slice(2);if(!files.length)files.push('games/shareware/pak0.pak');const names=new Set(),archives=[];
+const raw=await readFile('games/shareware/pak0.pak');pak.COM_AddPack(pak.COM_LoadPackFile('palette',raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.length)));
 for(const file of files){const b=await readFile(file),pack=pak.COM_LoadPackFile(file,b.buffer.slice(b.byteOffset,b.byteOffset+b.length));pak.COM_AddPack(pack);archives.push({file,sha256:createHash('sha256').update(b).digest('hex')});for(const f of pack.files)if(/^progs\/[^/]+\.mdl$/.test(f.name))names.add(f.name);}
 vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();let records={};try{records=(await import('../src/newer/assets/alias_mesh_bakes.js')).ALIAS_MESH_BAKES;}catch{}
 records=Object.fromEntries(Object.entries(records).filter(([key])=>{const a=JSON.parse(key);return a[5].length===a[2]&&a[6].length===a[1];}));

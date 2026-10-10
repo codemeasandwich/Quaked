@@ -19,7 +19,7 @@ Deno.test( 'native registration marker retains shareware on missing/corrupt cont
 	Cbuf_Init(); Cmd_Init(); PR_InitBuiltins();
 	check( COM_CheckRegistered() === false && Cvar_VariableValue( 'registered' ) === 0, 'missing content defaults to shareware' );
 	check( Cvar_FindVar( 'registered' ).archive === false, 'content state is not a saved preference' );
-	pak.COM_AddPack( load( new URL( '../pak0.pak', import.meta.url ) ) );
+	pak.COM_AddPack( load( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) );
 	PR_LoadProgs( pak.COM_LoadFile( 'progs.dat' ) );
 	progs.PR_SetSV( sv ); progs.PR_SetSVS( svs );
 	svs.maxclients = 1; sv.max_edicts = 600;
@@ -50,7 +50,7 @@ Deno.test( 'native registration marker retains shareware on missing/corrupt cont
 	const owned = load( process.env.QUAKED_OWNED_PAK );
 	pak.COM_AddPack( owned );
 	// Restore bundled priority exactly as normal bootstrap does.
-	pak.COM_AddPack( load( new URL( '../pak0.pak', import.meta.url ) ) );
+	pak.COM_AddPack( load( new URL( '../games/shareware/pak0.pak', import.meta.url ) ) );
 	const marker = pak.COM_FindFile( 'gfx/pop.lmp' ).data, saved = marker[ 0 ];
 	try { marker[ 0 ] ^= 1; check( COM_CheckRegistered() === false, 'corrupt native marker stays shareware' ); exercise( false ); }
 	finally { marker[ 0 ] = saved; } // only the in-memory buffer, never the archive

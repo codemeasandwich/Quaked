@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 const sharpPath = process.env.QUAKED_SHARP_MODULE;
 if ( ! sharpPath ) throw new Error( 'Set QUAKED_SHARP_MODULE to installed sharp module entry.' );
 const { default: sharp } = await import( pathToFileURL( sharpPath ).href );
-const svg = await readFile( 'logo.svg' ), pak = await readFile( 'pak0.pak' );
+const svg = await readFile( 'logo.svg' ), pak = await readFile( 'games/shareware/pak0.pak' );
 const packFile = name => {
  const offset = pak.readInt32LE( 4 ), length = pak.readInt32LE( 8 );
  for ( let i = offset; i < offset + length; i += 64 ) if ( pak.subarray( i, i + 56 ).toString().split( '\0' )[ 0 ] === name ) return pak.subarray( pak.readInt32LE( i + 56 ), pak.readInt32LE( i + 56 ) + pak.readInt32LE( i + 60 ) );

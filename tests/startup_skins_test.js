@@ -17,7 +17,7 @@ Deno.test('early skin inspection rejects malformed BSP views and starts only act
  }finally{skins?.R_NewerSkinsShutdown();globalThis.fetch=old.fetch;THREE.TextureLoader.prototype.load=old.load;mode.R_AnimSetClassicPass(old.classic);mode.R_AnimSetNewer(old.newer);mode.r_newer_enemies.value=old.enemies;mode.r_newer_normals.value=old.normals;boot.R_DemoLoadingCancel();if(old.document)Object.defineProperty(globalThis,'document',old.document);else delete globalThis.document;}
 });
 Deno.test('actual E1M3 entity bytes prefetch exactly its19 installed authored skin maps and the ogre face sheet without loading models or unrelated enemy families',async()=>{
- const read=p=>readFileSync(new URL('../'+p,import.meta.url)),pack=read('pak0.pak'),index=JSON.parse(read('newer/enemies/index.json'));let map;
+ const read=p=>readFileSync(new URL('../'+p,import.meta.url)),pack=read('games/shareware/pak0.pak'),index=JSON.parse(read('newer/enemies/index.json'));let map;
  for(let p=pack.readInt32LE(4),end=p+pack.readInt32LE(8);p<end;p+=64)if(pack.subarray(p,p+56).toString().split('\0')[0]==='maps/e1m3.bsp'){const start=pack.readInt32LE(p+56);map=pack.subarray(start,start+pack.readInt32LE(p+60));break;}check(map,'actual attract BSP in native PACK');
  // Independent literal model oracle from the native entity class roster plus
  // existing head/gib families. Only these keys have installed custom artwork.

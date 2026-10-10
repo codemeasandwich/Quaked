@@ -54,7 +54,7 @@ Deno.test( 'startup prepare begins every unseen custom variant and native skin/f
 } ) );
 
 Deno.test( 'actual native loaded Quake model header prepares stored relief without drawing and keeps native diffuse ownership', async () => fixture( async requests => {
-	const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) );
+	const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) );
 	VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const model = Mod_ForName( 'progs/dog.mdl', true ), header = model.cache.data, texture = header.gl_texturenum[ 0 ][ 0 ];
 	const skins = await import( '../src/newer/render/r_newerskins.js?prepare-real-model' ); skins.R_NewerSetIndex( { version: 1, models: {}, nativeHeights: { dog: [ [ { file: 'real-dog.webp' } ] ] } } );

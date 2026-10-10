@@ -59,7 +59,7 @@ STYLES = {
 
 
 def native_models():
-    data = (ROOT / 'pak0.pak').read_bytes()
+    data = (ROOT / 'games/shareware/pak0.pak').read_bytes()
     start, length = struct.unpack_from('<ii', data, 4)
     result = {}
     for off in range(start, start + length, 64):

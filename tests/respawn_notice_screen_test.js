@@ -15,7 +15,7 @@ Deno.test( 'the corner message is drawn while active at the top right, and not b
 	const saved = { state: state.cls.state, signon: state.cls.signon, world: state.cl.worldmodel, time: state.cl.time };
 	try {
 
-		const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) ); VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data );
+		const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) ); VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data );
 		const wad = await import( '../src/engine/common/wad.js' ); const wadData = pak.COM_LoadFile( 'gfx.wad' ); check( wadData, 'gfx.wad in pak0' ); wad.W_LoadWadFile( wadData );
 		cmd.Cbuf_Init(); cmd.Cmd_Init();
 		const overlay = canvas.createCanvas( 640, 400 ); draw.Draw_Init( overlay );

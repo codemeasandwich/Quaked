@@ -34,7 +34,7 @@ import { scr_viewsize } from '../src/engine/render/gl_screen.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 const near = ( a, b, label, epsilon = 1e-7 ) => check( Math.abs( a - b ) <= epsilon, `${label}: ${a} != ${b}` );
-const pack = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data );
+const pack = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data );
 vid.fullbright = 224; // Real VID_Init contract: unset0 makes every pixel falsely emissive.
 Mod_Init(); const model = Mod_ForName( 'maps/e1m3.bsp', true ); cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = null; GL_BuildLightmaps();
 const entities = R_ParseEntityLump( model.entities ), lights = post.R_BuildWorldLights( model ), eye = [ -736, -1592, 110 ], styles = new Array( 64 ).fill( 264 );

@@ -15,7 +15,7 @@ const { r_newer_portals } = await import('../src/newer/mode.js');
 Deno.test('shipped start hub portal thresholds are physically reachable or use confirmed backing contact', async () => {
 const previous={models:sv.models,worldmodel:sv.worldmodel,edicts:sv.edicts,num_edicts:sv.num_edicts,max_edicts:sv.max_edicts};
 try {
-const pak=await Deno.readFile(new URL('../pak0.pak',import.meta.url));
+const pak=await Deno.readFile(new URL('../games/shareware/pak0.pak',import.meta.url));
 const pv=new DataView(pak.buffer,pak.byteOffset,pak.byteLength);
 const decode=(data)=>new TextDecoder().decode(data).split('\0')[0];
 let bsp;

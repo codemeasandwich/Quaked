@@ -31,7 +31,7 @@ const check = ( value, message ) => { if ( ! value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} !== ${expected}` );
 const text = i => progs.PR_GetString( i );
 const types = [ [ 'monster_army', 'soldier' ], [ 'monster_ogre', 'ogre' ], [ 'monster_knight', 'knight' ] ];
-const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const bytes = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'enemy-face-native-pak0', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.length ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );

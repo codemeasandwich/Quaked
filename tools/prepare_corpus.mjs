@@ -4,7 +4,7 @@ import {readdir,readFile,writeFile} from 'node:fs/promises';
 import {spawn} from 'node:child_process';
 import {memberSearch,readMember,sha256} from './pak_members.mjs';
 const campaigns=[
- {namespace:'shareware',packs:['pak0.pak']},
+ {namespace:'shareware',packs:['games/shareware/pak0.pak']},
  {namespace:'newer',packs:['newer/maps.pak']},
  ...['id1','hipnotic','rogue','dopa','mg1'].map(namespace=>({namespace,packs:['resources/'+namespace+'/pak0.pak']}))
 ];

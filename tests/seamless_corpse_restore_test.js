@@ -22,7 +22,7 @@ import { sv_gravity, SV_Physics, SV_SetFrametime } from '../src/engine/server/sv
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} != ${expected}` );
 const string = index => progs.PR_GetString( index );
-const pack = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
+const pack = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.byteLength ) ) );
 VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
 for ( const variable of [ r_hdr, skill, sv_gravity ] ) if ( ! Cvar_FindVar( variable.name ) ) Cvar_RegisterVariable( variable );

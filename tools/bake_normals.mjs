@@ -24,7 +24,7 @@ await import('../src/newer/install.js'); // Newer Game plugs into the engine's h
 const textures=await import('../src/newer/render/r_newertextures.js'),cvar=await import('../src/engine/common/cvar.js'),{r_hdr}=await import('../src/newer/render/gl_post.js');
 const {NormalInputs,NormalInputKey,NormalGenerate}=await import('../src/newer/assets/normal_prepare.js'),{NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION}=await import('../src/newer/assets/normal_bake_format.js');
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{path,name:path,loose:true});
-const palette=await memberSearch(['pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.vid.fullbright=224;model.Mod_Init();model.R_InitTextures();cvar.Cvar_RegisterVariable(r_hdr);
+const palette=await memberSearch(['games/shareware/pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.vid.fullbright=224;model.Mod_Init();model.R_InitTextures();cvar.Cvar_RegisterVariable(r_hdr);
 let manifest;try{manifest=JSON.parse(await readFile('newer/normals/manifest.json','utf8'));}catch{manifest={version:NORMAL_GENERATOR_VERSION,samples:{},levels:{}};}
 await mkdir('newer/normals',{recursive:true});
 async function bake(texture){

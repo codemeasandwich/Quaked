@@ -5,7 +5,7 @@ import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (s
 await import('../src/engine/render/gl_rsurf.js');
 const [draw,menu,cmd,keys,pak,wad]=await Promise.all(['engine/render/gl_draw','engine/client/menu','engine/common/cmd','engine/client/keys','engine/common/pak','engine/common/wad'].map(name=>import('../src/'+name+'.js')));
 const canvas=document.querySelector('#credits'),context=canvas.getContext('2d'),report=document.querySelector('#report');
-const bytes=await (await fetch('../pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('credits-trial-pak0',bytes));
+const bytes=await (await fetch('../games/shareware/pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('credits-trial-pak0',bytes));
 const gfx=pak.COM_FindFile('gfx.wad').data;wad.W_LoadWadFile(gfx.buffer.slice(gfx.byteOffset,gfx.byteOffset+gfx.byteLength));
 const palette=pak.COM_FindFile('gfx/palette.lmp').data,vid={width:innerWidth,height:innerHeight};
 (await import('../src/engine/render/vid.js')).VID_SetPalette(palette);

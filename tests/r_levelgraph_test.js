@@ -23,7 +23,7 @@ function assertVec( actual, expected, message ) {
 // read one file out of pak0.pak
 async function pakFile( name ) {
 
-	const pak = await Deno.readFile( new URL( '../pak0.pak', import.meta.url ) );
+	const pak = await Deno.readFile( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 	const view = new DataView( pak.buffer, pak.byteOffset, pak.byteLength );
 	const dirofs = view.getInt32( 4, true ), dirlen = view.getInt32( 8, true );
 

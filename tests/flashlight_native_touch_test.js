@@ -18,7 +18,7 @@ import { r_flashlight } from '../src/newer/render/r_flashlight.js';
 import * as run from '../src/newer/render/r_flashlightrun.js';
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
-const pack = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
+const pack = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack.buffer.slice( pack.byteOffset, pack.byteOffset + pack.length ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init(); PR_InitBuiltins(); Cbuf_Init();
 for ( const variable of [ r_hdr, skill, sv_gravity, r_flashlight ] ) if ( ! Cvar_FindVar( variable.name ) ) Cvar_RegisterVariable( variable );
 const text = index => progs.PR_GetString( index );
 Deno.test( 'real spawned START player and native QC corridor activate flashlight through both public direct touch and actual linked collision dispatch', () => {
