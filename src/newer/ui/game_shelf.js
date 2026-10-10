@@ -30,6 +30,7 @@ export const GAME_BOXES = Object.freeze( {
 const KIND_TEXT = Object.freeze( { shareware: 'The first episode of Quake', base: 'The full game', mission: 'A Quake mission pack', episode: 'A Quake episode', addon: 'A Quake add-on', folder: 'Added from a folder' } );
 const IMAGE = /\.(png|jpe?g|webp|gif|avif)$/i;
 const DB_NAME = 'quaked.shelf.v1';
+const STORE_WAIT_MS = 1500; // the longest the shelf waits for the games added from folders
 let shelf = null;
 
 /**
@@ -111,12 +112,14 @@ function db() {
 
 async function storedGames() {
 
-	try {
+	// bounded: a browser that never answers (a blocked open) leaves the shelf without the added games, not blank
+	const read = ( async () => {
 
 		const d = await db();
 		return await new Promise( ( resolve, reject ) => { const r = d.transaction( 'games' ).objectStore( 'games' ).getAll(); r.onsuccess = () => resolve( r.result ); r.onerror = () => reject( r.error ); } );
 
-	} catch { return []; }
+	} )();
+	try { return await Promise.race( [ read, new Promise( resolve => setTimeout( () => resolve( [] ), STORE_WAIT_MS ) ) ] ); } catch { return []; }
 
 }
 
@@ -247,7 +250,8 @@ export async function GameShelf_Show( games, options = {} ) {
 	const boxes = games.map( g => GameShelf_Box( g ) );
 	for ( const record of await storedGames() ) boxes.push( folderBox( record ) );
 	boxes.push( { id: '+add', name: 'Add a game', kind: 'add', playable: false, reason: '', front: null, back: null, spine: null, text: '' } );
-	await Promise.all( boxes.map( async b => { b.aspect = await aspectOf( b.front ); } ) );
+	// drawn at once with a box's usual shape; each box takes its front's own shape as that image arrives
+	for ( const b of boxes ) b.aspect = 0.82;
 
 	let index = Math.max( 0, boxes.findIndex( b => b.id === options.current ) ), flipped = false, built = [], note = '';
 	const H = () => Math.round( Math.min( innerHeight * 0.5, innerWidth * 0.55 ) );
@@ -288,6 +292,7 @@ export async function GameShelf_Show( games, options = {} ) {
 		if ( ! box.playable ) { note = box.kind === 'folder' ? 'Playing a game from a folder is not built yet' : 'Not playable yet' + ( box.reason ? ': ' + box.reason : '' ); place(); return; }
 		try { ( options.remember ?? ( () => {} ) )( box.id ); } catch { /* the URL still opens it */ }
 		resolveChoice( box.id );
+		shelf?.close();
 		open( GameShelf_Url( box.id ) );
 
 	};
@@ -328,11 +333,12 @@ export async function GameShelf_Show( games, options = {} ) {
 	root.addEventListener( 'touchend', e => { if ( touchX === null ) return; const dx = e.changedTouches[ 0 ].clientX - touchX; touchX = null; if ( Math.abs( dx ) > 40 ) select( index - Math.sign( dx ) ); } );
 	addEventListener( 'keydown', keys ); root.addEventListener( 'wheel', wheel, { passive: true } ); addEventListener( 'resize', render );
 	// a controller: left and right (d-pad or stick) cycle, A plays, Y turns the box over
-	let padHeld = {}, padTimer = setInterval( () => {
+	let padHeld = null, padTimer = setInterval( () => {
 
 		const pad = Array.from( navigator.getGamepads?.() ?? [] ).find( p => p && p.connected );
 		if ( ! pad ) return;
 		const x = pad.axes?.[ 0 ] ?? 0, now = { left: pad.buttons[ 14 ]?.pressed || x < - 0.6, right: pad.buttons[ 15 ]?.pressed || x > 0.6, a: pad.buttons[ 0 ]?.pressed, y: pad.buttons[ 3 ]?.pressed };
+		if ( padHeld === null ) { padHeld = now; return; } // a button already held when the shelf opened is not a press
 		if ( now.left && ! padHeld.left ) select( index - 1 );
 		if ( now.right && ! padHeld.right ) select( index + 1 );
 		if ( now.a && ! padHeld.a ) choose();
@@ -340,8 +346,17 @@ export async function GameShelf_Show( games, options = {} ) {
 		padHeld = now;
 
 	}, 50 );
-	shelf = { root, close: () => { removeEventListener( 'keydown', keys ); removeEventListener( 'resize', render ); clearInterval( padTimer ); root.remove(); shelf = null; } };
+	shelf = { root, close: () => { removeEventListener( 'keydown', keys ); removeEventListener( 'resize', render ); clearInterval( padTimer ); root.remove(); shelf = null;
+		for ( const b of boxes ) if ( b.kind === 'folder' ) for ( const url of [ b.front, b.back, b.spine ] ) if ( url ) URL.revokeObjectURL( url ); } };
 	render();
+	let reshape = null;
+	boxes.forEach( b => aspectOf( b.front ).then( aspect => {
+
+		if ( Math.abs( aspect - b.aspect ) < 0.005 || shelf === null ) return;
+		b.aspect = aspect;
+		if ( reshape === null ) reshape = requestAnimationFrame( () => { reshape = null; if ( shelf !== null ) render(); } );
+
+	} ) );
 	return chosen;
 
 }
@@ -383,6 +398,7 @@ function pickFolder() {
 		const input = document.createElement( 'input' );
 		input.type = 'file'; input.webkitdirectory = true; input.multiple = true;
 		input.addEventListener( 'change', () => resolve( input.files.length ? { name: '', files: Array.from( input.files ) } : null ) );
+		input.addEventListener( 'cancel', () => resolve( null ) );
 		input.click();
 
 	} );

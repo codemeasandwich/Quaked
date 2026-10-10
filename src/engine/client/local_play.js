@@ -16,6 +16,7 @@
  */
 import { Window_NewSession, Window_HostSession, WINDOW_SESSION_PATTERN, WINDOW_ADDRESS_PREFIX } from '../net/net_window.js';
 import { sv, svs } from '../server/server.js';
+import { GameSelection_Current } from '../common/game_selection.js';
 
 /** The fewest and most players in local play (the server's client slots: Host_FindMaxClients allows four). */
 export const LOCAL_PLAYERS_MIN = 2, LOCAL_PLAYERS_MAX = 4;
@@ -129,11 +130,13 @@ export function LocalPlay_NextPlayer() {
  * @param {number} n the player number, 2 to 4
  * @param {string} [session] defaults to the hosted session
  * @param {string} [page] the page's own address without its query (defaults to this page's)
- * @returns {string} `<page>?window=<session>&player=<n>`
+ * @returns {string} `<page>?window=<session>&player=<n>`, with `&game=<id>` when the host's game was chosen
  */
 export function LocalPlay_PlayerUrl( n, session = Window_HostSession(), page = typeof location !== 'undefined' ? location.origin + location.pathname : 'index.html' ) {
 
-	return `${page}?window=${encodeURIComponent( session )}&player=${n}`;
+	// the host's game too, so the window mounts what its host mounted (else it would take the browser's kept choice)
+	const game = GameSelection_Current();
+	return `${page}?window=${encodeURIComponent( session )}&player=${n}` + ( game !== null ? `&game=${encodeURIComponent( game )}` : '' );
 
 }
 

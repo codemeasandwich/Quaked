@@ -55,8 +55,10 @@ async function main() {
 		const joining = urlParams.has( 'room' ) || playerWindow !== null; // no attract demo: straight into a game
 		// The game shelf (card [M1]; the owner's direction): with more than one game installed, the index page opens on a
 		// shelf of their boxes before any game starts; a box opens its game's own URL (?game=<id>), which starts here.
-		// One game only (a site with the shareware alone), a game's URL, a room or a player's window: straight in.
-		if ( ! joining && ! urlParams.has( 'game' ) ) {
+		// One game only (a site with the shareware alone), a game's URL, a room, a player's window, or another page that
+		// boots this (the trial pages under tests/): straight in.
+		const indexPage = /(^|\/)(index\.html)?$/.test( window.location.pathname ?? '/' ); // not a trial page that boots main.js
+		if ( indexPage && ! joining && ! urlParams.has( 'game' ) ) {
 
 			const catalogue = await GameCatalogue_Refresh().catch( error => { Sys_Printf( 'Game catalogue: ' + error.message + '\n' ); return null; } );
 			const installed = ( catalogue?.games ?? [] ).filter( game => game.present );

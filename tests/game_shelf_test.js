@@ -62,3 +62,31 @@ Deno.test( 'a game\'s URL chooses that page\'s game over the kept choice; the sh
 		for ( const [ name, d ] of Object.entries( { localStorage: saved.storage, location: saved.location } ) ) if ( d ) Object.defineProperty( globalThis, name, d ); else delete globalThis[ name ];
 	}
 } );
+
+Deno.test( 'on a game\'s own URL the game command switches by going to the new game\'s URL', async () => {
+	const store = new Map(), went = [];
+	const saved = { storage: Object.getOwnPropertyDescriptor( globalThis, 'localStorage' ), location: Object.getOwnPropertyDescriptor( globalThis, 'location' ) };
+	Object.defineProperty( globalThis, 'localStorage', { configurable: true, value: { getItem: k => store.get( k ) ?? null, setItem: ( k, v ) => store.set( k, String( v ) ) } } );
+	Object.defineProperty( globalThis, 'location', { configurable: true, value: { search: '?game=quake', href: 'http://host/index.html?game=quake', assign: url => went.push( url ), reload: () => went.push( 'reload' ) } } );
+	try {
+		const result = await selection.GameSelection_Select( 'shareware' );
+		same( result.ok, true, 'the switch is kept: ' + result.reason );
+		same( selection.GameSelection_Kept(), 'shareware', 'kept' );
+		same( went.join(), 'http://host/index.html?game=shareware', 'and the page goes to the shareware\'s URL (a reload would keep ?game=quake)' );
+	} finally {
+		for ( const [ name, d ] of Object.entries( { localStorage: saved.storage, location: saved.location } ) ) if ( d ) Object.defineProperty( globalThis, name, d ); else delete globalThis[ name ];
+	}
+} );
+
+Deno.test( 'a local-play player window opens on its host\'s game', async () => {
+	const { LocalPlay_PlayerUrl } = await import( '../src/engine/client/local_play.js' );
+	const saved = Object.getOwnPropertyDescriptor( globalThis, 'location' );
+	try {
+		Object.defineProperty( globalThis, 'location', { configurable: true, value: { search: '?game=shareware' } } );
+		same( LocalPlay_PlayerUrl( 2, 'abc', 'http://host/index.html' ), 'http://host/index.html?window=abc&player=2&game=shareware', 'the host\'s game goes with the window' );
+		Object.defineProperty( globalThis, 'location', { configurable: true, value: { search: '' } } );
+		same( LocalPlay_PlayerUrl( 3, 'abc', 'http://host/index.html' ), 'http://host/index.html?window=abc&player=3', 'none chosen: as before' );
+	} finally {
+		if ( saved ) Object.defineProperty( globalThis, 'location', saved ); else delete globalThis.location;
+	}
+} );

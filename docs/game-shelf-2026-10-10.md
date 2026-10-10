@@ -40,8 +40,16 @@ And on the artwork and the add-ons:
   - The box is kept in the browser (IndexedDB `quaked.shelf.v1`) and shown on later visits.
   - Playing a game from a folder needs the engine to mount packs from the player's files, which is not built yet, so
     its box says so.
-- **Straight in.** A site with only the shareware, a game's own URL, a room join (`?room=`) and a local-play player's
-  window (`?window=`) skip the shelf and start the game directly.
+- **Straight in.** These skip the shelf and start the game directly:
+  - a site with only the shareware;
+  - a game's own URL;
+  - a room join (`?room=`) and a local-play player's window (`?window=`);
+  - any page other than the index page that boots `main.js`, such as the trial pages under `tests/`. The shelf shows
+    only at `/` or `…/index.html`.
+- **A game's URL afterwards:**
+  - On a page opened at a game's URL, the `game` command switches by going to the new game's URL, because a reload
+    would keep the old `?game`. Its check reads the kept choice, not the URL's.
+  - A local-play player window opens with its host's `&game=`, so it mounts what its host mounted.
 
 ## The art
 
@@ -85,13 +93,18 @@ and back with what it is.
 
 ## Checks
 
-- `tests/game_shelf_test.js` (4 tests):
+- `tests/game_shelf_test.js` (6 tests):
   - every box image named exists, and the sources are recorded;
   - boxes: their own art, placeholders, the sticker and their text;
   - a picked folder: name, images by name in any case or type (`spine` counts as `side`), packs, and only its top
     level;
   - a game's URL wins over the kept choice, with its saves, and the shelf starts on the kept choice.
+- `tests/game_shelf_test.js` also covers two cases:
+  - on `?game=quake`, `game shareware` is kept and goes to `?game=shareware`;
+  - a player window's URL carries its host's game.
 - `tests/startup_preload_test.js`:
+  - a trial page (`/tests/axe_trial.html`) with two games installed starts its game and never probes for the
+    shelf;
   - with two games installed, the shelf opens and nothing of a game starts;
   - a game's URL starts at once, without the probe;
   - the ordering test now expects the probe before the packs.
@@ -104,6 +117,14 @@ and back with what it is.
   - Play on Quake opened `index.html?game=quake`. The game started there, with `GameSelection_Current()` 'quake', no
     shelf, and the choice kept.
   - Screenshots: `/tmp/claude-qk/shelf-*.png`.
+  - Trial pages that boot `main.js`, on the owner's many-game install: axe, bestiary, intro_loading, newer_start,
+    demo_resolution and travel each had the engine ready in 0.9 to 1.5 s, with no shelf.
+- **Review fixes:**
+  - The shelf now draws at once in a box's usual shape, and each box takes its front's shape as the image arrives.
+  - The games added from folders are waited for at most 1.5 s.
+  - A cancelled directory input settles.
+  - A controller button already held when the shelf opens is not a press.
+  - Choosing closes the shelf and revokes the folder boxes' object URLs.
 
 ## What remains
 

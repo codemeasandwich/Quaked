@@ -116,7 +116,8 @@ export function GameSelection_SavePrefix() {
 /**
  * Chooses the game to run: checks with the catalogue that it is playable (the shareware, which ships with the page,
  * needs no check; a found pack the server would not let it check is allowed with a warning, since the start reads it
- * whole and refuses a broken one), keeps the choice (read back) and reloads the page so the game starts clean.
+ * whole and refuses a broken one), keeps the choice (read back) and reloads the page so the game starts clean (a page
+ * on a game's own URL goes to the chosen game's URL instead).
  *
  * @param {string} id the game's catalogue id ('quake', 'shareware'; others are refused)
  * @param {{ refresh?: function(): Promise<object>, reload?: function(): void }} [options] the catalogue refresh and the
@@ -125,7 +126,15 @@ export function GameSelection_SavePrefix() {
  */
 export async function GameSelection_Select( id, options = {} ) {
 
-	const refresh = options.refresh ?? GameCatalogue_Refresh, reload = options.reload ?? ( () => globalThis.location?.reload() );
+	const refresh = options.refresh ?? GameCatalogue_Refresh, reload = options.reload ?? ( () => {
+
+		// a page opened on a game's own URL (?game=<id>, the shelf's) goes to the new game's URL; a reload would keep
+		// the old one
+		const here = globalThis.location;
+		if ( here && GameSelection_UrlChoice( here.search ) !== null ) { const url = new URL( here.href ); url.searchParams.set( 'game', id ); here.assign( url.href ); }
+		else here?.reload();
+
+	} );
 	let warning = '';
 	if ( id !== 'shareware' ) { // the shareware ships with the page: no evidence needed
 
@@ -143,7 +152,7 @@ export async function GameSelection_Select( id, options = {} ) {
 	const store = storage();
 	if ( store === null ) return { ok: false, reason: 'the choice cannot be kept in this browser (no storage)' };
 	try { store.setItem( STORAGE_KEY, id ); } catch { return { ok: false, reason: 'the choice cannot be kept in this browser' }; }
-	if ( GameSelection_Current() !== id ) return { ok: false, reason: 'the choice cannot be kept in this browser (it did not stay)' };
+	if ( GameSelection_Kept() !== id ) return { ok: false, reason: 'the choice cannot be kept in this browser (it did not stay)' }; // the kept one: a ?game URL would mask it
 	reload();
 	return { ok: true, reason: `${id === 'shareware' ? 'Quake (shareware)' : 'Quake'}: starting${warning}` };
 
