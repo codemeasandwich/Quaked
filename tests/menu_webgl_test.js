@@ -59,7 +59,7 @@ function sheet(path,rows,extras=[]){
  const rects=[];for(let r=0;r<rows;r++)rects.push({x:2,y:r*20+3,w:59,h:16});
  return picture(path,100,rows*20,rects.concat(extras));
 }
-const six=[['singleplayer',menu.m_singleplayer],['multiplayer',menu.m_multiplayer],['bestiarium',menu.m_bestiary],['options',menu.m_options],['credits',menu.m_credits],['quit',menu.m_quit]];
+const six=[['singleplayer',menu.m_singleplayer],['multiplayer',menu.m_mpchoice],['bestiarium',menu.m_bestiary],['options',menu.m_options],['credits',menu.m_credits],['quit',menu.m_quit]];
 
 Deno.test('skinned main menu keeps native keyboard and touch routing: each action fires exactly once',()=>fixture(async api=>{
  check((await api.ready()).ready,'supplied renderer is ready');

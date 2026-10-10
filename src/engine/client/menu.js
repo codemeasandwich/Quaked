@@ -8,7 +8,7 @@
  *
  * State: mutable exports `m_state`, `m_entersound`; module-level variables `m_recursiveDraw`, `m_return_state`,
  * `m_return_onerror`, `m_return_reason`, `m_save_demonum`, `lanConfig_cursor`, `lanConfig_joinname`, `slist_rooms`,
- * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 52 more; browser storage.
+ * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 54 more; browser storage.
  *
  * Errors: throws at 1 place; catches at 4 places.
  *
@@ -78,6 +78,8 @@ export const m_newer = 20;
 export const m_levelselect = 21;
 export const m_bestiary = 22;
 export const m_cheats = 23;
+export const m_mpchoice = 24; // Multiplayer: local split screen or online (card [MP1])
+export const m_splitscreen = 25; // Local split screen: being built (card [37])
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -282,6 +284,8 @@ let _Draw_CachePic = null;
 let _Draw_TransPic = null;
 let _Draw_Pic = null;
 let _Draw_Character = null;
+// draws through a lowered opacity (gl_draw.js Draw_WithAlpha, set by the host); unwired, at full opacity
+let _Draw_WithAlpha = ( alpha, draw ) => draw();
 let _Draw_Fill = null;
 let _Draw_FadeScreen = null;
 let _Draw_ConsoleBackground = null;
@@ -349,6 +353,7 @@ export function M_SetExternals( externals ) {
 	if ( externals.Draw_TransPic ) _Draw_TransPic = externals.Draw_TransPic;
 	if ( externals.Draw_Pic ) _Draw_Pic = externals.Draw_Pic;
 	if ( externals.Draw_Character ) _Draw_Character = externals.Draw_Character;
+	if ( externals.Draw_WithAlpha ) _Draw_WithAlpha = externals.Draw_WithAlpha;
 	if ( externals.Draw_Fill ) _Draw_Fill = externals.Draw_Fill;
 	if ( externals.Draw_FadeScreen ) _Draw_FadeScreen = externals.Draw_FadeScreen;
 	if ( externals.Draw_ConsoleBackground ) _Draw_ConsoleBackground = externals.Draw_ConsoleBackground;
@@ -427,6 +432,19 @@ function M_PrintWhite( cx, cy, str ) {
 		cx += 8;
 
 	}
+
+}
+
+// A menu item that cannot be chosen: the menu's own lettering, faded (the WebGL menu's disabled material; natively at
+// 40% opacity). Card [MP1].
+function M_PrintFaded( cx, cy, str ) {
+
+	if ( MainMenu_Text( cx + ( ( _vid.width - 320 ) >> 1 ), cy + ( ( _vid.height - 200 ) >> 1 ), str, 0, true ) ) return;
+	_Draw_WithAlpha( 0.4, () => {
+
+		for ( let i = 0; i < str.length; i ++ ) { M_DrawCharacter( cx, cy, str.charCodeAt( i ) + 128 ); cx += 8; }
+
+	} );
 
 }
 
@@ -759,7 +777,7 @@ function M_Main_Key( key ) {
 					M_Menu_SinglePlayer_f();
 					break;
 				case 1:
-					M_Menu_MultiPlayer_f();
+					M_Menu_MultiplayerChoice_f(); // local split screen or online (card [MP1])
 					break;
 				case 2:
 					M_Menu_Bestiary_f();
@@ -1470,6 +1488,125 @@ function M_Save_Key( k ) {
 			break;
 
 	}
+
+}
+
+/*
+==============================================================================
+
+			MULTIPLAYER CHOICE (card [MP1]): local split screen, or online
+
+==============================================================================
+*/
+
+// Online is shown but cannot be chosen yet; the online screens below stay for joins by link and connection errors.
+const MPCHOICE_ITEMS = Object.freeze( [ Object.freeze( { label: 'Local (split screen)', enabled: true } ), Object.freeze( { label: 'Online', enabled: false } ) ] );
+let m_mpchoice_cursor = 0;
+
+/**
+ * Opens the Multiplayer screen: Local (split screen), and Online faded and disabled. Called by the main menu's
+ * Multiplayer item.
+ */
+export function M_Menu_MultiplayerChoice_f() {
+
+	setKeyDest( key_menu );
+	m_state = m_mpchoice;
+	m_entersound = true;
+	if ( ! MPCHOICE_ITEMS[ m_mpchoice_cursor ]?.enabled ) m_mpchoice_cursor = MPCHOICE_ITEMS.findIndex( item => item.enabled );
+
+}
+
+function M_MultiplayerChoice_Draw() {
+
+	if ( ! _Draw_CachePic ) return;
+	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
+	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+	MPCHOICE_ITEMS.forEach( ( item, i ) => ( item.enabled ? M_Print : M_PrintFaded )( 72 + 8, 32 + i * 20 + 6, item.label ) );
+	const f = Math.floor( _host_time_get() * 10 ) % 6;
+	M_DrawTransPic( 54, 32 + m_mpchoice_cursor * 20, _Draw_CachePic( 'gfx/menudot' + ( f + 1 ) + '.lmp' ) );
+
+}
+
+// the next item that can be chosen, `step` (+1 or -1) at a time, wrapping
+function mpchoiceStep( step ) {
+
+	for ( let n = 1; n <= MPCHOICE_ITEMS.length; n ++ ) {
+
+		const i = ( m_mpchoice_cursor + step * n + MPCHOICE_ITEMS.length * n ) % MPCHOICE_ITEMS.length;
+		if ( MPCHOICE_ITEMS[ i ].enabled ) return i;
+
+	}
+	return m_mpchoice_cursor;
+
+}
+
+function M_MultiplayerChoice_Key( key ) {
+
+	switch ( key ) {
+
+		case K_ESCAPE:
+			M_Menu_Main_f();
+			break;
+		case K_DOWNARROW:
+		case K_UPARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			m_mpchoice_cursor = mpchoiceStep( key === K_DOWNARROW ? 1 : - 1 );
+			break;
+		case K_ENTER:
+			if ( ! MPCHOICE_ITEMS[ m_mpchoice_cursor ]?.enabled ) break; // Online: not yet
+			m_entersound = true;
+			if ( m_mpchoice_cursor === 0 ) M_Menu_SplitScreen_f();
+			break;
+
+	}
+
+}
+
+function M_MultiplayerChoice_Touch( vx, vy ) {
+
+	const item = Math.floor( ( vy - 32 ) / 20 );
+	if ( vy >= 32 && item >= 0 && item < MPCHOICE_ITEMS.length && MPCHOICE_ITEMS[ item ].enabled ) {
+
+		m_mpchoice_cursor = item;
+		M_MultiplayerChoice_Key( K_ENTER );
+
+	}
+
+}
+
+/*
+==============================================================================
+
+			LOCAL SPLIT SCREEN (card [37]): being built
+
+==============================================================================
+*/
+
+function M_Menu_SplitScreen_f() {
+
+	setKeyDest( key_menu );
+	m_state = m_splitscreen;
+	m_entersound = true;
+
+}
+
+function M_SplitScreen_Draw() {
+
+	if ( ! _Draw_CachePic ) return;
+	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
+	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
+	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
+	M_DrawTextBox( 56, 60, 24, 4 );
+	M_Print( 72, 72, 'Local split screen' );
+	M_PrintWhite( 72, 80, 'is being built.' );
+	M_PrintWhite( 72, 96, 'Press Esc to go back.' );
+
+}
+
+function M_SplitScreen_Key( key ) {
+
+	if ( key === K_ESCAPE || key === K_ENTER ) M_Menu_MultiplayerChoice_f();
 
 }
 
@@ -3042,6 +3179,8 @@ export function M_Keydown( key ) {
 		case m_load: M_Load_Key( key ); return;
 		case m_save: M_Save_Key( key ); return;
 		case m_multiplayer: M_MultiPlayer_Key( key ); return;
+		case m_mpchoice: M_MultiplayerChoice_Key( key ); return;
+		case m_splitscreen: M_SplitScreen_Key( key ); return;
 		case m_setup: M_Setup_Key( key ); return;
 		case m_options: M_Options_Key( key ); return;
 		case m_newer: M_Newer_Key( key ); return;
@@ -3127,6 +3266,8 @@ export function M_Draw() {
 		case m_load: M_Load_Draw(); break;
 		case m_save: M_Save_Draw(); break;
 		case m_multiplayer: M_MultiPlayer_Draw(); break;
+		case m_mpchoice: M_MultiplayerChoice_Draw(); break;
+		case m_splitscreen: M_SplitScreen_Draw(); break;
 		case m_setup: M_Setup_Draw(); break;
 		case m_options: M_Options_Draw(); break;
 		case m_newer: M_Newer_Draw(); break;
@@ -3238,6 +3379,12 @@ function M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) {
 			M_LoadSave_Touch( vx, vy );
 			break;
 
+		case m_mpchoice:
+			M_MultiplayerChoice_Touch( vx, vy );
+			break;
+		case m_splitscreen:
+			M_SplitScreen_Key( K_ESCAPE );
+			break;
 		case m_multiplayer:
 			M_MultiPlayer_Touch( vx, vy );
 			break;

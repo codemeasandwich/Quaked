@@ -250,6 +250,8 @@ def renderer_module(source):
       }''')
     source = once(source, '      gl.enable(gl.BLEND);\n      this._uniforms(this.programs.plaque);',
                   '      gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);\n      this._uniforms(this.programs.plaque);')
+    # a command's text may be disabled, drawn with the donor's own disabled material (card [MP1])
+    source = once(source, 'part.range,command.kind||0,0,0);}', 'part.range,command.kind||0,0,command.disabled?1:0);}')
     for anchor, block in QUAKEMENU_JSDOC:
         source = once(source, '\n' + anchor, '\n' + block + anchor)
     return source
@@ -330,6 +332,7 @@ def outputs(source_bytes):
         'adaptations': [
             'ESM exports replace window font/shader/loader/renderer registration',
             'JSDoc blocks for QuakeMenu public members (constructor and 14 methods)',
+            'external text commands may be disabled, using the donor\'s disabled glyph material',
             'externalFrame defaults false; true retains only context lifecycle listeners',
             'frame accepts bounded physical pixels and finite millisecond timestamps without DPR rescaling',
             'optional native text, panel, selector and slider commands reuse donor glyph, plaque and solid-Q materials with transparent gameplay overlay alpha',

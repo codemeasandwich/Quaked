@@ -246,9 +246,10 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
  * @param {string} text the text (coerced to string); spaces and control characters leave their cell empty
  * @param {number} [kind=0] the glyph material: 0 the menu's own (`M_Print`, stock highlighted characters), 2 the stock
  *   white engine text (`M_PrintWhite`, drawn with material 3)
+ * @param {boolean} [disabled=false] drawn as the donor menu draws an item that cannot be chosen (`M_PrintFaded`, card [MP1])
  * @returns {boolean} true when queued (the caller skips native drawing); false when the frame is not skinned
  */
-export function MainMenu_Text( x, y, text, kind = 0 ) {
+export function MainMenu_Text( x, y, text, kind = 0, disabled = false ) {
 
 	if ( ! frameSkin ) return false;
 	// Engine text is a fixed 8-unit cell grid. Keep every character in its own
@@ -269,7 +270,7 @@ export function MainMenu_Text( x, y, text, kind = 0 ) {
 			const oy = '.,_'.includes( ch ) ? top + capH - shape.height :
 				'-+=<>:;'.includes( ch ) ? top + ( capH - shape.height ) / 2 : top;
 			commands.push( { type: 'text', text: ch, x: ( x + i * CELL ) * scale + ( CELL * scale - w ) / 2,
-				y: oy, size: em, stretch, kind } );
+				y: oy, size: em, stretch, kind, disabled: !! disabled } );
 
 		} );
 

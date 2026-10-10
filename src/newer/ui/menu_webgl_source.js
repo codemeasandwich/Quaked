@@ -1158,7 +1158,7 @@ export class QuakeMenu {
           const shape=this._shape(String(command.text),command.size,command.stretch||1,true);
           const ox=command.x-shape.minX,oy=command.y-shape.minY;
           for(const part of shape.parts){const r=part.rect;glyphs.push(r[0]+ox,r[1]+oy,r[2],r[3],...part.uv,
-            part.range,command.kind||0,0,0);}
+            part.range,command.kind||0,0,command.disabled?1:0);}
         }else if(command.type==='selector'){
           const q=this._shape('Q',command.size,1.05,false),h=q.height,w=q.width;
           selector={center:[command.x,command.y],height:h,width:w,

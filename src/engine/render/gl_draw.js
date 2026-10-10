@@ -719,6 +719,28 @@ export function Draw_BeginFrame() {
 
 }
 
+/**
+ * Draws whatever `draw` draws on the 2D overlay at a lowered opacity, then restores it: the native menu's faded,
+ * disabled items (card [MP1]).
+ *
+ * @param {number} alpha opacity 0..1
+ * @param {function(): void} draw the drawing to fade
+ */
+export function Draw_WithAlpha( alpha, draw ) {
+
+	if ( ! overlayCtx ) {
+
+		draw();
+		return;
+
+	}
+
+	const previous = overlayCtx.globalAlpha;
+	overlayCtx.globalAlpha = previous * alpha;
+	try { draw(); } finally { overlayCtx.globalAlpha = previous; }
+
+}
+
 /*
 ================
 Draw_Character
