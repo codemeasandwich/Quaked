@@ -239,7 +239,9 @@ reusable trace reset on every call) and `R_TraceSwept` (a small sphere as seven 
   use it; none of them walks the hull itself any more.
 * Tested once (`tests/r_trace_test.js`, on E1M1's real BSP), and through the callers' suites (depth of field, wall burns,
   shotgun shells, the Bestiary's line of sight), which pass unchanged.
-* In the browser the chase camera ends at exactly the same point as before.
+* In the browser the chase camera ends at exactly the same point as before. Its look-at line starts as chase.c's
+  zeroed trace did (`allsolid` false, the helper's last parameter), so a line from inside a wall still strikes its first
+  plane; the other callers keep the server's `allsolid` true, as they did.
 * The graph counts 209 modules; `r_trace.js` joins the large cycle (it imports `world.js`, and Newer modules in the
   cycle import it), so that cycle is 84 modules for now.
 

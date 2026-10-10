@@ -22,14 +22,17 @@ import { trace_t, SV_RecursiveHullCheck } from '../server/world.js';
  * @param {ArrayLike<number>} start the line's start, three numbers
  * @param {ArrayLike<number>} end the line's end, three numbers
  * @param {trace_t} [trace] a trace to fill and return (reused to avoid allocating every frame); a new one if left out
+ * @param {boolean} [allsolid] the trace's starting `allsolid`. True (the server's `SV_Move`) means a line that never
+ *   reaches an open leaf strikes nothing; false (WinQuake's chase.c, which zeroes its trace) means it strikes the first
+ *   solid-to-solid plane
  * @returns {trace_t|null} the trace: `fraction` along the line (1 when nothing is struck), `endpos`, the struck `plane`,
  *   `startsolid`/`allsolid` when the start is inside a wall; null when the model has no hull 0
  */
-export function R_TracePoint( model, start, end, trace = new trace_t() ) {
+export function R_TracePoint( model, start, end, trace = new trace_t(), allsolid = true ) {
 
 	const hull = model?.hulls?.[ 0 ];
 	if ( ! hull ) return null;
-	trace.allsolid = true; trace.startsolid = false; trace.inopen = false; trace.inwater = false;
+	trace.allsolid = allsolid; trace.startsolid = false; trace.inopen = false; trace.inwater = false;
 	trace.fraction = 1; trace.endpos[ 0 ] = end[ 0 ]; trace.endpos[ 1 ] = end[ 1 ]; trace.endpos[ 2 ] = end[ 2 ]; trace.ent = null;
 	SV_RecursiveHullCheck( hull, hull.firstclipnode, 0, 1, start, end, trace );
 	return trace;

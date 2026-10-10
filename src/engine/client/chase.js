@@ -61,8 +61,8 @@ export function Chase_Reset() {
 
 function TraceLine( start, end, impact ) {
 
-	// Use BSP collision if available (ported from chase.c)
-	const trace = _R_TracePoint != null && cl.worldmodel != null ? _R_TracePoint( cl.worldmodel, start, end, _chase_trace ?? undefined ) : null;
+	// Use BSP collision if available (ported from chase.c; its trace starts zeroed, so allsolid false)
+	const trace = _R_TracePoint != null && cl.worldmodel != null ? _R_TracePoint( cl.worldmodel, start, end, _chase_trace ?? undefined, false ) : null;
 	if ( trace !== null ) {
 
 		_chase_trace = trace;

@@ -1,6 +1,7 @@
 // The client's one ray-cast helper (src/engine/render/r_trace.js, card [44g], debt D6), against the real E1M1 BSP: a
 // line down from an open point stops on the floor, facing up; a start inside a wall is reported; a reused trace is reset
-// between calls; the swept probe never reaches further than the centre's line, and with no radius equals it; a model
+// between calls; a line from inside solid strikes its first plane only when it starts with allsolid false (chase.c's
+// zeroed trace), not with the server's allsolid true; the swept probe never reaches further than the centre's line, and with no radius equals it; a model
 // with no hull gives null (point) or an unobstructed trace (swept).
 import { readFileSync } from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
@@ -45,6 +46,11 @@ Deno.test( 'a line down from an open point stops on the floor, the plane facing 
 	check( reused.startsolid, 'a start inside a wall is reported' );
 	const again = R_TracePoint( e1m1, p, [ p[ 0 ], p[ 1 ], p[ 2 ] + 1 ], reused );
 	check( again === reused && ! again.startsolid && again.fraction === 1, 'a reused trace is reset: the short open line reaches its end' );
+	// a line from inside solid (found by the [44g] step 5 review): chase.c's zeroed trace strikes, the server's does not
+	const a = [ - 592, - 128, - 592 ], b = [ - 592, - 38, - 562 ];
+	check( contents( a ) === - 2, '(the line starts in solid)' );
+	const zeroed = R_TracePoint( e1m1, a, b, undefined, false ), server = R_TracePoint( e1m1, a, b );
+	check( zeroed.fraction < .05 && server.fraction === 1 && server.endpos[ 1 ] === b[ 1 ], `allsolid false strikes near the start (${zeroed.fraction}), true reaches the end (${server.fraction})` );
 
 } );
 
