@@ -5,7 +5,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `wt_initialized`; 3 module-level collections (Map/Set).
+ * State: no mutable exports; module-level variables `_M_ConnectionError`, `_M_Menu_Main_f`, `wt_initialized`; 3
+ * module-level collections (Map/Set).
  *
  * Errors: throws at 19 places; catches at 23 places.
  */
@@ -21,8 +22,26 @@ import {
 	hostCacheCount, set_hostCacheCount,
 	hostcache
 } from './net.js';
-import { M_ConnectionError, M_Menu_Main_f } from '../client/menu.js';
 import { set_key_dest, key_menu } from '../common/key_dest.js';
+
+// The menu's error box and main menu (client/menu.js), shown when a connection fails, set by the host with
+// WT_SetExternals (card [44g], debt D1a: networking does not import the client). Until then nothing is shown.
+let _M_ConnectionError = () => {};
+let _M_Menu_Main_f = () => {};
+
+/**
+ * Hands the client network driver the menu functions it shows on a failed or lost connection, as the other modules'
+ * SetExternals do.
+ *
+ * @param {{ M_ConnectionError?: function( string ): void, M_Menu_Main_f?: function(): void }} externals the menu's
+ *   connection-error message and its main menu
+ */
+export function WT_SetExternals( externals ) {
+
+	if ( externals.M_ConnectionError ) _M_ConnectionError = externals.M_ConnectionError;
+	if ( externals.M_Menu_Main_f ) _M_Menu_Main_f = externals.M_Menu_Main_f;
+
+}
 
 // WebTransport connection state
 let wt_initialized = false;
@@ -837,7 +856,7 @@ export async function WT_Connect( host ) {
 
 				// Return to Join Game menu with error message
 				set_key_dest( key_menu );
-				M_ConnectionError( 'Connection timed out - server may be offline' );
+				_M_ConnectionError( 'Connection timed out - server may be offline' );
 
 				return null;
 
@@ -860,7 +879,7 @@ export async function WT_Connect( host ) {
 
 				// Return to Join Game menu with error message
 				set_key_dest( key_menu );
-				M_ConnectionError( errMsg );
+				_M_ConnectionError( errMsg );
 
 				return null;
 
@@ -919,7 +938,7 @@ export async function WT_Connect( host ) {
 		}
 
 		// Return to main menu
-		M_Menu_Main_f();
+		_M_Menu_Main_f();
 		set_key_dest( key_menu );
 
 		return null;
@@ -1047,7 +1066,7 @@ async function _WT_ConnectDirect( url, originalHost, roomId = null ) {
 		}
 
 		// Return to main menu
-		M_Menu_Main_f();
+		_M_Menu_Main_f();
 		set_key_dest( key_menu );
 
 		return null;

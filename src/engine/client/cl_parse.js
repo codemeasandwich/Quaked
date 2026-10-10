@@ -6,9 +6,10 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: mutable exports `cl_playerindex`; module-level variables `_keepalive_lastmsg`.
+ * State: mutable exports `cl_playerindex`; module-level variables `_Host_Error`, `_Host_EndGame`,
+ * `_keepalive_lastmsg`.
  *
- * Errors: calls `Sys_Error` (fatal) at 4 places; calls `Host_Error` at 11 places.
+ * Errors: calls `Sys_Error` (fatal) at 4 places; throws at 2 places; calls `Host_Error` at 11 places.
  */
 import { SV_RespawnInventoryStats } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 import { SV_RendVeilClientRecord } from '../common/hooks.js'; // installed by newer/gameplay/sv_rendveil.js
@@ -85,7 +86,6 @@ import { R_TranslatePlayerSkin } from '../render/gl_rmisc.js';
 export let cl_playerindex = -1;
 import { R_NewMap } from '../render/gl_rmisc.js';
 import { R_ParseParticleEffect, R_AddEfrags } from '../render/render.js';
-import { Host_Error, Host_EndGame } from '../server/host.js';
 import { realtime } from '../common/host_state.js';
 import { set_noclip_anglehack } from '../common/host_state.js';
 import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
@@ -94,6 +94,24 @@ import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from '../so
 import { R_ShellShot } from '../common/hooks.js'; // installed by newer/render/r_shells.js
 import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from '../sound/cd_audio.js';
 import { SCR_CenterPrint } from '../render/gl_screen.js';
+
+// The host's error and end-of-game unwinds (card [44g], debt D1a: the client does not import the host), set by the
+// host with CL_Parse_SetExternals. Until then each still throws, as they do, without the host's cleanup.
+let _Host_Error = error => { throw new Error( 'Host_Error: ' + error ); };
+let _Host_EndGame = message => { throw new Error( 'Host_EndGame: ' + message ); };
+
+/**
+ * Hands the server-message parser the host's two unwinds, as the other modules' SetExternals do.
+ *
+ * @param {{ Host_Error?: function( string ): never, Host_EndGame?: function( string ): never }} externals the host's
+ *   error (drops the game) and end of game (next demo or disconnect); both throw to unwind to Host_Frame
+ */
+export function CL_Parse_SetExternals( externals ) {
+
+	if ( externals.Host_Error ) _Host_Error = externals.Host_Error;
+	if ( externals.Host_EndGame ) _Host_EndGame = externals.Host_EndGame;
+
+}
 
 export const svc_strings = [
 	'svc_bad',
@@ -150,7 +168,7 @@ export function CL_EntityNum( num ) {
 	if ( num >= cl.num_entities ) {
 
 		if ( num >= MAX_EDICTS )
-			Host_Error( 'CL_EntityNum: %i is an invalid number', num );
+			_Host_Error( 'CL_EntityNum: %i is an invalid number', num );
 		while ( cl.num_entities <= num ) {
 
 			cl_entities[ cl.num_entities ].colormap = null; // vid.colormap
@@ -194,7 +212,7 @@ export function CL_ParseStartSoundPacket() {
 	const ch = channel & 7;
 
 	if ( ent > MAX_EDICTS )
-		Host_Error( 'CL_ParseStartSoundPacket: ent = %i', ent );
+		_Host_Error( 'CL_ParseStartSoundPacket: ent = %i', ent );
 
 	for ( let i = 0; i < 3; i ++ )
 		pos[ i ] = MSG_ReadCoord();
@@ -505,7 +523,7 @@ function FlushEntityPacket() {
 		const word = MSG_ReadShort() & 0xFFFF;
 		if ( msg_badread ) {
 
-			Host_EndGame( 'msg_badread in packetentities' );
+			_Host_EndGame( 'msg_badread in packetentities' );
 			return;
 
 		}
@@ -591,7 +609,7 @@ function CL_ParsePacketEntities( delta ) {
 		const word = MSG_ReadShort() & 0xFFFF;
 		if ( msg_badread ) {
 
-			Host_EndGame( 'msg_badread in packetentities' );
+			_Host_EndGame( 'msg_badread in packetentities' );
 			return;
 
 		}
@@ -603,7 +621,7 @@ function CL_ParsePacketEntities( delta ) {
 
 				if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
-					Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
+					_Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 					return;
 
 				}
@@ -635,7 +653,7 @@ function CL_ParsePacketEntities( delta ) {
 			// copy one of the old entities over to the new packet unchanged
 			if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
-				Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
+				_Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 				return;
 
 			}
@@ -667,7 +685,7 @@ function CL_ParsePacketEntities( delta ) {
 
 			if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
-				Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
+				_Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 				return;
 
 			}
@@ -697,7 +715,7 @@ function CL_ParsePacketEntities( delta ) {
 
 			if ( newindex >= MAX_PACKET_ENTITIES_LOCAL ) {
 
-				Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
+				_Host_EndGame( 'CL_ParsePacketEntities: newindex == MAX_PACKET_ENTITIES' );
 				return;
 
 			}
@@ -792,7 +810,7 @@ export function CL_ParseUpdate( bits ) {
 
 		modnum = MSG_ReadByte();
 		if ( modnum >= MAX_MODELS )
-			Host_Error( 'CL_ParseModel: bad modnum' );
+			_Host_Error( 'CL_ParseModel: bad modnum' );
 
 	} else
 		modnum = ent.baseline.modelindex;
@@ -1214,7 +1232,7 @@ export function CL_ParseStatic() {
 
 	const i = cl.num_statics;
 	if ( i >= MAX_STATIC_ENTITIES )
-		Host_Error( 'Too many static entities' );
+		_Host_Error( 'Too many static entities' );
 	const ent = cl_static_entities[ i ];
 	cl.num_statics ++;
 	CL_ParseBaseline( ent );
@@ -1279,7 +1297,7 @@ export function CL_ParseServerMessage() {
 
 		if ( msg_badread ) {
 
-			Host_Error( 'CL_ParseServerMessage: Bad server message' );
+			_Host_Error( 'CL_ParseServerMessage: Bad server message' );
 
 		}
 
@@ -1310,7 +1328,7 @@ export function CL_ParseServerMessage() {
 		switch ( cmd ) {
 
 			default:
-				Host_Error( 'CL_ParseServerMessage: Illegible server message\n' );
+				_Host_Error( 'CL_ParseServerMessage: Illegible server message\n' );
 				break;
 
 			case svc_nop:
@@ -1330,11 +1348,11 @@ export function CL_ParseServerMessage() {
 			case svc_version:
 				i = MSG_ReadLong();
 				if ( i !== PROTOCOL_VERSION )
-					Host_Error( 'CL_ParseServerMessage: Server is protocol %i instead of %i\n', i, PROTOCOL_VERSION );
+					_Host_Error( 'CL_ParseServerMessage: Server is protocol %i instead of %i\n', i, PROTOCOL_VERSION );
 				break;
 
 			case svc_disconnect:
-				Host_EndGame( 'Server disconnected\n' );
+				_Host_EndGame( 'Server disconnected\n' );
 				break;
 
 			case svc_print:
@@ -1388,7 +1406,7 @@ export function CL_ParseServerMessage() {
 				// Sbar_Changed();
 				i = MSG_ReadByte();
 				if ( i >= cl.maxclients )
-					Host_Error( 'CL_ParseServerMessage: svc_updatename > MAX_SCOREBOARD' );
+					_Host_Error( 'CL_ParseServerMessage: svc_updatename > MAX_SCOREBOARD' );
 				cl.scores[ i ].name = MSG_ReadString();
 				break;
 
@@ -1396,7 +1414,7 @@ export function CL_ParseServerMessage() {
 				// Sbar_Changed();
 				i = MSG_ReadByte();
 				if ( i >= cl.maxclients )
-					Host_Error( 'CL_ParseServerMessage: svc_updatefrags > MAX_SCOREBOARD' );
+					_Host_Error( 'CL_ParseServerMessage: svc_updatefrags > MAX_SCOREBOARD' );
 				cl.scores[ i ].frags = MSG_ReadShort();
 				break;
 
@@ -1404,7 +1422,7 @@ export function CL_ParseServerMessage() {
 				// Sbar_Changed();
 				i = MSG_ReadByte();
 				if ( i >= cl.maxclients )
-					Host_Error( 'CL_ParseServerMessage: svc_updatecolors > MAX_SCOREBOARD' );
+					_Host_Error( 'CL_ParseServerMessage: svc_updatecolors > MAX_SCOREBOARD' );
 				cl.scores[ i ].colors = MSG_ReadByte();
 				CL_NewTranslation( i );
 				break;
@@ -1439,7 +1457,7 @@ export function CL_ParseServerMessage() {
 			case svc_signonnum:
 				i = MSG_ReadByte();
 				if ( i <= cls.signon )
-					Host_Error( 'Received signon %i when at %i', i, cls.signon );
+					_Host_Error( 'Received signon %i when at %i', i, cls.signon );
 				cls.signon = i;
 				CL_SignonReply();
 				break;

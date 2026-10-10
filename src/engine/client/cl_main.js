@@ -6,9 +6,10 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_rippleFrame`.
+ * State: no mutable exports; module-level variables `_rippleFrame`, `_Host_Error`, `_Host_ShutdownServer`,
+ * `_Host_ClearMemory`, `_IN_Move`.
  *
- * Errors: calls `Host_Error` at 2 places; catches at 2 places.
+ * Errors: throws at 1 place; calls `Host_Error` at 2 places; catches at 2 places.
  */
 import {R_DemonBakeRelease} from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
 import {R_PowerVisionReset} from '../common/hooks.js'; // installed by newer/render/r_powervision.js
@@ -48,7 +49,6 @@ import { R_DemoSplitEnd } from '../common/hooks.js'; // installed by newer/rende
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../common/hooks.js'; // installed by newer/render/r_muzzle.js
 import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
-import { Host_Error, Host_ShutdownServer, Host_ClearMemory } from '../server/host.js';
 import { host_frametime, realtime } from '../common/host_state.js';
 import { sv } from '../server/server.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
@@ -59,6 +59,9 @@ import { CL_InitPrediction, CL_ResetPrediction, CL_PredictMove,
 	CL_GetPredictedPlayer, CL_SetUpPlayerPrediction,
 	CL_GetServerSequence, CL_GetValidSequence, CL_GetEntityFrame,
 	cl_simorg, cl_simvel, cl_simangles, cl_nopred, set_cl_simonground } from './cl_pred.js';
+// the dynamic-light allocator lives with the lights in client.js, so the renderer need not import this module ([44g], D1a)
+import { CL_AllocDlight } from './client.js';
+export { CL_AllocDlight } from './client.js';
 
 // Re-export prediction state for view.js to use
 export { cl_simorg, cl_simvel, cl_simangles, cl_nopred };
@@ -94,7 +97,7 @@ export function CL_ClearState() {
 	R_FaceGameReset();
 
 	if ( sv.active === false )
-		Host_ClearMemory();
+		_Host_ClearMemory();
 
 	// Reset client-side prediction state
 	CL_ResetPrediction();
@@ -244,7 +247,7 @@ export function CL_Disconnect() {
 
 		cls.state = ca_disconnected;
 		if ( sv.active )
-			Host_ShutdownServer( false );
+			_Host_ShutdownServer( false );
 
 	}
 
@@ -260,7 +263,7 @@ export function CL_Disconnect_f() {
 	R_FlashlightRunEnd(); // explicit exit, unlike load/connect during a run
 	CL_Disconnect();
 	if ( sv.active )
-		Host_ShutdownServer( false );
+		_Host_ShutdownServer( false );
 
 	// Clear room from browser URL on explicit disconnect
 	if ( typeof window !== 'undefined' && window.location.search.includes( 'room=' ) ) {
@@ -488,12 +491,6 @@ function CL_PrintEntities_f() {
 }
 
 /*
-===============
-CL_AllocDlight
-
-===============
-*/
-/*
 =================
 CL_ViewMuzzleFlash
 
@@ -528,58 +525,6 @@ export function CL_ViewMuzzleFlash() {
 
 }
 
-export function CL_AllocDlight( key ) {
-
-	// first look for an exact key match
-	if ( key ) {
-
-		for ( let i = 0; i < MAX_DLIGHTS; i ++ ) {
-
-			if ( cl_dlights[ i ].key === key ) {
-
-				const dl = cl_dlights[ i ];
-				dl.origin.fill( 0 );
-				dl.radius = 0;
-				dl.die = 0;
-				dl.decay = 0;
-				dl.minlight = 0;
-				dl.key = key;
-				return dl;
-
-			}
-
-		}
-
-	}
-
-	// then look for anything else
-	for ( let i = 0; i < MAX_DLIGHTS; i ++ ) {
-
-		if ( cl_dlights[ i ].die < cl.time ) {
-
-			const dl = cl_dlights[ i ];
-			dl.origin.fill( 0 );
-			dl.radius = 0;
-			dl.die = 0;
-			dl.decay = 0;
-			dl.minlight = 0;
-			dl.key = key;
-			return dl;
-
-		}
-
-	}
-
-	const dl = cl_dlights[ 0 ];
-	dl.origin.fill( 0 );
-	dl.radius = 0;
-	dl.die = 0;
-	dl.decay = 0;
-	dl.minlight = 0;
-	dl.key = key;
-	return dl;
-
-}
 
 /*
 ===============
@@ -1298,7 +1243,7 @@ export function CL_ReadFromServer() {
 		ret = CL_GetMessage();
 
 		if ( ret === - 1 )
-			Host_Error( 'CL_ReadFromServer: lost server connection' );
+			_Host_Error( 'CL_ReadFromServer: lost server connection' );
 
 		if ( ! ret )
 			break;
@@ -1352,7 +1297,7 @@ export function CL_SendCmd() {
 		CL_BaseMove( cmd );
 
 		// allow mice or other external controllers to add to the move
-		IN_Move( cmd );
+		_IN_Move( cmd );
 
 		// send the unreliable message
 		CL_SendMove( cmd );
@@ -1378,7 +1323,7 @@ export function CL_SendCmd() {
 	}
 
 	if ( NET_SendMessage( cls.netcon, cls.message ) === - 1 )
-		Host_Error( 'CL_WriteToServer: lost server connection' );
+		_Host_Error( 'CL_WriteToServer: lost server connection' );
 
 	SZ_Clear( cls.message );
 
@@ -1449,4 +1394,27 @@ import { cl_upspeed, cl_forwardspeed, cl_backspeed, cl_sidespeed,
 	cl_anglespeedkey,
 	CL_InitInput as CL_InitInput_impl,
 	CL_BaseMove, CL_SendMove } from './cl_input.js';
-import { IN_Move } from '../../platform/in_web.js';
+
+// What the client calls above it (card [44g], debt D1a: the client imports neither the host nor the platform), set
+// by the host with CL_SetExternals. Until then an error still unwinds, as Host_Error does, without the host's cleanup;
+// the rest do nothing.
+let _Host_Error = error => { throw new Error( 'Host_Error: ' + error ); };
+let _Host_ShutdownServer = () => {};
+let _Host_ClearMemory = () => {};
+let _IN_Move = () => {};
+
+/**
+ * Hands the client the host and platform functions it calls, as the other modules' SetExternals do.
+ *
+ * @param {{ Host_Error?: function( string ): never, Host_ShutdownServer?: function( boolean ): void,
+ *   Host_ClearMemory?: function(): void, IN_Move?: function( object ): void }} externals the host's error, server
+ *   shutdown and memory clear; the platform's mouse, touch and gamepad movement added to a usercmd
+ */
+export function CL_SetExternals( externals ) {
+
+	if ( externals.Host_Error ) _Host_Error = externals.Host_Error;
+	if ( externals.Host_ShutdownServer ) _Host_ShutdownServer = externals.Host_ShutdownServer;
+	if ( externals.Host_ClearMemory ) _Host_ClearMemory = externals.Host_ClearMemory;
+	if ( externals.IN_Move ) _IN_Move = externals.IN_Move;
+
+}

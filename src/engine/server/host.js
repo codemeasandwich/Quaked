@@ -29,13 +29,14 @@ import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by ne
 import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
 import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks } from '../common/cmd.js';
 import { Memory_Init } from '../common/zone.js';
-import { V_Init } from '../client/view.js';
+import { V_Init, V_SetContentsColor, V_CalcBlend } from '../client/view.js';
 import { Chase_Init } from '../client/chase.js';
 import { W_LoadWadFile } from '../common/wad.js';
 import { COM_LoadFile } from '../common/pak.js';
 import { Key_Init, Key_WriteBindings, key_lines, edit_line, key_linepos, chat_buffer } from '../client/keys.js';
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from '../common/console.js';
-import { M_Init, M_SetExternals } from '../client/menu.js';
+import { M_Init, M_SetExternals, M_Draw, M_ConnectionError } from '../client/menu.js';
+import { Touch_BottomInset, Touch_ExitFullscreen } from '../../platform/touch.js';
 import { MainMenu_Destroy } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { PR_Init } from '../progs/pr_edict.js';
 import { PR_InitBuiltins } from './pr_cmds.js';
@@ -49,15 +50,18 @@ import { SV_Physics, SV_SetFrametime, sv_gravity } from './sv_phys.js';
 import { sv, svs, client_t,
 	host_client, set_host_client } from './server.js';
 import { R_Init, D_FlushCaches } from '../render/gl_rmisc.js';
+import { R_SetExternals } from '../render/gl_rmain.js';
 import { VID_Init, VID_Shutdown } from '../render/vid.js';
 import { Draw_GetOverlayCanvas, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from '../render/gl_draw.js';
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
 import { S_UpdateAmbientMusic } from '../common/hooks.js'; // installed by newer/sound/s_ambientgame.js
-import { Sbar_Init, Sbar_SetExternals } from '../client/sbar.js';
-import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, CL_NextDemo, cl_name } from '../client/cl_main.js';
-import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock } from '../../platform/in_web.js';
+import { Sbar_Init, Sbar_SetExternals, Sbar_Changed } from '../client/sbar.js';
+import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, CL_NextDemo, cl_name, CL_SetExternals } from '../client/cl_main.js';
+import { CL_Parse_SetExternals } from '../client/cl_parse.js';
+import { WT_SetExternals } from '../net/net_webtransport.js';
+import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock, IN_Move } from '../../platform/in_web.js';
 import { cls, cl, SIGNONS, ca_connected, ca_dedicated } from '../client/client.js';
 import { key_dest, key_game, Key_SetExternals, set_key_dest } from '../client/keys.js';
 import { r_origin, vpn, vright, vup } from '../render/render.js';
@@ -400,13 +404,7 @@ export async function Host_Init( parms ) {
 		M_Menu_Main_f: M_Menu_Main_f,
 		S_LocalSound: S_LocalSound,
 		getRealtime: () => realtime,
-		developer: developer,
-		Draw_GetVirtualWidth: Draw_GetVirtualWidth,
-		Draw_GetVirtualHeight: Draw_GetVirtualHeight,
-		key_lines: key_lines,
-		getEditLine: () => edit_line,
-		getKeyLinepos: () => key_linepos,
-		getChatBuffer: () => chat_buffer
+		developer: developer
 	} );
 
 	SCR_SetExternals( {
@@ -943,3 +941,17 @@ export function SV_BroadcastPrintf( fmt, ...args ) {
 	}
 
 }
+
+/*
+The calls card [44g] (baseline debt D1a) turned from imports into externals, so that no module below the host imports
+it: wired as this module loads, so that wherever the host is loaded they are in place, as the imports they replace
+were. Host_Init wires the older externals, which need the video and the client's state.
+*/
+R_SetExternals( { V_SetContentsColor, V_CalcBlend } );
+CL_SetExternals( { Host_Error, Host_ShutdownServer, Host_ClearMemory, IN_Move } );
+CL_Parse_SetExternals( { Host_Error, Host_EndGame } );
+WT_SetExternals( { M_ConnectionError, M_Menu_Main_f } );
+SCR_SetExternals( { M_Draw, Touch_BottomInset } );
+Draw_SetExternals( { Sbar_Changed } );
+M_SetExternals( { Touch_ExitFullscreen } );
+Con_SetExternals( { Draw_GetVirtualWidth, Draw_GetVirtualHeight, key_lines, getEditLine: () => edit_line, getKeyLinepos: () => key_linepos, getChatBuffer: () => chat_buffer } );

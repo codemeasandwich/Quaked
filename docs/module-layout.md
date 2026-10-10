@@ -273,9 +273,12 @@ No module in `src/engine` or `src/platform` imports `src/newer` any more. Where 
 (179 import statements: functions, cvars, classes and tables), they import the same names from
 `src/engine/common/hooks.js`, and `src/newer/install.js` fills them once at startup with Newer's own exports.
 
-* Why a new module, when the plan says to reuse what exists: nothing in the engine already carries calls the other way.
-  The existing `R_DecalsSetup` / `R_WallBurnSetup` hand-overs run from the engine into Newer (the engine imports the
-  Newer module and gives it engine functions), the direction this debt removes. The hooks are `export let` live
+* Why a new module, when the plan says to reuse what exists. The baseline's plan for this debt names it. The
+  `R_DecalsSetup` / `R_WallBurnSetup` hand-overs run from the engine into Newer (the engine imports the Newer module
+  and gives it engine functions), the direction this debt removes. Correction (step 9): the engine does have a way
+  for a module to call one above it, each module's `X_SetExternals`, which the host wires; step 9 uses it. For
+  Newer the hooks module was kept: 407 names in 30 modules would have meant rewriting every call site to a nullable
+  variable, where live bindings keep them unchanged and `Hooks_Install` refuses an incomplete install. The hooks are `export let` live
   bindings, so no call site changed: only each import's source (a trailing comment names the Newer module that
   installs it). Calls cost nothing more.
 * Two Newer values the engine used as its modules loaded, before any install can run, are moved instead: `ANIM_STEP`
@@ -290,7 +293,8 @@ No module in `src/engine` or `src/platform` imports `src/newer` any more. Where 
   where it was 84.
 * Checked: `tests/hooks_test.js` (nothing imports Newer; every hook installed with Newer's own export; a partial or
   unknown table refused); the full suite; the page starts Newer Game and Classic; all 70 trial pages load with the same errors as on `Dev`
-  (which also found a trial step 2 had missed, fixed on its own);
+  (which also found a trial step 2 had missed, fixed on its own; that commit, 86a269d, imports `install.js`, which only
+  the next commit adds, so the trial loads from 813a6eb on);
   a browser joined the room server (sign-on 4); two bake tools re-run give byte-identical output.
 * Not changed: the room server still installs all of Newer, as it loaded all of it before. Installing only what it
   needs (no renderer) is now one import to change, but needs hooks with Classic defaults first.
@@ -311,6 +315,34 @@ No module in `src/engine` or `src/platform` imports `src/newer` any more. Where 
   keeps them. `unreached` is empty.
 * Checked: the lobby started from its new task answers a browser's room list over WebTransport; the room server and
   `server/test_imports.js` load under Deno; the suites that name these areas pass.
+
+## [44g], step 9: no engine cycle crosses folders (debt D1a)
+
+The engine's own cycle (44 modules across 8 folders) is gone: `cycles.crossFolder` is empty. What remains are cycles
+inside one folder (8, 5, 4, 4, 3 and 2 modules), which the plan allows. Each upward reference was handled as what it
+is:
+
+* Shared state moved down into leaves under `engine/common`: the host's clock and noclip flag (`host_state.js`:
+  `realtime`, `host_frametime`, `host_framecount`, `noclip_anglehack`) and where keys go (`key_dest.js`). Only their
+  owners write them, through setters; `host.js`, `host_cmd.js` and `keys.js` re-export them, so their other importers
+  are unchanged. `sv` is taken from `server.js`, its home, not through `host.js`.
+* State-only functions moved to their state: `CL_AllocDlight` and `CL_PlayerLightning` read only the client's lights
+  and beams, and live in `client.js` (`cl_main.js`, `cl_tent.js` re-export them). The server's rule cvars (`skill`,
+  `deathmatch`, `coop`, `teamplay`, `fraglimit`, `timelimit`) are declared in `server.js`, which no longer re-exports
+  them from the host.
+* A module in the wrong folder moved: `pr_cmds.js`, the QuakeC built-ins, which call the server throughout (WinQuake's
+  `pr_cmds.c` is the server's), is in `engine/server` (`tools/move_modules.mjs 44g` rewrote its 51 paths). `PR_Init`'s
+  callers, the host and the room server, install the built-ins, so the VM does not import the server.
+* The calls that really go up use the engine's own mechanism, each module's `X_SetExternals`: the console's typed line
+  and drawing size (`Con_SetExternals`), the screen's menu and touch inset (`SCR_SetExternals`), the status bar flag
+  (`Draw_SetExternals`), the menu's fullscreen exit (`M_SetExternals`), and four new ones of the same form:
+  `R_SetExternals` (the view blend), `CL_SetExternals` (the host's error, shutdown and memory clear; the platform's
+  movement), `CL_Parse_SetExternals` (the host's error and end of game) and `WT_SetExternals` (the menu's connection
+  error and main menu). `host.js` wires these as it loads, so wherever the host is loaded they behave as the imports
+  they replace; unwired, an error still throws as `Host_Error` does and the rest do nothing.
+* Checked: the classifier (`D1a cross-folder engine cycles:` empty); the full suite; the page, the trials and the room
+  server as before (below). A first version wired the new externals in `Host_Init`, which no test calls; a save/load
+  test failed (`Host_ShutdownServer` did nothing), which wiring at load fixed.
 
 ## Checks for each move
 
