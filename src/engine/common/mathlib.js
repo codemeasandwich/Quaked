@@ -12,6 +12,7 @@
 // Ported from: WinQuake/mathlib.c -- math primitives
 
 import { PITCH, YAW, ROLL } from './quakedef.js';
+import { Sys_Error } from './sys.js';
 
 export const M_PI = 3.14159265358979323846;
 
@@ -200,21 +201,6 @@ export function CrossProduct( v1, v2, cross ) {
 }
 
 /**
- * Integer base-2 logarithm (WinQuake mathlib.c): the index of the highest set bit.
- *
- * @param {number} val positive integer (treated as 32-bit); a negative value never shifts to 0 and loops forever
- * @returns {number} floor(log2(val)) for val >= 1, 0 for 0 or 1
- */
-export function Q_log2( val ) {
-
-	let answer = 0;
-	while ( ( val >>= 1 ) )
-		answer ++;
-	return answer;
-
-}
-
-/**
  * Wraps an angle into 0..360 degrees, quantised to 360/65536-degree steps as in WinQuake mathlib.c. Used to keep
  * yaw in range after turning (`CL_AdjustAngles`), by the view code and by the QuakeC angle builtins (pr_cmds.js).
  *
@@ -242,7 +228,7 @@ BoxOnPlaneSide
  * @param {mplane_t} p plane with `normal`, `dist`, `type` (0..2 axial, otherwise general) and `signbits` (0..7)
  * @returns {number} Returns 1, 2, or 1 + 2: 1 when the box is (at least partly) in front, 2 when (partly) behind, 3
  *   when it crosses the plane
- * @throws {ReferenceError} for `signbits` outside 0..7: the code calls `Sys_Error`, which this file does not import
+ * @throws {Error} for `signbits` outside 0..7, through `Sys_Error` ('BoxOnPlaneSide: Bad signbits')
  */
 export function BoxOnPlaneSide( emins, emaxs, p ) {
 
