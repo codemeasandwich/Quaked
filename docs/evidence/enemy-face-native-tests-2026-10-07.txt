@@ -1,0 +1,293 @@
+Independent enemy face native public-interface receipt
+UTC execution: 2026-10-07T10:01:28.576272+00:00
+Workspace: /Users/bri/SOURCE/Quaked
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/enemy_face_native_test.js
+Scope: actual shipped QuakeC spawn and animation/setmodel, native slot recycling/save/restore, portal descriptor parser, corpse metadata parser. No GPU/browser or actual seamless travel exercised in this receipt.
+Deterministic random fixture: exact seeds 0..11 cover all twelve choices for each target class; maximum unsigned seed, recycled slot values and malformed records also checked.
+Fixture repair: initial 6/7 run had missing sv_phys state wiring in the independent test setup during SV_MoveToGoal. Added normal SV_SetState and PROG_TO_EDICT/EDICT_TO_PROG callbacks; implementation untouched.
+SHA256 a889962324885c0f9622606d13ce57767dca2a74ab92edcdebfac176b42a86cd tests/enemy_face_native_test.js
+SHA256 ccdc1208d5324d174b4d7de5fe62ebac937bb81cedbf57881b6fe5503b1f90f6 src/enemy_face.js
+SHA256 b3cb4e8bf1b476f2f79edcccb6f0153ea796e49e8992a95611e2b764058a4a94 src/pr_cmds.js
+SHA256 d8ec573ef9d0358b8a2598c7505da2ab44b936c7c54a246dfeb0f643cb8f56a2 src/pr_edict.js
+SHA256 fa2239ac0659c9750c51d77736492fc0d3a2178f27bfc9c23d4cd728da95337d src/progs.js
+SHA256 e2cb21dea54b0c8e78029ee1c9f01b06de500a3942e964141a415e2d4f82f316 src/r_levelents.js
+SHA256 a1c2fe49433c2a251d366067f9726ce7461839b52591b6a779f048acee595b75 src/axe_record.js
+SHA256 8f2925437ee8dbe752f8787e0e75f47727793fea87c77420dc7698a97a2cdbbc tools/run_tests.mjs
+SHA256 35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af pak0.pak
+SHA256 d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29 /private/tmp/quaked-face-runtime/three.module.js
+SHA256 6ed72f08289a29f547bb0ab96e396a1fa2e9921ecff743fd99e0fd927bc00d7c /private/tmp/quaked-face-runtime/three.core.js
+Exit code: 0
+--- stdout ---
+Added packfile enemy-face-native-pak0 (339 files)\n
+Programs occupy 403K.
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+ENEMY_FACE_NATIVE_INDIVIDUALS [{"classname":"monster_army","index":2,"seed":0},{"classname":"monster_army","index":3,"seed":1},{"classname":"monster_army","index":4,"seed":2},{"classname":"monster_army","index":5,"seed":3},{"classname":"monster_army","index":6,"seed":4},{"classname":"monster_army","index":7,"seed":5},{"classname":"monster_army","index":8,"seed":6},{"classname":"monster_army","index":9,"seed":7},{"classname":"monster_army","index":10,"seed":8},{"classname":"monster_army","index":11,"seed":9},{"classname":"monster_army","index":12,"seed":10},{"classname":"monster_army","index":13,"seed":11},{"classname":"monster_ogre","index":14,"seed":0},{"classname":"monster_ogre","index":15,"seed":1},{"classname":"monster_ogre","index":16,"seed":2},{"classname":"monster_ogre","index":17,"seed":3},{"classname":"monster_ogre","index":18,"seed":4},{"classname":"monster_ogre","index":19,"seed":5},{"classname":"monster_ogre","index":20,"seed":6},{"classname":"monster_ogre","index":21,"seed":7},{"classname":"monster_ogre","index":22,"seed":8},{"classname":"monster_ogre","index":23,"seed":9},{"classname":"monster_ogre","index":24,"seed":10},{"classname":"monster_ogre","index":25,"seed":11},{"classname":"monster_knight","index":26,"seed":0},{"classname":"monster_knight","index":27,"seed":1},{"classname":"monster_knight","index":28,"seed":2},{"classname":"monster_knight","index":29,"seed":3},{"classname":"monster_knight","index":30,"seed":4},{"classname":"monster_knight","index":31,"seed":5},{"classname":"monster_knight","index":32,"seed":6},{"classname":"monster_knight","index":33,"seed":7},{"classname":"monster_knight","index":34,"seed":8},{"classname":"monster_knight","index":35,"seed":9},{"classname":"monster_knight","index":36,"seed":10},{"classname":"monster_knight","index":37,"seed":11}]
+PASS native spawn independently chooses all twelve faces for every target class in one level
+Programs occupy 403K.
+
+PASS native model/animation refresh, level name and clocks cannot reroll an existing individual
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RECYCLED {"slot":2,"priorSeed":29,"nextSeed":42}
+PASS ED_Free and ED_Alloc recycle an actual native slot with a fresh individual face
+Programs occupy 403K.
+
+PASS native ED_Write and ED_ParseEdict preserve zero and maximum seeds and reject malformed save metadata
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_SNAPSHOT [{"model":"progs/soldier.mdl","faceSeed":0},{"model":"progs/ogre.mdl","faceSeed":19},{"model":"progs/knight.mdl","faceSeed":38}]
+PASS actual serialized native entities retain individual seed in public portal snapshot descriptors
+PASS public axe corpse parser preserves individual face metadata while rejecting invalid bounds and retaining legacy records
+Programs occupy 403K.
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+Programs occupy 403K.
+
+PASS unsupported native model spawns do not receive a face and Classic keeps original native gameplay fields
+RESULT 7/7 passed (tests/enemy_face_native_test.js)
+TOTAL 7/7 passed
+
+--- stderr ---
+
+
+=== Updated independent native follow-up receipt (prior run retained above) ===
+UTC execution: 2026-10-07T10:05:39.277872+00:00
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/enemy_face_native_test.js
+Fixture now stubs crypto.getRandomValues separately from QuakeC Math.random. Fresh and preseeded native monster spawns each consume exactly one native gameplay random call; twenty additional cosmetic identities consume zero gameplay random calls.
+Added actual public R_SetupLevelViews/R_AddLevelRunner native alias attachment, relocation, animation and view rebuild with zero/max seeds. It tests delayed runner public metadata/ghost behavior directly; native SV_TakeFollowers/SV_QueueFollowers through actual seamless crossing remains outside this receipt.
+Added native legacy/malformed seed ED_ParseEdict restoration and twelve actual CL_ParseUpdate packets for each of twelve classname/metadata cases (144 updates), proving missing/invalid identity is assigned once and valid zero/max remain stable. No GPU presentation exercised.
+SHA256 61d24a58f363b1f09e7fd239c6eb2ae9de66f5660494d1c6945f35c5a26f0c2c tests/enemy_face_native_test.js
+SHA256 5252d9e289746bf4cb0f81c2601a302429665ace22bbc58f7d433ff497990f57 src/enemy_face.js
+SHA256 b3cb4e8bf1b476f2f79edcccb6f0153ea796e49e8992a95611e2b764058a4a94 src/pr_cmds.js
+SHA256 a484e110688453e419b28cf775589df3df7e1ddc8492e592c3670d9986118a87 src/pr_edict.js
+SHA256 fa2239ac0659c9750c51d77736492fc0d3a2178f27bfc9c23d4cd728da95337d src/progs.js
+SHA256 4b92a0d021ec7b43457260723481a815590f51f809679c398ce541af3ce46de2 src/cl_parse.js
+SHA256 e2cb21dea54b0c8e78029ee1c9f01b06de500a3942e964141a415e2d4f82f316 src/r_levelents.js
+SHA256 a1c2fe49433c2a251d366067f9726ce7461839b52591b6a779f048acee595b75 src/axe_record.js
+SHA256 946dcbf825d9222201cf8db50cfb3bf4bf0604879877bcfe9eee61061feeeb8b src/r_levelview.js
+SHA256 27c1b2077196adefd0e4359f8e3814060781b18d00eea40e69637ffca8b04571 src/sv_seamless.js
+SHA256 8f2925437ee8dbe752f8787e0e75f47727793fea87c77420dc7698a97a2cdbbc tools/run_tests.mjs
+SHA256 35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af pak0.pak
+SHA256 d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29 /private/tmp/quaked-face-runtime/three.module.js
+SHA256 6ed72f08289a29f547bb0ab96e396a1fa2e9921ecff743fd99e0fd927bc00d7c /private/tmp/quaked-face-runtime/three.core.js
+Exit code: 0
+--- stdout ---
+Added packfile enemy-face-native-pak0 (339 files)\n
+Programs occupy 403K.
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+ENEMY_FACE_NATIVE_INDIVIDUALS [{"classname":"monster_army","index":2,"seed":0},{"classname":"monster_army","index":3,"seed":1},{"classname":"monster_army","index":4,"seed":2},{"classname":"monster_army","index":5,"seed":3},{"classname":"monster_army","index":6,"seed":4},{"classname":"monster_army","index":7,"seed":5},{"classname":"monster_army","index":8,"seed":6},{"classname":"monster_army","index":9,"seed":7},{"classname":"monster_army","index":10,"seed":8},{"classname":"monster_army","index":11,"seed":9},{"classname":"monster_army","index":12,"seed":10},{"classname":"monster_army","index":13,"seed":11},{"classname":"monster_ogre","index":14,"seed":0},{"classname":"monster_ogre","index":15,"seed":1},{"classname":"monster_ogre","index":16,"seed":2},{"classname":"monster_ogre","index":17,"seed":3},{"classname":"monster_ogre","index":18,"seed":4},{"classname":"monster_ogre","index":19,"seed":5},{"classname":"monster_ogre","index":20,"seed":6},{"classname":"monster_ogre","index":21,"seed":7},{"classname":"monster_ogre","index":22,"seed":8},{"classname":"monster_ogre","index":23,"seed":9},{"classname":"monster_ogre","index":24,"seed":10},{"classname":"monster_ogre","index":25,"seed":11},{"classname":"monster_knight","index":26,"seed":0},{"classname":"monster_knight","index":27,"seed":1},{"classname":"monster_knight","index":28,"seed":2},{"classname":"monster_knight","index":29,"seed":3},{"classname":"monster_knight","index":30,"seed":4},{"classname":"monster_knight","index":31,"seed":5},{"classname":"monster_knight","index":32,"seed":6},{"classname":"monster_knight","index":33,"seed":7},{"classname":"monster_knight","index":34,"seed":8},{"classname":"monster_knight","index":35,"seed":9},{"classname":"monster_knight","index":36,"seed":10},{"classname":"monster_knight","index":37,"seed":11}]
+PASS native spawn independently chooses all twelve faces for every target class in one level
+Programs occupy 403K.
+
+PASS native model/animation refresh, level name and clocks cannot reroll an existing individual
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RECYCLED {"slot":2,"priorSeed":29,"nextSeed":42}
+PASS ED_Free and ED_Alloc recycle an actual native slot with a fresh individual face
+Programs occupy 403K.
+
+PASS native ED_Write and ED_ParseEdict preserve zero and maximum seeds and reject malformed save metadata
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_SNAPSHOT [{"model":"progs/soldier.mdl","faceSeed":0},{"model":"progs/ogre.mdl","faceSeed":19},{"model":"progs/knight.mdl","faceSeed":38}]
+PASS actual serialized native entities retain individual seed in public portal snapshot descriptors
+PASS public axe corpse parser preserves individual face metadata while rejecting invalid bounds and retaining legacy records
+Programs occupy 403K.
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+Programs occupy 403K.
+
+PASS unsupported native model spawns do not receive a face and Classic keeps original native gameplay fields
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_army","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_ogre","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_knight","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+PASS native per-individual face entropy never consumes the stock QuakeC Math.random stream
+Programs occupy 403K.
+
+ENEMY_FACE_PUBLIC_FOLLOWER_GHOSTS [{"model":"progs/soldier.mdl","faceSeed":0,"ghostFaceSeed":0},{"model":"progs/ogre.mdl","faceSeed":17,"ghostFaceSeed":17},{"model":"progs/knight.mdl","faceSeed":4294967295,"ghostFaceSeed":4294967295}]
+PASS public delayed follower runner retains zero and unsigned identity through real native ghost attachment, relocation and rebuild
+Programs occupy 403K.
+
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"4294967295","seed":4294967295,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"4294967295","seed":4294967295,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"4294967295","seed":4294967295,"updates":12}
+PASS legacy and malformed native saves get one persistent server identity through repeated real client entity updates
+RESULT 10/10 passed (tests/enemy_face_native_test.js)
+TOTAL 10/10 passed
+
+--- stderr ---
+
+
+=== QW runtime-path independent follow-up receipt (prior runs retained above) ===
+UTC execution: 2026-10-07T10:16:37.022612+00:00
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/enemy_face_native_test.js
+Parent browser runtime found native/client seed disagreement on the normal QW path; preceding NQ client-update tests did not qualify QW transfer. This run independently covers the corrected public CL_RelinkEntities QW renderer path.
+Fixture: public CL_GetEntityFrame storage with actual entity_state_t records populated from native spawned edicts, public CL_SetServerSequence/CL_SetValidSequence and actual CL_RelinkEntities. No private linker invoked and no seed copied into client fixture. This is parser/renderer handoff coverage; no socket/QW byte-stream parser or GPU exercised.
+Proves seed57 reaches public visible list on repeated QW updates, empty PVS frame drops visibility, gap from sequence6 to80 preserves existing identity, actual ED_Free/Alloc same-model same-slot replacement copies zero seed, and explicit modelindex0 visibility transition preserves replacement seed.
+All prior native spawn/save/metadata, crypto gameplay-stream separation, public runner and 144 NQ client update checks also rerun.
+SHA256 156fb8478e78553e252f00624c4edc47b2e22506496cf54454b7e0665ec8e305 tests/enemy_face_native_test.js
+SHA256 509b2740cbf1fcf089372c8948eb3ab9941700a5515c36b23dc848c04e9f1b74 src/enemy_face.js
+SHA256 b3cb4e8bf1b476f2f79edcccb6f0153ea796e49e8992a95611e2b764058a4a94 src/pr_cmds.js
+SHA256 a484e110688453e419b28cf775589df3df7e1ddc8492e592c3670d9986118a87 src/pr_edict.js
+SHA256 fa2239ac0659c9750c51d77736492fc0d3a2178f27bfc9c23d4cd728da95337d src/progs.js
+SHA256 4b92a0d021ec7b43457260723481a815590f51f809679c398ce541af3ce46de2 src/cl_parse.js
+SHA256 f453e1c8887c0b451207c5410fe5a6dbc7e46bb6c1fc11de30e841bf91e08737 src/cl_main.js
+SHA256 588cdaee1581720c693ca2fcd004b354b75266411bad452903998fcf8e214848 src/cl_pred.js
+SHA256 e2cb21dea54b0c8e78029ee1c9f01b06de500a3942e964141a415e2d4f82f316 src/r_levelents.js
+SHA256 a1c2fe49433c2a251d366067f9726ce7461839b52591b6a779f048acee595b75 src/axe_record.js
+SHA256 946dcbf825d9222201cf8db50cfb3bf4bf0604879877bcfe9eee61061feeeb8b src/r_levelview.js
+SHA256 27c1b2077196adefd0e4359f8e3814060781b18d00eea40e69637ffca8b04571 src/sv_seamless.js
+SHA256 8f2925437ee8dbe752f8787e0e75f47727793fea87c77420dc7698a97a2cdbbc tools/run_tests.mjs
+SHA256 35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af pak0.pak
+SHA256 d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29 /private/tmp/quaked-face-runtime/three.module.js
+SHA256 6ed72f08289a29f547bb0ab96e396a1fa2e9921ecff743fd99e0fd927bc00d7c /private/tmp/quaked-face-runtime/three.core.js
+Exit code: 0
+--- stdout ---
+Added packfile enemy-face-native-pak0 (339 files)\n
+Programs occupy 403K.
+
+meshing progs/soldier.mdl...
+
+meshing progs/h_guard.mdl...
+
+meshing progs/gib1.mdl...
+
+meshing progs/gib2.mdl...
+
+meshing progs/gib3.mdl...
+
+meshing progs/ogre.mdl...
+
+meshing progs/h_ogre.mdl...
+
+meshing progs/grenade.mdl...
+
+meshing progs/knight.mdl...
+
+meshing progs/h_knight.mdl...
+
+ENEMY_FACE_NATIVE_INDIVIDUALS [{"classname":"monster_army","index":2,"seed":0},{"classname":"monster_army","index":3,"seed":1},{"classname":"monster_army","index":4,"seed":2},{"classname":"monster_army","index":5,"seed":3},{"classname":"monster_army","index":6,"seed":4},{"classname":"monster_army","index":7,"seed":5},{"classname":"monster_army","index":8,"seed":6},{"classname":"monster_army","index":9,"seed":7},{"classname":"monster_army","index":10,"seed":8},{"classname":"monster_army","index":11,"seed":9},{"classname":"monster_army","index":12,"seed":10},{"classname":"monster_army","index":13,"seed":11},{"classname":"monster_ogre","index":14,"seed":0},{"classname":"monster_ogre","index":15,"seed":1},{"classname":"monster_ogre","index":16,"seed":2},{"classname":"monster_ogre","index":17,"seed":3},{"classname":"monster_ogre","index":18,"seed":4},{"classname":"monster_ogre","index":19,"seed":5},{"classname":"monster_ogre","index":20,"seed":6},{"classname":"monster_ogre","index":21,"seed":7},{"classname":"monster_ogre","index":22,"seed":8},{"classname":"monster_ogre","index":23,"seed":9},{"classname":"monster_ogre","index":24,"seed":10},{"classname":"monster_ogre","index":25,"seed":11},{"classname":"monster_knight","index":26,"seed":0},{"classname":"monster_knight","index":27,"seed":1},{"classname":"monster_knight","index":28,"seed":2},{"classname":"monster_knight","index":29,"seed":3},{"classname":"monster_knight","index":30,"seed":4},{"classname":"monster_knight","index":31,"seed":5},{"classname":"monster_knight","index":32,"seed":6},{"classname":"monster_knight","index":33,"seed":7},{"classname":"monster_knight","index":34,"seed":8},{"classname":"monster_knight","index":35,"seed":9},{"classname":"monster_knight","index":36,"seed":10},{"classname":"monster_knight","index":37,"seed":11}]
+PASS native spawn independently chooses all twelve faces for every target class in one level
+Programs occupy 403K.
+
+PASS native model/animation refresh, level name and clocks cannot reroll an existing individual
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RECYCLED {"slot":2,"priorSeed":29,"nextSeed":42}
+PASS ED_Free and ED_Alloc recycle an actual native slot with a fresh individual face
+Programs occupy 403K.
+
+PASS native ED_Write and ED_ParseEdict preserve zero and maximum seeds and reject malformed save metadata
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_SNAPSHOT [{"model":"progs/soldier.mdl","faceSeed":0},{"model":"progs/ogre.mdl","faceSeed":19},{"model":"progs/knight.mdl","faceSeed":38}]
+PASS actual serialized native entities retain individual seed in public portal snapshot descriptors
+PASS public axe corpse parser preserves individual face metadata while rejecting invalid bounds and retaining legacy records
+Programs occupy 403K.
+
+meshing progs/h_dog.mdl...
+
+meshing progs/dog.mdl...
+
+Programs occupy 403K.
+
+PASS unsupported native model spawns do not receive a face and Classic keeps original native gameplay fields
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_army","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_ogre","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+Programs occupy 403K.
+
+ENEMY_FACE_NATIVE_RNG {"classname":"monster_knight","freshCalls":1,"existingCalls":1,"extraCosmeticCalls":0}
+PASS native per-individual face entropy never consumes the stock QuakeC Math.random stream
+Programs occupy 403K.
+
+ENEMY_FACE_PUBLIC_FOLLOWER_GHOSTS [{"model":"progs/soldier.mdl","faceSeed":0,"ghostFaceSeed":0},{"model":"progs/ogre.mdl","faceSeed":17,"ghostFaceSeed":17},{"model":"progs/knight.mdl","faceSeed":4294967295,"ghostFaceSeed":4294967295}]
+PASS public delayed follower runner retains zero and unsigned identity through real native ghost attachment, relocation and rebuild
+Programs occupy 403K.
+
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_army","metadata":"4294967295","seed":4294967295,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_ogre","metadata":"4294967295","seed":4294967295,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":null,"seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"-1","seed":77,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"0","seed":0,"updates":12}
+ENEMY_FACE_LEGACY_CLIENT_UPDATES {"classname":"monster_knight","metadata":"4294967295","seed":4294967295,"updates":12}
+PASS legacy and malformed native saves get one persistent server identity through repeated real client entity updates
+Programs occupy 403K.
+
+ENEMY_FACE_QW_PUBLIC_RELINK {"slot":2,"originalSeed":57,"replacementSeed":0,"sameModelObject":true,"absentSequence":6,"returnedSequence":80,"invisibleSequence":82,"visibleSequence":83}
+PASS public QW CL_RelinkEntities copies native individual identity across same-model slot recycling and packet visibility gaps
+RESULT 11/11 passed (tests/enemy_face_native_test.js)
+TOTAL 11/11 passed
+
+--- stderr ---
+

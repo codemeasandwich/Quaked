@@ -1,3 +1,4 @@
+import { Face_Seed, Face_ParseSeed, Face_Assign } from './enemy_face.js';
 import { Rend_ValidRecord, Rend_ParseRecord } from './sv_rendveil.js';
 import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from './respawn_record.js';
 // Ported from: WinQuake/pr_edict.c -- entity dictionary
@@ -554,6 +555,7 @@ export function ED_Write( lines, ed ) {
 	}
 
 	if(Rend_ValidRecord(ed._rendVeil)&&ed.v.health>0&&PR_GetString(ed.v.model)===ed._rendVeil.model)lines.push('"_newer_rend_veil" "'+encodeURIComponent(JSON.stringify(ed._rendVeil))+'"');
+	if(Face_Seed(ed._faceSeed)!==null)lines.push('"_newer_face_seed" "'+ed._faceSeed+'"');
 	if(ed._respawn)lines.push('"_clockwise_player" "'+encodeURIComponent(JSON.stringify(ed._respawn))+'"');
 	if(ed._cheatPowers)lines.push('"_cheat_powers" "'+(ed._cheatPowers|0)+'"');
 	if(ed._respawnDrop)lines.push('"_clockwise_drop" "'+encodeURIComponent(JSON.stringify(ed._respawnDrop))+'"');
@@ -964,6 +966,7 @@ export function ED_ParseEdict( data, ent ) {
 
 		init = true;
 		if(keyname==='_newer_rend_veil'){ent._rendVeil=Rend_ParseRecord(com_token);continue;}
+		if(keyname==='_newer_face_seed'){ent._faceSeed=Face_ParseSeed(com_token);continue;}
 		if(keyname==='_clockwise_player'){ent._respawn=Respawn_ParsePlayer(com_token);continue;}
 		if(keyname==='_cheat_powers'){const v=Number(com_token);ent._cheatPowers=Number.isInteger(v)&&v>=0&&v<8?v:0;continue;}
 		if(keyname==='_clockwise_drop'){ent._respawnDrop=Respawn_ParseDrop(com_token);continue;}
@@ -1002,6 +1005,10 @@ export function ED_ParseEdict( data, ent ) {
 
 	if ( ! init )
 		ent.free = true;
+	else
+		// Legacy or malformed cosmetic metadata gets one new server identity.
+		// Normal save restore does not execute the QuakeC setmodel spawn hook.
+		Face_Assign( ent, PR_GetString( ent.v.model ) );
 
 	return data;
 

@@ -1,0 +1,151 @@
+{
+  "baseHead": "b536c9359a4ac37c4541a9debce76991fcd20ef1",
+  "branch": "Prod",
+  "candidate": "content snapshot for owner-authorized feature commit/push to Prod",
+  "tests": "40/40 afterogre alignment",
+  "sources": {
+    "README.md": {
+      "sha256": "913f4a1b7afd3496e3ac27078c3b168c1f791871c746911f12e51e83d9dce738",
+      "bytes": 35849
+    },
+    "src/enemy_face.js": {
+      "sha256": "7578dbc185a31376642d20bd71aea35d8c7649e2bcc124ce7adc01d3cb110ebb",
+      "bytes": 3186
+    },
+    "src/r_newerskins.js": {
+      "sha256": "73c2a19330dbc7befd272fc77bb57019dae69772a8d84ad6bae2fd26fd9c6e62",
+      "bytes": 40115
+    },
+    "src/cl_main.js": {
+      "sha256": "f453e1c8887c0b451207c5410fe5a6dbc7e46bb6c1fc11de30e841bf91e08737",
+      "bytes": 34505
+    },
+    "src/cl_parse.js": {
+      "sha256": "4b92a0d021ec7b43457260723481a815590f51f809679c398ce541af3ce46de2",
+      "bytes": 34934
+    },
+    "src/pr_cmds.js": {
+      "sha256": "b3cb4e8bf1b476f2f79edcccb6f0153ea796e49e8992a95611e2b764058a4a94",
+      "bytes": 32926
+    },
+    "src/pr_edict.js": {
+      "sha256": "a484e110688453e419b28cf775589df3df7e1ddc8492e592c3670d9986118a87",
+      "bytes": 31403
+    },
+    "src/progs.js": {
+      "sha256": "fa2239ac0659c9750c51d77736492fc0d3a2178f27bfc9c23d4cd728da95337d",
+      "bytes": 10371
+    },
+    "src/r_levelents.js": {
+      "sha256": "e2cb21dea54b0c8e78029ee1c9f01b06de500a3942e964141a415e2d4f82f316",
+      "bytes": 7655
+    },
+    "src/r_levelview.js": {
+      "sha256": "946dcbf825d9222201cf8db50cfb3bf4bf0604879877bcfe9eee61061feeeb8b",
+      "bytes": 27817
+    },
+    "src/sv_seamless.js": {
+      "sha256": "27c1b2077196adefd0e4359f8e3814060781b18d00eea40e69637ffca8b04571",
+      "bytes": 43700
+    },
+    "src/sv_axecut.js": {
+      "sha256": "063f1c031a22a043be5cf465f276dcf2f2892fc0ae1f21a17aa19dd90f64fb7c",
+      "bytes": 4552
+    },
+    "src/axe_record.js": {
+      "sha256": "a1c2fe49433c2a251d366067f9726ce7461839b52591b6a779f048acee595b75",
+      "bytes": 1910
+    },
+    "src/r_axecorpses.js": {
+      "sha256": "ffad0cc262babdac242eb30f2b34546e842021e969e3e93a1137685c8a0ef0f4",
+      "bytes": 8145
+    },
+    "newer/enemies/index.json": {
+      "sha256": "5e694f93ed1b83fecf21f0bb5cc40f673b78bd784606cb39613e69aa43fb7acf",
+      "bytes": 12163
+    },
+    "newer/enemies/faces/ogre.png": {
+      "sha256": "355d82fdd351f67796719588d0936274d0e77b0a33ac09a2652360dbcbe45279",
+      "bytes": 2956637
+    },
+    "newer/enemies/faces/soldier.png": {
+      "sha256": "eaec3bf7cb15b752b07ef2c95e08935ad26cfe110ee93a5992f67664725ae12b",
+      "bytes": 2034240
+    },
+    "newer/enemies/faces/knight.png": {
+      "sha256": "4f5bf0da795a7166791aca024499f37b3a2df8c79078cf4e0d55a6fdf30b3a68",
+      "bytes": 1817798
+    },
+    "tests/enemy_face_native_test.js": {
+      "sha256": "156fb8478e78553e252f00624c4edc47b2e22506496cf54454b7e0665ec8e305",
+      "bytes": 21969
+    },
+    "tests/enemy_face_material_test.js": {
+      "sha256": "60c19224527fb8472433f32b61d67faae205a6a7ff5b357d607dca3d41498293",
+      "bytes": 15158
+    },
+    "tests/enemy_face_trial.html": {
+      "sha256": "c71ead442f975c4a7df51733b08625567c51e6da2ec71e396832a46290a1c170",
+      "bytes": 1624
+    },
+    "tests/enemy_face_trial.js": {
+      "sha256": "3020261f1c499acf745e1efcecbd5904c9e36f7fa7a0ba518bab8750cf60c80d",
+      "bytes": 7133
+    },
+    "tests/enemy_face_gameplay_trial.html": {
+      "sha256": "7f3f84028aa1347da40321577724fceed47d55449756320b062685e3a96b11f2",
+      "bytes": 10047
+    },
+    "tests/enemy_face_gameplay_trial.js": {
+      "sha256": "8a073894b5ff35cc33ec7cb1779c90e5a99d4cf31f3ff440425f4656320b384e",
+      "bytes": 7452
+    },
+    "docs/enemy-face-overlays-2026-10-07.md": {
+      "sha256": "09075d921e9cb4677ed9424708de084b02e919dfa5aa47c0c39d5db4bef26c1d",
+      "bytes": 18990
+    }
+  },
+  "preservedOgreDiffuse": "af5290302ed3251cbabd0641c8a00dfdb437a0078583c078516b541720c7c933",
+  "followup": {
+    "id": "c695bd56-41ed-4f41-ac4a-b05f57cf0175",
+    "owner": "followup:2d417270-a815-41d2-a21f-de7f7291ddb0",
+    "lastObservedState": "ACCEPTED",
+    "execution": null
+  },
+  "qualification": "Runnable local inspection and40/40 checks; owner authorized feature commit/push to Prod. No dev landing, owner visual acceptance or production deployment is inferred. Full-wall displacement loading remains separately unresolved.",
+  "liveInspection": {
+    "profile": "original walls; enhanced enemies/lighting/normals/water",
+    "types": 3,
+    "readiness": "done/no pending/no fallback",
+    "savedFaces": 23,
+    "sameSelectedTarget": {
+      "index": 14,
+      "seed": 2533651390,
+      "model": "progs/ogre.mdl"
+    },
+    "receipt": "docs/evidence/enemy-face-live-save-verification-2026-10-07.json",
+    "visualReceipt": "docs/evidence/enemy-face-live-rendered-ogre-2026-10-07.png"
+  },
+  "ogreUpdate": {
+    "manifest": "21-faces4",
+    "linearLightening": 1.1,
+    "facesChecked": 12,
+    "sourceRollDegrees": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      3,
+      -3,
+      0,
+      -5,
+      6,
+      0,
+      -16
+    ],
+    "gpuReceipt": "docs/evidence/enemy-face-ogre-aligned-lighter-2026-10-07.json",
+    "testReceipt": "docs/evidence/enemy-face-aligned-combined-tests-2026-10-07.txt",
+    "nativeReceipt": "docs/evidence/enemy-face-ogre-aligned-live-2026-10-07.json"
+  }
+}

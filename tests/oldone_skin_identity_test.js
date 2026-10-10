@@ -66,6 +66,7 @@ Deno.test( 'actual Old One assets retain approved provenance and every other ene
  const other = structuredClone( index ); delete other.version; delete other.models.oldone; delete other.models.enforcer; delete other.models.tarbaby; delete other.models.hknight; // (the Enforcer skin was added after this one, in version 24)
  // Baseline Dev 10f6369de9613a1dbc64b049f53baa46cea43075; excluding this skin, the later
  // Enforcer, Spawn and Death Knight skins and the cache revision proves all the entries before them intact.
+ for ( const list of Object.values( other.models ) ) for ( const variant of list ) delete variant.faces; // (the face overlays, checked by the enemy_face suites)
  same( sha( JSON.stringify( other ) ), '96a0c7c83425850e4bf37976cbcd1518e21ccf9391b090d4ae8942773a975fe7', 'all other enemy variants and native height mappings unchanged' );
 } );
 Deno.test( 'actual manifest admits only matching Old One skin zero and preserves native geometry through preparation and selection', async () => fixture( async ( skins, requests ) => {

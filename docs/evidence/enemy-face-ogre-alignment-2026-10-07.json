@@ -1,0 +1,347 @@
+{
+  "source": "newer/enemies/faces/ogre.png",
+  "sourceSha256": "355d82fdd351f67796719588d0936274d0e77b0a33ac09a2652360dbcbe45279",
+  "annotationMethod": "Independent manual eye/ear/scalp inspection; pixel positions approximately +/-3px; roll estimates preserve expression asymmetry",
+  "eyePairs": [
+    [
+      [
+        136,
+        123
+      ],
+      [
+        218,
+        121
+      ]
+    ],
+    [
+      [
+        480,
+        125
+      ],
+      [
+        559,
+        122
+      ]
+    ],
+    [
+      [
+        827,
+        125
+      ],
+      [
+        909,
+        121
+      ]
+    ],
+    [
+      [
+        1175,
+        92
+      ],
+      [
+        1255,
+        87
+      ]
+    ],
+    [
+      [
+        137,
+        429
+      ],
+      [
+        217,
+        426
+      ]
+    ],
+    [
+      [
+        478,
+        424
+      ],
+      [
+        558,
+        432
+      ]
+    ],
+    [
+      [
+        828,
+        427
+      ],
+      [
+        908,
+        416
+      ]
+    ],
+    [
+      [
+        1173,
+        450
+      ],
+      [
+        1252,
+        455
+      ]
+    ],
+    [
+      [
+        139,
+        746
+      ],
+      [
+        215,
+        742
+      ]
+    ],
+    [
+      [
+        476,
+        769
+      ],
+      [
+        554,
+        777
+      ]
+    ],
+    [
+      [
+        829,
+        736
+      ],
+      [
+        907,
+        736
+      ]
+    ],
+    [
+      [
+        1149,
+        758
+      ],
+      [
+        1228,
+        732
+      ]
+    ]
+  ],
+  "earPairs": [
+    [
+      [
+        78,
+        113
+      ],
+      [
+        275,
+        112
+      ]
+    ],
+    [
+      [
+        421,
+        112
+      ],
+      [
+        624,
+        113
+      ]
+    ],
+    [
+      [
+        766,
+        114
+      ],
+      [
+        966,
+        113
+      ]
+    ],
+    [
+      [
+        1118,
+        111
+      ],
+      [
+        1321,
+        112
+      ]
+    ],
+    [
+      [
+        74,
+        435
+      ],
+      [
+        270,
+        433
+      ]
+    ],
+    [
+      [
+        418,
+        438
+      ],
+      [
+        621,
+        444
+      ]
+    ],
+    [
+      [
+        769,
+        439
+      ],
+      [
+        966,
+        429
+      ]
+    ],
+    [
+      [
+        1119,
+        440
+      ],
+      [
+        1320,
+        441
+      ]
+    ],
+    [
+      [
+        78,
+        752
+      ],
+      [
+        270,
+        730
+      ]
+    ],
+    [
+      [
+        422,
+        744
+      ],
+      [
+        618,
+        765
+      ]
+    ],
+    [
+      [
+        766,
+        746
+      ],
+      [
+        970,
+        745
+      ]
+    ],
+    [
+      [
+        1099,
+        789
+      ],
+      [
+        1293,
+        737
+      ]
+    ]
+  ],
+  "sourceRollDegrees": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    -3,
+    0,
+    -5,
+    6,
+    0,
+    -16
+  ],
+  "alignments": [
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": 3,
+      "sourcePivot": [
+        0.4521276595744681,
+        0.340080971659919
+      ],
+      "targetPivot": [
+        0.5,
+        0.340080971659919
+      ],
+      "scale": 0.98
+    },
+    {
+      "rollDegrees": -3,
+      "sourcePivot": [
+        0.4787234042553192,
+        0.31376518218623484
+      ],
+      "targetPivot": [
+        0.5,
+        0.31376518218623484
+      ],
+      "scale": 0.98
+    },
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": -5,
+      "sourcePivot": [
+        0.4734042553191489,
+        0.32388663967611336
+      ],
+      "targetPivot": [
+        0.5,
+        0.32388663967611336
+      ],
+      "scale": 0.98
+    },
+    {
+      "rollDegrees": 6,
+      "sourcePivot": [
+        0.43617021276595747,
+        0.44129554655870445
+      ],
+      "targetPivot": [
+        0.5,
+        0.44129554655870445
+      ],
+      "scale": 0.98
+    },
+    {
+      "rollDegrees": 0
+    },
+    {
+      "rollDegrees": -16,
+      "sourcePivot": [
+        0.3484042553191489,
+        0.32793522267206476
+      ],
+      "targetPivot": [
+        0.5,
+        0.32793522267206476
+      ],
+      "scale": 0.85
+    }
+  ],
+  "convention": "Positive source roll is clockwise in top-row-first/y-down pixels; inverse sampling uses source roll so displayed correction is opposite. Rotate pixel deltas, not stretched normalized UVs. Fixed model UV mask. Horizontal eye recentering for tilted faces; retain source-relative eye height to avoid sampling above Roar/scalp. Slight inset sampling protects source silhouette borders."
+}

@@ -76,6 +76,7 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 - [Nine folios and parchment page backs — 4 October 2026](bestiary-verso-2026-10-04.md)
 - [Demon plaques on moving brush entities get their relief too](demon-brush-relief-2026-10-08.md)
 - [Real displacement for the horned demon plaques](demon-displacement-2026-10-03.md)
+- [Individual enemy face overlays — local working trial](enemy-face-overlays-2026-10-07.md)
 - [Shambler skin and enemy height maps — 2026-10-01](enemy-heights-2026-10-01.md)
 - [Death Knight skin fitted to its native model](enemy-skin-death-knight-2026-10-09.md)
 - [Enforcer skin fitted to its native model](enemy-skin-enforcer-2026-10-09.md)

@@ -1,0 +1,35 @@
+Independent public ogre face alignment material verification
+UTC execution: 2026-10-07T12:01:23.747355+00:00
+Workspace: /Users/bri/SOURCE/Quaked
+Command: QUAKED_THREE_MODULE=/private/tmp/quaked-face-runtime/three.module.js node tools/run_tests.mjs tests/enemy_face_material_test.js
+Bounded authority: owner-requested ogre source roll alignment; parent delegated edits only to the existing material test and this receipt. No production edits or unrelated scope.
+Method: production R_NewerSkinsPrepare/R_NewerAliasMaterial/onBeforeCompile bindings; independent THREE.Matrix3 affine/inverse oracle evaluates source pixel geometry and annotated landmarks. New checks do not match literal shader strings. Existing three loader/cache/failure/Classic/lifetime tests retained.
+Results: all12 ogre bindings finite and orientation-preserving;188x247 source pixels rotate without shear/an-isotropic rotation distortion; target/source pivot invariant; expected source roll direction; lighting material consistency; fixed model UV polygon binding; one shared shader key and three asset requests.
+Independent manually annotated ears identify head roll within approximately +/-3px. Displayed residuals all below2degrees, maximum absolute1.536633648797064degrees; tilted-face eye midpoint horizontally centered and source-relative eye height preserved.
+Identity controls:31 upright/default faces (7upright ogres,12grunts,12knights); tested corners, interior and centre remain identity sampling/display.
+Limit: this receipt evaluates actual public uniform coefficients under the requested affine contract. It does not execute GPU fragment sampling or prove final rendered face placement. Parent owns separate GPU visual proof.
+SHA256 60c19224527fb8472433f32b61d67faae205a6a7ff5b357d607dca3d41498293 tests/enemy_face_material_test.js
+SHA256 7578dbc185a31376642d20bd71aea35d8c7649e2bcc124ce7adc01d3cb110ebb src/enemy_face.js
+SHA256 73c2a19330dbc7befd272fc77bb57019dae69772a8d84ad6bae2fd26fd9c6e62 src/r_newerskins.js
+SHA256 5e694f93ed1b83fecf21f0bb5cc40f673b78bd784606cb39613e69aa43fb7acf newer/enemies/index.json
+SHA256 355d82fdd351f67796719588d0936274d0e77b0a33ac09a2652360dbcbe45279 newer/enemies/faces/ogre.png
+SHA256 adc56db4a91230cf6c6f104316ca3c63aaa0bb7fa76fe730374db38f9ffdcc0f docs/evidence/enemy-face-ogre-alignment-2026-10-07.json
+SHA256 8f2925437ee8dbe752f8787e0e75f47727793fea87c77420dc7698a97a2cdbbc tools/run_tests.mjs
+SHA256 d8ecc4fc0852d9690085411d17307c50e25de9dabb14f4d5a942c6ae0e2bad29 /private/tmp/quaked-face-runtime/three.module.js
+SHA256 6ed72f08289a29f547bb0ab96e396a1fa2e9921ecff743fd99e0fd927bc00d7c /private/tmp/quaked-face-runtime/three.core.js
+Exit code: 0
+--- stdout ---
+PASS all individual face choices share the actual body and one sheet; preparation returns actual draw bindings
+PASS failed or late face sheet retains base skin and assigned identity
+PASS Classic, enemy gate, lighting and variety switches retain individual identity
+OGRE_PUBLIC_ALIGNMENT_PIXEL_AFFINE [{"face":1,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":2,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":3,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":4,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":5,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":6,"measuredRoll":3.000000000000008,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":7,"measuredRoll":-3.000000000000008,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":8,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":9,"measuredRoll":-5.000000000000002,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":10,"measuredRoll":6.000000000000004,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":11,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":12,"measuredRoll":-16.000000000000004,"sourcePixelSize":[188,247],"samplingScale":0.8500000000000003}]
+PASS public ogre material alignment is a conformal rotation in non-square source pixels and keeps the model mask fixed
+OGRE_PUBLIC_ALIGNMENT_LANDMARK_RESIDUALS [{"face":1,"sourceEarAxisDegrees":-0.2908390223505519,"displayedResidualDegrees":-0.2908390223505519},{"face":2,"sourceEarAxisDegrees":0.2822429362708571,"displayedResidualDegrees":0.2822429362708571},{"face":3,"sourceEarAxisDegrees":-0.2864765102770745,"displayedResidualDegrees":-0.2864765102770745},{"face":4,"sourceEarAxisDegrees":0.2822429362708571,"displayedResidualDegrees":0.28224293627085717},{"face":5,"sourceEarAxisDegrees":-0.5846305207051778,"displayedResidualDegrees":-0.5846305207051778},{"face":6,"sourceEarAxisDegrees":1.6929784376289005,"displayedResidualDegrees":-1.3070215623710977},{"face":7,"sourceEarAxisDegrees":-2.905920999653342,"displayedResidualDegrees":0.09407900034665537},{"face":8,"sourceEarAxisDegrees":0.2850512775838264,"displayedResidualDegrees":0.2850512775838264},{"face":9,"sourceEarAxisDegrees":-6.536633648797066,"displayedResidualDegrees":-1.536633648797064},{"face":10,"sourceEarAxisDegrees":6.1155035662854065,"displayedResidualDegrees":0.11550356628540488},{"face":11,"sourceEarAxisDegrees":-0.2808594146833859,"displayedResidualDegrees":-0.280859414683386},{"face":12,"sourceEarAxisDegrees":-15.004920382860224,"displayedResidualDegrees":0.9950796171397795}]
+PASS actual public inverse bindings level annotated ogre head/ear axes within two degrees and recenter tilted eye pivots
+OGRE_PUBLIC_ALIGNMENT_IDENTITY_CONTROLS 31
+PASS upright ogre choices and every grunt/knight face retain finite identity sampling defaults
+RESULT 6/6 passed (tests/enemy_face_material_test.js)
+TOTAL 6/6 passed
+
+--- stderr ---
+
