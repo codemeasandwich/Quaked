@@ -212,8 +212,8 @@ function assess( game, files, byId ) {
 	if ( game.kind === 'base' ) {
 
 		const episodes = [ 'e2m1', 'e3m1', 'e4m1' ].every( m => has( `maps/${m}.bsp` ) );
-		if ( ! has( 'progs.dat' ) ) return { playable: false, reason: 'no QuakeC (progs.dat) in its packs' };
-		if ( ! episodes ) return { playable: false, reason: 'only the shareware episode: Episodes 2 to 4 are not in its packs' };
+		if ( ! has( 'progs.dat' ) ) return { playable: false, reason: 'no QuakeC (progs.dat) in its pak0.pak' };
+		if ( ! episodes ) return { playable: false, reason: 'Episodes 2 to 4 are not in its pak0.pak (an original release keeps them in pak1.pak, which the game does not read yet)' };
 		return { playable: true, reason: 'Episodes 1 to 4 and their QuakeC' };
 
 	}
@@ -283,7 +283,9 @@ async function refresh( options ) {
 
 		}
 		if ( entry.present && ! entry.validated ) entry.reason = 'found, not validated: ' + ( entry.packs.find( p => p.state !== 'valid' )?.reason ?? '' );
-		else if ( entry.validated ) Object.assign( entry, assess( game, files, byId ) );
+		// the base game is judged on its pak0.pak alone: the pack the start mounts (an original release's pak1.pak,
+		// with Episodes 2 to 4, is not read yet: card [34c])
+		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId ) );
 		else if ( ! game.placeholder ) entry.reason = 'not installed';
 		if ( entry.beyondLimit ) { entry.playable = false; entry.reason += ` (it has more than ${GAME_CATALOGUE_LIMITS.packs} packs; pak${GAME_CATALOGUE_LIMITS.packs}.pak and later were not read)`; }
 		games.push( entry ); byId.set( game.id, entry );

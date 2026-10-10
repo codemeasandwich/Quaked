@@ -35,6 +35,9 @@ const files = new Map( [
 	[ '/games/Quake/pak0.pak', pack( [ 'progs.dat', 'maps/e1m1.bsp', 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp', 'gfx/pop.lmp' ] ) ],
 	[ '/games/Quake/pak2.pak', pack( [ 'never/read.txt' ] ) ], // after a gap (no pak1): Quake stops before it
 	[ '/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'maps/hip1m1.bsp' ] ) ],
+	// an original release: Episode 1 in pak0, Episodes 2 to 4 in pak1 (the game mounts pak0 only, so not the full game yet)
+	[ '/resources/id1/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e1m1.bsp' ] ) ],
+	[ '/resources/id1/pak1.pak', pack( [ 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp' ] ) ],
 	[ '/resources/malice/pak0.pak', Buffer.from( 'PACKshort' ) ], // a truncated header
 	[ '/resources/quoth/pak0.pak', ( () => { const b = pack( [ 'progs.dat' ] ); b.writeInt32LE( 1e9, 4 ); return b; } )() ] // directory past the end
 ] );
@@ -115,9 +118,18 @@ Deno.test( 'a pack dropped in between refreshes is found; an unchanged one is no
 	const quakeDirectoryRead = served.bytes - sent;
 	const again = served.bytes; await GameCatalogue_Refresh( options );
 	check( served.bytes - again < quakeDirectoryRead, 'an unchanged pack is not read again beyond its header' );
+	const original = await GameCatalogue_ProbePack( base + 'resources/id1/pak1.pak', options );
+	check( original.state === 'valid', '(the original release fixture)' );
 	files.set( '/games/Quake/pak0.pak', pack( [ 'progs.dat', 'maps/e1m1.bsp' ] ) );
 	const changed = await GameCatalogue_Refresh( options );
 	check( ! changed.games.find( x => x.id === 'quake' ).playable && /Episodes 2 to 4/.test( changed.games.find( x => x.id === 'quake' ).reason ), 'a changed pack is read again: only Episode 1 now, so not the full game' );
+	// without games/Quake, the original release in resources/id1: Episodes 2 to 4 only in pak1, which the game does not
+	// mount, so it is not called the playable full game
+	const quakePak = files.get( '/games/Quake/pak0.pak' ); files.delete( '/games/Quake/pak0.pak' );
+	const legacy = ( await GameCatalogue_Refresh( options ) ).games.find( x => x.id === 'quake' );
+	files.set( '/games/Quake/pak0.pak', quakePak );
+	check( legacy.folder === 'resources/id1' && legacy.packs.length === 2 && legacy.validated, 'both packs found and checked' );
+	check( ! legacy.playable && /pak1\.pak/.test( legacy.reason ), `judged on pak0 alone, with the reason (${legacy.reason})` );
 
 } );
 

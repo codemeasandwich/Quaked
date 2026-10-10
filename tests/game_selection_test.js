@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select } from '../src/engine/common/game_selection.js';
+import { GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -48,5 +48,30 @@ Deno.test( 'unplayable, unsupported and unknown games are refused with the reaso
 	const blocked = await GameSelection_Select( 'shareware', { refresh: catalogue(), reload } );
 	globalThis.localStorage = saved;
 	check( ! blocked.ok && /cannot be kept/.test( blocked.reason ) && reloads === 0, 'a blocked store: refused, no reload' );
+
+} );
+
+Deno.test( 'the shareware needs no catalogue; an unchecked Quake is allowed with a warning; a missing store refuses', async () => {
+
+	store.clear(); let reloads = 0, refreshes = 0; const reload = () => reloads ++;
+	const shareware = await GameSelection_Select( 'shareware', { refresh: async () => { refreshes ++; return { games: [] }; }, reload } );
+	check( shareware.ok && refreshes === 0, 'the shareware is chosen without asking the catalogue (it ships with the page)' );
+	const unchecked = await GameSelection_Select( 'quake', { refresh: async () => ( { games: [ { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'found, not validated: the server ignores byte ranges' } ] } ), reload } );
+	check( unchecked.ok && /could not be checked here/.test( unchecked.reason ), 'a found but unchecked Quake: allowed, with the warning' );
+	const saved = Object.getOwnPropertyDescriptor( globalThis, 'localStorage' );
+	Object.defineProperty( globalThis, 'localStorage', { configurable: true, get() { throw new Error( 'SecurityError' ); } } );
+	const before = reloads, blocked = await GameSelection_Select( 'shareware', { refresh: catalogue(), reload } );
+	Object.defineProperty( globalThis, 'localStorage', saved );
+	check( ! blocked.ok && /no storage/.test( blocked.reason ) && reloads === before, 'storage that cannot be reached: refused, no reload' );
+
+} );
+
+Deno.test( 'a chosen game whose pack has gone is reported at start', () => {
+
+	store.clear(); store.set( 'quaked.game.v1', 'quake' );
+	check( GameSelection_ReportStart( false ) === false, 'the full Quake chosen, its pack missing: reported' );
+	check( GameSelection_ReportStart( true ) === true, 'mounted: nothing to report' );
+	store.set( 'quaked.game.v1', 'shareware' );
+	check( GameSelection_ReportStart( false ) === true, 'the shareware needs no owned pack' );
 
 } );

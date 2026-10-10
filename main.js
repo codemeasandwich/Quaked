@@ -36,7 +36,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart } from './src/engine/common/game_selection.js';
 
 async function main() {
 
@@ -104,6 +104,7 @@ async function main() {
 			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
 		}
 		await Host_Init( parms );
+		GameSelection_ReportStart( fullGamePak !== null ); // a chosen game whose pack has gone is said so (card [34c])
 		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
 		setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
 

@@ -21,6 +21,7 @@
 
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { Con_Printf } from './console.js';
+import { Sys_Printf } from './sys.js';
 import { GameCatalogue_Refresh } from './game_catalogue.js';
 
 const STORAGE_KEY = 'quaked.game.v1';
@@ -69,8 +70,9 @@ export function GameSelection_SavePrefix() {
 }
 
 /**
- * Chooses the game to run: checks with the catalogue that it is playable, keeps the choice and reloads the page so the
- * game starts clean.
+ * Chooses the game to run: checks with the catalogue that it is playable (the shareware, which ships with the page,
+ * needs no check; a found pack the server would not let it check is allowed with a warning, since the start reads it
+ * whole and refuses a broken one), keeps the choice (read back) and reloads the page so the game starts clean.
  *
  * @param {string} id the game's catalogue id ('quake', 'shareware'; others are refused)
  * @param {{ refresh?: function(): Promise<object>, reload?: function(): void }} [options] the catalogue refresh and the
@@ -80,13 +82,24 @@ export function GameSelection_SavePrefix() {
 export async function GameSelection_Select( id, options = {} ) {
 
 	const refresh = options.refresh ?? GameCatalogue_Refresh, reload = options.reload ?? ( () => globalThis.location?.reload() );
-	const catalogue = await refresh(), game = catalogue?.games?.find( g => g.id === id );
-	if ( ! game ) return { ok: false, reason: `no game called '${id}'` };
-	if ( ! GAME_SELECTION_CHOICES.includes( id ) ) return { ok: false, reason: `${game.name} cannot be chosen yet: ${game.reason || 'its support is not built'}` };
-	if ( ! game.playable ) return { ok: false, reason: `${game.name} is not playable: ${game.reason}` };
-	try { storage()?.setItem( STORAGE_KEY, id ); } catch { return { ok: false, reason: 'the choice cannot be kept in this browser' }; }
+	let warning = '';
+	if ( id !== 'shareware' ) { // the shareware ships with the page: no evidence needed
+
+		const catalogue = await refresh(), game = catalogue?.games?.find( g => g.id === id );
+		if ( ! game ) return { ok: false, reason: `no game called '${id}'` };
+		if ( ! GAME_SELECTION_CHOICES.includes( id ) ) return { ok: false, reason: `${game.name} cannot be chosen yet: ${game.reason || 'its support is not built'}` };
+		// found but not checked (a server that ignores byte ranges): allowed, as the start reads the whole pack and
+		// refuses a broken one; anything else must be playable
+		if ( game.present && ! game.validated ) warning = ` (it could not be checked here: ${game.reason}; the start checks it)`;
+		else if ( ! game.playable ) return { ok: false, reason: `${game.name} is not playable: ${game.reason}` };
+
+	}
+	const store = storage();
+	if ( store === null ) return { ok: false, reason: 'the choice cannot be kept in this browser (no storage)' };
+	try { store.setItem( STORAGE_KEY, id ); } catch { return { ok: false, reason: 'the choice cannot be kept in this browser' }; }
+	if ( GameSelection_Current() !== id ) return { ok: false, reason: 'the choice cannot be kept in this browser (it did not stay)' };
 	reload();
-	return { ok: true, reason: `${game.name}: starting` };
+	return { ok: true, reason: `${id === 'shareware' ? 'Quake (shareware)' : 'Quake'}: starting${warning}` };
 
 }
 
@@ -94,6 +107,27 @@ export async function GameSelection_Select( id, options = {} ) {
  * Registers the `game` console command: with no argument it prints the game running and the choices; with one it
  * chooses that game (and the page reloads). Called by Host_Init.
  */
+/**
+ * Says at start when the game chosen did not start: its owned pack was not found, so the shareware runs instead.
+ * Called by main.js once the packs are mounted.
+ *
+ * @param {boolean} mounted whether an owned pack was mounted
+ * @returns {boolean} false when the chosen game's pack was missing (the line was printed)
+ */
+export function GameSelection_ReportStart( mounted ) {
+
+	const choice = GameSelection_Current();
+	if ( choice !== null && OWNED_PACKS[ choice ].length > 0 && ! mounted ) {
+
+		const line = `game: ${choice} was chosen, but its pack was not found (${OWNED_PACKS[ choice ].join( ' or ' )}); the shareware is running\n`;
+		Con_Printf( line ); Sys_Printf( line ); // the game's console and the browser's (as main.js reports its packs)
+		return false;
+
+	}
+	return true;
+
+}
+
 export function GameSelection_Init() {
 
 	Cmd_AddCommand( 'game', () => {
