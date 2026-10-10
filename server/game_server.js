@@ -8,7 +8,7 @@ import { Sys_Printf, Sys_FloatTime } from '../src/engine/common/sys.js';
 import { COM_FetchPak, COM_AddPack, COM_SetLooseFileBasePath, COM_EnsureFile } from '../src/engine/common/pak.js';
 import { Cbuf_Init, Cbuf_Execute, Cmd_Init } from '../src/engine/common/cmd.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
-import { deathmatch, samelevel, noexit, sys_ticrate } from '../src/engine/server/host.js';
+import { deathmatch, samelevel, noexit, sys_ticrate, Host_InitRuleCvars } from '../src/engine/server/host.js';
 import { cls, ca_dedicated } from '../src/engine/client/client.js';
 import { Memory_Init } from '../src/engine/common/zone.js';
 import { PR_Init } from '../src/engine/progs/pr_edict.js';
@@ -209,6 +209,7 @@ async function Host_Init_Server() {
 	Mod_Init();
 	R_InitTextures();
 	SV_Init();
+	Host_InitRuleCvars(); // skill, deathmatch, coop and the rest, as Host_InitLocal registers them (card [44m])
 
 	// Set deathmatch mode - this ensures respawn() doesn't restart the entire server
 	// We set the value directly on the imported cvar object (same object that sv_main.js uses)

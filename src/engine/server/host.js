@@ -24,7 +24,7 @@ import { Sys_Printf, Sys_Error, Sys_FloatTime } from '../common/sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString, hipnotic, rogue } from '../common/common.js';
 import { svc_print, svc_disconnect } from '../common/protocol.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults, Cvar_StorageWritable } from '../common/cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults, Cvar_StorageWritable } from '../common/cvar.js';
 import { SV_SeamlessFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
 import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
@@ -192,6 +192,20 @@ export function Host_ClearMemory() {
 
 }
 
+/**
+ * Registers the game's rule cvars, which the server and its QuakeC read: `fraglimit`, `timelimit`, `teamplay`,
+ * `samelevel`, `noexit`, `skill`, `deathmatch`, `coop`, `pausable` and `temp1`. Called by `Host_InitLocal`, and by
+ * the room server (server/game_server.js), which runs no Host_Init (card [44m]: without them, `SV_SpawnServer`'s
+ * `Cvar_SetValue( 'skill' )` printed "variable skill not found" and the room ignored its skill). One already
+ * registered is left as it is.
+ */
+export function Host_InitRuleCvars() {
+
+	for ( const v of [ fraglimit, timelimit, teamplay, samelevel, noexit, skill, deathmatch, coop, pausable, temp1 ] )
+		if ( ! Cvar_FindVar( v.name ) ) Cvar_RegisterVariable( v );
+
+}
+
 /*
 =======================
 Host_InitLocal
@@ -208,22 +222,10 @@ function Host_InitLocal() {
 	Cvar_RegisterVariable( sys_ticrate );
 	Cvar_RegisterVariable( serverprofile );
 
-	Cvar_RegisterVariable( fraglimit );
-	Cvar_RegisterVariable( timelimit );
-	Cvar_RegisterVariable( teamplay );
-
-	Cvar_RegisterVariable( samelevel );
-	Cvar_RegisterVariable( noexit );
+	Host_InitRuleCvars();
 
 	Cvar_RegisterVariable( developer );
 
-	Cvar_RegisterVariable( skill );
-	Cvar_RegisterVariable( deathmatch );
-	Cvar_RegisterVariable( coop );
-
-	Cvar_RegisterVariable( pausable );
-
-	Cvar_RegisterVariable( temp1 );
 	Cvar_RegisterVariable( campaign );
 	Cvar_RegisterVariable( sv_cheats );
 	Cvar_RegisterVariable( scr_usekfont );
