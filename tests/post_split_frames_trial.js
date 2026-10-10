@@ -95,7 +95,7 @@ async function run() {
 		const start = [ 480, - 352, 88 + 22 ]; // info_player_start, at eye height
 		const outside = [ 160, 3044, 0 ]; // a leaf the map marks loud with both water and sky ambience
 		const water = pointIn( - 3, outside ), slime = pointIn( - 4, outside );
-		for ( const [ label, view ] of [
+		const VIEWS = [
 			[ 'Start, looking out', { origin: start, angles: [ 0, 90, 0 ] } ],
 			[ 'The open air, up at the sky', { origin: outside, angles: [ - 35, 90, 0 ] } ],
 			[ 'Over the water', { origin: outside, angles: [ 45, 90, 0 ] } ],
@@ -104,7 +104,17 @@ async function run() {
 			[ 'Flashlight', { origin: start, angles: [ 10, 180, 0 ], flashlight: 1 } ],
 			[ 'Depth of field', { origin: start, angles: [ 0, 90, 0 ], dof: 0.6 } ],
 			[ 'Split screen', { origin: start, angles: [ 0, 90, 0 ], split: true } ]
-		] ) frames.push( await draw( label, view ) );
+		];
+		// a first pass over every view starts what is made in the background (normal maps, probes); once it has settled,
+		// the measured pass draws them all again, so a busy machine cannot change what is measured
+		for ( const [ label, view ] of VIEWS ) await draw( label, view );
+		views.replaceChildren();
+		for ( let settled = 0, last = ''; settled < 3; ) {
+			await new Promise( r => setTimeout( r, 500 ) );
+			const now = JSON.stringify( await draw( 'settling', VIEWS[ 0 ][ 1 ] ) ); views.replaceChildren();
+			settled = now === last ? settled + 1 : 0; last = now;
+		}
+		for ( const [ label, view ] of VIEWS ) frames.push( await draw( label, view ) );
 	} catch ( error ) { errors.push( { thrown: String( error.stack || error ) } ); }
 	finally { renderer.setRenderTarget( null ); button.disabled = false; }
 	const result = { status: errors.length === 0 && frames.length === 8 && frames.every( f => f.glError === 0 && f.passes > 0 ) ? 'PASS' : 'FAIL', frames, errors,
