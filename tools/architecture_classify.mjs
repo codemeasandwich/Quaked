@@ -32,6 +32,8 @@ const RULES = [
 	[ 'newer/render', '44e', /^(gl_post|gl_portal|gl_normals)\.js$/ ],
 	// the normal-map maths, split from gl_normals (made in [44g] for debt D1c)
 	[ 'newer/render', '44g', /^normal_math\.js$/ ],
+	// the post pipeline's stages, split from gl_post (card [44h], debt D3)
+	[ 'newer/render', '44h', /^r_post_\w+\.js$/ ],
 	[ 'engine/render', '44d', /^(gl_\w+|glquake|render|vid|r_part|lit)\.js$/ ],
 	// the client's one ray-cast helper (made in [44g] for debt D6)
 	[ 'engine/render', '44g', /^r_trace\.js$/ ],
