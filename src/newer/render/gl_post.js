@@ -1,8 +1,14 @@
 /**
  * @module newer/render/gl_post
  *
- * The HDR pipeline: emissive surfaces, sun and light shafts, relighting, water and its looks, bloom, depth of field
- * and the final composite.
+ * The HDR pipeline's sequencer: it begins, binds and finishes each frame, calling its stages in order, and re-exports
+ * their public names so its importers are unchanged. Split by stage in card [44h] (debt D3): - `r_post_config.js` the
+ * cvars and tunables; `r_post_state.js` the state the stages share; - `r_post_gbuffer.js` emissive glow, surface
+ * detail and the G-buffer compile patch; - `r_post_lights.js` the light database and the frame's light selection; -
+ * `r_post_sky.js` the sky's light and pattern and the sun; `r_post_liquids.js` the pools, their looks and probes; -
+ * `r_post_shadows.js` the sun occluder and the frame's shadows; - `r_post_shaders.js` the passes' GLSL;
+ * `r_post_targets.js` dynamic resolution, targets and pass materials; - `r_post_composite.js` the shafts, bloom,
+ * composite and present passes and the title demo's split.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -10,14 +16,11 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
- * Its G-buffer patch on `THREE.Material.prototype.onBeforeCompile` is installed by `R_PostInstallGBufferPatch`, from
- * `R_Init` and `R_PostBegin` (it ran as the module loaded until [44g], debt D10).
+ * The G-buffer patch on `THREE.Material.prototype.onBeforeCompile` (r_post_gbuffer.js) is installed by
+ * `R_PostInstallGBufferPatch`, from `R_Init` and `R_PostBegin` (it ran as the module loaded until [44g], debt D10).
  */
-import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
-import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL, waterWave, R_WaveTexture, R_WaterWavesLive } from './r_waves.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
-import { R_ArchSurfaceHidden } from './r_archframe.js';
-import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFrame, POWERUP_SHROUD_COMPOSITE_GLSL, POWERUP_COOKIE_GLSL } from './r_powerups.js';
+import { R_DrawPowerupFire } from './r_powerups.js';
 // HDR lighting pipeline: emissive surfaces, sun and light shafts, relighting
 // and bloom.
 //
@@ -44,54 +47,32 @@ import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFram
 import * as THREE from 'three';
 import { cl } from '../../engine/client/client.js';
 import { PowerVisionMode } from '../gameplay/powervision_state.js';
-import { R_PowerVisionRender, R_PowerVisionReset } from './r_powervision.js';
-import { VISION_UV_PACK_GLSL } from './vision_coordinates.js';
-import { R_QuadVisionActive, R_QuadVisionRender, R_QuadVisionReset } from './r_quadvision.js';
-import { R_IntroLoadingHolding } from '../ui/r_demoloading.js';
-import { cvar_t } from '../../engine/common/cvar.js';
-import { R_ParseEntityLump } from './gl_portal.js';
-import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from '../../engine/render/gl_model.js';
-import { R_NormalMapFor } from './gl_normals.js';
-import {R_NormalPrepare,R_NormalPreparationNeeded} from '../assets/normal_prepare.js';
-import { R_PatchRockShader, ROCK_PARALLAX_GLSL, ROCK_NORMAL_GLSL } from './r_rockshader.js';
-import { rockUniforms } from './r_rockfield.js';
+import { R_PowerVisionReset } from './r_powervision.js';
+import { R_QuadVisionActive, R_QuadVisionReset } from './r_quadvision.js';
 import { GL_SetForceLinear } from '../../engine/render/glquake.js';
 import { R_AliasReceiverPass } from './r_newerskins.js';
-import { R_ActiveWeaponSurface } from './r_weapon_surface.js';
-import { R_ScreenDropsUpdate } from './r_screendrops.js';
-import { R_TeleportFx } from './r_teleportfx.js';
-import { R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights } from './r_rendveil.js';
-import { R_RendVeilOptics, R_RendVeilOpticsShutdown } from './r_rendveil_optics.js';
-import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
-import { R_DofFocus, R_DofCircle, R_DofFar } from './r_dof.js';
-import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
-import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, R_WaterProbeReadiness, WATER_PROBE_LIFT } from './r_waterprobe.js';
-import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures, r_newer_shadows } from '../mode.js';
-import { R_DemonSurfaceData } from './r_demonrelief.js';
-import { R_DemonBakePrepare, R_DemonBakeSurface } from '../assets/r_demonbakes.js';
-import { PointShadowAtlas, R_CreateShadowCaptureMaterial, POINT_SHADOW_GLSL, POINT_SHADOW_SLOTS, SPOT_WORLD_SHADOW_GLSL, NEAR_SUN_SHADOW_GLSL } from './r_pointshadows.js';
-import { r_heightshadows, heightShadowUniforms, R_HeightShadowFrame, R_HeightShadowScope, HEIGHT_SHADOW_GLSL, HEIGHT_MASK_DECODE_GLSL } from './r_heightshadows.js';
-import { r_hdr, r_pointshadows, r_bloom, r_heathaze, r_mist, r_water_look, r_reflect, r_reflect_screen, r_pillars, r_cloudspeed, r_bounce, r_volumetric, r_newbright, r_newcontrast, r_caustics, r_newdark, r_newedges, r_dynres, r_fps_target, MAX_VOLUME_LIGHTS, SUN_SHADOW_LAYER, EMITTER_LIGHT_GAIN, SURF_DRAWSKY, SURF_DRAWTURB, EMISSIVE_BOOST, LAVA_BOOST, LAVA_PULSE, LIGHT_GAIN, SCATTER, LIGHT_FLOOR, LIGHT_SURFACE, SPOT_POWER, MAX_RAY, SUN_COLOR, PILLAR_MAX, PILLAR_DEFAULT, SHAFT_GAIN, SUN_SCATTER, SUN_SURFACE, SUN_SURFACE_COLOR, SATURATION, VIBRANCE, CONTRAST, HDR_EXPOSURE, OUTDOOR_EXPOSURE, OUTDOOR_BLOOM_THRESHOLD, OUTDOOR_BLOOM, CAUSTIC, BUMP_LIGHT, BLOOM_LEVELS, SUN_SHADOW_SIZE, SUN_SHADOW_EXTENT, SUN_SHADOW_DEPTH } from './r_post_config.js';
+import { R_RendVeilOpticsShutdown } from './r_rendveil_optics.js';
+import { R_PerfStage } from './r_perf.js';
+import { R_FlashlightBeam } from './r_flashlight.js';
+import { R_AnimSetNewer, R_AnimSetLighting, r_newer_lighting, r_newer_normals, r_newer_water } from '../mode.js';
+import { R_HeightShadowScope } from './r_heightshadows.js';
+import { r_hdr, r_newdark } from './r_post_config.js';
 export { r_hdr, r_pointshadows, r_bloom, r_heathaze, r_mist, r_water_look, r_reflect, r_reflect_screen, r_pillars, r_cloudspeed, r_bounce, r_volumetric, r_newbright, r_newcontrast, r_caustics, r_newdark, r_newedges, r_dynres, r_fps_target, MAX_VOLUME_LIGHTS, SUN_SHADOW_LAYER, EMITTER_LIGHT_GAIN } from './r_post_config.js';
-import { postState, lightCurve, classicLook, lightingLook, R_PostSetUnderwater, R_PostActive, R_WaterActive } from './r_post_state.js';
+import { postState, lightCurve, lightingLook } from './r_post_state.js';
 export { classicLook, R_PostSetUnderwater, R_PostActive, R_WaterActive } from './r_post_state.js';
-import { MAX_LIQUID_REGIONS, R_GetLiquidLinks, R_IsWaterTextureName, LIQUID_LOOKS, R_LiquidLookIndex, R_LiquidOpacity, R_GetLavaRegions, R_GetLiquidRegions, R_WaterProbesFrame, R_WaterStartupStatus, liquidKind, liquidMapLook, liquidLookGLSL, R_PostLiquidsReset, R_PostAddLiquidLink, R_PostSetLiquidRegions } from './r_post_liquids.js';
 export { MAX_LIQUID_REGIONS, R_GetLiquidLinks, R_IsWaterTextureName, LIQUID_LOOKS, R_LiquidLookIndex, R_LiquidOpacity, R_GetLavaRegions, R_GetLiquidRegions, R_WaterProbesFrame, R_WaterStartupStatus } from './r_post_liquids.js';
-import { QUAD_VERTEX, VOLUME_FRAGMENT, BLOOM_PREFILTER_FRAGMENT, BLOOM_DOWN_FRAGMENT, BLOOM_UP_FRAGMENT, COMPOSITE_FRAGMENT, DOF_FRAGMENT, PRESENT_FRAGMENT } from './r_post_shaders.js';
-import { R_RegisterGlow, R_GlowBoostForTexture, R_PostInstallGBufferPatch, R_RegisterDetail, R_RefreshDetail, pulseLava, setGlowActive, setDetailActive } from './r_post_gbuffer.js';
+import { R_PostInstallGBufferPatch, pulseLava, setGlowActive, setDetailActive } from './r_post_gbuffer.js';
 export { R_RegisterGlow, R_GlowBoostForTexture, R_PostInstallGBufferPatch, R_RegisterDetail, R_RefreshDetail } from './r_post_gbuffer.js';
-import { skyState, sunFromAngles, buildSkyCookie, cookieNorm, cookieMean, cookieDepth, R_AnalyseSky, R_SkyBrightness, R_GetSkyInfo, R_PostNoteSky, R_MapHasSky } from './r_post_sky.js';
+import { skyState, R_PostSkyUniforms } from './r_post_sky.js';
 export { R_AnalyseSky, R_SkyBrightness, R_GetSkyInfo, R_PostNoteSky, R_MapHasSky } from './r_post_sky.js';
-import { R_BuildWorldLights, R_GetWorldLights, R_FireFlicker, R_PostSetPortraitLight, R_SelectWorldLights, selectLights, _selected, R_PostSelectedCount, R_PostSetSelectedCount } from './r_post_lights.js';
+import { selectLights, _selected, R_PostSelectedCount, R_PostSetSelectedCount, R_PostLightUniforms } from './r_post_lights.js';
 export { R_BuildWorldLights, R_GetWorldLights, R_FireFlicker, R_PostSetPortraitLight, R_SelectWorldLights } from './r_post_lights.js';
-import { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseShadowCaster, R_PostOccluder, R_PostRenderSunShadow, R_PostShadowsFrame } from './r_post_shadows.js';
+import { R_PostRenderSunShadow, R_PostShadowsFrame } from './r_post_shadows.js';
 export { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseShadowCaster } from './r_post_shadows.js';
-import { R_DynResScale, R_PostSupported, dyn, dynResUpdate, makeRT, createPipeline, disposeTargets, ensureTargets, runPass } from './r_post_targets.js';
+import { R_PostSupported, dyn, dynResUpdate, createPipeline, disposeTargets, ensureTargets } from './r_post_targets.js';
 export { R_DynResScale, R_PostSupported } from './r_post_targets.js';
-import { R_PostVolumeBloom, R_PostComposite, R_PostSetSplit } from './r_post_composite.js';
+import { R_PostVolumeBloom, R_PostComposite } from './r_post_composite.js';
 export { R_PostSetSplit } from './r_post_composite.js';
-import { R_PostLightUniforms } from './r_post_lights.js';
-import { R_PostSkyUniforms } from './r_post_sky.js';
 
 // Unlit material colour is retained separately from baked lighting. A surface
 // without a light source need not be lifted merely to recover its colour later.
