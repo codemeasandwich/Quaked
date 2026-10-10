@@ -80,33 +80,12 @@ import { R_StoreEfrags } from './gl_refrag.js';
 import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, R_GetLiquidLinks, r_newdark } from '../common/hooks.js'; // installed by newer/render/gl_post.js
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial, R_BoxInPortalReceiver } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { R_MarkLights, R_LightPointValue } from './gl_rlight.js';
-import {
-	r_refdef, r_origin, vpn, vright, vup
-} from './render.js';
-import {
-	BACKFACE_EPSILON, VERTEXSIZE, PLANE_X, PLANE_Y, PLANE_Z,
-	SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, SURF_UNDERWATER,
-	SURF_DRAWTILED, MAXLIGHTMAPS,
-	modelorg, r_entorigin, currententity, r_worldentity,
-	r_visframecount, r_framecount, frustum,
-	c_brush_polys, c_alias_polys,
-	currenttexture, mirror, mirrortexturenum, mirror_plane,
-	d_lightstylevalue, r_world_matrix,
-	r_norefresh, r_drawentities, r_drawworld, r_fullbright,
-	r_lightmap, r_dynamic, r_wateralpha, r_mirroralpha, r_novis,
-	gl_texsort, gl_flashblend, gl_keeptjunctions,
-	R_CullBox, scene, gldepthmin, gldepthmax,
-	r_viewleaf, r_oldviewleaf,
-	inc_r_visframecount, set_r_framecount, set_currententity,
-	inc_c_brush_polys, set_currenttexture,
-	set_r_oldviewleaf, set_mirror, set_mirror_plane
-} from './gl_rmain.js';
-import {
-	DotProduct, VectorCopy, VectorSubtract, VectorAdd, VectorNormalize,
-	AngleVectors, Length
-} from '../common/mathlib.js';
+import { r_refdef, r_origin } from './render.js';
+import { VERTEXSIZE, PLANE_X, PLANE_Y, PLANE_Z, SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, SURF_UNDERWATER, MAXLIGHTMAPS, modelorg, currententity, r_worldentity, r_visframecount, r_framecount, mirror, mirrortexturenum, d_lightstylevalue, r_fullbright, r_dynamic, r_wateralpha, r_mirroralpha, r_novis, gl_texsort, gl_flashblend, gl_keeptjunctions, R_CullBox, scene, r_viewleaf, r_oldviewleaf, inc_r_visframecount, set_r_framecount, set_currententity, inc_c_brush_polys, set_currenttexture, set_r_oldviewleaf, set_mirror, set_mirror_plane } from './gl_rmain.js';
+import { DotProduct, VectorCopy, VectorAdd, VectorNormalize } from '../common/mathlib.js';
 import { Mod_LeafPVS, Mod_PointInLeaf, solidskytexture, alphaskytexture } from './gl_model.js';
 import { realtime } from '../common/host_state.js';
+import { worldState, R_EnsureWorldGroup } from './gl_rsurf_state.js';
 
 //============================================================================
 // Constants
@@ -248,29 +227,6 @@ let currentmodel = null;
 let nColinElim = 0;
 
 // Three.js geometry cache for BSP surfaces
-// The world's groups: `group` the `quake_world` THREE.Group of the world BSP (made on first use by
-// R_EnsureWorldGroup), `renderGroup` the group the surface renderers add liquid and sky meshes to (the world's group
-// while the world draws). One object, so every part of the world renderer reads and sets the same two.
-const worldState = { group: null, renderGroup: null };
-
-/**
- * The world's `quake_world` group (`worldState.group`), made on first use and added to the scene. Called by
- * `R_DrawWorld` each frame and by `R_BuildWorldMeshes` at a map load.
- *
- * @returns {THREE.Group} the world's group
- */
-function R_EnsureWorldGroup() {
-
-	if ( ! worldState.group ) {
-
-		worldState.group = new THREE.Group();
-		worldState.group.name = 'quake_world';
-		if ( scene ) scene.add( worldState.group );
-
-	}
-	return worldState.group;
-
-}
 let worldMeshesBuilt = false; // true after R_BuildWorldMeshes has run
 
 // PVS visibility using BatchedMesh for efficient rendering
