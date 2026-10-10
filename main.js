@@ -36,6 +36,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh } from './src/engine/common/game_catalogue.js';
+import { GameSelection_OwnedPacks } from './src/engine/common/game_selection.js';
 
 async function main() {
 
@@ -58,7 +59,9 @@ async function main() {
 		const startupPack=COM_FetchOptionalPak(STARTUP_PACK.file,STARTUP_PACK.file).catch(error=>{Sys_Printf('Startup pack not loaded: '+error.message);return null;});
 		// Local owned content supplies missing native files only. Never replace
 		// this checkout's programs, palette or established startup worlds.
-		const ownedPack = COM_FetchOptionalPak( 'resources/id1/pak0.pak', 'resources/id1/pak0.pak' );
+		// Which owned pack, if any, comes from the game chosen (card [34c]): none for the shareware, so nothing more is
+		// downloaded; the full Quake's from games/Quake/ or resources/id1/ (the first found) otherwise, as before.
+		const ownedPack = ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
 		const [ sharewarePak, newerPak, hudPak, fullGamePak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack ] );
 		const pak0 = sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){

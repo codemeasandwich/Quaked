@@ -44,6 +44,7 @@ import { skill, coop, teamplay, deathmatch, svs } from '../server/server.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from '../render/gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { COM_FindFile } from '../common/pak.js';
+import { GameSelection_SavePrefix } from '../common/game_selection.js';
 
 /*
 ==============================================================================
@@ -1296,7 +1297,7 @@ function M_Cheats_Touch( vx, vy ) {
 
 let load_cursor = 0;
 const MAX_SAVEGAMES = 12;
-const SAVE_STORAGE_PREFIX = 'quake_save_';
+// each game keeps its own saves (card [34c]): see GameSelection_SavePrefix
 
 const m_filenames = [];
 const loadable = [];
@@ -1332,7 +1333,7 @@ function M_ScanSaves() {
 		let saveData;
 		try {
 
-			saveData = storage.getItem( SAVE_STORAGE_PREFIX + 's' + i );
+			saveData = storage.getItem( GameSelection_SavePrefix() + 's' + i );
 
 		} catch ( e ) {
 

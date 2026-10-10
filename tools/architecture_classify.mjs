@@ -18,7 +18,7 @@ if ( g.unscanned?.length || g.unexpected?.length ) { console.error( 'the graph r
 const RULES = [
 	[ 'newer/render/rend_veil', '44e', /^rend_veil\// ],
 	// (hooks: the neutral module whose hooks the engine calls and Newer installs, made in [44g] for D1b)
-	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol|hooks|host_state|key_dest|game_catalogue)\.js$/ ],
+	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol|hooks|host_state|key_dest|game_catalogue|game_selection)\.js$/ ],
 	// the QuakeC built-ins call the server throughout, as WinQuake's pr_cmds.c does: they are the server's (moved in [44g], D1a)
 	[ 'engine/server', '44g', /^pr_cmds\.js$/ ],
 	[ 'engine/progs', '44b', /^(pr_comp|pr_edict|pr_exec|progs|progdefs)\.js$/ ],

@@ -58,6 +58,7 @@ import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../common/hook
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 import { set_noclip_anglehack } from '../common/host_state.js';
+import { GameSelection_SavePrefix } from '../common/game_selection.js';
 
 // noclip_anglehack lives in a leaf (card [44g], D1a), so the client reads it without importing the host
 export { noclip_anglehack, set_noclip_anglehack } from '../common/host_state.js';
@@ -917,7 +918,7 @@ function Host_Kick_f() {
 }
 
 const SAVEGAME_VERSION = 5;
-const SAVE_STORAGE_PREFIX = 'quake_save_';
+// each game keeps its own saves (card [34c]): see GameSelection_SavePrefix
 
 /*
 ===============
@@ -1053,7 +1054,7 @@ function Host_Savegame_f() {
 
 	try {
 
-		localStorage.setItem( SAVE_STORAGE_PREFIX + name, saveData );
+		localStorage.setItem( GameSelection_SavePrefix() + name, saveData );
 
 	} catch ( e ) {
 
@@ -1092,7 +1093,7 @@ function Host_Loadgame_f() {
 
 	try {
 
-		saveData = localStorage.getItem( SAVE_STORAGE_PREFIX + name );
+		saveData = localStorage.getItem( GameSelection_SavePrefix() + name );
 
 	} catch ( e ) {
 

@@ -129,6 +129,7 @@ export { realtime, host_frametime, host_framecount, set_host_frametime } from '.
 // the server's rule cvars live with the server state (server.js), so it need not import the host (card [44g], D1a)
 import { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 import { GameCatalogue_Init } from '../common/game_catalogue.js';
+import { GameSelection_Init } from '../common/game_selection.js';
 export { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 
 /*
@@ -297,6 +298,7 @@ export async function Host_Init( parms ) {
 	Key_Init();
 	Con_Init();
 	GameCatalogue_Init(); // the `games` command: which games are installed (card [34b])
+	GameSelection_Init(); // the `game` command: which game runs (card [34c])
 
 	// Wire up the real console print functions so all modules use the actual console
 	Con_SetPrintFunctions( RealConPrintf, RealConDPrintf );
