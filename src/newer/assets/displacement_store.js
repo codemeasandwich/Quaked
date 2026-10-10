@@ -6,7 +6,7 @@
  *
  * Types: exported classes `DisplacementStore`.
  *
- * State: no mutable exports.
+ * State: no mutable exports; browser storage.
  *
  * Errors: throws at 17 places; catches at 8 places.
  *

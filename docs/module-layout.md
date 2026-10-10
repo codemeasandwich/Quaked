@@ -17,7 +17,7 @@ server's copies and the rest) are closed in [44g], after the moves. See the base
 | `src/newer/gameplay` | Newer Game's server-side rules and the records they save | [44b] | yes |
 | `src/engine/net`, `src/engine/client`, `src/engine/sound`, `src/platform` | Networking, the client, sound, browser input, touch and WebXR | [44c] | yes |
 | `src/engine/render`, `src/newer/render` (models and animation) | The GL renderer port; poses, skins, held weapons, bodies, level windows | [44d] | yes |
-| `src/newer/render` (the rest), `src/newer/assets` (prepared data) | Effects, materials, post-processing, portals, vision; bakes and their formats | [44e] | not yet |
+| `src/newer/render` (the rest), `src/newer/assets` (prepared data) | Effects, materials, post-processing, portals, vision; bakes and their formats | [44e] | yes |
 | `src/newer/ui`, `src/newer/sound`, `src/newer/assets` (preparation) | Menu, loading, HUD, Bestiary; ambient music; asset preparation | [44f] | not yet |
 
 Every module's folder is decided by `tools/architecture_classify.mjs` (by its name, so a module already moved is placed
@@ -64,8 +64,14 @@ What the tool cannot do, and is checked by hand at each move:
 
 * Prose that mentions a path (a provenance note, the docs). [44b] updated `newer/effects/shotgun/provenance.json` by
   hand; the docs that cite `src/` paths are one pass in [44g].
-* Source read through a path built at run time, such as `tests/unseen_gun_test.js` ( `'../src/' + f` ): once its module
-  moves, it reads the adapter's one line. Move those reads with the module ([44d]: `gl_rmain`, [44e]: `r_powervision`).
+* Source read through a path built at run time: `tests/unseen_gun_test.js` ( `'../src/' + f` ) and
+  `tests/normal_inputs_trial.js` (which hashes the sources it reads into its receipt). Once a module moves, they would read
+  the adapter's one line; their paths are updated with the move ([44d]: `gl_rmain`; [44e]: `r_powervision`, and the
+  trial's whole list).
+* A module URL built from a name inside a moved module ( `new URL( '../' + … , import.meta.url )` ): it resolves one
+  folder too deep once the module is deeper ([44e]: `r_fireball`; [44f]: `r_bestiary`, `r_folio`, `r_playerface`).
+* Generated modules (`*_bakes.js` and others): their generator writes the module, so the generator writes the `@module`
+  header too, or a re-bake would drop it ([44e]: the four bake tools).
 * Records that hash a module's source (the rock manifest and `tests/rockfield_bakes_test.js`, the displacement manifest):
   the moved module's new header changes its hash, so those records are rebuilt with it ([44d], [44e]).
 * The owner's local files, which git does not track: in the owner's checkout, `src/normal_bundle.js`,
@@ -113,6 +119,27 @@ weapons, the axe's halves, level windows, shells).
 * Unchanged: both architecture tools pass; 206 modules (and 107 adapters); the same cycles; the room server and the page
   load 198 and 202 modules. In the browser: Newer Game and Classic start, the menu answers, and the face trial draws
   grunts, ogres and knights with their faces and keeps all 23 through save and load.
+
+## [44e]: what moved
+
+71 modules: 46 into `newer/render` (with `rend_veil/`, 8), 17 into `newer/assets` (prepared data and its formats).
+
+* 703 literal paths in 290 files were rewritten, among them query imports, the quad vision trial's source fetch, the
+  displacement trial's imports through a helper, the bake tools' paths, and the keys of the rock and displacement manifests
+  and the local-only registry (`docs/distribution-local-only.json`).
+* By hand: `r_fireball.js`'s module URL built from a name; `unseen_gun_test` and `normal_inputs_trial` source paths; the
+  summoning provenance's `src/rend_veil` folder.
+* The four bake tools write the new `@module` header into the modules they generate (checked: what each writes equals
+  the module's header).
+* Recorded source hashes: the rock manifest's four sources and the displacement manifest's two moved ones were re-hashed
+  (code unchanged; `tests/rockfield_bakes_test.js` regenerates a real tile for every chart against the bakes and passes).
+  Each manifest says why in `sourcesNote`.
+* Headers: every moved module's facts were regenerated with multi-name declarations split (`gl_rmain.js` gained `gly`,
+  `glwidth`, `glheight`) and the origin private file system counted as browser storage.
+* Unchanged: both architecture tools pass; 206 modules (and 178 adapters); the same cycles; the room server and the page
+  load 198 and 202 modules. In the browser: Newer Game and Classic start; a fired rocket loads the fireball's textures from
+  their new relative URL; the face trial keeps 23 seeds through save and load; the GPU water trial passes (its toxic vapour
+  check failed once while the full suite loaded the machine, and passed twice on a rerun).
 
 ## Checks for each move
 

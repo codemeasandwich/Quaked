@@ -8,10 +8,10 @@
  *
  * State: mutable exports `r_worldentity`, `r_cache_thrash`, `currententity`, `r_visframecount`, `c_brush_polys`,
  * `c_alias_polys`, `envmap`, `currenttexture`, `particletexture`, `playertextures`, `mirror`, `mirror_plane`,
- * `r_viewleaf`, `r_oldviewleaf`, `r_notexture_mip`, `gldepthmin`, `gldepthmax`, `glx`, `scene`, `camera`;
- * module-level variables `_entityMeshesInScene`, `_entityMeshesThisFrame`, `_gunPlacedFrame`, `_fireTexture`,
- * `_fireMaterial`, `_fireGeometry`, `_shadowFrame`, `_shadowCount`, `polyBlendMesh`, `polyBlendScene`,
- * `polyBlendCamera`, `_classicRestore` and 8 more; 5 module-level collections (Map/Set).
+ * `r_viewleaf`, `r_oldviewleaf`, `r_notexture_mip`, `gldepthmin`, `gldepthmax`, `glx`, `gly`, `glwidth`, `glheight`,
+ * `scene`, `camera`; module-level variables `_entityMeshesInScene`, `_entityMeshesThisFrame`, `_gunPlacedFrame`,
+ * `_fireTexture`, `_fireMaterial`, `_fireGeometry`, `_shadowFrame`, `_shadowCount`, `polyBlendMesh`,
+ * `polyBlendScene`, `polyBlendCamera`, `_classicRestore` and 8 more; 5 module-level collections (Map/Set).
  *
  * Errors: catches at 3 places.
  */
