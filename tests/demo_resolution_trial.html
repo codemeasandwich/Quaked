@@ -71,8 +71,8 @@
 <pre id="resolution-evidence" style="white-space:pre-wrap;margin:6px 0 0"></pre></section>
 <script type="module">
 import * as THREE from 'three';
-await import('../main.js');
-const vid=await import('../src/vid.js');
+await import('./main.js');
+const vid=await import('./src/vid.js');
 while(vid.renderer==null)await new Promise(resolve=>setTimeout(resolve,10));
 const liveRenderer=vid.renderer;
 // Three.js installs these methods on the instance; prototype wrappers are
@@ -95,7 +95,7 @@ liveRenderer.render=function(scene,camera){
  }
  return originalRender.call(this,scene,camera);
 };
-const {Cvar_SetValue}=await import('../src/cvar.js');
+const {Cvar_SetValue}=await import('./src/cvar.js');
 document.querySelector('#full-resolution').onclick=()=>Cvar_SetValue('r_dynres',0);
 document.querySelector('#dynamic-resolution').onclick=()=>Cvar_SetValue('r_dynres',1);
 </script>

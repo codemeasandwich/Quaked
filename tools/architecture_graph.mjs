@@ -299,10 +299,9 @@ const unscanned = onDisk.filter( f => ! src.includes( f ) );
 const isFile = p => { try { return fs.statSync( path.join( ROOT, p ) ).isFile(); } catch { return false; } };
 // (an import must name a file; a URL may name a folder)
 const missing = edges.filter( e => ! e.to.endsWith( '/' ) && text[ e.to ] === undefined && ! ( e.kinds.some( k => /^(static|export|dynamic)/.test( k ) ) ? isFile( e.to ) : fs.existsSync( path.join( ROOT, e.to ) ) ) );
-// known: deliberate absence checks, the owner's local inputs (ignored files), and the three trial pages whose inline imports
-// climb above their <base href="../"> (D7), by page and target
-const D7_PAGES = new Set( [ 'tests/demo_resolution_trial.html', 'tests/enemy_height_trial.html', 'tests/wizard_texture_trial.html' ] );
-const KNOWN_MISSING = [ e => e.from === 'tests/axe_original_test.js' && /^newer\/weapons\/(v_axe\.json|axe)$/.test( e.to ), e => /^resources\/id1\/pak0\.pak$/.test( e.to ), e => /^(fieldlab-fx-3d-updated|arc-weapons-wall-canvas-shotgun|rockfield-v1\.\d\.0)\.html$/.test( e.to ), e => D7_PAGES.has( e.from ) && /^\.\.\/(src\/[\w-]+|main)\.js$/.test( e.to ) ];
+// known: deliberate absence checks and the owner's local inputs (ignored files), by file and target. (D7's three trial
+// pages, whose inline imports climbed above their <base href="../">, import ./src/… since card [44b].)
+const KNOWN_MISSING = [ e => e.from === 'tests/axe_original_test.js' && /^newer\/weapons\/(v_axe\.json|axe)$/.test( e.to ), e => /^resources\/id1\/pak0\.pak$/.test( e.to ), e => /^(fieldlab-fx-3d-updated|arc-weapons-wall-canvas-shotgun|rockfield-v1\.\d\.0)\.html$/.test( e.to ) ];
 const unexpected = missing.filter( e => ! KNOWN_MISSING.some( known => known( e ) ) );
 
 const out = { root: ROOT, files: files.length, scannedRootFiles: files.map( rel ).filter( f => ! f.includes( '/' ) ), src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing, unscanned, unexpected,

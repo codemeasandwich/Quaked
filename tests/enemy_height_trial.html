@@ -8,8 +8,8 @@ const status=document.querySelector('#status');let checks=0;
 const trialControls=[...document.querySelectorAll('header button,header select,header input')];trialControls.forEach(c=>c.disabled=true);
 function check(value,label){if(!value)throw new Error(label);checks++;}
 try {
- await import('../src/gl_rsurf.js');
- const THREE=await import('three'),pak=await import('../src/pak.js'),models=await import('../src/gl_model.js'),mesh=await import('../src/gl_mesh.js'),skins=await import('../src/r_newerskins.js'),anim=await import('../src/r_anim.js'),post=await import('../src/gl_post.js'),cvars=await import('../src/cvar.js'),vid=await import('../src/vid.js');
+ await import('./src/gl_rsurf.js');
+ const THREE=await import('three'),pak=await import('./src/pak.js'),models=await import('./src/gl_model.js'),mesh=await import('./src/gl_mesh.js'),skins=await import('./src/r_newerskins.js'),anim=await import('./src/r_anim.js'),post=await import('./src/gl_post.js'),cvars=await import('./src/cvar.js'),vid=await import('./src/vid.js');
  const archive=pak.COM_LoadPackFile('pak0.pak',await (await fetch('pak0.pak')).arrayBuffer());pak.COM_AddPack(archive);vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);models.Mod_Init();
  const index=await (await fetch('newer/enemies/index.json',{cache:'no-store'})).json();skins.R_NewerSetIndex(index);
  for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,post.r_newdark,post.r_newedges,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_enemies])if(!cvars.Cvar_FindVar(v.name))cvars.Cvar_RegisterVariable(v);
@@ -70,7 +70,7 @@ try {
   evidence.headSwitchChecks=results;evidence.checks=checks;document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);
  }
  async function compareAuthoring(){
-  const kernel=await import('../src/gl_normals.js'),model=entities.get('shambler');
+  const kernel=await import('./src/gl_normals.js'),model=entities.get('shambler');
   const material=skins.R_NewerAliasMaterial(model.entity,model.entity.model.name,true);
   authoringUniforms=uniforms(material);authoredNormal=authoringUniforms.qrNormal.value;
   const image=new Image();image.src='docs/evidence/height-authoring-baseline/shambler-custom.webp';await image.decode();
@@ -87,7 +87,7 @@ try {
   document.querySelector('#authoring').onclick=()=>{usePrevious=!usePrevious;authoringUniforms.qrNormal.value=usePrevious?previousNormal:authoredNormal;document.querySelector('#authoring').textContent='Height authoring: '+(usePrevious?'previous':'new');};
  }
  async function verifyCatalog(){
-  const kernel=await import('../src/gl_normals.js');const nativeResults=[],customResults=[];
+  const kernel=await import('./src/gl_normals.js');const nativeResults=[],customResults=[];
   for(const [key,{entity,header}] of entities){
    const texture=header.gl_texturenum[0][0],material=skins.R_EnemyAliasMaterial(texture,entity.model.name,true,0,0),u=uniforms(material);
    const spec=index.nativeHeights[key][0][0],image=new Image();image.src='newer/enemies/'+spec.file+'?v='+index.version;await image.decode();
