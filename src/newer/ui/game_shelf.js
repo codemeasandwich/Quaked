@@ -291,9 +291,10 @@ export async function GameShelf_Show( games, options = {} ) {
 		if ( box.kind === 'add' ) { addFolder(); return; }
 		if ( ! box.playable ) { note = box.kind === 'folder' ? 'Playing a game from a folder is not built yet' : 'Not playable yet' + ( box.reason ? ': ' + box.reason : '' ); place(); return; }
 		try { ( options.remember ?? ( () => {} ) )( box.id ); } catch { /* the URL still opens it */ }
+		// the game's URL first: if going there fails, the shelf stays to choose again
+		try { open( GameShelf_Url( box.id ) ); } catch ( error ) { note = 'The game could not be opened: ' + ( error?.message ?? error ); place(); return; }
 		resolveChoice( box.id );
 		shelf?.close();
-		open( GameShelf_Url( box.id ) );
 
 	};
 	const addFolder = async () => {
