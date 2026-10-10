@@ -247,8 +247,9 @@ hidden.srcLiterals = [ ...new Map( ( hidden.srcLiterals || [] ).map( l => [ l.fi
 	const server = Object.entries( text ).filter( ( [ f ] ) => f.startsWith( 'server/' ) && f.endsWith( '.ts' ) ).flatMap( ( [ f, s ] ) => [ ...s.matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(/g ) ].map( m => ( { file: f, function: m[ 1 ] } ) ) );
 	hidden.serverReimplements = server.filter( d => declared.has( d.function ) );
 	hidden.serverEnginePrefixed = server.filter( d => /^(SV_|Host_|MSG_|Mod_|COM_)/.test( d.function ) );
-	// D5's check is by file, since a name check cannot show a copy is gone (a renamed copy keeps its body): the files holding
-	// the engine-logic copies, and how many functions each still declares ( function x(, or const x = ( … ) => / function )
+	// D5's check is by file, since a name check cannot show a copy is gone (a renamed copy, or a class method, keeps its
+	// body): the files holding the engine-logic copies, null once deleted (the check), else how many functions each declares
+	// ( function x(, or const x = ( … ) => / function ) for information
 	hidden.serverCopyFiles = Object.fromEntries( [ 'server/host_server.ts', 'server/mod_server.ts', 'server/pak_server.ts' ].map( f => [ f, text[ f ] === undefined ? null : ( text[ f ].match( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s*\w+\s*\(|(?:^|\n)\s*(?:export\s+)?(?:const|let|var)\s+\w+\s*(?::[^=\n]+)?=\s*(?:async\s*)?(?:function\b|\([^)]*\)\s*(?::[^=\n]+)?=>|\w+\s*=>)/g ) || [] ).length ] ) ); }
 hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.writes, g ] ) ).values() ];
 
