@@ -767,12 +767,14 @@ let loadname = '';
 
 let mod_novis = new Uint8Array( MAX_MAP_LEAFS / 8 );
 
-const MAX_MOD_KNOWN = 512;
+// the most model names a page can know (WinQuake's 512): a large map names its brush submodels *1 up to *285 and more,
+// and the cache keeps every map's for the page's life; the entries are made as they are needed (card [34f])
+const MAX_MOD_KNOWN = 4096;
 const mod_known = [];
 let mod_numknown = 0;
 
-// Initialize mod_known array
-for ( let i = 0; i < MAX_MOD_KNOWN; i ++ )
+// Initialize mod_known array (WinQuake's 512 up front; more as needed, up to MAX_MOD_KNOWN)
+for ( let i = 0; i < 512; i ++ )
 	mod_known[ i ] = new model_t();
 
 // Alias model globals
@@ -1322,6 +1324,7 @@ export function Mod_FindName( name ) {
 
 		if ( mod_numknown === MAX_MOD_KNOWN )
 			Sys_Error( 'mod_numknown == MAX_MOD_KNOWN' );
+		if ( i === mod_known.length ) mod_known.push( new model_t() );
 		mod_known[ i ].name = name;
 		mod_known[ i ].needload = true;
 		mod_numknown ++;

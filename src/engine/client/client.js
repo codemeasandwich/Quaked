@@ -28,7 +28,8 @@ export const MAX_BEAMS = 24;
 export const MAX_EFRAGS = 16384;
 export const MAX_TEMP_ENTITIES = 64; // lightning bolts, etc
 export const MAX_STATIC_ENTITIES = 4096; // torches, etc (QuakeSpasm's limit)
-export const MAX_VISEDICTS = 256;
+// QuakeSpasm's 4096 (WinQuake's 256): a large map shows more at once than 256 (card [34f]); the list holds references only
+export const MAX_VISEDICTS = 4096;
 
 export const MAX_MAPSTRING = 2048;
 export const MAX_DEMOS = 8;

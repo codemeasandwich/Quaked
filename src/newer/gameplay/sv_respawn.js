@@ -9,7 +9,7 @@
  * State: no mutable exports; module-level variables `guardReady`, `guardSkill`, `respawnLanded`, `respawnEntryYaw`,
  * `travelInventory`, `worldEpoch`; 5 module-level collections (Map/Set).
  *
- * Errors: throws at 5 places; catches at 4 places.
+ * Errors: throws at 7 places; catches at 4 places.
  *
  * Outside a local Newer Game (`SV_RespawnAllowed`) a death is Quake's own.
  */
@@ -29,6 +29,7 @@ import {Respawn_NoticeSet,Respawn_NoticeClear,RESPAWN_MINUS,RESPAWN_PLUS} from '
 import {Mod_ForName} from '../../engine/render/gl_model.js';
 import {COM_FindFile} from '../../engine/common/pak.js';
 import {sv_gravity,SV_CheckWater} from '../../engine/server/sv_phys.js';
+import {SV_ModelLimit,SV_SoundLimit} from '../../engine/server/sv_main.js';
 import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from '../ui/respawn_motion.js';
 import {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo} from './respawn_record.js';
 import {IT_AXE,IT_KEY1,IT_KEY2,IT_INVISIBILITY,IT_INVULNERABILITY,IT_QUAD,IT_SUIT,STAT_AMMO,STAT_SHELLS,STAT_NAILS,STAT_ROCKETS,STAT_CELLS,STAT_TOTALMONSTERS} from '../../engine/common/quakedef.js';
@@ -233,7 +234,8 @@ const GUARD_ROOM={models:8,sounds:24},GUARD_HULL=[[-32,-32,-24],[32,32,64]],GUAR
 const GUARDS=new Map([['monster_demon1','progs/demon.mdl'],['monster_shambler','progs/shambler.mdl']]);
 let guardReady=new Set(),guardSkill=1;
 const guardClass=()=>{if(!(sv_respawnguard.value>0))return null;return guardSkill===1?'monster_demon1':guardSkill>=2?'monster_shambler':null;};
-const freeSlots=a=>a.reduce((n,v)=>n+(v?0:1),0);
+// free precache slots within the server's own limit (256 each in protocol 15, card [34f]), not the whole array
+const freeSlots=(a,limit)=>a.slice(0,limit).reduce((n,v)=>n+(v?0:1),0);
 // the game's spawn function on entity e, allowed to precache what was reserved at load; keepTotal puts total_monsters back (the
 // throwaway at load), otherwise the new monster stays counted
 function runSpawn(e,f,keepTotal){
@@ -293,9 +295,9 @@ export function SV_RespawnReserveGuards(){
  guardReady=new Set();if(!localContext())return;guardSkill=Math.round(Cvar_VariableValue('skill'));
  for(const [name,model] of GUARDS){
   // (a monster the level already has is already reserved, and costs nothing)
-  const f=ED_FindFunction(name);if(!f||(!sv.model_precache.includes(model)&&(freeSlots(sv.model_precache)<GUARD_ROOM.models||freeSlots(sv.sound_precache)<GUARD_ROOM.sounds)))continue;
+  const f=ED_FindFunction(name);if(!f||(!sv.model_precache.includes(model)&&(freeSlots(sv.model_precache,SV_ModelLimit())<GUARD_ROOM.models||freeSlots(sv.sound_precache,SV_SoundLimit())<GUARD_ROOM.sounds)))continue;
   let e=null;const count=sv.num_edicts;
-  try{e=ED_Alloc();e.v.classname=ED_NewString(name);runSpawn(e,f,true);guardReady.add(name);}catch(error){/* not reserved: no guard of this kind here */}
+  try{e=ED_Alloc();e.v.classname=ED_NewString(name);runSpawn(e,f,true);guardReady.add(name);}catch(error){if(/^Host_Error/.test(error?.message))throw error;/* not reserved: no guard of this kind here; a Host_Error (no free edicts) has already ended the game, so it goes on up */}
   // wipe the throwaway completely (its fields are the spawn function's) and take a slot past the end of the list back out of it
   finally{if(e){if(!e.free)ED_Free(e);new Uint8Array(e._fieldBuffer).fill(0);if(e.index>=count)sv.num_edicts=count;}}
  }
@@ -342,7 +344,7 @@ function spawnGuard(p,s){
   // the client learns the new total (it only hears it at signon otherwise)
   MSG_WriteByte(sv.reliable_datagram,svc_updatestat);MSG_WriteByte(sv.reliable_datagram,STAT_TOTALMONSTERS);MSG_WriteLong(sv.reliable_datagram,pr_global_struct.total_monsters);
   return e;
- }catch(error){if(e&&!e.free)ED_Free(e);return null;}
+ }catch(error){if(/^Host_Error/.test(error?.message))throw error;if(e&&!e.free)ED_Free(e);return null;} // a Host_Error has ended the game: on up
 }
 
 function contact(p,state,s){

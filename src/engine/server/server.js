@@ -15,9 +15,9 @@
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_LIGHTSTYLES, MAX_DATAGRAM, MAX_MSGLEN, entity_state_t } from '../common/quakedef.js';
 
-/** The signon's size: WinQuake's 8192 (some 550 static entities), or for the large-map protocol 60000, sent in one
- * message within MAX_MSGLEN (card [34f]). */
-export const SIGNON_SIZE_STANDARD = 8192, SIGNON_SIZE = 60000;
+/** The signon's size: WinQuake's 8192 (some 550 static entities), or for the large-map protocol 48000, sent in one
+ * message within MAX_MSGLEN and leaving room beside it in the loopback's 65536-byte buffer (card [34f]). */
+export const SIGNON_SIZE_STANDARD = 8192, SIGNON_SIZE = 48000;
 import { sizebuf_t } from '../common/common.js';
 import { MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP } from '../common/protocol.js';
 import { cvar_t } from '../common/cvar.js';

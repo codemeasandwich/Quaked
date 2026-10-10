@@ -11,7 +11,8 @@ browser, with no engine or page errors:
 - the final level (mgend);
 - its four deathmatch arenas.
 
-Level Select offers them under each map's own name.
+Level Select lists 18 of them, under each map's own name. The other two, mge4arena and mge4m2b, are reached from
+inside their levels, as the pack intends.
 
 ## Why it did not before
 
@@ -52,10 +53,14 @@ this port's own server and client speak it.
 | models (`SV_ModelLimit`) | 256 | 2048 |
 | sounds (`SV_SoundLimit`) | 256 | 2048 |
 | edicts (`sv.max_edicts`) | 600 | 1024 |
-| signon | 8192 bytes | 60000 bytes |
+| signon | 8192 bytes | 48000 bytes |
 
-- **Edicts:** 1024 is the most the delta packets' 10-bit entity numbers can name. The precache arrays hold 2048 of
-  each.
+- **Edicts:** 1024 is the most the delta packets' 10-bit entity numbers can name.
+- **Models and sounds:** 2048 is the most the shorts may index, and the precache arrays hold that many. The serverinfo
+  carries every name in one reliable message of at most 64000 bytes, so how many fit in practice depends on the
+  names' lengths. 2048 of each was not tried; mge2m2's 361 models are the most any map here needs.
+- **Signon:** 48000 bytes leaves the prespawn message (the signon plus the serverinfo's other messages) room within
+  64000.
 - **The overflow message** says that a larger map needs `sv_protocol 1015`.
 - **Newer Game's level travel** adds its resources within the same limits.
 - **Corpses:** Newer Game's axe-cut corpses now cap themselves against `sv.max_edicts`. They used the MAX_EDICTS
@@ -73,6 +78,11 @@ signon (sent in one message at prespawn) fit. The client's receive buffer was al
   When the table is full it is now a Host_Error, which ends the game and leaves the page able to load another map.
   It was a Sys_Error, which took the page down.
 - **A signon overflow** (card [34c]) was already a Host_Error.
+- **What the client draws and knows.** The visible-entity list holds 4096 (WinQuake's 256, QuakeSpasm's 4096), and the
+  model cache 4096 names (WinQuake's 512), made as they are needed. A large map names hundreds of brush submodels,
+  and the cache keeps every map's for the page's life.
+- **Newer Game's respawn guards** count free precache slots within the server's own limit, not the whole array. A
+  Host_Error raised while one is spawned is no longer swallowed: the game ends, as it would without the guard.
 
 ## Checks
 
@@ -85,6 +95,11 @@ signon (sent in one message at prespawn) fit. The client's receive buffer was al
   - a baseline with model 300 and frame 260 under the large-map protocol;
   - the same message one byte per field under protocol 15;
   - the limits per protocol.
+- `tests/large_protocol_native_test.js`: on the actual server at protocol 1015, `SV_StartSound` with sound 300,
+  `SV_WriteClientdataToMessage` with weapon model 290 and frame 270, and the baselines `SV_SpawnServer` writes, each
+  parsed by the real client and read to its exact end (a sentinel message follows each). A protocol-15 client misreads
+  the same sound, which shows the sentinel catches a wrong width. The delta packets and playerinfo are covered by the
+  browser trials, not by a unit test.
 - `tests/give_mission_native_test.js` adds a native case. On the actual server, the edict limit is 600 under protocol
   15 and 1024 under 1015, and a full table is a Host_Error at exactly the limit.
 - `tests/game_catalogue_test.js`, `game_selection_test.js` and `game_shelf_test.js`: Dimension of the Machine is
@@ -92,7 +107,8 @@ signon (sent in one message at prespawn) fit. The client's receive buffer was al
 
 ## What remains
 
-- **Delta packets** still carry 10-bit entity numbers (at most 1024 edicts) and at most 512 entities per local packet.
-  No map here needs more.
+- **Delta packets** still carry 10-bit entity numbers (at most 1024 edicts). A local packet carries at most 512
+  entities (`MAX_PACKET_ENTITIES_LOCAL`); past that the server leaves the rest out of that frame. How many entities
+  these maps show at once was not measured, so it is not known whether any frame reaches 512.
 - **The add-ons** (Arcane Dimensions, Quoth, Malice, X-Men, Abyss of Pandemonium) are still "not playable yet".
   Arcane Dimensions calls hundreds of FTE/DarkPlaces QuakeC extensions.

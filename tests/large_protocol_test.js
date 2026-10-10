@@ -1,7 +1,8 @@
 // This port's large-map protocol (card [34f]): with sv_protocol 1015 a server writes model, frame and sound numbers as
 // shorts, and the client, told by the serverinfo, reads them so; protocol 15 is byte for byte as before. Through the
 // server's own writer (SV_WriteIndex) and the real client parser (an svc_spawnbaseline with model 300, frame 260).
-// The precache limits follow the protocol: 256 each in protocol 15, 2048 in the large one.
+// The precache limits follow the protocol: 256 each in protocol 15, 2048 in the large one; the model cache holds more
+// than WinQuake's 512 names.
 import '../src/newer/install.js';
 const { sizebuf_t, SZ_Alloc, MSG_WriteByte, MSG_WriteShort, MSG_WriteCoord, MSG_WriteAngle, COM_SetNetMessage } = await import( '../src/engine/common/common.js' );
 const { svc_spawnbaseline, PROTOCOL_VERSION, PROTOCOL_LARGE } = await import( '../src/engine/common/protocol.js' );
@@ -44,4 +45,12 @@ Deno.test( 'the precache limits follow the protocol: 256 in protocol 15, 2048 in
 	sv.protocol = PROTOCOL_LARGE;
 	same( SV_ModelLimit(), 2048, 'models in the large-map protocol' ); same( SV_SoundLimit(), 2048, 'sounds likewise' );
 	sv.protocol = PROTOCOL_VERSION;
+} );
+
+Deno.test( 'the model cache knows more than WinQuake\'s 512 names: a large map\'s submodels on top of other maps\'', async () => {
+	const { Mod_FindName } = await import( '../src/engine/render/gl_model.js' );
+	const names = Array.from( { length: 900 }, ( _, i ) => 'maps/large' + ( i >> 8 ) + '.bsp*' + i );
+	const models = names.map( n => Mod_FindName( n ) );
+	same( new Set( models ).size, 900, 'each name its own entry, past 512' );
+	same( Mod_FindName( names[ 700 ] ), models[ 700 ], 'and found again by name' );
 } );

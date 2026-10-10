@@ -154,7 +154,7 @@ export const SURF_UNDERWATER = 0x80;
 // max dlights
 export const MAX_DLIGHTS = 32;
 export const MAXLIGHTMAPS = 4;
-export const MAX_VISEDICTS = 256;
+export const MAX_VISEDICTS = 4096; // as client.js's (card [34f])
 
 //============================================================================
 // Globals from gl_rmain.c
