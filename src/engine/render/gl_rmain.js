@@ -29,7 +29,7 @@ import { R_NewerHudPreload, R_NewerHudStatus } from '../../newer/ui/r_newerhud.j
 import { r_powerups, R_PowerupBegin, R_PowerupSeen, R_PowerupEnd, R_PowerupClear } from '../../newer/render/r_powerups.js';
 import { R_AxeCorpsesFrame, R_ClearAxeCorpses } from '../../newer/render/r_axecorpses.js';
 import { SV_AxeEntitySuppressed } from '../../newer/gameplay/sv_axecut.js';
-import { R_PointShadowStatus, R_WaterStartupStatus } from '../../newer/render/gl_post.js';
+import { R_PointShadowStatus, R_WaterStartupStatus, R_PostInstallGBufferPatch } from '../../newer/render/gl_post.js';
 import { R_DemonReliefStatus, R_ClassicArchVisibility } from './gl_rsurf.js';
 // Ported from: WinQuake/gl_rmain.c -- main GL renderer
 // + WinQuake/glquake.h -- GL definitions
@@ -2029,6 +2029,7 @@ function R_Mirror() {
 export function R_Init() {
 
 	Con_Printf( 'R_Init' );
+	R_PostInstallGBufferPatch(); // every material drawn into the HDR target writes its G-buffer attachments (gl_post.js)
 
 	// Initialize r_worldentity here (deferred from module scope to avoid circular dep crash)
 	r_worldentity = new entity_t();

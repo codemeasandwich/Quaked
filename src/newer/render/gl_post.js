@@ -12,7 +12,8 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
- * Patches `THREE.Material.prototype.onBeforeCompile` as it loads (baseline debt D10, for [44g]).
+ * Its G-buffer patch on `THREE.Material.prototype.onBeforeCompile` is installed by `R_PostInstallGBufferPatch`, from
+ * `R_Init` and `R_PostBegin` (it ran as the module loaded until [44g], debt D10).
  */
 import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
 import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL, waterWave, R_WaveTexture, R_WaterWavesLive } from './r_waves.js';
@@ -602,7 +603,13 @@ function patchGBufferShader( shader ) {
 
 }
 
-THREE.Material.prototype.onBeforeCompile = patchGBufferShader;
+// Installed by the renderer's start-up (R_Init) and again by every R_PostBegin, before anything is drawn into the HDR
+// target; idempotent. (It ran as this module loaded until card [44g]: debt D10.)
+export function R_PostInstallGBufferPatch() {
+
+	THREE.Material.prototype.onBeforeCompile = patchGBufferShader;
+
+}
 
 function applyDetail( material ) {
 
@@ -3400,6 +3407,7 @@ R_PostBind selects.
 ================
 */
 export function R_PostBegin( renderer, enabled, width, height ) {
+	R_PostInstallGBufferPatch();
 	heightFrameSnapshot = null; R_HeightShadowScope( false );
 
 	// The shared targets serve three independent visual options. Turning lighting

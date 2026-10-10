@@ -201,6 +201,17 @@ cvars and file system. `r_anim.js` keeps the animation (`R_AnimEnabled` now asks
 * The graph now counts 207 modules (`mode.js` is new) and 7 adapters; the room server and the page load 199 and 203
   modules (both reach `mode.js`). The cycles are unchanged.
 
+## [44g], step 3: no engine work as modules load (debt D10)
+
+* `gl_post.js`'s G-buffer patch on `THREE.Material.prototype.onBeforeCompile` is installed by
+  `R_PostInstallGBufferPatch()`, which `R_Init` and every `R_PostBegin` call (idempotent). One test that composes a
+  material without the renderer's start-up installs it the same way.
+* `sv_main.js` gives seamless travel the engine's model functions in `SV_SpawnServer`, before a level exists (in `SV_Init`
+  at first: seven suites that build a server without `SV_Init` showed that was too late for them).
+* Neither statement remains at the top of its module; the remaining top-level statements fill fixed tables.
+* In the browser the Newer and Classic frames are identical to before (mean differences 0.003 and 0), the face trial and
+  the GPU water trial pass; the full suite is back to its baseline.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

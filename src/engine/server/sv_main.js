@@ -11,7 +11,8 @@
  *
  * Errors: calls `Sys_Error` (fatal) at 9 places.
  *
- * As it loads, it registers engine model functions into seamless travel (`SV_SeamlessUseModels`, baseline debt D10).
+ * `SV_SpawnServer` gives seamless travel the engine's model functions (`SV_SeamlessUseModels`); until [44g] (debt
+ * D10) that ran as the module loaded.
  */
 import { SV_RespawnPrecache, SV_SetRespawnLandedHook, SV_SetRespawnEntryHook, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from '../../newer/gameplay/sv_respawn.js';
 // Ported from: WinQuake/sv_main.c -- server main program
@@ -85,7 +86,6 @@ import { R_NewerGame } from '../../newer/mode.js';
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from '../common/pak.js';
 import { cls, ca_dedicated } from '../client/client.js';
 
-SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf, Mod_ForName } );
 import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
 import { SV_Physics, SV_SetState, SV_SetCallbacks,
 	sv_maxvelocity, sv_gravity, sv_nostep, sv_friction, sv_edgefriction,
@@ -1709,6 +1709,10 @@ This is called at the start of each level
 ================
 */
 export function SV_SpawnServer( server ) {
+
+	// the engine's model functions, for seamless travel's views of other levels and its crossings (given here, before a
+	// level exists, not as this module loads: card [44g], debt D10)
+	SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf, Mod_ForName } );
 
 	// Map commands can follow r_hdr in the same command batch, before a render
 	// frame has synchronized the asset mode. Choose geometry from this game mode.
