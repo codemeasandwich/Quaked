@@ -1,3 +1,4 @@
+import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Native game verification with an explicitly staged player viewpoint.
 // Native hull/LOS queries validate the point; NPC model, AI, health, inventory
 // and asset readiness remain unchanged. This is not traversal qualification.
@@ -5,7 +6,7 @@ const panel=document.querySelector('section'),report=document.querySelector('#re
 for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(type,e=>e.stopPropagation());
 addEventListener('error',e=>errors.push(e.message));addEventListener('unhandledrejection',e=>errors.push(String(e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,25));
-const [cmd,menu,keys,skins,loading,vars,anim,bestiary,progs]=await Promise.all(['engine/common/cmd','engine/client/menu','engine/client/keys','newer/render/r_newerskins','newer/ui/r_demoloading','engine/common/cvar','newer/render/r_anim','newer/ui/r_bestiary','engine/progs/progs'].map(n=>import('../src/'+n+'.js')));
+const [cmd,menu,keys,skins,loading,vars,anim,bestiary,progs]=await Promise.all(['engine/common/cmd','engine/client/menu','engine/client/keys','newer/render/r_newerskins','newer/ui/r_demoloading','engine/common/cvar','newer/mode','newer/ui/r_bestiary','engine/progs/progs'].map(n=>import('../src/'+n+'.js')));
 const {sv}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/engine/client/client.js'),renderApi=await import('../src/engine/render/gl_rmain.js');const {scene}=renderApi,renderer=window.renderer,world=await import('../src/engine/server/world.js');
 let drawReceipt=null,draws=0,observer=new WeakSet(),movement=null,stopped=false,stage=null,captureArmed=false,captureReady=false;
 const sourceHash='81966deede395272b220ae664ccdbf1c78fc5db79b56d19eb9b45dc2f807e407';
