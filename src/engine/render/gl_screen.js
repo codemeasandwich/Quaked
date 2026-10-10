@@ -243,8 +243,8 @@ SCR_CenterPrint
  * characters a second. Drawn each frame by `SCR_UpdateScreen`, while the game has the keys, centred at 35% of the
  * screen height for up to four lines, else from y = 48, 40 characters a line at most.
  *
- * @param {string} str the message; lines split at '\n'. Only the first 1023 characters are kept (the line count for
- *   centring is taken over the whole string)
+ * @param {string} str the message; lines split at '\n'. Only the first 1023 characters are kept, and the lines are
+ *   counted in those
  */
 export function SCR_CenterPrint( str ) {
 
@@ -252,11 +252,11 @@ export function SCR_CenterPrint( str ) {
 	scr_centertime_off = scr_centertime.value;
 	scr_centertime_start = _cl.time;
 
-	// count the number of lines for centering
+	// count the number of lines for centering, in the text kept (card [44m])
 	scr_center_lines = 1;
-	for ( let i = 0; i < str.length; i ++ ) {
+	for ( let i = 0; i < scr_centerstring.length; i ++ ) {
 
-		if ( str[ i ] === '\n' )
+		if ( scr_centerstring[ i ] === '\n' )
 			scr_center_lines ++;
 
 	}
@@ -1013,7 +1013,8 @@ SCR_UpdateScreen
  * clears the renderer and the 2D overlay, recomputes the refresh window when the field of view, view size, touch
  * inset or Newer mode changed (or `vid.recalc_refdef` is set), moves the console, renders the 3D view
  * (`V_RenderView`), then draws the 2D layer in WinQuake's order: tiles around a reduced view; then either a modal
- * dialog, the welcome loading screen, the loading plaque, the intermission tally, the finale, or the normal crosshair,
+ * dialog, the welcome loading screen, the loading plaque, the intermission tally, the finale, a cutscene's text alone
+ * (`cl.intermission` 3), or the normal crosshair,
  * icons, pause plaque, centre print, status bar, console and menu; then the FPS counter, respawn notice and bestiary
  * encounter. It updates the palette blend and takes a screenshot requested by the `screenshot` command after the
  * frame is drawn.
@@ -1133,6 +1134,10 @@ export function SCR_UpdateScreen() {
 
 		Sbar_FinaleOverlay();
 		SCR_CheckDrawCenterString();
+
+	} else if ( _cl.intermission === 3 && key_dest === key_game ) {
+
+		SCR_CheckDrawCenterString(); // a cutscene shows its text only: no status bar or crosshair (WinQuake; card [44m])
 
 	} else {
 
