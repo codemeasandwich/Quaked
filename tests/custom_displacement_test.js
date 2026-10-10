@@ -9,15 +9,15 @@ import {DemonBakeDecode,DemonBakeEncode} from '../src/newer/assets/demon_bake_fo
 import {nativeStorage,recordingLocks} from './helpers/opfs_native_fixture.mjs';
 import {customModel,addCustomSurface,readyCustom} from './helpers/custom_displacement_fixture.mjs';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import {r_hdr} from '../src/newer/render/gl_post.js';
 import {R_IntroReadinessChecks} from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),turn=()=>new Promise(r=>setTimeout(r,0));let serial=0;
 async function until(fn,label){for(let i=0;i<500&&!fn();i++)await turn();check(fn(),label);}
-async function fixture(run){const root=await fs.mkdtemp(join(tmpdir(),'quaked-custom-cache-')),storage=nativeStorage(root),locks=recordingLocks(),previous=Object.getOwnPropertyDescriptor(globalThis,'navigator'),classic=anim.R_ClassicPassActive();if(!vars.Cvar_FindVar(r_hdr.name))vars.Cvar_RegisterVariable(r_hdr);const hdr=r_hdr.string;vars.Cvar_SetValue('r_hdr',1);anim.R_AnimSetClassicPass(false);Object.defineProperty(globalThis,'navigator',{configurable:true,value:{storage,locks}});const modules=[];
+async function fixture(run){const root=await fs.mkdtemp(join(tmpdir(),'quaked-custom-cache-')),storage=nativeStorage(root),locks=recordingLocks(),previous=Object.getOwnPropertyDescriptor(globalThis,'navigator'),classic=mode.R_ClassicPassActive();if(!vars.Cvar_FindVar(r_hdr.name))vars.Cvar_RegisterVariable(r_hdr);const hdr=r_hdr.string;vars.Cvar_SetValue('r_hdr',1);mode.R_AnimSetClassicPass(false);Object.defineProperty(globalThis,'navigator',{configurable:true,value:{storage,locks}});const modules=[];
  const fresh=async()=>{const api=await import('../src/newer/assets/r_demonbakes.js?integrated-custom-'+(++serial));modules.push(api);return api;};
  try{await run({root,storage,locks,fresh,files:async()=>{try{return(await fs.readdir(join(root,'quaked-displacement-v1'))).filter(n=>n.endsWith('.json'));}catch(e){if(e.code==='ENOENT')return[];throw e;}}});}
- finally{modules.forEach(m=>m.R_DemonBakeRelease());await turn();if(previous)Object.defineProperty(globalThis,'navigator',previous);else delete globalThis.navigator;vars.Cvar_Set('r_hdr',hdr);anim.R_AnimSetClassicPass(classic);await fs.rm(root,{recursive:true,force:true});}
+ finally{modules.forEach(m=>m.R_DemonBakeRelease());await turn();if(previous)Object.defineProperty(globalThis,'navigator',previous);else delete globalThis.navigator;vars.Cvar_Set('r_hdr',hdr);mode.R_AnimSetClassicPass(classic);await fs.rm(root,{recursive:true,force:true});}
 }
 Deno.test('unknown source generation commits exact geometry to disk and a fresh module/process reuses it without runtime sculpt generation',()=>fixture(async f=>{
  const model=customModel(),api=await f.fresh();await readyCustom(api,model);same(api.R_DemonBakeStatus().source,'generated-and-stored','first unknown source really persisted');same((await f.files()).length,1,'one durable identity manifest');const original=api.R_DemonBakeSurface(model.surfaces[0]).data,expected=Array.from(new Uint32Array(original.positions.buffer));api.R_DemonBakeRelease();

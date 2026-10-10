@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { r_flashlight } from '../src/newer/render/r_flashlight.js';
 import { r_rockfield } from '../src/newer/render/r_rockfield.js';
@@ -17,7 +17,7 @@ import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 const W=640,H=400,report=document.querySelector('#report'),button=document.querySelector('#run'),views=document.querySelector('#views');
 const errors=[],checks=[];
 window.addEventListener('error',e=>errors.push({runtime:e.message}));window.addEventListener('unhandledrejection',e=>errors.push({rejection:String(e.reason)}));let renderer,world,actor,draws=0,composite;
-const styles=new Array(64).fill(264),options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_bounce,post.r_volumetric,post.r_pointshadows,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,anim.r_newer_textures,anim.r_newer_enemies,anim.r_newer_shadows,r_rockfield,r_newer_weapons,r_flashlight];
+const styles=new Array(64).fill(264),options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_bounce,post.r_volumetric,post.r_pointshadows,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,mode.r_newer_textures,mode.r_newer_enemies,mode.r_newer_shadows,r_rockfield,r_newer_weapons,r_flashlight];
 const verify=(value,name,evidence={})=>checks.push({passed:!!value,name,...evidence});
 const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('');
 function draw(label,{origin=[1312,1550,-365],angles=[35,90,0],directional=true,classic=false,actorY=1648,volume=0,actorShadows=true,oneFixture=null,isotropic=false,held=true}={}){

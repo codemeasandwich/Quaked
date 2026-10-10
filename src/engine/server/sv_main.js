@@ -81,7 +81,7 @@ import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from '.
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from '../progs/pr_edict.js';
 import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from '../progs/progs.js';
 import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled, SV_SeamlessCloseReturn, SV_SeamlessEntryYaw } from '../../newer/gameplay/sv_seamless.js';
-import { R_NewerGame } from '../../newer/render/r_anim.js';
+import { R_NewerGame } from '../../newer/mode.js';
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from '../common/pak.js';
 import { cls, ca_dedicated } from '../client/client.js';
 

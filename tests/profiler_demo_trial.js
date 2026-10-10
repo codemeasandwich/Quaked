@@ -4,7 +4,7 @@ const controls = document.querySelector( 'section' );
 for ( const name of [ 'pointerdown', 'mousedown', 'mouseup', 'keydown', 'keyup' ] ) controls.addEventListener( name, e => e.stopPropagation() );
 await import( '../main.js' );
 while ( ! window.renderer || ! window.Cbuf_AddText ) await new Promise( resolve => setTimeout( resolve, 20 ) );
-const perf = await import( '../src/newer/render/r_perf.js' ), anim = await import( '../src/newer/render/r_anim.js' ), split = await import( '../src/newer/render/r_demosplit.js' );
+const perf = await import( '../src/newer/render/r_perf.js' ), newerMode = await import( '../src/newer/mode.js' ), split = await import( '../src/newer/render/r_demosplit.js' );
 const cvar = await import( '../src/engine/common/cvar.js' ), menu = await import( '../src/engine/client/menu.js' ), draw = await import( '../src/engine/render/gl_draw.js' ), keys = await import( '../src/engine/client/keys.js' );
 const { Cbuf_AddText, Cmd_ExecuteString, Cmd_AddCommand } = await import( '../src/engine/common/cmd.js' );
 // Read the mutable frame counter through its live module namespace.
@@ -22,7 +22,7 @@ renderer.render = function ( scene, camera ) {
 	if ( profiling && current ) {
 		current.firstProfileSettings ||= settings();
 		if ( mainCamera ) {
-			if ( anim.R_ClassicPassActive() ) current.classic ++;
+			if ( newerMode.R_ClassicPassActive() ) current.classic ++;
 			else if ( target?.depthTexture && target.textures?.length >= 2 ) {
 				current.enhanced ++;
 				const count = ( seenFrames.get( hostRuntime.host_framecount ) || 0 ) + 1; seenFrames.set( hostRuntime.host_framecount, count ); current.maximumMainDrawsPerFrame = Math.max( current.maximumMainDrawsPerFrame, count );
@@ -31,7 +31,7 @@ renderer.render = function ( scene, camera ) {
 		} else current.auxiliary ++;
 		if ( current.bounded && current.enhanced >= 180 && ! pendingStop ) { pendingStop = true; Cbuf_AddText( 'perfstop\n' ); }
 	} else if ( mainCamera && cls.demoplayback && split.R_DemoSplitActive() ) {
-		if ( anim.R_ClassicPassActive() ) evidence.idleClassic ++;
+		if ( newerMode.R_ClassicPassActive() ) evidence.idleClassic ++;
 		else if ( target?.depthTexture && target.textures?.length >= 2 ) evidence.idleEnhanced ++;
 	}
 	const result = originalRender.call( this, scene, camera );

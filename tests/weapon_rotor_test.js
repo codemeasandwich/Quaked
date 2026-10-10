@@ -4,7 +4,7 @@
 // entity, the game's frame as the pose, the game's time).
 import * as THREE from 'three';
 import { R_WeaponRotorFrame, R_WeaponRotorState, ROTOR } from '../src/newer/render/r_weapons.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const near = ( a, b, eps, label ) => { if ( ! ( Math.abs( a - b ) <= eps ) ) throw new Error( `${label}: ${a} != ${b}` ); };

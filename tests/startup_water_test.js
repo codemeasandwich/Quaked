@@ -1,7 +1,7 @@
 // Public startup scheduling with real Three cube cameras. The recording render
 // endpoint counts complete six-face captures; it does not assert GPU pixels.
 await import('../src/engine/render/gl_rsurf.js');
-const THREE=await import('three'),post=await import('../src/newer/render/gl_post.js'),anim=await import('../src/newer/render/r_anim.js'),vars=await import('../src/engine/common/cvar.js'),probes=await import('../src/newer/render/r_waterprobe.js');
+const THREE=await import('three'),post=await import('../src/newer/render/gl_post.js'),mode = await import('../src/newer/mode.js'),vars=await import('../src/engine/common/cvar.js'),probes=await import('../src/newer/render/r_waterprobe.js');
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 function fixture(fn){
  const clock=Object.getOwnPropertyDescriptor(performance,'now');let now=600000;Object.defineProperty(performance,'now',{configurable:true,value:()=>now});
@@ -34,7 +34,7 @@ Deno.test('failed intro water capture stays pending, restores caller state and r
  renderer.fail=false;probes.R_WaterProbeUpdate(renderer,scene,camera,regions,showAll,regions,{initializing:true});same(renderer.draws.length,7,'one failed draw then complete six-face retry at same clock');same(probes.R_WaterProbeReadiness(camera,regions).pending,1,'only actual successfully captured pool becomes ready');
 }));
 Deno.test('actual post water entry waits for final intro assets while retaining readiness and respecting ordinary and disabled paths',()=>fixture(f=>{
- const options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_reflect,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water];for(const v of options)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const saved=options.map(v=>v.string);
+ const options=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_reflect,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water];for(const v of options)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const saved=options.map(v=>v.string);
  const leaf={contents:-1,visframe:0},model={entities:'',firstmodelsurface:0,nummodelsurfaces:1,numleafs:1,nodes:[leaf],leafs:[{contents:-2},leaf],surfaces:[{flags:0,plane:{normal:[0,0,1],dist:0},texinfo:{texture:{name:'*water1'}},polys:{numverts:4,verts:[[-128,-128,0,0,0],[128,-128,0,1,0],[128,128,0,1,1],[-128,128,0,0,1]],next:null}}]};
  try{
   for(const v of options)vars.Cvar_SetValue(v.name,0);for(const name of ['r_hdr','r_reflect','r_newer_water'])vars.Cvar_SetValue(name,1);post.R_BuildWorldLights(model);post.R_PostBegin(f.renderer,true,320,200);

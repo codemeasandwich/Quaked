@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import * as power from '../src/newer/render/r_powerups.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/newer/render/gl_post.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
@@ -16,8 +16,8 @@ import * as fire from '../src/newer/render/r_powerupfire.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );
-for ( const value of [ post.r_hdr, power.r_powerups, anim.r_newer_lighting ] ) if ( ! vars.Cvar_FindVar( value.name ) ) vars.Cvar_RegisterVariable( value );
-function setup() { power.R_PowerupClear(); anim.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'r_powerups', 1 ); }
+for ( const value of [ post.r_hdr, power.r_powerups, newerMode.r_newer_lighting ] ) if ( ! vars.Cvar_FindVar( value.name ) ) vars.Cvar_RegisterVariable( value );
+function setup() { power.R_PowerupClear(); newerMode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'r_powerups', 1 ); }
 function item( name = 'progs/quaddama.mdl', position = [ 0, 0, -50 ] ) { const entity = new entity_t(); entity.model = { name }; entity.origin.set( position ); const mesh = new THREE.Mesh( new THREE.BoxGeometry( 16, 16, 24 ), new THREE.MeshBasicMaterial() ); mesh.position.set( ...position ); return { entity, mesh }; }
 function frame( scene, items, time = 0 ) { power.R_PowerupBegin( scene ); for ( const i of items ) power.R_PowerupSeen( i.entity, i.mesh, scene, time ); power.R_PowerupEnd(); }
 
@@ -72,13 +72,13 @@ Deno.test( 'Classic helper redraw does not mutate the enhanced registry, and fea
 	try {
 
 		frame( scene, [ one ], 1 ); const group = scene.children[ 0 ], source = power.R_PowerupLights()[ 0 ], state = JSON.stringify( source );
-		anim.R_AnimSetClassicPass( true ); power.R_PowerupBegin( new THREE.Scene() ); power.R_PowerupSeen( one.entity, one.mesh, scene, 99 ); power.R_PowerupEnd();
+		newerMode.R_AnimSetClassicPass( true ); power.R_PowerupBegin( new THREE.Scene() ); power.R_PowerupSeen( one.entity, one.mesh, scene, 99 ); power.R_PowerupEnd();
 		same( scene.children[ 0 ], group, 'Classic redraw leaves scene registry object intact' ); same( JSON.stringify( source ), state, 'Classic cannot move or replace source' ); same( power.R_PowerupLights().length, 0, 'Classic never exposes enhanced light sources' );
-		anim.R_AnimSetClassicPass( false ); same( power.R_PowerupLights()[ 0 ], source, 'enhanced source identity restored after Classic' );
+		newerMode.R_AnimSetClassicPass( false ); same( power.R_PowerupLights()[ 0 ], source, 'enhanced source identity restored after Classic' );
 		vars.Cvar_SetValue( 'r_powerups', 0 ); frame( scene, [ one ] ); same( scene.children.length, 0, 'feature toggle retires effects' ); same( power.R_PowerupLights().length, 0, 'feature toggle suppresses light sources' );
 		vars.Cvar_SetValue( 'r_powerups', 1 ); frame( scene, [ one ] ); vars.Cvar_SetValue( 'r_hdr', 0 ); frame( scene, [ one ] ); same( scene.children.length, 0, 'Classic game removes effect' );
 
-	} finally { anim.R_AnimSetClassicPass( false ); power.R_PowerupClear(); vars.Cvar_SetValue( 'r_hdr', 1 ); }
+	} finally { newerMode.R_AnimSetClassicPass( false ); power.R_PowerupClear(); vars.Cvar_SetValue( 'r_hdr', 1 ); }
 
 } );
 
@@ -114,12 +114,12 @@ Deno.test( 'actual public entity draw dispatch attaches effects to native world 
 		same( power.R_PowerupStatus().pickups, 3, 'actual renderer dispatch registers each native world pickup' );
 		for ( const entity of entries ) check( entity._aliasMesh?.parent === main.scene, 'actual native alias joined renderer scene' );
 		const groups = main.scene.children.filter( child => child.name.startsWith( 'powerup_' ) ); same( groups.length, 3, 'actual renderer scene has exactly3 presentation groups' );
-		anim.R_AnimSetClassicPass( true ); power.R_PowerupBegin( main.scene ); main.R_DrawEntitiesOnList(); power.R_PowerupEnd(); same( power.R_PowerupStatus().pickups, 3, 'actual Classic helper dispatch does not retire enhanced groups' );
-		anim.R_AnimSetClassicPass( false ); power.R_PowerupClear(); client.cl.viewent = entries[ 0 ]; client.set_cl_numvisedicts( 1 ); power.R_PowerupBegin( main.scene ); main.R_DrawEntitiesOnList(); power.R_PowerupEnd(); same( power.R_PowerupStatus().pickups, 0, 'held viewmodel is excluded even if its model name matches a pickup' );
+		newerMode.R_AnimSetClassicPass( true ); power.R_PowerupBegin( main.scene ); main.R_DrawEntitiesOnList(); power.R_PowerupEnd(); same( power.R_PowerupStatus().pickups, 3, 'actual Classic helper dispatch does not retire enhanced groups' );
+		newerMode.R_AnimSetClassicPass( false ); power.R_PowerupClear(); client.cl.viewent = entries[ 0 ]; client.set_cl_numvisedicts( 1 ); power.R_PowerupBegin( main.scene ); main.R_DrawEntitiesOnList(); power.R_PowerupEnd(); same( power.R_PowerupStatus().pickups, 0, 'held viewmodel is excluded even if its model name matches a pickup' );
 		client.cl.viewent = savedView; client.set_cl_numvisedicts( 3 ); power.R_PowerupBegin( main.scene ); main.R_DrawEntitiesOnList(); power.R_PowerupEnd(); same( power.R_PowerupStatus().pickups, 3, 'actual draw prepares live registry before map transition' );
 		main.R_NewMap(); same( power.R_PowerupStatus().pickups, 0, 'actual public map reset clears pickup registry' ); check( main.scene.children.every( child => ! child.name.startsWith( 'powerup_' ) ), 'actual map reset leaves no orphan pickup groups' );
 
-	} finally { anim.R_AnimSetClassicPass( false ); power.R_PowerupClear(); client.cl.worldmodel = savedWorld; client.cl.viewent = savedView; client.cl_visedicts.splice( 0, client.cl_visedicts.length, ...savedList ); client.set_cl_numvisedicts( savedCount ); }
+	} finally { newerMode.R_AnimSetClassicPass( false ); power.R_PowerupClear(); client.cl.worldmodel = savedWorld; client.cl.viewent = savedView; client.cl_visedicts.splice( 0, client.cl_visedicts.length, ...savedList ); client.set_cl_numvisedicts( savedCount ); }
 
 } );
 
@@ -163,7 +163,7 @@ Deno.test( 'real native PAK pickup aliases retain positions, UVs, indices and sk
 
 Deno.test( 'actual post-frame snapshot retains ring cookie slot and live-light radiance while lighting-off disables its compositor path', () => {
 
-	setup(); const controls = [ post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, post.r_pointshadows, height.r_heightshadows, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+	setup(); const controls = [ post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, post.r_pointshadows, height.r_heightshadows, newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_water ];
 	for ( const variable of controls ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 	const saved = controls.map( variable => variable.string );
 	let target = null; const viewport = new THREE.Vector4( 0, 0, 320, 200 ), color = new THREE.Color();
@@ -228,11 +228,11 @@ Deno.test( 'shroud metadata resets for hidden object/ancestor, feature-off, Clas
 		group.visible = false; empty( 'hidden group' ); group.visible = true; shroud.visible = false; empty( 'hidden shroud mesh' ); shroud.visible = true;
 		scene.visible = false; empty( 'hidden scene ancestor' ); scene.visible = true;
 		vars.Cvar_SetValue( 'r_powerups', 0 ); empty( 'feature off' ); vars.Cvar_SetValue( 'r_powerups', 1 );
-		anim.R_AnimSetClassicPass( true ); empty( 'Classic redraw' ); anim.R_AnimSetClassicPass( false ); same( power.R_PowerupShroudFrame( scene, camera ).count, 1, 'Classic leaves enhanced record available afterward' );
+		newerMode.R_AnimSetClassicPass( true ); empty( 'Classic redraw' ); newerMode.R_AnimSetClassicPass( false ); same( power.R_PowerupShroudFrame( scene, camera ).count, 1, 'Classic leaves enhanced record available afterward' );
 		frame( scene, [] ); empty( 'collected or invisible entity' ); frame( scene, [ one ] ); const texture = power.R_PowerupShroudFrame( scene, camera ).texture; let disposed = 0; texture.addEventListener( 'dispose', () => disposed ++ );
 		power.R_PowerupClear(); empty( 'map clear' ); same( disposed, 1, 'map clear disposes metadata GPU texture exactly once' );
 
-	} finally { anim.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_powerups', 1 ); power.R_PowerupClear(); }
+	} finally { newerMode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_powerups', 1 ); power.R_PowerupClear(); }
 
 } );
 
@@ -271,7 +271,7 @@ Deno.test( 'native yaw and actual model matrices drive local fire volume and rin
 				nearVector( new THREE.Vector3( 1, 0, 0 ).applyQuaternion( rotation ), nativeWorldNormal, 'source orientation follows same actual native matrix' );
 				const saved = group.matrixWorld.clone(), camera = new THREE.PerspectiveCamera();
 				for ( const position of [ [ 300, 0, 20 ], [ -100, 250, 200 ], [ 0, 0, 500 ] ] ) { camera.position.set( ...position ); camera.lookAt( group.position ); camera.updateMatrixWorld(); power.R_PowerupShroudFrame( scene, camera ); same( group.matrixWorld.elements.join(), saved.elements.join(), 'camera metadata cannot rotate native-plane flames' ); }
-				anim.R_AnimSetClassicPass( true ); power.R_PowerupBegin( scene ); power.R_PowerupSeen( entity, mesh, scene, 99 ); power.R_PowerupEnd(); anim.R_AnimSetClassicPass( false ); same( group.matrixWorld.elements.join(), saved.elements.join(), 'Classic helper cannot drift enhanced effect orientation' );
+				newerMode.R_AnimSetClassicPass( true ); power.R_PowerupBegin( scene ); power.R_PowerupSeen( entity, mesh, scene, 99 ); power.R_PowerupEnd(); newerMode.R_AnimSetClassicPass( false ); same( group.matrixWorld.elements.join(), saved.elements.join(), 'Classic helper cannot drift enhanced effect orientation' );
 				check( nativePosition.every( ( value, i ) => value === mesh.geometry.attributes.position.array[ i ] ) && nativeUvs.every( ( value, i ) => value === mesh.geometry.attributes.uv.array[ i ] ), 'rotating effect does not edit native model positions or UVs' );
 
 			}
@@ -285,7 +285,7 @@ Deno.test( 'native yaw and actual model matrices drive local fire volume and rin
 
 		}
 
-	} finally { anim.R_AnimSetClassicPass( false ); power.R_PowerupClear(); }
+	} finally { newerMode.R_AnimSetClassicPass( false ); power.R_PowerupClear(); }
 
 } );
 

@@ -2,7 +2,7 @@
 // Only the canvas backing the soft sprite is stubbed in the non-browser runner.
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
-const anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
+const mode = await import( '../src/newer/mode.js' ), vars = await import( '../src/engine/common/cvar.js' );
 const mist = await import( '../src/newer/render/r_mist.js' );
 
 function equal( actual, expected, label ) {
@@ -30,9 +30,9 @@ function fixture( names ) {
 function setup() {
 
 	const options = [ post.r_hdr, post.r_dynres, post.r_mist, post.r_water_look,
-		anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+		mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
-	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = anim.R_ClassicPassActive();
+	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = mode.R_ClassicPassActive();
 	const originalDocument = globalThis.document, random = Math.random; let seed = 19371;
 	Math.random = () => { seed = ( Math.imul( seed, 1664525 ) + 1013904223 ) >>> 0; return seed / 4294967296; };
 	if ( typeof document === 'undefined' ) globalThis.document = {
@@ -47,13 +47,13 @@ function setup() {
 	};
 	const renderer = { capabilities: { isWebGL2: true }, extensions: { has: () => true } };
 	function begin() { post.R_PostBegin( renderer, true, 320, 200 ); }
-	post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); mist.R_MistClear();
+	post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); mist.R_MistClear();
 	for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 	for ( const name of [ 'r_dynres', 'r_newer_lighting', 'r_newer_normals', 'r_water_look' ] ) vars.Cvar_SetValue( name, 0 );
 	vars.Cvar_SetValue( 'r_mist', .6 ); begin();
 	return { begin, restore() {
 
-		mist.R_MistClear(); post.classicLook.value = priorLook; anim.R_AnimSetClassicPass( priorClassic );
+		mist.R_MistClear(); post.classicLook.value = priorLook; mode.R_AnimSetClassicPass( priorClassic );
 		post.R_PostBegin( renderer, false, 0, 0 ); post.R_PostShutdown(); post.R_BuildWorldLights( null );
 		options.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); Math.random = random;
 		if ( originalDocument === undefined ) delete globalThis.document; else globalThis.document = originalDocument;
@@ -136,8 +136,8 @@ Deno.test( 'vapour follows Toxic appearance and native slime while respecting sl
 		equal( cloud.geometry, geometry, 'slider restoration retains buffers' );
 		vars.Cvar_SetValue( 'r_newer_water', 0 ); run.begin(); mist.R_MistFrame( scene, 2 ); equal( cloud.visible, false, 'liquids-off hides streams' );
 		vars.Cvar_SetValue( 'r_newer_water', 1 ); run.begin(); mist.R_MistFrame( scene, 2 ); equal( cloud.visible, true, 'liquids restoration resumes streams' );
-		post.classicLook.value = 1; anim.R_AnimSetClassicPass( true ); mist.R_MistFrame( scene, 3 ); equal( cloud.visible, false, 'classic scope hides enhanced vapour' );
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); mist.R_MistFrame( scene, 3 ); equal( cloud.visible, true, 'leaving classic resumes the same streams' );
+		post.classicLook.value = 1; mode.R_AnimSetClassicPass( true ); mist.R_MistFrame( scene, 3 ); equal( cloud.visible, false, 'classic scope hides enhanced vapour' );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); mist.R_MistFrame( scene, 3 ); equal( cloud.visible, true, 'leaving classic resumes the same streams' );
 		vars.Cvar_SetValue( 'r_hdr', 0 ); run.begin(); mist.R_MistFrame( scene, 4 ); equal( cloud.visible, false, 'New Game remains free of enhanced vapour' );
 		vars.Cvar_SetValue( 'r_hdr', 1 ); vars.Cvar_SetValue( 'r_water_look', 3 ); run.begin(); mist.R_MistFrame( scene, 4 );
 		equal( scene.children.length, 0, 'Muddy selection disposes Toxic particles instead of recolouring them as sediment' );

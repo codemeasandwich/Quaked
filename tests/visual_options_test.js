@@ -2,7 +2,7 @@
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const post = await import( '../src/newer/render/gl_post.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const newerMode = await import( '../src/newer/mode.js' );
 const cvar = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
 const menu = await import( '../src/engine/client/menu.js' );
@@ -14,7 +14,7 @@ function equal( actual, expected, label ) {
 
 }
 
-const options = [ post.r_hdr, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+const options = [ post.r_hdr, newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_water ];
 function registerOptions() {
 
 	for ( const v of options ) if ( cvar.Cvar_FindVar( v.name ) === null ) cvar.Cvar_RegisterVariable( v );
@@ -47,7 +47,7 @@ Deno.test( 'lighting, normal maps and liquids switch independently on existing m
 			cvar.Cvar_SetValue( 'r_newer_normals', normal ? 1 : 0 );
 			cvar.Cvar_SetValue( 'r_newer_water', water ? 1 : 0 );
 			equal( post.R_PostBegin( renderer, true, 320, 200 ), mask !== 0, `pipeline ${mask}` );
-			equal( anim.R_NewerLightingActive(), light, `lighting ${mask}` );
+			equal( newerMode.R_NewerLightingActive(), light, `lighting ${mask}` );
 			equal( post.R_WaterActive(), water, `liquids ${mask}` );
 			equal( material.normalMap !== null, normal, `normal map ${mask}` );
 			equal( material.emissiveIntensity, light ? 3 : 1, `glow ${mask}` );

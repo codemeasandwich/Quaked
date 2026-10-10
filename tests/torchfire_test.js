@@ -18,7 +18,8 @@ import { entity_t } from '../src/engine/render/render.js';
 import { cl } from '../src/engine/client/client.js';
 import { R_FireballTextures, R_FireballAssets } from '../src/newer/render/r_fireball.js';
 import { R_SaveClassicScene } from '../src/newer/render/r_classicstate.js';
-import { R_AnimSetClassicPass, R_AnimSetNewer, r_lerpmodels } from '../src/newer/render/r_anim.js';
+import { r_lerpmodels } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass, R_AnimSetNewer } from '../src/newer/mode.js';
 import * as tf from '../src/newer/render/r_torchfire.js';
 
 const SOURCE_SHA256 = '7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6';

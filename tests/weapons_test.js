@@ -8,7 +8,7 @@ const weapons = await import( '../src/newer/render/r_weapons.js' );
 const shells = await import( '../src/newer/render/r_shells.js' );
 const { R_ShellTrace } = await import( '../src/newer/render/r_shelltrace.js' );
 const { R_DrawAliasModel, GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame } = await import( '../src/engine/render/gl_mesh.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), mode = await import( '../src/newer/mode.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { cl, cls } = await import( '../src/engine/client/client.js' );
@@ -336,11 +336,11 @@ Deno.test( 'classic draw and feature toggle restore native geometry and subseque
 	const enhanced = mesh.geometry.getAttribute( 'position' ), restore = R_SaveClassicScene( scene, 0 );
 	try {
 
-		anim.R_AnimSetClassicPass( true ); R_DrawAliasModel( e, h, null );
+		mode.R_AnimSetClassicPass( true ); R_DrawAliasModel( e, h, null );
 		equal( mesh.geometry.getAttribute( 'position' ).count, h.posedata[ 0 ].length, 'classic native vertices' );
 		equal( mesh.geometry.getAttribute( 'uv' ), GL_DrawAliasFrame( h, 0 ).uvAttr, 'classic original UVs' );
 
-	} finally { anim.R_AnimSetClassicPass( false ); restore(); }
+	} finally { mode.R_AnimSetClassicPass( false ); restore(); }
 	equal( mesh.geometry.getAttribute( 'position' ), enhanced, 'classic scene restore keeps enhanced geometry' );
 	equal( R_DrawAliasModel( e, h, null ).geometry.getAttribute( 'position' ), enhanced, 'next enhanced draw remains imported' );
 	weapons.r_newer_weapons.value = 0;

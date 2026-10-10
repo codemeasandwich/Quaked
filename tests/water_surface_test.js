@@ -4,7 +4,7 @@
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), main = await import( '../src/engine/render/gl_rmain.js' );
-const anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
+const mode = await import( '../src/newer/mode.js' ), vars = await import( '../src/engine/common/cvar.js' );
 const view = await import( '../src/engine/client/view.js' ), client = await import( '../src/engine/client/client.js' );
 const quake = await import( '../src/engine/render/glquake.js' ), light = await import( '../src/engine/render/gl_rlight.js' );
 
@@ -17,10 +17,10 @@ function equal( actual, expected, label ) {
 Deno.test( 'water underside keeps live reflection controls, material cues and independent visual boundaries', () => {
 
 	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_reflect,
-		post.r_reflect_screen, post.r_caustics, post.r_water_look, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+		post.r_reflect_screen, post.r_caustics, post.r_water_look, mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 	const saved = options.map( v => v.string ), priorLeaf = main.r_viewleaf;
-	const priorLook = post.classicLook.value, priorClassic = anim.R_ClassicPassActive();
+	const priorLook = post.classicLook.value, priorClassic = mode.R_ClassicPassActive();
 	const texture = new THREE.DataTexture( new Uint8Array( [ 64, 80, 48, 255 ] ), 1, 1 );
 	const liquid = { name: '*water1', gl_texture: texture }, leaf = { contents: - 1, visframe: 0, compressed_vis: null };
 	const model = { entities: '', firstmodelsurface: 0, nummodelsurfaces: 1, numleafs: 1,
@@ -44,7 +44,7 @@ Deno.test( 'water underside keeps live reflection controls, material cues and in
 	}
 	try {
 
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false );
 		for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 		for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_newer_lighting', 'r_water_look' ] ) vars.Cvar_SetValue( name, 0 );
 		vars.Cvar_SetValue( 'r_reflect', .6 ); post.R_BuildWorldLights( model );
@@ -95,15 +95,15 @@ Deno.test( 'water underside keeps live reflection controls, material cues and in
 		equal( uniforms.uWaterCount.value, 0, 'liquids off suppresses underside interface' );
 		equal( native.opacity, .75, 'native surface ignores underwater optical opacity' ); equal( native.vertexColors, false, 'native ignores enhanced brightness' );
 		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame( true );
-		post.classicLook.value = 1; anim.R_AnimSetClassicPass( true );
+		post.classicLook.value = 1; mode.R_AnimSetClassicPass( true );
 		equal( post.R_WaterActive(), false, 'classic scope suppresses interface' );
 		equal( surf.R_LiquidSurfaceMaterial( liquid, .75 ), native, 'classic scope selects native cached surface' );
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 0 );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 0 );
 		const before = draws; equal( frame( true ), native, 'New Game uses native material underwater' ); equal( draws, before, 'New Game bypasses optical composition' );
 
 	} finally {
 
-		main.set_r_viewleaf( priorLeaf ); post.classicLook.value = priorLook; anim.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
+		main.set_r_viewleaf( priorLeaf ); post.classicLook.value = priorLook; mode.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
 		post.R_PostBegin( renderer, false, 0, 0 ); post.R_PostShutdown(); post.R_BuildWorldLights( null );
 		options.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); texture.dispose();
 

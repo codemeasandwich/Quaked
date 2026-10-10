@@ -11,7 +11,7 @@ const {R_BuildPortals,R_PortalsBeginFrame,r_portals,R_TransformPortalPoint}=awai
 const worldModule=await import('../src/engine/server/world.js');const {SV_ClearWorld,SV_Move,MOVE_NOMONSTERS}=worldModule;
 const physics=await import('../src/engine/server/sv_phys.js');
 const {Cvar_FindVar,Cvar_RegisterVariable,cvar_t}=await import('../src/engine/common/cvar.js');
-const {r_newer_portals}=await import('../src/newer/render/r_anim.js');
+const { r_newer_portals } = await import('../src/newer/mode.js');
 const FL_ONGROUND=512;
 const decode=(data)=>new TextDecoder().decode(data).split('\0')[0];
 function loadPak(path){return Deno.readFile(new URL(path,import.meta.url));}

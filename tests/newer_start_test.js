@@ -9,6 +9,7 @@ import * as keys from '../src/engine/client/keys.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import * as post from '../src/newer/render/gl_post.js';
 import * as rock from '../src/newer/render/r_rockfield.js';
 import { r_heightshadows } from '../src/newer/render/r_heightshadows.js';
@@ -27,7 +28,7 @@ import { R_NewerTexturesStatus } from '../src/newer/render/r_newertextures.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 // Literal owner-contract oracle, deliberately not imported from newer_defaults.
 const expected=['r_newer_lighting','r_newer_normals','r_newer_shadows','r_pointshadows','r_heightshadows','r_rockfield','r_powerups','r_newer_weapons','r_newer_textures','r_newer_water','r_newer_enemies','r_newer_portals','r_newer_hud','r_decals','r_lerpmodels','r_newer_variety'];
-const binary=[anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_shadows,post.r_pointshadows,r_heightshadows,rock.r_rockfield,r_powerups,r_newer_weapons,anim.r_newer_textures,anim.r_newer_water,anim.r_newer_enemies,anim.r_newer_portals,anim.r_newer_hud,r_decals,anim.r_lerpmodels,r_newer_variety];
+const binary=[newerMode.r_newer_lighting,newerMode.r_newer_normals,newerMode.r_newer_shadows,post.r_pointshadows,r_heightshadows,rock.r_rockfield,r_powerups,r_newer_weapons,newerMode.r_newer_textures,newerMode.r_newer_water,newerMode.r_newer_enemies,newerMode.r_newer_portals,newerMode.r_newer_hud,r_decals,anim.r_lerpmodels,r_newer_variety];
 const preserved={r_water_look:'3',r_pillars:'0.23',r_cloudspeed:'0.37',r_heathaze:'0.42',r_mist:'0.31',r_reflect:'0.28',r_flashlight:'0'};
 const controls=[post.r_hdr,...binary,post.r_water_look,post.r_pillars,post.r_cloudspeed,post.r_heathaze,post.r_mist,post.r_reflect,r_flashlight,v_gamma,cl_showfps,skill,split.r_demosplit];
 const memory=new Map([['quake_cvar_r_rockfield','0'],['quake_cvar_r_powerups','0']]);
@@ -51,10 +52,10 @@ cmd.Cmd_AddCommand('map',()=>{
  context.events.push({action:'map',map:cmd.Cmd_Argv(1),hdr:vars.Cvar_VariableString('r_hdr'),features:values(expected),preserved:values(Object.keys(preserved)),skill:vars.Cvar_VariableString('skill'),fieldOn:rock.rockUniforms.qrRockOn.value,textureReady:textures.ready,textureFallback:textures.fallback,archivedRock:memory.get('quake_cvar_r_rockfield'),archivedPowerups:memory.get('quake_cvar_r_powerups')});
 });
 function fixture(fn){const saved=controls.map(c=>c.string),oldWindow=Object.getOwnPropertyDescriptor(globalThis,'window'),oldStorage=Object.getOwnPropertyDescriptor(globalThis,'localStorage'),state={state:cls.state,demoplayback:cls.demoplayback,timedemo:cls.timedemo,signon:cls.signon};
- try{Object.defineProperty(globalThis,'window',{configurable:true,value:{devicePixelRatio:1,innerWidth:640,innerHeight:400}});Object.defineProperty(globalThis,'localStorage',{configurable:true,value:storage});split.R_DemoSplitEnd();cmd.Cbuf_Init();cls.state=ca_disconnected;cls.demoplayback=cls.timedemo=false;cls.signon=0;anim.R_AnimSetClassicPass(false);vars.Cvar_Set('r_hdr','0');vars.Cvar_Set('r_demosplit','1');for(const name of expected)vars.Cvar_Set(name,'0');for(const[n,v]of Object.entries(preserved))vars.Cvar_Set(n,v);vars.Cvar_Set('skill','2');context={events:[],characters:[],dest:keys.key_game,server:{active:false},serverInfo:{maxclients:1}};
+ try{Object.defineProperty(globalThis,'window',{configurable:true,value:{devicePixelRatio:1,innerWidth:640,innerHeight:400}});Object.defineProperty(globalThis,'localStorage',{configurable:true,value:storage});split.R_DemoSplitEnd();cmd.Cbuf_Init();cls.state=ca_disconnected;cls.demoplayback=cls.timedemo=false;cls.signon=0;newerMode.R_AnimSetClassicPass(false);vars.Cvar_Set('r_hdr','0');vars.Cvar_Set('r_demosplit','1');for(const name of expected)vars.Cvar_Set(name,'0');for(const[n,v]of Object.entries(preserved))vars.Cvar_Set(n,v);vars.Cvar_Set('skill','2');context={events:[],characters:[],dest:keys.key_game,server:{active:false},serverInfo:{maxclients:1}};
  menu.M_SetExternals({key_dest_set:v=>context.dest=v,key_dest_get:()=>context.dest,cls,sv:context.server,svs:context.serverInfo,cl:{intermission:0,gametype:0},Draw_CachePic:()=>({width:32,height:32}),Draw_TransPic(){},Draw_Pic(){},Draw_Character:(x,y,c)=>context.characters.push({x,y,c}),Draw_FadeScreen(){},Draw_Fill(){},Draw_ConsoleBackground(){},S_LocalSound(){},host_time_get:()=>0,realtime_get:()=>0,IN_RequestPointerLock(){}});
  fn(context);
- }finally{split.R_DemoSplitEnd();cmd.Cbuf_Init();controls.forEach((c,i)=>vars.Cvar_Set(c.name,saved[i]));Object.assign(cls,state);for(const[n,d]of[['window',oldWindow],['localStorage',oldStorage]]){if(d)Object.defineProperty(globalThis,n,d);else delete globalThis[n];}anim.R_AnimSetClassicPass(false);context=null;}
+ }finally{split.R_DemoSplitEnd();cmd.Cbuf_Init();controls.forEach((c,i)=>vars.Cvar_Set(c.name,saved[i]));Object.assign(cls,state);for(const[n,d]of[['window',oldWindow],['localStorage',oldStorage]]){if(d)Object.defineProperty(globalThis,n,d);else delete globalThis[n];}newerMode.R_AnimSetClassicPass(false);context=null;}
 }
 function touch(x,y){const w=draw.Draw_GetVirtualWidth(),h=draw.Draw_GetVirtualHeight();menu.M_TouchInput(x+(w-320)/2,y+(h-200)/2,w,h);}
 function single(row){cmd.Cmd_ExecuteString('menu_singleplayer',cmd.src_command);same(menu.m_state,menu.m_singleplayer,'actual single-player menu opens');touch(160,42+row*20);}

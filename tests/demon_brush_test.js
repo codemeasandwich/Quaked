@@ -8,7 +8,7 @@ import { R_DemonSurfaceData } from '../src/newer/render/r_demonrelief.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
@@ -26,9 +26,9 @@ const pack = read( 'pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pack
 const world = Mod_ForName( 'maps/e1m4.bsp', true ); cl.worldmodel = world; cl.model_precache[ 1 ] = world; cl.model_precache[ 2 ] = null;
 surf.GL_BuildLightmaps();
 const door = Mod_ForName( '*44', true ), other = Mod_ForName( '*43', true );
-const controls = [ post.r_hdr, anim.r_newer_normals, anim.r_newer_textures ];
+const controls = [ post.r_hdr, mode.r_newer_normals, mode.r_newer_textures ];
 for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
-const on = () => { for ( const v of controls ) vars.Cvar_Set( v.name, '1' ); anim.R_AnimSetClassicPass( false ); };
+const on = () => { for ( const v of controls ) vars.Cvar_Set( v.name, '1' ); mode.R_AnimSetClassicPass( false ); };
 const texture = door.surfaces[ door.firstmodelsurface ].texinfo.texture;
 const entity = ( model, origin = [ 0, 0, 0 ] ) => { const e = new entity_t(); e.model = model; e.origin.set( origin ); main.set_currententity( e ); return e; };
 const draw = e => {
@@ -73,7 +73,7 @@ Deno.test( 'the relief follows the door when it moves, is hidden by the options 
 	e.origin.set( [ 0, 0, 96 ] ); draw( e ); same( e._brushGroup.position.z, 96, 'the group moved up with the door' ); check( reliefOf( e ).every( ( m, i ) => m === meshes[ i ] && m.parent === e._brushGroup ), 'and the relief with it, the same meshes' );
 	vars.Cvar_Set( 'r_newer_normals', '0' ); draw( e ); check( reliefOf( e ).every( m => ! m.visible ), 'normals off: only the flat face' ); vars.Cvar_Set( 'r_newer_normals', '1' );
 	vars.Cvar_Set( 'r_newer_textures', '0' ); draw( e ); check( reliefOf( e ).every( m => ! m.visible ), 'textures off: only the flat face' ); vars.Cvar_Set( 'r_newer_textures', '1' );
-	anim.R_AnimSetClassicPass( true ); draw( e ); check( reliefOf( e ).every( m => m.userData.newerOnly ), 'tagged Newer-only: the classic pass hides it' ); anim.R_AnimSetClassicPass( false );
+	mode.R_AnimSetClassicPass( true ); draw( e ); check( reliefOf( e ).every( m => m.userData.newerOnly ), 'tagged Newer-only: the classic pass hides it' ); mode.R_AnimSetClassicPass( false );
 	vars.Cvar_Set( 'r_hdr', '0' ); draw( e ); check( reliefOf( e ).every( m => ! m.visible ), 'Classic Quake: only the flat face' ); vars.Cvar_Set( 'r_hdr', '1' ); draw( e ); check( reliefOf( e ).every( m => m.visible ), 'and back' );
 	// a frame change rebuilds the group (texture animation): the old relief is disposed with it and a new one is made
 	const old = meshes.map( m => [ m.geometry, m.material ] ); let disposed = 0; for ( const [ g, m ] of old ) { g.addEventListener( 'dispose', () => disposed ++ ); m.addEventListener( 'dispose', () => disposed ++ ); }

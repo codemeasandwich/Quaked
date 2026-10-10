@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import * as skins from '../src/newer/render/r_newerskins.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 const check = ( ok, why ) => { if ( ! ok ) throw Error( why ); };
 const equal = ( a, b, why ) => check( a === b, `${why}: ${a} != ${b}` );
 const manifest = JSON.parse( readFileSync( new URL( '../newer/enemies/index.json', import.meta.url ) ) );
@@ -14,14 +14,14 @@ function shader( material ) {
 	material.onBeforeCompile( shader ); return shader;
 }
 async function fixture( fn ) {
-	const old = { document: globalThis.document, load: THREE.TextureLoader.prototype.load, normals: anim.r_newer_normals.value };
-	const requests = []; globalThis.document = {}; anim.r_newer_normals.value = 0; anim.R_AnimSetNewer( true ); anim.R_AnimSetLighting( true );
+	const old = { document: globalThis.document, load: THREE.TextureLoader.prototype.load, normals: mode.r_newer_normals.value };
+	const requests = []; globalThis.document = {}; mode.r_newer_normals.value = 0; mode.R_AnimSetNewer( true ); mode.R_AnimSetLighting( true );
 	THREE.TextureLoader.prototype.load = function ( url, loaded, _, failed ) {
 		const texture = new THREE.DataTexture( new Uint8Array( 16 ).fill( 128 ), 2, 2 ); texture.userData.disposals = 0;
 		texture.addEventListener( 'dispose', () => texture.userData.disposals ++ ); requests.push( { url, texture, loaded, failed } ); return texture;
 	};
 	skins.R_NewerSetIndex( structuredClone( manifest ) );
-	try { await fn( requests ); } finally { skins.R_NewerSkinsShutdown(); globalThis.document = old.document; THREE.TextureLoader.prototype.load = old.load; anim.r_newer_normals.value = old.normals; anim.R_AnimSetNewer( false ); anim.R_AnimSetLighting( false ); }
+	try { await fn( requests ); } finally { skins.R_NewerSkinsShutdown(); globalThis.document = old.document; THREE.TextureLoader.prototype.load = old.load; mode.r_newer_normals.value = old.normals; mode.R_AnimSetNewer( false ); mode.R_AnimSetLighting( false ); }
 }
 Deno.test( 'all individual face choices share the actual body and one sheet; preparation returns actual draw bindings', async () => fixture( async requests => {
 	const model = { name: 'progs/soldier.mdl' };
@@ -61,13 +61,13 @@ Deno.test( 'Classic, enemy gate, lighting and variety switches retain individual
 	await skins.R_NewerSkinsPrepare( [ model ] ); requests.forEach( request => request.loaded( request.texture ) );
 	const chosen = skins.R_NewerAliasMaterial( entity, model.name, true );
 	equal( shader( chosen ).uniforms.uFaceColorBalance.value.toArray().join(), '1,1,1', 'knight keeps supplied color balance' );
-	anim.R_AnimSetClassicPass( true ); equal( skins.R_NewerAliasMaterial( entity, model.name, true ), null, 'Classic has no face replacement' ); anim.R_AnimSetClassicPass( false );
-	anim.r_newer_enemies.value = 0; equal( skins.R_NewerAliasMaterial( entity, model.name, true ), null, 'disabled enemies retain original skins' ); anim.r_newer_enemies.value = 1;
+	mode.R_AnimSetClassicPass( true ); equal( skins.R_NewerAliasMaterial( entity, model.name, true ), null, 'Classic has no face replacement' ); mode.R_AnimSetClassicPass( false );
+	mode.r_newer_enemies.value = 0; equal( skins.R_NewerAliasMaterial( entity, model.name, true ), null, 'disabled enemies retain original skins' ); mode.r_newer_enemies.value = 1;
 	equal( skins.R_NewerAliasMaterial( entity, model.name, true ), chosen, 'same face family returns after Classic/feature toggles' );
-	anim.R_AnimSetLighting( false ); equal( shader( skins.R_NewerAliasMaterial( entity, model.name, true ) ).uniforms.uFaceSource.value.toArray().join(), shader( chosen ).uniforms.uFaceSource.value.toArray().join(), 'lighting toggle keeps chosen art' );
+	mode.R_AnimSetLighting( false ); equal( shader( skins.R_NewerAliasMaterial( entity, model.name, true ) ).uniforms.uFaceSource.value.toArray().join(), shader( chosen ).uniforms.uFaceSource.value.toArray().join(), 'lighting toggle keeps chosen art' );
 	skins.r_newer_variety.value = 0; const first = skins.R_NewerAliasMaterial( entity, model.name, true ); skins.r_newer_variety.value = 1;
 	check( first !== chosen, 'variety off visibly selects first face' ); equal( entity._faceSeed, 11, 'identity is not overwritten by preset' );
-	anim.R_AnimSetLighting( true ); equal( skins.R_NewerAliasMaterial( entity, model.name, true ), chosen, 'variety resumes original assigned face' );
+	mode.R_AnimSetLighting( true ); equal( skins.R_NewerAliasMaterial( entity, model.name, true ), chosen, 'variety resumes original assigned face' );
 } ) );
 
 // Independent affine oracle consumes the actual public material uniforms.

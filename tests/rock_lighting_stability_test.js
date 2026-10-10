@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import * as rock from '../src/newer/render/r_rockfield.js';
 import {ROCK_PARALLAX_GLSL,ROCK_GLSL} from '../src/newer/render/r_rockshader.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as post from '../src/newer/render/gl_post.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 const check=(v,label)=>{if(!v)throw new Error(label);};
@@ -11,8 +11,8 @@ const face=(points,uv)=>({visframe:7,flags:0,plane:{normal:[0,-1,0],dist:0},texi
 // across BSP subdivisions. The independent GPU continuity trial tests this
 // behavior by comparing unsplit and T-junction meshes pixel-for-pixel.
 Deno.test('a whole visible distant cliff retains every height page when walking backward and looking away nearby; far invisible surfaces stop requesting',()=>{
- const variables=[post.r_hdr,anim.r_newer_normals,rock.r_rockfield],saved=variables.map(v=>v.string),previous=globalThis.Worker,workers=[];
- variables.forEach(v=>{if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);vars.Cvar_SetValue(v.name,1);});anim.R_AnimSetClassicPass(false);
+ const variables=[post.r_hdr,mode.r_newer_normals,rock.r_rockfield],saved=variables.map(v=>v.string),previous=globalThis.Worker,workers=[];
+ variables.forEach(v=>{if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);vars.Cvar_SetValue(v.name,1);});mode.R_AnimSetClassicPass(false);
  globalThis.Worker=class{postMessage(job){this.job=job;}terminate(){this.stopped=true;}constructor(){workers.push(this);}};
  try{
   rock.R_RockfieldSetLimits({getContext:()=>({MAX_ARRAY_TEXTURE_LAYERS:1,getParameter:()=>1024})});

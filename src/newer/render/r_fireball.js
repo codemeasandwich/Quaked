@@ -33,7 +33,7 @@ import { COM_NewerURL } from '../../engine/common/pak.js';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { clamp, mix, smooth, hashJS } from './fx_math.js';
 import { SMOKE, alphaBoost, forEachSmoke, R_SmokeTrailEmit, R_SmokeTrailClear, R_SmokeTrailCount } from './r_smoketrail.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from '../mode.js';
 import { R_DemoSplitActive } from './r_demosplit.js';
 import { R_DecalSurface } from './r_decals.js';
 

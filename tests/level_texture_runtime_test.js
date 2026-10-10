@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url';
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
-import { r_newer_textures, R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { r_newer_textures, R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { R_NewerTextureUpgrade, R_NewerTextureSettled, R_ClassicTexture, R_NewerTexturesRevert } from '../src/newer/render/r_newertextures.js';
 import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/newer/render/gl_normals.js';
 

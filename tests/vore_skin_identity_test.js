@@ -7,7 +7,7 @@ import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init,Mod_ForName,Mod_LoadModel,model_t} from '../src/engine/render/gl_model.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 const EXPECTED='da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -32,12 +32,12 @@ function geometry(model){const h=model.cache.data;return JSON.stringify({scale:A
 function variant(dir,extra={}){return {dir,maps:{diffuse:'diffuse.png'},...extra};}
 function bsp(){const raw=new TextEncoder().encode('{"classname" "worldspawn"}\n{"classname" "monster_shalrath"}\0'),data=new Uint8Array(124+raw.length),v=new DataView(data.buffer);v.setInt32(0,29,true);v.setInt32(4,124,true);v.setInt32(8,raw.length,true);data.set(raw,124);return data;}
 async function fixture(fn){
- const old={doc:Object.getOwnPropertyDescriptor(globalThis,'document'),loader:THREE.TextureLoader.prototype.load,newer:anim.R_IsNewer(),classic:anim.R_ClassicPassActive(),normals:anim.r_newer_normals.value,enemies:anim.r_newer_enemies.value};
+ const old={doc:Object.getOwnPropertyDescriptor(globalThis,'document'),loader:THREE.TextureLoader.prototype.load,newer:mode.R_IsNewer(),classic:mode.R_ClassicPassActive(),normals:mode.r_newer_normals.value,enemies:mode.r_newer_enemies.value};
  const requests=[];Object.defineProperty(globalThis,'document',{configurable:true,value:{}});
  THREE.TextureLoader.prototype.load=function(url,done,_progress,fail){const texture=new THREE.DataTexture(new Uint8Array(4*4*4).fill(127),4,4);requests.push({url:String(url),done,fail,texture});return texture;};
- anim.R_AnimSetClassicPass(false);anim.R_AnimSetNewer(true);anim.r_newer_enemies.value=1;anim.r_newer_normals.value=0;
+ mode.R_AnimSetClassicPass(false);mode.R_AnimSetNewer(true);mode.r_newer_enemies.value=1;mode.r_newer_normals.value=0;
  const skins=await import('../src/newer/render/r_newerskins.js?vore-identity-'+(++serial));
- try{await fn(skins,requests);}finally{skins.R_NewerSkinsShutdown();THREE.TextureLoader.prototype.load=old.loader;if(old.doc)Object.defineProperty(globalThis,'document',old.doc);else delete globalThis.document;anim.R_AnimSetClassicPass(old.classic);anim.R_AnimSetNewer(old.newer);anim.r_newer_normals.value=old.normals;anim.r_newer_enemies.value=old.enemies;}
+ try{await fn(skins,requests);}finally{skins.R_NewerSkinsShutdown();THREE.TextureLoader.prototype.load=old.loader;if(old.doc)Object.defineProperty(globalThis,'document',old.doc);else delete globalThis.document;mode.R_AnimSetClassicPass(old.classic);mode.R_AnimSetNewer(old.newer);mode.r_newer_normals.value=old.normals;mode.r_newer_enemies.value=old.enemies;}
 }
 Deno.test('actual owned Vore loaded through COM/Mod hashes once and preserves all native pose/skin/head bytes',async()=>{
  const {body,head,files}=await native(),identity=body.aliasSourceIdentity,h=body.cache.data;
@@ -75,7 +75,7 @@ Deno.test('actual preparation and later body draw share only matched skin0 mater
  requests[0].done(requests[0].texture);const material=skins.R_NewerAliasMaterial({model:body,_entityIndex:8},body.name,true,0);check(material,'approved body becomes available after real callback');same(material.map,requests[0].texture,'actual replacement material uses decoded texture');
  same(skins.R_NewerAliasMaterial({model:body},body.name,true,1),null,'unmatched skin1 native');same(skins.R_NewerAliasMaterial({model:head},head.name,true,0),null,'Vore head not replaced by body variant');same(skins.R_NewerAliasMaterial({model:wrong},wrong.name,true,0),null,'same-name modified MDL stays native after positive cache fill');
  check(skins.R_NewerSkinsMaterials([body]).includes(material),'prepared family returns actual rendered material');check(skins.R_NewerSkinsTextures([body]).includes(material.map),'prepared texture binding exact');same(skins.R_NewerSkinsMaterials([wrong]).length,0,'wrong-source material family excluded');same(skins.R_NewerSkinsTextures([wrong]).length,0,'wrong-source texture family excluded');same(skins.R_NewerSkinsStatus([wrong]).ready,0,'wrong-source status excludes decoded approved art');same(skins.R_NewerSkinsMaterials([body.name]).length,0,'bare name is insufficient for constrained prewarm');same(skins.R_NewerSkinsMaterials([head]).length,0,'head family empty');
- anim.R_AnimSetClassicPass(true);same(skins.R_NewerAliasMaterial({model:body},body.name,true,0),null,'Classic ignores approved optional art');anim.R_AnimSetClassicPass(false);anim.r_newer_enemies.value=0;same(skins.R_NewerAliasMaterial({model:body},body.name,true,0),null,'enemies-off remains native');
+ mode.R_AnimSetClassicPass(true);same(skins.R_NewerAliasMaterial({model:body},body.name,true,0),null,'Classic ignores approved optional art');mode.R_AnimSetClassicPass(false);mode.r_newer_enemies.value=0;same(skins.R_NewerAliasMaterial({model:body},body.name,true,0),null,'enemies-off remains native');
  same(geometry(body),before,'body geometry unchanged by art preparation');same(geometry(head),headBefore,'head geometry unchanged');same(sha(nativeTexture.image.data),nativePixelSHA,'native diffuse pixels not edited');same(requests.length,1,'all read-only family/status and negative draw paths start no extra loads');COM_AddPack(isolatedPack(body.name,files[body.name]));
 }));
 Deno.test('BSP prefetch skips source-constrained variants but preserves legacy body/head requests and skin selection',async()=>fixture(async(skins,requests)=>{
@@ -94,7 +94,7 @@ Deno.test('pending identity participates in actual preparation; shutdown cancels
 }));
 Deno.test('actual Classic and unsupported source preparations settle without requesting constrained images',async()=>fixture(async(skins,requests)=>{
  const {body}=await native();skins.R_NewerSetIndex({version:'unsupported-identity',models:{shalrath:[variant('vore/good',{nativeModelSha256:EXPECTED}),variant('vore/bad-null',{nativeModelSha256:null}),variant('vore/bad-text',{nativeModelSha256:'wrong'})]}});
- anim.R_AnimSetClassicPass(true);await skins.R_NewerSkinsPrepare([body]);same(requests.length,0,'Classic preparation does not load Newer optional body art');anim.R_AnimSetClassicPass(false);
+ mode.R_AnimSetClassicPass(true);await skins.R_NewerSkinsPrepare([body]);same(requests.length,0,'Classic preparation does not load Newer optional body art');mode.R_AnimSetClassicPass(false);
  for(const identity of [undefined,{state:'unavailable',sha256:null,promise:Promise.resolve(null)},{state:'ready',sha256:'0'.repeat(64),promise:Promise.resolve('0'.repeat(64))}]){
   const model={...body,aliasSourceIdentity:identity};await skins.R_NewerSkinsPrepare([model]);same(requests.length,0,'missing/unavailable/wrong source and invalid metadata cannot start requests');same(skins.R_NewerSkinsMaterials([model]).length,0,'unsupported identity exposes no material');same(skins.R_NewerSkinsTextures([model]).length,0,'unsupported identity exposes no texture');check(skins.R_NewerSkinsStatus([model]).settled,'unsupported optional art settles native fallback, not an endless identity hold');
  }

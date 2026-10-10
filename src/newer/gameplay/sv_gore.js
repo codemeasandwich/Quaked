@@ -23,7 +23,7 @@ import { SV_LinkEdict } from '../../engine/server/world.js';
 import { SV_StartParticle } from '../../engine/server/sv_main.js';
 import { MSG_WriteByte, MSG_WriteCoord } from '../../engine/common/common.js';
 import { svc_temp_entity, TE_GORE } from '../../engine/common/protocol.js';
-import { R_NewerGame } from '../render/r_anim.js';
+import { R_NewerGame } from '../mode.js';
 import { SV_AxeGibSeen } from './sv_axecut.js';
 
 // how much a monster bursts: 1 is a zombie (thin), then by size

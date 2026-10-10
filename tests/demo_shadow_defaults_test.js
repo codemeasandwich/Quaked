@@ -10,21 +10,21 @@ import { COM_AddPack } from '../src/engine/common/pak.js';
 import * as split from '../src/newer/render/r_demosplit.js';
 import * as perf from '../src/newer/render/r_perf.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import { r_flashlight, R_FlashlightUpdate, R_FlashlightBeam } from '../src/newer/render/r_flashlight.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
-const features = [ r_flashlight, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_shadows, post.r_pointshadows ];
+const features = [ r_flashlight, newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_shadows, post.r_pointshadows ];
 const controls = [ post.r_hdr, split.r_demosplit, post.r_dynres, perf.cl_showfps, ...features ]; for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 cmd.Cbuf_Init(); if ( ! cmd.Cmd_Exists( 'playattractdemo' ) ) client.CL_Init();
 const data = new TextEncoder().encode( '-1\n' ); COM_AddPack( { filename: 'demo-shadow-public-test-memory', data: data.buffer, files: [ 'demo_shadow_test.dem', 'demo1.dem', 'demo2.dem', 'demo3.dem' ].map( name => ( { name, filepos: 0, filelen: data.length } ) ) } );
 function beam() { R_FlashlightUpdate( [ 0, 0, 22 ], [ 1, 0, 0 ], [ 0, -1, 0 ], [ 0, 0, 1 ] ); return R_FlashlightBeam().on; }
 function fixture( fn ) {
 
-	const saved = controls.map( v => v.string ), fields = [ 'state', 'demoplayback', 'timedemo', 'demonum', 'demodata', 'demopos', 'demofile', 'forcetrack', 'signon', 'td_startframe', 'td_lastframe', 'td_starttime' ], state = Object.fromEntries( fields.map( name => [ name, cls[ name ] ] ) ), oldNewer = anim.R_IsNewer(), oldLighting = anim.R_NewerLightingActive();
+	const saved = controls.map( v => v.string ), fields = [ 'state', 'demoplayback', 'timedemo', 'demonum', 'demodata', 'demopos', 'demofile', 'forcetrack', 'signon', 'td_startframe', 'td_lastframe', 'td_starttime' ], state = Object.fromEntries( fields.map( name => [ name, cls[ name ] ] ) ), oldNewer = newerMode.R_IsNewer(), oldLighting = newerMode.R_NewerLightingActive();
 	try { split.R_DemoSplitEnd(); cmd.Cbuf_Init(); cls.state = ca_disconnected; cls.demoplayback = cls.timedemo = false; cls.signon = 0; vars.Cvar_Set( 'r_hdr', '0' ); features.forEach( v => vars.Cvar_Set( v.name, '0' ) ); vars.Cvar_Set( 'r_demosplit', '1' ); fn(); }
-	finally { if ( perf.R_PerfProfiling() ) perf.R_PerfStop( 'stopped' ); cls.timedemo = false; client.CL_Disconnect(); split.R_DemoSplitEnd(); cmd.Cbuf_Init(); controls.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); fields.forEach( name => { cls[ name ] = state[ name ]; } ); perf.R_PerfSetHost( null ); anim.R_AnimSetClassicPass( false ); anim.R_AnimSetNewer( oldNewer ); anim.R_AnimSetLighting( oldLighting ); beam(); }
+	finally { if ( perf.R_PerfProfiling() ) perf.R_PerfStop( 'stopped' ); cls.timedemo = false; client.CL_Disconnect(); split.R_DemoSplitEnd(); cmd.Cbuf_Init(); controls.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); fields.forEach( name => { cls[ name ] = state[ name ]; } ); perf.R_PerfSetHost( null ); newerMode.R_AnimSetClassicPass( false ); newerMode.R_AnimSetNewer( oldNewer ); newerMode.R_AnimSetLighting( oldLighting ); beam(); }
 
 }
 function renderer() { let target = null, viewport = new THREE.Vector4( 0, 0, 320, 200 ), scissor = viewport.clone(), test = false, clear = new THREE.Color(), alpha = 1; const draws = []; return { draws, capabilities: { isWebGL2: true }, extensions: { has: () => true }, autoClear: true, getRenderTarget: () => target, setRenderTarget: t => { target = t; }, getViewport: v => v.copy( viewport ), setViewport: ( ...args ) => { args[ 0 ]?.isVector4 ? viewport.copy( args[ 0 ] ) : viewport.set( ...args ); }, getScissor: v => v.copy( scissor ), setScissor: ( ...args ) => { args[ 0 ]?.isVector4 ? scissor.copy( args[ 0 ] ) : scissor.set( ...args ); }, getScissorTest: () => test, setScissorTest: v => { test = v; }, getClearColor: c => c.copy( clear ), getClearAlpha: () => alpha, setClearColor: ( c, a ) => { clear.set( c ); alpha = a; }, clear() {}, render: scene => draws.push( { scene, beam: R_FlashlightBeam().on } ) }; }
@@ -34,7 +34,7 @@ Deno.test( 'first public attract playback enables real enhanced flashlight and C
 	cmd.Cmd_ExecuteString( 'playattractdemo demo_shadow_test', cmd.src_command ); same( cls.demoplayback, true, 'header-only attract playback intent active' ); same( vars.Cvar_VariableValue( 'r_hdr' ), 1, 'attract temporarily enables enhanced view' ); same( r_flashlight.value, 1, 'first attract enables flashlight even when saved preference was off' ); same( split.R_DemoSplitActive(), true, 'attract split active' );
 	for ( const v of features ) same( v.value, 1, v.name + ' temporary demonstration default enabled' );
 	const r = renderer(); vars.Cvar_Set( 'r_dynres', '0' ); post.R_PostBegin( r, true, 320, 200 ); same( beam(), true, 'actual enhanced beam is on in first title demo' );
-	try { split.R_DemoSplitClassic( r, new THREE.Scene(), new THREE.PerspectiveCamera(), { lx: 0, ly: 0, lw: 320, lh: 200 }, () => { anim.R_AnimSetClassicPass( true ); same( beam(), false, 'Classic pass has no flashlight despite active demo preference' ); }, () => { anim.R_AnimSetClassicPass( false ); beam(); } ); same( r.draws[ 0 ].beam, false, 'actual Classic scene endpoint observes no beam' ); same( beam(), true, 'enhanced beam returns after classic pass' ); }
+	try { split.R_DemoSplitClassic( r, new THREE.Scene(), new THREE.PerspectiveCamera(), { lx: 0, ly: 0, lw: 320, lh: 200 }, () => { newerMode.R_AnimSetClassicPass( true ); same( beam(), false, 'Classic pass has no flashlight despite active demo preference' ); }, () => { newerMode.R_AnimSetClassicPass( false ); beam(); } ); same( r.draws[ 0 ].beam, false, 'actual Classic scene endpoint observes no beam' ); same( beam(), true, 'enhanced beam returns after classic pass' ); }
 	finally { post.R_PostBegin( r, false, 0, 0 ); }
 	demo.CL_StopPlayback(); same( vars.Cvar_VariableValue( 'r_hdr' ), 0, 'stop restores original HDR preference' ); same( r_flashlight.value, 0, 'stop restores original manual flashlight preference' ); same( split.R_DemoSplitActive(), false, 'stop ends temporary attract scope' );
 	for ( const v of features ) same( v.value, 0, v.name + ' original disabled preference restored after demo' );

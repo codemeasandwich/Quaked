@@ -1,6 +1,6 @@
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), mode = await import( '../src/newer/mode.js' );
 const quake = await import( '../src/engine/render/glquake.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' );
 const light = await import( '../src/engine/render/gl_rlight.js' );
@@ -17,15 +17,15 @@ Deno.test( 'classic scope overrides forced interpolation and every shared Newer 
 	const old = anim.r_lerpmodels.value;
 	try {
 
-		anim.R_AnimSetNewer( true ); anim.R_AnimSetLighting( true ); anim.r_lerpmodels.value = 2;
+		mode.R_AnimSetNewer( true ); mode.R_AnimSetLighting( true ); anim.r_lerpmodels.value = 2;
 		equal( anim.R_AnimEnabled(), true, 'enhanced forced interpolation' );
-		anim.R_AnimSetClassicPass( true );
-		for ( const get of [ anim.R_NewerGame, anim.R_IsNewer, anim.R_NewerLightingActive, anim.R_AnimEnabled ] ) equal( get(), false, get.name );
+		mode.R_AnimSetClassicPass( true );
+		for ( const get of [ mode.R_NewerGame, mode.R_IsNewer, mode.R_NewerLightingActive, anim.R_AnimEnabled ] ) equal( get(), false, get.name );
 		equal( anim.r_lerpmodels.value, 2, 'owner preference retained' );
-		anim.R_AnimSetClassicPass( false );
-		equal( anim.R_IsNewer(), true, 'enhanced restored' ); equal( anim.R_NewerLightingActive(), true, 'enhanced lighting restored' );
+		mode.R_AnimSetClassicPass( false );
+		equal( mode.R_IsNewer(), true, 'enhanced restored' ); equal( mode.R_NewerLightingActive(), true, 'enhanced lighting restored' );
 
-	} finally { anim.r_lerpmodels.value = old; anim.R_AnimSetClassicPass( false ); anim.R_AnimSetNewer( false ); anim.R_AnimSetLighting( false ); }
+	} finally { anim.r_lerpmodels.value = old; mode.R_AnimSetClassicPass( false ); mode.R_AnimSetNewer( false ); mode.R_AnimSetLighting( false ); }
 
 } );
 
@@ -124,16 +124,16 @@ Deno.test( 'native dynamic lighting uses original intensity and restores enhance
 
 		cl.time = 10; quake.gl_flashblend.value = 1; for ( const l of cl_dlights ) { l.die = 0; l.radius = 0; }
 		cl_dlights[ 0 ].die = 10.5; cl_dlights[ 0 ].radius = 100; cl_dlights[ 0 ].origin.set( [ 300, 0, 0 ] );
-		anim.R_AnimSetLighting( true ); light.R_RenderDlights( cl, scene );
+		mode.R_AnimSetLighting( true ); light.R_RenderDlights( cl, scene );
 		equal( scene.children.length, 3, 'enhanced stable slots' ); equal( scene.children[ 0 ].intensity, 2500, 'enhanced half share' );
 		const enhanced = scene.children.slice(), restore = R_SaveClassicScene( scene, cl.time );
-		anim.R_AnimSetClassicPass( true ); light.R_RenderDlights( cl, scene );
+		mode.R_AnimSetClassicPass( true ); light.R_RenderDlights( cl, scene );
 		equal( scene.children.length, 1, 'native only active lights' ); equal( scene.children[ 0 ].intensity, 5000, 'native full share' );
 		restore(); equal( scene.children.length, 3, 'enhanced slot count restored' ); for ( const l of enhanced ) equal( l.parent, scene, 'enhanced light restored' );
 
 	} finally {
 
-		anim.R_AnimSetClassicPass( false ); anim.R_AnimSetLighting( false );
+		mode.R_AnimSetClassicPass( false ); mode.R_AnimSetLighting( false );
 		for ( const l of cl_dlights ) { l.die = 0; l.radius = 0; } light.R_RenderDlights( cl, scene );
 		oldLights.forEach( ( s, i ) => { cl_dlights[ i ].die = s.die; cl_dlights[ i ].radius = s.radius; cl_dlights[ i ].origin.set( s.origin ); } );
 		cl.time = oldTime; quake.gl_flashblend.value = oldFlash; quake.v_blend.set( oldBlend );
@@ -153,9 +153,9 @@ Deno.test( 'native baked dynamic light uses full brightness and clears expired c
 	try {
 
 		cl.worldmodel = { lightdata: face.samples, surfaces: [ face ] }; quake.set_r_framecount( 77 ); quake.d_lightstylevalue[ 0 ] = 256; quake.r_fullbright.value = 0;
-		dl.radius = 64; dl.minlight = 0; dl.origin.fill( 0 ); anim.R_AnimSetLighting( true );
+		dl.radius = 64; dl.minlight = 0; dl.origin.fill( 0 ); mode.R_AnimSetLighting( true );
 		const enhanced = new Uint8Array( 1 ); surf.R_BuildLightMap( face, enhanced, 0, 1, 1 ); equal( 255 - enhanced[ 0 ], 38, 'enhanced reduced baked share' );
-		anim.R_AnimSetClassicPass( true ); surf.R_ClassicLightmapsFrame( [ cl.worldmodel ] ); const native = surf.R_ClassicLightmap( atlas );
+		mode.R_AnimSetClassicPass( true ); surf.R_ClassicLightmapsFrame( [ cl.worldmodel ] ); const native = surf.R_ClassicLightmap( atlas );
 		equal( native.image.data[ 0 ], 128, 'native full baked contribution' );
 		dl.radius = 32; surf.R_ClassicLightmapsFrame( [ cl.worldmodel ] ); equal( native.image.data[ 0 ], 64, 'moving/decaying light updated this frame' );
 		face.dlightframe = - 1; surf.R_ClassicLightmapsFrame( [ cl.worldmodel ] ); equal( native.image.data[ 0 ], 0, 'expired baked light removed' );
@@ -163,7 +163,7 @@ Deno.test( 'native baked dynamic light uses full brightness and clears expired c
 
 	} finally {
 
-		anim.R_AnimSetClassicPass( false ); anim.R_AnimSetLighting( false ); atlas.dispose(); surf.lightmapTextures.pop();
+		mode.R_AnimSetClassicPass( false ); mode.R_AnimSetLighting( false ); atlas.dispose(); surf.lightmapTextures.pop();
 		cl.worldmodel = oldWorld; quake.d_lightstylevalue[ 0 ] = oldStyle; quake.set_r_framecount( oldFrame ); quake.r_fullbright.value = oldFull;
 		dl.radius = oldLight.radius; dl.minlight = oldLight.minlight; dl.origin.set( oldLight.origin );
 

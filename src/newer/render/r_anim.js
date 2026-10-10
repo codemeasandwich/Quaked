@@ -1,15 +1,13 @@
 /**
  * @module newer/render/r_anim
  *
- * Smooth animation: in-between frames for Quake's models, and the Newer Game / Classic switch (baseline debt D2).
+ * Smooth animation: in-between frames for Quake's models. (The Newer Game / Classic switch is in `newer/mode.js`.)
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `classicPass`, `newerActive`, `lightingActive`.
+ * State: no mutable exports.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
- *
- * The mode is set through `R_AnimSetNewer`, `R_AnimSetClassicPass` and `R_AnimSetLighting`.
  */
 // Model animation smoothing: extra frames between Quake's animation frames.
 //
@@ -25,88 +23,20 @@
 // monster coming into view does not slide out of its previous pose), when the
 // model changes, or when the entity has teleported or jumped.
 
-import { cvar_t, Cvar_VariableValue } from '../../engine/common/cvar.js';
-import { COM_SetNewerActive } from '../../engine/common/pak.js';
+import { cvar_t } from '../../engine/common/cvar.js';
+import { R_IsNewer } from '../mode.js';
 
 // 0 = off; values 1 and above enable smoothing only in Newer Game.
 // Legacy value 2 is retained as a preference, but never overrides Classic.
 export const r_lerpmodels = new cvar_t( 'r_lerpmodels', '1' );
 
-// Newer Game's features, each on or off (they apply only while playing Newer
-// Game, which is r_hdr): lighting, normal maps, liquids, enemies, camera portals, wall textures and the status bar
-export const r_newer_lighting = new cvar_t( 'r_newer_lighting', '1' );
-export const r_newer_normals = new cvar_t( 'r_newer_normals', '1' );
-export const r_newer_water = new cvar_t( 'r_newer_water', '1' );
-export const r_newer_enemies = new cvar_t( 'r_newer_enemies', '1' );
-export const r_newer_portals = new cvar_t( 'r_newer_portals', '1' );
-export const r_newer_textures = new cvar_t( 'r_newer_textures', '1' );
-export const r_newer_hud = new cvar_t( 'r_newer_hud', '1' );
-// shadows of enemies and objects from the lights that shine on them
-export const r_newer_shadows = new cvar_t( 'r_newer_shadows', '1' );
-// the rare crate pictures: one crate in this many (0 = never); applies from the next level
-export const r_newer_crates = new cvar_t( 'r_newer_crates', '40' );
-
-// playing Newer Game (r_hdr is what the menu sets; read directly because a level
-// is started in the same batch of commands that sets it)
-export function R_NewerGame() {
-
-	return classicPass === false && Cvar_VariableValue( 'r_hdr' ) !== 0;
-
-}
-
-// While the classic half of the title demo is drawn (r_demosplit.js) nothing of Newer Game is on: this reads
-// as New Game
-let classicPass = false;
-
-export function R_AnimSetClassicPass( on ) {
-
-	classicPass = on === true;
-
-}
-
-export function R_ClassicPassActive() {
-
-	return classicPass;
-
-}
-
 export const ANIM_STEP = 0.1; // seconds between frames in Quake's own animations
 const STALE = 0.25; // not drawn for this long: start again without blending
 const JUMP = 96; // a move this big in one frame is a teleport
 
-let newerActive = false;
-
-export function R_AnimSetNewer( active ) {
-
-	newerActive = active === true;
-	COM_SetNewerActive( newerActive ); // newer.pak's files are only there in Newer Game
-
-}
-
-// whether the Newer lighting pipeline is what is drawing (set by gl_post.js)
-let lightingActive = false;
-
-export function R_AnimSetLighting( active ) {
-
-	lightingActive = active === true;
-
-}
-
-export function R_NewerLightingActive() {
-
-	return ! classicPass && lightingActive;
-
-}
-
-export function R_IsNewer() {
-
-	return ! classicPass && newerActive;
-
-}
-
 export function R_AnimEnabled() {
 
-	return ! classicPass && newerActive && r_lerpmodels.value >= 1;
+	return R_IsNewer() && r_lerpmodels.value >= 1;
 
 }
 

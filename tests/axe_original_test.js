@@ -6,7 +6,7 @@ await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
 const weapons = await import( '../src/newer/render/r_weapons.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), newerMode = await import( '../src/newer/mode.js' );
 const { R_SaveClassicScene } = await import( '../src/newer/render/r_classicstate.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
@@ -101,9 +101,9 @@ Deno.test( 'original axe: all nine native frames, original skin/UVs and complete
 	const h = nativeAxe(), e = entity(); same( h.numframes, 9, 'nine original axe frames' );
 	for ( const mode of [ 'enhanced', 'classic-half', 'new-game' ] ) {
 
-		Cvar_SetValue( 'r_hdr', mode === 'new-game' ? 0 : 1 ); anim.R_AnimSetClassicPass( mode === 'classic-half' );
+		Cvar_SetValue( 'r_hdr', mode === 'new-game' ? 0 : 1 ); newerMode.R_AnimSetClassicPass( mode === 'classic-half' );
 		try { for ( let frame = 0; frame < h.numframes; frame ++ ) originalDraw( e, h, frame ); }
-		finally { anim.R_AnimSetClassicPass( false ); }
+		finally { newerMode.R_AnimSetClassicPass( false ); }
 
 	}
 
@@ -130,8 +130,8 @@ Deno.test( 'original axe: classic rollback and feature toggling preserve origina
 	Cvar_SetValue( 'r_hdr', 1 ); const h = nativeAxe(), e = entity(), mesh = originalDraw( e, h, 0 );
 	mesh._quakeOwner = e; const scene = new THREE.Scene(); scene.add( mesh ); const restore = R_SaveClassicScene( scene, 0 );
 	const positions = mesh.geometry.getAttribute( 'position' ), uv = mesh.geometry.getAttribute( 'uv' ), material = mesh.material;
-	try { anim.R_AnimSetClassicPass( true ); originalDraw( e, h, 0 ); }
-	finally { anim.R_AnimSetClassicPass( false ); restore(); }
+	try { newerMode.R_AnimSetClassicPass( true ); originalDraw( e, h, 0 ); }
+	finally { newerMode.R_AnimSetClassicPass( false ); restore(); }
 	same( mesh.geometry.getAttribute( 'position' ), positions, 'classic rollback retains original positions' );
 	same( mesh.geometry.getAttribute( 'uv' ), uv, 'classic rollback retains original UVs' ); same( mesh.material, material, 'classic rollback retains original skin material' );
 	weapons.r_newer_weapons.value = 0;
@@ -145,7 +145,7 @@ Deno.test( 'original axe: native swing interpolation preserves complete axe/arm 
 	Cvar_SetValue( 'r_hdr', 1 ); const h = nativeAxe(), e = entity(), oldTime = cl.time, oldLerp = anim.r_lerpmodels.value;
 	try {
 
-		anim.R_AnimSetNewer( true ); // renderer begins an Enhanced frame before alias drawing
+		newerMode.R_AnimSetNewer( true ); // renderer begins an Enhanced frame before alias drawing
 		anim.r_lerpmodels.value = 2; cl.time = 40; R_DrawAliasModel( e, h, null );
 		e.frame = 1; cl.time = 40.1; R_DrawAliasModel( e, h, null );
 		cl.time = 40.15; const mesh = R_DrawAliasModel( e, h, null ), from = GL_DrawAliasFrame( h, 0 ), to = GL_DrawAliasFrame( h, 1 );
@@ -159,13 +159,13 @@ Deno.test( 'original axe: native swing interpolation preserves complete axe/arm 
 		same( mesh.geometry.getAttribute( 'uv' ), to.uvAttr, 'swing original texture coordinates' );
 		same( mesh.material.map, h.gl_texturenum[ 0 ], 'swing original texture' ); check( ! mesh.children.length, 'complete swing uses one native mesh' );
 
-	} finally { cl.time = oldTime; anim.r_lerpmodels.value = oldLerp; anim.R_AnimSetNewer( false ); }
+	} finally { cl.time = oldTime; anim.r_lerpmodels.value = oldLerp; newerMode.R_AnimSetNewer( false ); }
 
 } );
 
 Deno.test( 'original axe: restore public test fixtures', () => {
 
-	globalThis.fetch = oldFetch; THREE.TextureLoader.prototype.load = oldLoad; anim.R_AnimSetClassicPass( false );
+	globalThis.fetch = oldFetch; THREE.TextureLoader.prototype.load = oldLoad; newerMode.R_AnimSetClassicPass( false );
 	Cvar_SetValue( 'r_hdr', Number( old.hdr ) ); weapons.r_newer_weapons.value = old.enabled; anim.r_lerpmodels.value = old.lerp;
 
 } );

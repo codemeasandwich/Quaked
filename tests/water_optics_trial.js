@@ -1,11 +1,11 @@
 await import( '../src/engine/render/gl_rsurf.js' );
-const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' ), anim = await import( '../src/newer/render/r_anim.js' );
+const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' ), newerMode = await import( '../src/newer/mode.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), cvar = await import( '../src/engine/common/cvar.js' ), quake = await import( '../src/engine/render/glquake.js' );
 const probes = await import( '../src/newer/render/r_waterprobe.js' );
 const mist = await import( '../src/newer/render/r_mist.js' );
 const flashlight = await import( '../src/newer/render/r_flashlight.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
-const vars = [ post.r_bounce, post.r_water_look, post.r_mist, flashlight.r_flashlight, post.r_hdr, post.r_dynres, post.r_reflect, post.r_reflect_screen, post.r_caustics, post.r_bloom, post.r_volumetric, post.r_newbright, post.r_newcontrast, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+const vars = [ post.r_bounce, post.r_water_look, post.r_mist, flashlight.r_flashlight, post.r_hdr, post.r_dynres, post.r_reflect, post.r_reflect_screen, post.r_caustics, post.r_bloom, post.r_volumetric, post.r_newbright, post.r_newcontrast, newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_water ];
 for ( const v of vars ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v );
 for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_dynres', 0 ], [ 'r_newer_lighting', 0 ], [ 'r_newer_normals', 1 ], [ 'r_newer_water', 1 ], [ 'r_reflect', .8 ], [ 'r_reflect_screen', 1 ], [ 'r_caustics', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ] ] ) cvar.Cvar_SetValue( name, value );
 const renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } ); renderer.setPixelRatio( 1 ); renderer.setSize( 480, 270 ); renderer.autoClear = false; renderer.setClearColor( 0, 1 ); document.querySelector( '#result-view' ).append( renderer.domElement );

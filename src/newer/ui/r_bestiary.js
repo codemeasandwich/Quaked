@@ -21,7 +21,7 @@ import {PR_GetString,pr_functions} from '../../engine/progs/progs.js';
 import {GetEdictFieldValue} from '../../engine/progs/pr_edict.js';
 import {Bestiary_ComposeFrontispiece,Bestiary_FrontispieceMask} from './bestiary_art.js';
 import {key_dest,key_game} from '../../engine/client/keys.js';
-import {R_NewerGame} from '../render/r_anim.js';
+import { R_NewerGame } from '../mode.js';
 import {R_IntroLoadingHolding} from './r_demoloading.js';
 import {R_ShellTrace} from '../render/r_shelltrace.js';
 import {isXRActive} from '../../platform/webxr.js';

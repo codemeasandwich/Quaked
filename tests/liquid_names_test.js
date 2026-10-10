@@ -3,7 +3,7 @@
 // stock maps must be classified as the game means it.
 import { readFileSync, existsSync } from 'node:fs';
 const { R_IsWaterTextureName, R_LiquidOpacity, LIQUID_LOOKS } = await import( '../src/newer/render/gl_post.js' );
-const { r_newer_water } = await import( '../src/newer/render/r_anim.js' );
+const { r_newer_water } = await import( '../src/newer/mode.js' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const WATER = [ '*water0', '*water1', '*water2', '*04water1', '*04water2', '*04awater1', '*04mwat1', '*04mwat2' ];
 const NOT_WATER = [ '*lava1', '*teleport', '*slime', '*slime0', '*slime1' ]; // slime is a liquid too, with its own look: not water

@@ -263,7 +263,7 @@ hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.write
 const queryImports = statements.filter( e => e.query && isSrc( e.to ) );
 const importMapEntries = statements.filter( e => e.kind === 'importmap' );
 // importers of r_anim.js that take only the Newer/Classic mode from it (card [44a] D2)
-const MODE = new Set( [ 'R_NewerGame', 'R_AnimSetClassicPass', 'R_ClassicPassActive', 'R_AnimSetNewer', 'R_AnimSetLighting', 'R_NewerLightingActive', 'R_IsNewer', 'r_newer_water', 'r_newer_lighting', 'r_newer_normals', 'r_newer_enemies' ] );
+const MODE = new Set( [ 'R_NewerGame', 'R_AnimSetClassicPass', 'R_ClassicPassActive', 'R_AnimSetNewer', 'R_AnimSetLighting', 'R_NewerLightingActive', 'R_IsNewer', 'r_newer_lighting', 'r_newer_normals', 'r_newer_water', 'r_newer_enemies', 'r_newer_portals', 'r_newer_textures', 'r_newer_hud', 'r_newer_shadows', 'r_newer_crates' ] ); // (all of them in newer/mode.js since [44g])
 // (by what each import resolves to, through adapters, so moving the importers or r_anim.js does not change the count; a
 // namespace import counts as taking everything)
 // A named re-export ( export { R_NewerGame } from './r_anim.js' ) takes those names too, so a forwarding module counts as

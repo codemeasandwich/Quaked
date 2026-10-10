@@ -35,7 +35,7 @@
 // the stock progs (the frame function names are the game's).
 
 import { sv, svs } from '../../engine/server/server.js';
-import { R_NewerGame } from '../render/r_anim.js';
+import { R_NewerGame } from '../mode.js';
 import { pr_crc, pr_functions, pr_global_struct, PR_GetString, PROG_TO_EDICT } from '../../engine/progs/progs.js';
 import { ED_FindFunction } from '../../engine/progs/pr_edict.js';
 import { SV_LinkEdict, SV_Move, MOVE_NORMAL } from '../../engine/server/world.js';

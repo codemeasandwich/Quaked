@@ -2,7 +2,7 @@ import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
 import * as main from '../src/engine/render/gl_rmain.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_flashlight} from '../src/newer/render/r_flashlight.js';
 import {r_newer_weapons} from '../src/newer/render/r_weapons.js';
@@ -15,7 +15,7 @@ import {R_DrawAliasModel} from '../src/engine/render/gl_mesh.js';
 import {R_CloneAliasMaterial} from '../src/newer/render/r_newerskins.js';
 import {weaponSurface,WeaponSurfaceState} from '../src/newer/render/r_weapon_surface.js';
 const W=480,H=320,report=document.querySelector('#report'),button=document.querySelector('#run'),errors=[],owned=[];let renderer,draws=0,composite=null;
-const options=[post.r_hdr,post.r_newbright,post.r_newcontrast,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_pointshadows,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,anim.r_newer_shadows,r_newer_weapons,r_flashlight];
+const options=[post.r_hdr,post.r_newbright,post.r_newcontrast,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_pointshadows,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,mode.r_newer_shadows,r_newer_weapons,r_flashlight];
 const bodyVertexSnapshot=new WeakMap();
 function face(points){return{flags:0,texinfo:{texture:{name:'diagnostic_stone'}},polys:{numverts:points.length,verts:new Float32Array(points.flatMap(p=>[...p,0,0,0,0]))}};}
 const farFloor=face([[-128,-128,-128],[128,-128,-128],[128,128,-128],[-128,128,-128]]);

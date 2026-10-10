@@ -4,7 +4,7 @@ const { MediaDouble, ContextDouble } = await import( './ambient_music_test.js' )
 const { cl, cls, cl_entities, SIGNONS, ca_connected } = await import( '../src/engine/client/client.js' );
 const { sv, FL_MONSTER } = await import( '../src/engine/server/server.js' );
 const { edict_t } = await import( '../src/engine/progs/progs.js' );
-const anim = await import( '../src/newer/render/r_anim.js' ), post = await import( '../src/newer/render/gl_post.js' );
+const mode = await import( '../src/newer/mode.js' ), post = await import( '../src/newer/render/gl_post.js' );
 const cvar = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' ), input = await import( '../src/engine/client/cl_input.js' );
 const sound = await import( '../src/engine/sound/sound.js' ), dma = await import( '../src/engine/sound/snd_dma.js' );
 const { STAT_HEALTH, STAT_ARMOR } = await import( '../src/engine/common/quakedef.js' );
@@ -21,7 +21,7 @@ async function withGame( run ) {
 	player.v.health = 100; monster.v.health = 100; monster.v.flags = FL_MONSTER; monster.v.origin.set( [ 1000, 0, 0 ] );
 	try {
 
-		cvar.Cvar_SetValue( 'r_hdr', 1 ); keys.set_key_dest( keys.key_game ); anim.R_AnimSetClassicPass( false );
+		cvar.Cvar_SetValue( 'r_hdr', 1 ); keys.set_key_dest( keys.key_game ); mode.R_AnimSetClassicPass( false );
 		cl.worldmodel = {}; cl.viewentity = 1; cl.stats[ STAT_HEALTH ] = 100; cl.stats[ STAT_ARMOR ] = 50;
 		cl.paused = false; cl.intermission = 0; cl.num_entities = 1; cl.gametype = 0; cl.maxclients = 1;
 		cls.state = ca_connected; cls.signon = SIGNONS; cls.demoplayback = false;
@@ -57,7 +57,7 @@ Deno.test( 'public gameplay policy excludes classic, title demos, menus, death, 
 	for ( const [ set, restore, name ] of cases ) { set(); equal( game.S_AmbientMusicPolicy( 0, false ).active, false, name ); restore(); }
 	sound.volume.value = 0; equal( game.S_AmbientMusicPolicy( 0, false ).active, true, 'sound mute preserves music eligibility' ); sound.volume.value = 1;
 	equal( game.S_AmbientMusicPolicy( 0, true ).active, false, 'hidden' );
-	anim.R_AnimSetClassicPass( true ); equal( game.S_AmbientMusicPolicy( 0, false ).active, false, 'classic scope' ); anim.R_AnimSetClassicPass( false );
+	mode.R_AnimSetClassicPass( true ); equal( game.S_AmbientMusicPolicy( 0, false ).active, false, 'classic scope' ); mode.R_AnimSetClassicPass( false );
 
 } ) );
 

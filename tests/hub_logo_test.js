@@ -7,8 +7,8 @@ import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr, R_RegisterDetail, R_RefreshDetail, R_PostBegin } from '../src/newer/render/gl_post.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
-import { r_newer_textures, r_newer_normals, R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
+import { r_newer_textures, r_newer_normals, R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { R_NewerTextureUpgrade, R_ClassicTexture, R_NewerTexturesRevert } from '../src/newer/render/r_newertextures.js';
 import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/newer/render/gl_normals.js';
 
@@ -235,7 +235,7 @@ Deno.test( 'public enhanced texture loader installs registered recessed height a
 
 Deno.test( 'byte-packed carved occlusion stays distinct from rock/ordinary tags and only attenuates new deferred lighting', () => {
 
-	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, anim.r_newer_lighting, anim.r_newer_normals ];
+	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, newerMode.r_newer_lighting, newerMode.r_newer_normals ];
 	for ( const option of options ) if ( ! vars.Cvar_FindVar( option.name ) ) vars.Cvar_RegisterVariable( option );
 	const saved = options.map( v => v.string ); let target, composite;
 	const renderer = { capabilities: { isWebGL2: true }, extensions: { has: () => true }, getRenderTarget: () => target, setRenderTarget: t => { target = t; }, setViewport() {}, render( scene ) { composite = scene.children[ 0 ].material; } };

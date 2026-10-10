@@ -13,7 +13,7 @@
  *
  * Engine callbacks are injected with `Sbar_SetExternals`.
  */
-import { R_NewerGame, r_newer_hud } from '../../newer/render/r_anim.js';
+import { R_NewerGame, r_newer_hud } from '../../newer/mode.js';
 import { R_PlayerFaceFrame } from '../../newer/ui/r_facegame.js';
 import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../../newer/ui/r_playerface.js';
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code

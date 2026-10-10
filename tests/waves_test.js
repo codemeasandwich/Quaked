@@ -5,7 +5,7 @@
 await import( '../src/engine/render/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import * as ir from '../src/newer/render/r_impactripples.js';
 import * as w from '../src/newer/render/r_waves.js';
 

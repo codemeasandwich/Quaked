@@ -11,7 +11,8 @@ import { sv } from '../src/engine/server/server.js';
 import { STAT_HEALTH } from '../src/engine/common/quakedef.js';
 import { key_game, key_console, key_message, key_menu, set_key_dest } from '../src/engine/client/keys.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
-import { r_lerpmodels, R_AnimSetNewer } from '../src/newer/render/r_anim.js';
+import { r_lerpmodels } from '../src/newer/render/r_anim.js';
+import { R_AnimSetNewer } from '../src/newer/mode.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from '../src/engine/common/cvar.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };

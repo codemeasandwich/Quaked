@@ -42,7 +42,8 @@ import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
 import { r_rockfield } from '../../newer/render/r_rockfield.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix, R_ImpactPortalPlanes } from '../../newer/render/gl_portal.js';
 import { r_heightshadows, R_HeightShadowScope } from '../../newer/render/r_heightshadows.js';
-import { R_AnimEnabled, R_NewerLightingActive, R_NewerGame, R_SmoothMove, r_lerpmodels, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from '../../newer/render/r_anim.js';
+import { R_AnimEnabled, R_SmoothMove, r_lerpmodels } from '../../newer/render/r_anim.js';
+import { R_NewerLightingActive, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_enemies, r_newer_portals, r_newer_textures, r_newer_hud, r_newer_shadows, r_newer_crates } from '../../newer/mode.js';
 import { R_NewerTexturesFrame } from '../../newer/render/r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from '../../newer/render/r_perf.js';
 import { R_WarmLevel, R_WarmFrame } from '../../newer/render/r_prewarm.js';
@@ -62,7 +63,7 @@ import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelM
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from '../../newer/render/r_torchfire.js';
 import { CL_AllocDlight } from '../client/cl_main.js';
 import { R_ClassicTexture } from '../../newer/render/r_newertextures.js';
-import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from '../../newer/render/r_anim.js';
+import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from '../../newer/mode.js';
 import { R_SaveClassicScene, R_ClassicMaterial } from '../../newer/render/r_classicstate.js';
 import { R_DemoSplitFull, R_DemoSplitActive, R_DemoSplitClassic, r_demosplit } from '../../newer/render/r_demosplit.js';
 import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack } from '../../newer/render/r_decals.js';

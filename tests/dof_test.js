@@ -3,7 +3,7 @@
 // clock going back; off in Classic, at strength 0 and in WebXR; the circle of confusion scaled to the picture's height.
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import * as D from '../src/newer/render/r_dof.js';
 const DEFAULT_STRENGTH = D.r_dof.string; // (as the module declares it, before any test sets it)
 

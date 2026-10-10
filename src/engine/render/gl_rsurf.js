@@ -18,7 +18,7 @@
 import * as THREE from 'three';
 import { R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen } from '../../newer/render/r_rockfield.js';
 import { Sys_Error } from '../common/sys.js';
-import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from '../../newer/render/r_anim.js';
+import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from '../../newer/mode.js';
 import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArchHidden } from '../../newer/render/r_archframe.js';
 import { DEMON_TEXTURES, R_DemonSurfaceData } from '../../newer/render/r_demonrelief.js';
 import { R_DemonBakePrepare, R_DemonBakeSurface, R_DemonBakeStatus } from '../../newer/assets/r_demonbakes.js';

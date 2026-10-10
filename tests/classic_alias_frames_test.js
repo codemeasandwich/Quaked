@@ -8,6 +8,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { GL_DrawAliasFrame, R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { R_SaveClassicScene } from '../src/newer/render/r_classicstate.js';
 import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import * as cvar from '../src/engine/common/cvar.js';
@@ -39,8 +40,8 @@ for ( const { header: h } of assets ) {
 
 }
 const controls = [ r_hdr, anim.r_lerpmodels, main.r_drawentities ]; for ( const v of controls ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v );
-function mode( newer, preference, classicPass = false ) { cvar.Cvar_Set( 'r_hdr', newer ? '1' : '0' ); cvar.Cvar_Set( 'r_lerpmodels', String( preference ) ); anim.R_AnimSetNewer( newer ); anim.R_AnimSetClassicPass( classicPass ); }
-function fixture( fn ) { const strings = controls.map( v => v.string ), old = { time: cl.time, newer: anim.R_IsNewer(), classic: anim.R_ClassicPassActive() }; try { fn(); } finally { controls.forEach( ( v, i ) => cvar.Cvar_Set( v.name, strings[ i ] ) ); cl.time = old.time; anim.R_AnimSetNewer( old.newer ); anim.R_AnimSetClassicPass( old.classic ); } }
+function mode( newer, preference, classicPass = false ) { cvar.Cvar_Set( 'r_hdr', newer ? '1' : '0' ); cvar.Cvar_Set( 'r_lerpmodels', String( preference ) ); newerMode.R_AnimSetNewer( newer ); newerMode.R_AnimSetClassicPass( classicPass ); }
+function fixture( fn ) { const strings = controls.map( v => v.string ), old = { time: cl.time, newer: newerMode.R_IsNewer(), classic: newerMode.R_ClassicPassActive() }; try { fn(); } finally { controls.forEach( ( v, i ) => cvar.Cvar_Set( v.name, strings[ i ] ) ); cl.time = old.time; newerMode.R_AnimSetNewer( old.newer ); newerMode.R_AnimSetClassicPass( old.classic ); } }
 const dots = Float32Array.from( { length: 162 }, ( _, i ) => .1 + i / 200 );
 const draw = ( e, h ) => R_DrawAliasModel( e, h, dots, .63 );
 function poseState( e ) { const s = e._aliasLerp; return JSON.stringify( { from: s.from, to: s.to, start: s.start, interval: s.interval, lastTime: s.lastTime, blend: s.blend, origin: s.origin, lead: s.lead } ); }
@@ -77,8 +78,8 @@ Deno.test( 'forced2 split Classic uses exact native poses and R_SaveClassicScene
 		const { e, mesh, pose } = blended( asset, 2 ), scene = new THREE.Scene(); mesh._quakeOwner = e; scene.add( mesh );
 		const attributes = [ 'position', 'normal', 'uv', 'color' ].map( name => ( { name, attr: mesh.geometry.getAttribute( name ), bytes: Buffer.from( bytes( mesh.geometry.getAttribute( name ).array ) ) } ) ), state = poseState( e ), flags = { posenum: e._aliasPosenum, template: e._aliasTemplate, blended: e._aliasBlended }, time = cl.time;
 		const restore = R_SaveClassicScene( scene, time );
-		try { anim.R_AnimSetClassicPass( true ); same( anim.R_AnimEnabled(), false, 'split native pass rejects legacy force2' ); draw( e, asset.header ); exactNative( mesh, asset.header, pose, asset.name + '/split' ); same( poseState( e ), state, 'native half never updates lerp state' ); }
-		finally { anim.R_AnimSetClassicPass( false ); restore(); }
+		try { newerMode.R_AnimSetClassicPass( true ); same( anim.R_AnimEnabled(), false, 'split native pass rejects legacy force2' ); draw( e, asset.header ); exactNative( mesh, asset.header, pose, asset.name + '/split' ); same( poseState( e ), state, 'native half never updates lerp state' ); }
+		finally { newerMode.R_AnimSetClassicPass( false ); restore(); }
 		for ( const saved of attributes ) { same( mesh.geometry.getAttribute( saved.name ), saved.attr, 'same-tick rollback attribute identity ' + saved.name ); check( bytes( saved.attr.array ).equals( saved.bytes ), 'same-tick rollback exact enhanced bytes ' + saved.name ); }
 		same( e._aliasPosenum, flags.posenum, 'pose selection restored' ); same( e._aliasTemplate, flags.template, 'template restored' ); same( e._aliasBlended, flags.blended, 'blend flag restored' ); same( poseState( e ), state, 'blend timing/source state restored' ); same( cl.time, time, 'simulation time unchanged' ); draw( e, asset.header ); for ( const saved of attributes.slice( 0, 2 ) ) check( bytes( mesh.geometry.getAttribute( saved.name ).array ).equals( saved.bytes ), 'next enhanced draw remains the original blend' );
 		e._aliasGeo.dispose();
@@ -96,8 +97,8 @@ Deno.test( 'native one-pose armor movement uses game transforms in Classic, and 
 		cvar.Cvar_Set( 'r_drawentities', '1' ); cl_visedicts[ 0 ] = e; set_cl_numvisedicts( 1 ); mode( true, 2 ); cl.time = 0; main.R_DrawEntitiesOnList(); e.origin[ 0 ] = 12; e.angles[ 1 ] = 30; cl.time = .1; main.R_DrawEntitiesOnList(); e.origin[ 0 ] = 12; e.angles[ 1 ] = 30; cl.time = .16; main.R_DrawEntitiesOnList(); near( e._aliasMesh.position.x, 6, 'real public entity renderer establishes half movement' );
 		const movement = JSON.stringify( e._smoothMove ), mesh = e._aliasMesh; mode( false, 2 ); e.origin[ 0 ] = 12; e.angles[ 1 ] = 30; main.R_DrawEntitiesOnList(); same( mesh.position.x, 12, 'normal Classic shows exact game position even at force2' ); near( mesh.rotation.z, Math.PI / 6, 'normal Classic shows game heading' ); exactNative( mesh, header, 0, 'armor' ); same( JSON.stringify( e._smoothMove ), movement, 'Classic cannot advance movement smoothing' );
 		mode( true, 2 ); main.R_DrawEntitiesOnList(); near( mesh.position.x, 6, 'enhanced same-tick display recovered' ); const scene = new THREE.Scene(); scene.add( mesh ); const restore = R_SaveClassicScene( scene, cl.time );
-		try { anim.R_AnimSetClassicPass( true ); main.R_DrawEntitiesOnList(); same( mesh.position.x, 12, 'split Classic receives saved raw game position' ); exactNative( mesh, header, 0, 'split armor' ); }
-		finally { anim.R_AnimSetClassicPass( false ); restore(); }
+		try { newerMode.R_AnimSetClassicPass( true ); main.R_DrawEntitiesOnList(); same( mesh.position.x, 12, 'split Classic receives saved raw game position' ); exactNative( mesh, header, 0, 'split armor' ); }
+		finally { newerMode.R_AnimSetClassicPass( false ); restore(); }
 		near( mesh.position.x, 6, 'object enhanced transform restored' ); same( JSON.stringify( e._smoothMove ), movement, 'object smoothing state preserved across split' ); main.R_DrawEntitiesOnList(); near( mesh.position.x, 6, 'subsequent enhanced object frame remains stable' ); e._aliasGeo.dispose();
 
 	} finally { set_cl_numvisedicts( oldCount ); cl_visedicts[ 0 ] = oldFirst; main.set_currententity( oldEntity ); }

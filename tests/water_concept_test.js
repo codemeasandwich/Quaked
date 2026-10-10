@@ -3,7 +3,7 @@
 // this test does not inspect or duplicate shader strings.
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
-const surf = await import( '../src/engine/render/gl_rsurf.js' ), anim = await import( '../src/newer/render/r_anim.js' );
+const surf = await import( '../src/engine/render/gl_rsurf.js' ), mode = await import( '../src/newer/mode.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 
 function equal( actual, expected, label ) {
@@ -15,9 +15,9 @@ function equal( actual, expected, label ) {
 Deno.test( 'ordinary torch sources reach the water compositor within the existing cap and respect independent feature switches', () => {
 
 	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_water_look,
-		post.r_reflect, post.r_reflect_screen, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+		post.r_reflect, post.r_reflect_screen, mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
-	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = anim.R_ClassicPassActive();
+	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = mode.R_ClassicPassActive();
 	const texture = new THREE.DataTexture( new Uint8Array( [ 72, 96, 40, 255 ] ), 1, 1 ), liquid = { name: '*water1', gl_texture: texture };
 	const leaf = { contents: - 1, visframe: 17, compressed_vis: null }, origins = [];
 	const entities = [];
@@ -48,7 +48,7 @@ Deno.test( 'ordinary torch sources reach the water compositor within the existin
 	}
 	try {
 
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
 		for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 		for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_water_look' ] ) vars.Cvar_SetValue( name, 0 );
 		vars.Cvar_SetValue( 'r_reflect', .6 );
@@ -84,15 +84,15 @@ Deno.test( 'ordinary torch sources reach the water compositor within the existin
 		vars.Cvar_SetValue( 'r_reflect_screen', 0 ); frame(); equal( uniforms.uScreenReflect.value, 0, 'SSR-off preference remains independent' );
 		vars.Cvar_SetValue( 'r_newer_water', 0 ); const native = frame();
 		equal( uniforms.uWaterCount.value, 0, 'liquids-off removes reflected-receiver optics' ); equal( native.opacity, .75, 'native opacity preserved' );
-		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame(); post.classicLook.value = 1; anim.R_AnimSetClassicPass( true );
+		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame(); post.classicLook.value = 1; mode.R_AnimSetClassicPass( true );
 		equal( post.R_WaterActive(), false, 'classic scope excludes enhanced concept optics' );
 		equal( surf.R_LiquidSurfaceMaterial( liquid, .75 ), native, 'classic scope preserves original cached surface' );
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 0 );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 0 );
 		equal( frame(), native, 'New Game preserves native water despite ordinary light entities' ); equal( draws, 0, 'New Game skips deferred composite' );
 
 	} finally {
 
-		post.classicLook.value = priorLook; anim.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = priorLook; mode.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
 		post.R_PostBegin( renderer, false, 0, 0 ); post.R_PostShutdown(); post.R_BuildWorldLights( null );
 		options.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); texture.dispose();
 
@@ -103,9 +103,9 @@ Deno.test( 'ordinary torch sources reach the water compositor within the existin
 Deno.test( 'brown stock water uses a Muddy map default while explicit looks and native paths preserve map identity', () => {
 
 	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_water_look, post.r_mist,
-		anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+		mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
-	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = anim.R_ClassicPassActive();
+	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = mode.R_ClassicPassActive();
 	const names = [ '*water1', '*04water1', '*slime0', '*lava1' ];
 	const textures = names.map( name => ( { name, gl_texture: new THREE.DataTexture( new Uint8Array( [ 80, 64, 32, 255 ] ), 1, 1 ) } ) );
 	const xs = [ - 128, 0, 400, 700 ], leaf = { contents: - 1, visframe: 0, compressed_vis: null };
@@ -127,7 +127,7 @@ Deno.test( 'brown stock water uses a Muddy map default while explicit looks and 
 	}
 	try {
 
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
 		for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 		for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_newer_lighting', 'r_water_look' ] ) vars.Cvar_SetValue( name, 0 );
 		post.R_BuildWorldLights( model ); frame(); const regions = post.R_GetLiquidRegions();
@@ -173,14 +173,14 @@ Deno.test( 'brown stock water uses a Muddy map default while explicit looks and 
 		vars.Cvar_SetValue( 'r_newer_water', 0 ); frame(); const native = surf.R_LiquidSurfaceMaterial( textures[ 1 ], .75 );
 		equal( uniforms.uWaterCount.value, 0, 'liquids-off excludes map-default optics' ); equal( native.opacity, .75, 'native brown opacity preserved' );
 		equal( native.vertexColors, false, 'native brown surface ignores enhanced brightness' );
-		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame(); post.classicLook.value = 1; anim.R_AnimSetClassicPass( true );
+		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame(); post.classicLook.value = 1; mode.R_AnimSetClassicPass( true );
 		equal( surf.R_LiquidSurfaceMaterial( textures[ 1 ], .75 ), native, 'classic scope selects native brown material' );
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 0 ); frame();
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); vars.Cvar_SetValue( 'r_hdr', 0 ); frame();
 		equal( surf.R_LiquidSurfaceMaterial( textures[ 1 ], .75 ), native, 'New Game ignores enhanced map defaults' );
 
 	} finally {
 
-		post.classicLook.value = priorLook; anim.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = priorLook; mode.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
 		post.R_PostBegin( renderer, false, 0, 0 ); post.R_PostShutdown(); post.R_BuildWorldLights( null );
 		options.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) );
 		for ( const texture of textures ) texture.gl_texture.dispose();

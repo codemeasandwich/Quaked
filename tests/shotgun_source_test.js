@@ -8,7 +8,7 @@ await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), mode = await import( '../src/newer/mode.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
@@ -192,7 +192,7 @@ Deno.test( 'standard shotgun source port preserves the supplied topology, UVs, t
 	// Exercise the real alias interpolation after independently proving both
 	// endpoints; the existing generic draw, not an app-specific animation path.
 	// In-between frames are Newer Game's (R_AnimEnabled): a Newer frame turns it on in R_PostBegin, which this draw skips.
-	const oldTime = cl.time; anim.r_lerpmodels.value = 2; const wasNewer = anim.R_IsNewer(); anim.R_AnimSetNewer( true );
+	const oldTime = cl.time; anim.r_lerpmodels.value = 2; const wasNewer = mode.R_IsNewer(); mode.R_AnimSetNewer( true );
 	try {
 
 		const lerped = { ...e, frame: 0, _aliasMesh: null, _aliasGeo: null }; cl.time = 70; R_DrawAliasModel( lerped, h, null );
@@ -201,7 +201,7 @@ Deno.test( 'standard shotgun source port preserves the supplied topology, UVs, t
 		const imported = JSON.parse( bytes( 'newer/weapons/v_shot.json' ).toString() );
 		for ( let i = 0; i < midpoint.length; i ++ ) near( midpoint[ i ], ( imported.poses[ 0 ][ i ] + imported.poses[ 1 ][ i ] ) / 2, 'public single-shotgun midpoint interpolation', .000025 );
 
-	} finally { cl.time = oldTime; anim.r_lerpmodels.value = 0; anim.R_AnimSetNewer( wasNewer ); }
+	} finally { cl.time = oldTime; anim.r_lerpmodels.value = 0; mode.R_AnimSetNewer( wasNewer ); }
 
 } );
 
@@ -223,7 +223,7 @@ Deno.test( 'standard shotgun source: held and basic-drop roles; original classic
 		equal( mesh.geometry.getAttribute( 'uv' ), GL_DrawAliasFrame( h, 0 ).uvAttr, label + ' original wrap' ); equal( mesh.material.map, h.gl_texturenum[ 0 ], label + ' original skin' );
 
 	}
-	try { anim.R_AnimSetClassicPass( true ); native( 'classic half' ); } finally { anim.R_AnimSetClassicPass( false ); }
+	try { mode.R_AnimSetClassicPass( true ); native( 'classic half' ); } finally { mode.R_AnimSetClassicPass( false ); }
 	R_DrawAliasModel( e, h, null ); equal( mesh.geometry.getAttribute( 'position' ), enhanced, 'enhanced source returns after classic pass' );
 	vars.Cvar_SetValue( 'r_hdr', 0 ); native( 'New Game' ); vars.Cvar_SetValue( 'r_hdr', 1 );
 	weapons.r_newer_weapons.value = 0; try { native( 'feature disabled' ); } finally { weapons.r_newer_weapons.value = 1; }
@@ -234,6 +234,6 @@ Deno.test( 'standard shotgun source: held and basic-drop roles; original classic
 Deno.test( 'standard shotgun source: restore public test fixtures', () => {
 
 	globalThis.fetch = oldFetch; THREE.TextureLoader.prototype.load = oldLoad; vars.Cvar_Set( 'r_hdr', previous.hdr );
-	weapons.r_newer_weapons.value = previous.weapons; anim.r_lerpmodels.value = previous.lerp; anim.R_AnimSetClassicPass( false );
+	weapons.r_newer_weapons.value = previous.weapons; anim.r_lerpmodels.value = previous.lerp; mode.R_AnimSetClassicPass( false );
 
 } );

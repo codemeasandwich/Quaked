@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
 const faceSources=new Set(faceManifest.assets.map(a=>a.source).filter(Boolean));
 import { r_hdr } from '../src/newer/render/gl_post.js';
-import { R_AnimSetClassicPass, r_newer_hud } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass, r_newer_hud } from '../src/newer/mode.js';
 import { Cvar_RegisterVariable, Cvar_FindVar } from '../src/engine/common/cvar.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );

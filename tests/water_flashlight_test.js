@@ -2,7 +2,7 @@
 // boundaries; the controlled WebGL trial supplies the optical pixel proof.
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const post = await import( '../src/newer/render/gl_post.js' ), anim = await import( '../src/newer/render/r_anim.js' );
+const post = await import( '../src/newer/render/gl_post.js' ), mode = await import( '../src/newer/mode.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), flashlight = await import( '../src/newer/render/r_flashlight.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), probes = await import( '../src/newer/render/r_waterprobe.js' );
 
@@ -15,9 +15,9 @@ function equal( actual, expected, label ) {
 Deno.test( 'flashlight toggles preserve water material and cached reflections while respecting lighting and classic scopes', () => {
 
 	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_reflect, post.r_reflect_screen,
-		anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water, flashlight.r_flashlight ];
+		mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water, flashlight.r_flashlight ];
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
-	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = anim.R_ClassicPassActive();
+	const saved = options.map( v => v.string ), priorLook = post.classicLook.value, priorClassic = mode.R_ClassicPassActive();
 	const descriptor = Object.getOwnPropertyDescriptor( performance, 'now' ); let now = 800000;
 	Object.defineProperty( performance, 'now', { configurable: true, value: () => now } );
 	const beam = flashlight.R_FlashlightBeam(), priorBeam = { on: beam.on, pos: beam.pos.slice(), dir: beam.dir.slice() };
@@ -55,7 +55,7 @@ Deno.test( 'flashlight toggles preserve water material and cached reflections wh
 	}
 	try {
 
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
 		for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 		for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_flashlight' ] ) vars.Cvar_SetValue( name, 0 );
 		vars.Cvar_SetValue( 'r_reflect', .6 ); post.R_BuildWorldLights( model ); probes.R_WaterProbeClear();
@@ -85,7 +85,7 @@ Deno.test( 'flashlight toggles preserve water material and cached reflections wh
 		vars.Cvar_SetValue( 'r_newer_water', 0 ); const native = frame();
 		equal( uniforms.uWaterCount.value, 0, 'liquids-off excludes surface optics' ); equal( native.opacity, .75, 'native opacity restored' ); equal( native.vertexColors, false, 'native ignores enhanced vertex light' );
 		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame();
-		post.classicLook.value = 1; anim.R_AnimSetClassicPass( true );
+		post.classicLook.value = 1; mode.R_AnimSetClassicPass( true );
 		flashlight.R_FlashlightUpdate( camera.position.toArray(), forward, [ 1, 0, 0 ], [ 0, 0, 1 ] );
 		post.R_WaterProbesFrame( renderer, scene, camera, () => {} );
 		equal( beam.on, false, 'classic scope suppresses beam' ); equal( post.R_WaterActive(), false, 'classic scope suppresses water optics' );
@@ -93,7 +93,7 @@ Deno.test( 'flashlight toggles preserve water material and cached reflections wh
 
 	} finally {
 
-		post.classicLook.value = priorLook; anim.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = priorLook; mode.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
 		post.R_PostBegin( renderer, false, 0, 0 ); post.R_PostShutdown(); post.R_BuildWorldLights( null ); probes.R_WaterProbeClear();
 		options.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) );
 		beam.on = priorBeam.on; beam.pos.splice( 0, 3, ...priorBeam.pos ); beam.dir.splice( 0, 3, ...priorBeam.dir ); texture.dispose();

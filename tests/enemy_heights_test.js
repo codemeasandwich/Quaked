@@ -1,7 +1,7 @@
 await import('../src/engine/render/gl_rsurf.js');
 const THREE = await import('three');
 const skins = await import('../src/newer/render/r_newerskins.js');
-const anim = await import('../src/newer/render/r_anim.js');
+const mode = await import('../src/newer/mode.js');
 
 function equal(a,b,label) { if(a!==b) throw new Error(`${label}: ${a} != ${b}`); }
 function pixels(seed=1,w=16,h=16) {
@@ -14,9 +14,9 @@ function shaderFor(material) {
  material.onBeforeCompile(shader);return shader;
 }
 function withState(fn) {
- const old=[anim.r_newer_normals.value,anim.r_newer_enemies.value];
- try { anim.R_AnimSetNewer(true);anim.R_AnimSetLighting(true);anim.r_newer_normals.value=1;anim.r_newer_enemies.value=1;skins.R_NewerSetIndex({models:{},nativeHeights:{},version:1});return fn(); }
- finally {skins.R_NewerSkinsShutdown();skins.R_NewerSetIndex(null);anim.R_AnimSetNewer(false);anim.R_AnimSetLighting(false);[anim.r_newer_normals.value,anim.r_newer_enemies.value]=old;}
+ const old=[mode.r_newer_normals.value,mode.r_newer_enemies.value];
+ try { mode.R_AnimSetNewer(true);mode.R_AnimSetLighting(true);mode.r_newer_normals.value=1;mode.r_newer_enemies.value=1;skins.R_NewerSetIndex({models:{},nativeHeights:{},version:1});return fn(); }
+ finally {skins.R_NewerSkinsShutdown();skins.R_NewerSetIndex(null);mode.R_AnimSetNewer(false);mode.R_AnimSetLighting(false);[mode.r_newer_normals.value,mode.r_newer_enemies.value]=old;}
 }
 
 Deno.test('every stock enemy, head and gore model has height-driven native relief without replacement art',()=>withState(()=>{
@@ -36,14 +36,14 @@ Deno.test('every stock enemy, head and gore model has height-driven native relie
 
 Deno.test('native relief respects independent normals, original enemy toggle, lighting and classic pass',()=>withState(()=>{
  const texture=pixels();const material=skins.R_EnemyAliasMaterial(texture,'progs/dog.mdl',true);const shader=shaderFor(material);
- anim.r_newer_enemies.value=0;
+ mode.r_newer_enemies.value=0;
  equal(skins.R_EnemyAliasMaterial(texture,'progs/dog.mdl',true),material,'enemy replacement toggle keeps original relief');
- anim.R_AnimSetLighting(false);
+ mode.R_AnimSetLighting(false);
  const unlit=skins.R_EnemyAliasMaterial(texture,'progs/dog.mdl',true),unlitShader=shaderFor(unlit);
  equal(unlit.map,texture,'lighting off keeps native diffuse');equal(unlitShader.uniforms.uSkinRelit.value,0,'advanced light/gloss off');equal(unlitShader.uniforms.uSkinDetail.value,1,'normals remain enabled');
- anim.r_newer_normals.value=0;
+ mode.r_newer_normals.value=0;
  equal(shader.uniforms.uSkinDetail.value,0,'existing material updates when normals off');equal(skins.R_EnemyAliasMaterial(texture,'progs/dog.mdl',true),null,'normals off returns original path');
- anim.r_newer_normals.value=1;anim.R_AnimSetNewer(false);
+ mode.r_newer_normals.value=1;mode.R_AnimSetNewer(false);
  equal(shader.uniforms.uSkinDetail.value,0,'classic comparison suppresses cached material relief');equal(skins.R_EnemyAliasMaterial(texture,'progs/dog.mdl',true),null,'New Game stays original');
  texture.dispose();
 }));
@@ -76,7 +76,7 @@ Deno.test('stored custom enemy height loads in either order, preserves UV and su
    const shader=shaderFor(material),normal=shader.uniforms.qrNormal.value;
    equal(shader.uniforms.uHasNormal.value,1,'stored height actively creates normals');equal(normal.offset.x,.2,'normal U offset matches diffuse');equal(normal.offset.y,.3,'normal V offset matches diffuse');
    equal(shader.fragmentShader.includes('uSkinDetail > 0.5'),true,'normal toggle gates actual shader');
-   anim.r_newer_normals.value=0;equal(shader.uniforms.uSkinDetail.value,0,'cached custom material toggle');anim.r_newer_normals.value=1;
+   mode.r_newer_normals.value=0;equal(shader.uniforms.uSkinDetail.value,0,'cached custom material toggle');mode.r_newer_normals.value=1;
   }
  } finally {THREE.TextureLoader.prototype.load=oldLoad;if(oldDocument)Object.defineProperty(globalThis,'document',oldDocument);else delete globalThis.document;}
 }));

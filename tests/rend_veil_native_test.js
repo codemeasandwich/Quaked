@@ -14,7 +14,7 @@ import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NORMAL } from '../src/e
 import { SV_Physics, SV_Physics_Step, SV_RunThink, SV_SetFrametime, sv_gravity } from '../src/engine/server/sv_phys.js';
 import { SV_RendVeilLocalActive, SV_RendVeilHolding, SV_RendVeilClientRecord, Rend_ParseRecord } from '../src/newer/gameplay/sv_rendveil.js';
 import { Rend_Schedule } from '../src/newer/gameplay/rend_veil_state.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';

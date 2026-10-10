@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import {PointShadowAtlas,POINT_SHADOW_CELL_UNITS} from '../src/newer/render/r_pointshadows.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),buffer=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);
 export function chunkCases(){
@@ -26,7 +26,7 @@ Deno.test('point chunk direct writes preserve source corner order, first-seen ce
  }
 });
 Deno.test('public sun occluder retains original fan order across linked polygons and excludes sky/liquid backing',()=>{
- if(!vars.Cvar_FindVar(post.r_hdr.name))vars.Cvar_RegisterVariable(post.r_hdr);const saved=post.r_hdr.string;vars.Cvar_SetValue('r_hdr',0);anim.R_AnimSetClassicPass(false);
+ if(!vars.Cvar_FindVar(post.r_hdr.name))vars.Cvar_RegisterVariable(post.r_hdr);const saved=post.r_hdr.string;vars.Cvar_SetValue('r_hdr',0);mode.R_AnimSetClassicPass(false);
  const poly=points=>({numverts:points.length,verts:points.map(p=>[...p,0,0,0,0]),next:null}),first=poly([[1,2,3],[11,2,3],[11,12,3],[1,12,3]]);first.next=poly([[-9,-8,-7],[-4,-8,-7],[-9,-3,-7]]);const second=poly([[20,21,22],[23,24,25],[26,27,28]]);second.verts=Float32Array.from(second.verts.flat());const model={surfaces:[{flags:0,polys:first},{flags:4,polys:poly([[90,0,0],[91,0,0],[90,1,0]])},{flags:16,polys:poly([[0,90,0],[0,91,0],[1,90,0]])},{flags:0,polys:second}],firstmodelsurface:0,nummodelsurfaces:4};
  const expected=new Float32Array([1,2,3,11,2,3,11,12,3,1,2,3,11,12,3,1,12,3,-9,-8,-7,-4,-8,-7,-9,-3,-7,20,21,22,23,24,25,26,27,28]),set=THREE.BufferGeometry.prototype.setAttribute;let actual;
  THREE.BufferGeometry.prototype.setAttribute=function(name,attribute){if(name==='position')actual=attribute.array;return set.call(this,name,attribute);};

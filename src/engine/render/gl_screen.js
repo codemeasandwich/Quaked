@@ -38,7 +38,7 @@ import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsol
 import { R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
 import { Draw_Fill } from './gl_draw.js';
 import { R_DemoSplitActive, R_DemoSplitFull } from '../../newer/render/r_demosplit.js';
-import { R_ClassicPassActive, R_AnimSetClassicPass } from '../../newer/render/r_anim.js';
+import { R_ClassicPassActive, R_AnimSetClassicPass } from '../../newer/mode.js';
 import { Draw_WithClipRect } from './gl_draw.js';
 import { r_refdef as _r_refdef_canonical } from './render.js';
 

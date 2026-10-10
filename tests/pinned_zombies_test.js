@@ -12,7 +12,7 @@ import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3 } from '../src/engine/progs/
 import { sv, svs, ss_loading, ss_active, SOLID_BSP, SOLID_SLIDEBOX, MOVETYPE_NONE, MOVETYPE_WALK, MOVETYPE_PUSH, FL_CLIENT, DAMAGE_AIM } from '../src/engine/server/server.js';
 import { SV_ClearWorld, SV_LinkEdict, SV_Move } from '../src/engine/server/world.js';
 import { SV_PinnedZombieSpawned } from '../src/newer/gameplay/sv_pinnedzombies.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 

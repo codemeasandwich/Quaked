@@ -17,7 +17,7 @@ import { PR_GetString } from '../../engine/progs/progs.js';
 import { in_attack } from '../../engine/client/cl_input.js';
 import { key_dest, key_game } from '../../engine/client/keys.js';
 import { STAT_HEALTH, STAT_ARMOR } from '../../engine/common/quakedef.js';
-import { R_NewerGame } from '../render/r_anim.js';
+import { R_NewerGame } from '../mode.js';
 import { bgmvolume } from '../../engine/sound/sound.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { S_GetAudioContext } from '../../engine/sound/snd_dma.js';

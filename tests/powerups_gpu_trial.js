@@ -2,7 +2,7 @@ import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as power from '../src/newer/render/r_powerups.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as height from '../src/newer/render/r_heightshadows.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
@@ -16,7 +16,7 @@ import { R_ClassicMaterial } from '../src/newer/render/r_classicstate.js';
 const report = document.querySelector( '#report' ), width = 768, heightPixels = 480;
 try {
 
-	for ( const variable of [ power.r_powerups, post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, post.r_pointshadows, height.r_heightshadows, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ] ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
+	for ( const variable of [ power.r_powerups, post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, post.r_pointshadows, height.r_heightshadows, newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_water ] ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 	for ( const [ name, value ] of Object.entries( { r_powerups: 1, r_hdr: 1, r_dynres: 0, r_bloom: 0, r_volumetric: 0, r_bounce: 0, r_pointshadows: 0, r_heightshadows: 1, r_newer_lighting: 1, r_newer_normals: 1, r_newer_water: 0 } ) ) vars.Cvar_SetValue( name, value );
 	const response = await fetch( '../pak0.pak' ); if ( ! response.ok ) throw new Error( 'Native PAK fetch failed' );
 	COM_AddPack( COM_LoadPackFile( 'pak0.pak', await response.arrayBuffer() ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
@@ -177,7 +177,7 @@ try {
 			let classic;
 			try {
 
-				anim.R_AnimSetClassicPass( true ); post.classicLook.value = 1; height.R_HeightShadowScope( false ); for ( const group of groups ) group.visible = false;
+				newerMode.R_AnimSetClassicPass( true ); post.classicLook.value = 1; height.R_HeightShadowScope( false ); for ( const group of groups ) group.visible = false;
 				const results = [];
 				for ( const on of [ 1, 0 ] ) {
 
@@ -188,7 +188,7 @@ try {
 				let nonblack = 0; for ( let i = 0; i < results[ 0 ].length; i += 4 ) if ( THREE.DataUtils.fromHalfFloat( results[ 0 ][ i ] ) + THREE.DataUtils.fromHalfFloat( results[ 0 ][ i + 1 ] ) + THREE.DataUtils.fromHalfFloat( results[ 0 ][ i + 2 ] ) > .01 ) nonblack ++;
 				classic = { difference: different( results[ 0 ], results[ 1 ] ), nonblackPixels: nonblack, glError: renderer.getContext().getError(), availableEnhancedLights: power.R_PowerupLights().length };
 
-			} finally { for ( const [ object, material ] of materials ) object.material = material; for ( const group of groups ) group.visible = true; anim.R_AnimSetClassicPass( false ); post.classicLook.value = 0; renderer.setRenderTarget( previousTarget ); classicTarget.dispose(); vars.Cvar_SetValue( 'r_powerups', 1 ); }
+			} finally { for ( const [ object, material ] of materials ) object.material = material; for ( const group of groups ) group.visible = true; newerMode.R_AnimSetClassicPass( false ); post.classicLook.value = 0; renderer.setRenderTarget( previousTarget ); classicTarget.dispose(); vars.Cvar_SetValue( 'r_powerups', 1 ); }
 			const result = { status: animation.changedComponents > 100 && cameraSamples.samples >= 6 && cameraSamples.medianMaximumRgbDifference <= 6 && shadow.ready && shadow.imageDifference.changedComponents > 100 && shadow.glErrors.every( error => error === 0 ) && classic.difference.changedComponents === 0 && classic.nonblackPixels > 10000 && classic.glError === 0 ? 'PASS' : 'FAIL', isolatedRingAnimation: animation, fixedWorldReceiverAcrossCameraRotation: cameraSamples, opaqueBlocker: shadow, classicSameFramePowerupToggle: classic };
 			window.powerupsExtendedResult = result; report.textContent = JSON.stringify( result, null, 2 );
 

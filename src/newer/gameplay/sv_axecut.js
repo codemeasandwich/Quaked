@@ -21,7 +21,7 @@ import {pr_crc,pr_functions,PR_GetString,pr_globals_int,pr_globals_float,pr_glob
 import {OFS_PARM0,OFS_PARM1,OFS_PARM2,OFS_PARM3} from '../../engine/progs/pr_comp.js';
 import {ED_Alloc,ED_FindFunction,ED_NewString,GetEdictFieldValue} from '../../engine/progs/pr_edict.js';
 import {COM_FindFile} from '../../engine/common/pak.js';
-import {R_NewerGame} from '../render/r_anim.js';
+import { R_NewerGame } from '../mode.js';
 import {R_AxeSwingNormal} from '../render/r_axepose.js';
 import {R_NewerSkinSalt} from '../render/r_newerskins.js';
 import {SV_LinkEdict} from '../../engine/server/world.js';

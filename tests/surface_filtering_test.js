@@ -2,16 +2,16 @@
 // Pixel behavior is checked separately by surface_filtering_gpu_trial.html.
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as heights from '../src/newer/render/r_heightshadows.js';
 import { createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 import { R_NormalsFromHeight, R_NormalsFromCraftedHeight } from '../src/newer/render/gl_normals.js';
 const check=(v,m)=>{if(!v)throw new Error(m);}, same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
-const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,heights.r_heightshadows];
+const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,heights.r_heightshadows];
 for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
 function mock(){let target=null;return {capabilities:{isWebGL2:true},extensions:{has:()=>true},getRenderTarget:()=>target,setRenderTarget:t=>{target=t;},setViewport(){},render(scene){this.material=scene.children[0]?.material;}};}
-function fixture(fn){const saved=controls.map(c=>c.string),classic=post.classicLook.value;const renderer=mock();try{for(const c of controls)vars.Cvar_SetValue(c.name,1);for(const n of ['r_dynres','r_bloom','r_volumetric'])vars.Cvar_SetValue(n,0);anim.R_AnimSetClassicPass(false);post.classicLook.value=0;post.R_PostBegin(renderer,true,128,128);fn(renderer);}finally{post.R_PostShutdown();controls.forEach((c,i)=>vars.Cvar_Set(c.name,saved[i]));post.classicLook.value=classic;anim.R_AnimSetClassicPass(false);}}
+function fixture(fn){const saved=controls.map(c=>c.string),classic=post.classicLook.value;const renderer=mock();try{for(const c of controls)vars.Cvar_SetValue(c.name,1);for(const n of ['r_dynres','r_bloom','r_volumetric'])vars.Cvar_SetValue(n,0);mode.R_AnimSetClassicPass(false);post.classicLook.value=0;post.R_PostBegin(renderer,true,128,128);fn(renderer);}finally{post.R_PostShutdown();controls.forEach((c,i)=>vars.Cvar_Set(c.name,saved[i]));post.classicLook.value=classic;mode.R_AnimSetClassicPass(false);}}
 function compile(material){const shader={uniforms:{},vertexShader:THREE.ShaderLib.lambert.vertexShader,fragmentShader:THREE.ShaderLib.lambert.fragmentShader};material.onBeforeCompile(shader);return shader;}
 const slopes=rgba=>Array.from({length:rgba.length/4},(_,i)=>Math.hypot(rgba[i*4]/127.5-1,rgba[i*4+1]/127.5-1)/(rgba[i*4+2]/127.5-1));
 

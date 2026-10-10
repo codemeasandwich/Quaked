@@ -5,11 +5,11 @@ const THREE = await import( 'three' );
 const post = await import( '../src/newer/render/gl_post.js' );
 const skins = await import( '../src/newer/render/r_newerskins.js' );
 const height = await import( '../src/newer/render/r_heightshadows.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const newerMode = await import( '../src/newer/mode.js' );
 const cvars = await import( '../src/engine/common/cvar.js' );
 const W = 512, H = 512, report = document.querySelector( '#report' ), button = document.querySelector( '#run' );
 const registered = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce,
-	anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water, height.r_heightshadows ];
+	newerMode.r_newer_lighting, newerMode.r_newer_normals, newerMode.r_newer_water, height.r_heightshadows ];
 for ( const variable of registered ) if ( ! cvars.Cvar_FindVar( variable.name ) ) cvars.Cvar_RegisterVariable( variable );
 for ( const [ name, value ] of Object.entries( { r_hdr: 1, r_dynres: 0, r_bloom: 0, r_volumetric: 0, r_bounce: 0,
 	r_newer_lighting: 1, r_newer_normals: 1, r_newer_water: 0, r_heightshadows: 1 } ) ) cvars.Cvar_SetValue( name, value );

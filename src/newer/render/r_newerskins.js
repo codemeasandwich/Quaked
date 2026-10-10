@@ -44,7 +44,7 @@ import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { cl } from '../../engine/client/client.js';
 import { PowerVisionMode } from '../gameplay/powervision_state.js';
-import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from './r_anim.js';
+import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import { R_NormalMapFor, R_HeightFromRGBA, R_MultiScaleHeight } from './gl_normals.js';
 

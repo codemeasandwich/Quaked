@@ -3,7 +3,7 @@
 // ignored, the caps, the lifetime and the packing the shaders read, Classic having none.
 await import( '../src/engine/render/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
 import * as vars from '../src/engine/common/cvar.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import * as r from '../src/newer/render/r_impactripples.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 

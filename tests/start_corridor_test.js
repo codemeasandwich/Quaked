@@ -18,7 +18,7 @@ import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { SZ_Alloc, sizebuf_t, MSG_WriteLong, MSG_WriteByte, MSG_WriteString, MSG_BeginReading, COM_SetNetMessage } from '../src/engine/common/common.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass, r_newer_portals } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass, r_newer_portals } from '../src/newer/mode.js';
 import { R_ParseBsp } from '../src/newer/render/r_levelgraph.js';
 import { cls, cl, ca_dedicated, ca_connected } from '../src/engine/client/client.js';
 import { CL_ParseServerInfo } from '../src/engine/client/cl_parse.js';

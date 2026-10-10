@@ -6,7 +6,7 @@ import { RockTileCache, R_RockPageHash, ROCK_TABLE_SIZE, ROCK_PROBES, ROCK_PAGES
 import { generateTile } from '../src/newer/assets/rockfield.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import * as cvar from '../src/engine/common/cvar.js';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -466,7 +466,7 @@ Deno.test( 'page lookup preserves every resident even under a full96-page hash c
 Deno.test( 'public world update retains nearby or visible eligible charts in Newer normals mode and replaces maps without stale jobs', () => {
 
 	const previousWorker = Object.getOwnPropertyDescriptor( globalThis, 'Worker' ), workers = [];
-	const variables = [ post.r_hdr, anim.r_newer_normals, r_rockfield ], saved = variables.map( v => v.string );
+	const variables = [ post.r_hdr, newerMode.r_newer_normals, r_rockfield ], saved = variables.map( v => v.string );
 	for ( const variable of variables ) if ( ! cvar.Cvar_FindVar( variable.name ) ) cvar.Cvar_RegisterVariable( variable );
 	Object.defineProperty( globalThis, 'Worker', { configurable: true, value: class extends WorkerDouble { constructor() { super(); workers.push( this ); } } } );
 	try {
@@ -476,13 +476,13 @@ Deno.test( 'public world update retains nearby or visible eligible charts in New
 		cvar.Cvar_Set( 'r_hdr', '0' ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 101 ); same( workers.length, 0, 'NewGame does not generate' );
 		cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 'r_newer_normals', '0' ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 202 ); same( workers.length, 0, 'normal toggle disables relief' );
 		cvar.Cvar_Set( 'r_newer_normals', '1' ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 303 ); same( workers.length, 2, 'eligible visible charts create two workers' ); same( R_RockfieldStatus().pending, 2, 'visible stream remains bounded' );
-		anim.R_AnimSetClassicPass( true ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 404 ); same( rockUniforms.qrRockOn.value, 0, 'classic comparison suppresses procedural shader' ); anim.R_AnimSetClassicPass( false );
+		newerMode.R_AnimSetClassicPass( true ); R_RockfieldUpdate( [ 0, 0, 40 ], 7, 404 ); same( rockUniforms.qrRockOn.value, 0, 'classic comparison suppresses procedural shader' ); newerMode.R_AnimSetClassicPass( false );
 		const stale = workers[ 0 ], message = stale.calls[ 0 ]; R_RockfieldBuild( null );
 		check( workers.every( worker => worker.terminated ), 'map replacement cancels workers' ); stale.finish( flatTile( message.x, message.y ), message.id ); same( R_RockfieldStatus().resident, 0, 'stale map result cannot restore pages' );
 
 	} finally {
 
-		R_RockfieldBuild( null ); anim.R_AnimSetClassicPass( false ); variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) );
+		R_RockfieldBuild( null ); newerMode.R_AnimSetClassicPass( false ); variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) );
 		if ( previousWorker ) Object.defineProperty( globalThis, 'Worker', previousWorker ); else delete globalThis.Worker;
 
 	}
@@ -491,7 +491,7 @@ Deno.test( 'public world update retains nearby or visible eligible charts in New
 
 Deno.test( 'public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility', () => {
 
-	const variables = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, anim.r_newer_lighting, anim.r_newer_normals ];
+	const variables = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, newerMode.r_newer_lighting, newerMode.r_newer_normals ];
 	for ( const variable of variables ) if ( ! cvar.Cvar_FindVar( variable.name ) ) cvar.Cvar_RegisterVariable( variable );
 	const saved = variables.map( v => v.string ), materials = []; let target, composite;
 	const renderer = { capabilities: { isWebGL2: true }, extensions: { has: () => true }, getRenderTarget: () => target, setRenderTarget: t => { target = t; }, setViewport() {}, render( scene ) { composite = scene.children[ 0 ].material; } };

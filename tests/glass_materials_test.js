@@ -1,7 +1,7 @@
 // Independent public-interface contracts; run using Quaked/tools/run_tests.mjs.
 import * as THREE from 'three';
 import { R_NormalMapFor } from '../src/newer/render/gl_normals.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/newer/render/gl_post.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
@@ -25,15 +25,15 @@ Deno.test('independent authored gloss dimension mismatch cannot tag unrelated te
  const n=R_NormalMapFor(texture);equal(n.image.data,normalBytes,'valid normals remain exact despite invalid optional gloss');check(!n.userData.glassGloss,'incorrect-sized gloss cannot classify material');texture.dispose();
 });
 async function loaderFixture(run) {
- const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:anim.R_ClassicPassActive()}, controls=[post.r_hdr,anim.r_newer_textures];
+ const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:mode.R_ClassicPassActive()}, controls=[post.r_hdr,mode.r_newer_textures];
  for(const v of controls)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const values=controls.map(v=>v.string),images=[];
  const manifest={version:'independent-glass',textures:{glassGood:'unsafe-global-fallback.png'},normals:{},glass:{}};
  for(const [name,normalFile,glossFile]of [['glassGood','normal.png','gloss.png'],['glassMissing','missing.png','gloss.png'],['glassSize','size.png','gloss.png'],['glassZero','normal.png','gloss.png']])manifest.glass[name]={[independentKey(native())]:{file:'diffuse.png',normalFile,glossFile,heightFile:name==='glassZero'?'zero-height.png':'height.png'}};
  globalThis.fetch=async url=>{check(String(url).endsWith('index.json'),'only manifest transport expected');return{ok:true,json:async()=>manifest}};
  Object.defineProperty(globalThis,'Image',{configurable:true,value:class{constructor(){this.width=this.height=2;images.push(this)}set src(url){this.url=String(url)}finish(){if(this.url.includes('missing.png')){this.onerror?.(Error('controlled optional normal missing'));return}if(this.url.includes('size.png'))this.width=1;const height=heightBytes.slice();if(this.url.includes('zero-height.png'))height[0]=height[1]=height[2]=0;this.pixels=new Uint8ClampedArray(this.url.includes('normal.png')?opaqueNormals:this.url.includes('gloss.png')?glossBytes:this.url.includes('height.png')?height:diffuseBytes);this.onload?.()}}});
  Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:()=>{let image;return{getContext:()=>({drawImage:i=>image=i,getImageData:()=>({data:image.pixels})})}}}});
- anim.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('r_newer_textures',1);
- try{const module=await import('../src/newer/render/r_newertextures.js?independent-glass-'+Math.random());await run({module,images,finish:async()=>{await flush();for(const image of images)image.finish();await flush()}})}finally{for(const image of images)if(image.onload||image.onerror)image.finish();await flush();globalThis.fetch=saved.fetch;anim.R_AnimSetClassicPass(saved.classic);controls.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,descriptor]of [['Image',saved.Image],['document',saved.document]])if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete globalThis[key]}
+ mode.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('r_newer_textures',1);
+ try{const module=await import('../src/newer/render/r_newertextures.js?independent-glass-'+Math.random());await run({module,images,finish:async()=>{await flush();for(const image of images)image.finish();await flush()}})}finally{for(const image of images)if(image.onload||image.onerror)image.finish();await flush();globalThis.fetch=saved.fetch;mode.R_AnimSetClassicPass(saved.classic);controls.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,descriptor]of [['Image',saved.Image],['document',saved.document]])if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete globalThis[key]}
 }
 
 Deno.test('independent donor loader remains asynchronous and preserves native Classic image and offset',()=>loaderFixture(async f=>{
@@ -60,11 +60,11 @@ Deno.test('independent content-bound selection reconstructs native fullbright pi
  const original=other.image,copy=original.data.slice();f.module.R_NewerTextureUpgrade('glassGood',other);await flush();same(other.userData.newerFallback,true,'unmatched same-name variant takes existing native fallback');same(other.image,original,'unmatched source image preserved');equal(other.image.data,copy,'unmatched source pixels preserved');same(f.images.length,0,'no incorrect same-name donor fetched');other.dispose();reference.dispose();a._fullbright.dispose();a.dispose();
 }));
 Deno.test('independent actual material compiler isolates glass mask, Classic and native material behavior',()=>{
- const controls=[post.r_hdr,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_textures];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);const saved=controls.map(c=>c.string),classic=post.classicLook.value;
+ const controls=[post.r_hdr,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_textures];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);const saved=controls.map(c=>c.string),classic=post.classicLook.value;
  let target=null;const renderer={capabilities:{isWebGL2:true},extensions:{has:()=>true},getRenderTarget:()=>target,setRenderTarget:t=>target=t,setViewport(){},render(scene){this.material=scene.children[0]?.material}};
  const glass=new THREE.DataTexture(diffuseBytes.slice(),2,2),ordinary=new THREE.DataTexture(diffuseBytes.slice(),2,2),lm=new THREE.Texture();glass.userData.newerHeight=authored();const materials=[];
  const compile=m=>{const s={uniforms:{},vertexShader:THREE.ShaderLib.lambert.vertexShader,fragmentShader:THREE.ShaderLib.lambert.fragmentShader};m.onBeforeCompile(s);return s};
- try{controls.forEach(c=>vars.Cvar_SetValue(c.name,1));anim.R_AnimSetClassicPass(false);post.classicLook.value=0;post.R_PostBegin(renderer,true,128,128);
+ try{controls.forEach(c=>vars.Cvar_SetValue(c.name,1));mode.R_AnimSetClassicPass(false);post.classicLook.value=0;post.R_PostBegin(renderer,true,128,128);
  const gm=createQuakeLightmapMaterial(glass,lm),om=createQuakeLightmapMaterial(ordinary,lm);materials.push(gm,om);const gs=compile(gm),os=compile(om);
  same(gs.uniforms.uGlassGloss.value,gm.normalMap.userData.glassGloss,'actual compiled material binds donor gloss');
  glass.userData.newerPicture=true;ordinary.userData.newerPicture=true;
@@ -81,5 +81,5 @@ Deno.test('independent actual material compiler isolates glass mask, Classic and
  same(gs.uniforms.uGlassGloss,holder,'compiled material keeps same gloss uniform holder after async update');equal(holder.value.image.data,changedGloss,'existing world material observes replaced authored gloss after update');check(gm.normalMap!==oldNormal,'existing world material replaces disposed normal');
  post.R_PostFinish(renderer,new THREE.Scene(),new THREE.PerspectiveCamera(75,1,1,1024),{lx:0,ly:0,lw:128,lh:128},0,[],[],1,1,false);const source=renderer.material.fragmentShader;
  check(source.includes('bool glassReceiver(float tag){return tag>.495&&tag<.505;}'),'byte-safe glass tag isolated from other material ranges');check(source.includes('pointSurfaceVisibility(P,Ng,i,actor?.1:1.)*localShadow'),'glass specular uses current point occlusion');check(source.includes('glass?24.:48.)*sunVisibility*skyCookieRGB(pw)*rockSunVisibility'),'glass sun specular retains native shadow/cookie path');check(source.includes('glass?24.:48.)*beam'),'glass spotlight specular retains actual beam');check(source.includes('if(glass)c+=surfaceSpecular*.12;'),'only glass gains reduced coat reflection after owner feedback');check(!source.includes('if(glass)c+=surfaceSpecular*.55;'),'excessive glass reflection gain removed');check(source.includes('surfaceSpecular*film*.16 : scene'),'actor reflection gain remains unchanged');
- }finally{materials.forEach(m=>m.dispose());glass.dispose();ordinary.dispose();lm.dispose();post.R_PostShutdown();controls.forEach((c,i)=>vars.Cvar_Set(c.name,saved[i]));post.classicLook.value=classic;anim.R_AnimSetClassicPass(false)}
+ }finally{materials.forEach(m=>m.dispose());glass.dispose();ordinary.dispose();lm.dispose();post.R_PostShutdown();controls.forEach((c,i)=>vars.Cvar_Set(c.name,saved[i]));post.classicLook.value=classic;mode.R_AnimSetClassicPass(false)}
 });

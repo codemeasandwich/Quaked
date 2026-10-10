@@ -24,7 +24,7 @@
 import * as THREE from 'three';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { WATER as WAVE_WATER, METAL as WAVE_METAL, WAVE_GLSL, metalWave, R_WaveTexture } from './r_waves.js';
-import { R_NewerGame, r_newer_portals } from './r_anim.js';
+import { R_NewerGame, r_newer_portals } from '../mode.js';
 import { COM_Parse, com_token } from '../../engine/common/common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from '../../engine/render/gl_model.js';
 

@@ -46,7 +46,7 @@ import { R_ImpactMissile } from '../../newer/render/r_impactripples.js';
 import { R_FlashlightRunEnd } from '../../newer/render/r_flashlightrun.js';
 import { R_DemoSplitEnd } from '../../newer/render/r_demosplit.js';
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../../newer/render/r_muzzle.js';
-import { R_NewerGame } from '../../newer/render/r_anim.js';
+import { R_NewerGame } from '../../newer/mode.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from '../server/host.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';

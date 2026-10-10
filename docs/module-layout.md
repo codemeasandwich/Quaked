@@ -184,6 +184,18 @@ With every module moved, 199 of the 206 adapters are deleted, and `src/rend_veil
   everything under `docs/evidence/`.
 * Unchanged: both architecture tools pass; 206 modules (and 7 adapters); the same cycles.
 
+## [44g], step 2: the Newer/Classic switch in its own module (debt D2)
+
+`src/newer/mode.js` holds the switch: `R_NewerGame`, `R_IsNewer`, `R_NewerLightingActive`, the classic half of the split
+title demo (`R_AnimSetClassicPass`, `R_ClassicPassActive`), the setters, and the feature switches (`r_newer_lighting`,
+`_normals`, `_water`, `_enemies`, `_portals`, `_textures`, `_hud`, `_shadows`, `_crates`). It imports only the engine's
+cvars and file system. `r_anim.js` keeps the animation (`R_AnimEnabled` now asks `R_IsNewer`) and `r_lerpmodels`.
+
+* 174 files take those names from `mode.js` now (named imports split, namespace uses moved to a `mode` namespace), so
+  only three modules import `r_anim.js`, all for animation.
+* D2's check holds: every mode name is declared once, outside `r_anim.js`, in a module that does not reach it; no
+  importer takes only mode names from `r_anim.js` (`modeHome`, `modeOnly`).
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

@@ -13,7 +13,7 @@ import { Mod_Init, Mod_ForName, Mod_ClearAll } from '../src/engine/render/gl_mod
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { cl } from '../src/engine/client/client.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as cvar from '../src/engine/common/cvar.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import { entity_t, r_refdef } from '../src/engine/render/render.js';
@@ -123,7 +123,7 @@ Deno.test( 'every native world piece of the four required materials retains exac
 
 Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space detail per component, schedule bounded tiles and retain native disabled modes', async () => {
 
-	const variables = [ post.r_hdr, anim.r_newer_normals, r_rockfield ]; for ( const v of variables ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v ); const saved = variables.map( v => v.string );
+	const variables = [ post.r_hdr, mode.r_newer_normals, r_rockfield ]; for ( const v of variables ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v ); const saved = variables.map( v => v.string );
 	const oldWorker = Object.getOwnPropertyDescriptor( globalThis, 'Worker' ), oldFrame = main.r_framecount, oldEntity = main.currententity, oldEye = Array.from( r_refdef.vieworg ), oldFrustum = main.frustum.map( p => ( { normal: Array.from( p.normal ), dist: p.dist, type: p.type, signbits: p.signbits } ) ), workers = [];
 	globalThis.Worker = class { constructor() { this.calls = []; this.terminated = false; workers.push( this ); } postMessage( message ) { this.calls.push( message ); } terminate() { this.terminated = true; } finish() { const job = this.calls.at( -1 ); this.onmessage( { data: { id: job.id, result: { width: ROCK_SIDE, tileX: job.x, tileY: job.y, data: new Float32Array( ROCK_SIDE ** 2 ).fill( .5 ) } } } ); } };
 	try {
@@ -145,7 +145,7 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 		for ( const e of entries ) check( e.brush && e.brushSeen === undefined, 'brush visibility requires actual drawing' );
 		for ( const chart of doorCharts ) same( chart.seed, seedFrom( model.name + ':' + chart.name + ':' + chart.profile ), 'door seed belongs to map/rest-space component, not inline model name' );
 		for ( const s of model.surfaces ) s.visframe = -1;
-		variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); anim.R_AnimSetClassicPass( false ); main.set_r_framecount( 901 );
+		variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); mode.R_AnimSetClassicPass( false ); main.set_r_framecount( 901 );
 		for ( const p of main.frustum ) { p.normal.fill( 0 ); p.dist = -1e9; p.type = 3; p.signbits = 0; }
 		const entity = new entity_t(); entity.model = door; main.set_currententity( entity );
 		// A distant eye isolates brush visibility from nearby-world prefetch;
@@ -176,21 +176,21 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 		R_WorldShowAll( true ); same( group.visible, true, 'reflection whole-world toggle retains drawn brush visibility' ); R_WorldShowAll( false ); same( group.visible, true, 'world PVS restore leaves native brush visibility alone' );
 		for ( const disabled of [ 'normals', 'classic', 'native', 'rock' ] ) {
 
-			R_RockfieldBuild( model ); variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); anim.R_AnimSetClassicPass( disabled === 'classic' ); if ( disabled === 'normals' ) cvar.Cvar_Set( 'r_newer_normals', '0' ); if ( disabled === 'native' ) cvar.Cvar_Set( 'r_hdr', '0' ); if ( disabled === 'rock' ) cvar.Cvar_Set( 'r_rockfield', '0' );
+			R_RockfieldBuild( model ); variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); mode.R_AnimSetClassicPass( disabled === 'classic' ); if ( disabled === 'normals' ) cvar.Cvar_Set( 'r_newer_normals', '0' ); if ( disabled === 'native' ) cvar.Cvar_Set( 'r_hdr', '0' ); if ( disabled === 'rock' ) cvar.Cvar_Set( 'r_rockfield', '0' );
 			R_DrawBrushModel( entity ); same( R_RockfieldBrushSeen( door, group, movedEye, 905 ), 0, disabled + ' no procedural brush marks' ); R_RockfieldUpdate( movedEye, 905, 1400 ); same( rockUniforms.qrRockOn.value, 0, disabled + ' procedural shader disabled' ); same( R_RockfieldStatus().pending, 0, disabled + ' no tile jobs' ); same( workers.length, 0, disabled + ' no worker transports' ); check( entity._brushGroup.children.length && group.visible, disabled + ' original brush still drawn' );
 
 		}
 		faces.forEach( ( surface, i ) => same( bytes( surface.polys.verts ), source[ i ], 'all8 native door XYZ/UV/lightmap source bytes unchanged' ) ); door.hulls.forEach( ( h, i ) => same( JSON.stringify( { planes: h.planes, clipnodes: h.clipnodes, first: h.firstclipnode, last: h.lastclipnode } ), hulls[ i ], 'native door collision unchanged' ) );
 		console.log( 'REQUIRED_ROCK_BRUSH ' + JSON.stringify( { map: 'maps/e1m4.bsp', model: '*64', firstFace: 5940, faces: 8, rock1_2WorldAndBrush: 848, drawMeshes: group.children.length, workers: workers.length, preparedDoorPages: drawn.preparedTiles } ) );
 
-	} finally { R_RockfieldBuild( null ); variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) ); anim.R_AnimSetClassicPass( false ); main.set_r_framecount( oldFrame ); main.set_currententity( oldEntity ); r_refdef.vieworg.set( oldEye ); main.frustum.forEach( ( p, i ) => { p.normal.set( oldFrustum[ i ].normal ); Object.assign( p, { dist: oldFrustum[ i ].dist, type: oldFrustum[ i ].type, signbits: oldFrustum[ i ].signbits } ); } ); if ( oldWorker ) Object.defineProperty( globalThis, 'Worker', oldWorker ); else delete globalThis.Worker; }
+	} finally { R_RockfieldBuild( null ); variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) ); mode.R_AnimSetClassicPass( false ); main.set_r_framecount( oldFrame ); main.set_currententity( oldEntity ); r_refdef.vieworg.set( oldEye ); main.frustum.forEach( ( p, i ) => { p.normal.set( oldFrustum[ i ].normal ); Object.assign( p, { dist: oldFrustum[ i ].dist, type: oldFrustum[ i ].type, signbits: oldFrustum[ i ].signbits } ); } ); if ( oldWorker ) Object.defineProperty( globalThis, 'Worker', oldWorker ); else delete globalThis.Worker; }
 
 } );
 
 Deno.test( 'actual world batches for every requested material bind the procedural shader and obey New Game, normal-off and Classic gates', () => {
 
 	installNative();
-	const variables = [ post.r_hdr, anim.r_newer_normals, r_rockfield ]; for ( const v of variables ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v ); const saved = variables.map( v => v.string );
+	const variables = [ post.r_hdr, mode.r_newer_normals, r_rockfield ]; for ( const v of variables ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v ); const saved = variables.map( v => v.string );
 	const descriptor = Object.getOwnPropertyDescriptor( THREE.Group.prototype, 'add' ), add = THREE.Group.prototype.add; let worldGroup; THREE.Group.prototype.add = function ( ...children ) { if ( this.name === 'quake_world' ) worldGroup = this; return add.apply( this, children ); };
 	try {
 
@@ -215,13 +215,13 @@ Deno.test( 'actual world batches for every requested material bind the procedura
 				}
 			}
 			for ( const batch of batches ) { same( batch.material.userData.rockField, true, name + ' original renderer automatically marks registered material' ); check( batch.geometry.getAttribute( 'rockUv' ) && batch.geometry.getAttribute( 'rockInfo' ), name + ' actual batched geometry carries field data' ); const shader = { uniforms: {}, vertexShader: THREE.ShaderLib.lambert.vertexShader, fragmentShader: THREE.ShaderLib.lambert.fragmentShader }; batch.material.onBeforeCompile( shader ); same( shader.uniforms.qrRockHeights, rockUniforms.qrRockHeights, name + ' compiled shader uses live shared tile atlas' ); check( shader.vertexShader.includes( 'vRockUv=rockUv' ) && shader.fragmentShader.includes( 'qrHeightGradients(-vViewPosition,vRockUv,qrRockN' ), name + ' public compiled shader uses world field' ); check( shader.fragmentShader.includes( 'uClassic<.5' ), name + ' shader Classic guard present' ); }
-			cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 'r_newer_normals', '1' ); cvar.Cvar_Set( 'r_rockfield', '1' ); anim.R_AnimSetClassicPass( false ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 1, name + ' enhanced saved-preset field active' );
-			cvar.Cvar_Set( 'r_newer_normals', '0' ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' normal-off disables field' ); cvar.Cvar_Set( 'r_newer_normals', '1' ); anim.R_AnimSetClassicPass( true ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' Classic disables field' ); anim.R_AnimSetClassicPass( false ); cvar.Cvar_Set( 'r_hdr', '0' ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' New Game disables field' );
+			cvar.Cvar_Set( 'r_hdr', '1' ); cvar.Cvar_Set( 'r_newer_normals', '1' ); cvar.Cvar_Set( 'r_rockfield', '1' ); mode.R_AnimSetClassicPass( false ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 1, name + ' enhanced saved-preset field active' );
+			cvar.Cvar_Set( 'r_newer_normals', '0' ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' normal-off disables field' ); cvar.Cvar_Set( 'r_newer_normals', '1' ); mode.R_AnimSetClassicPass( true ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' Classic disables field' ); mode.R_AnimSetClassicPass( false ); cvar.Cvar_Set( 'r_hdr', '0' ); R_RockfieldUpdate( [ 0, 0, 0 ], -999, 0 ); same( rockUniforms.qrRockOn.value, 0, name + ' New Game disables field' );
 			model.hulls.forEach( ( h, i ) => same( JSON.stringify( { planes: h.planes, clipnodes: h.clipnodes } ), hulls[ i ], 'native collision hull unchanged' ) );
 
 		}
 		same( digest(), packBefore, 'original bundled map bytes unchanged' );
 
-	} finally { variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) ); anim.R_AnimSetClassicPass( false ); R_RockfieldBuild( null ); if ( descriptor ) Object.defineProperty( THREE.Group.prototype, 'add', descriptor ); else delete THREE.Group.prototype.add; }
+	} finally { variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) ); mode.R_AnimSetClassicPass( false ); R_RockfieldBuild( null ); if ( descriptor ) Object.defineProperty( THREE.Group.prototype, 'add', descriptor ); else delete THREE.Group.prototype.add; }
 
 } );

@@ -2,13 +2,13 @@ import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
 import * as height from '../src/newer/render/r_heightshadows.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 import {NormalInputs,NormalInputKey} from '../src/newer/assets/normal_prepare.js';
 const report=document.querySelector('#report'),views=document.querySelector('#views'),button=document.querySelector('#run'),download=document.querySelector('#download');
 download.onclick=()=>{if(!window.textureResolutionResult)return;const url=URL.createObjectURL(new Blob([JSON.stringify(window.textureResolutionResult,null,2)+'\n'],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='texture-resolution-receipt.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,height.r_heightshadows];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
+const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,height.r_heightshadows];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
 const hex=bytes=>[...bytes].map(b=>b.toString(16).padStart(2,'0')).join(''),hash=async bytes=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)));
 const linear=value=>{const s=value/255;return 255*(s<=.04045?s/12.92:((s+.055)/1.055)**2.4);};
 function luma(bytes,i){return linear(bytes[i])*.2126+linear(bytes[i+1])*.7152+linear(bytes[i+2])*.0722;}

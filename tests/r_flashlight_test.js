@@ -1,5 +1,5 @@
 import * as flashlight from '../src/newer/render/r_flashlight.js';
-import { R_AnimSetLighting } from '../src/newer/render/r_anim.js';
+import { R_AnimSetLighting } from '../src/newer/mode.js';
 
 function assertNear( actual, expected, epsilon, message ) {
 

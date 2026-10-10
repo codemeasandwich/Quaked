@@ -19,7 +19,7 @@ import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { SZ_Alloc } from '../src/engine/common/common.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { R_SetupLevelViews, R_LevelViewCount, R_ClearLevelViews, LEVEL_VIEW_OFFSET } from '../src/newer/render/r_levelview.js';
 import { R_LevelPortalMatrix, R_RenderPortals, R_PortalsBeginFrame, R_ClearPortals } from '../src/newer/render/gl_portal.js';
 import * as main from '../src/engine/render/gl_rmain.js';

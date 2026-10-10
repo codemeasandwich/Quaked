@@ -7,7 +7,7 @@ const sbar = await import( '../src/engine/client/sbar.js' );
 const hud = await import( '../src/newer/ui/r_newerhud.js' );
 const split = await import( '../src/newer/render/r_demosplit.js' );
 const vid = await import( '../src/engine/render/vid.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), newerMode = await import( '../src/newer/mode.js' );
 const post = await import( '../src/newer/render/gl_post.js' );
 const portal = await import( '../src/newer/render/gl_portal.js' );
 const quake = await import( '../src/engine/render/glquake.js' );
@@ -29,7 +29,7 @@ function publish() {
 renderer.render = function ( scene, camera ) {
 
 	const target = this.getRenderTarget();
-	if ( scene === window.scene && target?.textures?.length >= 2 && target.depthTexture && ! anim.R_ClassicPassActive() ) {
+	if ( scene === window.scene && target?.textures?.length >= 2 && target.depthTexture && ! newerMode.R_ClassicPassActive() ) {
 
 		enhancedTarget = target; snapshot = new Map();
 		scene.traverse( o => {
@@ -42,11 +42,11 @@ renderer.render = function ( scene, camera ) {
 		} );
 
 	}
-	const classic = scene === window.scene && anim.R_ClassicPassActive();
+	const classic = scene === window.scene && newerMode.R_ClassicPassActive();
 	if ( classic ) {
 
 		classicTarget = target; evidence.frames ++; evidence.modes[ mode ] = ( evidence.modes[ mode ] || 0 ) + 1;
-		for ( const get of [ anim.R_IsNewer, anim.R_NewerGame, anim.R_NewerLightingActive, anim.R_AnimEnabled, post.R_PostActive, post.R_WaterActive, portal.R_PortalsActive ] ) check( ! get(), `${get.name} enabled in classic` );
+		for ( const get of [ newerMode.R_IsNewer, newerMode.R_NewerGame, newerMode.R_NewerLightingActive, anim.R_AnimEnabled, post.R_PostActive, post.R_WaterActive, portal.R_PortalsActive ] ) check( ! get(), `${get.name} enabled in classic` );
 		check( post.classicLook.value === 1, 'native shader curve not selected' );
 		check( target.width === enhancedTarget.width && target.height === enhancedTarget.height, 'resolution mismatch' );
 		const size = `${target.width}x${target.height}`; if ( ! evidence.sizes.includes( size ) ) evidence.sizes.push( size );
@@ -79,7 +79,7 @@ renderer.render = function ( scene, camera ) {
 	if ( classicTarget && scene !== window.scene && target == null && scene.children[ 0 ]?.material?.map === classicTarget.texture ) {
 
 		evidence.restoredFrames ++;
-		check( ! anim.R_ClassicPassActive() && post.classicLook.value === 0, 'classic scope not restored' );
+		check( ! newerMode.R_ClassicPassActive() && post.classicLook.value === 0, 'classic scope not restored' );
 		for ( const [ o, saved ] of snapshot ) {
 
 			check( o.material === saved.material && o.parent === saved.parent && o.visible === saved.visible, 'enhanced material/membership not restored' );
@@ -133,7 +133,7 @@ function observeHud( original ) {
 	return ( x, y, pic ) => {
 
 		observedImage = null;
-		const classic = anim.R_ClassicPassActive(), expected = classic ? pic.canvas : hud.R_NewerHudCanvas( pic ) || pic.canvas;
+		const classic = newerMode.R_ClassicPassActive(), expected = classic ? pic.canvas : hud.R_NewerHudCanvas( pic ) || pic.canvas;
 		original( x, y, pic );
 		if ( ! split.R_DemoSplitActive() || ! pic.canvas ) return;
 		check( observedImage === expected, 'HUD source does not match active half' );

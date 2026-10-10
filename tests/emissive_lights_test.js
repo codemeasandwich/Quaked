@@ -8,7 +8,7 @@ import { VID_SetPalette, vid } from '../src/engine/render/vid.js';
 import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { R_ParseEntityLump } from '../src/newer/render/gl_portal.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { cl, cl_dlights, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../src/engine/client/client.js';
 import { SV_HullPointContents, SV_RecursiveHullCheck, trace_t } from '../src/engine/server/world.js';
@@ -101,7 +101,7 @@ Deno.test( 'public atlas captures one cube at DPR2, preserves renderer and borro
 
 Deno.test( 'actual post pipeline warms bounded native source shadows once, keeps camera/flicker keys and bypasses GPU jobs in Classic and disabled modes', () => {
 
-	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pointshadows, anim.r_newer_lighting ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), c = camera();
+	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pointshadows, newerMode.r_newer_lighting ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), c = camera();
 	const frame = time => { post.R_PostBegin( r, true, 320, 200 ); post.R_PostBind( r ); post.R_PostFinish( r, new THREE.Scene(), c, { lx: 0, ly: 0, lw: 320, lh: 200 }, 73, styles, [], time, 1, false ); };
 	try {
 
@@ -150,7 +150,7 @@ Deno.test( 'full bounced lighting and doubled physical emitter radiance preserve
 	const selected = post.R_SelectWorldLights( camera().matrixWorldInverse, 73, styles, [], 0 ), ordinary = selected.find( l => l.source.emitter !== 1 && l.source.style === 0 ), emitted = selected.filter( l => l.source.emitter === 1 ); check( ordinary && emitted.length, 'actual scene supplies both ordinary and physical sources' );
 	const unitGain = ordinary.color[ 0 ] / ( ordinary.source.color[ 0 ] * ordinary.source.power );
 	for ( const l of emitted ) { const pulse = l.source.flicker ? post.R_FireFlicker( ...l.position, 0 ) : 1; for ( let k = 0; k < 3; k ++ ) near( l.color[ k ], l.source.color[ k ] * l.source.power * pulse * unitGain * 2, 'actual physical source radiance doubled independently from stored native power' ); }
-	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pointshadows, post.r_bounce, anim.r_newer_lighting ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), glow = new THREE.MeshLambertMaterial( { emissive: 0xffffff } ), sourceTexture = model.textures.find( t => t?.gl_texture?.image?.data && t.name.charAt( 0 ) !== '*' ), nativeBytes = Buffer.from( sourceTexture.gl_texture.image.data );
+	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pointshadows, post.r_bounce, newerMode.r_newer_lighting ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), glow = new THREE.MeshLambertMaterial( { emissive: 0xffffff } ), sourceTexture = model.textures.find( t => t?.gl_texture?.image?.data && t.name.charAt( 0 ) !== '*' ), nativeBytes = Buffer.from( sourceTexture.gl_texture.image.data );
 	try {
 
 		vars.Cvar_Set( 'r_hdr', '1' ); vars.Cvar_Set( 'r_newer_lighting', '1' ); for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_pointshadows' ] ) vars.Cvar_Set( name, '0' ); post.R_PostBegin( r, true, 320, 200 ); post.R_RegisterGlow( glow ); near( glow.emissiveIntensity, 4.5, 'visible non-lava emission raised1.5x' ); near( post.R_GlowBoostForTexture( '*lava1' ), 6, 'visible lava emission raised1.5x' );
@@ -166,7 +166,7 @@ Deno.test( 'full bounced lighting and doubled physical emitter radiance preserve
 
 Deno.test( 'removed haze and source-dependent gloss/native weapon/player lighting stay black without sources while Classic keeps its original24/8 floors', () => {
 
-	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pointshadows, anim.r_newer_lighting, main.r_drawentities, main.r_drawviewmodel, main.chase_active, r_newer_weapons ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
+	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pointshadows, newerMode.r_newer_lighting, main.r_drawentities, main.r_drawviewmodel, main.chase_active, r_newer_weapons ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 	const previous = { world: cl.worldmodel, viewent: cl.viewent, items: cl.items, health: cl.stats[ 0 ], clients: cl.maxclients, count: cl_numvisedicts, first: cl_visedicts[ 0 ], entity: main.currententity }, dynamic = cl_dlights.map( l => ( { radius: l.radius, die: l.die } ) ), r = renderer();
 	const black = new Uint8Array( model.lightdata.length ), zeroWorld = { ...model, lightdata: black, surfaces: model.surfaces.map( s => ( { ...s, samples: s.samples ? black : null } ) ) };
 	let weapon, player, gloss;
@@ -193,7 +193,7 @@ Deno.test( 'removed haze and source-dependent gloss/native weapon/player lightin
 
 Deno.test( 'removed broad haze leaves real edge sun shafts, default flashlight cone and point-surface illumination active', () => {
 
-	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pillars, post.r_pointshadows, post.r_bounce, anim.r_newer_lighting, r_flashlight ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), c = camera();
+	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pillars, post.r_pointshadows, post.r_bounce, newerMode.r_newer_lighting, r_flashlight ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), c = camera();
 	try {
 
 		controls.forEach( v => vars.Cvar_Set( v.name, '1' ) ); for ( const key of [ 'r_dynres', 'r_bloom', 'r_pointshadows' ] ) vars.Cvar_Set( key, '0' ); vars.Cvar_Set( 'r_pillars', '.5' ); post.R_PostBegin( r, true, 320, 200 ); R_FlashlightUpdate( eye, [ 0, -1, 0 ], [ 1, 0, 0 ], [ 0, 0, 1 ] ); post.R_PostBind( r ); post.R_PostFinish( r, new THREE.Scene(), c, { lx: 0, ly: 0, lw: 320, lh: 200 }, 73, styles, [], 0, 1, true );
@@ -213,7 +213,7 @@ Deno.test( 'removed broad haze leaves real edge sun shafts, default flashlight c
 
 Deno.test( 'actual Newer menu brightness midpoint/flashlight and mode-specific resets preserve Classic preferences and beam gates', () => {
 
-	const controls = [ r_flashlight, v_gamma, cl_showfps, post.r_hdr, anim.r_newer_lighting, cl_forwardspeed, cl_backspeed, sensitivity, volume, bgmvolume, scr_viewsize ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), maps = [], bindings = keys.keybindings.slice(); let destination = keys.key_game;
+	const controls = [ r_flashlight, v_gamma, cl_showfps, post.r_hdr, newerMode.r_newer_lighting, cl_forwardspeed, cl_backspeed, sensitivity, volume, bgmvolume, scr_viewsize ], saved = controls.map( v => v.string ); for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v ); const r = renderer(), maps = [], bindings = keys.keybindings.slice(); let destination = keys.key_game;
 	try {
 
 		vars.Cvar_Set( 'r_flashlight', '0' ); vars.Cvar_Set( 'cl_showfps', '0' ); cmd.Cbuf_Init(); cmd.Cmd_Init(); keys.Key_Init(); menu.M_Init(); cmd.Cmd_AddCommand( 'map', () => { const name = cmd.Cmd_Argv( 1 ); maps.push( name ); R_FlashlightNewRun( name, 1, post.r_hdr.value !== 0 ); } ); cmd.Cmd_AddCommand( 'maxplayers', () => {} );

@@ -15,7 +15,7 @@ import { skill } from '../src/engine/server/host.js';
 import { sv_gravity } from '../src/engine/server/sv_phys.js';
 import * as dma from '../src/engine/sound/snd_dma.js';
 import * as sound from '../src/engine/sound/sound.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import { cl } from '../src/engine/client/client.js';
 import { CL_ParseStaticSound } from '../src/engine/client/cl_parse.js';
 import * as common from '../src/engine/common/common.js';
@@ -44,7 +44,7 @@ function fixture( fn ) {
 	const saved = { window: Object.getOwnPropertyDescriptor( globalThis, 'window' ), world: cl.worldmodel, message: common.net_message, hdr: r_hdr.string, viewentity: cl.viewentity };
 	try {
 
-		Object.defineProperty( globalThis, 'window', { configurable: true, value: { AudioContext: Context } } ); dma.S_Init(); dma.S_AmbientOff(); vars.Cvar_SetValue( 'volume', .4 ); vars.Cvar_SetValue( 'r_hdr', 1 ); anim.R_AnimSetClassicPass( false ); cl.worldmodel = sv.worldmodel; cl.viewentity = 1;
+		Object.defineProperty( globalThis, 'window', { configurable: true, value: { AudioContext: Context } } ); dma.S_Init(); dma.S_AmbientOff(); vars.Cvar_SetValue( 'volume', .4 ); vars.Cvar_SetValue( 'r_hdr', 1 ); mode.R_AnimSetClassicPass( false ); cl.worldmodel = sv.worldmodel; cl.viewentity = 1;
 		const index = sv.sound_precache.indexOf( 'ambience/drone6.wav' ); check( index > 0, 'real native QC precached exit machine loop' );
 		const signature = new Uint8Array( 8 ), signatureView = new DataView( signature.buffer ); signature[ 0 ] = svc_spawnstaticsound; [ 1314, 450, -200 ].forEach( ( value, i ) => signatureView.setInt16( 1 + i * 2, value * 8, true ) ); signature[ 7 ] = index;
 		const matches = []; for ( let i = 0; i <= sv.signon.cursize - 10; i ++ ) if ( signature.every( ( value, j ) => value === sv.signon.data[ i + j ] ) ) matches.push( i );
@@ -55,7 +55,7 @@ function fixture( fn ) {
 		const channel = sound.channels[ first ]; same( channel.entnum, -1, 'native static source class' ); same( Array.from( channel.origin ).join(), '1314,450,-200', 'actual emitted position retained' );
 		fn( channel, { volumeByte: payload[ 7 ], attenuationByte: payload[ 8 ] } );
 
-	} finally { dma.S_StopAllSounds( true ); dma.S_AmbientOn(); dma.S_Shutdown(); anim.R_AnimSetClassicPass( false ); cl.worldmodel = saved.world; cl.viewentity = saved.viewentity; common.COM_SetNetMessage( saved.message ); vars.Cvar_Set( 'r_hdr', saved.hdr ); if ( saved.window ) Object.defineProperty( globalThis, 'window', saved.window ); else delete globalThis.window; }
+	} finally { dma.S_StopAllSounds( true ); dma.S_AmbientOn(); dma.S_Shutdown(); mode.R_AnimSetClassicPass( false ); cl.worldmodel = saved.world; cl.viewentity = saved.viewentity; common.COM_SetNetMessage( saved.message ); vars.Cvar_Set( 'r_hdr', saved.hdr ); if ( saved.window ) Object.defineProperty( globalThis, 'window', saved.window ); else delete globalThis.window; }
 
 }
 function spatial( channel, eye, right = [ 1, 0, 0 ] ) { sound.listener_origin.set( eye ); sound.listener_right.set( right ); dma.SND_Spatialize( channel ); return [ channel.leftvol, channel.rightvol ]; }
@@ -90,7 +90,7 @@ Deno.test( 'Classic, other maps, sounds, source positions and dynamic channels r
 
 	const eye = [ 1250, 850, -220 ], right = [ 1, 0, 0 ], variants = [
 		{ label: 'Classic game', apply() { vars.Cvar_SetValue( 'r_hdr', 0 ); } },
-		{ label: 'Classic comparison draw', apply() { anim.R_AnimSetClassicPass( true ); } },
+		{ label: 'Classic comparison draw', apply() { mode.R_AnimSetClassicPass( true ); } },
 		{ label: 'different map', apply() { cl.worldmodel = { ...sv.worldmodel, name: 'maps/e1m2.bsp' }; } },
 		{ label: 'different native loop', apply( copy ) { copy.sfx = { ...channel.sfx, name: 'ambience/comp1.wav' }; } },
 		{ label: 'different origin', apply( copy ) { copy.origin[ 0 ] += 10; } },
@@ -98,11 +98,11 @@ Deno.test( 'Classic, other maps, sounds, source positions and dynamic channels r
 	];
 	for ( const variant of variants ) {
 
-		vars.Cvar_SetValue( 'r_hdr', 1 ); anim.R_AnimSetClassicPass( false ); cl.worldmodel = sv.worldmodel;
+		vars.Cvar_SetValue( 'r_hdr', 1 ); mode.R_AnimSetClassicPass( false ); cl.worldmodel = sv.worldmodel;
 		const copy = new sound.channel_t(); copy.sfx = channel.sfx; copy.origin.set( channel.origin ); copy.master_vol = channel.master_vol; copy.dist_mult = channel.dist_mult; copy.entnum = channel.entnum; variant.apply( copy );
 		same( spatial( copy, eye, right ).join(), stock( copy, eye, right ).join(), variant.label + ' uses original equation' );
 	}
-	vars.Cvar_SetValue( 'r_hdr', 1 ); anim.R_AnimSetClassicPass( false ); cl.worldmodel = sv.worldmodel;
+	vars.Cvar_SetValue( 'r_hdr', 1 ); mode.R_AnimSetClassicPass( false ); cl.worldmodel = sv.worldmodel;
 	const left = spatial( channel, eye, right ), reversed = spatial( channel, eye, [ -1, 0, 0 ] ); same( left[ 0 ], reversed[ 1 ], 'turning swaps left pan correctly' ); same( left[ 1 ], reversed[ 0 ], 'turning swaps right pan correctly' ); check( left[ 0 ] !== left[ 1 ], 'off-axis source retains audible directional panning' );
 
 } ) );

@@ -6,7 +6,7 @@ import {COM_LoadPackFile,COM_AddPack} from '../src/engine/common/pak.js';
 import {Mod_Init,Mod_ClearAll,Mod_ForName} from '../src/engine/render/gl_model.js';
 import {VID_SetPalette,vid} from '../src/engine/render/vid.js';
 import {R_GlassTextureKey} from '../src/newer/render/r_newertextures.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/newer/render/gl_post.js';
 const root=fileURLToPath(new URL('../',import.meta.url)),inventory=JSON.parse(readFileSync(new URL('../newer/textures/glass/provenance.json',import.meta.url))),manifest=JSON.parse(readFileSync(root+'newer/textures/index.json'));
@@ -25,8 +25,8 @@ function independentKey(t,pal){let h1=2166136261,h2=3339675911;for(const index o
 function rawPaletteTexture(t,pal){const rgba=new Uint8Array(t.w*t.h*4),fb=new Uint8Array(rgba.length);let hasFullbright=false;for(let i=0;i<t.pixels.length;i++){const index=t.pixels[i],j=i*4,color=index===255?[0,0,0]:[pal[index*3],pal[index*3+1],pal[index*3+2]];rgba.set([...color,255],j);if(index>=224){hasFullbright=true;fb.set([...color,255],j);rgba[j]=rgba[j+1]=rgba[j+2]=0}}const texture=new THREE.DataTexture(rgba,t.w,t.h);if(hasFullbright)texture._fullbright=new THREE.DataTexture(fb,t.w,t.h);return texture}
 
 Deno.test('glass source identities cover ten campaigns with explicit native BSP format capability boundaries',()=>{
- const controls=[r_hdr,anim.r_newer_textures];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);const saved=controls.map(c=>c.string),oldFullbright=vid.fullbright,receipt=[];
- try{controls.forEach(c=>vars.Cvar_SetValue(c.name,0));anim.R_AnimSetClassicPass(false);vid.fullbright=224;Mod_Init();
+ const controls=[r_hdr,mode.r_newer_textures];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);const saved=controls.map(c=>c.string),oldFullbright=vid.fullbright,receipt=[];
+ try{controls.forEach(c=>vars.Cvar_SetValue(c.name,0));mode.R_AnimSetClassicPass(false);vid.fullbright=224;Mod_Init();
  for(const [game,campaign]of Object.entries(inventory.campaigns)){
   const candidates=new Map();for(const variant of inventory.variants)for(const use of variant.uses)if(use.game===game&&manifest.glass[variant.name])candidates.set(use.map,(candidates.get(use.map)||0)+1);
   const supported=[...candidates].filter(([name])=>{const e=sourceEntry(campaign.packs,name),header=range(e.path,e.start,124);return header.readInt32LE(120)/64<450});const chosen=supported.sort((a,b)=>b[1]-a[1])[0];check(chosen,'actual glass-bearing source map within existing inline-model bound for '+game);const mapName=chosen[0],mapEntry=sourceEntry(campaign.packs,mapName),palEntry=sourceEntry(campaign.packs,'gfx/palette.lmp')||basePalette,map=bytes(mapEntry),palette=bytes(palEntry);

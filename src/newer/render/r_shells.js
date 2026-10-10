@@ -17,7 +17,7 @@
 // persistence; per-map records survive seamless return during the session.
 import * as THREE from 'three';
 import { R_WeaponsEnabled, R_WeaponLoad } from './r_weapons.js';
-import { R_ClassicPassActive } from './r_anim.js';
+import { R_ClassicPassActive } from '../mode.js';
 import { R_CloneAliasMaterial } from './r_newerskins.js';
 import { R_ShellBrushMatrix } from './r_shelltrace.js';
 

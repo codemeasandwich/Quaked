@@ -7,7 +7,7 @@ import { R_DemonBakePrefetch, R_DemonBakePrepare, R_DemonBakeSurface } from '../
 import * as surf from '../src/engine/render/gl_rsurf.js';
 import * as post from '../src/newer/render/gl_post.js';
 import * as main from '../src/engine/render/gl_rmain.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
@@ -42,9 +42,9 @@ async function prepareFaces() {
 const textures = new Set( faces.map( s => s.texinfo.texture.gl_texture ) );
 const sourceSnapshot = faces.map( s => { const p = []; for ( let poly = s.polys; poly; poly = poly.next ) p.push( [ poly, Array.from( poly.verts ).join() ] ); return p; } ).flat();
 const hullSnapshot = model.hulls.map( hull => JSON.stringify( { planes: hull.planes, clipnodes: hull.clipnodes, first: hull.firstclipnode, last: hull.lastclipnode } ) );
-const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, anim.r_newer_normals, anim.r_newer_textures, anim.r_newer_lighting, anim.r_newer_water ];
+const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, mode.r_newer_normals, mode.r_newer_textures, mode.r_newer_lighting, mode.r_newer_water ];
 for ( const variable of controls ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
-function on() { for ( const v of controls ) vars.Cvar_Set( v.name, '1' ); vars.Cvar_Set( 'r_dynres', '0' ); vars.Cvar_Set( 'r_bloom', '0' ); vars.Cvar_Set( 'r_volumetric', '0' ); vars.Cvar_Set( 'r_newer_water', '0' ); anim.R_AnimSetClassicPass( false ); }
+function on() { for ( const v of controls ) vars.Cvar_Set( v.name, '1' ); vars.Cvar_Set( 'r_dynres', '0' ); vars.Cvar_Set( 'r_bloom', '0' ); vars.Cvar_Set( 'r_volumetric', '0' ); vars.Cvar_Set( 'r_newer_water', '0' ); mode.R_AnimSetClassicPass( false ); }
 function triangles( surface ) {
 
 	const result = [];
@@ -172,7 +172,7 @@ Deno.test( 'sun occluder follows exactly the visible Newer texture/normal gates 
 	vars.Cvar_Set( 'r_newer_normals', '0' ); const nativeCount = post.R_BuildSunOccluder( model );
 	vars.Cvar_Set( 'r_newer_normals', '1' ); const enhanced = post.R_BuildSunOccluder( model ), extra = faces.reduce( ( sum, face ) => sum + R_DemonSurfaceData( face ).triangles, 0 ); same( enhanced, nativeCount + extra, 'sun caster contains every actual raised triangle and retained backing' );
 	vars.Cvar_Set( 'r_newer_textures', '0' ); same( post.R_BuildSunOccluder( model ), nativeCount, 'textureoff removes raised shadows' ); vars.Cvar_Set( 'r_newer_textures', '1' );
-	anim.R_AnimSetClassicPass( true ); same( post.R_BuildSunOccluder( model ), nativeCount, 'classic comparison has no raised shadows' ); anim.R_AnimSetClassicPass( false ); vars.Cvar_Set( 'r_hdr', '0' ); same( post.R_BuildSunOccluder( model ), nativeCount, 'New Game keeps native sun caster' );
+	mode.R_AnimSetClassicPass( true ); same( post.R_BuildSunOccluder( model ), nativeCount, 'classic comparison has no raised shadows' ); mode.R_AnimSetClassicPass( false ); vars.Cvar_Set( 'r_hdr', '0' ); same( post.R_BuildSunOccluder( model ), nativeCount, 'New Game keeps native sun caster' );
 
 } );
 
@@ -188,7 +188,7 @@ Deno.test( 'public world draw updates real overlay/PVS, restores native modes, a
 	for ( const leaf of model.leafs ) leaf.visframe = -1; surf.R_WorldShowAll( false ); check( overlays.every( child => ! child.visible ), 'hidden PVS also hides raised overlay' );
 	surf.R_WorldShowAll( true ); check( overlays.some( child => child.visible ), 'reflection whole-world adapter sees actual raised geometry' );
 	vars.Cvar_Set( 'r_newer_textures', '0' ); surf.R_DrawWorld(); check( overlays.every( child => ! child.visible ), 'textureoff shows only backing' );
-	vars.Cvar_Set( 'r_newer_textures', '1' ); anim.R_AnimSetClassicPass( true ); surf.R_DrawWorld(); check( overlays.every( child => ! child.visible ), 'Classic hides raised overlays' ); anim.R_AnimSetClassicPass( false );
+	vars.Cvar_Set( 'r_newer_textures', '1' ); mode.R_AnimSetClassicPass( true ); surf.R_DrawWorld(); check( overlays.every( child => ! child.visible ), 'Classic hides raised overlays' ); mode.R_AnimSetClassicPass( false );
 	for ( const t of textures ) delete t.userData.newerHeight; surf.R_DrawWorld(); same( surf.R_DemonReliefStatus().ready, 0, 'missing height disposes stale raised mesh and returns to native backing' );
 	vars.Cvar_Set( 'r_hdr', '0' );
 

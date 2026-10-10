@@ -3,7 +3,7 @@
 import {readFileSync} from 'node:fs';
 import * as THREE from 'three';
 import {R_BspTextureNames} from '../src/newer/render/r_newertextures.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/newer/render/gl_post.js';
 import * as boot from '../src/newer/ui/r_demoloading.js';
@@ -17,15 +17,15 @@ Deno.test('bounded BSP29 texture-directory prefetch handles real native views, d
  const pack=readFileSync(new URL('../pak0.pak',import.meta.url));for(let p=pack.readInt32LE(4),end=p+pack.readInt32LE(8);p<end;p+=64){const name=pack.subarray(p,p+56).toString().split('\0')[0];if(name!=='maps/e1m3.bsp')continue;const start=pack.readInt32LE(p+56),view=pack.subarray(start,start+pack.readInt32LE(p+60)),actual=R_BspTextureNames(view),expected=[],base=view.readInt32LE(20),count=view.readInt32LE(base);for(let i=0;i<count;i++){const off=view.readInt32LE(base+4+i*4);if(off<0)continue;const n=view.subarray(base+off,base+off+16).toString().split('\0')[0];if(n&&!n.startsWith('*')&&!n.startsWith('sky')&&!expected.includes(n))expected.push(n);}check(actual.length>20,'native demo fixture has a substantial real texture directory');same(actual.join(),expected.join(),'real PAK subview matches independent native directory walk');return;}throw Error('native demo map missing');
 });
 async function assetsFixture(run){
- const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:anim.R_ClassicPassActive()},options=[r_hdr,anim.r_newer_textures];for(const v of options)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const values=options.map(v=>v.string),images=[],fetches=[],decoded=[],scalar=new Uint16Array([0,16384,32768,65535]);
+ const saved={fetch:globalThis.fetch,Image:Object.getOwnPropertyDescriptor(globalThis,'Image'),document:Object.getOwnPropertyDescriptor(globalThis,'document'),classic:mode.R_ClassicPassActive()},options=[r_hdr,mode.r_newer_textures];for(const v of options)if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);const values=options.map(v=>v.string),images=[],fetches=[],decoded=[],scalar=new Uint16Array([0,16384,32768,65535]);
  const manifest={version:991,textures:{prefetch_a:'diffuse.png',prefetch_alias:'diffuse.png',prefetch_good:'good.png',prefetch_bad:'bad.png'},normals:{prefetch_a:{file:'height.png',dataFile:'height.r16',sampling:'clamp',displacement:{depth:4,step:1},edgeSource:{file:'edge.png'}},prefetch_alias:{file:'height.png',dataFile:'height.r16',sampling:'clamp',displacement:{depth:4,step:1},edgeSource:{file:'edge.png'}}}};
  globalThis.fetch=async url=>{fetches.push(String(url));if(String(url).endsWith('index.json'))return{ok:true,json:async()=>manifest};if(String(url).includes('height.r16'))return{ok:true,arrayBuffer:async()=>scalar.buffer.slice(0)};throw Error('unexpected prefetch '+url);};
  Object.defineProperty(globalThis,'Image',{configurable:true,value:class{constructor(){this.width=this.height=2;images.push(this);}set src(url){this.url=String(url);}finish(fail=false){if(fail){this.onerror?.(Error('controlled missing picture'));return;}this.pixels=new Uint8ClampedArray([10,20,30,255,40,50,60,255,70,80,90,255,100,110,120,255]);this.onload?.();}}});
  Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:tag=>{same(tag,'canvas','only decoding canvas requested');let image;return{width:0,height:0,getContext:()=>({drawImage:i=>image=i,getImageData:()=>{decoded.push(image.url);return{data:image.pixels};}})};}}});
- anim.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',0);vars.Cvar_SetValue('r_newer_textures',1);boot.R_DemoLoadingBoot();boot.R_DemoLoadingWelcome();
+ mode.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',0);vars.Cvar_SetValue('r_newer_textures',1);boot.R_DemoLoadingBoot();boot.R_DemoLoadingWelcome();
  const native=()=>new THREE.DataTexture(new Uint8Array([1,2,3,255]),1,1);
  try{const module=await import('../src/newer/render/r_newertextures.js?prefetch-public-'+Math.random());await run({module,images,fetches,decoded,scalar,native});}
- finally{for(const image of images)if(image.onload||image.onerror)image.finish(true);await flush();boot.R_DemoLoadingCancel();globalThis.fetch=saved.fetch;anim.R_AnimSetClassicPass(saved.classic);options.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,d]of [['Image',saved.Image],['document',saved.document]])if(d)Object.defineProperty(globalThis,key,d);else delete globalThis[key];}
+ finally{for(const image of images)if(image.onload||image.onerror)image.finish(true);await flush();boot.R_DemoLoadingCancel();globalThis.fetch=saved.fetch;mode.R_AnimSetClassicPass(saved.classic);options.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,d]of [['Image',saved.Image],['document',saved.document]])if(d)Object.defineProperty(globalThis,key,d);else delete globalThis[key];}
 }
 Deno.test('named prefetch shares exact decoded pigment/height/edge/scalar caches while actual textures and startup readiness remain authoritative',()=>assetsFixture(async f=>{
  const a=f.native(),b=f.native(),nativeImage=a.image,originalPixels=a.image.data.slice(),initialVersion=a.version,model={textures:[{name:'prefetch_a',gl_texture:a},{name:'prefetch_alias',gl_texture:b}]};let updates=0;a.addEventListener('newertextureupdated',()=>updates++);

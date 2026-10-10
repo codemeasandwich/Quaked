@@ -1,7 +1,7 @@
 // Public selected-asset readiness and terminal native fallbacks. Timers/image
 // transport are controlled at endpoints; actual loaders/materials remain used.
 import * as THREE from 'three';
-import { R_AnimSetNewer, R_AnimSetLighting, R_AnimSetClassicPass, r_newer_normals, r_newer_textures, r_newer_enemies } from '../src/newer/render/r_anim.js';
+import { R_AnimSetNewer, R_AnimSetLighting, R_AnimSetClassicPass, r_newer_normals, r_newer_textures, r_newer_enemies } from '../src/newer/mode.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };

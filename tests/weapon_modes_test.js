@@ -8,7 +8,7 @@ const vars = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
 const menu = await import( '../src/engine/client/menu.js' );
 const split = await import( '../src/newer/render/r_demosplit.js' );
-const anim = await import( '../src/newer/render/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), newerMode = await import( '../src/newer/mode.js' );
 const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { cls, cl } = await import( '../src/engine/client/client.js' );
@@ -156,19 +156,19 @@ function restored( states ) {
 		same( s.mesh.geometry.index, s.index, 'enhanced topology restored after classic pass' );
 
 	}
-	same( anim.R_ClassicPassActive(), false, 'enhanced mode restored' );
+	same( newerMode.R_ClassicPassActive(), false, 'enhanced mode restored' );
 
 }
 function compare( fail = null ) {
 
 	drawRoles( true ); const states = snapshots(); let rollback = null, on = 0, off = 0;
-	const renderer = presenter( () => { same( anim.R_ClassicPassActive(), true, 'native scene rendered in classic mode' ); drawRoles( false ); }, fail );
+	const renderer = presenter( () => { same( newerMode.R_ClassicPassActive(), true, 'native scene rendered in classic mode' ); drawRoles( false ); }, fail );
 	let thrown = null;
 	try {
 
 		split.R_DemoSplitClassic( renderer, scene, new THREE.PerspectiveCamera(), { lx: 0, ly: 0, lw: 800, lh: 600 },
-			() => { on ++; rollback = R_SaveClassicScene( scene, cl.time ); anim.R_AnimSetClassicPass( true ); drawRoles( false ); },
-			() => { off ++; rollback(); anim.R_AnimSetClassicPass( false ); } );
+			() => { on ++; rollback = R_SaveClassicScene( scene, cl.time ); newerMode.R_AnimSetClassicPass( true ); drawRoles( false ); },
+			() => { off ++; rollback(); newerMode.R_AnimSetClassicPass( false ); } );
 
 	} catch ( error ) { thrown = error; }
 	same( thrown, fail, 'original render error preserved' ); same( on, 1, 'one classic preparation' ); same( off, 1, 'one classic rollback' ); restored( states );
@@ -208,7 +208,7 @@ Deno.test( 'weapon modes: disabled weapons feature restores all original roles e
 
 Deno.test( 'weapon modes: restore public test fixtures', () => {
 
-	split.R_DemoSplitEnd(); anim.R_AnimSetClassicPass( false ); cmd.Cbuf_Init();
+	split.R_DemoSplitEnd(); newerMode.R_AnimSetClassicPass( false ); cmd.Cbuf_Init();
 	globalThis.fetch = oldFetch; THREE.TextureLoader.prototype.load = oldLoad;
 	vars.Cvar_Set( 'r_hdr', old.hdr ); vars.Cvar_Set( 'r_demosplit', old.split ); weapons.r_newer_weapons.value = old.weapons; anim.r_lerpmodels.value = old.lerp;
 	cls.demoplayback = old.playback; cls.timedemo = old.timedemo; cls.demonum = old.demonum;

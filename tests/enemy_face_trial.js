@@ -1,14 +1,14 @@
 import * as THREE from 'three';
 await import( '../src/engine/render/gl_rsurf.js' );
 const pak = await import( '../src/engine/common/pak.js' ), models = await import( '../src/engine/render/gl_model.js' ), mesh = await import( '../src/engine/render/gl_mesh.js' );
-const skins = await import( '../src/newer/render/r_newerskins.js' ), anim = await import( '../src/newer/render/r_anim.js' ), face = await import( '../src/newer/render/enemy_face.js' );
+const skins = await import( '../src/newer/render/r_newerskins.js' ), newerMode = await import( '../src/newer/mode.js' ), face = await import( '../src/newer/render/enemy_face.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), vid = await import( '../src/engine/render/vid.js' ), dots = ( await import( '../src/engine/common/anorm_dots.js' ) ).r_avertexnormal_dots[ 0 ];
 const status = document.querySelector( '#status' ), errors = [], receipts = [];
 window.addEventListener( 'error', event => errors.push( event.message ) );
 window.addEventListener( 'unhandledrejection', event => errors.push( String( event.reason ) ) );
 try {
 	vars.Cvar_RegisterVariable( ( await import( '../src/newer/render/gl_post.js' ) ).r_hdr ); vars.Cvar_SetValue( 'r_hdr', 1 );
-	anim.R_AnimSetNewer( true ); anim.R_AnimSetLighting( false ); anim.r_newer_normals.value = 0;
+	newerMode.R_AnimSetNewer( true ); newerMode.R_AnimSetLighting( false ); newerMode.r_newer_normals.value = 0;
 	const manifest = await ( await fetch( 'newer/enemies/index.json', { cache: 'no-store' } ) ).json(); if ( new URL( location.href ).searchParams.get( 'sourceTone' ) === '1' ) manifest.models.ogre[ 0 ].faces.colorBalance = [ 1, 1, 1 ];
 	skins.R_NewerSetIndex( manifest );
 	pak.COM_AddPack( await pak.COM_FetchPak( 'pak0.pak', 'pak0.pak' ) ); vid.VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); models.Mod_Init();
@@ -21,7 +21,7 @@ try {
 			v.entity._aliasMesh.material.onBeforeCompile?.( probe );
 			return { balance: probe.uniforms.uFaceColorBalance?.value?.toArray(), alignment: probe.uniforms.uFaceAlignment?.value?.toArray(), targetPivot: probe.uniforms.uFaceTargetPivot?.value?.toArray(), pixelSize: probe.uniforms.uFacePixelSize?.value?.toArray(), colorShader: probe.fragmentShader.includes( 'uFaceColorBalance' ) };
 		} );
-		const receipt = { bindings, model: activeModel, colorBalance: manifest.models[ activeModel ]?.[ 0 ]?.faces?.colorBalance || [ 1, 1, 1 ], relief: anim.r_newer_normals.value !== 0, lighting: anim.R_NewerLightingActive(), manifest: manifest.version, individuals: current, classic, view: mode, status: skins.R_NewerSkinsStatus(), glError: renderer.getContext().getError(), errors, checked: receipts };
+		const receipt = { bindings, model: activeModel, colorBalance: manifest.models[ activeModel ]?.[ 0 ]?.faces?.colorBalance || [ 1, 1, 1 ], relief: newerMode.r_newer_normals.value !== 0, lighting: newerMode.R_NewerLightingActive(), manifest: manifest.version, individuals: current, classic, view: mode, status: skins.R_NewerSkinsStatus(), glError: renderer.getContext().getError(), errors, checked: receipts };
 		document.querySelector( '#report' ).textContent = JSON.stringify( receipt, null, 2 ); window.enemyFaceReceipt = receipt;
 	}
 	function render() {
@@ -60,9 +60,9 @@ try {
 	document.querySelector( '#model' ).onchange = event => generate( event.target.value );
 	document.querySelector( '#roll' ).onclick = () => generate( activeModel, true );
 	document.querySelector( '#view' ).onclick = () => { mode = ( mode + 1 ) % 3; render(); };
-	document.querySelector( '#classic' ).onclick = () => { classic = ! classic; anim.R_AnimSetClassicPass( classic ); render(); };
+	document.querySelector( '#classic' ).onclick = () => { classic = ! classic; newerMode.R_AnimSetClassicPass( classic ); render(); };
 	document.querySelector( '#lighting' ).onclick = async () => {
-		const on = anim.r_newer_normals.value === 0; anim.r_newer_normals.value = on ? 1 : 0; anim.R_AnimSetLighting( on );
+		const on = newerMode.r_newer_normals.value === 0; newerMode.r_newer_normals.value = on ? 1 : 0; newerMode.R_AnimSetLighting( on );
 		await skins.R_NewerSkinsPrepare( views.map( v => v.model ) );
 		const deadline = performance.now() + 35000; while ( ! skins.R_NewerSkinsStatus().settled && performance.now() < deadline ) await new Promise( resolve => setTimeout( resolve, 30 ) ); render();
 	};

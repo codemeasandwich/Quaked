@@ -1,4 +1,5 @@
 import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as glquake from '../src/engine/render/glquake.js';
 
 function assertEqual( actual, expected, message ) {
@@ -130,23 +131,23 @@ Deno.test( 'r_lerpmodels: off or Newer Game only, including legacy forced values
 
 	try {
 
-		anim.R_AnimSetNewer( false );
+		mode.R_AnimSetNewer( false );
 		anim.r_lerpmodels.value = 1;
 		assertEqual( anim.R_AnimEnabled(), false, 'classic lighting: off by default' );
-		anim.R_AnimSetNewer( true );
+		mode.R_AnimSetNewer( true );
 		assertEqual( anim.R_AnimEnabled(), true, 'Newer Game: on' );
 		anim.r_lerpmodels.value = 0;
 		assertEqual( anim.R_AnimEnabled(), false, 'switched off' );
-		anim.R_AnimSetNewer( false );
+		mode.R_AnimSetNewer( false );
 		anim.r_lerpmodels.value = 2;
 		assertEqual( anim.R_AnimEnabled(), false, 'legacy forced preference cannot enable Classic frames' );
-		anim.R_AnimSetNewer( true );
+		mode.R_AnimSetNewer( true );
 		assertEqual( anim.R_AnimEnabled(), true, 'legacy positive preference still enables enhanced frames' );
 
 	} finally {
 
 		anim.r_lerpmodels.value = old;
-		anim.R_AnimSetNewer( false );
+		mode.R_AnimSetNewer( false );
 
 	}
 

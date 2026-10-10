@@ -28,7 +28,7 @@ try {
  const THREE = await import('three');
  const {Cvar_RegisterVariable,Cvar_SetValue} = await import('./src/engine/common/cvar.js');
  const {r_hdr} = await import('./src/newer/render/gl_post.js');
- const {r_newer_textures,R_AnimSetNewer} = await import('./src/newer/render/r_anim.js');
+ const { r_newer_textures, R_AnimSetNewer } = await import('./src/newer/mode.js');
  const {R_NewerTextureUpgrade} = await import('./src/newer/render/r_newertextures.js');
  const {R_NormalMapFor,R_NormalsFromCraftedHeight} = await import('./src/newer/render/gl_normals.js');
  Cvar_RegisterVariable(r_hdr); Cvar_RegisterVariable(r_newer_textures);

@@ -2,13 +2,13 @@ import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import {R_ClassicMaterial} from '../src/newer/render/r_classicstate.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 import {R_NewerTextureUpgrade,R_GlassTextureKey,R_ClassicTexture} from '../src/newer/render/r_newertextures.js';
 const W=360,H=480,report=document.querySelector('#report'),errors=[];
 window.addEventListener('error',e=>errors.push(e.message));
-for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_pointshadows,post.r_newbright,post.r_newcontrast,anim.r_newer_normals,anim.r_newer_lighting,anim.r_newer_textures])if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);
+for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_pointshadows,post.r_newbright,post.r_newcontrast,mode.r_newer_normals,mode.r_newer_lighting,mode.r_newer_textures])if(!vars.Cvar_FindVar(v.name))vars.Cvar_RegisterVariable(v);
 for(const[name,value]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_volumetric:0,r_bounce:0,r_pointshadows:0,r_newbright:1,r_newcontrast:1,r_newer_normals:1,r_newer_lighting:1,r_newer_textures:1}))vars.Cvar_SetValue(name,value);
 const renderer=new THREE.WebGLRenderer({preserveDrawingBuffer:true,antialias:false});renderer.setSize(W,H);renderer.autoClear=false;renderer.setClearColor(0,0);document.querySelector('#main').append(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,W/H,1,1200),lm=new THREE.DataTexture(new Uint8Array([180,180,180,255]),1,1);lm.needsUpdate=true;
@@ -20,17 +20,17 @@ const selector=document.querySelector('#variant');options.forEach((e,i)=>{const 
 async function pixels(url){const image=new Image();image.src=url;await image.decode();const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);return{data:new Uint8Array(ctx.getImageData(0,0,image.width,image.height).data),width:image.width,height:image.height};}
 function lights(side=lightSide){post.R_BuildWorldLights({nodes:[{contents:-1,visframe:1}],surfaces:[],entities:'{"classname" "worldspawn"}\n{"classname" "light" "origin" "'+[side*48,48,85].join(' ')+'" "light" "500" "_color" "1 0.85 0.55"}'});post.R_BuildSunOccluder({surfaces:[]});}
 function draw(){
- anim.R_AnimSetClassicPass(classic);vars.Cvar_SetValue('r_newer_normals',normalOn?1:0);mesh.material=classic?classicMaterial:nativeMaterial;
+ mode.R_AnimSetClassicPass(classic);vars.Cvar_SetValue('r_newer_normals',normalOn?1:0);mesh.material=classic?classicMaterial:nativeMaterial;
  camera.position.set(turn?100:0,0,250);camera.lookAt(0,0,0);camera.updateMatrixWorld();
  if(classic){
   post.R_PostBegin(renderer,false,W,H);post.classicLook.value=1;renderer.setRenderTarget(classicTarget);renderer.clear();renderer.render(scene,camera);
   const screen=new Uint8Array(W*H*4);renderer.readRenderTargetPixels(classicTarget,0,0,W,H,screen);renderer.setRenderTarget(null);renderer.clear();renderer.render(scene,camera);
-  const error=renderer.getContext().getError();post.classicLook.value=0;anim.R_AnimSetClassicPass(false);return{screen,albedo:new Uint8Array(screen.length),normal:new Uint16Array(screen.length),error};
+  const error=renderer.getContext().getError();post.classicLook.value=0;mode.R_AnimSetClassicPass(false);return{screen,albedo:new Uint8Array(screen.length),normal:new Uint16Array(screen.length),error};
  }
  post.classicLook.value=0;post.R_PostBegin(renderer,true,W,H);post.R_PostLightsFrame(renderer,scene,camera,1,new Array(64).fill(264),[],1,false);post.R_PostBind(renderer);renderer.clear();renderer.render(scene,camera);
  const target=renderer.getRenderTarget(),albedo=new Uint8Array(W*H*4),normal=new Uint16Array(W*H*4);renderer.readRenderTargetPixels(target,0,0,W,H,albedo,undefined,2);renderer.readRenderTargetPixels(target,0,0,W,H,normal,undefined,1);
  post.R_PostFinish(renderer,scene,camera,{lx:0,ly:0,lw:W,lh:H},1,new Array(64).fill(264),[],1,1,false);
- const gl=renderer.getContext(),screen=new Uint8Array(W*H*4);gl.readPixels(0,0,W,H,gl.RGBA,gl.UNSIGNED_BYTE,screen);const error=gl.getError();anim.R_AnimSetClassicPass(false);return{screen,albedo,normal,error};
+ const gl=renderer.getContext(),screen=new Uint8Array(W*H*4);gl.readPixels(0,0,W,H,gl.RGBA,gl.UNSIGNED_BYTE,screen);const error=gl.getError();mode.R_AnimSetClassicPass(false);return{screen,albedo,normal,error};
 }
 async function select(i){const token=++generation;window.glassTrialReady=null;decodeExact=false;entry=options[i];report.textContent='Loading '+entry.name+'…';if(mesh){scene.remove(mesh);mesh.geometry.dispose();nativeMaterial.dispose();classicMaterial.dispose();diffuse.dispose();}
  const image=await pixels('newer/textures/'+entry.nativeFile);if(token!==generation)return;diffuse=new THREE.DataTexture(image.data,image.width,image.height);diffuse.colorSpace=THREE.SRGBColorSpace;diffuse.wrapS=diffuse.wrapT=THREE.RepeatWrapping;diffuse.needsUpdate=true;

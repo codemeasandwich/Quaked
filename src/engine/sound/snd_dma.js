@@ -34,7 +34,7 @@ import { cl } from '../client/client.js';
 import { Mod_PointInLeaf } from '../render/gl_model.js';
 import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from '../../newer/sound/s_ambientmusic.js';
 import { S_ExitMachineFalloff } from '../../newer/sound/s_exitmachine.js';
-import { R_NewerGame } from '../../newer/render/r_anim.js';
+import { R_NewerGame } from '../../newer/mode.js';
 
 /*
 ==============================================================================

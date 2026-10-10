@@ -14,7 +14,7 @@
 // pickup MDLs by tools/import_weapons.py. Gameplay identities stay native.
 import * as THREE from 'three';
 import { cvar_t } from '../../engine/common/cvar.js';
-import { R_NewerGame, R_ClassicPassActive } from './r_anim.js';
+import { R_NewerGame, R_ClassicPassActive } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import { R_AssetAliasMaterial } from './r_newerskins.js';
 import { r_avertexnormals } from '../../engine/common/anorm_dots.js';

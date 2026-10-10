@@ -2,7 +2,7 @@ import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as rock from '../src/newer/render/r_rockfield.js';
 import { ROCK_AXIS_U, ROCK_AXIS_V } from '../src/newer/render/r_rocksurfaces.js';
 import { DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
@@ -13,7 +13,7 @@ const report = document.querySelector( '#report' ), owned = [];
 const mutation = new URLSearchParams( location.search ).get( 'mutation' );
 try {
 
-	for ( const v of [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ] ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
+	for ( const v of [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce, mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ] ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 	for ( const [ key, value ] of Object.entries( { r_hdr: 1, r_dynres: 0, r_bloom: 0, r_volumetric: 0, r_bounce: 0, r_newer_lighting: 1, r_newer_normals: 1, r_newer_water: 0 } ) ) vars.Cvar_SetValue( key, value );
 	const axisU = new THREE.Vector3( ...ROCK_AXIS_U ), axisV = new THREE.Vector3( ...ROCK_AXIS_V );
 	const planeNormal = axisU.clone().add( axisV ).addScaledVector( axisU.clone().cross( axisV ), .3 ).normalize();

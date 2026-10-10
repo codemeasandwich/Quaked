@@ -1,5 +1,5 @@
 import * as skins from '../src/newer/render/r_newerskins.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 
 function assertEqual( actual, expected, message ) {
 
@@ -96,10 +96,10 @@ Deno.test( 'no replacement material unless Newer Game is on and the skin is know
 	const entity = { _entityIndex: 3 };
 	skins.R_NewerSetIndex( { models: { zombie: [ { dir: 'zombie/v1', maps: { diffuse: 'diffuse.webp' } } ] } } );
 
-	anim.R_AnimSetNewer( false );
+	mode.R_AnimSetNewer( false );
 	assertEqual( skins.R_NewerAliasMaterial( entity, 'progs/zombie.mdl', true ), null, 'classic lighting keeps the original skin' );
 
-	anim.R_AnimSetNewer( true );
+	mode.R_AnimSetNewer( true );
 
 	try {
 
@@ -109,7 +109,7 @@ Deno.test( 'no replacement material unless Newer Game is on and the skin is know
 
 	} finally {
 
-		anim.R_AnimSetNewer( false );
+		mode.R_AnimSetNewer( false );
 		skins.R_NewerSetIndex( null );
 
 	}
@@ -151,9 +151,9 @@ Deno.test( 'a skin listed for a skin number is used for that skin only (the armo
 		{ dir: 'armor/a', maps: { diffuse: 'd.webp' } },
 		{ dir: 'armor/b', skin: 1, maps: { diffuse: 'd.webp' } }
 	] } } );
-	anim.R_AnimSetNewer( true );
-	const old = anim.r_newer_enemies.value;
-	anim.r_newer_enemies.value = 1;
+	mode.R_AnimSetNewer( true );
+	const old = mode.r_newer_enemies.value;
+	mode.r_newer_enemies.value = 1;
 	try {
 
 		// nothing has loaded (no fetch here), so every answer is the original skin: what matters is that
@@ -163,8 +163,8 @@ Deno.test( 'a skin listed for a skin number is used for that skin only (the armo
 
 	} finally {
 
-		anim.r_newer_enemies.value = old;
-		anim.R_AnimSetNewer( false );
+		mode.r_newer_enemies.value = old;
+		mode.R_AnimSetNewer( false );
 		skins.R_NewerSetIndex( null );
 
 	}
@@ -176,9 +176,9 @@ Deno.test( 'removed pack models fall back to original skins with the shipped man
 
 	const index = JSON.parse( await Deno.readTextFile( new URL( '../newer/enemies/index.json', import.meta.url ) ) );
 	skins.R_NewerSetIndex( index );
-	anim.R_AnimSetNewer( true );
-	const old = anim.r_newer_enemies.value;
-	anim.r_newer_enemies.value = 1;
+	mode.R_AnimSetNewer( true );
+	const old = mode.r_newer_enemies.value;
+	mode.r_newer_enemies.value = 1;
 	try {
 
 		for ( const model of [ 'dog', 'zombie', 'demon', 'enforcer', 'fish', 'hknight', 'oldone', 'shalrath', 'shambler', 'tarbaby', 'h_knight', 'h_ogre', 'h_wizard' ] )
@@ -186,8 +186,8 @@ Deno.test( 'removed pack models fall back to original skins with the shipped man
 
 	} finally {
 
-		anim.r_newer_enemies.value = old;
-		anim.R_AnimSetNewer( false );
+		mode.r_newer_enemies.value = old;
+		mode.R_AnimSetNewer( false );
 		skins.R_NewerSetIndex( null );
 
 	}

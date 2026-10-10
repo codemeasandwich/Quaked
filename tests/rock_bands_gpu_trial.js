@@ -5,7 +5,7 @@ import * as band from '../src/newer/render/r_rockshader.js';
 import { R_RockCoordinates } from '../src/newer/render/r_rocksurfaces.js';
 import * as post from '../src/newer/render/gl_post.js';
 import * as height from '../src/newer/render/r_heightshadows.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 const W=384,H=384,report=document.querySelector('#report'),owned=[],checks=[],errors=[];let draws=0;
@@ -15,7 +15,7 @@ async function decoded(path){const response=await fetch(new URL('../newer/textur
 const stats=(a,b,channels=3,tolerance=1)=>{let sum=0,maximum=0,changed=0,n=0;for(let i=0;i<a.length;i+=4)for(let c=0;c<channels;c++){const d=Math.abs(a[i+c]-b[i+c]);sum+=d;maximum=Math.max(maximum,d);if(d>tolerance)changed++;n++;}return{mean:sum/n,maximum,changedFraction:changed/n};};
 const decodeShadow=(bytes,i)=>{const word=bytes[i]+bytes[i+1]*256+bytes[i+2]*65536+bytes[i+3]*16777216,kind=Math.floor(word/1073741824);return kind===1||kind===2?(word%8)/7:1;};
 try{
- for(const c of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,height.r_heightshadows])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
+ for(const c of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_water,height.r_heightshadows])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
  for(const[k,v]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_volumetric:0,r_bounce:0,r_newer_lighting:1,r_newer_normals:1,r_newer_water:0,r_heightshadows:1}))vars.Cvar_SetValue(k,v);
  const [pigment,scalar,index]=await Promise.all([decoded('bricka2_2.webp'),decoded('normals/bricka2_2.webp'),fetch(new URL('../newer/textures/index.json',import.meta.url)).then(r=>r.json())]);
  const originalPigment=pigment.data.slice(),originalScalar=scalar.data.slice(),texture=new THREE.DataTexture(pigment.data,pigment.width,pigment.height);owned.push(texture);texture.colorSpace=THREE.SRGBColorSpace;texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.magFilter=THREE.LinearFilter;texture.generateMipmaps=true;texture.anisotropy=16;texture.userData.newerPicture=true;

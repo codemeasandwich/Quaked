@@ -9,10 +9,10 @@ const trialControls=[...document.querySelectorAll('header button,header select,h
 function check(value,label){if(!value)throw new Error(label);checks++;}
 try {
  await import('./src/engine/render/gl_rsurf.js');
- const THREE=await import('three'),pak=await import('./src/engine/common/pak.js'),models=await import('./src/engine/render/gl_model.js'),mesh=await import('./src/engine/render/gl_mesh.js'),skins=await import('./src/newer/render/r_newerskins.js'),anim=await import('./src/newer/render/r_anim.js'),post=await import('./src/newer/render/gl_post.js'),cvars=await import('./src/engine/common/cvar.js'),vid=await import('./src/engine/render/vid.js');
+ const THREE=await import('three'),pak=await import('./src/engine/common/pak.js'),models=await import('./src/engine/render/gl_model.js'),mesh=await import('./src/engine/render/gl_mesh.js'),skins=await import('./src/newer/render/r_newerskins.js'),mode = await import('./src/newer/mode.js'),post=await import('./src/newer/render/gl_post.js'),cvars=await import('./src/engine/common/cvar.js'),vid=await import('./src/engine/render/vid.js');
  const archive=pak.COM_LoadPackFile('pak0.pak',await (await fetch('pak0.pak')).arrayBuffer());pak.COM_AddPack(archive);vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);models.Mod_Init();
  const index=await (await fetch('newer/enemies/index.json',{cache:'no-store'})).json();skins.R_NewerSetIndex(index);
- for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,post.r_newdark,post.r_newedges,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_enemies])if(!cvars.Cvar_FindVar(v.name))cvars.Cvar_RegisterVariable(v);
+ for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,post.r_newdark,post.r_newedges,mode.r_newer_lighting,mode.r_newer_normals,mode.r_newer_enemies])if(!cvars.Cvar_FindVar(v.name))cvars.Cvar_RegisterVariable(v);
  for(const [name,value] of Object.entries({r_hdr:1,r_dynres:0,r_newer_lighting:1,r_newer_normals:1,r_newer_enemies:1,r_bloom:0,r_volumetric:0,r_bounce:0,r_newbright:1,r_newcontrast:1,r_newdark:1,r_newedges:0}))cvars.Cvar_SetValue(name,value);
  const renderer=new THREE.WebGLRenderer({canvas:document.querySelector('#view'),antialias:false,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(1200,720,false);renderer.setClearColor(0x1c2029,1);
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(40,1200/720,4,1500);camera.up.set(0,0,1);
@@ -23,7 +23,7 @@ try {
  }
  document.querySelector('#model').value='shambler';let active=null,currentMesh=null,angle=0;
  let authoredNormal=null,previousNormal=null,authoringUniforms=null,usePrevious=false;
- function updateAuthoringControl(){document.querySelector('#authoring').disabled=!authoredNormal || document.querySelector('#model').value!=='shambler' || anim.r_newer_enemies.value===0;}
+ function updateAuthoringControl(){document.querySelector('#authoring').disabled=!authoredNormal || document.querySelector('#model').value!=='shambler' || mode.r_newer_enemies.value===0;}
  function select(){
   if(currentMesh){scene.remove(currentMesh);currentMesh=null;}
   const key=document.querySelector('#model').value;active=entities.get(key);
@@ -36,8 +36,8 @@ try {
  }
  select();document.querySelector('#model').addEventListener('change',select);
  document.querySelector('#front').onclick=()=>{angle=0;active.entity.angles[1]=0;};document.querySelector('#back').onclick=()=>{angle=180;active.entity.angles[1]=180;};
- document.querySelector('#height').onclick=()=>{anim.r_newer_normals.value=anim.r_newer_normals.value?0:1;document.querySelector('#height').textContent='Height relief: '+(anim.r_newer_normals.value?'on':'off');};
- document.querySelector('#custom').onclick=()=>{anim.r_newer_enemies.value=anim.r_newer_enemies.value?0:1;document.querySelector('#custom').textContent='Custom skin: '+(anim.r_newer_enemies.value?'on':'off');updateAuthoringControl();};
+ document.querySelector('#height').onclick=()=>{mode.r_newer_normals.value=mode.r_newer_normals.value?0:1;document.querySelector('#height').textContent='Height relief: '+(mode.r_newer_normals.value?'on':'off');};
+ document.querySelector('#custom').onclick=()=>{mode.r_newer_enemies.value=mode.r_newer_enemies.value?0:1;document.querySelector('#custom').textContent='Custom skin: '+(mode.r_newer_enemies.value?'on':'off');updateAuthoringControl();};
  const lights=[{origin:[140,-90,120],radius:450,die:1e9,minlight:0},{origin:[-80,100,90],radius:180,die:1e9,minlight:0}];
  let ready=false, gpuVerified=false;const start=performance.now();
  function renderFrame(){
@@ -56,17 +56,17 @@ try {
  function verifyHeadSwitches(){
   const results=[];
   for(const key of ['h_demon','h_dog','zom_gib','h_shams']){
-   document.querySelector('#model').value=key;select();angle=0;active.entity.angles[1]=0;anim.r_newer_enemies.value=1;anim.r_newer_normals.value=1;updateSelectedMesh();renderFrame();
+   document.querySelector('#model').value=key;select();angle=0;active.entity.angles[1]=0;mode.r_newer_enemies.value=1;mode.r_newer_normals.value=1;updateSelectedMesh();renderFrame();
    const custom=skins.R_NewerAliasMaterial(active.entity,active.entity.model.name,true),withHeight=framebuffer();
    check(custom.map.image.width===active.header.skinwidth*4 && custom.map.image.height===active.header.skinheight*4,key+': replacement dimensions preserve native UV scale');
    check(currentMesh.material.map===custom.map,key+': real alias renderer uses replacement');
-   anim.r_newer_normals.value=0;updateSelectedMesh();renderFrame();const flat=framebuffer(),heightDelta=pixelDifference(withHeight,flat);check(heightDelta.changedPixels>100,key+': height toggle affects GPU pixels');
-   anim.r_newer_normals.value=1;anim.r_newer_enemies.value=0;updateSelectedMesh();renderFrame();const original=framebuffer();
+   mode.r_newer_normals.value=0;updateSelectedMesh();renderFrame();const flat=framebuffer(),heightDelta=pixelDifference(withHeight,flat);check(heightDelta.changedPixels>100,key+': height toggle affects GPU pixels');
+   mode.r_newer_normals.value=1;mode.r_newer_enemies.value=0;updateSelectedMesh();renderFrame();const original=framebuffer();
    check(currentMesh.material.map===active.header.gl_texturenum[0][0],key+': replacement switch restores exact original diffuse');
    const diffuseDelta=pixelDifference(withHeight,original);check(diffuseDelta.changedPixels>100,key+': replacement visible on model');
    results.push({model:key,dimensions:[custom.map.image.width,custom.map.image.height],heightDelta,diffuseDelta,originalDiffuseRestored:true});
   }
-  document.querySelector('#model').value='shambler';select();anim.r_newer_enemies.value=1;anim.r_newer_normals.value=1;angle=0;active.entity.angles[1]=0;updateSelectedMesh();renderFrame();
+  document.querySelector('#model').value='shambler';select();mode.r_newer_enemies.value=1;mode.r_newer_normals.value=1;angle=0;active.entity.angles[1]=0;updateSelectedMesh();renderFrame();
   evidence.headSwitchChecks=results;evidence.checks=checks;document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);
  }
  async function compareAuthoring(){
@@ -77,7 +77,7 @@ try {
   const c=document.createElement('canvas');c.width=image.width;c.height=image.height;const ctx=c.getContext('2d');ctx.drawImage(image,0,0);const rgba=ctx.getImageData(0,0,c.width,c.height).data;
   const height=Float32Array.from({length:c.width*c.height},(_,i)=>rgba[i*4]/255),data=kernel.R_NormalsFromCraftedHeight(height,c.width,c.height,.65,.55);
   previousNormal=new THREE.DataTexture(data,c.width,c.height);previousNormal.wrapS=previousNormal.wrapT=THREE.RepeatWrapping;previousNormal.magFilter=THREE.LinearFilter;previousNormal.minFilter=THREE.LinearMipmapLinearFilter;previousNormal.generateMipmaps=authoredNormal.generateMipmaps;previousNormal.anisotropy=authoredNormal.anisotropy;previousNormal.colorSpace=authoredNormal.colorSpace;previousNormal.flipY=authoredNormal.flipY;previousNormal.offset.copy(authoredNormal.offset);previousNormal.needsUpdate=true;
-  check(active.entity.model.name==='progs/shambler.mdl' && anim.r_newer_enemies.value===1 && angle===0 && !document.querySelector('#rotate').checked,'fixed custom Shambler front comparison');
+  check(active.entity.model.name==='progs/shambler.mdl' && mode.r_newer_enemies.value===1 && angle===0 && !document.querySelector('#rotate').checked,'fixed custom Shambler front comparison');
   // Controls are disabled until this capture ends, fixing the pose/camera/light state.
   authoringUniforms.qrNormal.value=authoredNormal;renderFrame();const authored=framebuffer();authoringUniforms.qrNormal.value=previousNormal;renderFrame();const previous=framebuffer();authoringUniforms.qrNormal.value=authoredNormal;renderFrame();
   let changed=0,total=0;for(let i=0;i<previous.length;i+=4){const delta=Math.abs(previous[i]-authored[i])+Math.abs(previous[i+1]-authored[i+1])+Math.abs(previous[i+2]-authored[i+2]);if(delta>0)changed++;total+=delta;}
@@ -127,7 +127,7 @@ try {
    if(shader.uniforms.uHasNormal.value===1){check(shader.uniforms.qrNormal.value.image.width===1540,'Shambler normal width');check(shader.uniforms.qrNormal.value.image.height===575,'Shambler normal height');ready=true;evidence.shamblerDiffuse=[1540,575];evidence.shamblerNormal=[1540,575];status.textContent='PASS — actual enemy models, replacement skins and height normals verified. '+Object.keys(index.nativeHeights).length+' original enemy/head/gore models available.';document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);}
   }
   if(ready && !gpuVerified){
-   gpuVerified=true;renderFrame();const withHeight=framebuffer();anim.r_newer_normals.value=0;renderFrame();const flat=framebuffer();anim.r_newer_normals.value=1;renderFrame();
+   gpuVerified=true;renderFrame();const withHeight=framebuffer();mode.r_newer_normals.value=0;renderFrame();const flat=framebuffer();mode.r_newer_normals.value=1;renderFrame();
    let changed=0,total=0;for(let i=0;i<flat.length;i+=4){const delta=Math.abs(flat[i]-withHeight[i])+Math.abs(flat[i+1]-withHeight[i+1])+Math.abs(flat[i+2]-withHeight[i+2]);if(delta>0)changed++;total+=delta;}
    check(changed>500,'height map affects actual rendered pixels');evidence.heightPixelComparison={changedPixels:changed,totalChannelDelta:total};evidence.checks=checks;document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);status.textContent+=' Height changes '+changed+' rendered pixels.';verifyCatalog().catch(error=>{status.textContent='FAIL — '+error.message;console.error(error);});
   }

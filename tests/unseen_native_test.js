@@ -24,7 +24,7 @@ import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/engine/
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connected, ca_dedicated } from '../src/engine/client/client.js';
 import * as Q from '../src/engine/common/quakedef.js';
 import { R_LevelEntities } from '../src/newer/render/r_levelents.js';

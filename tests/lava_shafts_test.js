@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as mode from '../src/newer/mode.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { readFileSync } from 'node:fs';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
@@ -28,7 +28,7 @@ function pipeline() {
 }
 function withControls( fn ) {
 
-	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pillars, post.r_bounce, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_pillars, post.r_bounce, mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
 	for ( const v of controls ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
 	const saved = controls.map( v => v.string ), p = pipeline();
 	try { for ( const v of controls ) vars.Cvar_Set( v.name, '1' ); for ( const name of [ 'r_dynres', 'r_bloom', 'r_bounce', 'r_newer_normals', 'r_newer_water' ] ) vars.Cvar_Set( name, '0' ); vars.Cvar_Set( 'r_pillars', '.5' ); fn( p ); }

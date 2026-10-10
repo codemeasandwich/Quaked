@@ -23,14 +23,15 @@ import { cl } from '../src/engine/client/client.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass, r_lerpmodels } from '../src/newer/render/r_anim.js';
+import { r_lerpmodels } from '../src/newer/render/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/mode.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { COM_Parse, SZ_Alloc } from '../src/engine/common/common.js';
 import { R_LevelEntities } from '../src/newer/render/r_levelents.js';
 import { R_ParseEntityLump } from '../src/newer/render/r_levelgraph.js';
 import { R_BuildLevelView } from '../src/newer/render/r_levelview.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import { SV_LinkEdict } from '../src/engine/server/world.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
@@ -359,7 +360,7 @@ Deno.test( 'all62 originally failing cuts cover every native solid cut segment a
 
 Deno.test( 'saved cut corpse reappears as two identically settled and skinned halves in the real native level preview without active-world mutation', async () => {
 
-	const saved = { document: Object.getOwnPropertyDescriptor( globalThis, 'document' ), load: THREE.TextureLoader.prototype.load, salt: skins.R_NewerSkinSalt(), variety: skins.r_newer_variety.value, enemies: anim.r_newer_enemies.value, normals: anim.r_newer_normals.value, newer: anim.R_IsNewer(), lighting: anim.R_NewerLightingActive() };
+	const saved = { document: Object.getOwnPropertyDescriptor( globalThis, 'document' ), load: THREE.TextureLoader.prototype.load, salt: skins.R_NewerSkinSalt(), variety: skins.r_newer_variety.value, enemies: newerMode.r_newer_enemies.value, normals: newerMode.r_newer_normals.value, newer: newerMode.R_IsNewer(), lighting: newerMode.R_NewerLightingActive() };
 	let view;
 	try {
 
@@ -369,7 +370,7 @@ Deno.test( 'saved cut corpse reappears as two identically settled and skinned ha
 		// identity, not visual fidelity of external artwork.
 		Object.defineProperty( globalThis, 'document', { configurable: true, value: {} } );
 		THREE.TextureLoader.prototype.load = function ( url, loaded ) { const color = String( url ).includes( 'variant-a' ) ? [ 31, 59, 113, 255 ] : [ 193, 43, 17, 255 ], texture = new THREE.DataTexture( Uint8Array.from( color ), 1, 1 ); texture.name = String( url ); queueMicrotask( () => loaded( texture ) ); return texture; };
-		anim.R_AnimSetNewer( true ); anim.R_AnimSetLighting( true ); anim.r_newer_enemies.value = 1; anim.r_newer_normals.value = 0; skins.r_newer_variety.value = 1;
+		newerMode.R_AnimSetNewer( true ); newerMode.R_AnimSetLighting( true ); newerMode.r_newer_enemies.value = 1; newerMode.r_newer_normals.value = 0; skins.r_newer_variety.value = 1;
 		skins.R_NewerSetIndex( { version: 'axe-preview-proof', models: { soldier: [ { dir: 'soldier/variant-a', maps: { diffuse: 'diffuse.webp' } }, { dir: 'soldier/variant-b', maps: { diffuse: 'diffuse.webp' } } ] } } );
 		const model = Mod_ForName( f.owner._axeCorpse.model, true ); await skins.R_NewerSkinsPrepare( [ model ] ); await Promise.resolve();
 		skins.R_NewerSetSalt( 73421 ); f.owner._axeCorpse.skinSalt = skins.R_NewerSkinSalt();
@@ -397,7 +398,7 @@ Deno.test( 'saved cut corpse reappears as two identically settled and skinned ha
 		owned.forEach( geometry => geometry.addEventListener( 'dispose', () => disposedGeometry ++ ) ); cap.addEventListener( 'dispose', () => disposedCap ++ ); liveMaterial.addEventListener( 'dispose', () => disposedShared ++ );
 		view.dispose(); view = null; same( disposedGeometry, 4, 'level-view cleanup disposes both owned bodies and caps' ); same( disposedCap, 1, 'level-view cleanup disposes owned cap material once' ); same( disposedShared, 0, 'preview cleanup preserves shared skin material and native model art' ); same( halves.parent, null, 'preview cut group detached on cleanup' );
 
-	} finally { view?.dispose(); corpses.R_ClearAxeCorpses(); skins.R_NewerSkinsShutdown(); skins.R_NewerSetIndex( null ); skins.R_NewerSetSalt( saved.salt ); skins.r_newer_variety.value = saved.variety; anim.r_newer_enemies.value = saved.enemies; anim.r_newer_normals.value = saved.normals; anim.R_AnimSetNewer( saved.newer ); anim.R_AnimSetLighting( saved.lighting ); THREE.TextureLoader.prototype.load = saved.load; if ( saved.document ) Object.defineProperty( globalThis, 'document', saved.document ); else delete globalThis.document; }
+	} finally { view?.dispose(); corpses.R_ClearAxeCorpses(); skins.R_NewerSkinsShutdown(); skins.R_NewerSetIndex( null ); skins.R_NewerSetSalt( saved.salt ); skins.r_newer_variety.value = saved.variety; newerMode.r_newer_enemies.value = saved.enemies; newerMode.r_newer_normals.value = saved.normals; newerMode.R_AnimSetNewer( saved.newer ); newerMode.R_AnimSetLighting( saved.lighting ); THREE.TextureLoader.prototype.load = saved.load; if ( saved.document ) Object.defineProperty( globalThis, 'document', saved.document ); else delete globalThis.document; }
 
 } );
 

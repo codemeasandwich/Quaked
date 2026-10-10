@@ -7,7 +7,7 @@ await import( '../src/engine/render/gl_rsurf.js' );
 const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/engine/render/gl_draw.js' );
 const layer = await import('../src/newer/ui/r_playerface.js');
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
-const hud = await import( '../src/newer/ui/r_newerhud.js' ), anim = await import( '../src/newer/render/r_anim.js' );
+const hud = await import( '../src/newer/ui/r_newerhud.js' ), newerMode = await import( '../src/newer/mode.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), cmd = await import( '../src/engine/common/cmd.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { W_LoadWadFile } = await import( '../src/engine/common/wad.js' );
@@ -17,7 +17,7 @@ function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function equal( a, b, label ) { check( a === b, `${label}: ${a} != ${b}` ); }
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ) );
 const descriptors = Object.fromEntries( [ 'window', 'document', 'Image' ].map( key => [ key, Object.getOwnPropertyDescriptor( globalThis, key ) ] ) );
-const oldFetch = globalThis.fetch, oldHdr = r_hdr.string, oldHud = anim.r_newer_hud.value;
+const oldFetch = globalThis.fetch, oldHdr = r_hdr.string, oldHud = newerMode.r_newer_hud.value;
 const images = [], calls = [], faces = [], failed = new Set();
 class Canvas {
 
@@ -50,7 +50,7 @@ for ( let i = 0; i < 256; i ++ ) rgba[ i ] = palette[ i * 3 ] | palette[ i * 3 +
 cmd.Cbuf_Init(); cmd.Cmd_Init(); draw.Draw_SetExternals( { vid: { width: 640, height: 480 }, d_8to24table: rgba } );
 const overlay = new Canvas(); draw.Draw_Init( overlay );
 if ( ! vars.Cvar_FindVar( 'r_hdr' ) ) vars.Cvar_RegisterVariable( r_hdr );
-vars.Cvar_SetValue( 'r_hdr', 1 ); anim.r_newer_hud.value = 1;
+vars.Cvar_SetValue( 'r_hdr', 1 ); newerMode.r_newer_hud.value = 1;
 const client = { stats: new Int32Array( 32 ), items: 0, gametype: 0, scores: [], time: 10, faceanimtime: 0, grintime: 0, maxclients: 1, levelname: 'face test', item_gettime: new Float32Array( 32 ), viewentity: 1 };
 client.stats[ q.STAT_HEALTH ] = 70;
 const nativePics = new Map(), seededQuad = new Canvas();
@@ -68,5 +68,5 @@ function selected( mask ) {
 async function flush() { for ( let i = 0; i < 30; i ++ ) await Promise.resolve(); }
 
 Deno.test('terminal canonical-head failure preserves real native fallback priorities for every enhanced and Classic power combination',async()=>{
- failed.add(new URL('../newer/hud/playerface/bases.png',import.meta.url).href);await layer.R_PlayerFacePreload();await flush();check(layer.R_PlayerFaceStatus().settled&&layer.R_PlayerFaceStatus().errors.includes('bases'),'actual canonical head image transport failed terminally');const legacy=['face2','face_quad','face_invul2','face_quad','face_invis','face_quad','face_inv2','face_inv2'];for(const mode of['enhanced','new-game','hud-off','classic-half']){vars.Cvar_SetValue('r_hdr',mode==='new-game'?0:1);anim.r_newer_hud.value=mode==='hud-off'?0:1;anim.R_AnimSetClassicPass(mode==='classic-half');for(let mask=0;mask<8;mask++){const pic=selected(mask).pic;equal(pic._name,mode==='enhanced'&&(mask&3)===3?'face_invul1':legacy[mask],mode+' fallback priority '+mask);check(!pic._layeredFace,'incomplete face never replaces native fallback');equal(pic.width,24,'fallback layout width remains native');equal(pic.height,24,'fallback layout height remains native');}}});
-Deno.test('restore terminal face fallback fixture',()=>{globalThis.fetch=oldFetch;vars.Cvar_Set('r_hdr',oldHdr);anim.r_newer_hud.value=oldHud;anim.R_AnimSetClassicPass(false);for(const key of ['window','document','Image'])if(descriptors[key])Object.defineProperty(globalThis,key,descriptors[key]);else delete globalThis[key];});
+ failed.add(new URL('../newer/hud/playerface/bases.png',import.meta.url).href);await layer.R_PlayerFacePreload();await flush();check(layer.R_PlayerFaceStatus().settled&&layer.R_PlayerFaceStatus().errors.includes('bases'),'actual canonical head image transport failed terminally');const legacy=['face2','face_quad','face_invul2','face_quad','face_invis','face_quad','face_inv2','face_inv2'];for(const mode of['enhanced','new-game','hud-off','classic-half']){vars.Cvar_SetValue('r_hdr',mode==='new-game'?0:1);newerMode.r_newer_hud.value=mode==='hud-off'?0:1;newerMode.R_AnimSetClassicPass(mode==='classic-half');for(let mask=0;mask<8;mask++){const pic=selected(mask).pic;equal(pic._name,mode==='enhanced'&&(mask&3)===3?'face_invul1':legacy[mask],mode+' fallback priority '+mask);check(!pic._layeredFace,'incomplete face never replaces native fallback');equal(pic.width,24,'fallback layout width remains native');equal(pic.height,24,'fallback layout height remains native');}}});
+Deno.test('restore terminal face fallback fixture',()=>{globalThis.fetch=oldFetch;vars.Cvar_Set('r_hdr',oldHdr);newerMode.r_newer_hud.value=oldHud;newerMode.R_AnimSetClassicPass(false);for(const key of ['window','document','Image'])if(descriptors[key])Object.defineProperty(globalThis,key,descriptors[key]);else delete globalThis[key];});

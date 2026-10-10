@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/newer/render/gl_post.js';
-import * as anim from '../src/newer/render/r_anim.js';
+import * as newerMode from '../src/newer/mode.js';
 import { createQuakeLightmapMaterial, DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
 import { R_NewerTextureUpgrade, R_NewerTexturesRevert, R_ClassicTexture } from '../src/newer/render/r_newertextures.js';
 import { R_ClassicMaterial } from '../src/newer/render/r_classicstate.js';
@@ -63,7 +63,7 @@ const renderer = { capabilities: { isWebGL2: true }, extensions: { has: () => tr
 async function fixture( fn ) {
 
 	const globals = new Map( [ 'Image', 'document', 'fetch' ].map( name => [ name, Object.getOwnPropertyDescriptor( globalThis, name ) ] ) );
-	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, anim.r_newer_normals, anim.r_newer_lighting, anim.r_newer_water, anim.r_newer_textures ];
+	const controls = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, newerMode.r_newer_normals, newerMode.r_newer_lighting, newerMode.r_newer_water, newerMode.r_newer_textures ];
 	for ( const variable of controls ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );
 	const saved = controls.map( v => v.string );
 	globalThis.Image = class extends NativeImage { set src( file ) { requests.push( file ); super.src = read( String( file ).split( '?' )[ 0 ] ); } };
@@ -88,7 +88,7 @@ async function fixture( fn ) {
 
 	} finally {
 
-		controls.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); post.R_PostBegin( renderer, false, 0, 0 ); anim.R_AnimSetClassicPass( false );
+		controls.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) ); post.R_PostBegin( renderer, false, 0, 0 ); newerMode.R_AnimSetClassicPass( false );
 		for ( const [ name, descriptor ] of globals ) { if ( descriptor ) Object.defineProperty( globalThis, name, descriptor ); else delete globalThis[ name ]; }
 
 	}

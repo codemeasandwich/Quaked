@@ -2,7 +2,7 @@
 // appearance, scattering and mist pixels belong to the controlled browser trial.
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
-const surf = await import( '../src/engine/render/gl_rsurf.js' ), anim = await import( '../src/newer/render/r_anim.js' );
+const surf = await import( '../src/engine/render/gl_rsurf.js' ), mode = await import( '../src/newer/mode.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), cmd = await import( '../src/engine/common/cmd.js' );
 const menu = await import( '../src/engine/client/menu.js' ), keys = await import( '../src/engine/client/keys.js' ), draw = await import( '../src/engine/render/gl_draw.js' );
 
@@ -13,7 +13,7 @@ function equal( actual, expected, label ) {
 }
 
 const options = [ post.r_water_look, post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric,
-	post.r_reflect, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
+	post.r_reflect, mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
 function registerOptions() {
 
 	for ( const v of options ) if ( ! vars.Cvar_FindVar( v.name ) ) vars.Cvar_RegisterVariable( v );
@@ -69,7 +69,7 @@ Deno.test( 'water appearance menu cycles all choices, bounds invalid settings an
 Deno.test( 'live water looks reuse original materials and preserve physical slime, lava and native boundaries', () => {
 
 	registerOptions(); const saved = options.map( v => v.string );
-	const priorLook = post.classicLook.value, priorClassic = anim.R_ClassicPassActive();
+	const priorLook = post.classicLook.value, priorClassic = mode.R_ClassicPassActive();
 	const textures = [ '*water1', '*slime0', '*lava1' ].map( name => ( { name,
 		gl_texture: new THREE.DataTexture( new Uint8Array( [ 80, 96, 48, 255 ] ), 1, 1 ) } ) );
 	const leaf = { contents: - 1, visframe: 0, compressed_vis: null };
@@ -97,7 +97,7 @@ Deno.test( 'live water looks reuse original materials and preserve physical slim
 	}
 	try {
 
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false ); post.R_PostSetUnderwater( false );
 		for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 		for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_newer_lighting', 'r_water_look' ] ) vars.Cvar_SetValue( name, 0 );
 		post.R_BuildWorldLights( model ); const regions = post.R_GetLiquidRegions();
@@ -137,17 +137,17 @@ Deno.test( 'live water looks reuse original materials and preserve physical slim
 		equal( native.opacity, .75, 'liquids-off restores native opacity' ); equal( native.vertexColors, false, 'native ignores enhanced brightness' );
 		equal( surf.R_LiquidSurfaceMaterial( textures[ 1 ], .75 ).opacity, .75, 'native slime opacity preserved' );
 		vars.Cvar_SetValue( 'r_newer_water', 1 ); frame();
-		post.classicLook.value = 1; anim.R_AnimSetClassicPass( true );
+		post.classicLook.value = 1; mode.R_AnimSetClassicPass( true );
 		equal( post.R_WaterActive(), false, 'classic scope removes enhanced profiles' );
 		equal( surf.R_LiquidSurfaceMaterial( textures[ 0 ], .75 ), native, 'classic reuses native water material' );
 		equal( native.map, textures[ 0 ].gl_texture, 'classic source texture identity preserved' );
-		post.classicLook.value = 0; anim.R_AnimSetClassicPass( false );
+		post.classicLook.value = 0; mode.R_AnimSetClassicPass( false );
 		vars.Cvar_SetValue( 'r_hdr', 0 ); equal( post.R_PostBegin( renderer, true, 320, 200 ), false, 'New Game has no enhanced profile compositor' );
 		equal( surf.R_LiquidSurfaceMaterial( textures[ 0 ], .75 ).opacity, .75, 'New Game remains native despite persisted choice' );
 
 	} finally {
 
-		post.classicLook.value = priorLook; anim.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
+		post.classicLook.value = priorLook; mode.R_AnimSetClassicPass( priorClassic ); post.R_PostSetUnderwater( false );
 		post.R_PostBegin( renderer, false, 0, 0 ); post.R_PostShutdown(); post.R_BuildWorldLights( null );
 		options.forEach( ( v, i ) => vars.Cvar_Set( v.name, saved[ i ] ) );
 		for ( const texture of textures ) texture.gl_texture.dispose();
