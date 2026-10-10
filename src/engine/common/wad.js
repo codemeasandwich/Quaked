@@ -157,16 +157,25 @@ W_GetLumpinfo
  */
 export function W_GetLumpinfo( name ) {
 
+	const lump = W_FindLumpinfo( name );
+	if ( lump === null ) Sys_Error( 'W_GetLumpinfo: ' + name + ' not found' );
+	return lump;
+
+}
+
+/**
+ * Looks up a lump's directory entry by name, as `W_GetLumpinfo` does, but answers null for a lump the WAD lacks rather
+ * than ending the page (card [44m]: for `Draw_PicFromWad`, whose callers manage without a picture).
+ *
+ * @param {string} name lump name (any case; compared after `W_CleanupName`)
+ * @returns {?{ filepos: number, disksize: number, size: number, type: number, compression: number, name: string }}
+ *   the entry from `wad_lumps` (shared; do not modify), or null when the loaded WAD has no lump by that name
+ */
+export function W_FindLumpinfo( name ) {
+
 	const clean = W_CleanupName( name );
-
-	for ( let i = 0; i < wad_numlumps; i ++ ) {
-
-		if ( wad_lumps[ i ].name === clean )
-			return wad_lumps[ i ];
-
-	}
-
-	Sys_Error( 'W_GetLumpinfo: ' + name + ' not found' );
+	for ( let i = 0; i < wad_numlumps; i ++ )
+		if ( wad_lumps[ i ].name === clean ) return wad_lumps[ i ];
 	return null;
 
 }

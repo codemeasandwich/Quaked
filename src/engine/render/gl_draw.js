@@ -6,11 +6,11 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `numgltextures`, `texture_extension_number`, `minimumUIWidth`,
- * `minimumUIHeight`, `scopedUIScale`, `overlayCanvas`, `overlayCtx`, `char_canvas`, `conback`, `draw_disc`,
- * `draw_backtile`, `host_basepal` and 15 more.
+ * State: no mutable exports; module-level variables `minimumUIWidth`, `minimumUIHeight`, `scopedUIScale`,
+ * `overlayCanvas`, `overlayCtx`, `char_canvas`, `conback`, `draw_disc`, `draw_backtile`, `host_basepal`,
+ * `d_8to24table`, `scr_conheight` and 13 more.
  *
- * Errors: throws at 2 places; catches at 2 places.
+ * Errors: throws at 2 places; catches at 1 place.
  *
  * Engine callbacks are injected with `Draw_SetExternals`.
  */
@@ -18,7 +18,7 @@
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
 import { Con_Printf } from '../common/console.js';
-import { W_GetLumpName } from '../common/wad.js';
+import { W_GetLumpName, W_FindLumpinfo } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
@@ -32,29 +32,6 @@ import { BuildSinglePlayerMenuArt, BuildMenuTextArt } from '../common/hooks.js';
 
 ==============================================================================
 */
-
-const MAX_GLTEXTURES = 1024;
-
-class gltexture_t {
-
-	constructor() {
-
-		this.identifier = '';
-		this.texnum = 0;
-		this.width = 0;
-		this.height = 0;
-		this.mipmap = false;
-
-	}
-
-}
-
-const gltextures = [];
-for ( let i = 0; i < MAX_GLTEXTURES; i ++ )
-	gltextures[ i ] = new gltexture_t();
-
-let numgltextures = 0;
-let texture_extension_number = 1;
 
 // Cached pics
 const cachepics = {}; // name -> { width, height, data, canvas, texnum }
@@ -1547,24 +1524,18 @@ Draw_PicFromWad
  *
  * @param {string} name lump name, such as 'num_0' or 'sbar' (case-insensitive)
  * @returns {?qpic_t} a new picture (`{ width, height, canvas, _name }`), or null when the WAD has no such lump (the console prints `Draw_PicFromWad: <name> not found`). The miss
- *   is caught here, but `W_GetLumpName` reports it through `Sys_Error`, which in a browser has already replaced the
- *   page body with its error text before throwing
+ *   is found with `W_FindLumpinfo` first, so it never reaches `W_GetLumpName`'s page-replacing `Sys_Error`
  */
 export function Draw_PicFromWad( name ) {
 
-	let lump;
-	try {
-
-		lump = W_GetLumpName( name );
-
-	} catch ( e ) {
+	// a lump the WAD lacks is reported and skipped; W_GetLumpName's Sys_Error would replace the page first (card [44m])
+	if ( W_FindLumpinfo( name ) === null ) {
 
 		Con_Printf( 'Draw_PicFromWad: ' + name + ' not found\n' );
 		return null;
 
 	}
-
-	if ( ! lump ) return null;
+	const lump = W_GetLumpName( name );
 
 	// Parse qpic_t header from WAD lump data
 	const view = new DataView( lump.data.buffer, lump.data.byteOffset + lump.offset );
@@ -1581,101 +1552,6 @@ export function Draw_PicFromWad( name ) {
 		canvas: cs,
 		_name: name.toLowerCase()
 	};
-
-}
-
-/*
-================
-GL_LoadTexture
-================
-*/
-/**
- * Registers a palettized texture in this module's table (up to MAX_GLTEXTURES, 1024) and, when there is data and a
- * colour table is wired, decodes it to a canvas kept on the entry. An identifier already in the table returns its
- * existing number (printing `GL_LoadTexture: cache mismatch for <identifier>` when the size differs). The canvas
- * overlay port of gl_draw.c's loader: the world and model textures use gl_model.js's own `GL_LoadTexture`, and
- * nothing imports this one at present. Entries are kept for the life of the page.
- *
- * @param {string} identifier cache name; empty to always add a new entry
- * @param {number} width texture width in texels
- * @param {number} height texture height in texels
- * @param {?Uint8Array} data width*height palette indices, row by row
- * @param {boolean} mipmap recorded on the entry only (no mipmaps are made)
- * @param {boolean} alpha true to make palette index 255 transparent
- * @returns {number} the texture number (1, 2, 3...; never reused)
- * @throws {TypeError} when a new texture would exceed MAX_GLTEXTURES: there is no explicit check (WinQuake calls
- *   `Sys_Error`), so the missing table entry is dereferenced
- */
-export function GL_LoadTexture( identifier, width, height, data, mipmap, alpha ) {
-
-	// See if the texture is already present
-	if ( identifier && identifier.length > 0 ) {
-
-		for ( let i = 0; i < numgltextures; i ++ ) {
-
-			if ( gltextures[ i ].identifier === identifier ) {
-
-				if ( width !== gltextures[ i ].width || height !== gltextures[ i ].height )
-					Con_Printf( 'GL_LoadTexture: cache mismatch for ' + identifier + '\n' );
-				return gltextures[ i ].texnum;
-
-			}
-
-		}
-
-	}
-
-	const glt = gltextures[ numgltextures ];
-	numgltextures ++;
-
-	glt.identifier = identifier;
-	glt.texnum = texture_extension_number;
-	glt.width = width;
-	glt.height = height;
-	glt.mipmap = mipmap;
-
-	// In canvas 2D mode, create an ImageData or canvas for the texture
-	if ( data && d_8to24table ) {
-
-		const canvas = document.createElement( 'canvas' );
-		canvas.width = width;
-		canvas.height = height;
-		const ctx = canvas.getContext( '2d' );
-		const imageData = ctx.createImageData( width, height );
-
-		for ( let i = 0; i < width * height; i ++ ) {
-
-			const palIdx = data[ i ];
-			if ( alpha && palIdx === 255 ) {
-
-				// transparent pixel
-				imageData.data[ i * 4 ] = 0;
-				imageData.data[ i * 4 + 1 ] = 0;
-				imageData.data[ i * 4 + 2 ] = 0;
-				imageData.data[ i * 4 + 3 ] = 0;
-
-			} else {
-
-				const rgba = d_8to24table[ palIdx ];
-				imageData.data[ i * 4 ] = rgba & 0xff;
-				imageData.data[ i * 4 + 1 ] = ( rgba >> 8 ) & 0xff;
-				imageData.data[ i * 4 + 2 ] = ( rgba >> 16 ) & 0xff;
-				imageData.data[ i * 4 + 3 ] = 255;
-
-			}
-
-		}
-
-		ctx.putImageData( imageData, 0, 0 );
-
-		// Store canvas reference on the texture
-		glt.canvas = canvas;
-
-	}
-
-	texture_extension_number ++;
-
-	return texture_extension_number - 1;
 
 }
 
@@ -1748,31 +1624,6 @@ export function GL_Upload32( data, width, height, mipmap, alpha ) {
 
 	// In canvas 2D mode, texture upload is handled differently
 	// This is a stub for compatibility
-
-}
-
-/*
-================
-GL_FindTexture
-================
-*/
-/**
- * Looks a texture up by identifier in the table filled by this module's `GL_LoadTexture`. Nothing calls it at
- * present.
- *
- * @param {string} identifier the cache name given to `GL_LoadTexture`
- * @returns {number} the texture number, or -1 when no texture has that identifier
- */
-export function GL_FindTexture( identifier ) {
-
-	for ( let i = 0; i < numgltextures; i ++ ) {
-
-		if ( gltextures[ i ].identifier === identifier )
-			return gltextures[ i ].texnum;
-
-	}
-
-	return - 1;
 
 }
 
