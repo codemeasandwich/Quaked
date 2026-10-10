@@ -263,3 +263,14 @@ Deno.test('everything the menu draws gets a large soft black drop shadow, laid d
  check(shadow.every(([blur],i)=>i===0||blur<=shadow[i-1][0]),'widest, softest pass first: '+shadow.map(s=>s[0]));
  check(shadow[0][0]>=24,'large and soft: the widest blur is '+shadow[0][0]+' virtual units');
 }));
+
+// card [MP1]: on the Multiplayer screen Online is a disabled text command (the donor's own disabled material); Local is not
+Deno.test('Multiplayer screen: Online is drawn disabled by the supplied renderer, Local enabled',()=>fixture(async api=>{
+ check((await api.ready()).ready,'ready');
+ api.server.active=false;api.client.state=0;
+ menu.M_Menu_MultiplayerChoice_f();api.render();
+ // engine text is one command per character cell
+ const chars=api.frame().commands.filter(c=>c.type==='text'&&c.text.length===1);
+ same(chars.filter(c=>c.disabled).map(c=>c.text).join(''),'ONLINE','only Online\'s letters are disabled');
+ check(chars.filter(c=>!c.disabled).map(c=>c.text).join('').includes('LOCAL(SPLITSCREEN)'),'Local is drawn enabled');
+}));

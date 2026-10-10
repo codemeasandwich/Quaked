@@ -18,9 +18,16 @@ opens a short screen saying it is being built. That screen starts no game and fa
   - **Online** is drawn faded and cannot be chosen. The cursor skips it with the arrow keys, Enter on it does nothing,
     and a touch on it does nothing.
 - Esc on the choice screen returns to the main menu.
-- The online screens themselves (`m_multiplayer`, setup, join and room list) are unchanged and still reachable from
-  the paths that open them directly, such as a join by link or a connection error. Only the main menu's route to
-  them is closed.
+- The online screens themselves (`m_multiplayer`, setup, join and room list) are unchanged. Only the main menu's
+  route to them is closed. They can still be opened:
+  - by a join by link (`?room=`);
+  - by a connection error (`M_ConnectionError` falls back to `m_multiplayer`);
+  - by the console commands `menu_multiplayer`, `menu_setup`, `menu_lanconfig` and `menu_gameoptions`, or a key
+    bound to one of them.
+
+  This meets "disabled from the menu". Closing Online everywhere would also mean gating those commands, and that is
+  the owner's call. Esc on the online screen still goes straight to the main menu, not to the new choice screen,
+  because the choice screen is not how it is reached any more.
 
 ## How the fade is drawn
 
@@ -39,15 +46,19 @@ opens a short screen saying it is being built. That screen starts no game and fa
 - The engine still never imports Newer code. `menu.js` reaches the WebGL menu only through the existing
   `MainMenu_Text` hook.
 - The other menus' states and numbers are unchanged. The two new states are appended (24, 25).
-- The test expectations for the main menu's Multiplayer item (`menu_webgl_test`, `main_menu_art_test`) now expect
-  `m_mpchoice`. This is the intended change.
+- The test expectations for the main menu's Multiplayer item (`menu_webgl_test`, `main_menu_art_test`,
+  `bestiary_book_test`) now expect `m_mpchoice`. This is the intended change.
 
 ## Checks
 
 - `tests/mp_menu_test.js` (new) has two tests:
-  - the key flow: Multiplayer → choice → Online cannot be chosen or reached by the cursor → Local → being-built screen
-    → back → main menu;
+  - the key and click flow: Multiplayer → choice → Online cannot be chosen, reached by the cursor or clicked → Local
+    (by key or click) → being-built screen → back → main menu;
   - the native fade: with the WebGL menu absent, Online is drawn through `Draw_WithAlpha( 0.4 )` and Local is not.
+- `tests/menu_webgl_test.js` checks the supplied renderer: on the choice screen, exactly the letters of Online are
+  disabled text commands.
+- `tests/bestiary_book_test.js`'s main-menu click expectations now expect `m_mpchoice` for Multiplayer.
+- A mutation check: with Online temporarily enabled, all three new tests fail.
 - The existing menu suites still pass: menu, menu_webgl, main_menu_art, singleplayer_menu, level_select and menu_save.
 - In the real page (served by `tools/serve.py`, driven by Playwright), the states went 24 → 25 → 24 with no page
   errors. The screenshots show "Online" faded below "LOCAL (SPLIT SCREEN)" and the being-built box drawn.

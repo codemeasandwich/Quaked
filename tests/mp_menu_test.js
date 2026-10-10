@@ -4,6 +4,7 @@
 const cmd = await import( '../src/engine/common/cmd.js' );
 const keys = await import( '../src/engine/client/keys.js' );
 const menu = await import( '../src/engine/client/menu.js' );
+const draw = await import( '../src/engine/render/gl_draw.js' );
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 cmd.Cbuf_Init(); cmd.Cmd_Init(); keys.Key_Init(); menu.M_Init();
@@ -22,6 +23,26 @@ Deno.test( 'Multiplayer offers Local and a disabled Online; Local opens split sc
 	check( menu.m_state === menu.m_splitscreen, 'up passes over Online too' );
 	menu.M_Keydown( keys.K_ESCAPE ); menu.M_Keydown( keys.K_ESCAPE );
 	check( menu.m_state === menu.m_main, 'Esc again: the main menu' );
+
+	// a click or touch (mouse clicks in menus go through M_TouchInput) on each row of the 320x200 menu
+	const oldWindow = Object.getOwnPropertyDescriptor( globalThis, 'window' );
+	globalThis.window = { devicePixelRatio: 1, innerWidth: 640, innerHeight: 400 };
+	try {
+
+		const w = draw.Draw_GetVirtualWidth(), h = draw.Draw_GetVirtualHeight();
+		const click = ( vx, vy ) => menu.M_TouchInput( vx + ( w - 320 ) / 2, vy + ( h - 200 ) / 2, w, h );
+		menu.M_Menu_MultiplayerChoice_f(); click( 100, 32 + 20 + 6 );
+		check( menu.m_state === menu.m_mpchoice, 'a click on Online does nothing' );
+		click( 100, 32 + 6 );
+		check( menu.m_state === menu.m_splitscreen, 'a click on Local opens split screen' );
+		click( 100, 100 );
+		check( menu.m_state === menu.m_mpchoice, 'a tap on the being-built screen goes back' );
+
+	} finally {
+
+		if ( oldWindow ) Object.defineProperty( globalThis, 'window', oldWindow ); else delete globalThis.window;
+
+	}
 
 } );
 
