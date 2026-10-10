@@ -23,20 +23,25 @@ const RULES = [
 	[ 'engine/render', '44d', /^(gl_\w+|glquake|render|vid|r_part|lit)\.js$/ ],
 	[ 'platform', '44c', /^(webxr|touch|touch_layout|in_web)\.js$/ ],
 	[ 'newer/gameplay', '44b', /^(sv_\w+|respawn_record|rend_veil_state|axe_record|shotgun_flight|powervision_state)\.js$/ ],
-	[ 'newer/ui', '44f', /^(menu_webgl\w*|menu_art|studio_logo|loading_\w+|r_newerhud|r_playerface|playerface_manifest|r_bestiary_book|r_bestiary|bestiary_art|bestiary_state|newer_defaults|r_facegame|face_state|respawn_notice|respawn_motion|r_folio)\.js$/ ],
+	[ 'newer/ui', '44f', /^(menu_webgl\w*|menu_art|studio_logo|loading_\w+|r_demoloading|r_newerhud|r_playerface|playerface_manifest|r_bestiary_book|r_bestiary|bestiary_art|bestiary_state|newer_defaults|r_facegame|face_state|respawn_notice|respawn_motion|r_folio)\.js$/ ],
 	[ 'newer/sound', '44f', /^s_\w+\.js$/ ],
 	// asset preparation (made ahead of the game or in the background) and the prepared data's formats and transports
 	[ 'newer/assets', '44f', /^(normal_prepare|rockfield_prepare|rockfield_worker|prepared_corpus|startup_\w+)\.js$/ ],
 	[ 'newer/assets', '44e', /(_bake_format|_bakes|_bundle|_transport|_startup_packs|_presets|_store)\.js$|^(alias_mesh_\w+|rockfield|r_normalprefetch|r_rockbakes|r_demonbakes|r_aliasmeshcache|demon_bake_format)\.js$/ ],
 	// the model and animation renderer ([44d]): poses, skins, held weapons, cut and lying bodies, the levels drawn in windows
-	[ 'newer/render', '44d', /^(r_anim|r_newerskins|r_weapons|r_weaponstyle|r_weapon_surface|r_axepose|r_axecorpses|r_bisect|shadow_pose|r_classicstate|r_levelview|r_levelents|r_levelgraph|r_shells|r_shelltrace|v_shamblersteps)\.js$/ ],
-	[ 'newer/render', '44e', /^(r_\w+|powervision_shaders|vision_coordinates|fx_math)\.js$/ ]
+	[ 'newer/render', '44d', /^(r_anim|r_newerskins|r_weapons|r_weaponstyle|r_weapon_surface|r_axepose|r_axecorpses|r_bisect|shadow_pose|r_classicstate|r_levelview|r_levelents|r_levelgraph|r_shells|r_shelltrace)\.js$/ ],
+	[ 'newer/render', '44e', /^(r_\w+|powervision_shaders|vision_coordinates|fx_math|v_shamblersteps)\.js$/ ]
 ];
+// rules match a module's name (its folder ignored), so a module already moved into its folder is classified the same; an
+// adapter left at an old path is not a module of its own (measured through, never moved)
+const adapters = g.adapters || {};
 const map = {};
 for ( const f of g.src ) {
 
-	const inner = f.replace( /^src\//, '' ), rule = RULES.find( ( [ , , re ] ) => re.test( inner ) );
-	map[ f ] = rule ? { folder: rule[ 0 ], increment: rule[ 1 ], path: 'src/' + rule[ 0 ] + '/' + inner.split( '/' ).pop() } : null;
+	if ( adapters[ f ] ) continue;
+	const inner = f.replace( /^src\//, '' ), name = inner.startsWith( 'rend_veil/' ) || inner.includes( '/rend_veil/' ) ? 'rend_veil/' + inner.split( '/' ).pop() : inner.split( '/' ).pop();
+	const rule = RULES.find( ( [ , , re ] ) => re.test( name ) );
+	map[ f ] = rule ? { folder: rule[ 0 ], increment: rule[ 1 ], path: 'src/' + rule[ 0 ] + '/' + name.split( '/' ).pop() } : null;
 
 }
 const unassigned = Object.entries( map ).filter( ( [ , v ] ) => v === null ).map( ( [ k ] ) => k );
@@ -44,12 +49,16 @@ const top = f => map[ f ].folder.split( '/' ).slice( 0, 2 ).join( '/' ).replace(
 const engine = f => map[ f ]?.folder.startsWith( 'engine/' ), newer = f => map[ f ]?.folder.startsWith( 'newer/' );
 
 const sizes = {};
-for ( const f of g.src ) { const k = top( f ); sizes[ k ] ??= { modules: 0, lines: 0 }; sizes[ k ].modules ++; sizes[ k ].lines += g.lines[ f ]; }
-const evaluation = g.edges.filter( e => map[ e.from ] && map[ e.to ] && e.kinds.some( k => k === 'static' || k === 'export' ) );
+for ( const f of g.src.filter( f => map[ f ] ) ) { const k = top( f ); sizes[ k ] ??= { modules: 0, lines: 0 }; sizes[ k ].modules ++; sizes[ k ].lines += g.lines[ f ]; }
+// evaluation edges, an adapter replaced by the module it re-exports
+const through = f => adapters[ f ] ?? f;
+const evaluation = g.edges.filter( e => e.kinds.some( k => k === 'static' || k === 'export' ) ).map( e => ( { ...e, from: through( e.from ), to: through( e.to ) } ) ).filter( e => map[ e.from ] && map[ e.to ] && e.from !== e.to );
 const matrix = {};
 for ( const e of evaluation ) { const a = top( e.from ), b = top( e.to ); if ( a === b ) continue; const k = a + ' -> ' + b; matrix[ k ] ??= { pairs: 0, statements: 0 }; matrix[ k ].pairs ++; matrix[ k ].statements += e.statements; }
-const engineToNewer = {};
+const engineToNewer = {}, platformToNewer = {};
+const platform = f => map[ f ]?.folder === 'platform';
 for ( const e of evaluation ) if ( engine( e.from ) && newer( e.to ) ) ( engineToNewer[ e.from ] ??= [] ).push( e.to );
+for ( const e of evaluation ) if ( platform( e.from ) && newer( e.to ) ) ( platformToNewer[ e.from ] ??= [] ).push( e.to );
 
 // the cycles: of the engine alone, the engine with the platform, and all modules without the engine -> Newer imports
 function scc( nodes, keep ) {
@@ -67,12 +76,15 @@ const cyclesNow = scc( all, () => true );
 const engineAlone = scc( all.filter( engine ), () => true );
 const engineAndPlatform = scc( all.filter( f => engine( f ) || top( f ) === 'platform' ), () => true );
 const withoutEngineToNewer = scc( all, e => ! ( engine( e.from ) && newer( e.to ) ) );
+// the native side (engine and platform) importing Newer removed: what is left is the native cycle and Newer's own
+const withoutNativeToNewer = scc( all, e => ! ( ( engine( e.from ) || platform( e.from ) ) && newer( e.to ) ) );
 const increments = {};
 for ( const f of all ) ( increments[ map[ f ].increment ] ??= [] ).push( f );
 
-const out = { map, unassigned, sizes, matrix, engineToNewer, cycles: { now: cyclesNow, engineAlone, engineAndPlatform, withoutEngineToNewer }, increments };
+const out = { map, unassigned, adapters, sizes, matrix, engineToNewer, platformToNewer, cycles: { now: cyclesNow, engineAlone, engineAndPlatform, withoutEngineToNewer, withoutNativeToNewer }, increments };
 fs.writeFileSync( process.argv[ 3 ], JSON.stringify( out, null, 1 ) );
 const e2n = Object.values( engineToNewer ), statements = evaluation.filter( e => engine( e.from ) && newer( e.to ) ).reduce( ( a, e ) => a + e.statements, 0 );
-console.log( `modules ${ all.length }, unassigned ${ unassigned.length }; cycles now ${ cyclesNow.map( c => c.length ) }; engine alone ${ engineAlone.map( c => c.length ) }; engine+platform ${ engineAndPlatform.map( c => c.length ) }; without engine->Newer ${ withoutEngineToNewer.map( c => c.length ) }` );
+console.log( `modules ${ all.length } (adapters ${ Object.keys( adapters ).length }); cycles now ${ cyclesNow.map( c => c.length ) }; engine alone ${ engineAlone.map( c => c.length ) }; engine+platform ${ engineAndPlatform.map( c => c.length ) }; without engine->Newer ${ withoutEngineToNewer.map( c => c.length ) }; without engine/platform->Newer ${ withoutNativeToNewer.map( c => c.length ) }` );
+console.log( `platform -> Newer: ${ Object.values( platformToNewer ).flat().length } pairs (${ Object.entries( platformToNewer ).map( ( [ k, v ] ) => k + ' -> ' + v.join( ',' ) ).join( '; ' ) })` );
 console.log( `engine -> Newer: ${ Object.keys( engineToNewer ).length } engine modules, ${ e2n.flat().length } distinct pairs, ${ statements } statements` );
 if ( unassigned.length ) { console.error( 'unassigned: ' + unassigned.join( ' ' ) ); process.exit( 1 ); }

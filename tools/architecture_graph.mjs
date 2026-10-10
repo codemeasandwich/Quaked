@@ -10,8 +10,9 @@
 //   * module-level state: mutable exports (export let), module-level Map/Set, browser storage, workers;
 //   * consumers the import scan cannot see: generators that write src/ files, manifests keyed by src paths, module-relative
 //     URLs built from computed names, computed source paths in tests and trials.
-// It fails (exit 1) if a tracked src module is missing from the scan. Usage:
-//   git archive HEAD | tar -x -C /tmp/q && node tools/architecture_graph.mjs /tmp/q /tmp/graph.json
+// It fails (exit 1) if any file under src/ was not scanned, or a reference resolves nowhere other than the known ones
+// (KNOWN_MISSING). Usage:
+//   git archive <commit> | tar -x -C /tmp/q && node tools/architecture_graph.mjs /tmp/q /tmp/graph.json
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -39,6 +40,12 @@ const PATTERNS = [
 	[ 'static', /(?:^|\n)\s*import\s+(?:[^'";]*?\sfrom\s+)?['"]([^'"]+)['"]/g ],
 	[ 'export', /(?:^|\n)\s*export\s+[^'";]*?\sfrom\s+['"]([^'"]+)['"]/g ],
 	[ 'dynamic', /import\(\s*['"`]([^'"`$]+)['"`]\s*\)/g ],
+	// a module named by a literal with a computed query (fresh instances per case: '…js?case-' + n, `…js?${ n }`)
+	[ 'dynamic-computed', /import\(\s*['"`]([^'"`$?]+\.js)\?[^'"`]*(?:['"`]\s*\+|\$\{)/g ],
+	// source text read by tests and tools (a move changes what they read)
+	[ 'read', /readFileSync\(\s*new URL\(\s*['"`]([^'"`$]+\.js)['"`]\s*,\s*import\.meta\.url/g ],
+	// an import map's entries keyed by a module path (an HTML trial page)
+	[ 'importmap', /"(\/?src\/[\w./-]+\.js)"\s*:/g ],
 	[ 'url', /new URL\(\s*['"`]([^'"`$]+)['"`]\s*,\s*import\.meta\.url/g ],
 	[ 'script', /<script[^>]*\ssrc=["']([^"']+)["']/g ]
 ];
@@ -48,6 +55,8 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 	if ( f.endsWith( '.py' ) ) continue;
 	for ( const [ kind, re ] of PATTERNS ) {
 
+		if ( kind === 'importmap' && ! f.endsWith( '.html' ) ) continue;
+
 		re.lastIndex = 0; let m;
 		while ( ( m = re.exec( s ) ) ) {
 
@@ -56,8 +65,9 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 			// (an HTML page's relative URLs resolve against its <base href>, if it has one)
 			const base = f.endsWith( '.html' ) ? ( s.match( /<base\s+href=["']([^"']+)["']/ )?.[ 1 ] ?? '' ) : '';
 			const from = path.resolve( path.dirname( path.join( ROOT, f ) ), base.startsWith( '/' ) ? path.relative( path.dirname( path.join( ROOT, f ) ), path.join( ROOT, base ) ) : base );
-			const target = spec.startsWith( '/' ) ? spec.slice( 1 ) : rel( path.resolve( from, spec ) );
-			statements.push( { from: f, to: target, kind } );
+			const target = spec.startsWith( '/' ) ? spec.slice( 1 ) : kind === 'importmap' ? spec : rel( path.resolve( from, spec ) );
+			if ( target === '' ) continue; // (new URL( '..', import.meta.url ): a folder, not a module)
+			statements.push( { from: f, to: target, kind, query: /\?/.test( m[ 1 ] ) || kind === 'dynamic-computed' } );
 
 		}
 
@@ -71,11 +81,15 @@ for ( const e of statements ) { const k = pairKey( e ), p = pairs.get( k ) || { 
 const edges = [ ...pairs.values() ].map( p => ( { from: p.from, to: p.to, kinds: [ ...p.kinds ].sort(), statements: p.statements } ) );
 const evaluation = edges.filter( e => isSrc( e.from ) && isSrc( e.to ) && e.kinds.some( k => k === 'static' || k === 'export' ) );
 
-// --- cycles (Tarjan) over a module set ---
+// adapters left at old paths by a move: modules whose code is only `export * from '…'` (cycles are measured through them)
+const adapters = Object.fromEntries( src.map( f => [ f, text[ f ].replace( /\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, '' ).trim() ] ).filter( ( [ , t ] ) => t && /^(export\s*\*\s*from\s*['"][^'"]+['"]\s*;?\s*)+$/.test( t ) ).map( ( [ f, t ] ) => [ f, rel( path.resolve( path.dirname( path.join( ROOT, f ) ), t.match( /['"]([^'"]+)['"]/ )[ 1 ] ) ) ] ) );
+
+// --- cycles (Tarjan) over a module set (an adapter is measured through: its importers reach the module it re-exports) ---
 function cycles( nodes ) {
 
-	const set = new Set( nodes ), adj = new Map( nodes.map( n => [ n, [] ] ) );
-	for ( const e of evaluation ) if ( set.has( e.from ) && set.has( e.to ) ) adj.get( e.from ).push( e.to );
+	nodes = nodes.filter( n => ! adapters[ n ] );
+	const set = new Set( nodes ), adj = new Map( nodes.map( n => [ n, [] ] ) ), through = f => adapters[ f ] ?? f;
+	for ( const e of evaluation ) { const a = through( e.from ), b = through( e.to ); if ( a !== b && set.has( a ) && set.has( b ) ) adj.get( a ).push( b ); }
 	let index = 0; const idx = new Map(), low = new Map(), on = new Set(), stack = [], out = [];
 	const strong = v => {
 
@@ -95,6 +109,31 @@ const fanIn = Object.fromEntries( src.map( f => [ f, 0 ] ) ), fanOut = Object.fr
 for ( const e of evaluation ) { fanOut[ e.from ] ++; fanIn[ e.to ] ++; }
 const consumers = Object.fromEntries( src.map( f => [ f, [] ] ) );
 for ( const e of edges ) if ( consumers[ e.to ] && ! isSrc( e.from ) ) consumers[ e.to ].push( e.from );
+// the starts of a module's top-level statements: a scan that tracks (), [], {} depth outside strings, template literals and
+// comments, and starts a statement at depth 0 after ; or a closing } or a line end that completes one
+function topLevel( s ) {
+
+	const out = []; let depth = 0, i = 0, start = true, current = '';
+	const n = s.length;
+	while ( i < n ) {
+
+		const c = s[ i ], d = s[ i + 1 ];
+		if ( c === '/' && d === '/' ) { while ( i < n && s[ i ] !== '\n' ) i ++; continue; }
+		if ( c === '/' && d === '*' ) { i = s.indexOf( '*/', i + 2 ); i = i < 0 ? n : i + 2; continue; }
+		if ( c === '"' || c === "'" ) { const q = c; i ++; while ( i < n && s[ i ] !== q ) { if ( s[ i ] === '\\' ) i ++; i ++; } i ++; if ( start && depth === 0 ) { current = q + 'string'; } continue; }
+		if ( c === '`' ) { i ++; let inner = 0; while ( i < n ) { if ( s[ i ] === '\\' ) { i += 2; continue; } if ( s[ i ] === '$' && s[ i + 1 ] === '{' ) { inner ++; i += 2; continue; } if ( inner && s[ i ] === '}' ) { inner --; i ++; continue; } if ( ! inner && s[ i ] === '`' ) break; i ++; } i ++; continue; }
+		if ( '([{'.includes( c ) ) { if ( start && depth === 0 ) { out.push( s.slice( i, i + 80 ).trim() ); start = false; } depth ++; i ++; continue; }
+		// (a closing brace ends a block statement: function, class, if, for …; an object or import list goes on to its ;)
+		if ( ')]}'.includes( c ) ) { depth = Math.max( 0, depth - 1 ); i ++; if ( depth === 0 && c === '}' && /^(export\s+)?(async\s+)?(function|class|if|for|while|else|try|catch|finally|switch|do)\b|^\{/.test( out.at( - 1 ) || '' ) ) start = true; continue; }
+		if ( depth === 0 && c === ';' ) { start = true; i ++; continue; }
+		if ( depth === 0 && start && /\S/.test( c ) ) { const line = s.slice( i, s.indexOf( '\n', i ) < 0 ? n : s.indexOf( '\n', i ) ); out.push( line.trim() ); start = false; }
+		i ++;
+
+	}
+	return out;
+
+}
+
 const state = Object.fromEntries( src.map( f => {
 
 	const s = text[ f ];
@@ -103,7 +142,10 @@ const state = Object.fromEntries( src.map( f => {
 		moduleMapsSets: ( s.match( /(?:^|\n)(?:let|const)\s+\w+\s*=\s*new\s+(?:Map|Set|WeakMap)\b/g ) || [] ).length,
 		storage: /localStorage|sessionStorage|indexedDB|navigator\.storage|getDirectory\(/.test( s ),
 		worker: /new\s+Worker\s*\(/.test( s ),
-		topLevelCalls: ( s.match( /(?:^|\n)(?:[A-Z_]\w*|\w+\.\w+)\s*\([^)]*\)\s*;/g ) || [] ).length // (statements at column 0 that call something)
+		// statements that run at import: top-level statements (found by bracket depth, outside strings and comments) that are
+		// not declarations or imports/exports: calls, loops, conditionals, assignments
+		topLevelStatements: topLevel( s ).filter( t => ! /^(import\b|export\s+(const|let|var|function|class|async)\b|export\s*\{|export\s*\*|const\b|let\b|var\b|function\b|class\b|async\s+function\b|['"]use strict)/.test( t ) ).length,
+		topLevelExamples: topLevel( s ).filter( t => ! /^(import\b|export\s+(const|let|var|function|class|async)\b|export\s*\{|export\s*\*|const\b|let\b|var\b|function\b|class\b|async\s+function\b|['"]use strict)/.test( t ) ).slice( 0, 3 ).map( t => t.slice( 0, 60 ) )
 	} ];
 
 } ) );
@@ -132,27 +174,63 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 		for ( const m of s.matchAll( /(?:write\w*|open)\(\s*(?:path\.join\([^,]*,\s*)?['"`](?:\.\.\/)?(src\/[\w./-]+\.js)['"`]/gi ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] } );
 		for ( const m of s.matchAll( /\b(?:OUT\w*|DEST\w*|TARGET\w*|output\w*)\s*=\s*[^;\n]*['"`](?:\.\.\/)?(src\/[\w./-]+\.js)['"`]/g ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] } );
 		for ( const m of s.matchAll( /['"](src\/[\w./-]+\.js)['"]\)\.write_text|\/\s*['"](src)['"]\s*\/\s*['"]([\w.-]+\.js)['"][^\n]*write/g ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] || 'src/' + m[ 3 ] } );
+		// Python: a generator names its output in a write ( Path( 'src/x.js' ): content, then write_bytes/write_text ), a
+		// reader reads a src file's text ( …'src/x.js' ).read_text() )
+		if ( f.endsWith( '.py' ) ) {
+
+			for ( const m of s.matchAll( /Path\(\s*['"](src\/[\w./-]+\.js)['"]\s*\)\s*:/g ) ) if ( /write_(bytes|text)/.test( s ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] } );
+			for ( const m of s.matchAll( /['"](src\/[\w./-]+\.js)['"]\s*\)\s*\.write_(?:text|bytes)|open\(\s*[^)]*['"](src\/[\w./-]+\.js)['"][^)]*['"]w/g ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] || m[ 2 ] } );
+			for ( const m of s.matchAll( /['"](src\/[\w./-]+\.js)['"]\s*\)\s*\.read_(?:text|bytes)/g ) ) ( hidden.pyReaders ??= [] ).push( { tool: f, reads: m[ 1 ] } );
+
+		}
 
 	}
 	if ( isSrc( f ) ) for ( const m of s.matchAll( /new URL\(\s*['"`][^'"`]*['"`]\s*\+[^,]+,\s*import\.meta\.url/g ) ) hidden.computedUrls.push( { module: f, at: s.slice( 0, m.index ).split( '\n' ).length } );
-	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /(?:import\(|fetch\(|readFileSync\(|URL\()\s*['"`][^'"`]*src\/['"`]?\s*\+/g ) ) hidden.computedSource.push( { file: f, at: s.slice( 0, m.index ).split( '\n' ).length } );
+	// a source path built at run time: a string literal ending in src/ (or holding src/…) followed by +, or a path.join with
+	// a src/ literal, in any test, tool or page
+	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /['"`][^'"`\n]*src\/[^'"`\n]*['"`]\s*\+|path\.join\([^)\n]*['"`]src\/[^'"`]*['"`]/g ) ) hidden.computedSource.push( { file: f, at: s.slice( 0, m.index ).split( '\n' ).length, text: m[ 0 ].slice( 0, 80 ) } );
 	if ( f.endsWith( '.py' ) && /src\/\*\.js|\(\s*\w+\s*\/\s*['"]src['"]\s*\)\.glob\(\s*['"]\*\.js/.test( s ) ) hidden.globs.push( f ); // (a flat src/*.js glob goes blind once modules move into folders)
 
 }
-for ( const dir of [ 'newer' ] ) {
+// data files keyed by src paths: manifests under newer/, policy and provenance files under docs/ and tools/
+for ( const dir of [ 'newer', 'docs', 'tools' ] ) {
 
 	const base = path.join( ROOT, dir );
 	if ( ! fs.existsSync( base ) ) continue;
-	const find = d => { for ( const e of fs.readdirSync( d, { withFileTypes: true } ) ) { const p = path.join( d, e.name ); if ( e.isDirectory() ) find( p ); else if ( e.name === 'manifest.json' || e.name === 'index.json' ) { const s = fs.readFileSync( p, 'utf8' ), keys = [ ...new Set( s.match( /src\/[\w./-]+\.js/g ) || [] ) ]; if ( keys.length ) hidden.manifests.push( { manifest: rel( p ), srcPaths: keys } ); } } };
+	const find = d => { for ( const e of fs.readdirSync( d, { withFileTypes: true } ) ) { const p = path.join( d, e.name ); if ( e.isDirectory() ) find( p ); else if ( e.name.endsWith( '.json' ) && ( dir !== 'docs' || ! rel( p ).startsWith( 'docs/evidence/' ) ) ) { const s = fs.readFileSync( p, 'utf8' ), keys = [ ...new Set( s.match( /src\/[\w./-]+(?:\.js)?/g ) || [] ) ].filter( k => /\.js$|^src\/[\w-]+$/.test( k ) ); if ( keys.length ) hidden.manifests.push( { manifest: rel( p ), srcPaths: keys } ); } } };
 	find( base );
 
 }
+// documents that cite src paths (not consumers, but they go stale)
+hidden.docsCitingSrc = fs.existsSync( path.join( ROOT, 'docs' ) ) ? fs.readdirSync( path.join( ROOT, 'docs' ) ).filter( n => n.endsWith( '.md' ) && /src\/[\w./-]+\.js/.test( fs.readFileSync( path.join( ROOT, 'docs', n ), 'utf8' ) ) ).length : 0;
 hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.writes, g ] ) ).values() ];
 
-// --- every tracked src module must have been scanned ---
-const missing = edges.filter( e => ! e.to.endsWith( '/' ) && text[ e.to ] === undefined && ! fs.existsSync( path.join( ROOT, e.to ) ) );
+// --- counts the baseline states ---
+// query-string imports of src modules (each ?case a fresh instance), literal and computed, by file
+const queryImports = statements.filter( e => e.query && isSrc( e.to ) );
+const importMapEntries = statements.filter( e => e.kind === 'importmap' );
+// importers of r_anim.js that take only the Newer/Classic mode from it (card [44a] D2)
+const MODE = new Set( [ 'R_NewerGame', 'R_AnimSetClassicPass', 'R_ClassicPassActive', 'R_AnimSetNewer', 'R_AnimSetLighting', 'R_NewerLightingActive', 'R_IsNewer', 'r_newer_water', 'r_newer_lighting', 'r_newer_normals', 'r_newer_enemies' ] );
+const animImporters = {};
+for ( const f of src ) for ( const m of text[ f ].matchAll( /import\s*\{([^}]*)\}\s*from\s*['"]\.\/r_anim\.js['"]/g ) ) ( animImporters[ f ] ??= [] ).push( ...m[ 1 ].split( ',' ).map( x => x.trim().split( /\s+as\s+/ )[ 0 ] ).filter( Boolean ) );
+const modeOnly = Object.entries( animImporters ).filter( ( [ , names ] ) => names.every( n => MODE.has( n ) ) ).map( ( [ f ] ) => f );
+// modules nothing imports, by any edge (orphans), other than the entry points' own targets
+const imported = new Set( edges.map( e => e.to ) );
+const orphans = src.filter( f => ! imported.has( f ) );
 
-const out = { root: ROOT, files: files.length, src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing };
+// --- fail closed: every file under src/ scanned, and no unresolved reference beyond those known ---
+const onDisk = []; const walkSrc = d => { for ( const e of fs.readdirSync( d, { withFileTypes: true } ) ) { const p = path.join( d, e.name ); if ( e.isDirectory() ) walkSrc( p ); else onDisk.push( rel( p ) ); } };
+if ( fs.existsSync( path.join( ROOT, 'src' ) ) ) walkSrc( path.join( ROOT, 'src' ) );
+const unscanned = onDisk.filter( f => ! src.includes( f ) );
+const missing = edges.filter( e => ! e.to.endsWith( '/' ) && text[ e.to ] === undefined && ! fs.existsSync( path.join( ROOT, e.to ) ) );
+// known: deliberate absence checks, the owner's local inputs (ignored files), and inline imports above a page's base
+const KNOWN_MISSING = [ /^newer\/weapons\/(v_axe\.json|axe)$/, /^resources\/id1\/pak0\.pak$/, /^(fieldlab-fx-3d-updated|arc-weapons-wall-canvas-shotgun|rockfield-v1\.\d\.0)\.html$/, /^\.\.\// ];
+const unexpected = missing.filter( e => ! KNOWN_MISSING.some( re => re.test( e.to ) ) );
+
+const out = { root: ROOT, files: files.length, scannedRootFiles: files.map( rel ).filter( f => ! f.includes( '/' ) ), src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing, unscanned, unexpected,
+	counts: { queryImports: queryImports.length, queryImportFiles: new Set( queryImports.map( e => e.from ) ).size, queryImportsComputed: queryImports.filter( e => e.kind === 'dynamic-computed' ).length, importMapEntries: importMapEntries.length, animImporters: Object.keys( animImporters ).length, animModeOnly: modeOnly.length },
+	modeOnly, orphans, adapters };
 if ( OUT ) fs.writeFileSync( OUT, JSON.stringify( out, null, 1 ) );
-console.log( `files ${ files.length }, src modules ${ src.length }, distinct edges ${ edges.length } (${ statements.length } statements), cycles ${ out.cycles.map( c => c.length ).join( ', ' ) }, unresolved ${ missing.length }` );
+console.log( `files ${ files.length }, src modules ${ src.length }, distinct edges ${ edges.length } (${ statements.length } statements), cycles ${ out.cycles.map( c => c.length ).join( ', ' ) }, unresolved ${ missing.length } (unexpected ${ unexpected.length }), unscanned ${ unscanned.length }` );
+if ( unscanned.length || unexpected.length ) { console.error( 'unscanned: ' + unscanned.join( ' ' ) + '\nunexpected unresolved: ' + unexpected.map( e => e.from + ' -> ' + e.to ).join( ' ' ) ); process.exit( 1 ); }
 export { cycles };
