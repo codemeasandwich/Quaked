@@ -3,12 +3,17 @@
 //   * subsystem sizes; the cross-subsystem import matrix (distinct module pairs and statements);
 //   * the engine's own cycle (engine modules alone, and with the platform), and what is left of the big cycle when every
 //     engine -> Newer import is removed;
-//   * every engine module importing a Newer module, with the modules it imports.
-// Fails (exit 1) if any module has no folder or no increment. Usage:
+//   * every engine module importing a Newer module, with the modules it imports;
+//   * the debts' checks: engine cycles spanning more than one folder (D1a), cycles holding a Newer module once the native
+//     side no longer imports Newer (D1c).
+// Fails (exit 1) if the graph run failed (an unscanned module or unexpected unresolved import), or any module has no folder
+// or no increment. Usage:
 //   node tools/architecture_classify.mjs <graph.json> <out.json>
 import fs from 'node:fs';
 
 const g = JSON.parse( fs.readFileSync( process.argv[ 2 ], 'utf8' ) );
+// (a graph whose own run failed is not measured)
+if ( g.unscanned?.length || g.unexpected?.length ) { console.error( 'the graph run failed: ' + [ ...g.unscanned, ...g.unexpected.map( e => e.from + ' -> ' + e.to ) ].join( ' ' ) ); process.exit( 1 ); }
 // ordered: the first that matches; [ folder, increment, pattern on the path inside src/ ]
 const RULES = [
 	[ 'newer/render/rend_veil', '44e', /^rend_veil\// ],
@@ -78,13 +83,18 @@ const engineAndPlatform = scc( all.filter( f => engine( f ) || top( f ) === 'pla
 const withoutEngineToNewer = scc( all, e => ! ( engine( e.from ) && newer( e.to ) ) );
 // the native side (engine and platform) importing Newer removed: what is left is the native cycle and Newer's own
 const withoutNativeToNewer = scc( all, e => ! ( ( engine( e.from ) || platform( e.from ) ) && newer( e.to ) ) );
+// D1a's check: engine (and platform) cycles that span more than one folder; D1c's: cycles holding a Newer module once the
+// native side no longer imports Newer
+const crossFolder = engineAndPlatform.filter( c => new Set( c.map( f => map[ f ].folder ) ).size > 1 );
+const newerCycles = withoutNativeToNewer.filter( c => c.some( newer ) );
 const increments = {};
 for ( const f of all ) ( increments[ map[ f ].increment ] ??= [] ).push( f );
 
-const out = { map, unassigned, adapters, sizes, matrix, engineToNewer, platformToNewer, cycles: { now: cyclesNow, engineAlone, engineAndPlatform, withoutEngineToNewer, withoutNativeToNewer }, increments };
+const out = { map, unassigned, adapters, sizes, matrix, engineToNewer, platformToNewer, cycles: { now: cyclesNow, engineAlone, engineAndPlatform, withoutEngineToNewer, withoutNativeToNewer, crossFolder, newerCycles }, increments };
 fs.writeFileSync( process.argv[ 3 ], JSON.stringify( out, null, 1 ) );
 const e2n = Object.values( engineToNewer ), statements = evaluation.filter( e => engine( e.from ) && newer( e.to ) ).reduce( ( a, e ) => a + e.statements, 0 );
 console.log( `modules ${ all.length } (adapters ${ Object.keys( adapters ).length }); cycles now ${ cyclesNow.map( c => c.length ) }; engine alone ${ engineAlone.map( c => c.length ) }; engine+platform ${ engineAndPlatform.map( c => c.length ) }; without engine->Newer ${ withoutEngineToNewer.map( c => c.length ) }; without engine/platform->Newer ${ withoutNativeToNewer.map( c => c.length ) }` );
+console.log( `D1a cross-folder engine cycles: ${ crossFolder.map( c => c.length ) || 'none' }; D1c Newer cycles: ${ newerCycles.map( c => c.length ) || 'none' }` );
 console.log( `platform -> Newer: ${ Object.values( platformToNewer ).flat().length } pairs (${ Object.entries( platformToNewer ).map( ( [ k, v ] ) => k + ' -> ' + v.join( ',' ) ).join( '; ' ) })` );
 console.log( `engine -> Newer: ${ Object.keys( engineToNewer ).length } engine modules, ${ e2n.flat().length } distinct pairs, ${ statements } statements` );
 if ( unassigned.length ) { console.error( 'unassigned: ' + unassigned.join( ' ' ) ); process.exit( 1 ); }

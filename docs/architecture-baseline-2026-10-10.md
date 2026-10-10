@@ -12,19 +12,27 @@ Every figure on this page is computed by two tools, run on a clean export (no ig
 
 Their output, with the full edge lists, is in
 [evidence/architecture-baseline-2026-10-10.json](evidence/architecture-baseline-2026-10-10.json). The figures are from
-`git archive d514db5` with this page's tools; the export of the commit that adds this page gives the same figures. Two
+`git archive 8e98cdc` with this page's tools; the export of the commit that adds this page gives the same figures. Three
 earlier versions of this page were rejected by independent review; what they got wrong is listed at the end.
 
 ```sh
 git archive <commit> | tar -x -C /tmp/q                             # a commit, not a dirty working tree
 node tools/architecture_graph.mjs /tmp/q /tmp/graph.json             # exit 1: a src module not scanned, or an unexpected unresolved import
-node tools/architecture_classify.mjs /tmp/graph.json /tmp/map.json   # exit 1: a module with no folder or increment
+node tools/architecture_classify.mjs /tmp/graph.json /tmp/map.json   # exit 1: the graph run failed, or a module with no folder or increment
 ```
 
-Both tools fail closed. The graph tool walks `src/` itself and fails if any module there was not scanned, or if an
-import fails to resolve that is not on its list of known local-only inputs (D8). The classifier matches a module by its
-name, not its folder, so a module already moved is classified the same; a module that only re-exports another (an
-adapter left at an old path) is measured through, not counted.
+Both tools fail closed.
+
+* The graph tool walks `src/` itself and fails if any module there was not scanned.
+* It fails if a reference does not resolve, unless it is on its list of known ones, each named by the file that makes
+  it and its target: the axe test's absence checks, the local inputs of D8, and D7's three pages. A wrong-depth
+  `../../src/…` import in a new test fails it.
+* An import's specifier must start `./`, `../` or `/`, or be named by the page's import map. A bare `src/x.js` is
+  unresolved, as browsers and Node treat it.
+* The classifier refuses a graph whose run failed.
+* The classifier matches a module by its name, not its folder, so a module already moved is classified the same.
+* A module whose only line is `export * from …` (an adapter left at an old path) is measured through, following chains
+  of adapters, and not counted.
 
 ## What there is
 
@@ -33,13 +41,18 @@ adapter left at an old path) is measured through, not counted.
   `rockfield-v1.0.0.html` and `rockfield-v1.6.0.html`; `.js`, `.mjs`, `.ts`, `.html` and `.py`.
 * **What the scanner reads**:
   * static imports, re-exports and literal dynamic `import()`;
-  * dynamic imports built from a literal and a variable (`'../src/r_newerskins.js?case-' + n`);
-  * `new URL( literal, import.meta.url )` and `readFileSync( new URL( '…js' ) )`;
-  * `<script src>` and HTML import maps, resolved against a page's `<base href>`.
+  * dynamic imports built from a literal and a variable (`'../src/r_newerskins.js?case-' + n`), or passed through a
+    helper (`import( dependency( '../src/…' ) )`);
+  * `new URL( literal, import.meta.url )`, and source read through one (`readFileSync( new URL( '…js' ) )`, counted once);
+  * source fetched by a page (`fetch( '../src/…' )`);
+  * `<script src>`, resolved against a page's `<base href>`;
+  * HTML import maps, whose keys are taken as written.
 
-  Query strings are stripped, so `?case` imports count as the file they name. That gives **4,101 distinct module pairs
-  from 4,287 statements**. 28 references do not resolve, all expected: the axe test's two deliberate absence checks, the
-  three trial pages of D7 and the local inputs of D8.
+  Query strings are stripped, so `?case` imports count as the file they name. That gives **4,105 distinct module pairs
+  from 4,279 statements**. 28 references do not resolve, all expected: the axe test's two deliberate absence checks, the
+  three trial pages of D7 (19) and the local inputs of D8.
+* **A catch-all.** Every `src/…js` path written as a string in a test, tool, server file or page that has no edge from
+  that file is listed (`hidden.srcLiterals`, 33). 18 are D7's pages; the other 15 are in the consumer table below.
 * **Entry points**, and the `src` modules each loads (directly, then transitively):
 
   | Entry | Direct | Transitive | Not loaded |
@@ -52,7 +65,7 @@ adapter left at an old path) is measured through, not counted.
   The room server loads 197 modules, nearly all of Newer Game's renderer and interface, through the cycle below.
 * **Workers.** `src/rockfield_worker.js`, started by `r_rockfield.js` and `rockfield_prepare.js`. The tools use Node
   `worker_threads` (`bake_rockfield.mjs`, `prepare_folio.mjs`).
-* **Outside consumers** of `src` modules: 2,766 distinct (module, file) pairs. 2,667 are tests, 45 tools, 29 server
+* **Outside consumers** of `src` modules: 2,770 distinct (module, file) pairs. 2,671 are tests, 45 tools, 29 server
   files and 25 `main.js` imports.
 
 ## Subsystems and owning increments
@@ -129,43 +142,46 @@ in the evidence's `state`:
       textures; `rockfield_worker.js` installs its message handler.
 
 A module moved behind an adapter keeps all of this, because `export *` re-exports the live bindings of the one module
-instance. A module imported under two different paths would split its state; so would a query-string import of an
-adapter (below).
+instance. A module imported under two different paths would split its state. A query-string import has the opposite
+problem: through an adapter, every `?case` reaches the same inner module, so cases meant to be fresh share state (below).
 
 ## Consumers a move must update
 
-The import scan sees most consumers. These it cannot follow by itself; each is listed, from the tool's output, with the
-increment that owns it:
+The import scan sees most consumers. These it cannot follow by itself; each is listed, from the tool's output
+(`hidden`, `counts`), with the increment that owns it:
 
 | Consumer | Where | What breaks after a move | Owner |
 |---|---|---|---|
 | Query-string imports: 53 in 27 test files, 14 of them built from a variable (`'../src/r_newerskins.js?enforcer-public-' + n`) | `tests/*_test.js`; `counts.queryImports`, `hidden.computedSource` | Through an adapter every `?case` reaches the same inner module, so the cases share state: retarget to the new path in the moving increment | the module's |
 | An HTML import map: 25 entries mapping `src` paths | `tests/rend_veil_gameplay_trial.html` | Maps to the old paths | [44e] (`rend_veil`) |
 | Generators that write `src` modules | `bake_alias_meshes.mjs`, `bake_displacement.mjs` and `split_prepared_bundles.mjs` (both write `demon_bakes.js`), `bake_normals.mjs`, `bake_rockfield.mjs`, `build_startup_normal_prefetch.mjs`, `build_startup_pak.py`, `extract_menu_webgl.py` (`menu_webgl_source.js`), `prepare_corpus.mjs` | Re-running one would overwrite the adapter at the old path | [44e] / [44f] (the generated module's) |
-| Readers of source text | Python: `import_nailgun.py` reads `anorm_dots.js`. JavaScript: the `bestiary_book`, `fireball`, `respawn_notice_screen`, `startup_collector`, `studio_logo`, `torchfire` and `unseen_gun` tests read module source by path | They read the adapter's one line | the module's |
+| Readers of source text | Python: `import_nailgun.py` reads `anorm_dots.js`. JavaScript: the `bestiary_book`, `fireball`, `respawn_notice_screen`, `startup_collector`, `studio_logo`, `torchfire` and `unseen_gun` tests read module source by path. `tests/helpers/prepared_corpus_audit.mjs` parses the registries in `rockfield_bakes.js`, `demon_bakes.js` and `normal_bakes.js` as text | They read the adapter's one line, and the audit's registry check fails | the module's |
+| Source hashed as proof | `tools/bake_rockfield.mjs` hashes `rockfield.js`, `rockfield_presets.js`, `r_rocksurfaces.js` and `rockfield_bake_format.js` into the rock manifest. `tests/displacement_store_trial.js` imports `displacement_store`, `demon_bake_format` and `r_demonrelief` through a helper and fetches and hashes the same three | They hash the adapter, so the recorded proof is of the wrong file | [44e] |
+| A tool importing by a joined path | `tools/prepare_folio.mjs` (`path.join( ROOT, 'src/bestiary_state.js' )`) | Loads the adapter (works), and breaks once the adapter is deleted | [44f] |
 | Records keyed by `src` paths | `newer/displacement/manifest.json` (4 paths and hashes); `newer/rockfield/manifest.json` (4, checked by `tests/rockfield_bakes_test.js`); `newer/effects/shotgun/provenance.json` (1); `tools/summoning_reference/provenance.json` (`src/rend_veil`); `docs/distribution-local-only.json` (6, the registry `tools/check_distribution_policy.py` reads) | The recorded paths (and hashes) no longer match | the module's |
 | Module-relative URLs built from computed names | `r_bestiary.js`, `r_fireball.js`, `r_folio.js`, `r_playerface.js` (`new URL( '../' + … , import.meta.url )`) | They resolve one folder too deep | [44e] / [44f] |
 | Literal module-relative URLs | `r_quadparticles.js`, `s_ambientmusic.js`, `studio_logo.js`, the rock worker | The same | the module's |
 | Source paths built from a name | `bestiary_navigation_trial.js`, `credits_trial.js`, `loading_performance_trial.js`, `normal_inputs_trial.js`, `oldone_gameplay_trial.js` (`import( '../src/' + n + '.js' )`), `quadvision_gpu_trial.html` (fetches source) | They load the adapter, or read its text | the module's |
 | A flat source glob | `tools/check_distribution_policy.py` (`src/*.js`) | Goes blind to moved modules | [44b] (the first move) |
-| Docs citing `src/` paths | 67 files in `docs/` (`hidden.docsCitingSrc`) | Stale links; not code | [44g] (one pass at the end) |
+| Docs citing `src/` paths | 68 files under `docs/` (`hidden.docsCitingSrc`) | Stale links; not code | [44g] (one pass at the end) |
+| Ignore rules keyed by `src` paths | `.gitignore`: `/src/loading_trace.js`, `/src/normal_bundle.js`, `/src/normal_startup_packs.js` (`hidden.gitignoreSrc`) | A local file moved into a folder is no longer ignored | [44e] |
 | The server's room spawning | `server/room_process_manager.ts` (finds `game_server.js` and the root `deno.json` from its own folder) | Moving `server/` or the root config | [44b] |
 
 ## Technical debt, with evidence, owner and acceptance check
 
 | # | Debt | Evidence | Severity | Owner and next action | Acceptance check |
 |---|---|---|---|---|---|
-| D1a | The engine's own import cycle (41 modules; 44 with the platform) | `cycles.engineAlone`, `cycles.engineAndPlatform` | High: evaluation order is fragile and new module-level tables fail at load | [44b] breaks the server ↔ client and progs ↔ server edges by moving shared state into leaf modules under `engine/common`; [44c] the client ↔ renderer and platform edges; [44d] the renderer ↔ client edges | `cycles.engineAndPlatform` lists only an agreed, documented set, recorded on [44g] |
+| D1a | The engine's own import cycle (41 modules; 44 with the platform) | `cycles.engineAlone`, `cycles.engineAndPlatform` | High: evaluation order is fragile and new module-level tables fail at load | [44b] breaks the server ↔ client and progs ↔ server edges by moving shared state into leaf modules under `engine/common`; [44c] the client ↔ renderer and platform edges; [44d] the renderer ↔ client edges | No engine or platform cycle spans more than one proposed folder: `cycles.crossFolder` is empty (today one, of 44 modules across 8 folders). A cycle inside one folder, such as `cmd`/`common`/`cvar`/`pak` in `engine/common`, is allowed |
 | D1b | The native side imports Newer Game: 165 engine pairs from 28 modules, 3 platform pairs | `engineToNewer`, `platformToNewer` | High: the dedicated room server loads Newer's renderer and interface; Classic depends on Newer modules loading | [44b] adds a neutral hooks module (`src/engine/hooks.js`: named hook points the engine calls and Newer registers into at startup) and removes the server's and progs' imports; [44c] the client's and the platform's; [44d] the renderer's (`gl_rmain` 41). The existing `R_DecalsSetup` / `R_WallBurnSetup` calls go the same direction (the engine imports the Newer module and hands it engine functions) and are removed with them | `engineToNewer` and `platformToNewer` are empty |
-| D1c | Newer's own cycle: `gl_post` → `r_bestiary` → `sv_seamless` → `r_levelview` → `gl_post` (5 modules); and the small cycles `cmd`/`common`/`cvar`/`pak`, `gl_normals`/`normal_prepare`, `r_demosplit`/`r_perf` | `cycles.withoutNativeToNewer` | Medium | [44e]: `gl_post` takes the portrait light as a value instead of importing `r_bestiary`; `gl_normals`/`normal_prepare` and `r_demosplit`/`r_perf` are [44e]'s too. [44b]: the common four | `cycles.withoutNativeToNewer` has the native set only |
-| D2 | The Newer/Classic mode switch (`R_NewerGame`, the classic pass) lives in `r_anim.js`, an animation module, which 49 modules import, 36 of them for the mode alone | `counts.animImporters`, `counts.animModeOnly`, `modeOnly` | Medium | [44d] (`r_anim`'s increment): the mode moves to its own leaf module (`src/newer/mode.js`), with a re-export left in `r_anim.js` until callers move | `modeOnly` is empty |
+| D1c | Newer's own cycles: `gl_post` → `r_bestiary` → `sv_seamless` → `r_levelview` → `gl_post` (5 modules), `gl_normals`/`normal_prepare` and `r_demosplit`/`r_perf` | `cycles.newerCycles` | Medium | [44e]: `gl_post` takes the portrait light as a value instead of importing `r_bestiary`, and breaks the two pairs | `cycles.newerCycles` is empty: once the native side imports no Newer module, no cycle holds a Newer module |
+| D2 | The Newer/Classic mode switch (`R_NewerGame`, the classic pass) lives in `r_anim.js`, an animation module, which 49 modules import, 36 of them for the mode alone | `counts.animImporters`, `counts.animModeOnly`, `modeOnly` | Medium | [44d] (`r_anim`'s increment): the mode moves to its own leaf module (`src/newer/mode.js`), with a re-export left in `r_anim.js` until callers move | `modeOnly` is empty. Imports are matched by what they resolve to, through adapters, so moving the importers or `r_anim.js` alone does not empty it (checked: a mode-only importer moved behind an adapter still counts); a namespace import counts as taking everything |
 | D3 | Very large modules: `normal_bakes.js` (generated data in source), `gl_post.js`, `gl_rsurf.js`, `menu.js`, `gl_model.js` (3,000 to 17,000 lines) | `lines` | Medium | Not split by a move. [44g] files one card per module after the moves; `normal_bakes.js` is [44e]'s to load as data | Generated tables loaded as data, not imported as source; the post pipeline split by stage with a test each |
 | D4 | The root `deno.json` task `server` runs `game_server.js`, which is not at the root; the room server it means reads `../pak0.pak` from its working directory (run from `server/`). The same file's import map (`three` → `server/browser_shim.js`) is used by every room the lobby spawns, so it is not a convenience file | `deno.json`; `server/game_server.js` lines 4-5, 58; `room_process_manager.ts` | Low (a broken shortcut) | [44b]: change the task to run from `server/` and try it where Deno is installed (it is not on this machine) | `deno task server` at the root starts a room |
-| D5 | The TypeScript server re-implements engine functions (`SV_RunClients`, `SV_DropClient` in `server/host_server.ts`) beside the engine's own | `server/host_server.ts` lines 292, 335 | Medium: fixes to one are missed in the other | [44b] | One implementation, imported by both servers |
+| D5 | The TypeScript server declares 39 functions the engine also exports. 21 are engine logic: `SV_*`, `Host_ServerFrame` and `MSG_*` in `host_server.ts`, `Mod_*` in `mod_server.ts`, `COM_*` in `pak_server.ts`. The other 18 (`Sys_*`, `WT_*`) are the server's own platform layer, as the C engine's `sys_*.c` and `net_*.c` are | `hidden.serverReimplements` | Medium: fixes to one are missed in the other | [44b]: make `server/main.ts` import the engine's server, model and file functions (it reaches `src/net.js` already), delete the copies, and start the TypeScript server where Deno is installed | No `SV_`, `Host_`, `MSG_`, `Mod_` or `COM_` entry left in `hidden.serverReimplements` |
 | D6 | Client-side BSP ray casts written separately: `chase.js` `TraceLine`, `r_shelltrace.js` `traceHull`, `r_wallburn.js` `R_WallBurnTrace`, `r_dof.js` `traceFraction` | source | Low | [44d]: one client trace helper in `engine/render`, then [44e] moves the three Newer callers onto it | One helper (point and swept), tested once |
-| D7 | Three trial pages (`demo_resolution_trial.html`, `enemy_height_trial.html`, `wizard_texture_trial.html`) set `<base href="../">` and import `../src/…`. Served from an origin's root this works, because the browser clamps the path at the root. Served under a sub-path (`/quaked/`), they load from above it and fail | 19 of the 28 unresolved references in the evidence | Low | [44b]: write the imports as `src/…` (relative to the base), since those modules move first | The graph tool resolves them |
-| D8 | Suites that need files a clean checkout lacks: the owned full-game `pak0.pak` (`QUAKED_OWNED_PAK` and `resources/`), other owned paks (`resources/dopa`), the owner's local pages (`fieldlab-fx-3d-updated.html`, `arc-weapons-wall-canvas-shotgun.html`, `demon-vision.html`), donor zips (`weapons_refinement`, `weapons`), and git history (an export has none). Separately, `rockfield-v1.0.0.html` and `rockfield-v1.6.0.html` are tracked at this commit but deleted (uncommitted) in the owner's working tree, so their suites cannot run there | `missing`; the suite log | Low (not code defects) | The owner: whether the local inputs return and whether the rockfield pages' deletion is committed. Then [44g]: each suite skips with a clear message when its input is absent | Not relabelled as passing: a missing input reads as skipped, with the input named |
-| D9 | Three modules nothing imports: `r_quadparticles.js`, `screen.js`, `snd_mix.js` (no importer in `src/`, `main.js`, `server/`, `tests/` or `tools/`) | `orphans` | Low | [44c] (`screen`, `snd_mix`), [44e] (`r_quadparticles`): confirm each is unused in the browser, then delete or wire it, with the owner's agreement for deletion | `orphans` is empty |
+| D7 | Three trial pages (`demo_resolution_trial.html`, `enemy_height_trial.html`, `wizard_texture_trial.html`) set `<base href="../">` and import `../src/…`. Served from an origin's root this works, because the browser clamps the path at the root. Served under a sub-path (`/quaked/`), they load from above it and fail | 19 of the 28 unresolved references in the evidence | Low | [44b]: write the imports as `./src/…`, which an inline module script resolves against the document's base (a bare `src/…` would be rejected by the browser), since those modules move first | The graph tool resolves them: 19 fewer unresolved references, and D7's entry removed from its known list. A bare `src/…` is reported unresolved, so it cannot pass |
+| D8 | Suites that need inputs a clean checkout lacks. Files: the owned full-game `pak0.pak` (`QUAKED_OWNED_PAK` and `resources/`) and other owned paks (`resources/dopa`); the owner's local pages (`fieldlab-fx-3d-updated.html`, `arc-weapons-wall-canvas-shotgun.html`, `demon-vision.html`, `player-face-layers-v4.4.0.html`); ignored art (`newer/hud/playerface/blood.png`); donor zips (`rocketlauncher`, `thuderbolt`, `supershotgun`, `supernailgun`, `supernailgun2`); `~/Downloads/Quake/Id1/PAK3.pk3`. Settings: `QUAKED_THREE_MODULE`, `QUAKED_CANVAS_MODULE`, `QUAKED_SHARP_MODULE`, `QUAKED_PYTHON` (a Python with Pillow). Git history, which an export has none of. Separately, `rockfield-v1.0.0.html` and `rockfield-v1.6.0.html` are tracked at this commit but deleted (uncommitted) in the owner's working tree, so their suites cannot run there | `missing`; the suite logs | Low (not code defects) | The owner: whether the local inputs return and whether the rockfield pages' deletion is committed. Then [44g]: each suite skips with a clear message when its input is absent | Not relabelled as passing: a missing input reads as skipped, with the input named |
+| D9 | Three modules nothing imports: `r_quadparticles.js`, `screen.js`, `snd_mix.js` (no importer in `src/`, `main.js`, `server/`, `tests/` or `tools/`) | `orphans`, `unreached` | Low | [44c] (`screen`, `snd_mix`), [44e] (`r_quadparticles`): confirm each is unused in the browser, then delete or wire it into the game, with the owner's agreement for deletion | `unreached` is empty: every module is loaded by the page or the room server (imports, dynamic imports or worker URLs). A test importing a module does not count |
 | D10 | Engine work done at import: `gl_post.js` patches Three.js's `Material.prototype` and `sv_main.js` registers engine functions into `sv_seamless` as they load, so their import order decides behaviour | `state[…].topLevelExamples` | Medium | [44e] (`gl_post`: install from the renderer's start-up); [44b] (`sv_main`: through the hooks module of D1b) | Neither statement remains at top level |
 
 Not debt here: features not yet built (split-screen [37], the games folders [34]) and choices waiting on the owner
@@ -180,8 +196,9 @@ Not debt here: features not yet built (split-screen [37], the games folders [34]
   graph shows no consumer.
   * The exceptions, from the consumer table, are retargeted in the same increment as the move: query-string imports,
     the import map, generators, source readers, records keyed by path, computed URLs and source paths.
-  * Checked by moving `cmd.js` behind an adapter in a scratch export: both tools ran, `cmd.js` was still classified
-    `engine/common` [44b], and every cycle and count was unchanged.
+  * Checked in scratch exports: `cmd.js`, and separately a mode-only importer (`cl_main.js`), moved into a folder behind
+    an adapter. Both tools ran; the moved module kept its folder and increment; every cycle, D2 count and classified
+    count was unchanged. The graph's file count rises by one, for the adapter.
 * **Behaviour is unchanged by a move.** Each increment's check:
   * the full suite against the recorded baseline;
   * both tools (no unscanned module, no unexpected unresolved import, no unassigned module, cycles only shrinking);
@@ -191,17 +208,38 @@ Not debt here: features not yet built (split-screen [37], the games folders [34]
 
 ## Checks made for this baseline
 
-* **The tools on a clean export** (`git archive d514db5` with this page's tools): no unscanned module, no unexpected
+* **The tools on a clean export** (`git archive 8e98cdc` with this page's tools): no unscanned module, no unexpected
   unresolved import, no unassigned module. The 28 expected unresolved references were checked by hand.
-* **The full suite on the same clean export**, without the owned pak: 227 suites; 196 pass, 27 fail, 4 give no result.
-  The log is in the evidence file (`suiteCleanExport`).
-  * Most of the failures are D8's missing inputs, named in each failure: the owned paks, git history, the owner's
-    local pages, the donor zips.
-  * Three failures are not. They are in the rockfield suites, which cannot run in the owner's working tree (D8), so
-    they were hidden there. They are recorded on card [44a] and fixed or handed on separately:
-    * `rockfield_runtime`: the test evaluates the composite shader's sun expression without `glass`, which
-      `212c580` added to it;
-    * `rockfield_required_materials`: it expects two rock worker transports for the E1M4 door and sees none.
+* **The guards were tried and fail**: a test importing `../../src/cmd.js` (a wrong depth); a D7 page importing a bare
+  `src/vid.js`. Moves behind adapters are covered under the migrations above.
+* **The full suite, run twice.** Every failure in both runs is classified in the evidence (`suiteCleanExport`,
+  `suiteAllInputs`): a named missing input, or a real failure.
+  * **A clean export of `d514db5`, without the owned pak**: 227 suites. 196 pass, 27 fail, 4 give no result.
+    * 17 failures are missing inputs, each named in its failure: the owned paks (12 suites), git history
+      (`axe_original`, `demon_face_relief`), the owner's local page `demon-vision.html` (`powervision_state`), the donor
+      zips (`weapons`, `weapons_refinement`).
+    * The 4 no-results are missing inputs too: `player-face-layers-v4.4.0.html` (`face_v44_composition`), the owned
+      paks' other games (`glass_native_interface`), the Quake install in `~/Downloads` (`nailgun_source`), a donor zip
+      (`supernailgun_profile`).
+    * **10 were real failures, now fixed.** Each is a test left behind by a source change, not a game defect; each was
+      checked against the source change that broke it:
+      * `43a3641`: `rockfield_runtime` (the sun expression gained `glass`); `rockfield_required_materials` (the E1M4
+        door's pages now come from the shipped bake, not workers). Both were hidden in the owner's working tree, where
+        the rockfield pages are deleted (D8).
+      * `8e98cdc`: `gl_model`, `r_anim`, `gl_rlight` (fakes without the `userData` real objects have);
+        `glass_materials` and `glass_region_assets` (the pigment footprint became two texels); `shotgun_source`
+        (in-between frames are Newer Game's, and the test never turned Newer on); `emissive_lights` (the light term
+        gained `pointCone`); `hub_logo` (four shader texts moved on).
+      * These had been listed as "baseline failures" in earlier work. The review was right that this relabelled
+        failures as expected.
+  * **A clean worktree of `8e98cdc`**, with git history and every input this machine has: the owned paks, the owner's
+    local pages (linked, read only) and the four settings. 227 suites: **222 pass, 3 fail, 2 give no result.** All 5
+    lack an input that is not here or not reachable:
+    * `face_v44_composition`: the ignored `newer/hud/playerface/blood.png`;
+    * `weapons`, `weapons_refinement`, `supernailgun_profile`: donor zips not on this machine;
+    * `nailgun_source`: the Quake install in `~/Downloads`, which this session's sandbox may not read.
+
+    This run is the baseline each increment compares against.
 * **The server entry point** is inconsistent as D4 says. It was not run: Deno is unavailable here.
 * **The independent review of the first version** found that:
   * it blamed the engine → Newer imports alone for the big cycle;
@@ -220,5 +258,16 @@ Not debt here: features not yet built (split-screen [37], the games folders [34]
   * counts (query imports, mode-only importers) not computed by the tools;
   * D7 overstated; D8 self-contradictory; debts without owners; orphans unlisted; top-level statements undercounted;
   * suite evidence from a dirty tree.
+
+* **The review of the third version** reproduced every figure and cycle, and found:
+  * the suite evidence misdescribed: real failures among those called missing inputs (blocking);
+  * the D2 check met by moving files alone;
+  * D7's remedy (`src/…`) a bare specifier that browsers reject, and the tool resolving it anyway;
+  * hidden consumers missed: the displacement trial, the corpus audit, `prepare_folio`, the rock manifest's source
+    hashes, `.gitignore`;
+  * an exemption for any `../` reference, which let a wrong-depth import pass;
+  * debts without a next action or a checkable acceptance (D5, D1a, D9, D1c);
+  * nits: query-string state wording, reads counted twice, folders passing as files, adapter chains, the classifier
+    accepting a failed graph, import map wording, the count after a move, `docs/evidence/` skipped.
 
   Each is corrected above.

@@ -1,17 +1,22 @@
 // Architecture graph of Quaked (card [44a]). Reads a source tree (best: a clean export of a commit, `git archive`, so ignored
 // local files do not count) and writes one JSON with everything the baseline document states, so each number can be
 // recomputed:
-//   * every static import, re-export, literal dynamic import(), new URL( literal, import.meta.url ) and <script src> in
-//     src/, main.js, server/, tests/ and tools/ (.js .mjs .ts .html), as module-to-module edges with their statement counts;
+//   * every static import, re-export, dynamic import() (literal, with a computed query, or through a helper), new URL(
+//     literal, import.meta.url ), source read or fetched, import map entry and <script src> in src/, the root's files,
+//     server/, tests/ and tools/ (.js .mjs .ts .html .py), as module-to-module edges with their statement counts;
 //   * the strongly connected import groups (cycles) of src/, with and without each subsystem;
 //   * fan-in, fan-out and line counts of every src module;
 //   * outside consumers of each src module (query strings stripped: ?case imports name the same file);
 //   * per entry point (the page, the dedicated servers), the src modules it loads, directly and transitively;
 //   * module-level state: mutable exports (export let), module-level Map/Set, browser storage, workers;
 //   * consumers the import scan cannot see: generators that write src/ files, manifests keyed by src paths, module-relative
-//     URLs built from computed names, computed source paths in tests and trials.
+//     URLs built from computed names, computed source paths in tests and trials, ignore rules, and (a catch-all) every src
+//     path written as a string in a file with no edge to it;
+//   * the debts' checks: importers taking only the Newer/Classic mode from r_anim.js (D2), engine functions the TypeScript
+//     server declares again (D5), modules the game never loads (D9).
 // It fails (exit 1) if any file under src/ was not scanned, or a reference resolves nowhere other than the known ones
-// (KNOWN_MISSING). Usage:
+// (KNOWN_MISSING, by file and target). An import's bare specifier (src/x.js, with no ./) is unresolved, as browsers and Node treat it.
+// Usage:
 //   git archive <commit> | tar -x -C /tmp/q && node tools/architecture_graph.mjs /tmp/q /tmp/graph.json
 import fs from 'node:fs';
 import path from 'node:path';
@@ -40,10 +45,14 @@ const PATTERNS = [
 	[ 'static', /(?:^|\n)\s*import\s+(?:[^'";]*?\sfrom\s+)?['"]([^'"]+)['"]/g ],
 	[ 'export', /(?:^|\n)\s*export\s+[^'";]*?\sfrom\s+['"]([^'"]+)['"]/g ],
 	[ 'dynamic', /import\(\s*['"`]([^'"`$]+)['"`]\s*\)/g ],
+	// a literal passed through a helper that returns the specifier ( import( dependency( literal ) ) )
+	[ 'dynamic-wrapped', /import\(\s*[\w.]+\(\s*['"`]([^'"`$]+\.js)['"`]/g ],
 	// a module named by a literal with a computed query (fresh instances per case: '…js?case-' + n, `…js?${ n }`)
 	[ 'dynamic-computed', /import\(\s*['"`]([^'"`$?]+\.js)\?[^'"`]*(?:['"`]\s*\+|\$\{)/g ],
 	// source text read by tests and tools (a move changes what they read)
-	[ 'read', /readFileSync\(\s*new URL\(\s*['"`]([^'"`$]+\.js)['"`]\s*,\s*import\.meta\.url/g ],
+	[ 'read', /readFile(?:Sync)?\(\s*new URL\(\s*['"`]([^'"`$]+\.js)['"`]\s*,\s*import\.meta\.url/g ],
+	// a module's source fetched over HTTP by a trial page or test
+	[ 'fetch', /fetch\(\s*['"`]([^'"`$]*src\/[^'"`$]+\.js)['"`]/g ],
 	// an import map's entries keyed by a module path (an HTML trial page)
 	[ 'importmap', /"(\/?src\/[\w./-]+\.js)"\s*:/g ],
 	[ 'url', /new URL\(\s*['"`]([^'"`$]+)['"`]\s*,\s*import\.meta\.url/g ],
@@ -53,6 +62,9 @@ const statements = [];
 for ( const [ f, s ] of Object.entries( text ) ) {
 
 	if ( f.endsWith( '.py' ) ) continue;
+	// an HTML page's import map keys are bare specifiers it may use
+	const mapped = new Set( f.endsWith( '.html' ) ? [ ...( s.match( /<script[^>]*type=["']importmap["'][^>]*>([\s\S]*?)<\/script>/ )?.[ 1 ] ?? '' ).matchAll( /"([^"]+)"\s*:/g ) ].map( m => m[ 1 ] ) : [] );
+	const readAt = new Set(); // (new URL inside readFile: counted once, as a read)
 	for ( const [ kind, re ] of PATTERNS ) {
 
 		if ( kind === 'importmap' && ! f.endsWith( '.html' ) ) continue;
@@ -61,7 +73,12 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 		while ( ( m = re.exec( s ) ) ) {
 
 			const spec = m[ 1 ].split( '?' )[ 0 ];
-			if ( /^(node:|https?:|jsr:|npm:)/.test( spec ) || spec === 'three' || spec.startsWith( '@' ) ) continue;
+			if ( kind === 'read' ) readAt.add( m.index + m[ 0 ].indexOf( 'new URL' ) );
+			if ( kind === 'url' && readAt.has( m.index ) ) continue;
+			if ( /^(node:|https?:|jsr:|npm:|data:|blob:)/.test( spec ) || spec === 'three' || spec.startsWith( 'three/' ) || spec.startsWith( '@' ) ) continue;
+			// an import's specifier must be relative ( ./ ../ / ) unless an import map names it: src/x.js with no ./ is a bare specifier,
+			// which browsers and Node reject, so it is recorded unresolved rather than resolved as a path
+			if ( /^(static|export|dynamic|dynamic-computed|dynamic-wrapped)$/.test( kind ) && ! /^(\.{1,2}\/|\/)/.test( spec ) && ! [ ...mapped ].some( k => k.endsWith( '/' ) ? spec.startsWith( k ) : spec === k ) ) { statements.push( { from: f, to: 'bare:' + spec, kind, query: false } ); continue; }
 			// (an HTML page's relative URLs resolve against its <base href>, if it has one)
 			const base = f.endsWith( '.html' ) ? ( s.match( /<base\s+href=["']([^"']+)["']/ )?.[ 1 ] ?? '' ) : '';
 			const from = path.resolve( path.dirname( path.join( ROOT, f ) ), base.startsWith( '/' ) ? path.relative( path.dirname( path.join( ROOT, f ) ), path.join( ROOT, base ) ) : base );
@@ -82,7 +99,10 @@ const edges = [ ...pairs.values() ].map( p => ( { from: p.from, to: p.to, kinds:
 const evaluation = edges.filter( e => isSrc( e.from ) && isSrc( e.to ) && e.kinds.some( k => k === 'static' || k === 'export' ) );
 
 // adapters left at old paths by a move: modules whose code is only `export * from '…'` (cycles are measured through them)
-const adapters = Object.fromEntries( src.map( f => [ f, text[ f ].replace( /\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, '' ).trim() ] ).filter( ( [ , t ] ) => t && /^(export\s*\*\s*from\s*['"][^'"]+['"]\s*;?\s*)+$/.test( t ) ).map( ( [ f, t ] ) => [ f, rel( path.resolve( path.dirname( path.join( ROOT, f ) ), t.match( /['"]([^'"]+)['"]/ )[ 1 ] ) ) ] ) );
+// (one `export *` line only: a module re-exporting several is a real module of its own; a chain of adapters is followed to
+// its end)
+const adapterStep = Object.fromEntries( src.map( f => [ f, text[ f ].replace( /\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, '' ).trim() ] ).filter( ( [ , t ] ) => t && /^export\s*\*\s*from\s*['"][^'"]+['"]\s*;?$/.test( t ) ).map( ( [ f, t ] ) => [ f, rel( path.resolve( path.dirname( path.join( ROOT, f ) ), t.match( /['"]([^'"]+)['"]/ )[ 1 ] ) ) ] ) );
+const adapters = Object.fromEntries( Object.keys( adapterStep ).map( f => { let t = f; const seen = new Set(); while ( adapterStep[ t ] && ! seen.has( t ) ) { seen.add( t ); t = adapterStep[ t ]; } return [ f, t ]; } ) );
 
 // --- cycles (Tarjan) over a module set (an adapter is measured through: its importers reach the module it re-exports) ---
 function cycles( nodes ) {
@@ -174,8 +194,8 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 		for ( const m of s.matchAll( /(?:write\w*|open)\(\s*(?:path\.join\([^,]*,\s*)?['"`](?:\.\.\/)?(src\/[\w./-]+\.js)['"`]/gi ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] } );
 		for ( const m of s.matchAll( /\b(?:OUT\w*|DEST\w*|TARGET\w*|output\w*)\s*=\s*[^;\n]*['"`](?:\.\.\/)?(src\/[\w./-]+\.js)['"`]/g ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] } );
 		for ( const m of s.matchAll( /['"](src\/[\w./-]+\.js)['"]\)\.write_text|\/\s*['"](src)['"]\s*\/\s*['"]([\w.-]+\.js)['"][^\n]*write/g ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] || 'src/' + m[ 3 ] } );
-		// Python: a generator names its output in a write ( Path( 'src/x.js' ): content, then write_bytes/write_text ), a
-		// reader reads a src file's text ( …'src/x.js' ).read_text() )
+		// Python: a generator names its output in a write ( Path( literal ): content, then write_bytes/write_text ), a
+		// reader reads a src file's text ( Path( literal ).read_text() )
 		if ( f.endsWith( '.py' ) ) {
 
 			for ( const m of s.matchAll( /Path\(\s*['"](src\/[\w./-]+\.js)['"]\s*\)\s*:/g ) ) if ( /write_(bytes|text)/.test( s ) ) hidden.generators.push( { tool: f, writes: m[ 1 ] } );
@@ -189,6 +209,9 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 	// a source path built at run time: a string literal ending in src/ (or holding src/…) followed by +, or a path.join with
 	// a src/ literal, in any test, tool or page
 	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /['"`][^'"`\n]*src\/[^'"`\n]*['"`]\s*\+|path\.join\([^)\n]*['"`]src\/[^'"`]*['"`]/g ) ) hidden.computedSource.push( { file: f, at: s.slice( 0, m.index ).split( '\n' ).length, text: m[ 0 ].slice( 0, 80 ) } );
+	// catch-all: a src path written as a string in a test, tool, server file or page, with no edge from that file to it (the
+	// patterns above do not see how it is used, so it is listed for a person to check)
+	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /['"`](?:\.{1,2}\/)*(src\/[\w./-]+\.js)['"`]/g ) ) ( hidden.srcLiterals ??= [] ).push( { file: f, names: m[ 1 ], at: s.slice( 0, m.index ).split( '\n' ).length } );
 	if ( f.endsWith( '.py' ) && /src\/\*\.js|\(\s*\w+\s*\/\s*['"]src['"]\s*\)\.glob\(\s*['"]\*\.js/.test( s ) ) hidden.globs.push( f ); // (a flat src/*.js glob goes blind once modules move into folders)
 
 }
@@ -201,8 +224,17 @@ for ( const dir of [ 'newer', 'docs', 'tools' ] ) {
 	find( base );
 
 }
-// documents that cite src paths (not consumers, but they go stale)
-hidden.docsCitingSrc = fs.existsSync( path.join( ROOT, 'docs' ) ) ? fs.readdirSync( path.join( ROOT, 'docs' ) ).filter( n => n.endsWith( '.md' ) && /src\/[\w./-]+\.js/.test( fs.readFileSync( path.join( ROOT, 'docs', n ), 'utf8' ) ) ).length : 0;
+// documents that cite src paths (not consumers, but they go stale), anywhere under docs/
+const docs = []; const walkDocs = d => { for ( const e of fs.readdirSync( d, { withFileTypes: true } ) ) { const p = path.join( d, e.name ); if ( e.isDirectory() ) walkDocs( p ); else if ( e.name.endsWith( '.md' ) && /src\/[\w./-]+\.js/.test( fs.readFileSync( p, 'utf8' ) ) ) docs.push( rel( p ) ); } };
+if ( fs.existsSync( path.join( ROOT, 'docs' ) ) ) walkDocs( path.join( ROOT, 'docs' ) );
+hidden.docsCitingSrc = docs.length;
+// ignore rules keyed by src paths (a move into a folder defeats them)
+hidden.gitignoreSrc = fs.existsSync( path.join( ROOT, '.gitignore' ) ) ? fs.readFileSync( path.join( ROOT, '.gitignore' ), 'utf8' ).split( '\n' ).filter( l => /^\/?src\//.test( l.trim() ) ) : [];
+// literals with no edge from their file: what the catch-all leaves for a person
+{ const linked = new Set( edges.map( e => e.from + ' ' + e.to ) ); hidden.srcLiterals = [ ...new Map( ( hidden.srcLiterals || [] ).filter( l => ! linked.has( l.file + ' ' + l.names ) ).map( l => [ l.file + ' ' + l.names, l ] ) ).values() ]; }
+// engine functions the TypeScript server declares again (card [44a] D5)
+{ const exported = new Set( src.flatMap( f => [ ...text[ f ].matchAll( /export\s+(?:async\s+)?function\s+(\w+)/g ) ].map( m => m[ 1 ] ) ) );
+	hidden.serverReimplements = Object.entries( text ).filter( ( [ f ] ) => f.startsWith( 'server/' ) && f.endsWith( '.ts' ) ).flatMap( ( [ f, s ] ) => [ ...s.matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(/g ) ].map( m => m[ 1 ] ).filter( n => exported.has( n ) ).map( n => ( { file: f, function: n } ) ) ); }
 hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.writes, g ] ) ).values() ];
 
 // --- counts the baseline states ---
@@ -211,25 +243,43 @@ const queryImports = statements.filter( e => e.query && isSrc( e.to ) );
 const importMapEntries = statements.filter( e => e.kind === 'importmap' );
 // importers of r_anim.js that take only the Newer/Classic mode from it (card [44a] D2)
 const MODE = new Set( [ 'R_NewerGame', 'R_AnimSetClassicPass', 'R_ClassicPassActive', 'R_AnimSetNewer', 'R_AnimSetLighting', 'R_NewerLightingActive', 'R_IsNewer', 'r_newer_water', 'r_newer_lighting', 'r_newer_normals', 'r_newer_enemies' ] );
+// (by what each import resolves to, through adapters, so moving the importers or r_anim.js does not change the count; a
+// namespace import counts as taking everything)
+const through = f => adapters[ f ] ?? f;
+const anim = src.find( f => f.split( '/' ).pop() === 'r_anim.js' && ! adapters[ f ] );
 const animImporters = {};
-for ( const f of src ) for ( const m of text[ f ].matchAll( /import\s*\{([^}]*)\}\s*from\s*['"]\.\/r_anim\.js['"]/g ) ) ( animImporters[ f ] ??= [] ).push( ...m[ 1 ].split( ',' ).map( x => x.trim().split( /\s+as\s+/ )[ 0 ] ).filter( Boolean ) );
+for ( const f of src ) if ( ! adapters[ f ] ) for ( const m of text[ f ].matchAll( /(?:^|\n)\s*import\s*(\{[^}]*\}|\*\s*as\s+\w+)\s*from\s*['"]([^'"]+)['"]/g ) ) {
+
+	if ( through( rel( path.resolve( path.dirname( path.join( ROOT, f ) ), m[ 2 ] ) ) ) !== anim ) continue;
+	( animImporters[ f ] ??= [] ).push( ...( m[ 1 ].startsWith( '*' ) ? [ '*' ] : m[ 1 ].slice( 1, - 1 ).split( ',' ).map( x => x.trim().split( /\s+as\s+/ )[ 0 ] ).filter( Boolean ) ) );
+
+}
 const modeOnly = Object.entries( animImporters ).filter( ( [ , names ] ) => names.every( n => MODE.has( n ) ) ).map( ( [ f ] ) => f );
 // modules nothing imports, by any edge (orphans), other than the entry points' own targets
 const imported = new Set( edges.map( e => e.to ) );
 const orphans = src.filter( f => ! imported.has( f ) );
+// modules the game never loads: not reached from the page or the room server by imports, dynamic imports or module URLs
+// (workers), so a test importing a module does not make it used (card [44a] D9)
+const reach = new Set(), todoReach = entryNames.filter( f => f === 'main.js' || f === 'server/game_server.js' );
+while ( todoReach.length ) { const f = todoReach.pop(); for ( const e of edges ) if ( e.from === f && e.kinds.some( k => /^(static|export|dynamic|url)$/.test( k ) ) && text[ e.to ] !== undefined && ! reach.has( e.to ) ) { reach.add( e.to ); todoReach.push( e.to ); } }
+const unreached = src.filter( f => ! reach.has( f ) && ! adapters[ f ] );
 
 // --- fail closed: every file under src/ scanned, and no unresolved reference beyond those known ---
 const onDisk = []; const walkSrc = d => { for ( const e of fs.readdirSync( d, { withFileTypes: true } ) ) { const p = path.join( d, e.name ); if ( e.isDirectory() ) walkSrc( p ); else onDisk.push( rel( p ) ); } };
 if ( fs.existsSync( path.join( ROOT, 'src' ) ) ) walkSrc( path.join( ROOT, 'src' ) );
 const unscanned = onDisk.filter( f => ! src.includes( f ) );
-const missing = edges.filter( e => ! e.to.endsWith( '/' ) && text[ e.to ] === undefined && ! fs.existsSync( path.join( ROOT, e.to ) ) );
-// known: deliberate absence checks, the owner's local inputs (ignored files), and inline imports above a page's base
-const KNOWN_MISSING = [ /^newer\/weapons\/(v_axe\.json|axe)$/, /^resources\/id1\/pak0\.pak$/, /^(fieldlab-fx-3d-updated|arc-weapons-wall-canvas-shotgun|rockfield-v1\.\d\.0)\.html$/, /^\.\.\// ];
-const unexpected = missing.filter( e => ! KNOWN_MISSING.some( re => re.test( e.to ) ) );
+const isFile = p => { try { return fs.statSync( path.join( ROOT, p ) ).isFile(); } catch { return false; } };
+// (an import must name a file; a URL may name a folder)
+const missing = edges.filter( e => ! e.to.endsWith( '/' ) && text[ e.to ] === undefined && ! ( e.kinds.some( k => /^(static|export|dynamic)/.test( k ) ) ? isFile( e.to ) : fs.existsSync( path.join( ROOT, e.to ) ) ) );
+// known: deliberate absence checks, the owner's local inputs (ignored files), and the three trial pages whose inline imports
+// climb above their <base href="../"> (D7), by page and target
+const D7_PAGES = new Set( [ 'tests/demo_resolution_trial.html', 'tests/enemy_height_trial.html', 'tests/wizard_texture_trial.html' ] );
+const KNOWN_MISSING = [ e => e.from === 'tests/axe_original_test.js' && /^newer\/weapons\/(v_axe\.json|axe)$/.test( e.to ), e => /^resources\/id1\/pak0\.pak$/.test( e.to ), e => /^(fieldlab-fx-3d-updated|arc-weapons-wall-canvas-shotgun|rockfield-v1\.\d\.0)\.html$/.test( e.to ), e => D7_PAGES.has( e.from ) && /^\.\.\/(src\/[\w-]+|main)\.js$/.test( e.to ) ];
+const unexpected = missing.filter( e => ! KNOWN_MISSING.some( known => known( e ) ) );
 
 const out = { root: ROOT, files: files.length, scannedRootFiles: files.map( rel ).filter( f => ! f.includes( '/' ) ), src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing, unscanned, unexpected,
 	counts: { queryImports: queryImports.length, queryImportFiles: new Set( queryImports.map( e => e.from ) ).size, queryImportsComputed: queryImports.filter( e => e.kind === 'dynamic-computed' ).length, importMapEntries: importMapEntries.length, animImporters: Object.keys( animImporters ).length, animModeOnly: modeOnly.length },
-	modeOnly, orphans, adapters };
+	modeOnly, orphans, unreached, adapters };
 if ( OUT ) fs.writeFileSync( OUT, JSON.stringify( out, null, 1 ) );
 console.log( `files ${ files.length }, src modules ${ src.length }, distinct edges ${ edges.length } (${ statements.length } statements), cycles ${ out.cycles.map( c => c.length ).join( ', ' ) }, unresolved ${ missing.length } (unexpected ${ unexpected.length }), unscanned ${ unscanned.length }` );
 if ( unscanned.length || unexpected.length ) { console.error( 'unscanned: ' + unscanned.join( ' ' ) + '\nunexpected unresolved: ' + unexpected.map( e => e.from + ' -> ' + e.to ).join( ' ' ) ); process.exit( 1 ); }
