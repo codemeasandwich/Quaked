@@ -107,23 +107,24 @@ Deno.test( 'look: right stick turns and tilts the view by the look settings; no 
 	host.set_host_frametime( 0 ); reset();
 } );
 
-// card [37a]: in local play across windows every window sees the same controllers; only the focused one follows them
-Deno.test( 'in local play a controller drives only the focused window; outside it, focus does not matter', async () => {
+// card [37c]: in local play across windows every window sees the same controllers; each plays only the one player 1's
+// page gave its player (players 2 and up first: player 1 has the keyboard and mouse)
+Deno.test( 'in local play player 1\'s page plays only the controller given to player 1', async () => {
 	const { Window_Host } = await import( '../src/engine/net/net_window.js' );
-	const saved = Object.getOwnPropertyDescriptor( globalThis, 'document' );
-	let focused = false;
-	Object.defineProperty( globalThis, 'document', { value: { hasFocus: () => focused }, configurable: true } );
+	const { sv, svs, client_t } = await import( '../src/engine/server/server.js' );
+	const { PadShare_Table } = await import( '../src/platform/pad_share.js' );
 	try {
-		reset(); const p = pad( 0 ); pads = [ p ];
-		press( p, 0 ); same( poll()?.index, 0, 'one page, unfocused: the controller still plays (unchanged)' ); same( events.join(), '+' + K_SPACE, 'and A jumps' );
-		press( p, 0, false ); poll();
-		check( Window_Host( 'focus-test' ), 'now hosting local play' );
-		press( p, 0 ); same( poll(), null, 'unfocused in local play: no controller' ); same( events.join(), '', 'and no key' );
-		focused = true; same( poll()?.index, 0, 'focused: the controller plays' ); same( events.join(), '+' + K_SPACE, 'and A jumps' );
-		focused = false; poll(); same( events.join(), '-' + K_SPACE, 'focus lost with A held: its key is released' );
-		press( p, 0, false ); poll();
+		reset(); const first = pad( 0 ), second = pad( 1 ); pads = [ first ];
+		check( Window_Host( 'pads-test' ), 'hosting local play' );
+		sv.active = true; svs.maxclients = 2; svs.clients = [ new client_t(), new client_t() ];
+		svs.clients[ 0 ].active = svs.clients[ 1 ].active = true; svs.clients[ 0 ].name = 'player'; svs.clients[ 1 ].name = 'Player 2';
+		press( first, 0 ); same( poll(), null, 'one controller: it is player 2\'s, so player 1\'s page plays none' ); same( events.join(), '', 'and its A does nothing here' );
+		same( JSON.stringify( PadShare_Table() ), JSON.stringify( [ [ '0|Pad 0', 2 ] ] ), 'the assignment: controller 0 to player 2' );
+		pads = [ first, second ]; press( second, 0 );
+		same( poll()?.index, 1, 'a second controller goes to player 1' ); same( events.join(), '+' + K_SPACE, 'and its A jumps here' );
+		same( JSON.stringify( PadShare_Table() ), JSON.stringify( [ [ '0|Pad 0', 2 ], [ '1|Pad 1', 1 ] ] ), 'player 2 keeps controller 0' );
+		press( second, 0, false ); poll();
 	} finally {
-		Window_Host( null );
-		if ( saved ) Object.defineProperty( globalThis, 'document', saved ); else delete globalThis.document;
+		Window_Host( null ); sv.active = false; svs.maxclients = 1; poll();
 	}
 } );

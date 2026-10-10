@@ -95,6 +95,18 @@ export function LocalPlay_Players() {
 }
 
 /**
+ * The player numbers the hosted game was set up for, 1 to its players (`maxplayers`), whether or not each window has
+ * joined yet: a controller can then wait for a player whose window is still opening (pad_assign.js).
+ *
+ * @returns {number[]} 1 up to the number of players; empty when not hosting
+ */
+export function LocalPlay_PlayerNumbers() {
+
+	return LocalPlay_Hosting() ? Array.from( { length: svs.maxclients }, ( _, i ) => i + 1 ) : [];
+
+}
+
+/**
  * The lowest player number (2 up to the game's players) with no window in the game, by the names the windows gave
  * themselves ("Player <n>").
  *

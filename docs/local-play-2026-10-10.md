@@ -103,13 +103,36 @@ It has three forms:
   (`r_hdr 1` and its defaults).
 - **Single-player features.** Features built for one local player keep their own conditions. Those that check the
   loopback driver (the Bestiary, the arrival hold, the respawn sequence) do not run for window players.
-- **Input.** Keyboard and mouse belong to the focused window.
-  - In local play (hosting or joined, `Window_InLocalPlay`), a gamepad also drives only the focused window. Every
-    window can see the same controllers, and this stops one controller driving two players.
-  - When focus leaves a window, the keys its pad held are released.
+- **Input.** Keyboard and mouse belong to the focused window. Controllers are shared across the windows (card [37c],
+  `src/platform/pad_share.js` and `pad_assign.js`):
+  - Every window of a session reads the controllers it can see. Where the browser shows them only to the focused
+    window, only that one can. A window that reads any shares a snapshot of them on `quaked-pads-<session>`.
+  - Player 1's page decides who has which, and shares the table every second and on every change:
+    - A controller goes to the lowest-numbered player without one, players 2 and up first, because player 1 has the
+      keyboard and mouse. Player 1 gets one only when every other player has one.
+    - The players counted are all those the game was set up for (1 to Players), so a controller waits for a window
+      that is still opening.
+    - A controller keeps its player while connected. One that comes back returns to its player, if still free.
+    - Extra controllers play nobody.
+    - When there are standard-layout controllers, only those are handed out. A controller's motion sensor or
+      touchpad, listed as a device of its own, is left out.
+  - Each window plays only the controller given to its player. It reads it directly when it can see it, or else
+    from the freshest shared snapshot, which counts only when under half a second old.
   - A single page outside local play is unchanged.
-  - Giving each window a controller of its own is card [37c]'s next step. So is a proof of what Chrome reports to
-    unfocused windows on real paired hardware.
+  - Not proven: real paired controllers. The checks use mocked ones (below), so what Chrome reports to unfocused
+    windows on real hardware still needs a trial with the owner's controllers.
+- **Shared progress.** Settings are protected; two kinds of progress are shared on purpose:
+  - A player's window still records Bestiary entries (`quaked.bestiary.v1`). This is shared progress, and its
+    `unlock` reloads before writing, so it merges.
+  - It writes the game choice (`quaked.game.v1`) only through an explicit `game` command.
+  - It cannot save a game, because saving needs a running server.
+- **Driver level.** `NET_Init` now ends on driver level 0 (loopback). A socket taken without `NET_Connect`, such as
+  a direct `Loop_Connect` in a test, would otherwise be stamped with the last driver's index, the window driver's.
+- **A join given up leaves no ghost.** A player's window that stops asking reports it to the host:
+  - when it is refused, times out, is closed by `NET_Close`, or its page closes;
+  - the host then drops that window's queued join;
+  - otherwise the host would have taken a connection for a window that had gone, and held its slot until
+    `net_messagetimeout`.
 - **A shutdown freeze fixed.** `NET_SendToAll`, which the server uses to tell every client it is shutting down,
   started each slot as "not yet sent". That included free slots with no connection, so a listen server with a free
   slot waited out the whole 5 s block, frozen.
@@ -141,8 +164,20 @@ It has three forms:
   - Start's exact commands and player 2's window;
   - the next missing player's window, "every player is in", and End's commands;
   - a player window's address, its start-up commands, and Leave.
-- `tests/gamepad_test.js`: in local play, a controller drives only the focused window, and focus loss releases its
-  keys; outside local play, focus does not matter.
+- `tests/pad_assign_test.js` (2 tests):
+  - the assignment rule: players 2 and up first, sticky, a controller returns to its player, a leaver's controller
+    is freed, and extras play nobody;
+  - two windows on real BroadcastChannels: a player's window that reads no controllers plays its own from player 1's
+    reading and assignment, and a stale reading lapses.
+- `tests/gamepad_test.js`: in local play, player 1's page plays only player 1's controller. With one controller, it
+  is player 2's.
+- `tests/net_window_test.js` also has a case for a window that gives up before it is taken: the host takes nobody
+  for it. A mutation check: without the host dropping the queued join, the case fails.
+- A mocked-controller browser trial (`/tmp/claude-qk/local37c.mjs`): only player 1's page could read the one
+  controller, as a focus-gated browser does.
+  - The controller was assigned to player 2 in both windows.
+  - Its left stick moved player 2 by 533 units while player 1 stayed.
+  - This is mocked devices, not paired hardware.
 - `tests/startup_preload_test.js`: a player's window stops saving settings first, skips the attract prefetches, and
   joins after the UI barrier.
   - A mutation check: without the read-only switch or the skip, the test fails.
@@ -162,7 +197,8 @@ It has three forms:
 
 ## What remains
 
-- **[37c] input:** a pad per window, with a stable assignment and reconnects, and a proof on real paired controllers.
+- **[37c] input:** the proof on real paired controllers (the owner's trial). The Local screen could also show who has
+  which controller.
 - **More setup:** choosing the map, and skill for co-op.
 - **Owner decisions:** whether each window should get lower quality settings by default when four play on one
   computer, and whether Online should also be closed to its console commands (see

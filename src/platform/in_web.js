@@ -42,7 +42,9 @@ import {
 } from './touch.js';
 import { M_TouchInput } from '../engine/client/menu.js';
 import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
-import { Window_InLocalPlay } from '../engine/net/net_window.js';
+import { Window_InLocalPlay, Window_LocalSession } from '../engine/net/net_window.js';
+import { LocalPlay_PlayerWindow, LocalPlay_PlayerNumbers } from '../engine/client/local_play.js';
+import { PadShare_Join, PadShare_Frame } from './pad_share.js';
 import { isXRActive, XR_PollInput, xrInput } from './webxr.js';
 
 /*
@@ -139,14 +141,20 @@ const gpState = { index: null, id: null, sent: new Map(), owned: new Map(), noti
 function GP_GetPrimary() {
 
 	if ( typeof navigator === 'undefined' || navigator.getGamepads == null ) return null;
-	// in local play across windows each window would see the same controllers: only the focused one follows them
-	// (card [37c] gives each window a controller of its own)
-	if ( Window_InLocalPlay() && typeof document !== 'undefined' && typeof document.hasFocus === 'function' && ! document.hasFocus() ) return null;
-
 	const gamepads = navigator.getGamepads();
+	const connected = gamepads ? Array.from( gamepads ).filter( gp => gp && gp.connected ) : [];
+	// local play across windows (card [37c]): every window sees the same controllers, so each plays only the one
+	// player 1's page gave its player (pad_share.js)
+	if ( Window_InLocalPlay() ) {
+
+		const role = typeof location !== 'undefined' ? LocalPlay_PlayerWindow( location.search ) : null;
+		PadShare_Join( Window_LocalSession(), role ? role.player : 1 );
+		return PadShare_Frame( connected, LocalPlay_PlayerNumbers() );
+
+	}
+	PadShare_Join( null );
 	if ( ! gamepads ) return null;
 
-	const connected = Array.from( gamepads ).filter( gp => gp && gp.connected );
 	const current = connected.find( gp => gp.index === gpState.index && gp.id === gpState.id ), standard = connected.find( gp => gp.mapping === 'standard' );
 	// (a standard pad takes over from a nonstandard device that holds nothing: some systems list a pad's motion sensor or
 	// touchpad as a device of its own)
