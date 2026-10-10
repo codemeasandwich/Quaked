@@ -260,6 +260,8 @@ they use 85 of `three`'s names, and the stand-in had 31.
   WebTransport (Chrome with a self-signed ECDSA certificate) reached sign-on 4 on `maps/start.bsp` and the server
   reported the player in the game. The lobby spawns rooms with the same command and file; the lobby-to-room hand-off
   itself was not run.
+* The root `deno.lock` is committed (review of step 6): it pins `three.module.js` and `three.core.js` by hash (the
+  same files the tests load), and without it Deno fails to start where the install directory is read-only.
 * Deno 2.1 starts the server but never listens (no `Deno.QuicEndpoint`); `server/README.md` now asks for 2.2 or later
   and quotes the `connect` address (the console splits a bare word at `:`).
 * `tests/server_config_test.js` pins both import maps to `index.html`'s `three` and the task to `server/`; it fails on

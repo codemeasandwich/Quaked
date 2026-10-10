@@ -17,8 +17,10 @@ For local development, generate self-signed certificates:
 
 ```bash
 cd server
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes -subj "/CN=localhost"
+openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -keyout key.pem -out cert.pem -days 10 -nodes -subj "/CN=localhost"
 ```
+
+(ECDSA and at most 14 days, so Chrome can trust it by its key hash; see Connecting from Browser.)
 
 ### 2. Place Game Data
 
@@ -36,6 +38,14 @@ deno task server -cert cert.pem -key key.pem -direct   # paths from server/, whe
 The task runs it from `server/` (where it reads `../pak0.pak`) with the root `deno.json`, whose import map gives it the
 same `three` the browser loads (the engine's modules use it as they load). The lobby (`lobby_server.js`) spawns rooms
 with that same file.
+
+`three` comes from jsDelivr, so the first start fetches it (Deno then caches it). The root `deno.lock` pins both of its
+files by hash, and must stay committed: without it Deno tries to write one beside `deno.json` and fails where that
+directory is read-only. On a host without outbound access, fill the cache at deploy time:
+
+```bash
+deno cache --config deno.json server/game_server.js
+```
 
 The older TypeScript server below (`main.ts`) is a separate, unfinished entry point (see Status):
 
@@ -113,6 +123,9 @@ deno run --allow-net --allow-read main.ts \
 ```
 
 ### Docker
+
+This example predates the room server: it runs the unfinished `main.ts` on an old Deno. For the room server use
+Deno 2.2 or later and `game_server.js` as above.
 
 ```dockerfile
 FROM denoland/deno:1.40

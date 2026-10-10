@@ -14,6 +14,9 @@ Deno.test( 'both Deno import maps give the room server the browser\'s own three,
 
 	check( /^https:\/\/cdn\.jsdelivr\.net\/npm\/three@\d+\.\d+\.\d+\/build\/three\.module\.js$/.test( browserThree ), `index.html pins three: ${browserThree}` );
 	for ( const p of [ 'deno.json', 'server/deno.json' ] ) check( JSON.parse( read( p ) ).imports.three === browserThree, `${p} imports the browser's three (${browserThree})` );
+	// committed: it pins the CDN files, and Deno cannot write it where the install directory is read-only
+	const lock = JSON.parse( read( 'deno.lock' ) ).remote ?? {}, base = browserThree.replace( /three\.module\.js$/, '' );
+	for ( const f of [ 'three.module.js', 'three.core.js' ] ) check( /^[0-9a-f]{64}$/.test( lock[ base + f ] ?? '' ), `deno.lock pins ${base + f}` );
 	check( ! serverFiles.includes( 'browser_shim.js' ), 'the hand-kept three stub is gone' );
 	check( ! /browser_shim/.test( read( 'server/test_imports.js' ) + read( 'server/room_process_manager.ts' ) ), 'nothing in server/ loads the stub' );
 
