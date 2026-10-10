@@ -15,6 +15,7 @@
  */
 import * as THREE from 'three';
 import { solidskytexture, alphaskytexture } from '../../engine/render/gl_model.js';
+import { SUN_COLOR, SUN_SURFACE_COLOR, SUN_SURFACE, SUN_SCATTER, PILLAR_MAX, PILLAR_DEFAULT, r_bounce, r_cloudspeed } from './r_post_config.js';
 
 // direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
 
@@ -256,5 +257,64 @@ export function R_PostNoteSky() {
 export function R_MapHasSky() {
 
 	return skyState.hasSky;
+
+}
+
+/**
+ * This frame's sun uniforms (from `R_PostFinish`): whether the sun shines into the view, its colour, strength and
+ * pattern from the map's sky, the light shafts' sun density, the bounced light, the cloud cookie's drift and the sun's
+ * direction. The sun's shadow map is drawn after, by the caller, when it shines.
+ *
+ * @param {object} p the pipeline (`postState.gpu`)
+ * @param {THREE.Camera} camera the view camera
+ * @param {number} time client time, seconds
+ * @param {boolean} lighting whether advanced lighting is on
+ * @param {boolean} hasSkyView whether the view can see sky
+ * @returns {boolean} whether the sun shines this frame
+ */
+export function R_PostSkyUniforms( p, camera, time, lighting, hasSkyView ) {
+
+	const sh = p.shared;
+	// the sun, when the map has sky to light it; how strong, what colour and what
+	// pattern all come from the map's sky
+	const sunOn = lighting && hasSkyView === true;
+	sh.uSunOn.value = sunOn ? 1 : 0;
+
+	const bright = R_SkyBrightness( skyState.info.luma );
+	const sunGain = 0.5 + 0.9 * bright; // a dark sky still gives a little
+	const tint = skyState.info.color;
+	sh.uSunCol.value.set(
+		SUN_COLOR[ 0 ] * sunGain * ( 0.55 + 0.45 * tint[ 0 ] ),
+		SUN_COLOR[ 1 ] * sunGain * ( 0.55 + 0.45 * tint[ 1 ] ),
+		SUN_COLOR[ 2 ] * sunGain * ( 0.55 + 0.45 * tint[ 2 ] ) );
+	p.compositeMaterial.uniforms.uSunSurfaceCol.value.set(
+		SUN_SURFACE_COLOR[ 0 ] * ( 0.6 + 0.4 * tint[ 0 ] ),
+		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
+		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
+	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
+	// Hold the original nominal sun density. One common compositing gain below
+	// makes sun, point lights and the flashlight respond to the same slider once.
+	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * PILLAR_MAX * PILLAR_DEFAULT * ( 1.4 + 1.0 * bright );
+	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
+	p.volumeMaterial.uniforms.uOpenFog.value = 0; // no broad atmospheric veil
+	// a bright, clear sky is crisp; a dark one a little hazier
+	sh.uBounce.value = lighting ? Math.max( 0, r_bounce.value ) : 0;
+	sh.tCookie.value = skyState.cookie;
+	sh.tCookieCloud.value = skyState.cookieCloud;
+	sh.uCookieCloud.value = skyState.cookieCloud !== null ? 1 : 0;
+	sh.uCookie.value = skyState.cookie !== null ? 1 : 0;
+	sh.uCookieTime.value = time * Math.max( 0, r_cloudspeed.value );
+	if ( sunOn ) {
+
+		const e = camera.matrixWorldInverse.elements;
+		const sd = skyState.sunDirection;
+		sh.uSunDirV.value.set(
+			e[ 0 ] * sd[ 0 ] + e[ 4 ] * sd[ 1 ] + e[ 8 ] * sd[ 2 ],
+			e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
+			e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
+		sh.uSunDirW.value.set( sd[ 0 ], sd[ 1 ], sd[ 2 ] ).normalize();
+
+	}
+	return sunOn;
 
 }

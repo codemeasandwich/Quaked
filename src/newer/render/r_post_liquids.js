@@ -14,10 +14,10 @@
  * The level's pools and links are made by `R_BuildWorldLights` (gl_post.js) through `R_PostLiquidsReset`,
  * `R_PostAddLiquidLink` and `R_PostSetLiquidRegions`; everything else reads them through the getters.
  */
-import { r_water_look, r_reflect } from './r_post_config.js';
-import { R_WaterActive } from './r_post_state.js';
+import { r_water_look, r_reflect, r_mist, r_heathaze } from './r_post_config.js';
+import { R_WaterActive, postState } from './r_post_state.js';
 import { r_newer_water } from '../mode.js';
-import { R_WaterProbeUpdate, R_WaterProbeReadiness } from './r_waterprobe.js';
+import { R_WaterProbeUpdate, R_WaterProbeReadiness, R_WaterProbes } from './r_waterprobe.js';
 
 // Pools of water and slime: { kind, min: [x, y], max: [x, y], z }.  A ray that
 // passes through one loses light to it, and surfaces beneath it get caustics.
@@ -296,4 +296,95 @@ export function R_WaterStartupStatus(camera){
  const p=camera.matrixWorld.elements,near=[];
  for(const r of liquidRegions){if(r.kind!==0&&r.kind!==1)continue;const distance=Math.hypot(Math.max(r.min[0]-p[12],0,p[12]-r.max[0]),Math.max(r.min[1]-p[13],0,p[13]-r.max[1]),Math.max(0,r.z-p[14],p[14]-r.z-900));if(distance<2400)near.push({r,distance});}
  near.sort((a,b)=>a.distance-b.distance);return R_WaterProbeReadiness(camera,near.map(n=>n.r));
+}
+
+/**
+ * This frame's liquid uniforms on the composite (from `R_PostComposite`): the water and slime pools nearest the camera
+ * with their looks, the lava near it for the heat haze, the eye under water, reflection, and the pools' reflection
+ * probes.
+ *
+ * @param {object} cm the composite material's uniforms
+ * @param {THREE.Camera} camera the view camera
+ */
+export function R_PostLiquidUniforms( cm, camera ) {
+
+	// the pools nearest the camera
+	const cw = camera.matrixWorld.elements;
+	const ranked = [];
+	for ( const r of R_GetLiquidRegions() ) {
+
+		const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
+		const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
+		const dz = Math.max( r.z - 900 - cw[ 14 ], 0, cw[ 14 ] - r.z );
+		const dist = Math.hypot( dx, dy, dz );
+		if ( dist < 3200 ) ranked.push( { r, dist } );
+
+	}
+
+	ranked.sort( ( a, b ) => a.dist - b.dist );
+	const waterCount = r_newer_water.value !== 0 ? Math.min( ranked.length, MAX_LIQUID_REGIONS ) : 0;
+	cm.uWaterCount.value = waterCount;
+	cm.uMist.value = Math.max( 0, r_mist.value );
+	for ( let i = 0; i < waterCount; i ++ ) {
+
+		const r = ranked[ i ].r;
+		cm.uWaterMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, r.kind );
+		cm.uProbeOf.value[ i ] = - 1;
+		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, R_LiquidLookIndex( r.kind, r.mapLook ) );
+
+	}
+
+	// lava near the camera, for the heat haze
+	let lavaCount = 0;
+	if ( r_newer_water.value !== 0 && r_heathaze.value > 0 ) {
+
+		const near = [];
+		for ( const r of R_GetLavaRegions() ) {
+
+			const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
+			const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
+			const dist = Math.hypot( dx, dy, Math.max( 0, cw[ 14 ] - r.z - 150 ) );
+			if ( dist < 2400 ) near.push( { r, dist } );
+
+		}
+
+		near.sort( ( a, b ) => a.dist - b.dist );
+		lavaCount = Math.min( near.length, 4 );
+		for ( let i = 0; i < lavaCount; i ++ ) {
+
+			const r = near[ i ].r;
+			cm.uLavaMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, 0 );
+			cm.uLavaMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, 0 );
+
+		}
+
+	}
+
+	cm.uLavaCount.value = lavaCount;
+	cm.uUnderwater.value = postState.underwater ? 1 : 0;
+	cm.uHeat.value = postState.underwater ? 0 : Math.max( 0, r_heathaze.value );
+	cm.uReflect.value = Math.max( 0, r_reflect.value ); // the per-pool interface selects top/underside optics
+
+	// the pools' reflection probes (at most two are used at once)
+	const probeList = R_WaterProbes();
+	cm.tProbeA.value = probeList[ 0 ] != null ? probeList[ 0 ].rt.texture : null;
+	cm.tProbeB.value = probeList[ 1 ] != null ? probeList[ 1 ].rt.texture : null;
+	for ( let k = 0; k < 2; k ++ ) {
+
+		const pb = probeList[ k ];
+		if ( pb == null ) continue;
+		cm.uProbeCenter.value[ k ].set( pb.center[ 0 ], pb.center[ 1 ], pb.center[ 2 ] );
+		cm.uProbeMin.value[ k ].set( pb.min[ 0 ], pb.min[ 1 ], pb.min[ 2 ] );
+		cm.uProbeMax.value[ k ].set( pb.max[ 0 ], pb.max[ 1 ], pb.max[ 2 ] );
+
+	}
+
+	for ( let i = 0; i < waterCount; i ++ ) {
+
+		const r = ranked[ i ].r;
+		const k = probeList.findIndex( ( pb ) => pb.region === r );
+		cm.uProbeOf.value[ i ] = k;
+
+	}
+
 }

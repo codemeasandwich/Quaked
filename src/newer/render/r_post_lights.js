@@ -25,6 +25,7 @@ import { WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { rockUniforms } from './r_rockfield.js';
 import { R_PowerupLights, R_PowerupPulse } from './r_powerups.js';
 import { R_RendVeilLights } from './r_rendveil.js';
+import { R_FlashlightBeam } from './r_flashlight.js';
 
 //============================================================================
 // Light database
@@ -604,4 +605,58 @@ export function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 export function R_SelectWorldLights( viewMatrix, visframe, styles, dlights, time ) {
  selectLights( viewMatrix, visframe, styles, dlights, time );
  return _selected.slice( 0, selectedCount ).map( light => ( { source: light.source, position: light.worldPos.slice(), color: light.color.slice(), range: light.range, score: light.score, direction:light.direction.slice(), cone:light.cone.slice() } ) );
+}
+
+/**
+ * This frame's light uniforms, before the passes that use them (from `R_PostFinish`): the depth and camera, the
+ * chosen lights' positions, colours, cookies and cones, and the flashlight in view space.
+ *
+ * @param {object} p the pipeline (`postState.gpu`)
+ * @param {THREE.Camera} camera the view camera
+ * @param {?object} frame this frame's snapshot (`R_PostLightsFrame`): its lights and beam
+ * @param {number} time client time, seconds
+ * @param {boolean} lighting whether advanced lighting is on
+ */
+export function R_PostLightUniforms( p, camera, frame, time, lighting ) {
+
+	const sh = p.shared, hdr = p.hdr;
+	sh.tDepth.value = hdr.depthTexture;
+	sh.uProj.value.copy( camera.projectionMatrix );
+	sh.uProjInv.value.copy( camera.projectionMatrixInverse );
+	sh.uViewInv.value.copy( camera.matrixWorld );
+	sh.uNear.value = camera.near;
+	sh.uFar.value = camera.far;
+	sh.uCount.value = R_PostSelectedCount();
+	sh.uPowerupTime.value = time;
+
+	// the flashlight, in view space
+	const beam = frame?.beam || R_FlashlightBeam();
+	sh.uSpotOn.value = lighting && beam.on ? 1 : 0;
+	if ( beam.on ) {
+
+		const v = camera.matrixWorldInverse.elements;
+		const bp = beam.pos, bd = beam.dir;
+		sh.uSpotPos.value.set(
+			v[ 0 ] * bp[ 0 ] + v[ 4 ] * bp[ 1 ] + v[ 8 ] * bp[ 2 ] + v[ 12 ],
+			v[ 1 ] * bp[ 0 ] + v[ 5 ] * bp[ 1 ] + v[ 9 ] * bp[ 2 ] + v[ 13 ],
+			v[ 2 ] * bp[ 0 ] + v[ 6 ] * bp[ 1 ] + v[ 10 ] * bp[ 2 ] + v[ 14 ] );
+		sh.uSpotDir.value.set(
+			v[ 0 ] * bd[ 0 ] + v[ 4 ] * bd[ 1 ] + v[ 8 ] * bd[ 2 ],
+			v[ 1 ] * bd[ 0 ] + v[ 5 ] * bd[ 1 ] + v[ 9 ] * bd[ 2 ],
+			v[ 2 ] * bd[ 0 ] + v[ 6 ] * bd[ 1 ] + v[ 10 ] * bd[ 2 ] ).normalize();
+
+	}
+	for ( let i = 0, n = R_PostSelectedCount(); i < n; i ++ ) {
+
+		const s = frame.lights[ i ];
+		sh.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
+		sh.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
+		p.compositeMaterial.uniforms.uLightAdd.value[ i ] = s.add || 0;
+		sh.uLightCookie.value[ i ] = s.source?.cookie || 0;
+		sh.uLightRotation.value[ i ].fromArray( s.powerupRotation );
+  sh.uLightDirection.value[i].fromArray(s.viewDirection);
+  sh.uLightCone.value[i].fromArray(s.cone);
+
+	}
+
 }

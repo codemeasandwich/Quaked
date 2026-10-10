@@ -6,7 +6,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `heightFrameSnapshot`, `splitLeft`.
+ * State: no mutable exports; module-level variables `heightFrameSnapshot`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -88,6 +88,10 @@ import { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseS
 export { R_BuildSunOccluder, R_PointShadowAtlas, R_PointShadowStatus, R_ReleaseShadowCaster } from './r_post_shadows.js';
 import { R_DynResScale, R_PostSupported, dyn, dynResUpdate, makeRT, createPipeline, disposeTargets, ensureTargets, runPass } from './r_post_targets.js';
 export { R_DynResScale, R_PostSupported } from './r_post_targets.js';
+import { R_PostVolumeBloom, R_PostComposite, R_PostSetSplit } from './r_post_composite.js';
+export { R_PostSetSplit } from './r_post_composite.js';
+import { R_PostLightUniforms } from './r_post_lights.js';
+import { R_PostSkyUniforms } from './r_post_sky.js';
 
 // Unlit material colour is retained separately from baked lighting. A surface
 // without a light source need not be lifted merely to recover its colour later.
@@ -235,326 +239,20 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
  R_PerfStage( 'power-up fire' );
 
 
-	sh.tDepth.value = hdr.depthTexture;
-	sh.uProj.value.copy( camera.projectionMatrix );
-	sh.uProjInv.value.copy( camera.projectionMatrixInverse );
-	sh.uViewInv.value.copy( camera.matrixWorld );
-	sh.uNear.value = camera.near;
-	sh.uFar.value = camera.far;
-	sh.uCount.value = R_PostSelectedCount();
-	sh.uPowerupTime.value = time;
-
-	// the flashlight, in view space
-	const beam = frame?.beam || R_FlashlightBeam();
-	sh.uSpotOn.value = lighting && beam.on ? 1 : 0;
-	if ( beam.on ) {
-
-		const v = camera.matrixWorldInverse.elements;
-		const bp = beam.pos, bd = beam.dir;
-		sh.uSpotPos.value.set(
-			v[ 0 ] * bp[ 0 ] + v[ 4 ] * bp[ 1 ] + v[ 8 ] * bp[ 2 ] + v[ 12 ],
-			v[ 1 ] * bp[ 0 ] + v[ 5 ] * bp[ 1 ] + v[ 9 ] * bp[ 2 ] + v[ 13 ],
-			v[ 2 ] * bp[ 0 ] + v[ 6 ] * bp[ 1 ] + v[ 10 ] * bp[ 2 ] + v[ 14 ] );
-		sh.uSpotDir.value.set(
-			v[ 0 ] * bd[ 0 ] + v[ 4 ] * bd[ 1 ] + v[ 8 ] * bd[ 2 ],
-			v[ 1 ] * bd[ 0 ] + v[ 5 ] * bd[ 1 ] + v[ 9 ] * bd[ 2 ],
-			v[ 2 ] * bd[ 0 ] + v[ 6 ] * bd[ 1 ] + v[ 10 ] * bd[ 2 ] ).normalize();
-
-	}
-	for ( let i = 0, n = R_PostSelectedCount(); i < n; i ++ ) {
-
-		const s = frame.lights[ i ];
-		sh.uLightPos.value[ i ].set( s.pos[ 0 ], s.pos[ 1 ], s.pos[ 2 ], s.radius );
-		sh.uLightCol.value[ i ].set( s.color[ 0 ], s.color[ 1 ], s.color[ 2 ], s.range );
-		p.compositeMaterial.uniforms.uLightAdd.value[ i ] = s.add || 0;
-		sh.uLightCookie.value[ i ] = s.source?.cookie || 0;
-		sh.uLightRotation.value[ i ].fromArray( s.powerupRotation );
-  sh.uLightDirection.value[i].fromArray(s.viewDirection);
-  sh.uLightCone.value[i].fromArray(s.cone);
-
-	}
-
-	// the sun, when the map has sky to light it; how strong, what colour and what
-	// pattern all come from the map's sky
-	const sunOn = lighting && hasSkyView === true;
-	sh.uSunOn.value = sunOn ? 1 : 0;
-
-	const bright = R_SkyBrightness( skyState.info.luma );
-	const sunGain = 0.5 + 0.9 * bright; // a dark sky still gives a little
-	const tint = skyState.info.color;
-	sh.uSunCol.value.set(
-		SUN_COLOR[ 0 ] * sunGain * ( 0.55 + 0.45 * tint[ 0 ] ),
-		SUN_COLOR[ 1 ] * sunGain * ( 0.55 + 0.45 * tint[ 1 ] ),
-		SUN_COLOR[ 2 ] * sunGain * ( 0.55 + 0.45 * tint[ 2 ] ) );
-	p.compositeMaterial.uniforms.uSunSurfaceCol.value.set(
-		SUN_SURFACE_COLOR[ 0 ] * ( 0.6 + 0.4 * tint[ 0 ] ),
-		SUN_SURFACE_COLOR[ 1 ] * ( 0.6 + 0.4 * tint[ 1 ] ),
-		SUN_SURFACE_COLOR[ 2 ] * ( 0.6 + 0.4 * tint[ 2 ] ) );
-	p.compositeMaterial.uniforms.uSunSurface.value = SUN_SURFACE * ( 0.5 + 0.8 * bright );
-	// Hold the original nominal sun density. One common compositing gain below
-	// makes sun, point lights and the flashlight respond to the same slider once.
-	p.volumeMaterial.uniforms.uSunScatter.value = SUN_SCATTER * PILLAR_MAX * PILLAR_DEFAULT * ( 1.4 + 1.0 * bright );
-	// a bright, clear sky leaves open air nearly free of haze; a dark one hazier
-	p.volumeMaterial.uniforms.uOpenFog.value = 0; // no broad atmospheric veil
-	// a bright, clear sky is crisp; a dark one a little hazier
-	sh.uBounce.value = lighting ? Math.max( 0, r_bounce.value ) : 0;
-	sh.tCookie.value = skyState.cookie;
-	sh.tCookieCloud.value = skyState.cookieCloud;
-	sh.uCookieCloud.value = skyState.cookieCloud !== null ? 1 : 0;
-	sh.uCookie.value = skyState.cookie !== null ? 1 : 0;
-	sh.uCookieTime.value = time * Math.max( 0, r_cloudspeed.value );
+	R_PostLightUniforms( p, camera, frame, time, lighting );
+	const sunOn = R_PostSkyUniforms( p, camera, time, lighting, hasSkyView );
 	if ( sunOn ) {
 
-		const e = camera.matrixWorldInverse.elements;
-		const sd = skyState.sunDirection;
-		sh.uSunDirV.value.set(
-			e[ 0 ] * sd[ 0 ] + e[ 4 ] * sd[ 1 ] + e[ 8 ] * sd[ 2 ],
-			e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
-			e[ 2 ] * sd[ 0 ] + e[ 6 ] * sd[ 1 ] + e[ 10 ] * sd[ 2 ] ).normalize();
-		sh.uSunDirW.value.set( sd[ 0 ], sd[ 1 ], sd[ 2 ] ).normalize();
 		R_PostRenderSunShadow( renderer, scene, camera );
 		R_PerfStage( 'sun shadow' );
 
 	}
 
-	// volumetric pass
-	const volume = lighting ? Math.max( 0, r_volumetric.value ) * SHAFT_GAIN * Math.max( 0, r_pillars.value ) / PILLAR_DEFAULT : 0;
-	if ( volume > 0 ) runPass( renderer, p.volumeMaterial, p.volume );
-	R_PerfStage( 'light shafts' );
-
-	// bloom
-	const bloom = lighting ? Math.max( 0, r_bloom.value ) : 0;
-	if ( bloom > 0 ) {
-
-		const pm = p.prefilterMaterial.uniforms;
-		pm.tScene.value = hdr.texture;
-		pm.tPowerupFire.value=fireFrame?.texture||null;pm.uPowerupFireOn.value=fireFrame?.count?1:0;
-		pm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
-		pm.uExposure.value = exposure;
-		pm.uThreshold.value = hasSkyView === true ? OUTDOOR_BLOOM_THRESHOLD : 1.1;
-		runPass( renderer, p.prefilterMaterial, p.down[ 0 ] );
-
-		const dm = p.downMaterial.uniforms;
-		for ( let i = 1; i < BLOOM_LEVELS; i ++ ) {
-
-			dm.tSource.value = p.down[ i - 1 ].texture;
-			dm.uTexel.value.set( 1 / p.down[ i - 1 ].width, 1 / p.down[ i - 1 ].height );
-			runPass( renderer, p.downMaterial, p.down[ i ] );
-
-		}
-
-		const um = p.upMaterial.uniforms;
-		let low = p.down[ BLOOM_LEVELS - 1 ];
-		for ( let i = BLOOM_LEVELS - 2; i >= 0; i -- ) {
-
-			um.tLow.value = low.texture;
-			um.tHigh.value = p.down[ i ].texture;
-			um.uTexel.value.set( 1 / low.width, 1 / low.height );
-			um.uWeight.value = 0.55;
-			runPass( renderer, p.upMaterial, p.up[ i ] );
-			low = p.up[ i ];
-
-		}
-
-		p.bloomResult = low;
-
-	}
-
-	// composite to the screen
-	const cm = p.compositeMaterial.uniforms;
-	cm.tPowerupFire.value=fireFrame?.texture||null;cm.uPowerupFireOn.value=fireFrame?.count?1:0;
-	const shrouds = R_PowerupShroudFrame( scene, camera );
-	cm.tPowerupShrouds.value = shrouds.texture; cm.uPowerupShroudCount.value = shrouds.count;
-
-
-	// the pools nearest the camera
-	const cw = camera.matrixWorld.elements;
-	const ranked = [];
-	for ( const r of R_GetLiquidRegions() ) {
-
-		const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
-		const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
-		const dz = Math.max( r.z - 900 - cw[ 14 ], 0, cw[ 14 ] - r.z );
-		const dist = Math.hypot( dx, dy, dz );
-		if ( dist < 3200 ) ranked.push( { r, dist } );
-
-	}
-
-	ranked.sort( ( a, b ) => a.dist - b.dist );
-	const waterCount = r_newer_water.value !== 0 ? Math.min( ranked.length, MAX_LIQUID_REGIONS ) : 0;
-	cm.uWaterCount.value = waterCount;
-	cm.uMist.value = Math.max( 0, r_mist.value );
-	for ( let i = 0; i < waterCount; i ++ ) {
-
-		const r = ranked[ i ].r;
-		cm.uWaterMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, r.kind );
-		cm.uProbeOf.value[ i ] = - 1;
-		cm.uWaterMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, R_LiquidLookIndex( r.kind, r.mapLook ) );
-
-	}
-
-	// lava near the camera, for the heat haze
-	let lavaCount = 0;
-	if ( r_newer_water.value !== 0 && r_heathaze.value > 0 ) {
-
-		const near = [];
-		for ( const r of R_GetLavaRegions() ) {
-
-			const dx = Math.max( r.min[ 0 ] - cw[ 12 ], 0, cw[ 12 ] - r.max[ 0 ] );
-			const dy = Math.max( r.min[ 1 ] - cw[ 13 ], 0, cw[ 13 ] - r.max[ 1 ] );
-			const dist = Math.hypot( dx, dy, Math.max( 0, cw[ 14 ] - r.z - 150 ) );
-			if ( dist < 2400 ) near.push( { r, dist } );
-
-		}
-
-		near.sort( ( a, b ) => a.dist - b.dist );
-		lavaCount = Math.min( near.length, 4 );
-		for ( let i = 0; i < lavaCount; i ++ ) {
-
-			const r = near[ i ].r;
-			cm.uLavaMin.value[ i ].set( r.min[ 0 ], r.min[ 1 ], r.z, 0 );
-			cm.uLavaMax.value[ i ].set( r.max[ 0 ], r.max[ 1 ], r.z, 0 );
-
-		}
-
-	}
-
-	cm.uLavaCount.value = lavaCount;
-	cm.uUnderwater.value = postState.underwater ? 1 : 0;
-	cm.uHeat.value = postState.underwater ? 0 : Math.max( 0, r_heathaze.value );
-	cm.uReflect.value = Math.max( 0, r_reflect.value ); // the per-pool interface selects top/underside optics
-
-	// the pools' reflection probes (at most two are used at once)
-	const probeList = R_WaterProbes();
-	cm.tProbeA.value = probeList[ 0 ] != null ? probeList[ 0 ].rt.texture : null;
-	cm.tProbeB.value = probeList[ 1 ] != null ? probeList[ 1 ].rt.texture : null;
-	for ( let k = 0; k < 2; k ++ ) {
-
-		const pb = probeList[ k ];
-		if ( pb == null ) continue;
-		cm.uProbeCenter.value[ k ].set( pb.center[ 0 ], pb.center[ 1 ], pb.center[ 2 ] );
-		cm.uProbeMin.value[ k ].set( pb.min[ 0 ], pb.min[ 1 ], pb.min[ 2 ] );
-		cm.uProbeMax.value[ k ].set( pb.max[ 0 ], pb.max[ 1 ], pb.max[ 2 ] );
-
-	}
-
-	for ( let i = 0; i < waterCount; i ++ ) {
-
-		const r = ranked[ i ].r;
-		const k = probeList.findIndex( ( pb ) => pb.region === r );
-		cm.uProbeOf.value[ i ] = k;
-
-	}
-
-	cm.uScreenReflect.value = r_reflect_screen.value !== 0 ? 1 : 0;
-
-	cm.uEdge.value = postState.underwater || ! lighting ? 0 : Math.max( 0, r_newedges.value );
-	const drops = R_ScreenDropsUpdate();
-	cm.uDropDensity.value = postState.underwater ? 0 : drops.density;
-	cm.uDropBlood.value = drops.blood;
-	const tele = R_TeleportFx( performance.now() / 1000 );
-	cm.uTeleStretch.value = tele.stretch;
-	cm.uTeleChroma.value = tele.chroma;
-	cm.uDropAge.value = drops.age;
-	cm.uTime.value = time;
- cm.uActorWet.value=R_ActiveWeaponSurface().wet;
-	cm.uCaustic.value = r_newer_water.value !== 0 ? CAUSTIC * Math.max( 0, r_caustics.value ) : 0;
-	cm.tScene.value = hdr.textures[ 0 ];
-	cm.tNormal.value = hdr.textures[ 1 ];
-	cm.tAlbedo.value = hdr.textures[ 2 ] || null;
-	cm.tVolume.value = volume > 0 ? p.volume.texture : null;
-	cm.tBloom.value = bloom > 0 ? p.bloomResult.texture : null;
-	cm.uTexel.value.set( 1 / hdr.width, 1 / hdr.height );
-	// brightness and contrast are applied to the picture as displayed (below), so
-	// 0.6 is 40% darker and 1.4 is 40% more contrast as seen
-	const newBright = lighting ? Math.max( 0, r_newbright.value ) : 1;
-	cm.uExposure.value = lighting ? exposure * HDR_EXPOSURE * ( hasSkyView === true ? OUTDOOR_EXPOSURE : 1 ) : exposure;
-	cm.uBright.value = newBright;
-	cm.uContrastGain.value = lighting ? Math.max( 0, r_newcontrast.value ) : 1;
-	cm.uContrastPivot.value = newBright * 0.2; // deviations are taken from a typical scene brightness
-	cm.uBloom.value = bloom * ( hasSkyView === true ? OUTDOOR_BLOOM : 1 );
-	cm.uVolume.value = volume;
-
-	R_PerfStage( 'bloom' );
-
-	// Previously the expensive ray marches/bounce still ran at full device-pixel
-	// resolution when the scene shrank. At half scale that did four times the
-	// scene's work, preventing dynamic resolution from meeting its frame budget.
-	const vision = PowerVisionMode(cl, R_NewerGame());
-	const visionOn=vision!==0 || R_QuadVisionActive();
-	const waves = R_WaterActive() && R_WaterWavesLive() > 0; // (ripples on the water bend the finished picture: the present pass, card [W1])
-	const upscale = (lighting && dyn.scale < 1) || visionOn || waves;
-	// Rend the Veil consumes the existing linear composite, even when Newer
-	// lighting is disabled. Its local optics never repeat bloom/display grading.
-	const rendFields = R_NewerGame() ? R_RendVeilFields() : [];
-	const dofFocus = R_DofFocus(); // (depth of field is drawn by the present pass, card [38])
-	const offscreen = upscale || rendFields.length > 0 || dofFocus > 0;
-	cm.uOffscreen.value = offscreen ? 1 : 0;
-	if ( offscreen ) {
-
-		const count=visionOn?2:1;
-		if (p.composite===null || p.composite.textures.length!==count) {
-			p.composite?.dispose();p.composite=makeRT(hdr.width,hdr.height,{count});
-			if(visionOn){const t=p.composite.textures[1];t.type=THREE.UnsignedByteType;t.minFilter=t.magFilter=THREE.NearestFilter;t.userData.visionEncoded=true;}
-		}
-		runPass( renderer, p.compositeMaterial, p.composite );
-		R_PerfStage( 'final lighting pass' );
-		const shown = p.presentMaterial.uniforms;
-		const coordinates=visionOn?p.composite.textures[1]:null;
-		const veiled = rendFields.length > 0
-			? R_RendVeilOptics( renderer, p.composite.texture, hdr.depthTexture, R_RendVeilBackgroundDepth(), camera, rendFields )
-			: p.composite.texture;
-		const visionSource=R_PowerVisionRender(renderer,veiled,hdr,camera,vision,cl,coordinates);
-		shown.tComposite.value = R_QuadVisionRender(renderer,visionSource,hdr,camera,scene,coordinates);
-		shown.uBright.value = cm.uBright.value;
-		shown.uContrastGain.value = cm.uContrastGain.value;
-		shown.uContrastPivot.value = cm.uContrastPivot.value;
-		shown.uWaves.value = waves ? 1 : 0;
-		shown.tNormal.value = cm.tNormal.value;
-		if ( dofFocus > 0 ) {
-
-			if ( p.dof === null || p.dof.width !== hdr.width || p.dof.height !== hdr.height ) { p.dof?.dispose(); p.dof = makeRT( hdr.width, hdr.height ); }
-			const d = p.dofMaterial.uniforms, [ dofPx, dofMax ] = R_DofCircle( hdr.height );
-			d.tComposite.value = shown.tComposite.value; d.tNormal.value = cm.tNormal.value;
-			d.uDof.value.set( dofFocus, dofPx, dofMax ); d.uDofTexel.value.set( 1 / hdr.width, 1 / hdr.height ); d.uDofFar.value = R_DofFar();
-			runPass( renderer, p.dofMaterial, p.dof );
-			shown.tComposite.value = p.dof.texture;
-			R_PerfStage( 'depth of field' );
-
-		}
-
-	} else { R_PowerVisionReset(); R_QuadVisionReset(); }
-
-	renderer.setRenderTarget( null );
-	renderer.setViewport( viewport.lx, viewport.ly, viewport.lw, viewport.lh );
-	postState.gpu.mesh.material = offscreen ? p.presentMaterial : p.compositeMaterial;
-	if ( splitLeft ) {
-
-		renderer.setScissor( viewport.lx, viewport.ly, Math.floor( viewport.lw / 2 ), viewport.lh );
-		renderer.setScissorTest( true );
-
-	}
-
-	renderer.render( p.scene, p.camera );
-	if ( splitLeft ) renderer.setScissorTest( false );
-	R_PerfStage( upscale ? 'lighting upscale' : 'final lighting pass' );
+	const { volume, bloom } = R_PostVolumeBloom( renderer, p, fireFrame, exposure, hasSkyView, lighting );
+	R_PostComposite( renderer, scene, camera, viewport, p, fireFrame, time, exposure, hasSkyView, lighting, volume, bloom );
 
 }
 
-// the title demo's half-and-half comparison: the final pass fills the left half only
-let splitLeft = false;
-
-/**
- * The title demo's half-and-half comparison: while on, the final pass fills the left half only. Set each frame by
- * gl_rmain.js before `R_PostFinish`.
- *
- * @param {boolean} on true to draw only the left half (anything but `true` counts as false)
- */
-export function R_PostSetSplit( on ) {
-
-	splitLeft = on === true;
-
-}
 
 /**
  * Frees the pipeline: resets power and quad vision, the power-up fire target and the Rend the Veil optics, then
