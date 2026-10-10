@@ -50,6 +50,8 @@ const special = new Map( [
 	// no ETag or Last-Modified: a replacement of the same size must still be noticed
 	[ '/x/novalidator/pak0.pak', ( req, res, r ) => { const data = pack( [ state.version ? 'quake.rc' : 'progs.dat', 'maps/start.bsp' ] ); sendRange( res, data, Number( r[ 1 ] ), Math.min( Number( r[ 2 ] ), data.length - 1 ) ); } ],
 	// an empty file: a range-serving server has no byte 0 to give
+	// the header request answered with bytes 20-31: not the header
+	[ '/x/wronghead/pak0.pak', ( req, res ) => sendRange( res, plain, 20, 31 ) ],
 	[ '/x/empty/pak0.pak', ( req, res ) => { res.writeHead( 416, { 'Content-Range': 'bytes */0' } ); res.end(); } ]
 ] );
 files.set( '/resources/rogue/pak0.pak', Buffer.concat( [ pack( [ 'progs.dat' ] ), Buffer.alloc( 4 * 1024 * 1024 ) ] ) );
@@ -130,6 +132,8 @@ Deno.test( 'a wrong range is not a directory; a failed read is retried; no valid
 
 	const wrong = await GameCatalogue_ProbePack( base + 'x/wrongrange/pak0.pak', options );
 	check( wrong.state === 'present' && /as a range/.test( wrong.reason ), `another part of the file is not taken for the directory (${wrong.state})` );
+	const head = await GameCatalogue_ProbePack( base + 'x/wronghead/pak0.pak', options );
+	check( head.state === 'present' && /another part/.test( head.reason ), `a wrong header range is not judged a broken pack (${head.state})` );
 	const first = await GameCatalogue_ProbePack( base + 'x/flaky/pak0.pak', options );
 	check( first.state === 'error' && /timeout/.test( first.reason ), 'the directory read timed out once' );
 	const second = await GameCatalogue_ProbePack( base + 'x/flaky/pak0.pak', options );

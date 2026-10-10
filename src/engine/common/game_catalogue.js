@@ -158,6 +158,8 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 	if ( r.status === 404 || r.status === 410 ) return { state: 'absent', reason: 'HTTP ' + r.status };
 	if ( r.status === 416 ) return { state: 'invalid', reason: 'an empty file (no byte 0 to read)' };
 	if ( ! r.ok ) return { state: 'error', reason: 'HTTP ' + r.status };
+	// a 206 for another part of the file: the bytes are not the header, so they are not judged
+	if ( r.status === 206 && ! head.exact ) return { state: 'present', reason: 'the server answered another part of the file, so it was not read' };
 	const type = ( r.headers.get( 'content-type' ) ?? '' ).toLowerCase(), first = String.fromCharCode( ...head.bytes.subarray( 0, 4 ) );
 	if ( type.includes( 'text/html' ) || /^\s*</.test( first ) ) return { state: 'absent', reason: 'an HTML page, not a pack (a soft 404)' };
 	if ( head.bytes.byteLength < GAME_CATALOGUE_LIMITS.headerBytes ) return { state: 'invalid', reason: 'truncated pack header' };
@@ -168,7 +170,6 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 	if ( ! header.ok ) return { state: 'invalid', reason: header.reason, size };
 	if ( options.headerOnly ) return { state: 'present', size };
 	if ( r.status !== 206 ) return { state: 'present', reason: 'the server ignores byte ranges, so its directory was not read', size };
-	if ( ! head.exact ) return { state: 'present', reason: 'the server answered another part of the file, so its directory was not read', size };
 	const cached = cache.get( url ), validator = r.headers.get( 'etag' ) ?? r.headers.get( 'last-modified' ) ?? '';
 	// the same archive: same size, validator and directory place (without a validator, a rewrite of the same size that
 	// moves or resizes the directory is still noticed)
