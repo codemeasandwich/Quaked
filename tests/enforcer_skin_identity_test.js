@@ -72,7 +72,7 @@ Deno.test( 'actual Enforcer assets retain approved provenance and every other en
  const other = structuredClone( index ); delete other.version; delete other.models.oldone; delete other.models.enforcer; delete other.models.tarbaby; delete other.models.hknight; // (this skin, the Shub one before it and the Spawn and Death Knight ones after)
  // The same digest as the Shub test's: excluding the four bound skins (Shub, Enforcer, Spawn, Death Knight), the cache revision and the three face-overlay blocks proves all earlier entries intact.
  for ( const model of [ 'soldier', 'ogre', 'knight' ] ) delete other.models[ model ][ 0 ].faces; // (the face overlays, pinned by enemy_face_material_test)
-	check( Object.values( other.models ).every( list => list.every( variant => variant.faces === undefined ) ), 'no other variant has face overlays' );
+ check( Object.values( other.models ).every( list => list.every( variant => variant.faces === undefined ) ), 'no other variant has face overlays' );
  same( sha( JSON.stringify( other ) ), '96a0c7c83425850e4bf37976cbcd1518e21ccf9391b090d4ae8942773a975fe7', 'all other enemy variants and native height mappings unchanged' );
 } );
 Deno.test( 'actual manifest admits only matching Enforcer skin zero and preserves native geometry through preparation and selection', async () => fixture( async ( skins, requests ) => {

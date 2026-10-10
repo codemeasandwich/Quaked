@@ -104,7 +104,7 @@ running, it was landed on `Dev` by Claude: the same code, adapted to what `Dev` 
 * **Checked on Dev.**
   * The face suites (material 7/7, native 11/11), the bound-skin suites and `startup_skins` pass. The full suite on the
     landing passes but for suites lacking inputs not on this machine (donor zips, a Quake install in `~/Downloads`).
-  * In Chrome on E1M2 (`tests/enemy_face_gameplay_trial.html`), ogres, grunts and knights were drawn with their faces:
+  * In Chrome on E1M2 (`tests/enemy_face_gameplay_trial.html`, on the landing's code as of 18fe16c, before it was rebased onto the depth-of-field and muddy-water defaults; later commits changed only comments, tests and docs), ogres, grunts and knights were drawn with their faces:
     23 individuals seeded, the client's copy matching for each one in view, 23 seeds unchanged through save and load, no
     GL or page errors ([receipt](evidence/enemy-face-dev-landing-2026-10-10.json),
     [frames: ogre, grunts, knight](evidence/enemy-face-dev-landing-2026-10-10.jpg)).
