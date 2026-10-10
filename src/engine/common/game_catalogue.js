@@ -234,7 +234,8 @@ function assess( game, files, byId ) {
 
 	}
 	// an episode runs on Quake as standard Quake (card [34c]): its QuakeC and start map are what it needs; Dimension of
-	// the Machine is not yet, as some of its levels need more than the 256 models protocol 15 can name
+	// the Machine is not yet: some of its levels need more than the 256 models protocol 15 can name, and more signon
+	// than its 8192 bytes (card [34f])
 	if ( game.kind === 'episode' && EPISODES.has( game.id ) ) {
 
 		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
@@ -242,7 +243,7 @@ function assess( game, files, byId ) {
 		return { playable: true, reason: 'an episode: its QuakeC and BSP2 maps, played on Quake' };
 
 	}
-	if ( game.id === 'mg1' ) return { playable: false, reason: 'some of its levels need more than 256 models, which needs the FitzQuake protocol (not yet built)' };
+	if ( game.id === 'mg1' ) return { playable: false, reason: 'some of its levels need more than 256 models and a signon larger than 8 KB (a large-map protocol, not yet built)' };
 	return { playable: false, reason: game.kind === 'addon' ? 'add-on support (its QuakeC, entities and limits) is not yet shown to work' : 'its HUD, QuakeC and protocol support are not yet shown to work' };
 
 }

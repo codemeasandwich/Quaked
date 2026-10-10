@@ -432,7 +432,9 @@ export const cl_entities = [];
 for ( let i = 0; i < MAX_EDICTS; i ++ ) cl_entities.push( new entity_t() );
 
 export const cl_static_entities = [];
-for ( let i = 0; i < MAX_STATIC_ENTITIES; i ++ ) cl_static_entities.push( new entity_t() );
+// WinQuake's 128 made at load; more are made as a map needs them, up to MAX_STATIC_ENTITIES (CL_ParseStatic), as 4096 made
+// at once would cost some 9 MB for every game (card [34c])
+for ( let i = 0; i < 128; i ++ ) cl_static_entities.push( new entity_t() );
 
 export const cl_lightstyle = [];
 for ( let i = 0; i < MAX_LIGHTSTYLES; i ++ ) cl_lightstyle.push( new lightstyle_t() );

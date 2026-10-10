@@ -1315,6 +1315,7 @@ export function CL_ParseStatic() {
 	const i = cl.num_statics;
 	if ( i >= MAX_STATIC_ENTITIES )
 		_Host_Error( 'Too many static entities' );
+	if ( i >= cl_static_entities.length ) cl_static_entities.push( new entity_t() ); // made as a map needs them
 	const ent = cl_static_entities[ i ];
 	cl.num_statics ++;
 	CL_ParseBaseline( ent );

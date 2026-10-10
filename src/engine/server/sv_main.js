@@ -9,7 +9,7 @@
  * State: mutable exports `current_skill`; module-level variables `fatbytes`, `fatpvs`, `sv_playermodel`,
  * `carriedPowerups`.
  *
- * Errors: calls `Sys_Error` (fatal) at 9 places.
+ * Errors: calls `Sys_Error` (fatal) at 9 places; calls `Host_Error` at 1 place.
  *
  * `SV_SpawnServer` gives seamless travel the engine's model functions (`SV_SeamlessUseModels`); until [44g] (debt
  * D10) that ran as the module loaded.
@@ -1907,6 +1907,10 @@ export function SV_SpawnServer( server ) {
 	sv.signon.maxsize = 8192;
 	sv.signon.cursize = 0;
 	sv.signon.data = sv.signon_buf;
+	// a map whose static entities, ambient sounds and baselines do not fit (8192 bytes holds some 550 static entities)
+	// ends the game with a Host_Error below, rather than a Sys_Error that takes the page down (card [34c])
+	sv.signon.allowoverflow = true;
+	sv.signon.overflowed = false;
 
 	// leave slots at start for clients only
 	sv.num_edicts = svs.maxclients + 1;
@@ -2014,6 +2018,8 @@ export function SV_SpawnServer( server ) {
 
 	// create a baseline for more efficient communications
 	SV_CreateBaseline();
+	if ( sv.signon.overflowed )
+		Host_Error( 'SV_SpawnServer: ' + server + ' has more static entities, ambient sounds and baselines than the 8192-byte signon holds' );
 
 	// send serverinfo to all connected clients
 	for ( let i = 0; i < svs.maxclients; i ++ ) {
