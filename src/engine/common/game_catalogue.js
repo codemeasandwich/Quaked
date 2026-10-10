@@ -14,7 +14,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_catalogue`, `_counters`; 1 module-level collection (Map/Set).
+ * State: no mutable exports; module-level variables `_catalogue`, `_pending`, `_counters`; 1 module-level collection
+ * (Map/Set).
  *
  * Errors: catches at 3 places.
  *
@@ -50,6 +51,7 @@ export const GAME_CATALOGUE_LIMITS = Object.freeze( { packs: 5, headerBytes: 12,
 
 const cache = new Map(); // url -> { size, validator, result }
 let _catalogue = null;
+let _pending = null; // the refresh in progress, shared by concurrent callers
 let _counters = { requests: 0, bytes: 0, largestRead: 0 };
 
 /**
@@ -209,7 +211,8 @@ function assess( game, files, byId ) {
 
 /**
  * Probes every known game's folders and builds the catalogue. Bounded: per pack at most a header and a directory;
- * packs pak0..pak4, stopping at the first missing; the first folder holding a `pak0.pak` is the game's.
+ * packs pak0..pak4, stopping at the first missing; the first folder holding a `pak0.pak` is the game's. A call while a
+ * refresh runs returns that refresh (one probe at a time).
  *
  * @param {{ fetch?: function, timeoutMs?: number, base?: string }} [options] the fetch to use, a time limit per request,
  *   and the URL the folders are relative to (default the page's)
@@ -219,7 +222,15 @@ function assess( game, files, byId ) {
  *   `beyondLimit` (more packs than the bound, never then playable);
  *   and what the probe cost
  */
-export async function GameCatalogue_Refresh( options = {} ) {
+export function GameCatalogue_Refresh( options = {} ) {
+
+	// one refresh at a time: a second request while one runs (the startup probe and the `games` command) shares it
+	if ( _pending === null ) _pending = refresh( options ).finally( () => { _pending = null; } );
+	return _pending;
+
+}
+
+async function refresh( options ) {
 
 	_counters = { requests: 0, bytes: 0, largestRead: 0 };
 	const base = options.base ?? ( typeof location !== 'undefined' ? location.href : 'http://localhost/' );

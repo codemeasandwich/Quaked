@@ -104,6 +104,13 @@ Deno.test( 'a pack dropped in between refreshes is found; an unchanged one is no
 
 } );
 
+Deno.test( 'two refreshes asked for together are one probe', async () => {
+
+	const [ a, b ] = await Promise.all( [ GameCatalogue_Refresh( options ), GameCatalogue_Refresh( options ) ] );
+	check( a === b, 'the second caller gets the running refresh' );
+
+} );
+
 Deno.test( 'the probe reads only a header from a server that ignores Range, and refuses HTML for a pack', async () => {
 
 	const p = await GameCatalogue_ProbePack( base + 'resources/rogue/pak0.pak', options );
