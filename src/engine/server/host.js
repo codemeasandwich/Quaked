@@ -35,7 +35,7 @@ import { Chase_Init } from '../client/chase.js';
 import { W_LoadWadFile } from '../common/wad.js';
 import { COM_LoadFile, COM_FindFile } from '../common/pak.js';
 import { Key_Init, Key_WriteBindings, key_lines, edit_line, key_linepos, chat_buffer } from '../client/keys.js';
-import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from '../common/console.js';
+import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf, Con_Sprintf } from '../common/console.js';
 import { M_Init, M_SetExternals, M_Draw, M_ConnectionError } from '../client/menu.js';
 import { Touch_BottomInset, Touch_ExitFullscreen } from '../../platform/touch.js';
 import { MainMenu_Destroy } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
@@ -762,13 +762,15 @@ let host_error_reentrancy = false;
  * and carries on with the next frame. Modules below the host reach it through their SetExternals (wired at the end of
  * this module); sv_main.js imports it.
  *
- * @param {string} error the message, used as given (no format arguments are taken; extra arguments are ignored)
+ * @param {string} error the message, printf-style when `args` are given (formatted by `Con_Sprintf`)
+ * @param {...*} args the values for its codes
  * @returns {never}
  * @throws {Error} always: `Host_Error: <error>`; and via `Sys_Error` ('Host_Error: recursively entered - ...') when
  *   entered again while handling one
  */
-export function Host_Error( error ) {
+export function Host_Error( error, ...args ) {
 
+	if ( args.length > 0 ) error = Con_Sprintf( error, ...args ); // printf-style, as callers write it (card [44m])
 	if ( host_error_reentrancy )
 		Sys_Error( 'Host_Error: recursively entered - ' + error );
 
@@ -998,19 +1000,12 @@ SV_ClientPrintf
  * reliable message buffer (sent with its next update). Used by the host's console commands (host_cmd.js). Does
  * nothing when there is no current client.
  *
- * @param {string} fmt the text; each `%s` is replaced in turn by the next argument (no other format codes are
- *   expanded)
- * @param {...*} args values for the `%s` codes; a falsy value (including 0) becomes an empty string
+ * @param {string} fmt the text, printf-style (`%s`, `%d`, `%i`, `%f` with width and precision, as `Con_Printf`)
+ * @param {...*} args the values for its codes
  */
 export function SV_ClientPrintf( fmt, ...args ) {
 
-	// Format the string
-	let msg = fmt;
-	if ( args.length > 0 ) {
-
-		msg = fmt.replace( /%s/g, () => args.shift() || '' );
-
-	}
+	const msg = args.length > 0 ? Con_Sprintf( fmt, ...args ) : fmt; // every printf code, 0 printed as 0 (card [44m])
 
 	// Write to host_client's message buffer
 	if ( host_client && host_client.message ) {
@@ -1032,19 +1027,12 @@ SV_BroadcastPrintf
  * reliable message of every active, spawned client. Used by the `pause` command (host_cmd.js) and, through
  * `Cvar_SetServerBroadcast` (set by `Host_Init`), to announce changes to `server` cvars while a server is active.
  *
- * @param {string} fmt the text; each `%s` is replaced in turn by the next argument (no other format codes are
- *   expanded)
- * @param {...*} args values for the `%s` codes; a falsy value (including 0) becomes an empty string
+ * @param {string} fmt the text, printf-style (`%s`, `%d`, `%i`, `%f` with width and precision, as `Con_Printf`)
+ * @param {...*} args the values for its codes
  */
 export function SV_BroadcastPrintf( fmt, ...args ) {
 
-	// Format the string
-	let msg = fmt;
-	if ( args.length > 0 ) {
-
-		msg = fmt.replace( /%s/g, () => args.shift() || '' );
-
-	}
+	const msg = args.length > 0 ? Con_Sprintf( fmt, ...args ) : fmt; // every printf code, 0 printed as 0 (card [44m])
 
 	Con_Printf( '%s', msg );
 

@@ -36,10 +36,13 @@ export function Sys_Init() {
  * the page body with the message in red when a `document` exists (browser only; not under Deno), then throws.
  * Never returns.
  *
- * @param {string} error the message, already formatted by the caller
- * @throws {Error} always, with `error` as its message
+ * @param {string} error the message, printf-style when `args` are given (`%s`, `%d`, `%i`, `%f`)
+ * @param {...*} args the values for its codes (card [44m]: callers pass them, as in WinQuake)
+ * @throws {Error} always, with the formatted message
  */
-export function Sys_Error( error ) {
+export function Sys_Error( error, ...args ) {
+
+	error = _formatPrintf( error, args );
 
 	console.error( 'Sys_Error: ' + error );
 

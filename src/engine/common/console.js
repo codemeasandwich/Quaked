@@ -773,6 +773,16 @@ export function Con_NotifyBox( text ) {
 ==============================================================================
 */
 
+/**
+ * Formats a Quake printf-style string (`%s`, `%d`, `%i`, `%f`, `%c`, `%x`, with flags, width and precision), as
+ * `Con_Printf` does. Used by `Host_Error` and the server's client prints (host.js) for their arguments (card [44m]).
+ *
+ * @param {string} fmt the format; a non-string is returned as its `String`
+ * @param {...*} args the values, in order
+ * @returns {string} the formatted text
+ */
+export function Con_Sprintf( fmt, ...args ) { return _sprintf( fmt, ...args ); }
+
 // sprintf implementation supporting width, precision, and flags for Quake format strings
 function _sprintf( fmt, ...args ) {
 

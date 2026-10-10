@@ -28,6 +28,7 @@ import { Con_Printf, Con_DPrintf, SZ_Clear,
 	msg_readcount, msg_badread,
 	net_message, standard_quake } from '../common/common.js';
 import { Sys_Error, Sys_FloatTime } from '../common/sys.js';
+import { Con_Sprintf } from '../common/console.js';
 import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from '../common/pak.js';
 import { sv, svs } from '../server/server.js';
 import { Cbuf_AddText } from '../common/cmd.js';
@@ -97,7 +98,7 @@ import { SCR_CenterPrint } from '../render/gl_screen.js';
 
 // The host's error and end-of-game unwinds (card [44g], debt D1a: the client does not import the host), set by the
 // host with CL_Parse_SetExternals. Until then each still throws, as they do, without the host's cleanup.
-let _Host_Error = error => { throw new Error( 'Host_Error: ' + error ); };
+let _Host_Error = ( error, ...args ) => { throw new Error( 'Host_Error: ' + ( args.length > 0 ? Con_Sprintf( error, ...args ) : error ) ); };
 
 // a model, frame or sound number: a byte in protocol 15, a short in the large-map protocol (card [34f])
 function MSG_ReadIndex() {
