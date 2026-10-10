@@ -39,6 +39,19 @@ const files = new Map( [
 	[ '/resources/quoth/pak0.pak', ( () => { const b = pack( [ 'progs.dat' ] ); b.writeInt32LE( 1e9, 4 ); return b; } )() ] // directory past the end
 ] );
 const ignoresRange = new Set( [ '/resources/rogue/pak0.pak' ] ), served = { bytes: 0 };
+// Single-pack quirks, probed directly: each answers one way a server can go wrong
+const sendRange = ( res, data, start, end, headers = {} ) => { const body = data.subarray( start, end + 1 ); res.writeHead( 206, { 'Content-Range': `bytes ${start}-${end}/${data.length}`, 'Content-Length': body.length, ...headers } ); res.end( body ); };
+const plain = pack( [ 'progs.dat', 'maps/start.bsp' ] ), state = { flaky: 0, version: 0 };
+const special = new Map( [
+	// the directory request answered with the file's start instead
+	[ '/x/wrongrange/pak0.pak', ( req, res, r ) => Number( r[ 1 ] ) === 0 ? sendRange( res, plain, 0, 11 ) : sendRange( res, plain, 0, Number( r[ 2 ] ) - Number( r[ 1 ] ) ) ],
+	// the first directory request never answers; later ones do
+	[ '/x/flaky/pak0.pak', ( req, res, r ) => { if ( Number( r[ 1 ] ) === 0 ) return sendRange( res, plain, 0, 11, { ETag: '"f"' } ); if ( state.flaky ++ === 0 ) return; sendRange( res, plain, Number( r[ 1 ] ), Number( r[ 2 ] ), { ETag: '"f"' } ); } ],
+	// no ETag or Last-Modified: a replacement of the same size must still be noticed
+	[ '/x/novalidator/pak0.pak', ( req, res, r ) => { const data = pack( [ state.version ? 'quake.rc' : 'progs.dat', 'maps/start.bsp' ] ); sendRange( res, data, Number( r[ 1 ] ), Math.min( Number( r[ 2 ] ), data.length - 1 ) ); } ],
+	// an empty file: a range-serving server has no byte 0 to give
+	[ '/x/empty/pak0.pak', ( req, res ) => { res.writeHead( 416, { 'Content-Range': 'bytes */0' } ); res.end(); } ]
+] );
 files.set( '/resources/rogue/pak0.pak', Buffer.concat( [ pack( [ 'progs.dat' ] ), Buffer.alloc( 4 * 1024 * 1024 ) ] ) );
 
 const server = createServer( ( req, res ) => {
@@ -46,6 +59,8 @@ const server = createServer( ( req, res ) => {
 	const path = decodeURIComponent( new URL( req.url, 'http://x' ).pathname );
 	res.on( 'error', () => {} );
 	if ( req.method === 'HEAD' ) { res.writeHead( 405 ); return res.end(); } // HEAD refused: the probe never needs it
+	const r0 = /^bytes=(\d+)-(\d+)$/.exec( req.headers.range ?? '' ), quirk = special.get( decodeURIComponent( new URL( req.url, 'http://x' ).pathname ) );
+	if ( quirk ) return quirk( req, res, r0 );
 	if ( path === '/resources/xmen/pak0.pak' ) return; // never answers: the probe's time limit ends it
 	if ( path === '/resources/aopfm_v2/pak0.pak' ) { res.writeHead( 500 ); return res.end( 'boom' ); }
 	if ( path === '/resources/ad/pak0.pak' ) { res.writeHead( 200, { 'Content-Type': 'text/html' } ); return res.end( '<!doctype html><title>Not found</title>' ); }
@@ -108,6 +123,23 @@ Deno.test( 'two refreshes asked for together are one probe', async () => {
 
 	const [ a, b ] = await Promise.all( [ GameCatalogue_Refresh( options ), GameCatalogue_Refresh( options ) ] );
 	check( a === b, 'the second caller gets the running refresh' );
+
+} );
+
+Deno.test( 'a wrong range is not a directory; a failed read is retried; no validator means read again; empty is invalid', async () => {
+
+	const wrong = await GameCatalogue_ProbePack( base + 'x/wrongrange/pak0.pak', options );
+	check( wrong.state === 'present' && /as a range/.test( wrong.reason ), `another part of the file is not taken for the directory (${wrong.state})` );
+	const first = await GameCatalogue_ProbePack( base + 'x/flaky/pak0.pak', options );
+	check( first.state === 'error' && /timeout/.test( first.reason ), 'the directory read timed out once' );
+	const second = await GameCatalogue_ProbePack( base + 'x/flaky/pak0.pak', options );
+	check( second.state === 'valid', 'the next probe tries again (an error is not cached) and validates it' );
+	const before = await GameCatalogue_ProbePack( base + 'x/novalidator/pak0.pak', options );
+	state.version = 1;
+	const after = await GameCatalogue_ProbePack( base + 'x/novalidator/pak0.pak', options );
+	check( before.files.includes( 'progs.dat' ) && after.files.includes( 'quake.rc' ), 'without a validator a same-size replacement is noticed' );
+	const empty = await GameCatalogue_ProbePack( base + 'x/empty/pak0.pak', options );
+	check( empty.state === 'invalid' && /empty/.test( empty.reason ), 'an empty file is invalid, not an error' );
 
 } );
 

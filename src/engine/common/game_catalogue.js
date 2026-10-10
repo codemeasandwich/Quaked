@@ -17,7 +17,7 @@
  * State: no mutable exports; module-level variables `_catalogue`, `_pending`, `_counters`; 1 module-level collection
  * (Map/Set).
  *
- * Errors: catches at 3 places.
+ * Errors: throws at 1 place; catches at 4 places.
  *
  * Results are cached by URL with the size and validators the server gave; `GameCatalogue_Refresh` re-reads only the
  * headers, and a directory again only when a pack changed. Selecting and mounting a game is not done here ([34c],
@@ -84,8 +84,8 @@ async function readBounded( response, limit ) {
 
 	} else {
 
-		const all = new Uint8Array( await response.arrayBuffer() );
-		got = Math.min( all.byteLength, limit ); out.set( all.subarray( 0, got ) );
+		// no stream to stop early: reading it whole could buffer an archive, so refuse
+		throw new Error( 'the response cannot be read in bounded pieces' );
 
 	}
 	_counters.bytes += got; _counters.largestRead = Math.max( _counters.largestRead, got );
@@ -101,8 +101,9 @@ async function readBounded( response, limit ) {
  * @param {number} start first byte
  * @param {number} length how many bytes
  * @param {number} timeoutMs time limit
- * @returns {Promise<{ response?: Response, bytes?: Uint8Array, error?: string }>} the response and up to `length`
- *   bytes of its body, or why it failed ('timeout', the network error's message)
+ * @returns {Promise<{ response?: Response, bytes?: Uint8Array, exact?: boolean, error?: string }>} the response, up to
+ *   `length` bytes of its body and whether it is a 206 for exactly the range asked for; or why it failed ('timeout',
+ *   the network error's message, or a body that cannot be read in bounded pieces)
  */
 async function rangedGet( fetchImpl, url, start, length, timeoutMs ) {
 
@@ -114,7 +115,10 @@ async function rangedGet( fetchImpl, url, start, length, timeoutMs ) {
 		const response = await fetchImpl( url, { headers: { Range: `bytes=${start}-${start + length - 1}` }, signal: abort?.signal, cache: 'no-store' } );
 		const bytes = response.ok ? await readBounded( response, length ) : new Uint8Array( 0 );
 		if ( ! response.ok && response.body?.cancel ) response.body.cancel().catch( () => {} );
-		return { response, bytes };
+		// a 206 counts only when it is the range asked for (a server can answer another part of the file)
+		const served = /^bytes\s+(\d+)-(\d+)\//.exec( response.headers.get( 'content-range' ) ?? '' );
+		const exact = response.status === 206 && served !== null && Number( served[ 1 ] ) === start && Number( served[ 2 ] ) === start + length - 1;
+		return { response, bytes, exact };
 
 	} catch ( error ) {
 
@@ -152,6 +156,7 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 	if ( head.error ) return { state: 'error', reason: head.error };
 	const r = head.response;
 	if ( r.status === 404 || r.status === 410 ) return { state: 'absent', reason: 'HTTP ' + r.status };
+	if ( r.status === 416 ) return { state: 'invalid', reason: 'an empty file (no byte 0 to read)' };
 	if ( ! r.ok ) return { state: 'error', reason: 'HTTP ' + r.status };
 	const type = ( r.headers.get( 'content-type' ) ?? '' ).toLowerCase(), first = String.fromCharCode( ...head.bytes.subarray( 0, 4 ) );
 	if ( type.includes( 'text/html' ) || /^\s*</.test( first ) ) return { state: 'absent', reason: 'an HTML page, not a pack (a soft 404)' };
@@ -163,15 +168,19 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 	if ( ! header.ok ) return { state: 'invalid', reason: header.reason, size };
 	if ( options.headerOnly ) return { state: 'present', size };
 	if ( r.status !== 206 ) return { state: 'present', reason: 'the server ignores byte ranges, so its directory was not read', size };
+	if ( ! head.exact ) return { state: 'present', reason: 'the server answered another part of the file, so its directory was not read', size };
 	const cached = cache.get( url ), validator = r.headers.get( 'etag' ) ?? r.headers.get( 'last-modified' ) ?? '';
-	if ( cached && cached.size === size && cached.validator === validator && cached.dirofs === header.dirofs ) return cached.result;
+	// the same archive: same size, validator and directory place (without a validator, a rewrite of the same size that
+	// moves or resizes the directory is still noticed)
+	// (no validator from the server: nothing shows the archive is unchanged, so it is read again: at most 128 KB)
+	if ( validator !== '' && cached && cached.size === size && cached.validator === validator && cached.dirofs === header.dirofs && cached.dirlen === header.dirlen ) return cached.result;
 	let result;
 	if ( header.count === 0 ) result = { state: 'valid', size, files: [] };
 	else {
 
 		const dir = await rangedGet( fetchImpl, url, header.dirofs, header.dirlen, timeoutMs );
 		if ( dir.error ) result = { state: 'error', reason: 'directory: ' + dir.error, size };
-		else if ( dir.response.status !== 206 || dir.bytes.byteLength !== header.dirlen ) result = { state: 'present', reason: 'its directory could not be read as a range', size };
+		else if ( ! dir.exact || dir.bytes.byteLength !== header.dirlen ) result = { state: 'present', reason: 'its directory could not be read as a range', size };
 		else {
 
 			const entries = COM_PackEntries( dir.bytes, header.count, size );
@@ -180,7 +189,9 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 		}
 
 	}
-	cache.set( url, { size, validator, dirofs: header.dirofs, result } );
+	// only a settled answer is kept: an error or an unread directory is tried again next time
+	if ( result.state === 'valid' || result.state === 'invalid' ) cache.set( url, { size, validator, dirofs: header.dirofs, dirlen: header.dirlen, result } );
+	else cache.delete( url );
 	return result;
 
 }
@@ -233,7 +244,8 @@ export function GameCatalogue_Refresh( options = {} ) {
 async function refresh( options ) {
 
 	_counters = { requests: 0, bytes: 0, largestRead: 0 };
-	const base = options.base ?? ( typeof location !== 'undefined' ? location.href : 'http://localhost/' );
+	// relative to the document's base (a page with <base href> probes the site's folders, not its own)
+	const base = options.base ?? ( typeof document !== 'undefined' && document.baseURI ? document.baseURI : typeof location !== 'undefined' ? location.href : 'http://localhost/' );
 	const games = [], byId = new Map();
 	for ( const game of GAME_CATALOGUE_GAMES ) {
 
@@ -308,7 +320,7 @@ export function GameCatalogue_Init() {
 			}
 			Con_Printf( `(${catalogue.counters.requests} requests, ${catalogue.counters.bytes} bytes read)\n` );
 
-		} );
+		} ).catch( error => Con_Printf( 'games: ' + ( error?.message ?? error ) + '\n' ) );
 
 	} );
 

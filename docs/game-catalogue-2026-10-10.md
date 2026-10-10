@@ -21,8 +21,16 @@ HTML page standing in for one (a soft 404) is "absent" too, never a pack; anothe
 within 8 seconds is "error"; a bad header, a directory past the end or a payload outside the archive is "invalid". When
 all five packs exist, one more header says whether there are more (then the game is never called playable).
 
-Results are kept by URL with the size and the server's validator (`ETag` or `Last-Modified`); a refresh reads the
-headers again, and a directory only when the pack changed. A pack dropped into a folder is found by the next refresh
+A `206` counts only when its `Content-Range` is exactly the range asked for (a server answering another part of the file
+is not taken for the directory); an empty file (the server's `416`) is invalid; a response that cannot be read in
+pieces is refused rather than buffered. Folders are relative to the document's base (`document.baseURI`), so a page
+with `<base href>` probes the site's folders.
+
+A settled answer (valid or invalid) is kept by URL with the size, the server's validator (`ETag` or `Last-Modified`)
+and the directory's place; a refresh reads the headers again, and a directory only when one of those changed. An error
+or an unread directory is not kept, so the next refresh tries again; and when the server sends no validator, nothing
+shows the pack is unchanged, so its directory is read again (at most 128 KB). Two refreshes asked for together share
+one probe. A pack dropped into a folder is found by the next refresh
 (the page refreshes a few seconds after it starts; the console's `games` command refreshes and prints).
 
 ## Found, validated, playable
