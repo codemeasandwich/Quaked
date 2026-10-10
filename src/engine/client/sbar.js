@@ -1187,7 +1187,7 @@ function Sbar_DeathmatchOverlay() {
 	if ( _Draw_Character == null || _Draw_Fill == null ) return;
 
 	const pic = _Draw_CachePic != null ? _Draw_CachePic( 'gfx/ranking.lmp' ) : null;
-	if ( pic != null ) {
+	if ( pic != null && _Draw_Pic != null ) { // as every other picture here, nothing without a Draw_Pic (card [44m])
 
 		// M_DrawPic centers on 320x200
 		_Draw_Pic( ( ( 320 - pic.width ) / 2 ) + ( ( _vid.width - 320 ) >> 1 ),
@@ -1390,7 +1390,7 @@ export function Sbar_IntermissionOverlay() {
 	}
 
 	const pic_complete = _Draw_CachePic( 'gfx/complete.lmp' );
-	if ( pic_complete )
+	if ( pic_complete && _Draw_Pic )
 		_Draw_Pic( 64, 24, pic_complete );
 
 	const pic_inter = _Draw_CachePic( 'gfx/inter.lmp' );
