@@ -61,7 +61,7 @@ frame, exactly as the source does: the effect is analytic in the burst's age
 `fireballLight`). The exported `fireballClouds` / `fireballSparks` are thin
 collectors over the same cores, used by tests. Nothing is simulated and the per-frame
 path allocates nothing: scalars are written straight into preallocated typed arrays.
-Four instanced meshes follow `r_quadparticles.js`: cloud billboards (premultiplied
+Four instanced meshes follow `r_quadparticles.js` (never wired into the game; deleted in [44g], debt D9, by the owner's decision): cloud billboards (premultiplied
 blend, sorted back to front as in the source), an additive flash card, additive
 velocity-aligned spark strips (1.25 px minimum width) and an additive shock ring.
 

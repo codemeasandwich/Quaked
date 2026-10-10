@@ -35,7 +35,7 @@ not a generated spark substitute. The lower layer's tex0..7 upper bound is
 exclusive, so it samples0–6; tile7 is retained as source context.
 
 Quaked uses Three.js rather than DarkPlaces' particle engine. The small
-`r_quadparticles.js` adapter retains the four count/size/color/fade/jitter/
+`r_quadparticles.js` adapter (never wired into the game; deleted in [44g], debt D9, by the owner's decision) retains the four count/size/color/fade/jitter/
 stretch/friction/rotation configurations, and integrates friction on a fixed
 60Hz reference.64 repeating batches provide4800 persistent instanced quads.
 This is a prewarmed deterministic repeating cohort, not a bit-exact recreation

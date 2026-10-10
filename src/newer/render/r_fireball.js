@@ -151,7 +151,7 @@ const LIGHT_PEAK = 3.15, LIGHT_RADIUS = 350, LIGHT_RADIUS_MIN = 200, LIGHT_CUTOF
 // ---------------------------------------------------------------------------
 // Shaders (the source's GLSL, adapted to three's ShaderMaterial and to Quaked's
 // multiple-render-target pipeline: extra outputs are written as zero so emission
-// never overwrites opaque receiver packets, as in r_quadparticles.js).
+// never overwrites opaque receiver packets, as the retired r_quadparticles.js did).
 // ---------------------------------------------------------------------------
 
 export const MRT_OUT = `

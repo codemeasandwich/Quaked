@@ -1,10 +1,10 @@
 {
 	"name": "@three-quake/server",
 	"version": "1.0.0",
-	"exports": "./main.ts",
+	"exports": "./game_server.js",
 	"tasks": {
-		"start": "deno run --allow-net --allow-read --allow-env --cert cert.pem main.ts",
-		"dev": "deno run --allow-net --allow-read --allow-env --watch main.ts"
+		"room": "deno run --allow-net --allow-read --unstable-net --config ../deno.json game_server.js",
+		"lobby": "deno run --allow-net --allow-read --allow-run --unstable-net --config ../deno.json lobby_server.js"
 	},
 	"compilerOptions": {
 		"lib": ["deno.window"],

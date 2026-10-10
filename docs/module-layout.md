@@ -295,6 +295,23 @@ No module in `src/engine` or `src/platform` imports `src/newer` any more. Where 
 * Not changed: the room server still installs all of Newer, as it loaded all of it before. Installing only what it
   needs (no renderer) is now one import to change, but needs hooks with Classic defaults first.
 
+## [44g], step 8: the unfinished server and three unused modules retired (debts D5 and D9, by the owner's decisions)
+
+* D5: `server/main.ts`, the TypeScript server whose `host_server.ts`, `mod_server.ts` and `pak_server.ts` copied parts
+  of the engine, never started (`host_server.ts` imported a `net_message` the driver never exported, since the commit
+  that added both) and its own README called it unfinished. The live servers already run the engine itself: the room
+  server (`game_server.js`) and the lobby (`lobby_server.js`). The owner chose to retire it rather than rebuild it on the
+  engine (decision 278fcde5). Deleted with `rooms.ts`, which only it used; `server/deno.json`'s tasks now start the room
+  server and the lobby; `server/README.md` describes those two. The graph: the three copy files are gone
+  (`hidden.serverCopyFiles` null for each), `hidden.serverFunctions` is 65 (at most 86 required), no engine-prefixed
+  copy is left, and what remains of `hidden.serverReimplements` is the server's own WebTransport driver.
+* D9: `screen.js` (WinQuake's software-renderer screen), `snd_mix.js` (WinQuake's mixer; Web Audio mixes) and
+  `r_quadparticles.js` (a Quad Damage adapter never wired in) were never imported, and the page fetched none of them
+  (204 modules fetched over the menu, Newer Game and Classic). Deleted by the owner's decision (23931574); git history
+  keeps them. `unreached` is empty.
+* Checked: the lobby started from its new task answers a browser's room list over WebTransport; the room server and
+  `server/test_imports.js` load under Deno; the suites that name these areas pass.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the
