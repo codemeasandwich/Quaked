@@ -387,6 +387,7 @@ export async function Host_Init( parms ) {
 		Draw_String: Draw_String,
 		S_LocalSound: S_LocalSound,
 		SCR_BeginLoadingPlaque: SCR_BeginLoadingPlaque,
+		SCR_EndLoadingPlaque: SCR_EndLoadingPlaque, // a failed room creation takes the plaque down (card [44m])
 		IN_RequestPointerLock: IN_RequestPointerLock,
 		host_time_get: () => host_time,
 		realtime_get: () => realtime,

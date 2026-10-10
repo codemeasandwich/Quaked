@@ -329,7 +329,7 @@ let _CL_NextDemo = null;
  *   stored but not used.
  * - `S_LocalSound(name)`: menu click sounds. Default null (silent).
  * - `SCR_BeginLoadingPlaque()`, `SCR_EndLoadingPlaque()`: the loading plaque around loads and room creation.
- *   Default null. host.js does not wire `SCR_EndLoadingPlaque`.
+ *   Default null; host.js wires both.
  * - `IN_RequestPointerLock()`: asked for when a game starts from the menu. Default null.
  * - `CL_NextDemo()`: resumes the demo loop when the main menu closes while not connected. Default null.
  * - `WT_QueryRooms(serverUrl)`, `WT_CreateRoom(serverUrl, options)` (net_webtransport.js): the Join Game room list
