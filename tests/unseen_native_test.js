@@ -82,8 +82,13 @@ Deno.test('a monster the unseen player hurts hunts where the player fired from, 
  hurt(p,n);same(enemyOf(n),spot,'another monster hurt from the same place shares the spot');
  const before=dist(Array.from(m.v.origin),from),yawTo=e=>Math.atan2(from[1]-e.v.origin[1],from[0]-e.v.origin[0])*180/Math.PI;
  frames(p,2);check(enemyOf(m)===spot&&enemyOf(m)!==p,'two seconds on it still hunts the spot, never the player');
- const after=dist(Array.from(m.v.origin),from),facing=Math.abs(((m.v.angles[1]-yawTo(m))%360+540)%360-180);console.log('UNSEEN_HUNT '+JSON.stringify({monster:text(m.v.classname),before:+before.toFixed(1),after:+after.toFixed(1),facing:+facing.toFixed(1)}));
- check(after<before-16||facing<30,'it goes for the spot or turns to attack it ('+before.toFixed(0)+' -> '+after.toFixed(0)+', facing off by '+facing.toFixed(0)+')');
+ // it goes for the spot or turns to attack it. Its AI is random (QuakeC random()): a hurt ogre may first play its
+ // longest pain sequence, about 1.5 seconds, so it is watched for up to two seconds more, within the spot's life (card
+ // [44m]: sampled once at two seconds, 4 seeds in 36 caught it still in pain, knocked 5 units back and 51 degrees off)
+ const seen=()=>({after:dist(Array.from(m.v.origin),from),facing:Math.abs(((m.v.angles[1]-yawTo(m))%360+540)%360-180)});
+ let at=seen(),waited=0;while(!(at.after<before-16||at.facing<30)&&waited<20){frames(p,.1);waited++;at=seen();check(enemyOf(m)===spot,'still hunting the spot');}
+ console.log('UNSEEN_HUNT '+JSON.stringify({monster:text(m.v.classname),before:+before.toFixed(1),after:+at.after.toFixed(1),facing:+at.facing.toFixed(1),extraSeconds:waited/10}));
+ check(at.after<before-16||at.facing<30,'it goes for the spot or turns to attack it ('+before.toFixed(0)+' -> '+at.after.toFixed(0)+', facing off by '+at.facing.toFixed(0)+')');
  frames(p,unseen.SPOT_LIFE);check(enemyOf(m)!==spot&&enemyOf(m)!==p,'after the spot\'s life it gives up');check(spot.free,'and the spot is gone');
  // control: seen, a hurt monster hunts the player as in Quake
  ring(p,false);hurt(p,m);check(enemyOf(m)===p,'without the Ring the hurt monster hunts the player');
