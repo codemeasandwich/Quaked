@@ -87,7 +87,7 @@ import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from '../common/pak.js';
 import { cls, ca_dedicated } from '../client/client.js';
 
-import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
+import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_UnlinkEdict, SV_PointContents } from './world.js';
 import { SV_Physics, SV_SetState, SV_SetCallbacks,
 	sv_maxvelocity, sv_gravity, sv_nostep, sv_friction, sv_edgefriction,
 	sv_stopspeed, sv_maxspeed, sv_accelerate, sv_idealpitchscale } from './sv_phys.js';
@@ -1920,6 +1920,7 @@ export function SV_SpawnServer( server ) {
 	// Ensure progs.js has references to the canonical server objects
 	PR_SetSV( sv );
 	PR_SetSVS( svs );
+	sv.SV_UnlinkEdict = SV_UnlinkEdict; // ED_Free unlinks a freed edict from the world through it, as WinQuake's does (card [44m])
 
 	sv.name = server;
 	sv.modelname = 'maps/' + server + '.bsp';

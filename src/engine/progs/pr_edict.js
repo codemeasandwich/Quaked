@@ -193,8 +193,8 @@ ED_Free
  *
  * First, if the edict is an axe-cut corpse or owner, any edicts it was hiding are un-hidden (pending, not
  * successfully constructed, cut replacements retain the native death; their links are retired before this cosmetic
- * edict index can be reused). It is unlinked from the world through `sv.SV_UnlinkEdict` only when that hook is set
- * on `sv` (no engine module sets it at present). Then the fields the client sees are reset (model, modelindex, skin,
+ * edict index can be reused). It is unlinked from the world through `sv.SV_UnlinkEdict`, as WinQuake's is; `SV_SpawnServer`
+ * sets that hook (card [44m]), so only a server that never started skips it. Then the fields the client sees are reset (model, modelindex, skin,
  * frame, colormap, origin, angles, takedamage, solid; `nextthink` to -1) and `freetime` is set to `sv.time` for the
  * reuse delay in `ED_Alloc`.
  *
