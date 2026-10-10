@@ -19,7 +19,9 @@ const RULES = [
 	[ 'newer/render/rend_veil', '44e', /^rend_veil\// ],
 	// (hooks: the neutral module whose hooks the engine calls and Newer installs, made in [44g] for D1b)
 	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol|hooks|host_state|key_dest)\.js$/ ],
-	[ 'engine/progs', '44b', /^(pr_cmds|pr_comp|pr_edict|pr_exec|progs|progdefs)\.js$/ ],
+	// the QuakeC built-ins call the server throughout, as WinQuake's pr_cmds.c does: they are the server's (moved in [44g], D1a)
+	[ 'engine/server', '44g', /^pr_cmds\.js$/ ],
+	[ 'engine/progs', '44b', /^(pr_comp|pr_edict|pr_exec|progs|progdefs)\.js$/ ],
 	[ 'engine/server', '44b', /^(sv_main|sv_move|sv_phys|sv_user|server|world|pmove|host|host_cmd)\.js$/ ],
 	[ 'engine/net', '44c', /^net(_\w+)?\.js$/ ],
 	[ 'engine/client', '44c', /^(cl_\w+|client|chase|view|keys|sbar|screen|menu)\.js$/ ],

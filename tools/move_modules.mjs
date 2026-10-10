@@ -1,4 +1,4 @@
-// Moves src modules into their proposed folders (cards [44b]..[44f]; the plan is docs/architecture-baseline-2026-10-10.md,
+// Moves src modules into their proposed folders (cards [44b]..[44g]; the plan is docs/architecture-baseline-2026-10-10.md,
 // the progress docs/module-layout.md). Two steps, two commits, so git records each move as a rename:
 //
 //   node tools/move_modules.mjs <increment> [--dry]   moves every tracked module the classifier assigns to the increment
@@ -51,7 +51,7 @@ if ( args[ 0 ] === '--adapters' ) {
 }
 
 const increment = args[ 0 ];
-if ( ! /^44[b-f]$/.test( increment || '' ) ) fail( 'usage: node tools/move_modules.mjs <44b..44f> [--dry] | --adapters [--dry]' );
+if ( ! /^44[b-g]$/.test( increment || '' ) ) fail( 'usage: node tools/move_modules.mjs <44b..44g> [--dry] | --adapters [--dry]' );
 
 // the classifier's plan, on the tree as it is now (its working files outside the repository)
 const tmp = fs.mkdtempSync( path.join( os.tmpdir(), 'quaked-move-' ) );
