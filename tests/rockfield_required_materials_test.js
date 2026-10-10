@@ -26,6 +26,10 @@ const bytes = array => Buffer.from( array.buffer, array.byteOffset, array.byteLe
 const catalog = JSON.parse( /<script id="texture-catalog"[^>]*>([\s\S]*?)<\/script>/.exec( readFileSync( new URL( '../rockfield-v1.6.0.html', import.meta.url ), 'utf8' ) )[ 1 ] );
 // Latest owner screenshot overrides only this material; original donor is preserved.
 catalog.find( item => item.file === 'uwall1_2.webp' ).preset = { profile: 'wall', featureSize: 2.5, warp: .65, fracture: 0, detail: 1.5, cells: 64, amplitude: .8 };
+// The shipped rock bakes (newer/rockfield/…) read from the checkout, as the browser fetches them beside the page; Node's
+// fetch cannot take a relative URL, and a registered bake that fails to load is an error, not a fallback to the workers.
+const nodeFetch = globalThis.fetch;
+globalThis.fetch = async ( file, options ) => typeof file === 'string' && file.startsWith( 'newer/rockfield/' ) ? new Response( readFileSync( new URL( '../' + file.split( '?' )[ 0 ], import.meta.url ) ) ) : nodeFetch( file, options );
 function expectedPreset( name, profile ) {
 
 	const source = catalog.find( item => item.file === name + '.webp' );
@@ -130,8 +134,10 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 		cl.worldmodel = model; cl.model_precache[ 1 ] = model; cl.model_precache[ 2 ] = door; cl.model_precache[ 3 ] = null; GL_BuildLightmaps();
 		const faces = model.surfaces.slice( 5940, 5948 ), source = faces.map( s => bytes( s.polys.verts ) ), hulls = door.hulls.map( h => JSON.stringify( { planes: h.planes, clipnodes: h.clipnodes, first: h.firstclipnode, last: h.lastclipnode } ) );
 		const worldOnly = R_RockSurfaceCharts( model ), fields = R_RockfieldBuild( model );
-		// Await the real Node fetch fallback before asserting worker dispatch.
+		// The door's pages come from the shipped bake (E1M4 has one), so wait for it before asserting what is resident.
 		await R_RockBakePrefetch(model.name)?.promise;
+		for ( let i = 0; i < 500 && R_RockfieldStatus().preparedState === 'loading'; i ++ ) await new Promise( resolve => setTimeout( resolve, 10 ) );
+		same( R_RockfieldStatus().preparedState, 'ready', 'the shipped E1M4 bake covers every chart, the door\'s included' );
 		const entries = fields.charts.flatMap( chart => chart.surfaces ).filter( e => faces.includes( e.surface ) ), doorCharts = new Set( faces.map( surface => fields.bySurface.get( surface ) ) ); same( entries.length, 8, 'all door pieces included through extended public build' );
 		same( fields.charts.flatMap( chart => chart.surfaces ).filter( e => e.surface.texinfo.texture.name === 'rock1_2' ).length, 848, '840 world plus8 door faces, not classifier-only coverage' );
 		for ( const surface of faces ) { same( surface.texinfo.texture.name, 'rock1_2', 'native door material' ); check( ! worldOnly.bySurface.has( surface ), 'pure world-only API retains its original range' ); const chart = fields.bySurface.get( surface ); check( chart && chart.name === 'rock1_2' && chart.profile === 'wall', 'closed door has actual matching material-role component' ); assertPreset( chart, 'native door component' ); }
@@ -144,7 +150,7 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 		// A distant eye isolates brush visibility from nearby-world prefetch;
 		// the frustum above explicitly admits the real brush draw.
 		const restEye = [ 0, 1, 2 ].map( k => Math.fround( ( door.mins[ k ] + door.maxs[ k ] ) / 2 + [ 10000, 10000, 10000 ][ k ] ) ); r_refdef.vieworg.set( restEye );
-		R_RockfieldUpdate( restEye, 901, 1000 ); same( workers.length, 0, 'undrawn invisible brush starts no jobs' );
+		R_RockfieldUpdate( restEye, 901, 1000 ); same( workers.length, 0, 'undrawn invisible brush starts no jobs' ); same( R_RockfieldStatus().resident, 0, 'undrawn invisible brush makes no page resident' );
 		R_DrawBrushModel( entity ); const group = entity._brushGroup; check( group?.children.length, 'actual public brush draw creates native meshes' );
 		let expectedVertices = 0; for ( const surface of faces ) for ( let p = surface.polys; p; p = p.next ) expectedVertices += ( p.numverts - 2 ) * 3;
 		same( group.children.reduce( ( count, mesh ) => count + mesh.geometry.getAttribute( 'position' ).count, 0 ), expectedVertices, 'drawn merged geometry contains every native triangle of all8 door faces' );
@@ -155,9 +161,12 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 			for ( let i = 0; i < p.count; i ++ ) { same( info.getX( i ), chart.id, 'merged brush batch never mixes component identities' ); const expected = R_RockCoordinates( chart, [ p.getX( i ), p.getY( i ), p.getZ( i ) ] ); near( mesh.geometry.getAttribute( 'rockUv' ).getX( i ), expected[ 0 ], 'closed brush matches rest-space U', .00001 ); near( mesh.geometry.getAttribute( 'rockUv' ).getY( i ), expected[ 1 ], 'closed brush matches rest-space V', .00001 ); near( info.getY( i ), expectedPreset( chart.name, chart.profile ).amplitude, 'every merged brush vertex carries exact owner amplitude' ); }
 		}
 		for ( const entry of entries ) { const chart = fields.bySurface.get( entry.surface ); same( entry.brushSeen, 901, 'actual R_DrawBrushModel marks all8 surfaces' ); same( entry.brushEye.join(), R_RockCoordinates( chart, restEye ).join(), 'closed eye matches component sampling space' ); }
-		R_RockfieldUpdate( restEye, 902, 1101 ); same( workers.length, 2, 'previous-frame brush draw starts exactlytwo transports' ); same( R_RockfieldStatus().pending, 2, 'native visible door never exceeds two pendingjobs' );
-		for ( const worker of workers ) { const job = worker.calls[ 0 ], chart = [ ...doorCharts ].find( chart => chart.seed === job.config.seed ); check( chart, 'worker door seed belongs to an actual drawn component' ); const expected = expectedPreset( chart.name, chart.profile ); for ( const [ key, value ] of Object.entries( expected ) ) same( job.config[ key ], value, 'worker retains exact saved door preset ' + key ); same( job.config.blockiness, undefined, 'catalogued door never silently selects the legacy maximum preset' ); worker.finish(); }
-		same( R_RockfieldStatus().resident, 2, 'door pages accepted into shared bounded atlas' ); R_RockfieldUpdate( restEye, 903, 1202 ); same( workers.reduce( ( n, w ) => n + w.calls.length, 0 ), 2, 'stale unseen door does not request further pages' );
+		R_RockfieldUpdate( restEye, 902, 1101 ); const drawn = R_RockfieldStatus();
+		check( drawn.desiredTiles > 0 && drawn.desiredTiles <= drawn.maxPages, 'previous-frame brush draw asks for the door\'s pages, within the atlas' );
+		same( drawn.resident, drawn.desiredTiles, 'every page the drawn door asks for is resident' ); same( drawn.preparedTiles, drawn.resident, 'all of them from the shipped bake' ); same( drawn.missingVisibleTiles, 0, 'none missing' );
+		same( workers.length, 0, 'the shipped bake serves the door: no worker transports' ); same( drawn.pending, 0, 'no pending jobs' );
+		for ( const chart of doorCharts ) assertPreset( chart, 'door component ' + chart.name );
+		R_RockfieldUpdate( restEye, 903, 1202 ); same( R_RockfieldStatus().desiredTiles, 0, 'stale unseen door asks for no pages' ); same( R_RockfieldStatus().preparedTiles, drawn.preparedTiles, 'stale unseen door installs nothing further' );
 		// A90degree yaw with translation has an independent analytic inverse:
 		// the eye is chosen from known rest coordinates, then put in world space.
 		entity.origin.set( [ 120, -384, 48 ] ); entity.angles.set( [ 0, 90, 0 ] ); const movedEye = [ 120 - restEye[ 1 ], -384 + restEye[ 0 ], 48 + restEye[ 2 ] ]; r_refdef.vieworg.set( movedEye ); main.set_r_framecount( 904 ); R_DrawBrushModel( entity ); same( entity._brushGroup, group, 'moving door reuses its original material-rest geometry' );
@@ -167,11 +176,11 @@ Deno.test( 'the eight native E1M4 rock door faces render exact saved rest-space 
 		for ( const disabled of [ 'normals', 'classic', 'native', 'rock' ] ) {
 
 			R_RockfieldBuild( model ); variables.forEach( v => cvar.Cvar_Set( v.name, '1' ) ); anim.R_AnimSetClassicPass( disabled === 'classic' ); if ( disabled === 'normals' ) cvar.Cvar_Set( 'r_newer_normals', '0' ); if ( disabled === 'native' ) cvar.Cvar_Set( 'r_hdr', '0' ); if ( disabled === 'rock' ) cvar.Cvar_Set( 'r_rockfield', '0' );
-			R_DrawBrushModel( entity ); same( R_RockfieldBrushSeen( door, group, movedEye, 905 ), 0, disabled + ' no procedural brush marks' ); R_RockfieldUpdate( movedEye, 905, 1400 ); same( rockUniforms.qrRockOn.value, 0, disabled + ' procedural shader disabled' ); same( R_RockfieldStatus().pending, 0, disabled + ' no tile jobs' ); same( workers.length, 2, disabled + ' no new worker transports' ); check( entity._brushGroup.children.length && group.visible, disabled + ' original brush still drawn' );
+			R_DrawBrushModel( entity ); same( R_RockfieldBrushSeen( door, group, movedEye, 905 ), 0, disabled + ' no procedural brush marks' ); R_RockfieldUpdate( movedEye, 905, 1400 ); same( rockUniforms.qrRockOn.value, 0, disabled + ' procedural shader disabled' ); same( R_RockfieldStatus().pending, 0, disabled + ' no tile jobs' ); same( workers.length, 0, disabled + ' no worker transports' ); check( entity._brushGroup.children.length && group.visible, disabled + ' original brush still drawn' );
 
 		}
 		faces.forEach( ( surface, i ) => same( bytes( surface.polys.verts ), source[ i ], 'all8 native door XYZ/UV/lightmap source bytes unchanged' ) ); door.hulls.forEach( ( h, i ) => same( JSON.stringify( { planes: h.planes, clipnodes: h.clipnodes, first: h.firstclipnode, last: h.lastclipnode } ), hulls[ i ], 'native door collision unchanged' ) );
-		console.log( 'REQUIRED_ROCK_BRUSH ' + JSON.stringify( { map: 'maps/e1m4.bsp', model: '*64', firstFace: 5940, faces: 8, rock1_2WorldAndBrush: 848, drawMeshes: group.children.length, workers: workers.length, maxPending: 2 } ) );
+		console.log( 'REQUIRED_ROCK_BRUSH ' + JSON.stringify( { map: 'maps/e1m4.bsp', model: '*64', firstFace: 5940, faces: 8, rock1_2WorldAndBrush: 848, drawMeshes: group.children.length, workers: workers.length, preparedDoorPages: drawn.preparedTiles } ) );
 
 	} finally { R_RockfieldBuild( null ); variables.forEach( ( v, i ) => cvar.Cvar_Set( v.name, saved[ i ] ) ); anim.R_AnimSetClassicPass( false ); main.set_r_framecount( oldFrame ); main.set_currententity( oldEntity ); r_refdef.vieworg.set( oldEye ); main.frustum.forEach( ( p, i ) => { p.normal.set( oldFrustum[ i ].normal ); Object.assign( p, { dist: oldFrustum[ i ].dist, type: oldFrustum[ i ].type, signbits: oldFrustum[ i ].signbits } ); } ); if ( oldWorker ) Object.defineProperty( globalThis, 'Worker', oldWorker ); else delete globalThis.Worker; }
 
