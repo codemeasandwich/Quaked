@@ -117,6 +117,12 @@ export const OP_BITOR = 65;
 // dstatement_t - bytecode statement
 export class dstatement_t {
 
+	/**
+	 * Creates a zeroed bytecode statement (WinQuake pr_comp.h). `PR_LoadProgs` (pr_edict.js) fills one per 8-byte
+	 * record of progs.dat: `op` is an `OP_*` opcode (uint16) and `a`, `b`, `c` are int16 operands, normally offsets into
+	 * the globals array (word units) or, for jumps, relative statement counts. The statements live until the next
+	 * progs load.
+	 */
 	constructor() {
 
 		this.op = 0; // unsigned short
@@ -134,6 +140,12 @@ export const DEF_SAVEGLOBAL = ( 1 << 15 );
 // ddef_t - definition of a global or field
 export class ddef_t {
 
+	/**
+	 * Creates a zeroed definition of a global or field (WinQuake pr_comp.h). `PR_LoadProgs` fills one per 8-byte record
+	 * of the globaldefs and fielddefs tables: `type` is an `ev_*` etype (uint16; if the `DEF_SAVEGLOBAL` bit is set the
+	 * global needs saving in savegames, and a field def with that bit is a fatal error), `ofs` is the offset in globals
+	 * or entity fields (32-bit word units) and `s_name` is an offset into pr_strings.
+	 */
 	constructor() {
 
 		this.type = 0; // unsigned short - if DEF_SAVEGLOBAL bit is set, needs saving
@@ -149,6 +161,13 @@ export const MAX_PARMS = 8;
 // dfunction_t - QuakeC function definition
 export class dfunction_t {
 
+	/**
+	 * Creates a zeroed QuakeC function definition (WinQuake pr_comp.h). `PR_LoadProgs` fills one per 36-byte record:
+	 * `first_statement` (negative numbers are builtins), `parm_start` (first global word of its parms/locals), `locals`
+	 * (total ints of parms + locals), `profile` (runtime profiling counter), `s_name`/`s_file` (offsets into pr_strings
+	 * for its name and source file), `numparms`, and `parm_size`, one byte per parameter giving its size in words (3
+	 * for a vector) for up to `MAX_PARMS` (8) parameters.
+	 */
 	constructor() {
 
 		this.first_statement = 0; // int - negative numbers are builtins
@@ -172,6 +191,14 @@ export const PROG_VERSION = 6;
 // dprograms_t - progs.dat file header
 export class dprograms_t {
 
+	/**
+	 * Creates a zeroed progs.dat file header (WinQuake pr_comp.h). `PR_LoadProgs` reads the 15 little-endian int32
+	 * fields from byte 0 of progs.dat: `version` (must equal `PROG_VERSION`, 6), `crc` (check of header file, must
+	 * match `PROGHEADER_CRC`), then a byte offset and count for each of statements (statement 0 is an error), global
+	 * defs, field defs, functions (function 0 is an empty), strings (bytes; first string is a null string) and globals
+	 * (32-bit words), and `entityfields`, the size of an entity's fields in words. Kept as the loaded program's header
+	 * via `PR_SetProgs` until the next progs load.
+	 */
 	constructor() {
 
 		this.version = 0;

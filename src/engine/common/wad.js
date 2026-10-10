@@ -37,14 +37,20 @@ export let wad_base = null;
 /*
 ==================
 W_CleanupName
-
-Lowercases name and pads with spaces and a terminating 0 to the length of
-lumpinfo_t->name.
-Used so lumpname lookups can proceed rapidly by comparing 4 chars at a time
-Space padding is so names can be printed nicely in tables.
-Can safely be performed in place.
 ==================
 */
+/**
+ * Normalizes a lump name for comparison: ASCII letters lowercased, cut at the first NUL or after 16 characters (the
+ * length of `lumpinfo_t->name`). Applied to every lump name at load and to every looked-up name.
+ *
+ * WinQuake's version "lowercases name and pads with spaces and a terminating 0 to the length of lumpinfo_t->name,
+ * used so lumpname lookups can proceed rapidly by comparing 4 chars at a time; space padding is so names can be
+ * printed nicely in tables; can safely be performed in place". This port compares whole strings, so it does not pad
+ * and returns a new string instead of working in place.
+ *
+ * @param {string} inStr lump name as stored or requested
+ * @returns {string} lowercased name of at most 16 characters
+ */
 export function W_CleanupName( inStr ) {
 
 	let out = '';
@@ -69,6 +75,15 @@ export function W_CleanupName( inStr ) {
 W_LoadWadFile
 ====================
 */
+/**
+ * Loads a WAD2 file (in practice `gfx.wad`, once from `Host_Init`) and builds its lump directory. The exported
+ * `wad_base` keeps a byte view over `data` and `wad_lumps` the directory (`filepos`, `disksize`, `size` in bytes,
+ * `type`, `compression`, cleaned `name`) until the next load; lump data is not copied. qpic headers need no swapping
+ * here because they are read little-endian when used.
+ *
+ * @param {ArrayBuffer} data the whole file, as returned by `COM_LoadFile` (kept, so do not modify it afterwards)
+ * @throws {Error} via `Sys_Error` when the file does not start with 'WAD2'
+ */
 export function W_LoadWadFile( data ) {
 
 	// data is an ArrayBuffer
@@ -132,6 +147,14 @@ export function W_LoadWadFile( data ) {
 W_GetLumpinfo
 =============
 */
+/**
+ * Finds a lump's directory entry by name (case-insensitive, via `W_CleanupName`) in the loaded wad.
+ *
+ * @param {string} name lump name such as 'conchars'
+ * @returns {{ filepos: number, disksize: number, size: number, type: number, compression: number, name: string }}
+ *   the entry from `wad_lumps` (shared; do not modify). Offsets and sizes are bytes into `wad_base`
+ * @throws {Error} via `Sys_Error` when no lump has that name
+ */
 export function W_GetLumpinfo( name ) {
 
 	const clean = W_CleanupName( name );
@@ -151,10 +174,18 @@ export function W_GetLumpinfo( name ) {
 /*
 =============
 W_GetLumpName
-
-Returns a DataView into the wad data at the lump's position
 =============
 */
+/**
+ * Locates a lump's data by name for the 2D drawing code (`Draw_Init`'s conchars, `Draw_PicFromWad`, which catches
+ * the error for missing pictures). Rather than a DataView, it returns the whole wad byte array plus the lump's
+ * position; nothing is copied.
+ *
+ * @param {string} name lump name (case-insensitive)
+ * @returns {{ data: Uint8Array, offset: number, size: number }} `data` is `wad_base` (shared); the lump is
+ *   `size` bytes starting at byte `offset`
+ * @throws {Error} via `Sys_Error` when no lump has that name
+ */
 export function W_GetLumpName( name ) {
 
 	const lump = W_GetLumpinfo( name );
@@ -171,6 +202,14 @@ export function W_GetLumpName( name ) {
 W_GetLumpNum
 =============
 */
+/**
+ * Locates a lump's data by its index in the wad directory. No current caller uses it.
+ *
+ * @param {number} num lump index, 0..`wad_numlumps` - 1
+ * @returns {{ data: Uint8Array, offset: number, size: number }} `data` is `wad_base` (shared); the lump is
+ *   `size` bytes starting at byte `offset`
+ * @throws {Error} via `Sys_Error` when `num` is out of range
+ */
 export function W_GetLumpNum( num ) {
 
 	if ( num < 0 || num >= wad_numlumps )
@@ -190,6 +229,17 @@ export function W_GetLumpNum( num ) {
 SwapPic
 =============
 */
+/**
+ * Reads a qpic header (width and height as little-endian 32-bit integers) at `offset`. In the original C this
+ * byte-swaps the header in place; here it is kept for API compatibility and returns the decoded values instead.
+ * No current caller uses it.
+ *
+ * @param {Uint8Array} data bytes holding the picture (for example `wad_base`)
+ * @param {number} offset byte offset of the qpic header within `data`. The DataView is made relative to
+ *   `data.buffer`, so this is only correct when `data` starts at byte 0 of its buffer
+ * @returns {{ width: number, height: number, data: Uint8Array }} size in pixels and a view (not a copy) of the
+ *   palette-index pixels that follow the 8-byte header
+ */
 export function SwapPic( data, offset ) {
 
 	// In the original C, this byte-swaps width/height from little-endian.

@@ -39,6 +39,13 @@ import { Cmd_Exists, Cmd_Argc, Cmd_Argv } from './cmd.js';
 // Callback for broadcasting server cvar changes (injected to avoid circular deps)
 let _serverBroadcast = null;
 
+/**
+ * Installs the callback that announces changes to `server` cvars (WinQuake calls `SV_BroadcastPrintf` directly; it is
+ * injected here to avoid circular deps). Called once by `Host_Init`, whose callback broadcasts only while a server is
+ * active. Kept for the rest of the session.
+ *
+ * @param {?(msg: string) => void} fn receives `"name" changed to "value"\n`; null disables broadcasting
+ */
 export function Cvar_SetServerBroadcast( fn ) {
 
 	_serverBroadcast = fn;
@@ -69,13 +76,25 @@ function Cvar_SaveToStorage( _var ) {
 /*
 ============
 Cvar_DropChangedDefaults
-
-A saved configuration lists every archived cvar, so one written before a default changed carries the old default and would
-override the new one. Drop those lines from it, once per change (its marker), unless the player chose a value themselves:
-a value set in play is also saved on its own key, which a configuration's own lines never are when they equal the default.
 ============
 */
 export const CVAR_DEFAULT_CHANGES = [ { name: 'r_dof', marker: 'quaked_default_r_dof_2026-10-10' } ];
+/**
+ * Filters a saved configuration before `Host_Init` executes it, so a changed cvar default takes effect.
+ *
+ * A saved configuration lists every archived cvar, so one written before a default changed carries the old default
+ * and would override the new one. Drop those lines from it, once per change (its marker), unless the player chose a
+ * value themselves: a value set in play is also saved on its own key (`quake_cvar_<name>`), which a configuration's
+ * own lines never are when they equal the default. Each change's marker key is set to '1' in `storage` once handled,
+ * so the drop happens only on the first load after the change. If storage throws, the configuration is kept as saved.
+ *
+ * @param {string} config saved configuration text (lines such as `r_dof "1"`)
+ * @param {?Storage} [storage=localStorage] where markers and per-cvar values live; null (no localStorage) returns
+ *   `config` unchanged
+ * @param {Array<{ name: string, marker: string }>} [changes=CVAR_DEFAULT_CHANGES] cvars whose defaults changed, each
+ *   with the storage key that records the change was applied
+ * @returns {string} the configuration with stale default lines removed
+ */
 export function Cvar_DropChangedDefaults( config, storage = typeof localStorage === 'undefined' ? null : localStorage, changes = CVAR_DEFAULT_CHANGES ) {
 
 	if ( storage === null ) return config;
@@ -118,6 +137,17 @@ function Cvar_LoadFromStorage( name ) {
 
 export class cvar_t {
 
+	/**
+	 * Creates a console variable (WinQuake cvar.h `cvar_t`). It is not visible to the console or `Cvar_Set` until
+	 * passed to `Cvar_RegisterVariable`, which may replace `string` with the archived value. `value` is always the
+	 * `Q_atof` reading of `string`; `next` links the registered list.
+	 *
+	 * @param {string} name console name, matched case-sensitively
+	 * @param {string} [string=''] default value text
+	 * @param {boolean} [archive=false] save the value with the configuration and in localStorage
+	 *   (`quake_cvar_<name>`)
+	 * @param {boolean} [server=false] announce changes to connected players
+	 */
 	constructor( name, string, archive, server ) {
 
 		this.name = name;
@@ -138,6 +168,12 @@ let cvar_vars = null;
 Cvar_FindVar
 ============
 */
+/**
+ * Looks up a registered cvar by exact, case-sensitive name (a linear walk of the registered list).
+ *
+ * @param {string} var_name cvar name
+ * @returns {?cvar_t} the registered cvar, or null when none has that name
+ */
 export function Cvar_FindVar( var_name ) {
 
 	let _var = cvar_vars;
@@ -158,6 +194,13 @@ export function Cvar_FindVar( var_name ) {
 Cvar_VariableValue
 ============
 */
+/**
+ * Returns a cvar's numeric value by name, for code that has no reference to the `cvar_t`. The string is reparsed
+ * with `Q_atof`.
+ *
+ * @param {string} var_name cvar name
+ * @returns {number} the value, or 0 when no cvar has that name
+ */
 export function Cvar_VariableValue( var_name ) {
 
 	const _var = Cvar_FindVar( var_name );
@@ -172,6 +215,13 @@ export function Cvar_VariableValue( var_name ) {
 Cvar_VariableString
 ============
 */
+/**
+ * Returns a cvar's string value by name; `Cmd_AddCommand` uses it to refuse a command that clashes with a cvar, and
+ * Newer Game's demo split to save values it borrows.
+ *
+ * @param {string} var_name cvar name
+ * @returns {string} the value text, or '' when no cvar has that name
+ */
 export function Cvar_VariableString( var_name ) {
 
 	const _var = Cvar_FindVar( var_name );
@@ -186,6 +236,13 @@ export function Cvar_VariableString( var_name ) {
 Cvar_CompleteVariable
 ============
 */
+/**
+ * Tab completion for the console (`keys.js`, after command names fail): finds the first registered cvar whose name
+ * starts with `partial` (case-sensitive). The list is searched newest-registered first.
+ *
+ * @param {string} partial typed prefix
+ * @returns {?string} the full cvar name, or null when `partial` is empty or matches nothing
+ */
 export function Cvar_CompleteVariable( partial ) {
 
 	const len = partial.length;
@@ -212,24 +269,44 @@ export function Cvar_CompleteVariable( partial ) {
 Cvar_Set
 ============
 */
+/**
+ * Sets a cvar's string and numeric value as the player's or game's real choice. Ends any `Cvar_SetTemporary` borrow.
+ * A `server` cvar whose text changed is announced through the `Cvar_SetServerBroadcast` callback. An `archive` cvar
+ * is saved to localStorage (`quake_cvar_<name>`) when its text changed or a borrow just ended; a full or unavailable
+ * storage prints a warning and the value still applies for the session. An unknown name prints
+ * "Cvar_Set: variable ... not found" and changes nothing.
+ *
+ * @param {string} var_name cvar name
+ * @param {string} value new value text (`value` becomes its `Q_atof` reading)
+ */
 export function Cvar_Set( var_name, value ) {
 
  Cvar_SetInternal( var_name, value, false );
 
 }
 
-// A presentation scope can borrow an archived value without saving it as the
-// player's choice. Both immediate storage and config serialization retain the
-// pre-scope value. An ordinary Set (including an unchanged explicit value)
-// ends the borrow and records the user's/new game's actual choice.
+/**
+ * A presentation scope can borrow an archived value without saving it as the player's choice. Both immediate storage
+ * and config serialization retain the pre-scope value. An ordinary Set (including an unchanged explicit value) ends
+ * the borrow and records the user's/new game's actual choice. Repeated temporary sets keep the value from before the
+ * first one. Used by Newer Game's demo split (`r_demosplit.js`); `server` cvars are still announced.
+ *
+ * @param {string} var_name cvar name (an unknown name prints a warning and changes nothing)
+ * @param {string} value value text to apply for the scope
+ */
 export function Cvar_SetTemporary( var_name, value ) {
 
  Cvar_SetInternal( var_name, value, true );
 
 }
 
-// Release only a value still owned by the presentation scope. An explicit
-// console/menu change has already cleared the borrow and must not be undone.
+/**
+ * Release only a value still owned by the presentation scope. An explicit console/menu change has already cleared
+ * the borrow and must not be undone. Restoring goes through `Cvar_Set`, so it also ends the borrow.
+ *
+ * @param {string} var_name cvar name
+ * @returns {boolean} true when a borrowed value was restored; false when the cvar is unknown or not borrowed
+ */
 export function Cvar_RestoreTemporary( var_name ) {
 
  const variable = Cvar_FindVar( var_name );
@@ -283,6 +360,14 @@ function Cvar_SetInternal( var_name, value, temporary ) {
 Cvar_SetValue
 ============
 */
+/**
+ * Sets a cvar from a number, as `Cvar_Set` (same broadcast, storage and unknown-name behaviour). A finite number is
+ * written with six decimals ('1.000000'), as WinQuake's `va("%f", value)` does, which also keeps `Q_atof` able to
+ * read it back; NaN and infinities are written with `String()`.
+ *
+ * @param {string} var_name cvar name
+ * @param {number} value new value
+ */
 export function Cvar_SetValue( var_name, value ) {
 
 	// Match original Quake behavior (va("%f", value)) and avoid scientific
@@ -301,10 +386,16 @@ export function Cvar_SetValue( var_name, value ) {
 /*
 ============
 Cvar_RegisterVariable
-
-Adds a freestanding variable to the variable list.
 ============
 */
+/**
+ * Adds a freestanding variable to the variable list, normally from a subsystem's init function before any console
+ * commands run. For an `archive` cvar a value saved in localStorage (`quake_cvar_<name>`) replaces the default
+ * string; `value` is then reparsed. The cvar stays registered for the rest of the session. A name already used by a
+ * cvar or a command prints a message and the variable is not registered.
+ *
+ * @param {cvar_t} variable cvar to register (mutated: `string`, `value`, `next`)
+ */
 export function Cvar_RegisterVariable( variable ) {
 
 	// first check to see if it has already been defined
@@ -347,10 +438,15 @@ export function Cvar_RegisterVariable( variable ) {
 /*
 ============
 Cvar_Command
-
-Handles variable inspection and changing from the console
 ============
 */
+/**
+ * Handles variable inspection and changing from the console. Called by `Cmd_ExecuteString` for a line whose first
+ * word is not a command: with no argument it prints `"name" is "value"`, otherwise it sets the cvar to the first
+ * argument through `Cvar_Set`.
+ *
+ * @returns {boolean} true when `Cmd_Argv(0)` named a cvar (the line was handled), false otherwise
+ */
 export function Cvar_Command() {
 
 	const v = Cvar_FindVar( Cmd_Argv( 0 ) );
@@ -373,11 +469,15 @@ export function Cvar_Command() {
 /*
 ============
 Cvar_WriteVariables
-
-Writes lines containing "set variable value" for all variables
-with the archive flag set to true.
 ============
 */
+/**
+ * Writes lines containing "set variable value" for all variables with the archive flag set to true; in this port
+ * each line is `name "value"\n`, and a borrowed (`Cvar_SetTemporary`) cvar writes its pre-borrow value.
+ * `Host_WriteConfiguration` appends the result to the key bindings and saves it in localStorage under `quake_config`.
+ *
+ * @returns {string} configuration text for every archived cvar, newest-registered first
+ */
 export function Cvar_WriteVariables() {
 
 	const lines = [];

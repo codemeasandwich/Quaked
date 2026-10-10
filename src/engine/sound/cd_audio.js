@@ -61,11 +61,17 @@ let _getTrackURL = null;
 /*
 ================
 CDAudio_SetTrackURLProvider
-
-Set a function that maps track number -> URL for music files.
-e.g., (track) => `music/track${track.toString().padStart(2,'0')}.ogg`
 ================
 */
+/**
+ * Sets a function that maps track number -> URL for music files, e.g.
+ * (track) => `music/track${track.toString().padStart(2,'0')}.ogg`. Kept until replaced; `CDAudio_Play` does nothing
+ * without one. Only tests/audio_volume_test.js sets one at present, so in the game `CDAudio_Play` logs "no URL" and
+ * returns.
+ *
+ * @param {?function(number): ?string} fn receives the remapped track (1..99) and returns its URL, or a falsy value
+ *     when it has none; null removes the provider
+ */
 export function CDAudio_SetTrackURLProvider( fn ) {
 
 	_getTrackURL = fn;
@@ -77,6 +83,19 @@ export function CDAudio_SetTrackURLProvider( fn ) {
 CDAudio_Play
 ================
 */
+/**
+ * Starts a music track (WinQuake cd_audio.c), played from an audio file through a reused HTMLAudioElement instead of
+ * a CD. cl_parse.js calls it for svc_cdtrack (with `cls.forcetrack` when that is set), and the `cd play` / `cd loop`
+ * console commands. The track number is first passed through the `cd remap` table; asking for the track already
+ * playing does nothing, otherwise the current one is stopped. Volume comes from `bgmvolume` (clamped to 0..1, and
+ * written back if it was out of range); when a Web Audio context exists the element is routed once, for the session,
+ * through its own gain node, independent of the effects volume. Errors from the browser (bad URL, autoplay refusal)
+ * are logged with Con_DPrintf, never thrown. Does nothing before `CDAudio_Init`, after `cd off`, for a track outside
+ * 1..99 or when the URL provider gives no URL.
+ *
+ * @param {number} track CD track number, 0..255 before remapping
+ * @param {boolean} looping true to repeat the track until stopped
+ */
 export function CDAudio_Play( track, looping ) {
 
 	if ( ! initialized || ! enabled )
@@ -210,6 +229,11 @@ export function CDAudio_Play( track, looping ) {
 CDAudio_Stop
 ================
 */
+/**
+ * Stops the music and rewinds it to the start (WinQuake cd_audio.c); used by `CDAudio_Play` before a new track, by
+ * `CDAudio_Shutdown` and by the `cd stop` / `cd off` / `cd reset` commands. Remembers whether it was playing for
+ * `CDAudio_Resume`. Does nothing before `CDAudio_Init` or after `cd off`.
+ */
 export function CDAudio_Stop() {
 
 	if ( ! initialized || ! enabled )
@@ -236,6 +260,10 @@ export function CDAudio_Stop() {
 CDAudio_Pause
 ================
 */
+/**
+ * Pauses the music where it is (WinQuake cd_audio.c); called for svc_setpause when the game pauses, and by `cd pause`.
+ * Does nothing when nothing is playing, before `CDAudio_Init` or after `cd off`.
+ */
 export function CDAudio_Pause() {
 
 	if ( ! initialized || ! enabled )
@@ -264,6 +292,11 @@ export function CDAudio_Pause() {
 CDAudio_Resume
 ================
 */
+/**
+ * Resumes music paused or stopped while it was playing (WinQuake cd_audio.c); called for svc_setpause when the game
+ * unpauses, and by `cd resume`. A playback refusal from the browser is ignored. Does nothing unless the music was
+ * playing when last paused or stopped, before `CDAudio_Init` or after `cd off`.
+ */
 export function CDAudio_Resume() {
 
 	if ( ! initialized || ! enabled )
@@ -291,6 +324,12 @@ export function CDAudio_Resume() {
 CDAudio_Update
 ================
 */
+/**
+ * Applies a change of `bgmvolume` to the playing music (WinQuake cd_audio.c); called once per host frame from
+ * _Host_Frame_Internal (host.js). When the volume (in 1/255 steps) has changed it clamps the cvar to 0..1 (writing it
+ * back if out of range) and sets the gain node, or the element's own volume when there is no Web Audio routing. Does
+ * nothing before `CDAudio_Init` or after `cd off`.
+ */
 export function CDAudio_Update() {
 
 	if ( ! initialized || ! enabled )
@@ -333,6 +372,13 @@ export function CDAudio_Update() {
 CDAudio_Init
 ================
 */
+/**
+ * Initialises music playback (WinQuake cd_audio.c); Host_Init calls it once at startup. Resets the track remap
+ * table to identity, enables playback and adds the `cd` console command (on, off, reset, remap, play, loop, stop,
+ * pause, resume, info).
+ *
+ * @returns {number} 0 when initialised, -1 when the `-nocdaudio` command-line parameter disables music
+ */
 export function CDAudio_Init() {
 
 	if ( COM_CheckParm( '-nocdaudio' ) )
@@ -357,6 +403,10 @@ export function CDAudio_Init() {
 CDAudio_Shutdown
 ================
 */
+/**
+ * Stops the music and releases the audio element and its Web Audio nodes (WinQuake cd_audio.c); called from
+ * Host_Shutdown. Afterwards nothing plays until `CDAudio_Init` runs again. Does nothing if not initialised.
+ */
 export function CDAudio_Shutdown() {
 
 	if ( ! initialized )

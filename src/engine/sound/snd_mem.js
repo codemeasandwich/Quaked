@@ -136,6 +136,22 @@ function FindChunk( name ) {
 GetWavinfo
 ============
 */
+/**
+ * Parses a WAV file's RIFF chunks (WinQuake snd_mem.c): the `fmt ` chunk (Microsoft PCM only), an optional `cue `
+ * chunk giving the loop start, a following `LIST` chunk with a "mark" label giving the loop length (not a proper
+ * parse, but it works with cooledit...), and the `data` chunk. Called by `S_LoadSound` when a sound is first used.
+ * Uses this module's parser state, so it is not reentrant. On a malformed file it prints the reason ("Missing
+ * RIFF/WAVE chunks", "Missing fmt chunk", "Microsoft PCM format only", "Missing data chunk") and returns the fields
+ * filled so far.
+ *
+ * @param {string} name sound name, used only in the error message
+ * @param {?Uint8Array} wav the whole file; null or empty returns an all-zero wavinfo_t
+ * @param {number} wavlength bytes of `wav` to parse
+ * @returns {wavinfo_t} a new object: `rate` in samples per second, `width` bytes per sample, `channels`,
+ *     `loopstart` in samples (-1 without a cue chunk), `samples` in sample frames and `dataofs` the byte offset of the
+ *     sample data in `wav`
+ * @throws {Error} via `Sys_Error` when a cue/mark loop runs past the end of the data ("has a bad loop length")
+ */
 export function GetWavinfo( name, wav, wavlength ) {
 
 	const info = new wavinfo_t();
@@ -335,6 +351,18 @@ function ResampleSfx( sfx, inrate, inwidth, data ) {
 S_LoadSound
 ==============
 */
+/**
+ * Returns a sound's decoded samples, loading `sound/<name>` from the paks the first time (WinQuake snd_mem.c). The
+ * WAV is parsed with `GetWavinfo` and resampled to the output rate `shm.speed` (8-bit when the `loadas8bit` cvar is
+ * set, otherwise at the file's width), and the result is cached in `s.cache` for the life of the page (until
+ * S_FindName reuses the slot). Called by snd_dma.js when a sound is precached, started, or mixed (S_PrecacheSound,
+ * S_StartSound, S_StaticSound, S_Update, S_UpdateAmbientSounds). Failures print a console message and return null.
+ *
+ * @param {?sfx_t} s the known sound; null returns null
+ * @returns {?sfxcache_t} the cached samples (mono, `speed` = `shm.speed`), or null when the file is missing, is
+ *     stereo, or the sound system has not been initialised (`shm` unset)
+ * @throws {Error} via `Sys_Error` (from `GetWavinfo`) when the WAV's loop length is bad
+ */
 export function S_LoadSound( s ) {
 
 	if ( ! s )

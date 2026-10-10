@@ -215,11 +215,21 @@ function FanLength( starttri, startv ) {
 /*
 ================
 BuildTris
-
-Generate a list of trifans or strips
-for the model, which holds for all frames
 ================
 */
+/**
+ * Generates a list of trifans or strips for the model, which holds for all frames (WinQuake gl_mesh.c). For each
+ * unused triangle it tries a fan and a strip from each of its three vertices and keeps the longest. Called by
+ * `GL_MakeAliasModelDisplayLists` when the prepared-mesh hook (`R_AliasMeshLookup`) has no stored result; it reads
+ * the header, triangles and s/t vertices that function sets in module state, so it must not be called on its own
+ * before that.
+ *
+ * Output is left in module buffers that the next model overwrites: `commands` (per strip/fan a vertex count,
+ * positive for a strip and negative for a fan, then each vertex's s and t as float bits in texture space 0..1 with a
+ * half-texel offset and back-side seam vertices moved half a skin across; a 0 ends the list) and `vertexorder` (the
+ * pose vertex index for each command vertex). Adds to the running `allverts`/`alltris` totals and prints the counts
+ * with `Con_DPrintf`.
+ */
 export function BuildTris() {
 
 	const bestverts = new Int32Array( 1024 );
@@ -312,12 +322,23 @@ export function BuildTris() {
 /*
 ================
 GL_MakeAliasModelDisplayLists
-
-In Three.js, we build a BufferGeometry from the alias model vertex/triangle data.
-The original code generates GL command lists (triangle strips/fans);
-we instead build indexed triangle geometry.
 ================
 */
+/**
+ * Prepares an alias model's draw data once, when the model loads (from `Mod_LoadAliasModel` in gl_model.js, through
+ * its own `GL_MakeAliasModelDisplayLists` wrapper). As in WinQuake it builds the strip/fan command list
+ * (`BuildTris`, or the stored result from the `R_AliasMeshLookup` hook, with a new result kept through
+ * `R_AliasMeshRemember`); in Three.js the indexed BufferGeometry is built from it later by `GL_DrawAliasFrame`,
+ * instead of GL command lists. Prints `meshing <name>...`.
+ *
+ * Mutates `hdr`, which keeps the results as long as the model stays cached: `poseverts_count`, `meshVertexOrder`
+ * (copy of the vertex order; an immutable offline record, never pose data), `commands` (copy of the command list)
+ * and `posedata` (per pose, the trivertx_t vertices rearranged and expanded into command-list order).
+ *
+ * @param {model_t} m the alias model being loaded (its `name` is printed)
+ * @param {aliashdr_t} hdr its header, with `triangles`, `stverts`, `poseverts`, `numtris`, `numposes`, `skinwidth`
+ *   and `skinheight` already filled in
+ */
 export function GL_MakeAliasModelDisplayLists( m, hdr ) {
 
 	aliasmodel = m;
@@ -363,13 +384,6 @@ export function GL_MakeAliasModelDisplayLists( m, hdr ) {
 /*
 ================
 GL_DrawAliasFrame
-
-Build a Three.js BufferGeometry from a single pose of an alias model.
-Uses the command list to reconstruct triangle strips/fans into indexed triangles.
-
-Caches geometry template (positions, UVs, indices, normals, lightnormalindices)
-per (paliashdr, posenum) to avoid recomputation every frame. Vertex colors
-are updated in place from a pre-allocated buffer.
 ================
 */
 
@@ -377,6 +391,22 @@ are updated in place from a pre-allocated buffer.
 const _castIntBuf = new Int32Array( 1 );
 const _castFloatView = new Float32Array( _castIntBuf.buffer );
 
+/**
+ * Builds the Three.js geometry of a single pose of an alias model. Uses the command list to reconstruct triangle
+ * strips/fans into indexed triangles (winding inverted for correct backface culling), with positions decoded from the
+ * compressed vertices (`v * scale + scale_origin`, model space, Quake units) and normals from the MDL normal table.
+ *
+ * Caches the geometry template (positions, UVs, indices, normals, lightnormalindices) per (paliashdr, posenum) in
+ * `paliashdr._geoCache` to avoid recomputation every frame; the template has no colour, since vertex colours are
+ * per entity and updated in place from a pre-allocated buffer by `R_DrawAliasModel`. The cache lives as long as the
+ * header. Called by `R_DrawAliasModel`, the shadow functions and Newer Game effects that need a pose's vertices.
+ *
+ * @param {aliashdr_t} paliashdr header prepared by `GL_MakeAliasModelDisplayLists`
+ * @param {number} posenum pose index, 0..`numposes`-1
+ * @returns {?{ posAttr: THREE.BufferAttribute, normalAttr: THREE.BufferAttribute, uvAttr: THREE.BufferAttribute,
+ *   indices: Array<number>, lightnormalindices: Array<number>, vertexCount: number }} the shared template (do not
+ *   modify its arrays), or null when the header has no such pose
+ */
 export function GL_DrawAliasFrame( paliashdr, posenum ) {
 
 	const verts = paliashdr.posedata[ posenum ];
@@ -503,10 +533,13 @@ export function GL_DrawAliasFrame( paliashdr, posenum ) {
 /*
 ================
 GL_ClearAliasCache
-
-Clears all cached alias model geometries. Called on map change.
 ================
 */
+/**
+ * Meant to clear all cached alias model geometries on map change; currently does nothing, and nothing calls it. The
+ * caches are stored on paliashdr objects, which are replaced on map load, so they are garbage collected
+ * automatically; this function exists as a hook if explicit cleanup is ever needed.
+ */
 export function GL_ClearAliasCache() {
 
 	// Caches are stored on paliashdr objects which are replaced on map load,
@@ -677,12 +710,32 @@ function weaponAliasFrame( weapon, header, pose ) {
 /*
 =================
 R_DrawAliasModel
-
-Builds and returns a Three.js Mesh for the given alias model entity.
-Caches geometry per (model, pose), materials per (model, skin),
-and reuses mesh objects per entity to minimize per-frame allocations.
 =================
 */
+/**
+ * Builds and returns a Three.js Mesh for the given alias model entity, once per frame for each visible alias entity
+ * (called by `R_DrawAliasModel` in gl_rmain.js, which adds the mesh to the scene, and by Newer Game views). Caches
+ * geometry per (model, pose), materials per (model, skin), and reuses mesh objects per entity to minimize per-frame
+ * allocations.
+ *
+ * Picks the pose from `entity.frame` and `cl.time` (frame groups), lets the Newer Game hooks swap in weapon assets,
+ * rotor frames, replacement skins and blended in-between poses, sets per-vertex grey light from
+ * `shadedots[lightnormalindex] * shadelight`, uses the player's colour-translated skin for client entities (unless
+ * `gl_nocolors`), and positions the mesh at `entity.origin` rotated by `entity.angles` (degrees; pitch negated, as
+ * in R_RotateForEntity). Resets `renderOrder` and `depthTest`, which the view model changes.
+ *
+ * Mutates `entity`: it keeps the mesh, geometry, colour buffer, current pose and blend state in `_alias*` fields
+ * (and `_playerMaterial`) across frames, so the same entity_t must be passed each frame.
+ *
+ * @param {entity_t} entity entity to draw; must not be null (the per-entity caches are written unconditionally)
+ * @param {aliashdr_t} paliashdr the model's header (`entity.model.cache.data`)
+ * @param {?ArrayLike<number>} shadedots dot products per vertex normal index for the entity's yaw (a row of
+ *   `r_avertexnormal_dots`); null for no lighting (colours are left as they are)
+ * @param {number} [shadelight] light level already scaled down (gl_rmain.js divides by 200, so about 0..1.3, higher for
+ *   glowing flames); with `shadedots`, enables vertex colours
+ * @returns {?THREE.Mesh} the entity's mesh (the same object every frame), or null when the header has no pose data or
+ *   the pose has no geometry
+ */
 export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 
 	if ( ! paliashdr || ! paliashdr.posedata )
@@ -952,9 +1005,6 @@ export function R_DrawAliasModel( entity, paliashdr, shadedots, shadelight ) {
 /*
 =============
 GL_DrawAliasShadow
-
-Projects alias model vertices onto the ground plane to create a shadow.
-Ported from WinQuake/gl_rmain.c:347-405
 =============
 */
 
@@ -973,6 +1023,23 @@ const _shadowRZ = new THREE.Matrix4();
 const _shadowRY = new THREE.Matrix4();
 const _shadowRX = new THREE.Matrix4();
 
+/**
+ * Projects alias model vertices onto the ground plane to create a shadow (classic `r_shadows`). Ported from
+ * WinQuake/gl_rmain.c:347-405. Called by gl_rmain.js once per frame for each shadowed entity, after its model is
+ * drawn. Vertices are pushed along `shadevector` down to 1 unit above the floor, in the entity's model space, and the
+ * mesh gets the entity's origin and rotation. All shadows share one black, half-transparent material.
+ *
+ * Mutates `entity`: the shadow geometry, positions and mesh are kept in `_aliasShadowGeo`, `_aliasShadowPosArray`,
+ * `_aliasShadowVertCount` and `_aliasShadowMesh` and reused while the vertex count stays the same.
+ *
+ * @param {entity_t} entity entity casting the shadow; `origin` (Quake units) is required, `angles` (degrees) optional
+ * @param {aliashdr_t} paliashdr the model's header
+ * @param {number} posenum pose index to project (the pose last drawn)
+ * @param {ArrayLike<number>} lightspot world point on the floor below the entity (from `R_LightPoint`); only z is used
+ * @param {ArrayLike<number>} shadevector unit direction the shadow is cast along; x and y are used
+ * @returns {?THREE.Mesh} the entity's shadow mesh (the same object each frame), or null when the header has no pose
+ *   data or the pose has no geometry
+ */
 export function GL_DrawAliasShadow( entity, paliashdr, posenum, lightspot, shadevector ) {
 
 	if ( paliashdr == null || paliashdr.posedata == null ) return null;
@@ -1061,15 +1128,6 @@ export function GL_DrawAliasShadow( entity, paliashdr, posenum, lightspot, shade
 /*
 =============
 GL_DrawAliasLightShadow
-
-Newer Game's shadow of a model: cast by the lights that really shine on it.  The
-pose the model is in is projected from each light's position onto the floor under it
-(the shadow falls away from the light, is long from a low one, and is fainter from a
-far or dim one), drawn once into a small picture (so where the shadow overlaps itself
-it is not darker), softened, and laid on the floor as one flat square.
-
-lights   [ { pos: [ x, y, z ], opacity } ] (at most a few)
-Returns the mesh, or null when there is nothing to draw.
 =============
 */
 const SHADOW_SIZE = 64;
@@ -1083,6 +1141,29 @@ const _swz = new THREE.Matrix4();
 const _swy = new THREE.Matrix4();
 const _swx = new THREE.Matrix4();
 
+/**
+ * Newer Game's shadow of a model: cast by the lights that really shine on it. The pose the model is in (the blended
+ * pose while animation is smoothed) is projected from each light's position onto the floor under it (the shadow
+ * falls away from the light, is long from a low one, and is fainter from a far or dim one), drawn once into a small
+ * picture (so where the shadow overlaps itself it is not darker), softened, and laid on the floor as one flat square.
+ * Called by gl_rmain.js (`R_LightShadow`) each frame for shadowed alias entities near the view on a flat floor.
+ *
+ * A projection is stretched at most 2.6 times the model's distance from the light, and points farther than 400
+ * units from the origin are dropped. While the entity stays put (same origin and yaw) the last picture is reused for
+ * up to 0.09 s of `cl.time`; otherwise it is redrawn.
+ *
+ * Mutates `entity`: keeps a 64x64 canvas, a scratch canvas, a texture, a material, the mesh and world-space vertices
+ * in `_shadow*` fields, reused for the entity's lifetime.
+ *
+ * @param {entity_t} entity entity casting the shadow; `origin` (Quake units) required, `angles` (degrees) optional
+ * @param {aliashdr_t} paliashdr the model's header
+ * @param {number} posenum pose index (the pose last drawn)
+ * @param {number} floorZ world z of the floor the shadow lies on (Quake units); the square is drawn 0.4 above it
+ * @param {Array<{ pos: ArrayLike<number>, opacity: number }>} lights at most a few lights: world position (Quake
+ *   units) and shadow opacity 0..1
+ * @returns {?THREE.Mesh} the mesh, or null when there is nothing to draw (no lights, no pose data, no DOM, or no vertex
+ *   casts onto the floor within reach)
+ */
 export function GL_DrawAliasLightShadow( entity, paliashdr, posenum, floorZ, lights ) {
 
 	if ( paliashdr == null || paliashdr.posedata == null || lights.length === 0 ) return null;

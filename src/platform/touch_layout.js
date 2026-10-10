@@ -23,7 +23,27 @@ export const FOV_LANDSCAPE = 120;
 
 const clamp = ( v, lo, hi ) => Math.max( lo, Math.min( hi, v ) );
 
-// w, h: the window; safe: { top, right, bottom, left } insets of the screen (notches, home bar)
+/**
+ * Lays out the touch controls for a window size (pure geometry, CSS pixels from the top left). Called by touch.js
+ * `Touch_ApplyLayout` when the touch controls start and whenever the window is resized or rotated, and by the tests.
+ *
+ * Portrait when the window is taller than wide. Sizes scale with the shorter side (`min(w, h) / 400`, clamped to
+ * 0.85..1.3) and keep a 24-pixel (scaled) margin inside the safe area. Forward sits in the bottom right corner with
+ * fire straight above it, strafe at 45 degrees up and to the left and change weapon to its left; the stick is in the
+ * bottom left with jump straight above it; pause is in the top right corner.
+ *
+ * @param {number} w window width, CSS pixels
+ * @param {number} h window height, CSS pixels
+ * @param {{ top: number, right: number, bottom: number, left: number }} [safe] insets of the screen (notches, home
+ *   bar), CSS pixels; all 0 when omitted
+ * @returns {{ portrait: boolean, scale: number, panelHeight: number, fov: number, stick: { x: number, y: number,
+ *   r: number }, forward: { x: number, y: number, r: number }, fire: { x: number, y: number, r: number }, jump: { x:
+ *   number, y: number, r: number }, strafe: { x: number, y: number, r: number }, weapon: { x: number, y: number, r:
+ *   number }, pause: { x: number, y: number, r: number } }} each control as a circle (centre `x`, `y` and radius `r`,
+ *   CSS pixels); `panelHeight` is the height of the portrait panel, from the top of the highest button (plus 14
+ *   scaled pixels) to the bottom of the screen, or 0 in landscape; `fov` is `FOV_PORTRAIT` (100) or `FOV_LANDSCAPE`
+ *   (120) degrees; `scale` is the size factor used
+ */
 export function Touch_Layout( w, h, safe ) {
 
 	const inset = safe || { top: 0, right: 0, bottom: 0, left: 0 };
@@ -80,7 +100,15 @@ export const TOUCH_WEAPONS = [
 	{ name: 'Thunderbolt', item: 64, impulse: 8, ammo: 3 }
 ];
 
-// which weapons are on offer for the items and ammo the player has: owned, and with ammo (the axe needs none)
+/**
+ * Which weapons are on offer for the items and ammo the player has: owned, and with ammo (the axe needs none). Called
+ * by touch.js `Touch_OpenWeaponMenu` when the change-weapon menu opens, with `cl.items` and the four ammo stats.
+ *
+ * @param {number} items the player's item bits (`cl.items`; the `IT_*` weapon bits as in `TOUCH_WEAPONS`)
+ * @param {ArrayLike<number>} ammo counts by ammo type: 0 shells, 1 nails, 2 rockets, 3 cells
+ * @returns {Array<{ name: string, impulse: number, owned: boolean, ammo: ?number, usable: boolean }>} one entry per
+ *   weapon in impulse order (1..8): `ammo` is its ammo count (null for the axe), `usable` is owned with ammo
+ */
 export function Touch_WeaponChoices( items, ammo ) {
 
 	return TOUCH_WEAPONS.map( ( w ) => ( {

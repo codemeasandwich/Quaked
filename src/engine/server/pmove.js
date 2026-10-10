@@ -83,6 +83,13 @@ export const movevars = {
 
 // Trace result structure
 export class pmtrace_t {
+	/**
+	 * Creates an unclipped player-move trace result (QuakeWorld pmove.h): `fraction` 1 (0..1 of the move completed),
+	 * `endpos` (Quake units, world space once `PM_PlayerMove` adds the physent offset), `plane` (the normal and
+	 * distance of the surface hit), `ent` (index into `pmove.physents` that was hit, -1 for none), and the flags
+	 * `allsolid` (the whole move was in solid), `startsolid`, `inopen` and `inwater`. The module keeps two instances
+	 * that `PM_PlayerMove` reuses on every call.
+	 */
 	constructor() {
 		this.allsolid = false;
 		this.startsolid = false;
@@ -104,6 +111,13 @@ const _pm_move_trace = new pmtrace_t();
 
 // Physics entity (world + other players/entities to collide with)
 export class physent_t {
+	/**
+	 * Creates an empty physics entity (QuakeWorld pmove.h): something the player can collide with. `origin` is its
+	 * position (Quake units, world space); `model` is a BSP `model_t` whose hull 1 is traced (the world in
+	 * `physents[0]`, or a brush entity), or null to collide with the box `mins`..`maxs` (relative to `origin`) as for
+	 * other players; `info` is set by cl_pred.js to the entity or player number. `pmove.physents` holds 32 of these,
+	 * allocated once at module load and refilled by cl_pred.js each prediction frame.
+	 */
 	constructor() {
 		this.origin = new Float32Array( 3 );
 		this.model = null; // BSP model for collision
@@ -162,8 +176,24 @@ const right = new Float32Array( 3 );
 const up = new Float32Array( 3 );
 
 // Export state accessors
+/**
+ * Reads what the last `PlayerMove` left the player standing on (set by `PM_CatagorizePosition`); cl_pred.js turns it
+ * into the predicted `onground` flag.
+ *
+ * @returns {number} -1 = in air (or the ground is too steep), >= 0 = index into `pmove.physents` we're standing on
+ */
 export function PM_GetOnGround() { return onground; }
+/**
+ * Reads how deep the player was in liquid after the last `PlayerMove`.
+ *
+ * @returns {number} 0 = not in water, 1 = feet, 2 = waist, 3 = eyes
+ */
 export function PM_GetWaterLevel() { return waterlevel; }
+/**
+ * Reads the contents of the liquid at the player's feet after the last `PlayerMove`.
+ *
+ * @returns {number} a `CONTENTS_*` value: `CONTENTS_EMPTY` when not in liquid, else water, slime or lava
+ */
 export function PM_GetWaterType() { return watertype; }
 
 // Box hull for non-BSP collision (other players)
@@ -183,11 +213,13 @@ for ( let i = 0; i < 6; i++ ) {
 /*
 ===================
 PM_InitBoxHull
-
-Set up the planes and clipnodes so that the six floats of a bounding box
-can just be stored out and get a proper hull_t structure.
 ===================
 */
+/**
+ * Set up the planes and clipnodes so that the six floats of a bounding box can just be stored out and get a proper
+ * hull_t structure (QuakeWorld pmovetst.c): builds the module's six-node box hull, which `PM_HullForBox` then sizes to
+ * collide with box-shaped physents such as other players. Called once through `Pmove_Init`.
+ */
 export function PM_InitBoxHull() {
 	for ( let i = 0; i < 6; i++ ) {
 		box_hull.clipnodes[ i ].planenum = i;
@@ -230,6 +262,18 @@ function PM_HullForBox( mins, maxs ) {
 PM_HullPointContents
 ==================
 */
+/**
+ * Finds the contents of a point in a clipping hull by walking its clipnodes from `num` to a leaf (QuakeWorld
+ * pmovetst.c). Used by the player traces here and by cl_pred.js's `CL_NudgePosition` to test the world's hull 1. A
+ * node number outside the hull's clipnode range logs "PM_HullPointContents: bad node number" with `console.error` and
+ * counts as solid.
+ *
+ * @param {hull_t} hull the clipping hull (a model's `hulls[n]` or the box hull)
+ * @param {number} num clipnode to start from, normally `hull.firstclipnode`; a negative number is already a contents
+ *   value and is returned as is
+ * @param {Float32Array} p the point, in the hull's model space (Quake units)
+ * @returns {number} a `CONTENTS_*` value (negative), e.g. `CONTENTS_EMPTY` or `CONTENTS_SOLID`
+ */
 export function PM_HullPointContents( hull, num, p ) {
 	while ( num >= 0 ) {
 		if ( num < hull.firstclipnode || num > hull.lastclipnode ) {
@@ -260,6 +304,13 @@ export function PM_HullPointContents( hull, num, p ) {
 PM_PointContents
 ==================
 */
+/**
+ * Finds the contents of a world-space point in the world model's point hull (hull 0 of `pmove.physents[0]`); used to
+ * set the player's water level and type and to check for a water jump (QuakeWorld pmovetst.c).
+ *
+ * @param {Float32Array} p the point (Quake units, world space)
+ * @returns {number} a `CONTENTS_*` value; `CONTENTS_EMPTY` when no world physent has been set up
+ */
 export function PM_PointContents( p ) {
 	if ( pmove.numphysent === 0 || pmove.physents[ 0 ].model == null )
 		return CONTENTS_EMPTY;
@@ -370,10 +421,16 @@ function PM_RecursiveHullCheck( hull, num, p1f, p2f, p1, p2, trace ) {
 /*
 ================
 PM_TestPlayerPosition
-
-Returns false if the given player position is not valid (in solid)
 ================
 */
+/**
+ * Tests whether a player-sized box fits at a position against every physent in `pmove.physents` (QuakeWorld
+ * pmovetst.c): brush models through their player-sized hull 1, box physents expanded by `player_mins`/`player_maxs`.
+ * Used while nudging the player out of solid.
+ *
+ * @param {Float32Array} pos the player origin to test (Quake units, world space)
+ * @returns {boolean} false if the given player position is not valid (in solid), true otherwise
+ */
 export function PM_TestPlayerPosition( pos ) {
 	for ( let i = 0; i < pmove.numphysent; i++ ) {
 		const pe = pmove.physents[ i ];
@@ -400,10 +457,17 @@ export function PM_TestPlayerPosition( pos ) {
 /*
 ================
 PM_PlayerMove
-
-Trace player from start to end, returns trace result
 ================
 */
+/**
+ * Trace player from start to end, returns trace result (QuakeWorld pmovetst.c): traces a player-sized box through
+ * every physent (brush models by hull 1, boxes expanded by the player bounds) and keeps the nearest hit.
+ *
+ * @param {Float32Array} start start of the move (Quake units, world space)
+ * @param {Float32Array} end intended end of the move (Quake units, world space)
+ * @returns {pmtrace_t} the nearest clip, with `endpos` in world space and `ent` the index of the physent hit (-1 when
+ *   nothing was hit and `endpos` equals `end`); allocated once and reused by the next call, so copy what you keep
+ */
 export function PM_PlayerMove( start, end ) {
 	const total = _pm_move_total;
 	total.allsolid = false;
@@ -1150,13 +1214,19 @@ function SpectatorMove() {
 /*
 =============
 PlayerMove
-
-Returns with origin, angles, and velocity modified in place.
-
-Numtouch and touchindex[] will be set if any of the physents
-were contacted during the move.
 =============
 */
+/**
+ * Runs one user command of player movement (QuakeWorld pmove.c) on the shared `pmove` state, using `movevars` and the
+ * physents set up by the caller: spectators fly freely; otherwise it nudges out of solid, takes the command's angles,
+ * categorises the position, handles water jumps, jump, friction and water or air/ground movement, and categorises the
+ * final spot. Called by cl_pred.js's `CL_PredictUsercmd` for each predicted command. Frame time is `pmove.cmd.msec`
+ * (milliseconds) / 1000.
+ *
+ * Returns with origin, angles, and velocity modified in place. Numtouch and touchindex[] will be set if any of the
+ * physents were contacted during the move. The ground and water results are read with `PM_GetOnGround`,
+ * `PM_GetWaterLevel` and `PM_GetWaterType`.
+ */
 export function PlayerMove() {
 	frametime = pmove.cmd.msec * 0.001;
 	pmove.numtouch = 0;
@@ -1203,6 +1273,10 @@ export function PlayerMove() {
 Pmove_Init
 ==============
 */
+/**
+ * Initialises player movement by building the box hull (QuakeWorld pmove.c). Called once from cl_pred.js's
+ * `CL_InitPrediction` at client start-up.
+ */
 export function Pmove_Init() {
 	PM_InitBoxHull();
 }

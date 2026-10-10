@@ -79,6 +79,15 @@ const UPDATE_MASK = UPDATE_BACKUP - 1;
 
 // Player state for prediction
 export class player_state_t {
+	/**
+	 * Creates a zeroed player movement state: the input and output of one `CL_PredictUsercmd` step. One is kept
+	 * per prediction frame (`frame_t.playerstate`) and reused for the life of the module; the scratch instances
+	 * `_predFrom`, `_predTo` and `_splitTemp` are also of this type.
+	 *
+	 * Fields: `origin` (Quake units, world space), `velocity` (Quake units per second), `viewangles` (degrees),
+	 * `onground` (true when standing on something), `oldbuttons` (button bits of the previous command, for
+	 * jump edge detection), `waterjumptime` (seconds left of a water jump), `weaponframe`.
+	 */
 	constructor() {
 		this.origin = new Float32Array( 3 );
 		this.velocity = new Float32Array( 3 );
@@ -89,6 +98,12 @@ export class player_state_t {
 		this.weaponframe = 0;
 	}
 
+	/**
+	 * Copies every field of another state into this one (vectors element by element, so this object keeps its own
+	 * arrays). Nothing in the engine calls it at present.
+	 *
+	 * @param {player_state_t} other state to copy from; not modified
+	 */
 	copyFrom( other ) {
 		VectorCopy( other.origin, this.origin );
 		VectorCopy( other.velocity, this.velocity );
@@ -102,6 +117,18 @@ export class player_state_t {
 
 // Frame structure - stores command and resulting state for prediction
 export class frame_t {
+	/**
+	 * Creates one slot of the 64-entry prediction ring (`UPDATE_BACKUP`), indexed by the client's outgoing command
+	 * sequence. `CL_StoreCommand` fills `cmd`, `sequence`, `netsequence` and `senttime` when a move is sent;
+	 * `CL_SetServerState` writes the server's authoritative result into the acknowledged slot's `playerstate`, and
+	 * `CL_PredictMove` writes predicted results into the later slots. All slots are allocated once and reused;
+	 * `CL_ResetPrediction` clears them.
+	 *
+	 * Fields: `cmd` (`msec` 0..255 milliseconds, `angles` in degrees, `forwardmove`/`sidemove`/`upmove` in Quake
+	 * units per second, `buttons` bits: 1 attack, 2 jump), `sequence` (absolute command sequence in this slot, -1 when
+	 * empty), `netsequence` (transport packet sequence the command went out in, -1 when unknown), `senttime` (`realtime`
+	 * in seconds when sent, 0 when empty), `playerstate` (`player_state_t`).
+	 */
 	constructor() {
 		this.cmd = {
 			msec: 0,
@@ -152,6 +179,13 @@ export const cl_simorg = new Float32Array( 3 ); // Simulated/predicted origin
 export const cl_simvel = new Float32Array( 3 ); // Simulated/predicted velocity
 export const cl_simangles = new Float32Array( 3 ); // Simulated angles
 export let cl_simonground = -1; // Predicted onground state: -1 = in air, >= 0 = on ground
+/**
+ * Sets the exported `cl_simonground` binding from outside this module. CL_ReadFromServer (cl_main.js)
+ * calls it each frame when prediction is not running (local server or demo playback) so view bobbing still sees the
+ * NQ onground state.
+ *
+ * @param {number} v -1 when in the air, 0 (or any value >= 0) when on the ground
+ */
 export function set_cl_simonground( v ) { cl_simonground = v; }
 export let cl_prediction_active = false; // true once CL_PredictMove has produced valid output
 
@@ -161,10 +195,15 @@ let cls_latency = 0;
 /*
 =================
 CL_SetLatency
-
-Called when we receive server updates to estimate latency
 =================
 */
+/**
+ * Overrides the estimated round-trip latency. Its original comment says it is called when server updates arrive to
+ * estimate latency; nothing in the engine calls it now, because `CL_AcknowledgeCommand` and
+ * `CL_FindAcknowledgedSequence` keep the estimate up to date themselves. Cleared to 0 by `CL_ResetPrediction`.
+ *
+ * @param {number} latency round-trip time in seconds (0 means "no estimate yet")
+ */
 export function CL_SetLatency( latency ) {
 	cls_latency = latency;
 }
@@ -172,10 +211,14 @@ export function CL_SetLatency( latency ) {
 /*
 =================
 CL_GetLatency
-
-Returns the current estimated latency in seconds
 =================
 */
+/**
+ * Reads the current round-trip latency estimate (an exponential moving average updated as commands are
+ * acknowledged). No engine code calls it at present.
+ *
+ * @returns {number} estimated latency in seconds; 0 until the first acknowledged command after a reset
+ */
 export function CL_GetLatency() {
 	return cls_latency;
 }
@@ -185,17 +228,35 @@ export function CL_GetLatency() {
 CL_GetOutgoingSequence / CL_GetIncomingSequence
 =================
 */
+/**
+ * Reads the sequence number the next stored command will get (`CL_StoreCommand` increments it). Reset to 0 by
+ * `CL_ResetPrediction`. No engine code calls it at present.
+ *
+ * @returns {number} next outgoing command sequence (0 or more)
+ */
 export function CL_GetOutgoingSequence() { return outgoing_sequence; }
+/**
+ * Reads the newest command sequence the server is known to have processed: the prediction baseline that
+ * `CL_PredictMove` replays from. Reset to 0 by `CL_ResetPrediction`. No engine code calls it at present.
+ *
+ * @returns {number} last acknowledged command sequence (0 or more)
+ */
 export function CL_GetIncomingSequence() { return incoming_sequence; }
 
 /*
 =================
 CL_SetValidSequence
-
-Called when we receive valid entity/player data from server.
-Set to 0 to invalidate (e.g., on error or disconnect).
 =================
 */
+/**
+ * Records the server frame sequence of the newest valid packet-entity snapshot. cl_parse.js calls it after parsing
+ * svc_packetentities / svc_deltapacketentities, and with 0 when a delta cannot be applied. While it is 0 the client
+ * neither requests deltas nor builds brush-entity collision for prediction, and relinks entities the NQ way. Reset
+ * to 0 by `CL_ResetPrediction`.
+ *
+ * @param {number} seq server sequence (from svc_serversequence) of the valid snapshot; 0 to invalidate (for example
+ *     on a parse error or disconnect)
+ */
 export function CL_SetValidSequence( seq ) {
 	validsequence = seq;
 }
@@ -203,48 +264,81 @@ export function CL_SetValidSequence( seq ) {
 /*
 =================
 CL_GetValidSequence
-
-Returns the current validsequence value.
 =================
 */
+/**
+ * Reads the server sequence of the newest valid packet-entity snapshot. cl_input.js uses it to choose the delta
+ * base it asks for (clc_delta) and cl_main.js to decide between QW-style packet-entity linking and NQ relinking.
+ *
+ * @returns {number} the server sequence, or 0 when there is no valid snapshot
+ */
 export function CL_GetValidSequence() { return validsequence; }
 
 /*
 =================
 CL_GetFrame
-
-Access the prediction frame buffer (indexed by client outgoing_sequence).
 =================
 */
+/**
+ * Looks up a slot of the prediction frame buffer (indexed by client outgoing_sequence). The ring holds 64 slots, so
+ * a sequence 64 or more older than the newest refers to a reused slot; check `frame.sequence` against `seq`.
+ *
+ * @param {number} seq client command sequence; only the low 6 bits select the slot
+ * @returns {frame_t} the live slot (shared, mutable; not a copy)
+ */
 export function CL_GetFrame( seq ) { return frames[ seq & UPDATE_MASK ]; }
 
 /*
 =================
 CL_GetEntityFrame
-
-Access the entity frame buffer (indexed by server_sequence).
-Separate from prediction frames to avoid namespace conflicts.
 =================
 */
+/**
+ * Looks up a slot of the 64-entry packet-entity snapshot ring (indexed by server_sequence). It is kept separate from
+ * the prediction frames because the two use different sequence namespaces. cl_parse.js fills or invalidates the slot
+ * for the current server sequence and reads older slots as delta bases; cl_main.js reads it to link entities.
+ *
+ * @param {number} seq server frame sequence; only the low 6 bits select the slot
+ * @returns {{ packet_entities: packet_entities_t, invalid: boolean, server_sequence: number }} the live slot
+ *     (shared, mutable, reused 64 sequences later); `invalid` is set when parsing that frame failed
+ */
 export function CL_GetEntityFrame( seq ) { return entity_frames[ seq & UPDATE_MASK ]; }
 
 /*
 =================
 CL_GetServerSequence / CL_SetServerSequence
-
-Server frame sequence tracking for delta compression.
 =================
 */
+/**
+ * Reads the latest server frame sequence received, used for delta compression and to index the entity frame ring.
+ *
+ * @returns {number} sequence from the last svc_serversequence; 0 after `CL_ResetPrediction`
+ */
 export function CL_GetServerSequence() { return server_sequence; }
+/**
+ * Stores the server frame sequence when cl_parse.js reads svc_serversequence (once per server frame, before that
+ * frame's player info and packet entities). Players updated by `CL_SetPlayerInfo` are stamped with it, and
+ * `CL_SetUpPlayerPrediction` treats players without the current stamp as gone.
+ *
+ * @param {number} seq the server's outgoing frame sequence (32-bit value read with MSG_ReadLong)
+ */
 export function CL_SetServerSequence( seq ) { server_sequence = seq; }
 
 /*
 =================
 CL_AcknowledgeCommand
-
-Called when server acknowledges a command
 =================
 */
+/**
+ * Marks a command as processed by the server, moving the prediction baseline (`incoming_sequence`) forward, and
+ * folds the command's round-trip time into the latency estimate (first sample taken as-is, then 75% old / 25% new;
+ * samples of 2 seconds or more are ignored). Called from svc_clientdata parsing via
+ * `CL_AcknowledgeTransportSequence`, or directly with the result of `CL_FindAcknowledgedSequence` when the
+ * connection has no transport ack. It does nothing when no command has been sent, when `sequence` is not newer than
+ * the current baseline, or when its ring slot has been reused.
+ *
+ * @param {number} sequence client command sequence the server has processed; clamped to the newest sent command
+ */
 export function CL_AcknowledgeCommand( sequence ) {
 	const newestSent = outgoing_sequence - 1;
 	if ( newestSent < 0 )
@@ -291,11 +385,16 @@ function _CL_SequenceGTE( sequence, baseline ) {
 /*
 =================
 CL_AcknowledgeTransportSequence
-
-Map a transport-level packet ack to the newest predicted command sent
-in a packet with sequence <= transport ack.
 =================
 */
+/**
+ * Maps a transport-level packet ack to the newest predicted command sent in a packet with sequence <= transport ack,
+ * and acknowledges that command with `CL_AcknowledgeCommand`. Called by cl_parse.js on each svc_clientdata when the
+ * connection reports an `ackSequence`. Only commands newer than the current baseline and still in the 64-slot ring
+ * are searched; the comparison is wrap-safe on 32-bit sequence numbers. Does nothing if no command qualifies.
+ *
+ * @param {number} transportAckSequence newest packet sequence the server acknowledged (`qsocket.ackSequence`)
+ */
 export function CL_AcknowledgeTransportSequence( transportAckSequence ) {
 
 	const newestSent = outgoing_sequence - 1;
@@ -323,13 +422,19 @@ export function CL_AcknowledgeTransportSequence( transportAckSequence ) {
 /*
 =================
 CL_FindAcknowledgedSequence
-
-Find which command sequence corresponds to the server update.
-When we receive a server update at `currentTime`, we acknowledge commands
-that were sent more than RTT ago.
-Returns the sequence number, or -1 if not found.
 =================
 */
+/**
+ * Finds which command sequence corresponds to the server update when the transport gives no ack: when we receive a
+ * server update at `currentTime`, we acknowledge commands that were sent more than RTT ago. The estimate never
+ * regresses and never passes the newest command sent; the minimum age is the latency estimate (0.1 s before there is
+ * one) clamped to 0.02..1.0 s. While no command is that old it advances by at most one command already sent. It also
+ * updates the latency moving average from the chosen command, but does not move the baseline itself: the caller
+ * (cl_parse.js svc_clientdata) passes the result to `CL_AcknowledgeCommand`.
+ *
+ * @param {number} currentTime time of the server update, `realtime` in seconds
+ * @returns {number} the command sequence to acknowledge, or -1 if not found (nothing newer than the baseline qualifies)
+ */
 export function CL_FindAcknowledgedSequence( currentTime ) {
 	// Conservative ack estimate:
 	// 1) only consider commands old enough to have likely completed a round trip
@@ -408,10 +513,20 @@ export function CL_FindAcknowledgedSequence( currentTime ) {
 /*
 =================
 CL_StoreCommand
-
-Store a command for prediction replay
 =================
 */
+/**
+ * Stores a command for prediction replay in the next ring slot and advances the outgoing sequence. cl_input.js calls
+ * it from CL_SendMove each time a move is sent. The fields are copied, so the caller may reuse `cmd`; the slot is
+ * overwritten 64 commands later.
+ *
+ * @param {{ msec: number, angles: Float32Array, forwardmove: number, sidemove: number, upmove: number,
+ *     buttons: number }} cmd the move: `msec` 0..255 milliseconds, `angles` in degrees, moves in Quake units per
+ *     second, `buttons` bits (1 attack, 2 jump)
+ * @param {number} senttime `realtime` in seconds when the command was sent
+ * @param {number} [netsequence=-1] transport packet sequence it went out in (`qsocket.sendSequence`), -1 when unknown
+ * @returns {number} the command sequence assigned to this command
+ */
 export function CL_StoreCommand( cmd, senttime, netsequence = - 1 ) {
 	const sequence = outgoing_sequence;
 	const framenum = outgoing_sequence & UPDATE_MASK;
@@ -454,14 +569,21 @@ const _nudge_base = new Float32Array( 3 );
 /*
 =================
 CL_SetUpPlayerPrediction
-
-Calculate predicted positions for all other players.
-Uses full physics prediction (CL_PredictUsercmd) when movement commands
-are available from svc_playerinfo, otherwise falls back to velocity
-extrapolation.
-Ported from QuakeWorld cl_ents.c
 =================
 */
+/**
+ * Calculates predicted positions for all other players (ported from QuakeWorld cl_ents.c). Runs each frame from
+ * `CL_PredictMove` (via CL_SetupPMove, before other players are added as collision boxes) and from cl_main.js before
+ * CL_LinkPlayers when packet entities are in use. Only players updated in the current server frame and with a model
+ * are marked active; the rest are deactivated. The local player takes the predicted `cl_simorg`/`cl_simvel`. Others
+ * are moved forward with full physics prediction (`CL_PredictUsercmd`, using the movement command from
+ * svc_playerinfo) by half the time since their update (QW: msec = 500 * dt, capped at 255 ms) toward a target of
+ * `realtime - latency + 0.02` s; when that time is not positive, prediction is turned off, or `dopred` is false,
+ * the svc_playerinfo origin is kept as-is. The original comment's velocity-extrapolation fallback is not
+ * implemented. Mutates the module's predicted-player records that `CL_GetPredictedPlayer` returns.
+ *
+ * @param {boolean} dopred false to skip physics prediction of other players and keep their received origins
+ */
 export function CL_SetUpPlayerPrediction( dopred ) {
 	// Calculate player time - slightly ahead to compensate for latency
 	let playertime = realtime - cls_latency + 0.02;
@@ -653,11 +775,17 @@ function CL_SetSolidPlayers( playernum ) {
 /*
 =================
 CL_GetPredictedPlayer
-
-Get the predicted position for a player (for rendering).
-Returns null if player is not active.
 =================
 */
+/**
+ * Gets the predicted state of a player for rendering; cl_main.js CL_LinkPlayers calls it for each client slot after
+ * `CL_SetUpPlayerPrediction` has run that frame.
+ *
+ * @param {number} playernum player slot, 0-based (entity number - 1), valid 0..15
+ * @returns {?object} the live predicted-player record (`origin`, `velocity`, `angles`, `modelindex`, `frame`,
+ *     `flags` PF_* bits, `skin`, `effects`, `weaponframe`, `cmd`, ...; shared and overwritten every frame), or null if
+ *     the slot is out of range or the player is not active
+ */
 export function CL_GetPredictedPlayer( playernum ) {
 	if ( playernum < 0 || playernum >= MAX_CLIENTS )
 		return null;
@@ -672,11 +800,30 @@ export function CL_GetPredictedPlayer( playernum ) {
 /*
 =================
 CL_SetPlayerInfo
-
-Called from CL_ParsePlayerInfo to set player state from server.
-This stores the QuakeWorld-style player info for prediction.
 =================
 */
+/**
+ * Called from CL_ParsePlayerInfo (cl_parse.js, one svc_playerinfo message) to set a player's state from the server.
+ * This stores the QuakeWorld-style player info for prediction and stamps it with the current server sequence. Vectors
+ * and the command are copied, so the caller may reuse its buffers. For the local player (`playernum + 1 ===
+ * cl.viewentity`) it also bridges the data into the NQ entity system, because players are excluded from
+ * svc_packetentities: it writes `cl_entities[cl.viewentity].origin`, shifts `msg_origins`, sets `msgtime` to
+ * `cl.mtime[0]`, and calls `CL_SetServerState` with `cl.onground`. Out-of-range slots are ignored.
+ *
+ * @param {number} playernum player slot, 0-based (entity number - 1), valid 0..15
+ * @param {Float32Array} origin position in Quake units, world space
+ * @param {Float32Array} velocity Quake units per second (zero when the message carried none)
+ * @param {number} frame model animation frame
+ * @param {number} flags PF_* bits from the message (for example `PF_DEAD`, `PF_GIB`)
+ * @param {number} skin skin number
+ * @param {number} effects EF_* effect bits
+ * @param {number} weaponframe view-weapon frame
+ * @param {number} msec milliseconds between the player's last move and the server frame (0..255); the update time is
+ *     taken as `realtime - msec / 1000`
+ * @param {?{ msec: number, angles: Float32Array, forwardmove: number, sidemove: number, upmove: number,
+ *     buttons: number, impulse: number }} cmd the player's last movement command, or null to keep the previous one
+ * @param {?number} [modelindex] model precache index; null or omitted keeps the previous value
+ */
 export function CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, skin, effects, weaponframe, msec, cmd, modelindex ) {
 	if ( playernum < 0 || playernum >= MAX_CLIENTS )
 		return;
@@ -770,10 +917,22 @@ function CL_NudgePosition() {
 /*
 ==============
 CL_PredictUsercmd
-
-Predict the result of a single user command
 ==============
 */
+/**
+ * Predicts the result of a single user command (QuakeWorld cl_pred.c) by loading `from` and `cmd` into the shared
+ * `pmove` state and running PlayerMove against the physents already set up for this frame. Commands longer than 50 ms
+ * are split into two halves, recursively. Called by `CL_PredictMove` for the local player and by
+ * `CL_SetUpPlayerPrediction` for other players. Overwrites the global `pmove` state; `pmove.dead` comes from the local
+ * player's `STAT_HEALTH`.
+ *
+ * @param {player_state_t} from starting state; not modified
+ * @param {player_state_t} to written: resulting origin, velocity, viewangles, onground, oldbuttons, waterjumptime; it
+ *     may be the same object as `from`
+ * @param {{ msec: number, angles: Float32Array, forwardmove: number, sidemove: number, upmove: number,
+ *     buttons: number }} cmd the move: `msec` in milliseconds, `angles` in degrees, moves in Quake units per second
+ * @param {boolean} spectator true to move with spectator physics
+ */
 export function CL_PredictUsercmd( from, to, cmd, spectator ) {
 	// Split up very long moves
 	if ( cmd.msec > 50 ) {
@@ -845,10 +1004,20 @@ function CL_Movevars_f() {
 /*
 ==============
 CL_PredictMove
-
-Main prediction function - called each frame to predict local player position
 ==============
 */
+/**
+ * Main prediction function (QuakeWorld cl_pred.c), called each frame from CL_ReadFromServer (cl_main.js) to predict the
+ * local player's position, but only when there is no local server and no demo is playing. Unless paused, it sets
+ * `cl.time` to `realtime - latency - pushlatency / 1000` (never ahead of `realtime`; a positive `pushlatency` is forced
+ * to 0), then replays every unacknowledged command from the server's acknowledged state and interpolates the last step
+ * to `cl.time`. A move of more than 128 units on any axis is treated as a teleport and not interpolated. Results go to
+ * `cl_simorg`, `cl_simvel`, `cl_simangles` and `cl_simonground`, and `cl_prediction_active` becomes true. It returns
+ * early, leaving those unchanged, while paused, during intermission, before `CL_SetServerState` has run, when 63 or
+ * more commands are unacknowledged, or when replay finds no frame. With `cl_nopred` set (or a local server) it copies
+ * the acknowledged server state instead of predicting. Rebuilds `pmove.physents` (world, brush entities, other
+ * players).
+ */
 export function CL_PredictMove() {
 	if ( cl_pushlatency.value > 0 )
 		cl_pushlatency.value = 0;
@@ -946,11 +1115,18 @@ export function CL_PredictMove() {
 /*
 ==============
 CL_SetServerState
-
-Called when we receive authoritative state from server
-Updates the acknowledged frame's player state
 ==============
 */
+/**
+ * Called when we receive authoritative state from the server: updates the acknowledged frame's player state (the
+ * slot of `incoming_sequence`), which `CL_PredictMove` replays from, and enables prediction. Called by cl_parse.js
+ * after each svc_clientdata (after the acknowledgement has moved the baseline) and by `CL_SetPlayerInfo` for the
+ * local player. Vectors are copied.
+ *
+ * @param {Float32Array} origin player position in Quake units, world space
+ * @param {Float32Array} velocity Quake units per second
+ * @param {boolean} onground true when the server says the player is standing on something
+ */
 export function CL_SetServerState( origin, velocity, onground ) {
 	const frame = frames[ incoming_sequence & UPDATE_MASK ];
 	VectorCopy( origin, frame.playerstate.origin );
@@ -964,6 +1140,11 @@ export function CL_SetServerState( origin, velocity, onground ) {
 CL_InitPrediction
 ==============
 */
+/**
+ * Registers the prediction cvars (`pushlatency`, `cl_nopred`, `cl_solid_players`, `cl_predict_players`), adds the
+ * `_movevars` console command the server stuffs during signon to sync movement physics, and initialises pmove
+ * (QuakeWorld cl_pred.c). Called once from CL_Init at startup.
+ */
 export function CL_InitPrediction() {
 	Cvar_RegisterVariable( cl_pushlatency );
 	Cvar_RegisterVariable( cl_nopred );
@@ -976,10 +1157,13 @@ export function CL_InitPrediction() {
 /*
 ==============
 CL_ResetPrediction
-
-Called on level change or disconnect
 ==============
 */
+/**
+ * Clears all prediction state: sequence counters, latency, the predicted outputs (`cl_simorg`, `cl_simvel`,
+ * `cl_simangles`, `cl_simonground = -1`, `cl_prediction_active = false`) and both 64-slot rings. Called on level
+ * change or disconnect, from CL_ClearState.
+ */
 export function CL_ResetPrediction() {
 	outgoing_sequence = 0;
 	incoming_sequence = 0;

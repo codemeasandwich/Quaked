@@ -93,6 +93,15 @@ export const globalvars_t_fields = [
 //
 export class globalvars_t {
 
+	/**
+	 * Wraps the progs globals so engine code can write `pr_global_struct.time` as C writes `pr_global_struct->time`.
+	 * Created once per progs by `PR_LoadProgs` and installed as `pr_global_struct`; it lives until the next progs load.
+	 * Each property reads or writes its slot (offsets as in `globalvars_t_fields`; the 28 reserved pad slots are not
+	 * exposed): entity references are edict offsets (`EDICT_TO_PROG`), strings are string-table offsets, functions are
+	 * `pr_functions` indices, and vector getters return a live 3-float view of the globals (setters copy).
+	 *
+	 * @param {EdictFieldAccessor} pr_globals accessor over the globals (`pr_globals`); shared, not copied
+	 */
 	constructor( pr_globals ) {
 
 		this._globals = pr_globals;
@@ -349,6 +358,16 @@ export const ENTVARS_COUNT = 105;
 //
 export class entvars_t {
 
+	/**
+	 * Wraps one edict's field data so engine code can write `ent.v.origin` as C writes `ent->v.origin`. Created by
+	 * the `edict_t` constructor as its `v`, and lives as long as that edict (`sv.edicts`, until the next map). Each
+	 * property reads or writes the slot of a field that progdefs.h knows (the first `ENTVARS_COUNT` slots; the
+	 * progs' own extra fields follow and are reached through `GetEdictFieldValue`): entity references are edict
+	 * offsets (`EDICT_TO_PROG`), strings are string-table offsets, functions are `pr_functions` indices, and vector
+	 * getters return a live 3-float view of the field data (setters copy).
+	 *
+	 * @param {EdictFieldAccessor} fields a pr_globals-like accessor for this edict's field data; shared, not copied
+	 */
 	constructor( fields ) {
 
 		// fields is a pr_globals-like accessor for this edict's field data

@@ -168,6 +168,10 @@ export const MAXALIASTRIS = 2048;
 
 export class mvertex_t {
 
+	/**
+	 * A BSP vertex (gl_model.h): `position` in model space (Quake units). Filled by `Mod_LoadVertexes` at load; kept
+	 * in `model_t.vertexes` until the model is reloaded.
+	 */
 	constructor() {
 
 		this.position = new Float32Array( 3 );
@@ -178,6 +182,12 @@ export class mvertex_t {
 
 export class mplane_t {
 
+	/**
+	 * A BSP plane (gl_model.h): points p with `DotProduct(p, normal) = dist`. `normal` is a unit vector, `dist` in
+	 * Quake units, `type` 0..2 for a plane facing along x, y or z (fast side tests) or 3..5 otherwise, `signbits` the
+	 * signs of the normal (signx + signy<<1 + signz<<2) for `BoxOnPlaneSide`. Filled by `Mod_LoadPlanes`; gl_rmain.js
+	 * also uses four for the view frustum.
+	 */
 	constructor() {
 
 		this.normal = new Float32Array( 3 );
@@ -191,6 +201,13 @@ export class mplane_t {
 
 export class texture_t {
 
+	/**
+	 * A world texture (gl_model.h): name, size in texels, the four mip levels' 8-bit palette pixels (`pixels` with
+	 * `offsets`), the animation chain (`anim_*`, `anim_next`, `alternate_anims`; `anim_total` in tenths of a second, 0
+	 * for none) and the texture chain built while drawing. `gl_texture` (a `THREE.DataTexture`) is set when the texture
+	 * is uploaded. Made by `Mod_LoadTextures`, the crate variants and `R_InitTextures`; its GPU texture is released by
+	 * `Mod_ClearAll` at the next level change.
+	 */
 	constructor() {
 
 		this.name = '';
@@ -212,6 +229,10 @@ export class texture_t {
 
 export class medge_t {
 
+	/**
+	 * A BSP edge (gl_model.h): `v` the indices of its two vertices in `model_t.vertexes`; `cachededgeoffset` is
+	 * unused by the GL renderer. Filled by `Mod_LoadEdges`.
+	 */
 	constructor() {
 
 		this.v = new Uint32Array( 2 );
@@ -223,6 +244,11 @@ export class medge_t {
 
 export class mtexinfo_t {
 
+	/**
+	 * A surface's texture mapping (gl_model.h): `vecs[0]` and `vecs[1]` give s and t in texels as
+	 * `DotProduct(point, vecs[i]) + vecs[i][3]`; `texture` the `texture_t` (the checkerboard when missing); `flags`
+	 * TEX_SPECIAL for sky and liquid. Filled by `Mod_LoadTexinfo` and the crate variants.
+	 */
 	constructor() {
 
 		this.vecs = [
@@ -239,6 +265,12 @@ export class mtexinfo_t {
 
 export class glpoly_t {
 
+	/**
+	 * A polygon of a surface in drawing order (gl_model.h): `numverts` vertices, each a `Float32Array(VERTEXSIZE)`
+	 * of `x, y, z, s1, t1, s2, t2` (world texels and lightmap coordinates), chained through `next` (several for a warped
+	 * surface) and `chain`. The engine builds these from glquake.js's copy of this class (gl_warp.js); this one is kept
+	 * for the gl_model.h layout.
+	 */
 	constructor() {
 
 		this.next = null;
@@ -253,6 +285,14 @@ export class glpoly_t {
 
 export class msurface_t {
 
+	/**
+	 * A BSP face (gl_model.h): its plane, SURF_* `flags`, edge range (`firstedge`/`numedges` into
+	 * `model_t.surfedges`, negative numbers are backwards edges), texture extents in texels, lightmap placement and
+	 * styles, and the per-frame drawing state (`visframe`, `dlightframe`/`dlightbits` set by `R_MarkLights`,
+	 * `texturechain`). `samples`/`sampleOffset` and `litsamples`/`litOffset` locate its lightmap in the model's
+	 * lightdata and LIT data. `polys` is set for sky and liquid surfaces by `GL_SubdivideSurface`. Filled by
+	 * `Mod_LoadFaces`.
+	 */
 	constructor() {
 
 		this.visframe = 0;		// should be drawn when node is crossed
@@ -293,6 +333,11 @@ export class msurface_t {
 
 export class mnode_t {
 
+	/**
+	 * A BSP decision node (gl_model.h): `contents` 0 (to tell it from a leaf), the splitting `plane`, `children`
+	 * (front, back: an `mnode_t` or `mleaf_t`), its surfaces (`firstsurface`/`numsurfaces`), bounds in `minmaxs`
+	 * (mins then maxs, Quake units) and the `visframe` marked by the PVS walk. Filled by `Mod_LoadNodes`.
+	 */
 	constructor() {
 
 		// common with leaf
@@ -316,6 +361,12 @@ export class mnode_t {
 
 export class mleaf_t {
 
+	/**
+	 * A BSP leaf (gl_model.h): `contents` a negative CONTENTS_* value, bounds in `minmaxs`, its compressed PVS row
+	 * (`compressed_vis` from `compressed_vis_offset`, read by `Mod_LeafPVS`), the surfaces it marks
+	 * (`firstmarksurface`/`nummarksurfaces` into `model_t.marksurfaces`), static entity fragments (`efrags`) and the four
+	 * ambient sound levels (0..255). `Mod_LoadLeafs` also stores its index in `_leafIndex` for PVS checks.
+	 */
 	constructor() {
 
 		// common with node
@@ -342,6 +393,11 @@ export class mleaf_t {
 
 export class dclipnode_t {
 
+	/**
+	 * A clipping-hull node (bspfile.h): `planenum` into the hull's planes, `children` front and back, each a clipnode
+	 * index or a negative CONTENTS_* value. Filled by `Mod_LoadClipnodes`, and by `Mod_MakeHull0` from the drawing
+	 * nodes.
+	 */
 	constructor() {
 
 		this.planenum = 0;
@@ -353,6 +409,12 @@ export class dclipnode_t {
 
 export class hull_t {
 
+	/**
+	 * A clipping hull for one box size (gl_model.h): the `clipnodes` and `planes` it walks, its clipnode range
+	 * (`firstclipnode`..`lastclipnode`), and the box it was built for (`clip_mins`/`clip_maxs`, Quake units: 0 for
+	 * hull 0, the player's -16,-16,-24..16,16,32 for hull 1, the large -32,-32,-24..32,32,64 for hull 2). Each
+	 * `model_t` has MAX_MAP_HULLS of them; traced by world.js.
+	 */
 	constructor() {
 
 		this.clipnodes = null;	// array of dclipnode_t
@@ -372,6 +434,11 @@ export class hull_t {
 
 export class mspriteframe_t {
 
+	/**
+	 * One sprite image (gl_model.h): `width`/`height` in pixels, its extent around the sprite origin (`up`, `down`,
+	 * `left`, `right`, pixels = Quake units), and `gl_texturenum`, which here holds the frame's `THREE.DataTexture`.
+	 * Made by `Mod_LoadSpriteFrame`.
+	 */
 	constructor() {
 
 		this.width = 0;
@@ -388,6 +455,10 @@ export class mspriteframe_t {
 
 export class mspritegroup_t {
 
+	/**
+	 * An animated group of sprite frames (gl_model.h): `numframes`, the `frames` and `intervals`, each frame's
+	 * cumulative end time in seconds within the loop. Made by `Mod_LoadSpriteGroup`.
+	 */
 	constructor() {
 
 		this.numframes = 0;
@@ -400,6 +471,10 @@ export class mspritegroup_t {
 
 export class mspriteframedesc_t {
 
+	/**
+	 * One entry of a sprite's frame list (gl_model.h): `type` SPR_SINGLE or SPR_GROUP, and `frameptr` the
+	 * `mspriteframe_t` or `mspritegroup_t`.
+	 */
 	constructor() {
 
 		this.type = 0;			// spriteframetype_t
@@ -411,6 +486,11 @@ export class mspriteframedesc_t {
 
 export class msprite_t {
 
+	/**
+	 * A loaded sprite (gl_model.h): its orientation `type` (SPR_VP_PARALLEL_UPRIGHT etc.), the largest frame size in
+	 * pixels, `beamlength`, and `frames` (`mspriteframedesc_t`). Made by `Mod_LoadSpriteModel` and kept in the model's
+	 * `cache.data` until `Mod_ClearAll`.
+	 */
 	constructor() {
 
 		this.type = 0;
@@ -431,6 +511,11 @@ export class msprite_t {
 
 export class trivertx_t {
 
+	/**
+	 * A packed alias-model vertex (modelgen.h): `v` x, y, z as 0..255, scaled by the header's `scale` and offset by
+	 * `scale_origin` to model space; `lightnormalindex` into the 162 precomputed normals. Used for the frame bounding
+	 * boxes.
+	 */
 	constructor() {
 
 		this.v = new Uint8Array( 3 );
@@ -442,6 +527,11 @@ export class trivertx_t {
 
 export class stvert_t {
 
+	/**
+	 * An alias-model skin coordinate (modelgen.h): `s`, `t` in skin texels and `onseam` (ALIAS_ONSEAM when a back-facing
+	 * triangle's vertex must be shifted by half the skin width). gl_model.js keeps one shared pool of MAXALIASVERTS,
+	 * overwritten by each alias model loaded.
+	 */
 	constructor() {
 
 		this.onseam = 0;
@@ -454,6 +544,10 @@ export class stvert_t {
 
 export class dtriangle_t {
 
+	/**
+	 * An alias-model triangle as stored on disk (modelgen.h): `facesfront` (DT_FACES_FRONT when it faces the front
+	 * skin half) and the three vertex indices. Not constructed by the engine; `mtriangle_t` is used instead.
+	 */
 	constructor() {
 
 		this.facesfront = 0;
@@ -465,6 +559,10 @@ export class dtriangle_t {
 
 export class mtriangle_t {
 
+	/**
+	 * An alias-model triangle in memory (gl_model.h): `facesfront` and the three vertex indices into the model's
+	 * vertices. gl_model.js keeps one shared pool of MAXALIASTRIS, overwritten by each alias model loaded.
+	 */
 	constructor() {
 
 		this.facesfront = 0;
@@ -476,6 +574,11 @@ export class mtriangle_t {
 
 export class maliasframedesc_t {
 
+	/**
+	 * One alias-model frame (gl_model.h): its poses (`firstpose`, `numposes`; several for an animated group, which
+	 * advance every `interval` seconds), the packed bounding box (`bboxmin`, `bboxmax`), and the frame's `name`. Filled
+	 * by the alias frame loaders.
+	 */
 	constructor() {
 
 		this.firstpose = 0;
@@ -492,6 +595,14 @@ export class maliasframedesc_t {
 
 export class aliashdr_t {
 
+	/**
+	 * A loaded alias model's header (gl_model.h): the MDL header fields (`scale`/`scale_origin` to unpack vertices,
+	 * `boundingradius`, `eyeposition`, skin size in texels, counts, `synctype`, `flags` EF_ROCKET etc., `size` the
+	 * file's size × ALIAS_BASE_SIZE_RATIO), the decoded poses (`posedata`/`poseverts`), the GL command list, each
+	 * skin's four animation textures in `gl_texturenum[skin][0..3]` (THREE textures), the skins' 8-bit `texels` kept
+	 * for player colour remapping, and the `frames`. Made by `Mod_LoadAliasModel` and kept in the model's
+	 * `cache.data`; alias models stay cached across level changes.
+	 */
 	constructor() {
 
 		this.ident = 0;
@@ -536,6 +647,11 @@ export class aliashdr_t {
 
 export class dmodel_t {
 
+	/**
+	 * A brush submodel as stored in the BSP (bspfile.h): bounds and origin (Quake units), the root node of each hull
+	 * (`headnode`), the number of visible leaves (`visleafs`) and its face range. Filled by `Mod_LoadSubmodels`; the
+	 * world is entry 0 and the doors, platforms and other brush entities are `*1`, `*2`...
+	 */
 	constructor() {
 
 		this.mins = new Float32Array( 3 );
@@ -556,6 +672,14 @@ export class dmodel_t {
 
 export class model_t {
 
+	/**
+	 * One entry of the model cache (gl_model.h): a brush model (world or submodel), alias model or sprite, by `type`
+	 * (mod_brush, mod_sprite, mod_alias). Holds the graphic bounds and radius (Quake units), the brush model's lumps
+	 * (planes, leafs, vertexes, edges, nodes, texinfo, surfaces, surfedges, clipnodes, marksurfaces, hulls, textures,
+	 * visdata, lightdata, litdata, entities), and `cache.data` (the `aliashdr_t` or `msprite_t`). `_threeTextures`
+	 * collects the GPU textures made for it, released by `Mod_ClearAll`. The module allocates 512 of these once
+	 * (`Mod_FindName` reuses them by name); `needload` marks one whose data must be loaded again.
+	 */
 	constructor() {
 
 		this.name = '';
@@ -839,12 +963,18 @@ let previewLoad = false;
 /*
 ================
 Mod_LoadForPreview
-
-Loads a level's model so it can be drawn from a distance (the next level seen
-through an exit), without touching the current level's sky.  The model is
-flushed with the rest at the next level change.
 ================
 */
+/**
+ * Loads a level's model so it can be drawn from a distance (the next level seen through an exit), without touching
+ * the current level's sky. The model is flushed with the rest at the next level change. Only the world is loaded:
+ * the `*1`, `*2`... submodel entries stay those of the level being played. Used by seamless travel, the level view
+ * and the prewarm code; an already loaded model is returned as is.
+ *
+ * @param {string} name model path, e.g. 'maps/e1m2.bsp' or a submodel name
+ * @returns {?model_t} the cached model, or null when the file does not exist
+ * @throws {Error} through `Sys_Error` for a corrupt file (see `Mod_LoadModel`)
+ */
 export function Mod_LoadForPreview( name ) {
 
 	previewLoad = true;
@@ -865,6 +995,10 @@ export function Mod_LoadForPreview( name ) {
 // Mod_Init
 // ============================================================================
 
+/**
+ * One-time model setup at start-up, called from Host_Init (WinQuake gl_model.c): registers `gl_subdivide_size` and
+ * fills the all-visible PVS row returned for the solid leaf.
+ */
 export function Mod_Init() {
 
 	Cvar_RegisterVariable( gl_subdivide_size );
@@ -876,6 +1010,14 @@ export function Mod_Init() {
 // R_InitTextures
 // ============================================================================
 
+/**
+ * Makes the 16×16 checkerboard texture used for surfaces whose texture is missing (WinQuake
+ * `R_InitTextures`): its four 8-bit mip levels and a nearest-filtered magenta and black `THREE.DataTexture` in
+ * `gl_texture`. Called from Host_Init (needed even for dedicated servers) and kept for the life of the page; later
+ * calls return the same texture.
+ *
+ * @returns {texture_t} the shared 'notexture' texture
+ */
 export function R_InitTextures() {
 
 	if ( r_notexture_mip != null && r_notexture_mip.gl_texture != null )
@@ -942,10 +1084,16 @@ export function R_InitTextures() {
 
 // ============================================================================
 // Mod_Extradata
-//
-// Caches the data if needed
 // ============================================================================
 
+/**
+ * Caches the data if needed (WinQuake gl_model.c): returns the model's loaded alias header or sprite, loading the
+ * file again when it is not in memory.
+ *
+ * @param {model_t} mod an alias or sprite model
+ * @returns {aliashdr_t|msprite_t} the model's `cache.data`
+ * @throws {Error} through `Sys_Error` when the file is missing or caching failed (a brush model has no cache data)
+ */
 export function Mod_Extradata( mod ) {
 
 	const r = mod.cache.data;
@@ -964,6 +1112,16 @@ export function Mod_Extradata( mod ) {
 // Mod_PointInLeaf
 // ============================================================================
 
+/**
+ * Finds the BSP leaf that contains a point by walking the model's drawing nodes from the root (WinQuake
+ * gl_model.c). Used every frame for the view leaf, and by the server's PVS, the sound system and many Newer effects.
+ * A point exactly on a plane goes to the back side.
+ *
+ * @param {Float32Array|Array<number>} p the point, in the model's space (world space for the world)
+ * @param {model_t} model a brush model
+ * @returns {mleaf_t} the leaf (`contents` is a negative CONTENTS_* value)
+ * @throws {Error} through `Sys_Error` when the model is missing or has no nodes
+ */
 export function Mod_PointInLeaf( p, model ) {
 
 	if ( ! model || ! model.nodes )
@@ -999,6 +1157,17 @@ export function Mod_PointInLeaf( p, model ) {
 // Mod_DecompressVis
 // ============================================================================
 
+/**
+ * Expands one run-length-encoded PVS row, one bit per leaf, where a zero byte is followed by a count of zero bytes
+ * (WinQuake gl_model.c). Called by `Mod_LeafPVS`.
+ *
+ * @param {?Uint8Array} _in the model's visdata, or null when the map has no vis info (then every leaf is visible)
+ * @param {number} inOffset byte offset of the leaf's row in `_in`
+ * @param {model_t} model the brush model; `numleafs` sets the row length, (numleafs + 7) >> 3 bytes
+ * @returns {Uint8Array} a shared buffer, reused by the next call (copy it to keep it); only the first row-length bytes
+ *   are meaningful, and it may be longer
+ * @throws {Error} through `Sys_Error` when the data is truncated or a zero run overflows the row
+ */
 export function Mod_DecompressVis( _in, inOffset, model ) {
 
 	const row = ( model.numleafs + 7 ) >> 3;
@@ -1048,6 +1217,17 @@ export function Mod_DecompressVis( _in, inOffset, model ) {
 // Mod_LeafPVS
 // ============================================================================
 
+/**
+ * Returns the potentially visible set of a leaf: one bit per leaf, bit n for `model.leafs[n + 1]` (WinQuake
+ * gl_model.c). Used for the view's visible leaves, by the server to cull the entities sent to each client, and by QC's
+ * `checkclient`.
+ *
+ * @param {mleaf_t} leaf the leaf the viewer is in
+ * @param {model_t} model the brush model it belongs to
+ * @returns {Uint8Array} a shared, reused buffer (copy it to keep it): all visible for the solid leaf `leafs[0]`,
+ *   otherwise the decompressed row (see `Mod_DecompressVis`)
+ * @throws {Error} through `Sys_Error` for corrupt visibility data
+ */
 export function Mod_LeafPVS( leaf, model ) {
 
 	if ( leaf === model.leafs[ 0 ] ){const row=(model.numleafs+7)>>3;if(row>mod_novis.length){mod_novis=new Uint8Array(row);mod_novis.fill(255);}return mod_novis;}
@@ -1059,6 +1239,12 @@ export function Mod_LeafPVS( leaf, model ) {
 // Mod_ClearAll
 // ============================================================================
 
+/**
+ * Marks every brush and sprite model as needing a reload and frees their GPU textures (WinQuake gl_model.c), called
+ * by Host_ClearMemory at every level change. Each texture in a model's `_threeTextures` is unregistered and
+ * disposed once; brush textures lose their `gl_texture`, sprites their cache data, and the sky textures are
+ * forgotten. Alias models are left cached. The `model_t` objects are kept, so references to them stay valid.
+ */
 export function Mod_ClearAll() {
 
 	const disposedTextures = new Set();
@@ -1110,6 +1296,14 @@ export function Mod_ClearAll() {
 // Mod_FindName
 // ============================================================================
 
+/**
+ * Returns the cache entry for a model name, claiming a new one (marked `needload`) the first time the name is seen
+ * (WinQuake gl_model.c). Does not load anything.
+ *
+ * @param {string} name model path, e.g. 'progs/player.mdl', or a submodel name such as '*1'
+ * @returns {model_t} the entry; the same object for the same name for the life of the page
+ * @throws {Error} through `Sys_Error` for an empty name or when all 512 entries are in use
+ */
 export function Mod_FindName( name ) {
 
 	if ( ! name || name.length === 0 )
@@ -1142,6 +1336,13 @@ export function Mod_FindName( name ) {
 // Mod_TouchModel
 // ============================================================================
 
+/**
+ * Makes sure a model has a cache entry (WinQuake gl_model.c). The C version also refreshed an alias model's cache
+ * slot; with garbage collection there is nothing more to do here.
+ *
+ * @param {string} name model path
+ * @throws {Error} through `Sys_Error` for an empty name or a full model table (see `Mod_FindName`)
+ */
 export function Mod_TouchModel( name ) {
 
 	const mod = Mod_FindName( name );
@@ -1161,10 +1362,19 @@ export function Mod_TouchModel( name ) {
 
 // ============================================================================
 // Mod_LoadModel
-//
-// Loads a model into the cache
 // ============================================================================
 
+/**
+ * Loads a model into the cache (WinQuake gl_model.c): reads the file and calls the alias ('IDPO'), sprite ('IDSP')
+ * or brush loader, unless the model is already loaded (a brush or sprite model not marked `needload`, or an alias
+ * model with its cache data). Sets the module's `loadmodel` for the loaders.
+ *
+ * @param {model_t} mod the cache entry (from `Mod_FindName`); filled in place
+ * @param {boolean} crash true to treat a missing file as fatal
+ * @returns {?model_t} `mod`, or null when the file is missing and `crash` is false
+ * @throws {Error} through `Sys_Error` when the file is missing and `crash` is true, or for a corrupt or unsupported
+ *   file
+ */
 export function Mod_LoadModel( mod, crash ) {
 
 	if ( ! mod.needload ) {
@@ -1226,10 +1436,17 @@ export function Mod_LoadModel( mod, crash ) {
 
 // ============================================================================
 // Mod_ForName
-//
-// Loads in a model for the given name
 // ============================================================================
 
+/**
+ * Loads in a model for the given name (WinQuake gl_model.c): `Mod_FindName` then `Mod_LoadModel`. Used for the
+ * server's world and submodels at spawn, QC's `precache_model`, and the client's models and beams.
+ *
+ * @param {string} name model path, e.g. 'maps/e1m1.bsp', 'progs/player.mdl' or '*1'
+ * @param {boolean} crash true to treat a missing file as fatal
+ * @returns {?model_t} the loaded model, or null when the file is missing and `crash` is false
+ * @throws {Error} through `Sys_Error` for an empty name, a missing file when `crash` is true, or a corrupt file
+ */
 export function Mod_ForName( name, crash ) {
 
 	const mod = Mod_FindName( name );
@@ -2361,6 +2578,14 @@ function Mod_LoadSubmodels( fileofs, filelen ) {
 // RadiusFromBounds
 // ============================================================================
 
+/**
+ * Returns the distance from the origin to the farthest corner of a box, using each axis's larger absolute bound
+ * (WinQuake gl_model.c). Sets each brush submodel's `radius` at load.
+ *
+ * @param {Float32Array|Array<number>} mins box minimum (Quake units)
+ * @param {Float32Array|Array<number>} maxs box maximum (Quake units)
+ * @returns {number} the radius (Quake units)
+ */
 export function RadiusFromBounds( mins, maxs ) {
 
 	const corner = new Float32Array( 3 );
@@ -3187,6 +3412,10 @@ function Mod_LoadSpriteModel( mod, buffer ) {
 // Mod_Print
 // ============================================================================
 
+/**
+ * Prints every known model to the console as `[cached]` (alias or sprite data in memory) or `[empty]`, with its name
+ * (WinQuake gl_model.c, the `mcache` command; no command is registered for it here).
+ */
 export function Mod_Print() {
 
 	Con_Printf( 'Cached models:\n' );

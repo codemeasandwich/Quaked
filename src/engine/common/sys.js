@@ -21,12 +21,24 @@ SYSTEM IO
 ===============================================================================
 */
 
+/**
+ * Logs the start-up line `Three-Quake initializing...` to the console. The browser port's stand-in for WinQuake's
+ * Sys_Init (sys_win.c); no current caller.
+ */
 export function Sys_Init() {
 
 	console.log( 'Three-Quake initializing...' );
 
 }
 
+/**
+ * The engine's fatal error (WinQuake sys_win.c Sys_Error): logs `Sys_Error: <error>` with `console.error`, replaces
+ * the page body with the message in red when a `document` exists (browser only; not under Deno), then throws.
+ * Never returns.
+ *
+ * @param {string} error the message, already formatted by the caller
+ * @throws {Error} always, with `error` as its message
+ */
 export function Sys_Error( error ) {
 
 	console.error( 'Sys_Error: ' + error );
@@ -107,6 +119,18 @@ function _shouldPrintLine( line ) {
 
 }
 
+/**
+ * Prints one line to the console (WinQuake sys_win.c Sys_Printf). Each `%s`, `%d`, `%i` or `%f` in `fmt` is replaced
+ * by the next argument via `String()` (no width, precision or number formatting; a placeholder with no argument left
+ * becomes empty), and any arguments left over are appended separated by spaces.
+ *
+ * Under Deno, when `globalThis.__THREE_QUAKE_QUIET_LOGS === true`, only lines matching the module's allow-list
+ * (connections, clients, server spawn, WebTransport and NET_Init messages, server-frame errors) are printed; blank
+ * lines are dropped. In the browser every line is printed.
+ *
+ * @param {*} fmt the format string (converted with `String()`)
+ * @param {...*} args the values for the placeholders
+ */
 export function Sys_Printf( fmt, ...args ) {
 
 	const line = _formatPrintf( fmt, args );
@@ -115,18 +139,35 @@ export function Sys_Printf( fmt, ...args ) {
 
 }
 
+/**
+ * Logs `Sys_Quit` to the console. A browser page cannot exit, so this does not stop the engine (WinQuake sys_win.c
+ * Sys_Quit exits the process); no current caller.
+ */
 export function Sys_Quit() {
 
 	console.log( 'Sys_Quit' );
 
 }
 
+/**
+ * The engine clock (WinQuake sys_win.c Sys_FloatTime): `performance.now()` in seconds, with sub-millisecond
+ * precision, counted from page (or process) start. Used by the host frame loop, networking, the
+ * renderer's timing and portal animation.
+ *
+ * @returns {number} seconds since the time origin
+ */
 export function Sys_FloatTime() {
 
 	return performance.now() / 1000.0;
 
 }
 
+/**
+ * The same clock as `Sys_FloatTime` (JavaScript numbers are already doubles), kept for code ported from the
+ * QuakeWorld-style `Sys_DoubleTime`; no current caller.
+ *
+ * @returns {number} seconds since the time origin (`performance.now() / 1000`)
+ */
 export function Sys_DoubleTime() {
 
 	return performance.now() / 1000.0;

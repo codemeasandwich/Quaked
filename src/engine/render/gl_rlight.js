@@ -44,6 +44,16 @@ export let r_dlightframecount = 0;
 R_AnimateLight
 ==================
 */
+/**
+ * Advances the light-style animations (WinQuake gl_rlight.c). Called once per rendered frame from R_SetupFrame
+ * through gl_rmain.js's wrapper. Each style string steps at 10 characters per second of `cl.time`; 'm' is normal
+ * light, 'a' is no light, 'z' is double bright. Writes `(char - 'a') * 22` (0..550, 256 is normal brightness) into
+ * glquake.js's `d_lightstylevalue[j]`, or 256 for a style with no string.
+ *
+ * @param {client_state_t} cl the client state; only `cl.time` (seconds) is read
+ * @param {Array<lightstyle_t>} cl_lightstyle the MAX_LIGHTSTYLES style strings sent by the server
+ *   (`{ length, map }`, set by svc_lightstyle)
+ */
 export function R_AnimateLight( cl, cl_lightstyle ) {
 
 	//
@@ -77,6 +87,16 @@ DYNAMIC LIGHTS BLEND RENDERING
 =============================================================================
 */
 
+/**
+ * Mixes a colour into the full-screen blend, as when the view is inside a dynamic light (WinQuake gl_rlight.c).
+ * Applied to both `v_blend` and `v_liquid_blend` (glquake.js); the new alpha is `a + a2 * (1 - a)` and the colour is
+ * weighted by `a2` over the new alpha. Mutates those arrays for the rest of the frame.
+ *
+ * @param {number} r red, 0..1
+ * @param {number} g green, 0..1
+ * @param {number} b blue, 0..1
+ * @param {number} a2 alpha to add, 0..1 (callers pass `radius * 0.0003`)
+ */
 export function AddLightBlend( r, g, b, a2 ) {
 
 	for ( let i = 0; i < 2; i ++ ) {
@@ -97,8 +117,6 @@ export function AddLightBlend( r, g, b, a2 ) {
 /*
 =============
 R_RenderDlight
-
-Renders a dynamic light using Three.js PointLight.
 =============
 */
 
@@ -121,6 +139,17 @@ function _getDlight( index ) {
 
 }
 
+/**
+ * Renders a dynamic light using Three.js PointLight (the GLQuake corona replaced by a real light). Adds an orange
+ * screen blend when the view origin is within 0.35 × radius of the light, then places the pooled PointLight for this
+ * slot at the light's origin (Quake coordinates, the same as the camera and geometry) with linear falloff (decay 1),
+ * intensity radius × 4 and distance radius × 2. Called per active light by `R_RenderDlights`, which then overrides
+ * intensity and distance. Does not add the light to the scene.
+ *
+ * @param {dlight_t} light the client dynamic light; `origin` (world space) and `radius` (Quake units) are read
+ * @param {number} dlightIndex slot in `cl_dlights`, 0..MAX_DLIGHTS-1; selects the pooled PointLight
+ * @returns {THREE.PointLight} the pooled light for that slot, created on first use and reused for the life of the page
+ */
 export function R_RenderDlight( light, dlightIndex ) {
 
 	const rad = light.radius * 0.35;
@@ -155,9 +184,6 @@ export function R_RenderDlight( light, dlightIndex ) {
 /*
 =============
 R_RenderDlights
-
-Updates PointLights for all dynamic lights. Lights stay in scene
-and have their intensity updated each frame based on decaying radius.
 =============
 */
 // Newer lighting: the scene always has the same few lights, so its shaders are made once.
@@ -214,6 +240,21 @@ function R_RenderDlightSlots( cl, scene ) {
 
 }
 
+/**
+ * Updates PointLights for all dynamic lights. Lights stay in the scene and have their intensity updated each frame
+ * based on decaying radius. Called once per rendered frame from R_RenderScene (and R_ClassicOn) through gl_rmain.js's
+ * wrapper; does nothing while `gl_flashblend` is 0.
+ *
+ * With Newer lighting active (and not in XR) it uses three fixed light slots for the nearest lights instead, so the
+ * scene's light count and shaders never change, and removes the classic pooled lights. Otherwise it removes the slot
+ * lights, sets `r_dlightframecount`, and for each `cl_dlights` entry that is still alive shows its pooled light with
+ * intensity `10000 * min(die - cl.time, 0.5)` (halved under Newer lighting, divided by XR_SCALE in XR) and distance
+ * equal to the radius, or removes it from the scene when it has died. The Newer lightning beam's light is skipped
+ * during the Classic pass of the title demo's split (card [30a]).
+ *
+ * @param {client_state_t} cl the client state; `cl.time` (seconds) is read
+ * @param {?THREE.Scene} scene the scene the lights are added to; null skips adding
+ */
 export function R_RenderDlights( cl, scene ) {
 
 	if ( gl_flashblend.value === 0 )
@@ -302,6 +343,16 @@ DYNAMIC LIGHTS
 R_MarkLights
 =============
 */
+/**
+ * Walks the BSP from `node` and sets `bit` in `dlightbits` of every surface on a node plane within the light's radius
+ * (WinQuake gl_rlight.c). A surface whose `dlightframe` is not the current `r_dlightframecount` has its bits cleared
+ * first, so the marks last for one frame. Called by `R_PushDlights` for the world and by gl_rsurf.js for brush models.
+ *
+ * @param {dlight_t} light the light; `origin` (in the node's model space) and `radius` (Quake units) are read
+ * @param {number} bit the light's mask, `1 << index` in `cl_dlights`
+ * @param {mnode_t|mleaf_t} node the subtree to walk; leaves (`contents < 0`) end the recursion
+ * @param {Array<msurface_t>} surfaces the model's surface array that `node.firstsurface` indexes; mutated
+ */
 export function R_MarkLights( light, bit, node, surfaces ) {
 
 	if ( node.contents < 0 )
@@ -352,6 +403,13 @@ export function R_MarkLights( light, bit, node, surfaces ) {
 R_PushDlights
 =============
 */
+/**
+ * Marks the world surfaces touched by each live dynamic light, for the lightmap update (WinQuake gl_rlight.c). Called
+ * once per frame from V_RenderView, before R_RenderView. Does nothing when `gl_flashblend` is set. Sets
+ * `r_dlightframecount` to `r_framecount + 1`, because the frame count has not advanced yet for this frame.
+ *
+ * @param {client_state_t} cl the client state; `cl.time` and `cl.worldmodel` are read (returns early without a world)
+ */
 export function R_PushDlights( cl ) {
 
 	if ( gl_flashblend.value )
@@ -391,6 +449,20 @@ export let lightspot = new Float32Array( 3 );
 RecursiveLightPoint
 =============
 */
+/**
+ * Traces the segment `start`..`end` through the BSP and returns the static lightmap level at the first lit surface
+ * it crosses (WinQuake gl_rlight.c). Each crossing node sets the exported `lightspot` (the crossing point) and
+ * `lightplane` (its plane); alias shadows and the fire base in gl_rmain.js read them after `R_LightPoint`.
+ *
+ * @param {mnode_t|mleaf_t} node the subtree to trace; a leaf returns -1
+ * @param {Float32Array|Array<number>} start segment start, world space (Quake units)
+ * @param {Float32Array|Array<number>} end segment end, world space (Quake units)
+ * @param {Array<msurface_t>} surfaces the world's surface array that `node.firstsurface` indexes
+ * @param {number} [depth=0] recursion depth, indexing a pool of 32 scratch midpoints (BSP trees are typically 20-30
+ *   levels deep max)
+ * @returns {number} -1 when nothing was hit; 0 when the hit surface has no lightmap samples; otherwise the sum of
+ *   each lightmap sample × its style's `d_lightstylevalue`, shifted right 8 (about 0..255 at normal styles)
+ */
 export function RecursiveLightPoint( node, start, end, surfaces, depth = 0 ) {
 
 	if ( ! node || node.contents < 0 )
@@ -509,6 +581,16 @@ export function RecursiveLightPoint( node, start, end, surfaces, depth = 0 ) {
 R_LightPoint
 =============
 */
+/**
+ * Returns the static light level under a point by tracing 2048 units straight down through the world (WinQuake
+ * gl_rlight.c). Used per entity for alias-model shading, shadows and the fire base, and by the Newer decals,
+ * muzzle flash, shells, level view and corpses. Leaves `lightspot`/`lightplane` at the floor that was hit.
+ *
+ * @param {Float32Array|Array<number>} p the point, world space (Quake units)
+ * @param {client_state_t|{ worldmodel: ?model_t }} cl anything with the world model in `worldmodel`
+ * @returns {number} the light level (see `RecursiveLightPoint`); 255 (full bright) when there is no world or no
+ *   lightdata, 0 when nothing below was hit
+ */
 export function R_LightPoint( p, cl ) {
 
 	if ( ! cl.worldmodel || ! cl.worldmodel.lightdata )
@@ -528,8 +610,15 @@ export function R_LightPoint( p, cl ) {
 
 }
 
-// Read-only brightness for cached water texture lighting. Alias shadows rely
-// on the spot/plane left by their own query, so preserve that public state.
+/**
+ * Read-only brightness for cached water texture lighting. Alias shadows rely on the spot/plane left by their own
+ * query, so this calls `R_LightPoint` and then restores `lightspot` and `lightplane` to what they were (even if it
+ * throws). Called by gl_rsurf.js per water vertex when the water light cache is refreshed.
+ *
+ * @param {Float32Array|Array<number>} p the point, world space (Quake units)
+ * @param {client_state_t|{ worldmodel: ?model_t }} client anything with the world model in `worldmodel`
+ * @returns {number} the same light level `R_LightPoint` returns
+ */
 export function R_LightPointValue( p, client ) {
 
 	const x = lightspot[ 0 ], y = lightspot[ 1 ], z = lightspot[ 2 ], plane = lightplane;
@@ -541,12 +630,17 @@ export function R_LightPointValue( p, client ) {
 /*
 =============
 R_AddDynamicLights
-
-Add contribution of dynamic lights to a surface's lightmap.
-In Three.js, this can be used to compute per-vertex lighting contributions
-from dynamic lights for surfaces near them.
 =============
 */
+/**
+ * Add contribution of dynamic lights to a surface's lightmap. In Three.js, this can be used to compute per-vertex
+ * lighting contributions from dynamic lights for surfaces near them. Currently a stub: it finds each light in
+ * `surf.dlightbits` whose radius reaches the surface plane but changes nothing (the working version is the private
+ * `R_AddDynamicLights` in gl_rsurf.js, and nothing imports this one).
+ *
+ * @param {msurface_t} surf the surface; `dlightbits` and `plane` are read
+ * @param {client_state_t} cl the client state; returns at once when it has no `dlights`
+ */
 export function R_AddDynamicLights( surf, cl ) {
 
 	if ( ! cl || ! cl.dlights )
@@ -580,6 +674,13 @@ dlight_t class
 */
 export class dlight_t {
 
+	/**
+	 * Creates an unlit dynamic light: origin at 0,0,0, radius 0, all times 0. This copy is not used by the engine
+	 * (the client's `cl_dlights` is built from client.js's `dlight_t`); it keeps the same fields.
+	 * Fields: `origin` world position (Quake units), `radius` (Quake units), `die` client time in seconds after
+	 * which the light stops, `decay` radius lost per second, `minlight` don't add when contributing less (lightmap
+	 * units), `key` the owner's key (0 for none); `CL_AllocDlight` reuses the slot whose key matches.
+	 */
 	constructor() {
 
 		this.origin = new Float32Array( 3 );

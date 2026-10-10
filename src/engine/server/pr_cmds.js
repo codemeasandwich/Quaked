@@ -1605,10 +1605,14 @@ const pr_builtin = [
 /*
 ===============
 PR_InitBuiltins
-
-Registers the builtin function table. Called during PR_Init.
 ===============
 */
+/**
+ * Registers the builtin function table: hands the `pr_builtin` array (QuakeC builtin numbers #0..#78, unused numbers
+ * mapped to PF_Fixme) to the progs interpreter through `PR_SetBuiltins`, and injects `PF_changeyaw`, `G_FLOAT` and
+ * `G_FLOAT_SET` into sv_move.js. The original comment says it is called during PR_Init; in this port Host_Init calls
+ * it once at startup, right after PR_Init and before any progs are loaded. The table lives for the session.
+ */
 export function PR_InitBuiltins() {
 
 	PR_SetBuiltins( pr_builtin, pr_builtin.length );

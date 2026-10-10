@@ -151,6 +151,10 @@ function R_InitParticleTexture() {
 R_InitParticles
 ===============
 */
+/**
+ * Allocates the pool of `MAX_PARTICLES` (2048) particles, empties the lists and builds the 8x8 particle dot texture
+ * (WinQuake r_part.c). Called once by `R_Init` (gl_rmain.js). The pool lives for the whole session.
+ */
 export function R_InitParticles() {
 
 	for ( let i = 0; i < MAX_PARTICLES; i ++ ) {
@@ -169,6 +173,14 @@ export function R_InitParticles() {
 R_SetParticleExternals
 ===============
 */
+/**
+ * Injects the engine objects this module uses instead of importing them (not in WinQuake): the Three.js scene from
+ * `R_Init`, and the `sv_gravity` cvar from `Host_Init`. Keys left out or null keep their current value; until set,
+ * there is no scene (so `R_DrawParticles` draws nothing) and gravity is 800.
+ *
+ * @param {{ scene?: THREE.Scene, sv_gravity?: cvar_t }} externals `scene` receives the particle points; `sv_gravity`
+ *   (Quake units per second squared) scales particle gravity
+ */
 export function R_SetParticleExternals( externals ) {
 
 	if ( externals.scene ) _scene = externals.scene;
@@ -181,6 +193,10 @@ export function R_SetParticleExternals( externals ) {
 R_ClearParticles
 ===============
 */
+/**
+ * Puts every particle back on the free list (WinQuake r_part.c). Called by `R_InitParticles` and by `R_NewMap` for
+ * every map. The particle objects themselves are kept.
+ */
 export function R_ClearParticles() {
 
 	activeList = - 1;
@@ -224,6 +240,16 @@ function allocParticle() {
 R_ParticleExplosion
 ===============
 */
+/**
+ * Spawns the native rocket/grenade explosion (WinQuake r_part.c): 1024 particles within 16 Quake units of `org`,
+ * flying out at up to 256 units per second, alternately `pt_explode` and `pt_explode2`, for up to 5 seconds of
+ * `cl.time`. Called through render.js `R_ParticleExplosion` when the Fireball does not take the event (TE_EXPLOSION).
+ * Does nothing without a client state, and stops early when the pool runs out.
+ *
+ * @param {ArrayLike<number>} org centre, Quake units, world space
+ * @param {boolean} [classicOnly=false] true to draw these particles only in the Classic half of the title demo's split
+ *   view (render.js spawns that copy when the Newer replacement took the event)
+ */
 export function R_ParticleExplosion( org, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
@@ -269,6 +295,17 @@ export function R_ParticleExplosion( org, classicOnly = false ) {
 R_ParticleExplosion2
 ===============
 */
+/**
+ * Spawns the native colour-mapped explosion (WinQuake r_part.c, TE_EXPLOSION2): 512 `pt_blob` particles within 16
+ * Quake units of `org` that live 0.3 seconds, cycling through the given palette range. Called through render.js
+ * `R_ParticleExplosion2`. Does nothing without a client state, and stops early when the pool runs out.
+ *
+ * @param {ArrayLike<number>} org centre, Quake units, world space
+ * @param {number} colorStart first palette index of the colour range
+ * @param {number} colorLength number of palette entries in the range (must be at least 1)
+ * @param {boolean} [classicOnly=false] true to draw these particles only in the Classic half of the title demo's split
+ *   view (render.js spawns that copy when the Newer replacement took the event)
+ */
 export function R_ParticleExplosion2( org, colorStart, colorLength, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
@@ -301,6 +338,15 @@ export function R_ParticleExplosion2( org, colorStart, colorLength, classicOnly 
 R_BlobExplosion
 ===============
 */
+/**
+ * Spawns the native tar baby (blob) explosion (WinQuake r_part.c, TE_TAREXPLOSION): 1024 particles within 16 Quake
+ * units of `org`, half `pt_blob` in palette 66..71 and half `pt_blob2` in 150..155, living 1 to 1.35 seconds. Called
+ * through render.js `R_BlobExplosion`. Does nothing without a client state, and stops early when the pool runs out.
+ *
+ * @param {ArrayLike<number>} org centre, Quake units, world space
+ * @param {boolean} [classicOnly=false] true to draw these particles only in the Classic half of the title demo's split
+ *   view (render.js spawns that copy when the Newer replacement took the event)
+ */
 export function R_BlobExplosion( org, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
@@ -341,6 +387,21 @@ export function R_BlobExplosion( org, classicOnly = false ) {
 R_RunParticleEffect
 ===============
 */
+/**
+ * Spawns a small burst of particles (WinQuake r_part.c): spikes and gunshots on walls (cl_tent.js, through render.js
+ * `R_RunParticleEffect`) and the QuakeC `particle` builtin's blood and sparks (`svc_particle`, through render.js
+ * `R_ParseParticleEffect`). A count of exactly 1024 makes a rocket-explosion burst instead. Otherwise each particle is
+ * `pt_slowgrav`, within 8 Quake units of `org`, drifts at `dir * 15`, takes a random shade of `color`'s 8-colour row
+ * and lives up to 0.4 seconds. Blood (colour 73) also marks walls and floors, the screen and the weapon, through the
+ * Newer Game decal hooks. Does nothing without a client state, and stops early when the pool runs out.
+ *
+ * @param {ArrayLike<number>} org centre, Quake units, world space
+ * @param {ArrayLike<number>} dir drift direction; velocity is `dir * 15` Quake units per second
+ * @param {number} color palette index 0..255 (73 is blood)
+ * @param {number} count number of particles
+ * @param {boolean} [classicOnly=false] true to draw these particles only in the Classic half of the title demo's split
+ *   view (render.js spawns that copy when the Newer replacement took the event)
+ */
 export function R_RunParticleEffect( org, dir, color, count, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
@@ -413,6 +474,14 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
 R_LavaSplash
 ===============
 */
+/**
+ * Spawns the lava splash (WinQuake r_part.c, TE_LAVASPLASH, the Chthon and Shub effect): a 32x32 grid of
+ * `pt_slowgrav` particles over a 256x256 Quake-unit square around `org`, rising at 50..113 units per second in
+ * palette 224..231, for about 2 to 2.6 seconds. Called through render.js `R_LavaSplash`. Does nothing without a
+ * client state, and stops early when the pool runs out.
+ *
+ * @param {ArrayLike<number>} org centre, Quake units, world space
+ */
 export function R_LavaSplash( org ) {
 
 	if ( ! client_cl ) return;
@@ -454,6 +523,14 @@ export function R_LavaSplash( org ) {
 R_TeleportSplash
 ===============
 */
+/**
+ * Spawns the teleport sparkle (WinQuake r_part.c, TE_TELEPORT): a cube of `pt_slowgrav` particles 32 Quake units
+ * wide and 56 high around `org`, flying outward at 50..113 units per second in palette 7..14, for 0.2 to 0.34
+ * seconds. Does nothing without a client state, and stops early when the pool runs out. No engine code reaches it at
+ * present: cl_tent.js records TE_TELEPORT spots instead, and nothing imports the render.js forwarder.
+ *
+ * @param {ArrayLike<number>} org centre, Quake units, world space
+ */
 export function R_TeleportSplash( org ) {
 
 	if ( ! client_cl ) return;
@@ -499,6 +576,20 @@ export function R_TeleportSplash( org ) {
 R_RocketTrail
 ===============
 */
+/**
+ * Spawns the native trail along one frame's movement of a missile or gib (WinQuake r_part.c), one particle every 3
+ * Quake units (every unit when 128 is added to `type`). Called through render.js `R_RocketTrail` by `CL_RelinkEntities`
+ * and `CL_LinkPacketEntities` per entity per frame from the model's trail flags. Particles last 2 seconds (tracers 0.5,
+ * vore 0.3); tracers alternate sideways at 30 units per second, counted by the module's `tracercount`. Does nothing
+ * without a client state, and stops early when the pool runs out.
+ *
+ * @param {ArrayLike<number>} start the entity's previous origin, Quake units, world space
+ * @param {ArrayLike<number>} end its origin now
+ * @param {number} type 0 rocket (EF_ROCKET), 1 smoke (EF_GRENADE), 2 blood (EF_GIB), 3 tracer (EF_TRACER), 4 slight
+ *   blood (EF_ZOMGIB), 5 tracer (EF_TRACER2), 6 voor trail (EF_TRACER3); +128 for the dense spacing
+ * @param {boolean} [classicOnly=false] true to draw these particles only in the Classic half of the title demo's split
+ *   view
+ */
 export function R_RocketTrail( start, end, type, classicOnly = false ) {
 
 	if ( ! client_cl ) return;
@@ -610,8 +701,6 @@ export function R_RocketTrail( start, end, type, classicOnly = false ) {
 /*
 ===============
 R_EntityParticles
-
-Glowing particle aura around entities with EF_BRIGHTFIELD (e.g. Quad Damage)
 ===============
 */
 
@@ -621,6 +710,15 @@ let _avelocitiesInitialized = false;
 const _epForward = new Float32Array( 3 );
 const beamlength = 16;
 
+/**
+ * Glowing particle aura around entities with EF_BRIGHTFIELD (WinQuake r_part.c; the source comment's example is Quad
+ * Damage): 162 particles, one per vertex normal, 64 Quake units from the origin and pushed 16 units along a direction
+ * that turns with `cl.time`, each living only 0.01 seconds so the ring is respawned every frame. Called through
+ * render.js `R_EntityParticles` by `CL_RelinkEntities` and `CL_LinkPacketEntities`. The per-normal angular speeds are
+ * chosen at random on the first call and kept for the session.
+ *
+ * @param {entity_t} ent the glowing entity; its `origin` (Quake units, world space) is the centre
+ */
 export function R_EntityParticles( ent ) {
 
 	if ( client_cl == null ) return;
@@ -676,6 +774,18 @@ export function R_EntityParticles( ent ) {
 R_DrawParticles
 ===============
 */
+/**
+ * Advances and draws every particle for this frame (WinQuake r_part.c). Called once per frame by `R_RenderScene`
+ * (gl_rmain.js). Does nothing without a client state or a scene.
+ *
+ * Steps time by `cl.time - cl.oldtime` (an exact zero, while paused, freezes them; a negative step or one over 0.5
+ * seconds is replaced by 0.016), frees particles whose `die` time has passed, writes positions (raw Quake
+ * coordinates) and palette colours (converted to linear RGB) into two point batches, the normal one and the Classic-
+ * only one, then applies each type's ramp, drag and gravity (`sv_gravity` * 0.05 per second). Blood that comes down on
+ * the world is handed to the decal hook and removed. The batches are `THREE.Points` added to the scene when they have
+ * particles and removed when empty; the Classic-only batch stays hidden except in the split view's Classic pass. In
+ * WebXR the point size is divided by `XR_SCALE`.
+ */
 export function R_DrawParticles() {
 
 	if ( ! client_cl || ! _scene ) return;

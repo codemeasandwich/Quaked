@@ -86,6 +86,21 @@ export const clc_move = 3;
 export const clc_stringcmd = 4;
 export const clc_delta = 5; // [byte] sequence number, requests delta compression
 
+/**
+ * Injects the engine functions this module needs (callback injection, to avoid circular imports). Called once from
+ * sv_main.js at server init; the values are kept for the session in this module's exported stubs. Members that are
+ * missing (or, except `host_client`, falsy) leave the current value unchanged.
+ *
+ * @param {{ V_CalcRoll?: function(ArrayLike<number>, ArrayLike<number>): number, SV_DropClient?: function(boolean): void,
+ *   NET_GetMessage?: function(?qsocket_t): number, Cbuf_InsertText?: function(string): void,
+ *   Cmd_ExecuteString?: function(string, number): void, host_client?: ?client_t,
+ *   set_host_client?: function(client_t): void, get_key_dest?: function(): number }} callbacks `V_CalcRoll` gives
+ *   the view roll in degrees for angles and velocity; `SV_DropClient` drops `host_client`; `NET_GetMessage` reads
+ *   the next message of a connection into `net_message`; `Cbuf_InsertText` and `Cmd_ExecuteString` run client
+ *   commands; `host_client` sets the current client; `set_host_client` publishes the client `SV_RunClients` is
+ *   working on to the rest of the server; `get_key_dest` returns the current key destination (for the single-player
+ *   pause)
+ */
 export function SV_User_SetCallbacks( callbacks ) {
 
 	if ( callbacks.V_CalcRoll ) V_CalcRoll = callbacks.V_CalcRoll;
@@ -122,6 +137,13 @@ function Q_strncasecmp( s1, s2, n ) {
 SV_SetIdealPitch
 ===============
 */
+/**
+ * Sets the player's `idealpitch` from the slope of the ground ahead, so the view tilts up stairs and slopes
+ * (lookspring). Called by `SV_WriteClientdataToMessage` (sv_main.js) for `sv_player` each time its client data is
+ * sent. Only on the ground: it traces 160 units down at six points 36 to 96 units ahead along the yaw, ignoring
+ * monsters, and leaves `idealpitch` unchanged when looking at a wall, near a dropoff, or when the steps are mixed or
+ * fewer than two; flat ground sets 0. Otherwise `idealpitch` = -step * `sv_idealpitchscale` (degrees).
+ */
 export function SV_SetIdealPitch() {
 
 	// Use cached buffers instead of allocating per-call
@@ -191,6 +213,13 @@ export function SV_SetIdealPitch() {
 SV_UserFriction
 ==================
 */
+/**
+ * Applies ground friction to the current player's velocity for one frame. Uses the module's `origin`/`velocity`,
+ * set by `SV_ClientThink` to `sv_player`'s; called by `SV_AirMove` while the player is on the ground. If the leading
+ * edge is over a dropoff (nothing within 34 units below a point 16 units ahead), friction is multiplied by
+ * `sv_edgefriction`. Speed drops by `host_frametime * max(speed, sv_stopspeed) * friction`, clamped at 0, and all
+ * three velocity components are scaled. Mutates `sv_player.v.velocity`.
+ */
 export function SV_UserFriction() {
 
 	const vel = velocity;
@@ -234,6 +263,12 @@ export function SV_UserFriction() {
 SV_Accelerate
 ==============
 */
+/**
+ * Accelerates the current player along the wish direction on the ground for one frame. Uses the module's
+ * `wishdir`/`wishspeed` (set by `SV_AirMove`) and `velocity` (set by `SV_ClientThink`); called by `SV_AirMove` after
+ * friction. Adds up to `sv_accelerate * host_frametime * wishspeed` units/s, never taking the speed along `wishdir`
+ * past `wishspeed`. Mutates `sv_player.v.velocity`.
+ */
 export function SV_Accelerate() {
 
 	const currentspeed = DotProduct( velocity, wishdir );
@@ -254,6 +289,14 @@ export function SV_Accelerate() {
 SV_AirAccelerate
 ==============
 */
+/**
+ * Accelerates the current player in the air for one frame (not on ground, so little effect on velocity). Called by
+ * `SV_AirMove`. The wished speed is capped at 30 units/s along the wished direction, but the acceleration step uses
+ * the module-level `wishspeed`, not the capped value (the C code intentionally does this), which is what allows air
+ * strafing. Mutates `sv_player.v.velocity` (through the module's `velocity`).
+ *
+ * @param {ArrayLike<number>} wishveloc wished velocity (units/s, world space); copied, not modified
+ */
 export function SV_AirAccelerate( wishveloc ) {
 
 	// Use cached buffer instead of allocating per-call
@@ -299,6 +342,13 @@ function DropPunchAngle() {
 SV_WaterMove
 ===================
 */
+/**
+ * Moves the current player through water for one frame (water level 2 or more, not noclip). Called by
+ * `SV_ClientThink`. Builds the wished velocity from the client's move command along the view angles (`v_angle`),
+ * drifting down at 60 units/s when there is no input, caps it at `sv_maxspeed` (both scaled by the Newer Game
+ * `SV_QuadMovementScale` hook), and moves at 70% of that; then applies water friction (`sv_friction`) and
+ * `sv_accelerate`. Mutates `sv_player.v.velocity` (through the module's `velocity`).
+ */
 export function SV_WaterMove() {
 	const quadScale=SV_QuadMovementScale(sv_player), maxspeed=sv_maxspeed.value*quadScale;
 
@@ -391,6 +441,14 @@ function SV_WaterJump() {
 SV_AirMove
 ===================
 */
+/**
+ * Moves the current player on the ground or in the air for one frame. Called by `SV_ClientThink` when not in water.
+ * Builds the wished velocity from the client's move command along the body angles (forward and side scaled by the
+ * Newer Game `SV_QuadMovementScale` hook, vertical only when not MOVETYPE_WALK), ignores backward moves just after a
+ * teleport (hack to not let you back into teleporter), caps it at `sv_maxspeed` (scaled by the same hook), and sets
+ * the module's `wishdir`/`wishspeed`. Noclip takes the wished velocity directly; on the ground it applies
+ * `SV_UserFriction` and `SV_Accelerate`; otherwise `SV_AirAccelerate`. Mutates `sv_player.v.velocity`.
+ */
 export function SV_AirMove() {
 	const quadScale=SV_QuadMovementScale(sv_player), maxspeed=sv_maxspeed.value*quadScale;
 
@@ -445,11 +503,19 @@ export function SV_AirMove() {
 /*
 ===================
 SV_ClientThink
-
-the move fields specify an intended velocity in pix/sec
-the angle fields specify an exact angular motion in degrees
 ===================
 */
+/**
+ * Applies the current client's last move command to its player entity for this frame: the move fields specify an
+ * intended velocity in pix/sec (Quake units per second); the angle fields specify an exact angular motion in
+ * degrees. Called by `SV_RunClients` for each spawned client when the game is not paused; `host_client` and
+ * `sv_player` must already be set to that client.
+ *
+ * Does nothing for MOVETYPE_NONE. Decays `punchangle`; a dead player gets nothing more. Otherwise it sets the body
+ * angles (shows 1/3 the pitch angle and all the roll angle, from `V_CalcRoll` times 4; pitch and yaw only when
+ * `fixangle` is 0), then runs the water jump, `SV_WaterMove` or `SV_AirMove`. Points the module's `origin`,
+ * `velocity`, `angles` and `cmd` at this player's data for the helpers it calls.
+ */
 export function SV_ClientThink() {
 
 	// Use cached buffer instead of allocating per-call
@@ -513,6 +579,16 @@ export function SV_ClientThink() {
 SV_ReadClientMove
 ===================
 */
+/**
+ * Reads the body of a `clc_move` message from `net_message` for `host_client`: the client's time stamp (stored as a
+ * ping time, `sv.time` minus it, in the 16-entry `ping_times` ring), view angles (to the edict's `v_angle`, degrees),
+ * forward/side/up moves (units/s), the button bits (`button0` attack, `button2` jump) and the impulse (only a
+ * nonzero impulse is stored). Also copies the angles and moves into `host_client.lastcmd` (created on first use) for
+ * `SV_WritePlayersToClient`. Called by `SV_ReadClientMessage`.
+ *
+ * @param {{ forwardmove: number, sidemove: number, upmove: number }} move written: the client's move command
+ *   (`host_client.cmd`), kept until the next `clc_move`
+ */
 export function SV_ReadClientMove( move ) {
 
 	// Use cached buffer instead of allocating per-call
@@ -567,8 +643,6 @@ export function SV_ReadClientMove( move ) {
 /*
 ===================
 SV_ReadClientMessage
-
-Returns false if the client should be killed
 ===================
 */
 
@@ -580,6 +654,24 @@ const MAX_MESSAGES_PER_CLIENT = 10;
 let _msgLoopCount = 0;
 const MAX_MSG_LOOP_WARN = 100;
 
+/**
+ * Reads and acts on the messages `host_client` has sent since the last frame. Called by `SV_RunClients` once per
+ * server frame for each active client. Handles `clc_nop`, `clc_delta` (sets `delta_sequence`, otherwise reset to -1
+ * for each message), `clc_move` (`SV_ReadClientMove`), `clc_disconnect` and `clc_stringcmd`. A string command is
+ * run with `Cmd_ExecuteString` as `src_client` when it starts with one of the commands clients may use (status, god,
+ * notarget, fly, name, noclip, say, say_team, tell, color, kill, pause, spawn, begin, prespawn, kick, ping, give,
+ * ban); otherwise a privileged client's text is inserted into the command buffer, and anyone else's is only logged
+ * as a developer message. Sets `host_client.localtime` to `sv.time` for each message (so PF_MSEC reflects how old the
+ * move is).
+ *
+ * It keeps reading while the last message was reliable (as in WinQuake), but processes at most 10 messages per
+ * client per frame, which prevents infinite loops from async message queuing (WebTransport) and protects against
+ * malicious clients spamming messages to freeze the server; a runaway guard gives up after 100 loop passes.
+ *
+ * @returns {boolean} false if the client should be killed (connection failed, bad or unknown message, disconnect,
+ *   runaway loop, or a command left the client inactive); true otherwise, including when the 10-message limit is
+ *   reached
+ */
 export function SV_ReadClientMessage() {
 
 	let ret;
@@ -718,6 +810,15 @@ export function SV_ReadClientMessage() {
 SV_RunClients
 ==================
 */
+/**
+ * Reads every active client's messages and runs their moves, once per server frame (called by `Host_ServerFrame`
+ * before physics). For each client it sets `host_client` (here and through `set_host_client`) and `sv_player`,
+ * drops the client (`SV_DropClient( false )`) when `SV_ReadClientMessage` returns false, and clears the movement
+ * of clients that have not spawned yet until a new packet is received. `SV_ClientThink` runs unless the server is
+ * paused or, in single player, the console or a menu has the keys (always pause in single player if in console or
+ * menus), or the Newer Game welcome-loading hook is holding player state while level data is prepared. Leaves
+ * `host_client` at the last client.
+ */
 export function SV_RunClients() {
 
 	for ( let i = 0; i < svs.maxclients; i ++ ) {

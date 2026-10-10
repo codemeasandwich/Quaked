@@ -62,6 +62,19 @@ export const MAX_NET_DRIVERS = 8;
 
 export class qsocket_t {
 
+	/**
+	 * Creates one connection endpoint (WinQuake net.h qsocket_t). NET_Init allocates the whole pool once at startup
+	 * (`svs.maxclientslimit` + 1 for the local client) onto the `net_freeSockets` list; NET_NewQSocket moves one to
+	 * `net_activeSockets` and resets its fields, and NET_FreeQSocket returns it, so a socket object is reused across
+	 * connections.
+	 *
+	 * Fields: `next` (list link), `connecttime` / `lastMessageTime` / `lastSendTime` (`net_time` seconds),
+	 * `disconnected`, `canSend`, `sendNext`, `driver` (index into `net_drivers`: 0 loopback, 1 WebTransport),
+	 * `landriver`, `socket`, `driverdata` (driver-owned object, for example the WebTransport connection), sequence
+	 * counters (`ackSequence` is the newest packet the peer acknowledged; the WebTransport driver sets it to -1 until
+	 * the first ack), `sendMessage` / `receiveMessage` (byte buffers of `NET_LOOP_MAXMESSAGE` bytes each) with their
+	 * lengths, `addr` and `address` (printable peer address).
+	 */
 	constructor() {
 
 		this.next = null;
@@ -102,6 +115,12 @@ export class qsocket_t {
 
 export class net_landriver_t {
 
+	/**
+	 * Creates an empty low-level (LAN) driver table, WinQuake net.h net_landriver_t: a name, an `initialized` flag, a
+	 * control socket and null function slots (`Init`, `Read`, `Write`, `Broadcast`, address helpers...). The
+	 * `MAX_NET_DRIVERS` entries of `net_landrivers` are allocated once at module load; no driver in this port fills
+	 * them, since the browser drivers are high-level `net_driver_t`s.
+	 */
 	constructor() {
 
 		this.name = '';
@@ -136,6 +155,12 @@ export class net_landriver_t {
 
 export class net_driver_t {
 
+	/**
+	 * Creates an empty high-level driver table, WinQuake net.h net_driver_t. The `MAX_NET_DRIVERS` entries of
+	 * `net_drivers` are allocated once at module load and NET_Init fills slot 0 with the loopback functions (`Loop_*`)
+	 * and, when the browser has WebTransport, slot 1 with the `WT_*` functions. `initialized` is set by the
+	 * driver's `Init`; NET_* calls dispatch through `net_drivers[sock.driver]` or `net_drivers[net_driverlevel]`.
+	 */
 	constructor() {
 
 		this.name = '';
@@ -164,6 +189,12 @@ export class net_driver_t {
 
 export class hostcache_t {
 
+	/**
+	 * Creates an empty server browser cache entry (WinQuake net.h hostcache_t). The `HOSTCACHESIZE` (8) entries of
+	 * `hostcache` are allocated once at module load and rewritten by each `slist` search (`hostCacheCount` says how
+	 * many are valid). Fields: `name` (display name), `map`, `cname` (connect name NET_Connect substitutes when the
+	 * user types `name`), `users` / `maxusers`, `driver` (index into `net_drivers`), `ldriver`, `addr`.
+	 */
 	constructor() {
 
 		this.name = '';
@@ -185,6 +216,16 @@ export class hostcache_t {
 
 export class PollProcedure {
 
+	/**
+	 * Creates a scheduled poll callback (WinQuake net.h PollProcedure). SchedulePollProcedure sets `nextTime` and links
+	 * it into the time-ordered poll list; NET_Poll unlinks it and calls `procedure( arg )` once that time has passed.
+	 * net_main.js keeps two module-lifetime instances for the server list search (Slist_Send, Slist_Poll).
+	 *
+	 * @param {?PollProcedure} [next] next entry in the poll list (falsy becomes null)
+	 * @param {number} [nextTime] when to run, `Sys_FloatTime` seconds (falsy becomes 0); overwritten when scheduled
+	 * @param {?function(*): void} [procedure] callback to run (falsy becomes null)
+	 * @param {*} [arg] value passed to `procedure` (falsy becomes null)
+	 */
 	constructor( next, nextTime, procedure, arg ) {
 
 		this.next = next || null;
@@ -204,8 +245,24 @@ export let net_activeSockets = null;
 export let net_freeSockets = null;
 export let net_numsockets = 0;
 
+/**
+ * Replaces the head of the active socket list; used by NET_NewQSocket and NET_FreeQSocket in net_main.js.
+ *
+ * @param {?qsocket_t} v new head (sockets are linked through `next`), or null when none are active
+ */
 export function set_net_activeSockets( v ) { net_activeSockets = v; }
+/**
+ * Replaces the head of the free socket list; used by NET_Init (building the pool), NET_NewQSocket and NET_FreeQSocket.
+ *
+ * @param {?qsocket_t} v new head (linked through `next`), or null when the pool is exhausted
+ */
 export function set_net_freeSockets( v ) { net_freeSockets = v; }
+/**
+ * Sets the size of the socket pool; NET_Init sets it once at startup to `svs.maxclientslimit` plus one for the local
+ * client.
+ *
+ * @param {number} v number of qsockets allocated
+ */
 export function set_net_numsockets( v ) { net_numsockets = v; }
 
 export let net_numdrivers = 0;
@@ -221,12 +278,37 @@ for ( let i = 0; i < MAX_NET_DRIVERS; i ++ )
 export let DEFAULTnet_hostport = 26000;
 export let net_hostport = 26000;
 
+/**
+ * Sets the default host port; NET_Init uses it for `-port` / `-udpport` / `-ipxport`, and the `port` console command
+ * for its argument.
+ *
+ * @param {number} v port number (the `port` command accepts 1..65534; the initial value is 26000)
+ */
 export function set_DEFAULTnet_hostport( v ) { DEFAULTnet_hostport = v; }
+/**
+ * Sets the port currently used for listening; NET_Init copies the default into it and the `port` command sets both.
+ *
+ * @param {number} v port number (1..65534 from the `port` command)
+ */
 export function set_net_hostport( v ) { net_hostport = v; }
 
 export let net_driverlevel = 0;
+/**
+ * Selects the driver that the next driver-level call is made for (WinQuake's `net_driverlevel`, the `dfunc` macro).
+ * NET_Listen_f, NET_Connect and the server-list search (Slist_Send, Slist_Poll) set it before calling into
+ * `net_drivers`, and
+ * NET_NewQSocket records it as the new socket's `driver`.
+ *
+ * @param {number} v index into `net_drivers`: 0 loopback, 1 WebTransport
+ */
 export function set_net_driverlevel( v ) { net_driverlevel = v; }
 
+/**
+ * Sets how many entries of `net_drivers` are in use; NET_Init sets 1 (loopback) and then 2 when the browser provides
+ * WebTransport.
+ *
+ * @param {number} v driver count, 1..`MAX_NET_DRIVERS`
+ */
 export function set_net_numdrivers( v ) { net_numdrivers = v; }
 
 export let serialAvailable = false;
@@ -237,10 +319,21 @@ export let my_ipx_address = '';
 export let my_tcpip_address = '';
 
 export let net_time = 0;
+/**
+ * Stores the network clock; SetNetTime in net_main.js calls it with `Sys_FloatTime()` before connection and poll work.
+ *
+ * @param {number} v time in seconds (`Sys_FloatTime`)
+ */
 export function set_net_time( v ) { net_time = v; }
 
 export const net_message = new sizebuf_t();
 export let net_activeconnections = 0;
+/**
+ * Sets the number of connected clients; sv_main.js increments it when a client connects and decrements it on drop.
+ * NET_NewQSocket refuses new sockets while it is at `svs.maxclients`, and the loopback server-list entry reports it.
+ *
+ * @param {number} v connected client count (0..`svs.maxclients`)
+ */
 export function set_net_activeconnections( v ) { net_activeconnections = v; }
 
 export let messagesSent = 0;
@@ -249,6 +342,12 @@ export let unreliableMessagesSent = 0;
 export let unreliableMessagesReceived = 0;
 
 export let hostCacheCount = 0;
+/**
+ * Sets how many `hostcache` entries are valid: NET_Slist_f clears it to 0 when a search starts, and
+ * `Loop_SearchForHosts` sets 1 when a local server answers.
+ *
+ * @param {number} v valid entry count, 0..`HOSTCACHESIZE`
+ */
 export function set_hostCacheCount( v ) { hostCacheCount = v; }
 
 export const hostcache = new Array( HOSTCACHESIZE );
@@ -259,6 +358,24 @@ export let slistInProgress = false;
 export let slistSilent = false;
 export let slistLocal = true;
 
+/**
+ * Marks whether a server-list search is running: set true by NET_Slist_f, false by Slist_Poll when the 1.5 s
+ * search ends.
+ *
+ * @param {boolean} v true while searching
+ */
 export function set_slistInProgress( v ) { slistInProgress = v; }
+/**
+ * Sets whether the running server-list search prints to the console; Slist_Poll resets it to false when a search
+ * ends.
+ *
+ * @param {boolean} v true to search without printing the list
+ */
 export function set_slistSilent( v ) { slistSilent = v; }
+/**
+ * Sets whether the server-list search includes the loopback driver (driver 0); Slist_Poll resets it to true when a
+ * search ends.
+ *
+ * @param {boolean} v false to skip the local server
+ */
 export function set_slistLocal( v ) { slistLocal = v; }

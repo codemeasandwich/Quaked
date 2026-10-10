@@ -65,8 +65,24 @@ let newerActive = false;
 const newerUrls = new Map(); // name -> blob URL
 let newerMaps = new Map(); // separately built geometry; original packs remain intact
 let newerMapsEnabled = false; // only a supported local game explicitly selects these maps
+/**
+ * Selects whether `COM_FindFile` serves Newer Game's rebuilt maps (from `COM_SetNewerMapsPack`) in place of the
+ * originals; they are used only while Newer Game is also active (`COM_SetNewerActive`). Set at map spawn by
+ * `SV_SpawnServer` and when the client parses the server info (only a local single-player game enables them).
+ *
+ * @param {boolean} enabled only `true` enables; any other value disables
+ */
 export function COM_SetNewerMapsEnabled( enabled ) { newerMapsEnabled = enabled === true; }
 
+/**
+ * Installs Newer Game's separately built map geometry (the `newer/maps.pak` pack, loaded at start-up by main.js),
+ * replacing any earlier set. The original packs remain intact; the views share `pack.data` and last until the next
+ * call.
+ *
+ * @param {?pack_t} pack a pack from `COM_LoadPackFile`; null or undefined clears the set
+ * @throws {Error} when an entry is not named `maps/<lower-case name>.bsp` (`Newer map pack contains non-map entry`);
+ * the previous set is then kept
+ */
 export function COM_SetNewerMapsPack( pack ) {
 	const maps = new Map();
 	for ( const f of pack?.files || [] ) {
@@ -84,11 +100,25 @@ let looseFileBasePath = '';
 /*
 =================
 COM_LoadPackFile
-
-Takes an ArrayBuffer of the .pak file contents
-Returns a pack_t or null
 =================
 */
+/**
+ * Takes an ArrayBuffer of the .pak file contents and returns a pack_t (the original comment's "or null" cannot
+ * happen: a bad magic number throws through `Sys_Error`). Reads the directory (64-byte entries: a 56-byte
+ * NUL-terminated name, lower-cased here, then little-endian int32 offset and length), prints `Added packfile ...` and
+ * records the pack in the module's list of loaded packs. It does not add the pack to the search path; call
+ * `COM_AddPack` (or `COM_SetNewerPack` and friends) for that. Corruption is rejected here, while
+ * `COM_FetchOptionalPak` can still decline the whole optional archive. The pack keeps `buffer` for the life of the
+ * page, and files are later read as views into it.
+ *
+ * @param {string} filename the name used in messages and stored as `pack.filename`
+ * @param {ArrayBuffer} buffer the whole .pak file; kept, not copied
+ * @returns {pack_t} the parsed pack: `files` holds `{ name, filepos, filelen }` (bytes into `buffer`)
+ * @throws {Error} via `Sys_Error` when the file does not start with `PACK` (`<filename> is not a packfile`); and
+ * directly when it is under 12 bytes (truncated pack header), the directory offset or length is out of range or not a
+ * multiple of 64 (invalid pack directory), it lists more than 2048 files (too many files) or an entry lies outside
+ * the file (invalid payload)
+ */
 export function COM_LoadPackFile( filename, buffer ) {
 
 	if ( buffer.byteLength < 12 ) throw new Error( filename + ' has a truncated pack header' );
@@ -162,10 +192,15 @@ export function COM_LoadPackFile( filename, buffer ) {
 /*
 =================
 COM_AddGameDirectory
-
-Sets up the search path for a game directory
 =================
 */
+/**
+ * Sets up the search path for a game directory (WinQuake common.c): appends a directory entry with no pack. The port
+ * never reads directory entries (loose files come through `COM_EnsureFile` instead), so this has no effect on
+ * lookups; no current caller.
+ *
+ * @param {string} dir the game directory, such as `id1`
+ */
 export function COM_AddGameDirectory( dir ) {
 
 	com_searchpaths.push( { pack: null, path: dir } );
@@ -175,10 +210,15 @@ export function COM_AddGameDirectory( dir ) {
 /*
 =================
 COM_AddPack
-
-Adds a loaded pack to the search path
 =================
 */
+/**
+ * Adds a loaded pack to the search path, at the front: the last pack added wins when two hold the same file. Called
+ * at start-up by main.js (the full game's pak, then pak0.pak) and by the dedicated server (server/game_server.js).
+ * The pack stays on the path for the life of the page.
+ *
+ * @param {pack_t} pack a pack from `COM_LoadPackFile` or `COM_FetchPak`
+ */
 export function COM_AddPack( pack ) {
 
 	com_searchpaths.unshift( { pack: pack, path: null } );
@@ -188,11 +228,19 @@ export function COM_AddPack( pack ) {
 /*
 =================
 COM_FindFile
-
-Searches through the path looking for a file.
-Returns { data: Uint8Array, size: number } or null
 =================
 */
+/**
+ * Searches through the path looking for a file. The order is: Newer Game's rebuilt maps (when Newer Game is active
+ * and its maps are enabled), then newer.pak (only while Newer Game is active), then the packs on the search path
+ * (last added first), then the loose files fetched by `COM_PreloadLooseFile`. Called whenever the engine loads a
+ * model, map, sound or script.
+ *
+ * @param {string} filename the game path, such as `maps/e1m1.bsp` (matched case-insensitively)
+ * @returns {?{ data: Uint8Array, size: number }} the file's bytes and length in bytes, or null when it is nowhere.
+ * `data` is a view into the pack's buffer (or the stored loose-file array), not a copy: do not modify it; use
+ * `COM_LoadFile` for a private copy
+ */
 export function COM_FindFile( filename ) {
 
 	const search = filename.toLowerCase();
@@ -240,7 +288,13 @@ export function COM_FindFile( filename ) {
 
 }
 
-// the names of the files in the packs that start with prefix (lower case)
+/**
+ * The names of the files in the packs that start with prefix (lower case). Searches only the packs on the search
+ * path, in search order (not newer.pak or loose files); a name in two packs is listed twice. No current caller.
+ *
+ * @param {string} prefix the start of the name, such as `maps/`; compared as given, so it should be lower case
+ * @returns {Array<string>} the matching names, lower case (a new array)
+ */
 export function COM_ListFiles( prefix ) {
 
 	const out = [];
@@ -258,10 +312,15 @@ export function COM_ListFiles( prefix ) {
 /*
 =================
 COM_SetNewerPack
-
-Makes a loaded pack the Newer Game pack (or none, with null).
 =================
 */
+/**
+ * Makes a loaded pack the Newer Game pack (or none, with null), called at start-up by main.js once newer.pak has
+ * loaded. Revokes every blob URL made by `COM_NewerURL` and rebuilds the name index; the pack's files are only seen
+ * by `COM_FindFile` while Newer Game is active.
+ *
+ * @param {?pack_t} pack the newer.pak pack, or null for none
+ */
 export function COM_SetNewerPack( pack ) {
 
 	for ( const url of newerUrls.values() ) URL.revokeObjectURL( url );
@@ -278,9 +337,20 @@ export function COM_SetNewerPack( pack ) {
 
 }
 
-// Small startup transport bundle; full Newer pack entries retain priority
-// except the engine-pinned, complete player-face composition kit.
-// Logical paths remain unchanged, and loose files remain the optional fallback.
+/**
+ * Installs the small startup transport bundle, called at start-up by main.js once the pack's SHA-256 matches. Its
+ * `startup/index.json` (version 1) maps logical `newer/hud/...` names to `startup/<n>.(png|webp|json)` payloads.
+ * Full Newer pack entries retain priority except the engine-pinned, complete player-face composition kit
+ * (`newer/hud/playerface/...`). Logical paths remain unchanged, and loose files remain the optional fallback. Revokes
+ * cached `COM_NewerURL` blob URLs for names the old index served and for player-face names the new one serves. On
+ * error nothing is changed.
+ *
+ * @param {?pack_t} pack the startup pack, or null to remove it
+ * @throws {Error} when the index is missing (`Missing startup alias index`), is not version 1 with a `files` object
+ * (`Invalid startup alias index`), names a path outside `newer/hud/` or with `.`/`..` parts or an alias of the wrong
+ * form (`Invalid startup alias path`), or names a payload not in the pack (`Missing startup alias payload`); and a
+ * SyntaxError when the index is not valid JSON
+ */
 export function COM_SetNewerStartupPack(pack){
  const next=new Map();
  if(pack){
@@ -296,13 +366,23 @@ export function COM_SetNewerStartupPack(pack){
  startupPack=pack;startupIndex=next;
 }
 
+/**
+ * Whether a Newer Game pack has been installed with `COM_SetNewerPack`.
+ *
+ * @returns {boolean} true while newer.pak is loaded
+ */
 export function COM_NewerPackLoaded() {
 
 	return newerPack !== null;
 
 }
 
-// whether the pack's files are visible to COM_FindFile (Newer Game is on)
+/**
+ * Sets whether the pack's files are visible to COM_FindFile (Newer Game is on). Called by `R_SetNewerGame`
+ * (newer/mode.js) and at map spawn by `SV_SpawnServer`, so New Game stays exactly the original.
+ *
+ * @param {boolean} on only `true` turns it on
+ */
 export function COM_SetNewerActive( on ) {
 
 	newerActive = on === true;
@@ -312,10 +392,17 @@ export function COM_SetNewerActive( on ) {
 /*
 =================
 COM_NewerFile
-
-A file of the Newer Game pack: { data, size } or null.
 =================
 */
+/**
+ * A file of the Newer Game pack: { data, size } or null. Unlike `COM_FindFile` it does not depend on Newer Game being
+ * active. The player-face kit (`newer/hud/playerface/...`) comes from the startup pack when that has it, since the
+ * engine-pinned face kit is one versioned composition unit; otherwise newer.pak wins, then the startup pack.
+ *
+ * @param {string} name the logical path, such as `newer/hud/face.json` (matched case-insensitively)
+ * @returns {?{ data: Uint8Array, size: number }} a view into the pack's buffer (do not modify) and its length in
+ * bytes, or null when neither pack has the file
+ */
 export function COM_NewerFile( name ) {
  const key=name.toLowerCase();
  // The engine-pinned startup face kit is one versioned composition unit.
@@ -333,11 +420,18 @@ const MIME = { webp: 'image/webp', png: 'image/png', jpg: 'image/jpeg', jpeg: 'i
 /*
 =================
 COM_NewerURL
-
-A URL to load a Newer Game file from: out of the pack when it has the file, otherwise
-the loose file at fallback (a checkout without newer.pak).
 =================
 */
+/**
+ * A URL to load a Newer Game file from: out of the pack when it has the file, otherwise the loose file at fallback
+ * (a checkout without newer.pak). A pack file becomes a blob URL typed from its extension (webp, png, jpg, json, else
+ * octet-stream), made once per name and cached until `COM_SetNewerPack` (or `COM_SetNewerStartupPack` for its
+ * names) revokes it. Without `URL.createObjectURL` and `Blob` (Deno) it always returns `fallback`.
+ *
+ * @param {string} name the logical path, as for `COM_NewerFile`
+ * @param {string} fallback the loose file's URL
+ * @returns {string} a `blob:` URL or `fallback`
+ */
 export function COM_NewerURL( name, fallback ) {
 
 	const f = COM_NewerFile( name );
@@ -359,11 +453,16 @@ export function COM_NewerURL( name, fallback ) {
 /*
 =================
 COM_NewerJSON
-
-A Newer Game json file: parsed out of the pack, or fetched from fallback (never cached),
-or {} when there is neither.
 =================
 */
+/**
+ * A Newer Game json file: parsed out of the pack, or fetched from fallback (never cached, `cache: 'no-cache'`), or {}
+ * when there is neither. Never rejects: a parse error, network error or non-OK response also gives {}.
+ *
+ * @param {string} name the logical path, as for `COM_NewerFile`
+ * @param {string} fallback the loose file's URL
+ * @returns {Promise<*>} the parsed JSON, or `{}`
+ */
 export async function COM_NewerJSON( name, fallback ) {
 
 	const f = COM_NewerFile( name );
@@ -391,12 +490,14 @@ export async function COM_NewerJSON( name, fallback ) {
 /*
 =================
 COM_SetLooseFileBasePath
-
-Sets the base path for on-demand loose file fetching.
-Browser: '' (default, uses relative URLs)
-Deno: '/opt/three-quake/' (absolute filesystem path)
 =================
 */
+/**
+ * Sets the base path for on-demand loose file fetching by `COM_EnsureFile`. Browser: '' (default, uses relative
+ * URLs). Deno: '/opt/three-quake/' (absolute filesystem path), set by the dedicated server at start-up.
+ *
+ * @param {string} basePath prefixed to the game path as is, so it needs its trailing slash
+ */
 export function COM_SetLooseFileBasePath( basePath ) {
 
 	looseFileBasePath = basePath;
@@ -406,12 +507,17 @@ export function COM_SetLooseFileBasePath( basePath ) {
 /*
 =================
 COM_EnsureFile
-
-Checks if a file is available in pak or virtualFiles.
-If not, attempts to fetch it on demand and cache it.
-Returns a Promise<boolean>.
 =================
 */
+/**
+ * Checks if a file is available in pak or virtualFiles (via `COM_FindFile`). If not, attempts to fetch it on demand
+ * from the loose-file base path plus `filename` and cache it for the life of the page. Used before loading a map
+ * (`map`/`changelevel`, the client's world model and the dedicated server's map list).
+ *
+ * @param {string} filename the game path, such as `maps/foo.bsp`
+ * @returns {Promise<boolean>} true when the file is available afterwards; false when the fetch or read failed
+ * (never rejects)
+ */
 export async function COM_EnsureFile( filename ) {
 
 	// Already available in pak or virtualFiles?
@@ -431,12 +537,18 @@ export async function COM_EnsureFile( filename ) {
 /*
 =================
 COM_PreloadLooseFile
-
-Fetches a loose file from URL/path and adds it to virtualFiles.
-Used for custom maps not included in pak files.
-In Deno, reads from filesystem. In browser, uses fetch().
 =================
 */
+/**
+ * Fetches a loose file from URL/path and adds it to virtualFiles, where `COM_FindFile` finds it after every pack.
+ * Used for custom maps not included in pak files. In Deno, reads from filesystem. In browser, uses fetch(). The file
+ * replaces any earlier one of the same name and stays for the life of the page.
+ *
+ * @param {string} filename the game path to store it under (lower-cased)
+ * @param {string} url the URL (browser) or filesystem path (Deno) to read
+ * @returns {Promise<boolean>} true when stored; false on any failure (missing file, non-OK response, network error);
+ * never rejects
+ */
 export async function COM_PreloadLooseFile( filename, url ) {
 
 	try {
@@ -486,11 +598,16 @@ export async function COM_PreloadLooseFile( filename, url ) {
 /*
 =================
 COM_PreloadMaps
-
-Preloads loose map files from the maps/ directory.
-basePath is optional - used by Deno server to specify absolute path.
 =================
 */
+/**
+ * Preloads loose map files from the maps/ directory, one after another, each stored as `maps/<name>.bsp`, and prints
+ * `Preloaded <n> custom maps` when any loaded. No current caller.
+ *
+ * @param {Array<string>} mapList map names without the `.bsp` extension
+ * @param {string} [basePath='maps/'] optional - used by Deno server to specify absolute path; needs its trailing slash
+ * @returns {Promise<number>} how many maps loaded (missing ones are skipped)
+ */
 export async function COM_PreloadMaps( mapList, basePath ) {
 
 	let loaded = 0;
@@ -524,11 +641,14 @@ export async function COM_PreloadMaps( mapList, basePath ) {
 /*
 =================
 COM_LoadFile
-
-Loads a file from the pack system.
-Returns an ArrayBuffer of the file contents, or null if not found.
 =================
 */
+/**
+ * Loads a file from the pack system (searched as `COM_FindFile` does). Used for models, maps, sounds and progs.
+ *
+ * @param {string} filename the game path
+ * @returns {?ArrayBuffer} a new copy of the file contents, owned by the caller, or null if not found
+ */
 export function COM_LoadFile( filename ) {
 
 	const result = COM_FindFile( filename );
@@ -545,10 +665,15 @@ export function COM_LoadFile( filename ) {
 /*
 =================
 COM_LoadFileAsString
-
-Convenience: load a file and return it as a string
 =================
 */
+/**
+ * Convenience: load a file and return it as a string, one character per byte (Latin-1, not UTF-8). Used by `exec`
+ * to read config scripts.
+ *
+ * @param {string} filename the game path, such as `quake.rc`
+ * @returns {?string} the file's text, or null if not found
+ */
 export function COM_LoadFileAsString( filename ) {
 
 	const result = COM_FindFile( filename );
@@ -568,11 +693,21 @@ export function COM_LoadFileAsString( filename ) {
 /*
 =================
 COM_FetchPak
-
-Fetches a .pak file from a URL using fetch(), returns a Promise<pack_t>
-In Deno, loads from filesystem. In browser, uses fetch().
 =================
 */
+/**
+ * Fetches a .pak file from a URL using fetch() and parses it with `COM_LoadPackFile`; in Deno, loads from filesystem.
+ * Does not add it to the search path. Called at start-up for pak0.pak by main.js (which feeds `onProgress` to the loading
+ * screen) and by the dedicated server. Prints `Fetching ...` and `Loaded ... (<n> bytes)`.
+ *
+ * @param {string} url the URL (browser) or filesystem path (Deno)
+ * @param {string} [filename] the pack's name for messages; the browser path falls back to `url`
+ * @param {function(number): void} [onProgress] called with the fraction loaded, 0..1: per chunk when the response
+ * has a Content-Length, otherwise once with 1 at the end
+ * @returns {Promise<?pack_t>} the pack, or null when the response is not OK (browser) or the file cannot be read or
+ * parsed (Deno; the error is printed)
+ * @throws {Error} (as a rejection, browser only) when the fetch fails or `COM_LoadPackFile` rejects the file
+ */
 export async function COM_FetchPak( url, filename, onProgress ) {
 
 	Sys_Printf( 'Fetching ' + url + '...\\n' );
@@ -652,11 +787,18 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 /*
 =================
 COM_FetchOptionalPak
-
-Like COM_FetchPak for a pak that may not be there (newer.pak): null, quietly, when the file is
-missing or is not a pak (a server that answers every unknown address with a web page).
 =================
 */
+/**
+ * Like COM_FetchPak for a pak that may not be there (newer.pak, the startup pack, the owned full game's pak and
+ * Newer Game's maps pack): null, quietly, when the file is missing or is not a pak (a server that answers every
+ * unknown address with a web page). A malformed pack is also declined with null, since `COM_LoadPackFile` checks
+ * the directory before the pack is used. Does not add it to the search path.
+ *
+ * @param {string} url the URL (browser) or filesystem path (Deno)
+ * @param {string} filename the pack's name for messages
+ * @returns {Promise<?pack_t>} the pack, or null (never rejects)
+ */
 export async function COM_FetchOptionalPak( url, filename ) {
 
 	try {

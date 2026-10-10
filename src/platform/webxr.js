@@ -56,12 +56,24 @@ export const xrInput = {
 // Public API
 //============================================================================
 
+/**
+ * Reports whether an immersive VR session is running. Read every frame by the renderer, input and particle code to
+ * switch between flat and XR paths.
+ *
+ * @returns {boolean} true between the renderer's XR `sessionstart` and `sessionend` events
+ */
 export function isXRActive() {
 
 	return xrSessionActive;
 
 }
 
+/**
+ * Returns the camera rig created by `XR_Init`. `R_SetupGL` positions it at `r_refdef.vieworg / XR_SCALE` (meters)
+ * and rotates it to the view angles each XR frame.
+ *
+ * @returns {?THREE.Group} the rig (not a child of the scene), or null before `XR_Init` ran or when no renderer exists
+ */
 export function getXRRig() {
 
 	return xrRig;
@@ -70,16 +82,20 @@ export function getXRRig() {
 
 //============================================================================
 // XR_Init
-//
-// Called after Host_Init when renderer and scene are ready.
-// Creates the camera rig, sets up controllers, and offers VR session.
-//
-// The rig is NOT added to the scene. Instead, the scene is scaled down
-// by 1/XR_SCALE when XR is active, putting everything in meter space.
-// The rig (also in meter space) is positioned at vieworg / XR_SCALE.
-// This way the XR camera and scene content are in the same units.
 //============================================================================
 
+/**
+ * Enables WebXR on the renderer, creates the camera rig, attaches the right controller (index 1, the right hand on
+ * Quest) and offers an `immersive-vr` session through the browser's own UI. Called once from main.js after
+ * Host_Init, when the renderer and scene are ready; does nothing when there is no renderer.
+ *
+ * The rig is NOT added to the scene. Instead, the scene is scaled down by 1/XR_SCALE while XR is active (on
+ * `sessionstart`, restored to 1 on `sessionend`), putting everything in meter space. The rig (also in meter space)
+ * is positioned at vieworg / XR_SCALE, so the XR camera and scene content are in the same units. After each session
+ * ends the session is offered again. Uses the 'local' reference space.
+ *
+ * @param {THREE.Scene} scene the main scene; kept for scale toggling for the life of the page
+ */
 export function XR_Init( scene ) {
 
 	if ( renderer == null ) return;
@@ -127,13 +143,16 @@ export function XR_Init( scene ) {
 
 //============================================================================
 // XR_SetCamera
-//
-// Parents the camera to the XR rig. Called once when the camera is first
-// created in R_SetupGL. In non-XR mode the parent doesn't matter because
-// camera.matrixAutoUpdate is false and matrixWorld is set directly.
-// In XR mode, Three.js composes: rig.matrixWorld × camera.matrix (headset pose).
 //============================================================================
 
+/**
+ * Parents the camera to the XR rig. Called once when the camera is first created in R_SetupGL. In non-XR mode the
+ * parent doesn't matter because camera.matrixAutoUpdate is false and matrixWorld is set directly. In XR mode,
+ * Three.js composes: rig.matrixWorld × camera.matrix (headset pose). Does nothing when the rig does not exist yet or
+ * the camera is already its child.
+ *
+ * @param {?THREE.PerspectiveCamera} camera the view camera; mutated (re-parented under the rig)
+ */
 export function XR_SetCamera( camera ) {
 
 	if ( xrRig != null && camera != null && camera.parent !== xrRig ) {
@@ -146,12 +165,17 @@ export function XR_SetCamera( camera ) {
 
 //============================================================================
 // XR_PollInput
-//
-// Reads controller gamepad state each frame. Called from IN_Move().
-// Left controller: thumbstick → movement, trigger → jump
-// Right controller: trigger → attack
 //============================================================================
 
+/**
+ * Reads controller gamepad state each frame into the exported `xrInput` object. Called from IN_Move() while XR is
+ * active. Left controller: thumbstick → movement (`moveX`/`moveY`), trigger → jump (`leftTrigger`). Right
+ * controller: thumbstick X → horizontal look (`lookX`), trigger → attack (`rightTrigger`). Uses xr-standard
+ * axes[2]/[3] and falls back to axes[0]/[1] on controllers with only two axes; triggers are buttons[0].
+ *
+ * Every field is reset to 0 first, so `xrInput` reads all zeros when no session or gamepad is present. Axis values
+ * are -1..1 and trigger values 0..1.
+ */
 export function XR_PollInput() {
 
 	xrInput.moveX = 0;
@@ -222,14 +246,17 @@ export function XR_PollInput() {
 
 //============================================================================
 // XR_GetControllerWorldPose
-//
-// Returns the right controller's world-space position and quaternion.
-// With scene.scale = 1/XR_SCALE, the position is in meters.
-// The caller converts to scene-local Quake units by multiplying by XR_SCALE.
-//
-// Returns false if controller or XR is not available.
 //============================================================================
 
+/**
+ * Returns the right controller's world-space position and quaternion. With scene.scale = 1/XR_SCALE, the position
+ * is in meters; the caller (the view-model code in gl_rmain.js) converts to scene-local Quake units by multiplying
+ * by XR_SCALE.
+ *
+ * @param {THREE.Vector3} outPos written: controller world position in meters (only when true is returned)
+ * @param {THREE.Quaternion} outQuat written: controller world orientation (only when true is returned)
+ * @returns {boolean} false if the controller or XR is not available (no session, no controller or no rig)
+ */
 export function XR_GetControllerWorldPose( outPos, outQuat ) {
 
 	if ( xrSessionActive === false ) return false;
@@ -246,18 +273,20 @@ export function XR_GetControllerWorldPose( outPos, outQuat ) {
 
 //============================================================================
 // XR_GetAimAngles
-//
-// Computes Quake pitch/yaw angles from the controller's aiming direction.
-// The controller's world quaternion (which includes the rig's XR→Quake
-// rotation) gives us the forward direction in Quake world space.
-// We then reverse AngleVectors to get pitch and yaw.
-//
-// Used by CL_SendMove to send aim direction to the server so weapons
-// fire where the controller points, not where the head looks.
-//
-// Returns false if XR is not active.
 //============================================================================
 
+/**
+ * Computes Quake pitch/yaw angles from the controller's aiming direction. The controller's world quaternion (which
+ * includes the rig's XR→Quake rotation) gives the forward direction (targetRay -Z) in Quake world space; this then
+ * reverses AngleVectors to get pitch and yaw.
+ *
+ * Used by CL_SendMove each move command to send aim direction to the server so weapons fire where the controller
+ * points, not where the head looks.
+ *
+ * @param {Array<number>|Float32Array} outAngles written: `[pitch, yaw, roll]` in degrees, Quake convention (pitch
+ *   positive looking down, yaw -180..180, roll always 0); left untouched when false is returned
+ * @returns {boolean} false if XR is not active or the controller or rig is missing
+ */
 export function XR_GetAimAngles( outAngles ) {
 
 	if ( xrSessionActive === false ) return false;

@@ -27,6 +27,11 @@ export const VID_GRADES = ( 1 << VID_CBITS );
 
 export class vrect_t {
 
+	/**
+	 * Creates an empty screen rectangle (WinQuake vid.h): `x`, `y`, `width`, `height` in screen pixels, and `pnext`, the
+	 * next rectangle in a chain (WinQuake's dirty-rectangle list; unused here). render.js's refdef holds two, `vrect`
+	 * (the subwindow in video for refresh, sized by gl_screen.js's `SCR_CalcRefdef`) and `aliasvrect`.
+	 */
 	constructor() {
 
 		this.x = 0;
@@ -45,6 +50,14 @@ export class vrect_t {
 
 export class viddef_t {
 
+	/**
+	 * Creates the zeroed global video description (WinQuake vid.h); the module's single instance is the exported `vid`,
+	 * filled by `VID_Init` and kept current on window resize. `width`/`height` are the canvas size in pixels (also
+	 * copied to `conwidth`/`conheight` and `rowbytes`), `aspect` is width / height, `fullbright` the first fullbright
+	 * palette index (224), `recalc_refdef` is set to 1 when the view size must be recomputed, and `colormap` holds
+	 * 256 * VID_GRADES bytes. The software-renderer fields (`buffer`, `conbuffer`, `colormap16`, `direct`, `numpages`,
+	 * `maxwarpwidth`/`maxwarpheight`) are kept for the port's structure; nothing draws into the buffers.
+	 */
 	constructor() {
 
 		this.buffer = null; // Uint8Array -- invisible buffer
@@ -92,11 +105,16 @@ export let canvas = null; // HTMLCanvasElement
 
 //============================================================================
 // VID_SetPalette
-//
-// Called at startup and after any gamma correction.
-// Takes 256 entries of RGB byte triplets (768 bytes total).
 //============================================================================
 
+/**
+ * Builds the palette lookup tables `d_8to24table` (packed 0xAABBGGRR, opaque, with index 255 made fully transparent
+ * black for sprites, etc.) and `d_8to16table` (RGB565) from a palette. In WinQuake it is called at startup and after
+ * any gamma correction; here `VID_Init`, `VID_ShiftPalette` and `VID_SetMode` call it. The tables are overwritten in
+ * place and stay until the next call. Does nothing when `palette` is missing.
+ *
+ * @param {Uint8Array} palette 256 entries of RGB byte triplets (768 bytes total, 0..255 per channel)
+ */
 export function VID_SetPalette( palette ) {
 
 	// palette is a Uint8Array of 768 bytes (256 * 3 RGB)
@@ -124,10 +142,15 @@ export function VID_SetPalette( palette ) {
 
 //============================================================================
 // VID_ShiftPalette
-//
-// Called for bonus and pain flashes, and for underwater color changes.
 //============================================================================
 
+/**
+ * In WinQuake, called for bonus and pain flashes, and for underwater color changes. In the browser, palette shifts are
+ * handled by post-processing or by a screen-space color overlay (see R_PolyBlend in gl_rmain.js), so this only
+ * rebuilds the lookup tables with `VID_SetPalette`. Nothing in the engine calls it.
+ *
+ * @param {Uint8Array} palette 256 RGB byte triplets (768 bytes)
+ */
 export function VID_ShiftPalette( palette ) {
 
 	// In the browser, palette shifts are handled by post-processing
@@ -139,14 +162,20 @@ export function VID_ShiftPalette( palette ) {
 
 //============================================================================
 // VID_Init
-//
-// Called at startup to set up translation tables.
-// Takes 256 8-bit RGB values. The palette data will go away after the call,
-// so it must be copied off if the video driver will need it again.
-//
-// For browser: creates a canvas and initializes Three.js WebGLRenderer.
 //============================================================================
 
+/**
+ * Called at startup (once, from host.js's `Host_Init`) to set up translation tables. Takes 256 8-bit RGB values. In
+ * WinQuake the palette data will go away after the call, so it must be copied off if the video driver will need it
+ * again; here it is only read into the lookup tables. For browser: creates a full-window canvas appended to
+ * `document.body` and initializes the Three.js WebGLRenderer (no antialiasing, sRGB output, manual clearing and
+ * sorting, linear tone mapping at exposure 1), sets the exported `canvas` and `renderer`, fills `vid` with the canvas
+ * size, and adds a window resize listener (never removed) that resizes the canvas and renderer and sets
+ * `vid.recalc_refdef`. Prints the size to the console.
+ *
+ * @param {?Uint8Array} palette 768 bytes of RGB triplets (gfx/palette.lmp); when missing the tables are left as they are
+ * @throws {Error} from `THREE.WebGLRenderer` when the browser cannot create a WebGL context
+ */
 export function VID_Init( palette ) {
 
 	Sys_Printf( 'VID_Init' );
@@ -235,10 +264,12 @@ export function VID_Init( palette ) {
 
 //============================================================================
 // VID_Shutdown
-//
-// Called at shutdown.
 //============================================================================
 
+/**
+ * Called at shutdown (host.js's `Host_Shutdown`): disposes the renderer and removes the canvas from the page, setting
+ * both exports to null. The resize listener added by `VID_Init` is not removed.
+ */
 export function VID_Shutdown() {
 
 	Sys_Printf( 'VID_Shutdown' );
@@ -261,12 +292,14 @@ export function VID_Shutdown() {
 
 //============================================================================
 // VID_Update
-//
-// Flushes the given rectangles from the view buffer to the screen.
-// In Three.js, the actual rendering is handled by renderer.render() in
-// gl_rmain.js, so this is largely a no-op.
 //============================================================================
 
+/**
+ * In WinQuake, flushes the given rectangles from the view buffer to the screen. In Three.js, the actual rendering is
+ * handled by renderer.render() in gl_rmain.js, so this is a no-op. Nothing in the engine calls it.
+ *
+ * @param {?vrect_t} rects the first rectangle of a `pnext` chain; ignored
+ */
 export function VID_Update( rects ) {
 
 	// Three.js handles buffer swaps internally via renderer.render()
@@ -275,11 +308,17 @@ export function VID_Update( rects ) {
 
 //============================================================================
 // VID_SetMode
-//
-// Sets the mode; only used by the Quake engine for resetting to mode 0
-// (the base mode) on memory allocation failures.
 //============================================================================
 
+/**
+ * Sets the mode; in WinQuake only used by the Quake engine for resetting to mode 0 (the base mode) on memory
+ * allocation failures. In browser, we only have one "mode" - the canvas size - so this rebuilds the palette tables
+ * when given a palette and sets `vid.recalc_refdef`. Nothing in the engine calls it.
+ *
+ * @param {number} modenum the requested mode number; ignored
+ * @param {?Uint8Array} palette 768 bytes of RGB triplets, or null to keep the current tables
+ * @returns {number} always 1 (success)
+ */
 export function VID_SetMode( modenum, palette ) {
 
 	// In browser, we only have one "mode" - the canvas size
@@ -297,11 +336,14 @@ export function VID_SetMode( modenum, palette ) {
 
 //============================================================================
 // VID_HandlePause
-//
-// Called only on Win32, when pause happens, so the mouse can be released.
-// In browser, we use Pointer Lock API instead.
 //============================================================================
 
+/**
+ * In WinQuake, called only on Win32, when pause happens, so the mouse can be released. In browser, we use Pointer Lock
+ * API instead, so this is a no-op. Nothing in the engine calls it.
+ *
+ * @param {boolean} pause true when the game pauses; ignored
+ */
 export function VID_HandlePause( pause ) {
 
 	// Browser: Pointer Lock API handles this naturally
@@ -311,12 +353,16 @@ export function VID_HandlePause( pause ) {
 
 //============================================================================
 // VID_UpdateGamma
-//
-// Updates the renderer's tone mapping exposure based on the gamma cvar.
-// In original Quake, gamma ranges from 0.5 (brightest) to 1.0 (normal).
-// We map this to toneMappingExposure where 1.0 is normal and higher is brighter.
 //============================================================================
 
+/**
+ * Updates the renderer's tone mapping exposure based on the gamma cvar. In original Quake, gamma ranges from 0.5
+ * (brightest) to 1.0 (normal). We map this to toneMappingExposure where higher is brighter, as exposure = 1.5 / gamma
+ * (gamma 1.0 gives 1.5, 0.5 gives 3.0). Called by view.js at `V_Init` and from `V_CheckGamma` whenever the `gamma`
+ * cvar changes. Does nothing before `VID_Init` or after `VID_Shutdown` (no renderer).
+ *
+ * @param {number} gamma the `gamma` cvar value (default 1; must be non-zero)
+ */
 export function VID_UpdateGamma( gamma ) {
 
 	if ( ! renderer ) return;

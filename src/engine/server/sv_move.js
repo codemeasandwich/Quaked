@@ -53,6 +53,15 @@ export let PF_changeyaw = null;
 export let G_FLOAT = null;
 export let G_FLOAT_SET = null;
 
+/**
+ * Injects the progs helpers this module needs (callback injection, to avoid importing pr_cmds.js). Called once from
+ * `PR_InitBuiltins` (pr_cmds.js); the functions are kept in the exported `PF_changeyaw`, `G_FLOAT` and `G_FLOAT_SET`
+ * for the session. Members that are missing or falsy leave the current value unchanged.
+ *
+ * @param {{ PF_changeyaw?: function(): void, G_FLOAT?: function(number): number,
+ *   G_FLOAT_SET?: function(number, number): void }} callbacks `PF_changeyaw` turns `self` toward its `ideal_yaw`;
+ *   `G_FLOAT`/`G_FLOAT_SET` read and write a progs global slot as a float
+ */
 export function SV_Move_SetCallbacks( callbacks ) {
 
 	if ( callbacks.PF_changeyaw ) PF_changeyaw = callbacks.PF_changeyaw;
@@ -64,11 +73,18 @@ export function SV_Move_SetCallbacks( callbacks ) {
 /*
 =============
 SV_CheckBottom
-
-Returns false if any part of the bottom of the entity is off an edge that
-is not a staircase.
 =============
 */
+/**
+ * Tests whether a walking entity stands on ground under its whole bounding box. Called by `SV_movestep` after each
+ * step, by `SV_NewChaseDir` when a monster cannot move, and by the `checkbottom` builtin. Quick case: if the points
+ * just under all four bottom corners are solid world, it passes. Otherwise it traces down (up to 2 * STEPSIZE = 36
+ * units) from the middle and the corners, ignoring monsters, and fails when a trace finds nothing or a corner's
+ * ground is more than STEPSIZE (18 units) below the middle's. Counts results in the debug counters `c_yes`/`c_no`.
+ *
+ * @param {edict_t} ent entity to test; reads `v.origin`, `v.mins` and `v.maxs` (Quake units)
+ * @returns {boolean} false if any part of the bottom of the entity is off an edge that is not a staircase
+ */
 export function SV_CheckBottom( ent ) {
 
 	const mins = _checkbottom_mins;
@@ -154,13 +170,26 @@ export function SV_CheckBottom( ent ) {
 /*
 =============
 SV_movestep
-
-Called by monster program code.
-The move will be adjusted for slopes and stairs, but if the move isn't
-possible, no move is done, false is returned, and
-pr_global_struct.trace_normal is set to the normal of the blocking wall
 =============
 */
+/**
+ * Called by monster program code (the `walkmove` builtin, and `SV_StepDirection` for `movetogoal`). The move will be
+ * adjusted for slopes and stairs, but if the move isn't possible, no move is done and false is returned. The source
+ * comment says pr_global_struct.trace_normal is set to the normal of the blocking wall; neither WinQuake nor this
+ * port does that here.
+ *
+ * Swimming and flying monsters (FL_SWIM/FL_FLY) do not step: they first try the move with 8 units of vertical
+ * correction toward their enemy's height, then without it (when they have an enemy), and a swimmer may not leave
+ * the water. Walkers are moved from a step (18 units) above the target down to a step below it, must keep ground
+ * under them (`SV_CheckBottom`), may fall when FL_PARTIALGROUND is set, and get `groundentity` updated. May run
+ * touch functions of triggers (via `SV_LinkEdict`) when `relink` is true.
+ *
+ * @param {edict_t} ent the moving entity; mutates `v.origin`, `v.flags` and `v.groundentity`
+ * @param {ArrayLike<number>} move wished displacement (Quake units, world space)
+ * @param {boolean} relink true to relink the entity into the world (and fire triggers) after a successful move
+ * @returns {boolean} true when the entity moved (or, with FL_PARTIALGROUND, is allowed to stay where the step left
+ *   it); false when blocked, when it would walk off an edge, or when a swimmer would leave the water
+ */
 export function SV_movestep( ent, move, relink ) {
 
 	const oldorg = _movestep_oldorg;
@@ -288,11 +317,20 @@ export function SV_movestep( ent, move, relink ) {
 /*
 ======================
 SV_StepDirection
-
-Turns to the movement direction, and walks the current distance if
-facing it.
 ======================
 */
+/**
+ * Turns to the movement direction, and walks the current distance if facing it. Sets `ideal_yaw` and turns through
+ * `PF_changeyaw` (which turns the progs `self`, so `ent` must be `self`, as it is from `SV_MoveToGoal`), then tries
+ * `SV_movestep`; a successful step is undone if the entity is still more than 45 degrees from the new direction.
+ * Always relinks the entity.
+ *
+ * @param {edict_t} ent the moving entity, which must be the current progs `self`; mutates its yaw, origin and links
+ * @param {number} yaw direction in degrees, 0..360 (multiples of 45 from the chase code)
+ * @param {number} dist distance to walk (Quake units)
+ * @returns {boolean} true when the step was possible (even if it was then undone because the turn was not finished);
+ *   false when blocked
+ */
 export function SV_StepDirection( ent, yaw, dist ) {
 
 	const move = _stepdir_move;
@@ -333,6 +371,13 @@ export function SV_StepDirection( ent, yaw, dist ) {
 SV_FixCheckBottom
 ======================
 */
+/**
+ * Marks an entity as having had its floor pulled out (sets FL_PARTIALGROUND), so `SV_movestep` lets it fall or move
+ * off the edge until it stands on ground again. Called by `SV_NewChaseDir` when a stuck monster fails
+ * `SV_CheckBottom`.
+ *
+ * @param {edict_t} ent entity; mutates `v.flags`
+ */
 export function SV_FixCheckBottom( ent ) {
 
 	ent.v.flags = ( ent.v.flags | 0 ) | FL_PARTIALGROUND;
@@ -344,6 +389,17 @@ export function SV_FixCheckBottom( ent ) {
 SV_NewChaseDir
 ================
 */
+/**
+ * Picks a new direction toward `enemy` for a monster that could not keep walking, and steps that way. Tries the
+ * diagonal straight at the goal, then the two axis directions (in random order, or the larger difference first),
+ * then the old direction, then all eight directions in a random sweep, and only then turning around. If nothing
+ * works the monster keeps its old direction, and if it has no floor it is marked FL_PARTIALGROUND
+ * (`SV_FixCheckBottom`). Called by `SV_MoveToGoal`. Uses `Math.random`.
+ *
+ * @param {edict_t} actor the moving monster, which must be the current progs `self` (see `SV_StepDirection`)
+ * @param {edict_t} enemy the entity to head for (the monster's `goalentity`); only `v.origin` is read
+ * @param {number} dist distance to walk this step (Quake units)
+ */
 export function SV_NewChaseDir( actor, enemy, dist ) {
 
 	const d = _chasedir_d;
@@ -435,6 +491,15 @@ export function SV_NewChaseDir( actor, enemy, dist ) {
 SV_CloseEnough
 ======================
 */
+/**
+ * Tests whether two entities' absolute bounding boxes come within `dist` of each other on every axis, so the next
+ * step would reach the goal. Called by `SV_MoveToGoal`.
+ *
+ * @param {edict_t} ent the moving entity; reads `v.absmin`/`v.absmax`
+ * @param {edict_t} goal the goal entity; reads `v.absmin`/`v.absmax`
+ * @param {number} dist step distance (Quake units)
+ * @returns {boolean} true when the boxes, grown by `dist`, overlap
+ */
 export function SV_CloseEnough( ent, goal, dist ) {
 
 	for ( let i = 0; i < 3; i ++ ) {
@@ -455,6 +520,14 @@ export function SV_CloseEnough( ent, goal, dist ) {
 SV_MoveToGoal
 ======================
 */
+/**
+ * The `movetogoal` builtin (#67, through pr_cmds.js), called by monster AI code while it runs or walks: moves
+ * `self` one step of the distance in parm 0 toward its `goalentity`. Does nothing for an entity that is not on the
+ * ground, flying or swimming, and stops when it has an enemy and the step would reach the goal. Otherwise it
+ * steps along `ideal_yaw`, choosing a new chase direction (`SV_NewChaseDir`) when blocked or, at random, one time in
+ * four. Reads its argument and `self` from the progs globals; only the not-on-ground case writes a return value (0);
+ * QuakeC declares the builtin as void.
+ */
 export function SV_MoveToGoal() {
 
 	const ent = PROG_TO_EDICT( pr_global_struct.self );

@@ -142,6 +142,11 @@ export const SOUND_CHANNELS = 8;
 // entity_state_t - baseline state for entity
 export class entity_state_t {
 
+	/**
+	 * Creates a zeroed entity state: the baseline of an edict or client entity (spawn values that later updates are
+	 * deltas from), and the per-entity records of a QuakeWorld-style packet (`number`, `flags`). `origin` is in Quake
+	 * units (world space) and `angles` in degrees; both are owned `Float32Array(3)`s that `copyFrom` fills in place.
+	 */
 	constructor() {
 
 		this.number = 0; // entity number (QW delta compression)
@@ -156,6 +161,12 @@ export class entity_state_t {
 
 	}
 
+	/**
+	 * Copies every field of `other` into this state, writing the existing `origin`/`angles` arrays rather than
+	 * sharing them, so packet entities can be carried forward without allocating (`cl_parse.js` delta decoding).
+	 *
+	 * @param {entity_state_t} other state to copy from (not modified)
+	 */
 	copyFrom( other ) {
 
 		this.number = other.number;
@@ -184,6 +195,11 @@ export class entity_state_t {
 
 export class quakeparms_t {
 
+	/**
+	 * Creates empty host parameters: base directory, cache directory and command-line arguments, as passed to
+	 * `Host_Init`. Nothing constructs it at present: `main.js` passes a plain object with the same `basedir`/`argc`/
+	 * `argv` fields.
+	 */
 	constructor() {
 
 		this.basedir = '';

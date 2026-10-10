@@ -121,6 +121,12 @@ export let current_skill = 0;
 SV_Init
 ===============
 */
+/**
+ * One-time server setup at start-up, called from Host_Init (WinQuake sv_main.c). Gives the progs interpreter
+ * `Host_Error`, registers the physics, aim, shot-delay and respawn-guard cvars, gives pr_edict.js the `deathmatch`
+ * cvar, fills the `*0`..`*N` submodel names, and gives sv_user.js its callbacks (roll, drop, net reads, command
+ * execution, the current client and key destination).
+ */
 export function SV_Init() {
 
 	PR_SetHostError( Host_Error );
@@ -165,10 +171,18 @@ EVENT MESSAGES
 /*
 ==================
 SV_StartParticle
-
-Make sure the event gets sent to all clients
 ==================
 */
+/**
+ * Make sure the event gets sent to all clients (WinQuake sv_main.c): appends an svc_particle to this frame's
+ * unreliable `sv.datagram`. Dropped silently when the datagram is within 16 bytes of MAX_DATAGRAM. Called by QC's
+ * `particle` builtin and the Newer gore and melee spray.
+ *
+ * @param {Float32Array|Array<number>} org effect origin, world space (Quake units)
+ * @param {Float32Array|Array<number>} dir particle velocity; sent ×16 as signed bytes (-128..127)
+ * @param {number} color palette index of the first particle colour, 0..255
+ * @param {number} count number of particles, 0..255; 255 means an explosion (the client draws 1024)
+ */
 export function SV_StartParticle( org, dir, color, count ) {
 
 	if ( sv.datagram.cursize > MAX_DATAGRAM - 16 )
@@ -196,17 +210,25 @@ export function SV_StartParticle( org, dir, color, count ) {
 /*
 ==================
 SV_StartSound
-
-Each entity can have eight independant sound sources, like voice,
-weapon, feet, etc.
-
-Channel 0 is an auto-allocate channel, the others override anything
-allready running on that entity/channel pair.
-
-An attenuation of 0 will play full volume everywhere in the level.
-Larger attenuations will drop off. (max 4 attenuation)
 ==================
 */
+/**
+ * Each entity can have eight independant sound sources, like voice, weapon, feet, etc. Channel 0 is an
+ * auto-allocate channel, the others override anything allready running on that entity/channel pair. An attenuation
+ * of 0 will play full volume everywhere in the level. Larger attenuations will drop off. (max 4 attenuation)
+ * (WinQuake sv_main.c)
+ *
+ * Appends an svc_sound to this frame's unreliable `sv.datagram`, positioned at the centre of the entity's box.
+ * Called by QC's `sound` builtin and the physics (water splashes, a fiend's landing). Dropped when the datagram is
+ * within 16 bytes of MAX_DATAGRAM; a sample that was not precached prints a message and is not sent.
+ *
+ * @param {edict_t} entity the entity making the sound
+ * @param {number} channel 0..7
+ * @param {string} sample sound path as precached, e.g. 'weapons/guncock.wav'
+ * @param {number} volume 0..255 (255 is full volume and is not sent)
+ * @param {number} attenuation 0..4 (1 is normal and is not sent)
+ * @throws {Error} through `Sys_Error` when volume, attenuation or channel is out of range
+ */
 export function SV_StartSound( entity, channel, sample, volume, attenuation ) {
 
 	if ( volume < 0 || volume > 255 )
@@ -273,11 +295,17 @@ CLIENT SPAWNING
 /*
 ================
 SV_SendServerinfo
-
-Sends the first message from the server to a connected client.
-This will be sent on the initial connection and upon each server load.
 ================
 */
+/**
+ * Sends the first message from the server to a connected client. This will be sent on the initial connection and
+ * upon each server load (WinQuake sv_main.c). Writes to the client's reliable `message`: the version print with the
+ * progs CRC, svc_serverinfo (protocol, max clients, game type, the level's title, model and sound precache lists),
+ * the CD track, svc_setview, a `_movevars` stufftext for client-side prediction (matches QW sv_user.c:98-108) and
+ * signon stage 1. Called by `SV_ConnectClient` and at the end of `SV_SpawnServer`.
+ *
+ * @param {client_t} client the client; `sendsignon` is set and `spawned` cleared (it needs prespawn, spawn, etc.)
+ */
 export function SV_SendServerinfo( client ) {
 
 	MSG_WriteByte( client.message, svc_print );
@@ -343,11 +371,16 @@ export function SV_SendServerinfo( client ) {
 /*
 ================
 SV_ConnectClient
-
-Initializes a client_t for a new net connection. This will only be called
-once for a player each game, not once for each level change.
 ================
 */
+/**
+ * Initializes a client_t for a new net connection. This will only be called once for a player each game, not once
+ * for each level change (WinQuake sv_main.c). Resets the slot to a fresh `client_t` keeping its connection, binds it
+ * to edict `clientnum + 1`, takes its spawn parms from QC's `SetNewParms` (or keeps the saved ones when loading a
+ * game), then sends the server info. Called by `SV_CheckForNewClients`.
+ *
+ * @param {number} clientnum slot in `svs.clients`, 0..svs.maxclients-1; its `netconnection` must already be set
+ */
 export function SV_ConnectClient( clientnum ) {
 
 	const client = svs.clients[ clientnum ];
@@ -406,6 +439,12 @@ export function SV_ConnectClient( clientnum ) {
 SV_CheckForNewClients
 ===================
 */
+/**
+ * Accepts every pending network connection into a free client slot (WinQuake sv_main.c). Called once per server
+ * frame from Host_ServerFrame, before client messages are read.
+ *
+ * @throws {Error} through `Sys_Error` when a connection arrives with no free client slot
+ */
 export function SV_CheckForNewClients() {
 
 	while ( true ) {
@@ -448,6 +487,10 @@ FRAME UPDATES
 SV_ClearDatagram
 ==================
 */
+/**
+ * Empties the unreliable broadcast datagram `sv.datagram` (sounds, particles) and clears its overflow flag (WinQuake
+ * sv_main.c). Called at the start of every server frame from Host_ServerFrame.
+ */
 export function SV_ClearDatagram() {
 
 	SZ_Clear( sv.datagram );
@@ -460,6 +503,13 @@ export function SV_ClearDatagram() {
 SV_SendClientMessages
 =======================
 */
+/**
+ * Sends this frame's messages to every active client (WinQuake sv_main.c). Called at the end of each server frame
+ * from Host_ServerFrame. Broadcasts frag, name and colour changes on the reliable streams; sends each spawned client
+ * its unreliable datagram; keeps clients still signing on alive with a nop every 5 seconds; sends each pending
+ * reliable message when the connection can take it. Drops a client whose message overflowed or failed to send, or
+ * that was marked `dropasap`. Finally clears EF_MUZZLEFLASH on all entities.
+ */
 export function SV_SendClientMessages() {
 
 	// update frags, names, etc
@@ -937,6 +987,18 @@ function SV_WriteEntitiesToClient( client, clent, pvs, msg ) {
 SV_WriteClientdataToMessage
 ==================
 */
+/**
+ * Writes a player's own status to a message (WinQuake sv_main.c): a pending svc_damage (then clears `dmg_take` and
+ * `dmg_save`), an svc_setangle when `fixangle` is set (a fixangle might get lost in a dropped packet; then cleared),
+ * and svc_clientdata with view height, ideal pitch, punch angles, velocity, items (with the sigil bits of
+ * `serverflags` in bits 28+, or a mission pack's `items2` in bits 23+), on-ground and in-water flags, weapon frame,
+ * armour, weapon model, health and ammunition. Also updates the ideal pitch first. Called for each spawned client
+ * every frame by the client datagram, and once by the `spawn` command.
+ *
+ * @param {edict_t} ent the client's player edict; `dmg_take`, `dmg_save` and `fixangle` are cleared
+ * @param {sizebuf_t} msg the message to append to
+ * @throws {Error} through `Sys_Error` when the weapon model was not precached
+ */
 export function SV_WriteClientdataToMessage( ent, msg ) {
 
 	//
@@ -1438,11 +1500,18 @@ function SV_CleanupEnts() {
 /*
 =====================
 SV_DropClient
-
-Called when the player is getting totally kicked off the host
-if (crash = true), don't bother sending signoffs
 =====================
 */
+/**
+ * Called when the player is getting totally kicked off the host; if (crash = true), don't bother sending signoffs
+ * (WinQuake sv_main.c). Acts on the current `host_client` (server.js): sends svc_disconnect unless crashing, always
+ * runs QC's `ClientDisconnect` for a spawned client (original Quake skipped this on crash, but that leaves bodies
+ * solid/killable), closes the connection, frees the slot (the body stays around) and tells the other clients to
+ * clear its name, frags and colours. Does nothing when there is no current client. Called on overflow or send
+ * failure, by `kick`, server shutdown and a misbehaving client.
+ *
+ * @param {boolean} crash true when the connection is already broken (no farewell message is sent)
+ */
 export function SV_DropClient( crash ) {
 
 	const client = host_client;
@@ -1523,6 +1592,13 @@ export function SV_DropClient( crash ) {
 SV_ModelIndex
 ================
 */
+/**
+ * Looks up a model's slot in the server's precache list (WinQuake sv_main.c).
+ *
+ * @param {string} name the model path as precached, e.g. 'progs/player.mdl'
+ * @returns {number} its index in `sv.model_precache`; 0 for an empty or missing name
+ * @throws {Error} through `Sys_Error` when the model was not precached
+ */
 export function SV_ModelIndex( name ) {
 
 	if ( ! name || name.length === 0 )
@@ -1563,9 +1639,6 @@ function SV_SendReconnect() {
 /*
 ================
 SV_SaveSpawnparms
-
-Grabs the current state of each client for saving across the
-transition to another level
 ================
 */
 // Newer Game: the power-ups (the pentagram, the quad, the biosuit, the ring) and the time they
@@ -1578,6 +1651,10 @@ const CARRY_TIMERS = [
 	[ 4194304, 'super_damage_finished', 'super_time' ]
 ];
 let carriedPowerups = null;
+/**
+ * Forgets any power-ups waiting to be carried into the next level, and the respawn travel record
+ * (`SV_RespawnClearTravel`). Called by the `map` command, so a fresh run cannot inherit a failed travel's timers.
+ */
 export function SV_ClearCarriedPowerups() { carriedPowerups = null; SV_RespawnClearTravel(); }
 
 function SV_CapturePowerups( ent ) {
@@ -1599,7 +1676,13 @@ function SV_CapturePowerups( ent ) {
 
 }
 
-// called once the player is in the new level
+/**
+ * Gives the player back the power-ups `SV_SaveSpawnparms` captured on the last level change (Newer Game only), with
+ * the seconds they had left, and sets each one's warning-time field to 1. Called once the player is in the new level,
+ * by the `spawn` command after QC's `PutClientInServer`. The captured set is used once and then forgotten.
+ *
+ * @param {edict_t} ent the player's edict; `items` and the `*_finished` / `*_time` QC fields are written
+ */
 export function SV_RestorePowerups( ent ) {
 
 	const timers = carriedPowerups;
@@ -1620,6 +1703,13 @@ export function SV_RestorePowerups( ent ) {
 
 }
 
+/**
+ * Grabs the current state of each client for saving across the transition to another level (WinQuake sv_main.c).
+ * Called by the `changelevel` command just before `SV_SpawnServer`. Keeps `serverflags` (the sigils) in
+ * `svs.serverflags`, then for each active client runs QC's `SetChangeParms` and copies `parm1`..`parm16` into
+ * `client.spawn_parms`. For the first client it also captures the Newer Game power-ups (restored by
+ * `SV_RestorePowerups`) and the respawn travel state.
+ */
 export function SV_SaveSpawnparms() {
 
 	svs.serverflags = pr_global_struct.serverflags;
@@ -1704,10 +1794,21 @@ function SV_CreateBaseline() {
 /*
 ================
 SV_SpawnServer
-
-This is called at the start of each level
 ================
 */
+/**
+ * This is called at the start of each level (WinQuake sv_main.c), by the `map`, `changelevel` and `load` commands.
+ * Tells connected clients to reconnect, clamps `skill` to 0..3, clears memory and the server state, reloads
+ * progs.dat, allocates the edicts, loads `maps/<server>.bsp` and its submodels, links the world, spawns the map's
+ * entities, reserves the Newer Game respawn and carried power-up sounds, runs two 0.1 s physics frames to allow
+ * everything to settle, builds the entity baselines and sends the server info to every client. Also sets whether the
+ * Newer maps are used (single player, Newer Game, seamless travel on) and gives seamless travel the engine's model
+ * functions.
+ *
+ * @param {string} server the map name without 'maps/' or '.bsp', e.g. 'e1m1'
+ * @throws {Error} through `Sys_Error` when progs.dat cannot be loaded or the power-up carry sounds overflow the sound
+ *   precache; a map that cannot be loaded prints a message and leaves `sv.active` false instead
+ */
 export function SV_SpawnServer( server ) {
 
 	// the engine's model functions, for seamless travel's views of other levels and its crossings (given here, before a

@@ -45,10 +45,15 @@ read from the demo file.
 /*
 ==============
 CL_StopPlayback
-
-Called when a demo file runs out, or the user starts a game
 ==============
 */
+/**
+ * Ends demo playback (WinQuake cl_demo.c). Called when a demo file runs out (from `CL_GetMessage`), or the user starts
+ * a game (`CL_Disconnect`, `Host_Connect_f`, `Host_Stopdemo_f`). Does nothing unless `cls.demoplayback` is set.
+ *
+ * Cancels the demo-loading overlay and the split view, drops the demo data (`cls.demofile`, `cls.demodata`,
+ * `cls.demopos`), sets `cls.state` to `ca_disconnected`, and prints the timedemo result when `cls.timedemo` was set.
+ */
 export function CL_StopPlayback() {
 
 	if ( ! cls.demoplayback )
@@ -70,8 +75,6 @@ export function CL_StopPlayback() {
 /*
 ====================
 CL_WriteDemoMessage
-
-Dumps the current net message, prefixed by the length and view angles
 ====================
 */
 // Demo recording buffer state
@@ -129,6 +132,14 @@ function DemoBuffer_WriteString( str ) {
 const _demoWriteView = new DataView( new ArrayBuffer( 16 ) );
 const _demoWriteBytes = new Uint8Array( _demoWriteView.buffer );
 
+/**
+ * Dumps the current net message, prefixed by the length and view angles (WinQuake cl_demo.c), into the in-memory demo
+ * buffer. Called by `CL_GetMessage` for every server message while recording, and by `CL_Stop_f` for the closing
+ * `svc_disconnect`. Does nothing when no recording buffer exists.
+ *
+ * Record layout: int32 message length, three float32 `cl.viewangles` (degrees), then `net_message.cursize` bytes, all
+ * little-endian. The buffer starts at 64 KiB, doubles as needed and lives until `CL_Stop_f` downloads and drops it.
+ */
 export function CL_WriteDemoMessage() {
 
 	if ( demo_buffer == null )
@@ -154,10 +165,22 @@ export function CL_WriteDemoMessage() {
 /*
 ====================
 CL_GetMessage
-
-Handles recording and playback of demos, on top of NET_ code
 ====================
 */
+/**
+ * Handles recording and playback of demos, on top of NET_ code (WinQuake cl_demo.c). Called in a loop by
+ * `CL_ReadFromServer` each client frame to fetch the next server message into `net_message`.
+ *
+ * During playback it reads one record from `cls.demodata` (advancing `cls.demopos` and shifting `cl.mviewangles`),
+ * but once fully signed on it holds back until `cl.time` passes `cl.mtime[0]` (or, for a timedemo, one message per host
+ * frame; the second frame's `realtime` becomes `cls.td_starttime`). Running out of data, or a truncated record, calls
+ * `CL_StopPlayback`. Otherwise it reads from `cls.netcon` via `NET_GetMessage`, skipping single-byte `svc_nop`
+ * keepalives, and records the message with `CL_WriteDemoMessage` when `cls.demorecording` is set.
+ *
+ * @returns {number} 1 when a message is in `net_message` (2 for an unreliable network message), 0 when there is none
+ *   this time, -1 when `NET_GetMessage` reports the connection lost
+ * @throws {Error} via `Sys_Error` when a demo record is longer than `MAX_MSGLEN`
+ */
 export function CL_GetMessage() {
 
 	if ( cls.demoplayback ) {
@@ -269,10 +292,15 @@ export function CL_GetMessage() {
 /*
 ====================
 CL_Stop_f
-
-stop recording a demo
 ====================
 */
+/**
+ * Console command `stop`: stop recording a demo (WinQuake cl_demo.c). Also called by `CL_Disconnect` while recording.
+ * Ignored unless issued from the local command line (`cmd_source === src_command`).
+ *
+ * Writes a closing `svc_disconnect` message (this clears `net_message`), then, instead of closing a file as WinQuake
+ * does, offers the recorded bytes to the browser as a download named after the demo, and frees the buffer.
+ */
 export function CL_Stop_f() {
 
 	if ( cmd_source !== src_command )
@@ -315,10 +343,17 @@ export function CL_Stop_f() {
 /*
 ====================
 CL_Record_f
-
-record <demoname> <map> [cd track]
 ====================
 */
+/**
+ * Console command `record <demoname> [<map> [cd track]]` (WinQuake cl_demo.c). Ignored unless issued from the local
+ * command line. Refuses names containing `..`, and refuses to start without a map while already connected (client
+ * recording must start before connecting).
+ *
+ * Adds `.dem` when the name has no extension, runs `map <map>` when a map is given, sets `cls.forcetrack` to the CD
+ * track (or -1), starts a fresh in-memory buffer with the track written as the first text line, and sets
+ * `cls.demorecording`. The buffer is kept in memory until `CL_Stop_f`; nothing is written to disk.
+ */
 export function CL_Record_f() {
 
 	if ( cmd_source !== src_command )
@@ -383,10 +418,18 @@ export function CL_Record_f() {
 /*
 ====================
 CL_PlayDemo_f
-
-play [demoname]
 ====================
 */
+/**
+ * Console command `playdemo <demoname>` (WinQuake cl_demo.c "play [demoname]"); also used by `CL_TimeDemo_f` and
+ * `CL_PlayAttractDemo_f`. Ignored unless issued from the local command line. Disconnects, finds the demo (adding
+ * `.dem`) in the game files with `COM_FindFile`, copies it into its own ArrayBuffer (the found data is a view into the
+ * PAK) and starts it with `CL_PlayDemoFromData`. When the file is missing it prints an error and sets `cls.demonum` to
+ * -1, which stops the attract loop.
+ *
+ * @param {boolean} [attract=false] true when the attract (title) loop started this demo: turns on the loading overlay
+ *   and the split comparison view
+ */
 export function CL_PlayDemo_f( attract = false ) {
 
 	if ( cmd_source !== src_command )
@@ -428,8 +471,10 @@ export function CL_PlayDemo_f( attract = false ) {
 
 }
 
-// Playback intent travels with the queued command, not a global pending flag.
-// The attract loop is the only normal caller of this entry.
+/**
+ * Console command `playattractdemo <demoname>`: `CL_PlayDemo_f` with the attract flag set. Playback intent travels
+ * with the queued command, not a global pending flag. The attract loop is the only normal caller of this entry.
+ */
 export function CL_PlayAttractDemo_f() {
 
 	CL_PlayDemo_f( true );
@@ -439,10 +484,20 @@ export function CL_PlayAttractDemo_f() {
 /*
 ====================
 CL_PlayDemoFromData
-
-Play a demo from an ArrayBuffer (browser-specific entry point)
 ====================
 */
+/**
+ * Play a demo from an ArrayBuffer (browser-specific entry point; not in WinQuake). Called by `CL_PlayDemo_f`, and
+ * directly by tests and tools that already hold the demo bytes.
+ *
+ * Disconnects, keeps the data as `cls.demodata` for the whole playback, sets `cls.demoplayback` and `cls.state =
+ * ca_connected`, and parses the leading CD-track text line into `cls.forcetrack`. Only the attract loop requests the
+ * split comparison; manual/file demos and timedemos retain a single view, including when opened from an idle title
+ * demo. The loading overlay is used for attract demos unless the profiler is running.
+ *
+ * @param {ArrayBuffer} data the whole .dem file; wrapped, not copied, so the caller must not change it during playback
+ * @param {boolean} [attract=false] true when the attract (title) loop started this demo
+ */
 export function CL_PlayDemoFromData( data, attract = false ) {
 
 	CL_Disconnect();
@@ -500,10 +555,13 @@ function CL_FinishTimeDemo() {
 /*
 ====================
 CL_TimeDemo_f
-
-timedemo [demoname]
 ====================
 */
+/**
+ * Console command `timedemo <demoname>` (WinQuake cl_demo.c): plays the demo as fast as possible, one message per host
+ * frame, and prints frames, seconds and fps when it ends (`CL_StopPlayback`). Ignored unless issued from the local
+ * command line. `cls.td_starttime` is grabbed at the second frame of the demo, so the loading time is not counted.
+ */
 export function CL_TimeDemo_f() {
 
 	if ( cmd_source !== src_command )
