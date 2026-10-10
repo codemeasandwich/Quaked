@@ -14,7 +14,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_catalogue`, `_pending`, `_counters`; 1 module-level collection
+ * State: no mutable exports; module-level variables `_catalogue`, `_pending`, `_counters`; 2 module-level collections
  * (Map/Set).
  *
  * Errors: throws at 1 place; catches at 4 places.
@@ -199,6 +199,9 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 
 }
 
+// the mission packs the engine runs: Scourge of Armagon (hipnotic) and Dissolution of Eternity (rogue)
+const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
+
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
 
@@ -219,6 +222,15 @@ function assess( game, files, byId ) {
 	}
 	const base = byId.get( game.base );
 	if ( ! base?.playable ) return { playable: false, reason: `it needs ${base?.name ?? game.base}, which is not installed and playable` };
+	// the two mission packs run on Quake (card [34c]): their QuakeC, their status bar pictures (in their gfx.wad) and
+	// their start map are what the engine needs; the mission-pack status bar and give command follow -hipnotic/-rogue
+	if ( game.kind === 'mission' && MISSION_PACKS.has( game.id ) ) {
+
+		const missing = [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'a mission pack: its QuakeC, status bar and maps, played on Quake' };
+
+	}
 	return { playable: false, reason: game.kind === 'addon' ? 'add-on support (its QuakeC, entities and limits) is not yet shown to work' : 'its HUD, QuakeC and protocol support are not yet shown to work' };
 
 }

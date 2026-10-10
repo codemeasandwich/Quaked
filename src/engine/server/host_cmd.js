@@ -28,7 +28,9 @@ import { STAT_TOTALSECRETS, STAT_TOTALMONSTERS, STAT_SECRETS, STAT_MONSTERS,
 	MAX_LIGHTSTYLES, SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { NUM_FOR_EDICT, EDICT_NUM, EDICT_TO_PROG, PR_GetString, pr_global_struct } from '../progs/progs.js';
 import { PR_ExecuteProgram } from '../progs/pr_exec.js';
-import { ED_NewString, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from '../progs/pr_edict.js';
+import { ED_NewString, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict, GetEdictFieldValue } from '../progs/pr_edict.js';
+import { hipnotic, rogue } from '../common/common.js';
+import { HIT_PROXIMITY_GUN, HIT_LASER_CANNON, HIT_MJOLNIR } from '../common/quakedef.js';
 import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
 import { sv_player } from './sv_phys.js';
 import { FL_GODMODE, FL_NOTARGET,
@@ -736,28 +738,50 @@ function Host_Give_f() {
 
 	if ( t.length === 0 ) return;
 
+	// a mission pack's own ammunition fields (rogue keeps each kind in a field of its own, the current one in the
+	// standard field), as WinQuake's give command sets them (card [34c])
+	const setField = ( name ) => { const f = GetEdictFieldValue( sv_player, name ); if ( f ) f.accessor.setFloat( f.ofs, v ); return f !== null; };
+	const IT_SHOTGUN = 1, IT_GRENADE_LAUNCHER = 16, IT_LIGHTNING = 64;
 	switch ( t[ 0 ] ) {
 
-		case '2': case '3': case '4': case '5':
-		case '6': case '7': case '8': {
+		case '0': case '1': case '2': case '3': case '4':
+		case '5': case '6': case '7': case '8': case '9': {
 
-			const IT_SHOTGUN = 1;
-			if ( t.charCodeAt( 0 ) >= 50 ) // '2'
-				sv_player.v.items = ( sv_player.v.items | 0 ) | ( IT_SHOTGUN << ( t.charCodeAt( 0 ) - 50 ) );
+			const n = t.charCodeAt( 0 ) - 48;
+			// MED 01/04/97 added hipnotic give stuff
+			if ( hipnotic ) {
+
+				if ( n === 6 ) sv_player.v.items = ( sv_player.v.items | 0 ) | ( t[ 1 ] === 'a' ? HIT_PROXIMITY_GUN : IT_GRENADE_LAUNCHER );
+				else if ( n === 9 ) sv_player.v.items = ( sv_player.v.items | 0 ) | HIT_LASER_CANNON;
+				else if ( n === 0 ) sv_player.v.items = ( sv_player.v.items | 0 ) | HIT_MJOLNIR;
+				else if ( n >= 2 ) sv_player.v.items = ( sv_player.v.items | 0 ) | ( IT_SHOTGUN << ( n - 2 ) );
+
+			} else if ( n >= 2 ) sv_player.v.items = ( sv_player.v.items | 0 ) | ( IT_SHOTGUN << ( n - 2 ) );
 			break;
 
 		}
 
 		case 's':
+			if ( rogue ) setField( 'ammo_shells1' );
 			sv_player.v.ammo_shells = v;
 			break;
 
 		case 'n':
-			sv_player.v.ammo_nails = v;
+			if ( rogue ) { if ( setField( 'ammo_nails1' ) && sv_player.v.weapon <= IT_LIGHTNING ) sv_player.v.ammo_nails = v; }
+			else sv_player.v.ammo_nails = v;
+			break;
+
+		case 'l':
+			if ( rogue && setField( 'ammo_lava_nails' ) && sv_player.v.weapon > IT_LIGHTNING ) sv_player.v.ammo_nails = v;
 			break;
 
 		case 'r':
-			sv_player.v.ammo_rockets = v;
+			if ( rogue ) { if ( setField( 'ammo_rockets1' ) && sv_player.v.weapon <= IT_LIGHTNING ) sv_player.v.ammo_rockets = v; }
+			else sv_player.v.ammo_rockets = v;
+			break;
+
+		case 'm':
+			if ( rogue && setField( 'ammo_multi_rockets' ) && sv_player.v.weapon > IT_LIGHTNING ) sv_player.v.ammo_rockets = v;
 			break;
 
 		case 'h':
@@ -765,7 +789,12 @@ function Host_Give_f() {
 			break;
 
 		case 'c':
-			sv_player.v.ammo_cells = v;
+			if ( rogue ) { if ( setField( 'ammo_cells1' ) && sv_player.v.weapon <= IT_LIGHTNING ) sv_player.v.ammo_cells = v; }
+			else sv_player.v.ammo_cells = v;
+			break;
+
+		case 'p':
+			if ( rogue && setField( 'ammo_plasma' ) && sv_player.v.weapon > IT_LIGHTNING ) sv_player.v.ammo_cells = v;
 			break;
 
 	}

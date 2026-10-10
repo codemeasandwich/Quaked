@@ -44,6 +44,7 @@ import { skill, coop, teamplay, deathmatch, svs } from '../server/server.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from '../render/gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { COM_FindFile } from '../common/pak.js';
+import { hipnotic, rogue } from '../common/common.js'; // the mission pack running (COM_InitArgv), for Level Select
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
 import { LocalPlay_PlayerWindow, LocalPlay_Hosting, LocalPlay_Players, LocalPlay_NextPlayer, LocalPlay_OpenPlayer, LocalPlay_Start, LocalPlay_End,
 	LocalPlay_PlayerCommands, LOCAL_PLAYERS_MIN, LOCAL_PLAYERS_MAX, LOCAL_MODES } from './local_play.js';
@@ -991,6 +992,36 @@ export const LEVEL_SELECT_EPISODES = [
 	{ episode: 3, name: 'E3 Netherworld' },
 	{ episode: 4, name: 'E4 Elder World' }
 ];
+// The mission packs' own maps (WinQuake menu.c's hipnoticlevels/hipnoticepisodes and roguelevels/rogueepisodes; card
+// [34c]): a mission pack offers these instead of Quake's, though Quake's pack is mounted under it
+const MISSION_LEVEL_SELECT = Object.freeze( {
+	hipnotic: {
+		episodes: [ { episode: 0, name: 'Command HQ' }, { episode: 1, name: 'H1 Fortress' }, { episode: 2, name: 'H2 Dominion' },
+			{ episode: 3, name: 'H3 The Rift' }, { episode: 4, name: 'Final Level' }, { episode: 5, name: 'Deathmatch Arena' } ],
+		levels: [ [ 0, 'start', 'Command HQ' ],
+			[ 1, 'hip1m1', 'The Pumping Station' ], [ 1, 'hip1m2', 'Storage Facility' ], [ 1, 'hip1m3', 'The Lost Mine' ], [ 1, 'hip1m4', 'Research Facility' ], [ 1, 'hip1m5', 'Military Complex' ],
+			[ 2, 'hip2m1', 'Ancient Realms' ], [ 2, 'hip2m2', 'The Black Cathedral' ], [ 2, 'hip2m3', 'The Catacombs' ], [ 2, 'hip2m4', 'The Crypt' ], [ 2, 'hip2m5', 'Mortum\'s Keep' ], [ 2, 'hip2m6', 'The Gremlin\'s Domain' ],
+			[ 3, 'hip3m1', 'Tur Torment' ], [ 3, 'hip3m2', 'Pandemonium' ], [ 3, 'hip3m3', 'Limbo' ], [ 3, 'hip3m4', 'The Gauntlet' ],
+			[ 4, 'hipend', 'Armagon\'s Lair' ], [ 5, 'hipdm1', 'The Edge of Oblivion' ] ]
+	},
+	rogue: {
+		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'R1 Fortress' }, { episode: 2, name: 'R2 Corridors' }, { episode: 3, name: 'Deathmatch Arena' } ],
+		levels: [ [ 0, 'start', 'Split Decision' ],
+			[ 1, 'r1m1', 'Deviant\'s Domain' ], [ 1, 'r1m2', 'Dread Portal' ], [ 1, 'r1m3', 'Judgement Call' ], [ 1, 'r1m4', 'Cave of Death' ], [ 1, 'r1m5', 'Towers of Wrath' ], [ 1, 'r1m6', 'Temple of Pain' ], [ 1, 'r1m7', 'Tomb of the Overlord' ],
+			[ 2, 'r2m1', 'Tempus Fugit' ], [ 2, 'r2m2', 'Elemental Fury I' ], [ 2, 'r2m3', 'Elemental Fury II' ], [ 2, 'r2m4', 'Curse of Osiris' ], [ 2, 'r2m5', 'Wizard\'s Keep' ], [ 2, 'r2m6', 'Blood Sacrifice' ], [ 2, 'r2m7', 'Last Bastion' ], [ 2, 'r2m8', 'Source of Evil' ],
+			[ 3, 'ctf1', 'Division of Change' ] ]
+	}
+} );
+
+// the tables for the game running: a mission pack's, else Quake's
+function levelSelectTable() {
+
+	const mission = hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : null;
+	if ( mission === null ) return { levels: LEVEL_SELECT_LEVELS, episodes: LEVEL_SELECT_EPISODES };
+	return { levels: mission.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ), episodes: mission.episodes };
+
+}
+
 const SKILL_NAMES = [ 'Easy', 'Normal', 'Hard', 'Nightmare' ];
 const LEVELSELECT_ROWS = 3; // mode, skill and episode come before the levels
 const LEVELSELECT_LEVEL_Y = 84, LEVELSELECT_ROW_Y = 48;
@@ -1003,7 +1034,8 @@ const levelAvailable = ( l ) => COM_FindFile( 'maps/' + l.map + '.bsp' ) !== nul
 // the episodes this copy of the game has at least one map of
 function levelSelectEpisodes() {
 
-	return LEVEL_SELECT_EPISODES.filter( ( e ) => LEVEL_SELECT_LEVELS.some( ( l ) => l.episode === e.episode && levelAvailable( l ) ) );
+	const { levels, episodes } = levelSelectTable();
+	return episodes.filter( ( e ) => levels.some( ( l ) => l.episode === e.episode && levelAvailable( l ) ) );
 
 }
 
@@ -1020,7 +1052,7 @@ function levelSelectEpisode() {
 function levelSelectLevels() {
 
 	const episode = levelSelectEpisode();
-	return LEVEL_SELECT_LEVELS.filter( ( l ) => l.episode === episode && levelAvailable( l ) );
+	return levelSelectTable().levels.filter( ( l ) => l.episode === episode && levelAvailable( l ) );
 
 }
 
@@ -1065,7 +1097,7 @@ function M_LevelSelect_Draw() {
 	M_PrintWhite( 184, 56, SKILL_NAMES[ skill ] );
 	M_Print( 16, 64, '         Episode' );
 	const episode = levelSelectEpisode();
-	M_PrintWhite( 184, 64, ( LEVEL_SELECT_EPISODES.find( ( e ) => e.episode === episode ) || { name: '' } ).name );
+	M_PrintWhite( 184, 64, ( levelSelectTable().episodes.find( ( e ) => e.episode === episode ) || { name: '' } ).name );
 
 	for ( let i = 0; i < levels.length; i ++ ) {
 

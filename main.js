@@ -38,7 +38,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack } from './src/engine/common/game_selection.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
@@ -86,7 +86,12 @@ async function main() {
 		// Which owned pack, if any, comes from the game chosen (card [34c]): none for the shareware, so nothing more is
 		// downloaded; the full Quake's from games/Quake/ or resources/id1/ (the first found) otherwise, as before.
 		const ownedPack = ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
-		const [ sharewarePak, newerPak, hudPak, fullGamePak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack ] );
+		// A mission pack (card [34c]) also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first found)
+		const mission = GameSelection_MissionPack();
+		const missionLoad = mission ? ( async () => { for ( const url of mission.packs ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )() : Promise.resolve( null );
+		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
+		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so)
+		const missionMounted = missionPak !== null && fullGamePak !== null;
 		const pak0 = sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
@@ -99,6 +104,9 @@ async function main() {
 			if ( fullGamePak ) COM_AddPack( fullGamePak );
 			COM_AddPack( pak0 );
 			Sys_Printf( 'pak0.pak loaded successfully\\n' );
+			// a mission pack's own QuakeC, status bar pictures and maps replace the base game's: it is mounted last,
+			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
+			if ( missionMounted ) { COM_AddPack( missionPak ); COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded\n' ); }
 
 		} else {
 
@@ -122,13 +130,14 @@ async function main() {
 		const packedMaps = COM_NewerFile( 'newer/maps.pak' );
 		const newerMaps = packedMaps ? COM_LoadPackFile( 'newer/maps.pak', packedMaps.data.buffer.slice( packedMaps.data.byteOffset, packedMaps.data.byteOffset + packedMaps.size ) ) :
 			await COM_FetchOptionalPak( 'newer/maps.pak', 'newer/maps.pak' );
-		if ( newerMaps ) {
+		// Newer Game's own start map replaces id1's; a mission pack keeps its own (card [34c])
+		if ( newerMaps && ! missionMounted ) {
 			COM_SetNewerMapsPack( newerMaps );
 			if(!joining){const hub=newerMaps.files.find(file=>file.name==='maps/start.bsp');
 			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
 		}
 		await Host_Init( parms );
-		GameSelection_ReportStart( fullGamePak !== null ); // a chosen game whose pack has gone is said so (card [34c])
+		GameSelection_ReportStart( fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])
 		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
 		if ( GameCatalogue_Get() === null ) setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
 

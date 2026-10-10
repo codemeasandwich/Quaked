@@ -1,12 +1,12 @@
 /**
  * @module engine/common/game_selection
  *
- * Which game the page runs (card [34c], first increment): the shareware alone, or the full Quake (the owner's pack
- * under the shareware, as main.js has mounted it since the full-game card). The choice is kept in the browser and
- * applied when the page starts: switching reloads the page, which is the clean unmount the engine otherwise lacks
- * (its search path only grows, and its model, sound and picture caches are keyed by file name and kept for the page's
- * life). With no choice kept, the start is exactly as before: the full Quake when its pack is there, else the
- * shareware.
+ * Which game the page runs (card [34c]): the shareware alone, the full Quake (the owner's pack under the shareware,
+ * as main.js has mounted it since the full-game card), or a mission pack, Scourge of Armagon or Dissolution of
+ * Eternity (its own pack over both, started with -hipnotic or -rogue). The choice is kept in the browser and applied
+ * when the page starts: switching reloads the page, which is the clean unmount the engine otherwise lacks (its search
+ * path only grows, and its model, sound and picture caches are keyed by file name and kept for the page's life). With
+ * no choice kept, the start is exactly as before: the full Quake when its pack is there, else the shareware.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -14,9 +14,9 @@
  *
  * Errors: catches at 6 places.
  *
- * Only a game the catalogue (`game_catalogue.js`, card [34b]) calls playable can be chosen; mission packs, episodes
- * and add-ons are refused with the catalogue's reason until their support exists. Each game keeps its own saves: the
- * default and the full Quake keep the saves' original keys (`quake_save_<name>`), the shareware its own.
+ * Only a game the catalogue (`game_catalogue.js`, card [34b]) calls playable can be chosen; the episodes and add-ons
+ * are refused with the catalogue's reason until their support exists. Each game keeps its own saves: the default and
+ * the full Quake keep the saves' original keys (`quake_save_<name>`), the shareware and each mission pack their own.
  */
 
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
@@ -27,7 +27,14 @@ import { GameCatalogue_Refresh } from './game_catalogue.js';
 const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
 // resources/ until card [34d] moves it there)
-const OWNED_PACKS = Object.freeze( { quake: Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] ), shareware: Object.freeze( [] ) } );
+const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
+const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS } );
+// a mission pack mounts its own pack over Quake (and the shareware) and starts with its switch (card [34c])
+const MISSION_PACKS = Object.freeze( {
+	hipnotic: Object.freeze( { name: 'Scourge of Armagon', switch: '-hipnotic', packs: Object.freeze( [ 'games/Scourge of Armagon/pak0.pak', 'resources/hipnotic/pak0.pak' ] ) } ),
+	rogue: Object.freeze( { name: 'Dissolution of Eternity', switch: '-rogue', packs: Object.freeze( [ 'games/Dissolution of Eternity/pak0.pak', 'resources/rogue/pak0.pak' ] ) } )
+} );
+const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity' } );
 export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) );
 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };
@@ -36,7 +43,7 @@ const storage = () => { try { return globalThis.localStorage ?? null; } catch { 
  * The game this page runs: the one its address names (`?game=<id>`), else the one chosen and kept in the browser,
  * else null (the start as before).
  *
- * @returns {?string} 'quake', 'shareware' or null
+ * @returns {?string} 'quake', 'shareware', 'hipnotic', 'rogue' or null
  */
 export function GameSelection_Current() {
 
@@ -53,7 +60,7 @@ export function GameSelection_Current() {
  * The game a page's address names (`?game=<id>`, card [M1]), when it is one that can be chosen.
  *
  * @param {string} search a `location.search`
- * @returns {?string} 'quake', 'shareware' or null (no `game`, or one that cannot be chosen)
+ * @returns {?string} 'quake', 'shareware', 'hipnotic', 'rogue' or null (no `game`, or one that cannot be chosen)
  */
 export function GameSelection_UrlChoice( search ) {
 
@@ -79,7 +86,7 @@ export function GameSelection_Remember( id ) {
 /**
  * The game chosen and kept in the browser, ignoring the page's address: where the shelf starts.
  *
- * @returns {?string} 'quake', 'shareware' or null
+ * @returns {?string} 'quake', 'shareware', 'hipnotic', 'rogue' or null
  */
 export function GameSelection_Kept() {
 
@@ -102,14 +109,29 @@ export function GameSelection_OwnedPacks() {
 }
 
 /**
+ * The mission pack the current choice runs, if any: its name, its switch for COM_InitArgv and the packs to try for it
+ * (the first found), mounted over Quake and the shareware.
+ *
+ * @returns {?{ name: string, switch: string, packs: ReadonlyArray<string> }} the mission pack, or null for the
+ *   shareware, Quake or no choice
+ */
+export function GameSelection_MissionPack() {
+
+	return MISSION_PACKS[ GameSelection_Current() ] ?? null;
+
+}
+
+/**
  * The prefix of this game's save keys in localStorage: the original `quake_save_` for the default and the full Quake
- * (the saves made so far were made with it), `quake_save_shareware_` for the shareware.
+ * (the saves made so far were made with it), `quake_save_<id>_` for the shareware and each mission pack (their maps
+ * share Quake's names, so their saves must not).
  *
  * @returns {string} the key prefix; a save `s0` is kept under prefix + 's0'
  */
 export function GameSelection_SavePrefix() {
 
-	return GameSelection_Current() === 'shareware' ? 'quake_save_shareware_' : 'quake_save_';
+	const game = GameSelection_Current();
+	return game === 'shareware' || MISSION_PACKS[ game ] ? `quake_save_${game}_` : 'quake_save_';
 
 }
 
@@ -119,7 +141,7 @@ export function GameSelection_SavePrefix() {
  * whole and refuses a broken one), keeps the choice (read back) and reloads the page so the game starts clean (a page
  * on a game's own URL goes to the chosen game's URL instead).
  *
- * @param {string} id the game's catalogue id ('quake', 'shareware'; others are refused)
+ * @param {string} id the game's catalogue id ('quake', 'shareware', 'hipnotic', 'rogue'; others are refused)
  * @param {{ refresh?: function(): Promise<object>, reload?: function(): void }} [options] the catalogue refresh and the
  *   page reload to use (tests pass their own)
  * @returns {Promise<{ ok: boolean, reason: string }>} whether it was chosen (the page then reloads), and why not
@@ -154,20 +176,29 @@ export async function GameSelection_Select( id, options = {} ) {
 	try { store.setItem( STORAGE_KEY, id ); } catch { return { ok: false, reason: 'the choice cannot be kept in this browser' }; }
 	if ( GameSelection_Kept() !== id ) return { ok: false, reason: 'the choice cannot be kept in this browser (it did not stay)' }; // the kept one: a ?game URL would mask it
 	reload();
-	return { ok: true, reason: `${id === 'shareware' ? 'Quake (shareware)' : 'Quake'}: starting${warning}` };
+	return { ok: true, reason: `${NAMES[ id ]}: starting${warning}` };
 
 }
 
 /**
- * Says at start when the game chosen did not start: its owned pack was not found, so the shareware runs instead.
- * Called by main.js once the packs are mounted.
+ * Says at start when the game chosen did not start: its owned pack was not found, so the shareware runs instead, or a
+ * mission pack's own pack was not, so Quake runs. Called by main.js once the packs are mounted.
  *
- * @param {boolean} mounted whether an owned pack was mounted
+ * @param {boolean} mounted whether an owned pack (Quake's) was mounted
+ * @param {boolean} [missionMounted] whether the chosen mission pack's own pack was mounted (true when none was chosen)
  * @returns {boolean} false when the chosen game's pack was missing (the line was printed)
  */
-export function GameSelection_ReportStart( mounted ) {
+export function GameSelection_ReportStart( mounted, missionMounted = true ) {
 
 	const choice = GameSelection_Current();
+	const mission = MISSION_PACKS[ choice ];
+	if ( mission && mounted && ! missionMounted ) {
+
+		const line = `game: ${mission.name} was chosen, but its pack was not found (${mission.packs.join( ' or ' )}); Quake is running\n`;
+		Con_Printf( line ); Sys_Printf( line );
+		return false;
+
+	}
 	if ( choice !== null && OWNED_PACKS[ choice ].length > 0 && ! mounted ) {
 
 		const line = `game: ${choice} was chosen, but its pack was not found (${OWNED_PACKS[ choice ].join( ' or ' )}); the shareware is running\n`;
@@ -189,7 +220,7 @@ export function GameSelection_Init() {
 
 		if ( Cmd_Argc() < 2 ) {
 
-			Con_Printf( `game: ${GameSelection_Current() ?? 'default (the full Quake when installed, else the shareware)'}; choose with 'game quake' or 'game shareware'\n` );
+			Con_Printf( `game: ${GameSelection_Current() ?? 'default (the full Quake when installed, else the shareware)'}; choose with 'game quake', 'game shareware', 'game hipnotic' or 'game rogue'\n` );
 			return;
 
 		}

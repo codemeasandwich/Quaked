@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart } from '../src/engine/common/game_selection.js';
+import { GameSelection_MissionPack, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -10,7 +10,9 @@ globalThis.localStorage = { getItem: k => store.has( k ) ? store.get( k ) : null
 const catalogue = ( quakePlayable = true ) => async () => ( { games: [
 	{ id: 'shareware', name: 'Quake (shareware)', playable: true, reason: 'the shareware episode and its QuakeC' },
 	{ id: 'quake', name: 'Quake', playable: quakePlayable, reason: quakePlayable ? 'Episodes 1 to 4' : 'not installed' },
-	{ id: 'hipnotic', name: 'Scourge of Armagon', playable: false, reason: 'its HUD, QuakeC and protocol support are not yet shown to work' }
+	{ id: 'hipnotic', name: 'Scourge of Armagon', playable: false, reason: 'its HUD, QuakeC and protocol support are not yet shown to work' },
+	{ id: 'rogue', name: 'Dissolution of Eternity', playable: true, reason: 'a mission pack' },
+	{ id: 'dopa', name: 'Dimension of the Past', playable: false, reason: 'not yet' }
 ] } );
 
 Deno.test( 'with no choice, the start is as before', () => {
@@ -40,7 +42,9 @@ Deno.test( 'unplayable, unsupported and unknown games are refused with the reaso
 	const missing = await GameSelection_Select( 'quake', { refresh: catalogue( false ), reload } );
 	check( ! missing.ok && /not playable: not installed/.test( missing.reason ), 'the full Quake, not installed' );
 	const mission = await GameSelection_Select( 'hipnotic', { refresh: catalogue(), reload } );
-	check( ! mission.ok && /cannot be chosen yet: its HUD/.test( mission.reason ), 'a mission pack, with its reason' );
+	check( ! mission.ok && /Scourge of Armagon is not playable: its HUD/.test( mission.reason ), 'a mission pack the catalogue does not call playable, with its reason' );
+	const episode = await GameSelection_Select( 'dopa', { refresh: catalogue(), reload } );
+	check( ! episode.ok && /cannot be chosen yet/.test( episode.reason ), 'an episode, not yet supported' );
 	const unknown = await GameSelection_Select( 'doom', { refresh: catalogue(), reload } );
 	check( ! unknown.ok && /no game called/.test( unknown.reason ), 'an unknown game' );
 	check( reloads === 0 && GameSelection_Current() === null, 'nothing kept, no reload' );
@@ -79,5 +83,19 @@ Deno.test( 'a chosen game whose pack has gone is reported at start', () => {
 	check( GameSelection_ReportStart( true ) === true, 'mounted: nothing to report' );
 	store.set( 'quaked.game.v1', 'shareware' );
 	check( GameSelection_ReportStart( false ) === true, 'the shareware needs no owned pack' );
+
+} );
+
+Deno.test( 'a mission pack is chosen with Quake under it, its own pack and switch, and saves of its own', async () => {
+
+	store.clear(); let reloads = 0;
+	const chosen = await GameSelection_Select( 'rogue', { refresh: catalogue(), reload: () => reloads ++ } );
+	check( chosen.ok && /Dissolution of Eternity: starting/.test( chosen.reason ) && reloads === 1, 'chosen: ' + chosen.reason );
+	check( GameSelection_OwnedPacks().join() === 'games/Quake/pak0.pak,resources/id1/pak0.pak', 'Quake is mounted under it' );
+	const mission = GameSelection_MissionPack();
+	check( mission && mission.switch === '-rogue' && mission.packs.join() === 'games/Dissolution of Eternity/pak0.pak,resources/rogue/pak0.pak', 'its own pack, then its switch' );
+	check( GameSelection_SavePrefix() === 'quake_save_rogue_', 'its saves are its own (its maps share names with no one, but its start does)' );
+	store.clear();
+	check( GameSelection_MissionPack() === null, 'no mission pack otherwise' );
 
 } );

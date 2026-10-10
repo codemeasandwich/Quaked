@@ -1049,8 +1049,11 @@ export let rogue = false;
 export let hipnotic = false;
 
 /**
- * Stores the command-line arguments in `com_argc`/`com_argv`. Called once at startup from `main.js` (with an empty
- * array in the browser build); `com_argv[0]` is treated as the program name and skipped by `COM_CheckParm`.
+ * Stores the command-line arguments in `com_argc`/`com_argv`, and, as WinQuake's COM_InitArgv does, reads the
+ * mission-pack switches: `-rogue` (Dissolution of Eternity) or `-hipnotic` (Scourge of Armagon) sets `rogue` or
+ * `hipnotic` and clears `standard_quake`, which the status bar, the client data message and the give command follow
+ * (card [34c]). Called once at startup from `main.js`, which passes the switch for the game chosen; `com_argv[0]` is
+ * treated as the program name and skipped by `COM_CheckParm`.
  *
  * @param {Array<string>} argv argument list; kept by reference, not copied
  */
@@ -1058,6 +1061,9 @@ export function COM_InitArgv( argv ) {
 
 	com_argc = argv.length;
 	com_argv = argv;
+	rogue = COM_CheckParm( '-rogue' ) !== 0;
+	hipnotic = COM_CheckParm( '-hipnotic' ) !== 0;
+	standard_quake = ! rogue && ! hipnotic;
 
 }
 

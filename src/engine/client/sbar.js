@@ -21,6 +21,7 @@ import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../common/hooks.js'; /
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { realtime } from '../common/host_state.js';
 import { Con_Printf } from '../common/console.js';
+import { Cvar_VariableValue } from '../common/cvar.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
 import {
 	IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN,
@@ -187,8 +188,8 @@ let _rogue = false;
  *   Draw_Fill?: (x: number, y: number, w: number, h: number, c: number) => void, Draw_PicFromWad?: (name: string) => ?qpic_t,
  *   Draw_CachePic?: (path: string) => ?qpic_t, hipnotic?: boolean, rogue?: boolean }} externals the hooks: `cl` is read
  *   live every frame (stats, items, scores, gametype, intermission time); only `vid.numpages` is used, the drawing size
- *   coming from `Draw_GetVirtualWidth`/`Height`; `hipnotic` and `rogue` (mission packs, default false) are stored but
- *   not yet read, and the host passes neither
+ *   coming from `Draw_GetVirtualWidth`/`Height`; `hipnotic` and `rogue` (mission packs, default false; the host passes
+ *   COM_InitArgv's) choose the mission pack's pictures in `Sbar_Init` and its inventory, keys, armour and ammunition
  */
 export function Sbar_SetExternals( externals ) {
 
@@ -364,6 +365,40 @@ export function Sbar_Init() {
 	sb_ibar = _Draw_PicFromWad( 'ibar' );
 	sb_scorebar = _Draw_PicFromWad( 'scorebar' );
 
+	//MED 01/04/97 added new hipnotic weapons
+	if ( _hipnotic ) {
+
+		const names = [ 'laser', 'mjolnir', 'gren_prox', 'prox_gren', 'prox' ];
+		names.forEach( ( name, j ) => {
+
+			hsb_weapons[ 0 ][ j ] = _Draw_PicFromWad( 'inv_' + name );
+			hsb_weapons[ 1 ][ j ] = _Draw_PicFromWad( 'inv2_' + name );
+			for ( let i = 0; i < 5; i ++ ) hsb_weapons[ 2 + i ][ j ] = _Draw_PicFromWad( 'inva' + ( i + 1 ) + '_' + name );
+
+		} );
+		hsb_items[ 0 ] = _Draw_PicFromWad( 'sb_wsuit' );
+		hsb_items[ 1 ] = _Draw_PicFromWad( 'sb_eshld' );
+
+	}
+
+	if ( _rogue ) {
+
+		rsb_invbar[ 0 ] = _Draw_PicFromWad( 'r_invbar1' );
+		rsb_invbar[ 1 ] = _Draw_PicFromWad( 'r_invbar2' );
+		rsb_weapons[ 0 ] = _Draw_PicFromWad( 'r_lava' );
+		rsb_weapons[ 1 ] = _Draw_PicFromWad( 'r_superlava' );
+		rsb_weapons[ 2 ] = _Draw_PicFromWad( 'r_gren' );
+		rsb_weapons[ 3 ] = _Draw_PicFromWad( 'r_multirock' );
+		rsb_weapons[ 4 ] = _Draw_PicFromWad( 'r_plasma' );
+		rsb_items[ 0 ] = _Draw_PicFromWad( 'r_shield1' );
+		rsb_items[ 1 ] = _Draw_PicFromWad( 'r_agrav1' );
+		rsb_teambord = _Draw_PicFromWad( 'r_teambord' ); // PGM 01/19/97 - team color border
+		rsb_ammo[ 0 ] = _Draw_PicFromWad( 'r_ammolava' );
+		rsb_ammo[ 1 ] = _Draw_PicFromWad( 'r_ammomulti' );
+		rsb_ammo[ 2 ] = _Draw_PicFromWad( 'r_ammoplasma' );
+
+	}
+
 }
 
 /*
@@ -511,7 +546,8 @@ Sbar_DrawInventory
 */
 function Sbar_DrawInventory() {
 
-	Sbar_DrawPic( 0, - 24, sb_ibar );
+	if ( _rogue ) Sbar_DrawPic( 0, - 24, rsb_invbar[ _cl.stats[ STAT_ACTIVEWEAPON ] >= RIT_LAVA_NAILGUN ? 0 : 1 ] );
+	else Sbar_DrawPic( 0, - 24, sb_ibar );
 
 	// weapons
 	for ( let i = 0; i < 7; i ++ ) {
@@ -542,6 +578,52 @@ function Sbar_DrawInventory() {
 
 	}
 
+	// MED 01/04/97
+	// hipnotic weapons
+	if ( _hipnotic ) {
+
+		let grenadeflashing = 0;
+		for ( let i = 0; i < 4; i ++ ) {
+
+			if ( ( _cl.items & ( 1 << hipweapons[ i ] ) ) === 0 ) continue;
+			const time = _cl.item_gettime[ hipweapons[ i ] ];
+			let flashon = Math.floor( ( _cl.time - time ) * 10 );
+			if ( flashon >= 10 ) flashon = _cl.stats[ STAT_ACTIVEWEAPON ] === ( 1 << hipweapons[ i ] ) ? 1 : 0;
+			else flashon = ( flashon % 5 ) + 2;
+
+			// check grenade launcher
+			if ( i === 2 ) {
+
+				if ( ( _cl.items & HIT_PROXIMITY_GUN ) !== 0 && flashon ) {
+
+					grenadeflashing = 1;
+					Sbar_DrawPic( 96, - 16, hsb_weapons[ flashon ][ 2 ] );
+
+				}
+
+			} else if ( i === 3 ) {
+
+				if ( ( _cl.items & ( IT_SHOTGUN << 4 ) ) !== 0 ) {
+
+					if ( flashon && ! grenadeflashing ) Sbar_DrawPic( 96, - 16, hsb_weapons[ flashon ][ 3 ] );
+					else if ( ! grenadeflashing ) Sbar_DrawPic( 96, - 16, hsb_weapons[ 0 ][ 3 ] );
+
+				} else Sbar_DrawPic( 96, - 16, hsb_weapons[ flashon ][ 4 ] );
+
+			} else Sbar_DrawPic( 176 + ( i * 24 ), - 16, hsb_weapons[ flashon ][ i ] );
+			if ( flashon > 1 ) sb_updates = 0; // force update to remove flash
+
+		}
+
+	}
+
+	// check for powered up weapon (rogue)
+	if ( _rogue && _cl.stats[ STAT_ACTIVEWEAPON ] >= RIT_LAVA_NAILGUN ) {
+
+		for ( let i = 0; i < 5; i ++ ) if ( _cl.stats[ STAT_ACTIVEWEAPON ] === ( RIT_LAVA_NAILGUN << i ) ) Sbar_DrawPic( ( i + 2 ) * 24, - 16, rsb_weapons[ i ] );
+
+	}
+
 	// ammo counts
 	for ( let i = 0; i < 4; i ++ ) {
 
@@ -567,7 +649,7 @@ function Sbar_DrawInventory() {
 				// flash frame
 				sb_updates = 0;
 
-			} else {
+			} else if ( ! _hipnotic || i > 1 ) { //MED 01/04/97 changed keys (hipnotic draws them on the bar)
 
 				Sbar_DrawPic( 192 + i * 16, - 16, sb_items[ i ] );
 
@@ -577,6 +659,37 @@ function Sbar_DrawInventory() {
 				sb_updates = 0;
 
 		}
+
+	}
+
+	//MED 01/04/97 added hipnotic items
+	if ( _hipnotic ) {
+
+		for ( let i = 0; i < 2; i ++ ) {
+
+			if ( ( _cl.items & ( 1 << ( 24 + i ) ) ) === 0 ) continue;
+			const time = _cl.item_gettime[ 24 + i ];
+			if ( time !== 0 && time > _cl.time - 2 && flashon ) sb_updates = 0; // flash frame
+			else Sbar_DrawPic( 288 + i * 16, - 16, hsb_items[ i ] );
+			if ( time !== 0 && time > _cl.time - 2 ) sb_updates = 0;
+
+		}
+
+	}
+
+	if ( _rogue ) {
+
+		// new rogue items
+		for ( let i = 0; i < 2; i ++ ) {
+
+			if ( ( _cl.items & ( 1 << ( 29 + i ) ) ) === 0 ) continue;
+			const time = _cl.item_gettime[ 29 + i ];
+			if ( time !== 0 && time > _cl.time - 2 && flashon ) sb_updates = 0; // flash frame
+			else Sbar_DrawPic( 288 + i * 16, - 16, rsb_items[ i ] );
+			if ( time !== 0 && time > _cl.time - 2 ) sb_updates = 0;
+
+		}
+		return; // no sigils in rogue
 
 	}
 
@@ -819,7 +932,37 @@ function Sbar_DrawFace() {
 		if ( layeredFacePic ) { sb_updates = 0; Sbar_DrawPic( 112, 0, layeredFacePic ); return; }
 	}
 
-	// PGM 01/19/97 - team color drawing (rogue only) is not ported
+	// PGM 01/19/97 - team color drawing
+	// PGM 03/02/97 - fixed so color swatch only appears in CTF modes
+	const teamplay = Cvar_VariableValue( 'teamplay' );
+	if ( _rogue && _cl.maxclients !== 1 && teamplay > 3 && teamplay < 7 ) {
+
+		const s = _cl.scores[ _cl.viewentity - 1 ];
+		if ( s ) {
+
+			// draw background
+			const top = Sbar_ColorForMap( s.colors & 0xf0 ), bottom = Sbar_ColorForMap( ( s.colors & 15 ) << 4 );
+			const xofs = _cl.gametype === GAME_DEATHMATCH ? 113 : ( ( _vid.width - 320 ) >> 1 ) + 113;
+			Sbar_DrawPic( 112, 0, rsb_teambord );
+			if ( _Draw_Fill != null ) {
+
+				_Draw_Fill( xofs, sbarTop() + 3, 22, 9, top );
+				_Draw_Fill( xofs, sbarTop() + 12, 22, 9, bottom );
+
+			}
+			// draw number
+			const num = String( s.frags ).padStart( 3, ' ' );
+			for ( let i = 0; i < 3; i ++ ) {
+
+				if ( top === 8 ) { if ( num[ i ] !== ' ' ) Sbar_DrawCharacter( 109 + i * 7, 3, 18 + num.charCodeAt( i ) - 48 ); }
+				else Sbar_DrawCharacter( 109 + i * 7, 3, num.charCodeAt( i ) );
+
+			}
+			return;
+
+		}
+
+	}
 
 	let f;
 	let anim;
@@ -935,7 +1078,17 @@ export function Sbar_Draw() {
 
 		Sbar_DrawPic( 0, 0, sb_sbar );
 
-		// armor
+		// keys (hipnotic only)
+		//MED 01/04/97 moved keys here so they would not be overwritten
+		if ( _hipnotic ) {
+
+			if ( ( _cl.items & IT_KEY1 ) !== 0 ) Sbar_DrawPic( 209, 3, sb_items[ 0 ] );
+			if ( ( _cl.items & IT_KEY2 ) !== 0 ) Sbar_DrawPic( 209, 12, sb_items[ 1 ] );
+
+		}
+
+		// armor (rogue has its own armour bits)
+		const armor1 = _rogue ? RIT_ARMOR1 : IT_ARMOR1, armor2 = _rogue ? RIT_ARMOR2 : IT_ARMOR2, armor3 = _rogue ? RIT_ARMOR3 : IT_ARMOR3;
 		if ( ( _cl.items & IT_INVULNERABILITY ) !== 0 ) {
 
 			Sbar_DrawNum( 24, 0, 666, 3, 1 );
@@ -944,11 +1097,11 @@ export function Sbar_Draw() {
 		} else {
 
 			Sbar_DrawNum( 24, 0, _cl.stats[ STAT_ARMOR ], 3, _cl.stats[ STAT_ARMOR ] <= 25 ? 1 : 0 );
-			if ( ( _cl.items & IT_ARMOR3 ) !== 0 )
+			if ( ( _cl.items & armor3 ) !== 0 )
 				Sbar_DrawPic( 0, 0, sb_armor[ 2 ] );
-			else if ( ( _cl.items & IT_ARMOR2 ) !== 0 )
+			else if ( ( _cl.items & armor2 ) !== 0 )
 				Sbar_DrawPic( 0, 0, sb_armor[ 1 ] );
-			else if ( ( _cl.items & IT_ARMOR1 ) !== 0 )
+			else if ( ( _cl.items & armor1 ) !== 0 )
 				Sbar_DrawPic( 0, 0, sb_armor[ 0 ] );
 
 		}
@@ -960,7 +1113,17 @@ export function Sbar_Draw() {
 		Sbar_DrawNum( 136, 0, _cl.stats[ STAT_HEALTH ], 3, _cl.stats[ STAT_HEALTH ] <= 25 ? 1 : 0 );
 
 		// ammo icon
-		if ( ( _cl.items & IT_SHELLS ) !== 0 )
+		if ( _rogue ) {
+
+			if ( ( _cl.items & RIT_SHELLS ) !== 0 ) Sbar_DrawPic( 224, 0, sb_ammo[ 0 ] );
+			else if ( ( _cl.items & RIT_NAILS ) !== 0 ) Sbar_DrawPic( 224, 0, sb_ammo[ 1 ] );
+			else if ( ( _cl.items & RIT_ROCKETS ) !== 0 ) Sbar_DrawPic( 224, 0, sb_ammo[ 2 ] );
+			else if ( ( _cl.items & RIT_CELLS ) !== 0 ) Sbar_DrawPic( 224, 0, sb_ammo[ 3 ] );
+			else if ( ( _cl.items & RIT_LAVA_NAILS ) !== 0 ) Sbar_DrawPic( 224, 0, rsb_ammo[ 0 ] );
+			else if ( ( _cl.items & RIT_PLASMA_AMMO ) !== 0 ) Sbar_DrawPic( 224, 0, rsb_ammo[ 1 ] );
+			else if ( ( _cl.items & RIT_MULTI_ROCKETS ) !== 0 ) Sbar_DrawPic( 224, 0, rsb_ammo[ 2 ] );
+
+		} else if ( ( _cl.items & IT_SHELLS ) !== 0 )
 			Sbar_DrawPic( 224, 0, sb_ammo[ 0 ] );
 		else if ( ( _cl.items & IT_NAILS ) !== 0 )
 			Sbar_DrawPic( 224, 0, sb_ammo[ 1 ] );

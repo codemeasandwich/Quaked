@@ -39,7 +39,11 @@ const files = new Map( [
 	[ '/resources/id1/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e1m1.bsp' ] ) ],
 	[ '/resources/id1/pak1.pak', pack( [ 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp' ] ) ],
 	[ '/resources/malice/pak0.pak', Buffer.from( 'PACKshort' ) ], // a truncated header
-	[ '/resources/quoth/pak0.pak', ( () => { const b = pack( [ 'progs.dat' ] ); b.writeInt32LE( 1e9, 4 ); return b; } )() ] // directory past the end
+	[ '/resources/quoth/pak0.pak', ( () => { const b = pack( [ 'progs.dat' ] ); b.writeInt32LE( 1e9, 4 ); return b; } )() ], // directory past the end
+	// a second site (/complete/): Quake and both mission packs whole, as the engine needs them (card [34c])
+	[ '/complete/games/Quake/pak0.pak', pack( [ 'progs.dat', 'maps/e1m1.bsp', 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp' ] ) ],
+	[ '/complete/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/hip1m1.bsp' ] ) ],
+	[ '/complete/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/r1m1.bsp' ] ) ]
 ] );
 const ignoresRange = new Set( [ '/resources/rogue/pak0.pak' ] ), served = { bytes: 0 };
 // Single-pack quirks, probed directly: each answers one way a server can go wrong
@@ -88,12 +92,21 @@ const server = createServer( ( req, res ) => {
 await new Promise( r => server.listen( 0, '127.0.0.1', r ) );
 const base = `http://127.0.0.1:${server.address().port}/`, options = { base, timeoutMs: 400 };
 
+Deno.test( 'the two mission packs are playable on Quake when whole; never without Quake', async () => {
+
+	const catalogue = await GameCatalogue_Refresh( { ...options, base: base + 'complete/' } ), g = id => catalogue.games.find( x => x.id === id );
+	for ( const id of [ 'hipnotic', 'rogue' ] ) check( g( id ).playable && /a mission pack/.test( g( id ).reason ), id + ' is playable: ' + g( id ).reason );
+	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'complete/games/Scourge%20of%20Armagon/' } );
+	check( ! bare.games.find( x => x.id === 'hipnotic' )?.playable, 'nothing is playable where Quake is not found' );
+
+} );
+
 Deno.test( 'each folder is classified honestly, with every read bounded', async () => {
 
 	const catalogue = await GameCatalogue_Refresh( options ), g = id => catalogue.games.find( x => x.id === id );
 	check( g( 'shareware' ).playable && g( 'shareware' ).validated, 'the shareware: playable' );
 	check( g( 'quake' ).playable && g( 'quake' ).packs.length === 1, 'Quake: playable, and pak2 after the missing pak1 is not read' );
-	check( g( 'hipnotic' ).validated && ! g( 'hipnotic' ).playable && /not yet shown/.test( g( 'hipnotic' ).reason ), 'a mission pack: validated, not advertised as playable' );
+	check( g( 'hipnotic' ).validated && ! g( 'hipnotic' ).playable && /its gfx\.wad, maps\/start\.bsp are missing/.test( g( 'hipnotic' ).reason ), 'a mission pack without its status bar pictures or start map: validated, not playable (' + g( 'hipnotic' ).reason + ')' );
 	check( g( 'rogue' ).present && ! g( 'rogue' ).validated && /ignores byte ranges/.test( g( 'rogue' ).reason ), 'Range ignored: found, not validated' );
 	check( g( 'mg1' ).validated && g( 'mg1' ).packs[ 0 ].size === BIG && ! g( 'mg1' ).playable, 'the 760 MB pack: validated from its header and directory' );
 	check( ! g( 'ad' ).present && g( 'ad' ).reason === 'not installed', 'an HTML page is not a pack' );

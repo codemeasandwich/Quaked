@@ -49,9 +49,10 @@ Deno.test( 'a game\'s URL chooses that page\'s game over the kept choice; the sh
 	Object.defineProperty( globalThis, 'localStorage', { configurable: true, value: { getItem: k => store.get( k ) ?? null, setItem: ( k, v ) => store.set( k, String( v ) ) } } );
 	try {
 		same( selection.GameSelection_UrlChoice( '?game=quake' ), 'quake', 'the URL names Quake' );
-		same( selection.GameSelection_UrlChoice( '?game=hipnotic' ), null, 'a game that cannot be chosen is ignored' );
+		same( selection.GameSelection_UrlChoice( '?game=dopa' ), null, 'a game that cannot be chosen is ignored' );
+		same( selection.GameSelection_UrlChoice( '?game=hipnotic' ), 'hipnotic', 'a mission pack can be' );
 		same( selection.GameSelection_Remember( 'shareware' ), true, 'the shelf keeps a choice' ); same( selection.GameSelection_Kept(), 'shareware', 'and starts on it' );
-		same( selection.GameSelection_Remember( 'rogue' ), false, 'not one that cannot be played' );
+		same( selection.GameSelection_Remember( 'dopa' ), false, 'not one that cannot be played' );
 		Object.defineProperty( globalThis, 'location', { configurable: true, value: { search: '?game=quake' } } );
 		same( selection.GameSelection_Current(), 'quake', 'on ?game=quake, Quake runs, whatever is kept' );
 		same( selection.GameSelection_SavePrefix(), 'quake_save_', 'with Quake\'s saves' );

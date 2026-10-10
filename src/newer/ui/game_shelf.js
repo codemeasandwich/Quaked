@@ -12,7 +12,7 @@
  *
  * State: no mutable exports; module-level variables `shelf`; browser storage.
  *
- * Errors: catches at 5 places.
+ * Errors: catches at 6 places.
  */
 
 /** Each installed game's box art (paths relative to the page); a face not listed is a placeholder. */

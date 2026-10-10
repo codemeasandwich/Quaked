@@ -21,7 +21,7 @@ import { SV_CheatsInit, SV_CheatsFrame } from '../common/hooks.js'; // installed
 import { SV_UnseenFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_unseen.js
 import { Sys_Printf, Sys_Error, Sys_FloatTime } from '../common/sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
-	MSG_WriteByte, MSG_WriteString } from '../common/common.js';
+	MSG_WriteByte, MSG_WriteString, hipnotic, rogue } from '../common/common.js';
 import { svc_print, svc_disconnect } from '../common/protocol.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults, Cvar_StorageWritable } from '../common/cvar.js';
 import { SV_SeamlessFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
@@ -118,6 +118,10 @@ const developer = new cvar_t( 'developer', '0' );
 const pausable = new cvar_t( 'pausable', '1' );
 
 const temp1 = new cvar_t( 'temp1', '0' );
+// read and set by the 2021 re-release's QuakeC (its mission packs run here, card [34c]); the re-release's own engine
+// registers them: `campaign` (which campaign's start map was entered) and `sv_cheats` (cheats in co-op/deathmatch)
+const campaign = new cvar_t( 'campaign', '0' );
+const sv_cheats = new cvar_t( 'sv_cheats', '0' );
 
 // set_host_client is imported and re-exported from server.js
 export { set_host_client } from './server.js';
@@ -217,6 +221,8 @@ function Host_InitLocal() {
 	Cvar_RegisterVariable( pausable );
 
 	Cvar_RegisterVariable( temp1 );
+	Cvar_RegisterVariable( campaign );
+	Cvar_RegisterVariable( sv_cheats );
 
 	Host_FindMaxClients();
 
@@ -404,7 +410,8 @@ export async function Host_Init( parms ) {
 		Draw_String: Draw_String,
 		Draw_Fill: Draw_Fill,
 		Draw_PicFromWad: Draw_PicFromWad,
-		Draw_CachePic: Draw_CachePic
+		Draw_CachePic: Draw_CachePic,
+		hipnotic: hipnotic, rogue: rogue // the mission pack running (COM_InitArgv), for its status bar
 	} );
 	Sbar_Init();
 	CL_Init();
