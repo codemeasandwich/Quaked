@@ -202,3 +202,16 @@ Deno.test( 'the way back through a crossing undoes it', () => {
 	assertEqual( graph.R_InverseCrossing( graph.R_CrossingTransform( { mins: [ 0, 0, 0 ], maxs: [ 100, 100, 6 ] }, 1, start, 0 ), opening ), null, 'a pit has no way back' );
 
 } );
+
+Deno.test( 'R_ParseBsp: a file cut short inside its models lump is null, not a RangeError (card [44m])', () => {
+
+	// a version-29 header with an empty entity lump, and a models lump of ten dmodel_t that the file holds only a part of
+	const bytes = new Uint8Array( 200 ), view = new DataView( bytes.buffer );
+	view.setInt32( 0, 29, true );
+	view.setInt32( 4, 124, true ); view.setInt32( 8, 1, true ); // entities: one NUL byte at 124
+	view.setInt32( 4 + 14 * 8, 128, true ); view.setInt32( 8 + 14 * 8, 640, true ); // models: 640 bytes from 128
+	assertEqual( graph.R_ParseBsp( bytes ), null, 'truncated models lump' );
+	view.setInt32( 8 + 14 * 8, 64, true ); // one whole dmodel_t (128..192) is within the file
+	assertEqual( graph.R_ParseBsp( bytes ).submodels.length, 1, 'a models lump inside the file still reads' );
+
+} );

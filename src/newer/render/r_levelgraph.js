@@ -85,8 +85,8 @@ of a version 29 BSP, without loading the rest of it.
  * @param {Uint8Array} bytes the whole .bsp file
  * @returns {?{entities: Array<Object<string, string>>, submodels: Array<{mins: Array<number>, maxs: Array<number>}>, headerLumps: number}}
  *  entities as `R_ParseEntityLump`, submodel bounds in Quake units (index 0 is the world), `headerLumps` 15; null when
- *  `bytes` is not a Uint8Array of at least 124 bytes, the version is not recognised, or the entity lump lies outside the file
- * @throws {RangeError} from DataView when the models lump runs past the end of the buffer (it is not bounds-checked)
+ *  `bytes` is not a Uint8Array of at least 124 bytes, the version is not recognised, or the entity or models lump lies
+ *  outside the file
  */
 export function R_ParseBsp( bytes ) {
 
@@ -108,6 +108,7 @@ export function R_ParseBsp( bytes ) {
 	}
 
 	const m = lump( LUMP_MODELS );
+	if(m.ofs<0||m.len<0||m.ofs+m.len>bytes.length)return null; // a truncated file (card [44m])
 	const submodels = [];
 	for ( let i = 0; i < m.len / SIZEOF_DMODEL; i ++ ) {
 
