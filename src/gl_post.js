@@ -733,7 +733,7 @@ function liquidKind( name ) {
 export const LIQUID_LOOKS = Object.freeze( [
 	Object.freeze( { name: 'Clear', opacity: 0.05, absorption: [ 0.006, 0.0012, 0.00025 ], scatter: [ 0.035, 0.09, 0.14 ], emission: [ 0, 0, 0 ], caustic: 1.15, refraction: 1, ripple: 0.70, speed: 0.60 } ),
 	Object.freeze( { name: 'Tinted', opacity: 0.08, absorption: [ 0.0065, 0.0011, 0.0045 ], scatter: [ 0.09, 0.25, 0.06 ], emission: [ 0, 0, 0 ], caustic: 1.05, refraction: 1, ripple: 0.65, speed: 0.55 } ),
-	Object.freeze( { name: 'Muddy', opacity: 0.10, absorption: [ 0.009, 0.014, 0.020 ], scatter: [ 0.38, 0.22, 0.09 ], emission: [ 0, 0, 0 ], caustic: 0.65, refraction: 0.45, ripple: 0.60, speed: 0.50 } ),
+	Object.freeze( { name: 'Muddy', opacity: 0.14, absorption: [ 0.016, 0.025, 0.035 ], scatter: [ 0.38, 0.22, 0.09 ], emission: [ 0, 0, 0 ], caustic: 0.65, refraction: 0.45, ripple: 0.60, speed: 0.50 } ),
 	Object.freeze( { name: 'Toxic', opacity: 0.22, absorption: [ 0.017, 0.0028, 0.024 ], scatter: [ 0.15, 0.8, 0.025 ], emission: [ 0.035, 0.20, 0.002 ], caustic: 2.6, refraction: 0.8, ripple: 0.80, speed: 0.70 } )
 ] );
 

@@ -144,6 +144,7 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 - [Lighting performance investigation](lighting-performance-2026-10-01.md)
 - [The lightning gun's beam](lightning-2026-10-09.md)
 - [Models, held weapons, blood and water — local working trial](model-lighting-blood-wet-2026-10-04.md)
+- [Muddy water: every E1M3-style pool, a little murkier](muddy-water-2026-10-10.md)
 - [Torches and fire pits: the supplied "02 Wall torch" flame](torch-fire-2026-10-08.md)
 - [Water concept increment, 2 October 2026](water-concepts-2026-10-02.md)
 - [Episode 3 water gets the Newer liquid treatment](water-episode3-2026-10-09.md)

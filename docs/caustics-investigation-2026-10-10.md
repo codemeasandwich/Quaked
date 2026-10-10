@@ -1,6 +1,8 @@
 # Water caustics against the dungeon reference: what was found
 
-Card [42]. An investigation only: no game code changed. It waits for two answers from the owner.
+Card [42]. An investigation only: no game code changed here. The owner answered the first question on 10 October 2026:
+the Muddy look stays on every `*04water1` pool, and it should be a little murkier. That is done in
+[muddy-water-2026-10-10.md](muddy-water-2026-10-10.md). The second question (the reference's scene) is still open.
 
 ## The reference
 
