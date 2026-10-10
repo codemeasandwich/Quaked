@@ -84,7 +84,7 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 			if ( /^(node:|https?:|jsr:|npm:|data:|blob:)/.test( spec ) || spec === 'three' || spec.startsWith( 'three/' ) || spec.startsWith( '@' ) || builtinModules.includes( spec.split( '/' )[ 0 ] ) ) continue;
 			// an import's specifier must be relative ( ./ ../ / ) unless an import map names it: src/x.js with no ./ is a bare specifier,
 			// which browsers and Node reject, so it is recorded unresolved rather than resolved as a path
-			// (a helper's argument is not a specifier: pathToFileURL( 'src/x.js' ) is relative to the working directory, the root)
+			// (a helper's argument is not a specifier: pathToFileURL( literal ) is relative to the working directory, the root)
 			if ( kind === 'dynamic-wrapped' && ! /^(\.{1,2}\/|\/)/.test( spec ) ) { statements.push( { from: f, to: spec, kind, query: false } ); continue; }
 			if ( /^(static|export|dynamic|dynamic-computed)$/.test( kind ) && ! /^(\.{1,2}\/|\/)/.test( spec ) && ! [ ...mapped ].some( k => k.endsWith( '/' ) ? spec.startsWith( k ) : spec === k ) ) { statements.push( { from: f, to: 'bare:' + spec, kind, query: false } ); continue; }
 			// (an HTML page's relative URLs resolve against its <base href>, if it has one)

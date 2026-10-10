@@ -12,7 +12,7 @@ Every figure on this page is computed by two tools, run on a clean export (no ig
 
 Their output, with the full edge lists, is in
 [evidence/architecture-baseline-2026-10-10.json](evidence/architecture-baseline-2026-10-10.json). The figures are from
-`git archive bfc390c` with this page's tools; the export of the commit that adds this page gives the same figures. Three
+`git archive 7633c31` with this page's tools; the export of the commit that adds this page gives the same figures. Three
 earlier versions of this page were rejected by independent review, and a fourth accepted with corrections; what they
 got wrong is listed at the end.
 
@@ -210,7 +210,7 @@ Not debt here: features not yet built (split-screen [37], the games folders [34]
 
 ## Checks made for this baseline
 
-* **The tools on a clean export** (`git archive bfc390c` with this page's tools): no unscanned module, no unexpected
+* **The tools on a clean export** (`git archive 7633c31` with this page's tools): no unscanned module, no unexpected
   unresolved import, no unassigned module. The 28 expected unresolved references were checked by hand.
 * **The guards were tried and fail**: a test importing `../../src/cmd.js` (a wrong depth); a D7 page importing a bare
   `src/vid.js`. Moves behind adapters are covered under the migrations above.
