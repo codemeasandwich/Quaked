@@ -2,7 +2,9 @@
 
 Card [38]. Newer Game only. What the crosshair rests on is sharp; what is much nearer or further is softened, as by a
 camera lens. **Options → Newer Game features → Depth of field** is a slider: all the way left is off, right is strong.
-Console: `r_dof` (0 to 1, saved). **It is off by default** until the owner chooses whether it should be on, and how strong.
+Console: `r_dof` (0 to 1, saved). **It is on by default at 0.15**, three steps of the slider to the right: the owner's choice
+(10 October 2026). A configuration saved before that still says 0; it is dropped once at start-up
+(`Cvar_DropChangedDefaults`), unless the player had moved the slider themselves.
 
 ![E1M1 at strength 0, 0.3 and 1. Top: focus on the wall 108 units ahead. Bottom: focus down the corridor, 1120 units away; the near walls soften, the gun and status bar stay sharp](images/depth-of-field-2026-10-10.jpg)
 

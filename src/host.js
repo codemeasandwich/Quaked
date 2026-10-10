@@ -6,7 +6,7 @@ import { Sys_Printf, Sys_Error, Sys_FloatTime } from './sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString } from './common.js';
 import { svc_print, svc_disconnect } from './protocol.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables } from './cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults } from './cvar.js';
 import { SV_SeamlessFrame } from './sv_seamless.js';
 import { R_WelcomeLoadingHolding } from './r_demoloading.js';
 import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from './r_bestiary.js';
@@ -429,7 +429,7 @@ export async function Host_Init( parms ) {
 		const savedConfig = localStorage.getItem( CONFIG_STORAGE_KEY );
 		if ( savedConfig !== null ) {
 
-			Cbuf_AddText( savedConfig );
+			Cbuf_AddText( Cvar_DropChangedDefaults( savedConfig ) );
 			Con_Printf( 'Loaded saved config from localStorage\n' );
 
 		}

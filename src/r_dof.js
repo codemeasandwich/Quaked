@@ -18,7 +18,7 @@ import { cvar_t } from './cvar.js';
 import { R_NewerGame } from './r_anim.js';
 import { trace_t, SV_RecursiveHullCheck } from './world.js';
 
-export const r_dof = new cvar_t( 'r_dof', '0', true ); // strength 0..1 (0 off, the default until the owner chooses; the options slider)
+export const r_dof = new cvar_t( 'r_dof', '0.15', true ); // strength 0..1 (0 off; the options slider, a step .05: the owner's default is three steps)
 
 export const DOF = {
 	far: 4096,          // Quake units: a ray that meets nothing focuses here (the sky, a long hall)

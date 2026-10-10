@@ -5,6 +5,7 @@ import * as vars from '../src/cvar.js';
 import { cvar_t } from '../src/cvar.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import * as D from '../src/r_dof.js';
+const DEFAULT_STRENGTH = D.r_dof.string; // (as the module declares it, before any test sets it)
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, near = ( a, b, e, m ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );
 for ( const c of [ new cvar_t( 'r_hdr', '1' ), D.r_dof ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );
@@ -91,4 +92,21 @@ Deno.test( 'the real E1M1 hull: a ray at the sky stops on its face, and knowing 
 	near( D.R_DofTarget( e1m1, sky, upv, r, u ), D.DOF.far, 1e-6, 'knowing the sky faces: far' );
 	near( D.R_DofTarget( e1m1, sky, [ 1, 0, 0 ], [ 0, 1, 0 ], upv ) , D.R_DofTarget( e1m1, sky, [ 1, 0, 0 ], [ 0, 1, 0 ], upv ), 0, '(sideways rays are unaffected)' );
 	setup();
+} );
+
+Deno.test( 'on by default at three slider steps (0.15); a configuration saved before keeps its 0 only if the player chose it', () => {
+
+	check( DEFAULT_STRENGTH === '0.15' && D.r_dof.archive, 'on by default at 0.15 (three steps of .05), saved' );
+	const store = () => { const m = new Map(); return { getItem: k => m.has( k ) ? m.get( k ) : null, setItem: ( k, v ) => m.set( k, String( v ) ), m }; };
+	const saved = 'bind MOUSE1 "+attack"\nr_dof "0"\nr_dofx "1"\nvolume "0.7"\n';
+	// never chosen: the old default's line is dropped once, so the new default applies
+	let s = store(); let out = vars.Cvar_DropChangedDefaults( saved, s );
+	check( ! /^r_dof "/m.test( out ) && /r_dofx "1"/.test( out ) && /volume "0.7"/.test( out ), 'stale default dropped, other lines kept' );
+	check( vars.Cvar_DropChangedDefaults( saved, s ) === saved, 'only once: later configurations (written with the new value) are kept' );
+	// chosen in play (saved on its own key): kept
+	s = store(); s.setItem( 'quake_cvar_r_dof', '0' ); out = vars.Cvar_DropChangedDefaults( saved, s );
+	check( out === saved, 'a player who moved the slider keeps their value' );
+	// no storage: unchanged
+	check( vars.Cvar_DropChangedDefaults( saved, null ) === saved, 'no storage: unchanged' );
+
 } );

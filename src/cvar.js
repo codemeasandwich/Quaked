@@ -51,6 +51,39 @@ function Cvar_SaveToStorage( _var ) {
 
 }
 
+/*
+============
+Cvar_DropChangedDefaults
+
+A saved configuration lists every archived cvar, so one written before a default changed carries the old default and would
+override the new one. Drop those lines from it, once per change (its marker), unless the player chose a value themselves:
+a value set in play is also saved on its own key, which a configuration's own lines never are when they equal the default.
+============
+*/
+export const CVAR_DEFAULT_CHANGES = [ { name: 'r_dof', marker: 'quaked_default_r_dof_2026-10-10' } ];
+export function Cvar_DropChangedDefaults( config, storage = typeof localStorage === 'undefined' ? null : localStorage, changes = CVAR_DEFAULT_CHANGES ) {
+
+	if ( storage === null ) return config;
+	try {
+
+		for ( const change of changes ) {
+
+			if ( storage.getItem( change.marker ) !== null ) continue;
+			if ( storage.getItem( CVAR_STORAGE_PREFIX + change.name ) === null )
+				config = config.split( '\n' ).filter( line => ! new RegExp( '^\\s*' + change.name + '\\s' ).test( line ) ).join( '\n' );
+			storage.setItem( change.marker, '1' );
+
+		}
+
+	} catch ( e ) {
+
+		// storage may be unavailable: keep the configuration as saved
+
+	}
+	return config;
+
+}
+
 // Load a cvar from localStorage (returns null if not found)
 function Cvar_LoadFromStorage( name ) {
 
