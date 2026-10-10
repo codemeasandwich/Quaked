@@ -118,6 +118,11 @@ It has three forms:
       touchpad, listed as a device of its own, is left out.
   - Each window plays only the controller given to its player. It reads it directly when it can see it, or else
     from the freshest shared snapshot, which counts only when under half a second old.
+  - A controller is known by its browser index and id. Chrome numbers controllers the same in every window, so the
+    key names one physical controller everywhere. A browser that numbers them per document could break that, so
+    local play's controllers are checked in Chrome.
+  - When a window loses focus, the other windows keep playing its last shared snapshot for up to half a second. A
+    button held at that moment counts as held that long, then is released.
   - A single page outside local play is unchanged.
   - Not proven: real paired controllers. The checks use mocked ones (below), so what Chrome reports to unfocused
     windows on real hardware still needs a trial with the owner's controllers.

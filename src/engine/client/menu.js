@@ -1716,7 +1716,7 @@ function M_SplitScreen_Key( key ) {
 function M_SplitScreen_Touch( vx, vy ) {
 
 	const rows = localPlayRows( localPlayRole() );
-	const i = rows.findIndex( row => vy >= row.y - 4 && vy < row.y + 4 ); // a band per row: rows can be 8 apart
+	const i = rows.findIndex( row => vy >= row.y && vy < row.y + 8 ); // the row's own text cell: rows can be 8 apart
 	if ( i < 0 ) { if ( vy < 32 ) M_SplitScreen_Key( K_ESCAPE ); return; }
 	localplay_cursor = i;
 	M_SplitScreen_Key( K_ENTER );
