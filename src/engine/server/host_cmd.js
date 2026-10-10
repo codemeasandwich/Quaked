@@ -39,7 +39,7 @@ import { Cvar_Set, Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_Args, Cmd_ExecuteString,
 	Cmd_ForwardToServer, cmd_source, src_command, src_client, Cbuf_AddText } from '../common/cmd.js';
 import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedPowerups, SV_DropClient,
-	SV_WriteClientdataToMessage, current_skill } from './sv_main.js';
+	SV_WriteClientdataToMessage, current_skill, SV_CheckSignon } from './sv_main.js';
 import { sv, svs, host_client, set_host_client,
 	NUM_SPAWN_PARMS, NUM_PING_TIMES } from './server.js';
 import { cls, cl, ca_connected, ca_dedicated, MAX_DEMOS } from '../client/client.js';
@@ -1394,6 +1394,7 @@ function Host_PreSpawn_f() {
 
 	}
 
+	SV_CheckSignon( 'prespawn' ); // a signon overflowed during play must not reach a client half cleared (card [34c])
 	SZ_Write( host_client.message, sv.signon.data, sv.signon.cursize );
 	MSG_WriteByte( host_client.message, svc_signonnum );
 	MSG_WriteByte( host_client.message, 2 );

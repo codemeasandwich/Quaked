@@ -42,6 +42,7 @@ Deno.test( 'Scourge of Armagon: give 9, 0 and 6a give its three weapons; 6 is st
 	COM_InitArgv( [ 'quaked', '-hipnotic' ] );
 	try {
 		const { p, give } = player( 'e1m1' );
+		check( sv.signon.allowoverflow && ! sv.signon.overflowed, 'a spawned map\'s signon notes an overflow rather than a Sys_Error (static_limits_test checks the Host_Error)' );
 		p.v.items = 0;
 		give( '9' ); check( p.v.items & Q.HIT_LASER_CANNON, 'give 9: the Laser Cannon' );
 		give( '0' ); check( p.v.items & Q.HIT_MJOLNIR, 'give 0: Mjolnir' );

@@ -414,7 +414,7 @@ export function SZ_GetSpace( buf, length ) {
 			Sys_Error( 'SZ_GetSpace: ' + length + ' is > full buffer size' );
 
 		buf.overflowed = true;
-		Con_Printf( 'SZ_GetSpace: overflow' );
+		Con_Printf( 'SZ_GetSpace: overflow\n' );
 		SZ_Clear( buf );
 
 	}

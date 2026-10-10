@@ -1786,6 +1786,22 @@ function SV_CreateBaseline() {
 
 }
 
+/**
+ * Ends the game when the map's signon (its static entities, ambient sounds and baselines, which every client receives
+ * as it prespawns) overflowed its 8192 bytes. The buffer allows overflow, so an overflow clears it and is noted rather
+ * than taking the page down with a Sys_Error (card [34c]). Called by `SV_SpawnServer` once the map has spawned, and by
+ * the prespawn command before a client is sent the signon (QuakeC can still add to it during play).
+ *
+ * @param {string} where who asks, for the message
+ * @throws {Error} via `Host_Error` when the signon overflowed, naming the map
+ */
+export function SV_CheckSignon( where ) {
+
+	if ( sv.signon.overflowed )
+		Host_Error( where + ': ' + sv.name + ' has more static entities, ambient sounds and baselines than the 8192-byte signon holds' );
+
+}
+
 /*
 ================
 SV_SpawnServer
@@ -2018,8 +2034,7 @@ export function SV_SpawnServer( server ) {
 
 	// create a baseline for more efficient communications
 	SV_CreateBaseline();
-	if ( sv.signon.overflowed )
-		Host_Error( 'SV_SpawnServer: ' + server + ' has more static entities, ambient sounds and baselines than the 8192-byte signon holds' );
+	SV_CheckSignon( 'SV_SpawnServer' );
 
 	// send serverinfo to all connected clients
 	for ( let i = 0; i < svs.maxclients; i ++ ) {
