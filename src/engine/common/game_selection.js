@@ -90,7 +90,9 @@ export async function GameSelection_Select( id, options = {} ) {
 		if ( ! GAME_SELECTION_CHOICES.includes( id ) ) return { ok: false, reason: `${game.name} cannot be chosen yet: ${game.reason || 'its support is not built'}` };
 		// found but not checked (a server that ignores byte ranges): allowed, as the start reads the whole pack and
 		// refuses a broken one; anything else must be playable
-		if ( game.present && ! game.validated ) warning = ` (it could not be checked here: ${game.reason}; the start checks it)`;
+		const packs = game.packs ?? [], broken = packs.find( p => p.state === 'invalid' || p.state === 'error' );
+		if ( broken ) return { ok: false, reason: `${game.name} is not playable: its ${broken.name ?? 'pack'} ${broken.state === 'invalid' ? 'is broken' : 'could not be read'} (${broken.reason})` };
+		if ( game.present && ! game.validated && packs.every( p => p.state === 'valid' || p.state === 'present' ) ) warning = ` (it could not be checked here: ${game.reason}; the start checks it)`;
 		else if ( ! game.playable ) return { ok: false, reason: `${game.name} is not playable: ${game.reason}` };
 
 	}

@@ -56,8 +56,14 @@ Deno.test( 'the shareware needs no catalogue; an unchecked Quake is allowed with
 	store.clear(); let reloads = 0, refreshes = 0; const reload = () => reloads ++;
 	const shareware = await GameSelection_Select( 'shareware', { refresh: async () => { refreshes ++; return { games: [] }; }, reload } );
 	check( shareware.ok && refreshes === 0, 'the shareware is chosen without asking the catalogue (it ships with the page)' );
-	const unchecked = await GameSelection_Select( 'quake', { refresh: async () => ( { games: [ { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'found, not validated: the server ignores byte ranges' } ] } ), reload } );
+	const unchecked = await GameSelection_Select( 'quake', { refresh: async () => ( { games: [ { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'found, not validated: the server ignores byte ranges', packs: [ { name: 'pak0.pak', state: 'present' } ] } ] } ), reload } );
 	check( unchecked.ok && /could not be checked here/.test( unchecked.reason ), 'a found but unchecked Quake: allowed, with the warning' );
+	for ( const [ state, reason, says ] of [ [ 'invalid', 'invalid pack directory', /is broken \(invalid pack directory\)/ ], [ 'error', 'HTTP 500', /could not be read \(HTTP 500\)/ ] ] ) {
+
+		const before = reloads, r = await GameSelection_Select( 'quake', { refresh: async () => ( { games: [ { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'found, not validated: ' + reason, packs: [ { name: 'pak0.pak', state, reason } ] } ] } ), reload } );
+		check( ! r.ok && says.test( r.reason ) && reloads === before, `a pak0 found ${state}: refused, not called unchecked (${r.reason})` );
+
+	}
 	const saved = Object.getOwnPropertyDescriptor( globalThis, 'localStorage' );
 	Object.defineProperty( globalThis, 'localStorage', { configurable: true, get() { throw new Error( 'SecurityError' ); } } );
 	const before = reloads, blocked = await GameSelection_Select( 'shareware', { refresh: catalogue(), reload } );
