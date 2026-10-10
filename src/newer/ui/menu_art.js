@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/menu_art
+ *
+ * The single-player menu lettering, assembled from Quake's own menu sprites.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: throws at 1 place.
+ */
 // Single-player lettering assembled once from Quake's own menu sprites.
 // Keep native pixels and baselines: centring each letter's ink box clips
 // descenders and shifts small capitals relative to their neighbours.

@@ -23,7 +23,7 @@ import { M_Keydown, M_ToggleMenu_f } from './menu.js';
 import { SCR_UpdateScreen } from '../render/gl_screen.js';
 import { Sys_Error } from '../common/sys.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
-import { R_BestiaryKey } from '../../r_bestiary.js';
+import { R_BestiaryKey } from '../../newer/ui/r_bestiary.js';
 
 /*
 ==============================================================================

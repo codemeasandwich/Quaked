@@ -17,7 +17,7 @@ import { Con_Printf, Q_atoi, SZ_Clear,
 	MSG_WriteByte, MSG_WriteFloat, MSG_WriteShort, MSG_WriteAngle,
 	net_message } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
-import { R_BestiaryInputLocked } from '../../r_bestiary.js';
+import { R_BestiaryInputLocked } from '../../newer/ui/r_bestiary.js';
 import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
 import { clc_move, clc_delta, PE_UPDATE_BACKUP } from '../common/protocol.js';
 import { SIGNONS,

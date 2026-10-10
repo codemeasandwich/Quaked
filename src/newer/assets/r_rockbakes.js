@@ -10,11 +10,11 @@
  * Errors: throws at 7 places; catches at 4 places.
  */
 import {PreparedLoad} from './prepared_transport.js';
-import {PREPARED_CORPUS} from '../../prepared_corpus.js';
+import {PREPARED_CORPUS} from './prepared_corpus.js';
 import {ROCK_BAKES} from './rockfield_bakes.js';
 import {RockBakeDecode,RockBakeSignature,RockBakeConfig,RockBakeEncode,RockBakeTileCoordinates,ROCK_BAKE_VERSION} from './rockfield_bake_format.js';
 import {DisplacementStore,DisplacementKey,DisplacementHash} from './displacement_store.js';
-import {RockPrepareTiles} from '../../rockfield_prepare.js';
+import {RockPrepareTiles} from './rockfield_prepare.js';
 import { COM_NewerURL,COM_FindFile } from '../../engine/common/pak.js';
 // Three decoded levels, including pending fetches; warm upcoming portal levels
 // without creating GPU pages, workers, or additional game instances.

@@ -9,9 +9,9 @@ const THREE = await import( 'three' );
 const weapons = await import( '../src/newer/render/r_weapons.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
-const startup = await import( '../src/r_demoloading.js' );
+const startup = await import( '../src/newer/ui/r_demoloading.js' );
 
-const { STARTUP_PACK } = await import( '../src/startup_pack.js' );
+const { STARTUP_PACK } = await import( '../src/newer/assets/startup_pack.js' );
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ), 'utf8' );
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 

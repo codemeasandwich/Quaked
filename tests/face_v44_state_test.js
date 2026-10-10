@@ -1,5 +1,5 @@
 // Independent public state checks: only injected game time/RNG drive blinking.
-import { FaceState } from '../src/face_state.js';
+import { FaceState } from '../src/newer/ui/face_state.js';
 const check = (value, label) => { if (!value) throw Error(label); };
 const same = (actual, expected, label) => check(actual === expected, `${label}: ${actual} != ${expected}`);
 const sample = (state, time, fields = {}) => state.frame({time, health:100, ...fields});

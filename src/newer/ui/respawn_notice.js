@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/respawn_notice
+ *
+ * The short corner message about the respawn-health rule (card [4]).
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `notice`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // A short message in the corner of the screen about the respawn-health rule (card [4]): written by the local
 // server when the entitlement changes, drawn by the 2D screen code. Local single player only, so the server and
 // the client share this module and the game clock.

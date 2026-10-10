@@ -32,7 +32,7 @@
 // It is generated once per texture on demand, from the texels already in memory.
 
 import * as THREE from 'three';
-import {R_NormalPrepared} from '../../normal_prepare.js';
+import {R_NormalPrepared} from '../assets/normal_prepare.js';
 
 // how strongly each blur scale contributes to the height field
 const SCALES = [

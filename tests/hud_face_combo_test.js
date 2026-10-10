@@ -5,9 +5,9 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 await import( '../src/engine/render/gl_rsurf.js' );
 const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/engine/render/gl_draw.js' );
-const layer = await import('../src/r_playerface.js');
+const layer = await import('../src/newer/ui/r_playerface.js');
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
-const hud = await import( '../src/r_newerhud.js' ), anim = await import( '../src/newer/render/r_anim.js' );
+const hud = await import( '../src/newer/ui/r_newerhud.js' ), anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), cmd = await import( '../src/engine/common/cmd.js' );
 const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { W_LoadWadFile } = await import( '../src/engine/common/wad.js' );
@@ -98,7 +98,7 @@ Deno.test( 'HUD portrait: ready donor layers use the real Draw_Pic path at nativ
 
 Deno.test( 'HUD portrait: failed optional combination load retains native FACE_INVUL1 pixels at native size', async () => {
 
-	const isolated = await import( '../src/r_newerhud.js?hud-face-failure' ), nativeCombo = nativePics.get( 'face_invul1' );
+	const isolated = await import( '../src/newer/ui/r_newerhud.js?hud-face-failure' ), nativeCombo = nativePics.get( 'face_invul1' );
 	const pic = { _name: 'face_invul1', width: nativeCombo.width, height: nativeCombo.height, canvas: nativeCombo.canvas, imageData: nativeCombo.imageData };
 	failed.add( 'newer/hud/face_invul1.webp' ); equal( isolated.R_NewerHudCanvas( pic ), null, 'native fallback while loading' ); await flush();
 	equal( pic._hi, null, 'image failure settles safely' ); calls.length = 0; draw.Draw_Pic( 112, 216, pic );

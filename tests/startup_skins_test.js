@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {readFileSync} from 'node:fs';
 import * as anim from '../src/newer/render/r_anim.js';
-import * as boot from '../src/r_demoloading.js';
+import * as boot from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 function bsp(text){const raw=new TextEncoder().encode(text+'\0'),bytes=new Uint8Array(124+raw.length),view=new DataView(bytes.buffer);view.setInt32(0,29,true);view.setInt32(4,124,true);view.setInt32(8,raw.length,true);bytes.set(raw,124);return bytes;}
 const entities='{"classname" "worldspawn"}\n{"classname" "monster_dog" "spawnflags" "1536"}\n{"classname" "monster_knight" "spawnflags" "1280"}\n{"classname" "monster_ogre" "spawnflags" "768"}\n{"classname" "monster_shambler" "spawnflags" "1792"}';

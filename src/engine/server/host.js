@@ -26,8 +26,8 @@ import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ
 import { svc_print, svc_disconnect } from '../common/protocol.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults } from '../common/cvar.js';
 import { SV_SeamlessFrame } from '../../newer/gameplay/sv_seamless.js';
-import { R_WelcomeLoadingHolding } from '../../r_demoloading.js';
-import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../../r_bestiary.js';
+import { R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
+import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../../newer/ui/r_bestiary.js';
 import { Cmd_Init, Cbuf_Init, Cbuf_Execute, Cbuf_AddText, Cbuf_InsertText, Cmd_SetClientCallbacks } from '../common/cmd.js';
 import { Memory_Init } from '../common/zone.js';
 import { V_Init } from '../client/view.js';
@@ -37,7 +37,7 @@ import { COM_LoadFile } from '../common/pak.js';
 import { Key_Init, Key_WriteBindings } from '../client/keys.js';
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from '../common/console.js';
 import { M_Init, M_SetExternals } from '../client/menu.js';
-import { MainMenu_Destroy } from '../../menu_webgl.js';
+import { MainMenu_Destroy } from '../../newer/ui/menu_webgl.js';
 import { PR_Init } from '../progs/pr_edict.js';
 import { Mod_Init, Mod_ClearAll, R_InitTextures } from '../render/gl_model.js';
 import { NET_Init, NET_Poll, NET_Shutdown, NET_SendMessage, NET_CanSendMessage,
@@ -54,7 +54,7 @@ import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_Con
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
-import { S_UpdateAmbientMusic } from '../../s_ambientgame.js';
+import { S_UpdateAmbientMusic } from '../../newer/sound/s_ambientgame.js';
 import { Sbar_Init, Sbar_SetExternals } from '../client/sbar.js';
 import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, CL_NextDemo, cl_name } from '../client/cl_main.js';
 import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock } from '../../platform/in_web.js';

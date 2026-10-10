@@ -7,7 +7,7 @@ const blendRuntime = await import( '../src/engine/render/glquake.js' );
 const viewRuntime = await import( '../src/engine/client/view.js' ), renderRuntime = await import( '../src/engine/render/gl_rmain.js' );
 const post = await import( '../src/newer/render/gl_post.js' ), split = await import( '../src/newer/render/r_demosplit.js' ), world = await import( '../src/engine/server/world.js' );
 const probe = await import( '../src/newer/render/r_waterprobe.js' );
-const loadingRuntime=await import('../src/r_demoloading.js');
+const loadingRuntime=await import('../src/newer/ui/r_demoloading.js');
 const { Mod_PointInLeaf } = await import( '../src/engine/render/gl_model.js' );
 window.addEventListener('error',e=>evidence.errors.push(e.message)); window.addEventListener('unhandledrejection',e=>evidence.errors.push(String(e.reason?.stack||e.reason)));
 const evidence = { sceneFrames: 0, errors: [], views: {}, pools: [], textures: [], captureFrames: 0, mode: 'startup', viewpoint: null };

@@ -9,7 +9,7 @@ import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/normal_prepare.js';
+import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/newer/assets/normal_prepare.js';
 import { NormalBakeDecode } from '../src/newer/assets/normal_bake_format.js';
 const EXPECTED = '78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a';
 const SOURCE = 'b1d2fee5599f855a05081926e9fba84eca0aab84ddc43835a33a04581d23aca8';

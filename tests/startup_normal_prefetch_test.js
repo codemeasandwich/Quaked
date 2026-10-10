@@ -3,12 +3,12 @@
 import * as THREE from 'three';
 import {createHash} from 'node:crypto';
 import {R_StartupNormalsPrefetch} from '../src/newer/assets/r_normalprefetch.js';
-import {STARTUP_NORMAL_BAKES} from '../src/startup_normal_bakes.js';
+import {STARTUP_NORMAL_BAKES} from '../src/newer/assets/startup_normal_bakes.js';
 import {NORMAL_BAKES} from '../src/newer/assets/normal_bakes.js';
 import {NormalTransport} from '../src/newer/assets/normal_transport.js';
-import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepare,R_NormalPrepared} from '../src/normal_prepare.js';
+import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepare,R_NormalPrepared} from '../src/newer/assets/normal_prepare.js';
 import {NormalBakeEncode} from '../src/newer/assets/normal_bake_format.js';
-import * as intro from '../src/r_demoloading.js';
+import * as intro from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),turn=()=>new Promise(r=>setTimeout(r,0));
 let serial=0;
 async function fixture(fn){const name='maps/normal-prefetch-public-'+ ++serial+'.bsp',storage=new Uint8Array([9,11,21,37,53,99]),bytes=storage.subarray(1,5),keys=['normal-prefetch-'+serial+'-a','normal-prefetch-'+serial+'-b'];STARTUP_NORMAL_BAKES[name]=[{bspSha256:sha(bytes),keys}];keys.forEach((key,i)=>NORMAL_BAKES[key]={file:key+'.gz',width:8+i,height:9+i,rawSha256:'fixture-'+i});try{return await fn({name,storage,bytes,keys});}finally{delete STARTUP_NORMAL_BAKES[name];keys.forEach(k=>delete NORMAL_BAKES[k]);}}

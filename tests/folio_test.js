@@ -43,7 +43,7 @@ Deno.test( 'the reveal moment follows the supplied progress curve mix( t, smooth
 
 Deno.test( 'the prepared pages: one for every page image, each matching today\'s image and present', async () => {
 	const index = JSON.parse( readFileSync( new URL( '../newer/bestiary/folio/index.json', import.meta.url ), 'utf8' ) );
-	const { BESTIARY_ENTRIES } = await import( '../src/bestiary_state.js' );
+	const { BESTIARY_ENTRIES } = await import( '../src/newer/ui/bestiary_state.js' );
 	same( index.source.sha256, 'b864769450933bf95e23af478223bdbca6ed808fef7af14d1b559b7e3f115295', 'the supplied source' );
 	const analyzer = createHash( 'sha256' ).update( readFileSync( new URL( '../tools/folio/analysis_worker.js', import.meta.url ) ) ).digest( 'hex' );
 	same( index.analyzer.sha256, analyzer, 'made by the vendored analyzer as it is' );
@@ -64,7 +64,7 @@ Deno.test( 'r_folio: loading, ready and none; a page whose maps are not its imag
 	globalThis.fetch = async u => { await null; return { ok: true, json: async () => files[ String( u ).split( '/' ).pop() ] }; };
 	globalThis.Image = class { set src( u ) { const name = String( u ).split( '/' ).pop(); this.naturalWidth = 1024; this.naturalHeight = name.startsWith( 'g.' ) ? 1536 : 1500; setTimeout( () => name === 'missing.webp' ? this.onerror() : this.onload(), 0 ); } };
 	try {
-		const F = await import( '../src/r_folio.js?states' );
+		const F = await import( '../src/newer/ui/r_folio.js?states' );
 		same( F.R_FolioPrepare( 'grunt' ), 'loading', 'the index on its way' ); await new Promise( r => setTimeout( r, 10 ) );
 		same( F.R_FolioPrepare( 'grunt' ), 'loading', 'the page\'s images on their way' ); same( F.R_FolioPrepare( 'nobody' ), 'none', 'no prepared data: none' );
 		F.R_FolioPrepare( 'broken' ); await new Promise( r => setTimeout( r, 10 ) );

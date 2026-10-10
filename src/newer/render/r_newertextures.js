@@ -24,7 +24,7 @@
 // map (the picture's glowing part, drawn at full brightness whatever the light), so
 // the original glowing area, enlarged, picks the glowing part out of the new picture.
 
-import {R_NormalPrepared,R_NormalPrepare,R_NormalPreparationNeeded} from '../../normal_prepare.js';
+import {R_NormalPrepared,R_NormalPrepare,R_NormalPreparationNeeded} from '../assets/normal_prepare.js';
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import * as THREE from 'three';

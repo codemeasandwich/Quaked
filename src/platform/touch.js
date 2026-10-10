@@ -29,7 +29,7 @@
 // Dragging anywhere else on the screen looks around, and so does tilting the device (gyroscope).
 
 import { K_ESCAPE, K_ENTER, K_MOUSE1, Key_Event } from '../engine/client/keys.js';
-import { R_BestiaryInputLocked } from '../r_bestiary.js';
+import { R_BestiaryInputLocked } from '../newer/ui/r_bestiary.js';
 import { in_attack, in_jump } from '../engine/client/cl_input.js';
 import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../engine/common/cvar.js';

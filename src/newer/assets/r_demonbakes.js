@@ -13,7 +13,7 @@ import {R_NewerTexturesStatus} from '../render/r_newertextures.js';
 import {DisplacementStore,DisplacementKey} from './displacement_store.js';
 import {R_DemonSurfaceData,DEMON_TEXTURES,DEMON_GENERATOR_VERSION} from '../render/r_demonrelief.js';
 import {PreparedLoad} from './prepared_transport.js';
-import {PREPARED_CORPUS} from '../../prepared_corpus.js';
+import {PREPARED_CORPUS} from './prepared_corpus.js';
 import {DEMON_BAKES} from './demon_bakes.js';
 import {DemonBakeDecode,DemonBakeEncode,DEMON_BAKE_VERSION,DemonSurfaceSignature,DemonFieldSettings} from './demon_bake_format.js';
 import {COM_FindFile,COM_NewerURL} from '../../engine/common/pak.js';

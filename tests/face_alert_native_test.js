@@ -23,7 +23,7 @@ import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
-import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
+import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
@@ -39,8 +39,8 @@ const {OFS_PARM0}=await import('../src/engine/progs/pr_comp.js');
 function native(p,n){progs.pr_global_struct.self=progs.EDICT_TO_PROG(p);progs.pr_global_struct.time=sv.time;const f=ED_FindFunction(n);check(f,'native '+n);PR_ExecuteProgram(progs.pr_functions.indexOf(f));}
 function hit(p,source,amount){progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PROG(p);progs.pr_globals_int[OFS_PARM0+3]=progs.EDICT_TO_PROG(source);progs.pr_globals_int[OFS_PARM0+6]=progs.EDICT_TO_PROG(source);progs.pr_globals_float[OFS_PARM0+9]=amount;native(p,'T_Damage');}
 function equip(p,weapon,ammo=50){p.v.items=127|4096;p.v.weapon=weapon;p.v.ammo_shells=ammo;p.v.ammo_nails=ammo;p.v.ammo_rockets=ammo;p.v.ammo_cells=ammo;p.v.button0=1;native(p,'W_SetCurrentAmmo');}
-import {FaceState} from '../src/face_state.js';
-import {R_FaceAlerts,FACE_ALERT_ONSCREEN,faceAlertOnScreenLimit} from '../src/r_facegame.js';
+import {FaceState} from '../src/newer/ui/face_state.js';
+import {R_FaceAlerts,FACE_ALERT_ONSCREEN,faceAlertOnScreenLimit} from '../src/newer/ui/r_facegame.js';
 import {r_refdef} from '../src/engine/render/render.js';
 const near=(a,b,e,m)=>check(Math.abs(a-b)<=e,m+': '+a+' != '+b);
 import {FL_MONSTER} from '../src/engine/server/server.js';

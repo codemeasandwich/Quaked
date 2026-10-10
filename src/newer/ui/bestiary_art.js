@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/bestiary_art
+ *
+ * Composing a Bestiary page from its authored images, registered to the owner's cutting guide.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Authored-image composition only. Discovery and persistence stay in the
 // journal. Coordinates register the owner's bottom-cropped cutting guide to
 // the original 1024×1536 page, rather than stretching its 1400px screenshot.

@@ -6,7 +6,7 @@ import {R_BspTextureNames} from '../src/newer/render/r_newertextures.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/newer/render/gl_post.js';
-import * as boot from '../src/r_demoloading.js';
+import * as boot from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),flush=async()=>{for(let i=0;i<40;i++)await Promise.resolve();};
 function bsp(names){const offset=128,length=4+names.length*4+names.filter(n=>n!==null).length*40,bytes=new Uint8Array(offset+length),v=new DataView(bytes.buffer);v.setInt32(0,29,true);v.setInt32(20,offset,true);v.setInt32(24,length,true);v.setInt32(offset,names.length,true);let at=4+names.length*4;names.forEach((name,i)=>{v.setInt32(offset+4+i*4,name===null?-1:at,true);if(name===null)return;bytes.set(new TextEncoder().encode(name).subarray(0,16),offset+at);v.setInt32(offset+at+16,64,true);v.setInt32(offset+at+20,64,true);at+=40;});return bytes;}
 Deno.test('bounded BSP29 texture-directory prefetch handles real native views, duplicate names and unsupported directories without touching a model',()=>{

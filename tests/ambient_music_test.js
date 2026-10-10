@@ -1,4 +1,4 @@
-const { AmbientMusicPlayer, AMBIENT_SLOT_SECONDS, AMBIENT_BASE_GAIN } = await import( '../src/s_ambientmusic.js' );
+const { AmbientMusicPlayer, AMBIENT_SLOT_SECONDS, AMBIENT_BASE_GAIN } = await import( '../src/newer/sound/s_ambientmusic.js' );
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); }
 function near( a, b, label ) { if ( Math.abs( a - b ) > 1e-6 ) throw new Error( `${label}: ${a} != ${b}` ); }
 export class MediaDouble {

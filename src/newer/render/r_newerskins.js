@@ -34,7 +34,7 @@
 // Textures load in the background the first time a skin is chosen; until they
 // have arrived the original skin is shown.
 
-import {R_NormalPrepare} from '../../normal_prepare.js';
+import {R_NormalPrepare} from '../assets/normal_prepare.js';
 import { Face_Index, FACE_FRAGMENT_HEAD, FACE_MAP_FRAGMENT } from './enemy_face.js';
 import * as THREE from 'three';
 import { R_LevelEntities } from './r_levelents.js';

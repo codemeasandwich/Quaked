@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/face_state
+ *
+ * The status-bar face's behaviour (expression and attention), in game time.
+ *
+ * Types: exported classes `FaceWaterState`, `FaceState`.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Gloom Hood behavior is independent of the artwork and of player movement.
 // Time is game time: pause freezes reactions, and a restored clock resets them.
 export const FACE_LOOKS = Object.freeze( [ 'head_left', 'eyes_left', 'front', 'eyes_right', 'head_right' ] );

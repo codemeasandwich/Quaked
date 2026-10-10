@@ -1,12 +1,24 @@
+/**
+ * @module newer/ui/r_facegame
+ *
+ * What the game tells the status-bar face: events choose its expression and where it looks.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `liveWorld`, `demoWorld`, `lastFrame`, `lastWeaponFrame`,
+ * `liveEdicts`, `demoFile`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Gameplay adapter: events choose expression/attention; movement never does.
 import { FaceState, FaceWaterState, faceWaterStage } from './face_state.js';
-import { cl, cls } from './engine/client/client.js';
-import { r_refdef } from './engine/render/render.js';
-import { in_attack } from './engine/client/cl_input.js';
-import { sv, MOVETYPE_NOCLIP } from './engine/server/server.js';
-import { GetEdictFieldValue } from './engine/progs/pr_edict.js';
-import { SV_FaceDrain, SV_FaceLocalActive, SV_FaceReset } from './newer/gameplay/sv_faceevents.js';
-import { IT_AXE, IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT, STAT_HEALTH, STAT_WEAPONFRAME } from './engine/common/quakedef.js';
+import { cl, cls } from '../../engine/client/client.js';
+import { r_refdef } from '../../engine/render/render.js';
+import { in_attack } from '../../engine/client/cl_input.js';
+import { sv, MOVETYPE_NOCLIP } from '../../engine/server/server.js';
+import { GetEdictFieldValue } from '../../engine/progs/pr_edict.js';
+import { SV_FaceDrain, SV_FaceLocalActive, SV_FaceReset } from '../gameplay/sv_faceevents.js';
+import { IT_AXE, IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT, STAT_HEALTH, STAT_WEAPONFRAME } from '../../engine/common/quakedef.js';
 const live = new FaceState(), demo = new FaceState();
 const waterVisual=new FaceWaterState();
 let liveWorld, demoWorld, lastFrame = -1, lastWeaponFrame = 0;

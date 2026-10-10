@@ -1,6 +1,17 @@
+/**
+ * @module newer/ui/studio_logo
+ *
+ * The studio logo shown with the menu.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `image`, `requested`.
+ *
+ * Errors: catches at 1 place.
+ */
 // Presentation only: the menu owns visibility, Draw_BeginFrame clears it on
 // close, and loading failure never blocks startup or changes gameplay state.
-import { Draw_GetOverlayCanvas } from './engine/render/gl_draw.js';
+import { Draw_GetOverlayCanvas } from '../../engine/render/gl_draw.js';
 
 let image = null, requested = false;
 function artwork() {
@@ -15,7 +26,7 @@ function artwork() {
   };
   const timer = setTimeout(() => { finish(false); candidate.src = ''; },30000);
   candidate.onload = () => finish(true); candidate.onerror = () => finish(false);
-  try { candidate.src = new URL('../newer/ui/studio-logo.png',import.meta.url).href; }
+  try { candidate.src = new URL('../../../newer/ui/studio-logo.png',import.meta.url).href; }
   catch { finish(false); }
  }
  return image;

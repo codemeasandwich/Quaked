@@ -17,7 +17,7 @@
 import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
 import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL, waterWave, R_WaveTexture, R_WaterWavesLive } from './r_waves.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
-import { R_BestiaryPortraitLight } from '../../r_bestiary.js';
+import { R_BestiaryPortraitLight } from '../ui/r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
 import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFrame, POWERUP_SHROUD_COMPOSITE_GLSL, POWERUP_COOKIE_GLSL } from './r_powerups.js';
 // HDR lighting pipeline: emissive surfaces, sun and light shafts, relighting
@@ -49,12 +49,12 @@ import { PowerVisionMode } from '../gameplay/powervision_state.js';
 import { R_PowerVisionRender, R_PowerVisionReset } from './r_powervision.js';
 import { VISION_UV_PACK_GLSL } from './vision_coordinates.js';
 import { R_QuadVisionActive, R_QuadVisionRender, R_QuadVisionReset } from './r_quadvision.js';
-import { R_IntroLoadingHolding } from '../../r_demoloading.js';
+import { R_IntroLoadingHolding } from '../ui/r_demoloading.js';
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from '../../engine/render/gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
-import {R_NormalPrepare,R_NormalPreparationNeeded} from '../../normal_prepare.js';
+import {R_NormalPrepare,R_NormalPreparationNeeded} from '../assets/normal_prepare.js';
 import { R_PatchRockShader, ROCK_PARALLAX_GLSL, ROCK_NORMAL_GLSL } from './r_rockshader.js';
 import { rockUniforms } from './r_rockfield.js';
 import { GL_SetForceLinear } from '../../engine/render/glquake.js';

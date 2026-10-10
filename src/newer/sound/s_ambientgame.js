@@ -1,15 +1,26 @@
+/**
+ * @module newer/sound/s_ambientgame
+ *
+ * When the ambient music plays: decided from the game (monsters nearby), not from what is drawn.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `world`, `oldHealth`, `oldArmour`, `combatUntil`, `state`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Gameplay policy for the streamed ambience. Use the local authoritative
 // monsters when available; renderer visibility is not an enemy safety signal.
-import { cl, cls, cl_entities, ca_connected, SIGNONS, CSHIFT_DAMAGE } from './engine/client/client.js';
-import { sv, FL_MONSTER } from './engine/server/server.js';
-import { PR_GetString } from './engine/progs/progs.js';
-import { in_attack } from './engine/client/cl_input.js';
-import { key_dest, key_game } from './engine/client/keys.js';
-import { STAT_HEALTH, STAT_ARMOR } from './engine/common/quakedef.js';
-import { R_NewerGame } from './newer/render/r_anim.js';
-import { bgmvolume } from './engine/sound/sound.js';
-import { Cvar_VariableValue } from './engine/common/cvar.js';
-import { S_GetAudioContext } from './engine/sound/snd_dma.js';
+import { cl, cls, cl_entities, ca_connected, SIGNONS, CSHIFT_DAMAGE } from '../../engine/client/client.js';
+import { sv, FL_MONSTER } from '../../engine/server/server.js';
+import { PR_GetString } from '../../engine/progs/progs.js';
+import { in_attack } from '../../engine/client/cl_input.js';
+import { key_dest, key_game } from '../../engine/client/keys.js';
+import { STAT_HEALTH, STAT_ARMOR } from '../../engine/common/quakedef.js';
+import { R_NewerGame } from '../render/r_anim.js';
+import { bgmvolume } from '../../engine/sound/sound.js';
+import { Cvar_VariableValue } from '../../engine/common/cvar.js';
+import { S_GetAudioContext } from '../../engine/sound/snd_dma.js';
 import { S_AmbientMusicInit, S_GetAmbientMusicPlayer } from './s_ambientmusic.js';
 
 export const AMBIENT_ENEMY_DISTANCE = 512;

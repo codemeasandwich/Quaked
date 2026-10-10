@@ -3,7 +3,7 @@ const cmd=await import('../src/engine/common/cmd.js');
 const keys=await import('../src/engine/client/keys.js');
 const menu=await import('../src/engine/client/menu.js');
 const draw=await import('../src/engine/render/gl_draw.js');
-const {BuildSinglePlayerMenuArt}=await import('../src/menu_art.js');
+const {BuildSinglePlayerMenuArt}=await import('../src/newer/ui/menu_art.js');
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 Deno.test('native menu composition preserves sources, dimensions and missing-art fallback',()=>{
  const sources=[{width:232,height:64,canvas:{}},{width:240,height:112,canvas:{}},{width:232,height:64,canvas:{}},{width:176,height:19,canvas:{}}];

@@ -10,7 +10,7 @@ const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{Cvar_SetValue,
 const {cl,cls}=await import('../src/engine/client/client.js'),{sv,svs}=await import('../src/engine/server/server.js');
 const {SV_LinkEdict,SV_RunTriggerTouch}=await import('../src/engine/server/world.js'),{SV_PushEntity}=await import('../src/engine/server/sv_phys.js');
 const {R_FlashlightRunStatus}=await import('../src/newer/render/r_flashlightrun.js');
-const loading=await import('../src/r_demoloading.js');
+const loading=await import('../src/newer/ui/r_demoloading.js');
 const sound=await import('../src/engine/sound/sound.js'),dma=await import('../src/engine/sound/snd_dma.js');
 const {PR_GetString}=await import('../src/engine/progs/progs.js');
 const keys=await import('../src/engine/client/keys.js'),split=await import('../src/newer/render/r_demosplit.js');

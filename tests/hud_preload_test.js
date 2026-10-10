@@ -26,7 +26,7 @@ async function fixture( fn ) {
 
 Deno.test( 'HUD preload starts all unique catalog images behind fullconsole and shares cached canvases with lazy sprite requests', async () => fixture( async env => {
 	globalThis.fetch = async path => ( { ok: true, json: async () => String(path).includes('/playerface/manifest.json')?faceManifest:({ version: 7, sprites: { face1: 'face.webp', face2: 'face.webp', num_0: 'zero.webp' } }) } );
-	const hud = await import( '../src/r_newerhud.js?preload-success' ), preload = hud.R_NewerHudPreload(); equal( hud.R_NewerHudPreload(), preload, 'preloadidempotent' );
+	const hud = await import( '../src/newer/ui/r_newerhud.js?preload-success' ), preload = hud.R_NewerHudPreload(); equal( hud.R_NewerHudPreload(), preload, 'preloadidempotent' );
 	await flush(); equal( env.images.length, 2+faceSources.size, 'unique catalog plus all donor source images start without Sbar draws' ); equal( hud.R_NewerHudStatus().pending, 3, 'two catalog images and one shared face batch pending' ); check( ! hud.R_NewerHudStatus().settled, 'preload holds until images terminal' );
 	const pic = { _name: 'face1', width: 24, height: 24 }; equal( hud.R_NewerHudCanvas( pic ), null, 'lazy native until decoded' ); await flush(); equal( env.images.length, 2+faceSources.size, 'lazy request shares existing preload promise' );
 	for ( const image of env.images ) image.onload(); await preload; await flush();
@@ -38,7 +38,7 @@ Deno.test( 'HUD preload starts all unique catalog images behind fullconsole and 
 
 Deno.test( 'HUD image timeout/error resolves preload as native fallback and late images cannot populate lazy sprites', async () => fixture( async env => {
 	globalThis.fetch = async () => ( { ok: true, json: async () => ( { sprites: { face1: 'slow.webp', face2: 'missing.webp' } } ) } );
-	const hud = await import( '../src/r_newerhud.js?preload-fallback' ), preload = hud.R_NewerHudPreload(); await flush();
+	const hud = await import( '../src/newer/ui/r_newerhud.js?preload-fallback' ), preload = hud.R_NewerHudPreload(); await flush();
 	const pic = { _name: 'face1' }; hud.R_NewerHudCanvas( pic ); await flush();
 	const slow = env.images.find( image => image.url.includes( 'slow.webp' ) ), late = slow.onload;
 	env.images.find( image => image.url.includes( 'missing.webp' ) ).onerror(); env.expire(); await preload; await flush();
@@ -49,10 +49,10 @@ Deno.test( 'HUD image timeout/error resolves preload as native fallback and late
 } ) );
 
 Deno.test( 'HUD missing and stalled indices settle preload without late catalog requests', async () => fixture( async env => {
-	globalThis.fetch = async () => ( { ok: false } ); const missing = await import( '../src/r_newerhud.js?preload-noindex' ); await missing.R_NewerHudPreload();
+	globalThis.fetch = async () => ( { ok: false } ); const missing = await import( '../src/newer/ui/r_newerhud.js?preload-noindex' ); await missing.R_NewerHudPreload();
 	check( missing.R_NewerHudStatus().settled && missing.R_NewerHudStatus().errors.index, 'missingindexnativefallback' );
 	let release; globalThis.fetch = () => new Promise( resolve => { release = resolve; } );
-	const hud = await import( '../src/r_newerhud.js?preload-indexstall' ), preload = hud.R_NewerHudPreload(); await flush(); equal( hud.R_NewerHudStatus().index, 'loading', 'indexpending' );
+	const hud = await import( '../src/newer/ui/r_newerhud.js?preload-indexstall' ), preload = hud.R_NewerHudPreload(); await flush(); equal( hud.R_NewerHudStatus().index, 'loading', 'indexpending' );
 	env.expire(); await preload; equal( hud.R_NewerHudStatus().index, 'fallback', 'deadlineindexterminal' );
 	release( { ok: true, json: async () => ( { sprites: { face1: 'late.webp' } } ) } ); await flush(); equal( env.images.length, 0, 'lateindexrequestsnoart' ); check( hud.R_NewerHudStatus().settled, 'startupcanrelease' );
 } ) );

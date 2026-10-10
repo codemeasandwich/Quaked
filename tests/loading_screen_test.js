@@ -1,7 +1,7 @@
 // First-load logo screen: index.html's inlined logo stays identical to logo.svg,
 // its crop holds all of the artwork, and the public progress/remove calls drive
 // the fill rectangle through a minimal DOM double.
-import { LoadingScreen_SetProgress, LoadingScreen_Remove } from '../src/loading_screen.js';
+import { LoadingScreen_SetProgress, LoadingScreen_Remove } from '../src/newer/ui/loading_screen.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const near = ( a, b, message ) => check( Math.abs( a - b ) < 1e-9, `${message}: ${a} != ${b}` );

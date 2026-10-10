@@ -53,7 +53,7 @@ import { SV_ClientPrintf, SV_BroadcastPrintf,
 	Host_ShutdownServer, Host_Shutdown } from './host.js';
 import { COM_FindFile, COM_EnsureFile } from '../common/pak.js';
 import { R_FlashlightNewRun, R_FlashlightRunLoaded } from '../../newer/render/r_flashlightrun.js';
-import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../../r_demoloading.js';
+import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../../newer/ui/r_demoloading.js';
 import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../../newer/render/r_shells.js';
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';

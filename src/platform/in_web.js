@@ -64,7 +64,7 @@ let codeToQuakeKey = {}; // built in IN_Init to avoid circular dep in Deno
 */
 
 // Mouse state (replaces DirectInput mouse in in_win.c)
-import { R_BestiaryInputLocked } from '../r_bestiary.js';
+import { R_BestiaryInputLocked } from '../newer/ui/r_bestiary.js';
 let mouse_x = 0;
 let mouse_y = 0;
 let old_mouse_x = 0;

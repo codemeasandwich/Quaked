@@ -18,7 +18,7 @@ import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {cl} from '../src/engine/client/client.js';
 import {entity_t,r_refdef} from '../src/engine/render/render.js';
 import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/newer/assets/r_demonbakes.js';
-import {R_IntroReadinessChecks,R_DemoLoadingWelcome,R_DemoLoadingCancel,R_DemoLoadingStatus} from '../src/r_demoloading.js';
+import {R_IntroReadinessChecks,R_DemoLoadingWelcome,R_DemoLoadingCancel,R_DemoLoadingStatus} from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),read=p=>readFileSync(new URL('../'+p,import.meta.url)),turn=()=>new Promise(r=>setTimeout(r,0));
 async function until(predicate,label){for(let i=0;i<300&&!predicate();i++)await turn();check(predicate(),label);}
 Deno.test('native prepared START preserves exact rendered/caster geometry, blocks pending work without runtime tessellation and keeps Classic/cancellation native',async()=>{

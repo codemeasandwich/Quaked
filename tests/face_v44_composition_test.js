@@ -17,7 +17,7 @@ const source=sourceWindow.faceKit,descriptors=Object.fromEntries(['Image','docum
 Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:()=>canvas.createCanvas(96,96)}});
 class ProductionImage extends canvas.Image{set src(value){super.src=new URL(String(value).split('?')[0]).pathname;}get src(){return super.src;}}
 Object.defineProperty(globalThis,'Image',{configurable:true,value:ProductionImage});globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(readFileSync(new URL(String(url).split('?')[0])))});
-const face=await import('../src/r_playerface.js');await face.R_PlayerFacePreload();
+const face=await import('../src/newer/ui/r_playerface.js');await face.R_PlayerFacePreload();
 const pixels=surface=>Buffer.from(surface.getContext('2d').getImageData(0,0,96,96).data);
 function compare(state,label){const expected=source.renderComposite(state),actual=face.R_PlayerFaceCompose(state);assert.equal(expected.complete,true,label+' source complete');assert.equal(actual.complete,true,label+' production complete');assert.equal(JSON.stringify(actual.selection),JSON.stringify(expected.selection),label+' exact selection/order');assert.ok(pixels(actual.canvas).equals(pixels(expected.canvas)),label+' exact RGBA pixel parity');}
 Deno.test('v4.4 source identity manifest and all 271 PNG extractions are exact',()=>{

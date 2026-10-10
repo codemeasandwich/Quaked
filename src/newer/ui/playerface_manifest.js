@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/playerface_manifest
+ *
+ * Validating the player face kit's manifest (v4.4) before it replaces the native face.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: throws at 1 place.
+ */
 // Validate the complete reviewed v4.4 schema before replacing native HUD art.
 export function validatePlayerFaceManifest(m) {
 	const fail=()=>{throw new Error('invalid v4.4.0 face manifest');};

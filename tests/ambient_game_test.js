@@ -1,5 +1,5 @@
 await import( '../src/engine/render/gl_rsurf.js' );
-const game = await import( '../src/s_ambientgame.js' ), music = await import( '../src/s_ambientmusic.js' );
+const game = await import( '../src/newer/sound/s_ambientgame.js' ), music = await import( '../src/newer/sound/s_ambientmusic.js' );
 const { MediaDouble, ContextDouble } = await import( './ambient_music_test.js' );
 const { cl, cls, cl_entities, SIGNONS, ca_connected } = await import( '../src/engine/client/client.js' );
 const { sv, FL_MONSTER } = await import( '../src/engine/server/server.js' );

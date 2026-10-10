@@ -1,3 +1,15 @@
+/**
+ * @module newer/ui/r_demoloading
+ *
+ * The first attract demo's loading presentation: shared state between the client, the screen and the page.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `phase`, `mode`, `appReady`, `consoleSeen`, `fadeStarted`,
+ * `fadeDone`, `settledFrames`, `frames`, `world`, `revision`, `blocking`, `fallbacks`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // First attract-demo presentation only. No renderer/asset imports: client,
 // screen and DOM boot code share this state without reversing module ownership.
 let phase='idle',mode='demo',appReady=false,consoleSeen=false,fadeStarted=false,fadeDone=false;

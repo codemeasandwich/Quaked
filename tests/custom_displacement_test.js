@@ -11,7 +11,7 @@ import {customModel,addCustomSurface,readyCustom} from './helpers/custom_displac
 import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import {r_hdr} from '../src/newer/render/gl_post.js';
-import {R_IntroReadinessChecks} from '../src/r_demoloading.js';
+import {R_IntroReadinessChecks} from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),turn=()=>new Promise(r=>setTimeout(r,0));let serial=0;
 async function until(fn,label){for(let i=0;i<500&&!fn();i++)await turn();check(fn(),label);}
 async function fixture(run){const root=await fs.mkdtemp(join(tmpdir(),'quaked-custom-cache-')),storage=nativeStorage(root),locks=recordingLocks(),previous=Object.getOwnPropertyDescriptor(globalThis,'navigator'),classic=anim.R_ClassicPassActive();if(!vars.Cvar_FindVar(r_hdr.name))vars.Cvar_RegisterVariable(r_hdr);const hdr=r_hdr.string;vars.Cvar_SetValue('r_hdr',1);anim.R_AnimSetClassicPass(false);Object.defineProperty(globalThis,'navigator',{configurable:true,value:{storage,locks}});const modules=[];

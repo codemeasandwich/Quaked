@@ -22,7 +22,7 @@ import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import {SV_RunClients} from '../src/engine/server/sv_user.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
-import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
+import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
@@ -35,15 +35,15 @@ async function command(value){acknowledge();cmd.Cmd_ExecuteString(value,cmd.src_
 async function fresh(map='e1m1'){vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('skill',1);vars.Cvar_SetValue('sv_seamless',1);return command('map '+map);}
 
 import * as THREE from 'three';
-import * as bestiary from '../src/r_bestiary.js';
-import {Bestiary_FacesPlayer} from '../src/bestiary_state.js';
+import * as bestiary from '../src/newer/ui/r_bestiary.js';
+import {Bestiary_FacesPlayer} from '../src/newer/ui/bestiary_state.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import * as post from '../src/newer/render/gl_post.js';
 import * as host from '../src/engine/server/host.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as input from '../src/engine/client/cl_input.js';
 import {IN_Move} from '../src/platform/in_web.js';
-import * as loading from '../src/r_demoloading.js';
+import * as loading from '../src/newer/ui/r_demoloading.js';
 import * as parts from '../src/engine/render/r_part.js';
 import {R_ShellTrace} from '../src/newer/render/r_shelltrace.js';
 import {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS,MOVE_NORMAL} from '../src/engine/server/world.js';

@@ -34,7 +34,7 @@ import * as render from '../src/engine/render/gl_rmain.js';
 import { r_refdef, entity_t } from '../src/engine/render/render.js';
 import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
-import { Respawn_Sample } from '../src/respawn_motion.js';
+import { Respawn_Sample } from '../src/newer/ui/respawn_motion.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-4)=>check(Math.abs(a-b)<e,`${m}: ${a} != ${b}`);
 const pools=['ammo_shells','ammo_nails','ammo_rockets','ammo_cells'], weapons=[1,2,4,8,16,32,64],powerFields=['invisible_finished','invincible_finished','super_damage_finished','radsuit_finished','invisible_time','invincible_time','super_time','rad_time'];
 const text=i=>progs.PR_GetString(i),fn=n=>{const f=ED_FindFunction(n);check(f,'native function '+n);return progs.pr_functions.indexOf(f);};

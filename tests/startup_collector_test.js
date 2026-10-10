@@ -6,7 +6,7 @@ import {readFileSync} from 'node:fs';
 import {Script} from 'node:vm';
 import * as THREE from 'three';
 import {R_ShaderAssetStamp,R_CompileSceneAsync} from '../src/newer/render/r_shaderwarm.js';
-import * as boot from '../src/r_demoloading.js';
+import * as boot from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),flush=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};
 function collectorFixture(oldStamp=false){
  const source=readFileSync(new URL('../src/engine/render/gl_rmain.js',import.meta.url),'utf8'),begin=source.indexOf('let _needCompile = false;'),end=source.indexOf('export function R_NewMap()',begin);check(begin>=0&&end>begin,'actual collector/warm source boundaries exist');let body=source.slice(begin,end);

@@ -1,7 +1,7 @@
 // Startup-only public coordinator, native console and retained demo packet path.
 // No game/server/browser/GPU is started.
-import * as boot from '../src/r_demoloading.js';
-import { LoadingScreen_FadeOut } from '../src/loading_screen.js';
+import * as boot from '../src/newer/ui/r_demoloading.js';
+import { LoadingScreen_FadeOut } from '../src/newer/ui/loading_screen.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 const settled = () => ( { world: 'maps/e1m1.bsp', signon: 4, rendered: true, pending: [], fallbacks: [] } );

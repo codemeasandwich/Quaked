@@ -1,6 +1,17 @@
+/**
+ * @module newer/sound/s_ambientmusic
+ *
+ * The streamed ambient music: two decks on Quake's audio context, never decoded whole.
+ *
+ * Types: exported classes `AmbientMusicPlayer`.
+ *
+ * State: no mutable exports; module-level variables `player`.
+ *
+ * Errors: catches at 2 places.
+ */
 // Two streamed decks share Quake's unlocked audio context. Never decode this
 // hour-long recording into an AudioBuffer or advance it with simulation time.
-export const AMBIENT_TRACK_URL = new URL( '../music/ambient.mp3', import.meta.url ).href;
+export const AMBIENT_TRACK_URL = new URL( '../../../music/ambient.mp3', import.meta.url ).href;
 export const AMBIENT_SLOT_SECONDS = 20 * 60;
 export const AMBIENT_FADE_SECONDS = 12;
 export const AMBIENT_BASE_GAIN = 0.075;

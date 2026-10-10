@@ -13,7 +13,7 @@ import * as draw from '../src/engine/render/gl_draw.js';
 import * as post from '../src/newer/render/gl_post.js';
 import { cls, ca_disconnected } from '../src/engine/client/client.js';
 import { COM_AddPack } from '../src/engine/common/pak.js';
-import { NEWER_ENABLED_FEATURES } from '../src/newer_defaults.js';
+import { NEWER_ENABLED_FEATURES } from '../src/newer/ui/newer_defaults.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import { NET_Init, NET_Shutdown } from '../src/engine/net/net_main.js';
 import { svs } from '../src/engine/server/server.js';

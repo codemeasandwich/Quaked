@@ -1,6 +1,6 @@
 import '../src/engine/render/gl_rsurf.js';
-import {FaceState} from '../src/face_state.js';
-import {R_PlayerFacePreload,R_PlayerFaceStatus,R_PlayerFaceCompose,R_PlayerFaceLayer} from '../src/r_playerface.js';
+import {FaceState} from '../src/newer/ui/face_state.js';
+import {R_PlayerFacePreload,R_PlayerFaceStatus,R_PlayerFaceCompose,R_PlayerFaceLayer} from '../src/newer/ui/r_playerface.js';
 const $=id=>document.getElementById(id),state=new FaceState({random:()=>.25});let time=0,manifest;
 const pixels=canvas=>canvas.getContext('2d').getImageData(0,0,96,96).data;
 const differ=(a,b)=>{let n=0;for(let i=0;i<a.length;i++)if(a[i]!==b[i])n++;return n;};

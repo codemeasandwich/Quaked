@@ -25,11 +25,11 @@ import {SV_Move,SV_LinkEdict,SV_PointContents,MOVE_NOMONSTERS,MOVE_NORMAL} from 
 import {svc_updatestat} from '../../engine/common/protocol.js';
 import {MSG_WriteByte,MSG_WriteLong} from '../../engine/common/common.js';
 import {Cvar_VariableValue,cvar_t} from '../../engine/common/cvar.js';
-import {Respawn_NoticeSet,Respawn_NoticeClear,RESPAWN_MINUS,RESPAWN_PLUS} from '../../respawn_notice.js';
+import {Respawn_NoticeSet,Respawn_NoticeClear,RESPAWN_MINUS,RESPAWN_PLUS} from '../ui/respawn_notice.js';
 import {Mod_ForName} from '../../engine/render/gl_model.js';
 import {COM_FindFile} from '../../engine/common/pak.js';
 import {sv_gravity,SV_CheckWater} from '../../engine/server/sv_phys.js';
-import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from '../../respawn_motion.js';
+import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from '../ui/respawn_motion.js';
 import {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo} from './respawn_record.js';
 import {IT_AXE,IT_KEY1,IT_KEY2,IT_INVISIBILITY,IT_INVULNERABILITY,IT_QUAD,IT_SUIT,STAT_AMMO,STAT_SHELLS,STAT_NAILS,STAT_ROCKETS,STAT_CELLS,STAT_TOTALMONSTERS} from '../../engine/common/quakedef.js';
 const WEAPON_BITS=127|IT_AXE,POWERS=IT_INVISIBILITY|IT_INVULNERABILITY|IT_QUAD|IT_SUIT;

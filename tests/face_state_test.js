@@ -1,7 +1,7 @@
 // (look names are the artwork's own, from the character's point of view: head_right/eyes_right look toward the screen's left)
 // Independent public controller contracts. All times are game seconds; no
 // wall-clock sleeps, renderer, input mocks or production-state inspection.
-import { FaceState } from '../src/face_state.js';
+import { FaceState } from '../src/newer/ui/face_state.js';
 const check=(value,label)=>{if(!value)throw new Error(label);};
 const same=(actual,expected,label)=>check(actual===expected,`${label}: ${actual} != ${expected}`);
 const create=(random=()=>0)=>new FaceState({random});

@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/respawn_motion
+ *
+ * The respawn's motion law, ported from the owner's clockwise-respawn demo.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Faithful motion-law port from the owner's clockwise-respawn-v1.1.0/app.js.
 // Native Quake coordinates remain Z-up. The proper presentation frame is a
 // coordinate gauge: (P*world,P*camera) renders exactly as (world,camera).

@@ -22,7 +22,7 @@ import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
-import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
+import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));

@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {R_NewerNormalsPrepare,R_NewerNormalsStatus} from '../src/newer/render/r_newertextures.js';
-import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepared} from '../src/normal_prepare.js';
+import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepared} from '../src/newer/assets/normal_prepare.js';
 import {NormalBakeEncode} from '../src/newer/assets/normal_bake_format.js';
 import {NORMAL_BAKES} from '../src/newer/assets/normal_bakes.js';
 import * as anim from '../src/newer/render/r_anim.js';

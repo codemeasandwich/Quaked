@@ -8,7 +8,7 @@ import * as common from '../src/engine/common/common.js';
 import {net_message} from '../src/engine/net/net.js';
 import {V_ParseDamage} from '../src/engine/client/view.js';
 import {CL_ParseClientdata,CL_ParseServerMessage} from '../src/engine/client/cl_parse.js';
-import {R_PlayerFaceFrame,R_FaceShot} from '../src/r_facegame.js';
+import {R_PlayerFaceFrame,R_FaceShot} from '../src/newer/ui/r_facegame.js';
 import * as q from '../src/engine/common/quakedef.js';
 import {svc_foundsecret,svc_killedmonster} from '../src/engine/common/protocol.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);

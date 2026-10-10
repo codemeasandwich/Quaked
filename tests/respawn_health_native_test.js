@@ -35,7 +35,7 @@ import * as render from '../src/engine/render/gl_rmain.js';
 import { r_refdef, entity_t } from '../src/engine/render/render.js';
 import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
-import { Respawn_Sample } from '../src/respawn_motion.js';
+import { Respawn_Sample } from '../src/newer/ui/respawn_motion.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-4)=>check(Math.abs(a-b)<e,`${m}: ${a} != ${b}`);
 const pools=['ammo_shells','ammo_nails','ammo_rockets','ammo_cells'], weapons=[1,2,4,8,16,32,64],powerFields=['invisible_finished','invincible_finished','super_damage_finished','radsuit_finished','invisible_time','invincible_time','super_time','rad_time'];
 const text=i=>progs.PR_GetString(i),fn=n=>{const f=ED_FindFunction(n);check(f,'native function '+n);return progs.pr_functions.indexOf(f);};
@@ -53,7 +53,7 @@ function kill(p,command=false){if(command)call(p,'ClientKill');else{const world=
 function at(p,time){sv.time=time;progs.pr_global_struct.time=time;SV_SetFrametime(.01);SV_Physics_Client(p,1);}
 function finish(p){const s=p._respawn.sequence,cut=s.at+.22+s.turn/2+1e-6,end=s.at+.22+s.turn+.001;if(sv.time<cut)at(p,cut);check(s.respawned,'native physics reaches contact');if(sv.time<end)at(p,end);check(!p._respawn.sequence,'native physics finishes sequence');}
 
-import { Respawn_NoticeAt, Respawn_NoticeClear, RESPAWN_MINUS, RESPAWN_PLUS, RESPAWN_NOTICE_SECONDS } from '../src/respawn_notice.js';
+import { Respawn_NoticeAt, Respawn_NoticeClear, RESPAWN_MINUS, RESPAWN_PLUS, RESPAWN_NOTICE_SECONDS } from '../src/newer/ui/respawn_notice.js';
 import { Respawn_ParsePlayer } from '../src/newer/gameplay/respawn_record.js';
 const state=p=>p._respawn;
 const setSkill=n=>vars.Cvar_SetValue('skill',n);

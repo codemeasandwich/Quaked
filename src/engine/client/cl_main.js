@@ -13,10 +13,10 @@
 import {R_DemonBakeRelease} from '../../newer/assets/r_demonbakes.js';
 import {R_PowerVisionReset} from '../../newer/render/r_powervision.js';
 import {R_QuadVisionReset} from '../../newer/render/r_quadvision.js';
-import {R_FaceGameReset} from '../../r_facegame.js';
+import {R_FaceGameReset} from '../../newer/ui/r_facegame.js';
 import { SV_RendVeilClientRecord } from '../../newer/gameplay/sv_rendveil.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
-import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from '../../r_demoloading.js';
+import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from '../../newer/ui/r_demoloading.js';
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,

@@ -18,7 +18,7 @@ import {R_DemonSurfaceData} from '../src/newer/render/r_demonrelief.js';
 import {DemonBakeEncode,DemonSurfaceSignature,DemonFieldSettings} from '../src/newer/assets/demon_bake_format.js';
 import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/newer/assets/r_demonbakes.js';
 import {DEMON_BAKES} from '../src/newer/assets/demon_bakes.js';
-import {R_IntroReadinessChecks} from '../src/r_demoloading.js';
+import {R_IntroReadinessChecks} from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),read=p=>readFileSync(new URL('../'+p,import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);
 function member(path,name){const fd=openSync(new URL('../'+path,import.meta.url),'r');try{const h=Buffer.alloc(12);readSync(fd,h,0,12,0);same(h.toString('ascii',0,4),'PACK','original archive');const size=h.readInt32LE(8),dir=Buffer.alloc(size);same(readSync(fd,dir,0,size,h.readInt32LE(4)),size,'complete directory');for(let i=0;i<size;i+=64)if(dir.subarray(i,i+56).toString().split('\0')[0]===name){const n=dir.readInt32LE(i+60),bytes=Buffer.alloc(n);same(readSync(fd,bytes,0,n,dir.readInt32LE(i+56)),n,'complete original BSP');return bytes;}throw Error('Missing native member '+name);}finally{closeSync(fd);}}
 Deno.test('actual E3M4 face5570 native-only outcome completes world/shadow readiness without regeneration or changing native backing',async()=>{

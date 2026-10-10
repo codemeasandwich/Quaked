@@ -16,7 +16,7 @@ import * as main from '../src/engine/render/gl_rmain.js';
 import {R_DrawWorld,R_DemonReliefStatus} from '../src/engine/render/gl_rsurf.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as boot from '../src/r_demoloading.js';
+import * as boot from '../src/newer/ui/r_demoloading.js';
 import {R_DemonBakeStatus} from '../src/newer/assets/r_demonbakes.js';
 import {NET_Init,NET_Connect,NET_CheckNewConnections,NET_Shutdown} from '../src/engine/net/net_main.js';
 import {Cbuf_Init,Cmd_Init} from '../src/engine/common/cmd.js';

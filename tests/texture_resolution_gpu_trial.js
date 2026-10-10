@@ -5,7 +5,7 @@ import * as height from '../src/newer/render/r_heightshadows.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
-import {NormalInputs,NormalInputKey} from '../src/normal_prepare.js';
+import {NormalInputs,NormalInputKey} from '../src/newer/assets/normal_prepare.js';
 const report=document.querySelector('#report'),views=document.querySelector('#views'),button=document.querySelector('#run'),download=document.querySelector('#download');
 download.onclick=()=>{if(!window.textureResolutionResult)return;const url=URL.createObjectURL(new Blob([JSON.stringify(window.textureResolutionResult,null,2)+'\n'],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='texture-resolution-receipt.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,height.r_heightshadows];for(const c of controls)if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);

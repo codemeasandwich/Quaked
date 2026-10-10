@@ -1,12 +1,24 @@
+/**
+ * @module newer/ui/r_playerface
+ *
+ * The player's status-bar face, composed in layers from the supplied v4.4.0 kit.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `M`, `SIZE`, `assets`, `poses`, `ready`, `loading`; 2
+ * module-level collections (Map/Set).
+ *
+ * Errors: throws at 2 places; catches at 2 places.
+ */
 // Canvas layer composition ported from the owner-supplied v4.4.0 face kit.
 // Keep full-cell origins, nearest sampling, manifest registration and layer order.
 import { validatePlayerFaceManifest } from './playerface_manifest.js';
 import { faceWaterStage } from './face_state.js';
-import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
+import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 let M, SIZE=96, assets, poses, ready=false, loading=null;
 const images=new Map(),failed=new Set(),cache=new Map();
 const BASE='newer/hud/playerface/';
-const fallback=path=>new URL('../'+path,import.meta.url).href;
+const fallback=path=>new URL('../../../'+path,import.meta.url).href;
 export function R_PlayerFaceStatus(){return {state:ready?(failed.size?'fallback':'ready'):loading?'loading':'idle',settled:ready||!loading,pending:ready?0:loading?1:0,errors:[...failed],version:M?.version||null,assets:M?.assets?.length||0,loadedImages:images.size};}
 export function R_PlayerFacePreload(){
  if(loading)return loading;

@@ -1,3 +1,16 @@
+/**
+ * @module newer/ui/bestiary_state
+ *
+ * The Bestiary's journal: which creatures have been discovered, kept in the browser profile.
+ *
+ * Types: exported classes `BestiaryJournal`, `BestiaryEncounter`.
+ *
+ * State: no mutable exports; 2 module-level collections (Map/Set); browser storage.
+ *
+ * Errors: throws at 1 place; catches at 3 places.
+ *
+ * Discovery is stored in localStorage (`quaked.bestiary.v1`).
+ */
 // Persistent discovery belongs to the browser profile, not a game/save/map.
 export function Bestiary_FacesPlayer(angles,origin,playerOrigin) {
  for(let i=0;i<3;i++)if(!Number.isFinite(angles?.[i])||!Number.isFinite(origin?.[i])||!Number.isFinite(playerOrigin?.[i]))return false;

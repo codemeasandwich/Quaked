@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/loading_screen
+ *
+ * The first-load screen: the logo, the progress and the hand-over to the game.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // The first-load screen in index.html: the Quaked logo (logo.svg, inlined so it
 // shows before any script or fetch) sits dim in the centre of a black page and
 // fills with white from the bottom up as pak0.pak downloads. The fill is a

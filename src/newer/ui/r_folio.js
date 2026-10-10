@@ -1,3 +1,17 @@
+/**
+ * @module newer/ui/r_folio
+ *
+ * The Bestiary's pencil replay: a first-sighting page drawn as if by pencil, from prepared data.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `index`, `indexState`, `gl`, `canvas`, `program`, `textures`,
+ * `uniforms`, `lost`, `shownFor`; 1 module-level collection (Map/Set).
+ *
+ * Errors: throws at 4 places; catches at 4 places.
+ *
+ * Fetches its index as it loads; a page not ready, or without WebGL2, keeps the line reveal.
+ */
 // The Bestiary's pencil replay (card: Folio pencil fast replay): on the first-discovery page, the creature's illustration
 // and notes are drawn as if by pencil, from the owner-supplied folio-pencil-fast-replay.html (sha256 b8647694…).
 //
@@ -16,10 +30,10 @@
 // upload that fails) keeps the line reveal. The replay's canvas and its three page-sized textures (about 25 MB of GPU
 // memory) live for the session.
 
-import { COM_NewerURL } from './engine/common/pak.js';
+import { COM_NewerURL } from '../../engine/common/pak.js';
 
 const FOLDER = 'newer/bestiary/folio/';
-const url = file => COM_NewerURL( FOLDER + file, new URL( '../' + FOLDER + file, import.meta.url ).href );
+const url = file => COM_NewerURL( FOLDER + file, new URL( '../../../' + FOLDER + file, import.meta.url ).href );
 
 let index = null, indexState = 'idle'; // 'idle' | 'loading' | 'ready' | 'failed'
 const pages = new Map(); // id -> { state, reveal, paper, duration, speed }, the last KEEP pages met

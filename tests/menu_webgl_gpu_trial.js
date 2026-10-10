@@ -1,4 +1,4 @@
-import { QuakeMenu } from '../src/menu_webgl_source.js';
+import { QuakeMenu } from '../src/newer/ui/menu_webgl_source.js';
 const report = document.querySelector( '#report' ), button = document.querySelector( '#run' );
 const wait = ms => new Promise( resolve => setTimeout( resolve, ms ) );
 async function until( test, name ) {

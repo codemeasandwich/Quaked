@@ -29,7 +29,7 @@ export function R_RockPageHash( id, x, y ) {
  return ( Math.imul( x, 73856093 ) ^ Math.imul( y, 19349663 ) ^ Math.imul( id, 83492791 ) ) & ( ROCK_TABLE_SIZE - 1 );
 }
 export class RockTileCache {
- constructor( workerFactory = () => new Worker( new URL( '../../rockfield_worker.js', import.meta.url ), { type: 'module' } ), { bakeSource = null } = {} ) {
+ constructor( workerFactory = () => new Worker( new URL( '../assets/rockfield_worker.js', import.meta.url ), { type: 'module' } ), { bakeSource = null } = {} ) {
   this.bakeSource=bakeSource;this.generated=0;this.prepared=0;this.capacity=ROCK_PAGES;this.protected=new Set();this.batch=false;this.dirty=false;
   this.workerFactory = workerFactory; this.workers = []; this.pending = new Map(); this.tiles = new Map(); this.failed = new Set(); this.epoch = 0; this.serial = 0; this.access = 0; this.error = null; this.probes = { value: 1 };
   const heights = new Uint16Array( ROCK_SIDE * ROCK_SIDE * ROCK_PAGES );

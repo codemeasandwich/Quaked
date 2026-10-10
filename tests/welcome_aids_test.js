@@ -28,7 +28,7 @@ import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
-import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
+import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const aids=()=>[r_flashlight.value,crosshair.value],expect=(a,m)=>same(aids().join(),a.join(),m),setAids=(f,c)=>{vars.Cvar_SetValue('r_flashlight',f);vars.Cvar_SetValue('crosshair',c);};
 for(const path of ['pak0.pak','newer/maps.pak']){const b=readFileSync(new URL('../'+path,import.meta.url)),p=pak.COM_LoadPackFile(path,b.buffer.slice(b.byteOffset,b.byteOffset+b.length));if(path==='pak0.pak')pak.COM_AddPack(p);else pak.COM_SetNewerMapsPack(p);}

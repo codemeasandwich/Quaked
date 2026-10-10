@@ -1,3 +1,15 @@
+/**
+ * @module newer/ui/r_newerhud
+ *
+ * Newer Game's status bar graphics: higher-resolution versions of the original sprites.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `index`, `indexPromise`, `version`, `indexState`, `preloadState`,
+ * `preloadPromise`; 3 module-level collections (Map/Set).
+ *
+ * Errors: throws at 1 place; catches at 3 places.
+ */
 // Newer Game's status bar graphics: our own higher resolution versions of the
 // original sprites (see newer/hud/CREDITS.txt).
 //
@@ -5,8 +17,8 @@
 // sprite is drawn the ordinary way until its higher resolution picture has arrived;
 // the picture is still laid out at the sprite's original size, so nothing moves.
 
-import { R_NewerGame, r_newer_hud } from './newer/render/r_anim.js';
-import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
+import { R_NewerGame, r_newer_hud } from '../render/r_anim.js';
+import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import { R_PlayerFacePreload, R_PlayerFaceStatus } from './r_playerface.js';
 
 const BASE = 'newer/hud/';

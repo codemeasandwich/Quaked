@@ -26,9 +26,9 @@ import {CL_ParseServerMessage} from '../src/engine/client/cl_parse.js';
 import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
-import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
+import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 import {SV_FaceLocalActive} from '../src/newer/gameplay/sv_faceevents.js';
-import {R_FaceWater,R_PlayerFaceFrame} from '../src/r_facegame.js';
+import {R_FaceWater,R_PlayerFaceFrame} from '../src/newer/ui/r_facegame.js';
 import {IT_SUIT,IT_QUAD,STAT_HEALTH} from '../src/engine/common/quakedef.js';
 import {CONTENTS_WATER} from '../src/engine/common/bspfile.js';
 

@@ -6,7 +6,7 @@ import {DEMON_BAKES} from '../src/newer/assets/demon_bakes.js';
 import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/newer/assets/r_demonbakes.js';
 import {R_DemonSurfaceData} from '../src/newer/render/r_demonrelief.js';
 import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
-import {R_IntroReadinessChecks} from '../src/r_demoloading.js';
+import {R_IntroReadinessChecks} from '../src/newer/ui/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bytes=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength),sha=a=>createHash('sha256').update(a instanceof ArrayBuffer?new Uint8Array(a):a).digest('hex'),ab=a=>a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength),turn=()=>new Promise(r=>setTimeout(r,0));
 async function until(predicate,label){for(let i=0;i<100&&!predicate();i++)await turn();check(predicate(),label);}
 const makeSurface=()=>{const field={width:2,height:2,data:new Float32Array([.1,.2,.3,.4]),sampling:'clamp',displacement:{depth:4,step:2,smoothing:0}};return{flags:0,plane:{normal:[0,0,1],dist:0},texinfo:{texture:{name:'dem4_1',width:64,height:128,gl_texture:{userData:{newerHeight:field}}},vecs:[[8,0,0,0],[0,16,0,0]]},polys:{numverts:3,verts:new Float32Array([0,0,0,0,0,.1,.2,8,0,0,1,0,.2,.2,0,8,0,0,1,.1,.3]),next:null}};};

@@ -1,3 +1,14 @@
+/**
+ * @module newer/ui/newer_defaults
+ *
+ * Which enhancement switches a Newer Game launch turns on.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Explicit Newer launches begin with the enhancement switches enabled. This
 // is launch policy, not a per-frame override: feature controls remain effective
 // during play. Numeric appearance/performance settings and flashlight run

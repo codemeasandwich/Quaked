@@ -23,7 +23,7 @@ import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
-import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
+import {R_DemoLoadingCancel} from '../src/newer/ui/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
 pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));
@@ -61,7 +61,7 @@ Deno.test('native event bridge excludes demo, remote and multiplayer and clears 
  svs.maxclients=2;native(p,'W_Attack');same(face.SV_FaceDrain('shot').length,0,'multiplayer excluded');svs.maxclients=1;
  native(p,'W_Attack');p=await fresh('e1m2');same(face.SV_FaceDrain('shot').length,0,'world/progs transition cannot replay old shots');acknowledge();CL_Disconnect_f();
 });
-const gameface=await import('../src/r_facegame.js');
+const gameface=await import('../src/newer/ui/r_facegame.js');
 const {in_attack}=await import('../src/engine/client/cl_input.js');
 const Q=await import('../src/engine/common/quakedef.js');
 function portrait(p,t){cl.worldmodel=sv.worldmodel;cl.time=t;cl.stats[Q.STAT_HEALTH]=p.v.health;cl.stats[Q.STAT_AMMO]=p.v.currentammo;cl.stats[Q.STAT_ACTIVEWEAPON]=p.v.weapon;cl.stats[Q.STAT_WEAPONFRAME]=p.v.weaponframe;cl.items=p.v.items;return gameface.R_PlayerFaceFrame();}

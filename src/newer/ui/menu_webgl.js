@@ -1,6 +1,19 @@
+/**
+ * @module newer/ui/menu_webgl
+ *
+ * The supplied WebGL2 menu renderer (glyphs, bronze panels, selector) drawn over Quake's native menu, which keeps the
+ * actions and input.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `renderer`, `loading`, `failed`, `visible`, `epoch`, `frameSkin`,
+ * `presented`, `commands`, `blits`, `size`, `inGameSnapshot`; 1 module-level collection (Map/Set).
+ *
+ * Errors: catches at 3 places.
+ */
 // Reuses the supplied WebGL2 glyph, bronze panel and selector renderer across
 // Quaked's native menu stack. menu.js remains the only action/input owner.
-import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionImage, Draw_GetUIScale } from './engine/render/gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionImage, Draw_GetUIScale } from '../../engine/render/gl_draw.js';
 
 let renderer = null, loading = null, failed = null, visible = false, epoch = 0;
 let frameSkin = false, presented = false, commands = [], blits = [], size = [ 0, 0 ];

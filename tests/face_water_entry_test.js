@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import {faceWaterStage,FaceWaterState} from '../src/face_state.js';
-import {waterSelection} from '../src/r_playerface.js';
+import {faceWaterStage,FaceWaterState} from '../src/newer/ui/face_state.js';
+import {waterSelection} from '../src/newer/ui/r_playerface.js';
 
 Deno.test('submersion immediately shows W1 and full visor starts at ninety percent air used',()=>{
 	for(let boundary=0;boundary<=90;boundary+=10){

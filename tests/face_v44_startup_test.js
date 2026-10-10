@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {COM_LoadPackFile,COM_SetNewerStartupPack,COM_SetNewerPack,COM_NewerFile,COM_NewerURL,COM_NewerJSON} from '../src/engine/common/pak.js';
-import {STARTUP_PACK} from '../src/startup_pack.js';
+import {STARTUP_PACK} from '../src/newer/assets/startup_pack.js';
 const read=path=>readFileSync(new URL('../'+path,import.meta.url)),ab=bytes=>bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length),manifest=JSON.parse(read('newer/hud/playerface/manifest.json'));
 function direct(entries){let offset=0;const files=[];for(const[name,value]of entries){const bytes=Buffer.from(value);files.push({name,filepos:offset,filelen:bytes.length,bytes});offset+=bytes.length;}const all=new Uint8Array(offset);for(const file of files)all.set(file.bytes,file.filepos);return{files,data:all.buffer};}
 Deno.test('mounting current startup invalidates stale face blobs and pins all 270 referenced images while other override precedence survives',async()=>{

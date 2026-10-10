@@ -4,7 +4,7 @@ import * as THREE from 'three';
 await import( '../main.js' );
 const draw = await import( '../src/engine/render/gl_draw.js' );
 const sbar = await import( '../src/engine/client/sbar.js' );
-const hud = await import( '../src/r_newerhud.js' );
+const hud = await import( '../src/newer/ui/r_newerhud.js' );
 const split = await import( '../src/newer/render/r_demosplit.js' );
 const vid = await import( '../src/engine/render/vid.js' );
 const anim = await import( '../src/newer/render/r_anim.js' );

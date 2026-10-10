@@ -124,7 +124,7 @@ if ( ! isMainThread ) {
 
 } else if ( process.argv[ 1 ] && path.resolve( process.argv[ 1 ] ) === fileURLToPath( import.meta.url ) ) {
 
-	const { BESTIARY_ENTRIES } = await import( path.join( ROOT, 'src/bestiary_state.js' ) );
+	const { BESTIARY_ENTRIES } = await import( path.join( ROOT, 'src/newer/ui/bestiary_state.js' ) );
 	const wanted = process.argv.slice( 2 ), entries = BESTIARY_ENTRIES.filter( e => e.image && ( ! wanted.length || wanted.includes( e.id ) ) );
 	fs.mkdirSync( OUT, { recursive: true } );
 	const indexPath = path.join( OUT, 'index.json' );

@@ -9,7 +9,7 @@
  *
  * Errors: throws at 2 places; catches at 1 place.
  */
-import {STARTUP_NORMAL_BAKES} from '../../startup_normal_bakes.js';
+import {STARTUP_NORMAL_BAKES} from './startup_normal_bakes.js';
 import {NORMAL_BAKES} from './normal_bakes.js';
 import {NormalTransport} from './normal_transport.js';
 import {DisplacementHash} from './displacement_store.js';

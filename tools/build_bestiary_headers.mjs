@@ -2,8 +2,8 @@
 // the runtime can request a heading without downloading hidden creature art.
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {BESTIARY_ENTRIES} from '../src/bestiary_state.js';
-import {Bestiary_HeaderHeight} from '../src/bestiary_art.js';
+import {BESTIARY_ENTRIES} from '../src/newer/ui/bestiary_state.js';
+import {Bestiary_HeaderHeight} from '../src/newer/ui/bestiary_art.js';
 const {createCanvas,loadImage}=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js');
 const root=new URL('../newer/bestiary/',import.meta.url),out=new URL('headers/',root);await mkdir(out,{recursive:true});
 const files={};

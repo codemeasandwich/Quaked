@@ -1,3 +1,14 @@
+/**
+ * @module newer/sound/s_exitmachine
+ *
+ * E1M1's exit machine drone, heard on the approach.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // E1M1's native exit drone used to become audible only inside the machine
 // room. Its approach ramp begins at (1312,1248,-344), about 810 units away
 // from the existing source (1314,450,-200). Reuse that loop and effects bus;

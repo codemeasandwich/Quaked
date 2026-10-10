@@ -1,8 +1,19 @@
+/**
+ * @module newer/ui/r_bestiary_book
+ *
+ * The Bestiary book: its cover, spreads and page turns.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `spread`, `turn`, `pending`, `encounterStyle`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Book presentation only. The runtime owns discovery, persistence, camera and
 // simulation timing. Discovered folios are blitted unchanged; locked folios
 // combine the supplied blank template with a separate authored title crop.
-import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from './engine/render/gl_draw.js';
-import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from './engine/client/keys.js';
+import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from '../../engine/render/gl_draw.js';
+import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from '../../engine/client/keys.js';
 import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiarySpreads, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry, R_BestiaryArtLoading } from './r_bestiary.js';
 import { R_FolioPrepare, R_FolioPlate, R_FolioSeconds } from './r_folio.js';
 

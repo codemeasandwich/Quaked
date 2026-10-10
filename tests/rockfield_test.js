@@ -189,7 +189,7 @@ Deno.test( 'public worker requests return source-identical transferable tiles an
 	Object.defineProperty( globalThis, 'self', { configurable: true, value: { postMessage: ( result, transfers ) => replies.push( { result, transfers } ) } } );
 	try {
 
-		await import( '../src/rockfield_worker.js' );
+		await import( '../src/newer/assets/rockfield_worker.js' );
 		for ( const [ id, profile, x, y ] of [ [ 1, 'wall', -2, 3 ], [ 2, 'ground', 1, -1 ], [ 3, 'wall', -2, 3 ] ] ) {
 
 			const config = { profile, cells: 16 }; globalThis.self.onmessage( { data: { id, config, x, y } } );

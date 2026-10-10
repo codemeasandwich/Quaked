@@ -4,7 +4,7 @@
 import {readFileSync} from 'node:fs';
 import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/engine/render/gl_draw.js';
-import * as gpu from '../src/menu_webgl.js';
+import * as gpu from '../src/newer/ui/menu_webgl.js';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as pak from '../src/engine/common/pak.js';

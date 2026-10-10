@@ -2,9 +2,9 @@ const panel=document.querySelector('section'),status=document.querySelector('#st
 for(const type of['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(type,e=>e.stopPropagation());
 window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
-const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/engine/client/menu.js'),draw=await import('../src/engine/render/gl_draw.js'),keys=await import('../src/engine/client/keys.js'),bestiary=await import('../src/r_bestiary.js');
+const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/engine/client/menu.js'),draw=await import('../src/engine/render/gl_draw.js'),keys=await import('../src/engine/client/keys.js'),bestiary=await import('../src/newer/ui/r_bestiary.js');
 const {sv,FL_GODMODE,FL_NOTARGET}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/engine/client/client.js'),progs=await import('../src/engine/progs/progs.js');
-const {SV_Move,SV_LinkEdict,MOVE_NORMAL,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),{R_ShellTrace}=await import('../src/newer/render/r_shelltrace.js'),loading=await import('../src/r_demoloading.js'),render=await import('../src/engine/render/gl_rmain.js');
+const {SV_Move,SV_LinkEdict,MOVE_NORMAL,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),{R_ShellTrace}=await import('../src/newer/render/r_shelltrace.js'),loading=await import('../src/newer/ui/r_demoloading.js'),render=await import('../src/engine/render/gl_rmain.js');
 const vars=await import('../src/engine/common/cvar.js');
 let ready=false,generation=0,stage=null,pauseCheck=null;
 const touch=(x,y)=>{const w=draw.Draw_GetVirtualWidth(),h=draw.Draw_GetVirtualHeight();menu.M_TouchInput(x+(w-320)/2,y+(h-200)/2,w,h);};

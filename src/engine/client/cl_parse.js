@@ -32,7 +32,7 @@ import { sv, svs } from '../server/server.js';
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cmd_ExecuteString } from '../common/cmd.js';
 import { src_command } from '../common/cmd.js';
-import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../../r_facegame.js';
+import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../../newer/ui/r_facegame.js';
 import {
 	PROTOCOL_VERSION,
 	svc_bad, svc_nop, svc_disconnect, svc_updatestat, svc_version,

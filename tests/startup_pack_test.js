@@ -1,6 +1,6 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {STARTUP_PACK} from '../src/startup_pack.js';
+import {STARTUP_PACK} from '../src/newer/assets/startup_pack.js';
 import {COM_LoadPackFile,COM_SetNewerStartupPack,COM_SetNewerPack,COM_NewerFile,COM_NewerURL} from '../src/engine/common/pak.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),read=p=>readFileSync(new URL('../'+p,import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);
 const pack=()=>COM_LoadPackFile('independent-startup-pack',ab(read(STARTUP_PACK.file)));

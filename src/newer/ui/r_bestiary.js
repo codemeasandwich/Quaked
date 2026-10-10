@@ -1,22 +1,35 @@
+/**
+ * @module newer/ui/r_bestiary
+ *
+ * The Bestiary's first-sighting page: the camera move, the page and its timing.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `frontComposite`, `frontCompositeMask`, `frontBlank`, `frontArt`,
+ * `clock`, `world`, `target`, `cooldown`, `base`, `program`, `rogueOgre`, `splittingSpawn` and 2 more; 2 module-level
+ * collections (Map/Set).
+ *
+ * Errors: catches at 1 place.
+ */
 // First-sighting presentation borrows the renderer camera. It never moves the
 // player, changes their view angles, or writes pause/timescale preferences.
 import * as THREE from 'three';
 import {BESTIARY_ENTRIES,BESTIARY_SPREADS,BestiaryJournal,BestiaryEncounter,Bestiary_Identify,Bestiary_FacesPlayer} from './bestiary_state.js';
-import {cl,cls,cl_entities,ca_connected} from './engine/client/client.js';
-import {sv,svs,MOVETYPE_NONE} from './engine/server/server.js';
-import {PR_GetString,pr_functions} from './engine/progs/progs.js';
-import {GetEdictFieldValue} from './engine/progs/pr_edict.js';
+import {cl,cls,cl_entities,ca_connected} from '../../engine/client/client.js';
+import {sv,svs,MOVETYPE_NONE} from '../../engine/server/server.js';
+import {PR_GetString,pr_functions} from '../../engine/progs/progs.js';
+import {GetEdictFieldValue} from '../../engine/progs/pr_edict.js';
 import {Bestiary_ComposeFrontispiece,Bestiary_FrontispieceMask} from './bestiary_art.js';
-import {key_dest,key_game} from './engine/client/keys.js';
-import {R_NewerGame} from './newer/render/r_anim.js';
+import {key_dest,key_game} from '../../engine/client/keys.js';
+import {R_NewerGame} from '../render/r_anim.js';
 import {R_IntroLoadingHolding} from './r_demoloading.js';
-import {R_ShellTrace} from './newer/render/r_shelltrace.js';
-import {isXRActive} from './platform/webxr.js';
-import {COM_NewerURL} from './engine/common/pak.js';
+import {R_ShellTrace} from '../render/r_shelltrace.js';
+import {isXRActive} from '../../platform/webxr.js';
+import {COM_NewerURL} from '../../engine/common/pak.js';
 import { R_FolioPrepare } from './r_folio.js';
-import {CL_SuspendGameButtons} from './engine/client/cl_input.js';
-import {Touch_GetLookDelta,Touch_WeaponMenuActive} from './platform/touch.js';
-import {SV_SeamlessPending} from './newer/gameplay/sv_seamless.js';
+import {CL_SuspendGameButtons} from '../../engine/client/cl_input.js';
+import {Touch_GetLookDelta,Touch_WeaponMenuActive} from '../../platform/touch.js';
+import {SV_SeamlessPending} from '../gameplay/sv_seamless.js';
 
 const journal=new BestiaryJournal(),encounter=new BestiaryEncounter(),images=new Map(),imageStates=new Map(),imageAt=new Map();
 let frontComposite=null,frontCompositeMask=-1,frontBlank=null,frontArt=null;
@@ -58,7 +71,7 @@ function artwork(id,file){
   imageStates.set(id,'loading');const image=new Image();let terminal=false;
   const finish=ok=>{if(terminal)return;terminal=true;clearTimeout(timer);image.onload=image.onerror=null;imageStates.set(id,ok?'ready':'fallback');if(ok){images.set(id,image);imageAt.set(id,clock);}};
   const timer=setTimeout(()=>{finish(false);image.src='';},30000);image.onload=()=>finish(true);image.onerror=()=>finish(false);
-  try{image.src=COM_NewerURL('newer/bestiary/'+file,new URL('../newer/bestiary/'+file,import.meta.url).href);}catch{finish(false);}
+  try{image.src=COM_NewerURL('newer/bestiary/'+file,new URL('../../../newer/bestiary/'+file,import.meta.url).href);}catch{finish(false);}
  }
  return images.get(id)||null;
 }

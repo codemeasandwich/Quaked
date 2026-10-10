@@ -8,8 +8,8 @@ while ( ! window.Cbuf_AddText ) { if ( performance.now() > deadline ) throw Erro
 const pred = await import( '../src/engine/client/cl_pred.js' );
 const cmd = await import( '../src/engine/common/cmd.js' ), { sv } = await import( '../src/engine/server/server.js' ), { cl, cls, cl_entities } = await import( '../src/engine/client/client.js' );
 const { PR_GetString } = await import( '../src/engine/progs/progs.js' ), { SV_Move, SV_LinkEdict } = await import( '../src/engine/server/world.js' ), keys = await import( '../src/engine/client/keys.js' );
-const bestiary = await import( '../src/r_bestiary.js' );
-const split = await import( '../src/newer/render/r_demosplit.js' ), loading = await import( '../src/r_demoloading.js' ), skins = await import( '../src/newer/render/r_newerskins.js' );
+const bestiary = await import( '../src/newer/ui/r_bestiary.js' );
+const split = await import( '../src/newer/render/r_demosplit.js' ), loading = await import( '../src/newer/ui/r_demoloading.js' ), skins = await import( '../src/newer/render/r_newerskins.js' );
 const { renderer } = await import( '../src/engine/render/vid.js' );
 let ready = false, target = null, kind = 'soldier', cursor = -1, generation = 0, receipt = null, faceOnly = true, capturePending = false;
 function inspect() {

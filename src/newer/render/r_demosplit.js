@@ -9,9 +9,9 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-import { NEWER_ENABLED_FEATURES } from '../../newer_defaults.js';
+import { NEWER_ENABLED_FEATURES } from '../ui/newer_defaults.js';
 import { R_FlashlightRunSync } from './r_flashlightrun.js';
-import { R_DemoLoadingCancel } from '../../r_demoloading.js';
+import { R_DemoLoadingCancel } from '../ui/r_demoloading.js';
 // The title demo, half and half: the left of the screen in Newer Game, the right in the classic look, the same
 // picture of the same demo, drawn live, so the two can be compared.
 //
