@@ -15,7 +15,7 @@ server's copies and the rest) are closed in [44g], after the moves. See the base
 | `src/engine/progs` | The QuakeC virtual machine and its built-ins | [44b] | yes |
 | `src/engine/server` | Host, server, world, physics, player movement | [44b] | yes |
 | `src/newer/gameplay` | Newer Game's server-side rules and the records they save | [44b] | yes |
-| `src/engine/net`, `src/engine/client`, `src/engine/sound`, `src/platform` | Networking, the client, sound, browser input, touch and WebXR | [44c] | not yet |
+| `src/engine/net`, `src/engine/client`, `src/engine/sound`, `src/platform` | Networking, the client, sound, browser input, touch and WebXR | [44c] | yes |
 | `src/engine/render`, `src/newer/render` (models and animation) | The GL renderer port; poses, skins, held weapons, bodies, level windows | [44d] | not yet |
 | `src/newer/render` (the rest), `src/newer/assets` (prepared data) | Effects, materials, post-processing, portals, vision; bakes and their formats | [44e] | not yet |
 | `src/newer/ui`, `src/newer/sound`, `src/newer/assets` (preparation) | Menu, loading, HUD, Bestiary; ambient music; asset preparation | [44f] | not yet |
@@ -85,6 +85,17 @@ What the tool cannot do, and is checked by hand at each move:
 * The module graph is unchanged: both architecture tools pass; 206 modules (and 50 adapters); the same cycles (83, 4, 2,
   2; the engine's own 41); the room server and the page load the same modules (198 and 202, as before with the face
   overlays).
+
+## [44c]: what moved
+
+26 modules: 13 into `engine/client`, 4 into `engine/net`, 5 into `engine/sound`, 4 into `platform`.
+
+* 691 literal paths in 203 files were rewritten, among them the TypeScript server's import of `src/net.js`, two source
+  reads (`fireball_test` reads `cl_main.js`, `studio_logo_test` reads `menu.js`) and two import map entries in
+  `tests/rend_veil_gameplay_trial.html`.
+* The moves and the adapters are two commits, written by the tool's two steps.
+* Unchanged: both architecture tools pass; 206 modules (and 76 adapters); the same cycles; the room server and the page
+  load 198 and 202 modules. In the browser the page starts Newer Game and Classic, and the menu answers the keyboard.
 
 ## Checks for each move
 
