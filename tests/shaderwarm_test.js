@@ -2,7 +2,7 @@
 // Real Three materials emit their real disposal event; the controlled compiler
 // models Three's asynchronous polling of the material's currentProgram record.
 import * as THREE from 'three';
-import { R_CompileSceneAsync } from '../src/r_shaderwarm.js';
+import { R_CompileSceneAsync } from '../src/newer/render/r_shaderwarm.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );
 function deferred() { let resolve, reject; const promise = new Promise( ( a, b ) => { resolve = a; reject = b; } ); return { promise, resolve, reject }; }

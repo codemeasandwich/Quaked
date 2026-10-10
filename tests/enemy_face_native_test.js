@@ -19,7 +19,7 @@ import { R_AddLevelRunner, R_MoveLevelRunner, R_ClearLevelRunners, R_ClearLevelV
 import { Axe_ParseRecord } from '../src/newer/gameplay/axe_record.js';
 import { Face_Index } from '../src/newer/render/enemy_face.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { CL_ParseUpdate, CL_EntityNum } from '../src/engine/client/cl_parse.js';
 import { cl, cls, cl_visedicts, cl_numvisedicts } from '../src/engine/client/client.js';
 import { CL_RelinkEntities } from '../src/engine/client/cl_main.js';

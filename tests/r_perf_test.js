@@ -1,4 +1,4 @@
-import * as perf from '../src/r_perf.js';
+import * as perf from '../src/newer/render/r_perf.js';
 
 function assertEqual( actual, expected, message ) {
 

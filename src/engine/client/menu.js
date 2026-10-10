@@ -20,10 +20,10 @@ import { NEWER_ENABLED_FEATURES } from '../../newer_defaults.js';
 import { MainMenu_Begin, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_TextBox,
 	MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text } from '../../menu_webgl.js';
 import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from '../../r_bestiary_book.js';
-import { R_FlashlightToggle } from '../../r_flashlight.js';
+import { R_FlashlightToggle } from '../../newer/render/r_flashlight.js';
 import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from '../../r_demoloading.js';
 import { Draw_StudioLogo } from '../../studio_logo.js';
-import { R_DemoSplitActive, R_DemoSplitRelease } from '../../r_demosplit.js';
+import { R_DemoSplitActive, R_DemoSplitRelease } from '../../newer/render/r_demosplit.js';
 import { Cbuf_AddText } from '../common/cmd.js';
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { Con_Printf, Con_ToggleConsole_f } from '../common/console.js';

@@ -9,7 +9,7 @@ const { cl, cls } = await import( '../src/engine/client/client.js' ), { sv } = a
 const { R_ShellsStatus, R_ShellsSnapshot } = await import( '../src/newer/render/r_shells.js' );
 const { R_WeaponStatus } = await import( '../src/newer/render/r_weapons.js' );
 const { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/engine/common/cvar.js' );
-const keys = await import( '../src/engine/client/keys.js' ), split = await import( '../src/r_demosplit.js' );
+const keys = await import( '../src/engine/client/keys.js' ), split = await import( '../src/newer/render/r_demosplit.js' );
 const comparison = new URLSearchParams( window.location.search ).get( 'weapons' );
 const nailComparison = comparison === 'nail-profile', shotgunComparison = comparison === 'shotgun-profile';
 const cleanComparison = nailComparison || shotgunComparison;

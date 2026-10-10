@@ -2,7 +2,7 @@
 // low-marker SSR/probe and distance-dependent transmission belong to the GPU
 // trial; this fixture protects the lower capture against a low air ceiling.
 await import( '../src/engine/render/gl_rsurf.js' );
-const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
+const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
 const modelApi = await import( '../src/engine/render/gl_model.js' );
 
 function equal( actual, expected, label ) {
@@ -15,7 +15,7 @@ Deno.test( 'low shoreline markers retain a safe above-water probe beneath a low 
 
 	// Separate public-module instance keeps simulated clock state independent
 	// of other files' capture schedules; world building uses the real module.
-	const probes = await import( '../src/r_waterprobe.js?water-nearfield-fixture' );
+	const probes = await import( '../src/newer/render/r_waterprobe.js?water-nearfield-fixture' );
 	const descriptor = Object.getOwnPropertyDescriptor( performance, 'now' ); let now = 600000;
 	Object.defineProperty( performance, 'now', { configurable: true, value: () => now } );
 	const solid = { contents: - 2, compressed_vis: null }, air = { contents: - 1, compressed_vis: null };

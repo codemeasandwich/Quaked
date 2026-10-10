@@ -4,10 +4,10 @@
 // with the real stock level and the retained sculpted field; no renderer or game is started.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import { R_DemonSurfaceData } from '../src/r_demonrelief.js';
+import { R_DemonSurfaceData } from '../src/newer/render/r_demonrelief.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
 import * as main from '../src/engine/render/gl_rmain.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';

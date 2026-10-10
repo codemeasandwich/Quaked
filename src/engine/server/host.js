@@ -68,8 +68,8 @@ import { V_RenderView, V_UpdatePalette } from '../client/view.js';
 import { S_LocalSound } from '../sound/snd_dma.js';
 import { M_Menu_Main_f } from '../client/menu.js';
 import { R_Efrag_SetExternals } from '../render/gl_refrag.js';
-import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage, R_PerfStop } from '../../r_perf.js';
-import { R_TeleportFrameEnd } from '../../r_teleportfx.js';
+import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage, R_PerfStop } from '../../newer/render/r_perf.js';
+import { R_TeleportFrameEnd } from '../../newer/render/r_teleportfx.js';
 import { Host_InitCommands } from './host_cmd.js';
 import { R_SetParticleExternals } from '../render/r_part.js';
 

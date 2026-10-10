@@ -1,7 +1,7 @@
 // Independent public moving-spot capture, DPR and borrowed-caster contracts.
 // Fake renderer records real Three capture cameras; no GPU/game claim.
 import * as THREE from 'three';
-import { PointShadowAtlas, SPOT_SHADOW_SIZE, SPOT_WORLD_SHADOW_GLSL } from '../src/r_pointshadows.js';
+import { PointShadowAtlas, SPOT_SHADOW_SIZE, SPOT_WORLD_SHADOW_GLSL } from '../src/newer/render/r_pointshadows.js';
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 const near = ( a, b, label ) => check( Math.abs( a - b ) < 1e-8, `${label}: ${a} != ${b}` );

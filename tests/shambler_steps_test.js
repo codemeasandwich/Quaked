@@ -3,14 +3,14 @@
 // real module singletons; only the Shambler's alias model is reduced to its
 // frame names, which are all the shake reads. Float32 view vectors are
 // compared to 1e-5.
-import { V_ShamblerStepShake, v_shamblersteps } from '../src/v_shamblersteps.js';
+import { V_ShamblerStepShake, v_shamblersteps } from '../src/newer/render/v_shamblersteps.js';
 import { V_CalcRefdef, V_Init } from '../src/engine/client/view.js';
 import { r_refdef } from '../src/engine/render/render.js';
 import { cl, cls, cl_entities, ca_connected, SIGNONS } from '../src/engine/client/client.js';
 import { sv } from '../src/engine/server/server.js';
 import { STAT_HEALTH } from '../src/engine/common/quakedef.js';
 import { key_game, key_console, key_message, key_menu, set_key_dest } from '../src/engine/client/keys.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { r_lerpmodels, R_AnimSetNewer } from '../src/newer/render/r_anim.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from '../src/engine/common/cvar.js';
 

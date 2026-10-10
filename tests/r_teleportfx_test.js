@@ -1,4 +1,4 @@
-import * as fx from '../src/r_teleportfx.js';
+import * as fx from '../src/newer/render/r_teleportfx.js';
 
 function assertEqual( actual, expected, message ) {
 

@@ -2,9 +2,9 @@
 // renderer. Every fixture draw uses the current production material callbacks.
 await import( '../src/engine/render/gl_rsurf.js' ); // production import order avoids its cycle
 const THREE = await import( 'three' );
-const post = await import( '../src/gl_post.js' );
+const post = await import( '../src/newer/render/gl_post.js' );
 const skins = await import( '../src/newer/render/r_newerskins.js' );
-const height = await import( '../src/r_heightshadows.js' );
+const height = await import( '../src/newer/render/r_heightshadows.js' );
 const anim = await import( '../src/newer/render/r_anim.js' );
 const cvars = await import( '../src/engine/common/cvar.js' );
 const W = 512, H = 512, report = document.querySelector( '#report' ), button = document.querySelector( '#run' );

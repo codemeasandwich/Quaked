@@ -4,14 +4,14 @@ import * as THREE from 'three';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { gunzipSync, gzipSync } from 'node:zlib';
-import { ROCK_BAKES } from '../src/rockfield_bakes.js';
+import { ROCK_BAKES } from '../src/newer/assets/rockfield_bakes.js';
 import { ROCK_BAKE_VERSION, ROCK_BAKE_SIDE, ROCK_BAKE_CELLS, ROCK_BAKE_BORDER,
-	RockBakeConfig, RockBakeSignature, RockBakeTileCoordinates, RockBakeEncode, RockBakeDecode } from '../src/rockfield_bake_format.js';
-import { RockBakeSource, R_RockBakePrefetch } from '../src/r_rockbakes.js';
-import { RockTileCache, ROCK_PAGES, ROCK_SIDE, ROCK_TABLE_SIZE, ROCK_PROBES, R_RockPageHash } from '../src/r_rockfield.js';
-import { createField, generateTile } from '../src/rockfield.js';
-import { R_RockPreset } from '../src/rockfield_presets.js';
-import { R_RockSurfaceCharts } from '../src/r_rocksurfaces.js';
+	RockBakeConfig, RockBakeSignature, RockBakeTileCoordinates, RockBakeEncode, RockBakeDecode } from '../src/newer/assets/rockfield_bake_format.js';
+import { RockBakeSource, R_RockBakePrefetch } from '../src/newer/assets/r_rockbakes.js';
+import { RockTileCache, ROCK_PAGES, ROCK_SIDE, ROCK_TABLE_SIZE, ROCK_PROBES, R_RockPageHash } from '../src/newer/render/r_rockfield.js';
+import { createField, generateTile } from '../src/newer/assets/rockfield.js';
+import { R_RockPreset } from '../src/newer/assets/rockfield_presets.js';
+import { R_RockSurfaceCharts } from '../src/newer/render/r_rocksurfaces.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_PreloadLooseFile, COM_SetNewerPack, COM_NewerPackLoaded } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -286,7 +286,7 @@ Deno.test( 'packaged prebakes retain base PAK/loose coverage and match source ha
 	const root = new URL( '../', import.meta.url ), manifestPath = new URL( 'newer/rockfield/manifest.json', root );
 	check( existsSync( manifestPath ), 'generated prebake manifest exists; missing assets are not a skip' );
 	const manifest = JSON.parse( readFileSync( manifestPath, 'utf8' ) ); equal( manifest.version, ROCK_BAKE_VERSION, 'manifest version' );
-	for ( const name of [ 'src/rockfield.js', 'src/rockfield_presets.js', 'src/r_rocksurfaces.js', 'src/rockfield_bake_format.js' ] ) equal( manifest.sources[ name ], hash( readFileSync( new URL( name, root ) ) ), name + ' source identity' );
+	for ( const name of [ 'src/newer/assets/rockfield.js', 'src/newer/assets/rockfield_presets.js', 'src/newer/render/r_rocksurfaces.js', 'src/newer/assets/rockfield_bake_format.js' ] ) equal( manifest.sources[ name ], hash( readFileSync( new URL( name, root ) ) ), name + ' source identity' );
 	const names = new Set();
 	for ( const name of readdirSync( root ).filter( name => /^pak\d+\.pak$/.test( name ) ).sort() ) {
 		const raw = readFileSync( new URL( name, root ) ), pack = COM_LoadPackFile( name, arrayBuffer( raw ) ); COM_AddPack( pack );

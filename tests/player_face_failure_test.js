@@ -9,7 +9,7 @@ const layer = await import('../src/r_playerface.js');
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
 const hud = await import( '../src/r_newerhud.js' ), anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), cmd = await import( '../src/engine/common/cmd.js' );
-const { r_hdr } = await import( '../src/gl_post.js' );
+const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { W_LoadWadFile } = await import( '../src/engine/common/wad.js' );
 const { COM_AddPack } = await import( '../src/engine/common/pak.js' );
 const q = await import( '../src/engine/common/quakedef.js' );

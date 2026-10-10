@@ -3,7 +3,7 @@
 // No old implementation or temporary file is needed to run this regression.
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import * as current from '../src/r_demonrelief.js';
+import * as current from '../src/newer/render/r_demonrelief.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 export const sha=value=>createHash('sha256').update(value).digest('hex');
 export function describe(data){if(data===null)return null;return{triangles:data.triangles,topVertexCount:data.topVertexCount,skirtTriangles:data.skirtTriangles,tileRegions:data.tileRegions,arrays:Object.fromEntries(['positions','normals','uvs','lmuvs'].map(k=>[k,{length:data[k].length,sha256:sha(Buffer.from(data[k].buffer,data[k].byteOffset,data[k].byteLength))}]))};}

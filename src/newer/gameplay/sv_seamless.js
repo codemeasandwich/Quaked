@@ -40,9 +40,9 @@ import { Cbuf_AddText } from '../../engine/common/cmd.js';
 import { Con_DPrintf } from '../../engine/common/common.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { r_newer_portals } from '../render/r_anim.js';
-import { R_MeasureArchFrame, R_ClearArchHidden, R_HideArchSurfaces, R_HideArchModel } from '../../r_archframe.js';
+import { R_MeasureArchFrame, R_ClearArchHidden, R_HideArchSurfaces, R_HideArchModel } from '../render/r_archframe.js';
 import { R_AddLevelRunner, R_MoveLevelRunner, R_RemoveLevelRunner, R_ClearLevelRunners } from '../render/r_levelview.js';
-import { R_TeleportFxBegin, R_TeleportFxCapture, R_TeleportFxMode, R_TeleportOverlayShown, R_TeleportFxSnap, R_TeleportFxReset } from '../../r_teleportfx.js';
+import { R_TeleportFxBegin, R_TeleportFxCapture, R_TeleportFxMode, R_TeleportOverlayShown, R_TeleportFxSnap, R_TeleportFxReset } from '../render/r_teleportfx.js';
 import {
 	R_ParseBsp, R_ParseEntityLump, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
 } from '../render/r_levelgraph.js';

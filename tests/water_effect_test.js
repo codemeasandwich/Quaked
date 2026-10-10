@@ -1,6 +1,6 @@
 await import( '../src/engine/render/gl_rsurf.js' );
-const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' ), anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
-const probes = await import( '../src/r_waterprobe.js' );
+const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' ), anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
+const probes = await import( '../src/newer/render/r_waterprobe.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), light = await import( '../src/engine/render/gl_rlight.js' ), quake = await import( '../src/engine/render/glquake.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); }

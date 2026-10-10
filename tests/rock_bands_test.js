@@ -1,9 +1,9 @@
 // Independent public chart/geometry/material checks for the START painted
 // fissure correction. The GPU trial tests numeric continuity and real assets.
 import * as THREE from 'three';
-import * as field from '../src/r_rockfield.js';
-import * as shader from '../src/r_rockshader.js';
-import * as post from '../src/gl_post.js';
+import * as field from '../src/newer/render/r_rockfield.js';
+import * as shader from '../src/newer/render/r_rockshader.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';

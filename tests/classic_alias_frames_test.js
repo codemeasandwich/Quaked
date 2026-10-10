@@ -9,7 +9,7 @@ import { GL_DrawAliasFrame, R_DrawAliasModel } from '../src/engine/render/gl_mes
 import { R_SaveClassicScene } from '../src/newer/render/r_classicstate.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as main from '../src/engine/render/gl_rmain.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import * as cvar from '../src/engine/common/cvar.js';
 import { cl, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../src/engine/client/client.js';
 import { entity_t } from '../src/engine/render/render.js';

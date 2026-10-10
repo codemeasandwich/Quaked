@@ -21,9 +21,9 @@ import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src
 import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init,crosshair} from '../src/engine/client/view.js';
-import {r_hdr} from '../src/gl_post.js';
-import {r_flashlight} from '../src/r_flashlight.js';
-import * as run from '../src/r_flashlightrun.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
+import {r_flashlight} from '../src/newer/render/r_flashlight.js';
+import * as run from '../src/newer/render/r_flashlightrun.js';
 import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/engine/render/gl_draw.js';
 import * as keys from '../src/engine/client/keys.js';

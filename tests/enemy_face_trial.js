@@ -7,7 +7,7 @@ const status = document.querySelector( '#status' ), errors = [], receipts = [];
 window.addEventListener( 'error', event => errors.push( event.message ) );
 window.addEventListener( 'unhandledrejection', event => errors.push( String( event.reason ) ) );
 try {
-	vars.Cvar_RegisterVariable( ( await import( '../src/gl_post.js' ) ).r_hdr ); vars.Cvar_SetValue( 'r_hdr', 1 );
+	vars.Cvar_RegisterVariable( ( await import( '../src/newer/render/gl_post.js' ) ).r_hdr ); vars.Cvar_SetValue( 'r_hdr', 1 );
 	anim.R_AnimSetNewer( true ); anim.R_AnimSetLighting( false ); anim.r_newer_normals.value = 0;
 	const manifest = await ( await fetch( 'newer/enemies/index.json', { cache: 'no-store' } ) ).json(); if ( new URL( location.href ).searchParams.get( 'sourceTone' ) === '1' ) manifest.models.ogre[ 0 ].faces.colorBalance = [ 1, 1, 1 ];
 	skins.R_NewerSetIndex( manifest );

@@ -12,7 +12,7 @@ import { Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { GL_DrawAliasFrame } from '../src/engine/render/gl_mesh.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import * as sg from '../src/r_shotgun.js';
+import * as sg from '../src/newer/render/r_shotgun.js';
 
 const SOURCE_SHA256 = '8b1569225ae56f2e53a6f5748435e77699aa7e0f1c8c0082a12cfc3d0a401adf';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };

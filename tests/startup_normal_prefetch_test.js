@@ -2,12 +2,12 @@
 // actual model/texture jobs and the intro coordinator retain readiness.
 import * as THREE from 'three';
 import {createHash} from 'node:crypto';
-import {R_StartupNormalsPrefetch} from '../src/r_normalprefetch.js';
+import {R_StartupNormalsPrefetch} from '../src/newer/assets/r_normalprefetch.js';
 import {STARTUP_NORMAL_BAKES} from '../src/startup_normal_bakes.js';
-import {NORMAL_BAKES} from '../src/normal_bakes.js';
-import {NormalTransport} from '../src/normal_transport.js';
+import {NORMAL_BAKES} from '../src/newer/assets/normal_bakes.js';
+import {NormalTransport} from '../src/newer/assets/normal_transport.js';
 import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepare,R_NormalPrepared} from '../src/normal_prepare.js';
-import {NormalBakeEncode} from '../src/normal_bake_format.js';
+import {NormalBakeEncode} from '../src/newer/assets/normal_bake_format.js';
 import * as intro from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),turn=()=>new Promise(r=>setTimeout(r,0));
 let serial=0;

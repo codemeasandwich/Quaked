@@ -1,4 +1,4 @@
-import { R_DecalSurface } from '../src/r_decals.js';
+import { R_DecalSurface } from '../src/newer/render/r_decals.js';
 
 function assertNear( actual, expected, epsilon, message ) {
 

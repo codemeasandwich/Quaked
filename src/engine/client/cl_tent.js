@@ -31,7 +31,7 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
-import { R_WallBurnShot } from '../../r_wallburn.js';
+import { R_WallBurnShot } from '../../newer/render/r_wallburn.js';
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
@@ -40,7 +40,7 @@ import { S_PrecacheSound, S_StartSound } from '../sound/snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash } from '../render/render.js';
 import { Mod_ForName } from '../render/gl_model.js';
-import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../../r_decals.js';
+import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../../newer/render/r_decals.js';
 
 let num_temp_entities = 0;
 

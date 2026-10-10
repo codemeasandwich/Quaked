@@ -6,7 +6,7 @@ import * as vid from '../src/engine/render/vid.js';
 import * as model from '../src/engine/render/gl_model.js';
 import * as pak from '../src/engine/common/pak.js';
 import {NormalInputs,NormalInputWitness} from '../src/normal_prepare.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_SetValue,Cvar_Set} from '../src/engine/common/cvar.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),read=p=>readFileSync(new URL('../'+p,import.meta.url)),baker=read('tools/bake_normals.mjs').toString();
 Deno.test('actual offline skin image helper waits for decoded pixels before reading canvas; removing await recreates the original empty input',async()=>{

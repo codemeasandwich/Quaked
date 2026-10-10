@@ -1,8 +1,8 @@
 // Public run policy, command/menu input, native QuakeC builtin and notify UI.
 // No game/server loop or browser is launched.
 import { readFileSync } from 'node:fs';
-import * as run from '../src/r_flashlightrun.js';
-import * as flashlight from '../src/r_flashlight.js';
+import * as run from '../src/newer/render/r_flashlightrun.js';
+import * as flashlight from '../src/newer/render/r_flashlight.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as commands from '../src/engine/common/cmd.js';
 import * as menu from '../src/engine/client/menu.js';
@@ -11,13 +11,13 @@ import * as consoleUI from '../src/engine/common/console.js';
 import { Con_SetPrintFunctions } from '../src/engine/common/common.js';
 import { cls, ca_connected } from '../src/engine/client/client.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import { r_hdr, r_pointshadows } from '../src/gl_post.js';
-import { r_heightshadows } from '../src/r_heightshadows.js';
+import { r_hdr, r_pointshadows } from '../src/newer/render/gl_post.js';
+import { r_heightshadows } from '../src/newer/render/r_heightshadows.js';
 import { v_gamma } from '../src/engine/client/view.js';
-import { cl_showfps } from '../src/r_perf.js';
+import { cl_showfps } from '../src/newer/render/r_perf.js';
 import { skill } from '../src/engine/server/host.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import * as split from '../src/r_demosplit.js';
+import * as split from '../src/newer/render/r_demosplit.js';
 import * as progs from '../src/engine/progs/progs.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';

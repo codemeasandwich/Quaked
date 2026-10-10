@@ -10,7 +10,7 @@ import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
 import { SV_Move, MOVE_NOMONSTERS } from '../src/engine/server/world.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { sv_gravity } from '../src/engine/server/sv_phys.js';
 import * as dma from '../src/engine/sound/snd_dma.js';

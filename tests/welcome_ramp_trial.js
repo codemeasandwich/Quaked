@@ -9,11 +9,11 @@ while(!window.Cbuf_AddText){if(performance.now()>deadline)throw Error('Startup t
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
 const {cl,cls}=await import('../src/engine/client/client.js'),{sv,svs}=await import('../src/engine/server/server.js');
 const {SV_LinkEdict,SV_RunTriggerTouch}=await import('../src/engine/server/world.js'),{SV_PushEntity}=await import('../src/engine/server/sv_phys.js');
-const {R_FlashlightRunStatus}=await import('../src/r_flashlightrun.js');
+const {R_FlashlightRunStatus}=await import('../src/newer/render/r_flashlightrun.js');
 const loading=await import('../src/r_demoloading.js');
 const sound=await import('../src/engine/sound/sound.js'),dma=await import('../src/engine/sound/snd_dma.js');
 const {PR_GetString}=await import('../src/engine/progs/progs.js');
-const keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
+const keys=await import('../src/engine/client/keys.js'),split=await import('../src/newer/render/r_demosplit.js');
 let generation=0,ready=false;
 function place(point,yaw){const p=sv.edicts?.[1];p.v.flags|=64|128;p.v.movetype=0;p.v.origin=point;p.v.velocity=[0,0,0];p.v.angles=[0,yaw,0];p.v.v_angle=[0,yaw,0];p.v.fixangle=1;cl.viewangles.set([0,yaw,0]);SV_LinkEdict(p,false);}
 function load(map,point,yaw){

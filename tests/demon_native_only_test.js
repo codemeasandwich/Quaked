@@ -1,10 +1,10 @@
 // Native-only is a verified generator outcome, never a synonym for corrupt or
 // missing prepared data. These public tests retain geometry and scalar inputs.
 import {createHash} from 'node:crypto';
-import {DemonBakeEncode,DemonBakeDecode,DemonSurfaceSignature,DemonFieldSettings} from '../src/demon_bake_format.js';
-import {R_DemonSurfaceData} from '../src/r_demonrelief.js';
-import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/r_demonbakes.js';
-import {DEMON_BAKES} from '../src/demon_bakes.js';
+import {DemonBakeEncode,DemonBakeDecode,DemonSurfaceSignature,DemonFieldSettings} from '../src/newer/assets/demon_bake_format.js';
+import {R_DemonSurfaceData} from '../src/newer/render/r_demonrelief.js';
+import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/newer/assets/r_demonbakes.js';
+import {DEMON_BAKES} from '../src/newer/assets/demon_bakes.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),json=(a,b,m)=>same(JSON.stringify(a),JSON.stringify(b),m);
 const sha=a=>createHash('sha256').update(ArrayBuffer.isView(a)?new Uint8Array(a.buffer,a.byteOffset,a.byteLength):a).digest('hex'),ab=a=>a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);
 function surface({size=8,span=1,sampling='clamp',hex=false,step=2}={}){

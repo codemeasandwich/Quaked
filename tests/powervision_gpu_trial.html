@@ -5,7 +5,7 @@
 <pre id="result">Running…</pre>
 <script type="module">
 import * as THREE from 'three';
-import {R_PowerVisionRender,R_PowerVisionReset,R_PowerVisionStatus} from '../src/r_powervision.js';
+import {R_PowerVisionRender,R_PowerVisionReset,R_PowerVisionStatus} from '../src/newer/render/r_powervision.js';
 const result=document.querySelector('#result'),errors=[];
 try {
  const renderer=new THREE.WebGLRenderer();renderer.setSize(640,360);document.body.append(renderer.domElement);

@@ -4,11 +4,11 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {gunzipSync} from 'node:zlib';
-import {DemonBakeDecode,DemonSurfaceSignature} from '../src/demon_bake_format.js';
+import {DemonBakeDecode,DemonSurfaceSignature} from '../src/newer/assets/demon_bake_format.js';
 import {expandAttribute,assertPointParity} from './helpers/compact_geometry_oracle.mjs';
 import * as THREE from 'three';
 import * as surf from '../src/engine/render/gl_rsurf.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
@@ -17,7 +17,7 @@ import {Mod_Init,Mod_ForName,Mod_ClearAll} from '../src/engine/render/gl_model.j
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {cl} from '../src/engine/client/client.js';
 import {entity_t,r_refdef} from '../src/engine/render/render.js';
-import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/r_demonbakes.js';
+import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/newer/assets/r_demonbakes.js';
 import {R_IntroReadinessChecks,R_DemoLoadingWelcome,R_DemoLoadingCancel,R_DemoLoadingStatus} from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),read=p=>readFileSync(new URL('../'+p,import.meta.url)),turn=()=>new Promise(r=>setTimeout(r,0));
 async function until(predicate,label){for(let i=0;i<300&&!predicate();i++)await turn();check(predicate(),label);}

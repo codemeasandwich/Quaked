@@ -47,9 +47,9 @@ import {
 	TEX_SPECIAL
 } from '../common/bspfile.js';
 import { gl_subdivide_size, gl_texturemode, GL_TextureLinear, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
-import { R_NewerTextureUpgrade } from '../../r_newertextures.js';
+import { R_NewerTextureUpgrade } from '../../newer/render/r_newertextures.js';
 import { R_NewerGame, r_newer_textures, r_newer_crates } from '../../newer/render/r_anim.js';
-import { R_IsCrateSide, R_CratePlan } from '../../r_cratevariants.js';
+import { R_IsCrateSide, R_CratePlan } from '../../newer/render/r_cratevariants.js';
 
 // ============================================================================
 // modelgen.h constants

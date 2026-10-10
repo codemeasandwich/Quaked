@@ -4,8 +4,8 @@ import * as fs from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawn} from 'node:child_process';
-import {DisplacementStore,DisplacementKey,DisplacementHash} from '../src/displacement_store.js';
-import {DemonBakeEncode,DemonBakeDecode} from '../src/demon_bake_format.js';
+import {DisplacementStore,DisplacementKey,DisplacementHash} from '../src/newer/assets/displacement_store.js';
+import {DemonBakeEncode,DemonBakeDecode} from '../src/newer/assets/demon_bake_format.js';
 import {nativeStorage,recordingLocks} from './helpers/opfs_native_fixture.mjs';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),turn=()=>new Promise(r=>setTimeout(r,0)),deferred=()=>{let resolve;const promise=new Promise(r=>resolve=r);return{promise,resolve};};
 async function failure(fn,label){let error;try{await fn();}catch(e){error=e;}check(error instanceof Error,label+' rejects rather than claiming durable readiness');return error;}

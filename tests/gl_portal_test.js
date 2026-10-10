@@ -1,7 +1,7 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
 await import( '../src/engine/render/gl_rsurf.js' );
 
-const portal = await import( '../src/gl_portal.js' );
+const portal = await import( '../src/newer/render/gl_portal.js' );
 
 function assertEqual( actual, expected, message ) {
 

@@ -2,17 +2,17 @@
 // PAK aliases. GPU shader behavior is verified separately by the bounded trial.
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
-import * as power from '../src/r_powerups.js';
+import * as power from '../src/newer/render/r_powerups.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { entity_t } from '../src/engine/render/render.js';
-import * as height from '../src/r_heightshadows.js';
-import * as fire from '../src/r_powerupfire.js';
+import * as height from '../src/newer/render/r_heightshadows.js';
+import * as fire from '../src/newer/render/r_powerupfire.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );

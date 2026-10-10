@@ -1,7 +1,7 @@
 // Real native cross-tile faces through the public mesh API. No game/browser.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import { R_DemonGeometryField, R_DemonSurfaceData } from '../src/r_demonrelief.js';
+import { R_DemonGeometryField, R_DemonSurfaceData } from '../src/newer/render/r_demonrelief.js';
 import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';

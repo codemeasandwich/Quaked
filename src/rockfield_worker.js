@@ -1,5 +1,5 @@
 // Tile windows use the supplied RockField generator without per-tile seeds.
-import * as RockField from './rockfield.js';
+import * as RockField from './newer/assets/rockfield.js';
 let currentKey = '', field;
 self.onmessage = function ( event ) {
  const { id, config, x, y } = event.data;

@@ -2,10 +2,10 @@
 import * as THREE from 'three';
 import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
-import {R_NewerNormalsPrepare,R_NewerNormalsStatus} from '../src/r_newertextures.js';
+import {R_NewerNormalsPrepare,R_NewerNormalsStatus} from '../src/newer/render/r_newertextures.js';
 import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepared} from '../src/normal_prepare.js';
-import {NormalBakeEncode} from '../src/normal_bake_format.js';
-import {NORMAL_BAKES} from '../src/normal_bakes.js';
+import {NormalBakeEncode} from '../src/newer/assets/normal_bake_format.js';
+import {NORMAL_BAKES} from '../src/newer/assets/normal_bakes.js';
 import * as anim from '../src/newer/render/r_anim.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 Deno.test('actual surface normal role covers native and offscreen brush textures, excludes sky/water, and waits for replacement art before preparing',async()=>{

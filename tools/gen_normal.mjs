@@ -10,7 +10,7 @@ register( 'data:text/javascript,' + encodeURIComponent(
 	'export async function resolve(s,c,n){ if(s==="three") return {url:"data:text/javascript,export{}",shortCircuit:true}; return n(s,c); }'
 ) );
 
-const { R_GenerateNormalData } = await import( new URL( '../src/gl_normals.js', import.meta.url ) );
+const { R_GenerateNormalData } = await import( new URL( '../src/newer/render/gl_normals.js', import.meta.url ) );
 
 const [ input, w, h, output ] = process.argv.slice( 2 );
 const width = parseInt( w, 10 ), height = parseInt( h, 10 );

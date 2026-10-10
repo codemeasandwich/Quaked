@@ -1,7 +1,7 @@
 // Public capture endpoints with real Three geometry/cameras and a recording
 // renderer. These checks establish ownership/freshness/state, not GPU pixels.
 import * as THREE from 'three';
-import { PointShadowAtlas, POINT_SHADOW_SLOTS, NEAR_SUN_SHADOW_SIZE, NEAR_SUN_SHADOW_Y, NEAR_SUN_SHADOW_GLSL } from '../src/r_pointshadows.js';
+import { PointShadowAtlas, POINT_SHADOW_SLOTS, NEAR_SUN_SHADOW_SIZE, NEAR_SUN_SHADOW_Y, NEAR_SUN_SHADOW_GLSL } from '../src/newer/render/r_pointshadows.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} !== ${expected}` );
 function geometry() { const g = new THREE.BufferGeometry(); g.setAttribute( 'position', new THREE.Float32BufferAttribute( [ -16, -16, -32, 16, -16, -32, 0, 16, -32 ], 3 ) ); return g; }

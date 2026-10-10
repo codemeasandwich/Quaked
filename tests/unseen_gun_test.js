@@ -16,6 +16,6 @@ Deno.test( 'the gun is drawn and tagged a subject only in the Unseen World', () 
 } );
 
 Deno.test( 'the Unseen pass renders the gun; the history pass and Demon vision keep it as it is', () => {
-	const vision = read( 'r_powervision.js' );
+	const vision = read( 'newer/render/r_powervision.js' ); // (moved in [44e])
 	check( /u\.uProtectViewmodel\.value=mode===1\?0:1;\s*render\(p\.materials\[mode===1\?0:2\],p\.current\);\s*u\.uProtectViewmodel\.value=1;/.test( vision ), 'unprotected only for the Unseen pass, protected again before the history pass' );
 } );

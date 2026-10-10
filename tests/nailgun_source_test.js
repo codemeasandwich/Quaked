@@ -14,7 +14,7 @@ import {R_DrawAliasModel,GL_DrawAliasFrame} from '../src/engine/render/gl_mesh.j
 import * as weapons from '../src/newer/render/r_weapons.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 const check=(v,m)=>{if(!v)throw Error(m)},near=(a,b,m,e=2e-5)=>check(Number.isFinite(a)&&Math.abs(a-b)<=e,`${m}: ${a} != ${b}`),hash=b=>createHash('sha256').update(b).digest('hex');
 const root=fileURLToPath(new URL('../',import.meta.url)),proof=JSON.parse(readFileSync(root+'newer/weapons/nailgun/provenance.json')),entries=archive(proof.archive),manifest=JSON.parse(readFileSync(root+'newer/weapons/index.json'));
 const donorHeld=mdl(entries.get('progs/v_nail.mdl')),donorPickup=md3(entries.get('progs/g_nail.mdl')),converted=Object.fromEntries(['v_nail','g_nail'].map(k=>[k,JSON.parse(readFileSync(root+'newer/weapons/'+k+'.json'))]));

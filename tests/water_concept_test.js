@@ -2,7 +2,7 @@
 // materials. The browser trial supplies reflected-radiance/ranking pixel proof;
 // this test does not inspect or duplicate shader strings.
 await import( '../src/engine/render/gl_rsurf.js' );
-const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
+const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 

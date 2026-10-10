@@ -13,7 +13,7 @@ import * as THREE from 'three';
 import {sv,svs} from '../../engine/server/server.js';
 import {cl} from '../../engine/client/client.js';
 import {R_NewerGame,r_newer_shadows} from './r_anim.js';
-import {SUN_SHADOW_LAYER,R_ReleaseShadowCaster} from '../../gl_post.js';
+import {SUN_SHADOW_LAYER,R_ReleaseShadowCaster} from './gl_post.js';
 import {Mod_ForName} from '../../engine/render/gl_model.js';
 import {R_DrawAliasModel} from '../../engine/render/gl_mesh.js';
 import {r_avertexnormal_dots} from '../../engine/common/anorm_dots.js';

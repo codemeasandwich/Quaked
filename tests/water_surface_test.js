@@ -2,7 +2,7 @@
 // Optical Fresnel, Snell-window/TIR and calmer ripple pixels are checked in
 // the real WebGL surface trial rather than by duplicating shader arithmetic.
 await import( '../src/engine/render/gl_rsurf.js' );
-const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
+const THREE = await import( 'three' ), post = await import( '../src/newer/render/gl_post.js' );
 const surf = await import( '../src/engine/render/gl_rsurf.js' ), main = await import( '../src/engine/render/gl_rmain.js' );
 const anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
 const view = await import( '../src/engine/client/view.js' ), client = await import( '../src/engine/client/client.js' );
@@ -116,7 +116,7 @@ Deno.test( 'mapped water probes choose real air anchors instead of a solid merge
 	const modelApi = await import( '../src/engine/render/gl_model.js' );
 	// Isolate this public probe instance's private capture clock from other test
 	// files, which independently simulate different performance.now timelines.
-	const probes = await import( '../src/r_waterprobe.js?water-surface-anchor-fixture' );
+	const probes = await import( '../src/newer/render/r_waterprobe.js?water-surface-anchor-fixture' );
 	const descriptor = Object.getOwnPropertyDescriptor( performance, 'now' ); let now = 400000;
 	Object.defineProperty( performance, 'now', { configurable: true, value: () => now } );
 	const solid = { contents: - 2, compressed_vis: null }, lowerAir = { contents: - 1, compressed_vis: null };

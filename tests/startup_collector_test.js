@@ -5,7 +5,7 @@
 import {readFileSync} from 'node:fs';
 import {Script} from 'node:vm';
 import * as THREE from 'three';
-import {R_ShaderAssetStamp,R_CompileSceneAsync} from '../src/r_shaderwarm.js';
+import {R_ShaderAssetStamp,R_CompileSceneAsync} from '../src/newer/render/r_shaderwarm.js';
 import * as boot from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),flush=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};
 function collectorFixture(oldStamp=false){

@@ -1,7 +1,7 @@
 // Public startup scheduling with real Three cube cameras. The recording render
 // endpoint counts complete six-face captures; it does not assert GPU pixels.
 await import('../src/engine/render/gl_rsurf.js');
-const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/newer/render/r_anim.js'),vars=await import('../src/engine/common/cvar.js'),probes=await import('../src/r_waterprobe.js');
+const THREE=await import('three'),post=await import('../src/newer/render/gl_post.js'),anim=await import('../src/newer/render/r_anim.js'),vars=await import('../src/engine/common/cvar.js'),probes=await import('../src/newer/render/r_waterprobe.js');
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 function fixture(fn){
  const clock=Object.getOwnPropertyDescriptor(performance,'now');let now=600000;Object.defineProperty(performance,'now',{configurable:true,value:()=>now});

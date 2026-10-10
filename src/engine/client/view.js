@@ -13,8 +13,8 @@
  */
 import { R_PlayerSurfaceBlood } from '../../newer/render/r_weapon_surface.js';
 import { PowerVisionMode } from '../../newer/gameplay/powervision_state.js';
-import { R_PostActive } from '../../gl_post.js';
-import { R_QuadVisionActive } from '../../r_quadvision.js';
+import { R_PostActive } from '../../newer/render/gl_post.js';
+import { R_QuadVisionActive } from '../../newer/render/r_quadvision.js';
 import { R_FaceDamage } from '../../r_facegame.js';
 import { SV_RespawnView } from '../../newer/gameplay/sv_respawn.js';
 // Ported from: WinQuake/view.c -- player eye positioning
@@ -44,7 +44,7 @@ import { VID_UpdateGamma } from '../render/vid.js';
 import { scr_viewsize } from '../render/gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
 import { v_blend, v_liquid_blend } from '../render/glquake.js';
-import { V_ShamblerStepShake, v_shamblersteps } from '../../v_shamblersteps.js';
+import { V_ShamblerStepShake, v_shamblersteps } from '../../newer/render/v_shamblersteps.js';
 
 export { v_blend };
 

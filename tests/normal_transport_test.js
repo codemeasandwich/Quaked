@@ -1,7 +1,7 @@
 import {createHash} from 'node:crypto';
-import {NormalBakeEncode} from '../src/normal_bake_format.js';
+import {NormalBakeEncode} from '../src/newer/assets/normal_bake_format.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);
-let serial=0;const fresh=()=>import('../src/normal_transport.js?public-transport='+ ++serial);
+let serial=0;const fresh=()=>import('../src/newer/assets/normal_transport.js?public-transport='+ ++serial);
 async function rejects(p,label){let e;try{await p;}catch(error){e=error;}check(e instanceof Error,label+' rejected');return e;}
 function payload(key,width=1,height=1){return NormalBakeEncode(key,width,height,{pixels:new Uint8Array(width*height*4),scalar:new Float32Array(width*height)});}
 

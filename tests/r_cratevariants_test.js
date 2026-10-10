@@ -1,4 +1,4 @@
-import { R_CrateSetSeed, R_CratePlan, R_IsCrateSide, CRATE_BOXES, CRATE_ODDS, CRATE_COMMON } from '../src/r_cratevariants.js';
+import { R_CrateSetSeed, R_CratePlan, R_IsCrateSide, CRATE_BOXES, CRATE_ODDS, CRATE_COMMON } from '../src/newer/render/r_cratevariants.js';
 
 function assertEqual( actual, expected, message ) {
 

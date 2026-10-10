@@ -4,7 +4,7 @@
 <h1>Classic output colour parity</h1><pre id="result">Running…</pre>
 <script type="module">
 await import('../src/engine/render/gl_rsurf.js');
-const THREE=await import('three'),split=await import('../src/r_demosplit.js');
+const THREE=await import('three'),split=await import('../src/newer/render/r_demosplit.js');
 const renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});renderer.setSize(128,128);renderer.toneMapping=THREE.LinearToneMapping;renderer.toneMappingExposure=1.5;renderer.setClearColor(0,1);document.body.appendChild(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.OrthographicCamera(-1,1,1,-1,.1,10);camera.position.z=2;
 const materials=[];let i=0;for(const colour of [new THREE.Color(.004,.008,.016),new THREE.Color(.03,.08,.2),new THREE.Color(.85,.6,.4),new THREE.Color(1.1,.9,.2)]){

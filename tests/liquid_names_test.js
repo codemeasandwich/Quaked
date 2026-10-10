@@ -2,7 +2,7 @@
 // the name, so the Newer water treatment (see-through surface, underwater look) skipped them. Every '*' texture of the
 // stock maps must be classified as the game means it.
 import { readFileSync, existsSync } from 'node:fs';
-const { R_IsWaterTextureName, R_LiquidOpacity, LIQUID_LOOKS } = await import( '../src/gl_post.js' );
+const { R_IsWaterTextureName, R_LiquidOpacity, LIQUID_LOOKS } = await import( '../src/newer/render/gl_post.js' );
 const { r_newer_water } = await import( '../src/newer/render/r_anim.js' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const WATER = [ '*water0', '*water1', '*water2', '*04water1', '*04water2', '*04awater1', '*04mwat1', '*04mwat2' ];

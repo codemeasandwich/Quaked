@@ -16,7 +16,7 @@ import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { SZ_Alloc, sizebuf_t, MSG_WriteLong, MSG_WriteByte, MSG_WriteString, MSG_BeginReading, COM_SetNetMessage } from '../src/engine/common/common.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass, r_newer_portals } from '../src/newer/render/r_anim.js';
 import { R_ParseBsp } from '../src/newer/render/r_levelgraph.js';

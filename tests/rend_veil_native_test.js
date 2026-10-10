@@ -17,7 +17,7 @@ import { Rend_Schedule } from '../src/newer/gameplay/rend_veil_state.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { cl, cls, ca_connected } from '../src/engine/client/client.js';
 import { NET_Init, NET_Connect, NET_CheckNewConnections, NET_Close } from '../src/engine/net/net_main.js';

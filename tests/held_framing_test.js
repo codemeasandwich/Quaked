@@ -11,7 +11,7 @@ import * as weapons from '../src/newer/render/r_weapons.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as view from '../src/engine/client/view.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 import {cl,cls,cl_entities} from '../src/engine/client/client.js';
 import {r_refdef,entity_t} from '../src/engine/render/render.js';
 import {STAT_HEALTH,STAT_WEAPON,STAT_WEAPONFRAME} from '../src/engine/common/quakedef.js';

@@ -1,4 +1,4 @@
-import * as normals from '../src/gl_normals.js';
+import * as normals from '../src/newer/render/gl_normals.js';
 
 function assertEqual( actual, expected, message ) {
 

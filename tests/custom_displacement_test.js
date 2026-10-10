@@ -4,18 +4,18 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawn} from 'node:child_process';
 import {gzipSync,gunzipSync} from 'node:zlib';
-import {DisplacementHash} from '../src/displacement_store.js';
-import {DemonBakeDecode,DemonBakeEncode} from '../src/demon_bake_format.js';
+import {DisplacementHash} from '../src/newer/assets/displacement_store.js';
+import {DemonBakeDecode,DemonBakeEncode} from '../src/newer/assets/demon_bake_format.js';
 import {nativeStorage,recordingLocks} from './helpers/opfs_native_fixture.mjs';
 import {customModel,addCustomSurface,readyCustom} from './helpers/custom_displacement_fixture.mjs';
 import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 import {R_IntroReadinessChecks} from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),turn=()=>new Promise(r=>setTimeout(r,0));let serial=0;
 async function until(fn,label){for(let i=0;i<500&&!fn();i++)await turn();check(fn(),label);}
 async function fixture(run){const root=await fs.mkdtemp(join(tmpdir(),'quaked-custom-cache-')),storage=nativeStorage(root),locks=recordingLocks(),previous=Object.getOwnPropertyDescriptor(globalThis,'navigator'),classic=anim.R_ClassicPassActive();if(!vars.Cvar_FindVar(r_hdr.name))vars.Cvar_RegisterVariable(r_hdr);const hdr=r_hdr.string;vars.Cvar_SetValue('r_hdr',1);anim.R_AnimSetClassicPass(false);Object.defineProperty(globalThis,'navigator',{configurable:true,value:{storage,locks}});const modules=[];
- const fresh=async()=>{const api=await import('../src/r_demonbakes.js?integrated-custom-'+(++serial));modules.push(api);return api;};
+ const fresh=async()=>{const api=await import('../src/newer/assets/r_demonbakes.js?integrated-custom-'+(++serial));modules.push(api);return api;};
  try{await run({root,storage,locks,fresh,files:async()=>{try{return(await fs.readdir(join(root,'quaked-displacement-v1'))).filter(n=>n.endsWith('.json'));}catch(e){if(e.code==='ENOENT')return[];throw e;}}});}
  finally{modules.forEach(m=>m.R_DemonBakeRelease());await turn();if(previous)Object.defineProperty(globalThis,'navigator',previous);else delete globalThis.navigator;vars.Cvar_Set('r_hdr',hdr);anim.R_AnimSetClassicPass(classic);await fs.rm(root,{recursive:true,force:true});}
 }

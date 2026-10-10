@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { PowerVisionMode, PowerVisionHistory } from '../src/newer/gameplay/powervision_state.js';
-import { PowerVisionAdapt } from '../src/r_powervision.js';
-import * as shaders from '../src/powervision_shaders.js';
+import { PowerVisionAdapt } from '../src/newer/render/r_powervision.js';
+import * as shaders from '../src/newer/render/powervision_shaders.js';
 import { IT_INVISIBILITY, IT_INVULNERABILITY, STAT_HEALTH } from '../src/engine/common/quakedef.js';
 
 Deno.test('vision uses authoritative bits and clears on expiry, death and Classic', () => {

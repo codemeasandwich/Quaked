@@ -10,8 +10,8 @@
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Server/client clock contract; the owner-supplied profile is the authority.
-import { PROFILE } from '../../rend_veil/config.js';
-import { sampleRendVeil } from '../../rend_veil/timeline.js';
-export { VISUALS as REND_PARAMS } from '../../rend_veil/config.js';
+import { PROFILE } from '../render/rend_veil/config.js';
+import { sampleRendVeil } from '../render/rend_veil/timeline.js';
+export { VISUALS as REND_PARAMS } from '../render/rend_veil/config.js';
 export function Rend_Schedule(){return {focusAt:PROFILE.focusSeconds,totalDuration:PROFILE.completeSeconds};}
 export const Rend_Evaluate=sampleRendVeil;

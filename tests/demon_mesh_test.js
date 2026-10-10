@@ -2,10 +2,10 @@
 // checks call geometry/world/PVS/shadow APIs; no renderer or game is started.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import { R_DemonHeight, R_DemonSurfaceData, R_DemonGeometryField } from '../src/r_demonrelief.js';
-import { R_DemonBakePrefetch, R_DemonBakePrepare, R_DemonBakeSurface } from '../src/r_demonbakes.js';
+import { R_DemonHeight, R_DemonSurfaceData, R_DemonGeometryField } from '../src/newer/render/r_demonrelief.js';
+import { R_DemonBakePrefetch, R_DemonBakePrepare, R_DemonBakeSurface } from '../src/newer/assets/r_demonbakes.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';

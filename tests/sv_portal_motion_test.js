@@ -1,7 +1,7 @@
 // Exercise the actual world trigger dispatcher, using its production portal
 // construction and edict fields. QC's callback is the only simulated part.
 await import( '../src/engine/render/gl_rsurf.js' );
-const { R_BuildPortals, R_ClearPortals, R_PortalsBeginFrame, r_portals } = await import( '../src/gl_portal.js' );
+const { R_BuildPortals, R_ClearPortals, R_PortalsBeginFrame, r_portals } = await import( '../src/newer/render/gl_portal.js' );
 const { SV_RunTriggerTouch } = await import( '../src/engine/server/world.js' );
 const progs = await import( '../src/engine/progs/progs.js' );
 const { sv, svs, FL_CLIENT } = await import( '../src/engine/server/server.js' );

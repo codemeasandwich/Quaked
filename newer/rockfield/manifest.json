@@ -1,10 +1,10 @@
 {
   "version": "quaked-rockfield-1.2.0-1",
   "sources": {
-    "src/rockfield.js": "992162c49b75d85abee5df33926131be9aab25c8a61015779ced00f331aaf7fd",
-    "src/rockfield_presets.js": "9a0e9b01c8c56b59df4d658a33f27900e85a8a6a41530d477295759c54a1e1c2",
-    "src/r_rocksurfaces.js": "064011c4167c99ad767e978ef856d1500f9d28029269ccfd97eae6cd27f9ed91",
-    "src/rockfield_bake_format.js": "a93c30f06e8148a99284774aca738508d4ae25d25ec874a204815e823893fafd"
+    "src/newer/assets/rockfield.js": "83134c132976ff81ee193cd580e85d741db1d84400ca903f60826266fdc080d2",
+    "src/newer/assets/rockfield_presets.js": "32f756e452edb67d6a19a76e6e8245396ca16dbb7180fc504a434f1c0840027c",
+    "src/newer/render/r_rocksurfaces.js": "f2a923d1b82f896d6e23f4be2b21c3d530368d1fbcb34667a3d4f49c0fb8de09",
+    "src/newer/assets/rockfield_bake_format.js": "a6f018ada2cd1f1f296b34277aa92ae399c98e4271730b68838c9f40ccaaeb8a"
   },
   "levels": {
     "maps/b_batt0.bsp": [
@@ -2037,5 +2037,6 @@
         "rawSha256": "46253f5386f8b36b408aed2f0dcb8b84b4cfa9982fb99ee84a9602ad41770c3e"
       }
     ]
-  }
+  },
+  "sourcesNote": "Re-hashed by card [44e] (10 Oct 2026): the four files moved into src/newer/ and gained a @module header; their code is unchanged, and tests/rockfield_bakes_test.js regenerates a real tile for every chart against these bakes."
 }

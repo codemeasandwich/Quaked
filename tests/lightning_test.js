@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import * as L from '../src/r_lightning.js';
+import * as L from '../src/newer/render/r_lightning.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 for ( const c of [ new cvar_t( 'r_hdr', '1' ), L.r_newer_lightning ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );

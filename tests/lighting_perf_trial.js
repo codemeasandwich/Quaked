@@ -2,7 +2,7 @@
 await import('../main.js');
 const vid=await import('../src/engine/render/vid.js');
 const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
-const {R_DynResScale}=await import('../src/gl_post.js');
+const {R_DynResScale}=await import('../src/newer/render/gl_post.js');
 while(!window.Cbuf_AddText) await new Promise(r=>setTimeout(r,20));
 const renderer=vid.renderer;
 const gl=renderer.getContext(),render=renderer.render;

@@ -11,7 +11,7 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-import { R_AliasMeshLookup, R_AliasMeshRemember } from '../../r_aliasmeshcache.js';
+import { R_AliasMeshLookup, R_AliasMeshRemember } from '../../newer/assets/r_aliasmeshcache.js';
 // Ported from: WinQuake/gl_mesh.c -- triangle model functions (alias models)
 
 import * as THREE from 'three';

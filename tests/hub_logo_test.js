@@ -5,12 +5,12 @@ import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
-import { r_hdr, R_RegisterDetail, R_RefreshDetail, R_PostBegin } from '../src/gl_post.js';
-import * as post from '../src/gl_post.js';
+import { r_hdr, R_RegisterDetail, R_RefreshDetail, R_PostBegin } from '../src/newer/render/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import { r_newer_textures, r_newer_normals, R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import { R_NewerTextureUpgrade, R_ClassicTexture, R_NewerTexturesRevert } from '../src/r_newertextures.js';
-import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/gl_normals.js';
+import { R_NewerTextureUpgrade, R_ClassicTexture, R_NewerTexturesRevert } from '../src/newer/render/r_newertextures.js';
+import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/newer/render/gl_normals.js';
 
 const { createCanvas, Image: NativeImage } = await import( pathToFileURL( process.env.QUAKED_CANVAS_MODULE ).href );
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ) );

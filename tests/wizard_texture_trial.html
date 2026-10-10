@@ -27,10 +27,10 @@ try {
  await import('./src/engine/render/gl_rsurf.js'); // safe bootstrap of the existing module graph
  const THREE = await import('three');
  const {Cvar_RegisterVariable,Cvar_SetValue} = await import('./src/engine/common/cvar.js');
- const {r_hdr} = await import('./src/gl_post.js');
+ const {r_hdr} = await import('./src/newer/render/gl_post.js');
  const {r_newer_textures,R_AnimSetNewer} = await import('./src/newer/render/r_anim.js');
- const {R_NewerTextureUpgrade} = await import('./src/r_newertextures.js');
- const {R_NormalMapFor,R_NormalsFromCraftedHeight} = await import('./src/gl_normals.js');
+ const {R_NewerTextureUpgrade} = await import('./src/newer/render/r_newertextures.js');
+ const {R_NormalMapFor,R_NormalsFromCraftedHeight} = await import('./src/newer/render/gl_normals.js');
  Cvar_RegisterVariable(r_hdr); Cvar_RegisterVariable(r_newer_textures);
  Cvar_SetValue('r_hdr',1); Cvar_SetValue('r_newer_textures',1); R_AnimSetNewer(true);
  const recipe = await (await fetch('../tools/texture_sheets/sources/wizard-2026-10-01.json',{cache:'no-store'})).json();

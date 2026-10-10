@@ -7,11 +7,11 @@ import * as client from '../src/engine/client/cl_main.js';
 import * as demo from '../src/engine/client/cl_demo.js';
 import { cls, ca_disconnected } from '../src/engine/client/client.js';
 import { COM_AddPack } from '../src/engine/common/pak.js';
-import * as split from '../src/r_demosplit.js';
-import * as perf from '../src/r_perf.js';
-import * as post from '../src/gl_post.js';
+import * as split from '../src/newer/render/r_demosplit.js';
+import * as perf from '../src/newer/render/r_perf.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import { r_flashlight, R_FlashlightUpdate, R_FlashlightBeam } from '../src/r_flashlight.js';
+import { r_flashlight, R_FlashlightUpdate, R_FlashlightBeam } from '../src/newer/render/r_flashlight.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );

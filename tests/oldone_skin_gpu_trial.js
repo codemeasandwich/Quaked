@@ -5,7 +5,7 @@ import * as models from '../src/engine/render/gl_model.js';
 import * as mesh from '../src/engine/render/gl_mesh.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {vid,VID_SetPalette} from '../src/engine/render/vid.js';
 import {entity_t} from '../src/engine/render/render.js';

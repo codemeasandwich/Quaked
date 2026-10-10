@@ -8,13 +8,13 @@ import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/engine/render/gl_model.js';
 import {VID_SetPalette,vid} from '../src/engine/render/vid.js';
 import {GL_BuildLightmaps} from '../src/engine/render/gl_rsurf.js';
-import {R_ParseEntityLump} from '../src/gl_portal.js';
+import {R_ParseEntityLump} from '../src/newer/render/gl_portal.js';
 import {cl} from '../src/engine/client/client.js';
-import * as post from '../src/gl_post.js';
-import * as height from '../src/r_heightshadows.js';
+import * as post from '../src/newer/render/gl_post.js';
+import * as height from '../src/newer/render/r_heightshadows.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import {R_KnownFixtureSource,R_ExitFixturePairs,R_LightCone,R_LightConeFactor} from '../src/r_fixturelights.js';
+import {R_KnownFixtureSource,R_ExitFixturePairs,R_LightCone,R_LightConeFactor} from '../src/newer/render/r_fixturelights.js';
 
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-9)=>check(Math.abs(a-b)<=e,`${m}: ${a} != ${b}`),vector=(a,b,m)=>{same(a.length,b.length,m+' length');a.forEach((v,i)=>near(v,b[i],m+' component'+i));},sha=b=>createHash('sha256').update(b).digest('hex');
 const BSP_SHA='7b7061ec63c3e8ecb9c0e0a8075f18823efea6578666d57d601c191bcaf16c26';

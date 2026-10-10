@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import {DemonBakeEncode,DemonBakeDecode,DemonFieldSettings,DemonSurfaceSignature} from '../src/demon_bake_format.js';
-import {R_DemonSurfaceData} from '../src/r_demonrelief.js';
+import {DemonBakeEncode,DemonBakeDecode,DemonFieldSettings,DemonSurfaceSignature} from '../src/newer/assets/demon_bake_format.js';
+import {R_DemonSurfaceData} from '../src/newer/render/r_demonrelief.js';
 import {expandAttribute,compactGeometry,assertPointParity} from './helpers/compact_geometry_oracle.mjs';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bytes=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);
 function fixture(){const field={width:2,height:2,data:new Float32Array([0,.2,.8,1]),sampling:'clamp',displacement:{depth:4,step:2}},surface={flags:0,plane:{normal:[0,0,1]},texinfo:{texture:{name:'dem4_1',width:64,height:128,gl_texture:{userData:{newerHeight:field}}},vecs:[[8,0,0,0],[0,16,0,0]]},polys:{numverts:3,verts:new Float32Array([0,0,0,0,0,0,0,8,0,0,1,0,1,0,0,8,0,0,1,0,1]),next:null}},data=R_DemonSurfaceData(surface);for(const name of ['positions','normals','uvs','lmuvs'])data[name][0]=-0;const signature=DemonSurfaceSignature(surface),raw=DemonBakeEncode({model:'maps/compact-test.bsp',bspSha256:'native-source'},[{signature,fieldSha256:'height',settings:DemonFieldSettings(field),data}]);return{data,raw,signature,decode:compact=>DemonBakeDecode(raw.buffer,'maps/compact-test.bsp','native-source',{compact}).records.get(signature).data};}

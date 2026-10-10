@@ -1,4 +1,4 @@
-import * as flashlight from '../src/r_flashlight.js';
+import * as flashlight from '../src/newer/render/r_flashlight.js';
 import { R_AnimSetLighting } from '../src/newer/render/r_anim.js';
 
 function assertNear( actual, expected, epsilon, message ) {
@@ -95,7 +95,7 @@ Deno.test( 'the flashlight is off without the Newer lighting', () => {
 
 Deno.test( 'the muzzle flash is dimmed in a lit room and full in the dark', async () => {
 
-	const m = await import( '../src/r_muzzle.js' );
+	const m = await import( '../src/newer/render/r_muzzle.js' );
 	m.R_MuzzleSetView( [ 0, 0, 0 ] );
 
 	m.R_MuzzleSetProbe( () => 10 ); // dark

@@ -9,7 +9,7 @@ import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/c
 import { Con_Printf } from './src/engine/common/common.js';
 import { Cvar_VariableValue, Cvar_SetValue } from './src/engine/common/cvar.js';
 import { key_dest, key_game } from './src/engine/client/keys.js';
-import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_PerfLastReport } from './src/r_perf.js';
+import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_PerfLastReport } from './src/newer/render/r_perf.js';
 import { cls, cl } from './src/engine/client/client.js';
 import { sv } from './src/engine/server/server.js';
 import { scene, camera } from './src/engine/render/gl_rmain.js';
@@ -22,11 +22,11 @@ import { M_SetExternals } from './src/engine/client/menu.js';
 import { LoadingScreen_SetProgress, LoadingScreen_Remove, LoadingScreen_FadeOut } from './src/loading_screen.js';
 import { R_DemoLoadingBoot, R_DemoLoadingAppReady, R_DemoLoadingCancel, R_DemoLoadingSplash, R_DemoLoadingStatus } from './src/r_demoloading.js';
 import { R_NewerHudPreload } from './src/r_newerhud.js';
-import { R_RockBakePrefetch } from './src/r_rockbakes.js';
+import { R_RockBakePrefetch } from './src/newer/assets/r_rockbakes.js';
 import { R_NewerSkinsPrefetchBsp } from './src/newer/render/r_newerskins.js';
-import { R_DemonBakePrefetch } from './src/r_demonbakes.js';
-import {R_StartupNormalsPrefetch} from './src/r_normalprefetch.js';
-import { R_NewerTexturesPrefetch, R_BspTextureNames } from './src/r_newertextures.js';
+import { R_DemonBakePrefetch } from './src/newer/assets/r_demonbakes.js';
+import {R_StartupNormalsPrefetch} from './src/newer/assets/r_normalprefetch.js';
+import { R_NewerTexturesPrefetch, R_BspTextureNames } from './src/newer/render/r_newertextures.js';
 
 const parms = {
 	basedir: '.',

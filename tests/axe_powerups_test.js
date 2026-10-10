@@ -16,7 +16,7 @@ import { sv_gravity } from '../src/engine/server/sv_phys.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { SZ_Alloc } from '../src/engine/common/common.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import { R_AxeSwingNormal } from '../src/newer/render/r_axepose.js';

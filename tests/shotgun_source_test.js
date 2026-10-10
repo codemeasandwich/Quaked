@@ -10,7 +10,7 @@ const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
 const anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
-const { r_hdr } = await import( '../src/gl_post.js' );
+const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function equal( a, b, label ) { check( a === b, `${label}: ${a} != ${b}` ); }

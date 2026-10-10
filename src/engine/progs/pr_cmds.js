@@ -50,7 +50,7 @@ import { PR_HostError, PR_RunError } from './pr_exec.js';
 import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from '../server/world.js';
 import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from '../server/sv_move.js';
 import { SV_StartSound, SV_StartParticle, sv_aim } from '../server/sv_main.js';
-import { R_FlashlightSkillSelected } from '../../r_flashlightrun.js';
+import { R_FlashlightSkillSelected } from '../../newer/render/r_flashlightrun.js';
 import { SV_GoreOnSetModel } from '../../newer/gameplay/sv_gore.js';
 import { SV_AxeGibSeen } from '../../newer/gameplay/sv_axecut.js';
 import { Cbuf_AddText } from '../common/cmd.js';

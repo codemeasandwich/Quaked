@@ -1,4 +1,4 @@
-import * as drops from '../src/r_screendrops.js';
+import * as drops from '../src/newer/render/r_screendrops.js';
 
 function withClock( fn ) {
 

@@ -8,7 +8,7 @@ const { GL_MakeAliasModelDisplayLists, R_DrawAliasModel } = await import( '../sr
 const { R_CloneAliasMaterial } = await import( '../src/newer/render/r_newerskins.js' );
 const { R_WeaponStyleGLSL } = await import( '../src/newer/render/r_weaponstyle.js' );
 const weapons = await import( '../src/newer/render/r_weapons.js' );
-const { r_hdr } = await import( '../src/gl_post.js' );
+const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { r_lerpmodels } = await import( '../src/newer/render/r_anim.js' );
 const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 

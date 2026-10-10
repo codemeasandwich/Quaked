@@ -23,19 +23,19 @@
 import * as THREE from 'three';
 import { Mod_PointInLeaf, Mod_LeafPVS, Mod_LoadForPreview } from '../../engine/render/gl_model.js';
 import { R_BuildLightMap, createQuakeLightmapMaterial } from '../../engine/render/gl_rsurf.js';
-import { R_RegisterGlow } from '../../gl_post.js';
+import { R_RegisterGlow } from './gl_post.js';
 import { R_NewerLightingActive } from './r_anim.js';
 import { R_IsNewer } from './r_anim.js';
-import { R_RendVeilSeen, R_RendVeilRelease } from '../../r_rendveil.js';
-import { R_AddLevelPortal, R_ClearLevelPortals, R_RemoveLevelPortal } from '../../gl_portal.js';
-import { R_NormalMapFor } from '../../gl_normals.js';
+import { R_RendVeilSeen, R_RendVeilRelease } from './r_rendveil.js';
+import { R_AddLevelPortal, R_ClearLevelPortals, R_RemoveLevelPortal } from './gl_portal.js';
+import { R_NormalMapFor } from './gl_normals.js';
 import { R_LightPoint } from '../../engine/render/gl_rlight.js';
 import { R_DrawAliasModel } from '../../engine/render/gl_mesh.js';
 import { r_avertexnormal_dots } from '../../engine/common/anorm_dots.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
-import { R_NewerTexturesForModel } from '../../r_newertextures.js';
-import { R_RockBakePrefetch } from '../../r_rockbakes.js';
+import { R_NewerTexturesForModel } from './r_newertextures.js';
+import { R_RockBakePrefetch } from '../assets/r_rockbakes.js';
 import { R_AxeCorpsePreview } from './r_axecorpses.js';
 import { Con_DPrintf } from '../../engine/common/common.js';
 

@@ -8,7 +8,7 @@ const {cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import(
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
 const {Cvar_SetValue}=await import('../src/engine/common/cvar.js');
 const keys=await import('../src/engine/client/keys.js');
-const render=await import('../src/engine/render/render.js'),fb=await import('../src/r_fireball.js');
+const render=await import('../src/engine/render/render.js'),fb=await import('../src/newer/render/r_fireball.js');
 const errors=[];window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 let started=0;
 window.fireballTrial={
@@ -18,7 +18,7 @@ window.fireballTrial={
   await until(()=>!cls.demoplayback&&cls.signon===4&&sv.active&&cl.worldmodel?.name==='maps/'+map+'.bsp'&&cl.stats[0]>0,'level signon');
   await until(()=>fb.R_FireballSnapshot().ready,'fireball textures');started=1;return true;},
  // the title demo with its Newer | Classic split, as the attract loop starts it
- async startSplitDemo(){const demo=await import('../src/engine/client/cl_demo.js'),pak=await import('../src/engine/common/pak.js'),split=await import('../src/r_demosplit.js');
+ async startSplitDemo(){const demo=await import('../src/engine/client/cl_demo.js'),pak=await import('../src/engine/common/pak.js'),split=await import('../src/newer/render/r_demosplit.js');
   keys.set_key_dest(keys.key_game);Cvar_SetValue('r_demosplit',1);
   const file=pak.COM_FindFile('demo1.dem');if(!file)throw Error('demo1.dem not found');
   demo.CL_PlayDemoFromData(file.data.buffer.slice(file.data.byteOffset,file.data.byteOffset+file.data.length),true);

@@ -3,9 +3,9 @@
 // are checked separately by the finite powervision_semantics_trial.html.
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import * as vision from '../src/r_powervision.js';
+import * as vision from '../src/newer/render/r_powervision.js';
 import { PowerVisionMode } from '../src/newer/gameplay/powervision_state.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
 import * as view from '../src/engine/client/view.js';

@@ -3,14 +3,14 @@
 await import('../src/engine/render/gl_rsurf.js');
 const {sv,SOLID_BSP,MOVETYPE_PUSH}=await import('../src/engine/server/server.js');
 const {edict_t}=await import('../src/engine/progs/progs.js');
-const {R_BuildPortals,R_ClearPortals}=await import('../src/gl_portal.js');
+const {R_BuildPortals,R_ClearPortals}=await import('../src/newer/render/gl_portal.js');
 const {SV_ClearWorld,SV_Move,SV_PortalBackingContact,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js');
 const worldModule=await import('../src/engine/server/world.js');
 const physics=await import('../src/engine/server/sv_phys.js');
 const progs=await import('../src/engine/progs/progs.js');
 const {svs,FL_CLIENT,MOVETYPE_WALK}=await import('../src/engine/server/server.js');
 const {Cvar_FindVar,Cvar_RegisterVariable,cvar_t}=await import('../src/engine/common/cvar.js');
-const {R_PortalsBeginFrame,r_portals}=await import('../src/gl_portal.js');
+const {R_PortalsBeginFrame,r_portals}=await import('../src/newer/render/gl_portal.js');
 const {r_newer_portals}=await import('../src/newer/render/r_anim.js');
 Deno.test('shipped start hub portal thresholds are physically reachable or use confirmed backing contact', async () => {
 const previous={models:sv.models,worldmodel:sv.worldmodel,edicts:sv.edicts,num_edicts:sv.num_edicts,max_edicts:sv.max_edicts};

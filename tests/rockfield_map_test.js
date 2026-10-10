@@ -6,8 +6,8 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { SV_HullPointContents } from '../src/engine/server/world.js';
 import { cl } from '../src/engine/client/client.js';
-import { R_RockSurfaceCharts } from '../src/r_rocksurfaces.js';
-import { R_RockfieldStatus } from '../src/r_rockfield.js';
+import { R_RockSurfaceCharts } from '../src/newer/render/r_rocksurfaces.js';
+import { R_RockfieldStatus } from '../src/newer/render/r_rockfield.js';
 Deno.test( 'shipped E1M1 assigns continuous natural rock and terrain charts without changing BSP polygons or texture scale', () => {
  const bytes = readFileSync( 'pak0.pak' ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) );
  VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();

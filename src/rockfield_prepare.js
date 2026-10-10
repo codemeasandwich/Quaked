@@ -2,7 +2,7 @@
 // At most two generator workers run, and every required chart/coordinate is
 // retained and persisted before a new named map can become playable.
 import * as THREE from 'three';
-import {RockBakeConfig,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from './rockfield_bake_format.js';
+import {RockBakeConfig,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from './newer/assets/rockfield_bake_format.js';
 export async function RockPrepareTiles(charts,{signal,workerFactory=()=>new Worker(new URL('./rockfield_worker.js',import.meta.url),{type:'module'})}={}){
  const jobs=charts.flatMap(chart=>RockBakeTileCoordinates(chart).map(([x,y])=>({config:RockBakeConfig(chart),x,y}))),tiles=new Array(jobs.length);
  if(jobs.length*ROCK_BAKE_SIDE**2*2>256*1024*1024)throw Error('Complete rock preparation exceeds CPU payload budget');

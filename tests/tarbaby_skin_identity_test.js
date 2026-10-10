@@ -10,7 +10,7 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/normal_prepare.js';
-import { NormalBakeDecode } from '../src/normal_bake_format.js';
+import { NormalBakeDecode } from '../src/newer/assets/normal_bake_format.js';
 const EXPECTED = '9933ee9b251e4c32a22129e2a9cda8cebfd2f317aeb2961a0591a098e9e823ea';
 const SOURCE = 'f871111cbd78c3ec7185373875fadfc1ea58133d5b983253984c3b00168e4751';
 const NAME = 'progs/tarbaby.mdl', BASE = 'newer/enemies/tarbaby/custom/';

@@ -18,8 +18,8 @@ try {
 	const { SCR_UpdateScreen, SCR_EndLoadingPlaque } = await import( '../src/engine/render/gl_screen.js' );
 	const { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' );
 	const { R_DemoLoadingCancel } = await import( '../src/r_demoloading.js' ), { LoadingScreen_Remove } = await import( '../src/loading_screen.js' );
-	const { rockUniforms } = await import( '../src/r_rockfield.js' ), { heightShadowUniforms } = await import( '../src/r_heightshadows.js' );
-	const { classicLook } = await import( '../src/gl_post.js' ), { vid } = await import( '../src/engine/render/vid.js' );
+	const { rockUniforms } = await import( '../src/newer/render/r_rockfield.js' ), { heightShadowUniforms } = await import( '../src/newer/render/r_heightshadows.js' );
+	const { classicLook } = await import( '../src/newer/render/gl_post.js' ), { vid } = await import( '../src/engine/render/vid.js' );
 	const whiteLightmap = new THREE.DataTexture( new Uint8Array( [ 255, 255, 255, 255 ] ), 1, 1 ); whiteLightmap.channel = 1; whiteLightmap.needsUpdate = true;
 	const data = COM_FindFile( 'demo1.dem' )?.data; if ( ! data ) throw new Error( 'Native demo1.dem unavailable' );
 	const demoBytes = data instanceof Uint8Array ? data : new Uint8Array( data );

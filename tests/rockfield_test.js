@@ -2,7 +2,7 @@
 // evaluated in a separate VM. No renderer, browser, game or worker is started.
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import * as rock from '../src/rockfield.js';
+import * as rock from '../src/newer/assets/rockfield.js';
 
 const html = readFileSync( new URL( '../rockfield-v1.0.0.html', import.meta.url ), 'utf8' );
 const core = /<script id="rock-core">([\s\S]*?)<\/script>/.exec( html );

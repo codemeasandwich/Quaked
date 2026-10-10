@@ -127,7 +127,7 @@ Deno.test('a soldier\'s shotgun is observed the same way: his four native pellet
  svs.maxclients=2;native(soldier,'army_fire');same(face.SV_FaceDrain('rays').length,0,'multiplayer');svs.maxclients=1;
  console.log('SOLDIER_RAYS '+JSON.stringify({rays:e.rays.length,enemy:e.enemy,submerged:e.submerged}));acknowledge();CL_Disconnect_f();
 });
-const THREE=await import('three'),sgfx=await import('../src/r_shotgun.js'),physics=await import('../src/engine/server/sv_phys.js'),edict=await import('../src/engine/progs/pr_edict.js');
+const THREE=await import('three'),sgfx=await import('../src/newer/render/r_shotgun.js'),physics=await import('../src/engine/server/sv_phys.js'),edict=await import('../src/engine/progs/pr_edict.js');
 Deno.test('end to end: a real blast becomes pellets on the next frame, once, and a soldier\'s shot leaves from the soldier',async()=>{
  let p=await fresh('e1m2');face.SV_FaceReset();const scene=new THREE.Scene(),eye=[0,0,0],fwd=[1,0,0],view=[1280,720];
  sgfx.R_ShotgunSetup({scene,muzzles:n=>Array.from({length:n},(_,i)=>[p.v.origin[0]+20,p.v.origin[1]+i*6,p.v.origin[2]+20])});sgfx.R_ShotgunClear();sgfx.r_shotgunfx.value=1;

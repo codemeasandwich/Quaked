@@ -11,9 +11,9 @@
  */
 // Ported from: WinQuake/cl_demo.c -- demo recording and playback
 
-import { R_DemoSplitStart, R_DemoSplitEnd } from '../../r_demosplit.js';
+import { R_DemoSplitStart, R_DemoSplitEnd } from '../../newer/render/r_demosplit.js';
 import { R_DemoLoadingAttract, R_DemoLoadingFreeze, R_DemoLoadingCancel } from '../../r_demoloading.js';
-import { R_PerfProfiling } from '../../r_perf.js';
+import { R_PerfProfiling } from '../../newer/render/r_perf.js';
 import { MAX_MSGLEN } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString,

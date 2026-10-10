@@ -1,9 +1,9 @@
 // Independent public-interface contracts; run using Quaked/tools/run_tests.mjs.
 import * as THREE from 'three';
-import { R_NormalMapFor } from '../src/gl_normals.js';
+import { R_NormalMapFor } from '../src/newer/render/gl_normals.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 const check=(v,m)=>{if(!v)throw Error(m)},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),equal=(a,b,m)=>same(Buffer.from(a).toString('hex'),Buffer.from(b).toString('hex'),m);
 const flush=async()=>{for(let i=0;i<60;i++)await Promise.resolve()};
@@ -33,7 +33,7 @@ async function loaderFixture(run) {
  Object.defineProperty(globalThis,'Image',{configurable:true,value:class{constructor(){this.width=this.height=2;images.push(this)}set src(url){this.url=String(url)}finish(){if(this.url.includes('missing.png')){this.onerror?.(Error('controlled optional normal missing'));return}if(this.url.includes('size.png'))this.width=1;const height=heightBytes.slice();if(this.url.includes('zero-height.png'))height[0]=height[1]=height[2]=0;this.pixels=new Uint8ClampedArray(this.url.includes('normal.png')?opaqueNormals:this.url.includes('gloss.png')?glossBytes:this.url.includes('height.png')?height:diffuseBytes);this.onload?.()}}});
  Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:()=>{let image;return{getContext:()=>({drawImage:i=>image=i,getImageData:()=>({data:image.pixels})})}}}});
  anim.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('r_newer_textures',1);
- try{const module=await import('../src/r_newertextures.js?independent-glass-'+Math.random());await run({module,images,finish:async()=>{await flush();for(const image of images)image.finish();await flush()}})}finally{for(const image of images)if(image.onload||image.onerror)image.finish();await flush();globalThis.fetch=saved.fetch;anim.R_AnimSetClassicPass(saved.classic);controls.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,descriptor]of [['Image',saved.Image],['document',saved.document]])if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete globalThis[key]}
+ try{const module=await import('../src/newer/render/r_newertextures.js?independent-glass-'+Math.random());await run({module,images,finish:async()=>{await flush();for(const image of images)image.finish();await flush()}})}finally{for(const image of images)if(image.onload||image.onerror)image.finish();await flush();globalThis.fetch=saved.fetch;anim.R_AnimSetClassicPass(saved.classic);controls.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,descriptor]of [['Image',saved.Image],['document',saved.document]])if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete globalThis[key]}
 }
 
 Deno.test('independent donor loader remains asynchronous and preserves native Classic image and offset',()=>loaderFixture(async f=>{

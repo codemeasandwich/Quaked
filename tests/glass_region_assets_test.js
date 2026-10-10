@@ -3,7 +3,7 @@ import './glass_materials_test.js';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {createHash} from 'node:crypto';
-import {R_GenerateNormalData} from '../src/gl_normals.js';
+import {R_GenerateNormalData} from '../src/newer/render/gl_normals.js';
 const require=createRequire(import.meta.url),{createCanvas,loadImage}=require('/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');
 const root=fileURLToPath(new URL('../newer/textures/',import.meta.url)),reviews=JSON.parse(readFileSync(root+'glass/region-review.json')),proof=JSON.parse(readFileSync(root+'glass/region-proof.json')),own=Object.fromEntries(reviews.filter(v=>v.reviewId>=72).map(v=>[String(v.reviewId),v.regionReview]));
 const check=(v,m)=>{if(!v)throw Error(m)},sha=b=>createHash('sha256').update(b).digest('hex');

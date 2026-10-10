@@ -3,10 +3,10 @@
 // differ, reproducing the DPR/dynamic-resolution crop that a flat fake misses.
 import * as THREE from 'three';
 import { R_AnimSetNewer, R_IsNewer } from '../src/newer/render/r_anim.js';
-import { R_RendVeilSeen, R_RendVeilClear, R_RendVeilCapture, R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights, R_RendVeilShadowVersion } from '../src/r_rendveil.js';
-import { R_CreateShadowCaptureMaterial } from '../src/r_pointshadows.js';
-import { RV_SURFACE_DECL, RV_VERTEX_BIND, RV_FRAGMENT_MASK, RV_REVEAL_VERTEX } from '../src/rend_veil/material-binding.js';
-import { OPTICS_FRAGMENT } from '../src/rend_veil/optics-shader.js';
+import { R_RendVeilSeen, R_RendVeilClear, R_RendVeilCapture, R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights, R_RendVeilShadowVersion } from '../src/newer/render/r_rendveil.js';
+import { R_CreateShadowCaptureMaterial } from '../src/newer/render/r_pointshadows.js';
+import { RV_SURFACE_DECL, RV_VERTEX_BIND, RV_FRAGMENT_MASK, RV_REVEAL_VERTEX } from '../src/newer/render/rend_veil/material-binding.js';
+import { OPTICS_FRAGMENT } from '../src/newer/render/rend_veil/optics-shader.js';
 
 const check = ( value, why ) => { if ( ! value ) throw Error( why ); };
 const same = ( actual, expected, why ) => check( actual === expected, `${why}: ${actual} !== ${expected}` );

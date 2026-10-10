@@ -1,12 +1,12 @@
 import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as main from '../src/engine/render/gl_rmain.js';
 import * as surf from '../src/engine/render/gl_rsurf.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { r_flashlight } from '../src/r_flashlight.js';
-import { r_rockfield } from '../src/r_rockfield.js';
+import { r_flashlight } from '../src/newer/render/r_flashlight.js';
+import { r_rockfield } from '../src/newer/render/r_rockfield.js';
 import { r_newer_weapons } from '../src/newer/render/r_weapons.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';

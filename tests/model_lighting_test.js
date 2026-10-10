@@ -10,7 +10,7 @@ import * as main from '../src/engine/render/gl_rmain.js';
 import {R_DrawAliasModel} from '../src/engine/render/gl_mesh.js';
 import {R_TranslatePlayerSkin,R_GetPlayerSkinTexture} from '../src/engine/render/gl_rmisc.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_newer_weapons} from '../src/newer/render/r_weapons.js';

@@ -1,6 +1,6 @@
 import {GL_MakeAliasModelDisplayLists} from '../src/engine/render/gl_mesh.js';
-import {AliasMeshSignature,AliasMeshValidate} from '../src/alias_mesh_format.js';
-import {R_AliasMeshLookup,R_AliasMeshRemember,R_AliasMeshCacheStatus} from '../src/r_aliasmeshcache.js';
+import {AliasMeshSignature,AliasMeshValidate} from '../src/newer/assets/alias_mesh_format.js';
+import {R_AliasMeshLookup,R_AliasMeshRemember,R_AliasMeshCacheStatus} from '../src/newer/assets/r_aliasmeshcache.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bits=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);
 function header(offset=0){return{numverts:4,numtris:2,skinwidth:74,skinheight:58,numposes:3,triangles:[{facesfront:0,vertindex:[0,1,2]},{facesfront:1,vertindex:[0,2,3]}],stverts:[{onseam:1,s:0,t:0},{onseam:0,s:20,t:0},{onseam:1,s:20,t:20},{onseam:0,s:0,t:20}],poseverts:Array.from({length:3},(_,pose)=>Array.from({length:4},(_,v)=>({v:[offset+v,pose*9,offset-pose-v],lightnormalindex:pose*4+v}))) };}
 Deno.test('alias cache reuses only command/order bytes and public display-list construction always references current header poses',()=>{

@@ -3,9 +3,9 @@ import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pa
 import {VID_SetPalette,vid} from '../src/engine/render/vid.js';
 import {Mod_Init,Mod_ForName,R_InitTextures} from '../src/engine/render/gl_model.js';
 import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_SetValue} from '../src/engine/common/cvar.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import {R_NewerTexturesForModel,R_NewerTexturesStatus} from '../src/r_newertextures.js';
+import {R_NewerTexturesForModel,R_NewerTexturesStatus} from '../src/newer/render/r_newertextures.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
 import {NormalInputs,NormalInputWitness,R_NormalPrepared} from '../src/normal_prepare.js';
 const button=document.querySelector('#run'),save=document.querySelector('#save'),output=document.querySelector('#report');let report,controller,stopped=false;
@@ -27,7 +27,7 @@ async function run(){
  const timer=setTimeout(()=>{stopped=true;controller.abort();skins.R_NewerSkinsShutdown();report.status='timeout';report.errors.push('Bounded60s diagnostic expired');show();save.disabled=false;},60000);
  try{
   const [packBytes,manifestBytes,skinBytes]=await Promise.all([fetchBytes('../pak0.pak'),fetchBytes('../newer/normals/manifest.json'),fetchBytes('../newer/enemies/index.json')]);alive();const manifest=JSON.parse(new TextDecoder().decode(manifestBytes)),skinIndex=JSON.parse(new TextDecoder().decode(skinBytes));report.sources.manifest=await hash(manifestBytes);report.sources.skinIndex=await hash(skinBytes);report.manifestSamples=Object.keys(manifest.samples).length;
-  for(const name of ['normal_prepare','normal_bake_format','normal_transport','gl_normals','r_newertextures','r_newerskins','vid'])report.sources['src/'+name+'.js']=await hash(await fetchBytes('../src/'+name+'.js'));
+  for(const name of ['normal_prepare','newer/assets/normal_bake_format','newer/assets/normal_transport','newer/render/gl_normals','newer/render/r_newertextures','newer/render/r_newerskins','engine/render/vid'])/* (paths since [44b]-[44e]: a name built at run time is not rewritten by the mover) */report.sources['src/'+name+'.js']=await hash(await fetchBytes('../src/'+name+'.js'));
   COM_AddPack(COM_LoadPackFile('normal-input-native-shareware',packBytes));const palette=COM_FindFile('gfx/palette.lmp').data;VID_SetPalette(palette);vid.fullbright=224;report.palette={sha256:await hash(palette),fullbright:vid.fullbright,configuration:'Matches runtime VID_Init; no renderer initialized'};Mod_Init();R_InitTextures();for(const v of [r_hdr,anim.r_newer_normals,anim.r_newer_enemies,anim.r_newer_textures])if(!Cvar_FindVar(v.name))Cvar_RegisterVariable(v);Cvar_SetValue('r_hdr',0);anim.R_AnimSetNewer(false);anim.R_AnimSetClassicPass(false);
   const world=Mod_ForName('maps/e1m3.bsp',true);report.map={name:world.name,bspSha256:await hash(world.bspSourceBytes)};report.surfaceNative=await surfaces(world,'original-palette',manifest);report.stages.push({label:'Native surface input hashes',elapsedMs:performance.now()-report.startedAt});show();
   Cvar_SetValue('r_hdr',1);for(const v of [anim.r_newer_normals,anim.r_newer_enemies,anim.r_newer_textures])Cvar_SetValue(v.name,1);anim.R_AnimSetNewer(true);R_NewerTexturesForModel(world);await wait(()=>R_NewerTexturesStatus(world).settled,'Actual browser texture upgrade settled');report.textureStatus=R_NewerTexturesStatus(world);report.surfaceUpgraded=await surfaces(world,'actual-upgraded',manifest);show();

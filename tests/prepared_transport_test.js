@@ -1,6 +1,6 @@
 import {gzipSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
-import {PreparedLoad} from '../src/prepared_transport.js';
+import {PreparedLoad} from '../src/newer/assets/prepared_transport.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),sha=b=>createHash('sha256').update(b).digest('hex'),raw=Uint8Array.from({length:65536},(_,i)=>(i*31+(i>>>4)*17)%251),compressed=gzipSync(raw);
 function parts(){const cuts=[0,1,7,Math.floor(compressed.length/2),compressed.length];return cuts.slice(0,-1).map((at,i)=>{const bytes=compressed.subarray(at,cuts[i+1]);return{file:'newer/public-part-'+i,sha256:sha(bytes),bytes:bytes.length,data:bytes};});}
 async function rejects(p,label){let error;try{await p;}catch(e){error=e;}check(error instanceof Error,label+' rejected');return error;}

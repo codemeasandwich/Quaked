@@ -1,5 +1,5 @@
 await import('../src/engine/render/gl_rsurf.js');
-const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/newer/render/r_anim.js'),cvar=await import('../src/engine/common/cvar.js');
+const THREE=await import('three'),post=await import('../src/newer/render/gl_post.js'),anim=await import('../src/newer/render/r_anim.js'),cvar=await import('../src/engine/common/cvar.js');
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 Deno.test('frame pipeline carries authored albedo separately at scene resolution',()=>{
  const vars=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water];for(const v of vars)if(!cvar.Cvar_FindVar(v.name))cvar.Cvar_RegisterVariable(v);const saved=vars.map(v=>v.string);

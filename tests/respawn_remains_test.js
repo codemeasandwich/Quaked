@@ -21,7 +21,7 @@ import * as vars from '../src/engine/common/cvar.js';
 import { Cbuf_Init, Cbuf_Execute, Cmd_AddCommand, Cmd_ExecuteString, src_command } from '../src/engine/common/cmd.js';
 import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/engine/common/common.js';
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connected, ca_dedicated } from '../src/engine/client/client.js';

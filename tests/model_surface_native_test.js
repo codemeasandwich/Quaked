@@ -23,7 +23,7 @@ import { SZ_Clear } from '../src/engine/common/common.js';
 import { R_Init, R_SetupFrame, scene } from '../src/engine/render/gl_rmain.js';
 import { V_Init } from '../src/engine/client/view.js';
 import { r_refdef } from '../src/engine/render/render.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import { R_DemoLoadingCancel } from '../src/r_demoloading.js';
 import { sv_respawnguard } from '../src/newer/gameplay/sv_respawn.js';

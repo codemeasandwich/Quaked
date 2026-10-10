@@ -6,9 +6,9 @@ import {createHash} from 'node:crypto';
 import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/engine/render/gl_model.js';
-import {AliasMeshSignature} from '../src/alias_mesh_format.js';
-import {ALIAS_MESH_BAKES} from '../src/alias_mesh_bakes.js';
-import {R_AliasMeshCacheStatus} from '../src/r_aliasmeshcache.js';
+import {AliasMeshSignature} from '../src/newer/assets/alias_mesh_format.js';
+import {ALIAS_MESH_BAKES} from '../src/newer/assets/alias_mesh_bakes.js';
+import {R_AliasMeshCacheStatus} from '../src/newer/assets/r_aliasmeshcache.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 export const sha=b=>createHash('sha256').update(b).digest('hex'),arraySHA=a=>sha(Buffer.from(a.buffer,a.byteOffset,a.byteLength));
 export function visitNative(visit){const bytes=readFileSync(new URL('../pak0.pak',import.meta.url)),pak=COM_LoadPackFile('native-alias-independent',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length));COM_AddPack(pak);VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);Mod_Init();const names=pak.files.filter(f=>/^progs\/[^/]+\.mdl$/.test(f.name)).map(f=>f.name).reverse();same(names.length,61,'all61 installed MDLs');for(const name of names){const model=Mod_ForName(name,true);visit(name,model,model.cache.data,COM_FindFile(name).data);}return sha(bytes);}

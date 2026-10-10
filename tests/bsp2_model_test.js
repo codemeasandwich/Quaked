@@ -8,7 +8,7 @@ import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init,Mod_ForName,Mod_ClearAll,Mod_LeafPVS,Mod_DecompressVis,Mod_PointInLeaf} from '../src/engine/render/gl_model.js';
 import {SV_HullPointContents,SV_RecursiveHullCheck,trace_t} from '../src/engine/server/world.js';
 import {R_ParseBsp} from '../src/newer/render/r_levelgraph.js';
-import {R_BspTextureNames} from '../src/r_newertextures.js';
+import {R_BspTextureNames} from '../src/newer/render/r_newertextures.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),hash=b=>createHash('sha256').update(b).digest('hex');
 const pack=readFileSync(new URL('../pak0.pak',import.meta.url));COM_AddPack(COM_LoadPackFile('bsp2-native-fixture',pack.buffer.slice(pack.byteOffset,pack.byteOffset+pack.length)));VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);Mod_Init();let serial=0;
 const native=name=>Buffer.from(COM_FindFile(name).data);

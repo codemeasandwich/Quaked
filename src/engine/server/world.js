@@ -39,7 +39,7 @@ import { PR_ExecuteProgram } from '../progs/pr_exec.js';
 import { EDICT_TO_PROG, PROG_TO_EDICT, pr_global_struct, PR_GetString } from '../progs/progs.js';
 import { SV_PortalMoveRead } from '../../newer/gameplay/sv_portalmotion.js';
 import { SV_BeginPortalTouch, SV_PreparePortalTouch, SV_FinishPortalTouch, SV_RestorePortalReceiver } from '../../newer/gameplay/sv_portal.js';
-import { R_FlashlightSkillSelected } from '../../r_flashlightrun.js';
+import { R_FlashlightSkillSelected } from '../../newer/render/r_flashlightrun.js';
 
 // Pre-allocated scratch vectors for SV_RecursiveHullCheck (indexed by recursion depth).
 // Grow this pool on demand because valid BSP hulls can be deeper than the common case.

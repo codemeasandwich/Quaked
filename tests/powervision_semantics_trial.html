@@ -4,8 +4,8 @@
 <h1>Power vision MRT semantic test</h1><p>Finite GPU readback of actual adapted mask/depth helpers. No gameplay or animation loop.</p><pre id="result">Running…</pre>
 <script type="module">
 import * as THREE from 'three';
-import {PowerVisionAdapt} from '../src/r_powervision.js';
-import {UNSEEN_FRAGMENT} from '../src/powervision_shaders.js';
+import {PowerVisionAdapt} from '../src/newer/render/r_powervision.js';
+import {UNSEEN_FRAGMENT} from '../src/newer/render/powervision_shaders.js';
 const output=document.querySelector('#result'),errors=[],owned=[];let renderer;
 const check=(value,message)=>{if(!value)throw Error(message);};
 try{

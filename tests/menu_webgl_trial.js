@@ -11,7 +11,7 @@ const {cl,cls}=await import('../src/engine/client/client.js'),{sv,svs}=await imp
 const {Cbuf_AddText,Cmd_ExecuteString}=await import('../src/engine/common/cmd.js');
 const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
 const {Draw_GetOverlayCanvas}=await import('../src/engine/render/gl_draw.js');
-const split=await import('../src/r_demosplit.js');
+const split=await import('../src/newer/render/r_demosplit.js');
 let phase='ready',generation=0,timer=null,deadline=0,lastTime=null,latest=null;
 function status(){
  const snapshot=adapter.MainMenu_Snapshot(),delta=lastTime===null?null:sv.time-lastTime;lastTime=sv.time;

@@ -1,7 +1,7 @@
 await import('../src/engine/render/gl_rsurf.js');
 const THREE=await import('three');
-const post=await import('../src/gl_post.js');
-const split=await import('../src/r_demosplit.js');
+const post=await import('../src/newer/render/gl_post.js');
+const split=await import('../src/newer/render/r_demosplit.js');
 const cvars=await import('../src/engine/common/cvar.js');
 
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}

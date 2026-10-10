@@ -38,7 +38,7 @@ import * as THREE from 'three';
 import * as bestiary from '../src/r_bestiary.js';
 import {Bestiary_FacesPlayer} from '../src/bestiary_state.js';
 import * as main from '../src/engine/render/gl_rmain.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as host from '../src/engine/server/host.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as input from '../src/engine/client/cl_input.js';

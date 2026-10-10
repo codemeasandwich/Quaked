@@ -4,7 +4,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
-import * as st from '../src/r_smoketrail.js';
+import * as st from '../src/newer/render/r_smoketrail.js';
 
 const SOURCE_SHA256 = '7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6';
 const check = ( v, label ) => { if ( ! v ) throw new Error( label ); };

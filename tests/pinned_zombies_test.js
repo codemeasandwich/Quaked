@@ -13,7 +13,7 @@ import { sv, svs, ss_loading, ss_active, SOLID_BSP, SOLID_SLIDEBOX, MOVETYPE_NON
 import { SV_ClearWorld, SV_LinkEdict, SV_Move } from '../src/engine/server/world.js';
 import { SV_PinnedZombieSpawned } from '../src/newer/gameplay/sv_pinnedzombies.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };

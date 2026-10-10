@@ -4,7 +4,7 @@
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import * as D from '../src/r_dof.js';
+import * as D from '../src/newer/render/r_dof.js';
 const DEFAULT_STRENGTH = D.r_dof.string; // (as the module declares it, before any test sets it)
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, near = ( a, b, e, m ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );

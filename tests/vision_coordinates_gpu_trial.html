@@ -4,9 +4,9 @@
 <h1>Vision optical-coordinate GPU test</h1><p>Finite packed-UV and diagnostic float readback of production shader adapters and history passes. Shifted and animated curved fields; no gameplay or animation loop.</p><pre id="result">Running…</pre>
 <script type="module">
 import * as THREE from 'three';
-import {PowerVisionAdapt,R_PowerVisionRender,R_PowerVisionReset} from '../src/r_powervision.js';
-import {UNSEEN_FRAGMENT,HISTORY_FRAGMENT,FULLSCREEN_VERTEX} from '../src/powervision_shaders.js';
-import {VISION_PREVIOUS_COORDINATES_GLSL,VISION_UV_PACK_GLSL} from '../src/vision_coordinates.js';
+import {PowerVisionAdapt,R_PowerVisionRender,R_PowerVisionReset} from '../src/newer/render/r_powervision.js';
+import {UNSEEN_FRAGMENT,HISTORY_FRAGMENT,FULLSCREEN_VERTEX} from '../src/newer/render/powervision_shaders.js';
+import {VISION_PREVIOUS_COORDINATES_GLSL,VISION_UV_PACK_GLSL} from '../src/newer/render/vision_coordinates.js';
 const result=document.querySelector('#result'),owned=[],errors=[],reports=[];let renderer;
 const check=(value,message)=>{if(!value)throw Error(message);};
 try{

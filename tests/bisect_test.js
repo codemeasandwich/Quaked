@@ -21,7 +21,7 @@ import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
 import { sv_gravity } from '../src/engine/server/sv_phys.js';
 import { cl } from '../src/engine/client/client.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass, r_lerpmodels } from '../src/newer/render/r_anim.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';

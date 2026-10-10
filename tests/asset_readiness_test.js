@@ -2,7 +2,7 @@
 // transport are controlled at endpoints; actual loaders/materials remain used.
 import * as THREE from 'three';
 import { R_AnimSetNewer, R_AnimSetLighting, R_AnimSetClassicPass, r_newer_normals, r_newer_textures, r_newer_enemies } from '../src/newer/render/r_anim.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
@@ -32,7 +32,7 @@ async function endpoints( fn ) {
 
 Deno.test( 'world readiness is selected-model scoped and image timeout permanently settles native without late pixel replacement', async () => endpoints( async env => {
 	globalThis.fetch = async () => ( { ok: true, json: async () => ( { version: 1, textures: { wall: 'wall.webp', preview: 'preview.webp' } } ) } );
-	const loader = await import( '../src/r_newertextures.js?readiness-wall' ), texture = pixels(), native = texture.image;
+	const loader = await import( '../src/newer/render/r_newertextures.js?readiness-wall' ), texture = pixels(), native = texture.image;
 	const model = { textures: [ { name: 'wall', gl_texture: texture }, { name: 'unknown', gl_texture: pixels() } ] };
 	loader.R_NewerTexturesForModel( model ); await flush(); equal( loader.R_NewerTexturesStatus( model ).pending, 1, 'only selected known wall pending' );
 	const preview = { textures: [ { name: 'preview', gl_texture: pixels() } ] }; loader.R_NewerTexturesForModel( preview ); await flush();
@@ -47,7 +47,7 @@ Deno.test( 'world readiness is selected-model scoped and image timeout permanent
 
 Deno.test( 'failed or stalled texture manifest is terminal native and ignores late manifest response', async () => endpoints( async env => {
 	let release; globalThis.fetch = () => new Promise( resolve => { release = resolve; } );
-	const loader = await import( '../src/r_newertextures.js?readiness-index-stall' ), texture = pixels(), model = { textures: [ { name: 'wall', gl_texture: texture } ] };
+	const loader = await import( '../src/newer/render/r_newertextures.js?readiness-index-stall' ), texture = pixels(), model = { textures: [ { name: 'wall', gl_texture: texture } ] };
 	loader.R_NewerTexturesForModel( model ); await flush(); equal( loader.R_NewerTexturesStatus( model ).index, 'loading', 'index loading' );
 	env.expire(); await flush(); equal( loader.R_NewerTexturesStatus( model ).index, 'fallback', 'index terminal fallback' ); check( loader.R_NewerTextureSettled( 'wall', texture ), 'index failure settles texture' );
 	release( { ok: true, json: async () => ( { textures: { wall: 'late.webp' } } ) } ); await flush(); equal( env.images.length, 0, 'late index cannot start art requests' );
@@ -55,7 +55,7 @@ Deno.test( 'failed or stalled texture manifest is terminal native and ignores la
 
 Deno.test( 'successful world diffuse/height readiness waits for all selected art and explicit image failure settles native', async () => endpoints( async env => {
 	globalThis.fetch = async () => ( { ok: true, json: async () => ( { textures: { wall: 'd.webp', broken: 'broken.webp' }, normals: { wall: { file: 'h.webp', strength: .5 } } } ) } );
-	const loader = await import( '../src/r_newertextures.js?readiness-world-success' ), wall = pixels(), broken = pixels(), native = wall.image;
+	const loader = await import( '../src/newer/render/r_newertextures.js?readiness-world-success' ), wall = pixels(), broken = pixels(), native = wall.image;
 	const model = { textures: [ { name: 'wall', gl_texture: wall }, { name: 'broken', gl_texture: broken } ] }; loader.R_NewerTexturesForModel( model ); await flush();
 	env.images.find( image => image.url.includes( 'd.webp' ) ).onload(); await flush(); equal( wall.image, native, 'diffuse waits for selected height' );
 	env.images.find( image => image.url.includes( 'broken.webp' ) ).onerror(); env.images.find( image => image.url.includes( 'h.webp' ) ).onload(); await flush();

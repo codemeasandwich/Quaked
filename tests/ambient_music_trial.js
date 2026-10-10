@@ -1,7 +1,7 @@
 await import( '../main.js' );
 const { Cbuf_AddText } = await import( '../src/engine/common/cmd.js' );
 const { Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
-const { R_DemoSplitRelease } = await import( '../src/r_demosplit.js' );
+const { R_DemoSplitRelease } = await import( '../src/newer/render/r_demosplit.js' );
 const { S_UnlockAudio, S_GetAudioContext, S_GetMasterGain } = await import( '../src/engine/sound/snd_dma.js' );
 const { S_GetAmbientMusicStatus } = await import( '../src/s_ambientgame.js' );
 const music = await import( '../src/s_ambientmusic.js' );

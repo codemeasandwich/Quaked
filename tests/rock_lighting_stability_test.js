@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import * as rock from '../src/r_rockfield.js';
-import {ROCK_PARALLAX_GLSL,ROCK_GLSL} from '../src/r_rockshader.js';
+import * as rock from '../src/newer/render/r_rockfield.js';
+import {ROCK_PARALLAX_GLSL,ROCK_GLSL} from '../src/newer/render/r_rockshader.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/newer/render/r_anim.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 const check=(v,label)=>{if(!v)throw new Error(label);};
 const face=(points,uv)=>({visframe:7,flags:0,plane:{normal:[0,-1,0],dist:0},texinfo:{texture:{name:'rock1_2',width:64,height:64}},polys:{numverts:points.length,verts:new Float32Array(points.flatMap((p,i)=>[...p,...uv[i],0,0]))}});

@@ -4,7 +4,7 @@
 await import( '../src/engine/render/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
 import * as vars from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import * as r from '../src/r_impactripples.js';
+import * as r from '../src/newer/render/r_impactripples.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` ), near = ( a, b, m, e = 1 ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );
@@ -109,7 +109,7 @@ Deno.test( 'rings in the future are not packed, one at exactly its lifetime is g
 } );
 
 // the teleporter windows of a real-shaped level: the visible surface, and a trigger that lies BESIDE it (as in e1m3, e1m5 and e1m6)
-const portalLib = await import( '../src/gl_portal.js' );
+const portalLib = await import( '../src/newer/render/gl_portal.js' );
 function surface( x, facing, y0 = - 32, y1 = 32 ) {
 	return { flags: 0x10 | ( facing < 0 ? 2 : 0 ), plane: { normal: new Float32Array( [ 1, 0, 0 ] ), dist: x }, texinfo: { texture: { name: '*teleport' } },
 		polys: { numverts: 4, verts: [ [ x, y0, 0, 0, 0 ], [ x, y1, 0, 1, 0 ], [ x, y1, 112, 1, 1 ], [ x, y0, 112, 0, 1 ] ], next: null } };

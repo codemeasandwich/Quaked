@@ -6,11 +6,11 @@ import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/engine/render/gl_model.js';
-import * as height from '../src/r_heightshadows.js';
-import * as post from '../src/gl_post.js';
+import * as height from '../src/newer/render/r_heightshadows.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { R_NormalMapFor } from '../src/gl_normals.js';
+import { R_NormalMapFor } from '../src/newer/render/gl_normals.js';
 import { createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 import * as skins from '../src/newer/render/r_newerskins.js';
 
@@ -38,7 +38,7 @@ Deno.test( 'actual rock highlights preserve daylight and lift only dim reached l
 	for ( const tag of [ 0, 1, 2, 3 ] ) for ( const ratio of [ 0, .5, 1 ] ) { const expected = tag===2?.5+.5*ratio:1; near( actual( 1, ratio * 3, 3, ( tag * 64 + 31 ) / 255, clamp, mix, smooth ), expected, 'actual class-tagged light gain' ); }
 	near( actual( 0, 3, 3, 128 / 255, clamp, mix, smooth ), 1, 'Classic/off masks are neutral' ); near( actual( 1, 0, 0, 128 / 255, clamp, mix, smooth ), 1, 'no active source cannot create contrast illumination' );
 	near(actual(1,.05,.05,128/255,clamp,mix,smooth),2,'dim reached highlight');near(actual(1,0,.05,128/255,clamp,mix,smooth),.5,'relief shadow remains strongly defined');near(actual(1,1,1,128/255,clamp,mix,smooth),1,'daylight normal');
-	const rock = await import( '../src/r_rockfield.js' );
+	const rock = await import( '../src/newer/render/r_rockfield.js' );
 	const surface = ( name, n, p ) => ( { flags: 0, plane: { normal: n, dist: 0 }, texinfo: { texture: { name } }, polys: { numverts: 4, verts: p.map( ( v, i ) => [ ...v, i & 1, i >> 1, .1 * i, .2 * i ] ) } } );
 	const wall = surface( 'rock1_2', [ 1, 0, 0 ], [ [ 0, 0, 0 ], [ 0, 16, 0 ], [ 0, 16, 16 ], [ 0, 0, 16 ] ] ), ground = surface( 'wgrnd1_5', [ 0, 0, 1 ], [ [ 32, 0, 0 ], [ 48, 0, 0 ], [ 48, 16, 0 ], [ 32, 16, 0 ] ] ), model = { name: 'maps/height_class_test.bsp', surfaces: [ wall, ground ] }, native = JSON.stringify( model );
 	try {
@@ -180,7 +180,7 @@ Deno.test( 'installed21 native and14 replacement enemy scalar assets reach publi
 
 Deno.test( 'actual public decal, portal and level-view sky materials write all four HDR attachments; multiplicative decals preserve normal distances and every packed slot', () => fixture( async () => {
 
-	const decals = await import( '../src/r_decals.js' ), portals = await import( '../src/gl_portal.js' ), levels = await import( '../src/newer/render/r_levelview.js' ), canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
+	const decals = await import( '../src/newer/render/r_decals.js' ), portals = await import( '../src/newer/render/gl_portal.js' ), levels = await import( '../src/newer/render/r_levelview.js' ), canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
 	const savedDocument = Object.getOwnPropertyDescriptor( globalThis, 'document' ), scene = new THREE.Scene(), diffuse = pixels(); let decal = null, view = null, portalMaterial = null;
 	Object.defineProperty( globalThis, 'document', { configurable: true, value: { createElement: tag => { same( tag, 'canvas', 'decal public atlas uses canvas' ); return canvas.createCanvas( 1, 1 ); } } } );
 	const floor = { flags: 0, plane: { normal: [ 0, 0, 1 ], dist: 0 }, texinfo: { vecs: [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ] ] }, texturemins: [ -16, -16 ], extents: [ 32, 32 ] }, leaf = { contents: -1, compressed_vis: null, firstmarksurface: [ floor ], nummarksurfaces: 1 }, model = { leafs: [ { contents: -2 }, leaf ], nodes: [ leaf ], numleafs: 1 };

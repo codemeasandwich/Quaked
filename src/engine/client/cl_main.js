@@ -10,9 +10,9 @@
  *
  * Errors: calls `Host_Error` at 2 places; catches at 2 places.
  */
-import {R_DemonBakeRelease} from '../../r_demonbakes.js';
-import {R_PowerVisionReset} from '../../r_powervision.js';
-import {R_QuadVisionReset} from '../../r_quadvision.js';
+import {R_DemonBakeRelease} from '../../newer/assets/r_demonbakes.js';
+import {R_PowerVisionReset} from '../../newer/render/r_powervision.js';
+import {R_QuadVisionReset} from '../../newer/render/r_quadvision.js';
 import {R_FaceGameReset} from '../../r_facegame.js';
 import { SV_RendVeilClientRecord } from '../../newer/gameplay/sv_rendveil.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
@@ -42,10 +42,10 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from '../common/mathlib.js';
 import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from '../render/render.js';
-import { R_ImpactMissile } from '../../r_impactripples.js';
-import { R_FlashlightRunEnd } from '../../r_flashlightrun.js';
-import { R_DemoSplitEnd } from '../../r_demosplit.js';
-import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../../r_muzzle.js';
+import { R_ImpactMissile } from '../../newer/render/r_impactripples.js';
+import { R_FlashlightRunEnd } from '../../newer/render/r_flashlightrun.js';
+import { R_DemoSplitEnd } from '../../newer/render/r_demosplit.js';
+import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../../newer/render/r_muzzle.js';
 import { R_NewerGame } from '../../newer/render/r_anim.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from '../server/host.js';

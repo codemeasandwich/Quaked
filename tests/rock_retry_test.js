@@ -1,7 +1,7 @@
 import {createHash} from 'node:crypto';
-import {RockBakeSource,R_RockBakePrefetch} from '../src/r_rockbakes.js';
-import {RockBakeEncode,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from '../src/rockfield_bake_format.js';
-import {ROCK_BAKES} from '../src/rockfield_bakes.js';
+import {RockBakeSource,R_RockBakePrefetch} from '../src/newer/assets/r_rockbakes.js';
+import {RockBakeEncode,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from '../src/newer/assets/rockfield_bake_format.js';
+import {ROCK_BAKES} from '../src/newer/assets/rockfield_bakes.js';
 import {rockCharts} from './helpers/rock_prepare_fixture.mjs';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);let serial=0;
 async function until(fn,label){const end=performance.now()+2000;while(!fn()&&performance.now()<end)await new Promise(r=>setTimeout(r,0));check(fn(),label);}

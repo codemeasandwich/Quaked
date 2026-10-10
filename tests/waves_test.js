@@ -6,8 +6,8 @@ await import( '../src/engine/render/gl_rsurf.js' ); // (the renderer's module gr
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import * as ir from '../src/r_impactripples.js';
-import * as w from '../src/r_waves.js';
+import * as ir from '../src/newer/render/r_impactripples.js';
+import * as w from '../src/newer/render/r_waves.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 for ( const c of [ new cvar_t( 'r_hdr', '1' ), ir.r_impactripples ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );

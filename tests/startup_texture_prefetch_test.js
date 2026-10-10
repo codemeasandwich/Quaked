@@ -2,10 +2,10 @@
 // No renderer, model loader, palette setup or game is needed for prefetch.
 import {readFileSync} from 'node:fs';
 import * as THREE from 'three';
-import {R_BspTextureNames} from '../src/r_newertextures.js';
+import {R_BspTextureNames} from '../src/newer/render/r_newertextures.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 import * as boot from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),flush=async()=>{for(let i=0;i<40;i++)await Promise.resolve();};
 function bsp(names){const offset=128,length=4+names.length*4+names.filter(n=>n!==null).length*40,bytes=new Uint8Array(offset+length),v=new DataView(bytes.buffer);v.setInt32(0,29,true);v.setInt32(20,offset,true);v.setInt32(24,length,true);v.setInt32(offset,names.length,true);let at=4+names.length*4;names.forEach((name,i)=>{v.setInt32(offset+4+i*4,name===null?-1:at,true);if(name===null)return;bytes.set(new TextEncoder().encode(name).subarray(0,16),offset+at);v.setInt32(offset+at+16,64,true);v.setInt32(offset+at+20,64,true);at+=40;});return bytes;}
@@ -24,7 +24,7 @@ async function assetsFixture(run){
  Object.defineProperty(globalThis,'document',{configurable:true,value:{createElement:tag=>{same(tag,'canvas','only decoding canvas requested');let image;return{width:0,height:0,getContext:()=>({drawImage:i=>image=i,getImageData:()=>{decoded.push(image.url);return{data:image.pixels};}})};}}});
  anim.R_AnimSetClassicPass(false);vars.Cvar_SetValue('r_hdr',0);vars.Cvar_SetValue('r_newer_textures',1);boot.R_DemoLoadingBoot();boot.R_DemoLoadingWelcome();
  const native=()=>new THREE.DataTexture(new Uint8Array([1,2,3,255]),1,1);
- try{const module=await import('../src/r_newertextures.js?prefetch-public-'+Math.random());await run({module,images,fetches,decoded,scalar,native});}
+ try{const module=await import('../src/newer/render/r_newertextures.js?prefetch-public-'+Math.random());await run({module,images,fetches,decoded,scalar,native});}
  finally{for(const image of images)if(image.onload||image.onerror)image.finish(true);await flush();boot.R_DemoLoadingCancel();globalThis.fetch=saved.fetch;anim.R_AnimSetClassicPass(saved.classic);options.forEach((v,i)=>vars.Cvar_Set(v.name,values[i]));for(const [key,d]of [['Image',saved.Image],['document',saved.document]])if(d)Object.defineProperty(globalThis,key,d);else delete globalThis[key];}
 }
 Deno.test('named prefetch shares exact decoded pigment/height/edge/scalar caches while actual textures and startup readiness remain authoritative',()=>assetsFixture(async f=>{

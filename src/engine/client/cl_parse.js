@@ -71,7 +71,7 @@ import {
 	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
 import { VectorCopy } from '../common/mathlib.js';
 import { R_NewerGame } from '../../newer/render/r_anim.js';
-import { R_FlashlightRunMap } from '../../r_flashlightrun.js';
+import { R_FlashlightRunMap } from '../../newer/render/r_flashlightrun.js';
 import { V_ParseDamage } from './view.js';
 import { Mod_ForName } from '../render/gl_model.js';
 import { CL_SetServerState, CL_AcknowledgeCommand, CL_AcknowledgeTransportSequence,

@@ -1,6 +1,6 @@
 // Read-only test oracles for Three attributes and source-triangle grouping.
 import * as THREE from 'three';
-import {PointShadowAtlas} from '../../src/r_pointshadows.js';
+import {PointShadowAtlas} from '../../src/newer/render/r_pointshadows.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bytes=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);
 export function expandAttribute(geometry,name){const a=geometry.getAttribute(name),index=geometry.getIndex(),count=index?.count||a.count,result=new Float32Array(count*a.itemSize);for(let i=0;i<count;i++){const v=index?index.getX(i):i;result[i*a.itemSize]=a.getX(v);if(a.itemSize>1)result[i*a.itemSize+1]=a.getY(v);if(a.itemSize>2)result[i*a.itemSize+2]=a.getZ(v);}return result;}
 export function compactGeometry(data){const g=new THREE.BufferGeometry(),buffer=new THREE.InterleavedBuffer(data.interleaved,10);g.setAttribute('position',new THREE.InterleavedBufferAttribute(buffer,3,0));g.setAttribute('normal',new THREE.InterleavedBufferAttribute(buffer,3,3));g.setAttribute('uv',new THREE.InterleavedBufferAttribute(buffer,2,6));g.setAttribute('uv1',new THREE.InterleavedBufferAttribute(buffer,2,8));g.setIndex(new THREE.BufferAttribute(data.indices,1));g.computeBoundingBox();g.computeBoundingSphere();return g;}

@@ -1,7 +1,7 @@
 // Exercise the public cvar/menu/frame interfaces with real Three.js materials.
 await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const post = await import( '../src/gl_post.js' );
+const post = await import( '../src/newer/render/gl_post.js' );
 const anim = await import( '../src/newer/render/r_anim.js' );
 const cvar = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );

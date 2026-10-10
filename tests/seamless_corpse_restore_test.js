@@ -15,7 +15,7 @@ import { SV_SeamlessReset, SV_SeamlessFrame, SV_SeamlessCrossings, SV_SeamlessPe
 	SV_SeamlessPlacePlayer, SV_SeamlessHolding, SV_LevelSnapshotEntities, sv_seamless } from '../src/newer/gameplay/sv_seamless.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
-import { r_hdr } from '../src/gl_post.js';
+import { r_hdr } from '../src/newer/render/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { sv_gravity, SV_Physics, SV_SetFrametime } from '../src/engine/server/sv_phys.js';
 

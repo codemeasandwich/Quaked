@@ -15,7 +15,7 @@ import {SV_ClearWorld,SV_LinkEdict} from '../src/engine/server/world.js';
 import {net_drivers} from '../src/engine/net/net.js';
 import {Cbuf_Init} from '../src/engine/common/cmd.js';
 import {Cvar_FindVar,Cvar_RegisterVariable,Cvar_SetValue} from '../src/engine/common/cvar.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 import {skill} from '../src/engine/server/host.js';
 import {sv_gravity,SV_SetPlayer} from '../src/engine/server/sv_phys.js';
 import {SZ_Alloc,SZ_Clear} from '../src/engine/common/common.js';

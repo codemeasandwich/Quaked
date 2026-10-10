@@ -1,6 +1,6 @@
 // Four bounded actual GPU spotlight captures. No Quake entry/server or RAF.
 const THREE = await import( 'three' );
-const { PointShadowAtlas, SPOT_WORLD_SHADOW_GLSL, SPOT_SHADOW_SIZE } = await import( '../src/r_pointshadows.js' );
+const { PointShadowAtlas, SPOT_WORLD_SHADOW_GLSL, SPOT_SHADOW_SIZE } = await import( '../src/newer/render/r_pointshadows.js' );
 const W = 512, report = document.querySelector( '#report' ), button = document.querySelector( '#run' );
 const renderer = new THREE.WebGLRenderer( { antialias: false, preserveDrawingBuffer: true } );
 renderer.setPixelRatio( 2 ); renderer.setSize( W / 2, W / 2 ); renderer.setClearColor( 0, 0 );

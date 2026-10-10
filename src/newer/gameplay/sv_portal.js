@@ -16,7 +16,7 @@
 // responsibility. These hooks only correct a confirmed stock destination.
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { r_newer_portals } from '../render/r_anim.js';
-import { r_portals, R_GetPortals, R_PortalsActive, R_TransformPortalPoint } from '../../gl_portal.js';
+import { r_portals, R_GetPortals, R_PortalsActive, R_TransformPortalPoint } from '../render/gl_portal.js';
 import { PR_GetString } from '../../engine/progs/progs.js';
 import { FL_CLIENT, sv, svs } from '../../engine/server/server.js';
 import { AngleVectors, DotProduct } from '../../engine/common/mathlib.js';

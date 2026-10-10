@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
-import * as W from '../src/r_wallburn.js';
+import * as W from '../src/newer/render/r_wallburn.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const near = ( a, b, e, m ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );

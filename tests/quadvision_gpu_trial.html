@@ -4,7 +4,7 @@
 <h1>Quad vision finite GPU test</h1><p>Actual public module and mask/post shaders with controlled native endpoints. Finite renders and readback; no gameplay or animation loop.</p><pre id="result">Running…</pre>
 <script type="module">
 import * as THREE from 'three';
-import {VISION_COORDINATES_GLSL} from '../src/vision_coordinates.js';
+import {VISION_COORDINATES_GLSL} from '../src/newer/render/vision_coordinates.js';
 const result=document.querySelector('#result'),owned=[],errors=[];let renderer,api,moduleURL;
 const check=(value,message)=>{if(!value)throw Error(message);};
 try{
@@ -15,7 +15,7 @@ try{
  globalThis.__quadVisionTest={THREE,VISION_COORDINATES_GLSL,sv:server,cl:client,FL_MONSTER:32,IT_QUAD:1,STAT_HEALTH:0,SV_FaceLocalActive:()=>local,GL_DrawAliasFrame:actual=>actual.template};
  // Keep the production function/shader bodies exact. Replace only imported
  // native endpoints, as the Node native test separately verifies their wiring.
- const source=await(await fetch('../src/r_quadvision.js')).text(),body=source.replace(/^import[^;]+;\s*/gm,'');moduleURL=URL.createObjectURL(new Blob(['const {THREE,VISION_COORDINATES_GLSL,sv,cl,FL_MONSTER,IT_QUAD,STAT_HEALTH,SV_FaceLocalActive,GL_DrawAliasFrame}=globalThis.__quadVisionTest;\n'+body],{type:'text/javascript'}));api=await import(moduleURL);
+ const source=await(await fetch('../src/newer/render/r_quadvision.js')).text(),body=source.replace(/^import[^;]+;\s*/gm,'');moduleURL=URL.createObjectURL(new Blob(['const {THREE,VISION_COORDINATES_GLSL,sv,cl,FL_MONSTER,IT_QUAD,STAT_HEALTH,SV_FaceLocalActive,GL_DrawAliasFrame}=globalThis.__quadVisionTest;\n'+body],{type:'text/javascript'}));api=await import(moduleURL);
  const make=(data,format=THREE.RGBAFormat,type=THREE.FloatType)=>{const t=new THREE.DataTexture(data,width,height,format,type);t.needsUpdate=true;t.minFilter=t.magFilter=THREE.NearestFilter;owned.push(t);return t;};
  const base=new Float32Array(width*height*4),normal=new Float32Array(width*height*4),depth=new Float32Array(width*height);for(let i=0;i<width*height;i++){base.set([.1,.1,.1,1],i*4);normal.set([.5,.5,1,100],i*4);}
  const sceneTexture=make(base),normalTexture=make(normal),depthTexture=make(depth,THREE.RedFormat),hdr={width,height,textures:[sceneTexture,normalTexture],depthTexture},world=new THREE.Scene();world.updateMatrixWorld();let activeTarget=null;const originalSet=renderer.setRenderTarget.bind(renderer),targets=[];renderer.setRenderTarget=target=>{activeTarget=target;if(target?.isWebGLRenderTarget&&!targets.includes(target))targets.push(target);originalSet(target);};

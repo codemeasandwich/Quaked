@@ -5,12 +5,12 @@ import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
 import {RockPrepareTiles} from '../src/rockfield_prepare.js';
-import {RockBakeSource,RockBakeCoverage,R_RockBakePrefetch} from '../src/r_rockbakes.js';
-import {RockBakeConfig,RockBakeEncode,RockBakeDecode,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from '../src/rockfield_bake_format.js';
-import {createField,generateTile} from '../src/rockfield.js';
-import {ROCK_BAKES} from '../src/rockfield_bakes.js';
+import {RockBakeSource,RockBakeCoverage,R_RockBakePrefetch} from '../src/newer/assets/r_rockbakes.js';
+import {RockBakeConfig,RockBakeEncode,RockBakeDecode,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from '../src/newer/assets/rockfield_bake_format.js';
+import {createField,generateTile} from '../src/newer/assets/rockfield.js';
+import {ROCK_BAKES} from '../src/newer/assets/rockfield_bakes.js';
 import {PREPARED_CORPUS} from '../src/prepared_corpus.js';
-import {DisplacementStore} from '../src/displacement_store.js';
+import {DisplacementStore} from '../src/newer/assets/displacement_store.js';
 import {nativeStorage,recordingLocks} from './helpers/opfs_native_fixture.mjs';
 import {rockCharts,rockModel,nativeRockWorkers} from './helpers/rock_prepare_fixture.mjs';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),sha=a=>createHash('sha256').update(a).digest('hex'),ab=a=>a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength),hashData=s=>sha(new Uint8Array(s.entry.data.data.buffer));
@@ -28,7 +28,7 @@ Deno.test('complete rock preparation uses at most two real workers and covers ne
 Deno.test('named complete rock fields commit before ready and fresh module/process reuse disk with zero workers',()=>fixture(async f=>{
  const charts=rockCharts(),model=rockModel(),workers=nativeRockWorkers();let held=false,release;const pause=new Promise(r=>release=r);f.storage.hooks.beforeClose=async name=>{if(name.endsWith('.json')){held=true;await pause;}};const source=new RockBakeSource(model,charts,undefined,{store:f.disk,workerFactory:workers.factory});
  try{await until(()=>held,'manifest close reached',()=>({status:source.status,phase:source.entry?.phase,error:source.entry?.error,workers:workers.stats}));same(source.status,'loading','generation complete still not ready before durable manifest closes');same(source.tile(charts[1],-21,36),null,'offscreen field cannot publish ahead of commit');release();await source.entry.promise;same(source.status,'ready','closed files/readback completed');same(source.entry.source,'generated-and-stored','first visit generated and committed');same(source.entry.data.charts.size,2,'both charts persisted');check(source.tile(charts[1],-21,36),'offscreen brush center available');same(workers.stats.completed,18,'complete map generated once');const expected=hashData(source);delete f.storage.hooks.beforeClose;source.dispose();
-  const fresh=await import('../src/r_rockbakes.js?rock-public-reopen='+Date.now()),again=new fresh.RockBakeSource(rockModel(),rockCharts(),undefined,{store:new DisplacementStore(nativeStorage(f.root),recordingLocks()),workerFactory:()=>{throw Error('Fresh module must not generate');}});try{await again.entry.promise;same(again.status,'ready','fresh module ready');same(again.entry.source,'disk','fresh module source is actual closed files');same(hashData(again),expected,'all persisted half values exact');}finally{again.dispose();}
+  const fresh=await import('../src/newer/assets/r_rockbakes.js?rock-public-reopen='+Date.now()),again=new fresh.RockBakeSource(rockModel(),rockCharts(),undefined,{store:new DisplacementStore(nativeStorage(f.root),recordingLocks()),workerFactory:()=>{throw Error('Fresh module must not generate');}});try{await again.entry.promise;same(again.status,'ready','fresh module ready');same(again.entry.source,'disk','fresh module source is actual closed files');same(hashData(again),expected,'all persisted half values exact');}finally{again.dispose();}
   const child=spawn(process.execPath,[new URL('./helpers/rock_prepare_child.mjs',import.meta.url).pathname,f.root],{env:process.env,stdio:['ignore','pipe','pipe']});let out='',err='';child.stdout.on('data',b=>out+=b);child.stderr.on('data',b=>err+=b);const code=await new Promise((resolve,reject)=>{child.on('error',reject);child.on('exit',resolve);});same(code,0,'fresh-process reuse '+err);const proof=JSON.parse(out.split('\n').find(s=>s.startsWith('ROCK_DISK_CHILD ')).slice(16));same(proof.source,'disk','new process actual disk');same(proof.workers,0,'new process worker trap untouched');same(proof.sha256,expected,'new process exact complete half payload');check(proof.pid!==process.pid,'distinct lifetime');console.log('ROCK_PERSISTENCE_PROOF '+JSON.stringify({...proof,parentPID:process.pid,tiles:18}));
  }finally{release();source.dispose();}
 }));

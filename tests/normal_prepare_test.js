@@ -3,14 +3,14 @@ import * as fs from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
-import {NormalBakeEncode,NormalBakeDecode} from '../src/normal_bake_format.js';
+import {NormalBakeEncode,NormalBakeDecode} from '../src/newer/assets/normal_bake_format.js';
 import {NormalInputs,NormalInputKey,NormalGenerate,R_NormalPrepare,R_NormalPrepared,R_NormalPreparationNeeded} from '../src/normal_prepare.js';
-import {NORMAL_BAKES} from '../src/normal_bakes.js';
-import {R_HeightFromRGBA,R_MultiScaleHeight,R_NormalsFromHeight,R_NormalsFromCraftedHeight} from '../src/gl_normals.js';
-import {DisplacementStore} from '../src/displacement_store.js';
+import {NORMAL_BAKES} from '../src/newer/assets/normal_bakes.js';
+import {R_HeightFromRGBA,R_MultiScaleHeight,R_NormalsFromHeight,R_NormalsFromCraftedHeight} from '../src/newer/render/gl_normals.js';
+import {DisplacementStore} from '../src/newer/assets/displacement_store.js';
 import {nativeStorage,recordingLocks} from './helpers/opfs_native_fixture.mjs';
 import {GL_RegisterTexture,GL_UnregisterTexture,GL_SetForceLinear,GL_TextureLinear,gl_texturemode} from '../src/engine/render/glquake.js';
-import {R_NewerNormalsPrepare} from '../src/r_newertextures.js';
+import {R_NewerNormalsPrepare} from '../src/newer/render/r_newertextures.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bytes=v=>Buffer.from(v.buffer,v.byteOffset,v.byteLength),equal=(a,b,m)=>check(bytes(a).equals(bytes(b)),m),ab=a=>a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength),sha=b=>createHash('sha256').update(b).digest('hex');
 function texture(crafted=false){const t=new THREE.DataTexture(Uint8Array.from({length:8*8*4},(_,i)=>(i*19+23)%256),8,8);t._fullbright=new THREE.DataTexture(new Uint8Array(8*8*4),8,8);if(crafted)t.userData.newerHeight={width:8,height:8,strength:2,cap:1.8,data:Float32Array.from({length:64},(_,i)=>((i*11)%61)/60),edgeSource:{width:10,height:10,data:Float32Array.from({length:100},(_,i)=>((i*13)%97)/96),offset:[1,1]}};return t;}
 function rejects(fn,label){let error;try{fn();}catch(e){error=e;}check(error instanceof Error,label+' rejected');}

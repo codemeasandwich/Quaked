@@ -8,7 +8,7 @@ const { R_ShellTrace } = await import( '../src/newer/render/r_shelltrace.js' );
 const shells = await import( '../src/newer/render/r_shells.js' );
 const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
-const { r_hdr } = await import( '../src/gl_post.js' );
+const { r_hdr } = await import( '../src/newer/render/gl_post.js' );
 const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }

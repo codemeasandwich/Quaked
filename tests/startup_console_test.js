@@ -15,7 +15,7 @@ import * as common from '../src/engine/common/common.js';
 import * as pak from '../src/engine/common/pak.js';
 import * as vid from '../src/engine/render/vid.js';
 import * as wad from '../src/engine/common/wad.js';
-import {r_hdr} from '../src/gl_post.js';
+import {r_hdr} from '../src/newer/render/gl_post.js';
 const check=(v,m)=>{if(!v)throw Error(m);},near=(a,b,m)=>check(Math.abs(a-b)<1e-8,`${m}: ${a} != ${b}`);
 Deno.test('automatic startup console holds every pending frame, retracts within200ms only after readiness and preserves ordinary/user console preference',async()=>{
  const canvas=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js'),oldWindow=Object.getOwnPropertyDescriptor(globalThis,'window'),oldDocument=Object.getOwnPropertyDescriptor(globalThis,'document');let rendered=0;

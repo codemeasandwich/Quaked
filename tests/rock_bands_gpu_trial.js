@@ -1,10 +1,10 @@
 import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
-import * as rock from '../src/r_rockfield.js';
-import * as band from '../src/r_rockshader.js';
-import { R_RockCoordinates } from '../src/r_rocksurfaces.js';
-import * as post from '../src/gl_post.js';
-import * as height from '../src/r_heightshadows.js';
+import * as rock from '../src/newer/render/r_rockfield.js';
+import * as band from '../src/newer/render/r_rockshader.js';
+import { R_RockCoordinates } from '../src/newer/render/r_rocksurfaces.js';
+import * as post from '../src/newer/render/gl_post.js';
+import * as height from '../src/newer/render/r_heightshadows.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';

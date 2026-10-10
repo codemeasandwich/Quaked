@@ -7,10 +7,10 @@ import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
-import * as fb from '../src/r_fireball.js';
+import * as fb from '../src/newer/render/r_fireball.js';
 import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion, R_RocketTrail } from '../src/engine/render/render.js';
-import * as smoke from '../src/r_smoketrail.js';
-import { r_demosplit } from '../src/r_demosplit.js';
+import * as smoke from '../src/newer/render/r_smoketrail.js';
+import { r_demosplit } from '../src/newer/render/r_demosplit.js';
 import * as part from '../src/engine/render/r_part.js';
 import { cl as clientState } from '../src/engine/client/client.js';
 

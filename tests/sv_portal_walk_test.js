@@ -7,7 +7,7 @@
 await import('../src/engine/render/gl_rsurf.js');
 const {sv,SOLID_BSP,MOVETYPE_PUSH,svs,FL_CLIENT,MOVETYPE_WALK}=await import('../src/engine/server/server.js');
 const progs=await import('../src/engine/progs/progs.js');const {edict_t}=progs;
-const {R_BuildPortals,R_PortalsBeginFrame,r_portals,R_TransformPortalPoint}=await import('../src/gl_portal.js');
+const {R_BuildPortals,R_PortalsBeginFrame,r_portals,R_TransformPortalPoint}=await import('../src/newer/render/gl_portal.js');
 const worldModule=await import('../src/engine/server/world.js');const {SV_ClearWorld,SV_Move,MOVE_NOMONSTERS}=worldModule;
 const physics=await import('../src/engine/server/sv_phys.js');
 const {Cvar_FindVar,Cvar_RegisterVariable,cvar_t}=await import('../src/engine/common/cvar.js');

@@ -1,11 +1,11 @@
 // Real surface charts, geometry, Three textures and public shader hooks. Worker
 // transport and WebGL rendering are observed at their endpoints, not started.
 import * as THREE from 'three';
-import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialName, R_RockMaterialProfile, ROCK_AXIS_U, ROCK_AXIS_V } from '../src/r_rocksurfaces.js';
-import { RockTileCache, R_RockPageHash, ROCK_TABLE_SIZE, ROCK_PROBES, ROCK_PAGES, ROCK_SIDE, ROCK_CELLS, ROCK_BORDER, R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldStatus, rockUniforms, r_rockfield } from '../src/r_rockfield.js';
-import { generateTile } from '../src/rockfield.js';
+import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialName, R_RockMaterialProfile, ROCK_AXIS_U, ROCK_AXIS_V } from '../src/newer/render/r_rocksurfaces.js';
+import { RockTileCache, R_RockPageHash, ROCK_TABLE_SIZE, ROCK_PROBES, ROCK_PAGES, ROCK_SIDE, ROCK_CELLS, ROCK_BORDER, R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldStatus, rockUniforms, r_rockfield } from '../src/newer/render/r_rockfield.js';
+import { generateTile } from '../src/newer/assets/rockfield.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
-import * as post from '../src/gl_post.js';
+import * as post from '../src/newer/render/gl_post.js';
 import * as anim from '../src/newer/render/r_anim.js';
 import * as cvar from '../src/engine/common/cvar.js';
 import { readFileSync } from 'node:fs';
@@ -15,7 +15,7 @@ import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { cl } from '../src/engine/client/client.js';
-import { createField, seedFrom } from '../src/rockfield.js';
+import { createField, seedFrom } from '../src/newer/assets/rockfield.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );

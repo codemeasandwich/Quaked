@@ -8,9 +8,9 @@ const demo = await import( '../src/engine/client/cl_demo.js' );
 const client = await import( '../src/engine/client/cl_main.js' );
 const { cls, ca_disconnected } = await import( '../src/engine/client/client.js' );
 const pak = await import( '../src/engine/common/pak.js' );
-const post = await import( '../src/gl_post.js' );
-const split = await import( '../src/r_demosplit.js' );
-const perf = await import( '../src/r_perf.js' );
+const post = await import( '../src/newer/render/gl_post.js' );
+const split = await import( '../src/newer/render/r_demosplit.js' );
+const perf = await import( '../src/newer/render/r_perf.js' );
 const host = await import( '../src/engine/server/host.js' );
 
 const preferences = [ post.r_hdr, split.r_demosplit, post.r_dynres, perf.cl_showfps ];

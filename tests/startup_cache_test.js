@@ -2,13 +2,13 @@
 // bake payloads; renderer/fetch endpoints record work without starting a GPU.
 import * as THREE from 'three';
 import {createHash} from 'node:crypto';
-import {PointShadowAtlas} from '../src/r_pointshadows.js';
-import {R_ShaderAssetStamp} from '../src/r_shaderwarm.js';
-import {ROCK_BAKES} from '../src/rockfield_bakes.js';
-import {RockBakeConfig,RockBakeSignature,RockBakeTileCoordinates,RockBakeEncode,RockBakeDecode,ROCK_BAKE_SIDE} from '../src/rockfield_bake_format.js';
-import {RockBakeSource,RockBakeFieldSignature,RockBakeFieldIndex} from '../src/r_rockbakes.js';
-import {createField,generateTile} from '../src/rockfield.js';
-import {R_RockPreset} from '../src/rockfield_presets.js';
+import {PointShadowAtlas} from '../src/newer/render/r_pointshadows.js';
+import {R_ShaderAssetStamp} from '../src/newer/render/r_shaderwarm.js';
+import {ROCK_BAKES} from '../src/newer/assets/rockfield_bakes.js';
+import {RockBakeConfig,RockBakeSignature,RockBakeTileCoordinates,RockBakeEncode,RockBakeDecode,ROCK_BAKE_SIDE} from '../src/newer/assets/rockfield_bake_format.js';
+import {RockBakeSource,RockBakeFieldSignature,RockBakeFieldIndex} from '../src/newer/assets/r_rockbakes.js';
+import {createField,generateTile} from '../src/newer/assets/rockfield.js';
+import {R_RockPreset} from '../src/newer/assets/rockfield_presets.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),equalBytes=(a,b,m)=>check(Buffer.from(a.buffer,a.byteOffset,a.byteLength).equals(Buffer.from(b.buffer,b.byteOffset,b.byteLength)),m);
 function geometry(){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute([-16,-16,-20,16,-16,-20,16,16,-20,-16,16,-12],3));g.setIndex([0,1,2,0,2,3]);g.setAttribute('normal',new THREE.Float32BufferAttribute(new Float32Array(12).fill(1),3));g.setAttribute('uv',new THREE.Float32BufferAttribute(new Float32Array(8),2));return g;}
 function renderer(){const original=new THREE.WebGLRenderTarget(32,32),r={target:original,face:2,mip:1,viewport:new THREE.Vector4(7,8,90,91),scissor:new THREE.Vector4(1,2,70,71),scissorTest:false,color:new THREE.Color(.2,.3,.4),alpha:.7,autoClear:true,xr:{enabled:true},draws:[],throwAt:Infinity};r.getRenderTarget=()=>r.target;r.getActiveCubeFace=()=>r.face;r.getActiveMipmapLevel=()=>r.mip;r.getViewport=v=>v.copy(r.viewport);r.getScissor=v=>v.copy(r.scissor);r.getScissorTest=()=>r.scissorTest;r.getClearColor=v=>v.copy(r.color);r.getClearAlpha=()=>r.alpha;r.setRenderTarget=(t,f=0,m=0)=>{r.target=t;r.face=f;r.mip=m;};r.setViewport=v=>r.viewport.copy(v);r.setScissor=v=>r.scissor.copy(v);r.setScissorTest=v=>r.scissorTest=v;r.setClearColor=(v,a=r.alpha)=>{r.color.set(v);r.alpha=a;};r.clear=()=>{};r.render=(scene,camera)=>{const poses=scene.children.map(mesh=>{mesh.onBeforeRender(r,scene,camera,mesh.geometry,mesh.material);const p=mesh.geometry.getAttribute('position');return{mesh,geometry:mesh.geometry,matrix:mesh.matrixWorld.elements.slice(),position:p.isGLBufferAttribute?null:Array.from({length:p.count},(_,i)=>[p.getX(i),p.getY(i),p.getZ(i)]).flat(),index:mesh.geometry.index&&Array.from(mesh.geometry.index.array),count:mesh.count,instances:mesh.instanceMatrix&&Array.from(mesh.instanceMatrix.array)};});r.draws.push({camera:camera.position.toArray(),far:camera.far,poses});if(r.draws.length===r.throwAt)throw Error('controlled depth capture failure');};r.dispose=()=>original.dispose();return r;}

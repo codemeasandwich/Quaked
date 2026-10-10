@@ -45,7 +45,7 @@ const {sizebuf_t,SZ_Alloc,COM_SetNetMessage}=await import('../src/engine/common/
 const {CL_ParseServerMessage}=await import('../src/engine/client/cl_parse.js');
 const {PowerVisionMode}=await import('../src/newer/gameplay/powervision_state.js');
 const {SV_QuadMovementScale}=await import('../src/newer/gameplay/sv_quadmovement.js');
-const {R_QuadVisionActive}=await import('../src/r_quadvision.js');
+const {R_QuadVisionActive}=await import('../src/newer/render/r_quadvision.js');
 const powers={quad:{map:'e1m1',class:'item_artifact_super_damage',field:'super_damage_finished',bit:Q.IT_QUAD},ring:{map:'e1m3',class:'item_artifact_invisibility',field:'invisible_finished',bit:Q.IT_INVISIBILITY},pentagram:{map:'e1m8',class:'item_artifact_invulnerability',field:'invincible_finished',bit:Q.IT_INVULNERABILITY}};
 const near=(a,b,label)=>check(Math.abs(a-b)<.00001,`${label}: ${a} != ${b}`);
 function expiry(player,power){const field=GetEdictFieldValue(player,power.field);check(field,'actual native field '+power.field);return field.accessor.getFloat(field.ofs);}

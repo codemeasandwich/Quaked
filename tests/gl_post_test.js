@@ -1,7 +1,7 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
 await import( '../src/engine/render/gl_rsurf.js' );
 
-const post = await import( '../src/gl_post.js' );
+const post = await import( '../src/newer/render/gl_post.js' );
 
 function assertEqual( actual, expected, message ) {
 
