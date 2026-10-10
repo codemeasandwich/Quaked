@@ -12,7 +12,9 @@ import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/newer/render/
 if ( ! process.env.QUAKED_CANVAS_MODULE ) throw new Error( 'Set QUAKED_CANVAS_MODULE to installed @napi-rs/canvas/index.js.' );
 const { createCanvas, Image: NativeImage } = await import( pathToFileURL( process.env.QUAKED_CANVAS_MODULE ).href );
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ) );
-const index = JSON.parse( read( 'newer/textures/index.json' ) );
+// the index without its "sources": the textures here are plain native stand-ins, not Quake's pictures (that an upgrade
+// goes only on the pixels it was made from is texture_sources_test.js's subject)
+const index = { ...JSON.parse( read( 'newer/textures/index.json' ) ), sources: undefined };
 const recipe = JSON.parse( read( 'tools/texture_sheets/sources/level-2026-10-02/manifest.json' ) );
 const requests = [], nativeImages = new Map(), enhanced = new Map();
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };

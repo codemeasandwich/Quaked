@@ -124,6 +124,7 @@ Level textures, rock relief, seams, seamless levels and portals.
 - [Travelling enemy resources survive death and level revisits](seamless-corpse-resources-2026-10-03.md)
 - [Replacement texture sampling regression](texture-resolution-2026-10-08.md)
 - [Texture seam lines](texture-seams-2026-10-02.md)
+- [Texture upgrades keyed by their pixels (card (34e)), 10 October 2026](texture-sources-2026-10-10.md)
 - [Owner's wizard texture replacement — 2026-10-01](wizard-textures-2026-10-01.md)
 
 ## Light, water and fire

@@ -5,15 +5,17 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `index`, `glass`, `normals`, `version`, `indexPromise`,
- * `indexState`, `indexError`, `appliedFor`, `appliedOn`; 4 module-level collections (Map/Set).
+ * State: no mutable exports; module-level variables `index`, `glass`, `sources`, `normals`, `version`,
+ * `indexPromise`, `indexState`, `indexError`, `appliedFor`, `appliedOn`; 4 module-level collections (Map/Set).
  *
  * Errors: throws at 2 places; catches at 4 places.
  */
 // Newer Game's wall textures: our own higher resolution versions of the original
 // pictures (see newer/textures/CREDITS.txt).
 //
-// newer/textures/index.json lists them by the game's texture names.  A texture is
+// newer/textures/index.json lists them by the game's texture names, with the pixels
+// each was made from ("sources", card [34e]): an add-on's own picture by the same
+// name keeps its look.  A texture is
 // loaded the ordinary way first, so the level is never held up; when its
 // higher resolution picture has arrived, that replaces the pixels of the very same
 // texture object, which every material, lightmap batch and other-level view
@@ -37,6 +39,7 @@ const BASE = 'newer/textures/';
 
 let index = null; // name -> file
 let glass = {}; // native-RGBA identity -> per-window authored/generated material
+let sources = {}; // name -> native-RGBA identities (R_GlassTextureKey) of Quake's own pictures the upgrade was made from
 let normals = {}; // name -> { file, strength }: the height map crafted for the texture (tools/craft_normals.py)
 let version = '0'; // changes whenever a picture does, so the browser fetches the new one
 let indexPromise = null;
@@ -73,7 +76,7 @@ function loadIndex() {
 
 		indexState = 'loading';
 		indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Texture index' )
-			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; version = String( j.version ); indexState = 'ready'; return index; } )
+			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; sources = j.sources || {}; version = String( j.version ); indexState = 'ready'; return index; } )
 			.catch( error => { indexError = String( error.message || error ); indexState = 'fallback'; index = {}; return index; } );
 
 	}
@@ -202,8 +205,9 @@ export function R_GlassTextureKey( texture ) {
  * - the cached normal map is dropped so the next frame makes one from the new pixels, and a 'newertextureupdated'
  *   event is dispatched on the texture.
  * Sets `userData.newerPending` while loading, then `newerPicture`, or `newerFallback` (with `newerError` on an error)
- * when there is no picture, no matching glass variant, or loading failed. Does nothing in Classic, with
- * `r_newer_textures 0`, or when the texture is already upgraded, pending or fallen back.
+ * when there is no picture, no matching glass variant, pixels other than those the picture was made from (the
+ * index's `sources`, card [34e]), or loading failed. Does nothing in Classic, with `r_newer_textures 0`, or when the
+ * texture is already upgraded, pending or fallen back.
  *
  * @param {string} name the game's texture name, the key into `index.json`
  * @param {?THREE.DataTexture} texture the texture's `gl_texture`; mutated asynchronously
@@ -219,6 +223,8 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 		const variant = glass[ name ]?.[ R_GlassTextureKey( texture ) ];
 		if ( glass[ name ] && !variant ) return null;
+		// the same name over other pixels (an add-on's own picture, such as Scourge of Armagon's metal5_6) keeps its own
+		if ( ! variant && sources[ name ] && ! sources[ name ].includes( R_GlassTextureKey( texture ) ) ) return null;
 		const file = variant?.file || idx[ name ];
 		if ( file === undefined ) return null;
 
