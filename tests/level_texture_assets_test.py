@@ -118,7 +118,7 @@ class LevelTextureAssets(unittest.TestCase):
         self.assertLess(float(np.abs(veneer[0, 23:38] - veneer[-1, 23:38]).max()), .09, 'wrapped structural mask has no top height step')
 
     def test_native_period_registration_and_unchanged_unselected_entries(self):
-        pak = (ROOT / 'pak0.pak').read_bytes()
+        pak = (ROOT / 'games/shareware/pak0.pak').read_bytes()
         directory, size = struct.unpack_from('<ii', pak, 4)
         found = {}
         for offset in range(directory, directory + size, 64):

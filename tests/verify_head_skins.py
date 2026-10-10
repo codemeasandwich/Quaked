@@ -10,7 +10,7 @@ sys.path.insert(0,str(ROOT/'tools/texture_sheets'))
 from update_head_skins import fit,uv_footprint
 from update_enemy_heights import native_skins
 from make_sheets import read_pak
-recipe=json.loads((ROOT/'tools/texture_sheets/sources/head-skins-2026-10-01.json').read_text());index=json.loads((ROOT/'newer/enemies/index.json').read_text());pak=read_pak(ROOT/'pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
+recipe=json.loads((ROOT/'tools/texture_sheets/sources/head-skins-2026-10-01.json').read_text());index=json.loads((ROOT/'newer/enemies/index.json').read_text());pak=read_pak(ROOT/'games/shareware/pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
 checks=0;reports=[]
 for model,spec in recipe['models'].items():
  source=ROOT/'tools/texture_sheets/sources'/spec['source'];assert hashlib.sha256(source.read_bytes()).hexdigest()==spec['source_sha256'];checks+=1

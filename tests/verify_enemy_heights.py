@@ -15,7 +15,7 @@ from make_sheets import read_pak
 import craft_normals
 from enemy_height_authoring import author_height
 
-pak=read_pak(ROOT/'pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
+pak=read_pak(ROOT/'games/shareware/pak0.pak');palette=np.frombuffer(pak['gfx/palette.lmp'],dtype=np.uint8).reshape(256,3)
 index=json.loads((ROOT/'newer/enemies/index.json').read_text());records=[];checks=0
 source=ROOT/'tools/texture_sheets/sources/shambler-2026-10-01.png'
 assert hashlib.sha256(source.read_bytes()).hexdigest()=='f65fd1bcc87f70862cfb7284f216c4b20b89a05ed82fd0cc71f4d7a51033a3e9';checks+=1

@@ -49,6 +49,20 @@ Deno.test( 'Git tracks only the shareware pak and the READMEs in games/; owned c
 
 } );
 
+Deno.test( 'no Python tool or test reads the shareware pak at its old root path', () => {
+
+	const offenders = [];
+	for ( const dir of [ 'tools', 'tools/texture_sheets', 'tools/glass_materials', 'tests' ] ) for ( const name of readdirSync( root + dir ) ) {
+
+		if ( ! name.endsWith( '.py' ) ) continue;
+		const text = readFileSync( `${root}${dir}/${name}`, 'utf8' );
+		if ( /ROOT\s*\/\s*['"]pak0\.pak['"]/.test( text ) ) offenders.push( `${dir}/${name}` );
+
+	}
+	check( offenders.length === 0, 'reads ROOT/pak0.pak: ' + offenders.join( ', ' ) );
+
+} );
+
 Deno.test( 'the page and the room server load the new path, falling back to the old root path', () => {
 
 	const main = readFileSync( root + 'main.js', 'utf8' ), server = readFileSync( root + 'server/game_server.js', 'utf8' );

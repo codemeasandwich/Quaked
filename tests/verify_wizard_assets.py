@@ -30,7 +30,7 @@ assert index['textures'] == base['textures'] and index['normals'] == base['norma
 assert index['version'] > recipe['base_version']
 source = Image.open(source_path).convert('RGB')
 usage = {t['name']: [] for t in recipe['textures']}
-for filename, bsp in read_pak(ROOT / 'pak0.pak').items():
+for filename, bsp in read_pak(ROOT / 'games/shareware/pak0.pak').items():
     if not filename.startswith('maps/') or not filename.endswith('.bsp'):
         continue
     start, length = struct.unpack('<ii', bsp[20:28])
