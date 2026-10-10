@@ -16,7 +16,7 @@ server's copies and the rest) are closed in [44g], after the moves. See the base
 | `src/engine/server` | Host, server, world, physics, player movement | [44b] | yes |
 | `src/newer/gameplay` | Newer Game's server-side rules and the records they save | [44b] | yes |
 | `src/engine/net`, `src/engine/client`, `src/engine/sound`, `src/platform` | Networking, the client, sound, browser input, touch and WebXR | [44c] | yes |
-| `src/engine/render`, `src/newer/render` (models and animation) | The GL renderer port; poses, skins, held weapons, bodies, level windows | [44d] | not yet |
+| `src/engine/render`, `src/newer/render` (models and animation) | The GL renderer port; poses, skins, held weapons, bodies, level windows | [44d] | yes |
 | `src/newer/render` (the rest), `src/newer/assets` (prepared data) | Effects, materials, post-processing, portals, vision; bakes and their formats | [44e] | not yet |
 | `src/newer/ui`, `src/newer/sound`, `src/newer/assets` (preparation) | Menu, loading, HUD, Bestiary; ambient music; asset preparation | [44f] | not yet |
 
@@ -96,6 +96,23 @@ What the tool cannot do, and is checked by hand at each move:
 * The moves and the adapters are two commits, written by the tool's two steps.
 * Unchanged: both architecture tools pass; 206 modules (and 76 adapters); the same cycles; the room server and the page
   load 198 and 202 modules. In the browser the page starts Newer Game and Classic, and the menu answers the keyboard.
+
+## [44d]: what moved
+
+31 modules: 15 into `engine/render`, 16 into `newer/render` (the model and animation side: poses, skins and faces, held
+weapons, the axe's halves, level windows, shells).
+
+* 1,100 literal paths in 322 files were rewritten, among them source reads (`fireball_test`, `startup_collector_test`,
+  `torchfire_test` read `gl_rmain.js`), query imports of `r_newerskins.js`, the import maps of the face and rend-veil
+  trial pages, `tools/bake_displacement.mjs`'s source list and the displacement manifest's keys.
+* By hand: `tests/unseen_gun_test.js` builds its source path at run time; it reads `engine/render/gl_rmain.js` now.
+* The displacement manifest (`newer/displacement/manifest.json`) records the hashes of the sources that made the
+  bakes. Its keys follow the moves; its values are left as recorded. For `gl_model.js` and `gl_rsurf.js` they were already
+  out of date before the move (both files changed after the bakes), as `tests/helpers/prepared_corpus_audit.mjs` (run by
+  hand, not in the suite) reports; a re-bake records new ones.
+* Unchanged: both architecture tools pass; 206 modules (and 107 adapters); the same cycles; the room server and the page
+  load 198 and 202 modules. In the browser: Newer Game and Classic start, the menu answers, and the face trial draws
+  grunts, ogres and knights with their faces and keeps all 23 through save and load.
 
 ## Checks for each move
 

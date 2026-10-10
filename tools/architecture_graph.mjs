@@ -309,7 +309,13 @@ const unexpected = missing.filter( e => ! KNOWN_MISSING.some( known => known( e 
 // Only files git tracks fail it: the owner's untracked local files (in their checkout) are reported, theirs to update.
 // On a tree without git (a clean export) every file counts.
 let trackedFiles = null;
-try { trackedFiles = new Set( execFileSync( 'git', [ 'ls-files', '-z' ], { cwd: ROOT, encoding: 'utf8', stdio: [ 'ignore', 'pipe', 'ignore' ] } ).split( '\0' ) ); } catch { trackedFiles = null; }
+try {
+
+	// (only when this tree is the top of its own repository: an export unpacked inside another checkout is not)
+	const top = execFileSync( 'git', [ 'rev-parse', '--show-toplevel' ], { cwd: ROOT, encoding: 'utf8', stdio: [ 'ignore', 'pipe', 'ignore' ] } ).trim();
+	if ( fs.realpathSync( top ) === fs.realpathSync( ROOT ) ) trackedFiles = new Set( execFileSync( 'git', [ 'ls-files', '-z' ], { cwd: ROOT, encoding: 'utf8', stdio: [ 'ignore', 'pipe', 'ignore' ] } ).split( '\0' ) );
+
+} catch { trackedFiles = null; }
 const adapterConsumers = edges.filter( e => adapters[ e.to ] && e.from !== e.to && e.kinds.some( k => /^(static|export|dynamic|dynamic-computed|dynamic-wrapped|url|worker|read|fetch|importmap)$/.test( k ) ) );
 const localAdapterConsumers = adapterConsumers.filter( e => trackedFiles !== null && ! trackedFiles.has( e.from ) );
 unexpected.push( ...adapterConsumers.filter( e => ! localAdapterConsumers.includes( e ) ).map( e => ( { ...e, to: e.to + ' (an adapter: use ' + adapters[ e.to ] + ')' } ) ) );
