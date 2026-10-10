@@ -5,7 +5,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_SV_RecursiveHullCheck`, `_trace_t`, `_chase_trace`.
+ * State: no mutable exports; module-level variables `_R_TracePoint`, `_chase_trace`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -33,9 +33,8 @@ const _chase_dest = new Float32Array( 3 );
 const _chase_stop = new Float32Array( 3 );
 
 // Lazy-loaded collision imports (avoids circular dependency through world.js -> server.js -> menu.js -> keys.js)
-let _SV_RecursiveHullCheck = null;
-let _trace_t = null;
-let _chase_trace = null;
+let _R_TracePoint = null; // the client's ray cast (render/r_trace.js), loaded lazily
+let _chase_trace = null; // reused between frames
 
 export function Chase_Init() {
 
@@ -44,12 +43,10 @@ export function Chase_Init() {
 	Cvar_RegisterVariable( chase_right );
 	Cvar_RegisterVariable( chase_active );
 
-	// Lazy-load collision detection to avoid circular dependency
-	import( '../server/world.js' ).then( ( world ) => {
+	// Lazy-load collision detection to avoid circular dependency (r_trace.js imports world.js)
+	import( '../render/r_trace.js' ).then( ( trace ) => {
 
-		_SV_RecursiveHullCheck = world.SV_RecursiveHullCheck;
-		_trace_t = world.trace_t;
-		_chase_trace = new world.trace_t();
+		_R_TracePoint = trace.R_TracePoint;
 
 	} );
 
@@ -65,23 +62,11 @@ export function Chase_Reset() {
 function TraceLine( start, end, impact ) {
 
 	// Use BSP collision if available (ported from chase.c)
-	if ( _SV_RecursiveHullCheck != null && _chase_trace != null
-		&& cl.worldmodel != null && cl.worldmodel.hulls != null ) {
+	const trace = _R_TracePoint != null && cl.worldmodel != null ? _R_TracePoint( cl.worldmodel, start, end, _chase_trace ?? undefined ) : null;
+	if ( trace !== null ) {
 
-		// Reset trace
-		_chase_trace.allsolid = false;
-		_chase_trace.startsolid = false;
-		_chase_trace.inopen = false;
-		_chase_trace.inwater = false;
-		_chase_trace.fraction = 1.0;
-		_chase_trace.endpos[ 0 ] = end[ 0 ];
-		_chase_trace.endpos[ 1 ] = end[ 1 ];
-		_chase_trace.endpos[ 2 ] = end[ 2 ];
-		_chase_trace.ent = null;
-
-		_SV_RecursiveHullCheck( cl.worldmodel.hulls[ 0 ], 0, 0, 1, start, end, _chase_trace );
-
-		VectorCopy( _chase_trace.endpos, impact );
+		_chase_trace = trace;
+		VectorCopy( trace.endpos, impact );
 
 	} else {
 

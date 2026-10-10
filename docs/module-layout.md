@@ -229,6 +229,20 @@ cvars and file system. `r_anim.js` keeps the animation (`R_AnimEnabled` now asks
   values the game does. Not exercised in the browser: a real first sighting's portrait light (a scripted sighting did
   not start on Dev either); the light's hand-over is covered by `bestiary_native_test`.
 
+## [44g], step 5: one client ray cast (debt D6)
+
+`src/engine/render/r_trace.js` is the client's one helper for lines through a model's BSP: `R_TracePoint` (hull 0, a
+reusable trace reset on every call) and `R_TraceSwept` (a small sphere as seven point lines, the nearest hit kept).
+
+* The chase camera (`chase.js`, still loaded lazily to keep out of the import cycle), depth of field's focus (`r_dof.js`),
+  the wall burns' contact (`r_wallburn.js`) and the shells' collision (`r_shelltrace.js`, whose brush-entity loop stays)
+  use it; none of them walks the hull itself any more.
+* Tested once (`tests/r_trace_test.js`, on E1M1's real BSP), and through the callers' suites (depth of field, wall burns,
+  shotgun shells, the Bestiary's line of sight), which pass unchanged.
+* In the browser the chase camera ends at exactly the same point as before.
+* The graph counts 209 modules; `r_trace.js` joins the large cycle (it imports `world.js`, and Newer modules in the
+  cycle import it), so that cycle is 84 modules for now.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

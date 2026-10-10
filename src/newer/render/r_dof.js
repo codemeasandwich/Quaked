@@ -27,7 +27,7 @@
 
 import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame } from '../mode.js';
-import { trace_t, SV_RecursiveHullCheck } from '../../engine/server/world.js';
+import { R_TracePoint } from '../../engine/render/r_trace.js';
 
 export const r_dof = new cvar_t( 'r_dof', '0.15', true ); // strength 0..1 (0 off; the options slider, a step .05: the owner's default is three steps)
 
@@ -60,11 +60,9 @@ function traceFraction( world, a, b ) {
 	if ( deps?.trace ) r = deps.trace( a, b );
 	else {
 
-		const hull = world?.hulls?.[ 0 ];
-		if ( ! hull ) return 1;
-		_t ??= new trace_t(); _t.allsolid = true; _t.startsolid = false; _t.fraction = 1; _t.endpos.set( b );
-		SV_RecursiveHullCheck( hull, hull.firstclipnode, 0, 1, a, b, _t );
-		r = _t;
+		r = R_TracePoint( world, a, b, _t ?? undefined );
+		if ( r === null ) return 1;
+		_t = r;
 
 	}
 	if ( r.startsolid ) return null;

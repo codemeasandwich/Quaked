@@ -29,6 +29,8 @@ const RULES = [
 	// the normal-map maths, split from gl_normals (made in [44g] for debt D1c)
 	[ 'newer/render', '44g', /^normal_math\.js$/ ],
 	[ 'engine/render', '44d', /^(gl_\w+|glquake|render|vid|r_part|lit)\.js$/ ],
+	// the client's one ray-cast helper (made in [44g] for debt D6)
+	[ 'engine/render', '44g', /^r_trace\.js$/ ],
 	[ 'platform', '44c', /^(webxr|touch|touch_layout|in_web)\.js$/ ],
 	[ 'newer/gameplay', '44b', /^(sv_\w+|respawn_record|rend_veil_state|axe_record|shotgun_flight|powervision_state)\.js$/ ],
 	[ 'newer/ui', '44f', /^(menu_webgl\w*|menu_art|studio_logo|loading_\w+|r_demoloading|r_newerhud|r_playerface|playerface_manifest|r_bestiary_book|r_bestiary|bestiary_art|bestiary_state|newer_defaults|r_facegame|face_state|respawn_notice|respawn_motion|r_folio)\.js$/ ],

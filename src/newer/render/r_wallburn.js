@@ -47,7 +47,7 @@ import { cvar_t } from '../../engine/common/cvar.js';
 import { R_NewerGame } from '../mode.js';
 import { R_DecalSurface } from './r_decals.js';
 import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
-import { trace_t, SV_RecursiveHullCheck } from '../../engine/server/world.js';
+import { R_TracePoint } from '../../engine/render/r_trace.js';
 import { VERTEXSIZE } from '../../engine/render/glquake.js';
 
 export const r_newer_wallburn = new cvar_t( 'r_newer_wallburn', '1' );
@@ -369,12 +369,10 @@ function monsterBetween( s, q ) {
 // facing the ray), or null
 export function R_WallBurnTrace( s, q ) {
 
-	const hull = deps?.cl()?.worldmodel?.hulls?.[ 0 ];
-	if ( ! hull ) return null;
+	const world = deps?.cl()?.worldmodel;
 	const d = unit( [ q[ 0 ] - s[ 0 ], q[ 1 ] - s[ 1 ], q[ 2 ] - s[ 2 ] ] ), e = [ q[ 0 ] + d[ 0 ] * 4, q[ 1 ] + d[ 1 ] * 4, q[ 2 ] + d[ 2 ] * 4 ];
-	const t = new trace_t(); t.allsolid = true; t.endpos.set( e );
-	SV_RecursiveHullCheck( hull, hull.firstclipnode, 0, 1, s, e, t );
-	if ( ! ( t.fraction < 1 ) || t.startsolid ) return null;
+	const t = R_TracePoint( world, s, e );
+	if ( t === null || ! ( t.fraction < 1 ) || t.startsolid ) return null;
 	return { point: Array.from( t.endpos ), normal: Array.from( t.plane.normal ), dist: t.plane.dist };
 
 }
