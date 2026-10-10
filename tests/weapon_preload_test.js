@@ -47,7 +47,7 @@ Deno.test( 'weapon startup: ordinary app warms held/pickup art behind its first 
 			COM_NewerFile: () => null, COM_SetNewerMapsPack: noop, COM_LoadPackFile: () => { throw new Error( 'No embedded map pack was supplied by this startup fixture' ); },
 			Cbuf_AddText: noop, Cmd_AddCommand: noop, Cmd_Argc: () => 0, Cmd_Argv: () => '', Con_Printf: noop,
 			Cvar_VariableValue: vars.Cvar_VariableValue, Cvar_SetValue: vars.Cvar_SetValue, key_dest: 0, key_game: 0,
-			R_PerfSetHost: noop, R_PerfStart: noop, R_PerfStop: noop, R_PerfProfiling: () => false, R_PerfPump: noop, R_PerfLastReport: () => null,
+			R_PerfSetHost: noop, R_PerfStart: noop, R_DemoSplitEnd: noop, R_PerfStop: noop, R_PerfProfiling: () => false, R_PerfPump: noop, R_PerfLastReport: () => null,
 			cls: {}, cl: {}, sv: {}, scene: {}, camera: {}, Draw_CachePicFromPNG: async () => {}, Draw_CacheSinglePlayerMenu: () => ( {} ),
 			Draw_LoadConbackImage: async () => true, XR_Init: noop, R_WeaponsPreload: weapons.R_WeaponsPreload, R_NewerHudPreload: noop, R_RockBakePrefetch: name => events.push( 'bake prefetch ' + name ), R_NewerSkinsPrefetchBsp: noop, R_DemonBakePrefetch: noop, R_BspTextureNames: () => [], R_NewerTexturesPrefetch: noop, M_SetExternals: noop,
 			R_DemoLoadingBoot: startup.R_DemoLoadingBoot, R_DemoLoadingAppReady: startup.R_DemoLoadingAppReady, R_DemoLoadingCancel: startup.R_DemoLoadingCancel, R_DemoLoadingStatus: startup.R_DemoLoadingStatus, R_DemoLoadingSplash: startup.R_DemoLoadingSplash, LoadingScreen_SetProgress: noop, LoadingScreen_Remove: () => events.push( 'loading removed' ), LoadingScreen_FadeOut: () => { events.push( 'logo fade' ); return Promise.resolve(); }

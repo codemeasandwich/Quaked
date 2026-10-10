@@ -10,26 +10,8 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-// Normal map generation: turns Quake's flat palette textures into tangent-space
-// normal maps (with a height map in alpha) so lit surfaces have relief.
-//
-// Quake's textures are painted with their shading baked in (mortar is dark,
-// stones are lighter, cracks are black), so brightness is a good proxy for
-// height.  The pipeline for one texture:
-//
-//   1. Height: luminance, plus any fullbright texels (they are stored in a
-//      separate texture because the base has them blacked out).
-//   2. Normalise: subtract the mean and divide by the standard deviation, so a
-//      murky texture and a contrasty one both end up using the full range.
-//   3. Multi-scale: blend the height field with box-blurred copies (fine grain,
-//      medium cracks, coarse blocks), so a brick reads as a brick and not just
-//      as noise.  Blurs and gradients wrap, because the textures tile.
-//   4. Gradient: Sobel filter, scaled by the texture's size so the apparent
-//      slope is the same whatever the resolution.
-//   5. Normal: n = normalize( -dh/du, -dh/dv, 1 ); alpha keeps the height for
-//      parallax.
-//
-// It is generated once per texture on demand, from the texels already in memory.
+// Normal maps for Quake's textures, as Three.js textures, generated once per texture content and cached. The maths
+// (height from the picture, multi-scale shaping, normals) is in normal_math.js.
 
 import * as THREE from 'three';
 import {R_NormalPrepared} from '../assets/normal_prepare.js';

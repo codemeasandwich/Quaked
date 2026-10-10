@@ -4,11 +4,11 @@
 import * as THREE from 'three';
 import { R_AnimSetNewer, R_IsNewer } from '../src/newer/mode.js';
 import { R_PostInstallGBufferPatch } from '../src/newer/render/gl_post.js';
-R_PostInstallGBufferPatch(); // (in the game the renderer's start-up installs it, R_Init, before any material exists)
 import { R_RendVeilSeen, R_RendVeilClear, R_RendVeilCapture, R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights, R_RendVeilShadowVersion } from '../src/newer/render/r_rendveil.js';
 import { R_CreateShadowCaptureMaterial } from '../src/newer/render/r_pointshadows.js';
 import { RV_SURFACE_DECL, RV_VERTEX_BIND, RV_FRAGMENT_MASK, RV_REVEAL_VERTEX } from '../src/newer/render/rend_veil/material-binding.js';
 import { OPTICS_FRAGMENT } from '../src/newer/render/rend_veil/optics-shader.js';
+R_PostInstallGBufferPatch(); // (as the game's R_Init does: materials compiled from here on write the G-buffer)
 
 const check = ( value, why ) => { if ( ! value ) throw Error( why ); };
 const same = ( actual, expected, why ) => check( actual === expected, `${why}: ${actual} !== ${expected}` );

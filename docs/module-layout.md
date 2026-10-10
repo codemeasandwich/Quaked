@@ -221,7 +221,10 @@ cvars and file system. `r_anim.js` keeps the animation (`R_AnimEnabled` now asks
   and `gl_normals` imports and re-exports it, so its public names are unchanged.
 * `r_demosplit` ↔ `r_perf`: the profiler is given `R_DemoSplitEnd` in its host (`main.js`) instead of importing it.
 * The cycles are now 83 and 4 (the engine's own, with the Newer modules it pulls in, and `cmd`/`common`/`cvar`/`pak`);
-  `cycles.newerCycles` is empty.
+  `cycles.newerCycles` is empty. The graph counts 208 modules (with `mode.js` and `normal_math.js`) and 7 adapters; the
+  page reaches 204 modules and the room server 202.
+* `main.js` now imports `R_DemoSplitEnd`; the tests that evaluate `main.js` with stubbed imports (`startup_preload`,
+  `weapon_preload`) stub it too.
 * Tests that call these pieces directly (the Bestiary's light selection, the profiler's two hosts) hand over the same
   values the game does. Not exercised in the browser: a real first sighting's portrait light (a scripted sighting did
   not start on Dev either); the light's hand-over is covered by `bestiary_native_test`.
