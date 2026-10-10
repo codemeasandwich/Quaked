@@ -759,7 +759,6 @@ export function CL_ParseUpdate( bits ) {
 	const ent = CL_EntityNum( num );
 	// Local native spawn identity also survives same-model slot reuse and PVS gaps.
 	if ( sv.active && ! cls.demoplayback ) ent._faceSeed = sv.edicts[ num ]?._faceSeed ?? null;
-	// Local native spawn identity also survives same-model slot reuse and PVS gaps.
 	ent._rendVeil = SV_RendVeilClientRecord( num );
 	ent._rendVeilTime = ent._rendVeil ? sv.time : null;
 

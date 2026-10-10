@@ -154,3 +154,10 @@ Deno.test( 'upright ogre choices and every grunt/knight face retain finite ident
 	equal( controls, 31, 'all twenty-four other-model faces plus seven upright ogres independently checked' );
 	console.log( 'OGRE_PUBLIC_ALIGNMENT_IDENTITY_CONTROLS ' + controls );
 } ) );
+Deno.test( 'the three face-overlay blocks are exactly the reviewed ones, and no other variant has faces', () => {
+	// (the skin identity suites leave these blocks out of their "every other entry unchanged" digest; this pins them)
+	const blocks = [ 'soldier', 'ogre', 'knight' ].map( model => manifest.models[ model ][ 0 ].faces );
+	equal( createHash( 'sha256' ).update( JSON.stringify( blocks ) ).digest( 'hex' ), 'e643dd83d10075063a56cbae58b199394908d10a34cfedc9c171e1a8f950d3eb', 'face blocks of grunt, ogre and knight' );
+	const others = Object.entries( manifest.models ).flatMap( ( [ model, list ] ) => list.filter( ( variant, i ) => variant.faces && ! ( i === 0 && [ 'soldier', 'ogre', 'knight' ].includes( model ) ) ).map( () => model ) );
+	equal( others.join(), '', 'no other variant has faces' );
+} );

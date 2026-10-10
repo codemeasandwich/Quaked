@@ -65,8 +65,9 @@ Deno.test( 'actual Old One assets retain approved provenance and every other ene
  same( index.version, 26, 'skin cache revision' ); same( index.models.oldone.length, 1, 'single approved Old One variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' ); same( approved.heightStrength, .65, 'stored height strength' ); same( approved.heightCap, .55, 'stored height cap' );
  const other = structuredClone( index ); delete other.version; delete other.models.oldone; delete other.models.enforcer; delete other.models.tarbaby; delete other.models.hknight; // (the Enforcer skin was added after this one, in version 24)
  // Baseline Dev 10f6369de9613a1dbc64b049f53baa46cea43075; excluding this skin, the later
- // Enforcer, Spawn and Death Knight skins and the cache revision proves all the entries before them intact.
- for ( const list of Object.values( other.models ) ) for ( const variant of list ) delete variant.faces; // (the face overlays, checked by the enemy_face suites)
+ // Enforcer, Spawn and Death Knight skins, the cache revision and the three face-overlay blocks proves all the entries before them intact.
+ for ( const model of [ 'soldier', 'ogre', 'knight' ] ) delete other.models[ model ][ 0 ].faces; // (the face overlays, pinned by enemy_face_material_test)
+	check( Object.values( other.models ).every( list => list.every( variant => variant.faces === undefined ) ), 'no other variant has face overlays' );
  same( sha( JSON.stringify( other ) ), '96a0c7c83425850e4bf37976cbcd1518e21ccf9391b090d4ae8942773a975fe7', 'all other enemy variants and native height mappings unchanged' );
 } );
 Deno.test( 'actual manifest admits only matching Old One skin zero and preserves native geometry through preparation and selection', async () => fixture( async ( skins, requests ) => {

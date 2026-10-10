@@ -743,8 +743,6 @@ function CL_LinkPacketEntities( frac ) {
 		// Local play normally uses QW packet entities, not CL_ParseUpdate.
 		// Copy the native lifetime identity on this path too, including slot reuse.
 		if ( sv.active && ! cls.demoplayback ) ent._faceSeed = sv.edicts[ s1.number ]?._faceSeed ?? null;
-		// Local play normally uses QW packet entities, not CL_ParseUpdate.
-		// Copy the native lifetime identity on this path too, including slot reuse.
 		ent._rendVeil = SV_RendVeilClientRecord( s1.number );
 		ent._rendVeilTime = ent._rendVeil ? sv.time : null;
 

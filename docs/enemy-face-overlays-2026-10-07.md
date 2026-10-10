@@ -79,3 +79,33 @@ The updated native inspection (`enemy-face-ogre-aligned-live-2026-10-07.png/json
 ## Authorized commit and push
 
 The owner explicitly requested committing and pushing these changes. The existing `Prod` branch tracks `origin/Prod` at `git@github.com:codemeasandwich/Quaked.git`; remote and local predecessor were both `b536c9359a4ac37c4541a9debce76991fcd20ef1` when checked. The feature commit includes its implementation, three supplied face sheets, manifest, tests, runnable inspection pages and preserved verification/review evidence. Preexisting ogre diffuse edits, unrelated deletions, root reference images and unfinished normal-bundle work are excluded and preserved. The source inventory is a precommit content snapshot, not a self-referential commit identifier; Git records the resulting commit. The retained color measurements used the owner-edited ogre diffuse recorded in their evidence; that unrelated diffuse edit is intentionally not included in this feature commit.
+
+## Landed on Dev (10 October 2026)
+
+The feature above was committed to `Prod` (907d5cd) by the Codex session that built it. With that session no longer
+running, it was landed on `Dev` by Claude: the same code, adapted to what `Dev` had gained since.
+
+* **How it was merged.** Each file that conflicted took `Dev`'s version, and 907d5cd's lines were applied to it: the
+  Rend the Veil records (`pr_edict`, `r_levelents`, `r_levelview`), the axe halves' ground slope (`axe_record`), the
+  cheat powers cleared with an edict (`progs`), and the vision-aware skin program key (`r_newerskins`). The face blocks
+  were copied into `Dev`'s `newer/enemies/index.json` by variant. Its revision stays 26, not Prod's "21-faces4": the face
+  sheets are new URLs, no existing skin changed, and the index itself is fetched without a cache.
+* **Tests changed by the landing.**
+  * The four bound-skin suites (Shub, Enforcer, Spawn, Death Knight) check that every other enemy entry is unchanged by a
+    digest. That digest now leaves out the grunt's, ogre's and knight's face blocks, and checks that no other variant
+    has faces. `enemy_face_material_test` pins those three blocks' own digest, so a changed face rectangle is still
+    caught.
+  * `startup_skins_test`: E1M3's prefetch now also starts the ogre's face sheet (20 requests: 19 maps and the sheet),
+    and still none for knights or grunts, which E1M3 does not have.
+* **Architecture.** `pr_cmds.js` and `pr_edict.js` (the QuakeC VM, `engine/progs`) now import `enemy_face.js`: two more
+  engine → Newer imports (debt D1b of the [architecture baseline](architecture-baseline-2026-10-10.md)), from modules
+  that already had some. `enemy_face.js` imports nothing, so no cycle grows. The classifier places it with the skins
+  (`newer/render`, [44d]).
+* **Checked on Dev.**
+  * The face suites (material 7/7, native 11/11), the bound-skin suites and `startup_skins` pass. The full suite on the
+    landing passes but for suites lacking inputs not on this machine (donor zips, a Quake install in `~/Downloads`).
+  * In Chrome on E1M2 (`tests/enemy_face_gameplay_trial.html`), ogres, grunts and knights were drawn with their faces:
+    23 individuals seeded, the client's copy matching for each one in view, 23 seeds unchanged through save and load, no
+    GL or page errors ([receipt](evidence/enemy-face-dev-landing-2026-10-10.json),
+    [frames: ogre, grunts, knight](evidence/enemy-face-dev-landing-2026-10-10.jpg)).
+* Owner visual acceptance remains open.

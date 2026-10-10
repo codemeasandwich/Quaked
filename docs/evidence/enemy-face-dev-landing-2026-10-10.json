@@ -1,0 +1,382 @@
+{
+ "ogre": {
+  "status": "Native ogre #14, fixed face 7/12. Next inspects a different individual.",
+  "individuals": 6,
+  "seeded": 6,
+  "clientMatches": 3,
+  "drawn": 3,
+  "distinctFaces": 4,
+  "glError": 0,
+  "errors": []
+ },
+ "soldier": {
+  "status": "Native soldier #22, fixed face 10/12. Next inspects a different individual.",
+  "individuals": 12,
+  "seeded": 12,
+  "clientMatches": 10,
+  "drawn": 10,
+  "distinctFaces": 8,
+  "glError": 0,
+  "errors": []
+ },
+ "knight": {
+  "status": "Native knight #33, fixed face 11/12. Next inspects a different individual.",
+  "individuals": 5,
+  "seeded": 5,
+  "clientMatches": 2,
+  "drawn": 2,
+  "distinctFaces": 4,
+  "glError": 0,
+  "errors": []
+ },
+ "receiptAfterLoad": {
+  "profile": "face-inspection-original-walls",
+  "loading": {
+   "phase": "done",
+   "mode": "welcome",
+   "appReady": true,
+   "consoleSeen": true,
+   "fadeStarted": true,
+   "fadeDone": true,
+   "frames": 8,
+   "settledFrames": 3,
+   "world": "maps/e1m2.bsp",
+   "pending": [],
+   "fallbacks": []
+  },
+  "ready": true,
+  "sequence": 130,
+  "clientTime": 6.131700038909912,
+  "serverTime": 6.131700000000002,
+  "paused": false,
+  "active": true,
+  "demo": false,
+  "map": "e1m2",
+  "signon": 4,
+  "target": {
+   "index": 33,
+   "seed": 1623914914,
+   "model": "progs/knight.mdl"
+  },
+  "individuals": [
+   {
+    "index": 14,
+    "model": "progs/ogre.mdl",
+    "seed": 87177651,
+    "drawn": false
+   },
+   {
+    "index": 22,
+    "model": "progs/soldier.mdl",
+    "seed": 2005157102,
+    "drawn": false
+   },
+   {
+    "index": 29,
+    "model": "progs/soldier.mdl",
+    "seed": 2763734951,
+    "drawn": false
+   },
+   {
+    "index": 33,
+    "model": "progs/knight.mdl",
+    "seed": 1623914914,
+    "clientSeed": 1623914914,
+    "drawn": true
+   },
+   {
+    "index": 41,
+    "model": "progs/ogre.mdl",
+    "seed": 3341048276,
+    "drawn": false
+   },
+   {
+    "index": 53,
+    "model": "progs/knight.mdl",
+    "seed": 3675016989,
+    "drawn": false
+   },
+   {
+    "index": 54,
+    "model": "progs/knight.mdl",
+    "seed": 580588219,
+    "drawn": false
+   },
+   {
+    "index": 91,
+    "model": "progs/soldier.mdl",
+    "seed": 3185714606,
+    "drawn": false
+   },
+   {
+    "index": 93,
+    "model": "progs/ogre.mdl",
+    "seed": 1228680929,
+    "drawn": false
+   },
+   {
+    "index": 98,
+    "model": "progs/ogre.mdl",
+    "seed": 1934555593,
+    "drawn": false
+   },
+   {
+    "index": 107,
+    "model": "progs/soldier.mdl",
+    "seed": 3533497871,
+    "drawn": false
+   },
+   {
+    "index": 108,
+    "model": "progs/soldier.mdl",
+    "seed": 580765168,
+    "drawn": false
+   },
+   {
+    "index": 113,
+    "model": "progs/ogre.mdl",
+    "seed": 3356015941,
+    "drawn": false
+   },
+   {
+    "index": 143,
+    "model": "progs/knight.mdl",
+    "seed": 3548551753,
+    "drawn": false
+   },
+   {
+    "index": 146,
+    "model": "progs/soldier.mdl",
+    "seed": 1274717106,
+    "drawn": false
+   },
+   {
+    "index": 162,
+    "model": "progs/soldier.mdl",
+    "seed": 3044536437,
+    "drawn": false
+   },
+   {
+    "index": 163,
+    "model": "progs/soldier.mdl",
+    "seed": 1497588741,
+    "drawn": false
+   },
+   {
+    "index": 173,
+    "model": "progs/soldier.mdl",
+    "seed": 1075526980,
+    "drawn": false
+   },
+   {
+    "index": 176,
+    "model": "progs/soldier.mdl",
+    "seed": 1035232170,
+    "drawn": false
+   },
+   {
+    "index": 177,
+    "model": "progs/soldier.mdl",
+    "seed": 2472925622,
+    "drawn": false
+   },
+   {
+    "index": 180,
+    "model": "progs/soldier.mdl",
+    "seed": 4098720164,
+    "drawn": false
+   },
+   {
+    "index": 206,
+    "model": "progs/ogre.mdl",
+    "seed": 656547935,
+    "drawn": false
+   },
+   {
+    "index": 207,
+    "model": "progs/knight.mdl",
+    "seed": 116658825,
+    "clientSeed": 116658825,
+    "drawn": true
+   }
+  ],
+  "skins": {
+   "index": "ready",
+   "normals": {
+    "pending": 0,
+    "ready": 28,
+    "shipped": 28,
+    "disk": 0,
+    "generated": 0,
+    "errors": {}
+   },
+   "preparePending": 0,
+   "pending": 0,
+   "ready": 45,
+   "fallback": 0,
+   "total": 45,
+   "settled": true,
+   "errors": {}
+  },
+  "glError": 0,
+  "errors": []
+ },
+ "beforeIndividuals": [
+  {
+   "index": 14,
+   "model": "progs/ogre.mdl",
+   "seed": 87177651,
+   "clientSeed": 87177651,
+   "drawn": true
+  },
+  {
+   "index": 22,
+   "model": "progs/soldier.mdl",
+   "seed": 2005157102,
+   "drawn": false
+  },
+  {
+   "index": 29,
+   "model": "progs/soldier.mdl",
+   "seed": 2763734951,
+   "clientSeed": 2763734951,
+   "drawn": true
+  },
+  {
+   "index": 33,
+   "model": "progs/knight.mdl",
+   "seed": 1623914914,
+   "clientSeed": 1623914914,
+   "drawn": true
+  },
+  {
+   "index": 41,
+   "model": "progs/ogre.mdl",
+   "seed": 3341048276,
+   "clientSeed": 3341048276,
+   "drawn": true
+  },
+  {
+   "index": 53,
+   "model": "progs/knight.mdl",
+   "seed": 3675016989,
+   "drawn": false
+  },
+  {
+   "index": 54,
+   "model": "progs/knight.mdl",
+   "seed": 580588219,
+   "drawn": false
+  },
+  {
+   "index": 91,
+   "model": "progs/soldier.mdl",
+   "seed": 3185714606,
+   "clientSeed": 3185714606,
+   "drawn": true
+  },
+  {
+   "index": 93,
+   "model": "progs/ogre.mdl",
+   "seed": 1228680929,
+   "clientSeed": 1228680929,
+   "drawn": true
+  },
+  {
+   "index": 98,
+   "model": "progs/ogre.mdl",
+   "seed": 1934555593,
+   "drawn": false
+  },
+  {
+   "index": 107,
+   "model": "progs/soldier.mdl",
+   "seed": 3533497871,
+   "drawn": false
+  },
+  {
+   "index": 108,
+   "model": "progs/soldier.mdl",
+   "seed": 580765168,
+   "clientSeed": 580765168,
+   "drawn": true
+  },
+  {
+   "index": 113,
+   "model": "progs/ogre.mdl",
+   "seed": 3356015941,
+   "drawn": false
+  },
+  {
+   "index": 143,
+   "model": "progs/knight.mdl",
+   "seed": 3548551753,
+   "drawn": false
+  },
+  {
+   "index": 146,
+   "model": "progs/soldier.mdl",
+   "seed": 1274717106,
+   "clientSeed": 1274717106,
+   "drawn": true
+  },
+  {
+   "index": 162,
+   "model": "progs/soldier.mdl",
+   "seed": 3044536437,
+   "clientSeed": 3044536437,
+   "drawn": true
+  },
+  {
+   "index": 163,
+   "model": "progs/soldier.mdl",
+   "seed": 1497588741,
+   "clientSeed": 1497588741,
+   "drawn": true
+  },
+  {
+   "index": 173,
+   "model": "progs/soldier.mdl",
+   "seed": 1075526980,
+   "clientSeed": 1075526980,
+   "drawn": true
+  },
+  {
+   "index": 176,
+   "model": "progs/soldier.mdl",
+   "seed": 1035232170,
+   "clientSeed": 1035232170,
+   "drawn": true
+  },
+  {
+   "index": 177,
+   "model": "progs/soldier.mdl",
+   "seed": 2472925622,
+   "drawn": false
+  },
+  {
+   "index": 180,
+   "model": "progs/soldier.mdl",
+   "seed": 4098720164,
+   "drawn": false
+  },
+  {
+   "index": 206,
+   "model": "progs/ogre.mdl",
+   "seed": 656547935,
+   "drawn": false
+  },
+  {
+   "index": 207,
+   "model": "progs/knight.mdl",
+   "seed": 116658825,
+   "clientSeed": 116658825,
+   "drawn": true
+  }
+ ],
+ "saveLoad": {
+  "before": 23,
+  "after": 23,
+  "sameSeedSameSlot": 23
+ }
+}
