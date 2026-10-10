@@ -25,6 +25,8 @@ const RULES = [
 	[ 'engine/server', '44b', /^(sv_main|sv_move|sv_phys|sv_user|server|world|pmove|host|host_cmd)\.js$/ ],
 	[ 'engine/net', '44c', /^net(_\w+)?\.js$/ ],
 	[ 'engine/client', '44c', /^(cl_\w+|client|chase|view|keys|sbar|screen|menu)\.js$/ ],
+	// local play's player windows (made in [37a])
+	[ 'engine/client', '37a', /^local_play\.js$/ ],
 	[ 'engine/sound', '44c', /^(snd_\w+|sound|cd_audio)\.js$/ ],
 	// the Newer parts of the renderer kept beside the GL port's names
 	[ 'newer/render', '44e', /^(gl_post|gl_portal|gl_normals)\.js$/ ],
@@ -34,9 +36,13 @@ const RULES = [
 	// the client's one ray-cast helper (made in [44g] for debt D6)
 	[ 'engine/render', '44g', /^r_trace\.js$/ ],
 	[ 'platform', '44c', /^(webxr|touch|touch_layout|in_web)\.js$/ ],
+	// the controllers local play shares between its windows (made in [37a])
+	[ 'platform', '37a', /^pad_(share|assign)\.js$/ ],
 	[ 'newer/gameplay', '44b', /^(sv_\w+|respawn_record|rend_veil_state|axe_record|shotgun_flight|powervision_state)\.js$/ ],
 	[ 'newer/ui', '44f', /^(menu_webgl\w*|menu_art|studio_logo|loading_\w+|r_demoloading|r_newerhud|r_playerface|playerface_manifest|r_bestiary_book|r_bestiary|bestiary_art|bestiary_state|newer_defaults|r_facegame|face_state|respawn_notice|respawn_motion|r_folio)\.js$/ ],
 	[ 'newer/sound', '44f', /^s_\w+\.js$/ ],
+	// the game shelf of boxes the index page opens on (made in [M1])
+	[ 'newer/ui', 'M1', /^game_shelf\.js$/ ],
 	// asset preparation (made ahead of the game or in the background) and the prepared data's formats and transports
 	[ 'newer/assets', '44f', /^(normal_prepare|rockfield_prepare|rockfield_worker|prepared_corpus|startup_\w+)\.js$/ ],
 	[ 'newer/assets', '44e', /(_bake_format|_bakes|_bundle|_transport|_startup_packs|_presets|_store)\.js$|^(alias_mesh_\w+|rockfield|r_normalprefetch|r_rockbakes|r_demonbakes|r_aliasmeshcache|demon_bake_format)\.js$/ ],
