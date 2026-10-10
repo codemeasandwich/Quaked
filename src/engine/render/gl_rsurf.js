@@ -9,7 +9,8 @@
  * State: mutable exports `MAX_LIGHTMAPS`, `skytexturenum`, `gl_lightmap_format`, `gl_solid_format`,
  * `gl_alpha_format`, `gl_mtexable`; module-level variables `lightmap_bytes`, `lightmap_textures`,
  * `_visibilityNeedsUpdate`, `active_lightmaps`, `lightmaps`, `skychain`, `waterchain`, `mtexenabled`,
- * `r_pcurrentvertbase`, `currentmodel`, `nColinElim`, `worldGroup` and 16 more; 7 module-level collections (Map/Set).
+ * `r_pcurrentvertbase`, `currentmodel`, `nColinElim`, `worldMeshesBuilt` and 14 more; 7 module-level collections
+ * (Map/Set).
  *
  * Errors: calls `Sys_Error` (fatal) at 3 places; throws at 1 place; catches at 1 place.
  */
@@ -247,7 +248,29 @@ let currentmodel = null;
 let nColinElim = 0;
 
 // Three.js geometry cache for BSP surfaces
-let worldGroup = null; // THREE.Group for world BSP
+// The world's groups: `group` the `quake_world` THREE.Group of the world BSP (made on first use by
+// R_EnsureWorldGroup), `renderGroup` the group the surface renderers add liquid and sky meshes to (the world's group
+// while the world draws). One object, so every part of the world renderer reads and sets the same two.
+const worldState = { group: null, renderGroup: null };
+
+/**
+ * The world's `quake_world` group (`worldState.group`), made on first use and added to the scene. Called by
+ * `R_DrawWorld` each frame and by `R_BuildWorldMeshes` at a map load.
+ *
+ * @returns {THREE.Group} the world's group
+ */
+function R_EnsureWorldGroup() {
+
+	if ( ! worldState.group ) {
+
+		worldState.group = new THREE.Group();
+		worldState.group.name = 'quake_world';
+		if ( scene ) scene.add( worldState.group );
+
+	}
+	return worldState.group;
+
+}
 let worldMeshesBuilt = false; // true after R_BuildWorldMeshes has run
 
 // PVS visibility using BatchedMesh for efficient rendering
@@ -345,7 +368,7 @@ function R_UpdateDemonSurfaces() {
 					record.pvsVisible = visible; mesh.visible = visible && demonEnabled;
 
 				} } };
-				instanceVisInfo.push( record.visibility ); worldGroup.add( mesh );
+				instanceVisInfo.push( record.visibility ); worldState.group.add( mesh );
 				_visibilityNeedsUpdate = true; changed = true;
 
 			}
@@ -370,10 +393,9 @@ let _waterMeshesThisFrame = new Set();
 const _waterMaterialCache = new Map();
 
 // Brush entity rendering support
-// currentRenderGroup is the THREE.Group that surface renderers add meshes to.
-// Defaults to worldGroup, but temporarily swapped to a brush entity group
+// worldState.renderGroup is the THREE.Group that surface renderers add meshes to.
+// Defaults to worldState.group, but temporarily swapped to a brush entity group
 // during R_DrawBrushModel (equivalent of glPushMatrix/glPopMatrix).
-let currentRenderGroup = null;
 let brushEntityGroups = []; // per-frame brush entity groups to dispose next frame
 
 // Material cache for brush entities - keyed by "diffuseId_lightmapId"
@@ -1249,7 +1271,7 @@ export function R_DrawSequentialPoly( s ) {
 	//
 	if ( s.flags & SURF_DRAWTURB ) {
 
-		const renderGroup = currentRenderGroup || worldGroup;
+		const renderGroup = worldState.renderGroup || worldState.group;
 		if ( s.polys && renderGroup ) {
 
 			const realtime = cl ? cl.time : 0;
@@ -1316,7 +1338,7 @@ export function R_RenderBrushPoly( fa ) {
 
 	if ( fa.flags & SURF_DRAWTURB ) {
 
-		const renderGroup = currentRenderGroup || worldGroup;
+		const renderGroup = worldState.renderGroup || worldState.group;
 		if ( fa.polys && renderGroup ) {
 
 			const realtime = cl ? cl.time : 0;
@@ -2178,6 +2200,61 @@ export function R_DrawBrushModel( e ) {
 
 }
 
+/**
+ * Throws away the previous map's brush entity state (part of `GL_BuildLightmaps`): disposes the cached brush materials,
+ * and every brush entity group's geometry (and materials of its own), detaching each from its entity.
+ */
+function R_BrushClear() {
+
+	// Clear brush entity material cache (dispose old materials first)
+	for ( const mat of _brushMaterialCache.values() ) mat.dispose();
+	_brushMaterialCache.clear();
+
+	// Dispose all cached brush entity groups (geometry disposal)
+	for ( const group of _allBrushEntityGroups ) {
+
+		const owner = group._quakeOwner;
+		if ( owner != null && owner._brushGroup === group ) {
+
+			owner._brushGroup = null;
+			owner._brushGroupFrame = undefined;
+			owner._brushAnimSurfaces = null;
+
+		}
+		group._quakeOwner = null;
+		if ( group.parent ) group.parent.remove( group );
+		for ( const child of group.children ) {
+
+			if ( child.geometry ) child.geometry.dispose();
+			if ( child.userData.ownMaterial ) child.material.dispose();
+
+		}
+		if ( owner != null ) owner._demonRelief = undefined;
+
+	}
+
+	_allBrushEntityGroups.clear();
+	brushEntityGroups.length = 0;
+
+}
+
+/**
+ * Takes last frame's brush entity groups out of the scene (`R_DrawWorld`); they stay cached on their entities.
+ */
+function R_BrushBeginFrame() {
+
+	// Remove brush entity groups from scene (don't dispose - they're cached on entities)
+	for ( let i = 0; i < brushEntityGroups.length; i ++ ) {
+
+		const group = brushEntityGroups[ i ];
+		if ( group.parent ) group.parent.remove( group );
+
+	}
+
+	brushEntityGroups.length = 0;
+
+}
+
 //============================================================================
 // R_RecursiveWorldNode
 //============================================================================
@@ -2405,29 +2482,15 @@ export function R_DrawWorld() {
 		lightmap_polys[ i ] = null;
 
 	// create world group if needed
-	if ( ! worldGroup ) {
-
-		worldGroup = new THREE.Group();
-		worldGroup.name = 'quake_world';
-		if ( scene ) scene.add( worldGroup );
-
-	}
+	R_EnsureWorldGroup();
 
 	// Begin new water/sky frame: clear "this frame" set
-	_waterMeshesThisFrame = new Set();
+	R_LiquidsBeginFrame();
 
-	// Remove brush entity groups from scene (don't dispose - they're cached on entities)
-	for ( let i = 0; i < brushEntityGroups.length; i ++ ) {
+	R_BrushBeginFrame();
 
-		const group = brushEntityGroups[ i ];
-		if ( group.parent ) group.parent.remove( group );
-
-	}
-
-	brushEntityGroups.length = 0;
-
-	// Set currentRenderGroup to worldGroup for world surface rendering
-	currentRenderGroup = worldGroup;
+	// Set the render group to the world's group for world surface rendering
+	worldState.renderGroup = worldState.group;
 
 	R_RecursiveWorldNode( cl_ref.worldmodel.nodes[ 0 ] );
 
@@ -2465,6 +2528,35 @@ export function R_CleanupWaterMeshes() {
 		}
 
 	}
+
+}
+
+/**
+ * Throws away the previous map's liquid and sky meshes (part of `GL_BuildLightmaps`): takes each out of its group,
+ * starts new in-scene and this-frame sets and empties the liquid material cache.
+ */
+function R_LiquidsClear() {
+
+	// Clear water/sky mesh caches
+	for ( const mesh of _waterMeshesInScene ) {
+
+		if ( mesh.parent ) mesh.parent.remove( mesh );
+
+	}
+
+	_waterMeshesInScene = new Set();
+	_waterMeshesThisFrame = new Set();
+	_waterMaterialCache.clear();
+
+}
+
+/**
+ * Starts a frame's set of drawn liquid and sky meshes (`R_DrawWorld`); `R_CleanupWaterMeshes` later removes those in the
+ * scene but not drawn this frame.
+ */
+function R_LiquidsBeginFrame() {
+
+	_waterMeshesThisFrame = new Set();
 
 }
 
@@ -2634,14 +2726,14 @@ export function R_DrawWaterSurfaces() {
 
 		for ( let s = waterchain; s; s = s.texturechain ) {
 
-			if ( s.polys && worldGroup ) {
+			if ( s.polys && worldState.group ) {
 
 				const realtime = cl ? cl.time : 0;
 				const geometry = EmitWaterPolysQuake( s, realtime );
 				if ( geometry ) {
 
 					const material = _getWaterMaterial( s.texinfo.texture, r_wateralpha.value );
-					_getWaterMesh( s, geometry, material, worldGroup );
+					_getWaterMesh( s, geometry, material, worldState.group );
 
 				}
 
@@ -2668,14 +2760,14 @@ export function R_DrawWaterSurfaces() {
 
 			for ( ; s; s = s.texturechain ) {
 
-				if ( s.polys && worldGroup ) {
+				if ( s.polys && worldState.group ) {
 
 					const realtime = cl ? cl.time : 0;
 					const geometry = EmitWaterPolysQuake( s, realtime );
 					if ( geometry ) {
 
 						const material = _getWaterMaterial( t, r_wateralpha.value );
-						_getWaterMesh( s, geometry, material, worldGroup );
+						_getWaterMesh( s, geometry, material, worldState.group );
 
 					}
 
@@ -2840,7 +2932,7 @@ let alphaSkyMaterial = null;
 
 function R_DrawSkyChain( s ) {
 
-	if ( ! worldGroup ) return;
+	if ( ! worldState.group ) return;
 
 	R_PostNoteSky();
 
@@ -2911,10 +3003,10 @@ function R_DrawSkyChain( s ) {
 
 			}
 
-			if ( mesh.parent !== worldGroup ) {
+			if ( mesh.parent !== worldState.group ) {
 
 				if ( mesh.parent ) mesh.parent.remove( mesh );
-				worldGroup.add( mesh );
+				worldState.group.add( mesh );
 
 			}
 
@@ -2952,10 +3044,10 @@ function R_DrawSkyChain( s ) {
 
 				}
 
-				if ( mesh.parent !== worldGroup ) {
+				if ( mesh.parent !== worldState.group ) {
 
 					if ( mesh.parent ) mesh.parent.remove( mesh );
-					worldGroup.add( mesh );
+					worldState.group.add( mesh );
 
 				}
 
@@ -2967,6 +3059,17 @@ function R_DrawSkyChain( s ) {
 		}
 
 	}
+
+}
+
+/**
+ * Disposes the two sky materials so the next map's sky textures are picked up (part of `GL_BuildLightmaps`).
+ */
+function R_SkyClear() {
+
+	// Reset sky materials so they pick up new sky textures
+	if ( solidSkyMaterial ) { solidSkyMaterial.dispose(); solidSkyMaterial = null; }
+	if ( alphaSkyMaterial ) { alphaSkyMaterial.dispose(); alphaSkyMaterial = null; }
 
 }
 
@@ -3307,6 +3410,118 @@ export function R_ClassicLightmapsFrame( models = cl.model_precache || [ cl.worl
 
 }
 
+/**
+ * Throws away the previous map's lightmaps (part of `GL_BuildLightmaps`): disposes the atlas textures, returns to the
+ * base atlas count and clears every atlas's allocation.
+ */
+function R_LightmapsClear() {
+
+	// Three.js materials do not own or dispose the textures they reference.
+	for ( let i = 0; i < lightmapTextures.length; i ++ ) {
+
+		const texture = lightmapTextures[ i ];
+		if ( texture != null ) texture.dispose();
+
+	}
+
+	lightmapTextures.length = 0;
+
+	// Each world starts with the original64-atlas policy; grow only when full.
+	if(MAX_LIGHTMAPS!==BASE_LIGHTMAPS)resizeLightmapCapacity(BASE_LIGHTMAPS);
+	// clear allocation
+	for ( let i = 0; i < MAX_LIGHTMAPS; i ++ )
+		allocated[ i ].fill( 0 );
+
+}
+
+/**
+ * Sets the atlas format for the map being loaded (`GL_BuildLightmaps`): luminance, `bytes` bytes per texel.
+ *
+ * @param {number} bytes 1, or 3 for a coloured (.lit) lightmap under Newer Game
+ */
+function R_LightmapsSetFormat( bytes ) {
+
+	gl_lightmap_format = GL_LUMINANCE;
+	lightmap_bytes = bytes;
+
+}
+
+/**
+ * Names the brush model whose surfaces `BuildSurfaceDisplayList` builds next (`GL_BuildLightmaps`), and its vertices.
+ *
+ * @param {model_t} m a loaded brush model
+ */
+function R_LightmapsSetModel( m ) {
+
+	r_pcurrentvertbase = m.vertexes;
+	currentmodel = m;
+
+}
+
+/**
+ * Uploads every filled atlas as a Three.js RGBA DataTexture of brightness (part of `GL_BuildLightmaps`), clearing
+ * its changed state.
+ */
+function R_LightmapsUpload() {
+
+	// upload all lightmaps that were filled as Three.js DataTextures
+	for ( let i = 0; i < MAX_LIGHTMAPS; i ++ ) {
+
+		if ( ! allocated[ i ][ 0 ] )
+			break; // no more used
+
+		lightmap_modified[ i ] = false;
+		lightmap_rectchange[ i ].l = BLOCK_WIDTH;
+		lightmap_rectchange[ i ].t = BLOCK_HEIGHT;
+		lightmap_rectchange[ i ].w = 0;
+		lightmap_rectchange[ i ].h = 0;
+
+		// Create Three.js DataTexture from lightmap data
+		// R_BuildLightMap stores 255-brightness (Quake subtractive format).
+		// Three.js lightMap is multiplicative, so invert to get brightness.
+		// Use RGBA format — LuminanceFormat is not supported in WebGL 2.
+		const offset = i * BLOCK_WIDTH * BLOCK_HEIGHT * lightmap_bytes;
+		const pixelCount = BLOCK_WIDTH * BLOCK_HEIGHT;
+		const data = new Uint8Array( pixelCount * 4 );
+		for ( let p = 0; p < pixelCount; p ++ ) {
+
+			if ( lightmap_bytes === 3 ) {
+
+				data[ p * 4 ] = 255 - lightmaps[ offset + p * 3 ];
+				data[ p * 4 + 1 ] = 255 - lightmaps[ offset + p * 3 + 1 ];
+				data[ p * 4 + 2 ] = 255 - lightmaps[ offset + p * 3 + 2 ];
+
+			} else {
+
+				const val = 255 - lightmaps[ offset + p ];
+				data[ p * 4 ] = val;
+				data[ p * 4 + 1 ] = val;
+				data[ p * 4 + 2 ] = val;
+
+			}
+
+			data[ p * 4 + 3 ] = 255;
+
+		}
+
+		const texture = new THREE.DataTexture(
+			data,
+			BLOCK_WIDTH,
+			BLOCK_HEIGHT,
+			THREE.RGBAFormat,
+			THREE.UnsignedByteType
+		);
+		texture.minFilter = THREE.LinearFilter;
+		texture.magFilter = THREE.LinearFilter;
+		texture.flipY = false;
+		texture.needsUpdate = true;
+
+		lightmapTextures[ i ] = texture;
+
+	}
+
+}
+
 //============================================================================
 // concatFloat32Arrays
 //
@@ -3330,6 +3545,51 @@ function concatFloat32Arrays( arrays ) {
 
 }
 
+
+/**
+ * Throws away the previous map's world batches (part of `GL_BuildLightmaps`): disposes every batched mesh and its
+ * material, empties the animated and demon-relief lists, disposes whatever else the world's group holds (liquid and
+ * sky meshes), and marks the meshes unbuilt and the visibility stale.
+ */
+function R_WorldBatchesClear() {
+
+	// Dispose old BatchedMesh objects
+	for ( const batchedMesh of worldBatchedMeshes ) {
+
+		if ( batchedMesh.parent ) batchedMesh.parent.remove( batchedMesh );
+		batchedMesh.dispose();
+		if ( batchedMesh.material ) batchedMesh.material.dispose();
+
+	}
+
+	worldBatchedMeshes.length = 0;
+	worldAnimatedMeshes.length = 0;
+	demonSurfaces.length = 0; demonEnabled = false;
+
+	// Dispose any other children in the world's group (water/sky meshes added dynamically)
+	if ( worldState.group ) {
+
+		while ( worldState.group.children.length > 0 ) {
+
+			const child = worldState.group.children[ 0 ];
+			worldState.group.remove( child );
+			if ( child.geometry ) child.geometry.dispose();
+			if ( child.material ) child.material.dispose();
+
+		}
+
+	}
+
+	worldMeshesBuilt = false;
+
+	// Clear PVS instance visibility info
+	instanceVisInfo.length = 0;
+
+	// Force visibility update on first frame after map load
+	_visibilityNeedsUpdate = true;
+
+}
+
 //============================================================================
 // R_BuildWorldMeshes
 //
@@ -3343,13 +3603,7 @@ function R_BuildWorldMeshes() {
 	const cl_ref = cl;
 	if ( ! cl_ref || ! cl_ref.worldmodel ) return;
 
-	if ( ! worldGroup ) {
-
-		worldGroup = new THREE.Group();
-		worldGroup.name = 'quake_world';
-		if ( scene ) scene.add( worldGroup );
-
-	}
+	R_EnsureWorldGroup();
 
 	const worldmodel = cl_ref.worldmodel;
 	R_RockfieldBuild( worldmodel );
@@ -3511,7 +3765,7 @@ function R_BuildWorldMeshes() {
 
 		}
 
-		worldGroup.add( batchedMesh );
+		worldState.group.add( batchedMesh );
 		worldBatchedMeshes.push( batchedMesh );
 		if ( t.anim_total > 0 )
 			worldAnimatedMeshes.push( { mesh: batchedMesh, baseTexture: t } );
@@ -3644,108 +3898,21 @@ export function GL_BuildLightmaps() {
 	const cl_ref = cl;
 	if ( ! cl_ref ) return;
 
-	// Dispose old BatchedMesh objects
-	for ( const batchedMesh of worldBatchedMeshes ) {
+	R_WorldBatchesClear();
 
-		if ( batchedMesh.parent ) batchedMesh.parent.remove( batchedMesh );
-		batchedMesh.dispose();
-		if ( batchedMesh.material ) batchedMesh.material.dispose();
+	R_LiquidsClear();
 
-	}
+	R_BrushClear();
 
-	worldBatchedMeshes.length = 0;
-	worldAnimatedMeshes.length = 0;
-	demonSurfaces.length = 0; demonEnabled = false;
+	R_SkyClear();
 
-	// Dispose any other children in worldGroup (water/sky meshes added dynamically)
-	if ( worldGroup ) {
-
-		while ( worldGroup.children.length > 0 ) {
-
-			const child = worldGroup.children[ 0 ];
-			worldGroup.remove( child );
-			if ( child.geometry ) child.geometry.dispose();
-			if ( child.material ) child.material.dispose();
-
-		}
-
-	}
-
-	worldMeshesBuilt = false;
-
-	// Clear PVS instance visibility info
-	instanceVisInfo.length = 0;
-
-	// Force visibility update on first frame after map load
-	_visibilityNeedsUpdate = true;
-
-	// Clear water/sky mesh caches
-	for ( const mesh of _waterMeshesInScene ) {
-
-		if ( mesh.parent ) mesh.parent.remove( mesh );
-
-	}
-
-	_waterMeshesInScene = new Set();
-	_waterMeshesThisFrame = new Set();
-	_waterMaterialCache.clear();
-
-	// Clear brush entity material cache (dispose old materials first)
-	for ( const mat of _brushMaterialCache.values() ) mat.dispose();
-	_brushMaterialCache.clear();
-
-	// Dispose all cached brush entity groups (geometry disposal)
-	for ( const group of _allBrushEntityGroups ) {
-
-		const owner = group._quakeOwner;
-		if ( owner != null && owner._brushGroup === group ) {
-
-			owner._brushGroup = null;
-			owner._brushGroupFrame = undefined;
-			owner._brushAnimSurfaces = null;
-
-		}
-		group._quakeOwner = null;
-		if ( group.parent ) group.parent.remove( group );
-		for ( const child of group.children ) {
-
-			if ( child.geometry ) child.geometry.dispose();
-			if ( child.userData.ownMaterial ) child.material.dispose();
-
-		}
-		if ( owner != null ) owner._demonRelief = undefined;
-
-	}
-
-	_allBrushEntityGroups.clear();
-	brushEntityGroups.length = 0;
-
-	// Reset sky materials so they pick up new sky textures
-	if ( solidSkyMaterial ) { solidSkyMaterial.dispose(); solidSkyMaterial = null; }
-	if ( alphaSkyMaterial ) { alphaSkyMaterial.dispose(); alphaSkyMaterial = null; }
-
-	// Three.js materials do not own or dispose the textures they reference.
-	for ( let i = 0; i < lightmapTextures.length; i ++ ) {
-
-		const texture = lightmapTextures[ i ];
-		if ( texture != null ) texture.dispose();
-
-	}
-
-	lightmapTextures.length = 0;
-
-	// Each world starts with the original64-atlas policy; grow only when full.
-	if(MAX_LIGHTMAPS!==BASE_LIGHTMAPS)resizeLightmapCapacity(BASE_LIGHTMAPS);
-	// clear allocation
-	for ( let i = 0; i < MAX_LIGHTMAPS; i ++ )
-		allocated[ i ].fill( 0 );
+	R_LightmapsClear();
 
 	set_r_framecount( 1 ); // no dlightcache
 
 	// set lightmap format -- use luminance (1 byte per texel)
 	// (3 bytes, red green blue, when the level has coloured lightmaps and Newer Game is on)
-	gl_lightmap_format = GL_LUMINANCE;
-	lightmap_bytes = ( cl_ref.worldmodel != null && cl_ref.worldmodel.litdata != null && R_NewerGame() ) ? 3 : 1;
+	R_LightmapsSetFormat( ( cl_ref.worldmodel != null && cl_ref.worldmodel.litdata != null && R_NewerGame() ) ? 3 : 1 );
 
 	// build lightmaps for all brush models
 	const count = cl_ref.model_precache ? cl_ref.model_precache.length : 0; // up to MAX_MODELS (card [34f])
@@ -3756,8 +3923,7 @@ export function GL_BuildLightmaps() {
 		if ( m.name && m.name.charAt( 0 ) === '*' )
 			continue;
 
-		r_pcurrentvertbase = m.vertexes;
-		currentmodel = m;
+		R_LightmapsSetModel( m );
 
 		if ( m.surfaces ) {
 
@@ -3782,61 +3948,7 @@ export function GL_BuildLightmaps() {
 
 	}
 
-	// upload all lightmaps that were filled as Three.js DataTextures
-	for ( let i = 0; i < MAX_LIGHTMAPS; i ++ ) {
-
-		if ( ! allocated[ i ][ 0 ] )
-			break; // no more used
-
-		lightmap_modified[ i ] = false;
-		lightmap_rectchange[ i ].l = BLOCK_WIDTH;
-		lightmap_rectchange[ i ].t = BLOCK_HEIGHT;
-		lightmap_rectchange[ i ].w = 0;
-		lightmap_rectchange[ i ].h = 0;
-
-		// Create Three.js DataTexture from lightmap data
-		// R_BuildLightMap stores 255-brightness (Quake subtractive format).
-		// Three.js lightMap is multiplicative, so invert to get brightness.
-		// Use RGBA format — LuminanceFormat is not supported in WebGL 2.
-		const offset = i * BLOCK_WIDTH * BLOCK_HEIGHT * lightmap_bytes;
-		const pixelCount = BLOCK_WIDTH * BLOCK_HEIGHT;
-		const data = new Uint8Array( pixelCount * 4 );
-		for ( let p = 0; p < pixelCount; p ++ ) {
-
-			if ( lightmap_bytes === 3 ) {
-
-				data[ p * 4 ] = 255 - lightmaps[ offset + p * 3 ];
-				data[ p * 4 + 1 ] = 255 - lightmaps[ offset + p * 3 + 1 ];
-				data[ p * 4 + 2 ] = 255 - lightmaps[ offset + p * 3 + 2 ];
-
-			} else {
-
-				const val = 255 - lightmaps[ offset + p ];
-				data[ p * 4 ] = val;
-				data[ p * 4 + 1 ] = val;
-				data[ p * 4 + 2 ] = val;
-
-			}
-
-			data[ p * 4 + 3 ] = 255;
-
-		}
-
-		const texture = new THREE.DataTexture(
-			data,
-			BLOCK_WIDTH,
-			BLOCK_HEIGHT,
-			THREE.RGBAFormat,
-			THREE.UnsignedByteType
-		);
-		texture.minFilter = THREE.LinearFilter;
-		texture.magFilter = THREE.LinearFilter;
-		texture.flipY = false;
-		texture.needsUpdate = true;
-
-		lightmapTextures[ i ] = texture;
-
-	}
+	R_LightmapsUpload();
 
 	// Build cached meshes for all world surfaces (after lightmap textures are ready)
 	R_BuildWorldMeshes();
