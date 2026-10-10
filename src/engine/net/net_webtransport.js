@@ -14,6 +14,7 @@
 // New module for browser-based WebTransport client connections
 
 import { Con_Printf, Con_DPrintf, SZ_Clear, SZ_Write } from '../common/common.js';
+import { clc_disconnect } from '../common/protocol.js';
 import { NET_NewQSocket, NET_FreeQSocket } from './net_main.js';
 import {
 	NET_MAXMESSAGE,
@@ -186,7 +187,8 @@ export function WT_Init() {
 }
 
 /**
- * Handle page unload - send clean disconnect to server
+ * Handle page unload - send clean disconnect to server: each open connection gets a `clc_disconnect` through
+ * `WT_QSendMessage`, then its transport is closed.
  */
 function _onPageHide() {
 
@@ -194,17 +196,9 @@ function _onPageHide() {
 
 		try {
 
-			// Send clc_disconnect message before closing
-			if ( conn.reliableWriter != null ) {
-
-				const msg = new Uint8Array( 4 );
-				msg[ 0 ] = 1; // frame type: game message
-				msg[ 1 ] = 1; // length low byte
-				msg[ 2 ] = 0; // length high byte
-				msg[ 3 ] = 2; // clc_disconnect
-				conn.reliableWriter.write( msg );
-
-			}
+			// Send clc_disconnect before closing, framed as every reliable message is (card [44m]: this wrote the
+			// lobby's [type][length] framing on the game stream, which the server read as a 257-byte length)
+			if ( conn.reliableWriter != null ) WT_QSendMessage( sock, { data: new Uint8Array( [ clc_disconnect ] ), cursize: 1 } );
 
 			// Close the transport (sends QUIC CONNECTION_CLOSE)
 			conn.transport.close();

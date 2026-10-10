@@ -114,3 +114,31 @@ Deno.test( 'client WebTransport keeps reliable and datagram receive sequences se
 	}
 
 } );
+
+Deno.test( 'leaving the page sends clc_disconnect on the game stream with its real framing, then closes (card [44m])', async () => {
+
+	const net = await import( '../src/engine/net/net.js' ), { svs } = await import( '../src/engine/server/server.js' );
+	const writes = [], handlers = {}, saved = { WebTransport: globalThis.WebTransport, window: Object.getOwnPropertyDescriptor( globalThis, 'window' ), max: svs.maxclients };
+	let closed = 0;
+	const never = new Promise( () => {} ), stream = () => ( { writable: { getWriter: () => ( { write: b => { writes.push( b ); return Promise.resolve(); } } ) }, readable: { getReader: () => ( { read: () => never } ) } } );
+	globalThis.WebTransport = class { constructor() { this.ready = Promise.resolve(); this.closed = never; this.datagrams = stream(); } createBidirectionalStream() { return Promise.resolve( stream() ); } close() { closed ++; } };
+	Object.defineProperty( globalThis, 'window', { configurable: true, value: { addEventListener: ( type, fn ) => { handlers[ type ] = fn; } } } );
+	const free = new qsocket_t(); net.set_net_freeSockets( free ); svs.maxclients = Math.max( svs.maxclients, 1 );
+	try {
+		clientTransport.WT_Init();
+		const sock = await clientTransport.WT_Connect( 'https://127.0.0.1:1/' );
+		assertEqual( sock !== null, true, 'connected through the fake transport' );
+		writes.length = 0;
+		handlers.pagehide();
+		assertEqual( writes.length, 1, 'one frame written' );
+		const frame = writes[ 0 ], length = frame[ 0 ] | ( frame[ 1 ] << 8 );
+		assertEqual( length, frame.length - 2, 'its length is the packet\'s (the old frame read as 257)' );
+		assertEqual( frame[ 2 ], 0x71, 'a sequenced packet, as every reliable message' );
+		assertEqual( frame[ frame.length - 1 ], 2, 'carrying clc_disconnect' );
+		assertEqual( closed, 1, 'then the transport is closed' );
+	} finally {
+		globalThis.WebTransport = saved.WebTransport; svs.maxclients = saved.max;
+		if ( saved.window ) Object.defineProperty( globalThis, 'window', saved.window ); else delete globalThis.window;
+	}
+
+} );
