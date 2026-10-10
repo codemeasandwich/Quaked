@@ -8,7 +8,7 @@
  *
  * State: mutable exports `noclip_anglehack`; browser storage.
  *
- * Errors: calls `Sys_Error` (fatal) at 1 place; catches at 4 places.
+ * Errors: calls `Sys_Error` (fatal) at 1 place; catches at 5 places.
  *
  * Saved games are kept in localStorage; a failed save or load is caught and reported on the console. A map not yet
  * loaded is fetched first and the command reissued.
