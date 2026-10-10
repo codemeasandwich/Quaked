@@ -9,7 +9,7 @@
  * `old_mouse_y`, `mx_accum`, `my_accum`, `mouseinitialized`, `mouseactive`, `pointerLocked`, `targetElement`,
  * `isMobile` and 5 more.
  *
- * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ * Errors: catches at 2 places.
  */
 // Ported from: WinQuake/in_win.c, WinQuake/input.h -- browser input system
 // Adapted for web: uses Pointer Lock API for mouse, DOM keyboard events
@@ -42,6 +42,7 @@ import {
 } from './touch.js';
 import { M_TouchInput } from '../engine/client/menu.js';
 import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
+import { Window_InLocalPlay } from '../engine/net/net_window.js';
 import { isXRActive, XR_PollInput, xrInput } from './webxr.js';
 
 /*
@@ -93,7 +94,18 @@ function requestPointerLock() {
 
 	if ( pointerLocked || isQuest || targetElement == null ) return;
 
-	targetElement.requestPointerLock();
+	// A refusal (the page has lost focus, for one: a player's window in local play just opened) leaves the mouse free
+	// until the next click; current browsers report it through a promise, older ones by throwing
+	try {
+
+		const request = targetElement.requestPointerLock();
+		if ( request && typeof request.catch === 'function' ) request.catch( () => {} );
+
+	} catch ( e ) {
+
+		// as above
+
+	}
 
 }
 
@@ -127,6 +139,9 @@ const gpState = { index: null, id: null, sent: new Map(), owned: new Map(), noti
 function GP_GetPrimary() {
 
 	if ( typeof navigator === 'undefined' || navigator.getGamepads == null ) return null;
+	// in local play across windows each window would see the same controllers: only the focused one follows them
+	// (card [37c] gives each window a controller of its own)
+	if ( Window_InLocalPlay() && typeof document !== 'undefined' && typeof document.hasFocus === 'function' && ! document.hasFocus() ) return null;
 
 	const gamepads = navigator.getGamepads();
 	if ( ! gamepads ) return null;

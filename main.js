@@ -7,7 +7,7 @@ import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.j
 import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/engine/common/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
 import { Con_Printf } from './src/engine/common/common.js';
-import { Cvar_VariableValue, Cvar_SetValue } from './src/engine/common/cvar.js';
+import { Cvar_VariableValue, Cvar_SetValue, Cvar_SetStorageWritable } from './src/engine/common/cvar.js';
 import { key_dest, key_game } from './src/engine/client/keys.js';
 import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_PerfLastReport } from './src/newer/render/r_perf.js';
 import { R_DemoSplitEnd } from './src/newer/render/r_demosplit.js';
@@ -19,7 +19,9 @@ import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage
 import { XR_Init } from './src/platform/webxr.js';
 import { STARTUP_PACK } from './src/newer/assets/startup_pack.js';
 import { R_WeaponsPreload } from './src/newer/render/r_weapons.js';
-import { M_SetExternals } from './src/engine/client/menu.js';
+import { M_SetExternals, M_LocalPlayerJoin } from './src/engine/client/menu.js';
+import { LocalPlay_PlayerWindow } from './src/engine/client/local_play.js';
+import { Window_SetHostGoneListener } from './src/engine/net/net_window.js';
 import { LoadingScreen_SetProgress, LoadingScreen_Remove, LoadingScreen_FadeOut } from './src/newer/ui/loading_screen.js';
 import { R_DemoLoadingBoot, R_DemoLoadingAppReady, R_DemoLoadingCancel, R_DemoLoadingSplash, R_DemoLoadingStatus } from './src/newer/ui/r_demoloading.js';
 import { R_NewerHudPreload } from './src/newer/ui/r_newerhud.js';
@@ -46,6 +48,10 @@ async function main() {
 
 		COM_InitArgv( parms.argv );
 		const urlParams = new URLSearchParams( window.location.search );
+		// A player's window in local play (card [37a]): it joins player 1's page, and saves no settings of its own
+		const playerWindow = LocalPlay_PlayerWindow( window.location.search );
+		if ( playerWindow ) { Cvar_SetStorageWritable( false ); document.title = 'Quaked: Player ' + playerWindow.player; }
+		const joining = urlParams.has( 'room' ) || playerWindow !== null; // no attract demo: straight into a game
 		let hubNormalBytes=null,hubNormalsStarted=false;
 
 		// Load the shareware pak0.pak from games/shareware/ (card [34a]; a deployment that still serves it at the root is
@@ -89,7 +95,7 @@ async function main() {
 		R_NewerHudPreload();
 		// Start validated current-attract and hub bakes before hidden GPU work
 		// competes with transport/decompression. Prefetch never releases a gate.
-		if ( ! urlParams.has( 'room' ) ) {
+		if ( ! joining ) {
 			const demo=pak0?.files.find(file=>file.name==='maps/e1m3.bsp');
 			if(demo){const bytes=new Uint8Array(pak0.data,demo.filepos,demo.filelen);R_RockBakePrefetch('maps/e1m3.bsp',undefined,undefined,bytes);R_StartupNormalsPrefetch('maps/e1m3.bsp',bytes);R_DemonBakePrefetch('maps/e1m3.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}
 		}
@@ -100,7 +106,7 @@ async function main() {
 			await COM_FetchOptionalPak( 'newer/maps.pak', 'newer/maps.pak' );
 		if ( newerMaps ) {
 			COM_SetNewerMapsPack( newerMaps );
-			if(!urlParams.has('room')){const hub=newerMaps.files.find(file=>file.name==='maps/start.bsp');
+			if(!joining){const hub=newerMaps.files.find(file=>file.name==='maps/start.bsp');
 			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
 		}
 		await Host_Init( parms );
@@ -181,6 +187,18 @@ async function main() {
 			const connectUrl = serverUrl + '?room=' + encodeURIComponent( roomId );
 			Sys_Printf( 'Auto-joining room: %s\\n', roomId );
 			Cbuf_AddText( 'connect "' + connectUrl + '"\n' );
+
+		}
+
+		if ( playerWindow ) {
+
+			await Promise.all( uiArtwork ); // the same barrier as a room join
+			R_DemoLoadingCancel();
+			Sys_Printf( 'Local play: joining as Player %s\n', playerWindow.player );
+			M_LocalPlayerJoin( playerWindow );
+			// when player 1 ends local play (or closes their page), this window closes; a browser that keeps it open (one
+			// the player opened by hand) shows the menu instead of a frozen last frame
+			Window_SetHostGoneListener( () => { window.close(); Cbuf_AddText( 'menu_main\n' ); } );
 
 		}
 

@@ -858,8 +858,10 @@ export function NET_SendToAll( data, blocktime ) {
 
 	const start = Sys_FloatTime();
 	let count = 0;
-	const state1 = new Array( MAX_SCOREBOARD ).fill( false );
-	const state2 = new Array( MAX_SCOREBOARD ).fill( false );
+	// a slot with no connection is done from the start (it was left false, so an empty slot waited out the whole
+	// blocktime: a 5 s freeze when a listen server with a free slot shut down, card [37a])
+	const state1 = new Array( MAX_SCOREBOARD ).fill( true );
+	const state2 = new Array( MAX_SCOREBOARD ).fill( true );
 
 	for ( let i = 0; i < svs.maxclients; i ++ ) {
 

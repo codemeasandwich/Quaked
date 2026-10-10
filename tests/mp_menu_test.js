@@ -1,6 +1,7 @@
 // The Multiplayer screen (card [MP1]): Multiplayer from the main menu offers Local (split screen) and Online; Online is
 // drawn faded and cannot be chosen (the cursor passes over it, Enter does nothing); Local opens the split-screen
-// screen, which says it is being built and goes back on Esc. Natively, the faded row is drawn through Draw_WithAlpha.
+// screen (local play across windows, cards [37a]-[37c]), which goes back on Esc. Natively, the faded row is drawn through
+// Draw_WithAlpha.
 const cmd = await import( '../src/engine/common/cmd.js' );
 const keys = await import( '../src/engine/client/keys.js' );
 const menu = await import( '../src/engine/client/menu.js' );
@@ -35,8 +36,8 @@ Deno.test( 'Multiplayer offers Local and a disabled Online; Local opens split sc
 		check( menu.m_state === menu.m_mpchoice, 'a click on Online does nothing' );
 		click( 100, 32 + 6 );
 		check( menu.m_state === menu.m_splitscreen, 'a click on Local opens split screen' );
-		click( 100, 100 );
-		check( menu.m_state === menu.m_mpchoice, 'a tap on the being-built screen goes back' );
+		click( 100, 10 );
+		check( menu.m_state === menu.m_mpchoice, 'a tap on the Local screen\'s title goes back' );
 
 	} finally {
 

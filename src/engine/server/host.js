@@ -23,7 +23,7 @@ import { Sys_Printf, Sys_Error, Sys_FloatTime } from '../common/sys.js';
 import { COM_CheckRegistered, Con_Printf, Con_DPrintf, Con_SetPrintFunctions, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString } from '../common/common.js';
 import { svc_print, svc_disconnect } from '../common/protocol.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults } from '../common/cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_SetServerBroadcast, Cvar_WriteVariables, Cvar_DropChangedDefaults, Cvar_StorageWritable } from '../common/cvar.js';
 import { SV_SeamlessFrame } from '../common/hooks.js'; // installed by newer/gameplay/sv_seamless.js
 import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_BestiaryFrame, R_BestiaryTimeScale, R_BestiaryFrozen } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
@@ -909,7 +909,7 @@ const CONFIG_STORAGE_KEY = 'quake_config';
  */
 export function Host_WriteConfiguration() {
 
-	if ( host_initialized !== true )
+	if ( host_initialized !== true || ! Cvar_StorageWritable() ) // a player's window in local play keeps player 1's
 		return;
 
 	const config = Key_WriteBindings() + Cvar_WriteVariables();

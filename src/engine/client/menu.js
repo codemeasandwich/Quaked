@@ -8,7 +8,7 @@
  *
  * State: mutable exports `m_state`, `m_entersound`; module-level variables `m_recursiveDraw`, `m_return_state`,
  * `m_return_onerror`, `m_return_reason`, `m_save_demonum`, `lanConfig_cursor`, `lanConfig_joinname`, `slist_rooms`,
- * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 54 more; browser storage.
+ * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 57 more; browser storage.
  *
  * Errors: throws at 1 place; catches at 4 places.
  *
@@ -45,6 +45,8 @@ import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_With
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { COM_FindFile } from '../common/pak.js';
 import { GameSelection_SavePrefix } from '../common/game_selection.js';
+import { LocalPlay_PlayerWindow, LocalPlay_Hosting, LocalPlay_Players, LocalPlay_NextPlayer, LocalPlay_OpenPlayer, LocalPlay_Start, LocalPlay_End,
+	LocalPlay_PlayerCommands, LOCAL_PLAYERS_MIN, LOCAL_PLAYERS_MAX, LOCAL_MODES } from './local_play.js';
 
 /*
 ==============================================================================
@@ -79,7 +81,7 @@ export const m_levelselect = 21;
 export const m_bestiary = 22;
 export const m_cheats = 23;
 export const m_mpchoice = 24; // Multiplayer: local split screen or online (card [MP1])
-export const m_splitscreen = 25; // Local split screen: being built (card [37])
+export const m_splitscreen = 25; // Local play: players' windows (cards [37a]-[37c])
 
 export let m_state = m_none;
 export let m_entersound = false;
@@ -1578,16 +1580,61 @@ function M_MultiplayerChoice_Touch( vx, vy ) {
 /*
 ==============================================================================
 
-			LOCAL SPLIT SCREEN (card [37]): being built
+			LOCAL PLAY (cards [37a]-[37c]): each other player in a window of their own
 
 ==============================================================================
 */
+
+// Owner direction (10 Oct 2026): starting local play opens another browser window per player, which can be dragged
+// to another screen. Player 1's page hosts (local_play.js); this screen sets it up, adds players' windows while it
+// runs, and ends it. In a player's own window it says which player that window is, and leaves.
+let localplay_players = LOCAL_PLAYERS_MIN, localplay_mode = 0, localplay_cursor = 0;
 
 function M_Menu_SplitScreen_f() {
 
 	setKeyDest( key_menu );
 	m_state = m_splitscreen;
 	m_entersound = true;
+	localplay_cursor = 0;
+
+}
+
+// this window's role: a player's window (from its address), the host, or neither yet
+function localPlayRole() {
+
+	const role = typeof window !== 'undefined' ? LocalPlay_PlayerWindow( window.location?.search ) : null;
+	if ( role ) return { kind: 'player', player: role.player };
+	return { kind: LocalPlay_Hosting() ? 'host' : 'setup' };
+
+}
+
+// the rows the cursor can be on: { y, label, value?, enabled, enter?, change? }
+function localPlayRows( role ) {
+
+	if ( role.kind === 'player' ) return [ { y: 104, label: 'Leave local play', enabled: true, enter: () => { Cbuf_AddText( 'disconnect\n' ); if ( typeof window !== 'undefined' ) window.close(); } } ];
+	if ( role.kind === 'host' ) {
+
+		const next = LocalPlay_NextPlayer();
+		return [
+			{ y: 40, label: next === null ? 'Every player is in' : 'Open player ' + next + '\'s window', enabled: next !== null, enter: () => { LocalPlay_OpenPlayer( next ); M_Menu_SplitScreen_f(); } },
+			{ y: 56, label: 'End local play', enabled: true, enter: () => { LocalPlay_End( Cbuf_AddText ); M_Menu_Main_f(); } }
+		];
+
+	}
+	return [
+		{ y: 40, label: 'Start local play', enabled: true, enter: () => {
+
+			setKeyDest( key_game );
+			if ( _IN_RequestPointerLock ) _IN_RequestPointerLock();
+			Cbuf_AddText( 'r_hdr 1\n' + newerDefaults() ); // local play is Newer Game
+			R_DemoSplitRelease( true );
+			LocalPlay_Start( { players: localplay_players, mode: LOCAL_MODES[ localplay_mode ] }, Cbuf_AddText );
+			m_state = m_none;
+
+		} },
+		{ y: 56, label: '          Players', value: String( localplay_players ), enabled: true, change: d => { localplay_players = Math.min( LOCAL_PLAYERS_MAX, Math.max( LOCAL_PLAYERS_MIN, localplay_players + d ) ); } },
+		{ y: 64, label: '        Game Type', value: localplay_mode === 0 ? 'Cooperative' : 'Deathmatch', enabled: true, change: d => { localplay_mode = ( localplay_mode + LOCAL_MODES.length + d ) % LOCAL_MODES.length; } }
+	];
 
 }
 
@@ -1597,16 +1644,95 @@ function M_SplitScreen_Draw() {
 	M_DrawTransPic( 16, 4, _Draw_CachePic( 'gfx/qplaque.lmp' ) );
 	const p = _Draw_CachePic( 'gfx/p_multi.lmp' );
 	M_DrawPic( ( 320 - ( p ? p.width : 0 ) ) / 2, 4, p );
-	M_DrawTextBox( 56, 60, 24, 4 );
-	M_Print( 72, 72, 'Local split screen' );
-	M_PrintWhite( 72, 80, 'is being built.' );
-	M_PrintWhite( 72, 96, 'Press Esc to go back.' );
+	const role = localPlayRole(), rows = localPlayRows( role );
+	if ( role.kind === 'player' ) {
+
+		M_DrawTextBox( 48, 52, 25, 3 );
+		M_Print( 64, 60, 'This window is Player ' + role.player );
+		M_PrintWhite( 64, 68, 'in local play. Player 1' );
+		M_PrintWhite( 64, 76, 'hosts the game.' );
+
+	} else if ( role.kind === 'host' ) {
+
+		M_PrintWhite( 72, 80, 'Playing: Player 1 (you)' );
+		LocalPlay_Players().forEach( ( player, i ) => M_PrintWhite( 72 + 9 * 8, 88 + i * 8, player.name ) );
+
+	} else {
+
+		M_PrintWhite( 72, 88, 'Each other player gets a' );
+		M_PrintWhite( 72, 96, 'window of their own: drag' );
+		M_PrintWhite( 72, 104, 'it to another screen.' );
+		M_PrintWhite( 72, 120, 'Allow pop-ups if asked.' );
+
+	}
+	for ( const row of rows ) {
+
+		if ( row.value === undefined && role.kind === 'setup' ) { M_DrawTextBox( 152, row.y - 8, 16, 1 ); M_Print( 160, row.y, row.label ); continue; }
+		if ( row.value !== undefined ) { M_Print( 0, row.y, row.label ); M_Print( 160, row.y, row.value ); continue; }
+		( row.enabled ? M_Print : M_PrintFaded )( 160, row.y, row.label );
+
+	}
+	if ( rows.length > 0 ) {
+
+		localplay_cursor = Math.min( localplay_cursor, rows.length - 1 );
+		M_DrawCharacter( 144, rows[ localplay_cursor ].y, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
+
+	}
 
 }
 
 function M_SplitScreen_Key( key ) {
 
-	if ( key === K_ESCAPE || key === K_ENTER ) M_Menu_MultiplayerChoice_f();
+	const rows = localPlayRows( localPlayRole() );
+	localplay_cursor = Math.min( localplay_cursor, rows.length - 1 );
+	const row = rows[ localplay_cursor ];
+	switch ( key ) {
+
+		case K_ESCAPE:
+			M_Menu_MultiplayerChoice_f();
+			break;
+		case K_UPARROW:
+		case K_DOWNARROW:
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu1.wav' );
+			localplay_cursor = ( localplay_cursor + ( key === K_DOWNARROW ? 1 : rows.length - 1 ) ) % rows.length;
+			break;
+		case K_LEFTARROW:
+		case K_RIGHTARROW:
+			if ( ! row?.change ) break;
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu3.wav' );
+			row.change( key === K_RIGHTARROW ? 1 : - 1 );
+			break;
+		case K_ENTER:
+			if ( ! row?.enabled ) break;
+			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu2.wav' );
+			if ( row.change ) row.change( 1 ); else row.enter();
+			break;
+
+	}
+
+}
+
+// a tap or click on a row moves the cursor there and presses Enter on it
+function M_SplitScreen_Touch( vx, vy ) {
+
+	const rows = localPlayRows( localPlayRole() );
+	const i = rows.findIndex( row => vy >= row.y - 4 && vy < row.y + 12 );
+	if ( i < 0 ) { if ( vy < 32 ) M_SplitScreen_Key( K_ESCAPE ); return; }
+	localplay_cursor = i;
+	M_SplitScreen_Key( K_ENTER );
+
+}
+
+/**
+ * Starts this page as a player's window in local play (card [37a]): Newer Game, the player's name and colours, then
+ * the join. Called once by the page's start-up (main.js) for an address `?window=<session>&player=<n>`.
+ *
+ * @param {{ session: string, player: number }} role from `LocalPlay_PlayerWindow`
+ */
+export function M_LocalPlayerJoin( role ) {
+
+	R_DemoSplitRelease( true );
+	Cbuf_AddText( 'r_hdr 1\n' + newerDefaults() + LocalPlay_PlayerCommands( role ) );
 
 }
 
@@ -3383,7 +3509,7 @@ function M_TouchInViewport( touchX, touchY, screenWidth, screenHeight ) {
 			M_MultiplayerChoice_Touch( vx, vy );
 			break;
 		case m_splitscreen:
-			M_SplitScreen_Key( K_ESCAPE );
+			M_SplitScreen_Touch( vx, vy );
 			break;
 		case m_multiplayer:
 			M_MultiPlayer_Touch( vx, vy );

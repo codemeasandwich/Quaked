@@ -19,6 +19,7 @@ import { sizebuf_t, SZ_Alloc, SZ_Clear, MSG_WriteByte, MSG_WriteString, MSG_Writ
 import { clc_stringcmd, clc_move } from '../src/engine/common/protocol.js';
 import { cls, ca_dedicated } from '../src/engine/client/client.js';
 import * as net from '../src/engine/net/net_main.js';
+import * as netState from '../src/engine/net/net.js';
 import { Window_Host, Window_NewSession } from '../src/engine/net/net_window.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
@@ -32,6 +33,10 @@ Cbuf_Init(); Cmd_Init(); Mod_Init(); PR_InitBuiltins(); Host_InitCommands(); SV_
 for ( const c of [ deathmatch, coop, teamplay, skill ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c ); // the server's own (Host_InitLocal registers them in the page)
 svs.maxclientslimit = 4; svs.clients = Array.from( { length: 4 }, () => new client_t() );
 net.NET_Init();
+
+// whatever a test leaves open is closed when it ends, passed or failed: an open channel keeps the process alive
+const closeAll = () => { for ( let s = netState.net_activeSockets; s; ) { const next = s.next; net.NET_Close( s ); s = next; } Window_Host( null ); };
+const test = ( name, fn ) => Deno.test( name, async () => { try { await fn(); } finally { closeAll(); } } );
 
 // one player's window: its socket and what it sends
 function player( sock ) {
@@ -53,7 +58,7 @@ async function frames( n, each = () => {} ) {
 
 }
 
-Deno.test( 'two players\' windows join one native co-op server, each with its own player; moves, a kill and a leave stay theirs', async () => {
+test( 'two players\' windows join one native co-op server, each with its own player; moves, a kill and a leave stay theirs', async () => {
 
 	cls.state = ca_dedicated; // this page runs only the server: no local client of its own
 	vars.Cvar_Set( 'coop', '1' ); vars.Cvar_Set( 'deathmatch', '0' ); vars.Cvar_Set( 'skill', '1' );
@@ -94,6 +99,12 @@ Deno.test( 'two players\' windows join one native co-op server, each with its ow
 	await frames( 4, () => players[ 0 ].drain() );
 	check( ! b.active, 'closing the second window drops that player' );
 	check( a.active && a.spawned && a.edict.v.health > 0, 'the first plays on' );
+
+	// ending with a free slot: the shutdown message goes to the one player at once, not after the 5 s block
+	const shutdown = new sizebuf_t(); SZ_Alloc( shutdown, 16 ); MSG_WriteByte( shutdown, 1 ); // svc_nop
+	const began = performance.now();
+	same( net.NET_SendToAll( shutdown, 5 ), 0, 'every connected player got it' );
+	check( performance.now() - began < 500, 'without waiting on the empty slot: ' + Math.round( performance.now() - began ) + ' ms' );
 
 	net.NET_Close( socks[ 0 ] );
 	await frames( 2 );

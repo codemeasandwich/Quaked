@@ -9,7 +9,7 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `hostSession`, `hostChannel`, `hostListening`,
- * `pageHideInstalled`; 2 module-level collections (Map/Set).
+ * `pageHideInstalled`, `hostGone`; 2 module-level collections (Map/Set).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -36,12 +36,26 @@ export const WINDOW_SESSION_PATTERN = /^[A-Za-z0-9-]{1,64}$/;
 export const WINDOW_ADDRESS_PREFIX = 'window:';
 const JOIN_RETRY_MS = 250;
 const JOIN_TIMEOUT_MS = 25000; // under CL_EstablishConnection's 30 s race, so the socket is freed here
+const CLOSE_LINGER_MS = 3000; // a closed end's channel stays open this long, so its last messages are not cut off
 
 let hostSession = null, hostChannel = null, hostListening = false;
 const pendingJoins = []; // client ids waiting for the server to take them
 const hostPeers = new Map(); // client id -> server-side socket
 const clientSockets = new Set(); // this page's client-side sockets
 let pageHideInstalled = false;
+let hostGone = null; // told when a host closes this page's connection to it
+
+/**
+ * Sets what happens when a host closes this page's connection to it (player 1 ended local play, or their page
+ * closed). Called once by a player's window at start-up (main.js), which closes itself.
+ *
+ * @param {?() => void} listener called once per closed connection, after the socket is marked closed; null for none
+ */
+export function Window_SetHostGoneListener( listener ) {
+
+	hostGone = listener;
+
+}
 
 function channelAvailable() {
 
@@ -142,13 +156,27 @@ export function Window_Host( session ) {
 	if ( session !== null && ( ! WINDOW_SESSION_PATTERN.test( String( session ) ) || ! channelAvailable() ) ) return false;
 	if ( session === hostSession ) return true;
 	if ( hostPeers.size > 0 ) return false; // players are still connected on the current session
-	if ( hostChannel ) hostChannel.close();
+	// the old channel closes a little later, so the close messages just posted to its players are not cut off
+	if ( hostChannel ) { const old = hostChannel; old.onmessage = null; setTimeout( () => old.close(), CLOSE_LINGER_MS ); }
 	hostChannel = null; hostSession = session; pendingJoins.length = 0;
 	if ( session === null ) return true;
 	hostChannel = new BroadcastChannel( WINDOW_CHANNEL_PREFIX + session );
 	hostChannel.onmessage = onHostMessage;
 	installPageHide();
 	return true;
+
+}
+
+/**
+ * Whether this page is in local play across windows: hosting a session, or a player's window connected to one.
+ * Read by the gamepad poll (in_web.js), which then follows only the focused window, so one controller never drives
+ * two players.
+ *
+ * @returns {boolean} true while hosting or joined
+ */
+export function Window_InLocalPlay() {
+
+	return hostSession !== null || clientSockets.size > 0;
 
 }
 
@@ -212,7 +240,7 @@ export function Window_Connect( host ) {
 	const sock = NET_NewQSocket();
 	if ( sock === null ) { Con_Printf( 'Window_Connect: no qsocket available\n' ); return null; }
 	const id = newId(), channel = new BroadcastChannel( WINDOW_CHANNEL_PREFIX + session );
-	const d = { id, peer: 'host', channel, queue: [], open: false, session };
+	const d = { id, peer: 'host', channel, queue: [], open: false, session, abandon: null };
 	sock.driverdata = d; sock.address = host;
 	installPageHide();
 	return new Promise( ( resolve, reject ) => {
@@ -221,11 +249,13 @@ export function Window_Connect( host ) {
 		const finish = ( error ) => {
 
 			if ( settled ) return;
-			settled = true; clearInterval( retry ); clearTimeout( timeout );
+			settled = true; clearInterval( retry ); clearTimeout( timeout ); d.abandon = null;
 			if ( error === null ) { d.open = true; clientSockets.add( sock ); resolve( sock ); return; }
 			channel.close(); sock.driverdata = null; NET_FreeQSocket( sock ); reject( error );
 
 		};
+		// NET_Close (at shutdown, say) on a join still waiting: it stops asking; NET_Close frees the socket itself
+		d.abandon = () => { if ( settled ) return; settled = true; clearInterval( retry ); clearTimeout( timeout ); reject( new Error( 'Connection closed before the host answered' ) ); };
 		channel.onmessage = event => {
 
 			const m = event.data;
@@ -233,7 +263,7 @@ export function Window_Connect( host ) {
 			if ( m.k === 'accept' ) finish( null );
 			else if ( m.k === 'refuse' ) finish( new Error( 'Server refused: ' + ( m.reason || 'no reason given' ) ) );
 			else if ( m.k === 'msg' && m.b instanceof Uint8Array && d.open ) enqueue( d, m );
-			else if ( m.k === 'close' ) d.open = false;
+			else if ( m.k === 'close' && d.open ) { d.open = false; if ( hostGone ) hostGone(); }
 
 		};
 		const ask = () => channel.postMessage( { k: 'join', to: 'host', from: id } );
@@ -365,7 +395,8 @@ Window_Close
 =============
 */
 /**
- * Closes one end; NET_Close calls it before freeing the socket. Tells the other window, so its end closes too.
+ * Closes one end; NET_Close calls it before freeing the socket. Tells the other window, so its end closes too. A
+ * client end keeps hearing for 3 s whether the host closed as well (the host-gone listener).
  *
  * @param {import('./net.js').qsocket_t} sock the socket being closed
  */
@@ -373,6 +404,7 @@ export function Window_Close( sock ) {
 
 	const d = sock.driverdata;
 	if ( ! d ) return;
+	if ( d.abandon ) d.abandon();
 	if ( d.open ) d.channel.postMessage( { k: 'close', to: d.peer, from: d.id } );
 	d.open = false; d.queue.length = 0;
 	if ( d.id === 'host' ) {
@@ -381,8 +413,17 @@ export function Window_Close( sock ) {
 
 	} else {
 
+		// The host ending the game sends svc_disconnect and then its close; reading the first closes this end, so the
+		// channel stays open a little longer to hear the second (a close this end started gets no reply)
 		clientSockets.delete( sock );
-		d.channel.close();
+		const { channel, id } = d;
+		channel.onmessage = event => {
+
+			const m = event.data;
+			if ( m && m.k === 'close' && m.to === id && m.from === 'host' && hostGone ) { channel.onmessage = null; hostGone(); }
+
+		};
+		setTimeout( () => channel.close(), CLOSE_LINGER_MS );
 
 	}
 	sock.driverdata = null;
@@ -400,7 +441,6 @@ Window_Shutdown
 export function Window_Shutdown() {
 
 	Window_Listen( false );
-	if ( hostChannel ) hostChannel.close();
-	hostChannel = null; hostSession = null;
+	Window_Host( null );
 
 }

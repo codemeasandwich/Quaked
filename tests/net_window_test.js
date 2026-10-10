@@ -6,7 +6,8 @@ import { Cbuf_Init, Cmd_Init, Cmd_ExecuteString } from '../src/engine/common/cmd
 import { sizebuf_t, SZ_Alloc, SZ_Clear, SZ_Write } from '../src/engine/common/common.js';
 import { net_message } from '../src/engine/net/net.js';
 import * as net from '../src/engine/net/net_main.js';
-import { Window_Host, Window_HostSession, Window_NewSession, WINDOW_SESSION_PATTERN } from '../src/engine/net/net_window.js';
+import * as netState from '../src/engine/net/net.js';
+import { Window_Host, Window_HostSession, Window_NewSession, Window_SetHostGoneListener, WINDOW_SESSION_PATTERN } from '../src/engine/net/net_window.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -15,12 +16,16 @@ const bytes = list => { const b = new sizebuf_t(); SZ_Alloc( b, 64 ); SZ_Clear( 
 const read = sock => { const r = net.NET_GetMessage( sock ); return [ r, Array.from( net_message.data.subarray( 0, net_message.cursize ) ) ]; };
 const accept = async () => { for ( let i = 0; i < 40; i ++ ) { const s = net.NET_CheckNewConnections(); if ( s ) return s; await tick( 10 ); } return null; };
 
+// whatever a test leaves open is closed when it ends, passed or failed: an open channel keeps the process alive
+const closeAll = () => { for ( let s = netState.net_activeSockets; s; ) { const next = s.next; net.NET_Close( s ); s = next; } Window_Host( null ); };
+const test = ( name, fn ) => Deno.test( name, async () => { try { await fn(); } finally { closeAll(); } } );
+
 Cbuf_Init(); Cmd_Init();
 svs.maxclients = svs.maxclientslimit = 4;
 net.NET_Init();
 net.set_listening( true );
 
-Deno.test( 'a player\'s window joins the hosting page; messages go both ways; unreliable runs keep the newest', async () => {
+test( 'a player\'s window joins the hosting page; messages go both ways; unreliable runs keep the newest', async () => {
 
 	const session = Window_NewSession();
 	check( WINDOW_SESSION_PATTERN.test( session ), 'a new session id is valid: ' + session );
@@ -58,7 +63,7 @@ Deno.test( 'a player\'s window joins the hosting page; messages go both ways; un
 
 } );
 
-Deno.test( 'a player\'s window that loads before its host keeps asking; a full server refuses it', async () => {
+test( 'a player\'s window that loads before its host keeps asking; a full server refuses it', async () => {
 
 	const session = Window_NewSession();
 	const early = net.NET_Connect( 'window:' + session );
@@ -79,15 +84,33 @@ Deno.test( 'a player\'s window that loads before its host keeps asking; a full s
 	svs.maxclients = saved;
 	check( refused && refused.includes( 'server is full' ), 'the third window is told the server is full: ' + refused );
 
+	let gone = 0;
+	Window_SetHostGoneListener( () => gone ++ );
 	net.NET_Close( server );
 	await tick();
 	same( net.NET_GetMessage( client ), - 1, 'closing the host\'s end closes the player\'s' );
+	same( gone, 1, 'and the player\'s window is told its host has gone' );
 	net.NET_Close( client );
+
+	// the host ending the game: the player's end may close first (on reading svc_disconnect), and still hears it
+	const late = net.NET_Connect( 'window:' + session );
+	const server2 = await accept(), client2 = await late;
+	net.NET_Close( client2 ); net.NET_Close( server2 );
+	await tick();
+	same( gone, 2, 'a player\'s end that has just closed still hears its host close' );
+	// a player leaving on their own is not told the host went
+	const third2 = net.NET_Connect( 'window:' + session );
+	const server3 = await accept(), client3 = await third2;
+	net.NET_Close( client3 ); await tick();
+	same( net.NET_GetMessage( server3 ), - 1, 'the host sees the player leave' );
+	net.NET_Close( server3 ); await tick();
+	same( gone, 2, 'and the leaving window is not told the host went' );
+	Window_SetHostGoneListener( null );
 	Window_Host( null );
 
 } );
 
-Deno.test( 'addresses: invalid sessions, an unknown kind and a remote address are not window joins', () => {
+test( 'addresses: invalid sessions, an unknown kind and a remote address are not window joins', () => {
 
 	same( net.NET_Connect( 'window:not valid!' ), null, 'an invalid session id is refused at once' );
 	same( Window_Host( 'bad id' ), false, 'and cannot be hosted' );

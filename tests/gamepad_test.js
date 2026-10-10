@@ -106,3 +106,24 @@ Deno.test( 'look: right stick turns and tilts the view by the look settings; no 
 	same( events.join(), '-' + K_SPACE, 'a different controller at the same index: the old one\'s keys released' );
 	host.set_host_frametime( 0 ); reset();
 } );
+
+// card [37a]: in local play across windows every window sees the same controllers; only the focused one follows them
+Deno.test( 'in local play a controller drives only the focused window; outside it, focus does not matter', async () => {
+	const { Window_Host } = await import( '../src/engine/net/net_window.js' );
+	const saved = Object.getOwnPropertyDescriptor( globalThis, 'document' );
+	let focused = false;
+	Object.defineProperty( globalThis, 'document', { value: { hasFocus: () => focused }, configurable: true } );
+	try {
+		reset(); const p = pad( 0 ); pads = [ p ];
+		press( p, 0 ); same( poll()?.index, 0, 'one page, unfocused: the controller still plays (unchanged)' ); same( events.join(), '+' + K_SPACE, 'and A jumps' );
+		press( p, 0, false ); poll();
+		check( Window_Host( 'focus-test' ), 'now hosting local play' );
+		press( p, 0 ); same( poll(), null, 'unfocused in local play: no controller' ); same( events.join(), '', 'and no key' );
+		focused = true; same( poll()?.index, 0, 'focused: the controller plays' ); same( events.join(), '+' + K_SPACE, 'and A jumps' );
+		focused = false; poll(); same( events.join(), '-' + K_SPACE, 'focus lost with A held: its key is released' );
+		press( p, 0, false ); poll();
+	} finally {
+		Window_Host( null );
+		if ( saved ) Object.defineProperty( globalThis, 'document', saved ); else delete globalThis.document;
+	}
+} );

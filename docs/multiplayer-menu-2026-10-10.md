@@ -12,9 +12,10 @@ opens a short screen saying it is being built. That screen starts no game and fa
 
 - **Main menu → Multiplayer** now opens a choice screen (`m_mpchoice`, 24) instead of the online menu (`m_multiplayer`, 5).
   It shows the Quake plaque and the Multiplayer title, then two items:
-  - **Local (split screen)** can be chosen. Enter, or a touch on the item, opens `m_splitscreen` (25). For now that
-    screen is a text box: "Local split screen / is being built. / Press Esc to go back." Esc, Enter or a touch returns
-    to the choice.
+  - **Local (split screen)** can be chosen. Enter, or a touch on the item, opens `m_splitscreen` (25).
+    - At first that screen said split screen was being built.
+    - It is now local play, with each other player in a window of their own: see `docs/local-play-2026-10-10.md`.
+    - Esc returns to the choice.
   - **Online** is drawn faded and cannot be chosen. The cursor skips it with the arrow keys, Enter on it does nothing,
     and a touch on it does nothing.
 - Esc on the choice screen returns to the main menu.
@@ -65,7 +66,7 @@ opens a short screen saying it is being built. That screen starts no game and fa
 
 ## What remains
 
-- Split screen itself: [37a] views, [37b] HUD, [37c] input, for four local players. When it lands, Local starts it in
-  place of the being-built screen.
+- Split screen itself has landed, as local play across windows (`docs/local-play-2026-10-10.md`). Card [37c]'s
+  controller-per-window step remains.
 - Enabling Online is a later, separate decision for the owner. Set `enabled: true` on its `MPCHOICE_ITEMS` entry and
   route Enter to `M_Menu_MultiPlayer_f()`.

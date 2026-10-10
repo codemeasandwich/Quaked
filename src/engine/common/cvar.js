@@ -6,7 +6,8 @@
  *
  * Types: exported classes `cvar_t`.
  *
- * State: no mutable exports; module-level variables `_serverBroadcast`, `cvar_vars`; browser storage.
+ * State: no mutable exports; module-level variables `_serverBroadcast`, `_storageWritable`, `cvar_vars`; browser
+ * storage.
  *
  * Errors: catches at 3 places.
  *
@@ -54,11 +55,37 @@ export function Cvar_SetServerBroadcast( fn ) {
 
 // localStorage key prefix for saved cvars
 const CVAR_STORAGE_PREFIX = 'quake_cvar_';
+// false in a player's window in local play: it shares the browser's storage with player 1's page (card [37a])
+let _storageWritable = true;
+
+/**
+ * Whether settings may be saved to the browser's storage: the cvars as they change, and the configuration
+ * (`Host_WriteConfiguration`). A player's window in local play turns this off before the engine starts, so its own
+ * name, colours and settings never replace player 1's; it still reads them.
+ *
+ * @param {boolean} writable false to stop saving for the rest of the page's life
+ */
+export function Cvar_SetStorageWritable( writable ) {
+
+	_storageWritable = !! writable;
+
+}
+
+/**
+ * Whether settings are saved to the browser's storage (see `Cvar_SetStorageWritable`).
+ *
+ * @returns {boolean} false in a player's window in local play
+ */
+export function Cvar_StorageWritable() {
+
+	return _storageWritable;
+
+}
 
 // Save a cvar to localStorage
 function Cvar_SaveToStorage( _var ) {
 
-	if ( typeof localStorage === 'undefined' ) return;
+	if ( typeof localStorage === 'undefined' || ! _storageWritable ) return;
 
 	try {
 
@@ -105,7 +132,7 @@ export function Cvar_DropChangedDefaults( config, storage = typeof localStorage 
 			if ( storage.getItem( change.marker ) !== null ) continue;
 			if ( storage.getItem( CVAR_STORAGE_PREFIX + change.name ) === null )
 				config = config.split( '\n' ).filter( line => ! new RegExp( '^\\s*' + change.name + '\\s' ).test( line ) ).join( '\n' );
-			storage.setItem( change.marker, '1' );
+			if ( _storageWritable ) storage.setItem( change.marker, '1' ); // a player's window reads only
 
 		}
 
