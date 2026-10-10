@@ -245,11 +245,31 @@ reusable trace reset on every call) and `R_TraceSwept` (a small sphere as seven 
 * The graph counts 209 modules; `r_trace.js` joins the large cycle (it imports `world.js`, and Newer modules in the
   cycle import it), so that cycle is 84 modules for now.
 
+## [44g], step 6: the room server starts again (debt D4)
+
+Run for the first time in this work, with a Deno 2.5.6 kept outside the repository, the room server did not start on
+`Dev` either: `server/browser_shim.js`, a hand-kept stand-in for `three`, lacked `Vector4`, which
+`r_weapon_surface.js` constructs as it loads. The server's import graph reaches 203 modules, the renderer's among them;
+they use 85 of `three`'s names, and the stand-in had 31.
+
+* Both import maps (`deno.json`, `server/deno.json`) now give `three` the browser's own module, the version
+  `index.html` pins (0.183.0, from jsDelivr; Deno caches it after the first start). The stand-in is deleted. The tests
+  already load the engine on that real module under Node.
+* The root task `server` runs `game_server.js` from `server/` (where it reads `../pak0.pak`) with the root import map.
+* Checked: `deno task server -direct` at the root loads the start map and runs; a browser connected to it over
+  WebTransport (Chrome with a self-signed ECDSA certificate) reached sign-on 4 on `maps/start.bsp` and the server
+  reported the player in the game. The lobby spawns rooms with the same command and file; the lobby-to-room hand-off
+  itself was not run.
+* Deno 2.1 starts the server but never listens (no `Deno.QuicEndpoint`); `server/README.md` now asks for 2.2 or later
+  and quotes the `connect` address (the console splits a bare word at `:`).
+* `tests/server_config_test.js` pins both import maps to `index.html`'s `three` and the task to `server/`; it fails on
+  the old configuration.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the
   cycles do not grow.
 * The full suite against the recorded baseline.
 * The room server's modules import under Node (`server/test_imports.js` and every module `server/game_server.js`
-  imports), since Deno is not installed here.
+  imports). From [44g] step 6 the room server is also started under Deno (2.5.6, kept outside the repository).
 * The page starts Newer Game and Classic in the browser with no error and no failed `src/` load, and the D7 pages load.

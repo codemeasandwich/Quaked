@@ -1,8 +1,8 @@
 {
 	"imports": {
-		"three": "./server/browser_shim.js"
+		"three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"
 	},
 	"tasks": {
-		"server": "deno run --allow-net --allow-read --unstable-net game_server.js"
+		"server": "cd server && deno run --allow-net --allow-read --unstable-net --config ../deno.json game_server.js"
 	}
 }

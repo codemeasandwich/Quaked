@@ -4,7 +4,8 @@ A dedicated server for Three-Quake that runs headlessly using Deno and WebTransp
 
 ## Requirements
 
-- [Deno](https://deno.land/) v1.40 or later
+- [Deno](https://deno.land/) 2.2 or later, for `Deno.QuicEndpoint` and `Deno.upgradeWebTransport` (behind
+  `--unstable-net`). Deno 2.1 starts but never listens; checked with 2.5.6.
 - A copy of `pak0.pak` from Quake
 - TLS certificates (required for WebTransport)
 
@@ -24,6 +25,19 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -node
 Make sure `pak0.pak` is in the parent directory (`../pak0.pak` from the server folder).
 
 ### 3. Run the Server
+
+The room server (`game_server.js`, the full engine: QuakeC, physics, entities) is what the lobby spawns for each room.
+From the repository's root:
+
+```bash
+deno task server -cert cert.pem -key key.pem -direct   # paths from server/, where step 1 made them
+```
+
+The task runs it from `server/` (where it reads `../pak0.pak`) with the root `deno.json`, whose import map gives it the
+same `three` the browser loads (the engine's modules use it as they load). The lobby (`lobby_server.js`) spawns rooms
+with that same file.
+
+The older TypeScript server below (`main.ts`) is a separate, unfinished entry point (see Status):
 
 ```bash
 deno run --allow-net --allow-read --allow-env main.ts
@@ -58,16 +72,27 @@ deno run --allow-net --allow-read main.ts -port 4433 -map e1m1 -maxclients 8
 In the Three-Quake browser client, use the `connect` command:
 
 ```
-connect wts://your-server.com:4433
+connect "wts://your-server.com:4433"
 ```
+
+The quotes are needed: the console splits an unquoted word at `:`.
 
 Or for localhost development:
 
 ```
-connect wts://localhost:4433
+connect "wts://127.0.0.1:4433"
 ```
 
-Note: WebTransport requires HTTPS/TLS. For development, you may need to configure your browser to trust the self-signed certificate.
+(The server listens on IPv4 `0.0.0.0`; `localhost` may resolve to `::1` and be refused.)
+
+Note: WebTransport requires HTTPS/TLS. For development, trust the self-signed certificate. Chrome accepts one that is
+ECDSA and valid for at most 14 days when started with `--origin-to-force-quic-on=127.0.0.1:4433` and
+`--ignore-certificate-errors-spki-list=<base64 SHA-256 of the certificate's public key>`:
+
+```bash
+openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -keyout key.pem -out cert.pem -days 10 -nodes -subj "/CN=localhost"
+openssl x509 -in cert.pem -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | base64
+```
 
 ## Production Deployment
 

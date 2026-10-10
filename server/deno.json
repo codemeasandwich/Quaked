@@ -12,6 +12,6 @@
 	},
 	"imports": {
 		"@std/path": "jsr:@std/path@^1",
-		"three": "./browser_shim.js"
+		"three": "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"
 	}
 }

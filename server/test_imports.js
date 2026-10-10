@@ -1,8 +1,5 @@
 // Test that Deno can import the existing JS modules from src/
-// Run with: deno run --allow-read test_imports.js
-
-// Import browser shim first to set up globalThis.THREE
-import './browser_shim.js';
+// Run with: deno run --allow-read --allow-net --config ../deno.json test_imports.js ("three" is the browser's own module)
 
 console.log('Testing imports from ../src/...');
 
