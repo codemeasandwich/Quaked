@@ -44,10 +44,18 @@ export const DOF = {
 let deps = null, focus = null, lastTime = null, lastEye = null, lastWorld = null;
 export const dofStats = { target: 0, focus: 0, snaps: 0 };
 
-// externals: xr() -> whether WebXR is presenting (no depth of field there); trace( a, b ) -> { fraction, startsolid },
-// where a ray first meets the level, its brush entities and its monsters and items (else the world's own hull 0 alone);
-// contents( p ) -> the level's contents at a point (sky volumes and lava along a ray); pointInLeaf( p, world ) (a sky face
-// struck); either left out is not looked at
+/**
+ * Installs the renderer's hooks the focus search uses. Called by `R_NewMap` (`gl_rmain.js`) on every map load; the
+ * object is kept until the next call.
+ *
+ * @param {{ xr?: function(): boolean, trace?: function(Array<number>, Array<number>): { fraction: number,
+ *   startsolid: boolean }, contents?: function(Array<number>): (number|undefined), pointInLeaf?: function(Array<number>,
+ *   model_t): ?mleaf_t }} externals `xr()` -> whether WebXR is presenting (no depth of field there);
+ *   `trace( a, b )` -> `{ fraction, startsolid }`, where a ray first meets the level, its brush entities and its
+ *   monsters and items (else the world's own hull 0 alone, via `R_TracePoint`); `contents( p )` -> the level's
+ *   contents at a point (sky volumes and lava along a ray); `pointInLeaf( p, world )` (a sky face struck); either of
+ *   the last two left out is not looked at
+ */
 export function R_DofSetup( externals ) { deps = externals; }
 const CONTENTS_LAVA = - 5, CONTENTS_SKY = - 6;
 export const R_DofEnabled = () => R_NewerGame() && r_dof.value > 0 && ! ( deps?.xr?.() ?? false );
@@ -114,6 +122,19 @@ Where the view is looking: the median view depth (along forward) of five rays th
 the level, each clamped to [ near, far ]; null when every ray starts inside a wall (the focus then holds).
 ================
 */
+/**
+ * Finds where the view is looking: five rays of length `DOF.far` (4096 Quake units), the middle one along `forward`
+ * and four offset by `DOF.spread` along `right` and `up`, each traced against the level (sky focuses far, lava stops
+ * the ray, water and slime are seen through). Called by `R_DofFrame` each frame.
+ *
+ * @param {model_t} world the client's world model, passed to the trace and leaf lookups
+ * @param {Array<number>} eye the view origin (Quake units, world space)
+ * @param {Array<number>} forward the unit view direction
+ * @param {Array<number>} right the unit right vector of the view
+ * @param {Array<number>} up the unit up vector of the view
+ * @returns {?number} the median view depth along `forward`, in Quake units clamped to 16..4096 (`DOF.near`..`DOF.far`);
+ *   null when every ray starts inside a wall
+ */
 export function R_DofTarget( world, eye, forward, right, up ) {
 
 	const s = DOF.spread, offsets = [ [ 0, 0 ], [ s, 0 ], [ - s, 0 ], [ 0, s ], [ 0, - s ] ], depths = [];
@@ -141,6 +162,21 @@ changes take the same time), held while the clock stands, snapped on a new level
 back.
 ================
 */
+/**
+ * Advances the autofocus once per rendered frame, from `R_RenderView` (`gl_rmain.js`) after the view is set up. The
+ * focus eases towards `R_DofTarget` with a 0.25 s time constant in log distance; it snaps (counting `dofStats.snaps`)
+ * on the first frame, a new world, the clock going back or an eye move of more than 96 Quake units in one frame.
+ * Updates `dofStats.target` and `dofStats.focus`. When depth of field is off (`R_DofEnabled()` false) or there is no
+ * world, the focus is dropped.
+ *
+ * @param {number} time client time in seconds (`cl.time`); the focus holds while it stands still
+ * @param {?model_t} world the client's world model
+ * @param {Array<number>} eye the view origin (Quake units, world space)
+ * @param {Array<number>} forward the unit view direction (`vpn`)
+ * @param {Array<number>} right the unit right vector (`vright`)
+ * @param {Array<number>} up the unit up vector (`vup`)
+ * @returns {number} the focus distance in Quake units, or 0 when depth of field is off
+ */
 export function R_DofFrame( time, world, eye, forward, right, up ) {
 
 	if ( R_DofEnabled() === false || world == null ) { focus = null; lastTime = null; dofStats.focus = 0; return 0; }
@@ -166,7 +202,15 @@ export function R_DofFrame( time, world, eye, forward, right, up ) {
 // the focus distance this frame, or 0 (off: no depth of field drawn)
 export const R_DofFocus = () => ( R_DofEnabled() && focus !== null ? focus : 0 );
 
-// the circle of confusion's scale for a picture this many lines high: [ strength in pixels, the largest ]
+/**
+ * The circle of confusion's scale for a picture this many lines high: `DOF.blurPx` (14 pixels at 1080 lines) times the
+ * `r_dof` strength (clamped 0..1), scaled by `height / 1080`. Read by the post pipeline (`gl_post.js`) to set the blur
+ * pass's uniforms each frame.
+ *
+ * @param {number} height the composite target's height in pixels
+ * @returns {Array<number>} `[ strength in pixels, the largest ]`: the blur radius for `| 1 - focus / depth | = 1` and
+ *   the cap (`DOF.maxPx` times it), both in pixels of this picture
+ */
 export function R_DofCircle( height ) {
 
 	const px = DOF.blurPx * Math.max( 0, Math.min( 1, r_dof.value ) ) * height / 1080;
@@ -177,4 +221,8 @@ export function R_DofCircle( height ) {
 // the depth the sky counts as in the blur: the far focus, so looking far leaves the sky sharp
 export const R_DofFar = () => DOF.far;
 
+/**
+ * Forgets the focus, the last time, eye and world, so the next `R_DofFrame` snaps. Called by `R_NewMap`
+ * (`gl_rmain.js`) at the end of every map load.
+ */
 export function R_DofClear() { focus = null; lastTime = null; lastEye = null; lastWorld = null; }

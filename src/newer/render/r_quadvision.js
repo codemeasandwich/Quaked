@@ -20,9 +20,23 @@ import { SV_FaceLocalActive } from '../gameplay/sv_faceevents.js';
 import { GL_DrawAliasFrame } from '../../engine/render/gl_mesh.js';
 import { VISION_COORDINATES_GLSL } from './vision_coordinates.js';
 
+/**
+ * True while Quad Damage's through-wall silhouettes should show: the paired local single-player Newer Game
+ * (`SV_FaceLocalActive`), the player alive, not at intermission, and holding Quad. Asked each frame by gl_post.js
+ * (whether post-processing runs and the vision pass is drawn) and view.js (which then drops the Quad colour shift).
+ *
+ * @returns {boolean} true when the effect is on
+ */
 export function R_QuadVisionActive() {
 	return SV_FaceLocalActive() && cl.stats[STAT_HEALTH]>0 && !cl.intermission && Boolean(cl.items&IT_QUAD);
 }
+/**
+ * The monsters to silhouette: live (health > 0, not dead), FL_MONSTER, with an alias model whose pose data is loaded.
+ * Read from the local server's entities because ordinary client visibility omits those outside the PVS.
+ *
+ * @param {{ edicts: Array<edict_t>, models: Array<Object> }} server the server state (`sv`)
+ * @returns {Array<edict_t>} a new array of the matching edicts
+ */
 export function QuadVisionEnemies(server) {
 	return (server.edicts||[]).filter(e=>e && !e.free && e.v.health>0 && !e.v.deadflag &&
 		(e.v.flags&FL_MONSTER) && server.models[e.v.modelindex]?.cache?.data?.posedata);
@@ -62,6 +76,11 @@ void main(){
  gl_FragColor=vec4(mix(base,purple,alpha),1.);
 }`;
 let state=null;
+/**
+ * Disposes the effect's render targets, materials and proxy geometries and forgets them. Called when the effect is
+ * off (from `R_QuadVisionRender` itself and gl_post.js), on a size or map change, by CL_ClearState and by
+ * R_PostShutdown. Does nothing when nothing is allocated.
+ */
 export function R_QuadVisionReset() {
 	if(!state)return;
 	state.mask.dispose();state.output.dispose();state.material.dispose();state.composite.dispose();
@@ -76,6 +95,23 @@ function create(width,height,world) {
 	screen.add(quad);quad.frustumCulled=false;
 	return {width,height,world,mask,output,material,composite,scene,screen,quad,camera:new THREE.Camera(),meshes:new Map(),geometries:new Map()};
 }
+/**
+ * Draws the silhouettes over the frame, from R_PostFinish (gl_post.js) once per rendered frame: renders proxy meshes
+ * of every monster's current pose into a mask target (view depth and distance), then composites a flickering purple
+ * glow wherever a monster is hidden behind something nearer. The targets are sized to `hdr` and rebuilt when its size
+ * or the map changes; they persist between frames until `R_QuadVisionReset`. The renderer's target and clear colour
+ * are restored afterwards.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ * @param {THREE.Texture} source the frame so far
+ * @param {THREE.WebGLRenderTarget} hdr the scene's G-buffer target: its size, `depthTexture` and `textures[1]` (normals)
+ * @param {THREE.PerspectiveCamera} camera the view camera (`near`/`far` for depth)
+ * @param {THREE.Object3D} worldScene the world scene; its world matrix places the proxies
+ * @param {?THREE.Texture} [coordinates=null] the vision-coordinates texture mapping screen UV to the raw G-buffer, or
+ * null for identity
+ * @returns {THREE.Texture} the composited frame (the module's own target, reused next frame), or `source` itself when
+ * the effect is off
+ */
 export function R_QuadVisionRender(renderer,source,hdr,camera,worldScene,coordinates=null) {
 	if(!R_QuadVisionActive()){R_QuadVisionReset();return source;}
 	if(!state || state.width!==hdr.width || state.height!==hdr.height || state.world!==sv.worldmodel){R_QuadVisionReset();state=create(hdr.width,hdr.height,sv.worldmodel);}

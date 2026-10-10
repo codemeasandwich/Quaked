@@ -59,10 +59,21 @@ function direction( input ) {
 }
 const range = input => Number.isFinite( input ) && input > 0 ? Math.min( RANGE_LIMIT, input ) : 0;
 
-// Snapshot schema: points[{position,range,color}], sun{direction,on,color},
-// spot{position,range,direction,cone:[innerCos,outerCos],on,color}. Colors are
-// linear and positions/directions are world-space. Copy values, never reorder
-// points or retain mutable snapshot objects between HDR and composition.
+/**
+ * Loads this frame's lights into the shared `heightShadowUniforms` read by `HEIGHT_SHADOW_GLSL`, once per frame from
+ * `R_PostLightsFrame` (gl_post.js) after the HDR light selection. Copies values (never reorders points or retains
+ * mutable snapshot objects between HDR and composition). Invalid entries are written as dark/off: a point without a
+ * finite position or positive range, a sun or spot without a non-zero direction. Ranges are capped at 4096 units and
+ * colour channels clamped to 0..65536. Re-applies the current scope (`R_HeightShadowScope`).
+ *
+ * @param {{ points?: Array<{ position: *, range: number, color: *, direction?: Array<number>, cone?: Array<number> }>,
+ *   sun?: { direction: *, on: boolean, color: * }, spot?: { position: *, range: number, direction: *,
+ *   cone: Array<number>, on: boolean, color: * } }} [snapshot={}] the frame's lights: colours linear (arrays or
+ *   `THREE.Color`), positions and directions world space (arrays or `THREE.Vector3/4`), ranges in Quake units; at most
+ *   `HEIGHT_SHADOW_POINTS` (8) points are used, in order. A point's optional `direction`/`cone` (`[innerCos,
+ *   outerCos]`) make it a fixture cone (`R_LightCone`); the spot's `cone` is `[innerCos, outerCos]`.
+ * @returns {object} the shared `heightShadowUniforms` object (module-lifetime; mutated in place every frame)
+ */
 export function R_HeightShadowFrame( snapshot = {} ) {
 
 	snapshot ||= {};
@@ -93,6 +104,14 @@ export function R_HeightShadowFrame( snapshot = {} ) {
 
 }
 
+/**
+ * Opens or closes the height-shadow scope: the shader term is on only inside it and while `r_heightshadows` > 0
+ * (archived cvar). `R_PostLightsFrame` (gl_post.js) opens it when the light-mask target is in use; the world draw in
+ * `R_RenderView` (gl_rmain.js) and gl_post.js close it after the scene render and when post is off.
+ *
+ * @param {boolean} on true to open the scope (anything but `true` closes it)
+ * @returns {number} the resulting `uHeightShadowOn` value: 1 on, 0 off
+ */
 export function R_HeightShadowScope( on ) {
 
 	scoped = on === true; heightShadowUniforms.uHeightShadowOn.value = scoped && r_heightshadows.value > 0 ? 1 : 0;
@@ -100,8 +119,16 @@ export function R_HeightShadowScope( on ) {
 
 }
 
-// Little-endian RGBA byte storage: payload bits 0..29 are ten 3-bit visibilities;
-// bits 31..30 are 01 (generic) or 10 (displaced rock wall). Both all-zero and all-FF clears are invalid/lit.
+/**
+ * The CPU reference encoder of the per-pixel light-visibility mask that `HEIGHT_SHADOW_GLSL` writes (used by tests).
+ * Little-endian RGBA byte storage: payload bits 0..29 are ten 3-bit visibilities; bits 31..30 are 01 (generic) or
+ * 10 (displaced rock wall). Both all-zero and all-FF clears are invalid/lit.
+ *
+ * @param {Array<number>} [visibilities=[]] per source slot (0..7 the point lights, 8 the sun, 9 the spot) the
+ *   visibility 0 (shadowed) .. 1 (lit), quantized to sevenths; missing or non-finite slots are 1
+ * @param {boolean} [rockWall=false] true tags the pixel as a displaced rock wall (marker 10) instead of generic (01)
+ * @returns {Uint8Array} four new bytes, R..A = bits 0..7 .. 24..31
+ */
 export function R_HeightShadowPack( visibilities = [], rockWall = false ) {
 
 	let word = rockWall ? HEIGHT_SHADOW_ROCK_MARKER : HEIGHT_SHADOW_MARKER;
@@ -115,6 +142,16 @@ export function R_HeightShadowPack( visibilities = [], rockWall = false ) {
 
 }
 
+/**
+ * The CPU reference decoder of the light-visibility mask (`R_HeightShadowPack`, `HEIGHT_MASK_DECODE_GLSL`), used by
+ * tests and trials. A mask without a valid marker (bits 31..30 not 01 or 10, a clear, or malformed input) decodes as
+ * fully lit, never as manufactured shadow.
+ *
+ * @param {number|ArrayLike<number>} mask the packed 32-bit word, or its four little-endian bytes (0..255 integers)
+ * @param {number} [index] a source slot 0..9 (8 the sun, 9 the spot); omitted decodes all ten
+ * @returns {number|Array<number>} the visibility 0..1 (in sevenths) of that slot, or a new array of all ten
+ * @throws {RangeError} when `index` is given but is not an integer 0..9
+ */
 export function R_HeightShadowDecode( mask, index ) {
 
 	if ( index !== undefined && ( ! Number.isInteger( index ) || index < 0 || index >= HEIGHT_SHADOW_SOURCES ) ) throw new RangeError( 'Height shadow index must be 0..9' );

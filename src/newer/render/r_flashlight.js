@@ -37,6 +37,11 @@ let lastTime = 0;
 
 const now = () => ( typeof performance !== 'undefined' ? performance.now() : Date.now() ) / 1000;
 
+/**
+ * The `flashlight` console command, and the Options menu's flashlight switch: flips r_flashlight between 0 and 1
+ * and tells the flashlight-run tracker (r_flashlightrun.js) it was a manual change, and whether it happened in a live
+ * Newer Game (connected, not a demo).
+ */
 export function R_FlashlightToggle() {
 
 	const before = Cvar_VariableValue( 'r_flashlight' ) !== 0, after = ! before;
@@ -45,6 +50,9 @@ export function R_FlashlightToggle() {
 
 }
 
+/**
+ * Registers the `flashlight` console command, once at renderer start (R_Init).
+ */
 export function R_FlashlightInit() {
 
 	Cmd_AddCommand( 'flashlight', R_FlashlightToggle );
@@ -54,11 +62,19 @@ export function R_FlashlightInit() {
 /*
 ================
 R_FlashlightUpdate
-
-Once per frame with the view: origin, forward, right, up.  Moves the beam
-towards where the view points.
 ================
 */
+/**
+ * Once per frame with the view (R_RenderView): origin, forward, right, up. Moves the beam towards where the view
+ * points, with a 0.1 s time constant measured in wall-clock time (the step is capped at 0.1 s), and places it on the
+ * right shoulder (15 right, 9 down, 4 forward). The beam is on only with r_flashlight set and Newer lighting active;
+ * it comes on pointing where you look. Also reports the switch state to the flashlight-run tracker.
+ *
+ * @param {Array<number>} origin the view origin, world space, Quake units
+ * @param {Array<number>} forward the view's unit forward vector
+ * @param {Array<number>} right the view's unit right vector
+ * @param {Array<number>} up the view's unit up vector
+ */
 export function R_FlashlightUpdate( origin, forward, right, up ) {
 
 	R_FlashlightRunObserve( r_flashlight.value !== 0, cls.state === ca_connected && ! cls.demoplayback && R_NewerGame() );
@@ -95,6 +111,13 @@ export function R_FlashlightUpdate( origin, forward, right, up ) {
 
 }
 
+/**
+ * The beam for the lighting pipeline (gl_post.js), which draws it and what it hits.
+ *
+ * @returns {{ on: boolean, pos: Array<number>, dir: Array<number> }} the live module object, updated in place by
+ * `R_FlashlightUpdate` (world-space position in Quake units and unit direction); do not mutate or keep a copy
+ * expecting it to stay fixed
+ */
 export function R_FlashlightBeam() {
 
 	return beam;

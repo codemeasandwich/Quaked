@@ -119,9 +119,16 @@ function loadPicture( file ) {
 
 }
 
-// Start only named initial-world art before renderer/model construction. These
-// are the same decoded-picture/scalar caches used by actual upgrades below;
-// prefetch does not create textures, change native pixels or settle a gate.
+/**
+ * Starts only named initial-world art before renderer/model construction (main.js, for the demo map and the hub, with
+ * names from `R_BspTextureNames`). These are the same decoded-picture/scalar caches used by actual upgrades below, kept
+ * for the page's lifetime; prefetch does not create textures, change native pixels or settle a gate. Loads the texture
+ * index first; for each listed name loads its picture and, when crafted, its height, edge source and 16-bit scalar.
+ *
+ * @param {Iterable<string>} names texture names as in the BSP (duplicates ignored; unlisted names skipped)
+ * @returns {Promise<Array<?object>>} settles when every requested file has loaded or failed; never rejects (failures
+ *   are recorded for `R_NewerTexturesStatus().errors` and resolve as null)
+ */
 export function R_NewerTexturesPrefetch(names){
  return loadIndex().then(idx=>Promise.all([...new Set(names)].flatMap(name=>{
   const file=idx[name],crafted=normals[name];
@@ -130,9 +137,15 @@ export function R_NewerTexturesPrefetch(names){
  })));
 }
 
-// Read only BSP29's texture directory, without loading models or a palette.
-// Invalid/absent data is an empty optional prefetch; the real loader remains
-// responsible for map validation and every actual texture readiness decision.
+/**
+ * Reads only BSP29's texture directory (lump 2), without loading models or a palette, for `R_NewerTexturesPrefetch` at
+ * startup. Invalid/absent data is an empty optional prefetch; the real loader remains responsible for map validation
+ * and every actual texture readiness decision. Accepts version 29 and the BSP2 / 2PSB magic numbers.
+ *
+ * @param {Uint8Array} bytes the whole BSP file
+ * @returns {Array<string>} distinct texture names in directory order, without turbulent ('*') and sky textures; empty
+ *   when the bytes are not a readable BSP or the directory is malformed (more than 4096 entries, out of bounds)
+ */
 export function R_BspTextureNames(bytes){
  if(!(bytes instanceof Uint8Array)||bytes.byteLength<124)return [];
  const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
@@ -152,8 +165,16 @@ export function R_BspTextureNames(bytes){
  return [...new Set(names)];
 }
 
-// Match original palette colour and dimensions, including split fullbright texels.
-// Expansion packs reuse names for different windows; names alone are unsafe.
+/**
+ * The native-RGBA identity that picks a texture's glass variant from `index.json`'s `glass[name]`. Matches original
+ * palette colour and dimensions, including split fullbright texels (their colour is taken from the fullbright image
+ * where its alpha is set). Expansion packs reuse names for different windows; names alone are unsafe. Reads the
+ * original pixels (`userData.classicImage`) when the texture was already upgraded.
+ *
+ * @param {?THREE.DataTexture} texture the world texture, optional `_fullbright`
+ * @returns {string} `'<width>x<height>:<16 hex digits>'` (two FNV-1a style 32-bit hashes over every RGBA byte), or ''
+ *   when the texture has no readable RGBA image
+ */
 export function R_GlassTextureKey( texture ) {
  const image=texture?.userData?.classicImage||texture?.image,fb=texture?._fullbright?.userData?.classicImage||texture?._fullbright?.image;
  if(!image?.data||image.data.length!==image.width*image.height*4)return '';
@@ -165,6 +186,28 @@ export function R_GlassTextureKey( texture ) {
  return image.width+'x'+image.height+':'+a.toString(16).padStart(8,'0')+b.toString(16).padStart(8,'0');
 }
 
+/**
+ * Asks for a texture's Newer picture; called by the model loader for every world texture as it is made
+ * (Mod_LoadTextures in gl_model.js, also for the face-shifted copies) and again by `R_NewerTexturesForModel`. Returns
+ * at once; the level is never held up. When the picture (and, if listed, its crafted height, scalar, edge source,
+ * authored normal and gloss) arrives, the very same texture object gets the new pixels, so every material, lightmap
+ * batch and other-level view already uses it:
+ * - `userData.newerHeight` gets the crafted height field (`data` Float32Array 0..1; 16-bit scalar when its size
+ *   matches), plus `displacement` (depth 0..24, step .5..4, smoothing 0..2), `relief`, `edgeSource`,
+ *   `authoredNormal` / `authoredGloss`, and `sampling`, each only when valid;
+ * - a fullbright map is re-split from the new picture (enlarged original glow area, or `GLOW_FROM_PICTURE` for
+ *   redrawn textures, which may create a transparent fullbright texture);
+ * - the original pixels are kept in `userData.classicImage` (the classic half of the title demo draws with them, and
+ *   a classic game after a Newer one has them back) and the texture is remembered for `R_NewerTexturesRevert`;
+ * - the cached normal map is dropped so the next frame makes one from the new pixels, and a 'newertextureupdated'
+ *   event is dispatched on the texture.
+ * Sets `userData.newerPending` while loading, then `newerPicture`, or `newerFallback` (with `newerError` on an error)
+ * when there is no picture, no matching glass variant, or loading failed. Does nothing in Classic, with
+ * `r_newer_textures 0`, or when the texture is already upgraded, pending or fallen back.
+ *
+ * @param {string} name the game's texture name, the key into `index.json`
+ * @param {?THREE.DataTexture} texture the texture's `gl_texture`; mutated asynchronously
+ */
 export function R_NewerTextureUpgrade( name, texture ) {
 
 	if ( texture == null ) return;
@@ -312,6 +355,12 @@ the option changes, every texture of the level gets its higher resolution pictur
 (if it has one and has not already), whichever way the level came to be loaded.
 ================
 */
+/**
+ * Every frame from `R_RenderView` (gl_rmain.js). Cheap when nothing changed: it only acts when the world model or the
+ * on/off state (Newer Game and `r_newer_textures`) differs from the last call.
+ *
+ * @param {?object} worldmodel the level being played (`cl.worldmodel`), or null with no client
+ */
 export function R_NewerTexturesFrame( worldmodel ) {
 
 	const on = R_NewerGame() && r_newer_textures.value !== 0;
@@ -323,7 +372,13 @@ export function R_NewerTexturesFrame( worldmodel ) {
 
 }
 
-// every texture of a level (or of a level seen from another)
+/**
+ * Upgrades every texture of a level (or of a level seen from another): called by `R_NewerTexturesFrame`, by the
+ * other-level views (r_levelview.js) and by the prewarm queue (r_prewarm.js). Skips turbulent ('*') and sky textures.
+ * Does nothing in Classic or with `r_newer_textures 0`.
+ *
+ * @param {?object} model a brush model_t with `textures` (texture_t with `name` and `gl_texture`)
+ */
 export function R_NewerTexturesForModel( model ) {
 
 	if ( model == null || model.textures == null || ! R_NewerGame() || r_newer_textures.value === 0 ) return;
@@ -398,6 +453,18 @@ const GLOW_FROM_PICTURE = {
 	] }
 };
 
+/**
+ * Splits a redrawn picture into its lit and glowing parts, for pictures whose lit parts are not where the original's
+ * were. Plain boxes take strong red (r >= 140 and over 2.2 times green and blue) inside the column range `x0..x1`,
+ * so the hazard stripes beside the lights do not glow, and black it out of the lit part. 'warm-face' takes the warm
+ * bright pixels inside `regions` (eyes and open mouth), ramped in from red 150 to 210, and subtracts them from the lit
+ * part.
+ *
+ * @param {{data: Uint8Array, width: number, height: number}} pic the decoded RGBA picture (not modified)
+ * @param {{x0: number, x1: number}|{type: 'warm-face', boost?: number, regions: Array<Array<number>>}} box fractions
+ *   0..1 of the picture's width (and, for regions `[x0, x1, y0, y1]`, its height)
+ * @returns {{diffuse: Uint8Array, glow: Uint8Array}} new RGBA arrays the size of `pic`; glow alpha is 255 where it glows
+ */
 export function R_GlowFromPicture( pic, box ) {
 
 	const diffuse = new Uint8Array( pic.data );
@@ -438,8 +505,15 @@ export function R_GlowFromPicture( pic, box ) {
 
 }
 
-// Has this texture got the picture it is going to have?  (Not while the list of pictures
-// or its picture is still on the way.)
+/**
+ * Has this texture got the picture it is going to have? (Not while the list of pictures or its picture is still on
+ * the way.) Used by the prewarm queue (r_prewarm.js) to pick textures whose normal maps can be made now.
+ *
+ * @param {string} name the game's texture name
+ * @param {?THREE.DataTexture} texture its `gl_texture`
+ * @returns {boolean} true in Classic, with `r_newer_textures 0`, for a null texture, for an unlisted name, or once the
+ *   texture has its Newer picture or has fallen back; false while the index or the picture is pending
+ */
 export function R_NewerTextureSettled( name, texture ) {
 
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 || texture == null ) return true;
@@ -449,8 +523,17 @@ export function R_NewerTextureSettled( name, texture ) {
 
 }
 
-// Read-only readiness of the current/preview model's actual material requests.
-// Unknown names and explicit failures settle to native art instead of retrying.
+/**
+ * Read-only readiness of the current/preview model's actual material requests, for the intro readiness gate
+ * (`R_UpdateIntroReadiness`, gl_rmain.js) and the demon bakes (r_demonbakes.js). Unknown names and explicit failures
+ * settle to native art instead of retrying. Turbulent and sky textures are not counted.
+ *
+ * @param {?object} model a brush model_t with `textures`
+ * @returns {{index: string, pending: number, ready: number, fallback: number, total: number, settled: boolean,
+ *   errors: Object<string, string>}} `index` is 'idle', 'loading', 'ready' or 'fallback' (the manifest failed);
+ *   every texture counts as fallback in Classic or with `r_newer_textures 0`; `errors` maps 'index' and each failed
+ *   file to its message (accumulated for the page's lifetime)
+ */
 export function R_NewerTexturesStatus( model ) {
 	const textures = ( model?.textures || [] ).filter( t => t?.gl_texture && t.name.charAt( 0 ) !== '*' && ! t.name.startsWith( 'sky' ) );
 	const on = R_NewerGame() && r_newer_textures.value !== 0; let pending = 0, ready = 0, fallback = 0;
@@ -465,8 +548,18 @@ export function R_NewerTexturesStatus( model ) {
 }
 
 
-// A separate native texture also avoids inheriting Newer Game's forced linear
-// filtering on artwork that was never replaced. Honour the user's native filter.
+/**
+ * The Classic twin of a texture: a separate texture with the original pixels (`userData.classicImage`, else the
+ * current image), used for Classic materials (`R_ClassicMaterial` in gl_rmain.js) such as the classic half of the
+ * title demo. A separate native texture also avoids inheriting Newer Game's forced linear filtering on artwork that
+ * was never replaced; the user's native filter (`gl_texturemode`) is honoured on every call. A face-shifted copy
+ * (`userData.classicBase`) resolves to its base's twin. The twin is made once, cached on `userData.classicTwin`,
+ * follows the source's image while it was never upgraded, copies its offset and repeat every call, and is disposed
+ * with it.
+ *
+ * @param {?THREE.Texture} texture the game texture
+ * @returns {?THREE.Texture} the twin (the same object on every call), or the input when it is null/undefined
+ */
 export function R_ClassicTexture( texture ) {
 
 	if ( texture == null ) return texture;
@@ -513,7 +606,13 @@ export function R_ClassicTexture( texture ) {
 
 }
 
-// every texture back to its original pixels (the Newer picture is fetched again if Newer Game is played)
+/**
+ * Puts every upgraded texture back to its original pixels (the Newer picture is fetched again if Newer Game is
+ * played): restores `classicImage`, clears `newerPicture` and `newerHeight`, drops the normal map, removes or restores
+ * the fullbright map, and dispatches 'newertextureupdated'. Called by r_demosplit.js when a classic game starts from
+ * the menus (`R_DemoSplitRelease`) and when the title demo stops with `r_hdr` 0 (`R_DemoSplitEnd`). Empties the
+ * upgraded set.
+ */
 export function R_NewerTexturesRevert() {
 
 	for ( const t of upgraded ) {
@@ -547,8 +646,18 @@ export function R_NewerTexturesRevert() {
 
 }
 
-// Normal readiness is independent of whether authored high-resolution colour
-// replacement is enabled. Only current model textures own this gate.
+/**
+ * Readiness of the current model's background normal-map preparation, for the intro readiness gate
+ * (`R_UpdateIntroReadiness`, gl_rmain.js, when the enhanced renderer and `r_newer_normals` are on). Normal readiness is
+ * independent of whether authored high-resolution colour replacement is enabled. Only current model textures own this
+ * gate (both `model.textures` and every `texinfo` texture, without '*' and sky); a texture whose Newer picture is still
+ * pending counts as pending.
+ *
+ * @param {?object} model a brush model_t
+ * @returns {{pending: number, ready: number, shipped: number, generated: number, settled: boolean,
+ *   errors: Object<string, string>}} `shipped` / `generated` split the ready ones by source ('shipped' /
+ *   'generated-and-stored'); `errors` maps texture name to its preparation error
+ */
 export function R_NewerNormalsStatus(model){
  let pending=0,ready=0,shipped=0,generated=0;const errors={};
  for(const t of new Set([...(model?.textures||[]),...(model?.texinfo||[]).map(info=>info?.texture)])){if(!t?.gl_texture||t.name.startsWith('*')||t.name.startsWith('sky'))continue;if(t.gl_texture.userData.newerPending){pending++;continue;}const work=R_NormalPrepared(t.gl_texture);
@@ -558,6 +667,14 @@ export function R_NewerNormalsStatus(model){
  return {pending,ready,shipped,generated,settled:pending===0,errors};
 }
 
+/**
+ * Starts background normal-map preparation (`R_NormalPrepare`) for each of the model's textures that needs it and
+ * whose Newer picture is not still pending; called just before `R_NewerNormalsStatus` by the intro readiness gate.
+ * Repeated calls start nothing new for a texture whose prepared job still matches its current revision
+ * (`R_NormalPreparationNeeded`).
+ *
+ * @param {?object} model a brush model_t (`textures` and `texinfo`)
+ */
 export function R_NewerNormalsPrepare(model){
  for(const t of new Set([...(model?.textures||[]),...(model?.texinfo||[]).map(info=>info?.texture)]))if(t?.gl_texture&&!t.name.startsWith('*')&&!t.name.startsWith('sky')&&!t.gl_texture.userData.newerPending&&R_NormalPreparationNeeded(t.gl_texture))R_NormalPrepare(t.gl_texture);
 }

@@ -44,13 +44,27 @@ const QUIET = .02; // a field whose highest wave is below this (units, too small
 const MAX_STEPS = 16; // per field per frame (a long frame does not run away)
 
 let deps = null;
-// externals: contents( [ x, y, z ] ) -> BSP contents or undefined (water -3, slime -4, solid -2, air -1); waterOn() -> are the water
-// optics drawn (r_newer_water: with them off the water is the plain opaque surface, and no ripples are drawn on it)
+/**
+ * Gives the wave fields their views of the world; called from gl_rmain.js when the renderer sets up a map. Until then
+ * `R_WaveImpact` makes nothing. Kept until the next call.
+ *
+ * @param {{contents?: function(Array<number>): (number|undefined), waterOn?: function(): boolean}} externals
+ *   `contents([x, y, z])` the BSP contents at a world point, or undefined (water -3, slime -4, solid -2, air -1);
+ *   `waterOn()` whether the water optics are drawn (r_newer_water: with them off the water is the plain opaque
+ *   surface, and no ripples are drawn on it, so no water field is made)
+ */
 export function R_WavesSetup( externals ) { deps = externals; }
 
 // the texture the shaders read: SLOTS slots side by side, each SIZE x SIZE cells
 const data = new Uint16Array( SIZE * SLOTS * SIZE );
 let texture = null;
+/**
+ * The texture the shaders read (gl_post.js water, gl_portal.js portals): 8 slots side by side, each 128 x 128 cells,
+ * one half-float red channel of wave height in Quake units; slots 0..3 water, 4..7 metal. Made on first use and
+ * kept for the page's lifetime; `R_WavesFrame` rewrites it in place.
+ *
+ * @returns {THREE.DataTexture} the shared texture (1024 x 128, linear, clamped; do not dispose)
+ */
 export function R_WaveTexture() {
 
 	if ( texture === null ) {
@@ -72,8 +86,15 @@ export const waterWave = new Float32Array( WATER.fields * 4 );
 export const metalWave = { origin: new Float32Array( METAL.fields * 4 ), u: new Float32Array( METAL.fields * 4 ), v: new Float32Array( METAL.fields * 4 ) };
 
 const fields = new Array( SLOTS ).fill( null );
+/**
+ * @returns {Array<object>} the live wave fields (internal records, for tests and diagnostics; do not mutate)
+ */
 export const R_WaveFields = () => fields.filter( f => f !== null );
 
+/**
+ * Drops every field and zeroes the texture and the slot descriptions; called from gl_rmain.js at a new map, and by
+ * `R_WavesFrame` when the clock jumps back or the ripples are switched off.
+ */
 export function R_WavesReset() {
 
 	fields.fill( null );
@@ -216,7 +237,25 @@ function disturb( f, s, t, amp, radius ) {
 
 }
 
-// An impact: kind 0 water at ( x, y, z ) on the surface, kind 1 a portal's plane hit at ( x, y, z ); strength 0..1.
+/**
+ * An impact, heard from the detector (`R_ImpactRippleListen` in r_impactripples.js). Water: finds the live water field
+ * at the surface height (within 2 units) that holds the point well inside its sponge margin, else makes a new field
+ * of 128 x 3-unit cells centred on the hit (cells from the BSP: water below, no liquid or solid just above), and pushes
+ * in a crater with its rim, plus the rebound jet 0.11 s later. Portal: finds or makes the field over that plane
+ * (clamped by the window's outline) and pushes in a dent. A full kind takes the quietest field's slot.
+ *
+ * @param {number} kind 0 water at (x, y, z) on the surface, 1 a portal's plane hit at (x, y, z)
+ * @param {number} x hit point, world space, Quake units
+ * @param {number} y hit point, world space, Quake units
+ * @param {number} z hit point, world space, Quake units (for water, the surface height)
+ * @param {number} strength 0..1; scales the crater depth (9 units water, 5 metal at 1)
+ * @param {number} time client time of the hit, seconds
+ * @param {?{normal: Array<number>, center: Array<number>, min: Array<number>, max: Array<number>,
+ *   polygons?: Array<Array<Array<number>>>}} [plane=null] the portal opening, required for kind 1 (the field is keyed
+ *   on this object)
+ * @returns {?object} the field disturbed; null before `R_WavesSetup`, for strength <= 0, a portal hit without a
+ *   plane, or a water hit with no `contents` or with the water optics off
+ */
 export function R_WaveImpact( kind, x, y, z, strength, time, plane = null ) {
 
 	if ( deps === null || ! ( strength > 0 ) ) return null;
@@ -323,7 +362,16 @@ function forget( f ) {
 
 }
 
-// Every frame: step each live field up to `time` and upload it. Returns how many fields are live.
+/**
+ * Every frame (`R_RenderView`, gl_rmain.js, after the impact list is aged): steps each live field with the 2D wave
+ * equation up to `time` (at least 60 steps a second, at most 16 steps per field per frame, so a long frame does not
+ * run away), applies due rebound jets, drops fields quiet (peak under 0.02 units) for over a second, uploads changed
+ * fields and refreshes `waterWave` / `metalWave`. Resets everything when the clock jumps back more than a second (a
+ * demo loop, a new game), and when `r_impactripples` is 0 or in Classic (what is alive goes now).
+ *
+ * @param {number} time client time, seconds (`cl.time`, 0 with no client)
+ * @returns {number} how many fields are live
+ */
 export function R_WavesFrame( time ) {
 
 	if ( time < ( R_WavesFrame.last ?? - Infinity ) - 1 ) R_WavesReset(); // the clock jumped back (a demo loop, a new game)
@@ -356,7 +404,11 @@ export function R_WavesFrame( time ) {
 
 }
 
-// how many water fields are live (the present pass bends the picture of the water only while one is)
+/**
+ * How many water fields are live; gl_post.js's present pass bends the picture of the water only while one is.
+ *
+ * @returns {number} 0..4
+ */
 export function R_WaterWavesLive() { let n = 0; for ( let s = 0; s < WATER.fields; s ++ ) if ( fields[ s ] !== null ) n ++; return n; }
 
 // a shader's view of the slots (GLSL), for gl_post.js and gl_portal.js: the wave's height and its slope along the field's axes

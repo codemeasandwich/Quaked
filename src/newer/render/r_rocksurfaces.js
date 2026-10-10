@@ -34,9 +34,27 @@ export const ROCK_MATERIALS = Object.freeze( {
  wizmet1_7: 'ground', // loose aggregate, despite the name
  wall16_7: 'ground' // loose pebbles, not a constructed wall
 } );
+/**
+ * A texture's material name for the rock tables: lower case, without an animation prefix (`+0`..`+9`, `+a`..`+j`) or a
+ * `.webp` suffix.
+ *
+ * @param {?{ name?: string }} texture a BSP texture (or anything with a `name`)
+ * @returns {string} the normalised name; '' when there is none
+ */
 export function R_RockMaterialName( texture ) {
  return String( texture?.name || '' ).toLowerCase().replace( /^\+[0-9a-j]/, '' ).replace( /\.webp$/, '' );
 }
+/**
+ * Which rock profile a surface's material gets, if any. Names describe material intent, not where a face is or which
+ * way it points: `ROCK_MATERIALS`, then any `rockN_N` as wall. Two exceptions use the surface's signed upward normal
+ * (z, flipped for SURF_PLANEBACK): wgrnd1_5/1_6 only on faces whose normal z exceeds 0.65, and rock4_1, which the
+ * owner explicitly uses on both terrain and walls (signed upward slopes are ground; undersides and tunnel roofs remain
+ * wall surfaces).
+ *
+ * @param {?{ name?: string }} texture the surface's texture
+ * @param {msurface_t} [surface] the surface (its `plane.normal` and `flags`); without it the exceptions are not applied
+ * @returns {?('ground'|'wall')} the profile, or null for a material that gets no rock relief
+ */
 export function R_RockMaterialProfile( texture, surface ) {
  const name = R_RockMaterialName( texture );
  if ( surface && ( name === 'wgrnd1_5' || name === 'wgrnd1_6' ) && surface.plane.normal[ 2 ] * ( surface.flags & 2 ? -1 : 1 ) <= .65 ) return null;
@@ -80,6 +98,26 @@ function overlap( a, b ) {
  };
  return aligned( a, b ) && aligned( b, a );
 }
+/**
+ * Builds the rock charts of a map: continuous map/rest-space sampling spaces over its natural rock surfaces. BSP
+ * geometry/UVs stay owned by the original map; charts are a separate, world-anchored sampling space. Called by
+ * `R_RockfieldBuild` on every world build and by tools/bake_rockfield.mjs when baking. Surfaces with a rock profile
+ * (sky and liquid excluded) are grouped by material and profile, then into connected components by shared edges
+ * (collinear overlap, no point-only contacts). Each component becomes one chart, numbered in a stable order (by
+ * material, profile and the sorted vertex set); its seed comes from the map name, material and profile, so every
+ * piece of one material shares one field. Ground charts project on world x/y; walls use the fixed oblique axes
+ * `ROCK_AXIS_U`/`ROCK_AXIS_V`.
+ *
+ * @param {model_t} model the world model (its `surfaces`, `firstmodelsurface`, `nummodelsurfaces`, `name`)
+ * @param {{ includeBrushes?: boolean }} [options] `includeBrushes` (default false) also charts the brush models'
+ *   surfaces (doors, platforms), marked `brush: true`
+ * @returns {{ charts: Array<{ id: number, key: string, name: string, profile: string, seed: number, config: object,
+ *   tangent: Array<number>, bitangent: Array<number>, amplitude: number, bounds: Array<number>,
+ *   surfaces: Array<{ surface: msurface_t, brush: boolean, bounds: Array<number>, center: Array<number> }> }>,
+ *   bySurface: WeakMap<msurface_t, object> }} new charts (ids from 1; `config` from `R_RockPreset`; `bounds`
+ *   `[minU, minV, maxU, maxV]` in tiles, for the chart and each face; `center` the face's mean vertex, Quake units)
+ *   and the chart of each charted surface; empty when the model has no surfaces
+ */
 export function R_RockSurfaceCharts( model, { includeBrushes = false } = {} ) {
  const charts = [], bySurface = new WeakMap(), groups = new Map();
  if ( ! model?.surfaces ) return { charts, bySurface };
@@ -145,4 +183,11 @@ export function R_RockSurfaceCharts( model, { includeBrushes = false } = {} ) {
  }
  return { charts, bySurface };
 }
+/**
+ * A point's position in a chart's sampling space, used for every vertex and eye position given to the rock field.
+ *
+ * @param {{ tangent: Array<number>, bitangent: Array<number> }} chart the chart's projection axes
+ * @param {Array<number>} point a position in Quake units (world space, or a brush's rest space)
+ * @returns {Array<number>} a new `[u, v]` in tiles (`ROCK_TILE_UNITS` = 256 Quake units per tile)
+ */
 export function R_RockCoordinates( chart, point ) { return [ dot( chart.tangent, point ) / ROCK_TILE_UNITS, dot( chart.bitangent, point ) / ROCK_TILE_UNITS ]; }

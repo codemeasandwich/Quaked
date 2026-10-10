@@ -48,6 +48,12 @@ function functions() {
 	if ( program !== pr_functions || world !== sv.edicts ) { world = sv.edicts; markers.clear(); lastShot = null; } // (a new map or a loaded game: a new entity list)
 }
 const player = () => sv.edicts?.[ 1 ] ?? null;
+/**
+ * True when the Ring's Newer Game rules apply: an active local single-player server on the stock progs (CRC 24778)
+ * in Newer Game. Checked each `SV_UnseenFrame`; outside it every marker is removed.
+ *
+ * @returns {boolean} true when unseen rules are in force
+ */
 export function SV_UnseenActive() {
 	return sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && R_NewerGame();
 }
@@ -89,7 +95,16 @@ function freeMarker( e ) {
 	markers.delete( e ); if ( ! e.free ) ED_Free( e );
 }
 
-// QuakeC function hooks (pr_exec.js): the player's W_Attack (where they fired from) and T_Damage (a monster they hurt).
+/**
+ * QuakeC function hooks (pr_exec.js): the player's W_Attack (where they fired from) and T_Damage (a monster they
+ * hurt). Called by PR_EnterFunction for every QuakeC function, so it does cheap checks first and no progs lookups
+ * outside a local stock single-player game. Entering W_Attack as the player records `lastShot` (origin and time);
+ * entering T_Damage with the player as attacker and a monster as target returns a token for
+ * `SV_UnseenFunctionLeave`.
+ *
+ * @param {dfunction_t} fn the function being entered
+ * @returns {?{ target: edict_t, p: edict_t }} the hurt monster and the player, or null when the call is not of interest
+ */
 export function SV_UnseenFunctionEnter( fn ) {
 	// (called for every QuakeC function: cheap checks first, and no progs lookups outside a local stock game)
 	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null;
@@ -102,6 +117,17 @@ export function SV_UnseenFunctionEnter( fn ) {
 	if ( attacker !== p || ! target || target === p || ! ( target.v.flags & FL_MONSTER ) ) return null;
 	return { target, p };
 }
+/**
+ * Called by PR_LeaveFunction once T_Damage has run: when the hurt monster survived and turned on the unseen player
+ * (wearing the Ring), points its enemy and goalentity at an invisible `unseen_spot` marker where the player fired
+ * (their origin at a W_Attack under 3 s ago, else where they stand now) and clears an oldenemy that was the player.
+ * One marker per firing position (within 1 unit): a blast that hurts several monsters sends them all to the same
+ * spot, and a new hit there extends its life to SPOT_LIFE (5) seconds from now. Markers are ordinary edicts and are
+ * saved with the game.
+ *
+ * @param {?{ target: edict_t, p: edict_t }} token the value `SV_UnseenFunctionEnter` returned (null does nothing)
+ * @throws {Error} Sys_Error 'ED_Alloc: no free edicts' when a new marker cannot be allocated
+ */
 export function SV_UnseenFunctionLeave( token ) {
 	if ( ! token ) return;
 	const { target, p } = token;
@@ -114,7 +140,13 @@ export function SV_UnseenFunctionLeave( token ) {
 	if ( PROG_TO_EDICT( field( target, 'oldenemy' ) ) === p ) field( target, 'oldenemy', 0 );
 }
 
-// Every server frame (also while a menu holds the game).
+/**
+ * Every server frame (Host_ServerFrame, after physics; also while a menu holds the game). Outside `SV_UnseenActive`
+ * removes all markers. Otherwise adopts markers from a loaded game, makes every monster hunting the unseen player
+ * give up (back to its patrol via th_walk if it has a movetarget, else th_stand, as stock ai_run does when the enemy
+ * dies), and removes markers that are freed, expired, or no longer needed because the player is seen again; their
+ * monsters give up too. Forgets all module state when the progs or the entity list changes (a new map or loaded game).
+ */
 export function SV_UnseenFrame() {
 	functions();
 	if ( ! SV_UnseenActive() ) { for ( const e of [ ...markers.keys() ] ) freeMarker( e ); return; }
@@ -125,5 +157,14 @@ export function SV_UnseenFrame() {
 	for ( const [ e, until ] of [ ...markers ] ) if ( e.free || ! hidden || sv.time >= until ) freeMarker( e );
 }
 
+/**
+ * Forgets the tracked markers, the last shot and the cached progs functions, without freeing any marker edict (the
+ * next `SV_UnseenFrame` picks surviving markers up again). Used by the tests to start fresh.
+ */
 export function SV_UnseenReset() { markers.clear(); lastShot = null; program = null; }
+/**
+ * The marker edicts currently tracked (tests read it).
+ *
+ * @returns {Array<edict_t>} a fresh array
+ */
 export const SV_UnseenMarkers = () => [ ...markers.keys() ];

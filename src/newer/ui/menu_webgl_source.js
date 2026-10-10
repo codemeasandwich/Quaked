@@ -755,6 +755,21 @@ export const QuakeFontLoader=(()=>{
   }
 export class QuakeMenu {
     static get defaults(){return cloneDefaults();}
+    /**
+     * Creates the donor WebGL2 menu renderer on a canvas: compiles its six programs, builds its buffers and noise
+     * texture, and starts uploading the embedded glyph atlas (`ready`). The host adapter (`menu_webgl.js`) uses
+     * `externalFrame: true`, which installs only the context lost/restored listeners and leaves drawing to `frame()`;
+     * the default standalone mode also installs pointer/key input, a ResizeObserver, window resize, visibility and
+     * reduced-motion listeners and renders on requestAnimationFrame.
+     *
+     * @param {HTMLCanvasElement} canvas the canvas to draw into (a WebGL2 context is taken from it)
+     * @param {{ config?: object, onActivate?: ?function(object): void, onSelection?: ?function(object): void,
+     *   externalFrame?: boolean }} [options] `config` is normalised against `QuakeMenu.defaults` (title, sidebar, up to
+     *   40 items as strings or `{ id, label, disabled }`, selected, typography and material ranges, selector settings);
+     *   the callbacks receive `{ index, id, label, disabled }`
+     * @throws {TypeError} when `canvas` is not a canvas element, or `config.items` is not an array / holds an invalid item
+     * @throws {Error} when WebGL2 is unavailable or a shader fails to compile or link (resources made so far are freed)
+     */
     constructor(canvas,{config={},onActivate=null,onSelection=null,externalFrame=false}={}){
       if(!(canvas instanceof HTMLCanvasElement))throw new TypeError('QuakeMenu requires a canvas element.');
       this.canvas=canvas;this.externalFrame=externalFrame===true;
@@ -908,6 +923,16 @@ export class QuakeMenu {
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
     }
+    /**
+     * Replaces the embedded font with a local TrueType file converted by `QuakeFontLoader` into a distance-field atlas,
+     * then re-renders. On an upload failure the previous font is restored before the error propagates.
+     *
+     * @param {File|Blob|ArrayBuffer} file the font to load (whatever `QuakeFontLoader.load` accepts)
+     * @param {function(*): void} [onProgress] progress callback passed to the loader
+     * @returns {Promise<{ family: string, glyphCount: number }>} the new font's family and number of glyphs
+     * @throws {Error} when the loader is missing, the renderer was destroyed, the atlas exceeds `MAX_TEXTURE_SIZE`, or
+     *   the upload is interrupted or fails
+     */
     async loadFont(file,onProgress=()=>{}){
       if(!QuakeFontLoader)throw new Error('The local TrueType loader is not included.');
       const result=await QuakeFontLoader.load(file,{onProgress,maxTextureSize:this.gl.getParameter(this.gl.MAX_TEXTURE_SIZE)});
@@ -918,29 +943,72 @@ export class QuakeMenu {
       catch(error){if(!this.destroyed&&generation===this._generation){this.font=oldFont;this.fontSource=oldSource;await this._uploadFont(oldSource,generation);}throw error;}
       this.requestRender();return{family:this.font.family,glyphCount:Object.keys(this.font.glyphs).length};
     }
+    /**
+     * Restores the embedded DpQuake atlas and re-renders.
+     *
+     * @returns {Promise<void>}
+     * @throws {Error} when the renderer was destroyed or the upload is interrupted
+     */
     async resetFont(){
       if(this.destroyed)throw new Error('The renderer has been destroyed.');
       this.font=QUAKE_FONT.metrics;this.fontSource=QUAKE_FONT.image;
       if(!await this._uploadFont(this.fontSource))throw new Error('Font upload was interrupted.');
       this.requestRender();
     }
+    /**
+     * @returns {object} a deep copy of the normalised configuration
+     */
     getConfig(){return JSON.parse(JSON.stringify(this.config));}
+    /**
+     * Merges `patch` into the configuration (normalised and clamped), relayouts, re-renders and dispatches
+     * `quake:config` on the canvas. A `selectorAngle` in the patch also resets the selector's rotation.
+     *
+     * @param {object} patch configuration fields to change
+     * @returns {QuakeMenu} this renderer
+     * @throws {TypeError} when the resulting `items` is not an array or holds an invalid item
+     */
     setConfig(patch){
       this.config=normalize(patch,this.config);
       if(Object.prototype.hasOwnProperty.call(patch,'selectorAngle'))this.selectorRotation=this.config.selectorAngle;
       this.lastFrameTime=0;this.layoutDirty=true;this.backgroundDirty=true;this.requestRender();
       this.canvas.dispatchEvent(new CustomEvent('quake:config',{detail:this.getConfig()}));return this;
     }
+    /**
+     * Opens a submenu: saves the current configuration on the history stack and applies `patch` (selection reset to
+     * 0 unless given), as `setConfig` does.
+     *
+     * @param {object} patch the submenu's configuration
+     * @returns {QuakeMenu} this renderer
+     * @throws {TypeError} as `setConfig`
+     */
     pushMenu(patch){
       const next=normalize({selected:0,...patch},this.config);
       this._history.push(this.getConfig());return this.setConfig(next);
     }
+    /**
+     * Returns to the previous menu on the history stack and dispatches `quake:back`.
+     *
+     * @returns {boolean} false when the history is empty
+     */
     back(){
       if(!this._history.length)return false;
       this.setConfig(this._history.pop());
       this.canvas.dispatchEvent(new CustomEvent('quake:back',{detail:this.getConfig()}));return true;
     }
+    /**
+     * Empties the submenu history.
+     *
+     * @returns {QuakeMenu} this renderer
+     */
     clearHistory(){this._history.length=0;return this;}
+    /**
+     * Moves the selection to an item and, when it changed and `notify` is set, calls `onSelection` and dispatches
+     * `quake:select` with `{ index, id, label, disabled }`.
+     *
+     * @param {number} index the item index (integer)
+     * @param {{ notify?: boolean }} [options] `notify` defaults to true
+     * @returns {boolean} true when the item is (now) selected; false for an invalid or disabled item
+     */
     select(index,{notify=true}={}){
       if(!Number.isInteger(index)||index<0||index>=this.config.items.length||this.config.items[index].disabled)return false;
       if(this.config.selected===index)return true;
@@ -949,6 +1017,12 @@ export class QuakeMenu {
         this.canvas.dispatchEvent(new CustomEvent('quake:select',{detail}));}
       return true;
     }
+    /**
+     * Selects and activates an item: calls `onActivate` and dispatches `quake:activate` with its details.
+     *
+     * @param {number} [index=this.config.selected] the item index
+     * @returns {boolean} false for an invalid or disabled item
+     */
     activate(index=this.config.selected){
       if(index<0||index>=this.config.items.length||this.config.items[index].disabled)return false;
       this.select(index);const detail={index,...this.config.items[index]};this.onActivate?.(detail);
@@ -1017,6 +1091,10 @@ export class QuakeMenu {
     }
     _isAnimating(){return this.config.selectorRotate&&this.config.selectorSpeed>0&&
       this.config.selected>=0&&!this.motionQuery.matches&&!document.hidden;}
+    /**
+     * Schedules one standalone render on the next animation frame (repeating while the selector animates). Does
+     * nothing in external-frame mode, while a frame is already pending, or when destroyed, context-lost or capturing.
+     */
     requestRender(){
       if(this.externalFrame||this.pendingFrame||this.destroyed||this.contextLost||this.exporting)return;
       this.pendingFrame=requestAnimationFrame(time=>{
@@ -1036,6 +1114,23 @@ export class QuakeMenu {
     }
     // The host supplies physical framebuffer pixels and optional native-menu
     // glyph/panel commands. No CSS/DPR multiplier or event input is introduced.
+    /**
+     * Draws one host-driven frame (external-frame mode). The host supplies physical framebuffer pixels and optional
+     * native-menu glyph/panel commands; no CSS/DPR multiplier or event input is introduced. The canvas is resized to
+     * `width` x `height`; a changed command list rebuilds the layout. The selector advances by the elapsed time
+     * (each step capped at 100 ms; reduced motion and document visibility are honoured).
+     *
+     * @param {number} width framebuffer width in physical pixels (integer, 1..min(8192, MAX_RENDERBUFFER_SIZE))
+     * @param {number} height framebuffer height in physical pixels; width x height at most 24 million
+     * @param {number} timeMs a finite, monotonic time in milliseconds
+     * @param {?Array<object>} [commands=null] `{ type: 'text', text, x, y, size, stretch?, kind? }`,
+     *   `{ type: 'panel', x, y, w, h, well? }`, `{ type: 'selector', x, y, size }`, `{ type: 'slider', x, y, w, value }`
+     *   in physical pixels; null draws the donor's own layout
+     * @param {number} [backgroundOpacity=1] 0..1; with commands the backdrop is transparent
+     * @returns {boolean} false while unready, destroyed, context-lost or capturing; true after one completed draw
+     * @throws {RangeError} on dimensions outside the budget or an opacity outside 0..1
+     * @throws {TypeError} on a non-finite time
+     */
     frame(width,height,timeMs,commands=null,backgroundOpacity=1){
       if(!this.loaded||this.destroyed||this.contextLost||this.exporting)return false;
       const max=Math.min(8192,this.gl.getParameter(this.gl.MAX_RENDERBUFFER_SIZE));
@@ -1201,6 +1296,12 @@ export class QuakeMenu {
       gl.drawArraysInstanced(gl.TRIANGLES,0,6,this.layout.glyphs.length/12);
       this.backgroundDirty=false;
     }
+    /**
+     * Draws the cached static scene and the rotating Q selector to the canvas at its current size, rebuilding the
+     * layout and background cache when dirty. Does nothing until loaded, or when destroyed or context-lost.
+     *
+     * @throws {Error} when the background framebuffer cannot be allocated
+     */
     render(){
       if(!this.loaded||this.destroyed||this.contextLost)return;
       const gl=this.gl;if(this.layoutDirty)this._buildLayout();
@@ -1231,6 +1332,16 @@ export class QuakeMenu {
       }
       gl.bindVertexArray(null);
     }
+    /**
+     * Renders the menu once at a given size and returns it as a PNG, then restores the canvas size (the caller's
+     * framebuffer dimensions in external-frame mode).
+     *
+     * @param {{ width?: number, height?: number }} [size] capture size in pixels (default 3840 x 2160; integers up to
+     *   min(8192, MAX_RENDERBUFFER_SIZE) a side, at most 34 million pixels)
+     * @returns {Promise<Blob>} the PNG image
+     * @throws {Error} when the renderer is unavailable, a capture is already running, or encoding fails
+     * @throws {RangeError} when the size exceeds the budget
+     */
     async capture({width=3840,height=2160}={}){
       await this.ready;if(this.destroyed||this.contextLost||!this.loaded)throw new Error('The renderer is unavailable.');
       if(this.exporting)throw new Error('An image capture is already running.');
@@ -1256,6 +1367,10 @@ export class QuakeMenu {
       this.programs={};this.backgroundVAO=this.plaqueVAO=this.glyphVAO=null;
       this.quad=this.fontTexture=this.noiseTexture=this.backgroundTexture=this.selectorTexture=this.backgroundFBO=null;
     }
+    /**
+     * Releases every GPU resource and listener and settles pending font decodes. Idempotent; the instance cannot be
+     * used afterwards. The host owns calling it (`MainMenu_Destroy`, a render failure, a context-loss error).
+     */
     destroy(){
       if(this.destroyed)return;
       this.destroyed=true;this.loaded=false;this._generation++;

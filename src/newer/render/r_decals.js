@@ -72,12 +72,26 @@ The renderer hands over what the marks need from it (importing the level model
 code here would tie this module into the renderer's import cycle).
 ================
 */
+/**
+ * Stores the renderer's handles for the marks; called by `R_NewMap` (gl_rmain.js) at each level start, and kept until
+ * the next call. Until it has been called no mark is made.
+ *
+ * @param {{ scene: THREE.Scene, cl: function(): ?client_state_t, pointInLeaf: function(Array<number>, model_t):
+ *   ?mleaf_t, lightPoint: function(Array<number>): number }} d the scene the mark mesh is added to, the current client
+ *   state, `Mod_PointInLeaf` and `R_LightPoint`
+ */
 export function R_DecalsSetup( d ) {
 
 	deps = d;
 
 }
 
+/**
+ * Whether marks are made and shown: after `R_DecalsSetup`, with `r_decals` non-zero, in Newer Game. Checked by every
+ * mark maker and each frame by `R_DecalsFrame`.
+ *
+ * @returns {boolean} true when marks are on
+ */
 export function R_DecalsEnabled() {
 
 	return deps !== null && r_decals.value !== 0 && R_NewerGame();
@@ -101,6 +115,23 @@ null.  accept( surf, normal ), if given, limits it to the surfaces it allows (th
 wall burn's: only the plane its beam struck).
 ================
 */
+/**
+ * Finds the world surface a point lies just in front of; used by the marks here, the fireball's scorch
+ * (r_fireball.js) and the wall burn (r_wallburn.js, whose `accept` keeps only the struck plane). Only surfaces
+ * that touch the point's leaf are considered (sky and liquid surfaces never), and the nearest plane in front of the
+ * point (no more than 0.5 units behind it) wins.
+ *
+ * @param {model_t} model the world model (`cl.worldmodel`); null or one without leaves gives null
+ * @param {Array<number>} p the point (world space, Quake units)
+ * @param {number} maxDist how far in front of a surface's plane the point may be (Quake units)
+ * @param {function(Array<number>, model_t): ?mleaf_t} pointInLeaf `Mod_PointInLeaf`
+ * @param {?function(msurface_t, number): boolean} [accept=null] gets the surface and the side sign (1, or -1 for a
+ *   `SURF_PLANEBACK` surface); return false to skip it
+ * @returns {?{ surf: msurface_t, dist: number, nx: number, ny: number, nz: number, px: number, py: number, pz: number,
+ *   room: number }} the surface, the point's distance in front of it, its outward unit normal, the point projected onto
+ *   the plane, and the distance to the surface's nearest texture-extent edge (all Quake units). One shared record,
+ *   overwritten by the next call: copy what you keep. Null when no surface qualifies or the point is in solid.
+ */
 export function R_DecalSurface( model, p, maxDist, pointInLeaf, accept = null ) {
 
 	if ( model == null || model.leafs == null ) return null;
@@ -335,6 +366,18 @@ Puts a mark of the given kind and size where the point is close to a surface.
 Returns true if there was a surface and room for it.
 ================
 */
+/**
+ * Places one mark. The mark is a quad turned at random, lying 0.3 units off the surface, shrunk to stay on the surface (refused when
+ * under 1.2 units), with a random cell of its kind's atlas; it multiplies the surface's colour and lasts its kind's life
+ * (holes 90 s, scorch 120 s, blood and drops 180 s), fading over the last 8 s. It takes the next slot of the ring of 384
+ * marks (overwriting the oldest) and adds the mesh to the scene on first use. Needs a browser `document` for the atlas.
+ *
+ * @param {string} kind 'hole', 'scorch', 'blood' or 'drop'
+ * @param {Array<number>} p where the mark goes, near a surface (world space, Quake units)
+ * @param {number} radius half the quad's side (Quake units)
+ * @param {number} maxDist how far in front of the surface `p` may be (Quake units)
+ * @returns {boolean} true when a mark was placed; false when marks are off, there is no world or surface, or no room
+ */
 export function R_DecalPlace( kind, p, radius, maxDist ) {
 
 	if ( R_DecalsEnabled() === false || ensureMesh() === false ) return false;
@@ -409,21 +452,41 @@ export function R_DecalPlace( kind, p, radius, maxDist ) {
 // What makes them
 //============================================================================
 
-// a shot that struck the world at p (a little in front of the surface)
+/**
+ * A bullet hole (radius 3.6..5.2 units) where a shot struck the world, called by `CL_ParseTEnt` (cl_tent.js) for
+ * `TE_SPIKE`, `TE_SUPERSPIKE` and `TE_GUNSHOT` (unless the pellet's wall burn took it, card [30c]).
+ *
+ * @param {Array<number>} p where the shot struck, a little in front of the surface (world space, Quake units)
+ */
 export function R_DecalShot( p ) {
 
 	R_DecalPlace( 'hole', p, 3.6 + Math.random() * 1.6, 10 );
 
 }
 
-// an explosion at p
+/**
+ * A scorch mark (radius 24..34 units) on the surface within 44 units of an explosion, called by `CL_ParseTEnt`
+ * (cl_tent.js) for `TE_EXPLOSION`.
+ *
+ * @param {Array<number>} p the explosion's centre (world space, Quake units)
+ */
 export function R_DecalScorch( p ) {
 
 	R_DecalPlace( 'scorch', p, 24 + Math.random() * 10, 44 );
 
 }
 
-// a burst of blood at p going the way of dir: some of it reaches the wall or floor beyond
+/**
+ * A burst of blood at p going the way of dir: some of it reaches the wall or floor beyond. Called by
+ * `R_RunParticleEffect` (r_part.js) for a blood effect (colour 73). Up to six rays (1 + count/8), each spread about
+ * `dir` and a little down, are stepped out 6 units at a time for up to 90 units; each that meets solid leaves a blood
+ * mark (radius 5..14) at the last open point.
+ *
+ * @param {Array<number>} p the wound (world space, Quake units)
+ * @param {Array<number>} dir the spray's direction from the particle effect (each ray adds up to ±0.8 per axis before
+ *   normalising, so it need not be unit length)
+ * @param {number} count the particle effect's particle count
+ */
 export function R_DecalBloodSpray( p, dir, count ) {
 
 	if ( R_DecalsEnabled() === false || deps === null ) return;
@@ -461,8 +524,16 @@ export function R_DecalBloodSpray( p, dir, count ) {
 
 const _free = [ 0, 0, 0 ];
 
-// A blood particle moved from a to b.  If b is inside the world it has landed: put
-// a mark where it came down and return true (the particle is done).
+/**
+ * A blood particle moved from a to b. If b is inside the world it has landed: puts a mark where it came down (a drop
+ * 55% of the time, a larger splash 25%, nothing otherwise) at the last open point on the way. Called by
+ * `R_DrawParticles` (r_part.js) for each blood particle as it moves.
+ *
+ * @param {Array<number>} a the particle's position last frame (world space, Quake units)
+ * @param {Array<number>} b its position now
+ * @returns {boolean} true when b is in solid and the particle is done (remove it); false otherwise or when marks are
+ *   off
+ */
 export function R_DecalBloodLanded( a, b ) {
 
 	if ( R_DecalsEnabled() === false || deps === null ) return false;
@@ -497,8 +568,15 @@ export function R_DecalBloodLanded( a, b ) {
 
 }
 
-// A body has burst at p: a pool of blood on the floor under it, wider and in more pieces the bigger it was
-// (size 1 is a zombie, 6 a shambler), and a few splashes on whatever is near
+/**
+ * A body has burst at p: a pool of blood on the floor under it, wider and in more pieces the bigger it was, and a few
+ * splashes on whatever is near. Called by `CL_ParseTEnt` (cl_tent.js) for Newer Game's `TE_GORE` when its size is over
+ * 1. Each piece is dropped to the floor (up to 80 units down); pieces that find none are skipped.
+ *
+ * @param {Array<number>} p the body's centre (world space, Quake units)
+ * @param {number} size the monster's size byte, 1 (a zombie) to 6 (a shambler): 2 + 2.2*size pieces within 14 + 7*size
+ *   units
+ */
 export function R_DecalBloodPool( p, size ) {
 
 	if ( R_DecalsEnabled() === false || deps === null ) return;
@@ -534,15 +612,27 @@ export function R_DecalBloodPool( p, size ) {
 
 }
 
-// A gib has come to rest at p: a pool of blood under it.
+/**
+ * A gib has come to rest at p: a pool of blood (radius 12..22) on the floor 8 units under it. Called by
+ * `R_DecalGibTrack`.
+ *
+ * @param {Array<number>} p the gib's origin (world space, Quake units)
+ */
 export function R_DecalGibLanded( p ) {
 
 	R_DecalPlace( 'blood', [ p[ 0 ], p[ 1 ], p[ 2 ] - 8 ], 12 + Math.random() * 10, 26 );
 
 }
 
-// Gibs are thrown and bounce; when one has stopped it leaves its pool.  Called as
-// a gib is drawn.
+/**
+ * Gibs are thrown and bounce; when one has stopped (moved under 0.6 units for 0.3 s, checked at most every 0.1 s) it
+ * leaves its pool, once. Called by `R_DrawAliasModel` (gl_rmain.js) as each gib (model flag 4, `EF_GIB`) is drawn.
+ * Keeps its state on the entity as `e._gibState`; a time earlier than the stored one (a new level or demo rewind)
+ * starts it afresh.
+ *
+ * @param {entity_t} e the gib's client entity; mutated (`_gibState`)
+ * @param {number} time `cl.time`, seconds
+ */
 export function R_DecalGibTrack( e, time ) {
 
 	if ( R_DecalsEnabled() === false || e.origin == null ) return;
@@ -574,6 +664,10 @@ export function R_DecalGibTrack( e, time ) {
 // Per frame
 //============================================================================
 
+/**
+ * Called every frame by `R_RenderView` (gl_rmain.js): hides the marks while they are switched off, fades those in
+ * their last 8 seconds (checked twice a second, by `performance.now` time) and uploads the changed vertex data.
+ */
 export function R_DecalsFrame() {
 
 	if ( mesh === null ) return;
@@ -614,7 +708,10 @@ export function R_DecalsFrame() {
 
 }
 
-// a new level: everything goes
+/**
+ * A new level: everything goes. Called by `R_NewMap` (gl_rmain.js); empties the ring and takes the mesh out of the
+ * scene (it is kept for reuse).
+ */
 export function R_DecalsClear() {
 
 	next = 0;
@@ -624,7 +721,11 @@ export function R_DecalsClear() {
 
 }
 
-// how many marks there are (for tests)
+/**
+ * How many marks there are, for tests.
+ *
+ * @returns {number} the marks in the ring, 0..384 (faded ones included until overwritten)
+ */
 export function R_DecalCount() {
 
 	return used;

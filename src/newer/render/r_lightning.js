@@ -56,6 +56,13 @@ const lerp3 = ( a, b, t ) => [ mix( a[ 0 ], b[ 0 ], t ), mix( a[ 1 ], b[ 1 ], t 
 // the source's JS noise (hash, noise1, rng), unchanged
 function hash( n ) { const x = Math.sin( n * 127.1 + 311.7 ) * 43758.5453123; return x - Math.floor( x ); }
 function noise1( x, seed = 0 ) { const i = Math.floor( x ); let f = x - i; f = f * f * ( 3 - 2 * f ); return mix( hash( i + seed * 173.31 ), hash( i + 1 + seed * 173.31 ), f ) * 2 - 1; }
+/**
+ * The source's seeded random generator (a mulberry32 step), unchanged; used for the noise texture (seed 897234) and
+ * for the per-epoch choices of leaders and branches, so the same time gives the same bolt.
+ *
+ * @param {number} seed any number, taken as an unsigned 32-bit integer
+ * @returns {function(): number} a generator of floats in 0..1 (1 excluded); each call advances it
+ */
 export function rng( seed ) { let s = seed >>> 0; return () => { s += 0x6D2B79F5; let t = Math.imul( s ^ s >>> 15, 1 | s ); t ^= t + Math.imul( t ^ t >>> 7, 61 | t ); return ( ( t ^ t >>> 14 ) >>> 0 ) / 4294967296; }; }
 
 // the source's ribbon shader (ribbonProgram), in the game's material; uEncode is 1 (the game's colour is HDR)
@@ -99,11 +106,29 @@ void main() {
 let deps = null, mesh = null, geometry = null, data = null, cursor = 0, power = 0, last = null, noise = null, gunHeld = false;
 const view = { eye: [ 0, 0, 0 ], right: [ 1, 0, 0 ], up: [ 0, 0, 1 ], forward: [ 0, 1, 0 ] };
 export const lightningStats = { floats: 0, drawn: 0 };
-// externals: scene; camera (THREE camera); muzzle() -> { point: [x,y,z], matrix: THREE.Matrix4 } | null (the held v_light);
-// beam() -> { end: [x,y,z] } | null (the player's own active TE_LIGHTNING2); allocDlight( key ) -> dlight
+/**
+ * Gives the beam its views of the game; called from gl_rmain.js when the renderer sets up a new map. Until then
+ * `R_LightningFrame` draws nothing.
+ *
+ * @param {{scene: THREE.Scene, camera: function(): THREE.Camera,
+ *   muzzle: function(): ?{point: Array<number>, matrix: THREE.Matrix4},
+ *   beam: function(): ?{end: Array<number>}, allocDlight?: function(number): dlight_t}} externals `scene` the beam is
+ *   added to; `camera()` the real camera; `muzzle()` the held v_light's true muzzle (world space) and posed gun matrix,
+ *   or null; `beam()` the player's own active TE_LIGHTNING2 endpoint (world space), or null; `allocDlight(key)` for the
+ *   light at the hit (CL_AllocDlight). Kept until the next call.
+ */
 export function R_LightningSetup( externals ) { deps = externals; }
+/**
+ * @returns {boolean} true in the Newer Game with `r_newer_lightning` on (the player's beam is then drawn here)
+ */
 export const R_LightningEnabled = () => R_NewerGame() && r_newer_lightning.value !== 0;
 
+/**
+ * The ribbon shader's noise texture: the source's 256 x 256 RGBA bytes from `rng(897234)`, repeat-wrapped, linear.
+ * Made on first use (when the beam mesh is first built) and kept for the page's lifetime.
+ *
+ * @returns {THREE.DataTexture} the shared noise texture (do not dispose)
+ */
 export function R_LightningNoise() {
 	if ( noise === null ) {
 		const bytes = new Uint8Array( 256 * 256 * 4 ), random = rng( 897234 );
@@ -221,7 +246,19 @@ function buildElectricity( t, muzzle, target, gunMatrix, energyIn ) {
 	}
 }
 
-// Every frame, after the held gun is placed. Returns the number of floats drawn.
+/**
+ * Builds and shows the beam every frame, after the held gun is placed (`R_RenderView`, gl_rmain.js), when the
+ * player's own TE_LIGHTNING2 is active and the v_light is held. Rebuilds the source's electricity (channel, leaders,
+ * plasma hood, electrode arcs, branches) in world space from the real camera, writes only the built range of the
+ * interleaved buffer, and puts a white light (radius 260, lives 0.1 s) at the hit. Power rises at the source's 34 a
+ * second; its fall (18) is not used: when the server's beam is over there is nothing to draw it to, so it goes at
+ * once. The mesh is created on the first wanted frame and re-added to `deps.scene` if it was removed.
+ *
+ * @param {number} time client time, seconds (`cl.time`); the step since the last call is clamped to 0..0.15 s
+ * @returns {number} the number of floats drawn (9 per vertex); 0 when nothing is drawn. Also updates `lightningStats`.
+ * @throws {Error} 'Lightning vertex budget exceeded.' when the bolt would need more than `LIGHTNING.maxFloats`
+ *   (64000) floats (a guard: the current segment counts use about half)
+ */
 export function R_LightningFrame( time ) {
 	if ( deps === null ) return 0;
 	const dt = last === null ? 0 : clamp( time - last, 0, .15 ); last = time;
@@ -247,8 +284,16 @@ export function R_LightningFrame( time ) {
 	return cursor;
 }
 
-// is the player's beam drawn here this frame? Then its native bolt models are left out (R_DrawEntitiesOnList, which runs
-// before the gun is placed: whether the gun was held is the last frame's, the beam and the pass are this frame's)
+/**
+ * Is the player's beam drawn here this frame? Then its native bolt models are left out (R_DrawEntitiesOnList, which
+ * runs before the gun is placed: whether the gun was held is the last frame's, the beam and the pass are this frame's).
+ *
+ * @returns {boolean} true when the native bolt models of the player's lightning should be skipped
+ */
 export const R_LightningTakesBeam = () => R_LightningEnabled() && gunHeld && deps?.beam?.() != null;
 
+/**
+ * Stops the beam at a new map (gl_rmain.js, with the other effect resets): zero power and clock, hides the mesh and
+ * takes it out of its scene (it is kept for reuse), and zeroes `lightningStats.floats`.
+ */
 export function R_LightningClear() { power = 0; last = null; cursor = 0; gunHeld = false; if ( mesh ) { mesh.visible = false; mesh.parent?.remove( mesh ); } lightningStats.floats = 0; }

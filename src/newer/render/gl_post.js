@@ -112,6 +112,13 @@ export const r_fps_target = new cvar_t( 'r_fps_target', '60' );
 const DYNRES_MIN = 0.5;
 const dyn = { scale: 1, last: 0, sum: 0, frames: 0, cool: 0, probing: false, probeEvery: 240, since: 0 };
 
+/**
+ * The current dynamic-resolution scale: the fraction of the full width and height the HDR targets are drawn at
+ * (r_dynres), updated once a frame in `R_PostBegin` from the average frame time against r_fps_target. gl_rmain.js
+ * multiplies the view size by it for screen-space effects.
+ *
+ * @returns {number} 0.5..1 (rounded to hundredths); 1 when r_dynres is 0
+ */
 export function R_DynResScale() {
 
 	return dyn.scale;
@@ -243,19 +250,36 @@ const lightingLook = { value: 0 };
 // The eye is under water, slime or lava: no drops on the lens, no edge outlines
 let underwater = false;
 
+/**
+ * Records whether the eye is under water, slime or lava (no drops on the lens, no edge outlines). Called once a
+ * frame by gl_rmain.js `R_SetupFrame` from the view leaf's contents.
+ *
+ * @param {boolean} v true when the view leaf is water, slime or lava (anything but `true` counts as false)
+ */
 export function R_PostSetUnderwater( v ) {
 
 	underwater = v === true;
 
 }
 
+/**
+ * Whether this frame goes through the shared HDR targets (decided by `R_PostBegin`), outside the classic half of
+ * the title demo. Asked by the world renderer, view effects and power vision.
+ *
+ * @returns {boolean} true while the post pipeline is drawing and the classic look is not
+ */
 export function R_PostActive() {
 
 	return postActive && classicLook.value === 0;
 
 }
 
-// Newer liquids use the shared targets, independently of advanced lighting.
+/**
+ * Whether the Newer liquids are drawn this frame. Newer liquids use the shared targets, independently of advanced
+ * lighting.
+ *
+ * @returns {boolean} `R_PostActive()` and r_newer_water is not 0
+ */
 export function R_WaterActive() {
 
 	return R_PostActive() && r_newer_water.value !== 0;
@@ -276,8 +300,17 @@ function applyGlow( material, boost ) {
 
 }
 
-// Marks a material as light emitting: it is boosted above white while the HDR
-// pipeline is running.
+/**
+ * Marks a material as light emitting: it is boosted above white while the HDR pipeline is running (its
+ * `emissiveIntensity`, or its colour when it has no emissive). Called as world, sky and level-view materials are
+ * made (gl_rsurf.js, r_levelview.js). Lava materials (boost `LAVA_BOOST`) also pulse slowly. The native tint is
+ * kept in `userData.classicGlowColor` for the isolated classic demo material. The material stays registered until
+ * it is disposed.
+ *
+ * @param {THREE.Material} material the material; mutated (`userData.glowBoost`, `baseGlowBoost`, colour/emissive)
+ * @param {number} [boost=EMISSIVE_BOOST] HDR multiplier while lit (4.5 for fullbright texels; see
+ *   `R_GlowBoostForTexture`)
+ */
 export function R_RegisterGlow( material, boost = EMISSIVE_BOOST ) {
 
 	material.userData.glowBoost = boost;
@@ -312,6 +345,12 @@ function pulseLava( seconds ) {
 
 }
 
+/**
+ * The glow boost a liquid surface's material registers with (gl_rsurf.js, as the material is made).
+ *
+ * @param {string} name texture name, e.g. '*lava1' (case-insensitive)
+ * @returns {number} 6 (`LAVA_BOOST`) for '*lava…', 1.5 for '*slime…', otherwise 1 (no glow)
+ */
 export function R_GlowBoostForTexture( name ) {
 
 	const n = name.toLowerCase();
@@ -602,8 +641,12 @@ function patchGBufferShader( shader ) {
 
 }
 
-// Installed by the renderer's start-up (R_Init) and again by every R_PostBegin, before anything is drawn into the HDR
-// target; idempotent. (It ran as this module loaded until card [44g]: debt D10.)
+/**
+ * Installs the G-buffer patch as `THREE.Material.prototype.onBeforeCompile`, so every material drawn into the HDR
+ * target writes all attachments (materials with their own `onBeforeCompile` keep theirs). Installed by the
+ * renderer's start-up (R_Init) and again by every R_PostBegin, before anything is drawn into the HDR target;
+ * idempotent. (It ran as this module loaded until card [44g]: debt D10.) Lasts for the page; it is never removed.
+ */
 export function R_PostInstallGBufferPatch() {
 
 	THREE.Material.prototype.onBeforeCompile = patchGBufferShader;
@@ -658,8 +701,16 @@ function applyDetail( material ) {
 
 }
 
-// World materials keep normal maps and parallax independently of lighting,
-// and always write the normal G-buffer.
+/**
+ * Registers a world material for surface detail: generated normal maps, parallax and the normal G-buffer. World
+ * materials keep normal maps and parallax independently of lighting, and always write the normal G-buffer.
+ * Called by gl_rsurf.js as each world material is made. Installs its own `onBeforeCompile` and program cache key,
+ * applies the current detail state, and follows `newertextureupdated` events on `diffuse` (asynchronous art and
+ * height can arrive after the material compiles). Registered until the material is disposed.
+ *
+ * @param {THREE.Material} material world surface material; mutated (shader hooks, normal map, emissive map, userData)
+ * @param {?THREE.Texture} diffuse its diffuse texture, the source of its normal map and fullbright emission
+ */
 export function R_RegisterDetail( material, diffuse ) {
 
 	bindDetailTexture( material, diffuse );
@@ -682,7 +733,14 @@ export function R_RegisterDetail( material, diffuse ) {
 
 }
 
-// the material's diffuse texture changed (texture animation)
+/**
+ * The material's diffuse texture changed (texture animation; gl_rsurf.js `R_UpdateAnimatedMaterial`): rebinds its
+ * texture listener and re-applies its normal and emissive maps. Does nothing for a material not registered with
+ * `R_RegisterDetail`.
+ *
+ * @param {THREE.Material} material a registered world material
+ * @param {?THREE.Texture} diffuse the new diffuse texture
+ */
 export function R_RefreshDetail( material, diffuse ) {
 
 	if ( ! detailMaterials.has( material ) ) return;
@@ -727,6 +785,13 @@ export const MAX_LIQUID_REGIONS = 6;
 // liquid, so you can see out.   [ { above, below, aboveVis, belowVis } ]
 let liquidLinks = [];
 
+/**
+ * The liquid visibility links built by `R_BuildWorldLights`, used by `R_MarkLeaves` (gl_rsurf.js) so the bottom
+ * of a translucent pool is seen from above and the outside from within.
+ *
+ * @returns {Array<{ above: object, below: object, aboveVis: Uint8Array, belowVis: Uint8Array }>} the live module
+ *   list (replaced at each map; do not mutate): the leaves either side of a liquid face and their PVS rows
+ */
 export function R_GetLiquidLinks() {
 
 	return liquidLinks;
@@ -759,6 +824,15 @@ export const LIQUID_LOOKS = Object.freeze( [
 	Object.freeze( { name: 'Toxic', opacity: 0.22, absorption: [ 0.017, 0.0028, 0.024 ], scatter: [ 0.15, 0.8, 0.025 ], emission: [ 0.035, 0.20, 0.002 ], caustic: 2.6, refraction: 0.8, ripple: 0.80, speed: 0.70 } )
 ] );
 
+/**
+ * Which of `LIQUID_LOOKS` a liquid uses: the r_water_look choice (1 clear .. 4 toxic) when set, otherwise the
+ * map's own look. Actual slime always retains its hazard identity.
+ *
+ * @param {number} kind 0 water, 1 slime
+ * @param {number} [mapLook=0] the look authored by the texture (2 brown sediment for E1M3's water and E3's murky
+ *   water, else 0)
+ * @returns {number} look index 0 Clear, 1 Tinted, 2 Muddy, 3 Toxic
+ */
 export function R_LiquidLookIndex( kind, mapLook = 0 ) {
 
 	if ( kind === 1 ) return 3; // actual slime always retains its hazard identity
@@ -768,6 +842,14 @@ export function R_LiquidLookIndex( kind, mapLook = 0 ) {
 
 }
 
+/**
+ * The opacity of a liquid surface's material (gl_rsurf.js, as a water material is made) under the current look.
+ *
+ * @param {string} name texture name, e.g. '*04water1'
+ * @param {number} fallback the native opacity, 0..1
+ * @returns {number} the look's opacity (0.05..0.22) for see-through water or slime; `fallback` when r_newer_water
+ *   is 0 or the texture is not see-through liquid (lava, teleporters, solid)
+ */
 export function R_LiquidOpacity( name, fallback ) {
 
 	if ( r_newer_water.value === 0 ) return fallback;
@@ -840,12 +922,27 @@ function mergeLiquidFaces( faces ) {
 
 }
 
+/**
+ * The level's lava pools, merged from its level lava faces at `R_BuildWorldLights` (the heat shimmers over them).
+ *
+ * @returns {Array<{ kind: 2, mapLook: number, min: Array<number>, max: Array<number>, z: number,
+ *   probePoints: Array }>} the live module list, replaced at each map: xy bounds and surface height in Quake units
+ */
 export function R_GetLavaRegions() {
 
 	return lavaRegions;
 
 }
 
+/**
+ * The level's pools of water and slime, merged from their level faces at `R_BuildWorldLights` (used by the mist,
+ * the reflection probes and the liquid passes). A ray that passes through one loses light to it, and surfaces
+ * beneath it get caustics.
+ *
+ * @returns {Array<{ kind: number, mapLook: number, min: Array<number>, max: Array<number>, z: number,
+ *   probePoints: Array<Array<number>> }>} the live module list, replaced at each map: kind 0 water / 1 slime,
+ *   xy bounds and surface height in Quake units, and safe reflection-probe points above the surface
+ */
 export function R_GetLiquidRegions() {
 
 	return liquidRegions;
@@ -991,6 +1088,17 @@ function surfaceEmission( surf ) {
 const SURFACE_CELL = 192;
 const MAX_SURFACE_LIGHTS = 500;
 
+/**
+ * Builds the level's light database once per map (gl_rsurf.js `GL_BuildLightmaps`): the map's light entities
+ * (power = light / 300, colour from `_color` or the class), exit-fixture lights, and up to 500 clustered emissive
+ * surface lights (lava, light panels, glowing buttons), strongest first; also the water, slime and lava regions,
+ * the liquid visibility links, whether the map has sky, the sky analysis and cookie, and the sun direction
+ * (worldspawn `_sun_mangle` "yaw pitch" overrides the default). Replaces everything from the previous map.
+ *
+ * @param {?object} model the world brush model (`cl.worldmodel`); null clears the database
+ * @returns {Array<object>} the new world light list (also kept for `R_GetWorldLights`): each `{ pos, color, power,
+ *   radius, style, leaf, emitter, ... }` with `pos` in Quake units
+ */
 export function R_BuildWorldLights( model ) {
 
 	worldLights = [];
@@ -1218,6 +1326,16 @@ function disposeOccluder() {
 
 }
 
+/**
+ * Builds the sun occluder for a map: one static mesh, on `SUN_SHADOW_LAYER` only, of every solid world surface
+ * (no sky, no liquids, no hidden arch surfaces in Newer), with the retained wall relief in Newer Game when
+ * normals and textures are on. Disposes the previous occluder first and gives the geometry to the point-shadow
+ * atlas. Called by gl_rsurf.js `R_BuildWorldOccluder` and when demon relief bakes arrive (r_demonbakes.js).
+ * Kept until the next build.
+ *
+ * @param {?object} model the world brush model
+ * @returns {number} the number of triangles in the occluder; 0 when there is no model or nothing to cast
+ */
 export function R_BuildSunOccluder( model ) {
 	const bake=model&&R_NewerGame()&&r_newer_normals.value!==0&&r_newer_textures.value!==0?R_DemonBakePrepare(model,model.surfaces||[]):null;
 
@@ -1311,7 +1429,17 @@ function srgbToLinear( v ) {
 
 }
 
-// analyse RGBA sky layers; returns { luma, color, contrast, cookie: Float32Array(n) } or null
+/**
+ * Analyse RGBA sky layers: the clouds are blended over the solid layer by their alpha and judged in display values
+ * (not linear light). Used by the sky cookie built at `R_BuildWorldLights` (and by tests).
+ *
+ * @param {?ArrayLike<number>} solid the solid sky layer, RGBA bytes, at least `size`² x 4
+ * @param {?ArrayLike<number>} cloud the cloud layer, RGBA bytes (ignored when shorter than the solid layer)
+ * @param {number} size side of the square layers, texels
+ * @returns {?{ luma: number, color: Array<number>, contrast: number, cookie: Float32Array }} mean luma 0..1, the
+ *   average colour normalised so its largest channel is 1, contrast 0..1, and a mean-1 cookie (brighter than
+ *   average sky passes more light), one value per texel; null when `solid` is missing or too short
+ */
 export function R_AnalyseSky( solid, cloud, size ) {
 
 	if ( solid == null || solid.length < size * size * 4 ) return null;
@@ -1355,7 +1483,12 @@ export function R_AnalyseSky( solid, cloud, size ) {
 
 }
 
-// shared strength derived from the sky: 0 = a dark sky, 1 = a bright clear one
+/**
+ * Shared strength derived from the sky: 0 = a dark sky, 1 = a bright clear one.
+ *
+ * @param {number} luma mean sky luma 0..1 (from `R_AnalyseSky`)
+ * @returns {number} 0..1, a smoothstep from luma 0.05 to 0.45
+ */
 export function R_SkyBrightness( luma ) {
 
 	const t = Math.max( 0, Math.min( 1, ( luma - 0.05 ) / 0.4 ) );
@@ -1363,6 +1496,12 @@ export function R_SkyBrightness( luma ) {
 
 }
 
+/**
+ * The current map's sky analysis, rebuilt at `R_BuildWorldLights`. Not called elsewhere in the current tree.
+ *
+ * @returns {{ luma: number, color: Array<number>, contrast: number }} the live module object (do not mutate); the
+ *   default `{ luma: 0.5, color: [1, 0.85, 0.65], contrast: 0 }` when the map's sky could not be analysed
+ */
 export function R_GetSkyInfo() {
 
 	return skyInfo;
@@ -1458,6 +1597,12 @@ function buildSkyCookie() {
 
 }
 
+/**
+ * The light database built by `R_BuildWorldLights` (gl_rmain.js `R_ShadowLights` picks monsters' floor-shadow
+ * lights from it).
+ *
+ * @returns {Array<object>} the live module list, replaced at each map (do not mutate)
+ */
 export function R_GetWorldLights() {
 
 	return worldLights;
@@ -1467,12 +1612,22 @@ export function R_GetWorldLights() {
 // the world renderer reports when it draws sky; sun shafts only make sense then
 let skySeen = false;
 
+/**
+ * The world renderer reports when it draws sky (gl_rsurf.js `R_DrawSkyChain`); sun shafts only make sense then.
+ * Reset by every `R_PostBegin`.
+ */
 export function R_PostNoteSky() {
 
 	skySeen = true;
 
 }
 
+/**
+ * Whether the current map has any sky surface (found by `R_BuildWorldLights`); gl_rmain.js passes it to
+ * `R_PostLightsFrame` and `R_PostFinish` as `hasSkyView`.
+ *
+ * @returns {boolean} true when the world model has a sky surface
+ */
 export function R_MapHasSky() {
 
 	return hasSky;
@@ -1540,8 +1695,17 @@ function consider( px, py, pz, color, power, radius, view, add = 0, source = nul
 
 const FIRE_LIGHT = /torch|flame|fire|brazier/i;
 
-// How bright a fire is at a moment: a slow swell and quick flutters, a little
-// different for every fire so a row of torches does not pulse together.
+/**
+ * How bright a fire is at a moment: a slow swell and quick flutters, a little different for every fire (phased by
+ * its position) so a row of torches does not pulse together. Used for the flickering map lights here, for the
+ * fire models' light (gl_rmain.js) and for the torch fire (r_torchfire.js).
+ *
+ * @param {number} x fire position x, Quake units
+ * @param {number} y fire position y, Quake units
+ * @param {number} z fire position z, Quake units
+ * @param {number} time client time, seconds
+ * @returns {number} brightness multiplier, 0.55..1.25
+ */
 export function R_FireFlicker( x, y, z, time ) {
 
 	const ph = ( x * 0.013 + y * 0.017 + z * 0.011 ) % 6.2832;
@@ -1555,6 +1719,13 @@ export function R_FireFlicker( x, y, z, time ) {
 // each frame by the renderer (gl_rmain.js) rather than imported, so post-processing does not depend on the interface
 // (card [44g], debt D1c)
 let portraitLight = null;
+/**
+ * Sets the Bestiary's portrait light for the next light selection; called each frame by gl_rmain.js before
+ * `R_PostLightsFrame`. Kept until replaced.
+ *
+ * @param {?{ pos: Array<number>, color: Array<number>, power: number, radius: number, fade: number }} light the
+ *   portrait light (world space, fade 0..1), or null/undefined when no first-sighting page is up
+ */
 export function R_PostSetPortraitLight( light ) {
 
 	portraitLight = light ?? null;
@@ -1616,14 +1787,44 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 
 }
 
-// Read-only diagnostic/public-test endpoint; normal rendering uses the same
-// selection without allocating snapshots every frame.
+/**
+ * Read-only diagnostic/public-test endpoint; normal rendering uses the same selection without allocating snapshots
+ * every frame. Runs the per-frame light selection: map lights in the PVS (scaled by their light style, emitter
+ * gain and flicker), power-up lights, Rend the Veil lights, the Bestiary portrait light and live dynamic lights,
+ * keeping the `MAX_VOLUME_LIGHTS` best by power over distance. Overwrites the shared selection used by rendering.
+ *
+ * @param {THREE.Matrix4} viewMatrix world-to-view matrix (`camera.matrixWorldInverse`)
+ * @param {number} visframe the current visibility frame (`r_visframecount`); a light's leaf must carry it
+ * @param {?ArrayLike<number>} styles light style values (`d_lightstylevalue`, 264 = normal)
+ * @param {?Array<object>} dlights client dynamic lights (`cl_dlights`)
+ * @param {number} time client time, seconds
+ * @returns {Array<{ source: ?object, position: Array<number>, color: Array<number>, range: number, score: number,
+ *   direction: Array<number>, cone: Array<number> }>} fresh copies: world position (Quake units), HDR colour
+ *   (colour x power x light gain), receiver range in Quake units and the ranking score
+ */
 export function R_SelectWorldLights( viewMatrix, visframe, styles, dlights, time ) {
  selectLights( viewMatrix, visframe, styles, dlights, time );
  return _selected.slice( 0, selectedCount ).map( light => ( { source: light.source, position: light.worldPos.slice(), color: light.color.slice(), range: light.range, score: light.score, direction:light.direction.slice(), cone:light.cone.slice() } ) );
 }
+/**
+ * Direct access to the point-shadow atlas, for GPU trials (not used by the engine).
+ *
+ * @returns {?PointShadowAtlas} the pipeline's live atlas, or null before the pipeline exists
+ */
 export function R_PointShadowAtlas() { return gpu?.pointShadows || null; }
+/**
+ * Point-shadow residency for the start-up status (gl_rmain.js).
+ *
+ * @returns {object} the atlas's `status()` (counts of ready, pending and resident slots, chunks, captures...), or
+ *   `{ ready: 0, pending: 0, resident: 0, chunks: 0 }` before the pipeline exists
+ */
 export function R_PointShadowStatus() { return gpu?.pointShadows?.status() || { ready: 0, pending: 0, resident: 0, chunks: 0 }; }
+/**
+ * Makes the point-shadow atlas drop its borrowed clone of a dynamic caster (r_axecorpses.js, as a mesh is disposed),
+ * so no reference to its geometry is kept. Does nothing before the pipeline exists.
+ *
+ * @param {THREE.Mesh} mesh the mesh previously drawn as a dynamic caster
+ */
 export function R_ReleaseShadowCaster( mesh ) { gpu?.pointShadows?.forgetDynamic( mesh ); }
 
 //============================================================================
@@ -3344,7 +3545,13 @@ function runPass( renderer, material, target ) {
 
 }
 
-// True when the HDR pipeline can run on this renderer
+/**
+ * True when the HDR pipeline can run on this renderer: WebGL2 with float or half-float colour buffers. Checked by
+ * `R_PostBegin` every frame.
+ *
+ * @param {?THREE.WebGLRenderer} renderer the renderer
+ * @returns {boolean} whether HDR render targets can be used
+ */
 export function R_PostSupported( renderer ) {
 
 	if ( renderer == null || renderer.capabilities == null || renderer.capabilities.isWebGL2 === false ) return false;
@@ -3353,6 +3560,23 @@ export function R_PostSupported( renderer ) {
 }
 
 let heightFrameSnapshot = null;
+/**
+ * Prepares this frame's lighting before the world is drawn (gl_rmain.js, after `R_PostBind`; again from
+ * `R_PostFinish` when a caller skipped it): selects the lights, snapshots them and the flashlight beam, updates the
+ * point, sun and spot shadow maps for the visible casters, fills the shared shadow uniforms and the height-shadow
+ * frame. The snapshot is what `R_PostFinish` draws with when its camera, time and visframe match.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ * @param {THREE.Scene} scene the world scene (traversed for shadow casters)
+ * @param {THREE.Camera} camera the view camera; its world matrix is updated
+ * @param {number} visframe the current visibility frame (`r_visframecount`)
+ * @param {?ArrayLike<number>} styles light style values (`d_lightstylevalue`)
+ * @param {?Array<object>} dlights client dynamic lights (`cl_dlights`)
+ * @param {number} time client time, seconds
+ * @param {boolean} hasSkyView whether the map has sky (`R_MapHasSky`); enables the near sun shadow
+ * @returns {?{ camera: THREE.Camera, visframe: number, time: number, lights: Array<object>, beam: object,
+ *   hasSkyView: boolean }} the frame snapshot (copied lights and beam), or null when the pipeline does not exist
+ */
 export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dlights, time, hasSkyView ) {
  if ( ! gpu ) { heightFrameSnapshot = null; R_HeightShadowScope( false ); return null; }
  camera.updateMatrixWorld( true );
@@ -3415,6 +3639,19 @@ through the HDR pipeline; the caller then draws the world into the target that
 R_PostBind selects.
 ================
 */
+/**
+ * Called every frame by gl_rmain.js `R_RenderView` (with `enabled` false in XR, during environment-map captures or
+ * without a renderer, so its state is reset). Installs the G-buffer patch, sets the glow, detail, linear-texture
+ * and animation modes for the frame, creates the pipeline on first use and sizes its targets to the
+ * dynamic-resolution scale (even dimensions, at least 16).
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ * @param {boolean} enabled whether the Newer renderer may run this frame
+ * @param {number} width view width, device pixels
+ * @param {number} height view height, device pixels; both must exceed 8
+ * @returns {boolean} true when r_hdr is on, a Newer option needs the shared targets and the renderer supports
+ *   them; false otherwise (power and quad vision are then reset)
+ */
 export function R_PostBegin( renderer, enabled, width, height ) {
 	R_PostInstallGBufferPatch();
 	heightFrameSnapshot = null; R_HeightShadowScope( false );
@@ -3445,6 +3682,12 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 
 }
 
+/**
+ * Binds the HDR multi-target (colour, normal, albedo and height-mask attachments, with depth) as the render
+ * target for the world draw. Only valid after `R_PostBegin` returned true.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ */
 export function R_PostBind( renderer ) {
 
 	renderer.setRenderTarget( gpu.hdr );
@@ -3509,7 +3752,20 @@ function renderSunShadow( renderer, scene, camera ) {
 
 }
 
-// Before the frame is drawn: a pool that has just come into view gets its reflection probe
+/**
+ * Before the frame is drawn: a pool that has just come into view gets its reflection probe. Passes the water and
+ * slime pools within 2400 Quake units of the camera, nearest first, to `R_WaterProbeUpdate`. Does nothing when the
+ * Newer water is off, r_reflect is 0 or the map has no pools. A cached intro probe must reflect final enabled art,
+ * not an earlier native texture that is about to be replaced, so during start-up it waits for `ready`; normal play
+ * is unchanged. Called by gl_rmain.js before the world draw.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ * @param {THREE.Scene} scene the world scene
+ * @param {THREE.Camera} camera the view camera (its world matrix must be current)
+ * @param {function} showAll the renderer's `R_WorldShowAll`, passed to the probe capture
+ * @param {{ initializing?: boolean, ready?: boolean }} [options] `initializing` while the intro loading picture is
+ *   held; `ready` once the start-up art has settled
+ */
 export function R_WaterProbesFrame( renderer, scene, camera, showAll, { initializing = false, ready = true } = {} ) {
 
 	if ( ! R_WaterActive() || r_reflect.value <= 0 || liquidRegions.length === 0 ) return;
@@ -3534,6 +3790,14 @@ export function R_WaterProbesFrame( renderer, scene, camera, showAll, { initiali
 
 }
 
+/**
+ * How many nearby pools' reflection probes are captured, for the start-up status that holds the first picture
+ * until reflections are ready (gl_rmain.js).
+ *
+ * @param {THREE.Camera} camera the view camera (its world matrix must be current)
+ * @returns {{ pending: number, ready: number }} from `R_WaterProbeReadiness` over the water/slime pools within
+ *   2400 units, nearest first; both 0 when the Newer water is off or r_reflect is 0
+ */
 export function R_WaterStartupStatus(camera){
  if(!R_WaterActive()||r_reflect.value<=0)return {pending:0,ready:0};
  const p=camera.matrixWorld.elements,near=[];
@@ -3550,6 +3814,21 @@ direct lighting, bloom, grade and tone map.  viewport is the on-screen
 rectangle in logical pixels ( lx, ly, lw, lh ).
 ================
 */
+/**
+ * Called by gl_rmain.js after the world has been drawn into the HDR target (and only when `R_PostBegin` returned
+ * true); ends by drawing the frame to the screen, into the left half only while `R_PostSetSplit` is on.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ * @param {THREE.Scene} scene the world scene
+ * @param {THREE.Camera} camera the view camera
+ * @param {{ lx: number, ly: number, lw: number, lh: number }} viewport the on-screen rectangle, logical pixels
+ * @param {number} visframe the current visibility frame (`r_visframecount`)
+ * @param {?ArrayLike<number>} styles light style values (`d_lightstylevalue`)
+ * @param {?Array<object>} dlights client dynamic lights (`cl_dlights`)
+ * @param {number} time client time, seconds
+ * @param {number} exposure the renderer's tone-mapping exposure (multiplied by the HDR exposure while lit)
+ * @param {boolean} hasSkyView whether the map has sky (`R_MapHasSky`): outdoor exposure and softer bloom
+ */
 export function R_PostFinish( renderer, scene, camera, viewport, visframe, styles, dlights, time, exposure, hasSkyView ) {
 
 	const p = gpu;
@@ -3879,12 +4158,23 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 // the title demo's half-and-half comparison: the final pass fills the left half only
 let splitLeft = false;
 
+/**
+ * The title demo's half-and-half comparison: while on, the final pass fills the left half only. Set each frame by
+ * gl_rmain.js before `R_PostFinish`.
+ *
+ * @param {boolean} on true to draw only the left half (anything but `true` counts as false)
+ */
 export function R_PostSetSplit( on ) {
 
 	splitLeft = on === true;
 
 }
 
+/**
+ * Frees the pipeline: resets power and quad vision, the power-up fire target and the Rend the Veil optics, then
+ * disposes the HDR targets, point-shadow atlas and sun shadow target. The next `R_PostBegin` that runs the
+ * pipeline builds it again. Not called by the engine in the current tree; tests call it between fixtures.
+ */
 export function R_PostShutdown() {
 	R_PowerVisionReset(true);
 	R_QuadVisionReset();

@@ -18,12 +18,58 @@ const sub=(a,b)=>a.map((v,i)=>v-b[i]);
 const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 const add=(a,b,d)=>a.map((v,i)=>v+b[i]*d);
 let hidden=new WeakSet(), hiddenModels=new WeakMap(), hiddenCount=0, hiddenModelCount=0, revision=0;
+/**
+ * Forgets every hidden arch surface and model and bumps the revision. Called by `sv_seamless.js` when a level's
+ * seamless exits are set up or reset, and when a way back is shut (the only arch surfaces ever hidden are the way
+ * back's). The hidden sets otherwise live for the current level.
+ */
 export function R_ClearArchHidden(){hidden=new WeakSet();hiddenModels=new WeakMap();hiddenCount=0;hiddenModelCount=0;revision++;}
+/**
+ * Hides world surfaces from drawing (Newer Game only): the interior blockers `R_MeasureArchFrame` found inside a way
+ * back's arch. Bumps the revision so the world occluder and batch visibility are rebuilt. Kept until
+ * `R_ClearArchHidden`.
+ *
+ * @param {Iterable<msurface_t>} surfaces the surfaces to hide; held weakly
+ */
 export function R_HideArchSurfaces(surfaces){for(const s of surfaces){if(!hidden.has(s))hiddenCount++;hidden.add(s);}revision++;}
+/**
+ * Hides one inline brush model (a door or bars inside a way back's arch) from drawing while its physical brush stays
+ * solid. Bumps the revision. Kept until `R_ClearArchHidden`.
+ *
+ * @param {string} name the brush model name, e.g. `*12`
+ * @param {?Array<msurface_t>} surfaces the world model's surface array, used as the key so a different world never
+ *   matches; nothing happens when absent
+ */
 export function R_HideArchModel(name,surfaces){if(!surfaces)return;let names=hiddenModels.get(surfaces);if(!names){names=new Set();hiddenModels.set(surfaces,names);}if(!names.has(name))hiddenModelCount++;names.add(name);revision++;}
+/**
+ * Tells whether a world surface was hidden by `R_HideArchSurfaces`. Called per surface while building and drawing the
+ * world (`gl_rsurf.js`, `gl_post.js`), which also require `R_NewerGame()`.
+ *
+ * @param {?msurface_t} surface the surface to test
+ * @returns {boolean} true when it is hidden
+ */
 export function R_ArchSurfaceHidden(surface){return !!surface&&hidden.has(surface);}
+/**
+ * Tells whether an inline brush model was hidden by `R_HideArchModel` for this world. Read by `gl_rsurf.js` when a
+ * brush entity is drawn (`userData.archHidden`).
+ *
+ * @param {string} name the brush model name, e.g. `*12`
+ * @param {?Array<msurface_t>} surfaces the model's surface array (shared with the world model)
+ * @returns {boolean} true when it is hidden
+ */
 export function R_ArchModelHidden(name,surfaces){return !!surfaces&&hiddenModels.get(surfaces)?.has(name)===true;}
+/**
+ * Returns a counter that changes on every hide or clear, so `gl_rsurf.js` knows when to rebuild the world occluder and
+ * re-apply batch visibility.
+ *
+ * @returns {number} a monotonically increasing integer (starts at 0 when the module loads)
+ */
 export function R_ArchHiddenRevision(){return revision;}
+/**
+ * Tells whether anything is hidden at all, letting the renderer skip the per-surface restore pass.
+ *
+ * @returns {boolean} true when at least one surface or model is hidden
+ */
 export function R_HasArchHidden(){return hiddenCount>0||hiddenModelCount>0;}
 
 function vertices(model,surface){
@@ -54,6 +100,27 @@ function ray(faces,origin,direction){
 	}
 	return found;
 }
+/**
+ * Measures the real depth of the arch around a level exit in the BSP, with no guessed constant: a front face with a
+ * door/arch-like texture name facing back along `through`, plus left, right and roof throat faces, and an extrusion
+ * whose far end has left, right and horizontal faces that agree. Called by `sv_seamless.js` when a level's exits are
+ * set up: outgoing crossings are moved to the far face, and the way back (`returning`) also gets the interior
+ * blockers to hide. Only faces within the box -128..160 (along `through`), -256..256 (along `tangent`) and -48..400
+ * (height) Quake units of the crossing centre are considered.
+ *
+ * @param {model_t} model the world model (`sv.worldmodel`); its `firstmodelsurface`/`nummodelsurfaces` range is scanned
+ * @param {{ kind: string, center: Array<number>, through: Array<number>, tangent: Array<number> }} transform a level
+ *   crossing from `r_levelgraph.js`; only `kind: 'plane'` is measured. `center` is the crossing point (Quake units,
+ *   world space), `through` the unit direction out through the exit, `tangent` the horizontal unit direction across it
+ * @param {boolean} [returning=false] true for the way back into this level: the front marker may lie 4 units behind
+ *   to 128 ahead of the centre (otherwise 128 behind to 32 ahead) and blockers are collected
+ * @returns {?{ near: number, far: number, depth: number, opening: { axisA: Array<number>, axisB: Array<number>,
+ *   a0: number, a1: number, b0: number, b1: number, shift: Array<number> }, blockers: Array<msurface_t>,
+ *   throat: Array<number> }} distances along `through` from the centre (Quake units) to the arch's near and far faces
+ *   (depth 4..128), the opening rectangle in tangent/vertical coordinates, the fully contained interior surfaces
+ *   (empty unless `returning`) and the surface indices of the left/right/roof throat faces; null when no arch is found
+ *   or `transform` is not a plane
+ */
 export function R_MeasureArchFrame(model,transform,returning=false){
 	if(!model?.surfaces||transform.kind!=='plane')return null;
 	const t=transform,faces=[];

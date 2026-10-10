@@ -44,18 +44,51 @@ export const RIPPLE = Object.freeze( {
 export const STRENGTH = Object.freeze( { pellet: .35, nail: .5, grenade: .8, rocket: 1 } );
 
 let deps = null;
-// externals: contents( [ x, y, z ] ) -> BSP contents or undefined; portals() -> [ { normal, center, min, max } ]
+/**
+ * Gives the detector its views of the world; called from gl_rmain.js when the renderer sets up a new map, before any
+ * segment is looked at (until then `R_ImpactSegment` does nothing).
+ *
+ * @param {{contents?: function(Array<number>): (number|undefined), portals?: function(): Array<{normal: Array<number>,
+ *   center: Array<number>, min: Array<number>, max: Array<number>}>}} externals `contents([x, y, z])` gives the BSP
+ *   contents at a world point, or undefined with no world; `portals()` lists the standing portal openings (world
+ *   space, Quake units). Kept until the next call.
+ */
 export function R_ImpactRipplesSetup( externals ) { deps = externals; }
 
 const events = []; // { kind: 0 water | 1 metal, x, y, z, t0, strength }
 
+/**
+ * Forgets every hit in the list; called from gl_rmain.js at a new map (with `R_WavesReset`), so nothing outlives its
+ * level.
+ */
 export function R_ImpactRippleReset() { events.length = 0; }
+/**
+ * @returns {number} how many hits are in the list now (both kinds)
+ */
 export const R_ImpactRippleCount = () => events.length;
 
-// whoever draws the ripples (r_waves.js) hears of each one; `plane` is the portal's, for a metal one
 let listener = null;
+/**
+ * Sets whoever draws the ripples (r_waves.js's `R_WaveImpact`, registered by gl_rmain.js at map setup); it hears of
+ * each hit as `R_AddImpactRipple` records it. One listener at a time; a later call replaces it.
+ *
+ * @param {?function(number, number, number, number, number, number, ?object): void} fn called as
+ *   `(kind, x, y, z, strength, time, plane)`; `plane` is the portal's, for a metal one, else null. null stops telling.
+ */
 export function R_ImpactRippleListen( fn ) { listener = fn; }
 
+/**
+ * Records one hit and tells the listener. At most 8 water and 8 metal hits are kept; when a kind is full its oldest is
+ * dropped.
+ *
+ * @param {number} kind 0 water (a pool's surface), 1 metal (a portal)
+ * @param {number} x hit point, world space, Quake units
+ * @param {number} y hit point, world space, Quake units
+ * @param {number} z hit point, world space, Quake units
+ * @param {number} strength 0..1 disturbance (`STRENGTH`: pellet .35, nail .5, grenade .8, rocket 1; times .6 leaving water)
+ * @param {number} time client time of the hit, seconds (`cl.time`)
+ * @param {?object} [plane=null] the portal opening `{normal, center, min, max}` for a metal hit
+ */
 export function R_AddImpactRipple( kind, x, y, z, strength, time, plane = null ) {
 
 	const max = kind === 0 ? RIPPLE.maxWater : RIPPLE.maxMetal;
@@ -86,7 +119,24 @@ function inPortal( planes, x, y, z ) {
 
 }
 
-// One segment of something's path this frame, ( ax, ay, az ) to ( bx, by, bz ), at `time`.
+/**
+ * Looks at one segment of something's path this frame, (ax, ay, az) to (bx, by, bz), at `time`. Called by
+ * `R_ImpactMissile` and by r_shotgun.js for each pellet's flight this frame. If the ends are on different sides of a
+ * water/slime surface, the crossing is found by 8 bisections on the BSP contents and recorded as a water hit (unless it
+ * lies in a portal's opening: a teleporter's brush counts as water to the BSP); if the segment crosses a portal's plane
+ * inside its opening (taken 4 units larger), a metal hit is recorded there. Does nothing before
+ * `R_ImpactRipplesSetup`, with `r_impactripples 0`, or in Classic.
+ *
+ * @param {number} ax segment start, world space, Quake units
+ * @param {number} ay segment start, world space, Quake units
+ * @param {number} az segment start, world space, Quake units
+ * @param {number} bx segment end, world space, Quake units
+ * @param {number} by segment end, world space, Quake units
+ * @param {number} bz segment end, world space, Quake units
+ * @param {number} time client time, seconds
+ * @param {number} strength 0..1 (see `STRENGTH`); leaving the water records .6 of it, a smaller disturbance than going in
+ * @returns {number} how many hits were recorded (0, or 1 water plus one per portal crossed)
+ */
 export function R_ImpactSegment( ax, ay, az, bx, by, bz, time, strength ) {
 
 	if ( deps === null || r_impactripples.value === 0 || ! R_NewerGame() ) return 0;
@@ -137,8 +187,18 @@ export function R_ImpactSegment( ax, ay, az, bx, by, bz, time, strength ) {
 }
 
 const NAILS = new Set( [ 'progs/spike.mdl', 'progs/s_spike.mdl', 'progs/laser.mdl' ] );
-// An entity that moved from `from` to `to` this frame: if it is a rocket, a grenade or a nail, its segment is looked at. (A jump of
-// more than 128 units is a teleport or a new entity, not a flight.)
+/**
+ * An entity that moved from `from` to `to` this frame: if it is a rocket, a grenade or a nail, its segment is looked
+ * at. Called per drawn entity per frame from CL_LinkPacketEntities (live games) and CL_RelinkEntities (demos). A jump
+ * of more than 128 units on any axis is a teleport or a new entity, not a flight. The lava fountain's ball carries the
+ * rocket's flag and is ignored.
+ *
+ * @param {?object} model the entity's model_t (rocket = flags & 1, grenade = flags & 2, nail by name)
+ * @param {Array<number>} from last frame's origin, world space, Quake units
+ * @param {Array<number>} to this frame's origin, world space, Quake units
+ * @param {number} time client time, seconds
+ * @returns {number} hits recorded, as `R_ImpactSegment`; 0 for anything else
+ */
 export function R_ImpactMissile( model, from, to, time ) {
 
 	if ( model == null || model.name === 'progs/lavaball.mdl' ) return 0; // (the lava fountain's ball carries the rocket's flag)
@@ -155,6 +215,15 @@ export const waterRows = new Float32Array( RIPPLE.maxWater * 4 ), metalRows = ne
 export const waterAmp = new Float32Array( RIPPLE.maxWater ), metalAmp = new Float32Array( RIPPLE.maxMetal );
 export const state = { nWater: 0, nMetal: 0 };
 
+/**
+ * Ages the list once per rendered frame (`R_RenderView`, gl_rmain.js) and packs the rings alive at `time` into the
+ * exported `waterRows` / `metalRows` (x, y, z, age per row, unused rows age -1) and `waterAmp` / `metalAmp`. Drops
+ * hits older than their life (water 2.6 s, metal 1.8 s), everything when `r_impactripples` is 0, and everything when
+ * the clock jumps back more than a second (a demo loop, a new game). Hits with a future time are kept but not packed.
+ *
+ * @param {number} time client time, seconds (`cl.time`, 0 with no client)
+ * @returns {{nWater: number, nMetal: number}} the shared `state` object (reused every frame): rows filled of each kind
+ */
 export function R_ImpactRippleFrame( time ) {
 
 	let nw = 0, nm = 0;

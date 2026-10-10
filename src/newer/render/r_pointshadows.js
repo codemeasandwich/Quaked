@@ -39,8 +39,16 @@ function coordinates( value ) {
 
 }
 
-// Matches the six explicit capture cameras. UVs increase right/up inside each
-// atlas face; dominant-axis ties choose X, then Y, consistently in JS and GLSL.
+/**
+ * Which cube face, and where on it, a direction from a light falls in the shadow atlas. Matches the six explicit
+ * capture cameras and `pointShadowFaceUV` in POINT_SHADOW_GLSL. UVs increase right/up inside each atlas face;
+ * dominant-axis ties choose X, then Y, consistently in JS and GLSL. Used by tests and trials to check a receiver's texel.
+ *
+ * @param {THREE.Vector3|ArrayLike<number>} delta receiver minus light position (world space, any length)
+ * @returns {{face: number, uv: Array<number>}} `face` 0..5 for +X, -X, +Y, -Y, +Z, -Z; `uv` 0..1 within that face
+ *  ([.5, .5] for a zero vector)
+ * @throws {TypeError} when `delta` does not hold three finite coordinates
+ */
 export function PointShadowFaceUV( delta ) {
 
 	const point = coordinates( delta );
@@ -90,9 +98,19 @@ const SUN_FRAGMENT = `
 void main() { gl_FragColor=packDepthToRGBA(gl_FragCoord.z); }
 `;
 
-// Reuse the existing one-attachment captures. Patch once before construction so
-// the shared uniforms exist even on the first object's first draw; bind every
-// object (including unmodified world chunks) without copying viewmodel callbacks.
+/**
+ * Makes a depth/distance capture material for shadow passes, with the rend-veil reveal applied (r_rendveil.js).
+ * Reuse the existing one-attachment captures. Patch once before construction so the shared uniforms exist even on
+ * the first object's first draw; bind every object (including unmodified world chunks) without copying viewmodel
+ * callbacks. Used for the atlas's own captures and by gl_post.js for its sun override. The material is never patched
+ * for main-view MRT output.
+ *
+ * @param {string} fragmentShader GLSL fragment body (the shared world-position vertex shader is supplied)
+ * @param {Object<string, {value: *}>} [uniforms={}] uniforms object; the rend-veil uniforms are added to it
+ * @param {THREE.ShaderMaterialParameters} [options={}] extra material parameters, overriding the double-sided,
+ *  unblended, depth-testing and depth-writing defaults
+ * @returns {THREE.ShaderMaterial} a new material (the caller disposes it)
+ */
 export function R_CreateShadowCaptureMaterial( fragmentShader, uniforms = {}, options = {} ) {
 	const shader = { vertexShader: VERTEX, fragmentShader, uniforms };
 	const rendUniforms = R_RendVeilShadowShader( shader );
@@ -110,6 +128,14 @@ export function R_CreateShadowCaptureMaterial( fragmentShader, uniforms = {}, op
 
 export class PointShadowAtlas {
 
+	/**
+	 * One per GPU pipeline (gl_post.js). Allocates the 768x1536 RGBA8 atlas render target (eight point-light slots of
+	 * six 128-texel cube faces, plus the 512-texel near-sun region above them), the 512x512 flashlight target, the
+	 * capture cameras and materials. All GPU resources live until `dispose`.
+	 *
+	 * @param {?THREE.BufferGeometry} [geometry=null] the solid-world occluder triangles, passed to `setGeometry`
+	 * @throws {TypeError} as `setGeometry` when the geometry is not triangles with a vec3 position
+	 */
 	constructor( geometry = null ) {
 
 		this.geometry = null; this.chunks = []; this.triangles = 0;
@@ -208,6 +234,16 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Sets the static world occluder (gl_post.js, when the sun occluder is built for a map, or null when it is
+	 * disposed). The triangles are grouped into 256-unit cells as separately culled chunk meshes that share the
+	 * source's position attribute (borrowed, never copied or disposed). Invalidates every cached capture.
+	 *
+	 * @param {?THREE.BufferGeometry} geometry world triangles (indexed or not, world space); null removes the world
+	 * @returns {PointShadowAtlas} this
+	 * @throws {Error} 'Point shadow atlas was disposed' after `dispose`
+	 * @throws {TypeError} when the geometry has no vec3 position or a vertex count that is not a multiple of 3
+	 */
 	setGeometry( geometry ) {
 
 		if ( this.disposed ) throw new Error( 'Point shadow atlas was disposed' );
@@ -259,6 +295,12 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Forgets every captured cube, the spot and sun views, the frozen intro pose and the borrowed casters, so all
+	 * lights are captured again. Bumps `epoch` and `pointGeometryRevision`.
+	 *
+	 * @returns {PointShadowAtlas} this
+	 */
 	invalidate() {
 		this.frozenPose = null; this.frozenRendVersions = null;
 
@@ -268,6 +310,13 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Where a light's cube is in the atlas; gl_post.js reads it per frame into `uPointShadowInfo`.
+	 *
+	 * @param {Object} source the light's identity object, as given to `update`
+	 * @returns {{slot: number, far: number, ready: boolean}} a fresh copy: `slot` 0..7 (atlas row), `far` the capture
+	 *  range in Quake units, `ready` when its cube is current; the shared { slot: -1, far: 0, ready: false } when absent
+	 */
 	lookup( source ) {
 
 		const entry = this.entries.get( source );
@@ -275,12 +324,25 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Drops the borrowed caster clone made for `source` (gl_post.js `R_ReleaseShadowCaster`, when a mesh is disposed),
+	 * so the atlas keeps no reference to its geometry.
+	 *
+	 * @param {THREE.Mesh} source mesh previously passed in a `dynamicMeshes` list
+	 */
 	forgetDynamic( source ) {
 		const clone=this._dynamicClones.get(source);if(!clone)return;
 		clone.parent?.remove(clone);clone.geometry=null;
 		this._borrowedClones.delete(clone);this._dynamicClones.delete(source);
 	}
 
+	/**
+	 * Diagnostic counters and state, also returned by every update.
+	 *
+	 * @returns {Object} new object: slot use (`maxSlots`, `resident`, `ready`, `pending`, `requested`), world `chunks`
+	 *  and `triangles`, borrowed caster counts, capture/render/failure counts and last error for the point, spot and
+	 *  sun captures, `spotReady`, `sunReady`, `epoch`, `disposed`
+	 */
 	status() {
 
 		const ready = [ ...this.entries.values() ].filter( entry => entry.ready ).length;
@@ -296,6 +358,11 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Marks the flashlight view absent (start of `updateSpot`, and gl_post.js when the beam is off).
+	 *
+	 * @returns {PointShadowAtlas} this
+	 */
 	clearSpot() {
 
 		this.spotReady = false; this.spotError = null; this.spotDynamicMeshes = 0;
@@ -303,6 +370,11 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Marks the near-sun view absent (start of `updateSun`).
+	 *
+	 * @returns {PointShadowAtlas} this
+	 */
 	clearSun() {
 
 		this.sunReady = false; this.sunError = null; this.sunDynamicMeshes = 0;
@@ -310,10 +382,19 @@ export class PointShadowAtlas {
 
 	}
 
-	// direction points FROM the receiver TOWARD the sun. Focus is the main
-	// camera's world eye, never the displayed weapon's compressed raster depth.
-	// Capture one current-frame view; caller combines it with the broad world
-	// sun visibility only for actors, retaining the original world lighting.
+	/**
+	 * Captures the close orthographic sun view (±96 units around the focus, depth range 0.1..512, eye 256 units
+	 * towards the sun) into the atlas's top region; once per frame from gl_post.js. Capture one current-frame view;
+	 * caller combines it with the broad world sun visibility only for actors, retaining the original world lighting.
+	 * Capture errors are caught into `sunError`/`sunFailedCaptures`; the renderer's state is restored.
+	 *
+	 * @param {?THREE.WebGLRenderer} renderer renderer; null captures nothing
+	 * @param {{on: boolean, direction: ArrayLike<number>, focus: ArrayLike<number>}} sun `direction` points FROM the
+	 *  receiver TOWARD the sun (any non-zero length); `focus` is the main camera's world eye, never the displayed weapon's
+	 *  compressed raster depth
+	 * @param {Array<THREE.Mesh>} [dynamicMeshes=[]] live actor/brush meshes to borrow as casters for this capture
+	 * @returns {Object} `status()`; `sunReady` and `sunVP` (projection x view) are set on success
+	 */
 	updateSun( renderer, sun, dynamicMeshes = [] ) {
 
 		this.clearSun(); if ( this.disposed ) return this.status();
@@ -410,9 +491,21 @@ export class PointShadowAtlas {
 
 	}
 
-	// Flashlight position/direction change every frame; never cache its depth by
-	// source identity. Only opaque live actor/brush meshes are borrowed for this
-	// one capture, then removed before any static point-light cube can render.
+	/**
+	 * Captures the flashlight's radial-distance view into the spot target; per frame from gl_post.js while the beam
+	 * is on. Flashlight position/direction change every frame; never cache its depth by source identity. Only opaque
+	 * live actor/brush meshes are borrowed for this one capture, then removed before any static point-light cube can
+	 * render. The field of view is the cone plus 2 degrees (at most 179). Capture errors are caught into
+	 * `spotError`/`spotFailedCaptures`.
+	 *
+	 * @param {?THREE.WebGLRenderer} renderer renderer; null captures nothing
+	 * @param {{on: boolean, pos?: ArrayLike<number>, position?: ArrayLike<number>, dir?: ArrayLike<number>,
+	 *  direction?: ArrayLike<number>, range?: number, outerCos?: number}} beam position and direction (world space,
+	 *  Quake units); `range` the far distance, > 1, capped at 4096 (default 1500); `outerCos` cosine of the cone's
+	 *  half-angle, 0..1 exclusive (default .92)
+	 * @param {Array<THREE.Mesh>} [dynamicMeshes=[]] live actor/brush meshes to borrow as casters
+	 * @returns {Object} `status()`; `spotReady` and `spotVP` are set on success
+	 */
 	updateSpot( renderer, beam, dynamicMeshes = [] ) {
 
 		this.clearSpot(); if ( this.disposed ) return this.status();
@@ -472,10 +565,24 @@ export class PointShadowAtlas {
 
 	}
 
-	// Static-only callers keep the existing one-new-cube-per-update budget.
-	// Live sources and submitted model poses are current-frame data: capture
-	// every selected slot (at most eight cubes), never queue a short-lived flash
-	// behind static work or expose an older actor pose after a failed capture.
+	/**
+	 * Chooses up to eight lights for the atlas and captures their six-face radial-distance cubes; per frame from
+	 * gl_post.js while point shadows are on. Lights already resident keep their slots; newcomers take a free slot or
+	 * the least recently used unrequested one. A light whose position or range changed is recaptured; an invalid
+	 * entry (bad position or range) for a resident source frees its slot. Static-only callers keep the existing one-new-cube-per-update budget.
+	 * Live sources and submitted model poses are current-frame data: capture every selected slot (at most eight
+	 * cubes), never queue a short-lived flash behind static work or expose an older actor pose after a failed capture.
+	 * Errors are caught into `error`/`failedCaptures` (a failure marks every cube not ready).
+	 *
+	 * @param {?THREE.WebGLRenderer} renderer renderer; null only updates the selection
+	 * @param {Array<{source: Object, position: ArrayLike<number>, far: number, live?: boolean}>} [sources=[]] lights in
+	 *  priority order: `source` the identity used by `lookup`, `position` world space, `far` capture range in Quake units
+	 *  (capped at 4096), `live` for moving or pulsing lights recaptured every frame
+	 * @param {Array<THREE.Mesh>} [dynamicMeshes=[]] live actor/brush meshes to borrow as casters
+	 * @param {{frozenPose?: boolean}} [options] `frozenPose` during an authoritative frozen intro: cubes are kept while
+	 *  the borrowed poses and reveal state are unchanged
+	 * @returns {Object} `status()`
+	 */
 	update( renderer, sources = [], dynamicMeshes = [], { frozenPose = false } = {} ) {
 
 		if ( this.disposed ) return this.status();
@@ -636,6 +743,10 @@ export class PointShadowAtlas {
 
 	}
 
+	/**
+	 * Releases the render targets, materials and world chunks (the borrowed position attribute is left to its owner);
+	 * gl_post.js on shutdown. Later updates return status only and `setGeometry` throws. Safe to call twice.
+	 */
 	dispose() {
 
 		if ( this.disposed ) return;

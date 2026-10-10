@@ -131,7 +131,16 @@ function build( scene, regions ) {
 
 }
 
-// every frame, with the scene and the time
+/**
+ * Animates the vapour over toxic pools, every frame from `R_RenderView` (gl_rmain.js). Shown only in Newer Game with
+ * the water passes active and `r_mist` above 0 (its value, capped at 1.5, scales the brightness); otherwise the points
+ * are hidden. Rebuilds the wisps (8..120 per pool by area, at most 720 in all, in streams of four) whenever the
+ * level's liquid regions or the `r_water_look` choice change; only pools whose look is Toxic (slime always, water when
+ * the look makes it toxic) get mist. Each wisp rises 60..100 units over a 20..33 s cycle and fades in and out.
+ *
+ * @param {?THREE.Scene} scene the world scene the points are added to; null does nothing
+ * @param {number} time `cl.time`, seconds (0 without a client)
+ */
 export function R_MistFrame( scene, time ) {
 
 	if ( scene == null ) return;
@@ -174,6 +183,10 @@ export function R_MistFrame( scene, time ) {
 
 }
 
+/**
+ * Removes the mist and frees its geometry and material (the soft sprite texture is kept), called by `R_NewMap`
+ * (gl_rmain.js) at each level start; the next `R_MistFrame` rebuilds it for the new level's pools.
+ */
 export function R_MistClear() {
 
 	clear( null );

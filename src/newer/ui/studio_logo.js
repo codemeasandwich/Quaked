@@ -32,6 +32,16 @@ function artwork() {
  return image;
 }
 
+/**
+ * Draws the studio logo in the lower-right corner of the 2D overlay canvas; menu.js each menu frame. The image
+ * (newer/ui/studio-logo.png) is requested on the first call and drawn once loaded; a failure or a 30 s timeout
+ * leaves it undrawn for the session. The logo is at most 128 CSS pixels wide and a fifth of the view, inset by the
+ * `--studio-safe-right`/`--studio-safe-bottom` CSS values (at least 16 pixels).
+ *
+ * @param {?{right: number, bottom: number}} [occupiedCorner=null] the bestiary book's right edge and footer
+ *  bottom (`R_BestiaryBookCorner`, CSS pixels from the canvas's top-left) while the Bestiary is up; the logo then fits entirely beside its right edge or beneath its footer, whichever leaves more room
+ * @returns {boolean} true when the logo was drawn; false when the canvas, context or image is not ready or there is no room
+ */
 export function Draw_StudioLogo( occupiedCorner = null ) {
  const canvas = Draw_GetOverlayCanvas(), logo = artwork();
  if ( !canvas || !logo || !(canvas.width > 0 && canvas.height > 0) ) return false;

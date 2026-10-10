@@ -14,6 +14,26 @@
 // retained and persisted before a new named map can become playable.
 import * as THREE from 'three';
 import {RockBakeConfig,RockBakeTileCoordinates,ROCK_BAKE_SIDE} from './rockfield_bake_format.js';
+/**
+ * Generates every tile all `charts` require on the CPU, using at most two rockfield workers that each process
+ * one job at a time, and converts the results to GPU half-floats. Complete coverage is prepared independently of
+ * the bounded GPU page LRU; the caller retains and persists the result before a new named map becomes playable.
+ * All workers created here are terminated when it settles, on success, failure or abort.
+ *
+ * @param {Array<object>} charts rock charts from `R_RockSurfaceCharts`; jobs follow `RockBakeTileCoordinates`
+ *   order per chart, and the input is not modified
+ * @param {{ signal?: AbortSignal, workerFactory?: function(): Worker }} [options] `signal` cancels the
+ *   preparation; `workerFactory` creates a worker that answers `{ id, config, x, y }` with
+ *   `{ id, result: { width, tileX, tileY, data } }` or `{ id, error }` (default: a module Worker running
+ *   ./rockfield_worker.js)
+ * @returns {Promise<Array<Uint16Array>>} one tile of `ROCK_BAKE_SIDE`² half-float bit patterns per job, in job
+ *   order (the same order `RockBakeEncode` expects); an empty array when no tile is needed
+ * @throws {Error} (as a rejection) 'Complete rock preparation exceeds CPU payload budget', before any worker
+ *   starts, when the tiles would exceed 256 MiB; rejects with the worker's error, 'Rock worker identity
+ *   mismatch', or 'Invalid complete rock tile' when a reply has the wrong size, coordinates or a sample outside
+ *   0..1
+ * @throws {DOMException} an 'AbortError' when `signal` is or becomes aborted
+ */
 export async function RockPrepareTiles(charts,{signal,workerFactory=()=>new Worker(new URL('./rockfield_worker.js',import.meta.url),{type:'module'})}={}){
  const jobs=charts.flatMap(chart=>RockBakeTileCoordinates(chart).map(([x,y])=>({config:RockBakeConfig(chart),x,y}))),tiles=new Array(jobs.length);
  if(jobs.length*ROCK_BAKE_SIDE**2*2>256*1024*1024)throw Error('Complete rock preparation exceeds CPU payload budget');

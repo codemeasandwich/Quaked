@@ -477,8 +477,16 @@ function ghostDraw( g, time ) {
 
 }
 
-// Called every frame: what plays in the other levels (idle animations, spinning
-// items, and skins that have finished loading) while one of their windows is near.
+/**
+ * Called every frame: what plays in the other levels (idle animations, spinning items, and skins that have finished
+ * loading) while one of their windows is near. Called by `R_RenderView` (`gl_rmain.js`) when `r_newer_portals` is on.
+ * Only views whose window centre is within 2500 Quake units of the camera are animated; a still ghost is redrawn at
+ * most once a second (flames and rend-veil figures every frame). Re-poses the ghosts' alias meshes in place.
+ *
+ * @param {Array<number>} camera the view origin in this level (Quake units, `r_refdef.vieworg`)
+ * @param {number} time client time in seconds (`cl.time`): drives 10 frames a second animation and 100 degrees a
+ *   second item spin
+ */
 export function R_UpdateLevelViewEntities( camera, time ) {
 
 	for ( const v of views ) {
@@ -553,7 +561,21 @@ function R_AttachRunners( view ) {
 
 }
 
-// map: the level the monster is in (as the view knows it), pos/yaw in that level's coordinates
+/**
+ * Shows a monster running for the doorway in the level the player just left: called by `sv_seamless.js` for each
+ * follower when the player crosses. It is drawn in that level's view (now, if the view is built, else when it is),
+ * posed with its first run/walk/fly/swim/stand cycle.
+ *
+ * @param {string} map the level the monster is in (as the view knows it), without `maps/` or `.bsp`
+ * @param {string} model its alias model name, e.g. `progs/ogre.mdl`
+ * @param {number} skin its skin number
+ * @param {string} classname its QuakeC classname
+ * @param {Array<number>} pos its position in that level's coordinates (Quake units); copied
+ * @param {number} yaw its heading in degrees, in that level's coordinates
+ * @param {?number} [faceSeed=null] the face variation seed carried with the monster, or null
+ * @returns {{ map: string, model: string, pos: Array<number>, yaw: number, g: ?object, view: ?object }} the runner
+ *   handle to pass to `R_MoveLevelRunner`/`R_RemoveLevelRunner`; `g` is its ghost once attached to a view
+ */
 export function R_AddLevelRunner( map, model, skin, classname, pos, yaw, faceSeed = null ) {
 
 	const r = { map, model, skin, classname, faceSeed, pos: pos.slice(), yaw, g: null, view: null };
@@ -563,6 +585,14 @@ export function R_AddLevelRunner( map, model, skin, classname, pos, yaw, faceSee
 
 }
 
+/**
+ * Moves a runner along its way to the doorway (called by `sv_seamless.js` as it advances). Nothing happens while it
+ * is not attached to a view.
+ *
+ * @param {object} r the handle from `R_AddLevelRunner`
+ * @param {Array<number>} pos its new position in its level's coordinates (Quake units)
+ * @param {number} yaw its heading in degrees
+ */
 export function R_MoveLevelRunner( r, pos, yaw ) {
 
 	if ( r.g == null ) return;
@@ -571,6 +601,11 @@ export function R_MoveLevelRunner( r, pos, yaw ) {
 
 }
 
+/**
+ * Forgets a runner (it reached the doorway and became real, or was sent back) and removes and disposes its figure.
+ *
+ * @param {object} r the handle from `R_AddLevelRunner`
+ */
 export function R_RemoveLevelRunner( r ) {
 
 	runners = runners.filter( ( x ) => x !== r );
@@ -584,6 +619,10 @@ export function R_RemoveLevelRunner( r ) {
 
 }
 
+/**
+ * Removes every runner and its figure. Called by `sv_seamless.js` when followers are dropped or the seamless state is
+ * reset.
+ */
 export function R_ClearLevelRunners() {
 
 	for ( const r of runners.slice() ) R_RemoveLevelRunner( r );
@@ -593,7 +632,14 @@ export function R_ClearLevelRunners() {
 
 let snapshotSource = null;
 
-// how the levels you have been in were left (set by the renderer, which knows the server)
+/**
+ * How the levels you have been in were left (set by the renderer, which knows the server): installed once from
+ * `R_Init` with `SV_LevelSnapshotEntities`. Kept for the session; views built afterwards show a visited level as it
+ * was left rather than as it starts.
+ *
+ * @param {?function(string): ?Array<Object<string, string>>} fn returns a map's saved entity records, or null when
+ *   it has not been visited
+ */
 export function R_LevelViewUseSnapshots( fn ) {
 
 	snapshotSource = fn;
@@ -611,6 +657,25 @@ Returns { group, dispose } or null when there is nothing to draw.  The group is
 in the level's own coordinates; the caller places it.
 ================
 */
+/**
+ * Builds static meshes of another level: every world surface in the leaves potentially visible (PVS) from the arrival
+ * point and five points around it (64 units sideways, 48 up), with its own lightmap atlas (32 blocks of 128 x 128;
+ * surfaces that do not fit are left out), a flat sky and flat, partly transparent water (lava opaque), plus the
+ * entities that stand in those leaves: brush models, alias models as posed figures, and settled cut corpses. In Newer
+ * Game lighting it first starts prefetching the level's prepared rock geometry. Called for each exit by the view setup
+ * (`R_SetupLevelViews`) and by `R_LoadLevelView`. The result lives until its `dispose` is called (on the next level
+ * setup or when its crossing shuts).
+ *
+ * @param {?model_t} model the level, already loaded (see `R_LoadLevelView`)
+ * @param {Array<number>} origin where you would arrive, in the level's coordinates (Quake units): only what can be
+ *   seen from around here is built
+ * @param {Array<object>} [entities=[]] the level's things to draw, as `R_LevelEntities` (`r_levelents.js`) lists them
+ *   (`kind` 'alias', 'axeFallback', 'bsp', 'brush' or 'axe')
+ * @returns {?{ group: THREE.Group, leaves: number, surfaces: number, ghosts: Array<object>, cutFailures: Array<string>,
+ *   dispose: function(): void }} the group (in the level's own coordinates), how many leaves and world surfaces went
+ *   in, the posed figures, the messages of cut-corpse previews that failed (their fallback parts are drawn instead),
+ *   and the disposer; null when the model is missing or no leaf is visible
+ */
 export function R_BuildLevelView( model, origin, entities = [] ) {
  if(R_NewerLightingActive())R_RockBakePrefetch(model?.name,undefined,undefined,model?.bspSourceBytes);
 
@@ -835,6 +900,13 @@ R_LoadLevelView
 Load a level by name and build the view of it from where you would arrive.
 ================
 */
+/**
+ * Loads `maps/<mapName>.bsp` for preview (`Mod_LoadForPreview`) and builds its view, with no entities.
+ *
+ * @param {string} mapName map name without path or extension
+ * @param {Array<number>} origin the arrival point in that level's coordinates (Quake units)
+ * @returns {?object} the `R_BuildLevelView` result, or null when the map cannot be loaded or nothing is visible
+ */
 export function R_LoadLevelView( mapName, origin ) {
 
 	const model = Mod_LoadForPreview( 'maps/' + mapName + '.bsp' );
@@ -852,6 +924,11 @@ export function R_LoadLevelView( mapName, origin ) {
 let views = [];
 let setupGeneration = 0;
 
+/**
+ * Disposes every level view and every exit window (`R_ClearLevelPortals`), detaches the runners (they are attached
+ * again when the views are built) and cancels views and normal-map prewarming still queued from the last setup.
+ * Called by `R_SetupLevelViews` at each level start.
+ */
 export function R_ClearLevelViews() {
 
 	setupGeneration ++;
@@ -873,6 +950,19 @@ it leads to is built and placed far away in the scene, and the exit gets a windo
 onto it.
 ================
 */
+/**
+ * Clears the last level's views, then builds one view per crossing on its own timer (20 ms after the call, then every
+ * 40 ms), so building them need not stall the arrival. Each view is placed at `LEVEL_VIEW_OFFSET` plus 30000 units
+ * per crossing along x, gets a window (`R_AddLevelPortal`) on the crossing's opening, shows a visited level as it was
+ * left (see `R_LevelViewUseSnapshots`), and then has its remaining textures' normal maps made a few at a time. Called
+ * by `R_NewMap` (`gl_rmain.js`) with `SV_SeamlessCrossings()`. A crossing without an opening, already closed, or whose
+ * level cannot be loaded gets no view.
+ *
+ * @param {?THREE.Scene} scene the scene to add views and windows to; null only clears
+ * @param {Array<object>} crossings this level's crossings from `sv_seamless.js` (`map`, `transform` with `center`,
+ *   `dest`, `yaw`, `through`, `position()`, `direction()`, and `opening` with `axisA`, `axisB`, `a0`..`b1`, `shift`,
+ *   `polygons`); the array is kept and watched for `closed` by `R_SyncLevelViews`
+ */
 export function R_SetupLevelViews( scene, crossings ) {
 
 	R_ClearLevelViews();
@@ -989,7 +1079,10 @@ function R_PrewarmNormalMaps( model ) {
 
 }
 
-// Every frame: drop the window and the view of any crossing the server has shut (the way back, once a respawn has landed).
+/**
+ * Every frame: drop the window and the view of any crossing the server has shut (the way back, once a respawn has
+ * landed). Called by `R_RenderView` (`gl_rmain.js`). Runners in a dropped view are detached.
+ */
 export function R_SyncLevelViews() {
 
 	for ( let i = views.length - 1; i >= 0; i -- ) {
@@ -1006,13 +1099,23 @@ export function R_SyncLevelViews() {
 
 }
 
+/**
+ * How many level views are built at the moment (for tests and diagnostics).
+ *
+ * @returns {number} the count; views still waiting on their timer are not included
+ */
 export function R_LevelViewCount() {
 
 	return views.length;
 
 }
 
-// what the views hold (for tests)
+/**
+ * What the views hold (for tests): the posed figures of each view.
+ *
+ * @returns {Array<Array<Array<(string|number)>>>} per view, one `[ model name, x, y, z ]` per figure (origin in that
+ *   level's coordinates, Quake units); a new array each call
+ */
 export function R_LevelViewGhosts() {
 
 	return views.map( ( v ) => v.ghosts.map( ( g ) => [ g.e.model.name, ...g.e.origin ] ) );

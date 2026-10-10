@@ -250,7 +250,44 @@ def renderer_module(source):
       }''')
     source = once(source, '      gl.enable(gl.BLEND);\n      this._uniforms(this.programs.plaque);',
                   '      gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);\n      this._uniforms(this.programs.plaque);')
+    for anchor, block in QUAKEMENU_JSDOC:
+        source = once(source, '\n' + anchor, '\n' + block + anchor)
     return source
+
+
+# Function JSDoc for QuakeMenu's public members (card [44g]): each block goes in front of its member's first line.
+QUAKEMENU_JSDOC = [
+    ('    constructor(canvas,{config={},onActivate=null,onSelection=null,externalFrame=false}={}){',
+     '    /**\n     * Creates the donor WebGL2 menu renderer on a canvas: compiles its six programs, builds its buffers and noise\n     * texture, and starts uploading the embedded glyph atlas (`ready`). The host adapter (`menu_webgl.js`) uses\n     * `externalFrame: true`, which installs only the context lost/restored listeners and leaves drawing to `frame()`;\n     * the default standalone mode also installs pointer/key input, a ResizeObserver, window resize, visibility and\n     * reduced-motion listeners and renders on requestAnimationFrame.\n     *\n     * @param {HTMLCanvasElement} canvas the canvas to draw into (a WebGL2 context is taken from it)\n     * @param {{ config?: object, onActivate?: ?function(object): void, onSelection?: ?function(object): void,\n     *   externalFrame?: boolean }} [options] `config` is normalised against `QuakeMenu.defaults` (title, sidebar, up to\n     *   40 items as strings or `{ id, label, disabled }`, selected, typography and material ranges, selector settings);\n     *   the callbacks receive `{ index, id, label, disabled }`\n     * @throws {TypeError} when `canvas` is not a canvas element, or `config.items` is not an array / holds an invalid item\n     * @throws {Error} when WebGL2 is unavailable or a shader fails to compile or link (resources made so far are freed)\n     */\n'),
+    ('    async loadFont(file,onProgress=()=>{}){',
+     "    /**\n     * Replaces the embedded font with a local TrueType file converted by `QuakeFontLoader` into a distance-field atlas,\n     * then re-renders. On an upload failure the previous font is restored before the error propagates.\n     *\n     * @param {File|Blob|ArrayBuffer} file the font to load (whatever `QuakeFontLoader.load` accepts)\n     * @param {function(*): void} [onProgress] progress callback passed to the loader\n     * @returns {Promise<{ family: string, glyphCount: number }>} the new font's family and number of glyphs\n     * @throws {Error} when the loader is missing, the renderer was destroyed, the atlas exceeds `MAX_TEXTURE_SIZE`, or\n     *   the upload is interrupted or fails\n     */\n"),
+    ('    async resetFont(){',
+     '    /**\n     * Restores the embedded DpQuake atlas and re-renders.\n     *\n     * @returns {Promise<void>}\n     * @throws {Error} when the renderer was destroyed or the upload is interrupted\n     */\n'),
+    ('    getConfig(){return JSON.parse(JSON.stringify(this.config));}',
+     '    /**\n     * @returns {object} a deep copy of the normalised configuration\n     */\n'),
+    ('    setConfig(patch){',
+     "    /**\n     * Merges `patch` into the configuration (normalised and clamped), relayouts, re-renders and dispatches\n     * `quake:config` on the canvas. A `selectorAngle` in the patch also resets the selector's rotation.\n     *\n     * @param {object} patch configuration fields to change\n     * @returns {QuakeMenu} this renderer\n     * @throws {TypeError} when the resulting `items` is not an array or holds an invalid item\n     */\n"),
+    ('    pushMenu(patch){',
+     "    /**\n     * Opens a submenu: saves the current configuration on the history stack and applies `patch` (selection reset to\n     * 0 unless given), as `setConfig` does.\n     *\n     * @param {object} patch the submenu's configuration\n     * @returns {QuakeMenu} this renderer\n     * @throws {TypeError} as `setConfig`\n     */\n"),
+    ('    back(){',
+     '    /**\n     * Returns to the previous menu on the history stack and dispatches `quake:back`.\n     *\n     * @returns {boolean} false when the history is empty\n     */\n'),
+    ('    clearHistory(){this._history.length=0;return this;}',
+     '    /**\n     * Empties the submenu history.\n     *\n     * @returns {QuakeMenu} this renderer\n     */\n'),
+    ('    select(index,{notify=true}={}){',
+     '    /**\n     * Moves the selection to an item and, when it changed and `notify` is set, calls `onSelection` and dispatches\n     * `quake:select` with `{ index, id, label, disabled }`.\n     *\n     * @param {number} index the item index (integer)\n     * @param {{ notify?: boolean }} [options] `notify` defaults to true\n     * @returns {boolean} true when the item is (now) selected; false for an invalid or disabled item\n     */\n'),
+    ('    activate(index=this.config.selected){',
+     '    /**\n     * Selects and activates an item: calls `onActivate` and dispatches `quake:activate` with its details.\n     *\n     * @param {number} [index=this.config.selected] the item index\n     * @returns {boolean} false for an invalid or disabled item\n     */\n'),
+    ('    requestRender(){',
+     '    /**\n     * Schedules one standalone render on the next animation frame (repeating while the selector animates). Does\n     * nothing in external-frame mode, while a frame is already pending, or when destroyed, context-lost or capturing.\n     */\n'),
+    ('    frame(width,height,timeMs,commands=null,backgroundOpacity=1){',
+     "    /**\n     * Draws one host-driven frame (external-frame mode). The host supplies physical framebuffer pixels and optional\n     * native-menu glyph/panel commands; no CSS/DPR multiplier or event input is introduced. The canvas is resized to\n     * `width` x `height`; a changed command list rebuilds the layout. The selector advances by the elapsed time\n     * (each step capped at 100 ms; reduced motion and document visibility are honoured).\n     *\n     * @param {number} width framebuffer width in physical pixels (integer, 1..min(8192, MAX_RENDERBUFFER_SIZE))\n     * @param {number} height framebuffer height in physical pixels; width x height at most 24 million\n     * @param {number} timeMs a finite, monotonic time in milliseconds\n     * @param {?Array<object>} [commands=null] `{ type: 'text', text, x, y, size, stretch?, kind? }`,\n     *   `{ type: 'panel', x, y, w, h, well? }`, `{ type: 'selector', x, y, size }`, `{ type: 'slider', x, y, w, value }`\n     *   in physical pixels; null draws the donor's own layout\n     * @param {number} [backgroundOpacity=1] 0..1; with commands the backdrop is transparent\n     * @returns {boolean} false while unready, destroyed, context-lost or capturing; true after one completed draw\n     * @throws {RangeError} on dimensions outside the budget or an opacity outside 0..1\n     * @throws {TypeError} on a non-finite time\n     */\n"),
+    ('    render(){',
+     '    /**\n     * Draws the cached static scene and the rotating Q selector to the canvas at its current size, rebuilding the\n     * layout and background cache when dirty. Does nothing until loaded, or when destroyed or context-lost.\n     *\n     * @throws {Error} when the background framebuffer cannot be allocated\n     */\n'),
+    ('    async capture({width=3840,height=2160}={}){',
+     "    /**\n     * Renders the menu once at a given size and returns it as a PNG, then restores the canvas size (the caller's\n     * framebuffer dimensions in external-frame mode).\n     *\n     * @param {{ width?: number, height?: number }} [size] capture size in pixels (default 3840 x 2160; integers up to\n     *   min(8192, MAX_RENDERBUFFER_SIZE) a side, at most 34 million pixels)\n     * @returns {Promise<Blob>} the PNG image\n     * @throws {Error} when the renderer is unavailable, a capture is already running, or encoding fails\n     * @throws {RangeError} when the size exceeds the budget\n     */\n"),
+    ('    destroy(){',
+     '    /**\n     * Releases every GPU resource and listener and settles pending font decodes. Idempotent; the instance cannot be\n     * used afterwards. The host owns calling it (`MainMenu_Destroy`, a render failure, a context-loss error).\n     */\n'),
+]
 
 
 def outputs(source_bytes):
@@ -292,6 +329,7 @@ def outputs(source_bytes):
         'glyphs': len(font['metrics']['glyphs']), 'moduleSha256': sha(module),
         'adaptations': [
             'ESM exports replace window font/shader/loader/renderer registration',
+            'JSDoc blocks for QuakeMenu public members (constructor and 14 methods)',
             'externalFrame defaults false; true retains only context lifecycle listeners',
             'frame accepts bounded physical pixels and finite millisecond timestamps without DPR rescaling',
             'optional native text, panel, selector and slider commands reuse donor glyph, plaque and solid-Q materials with transparent gameplay overlay alpha',

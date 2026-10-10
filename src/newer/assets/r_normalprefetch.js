@@ -14,6 +14,24 @@ import {NORMAL_BAKES} from './normal_bakes.js';
 import {NormalTransport} from './normal_transport.js';
 import {DisplacementHash} from './displacement_store.js';
 const sources=new WeakMap();
+/**
+ * Warms the prepared normal-map transport for one startup BSP before it is loaded, so the first map does not wait on
+ * normal decoding. Called from main.js for 'maps/e1m3.bsp' at startup and for 'maps/start.bsp' once the welcome hub is
+ * current or the demo has finished. The BSP's SHA-256 selects the `STARTUP_NORMAL_BAKES[name]` spec, and every key in
+ * it is leased from `NormalTransport` and released once all settle (the transport keeps the decoded data in its own
+ * bounded cache).
+ *
+ * The promise is cached per underlying ArrayBuffer and `name:byteOffset:byteLength` for the lifetime of the buffer, so
+ * repeated calls with the same bytes return the same promise.
+ *
+ * @param {string} name BSP path, the key into `STARTUP_NORMAL_BAKES`
+ * @param {?Uint8Array} bytes the BSP file bytes (a view into the pak)
+ * @param {function(object, string, number, number): {promise: Promise, release: function(): void}} [transport]
+ *   leases one normal sample given (spec, key, width, height); default `NormalTransport`
+ * @returns {Promise<{status: string, samples?: number, error?: string}>} never rejects: 'unused' when the map or these
+ *   exact bytes have no startup bake, 'ready' with the number of samples loaded, or 'error' with the message (a
+ *   missing `NORMAL_BAKES` spec or a failed transport)
+ */
 export function R_StartupNormalsPrefetch(name,bytes,transport=NormalTransport){
  if(!STARTUP_NORMAL_BAKES[name]||!bytes)return Promise.resolve({status:'unused'});
  let ranges=sources.get(bytes.buffer);if(!ranges){ranges=new Map();sources.set(bytes.buffer,ranges);}const range=name+':'+bytes.byteOffset+':'+bytes.byteLength;

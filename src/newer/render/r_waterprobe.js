@@ -38,6 +38,11 @@ function dispose( p ) {
 
 }
 
+/**
+ * Disposes every probe's cube render target and forgets which region list they were built for, so the next
+ * `R_WaterProbeUpdate` starts over. `R_WaterProbeUpdate` calls it itself whenever it is given a different list of all
+ * regions (a new map).
+ */
 export function R_WaterProbeClear() {
 
 	for ( const p of probes ) dispose( p );
@@ -51,7 +56,13 @@ const _frustum = new THREE.Frustum();
 const _m = new THREE.Matrix4();
 const _box = new THREE.Box3();
 
-// the probe of a pool, or null if it has none yet
+/**
+ * The probe of a pool, or null if it has none yet.
+ *
+ * @param {object} region a liquid region object from `gl_post.js` (compared by identity)
+ * @returns {?{ region: object, rt: THREE.WebGLCubeRenderTarget, center: Array<number>, min: Array<number>,
+ *   max: Array<number> }} the probe, valid until it is evicted or cleared
+ */
 export function R_WaterProbeFor( region ) {
 
 	for ( const p of probes ) if ( p.region === region ) return p;
@@ -59,11 +70,30 @@ export function R_WaterProbeFor( region ) {
 
 }
 
+/**
+ * The live probes, oldest first (at most two). The composite pass in `gl_post.js` binds the first two each frame:
+ * `rt.texture` as the cube map, `center` as the capture point and `min`/`max` as the parallax box (Quake units, world
+ * space; the pool's box widened by 300 units, from 40 below to 520 above the surface).
+ *
+ * @returns {Array<{ region: object, rt: THREE.WebGLCubeRenderTarget, center: Array<number>, min: Array<number>,
+ *   max: Array<number> }>} the module's own array (replaced on clear; do not mutate)
+ */
 export function R_WaterProbes() {
 
 	return probes;
 
 }
+/**
+ * Counts, among the (at most two) nearest pools that can have a probe and are in the camera's view, those that already
+ * have one and those still waiting. Used by `R_WaterStartupStatus` (`gl_post.js`) to hold the start-up picture until
+ * reflections are captured.
+ *
+ * @param {THREE.Camera} camera the view camera (its projection and world-inverse matrices must be current)
+ * @param {Array<{ min: Array<number>, max: Array<number>, z: number, probePoints?: ?Array<Array<number>> }>} regions see-through pools near the camera, nearest first; `min`/`max` are
+ *   the pool's xy bounds and `z` its surface height (Quake units); a pool with an empty `probePoints` has no safe
+ *   capture point and is skipped
+ * @returns {{ pending: number, ready: number }} the two counts
+ */
 export function R_WaterProbeReadiness(camera,regions){
  _m.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse);_frustum.setFromProjectionMatrix(_m);
  let pending=0,ready=0;
@@ -84,6 +114,23 @@ including reflective toxic liquid).  showAll( true ) makes the whole level drawa
 visibility back, since the level normally only holds what the player can see.
 ================
 */
+/**
+ * Captures at most one new probe per call, and (unless `initializing`) at most one a second: the first of the two
+ * nearest pools that is in view and has no probe gets a 256-texel half-float cube map drawn from just above its surface
+ * (`WATER_PROBE_LIFT` units, or from the nearest of its verified air `probePoints`), with the first-person weapon
+ * hidden. When two probes exist the oldest is disposed first. Called each frame by `R_WaterProbesFrame` (`gl_post.js`).
+ * Probes persist until evicted or until `allRegions` changes.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer; its render target, cube face, mip level and XR flag are restored
+ * @param {THREE.Scene} scene the scene to capture
+ * @param {THREE.Camera} camera the view camera, for the in-view test
+ * @param {Array<{ min: Array<number>, max: Array<number>, z: number, probePoints?: ?Array<Array<number>> }>} regions see-through pools near the camera, nearest first
+ * @param {function(boolean): void} showAll `showAll( true )` makes the whole level drawable, `showAll( false )` puts the
+ *   view's own visibility back
+ * @param {Array<object>} allRegions every liquid region of the level; a different array clears all probes
+ * @param {{ initializing?: boolean }} [options] `initializing` lifts the one-a-second limit (start-up capture)
+ * @throws {*} whatever the cube camera's render throws (the new target is disposed and the renderer state restored)
+ */
 export function R_WaterProbeUpdate( renderer, scene, camera, regions, showAll, allRegions, { initializing = false } = {} ) {
 
 	if ( allRegions !== builtFor ) {

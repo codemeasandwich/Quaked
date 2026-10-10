@@ -22,10 +22,18 @@ export const POWER_VISION_PRESETS = Object.freeze({
 	demon: Object.freeze({ ink: 1, threshold: .13, relief: 1.65, edges: .8, glow: 1.4, whites: .86, worldFloor: .00065 })
 });
 
+/**
+ * Adapts one of the supplied vision fragment shaders to Quaked's G-buffer: mask, normal, albedo and depth reads go
+ * through helpers that remap to the raw render UV, take enemy subjects from the albedo alpha tag, and decode the
+ * distance packets some surfaces write in normal alpha into depth. The history shader also gains a second output for
+ * its vision coordinates and reprojects the previous frame's UV. Called when the pipeline's materials are made, and by tests.
+ * The .065 subtype remains inside the existing actor receiver interval. It denotes enemy pigment; .06 pickups and .08
+ * held/player coats do not become subjects. No authored ink map exists, so B=0 selects donor fallback.
+ *
+ * @param {string} source GLSL3 fragment source (UNSEEN_FRAGMENT, HISTORY_FRAGMENT or DEMON_FRAGMENT)
+ * @returns {string} the adapted source
+ */
 export function PowerVisionAdapt(source) {
-	// The .065 subtype remains inside the existing actor receiver interval.
-	// It denotes enemy pigment; .06 pickups and .08 held/player coats do not
-	// become subjects. No authored ink map exists, so B=0 selects donor fallback.
 	const albedo = source.includes('tAlbedo;') ? '' : 'uniform sampler2D tAlbedo;\n';
 	const helpers = `${albedo}${VISION_COORDINATES_GLSL}
 vec4 visionNormal(vec2 uv){return texture(tNormal,visionRawUV(uv));}
@@ -89,6 +97,13 @@ function create(w, h) {
 	return {width:w,height:h,uniforms,materials,scene,camera,mesh,geometry,current:target(w,h),history:[],index:0};
 }
 
+/**
+ * Breaks the vision's frame history (so the next frame starts fresh) and bumps the reset sequence; with `dispose`
+ * also frees the pipeline's render targets, materials and geometry. Called when vision is off or post-processing
+ * is inactive (gl_post.js), on `CL_ClearState`, on WebGL context loss, when the size changes, and at shutdown (with dispose).
+ *
+ * @param {boolean} [dispose=false] also release the GPU resources (recreated on the next vision frame)
+ */
 export function R_PowerVisionReset(dispose = false) {
 	previous = null; sequence++;
 	if (dispose && pipeline) {
@@ -97,6 +112,23 @@ export function R_PowerVisionReset(dispose = false) {
 	}
 }
 
+/**
+ * Draws the power-up vision over the lit frame; once per frame from gl_post.js after the composite pass. Mode 1
+ * (Unseen World, Ring) renders the current view then blends it into a ping-pong history (trails); mode 2 (Demon,
+ * Pentagram) is one pass. History feedback is only accepted while simulation time advances (`delta` capped at 0.1 s)
+ * and `PowerVisionHistory` admits the previous frame. Half-float targets at the HDR size are made on first use and
+ * kept until reset with dispose. The renderer's target is restored even on error.
+ *
+ * @param {THREE.WebGLRenderer} renderer renderer (a context-loss listener is added once per canvas)
+ * @param {THREE.Texture} source the lit (and rend-veil) composite colour
+ * @param {THREE.WebGLRenderTarget} hdr the G-buffer target: `depthTexture`, textures[1] normals, textures[2] albedo
+ * @param {THREE.PerspectiveCamera} camera main view camera (near/far in Quake units)
+ * @param {number} mode `PowerVisionMode`: 0 none, 1 Unseen World, 2 Demon
+ * @param {client_state_t} client `cl`: `worldmodel`, `viewentity`, `time` (seconds)
+ * @param {?THREE.Texture} [coordinates=null] the composite's vision-coordinate texture, or null
+ * @returns {THREE.Texture} the texture to present: `source` itself when `mode` is 0, else the pipeline's output
+ *  (owned by the pipeline; valid until the next call)
+ */
 export function R_PowerVisionRender(renderer, source, hdr, camera, mode, client, coordinates=null) {
 	if (renderer.domElement && !contexts.has(renderer.domElement)) {
 		contexts.add(renderer.domElement);
@@ -141,6 +173,10 @@ export function R_PowerVisionRender(renderer, source, hdr, camera, mode, client,
 	return mode===1?p.history[p.index].texture:p.current.texture;
 }
 
+/**
+ * @returns {{mode: number, width: number, height: number, sequence: number}} diagnostics: the last rendered mode
+ *  (0 after a reset), the pipeline size in pixels (0 when none) and the reset count
+ */
 export function R_PowerVisionStatus() {
 	return {mode:previous?.mode||0,width:pipeline?.width||0,height:pipeline?.height||0,sequence};
 }

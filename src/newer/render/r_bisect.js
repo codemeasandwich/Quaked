@@ -24,6 +24,23 @@ function oneHalf(tri){
 	const back=us.filter(u=>u>=.5).length>=2;
 	return tri.map(v=>{const u=v.uv[0];if((u>=.5)===back)return v;return {...v,uv:[u+(back?.5:-.5),v.uv[1]]};});
 }
+/**
+ * Splits immutable alias triangles along a plane, retaining interpolated skin coordinates and closing every cut
+ * contour (including nested holes); used once per cut corpse by r_axecorpses.js to build the axe's two halves. Every
+ * non-interleaved attribute is interpolated onto the new vertices. The caps carry the cut's own interpolated
+ * attributes (skin coordinates, lighting colour) at their contour points, so they can be drawn with the body's skin;
+ * each cap triangle keeps to one half of the skin (the 'onseam' rule). Zero-area triangles and dangling cut branches
+ * of decorative sheets are kept in the skin but add no cap.
+ *
+ * @param {THREE.BufferGeometry} geometry posed model triangles (indexed or not), positions in the geometry's own space; not modified
+ * @param {Array<number>} normal plane normal in the same space (normalised here)
+ * @param {Array<number>} point a point on the plane, in the same space
+ * @returns {Array<{body: THREE.BufferGeometry, cap: THREE.BufferGeometry, contours: number}>} two pairs of new
+ *  geometries, index 0 on the side the normal points to and index 1 behind it (the caller disposes them). `cap` closes the
+ *  cut facing out of that half, with computed normals; `contours` is the number of closed cut loops found. A half can
+ *  be empty when the plane misses the model
+ * @throws {Error} 'Alias cut contour traversal failed' when a cut contour cannot be walked closed
+ */
 export function R_BisectGeometry(geometry,normal,point){
 	const n=new THREE.Vector3(...normal).normalize(),p=new THREE.Vector3(...point),constant=n.dot(p);
 	const names=Object.keys(geometry.attributes).filter(name=>!geometry.attributes[name].isInterleavedBufferAttribute);

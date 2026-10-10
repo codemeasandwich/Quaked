@@ -12,6 +12,17 @@
  * Discovery is stored in localStorage (`quaked.bestiary.v1`).
  */
 // Persistent discovery belongs to the browser profile, not a game/save/map.
+/**
+ * Whether a monster's body faces the player, a condition of its discovery (`R_BestiaryObserve`, r_bestiary.js): the
+ * player must be within 89 degrees of the monster's forward axis. Alias +X uses Rz(yaw)*Ry(-pitch)*Rx(roll), so its
+ * forward Z is +sin(pitch). Body orientation and native origins are independent of pose bounds/camera borrowing. The
+ * tiny dot tolerance accommodates native float coordinates.
+ *
+ * @param {Array<number>} angles the monster's `v.angles` (pitch, yaw, roll in degrees)
+ * @param {Array<number>} origin the monster's `v.origin` (world space, Quake units)
+ * @param {Array<number>} playerOrigin the player's `v.origin` (world space, Quake units)
+ * @returns {boolean} true when facing; false for non-finite input or coincident origins
+ */
 export function Bestiary_FacesPlayer(angles,origin,playerOrigin) {
  for(let i=0;i<3;i++)if(!Number.isFinite(angles?.[i])||!Number.isFinite(origin?.[i])||!Number.isFinite(playerOrigin?.[i]))return false;
  const dx=playerOrigin[0]-origin[0],dy=playerOrigin[1]-origin[1],dz=playerOrigin[2]-origin[2],distance=Math.hypot(dx,dy,dz);
@@ -86,7 +97,14 @@ export const BESTIARY_SPREADS = Object.freeze( [
  [ 'dragon', 'hephaestus' ], [ 'armagon', null ],
  [ 'chthon', 'chthon_vengeance' ], [ 'chthon_sleeper', null ], [ 'shub', 'shub_awakened' ]
 ].map( pair => Object.freeze( pair.map( id => id === null ? null : BESTIARY_ENTRIES.find( e => e.id === id ) ) ) ) );
-// the final mapping, for the owner's new contents page: book spread, page side, entry id, title, folio
+/**
+ * The final mapping, for the owner's new contents page: book spread, page side, entry id, title, folio, one row per
+ * page of `BESTIARY_SPREADS`.
+ *
+ * @returns {Array<{spread: number, side: string, id: ?string, title: ?string, folio: ?number}>} new rows; `spread`
+ *   counts book spreads from 3 (the first creature spread), `side` is 'left' or 'right', and a deliberate blank page
+ *   has null id, title and folio
+ */
 export function Bestiary_SpreadMapping() {
  return BESTIARY_SPREADS.flatMap( ( pair, i ) => pair.map( ( entry, side ) => ( { spread: i + 3, side: side ? 'right' : 'left', id: entry?.id ?? null, title: entry?.title ?? null, folio: entry?.folio ?? null } ) ) );
 }
@@ -96,6 +114,23 @@ export function Bestiary_SpreadMapping() {
 const variants=new Set(['multi_grenade_ogre','chthon_sleeper','shub_awakened','splitting_spawn','infected_death_knight','overlord','infected_enforcer','egyptian_guardian','dragon','infected_knight',
  'infected_grunt','ranged_death_knight','demo_dog','mummy','statue_knight','statue_death_knight','rocket_ogre','gremlin','blood_shambler','hell_spawn','wrath','spike_mine','orb','armagon','hephaestus','chthon_vengeance','guardian','quakes_guardian','quakes_high_priest']);
 const additionalModels={monster_ranged_knight:['ranged_death_knight','progs/rknight.mdl'],monster_mummy:['mummy','progs/mummy.mdl'],monster_gremlin:['gremlin','progs/grem.mdl'],monster_super_shambler:['blood_shambler','progs/shambler_blood.mdl'],monster_wrath:['wrath','progs/wrath.mdl'],monster_orb:['orb','progs/teleporter_eye_blink.mdl'],monster_armagon:['armagon','progs/armalegs.mdl'],monster_lava_man:['hephaestus','progs/lavaman.mdl']};
+/**
+ * Which Bestiary entry a native monster is, from its classname plus the native state and QC callback identity that
+ * tell variants apart (`nativeEntry`, r_bestiary.js). Rogue reuses Ogre's classname, so a base-game Ogre is never
+ * attributed to the expansion merely because a map sets an otherwise unused spawnflag/skin. The earlier Chthon and
+ * the final-boss Sleeper are separate pages (the final initializer rewrites its class; its death callback stays
+ * distinct). Dawn rewrites infected/slime initializers to ordinary classnames, so actual native state and callback
+ * identity distinguish them before base fallback. Guardian children inherit the boss model but have an owner; they are
+ * told apart by ownership, never damage-dependent health or changing skin/effects.
+ *
+ * @param {string} classname the entity's `v.classname`
+ * @param {{rogueOgre?: boolean, spawnflags?: number, model?: string, skin?: number, infected?: number, slime?: number,
+ *   deathFunction?: string, hellSpawn?: boolean, splittingSpawn?: boolean, rogueStatues?: boolean, owner?: number}}
+ *   [native] the native facts: `model` its model path, `spawnflags` / `skin` / `owner` (an edict number, 0 none) its
+ *   fields, `infected` / `slime` its mission-pack fields, `deathFunction` the name of its `th_die`, and the flags for
+ *   which mission-pack progs are loaded (Rogue's multi-grenade ogre and statues, Hell Spawn, Splitting Spawn)
+ * @returns {?object} the frozen `BESTIARY_ENTRIES` entry, or null for a creature not in the book
+ */
 export function Bestiary_Identify(classname,{rogueOgre=false,spawnflags=0,model='',skin=0,infected=0,slime=0,deathFunction='',hellSpawn=false,splittingSpawn=false,rogueStatues=false,owner=0}={}){
  const entry=id=>BESTIARY_ENTRIES.find(e=>e.id===id);
  // Owner keeps the earlier Chthon and final-boss Sleeper as separate pages.
@@ -149,20 +184,90 @@ export const BESTIARY_COLLECTION_IDS = Object.freeze([
 ]);
 const known=new Set(BESTIARY_COLLECTION_IDS),catalogKnown=new Set(BESTIARY_ENTRIES.map(e=>e.id)),encounterKnown=new Set(BESTIARY_ENTRIES.filter(e=>e.classes.length).map(e=>e.id));
 export class BestiaryJournal {
+ /**
+  * Opens the journal and reads it at once. One journal lives for the page (r_bestiary.js); discovery belongs to the
+  * browser profile, not a game, save or map.
+  *
+  * @param {{storage?: (Storage|function(): Storage), key?: string}} [options] `storage` (or a function returning it,
+  *   so a throwing `localStorage` getter is caught) defaults to `globalThis.localStorage`; `key` defaults to
+  *   'quaked.bestiary.v1'
+  */
  constructor({storage=()=>globalThis.localStorage,key='quaked.bestiary.v1'}={}){this.storage=storage;this.key=key;this.unlocked=new Set();this.storageStatus='ready';this.reload();}
  _store(){try{const store=typeof this.storage==='function'?this.storage():this.storage;if(!store?.getItem||!store?.setItem)throw Error('Storage unavailable');return store;}catch{this.storageStatus='unavailable';return null;}}
+ /**
+  * Merges the stored discoveries into this journal (never forgets one already held), so another tab's unlocks are
+  * seen; called before each snapshot, discovery scan and unlock. Ignores a missing, malformed or other-version record
+  * (`{version: 1, unlocked: [ids]}`) and ids not in `BESTIARY_COLLECTION_IDS`; a read error sets `storageStatus` to
+  * 'unavailable'.
+  */
  reload(){const store=this._store();if(!store)return;try{const text=store.getItem(this.key);if(!text)return;const data=JSON.parse(text);if(data?.version!==1||!Array.isArray(data.unlocked)||data.unlocked.some(id=>typeof id!=='string'))return;for(const id of data.unlocked)if(known.has(id))this.unlocked.add(id);}catch{this.storageStatus='unavailable';}}
+ /**
+  * @param {string} id an entry id
+  * @returns {boolean} whether it has been discovered (as of the last reload)
+  */
  has(id){return this.unlocked.has(id);}
+ /**
+  * Records a discovery and writes the whole sorted list back to storage (`{version: 1, unlocked}` as JSON under
+  * `key`). Reloads first so concurrent tabs' unlocks are kept. A write failure keeps the unlock in memory for this
+  * page and sets `storageStatus` 'unavailable'.
+  *
+  * @param {string} id an id from `BESTIARY_COLLECTION_IDS`
+  * @returns {boolean} true when newly discovered; false for an unknown id or one already held
+  */
  unlock(id){if(!known.has(id))return false;this.reload();if(this.has(id))return false;this.unlocked.add(id);const store=this._store();if(store)try{store.setItem(this.key,JSON.stringify({version:1,unlocked:[...this.unlocked].sort()}));this.storageStatus='ready';}catch{this.storageStatus='unavailable';}return true;}
+ /**
+  * @returns {boolean} true when every `BESTIARY_COLLECTION_IDS` entry is discovered. The owner's Contents defines
+  *   completion independently of art loading or installed mission packs.
+  */
  complete(){return BESTIARY_COLLECTION_IDS.every(id=>this.has(id));}
+ /**
+  * @returns {{unlocked: Array<string>, complete: boolean, storageStatus: string}} discovered ids in book entry order
+  *   (a new array), whether the collection is complete, and 'ready' or 'unavailable' storage
+  */
  snapshot(){return {unlocked:[...BESTIARY_ENTRIES.map(e=>e.id),...BESTIARY_COLLECTION_IDS.filter(id=>!catalogKnown.has(id))].filter(id=>this.has(id)),complete:this.complete(),storageStatus:this.storageStatus};}
 }
 const smooth=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x);};
 export class BestiaryEncounter {
+ /**
+  * The page's encounter animation: idle, 'enter' (0.75 s: the paper rolls in, the game slows to a stop), 'hold' until
+  * dismissed, 'return' (0.45 s), then idle again. One lives for the page (r_bestiary.js). Starts idle.
+  *
+  * @param {{random?: function(): number}} [options] `random` 0..1 picks the page side (default `Math.random`)
+  */
  constructor({random=Math.random}={}){this.random=random;this.cancel();}
+ /**
+  * Begins the encounter for a newly discovered creature, on a random side.
+  *
+  * @param {object} entry a `BESTIARY_ENTRIES` entry with native classes
+  * @param {number} now the Bestiary clock, seconds
+  * @returns {boolean} false when an encounter is already running or the entry is not encounterable
+  */
  start(entry,now){if(this.phase!=='idle'||!entry||!encounterKnown.has(entry.id))return false;this.entry=entry;this.side=this.random()<.5?'left':'right';this.at=now;this.phase='enter';this.tick(now);return true;}
+ /**
+  * Starts the return from 'hold' (a key or touch, `R_BestiaryKey`); the drawing stays as far as it had got while the
+  * page fades.
+  *
+  * @param {number} now the Bestiary clock, seconds
+  * @returns {boolean} false unless holding
+  */
  dismiss(now){if(this.phase!=='hold')return false;this.heldPaused=this.value.paused;this.phase='return';this.at=now;this.tick(now);return true;}
+ /**
+  * Ends any encounter at once and resets to idle.
+  *
+  * @returns {object} the new idle value (as `tick`)
+  */
  cancel(){this.phase='idle';this.entry=null;this.side='left';this.at=0;this.value={phase:'idle',entry:null,side:'left',progress:0,opacity:0,scale:1,t:0,paused:0};return this.value;}
+ /**
+  * Advances the phases to `now` and computes the animation value; called every frame (`R_BestiaryFrame`) and by
+  * start/dismiss.
+  *
+  * @param {number} now the Bestiary clock, seconds (it must not go backwards; earlier times count as 0 s into the phase)
+  * @returns {{phase: string, entry: ?object, side: string, progress: number, opacity: number, scale: number,
+  *   t: number, paused: number}} the new value (also kept for `snapshot`): `progress` and `opacity` 0..1 of the page,
+  *   `scale` the game's time scale 1..0 (0 from .55 s into 'enter'), `t` seconds in this phase, `paused` seconds since
+  *   the game came to a stop, the page's own clocks (card [1]: the paper rolls up with the camera, the drawing begins
+  *   when the game stops)
+  */
  tick(now){let t=Math.max(0,now-this.at);if(this.phase==='enter'&&t>=.75){this.phase='hold';this.at=now;t=0;}if(this.phase==='return'&&t>=.45)return this.cancel();let progress=0,opacity=0,scale=1;
   if(this.phase==='enter'){progress=smooth(t/.65);opacity=smooth((t-.25)/.5);scale=1-smooth(t/.55);}
   if(this.phase==='hold'){progress=opacity=1;scale=0;}
@@ -173,5 +278,8 @@ export class BestiaryEncounter {
   const paused=this.phase==='enter'?Math.max(0,t-.55):this.phase==='hold'?.2+t:this.heldPaused??Infinity;
   return this.value={phase:this.phase,entry:this.entry,side:this.side,progress,opacity,scale,t,paused};
  }
+ /**
+  * @returns {object} the value computed by the last `tick` / `cancel` (the same object; do not mutate)
+  */
  snapshot(){return this.value;}
 }

@@ -46,26 +46,65 @@ function nativeMRT(material){
  material.needsUpdate=true;
 }
 
+/**
+ * Drops an entity's rite: disposes its material binding (restoring the native mesh) and returns its local effect
+ * group to the pool. Called when the rite ends or no longer matches, when an entity was not drawn this frame
+ * (`R_RendVeilEnd`), and when the renderer discards an entity's cached meshes (gl_rmain.js, r_levelview.js).
+ *
+ * @param {object} entity client render entity (or level-view entity); nothing happens when it has no rite
+ */
 export function R_RendVeilRelease(entity){
  const e=entries.get(entity);if(!e)return;
  e.binding.dispose();pool.release(e.local);entries.delete(entity);
 }
+/**
+ * Releases every rite and frees the effect pool, the background capture target and the cached effect frames.
+ * Called on a new map (gl_rmain.js) and whenever a frame begins outside Newer mode.
+ */
 export function R_RendVeilClear(){
  for(const entity of [...entries.keys()])R_RendVeilRelease(entity);
  pool?.dispose();pool=null;background?.dispose();background=null;frames=new WeakMap();
 }
+/**
+ * Starts a frame for `scene` (gl_rmain.js `R_RenderScene`): marks its rites unseen and hides their effect groups
+ * and ghosts until `R_RendVeilSeen` shows them again. Clears everything when the Newer look is off.
+ *
+ * @param {THREE.Scene} scene scene about to be drawn
+ */
 export function R_RendVeilBegin(scene){
  for(const e of entries.values()){
   if(e.scene===scene){e.seen=false;e.local.group.visible=false;e.binding.hideGhosts();}
  }
  if(!R_IsNewer())R_RendVeilClear();
 }
+/**
+ * Ends a frame for `scene`: releases the rite of every entity in it that was not drawn (not passed to
+ * `R_RendVeilSeen`) since `R_RendVeilBegin`.
+ *
+ * @param {THREE.Scene} scene scene just drawn
+ */
 export function R_RendVeilEnd(scene){
  for(const [entity,e] of entries){
   if(e.scene===scene&&!e.seen)R_RendVeilRelease(entity);
  }
 }
 
+/**
+ * Binds or advances Rend the Veil on the EXISTING native alias mesh of an arriving monster, once per drawn entity
+ * per frame (gl_rmain.js, except the view model; r_levelview.js). The server owns the hold: no render callback
+ * activates, relocates, damages or creates a game entity. The rite is sampled at age `_rendVeilTime -
+ * record.start`; it is released when Newer is off, the record's model differs, or the rite is complete or
+ * pending. A new binding builds an effect frame at the mesh's foot (twice the incoming model's size, anchored to
+ * `record.floorZ` when given, since model triangles can extend below their collision hull), adds a pooled local
+ * effect group to `scene`, and refits the whole posed surface into the authored reveal radius (2.55) whenever
+ * the position attribute changes. The body frame is cached per entity and record.
+ *
+ * @param {object} entity render entity; reads `_rendVeil` ({ model, start, origin, floorZ? }, from the server's
+ *   record), `_rendVeilTime` (server time, seconds) and `model.name`
+ * @param {THREE.Mesh} mesh the entity's native alias mesh this frame; its material is rebound
+ * @param {THREE.Scene} scene scene the mesh is drawn in
+ * @throws {Error} rethrows a failure of `bindThreeSubject` (after returning the pooled effect)
+ */
 export function R_RendVeilSeen(entity,mesh,scene){
  const record=entity?._rendVeil,time=entity?._rendVeilTime;
  if(!R_IsNewer()||!record||record.model!==entity.model?.name||!Number.isFinite(time)){
@@ -127,15 +166,31 @@ export function R_RendVeilSeen(entity,mesh,scene){
  entry.local.light.intensity*=.12; // Non-rune radiance is subdued; rune materials are independent.
 }
 
+/**
+ * Optical fields for the post pass (gl_post.js passes them to `R_RendVeilOptics` in Newer Game): one per rite
+ * seen and visible this frame, excluding level-view snapshot entities.
+ *
+ * @returns {Array<{ center: THREE.Vector3, scale: number, state: object, toReference: THREE.Matrix4,
+ *   subjectBounds: THREE.Box3 }>} new array; `center` is world space, `scale` is world units per effect unit,
+ *   `state` is the timeline sample, `toReference` maps world to the rite's reference frame and `subjectBounds`
+ *   is the body in that frame. Matrices and state are live entry objects; do not mutate them.
+ */
 export function R_RendVeilFields(){
  return [...entries.values()].filter(e=>e.seen&&e.local.group.visible&&!e.entity._rendVeilSnapshot).map(e=>({
   center:new THREE.Vector3(0,2.35,0).applyMatrix4(e.frame),scale:e.scale,state:e.state,
   toReference:e.toReference,subjectBounds:e.binding.getEffectBounds().applyMatrix4(new THREE.Matrix4().multiplyMatrices(e.toReference,e.bodyFrame))
  }));
 }
-// The host uses deferred alias receivers, so the reference's ordinary
-// Three light enters the existing native selection/shadow path. Stable source
-// identity belongs to this invocation; it never consumes a cl_dlights slot.
+/**
+ * The rites' own lights for the native light selection (gl_post.js, every frame). The host uses
+ * deferred alias receivers, so each reference's ordinary Three light enters the existing native selection and
+ * shadow path. Stable source identity belongs to this invocation; it never consumes a cl_dlights slot.
+ *
+ * @returns {Array<{ origin: Array<number>, color: Array<number>, power: number, radius: number, range: number,
+ *   rendVeil: true }>} one per visible rite whose light is above 0.001; each object is kept on its entry and
+ *   rewritten every call (world-space origin, `power` = light intensity / native LIGHT_GAIN 5, `range` = light
+ *   distance in world units)
+ */
 export function R_RendVeilLights(){
  const lights=[];
  for(const e of entries.values()){
@@ -147,10 +202,26 @@ export function R_RendVeilLights(){
  }
  return lights;
 }
+/**
+ * Depth of the last `R_RendVeilCapture`, for the optical pass.
+ *
+ * @returns {?THREE.DepthTexture} the background target's depth texture, or null before any capture / after
+ *   `R_RendVeilClear`
+ */
 export function R_RendVeilBackgroundDepth(){return background?.depthTexture||null;}
 
-// Capture the same native environment with arriving subjects/VFX hidden. This
-// gives the bounded optical pass a receiver depth without sampling its own body.
+/**
+ * Capture the same native environment with arriving subjects/VFX hidden. This gives the bounded optical pass a
+ * receiver depth without sampling its own body. Called by gl_rmain.js just before the main scene draw, with the
+ * HDR target bound; does nothing when no rite in `scene` is visible, the bound target has no depth texture, or a
+ * capture is already running. The background target is reallocated only when the size changes. Renderer state
+ * (viewport, scissor, auto-clear, target, cube face, mip level) and object visibility are restored even when the
+ * render throws.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer, with the frame's multi-target HDR target bound
+ * @param {THREE.Scene} scene scene to capture
+ * @param {THREE.Camera} camera the frame's camera
+ */
 export function R_RendVeilCapture(renderer,scene,camera){
  const active=[...entries.values()].filter(e=>e.seen&&e.scene===scene&&e.local.group.visible);
  if(capturing||!active.length)return;
@@ -175,8 +246,15 @@ export function R_RendVeilCapture(renderer,scene,camera){
  }
 }
 
-// Existing atlas shaders call these hooks; their radial/packed-depth outputs
-// remain unchanged. The same canonical reveal and surface displacement cast.
+/**
+ * Patches a point-shadow atlas shader (r_pointshadows.js `onBeforeCompile`) so casters show the same canonical
+ * reveal and surface displacement as the visible rite. Existing atlas shaders call these hooks; their
+ * radial/packed-depth outputs remain unchanged.
+ *
+ * @param {{ uniforms: object, vertexShader: string, fragmentShader: string }} shader Three shader being compiled;
+ *   mutated: rite uniforms are added and its vertex and fragment sources are rewritten
+ * @returns {object} the added uniforms, to pass to `R_RendVeilShadowObject` per caster
+ */
 export function R_RendVeilShadowShader(shader){
  const uniforms={uRVTime:{value:0},uRVProgress:{value:1},uRVSurfaceEffect:{value:0},uRVFormation:{value:0},uRVConverge:{value:1},uRVGhost:{value:-1},uRVMagic:{value:new THREE.Color(.54,.29,.74)},uRVEffectFromModel:{value:new THREE.Matrix4()},uRVModelFromEffect:{value:new THREE.Matrix4()},uRVRevealFromBody:{value:new THREE.Matrix4()}};
  Object.assign(shader.uniforms,uniforms);
@@ -187,6 +265,13 @@ export function R_RendVeilShadowShader(shader){
  shader.fragmentShader=RV_SURFACE_DECL+'\n'+shader.fragmentShader.replace(/void main\(\)\s*\{/,'void main(){\n'+RV_FRAGMENT_MASK);
  return uniforms;
 }
+/**
+ * Sets a shadow caster's rite uniforms before it is drawn into the atlas: the rite's progress, surface effect,
+ * time and transforms, or the neutral values (progress 1, identity matrices) when the mesh has no rite.
+ *
+ * @param {?THREE.Object3D} mesh caster; its rite is found through `_quakeOwner` or `userData.rendVeilSource`
+ * @param {?object} uniforms the object returned by `R_RendVeilShadowShader`; nothing happens when absent
+ */
 export function R_RendVeilShadowObject(mesh,uniforms){
  if(!uniforms)return;
  const entry=entries.get(mesh?._quakeOwner||mesh?.userData?.rendVeilSource?._quakeOwner);
@@ -196,5 +281,18 @@ export function R_RendVeilShadowObject(mesh,uniforms){
  if(!entry){uniforms.uRVEffectFromModel.value.identity();uniforms.uRVModelFromEffect.value.identity();uniforms.uRVRevealFromBody.value.identity();}
  if(entry){uniforms.uRVRevealFromBody.value.copy(entry.revealFromBody);uniforms.uRVEffectFromModel.value.multiplyMatrices(entry.bodyToReference,mesh.matrixWorld);uniforms.uRVModelFromEffect.value.copy(uniforms.uRVEffectFromModel.value).invert();}
 }
+/**
+ * Version stamp of a caster's rite for the point-shadow frozen-capture check (r_pointshadows.js): GPU reveal can
+ * change while geometry bytes and transforms stay identical.
+ *
+ * @param {?THREE.Object3D} mesh caster's source mesh (looked up by `_quakeOwner`)
+ * @returns {number} the rite's age in seconds while it is seen and younger than 2.5 s, otherwise 0
+ */
 export function R_RendVeilShadowVersion(mesh){const e=entries.get(mesh?._quakeOwner);return e?.seen&&e.state.t<2.5?e.state.t:0;}
+/**
+ * Snapshot of the live rites, for tests and diagnostics.
+ *
+ * @returns {{ active: number, pooled: number, states: Array<object> }} entry count, effects allocated by the pool,
+ *   and per entry its model name, start, phase, age, progress, focus, scale, world centre and restore flag
+ */
 export function R_RendVeilDiagnostics(){return {active:entries.size,pooled:pool?.allocated||0,states:[...entries.values()].map(e=>({model:e.entity.model?.name,start:e.start,phase:e.state.phase,age:e.state.t,progress:e.state.progress,focused:e.state.focused,scale:e.scale,center:new THREE.Vector3(0,2.35,0).applyMatrix4(e.frame).toArray(),restored:e.binding.restored}))};}

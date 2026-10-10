@@ -153,6 +153,25 @@ function distanceField( geometry, center ) {
  return {texture,bounds:new THREE.Vector4(minY,minZ,spanY,spanZ)};
 }
 
+/**
+ * Builds one pickup's fire volume, once per pickup record, when r_powerups.js first dresses a power-up
+ * (`nativeFire`). The box (native bounds about the centre, grown 9 units each side in x, 10 in y, 3 below and 48 above) is
+ * only a ray-march bound, never a painted flame surface. Fuel is a 96 x 96 half-float distance field, in the model's
+ * Y/Z plane, from the actual native triangles (Quake units, 4-unit pad); the glyph planes and opaque world depth clip
+ * the volume.
+ *
+ * @param {THREE.BufferGeometry} nativeGeometry the pickup's native model geometry; its `boundingBox` must be computed
+ * @param {THREE.Vector3} center the geometry's bounding-box centre (model space, Quake units); the volume is built
+ *   around it
+ * @param {Array<number>} color flame RGB, linear, passed to `THREE.Color` (values above 1 brighten)
+ * @param {THREE.DataTexture} glyphPlanes float RGBA texture, one plane (nx, ny, nz, d) per texel, of the glyph's
+ *   convex guard
+ * @param {number} glyphPlaneCount number of planes in `glyphPlanes`
+ * @returns {{mesh: THREE.Mesh, proxy: THREE.Mesh, field: THREE.DataTexture}} `mesh` (layer `POWERUP_FIRE_LAYER`,
+ *   added to the pickup's group, carries the transform), `proxy` (sharing its geometry and material, drawn by
+ *   `R_RenderPowerupFire` with `mesh`'s world matrix) and the distance-field texture; the caller disposes the
+ *   geometry, material and field
+ */
 export function R_CreatePowerupFire( nativeGeometry, center, color, glyphPlanes, glyphPlaneCount ) {
  const field=distanceField(nativeGeometry,center),native=nativeGeometry.boundingBox;
  const lo=native.min.clone().sub(center).add(new THREE.Vector3(-9,-10,-3));
@@ -177,7 +196,26 @@ export function R_CreatePowerupFire( nativeGeometry, center, color, glyphPlanes,
 
 let emissionTarget=null;
 const volumeScene=new THREE.Scene(),savedClear=new THREE.Color();
+/**
+ * Disposes the shared emission render target and empties the volume scene; called by `R_PowerupClear`
+ * (r_powerups.js) and `R_PostShutdown` (gl_post.js). The next `R_RenderPowerupFire` makes a new target.
+ */
 export function R_ClearPowerupFireTarget(){emissionTarget?.dispose();emissionTarget=null;volumeScene.clear();}
+/**
+ * Ray-marches every visible pickup fire into one shared half-float emission target the size of `target`, additive,
+ * with no depth test or write; called once per frame by `R_DrawPowerupFire` (r_powerups.js) for the post pass. Source
+ * depth belongs to HDR, while this pass writes a different target: no depth feedback, no opaque redraw, and no
+ * mutation of receiver MRTs. The renderer's render target, autoClear, scissor test and clear colour/alpha are
+ * restored afterwards, even on an error. The target is (re)allocated when its size changes and kept until
+ * `R_ClearPowerupFireTarget`.
+ *
+ * @param {THREE.WebGLRenderer} renderer the game's renderer
+ * @param {THREE.Camera} camera the view camera
+ * @param {THREE.WebGLRenderTarget} target the HDR scene target; its `depthTexture` clips the fire against the world
+ * @param {Array<{mesh: THREE.Mesh, proxy: THREE.Mesh}>} fires results of `R_CreatePowerupFire` to draw
+ * @returns {?{texture: THREE.Texture, count: number}} the emission texture (reused every frame; do not dispose) and
+ *   the number of fires drawn; null when there are none, the renderer is not WebGL, or `target` has no depth texture
+ */
 export function R_RenderPowerupFire( renderer, camera, target, fires ) {
  if(!fires.length||!renderer.isWebGLRenderer||!target?.depthTexture)return null;
  if(!emissionTarget||emissionTarget.width!==target.width||emissionTarget.height!==target.height){

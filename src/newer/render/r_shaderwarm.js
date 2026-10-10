@@ -37,10 +37,40 @@ function shaderMaterialStamp(material){
  const uniforms=Object.entries(material.uniforms||{}).filter(([,uniform])=>uniform?.value?.isTexture).map(([key,uniform])=>[key,uniform.value.uuid,uniform.value.version]);
  return [material.uuid,properties,material.defines,material.extensions,uniforms,shaderFunctionId(material.onBeforeCompile),shaderFunctionId(material.customProgramCacheKey),material.customProgramCacheKey?.()];
 }
+/**
+ * A fingerprint of the prepared shader and texture bindings, compared by `R_UpdateIntroReadiness` (gl_rmain.js) to
+ * rewarm shaders only when the actual bindings changed. Only prepared bindings define upload/warm work. Streaming
+ * geometry counts still belong to the separate stable-rendered-frame readiness revision. Each material contributes its
+ * uuid and version, except transparent DoubleSide materials: Three's render and compile paths increment version twice
+ * per transparent DoubleSide draw, which does not change the resulting shader, so for these materials the actual
+ * program inputs are observed instead (scalar properties, textures, defines, extensions, texture uniforms and the
+ * identity of `onBeforeCompile`/`customProgramCacheKey`).
+ *
+ * @param {Array<*>} revision caller values that also invalidate the stamp (map name, readiness counts); JSON-safe
+ * @param {Array<THREE.Material>} materials the prepared materials (from `R_NewerSkinsMaterials`, `R_WeaponMaterials`)
+ * @param {Array<THREE.Texture>} textures the prepared textures (uuid and version are used)
+ * @returns {string} a JSON string; equal strings mean nothing needs rewarming
+ */
 export function R_ShaderAssetStamp(revision,materials,textures){
  return JSON.stringify([revision,materials.map(shaderMaterialStamp),textures.map(t=>[t.uuid,t.version])]);
 }
 
+/**
+ * Compiles every material in a scene ahead of need, from `R_WarmShaders` (gl_rmain.js) while a level's start is held
+ * back. Three's compileAsync polls currentProgram on the original Material objects. Collection/map changes can detach
+ * their meshes immediately, but destroying a polled material removes those properties and strands the compile
+ * promise. A lease delays only GPU material disposal, not scene or gameplay lifetime: while the compile runs, each
+ * material's `dispose` is replaced by a stub that only records the request; when the last overlapping compile
+ * settles the original `dispose` is restored and, if it was requested, called.
+ *
+ * @param {THREE.WebGLRenderer} renderer the game's renderer
+ * @param {THREE.Scene} scene the scene to compile (every mesh material and `overrideMaterial`)
+ * @param {THREE.Camera} camera the camera to compile for
+ * @returns {Promise<*>|*} the compile promise (settles after the leases are released), or, when the renderer has no
+ *   `compileAsync`, the result of the synchronous `renderer.compile`
+ * @throws {*} what `renderer.compileAsync` throws synchronously (the leases are released first); a deferred
+ *   `dispose` that throws on release rejects the promise with that error
+ */
 export function R_CompileSceneAsync( renderer, scene, camera ) {
  if ( typeof renderer.compileAsync !== 'function' ) return renderer.compile( scene, camera );
  const materials = new Set();

@@ -24,9 +24,10 @@
     4096
   ],
   "glyphs": 218,
-  "moduleSha256": "dad7870c233969ebb942fb3889e582570e87335001d83d9348aef96f4a43dcff",
+  "moduleSha256": "a8f1f633a5e0eaf9e4b1b9bf3fa0e5d9f695c5ec51a16a9fabe517624440e0ae",
   "adaptations": [
     "ESM exports replace window font/shader/loader/renderer registration",
+    "JSDoc blocks for QuakeMenu public members (constructor and 14 methods)",
     "externalFrame defaults false; true retains only context lifecycle listeners",
     "frame accepts bounded physical pixels and finite millisecond timestamps without DPR rescaling",
     "optional native text, panel, selector and slider commands reuse donor glyph, plaque and solid-Q materials with transparent gameplay overlay alpha",

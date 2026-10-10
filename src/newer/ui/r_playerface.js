@@ -19,7 +19,23 @@ let M, SIZE=96, assets, poses, ready=false, loading=null;
 const images=new Map(),failed=new Set(),cache=new Map();
 const BASE='newer/hud/playerface/';
 const fallback=path=>new URL('../../../'+path,import.meta.url).href;
+/**
+ * Readiness of the layered face, for `R_NewerHudStatus` and its preload.
+ *
+ * @returns {{state: string, settled: boolean, pending: number, errors: Array<string>, version: ?string,
+ *   assets: number, loadedImages: number}} `state` 'idle' (never asked; counts as settled), 'loading', 'ready' or
+ *   'fallback' (something failed); `pending` 1 while loading; `errors` the failed source ids or error messages; the
+ *   manifest's version and asset count; how many source images decoded
+ */
 export function R_PlayerFaceStatus(){return {state:ready?(failed.size?'fallback':'ready'):loading?'loading':'idle',settled:ready||!loading,pending:ready?0:loading?1:0,errors:[...failed],version:M?.version||null,assets:M?.assets?.length||0,loadedImages:images.size};}
+/**
+ * Loads the face kit's manifest (validated by `validatePlayerFaceManifest`) and every source image it names, once per
+ * page; called by `R_NewerHudPreload` and on every Newer face draw (`Sbar_DrawFace`, sbar.js). The manifest and each
+ * image have a 30 s deadline. Failures are recorded in `R_PlayerFaceStatus().errors` and the face then draws only what
+ * loaded (or the native face).
+ *
+ * @returns {Promise<void>} the same promise on every call; resolves, never rejects, when loading has ended
+ */
 export function R_PlayerFacePreload(){
  if(loading)return loading;
  loading=(async()=>{
@@ -57,6 +73,22 @@ const HEALTH_LEVELS=10;
   return {health,healthPercent:healthStageForPercent(requested)===health?requested:band.default_percent,band};
  }
 
+ /**
+  * Resolves a face state to its pose and the asset of each layer (base, expression, gaze or eyelid closure, invisibility
+  * mask, blood, power-up eyes, water, diving-suit equipment), with the kit's own rules: the health stage stays
+  * authoritative over a mismatched percent, closed eyes hide gaze and power-up eyes. Needs the manifest
+  * (`R_PlayerFacePreload` finished).
+  *
+  * @param {{expression: string, look: string, health?: number, healthPercent?: number, strength?: boolean,
+  *   invulnerability?: boolean, invisibility?: boolean, eyeState?: string, divingSuit?: boolean, waterPercent?: number,
+  *   waterStage?: number, waterVisualStage?: number, waterSubmerged?: boolean, waterOpacity?: number}} [value] the face
+  *   state from `R_PlayerFaceFrame` (r_facegame.js): `health` stage 1..10 (else from `healthPercent` 0..100), `eyeState` a manifest eye state (default 'open'), water as in
+  *   `waterSelection`
+  * @returns {object} `{pose, effect, renderedEffect, mode, eyeState, eyesOpen, health, healthPercent, band,
+  *   waterPercent, waterStage, waterOpacity, layers}`; `effect` is 'purple' (Quad), 'yellow' (Pentagram), 'mixed' or
+  *   null; `layers` maps layer name to an asset id, water node or null
+  * @throws {Error} 'Unknown face pose.' when `expression`_`look` is not a manifest pose
+  */
  export function faceSelection(value={}) {
   const pose = poses.get(`${value.expression}_${value.look}`);
   if(!pose) throw new Error("Unknown face pose.");
@@ -122,6 +154,18 @@ const HEALTH_LEVELS=10;
   if(complete&&node.kind==="equipment"&&node.visor_tint)applyVisorTint(ctx,node.visor_tint,node.visor_glint);
   return {canvas:c,complete};
  }
+ /**
+  * Renders one manifest asset (or nested node) to a 96 x 96 (`cell_size`) canvas with nearest sampling, keeping
+  * full-cell origins, manifest registration and layer order. Complete results are cached once loading has ended, for the
+  * page's lifetime (do not draw into the returned canvas).
+  *
+  * @param {?string} id an asset id; null or '' gives an empty, complete canvas
+  * @param {?string} [basePoseId=null] the pose whose base clips `clip_to_base` placements
+  * @param {Array<string>} [chain=[]] asset ids already being rendered (cycle detection; callers omit it)
+  * @returns {{canvas: HTMLCanvasElement, complete: boolean}} `complete` false when the asset or a source image is
+  *   unavailable or not loaded
+  * @throws {Error} 'Circular layer reference: <id>' when an asset includes itself
+  */
  export function R_PlayerFaceLayer(id,basePoseId=null,chain=[]) {
   const cacheKey=`${id}:${basePoseId||""}`;if(cache.has(cacheKey))return cache.get(cacheKey);
   if(!id)return {canvas:makeCanvas(),complete:true};
@@ -130,13 +174,34 @@ const HEALTH_LEVELS=10;
   const result=renderNode(asset,basePoseId,[...chain,id]);if(ready&&result.complete)cache.set(cacheKey,result);return result;
  }
  function drawAsset(ctx,node,basePoseId=null) {if(!node)return true;const layer=renderNode(node,basePoseId);ctx.drawImage(layer.canvas,0,0);return layer.complete;}
- // Water is a material layer, never a replacement portrait. One shared ten-frame
+  // Water is a material layer, never a replacement portrait. One shared ten-frame
  // atlas feeds every expression/look; only the helmet-interior mask changes.
+ /**
+  * @param {*} value a percent (number or numeric string)
+  * @param {number} [fallback=0] returned when `value` is not a finite number
+  * @returns {number} `value` clamped to 0..100 (not rounded)
+  */
  export function clampWaterPercent(value,fallback=0) {
   const n=Number(value);return Number.isFinite(n)?Math.max(0,Math.min(100,n)):fallback;
  }
  function waterPercentLabel(value) {return String(Math.floor(clampWaterPercent(value)*10)/10);}
+ /**
+  * The water overlay stage for an air-use percent (`faceWaterStage` in face_state.js).
+  *
+  * @param {number} value air used, 0..100
+  * @param {boolean} [submerged=false] whether the head is under water (adds one stage)
+  * @returns {number} the stage 0..10 (0 = no overlay)
+  */
  export function waterStageForPercent(value,submerged=false) {return faceWaterStage(value,submerged);}
+ /**
+  * The water part of a face state.
+  *
+  * @param {{waterPercent?: number, waterStage?: number, waterVisualStage?: number, waterSubmerged?: boolean,
+  *   waterOpacity?: number}} [value] `waterPercent` air used 0..100 (else `waterStage` x 10); `waterVisualStage` an
+  *   integer 0..10 shown as is (the drain after surfacing), else the stage is derived from the percent;
+  *   `waterOpacity` 0..100 (default 50, the authored alpha)
+  * @returns {{waterPercent: number, waterStage: number, waterOpacity: number}} clamped values; opacity rounded
+  */
  export function waterSelection(value={}) {
   const waterPercent=clampWaterPercent(value.waterPercent??(Number(value.waterStage||0)*10));
   const visual=value.waterVisualStage;
@@ -191,10 +256,28 @@ const HEALTH_LEVELS=10;
   ctx.globalCompositeOperation='source-over';
   return rememberWater(waterOverlayCache,key,{canvas:c,complete:frame.complete&&mask.complete});
  }
+ /**
+  * Renders only the water layer for a face state (for the face trials and tests).
+  *
+  * @param {object} value a face state, as `faceSelection`
+  * @returns {{canvas: HTMLCanvasElement, complete: boolean}} the overlay clipped to the helmet interior (empty when
+  *   there is no water)
+  * @throws {Error} as `faceSelection`, for an unknown pose
+  */
  export function R_PlayerFaceWaterOverlay(value) {
   const chosen=faceSelection(value);
   return renderNode(chosen.layers.water,chosen.pose.id);
  }
+ /**
+  * Composes the whole face for a state, layer by layer in the manifest's order; called by `Sbar_DrawFace` (sbar.js)
+  * when the face state's key changes. The caller keeps the canvas only when `complete`.
+  *
+  * @param {object} value a face state, as `faceSelection`
+  * @returns {{canvas: ?HTMLCanvasElement, complete: boolean, missing: Array<string>, selection?: object}} a new
+  *   96 x 96 canvas, whether every layer was complete, the names of incomplete layers, and the `faceSelection` result;
+  *   before the manifest is loaded, `canvas` is null and `missing` lists the errors plus 'loading'
+  * @throws {Error} as `faceSelection`, for an unknown pose
+  */
  export function R_PlayerFaceCompose(value) {
   if(!ready||!poses)return {canvas:null,complete:false,missing:[...failed,'loading']};
   const c=makeCanvas(),ctx=c.getContext("2d",{alpha:true}),selected=faceSelection(value),missing=[];

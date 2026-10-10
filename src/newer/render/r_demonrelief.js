@@ -22,6 +22,18 @@ const filtered = new WeakMap();
 const geometryFields = new WeakMap();
 const mod = ( n, d ) => ( n % d + d ) % d;
 
+/**
+ * Returns the height field a demon plaque surface's geometry is sampled from: the texture's `userData.newerHeight`
+ * field Gaussian-blurred by its `displacement.smoothing` (a sigma in Quake units, 0..2, turned into samples through the
+ * texture's size and the texinfo scale; at most 128 samples per axis), and for `'clamp'` sampling given a `tileOrigin`
+ * at the tile in the middle of the surface's texture coordinates. The blurred field is cached per source field and the
+ * result per surface (WeakMaps), so repeated calls with unchanged inputs return the same object.
+ *
+ * @param {msurface_t} surface a world or brush surface; only `DEMON_TEXTURES` (`dem4_1`, `dem4_4`, `dem5_3`) qualify
+ * @returns {?{ width: number, height: number, data: Float32Array, sampling?: string, displacement: object,
+ *   tileOrigin?: Array<number> }} the field (2..2048 samples a side, values 0..1), or null when the texture is not a
+ *   demon plaque, has no displacement, or any input is out of range or non-finite
+ */
 export function R_DemonGeometryField( surface ) {
 
 	const texture = surface?.texinfo?.texture, field = texture?.gl_texture?.userData.newerHeight;
@@ -74,6 +86,16 @@ export function R_DemonGeometryField( surface ) {
 
 }
 
+/**
+ * Samples a height field bilinearly at a texture coordinate. With `'clamp'` sampling the coordinate is taken relative
+ * to `field.tileOrigin` and clamped to that one tile; otherwise it wraps (repeating plaques).
+ *
+ * @param {{ width: number, height: number, data: ArrayLike<number>, sampling?: string,
+ *   tileOrigin?: Array<number> }} field a field from `R_DemonGeometryField`
+ * @param {number} u texture s coordinate in texture tiles (1 = the texture's width)
+ * @param {number} v texture t coordinate in texture tiles
+ * @returns {number} the height, 0..1 for a valid field
+ */
 export function R_DemonHeight( field, u, v ) {
 
 	const clamp = field.sampling === 'clamp', width = field.width, height = field.height;
@@ -86,6 +108,26 @@ export function R_DemonHeight( field, u, v ) {
  return (data[y0+x0]*(1-fx)+data[y0+x1]*fx)*(1-fy)+(data[y1+x0]*(1-fx)+data[y1+x1]*fx)*fy;
 }
 
+/**
+ * Generates the displaced geometry of one demon plaque surface on the CPU: the surface's polygons (split at texture
+ * tile edges for `'clamp'` fields) are subdivided so no triangle edge exceeds `displacement.step` Quake units, each
+ * vertex is raised along the face normal by 0.05 + `depth` x height with a normal from the field's slope, and closed
+ * skirts run each edge down to the retained wall backing. Only CPU vertex arrays are created; the BSP polygons,
+ * lightmap coordinates and collision stay intact. Used at run time when no prepared bake applies (`gl_rsurf.js`,
+ * `gl_post.js`), and to generate bakes (`r_demonbakes.js` for custom maps, `tools/bake_displacement.mjs`). Cached per
+ * surface while its field, depth and step are unchanged (do not mutate the returned arrays).
+ *
+ * @param {msurface_t} surface the plaque surface
+ * @param {?object} [diagnostic=null] cleared, then filled with `{ reason, required, limit }` when the surface is
+ *   refused for its size: `'tile-budget'` (more than 16 texture tiles) or `'triangle-budget'` (more than 262144
+ *   triangles including skirts); see `DemonNativeOutcome`
+ * @returns {?{ positions: Float32Array, normals: Float32Array, uvs: Float32Array, lmuvs: Float32Array,
+ *   triangles: number, topVertexCount: number, skirtTriangles: number, tileRegions: Array<{ origin: ?Array<number>,
+ *   startVertex: number, endVertex: number }> }} non-indexed triangles (positions in Quake units, world/model space;
+ *   uvs in texture tiles; lmuvs the native lightmap coordinates), the raised top first then the skirts; null when the
+ *   surface does not qualify, an input is out of range (depth must be in (0, 24], step in [0.5, 4]) or a budget is
+ *   exceeded
+ */
 export function R_DemonSurfaceData( surface, diagnostic = null ) {
  if(diagnostic)for(const key of Object.keys(diagnostic))delete diagnostic[key];
 

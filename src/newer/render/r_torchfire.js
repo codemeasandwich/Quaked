@@ -84,9 +84,19 @@ const STOCK_TRIANGLES = Object.freeze( { 'progs/flame.mdl': 122, 'progs/flame2.m
 
 const partsOf = new WeakMap();
 
-// Splits a model into the flame (replaced) and the hardware (kept). `ok` is false when the model is
-// not the one this module knows, and the native model is then left alone.
-// partsOf: alias header -> { ok, handle: Uint8Array per triangle, handleTriangles, select }
+/**
+ * Splits a model into the flame (replaced) and the hardware (kept). `ok` is false when the model is
+ * not the one this module knows, and the native model is then left alone: flame.mdl must have 122 triangles, 36 of
+ * them in the handle's skin columns and all below 2.5 units; flame2.mdl must have 86. Called by `R_TorchFire` and by
+ * gl_rmain.js for the handle-only draw. Cached per alias header for the header's life (partsOf: alias header ->
+ * { ok, handle: Uint8Array per triangle, handleTriangles, select }).
+ *
+ * @param {string} name model name, 'progs/flame.mdl' or 'progs/flame2.mdl'
+ * @param {aliashdr_t} header the model's alias header (`model.cache.data`)
+ * @returns {{ok: boolean, handle: Uint8Array, handleTriangles: number, select: function(): THREE.BufferAttribute}}
+ *  frozen: `handle` 1 for each handle triangle; `select` is what gl_mesh.js calls (entity._aliasPart) to draw the
+ *  handle only, returning one shared index buffer (the triangle order is the same in every pose)
+ */
 export function torchParts( name, header ) {
 
 	let parts = partsOf.get( header );
@@ -123,8 +133,17 @@ export function torchParts( name, header ) {
 
 const extents = new WeakMap(); // alias header -> per frame group { base, top, height, radius }
 
-// The flame's own extents over the poses of one frame group, in Quake units relative to the entity
-// origin: the triangles of the flame only (the handle, where there is one, is left out).
+/**
+ * The flame's own extents over the poses of one frame group, in Quake units relative to the entity
+ * origin: the triangles of the flame only (the handle, where there is one, is left out). Base and top are averaged
+ * over the group's poses. Cached per header and frame group.
+ *
+ * @param {string} name model name (for `torchParts`)
+ * @param {aliashdr_t} header the model's alias header
+ * @param {number} frame the entity's frame (frame group index); an index the model lacks uses group 0
+ * @returns {{base: number, top: number, height: number, radius: number}} frozen: lowest and highest z, their
+ *  difference, and the largest horizontal distance from the origin, in Quake units
+ */
 export function flameExtent( name, header, frame ) {
 
 	let list = extents.get( header );
@@ -159,17 +178,37 @@ export function flameExtent( name, header, frame ) {
 
 }
 
-// Quake units per source unit for a flame of this height
+/**
+ * Quake units per source unit for a flame of this height (scaled by `TORCH.fit` onto the source's 1.847-unit flame).
+ *
+ * @param {number} height the native flame's height in Quake units (`flameExtent().height`)
+ * @returns {number} Quake units per source unit
+ */
 export const torchUnit = height => height * TORCH.fit / TORCH.flameHeight;
 
-// A phase for each torch, so a row of torches does not burn in step (the source has one flame).
+/**
+ * A phase for each torch, so a row of torches does not burn in step (the source has one flame).
+ *
+ * @param {number} x torch origin x (Quake units)
+ * @param {number} y torch origin y
+ * @param {number} z torch origin z
+ * @returns {number} a time offset in seconds, 0..97, fixed for that position
+ */
 export const torchPhase = ( x, y, z ) => hashJS( x * .071 + y * .113 + z * .057 ) * 97;
 
 // ---------------------------------------------------------------------------
 // The source's ember and smoke functions, in source units (y up) relative to the flame's root.
 // ---------------------------------------------------------------------------
 
-// torchEmbers(): emit( startX, startY, startZ, endX, endY, endZ, width, alpha, r, g, b )
+/**
+ * The source's torchEmbers(): the 22 rising embers at `time`, each a function of time alone, as short streaks in
+ * source units (y up) relative to the flame's root. `R_TorchFireFlush` calls it per torch.
+ *
+ * @param {number} time seconds, including the torch's phase
+ * @param {number} wind sideways drift (the source's DEFAULTS.fire.wind, 0 here)
+ * @param {function(number, number, number, number, number, number, number, number, number, number, number): void} emit
+ *  called once per ember as emit( startX, startY, startZ, endX, endY, endZ, width, alpha, r, g, b )
+ */
 export function forEachEmber( time, wind, emit ) {
 
 	for ( let i = 0; i < TORCH.embers; i ++ ) {
@@ -182,7 +221,16 @@ export function forEachEmber( time, wind, emit ) {
 
 }
 
-// torchSmoke(): emit( x, y, z, size, angle, alpha, heat, tile, tintR, tintG, tintB, seed )
+/**
+ * The source's torchSmoke(): the 16 faint smoke puffs at `time`, in source units (y up) relative to the flame's root.
+ * `R_TorchFireFlush` calls it per torch.
+ *
+ * @param {number} time seconds, including the torch's phase
+ * @param {number} size flame size (`TORCH.size`); puffs start 1.30 sizes above the root
+ * @param {number} wind sideways drift (0 here)
+ * @param {function(number, number, number, number, number, number, number, number, number, number, number, number): void} emit
+ *  called once per puff as emit( x, y, z, size, angle, alpha, heat, tile, tintR, tintG, tintB, seed )
+ */
 export function forEachSmoke( time, size, wind, emit ) {
 
 	for ( let i = 0; i < TORCH.smoke; i ++ ) {
@@ -203,11 +251,28 @@ const STRIDE = 6; // x, y, z of the flame's root, source unit in Quake units, ph
 const rows = new Float32Array( TORCH.max * STRIDE );
 let count = 0, deps = null;
 
+/**
+ * Hands the module the scene its layers are added to; R_NewMap (gl_rmain.js) at each map load.
+ *
+ * @param {{scene: THREE.Scene}} externals kept until the next call
+ */
 export function R_TorchFireSetup( externals ) { deps = externals; }
+/**
+ * Empties the frame registry; gl_rmain.js before the entity list is drawn each frame.
+ */
 export function R_TorchFireBegin() { count = 0; }
+/**
+ * @returns {number} torches registered by `R_TorchFire` so far this frame (0..128)
+ */
 export function R_TorchFireCount() { return count; }
 
-// Is this entity one of the torches the supplied flame replaces, and is the replacement on?
+/**
+ * Is this entity one of the torches the supplied flame replaces: a flame.mdl or flame2.mdl entity whose alias
+ * header (pose data and frames) is loaded. (Whether the replacement is on is decided by `R_TorchFire`.)
+ *
+ * @param {?entity_t} e entity being drawn
+ * @returns {boolean} true for a supported, loaded torch model
+ */
 export function torchSupported( e ) {
 
 	const model = e?.model;
@@ -215,12 +280,18 @@ export function torchSupported( e ) {
 
 }
 
-// Called while the entity list is drawn (R_DrawAliasModel). Returns 0 when the native model is drawn
-// as before: Classic (and the classic half of the title demo), r_torchfire 0, an unsupported entity,
-// the textures not (yet) available, or a full pool. Returns TORCH_WHOLE when the supplied flame takes
-// the entity and the whole model is not drawn, and TORCH_HANDLE when the model is drawn without its
-// flame (only the handle).
 export const TORCH_WHOLE = 1, TORCH_HANDLE = 2, TORCH_OVERLAY = 3;
+/**
+ * Called while the entity list is drawn (R_DrawAliasModel), once per alias entity; registers a supported torch for
+ * this frame's `R_TorchFireFlush` (root position, scale and phase).
+ *
+ * @param {entity_t} e entity being drawn (`origin` in Quake units, `frame` its frame group)
+ * @returns {number} 0 when the native model is drawn as before: Classic (and the classic half of the title demo),
+ *  r_torchfire 0, an unsupported entity, the textures not (yet) available, or a full pool (128). TORCH_WHOLE when the
+ *  supplied flame takes the entity and the whole model is not drawn, and TORCH_HANDLE when the model is drawn without
+ *  its flame (only the handle), both with r_torchfire 2. TORCH_OVERLAY (r_torchfire 1) when the flame is laid over
+ *  the native model, which is drawn as usual
+ */
 export function R_TorchFire( e ) {
 
 	if ( deps == null || ! deps.scene || r_torchfire.value === 0 || ! R_NewerGame() || ! torchSupported( e ) ) return 0;
@@ -356,8 +427,17 @@ function emitEmber( sx, sy, sz, tx, ty, tz, width, alpha, r, g, b ) {
 
 }
 
-// Every frame, after the entity list has been drawn (so the registry is this frame's): write the
-// flames, embers and smoke of the torches registered. `forward` is the view's forward vector.
+/**
+ * Every frame, after the entity list has been drawn (so the registry is this frame's): write the
+ * flames, embers and smoke of the torches registered into the three instanced layers (sorted back to front), adding
+ * the group to the scene on first use. Hides the layers when nothing is registered or the shared fireball textures are
+ * not ready. Does nothing before `R_TorchFireSetup`.
+ *
+ * @param {number} time client time in seconds (`cl.time`)
+ * @param {ArrayLike<number>} eye view origin (Quake units, world space)
+ * @param {ArrayLike<number>} forward the view's forward vector
+ * @param {?ArrayLike<number>} viewSize 3D view width and height in pixels, for the ember streak width
+ */
 export function R_TorchFireFlush( time, eye, forward, viewSize ) {
 
 	const scene = deps?.scene;
@@ -426,7 +506,9 @@ function hide() {
 
 }
 
-// A new level: nothing is kept per torch, so this only empties the layers.
+/**
+ * A new level: nothing is kept per torch, so this only empties the layers (R_NewMap, after `R_TorchFireSetup`).
+ */
 export function R_TorchFireClear() {
 
 	count = 0;
@@ -434,7 +516,12 @@ export function R_TorchFireClear() {
 
 }
 
-// Diagnostic read-only view for tests and the browser trial.
+/**
+ * Diagnostic read-only view for tests and the browser trial.
+ *
+ * @returns {{registered: number, group: boolean, visible: boolean, flames: number, puffs: number, embers: number}}
+ *  torches registered this frame, whether the layers exist and are visible, and the instance counts last written
+ */
 export function R_TorchFireSnapshot() {
 
 	return { registered: count, group: group !== null, visible: group?.visible ?? false,

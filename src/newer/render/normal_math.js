@@ -51,7 +51,18 @@ function luminance( r, g, b ) {
 
 }
 
-// height in 0..1 from RGBA texels (and optional fullbright RGBA texels)
+/**
+ * Height in 0..1 from RGBA texels (and optional fullbright RGBA texels): steps 1 and 2 of the pipeline. Each texel's
+ * Rec. 601 luminance, raised to its fullbright texel's where that has alpha, then contrast-normalised so the mean
+ * maps to 0.5 and three standard deviations either side to 0 and 1 (clamped). Used when a normal map is generated
+ * (gl_normals.js, normal_prepare.js) and for skin height (r_newerskins.js).
+ *
+ * @param {Uint8Array|Uint8ClampedArray} rgba width*height*4 bytes, row-major
+ * @param {number} width texture width in texels
+ * @param {number} height texture height in texels
+ * @param {?(Uint8Array|Uint8ClampedArray)} fullbright same layout as `rgba`, or null/undefined for none
+ * @returns {Float32Array} a new array of width*height heights in 0..1
+ */
 export function R_HeightFromRGBA( rgba, width, height, fullbright ) {
 
 	const n = width * height;
@@ -82,7 +93,16 @@ export function R_HeightFromRGBA( rgba, width, height, fullbright ) {
 
 }
 
-// separable box blur that wraps at the edges
+/**
+ * Separable box blur that wraps at the edges (the textures tile): a horizontal then a vertical mean over
+ * 2*radius+1 texels.
+ *
+ * @param {Float32Array} src width*height values, row-major
+ * @param {number} width field width in texels
+ * @param {number} height field height in texels
+ * @param {number} radius blur radius in texels (an integer; 0 or less returns `src` itself, not a copy)
+ * @returns {Float32Array} a new blurred array, or `src` when `radius` <= 0
+ */
 export function R_BoxBlurWrapped( src, width, height, radius ) {
 
 	if ( radius <= 0 ) return src;
@@ -121,7 +141,16 @@ export function R_BoxBlurWrapped( src, width, height, radius ) {
 
 }
 
-// blend of the height field at several scales, in 0..1
+/**
+ * Blend of the height field at several scales, in 0..1 (step 3): the weighted mean of the field itself and its box
+ * blurs of radius 1, 3 and 6 texels (fine grain, medium cracks, coarse blocks), each radius limited to a quarter of
+ * the texture's smaller side.
+ *
+ * @param {Float32Array} base width*height heights in 0..1, as from `R_HeightFromRGBA`
+ * @param {number} width texture width in texels
+ * @param {number} height texture height in texels
+ * @returns {Float32Array} a new array of width*height heights in 0..1
+ */
 export function R_MultiScaleHeight( base, width, height ) {
 
 	const out = new Float32Array( base.length );
@@ -142,7 +171,19 @@ export function R_MultiScaleHeight( base, width, height ) {
 
 }
 
-// tangent-space normals (RGBA8, height in alpha) from a height field
+/**
+ * Tangent-space normals (RGBA8, height in alpha) from a height field (steps 4 and 5), for textures with no crafted
+ * height. A wrapping Sobel gradient, scaled by sqrt(width*height)/8 so the visible slope is the same at any
+ * resolution, then limited to the generated tilt limit (MAX_TILT, a slope of 0.5, about 27 degrees). u grows with x
+ * and v with the row index, the same as the texture coordinates.
+ *
+ * @param {Float32Array} h width*height heights, as from `R_MultiScaleHeight`
+ * @param {number} width texture width in texels
+ * @param {number} height texture height in texels
+ * @param {number} [strength=NORMAL_STRENGTH] relief multiplier (1.3)
+ * @returns {Uint8Array} a new width*height*4 array: RGB the normal mapped from -1..1 to 0..255, A the height stretched
+ * to the field's own min..max as 0..255 (for parallax)
+ */
 export function R_NormalsFromHeight( h, width, height, strength = NORMAL_STRENGTH ) {
 
 	const out = new Uint8Array( width * height * 4 );
@@ -239,8 +280,24 @@ function R_SmoothHeight( src, width, height ) {
 
 }
 
-// Tangent-space normals (RGBA8, height in alpha) from a crafted height field: a height map made offline
-// for one texture (tools/craft_normals.py, which has the same maths), in 0..1, and how steep to make it.
+/**
+ * Tangent-space normals (RGBA8, height in alpha) from a crafted height field: a height map made offline for one
+ * texture (tools/craft_normals.py, which has the same maths), in 0..1, and how steep to make it. The heights are first
+ * smoothed (two passes of a 1 4 6 4 1 blur) to take out 8-bit terracing, then differenced (weights 3 for the texel's
+ * own row or column, 1 for each neighbour's), scaled by strength*sqrt(width*height)/8 and soft-capped. Used by
+ * gl_normals.js and normal_prepare.js, and with strength 0 for a flat edge-reference texture.
+ *
+ * @param {Float32Array|ArrayLike<number>} h0 width*height crafted heights in 0..1, row-major
+ * @param {number} width texture width in texels
+ * @param {number} height texture height in texels
+ * @param {number} strength relief multiplier (0 gives flat normals, height only)
+ * @param {number} [capk=1.1] soft cap on a facet's slope: n is scaled by 1/sqrt(1 + (slope/capk)^2)
+ * @param {?{ data: ArrayLike<number>, width: number, height: number, offset: Array<number> }} [edgeSource=null] the
+ * height field of the material this carving continues; when given, a 5-texel border is read from it (at
+ * `offset` [x, y] texels, wrapping) instead of wrapping the carved image itself, so the boundary meets the real
+ * neighbouring heights
+ * @returns {Uint8Array} a new width*height*4 array: RGB the normal mapped to 0..255, A the smoothed height * 255
+ */
 export function R_NormalsFromCraftedHeight( h0, width, height, strength, capk = 1.1, edgeSource = null ) {
 
 	const out = new Uint8Array( width * height * 4 );
@@ -304,7 +361,16 @@ export function R_NormalsFromCraftedHeight( h0, width, height, strength, capk = 
 
 }
 
-// the complete pipeline on raw texels
+/**
+ * The complete pipeline on raw texels: `R_HeightFromRGBA`, `R_MultiScaleHeight`, then `R_NormalsFromHeight` at the
+ * default strength. Used by gl_normals.js when a texture has no authored or crafted normals and no prepared bake.
+ *
+ * @param {Uint8Array|Uint8ClampedArray} rgba width*height*4 bytes, row-major
+ * @param {number} width texture width in texels
+ * @param {number} height texture height in texels
+ * @param {?(Uint8Array|Uint8ClampedArray)} fullbright same layout as `rgba`, or null for none
+ * @returns {Uint8Array} a new width*height*4 RGBA8 normal map with height in alpha
+ */
 export function R_GenerateNormalData( rgba, width, height, fullbright ) {
 
 	const base = R_HeightFromRGBA( rgba, width, height, fullbright );

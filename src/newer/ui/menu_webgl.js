@@ -18,6 +18,14 @@ import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionIm
 let renderer = null, loading = null, failed = null, visible = false, epoch = 0;
 let frameSkin = false, presented = false, commands = [], blits = [], size = [ 0, 0 ];
 
+/**
+ * Tells the adapter whether Quaked's native menu is up. Called at the start of every `M_Draw` (`menu.js`): true while
+ * a menu other than the Bestiary is open with key focus on the menu. Closing it drops the queued frame and shrinks the
+ * renderer's canvas to 1 x 1, since gameplay can run for hours with the menu closed; `frame()` resizes it again on the
+ * next opening. A change resets the selector's frame clock.
+ *
+ * @param {boolean} value whether the native menu is visible (coerced to boolean)
+ */
 export function MainMenu_SetVisible( value ) {
 
 	value = !! value;
@@ -34,6 +42,11 @@ export function MainMenu_SetVisible( value ) {
 
 }
 
+/**
+ * Destroys the WebGL menu renderer and resets all adapter state, cancelling any load in flight (its generation is
+ * bumped). Called by `Host_Shutdown` and on the page's `pagehide`. Safe to call repeatedly; the next visible frame
+ * loads a new renderer.
+ */
 export function MainMenu_Destroy() {
 
 	epoch ++; renderer?.destroy(); renderer = null; loading = null; failed = null;
@@ -71,6 +84,12 @@ function prepare() {
 
 }
 
+/**
+ * Starts one menu frame: clears the queued commands and blits, starts loading the renderer on first use (a dynamic
+ * import of `menu_webgl_source.js`), and decides whether this frame is skinned (the renderer is loaded and its context
+ * not lost). Called by `M_Draw` each frame the menu is up, before the native drawing helpers. Until the renderer is
+ * ready, or after it has failed, every `MainMenu_*` draw call returns false and the native drawing is used.
+ */
 export function MainMenu_Begin() {
 
 	frameSkin = false; commands = []; blits = [];
@@ -81,6 +100,12 @@ export function MainMenu_Begin() {
 
 }
 
+/**
+ * Tells whether the current frame is drawn by the WebGL menu (between `MainMenu_Begin` and `MainMenu_End`).
+ * `menu.js` uses it to skip the native dark backdrop fill.
+ *
+ * @returns {boolean} true while this frame is skinned
+ */
 export function MainMenu_Skinned() { return frameSkin; }
 
 function physical( x, y ) {
@@ -210,6 +235,19 @@ function labelRows( pic, x, y, labels, firstRow, srcY ) {
 
 }
 
+/**
+ * Queues engine menu text in the supplied font. Engine text is a fixed 8-unit cell grid; every character stays in its
+ * own cell (upper-cased, cap height 4.8 units) so right-aligned labels, columns and save-slot rows land exactly where
+ * the original bitmap font put them. Called by `M_Print`/`M_PrintWhite` and for printable characters by
+ * `MainMenu_Glyph`.
+ *
+ * @param {number} x left edge in virtual (320 x 200 based) screen units, menu offset already applied
+ * @param {number} y top of the first line in virtual units; `\n` starts a new 8-unit row
+ * @param {string} text the text (coerced to string); spaces and control characters leave their cell empty
+ * @param {number} [kind=0] the glyph material: 0 the menu's own (`M_Print`, stock highlighted characters), 2 the stock
+ *   white engine text (`M_PrintWhite`, drawn with material 3)
+ * @returns {boolean} true when queued (the caller skips native drawing); false when the frame is not skinned
+ */
 export function MainMenu_Text( x, y, text, kind = 0 ) {
 
 	if ( ! frameSkin ) return false;
@@ -240,6 +278,17 @@ export function MainMenu_Text( x, y, text, kind = 0 ) {
 
 }
 
+/**
+ * Replaces one native menu character (`M_DrawCharacter`): codes 12..17 become the rotating Q selector, 128..131 (the
+ * legacy slider characters) are swallowed because `MainMenu_Slider` draws the slider whole, 10/11 (the blinking text
+ * cursor) draw `|` on one phase only, and other printable codes become text (white below 128, menu text above).
+ *
+ * @param {number} x left edge in virtual screen units
+ * @param {number} y top edge in virtual screen units
+ * @param {number} code the Quake charset code, 0..255
+ * @returns {boolean} true when handled (including swallowed codes and codes below 32 other than those above); false
+ *   when the frame is not skinned
+ */
 export function MainMenu_Glyph( x, y, code ) {
 
 	if ( ! frameSkin ) return false;
@@ -263,6 +312,16 @@ export function MainMenu_Glyph( x, y, code ) {
 
 }
 
+/**
+ * Queues a bronze panel (or a dark recessed well) in the supplied material.
+ *
+ * @param {number} x left edge in virtual screen units
+ * @param {number} y top edge in virtual screen units
+ * @param {number} width width in virtual units
+ * @param {number} height height in virtual units
+ * @param {boolean} [well=false] true for a recessed well (text boxes, slider tracks)
+ * @returns {boolean} true when queued; false when the frame is not skinned
+ */
 export function MainMenu_Panel( x, y, width, height, well = false ) {
 
 	if ( ! frameSkin ) return false;
@@ -272,8 +331,18 @@ export function MainMenu_Panel( x, y, width, height, well = false ) {
 
 }
 
-// Dialog/text box: the original border tiles leave a transparent margin inside the
-// nominal cell area; the dark recessed panel is inset by exactly that margin.
+/**
+ * Dialog/text box (`M_DrawTextBox`): the original border tiles leave a transparent margin inside the nominal cell area;
+ * the dark recessed panel is inset by exactly that margin, measured from the corner pictures' opaque pixels.
+ *
+ * @param {number} x left edge of the box's cell area in virtual screen units
+ * @param {number} y top edge in virtual units
+ * @param {number} width width in virtual units (`( width + 2 ) * 8` from the caller)
+ * @param {number} height height in virtual units (`( lines + 2 ) * 8`)
+ * @param {?qpic_t} tl the `gfx/box_tl.lmp` picture, or null for no inset on the top/left
+ * @param {?qpic_t} br the `gfx/box_br.lmp` picture, or null for no inset on the bottom/right
+ * @returns {boolean} true when queued; false when the frame is not skinned
+ */
 export function MainMenu_TextBox( x, y, width, height, tl, br ) {
 
 	if ( ! frameSkin ) return false;
@@ -284,7 +353,16 @@ export function MainMenu_TextBox( x, y, width, height, tl, br ) {
 
 }
 
-// (x, y) is the left end of the 12-cell track and the top of its cell row.
+/**
+ * Queues an options slider (`M_DrawSlider`): a recessed track and a knob placed on cell `(range - 1) * value` of the
+ * middle cells, as the stock knob sits. (x, y) is the left end of the 12-cell track and the top of its cell row.
+ *
+ * @param {number} x left end of the track in virtual screen units
+ * @param {number} y top of its cell row in virtual units
+ * @param {number} width the track's width in virtual units (`( SLIDER_RANGE + 2 ) * 8` = 96)
+ * @param {number} value the slider position, 0..1 (clamped)
+ * @returns {boolean} true when queued; false when the frame is not skinned
+ */
 export function MainMenu_Slider( x, y, width, value ) {
 
 	if ( ! frameSkin ) return false;
@@ -329,6 +407,20 @@ function deferPicture( pic, px, py, scale, srcY ) {
 
 }
 
+/**
+ * Replaces a native menu picture (`M_DrawPic`, `M_DrawTransPic`, `M_DrawSubPic`) with the supplied typography placed
+ * on the original artwork's measured ink: the QUAKE plaque's letters (its id mark blitted as original pixels), the
+ * rotating `gfx/menudot*` selector, the title plaques in `TITLES`, and the menu item sheets (main menu, single player,
+ * multiplayer). `gfx/box_*` tiles are dropped (the text box panel replaces them); `gfx/bigbox.lmp` stays native;
+ * pictures with no replacement are queued as blits so they still land above the WebGL panels.
+ *
+ * @param {number} x left edge in virtual screen units
+ * @param {number} y top edge in virtual units
+ * @param {?qpic_t} pic the picture (its `path` selects the replacement; `canvas` is read for measurement)
+ * @param {number} [srcY=0] the top row of a sub-picture in picture units; a nonzero value cannot be blitted
+ * @returns {boolean} true when replaced or queued; false to draw natively (not skinned, no picture, the portrait
+ *   frame, an unmeasurable sheet, or a sub-picture with no replacement)
+ */
 export function MainMenu_Image( x, y, pic, srcY = 0 ) {
 
 	if ( ! frameSkin || ! pic ) return false;
@@ -395,8 +487,24 @@ export function MainMenu_Image( x, y, pic, srcY = 0 ) {
 }
 
 let inGameSnapshot = false;
+/**
+ * Tells the main menu sheet whether a game is in progress, so its rows are labelled with Continue first. Called by
+ * `M_Main_Draw` every main menu frame.
+ *
+ * @param {boolean} value whether the Continue row is shown (coerced to boolean)
+ */
 export function MainMenu_SetInGame( value ) { inGameSnapshot = !! value; }
 
+/**
+ * Finishes a skinned frame: renders the queued commands at the overlay canvas's size, composites the result over the
+ * native drawing with the menu's soft drop shadow (`SHADOW`), then draws the queued blits unsmoothed. Called at the end
+ * of `M_Draw`. A render error disables the WebGL menu for the session (native drawing resumes next frame) and is
+ * logged, not thrown.
+ *
+ * @param {number} timeSeconds real time in seconds (`realtime`), passed to the renderer in milliseconds for the
+ *   selector's rotation
+ * @returns {boolean} true when the frame was presented
+ */
 export function MainMenu_End( timeSeconds ) {
 
 	if ( ! frameSkin ) return false;
@@ -423,13 +531,25 @@ export function MainMenu_End( timeSeconds ) {
 
 }
 
-// Read-only diagnostic: the draw commands and deferred picture blits of the last frame.
+/**
+ * Read-only diagnostic: the draw commands and deferred picture blits of the last frame (used by tests).
+ *
+ * @returns {{ commands: Array<object>, blits: Array<object> }} shallow copies; command coordinates are physical pixels
+ */
 export function MainMenu_Frame() {
 
 	return { commands: commands.map( c => ( { ...c } ) ), blits: blits.map( b => ( { ...b } ) ) };
 
 }
 
+/**
+ * Diagnostic state of the WebGL menu, for tests and the in-browser trial.
+ *
+ * @returns {{ visible: boolean, skinActive: boolean, ready: boolean, error: ?string, contextLost: boolean,
+ *   size: Array<number>, commands: number, pendingFrame: number, layout: ?{ width: number, height: number,
+ *   glyphInstances: number, panels: number } }} `skinActive` is true once the last frame was presented; `size` the
+ *   last frame's canvas size in pixels; `error` the reason the menu fell back to native drawing
+ */
 export function MainMenu_Snapshot() {
 
 	return { visible, skinActive: presented, ready: !! renderer?.loaded && ! renderer.contextLost && ! failed,

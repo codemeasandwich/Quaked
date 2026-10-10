@@ -30,6 +30,13 @@ const warm = new Map(); // map name -> { step, model, models, textures }
 let current = null; // the one being worked on
 const FRAME_BUDGET = 3; // milliseconds a frame goes on this
 
+/**
+ * Asks for a level to be got ready, given to the server once by `R_Init` (gl_rmain.js) through `SV_SetWarmLevel`;
+ * `SV_SeamlessFrame` calls it, possibly every frame, while the player is within 900 units of an exit. Only a few are
+ * kept ready (three): the oldest go. Asking again for a level already queued or done does nothing.
+ *
+ * @param {string} mapName map name without path or extension (e.g. 'e1m2')
+ */
 export function R_WarmLevel( mapName ) {
 
 	if ( warm.has( mapName ) ) return;
@@ -41,6 +48,11 @@ export function R_WarmLevel( mapName ) {
 
 }
 
+/**
+ * Forgets every queued and finished level and the one being worked on. What has already been made stays in the
+ * caches it went into (the relief maps by picture, the decoded textures and models by name). No caller in the engine
+ * at present.
+ */
 export function R_WarmForget() {
 
 	warm.clear();
@@ -48,6 +60,11 @@ export function R_WarmForget() {
 
 }
 
+/**
+ * Whether any queued level still has work to do. No caller in the engine at present.
+ *
+ * @returns {boolean} true while a level is not 'done'
+ */
 export function R_WarmPending() {
 
 	for ( const w of warm.values() ) if ( w.step !== 'done' ) return true;
@@ -55,7 +72,16 @@ export function R_WarmPending() {
 
 }
 
-// once a frame: a little of the next thing to do, within a few milliseconds
+/**
+ * Once a frame (from `R_RenderView`, gl_rmain.js): does a little of the next thing to do for the first unfinished
+ * level, within a few milliseconds. In order: loads the level's BSP with `Mod_LoadForPreview` and starts fetching its
+ * Newer Game textures; loads the models of its monsters and items (one per step); then makes the relief map of each
+ * wall texture with `R_NormalMapFor`, preferring textures whose own picture has arrived and waiting up to 10 s for the
+ * rest (a picture that never comes is not waited for). A level whose BSP is missing is marked done.
+ *
+ * @param {number} [budget=FRAME_BUDGET] milliseconds this frame may spend (3); one step always runs, so a single
+ *   large step can exceed it
+ */
 export function R_WarmFrame( budget = FRAME_BUDGET ) {
 
 	if ( current === null || current.step === 'done' ) {

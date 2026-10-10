@@ -36,12 +36,24 @@ const fps = { last: 0, frames: 0, since: 0, fps: 0, ms: 0 };
 
 let resScale = 1;
 
+/**
+ * Records the dynamic-resolution scale shown by the FPS counter, once per frame from gl_post.js's `dynResUpdate`
+ * (1 when `r_dynres` is off).
+ *
+ * @param {number} v the scene's resolution scale, 0..1 of the display size
+ */
 export function R_PerfSetScale( v ) {
 
 	resScale = v;
 
 }
 
+/**
+ * The FPS counter's text (cl_showfps 1, Options > FPS counter), drawn in the corner by `SCR_DrawPerf` (gl_screen.js).
+ * The figures are averaged over the last stretch of at least half a second (`R_PerfFrameBegin`).
+ *
+ * @returns {string} e.g. `60 fps  16.7 ms` plus `  75%` when the resolution scale is below 99.5%
+ */
 export function R_PerfFpsText() {
 
 	const scale = resScale;
@@ -58,6 +70,12 @@ let rendererRef = null;
 const prev = { programs: - 1, textures: - 1, geometries: - 1 };
 const knownPrograms = new Set();
 
+/**
+ * Gives the profiler the renderer whose `info` (draw calls, triangles, programs, textures, geometry) it reads and whose
+ * GL context it waits on (`gl.finish()`) after each stage. Called once by `R_Init` (gl_rmain.js).
+ *
+ * @param {?THREE.WebGLRenderer} renderer the game's renderer; null disables stage waits and counts
+ */
 export function R_PerfInit( renderer ) {
 
 	rendererRef = renderer;
@@ -65,13 +83,25 @@ export function R_PerfInit( renderer ) {
 
 }
 
+/**
+ * Whether a profile run (`perfprofile`) is in progress. While it is, main.js drives frames through `R_PerfPump`, and
+ * the title-demo split (`R_DemoSplitActive`) is off.
+ *
+ * @returns {boolean} true from `R_PerfStart` until `R_PerfStop`
+ */
 export function R_PerfProfiling() {
 
 	return profiling;
 
 }
 
-// the frame is starting
+/**
+ * The frame is starting: updates the FPS counter and, while profiling, opens the frame's stage record and resets the
+ * renderer's counters (turning off their auto-reset so one frame's passes add up). Called by `_Host_Frame_Internal`
+ * (host.js) once the frame's time has been accepted.
+ *
+ * @param {number} now the current time in seconds (`performance.now() / 1000`)
+ */
 export function R_PerfFrameBegin( now ) {
 
 	if ( fps.last > 0 ) {
@@ -107,7 +137,13 @@ export function R_PerfFrameBegin( now ) {
 
 }
 
-// a stage of the frame is over: everything since the last mark is its time
+/**
+ * A stage of the frame is over: everything since the last mark is its time. Called at fixed points of the frame
+ * (gl_rmain.js, gl_post.js and others); only acts while profiling, when it first waits for the graphics card
+ * (`gl.finish()`) so the stage includes the card's work. A name used twice in a frame accumulates.
+ *
+ * @param {string} name the stage's label in the report (e.g. 'world draw', 'compile'; see the ADVICE table)
+ */
 export function R_PerfStage( name ) {
 
 	if ( ! profiling || cur === null ) return;
@@ -118,6 +154,12 @@ export function R_PerfStage( name ) {
 
 }
 
+/**
+ * Closes the frame being timed, at the end of `_Host_Frame_Internal` (host.js): the remainder becomes 'audio and the rest', and
+ * the frame's total, draw calls, triangles and newly created shader programs, textures and geometry are recorded.
+ * The frame is kept for the report only once the demo is past its first frames (loading). No effect unless
+ * profiling.
+ */
 export function R_PerfFrameEnd() {
 
 	if ( ! profiling || cur === null ) return;
@@ -166,12 +208,31 @@ const DEMOS = [ 'demo1', 'demo2', 'demo3' ];
 let lastReport = null;
 let frameLimit = 0;
 
+/**
+ * Gives the profiler the engine services it drives the run with, once at startup from main.js (this module imports
+ * none of them).
+ *
+ * @param {{ Cbuf_AddText: (text: string) => void, cls: client_static_t, log: (text: string) => void,
+ *   getCvar: (name: string) => number, setCvar: (name: string, value: number) => void, size: () => string,
+ *   menuOpen: () => boolean, endDemoSplit: () => void }} h the command buffer, client state, console print, cvar get
+ *   and set, the drawing buffer's size text (`<w>x<h>`), whether a menu or the console has the keys, and
+ *   `R_DemoSplitEnd`
+ */
 export function R_PerfSetHost( h ) {
 
 	host = h;
 
 }
 
+/**
+ * Starts a profile run (the `perfprofile [frames]` command, Options > Performance profiler): plays demo1, demo2 and
+ * demo3 as timedemos back to back, in the enhanced view only. Ends a title demo's split first, saves r_dynres,
+ * cl_showfps, r_hdr, r_demosplit and `cls.demonum`, then sets r_hdr 1, r_demosplit 0, r_dynres 0 (full resolution),
+ * cl_showfps 1 and stops the attract loop; `R_PerfStop` restores them. Does nothing when already profiling or before
+ * `R_PerfSetHost`.
+ *
+ * @param {number} limit frames to time per demo; 0, negative or NaN times each demo to its end
+ */
 export function R_PerfStart( limit ) {
 
 	if ( profiling || host === null ) return;
@@ -194,6 +255,15 @@ export function R_PerfStart( limit ) {
 
 }
 
+/**
+ * Ends the profile run: restores the saved settings, disconnects, and (unless nothing was timed) builds the report,
+ * prints it to the console and offers it as a downloaded JSON file (`quaked-perf-<time>.json`). Stopped early (the
+ * menu was opened, `perfstop`, or a host error): what was timed so far is reported all the same. Called by the run
+ * itself, the `perfstop` command, `R_PerfPump` on an exception and host.js on a recovered Host_Error. No effect
+ * unless profiling.
+ *
+ * @param {string} reason 'finished' when all demos ran; anything else ('stopped', 'error') marks an early stop
+ */
 export function R_PerfStop( reason ) {
 
 	if ( ! profiling ) return;
@@ -314,8 +384,15 @@ function tick() {
 
 }
 
-// The frame loop while profiling: frames run back to back, for as long as the screen
-// would wait for one (so the page stays alive), each timed with the card waited for.
+/**
+ * The frame loop while profiling, called by main.js's animation loop in place of one `Host_Frame`: frames run back to
+ * back, for as long as the screen would wait for one (so the page stays alive), each timed with the card waited for.
+ * Runs frames for up to 30 ms (or until the run ends), advancing the run after each (next demo, early stop on a menu,
+ * giving up on a demo that does not start within 3000 frames).
+ *
+ * @param {(dt: number) => void} frame the host frame, given the real elapsed seconds clamped to 0.001..0.1
+ * @throws {*} rethrows whatever `frame` throws, after stopping the run with reason 'error'
+ */
 export function R_PerfPump( frame ) {
 
 	const t0 = performance.now();
@@ -342,6 +419,11 @@ export function R_PerfPump( frame ) {
 
 }
 
+/**
+ * The run's progress line, for tests and trials.
+ *
+ * @returns {?string} `PROFILING: <status>` (e.g. 'timing demo1 (120 frames)') while profiling, else null
+ */
 export function R_PerfStatus() {
 
 	return profiling && run !== null ? 'PROFILING: ' + run.status : null;
@@ -482,13 +564,25 @@ function saveReport( rep ) {
 
 }
 
+/**
+ * The last finished run's report, printed again by the `perfreport` command (main.js). Kept for the page's lifetime,
+ * replaced by the next run.
+ *
+ * @returns {?object} the report (`{ when, newerGame, resolution, demos, summary, stalls, partial, text }`: per-demo
+ *   frame rates and frame-time percentiles in ms, per-stage averages and shares, draw calls, triangles, the stalls
+ *   and the bottlenecks with advice), or null before any run has reported
+ */
 export function R_PerfLastReport() {
 
 	return lastReport;
 
 }
 
-// what is drawn over the screen while profiling and after: lines of text
+/**
+ * What is drawn over the screen while profiling: lines of text, drawn top left by `SCR_DrawPerf` (gl_screen.js).
+ *
+ * @returns {?Array<string>} `[ 'PROFILING: <status>', 'Esc stops' ]` while profiling, else null (nothing drawn)
+ */
 export function R_PerfScreenLines() {
 
 	if ( profiling && run !== null ) return [ 'PROFILING: ' + run.status, 'Esc stops' ];

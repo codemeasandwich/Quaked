@@ -20,9 +20,28 @@ import { COM_NewerURL,COM_FindFile } from '../../engine/common/pak.js';
 // without creating GPU pages, workers, or additional game instances.
 const cache=new Map(),MAX_LEVELS=3,sourceKeys=new WeakMap(),store=new DisplacementStore();
 const fieldIndexes=new WeakMap();
-// Coverage components may join/split in a revised BSP, but absolute tile
-// samples remain identical for the same validated model, seed/config and axes.
+/**
+ * Identity of the height field a chart samples, without the chart's own `key`: its seed, `RockBakeConfig` and
+ * tangent/bitangent axes. Coverage components may join or split in a revised BSP, but absolute tile samples remain
+ * identical for the same validated model, seed/config and axes, so `RockBakeSource.tile` can reuse tiles across
+ * charts whose exact `RockBakeSignature` differs but whose field signature matches.
+ *
+ * @param {object} chart a rock surface chart (from `R_RockSurfaceCharts`); reads `seed`, `profile`, `config`,
+ *   `tangent` and `bitangent`
+ * @returns {string} JSON array text; equals the exact signature's array with its first element (`key`) removed
+ */
 export function RockBakeFieldSignature(chart){return JSON.stringify([chart.seed,RockBakeConfig(chart),chart.tangent,chart.bitangent]);}
+/**
+ * Builds (once per decoded bake, then cached in a WeakMap for the bake's lifetime) the index from field signature to
+ * tiles that `RockBakeSource.tile` falls back to when a chart's exact signature is not in the bake. Chart signatures
+ * that are not five-element JSON arrays are skipped. A conflicting duplicate poisons shared reuse permanently: if two
+ * charts with the same field signature hold different heights for a tile coordinate, that coordinate maps to null.
+ * Exact chart lookup still works; an ambiguous shared sample uses the real generator.
+ *
+ * @param {{ charts: Map<string, Map<string, Uint16Array>> }} data a decoded bake from `RockBakeDecode`
+ * @returns {Map<string, Map<string, ?Uint16Array>>} field signature to tiles keyed 'x,y' (half-float heights); shared
+ *   with later calls, do not mutate
+ */
 export function RockBakeFieldIndex(data){
  let fields=fieldIndexes.get(data);if(fields)return fields;
  fields=new Map();
@@ -40,6 +59,30 @@ export function RockBakeFieldIndex(data){
  fieldIndexes.set(data,fields);return fields;
 }
 export const ROCK_BAKE_TIMEOUT_MS=5000;
+/**
+ * Starts (or returns the existing) background fetch and decode of a level's shipped rock relief bake. Called by
+ * `R_BuildLevelView` (r_levelview.js) to warm upcoming portal levels without creating GPU pages, workers or further
+ * game instances, and by `RockBakeSource` for the current level. At most three decoded levels are kept, including
+ * pending fetches; the least-recently-used unpinned entry is evicted and, if still loading, aborted. Entries are keyed
+ * by model name, or per exact BSP byte range when `bytes` is given. A failed entry is replaced on the next call only
+ * when its failure was a transport timeout or abort (`retryable`): only transport/deadline failures authorize a retry,
+ * because decoder diagnostics may quote corrupt input containing words such as "network". Failed transports own no
+ * valid data; other owners may still hold failed pins while transferring to this one shared replacement request.
+ *
+ * @param {string} model BSP model name (e.g. 'maps/e1m1.bsp'); anything else returns null
+ * @param {function(string, { signal: AbortSignal }): Promise<ArrayBuffer>} [loader] fetches the bake file; defaults to
+ *   `PreparedLoad` with a 256 MiB limit
+ * @param {number} [timeoutMs=ROCK_BAKE_TIMEOUT_MS] deadline for the whole fetch and decode, in milliseconds (5000)
+ * @param {?Uint8Array} [bytes] the BSP file's bytes (default: the file found with `COM_FindFile`). Real engine loads
+ *   pass them, and the bake must then carry the same embedded BSP SHA-256 as well as match the manifest's checksum;
+ *   legacy fixtures have no named BSP. With bytes a failure ends as 'error', without them as 'fallback'.
+ * @returns {?{ status: string, data: ?object, error: ?string, pins: number, retryable: boolean, promise: Promise<void>,
+ *   cancel: function(): void }} the shared cache entry, or null when the model has no registered or corpus bake.
+ *   `status` goes from 'loading' to 'ready' (`data` is the `RockBakeDecode` result), 'unprepared' (no spec matches
+ *   these BSP bytes), or 'error'/'fallback' (`error` holds the message, e.g. 'Rock bake load timed out', 'Rock bake
+ *   checksum mismatch', 'Bundled rock data missing for exact BSP identity'); `promise` never rejects. Callers that rely
+ *   on the entry staying cached increment `pins` and decrement it when done.
+ */
 export function R_RockBakePrefetch(model,loader=load,timeoutMs=ROCK_BAKE_TIMEOUT_MS,bytes=typeof model==='string'?COM_FindFile(model)?.data:null){
  if(typeof model!=='string')return null;
  const registered=ROCK_BAKES[model];if(!registered&&!PREPARED_CORPUS[model])return null;
@@ -69,12 +112,42 @@ export function R_RockBakePrefetch(model,loader=load,timeoutMs=ROCK_BAKE_TIMEOUT
 }
 async function load(file,options){return PreparedLoad(file,{...options,limit:256*1024*1024});}
 
+/**
+ * Confirms a decoded bake covers exactly the charts the renderer will ask for: the same number of charts, and for each
+ * chart (by `RockBakeSignature`) exactly the tiles `RockBakeTileCoordinates` lists. Called inside `RockBakeSource`
+ * before shipped or disk-cached data is accepted.
+ *
+ * @param {{ charts: Map<string, Map<string, Uint16Array>> }} data a decoded bake from `RockBakeDecode`
+ * @param {Array<object>} charts the level's rock charts (snapshotted copies)
+ * @returns {object} `data` itself, unchanged
+ * @throws {Error} 'Prepared rock chart coverage mismatch' when the chart counts differ; 'Prepared rock coordinate
+ *   coverage mismatch' when a chart is missing or its tile set differs
+ */
 export function RockBakeCoverage(data,charts){
  if(data.charts.size!==charts.length)throw Error('Prepared rock chart coverage mismatch');
  for(const chart of charts){const tiles=data.charts.get(RockBakeSignature(chart)),coordinates=RockBakeTileCoordinates(chart);if(!tiles||tiles.size!==coordinates.length||coordinates.some(([x,y])=>!tiles.has(x+','+y)))throw Error('Prepared rock coordinate coverage mismatch');}
  return data;
 }
 export class RockBakeSource{
+ /**
+  * Starts loading the rock relief for one level; created by `R_RockfieldBuild` (r_rockfield.js) when a level's rock
+  * field is built and handed to `RockTileCache`, which reads `status` and calls `tile` for each tile it needs. With the
+  * BSP bytes available, the source first waits for the shipped bake (retrying a retryable transport failure once with
+  * a 10 s deadline); if there is none it reads, or else generates with `RockPrepareTiles` (workers) and stores, the
+  * tiles in the browser's origin-private file system through `DisplacementStore` (directory 'quaked-displacement-v1',
+  * keyed by version, model, BSP SHA-256 and chart signatures), so a later visit reads them from disk. All offscreen and
+  * brush chart inputs are snapshotted at construction; shader page residency is not authority for whether a local
+  * generated payload is complete. Without bytes it uses the shipped bake only. Failures set `status` to 'error' and
+  * `entry.error` rather than throwing.
+  *
+  * @param {string|{ name: string, bspSourceBytes?: Uint8Array }} model the level's BSP model, or its name
+  * @param {Array<object>} charts the level's rock surface charts (`R_RockSurfaceCharts(...).charts`)
+  * @param {function(string, { signal: AbortSignal }): Promise<ArrayBuffer>} [loader] bake fetcher passed to
+  *   `R_RockBakePrefetch` (default `PreparedLoad`)
+  * @param {{ bytes?: ?Uint8Array, store?: DisplacementStore, workerFactory?: function(): Worker }} [options] `bytes`:
+  *   BSP file bytes (default `model.bspSourceBytes`, or `COM_FindFile` for a name); `store`: disk cache (default the
+  *   module's shared store); `workerFactory`: workers for local generation
+  */
  constructor(model,charts,loader,{bytes=typeof model==='object'?model?.bspSourceBytes:typeof model==='string'?COM_FindFile(model)?.data:null,store:disk=store,workerFactory}={}){
   const name=typeof model==='object'?model?.name:model;this.alive=true;this.controller=new AbortController();
   this.signatures=new Map(charts.map(chart=>[chart,RockBakeSignature(chart)]));this.fields=new Map(charts.map(chart=>[chart,RockBakeFieldSignature(chart)]));this.hits=0;this.misses=0;this.fieldHits=0;
@@ -95,8 +168,24 @@ export class RockBakeSource{
    if(!this.alive||this.controller.signal.aborted)return;entry.data=result.data;entry.source=result.source;entry.persistence=result.persistence;entry.status='ready';
   })().catch(error=>{if(this.alive){entry.status='error';entry.error=String(error.message||error);}});
  }
+ /**
+  * Stops the source when the level's rock field is rebuilt or disposed: aborts any generation or disk work, releases
+  * its pin on the shared prefetch entry (which may then be evicted) and drops locally generated data. Safe to call more
+  * than once; afterwards `status` reads 'fallback' and `tile` returns null.
+  */
  dispose(){if(!this.alive)return;this.alive=false;this.controller.abort();if(this.transport)this.transport.pins--;if(this.entry!==this.transport&&this.entry)this.entry.data=null;this.entry=null;this.transport=null;}
  get status(){return this.entry?.status||'fallback';}
+ /**
+  * Returns the prepared heights for one tile of a chart, called by `RockTileCache` instead of running the generator.
+  * Looks the tile up by the chart's exact signature, then through `RockBakeFieldIndex` by its field signature, and
+  * counts `hits`, `misses` and `fieldHits` for status reporting.
+  *
+  * @param {object} chart one of the charts passed to the constructor (same object)
+  * @param {number} x tile column in chart space (rock coordinates, one unit per tile)
+  * @param {number} y tile row in chart space
+  * @returns {?Uint16Array} the tile's half-float heights (a view into the bake's shared data; do not mutate), or null
+  *   when not ready or not prepared
+  */
  tile(chart,x,y){
   const key=x+','+y,data=this.entry?.data;let tile=data?.charts.get(this.signatures.get(chart))?.get(key);
   if(!tile&&data){tile=RockBakeFieldIndex(data).get(this.fields.get(chart))?.get(key);if(tile)this.fieldHits++;}

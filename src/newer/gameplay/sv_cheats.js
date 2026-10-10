@@ -44,6 +44,12 @@ export const CHEAT_POWERS = Object.freeze( {
 } );
 const AHEAD = 30, REFRESH = 20; // seconds the timer is kept ahead, and below which it is topped up
 
+/**
+ * Whether cheats may act now: a running local single-player game (one client, `deathmatch` and `coop` both 0).
+ * Checked by every cheat command, every frame by `SV_CheatsFrame`, and before each switch.
+ *
+ * @returns {boolean} true when the server is active with `svs.maxclients` 1 and neither deathmatch nor coop is set
+ */
 export function SV_CheatsAvailable() {
 
 	return sv.active === true && svs.maxclients === 1 && Cvar_VariableValue( 'deathmatch' ) === 0 && Cvar_VariableValue( 'coop' ) === 0;
@@ -83,6 +89,18 @@ function revoke( p, power ) {
 
 }
 
+/**
+ * Flips one cheat power-up switch for the player (edict 1), run by the `cheat_power` console command that the
+ * Options > Cheats menu entries send. Switching on sets the power's item bit and keeps its timer 30 seconds ahead (and
+ * lights the Quad's or Pentagram's glow, `EF_DIMLIGHT`) while the player is alive and not mid-respawn; switching off
+ * clears the bit, the timer, its `*_time`/`*_sound` fields and the glow (when no other glowing power is left), and
+ * restores the player model after the Ring. Mutates the player's `_cheatPowers` bit mask (ring 1, quad 2, pentagram
+ * 4), which `ED_Write` keeps in a saved game as `_cheat_powers`.
+ *
+ * @param {string} name 'ring', 'quad' or 'pentagram' (a key of `CHEAT_POWERS`)
+ * @returns {boolean} true when the switch is now on; false when it is now off, or when the name is unknown, there is
+ *   no player or cheats are unavailable (nothing changed)
+ */
 export function SV_CheatPower( name ) {
 
 	const power = CHEAT_POWERS[ name ], p = player();
@@ -95,7 +113,12 @@ export function SV_CheatPower( name ) {
 
 }
 
-// Every server frame, also while a menu holds the game: keep the switched-on powers on (and put them back after a respawn).
+/**
+ * Keeps the switched-on powers on, called every server frame by `Host_ServerFrame`, also while a menu holds the game
+ * (so the picture under it shows them at once), and so puts them back after a death once the respawn has finished.
+ * Tops a power's timer back up to 30 seconds ahead whenever it falls below 20 seconds, so it never runs out and never
+ * plays its running-out warning. Does nothing without a live player, a switch on, or cheats available.
+ */
 export function SV_CheatsFrame() {
 
 	const p = player();
@@ -104,6 +127,16 @@ export function SV_CheatsFrame() {
 
 }
 
+/**
+ * Gives every weapon and full ammunition, run by the `cheat_weapons` console command (Options > Cheats). Runs the
+ * game's own QuakeC `CheatCommand` (what `impulse 9` does) at once with `self` set to the player and `time` to
+ * `sv.time`, then restores both globals, so it acts even while a menu stops the game's physics.
+ *
+ * @returns {boolean} true when `CheatCommand` ran; false when there is no live player, the progs have no
+ *   `CheatCommand`, or cheats are unavailable
+ * @throws {Error} from `PR_ExecuteProgram` when the QuakeC hits a runtime error (`PR_RunError` ends the game with
+ *   `Host_Error`)
+ */
 export function SV_CheatWeapons() {
 
 	const p = player(), f = ED_FindFunction( 'CheatCommand' );
@@ -114,6 +147,11 @@ export function SV_CheatWeapons() {
 
 }
 
+/**
+ * Registers the `cheat_power ring|quad|pentagram` and `cheat_weapons` console commands, once at start-up from
+ * `Host_InitLocal` (host.js). The commands print the usage, 'Cheats need a single player game.', or the power's new
+ * state ('ring ON'/'ring OFF') to the console.
+ */
 export function SV_CheatsInit() {
 
 	Cmd_AddCommand( 'cheat_power', () => {

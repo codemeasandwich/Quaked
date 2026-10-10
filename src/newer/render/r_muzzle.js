@@ -28,6 +28,12 @@ const now = () => ( typeof performance !== 'undefined' ? performance.now() : Dat
 const viewOrigin = [ 0, 0, 0 ];
 let haveView = false;
 
+/**
+ * Records where the camera is, each frame from gl_rmain.js (`r_refdef.vieworg`); the muzzle is just in front of
+ * it. The coordinates are copied.
+ *
+ * @param {ArrayLike<number>} origin view origin `[x, y, z]` in Quake units, world space
+ */
 export function R_MuzzleSetView( origin ) {
 
 	viewOrigin[ 0 ] = origin[ 0 ]; viewOrigin[ 1 ] = origin[ 1 ]; viewOrigin[ 2 ] = origin[ 2 ];
@@ -35,6 +41,12 @@ export function R_MuzzleSetView( origin ) {
 
 }
 
+/**
+ * Where the muzzle-flash light goes: the last view origin, used by cl_main.js to place the player's flash.
+ *
+ * @returns {?Array<number>} the shared module array `[x, y, z]` (Quake units; overwritten next frame, copy it to
+ *   keep it), or null before the renderer has set a view
+ */
 export function R_MuzzleView() {
 
 	return haveView ? viewOrigin : null;
@@ -47,12 +59,26 @@ export function R_MuzzleView() {
 // (the baked light at a point, 0 dark .. 255 bright).
 let probe = null;
 
+/**
+ * Installs the brightness probe used by `R_MuzzleFlashScale`; gl_rmain.js sets it to `R_LightPoint` on the
+ * client's world.
+ *
+ * @param {?function(Array<number>): number} fn returns the baked light at a point (0 dark .. 255 bright); null
+ *   disables scaling
+ */
 export function R_MuzzleSetProbe( fn ) {
 
 	probe = fn;
 
 }
 
+/**
+ * How much of the flash to show given how bright the surroundings already are: all of it in the dark, where the
+ * flash lights the room, and a fraction in a lit room, where it would only be a distracting pulse. cl_main.js
+ * stores it as the flash dynamic light's `flashScale`.
+ *
+ * @returns {number} 1 at probe light <= 30, easing smoothly down to 0.25 at >= 140; 1 when no probe or view is set
+ */
 export function R_MuzzleFlashScale() {
 
 	if ( probe === null || haveView === false ) return 1;
@@ -63,7 +89,10 @@ export function R_MuzzleFlashScale() {
 
 }
 
-// the player's weapon fired (called as the game flags the muzzle flash)
+/**
+ * Notes that the player's own weapon fired; called by cl_main.js as the game flags the player's muzzle flash.
+ * Restarts the flash timer (wall clock, `performance.now`) and counts the shot.
+ */
 export function R_MuzzleFlashFired() {
 
 	firedAt = now();
@@ -71,7 +100,12 @@ export function R_MuzzleFlashFired() {
 
 }
 
-// 1 as it fires, falling to 0
+/**
+ * Current strength of the last flash, by wall-clock time since `R_MuzzleFlashFired`. Not called elsewhere in the
+ * current tree.
+ *
+ * @returns {number} 1 as it fires, falling quadratically to 0 over 0.13 seconds; 0 before any shot
+ */
 export function R_MuzzleFlashLevel() {
 
 	if ( firedAt < 0 ) return 0;
@@ -80,7 +114,11 @@ export function R_MuzzleFlashLevel() {
 
 }
 
-// how many flashes there have been (for tests)
+/**
+ * How many flashes there have been since the page loaded (for tests).
+ *
+ * @returns {number} count of `R_MuzzleFlashFired` calls
+ */
 export function R_MuzzleFlashCount() {
 
 	return fired;

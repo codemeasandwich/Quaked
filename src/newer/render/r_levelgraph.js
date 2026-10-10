@@ -40,6 +40,14 @@ const DOOR_HIGH = 48; // and at least this tall
 // BSP metadata
 //============================================================================
 
+/**
+ * Reads a BSP entity lump into key/value objects with a regular expression (no `COM_Parse`, so it is usable before
+ * the engine is up and on another level's bytes). Used by `R_ParseBsp`, r_levelents.js and sv_seamless.js. Quoted
+ * values cannot contain '"' or '}'; later duplicate keys overwrite earlier ones.
+ *
+ * @param {string} text the entity lump text
+ * @returns {Array<Object<string, string>>} one object per `{ ... }` block, all values as strings
+ */
 export function R_ParseEntityLump( text ) {
 
 	const ents = [];
@@ -69,6 +77,17 @@ The entity list and the bounds of the submodels (trigger brushes are submodels)
 of a version 29 BSP, without loading the rest of it.
 ================
 */
+/**
+ * Reads another level's metadata straight from its file bytes (sv_seamless.js, when it looks at where an exit leads):
+ * the entity lump up to its first NUL, and the mins/maxs of each 64-byte dmodel_t. Accepts version 29 and the BSP2 /
+ * 2PSB headers, whose models lump has the same layout.
+ *
+ * @param {Uint8Array} bytes the whole .bsp file
+ * @returns {?{entities: Array<Object<string, string>>, submodels: Array<{mins: Array<number>, maxs: Array<number>}>, headerLumps: number}}
+ *  entities as `R_ParseEntityLump`, submodel bounds in Quake units (index 0 is the world), `headerLumps` 15; null when
+ *  `bytes` is not a Uint8Array of at least 124 bytes, the version is not recognised, or the entity lump lies outside the file
+ * @throws {RangeError} from DataView when the models lump runs past the end of the buffer (it is not bounds-checked)
+ */
 export function R_ParseBsp( bytes ) {
 
 	if(!(bytes instanceof Uint8Array)||bytes.byteLength<124)return null;
@@ -131,6 +150,15 @@ R_LevelLinks
 exit has the map it leads to and its trigger's bounds.
 ================
 */
+/**
+ * The start and exits of a level, from `R_ParseBsp` metadata (sv_seamless.js, per level it looks at).
+ *
+ * @param {{entities: Array<Object<string, string>>, submodels: Array<{mins: Array<number>, maxs: Array<number>}>}} meta level metadata
+ * @returns {{start: ?{origin: Array<number>, yaw: number}, exits: Array<{map: string, oneWay?: true, model: string,
+ *  mins: Array<number>, maxs: Array<number>, kind: string}>}} `start` the first info_player_start (Quake units, yaw in
+ *  degrees), null when there is none; one exit per trigger_changelevel with a `map` and a '*n' brush model, `kind` from
+ *  `R_ClassifyExit`, `oneWay` when the map sets `_seamless_oneway` "1"; bounds are copies
+ */
 export function R_LevelLinks( meta ) {
 
 	let start = null;
@@ -174,6 +202,16 @@ R_ClassifyExit
 kind 'plane' (axis 0 or 1: the direction it is thin in), 'pit', or 'pad'.
 ================
 */
+/**
+ * Classifies an exit trigger's box. A pit is at most 32 units tall and at least 48 wide both ways; a plane (doorway,
+ * archway or walk-through portal) is at least 48 tall, at most 64 thick and at least 40 wide; anything else is a pad.
+ *
+ * @param {ArrayLike<number>} mins box minimum (Quake units)
+ * @param {ArrayLike<number>} maxs box maximum
+ * @returns {{kind: string, axis?: number, square?: true}} `kind` 'plane' | 'pit' | 'pad'; for a plane, `axis` the
+ *  thin direction (0 x, 1 y) and `square` when the box is nearly square (sides within 1.25x), so the approach is
+ *  chosen from the level ( R_ChooseApproach )
+ */
 export function R_ClassifyExit( mins, maxs ) {
 
 	const dx = maxs[ 0 ] - mins[ 0 ], dy = maxs[ 1 ] - mins[ 1 ], dz = maxs[ 2 ] - mins[ 2 ];
@@ -225,6 +263,28 @@ they appear ( dest ), the rotation ( yaw ) and functions to carry positions and
 directions across and to tell when a move has crossed.
 ================
 */
+/**
+ * Builds the one rigid transform (a yaw about z plus a translation) that carries the player's position, velocity and
+ * view from an exit onto the next level's start, so nothing about the motion changes. sv_seamless.js builds one per
+ * crossing it sets up. A doorway's centre is at standing-origin height (floor + 24) and lands on the start; a pit
+ * keeps the facing and lands 48 units above the start.
+ *
+ * @param {{mins: ArrayLike<number>, maxs: ArrayLike<number>}} exit the trigger's bounds (Quake units)
+ * @param {number} side which way the player approaches: +1 or -1 along the exit's thin axis (ignored for a pit,
+ *  which is entered from above)
+ * @param {{origin: Array<number>, yaw: number}} start the level on the other side's start (Quake units, yaw in degrees)
+ * @param {number} floorZ the floor level at the exit (a pit ignores it)
+ * @param {number} [axis] for a plane, the travel axis to use instead of the classified thin axis (0 x, 1 y), from
+ *  `R_ChooseApproach`
+ * @returns {?{kind: string, center: Array<number>, through: Array<number>, dest: Array<number>, yaw: number,
+ *  tangent: Array<number>, halfWidth: number, halfHeight: number, position: function(ArrayLike<number>): Array<number>,
+ *  direction: function(ArrayLike<number>): Array<number>, angle: function(number): number,
+ *  beyond: function(ArrayLike<number>): number, crossed: function(ArrayLike<number>, ArrayLike<number>): boolean}} null for a pad. `kind` 'plane' or 'pit'; `center` a point at the exit; `through` the unit
+ *  direction of travel through it; `dest` where they appear; `yaw` the rotation in degrees; `tangent`, `halfWidth`,
+ *  `halfHeight` the opening across and up; `position`/`direction`/`angle` carry a point, a vector, a view yaw across;
+ *  `beyond` the distance past the exit plane (positive once across); `crossed( prev, cur )` whether a move went across
+ *  through the opening (16 units slack across, 32 vertically). All new arrays
+ */
 export function R_CrossingTransform( exit, side, start, floorZ, axis ) {
 
 	const shape = R_ClassifyExit( exit.mins, exit.maxs );
@@ -332,6 +392,19 @@ Same shape as R_CrossingTransform's result (a plane): center and dest swap
 sides, so the exit's own opening can be reused.  Returns null for a pit.
 ================
 */
+/**
+ * The way back through a crossing (sv_seamless.js, on arriving by a doorway: the way back, seen from this side).
+ *
+ * @param {ReturnType<typeof R_CrossingTransform>} t the transform of R_CrossingTransform, near level -> far level
+ * @param {{a0: number, a1: number, b0: number, b1: number}} opening the extent of the doorway along the tangent and up,
+ *  from the crossing's centre (Quake units)
+ * @returns {?{kind: 'plane', back: true, center: Array<number>, through: Array<number>, dest: Array<number>, yaw: number,
+ *  tangent: Array<number>, halfWidth: number, halfHeight: number, position: function(ArrayLike<number>): Array<number>,
+ *  direction: function(ArrayLike<number>): Array<number>, angle: function(number): number,
+ *  beyond: function(ArrayLike<number>): number, crossed: function(ArrayLike<number>, ArrayLike<number>): boolean}} the far level -> near level transform with
+ *  the same members as R_CrossingTransform's result; its `crossed` allows 8 units slack along the opening and 32 up;
+ *  null when `t` is not a plane
+ */
 export function R_InverseCrossing( t, opening ) {
 
 	if ( t.kind !== 'plane' ) return null;
@@ -401,6 +474,15 @@ clearDistance( point, direction ) is how far you can go from point along
 direction before hitting solid.
 ================
 */
+/**
+ * Chooses the approach of a vertical exit from the open space around its centre (sv_seamless.js, before building
+ * its `R_CrossingTransform`). Scores each candidate axis by the more open side less a quarter of the other.
+ *
+ * @param {{mins: ArrayLike<number>, maxs: ArrayLike<number>}} exit the trigger's bounds (Quake units)
+ * @param {function(Array<number>, Array<number>): number} clearDistance called as ( point, direction ): how far, in
+ *  Quake units, you can go from the point along the unit direction before hitting solid
+ * @returns {{axis: number, side: number}} `axis` 0 or 1, `side` +1 or -1; { axis: 0, side: 1 } for a pit or pad
+ */
 export function R_ChooseApproach( exit, clearDistance ) {
 
 	const shape = R_ClassifyExit( exit.mins, exit.maxs );
@@ -443,6 +525,14 @@ space in front of it.  clearDistance( point, direction ) is how far you can go
 from point along direction before hitting solid.
 ================
 */
+/**
+ * The side alone, along the exit's classified thin axis (no square-frame choice; R_ChooseApproach does both).
+ *
+ * @param {{mins: ArrayLike<number>, maxs: ArrayLike<number>}} exit the trigger's bounds (Quake units)
+ * @param {function(Array<number>, Array<number>): number} clearDistance called as ( point, direction ): how far, in
+ *  Quake units, you can go from the point along the unit direction before hitting solid
+ * @returns {number} +1 or -1 (+1 on a tie, and for a pit or pad)
+ */
 export function R_ChooseApproachSide( exit, clearDistance ) {
 
 	const shape = R_ClassifyExit( exit.mins, exit.maxs );

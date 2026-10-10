@@ -95,6 +95,19 @@ export const ENEMY_SKIN_MODELS = new Set( [
 	'h_wizard', 'h_zombie', 'gib1', 'gib2', 'gib3', 'zom_gib'
 ] );
 
+/**
+ * Installs the parsed skin manifest (newer/enemies/index.json), or resets it. Called internally when the index fetch
+ * started by the first skin request resolves (a late result from a superseded request is ignored), and by tests with a
+ * manifest of their own. Cancels the index timeout and wakes anything awaiting the index. Existing skin sets are kept;
+ * set keys include the manifest `version`, so a new version builds fresh sets.
+ *
+ * @param {?{ models?: Object<string, Array<object>>, nativeHeights?: Object<string, Array<Array<object>>>,
+ *   version?: (string|number) }} index the manifest: `models` maps a model key (`R_NewerModelKey`) to its variants
+ *   (`{ dir, maps: { diffuse, normal, luma, gloss, height }, skin?, flipGreen?, heightStrength?, heightCap?, faces?,
+ *   nativeModelSha256? }`), `nativeHeights` the stored height maps of native skins per model, skin and animation slot,
+ *   `version` the cache-busting version (default 0). Without `models` the index is a fallback ("Missing skin
+ *   manifest"): every skin stays native. null returns to the idle state, so the next use fetches the index again.
+ */
 export function R_NewerSetIndex( index ) {
 
 	clearTimeout( indexTimer ); indexGeneration ++;
@@ -127,7 +140,12 @@ function requestIndex() {
 
 }
 
-// "progs/wizard.mdl" -> "wizard"
+/**
+ * The skin-index key of an alias model: "progs/wizard.mdl" -> "wizard".
+ *
+ * @param {?string} modelName the model's precache name
+ * @returns {?string} the base name, or null when the name is not `progs/<name>.mdl`
+ */
 export function R_NewerModelKey( modelName ) {
 
 	if ( modelName == null || modelName.indexOf( 'progs/' ) !== 0 || modelName.slice( - 4 ) !== '.mdl' ) return null;
@@ -135,8 +153,16 @@ export function R_NewerModelKey( modelName ) {
 
 }
 
-// Existing variants stay filename/skin compatible. A constrained variant may
-// be selected only after its actual loaded native model identity is ready.
+/**
+ * Whether a manifest variant may be worn by this loaded model. Existing variants stay filename/skin compatible. A
+ * constrained variant may be selected only after its actual loaded native model identity is ready.
+ *
+ * @param {?{ nativeModelSha256?: string }} variant a variant from the skin index
+ * @param {?model_t} model the loaded alias model; its `aliasSourceIdentity` (`{ state, sha256 }`) is the SHA-256 of
+ *   the native .mdl bytes once hashed
+ * @returns {boolean} true when the variant has no `nativeModelSha256`, or when it is a 64-digit lowercase hex digest
+ *   equal to the model's ready identity; false while the identity is pending
+ */
 export function R_NewerVariantMatchesModel(variant,model){
  const expected=variant?.nativeModelSha256;
  if(expected===undefined)return true;
@@ -150,18 +176,33 @@ function setMatchesModels(set,models){
 
 let levelSalt = ( Math.random() * 0xffffffff ) >>> 0;
 
-// a fresh roll for every monster whenever a level starts
+/**
+ * A fresh roll for every monster whenever a level starts: picks a new random level salt for `R_NewerPickVariant`.
+ * Called by `R_NewMap` (gl_rmain.js).
+ */
 export function R_NewerSkinsNewMap() {
 
 	levelSalt = ( Math.random() * 0xffffffff ) >>> 0;
 
 }
 
+/**
+ * Sets the level salt that `R_NewerPickVariant` mixes into every monster's skin choice (tests use it to reproduce a
+ * level's choices). Lasts until the next `R_NewerSkinsNewMap`.
+ *
+ * @param {number} salt any number; truncated to an unsigned 32-bit integer
+ */
 export function R_NewerSetSalt( salt ) {
 
 	levelSalt = salt >>> 0;
 
 }
+/**
+ * The current level's skin salt. sv_axecut.js saves it in a cut record (`skinSalt`) so the cut halves keep the skin
+ * variant the body wore, after a reload too.
+ *
+ * @returns {number} the unsigned 32-bit salt
+ */
 export function R_NewerSkinSalt() { return levelSalt; }
 
 function hash32( a, b ) {
@@ -187,11 +228,19 @@ function stringHash( str ) {
 /*
 ================
 R_NewerPickVariant
-
-Which of count skins this monster wears.  Stable for the monster for the whole
-level; random between monsters and between levels.
 ================
 */
+/**
+ * Which of count skins this monster wears. Stable for the monster for the whole level; random between monsters and
+ * between levels. Called by `R_NewerAliasMaterial` for every draw of a monster with more than one variant.
+ *
+ * @param {entity_t} entity the drawn entity: keyed by its `_entityIndex` (edict number); entities without a slot
+ *   number (static ones) get a random `_qrSeed` of their own, stored on the entity (mutates it). A `_qrSalt` on the
+ *   entity (a cut corpse's saved salt) replaces the level salt.
+ * @param {string} modelKey the model key (`R_NewerModelKey`), hashed in so models differ
+ * @param {number} count how many variants there are to choose from
+ * @returns {number} the variant index 0..count-1; always 0 when `count` ≤ 1 or `r_newer_variety` is 0
+ */
 export function R_NewerPickVariant( entity, modelKey, count ) {
 
 	if ( count <= 1 || r_newer_variety.value === 0 ) return 0;
@@ -364,6 +413,25 @@ function refreshHeight( set ) {
 
 const nativeSets = new Map(); // selected native Texture -> detail/material set
 
+/**
+ * The relief material for a monster drawn with its native Quake skin (no replacement art): the skin's own picture with
+ * a height field (stored in the index's `nativeHeights`, else generated from the skin) driving normals and self
+ * shadowing. Called by `R_GetAliasMaterial` (gl_mesh.js) for each alias draw that `R_NewerAliasMaterial` did not
+ * replace, and by `R_NewerSkinsPrepare` at level start. Starts the skin index request on first use.
+ *
+ * One cache entry per native texture, kept until that texture is disposed (the model loader owns it) or
+ * `R_NewerSkinsShutdown`; its four materials (lit/unlit × with/without Newer lighting) are owned by the cache. A stored
+ * height map is fetched once per manifest version; until it arrives, or if it fails or times out (30 s), the generated
+ * height stays active.
+ *
+ * @param {THREE.Texture} texture the native skin texture selected for this skin and animation frame
+ * @param {string} modelName the model's precache name (`progs/<name>.mdl`); must be one of `ENEMY_SKIN_MODELS`
+ * @param {boolean} hasLighting true for the vertex-coloured (baked light) variant
+ * @param {number} [skinnum=0] the entity's skin number
+ * @param {number} [frame=0] the skin animation slot 0..3 (gl_mesh.js: `floor(cl.time * 10) & 3`)
+ * @returns {?THREE.MeshBasicMaterial} the shared cached material, or null when Newer Game is not drawing, normal maps
+ *   are off (and no power vision is on), the model is not an enemy model, or there is no texture
+ */
 export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum = 0, frame = 0 ) {
 
 	const key = R_NewerModelKey( modelName );
@@ -592,8 +660,23 @@ function patchShader( set ) {
 
 }
 
-// Imported alias geometry uses the same baked-light/normal/albedo contract as
-// custom skins. The caller owns these already-loaded textures and materials.
+/**
+ * A fresh material for imported alias geometry (the Newer weapons, r_weapons.js) and for the native alias and
+ * player skins in gl_mesh.js. Imported alias geometry uses the same baked-light/normal/albedo contract as custom
+ * skins: vertex colours carry the baked light, and the patched shader writes the normal, albedo and height-mask
+ * buffers. The caller owns these already-loaded textures and the returned material (dispose both).
+ *
+ * @param {{ diffuse?: THREE.Texture, normal?: THREE.Texture, luma?: THREE.Texture }} maps the loaded maps; any may be
+ *   absent
+ * @param {string} key the model key: selects the style's native-skin rectangle (`R_WeaponStyleGLSL` role) and names
+ *   the shader program (`quake-imported-alias-height-shadow-v1-<key>`)
+ * @param {{ style?: object, baseColorFactor?: Array<number>, doubleSided?: boolean, normalFlipGreen?: boolean,
+ *   emissiveFactor?: Array<number> }} [authored={}] the manifest's material: `style` for `R_WeaponStyleGLSL` (a
+ *   wrapped core with opacity below 1 makes the material transparent), `baseColorFactor` the colour (linear 0..1),
+ *   `emissiveFactor` whose largest channel is the luma boost
+ * @returns {THREE.MeshBasicMaterial} a new material; when the style wraps the native skin it carries
+ *   `_quakeNativeSkin = { texture, ready }`, the uniforms the caller fills with the native skin and 1 once ready
+ */
 export function R_AssetAliasMaterial( maps, key, authored = {} ) {
 
 	const material = new THREE.MeshBasicMaterial( { map: maps.diffuse, vertexColors: true } );
@@ -621,8 +704,17 @@ export function R_AssetAliasMaterial( maps, key, authored = {} ) {
 
 }
 
-// Three's Material.clone intentionally omits shader callbacks. Alias materials
-// must keep their normal/albedo outputs when the view or instances clone them.
+/**
+ * Clones an alias material with its shader patch. Three's Material.clone intentionally omits shader callbacks. Alias
+ * materials must keep their normal/albedo outputs when the view or instances clone them. The clone's program cache key
+ * follows its own `userData` flags (`quakeViewmodel`, `quakePlayerSurface`, `quakeReceiverOnly`), so setting those on
+ * the clone gives it its own program.
+ *
+ * @param {THREE.Material} material an alias material from this module (with `onBeforeCompile` and
+ *   `customProgramCacheKey`)
+ * @returns {THREE.Material} a new material owned by the caller; it shares textures and the `_quakeNativeSkin` binding
+ *   with the original
+ */
 export function R_CloneAliasMaterial( material ) {
 
 	const clone = material.clone();
@@ -636,11 +728,26 @@ export function R_CloneAliasMaterial( material ) {
 /*
 ================
 R_NewerAliasMaterial
-
-The replacement material for this monster, or null when its model has no custom
-skin, Newer Game or its enemies are off, or the skin has not finished loading.
 ================
 */
+/**
+ * The replacement material for this monster, or null when its model has no custom skin, Newer Game or its enemies are
+ * off, or the skin has not finished loading. Called by `R_GetAliasMaterial` (gl_mesh.js) for every alias draw before
+ * the native skin is considered. The first call starts the skin index request (and returns null); the first use of a
+ * variant starts its texture loads. A variant with a `skin` number is for that skin of the model only (the armor's
+ * green, yellow and red); the others are the model's skin 0. Variants pinned to a native model hash wait for the
+ * model's identity. With face overlays the material is the one shared by every individual with the same face.
+ *
+ * Sets and their materials are cached per manifest version and variant until `R_NewerSkinsShutdown`; the per-skin
+ * variant lists are cached on the index entry (`_bySkin`). With the Newer lighting the skin is relit by the pipeline;
+ * without it (the classic lighting) it is the same picture lit the classic way.
+ *
+ * @param {entity_t} entity the drawn entity (variant choice, face choice, `model.aliasSourceIdentity`)
+ * @param {string} modelName the model's precache name (`progs/<name>.mdl`)
+ * @param {boolean} hasLighting true for the vertex-coloured (baked light) variant
+ * @param {number} [skinnum=0] the entity's skin number
+ * @returns {?THREE.MeshBasicMaterial} the shared cached material, or null to draw the native skin
+ */
 export function R_NewerAliasMaterial( entity, modelName, hasLighting, skinnum = 0 ) {
 
 	if ( ! R_IsNewer() || r_newer_enemies.value === 0 ) return null;
@@ -686,6 +793,13 @@ export function R_NewerAliasMaterial( entity, modelName, hasLighting, skinnum = 
 
 }
 
+/**
+ * Releases everything this module owns: cancels in-flight texture loads (late images are disposed on arrival),
+ * disposes the replacement sets' materials and textures (diffuse, height, normal, luma, gloss, face sheet) and the
+ * native sets' materials and generated companions, and invalidates pending `R_NewerSkinsPrepare` work. Native diffuse
+ * textures belong to the model loader and are not disposed. The skin index itself is kept. Used by tests to reset
+ * between cases.
+ */
 export function R_NewerSkinsShutdown() {
 
 	preparationEpoch ++; preparations.clear();
@@ -724,8 +838,21 @@ export function R_NewerSkinsShutdown() {
 
 }
 
-// Actual chosen sets/native animation heights only; callers may restrict this
-// read-only snapshot to the current/demo model precache instead of portal art.
+/**
+ * A read-only readiness snapshot of the skin loads, polled by `R_UpdateIntroReadiness` (gl_rmain.js) while a level's
+ * start is held back. Actual chosen sets/native animation heights only; callers may restrict this read-only snapshot
+ * to the current/demo model precache instead of portal art.
+ *
+ * @param {?(string|model_t|Array<string|model_t>)} modelNames the models to count (names or loaded models;
+ *   sets of hash-pinned variants count only for a loaded model whose identity matches); null/undefined counts every
+ *   set
+ * @returns {{ index: string, normals: { pending: number, ready: number, shipped: number, disk: number,
+ *   generated: number, errors: Object<string, string> }, preparePending: number, pending: number, ready: number,
+ *   fallback: number, total: number, settled: boolean, errors: Object<string, string> }} `index` is 'idle', 'loading',
+ *   'ready' or 'fallback'; `pending` counts loading textures, unstarted preparations, the index while loading, and
+ *   normal-map work not yet ready; `fallback` counts loads that failed (their messages in `errors`, keyed
+ *   `model:set:map`); `settled` is true when nothing is pending. A fresh object.
+ */
 export function R_NewerSkinsStatus( modelNames ) {
 	const names = modelNames == null ? null : ( Array.isArray( modelNames ) ? modelNames : [ modelNames ] );
 	const keys = names ? new Set( names.map( value => R_NewerModelKey( typeof value === 'string' ? value : value?.name ) ).filter( Boolean ) ) : null;
@@ -744,9 +871,18 @@ export function R_NewerSkinsStatus( modelNames ) {
 	return { index: indexState, normals, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors };
 }
 
-// Only the initial BSP's native entity catalog is inspected before model setup.
-// Start the existing custom-set requests; actual precache preparation/readiness
-// still decides which material families must be uploaded before entry.
+/**
+ * Starts the replacement-skin downloads for the monsters of a level before it loads, at startup from main.js for the
+ * attract demo's map (e1m3) and the hub (start.bsp). Only the initial BSP's native entity catalog is inspected before
+ * model setup: the monsters of all three skills, their heads and the shared gibs. Start the existing custom-set
+ * requests; actual precache preparation/readiness still decides which material families must be uploaded before
+ * entry. Variants pinned to a native model hash are skipped (they need the loaded model). The sets made here are the
+ * same cache later draws use.
+ *
+ * @param {Uint8Array} bytes the whole .bsp file (version 29, BSP2 or 2PSB); not modified
+ * @returns {Promise<void>} resolves once the index has arrived and the requests have started, not when the images
+ *   have; resolves at once for bytes that are not a BSP or whose entity lump is invalid or over 4 MiB
+ */
 export function R_NewerSkinsPrefetchBsp(bytes){
  if(!(bytes instanceof Uint8Array)||bytes.length<124)return Promise.resolve();
  const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength),offset=view.getInt32(4,true),length=view.getInt32(8,true);
@@ -757,9 +893,20 @@ export function R_NewerSkinsPrefetchBsp(bytes){
  return requestIndex().then(()=>{for(const key of keys)for(const variant of skinIndex?.[key]||[]){if(variant.nativeModelSha256!==undefined)continue;const id=skinVersion+':'+variant.dir;if(!sets.has(id))sets.set(id,createSet(variant,key));}});
 }
 
-// Startup-only caller-owned preparation: all current-map variants and native
-// skin animation slots share the exact caches used by later actual draws.
-// Promise settlement means requests were started; Status waits for their images.
+/**
+ * Prepares every skin a level can show before its first frame, called by `R_UpdateIntroReadiness` (gl_rmain.js) each
+ * frame while a level's start is held back. Startup-only caller-owned preparation: all current-map variants and native
+ * skin animation slots share the exact caches used by later actual draws. Promise settlement means requests were
+ * started; Status waits for their images. Replacement sets are made when Newer Game's enemies are on, native relief
+ * sets (each skin, animation slots 0..3) when normal maps are on; both are marked prepared for
+ * `R_NewerSkinsMaterials`/`R_NewerSkinsTextures`. Repeated calls with the same models and switches return the same
+ * promise (until the manifest version changes); `R_NewerSkinsShutdown` or a model's identity changing cancels it.
+ *
+ * @param {Array<?model_t>} models the level's model precache; non-models and non-`progs/*.mdl` entries are ignored
+ * @returns {Promise<{ models: Array<string>, started?: true, cancelled?: true, fallback?: true }>} resolves (never
+ *   rejects) with the prepared model names and `started`; `{ models: [], cancelled: true }` when superseded; or
+ *   `fallback` when the index failed (the error is reported by `R_NewerSkinsStatus`)
+ */
 export function R_NewerSkinsPrepare( models ) {
 	const current = [ ...new Set( ( models || [] ).filter( model => model && typeof model === 'object' && R_NewerModelKey( model.name ) ) ) ];
 	const custom = R_IsNewer() && r_newer_enemies.value !== 0, native = R_IsNewer() && r_newer_normals.value !== 0;
@@ -814,6 +961,17 @@ function preparedSets( models ) {
 	return [ ...sets.values(), ...nativeSets.values() ].filter( set => set.prepared && set.alive && set.diffuse !== null && keys.has( set.modelKey ) && setMatchesModels(set,models) );
 }
 
+/**
+ * The materials of the skin sets `R_NewerSkinsPrepare` prepared for these models, so `R_UpdateIntroReadiness`
+ * (gl_rmain.js) can compile them before the level is shown. Only explicit startup-prepared material families for this
+ * precache. These exact cached materials are used by later lit/unlit entity draws; no network, variant choice or
+ * future-map preparation is initiated by this getter. Gives the lit and unlit material of each set (each face for face
+ * variants) for the current Newer lighting state, creating them if needed; sets whose diffuse has not loaded are left
+ * out.
+ *
+ * @param {string|model_t|Array<string|model_t>} models the level's models (names or loaded models)
+ * @returns {Array<THREE.MeshBasicMaterial>} a new array of distinct cached materials (owned by this module)
+ */
 export function R_NewerSkinsMaterials( models ) {
 	return [ ...new Set( preparedSets( models ).flatMap( set => {
 		const families = set.variant.faces ? set.variant.faces.rects.map( ( _, i ) => faceSetFor( set, i ) ) : [ set ];
@@ -821,9 +979,16 @@ export function R_NewerSkinsMaterials( models ) {
 	} ) ) ];
 }
 
-// Shader callback uniforms are not material.uniforms on MeshBasicMaterial.
-// Expose their actual texture bindings for renderer.initTexture without cloning
-// or storing them in JSON userData, and without requesting any additional art.
+/**
+ * The textures of the prepared skin sets for these models, for upload before the level is shown
+ * (`R_UpdateIntroReadiness`, gl_rmain.js). Shader callback uniforms are not material.uniforms on MeshBasicMaterial.
+ * Expose their actual texture bindings for renderer.initTexture without cloning or storing them in JSON userData, and
+ * without requesting any additional art.
+ *
+ * @param {string|model_t|Array<string|model_t>} models the level's models (names or loaded models)
+ * @returns {Array<THREE.Texture>} a new array of distinct textures (diffuse, generated companion, height, and every
+ *   texture bound in the set's uniforms), owned by this module
+ */
 export function R_NewerSkinsTextures( models ) {
 	return [ ...new Set( preparedSets( models ).flatMap( set => [ set.diffuse, set.detailDiffuse, set.heightTexture,
 		...Object.values( set.uniforms ).map( uniform => uniform.value ) ] ).filter( texture => texture?.isTexture ) ) ];
@@ -833,10 +998,33 @@ export function R_NewerSkinsTextures( models ) {
 // packets are data, never blend coverage. Repair only these three attachments
 // with the same posed geometry; colour0 and source meshes remain untouched.
 const receiverScene=new THREE.Scene(),receiverCopies=new WeakMap();
+/**
+ * Forgets the receiver copy `R_AliasReceiverPass` keeps for an alias mesh and disposes its cloned material. Called by
+ * `_clearEntityMeshCache` (gl_rmain.js) when an entity's alias mesh is thrown away. No effect when there is none.
+ *
+ * @param {THREE.Mesh} source the entity's alias mesh (`entity._aliasMesh`)
+ */
 export function R_ReleaseAliasReceiver(source){
  const record=receiverCopies.get(source);if(!record)return;
  record.base.removeEventListener('dispose',record.listener);record.mesh.material.dispose();record.mesh.geometry=null;receiverCopies.delete(source);
 }
+/**
+ * Redraws the visible translucent, depth-writing alias meshes into the scene target's data attachments, once per frame
+ * from `R_PostFinish` (gl_post.js) before the post passes. Translucent alias colour uses its authored blend, but
+ * normal/depth/albedo packets are data, never blend coverage. Repair only these three attachments with the same posed
+ * geometry; colour0 and source meshes remain untouched. Each source mesh keeps one opaque receiver-only clone of its
+ * material (rebuilt when the mesh's material changes, released when that material is disposed or by
+ * `R_ReleaseAliasReceiver`). The held weapon is drawn in its own depth range (0..0.3) as in the main pass. Restores the
+ * renderer's target, autoClear, draw buffers and depth range.
+ *
+ * @param {THREE.WebGLRenderer} renderer the game's renderer
+ * @param {THREE.Scene} scene the world scene (its world matrices are updated)
+ * @param {THREE.Camera} camera the frame's camera
+ * @param {THREE.WebGLRenderTarget} target the HDR scene target with four attachments (colour, normal, albedo, height
+ *   mask)
+ * @returns {number} how many meshes were redrawn; 0 when nothing qualified or the renderer/target is not the
+ *   expected kind
+ */
 export function R_AliasReceiverPass(renderer,scene,camera,target){
  if(!renderer?.isWebGLRenderer||!target?.textures||target.textures.length!==4)return 0;
  const borrowed=[];scene.updateMatrixWorld(true);

@@ -73,6 +73,15 @@ Begin loading a page's replay (cheap to call every frame). Returns its state: 'l
 data, a failure, or no browser: the caller keeps its line reveal).
 ================
 */
+/**
+ * Begins loading a page's two prepared images (`<id>.reveal.png` and `<id>.paper.webp`, as named in the folio
+ * `index.json`) the first time it is asked, and reports the page's state. Called when a creature is discovered
+ * (`r_bestiary.js`) and when its first-discovery page opens (`r_bestiary_book.js`); cheap to call every frame. Only the
+ * last 4 pages met are kept (the page on screen is never evicted); the index itself is fetched once per session.
+ *
+ * @param {string} id the Bestiary entry id, the key in the index's `pages`
+ * @returns {('loading'|'ready'|'none')} `'none'` when there is no prepared data, a load failed, or there is no `fetch`
+ */
 export function R_FolioPrepare( id ) {
 
 	if ( typeof fetch === 'undefined' ) return 'none';
@@ -96,7 +105,13 @@ export function R_FolioPrepare( id ) {
 
 }
 
-// the replay's length on screen in seconds (the supplied duration at the supplied speed), or 0
+/**
+ * The replay's length on screen in seconds (the supplied duration at the supplied speed, default speed 3), or 0.
+ * `r_bestiary_book.js` divides the page's elapsed time by it to get the replay amount.
+ *
+ * @param {string} id the Bestiary entry id
+ * @returns {number} seconds, or 0 when the page is not ready
+ */
 export function R_FolioSeconds( id ) {
 
 	const p = pages.get( id );
@@ -165,6 +180,19 @@ The page drawn so far at amount 0..1 of its replay, as a canvas to draw into the
 prepared maps do not match, no WebGL2, or a lost context: the caller keeps its line reveal).
 ================
 */
+/**
+ * Draws the page's pencil replay at `amount` on the module's own WebGL2 canvas (created on first use and kept for the
+ * session, with three page-sized textures). The page image and its maps are uploaded only when the page shown changes.
+ * Called each frame of the first-discovery page's drawing by `r_bestiary_book.js`. Counts `folioStats.plates`,
+ * `failures` and `sizeMismatch`.
+ *
+ * @param {string} id the Bestiary entry id
+ * @param {HTMLImageElement|ImageBitmap|HTMLCanvasElement} image the page's own picture; it must be exactly the size of
+ *   the prepared reveal map
+ * @param {number} amount how far the replay has gone, 0..1 (clamped)
+ * @returns {?HTMLCanvasElement} the shared canvas holding the page drawn so far (overwritten by the next call; draw it
+ *   at once), or null when the caller should keep its line reveal (a failed upload also marks the page `'none'`)
+ */
 export function R_FolioPlate( id, image, amount ) {
 
 	const p = pages.get( id );

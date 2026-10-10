@@ -29,6 +29,11 @@ const FOOT=10;
 const records=new Map();
 function restoreNativeFallback(entity){for(const e of sv.edicts||[])if(e&&!e.free&&e._axeSuppressed&&entity._axeOwnerKey&&e._axeOwnerKey===entity._axeOwnerKey)e._axeSuppressedBy=entity.index;}
 function dispose(record){record.group?.parent?.remove(record.group);for(const part of record.parts||[])for(const mesh of part.piece.children)R_ReleaseShadowCaster(mesh);for(const g of record.geometry||[])g.dispose();record.capMaterial?.dispose();record.entity._axeReady=false;}
+/**
+ * Disposes every cut-corpse record (detaches its group, releases its shadow casters, disposes its geometry and owned
+ * cap material, clears the corpse edict's `_axeReady`) and empties the registry. Called on every map change by
+ * `R_NewMap` (gl_rmain.js, through the hook table).
+ */
 export function R_ClearAxeCorpses(){for(const r of records.values())dispose(r);records.clear();}
 function build(entity,scene,world=cl.worldmodel,latch=true){
 	const data=entity._axeCorpse,model=Mod_ForName(data.model,false),header=model?.cache?.data;
@@ -99,6 +104,15 @@ function fitPlane(hits){
 	const l=Math.hypot(a,b,1),n=[-a/l,-b/l,1/l];
 	return n[2]<.7?null:{normal:n.map(v=>Math.round(v*1e6)/1e6),at};
 }
+/**
+ * The ground slope under a resting half, from floor samples; exported for tests (bisect_test.js) of the private
+ * plane fit used when a cut is first built.
+ *
+ * @param {Array<Array<number>>} hits floor points `[x, y, z]` in Quake units (world space)
+ * @returns {Array<number>} the plane's upward unit normal (components rounded to 6 decimals), or `[0, 0, 1]` (level
+ *   ground) when there are fewer than 3 hits, the hits are collinear, any hit is more than 1 unit off the fitted plane
+ *   (a step or ledge), or the plane is steeper than z < 0.7
+ */
 export function R_AxeFloorSlope(hits){return fitPlane(hits)?.normal??[0,0,1];}
 const turn=new THREE.Quaternion(),tilt=new THREE.Quaternion(),up=new THREE.Vector3(0,0,1),ground=new THREE.Vector3(),local=new THREE.Vector3(),inverse=new THREE.Quaternion();
 function settle(record,time){
@@ -120,6 +134,22 @@ function settle(record,time){
 		pos.z=Math.max(pos.z,(d+.5-part.minimum-ground.x*pos.x-ground.y*pos.y)/ground.z);
 	}
 }
+/**
+ * Builds a detached, already-settled copy of a saved cut for the level views at level exits (`R_BuildLevelView`,
+ * r_levelview.js). Works on a copy of `data` and does not trace the server world: missing rest heights are found by
+ * sampling `world`'s hull 0 below each half, and the native bodies' suppression is left alone. The meshes are kept
+ * out of the sun shadow layer.
+ *
+ * @param {{ model: string, entityIndex: number, frame: number, skin: number, at: number, origin: Array<number>,
+ *   angles: Array<number>, normal: Array<number>, faceSeed?: *, key?: string, skinSalt?: number,
+ *   floor?: Array<number>, slope?: Array<Array<number>> }} data a record from `Axe_ParseRecord` (not mutated)
+ * @param {model_t} world the previewed level's world model (lighting and floor sampling)
+ * @param {number} time the level's time (seconds) the halves are posed at; 0.65 s after `data.at` they have fallen
+ * @returns {{ mesh: THREE.Group, dispose: () => void }} the group to place in the view; the caller must call
+ *   `dispose()` (geometry and cap material) when the view is torn down
+ * @throws {Error} when the model is not loaded ("Cut corpse model unavailable"), cannot be posed, or the cut does not
+ *   form two closed halves
+ */
 export function R_AxeCorpsePreview(data,world,time){
 	const copy={...data,origin:data.origin.slice(),angles:data.angles.slice(),normal:data.normal.slice(),...(data.floor?{floor:data.floor.slice()}:{}),...(data.slope?{slope:data.slope.map(n=>n.slice())}:{})};
 	const owner={index:-1,_axeCorpse:copy},container=new THREE.Group(),record=build(owner,container,world,false);
@@ -127,6 +157,19 @@ export function R_AxeCorpsePreview(data,world,time){
 	for(const part of record.parts)for(const mesh of part.piece.children){mesh.layers.disable(SUN_SHADOW_LAYER);mesh.userData.quakeAxePart=false;}
 	return {mesh:record.group,dispose:()=>dispose(record)};
 }
+/**
+ * Keeps the drawn halves in step with the server's cut-corpse edicts, once per rendered frame from `R_RenderScene`
+ * (gl_rmain.js, through the hook table). Only acts in local single player while playing Newer Game; otherwise every
+ * built group is hidden (not destroyed, so returning to Newer Game reuses it). Builds a record the first time an edict
+ * with `_axeCorpse` is seen (and rebuilds it if the record object changes); a successful build latches the
+ * replacement of the native bodies it hides (clears their `_axeSuppressedBy`, so expiry or a reused slot cannot bring
+ * the intact body back), writes the computed rest heights and slopes back
+ * into `entity._axeCorpse.floor`/`.slope` (so they are saved), and sets `_axeReady`. A failed build records its error
+ * and rebinds the native fallback so the original death stays visible. Records whose edict is gone or freed are
+ * disposed. Each frame the halves fall apart, tip over and settle on the ground over 0.65 s from the cut time.
+ *
+ * @param {THREE.Scene} scene the world scene new groups are added to
+ */
 export function R_AxeCorpsesFrame(scene){
 	const enabled=sv.active&&svs.maxclients===1&&R_NewerGame(),live=new Set();
 	if(enabled)for(let i=1;i<sv.num_edicts;i++){
@@ -145,5 +188,14 @@ export function R_AxeCorpsesFrame(scene){
 	}
 	for(const [entity,record] of records){if(!enabled){if(record.group)record.group.visible=false;continue;}if(!live.has(entity)){dispose(record);records.delete(entity);}}
 }
+/**
+ * A snapshot of every cut-corpse record, for tests and diagnostics.
+ *
+ * @returns {Array<{ model: string, frame: number, normal: Array<number>, ready: boolean, error: ?string,
+ *   halves: number, draws: number, parts: Array<{ floor: number, lowest: number, bodyTriangles: number,
+ *   capTriangles: number }> }>} one entry per record: `ready` when its group was built, `error` the build failure,
+ *   `draws` the number of main-camera mesh draws so far, and per half its rest height and current lowest point
+ *   (Quake units, z) and triangle counts. Fresh objects; `normal` is the record's own array.
+ */
 export function R_AxeCorpseStatus(){return [...records.values()].map(r=>({model:r.data.model,frame:r.data.frame,normal:r.data.normal,ready:!!r.group,error:r.error,halves:r.parts?.length||0,draws:r.draws||0,
 	parts:r.parts?.map(p=>({floor:p.floor,lowest:p.piece.position.z+p.minimum,bodyTriangles:p.piece.children[0].geometry.attributes.position.count/3,capTriangles:p.piece.children[1].geometry.attributes.position.count/3}))||[]}));}

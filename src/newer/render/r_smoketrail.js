@@ -64,7 +64,17 @@ let head = 0, count = 0, counter = 0;
 // per-trail carry: the distance travelled since that trail's last puff
 const trails = new Map();
 
+/**
+ * Empties the puff pool and forgets every trail's carry. Called by r_fireball.js on a new level, outside Newer
+ * Game, and when the client clock jumps back (a demo loop, a new game).
+ */
 export function R_SmokeTrailClear() { head = 0; count = 0; counter = 0; trails.clear(); }
+/**
+ * Size of the puff pool, for tests and diagnostics.
+ *
+ * @returns {number} live puffs in the pool, 0..`SMOKE.cap` (1024); includes puffs not yet culled by
+ *   `forEachSmoke`
+ */
 export function R_SmokeTrailCount() { return count; }
 
 function push( sx, sy, sz, ux, uy, uz, t, seed ) {
@@ -77,9 +87,21 @@ function push( sx, sy, sz, ux, uy, uz, t, seed ) {
 
 }
 
-// Emit puffs along start->end (Quake units) for the trail `key`. `time` is the client time
-// now and `dt` how long the segment took (puffs are born at their own point in it).
-// Returns the number emitted.
+/**
+ * Emit puffs along start->end (Quake units) for the trail `key`, every `SMOKE.spacing` (3) units, carrying the
+ * remainder to the next segment so the same flight gives the same puffs at any frame rate. Called by
+ * r_fireball.js `R_SmokeTrail` once per rocket/grenade per frame. A trail unseen for `SMOKE.staleAfter`
+ * seconds (or stamped more than 1 s in the future) starts afresh; a segment longer than `SMOKE.jump` (256) is a
+ * teleport and is never bridged. When the pool is full the oldest puff yields.
+ *
+ * @param {ArrayLike<number>} start segment start, Quake units, world space
+ * @param {ArrayLike<number>} end segment end, Quake units, world space
+ * @param {boolean} rocket true for a rocket (smoke starts `noseRocket` source units behind it), false for a grenade
+ * @param {*} key trail identity, the entity number (at most `SMOKE.maxTrails` are remembered)
+ * @param {number} time client time now, seconds
+ * @param {number} dt how long the segment took, seconds (puffs are born at their own point in it)
+ * @returns {number} the number of puffs emitted
+ */
 export function R_SmokeTrailEmit( start, end, rocket, key, time, dt ) {
 
 	const vx = end[ 0 ] - start[ 0 ], vy = end[ 1 ] - start[ 1 ], vz = end[ 2 ] - start[ 2 ];
@@ -112,9 +134,18 @@ export function R_SmokeTrailEmit( start, end, rocket, key, time, dt ) {
 
 }
 
-// smokeList() of the source: every live puff at `time`, in the source's space and units.
-// `scale` plays the source's clock faster (1 = the source exactly). Calls
-// emit( x, y, z, size, angle, alpha, heat, tile, tintR, tintG, tintB, seed ) per puff.
+/**
+ * smokeList() of the source: every live puff at `time`, in the source's space and units, with the source's
+ * per-puff drift, growth, spin and fade. Called by r_fireball.js each frame to fill the puff layer. Drops expired
+ * puffs from the tail of the pool first.
+ *
+ * @param {number} time client time, seconds
+ * @param {{ wind: number, spread: number, density: number }} p look settings (normally `SMOKE`)
+ * @param {number} scale plays the source's clock faster (1 = the source exactly; `SMOKE.timeScale` in game)
+ * @param {function(number, number, number, number, number, number, number, number, number, number, number,
+ *   number): void} emit called as emit( x, y, z, size, angle, alpha, heat, tile, tintR, tintG, tintB, seed ) per
+ *   puff: position and size in source units (y up), angle in radians, alpha 0..1, heat always -1, tile 0..15
+ */
 export function forEachSmoke( time, p, scale, emit ) {
 
 	// the tail holds the oldest puffs: drop the ones that are over
@@ -136,7 +167,13 @@ export function forEachSmoke( time, p, scale, emit ) {
 
 }
 
-// Read-only view of the pool in the source's own record shape, for tests.
+/**
+ * Read-only view of the pool in the source's own record shape, for tests.
+ *
+ * @returns {Array<{ pos: Array<number>, dir: Array<number>, t: number, life: number, seed: number, tile: number }>}
+ *   fresh copies, oldest first: position (source units, y up), unit direction, birth time (s), life (source
+ *   seconds, 4.4..5.6), seed 0..1 and texture tile 0..15
+ */
 export function smokeRecords() {
 
 	const list = [];
