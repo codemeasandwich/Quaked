@@ -33,7 +33,7 @@ import { Memory_Init } from '../common/zone.js';
 import { V_Init, V_SetContentsColor, V_CalcBlend } from '../client/view.js';
 import { Chase_Init } from '../client/chase.js';
 import { W_LoadWadFile } from '../common/wad.js';
-import { COM_LoadFile } from '../common/pak.js';
+import { COM_LoadFile, COM_FindFile } from '../common/pak.js';
 import { Key_Init, Key_WriteBindings, key_lines, edit_line, key_linepos, chat_buffer } from '../client/keys.js';
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from '../common/console.js';
 import { M_Init, M_SetExternals, M_Draw, M_ConnectionError } from '../client/menu.js';
@@ -479,7 +479,16 @@ export async function Host_Init( parms ) {
 	// Load saved config from localStorage (overrides defaults above)
 	try {
 
-		const savedConfig = localStorage.getItem( GameSelection_ConfigKey() ); // each mission pack its own (card [34c])
+		const key = GameSelection_ConfigKey(); // each mission pack its own (card [34c])
+		let savedConfig = localStorage.getItem( key );
+		// A mission pack's first run: the player's Quake settings and keys, then the pack's own default.cfg binds over
+		// them (Scourge's 9 and 0 stay the Laser Cannon and Mjolnir), as WinQuake falls back to id1's config.cfg there
+		if ( savedConfig === null && key !== 'quake_config' ) {
+
+			const quake = localStorage.getItem( 'quake_config' );
+			if ( quake !== null ) savedConfig = Cvar_DropChangedDefaults( quake ) + '\n' + Host_DefaultBinds();
+
+		}
 		if ( savedConfig !== null ) {
 
 			Cbuf_AddText( Cvar_DropChangedDefaults( savedConfig ) );
@@ -902,6 +911,16 @@ export function Host_ShutdownServer( crash ) {
 
 	// clear structures
 	Object.assign( sv, new ( sv.constructor )() );
+
+}
+
+// the bind lines of the default.cfg mounted (the mission pack's own when it has one)
+function Host_DefaultBinds() {
+
+	const file = COM_FindFile( 'default.cfg' );
+	if ( ! file ) return '';
+	const text = Array.from( file.data, c => String.fromCharCode( c ) ).join( '' );
+	return text.split( /\r?\n/ ).filter( line => /^\s*bind\s/i.test( line ) ).join( '\n' ) + '\n';
 
 }
 

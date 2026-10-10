@@ -94,8 +94,6 @@ async function main() {
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed
 		const missionMounted = missionPak !== null && fullGamePak !== null;
-		// the game that really starts, which saves and settings follow (card [34c])
-		GameSelection_SetRunning( missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
 		const pak0 = sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
@@ -110,6 +108,8 @@ async function main() {
 			Sys_Printf( 'pak0.pak loaded successfully\\n' );
 			// a mission pack's own QuakeC, status bar pictures and maps replace the base game's: it is mounted last,
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
+			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
+			GameSelection_SetRunning( missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
 			if ( missionMounted ) { COM_AddPack( missionPak ); COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded\n' ); }
 
 		} else {

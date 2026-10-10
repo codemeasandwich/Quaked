@@ -65,6 +65,20 @@ Deno.test( 'Dissolution of Eternity\'s status bar: its weapons, armour, ammuniti
 	check( draw().includes( 'r_invbar2@0,-24' ), 'the ordinary inventory bar with an ordinary weapon' );
 } );
 
+Deno.test( 'Dissolution of Eternity in CTF teamplay: the team colour takes the face\'s place', async () => {
+	const vars = await import( '../src/engine/common/cvar.js' );
+	if ( ! vars.Cvar_FindVar( 'teamplay' ) ) vars.Cvar_RegisterVariable( new vars.cvar_t( 'teamplay', '0' ) );
+	const { cl, draw } = await statusBar( { hipnotic: false, rogue: true }, 'rogue-team' );
+	cl.maxclients = 2; cl.scores = [ { colors: 0x4d, frags: 3, name: 'player' } ]; cl.stats[ Q.STAT_HEALTH ] = 100;
+	vars.Cvar_Set( 'teamplay', '4' );
+	try {
+		const d = draw();
+		check( d.includes( 'r_teambord@112,0' ) && ! d.some( p => /^face/.test( p ) ), 'the team border where the face would be: ' + d.join( ' ' ) );
+		vars.Cvar_Set( 'teamplay', '1' );
+		check( draw().some( p => /^face1@112,0/.test( p ) ), 'outside CTF, the face' );
+	} finally { vars.Cvar_Set( 'teamplay', '0' ); }
+} );
+
 Deno.test( 'Level Select: a mission pack\'s own episodes and maps, though Quake is mounted under it', async () => {
 	const pak = await import( '../src/engine/common/pak.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
 	const menu = await import( '../src/engine/client/menu.js' );

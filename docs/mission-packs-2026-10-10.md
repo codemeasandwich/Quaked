@@ -44,6 +44,11 @@ it only after Quake's arrives, would slow every normal start.
     would leak back into Quake.
   - Quake and the shareware keep the original `quake_config`, and the default (no choice made) keeps the original
     keys whatever runs.
+  - **A first run** of a mission pack, before its own configuration exists, starts from Quake's, as WinQuake falls
+    back to id1's `config.cfg`. The player's keys and settings are kept, and the pack's own `default.cfg` binds are
+    applied over them.
+  - Checked in the browser: a returning player's custom `k` (jump), volume 0.3 and sensitivity 7 were all kept on
+    Scourge's first run, with 0 and 9 bound to Mjolnir and the Laser Cannon.
 - **Newer Game's start map:** `newer/maps.pak` replaces id1's `start.bsp`, so it is not applied for a mission pack,
   which keeps its own start map.
 - **Prepared data:** Newer Game's rock and demon bakes are matched by each BSP's SHA-256, so a mission pack's
@@ -92,7 +97,8 @@ They also drive what this card ports from WinQuake.
 ### One hardening
 
 With a mission pack, WinQuake sends the active weapon as its bit number, and writes nothing at all when the weapon is
-0. That leaves the client reading the next message's byte. `sv_main.js` writes 0 then instead.
+0. That leaves the client reading the next message's byte. `sv_main.js` writes 0 then instead. The client reads 0 as
+bit 0, the shotgun, so a weaponless player shows the shotgun as active: a cosmetic slip instead of a broken message.
 
 ### What the re-release QuakeC needed
 
@@ -120,6 +126,8 @@ an unknown command. This engine keeps Quake's font.
   - Scourge refused while the catalogue does not call it playable;
   - an episode (Dimension of the Past) still refused.
 - `tests/game_shelf_test.js`: `?game=hipnotic` chooses Scourge.
+- `tests/mission_pack_test.js` also covers Dissolution's team-colour face in CTF teamplay: `r_teambord` is drawn in
+  the face's place.
 - `tests/give_mission_native_test.js` (2 tests), on the actual native server:
   - Scourge: `give 9`, `0` and `6a` give its weapons, `6` the grenade launcher, and standard Quake's 9 is unchanged;
   - Dissolution, with the owner's own QuakeC: `n`, `l`, `m`, `p` and `s` set its own ammunition fields, and the
@@ -143,7 +151,9 @@ an unknown command. This engine keeps Quake's font.
   - **Dissolution:** `start` and r1m1 loaded. `impulse 9` gave its weapons and ammunition. Its own inventory bar, lava
     nails, multi-rockets and plasma showed.
   - **The shelf:** both boxes playable, and choosing Scourge opened `?game=hipnotic` with the switch set.
-  - Screenshots: `docs/evidence/mission-packs/hipnotic-hip1m1.jpg` and `rogue-r1m1.jpg`.
+  - Screenshots: `docs/evidence/mission-packs/hipnotic-hip1m1-2026-10-10.jpg` and `rogue-r1m1-2026-10-10.jpg`. They show the
+    owner's commercial packs. Whether they stay in a public repository is the owner's call (the distribution
+    policy: possession is not a right to redistribute).
 
 ## Not done (follow-ups recorded on the board)
 
