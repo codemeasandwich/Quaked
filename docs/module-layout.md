@@ -376,6 +376,52 @@ owner dates); WinQuake's `/* ===== Name ===== */` banners stay.
 * Where reading the code showed a comment was wrong, the block says what the code does; where it showed a likely
   defect (an export nothing calls, a missing import), the block notes it and card [44m] lists them; no code changed.
 
+## [44h]: `gl_post.js` split by stage (debt D3)
+
+`src/newer/render/gl_post.js` was 4,192 lines holding the whole post pipeline. It is now 257 lines: the sequencer
+(`R_PostBegin`, `R_PostBind`, `R_PostLightsFrame`, `R_PostFinish`, `R_PostShutdown`), which calls each stage in
+the order it always did. It re-exports every public name from the stages, so none of its importers changed (install.js's
+hook table among them).
+
+| Module | Lines | What it holds |
+|---|---|---|
+| `r_post_config.js` | 95 | the cvars and the tunables the stages share |
+| `r_post_state.js` | 68 | the shared flags and the pipeline (`postState`), and the uniform holders `lightCurve`, `lightingLook`, `classicLook` |
+| `r_post_gbuffer.js` | 521 | emissive glow and the lava pulse, surface detail, the G-buffer compile patch |
+| `r_post_lights.js` | 662 | the light database (`R_BuildWorldLights`), the frame's selection, the light uniforms |
+| `r_post_sky.js` | 320 | the sky's light, colour and cookie, the sun's direction, the sky flags (`skyState`), the sun uniforms |
+| `r_post_liquids.js` | 390 | water and slime by name, their looks, the level's pools and links, the probes, the liquid uniforms |
+| `r_post_shadows.js` | 277 | the sun occluder and shadow map, the frame's point, near-sun, spot and height shadows |
+| `r_post_shaders.js` | 1,449 | the passes' GLSL, byte for byte |
+| `r_post_targets.js` | 436 | dynamic resolution, the render targets and pass materials, the full-screen pass |
+| `r_post_composite.js` | 236 | the shafts and bloom passes, the composite and present passes, the title demo's split |
+
+* **Shared state.** What the stages read of one another is in two objects: `postState` and `skyState`. Each field
+  has one writer, named in the module's header. The sun's direction is reassigned per map, so it is always read
+  through `skyState`. The frame's light selection is one array, `_selected`, whose count is read and set through
+  `R_PostSelectedCount` and `R_PostSetSelectedCount`. Objects given to shaders as uniforms stay the same objects.
+* **One-way imports.** config → state → sky, liquids, G-buffer → lights → shadows → shaders → targets → composite →
+  gl_post. No stage imports gl_post.js. The architecture tools' cycles are unchanged (8, 5, 4, 4, 4, 2) and Newer
+  Game has none of its own. `tools/architecture_classify.mjs` assigns `r_post_*.js` to newer/render, [44h].
+* **Proof that the frames are the same:** `tests/post_split_frames_trial.html`, run headless by
+  `tools/post_split_frames.mjs`.
+  * Eight native E1M1 views go through the whole pipeline: the start, the open air, over and under the water, over
+    the slime, the flashlight, depth of field and the split. The page clock and the game time are fixed.
+  * It hashes every view's pixels, and every post pass's shader and uniforms.
+  * Measured on the commit before the split (82665637) and after every step, the digest is the same. Changing one
+    tunable by 0.01 changes every view.
+  * Two digests are known on the unchanged pipeline, 4e633bcf… and f216c748…. They differ only in the view under the
+    water, by at most 15 levels across a very dark frame, with the same passes. That race is card [44o]. A step is
+    accepted only at one of them.
+* **A test for each stage**, through its own public interface:
+  * `r_post_liquids_test`, `r_post_shaders_test`, `r_post_gbuffer_test`;
+  * `r_post_sky_test`, `r_post_lights_test` and `r_post_shadows_test`, on E1M1;
+  * `r_post_targets_test` and `r_post_composite_test`.
+  * The 36 existing suites that use gl_post.js's exports pass unchanged.
+* **Found on the way and fixed, each in its own commit:**
+  * the graph tool did not know the owner's mission-pack paks, which [34e]'s test reads;
+  * the classifier had no rule for local play's and the game shelf's modules ([37a], [M1]).
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the
