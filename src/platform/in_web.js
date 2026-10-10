@@ -642,13 +642,14 @@ IN_Init
  * `gp_look_pitch` cvars and the `force_centerview` command, listens for keys and visibility on the document and for
  * the mouse, wheel, context menu and touch start on the element, and for pointer lock changes. On a mobile device
  * (`Touch_IsMobile`) it creates the touch controls on the body; a Meta Quest browser gets no pointer lock or
- * fullscreen. Called once by `Host_Init` (host.js), with no element. Listeners stay until `IN_Shutdown`; calling it
- * twice would add them twice.
+ * fullscreen. Called once by `Host_Init` (host.js), with no element. Listeners stay until `IN_Shutdown`; a call while
+ * input is already started does nothing.
  *
  * @param {HTMLElement} [element=document.body] the element that takes mouse input and is pointer-locked
  */
 export function IN_Init( element ) {
 
+	if ( in_initialized ) return; // once: a second call would add every listener again (card [44m])
 	targetElement = element || document.body;
 
 	// Build key mapping (deferred from module scope to avoid circular dep in Deno)
@@ -743,7 +744,8 @@ IN_Shutdown
 /**
  * Stops browser input: removes the key, mouse, wheel, context menu, pointer lock and visibility listeners added by
  * `IN_Init`, leaves pointer lock, and marks the mouse and input inactive. Called by `Host_Shutdown` (host.js). Does
- * nothing before `IN_Init`. The touch start listener and the mobile touch controls are not removed.
+ * nothing before `IN_Init`. The touch start listener goes too, and on a mobile device the touch controls are disabled
+ * (hidden, their listeners removed); their layout listeners, added once by `Touch_Init`, stay.
  */
 export function IN_Shutdown() {
 
@@ -759,8 +761,10 @@ export function IN_Shutdown() {
 		targetElement.removeEventListener( 'mouseup', handleMouseUp );
 		targetElement.removeEventListener( 'wheel', handleWheel );
 		targetElement.removeEventListener( 'contextmenu', handleContextMenu );
+		targetElement.removeEventListener( 'touchstart', handleTouchStart, { passive: false } );
 
 	}
+	if ( isMobile ) Touch_Disable(); // the touch controls go with the rest (card [44m])
 
 	document.removeEventListener( 'pointerlockchange', handlePointerLockChange );
 	document.removeEventListener( 'visibilitychange', handleVisibilityChange );
