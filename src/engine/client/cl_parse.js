@@ -29,6 +29,7 @@ import { Con_Printf, Con_DPrintf, SZ_Clear,
 	net_message, standard_quake } from '../common/common.js';
 import { Sys_Error, Sys_FloatTime } from '../common/sys.js';
 import { Con_Sprintf } from '../common/console.js';
+import { NET_SendMessage } from '../net/net_main.js';
 import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from '../common/pak.js';
 import { sv, svs } from '../server/server.js';
 import { Cbuf_AddText } from '../common/cmd.js';
@@ -278,15 +279,16 @@ let _keepalive_lastmsg = 0;
 /**
  * When the client is taking a long time to load stuff, send keepalive messages so the server doesn't disconnect.
  * Called by `CL_ParseServerInfo` after each model and sound it loads; at most once every 5 seconds of
- * `Sys_FloatTime` (the last time is kept in a module variable), never during demo playback. In this port the send
- * (`NET_SendMessage`) is commented out, so it prints "--> client to server keepalive", writes a `clc_nop` into
- * `cls.message` and clears it again: nothing reaches the server.
+ * `Sys_FloatTime` (the last time is kept in a module variable), never during demo playback, without a connection or
+ * when the server is this page's own (WinQuake). It prints "--> client to server keepalive", writes a `clc_nop` into
+ * `cls.message` and sends it, with anything already queued there (card [44m]: the send was commented out, so the
+ * clear threw the queued message away).
  */
 export function CL_KeepaliveMessage() {
 
-	// if ( sv.active )
-	//     return;  // no need if server is local
-	if ( cls.demoplayback )
+	if ( sv.active )
+		return; // no need if server is local
+	if ( cls.demoplayback || ! cls.netcon )
 		return;
 
 	// check time
@@ -299,7 +301,7 @@ export function CL_KeepaliveMessage() {
 	Con_Printf( '--> client to server keepalive\n' );
 
 	MSG_WriteByte( cls.message, clc_nop );
-	// NET_SendMessage( cls.netcon, cls.message );
+	NET_SendMessage( cls.netcon, cls.message ); // with anything already queued, which the clear would otherwise lose
 	SZ_Clear( cls.message );
 
 }
