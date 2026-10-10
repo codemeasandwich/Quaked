@@ -57,7 +57,8 @@ export * from './engine/common/cmd.js';
 
 An adapter re-exports the live bindings of the one module instance, so nothing loads twice. It is there for paths built
 at run time (`import( '../src/' + name + '.js' )` in a few trials), which no tool can rewrite. The graph tool fails if any
-literal import, URL or read names an adapter, so no new code comes to depend on one; adapters are deleted in [44g].
+literal import, URL or read in a tracked file names an adapter, so no new code comes to depend on one (an untracked local
+file that does is only reported); adapters are deleted in [44g].
 
 What the tool cannot do, and is checked by hand at each move:
 

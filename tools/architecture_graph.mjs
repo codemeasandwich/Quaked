@@ -20,6 +20,7 @@
 //   git archive <commit> | tar -x -C /tmp/q && node tools/architecture_graph.mjs /tmp/q /tmp/graph.json
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { builtinModules } from 'node:module';
 
 const ROOT = path.resolve( process.argv[ 2 ] || '.' ), OUT = process.argv[ 3 ];
@@ -305,8 +306,14 @@ const KNOWN_MISSING = [ e => e.from === 'tests/axe_original_test.js' && /^newer\
 const unexpected = missing.filter( e => ! KNOWN_MISSING.some( known => known( e ) ) );
 // an adapter left at an old path serves only paths built at run time: a literal import, re-export, dynamic import or
 // module URL that names one is a new consumer of an old path, so it fails too (cards [44b]..[44f]; deleted in [44g])
+// Only files git tracks fail it: the owner's untracked local files (in their checkout) are reported, theirs to update.
+// On a tree without git (a clean export) every file counts.
+let trackedFiles = null;
+try { trackedFiles = new Set( execFileSync( 'git', [ 'ls-files', '-z' ], { cwd: ROOT, encoding: 'utf8', stdio: [ 'ignore', 'pipe', 'ignore' ] } ).split( '\0' ) ); } catch { trackedFiles = null; }
 const adapterConsumers = edges.filter( e => adapters[ e.to ] && e.from !== e.to && e.kinds.some( k => /^(static|export|dynamic|dynamic-computed|dynamic-wrapped|url|worker|read|fetch|importmap)$/.test( k ) ) );
-unexpected.push( ...adapterConsumers.map( e => ( { ...e, to: e.to + ' (an adapter: use ' + adapters[ e.to ] + ')' } ) ) );
+const localAdapterConsumers = adapterConsumers.filter( e => trackedFiles !== null && ! trackedFiles.has( e.from ) );
+unexpected.push( ...adapterConsumers.filter( e => ! localAdapterConsumers.includes( e ) ).map( e => ( { ...e, to: e.to + ' (an adapter: use ' + adapters[ e.to ] + ')' } ) ) );
+if ( localAdapterConsumers.length ) console.error( 'note: untracked local files import adapters (they still work; the owner updates them): ' + localAdapterConsumers.map( e => e.from + ' -> ' + e.to ).join( ', ' ) );
 
 const out = { root: ROOT, files: files.length, scannedRootFiles: files.map( rel ).filter( f => ! f.includes( '/' ) ), src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing, unscanned, unexpected,
 	counts: { queryImports: queryImports.length, queryImportFiles: new Set( queryImports.map( e => e.from ) ).size, queryImportsComputed: queryImports.filter( e => e.kind === 'dynamic-computed' ).length, importMapEntries: importMapEntries.length, animImporters: Object.keys( animImporters ).length, animModeOnly: modeOnly.length },

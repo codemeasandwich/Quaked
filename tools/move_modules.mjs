@@ -37,9 +37,10 @@ if ( args[ 0 ] === '--adapters' ) {
 	const renames = git( 'diff', '--name-status', '-M30%', 'HEAD~1', 'HEAD' ).split( '\n' ).map( l => l.split( '\t' ) ).filter( ( [ s, a, b ] ) => /^R/.test( s || '' ) && /^src\/.*\.js$/.test( a ) && /^src\/.*\.js$/.test( b ) );
 	if ( renames.length === 0 ) fail( 'the last commit moves no src module' );
 	const increment = ( git( 'log', '-1', '--format=%s' ).match( /\[(44[b-f])\]/ ) || [] )[ 1 ] || '44';
+	const present = renames.filter( ( [ , from ] ) => fs.existsSync( path.join( ROOT, from ) ) ).map( ( [ , from ] ) => from );
+	if ( present.length ) fail( 'already exists (nothing written): ' + present.join( ' ' ) );
 	for ( const [ , from, to ] of renames ) {
 
-		if ( fs.existsSync( path.join( ROOT, from ) ) ) fail( 'already exists: ' + from );
 		if ( ! DRY ) fs.writeFileSync( path.join( ROOT, from ), '// Moved to ' + to + ' (card [' + increment + ']); kept for paths built at run time.\nexport * from \'' + rel( from, to ) + '\';\n' );
 
 	}
@@ -118,7 +119,8 @@ const local = [];
 const walkLocal = dir => { for ( const e of fs.readdirSync( path.join( ROOT, dir ), { withFileTypes: true } ) ) {
 
 	const r = dir ? dir + '/' + e.name : e.name;
-	if ( e.isDirectory() ) { if ( ! [ '.git', 'node_modules', 'resources', 'assets', 'music', 'maps' ].includes( e.name ) && ! e.isSymbolicLink() ) walkLocal( r ); }
+	// (not into another checkout or worktree inside this one: a folder holding .git)
+	if ( e.isDirectory() ) { if ( ! [ '.git', '.claude', 'node_modules', 'resources', 'assets', 'music', 'maps' ].includes( e.name ) && ! e.isSymbolicLink() && ! fs.existsSync( path.join( ROOT, r, '.git' ) ) ) walkLocal( r ); }
 	else if ( ! tracked.has( r ) && TEXT( r ) && ! e.isSymbolicLink() && fs.statSync( path.join( ROOT, r ) ).size < 4e6 && rewrite( r, fs.readFileSync( path.join( ROOT, r ), 'utf8' ) ) ) local.push( r );
 
 } };
