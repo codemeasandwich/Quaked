@@ -288,8 +288,10 @@ Deno.test( 'packaged prebakes retain base PAK/loose coverage and match source ha
 	const manifest = JSON.parse( readFileSync( manifestPath, 'utf8' ) ); equal( manifest.version, ROCK_BAKE_VERSION, 'manifest version' );
 	for ( const name of [ 'src/newer/assets/rockfield.js', 'src/newer/assets/rockfield_presets.js', 'src/newer/render/r_rocksurfaces.js', 'src/newer/assets/rockfield_bake_format.js' ] ) equal( manifest.sources[ name ], hash( readFileSync( new URL( name, root ) ) ), name + ' source identity' );
 	const names = new Set();
-	for ( const name of readdirSync( root ).filter( name => /^pak\d+\.pak$/.test( name ) ).sort() ) {
-		const raw = readFileSync( new URL( name, root ) ), pack = COM_LoadPackFile( name, arrayBuffer( raw ) ); COM_AddPack( pack );
+	// the shipped paks live in games/shareware/ (card [34a])
+	const paks = new URL( 'games/shareware/', root );
+	for ( const name of readdirSync( paks ).filter( name => /^pak\d+\.pak$/.test( name ) ).sort() ) {
+		const raw = readFileSync( new URL( name, paks ) ), pack = COM_LoadPackFile( name, arrayBuffer( raw ) ); COM_AddPack( pack );
 		for ( const file of pack.files ) if ( /^maps\/[^/]+\.bsp$/.test( file.name ) ) names.add( file.name );
 	}
 	const maps = new URL( 'maps/', root );

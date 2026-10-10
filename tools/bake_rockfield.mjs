@@ -22,7 +22,7 @@ if(!isMainThread){
  const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',planOnly=false;
  for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else if(args[i]==='--namespace')namespace=args[++i];else if(args[i]==='--maps')filter=args[++i];else if(args[i]==='--loose')loose.push(args[++i]);else if(args[i]==='--plan')planOnly=true;else throw Error('Unknown argument '+args[i]);}
  if(!/^[a-z0-9-]+$/.test(namespace))throw Error('Invalid namespace');
- if(!packs.length&&!loose.length){packs.push(...(await readdir('.')).filter(name=>/^pak\d+\.pak$/.test(name)).sort());loose.push(...(await readdir('maps')).filter(name=>name.endsWith('.bsp')).map(n=>'maps/'+n));}
+ if(!packs.length&&!loose.length){packs.push(...(await readdir('games/shareware')).filter(name=>/^pak\d+\.pak$/.test(name)).sort().map(name=>'games/shareware/'+name));/* the shipped paks: games/shareware/ (card [34a]) */loose.push(...(await readdir('maps')).filter(name=>name.endsWith('.bsp')).map(n=>'maps/'+n));}
  const members=await memberSearch(packs);for(const path of loose)members.set(path,{loose:true,path,name:path});
  const names=new Set([...members.keys()].filter(name=>/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp(filter).test(name))),sources={};
  const palette=await memberSearch(['games/shareware/pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));

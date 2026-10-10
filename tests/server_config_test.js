@@ -29,7 +29,7 @@ Deno.test( 'the root task "server" runs game_server.js from server/ with the roo
 	check( / --config \.\.\/deno\.json game_server\.js$/.test( task ), `with the root import map: ${task}` );
 	check( / --unstable-net /.test( task ), 'with WebTransport' );
 	check( serverFiles.includes( 'game_server.js' ), 'the room server is there' );
-	check( /pakPath: '\.\.\/pak0\.pak'/.test( read( 'server/game_server.js' ) ), 'which reads ../pak0.pak, the root, from server/' );
+	check( /pakPath: '\.\.\/games\/shareware\/pak0\.pak'/.test( read( 'server/game_server.js' ) ), 'which reads ../games/shareware/pak0.pak from server/ (card [34a])' );
 	// the lobby spawns each room with the root deno.json beside server/
 	check( /serverDir\.replace\( \/server\\\/\$\/, 'deno\.json' \)/.test( read( 'server/room_process_manager.ts' ) ), 'rooms spawned by the lobby use the root deno.json' );
 
