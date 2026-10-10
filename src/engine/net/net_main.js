@@ -1085,6 +1085,9 @@ export function NET_Init() {
 			net_drivers[ net_driverlevel ].Listen( true );
 
 	}
+	// back to loopback: a socket taken without NET_Connect (a direct Loop_Connect) is stamped with this level, and
+	// the loop above leaves it on the last driver (the window driver since card [37a])
+	set_net_driverlevel( 0 );
 
 	Con_Printf( 'NET_Init complete\n' );
 

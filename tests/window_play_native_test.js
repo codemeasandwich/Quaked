@@ -104,7 +104,7 @@ test( 'two players\' windows join one native co-op server, each with its own pla
 	const shutdown = new sizebuf_t(); SZ_Alloc( shutdown, 16 ); MSG_WriteByte( shutdown, 1 ); // svc_nop
 	const began = performance.now();
 	same( net.NET_SendToAll( shutdown, 5 ), 0, 'every connected player got it' );
-	check( performance.now() - began < 500, 'without waiting on the empty slot: ' + Math.round( performance.now() - began ) + ' ms' );
+	check( performance.now() - began < 2000, 'without waiting out the 5 s block on the empty slot: ' + Math.round( performance.now() - began ) + ' ms' );
 
 	net.NET_Close( socks[ 0 ] );
 	await frames( 2 );

@@ -9,7 +9,7 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `hostSession`, `hostChannel`, `hostListening`,
- * `pageHideInstalled`, `hostGone`; 2 module-level collections (Map/Set).
+ * `pageHideInstalled`, `hostGone`; 3 module-level collections (Map/Set).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -42,6 +42,7 @@ let hostSession = null, hostChannel = null, hostListening = false;
 const pendingJoins = []; // client ids waiting for the server to take them
 const hostPeers = new Map(); // client id -> server-side socket
 const clientSockets = new Set(); // this page's client-side sockets
+const pendingSockets = new Set(); // this page's joins not yet answered
 let pageHideInstalled = false;
 let hostGone = null; // told when a host closes this page's connection to it
 
@@ -91,6 +92,7 @@ function installPageHide() {
 
 		for ( const [ id, sock ] of hostPeers ) { hostChannel?.postMessage( { k: 'close', to: id, from: 'host' } ); sock.driverdata.open = false; }
 		for ( const sock of clientSockets ) { const d = sock.driverdata; d.channel.postMessage( { k: 'close', to: 'host', from: d.id } ); d.open = false; }
+		for ( const sock of pendingSockets ) sock.driverdata?.abandon?.();
 
 	} );
 
@@ -119,7 +121,10 @@ function onHostMessage( event ) {
 	}
 	if ( m.to !== 'host' ) return;
 	const sock = hostPeers.get( m.from );
-	if ( ! sock ) return;
+	if ( ! sock ) { // a window that gave up before it was taken: its earlier joins are already queued
+		if ( m.k === 'close' ) { const i = pendingJoins.indexOf( m.from ); if ( i >= 0 ) pendingJoins.splice( i, 1 ); }
+		return;
+	}
 	if ( m.k === 'msg' && m.b instanceof Uint8Array ) enqueue( sock.driverdata, m );
 	else if ( m.k === 'close' ) sock.driverdata.open = false;
 
@@ -169,14 +174,26 @@ export function Window_Host( session ) {
 
 /**
  * Whether this page is in local play across windows: hosting a session, or a player's window connected to one.
- * Read by the gamepad poll (in_web.js), which then follows only the focused window, so one controller never drives
- * two players.
+ * Read by the gamepad poll (in_web.js), which then plays only the controller given to this window's player.
  *
  * @returns {boolean} true while hosting or joined
  */
 export function Window_InLocalPlay() {
 
 	return hostSession !== null || clientSockets.size > 0;
+
+}
+
+/**
+ * The session this page is in: the one it hosts, or the one a player's window joined.
+ *
+ * @returns {?string} the session id, or null outside local play
+ */
+export function Window_LocalSession() {
+
+	if ( hostSession !== null ) return hostSession;
+	for ( const sock of clientSockets ) return sock.driverdata.session;
+	return null;
 
 }
 
@@ -250,12 +267,17 @@ export function Window_Connect( host ) {
 
 			if ( settled ) return;
 			settled = true; clearInterval( retry ); clearTimeout( timeout ); d.abandon = null;
+			pendingSockets.delete( sock );
 			if ( error === null ) { d.open = true; clientSockets.add( sock ); resolve( sock ); return; }
-			channel.close(); sock.driverdata = null; NET_FreeQSocket( sock ); reject( error );
+			giveUp(); sock.driverdata = null; NET_FreeQSocket( sock ); reject( error );
 
 		};
+		// a window that stops asking says so, so the host drops a join of its still waiting (or the connection it made
+		// from one, if the accept crossed this); then the channel closes once that has gone out
+		const giveUp = () => { channel.onmessage = null; channel.postMessage( { k: 'close', to: 'host', from: id } ); setTimeout( () => channel.close(), CLOSE_LINGER_MS ); };
 		// NET_Close (at shutdown, say) on a join still waiting: it stops asking; NET_Close frees the socket itself
-		d.abandon = () => { if ( settled ) return; settled = true; clearInterval( retry ); clearTimeout( timeout ); reject( new Error( 'Connection closed before the host answered' ) ); };
+		d.abandon = () => { if ( settled ) return; settled = true; clearInterval( retry ); clearTimeout( timeout ); pendingSockets.delete( sock ); giveUp(); reject( new Error( 'Connection closed before the host answered' ) ); };
+		pendingSockets.add( sock );
 		channel.onmessage = event => {
 
 			const m = event.data;
@@ -404,7 +426,7 @@ export function Window_Close( sock ) {
 
 	const d = sock.driverdata;
 	if ( ! d ) return;
-	if ( d.abandon ) d.abandon();
+	if ( d.abandon ) { d.abandon(); sock.driverdata = null; return; } // a join still waiting: it has given up
 	if ( d.open ) d.channel.postMessage( { k: 'close', to: d.peer, from: d.id } );
 	d.open = false; d.queue.length = 0;
 	if ( d.id === 'host' ) {
