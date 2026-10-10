@@ -94,6 +94,55 @@ let m_return_reason = '';
 
 let m_save_demonum = 0;
 
+// The setters of the menu's shared state: every screen family changes the state, and an importer cannot assign a
+// module's binding, so each of these has one writer here (card [44j]).
+/**
+ * Sets the screen the menu shows (`m_state`, one of the `m_*` ids; `m_none` when no menu is open).
+ *
+ * @param {number} value the screen id
+ */
+export function set_m_state( value ) { m_state = value; }
+/**
+ * Asks for the menu's enter sound on the next draw (`m_entersound`); `M_Draw` plays it and clears the flag.
+ *
+ * @param {boolean} value true to play it
+ */
+export function set_m_entersound( value ) { m_entersound = value; }
+/**
+ * Marks that the screen under a modal one should be drawn first on the next `M_Draw` (`m_recursiveDraw`).
+ *
+ * @param {boolean} value true to draw it
+ */
+export function set_m_recursiveDraw( value ) { m_recursiveDraw = value; }
+/**
+ * Sets the screen a failed connection returns to (`m_return_state`).
+ *
+ * @param {number} value the screen id
+ */
+export function set_m_return_state( value ) { m_return_state = value; }
+/**
+ * Sets whether a failed connection should return to the menu (`m_return_onerror`).
+ *
+ * @param {boolean} value true to return
+ */
+export function set_m_return_onerror( value ) { m_return_onerror = value; }
+/**
+ * Sets the reason shown for a failed connection (`m_return_reason`).
+ *
+ * @param {string} value the message
+ */
+export function set_m_return_reason( value ) { m_return_reason = value; }
+/**
+ * Keeps the demo number the main menu interrupted (`m_save_demonum`), restored when it closes.
+ *
+ * @param {number} value `cls.demonum` when the menu opened
+ */
+export function set_m_save_demonum( value ) { m_save_demonum = value; }
+
+// The screens the main menu opens that live in later families (level select, multiplayer, options): filled by the
+// facade (menu.js) as it loads, so the main family does not import the families that return to it.
+export const menuOpeners = { levelSelect: null, multiplayerChoice: null, options: null };
+
 /*
 ==============================================================================
 
@@ -228,18 +277,18 @@ const episodes = [
  */
 export function M_ConnectionError( reason ) {
 
-	m_return_reason = reason || 'Connection failed';
+	set_m_return_reason( reason || 'Connection failed' );
 
 	if ( m_return_onerror ) {
 
 		// Return to the menu we came from
-		m_state = m_return_state;
-		m_return_onerror = false;
+		set_m_state( m_return_state );
+		set_m_return_onerror( false );
 
 	} else {
 
 		// Fall back to Multiplayer menu (for URL-based joins that bypass menu)
-		m_state = m_multiplayer;
+		set_m_state( m_multiplayer );
 
 	}
 
@@ -615,7 +664,7 @@ M_ToggleMenu_f
  */
 export function M_ToggleMenu_f() {
 
-	m_entersound = true;
+	set_m_entersound( true );
 
 	if ( getKeyDest() === key_menu ) {
 
@@ -627,7 +676,7 @@ export function M_ToggleMenu_f() {
 		}
 
 		setKeyDest( key_game );
-		m_state = m_none;
+		set_m_state( m_none );
 		return;
 
 	}
@@ -676,14 +725,14 @@ export function M_Menu_Main_f() {
 
 	if ( getKeyDest() !== key_menu ) {
 
-		m_save_demonum = _cls.demonum;
+		set_m_save_demonum( _cls.demonum );
 		_cls.demonum = - 1;
 
 	}
 
 	setKeyDest( key_menu );
-	m_state = m_main;
-	m_entersound = true;
+	set_m_state( m_main );
+	set_m_entersound( true );
 
 }
 
@@ -741,7 +790,7 @@ function M_Main_Key( key ) {
 
 		case K_ESCAPE:
 			setKeyDest( key_game );
-			m_state = m_none;
+			set_m_state( m_none );
 			_cls.demonum = m_save_demonum;
 			if ( _cls.demonum !== - 1 && ! _cls.demoplayback && _cls.state !== 2 ) // ca_connected
 				if ( _CL_NextDemo ) _CL_NextDemo();
@@ -760,7 +809,7 @@ function M_Main_Key( key ) {
 			break;
 
 		case K_ENTER:
-			m_entersound = true;
+			set_m_entersound( true );
 
 			// Adjust cursor for menu action - if in-game, cursor 0 is Continue
 			const actionCursor = inGame ? m_main_cursor - 1 : m_main_cursor;
@@ -769,7 +818,7 @@ function M_Main_Key( key ) {
 
 				// Continue - return to game
 				setKeyDest( key_game );
-				m_state = m_none;
+				set_m_state( m_none );
 				break;
 
 			}
@@ -780,13 +829,13 @@ function M_Main_Key( key ) {
 					M_Menu_SinglePlayer_f();
 					break;
 				case 1:
-					M_Menu_MultiplayerChoice_f(); // local split screen or online (card [MP1])
+					menuOpeners.multiplayerChoice(); // local split screen or online (card [MP1])
 					break;
 				case 2:
 					M_Menu_Bestiary_f();
 					break;
 				case 3:
-					M_Menu_Options_f();
+					menuOpeners.options();
 					break;
 				case 4:
 					M_Menu_Credits_f();
@@ -811,11 +860,11 @@ function M_Main_Key( key ) {
  */
 export function M_Menu_Bestiary_f() {
 
-	if ( getKeyDest() !== key_menu ) { m_save_demonum = _cls.demonum; _cls.demonum = -1; }
+	if ( getKeyDest() !== key_menu ) { set_m_save_demonum( _cls.demonum ); _cls.demonum = -1; }
 	R_BestiaryBookOpen();
 	setKeyDest( key_menu );
-	m_state = m_bestiary;
-	m_entersound = true;
+	set_m_state( m_bestiary );
+	set_m_entersound( true );
 
 }
 
@@ -846,8 +895,8 @@ const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 function M_Menu_SinglePlayer_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_singleplayer;
-	m_entersound = true;
+	set_m_state( m_singleplayer );
+	set_m_entersound( true );
 
 }
 
@@ -903,7 +952,7 @@ function M_SinglePlayer_Key( key ) {
 			break;
 
 		case K_ENTER:
-			m_entersound = true;
+			set_m_entersound( true );
 
 			switch ( m_singleplayer_cursor ) {
 
@@ -927,7 +976,7 @@ function M_SinglePlayer_Key( key ) {
 					M_Menu_Save_f();
 					break;
 				case 4:
-					M_Menu_LevelSelect_f();
+					menuOpeners.levelSelect();
 					break;
 
 			}
@@ -1091,8 +1140,8 @@ export function M_LevelSelectOffer() {
 function M_Menu_LevelSelect_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_levelselect;
-	m_entersound = true;
+	set_m_state( m_levelselect );
+	set_m_entersound( true );
 	m_levelselect_cursor = Math.min( m_levelselect_cursor, LEVELSELECT_ROWS + Math.max( 0, levelSelectLevels().length - 1 ) );
 
 }
@@ -1164,7 +1213,7 @@ function M_LevelSelect_Start() {
 	const level = levels[ m_levelselect_cursor - LEVELSELECT_ROWS ];
 	if ( level === undefined ) return;
 
-	m_entersound = true;
+	set_m_entersound( true );
 	setKeyDest( key_game );
 	if ( _IN_RequestPointerLock ) _IN_RequestPointerLock();
 	if ( _sv.active )
@@ -1268,8 +1317,8 @@ const cheatsGame = () => _sv.edicts; // a new array for every map load and every
 function M_Menu_Cheats_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_cheats;
-	m_entersound = true;
+	set_m_state( m_cheats );
+	set_m_entersound( true );
 
 }
 
@@ -1424,8 +1473,8 @@ function M_ScanSaves() {
 
 function M_Menu_Load_f() {
 
-	m_entersound = true;
-	m_state = m_load;
+	set_m_entersound( true );
+	set_m_state( m_load );
 	setKeyDest( key_menu );
 	M_ScanSaves();
 
@@ -1440,8 +1489,8 @@ function M_Menu_Save_f() {
 	if ( _svs.maxclients !== 1 )
 		return;
 
-	m_entersound = true;
-	m_state = m_save;
+	set_m_entersound( true );
+	set_m_state( m_save );
 	setKeyDest( key_menu );
 	M_ScanSaves();
 
@@ -1487,7 +1536,7 @@ function M_Load_Key( k ) {
 			if ( _S_LocalSound ) _S_LocalSound( 'misc/menu2.wav' );
 			if ( ! loadable[ load_cursor ] )
 				return;
-			m_state = m_none;
+			set_m_state( m_none );
 			setKeyDest( key_game );
 			if ( _IN_RequestPointerLock ) _IN_RequestPointerLock();
 			if ( _SCR_BeginLoadingPlaque ) _SCR_BeginLoadingPlaque();
@@ -1520,7 +1569,7 @@ function M_Save_Key( k ) {
 			M_Menu_SinglePlayer_f();
 			break;
 		case K_ENTER:
-			m_state = m_none;
+			set_m_state( m_none );
 			setKeyDest( key_game );
 			Cbuf_AddText( 'save s' + load_cursor + '\n' );
 			return;
@@ -1562,8 +1611,8 @@ let m_mpchoice_cursor = 0;
 export function M_Menu_MultiplayerChoice_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_mpchoice;
-	m_entersound = true;
+	set_m_state( m_mpchoice );
+	set_m_entersound( true );
 	if ( ! MPCHOICE_ITEMS[ m_mpchoice_cursor ]?.enabled ) m_mpchoice_cursor = MPCHOICE_ITEMS.findIndex( item => item.enabled );
 
 }
@@ -1607,7 +1656,7 @@ function M_MultiplayerChoice_Key( key ) {
 			break;
 		case K_ENTER:
 			if ( ! MPCHOICE_ITEMS[ m_mpchoice_cursor ]?.enabled ) break; // Online: not yet
-			m_entersound = true;
+			set_m_entersound( true );
 			if ( m_mpchoice_cursor === 0 ) M_Menu_SplitScreen_f();
 			break;
 
@@ -1643,8 +1692,8 @@ let localplay_players = LOCAL_PLAYERS_MIN, localplay_mode = 0, localplay_cursor 
 function M_Menu_SplitScreen_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_splitscreen;
-	m_entersound = true;
+	set_m_state( m_splitscreen );
+	set_m_entersound( true );
 	localplay_cursor = 0;
 
 }
@@ -1679,7 +1728,7 @@ function localPlayRows( role ) {
 			Cbuf_AddText( 'r_hdr 1\n' + newerDefaults() ); // local play is Newer Game
 			R_DemoSplitRelease( true );
 			LocalPlay_Start( { players: localplay_players, mode: LOCAL_MODES[ localplay_mode ] }, Cbuf_AddText );
-			m_state = m_none;
+			set_m_state( m_none );
 
 		} },
 		{ y: 56, label: '          Players', value: String( localplay_players ), enabled: true, change: d => { localplay_players = Math.min( LOCAL_PLAYERS_MAX, Math.max( LOCAL_PLAYERS_MIN, localplay_players + d ) ); } },
@@ -1800,9 +1849,9 @@ const MULTIPLAYER_ITEMS = 3;
 function M_Menu_MultiPlayer_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_multiplayer;
-	m_entersound = true;
-	m_return_reason = '';
+	set_m_state( m_multiplayer );
+	set_m_entersound( true );
+	set_m_return_reason( '' );
 
 }
 
@@ -1845,7 +1894,7 @@ function M_MultiPlayer_Key( key ) {
 				m_multiplayer_cursor = MULTIPLAYER_ITEMS - 1;
 			break;
 		case K_ENTER:
-			m_entersound = true;
+			set_m_entersound( true );
 			switch ( m_multiplayer_cursor ) {
 
 				case 0:
@@ -1879,12 +1928,12 @@ function M_MultiPlayer_Key( key ) {
 function M_Menu_LanConfig_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_lanconfig;
-	m_entersound = true;
+	set_m_state( m_lanconfig );
+	set_m_entersound( true );
 
 	slist_cursor = 0;
-	m_return_onerror = false;
-	m_return_reason = '';
+	set_m_return_onerror( false );
+	set_m_return_reason( '' );
 
 	// Fetch room list
 	M_FetchRooms();
@@ -1992,13 +2041,13 @@ function M_LanConfig_Key( key ) {
 				if ( room.playerCount >= room.maxPlayers ) {
 
 					if ( _S_LocalSound ) _S_LocalSound( 'misc/menu2.wav' );
-					m_return_reason = 'Room is full (' + room.playerCount + '/' + room.maxPlayers + ' players)';
+					set_m_return_reason( 'Room is full (' + room.playerCount + '/' + room.maxPlayers + ' players)' );
 					break;
 
 				}
 
 				// Join selected room
-				m_entersound = true;
+				set_m_entersound( true );
 
 				const params = new URLSearchParams( window.location.search );
 				const serverUrl = params.get( 'server' ) || DEFAULT_WT_SERVER;
@@ -2014,12 +2063,12 @@ function M_LanConfig_Key( key ) {
 				history.replaceState( null, '', shareUrl );
 
 				// Set up error return
-				m_return_state = m_state;
-				m_return_onerror = true;
+				set_m_return_state( m_state );
+				set_m_return_onerror( true );
 
 				// Close menu and connect
 				setKeyDest( key_game );
-				m_state = m_none;
+				set_m_state( m_none );
 				Cbuf_AddText( 'connect "' + connectUrl + '"\n' );
 
 			}
@@ -2045,8 +2094,8 @@ function M_LanConfig_Key( key ) {
 function M_Menu_GameOptions_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_gameoptions;
-	m_entersound = true;
+	set_m_state( m_gameoptions );
+	set_m_entersound( true );
 
 	if ( maxplayers === 0 )
 		maxplayers = svs.maxclients || 4;
@@ -2260,7 +2309,7 @@ function M_GameOptions_Key( key ) {
 
 							// Dismiss the menu before connecting (like original Quake)
 							setKeyDest( key_game );
-							m_state = m_none;
+							set_m_state( m_none );
 
 							// Connect to the remote server as a client (not local game)
 							// The remote server is the authoritative game server
@@ -2459,8 +2508,8 @@ let m_options_cursor = 0;
 function M_Menu_Options_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_options;
-	m_entersound = true;
+	set_m_state( m_options );
+	set_m_entersound( true );
 
 }
 
@@ -2535,14 +2584,14 @@ function M_Options_Key( key ) {
 			M_Menu_Main_f();
 			break;
 		case K_ENTER:
-			m_entersound = true;
+			set_m_entersound( true );
 			switch ( OPTIONS_ORDER[ m_options_cursor ] ) {
 
 				case 0:
 					M_Menu_Keys_f();
 					break;
 				case 1:
-					m_state = m_none;
+					set_m_state( m_none );
 					Con_ToggleConsole_f();
 					break;
 				case 2:
@@ -2569,7 +2618,7 @@ function M_Options_Key( key ) {
 				case 15:
 					// leave the menu and run the demos flat out
 					setKeyDest( key_game );
-					m_state = m_none;
+					set_m_state( m_none );
 					Cbuf_AddText( 'perfprofile\n' );
 					break;
 				default:
@@ -2638,8 +2687,8 @@ let m_newer_cursor = 0;
 function M_Menu_Newer_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_newer;
-	m_entersound = true;
+	set_m_state( m_newer );
+	set_m_entersound( true );
 
 }
 
@@ -2848,8 +2897,8 @@ function M_UnbindCommand( command ) {
 function M_Menu_Keys_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_keys;
-	m_entersound = true;
+	set_m_state( m_keys );
+	set_m_entersound( true );
 
 }
 
@@ -2987,8 +3036,8 @@ const NUM_SETUP_CMDS = 4;
 function M_Menu_Setup_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_setup;
-	m_entersound = true;
+	set_m_state( m_setup );
+	set_m_entersound( true );
 
 	// Initialize from current values
 	setup_myname = _cl_name ? _cl_name.string : 'player';
@@ -3087,7 +3136,7 @@ function M_Setup_Key( key ) {
 			Cbuf_AddText( 'name "' + setup_myname + '"\n' );
 			if ( setup_top !== setup_oldtop || setup_bottom !== setup_oldbottom )
 				Cbuf_AddText( 'color ' + setup_top + ' ' + setup_bottom + '\n' );
-			m_entersound = true;
+			set_m_entersound( true );
 			M_Menu_MultiPlayer_f();
 
 			break;
@@ -3155,8 +3204,8 @@ function M_OpenCreditsSource() {
 function M_Menu_Credits_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_credits;
-	m_entersound = true;
+	set_m_state( m_credits );
+	set_m_entersound( true );
 
 }
 
@@ -3232,8 +3281,8 @@ function M_Credits_Touch( vx, vy ) {
 function M_Menu_Quit_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_quit;
-	m_entersound = true;
+	set_m_state( m_quit );
+	set_m_entersound( true );
 
 }
 
@@ -3277,8 +3326,8 @@ function M_Quit_Key( key ) {
 function M_Menu_Video_f() {
 
 	setKeyDest( key_menu );
-	m_state = m_video;
-	m_entersound = true;
+	set_m_state( m_video );
+	set_m_entersound( true );
 
 }
 
@@ -3308,6 +3357,12 @@ function M_Video_Key( key ) {
 M_Init
 ================
 */
+
+// the main family's way to the screens of the families after it (see menuOpeners)
+menuOpeners.levelSelect = M_Menu_LevelSelect_f;
+menuOpeners.multiplayerChoice = M_Menu_MultiplayerChoice_f;
+menuOpeners.options = M_Menu_Options_f;
+
 /**
  * Registers the menu console commands once at startup, from `Host_Init` after `Key_Init`: `togglemenu`, `menu_main`,
  * `menu_singleplayer`, `menu_load`, `menu_save`, `menu_multiplayer`, `menu_setup`, `menu_options`, `menu_keys`,
@@ -3431,7 +3486,7 @@ export function M_Draw() {
 
 	} else {
 
-		m_recursiveDraw = false;
+		set_m_recursiveDraw( false );
 
 	}
 
@@ -3464,7 +3519,7 @@ export function M_Draw() {
 	if ( m_entersound ) {
 
 		if ( _S_LocalSound ) _S_LocalSound( 'misc/menu2.wav' );
-		m_entersound = false;
+		set_m_entersound( false );
 
 	}
 
