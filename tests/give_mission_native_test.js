@@ -71,3 +71,18 @@ Deno.test( 'Dissolution of Eternity: give sets its own ammunition fields, and th
 		give( 's 5' ); same( field( 'ammo_shells1' ), 5, 'shells into their own field' ); same( p.v.ammo_shells, 5, 'and always the current count' );
 	} finally { COM_InitArgv( [] ); sv.active = false; }
 } );
+
+Deno.test( 'a signon that overflowed during play is never sent: prespawn ends the game instead', async () => {
+	const { SZ_Alloc } = await import( '../src/engine/common/common.js' );
+	COM_InitArgv( [] );
+	try {
+		player( 'e1m1' );
+		const client = svs.clients[ 0 ];
+		client.spawned = false; SZ_Alloc( client.message, 16384 ); client.message.cursize = 0;
+		sv.signon.overflowed = true; // as a late makestatic or MSG_INIT write past 8192 bytes leaves it
+		let error = null;
+		try { Cmd_ExecuteString( 'prespawn', src_client ); } catch ( e ) { error = e.message; }
+		check( error && /prespawn/.test( error ) && /8192-byte signon/.test( error ), 'prespawn ends the game, naming the map: ' + error );
+		same( client.message.cursize, 0, 'and nothing of the cleared signon was written for the client' );
+	} finally { sv.signon.overflowed = false; sv.active = false; }
+} );
