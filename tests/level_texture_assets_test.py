@@ -139,9 +139,13 @@ class LevelTextureAssets(unittest.TestCase):
         self.assertEqual(set(found), NAMES)
         self.assertTrue(all(size == (64, 64) for size in found.values()))
         baseline = json.loads(subprocess.check_output(['git', 'show', '8e4fefc:newer/textures/index.json'], cwd=ROOT))
-        self.assertEqual(INDEX['textures'], baseline['textures'], 'runtime names/files not remapped')
+        # this increment's names keep their files (later increments add their own, such as the hub logo, 2b1593b7)
+        self.assertEqual({n: INDEX['textures'][n] for n in NAMES}, {n: baseline['textures'][n] for n in NAMES}, 'runtime names/files not remapped')
+        # the entries that update did not select were unchanged by it (9a71a46, its boundary, as below); later
+        # increments rework some of them by design, such as the demon face (2b1593b7)
+        at_update = json.loads(subprocess.check_output(['git', 'show', '9a71a46:newer/textures/index.json'], cwd=ROOT))
         for name in set(baseline['normals']) - NAMES:
-            self.assertEqual(INDEX['normals'][name], baseline['normals'][name], name)
+            self.assertEqual(at_update['normals'][name], baseline['normals'][name], name)
         allowed = {'newer/textures/index.json'} | {'newer/textures/' + INDEX['textures'][name] for name in NAMES} | {'newer/textures/' + INDEX['normals'][name]['file'] for name in NAMES}
         # The boundary of that update itself (9a71a46); later increments, such as the seam
         # repairs, change other textures by design.
