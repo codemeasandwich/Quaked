@@ -37,8 +37,9 @@ const parms = {
 	argc: 0,
 	argv: []
 };
-import { GameCatalogue_Refresh } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart } from './src/engine/common/game_selection.js';
+import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember } from './src/engine/common/game_selection.js';
+import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
 
@@ -52,6 +53,21 @@ async function main() {
 		const playerWindow = LocalPlay_PlayerWindow( window.location.search );
 		if ( playerWindow ) { Cvar_SetStorageWritable( false ); document.title = 'Quaked: Player ' + playerWindow.player; }
 		const joining = urlParams.has( 'room' ) || playerWindow !== null; // no attract demo: straight into a game
+		// The game shelf (card [M1]; the owner's direction): with more than one game installed, the index page opens on a
+		// shelf of their boxes before any game starts; a box opens its game's own URL (?game=<id>), which starts here.
+		// One game only (a site with the shareware alone), a game's URL, a room or a player's window: straight in.
+		if ( ! joining && ! urlParams.has( 'game' ) ) {
+
+			const catalogue = await GameCatalogue_Refresh().catch( error => { Sys_Printf( 'Game catalogue: ' + error.message + '\n' ); return null; } );
+			const installed = ( catalogue?.games ?? [] ).filter( game => game.present );
+			if ( installed.length > 1 ) {
+
+				await GameShelf_Show( installed, { current: GameSelection_Kept(), remember: GameSelection_Remember } );
+				return; // the chosen game's URL is loading
+
+			}
+
+		}
 		let hubNormalBytes=null,hubNormalsStarted=false;
 
 		// Load the shareware pak0.pak from games/shareware/ (card [34a]; a deployment that still serves it at the root is
@@ -112,7 +128,7 @@ async function main() {
 		await Host_Init( parms );
 		GameSelection_ReportStart( fullGamePak !== null ); // a chosen game whose pack has gone is said so (card [34c])
 		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
-		setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
+		if ( GameCatalogue_Get() === null ) setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
 
 		// Ready the supplied held/pickup art before the attract demo begins.
 		// Optional failures retain native art; New Game/classic stay native even

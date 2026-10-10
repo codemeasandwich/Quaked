@@ -244,44 +244,55 @@ export function GameCatalogue_Refresh( options = {} ) {
 
 }
 
+// one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
+async function probeGame( game, base, options ) {
+
+	const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
+	if ( game.placeholder ) entry.reason = 'a placeholder: no copy is installed';
+	const files = new Set();
+	for ( const folder of game.folders ) {
+
+		const packs = [];
+		for ( let n = 0; n < GAME_CATALOGUE_LIMITS.packs; n ++ ) {
+
+			const url = new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${n}.pak`, base ).href;
+			const probe = await GameCatalogue_ProbePack( url, options );
+			if ( probe.state === 'absent' ) break;
+			packs.push( { name: `pak${n}.pak`, ...probe } );
+			if ( probe.state === 'error' ) break;
+
+		}
+		if ( packs.length === 0 ) continue;
+		// at the bound: one more header says whether packs were left unread
+		if ( packs.length === GAME_CATALOGUE_LIMITS.packs && packs[ packs.length - 1 ].state !== 'error' ) {
+
+			const next = await GameCatalogue_ProbePack( new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${GAME_CATALOGUE_LIMITS.packs}.pak`, base ).href, { ...options, headerOnly: true } );
+			entry.beyondLimit = next.state !== 'absent';
+
+		}
+		entry.folder = folder; entry.packs = packs; entry.present = true;
+		entry.validated = packs.every( p => p.state === 'valid' );
+		for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
+		entry.fileCount = files.size;
+		break;
+
+	}
+	return { entry, files };
+
+}
+
 async function refresh( options ) {
 
 	_counters = { requests: 0, bytes: 0, largestRead: 0 };
 	// relative to the document's base (a page with <base href> probes the site's folders, not its own)
 	const base = options.base ?? ( typeof document !== 'undefined' && document.baseURI ? document.baseURI : typeof location !== 'undefined' ? location.href : 'http://localhost/' );
+	// every game's folders are probed at once (the shelf waits on this before a game starts, card [M1]); each game's own
+	// packs stay in order, and the games are judged in order afterwards (an expansion is judged against its base)
+	const probed = await Promise.all( GAME_CATALOGUE_GAMES.map( game => probeGame( game, base, options ) ) );
 	const games = [], byId = new Map();
-	for ( const game of GAME_CATALOGUE_GAMES ) {
+	GAME_CATALOGUE_GAMES.forEach( ( game, i ) => {
 
-		const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
-		if ( game.placeholder ) entry.reason = 'a placeholder: no copy is installed';
-		const files = new Set();
-		for ( const folder of game.folders ) {
-
-			const packs = [];
-			for ( let n = 0; n < GAME_CATALOGUE_LIMITS.packs; n ++ ) {
-
-				const url = new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${n}.pak`, base ).href;
-				const probe = await GameCatalogue_ProbePack( url, options );
-				if ( probe.state === 'absent' ) break;
-				packs.push( { name: `pak${n}.pak`, ...probe } );
-				if ( probe.state === 'error' ) break;
-
-			}
-			if ( packs.length === 0 ) continue;
-			// at the bound: one more header says whether packs were left unread
-			if ( packs.length === GAME_CATALOGUE_LIMITS.packs && packs[ packs.length - 1 ].state !== 'error' ) {
-
-				const next = await GameCatalogue_ProbePack( new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + `/pak${GAME_CATALOGUE_LIMITS.packs}.pak`, base ).href, { ...options, headerOnly: true } );
-				entry.beyondLimit = next.state !== 'absent';
-
-			}
-			entry.folder = folder; entry.packs = packs; entry.present = true;
-			entry.validated = packs.every( p => p.state === 'valid' );
-			for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
-			entry.fileCount = files.size;
-			break;
-
-		}
+		const { entry, files } = probed[ i ];
 		if ( entry.present && ! entry.validated ) entry.reason = 'found, not validated: ' + ( entry.packs.find( p => p.state !== 'valid' )?.reason ?? '' );
 		// the base game is judged on its pak0.pak alone: the pack the start mounts (an original release's pak1.pak,
 		// with Episodes 2 to 4, is not read yet: card [34c])
@@ -290,7 +301,7 @@ async function refresh( options ) {
 		if ( entry.beyondLimit ) { entry.playable = false; entry.reason += ` (it has more than ${GAME_CATALOGUE_LIMITS.packs} packs; pak${GAME_CATALOGUE_LIMITS.packs}.pak and later were not read)`; }
 		games.push( entry ); byId.set( game.id, entry );
 
-	}
+	} );
 	_catalogue = { games, counters: { ..._counters } };
 	return _catalogue;
 

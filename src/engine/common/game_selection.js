@@ -12,7 +12,7 @@
  *
  * State: no mutable exports; browser storage.
  *
- * Errors: catches at 4 places.
+ * Errors: catches at 6 places.
  *
  * Only a game the catalogue (`game_catalogue.js`, card [34b]) calls playable can be chosen; mission packs, episodes
  * and add-ons are refused with the catalogue's reason until their support exists. Each game keeps its own saves: the
@@ -33,11 +33,55 @@ export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };
 
 /**
- * The game chosen and kept in the browser, or null when none was chosen (the start as before).
+ * The game this page runs: the one its address names (`?game=<id>`), else the one chosen and kept in the browser,
+ * else null (the start as before).
  *
  * @returns {?string} 'quake', 'shareware' or null
  */
 export function GameSelection_Current() {
+
+	// a game's own URL (`?game=<id>`, the game shelf's links, card [M1]) wins over the choice kept in the browser
+	const fromUrl = GameSelection_UrlChoice( globalThis.location?.search ?? '' );
+	if ( fromUrl !== null ) return fromUrl;
+	let value = null;
+	try { value = storage()?.getItem( STORAGE_KEY ) ?? null; } catch { value = null; }
+	return GAME_SELECTION_CHOICES.includes( value ) ? value : null;
+
+}
+
+/**
+ * The game a page's address names (`?game=<id>`, card [M1]), when it is one that can be chosen.
+ *
+ * @param {string} search a `location.search`
+ * @returns {?string} 'quake', 'shareware' or null (no `game`, or one that cannot be chosen)
+ */
+export function GameSelection_UrlChoice( search ) {
+
+	const id = new URLSearchParams( search || '' ).get( 'game' );
+	return GAME_SELECTION_CHOICES.includes( id ) ? id : null;
+
+}
+
+/**
+ * Keeps a choice in the browser without reloading (the game shelf then opens the game's own URL), so the shelf starts
+ * on it next time.
+ *
+ * @param {string} id the game's catalogue id
+ * @returns {boolean} whether it was kept (only a choosable game, and only where storage works)
+ */
+export function GameSelection_Remember( id ) {
+
+	if ( ! GAME_SELECTION_CHOICES.includes( id ) ) return false;
+	try { storage()?.setItem( STORAGE_KEY, id ); return storage()?.getItem( STORAGE_KEY ) === id; } catch { return false; }
+
+}
+
+/**
+ * The game chosen and kept in the browser, ignoring the page's address: where the shelf starts.
+ *
+ * @returns {?string} 'quake', 'shareware' or null
+ */
+export function GameSelection_Kept() {
 
 	let value = null;
 	try { value = storage()?.getItem( STORAGE_KEY ) ?? null; } catch { value = null; }
