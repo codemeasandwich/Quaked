@@ -150,10 +150,6 @@ export async function GameSelection_Select( id, options = {} ) {
 }
 
 /**
- * Registers the `game` console command: with no argument it prints the game running and the choices; with one it
- * chooses that game (and the page reloads). Called by Host_Init.
- */
-/**
  * Says at start when the game chosen did not start: its owned pack was not found, so the shareware runs instead.
  * Called by main.js once the packs are mounted.
  *
@@ -174,6 +170,10 @@ export function GameSelection_ReportStart( mounted ) {
 
 }
 
+/**
+ * Registers the `game` console command: with no argument it prints the game running and the choices; with one it
+ * chooses that game (and the page reloads). Called by Host_Init.
+ */
 export function GameSelection_Init() {
 
 	Cmd_AddCommand( 'game', () => {
