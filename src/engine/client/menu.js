@@ -45,7 +45,7 @@ import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_With
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { COM_FindFile } from '../common/pak.js';
 import { hipnotic, rogue } from '../common/common.js'; // the mission pack running (COM_InitArgv), for Level Select
-import { GameSelection_SavePrefix } from '../common/game_selection.js';
+import { GameSelection_SavePrefix, GameSelection_Running } from '../common/game_selection.js';
 import { LocalPlay_PlayerWindow, LocalPlay_Hosting, LocalPlay_Players, LocalPlay_NextPlayer, LocalPlay_OpenPlayer, LocalPlay_Start, LocalPlay_End,
 	LocalPlay_PlayerCommands, LOCAL_PLAYERS_MIN, LOCAL_PLAYERS_MAX, LOCAL_MODES } from './local_play.js';
 
@@ -1004,6 +1004,14 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 3, 'hip3m1', 'Tur Torment' ], [ 3, 'hip3m2', 'Pandemonium' ], [ 3, 'hip3m3', 'Limbo' ], [ 3, 'hip3m4', 'The Gauntlet' ],
 			[ 4, 'hipend', 'Armagon\'s Lair' ], [ 5, 'hipdm1', 'The Edge of Oblivion' ] ]
 	},
+	// Dimension of the Past (card [34c]): the names are each map's own (its worldspawn message)
+	dopa: {
+		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'E5 Past' }, { episode: 2, name: 'Secret Levels' }, { episode: 3, name: 'Final Level' }, { episode: 4, name: 'Deathmatch Arena' } ],
+		levels: [ [ 0, 'start', 'Dimension of the Past' ],
+			[ 1, 'e5m1', 'The Military Base' ], [ 1, 'e5m2', 'The Power Supply' ], [ 1, 'e5m3', 'The Dark Days' ], [ 1, 'e5m4', 'The Catacombs' ], [ 1, 'e5m5', 'The Stronghold' ], [ 1, 'e5m6', 'The Underworld' ], [ 1, 'e5m7', 'The Otherworld' ],
+			[ 2, 'e5sm1', 'The Forgotten Castle' ], [ 2, 'e5sm2', 'The House of Doom' ],
+			[ 3, 'e5end', 'The Year Zero' ], [ 4, 'e5dm', 'The Theater of Doom' ] ]
+	},
 	rogue: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'R1 Fortress' }, { episode: 2, name: 'R2 Corridors' }, { episode: 3, name: 'Deathmatch Arena' } ],
 		levels: [ [ 0, 'start', 'Split Decision' ],
@@ -1016,7 +1024,7 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 // the tables for the game running: a mission pack's, else Quake's
 function levelSelectTable() {
 
-	const mission = hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : null;
+	const mission = hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : MISSION_LEVEL_SELECT[ GameSelection_Running() ] ?? null;
 	if ( mission === null ) return { levels: LEVEL_SELECT_LEVELS, episodes: LEVEL_SELECT_EPISODES };
 	return { levels: mission.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ), episodes: mission.episodes };
 

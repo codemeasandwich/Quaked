@@ -110,7 +110,7 @@ async function main() {
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
 			GameSelection_SetRunning( missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
-			if ( missionMounted ) { COM_AddPack( missionPak ); COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded\n' ); }
+			if ( missionMounted ) { COM_AddPack( missionPak ); if ( mission.switch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name; an episode has no switch */ Sys_Printf( mission.name + ' loaded\n' ); }
 
 		} else {
 

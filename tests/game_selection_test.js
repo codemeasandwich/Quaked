@@ -12,7 +12,8 @@ const catalogue = ( quakePlayable = true ) => async () => ( { games: [
 	{ id: 'quake', name: 'Quake', playable: quakePlayable, reason: quakePlayable ? 'Episodes 1 to 4' : 'not installed' },
 	{ id: 'hipnotic', name: 'Scourge of Armagon', playable: false, reason: 'its HUD, QuakeC and protocol support are not yet shown to work' },
 	{ id: 'rogue', name: 'Dissolution of Eternity', playable: true, reason: 'a mission pack' },
-	{ id: 'dopa', name: 'Dimension of the Past', playable: false, reason: 'not yet' }
+	{ id: 'dopa', name: 'Dimension of the Past', playable: true, reason: 'an episode' },
+	{ id: 'mg1', name: 'Dimension of the Machine', playable: false, reason: 'not yet' }
 ] } );
 
 Deno.test( 'with no choice, the start is as before', () => {
@@ -43,8 +44,8 @@ Deno.test( 'unplayable, unsupported and unknown games are refused with the reaso
 	check( ! missing.ok && /not playable: not installed/.test( missing.reason ), 'the full Quake, not installed' );
 	const mission = await GameSelection_Select( 'hipnotic', { refresh: catalogue(), reload } );
 	check( ! mission.ok && /Scourge of Armagon is not playable: its HUD/.test( mission.reason ), 'a mission pack the catalogue does not call playable, with its reason' );
-	const episode = await GameSelection_Select( 'dopa', { refresh: catalogue(), reload } );
-	check( ! episode.ok && /cannot be chosen yet/.test( episode.reason ), 'an episode, not yet supported' );
+	const episode = await GameSelection_Select( 'mg1', { refresh: catalogue(), reload } );
+	check( ! episode.ok && /cannot be chosen yet/.test( episode.reason ), 'an episode not yet supported (Dimension of the Machine)' );
 	const unknown = await GameSelection_Select( 'doom', { refresh: catalogue(), reload } );
 	check( ! unknown.ok && /no game called/.test( unknown.reason ), 'an unknown game' );
 	check( reloads === 0 && GameSelection_Current() === null, 'nothing kept, no reload' );

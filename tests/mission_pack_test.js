@@ -79,12 +79,12 @@ Deno.test( 'Dissolution of Eternity in CTF teamplay: the team colour takes the f
 	} finally { vars.Cvar_Set( 'teamplay', '0' ); }
 } );
 
-Deno.test( 'Level Select: a mission pack\'s own episodes and maps, though Quake is mounted under it', async () => {
+Deno.test( 'Level Select: a mission pack\'s or an episode\'s own episodes and maps, though Quake is mounted under it', async () => {
 	const pak = await import( '../src/engine/common/pak.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
 	const menu = await import( '../src/engine/client/menu.js' );
 	cmd.Cbuf_Init(); cmd.Cmd_Init(); keys.Key_Init(); menu.M_Init();
 	// a pack of empty files with the maps of both Quake's first episode and Scourge of Armagon
-	const names = [ 'maps/start.bsp', 'maps/e1m1.bsp', 'maps/hip1m1.bsp', 'maps/hip1m2.bsp', 'maps/hip2m1.bsp', 'maps/hipdm1.bsp' ];
+	const names = [ 'maps/start.bsp', 'maps/e1m1.bsp', 'maps/hip1m1.bsp', 'maps/hip1m2.bsp', 'maps/hip2m1.bsp', 'maps/hipdm1.bsp', 'maps/e5m1.bsp', 'maps/e5m2.bsp', 'maps/e5end.bsp' ];
 	const dir = new Uint8Array( 64 * names.length ), view = new DataView( dir.buffer );
 	names.forEach( ( n, i ) => { for ( let c = 0; c < n.length; c ++ ) dir[ i * 64 + c ] = n.charCodeAt( c ); view.setInt32( i * 64 + 56, 12, true ); view.setInt32( i * 64 + 60, 0, true ); } );
 	const head = new Uint8Array( 12 ), hv = new DataView( head.buffer ); 'PACK'.split( '' ).forEach( ( c, i ) => { head[ i ] = c.charCodeAt( 0 ); } );
@@ -98,6 +98,14 @@ Deno.test( 'Level Select: a mission pack\'s own episodes and maps, though Quake 
 		same( offer.levels.join(), 'hip1m1,hip1m2', 'its first episode\'s maps, not Quake\'s e1m1' );
 		common.COM_InitArgv( [ 'quaked' ] );
 		check( menu.M_LevelSelectOffer().levels.includes( 'e1m1' ), 'standard Quake offers its own maps again' );
+		// Dimension of the Past runs as standard Quake (no switch): its maps come from the game running
+		const selection = await import( '../src/engine/common/game_selection.js' );
+		selection.GameSelection_SetRunning( 'dopa' );
+		try {
+			const dopa = menu.M_LevelSelectOffer();
+			same( dopa.episodes.join(), '0,1,3', 'its introduction, its episode and its final level (this copy has no secret or deathmatch map)' );
+			same( dopa.levels.join(), 'e5m1,e5m2', 'its own episode\'s maps' );
+		} finally { selection.GameSelection_SetRunning( null ); }
 	} finally {
 		common.COM_InitArgv( [] );
 	}

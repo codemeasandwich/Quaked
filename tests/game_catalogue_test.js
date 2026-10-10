@@ -44,6 +44,8 @@ const files = new Map( [
 	[ '/complete/games/Quake/pak0.pak', pack( [ 'progs.dat', 'maps/e1m1.bsp', 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp' ] ) ],
 	[ '/complete/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/hip1m1.bsp' ] ) ],
 	[ '/complete/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/r1m1.bsp' ] ) ],
+	[ '/complete/games/Dimension of the Past/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e5m1.bsp' ] ) ],
+	[ '/complete/games/Dimension of the Machine/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/mge1m1.bsp' ] ) ],
 	// a third (/noquake/): both mission packs whole, but no Quake
 	[ '/noquake/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ],
 	[ '/noquake/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ]
@@ -95,10 +97,12 @@ const server = createServer( ( req, res ) => {
 await new Promise( r => server.listen( 0, '127.0.0.1', r ) );
 const base = `http://127.0.0.1:${server.address().port}/`, options = { base, timeoutMs: 400 };
 
-Deno.test( 'the two mission packs are playable on Quake when whole; never without Quake', async () => {
+Deno.test( 'the two mission packs and Dimension of the Past are playable on Quake when whole; never without Quake', async () => {
 
 	const catalogue = await GameCatalogue_Refresh( { ...options, base: base + 'complete/' } ), g = id => catalogue.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( g( id ).playable && /a mission pack/.test( g( id ).reason ), id + ' is playable: ' + g( id ).reason );
+	check( g( 'dopa' ).playable && /an episode/.test( g( 'dopa' ).reason ), 'Dimension of the Past is playable: ' + g( 'dopa' ).reason );
+	check( g( 'mg1' ).validated && ! g( 'mg1' ).playable && /256 models/.test( g( 'mg1' ).reason ), 'Dimension of the Machine is not yet, and says why: ' + g( 'mg1' ).reason );
 	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );
 

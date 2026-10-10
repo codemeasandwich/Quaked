@@ -14,7 +14,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_catalogue`, `_pending`, `_counters`; 2 module-level collections
+ * State: no mutable exports; module-level variables `_catalogue`, `_pending`, `_counters`; 3 module-level collections
  * (Map/Set).
  *
  * Errors: throws at 1 place; catches at 4 places.
@@ -201,6 +201,8 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 
 // the mission packs the engine runs: Scourge of Armagon (hipnotic) and Dissolution of Eternity (rogue)
 const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
+// the episodes the engine runs: Dimension of the Past
+const EPISODES = new Set( [ 'dopa' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
@@ -231,6 +233,16 @@ function assess( game, files, byId ) {
 		return { playable: true, reason: 'a mission pack: its QuakeC, status bar and maps, played on Quake' };
 
 	}
+	// an episode runs on Quake as standard Quake (card [34c]): its QuakeC and start map are what it needs; Dimension of
+	// the Machine is not yet, as some of its levels need more than the 256 models protocol 15 can name
+	if ( game.kind === 'episode' && EPISODES.has( game.id ) ) {
+
+		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'an episode: its QuakeC and BSP2 maps, played on Quake' };
+
+	}
+	if ( game.id === 'mg1' ) return { playable: false, reason: 'some of its levels need more than 256 models, which needs the FitzQuake protocol (not yet built)' };
 	return { playable: false, reason: game.kind === 'addon' ? 'add-on support (its QuakeC, entities and limits) is not yet shown to work' : 'its HUD, QuakeC and protocol support are not yet shown to work' };
 
 }

@@ -23,9 +23,11 @@ export const SIGNONS = 4; // signon messages to receive before connected
 
 export const MAX_DLIGHTS = 32;
 export const MAX_BEAMS = 24;
-export const MAX_EFRAGS = 640;
+// raised from WinQuake's 640 and 128, as later engines (QuakeSpasm) raised them: Dimension of the Machine's hub has some
+// 470 static entities, each in several leaves (card [34c])
+export const MAX_EFRAGS = 16384;
 export const MAX_TEMP_ENTITIES = 64; // lightning bolts, etc
-export const MAX_STATIC_ENTITIES = 128; // torches, etc
+export const MAX_STATIC_ENTITIES = 4096; // torches, etc (QuakeSpasm's limit)
 export const MAX_VISEDICTS = 256;
 
 export const MAX_MAPSTRING = 2048;
