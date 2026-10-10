@@ -68,12 +68,12 @@ export class qsocket_t {
 	 * `net_activeSockets` and resets its fields, and NET_FreeQSocket returns it, so a socket object is reused across
 	 * connections.
 	 *
-	 * Fields: `next` (list link), `connecttime` / `lastMessageTime` / `lastSendTime` (`net_time` seconds),
-	 * `disconnected`, `canSend`, `sendNext`, `driver` (index into `net_drivers`: 0 loopback, 1 WebTransport),
+	 * Fields: `next` (list link), `connecttime` / `lastMessageTime` / `lastSendTime` (`net_time` seconds), `disconnected`,
+	 * `canSend`, `sendNext`, `driver` (index into `net_drivers`: 0 loopback, 1 WebTransport, then the window driver),
 	 * `landriver`, `socket`, `driverdata` (driver-owned object, for example the WebTransport connection), sequence
-	 * counters (`ackSequence` is the newest packet the peer acknowledged; the WebTransport driver sets it to -1 until
-	 * the first ack), `sendMessage` / `receiveMessage` (byte buffers of `NET_LOOP_MAXMESSAGE` bytes each) with their
-	 * lengths, `addr` and `address` (printable peer address).
+	 * counters (`ackSequence` is the newest packet the peer acknowledged; the WebTransport driver sets it to -1 until the
+	 * first ack), `sendMessage` / `receiveMessage` (byte buffers of `NET_LOOP_MAXMESSAGE` bytes each) with their lengths,
+	 * `addr` and `address` (printable peer address).
 	 */
 	constructor() {
 

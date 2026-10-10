@@ -53,6 +53,14 @@ import {
 	WT_QueryRooms, WT_CreateRoom
 } from './net_webtransport.js';
 
+import {
+	Window_Init, Window_Shutdown, Window_Listen,
+	Window_SearchForHosts, Window_Connect, Window_CheckNewConnections,
+	Window_GetMessage, Window_SendMessage, Window_SendUnreliableMessage,
+	Window_CanSendMessage, Window_CanSendUnreliableMessage, Window_Close,
+	Window_Host, Window_HostSession, WINDOW_ADDRESS_PREFIX
+} from './net_window.js';
+
 // Re-export for menu room list/creation
 export { WT_QueryRooms, WT_CreateRoom };
 import { MAX_SCOREBOARD } from '../common/quakedef.js';
@@ -269,6 +277,26 @@ function MaxPlayers_f() {
 		Cvar_Set( 'deathmatch', '0' );
 	else
 		Cvar_Set( 'deathmatch', '1' );
+
+}
+
+/*
+===================
+NET_WindowHost_f
+===================
+*/
+// windowhost [session | -]: the session players' windows join this page's server on (card [37a]); "-" stops
+function NET_WindowHost_f() {
+
+	if ( Cmd_Argc() !== 2 ) {
+
+		Con_Printf( '"windowhost" is "' + ( Window_HostSession() ?? '' ) + '"\n' );
+		return;
+
+	}
+
+	const session = Cmd_Argv( 1 ) === '-' ? null : Cmd_Argv( 1 );
+	if ( ! Window_Host( session ) ) Con_Printf( 'windowhost: cannot host "' + Cmd_Argv( 1 ) + '" (an id of letters, digits and dashes; not while players are connected)\n' );
 
 }
 
@@ -505,12 +533,28 @@ export function NET_Connect( host ) {
 
 	}
 
+	// Another window of this page hosting local play (card [37a]): only the window driver
+	if ( host && host.startsWith( WINDOW_ADDRESS_PREFIX ) ) {
+
+		for ( let i = 0; i < net_numdrivers; i ++ ) {
+
+			if ( net_drivers[ i ].name !== 'Window' ) continue;
+			if ( net_drivers[ i ].initialized === false ) break;
+			set_net_driverlevel( i );
+			return net_drivers[ i ].Connect( host );
+
+		}
+		Con_Printf( 'NET_Connect: local play across windows is not available here\n' );
+		return null;
+
+	}
+
 	// Check if this looks like a remote address (not 'local')
 	// For remote connections, ONLY use WebTransport - never fallback to loopback
 	if ( host && host !== 'local' ) {
 
 		// Remote connection - must use WebTransport
-		if ( net_numdrivers <= 1 || ! net_drivers[ 1 ].initialized ) {
+		if ( net_numdrivers <= 1 || net_drivers[ 1 ].name !== 'WebTransport' || ! net_drivers[ 1 ].initialized ) { // slot 1 is the window driver when there is no WebTransport
 
 			Con_Printf( 'NET_Connect: WebTransport not available for remote connection\n' );
 			return null;
@@ -967,6 +1011,7 @@ export function NET_Init() {
 	Cmd_AddCommand( 'listen', NET_Listen_f );
 	Cmd_AddCommand( 'maxplayers', MaxPlayers_f );
 	Cmd_AddCommand( 'port', NET_Port_f );
+	Cmd_AddCommand( 'windowhost', NET_WindowHost_f );
 
 	// Set up the loopback driver (driver 0) for single-player
 	set_net_numdrivers( 1 );
@@ -1001,6 +1046,27 @@ export function NET_Init() {
 		net_drivers[ 1 ].CanSendUnreliableMessage = WT_CanSendUnreliableMessage;
 		net_drivers[ 1 ].Close = WT_Close;
 		net_drivers[ 1 ].Shutdown = WT_Shutdown;
+
+	}
+
+	// The window driver (next free slot) for local play across browser windows (card [37a])
+	if ( typeof BroadcastChannel !== 'undefined' ) {
+
+		const w = net_numdrivers;
+		set_net_numdrivers( w + 1 );
+		net_drivers[ w ].name = 'Window';
+		net_drivers[ w ].Init = Window_Init;
+		net_drivers[ w ].Listen = Window_Listen;
+		net_drivers[ w ].SearchForHosts = Window_SearchForHosts;
+		net_drivers[ w ].Connect = Window_Connect;
+		net_drivers[ w ].CheckNewConnections = Window_CheckNewConnections;
+		net_drivers[ w ].QGetMessage = Window_GetMessage;
+		net_drivers[ w ].QSendMessage = Window_SendMessage;
+		net_drivers[ w ].SendUnreliableMessage = Window_SendUnreliableMessage;
+		net_drivers[ w ].CanSendMessage = Window_CanSendMessage;
+		net_drivers[ w ].CanSendUnreliableMessage = Window_CanSendUnreliableMessage;
+		net_drivers[ w ].Close = Window_Close;
+		net_drivers[ w ].Shutdown = Window_Shutdown;
 
 	}
 
