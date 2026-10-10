@@ -392,6 +392,7 @@ export class client_state_t {
 		//
 		// information that is static for the entire time connected to a server
 		//
+		this.protocol = 15; // the server's: 15, or the large-map protocol (cl_parse.js reads indexes by it)
 		this.model_precache = new Array( MAX_MODELS ).fill( null );
 		this.sound_precache = new Array( MAX_SOUNDS ).fill( null );
 

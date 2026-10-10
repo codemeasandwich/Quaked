@@ -141,6 +141,8 @@ async function main() {
 			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
 		}
 		await Host_Init( parms );
+		// a game whose larger levels need the large-map protocol asks for it before any map loads (card [34f])
+		if ( missionMounted && mission.protocol ) Cvar_SetValue( 'sv_protocol', mission.protocol );
 		GameSelection_ReportStart( fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])
 		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
 		if ( GameCatalogue_Get() === null ) setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );

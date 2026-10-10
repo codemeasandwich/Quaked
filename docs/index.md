@@ -175,6 +175,7 @@ Documents that no topic rule claims yet.
 - [Choosing the game: the shareware or the full Quake (card (34c), first increment, 10 Oct 2026)](game-selection-2026-10-10.md)
 - [The game shelf: card (M1), 10 October 2026](game-shelf-2026-10-10.md)
 - [Games layout and the shareware pak's new home (card (34a), 10 Oct 2026)](games-layout-2026-10-10.md)
+- [Large maps: Dimension of the Machine plays (card (34f)), 10 October 2026](large-maps-2026-10-10.md)
 - [Local play across windows: cards (37a) to (37c), 10 October 2026](local-play-2026-10-10.md)
 - [The mission packs: Scourge of Armagon and Dissolution of Eternity (card (34c)), 10 October 2026](mission-packs-2026-10-10.md)
 - [Multiplayer menu: Local (split screen) and Online — card (MP1), 10 October 2026](multiplayer-menu-2026-10-10.md)

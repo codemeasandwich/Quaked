@@ -49,7 +49,7 @@ import {
 import { PR_HostError, PR_RunError } from '../progs/pr_exec.js';
 import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from './world.js';
 import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from './sv_move.js';
-import { SV_StartSound, SV_StartParticle, sv_aim } from './sv_main.js';
+import { SV_StartSound, SV_StartParticle, sv_aim, SV_WriteIndex, SV_ModelLimit, SV_SoundLimit } from './sv_main.js';
 import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 import { SV_GoreOnSetModel } from '../common/hooks.js'; // installed by newer/gameplay/sv_gore.js
 import { SV_AxeGibSeen } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
@@ -516,7 +516,7 @@ function PF_ambientsound() {
 	for ( let i = 0; i < 3; i ++ )
 		MSG_WriteCoord( sv.signon, pos[ i ] );
 
-	MSG_WriteByte( sv.signon, soundnum );
+	SV_WriteIndex( sv.signon, soundnum );
 	MSG_WriteByte( sv.signon, ( vol * 255 ) | 0 );
 	MSG_WriteByte( sv.signon, ( attenuation * 64 ) | 0 );
 
@@ -945,7 +945,8 @@ function PF_precache_sound() {
 
 	if ( sv.sound_precache ) {
 
-		for ( let i = 0; i < MAX_SOUNDS; i ++ ) {
+		const limit = SV_SoundLimit(); // 256 in protocol 15 (card [34f])
+		for ( let i = 0; i < limit; i ++ ) {
 
 			if ( sv.sound_precache[ i ] == null ) {
 
@@ -959,7 +960,7 @@ function PF_precache_sound() {
 
 		}
 
-		PR_RunError( 'PF_precache_sound: overflow' );
+		PR_RunError( 'PF_precache_sound: overflow (more than ' + limit + ' sounds' + ( limit === 256 ? '; a larger map needs sv_protocol 1015' : '' ) + ')' );
 
 	}
 
@@ -976,7 +977,8 @@ function PF_precache_model() {
 
 	if ( sv.model_precache ) {
 
-		for ( let i = 0; i < MAX_MODELS; i ++ ) {
+		const limit = SV_ModelLimit(); // 256 in protocol 15 (card [34f])
+		for ( let i = 0; i < limit; i ++ ) {
 
 			if ( sv.model_precache[ i ] == null ) {
 
@@ -991,7 +993,7 @@ function PF_precache_model() {
 
 		}
 
-		PR_RunError( 'PF_precache_model: overflow' );
+		PR_RunError( 'PF_precache_model: overflow (more than ' + limit + ' models' + ( limit === 256 ? '; a larger map needs sv_protocol 1015' : '' ) + ')' );
 
 	}
 
@@ -1437,8 +1439,8 @@ function PF_makestatic() {
 	const ent = G_EDICT( OFS_PARM0 );
 
 	MSG_WriteByte( sv.signon, svc_spawnstatic );
-	MSG_WriteByte( sv.signon, ent.v.modelindex | 0 );
-	MSG_WriteByte( sv.signon, ent.v.frame | 0 );
+	SV_WriteIndex( sv.signon, ent.v.modelindex | 0 );
+	SV_WriteIndex( sv.signon, ent.v.frame | 0 );
 	MSG_WriteByte( sv.signon, ent.v.colormap | 0 );
 	MSG_WriteByte( sv.signon, ent.v.skin | 0 );
 	for ( let i = 0; i < 3; i ++ ) {

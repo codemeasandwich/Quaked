@@ -35,7 +35,7 @@ import { Cmd_ExecuteString } from '../common/cmd.js';
 import { src_command } from '../common/cmd.js';
 import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../common/hooks.js'; // installed by newer/ui/r_facegame.js
 import {
-	PROTOCOL_VERSION,
+	PROTOCOL_VERSION, PROTOCOL_LARGE,
 	svc_bad, svc_nop, svc_disconnect, svc_updatestat, svc_version,
 	svc_setview, svc_sound, svc_time, svc_print, svc_stufftext,
 	svc_setangle, svc_serverinfo, svc_lightstyle, svc_updatename,
@@ -98,6 +98,13 @@ import { SCR_CenterPrint } from '../render/gl_screen.js';
 // The host's error and end-of-game unwinds (card [44g], debt D1a: the client does not import the host), set by the
 // host with CL_Parse_SetExternals. Until then each still throws, as they do, without the host's cleanup.
 let _Host_Error = error => { throw new Error( 'Host_Error: ' + error ); };
+
+// a model, frame or sound number: a byte in protocol 15, a short in the large-map protocol (card [34f])
+function MSG_ReadIndex() {
+
+	return cl.protocol === PROTOCOL_LARGE ? MSG_ReadShort() : MSG_ReadByte();
+
+}
 let _Host_EndGame = message => { throw new Error( 'Host_EndGame: ' + message ); };
 
 /**
@@ -227,7 +234,7 @@ export function CL_ParseStartSoundPacket() {
 		attenuation = DEFAULT_SOUND_PACKET_ATTENUATION;
 
 	const channel = MSG_ReadShort();
-	const sound_num = MSG_ReadByte();
+	const sound_num = MSG_ReadIndex();
 
 	const ent = channel >> 3;
 	const ch = channel & 7;
@@ -326,12 +333,13 @@ export function CL_ParseServerInfo() {
 
 	// parse protocol version number
 	let i = MSG_ReadLong();
-	if ( i !== PROTOCOL_VERSION ) {
+	if ( i !== PROTOCOL_VERSION && i !== PROTOCOL_LARGE ) {
 
 		Con_Printf( 'Server returned version %i, not %i', i, PROTOCOL_VERSION );
 		return;
 
 	}
+	cl.protocol = i; // 15, or the large-map protocol (card [34f]): how model, frame and sound numbers are read
 
 	// parse maxclients
 	cl.maxclients = MSG_ReadByte();
@@ -502,10 +510,10 @@ function CL_ParseDelta( from, to, bits ) {
 	to.flags = bits;
 
 	if ( bits & PE_MODEL )
-		to.modelindex = MSG_ReadByte();
+		to.modelindex = MSG_ReadIndex();
 
 	if ( bits & PE_FRAME )
-		to.frame = MSG_ReadByte();
+		to.frame = MSG_ReadIndex();
 
 	if ( bits & PE_COLORMAP )
 		to.colormap = MSG_ReadByte();
@@ -859,7 +867,7 @@ export function CL_ParseUpdate( bits ) {
 	let modnum;
 	if ( bits & U_MODEL ) {
 
-		modnum = MSG_ReadByte();
+		modnum = MSG_ReadIndex();
 		if ( modnum >= MAX_MODELS )
 			_Host_Error( 'CL_ParseModel: bad modnum' );
 
@@ -888,7 +896,7 @@ export function CL_ParseUpdate( bits ) {
 	}
 
 	if ( bits & U_FRAME )
-		ent.frame = MSG_ReadByte();
+		ent.frame = MSG_ReadIndex();
 	else
 		ent.frame = ent.baseline.frame;
 
@@ -991,8 +999,8 @@ CL_ParseBaseline
  */
 export function CL_ParseBaseline( ent ) {
 
-	ent.baseline.modelindex = MSG_ReadByte();
-	ent.baseline.frame = MSG_ReadByte();
+	ent.baseline.modelindex = MSG_ReadIndex();
+	ent.baseline.frame = MSG_ReadIndex();
 	ent.baseline.colormap = MSG_ReadByte();
 	ent.baseline.skin = MSG_ReadByte();
 	for ( let i = 0; i < 3; i ++ ) {
@@ -1066,7 +1074,7 @@ export function CL_ParseClientdata( bits ) {
 	cl.inwater = ( bits & SU_INWATER ) !== 0;
 
 	if ( bits & SU_WEAPONFRAME )
-		cl.stats[ STAT_WEAPONFRAME ] = MSG_ReadByte();
+		cl.stats[ STAT_WEAPONFRAME ] = MSG_ReadIndex();
 	else
 		cl.stats[ STAT_WEAPONFRAME ] = 0;
 
@@ -1082,7 +1090,7 @@ export function CL_ParseClientdata( bits ) {
 	}
 
 	if ( bits & SU_WEAPON )
-		i = MSG_ReadByte();
+		i = MSG_ReadIndex();
 	else
 		i = 0;
 	if ( cl.stats[ STAT_WEAPON ] !== i ) {
@@ -1200,7 +1208,7 @@ function CL_ParsePlayerInfo() {
 	origin[ 1 ] = MSG_ReadCoord();
 	origin[ 2 ] = MSG_ReadCoord();
 
-	const frame = MSG_ReadByte();
+	const frame = MSG_ReadIndex();
 
 	// Read optional msec
 	let msec = 0;
@@ -1255,7 +1263,7 @@ function CL_ParsePlayerInfo() {
 	// Read optional model (default to player model if not specified)
 	let modelindex = cl_playerindex;
 	if ( flags & PF_MODEL )
-		modelindex = MSG_ReadByte();
+		modelindex = MSG_ReadIndex();
 
 	// Read optional skin
 	let skin = 0;
@@ -1270,7 +1278,7 @@ function CL_ParsePlayerInfo() {
 	// Read optional weaponframe
 	let weaponframe = 0;
 	if ( flags & PF_WEAPONFRAME )
-		weaponframe = MSG_ReadByte();
+		weaponframe = MSG_ReadIndex();
 
 	// Store the player info for prediction and rendering
 	CL_SetPlayerInfo( playernum, origin, velocity, frame, flags, skin, effects, weaponframe, msec, cmd, modelindex );
@@ -1348,7 +1356,7 @@ export function CL_ParseStaticSound() {
 	const org = _staticSoundOrg;
 	for ( let i = 0; i < 3; i ++ )
 		org[ i ] = MSG_ReadCoord();
-	const sound_num = MSG_ReadByte();
+	const sound_num = MSG_ReadIndex();
 	const vol = MSG_ReadByte();
 	const atten = MSG_ReadByte();
 
@@ -1448,7 +1456,7 @@ export function CL_ParseServerMessage() {
 
 			case svc_version:
 				i = MSG_ReadLong();
-				if ( i !== PROTOCOL_VERSION )
+				if ( i !== PROTOCOL_VERSION && i !== PROTOCOL_LARGE )
 					_Host_Error( 'CL_ParseServerMessage: Server is protocol %i instead of %i\n', i, PROTOCOL_VERSION );
 				break;
 

@@ -10,7 +10,7 @@
  * State: no mutable exports; module-level variables `pr_extra_strings`, `pr_extra_strings_offset`, `deathmatch`,
  * `current_skill`, `functionIndex`, `functionIndexFor`, `gefvCache_rep`, `growBuf`, `growLen`, `growView`.
  *
- * Errors: calls `Sys_Error` (fatal) at 14 places.
+ * Errors: calls `Sys_Error` (fatal) at 13 places.
  *
  * Newer Game's private save keys (`_newer_face_seed`, `_newer_axe_corpse`, `_clockwise_*`, the rend veil) are parsed
  * here; a malformed one is ignored and the native fields still load.
@@ -25,7 +25,6 @@ import { Con_Printf, Con_DPrintf, COM_Parse, com_token } from '../common/common.
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
 import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
 import { CRC_Init, CRC_ProcessByte, CRC_Value } from '../common/crc.js';
-import { MAX_EDICTS } from '../common/quakedef.js';
 import {
 	dprograms_t, dfunction_t, ddef_t, dstatement_t,
 	DEF_SAVEGLOBAL, MAX_PARMS, PROG_VERSION,
@@ -51,7 +50,7 @@ import {
 	sv, svs, PR_SetSV,
 	RETURN_EDICT,
 } from './progs.js';
-import { PR_ExecuteProgram } from './pr_exec.js';
+import { PR_ExecuteProgram, PR_HostError } from './pr_exec.js';
 import { SV_PinnedZombieSpawned } from '../common/hooks.js'; // installed by newer/gameplay/sv_pinnedzombies.js
 import { Axe_ParseRecord, Axe_ValidOwnerKey } from '../common/hooks.js'; // installed by newer/gameplay/axe_record.js
 import { SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
@@ -148,7 +147,7 @@ ED_Alloc
  * lot of freeing and allocating). Client slots and the world (0..`svs.maxclients`) are never returned.
  *
  * @returns {edict_t} a cleared edict (`ED_ClearEdict`); a new one raises `sv.num_edicts`
- * @throws {Error} via `Sys_Error` when all `MAX_EDICTS` edicts are in use
+ * @throws {Error} via `PR_HostError` (Host_Error) when all `sv.max_edicts` edicts are in use
  */
 export function ED_Alloc() {
 
@@ -170,8 +169,10 @@ export function ED_Alloc() {
 
 	}
 
-	if ( i === MAX_EDICTS )
-		Sys_Error( 'ED_Alloc: no free edicts' );
+	// the server's own limit (600 in protocol 15, more in the large-map protocol), and a Host_Error, which ends the game
+	// and leaves the page able to load another map, not a Sys_Error that takes the page down (card [34f])
+	if ( i >= sv.max_edicts )
+		PR_HostError( 'ED_Alloc: no free edicts' );
 
 	sv.num_edicts ++;
 	e = EDICT_NUM( i );
@@ -1584,7 +1585,7 @@ PR_AllocEdicts
  * original C - we need this because JS doesn't have pointer arithmetic over a flat memory block. The array lives as
  * `sv.edicts` until the next map.
  *
- * @param {number} maxEdicts number of edicts (`MAX_EDICTS`)
+ * @param {number} maxEdicts number of edicts (`sv.max_edicts`)
  * @param {number} entityfields 32-bit field slots per edict (`progs.entityfields`)
  * @returns {Array<edict_t>} new edicts numbered 0..maxEdicts-1, all fields zero
  */

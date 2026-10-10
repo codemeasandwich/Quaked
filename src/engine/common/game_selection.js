@@ -28,15 +28,17 @@ const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
 // resources/ until card [34d] moves it there)
 const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
-const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS } );
+const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS } );
 // a mission pack or an episode mounts its own pack over Quake (and the shareware); a mission pack also starts with its
 // switch, an episode runs as standard Quake (card [34c])
 const MISSION_PACKS = Object.freeze( {
 	hipnotic: Object.freeze( { name: 'Scourge of Armagon', switch: '-hipnotic', packs: Object.freeze( [ 'games/Scourge of Armagon/pak0.pak', 'resources/hipnotic/pak0.pak' ] ) } ),
 	rogue: Object.freeze( { name: 'Dissolution of Eternity', switch: '-rogue', packs: Object.freeze( [ 'games/Dissolution of Eternity/pak0.pak', 'resources/rogue/pak0.pak' ] ) } ),
-	dopa: Object.freeze( { name: 'Dimension of the Past', switch: null, packs: Object.freeze( [ 'games/Dimension of the Past/pak0.pak', 'resources/dopa/pak0.pak' ] ) } )
+	dopa: Object.freeze( { name: 'Dimension of the Past', switch: null, packs: Object.freeze( [ 'games/Dimension of the Past/pak0.pak', 'resources/dopa/pak0.pak' ] ) } ),
+	// its larger levels need more than 256 models and an 8 KB signon: the large-map protocol (card [34f])
+	mg1: Object.freeze( { name: 'Dimension of the Machine', switch: null, protocol: 1015, packs: Object.freeze( [ 'games/Dimension of the Machine/pak0.pak', 'resources/mg1/pak0.pak' ] ) } )
 } );
-const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past' } );
+const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine' } );
 export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) );
 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };

@@ -97,12 +97,12 @@ const server = createServer( ( req, res ) => {
 await new Promise( r => server.listen( 0, '127.0.0.1', r ) );
 const base = `http://127.0.0.1:${server.address().port}/`, options = { base, timeoutMs: 400 };
 
-Deno.test( 'the two mission packs and Dimension of the Past are playable on Quake when whole; never without Quake', async () => {
+Deno.test( 'the two mission packs and both episodes are playable on Quake when whole; never without Quake', async () => {
 
 	const catalogue = await GameCatalogue_Refresh( { ...options, base: base + 'complete/' } ), g = id => catalogue.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( g( id ).playable && /a mission pack/.test( g( id ).reason ), id + ' is playable: ' + g( id ).reason );
 	check( g( 'dopa' ).playable && /an episode/.test( g( 'dopa' ).reason ), 'Dimension of the Past is playable: ' + g( 'dopa' ).reason );
-	check( g( 'mg1' ).validated && ! g( 'mg1' ).playable && /256 models/.test( g( 'mg1' ).reason ), 'Dimension of the Machine is not yet, and says why: ' + g( 'mg1' ).reason );
+	check( g( 'mg1' ).playable && /large-map protocol/.test( g( 'mg1' ).reason ), 'Dimension of the Machine is playable, on the large-map protocol: ' + g( 'mg1' ).reason );
 	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );
 

@@ -102,7 +102,7 @@ export function SV_RespawnPrecache(){if(!localContext())return;for(const n of ne
  *
  * @param {edict_t} p the player (edict 1); mutated, and given a `_respawn` state when it has none
  * @returns {Array<edict_t>} the drop entities allocated, in payload order
- * @throws {Error} 'Respawn drop model unavailable: <model>' when a drop's model is not precached; Sys_Error
+ * @throws {Error} 'Respawn drop model unavailable: <model>' when a drop's model is not precached; Host_Error
  * 'ED_Alloc: no free edicts' when the edict table is full
  */
 export function SV_RespawnDropInventory(p){

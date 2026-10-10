@@ -14,6 +14,10 @@
 // Ported from: WinQuake/server.h -- server structures and constants
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_LIGHTSTYLES, MAX_DATAGRAM, MAX_MSGLEN, entity_state_t } from '../common/quakedef.js';
+
+/** The signon's size: WinQuake's 8192 (some 550 static entities), or for the large-map protocol 60000, sent in one
+ * message within MAX_MSGLEN (card [34f]). */
+export const SIGNON_SIZE_STANDARD = 8192, SIGNON_SIZE = 60000;
 import { sizebuf_t } from '../common/common.js';
 import { MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP } from '../common/protocol.js';
 import { cvar_t } from '../common/cvar.js';
@@ -89,8 +93,9 @@ export class server_t {
 		this.reliable_datagram = new sizebuf_t(); // copied to all clients at end of frame
 		this.reliable_datagram_buf = new Uint8Array( MAX_DATAGRAM );
 
+		this.protocol = 15; // PROTOCOL_VERSION, or PROTOCOL_LARGE when sv_protocol asks (card [34f])
 		this.signon = new sizebuf_t();
-		this.signon_buf = new Uint8Array( 8192 );
+		this.signon_buf = new Uint8Array( SIGNON_SIZE );
 
 	}
 

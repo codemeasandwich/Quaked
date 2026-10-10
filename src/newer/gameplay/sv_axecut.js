@@ -25,7 +25,6 @@ import { R_NewerGame } from '../mode.js';
 import {R_AxeSwingNormal} from '../render/r_axepose.js';
 import {R_NewerSkinSalt} from '../render/r_newerskins.js';
 import {SV_LinkEdict} from '../../engine/server/world.js';
-import {MAX_EDICTS} from '../../engine/common/quakedef.js';
 // Kept halves cost an entity each (card [18]); near the engine's limit they go after 30 s as before, never exhausting it.
 export const AXE_KEEP_MARGIN=64;
 let active=null;
@@ -109,7 +108,7 @@ export function SV_AxeFunctionLeave(token){
 		}
 		return;
 	}
-	const corpse=ED_Alloc();corpse.v.classname=ED_NewString('info_notnull');corpse.v.origin=token.record.origin;corpse.v.movetype=0;corpse.v.solid=0;corpse._axeCorpse=token.record;token.record.key=corpse.index+'@'+token.record.at;corpse._axeOwnerKey=token.record.key;if(sv.num_edicts>MAX_EDICTS-AXE_KEEP_MARGIN)removal(corpse); /* (the halves stay, as any corpse does, card [18], unless entities are running out) */SV_LinkEdict(corpse,false);
+	const corpse=ED_Alloc();corpse.v.classname=ED_NewString('info_notnull');corpse.v.origin=token.record.origin;corpse.v.movetype=0;corpse.v.solid=0;corpse._axeCorpse=token.record;token.record.key=corpse.index+'@'+token.record.at;corpse._axeOwnerKey=token.record.key;if(sv.num_edicts>sv.max_edicts-AXE_KEEP_MARGIN)removal(corpse); /* (the halves stay, as any corpse does, card [18], unless entities are running out) */SV_LinkEdict(corpse,false);
 	for(const e of new Set([token.target,...token.gibs])){e._axeSuppressed=true;e._axeSuppressedBy=corpse.index;e._axeOwnerKey=token.record.key;}
 }
 /**

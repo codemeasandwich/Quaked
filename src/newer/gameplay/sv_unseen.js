@@ -126,7 +126,7 @@ export function SV_UnseenFunctionEnter( fn ) {
  * saved with the game.
  *
  * @param {?{ target: edict_t, p: edict_t }} token the value `SV_UnseenFunctionEnter` returned (null does nothing)
- * @throws {Error} Sys_Error 'ED_Alloc: no free edicts' when a new marker cannot be allocated
+ * @throws {Error} Host_Error 'ED_Alloc: no free edicts' when a new marker cannot be allocated
  */
 export function SV_UnseenFunctionLeave( token ) {
 	if ( ! token ) return;

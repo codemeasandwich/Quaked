@@ -3748,8 +3748,8 @@ export function GL_BuildLightmaps() {
 	lightmap_bytes = ( cl_ref.worldmodel != null && cl_ref.worldmodel.litdata != null && R_NewerGame() ) ? 3 : 1;
 
 	// build lightmaps for all brush models
-	const MAX_MODELS = 256;
-	for ( let j = 1; j < MAX_MODELS; j ++ ) {
+	const count = cl_ref.model_precache ? cl_ref.model_precache.length : 0; // up to MAX_MODELS (card [34f])
+	for ( let j = 1; j < count; j ++ ) {
 
 		const m = cl_ref.model_precache ? cl_ref.model_precache[ j ] : null;
 		if ( ! m ) break;

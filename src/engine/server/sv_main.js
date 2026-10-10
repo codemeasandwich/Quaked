@@ -29,11 +29,11 @@ import { Cmd_AddCommand, Cmd_ExecuteString, Cbuf_InsertText } from '../common/cm
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_SetValue } from '../common/cvar.js';
 import { sv_shotdelay } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
 import {
-	MAX_MODELS, MAX_SOUNDS, MAX_DATAGRAM, MAX_DATAGRAM_LOCAL, MAX_EDICTS, MAX_MSGLEN,
+	MAX_MODELS, MAX_SOUNDS, MAX_DATAGRAM, MAX_DATAGRAM_LOCAL, MAX_EDICTS, MAX_EDICTS_STANDARD, MAX_MSGLEN,
 	STAT_PING
 } from '../common/quakedef.js';
 import {
-	PROTOCOL_VERSION,
+	PROTOCOL_VERSION, PROTOCOL_LARGE,
 	GAME_COOP, GAME_DEATHMATCH,
 	DEFAULT_SOUND_PACKET_VOLUME, DEFAULT_SOUND_PACKET_ATTENUATION,
 	SND_VOLUME, SND_ATTENUATION,
@@ -67,7 +67,8 @@ import {
 	EF_MUZZLEFLASH,
 	NUM_SPAWN_PARMS,
 	deathmatch, coop, skill,
-	fraglimit, timelimit, teamplay
+	fraglimit, timelimit, teamplay,
+	SIGNON_SIZE, SIGNON_SIZE_STANDARD
 } from './server.js';
 import { hostname } from '../net/net_main.js';
 import {
@@ -98,6 +99,45 @@ import { key_dest } from '../common/key_dest.js';
 //============================================================================
 // Module-level state
 //============================================================================
+
+// The protocol a server speaks (card [34f]): 15, or this port's large-map protocol when sv_protocol asks for it, set
+// at each SV_SpawnServer before anything is precached or written
+export const sv_protocol = new cvar_t( 'sv_protocol', String( PROTOCOL_VERSION ) );
+
+/**
+ * The most models this server can name: 256 in protocol 15 (bytes on the wire), MAX_MODELS in the large-map protocol.
+ *
+ * @returns {number} the limit for `sv.model_precache`
+ */
+export function SV_ModelLimit() {
+
+	return sv.protocol === PROTOCOL_LARGE ? MAX_MODELS : 256;
+
+}
+
+/**
+ * The most sounds this server can name: 256 in protocol 15, MAX_SOUNDS in the large-map protocol.
+ *
+ * @returns {number} the limit for `sv.sound_precache`
+ */
+export function SV_SoundLimit() {
+
+	return sv.protocol === PROTOCOL_LARGE ? MAX_SOUNDS : 256;
+
+}
+
+/**
+ * Writes a model, frame or sound number: a byte in protocol 15, a short in the large-map protocol.
+ *
+ * @param {sizebuf_t} msg the message
+ * @param {number} value the number
+ */
+export function SV_WriteIndex( msg, value ) {
+
+	if ( sv.protocol === PROTOCOL_LARGE ) MSG_WriteShort( msg, value );
+	else MSG_WriteByte( msg, value );
+
+}
 
 const localmodels = new Array( MAX_MODELS );
 for ( let i = 0; i < MAX_MODELS; i ++ )
@@ -131,6 +171,7 @@ export function SV_Init() {
 
 	PR_SetHostError( Host_Error );
 	Cvar_RegisterVariable( sv_maxvelocity );
+	Cvar_RegisterVariable( sv_protocol );
 	Cvar_RegisterVariable( sv_gravity );
 	Cvar_RegisterVariable( sv_shotdelay );
 	Cvar_RegisterVariable( sv_respawnguard );
@@ -278,7 +319,7 @@ export function SV_StartSound( entity, channel, sample, volume, attenuation ) {
 	if ( field_mask & 2 ) // SND_ATTENUATION
 		MSG_WriteByte( sv.datagram, ( attenuation * 64 ) | 0 );
 	MSG_WriteShort( sv.datagram, channel );
-	MSG_WriteByte( sv.datagram, sound_num );
+	SV_WriteIndex( sv.datagram, sound_num );
 	for ( let i = 0; i < 3; i ++ )
 		MSG_WriteCoord( sv.datagram, entity.v.origin[ i ] + 0.5 * ( entity.v.mins[ i ] + entity.v.maxs[ i ] ) );
 
@@ -313,7 +354,7 @@ export function SV_SendServerinfo( client ) {
 	MSG_WriteString( client.message, message );
 
 	MSG_WriteByte( client.message, svc_serverinfo );
-	MSG_WriteLong( client.message, PROTOCOL_VERSION );
+	MSG_WriteLong( client.message, sv.protocol );
 	MSG_WriteByte( client.message, svs.maxclients );
 
 	if ( ! coop.value && deathmatch.value )
@@ -811,9 +852,9 @@ function SV_WriteDelta( from, to, msg, force ) {
 	if ( bits & PE_MOREBITS )
 		MSG_WriteByte( msg, bits & 0xFF );
 	if ( bits & PE_MODEL )
-		MSG_WriteByte( msg, to.modelindex );
+		SV_WriteIndex( msg, to.modelindex );
 	if ( bits & PE_FRAME )
-		MSG_WriteByte( msg, to.frame );
+		SV_WriteIndex( msg, to.frame );
 	if ( bits & PE_COLORMAP )
 		MSG_WriteByte( msg, to.colormap );
 	if ( bits & PE_SKIN )
@@ -1107,11 +1148,11 @@ export function SV_WriteClientdataToMessage( ent, msg ) {
 	MSG_WriteLong( msg, items );
 
 	if ( bits & SU_WEAPONFRAME )
-		MSG_WriteByte( msg, ent.v.weaponframe );
+		SV_WriteIndex( msg, ent.v.weaponframe );
 	if ( bits & SU_ARMOR )
 		MSG_WriteByte( msg, ent.v.armorvalue );
 	if ( bits & SU_WEAPON )
-		MSG_WriteByte( msg, SV_ModelIndex( PR_GetString( ent.v.weaponmodel ) ) );
+		SV_WriteIndex( msg, SV_ModelIndex( PR_GetString( ent.v.weaponmodel ) ) );
 
 	MSG_WriteShort( msg, ent.v.health );
 	MSG_WriteByte( msg, ent.v.currentammo );
@@ -1291,7 +1332,7 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 		for ( let i = 0; i < 3; i ++ )
 			MSG_WriteCoord( msg, ent.v.origin[ i ] );
 
-		MSG_WriteByte( msg, ent.v.frame );
+		SV_WriteIndex( msg, ent.v.frame );
 
 		if ( pflags & PF_MSEC ) {
 
@@ -1342,7 +1383,7 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 		}
 
 		if ( pflags & PF_MODEL )
-			MSG_WriteByte( msg, ent.v.modelindex );
+			SV_WriteIndex( msg, ent.v.modelindex );
 
 		if ( pflags & PF_SKINNUM )
 			MSG_WriteByte( msg, ent.v.skin );
@@ -1351,7 +1392,7 @@ function SV_WritePlayersToClient( client, clent, pvs, msg ) {
 			MSG_WriteByte( msg, ent.v.effects );
 
 		if ( pflags & PF_WEAPONFRAME )
-			MSG_WriteByte( msg, ent.v.weaponframe );
+			SV_WriteIndex( msg, ent.v.weaponframe );
 
 	}
 
@@ -1771,8 +1812,8 @@ function SV_CreateBaseline() {
 		MSG_WriteByte( sv.signon, svc_spawnbaseline );
 		MSG_WriteShort( sv.signon, entnum );
 
-		MSG_WriteByte( sv.signon, svent.baseline.modelindex );
-		MSG_WriteByte( sv.signon, svent.baseline.frame );
+		SV_WriteIndex( sv.signon, svent.baseline.modelindex );
+		SV_WriteIndex( sv.signon, svent.baseline.frame );
 		MSG_WriteByte( sv.signon, svent.baseline.colormap );
 		MSG_WriteByte( sv.signon, svent.baseline.skin );
 		for ( let i = 0; i < 3; i ++ ) {
@@ -1798,7 +1839,7 @@ function SV_CreateBaseline() {
 export function SV_CheckSignon( where ) {
 
 	if ( sv.signon.overflowed )
-		Host_Error( where + ': ' + sv.name + ' has more static entities, ambient sounds and baselines than the 8192-byte signon holds' );
+		Host_Error( where + ': ' + sv.name + ' has more static entities, ambient sounds and baselines than the ' + sv.signon.maxsize + '-byte signon holds' );
 
 }
 
@@ -1873,6 +1914,8 @@ export function SV_SpawnServer( server ) {
 	// clear the server struct
 	Object.assign( sv, new ( sv.constructor )() );
 	sv._newerMapsEnabled = useNewerMaps;
+	// the protocol for this map, before anything is precached or written (card [34f])
+	sv.protocol = ( sv_protocol.value | 0 ) === PROTOCOL_LARGE ? PROTOCOL_LARGE : PROTOCOL_VERSION;
 
 	// Ensure progs.js has references to the canonical server objects
 	PR_SetSV( sv );
@@ -1903,7 +1946,7 @@ export function SV_SpawnServer( server ) {
 	} );
 
 	// allocate server memory
-	sv.max_edicts = MAX_EDICTS;
+	sv.max_edicts = sv.protocol === PROTOCOL_LARGE ? MAX_EDICTS : MAX_EDICTS_STANDARD; // (card [34f])
 
 	// Allocate edicts array using entityfields from loaded progs
 	const entityfields = progs ? progs.entityfields : 105; // 105 is default for standard Quake
@@ -1920,7 +1963,7 @@ export function SV_SpawnServer( server ) {
 	sv.reliable_datagram.data = sv.reliable_datagram_buf;
 	sv.reliable_datagram.allowoverflow = true; // will be copied to client reliables
 
-	sv.signon.maxsize = 8192;
+	sv.signon.maxsize = sv.protocol === PROTOCOL_LARGE ? SIGNON_SIZE : SIGNON_SIZE_STANDARD;
 	sv.signon.cursize = 0;
 	sv.signon.data = sv.signon_buf;
 	// a map whose static entities, ambient sounds and baselines do not fit (8192 bytes holds some 550 static entities)
@@ -2018,7 +2061,7 @@ export function SV_SpawnServer( server ) {
 		for (const sound of ['items/inv2.wav','items/inv3.wav','items/protect2.wav','items/protect3.wav','items/damage2.wav','items/damage3.wav','items/suit2.wav']) {
 			if (sv.sound_precache.includes(sound)) continue;
 			let slot=1;while(slot<MAX_SOUNDS && sv.sound_precache[slot])slot++;
-			if(slot===MAX_SOUNDS)Sys_Error('Power-up carry sound precache overflow');
+			if(slot>=SV_SoundLimit())Sys_Error('Power-up carry sound precache overflow');
 			sv.sound_precache[slot]=sound;
 		}
 	}

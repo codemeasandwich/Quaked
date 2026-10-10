@@ -13,6 +13,11 @@
 // Ported from: WinQuake/protocol.h -- communications protocols
 
 export const PROTOCOL_VERSION = 15;
+// This port's large-map protocol (card [34f]): protocol 15 with model, frame and sound numbers sent as shorts, for maps
+// that precache more than 256 models or sounds (Dimension of the Machine). A number of its own: FitzQuake's 666
+// would put its new messages where this port's svc_playerinfo and delta packets already are (42, 47 to 49). Only this
+// port's own server and client speak it; a server uses it when sv_protocol asks.
+export const PROTOCOL_LARGE = 1015;
 
 // if the high bit of the servercmd is set, the low bits are fast update flags:
 export const U_MOREBITS = ( 1 << 0 );

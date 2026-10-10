@@ -27,7 +27,7 @@
 import { cvar_t } from '../../engine/common/cvar.js';
 import { SV_RendVeilHolding } from './sv_rendveil.js';
 import { sv, svs, ss_loading } from '../../engine/server/server.js';
-import { MAX_MODELS, MAX_SOUNDS } from '../../engine/common/quakedef.js';
+import { SV_ModelLimit, SV_SoundLimit } from '../../engine/server/sv_main.js';
 import { Sys_Error } from '../../engine/common/sys.js';
 import { COM_FindFile } from '../../engine/common/pak.js';
 import { Ent_Parse } from '../../engine/render/lit.js';
@@ -373,8 +373,9 @@ function SV_PrecacheResources( resources ) {
 		list[ index ] = name;
 
 	};
-	for ( const name of resources.models ) add( sv.model_precache, name, MAX_MODELS, 'model' );
-	for ( const name of resources.sounds ) add( sv.sound_precache, name, MAX_SOUNDS, 'sound' );
+	// the server's own limits: 256 each in protocol 15 (card [34f])
+	for ( const name of resources.models ) add( sv.model_precache, name, SV_ModelLimit(), 'model' );
+	for ( const name of resources.sounds ) add( sv.sound_precache, name, SV_SoundLimit(), 'sound' );
 
 }
 

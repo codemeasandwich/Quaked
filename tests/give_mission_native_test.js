@@ -86,3 +86,22 @@ Deno.test( 'a signon that overflowed during play is never sent: prespawn ends th
 		same( client.message.cursize, 0, 'and nothing of the cleared signon was written for the client' );
 	} finally { sv.signon.overflowed = false; sv.active = false; }
 } );
+
+Deno.test( 'the edict limit follows the protocol (600, or 1024 for the large-map protocol); a full table ends the game', async () => {
+	const { ED_Alloc } = await import( '../src/engine/progs/pr_edict.js' );
+	const { sv_protocol } = await import( '../src/engine/server/sv_main.js' );
+	if ( ! vars.Cvar_FindVar( 'sv_protocol' ) ) vars.Cvar_RegisterVariable( sv_protocol );
+	COM_InitArgv( [] );
+	try {
+		for ( const [ protocol, limit ] of [ [ 15, 600 ], [ 1015, 1024 ] ] ) {
+			vars.Cvar_Set( 'sv_protocol', String( protocol ) );
+			player( 'e1m1' );
+			same( sv.protocol, protocol, 'the protocol asked for' ); same( sv.max_edicts, limit, 'and its edict limit' );
+			let error = null, last = sv.num_edicts;
+			try { for ( let n = 0; n < 2000; n ++ ) { ED_Alloc(); last = sv.num_edicts; } } catch ( e ) { error = e.message; }
+			check( error && /Host_Error/.test( error ) && /no free edicts/.test( error ), 'a full table is a Host_Error (the page stays), not a Sys_Error: ' + error );
+			same( last, limit, 'filled exactly to the limit (the Host_Error then shut the server down)' );
+			sv.active = false;
+		}
+	} finally { vars.Cvar_Set( 'sv_protocol', '15' ); sv.active = false; }
+} );

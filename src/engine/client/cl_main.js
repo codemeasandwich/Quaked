@@ -157,6 +157,7 @@ export function CL_ClearState() {
 	cl.time = 0;
 	cl.oldtime = 0;
 	cl.last_received_message = 0;
+	cl.protocol = 15; // until the next serverinfo says otherwise (card [34f])
 	cl.model_precache.fill( null );
 	cl.sound_precache.fill( null );
 	cl.levelname = '';

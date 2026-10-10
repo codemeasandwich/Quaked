@@ -1012,6 +1012,16 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 2, 'e5sm1', 'The Forgotten Castle' ], [ 2, 'e5sm2', 'The House of Doom' ],
 			[ 3, 'e5end', 'The Year Zero' ], [ 4, 'e5dm', 'The Theater of Doom' ] ]
 	},
+	// Dimension of the Machine (card [34f]): the names are each map's own (its worldspawn message)
+	mg1: {
+		episodes: [ { episode: 0, name: 'The Gateway' }, { episode: 1, name: 'The Hub' }, { episode: 2, name: 'Dimensions' }, { episode: 3, name: 'Final Level' }, { episode: 4, name: 'Deathmatch Arena' } ],
+		levels: [ [ 0, 'start', 'The Gateway' ], [ 1, 'hub', 'The Machine' ],
+			[ 2, 'mge1m1', 'The Pain Drain' ], [ 2, 'mge1m2', 'The Wishing Well' ], [ 2, 'mge1m3', 'Sandy\'s Room' ],
+			[ 2, 'mge2m1', 'Acid Sanctuary' ], [ 2, 'mge2m2', 'Fading Embers' ], [ 2, 'mge3m1', 'Down the Waste' ], [ 2, 'mge3m2', 'Hell or Dark Water' ],
+			[ 2, 'mge4m1', 'Grave Machine' ], [ 2, 'mge4m2', 'A Grave Mistake' ], [ 2, 'mge5m1', 'Nazard Terminal' ], [ 2, 'mge5m2', 'Too Deep, Too Greedy' ],
+			[ 3, 'mgend', 'Chthon\'s Vengeance' ],
+			[ 4, 'mgdm1', 'Art of the Condemned' ], [ 4, 'mgdm2', 'The Bad Space' ], [ 4, 'mgdm3', 'The Mustard Factory' ], [ 4, 'mgdm4', 'The Boiler' ] ]
+	},
 	rogue: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'R1 Fortress' }, { episode: 2, name: 'R2 Corridors' }, { episode: 3, name: 'Deathmatch Arena' } ],
 		levels: [ [ 0, 'start', 'Split Decision' ],

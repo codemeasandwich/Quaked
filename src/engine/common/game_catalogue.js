@@ -202,7 +202,7 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 // the mission packs the engine runs: Scourge of Armagon (hipnotic) and Dissolution of Eternity (rogue)
 const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
-const EPISODES = new Set( [ 'dopa' ] );
+const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
@@ -240,10 +240,9 @@ function assess( game, files, byId ) {
 
 		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
 		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
-		return { playable: true, reason: 'an episode: its QuakeC and BSP2 maps, played on Quake' };
+		return { playable: true, reason: game.id === 'mg1' ? 'an episode: its QuakeC and BSP2 maps, played on Quake with the large-map protocol' : 'an episode: its QuakeC and BSP2 maps, played on Quake' };
 
 	}
-	if ( game.id === 'mg1' ) return { playable: false, reason: 'some of its levels need more than 256 models and a signon larger than 8 KB (a large-map protocol, not yet built)' };
 	return { playable: false, reason: game.kind === 'addon' ? 'add-on support (its QuakeC, entities and limits) is not yet shown to work' : 'its HUD, QuakeC and protocol support are not yet shown to work' };
 
 }

@@ -30,17 +30,18 @@ export const MAX_OSPATH = 128; // max length of a filesystem pathname
 
 export const ON_EPSILON = 0.1; // point on plane side epsilon
 
-export const MAX_MSGLEN = 8000; // max length of a reliable message
+export const MAX_MSGLEN = 64000; // max length of a reliable message (QuakeSpasm's; WinQuake's 8000 cannot carry a large map's serverinfo or signon, card [34f])
 export const MAX_DATAGRAM = 1024; // max length of unreliable message
 export const MAX_DATAGRAM_LOCAL = 32000; // max length of a local game's per-frame message (loopback: no network packet limit)
 
 //
 // per-level limits
 //
-export const MAX_EDICTS = 600; // FIXME: ouch! ouch! ouch!
+export const MAX_EDICTS = 1024; // the most the delta packets' 10-bit entity numbers can name; a protocol-15 server keeps WinQuake's 600 (card [34f])
+export const MAX_EDICTS_STANDARD = 600; // FIXME: ouch! ouch! ouch! (WinQuake's)
 export const MAX_LIGHTSTYLES = 64;
-export const MAX_MODELS = 256; // these are sent over the net as bytes
-export const MAX_SOUNDS = 256; // so they cannot be blindly increased
+export const MAX_MODELS = 2048; // the most a map can have; protocol 15 sends them as bytes, so it stops at 256 (SV_ModelLimit)
+export const MAX_SOUNDS = 2048; // likewise; protocol 15 stops at 256 (SV_SoundLimit), the large-map protocol does not
 
 export const SAVEGAME_COMMENT_LENGTH = 39;
 
