@@ -5,7 +5,6 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {spawnSync} from 'node:child_process';
 import {gzipSync} from 'node:zlib';
 import {memberSearch,readMember,isolatedPack,sha256} from './pak_members.mjs';
 const args=process.argv.slice(2),packs=[],loose=[];let namespace='bundled',filter='.*',skins=false,variantFilter=null;
@@ -56,7 +55,7 @@ if(skins){
   if(variant.nativeModelSha256){const native=members.get('progs/'+key+'.mdl'),matches=!!native&&sha256(await readMember(native))===variant.nativeModelSha256;if(!matches){if(variantFilter!==null)throw Error('Native identity mismatch for constrained skin '+variant.dir);continue;}}
   eligibleCustom.add(variant);
  }
- const image=async path=>{const img=new FileImage();if(path==='newer/enemies/ogre/custom/diffuse.webp'){const original=spawnSync('git',['show','HEAD:'+path],{maxBuffer:16*1024*1024});if(original.status!==0)throw Error('Cannot retain scoped Ogre source');img.src=original.stdout;}else img.src=path;await img.decode();const c=canvas.createCanvas(img.width,img.height),ctx=c.getContext('2d');ctx.drawImage(img,0,0);return {width:img.width,height:img.height,data:ctx.getImageData(0,0,img.width,img.height).data};};
+ const image=async path=>{const img=new FileImage();img.src=path;await img.decode();const c=canvas.createCanvas(img.width,img.height),ctx=c.getContext('2d');ctx.drawImage(img,0,0);return {width:img.width,height:img.height,data:ctx.getImageData(0,0,img.width,img.height).data};};
  const companion=(pixels,height,strength=.65,cap=.55)=>{const t=new THREE.DataTexture(pixels.data,pixels.width,pixels.height,THREE.RGBAFormat);t.userData.newerHeight={width:pixels.width,height:pixels.height,derive:!height,data:height?Float32Array.from({length:height.width*height.height},(_,i)=>height.data[i*4]/255):undefined,strength,cap};return t;};
  for(const[name,entry]of members)if(/^progs\/[^/]+\.mdl$/.test(name)&&new RegExp(filter).test(name)){
   const key=name.slice(6,-4);if(!ENEMY_SKIN_MODELS.has(key))continue;

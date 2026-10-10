@@ -114,7 +114,11 @@ try {
    const matchDeadline=performance.now()+15000;let matches=false;
    while(performance.now()<matchDeadline){const got=u.qrNormal.value?.image.data;matches=got?.length===expected.length && got.every((v,i)=>v===expected[i]);if(matches)break;await new Promise(r=>setTimeout(r,20));}
    check(matches,key+': custom normals use the real stored height rather than generated fallback');
-   customResults.push({model:key,dimensions:[material.map.image.width,material.map.image.height],storedHeight:variant.dir+'/'+variant.maps.height});
+   // the runtime's own input key must name a shipped bake: a bake made from other skin bytes (a stale diffuse) has another
+   // key, and the runtime then generates the normals instead, which looks the same but leaves the shipped bake unused
+   const normals=skins.R_NewerSkinsStatus('progs/'+key+'.mdl').normals;
+   check(normals.ready>0&&normals.shipped===normals.ready,key+': every ready normal map is the shipped bake ('+JSON.stringify(normals)+')');
+   customResults.push({model:key,dimensions:[material.map.image.width,material.map.image.height],storedHeight:variant.dir+'/'+variant.maps.height,normals});
   }
   evidence.nativeHeightLoads=nativeResults;evidence.customHeightLoads=customResults;evidence.customNotInPak=notInPak;evidence.checks=checks;
   document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);status.textContent+=' All '+nativeResults.length+' native and '+customResults.length+' custom stored heights verified ('+notInPak.length+' registered-game models not in the shareware pak).';await compareAuthoring();
