@@ -95,11 +95,28 @@ let layeredFaceKey = null, layeredFacePic = null, layeredFaceState = null;
 
 let sb_showscores = false;
 export let sb_lines = 0; // scan lines to draw
+/**
+ * Sets the exported `sb_lines` (an ES module binding cannot be assigned by its importers). Called by `SCR_CalcRefdef`
+ * (gl_screen.js) whenever the view size, field of view, touch inset or intermission changes the refresh window.
+ * `Sbar_Draw` draws the inventory row only above 24 lines and the bar itself only above 0; the mini deathmatch overlay
+ * uses it as its height. Kept until the next call.
+ *
+ * @param {number} v status bar height in virtual pixels: 0 (viewsize 120 or intermission: no bar), 24 (viewsize 110:
+ *   no inventory) or 48 (bar and inventory)
+ */
 export function set_sb_lines( v ) { sb_lines = v; }
 
 // how far up from the bottom of the screen the status bar sits, in screen pixels (on a phone held
 // upright the touch controls take the bottom of the screen)
 let sb_yoffset = 0;
+/**
+ * Raises the status bar off the bottom of the screen, so on a phone held upright it sits above the touch controls.
+ * Called by `SCR_CalcRefdef` (gl_screen.js) with the touch inset, and 0 during an intermission. Every status bar
+ * picture and character is drawn relative to the bar's top, `virtual height - SBAR_HEIGHT - v`. Kept until the next
+ * call.
+ *
+ * @param {number} v offset up from the bottom in virtual (2D overlay) pixels, 0 or more
+ */
 export function Sbar_SetYOffset( v ) { sb_yoffset = v; }
 
 // where the status bar's top edge is
@@ -157,6 +174,22 @@ let _hipnotic = false;
 let _rogue = false;
 // realtime is imported live from host.js via the 'realtime' binding
 
+/**
+ * Wires the status bar to the client state and the 2D drawing calls it cannot import without a cycle. Called once by
+ * `Host_Init` (host.js) just before `Sbar_Init`; each key that is present replaces the stored value, absent keys keep
+ * theirs. Until it is wired, `cl` is a stand-in (zeroed stats, 16 clients, no scores), `vid` reports one page and every
+ * drawing hook is null, so the drawing routines return without drawing and `Sbar_Init` prints a warning and loads
+ * nothing. The references are kept for the life of the page.
+ *
+ * @param {{ cl?: client_state_t, vid?: viddef_t, Draw_Pic?: (x: number, y: number, pic: qpic_t) => void,
+ *   Draw_TransPic?: (x: number, y: number, pic: qpic_t) => void,
+ *   Draw_Character?: (x: number, y: number, num: number) => void, Draw_String?: (x: number, y: number, str: string) => void,
+ *   Draw_Fill?: (x: number, y: number, w: number, h: number, c: number) => void, Draw_PicFromWad?: (name: string) => ?qpic_t,
+ *   Draw_CachePic?: (path: string) => ?qpic_t, hipnotic?: boolean, rogue?: boolean }} externals the hooks: `cl` is read
+ *   live every frame (stats, items, scores, gametype, intermission time); only `vid.numpages` is used, the drawing size
+ *   coming from `Draw_GetVirtualWidth`/`Height`; `hipnotic` and `rogue` (mission packs, default false) are stored but
+ *   not yet read, and the host passes neither
+ */
 export function Sbar_SetExternals( externals ) {
 
 	if ( externals.cl ) _cl = externals.cl;
@@ -176,10 +209,13 @@ export function Sbar_SetExternals( externals ) {
 /*
 ===============
 Sbar_ShowScores / Sbar_DontShowScores
-
-Tab key down/up
 ===============
 */
+/**
+ * The `+showscores` console command (registered by `Sbar_Init`; Tab in the default bindings), run when the key goes
+ * down: from the next `Sbar_Draw` the bar shows the scoreboard (and, in deathmatch, the frag ranking) instead of the
+ * status. Stays on until `Sbar_DontShowScores`. A repeat while already on does nothing.
+ */
 export function Sbar_ShowScores() {
 
 	if ( sb_showscores ) return;
@@ -188,6 +224,10 @@ export function Sbar_ShowScores() {
 
 }
 
+/**
+ * The `-showscores` console command (registered by `Sbar_Init`), run when the Tab key comes up: the bar goes back to
+ * the status from the next `Sbar_Draw` (the scoreboard still shows while the player is dead, outside the Newer HUD).
+ */
 export function Sbar_DontShowScores() {
 
 	sb_showscores = false;
@@ -200,6 +240,13 @@ export function Sbar_DontShowScores() {
 Sbar_Changed
 ===============
 */
+/**
+ * Marks the status bar for a full redraw on the next frame (resets `sb_updates`, the WinQuake page counter). Called by
+ * the screen code when the refresh window changes, around the loading plaque and console, by `Draw_FadeScreen`, and
+ * before each half of a split-screen demo. In this port `Sbar_Draw` redraws the whole bar every frame (the 2D overlay
+ * is cleared each frame) and nothing reads `sb_updates`, so the call keeps the original's structure but changes no
+ * output.
+ */
 export function Sbar_Changed() {
 
 	sb_updates = 0; // update next frame
@@ -211,6 +258,15 @@ export function Sbar_Changed() {
 Sbar_Init
 ===============
 */
+/**
+ * Loads the status bar's pictures from gfx.wad (big digits in two colours, colon and slash, weapons with their pickup
+ * flashes, ammo, armour, keys, power-ups, sigils, the five health faces with their pain frames, the power-up faces, and
+ * the `sbar`, `ibar` and `scorebar` backgrounds) and registers `+showscores` / `-showscores`. Called once by
+ * `Host_Init` (host.js) after `Sbar_SetExternals`. The pictures are kept for the life of the page. If `Draw_PicFromWad`
+ * has not been wired it prints `Sbar_Init: Draw_PicFromWad not available yet` and loads nothing (and registers no
+ * commands); a lump missing from the WAD leaves a null picture, which the drawing routines skip (but see
+ * `Draw_PicFromWad`: the lookup goes through `Sys_Error`, which replaces the page in a browser).
+ */
 export function Sbar_Init() {
 
 	if ( ! _Draw_PicFromWad ) {
@@ -843,6 +899,17 @@ function Sbar_DrawAmmo() {
 Sbar_Draw
 ===============
 */
+/**
+ * Draws the status bar for this frame on the 2D overlay, in virtual pixels, centred on a 320-wide strip (left-aligned
+ * in deathmatch) and `sb_lines` tall. Called by `SCR_UpdateScreen` (through `SCR_DrawStatusBar`, gl_screen.js) in
+ * normal play, under the loading plaque and under a modal dialog; a split-screen demo calls it once per half. With
+ * more than 24 lines it draws the inventory row (and the frag strip in multiplayer); then the scoreboard (while
+ * `+showscores` is held, or the player is dead outside the Newer HUD) or the bar: armour (666 under the pentagram),
+ * face, health and ammunition, numbers turning red at 25 armour or health and 10 ammunition. In deathmatch it adds
+ * the mini frag ranking (screens wider than 320) and the ping in the top right corner. Under the Newer HUD it also
+ * advances the layered player face (`R_PlayerFaceFrame`) every frame, even while the scoreboard hides it. Reads the
+ * client state wired by `Sbar_SetExternals`; draws nothing for an unloaded picture or unwired hook.
+ */
 export function Sbar_Draw() {
 	// Gaze/death timers continue even while the scoreboard hides the portrait.
 	layeredFaceState = R_NewerGame() && r_newer_hud.value !== 0 ? R_PlayerFaceFrame( _cl ) : null;
@@ -1014,6 +1081,13 @@ function Sbar_DeathmatchOverlay() {
 Sbar_MiniDeathmatchOverlay
 ==================
 */
+/**
+ * Draws the compact frag ranking to the right of the status bar (from x = 324, over the bar's `sb_lines`): one 8-pixel
+ * row per player with their shirt and pants colours, frags and name, the viewing player bracketed, scrolled so the
+ * viewing player sits near the middle. Called by `Sbar_Draw` each frame in deathmatch on screens wider than 320
+ * virtual pixels. Draws nothing when the screen is narrower than 512, there is no bar, the bar holds fewer than three
+ * rows, or the character and fill hooks are unwired. Re-sorts the scores (`Sbar_SortFrags`) on every call.
+ */
 export function Sbar_MiniDeathmatchOverlay() {
 
 	if ( _vid.width < 512 || sb_lines === 0 )
@@ -1133,6 +1207,13 @@ function Sbar_IntermissionNumber( x, y, num, digits, color ) {
 Sbar_IntermissionOverlay
 ==================
 */
+/**
+ * Draws the end-of-level tally in place of the status bar: `gfx/complete.lmp` and `gfx/inter.lmp`, then the level
+ * time (`cl.completed_time`, seconds, as minutes:seconds), secrets found / total and monsters killed / total in the big
+ * digits, at fixed 320x200 positions. In deathmatch it draws the full frag ranking (`gfx/ranking.lmp`) instead. Called
+ * by `SCR_UpdateScreen` every frame while `cl.intermission` is 1 and the game has the keys. Draws nothing until
+ * `Draw_TransPic` and `Draw_CachePic` are wired.
+ */
 export function Sbar_IntermissionOverlay() {
 
 	if ( ! _Draw_TransPic || ! _Draw_CachePic ) return;
@@ -1182,6 +1263,11 @@ export function Sbar_IntermissionOverlay() {
 Sbar_FinaleOverlay
 ==================
 */
+/**
+ * Draws the `gfx/finale.lmp` banner centred at the top of the screen (y = 16 virtual pixels). Called by
+ * `SCR_UpdateScreen` every frame while `cl.intermission` is 2 (after `svc_finale`) and the game has the keys, before
+ * the finale text is typed out by the centre print. Draws nothing until `Draw_TransPic` and `Draw_CachePic` are wired.
+ */
 export function Sbar_FinaleOverlay() {
 
 	if ( ! _Draw_TransPic || ! _Draw_CachePic ) return;

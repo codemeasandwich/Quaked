@@ -65,12 +65,19 @@ let scopedUIScale = 1;
 let overlayCanvas = null;
 let overlayCtx = null;
 
-// GPU menu output is already at backing-store resolution. Do not send it
-// through the 320x200 HUD transform or apply a second color/scale conversion.
-// `shadow` is an optional list of [ blur in physical pixels, alpha ]: a soft black drop shadow of
-// everything opaque in `source`, laid down first so it fades from behind the image into the scene.
-// Each pass draws the image off-canvas with the shadow offset back onto it, so only the blurred
-// shadow reaches the screen; the image itself is then drawn once, crisp.
+/**
+ * Copies a full-screen canvas onto the 2D overlay at physical pixel (0, 0), one to one. Used by the WebGL menu
+ * (newer/ui/menu_webgl.js) each frame it draws: GPU menu output is already at backing-store resolution, so it is not
+ * sent through the 320x200 HUD transform and gets no second colour or scale conversion. The overlay's transform,
+ * alpha, composite mode and shadow are restored afterwards, even when a draw throws. Does nothing before `Draw_Init`.
+ *
+ * @param {HTMLCanvasElement|OffscreenCanvas} source the image, sized in physical overlay pixels; drawn opaque
+ *   (alpha 1, source-over)
+ * @param {?Array<[number, number]>} [shadow=null] optional passes of [ blur in physical pixels, alpha 0..1 ]: a soft
+ *   black drop shadow of everything opaque in `source`, laid down first so it fades from behind the image into the
+ *   scene. Each pass draws the image off-canvas with the shadow offset back onto it, so only the blurred shadow
+ *   reaches the screen; the image itself is then drawn once, crisp
+ */
 export function Draw_FullResolutionCanvas( source, shadow = null ) {
 
 	if ( ! overlayCtx ) return;
@@ -99,7 +106,22 @@ export function Draw_FullResolutionCanvas( source, shadow = null ) {
 
 }
 
-// Unsmoothed copy of a source rectangle to physical overlay pixels (logo artwork).
+/**
+ * Unsmoothed (unless asked) copy of a source rectangle to physical overlay pixels, bypassing the UI scale transform
+ * (logo artwork; the WebGL menu's picture blits). The overlay's transform and smoothing are restored afterwards, even
+ * when the draw throws. Does nothing before `Draw_Init` or without a source.
+ *
+ * @param {CanvasImageSource} source the image to copy from
+ * @param {number} sx source rectangle left, in source pixels
+ * @param {number} sy source rectangle top, in source pixels
+ * @param {number} sw source rectangle width, in source pixels
+ * @param {number} sh source rectangle height, in source pixels
+ * @param {number} dx destination left, in physical overlay (backing-store) pixels
+ * @param {number} dy destination top, in physical overlay pixels
+ * @param {number} dw destination width, in physical overlay pixels
+ * @param {number} dh destination height, in physical overlay pixels
+ * @param {boolean} [smooth=false] true to scale with image smoothing, false for nearest-pixel
+ */
 export function Draw_FullResolutionImage( source, sx, sy, sw, sh, dx, dy, dw, dh, smooth = false ) {
 
 	if ( ! overlayCtx || ! source ) return;
@@ -114,8 +136,17 @@ export function Draw_FullResolutionImage( source, sx, sy, sw, sh, dx, dy, dw, dh
 
 }
 
-// Coordinates use the same virtual canvas space as HUD drawing. Always restore
-// the caller's clip/transform, including when a drawing callback fails.
+/**
+ * Runs `draw` with the overlay clipped to a rectangle, then restores the caller's clip and transform, including when
+ * the drawing callback fails (the error still propagates). Used by the split-screen demo view (gl_screen.js) to draw
+ * the status bar once into each half. Does nothing, and does not call `draw`, before `Draw_Init`.
+ *
+ * @param {number} x clip left, in virtual pixels (the same space as HUD drawing)
+ * @param {number} y clip top, in virtual pixels
+ * @param {number} width clip width, in virtual pixels
+ * @param {number} height clip height, in virtual pixels
+ * @param {() => void} draw the drawing to clip; called once, synchronously
+ */
 export function Draw_WithClipRect( x, y, width, height, draw ) {
 
 	if ( ! overlayCtx ) return;
@@ -129,8 +160,23 @@ export function Draw_WithClipRect( x, y, width, height, draw ) {
 
 }
 
-// Larger menus can fit without changing the owner's UI-size preference.
-// Drawing and pointer mapping must use the same temporary virtual dimensions.
+/**
+ * Runs `draw` with a temporarily larger virtual screen, so larger menus can fit without changing the owner's UI-size
+ * preference (`scr_conheight`). The minimum virtual size is raised to at least `width` x `height`, the integer UI
+ * scale recomputed, multiplied by `scale`, and applied to the overlay; afterwards the previous minimum, scale and
+ * transform are restored, even when `draw` throws. Used by the credits menu (menu.js) both to draw and to map touches:
+ * drawing and pointer mapping must use the same temporary virtual dimensions. Calls nest (the scales multiply). Works
+ * before `Draw_Init` too (no transform is set then).
+ *
+ * @param {number} width minimum virtual width in virtual pixels (the current minimum is kept if larger; normally 320)
+ * @param {number} height minimum virtual height in virtual pixels (the current minimum is kept if larger; normally 200)
+ * @param {() => T} draw the drawing or hit test to run under the temporary size; called once, synchronously
+ * @param {number} [scale=1] further shrink factor applied after the integer fit, in (0, 1]
+ * @returns {T} what `draw` returned
+ * @throws {RangeError} when `scale` is not a finite number greater than zero and at most one (checked before anything
+ *   changes)
+ * @template T
+ */
 export function Draw_WithVirtualSize( width, height, draw, scale = 1 ) {
 
 	if ( ! Number.isFinite( scale ) || scale <= 0 || scale > 1 ) throw new RangeError( 'UI scope scale must be greater than zero and at most one' );
@@ -233,12 +279,17 @@ function _calculateUIScale() {
 /*
 ================
 SCR_SetConHeight
-
-Set the target virtual height for UI scaling.
-Lower values = larger UI, higher values = smaller UI.
-Minimum: 200, Maximum: physical screen height.
 ================
 */
+/**
+ * Sets the target virtual height for UI scaling: lower values = larger UI, higher values = smaller UI. Clamped to
+ * minimum 200, maximum the physical screen height (CSS height x devicePixelRatio). Recomputes the UI scale at once and
+ * sets `vid.recalc_refdef` so the screen recomputes its refresh window next frame. Called by the `scr_conheight`,
+ * `uiscale+` and `uiscale-` console commands. The value lives in this module only (not a cvar, not saved), so it
+ * returns to 240 on reload.
+ *
+ * @param {number} height wanted virtual height in virtual pixels (240 = classic Quake size, 480 = modern size)
+ */
 export function SCR_SetConHeight( height ) {
 
 	const dpr = window.devicePixelRatio || 1;
@@ -254,10 +305,13 @@ export function SCR_SetConHeight( height ) {
 /*
 ================
 SCR_GetConHeight
-
-Get the current target virtual height.
 ================
 */
+/**
+ * Gets the current target virtual height set by `SCR_SetConHeight` (240 until changed).
+ *
+ * @returns {number} the target virtual height in virtual pixels, 200 or more
+ */
 export function SCR_GetConHeight() {
 
 	return scr_conheight;
@@ -267,10 +321,15 @@ export function SCR_GetConHeight() {
 /*
 ================
 Draw_GetUIScale
-
-Get the current UI scale factor.
 ================
 */
+/**
+ * Gets the current UI scale factor, recomputed from the video size, devicePixelRatio and target height on every call.
+ * Read by `SCR_CalcRefdef` (as `r_refdef.vrectScale`) and by the WebGL menu to size its output.
+ *
+ * @returns {number} physical pixels per virtual pixel: a whole number of at least 1 that fits the minimum virtual
+ *   size (320x200), times any scale of an enclosing `Draw_WithVirtualSize`
+ */
 export function Draw_GetUIScale() {
 
 	_calculateUIScale();
@@ -281,11 +340,14 @@ export function Draw_GetUIScale() {
 /*
 ================
 Draw_GetVirtualWidth / Draw_GetVirtualHeight
-
-Get the current virtual dimensions for 2D drawing.
-Used by other modules instead of computing locally.
 ================
 */
+/**
+ * Gets the current virtual width for 2D drawing, recomputing the UI scale first. Used by other modules (the status
+ * bar, screen, console and menu read it as their `vid.width`) instead of computing locally.
+ *
+ * @returns {number} the overlay's width in virtual pixels: physical width / UI scale, rounded up
+ */
 export function Draw_GetVirtualWidth() {
 
 	_calculateUIScale();
@@ -293,6 +355,12 @@ export function Draw_GetVirtualWidth() {
 
 }
 
+/**
+ * Gets the current virtual height for 2D drawing, recomputing the UI scale first. Used by other modules (the status
+ * bar, screen, console and menu read it as their `vid.height`) instead of computing locally.
+ *
+ * @returns {number} the overlay's height in virtual pixels: physical height / UI scale, rounded up
+ */
 export function Draw_GetVirtualHeight() {
 
 	_calculateUIScale();
@@ -410,6 +478,20 @@ const _vid = {
 	get numpages() { return _realVid.numpages; }
 };
 
+/**
+ * Wires 2D drawing to what it cannot import without a cycle. Called twice: by `Host_Init` (host.js) before `Draw_Init`
+ * with the video, palette and colour table, so the overlay canvas gets the correct size; and as host.js loads, in its
+ * [44g] D1a block, with `Sbar_Changed`. Each key that is present replaces the stored value, absent keys keep theirs.
+ * Until wired, `vid` is a 640x480 stand-in, the palette is null (`Draw_Fill` then fills white), the colour table
+ * falls back to vid.js's `d_8to24table`, and `Sbar_Changed` does nothing. The references are kept for the life of the
+ * page.
+ *
+ * @param {{ vid?: viddef_t, host_basepal?: Uint8Array, d_8to24table?: Uint32Array,
+ *   Sbar_Changed?: () => void }} externals the hooks: `vid` is the real (CSS-pixel) video size the UI scale is computed
+ *   from, and receives `recalc_refdef`; `host_basepal` is gfx/palette.lmp, 256 RGB byte triples, used by `Draw_Fill`;
+ *   `d_8to24table` maps palette index to 0xAABBGGRR for decoding pictures; `Sbar_Changed` (client/sbar.js) is called by
+ *   `Draw_FadeScreen`
+ */
 export function Draw_SetExternals( externals ) {
 
 	if ( externals.vid ) _realVid = externals.vid;
@@ -526,6 +608,19 @@ function _loadConback() {
 Draw_Init
 ===============
 */
+/**
+ * Sets up 2D drawing: takes the given canvas as the overlay or creates one (sized to physical pixels, CSS size x
+ * devicePixelRatio, for crisp HiDPI; laid over the WebGL canvas, appended to the body, ignoring the pointer, and
+ * resized with the window), computes the UI scale, registers `scr_conheight`, `uiscale+` and `uiscale-`, decodes the
+ * `conchars` character set from gfx.wad and gfx/conback.lmp from the paks, and loads the `disc` and `backtile`
+ * pictures. Called once by `Host_Init` (host.js) after `Draw_SetExternals` has supplied the video and palette; tests
+ * pass their own canvas. Everything it loads is kept for the life of the page. A missing conback.lmp (the console
+ * prints `Couldn't load gfx/conback.lmp`), `disc` or `backtile` only leaves that resource unloaded, and drawing falls
+ * back (a black console, no disc, a grey tile).
+ *
+ * @param {HTMLCanvasElement} [canvas] an existing canvas to draw on; when omitted a new overlay canvas is created
+ * @throws {Error} via `Sys_Error` (from `W_GetLumpName`) when the loaded gfx.wad has no `conchars` lump
+ */
 export function Draw_Init( canvas ) {
 
 	if ( canvas ) {
@@ -580,10 +675,14 @@ export function Draw_Init( canvas ) {
 /*
 ===============
 Draw_GetOverlayCanvas
-
-Returns the overlay canvas for compositing
 ===============
 */
+/**
+ * Returns the overlay canvas for compositing: the WebGL menu, bestiary book and studio logo draw on it, and the host
+ * hands it to the teleport effect each frame.
+ *
+ * @returns {?HTMLCanvasElement} the 2D overlay (physical-pixel backing store), or null before `Draw_Init`
+ */
 export function Draw_GetOverlayCanvas() {
 
 	return overlayCanvas;
@@ -593,11 +692,13 @@ export function Draw_GetOverlayCanvas() {
 /*
 ===============
 Draw_BeginFrame
-
-Clear the overlay for a new frame of 2D drawing.
-Applies UI scaling transform so all drawing happens in virtual coordinates.
 ===============
 */
+/**
+ * Clears the overlay for a new frame of 2D drawing and applies the UI scaling transform (recomputed now), so all
+ * drawing happens in virtual coordinates, with image smoothing off for crisp pixels. Called by `SCR_UpdateScreen`
+ * (gl_screen.js) once per drawn frame, after `GL_BeginRendering`. Does nothing before `Draw_Init`.
+ */
 export function Draw_BeginFrame() {
 
 	if ( overlayCtx ) {
@@ -621,12 +722,20 @@ export function Draw_BeginFrame() {
 /*
 ================
 Draw_Character
-
-Draws one 8*8 graphics character with 0 being transparent.
-It can be clipped to the top of the screen to allow the console to be
-smoothly scrolled off.
 ================
 */
+/**
+ * Draws one 8*8 graphics character with 0 being transparent. It can be clipped to the top of the screen to allow the
+ * console to be smoothly scrolled off. The glyph comes from the `conchars` sheet (16x16 grid of 8x8 characters;
+ * 0-127 normal, 128-255 the alternate brown/gold set); with no sheet (`Draw_SetCharset( null )`), printable ASCII is
+ * drawn as 8px monospace text, white or orange for the alternate set. Spaces (32) and characters wholly above the top are skipped.
+ * Called by everything that prints on the overlay: console, status bar, menu, centre print, crosshair. Does nothing
+ * before `Draw_Init`.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels; -8 or less draws nothing
+ * @param {number} num character code; only the low 8 bits are used (0..255)
+ */
 export function Draw_Character( x, y, num ) {
 
 	if ( ! overlayCtx ) return;
@@ -677,6 +786,14 @@ export function Draw_Character( x, y, num ) {
 Draw_String
 ================
 */
+/**
+ * Draws a string left to right with `Draw_Character`, 8 virtual pixels per character, on one line (a newline is drawn
+ * as its glyph, not a line break).
+ *
+ * @param {number} x left edge of the first character, in virtual pixels
+ * @param {number} y top edge, in virtual pixels
+ * @param {string} str the text; each UTF-16 code unit's low 8 bits pick the glyph
+ */
 export function Draw_String( x, y, str ) {
 
 	for ( let i = 0; i < str.length; i ++ ) {
@@ -691,10 +808,16 @@ export function Draw_String( x, y, str ) {
 /*
 ================
 Draw_Alt_String
-
-Draw string with alternate (gold) coloring
 ================
 */
+/**
+ * Draws a string with alternate (gold) coloring: as `Draw_String`, with 128 added to each character code. Nothing
+ * in the engine calls it at present.
+ *
+ * @param {number} x left edge of the first character, in virtual pixels
+ * @param {number} y top edge, in virtual pixels
+ * @param {string} str the text, in plain (0..127) characters
+ */
 export function Draw_Alt_String( x, y, str ) {
 
 	for ( let i = 0; i < str.length; i ++ ) {
@@ -711,6 +834,18 @@ export function Draw_Alt_String( x, y, str ) {
 Draw_Pic
 =============
 */
+/**
+ * Draws a picture at its own size on the overlay. Under Newer Game a WAD picture (one with `_name`) is replaced by its
+ * higher resolution artwork (`R_NewerHudCanvas`), drawn smoothed at the sprite's size; the layered status bar face
+ * is drawn unsmoothed at its stated size; a picture holding only `imageData` is put unscaled and untransformed.
+ * Does nothing before `Draw_Init` or for a null picture.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {?qpic_t} pic the picture from `Draw_PicFromWad`, `Draw_CachePic` or `Draw_CachePicFromPNG`
+ *   (`{ width, height, canvas }`)
+ * @throws {Error} for a WAD picture when the Newer hook `R_NewerHudCanvas` is not installed
+ */
 export function Draw_Pic( x, y, pic ) {
 
 	if ( ! overlayCtx || ! pic ) return;
@@ -748,11 +883,17 @@ export function Draw_Pic( x, y, pic ) {
 /*
 =============
 Draw_TransPic
-
-Same as Draw_Pic but with transparency (index 255 = transparent)
-In GL mode this is the same as Draw_Pic since alpha is handled by texture
 =============
 */
+/**
+ * Same as `Draw_Pic` but with transparency (index 255 = transparent). In GL mode this is the same as `Draw_Pic` since
+ * alpha is handled by texture: the decoded canvas already has index 255 clear. As in the original, a picture whose
+ * corner would be off the top or left edge is not drawn at all.
+ *
+ * @param {number} x left edge in virtual pixels; below 0 draws nothing
+ * @param {number} y top edge in virtual pixels; below 0 draws nothing
+ * @param {?qpic_t} pic the picture
+ */
 export function Draw_TransPic( x, y, pic ) {
 
 	if ( x < 0 || y < 0 ) return;
@@ -764,11 +905,20 @@ export function Draw_TransPic( x, y, pic ) {
 /*
 =============
 Draw_SubPic
-
-Draws a vertical sub-region of a pic. Used for the extended main menu image
-where we sometimes need to skip the "Continue" row at the top.
 =============
 */
+/**
+ * Draws a vertical sub-region of a pic at full width. Used for the extended main menu image where we sometimes need
+ * to skip the "Continue" row at the top (menu.js, through `M_SetExternals`). Unlike the other drawing calls it does
+ * not check for the overlay, so it must not run before `Draw_Init`.
+ *
+ * @param {number} x left edge in virtual pixels; below 0 draws nothing
+ * @param {number} y top edge in virtual pixels; below 0 draws nothing
+ * @param {?qpic_t} pic the picture; one without a canvas draws nothing
+ * @param {number} srcY first row of the picture to draw, in picture pixels
+ * @param {number} srcH number of rows to draw, in picture pixels (drawn one to one)
+ * @throws {TypeError} if called with a canvas picture before `Draw_Init` (no overlay context)
+ */
 export function Draw_SubPic( x, y, pic, srcY, srcH ) {
 
 	if ( x < 0 || y < 0 || pic == null ) return;
@@ -784,10 +934,6 @@ export function Draw_SubPic( x, y, pic, srcY, srcH ) {
 /*
 =============
 Draw_TransPicTranslate
-
-Only used for the player color selection menu.
-Remaps the pic's palette indices through the translation table,
-then draws the result. Ported from WinQuake/gl_draw.c:658-699
 =============
 */
 
@@ -801,6 +947,20 @@ let _transCanvas = null;
 let _transCtx = null;
 let _transImageData = null;
 
+/**
+ * Only used for the player color selection menu (the setup menu's player figure, menu.js). Remaps the pic's palette
+ * indices through the translation table, then draws the result. Ported from WinQuake/gl_draw.c:658-699. The source
+ * pixels are those of gfx/menuplyr.lmp, kept when `Draw_CachePic` first loads it (whatever `pic` is, only its size is
+ * used); like the original it resamples them to 64x64 (index 255 transparent) and stretches that over `pic`'s width
+ * and height. Reuses one 64x64 canvas across calls. Does nothing until menuplyr.lmp has been cached, or before
+ * `Draw_Init`.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {?qpic_t} pic the menuplyr picture; gives the drawn size
+ * @param {Uint8Array|Array<number>} translation 256 entries: palette index to palette index (the shirt and pants
+ *   colour rows are moved to the chosen colours)
+ */
 export function Draw_TransPicTranslate( x, y, pic, translation ) {
 
 	if ( menuplyr_pixels == null || pic == null ) return;
@@ -869,11 +1029,18 @@ export function Draw_TransPicTranslate( x, y, pic, translation ) {
 /*
 ================
 Draw_ConsoleBackground
-
-Always fully opaque, matching DOS/WinQuake (draw.c) rather than
-GLQuake (gl_draw.c) which used semi-transparent alpha blending.
 ================
 */
+/**
+ * Draws the console background, always fully opaque, matching DOS/WinQuake (draw.c) rather than GLQuake (gl_draw.c)
+ * which used semi-transparent alpha blending. The full-screen image is slid down so its bottom edge sits at `lines`:
+ * the wallpaper from `Draw_LoadConbackImage` fills the screen without stretching (cropping the overflow), the native
+ * conback.lmp is stretched to the screen, and with neither the top `lines` rows are filled black. Called by
+ * `Con_DrawConsole` (console.js) while the console is down and by the menu as its backdrop (full height) while the
+ * console is down behind it. Does nothing before `Draw_Init`.
+ *
+ * @param {number} lines visible console height in virtual pixels, 0..screen height
+ */
 export function Draw_ConsoleBackground( lines ) {
 
 	if ( ! overlayCtx ) return;
@@ -906,11 +1073,18 @@ export function Draw_ConsoleBackground( lines ) {
 /*
 =============
 Draw_TileClear
-
-This repeats a 64*64 tile graphic to fill the screen around a sized down
-refresh window.
 =============
 */
+/**
+ * This repeats a 64*64 tile graphic (the WAD's `backtile`) to fill the screen around a sized down refresh window;
+ * without it the rectangle is filled dark grey (#202020). Called by `SCR_TileClear` (gl_screen.js) each frame when
+ * `viewsize` leaves a border. Does nothing before `Draw_Init`.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {number} w width in virtual pixels
+ * @param {number} h height in virtual pixels
+ */
 export function Draw_TileClear( x, y, w, h ) {
 
 	if ( ! overlayCtx ) return;
@@ -933,10 +1107,20 @@ export function Draw_TileClear( x, y, w, h ) {
 /*
 =============
 Draw_Fill
-
-Fills a box of pixels with a single color
 =============
 */
+/**
+ * Fills a box of pixels with a single color from the Quake palette (`host_basepal`), optionally translucent. Used for
+ * the scoreboard's player colours, menu backdrops and dimming, and the screen's loading backdrop. White when the palette
+ * is not wired or `c` is out of range. Does nothing before `Draw_Init`.
+ *
+ * @param {number} x left edge in virtual pixels
+ * @param {number} y top edge in virtual pixels
+ * @param {number} w width in virtual pixels
+ * @param {number} h height in virtual pixels
+ * @param {number} c palette index, 0..255
+ * @param {number} [alpha=1] opacity 0..1 for this fill only (reset to 1 afterwards)
+ */
 export function Draw_Fill( x, y, w, h, c, alpha = 1 ) {
 
 	if ( ! overlayCtx ) return;
@@ -963,9 +1147,13 @@ export function Draw_Fill( x, y, w, h, c, alpha = 1 ) {
 /*
 ================
 Draw_FadeScreen
-
 ================
 */
+/**
+ * Darkens the whole screen with black at 80% opacity, behind a menu or a modal dialog, and marks the status bar for
+ * redraw (`Sbar_Changed`, wired by host.js). Called by the menu (when the console is not down behind it) and by
+ * `SCR_UpdateScreen` under a dialog. Does nothing before `Draw_Init`.
+ */
 export function Draw_FadeScreen() {
 
 	if ( ! overlayCtx ) return;
@@ -980,11 +1168,12 @@ export function Draw_FadeScreen() {
 /*
 ================
 Draw_BeginDisc
-
-Draws the little blue disc in the corner of the screen.
-Call before beginning any disc IO.
 ================
 */
+/**
+ * Draws the little blue disc in the corner of the screen (top right, the WAD's `disc` picture). Call before beginning
+ * any disc IO. Nothing in this port calls it at present. Does nothing until the disc picture is loaded.
+ */
 export function Draw_BeginDisc() {
 
 	if ( ! draw_disc ) return;
@@ -995,11 +1184,12 @@ export function Draw_BeginDisc() {
 /*
 ================
 Draw_EndDisc
-
-Erases the disc icon.
-Call after completing any disc IO
 ================
 */
+/**
+ * Erases the disc icon. Call after completing any disc IO. Nothing to do in GL mode: the overlay is cleared every frame
+ * by `Draw_BeginFrame`. Kept for the original's interface; nothing calls it.
+ */
 export function Draw_EndDisc() {
 
 	// Nothing to do in GL mode
@@ -1009,11 +1199,13 @@ export function Draw_EndDisc() {
 /*
 ================
 GL_Set2D
-
-Setup as if the screen was 320*200
-In canvas 2D overlay mode, this is implicit.
 ================
 */
+/**
+ * Setup as if the screen was 320*200. In canvas 2D overlay mode, this is implicit: the UI scale transform applied by
+ * `Draw_BeginFrame` already maps virtual coordinates. Kept as a no-op so `SCR_UpdateScreen` follows the original
+ * order (it calls this after the 3D view, before 2D drawing).
+ */
 export function GL_Set2D() {
 
 	// Canvas 2D context is always in 2D mode
@@ -1070,11 +1262,17 @@ function _qpicToCanvas( width, height, data, alpha ) {
 /*
 ================
 Draw_LoadConbackImage
-
-Replaces the console background (gfx/conback.lmp) with an image from a URL.
-Resolves true on success; on failure the original background stays.
 ================
 */
+/**
+ * Replaces the console background (gfx/conback.lmp) with an image from a URL. On failure the original background
+ * stays and the console prints `Draw_LoadConbackImage: failed to load <url>`. The wallpaper is drawn to cover the
+ * screen (`Draw_ConsoleBackground`) and also backs the menu. Called once from main.js at start-up with
+ * `conback.webp`; kept for the life of the page (until `Draw_SetConback` or another call replaces it).
+ *
+ * @param {string} url image URL, relative to the page
+ * @returns {Promise<boolean>} resolves true on success, false when the image fails to load; never rejects
+ */
 export function Draw_LoadConbackImage( url ) {
 
 	return new Promise( ( resolve ) => {
@@ -1114,11 +1312,18 @@ export function Draw_LoadConbackImage( url ) {
 /*
 ================
 Draw_CacheSinglePlayerMenu
-
-Build the extended menu once from native PAK lettering. Missing sources leave
-the existing menu's text fallback available; source canvases are never changed.
 ================
 */
+/**
+ * Build the extended menu once from native PAK lettering: `BuildSinglePlayerMenuArt` (newer/ui/menu_art.js) composes
+ * it from gfx/sp_menu.lmp with letters from mainmenu.lmp, mp_menu.lmp and netmen4.lmp. Missing sources leave the
+ * existing menu's text fallback available; source canvases are never changed. Called from main.js at start-up. A
+ * built picture is cached as `gfx/sp_menu_ext.lmp` for the life of the page, so `Draw_CachePic` returns it; a failure
+ * is not cached, so a later call tries again.
+ *
+ * @returns {?qpic_t} the composed picture (cached), or null when a source is missing
+ * @throws {Error} when the Newer hook `BuildSinglePlayerMenuArt` is not installed (only while nothing is cached)
+ */
 export function Draw_CacheSinglePlayerMenu() {
 
 	const path = 'gfx/sp_menu_ext.lmp';
@@ -1133,6 +1338,17 @@ export function Draw_CacheSinglePlayerMenu() {
 }
 
 let bookNavigationCharset = null, bookNavigationPics = null;
+/**
+ * The bestiary book's four navigation labels (`< PREVIOUS`, `OPEN >`, `NEXT >`, `ESC - MAIN MENU`), drawn from the
+ * conchars sheet by `BuildMenuTextArt` (newer/ui/menu_art.js). Called by the bestiary book (newer/ui/r_bestiary_book.js)
+ * each frame it draws. Before `Draw_Init` there is no decoded source; that absence is not cached, so the first ready
+ * draw recovers. The four are built together and kept until the character sheet is replaced (`Draw_SetCharset`),
+ * which rebuilds all four.
+ *
+ * @returns {?{ previous: ?qpic_t, open: ?qpic_t, next: ?qpic_t, exit: ?qpic_t }} the labels (shared; do not modify),
+ *   each 8 pixels per character wide and 8 high, or null before the character sheet is loaded
+ * @throws {Error} when the Newer hook `BuildMenuTextArt` is not installed (only when the labels are rebuilt)
+ */
 export function Draw_CacheBookNavigation() {
 
 	// Before Draw_Init there is no decoded source. Do not cache that absence:
@@ -1153,12 +1369,24 @@ export function Draw_CacheBookNavigation() {
 /*
 ================
 Draw_CachePicFromPNG
-
-Preloads a PNG image from a URL and caches it as a pic.
-Call this during initialization to make custom images available via Draw_CachePic.
-Returns a Promise that resolves when the image is loaded.
 ================
 */
+/**
+ * Preloads a PNG image from a URL and caches it as a pic under a game path. Call this during initialization to make
+ * custom images available via `Draw_CachePic` (main.js loads the extended main menu, the weapon models credit and the
+ * enhanced menu banner this way). The picture replaces anything cached under `path` and is kept for the life of the
+ * page. With any option set the image is post-processed: `blackKey` clears near-black pixels, `trim` crops to the
+ * opaque bounds, and `displayHeight` rescales (nearest pixel, aspect kept) to that height.
+ *
+ * @param {string} path the game path to cache it under, such as 'gfx/mainmenu_ext.lmp'
+ * @param {string} url image URL, relative to the page
+ * @param {{ blackKey?: number, trim?: boolean, displayHeight?: number }} [options={}] `blackKey`: pixels whose
+ *   brightest channel is at or below this (0..255) become transparent; `trim`: crop to the opaque pixels; `displayHeight`:
+ *   output height in picture pixels (default: the source or trimmed height)
+ * @returns {Promise<qpic_t>} resolves with the cached picture (`{ width, height, canvas, path }`) once the image has
+ *   loaded; rejects with an Error when the image fails to load (the console prints `Draw_CachePicFromPNG: failed to
+ *   load <url>`), or, when processing, if no pixel is opaque (`Empty PNG picture: <url>`)
+ */
 export function Draw_CachePicFromPNG( path, url, options = {} ) {
 
 	return new Promise( ( resolve, reject ) => {
@@ -1225,11 +1453,20 @@ export function Draw_CachePicFromPNG( path, url, options = {} ) {
 /*
 ================
 Draw_CachePic
-
-Loads and caches a pic from the game data (PAK files).
-qpic_t format: int32 width, int32 height, then width*height palette indices.
 ================
 */
+/**
+ * Loads and caches a pic from the game data (PAK files). qpic_t format: int32 width, int32 height, then width*height
+ * palette indices; index 255 is transparent. A picture cached by `Draw_CachePicFromPNG` or
+ * `Draw_CacheSinglePlayerMenu` under the same path is returned instead of the PAK's. The first load of
+ * gfx/menuplyr.lmp also keeps its raw indices for `Draw_TransPicTranslate`. Called by the menu, the status bar and the
+ * screen every frame they draw such pictures; each path is decoded once and cached for the life of the page.
+ *
+ * @param {string} path game path such as 'gfx/pause.lmp'
+ * @returns {?qpic_t} the picture (`{ width, height, canvas, path }`, shared: do not modify), or null when no PAK has
+ *   the file (the console prints `Draw_CachePic: failed to load <path>`; a miss is not cached, so it is looked up and
+ *   printed again on each call)
+ */
 export function Draw_CachePic( path ) {
 
 	if ( cachepics[ path ] )
@@ -1277,11 +1514,20 @@ export function Draw_CachePic( path ) {
 /*
 ================
 Draw_PicFromWad
-
-Loads a pic from the gfx.wad file.
-WAD lumps for qpic_t: int32 width, int32 height, then width*height palette indices.
 ================
 */
+/**
+ * Loads a pic from the gfx.wad file. WAD lumps for qpic_t: int32 width, int32 height, then width*height palette
+ * indices; index 255 is transparent. Called at initialization (`Sbar_Init`, `SCR_Init`, `Draw_Init`) for the status
+ * bar, screen icons, disc and backtile. Not cached here: each call decodes a new canvas, so callers keep the result.
+ * The lower-cased lump name is kept as `_name`, which lets `Draw_Pic` substitute Newer Game's higher resolution
+ * artwork.
+ *
+ * @param {string} name lump name, such as 'num_0' or 'sbar' (case-insensitive)
+ * @returns {?qpic_t} a new picture (`{ width, height, canvas, _name }`), or null when the WAD has no such lump (the console prints `Draw_PicFromWad: <name> not found`). The miss
+ *   is caught here, but `W_GetLumpName` reports it through `Sys_Error`, which in a browser has already replaced the
+ *   page body with its error text before throwing
+ */
 export function Draw_PicFromWad( name ) {
 
 	let lump;
@@ -1321,6 +1567,23 @@ export function Draw_PicFromWad( name ) {
 GL_LoadTexture
 ================
 */
+/**
+ * Registers a palettized texture in this module's table (up to MAX_GLTEXTURES, 1024) and, when there is data and a
+ * colour table is wired, decodes it to a canvas kept on the entry. An identifier already in the table returns its
+ * existing number (printing `GL_LoadTexture: cache mismatch for <identifier>` when the size differs). The canvas
+ * overlay port of gl_draw.c's loader: the world and model textures use gl_model.js's own `GL_LoadTexture`, and
+ * nothing imports this one at present. Entries are kept for the life of the page.
+ *
+ * @param {string} identifier cache name; empty to always add a new entry
+ * @param {number} width texture width in texels
+ * @param {number} height texture height in texels
+ * @param {?Uint8Array} data width*height palette indices, row by row
+ * @param {boolean} mipmap recorded on the entry only (no mipmaps are made)
+ * @param {boolean} alpha true to make palette index 255 transparent
+ * @returns {number} the texture number (1, 2, 3...; never reused)
+ * @throws {TypeError} when a new texture would exceed MAX_GLTEXTURES: there is no explicit check (WinQuake calls
+ *   `Sys_Error`), so the missing table entry is dereferenced
+ */
 export function GL_LoadTexture( identifier, width, height, data, mipmap, alpha ) {
 
 	// See if the texture is already present
@@ -1397,10 +1660,19 @@ export function GL_LoadTexture( identifier, width, height, data, mipmap, alpha )
 /*
 ================
 GL_Upload8
-
-Convert 8-bit palettized data to RGBA and upload
 ================
 */
+/**
+ * Convert 8-bit palettized data to RGBA and upload: builds the 32-bit texels through the colour table (dropping
+ * `alpha` when no index 255 is present, as WinQuake does) and passes them to `GL_Upload32`, which is a stub here, so
+ * nothing is uploaded or kept. Nothing calls it at present. Does nothing without a colour table.
+ *
+ * @param {Uint8Array} data width*height palette indices
+ * @param {number} width width in texels
+ * @param {number} height height in texels
+ * @param {boolean} mipmap passed on to `GL_Upload32`
+ * @param {boolean} alpha true when palette index 255 is transparent
+ */
 export function GL_Upload8( data, width, height, mipmap, alpha ) {
 
 	if ( ! d_8to24table ) return;
@@ -1440,6 +1712,16 @@ export function GL_Upload8( data, width, height, mipmap, alpha ) {
 GL_Upload32
 ================
 */
+/**
+ * Stub for compatibility: in canvas 2D mode texture upload is handled differently (Three.js textures are made in the
+ * renderer and model loader), so this does nothing. Called only by `GL_Upload8`.
+ *
+ * @param {Uint32Array} data width*height texels, 0xAABBGGRR (ignored)
+ * @param {number} width width in texels (ignored)
+ * @param {number} height height in texels (ignored)
+ * @param {boolean} mipmap whether mipmaps were wanted (ignored)
+ * @param {boolean} alpha whether the texture has transparency (ignored)
+ */
 export function GL_Upload32( data, width, height, mipmap, alpha ) {
 
 	// In canvas 2D mode, texture upload is handled differently
@@ -1452,6 +1734,13 @@ export function GL_Upload32( data, width, height, mipmap, alpha ) {
 GL_FindTexture
 ================
 */
+/**
+ * Looks a texture up by identifier in the table filled by this module's `GL_LoadTexture`. Nothing calls it at
+ * present.
+ *
+ * @param {string} identifier the cache name given to `GL_LoadTexture`
+ * @returns {number} the texture number, or -1 when no texture has that identifier
+ */
 export function GL_FindTexture( identifier ) {
 
 	for ( let i = 0; i < numgltextures; i ++ ) {
@@ -1468,10 +1757,15 @@ export function GL_FindTexture( identifier ) {
 /*
 ================
 Draw_SetCharset
-
-Set the character set bitmap for console/HUD text rendering
 ================
 */
+/**
+ * Set the character set bitmap for console/HUD text rendering, replacing the conchars sheet decoded by `Draw_Init`
+ * (it also makes `Draw_CacheBookNavigation` rebuild its labels). Kept until the next call; nothing calls it at present.
+ *
+ * @param {?HTMLCanvasElement} charsetCanvas a 128x128 sheet of 16x16 characters of 8x8 pixels; null makes
+ *   `Draw_Character` fall back to text
+ */
 export function Draw_SetCharset( charsetCanvas ) {
 
 	char_canvas = charsetCanvas;
@@ -1481,10 +1775,16 @@ export function Draw_SetCharset( charsetCanvas ) {
 /*
 ================
 Draw_SetConback
-
-Set the console background image
 ================
 */
+/**
+ * Set the console background image, replacing the one from `Draw_Init` or `Draw_LoadConbackImage`. Kept until the
+ * next call; nothing calls it at present.
+ *
+ * @param {?{ width: number, height: number, canvas: HTMLCanvasElement, cover?: boolean }} conbackPic the background;
+ *   `cover: true` fills the screen without stretching, otherwise it is stretched to the screen; null draws a black
+ *   console
+ */
 export function Draw_SetConback( conbackPic ) {
 
 	conback = conbackPic;
@@ -1494,10 +1794,14 @@ export function Draw_SetConback( conbackPic ) {
 /*
 ================
 Draw_SetDisc
-
-Set the disc (loading) icon
 ================
 */
+/**
+ * Set the disc (loading) icon drawn by `Draw_BeginDisc`, replacing the WAD's `disc` loaded by `Draw_Init`. Kept until
+ * the next call; nothing calls it at present.
+ *
+ * @param {?qpic_t} discPic the icon; null hides it
+ */
 export function Draw_SetDisc( discPic ) {
 
 	draw_disc = discPic;

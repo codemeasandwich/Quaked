@@ -94,6 +94,13 @@ let weaponMenu = null;
 let weaponList = null;
 let weaponMenuOpen = false;
 const bestiaryTouches=new Map();
+/**
+ * Whether the touch weapon menu is open (the game is slowed and blurred under it). Read by Newer Game's bestiary
+ * (r_bestiary.js `R_BestiaryAllowed`), which starts no encounter while it is.
+ *
+ * @returns {boolean} true from the WEAPON button's press until a weapon is chosen, the menu is tapped outside or the
+ *   controls are disabled
+ */
 export function Touch_WeaponMenuActive(){return weaponMenuOpen;}
 let probe = null; // measures the safe area insets
 let layout = null;
@@ -101,10 +108,16 @@ let layout = null;
 /*
 =================
 Touch_IsMobile
-
-Detect if we're on a mobile device
 =================
 */
+/**
+ * Detect if we're on a mobile device: a phone or tablet user agent, or more than two touch points (iPadOS reports a
+ * desktop agent). Called by in_web.js's `IN_Init` to decide whether to set up the touch controls, and before asking
+ * for pointer lock (never on mobile). Evaluated afresh on each call.
+ *
+ * @returns {boolean|number|undefined} truthy on a mobile device (the agent test's true, or
+ *   `navigator.maxTouchPoints > 2`); otherwise falsy: false, or the browser's 0 or undefined `maxTouchPoints`
+ */
 export function Touch_IsMobile() {
 
 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ) ||
@@ -862,10 +875,16 @@ function Touch_ReleaseWakeLock() {
 /*
 =================
 Touch_RequestFullscreen
-
-Request fullscreen on mobile (the screen may be held either way up)
 =================
 */
+/**
+ * Request fullscreen on mobile (the screen may be held either way up; the orientation is not locked): asks for the
+ * whole document to go fullscreen, with the WebKit-prefixed call as a fallback. Called by in_web.js from a user
+ * gesture on a mobile device (not in the Quest browser). Only the first success counts: later calls do nothing until
+ * `Touch_ExitFullscreen` clears the flag. A refusal is logged to the browser console, not thrown.
+ *
+ * @returns {Promise<void>} settles once the request has been answered
+ */
 export async function Touch_RequestFullscreen() {
 
 	if ( fullscreenActivated ) return;
@@ -897,10 +916,15 @@ export async function Touch_RequestFullscreen() {
 /*
 =================
 Touch_ExitFullscreen
-
-Exit fullscreen mode
 =================
 */
+/**
+ * Exit fullscreen mode, when the main menu's Quit entry is chosen (menu.js, through `M_SetExternals` wired by host.js).
+ * Does nothing when the page is not fullscreen. Also unlocks the screen orientation and lets
+ * `Touch_RequestFullscreen` ask again. A failure is logged to the browser console, not thrown.
+ *
+ * @returns {Promise<void>} settles once the exit has been answered
+ */
 export async function Touch_ExitFullscreen() {
 
 	if ( ! document.fullscreenElement && ! document.webkitFullscreenElement ) return;
@@ -937,10 +961,17 @@ export async function Touch_ExitFullscreen() {
 /*
 =================
 Touch_Init
-
-Initialize touch controls
 =================
 */
+/**
+ * Initialize touch controls, once, from in_web.js's `IN_Init` on a mobile device: registers the `touch_strafe`,
+ * `touch_turn` and `touch_aim` cvars, builds the hidden controls, weapon menu and menu tap overlay, lays them out for
+ * the window's shape and safe area, and re-lays them out on `resize` and `orientationchange`. The controls stay
+ * hidden until `Touch_Enable`. Later calls do nothing.
+ *
+ * @param {HTMLElement} [container=document.body] the element the overlays are appended to (in_web.js passes
+ *   `document.body`)
+ */
 export function Touch_Init( container ) {
 
 	if ( initialized ) return;
@@ -976,10 +1007,15 @@ const HANDLER = { touchstart: onTouchStart, touchmove: onTouchMove, touchend: on
 /*
 =================
 Touch_Enable
-
-Enable touch controls (show UI, add listeners)
 =================
 */
+/**
+ * Enable touch controls (show UI, add listeners): shows the stick and buttons, lays them out, listens for their
+ * touches and the weapon menu's, turns the gyroscope look back on if its permission was already asked for, and asks
+ * for a screen wake lock so the screen does not dim. Called by in_web.js when play starts (`IN_UpdateTouch` each frame
+ * while in a connected, non-demo game, and on entering the game). Does nothing before `Touch_Init` or when already
+ * enabled.
+ */
 export function Touch_Enable() {
 
 	if ( ! initialized ) return;
@@ -1009,10 +1045,14 @@ export function Touch_Enable() {
 /*
 =================
 Touch_Disable
-
-Disable touch controls (hide UI, remove listeners)
 =================
 */
+/**
+ * Disable touch controls (hide UI, remove listeners): closes the weapon menu (restoring `host_timescale` 1), hides the
+ * controls, removes their listeners, turns the gyroscope off, releases the wake lock and resets the stick, forward
+ * button and accumulated look. Called by in_web.js's `IN_UpdateTouch` when a menu, the console or a demo takes over.
+ * Does nothing before `Touch_Init` or when not enabled. The fire and jump button states are not cleared here.
+ */
 export function Touch_Disable() {
 
 	if ( ! initialized || ! enabled ) return;
@@ -1048,6 +1088,12 @@ export function Touch_Disable() {
 Touch_IsEnabled
 =================
 */
+/**
+ * Whether the touch game controls are showing and listening (between `Touch_Enable` and `Touch_Disable`). Checked by
+ * in_web.js before it reads touch input in `IN_Move` and when it switches the controls each frame.
+ *
+ * @returns {boolean} true while enabled
+ */
 export function Touch_IsEnabled() {
 
 	return enabled;
@@ -1057,18 +1103,28 @@ export function Touch_IsEnabled() {
 /*
 =================
 Touch_GetMoveInput
-
-Returns the movement input: forward while the GO button is held, and sideways
-from the stick when it is set to sidestep or the STRAFE button is held
 =================
 */
-// is the STRAFE button held (the stick sidesteps rather than turns)
+/**
+ * Is the STRAFE button held (the stick sidesteps rather than turns)? Read by in_web.js's `IN_Move` each frame to
+ * decide whether the stick's left and right turn the view.
+ *
+ * @returns {boolean} true while a finger is on the STRAFE button
+ */
 export function Touch_StrafeHeld() {
 
 	return strafeHeld;
 
 }
 
+/**
+ * The movement input for this frame, read by in_web.js's `IN_Move`, which scales it by `cl_forwardspeed` and
+ * `cl_sidespeed`. A new object each call.
+ *
+ * @returns {{ forward: number, right: number }} `forward` 1 while the GO button is held, else 0; `right` the stick's
+ *   sideways push (-1..1, right positive) when it is set to sidestep (`touch_strafe` not 0) or the STRAFE button is
+ *   held, else 0
+ */
 export function Touch_GetMoveInput() {
 
 	return { forward: forwardHeld ? 1 : 0, right: touch_strafe.value !== 0 || strafeHeld ? stickX : 0 };
@@ -1078,10 +1134,14 @@ export function Touch_GetMoveInput() {
 /*
 =================
 Touch_GetStick
-
-The stick as { x, y }, each -1 to 1 (right and up are positive), with a dead zone in the middle
 =================
 */
+/**
+ * The stick's current push, read by in_web.js's `IN_Move` each frame to aim and turn. A new object each call.
+ *
+ * @returns {{ x: number, y: number }} each -1 to 1 (right and up are positive), with a dead zone in the middle (the
+ *   inner 12% of the radius reads 0, the rest is rescaled to the full range); 0, 0 when released
+ */
 export function Touch_GetStick() {
 
 	return { x: stickX, y: stickY };
@@ -1091,10 +1151,16 @@ export function Touch_GetStick() {
 /*
 =================
 Touch_GetLookDelta
-
-Returns accumulated look delta and clears it
 =================
 */
+/**
+ * Returns the accumulated look delta since the last call and clears it: screen drags (CSS pixels times 3) and
+ * gyroscope turns (degrees times 8, with the sign the screen orientation needs). Read by in_web.js's `IN_Move` each
+ * frame; Newer Game's bestiary calls it to throw pending look away.
+ *
+ * @returns {{ x: number, y: number }} `x` positive to the right (the caller turns yaw by minus it), `y` positive
+ *   downwards (the caller adds it to pitch); a new object each call
+ */
 export function Touch_GetLookDelta() {
 
 	const delta = { x: lookDeltaX, y: lookDeltaY };
@@ -1107,10 +1173,14 @@ export function Touch_GetLookDelta() {
 /*
 =================
 Touch_CheckJump
-
-Returns true if jump was triggered
 =================
 */
+/**
+ * Returns true if jump was triggered since the last call, and clears it. In this version nothing sets the flag (the
+ * JUMP button sets `in_jump` directly) and nothing calls this, so it always returns false.
+ *
+ * @returns {boolean} whether a jump was pending
+ */
 export function Touch_CheckJump() {
 
 	if ( jumpImpulse ) {
@@ -1127,11 +1197,15 @@ export function Touch_CheckJump() {
 /*
 =================
 Touch_BottomInset
-
-How many CSS pixels of the bottom of the screen the controls take up (the portrait panel), so the
-status bar can sit above them. 0 in landscape and when the controls are not up.
 =================
 */
+/**
+ * How many CSS pixels of the bottom of the screen the controls take up (the portrait panel), so the status bar can
+ * sit above them. Read by gl_screen.js (`SCR_TouchInset`, through `SCR_SetExternals` wired by host.js), which converts
+ * it to screen pixels.
+ *
+ * @returns {number} the portrait panel's height in CSS pixels; 0 in landscape and when the controls are not up
+ */
 export function Touch_BottomInset() {
 
 	return enabled && layout !== null ? layout.panelHeight : 0;
@@ -1141,14 +1215,20 @@ export function Touch_BottomInset() {
 /*
 =================
 Touch_UpdateFov
-
-On a phone, Newer Game starts with a wider view: 100 held upright and 120 on its side (the field of
-view cvar is left alone once the player has set their own).  Called every frame.
 =================
 */
 let fovAuto = 0; // the value set here, or 0
 let fovManaged = true;
 
+/**
+ * On a phone, Newer Game starts with a wider view: 100 held upright and 120 on its side (the field of view cvar is
+ * left alone once the player has set their own). Called every frame by in_web.js's `IN_UpdateTouch`. Also lays the
+ * controls out again when the window changed shape (the device was turned). Outside Newer Game it puts `fov` back to
+ * 90 if it still holds the value set here. Once the player's `fov` differs from what this set (or from 90 before it
+ * set anything), it stops managing the cvar for the rest of the page's life. Does nothing before `Touch_Init`.
+ *
+ * @param {boolean} newer whether Newer Game is on (`R_NewerGame()`)
+ */
 export function Touch_UpdateFov( newer ) {
 
 	if ( ! initialized || layout === null ) return;
@@ -1188,10 +1268,12 @@ export function Touch_UpdateFov( newer ) {
 /*
 =================
 Touch_ShowMenu
-
-Show menu touch overlay
 =================
 */
+/**
+ * Show menu touch overlay: the full-screen layer whose taps go to the menu callback. Called by in_web.js's
+ * `IN_UpdateTouch` while a menu is up or a demo plays (a tap then opens the menu). Does nothing before `Touch_Init`.
+ */
 export function Touch_ShowMenu() {
 
 	if ( ! initialized || ! menuOverlay ) return;
@@ -1203,10 +1285,12 @@ export function Touch_ShowMenu() {
 /*
 =================
 Touch_HideMenu
-
-Hide menu touch overlay
 =================
 */
+/**
+ * Hide menu touch overlay, when in_web.js's `IN_UpdateTouch` finds the player in the game or at the console. Does
+ * nothing before `Touch_Init`.
+ */
 export function Touch_HideMenu() {
 
 	if ( ! initialized || ! menuOverlay ) return;
@@ -1218,11 +1302,16 @@ export function Touch_HideMenu() {
 /*
 =================
 Touch_SetMenuCallback
-
-Set the callback function for menu touch events
-Callback receives (touchX, touchY, screenWidth, screenHeight)
 =================
 */
+/**
+ * Set the callback function for menu touch events, once from in_web.js's `IN_Init` (it passes menu.js's
+ * `M_TouchInput`). Each touch start on the menu overlay first unlocks audio, then calls it with the first touch.
+ * Kept until replaced.
+ *
+ * @param {?function( number, number, number, number ): *} callback receives (touchX, touchY, screenWidth,
+ *   screenHeight): the touch's client position and the window's inner size, all CSS pixels; null stops the calls
+ */
 export function Touch_SetMenuCallback( callback ) {
 
 	menuTouchCallback = callback;

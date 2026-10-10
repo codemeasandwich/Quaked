@@ -54,6 +54,11 @@ export const ca_connected = 2; // valid netcon, talking to a server
 
 export class usercmd_t {
 
+	/**
+	 * One frame's movement command (WinQuake client.h `usercmd_t`): view angles in degrees and the intended
+	 * forward/side/up velocities in Quake units per second, all zero. `cl.cmd` holds the last one sent; CL_ClearState
+	 * replaces it at each signon and CL_SendCmd builds a fresh one each frame it sends.
+	 */
 	constructor() {
 
 		this.viewangles = new Float32Array( 3 );
@@ -69,6 +74,11 @@ export class usercmd_t {
 
 export class lightstyle_t {
 
+	/**
+	 * One light style (WinQuake client.h `lightstyle_t`): `map` the brightness string of letters 'a'..'z' set by
+	 * svc_lightstyle, `length` its character count. Empty until the server sends it. The MAX_LIGHTSTYLES entries of
+	 * `cl_lightstyle` are made once at load and replaced by CL_ClearState at each signon.
+	 */
 	constructor() {
 
 		this.length = 0;
@@ -80,6 +90,11 @@ export class lightstyle_t {
 
 export class scoreboard_t {
 
+	/**
+	 * One player's scoreboard slot (WinQuake client.h `scoreboard_t`): name, entertime, frags, `colors` (two 4-bit
+	 * fields, top and bottom shirt colour) and a 256-entry palette `translations` table used as the player entity's
+	 * colormap. CL_ParseServerInfo allocates `cl.maxclients` of them into `cl.scores` at each server signon.
+	 */
 	constructor() {
 
 		this.name = '';
@@ -94,6 +109,11 @@ export class scoreboard_t {
 
 export class cshift_t {
 
+	/**
+	 * One screen colour shift (WinQuake client.h `cshift_t`): `destcolor` RGB 0..255 and `percent` its strength 0..256.
+	 * `cl.cshifts` and `cl.prev_cshifts` hold NUM_CSHIFTS of them (contents, damage, bonus, powerup), made with each
+	 * client_state_t.
+	 */
 	constructor() {
 
 		this.destcolor = new Int32Array( 3 );
@@ -105,6 +125,12 @@ export class cshift_t {
 
 export class dlight_t {
 
+	/**
+	 * One dynamic light (WinQuake client.h `dlight_t`): world-space `origin` and `radius` in Quake units, `die` the
+	 * cl.time in seconds after which it stops lighting, `decay` the radius dropped each second, `minlight` below which it
+	 * is not added, `key` its owner's entity number (0 for none). The MAX_DLIGHTS slots of `cl_dlights` are made at load,
+	 * replaced by CL_ClearState at each signon, and reused through CL_AllocDlight.
+	 */
 	constructor() {
 
 		this.origin = new Float32Array( 3 );
@@ -120,6 +146,11 @@ export class dlight_t {
 
 export class beam_t {
 
+	/**
+	 * One lightning-style beam (WinQuake client.h `beam_t`): the owning `entity` number, its `model` (model_t, null when
+	 * the slot is free), `endtime` the server time in seconds it lasts until, and world-space `start`/`end` points in
+	 * Quake units. The MAX_BEAMS slots of `cl_beams` are made at load and replaced by CL_ClearState at each signon.
+	 */
 	constructor() {
 
 		this.entity = 0;
@@ -134,6 +165,11 @@ export class beam_t {
 
 export class kbutton_t {
 
+	/**
+	 * One input button such as +forward (WinQuake client.h `kbutton_t`): `down` the up-to-two key numbers holding it,
+	 * `state` bit flags (1 down now, 2 went down this frame, 4 went up this frame) kept by cl_input.js's KeyDown/KeyUp.
+	 * cl_input.js makes one per button at load; they live for the session.
+	 */
 	constructor() {
 
 		this.down = new Int32Array( 2 ); // key nums holding it down
@@ -149,6 +185,10 @@ export class kbutton_t {
 //
 export class packet_entities_t {
 
+	/**
+	 * A delta-compressed entity snapshot: `num_entities` used entries of `entities`, a preallocated array of
+	 * MAX_PACKET_ENTITIES_LOCAL entity_state_t reused in place. cl_pred.js keeps one per entity frame of its ring buffer.
+	 */
 	constructor() {
 
 		this.num_entities = 0;
@@ -168,6 +208,14 @@ export class packet_entities_t {
 //
 export class entity_t {
 
+	/**
+	 * A client-side entity the renderer draws (WinQuake client.h `entity_t`): baseline, the last two network origins and
+	 * angles (index 0 newest) that CL_RelinkEntities lerps into `origin`/`angles` (world space, Quake units and degrees),
+	 * model, frame, skin, effects and the renderer's efrag/visframe bookkeeping. The MAX_EDICTS `cl_entities`, the
+	 * static and temporary entity pools and `cl.viewent` (the gun) are made at module load; CL_ClearState replaces the
+	 * `cl_entities` and `cl_temp_entities` entries and `cl.viewent` with fresh ones at each signon (the static pool is
+	 * reused in place, counted by `cl.num_statics`).
+	 */
 	constructor() {
 
 		this.forcelink = false; // model changed
@@ -209,6 +257,11 @@ export class entity_t {
 //
 export class efrag_t {
 
+	/**
+	 * One link between a static entity and a BSP leaf it touches (WinQuake client.h `efrag_t`), threaded on both the
+	 * leaf's and the entity's lists. The MAX_EFRAGS pool `cl_efrags` is made once at load; CL_ClearState clears every
+	 * link and re-chains the pool through `entnext` as the `cl.free_efrags` free list at each signon.
+	 */
 	constructor() {
 
 		this.leaf = null;
@@ -226,6 +279,11 @@ export class efrag_t {
 //
 export class client_static_t {
 
+	/**
+	 * The client state that persists through any number of server connections (WinQuake client.h `client_static_t`):
+	 * connection state (`ca_disconnected` at start), demo loop and recording/playback state, timedemo counters, signon
+	 * progress and the outgoing `message` buffer. The single instance `cls` is made at module load and never replaced.
+	 */
 	constructor() {
 
 		this.state = ca_disconnected;
@@ -266,6 +324,11 @@ export class client_static_t {
 //
 export class client_state_t {
 
+	/**
+	 * The per-server client state (WinQuake client.h `client_state_t`): stats, items, colour shifts, view angles and
+	 * velocity, message timestamps (`mtime`, seconds), cl.time, precache lists, level name and the gun entity. The single
+	 * instance `cl` is made at module load; CL_ClearState wipes its fields back to these values at every server signon.
+	 */
 	constructor() {
 
 		this.movemessages = 0; // since connecting to this server
@@ -384,6 +447,13 @@ for ( let i = 0; i < MAX_BEAMS; i ++ ) cl_beams.push( new beam_t() );
 export let cl_numvisedicts = 0;
 export const cl_visedicts = new Array( MAX_VISEDICTS ).fill( null );
 
+/**
+ * Sets the count of entities in `cl_visedicts` to draw this frame (an ES module importer cannot assign the live
+ * `cl_numvisedicts` binding itself). CL_RelinkEntities resets it to 0 each frame; it, CL_UpdateTEnts and the renderer's
+ * leaf walk (gl_rsurf.js, storing efrag entities) then add to it.
+ *
+ * @param {number} val the new count, 0..MAX_VISEDICTS
+ */
 export function set_cl_numvisedicts( val ) {
 
 	cl_numvisedicts = val;
@@ -399,6 +469,17 @@ CL_AllocDlight
 
 ===============
 */
+/**
+ * Hands out a dynamic light slot (WinQuake cl_main.c): the slot already owned by `key` if there is one, else the first
+ * slot whose `die` time has passed, else slot 0. The slot is cleared (origin, radius, die, decay, minlight all 0) and
+ * given `key`; the caller then sets origin, radius and die. Called while relinking entities each frame (muzzle flashes,
+ * bright/dim lights, rockets), by temporary-entity effects and by the Newer Game fireball and lightning renderers.
+ *
+ * @param {number} key owning entity number, so the owner's light is reused frame to frame instead of piling up; 0 for
+ *   an unowned light, which never matches an existing slot
+ * @returns {dlight_t} the slot in `cl_dlights`; it lives until CL_ClearState replaces the array at the next signon, and
+ *   another caller may take it once its `die` time passes
+ */
 export function CL_AllocDlight( key ) {
 
 	// first look for an exact key match
@@ -455,12 +536,18 @@ export function CL_AllocDlight( key ) {
 /*
 =================
 CL_PlayerLightning
-
-The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
-(r_lightning.js, card [30a]) and its burn on the walls (r_wallburn.js, card [30c]): { start, end } or null. Other beams
-(the Shambler's, Chthon's, the grapple's) are not it.
 =================
 */
+/**
+ * The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
+ * (r_lightning.js, card [30a]) and its burn on the walls (r_wallburn.js, card [30c]). Other beams (the Shambler's,
+ * Chthon's, the grapple's) are not it. Polled by those renderers each frame they draw. A beam counts while its slot in
+ * `cl_beams` holds `progs/bolt2.mdl` for `cl.viewentity` and its `endtime` is not before the newest server message
+ * time `cl.mtime[0]`.
+ *
+ * @returns {?{ start: Array<number>, end: Array<number> }} fresh copies of the beam's world-space endpoints (Quake
+ *   units, safe to keep), or null when the player's beam is not live
+ */
 export function CL_PlayerLightning() {
 
 	const serverTime = cl.mtime[ 0 ];

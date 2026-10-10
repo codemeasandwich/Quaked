@@ -176,6 +176,13 @@ export let r_visframecount = 0; // bumped when going to a new PVS
 // frustum planes (4 planes for view frustum)
 export class mplane_t {
 
+	/**
+	 * An empty plane, filled each frame by `R_SetFrustum` for the four `frustum` planes (allocated once at module load
+	 * and reused). `normal` (unit vector, world space) points into the view volume; `dist` is the plane's distance from
+	 * the world origin along it (Quake units); `type` selects the fast axial test (0..2) or the general one
+	 * (`PLANE_ANYZ` here); `signbits` is signx + signy<<1 + signz<<2 of `normal`, for `BoxOnPlaneSide`. The world's own
+	 * planes use gl_model.js's `mplane_t`, not this class.
+	 */
 	constructor() {
 
 		this.normal = new Float32Array( 3 );
@@ -222,16 +229,82 @@ export let gldepthmin = 0;
 export let gldepthmax = 1;
 
 // Setter functions for mutable state (ES module imports are read-only)
+/**
+ * Sets `r_visframecount`, the PVS mark counter compared against leaf/node `visframe` (no caller in src at present).
+ *
+ * @param {number} v new counter value (integer)
+ */
 export function set_r_visframecount( v ) { r_visframecount = v; }
+/**
+ * Bumps `r_visframecount` when the view enters a new PVS; called by gl_rsurf.js `R_MarkLeaves`. Reset to 0 by
+ * `R_NewMap`.
+ *
+ * @returns {number} the new counter value, the mark the leaves and nodes now visible are stamped with
+ */
 export function inc_r_visframecount() { return ++ r_visframecount; }
+/**
+ * Replaces the `r_worldentity` binding (no caller in src at present; `R_Init` creates it and `R_NewMap` resets it
+ * in place, keeping its identity).
+ *
+ * @param {entity_t} value the entity the world model is drawn as
+ */
 export function set_r_worldentity( value ) { r_worldentity = value; }
+/**
+ * Sets `currententity`, the entity being drawn (WinQuake's global pointer); gl_rsurf.js `R_DrawWorld` sets it to
+ * `r_worldentity`. Kept until the next draw call replaces it.
+ *
+ * @param {?entity_t} value entity now being drawn
+ */
 export function set_currententity( value ) { currententity = value; }
+/**
+ * Sets the `c_brush_polys` counter reported by `r_speeds` (no caller in src at present; `R_SetupFrame` and
+ * `R_RenderView` zero it directly).
+ *
+ * @param {number} v new count of world/brush polygons drawn this frame
+ */
 export function set_c_brush_polys( v ) { c_brush_polys = v; }
+/**
+ * Counts one more world or brush polygon drawn this frame (gl_rsurf.js, per surface drawn); printed as `wpoly` by
+ * `r_speeds`.
+ *
+ * @returns {number} the new count
+ */
 export function inc_c_brush_polys() { return ++ c_brush_polys; }
+/**
+ * Sets `currenttexture`, the last bound texture number kept to avoid unnecessary texture sets; gl_rsurf.js
+ * `R_DrawWorld` resets it to -1 each frame.
+ *
+ * @param {number} v texture number, or -1 for none
+ */
 export function set_currenttexture( v ) { currenttexture = v; }
+/**
+ * Sets `r_oldviewleaf`, the view leaf the PVS was last marked for; gl_rsurf.js `R_MarkLeaves` sets it to
+ * `r_viewleaf` after re-marking. `R_SetupFrame` and `R_NewMap` also set it directly.
+ *
+ * @param {?mleaf_t} v leaf of the world model, or null to force re-marking
+ */
 export function set_r_oldviewleaf( v ) { r_oldviewleaf = v; }
+/**
+ * Sets `r_viewleaf`, the world leaf the eye is in (no caller in src at present; `R_SetupFrame` sets it from
+ * `Mod_PointInLeaf` each frame and `R_NewMap` clears it).
+ *
+ * @param {?mleaf_t} v leaf of the world model
+ */
 export function set_r_viewleaf( v ) { r_viewleaf = v; }
+/**
+ * Flags that a mirror surface is in view this frame; gl_rsurf.js `R_MirrorChain` sets it on the first surface with
+ * the mirror texture ('window02_1') while `r_mirroralpha` is not 1, and `R_RenderView` clears it at the start of each
+ * frame. While set, `R_MarkLeaves` keeps the main view's visibility; `R_Mirror` only warns once (not implemented).
+ *
+ * @param {boolean} v true when a mirror surface is visible
+ */
 export function set_mirror( v ) { mirror = v; }
+/**
+ * Records the plane of the visible mirror surface (gl_rsurf.js `R_MirrorChain`, alongside `set_mirror( true )`);
+ * kept until a later frame's mirror surface replaces it.
+ *
+ * @param {mplane_t} v the mirror surface's plane (gl_model.js `mplane_t`)
+ */
 export function set_mirror_plane( v ) { mirror_plane = v; }
 
 export let glx = 0, gly = 0, glwidth = 0, glheight = 0;
@@ -254,10 +327,16 @@ export const gl_ztrick = new cvar_t( 'gl_ztrick', '1' );
 
 //============================================================================
 // R_CullBox
-//
-// Returns true if the box is completely outside the frustum
 //============================================================================
 
+/**
+ * Returns true if the box is completely outside the frustum: behind any one of this frame's four `frustum` planes
+ * (set by `R_SetFrustum`). Called by gl_rsurf.js for each BSP node it walks and for each brush entity it draws.
+ *
+ * @param {ArrayLike<number>} mins box minimum corner (three floats, Quake units, world space)
+ * @param {ArrayLike<number>} maxs box maximum corner (three floats, Quake units, world space)
+ * @returns {boolean} true when the box can be skipped; false when any part of it may be in view
+ */
 export function R_CullBox( mins, maxs ) {
 
 	for ( let i = 0; i < 4; i ++ ) {
@@ -294,6 +373,14 @@ function SignbitsForPlane( out ) {
 // R_SetFrustum
 //============================================================================
 
+/**
+ * Builds the four side planes of the view frustum into `frustum` from `vpn`, `vright`, `vup`, `r_origin` and
+ * `r_refdef.fov_x` / `fov_y` (degrees): at exactly 90 degrees horizontally the normals are sums and differences of the
+ * view vectors, otherwise `vpn` is rotated by 90 - fov/2 degrees about `vup` (left/right) and `vright` (top/bottom).
+ * Normals point into the view; each plane gets `type` `PLANE_ANYZ`, its `dist` and its `signbits`. Called every frame
+ * by `R_RenderScene` after `R_SetupFrame`, and again by `R_SetupGL` when the Bestiary has turned the camera. Mutates
+ * the shared `frustum` planes, read by `R_CullBox` until the next call.
+ */
 export function R_SetFrustum() {
 
 	if ( r_refdef.fov_x === 90 ) {
@@ -343,6 +430,16 @@ const _surfaceBloodContact=point=>{
  const hit=_bloodRay.intersectObject(mesh,false)[0];return hit?.uv?[hit.uv.x,hit.uv.y]:null;
 };
 const _surfaceBloodVisible=(a,b)=>{const trace=R_ShellTrace(cl.worldmodel,a,b,0,cl_entities);return !trace.startsolid&&!trace.allsolid&&trace.fraction>=.999;};
+/**
+ * Starts a rendered view, first thing in `R_RenderScene`: forces `r_fullbright` to 0 in multiplayer (no cheats),
+ * animates the light styles, bumps `r_framecount`, copies `r_refdef.vieworg` to `r_origin` and the view angles to
+ * `vpn` / `vright` / `vup`, and finds the leaf the eye is in (`r_oldviewleaf` keeps the previous one). With a world
+ * loaded it also tells Newer Game's screen drops and held-weapon surface (blood) where the eye is and what it is in,
+ * steps the weapon surface once fully signed on (`cls.signon` 4), and flags the post-processing as underwater in
+ * water, slime or lava (contents -3, -4, -5). Then it computes the view blend through `V_SetContentsColor` /
+ * `V_CalcBlend` (view.js, installed by `R_SetExternals`; no-ops until then) and zeroes `c_brush_polys` and
+ * `c_alias_polys`.
+ */
 export function R_SetupFrame() {
 
 	// don't allow cheats in multiplayer
@@ -426,11 +523,19 @@ function R_ComputeViewport() {
 
 //============================================================================
 // R_SetupGL
-//
-// Instead of raw GL matrix setup, we configure the Three.js camera
-// to match Quake's projection and modelview matrices.
 //============================================================================
 
+/**
+ * Instead of raw GL matrix setup, we configure the Three.js camera to match Quake's projection and modelview matrices.
+ * Called every frame by `R_RenderScene` after `R_SetFrustum`. Creates `camera` on the first call (vertical fov
+ * `r_refdef.fov_y` degrees, the view rectangle's aspect, near 4 and far 4096 Quake units) and parents it to the XR rig;
+ * later calls update fov, aspect and the clip planes (divided by `XR_SCALE`, i.e. metres, in XR). Outside XR the
+ * camera's world matrix is set directly from `r_refdef.vieworg` and the view angles; in XR the rig is placed there
+ * (metres) and Three.js composes the headset pose. Then the respawn camera and the Bestiary may move the camera (the
+ * Bestiary also rewrites `vpn` / `vright` / `vup` and the frustum), the inverse view matrix is copied to
+ * `r_world_matrix`, the renderer viewport is set to the 3D view's rectangle (outside XR) and `glx` / `gly` /
+ * `glwidth` / `glheight` are set to 0, 0, `vid.width`, `vid.height`. The camera lives for the session.
+ */
 export function R_SetupGL() {
 
 	const screenaspect = r_refdef.vrect.width / r_refdef.vrect.height;
@@ -618,6 +723,12 @@ export function R_SetupGL() {
 // R_Clear
 //============================================================================
 
+/**
+ * Clears the current render target before a frame is built, once per frame from `R_RenderView` (after the HDR target
+ * is bound when post-processing runs). Colour (to opaque black) and depth are cleared when `gl_clear` is set or the
+ * post-processing is active, otherwise depth only; `gldepthmin` / `gldepthmax` are reset to 0 / 1. Does nothing
+ * before the renderer exists.
+ */
 export function R_Clear() {
 
 	if ( ! renderer ) return;
@@ -645,6 +756,14 @@ export function R_Clear() {
 // R_DrawEntitiesOnList
 //============================================================================
 
+/**
+ * Draws this frame's visible entities (`cl_visedicts[ 0 .. cl_numvisedicts - 1 ]`), skipped entirely when
+ * `r_drawentities` is 0. First pass: alias models (except the player's lightning-gun bolt models when r_lightning.js
+ * draws the beam) and brush models (brush models are left as they are during the classic pass of the split title
+ * demo); second pass: sprites, because of alpha blending (except explosions replaced by the Newer Fireball). Called
+ * every frame by `R_RenderScene`, and by `R_ClassicOn` for the classic half of the title demo. Leaves
+ * `currententity` at the last entity looked at.
+ */
 export function R_DrawEntitiesOnList() {
 
 	if ( ! r_drawentities.value )
@@ -741,6 +860,18 @@ const _xrWeaponAlignQuat = new THREE.Quaternion().setFromRotationMatrix(
 	)
 );
 
+/**
+ * Draws the held weapon (`cl.viewent`), every frame from `R_RenderView` after the scene is built, and from
+ * `R_ClassicOn` for the classic half of the title demo. While the Bestiary holds the input the gun mesh is taken out
+ * of the scene. Nothing is drawn when `r_drawviewmodel` or `r_drawentities` is 0, in chase view, during an envmap
+ * capture, without a client, when dead (`STAT_HEALTH` <= 0), or with the Ring of Shadows (`IT_INVISIBILITY`) unless
+ * Newer Game's Unseen World vision is showing (then the gun is tagged as a vision subject). In XR the gun is placed at
+ * the controller pose (metres times `XR_SCALE`, Quake units); otherwise it gets a cloned material (kept per base
+ * material on the entity until map teardown, so an asynchronously compiling clone is not disposed on a weapon
+ * switch), draws last (`renderOrder` 999) with the depth range squeezed to 0..0.3 for the main camera only, so it is
+ * never inside a wall, and is pulled back along the view by Newer Game's per-weapon pullback (Quake units). Sets
+ * `currententity` to the view entity and records the frame the gun was placed in (for the shotgun's muzzle).
+ */
 export function R_DrawViewModel() {
 	if ( R_BestiaryInputLocked() ) { const mesh=cl?.viewent?._aliasMesh;if(mesh?.parent===scene)scene.remove(mesh);return; }
 
@@ -1559,15 +1690,22 @@ function R_DrawSpriteModel( e ) {
 
 //============================================================================
 // R_PolyBlend
-//
-// Draws a full-screen color blend for damage flashes, powerups, etc.
-// In Three.js, we use a screen-space overlay.
 //============================================================================
 
 let polyBlendMesh = null;
 let polyBlendScene = null;
 let polyBlendCamera = null;
 
+/**
+ * Draws a full-screen color blend for damage flashes, powerups, etc. In Three.js, we use a screen-space overlay: an
+ * orthographic full-screen quad in its own scene, created on first use and kept for the session. Called every frame
+ * by `R_RenderView` after the 3D view is presented, except in XR (a 2D overlay does not work in stereo). Skipped when
+ * `gl_polyblend` is 0, `v_blend`'s alpha is 0 or there is no renderer. When the per-pixel water optics are active and
+ * the eye is in water or slime (contents -3, -4), `v_liquid_blend` (the same flashes without the contents tint) is
+ * used instead, since the optics already colour the view. The blend's RGB is sRGB 0..1 and its alpha 0..1. During the
+ * split title demo the left half gets that blend and the classic (right) half, or the whole view when the split is
+ * full, gets `v_blend`; the renderer's scissor state is restored afterwards.
+ */
 export function R_PolyBlend() {
 
 	if ( gl_polyblend.value === 0 )
@@ -1640,10 +1778,16 @@ export function R_PolyBlend() {
 
 //============================================================================
 // R_RenderScene
-//
-// r_refdef must be set before the first call
 //============================================================================
 
+/**
+ * Builds the main view's scene for this frame (`r_refdef` must be set before the first call): starts the powerup,
+ * rite-veil and portal frames (portal views only outside XR and envmap captures), runs `R_SetupFrame`,
+ * `R_SetFrustum`, `R_SetupGL` and `R_MarkLeaves`, draws the world (which adds the static entities to the list), the
+ * axe-cut corpses, the torch fires and the entity list, lets the Bestiary look for a first sighting, removes from the
+ * scene every entity mesh that was there last frame but was not drawn this frame, and updates the dynamic lights and
+ * particles. Called once per frame by `R_RenderView`; it does not draw to the screen.
+ */
 export function R_RenderScene() {
 
 	// Begin new frame: clear the "this frame" set
@@ -1771,10 +1915,23 @@ function R_ClassicOff() {
 
 //============================================================================
 // R_RenderView
-//
-// r_refdef must be set before the first call
 //============================================================================
 
+/**
+ * Renders the 3D view for this frame (`r_refdef` must be set before the first call); called once per frame by view.js
+ * `V_RenderView` after the view is calculated and the dynamic lights are pushed. Does nothing when `r_norefresh` is set or no world model is loaded. Clears `mirror`,
+ * starts the HDR post-processing outside XR and envmap captures (sized to the view's physical pixels), clears the
+ * target, advances Newer Game's per-frame effects (textures, prewarm, level views, decals, shells, mist, fireballs,
+ * ripples, waves), builds the scene (`R_RenderScene`), places the flashlight and the held gun, then the shotgun,
+ * lightning, wall-burn and depth-of-field effects and the water surfaces, and renders the teleporter portal views.
+ * It then presents the frame: through the post-processing (compiling the new level's shaders on its second frame,
+ * lights, rite veil, the split title demo's classic half) or straight to the screen, with the camera moved into the
+ * next level's window while a seamless level crossing is pending. Finally it draws the screen blend (not in XR),
+ * removes the water meshes not drawn, reports the loading intro's readiness while it holds the screen, and with
+ * `r_speeds` prints the frame's milliseconds and world (`wpoly`) and entity (`epoly`) polygon counts.
+ *
+ * @throws {TypeError} when called before `R_Init` has created `r_worldentity`
+ */
 export function R_RenderView() {
 
 	let time1, time2;
@@ -2038,10 +2195,17 @@ function R_Mirror() {
 
 //============================================================================
 // R_Init
-//
-// Called at startup to initialize the renderer
 //============================================================================
 
+/**
+ * Called at startup to initialize the renderer: once, from gl_rmisc.js `R_Init` (run by `Host_Init`), after the
+ * classic `r_*` / `gl_*` cvars are registered. Installs the post-processing's G-buffer material patch, creates
+ * `r_worldentity` (deferred from module scope because of the import cycle) and the Three.js `scene` (black background;
+ * kept for the session), sets all 256 light styles to the normal value 264 ('m'), registers Newer Game's renderer
+ * cvars, starts the performance stages, gives the server its liquid-and-portal visibility links, the level-view
+ * snapshots and the level warmer, initialises the flashlight and the particles (handing them the scene) and the rock
+ * field's limits for this renderer. The camera is created later, by the first `R_SetupGL`.
+ */
 export function R_Init() {
 
 	Con_Printf( 'R_Init' );
@@ -2138,8 +2302,6 @@ export function R_Init() {
 
 //============================================================================
 // R_NewMap
-//
-// Called when a new map is loaded
 //============================================================================
 
 // A new level's materials are compiled (and their textures put on the card) on its first
@@ -2263,6 +2425,17 @@ function R_WarmShaders( renderer, scene, camera, extraMaterials=[], extraTexture
 
 }
 
+/**
+ * Called when a new map is loaded: from gl_rmisc.js `R_NewMap`, which `CL_ParseServerInfo` runs once the world model
+ * is in `cl.worldmodel`. Releases the demon bakes; shows the loading welcome for a local single-player Newer game
+ * (`r_hdr` on, not a demo); clears the axe corpses and powerups; schedules the shader compile and resets the loading
+ * intro's readiness; clears the view leaves; resets `r_worldentity` in place (WinQuake memsets one static entity, so
+ * its identity is kept) and points it at the new world; rerolls the Newer skins; sets `r_framecount` to 1 and
+ * `r_visframecount` to 0; clears the particles; re-wires and clears the per-map effects (decals, fireballs, torch fire,
+ * impact ripples, lightning, depth of field, wall burn, waves, shotgun, shells, mist, screen drops, muzzle probe,
+ * rite veil); disposes every cached entity geometry and material and the sprite material cache from the previous
+ * map; rebuilds the lightmaps; and sets up the views into the next levels for this level's seamless crossings.
+ */
 export function R_NewMap() {
 	R_DemonBakeRelease();
 	// All paired local Newer arrivals share the existing physics/input hold;

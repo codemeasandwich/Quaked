@@ -276,6 +276,23 @@ const _vid = {
 	get height() { return Draw_GetVirtualHeight(); }
 };
 
+/**
+ * Hands keys.js the client state it reads without importing the client (WinQuake reads the `cls` and `vid` globals).
+ * Called once from `Host_Init` (host.js) after the console and screen are wired, with `{ cls, vid }`; a key that is
+ * missing or falsy leaves the current value in place.
+ *
+ * Keys and the defaults used until it is wired:
+ * - `cls` (`client_static_t`): `state` is read after Enter in the console (0, ca_disconnected, forces
+ *   `SCR_UpdateScreen`) and `demoplayback` by `Key_Event` (most keys then bring up the menu). Default
+ *   `{ state: 0, demoplayback: false, signon: 0 }`.
+ * - `vid` (`viddef_t`, `width`/`height` in CSS pixels): stored as the real video size. Default
+ *   `{ height: 480, width: 640 }`. Nothing in this module reads it at present; line layout uses the virtual size from
+ *   `Draw_GetVirtualWidth`/`Draw_GetVirtualHeight` instead.
+ *
+ * The objects are kept by reference for the page's lifetime, so later changes to them are seen here.
+ *
+ * @param {{ cls?: client_static_t, vid?: viddef_t }} externals the references to keep
+ */
 export function Key_SetExternals( externals ) {
 
 	if ( externals.cls ) _cls = externals.cls;
@@ -529,12 +546,17 @@ function Key_Message( key ) {
 /*
 ===================
 Key_StringToKeynum
-
-Returns a key number to be used to index keybindings[] by looking at
-the given string. Single ascii characters return themselves, while
-the K_* names are matched up.
 ===================
 */
+/**
+ * Returns a key number to be used to index keybindings[] by looking at the given string. Single ascii characters
+ * return themselves, while the K_* names are matched up (case-insensitively, against the `keynames` table: `ENTER`,
+ * `MOUSE1`, `SEMICOLON`...). Used by the `bind` and `unbind` console commands.
+ *
+ * @param {string} str a single character, or a key name without the `K_` prefix
+ * @returns {number} the key number (0..255; a single character returns its UTF-16 code unit as is, so it is not
+ *   lowercased), or -1 when `str` is empty or not a known name
+ */
 export function Key_StringToKeynum( str ) {
 
 	if ( ! str || str.length === 0 )
@@ -557,11 +579,16 @@ export function Key_StringToKeynum( str ) {
 /*
 ===================
 Key_KeynumToString
-
-Returns a string (either a single ascii char, or a K_* name) for the
-given keynum.
 ===================
 */
+/**
+ * Returns a string (either a single ascii char, or a K_* name) for the given keynum. Used when writing bindings
+ * (`Key_WriteBindings`), by the menu's key-binding screen, and in `Key_Event`'s "is unbound" notice.
+ *
+ * @param {number} keynum key number (0..255), or -1
+ * @returns {string} the character for printable ASCII 33..126; otherwise the name from the `keynames` table (e.g.
+ *   `SPACE`, `F4`); `'<KEY NOT FOUND>'` for -1 and `'<UNKNOWN KEYNUM>'` for a number with no name
+ */
 export function Key_KeynumToString( keynum ) {
 
 	if ( keynum === - 1 )
@@ -586,6 +613,15 @@ export function Key_KeynumToString( keynum ) {
 Key_SetBinding
 ===================
 */
+/**
+ * Binds a command string to a key, replacing any earlier binding; `''` clears it. Called by the `bind`, `unbind` and
+ * `unbindall` commands and by the menu's key-binding screen. The binding lives in `keybindings` for the session and
+ * is saved only when `Host_WriteConfiguration` writes `Key_WriteBindings` to localStorage (`quake_config`).
+ *
+ * @param {number} keynum key number (0..255); -1 (an unknown key name) does nothing
+ * @param {string} binding console text run on a press (a leading `+` makes it a button command that also runs its
+ *   `-` form on release)
+ */
 export function Key_SetBinding( keynum, binding ) {
 
 	if ( keynum === - 1 )
@@ -680,10 +716,15 @@ function Key_Bind_f() {
 /*
 ============
 Key_WriteBindings
-
-Writes lines containing "bind key value"
 ============
 */
+/**
+ * Writes lines containing "bind key value", one per bound key in key-number order. Called by
+ * `Host_WriteConfiguration` (host.js), which saves the text with the cvars to localStorage under `quake_config`
+ * (WinQuake writes it to config.cfg).
+ *
+ * @returns {string} lines of the form `bind "KEY" "command"\n`; empty when nothing is bound
+ */
 export function Key_WriteBindings() {
 
 	let result = '';
@@ -706,6 +747,12 @@ export function Key_WriteBindings() {
 Key_Init
 ===================
 */
+/**
+ * Sets up key handling once at startup, from `Host_Init` before the menu and `quake.rc`: resets the 32 console edit
+ * lines to the `]` prompt, marks which keys the console takes (printable ASCII except `` ` `` and `~`, plus the
+ * editing, arrow, page, shift and wheel keys), builds the US-keyboard shift table, marks Escape and F1..F12 as keys the
+ * menu leaves to their bindings, and registers the `bind`, `unbind` and `unbindall` commands.
+ */
 export function Key_Init() {
 
 	for ( let i = 0; i < 32; i ++ ) {
@@ -782,9 +829,6 @@ export function Key_Init() {
 /*
 ===================
 Key_Event
-
-Called by the system between frames for both key up and key down events
-Should NOT be called during an interrupt!
 ===================
 */
 // Which devices hold each key down (card [36]): the keyboard and mouse ('kbd', the default), the touch screen, a game
@@ -792,6 +836,26 @@ Should NOT be called during an interrupt!
 // so one device letting go never cuts an action another still holds; a holder's own repeats pass as before.
 const keyHolders = new Map();
 
+/**
+ * Called by the system between frames for both key up and key down events. Should NOT be called during an interrupt!
+ * Here the callers are the platform's event handlers: keyboard, mouse buttons and wheel, and gamepad polling
+ * (in_web.js), the touch screen (touch.js) and WebXR controllers.
+ *
+ * A press from a second device while another holds the key is only recorded; a release reaches the game only when
+ * the last holder lets go. The Bestiary (`R_BestiaryKey`) sees every event first and may consume it. Autorepeats
+ * are dropped except for Backspace and Pause. Escape always goes to the menu, the chat line or the menu toggle and can
+ * never be unbound. A release runs the `-` form of a `+` button binding (with the key number appended, so several
+ * downs can be matched with ups), even in the console. During demo playback a console key brings up the menu. Other
+ * presses run the key's binding, or go to the chat line, the menu (`M_Keydown`) or the console line editor, with
+ * Shift applied through the shift table. Commands are queued with `Cbuf_AddText`, not run here. Updates
+ * `key_lastpress`, `key_count`, `shift_down` and `key_repeats`.
+ *
+ * @param {number} key key number (0..255): lowercase ASCII, or a `K_*` constant
+ * @param {boolean} down true for a press (or autorepeat), false for a release
+ * @param {string} [source='kbd'] which device holds the key: `'kbd'` (keyboard and mouse), `'touch'`, `'pad'` or
+ *   `'xr'`
+ * @throws {Error} through `Sys_Error` ('Bad key_dest') when `key_dest` is not one of the four destinations
+ */
 export function Key_Event( key, down, source = 'kbd' ) {
 
 	let holders = keyHolders.get( key );
@@ -974,6 +1038,11 @@ export function Key_Event( key, down, source = 'kbd' ) {
 Key_ClearStates
 ===================
 */
+/**
+ * Forgets every held key: clears the device holders, `keydown` and `key_repeats` for all 256 keys. No release events
+ * are sent, so `+` button commands already running are not stopped by this. Nothing in src calls it at present; the
+ * tests use it to start from a clean key state (WinQuake calls it when the window loses focus).
+ */
 export function Key_ClearStates() {
 
 	keyHolders.clear();

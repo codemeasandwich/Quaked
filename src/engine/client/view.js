@@ -104,8 +104,6 @@ export { r_refdef };
 /*
 ===============
 V_CalcRoll
-
-Used by view and sv_user
 ===============
 */
 const _forward = new Float32Array( 3 );
@@ -124,6 +122,17 @@ const _calcrefdef_right = new Float32Array( 3 );
 const _calcrefdef_up = new Float32Array( 3 );
 const _calcrefdef_angles = new Float32Array( 3 );
 
+/**
+ * The roll a sideways velocity gives the view: the velocity's component along the right vector of `angles`, scaled
+ * linearly up to `cl_rollangle` degrees at `cl_rollspeed` units/s and held there beyond it, signed by the direction.
+ * Used by view and sv_user: `V_CalcViewRoll` each frame on the predicted angles and velocity, and `SV_ClientThink`
+ * (sv_user.js, which multiplies it by 4 for the player's roll), wired through `SV_Init`'s callbacks.
+ * Overwrites the module's shared scratch vectors `_forward`, `_right`, `_up`.
+ *
+ * @param {Float32Array|Array<number>} angles pitch, yaw, roll in degrees
+ * @param {Float32Array|Array<number>} velocity world-space velocity, Quake units per second
+ * @returns {number} roll in degrees, -`cl_rollangle`..`cl_rollangle` (positive when moving to the right)
+ */
 export function V_CalcRoll( angles, velocity ) {
 
 	AngleVectors( angles, _forward, _right, _up );
@@ -151,6 +160,15 @@ V_CalcBob
 let _bobtime = 0;
 let _bob = 0;
 
+/**
+ * The vertical view bob for this frame, called once a frame by `V_CalcRefdef`. Advances the bob clock by
+ * `host_frametime` and shapes it by `cl_bobcycle` (seconds per cycle) and `cl_bobup` (fraction of the cycle rising),
+ * scaled by the predicted horizontal speed (`cl_simvel`, Z left out so jumping does not count) times `cl_bob`.
+ * QuakeWorld behaviour: 0 for a spectator, and while airborne (`cl_simonground === -1`) the last value is returned
+ * unchanged. The clock and last value persist in module variables across frames and maps.
+ *
+ * @returns {number} bob offset in Quake units, clamped to -7..4
+ */
 export function V_CalcBob() {
 
 	// QuakeWorld: return 0 if spectator
@@ -187,6 +205,12 @@ export function V_CalcBob() {
 const v_centermove = new cvar_t( 'v_centermove', '0.15', false );
 const v_centerspeed = new cvar_t( 'v_centerspeed', '500' );
 
+/**
+ * Starts the view pitch drifting back towards `cl.idealpitch` (the `centerview` command, a released mouse look with
+ * `lookspring` set, and `V_DriftPitch` once the player has moved forward for `v_centermove` seconds). Does nothing in
+ * the same frame as a `V_StopPitchDrift` (`cl.laststop === cl.time`); otherwise, when drift was stopped or idle, sets
+ * `cl.pitchvel` to `v_centerspeed` (degrees per second), clears `cl.nodrift` and resets `cl.driftmove`.
+ */
 export function V_StartPitchDrift() {
 
 	if ( cl.laststop === cl.time ) {
@@ -205,6 +229,11 @@ export function V_StartPitchDrift() {
 
 }
 
+/**
+ * Stops pitch drifting while the player adjusts pitch by hand: records `cl.laststop = cl.time`, sets `cl.nodrift` and
+ * zeroes `cl.pitchvel`. Called by the look keys and keyboard look in cl_input.js and by mouse and touch look in
+ * platform/in_web.js.
+ */
 export function V_StopPitchDrift() {
 
 	cl.laststop = cl.time;
@@ -361,6 +390,15 @@ function V_CheckGamma() {
 V_ParseDamage
 ===============
 */
+/**
+ * Reads an `svc_damage` message (armor byte, blood byte, then the damage source as three coordinates) from
+ * `net_message`, called by `CL_ParseServerMessage`. Shows the hit: Newer Game's blood on the weapon surface
+ * (`R_PlayerSurfaceBlood`) and face reaction (`R_FaceDamage`), the status bar face's pain frame for 0.2 s, the red
+ * damage colour shift (`3 * count` percent added, clamped 0..150, colour by armour versus blood), and the view kick:
+ * roll and pitch from the source direction relative to the predicted origin and angles, scaled by `v_kickroll` and
+ * `v_kickpitch` and fading over `v_kicktime` seconds in `V_CalcViewRoll`. `count` is half the armour plus half the
+ * blood, at least 10. Uses module scratch vectors, not allocations.
+ */
 export function V_ParseDamage() {
 
 	const armor = MSG_ReadByte();
@@ -461,8 +499,6 @@ function V_BonusFlash_f() {
 /*
 =============
 V_SetContentsColor
-
-Underwater, lava, etc each has a color shift
 =============
 */
 const CONTENTS_EMPTY = - 1;
@@ -471,6 +507,14 @@ const CONTENTS_WATER = - 3;
 const CONTENTS_SLIME = - 4;
 const CONTENTS_LAVA = - 5;
 
+/**
+ * Underwater, lava, etc each has a color shift: sets the contents colour shift (`cl.cshifts[CSHIFT_CONTENTS]`) from
+ * the leaf the eye is in. Empty and solid copy `cshift_empty` (which the `v_cshift` command can change); lava and slime
+ * their own; any other value gets the water shift. Called once a frame by `R_SetupFrame` (gl_rmain.js, through
+ * `R_SetExternals` wired by host.js), which passes 0 when there is no view leaf.
+ *
+ * @param {number} contents a leaf's `CONTENTS_*` value (-1 empty, -2 solid, -3 water, -4 slime, -5 lava)
+ */
 export function V_SetContentsColor( contents ) {
 
 	switch ( contents ) {
@@ -559,8 +603,19 @@ function V_CalcPowerupCshift() {
 V_CalcBlend
 =============
 */
-// A caller can exclude the legacy contents tint when liquid optics supply
-// absorption/scattering themselves. Native blend and cshift state stay intact.
+/**
+ * Composites the colour shifts (contents, damage, bonus, power-up) into one RGBA screen blend, each shift's percent
+ * scaled by `gl_cshiftpercent` and layered in order. A caller can exclude the legacy contents tint when liquid optics
+ * supply absorption/scattering themselves; native blend and cshift state stay intact. When it writes the frame's
+ * `v_blend` with the contents tint in full, it also fills `v_liquid_blend` (glquake.js) with the same blend minus the
+ * contents tint, keeping the pair ready before dynamic-light proximity flashes add to both (recomputing only at
+ * presentation would lose those additions). Called once a frame by `R_SetupFrame` and by `V_UpdatePalette` when a
+ * shift or the gamma changed.
+ *
+ * @param {number} [contentsScale=1] weight of the contents shift, 0..1 (0 leaves it out)
+ * @param {Float32Array} [output=v_blend] four floats written: red, green, blue 0..1 and alpha clamped 0..1
+ * @returns {Float32Array} `output`
+ */
 export function V_CalcBlend( contentsScale = 1, output = v_blend ) {
 
 	let r = 0;
@@ -605,6 +660,14 @@ export function V_CalcBlend( contentsScale = 1, output = v_blend ) {
 V_UpdatePalette
 =============
 */
+/**
+ * Per-frame colour shift upkeep, called once a frame by `SCR_UpdateScreen` (gl_screen.js, through its externals wired
+ * by host.js) after the 2D drawing. Recomputes the power-up shift (none while Newer Game's quad vision, or a supplied
+ * power vision mode without quad or suit, replaces the tint), notes whether any shift changed since
+ * `cl.prev_cshifts` (which it updates), fades the damage shift by 150 and the bonus shift by 100 percent per second,
+ * applies a changed `gamma` cvar (rebuilding the gamma table and calling `VID_UpdateGamma`), and recomputes
+ * `V_CalcBlend` only when something changed.
+ */
 export function V_UpdatePalette() {
 
 	V_CalcPowerupCshift();
@@ -768,10 +831,14 @@ function V_AddIdle() {
 /*
 ==============
 V_CalcViewRoll
-
-Roll is induced by movement and damage
 ==============
 */
+/**
+ * Roll is induced by movement and damage: adds `V_CalcRoll` of the predicted angles and velocity (QuakeWorld style) to
+ * `r_refdef.viewangles`, plus the fading damage kick from `V_ParseDamage` (roll and pitch, scaled by the time left over
+ * `v_kicktime`; the time left drops by `host_frametime`). A dead player (health <= 0) gets a fixed 80 degree roll.
+ * Called by `V_CalcRefdef` once a frame.
+ */
 export function V_CalcViewRoll() {
 
 	// QuakeWorld uses predicted angles and velocity for roll calculation
@@ -801,6 +868,12 @@ V_CalcIntermissionRefdef
 
 ==================
 */
+/**
+ * Sets the refresh view for an intermission, called by `V_RenderView` instead of `V_CalcRefdef` while
+ * `cl.intermission` is set: the eye at the view entity's origin (the server moves the player to the
+ * info_intermission spot), the angles from `cl.viewangles` (sent by `svc_setangle`, more reliable than the entity's
+ * interpolated angles), no weapon model, and the idle sway forced on at `v_idlescale` 1 for this call.
+ */
 export function V_CalcIntermissionRefdef() {
 
 	// ent is the player model (visible when out of body)
@@ -832,6 +905,16 @@ V_CalcRefdef
 */
 let _oldz = 0;
 
+/**
+ * Builds the normal first-person view for this frame, called by `V_RenderView` when not paused or in intermission.
+ * Drifts pitch, places the eye at the player's origin plus `cl.viewheight` and bob (the predicted origin
+ * `cl_simorg` when playing a remote server with prediction on, otherwise the server-interpolated entity origin), nudges
+ * it 1/32 unit off node lines, applies roll, idle sway, the `scr_ofs*` offsets and the bounds check, positions and
+ * angles the weapon model (`cl.viewent`) with its FOV fudge, adds the punch angle, smooths stair step-ups (80 units/s,
+ * at most 12 units behind), adds Newer Game's Shambler step shake, runs the chase camera when `chase_active` is set,
+ * and finally overrides eye and weapon with the respawn view when `SV_RespawnView` supplies one. Writes `r_refdef`
+ * and `cl.viewent`; also turns the player entity to face the view. The step-smoothing height persists across frames.
+ */
 export function V_CalcRefdef() {
 
 	V_DriftPitch();
@@ -974,11 +1057,16 @@ export function V_CalcRefdef() {
 /*
 ==================
 V_RenderView
-
-The player's clipping box goes from (-16 -16 -24) to (16 16 32) from
-the entity origin, so any view position inside that will be valid
 ==================
 */
+/**
+ * Computes the view and draws the 3D scene, called once a frame by `SCR_UpdateScreen` (gl_screen.js, through its
+ * externals wired by host.js). Draws nothing while the console is forced up, unless Newer Game's demo loading screen
+ * is holding a signed-on demo with a world. In multiplayer it resets the `scr_ofsx/y/z` cheat offsets to 0. Then
+ * `V_CalcIntermissionRefdef` or (unless paused) `V_CalcRefdef`, `R_PushDlights` and `R_RenderView`. The player's
+ * clipping box goes from (-16 -16 -24) to (16 16 32) from the entity origin, so any view position inside that will
+ * be valid.
+ */
 export function V_RenderView() {
 
 	if ( con_forcedup && !(R_DemoLoadingHolding()&&cls.demoplayback&&cls.signon===4&&cl.worldmodel))
@@ -1017,6 +1105,13 @@ export function V_RenderView() {
 V_Init
 =============
 */
+/**
+ * Registers the view commands (`v_cshift`, `bf` for the bonus flash, `centerview`) and cvars (bob, roll, kick, idle
+ * sway, offsets, crosshair, `gl_cshiftpercent`, Shambler steps, and the archived `gamma`), builds the identity gamma
+ * table and applies the saved gamma with `VID_UpdateGamma`, and starts the lazy import of `Chase_Update` from
+ * chase.js (lazy to avoid the in_web.js -> view.js -> chase.js -> client.js circular import; the chase camera is
+ * skipped until it resolves). Called once by `Host_Init`.
+ */
 export function V_Init() {
 
 	Cmd_AddCommand( 'v_cshift', V_cshift_f );

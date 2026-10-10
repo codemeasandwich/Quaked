@@ -131,6 +131,14 @@ function scr_loading() {
 
 }
 
+/**
+ * Whether Newer Game is between levels: the `r_hdr` cvar is on, a level has already been drawn this session, and the
+ * client has no world or is not fully signed on while the game has the keys. While true, `SCR_UpdateScreen` keeps
+ * the last frame of the level you were in on screen and shows no console (unless the demo or welcome loading screen
+ * holds it). In the original (New Game) a level load brings the console down full screen instead.
+ *
+ * @returns {boolean} true while a mid-game level change is loading under Newer Game
+ */
 export function SCR_ChangingLevel() {
 
 	return scr_newer() && scr_hadworld && scr_loading();
@@ -189,6 +197,24 @@ let _M_Draw = () => {};
 let _Touch_BottomInset = () => 0;
 let _r_cache_thrash = false;
 
+/**
+ * Wires the screen to what sits above it and cannot be imported without a cycle. Called twice: as host.js loads, in
+ * its [44g] D1a block, with `M_Draw` and `Touch_BottomInset`; then by `Host_Init` with the video, client state, view
+ * and rendering hooks. Each key that is present replaces the stored value, absent keys keep theirs. Until wired: `vid`
+ * is a two-page stand-in (only `numpages` and `recalc_refdef` are used; the drawing size always comes from
+ * `Draw_GetVirtualWidth`/`Height`), `cls` and `cl` are disconnected stand-ins, `r_refdef` is taken from render.js by
+ * `SCR_Init`, the view, palette, rendering and sound hooks are null and skipped, `M_Draw` draws nothing and
+ * `Touch_BottomInset` reports 0. The references are kept for the life of the page.
+ *
+ * @param {{ vid?: viddef_t, cls?: client_static_t, cl?: client_state_t, r_refdef?: refdef_t,
+ *   V_RenderView?: () => void, V_UpdatePalette?: () => void, GL_BeginRendering?: () => void,
+ *   GL_EndRendering?: () => void, S_StopAllSounds?: (clear: boolean) => void, M_Draw?: () => void,
+ *   Touch_BottomInset?: () => number }} externals the hooks: `vid` is the host's video state (`recalc_refdef` is read
+ *   and cleared here, `numpages` set each frame); `cls` and `cl` are read live; `V_RenderView` draws the 3D view
+ *   (view.js); `GL_BeginRendering` clears the renderer; `S_StopAllSounds` is called with true by
+ *   `SCR_BeginLoadingPlaque`; `M_Draw` draws the menu (client/menu.js); `Touch_BottomInset` is the height of the
+ *   portrait touch controls in CSS pixels (platform/touch.js)
+ */
 export function SCR_SetExternals( externals ) {
 
 	if ( externals.vid ) _realVid = externals.vid;
@@ -208,11 +234,18 @@ export function SCR_SetExternals( externals ) {
 /*
 ==============
 SCR_CenterPrint
-
-Called for important messages that should stay in the center of the screen
-for a few moments
 ==============
 */
+/**
+ * Called for important messages that should stay in the center of the screen for a few moments: `svc_centerprint`,
+ * and the text of `svc_finale` and `svc_cutscene` (cl_parse.js). Replaces any message showing, timed from `cl.time`
+ * for `scr_centertime` seconds (default 2); during an intermission it stays up and is typed out at `scr_printspeed`
+ * characters a second. Drawn each frame by `SCR_UpdateScreen`, while the game has the keys, centred at 35% of the
+ * screen height for up to four lines, else from y = 48, 40 characters a line at most.
+ *
+ * @param {string} str the message; lines split at '\n'. Only the first 1023 characters are kept (the line count for
+ *   centring is taken over the whole string)
+ */
 export function SCR_CenterPrint( str ) {
 
 	scr_centerstring = str.substring( 0, 1023 );
@@ -498,6 +531,13 @@ function SCR_SizeDown_f() {
 SCR_Init
 ==================
 */
+/**
+ * Registers the screen's cvars (`fov`, `viewsize`, `scr_conspeed`, `showram`, `showturtle`, `showpause`,
+ * `scr_centertime`, `scr_printspeed`, `gl_triplebuffer`) and the `screenshot`, `sizeup` and `sizedown` commands,
+ * loads the `ram`, `net` and `turtle` icons from gfx.wad, takes render.js's `r_refdef` unless one was wired, and marks
+ * the screen initialized so `SCR_UpdateScreen` starts drawing (once the console is initialized too). Called once by
+ * `Host_Init` (host.js) after `Draw_Init`.
+ */
 export function SCR_Init() {
 
 	if ( _r_refdef === null ) _r_refdef = _r_refdef_canonical;
@@ -609,6 +649,11 @@ function SCR_DrawPause() {
 SCR_DrawLoading
 ==============
 */
+/**
+ * Draws the `gfx/loading.lmp` plaque centred on the screen (24 virtual pixels above centre, as in WinQuake) when a
+ * load is showing: the one frame drawn by `SCR_BeginLoadingPlaque`, or Newer Game's first load from the menu, which
+ * shows the plaque instead of the console. Called by `SCR_UpdateScreen`; draws nothing otherwise.
+ */
 export function SCR_DrawLoading() {
 
 	if ( ! scr_drawloading && ! scr_plaque )
@@ -803,7 +848,14 @@ function SCR_DrawPerf() {
 
 }
 
-// The respawn-health rule's corner message (card [4]), just under the FPS line at the top right.
+/**
+ * The respawn-health rule's corner message (card [4]), just under the FPS line at the top right (y = 16 virtual
+ * pixels, right-aligned 8 pixels in). Called once a frame from `SCR_UpdateScreen`, straight after the FPS counter.
+ * The text, if any, comes from `Respawn_NoticeAt` (newer/ui/respawn_notice.js) for the current `cl.time`. Not drawn
+ * over a demo, the menu or the console.
+ *
+ * @throws {Error} when the Newer hook `Respawn_NoticeAt` is not installed (in the game only)
+ */
 export function SCR_DrawRespawnNotice() {
 
 	if ( _cls.demoplayback || key_dest !== key_game ) return; // not over a demo, the menu or the console
@@ -892,6 +944,16 @@ function SCR_DoScreenShot() {
 SCR_BeginLoadingPlaque
 ================
 */
+/**
+ * Puts up the loading plaque before a level load: stops all sounds, then, when connected and fully signed on, clears
+ * the notify lines, the centre print and the console, draws one frame with the plaque (calling `SCR_UpdateScreen`),
+ * and stops further screen updates until `SCR_EndLoadingPlaque`. After 60 seconds of realtime without that call,
+ * `SCR_UpdateScreen` gives up, prints `load failed.` and draws again. Called by the `map` and `reconnect` host
+ * commands (host_cmd.js), `CL_NextDemo` and the menu. Not connected (or still signing on), it only stops the
+ * sounds.
+ *
+ * @throws {Error} whatever the one forced `SCR_UpdateScreen` frame throws (see there)
+ */
 export function SCR_BeginLoadingPlaque() {
 
 	if ( _S_StopAllSounds ) _S_StopAllSounds( true );
@@ -923,6 +985,11 @@ export function SCR_BeginLoadingPlaque() {
 SCR_EndLoadingPlaque
 ================
 */
+/**
+ * Lets the screen update again after `SCR_BeginLoadingPlaque` and clears the notify lines. Called when the client
+ * completes sign-on (stage 4, cl_main.js), by `Host_Error`, when the console is toggled, and by the menu. Safe to call
+ * when no plaque is up.
+ */
 export function SCR_EndLoadingPlaque() {
 
 	scr_disabled_for_loading = false;
@@ -934,14 +1001,26 @@ export function SCR_EndLoadingPlaque() {
 /*
 ==================
 SCR_UpdateScreen
-
-This is called every frame, and can also be called explicitly to flush
-text to the screen.
-
-WARNING: be very careful calling this from elsewhere, because the refresh
-needs almost the entire 256k of stack space!
 ==================
 */
+/**
+ * This is called every frame (by the host frame, host.js), and can also be called explicitly to flush text to the
+ * screen (`Con_Printf` during start-up, `SCR_BeginLoadingPlaque`). WARNING (WinQuake): be very careful calling this
+ * from elsewhere, because the refresh needs almost the entire 256k of stack space!
+ *
+ * Draws nothing while the loading plaque has disabled updates (up to 60 seconds), before `SCR_Init` and the console
+ * are initialized, or while Newer Game is changing level (`SCR_ChangingLevel`: the last frame stays). Otherwise it
+ * clears the renderer and the 2D overlay, recomputes the refresh window when the field of view, view size, touch
+ * inset or Newer mode changed (or `vid.recalc_refdef` is set), moves the console, renders the 3D view
+ * (`V_RenderView`), then draws the 2D layer in WinQuake's order: tiles around a reduced view; then either a modal
+ * dialog, the welcome loading screen, the loading plaque, the intermission tally, the finale, or the normal crosshair,
+ * icons, pause plaque, centre print, status bar, console and menu; then the FPS counter, respawn notice and bestiary
+ * encounter. It updates the palette blend and takes a screenshot requested by the `screenshot` command after the
+ * frame is drawn.
+ *
+ * @throws {Error} when a Newer hook it uses (demo and welcome loading, bestiary, profiler, respawn notice) is not
+ *   installed
+ */
 export function SCR_UpdateScreen() {
 
 	if ( block_drawing )

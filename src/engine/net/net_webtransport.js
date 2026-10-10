@@ -31,7 +31,9 @@ let _M_Menu_Main_f = () => {};
 
 /**
  * Hands the client network driver the menu functions it shows on a failed or lost connection, as the other modules'
- * SetExternals do.
+ * SetExternals do. Called once by host.js as it loads (the wiring block at its end). Keys left out keep their current
+ * function. Until wired, both defaults do nothing: a failed connection still prints to the console and sets the key
+ * destination to the menu, but shows no error box or main menu.
  *
  * @param {{ M_ConnectionError?: function( string ): void, M_Menu_Main_f?: function(): void }} externals the menu's
  *   connection-error message and its main menu
@@ -147,10 +149,17 @@ function _WT_ParseSequencedPacket( sock, packet, reliable ) {
 /*
 =============
 WT_Init
-
-Initialize the WebTransport driver
 =============
 */
+/**
+ * Initialize the WebTransport driver: the driver table's `Init` (net_drivers[1], set up by `NET_Init` at engine start
+ * when WebTransport exists). When the browser has no `WebTransport` it prints so and reports failure, leaving the
+ * driver uninitialised (so remote connections are refused). Otherwise marks the driver ready and, in a browser, adds
+ * `pagehide` and `beforeunload` listeners that send each open connection a clean disconnect and close it.
+ *
+ * @returns {number} 0 when initialised (the control socket value `NET_Init` records), -1 when WebTransport is
+ *   unavailable
+ */
 export function WT_Init() {
 
 	// Check if WebTransport is available in this browser
@@ -215,10 +224,13 @@ function _onPageHide() {
 /*
 =============
 WT_Shutdown
-
-Shutdown the WebTransport driver
 =============
 */
+/**
+ * Shutdown the WebTransport driver (the driver table's `Shutdown`, from `NET_Shutdown`): closes every open transport
+ * (errors ignored), forgets all connections and marks the driver uninitialised. The page listeners from `WT_Init`
+ * stay registered.
+ */
 export function WT_Shutdown() {
 
 	// Close all active connections
@@ -244,11 +256,14 @@ export function WT_Shutdown() {
 /*
 =============
 WT_Listen
-
-Enable/disable listening for new connections
-Browser clients don't listen, only servers do
 =============
 */
+/**
+ * Enable/disable listening for new connections: the driver table's `Listen`. Browser clients don't listen, only
+ * servers do, so this is a no-op on the client side.
+ *
+ * @param {boolean} state whether to listen; ignored
+ */
 export function WT_Listen( state ) {
 
 	// Browser clients don't listen for connections
@@ -259,10 +274,14 @@ export function WT_Listen( state ) {
 /*
 =============
 WT_SearchForHosts
-
-Search for available servers
 =============
 */
+/**
+ * Search for available servers: the driver table's `SearchForHosts`. WebTransport doesn't have broadcast discovery,
+ * so this does nothing; the room list comes from `WT_QueryRooms` instead.
+ *
+ * @param {boolean} xmit whether to send a new query (true) or only collect replies; ignored
+ */
 export function WT_SearchForHosts( xmit ) {
 
 	// WebTransport doesn't have broadcast discovery
@@ -280,11 +299,21 @@ const LOBBY_ERROR = 0x82;
 /*
 =============
 WT_QueryRooms
-
-Query available rooms from a WebTransport server
-Returns a Promise that resolves to an array of room objects
 =============
 */
+/**
+ * Query available rooms from a WebTransport server, for the Join Game menu's room list (menu.js, through
+ * `M_SetExternals`). Opens a short-lived transport, sends a `LOBBY_LIST` request on a bidirectional stream (frames
+ * are [type:1][length:2 little-endian][data]), reads the `LOBBY_ROOMS` reply's JSON array, and closes the transport.
+ * Each header and payload read has a 10 second timeout. Errors are printed ("WT_QueryRooms error: ...") and rethrown.
+ *
+ * @param {string} serverUrl `host:port`, `wt://...`, `wts://...` or an `https://` URL (the first three become
+ *   `https://`)
+ * @returns {Promise<Array<Object>>} resolves to the server's room objects as sent (the menu reads `id`, `map`,
+ *   `playerCount` and `maxPlayers`); an empty array when the reply has no payload
+ * @throws {Error} (as a rejection) 'WebTransport not initialized' before `WT_Init` succeeded; the server's
+ *   `LOBBY_ERROR` text; 'Connection closed', a timeout, an unexpected reply type or an unparsable or non-array list
+ */
 export async function WT_QueryRooms( serverUrl ) {
 
 	if ( ! wt_initialized ) {
@@ -422,11 +451,24 @@ export async function WT_QueryRooms( serverUrl ) {
 /*
 =============
 WT_CreateRoom
-
-Create a new room on the WebTransport server
-Returns a Promise that resolves to the room object with ID
 =============
 */
+/**
+ * Create a new room on the WebTransport server, when the multiplayer New Game menu begins a game (menu.js, through
+ * `M_SetExternals`). Opens a short-lived transport, sends `LOBBY_CREATE` with the JSON config, reads the
+ * `LOBBY_ROOMS` reply and closes the transport; the caller then joins the room. Older servers reply with the room
+ * list instead of the room; the last room in it is taken. Each read has a 10 second timeout. Prints "Created room:
+ * <id>"; errors are printed ("WT_CreateRoom error: ...") and rethrown.
+ *
+ * @param {string} serverUrl `host:port`, `wt://...`, `wts://...` or an `https://` URL
+ * @param {Object} config sent as JSON; the menu passes `{ map, maxPlayers, hostName }` (map name, player limit, the
+ *   player's name)
+ * @returns {Promise<{ id: string }>} resolves to the created room object as sent (it has a non-empty `id`, and may
+ *   carry the room server's `port`)
+ * @throws {Error} (as a rejection) 'WebTransport not initialized' before `WT_Init` succeeded; the server's
+ *   `LOBBY_ERROR` text; 'Connection closed', a timeout, an unexpected reply type, an empty or unparsable reply, or
+ *   'Invalid room response from server' when the room has no id
+ */
 export async function WT_CreateRoom( serverUrl, config ) {
 
 	if ( ! wt_initialized ) {
@@ -716,15 +758,27 @@ async function _readExact( reader, n ) {
 /*
 =============
 WT_Connect
-
-Connect to a remote server via WebTransport
-host can be:
-  - "wt://hostname:port" or "wts://hostname:port"
-  - "hostname:port" (defaults to wts://)
-  - Full URL like "https://hostname:port/quake"
-  - URL with room parameter: "https://hostname:port?room=ROOMID"
 =============
 */
+/**
+ * Connect to a remote server via WebTransport: the driver table's `Connect`, used by `NET_Connect` for any address
+ * other than `local` (the promise is handed back through it). Without a room parameter it connects straight to the
+ * game server. With one it opens the lobby, sends `LOBBY_JOIN` for the room and waits up to 10 seconds for the first
+ * reply: a `LOBBY_ROOMS` redirect with a `port` reconnects directly to that port, any other reply reconnects to the
+ * same URL, both as a game connection (`_WT_ConnectDirect`, which also writes `?room=<id>` into the page URL for
+ * sharing). The game connection uses a reliable bidirectional stream ([length:2][transport packet]) and datagrams
+ * (transport packet: [magic 0x71][sequence:4][ack:4][Quake payload]), read in the background into a queue.
+ *
+ * On a join timeout or `LOBBY_ERROR` it clears the room from the page URL (so a refresh doesn't retry), sets the key
+ * destination to the menu and shows the error box (`M_ConnectionError`); on another failure it clears the URL and
+ * shows the main menu. All of these print to the console and resolve to null rather than reject.
+ *
+ * @param {string} host "wt://hostname:port" or "wts://hostname:port"; "hostname:port" (defaults to https://); a full
+ *   URL like "https://hostname:port/quake"; or a URL with a room parameter, "https://hostname:port?room=ROOMID". Kept
+ *   as the socket's `address`
+ * @returns {Promise<?qsocket_t>} resolves to the connected socket (its `driverdata` the connection, kept until
+ *   `WT_Close`), or null when not initialised, out of sockets or the connection failed
+ */
 export async function WT_Connect( host ) {
 
 	if ( ! wt_initialized ) {
@@ -1286,10 +1340,14 @@ async function _WT_ReadExact( reader, n ) {
 /*
 =============
 WT_CheckNewConnections
-
-Check for new incoming connections (server-side only)
 =============
 */
+/**
+ * Check for new incoming connections (server-side only): the driver table's `CheckNewConnections`. Browser clients
+ * don't accept connections.
+ *
+ * @returns {null} always null: no new connection
+ */
 export function WT_CheckNewConnections() {
 
 	// Browser clients don't accept connections
@@ -1300,15 +1358,21 @@ export function WT_CheckNewConnections() {
 /*
 =============
 WT_QGetMessage
-
-Get a message from the connection
-Returns:
-  0 = no message
-  1 = reliable message
-  2 = unreliable message
-  -1 = error
 =============
 */
+/**
+ * Get a message from the connection: the driver table's `QGetMessage`, called through `NET_GetMessage` each frame.
+ * Takes the oldest message the background readers queued; for an unreliable one it skips ahead to the newest queued
+ * unreliable message before the next reliable one (as in original Quake, where newer unreliable messages overwrite
+ * older ones). Reads the sequence header, recording the server's acknowledgement in `sock.ackSequence` and dropping
+ * packets not newer than the last one on that channel (`receiveSequence` or `unreliableReceiveSequence`); headerless
+ * packets pass through as they are. Copies the payload into `net_message` and stamps `sock.lastMessageTime`
+ * (seconds).
+ *
+ * @param {qsocket_t} sock a socket from `WT_Connect`
+ * @returns {number} 0 = no message, 1 = reliable message, 2 = unreliable message, -1 = error (no connection, or the
+ *   transport closed and the queue is empty), which drives the client's disconnect through `Host_Error`
+ */
 export function WT_QGetMessage( sock ) {
 
 	const conn = sock.driverdata;
@@ -1370,12 +1434,19 @@ export function WT_QGetMessage( sock ) {
 /*
 =============
 WT_QSendMessage
-
-Send a reliable message via the reliable stream.
-Frame format: [length:2][data...]
-QUIC streams handle ordering and retransmission.
 =============
 */
+/**
+ * Send a reliable message via the reliable stream: the driver table's `QSendMessage` (through `NET_SendMessage`).
+ * Frame format: [length:2][data...], where the data is the sequenced transport packet (header always included; the
+ * send sequence goes up by one). QUIC streams handle ordering and retransmission. The write is asynchronous: a
+ * failure is printed, marks the connection dead and makes the next call return -1.
+ *
+ * @param {qsocket_t} sock a socket from `WT_Connect`
+ * @param {sizebuf_t} data the message; its first `cursize` bytes are sent (copied)
+ * @returns {number} 1 when the frame was queued for writing, -1 when the connection is closed, failed earlier or has
+ *   no reliable writer
+ */
 export function WT_QSendMessage( sock, data ) {
 
 	const conn = sock.driverdata;
@@ -1420,10 +1491,20 @@ export function WT_QSendMessage( sock, data ) {
 /*
 =============
 WT_SendUnreliableMessage
-
-Send an unreliable message via WebTransport datagrams.
 =============
 */
+/**
+ * Send an unreliable message via WebTransport datagrams: the driver table's `SendUnreliableMessage` (through
+ * `NET_SendUnreliableMessage`, for the client's movement). While `USE_CLIENT_OUTBOUND_DATAGRAMS` is false (as now:
+ * the room server's datagram receive path can wedge under load) it goes on the reliable stream through
+ * `WT_QSendMessage` instead. A datagram larger than the path's `maxDatagramSize` is dropped; write failures are
+ * ignored.
+ *
+ * @param {qsocket_t} sock a socket from `WT_Connect`
+ * @param {sizebuf_t} data the message; its first `cursize` bytes are sent (copied)
+ * @returns {number} 1 when sent or deliberately dropped, -1 when the connection is closed or failed earlier (or, on
+ *   the datagram path, has no datagram writer)
+ */
 export function WT_SendUnreliableMessage( sock, data ) {
 
 	const conn = sock.driverdata;
@@ -1479,10 +1560,14 @@ export function WT_SendUnreliableMessage( sock, data ) {
 /*
 =============
 WT_CanSendMessage
-
-Check if we can send a reliable message
 =============
 */
+/**
+ * Check if we can send a reliable message: the driver table's `CanSendMessage` (through `NET_CanSendMessage`).
+ *
+ * @param {qsocket_t} sock a socket from `WT_Connect`
+ * @returns {boolean} true while the connection is open and has a reliable writer
+ */
 export function WT_CanSendMessage( sock ) {
 
 	const conn = sock.driverdata;
@@ -1495,10 +1580,15 @@ export function WT_CanSendMessage( sock ) {
 /*
 =============
 WT_CanSendUnreliableMessage
-
-Check if we can send an unreliable message
 =============
 */
+/**
+ * Check if we can send an unreliable message: the driver table's `CanSendUnreliableMessage`. While outbound datagrams
+ * are off it answers as `WT_CanSendMessage`, since unreliable messages go on the reliable stream.
+ *
+ * @param {qsocket_t} sock a socket from `WT_Connect`
+ * @returns {boolean} true while the connection is open and has the writer it would use
+ */
 export function WT_CanSendUnreliableMessage( sock ) {
 
 	const conn = sock.driverdata;
@@ -1517,10 +1607,16 @@ export function WT_CanSendUnreliableMessage( sock ) {
 /*
 =============
 WT_Close
-
-Close a connection
 =============
 */
+/**
+ * Close a connection: the driver table's `Close` (through `NET_Close`). Marks it closed, cancels the stream and
+ * datagram readers (unblocking their pending reads), releases the writers, closes the transport (errors ignored),
+ * forgets the connection and clears `sock.driverdata`. Does nothing for a socket with no connection. No disconnect
+ * message is sent here.
+ *
+ * @param {qsocket_t} sock a socket from `WT_Connect`; mutated (`driverdata` becomes null)
+ */
 export function WT_Close( sock ) {
 
 	const conn = sock.driverdata;
@@ -1577,10 +1673,13 @@ export function WT_Close( sock ) {
 /*
 =============
 WT_GetAnyMessage
-
-Used for control messages during connection
 =============
 */
+/**
+ * Used for control messages during connection in other drivers; not used for WebTransport, and nothing calls it.
+ *
+ * @returns {number} always 0: no message
+ */
 export function WT_GetAnyMessage() {
 
 	// Not used for WebTransport
