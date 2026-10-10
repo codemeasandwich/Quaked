@@ -70,13 +70,13 @@ import { r_decals, R_DecalsSetup, R_DecalsFrame, R_DecalsClear, R_DecalGibTrack 
 import { r_newer_weapons } from '../../newer/render/r_weapons.js';
 import { R_ShellsSetup, R_ShellsNewMap, R_ShellsFrame } from '../../newer/render/r_shells.js';
 import { R_ShellTrace } from '../../newer/render/r_shelltrace.js';
-import { R_BestiaryApplyCamera, R_BestiaryObserve, R_BestiaryInputLocked } from '../../newer/ui/r_bestiary.js';
+import { R_BestiaryApplyCamera, R_BestiaryObserve, R_BestiaryInputLocked, R_BestiaryPortraitLight } from '../../newer/ui/r_bestiary.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate, R_FlashlightBeam } from '../../newer/render/r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from '../../newer/render/r_muzzle.js';
 import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from '../../newer/gameplay/sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial, R_ReleaseAliasReceiver, R_HeldVisionTag } from '../../newer/render/r_newerskins.js';
 import { PowerVisionMode } from '../../newer/gameplay/powervision_state.js';
-import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from '../../newer/render/gl_post.js';
+import { R_PostSetPortraitLight, R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from '../../newer/render/gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
@@ -1864,6 +1864,7 @@ export function R_RenderView() {
 
 			}
 
+			R_PostSetPortraitLight( R_BestiaryPortraitLight() ); // (the Bestiary's portrait light, if a page is up)
 			R_PostLightsFrame( renderer, scene, camera, r_visframecount, d_lightstylevalue, cl_dlights, cl != null ? cl.time : 0, R_MapHasSky() );
 			R_RendVeilCapture(renderer,scene,camera);
 			try { renderer.render( scene, camera ); } finally { R_HeightShadowScope( false ); }

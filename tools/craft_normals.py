@@ -21,7 +21,7 @@ brightness alone. These are made offline, one texture at a time, with the textur
 What is stored is the crafted height (newer/textures/normals/<name>.webp, a grey picture) and how steep
 to make it (the "normals" entry of newer/textures/index.json: { "file": ..., "strength": ... }): the
 engine turns the height into normals when the texture loads, with the same maths as this script
-(R_NormalsFromCraftedHeight in src/newer/render/gl_normals.js), and keeps the height for parallax. The height
+(R_NormalsFromCraftedHeight in src/newer/render/normal_math.js), and keeps the height for parallax. The height
 is a fraction of the size of the normals and compresses well. --preview writes a picture for each (the
 texture, its normals and the texture lit from above left) to check them by eye.
 """
@@ -176,7 +176,7 @@ def craft( rgb, prof ):
     return normals_from_height( np.round( H01 * 255 ) / 255, prof['strength'], prof.get( 'cap', 1.1 ) )
 
 def normals_from_height( H01, strength, capk=1.1 ):
-    """The normals of a height field in 0..1: the maths of R_NormalsFromCraftedHeight in src/newer/render/gl_normals.js."""
+    """The normals of a height field in 0..1: the maths of R_NormalsFromCraftedHeight in src/newer/render/normal_math.js."""
     h, w = H01.shape
     # slope: the same scale the engine uses for generated maps, so strength means the same thing
     sc = strength * np.sqrt( h * w ) / 8.0

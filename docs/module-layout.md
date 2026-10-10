@@ -212,6 +212,20 @@ cvars and file system. `r_anim.js` keeps the animation (`R_AnimEnabled` now asks
 * In the browser the Newer and Classic frames are identical to before (mean differences 0.003 and 0), the face trial and
   the GPU water trial pass; the full suite is back to its baseline.
 
+## [44g], step 4: Newer Game's own cycles broken (debt D1c)
+
+* `gl_post` → `r_bestiary`: the renderer (`gl_rmain.js`, which already imports the Bestiary) hands the portrait light to
+  post-processing each frame (`R_PostSetPortraitLight`) before the lights are chosen; `gl_post` no longer imports the
+  interface.
+* `gl_normals` ↔ `normal_prepare`: the pure maths moved to `src/newer/render/normal_math.js`; `normal_prepare` imports it,
+  and `gl_normals` imports and re-exports it, so its public names are unchanged.
+* `r_demosplit` ↔ `r_perf`: the profiler is given `R_DemoSplitEnd` in its host (`main.js`) instead of importing it.
+* The cycles are now 83 and 4 (the engine's own, with the Newer modules it pulls in, and `cmd`/`common`/`cvar`/`pak`);
+  `cycles.newerCycles` is empty.
+* Tests that call these pieces directly (the Bestiary's light selection, the profiler's two hosts) hand over the same
+  values the game does. Not exercised in the browser: a real first sighting's portrait light (a scripted sighting did
+  not start on Dev either); the light's hand-over is covered by `bestiary_native_test`.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

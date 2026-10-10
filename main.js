@@ -10,6 +10,7 @@ import { Con_Printf } from './src/engine/common/common.js';
 import { Cvar_VariableValue, Cvar_SetValue } from './src/engine/common/cvar.js';
 import { key_dest, key_game } from './src/engine/client/keys.js';
 import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_PerfLastReport } from './src/newer/render/r_perf.js';
+import { R_DemoSplitEnd } from './src/newer/render/r_demosplit.js';
 import { cls, cl } from './src/engine/client/client.js';
 import { sv } from './src/engine/server/server.js';
 import { scene, camera } from './src/engine/render/gl_rmain.js';
@@ -189,7 +190,8 @@ async function main() {
 		R_PerfSetHost( {
 			Cbuf_AddText, cls, log: Con_Printf, getCvar: Cvar_VariableValue, setCvar: Cvar_SetValue,
 			size: () => renderer.domElement.width + 'x' + renderer.domElement.height,
-			menuOpen: () => key_dest !== key_game
+			menuOpen: () => key_dest !== key_game,
+			endDemoSplit: R_DemoSplitEnd // (ends a title demo's split before profiling)
 		} );
 		Cmd_AddCommand( 'perfprofile', () => R_PerfStart( Cmd_Argc() > 1 ? parseInt( Cmd_Argv( 1 ), 10 ) : 0 ) ); // perfprofile [frames per demo]
 		Cmd_AddCommand( 'perfstop', () => R_PerfStop( 'stopped' ) );

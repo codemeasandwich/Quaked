@@ -8,7 +8,7 @@
  *
  * State: no mutable exports; module-level variables `sunDirection`, `glowActive`, `postActive`, `detailActive`,
  * `underwater`, `worldLights`, `hasSky`, `liquidRegions`, `lavaRegions`, `leafKeyCounter`, `liquidLinks`, `occluder`
- * and 8 more; 4 module-level collections (Map/Set).
+ * and 9 more; 4 module-level collections (Map/Set).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -18,7 +18,6 @@
 import { R_ExitFixturePairs, R_LightCone, POINT_CONE_GLSL } from './r_fixturelights.js';
 import { WATER as WAVE_WATER, SIZE as WAVE_SIZE, WAVE_GLSL, waterWave, R_WaveTexture, R_WaterWavesLive } from './r_waves.js';
 import { R_ClearPowerupFireTarget } from './r_powerupfire.js';
-import { R_BestiaryPortraitLight } from '../ui/r_bestiary.js';
 import { R_ArchSurfaceHidden } from './r_archframe.js';
 import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFrame, POWERUP_SHROUD_COMPOSITE_GLSL, POWERUP_COOKIE_GLSL } from './r_powerups.js';
 // HDR lighting pipeline: emissive surfaces, sun and light shafts, relighting
@@ -1552,6 +1551,16 @@ export function R_FireFlicker( x, y, z, time ) {
 
 }
 
+// The Bestiary's portrait light while a first-sighting page is up ({ pos, color, power, radius, fade }, or null), given
+// each frame by the renderer (gl_rmain.js) rather than imported, so post-processing does not depend on the interface
+// (card [44g], debt D1c)
+let portraitLight = null;
+export function R_PostSetPortraitLight( light ) {
+
+	portraitLight = light ?? null;
+
+}
+
 function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 
 	selectedCount = 0;
@@ -1584,7 +1593,7 @@ function selectLights( viewMatrix, visframe, styles, dlights, time ) {
 		consider( ...l.pos, l.color, l.power * pulse, l.radius, view, .65, l, l.power );
 	}
 	for(const l of R_RendVeilLights())consider(...l.origin,l.color,l.power,l.radius,view,0,l,l.power);
-	const portrait=R_BestiaryPortraitLight();
+	const portrait=portraitLight;
 	if(portrait&&portrait.fade>0)consider(...portrait.pos,portrait.color,portrait.power*portrait.fade,portrait.radius,view,0,portrait,portrait.power);
 
 	if ( dlights != null ) {

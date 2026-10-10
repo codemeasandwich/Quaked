@@ -26,6 +26,8 @@ const RULES = [
 	[ 'engine/sound', '44c', /^(snd_\w+|sound|cd_audio)\.js$/ ],
 	// the Newer parts of the renderer kept beside the GL port's names
 	[ 'newer/render', '44e', /^(gl_post|gl_portal|gl_normals)\.js$/ ],
+	// the normal-map maths, split from gl_normals (made in [44g] for debt D1c)
+	[ 'newer/render', '44g', /^normal_math\.js$/ ],
 	[ 'engine/render', '44d', /^(gl_\w+|glquake|render|vid|r_part|lit)\.js$/ ],
 	[ 'platform', '44c', /^(webxr|touch|touch_layout|in_web)\.js$/ ],
 	[ 'newer/gameplay', '44b', /^(sv_\w+|respawn_record|rend_veil_state|axe_record|shotgun_flight|powervision_state)\.js$/ ],

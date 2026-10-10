@@ -62,7 +62,7 @@ Deno.test( 'manual, timed and explicitly disabled demo playback never install at
 
 Deno.test( 'profiler cancellation never borrows attract flashlight defaults and restores the owner mode before another attract starts', () => fixture( () => {
 
-	const queued = []; perf.R_PerfSetHost( { cls, getCvar: vars.Cvar_VariableValue, setCvar: vars.Cvar_SetValue, menuOpen: () => false, log: () => {}, size: () => '320x200', Cbuf_AddText: text => queued.push( text ) } );
+	const queued = []; perf.R_PerfSetHost( { cls, endDemoSplit: split.R_DemoSplitEnd, getCvar: vars.Cvar_VariableValue, setCvar: vars.Cvar_SetValue, menuOpen: () => false, log: () => {}, size: () => '320x200', Cbuf_AddText: text => queued.push( text ) } );
 	perf.R_PerfStart( 1 ); check( perf.R_PerfProfiling(), 'actual public profiler starts bounded measurement intent' ); same( r_flashlight.value, 0, 'profiler leaves manual beam preference' ); split.R_DemoSplitStart(); same( r_flashlight.value, 0, 'profiling blocks attract override even under direct public Start' ); same( split.R_DemoSplitActive(), false, 'profiler remains single view' ); check( queued.some( text => text.startsWith( 'timedemo ' ) ), 'profiler uses timed intent without executing a game' ); perf.R_PerfStop( 'stopped' ); same( vars.Cvar_VariableValue( 'r_hdr' ), 0, 'profiling restores owner mode' ); same( r_flashlight.value, 0, 'profiling restores owner flashlight' );
 	cls.demoplayback = true; split.R_DemoSplitStart(); same( r_flashlight.value, 1, 'ordinary attract default works after profiler scope ends' ); split.R_DemoSplitEnd(); same( r_flashlight.value, 0, 'following attract scope still restores owner preference' );
 

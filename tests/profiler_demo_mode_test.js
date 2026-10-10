@@ -39,7 +39,7 @@ function withState( check, { hdr = 0, comparison = 1, demonum = 2, missing = fal
  vars.Cvar_SetValue( 'r_hdr', hdr ); vars.Cvar_SetValue( 'r_demosplit', comparison );
  vars.Cvar_SetValue( 'r_dynres', 1 ); vars.Cvar_SetValue( 'cl_showfps', 0 );
  perf.R_PerfSetHost( {
-  cls, getCvar: vars.Cvar_VariableValue, setCvar: vars.Cvar_SetValue,
+  cls, getCvar: vars.Cvar_VariableValue, setCvar: vars.Cvar_SetValue, endDemoSplit: split.R_DemoSplitEnd, // (as main.js gives it)
   menuOpen: () => menu, log: text => logs.push( text ), size: () => '800x600',
   Cbuf_AddText( text ) {
    commands.push( text );

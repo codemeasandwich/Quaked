@@ -28,7 +28,6 @@
 // It goes to the console, the screen, and a JSON file that is downloaded.
 
 import { cvar_t } from '../../engine/common/cvar.js';
-import { R_DemoSplitEnd } from './r_demosplit.js';
 
 export const cl_showfps = new cvar_t( 'cl_showfps', '0' );
 
@@ -162,7 +161,7 @@ export function R_PerfFrameEnd() {
 // --- the run ---
 let run = null;
 let saved = null;
-let host = null; // { Cbuf_AddText, cls, log, scale, draw }
+let host = null; // { Cbuf_AddText, cls, log, getCvar, setCvar, size, menuOpen, endDemoSplit }
 const DEMOS = [ 'demo1', 'demo2', 'demo3' ];
 let lastReport = null;
 let frameLimit = 0;
@@ -179,7 +178,7 @@ export function R_PerfStart( limit ) {
 	frameLimit = limit > 0 ? limit : 0; // (0: each demo to its end)
 
 	// End a title demo's temporary HDR override before saving the player's mode.
-	R_DemoSplitEnd();
+	host.endDemoSplit(); // (r_demosplit.js's R_DemoSplitEnd, given in the host: this module does not import it, debt D1c)
 	saved = { dynres: host.getCvar( 'r_dynres' ), showfps: host.getCvar( 'cl_showfps' ),
 		hdr: host.getCvar( 'r_hdr' ), split: host.getCvar( 'r_demosplit' ), demonum: host.cls.demonum };
 	host.setCvar( 'r_hdr', 1 );
