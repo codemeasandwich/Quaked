@@ -4,9 +4,11 @@
  * Save records for the powered axe's cut halves (cards [18], face overlays): validated before any geometry is made
  * from a save.
  *
- * Owns: no state.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a malformed record returns null and is ignored; the native entity still loads.
+ * State: no mutable exports.
+ *
+ * Errors: catches at 1 place.
  */
 import { Face_Seed } from '../../enemy_face.js';
 // Optional save metadata, ignored by the original Quake underscore-key rule.

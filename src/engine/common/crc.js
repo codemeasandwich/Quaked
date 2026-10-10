@@ -3,9 +3,11 @@
  *
  * CRC-16/CCITT checksums (WinQuake crc.c), used for progs.dat's header check.
  *
- * Owns: a constant table.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none (pure functions).
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: WinQuake/crc.c -- CRC checksums (CCITT standard CRC used by XMODEM)
 

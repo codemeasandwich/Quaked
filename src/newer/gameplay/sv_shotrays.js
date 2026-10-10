@@ -3,9 +3,11 @@
  *
  * The native rays of a shotgun blast, recorded for the pellet picture and the damage schedule.
  *
- * Owns: no state beyond each blast's record.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `serial`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // The native rays of a shotgun blast, observed for the pellet picture (r_shotgun.js) and the damage schedule
 // (sv_shotdelay.js).

@@ -4,10 +4,16 @@
  * Program execution definitions (WinQuake progs.h): the `edict_t` class and its field accessor, and the loaded
  * program (functions, strings, globals, statements).
  *
- * Owns: 22 mutable exports holding the loaded progs.dat; the edicts' private Newer Game fields (cleared by
- * `clearFields` when a slot is reused). Lifetime: one level.
+ * Types: exported classes `EdictFieldAccessor`, `edict_t`.
  *
- * Errors: a bad edict number or pointer (`EDICT_NUM`, `NUM_FOR_EDICT`) throws.
+ * State: mutable exports `progs`, `pr_functions`, `pr_strings`, `pr_strings_data`, `pr_globaldefs`, `pr_fielddefs`,
+ * `pr_statements`, `pr_global_struct`, `pr_globals`, `pr_globals_float`, `pr_globals_int`, `pr_edict_size`, `pr_crc`,
+ * `pr_string_temp_ofs`, `sv`, `svs`, `pr_builtins`, `pr_numbuiltins`, `pr_argc`, `pr_trace`, `pr_xfunction`,
+ * `pr_xstatement`.
+ *
+ * Errors: throws at 2 places.
+ *
+ * The loaded program's tables are set through the `PR_Set*` functions when progs.dat loads.
  */
 // Ported from: WinQuake/progs.h -- program execution definitions
 

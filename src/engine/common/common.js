@@ -4,10 +4,12 @@
  * Shared engine basics (WinQuake common.c/.h): size buffers, message read/write, byte order, links, string parsing
  * (`COM_Parse`), registered-game detection.
  *
- * Owns: nine mutable exports (`com_token`, the message read state, registration flags) shared by client and server.
- * Lifetime: the page.
+ * Types: exported classes `sizebuf_t`, `link_t`.
  *
- * Errors: a size buffer that overflows without `allowoverflow` calls `Sys_Error` (fatal).
+ * State: mutable exports `msg_readcount`, `msg_badread`, `net_message`, `com_token`, `com_argc`, `com_argv`,
+ * `standard_quake`, `rogue`, `hipnotic`; module-level variables `_realConPrintf`, `_realConDPrintf`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 2 places.
  */
 // Ported from: WinQuake/common.c -- misc functions used in client and server
 // + WinQuake/common.h -- general definitions

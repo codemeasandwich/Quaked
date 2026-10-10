@@ -4,9 +4,13 @@
  * Hooks into QuakeC for the powered axe's cut (card [18]): stronger axe damage with power-ups and the cut halves of a
  * confirmed kill.
  *
- * Owns: the halves kept in this level (one map). Lifetime: one level; `SV_AxeReset` after a QuakeC error.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised; QuakeC keeps the damage rules.
+ * State: no mutable exports; module-level variables `active`; 1 module-level collection (Map/Set).
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * `SV_AxeReset` clears it after a QuakeC error.
  */
 // Narrow native-QuakeC hooks. QC retains the trace, immunity, armor, obituary,
 // monster counters, targets, drops and death callbacks. We only raise combined

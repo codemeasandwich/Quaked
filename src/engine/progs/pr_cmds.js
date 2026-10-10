@@ -4,10 +4,11 @@
  * QuakeC's built-in functions (WinQuake pr_cmds.c): what the game code calls in the engine (spawning, tracing,
  * sounds, precaching, messages) and where Newer Game observes it (gore, face events, axe cuts, respawn).
  *
- * Owns: the built-in table, installed by `PR_InitBuiltins`. Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a misuse by the game code (an unprecached model, a bad entity) calls `PR_RunError`, which prints the QuakeC
- * stack and ends the game with `Host_Error`.
+ * State: no mutable exports; module-level variables `checkpvs`.
+ *
+ * Errors: calls `PR_RunError` at 13 places.
  */
 import { Face_Assign } from '../../enemy_face.js';
 // Ported from: WinQuake/pr_cmds.c -- QuakeC built-in functions

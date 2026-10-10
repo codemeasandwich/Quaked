@@ -3,9 +3,11 @@
  *
  * Shared player movement (QuakeWorld pmove.c): the same physics the server runs, used by the client for prediction.
  *
- * Owns: the `pmove` state and `movevars`, filled in before each move. Lifetime: the page.
+ * Types: exported classes `pmtrace_t`, `physent_t`.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `onground`, `waterlevel`, `watertype`, `frametime`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: QuakeWorld/client/pmove.c and pmovetst.c
 // Shared player movement physics for client-side prediction

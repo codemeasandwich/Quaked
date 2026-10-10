@@ -4,9 +4,11 @@
  * The scope of one client physics call, so a portal can keep the player's velocity without physics importing the
  * renderer.
  *
- * Owns: one map of the move in progress. Lifetime: one physics call.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; 1 module-level collection (Map/Set).
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Renderer-independent scope for one client physics call. Physics must not
 // import the portal renderer to retain a pre-impact velocity: doing so changes

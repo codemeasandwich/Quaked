@@ -4,10 +4,14 @@
  * Host console commands (WinQuake host_cmd.c): map, changelevel, save and load, connect, god, noclip, give and the
  * rest.
  *
- * Owns: `noclip_anglehack`; saved games in localStorage. Lifetime: the page; registered by `Host_InitCommands`.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a failed save or load is caught and reported on the console; a missing map is fetched first and the command
- * retried.
+ * State: mutable exports `noclip_anglehack`; browser storage.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place; catches at 4 places.
+ *
+ * Saved games are kept in localStorage; a failed save or load is caught and reported on the console. A map not yet
+ * loaded is fetched first and the command reissued.
  */
 import { weaponSurface } from '../../r_weapon_surface.js';
 import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from '../../newer/gameplay/sv_respawn.js';

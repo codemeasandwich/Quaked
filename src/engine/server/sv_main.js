@@ -4,11 +4,14 @@
  * The server's main program (WinQuake sv_main.c): spawning a level, sending entity updates and client data, sounds
  * and particles, and connecting and dropping clients.
  *
- * Owns: the model and sound precache of the running level; registers engine model functions into seamless travel as
- * it loads (`SV_SeamlessUseModels`, baseline D10). Lifetime: one level.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: an unprecached model, bad sound arguments, no free client slot or a bad entity delta calls `Sys_Error`
- * (fatal).
+ * State: mutable exports `current_skill`; module-level variables `fatbytes`, `fatpvs`, `sv_playermodel`,
+ * `carriedPowerups`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 9 places.
+ *
+ * As it loads, it registers engine model functions into seamless travel (`SV_SeamlessUseModels`, baseline debt D10).
  */
 import { SV_RespawnPrecache, SV_SetRespawnLandedHook, SV_SetRespawnEntryHook, SV_RespawnReserveGuards, SV_RespawnWorldStart, SV_RespawnCaptureTravel, SV_RespawnClearTravel, sv_respawnguard } from '../../newer/gameplay/sv_respawn.js';
 // Ported from: WinQuake/sv_main.c -- server main program

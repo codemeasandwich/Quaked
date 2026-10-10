@@ -4,9 +4,12 @@
  * Memory management (WinQuake zone.c), kept as an API: JavaScript allocates, so the hunk, zone and cache calls only
  * track names and sizes.
  *
- * Owns: one cache map. Lifetime: the page; `Memory_Init` at start-up.
+ * Types: exported classes `cache_user_t`.
  *
- * Errors: a cache entry allocated twice, freed when not allocated, or of a bad size calls `Sys_Error` (fatal).
+ * State: no mutable exports; module-level variables `hunk_low_mark`, `hunk_high_mark`, `hunk_temp_active`,
+ * `hunk_temp_mark`, `zone_allocated`; 1 module-level collection (Map/Set).
+ *
+ * Errors: calls `Sys_Error` (fatal) at 3 places.
  */
 // Ported from: WinQuake/zone.c + zone.h -- memory allocation
 //

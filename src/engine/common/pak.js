@@ -4,10 +4,13 @@
  * The game's file system: PAK archives (`pak0.pak`, Newer Game's `newer.pak` and its maps pack), loose files, and the
  * URLs of Newer Game's own assets (`COM_NewerURL`).
  *
- * Owns: the search path of mounted packs and three caches (maps). Lifetime: the page; packs are added at start-up and
- * when Newer Game is switched on.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a file that is not a PAK calls `Sys_Error` (fatal); a missing file returns null to its caller.
+ * State: no mutable exports; module-level variables `com_searchpaths`, `newerPack`, `startupPack`, `startupIndex`,
+ * `newerIndex`, `newerActive`, `newerMaps`, `newerMapsEnabled`, `looseFileBasePath`; 3 module-level collections
+ * (Map/Set).
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place; throws at 9 places; catches at 6 places.
  */
 // PAK file loader -- new module for browser-based asset loading
 // Quake stores all game data in pak0.pak (and optionally pak1.pak)

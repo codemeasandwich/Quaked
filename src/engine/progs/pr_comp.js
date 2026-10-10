@@ -3,9 +3,11 @@
  *
  * QuakeC compiler definitions (WinQuake pr_comp.h): value types, opcodes and global offsets.
  *
- * Owns: constants only.
+ * Types: exported classes `dstatement_t`, `ddef_t`, `dfunction_t`, `dprograms_t`.
  *
- * Errors: none (pure data).
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: WinQuake/pr_comp.h -- defs shared with qcc
 

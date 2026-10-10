@@ -4,10 +4,14 @@
  * Newer Game's single-player death and respawn: the backpack, the remains, the guard monster, health on return and
  * the level's return arch.
  *
- * Owns: the death in progress (one at a time) and the reserved guards. Lifetime: one level; save records via
- * `respawn_record.js`.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised; outside a local Newer Game (`SV_RespawnAllowed`) a death is Quake's own.
+ * State: no mutable exports; module-level variables `guardReady`, `guardSkill`, `respawnLanded`, `respawnEntryYaw`,
+ * `travelInventory`, `worldEpoch`; 5 module-level collections (Map/Set).
+ *
+ * Errors: throws at 5 places; catches at 4 places.
+ *
+ * Outside a local Newer Game (`SV_RespawnAllowed`) a death is Quake's own.
  */
 // Native single-player death coordinator. QC retains damage/death callbacks;
 // only its backpack/restart are replaced while this coordinator owns a death.

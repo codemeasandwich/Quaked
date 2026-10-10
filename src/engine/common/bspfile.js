@@ -3,9 +3,11 @@
  *
  * BSP file format constants and limits (WinQuake bspfile.h): lump indices, contents values, design bounds.
  *
- * Owns: constants only.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none (pure data).
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: WinQuake/bspfile.h -- BSP file format definitions
 

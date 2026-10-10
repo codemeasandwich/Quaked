@@ -3,9 +3,11 @@
  *
  * WAD2 lump files (WinQuake wad.c), used for `gfx.wad`'s 2D pictures.
  *
- * Owns: three mutable exports (the loaded WAD's lumps and base). Lifetime: the page, after `W_LoadWadFile`.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a file that is not WAD2, or a missing or bad lump, calls `Sys_Error` (fatal).
+ * State: mutable exports `wad_numlumps`, `wad_lumps`, `wad_base`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 3 places.
  */
 // Ported from: WinQuake/wad.c + wad.h -- WAD file loading
 

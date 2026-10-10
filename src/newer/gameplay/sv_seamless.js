@@ -4,10 +4,12 @@
  * Seamless level changes: walking out of one level into the next without an intermission, with the monsters that
  * follow.
  *
- * Owns: the links between levels, the warm level and the followers in transit. Lifetime: the game. Receives engine
- * model functions from `sv_main.js` as it loads (baseline D10).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `crossings`, `pending`, `lastOrigin`, `pads`, `teleport`,
+ * `levelStates`, `holding`, `arrivals`, `padFollowers`; 2 module-level collections (Map/Set).
+ *
+ * Errors: calls `Sys_Error` (fatal) at 6 places.
  */
 // Seamless level changes: walk (or fall) out of the end of one level and carry on
 // into the start of the next without an intermission, a teleport or a change of

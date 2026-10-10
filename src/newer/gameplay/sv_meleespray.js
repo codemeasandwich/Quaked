@@ -3,9 +3,11 @@
  *
  * Melee hits on the player bleed but throw nothing of the player (card [K1]; Newer Game only).
  *
- * Owns: counters for its tests (`meleeStats`).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised in play.
+ * State: no mutable exports; module-level variables `program`, `fnSpray`, `fnNull`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Melee hits on the player bleed, but throw nothing of the player (card [K1], owner 9 Oct 2026: "Melee attacks on the player show
 // blood but must not emit physical chunks from the player"). Newer Game only; Classic keeps Quake's.

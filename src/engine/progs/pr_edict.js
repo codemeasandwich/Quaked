@@ -5,11 +5,15 @@
  * from maps and saves, writing saves, and Newer Game's private save keys (respawn, axe halves, rend veil, face
  * seeds).
  *
- * Owns: the edict allocation and the loaded program's field and global definitions (in `progs.js`). Lifetime: one
- * level; reloaded by each map.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a bad progs.dat, a bad entity string or no free edict calls `Sys_Error` (fatal); malformed Newer Game save
- * metadata is ignored (the native fields still load).
+ * State: no mutable exports; module-level variables `pr_extra_strings`, `pr_extra_strings_offset`, `deathmatch`,
+ * `current_skill`, `functionIndex`, `functionIndexFor`, `gefvCache_rep`, `growBuf`, `growLen`, `growView`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 14 places.
+ *
+ * Newer Game's private save keys (`_newer_face_seed`, `_newer_axe_corpse`, `_clockwise_*`, the rend veil) are parsed
+ * here; a malformed one is ignored and the native fields still load.
  */
 import { Face_Seed, Face_ParseSeed, Face_Assign } from '../../enemy_face.js';
 import { Rend_ValidRecord, Rend_ParseRecord } from '../../newer/gameplay/sv_rendveil.js';

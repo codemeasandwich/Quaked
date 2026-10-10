@@ -3,9 +3,13 @@
  *
  * Options > Cheats (card [L1]): the Ring, Quad and Pentagram as switches that stay on, and the all-weapons give.
  *
- * Owns: no state of its own; the powers live on the player's edict (`_cheatPowers`).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised; cheats are offered only in a local single-player game (`SV_CheatsAvailable`).
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Cheats are offered only in a local single-player game (`SV_CheatsAvailable`).
  */
 // Cheat power-ups (Options > Cheats): the Ring of Shadows, Quad Damage and the Pentagram of Protection as switches that stay
 // on until switched off, and the all-weapons give, all applied at once so the game under the menu shows them straight away.

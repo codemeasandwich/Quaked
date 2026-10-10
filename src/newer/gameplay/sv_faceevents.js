@@ -4,9 +4,14 @@
  * Observations of QuakeC for the status-bar face and the shotgun's pellets: damage, healing and shots, without
  * changing the game (but for a pellet's delayed damage).
  *
- * Owns: five maps of pending observations. Lifetime: one level; `SV_FaceReset` after a QuakeC error.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `epoch`, `program`, `world`, `map`, `activeShot`; 5 module-level
+ * collections (Map/Set).
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * `SV_FaceReset` clears it after a QuakeC error.
  */
 // Native-QC observations for the local HUD face and for the shotgun's pellets. A damage callback
 // is observed separately from later healing/clientdata, and a dry-fire weapon

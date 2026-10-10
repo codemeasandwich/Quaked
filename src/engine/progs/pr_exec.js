@@ -3,10 +3,14 @@
  *
  * The QuakeC interpreter (WinQuake pr_exec.c): runs the game code's functions statement by statement.
  *
- * Owns: the call stack and its depth; the host's error callback (`PR_SetHostError`). Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a runaway loop, stack overflow or bad opcode calls `PR_RunError`: the statement and stack are printed,
- * Newer Game's per-call hooks are reset, and the game ends with `Host_Error`.
+ * State: no mutable exports; module-level variables `pr_depth`, `localstack_used`, `Host_Error`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 3 places; calls `Host_Error` at 1 place; calls `PR_RunError` at 9 places.
+ *
+ * `PR_RunError` prints the QuakeC statement and stack, resets Newer Game's per-call hooks (`SV_AxeReset`,
+ * `SV_FaceReset`) and ends the game with `Host_Error`.
  */
 // Ported from: WinQuake/pr_exec.c -- QuakeC bytecode interpreter
 

@@ -3,9 +3,11 @@
  *
  * Vector and angle maths (WinQuake mathlib.c): dot and cross products, normalising, angle vectors, `BoxOnPlaneSide`.
  *
- * Owns: `vec3_origin`, a shared constant vector that must not be written.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: `BoxOnPlaneSide` with bad sign bits calls `Sys_Error` (fatal).
+ * State: no mutable exports.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place.
  */
 // Ported from: WinQuake/mathlib.c -- math primitives
 

@@ -3,9 +3,11 @@
  *
  * A knocked-down zombie can be finished off (card [40]; Newer Game only).
  *
- * Owns: no state; the lying box lives on the zombie's edict.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `program`, `lying`, `standing`, `waking`, `nothing`, `zombieFns`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // A knocked-down zombie can be finished off (card [40], owner request). Newer Game only; Classic keeps Quake's.
 //

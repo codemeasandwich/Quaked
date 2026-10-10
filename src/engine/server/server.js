@@ -3,10 +3,13 @@
  *
  * Server structures and constants (WinQuake server.h): `server_t`, `client_t`, the server statics and the move types.
  *
- * Owns: three mutable exports, among them `sv` and `svs` (the one running server) and `host_client`. Lifetime: the
- * page; a level resets `sv`.
+ * Types: exported classes `server_static_t`, `server_t`, `client_frame_t`, `client_t`.
  *
- * Errors: none raised.
+ * State: mutable exports `host_client`, `host_time`, `sv_player`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * `host_client`, `host_time` and `sv_player` are set through `set_host_client`, `set_host_time` and `set_sv_player`.
  */
 // Ported from: WinQuake/server.h -- server structures and constants
 

@@ -4,11 +4,14 @@
  * Quake's command buffer and command registry (WinQuake cmd.c): Cbuf text, registered commands, aliases and the
  * current command's arguments.
  *
- * Owns: the one command buffer, the command and alias tables, `cmd_source` (a mutable export) and the tokenised
- * arguments. Lifetime: the page; `Cmd_Init`/`Cbuf_Init` at host start.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: an unknown command prints `Unknown command` to the console; nothing is thrown. Part of the engine's own
- * import cycle with common, cvar and pak (baseline D1a).
+ * State: mutable exports `cmd_source`; module-level variables `cmd_text`, `cmd_alias`, `cmd_wait`, `cmd_argc`,
+ * `cmd_args`, `cmd_functions`, `_getClientState`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * An unknown command prints `Unknown command` to the console.
  */
 // Ported from: WinQuake/cmd.c -- Quake script command processing module
 

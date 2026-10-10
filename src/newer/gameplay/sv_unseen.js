@@ -3,9 +3,12 @@
  *
  * The Ring of Shadows made to mean it (owner request 9 Oct 2026; Newer Game only): hunting monsters lose the player.
  *
- * Owns: the places monsters last saw the player (one map). Lifetime: one level; `SV_UnseenReset`.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `program`, `world`, `fnDamage`, `fnAttack`, `lastShot`; 1
+ * module-level collection (Map/Set).
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // The Ring of Shadows, made to mean it (owner request, 9 Oct 2026; Newer Game only, Classic keeps Quake's rules).
 //

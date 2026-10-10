@@ -3,9 +3,11 @@
  *
  * Rend the Veil: the arrival rite of stock monster-closet teleports, its save record and what the client draws.
  *
- * Owns: the rites of the running level. Lifetime: one level.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a malformed save record is ignored; native teleporting is unchanged.
+ * State: no mutable exports.
+ *
+ * Errors: catches at 1 place.
  */
 // A named stock monster-closet teleport owns one finite arrival rite. Native
 // teleport_touch still owns destinations, telefrags, targets, damage and sound.

@@ -4,11 +4,11 @@
  * World queries (WinQuake world.c): linking entities into the area grid, hull tracing (`SV_Move`,
  * `SV_RecursiveHullCheck`), contents and touching.
  *
- * Owns: the area nodes and a scratch vector pool that grows with the hulls' depth. Lifetime: one level
- * (`SV_ClearWorld`).
+ * Types: exported classes `plane_t`, `trace_t`.
  *
- * Errors: a bad node number in a hull, a trigger in the clipping list, or a pusher and solid kind that do not match
- * call `Sys_Error` (fatal).
+ * State: no mutable exports; module-level variables `sv_numareanodes`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 5 places.
  */
 import { SV_RespawnDropTouch } from '../../newer/gameplay/sv_respawn.js';
 import { SV_RendVeilTouchBegin, SV_RendVeilTouchEnd } from '../../newer/gameplay/sv_rendveil.js';

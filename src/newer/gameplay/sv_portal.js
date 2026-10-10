@@ -4,9 +4,11 @@
  * Same-level camera portals: the player keeps the rigid transform the portal's picture used, on a teleport QuakeC
  * confirmed.
  *
- * Owns: the pending touch (one map). Lifetime: one touch.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised; QuakeC still decides whether a touch teleports.
+ * State: no mutable exports; 1 module-level collection (Map/Set).
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Same-level camera portals must use the same rigid transform for the player
 // that gl_portal uses for its preview. QuakeC still decides whether a touch

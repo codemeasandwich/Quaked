@@ -19,6 +19,13 @@ got wrong is listed at the end.
 **Since this baseline.** The increments' progress is kept in [module-layout.md](module-layout.md): [44b] has moved its
 50 modules, and debt D7 is closed. The figures below stay those of the baseline's commit.
 
+**Change of plan (10 October 2026).** The increments [44b] to [44f] move modules only: each module to its folder, with its
+`@module` header, its consumers updated and an adapter at its old path. Every debt action the table below gives to one
+of them (D1a, D1b, D1c, D2, D4, D5, D6, D9, D10) is done in [44g] instead, once all modules have moved. A move is then
+mechanical and checked by the same graph before and after; a debt changes structure or behaviour and is reviewed on its
+own. Decided by the implementing session (Claude) under the owner's instruction of that day to complete the backlog
+autonomously, and recorded on the [44b] and [44g] cards; the owner can reverse it. D7 was small and done in [44b].
+
 ```sh
 git archive <commit> | tar -x -C /tmp/q                             # a commit, not a dirty working tree
 node tools/architecture_graph.mjs /tmp/q /tmp/graph.json             # exit 1: a src module not scanned, or an unexpected unresolved import

@@ -3,10 +3,14 @@
  *
  * A shotgun's damage arrives with its pellets (owner direction 8 Oct 2026), instead of at the instant of the shot.
  *
- * Owns: the pending hits. Lifetime: until each lands; after a map change or a loaded game, the old world's hits are
- * dropped on the next `SV_ShotDelayRun`.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `pending`, `indexed`; 1 module-level collection (Map/Set).
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Pending hits wait for their pellets; after a map change or a loaded game the old world's hits are dropped on the
+ * next `SV_ShotDelayRun`.
  */
 // A shotgun's damage arrives with its pellets (owner direction, 8 Oct 2026).
 //

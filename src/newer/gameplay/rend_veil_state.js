@@ -3,9 +3,11 @@
  *
  * The clock of Rend the Veil, the monster-closet arrival rite: its schedule and what it shows at a given time.
  *
- * Owns: no state (pure functions).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none.
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Server/client clock contract; the owner-supplied profile is the authority.
 import { PROFILE } from '../../rend_veil/config.js';

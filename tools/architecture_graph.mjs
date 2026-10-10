@@ -303,6 +303,10 @@ const missing = edges.filter( e => ! e.to.endsWith( '/' ) && text[ e.to ] === un
 // pages, whose inline imports climbed above their <base href="../">, import ./src/… since card [44b].)
 const KNOWN_MISSING = [ e => e.from === 'tests/axe_original_test.js' && /^newer\/weapons\/(v_axe\.json|axe)$/.test( e.to ), e => /^resources\/id1\/pak0\.pak$/.test( e.to ), e => /^(fieldlab-fx-3d-updated|arc-weapons-wall-canvas-shotgun|rockfield-v1\.\d\.0)\.html$/.test( e.to ) ];
 const unexpected = missing.filter( e => ! KNOWN_MISSING.some( known => known( e ) ) );
+// an adapter left at an old path serves only paths built at run time: a literal import, re-export, dynamic import or
+// module URL that names one is a new consumer of an old path, so it fails too (cards [44b]..[44f]; deleted in [44g])
+const adapterConsumers = edges.filter( e => adapters[ e.to ] && e.from !== e.to && e.kinds.some( k => /^(static|export|dynamic|dynamic-computed|dynamic-wrapped|url|worker|read|fetch|importmap)$/.test( k ) ) );
+unexpected.push( ...adapterConsumers.map( e => ( { ...e, to: e.to + ' (an adapter: use ' + adapters[ e.to ] + ')' } ) ) );
 
 const out = { root: ROOT, files: files.length, scannedRootFiles: files.map( rel ).filter( f => ! f.includes( '/' ) ), src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing, unscanned, unexpected,
 	counts: { queryImports: queryImports.length, queryImportFiles: new Set( queryImports.map( e => e.from ) ).size, queryImportsComputed: queryImports.filter( e => e.kind === 'dynamic-computed' ).length, importMapEntries: importMapEntries.length, animImporters: Object.keys( animImporters ).length, animModeOnly: modeOnly.length },

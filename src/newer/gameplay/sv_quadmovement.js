@@ -3,9 +3,11 @@
  *
  * Quad Damage's movement bonus (owner request), worked out from the native state on every move.
  *
- * Owns: no state (no saved multiplier or timer).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none.
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Quad's owner-requested movement bonus is derived from native QC state on
 // every move. No saved multiplier, cvar mutation or client-side timer exists.

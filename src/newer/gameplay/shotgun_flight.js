@@ -4,9 +4,11 @@
  * A shotgun pellet's flight, from the supplied ARC ShotgunEffect: speed, timing and trail, used by the picture and by
  * the server's damage timing.
  *
- * Owns: constants only (pure functions).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none.
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // The flight of a shotgun pellet: the supplied ARC ShotgunEffect's kinematics (arc-weapons-wall-canvas-
 // shotgun.html, SHA-256 8b156922...adf, kept local; sgRandom 460, sgDistance / sgTimeAt 463-464, fire 499-545,

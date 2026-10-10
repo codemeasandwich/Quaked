@@ -3,9 +3,13 @@
  *
  * Monster movement (WinQuake sv_move.c): walking, stepping and chasing a goal.
  *
- * Owns: three mutable exports (the move callbacks set by `SV_Move_SetCallbacks`). Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: mutable exports `PF_changeyaw`, `G_FLOAT`, `G_FLOAT_SET`; module-level variables `c_yes`, `c_no`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Its mutable exports are dependencies injected by `SV_Move_SetCallbacks`.
  */
 // Ported from: WinQuake/sv_move.c -- monster movement
 

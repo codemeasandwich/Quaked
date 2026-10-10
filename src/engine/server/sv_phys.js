@@ -3,9 +3,16 @@
  *
  * Server physics (WinQuake sv_phys.c): every move type, pushers, gravity, water and touch, run once per server frame.
  *
- * Owns: 16 mutable exports (frame time and physics cvars). Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a bad move type, or a fly move that hits nothing it can name, calls `Sys_Error` (fatal).
+ * State: mutable exports `sv`, `svs`, `sv_player`, `pr_global_struct`, `host_frametime`, `pr_strings`, `SV_Move`,
+ * `SV_TestEntityPosition`, `SV_LinkEdict`, `SV_PointContents`, `SV_StartSound`, `PR_ExecuteProgram`, `EDICT_TO_PROG`,
+ * `PROG_TO_EDICT`, `NEXT_EDICT`, `GetEdictFieldValue`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 3 places.
+ *
+ * Its mutable exports are dependencies injected by `SV_SetState`, `SV_SetCallbacks`, `SV_SetFrametime` and
+ * `SV_SetPlayer` (the server, its globals, tracing and QuakeC entry points), not physics settings.
  */
 import { SV_RespawnFrame } from '../../newer/gameplay/sv_respawn.js';
 import { SV_QuadJumpBegin, SV_QuadJumpEnd } from '../../newer/gameplay/sv_quadmovement.js';

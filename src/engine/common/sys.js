@@ -3,9 +3,13 @@
  *
  * The system interface for the browser (WinQuake sys.h/sys_win.c): printing, time, quitting and fatal errors.
  *
- * Owns: no state.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: `Sys_Error` logs, shows the message on the page and throws: it is the engine's fatal error.
+ * State: no mutable exports.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place; throws at 1 place.
+ *
+ * `Sys_Error` logs, shows the message on the page and throws: the engine's fatal error.
  */
 // Ported from: WinQuake/sys.h + sys_win.c -- system interface (browser)
 

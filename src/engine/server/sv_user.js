@@ -4,9 +4,16 @@
  * Server-side handling of players (WinQuake sv_user.c): reading their moves and commands, view angles, water
  * movement.
  *
- * Owns: seven mutable exports (the current client and its move state). Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a bad client message drops that client.
+ * State: mutable exports `host_client`, `V_CalcRoll`, `SV_DropClient`, `NET_GetMessage`, `Cbuf_InsertText`,
+ * `Cmd_ExecuteString`, `src_client`; module-level variables `wishdir`, `wishspeed`, `angles`, `origin`, `velocity`,
+ * `onground`, `cmd`, `_get_key_dest`, `_set_host_client`, `_msgLoopCount`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Its mutable exports are dependencies injected by `SV_User_SetCallbacks`; a client message it cannot read drops that
+ * client (`SV_DropClient`).
  */
 import {R_WelcomeLoadingHolding} from '../../r_demoloading.js';
 import {SV_QuadMovementScale} from '../../newer/gameplay/sv_quadmovement.js';

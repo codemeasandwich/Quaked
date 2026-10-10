@@ -3,10 +3,17 @@
  *
  * The developer console (WinQuake console.c): its text buffer, notify lines, scrollback and drawing hooks.
  *
- * Owns: seven mutable exports (line width, backscroll, visible lines and so on) and the console text. Lifetime: the
- * page; drawing callbacks are injected with `Con_SetExternals`.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised; printing before initialisation is buffered.
+ * State: mutable exports `con_linewidth`, `con_forcedup`, `con_totallines`, `con_backscroll`, `con_vislines`,
+ * `con_initialized`, `con_notifylines`; module-level variables `con_current`, `con_x`, `con_text`, `con_debuglog`,
+ * `_cls`, `_realVid`, `_getRealtime`, `_scr_disabled_for_loading`, `_developer`, `_Draw_Character`, `_Draw_String`,
+ * `_Draw_ConsoleBackground` and 6 more.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * `Con_Printf` before `Con_Init` drops the message (it is not buffered). Drawing callbacks are injected with
+ * `Con_SetExternals`.
  */
 // Ported from: WinQuake/console.c, WinQuake/console.h -- developer console
 

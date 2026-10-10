@@ -4,11 +4,17 @@
  * The host (WinQuake host.c): starts and runs the game loop, local servers and the client, frame timing, and the
  * saved configuration.
  *
- * Owns: seven mutable exports (frame time, real time, frame count, palette, initialised flag); the configuration
- * saved in localStorage (`quake_config`). Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: `Host_Error` throws back to `Host_Frame`, which ends the current game and returns to the console; a failure
- * before start-up calls `Sys_Error`.
+ * State: mutable exports `host_parms`, `host_initialized`, `host_frametime`, `realtime`, `host_framecount`,
+ * `host_basepal`, `host_colormap`; module-level variables `host_time`, `oldrealtime`, `host_error_reentrancy`;
+ * browser storage.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place; throws at 3 places; calls `Host_Error` at 1 place; catches at 3
+ * places.
+ *
+ * `Host_Error` throws back to `Host_Frame`, which ends the current game; entered again while handling one, it calls
+ * `Sys_Error`. The configuration is saved in localStorage (`quake_config`).
  */
 // Ported from: WinQuake/host.c -- coordinates spawning and killing of local servers
 

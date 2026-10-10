@@ -4,9 +4,11 @@
  * Which power-up vision is active (Unseen World for the Ring, Demon for the Pentagram), from the native item bits and
  * their timers.
  *
- * Owns: no state (pure functions).
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none.
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 import { IT_INVISIBILITY, IT_INVULNERABILITY, STAT_HEALTH } from '../../engine/common/quakedef.js';
 

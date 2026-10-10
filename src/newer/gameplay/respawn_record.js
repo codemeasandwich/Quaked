@@ -4,9 +4,11 @@
  * Save records for Newer Game's respawn (the dropped backpack, the remains, the player's carried state) and the
  * dropped ammunition.
  *
- * Owns: no state.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: a malformed record returns null and is ignored.
+ * State: no mutable exports.
+ *
+ * Errors: catches at 1 place.
  */
 // Private save metadata contains values only; no executable callbacks/models
 // may be supplied by it. Native QC and the loaded server own execution.

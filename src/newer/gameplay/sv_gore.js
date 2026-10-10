@@ -3,9 +3,11 @@
  *
  * Gibs in proportion to a monster's size when it bursts (Newer Game only).
  *
- * Owns: no state.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports; module-level variables `lastNum`, `lastTime`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Newer Game: a monster bursting scatters gibs and blood in proportion to its size.
 //

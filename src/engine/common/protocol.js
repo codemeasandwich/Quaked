@@ -4,9 +4,11 @@
  * Network protocol constants (WinQuake protocol.h): update bits, server and client message numbers, sound and
  * temporary-entity codes.
  *
- * Owns: constants only.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none (pure data).
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: WinQuake/protocol.h -- communications protocols
 

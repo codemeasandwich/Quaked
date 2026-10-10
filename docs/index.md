@@ -163,10 +163,5 @@ Commit scopes, delivery records and handoffs.
 - [Combined work checkpoint](commit-all-work-2026-10-02.md)
 - [Reviewed delivery — 2026-10-01](delivery-2026-10-01.md)
 - [Enhanced surfaces, pickups, travel and axe: commit record](enhancements-commit-2026-10-04.md)
-- [Scoped functionality commit](scoped-commit-2026-10-05.md)
-
-## Other
-
-Documents that no topic rule claims yet.
-
 - [Source layout: where each module lives](module-layout.md)
+- [Scoped functionality commit](scoped-commit-2026-10-05.md)

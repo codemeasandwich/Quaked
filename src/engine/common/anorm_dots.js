@@ -4,9 +4,11 @@
  * Precomputed tables for alias-model lighting (WinQuake anorms.h, anorm_dots.h): the 162 quantised vertex normals and
  * their dot products with the 16 shade directions.
  *
- * Owns: two constant tables, read only. Lifetime: the page.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none (pure data). `tools/import_nailgun.py` also reads this file's text by path.
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: WinQuake/anorm_dots.h, WinQuake/anorms.h
 // Pre-calculated dot products for quantized light directions + vertex normals

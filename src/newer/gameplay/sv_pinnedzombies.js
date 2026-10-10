@@ -3,9 +3,11 @@
  *
  * Crucified zombies can be killed in Newer Game: their native spawn is opted into the normal damage path.
  *
- * Owns: no state.
+ * Types: plain values and functions; no exported classes.
  *
- * Errors: none raised.
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Pinned zombies use their original QuakeC spawn, health, bounds and crucifixion
 // animation. The stock spawn skips walkmonster_start, leaving DAMAGE_NO set.

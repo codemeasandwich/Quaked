@@ -4,11 +4,14 @@
  * Console variables (WinQuake cvar.c): registration, lookup and setting, archived values in browser storage, and
  * dropping stale defaults from a saved configuration (`Cvar_DropChangedDefaults`).
  *
- * Owns: the linked list of registered variables; archived values under `quake_cvar_<name>` in localStorage. Lifetime:
- * the page.
+ * Types: exported classes `cvar_t`.
  *
- * Errors: storage that is full or unavailable is caught and reported on the console; the value still applies for the
- * session.
+ * State: no mutable exports; module-level variables `_serverBroadcast`, `cvar_vars`; browser storage.
+ *
+ * Errors: catches at 3 places.
+ *
+ * Archived values are kept in localStorage under `quake_cvar_<name>`; storage that is full or unavailable is caught
+ * and reported, and the value still applies for the session.
  */
 // Ported from: WinQuake/cvar.c -- dynamic variable tracking
 

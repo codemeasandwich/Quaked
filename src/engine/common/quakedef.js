@@ -3,9 +3,11 @@
  *
  * Engine-wide constants (WinQuake quakedef.h): limits (edicts, models, sounds), stat indices, item bits, angles.
  *
- * Owns: constants only.
+ * Types: exported classes `entity_state_t`, `quakeparms_t`.
  *
- * Errors: none (pure data).
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
 // Ported from: WinQuake/quakedef.h -- primary header for client
 
