@@ -1,5 +1,5 @@
 {
- "commit": "a6bc514 (git archive a6bc514, with the next commit's tools, which differ only in a comment)",
+ "commit": "f2791d5 (git archive f2791d5, with the next commit's tools)",
  "tools": [
   "tools/architecture_graph.mjs",
   "tools/architecture_classify.mjs"
@@ -39931,6 +39931,7 @@
      "function": "COM_LoadFileAsString"
     }
    ],
+   "serverFunctions": 119,
    "serverCopyFiles": {
     "server/host_server.ts": 15,
     "server/mod_server.ts": 16,

@@ -250,6 +250,10 @@ hidden.srcLiterals = [ ...new Map( ( hidden.srcLiterals || [] ).map( l => [ l.fi
 	// D5's check is by file, since a name check cannot show a copy is gone (a renamed copy, or a class method, keeps its
 	// body): the files holding the engine-logic copies, null once deleted (the check), else how many functions each declares
 	// ( function x(, or const x = ( … ) => / function ) for information
+	// and what remains: every function in server/*.ts, declared, arrow const or class/object method, so moving the copies
+	// into another file (as methods or not) does not lower it
+	const FUNCTIONS = /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s*\w+\s*\(|(?:^|\n)\s*(?:export\s+)?(?:const|let|var)\s+\w+\s*(?::[^=\n]+)?=\s*(?:async\s*)?(?:function\b|\([^)]*\)\s*(?::[^=\n]+)?=>|\w+\s*=>)|(?:^|\n)\s*(?:(?:public|private|protected|static|async|get|set|override|readonly)\s+)*(?!(?:if|for|while|switch|catch|return|function|with|else|do|new|typeof|await|super)\b)\w+\s*\([^)]*\)\s*(?::[^{;\n]+)?\{/g;
+	hidden.serverFunctions = Object.entries( text ).filter( ( [ f ] ) => f.startsWith( 'server/' ) && f.endsWith( '.ts' ) ).reduce( ( n, [ , s ] ) => n + ( s.match( FUNCTIONS ) || [] ).length, 0 );
 	hidden.serverCopyFiles = Object.fromEntries( [ 'server/host_server.ts', 'server/mod_server.ts', 'server/pak_server.ts' ].map( f => [ f, text[ f ] === undefined ? null : ( text[ f ].match( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s*\w+\s*\(|(?:^|\n)\s*(?:export\s+)?(?:const|let|var)\s+\w+\s*(?::[^=\n]+)?=\s*(?:async\s*)?(?:function\b|\([^)]*\)\s*(?::[^=\n]+)?=>|\w+\s*=>)/g ) || [] ).length ] ) ); }
 hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.writes, g ] ) ).values() ];
 
