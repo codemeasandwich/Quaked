@@ -35,8 +35,8 @@ const RULES = [
 	[ 'newer/assets', '44f', /^(normal_prepare|rockfield_prepare|rockfield_worker|prepared_corpus|startup_\w+)\.js$/ ],
 	[ 'newer/assets', '44e', /(_bake_format|_bakes|_bundle|_transport|_startup_packs|_presets|_store)\.js$|^(alias_mesh_\w+|rockfield|r_normalprefetch|r_rockbakes|r_demonbakes|r_aliasmeshcache|demon_bake_format)\.js$/ ],
 	// the model and animation renderer ([44d]): poses, skins, held weapons, cut and lying bodies, the levels drawn in windows
-	// the Newer/Classic switch, its own leaf module at the top of newer/ (D2)
-	[ 'newer', '44d', /^mode\.js$/ ],
+	// the Newer/Classic switch, its own leaf module at the top of newer/ (made in [44g] for debt D2)
+	[ 'newer', '44g', /^mode\.js$/ ],
 	[ 'newer/render', '44d', /^(enemy_face|r_anim|r_newerskins|r_weapons|r_weaponstyle|r_weapon_surface|r_axepose|r_axecorpses|r_bisect|shadow_pose|r_classicstate|r_levelview|r_levelents|r_levelgraph|r_shells|r_shelltrace)\.js$/ ],
 	[ 'newer/render', '44e', /^(r_\w+|powervision_shaders|vision_coordinates|fx_math|v_shamblersteps)\.js$/ ]
 ];

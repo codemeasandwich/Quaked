@@ -198,6 +198,8 @@ cvars and file system. `r_anim.js` keeps the animation (`R_AnimEnabled` now asks
   only three modules import `r_anim.js`, all for animation.
 * D2's check holds: every mode name is declared once, outside `r_anim.js`, in a module that does not reach it; no
   importer takes only mode names from `r_anim.js` (`modeHome`, `modeOnly`).
+* The graph now counts 207 modules (`mode.js` is new) and 7 adapters; the room server and the page load 199 and 203
+  modules (both reach `mode.js`). The cycles are unchanged.
 
 ## Checks for each move
 
