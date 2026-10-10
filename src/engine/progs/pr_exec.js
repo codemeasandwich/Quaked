@@ -100,7 +100,7 @@ export function PR_SetHostError( callback ) {
 export function PR_HostError( error ) {
 
 	if ( Host_Error === null )
-		Sys_Error( 'PR_HostError: Host_Error callback not set' );
+		Sys_Error( 'PR_HostError: Host_Error callback not set (' + error + ')' ); // the cause kept for the reader
 
 	Host_Error( error );
 	Sys_Error( 'PR_HostError: Host_Error returned' );
