@@ -38632,6 +38632,50 @@
       "height": 770,
       "bytes": 9486584,
       "compressedBytes": 4232234
+    },
+    "eeb9a2bf80a96b4d205c4fa1e0af2380debeb1c528069693ef5af3de0eeea041": {
+      "file": "newer/normals/eeb9a2bf80a96b4d205c4fa1e0af2380debeb1c528069693ef5af3de0eeea041.nm.gz",
+      "input": {
+        "width": 1056,
+        "height": 776,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "3fc512f4535a3e57259f73658b793ec6ebe77edd60f209b2f6dbf125b96d55d9",
+        "fullbright": null,
+        "scalar": "0f86519100d4422313d723161d47164d1a261034d842fb2e6cf4fe1cc10513c1",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "18f4f627199bca6606f27481dfa4f71d91211ef0be631e0a581dffe16d9ebaa4",
+      "rawSha256": "2e65d6665c0682b13b4f11ab567e1cf20c6cd1068defce1bb544217c04f1a5e0",
+      "width": 1056,
+      "height": 776,
+      "bytes": 6555832,
+      "compressedBytes": 3165276
+    },
+    "11fa0aed467f078e5eb74d05612a792bf55dbdd87fdb2b9ce59ce2b369a55fa8": {
+      "file": "newer/normals/11fa0aed467f078e5eb74d05612a792bf55dbdd87fdb2b9ce59ce2b369a55fa8.nm.gz",
+      "input": {
+        "width": 1200,
+        "height": 776,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "8232b2fe6b10f68d0e14ba25265a4fa354b81380181c7a84e9ea3d36f64dc00a",
+        "fullbright": null,
+        "scalar": "0e3372bc717c445a5a73c6dd1e53ea4cf3e5c91946e95e0c007a8b0f33d1fc5b",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "4136a432709148e91ae5ef15e01916cf0164c8590a89faeb2585d5add51e179e",
+      "rawSha256": "8bd96eb2d5cdc45e894d4b27adfd3745cf958543b99eece256eafbfa75239f14",
+      "width": 1200,
+      "height": 776,
+      "bytes": 7449784,
+      "compressedBytes": 3380853
     }
   },
   "levels": {
@@ -69117,12 +69161,12 @@
     },
     "custom:ogre/custom": {
       "keys": [
-        "abfdd59835038be00c5d6e4e5b46fc4265328d79d096b8446b0b635638a08ca0"
+        "eeb9a2bf80a96b4d205c4fa1e0af2380debeb1c528069693ef5af3de0eeea041"
       ]
     },
     "custom:soldier/custom": {
       "keys": [
-        "15940ef47c651a23cce035425f272fdda730de4cfec290205488262e95f595a9"
+        "11fa0aed467f078e5eb74d05612a792bf55dbdd87fdb2b9ce59ce2b369a55fa8"
       ]
     },
     "custom:wizard/custom": {

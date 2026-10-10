@@ -98,9 +98,13 @@ try {
    while(performance.now()<deadline){const got=u.qrNormal.value?.image.data;matches=got?.length===expected.length && got.every((v,i)=>v===expected[i]);if(matches)break;await new Promise(r=>setTimeout(r,20));}
    check(matches,key+': real stored height attached to selected original skin');nativeResults.push({model:key,dimensions:[image.width,image.height],storedHeight:spec.file});
   }
+  // registered-game models (enforcer, hknight, ...) are absent from shareware pak0; their stored heights are checked
+  // offline by tests/verify_enemy_heights.py, and the evidence names them
+  const notInPak=[];
   for(const [key,variants] of Object.entries(index.models)){
    if(!skins.ENEMY_SKIN_MODELS.has(key))continue;
-   const {entity}=entities.get(key);const deadline=performance.now()+20000;let material=null,u=null;
+   const loaded=entities.get(key);if(!loaded){check(!pak.COM_FindFile('progs/'+key+'.mdl'),key+': skipped only because the loaded shareware pak lacks it');notInPak.push(key);continue;}
+   const {entity}=loaded;const deadline=performance.now()+20000;let material=null,u=null;
    while(performance.now()<deadline){material=skins.R_NewerAliasMaterial(entity,entity.model.name,true);if(material){u=uniforms(material);if(u.uHasNormal.value===1)break;}await new Promise(r=>setTimeout(r,20));}
    check(material && u?.uHasNormal.value===1,key+': real custom height loaded');
    check(u.qrNormal.value.image.width===material.map.image.width && u.qrNormal.value.image.height===material.map.image.height,key+': matching custom dimensions');
@@ -112,8 +116,8 @@ try {
    check(matches,key+': custom normals use the real stored height rather than generated fallback');
    customResults.push({model:key,dimensions:[material.map.image.width,material.map.image.height],storedHeight:variant.dir+'/'+variant.maps.height});
   }
-  evidence.nativeHeightLoads=nativeResults;evidence.customHeightLoads=customResults;evidence.checks=checks;
-  document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);status.textContent+=' All '+nativeResults.length+' native and '+customResults.length+' custom stored heights verified.';await compareAuthoring();
+  evidence.nativeHeightLoads=nativeResults;evidence.customHeightLoads=customResults;evidence.customNotInPak=notInPak;evidence.checks=checks;
+  document.querySelector('#evidence').textContent=JSON.stringify(evidence,null,2);status.textContent+=' All '+nativeResults.length+' native and '+customResults.length+' custom stored heights verified ('+notInPak.length+' registered-game models not in the shareware pak).';await compareAuthoring();
  }
 
  function draw(){
