@@ -344,6 +344,22 @@ is:
   server as before (below). A first version wired the new externals in `Host_Init`, which no test calls; a save/load
   test failed (`Host_ShutdownServer` did nothing), which wiring at load fixed.
 
+## [44g], step 10: suites skip a missing local input (debt D8); the large modules are cards (debt D3)
+
+* D8: `tools/run_tests.mjs` reports a test as `SKIP <name>: missing local input <path>`, and a suite that cannot load
+  as `SKIP (whole suite) missing local input: <path>`, when it fails only because one of the baseline's listed local
+  inputs is absent or unreadable (the donor zips, the owner's local pages, `newer/hud/playerface/blood.png`,
+  `resources/`, `~/Downloads/Quake/Id1/PAK3.pk3`, the rockfield pages) or because the tree has no git history. A skip
+  is never counted as a pass (`RESULT 6/6 passed, 1 skipped`); any other error, a missing file not on the list
+  included, still fails. Here the four suites that needed donor files now read as skipped, each naming its zip or
+  the PAK3. `tests/run_tests_skip_test.js` pins all of this. The missing settings (`QUAKED_THREE_MODULE` and the
+  others) already stop the harness with a message naming them. Whether the local inputs return, and whether the
+  owner's deletion of the rockfield pages is committed, stays the owner's.
+* D3: not split here, as the plan says. One Backlog card per large module, each with its acceptance: [44h]
+  `gl_post.js` by stage (2f58ccdc), [44i] `gl_rsurf.js` (789b260d), [44j] `menu.js` by screen (81b1ce01), [44k]
+  `gl_model.js` by format (a9bab461), and [44l] `normal_bakes.js` loaded as data (380f4ca6; with the owner's
+  untracked normal-bundle experiment, which works in that area).
+
 ## [44g]: function JSDoc
 
 Every exported function, class constructor and public method in `src/` has a JSDoc block: what it does and when it
