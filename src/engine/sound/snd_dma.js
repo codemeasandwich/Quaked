@@ -85,7 +85,8 @@ S_Init
  * `snd_show` and the commands `play`, `playvol`, `stopsound`, `soundlist` and `soundinfo`; then, unless `nosound` is
  * set, creates the Web Audio `AudioContext` and the master (sound-effects) gain node at `volume`, marks sound started,
  * fills the DMA-equivalent `shm` description (context sample rate, 16-bit stereo, 16384 samples) and sets the channel
- * count to the dynamic plus ambient channels. A browser without Web Audio prints "Failed to initialize Web Audio API"
+ * count to the dynamic plus ambient channels, and precaches the water and wind ambient sounds (ambience/water1.wav,
+ * ambience/wind2.wav). A browser without Web Audio prints "Failed to initialize Web Audio API"
  * and leaves sound off; nothing is thrown. The context starts suspended until `S_UnlockAudio` runs on a user gesture.
  */
 export function S_Init() {
@@ -151,6 +152,11 @@ export function S_Init() {
 
 	Con_Printf( 'Sound sampling rate: %d\n', sn.speed );
 
+	// the water and wind ambient channels' sounds, as WinQuake's S_Init does (card [44m]: S_Startup, which also does
+	// this, is never called, so without it neither ever played)
+	ambient_sfx[ AMBIENT_WATER ] = S_PrecacheSound( 'ambience/water1.wav' );
+	ambient_sfx[ AMBIENT_SKY ] = S_PrecacheSound( 'ambience/wind2.wav' );
+
 }
 
 /*
@@ -193,7 +199,7 @@ S_Startup
 /**
  * Resumes a suspended `AudioContext`, marks sound started and precaches the ambient sounds ambience/water1.wav and
  * ambience/wind2.wav for the water and sky ambient channels (WinQuake snd_dma.c). Does nothing unless sound was
- * initialised by `S_Init`. Nothing in the engine calls it.
+ * initialised by `S_Init`. Nothing in the engine calls it; `S_Init` precaches the same two sounds itself.
  */
 export function S_Startup() {
 
