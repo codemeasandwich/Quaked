@@ -17,10 +17,13 @@ Quaked is developed by [@codemeasandwich](https://github.com/codemeasandwich) an
 To run your own copy, serve this folder over HTTP and open it:
 
 ```sh
-python3 -m http.server 8000
+python3 tools/serve.py 8000
 ```
 
 Then visit [localhost:8000](http://localhost:8000/). It needs internet access, because Three.js is loaded from a CDN.
+`tools/serve.py` is Python's own `http.server` plus byte ranges, which let the game check the packs of a Quake you own
+without downloading them; `python3 -m http.server 8000` also works, but then the console's `games` command can only
+say such a pack is there, not that it is sound.
 
 ## Which game do I pick?
 

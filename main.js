@@ -35,6 +35,7 @@ const parms = {
 	argc: 0,
 	argv: []
 };
+import { GameCatalogue_Refresh } from './src/engine/common/game_catalogue.js';
 
 async function main() {
 
@@ -100,6 +101,8 @@ async function main() {
 			 if(hub){const bytes=new Uint8Array(newerMaps.data,hub.filepos,hub.filelen);R_RockBakePrefetch('maps/start.bsp',undefined,undefined,bytes);hubNormalBytes=bytes;R_DemonBakePrefetch('maps/start.bsp',bytes);R_NewerTexturesPrefetch(R_BspTextureNames(bytes));R_NewerSkinsPrefetchBsp(bytes);}}
 		}
 		await Host_Init( parms );
+		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
+		setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
 
 		// Ready the supplied held/pickup art before the attract demo begins.
 		// Optional failures retain native art; New Game/classic stay native even

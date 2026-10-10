@@ -10,7 +10,7 @@
  * `newerIndex`, `newerActive`, `newerMaps`, `newerMapsEnabled`, `looseFileBasePath`; 3 module-level collections
  * (Map/Set).
  *
- * Errors: calls `Sys_Error` (fatal) at 1 place; throws at 9 places; catches at 6 places.
+ * Errors: calls `Sys_Error` (fatal) at 1 place; throws at 8 places; catches at 6 places.
  */
 // PAK file loader -- new module for browser-based asset loading
 // Quake stores all game data in pak0.pak (and optionally pak1.pak)
@@ -102,6 +102,64 @@ let looseFileBasePath = '';
 COM_LoadPackFile
 =================
 */
+
+/**
+ * Reads a pack's 12-byte header and checks its directory against the archive's size, by the rules
+ * `COM_LoadPackFile` applies. Shared with the game catalogue (`game_catalogue.js`, card [34b]), which reads only the
+ * header and the directory of a pack it has not downloaded.
+ *
+ * @param {DataView} view at least the first 12 bytes of the pack
+ * @param {number} size the whole archive's length in bytes
+ * @returns {{ ok: true, dirofs: number, dirlen: number, count: number }|{ ok: false, reason: string }} where the
+ *   directory is (byte offset and length) and how many 64-byte entries it holds; or why it is not a usable pack
+ *   ('not a packfile', 'invalid pack directory', 'too many files (n)')
+ */
+export function COM_PackHeader( view, size ) {
+
+	if ( view.byteLength < 12 ) return { ok: false, reason: 'truncated pack header' };
+	if ( view.getUint8( 0 ) !== 0x50 || view.getUint8( 1 ) !== 0x41 || view.getUint8( 2 ) !== 0x43 || view.getUint8( 3 ) !== 0x4B ) return { ok: false, reason: 'not a packfile' }; // 'PACK'
+	const dirofs = view.getInt32( 4, true ), dirlen = view.getInt32( 8, true );
+	if ( dirofs < 12 || dirlen < 0 || dirlen % 64 !== 0 || dirofs > size - dirlen ) return { ok: false, reason: 'invalid pack directory' };
+	const count = Math.floor( dirlen / 64 ); // each dir entry is 64 bytes
+	if ( count > MAX_FILES_IN_PACK ) return { ok: false, reason: 'too many files (' + count + ')' };
+	return { ok: true, dirofs, dirlen, count };
+
+}
+
+/**
+ * Reads a pack's directory entries, checking each payload lies inside the archive, by `COM_LoadPackFile`'s rules.
+ *
+ * @param {Uint8Array} directory the directory's bytes (`count` × 64)
+ * @param {number} count how many entries
+ * @param {number} size the whole archive's length in bytes
+ * @returns {{ ok: true, files: Array<{ name: string, filepos: number, filelen: number }> }|{ ok: false, reason: string }}
+ *   the entries (names lower-cased, as the engine looks them up); or the first entry whose payload is out of bounds
+ */
+export function COM_PackEntries( directory, count, size ) {
+
+	const view = new DataView( directory.buffer, directory.byteOffset, directory.byteLength ), files = [];
+	for ( let i = 0; i < count; i ++ ) {
+
+		const entryOffset = i * 64;
+		// Read filename (56 bytes, null terminated)
+		let name = '';
+		for ( let j = 0; j < 56; j ++ ) {
+
+			const c = directory[ entryOffset + j ];
+			if ( c === 0 ) break;
+			name += String.fromCharCode( c );
+
+		}
+		name = name.toLowerCase();
+		const filepos = view.getInt32( entryOffset + 56, true ), filelen = view.getInt32( entryOffset + 60, true );
+		if ( filepos < 0 || filelen < 0 || filepos > size - filelen ) return { ok: false, reason: 'invalid payload: ' + name };
+		files.push( { name, filepos, filelen } );
+
+	}
+	return { ok: true, files };
+
+}
+
 /**
  * Takes an ArrayBuffer of the .pak file contents and returns a pack_t (the original comment's "or null" cannot
  * happen: a bad magic number throws through `Sys_Error`). Reads the directory (64-byte entries: a 56-byte
@@ -122,61 +180,30 @@ COM_LoadPackFile
 export function COM_LoadPackFile( filename, buffer ) {
 
 	if ( buffer.byteLength < 12 ) throw new Error( filename + ' has a truncated pack header' );
-	const view = new DataView( buffer );
-
-	// Check header
-	const id0 = view.getUint8( 0 );
-	const id1 = view.getUint8( 1 );
-	const id2 = view.getUint8( 2 );
-	const id3 = view.getUint8( 3 );
-
-	if ( id0 !== 0x50 || id1 !== 0x41 || id2 !== 0x43 || id3 !== 0x4B ) { // 'PACK'
+	// Check header. Reject corruption here, while COM_FetchOptionalPak can still decline the entire optional archive.
+	// Deferred payload views must never fail after a malformed pack has already entered the search path.
+	const header = COM_PackHeader( new DataView( buffer ), buffer.byteLength );
+	if ( ! header.ok && header.reason === 'not a packfile' ) {
 
 		Sys_Error( filename + ' is not a packfile' );
 		return null;
 
 	}
-
-	const dirofs = view.getInt32( 4, true );
-	const dirlen = view.getInt32( 8, true );
-	// Reject corruption here, while COM_FetchOptionalPak can still decline
-	// the entire optional archive. Deferred payload views must never fail
-	// after a malformed pack has already entered the search path.
-	if ( dirofs < 12 || dirlen < 0 || dirlen % 64 !== 0 || dirofs > buffer.byteLength - dirlen )
-		throw new Error( filename + ' has an invalid pack directory' );
-
-	const numpackfiles = Math.floor( dirlen / 64 ); // each dir entry is 64 bytes
-
-	if ( numpackfiles > MAX_FILES_IN_PACK )
-		throw new Error( filename + ' has too many files (' + numpackfiles + ')' );
+	if ( ! header.ok ) throw new Error( filename + ( header.reason.startsWith( 'too many' ) ? ' has ' : ' has an ' ) + header.reason );
+	const numpackfiles = header.count;
 
 	const pack = new pack_t();
 	pack.filename = filename;
 	pack.data = buffer;
 
-	const bytes = new Uint8Array( buffer );
+	const entries = COM_PackEntries( new Uint8Array( buffer, header.dirofs, header.dirlen ), numpackfiles, buffer.byteLength );
+	if ( ! entries.ok ) throw new Error( filename + ' has an ' + entries.reason );
+	for ( const entry of entries.files ) {
 
-	for ( let i = 0; i < numpackfiles; i ++ ) {
-
-		const entryOffset = dirofs + i * 64;
 		const file = new packfile_t();
-
-		// Read filename (56 bytes, null terminated)
-		let name = '';
-		for ( let j = 0; j < 56; j ++ ) {
-
-			const c = bytes[ entryOffset + j ];
-			if ( c === 0 ) break;
-			name += String.fromCharCode( c );
-
-		}
-
-		file.name = name.toLowerCase();
-		file.filepos = view.getInt32( entryOffset + 56, true );
-		file.filelen = view.getInt32( entryOffset + 60, true );
-		if ( file.filepos < 0 || file.filelen < 0 || file.filepos > buffer.byteLength - file.filelen )
-			throw new Error( filename + ' has an invalid payload: ' + file.name );
-
+		file.name = entry.name;
+		file.filepos = entry.filepos;
+		file.filelen = entry.filelen;
 		pack.files.push( file );
 
 	}
