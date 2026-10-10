@@ -28,7 +28,12 @@ let last = 0;
 
 const now = () => ( typeof performance !== 'undefined' ? performance.now() : Date.now() ) / 1000;
 
-// where the view is (an array that follows it), for the nearness of a burst
+/**
+ * Where the view is (an array that follows it), for the nearness of a burst. Called by R_SetupFrame each frame with
+ * the renderer's `r_origin`; the array is kept by reference, not copied.
+ *
+ * @param {Array<number>} origin the view origin, world space, Quake units
+ */
 export function R_ScreenDropsSetView( origin ) {
 
 	viewOrigin = origin;
@@ -38,11 +43,15 @@ export function R_ScreenDropsSetView( origin ) {
 /*
 ================
 R_ScreenDropsView
-
-Called every frame with the contents of the leaf the eye is in: -3 water and -4
-slime are liquid.  The moment the eye comes out of it, the view is wet.
 ================
 */
+/**
+ * Called every frame (R_SetupFrame) with the contents of the leaf the eye is in: -3 water and -4 slime are liquid
+ * (the code also counts -5, lava). The moment the eye comes out of it, the view is wet; under the surface the drops
+ * are washed off.
+ *
+ * @param {number} contents the view leaf's CONTENTS_ value
+ */
 export function R_ScreenDropsView( contents ) {
 
 	const liquid = contents === - 3 || contents === - 4 || contents === - 5;
@@ -55,6 +64,12 @@ export function R_ScreenDropsView( contents ) {
 
 }
 
+/**
+ * Wets the lens with water, keeping whichever is wetter; a soaking more than half the current one restarts the
+ * drops' run. Called by `R_ScreenDropsView` on surfacing.
+ *
+ * @param {number} amount wetness 0..1 (clamped to 1)
+ */
 export function R_ScreenDropsWet( amount ) {
 
 	if ( amount > wet * 0.5 ) age = 0;
@@ -62,6 +77,12 @@ export function R_ScreenDropsWet( amount ) {
 
 }
 
+/**
+ * Puts blood on the lens, keeping whichever is more; an amount more than half the current blood restarts the drops'
+ * run. Called by `R_ScreenDropsBloodAt`.
+ *
+ * @param {number} amount blood 0..1 (clamped to 1)
+ */
 export function R_ScreenDropsBlood( amount ) {
 
 	if ( amount > blood * 0.5 ) age = 0;
@@ -69,7 +90,14 @@ export function R_ScreenDropsBlood( amount ) {
 
 }
 
-// blood sprayed at p (count particles' worth): the nearer and the bigger, the more on the lens
+/**
+ * Blood sprayed at p (count particles' worth): the nearer and the bigger, the more on the lens. Called by the
+ * particle code (r_part.js) for a blood spray (colour 73) in Newer Game. Nothing within the lens beyond 220 Quake
+ * units, or before the first `R_ScreenDropsSetView`.
+ *
+ * @param {Array<number>} p where the blood was sprayed, world space, Quake units
+ * @param {number} count the spray's particle count (40 or more counts as the biggest)
+ */
 export function R_ScreenDropsBloodAt( p, count ) {
 
 	if ( viewOrigin === null ) return;
@@ -86,13 +114,18 @@ export function R_ScreenDropsBloodAt( p, count ) {
 /*
 ================
 R_ScreenDropsUpdate
-
-Once per frame.  Returns { density, blood, age } for the composite pass: how many
-drops there are, how much of it is blood (0..1) and how long they have been running.
 ================
 */
 const state = { density: 0, blood: 0, age: 0 };
 
+/**
+ * Once per frame, from the composite pass (R_PostFinish in gl_post.js). Dries the lens by the wall-clock time since
+ * the last call (capped at 0.1 s): water over 3.2 s, blood over 6 s.
+ *
+ * @returns {{ density: number, blood: number, age: number }} for the composite pass: how many drops there are (0..1),
+ * how much of it is blood (0..1) and how long they have been running (seconds). One module object reused every call
+ * (do not keep it).
+ */
 export function R_ScreenDropsUpdate() {
 
 	const t = now();
@@ -110,6 +143,10 @@ export function R_ScreenDropsUpdate() {
 
 }
 
+/**
+ * Dries the lens at once (water, blood and the run age): when the eye is under a liquid, and from
+ * `R_ScreenDropsReset`.
+ */
 export function R_ScreenDropsClear() {
 
 	wet = 0;
@@ -118,7 +155,9 @@ export function R_ScreenDropsClear() {
 
 }
 
-// a new level: dry, and not in the water
+/**
+ * A new level (R_NewMap): dry, and not in the water.
+ */
 export function R_ScreenDropsReset() {
 
 	R_ScreenDropsClear();

@@ -50,10 +50,27 @@ function angles( portal, a ) {
 
 }
 
-// null = ordinary QC touch; false = overlapping hull, not yet across the
-// visible threshold; object = preserve this incoming frame if QC teleports.
-// `atObstruction` (optional) reports a hull held short of the threshold by a sill or frame that is not the surface's
-// own backing wall; the player then crosses from the projected origin rather than waiting (card [14]).
+/**
+ * First step of a trigger touch (`SV_RunTriggerTouch` in world.js, before QuakeC's touch function runs): decides
+ * whether the single-player client touching a stock `trigger_teleport` is crossing a rendered camera portal whose
+ * trigger bounds (within 1 unit), target and `info_teleport_destination` (within 1 unit of the portal's `dest`)
+ * match. Only active with r_hdr, r_newer_portals and r_portals on and portals present. Chooses the face the player is
+ * moving into, and remembers the approach per entity (module WeakMap `approaches`) until the origin crosses the
+ * visible plane, the player backs out, or the touch stops qualifying.
+ *
+ * @param {edict_t} ent the touching entity; only an FL_CLIENT entity can cross
+ * @param {edict_t} trigger the touched trigger brush
+ * @param {?function(edict_t, Object, number): boolean} [atBackingContact=null] world.js `SV_PortalBackingContact`:
+ * true when the hull already touches the portal surface's own backing wall at `distance` Quake units in front of it
+ * @param {?function(edict_t, Object, number): boolean} [atObstruction=null] world.js `SV_PortalObstructed`: reports a
+ * hull held short of the threshold by a sill or frame that is not the surface's own backing wall; the player then
+ * crosses from the projected origin rather than waiting (card [14])
+ * @returns {null|false|{ portal: Object, receiver: edict_t, origin: Array<number>, velocity: Array<number>, viewAngles: Array<number>, teleportTime: number }}
+ * null = ordinary QC touch; false = overlapping hull, not yet across the visible threshold (the caller skips the
+ * touch); object = preserve this incoming frame if QC teleports: the matched portal, its destination edict, and copies
+ * of the entry origin (projected onto the threshold when obstructed), velocity (with into-surface speed lost on impact
+ * restored at a backing or obstruction contact), view angles (degrees) and `teleport_time`
+ */
 export function SV_BeginPortalTouch( ent, trigger, atBackingContact = null, atObstruction = null ) {
 
 	if ( svs.maxclients > 1 || Cvar_VariableValue( 'r_hdr' ) === 0 || r_newer_portals.value === 0 || r_portals.value === 0 || ! R_PortalsActive() ||
@@ -154,6 +171,18 @@ function entOffset( ent, bound, axis ) {
 
 }
 
+/**
+ * Second step of a trigger touch, still before QuakeC runs: maps the entry origin through the portal to its exit and,
+ * when the player's hull fits there, moves the receiver (`info_teleport_destination`) to that exit for the duration of
+ * the touch so QC's placement, fog and telefrag happen at the actual lateral exit. The receiver must be put back with
+ * `SV_RestorePortalReceiver` (world.js does so in a `finally`).
+ *
+ * @param {null|false|Object} incoming the result of `SV_BeginPortalTouch`
+ * @param {function(Array<number>): boolean} clearAt true when the player's hull is clear at that world-space origin
+ * (world.js traces MOVE_NOMONSTERS: stock QC owns telefrags)
+ * @returns {?Object} `incoming`, mutated with `exitOrigin` (world space, Quake units) and `receiverOrigin` (the
+ * receiver's saved origin); null for an ordinary touch, a hull still short of the threshold, or a blocked exit
+ */
 export function SV_PreparePortalTouch( incoming, clearAt ) {
 
 	if ( incoming == null || incoming === false ) return null;
@@ -170,12 +199,29 @@ export function SV_PreparePortalTouch( incoming, clearAt ) {
 
 }
 
+/**
+ * Puts the teleport destination back where `SV_PreparePortalTouch` found it, after QuakeC's touch function has run
+ * (world.js calls it in a `finally`, whatever the outcome). Does nothing when the receiver was not moved.
+ *
+ * @param {null|false|Object} incoming the value `SV_PreparePortalTouch` returned
+ */
 export function SV_RestorePortalReceiver( incoming ) {
 
 	if ( incoming?.receiverOrigin ) incoming.receiver.v.origin = incoming.receiverOrigin;
 
 }
 
+/**
+ * Last step of a trigger touch, after QuakeC's touch function: when QC really teleported the player to the prepared
+ * exit (a new `teleport_time` later than now and an origin within 1 unit of `exitOrigin`), replaces QC's stock result
+ * with the portal's rigid transform: exit origin, velocity and view angles rotated by the portal matrix, `fixangle`
+ * set, and `ent._lastTeleportTime` recorded so the legacy launch softener does not halve the kept speed.
+ *
+ * @param {edict_t} ent the player that touched the trigger; mutated when the crossing is confirmed
+ * @param {null|false|Object} incoming the value `SV_PreparePortalTouch` returned
+ * @returns {boolean} true when the camera-portal transform was applied; false when there was no prepared crossing,
+ * the entity was freed, or QC did not teleport (or sent the player elsewhere)
+ */
 export function SV_FinishPortalTouch( ent, incoming ) {
 
 	if ( incoming == null || incoming === false || ent.free ) return false;

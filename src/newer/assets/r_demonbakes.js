@@ -38,6 +38,31 @@ function trim(){
 }
 async function load(file,{signal}){return PreparedLoad(file,{signal});}
 
+/**
+ * Starts (or returns the cached) load of the shipped plaque-displacement bake for one BSP, so decoding can overlap
+ * startup; called from main.js for the demo/hub maps and from `R_DemonBakePrepare` for the current world. The BSP's
+ * SHA-256 selects the exact `DEMON_BAKES[name]` spec; the payload is checksummed against `spec.rawSha256` and decoded
+ * compactly with `DemonBakeDecode`.
+ *
+ * Cache: entries are keyed by the underlying ArrayBuffer plus `name:byteOffset:byteLength` (a fresh view of the same
+ * range shares the entry) and kept most-recently-used; at most 3 entries and 256 MiB of decoded data are kept, and only
+ * unpinned entries (`pins` 0) are evicted, cancelling a load still in flight. Two sources with the same
+ * `name:bspSha256` identity share one decode (`entry.canonical`).
+ *
+ * @param {string} name BSP path such as 'maps/e1m3.bsp'; the key into `DEMON_BAKES` and `PREPARED_CORPUS`
+ * @param {?Uint8Array} [bytes] the BSP file bytes (default: `COM_FindFile(name).data` when `name` is a string)
+ * @param {function((string|Array<object>), {signal: AbortSignal}): Promise<ArrayBuffer>} [loader] fetches the payload
+ *   (`spec.parts`, or `spec.file + '?v=' + spec.sha256`); default `PreparedLoad`; tests inject a fake
+ * @param {number} [timeoutMs=DEMON_BAKE_TIMEOUT_MS] milliseconds before the load is aborted and marked 'error'
+ *   (default 10000)
+ * @returns {{status: string, data: ?object, error: ?string, pins: number, decodedBytes: number,
+ *   promise: Promise<void>, cancel: function(string): void, identity?: string, canonical?: object}} the shared,
+ *   mutable cache entry. `status` is 'loading', then 'ready' (`data` = decoded bake), 'unprepared' (no shipped bake for
+ *   these exact bytes; the caller falls back to generation) or 'error' (`error` holds the message: checksum mismatch,
+ *   timeout, eviction, generator version mismatch, or "Bundled sculpt data missing" when `PREPARED_CORPUS` lists the
+ *   BSP but no spec matches). `promise` settles when the entry is terminal and never rejects. When `name` has no bake
+ *   at all or `bytes` is missing, an uncached `{status: 'unprepared', data: null, promise}` is returned instead.
+ */
 export function R_DemonBakePrefetch(name,bytes=typeof name==='string'?COM_FindFile(name)?.data:null,loader=load,timeoutMs=DEMON_BAKE_TIMEOUT_MS){
  if((!DEMON_BAKES[name]?.length&&!PREPARED_CORPUS[name])||!bytes)return {...unprepared,promise:Promise.resolve()};
  let keys=sourceKeys.get(bytes.buffer);if(!keys){keys=new Map();sourceKeys.set(bytes.buffer,keys);}
@@ -112,11 +137,48 @@ function beginCustom(owner,model,list){
   work.data=result.data;work.status='ready';work.source=result.source;work.persistence=result.persistence;
  })().catch(error=>{if(active!==owner)return;work.status='error';work.error=String(error.message||error);});
 }
+/**
+ * Summarises the current world's displacement preparation for the readiness report (`R_DemonReliefStatus` in
+ * gl_rsurf.js, used by the intro/loading readiness checks).
+ *
+ * @returns {{pending: number, error: ?string, phase: string, source: string, persistence: ?string}} `pending` is 1
+ *   while waiting for map textures to settle, loading, or failed (an error still blocks readiness), else 0; `phase` is
+ *   the custom-generation phase ('inputs', 'filesystem', 'lock', 'read', 'generate', 'write', 'readback', 'ready'), else
+ *   the entry status, else 'idle' when no world is active; `source` is 'shipped' unless a custom bake came from the
+ *   displacement store ('disk' or 'generated-and-stored'); `persistence` is the store's storage-persistence answer
+ *   ('granted' / 'denied' / 'unchecked') or null
+ */
 export function R_DemonBakeStatus(){const work=active?.entry;return {pending:active?.waiting||work?.status==='loading'||work?.status==='error'?1:0,error:work?.error||null,phase:work?.phase||work?.status||'idle',source:work?.source||'shipped',persistence:work?.persistence||null};}
+/**
+ * Drops the active world's hold on its displacement data: aborts any custom generation, unpins the transport entry
+ * (and its canonical twin), forgets every per-surface state and trims the cache. Called from `CL_Disconnect` and
+ * `R_NewMap`, and from `R_DemonBakePrepare` when the world model or its source bytes change. Safe to call when nothing
+ * is active.
+ */
 export function R_DemonBakeRelease(){
  if(active){active.custom?.abort();const transport=active.transport||active.entry;transport.pins--;if(transport.canonical)transport.canonical.pins--;if(active.custom)active.entry.data=null;}
  active=null;surfaces.clear();trim();
 }
+/**
+ * Makes the given world model's displacement data current and refreshes the per-surface states that
+ * `R_DemonBakeSurface` reports. Called every world frame from `R_UpdateDemonSurfaces` (gl_rsurf.js, via the hooks
+ * table) and when the sun occluder is rebuilt (`R_BuildSunOccluder`, gl_post.js).
+ *
+ * A new model, name or source byte range releases the previous world and pins a `R_DemonBakePrefetch` entry. When no
+ * shipped bake matches ('unprepared'), it starts a custom bake through the `DisplacementStore` (OPFS cache keyed on
+ * generator version, bake version, map name, BSP SHA-256 and every surface's signature/settings/height hash), but only
+ * once `R_NewerTexturesStatus(model).settled`, because authoritative field membership is known only after the current
+ * map's art reaches a terminal result. A custom bake is discarded when its inputs change before or after it finishes.
+ * Each ready surface record is published only after the surface's live height field hashes to the recorded
+ * `fieldSha256`; a mismatch of settings, signature or height marks that surface 'error' and keeps native geometry.
+ *
+ * @param {object} model the world brush model (`cl.worldmodel`): reads `name`, `bspSourceBytes` (else
+ *   `COM_FindFile(model.name).data`) and `surfaces`
+ * @param {Array<object>} list msurface_t records to resolve; only those whose texture carries
+ *   `gl_texture.userData.newerHeight.displacement` get a state
+ * @returns {object} the active work entry (see `R_DemonBakePrefetch`); its `status` is 'loading' while transport,
+ *   texture settling or custom generation is pending, then 'ready', 'unprepared' or 'error'
+ */
 export function R_DemonBakePrepare(model,list){
  const bytes=model?.bspSourceBytes||(typeof model?.name==='string'?COM_FindFile(model.name)?.data:null);
  if(!active||active.model!==model||active.name!==model.name||active.bytes?.buffer!==bytes?.buffer||active.bytes?.byteOffset!==bytes?.byteOffset||active.bytes?.byteLength!==bytes?.byteLength){
@@ -142,6 +204,16 @@ export function R_DemonBakePrepare(model,list){
  }
  return work;
 }
+/**
+ * Returns the prepared displacement state for one surface, as last computed by `R_DemonBakePrepare`. Read every world
+ * frame by gl_rsurf.js and by the sun occluder build.
+ *
+ * @param {object} surface msurface_t of the current world
+ * @returns {{status: string, data: ?object, error?: ?string, diagnostic?: ?object}} `status` is 'ready' (`data` holds
+ *   the decoded positions/normals/uvs/lmuvs arrays, shared with the cache; do not mutate), 'native' (the generator
+ *   chose the flat surface; `diagnostic` says why), 'loading', 'error' or 'unprepared'. A shared 'unprepared' object
+ *   is returned when the surface has no state or its height field was replaced since the last prepare.
+ */
 export function R_DemonBakeSurface(surface){
  const field=surface?.texinfo?.texture?.gl_texture?.userData.newerHeight,state=surfaces.get(surface);
  return state&&state.field===field?state:unprepared;

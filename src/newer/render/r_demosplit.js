@@ -43,6 +43,15 @@ function restoreFeatures() {
 }
 
 
+/**
+ * Whether this frame is drawn split (Newer Game left, classic right), asked many times per frame by the renderer,
+ * status bar and effects (gl_rmain.js, gl_screen.js, render.js). Never while profiling (`R_PerfProfiling`) or in a
+ * timedemo. r_demosplit 2 draws the classic picture over the whole screen, in any game: for checking it against New
+ * Game.
+ *
+ * @returns {boolean} true when r_demosplit is 2, or non-zero while an attract-loop demo started by
+ *   `R_DemoSplitStart` is playing
+ */
 export function R_DemoSplitActive() {
 
 	if ( R_PerfProfiling() || cls.timedemo ) return false;
@@ -52,13 +61,24 @@ export function R_DemoSplitActive() {
 
 }
 
+/**
+ * Whether the classic picture covers the whole screen instead of the right half (r_demosplit 2).
+ *
+ * @returns {boolean} true when `r_demosplit` is 2
+ */
 export function R_DemoSplitFull() {
 
 	return r_demosplit.value === 2;
 
 }
 
-// An attract-loop demo is about to play; manual/timed demos do not call this.
+/**
+ * An attract-loop demo is about to play (`CL_PlayDemoFromData` with `attract`); manual/timed demos do not call this.
+ * Temporarily sets r_hdr, r_flashlight and every Newer feature cvar (`NEWER_ENABLED_FEATURES`) to 1 so the Newer half
+ * is real, remembering that a borrow is open until `R_DemoSplitEnd` or `R_DemoSplitRelease`. Uses the temporary-cvar
+ * contract (`Cvar_SetTemporary`): an ordinary menu or console set of one of them ends its borrow. Does nothing while
+ * profiling, when r_demosplit is 0, or when a borrow is already open.
+ */
 export function R_DemoSplitStart() {
 
 	if ( R_PerfProfiling() || r_demosplit.value === 0 || saved !== null ) return;
@@ -72,8 +92,14 @@ export function R_DemoSplitStart() {
 
 }
 
-// a game is about to start: what it sets for r_hdr stands (the demo's own switch is not undone behind it), and a classic
-// game gets the original textures back
+/**
+ * A game is about to start from the menus (single player, level select in menu.js): what it sets for r_hdr stands (the
+ * demo's own switch is not undone behind it), and a classic game gets the original textures back. Also cancels the
+ * demo's loading screen and gives back the borrowed feature cvars.
+ *
+ * @param {boolean} newer true when the game starting is Newer Game; false reverts the textures
+ *   (`R_NewerTexturesRevert`)
+ */
 export function R_DemoSplitRelease( newer ) {
 	R_DemoLoadingCancel();
 
@@ -83,7 +109,11 @@ export function R_DemoSplitRelease( newer ) {
 
 }
 
-// the demo has stopped
+/**
+ * The demo has stopped (`CL_Disconnect`, cl_main.js): gives back the feature cvars borrowed by `R_DemoSplitStart`
+ * and, when r_hdr is then 0, the textures go back to the original game's, as a classic game that follows needs them.
+ * Does nothing when no borrow is open.
+ */
 export function R_DemoSplitEnd() {
 
 	if ( saved === null ) return;
@@ -130,11 +160,27 @@ function ensure( width, height ) {
 /*
 ================
 R_DemoSplitClassic
-
-Draw the right half: the scene again, in the classic look.  viewport is the 3D area in logical pixels
-(lx, ly, lw, lh, from the bottom left); classic is the shared switch the world's materials read.
 ================
 */
+/**
+ * Draw the right half: the scene again, in the classic look. Called by `R_RenderView` (gl_rmain.js) after the Newer
+ * post pass whenever `R_DemoSplitActive()`. Renders the scene into a half-float render target the size of the enhanced
+ * scene target (created on first use and recreated when that size changes; kept for the session), then blits it into
+ * the output viewport clipped to the right half (or the whole viewport with r_demosplit 2). Restores the renderer's
+ * target, viewport, scissor, clear colour and autoClear afterwards, even on error.
+ *
+ * @param {THREE.WebGLRenderer} renderer the game's renderer
+ * @param {THREE.Scene} scene the frame's world scene, drawn again
+ * @param {THREE.Camera} camera the frame's camera
+ * @param {{ lx: number, ly: number, lw: number, lh: number, width?: number, height?: number }} viewport the 3D area
+ *   in logical pixels (lx, ly, lw, lh, from the bottom left); `width`/`height` in device pixels are the fallback size
+ *   when there is no `sceneTarget`
+ * @param {() => void} classicOn switches the scene to the classic look (`R_ClassicOn`: classic is the shared switch the
+ *   world's materials read); called just before the render
+ * @param {() => void} classicOff undoes `classicOn`; always called after the render
+ * @param {?THREE.WebGLRenderTarget} [sceneTarget=null] the enhanced scene's target, whose size (dynamic scaling, device
+ *   pixels, even rounding) the classic pass matches
+ */
 export function R_DemoSplitClassic( renderer, scene, camera, viewport, classicOn, classicOff, sceneTarget = null ) {
 
 	// Use the enhanced target itself: its dimensions include dynamic scaling,

@@ -82,8 +82,16 @@ function loadCanvas( file ) {
 
 }
 
-// The full console intentionally skips Sbar draws. Start these same cached
-// catalog requests before drawing, so startup cannot reveal a second wave.
+/**
+ * Starts every HUD sprite listed in newer/hud/index.json, plus the layered player face, loading before anything is
+ * drawn: from main.js at startup and from the intro readiness gate when the world changes. The full console
+ * intentionally skips Sbar draws; these are the same cached catalog requests, started before drawing, so startup
+ * cannot reveal a second wave. Started once per page; later calls return the same promise.
+ *
+ * @returns {Promise<Array<?HTMLCanvasElement>>} resolves, never rejects, when every sprite and the face have loaded or
+ *   failed (30 s each): the decoded canvases, null for a failure. `R_NewerHudStatus().preload` then reads 'fallback' if
+ *   anything failed, else 'ready'.
+ */
 export function R_NewerHudPreload() {
 	if ( ! preloadPromise ) {
 		preloadState = 'loading';
@@ -95,6 +103,14 @@ export function R_NewerHudPreload() {
 	return preloadPromise;
 }
 
+/**
+ * Readiness of the HUD art for the intro readiness gate (`R_UpdateIntroReadiness`, gl_rmain.js).
+ *
+ * @returns {{preload: string, index: string, pending: number, ready: number, fallback: number, face: object,
+ *   settled: boolean, errors: Object<string, string>}} `preload` and `index` are 'idle', 'loading', 'ready' or
+ *   'fallback'; the counts are of sprite files requested so far (`pending` also counts a loading index and the face);
+ *   `face` is `R_PlayerFaceStatus()`; `errors` maps 'index' or a file to its message
+ */
 export function R_NewerHudStatus() {
 	const face = R_PlayerFaceStatus();
 	let pending = 0, ready = 0, fallback = 0;
@@ -113,6 +129,17 @@ or null: not in Newer Game, switched off, no such picture or not arrived yet.
 Asks for it the first time.
 ================
 */
+/**
+ * Called by `Draw_Pic` (gl_draw.js) for every wad sprite drawn. Preload can complete behind a console without a picture
+ * ever being drawn, so an already-decoded canvas is returned on the very first visible lookup. The answer is cached
+ * on the pic (`pic._hi`; `pic._asked` marks a request in flight) for the page's lifetime. The picture is still laid out
+ * at the sprite's original size, so nothing moves.
+ *
+ * @param {{_name?: string, _hi?: ?HTMLCanvasElement, _asked?: boolean}} pic a qpic from `Draw_PicFromWad`, whose
+ *   lower-case `_name` (face1, num_0 ...) keys index.json; mutated
+ * @returns {?HTMLCanvasElement} the higher resolution picture, or null: not in Newer Game, `r_newer_hud 0`, no such
+ *   picture, failed, or not arrived yet
+ */
 export function R_NewerHudCanvas( pic ) {
 
 	if ( pic._name === undefined || ! R_NewerGame() || r_newer_hud.value === 0 ) return null;

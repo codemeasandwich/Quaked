@@ -24,7 +24,21 @@ const records = new Map();
 const center = new THREE.Vector3(), nativeScale = new THREE.Vector3(), nativeTranslation = new THREE.Vector3();
 let activeScene = null;
 let shroudTexture = null;
+/**
+ * Which enhanced power-up a client entity is, by its model name.
+ *
+ * @param {?entity_t} entity a client entity
+ * @returns {?string} 'quad' (progs/quaddama.mdl), 'pentagram' (progs/invulner.mdl), 'ring' (progs/invisibl.mdl), or
+ *   null for anything else
+ */
 export function R_PowerupKind( entity ) { return kinds[ entity?.model?.name ] || null; }
+/**
+ * The Quad's slow brightness pulse, shared by its flame uniforms here and its light in `selectLights` (gl_post.js) so
+ * the two stay in step.
+ *
+ * @param {number} time `cl.time`, seconds
+ * @returns {number} a multiplier in 0.88..1.12, one cycle every ~3.1 s
+ */
 export function R_PowerupPulse( time ) { return 1 + .12 * Math.sin( time * Math.PI * .65 ); }
 
 const VERTEX = `
@@ -143,16 +157,45 @@ function dispose( entity, record ) {
  for ( const mesh of record.group.children ) { mesh.geometry.dispose(); mesh.material.dispose(); }
  records.delete( entity );
 }
+/**
+ * Disposes every pickup's presentation (meshes, materials, fire field, glyph planes), the shroud data texture and the
+ * shared fire target (`R_ClearPowerupFireTarget`), called by `R_NewMap` (gl_rmain.js) at each level start.
+ */
 export function R_PowerupClear() {
  for ( const [ entity, record ] of records ) dispose( entity, record );
  shroudTexture?.dispose(); shroudTexture = null; R_ClearPowerupFireTarget();
  activeScene = null;
 }
+/**
+ * Starts a main-scene pass, called by `R_RenderScene` (gl_rmain.js) before the entities are drawn: remembers the
+ * scene and marks every record unseen, so `R_PowerupEnd` can drop pickups that were not drawn. Main scene Begin/End
+ * owns the records' lifetime; a Classic redraw (`R_ClassicPassActive`) never mutates this registry.
+ *
+ * @param {THREE.Scene} scene the main world scene being rendered
+ */
 export function R_PowerupBegin( scene ) {
  if ( R_ClassicPassActive() ) return;
  activeScene = scene;
  for ( const record of records.values() ) record.seen = false;
 }
+/**
+ * Gives a power-up pickup its Newer Game look as it is drawn, called by `R_DrawAliasModel` (gl_rmain.js) for every
+ * alias entity but the view model. The Quad gets fire derived from its own triangles and a blue surface glow, the
+ * Pentagram fire plus a dark shroud billboard behind it, the Ring a soft glow; each also becomes a light (see
+ * `R_PowerupLights`). Enhanced world-pickup presentation only: the native entity, model, collision, pickup rules and
+ * inventory remain owned by Quake. The presentation is made once per entity (remade when its model or geometry
+ * changes), kept until `R_PowerupEnd` finds it unseen or `R_PowerupClear`, and each call follows the native mesh's
+ * world position, rotation and scale. The light stays at the native entity origin plus a fixed model-centre height;
+ * rotation changes the light's cookie orientation, not its origin.
+ *
+ * @param {entity_t} entity the client entity being drawn
+ * @param {THREE.Mesh} nativeMesh the native alias mesh just placed for it; its world matrix is updated and its bounding
+ *   box and sphere computed if missing
+ * @param {THREE.Scene} scene the scene it is drawn in; must be the one given to `R_PowerupBegin`
+ * @param {number} time `cl.time`, seconds (animates the shaders)
+ * @returns {?THREE.Group} the presentation group (added to `scene`), or null when the entity is not a power-up, the
+ *   enhanced look is off (`r_powerups` 0 or Classic), or this is a Classic pass or another scene
+ */
 export function R_PowerupSeen( entity, nativeMesh, scene, time ) {
  if ( R_ClassicPassActive() ) return null;
  const kind = R_PowerupKind( entity );
@@ -201,15 +244,45 @@ export function R_PowerupSeen( entity, nativeMesh, scene, time ) {
  }
  return record.group;
 }
+/**
+ * Ends a main-scene pass, called by `R_RenderScene` (gl_rmain.js) after the entities are drawn: disposes the
+ * presentation of every pickup not seen this pass (picked up, out of view of the entity list) or of all of them once
+ * the look is switched off. Does nothing during a Classic pass.
+ */
 export function R_PowerupEnd() {
  if ( R_ClassicPassActive() ) return;
  for ( const [ entity, record ] of records ) if ( !record.seen || !R_NewerGame() || r_powerups.value === 0 ) dispose( entity, record );
 }
+/**
+ * The pickups' lights for this frame, read by `selectLights` (gl_post.js) when it chooses the shaded lights: the
+ * Quad blue (radius 80, pulsing), the Pentagram amber (70), the Ring amber (90, with a cookie).
+ *
+ * @returns {Array<{ pos: Array<number>, color: Array<number>, power: number, radius: number, emitter: number,
+ *   powerup: string, rotation: Array<number>, cookie: number }>} the records' live light objects (world space, Quake
+ *   units; `rotation` the item's quaternion), a new array each call; empty when the look is off
+ */
 export function R_PowerupLights() {
  return R_NewerGame() && r_powerups.value !== 0 ? Array.from( records.values(), record => record.source ) : [];
 }
+/**
+ * The registry's state, for tests and diagnostics.
+ *
+ * @returns {{ active: boolean, pickups: number, kinds: Array<string> }} whether the look is on, and the kinds of the
+ *   pickups with a presentation now
+ */
 export function R_PowerupStatus() { return { active: R_NewerGame() && r_powerups.value !== 0, pickups: records.size, kinds: Array.from( records.values(), r => r.kind ) }; }
 
+/**
+ * Ray-marches the fires of every visible Quad and Pentagram in `scene` into the shared emission target, called once a
+ * frame by `R_PostFinish` (gl_post.js) for the post pass; fires in a hidden scene or group are skipped.
+ *
+ * @param {THREE.WebGLRenderer} renderer the game's renderer
+ * @param {THREE.Scene} scene the main scene the pickups are in
+ * @param {THREE.Camera} camera the view camera
+ * @param {THREE.WebGLRenderTarget} target the HDR scene target (its depth clips the fire)
+ * @returns {?{ texture: THREE.Texture, count: number }|0} the `R_RenderPowerupFire` result (reused texture, do not
+ *   dispose; null when there is nothing to draw), or 0 when the look is off
+ */
 export function R_DrawPowerupFire( renderer, scene, camera, target ) {
  if(!R_NewerGame()||r_powerups.value===0)return 0;
  const fires=[];
@@ -220,9 +293,19 @@ export function R_DrawPowerupFire( renderer, scene, camera, target ) {
  return R_RenderPowerupFire(renderer,camera,target,fires);
 }
 
-// Two float texels per visible shroud avoid a second scene draw, another MRT,
-// or an artificial eight-pickup cutoff. Cardinality is the existing visible
-// entity set. The compositor reconstructs exactly the billboard already drawn.
+/**
+ * Packs the Pentagram shrouds visible in `scene` for the compositor, called once a frame by `R_PostFinish`
+ * (gl_post.js). Two float texels per visible shroud avoid a second scene draw, another MRT, or an artificial
+ * eight-pickup cutoff; cardinality is the existing visible entity set, and the compositor reconstructs exactly the
+ * billboard already drawn.
+ *
+ * @param {THREE.Scene} scene the main scene the pickups are in
+ * @param {THREE.Camera} camera the view camera (positions are written in its view space)
+ * @returns {{ count: number, texture: ?THREE.DataTexture }} the shroud count and a 2 x n RGBA float texture (per
+ *   shroud: view-space centre x, y, z pushed back by its depth offset, billboard width and height, time, 0, 0; Quake
+ *   units). The texture is kept and reused, grown when more shrouds are visible, and freed by `R_PowerupClear`; null
+ *   when there are none.
+ */
 export function R_PowerupShroudFrame( scene, camera ) {
  const visible = [];
  if ( R_NewerGame() && r_powerups.value !== 0 ) for ( const record of records.values() ) {

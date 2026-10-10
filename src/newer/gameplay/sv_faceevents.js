@@ -50,12 +50,28 @@ let epoch = 0, program = null, world = null, map = '', activeShot = null;
 function name( fn ) { if ( !fn ) return ''; let value = names.get( fn ); if ( value === undefined ) { value = PR_GetString( fn.s_name ); names.set( fn, value ); } return value; }
 const vector = value => value?.length >= 3 && [ value[0], value[1], value[2] ].every( Number.isFinite ) ? Array.from( value ).slice( 0, 3 ) : null;
 
+/**
+ * Empties every event queue, forgets the blast in progress and starts a new epoch, so tokens handed out before it are
+ * ignored by `SV_FaceFunctionLeave`. Called after a QuakeC error by `PR_RunError` (pr_exec.js), by `R_FaceHealthChanged`
+ * (r_facegame.js) when the player comes back to life, and from here whenever the progs, the edict array or the map name
+ * change or the local session is not active. Records the current `pr_functions`, `sv.edicts` and `sv.name` to detect
+ * the next change.
+ */
 export function SV_FaceReset() {
  queues.damage.length = queues.shot.length = queues.reward.length = queues.rays.length = queues.alert.length = 0; activeShot = null; epoch ++;
  program = pr_functions; world = sv.edicts; map = sv.name;
 }
 function syncEpoch() { if ( program !== pr_functions || world !== sv.edicts || map !== sv.name ) SV_FaceReset(); }
 
+/**
+ * Whether the observations apply: an active single-player server running stock progs (CRC 24778), not playing a demo,
+ * whose client 0 is this browser's own connected loopback connection with a live player edict (edict 1), in Newer
+ * Game. Checked here before any event is recorded; the HUD face (r_facegame.js) uses it to tell native observations
+ * from demo/network fallbacks, and the Quad vision (r_quadvision.js) and Quad movement (sv_quadmovement.js) as their
+ * gate.
+ *
+ * @returns {boolean} true when the local server and client are the paired single-player Newer Game session
+ */
 export function SV_FaceLocalActive() {
  const client = svs.clients?.[0], peer = cls.netcon?.driverdata;
  return sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && !cls.demoplayback &&
@@ -64,6 +80,17 @@ export function SV_FaceLocalActive() {
   client.edict === sv.edicts?.[1] && !client.edict?.free && R_NewerGame();
 }
 
+/**
+ * Takes every queued event of one kind, called each client frame by the HUD face (`R_FaceDamage`, `R_FaceAlerts`,
+ * `R_PlayerFaceFrame` in r_facegame.js) and by the shotgun's pellets (r_shotgun.js, 'rays'). Each queue holds at most
+ * 256 events (the oldest are dropped). When the session is not local and active it resets everything instead.
+ *
+ * @param {string} kind 'damage' (health/armour lost, `source` the attacker's centre or null for world damage),
+ *   'shot' (a confirmed discharge with its `cadence` in seconds), 'reward' (a power-up picked up), 'rays' (a shotgun
+ *   blast's pellet rays) or 'alert' (a monster has noticed the player, with its `source` centre)
+ * @returns {Array<object>} the removed events, oldest first (times are `sv.time` seconds, positions world space in
+ *   Quake units); empty for an unknown kind
+ */
 export function SV_FaceDrain( kind ) {
  syncEpoch();
  if ( !SV_FaceLocalActive() ) { SV_FaceReset(); return []; }
@@ -71,6 +98,23 @@ export function SV_FaceDrain( kind ) {
 }
 function emit( event ) { const queue = queues[event.kind]; if ( queue.length >= LIMIT ) queue.shift(); queue.push( event ); }
 
+/**
+ * Observes a QuakeC function being entered, called by `PR_EnterFunction` (pr_exec.js) for every call; the returned
+ * token is kept on the interpreter stack frame and handed to `SV_FaceFunctionLeave` when the function returns.
+ * Watches `T_Damage` on the player, `powerup_touch` of the four artifacts, the player's weapon fire functions and axe
+ * swings, the soldier's `army_fire`, `FoundTarget` (an alert is queued at once) and `TraceAttack`. A damage callback is
+ * observed separately from later healing/clientdata, and a dry-fire weapon switch (no ammunition) is not a shot. The
+ * observation changes nothing in the game, with one deliberate exception: the `TraceAttack` of a pellet that hit
+ * something during an observed shotgun blast waits for its pellet's flight (`shotDelayCapture`, sv_shotdelay.js), and
+ * its token's `skip` makes the interpreter run `SUB_Null` instead. Shot and soldier tokens become the blast in progress
+ * until they leave.
+ *
+ * @param {dfunction_t} fn the function being entered
+ * @param {?dfunction_t} caller the function that called it (`pr_xfunction`), or null at the top level
+ * @returns {?object} a token (`kind` 'damage', 'reward', 'shot', 'axe', 'soldier' or 'trace', with the current
+ *   `epoch` and the state before the call); 'trace' tokens carry `skip`, the statement index to resume at. Null when
+ *   the function is not observed or the session is not local and active.
+ */
 export function SV_FaceFunctionEnter( fn, caller ) {
  const functionName = name( fn ), ammo = FIRE_AMMO.get( functionName ), axe = AXE_STARTS.has( functionName ) && name( caller ) === 'W_Attack';
  if ( functionName === SOLDIER_FIRE ) return soldierEnter( fn );
@@ -138,6 +182,16 @@ function soldierEnter() {
  activeShot = token; return token;
 }
 
+/**
+ * Completes an observation when its QuakeC function returns, called by `PR_LeaveFunction` (pr_exec.js) with the token
+ * from `SV_FaceFunctionEnter`. Queues an event only for what actually happened: a reward when the power's timer, the
+ * items or the pickup's solidity changed; damage when health or armour fell; a shot when the ammunition fell (and its
+ * pellet rays for a shotgun); a soldier blast's rays. Native super-shotgun and super-nail fallback calls nest another
+ * discharge routine; that inner confirmed shot owns the event, so it is never emitted twice. Tokens from an earlier
+ * epoch, 'trace' tokens and null are ignored.
+ *
+ * @param {?object} token the value `SV_FaceFunctionEnter` returned for this call
+ */
 export function SV_FaceFunctionLeave( token ) {
  if ( !token || token.epoch !== epoch ) return;
  if ( token.kind === 'trace' ) return;
@@ -176,6 +230,16 @@ export function SV_FaceFunctionLeave( token ) {
 // PF_traceline reports every traceline here. While an observed blast (a local player's shotgun or a soldier's army_fire) runs, it is one of that
 // blast's rays (FireBullets' own); nothing else is recorded, and the trace itself is never touched.
 export const SV_FaceShotActive = () => !! activeShot?.rays;
+/**
+ * Records a traceline as one ray of the observed blast in progress, called by `PF_traceline` (pr_cmds.js) for every
+ * traceline. Only `FireBullets`' own pellet traces count: the explosion of a barrel a pellet kills runs
+ * `T_RadiusDamage` inside the same weapon function, and its `CanDamage` traces are not pellets. The trace itself is
+ * never touched.
+ *
+ * @param {Array<number>} v1 trace start (world space, Quake units)
+ * @param {Array<number>} v2 trace end (world space, Quake units)
+ * @param {trace_t} trace the traceline result; `endpos` is where the pellet stopped
+ */
 export function SV_FaceShotTrace( v1, v2, trace ) {
  // (only FireBullets' own pellet traces: the explosion of a barrel a pellet kills runs T_RadiusDamage inside the
  // same weapon function, and its CanDamage traces are not pellets)

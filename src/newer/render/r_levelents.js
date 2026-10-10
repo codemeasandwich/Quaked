@@ -49,6 +49,13 @@ const TORCHES = {
 	light_flame_large_yellow: 'flame2', light_flame_small_white: 'flame2'
 };
 
+/**
+ * The animation a frame belongs to: its name without the trailing digits ('walk12' -> 'walk'). r_levelview.js uses it
+ * to group a model's frames into idle cycles.
+ *
+ * @param {*} name frame name from the model (coerced to a string)
+ * @returns {string} the name less any trailing digits
+ */
 export function R_FramePrefix( name ) {
 
 	return String( name ).replace( /\d+$/, '' );
@@ -111,6 +118,26 @@ when you left it (or null), submodels the level's brush models (for their size),
 skill 0-3.
 ================
 */
+/**
+ * The things to draw of another level, for its window view (r_levelview.js), for prewarming (r_prewarm.js) and to
+ * list a level's skin keys (r_newerskins.js). Without a snapshot, entities come from the entity lump with the model the
+ * QuakeC spawn function would choose (keys by `worldtype`, ammo/health box sizes by spawnflags), and skill spawnflags
+ * (256 easy, 512 normal, 1024 hard) take some out. With a snapshot, saved models are used as they were: items picked up
+ * (no model) are gone, axe-cut corpses become 'axe' records and the parts they hid 'axeFallback' entries (dropped when
+ * their corpse is gone), and live monsters carry their rend-veil record. Triggers, info_ entities and func_train
+ * (whose first stop is not worked out) are left out; a func_plat starts at the bottom of its travel.
+ *
+ * @param {?string} text the level's entity lump (model.entities); null or empty gives no lump entities
+ * @param {?Array<Object<string, string>>} snapshot the entities as they were when you left it (saved key/value
+ *  edicts with `_snapshot_index`, `_snapshot_time`, `_newer_*` keys), or null to use the lump
+ * @param {?Array<{mins: Array<number>, maxs: Array<number>}>} submodels the level's brush models, for '*n' models and
+ *  plat height; null drops brush entities
+ * @param {number} skill 0-3 (0 easy, 1 normal, 2 and 3 hard)
+ * @returns {Array<Object>} new list, in source order: { kind: 'alias' | 'axeFallback' | 'bsp' | 'brush', classname, model,
+ *  origin (Quake units), angles (degrees), frame, skin } with `submodel` for 'brush' and `fromSnapshot`, `faceSeed`,
+ *  `rendVeil`, `rendVeilTime` (and `fallbackFor`) for alias models; or { kind: 'axe', record, cutKey, origin, time }
+ *  for a cut corpse (`record` null when invalid or owned by another corpse)
+ */
 export function R_LevelEntities( text, snapshot, submodels, skill ) {
 
 	const lump = R_ParseEntityLump( text || '' );

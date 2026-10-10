@@ -20,10 +20,31 @@ export const BESTIARY_FRONTISPIECE_PIECES = Object.freeze([
  {id:'vore',polygon:[[.5,.58201],[1,.58201],[1,1],[.5,1]]}
 ].map(piece=>Object.freeze({...piece,polygon:Object.freeze(piece.polygon.map(p=>Object.freeze(p)))})));
 export const Bestiary_HeaderHeight = id => ['shub_awakened','infected_death_knight','ranged_death_knight'].includes(id) ? 240 : 196;
+/**
+ * Which frontispiece pieces are discovered, as a bit mask over `BESTIARY_FRONTISPIECE_PIECES` (bit 0 scrag,
+ * 1 shambler, 2 ogre, 3 fiend, 4 vore). r_bestiary.js uses it to know when the composite must be rebuilt.
+ *
+ * @param {Iterable<string>} unlocked discovered creature ids (the journal snapshot's `unlocked`)
+ * @returns {number} mask 0..31; 31 when all five are discovered
+ */
 export function Bestiary_FrontispieceMask(unlocked) {
  const ids=new Set(unlocked);
  return BESTIARY_FRONTISPIECE_PIECES.reduce((mask,piece,i)=>mask|(ids.has(piece.id)?1<<i:0),0);
 }
+/**
+ * Composes the Bestiary frontispiece: the blank page with each discovered creature's region of the complete
+ * illustration clipped in along the owner's cutting guide (polygons in 0..1 of the page size). With all five
+ * discovered it returns the exact complete illustration, because the two supplied title bands differ slightly
+ * and clipping would leave seams.
+ *
+ * @param {?(HTMLImageElement|HTMLCanvasElement)} blank the blank frontispiece page (its natural size is used)
+ * @param {?(HTMLImageElement|HTMLCanvasElement)} art the complete illustration, drawn stretched to the blank's size
+ * @param {Iterable<string>} unlocked discovered creature ids
+ * @param {function(): HTMLCanvasElement} createCanvas makes the output canvas (called only when compositing)
+ * @returns {?(HTMLImageElement|HTMLCanvasElement)} `blank` when nothing is discovered, `art` is missing or no 2D
+ *   context is available; `art` when all five are discovered; null when `blank` is missing or has no size;
+ *   otherwise a new canvas the caller keeps
+ */
 export function Bestiary_ComposeFrontispiece(blank,art,unlocked,createCanvas) {
  const mask=Bestiary_FrontispieceMask(unlocked);
  if(!mask||!art)return blank;

@@ -54,6 +54,14 @@ let portalsEnabled = true;
 // Entity lump parsing
 //============================================================================
 
+/**
+ * Parses a BSP entity lump (the `{ "key" "value" ... }` text) into plain key/value objects with `COM_Parse`. Used here
+ * at map load by `R_BuildPortals`, and by gl_post.js. Parsing stops quietly at the first token that does not open a
+ * block, and a truncated last entity is dropped. Later duplicate keys overwrite earlier ones.
+ *
+ * @param {string} text the entity lump text (`model.entities`)
+ * @returns {Array<Object<string, string>>} one object per entity, all values as strings (e.g. `origin` "x y z")
+ */
 export function R_ParseEntityLump( text ) {
 
 	const ents = [];
@@ -232,6 +240,14 @@ function portalMatrix( C, n, D, yaw ) {
 
 }
 
+/**
+ * Carries a point through a camera portal onto its receiver with the portal's rigid matrix (the same transform the
+ * portal view uses). sv_portal.js uses it to find where a teleported player comes out.
+ *
+ * @param {{matrix: Array<number>}} portal a camera portal from `R_BuildPortals` (`matrix` column-major 4x4)
+ * @param {ArrayLike<number>} p point in world space (Quake units)
+ * @returns {Array<number>} new `[x, y, z]` in world space at the receiver
+ */
 export function R_TransformPortalPoint( portal, p ) {
 
 	const e = portal.matrix;
@@ -243,6 +259,10 @@ export function R_TransformPortalPoint( portal, p ) {
 
 }
 
+/**
+ * Drops every camera portal: unlinks `_portal` from its surfaces and disposes its material. Run at the start of
+ * `R_BuildPortals` and by `R_PortalsShutdown`. Level portals (`R_ClearLevelPortals`) are not touched.
+ */
 export function R_ClearPortals() {
 
 	for ( const p of portals ) {
@@ -256,12 +276,20 @@ export function R_ClearPortals() {
 
 }
 
-// The planes of the teleporters' windows that can be hit, for impact ripples: { normal, center, min, max } in this level's
-// coordinates, from each window's visible surface (its trigger box can lie beside it). A teleporter brush has a face on each
-// side and sometimes two planes a few units apart: parallel planes close together over the same box are one window. Built when the
-// portals change. (Doorways onto the next level are seamless: no ring shows their seam. A slipgate's window onto the next level is
-// a portal you walk through like a teleporter's, and is hit like one: its plane carries the window's outline.)
 let _planes = [], _planesFor = null, _planesCount = - 1, _gatesFor = null, _gatesCount = - 1;
+/**
+ * The planes of the teleporters' windows that can be hit, for impact ripples: { normal, center, min, max } in this
+ * level's coordinates, from each window's visible surface (its trigger box can lie beside it). A teleporter brush has a
+ * face on each side and sometimes two planes a few units apart: parallel planes (within 12 units, boxes overlapping
+ * within 12) close together over the same box are one window. Built when the portals change. (Doorways onto the next
+ * level are seamless: no ring shows their seam. A slipgate's window onto the next level is a portal you walk through like
+ * a teleporter's, and is hit like one: its plane carries the window's outline.) Handed to `R_ImpactRipplesSetup` as its
+ * `portals` callback (gl_rmain.js) and asked when ripples are placed.
+ *
+ * @returns {Array<{normal: Array<number>, center: Array<number>, min: Array<number>, max: Array<number>, polygons?: Array<Array<Array<number>>>}>}
+ *  the cached list (do not mutate; rebuilt when the portal lists change); empty while camera portals are disabled.
+ *  Each camera portal's plane is one object for its life (a ripple field is keyed to it, r_waves.js)
+ */
 export function R_ImpactPortalPlanes() {
 
 	const cameras = portalsEnabled ? portals : NO_PLANES;
@@ -290,12 +318,21 @@ export function R_ImpactPortalPlanes() {
 }
 const NO_PLANES = [];
 
-// Does the box lie in what a visible camera portal shows (a leaf the receiver can see)? A brush entity (a door, a false wall or floor,
-// a lift) is only drawn when the main view's frustum reaches it; one in the receiver's view and outside the main view's would be
-// missing from the picture through the portal, and whatever stands behind it would show through (card [15]). `pointInLeaf( point )`
-// gives the leaf of a point and `visframe` the frame stamp of the portals' source leaves that are in the main view. The centre and
-// the eight corners are looked at (a thin door's centre can lie in a wall's leaf).
 const _corner = [ 0, 0, 0 ];
+/**
+ * Does the box lie in what a visible camera portal shows (a leaf the receiver can see)? A brush entity (a door, a false
+ * wall or floor, a lift) is only drawn when the main view's frustum reaches it; one in the receiver's view and outside
+ * the main view's would be missing from the picture through the portal, and whatever stands behind it would show
+ * through (card [15]). The centre and the eight corners are looked at (a thin door's centre can lie in a wall's leaf).
+ * Called per brush entity by gl_rsurf.js when `R_CullBox` would cull it.
+ *
+ * @param {ArrayLike<number>} mins box minimum corner (world space, Quake units)
+ * @param {ArrayLike<number>} maxs box maximum corner
+ * @param {function(Array<number>): mleaf_t} pointInLeaf gives the leaf of a point (the passed array is reused; do not keep it)
+ * @param {number} visframe the frame stamp of the portals' source leaves that are in the main view (`r_visframecount`)
+ * @returns {boolean} true when some portal whose source leaf is visible this frame can see one of the nine points;
+ *  false when camera portals are disabled or there are none
+ */
 export function R_BoxInPortalReceiver( mins, maxs, pointInLeaf, visframe ) {
 
 	if ( ! portalsEnabled || portals.length === 0 ) return false;
@@ -317,12 +354,36 @@ export function R_BoxInPortalReceiver( mins, maxs, pointInLeaf, visframe ) {
 
 }
 
+/**
+ * The camera portals built for the current map by `R_BuildPortals` (read by gl_rmain.js, gl_rsurf.js and sv_portal.js).
+ *
+ * @returns {Array<Object>} the live list (replaced, not mutated, on rebuild). Each portal has `triggerModel` ('*n'),
+ *  `triggerTarget`, `triggerMins`/`triggerMaxs`, `surfaces`, `surfMins`/`surfMaxs`, `center` and `normal` of the source
+ *  window, `dest` (receiver eye point, Quake units), `yaw` (degrees), `forward`, `matrix` (column-major 4x4 source to
+ *  receiver), `srcLeaf`, `destVis` (PVS bytes), `destLeafs`, `extraSurfaces` (sky/water surfaces the receiver sees),
+ *  `material` and `activeFrame`
+ */
 export function R_GetPortals() {
 
 	return portals;
 
 }
 
+/**
+ * Builds the camera portals for a world model at map load (gl_rsurf.js, after the world surfaces are built). Every
+ * `*teleport` turbulent surface within `TRIGGER_SLOP` (24) units of a `trigger_teleport` whose target is an
+ * `info_teleport_destination` becomes part of a portal; coplanar faces of one doorway/pad share a portal so they share
+ * one view. A level exit's gate (a trigger_changelevel at it) shows the next level (r_levelview.js), not a view within
+ * this one, even when a trigger_teleport lies near it too (E1M4's secret exit gate): its surfaces are left out here, the
+ * whole gate (E3M6's has two planes 4 units apart, a teleport trigger behind one and the exit's in front of the other).
+ * When no window is built for it (seamless travel off, a game with other players, the next level unreadable) the gate
+ * keeps the plain teleporter look. Doorway portals are centred at standing-origin height so the eye lines up once you
+ * step through; the receiver is the destination origin plus 27 units (where trigger_teleport places the player).
+ * Sets `surf._portal` on each portal surface. Previous portals are cleared first.
+ *
+ * @param {?model_t} model the world brush model (needs `entities`, `surfaces`, `submodels`, `nodes`, `leafs`)
+ * @returns {Array<Object>} the new portal list (as `R_GetPortals`); empty when the model is missing those fields or has no teleporters
+ */
 export function R_BuildPortals( model ) {
 
 	R_ClearPortals();
@@ -549,6 +610,13 @@ export function R_BuildPortals( model ) {
 // Per-frame hooks used by the world renderer
 //============================================================================
 
+/**
+ * Decides once per frame, before the world is drawn (gl_rmain.js), whether camera portals are live: camera portals
+ * belong to Newer Game (and can be switched off there); the original game keeps its teleporters as they were.
+ *
+ * @param {boolean} enabled false for frames that must not render portal views (WebXR, whose stereo pair does not allow
+ *  per-camera views, and environment-map captures)
+ */
 export function R_PortalsBeginFrame( enabled ) {
 
 	// camera portals belong to Newer Game (and can be switched off there); the
@@ -557,13 +625,22 @@ export function R_PortalsBeginFrame( enabled ) {
 
 }
 
+/**
+ * @returns {boolean} true when this frame draws teleporter surfaces as live windows: Newer Game, portals enabled by
+ *  `R_PortalsBeginFrame` (`r_portals` and `r_newer_portals` non-zero) and the map has at least one camera portal
+ */
 export function R_PortalsActive() {
 
 	return R_NewerGame() && portalsEnabled && portals.length > 0;
 
 }
 
-// Called for every portal surface the world renderer draws this frame
+/**
+ * Called for every portal surface the world renderer draws this frame (gl_rsurf.js), and from a level portal mesh's
+ * `onBeforeRender`: marks the portal so `R_RenderPortals` renders its view.
+ *
+ * @param {{activeFrame: number}} portal camera or level portal; mutated
+ */
 export function R_PortalNoteVisible( portal ) {
 
 	portal.activeFrame = portalFrame;
@@ -679,6 +756,17 @@ void main() {
 	gHeightMask = vec4(1.0);
 }`;
 
+/**
+ * The portal's window material, created on first use and kept on `portal.material` until the portal is cleared. It
+ * shows the receiver's render target in screen space (a cut-out), with shimmer and tint unless the portal is a
+ * seamless level doorway (`portal.level`, fixed at creation), metallic ripples from r_waves.js, and writes G-buffer
+ * outputs that tell the lighting pass not to light it. Until `R_RenderPortals` binds a view the window samples a
+ * 1x1 blue-grey placeholder. Called per drawn portal surface by gl_rsurf.js and by `R_AddLevelPortal`.
+ *
+ * @param {{material: ?THREE.ShaderMaterial, level?: boolean}} portal camera or level portal; `material` is set
+ * @param {?THREE.Texture} texture the surface's own teleporter texture (the `map` uniform), or null for the placeholder
+ * @returns {THREE.ShaderMaterial} the portal's material
+ */
 export function R_PortalMaterial( portal, texture ) {
 
 	if ( portal.material === null ) {
@@ -798,6 +886,24 @@ Render the receiver's view of every portal that was drawn this frame.  Call
 after the scene has been built and before the main renderer.render().
 ================
 */
+/**
+ * Renders, nearest first, up to `MAX_PORTAL_VIEWS` (3) camera and level portals marked by `R_PortalNoteVisible` since
+ * the last call, each from a virtual camera (the main camera carried through the portal matrix, with an oblique near
+ * plane on the receiver plane) into its own half-float render target at 0.75 of the viewport (16..1600 pixels a side).
+ * Every portal is first reset to the placeholder; a rendered one gets its target and full mix. Views whose virtual eye
+ * is not behind the receiver plane are skipped. Run once per frame from gl_rmain.js. The renderer's target and clear
+ * colour and the `hidden` objects' visibility are restored even if rendering throws. Render targets are kept and
+ * resized between frames until `R_PortalsShutdown`.
+ *
+ * @param {?THREE.WebGLRenderer} renderer the renderer; null renders nothing
+ * @param {THREE.Scene} scene the built scene to draw
+ * @param {THREE.PerspectiveCamera} camera main view camera (its matrixWorld must be current)
+ * @param {number} width main 3D view width in pixels
+ * @param {number} height main 3D view height in pixels
+ * @param {number} time seconds (`Sys_FloatTime`), for the shimmer animation
+ * @param {Array<THREE.Object3D>} hidden objects hidden during portal views (the view weapon)
+ * @returns {number} number of portal views rendered (0..3)
+ */
 export function R_RenderPortals( renderer, scene, camera, width, height, time, hidden ) {
 
 	const active = [];
@@ -902,6 +1008,9 @@ export function R_RenderPortals( renderer, scene, camera, width, height, time, h
 
 }
 
+/**
+ * Clears the camera portals and disposes the cached portal render targets.
+ */
 export function R_PortalsShutdown() {
 
 	R_ClearPortals();
@@ -915,15 +1024,24 @@ export function R_PortalsShutdown() {
 // Level portals: a window in an exit onto the next level
 //============================================================================
 
-// where the level views live, so each one has its own space in the scene
+/**
+ * Where the level views live, so each one has its own space in the scene: the number of level portals.
+ *
+ * @returns {number} count of windows onto other levels currently added
+ */
 export function R_LevelPortalCount() {
 
 	return levelPortals.length;
 
 }
 
-// the matrix (this level's coordinates -> the scene) of the window onto the level
-// that crossing number `index` leads to, or null while that view is not built
+/**
+ * The matrix (this level's coordinates -> the scene) of the window onto the level that crossing number `index`
+ * leads to. Read when a seamless level transition begins (gl_rmain.js).
+ *
+ * @param {number} index crossing number (as set on the portal by r_levelview.js)
+ * @returns {?Array<number>} column-major 4x4 (the portal's own array; do not mutate), or null while that view is not built
+ */
 export function R_LevelPortalMatrix( index ) {
 
 	for ( const p of levelPortals )
@@ -933,7 +1051,12 @@ export function R_LevelPortalMatrix( index ) {
 
 }
 
-// the window of crossing number `index` goes (its crossing was shut)
+/**
+ * The window of crossing number `index` goes (its crossing was shut, r_levelview.js): its mesh is removed from the
+ * scene and its geometry and material disposed.
+ *
+ * @param {number} index crossing number
+ */
 export function R_RemoveLevelPortal( index ) {
 
 	for ( const p of levelPortals.filter( ( p ) => p.crossing === index ) ) {
@@ -953,6 +1076,10 @@ export function R_RemoveLevelPortal( index ) {
 
 }
 
+/**
+ * Removes and disposes every window onto another level (meshes, geometry, materials); `R_ClearLevelViews` (r_levelview.js) runs it
+ * when the level views are torn down.
+ */
 export function R_ClearLevelPortals() {
 
 	for ( const p of levelPortals ) {
@@ -983,6 +1110,23 @@ dest      where the exit plane lands in the scene
 forward   the direction of travel across it, in the scene
 ================
 */
+/**
+ * Adds a window in an exit onto the next level (r_levelview.js, when it places that level's view): a mesh drawn
+ * with `R_PortalMaterial` (dark until the view has been rendered) that marks itself visible when drawn, so the
+ * other level is rendered only while the window is in view. Also records the opening's plane and box for impact
+ * ripples; with `polygons` it is a slipgate's window, hit like a teleporter's, its ripples held by its outline. The
+ * caller sets `portal.crossing` on the result. Lives until `R_RemoveLevelPortal` or `R_ClearLevelPortals`.
+ *
+ * @param {THREE.Scene} scene scene the mesh is added to
+ * @param {Array<Array<number>>} corners the four corners of the opening, in this level's coordinates (Quake units), in order around it
+ * @param {Array<number>} matrix column-major: this level's coordinates -> the scene, where the other level's view has been placed
+ * @param {Array<number>} dest where the exit plane lands in the scene (receiver point for the oblique clip)
+ * @param {Array<number>} forward the direction of travel across it, in the scene (unit vector)
+ * @param {?Array<Array<Array<number>>>} [polygons=null] the window's own convex polygons (each a fan, as a BSP face is),
+ *  drawn instead of the rectangle
+ * @returns {{level: true, center: Array<number>, dest: Array<number>, forward: Array<number>, matrix: Array<number>,
+ *  plane: Object, mesh: THREE.Mesh, material: THREE.ShaderMaterial, activeFrame: number, slipgate?: boolean}} the new level portal
+ */
 export function R_AddLevelPortal( scene, corners, matrix, dest, forward, polygons = null ) {
 
 	// the rectangle, or the given polygons (each a convex fan, as a BSP face is)

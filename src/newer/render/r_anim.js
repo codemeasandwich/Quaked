@@ -35,6 +35,12 @@ export { ANIM_STEP }; // seconds between frames in Quake's own animations (engin
 const STALE = 0.25; // not drawn for this long: start again without blending
 const JUMP = 96; // a move this big in one frame is a teleport
 
+/**
+ * Whether model animation smoothing (pose blending and smooth movement) runs: only in Newer Game with
+ * `r_lerpmodels` 1 or above. Asked per alias model draw (gl_mesh.js, gl_rmain.js) and by v_shamblersteps.js.
+ *
+ * @returns {boolean} true when smoothing is on for this frame
+ */
 export function R_AnimEnabled() {
 
 	return R_IsNewer() && r_lerpmodels.value >= 1;
@@ -55,6 +61,20 @@ The mesh (gl_mesh.js) then starts the new blend from the pose it had on screen
 rather than snapping the rest of the way to .from (card [43]).
 ================
 */
+/**
+ * Advances an entity's pose blend for this draw; called per alias model draw by gl_mesh.js while `R_AnimEnabled`.
+ * The state is kept on `entity._aliasLerp` and restarts without blending when the entity is new, the model changed,
+ * time went backwards, it was not drawn for 0.25 s, or it moved more than 96 units since the last draw (a teleport).
+ *
+ * @param {entity_t} entity the drawn entity; `_aliasLerp` is created or mutated
+ * @param {aliashdr_t} model the alias header being drawn (a change resets the blend)
+ * @param {number} target pose index the game says the entity is in now
+ * @param {number} time client time in seconds (`cl.time`)
+ * @param {number} interval seconds the frame lasts (a group frame's own; otherwise 0 or less means `ANIM_STEP`, 0.1 s)
+ * @returns {{model: aliashdr_t, from: number, to: number, start: number, interval: number, lastTime: number,
+ *  origin: ?Array<number>, blend: number, lead: ?{from: number, to: number, t: number}}} the entity's live state
+ *  (the same object every call): blend `from` -> `to` by `blend` (0..1; 1 when they are equal); `lead` as above
+ */
 export function R_AliasPoseBlend( entity, model, target, time, interval ) {
 
 	let s = entity._aliasLerp;
@@ -137,6 +157,17 @@ Called just before an alias entity is drawn; adjusts entity.origin and
 entity.angles in place (the game recomputes them every frame).
 ================
 */
+/**
+ * Glides a walking monster's displayed position and heading from its last step to the current one, over the time the
+ * step took (a little longer, at most 0.35 s). Called by gl_rmain.js before drawing each alias entity that is not the
+ * view model or a player, while `R_AnimEnabled`. Steps closer than 0.04 s or further than 0.35 s apart, faster than
+ * 380 units a second, bigger than 96 units, or of a model with any effect flag but EF_ROTATE are shown where the game
+ * puts them. Drawn again in the same frame (a portal or mirror view), it shows what was shown. State is kept on
+ * `entity._smoothMove` and restarts when the model changes, time goes backwards or it was not drawn for 0.25 s.
+ *
+ * @param {entity_t} entity entity whose `origin` (Quake units) and `angles` (degrees) are rewritten in place
+ * @param {number} time client time in seconds (`cl.time`)
+ */
 export function R_SmoothMove( entity, time ) {
 
 	const o = entity.origin, a = entity.angles;
@@ -222,7 +253,15 @@ export function R_SmoothMove( entity, time ) {
 
 }
 
-// out[ i ] = a[ i ] + ( b[ i ] - a[ i ] ) * t
+/**
+ * Linear blend of two equal-length arrays: out[ i ] = a[ i ] + ( b[ i ] - a[ i ] ) * t. gl_mesh.js uses it for
+ * per-vertex positions and normals between two poses.
+ *
+ * @param {Float32Array|Array<number>} out written for `out.length` elements (may be `a` or `b`)
+ * @param {ArrayLike<number>} a values at t = 0
+ * @param {ArrayLike<number>} b values at t = 1
+ * @param {number} t blend factor, normally 0..1
+ */
 export function R_BlendArrays( out, a, b, t ) {
 
 	for ( let i = 0; i < out.length; i ++ ) out[ i ] = a[ i ] + ( b[ i ] - a[ i ] ) * t;

@@ -33,6 +33,17 @@ const local = new THREE.Vector3(), color = new THREE.Color();
 const unitZ = new THREE.Vector3( 0, 0, 1 );
 let loading = false, lastTime = null;
 
+/**
+ * Gives the shells their engine dependencies; called from gl_rmain.js when the renderer sets up a map, just before
+ * `R_ShellsNewMap`. Kept until the next call.
+ *
+ * @param {{scene: THREE.Scene, client: function(): ?client_state_t, refresh?: function(): void,
+ *   trace: function(Array<number>, Array<number>, number): object, entity?: function(number): ?entity_t,
+ *   light: function(Array<number>): number}} d `client()` the client state (`cl`); `refresh()` re-reads the brush
+ *   entities the trace may hit; `trace(start, end, radius)` a sphere trace against the world and those brushes
+ *   (`R_ShellTrace`; result has `fraction`, `endpos`, `plane`, `ent`, `startsolid`, `allsolid`); `entity(index)` a
+ *   client entity by number; `light(point)` the light level at a point (`R_LightPoint`); a shell is tinted light / 128, clamped 0..1.5
+ */
 export function R_ShellsSetup( d ) { deps = d; }
 
 function detach( state ) {
@@ -41,6 +52,13 @@ function detach( state ) {
 
 }
 
+/**
+ * Switches to a map's shells when the renderer sets up a map (gl_rmain.js): takes the old map's chunks out of the
+ * scene and makes `name`'s record current, creating it when new. Per-map records survive seamless return during the
+ * session, so coming back shows the casings left there; moving and supported shells resume.
+ *
+ * @param {string} name the world model's name (`cl.worldmodel.name`, '' with no world)
+ */
 export function R_ShellsNewMap( name ) {
 
 	if ( current ) detach( current );
@@ -52,6 +70,10 @@ export function R_ShellsNewMap( name ) {
 
 }
 
+/**
+ * Forgets every map's shells and disposes their instanced meshes; called by `Host_Map_f` (explicit map / new game,
+ * unlike seamless level travel) and at the start of `R_ShellsRestore`.
+ */
 export function R_ShellsReset() {
 
 	for ( const state of levels.values() ) {
@@ -71,6 +93,22 @@ function ensureAsset() {
 
 }
 
+/**
+ * Throws casings for one confirmed local shotgun shot. Called by the client for every parsed sound packet outside
+ * demo playback (cl_parse.js), independent of audio being enabled; these vanilla-progs sounds occur exactly once per
+ * shot. Only the view entity's weapon channel (1) counts: 'weapons/guncock.wav' throws one shell, 'weapons/shotgn2.wav'
+ * (super shotgun) two, from opposite chamber offsets of the ejection port on the receiver's right side. The held gun's
+ * posed matrix is used when it is within 80 units of the packet origin (it contains bob/recoil/orientation); otherwise
+ * the view angles at the packet origin plus 22 units, so a teleport can't emit at a stale eye. Shells are added to the
+ * current map's record (persistent; no TTL, cap or server entity). Does nothing without a current map or when the
+ * Newer weapons are off.
+ *
+ * @param {number} entity the sound's entity number
+ * @param {number} channel the sound's channel
+ * @param {string} sound the sound's name, e.g. 'weapons/guncock.wav'
+ * @param {Array<number>} packetOrigin the sound's origin, the authoritative player location (world space, Quake units)
+ * @returns {number} shells thrown: 0, 1 or 2
+ */
 export function R_ShellShot( entity, channel, sound, packetOrigin ) {
 
 	const cl = deps?.client();
@@ -148,6 +186,16 @@ function draw( s ) {
 
 }
 
+/**
+ * Moves and draws the current map's shells every frame (`R_RenderView`, gl_rmain.js). Shells resting on a brush
+ * entity follow it (and fall again when it is gone or changed model); moving ones fall at 800 units/s^2, bounce
+ * (restitution .28, floor friction .72) and come to rest on a floor slower than 24 units/s. Fixed sweeps of at most
+ * 1/120 s avoid tunnelling and make pauses (client time stands still) harmless; at most 0.25 s is simulated per call, so
+ * long tab stalls resume without a giant physics jump. Starts the shell model's load on first use and, once loaded,
+ * draws every record once after downloads or save restoration, then only what changed. Skipped during the Classic pass.
+ *
+ * @param {number} time client time, seconds (`cl.time`)
+ */
 export function R_ShellsFrame( time ) {
 
 	if ( ! current || ! deps || R_ClassicPassActive() ) return;
@@ -239,6 +287,15 @@ export function R_ShellsFrame( time ) {
 
 }
 
+/**
+ * The save metadata for every map's shells; written by `Host_Savegame_f` as a base64 JSON line (save metadata owns
+ * their persistence).
+ *
+ * @returns {{version: 1, levels: Array<{name: string, shells: Array<{p: Array<number>, v: Array<number>,
+ *   q: Array<number>, spin: Array<number>, rest: boolean, yaw: number, support?: object}>}>}} plain arrays shared with
+ *   the live records (serialise it at once); `p` position and `v` velocity in Quake units (/s), `q` quaternion, `spin`
+ *   radians/s, `yaw` radians, `support` the resting brush `{id, model, local, q}`
+ */
 export function R_ShellsSnapshot() {
 
 	return { version: 1, levels: Array.from( levels.values(), state => ( { name: state.name,
@@ -246,6 +303,13 @@ export function R_ShellsSnapshot() {
 
 }
 
+/**
+ * Replaces all shells with a saved snapshot; called by `Host_Loadgame_f` (with null when the save has none or it
+ * could not be parsed, which leaves no shells). Shells with malformed vectors are dropped; an invalid support is
+ * dropped and the shell falls again. The current map is chosen by the next `R_ShellsNewMap`.
+ *
+ * @param {?object} data a `R_ShellsSnapshot` result (`version` must be 1); copied, not kept
+ */
 export function R_ShellsRestore( data ) {
 
 	R_ShellsReset();
@@ -268,6 +332,13 @@ export function R_ShellsRestore( data ) {
 
 }
 
+/**
+ * Diagnostics for tests and trials.
+ *
+ * @returns {{map: (string|undefined), count: number, moving: number, maps: Array<{name: string, count: number}>,
+ *   ready: boolean}} the current map and its shell count, how many are moving, every map's count, and whether the
+ *   shell model has loaded
+ */
 export function R_ShellsStatus() {
 
 	return { map: current?.name, count: current?.shells.length || 0, moving: active.size,

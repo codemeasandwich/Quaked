@@ -65,7 +65,17 @@ function velocityForDamage( dm ) {
 
 }
 
-// called whenever the game sets an entity's model
+/**
+ * Called whenever the game sets an entity's model (the `setmodel` builtin in pr_cmds.js, through the hooks table).
+ * When a single-player Newer Game monster (`self`, the QuakeC entity running) is given its first gib or head model,
+ * spawns the extra gibs for its size from GORE_SIZE (three per size over 1, unknown monsters count as 2), sprays blood
+ * particles, and writes a TE_GORE temp entity (origin, size) to `sv.datagram` so the client leaves a pool and the
+ * player grins. Runs once per monster: a repeat within 0.1 s for the same `self` is ignored (module state `lastNum`,
+ * `lastTime`), as is a burst whose enemy is another monster rather than the world or the player.
+ *
+ * @param {edict_t} e the entity whose model is being set (unused; the burst is keyed to `self`)
+ * @param {string} name the model path being set, e.g. 'progs/gib1.mdl' or 'progs/h_ogre.mdl'
+ */
 export function SV_GoreOnSetModel( e, name ) {
 
 	if ( GIB_MODEL.test( name ) === false || pr_global_struct == null ) return;

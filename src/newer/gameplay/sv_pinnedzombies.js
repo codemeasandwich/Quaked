@@ -21,6 +21,18 @@ import { GetEdictFieldValue } from '../../engine/progs/pr_edict.js';
 const CRUCIFIED = 1;
 const functionName = index => pr_functions?.[ index ] ? PR_GetString( pr_functions[ index ].s_name ) : '';
 
+/**
+ * Makes one crucified zombie mortal in Newer Game. Called right after an edict is spawned from the map
+ * (`ED_LoadFromFile` in `pr_edict.js`, after its QuakeC spawn function) and after an edict is parsed from a saved game
+ * (`Host_Loadgame_f` in `host_cmd.js`). It only acts on a live `monster_zombie` with the CRUCIFIED spawnflag, `MOVETYPE_NONE`,
+ * `takedamage` `DAMAGE_NO` and a `zombie_cruc1`..`zombie_cruc6` think whose `th_die`/`th_pain` are the native
+ * `zombie_die`/`zombie_pain`. It then sets `takedamage` to `DAMAGE_AIM` and clears `th_pain`, mutating the edict;
+ * because the change lives in edict fields it is saved with the game.
+ *
+ * @param {edict_t} entity the edict just spawned or restored
+ * @returns {boolean} true when the zombie was opted into damage; false when anything does not match (including an
+ *   already mortal or dead zombie, which is left intact)
+ */
 export function SV_PinnedZombieSpawned( entity ) {
 
 	const v = entity?.v;

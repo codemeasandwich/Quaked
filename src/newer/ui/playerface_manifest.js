@@ -9,7 +9,17 @@
  *
  * Errors: throws at 1 place.
  */
-// Validate the complete reviewed v4.4 schema before replacing native HUD art.
+/**
+ * Validate the complete reviewed v4.4 schema before replacing native HUD art (r_playerface.js, on loading the
+ * face kit's manifest). Checks version '4.4.0', 96-pixel nearest-sampled cells, exactly 285 available assets,
+ * 25 poses (5 expressions x 5 looks with matching head directions), 271 source images, 10 health stages and
+ * 10 water frames, the eye states and power modes, and every asset reference reachable from a pose or water
+ * target: no missing or cyclic references, no unavailable nodes, and every source rectangle inside its image.
+ *
+ * @param {object} m parsed manifest JSON
+ * @returns {object} `m` itself, unchanged
+ * @throws {Error} 'invalid v4.4.0 face manifest' on the first check that fails
+ */
 export function validatePlayerFaceManifest(m) {
 	const fail=()=>{throw new Error('invalid v4.4.0 face manifest');};
 	if(!m || m.version!=='4.4.0' || m.cell_size!==96 || m.sampling!=='nearest' ||

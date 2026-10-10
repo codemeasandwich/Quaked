@@ -131,9 +131,19 @@ function needs( index, entries, unlocked ) {
 // (and none of its art still loading: a composite such as the frontispiece stands in for an image still on its way)
 const ready = need => need.images.every( image => image && ( image.naturalWidth || image.width ) > 0 ) && ! R_BestiaryArtLoading( need.ids );
 
+/**
+ * Opens the book closed on its cover: cancels any running first-discovery encounter and forgets the current
+ * spread, turn and waiting turn. Called from menu.js `M_Menu_Bestiary_f` each time the Bestiary menu opens.
+ */
 export function R_BestiaryBookOpen() { R_BestiaryCancel(); spread = 0; turn = null; pending = null; }
-// Reserve the actual book/footer extent for corner branding. Report CSS units
-// from the same layout used for drawing, rather than duplicating that layout.
+/**
+ * Reserve the actual book/footer extent for corner branding (menu.js passes it to `Draw_StudioLogo` while the
+ * Bestiary is up). Reports CSS units from the same layout used for drawing, rather than duplicating that layout,
+ * including the possible half-pixel extension of bitmap labels.
+ *
+ * @returns {?{ right: number, bottom: number }} right edge of the book and bottom of its footer note, in CSS
+ *   pixels of the overlay canvas; null when the overlay canvas or its 2D context is unavailable
+ */
 export function R_BestiaryBookCorner() {
  const s = surface(); if ( !s ) return null;
  const boxes = layout(s.width,s.height,s.unit);
@@ -183,16 +193,42 @@ function navigation( ctx, boxes, unit, width, maximum ) {
  blit(previous,boxes.left.x,spread>0);blit(next,boxes.right.x+boxes.right.w-next.width*scale,spread<maximum);blit(exit,(width-exit.width*scale)/2,true);
  ctx.globalAlpha=1;
 }
+/**
+ * Handles a key while the Bestiary menu is up (menu.js `M_Bestiary_Key`): left arrow turns back, right arrow or
+ * Enter turns forward, under the one admission policy for keyboard and touch (card [7]). Escape belongs to the
+ * existing menu's return-to-main behaviour and is not handled here.
+ *
+ * @param {number} key Quake key code (`K_LEFTARROW`, `K_RIGHTARROW`, `K_ENTER`)
+ * @returns {boolean} true only when the press did something (a turn, a wait, a retry or a cancelled wait); the
+ *   menu plays its click sound for those
+ */
 export function R_BestiaryBookKey( key ) {
  // (true only when the press did something: the menu's click sound is for those)
  if ( key === K_LEFTARROW ) return flip(-1);
  if ( key === K_RIGHTARROW || key === K_ENTER ) return flip(1);
  return false; // Escape belongs to the existing menu's return-to-main behavior.
 }
+/**
+ * Handles a touch while the Bestiary menu is up (menu.js `M_TouchInput`; the book uses the full overlay, not the
+ * 320x200 menu sheet): the left half turns back, the right half forward, under the same admission policy as keys.
+ *
+ * @param {number} x touch x, in the same pixel space as `width`
+ * @param {number} y touch y, in the same pixel space as `height`
+ * @param {number} width screen width, pixels (> 0)
+ * @param {number} height screen height, pixels (> 0)
+ * @returns {boolean} true when the touch was inside the screen (and so consumed), whether or not a turn started
+ */
 export function R_BestiaryBookTouch( x, y, width, height ) {
  if ( ![x,y,width,height].every(Number.isFinite) || width <= 0 || height <= 0 || x < 0 || y < 0 || x > width || y > height ) return false;
  flip(x < width/2 ? -1 : 1); return true;
 }
+/**
+ * Draws the open book on the overlay canvas each menu frame (menu.js `M_Draw`): the current spread or the
+ * running 320 ms page turn, the navigation labels and one note under the book (a waiting or failed turn first,
+ * else the session-only storage notice). Also starts a waiting turn once its pages' images are all present.
+ *
+ * @returns {boolean} false when the overlay canvas or its 2D context is unavailable, otherwise true
+ */
 export function R_BestiaryBookDraw() {
  const s = surface(); if ( !s ) return false;
  const snapshot = R_BestiarySnapshot(), entries = R_BestiaryEntries(), unlocked = new Set(snapshot.unlocked || []);
@@ -266,6 +302,17 @@ function drawPage( ctx, snapshot, image, box, opacity ) {
  }
  ctx.globalAlpha = opacity;
 }
+/**
+ * Draws the first-discovery page (cards [1] and [39]) on its half of the overlay, every screen update
+ * (gl_screen.js). Each frame is drawn from the Bestiary snapshot alone, so a cancel, a new encounter or a resize
+ * leaves nothing behind; the paper rolls up over `ROLL` seconds of the enter phase, the page is drawn by the
+ * pencil replay or the line reveal (`REVEAL` seconds) once the game pauses, and it fades with the return phase's
+ * opacity. Starts preparing the pencil replay while the camera is still moving, and chooses the drawing style
+ * once per encounter.
+ *
+ * @returns {boolean} true when the page was drawn; false when idle, fully faded, or the overlay canvas is
+ *   unavailable
+ */
 export function R_BestiaryEncounterDraw() {
  const snapshot = R_BestiarySnapshot();
  if ( snapshot.phase === 'idle' || !snapshot.entry ) { encounterStyle = null; return false; }

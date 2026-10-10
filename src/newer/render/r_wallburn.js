@@ -87,10 +87,19 @@ let marks = null, heat = null, geometry = null;
 
 export const wallBurnStats = { cells: 0, full: 0, strokes: 0, passes: 0, beamBreaks: 0, pellets: 0, vertices: 0 };
 
-// externals: scene; renderer() (THREE.WebGLRenderer); cl() (the client state: worldmodel, viewentity);
-// pointInLeaf( p, model ); beam() -> { start, end } | null (the player's own TE_LIGHTNING2);
-// entities() -> the client entities drawn this frame; self() -> the player's own client entity; trace( s, q )
-// (optional: R_WallBurnTrace's { point, normal, dist }, else the world's own hull)
+/**
+ * Connects the burn marks to the renderer and client, on every new map (gl_rmain.js `R_NewMap`). Kept until
+ * replaced; `R_WallBurnEnabled` is false until this has been called.
+ *
+ * @param {{ scene: THREE.Scene, renderer: function(): THREE.WebGLRenderer, cl: function(): ?object,
+ *   pointInLeaf: function(Array<number>, object): ?object, beam?: function(): ?{ start: Array<number>,
+ *   end: Array<number> }, entities: function(): Array<object>, self?: function(): ?object,
+ *   trace?: function(Array<number>, Array<number>): ?{ point: Array<number>, normal: Array<number>,
+ *   dist: number } }} externals scene; renderer() (THREE.WebGLRenderer); cl() (the client state:
+ *   worldmodel, viewentity); pointInLeaf( p, model ); beam() -> { start, end } | null (the player's own
+ *   TE_LIGHTNING2); entities() -> the client entities drawn this frame; self() -> the player's own client entity;
+ *   trace( s, q ) (optional: R_WallBurnTrace's { point, normal, dist }, else the world's own hull)
+ */
 export function R_WallBurnSetup( externals ) { deps = externals; }
 export const R_WallBurnEnabled = () => deps !== null && R_NewerGame() && r_newer_wallburn.value !== 0;
 
@@ -155,7 +164,19 @@ function facesOf( basis ) {
 
 }
 
-// a face polygon clipped to a cell's square (Sutherland-Hodgman on the chart's coordinates)
+/**
+ * A face polygon clipped to a cell's square (Sutherland-Hodgman on the chart's coordinates), when a cell first
+ * takes an atlas slot; the 3D points are interpolated with their chart coordinates.
+ *
+ * @param {Array<Array<number>>} verts the face's vertices `[x, y, z]`, Quake units, world space
+ * @param {Array<Array<number>>} uv the same vertices' chart coordinates `[u, v]`, Quake units on the plane
+ * @param {number} u0 the square's lower u bound, Quake units
+ * @param {number} v0 the square's lower v bound, Quake units
+ * @param {number} u1 the square's upper u bound, Quake units
+ * @param {number} v1 the square's upper v bound, Quake units
+ * @returns {Array<{ p: Array<number>, q: Array<number> }>} the clipped polygon (`p` world point, `q` chart point),
+ *   or an empty array when fewer than 3 vertices remain
+ */
 export function R_WallBurnClip( verts, uv, u0, v0, u1, v1 ) {
 
 	let poly = verts.map( ( v, i ) => ( { p: v, q: uv[ i ] } ) );
@@ -286,6 +307,15 @@ anything (the source's breakBefore and breakStroke round each pellet); true if i
 ordinary mark (Classic, switched off, no wall, or no atlas room).
 ================
 */
+/**
+ * Called by cl_tent.js for every TE_GUNSHOT (the player's shotguns and the Grunts'); when it returns false the
+ * caller draws its ordinary bullet-hole decal. The pellet's brush radius is a random 0.065..0.077 source units
+ * (`Math.random`, cosmetic only). Queued for the next `R_WallBurnFrame`.
+ *
+ * @param {ArrayLike<number>} p the impact point, Quake units, world space (4 units in front of the wall)
+ * @returns {boolean} true if the pellet's dot was queued; false when switched off or Classic, the queue is full
+ *   (`WALLBURN.maxQueue`), no wall is within `WALLBURN.pelletDist`, or a cell it reaches has no atlas room
+ */
 export function R_WallBurnShot( p ) {
 
 	if ( R_WallBurnEnabled() === false ) return false;
@@ -302,8 +332,16 @@ export function R_WallBurnShot( p ) {
 
 }
 
-// a model's box this frame, about its origin: its current frame's own bounds (a corpse lies low), turned any way (the
-// widest of them about its origin), else the whole model's (also the depth of field's focus ray, card [38])
+/**
+ * A model's box this frame, about its origin: its current frame's own bounds (a corpse lies low), turned any way
+ * (the widest of them about its origin, so the box holds for any yaw), else the whole model's. Used for the
+ * monsters a beam passes through and also for the depth of field's focus ray (card [38], gl_rmain.js
+ * `R_DofTrace`).
+ *
+ * @param {{ model: object, frame: number }} e client entity with an alias model (`model.cache.data` is its header)
+ * @returns {?Array<Array<number>>} `[ mins, maxs ]` relative to the entity's origin, Quake units (a new pair from
+ *   the frame bounds, or the model's own `mins`/`maxs` arrays, not to be mutated); null when neither is known
+ */
 export function R_AliasFrameBox( e ) { return boxOf( e ); }
 function boxOf( e ) {
 
@@ -365,8 +403,15 @@ function monsterBetween( s, q ) {
 
 }
 
-// where a ray from s through q (and 4 units on) first meets the level: { point, normal, dist } (the plane it struck,
-// facing the ray), or null
+/**
+ * Where a ray from s through q (and 4 units on) first meets the level, through the world's own hull
+ * (`R_TracePoint`); the default `trace` for the beam's contact and for `R_WallBurnRead`.
+ *
+ * @param {ArrayLike<number>} s ray start, Quake units, world space
+ * @param {ArrayLike<number>} q a point the ray passes through (the beam's end), Quake units
+ * @returns {?{ point: Array<number>, normal: Array<number>, dist: number }} the hit point and the plane it struck,
+ *   facing the ray (fresh arrays); null without a world, on a miss, or when the start is in solid
+ */
 export function R_WallBurnTrace( s, q ) {
 
 	const world = deps?.cl()?.worldmodel;
@@ -694,6 +739,14 @@ The beam's contact for this frame, the pellets since the last, one step of the c
 clock: paused, nothing cools), and the walls' drawn pieces brought up to date.
 ================
 */
+/**
+ * Called once per rendered frame (gl_rmain.js `R_RenderView`), after the view model and the shotgun effect. Lifts
+ * the pen and hides the marks when switched off or in Classic. Allocates the 2048x2048 atlas (kept for the
+ * session) the first time anything is painted.
+ *
+ * @param {number} time client time, seconds (`cl.time`); an unchanged time is treated as paused
+ * @returns {void} nothing (its early `return finish()` only ends the frame; `finish` has no value)
+ */
 export function R_WallBurnFrame( time ) {
 
 	// (paused: the client's clock stands, the server's beam stays; nothing is painted and nothing cools)
@@ -748,7 +801,11 @@ function finish() {
 
 }
 
-// a new level (or a loaded game): every mark goes, the chart cells and the pen with them; the atlas is kept for reuse
+/**
+ * A new level (or a loaded game): every mark goes, the chart cells and the pen with them; the atlas is kept for
+ * reuse (cleared on the GPU before its next use) and the drawn meshes are removed from the scene. Called from
+ * gl_rmain.js `R_NewMap`.
+ */
 export function R_WallBurnClear() {
 
 	cells = new Map(); cellList = []; faces = null; facesModel = null; bases = new WeakMap();
@@ -772,6 +829,15 @@ heat where a world point lies on its wall, or null where nothing marks it.  from
 point starts (the beam's start): the wall is then the plane that ray strikes, as the beam's contact takes it.
 ================
 */
+/**
+ * Blocking GPU readback of one texel of the permanent and heat targets; never call it from the live loop.
+ *
+ * @param {ArrayLike<number>} p world point, Quake units
+ * @param {?ArrayLike<number>} [from=null] where a ray to the point starts (the beam's start), or null to take the
+ *   nearest wall within `WALLBURN.pelletDist`
+ * @returns {?{ groove: number, burn: number, heat: number, cell: string }} groove and burn 0..1 (8-bit), heat 0..1
+ *   (16-bit) and the cell's key; null before the atlas exists, off any wall, or on an unmarked cell
+ */
 export function R_WallBurnRead( p, from = null ) {
 
 	if ( gpu === null || deps === null ) return null;

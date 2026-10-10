@@ -1,8 +1,8 @@
 {
   "version": 1,
   "sources": {
-    "src/newer/render/r_demonrelief.js": "346e77b60de0edb1b05f79c24902acbb2cf9234b9d300155c712039c03248a95",
-    "src/newer/assets/demon_bake_format.js": "2675f8676efbcd5ba70ce3851ec30388a7635b5526dd21441cd3bcd60c296d48",
+    "src/newer/render/r_demonrelief.js": "d6fe7b6b88b968408a7398007e41adebd499af33cbf4e248c13b80c9f48ff598",
+    "src/newer/assets/demon_bake_format.js": "d92c571927711f9917e51cb7d1f61dc53f2c5208770cb46475deb9473e76fe30",
     "src/engine/render/gl_model.js": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488",
     "src/engine/render/gl_rsurf.js": "a7a8c69cf5e3d77f55b1ef40d1c05662384573b90c774cb370d44f43a8ab45cb",
     "newer/textures/index.json": "e7a50d1ab8c3dcf1c8dc3e54024392fbfcd072bd4a80c3c64451632966629901",
@@ -2524,5 +2524,5 @@
       }
     ]
   },
-  "sourcesNote": "r_demonrelief.js and demon_bake_format.js re-hashed by card [44e] (10 Oct 2026): moved and given a @module header, code unchanged. gl_model.js and gl_rsurf.js keep the hashes recorded at the bake: both have changed since, so tests/helpers/prepared_corpus_audit.mjs reports them until a re-bake. Every level's generatorFingerprint (the hash of these sources, whose keys also follow the moves) was restated with them, here and in the registry module."
+  "sourcesNote": "r_demonrelief.js and demon_bake_format.js re-hashed by card [44e] (10 Oct 2026): moved and given a @module header, code unchanged. gl_model.js and gl_rsurf.js keep the hashes recorded at the bake: both have changed since, so tests/helpers/prepared_corpus_audit.mjs reports them until a re-bake. Every level's generatorFingerprint (the hash of these sources, whose keys also follow the moves) was restated with them, here and in the registry module. Re-hashed again by card [44g] (10 Oct 2026): r_demonrelief.js, demon_bake_format.js gained function JSDoc; their code tokens are identical to before (comments only)."
 }

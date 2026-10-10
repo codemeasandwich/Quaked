@@ -30,6 +30,22 @@ const distance2 = ( a, b ) => ( a[ 0 ] - b[ 0 ] ) ** 2 + ( a[ 1 ] - b[ 1 ] ) ** 
 let world = null, oldHealth = null, oldArmour = null, combatUntil = 0;
 let state = { active: false, reason: 'no game', safe: false, moving: false, enemiesNearby: false, combat: false };
 
+/**
+ * Decides whether the streamed ambience plays and in which mood, from the game rather than from what is drawn.
+ * Uses the local authoritative monsters when a local server is running (renderer visibility is not an enemy
+ * safety signal): enemies are monsters, or opponents in deathmatch, alive within `AMBIENT_ENEMY_DISTANCE` (512
+ * Quake units); combat is attacking, losing health or armour, a damage flash, or a monster targeting the player
+ * within 1024 units, and lasts `AMBIENT_COMBAT_SECONDS` (10 s, also after the player's last combat cue). On a
+ * remote server it falls back to known enemy models not in a death pose. Health/armour tracking and the combat
+ * timer reset when the world model changes. Called from `S_UpdateAmbientMusic` every host frame.
+ *
+ * @param {number} now audio clock, seconds (`AudioContext.currentTime`)
+ * @param {boolean} [hidden] true when the page is hidden (default `document.hidden`)
+ * @returns {{ active: boolean, reason: string, safe: boolean, moving: boolean, enemiesNearby: boolean,
+ *   combat: boolean, musicVolume?: number }} the new policy, also kept for `S_GetAmbientMusicStatus`. `reason` is
+ *   '' when active, otherwise 'classic game', 'demo', 'no game', 'dead', 'intermission', 'paused', 'menu or
+ *   console', 'hidden' or 'muted'; `moving` means horizontal speed above 20 units/s; `musicVolume` is `bgmvolume`
+ */
 export function S_AmbientMusicPolicy( now, hidden = typeof document !== 'undefined' && document.hidden ) {
 
 	let reason = '';
@@ -99,6 +115,12 @@ export function S_AmbientMusicPolicy( now, hidden = typeof document !== 'undefin
 
 }
 
+/**
+ * Applies the ambient music policy once per host frame (host.js, after `CDAudio_Update`). Creates the ambient
+ * music player on the audio context's destination the first time the policy is active, then hands it the
+ * policy. The existing ambient music bus applies bgmvolume once; it does not pass through the effects gain of
+ * the separate Sound Volume slider.
+ */
 export function S_UpdateAmbientMusic() {
 
 	// The existing ambient music bus applies bgmvolume once. It must not pass
@@ -110,6 +132,12 @@ export function S_UpdateAmbientMusic() {
 
 }
 
+/**
+ * Status for diagnostics and tests: the last policy plus the player's playback status.
+ *
+ * @returns {object} a copy of the last `S_AmbientMusicPolicy` result with `playback` (the player's
+ *   `getStatus()`, or null when no player exists)
+ */
 export function S_GetAmbientMusicStatus() {
 
 	return { ...state, playback: S_GetAmbientMusicPlayer()?.getStatus() || null };

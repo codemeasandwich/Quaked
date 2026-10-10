@@ -15,9 +15,15 @@
 // clip rectangle over a second copy of the logo, sized in the logo's own
 // viewBox units, so it follows the letter shapes exactly.
 
-// Fraction 0..1 of the logo that is filled. Out-of-range or non-numeric values
-// are clamped (a missing content-length never reports, a compressed one can
-// overshoot), and pages without the logo (trial pages) are left alone.
+/**
+ * Fills the loading logo from the bottom to show pak0.pak's download progress (main.js passes it as COM_FetchPak's
+ * progress callback) and sets the `aria-valuenow` percentage on #loading. Out-of-range or non-numeric values are
+ * clamped (a missing content-length never reports, a compressed one can overshoot), and pages without the logo
+ * (trial pages) are left alone.
+ *
+ * @param {number} value fraction 0..1 of the logo that is filled (non-finite counts as 0)
+ * @param {Document} [doc=globalThis.document] document holding #loading-logo and #loading-fill
+ */
 export function LoadingScreen_SetProgress( value, doc = globalThis.document ) {
 
 	const logo = doc?.getElementById( 'loading-logo' );
@@ -31,13 +37,25 @@ export function LoadingScreen_SetProgress( value, doc = globalThis.document ) {
 
 }
 
+/**
+ * Removes the loading screen at once (main.js, for the welcome start or when the intro finished without a fade).
+ *
+ * @param {Document} [doc=globalThis.document] document holding #loading
+ */
 export function LoadingScreen_Remove( doc = globalThis.document ) {
 
 	doc?.getElementById( 'loading' )?.remove();
 
 }
-// Fade to the first real console frame, not to an uninitialized canvas. The
-// event owns completion; a bounded timer handles removed/hidden DOM surfaces.
+/**
+ * Fades the loading screen out and removes it; main.js hands it to `R_DemoLoadingSplash` so it runs on the first
+ * real console frame, not to an uninitialized canvas. The event owns completion; a bounded timer (duration + 100 ms)
+ * handles removed/hidden DOM surfaces. With prefers-reduced-motion it is removed without fading.
+ *
+ * @param {Document} [doc=globalThis.document] document holding #loading
+ * @param {number} [duration=450] fade length in milliseconds
+ * @returns {Promise<void>} resolves once the element is removed (at once when there is none); never rejects
+ */
 export function LoadingScreen_FadeOut(doc=globalThis.document,duration=450){
  const element=doc?.getElementById('loading');if(!element)return Promise.resolve();
  return new Promise(resolve=>{

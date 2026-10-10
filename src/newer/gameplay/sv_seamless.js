@@ -68,6 +68,15 @@ const TELEPORT_GIVE_UP = 8; // seconds: the level did not change
 let levelStates = new Map(); // levels left through a crossing, as they were: map name -> snapshot
 let holding = null; // the arrival, while the player is held until the client is ready
 
+/**
+ * Whether seamless level changes are on, from the `sv_seamless` cvar: 0 off, 1 Newer Game only (the default: needs
+ * `r_hdr` and `r_newer_portals`, since the windows onto the next level are camera portals: no portals, no crossings),
+ * 2 always. `r_hdr` is read directly because the level is spawned in the same command batch as "r_hdr 1", before any
+ * frame has been drawn with it. Read by `SV_SeamlessSetup` at each level start and by `SV_SpawnServer` (sv_main.js) to
+ * decide whether the Newer Game maps are used. Single player is checked separately by the callers.
+ *
+ * @returns {boolean} true when crossings should be built for this level
+ */
 export function SV_SeamlessEnabled() {
 
 	const v = sv_seamless.value;
@@ -78,7 +87,16 @@ export function SV_SeamlessEnabled() {
 
 }
 
-// links of a map, read straight from its BSP (cached)
+/**
+ * The links of a map, read straight from its BSP (and the Newer Game pack's `maps/<name>.ent` replacement entity list
+ * when there is one): its start and its exits. Cached per map name until `SV_SeamlessReset`, and re-read when the
+ * file found for the name changes (different buffer, offset or size).
+ *
+ * @param {string} mapName map name without path or extension (e.g. 'e1m1')
+ * @returns {?{ start: ?{ origin: Array<number>, yaw: number }, exits: Array<object> }} the `R_LevelLinks` result
+ *   (Quake units, yaw in degrees), or null when the BSP is missing or cannot be parsed; shared with the cache, do not
+ *   mutate
+ */
 export function SV_LevelLinks( mapName ) {
 
 	let links = null;
@@ -190,6 +208,13 @@ var liquidLinksSource;
 // The renderer's way of getting a level ready before it is entered (see r_prewarm.js)
 var warmLevelHook;
 
+/**
+ * Hands over the renderer's way of getting a level ready before it is entered, once from `R_Init` (gl_rmain.js) with
+ * `R_WarmLevel` (r_prewarm.js); the renderer lives higher up the import graph. `SV_SeamlessFrame` calls it for each
+ * crossing or pad exit the player comes within 900 units of.
+ *
+ * @param {function(string): void} fn called with the map name behind a near exit, possibly every frame
+ */
 export function SV_SetWarmLevel( fn ) {
 
 	warmLevelHook = fn;
@@ -199,20 +224,41 @@ export function SV_SetWarmLevel( fn ) {
 // how near an exit (in units) the player gets before the level behind it is got ready
 const WARM_DISTANCE = 900;
 
+/**
+ * Hands over the renderer's links through liquid surfaces (and the windows of the level's own teleporters), once from
+ * `R_Init` (gl_rmain.js). The server uses them to see through water when building what each client is sent (see
+ * `SV_FatPVS`).
+ *
+ * @param {function(): Array<{ above: object, below: ?object, aboveVis: Array, belowVis: Array }>} fn returns the
+ *   current links (leaves on each side and their visibility)
+ */
 export function SV_SetLiquidLinks( fn ) {
 
 	liquidLinksSource = fn;
 
 }
 
+/**
+ * The renderer's current links through liquid surfaces, read by `SV_SeeThroughLiquids` (sv_main.js) whenever the set
+ * of entities sent to a client is built.
+ *
+ * @returns {Array<object>} the links from the function given to `SV_SetLiquidLinks`; empty before one is set
+ */
 export function SV_LiquidLinks() {
 
 	return liquidLinksSource ? liquidLinksSource() : [];
 
 }
 
-// The entities of a level you have been in, as you left them ({ classname, origin,
-// model, frame ... } each), for drawing it from another level; null if not visited.
+/**
+ * The entities of a level the player has been in, as they were left ({ classname, origin, model, frame ... } each),
+ * for drawing that level from another one through a crossing's window. Given to the renderer once from `R_Init`
+ * through `R_LevelViewUseSnapshots`. Snapshots last while the player only moves between levels by crossings.
+ *
+ * @param {string} mapName map name without path or extension
+ * @returns {?Array<Object<string, string>>} parsed entity key/value records with `_snapshot_time` (the `sv.time` it was
+ *   left at, seconds) and `_snapshot_index` (its edict number) added; a new array each call; null if not visited
+ */
 export function SV_LevelSnapshotEntities( mapName ) {
 
 	const snap = levelStates.get( mapName );
@@ -221,6 +267,14 @@ export function SV_LevelSnapshotEntities( mapName ) {
 
 }
 
+/**
+ * Hands over the engine's model functions, which live higher up in the import graph (importing them here would make
+ * a cycle); called by `SV_SpawnServer` (sv_main.js) at every level start. Kept in a `var` without an initialiser
+ * because it may be set before this module has finished loading.
+ *
+ * @param {{ Mod_LoadForPreview: Function, Mod_PointInLeaf: Function, Mod_ForName: Function }} tools the engine's
+ *   model loader and leaf lookup
+ */
 export function SV_SeamlessUseModels( tools ) {
 
 	models = tools;
@@ -937,13 +991,23 @@ function SV_ExitIsTeleporter( exit ) {
 
 }
 
-// Windows onto the next level in a teleporter pad's slipgate (card [B2]). The pad itself still teleports as before; this is the
-// picture. A gate is the upright teleporter or slipgate surfaces within reach of the exit's trigger. Turbulent surfaces come cut
-// into strips, so coplanar pieces facing the same way are one face; a gate brush is thin with a face each way on both of its
-// planes, and only the OUTER faces (nothing of the gate further along their normal) are seen by a player, so each outer face of
-// a doorway's size gets a window: a ring you can walk round gets one on each side. The window is the face's own polygons, 1 unit
-// in front of it (so it has the gate's exact shape and nothing pokes out of it), and it looks from the next level's arrival point
-// the way a player walking through would face. Returns [] when the exit has no upright teleporter surface (E1M4's exit to E1M5).
+/**
+ * Windows onto the next level in a teleporter pad's slipgate (card [B2]), built by `SV_SeamlessSetup` for each pad
+ * exit it takes over. The pad itself still teleports as before; this is the picture. A gate is the upright teleporter
+ * or slipgate surfaces within reach of the exit's trigger (their plane within 24 units of it). Turbulent surfaces come
+ * cut into strips, so coplanar pieces facing the same way are one face; a gate brush is thin with a face each way on
+ * both of its planes, and only the OUTER faces (nothing of the gate further along their normal) are seen by a player,
+ * so each outer face of a doorway's size (at least 48 units high and 40 across) gets a window: a ring you can walk
+ * round gets one on each side. The window is the face's own polygons, 1 unit in front of it (so it has the gate's exact
+ * shape and nothing pokes out of it), and it looks from the next level's arrival point the way a player walking
+ * through would face.
+ *
+ * @param {{ map: string, mins: Array<number>, maxs: Array<number> }} exit the pad's exit from `SV_LevelLinks` (bounds
+ *   in Quake units, world space)
+ * @returns {Array<object>} crossings flagged `viewOnly` (never crossed by walking), each with `exit`, `map`,
+ *   `transform`, `side`, `opening` (with the window `polygons`) and `arch` null; [] when the exit has no upright
+ *   teleporter surface (E1M4's exit to E1M5), the world model is not loaded or the next level has no start
+ */
 export function SV_PadWindows( exit ) {
 
 	const model = sv.worldmodel, there = SV_LevelLinks( exit.map );
@@ -1051,6 +1115,19 @@ function takeExit( exit ) {
 
 }
 
+/**
+ * Switches the new level's doorway and pit exits from the game's own `trigger_changelevel` to crossings this module
+ * watches, called by `SV_SpawnServer` (sv_main.js) right after the level's entities are loaded. Also: snaps back the
+ * teleport picture when a pad sent the player here; forgets the levels left behind unless this is a crossing arrival;
+ * restores this level as it was left when the player comes back to it; adds the way back through the doorway just used
+ * (hiding its arch surfaces, keeping the physical brush); takes over teleporter pads (instant change, plus their
+ * `SV_PadWindows`); and moves crossings through thin archways to the arch itself, removing doors in the tunnel. Does
+ * nothing more unless seamless travel is enabled, the game is single player and the world model is loaded. Mutates
+ * the level's edicts (disables taken triggers, frees doors) and the module's crossings, pads and level states.
+ *
+ * @throws {Error} through `Sys_Error` when a restored or following monster's resources cannot be precached (precache
+ *   overflow, model loader unavailable, a required model missing or not precached)
+ */
 export function SV_SeamlessSetup() {
 	R_ClearArchHidden();
 
@@ -1221,6 +1298,17 @@ SV_SeamlessFrame
 After the physics each frame: has the player gone through an exit?
 ================
 */
+/**
+ * Watches for the player going through a crossing, called by `Host_ServerFrame` (host.js) after the physics each frame
+ * (not while the bestiary freezes the game or the welcome screen holds a single-player load). Places monsters that
+ * followed the player, warms levels behind exits within 900 units, runs teleporter pads (the picture is captured and
+ * stretched while the player is held, then `changelevel` runs with no intermission; it gives up after 8 seconds). When
+ * the player's move since the last frame crosses an open walkable crossing, the current level is captured as left,
+ * chasing monsters are taken along, the arrival (position, velocity and view carried by the crossing's transform) is
+ * kept as pending, and `changelevel <map>` is queued. Does nothing while a crossing is pending.
+ *
+ * @throws {Error} through `Sys_Error` when a follower's model is not precached as it is placed
+ */
 export function SV_SeamlessFrame() {
 
 	if ( pending !== null ) return;
@@ -1396,6 +1484,16 @@ SV_SeamlessPlacePlayer
 Called right after the game has put the player in the new level.
 ================
 */
+/**
+ * Puts the player where the crossing carried them, called by `Host_Spawn_f` (host_cmd.js) right after the game has
+ * put the player in the new level (`PutClientInServer`). Clears the pending crossing. A carried position inside a wall
+ * (a wide doorway into a narrow room, or a floor a step higher) moves to the nearest free spot ahead (up to 112 units,
+ * the way they are going), then up (up to 40); the level's start only if there is none. Sets velocity, angles
+ * (`fixangle`) and, for a pit, clears `FL_ONGROUND`, then holds the player until the client is ready
+ * (`SV_SeamlessHolding`). Without a pending crossing it only queues monsters that followed through a pad.
+ *
+ * @param {edict_t} ent the player's edict; mutated and relinked
+ */
 export function SV_SeamlessPlacePlayer( ent ) {
 
 	const arrival = pending;
@@ -1469,6 +1567,15 @@ While the client is still loading the new level the player is held where they
 arrived, so gravity and friction do not eat the speed they came in with.
 ================
 */
+/**
+ * Whether the player's physics should be skipped this frame, asked by `SV_Physics_Client` (sv_phys.js) for each
+ * client. While the client is still loading the new level the player is held where they arrived, so gravity and
+ * friction do not eat the speed they came in with; once the client has spawned, the arrival velocity is restored and
+ * the hold ends.
+ *
+ * @param {number} num the client's edict number (1 for the single player)
+ * @returns {boolean} true while the arrival is held and the client has not spawned
+ */
 export function SV_SeamlessHolding( num ) {
 
 	if ( holding === null ) return false;
@@ -1488,18 +1595,38 @@ export function SV_SeamlessHolding( num ) {
 
 }
 
+/**
+ * The number of crossings in this level, including ways back, pad windows and closed ones; for tests and diagnostics.
+ *
+ * @returns {number} the current crossing count
+ */
 export function SV_SeamlessCrossingCount() {
 
 	return crossings.length;
 
 }
 
+/**
+ * The crossing in progress, from the moment the player goes through until they are placed in the next level. Read by
+ * the renderer (`R_LevelTransitionBegin`, gl_rmain.js) to carry the view across, and by the bestiary (r_bestiary.js)
+ * to refuse to open meanwhile.
+ *
+ * @returns {?{ map: string, index: number, pit: boolean, viaBack: boolean, followers: Array<object>, fromMap: string,
+ *   transform: object, origin: Array<number>, velocity: Array<number>, angles: Array<number>, from: ?object }} the live
+ *   record (`index` into `SV_SeamlessCrossings()`, `origin` and `velocity` already carried into the next level, Quake
+ *   units, angles in degrees), or null when no crossing is under way
+ */
 export function SV_SeamlessPending() {
 
 	return pending;
 
 }
 
+/**
+ * Forgets everything: crossings, pads, the teleport (and its picture), the pending arrival, the hold, followers, the
+ * renderer's level runners, hidden arch surfaces, the BSP link cache and the saved level states. Used by tests to
+ * start from nothing; the module otherwise resets its per-level state in `SV_SeamlessSetup`.
+ */
 export function SV_SeamlessReset() {
 	R_ClearArchHidden();
 
@@ -1517,12 +1644,19 @@ export function SV_SeamlessReset() {
 
 }
 
-// The way back to the level the player came from is shut for good in this level (card [3]; called when a respawn lands).
-// The crossing stays in the list, flagged, so the numbers the picture holds for the others do not change: it is no longer
-// crossed or warmed, the arch surfaces that were hidden for its window are drawn again (the wall the brush always was), and
-// the renderer drops its window and view when it sees the flag (R_SyncLevelViews). Only the return route is touched: forward
-// exits, pads and the other crossings are as they were. Nothing reopens it in this level; arriving again from elsewhere, or
-// loading a game, builds a way back afresh only after a crossing arrival, as it always did. Returns how many were shut.
+/**
+ * Shuts the way back to the level the player came from for good in this level (card [3]); registered by
+ * `SV_SpawnServer` as the respawn-landed hook (`SV_SetRespawnLandedHook`) and called when a respawn lands. The crossing
+ * stays in the list, flagged `closed`, so the numbers the picture holds for the others do not change: it is no longer
+ * crossed or warmed, the arch surfaces that were hidden for its window are drawn again (the wall the brush always was),
+ * and the renderer drops its window and view when it sees the flag (`R_SyncLevelViews`). Only the return route is
+ * touched: forward exits, pads and the other crossings are as they were. Monsters that followed the player and are
+ * still on their way through would step out of a doorway that is shut, so they are put back in the level they came
+ * from. Nothing reopens it in this level; arriving again from elsewhere, or loading a game, builds a way back afresh only
+ * after a crossing arrival, as it always did.
+ *
+ * @returns {number} how many ways back were shut (0 when none was open)
+ */
 export function SV_SeamlessCloseReturn() {
 
 	let shut = 0;
@@ -1540,10 +1674,17 @@ export function SV_SeamlessCloseReturn() {
 
 }
 
-// The yaw of a player who has just come into this level through its way back and is facing into it (card [35]): away from the
-// doorway, if a way back (open or already shut) lies within ENTRY_REACH of `point` (the respawn spot); otherwise null, and the
-// respawn uses the level's own start orientation.
 const ENTRY_REACH = 512;
+/**
+ * The yaw of a player who has just come into this level through its way back and is facing into it (card [35]);
+ * registered by `SV_SpawnServer` as the respawn entry hook (`SV_SetRespawnEntryHook`) so a respawn rises facing away
+ * from the doorway.
+ *
+ * @param {?Array<number>} point the respawn spot (world space, Quake units)
+ * @returns {?number} the yaw in degrees facing away from the nearest way back (open or already shut) within 512 units
+ *   (`ENTRY_REACH`) of `point`; null when there is none or `point` is missing, and the respawn uses the level's own
+ *   start orientation
+ */
 export function SV_SeamlessEntryYaw( point ) {
 
 	if ( point == null ) return null;
@@ -1561,6 +1702,14 @@ export function SV_SeamlessEntryYaw( point ) {
 
 }
 
+/**
+ * This level's crossings, read by the renderer every frame (`R_SetupLevelViews` in gl_rmain.js) to draw a window and
+ * view for each.
+ *
+ * @returns {Array<{ exit: ?object, map: string, transform: object, side: number, opening: object, arch: ?object,
+ *   back?: true, closed?: true, viewOnly?: true }>} the live list (do not mutate); replaced by a new array at each
+ *   level start
+ */
 export function SV_SeamlessCrossings() {
 
 	return crossings;

@@ -31,9 +31,24 @@ const STEP = 8, REFINE = 4;           // sampling step in units, and bisection r
 
 const wet = p => { const c = SV_PointContents( p ); return c === CONTENTS_WATER || c === CONTENTS_SLIME; };
 
-// the tracelines of one blast are collected here while its weapon function runs
+/**
+ * Makes the empty list that collects one blast's tracelines while its weapon function runs (sv_faceevents.js keeps it
+ * on the shot token).
+ *
+ * @returns {Array<{start: Array<number>, end: Array<number>, target: Array<number>}>} a new empty array
+ */
 export const shotRaysNew = () => [];
 
+/**
+ * Records one FireBullets traceline of the blast being observed. Called from sv_faceevents.js when PF_traceline runs
+ * inside FireBullets during a shotgun blast or a soldier's army_fire. Copies the vectors; touches no game state. Rays
+ * past `SHOT_RAYS_MAX` (24) are dropped.
+ *
+ * @param {Array<object>} rays the blast's list from `shotRaysNew`; mutated (one ray pushed)
+ * @param {Array<number>} v1 the trace start, the shooter's origin (world space, Quake units)
+ * @param {Array<number>} v2 the trace target, up to 2048 units out (world space, Quake units)
+ * @param {{endpos: Array<number>}} trace the traceline result; `endpos` is where the pellet stopped
+ */
 export function shotRayRecord( rays, v1, v2, trace ) {
 
 	if ( rays.length >= SHOT_RAYS_MAX ) return;
@@ -43,10 +58,26 @@ export function shotRayRecord( rays, v1, v2, trace ) {
 
 const lerp3 = ( a, b, f, out ) => { out[ 0 ] = a[ 0 ] + ( b[ 0 ] - a[ 0 ] ) * f; out[ 1 ] = a[ 1 ] + ( b[ 1 ] - a[ 1 ] ) * f; out[ 2 ] = a[ 2 ] + ( b[ 2 ] - a[ 2 ] ) * f; return out; };
 
-// found once per ray and kept on it: the damage schedule and the event both need it
+/**
+ * Returns the ray's water/slime spans, computing them with `rayWater` on first use and caching them on the ray (the
+ * damage schedule in sv_shotdelay.js and the client event both need them).
+ *
+ * @param {{start: Array<number>, end: Array<number>, water?: Array<Array<number>>}} ray a recorded ray; `water` is
+ *   set on it
+ * @returns {Array<Array<number>>} `[[from, to], ...]` distances in Quake units from `start`
+ */
 export function rayWaterOf( ray ) { return ray.water ?? ( ray.water = rayWater( ray.start, ray.end ) ); }
 
-// Distances along start -> end (units) at which the ray is in water or slime: [ [ from, to ], ... ]
+/**
+ * Finds the distances along start -> end (units) at which the ray is in water or slime, by sampling
+ * `SV_PointContents` every 8 units and bisecting each change 4 times (surface found to about 0.5 unit). Needed because
+ * the supplied effect has a single "underwater" switch and a pellet can cross a surface.
+ *
+ * @param {Array<number>} start ray start (world space, Quake units)
+ * @param {Array<number>} end ray end (world space, Quake units)
+ * @returns {Array<Array<number>>} `[[from, to], ...]` in Quake units from `start`, in order; empty for a dry or
+ *   zero-length ray. A span still wet at `end` closes at the ray's length.
+ */
 export function rayWater( start, end ) {
 
 	const length = Math.hypot( end[ 0 ] - start[ 0 ], end[ 1 ] - start[ 1 ], end[ 2 ] - start[ 2 ] ), reach = length; // (the whole ray: a pellet flies all the way to where it stopped)
@@ -78,9 +109,25 @@ export function rayWater( start, end ) {
 // The event handed to the client: the muzzle-side facts of one confirmed blast. Every ray is a pellet
 // (FireBullets of the stock progs.dat traces nothing but its pellets; tests/shotgun_native_test.js pins 6 and 14).
 let serial = 0;
-// a number for each observed blast, taken when it starts: the picture's pellets and the server's damage schedule both
-// derive each pellet's flight from it
+/**
+ * Takes a number for a blast when its observation starts; the picture's pellets and the server's damage schedule
+ * both derive each pellet's flight from it. Increments for the lifetime of the page (not reset per map).
+ *
+ * @returns {number} the next blast id, from 1
+ */
 export const shotBlastId = () => ++ serial;
+/**
+ * Builds the event handed to the client for one confirmed blast, when its weapon function leaves (sv_faceevents.js).
+ * Every ray is a pellet.
+ *
+ * @param {{id: number, time: number, map: string, weapon: number, function: string}} token the shot token from
+ *   sv_faceevents.js (`time` is `sv.time` in seconds)
+ * @param {Array<object>} rays the blast's recorded rays; each gains a cached `water`
+ * @returns {?{kind: 'rays', id: number, time: number, map: string, weapon: number, function: string,
+ *   submerged: boolean, rays: Array<{start: Array<number>, end: Array<number>, water: Array<Array<number>>}>}} null
+ *   for a blast with no traces (should not happen; it draws nothing). `submerged` is true when the first ray starts
+ *   in water or slime.
+ */
 export function shotRayEvent( token, rays ) {
 
 	if ( rays.length < 1 ) return null; // a blast with no traces (should not happen) draws nothing

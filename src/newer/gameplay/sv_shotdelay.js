@@ -70,8 +70,23 @@ let pending = [];
 const index = new Map(); // function name -> index in pr_functions (valid for one progs)
 let indexed = null;
 
+/**
+ * How many pellet hits are waiting for their flight to end (tests read it).
+ *
+ * @returns {number} the pending count, including any from an old world not yet dropped by `SV_ShotDelayRun`
+ */
 export const SV_ShotDelayCount = () => pending.length;
+/**
+ * Drops every pellet hit still in flight without applying it (the tests use it to start a blast from nothing).
+ */
 export function SV_ShotDelayClear() { pending = []; }
+/**
+ * A read-only view of the pending hits, for tests.
+ *
+ * @returns {Array<{ due: number, blast: number, hurts: boolean, damage: number, ent: number }>} fresh objects: `due`
+ * the server time in seconds the pellet lands, `blast` the blast id, `hurts` whether the target took damage when
+ * traced, `damage` the TraceAttack damage, `ent` the target as a progs entity reference (trace_ent)
+ */
 export const SV_ShotDelayPending = () => pending.map( b => ( { due: b.due, blast: b.blast, hurts: b.hurts, damage: b.damage, ent: b.ent } ) ); // (read-only view for tests)
 
 const fn = name => {
@@ -89,9 +104,18 @@ const copy3 = v => [ v[ 0 ], v[ 1 ], v[ 2 ] ];
 // (`!( x > 0 )`: anything that is not a positive number, such as "off", counts as off.)
 const enabled = () => sv_shotdelay.value > 0 && Cvar_VariableValue( 'r_shotgunfx' ) !== 0;
 
-// Called when TraceAttack is entered from FireBullets during an observed blast: `blast` is the observer's token
-// (its id and the traces so far; the last one is this pellet's). Snapshots the call and returns true when it
-// was taken (the caller then has the interpreter skip it); false leaves it to run at once.
+/**
+ * Called when TraceAttack is entered from FireBullets during an observed blast (`traceAttackEnter` in
+ * sv_faceevents.js). Snapshots the call (its damage and direction arguments, trace_ent, trace_endpos,
+ * trace_plane_normal, v_up, v_right and self, with the world it belongs to) and queues it to land after the pellet's
+ * flight along this ray, measured through any water it crosses (`flightTime` of shotgun_flight.js). Off with
+ * sv_shotdelay 0 or r_shotgunfx 0.
+ *
+ * @param {{ id: number, rays: Array<{ start: Array<number>, end: Array<number> }> }} blast the observer's token (its id
+ * and the traces so far; the last one is this pellet's, world space, Quake units)
+ * @returns {boolean} true when it was taken (the caller then has the interpreter skip it); false leaves it to run at
+ * once (delay off, no ray, or the shooter missing or freed)
+ */
 export function shotDelayCapture( blast ) {
 
 	if ( ! enabled() ) return false;
@@ -119,7 +143,16 @@ const set3 = ( target, v ) => { target[ 0 ] = v[ 0 ]; target[ 1 ] = v[ 1 ]; targ
 // an entity still the one the pellet was shot by or at: not freed, and not freed and reused (freetime is set on every free)
 const same = ( edict, life ) => edict != null && ! edict.free && edict.freetime === life;
 
-// Start of a server frame: run the pellets whose flight is over.
+/**
+ * Start of a server frame (SV_Physics, every frame): run the pellets whose flight is over. Drops hits from another
+ * world (map, progs or edict array changed). Hits on one damageable target from one blast land together when the
+ * last of them is due, each group between ClearMultiDamage and ApplyMultiDamage like FireBullets; world hits land
+ * alone, in landing order. A hit whose shooter or target was freed (even if its slot was reused) does nothing. The
+ * QC globals it sets are restored afterwards; does nothing when the progs lack TraceAttack, ClearMultiDamage or
+ * ApplyMultiDamage.
+ *
+ * @throws {Error} whatever the QuakeC run raises (PR_RunError); the saved globals are still restored
+ */
 export function SV_ShotDelayRun() {
 
 	if ( pending.length === 0 ) return;

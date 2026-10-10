@@ -38,9 +38,20 @@ export const SHOTGUN = Object.freeze( {
 	seed: 84391                                // the source's default seed (cosmetic randomness only)
 } );
 
-// sgRandom, line 460
+/**
+ * sgRandom, line 460: the source's seeded generator (mulberry32). Cosmetic randomness only.
+ *
+ * @param {number} seed any number; used as an unsigned 32-bit integer
+ * @returns {function(): number} generator returning the next value in 0..1 (1 excluded) on each call; it keeps its own state
+ */
 export const sgRandom = seed => { let s = seed >>> 0; return () => { s += 0x6D2B79F5; let t = Math.imul( s ^ s >>> 15, 1 | s ); t ^= t + Math.imul( t ^ t >>> 7, 61 | t ); return ( ( t ^ t >>> 14 ) >>> 0 ) / 4294967296; }; };
 
+/**
+ * @param {number} x value
+ * @param {number} a lower bound
+ * @param {number} b upper bound
+ * @returns {number} `x` limited to a..b
+ */
 export const clamp = ( x, a, b ) => Math.max( a, Math.min( b, x ) );
 // sgDistance / sgTimeAt for one regime (speed v, drag k), distance relative to the regime's start
 const regimeDistance = ( v, k, t ) => k > 0 ? v * ( - Math.expm1( - k * t ) ) / k : v * t;
@@ -73,7 +84,14 @@ function buildSegments( distance, waterSpans, airSpeed, waterSpeed ) {
 
 }
 
-// distance flown (source units) `age` seconds after firing
+/**
+ * Distance flown, in source units, `age` seconds after firing (sgDistance, line 463, per air/water segment).
+ * Called per frame by r_shotgun.js to place the pellet head and its bubbles.
+ *
+ * @param {ReturnType<typeof makePellet>} p pellet from `makePellet`
+ * @param {number} age seconds since the pellet was fired
+ * @returns {number} source units along `p.direction` (24 Quake units each), 0 before firing and `p.distance` once arrived
+ */
 export function pelletDistance( p, age ) {
 
 	if ( age <= 0 ) return 0;
@@ -81,7 +99,13 @@ export function pelletDistance( p, age ) {
 	return p.distance;
 
 }
-// the time at which the pellet has flown `d`
+/**
+ * The time at which the pellet has flown `d` (sgTimeAt, line 464); r_shotgun.js uses it to time wake bubbles.
+ *
+ * @param {ReturnType<typeof makePellet>} p pellet from `makePellet`
+ * @param {number} d distance along the path in source units
+ * @returns {number} seconds after firing; the pellet's whole flight time when `d` is beyond `p.distance`
+ */
 export function pelletTimeAt( p, d ) {
 
 	for ( const s of p.segs ) if ( d <= s.d1 + 1e-12 ) return s.t0 + regimeTime( s.v, s.k, Math.max( 0, d - s.d0 ) );
@@ -89,8 +113,20 @@ export function pelletTimeAt( p, d ) {
 	return last.t0 + last.dt;
 
 }
+/**
+ * @param {ReturnType<typeof makePellet>} p pellet from `makePellet`
+ * @param {number} d distance along the path in source units
+ * @returns {boolean} true when the segment containing `d` is under water (false beyond the end)
+ */
 export const pelletInWater = ( p, d ) => { for ( const s of p.segs ) if ( d <= s.d1 ) return s.water; return false; };
-// _pelletTrailLength, line 596
+/**
+ * _pelletTrailLength, line 596: length of the streak drawn behind the pellet, the distance flown in the last
+ * `SHOTGUN.trailSeconds` (0.016 s), capped at `SHOTGUN.maxTrail`. Called per frame by r_shotgun.js.
+ *
+ * @param {ReturnType<typeof makePellet>} p pellet from `makePellet`
+ * @param {number} age seconds since firing (clamped to 0..`p.life`)
+ * @returns {number} trail length in source units, 0..0.95
+ */
 export function pelletTrailLength( p, age ) {
 
 	const a = clamp( age, 0, p.life ), head = Math.min( p.distance, pelletDistance( p, a ) );
@@ -99,9 +135,24 @@ export function pelletTrailLength( p, age ) {
 
 }
 
-// A pellet (source units for distances, Quake units for the origin) from `origin` along the unit vector `dir`
-// for `distance` source units. `c` are the cosmetic draws of fire(): speed factor, radius, seed, next bubble,
-// spacing (pelletDraws).
+/**
+ * A pellet (source units for distances, Quake units for the origin) from `origin` along the unit vector `dir`
+ * for `distance` source units. `c` are the cosmetic draws of fire(): speed factor, radius, seed, next bubble,
+ * spacing (pelletDraws). Built per pellet when r_shotgun.js fires a blast, and by `flightTime` for the server.
+ *
+ * @param {{id?: number, barrel?: number, origin: ArrayLike<number>, dir: ArrayLike<number>, distance: number,
+ *  waterSpans?: Array<Array<number>>, underwater?: boolean, born?: number, c: ReturnType<typeof pelletDraws>}} spec
+ *  `id` blast id, `barrel` barrel index, `origin` muzzle point (Quake units, world space, copied), `dir` unit vector
+ *  (copied), `distance` path length in source units (no range cap: to where the game's ray stopped), `waterSpans`
+ *  sorted [from, to] water intervals along the path in source units, `underwater` whether the muzzle is wet, `born`
+ *  fire time in seconds (the `time` given to R_ShotgunFire), `c` cosmetic draws
+ * @returns {{id: number, barrel: number, origin: Array<number>, direction: Array<number>, distance: number, born: number,
+ *  underwater: boolean, segs: Array<{d0: number, d1: number, t0: number, dt: number, v: number, k: number, water: boolean}>,
+ *  wet: boolean, radius: number, seed: number, bubbleIndex: number, nextBubble: number, spacing: number, life: number}}
+ *  a new pellet; `segs` are its air/water segments (distances in source units, times in seconds, speed `v` in source
+ *  units a second, drag `k`), `wet` true when any segment is water, `life` total flight time in seconds; r_shotgun.js
+ *  mutates `bubbleIndex`/`nextBubble` as it emits bubbles
+ */
 export function makePellet( { id = 0, barrel = 0, origin, dir, distance, waterSpans = [], underwater = false, born = 0, c } ) {
 
 	const sf = c.speed, air = SHOTGUN.airSpeed * sf, water = SHOTGUN.underwaterSpeed * sf;
@@ -112,19 +163,48 @@ export function makePellet( { id = 0, barrel = 0, origin, dir, distance, waterSp
 	return p;
 
 }
-// the cosmetic draws of one pellet, in the source's order for these fields
+/**
+ * The cosmetic draws of one pellet, in the source's order for these fields (fire(), lines 499-545). Takes five
+ * values from `random`.
+ *
+ * @param {function(): number} random generator returning 0..1, normally `pelletStream( id, index )`
+ * @returns {{speed: number, radius: number, seed: number, nextBubble: number, spacing: number}} `speed` factor 0.93..1.07
+ *  on the air/water speeds, `radius` 0.030..0.036 source units, `seed` 0..1000, `nextBubble` 0.11..0.28 source units to the
+ *  first wake bubble, `spacing` 0.60..0.84 source units between bubbles
+ */
 export function pelletDraws( random ) {
 
 	return { speed: .93 + random() * .14, radius: .030 + random() * .006, seed: random() * 1000, nextBubble: .11 + random() * .17, spacing: .60 + random() * .24 };
 
 }
-// The draws of pellet number `index` of blast `id`: a stream of its own, so the picture and the server's
-// schedule give the same speed to the same pellet however many pellets either of them handles.
+/**
+ * Base seed of blast `id`'s draws (`SHOTGUN.seed + id * 7919`, unsigned 32-bit).
+ *
+ * @param {number} id blast id
+ * @returns {number} unsigned 32-bit seed
+ */
 export const blastBase = id => ( SHOTGUN.seed + id * 7919 ) >>> 0;
+/**
+ * The draws of pellet number `index` of blast `id`: a stream of its own, so the picture and the server's
+ * schedule give the same speed to the same pellet however many pellets either of them handles.
+ *
+ * @param {number} id blast id
+ * @param {number} index pellet number within the blast
+ * @returns {function(): number} a fresh `sgRandom` generator
+ */
 export const pelletStream = ( id, index ) => sgRandom( ( blastBase( id ) + index * 104729 ) >>> 0 );
 
-// Seconds a pellet takes to fly `distance` source units from the muzzle: what the server waits before the
-// shot's damage lands. `waterSpans` as for makePellet.
+/**
+ * Seconds a pellet takes to fly `distance` source units from the muzzle: what the server waits before the
+ * shot's damage lands (sv_shotdelay.js schedules the damage at `sv.time` plus this). `waterSpans` as for makePellet.
+ * Uses the same per-pellet draws as the picture, so both agree to the frame.
+ *
+ * @param {number} id blast id
+ * @param {number} index pellet number within the blast
+ * @param {number} distance path length in source units (Quake units / 24)
+ * @param {Array<Array<number>>} [waterSpans] sorted [from, to] water intervals in source units along the path
+ * @returns {number} flight time in seconds
+ */
 export function flightTime( id, index, distance, waterSpans ) {
 
 	const p = makePellet( { origin: [ 0, 0, 0 ], dir: [ 1, 0, 0 ], distance, waterSpans, c: pelletDraws( pelletStream( id, index ) ) } );

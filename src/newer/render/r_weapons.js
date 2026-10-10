@@ -34,6 +34,12 @@ function bounded( promise, label ) {
 	return Promise.race( [ promise, new Promise( ( _, reject ) => { timer = setTimeout( () => reject( new Error( label + ' timed out' ) ), WEAPON_ASSET_TIMEOUT_MS ); } ) ] ).finally( () => clearTimeout( timer ) );
 }
 
+/**
+ * True when imported weapon art may replace the native models: Newer Game with r_newer_weapons on. Asked per frame by
+ * the alias drawing (through `R_WeaponAsset`), the shell casings (r_shells.js) and the intro readiness check.
+ *
+ * @returns {boolean} true when weapon art is wanted
+ */
 export function R_WeaponsEnabled() { return R_NewerGame() && r_newer_weapons.value !== 0; }
 
 function texture( path, color, flipY = false ) {
@@ -55,6 +61,15 @@ function texture( path, color, flipY = false ) {
 
 }
 
+/**
+ * Fetches the weapon manifest (newer/weapons/index.json) once, with a 30 s timeout. The promise is cached for the
+ * session: a failure is not retried, sets the index state to 'fallback' and is recorded in `R_WeaponStatus`.
+ *
+ * @returns {Promise<{ models: Object, sources: Object }>} the manifest: `models` role -> { source, cameraPullback? },
+ * `sources` source -> { maps, material, textureFlipY? }
+ * @throws {Error} (as a rejection) 'Missing weapon manifest' when it lacks models or sources, a timeout, or the fetch
+ * error
+ */
 export function R_WeaponsLoad() {
 
 	if ( ! indexPromise ) { indexState = 'loading'; indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Weapon manifest' ).then( data => {
@@ -71,9 +86,15 @@ export function R_WeaponsLoad() {
 
 }
 
-// The ordinary app waits for optional weapon art before its first demo/game
-// frame. Reuse the same role loader as held models, pickups and level previews;
-// loading while classic is selected never changes the rendering gate.
+/**
+ * The ordinary app waits for optional weapon art before its first demo/game frame. Reuse the same role loader as held
+ * models, pickups and level previews; loading while classic is selected never changes the rendering gate. Loads every
+ * role in the manifest and the shell; started by the intro readiness check (gl_rmain.js) when the world changes.
+ * Cached for the session.
+ *
+ * @returns {Promise<Array<?Object>>} the loaded assets (null for a role that fell back); never rejects (an empty array
+ * when the manifest failed: native fallback remains)
+ */
 export function R_WeaponsPreload() {
 
 	if ( ! preloadPromise ) { preloadState = 'loading'; preloadPromise = R_WeaponsLoad()
@@ -83,8 +104,16 @@ export function R_WeaponsPreload() {
 
 }
 
-// Also used by shells; all downloads must complete before any native art is
-// replaced. A failed load remains a visible diagnostic and native fallback.
+/**
+ * Loads one role's art: its geometry JSON (poses, uv, indices, optional normals and rotor) and its source's texture
+ * maps (shared between roles of one source), then builds per-pose alias templates with Quake light-normal indices and
+ * the material. Also used by shells; all downloads must complete before any native art is replaced. A failed load
+ * remains a visible diagnostic and native fallback. Cached per key for the session (a failure is not retried).
+ *
+ * @param {string} key a manifest role such as 'v_shot', 'g_nail' or 'g_shot1', or 'shell'
+ * @returns {Promise<?{ templates: Array<Object>, material: THREE.Material, source: string, key: string, textures: Array<THREE.Texture>, rotor: ?Object, cameraPullback: number }>} the asset (`cameraPullback` in Quake units, only for held `v_` roles), or null
+ * when the role has no source or failed (the error is in `R_WeaponStatus().failures`); never rejects
+ */
 export function R_WeaponLoad( key ) {
 
 	if ( ! requests.has( key ) ) {
@@ -147,12 +176,30 @@ export function R_WeaponLoad( key ) {
 // `skin`: a pickup MDL's skin can name a different role: skin 1 of g_shot.mdl is the basic shotgun's drop (role g_shot1,
 // respawn_record.js), which has no MDL of its own
 const SKIN_ROLES = Object.freeze( { g_shot: { 1: 'g_shot1' } } );
+/**
+ * The art role for a Quake weapon model: the `v_*` or `g_*` base name of `progs/<name>.mdl`, or the role a pickup
+ * skin names (SKIN_ROLES).
+ *
+ * @param {?string} modelName the model path, e.g. 'progs/v_shot.mdl'
+ * @param {number} [skin=0] the entity's skin number
+ * @returns {?string} the role, e.g. 'v_shot' or 'g_shot1', or null for a model that is not a weapon
+ */
 export function R_WeaponRole( modelName, skin = 0 ) {
 
 	const key = /^progs\/([vg]_[a-z0-9]+)\.mdl$/.exec( modelName || '' )?.[ 1 ] ?? null;
 	return key && skin && SKIN_ROLES[ key ]?.[ skin ] ? SKIN_ROLES[ key ][ skin ] : key;
 
 }
+/**
+ * The ready imported art for a model, if any: asked by the alias drawing (gl_mesh.js) each time a model is drawn.
+ * Starts the manifest or role load when it has not begun and returns null until it is ready, so the native model is
+ * drawn meanwhile.
+ *
+ * @param {?string} modelName the model path
+ * @param {number} [skin=0] the skin number (gl_mesh.js passes it only when it is past the MDL's own skins)
+ * @returns {?{ templates: Array<Object>, material: THREE.Material, source: string, key: string, textures: Array<THREE.Texture>, rotor: ?Object, cameraPullback: number }} the loaded asset, or null when disabled, not a weapon, not in the manifest, not yet
+ * loaded, or failed
+ */
 export function R_WeaponAsset( modelName, skin = 0 ) {
 
 	if ( ! R_WeaponsEnabled() ) return null;
@@ -166,8 +213,15 @@ export function R_WeaponAsset( modelName, skin = 0 ) {
 
 }
 
-// Ready imported held art only. Baked fitting offsets remain part of the
-// asset; this independent runtime adjustment follows the actual camera axis.
+/**
+ * Ready imported held art only. Baked fitting offsets remain part of the asset; this independent runtime adjustment
+ * follows the actual camera axis. gl_rmain.js moves the view model's render mesh back along the camera direction by
+ * this much each frame.
+ *
+ * @param {?string} modelName the view model's path
+ * @returns {number} Quake units to pull the held weapon back; 0 in the Classic pass, without ready art, or for a
+ * role with no pullback
+ */
 export function R_WeaponHeldPullback(modelName) {
 	if(R_ClassicPassActive())return 0;
 	return R_WeaponAsset(modelName)?.cameraPullback || 0;
@@ -186,12 +240,23 @@ export function R_WeaponHeldPullback(modelName) {
 // changes. The numbers are small, documented tuning values, not measured from the original game.
 export const ROTOR = Object.freeze( { step: .1, spinUp: .06, spinDown: .25, stopBelow: .1 } );
 
-// One existing alias mesh, with only the four barrel assemblies animated.
-// Rotate an angle, never interpolate vertices: chord interpolation collapses the
-// barrel spacing and radius between stored poses. Rest arrays remain shared
-// and immutable; each drawn entity owns its rotating attributes. (The stored poses only fix the firing speed and
-// direction and the angle a fresh state starts from; the rest of the model does not change between poses. Because the
-// angle is integrated, `r_lerpmodels` no longer changes how the barrels turn: they are always smooth.)
+/**
+ * One existing alias mesh, with only the four barrel assemblies animated. Rotate an angle, never interpolate vertices:
+ * chord interpolation collapses the barrel spacing and radius between stored poses. Rest arrays remain shared and
+ * immutable; each drawn entity owns its rotating attributes. (The stored poses only fix the firing speed and
+ * direction and the angle a fresh state starts from; the rest of the model does not change between poses. Because the
+ * angle is integrated, `r_lerpmodels` no longer changes how the barrels turn: they are always smooth.) Called by the
+ * alias drawing (gl_mesh.js) each time a weapon model is drawn; the per-entity state lives in a WeakMap and follows
+ * the ROTOR rules above.
+ *
+ * @param {?Object} asset the weapon asset from `R_WeaponAsset`; only one with a `rotor` animates
+ * @param {?entity_t} entity the drawn entity (key of its rotor state)
+ * @param {number} pose the current pose number; any pose but 0 means firing
+ * @param {?number} poseBlend the native pose blend (unused: the angle is integrated instead)
+ * @param {number} time game time in seconds (`cl.time`); a non-finite time returns the existing template unchanged
+ * @returns {?Object} the entity's own rotated template (same shape as the asset's templates, reused and updated in
+ * place), or null for an asset without a rotor (whose state is then released, except during the Classic pass)
+ */
 export function R_WeaponRotorFrame( asset, entity, pose, poseBlend, time ) {
 
 	if ( ! asset?.rotor || ! entity ) {
@@ -270,7 +335,13 @@ export function R_WeaponRotorFrame( asset, entity, pose, poseBlend, time ) {
 
 }
 
-// Read-only view of an entity's rotor (angle and speed), for tests.
+/**
+ * Read-only view of an entity's rotor (angle and speed), for tests.
+ *
+ * @param {entity_t} entity the drawn entity
+ * @returns {?{ angle: number, omega: number, time: number }} a fresh object (radians, radians per second, game seconds),
+ * or null when the entity has no rotor state
+ */
 export function R_WeaponRotorState( entity ) {
 
 	const state = rotorStates.get( entity );
@@ -278,6 +349,13 @@ export function R_WeaponRotorState( entity ) {
 
 }
 
+/**
+ * Load diagnostics, read by the intro readiness check (gl_rmain.js) and tests.
+ *
+ * @returns {{ ready: Array<string>, failures: Object<string, string>, index: string, preload: string, pending: Array<string>, settled: boolean }}
+ * a fresh object: roles loaded, error text per failed role (or 'manifest'), the manifest and preload states
+ * ('idle', 'loading', 'ready' or 'fallback'), roles still loading, and whether everything requested has settled
+ */
 export function R_WeaponStatus() {
 
 	return { ready: Array.from( requests ).filter( ( [ , p ] ) => p.asset ).map( ( [ key ] ) => key ),
@@ -287,12 +365,21 @@ export function R_WeaponStatus() {
 
 }
 
-// Actual ready held/pickup/shell materials; shader warming reuses these objects
-// without requesting new roles, changing rendering gates or replacing assets.
+/**
+ * Actual ready held/pickup/shell materials; shader warming reuses these objects without requesting new roles,
+ * changing rendering gates or replacing assets (the intro readiness check in gl_rmain.js).
+ *
+ * @returns {Array<THREE.Material>} a new array of the distinct live materials (shared; do not dispose)
+ */
 export function R_WeaponMaterials() {
 	return [ ...new Set( Array.from( requests.values() ).map( request => request.asset?.material ).filter( Boolean ) ) ];
 }
 
+/**
+ * The textures of every ready weapon asset, for the intro readiness check to upload before the first frame.
+ *
+ * @returns {Array<THREE.Texture>} a new array of the distinct live textures (shared; do not dispose)
+ */
 export function R_WeaponTextures() {
 	return [ ...new Set( Array.from( requests.values() ).flatMap( request => request.asset?.textures || [] ) ) ];
 }

@@ -158,6 +158,17 @@ if(qrRockAmp>0.) {
  }
 }
 `;
+/**
+ * Adds the rock relief to a world surface material's shader, from gl_post.js's world-shader patch (onBeforeCompile)
+ * for a material flagged as rock, after that patch has rewired the shadow-gradient UVs. Shares r_rockfield.js's
+ * uniforms and `rockBandWarpOn` by reference (so changing them affects every rock material at once), declares the
+ * per-vertex rock attributes (rockWarp, rockWall, rockUv, rockInfo, rockBounds) and passes them to varyings, and
+ * prepends ROCK_GLSL and ROCK_BAND_WARP_GLSL to the fragment shader (whose own `uniform float uClassic;` it removes,
+ * since the band-warp GLSL declares it).
+ *
+ * @param {{ uniforms: Object, vertexShader: string, fragmentShader: string }} shader three's onBeforeCompile shader
+ * object; mutated in place
+ */
 export function R_PatchRockShader( shader ) {
  Object.assign( shader.uniforms, rockUniforms );
  shader.uniforms.qrRockBandWarpOn = rockBandWarpOn;

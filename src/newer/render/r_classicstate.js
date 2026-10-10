@@ -14,6 +14,21 @@
 // Reuse backups for alias colours and optional native shadow positions.
 const attributeBackups = new WeakMap();
 
+/**
+ * Snapshots the enhanced frame's scene state before the same simulation tick is drawn again in Classic (the split
+ * title demo; gl_rmain.js `R_ClassicOn`). A second rendering of the tick must not change the next enhanced frame,
+ * so cached geometry, entity poses and scene membership are kept intact. Records every object's parent,
+ * visibility, material, transform, layers, render order, render callbacks and light values; each `_quakeOwner`
+ * entity's origin/angles and alias pose fields; and the alias `color` and native shadow `position` attributes.
+ * The enhanced draw has already smoothed origin/angles in place, so an entity whose `_smoothMove.lastTime` equals
+ * `time` is put back on this tick's raw game coordinates for the native draw (time is not advanced).
+ *
+ * @param {THREE.Scene} scene the renderer's scene, traversed now and again on restore
+ * @param {number} time client time of this tick (`cl.time`, seconds)
+ * @returns {function(): void} restore: removes objects added since the snapshot, re-parents moved ones, puts every
+ *   recorded value and attribute array back and updates world matrices. Call it once, after the Classic pass.
+ *   Attribute backup arrays are kept per geometry in a WeakMap and reused across frames.
+ */
 export function R_SaveClassicScene( scene, time ) {
 
 	const objects = new Map(), entities = new Map(), geometries = new Map();
@@ -119,6 +134,20 @@ export function R_SaveClassicScene( scene, time ) {
 // material clones or shader invalidation on the enhanced materials.
 const materials = new WeakMap();
 
+/**
+ * Classic (native look) variant of an enhanced material, for the Classic pass of the split title demo. Native
+ * variants never take part in the enhanced glow/detail registries. One variant is made per source material and
+ * cached in a WeakMap (disposed with the source); each call refreshes only its mutable values, so there are no
+ * per-frame material clones or shader invalidation on the enhanced materials. The variant drops normal, bump,
+ * displacement, roughness, metalness and environment maps, uses `userData.classicGlowColor` as colour when set,
+ * and forces `emissiveIntensity` to 1.
+ *
+ * @param {THREE.Material} source the enhanced material currently on the object
+ * @param {function(?THREE.Texture): ?THREE.Texture} textureFor maps the source's `map`/`emissiveMap` to its
+ *   classic texture
+ * @param {function(?THREE.Texture): ?THREE.Texture} [lightmapFor] maps the source's `lightMap` (default: unchanged)
+ * @returns {THREE.Material} the cached classic material, marked `needsUpdate` only when it gains or loses a map
+ */
 export function R_ClassicMaterial( source, textureFor, lightmapFor = t => t ) {
 
 	let m = materials.get( source );

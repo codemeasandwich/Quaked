@@ -15,6 +15,21 @@
 import { CRC_Init, CRC_ProcessByte, CRC_Value } from '../../engine/common/crc.js';
 import { AngleVectors } from '../../engine/common/mathlib.js';
 const cache=new WeakMap();
+/**
+ * Normal of the axe blade's swept cutting plane, for a slicing kill (sv_axecut.js, when the quad-damage axe hits
+ * a monster). Uses the native cutting edge (vertices 82-83 of the axe-head component 82-97) at the impact pose
+ * and its movement from the preceding pose: pose 7 against 6 when `frame` >= 5, otherwise 3 against 2. This
+ * approximates the instantaneous swept blade plane; QuakeC still owns hit detection. Only the original
+ * v_axe.mdl is accepted (CRC 43804, version 6, 98 vertices, 184 triangles, 9 single frames). The parsed poses are
+ * cached per buffer and byte range for as long as `bytes.buffer` is alive (a WeakMap), including a null result
+ * for an unrecognised model.
+ *
+ * @param {?Uint8Array} bytes contents of progs/v_axe.mdl, or null/undefined when it is not loaded
+ * @param {number} frame the player's `weaponframe`
+ * @param {Array<number>} angles the player's `v_angle` (pitch, yaw, roll in degrees)
+ * @returns {?Array<number>} unit normal `[x, y, z]` in world space, or null when the model is missing or not the
+ *   native axe, or the edge does not move between the two poses
+ */
 export function R_AxeSwingNormal(bytes,frame,angles){
 	if(!bytes)return null;
 	let entries=cache.get(bytes.buffer);if(!entries){entries=new Map();cache.set(bytes.buffer,entries);}

@@ -22,6 +22,26 @@ function inside( rect ) {
 
 }
 
+/**
+ * Compiles an imported weapon's data-defined style (from the weapon manifest's `material.style`) into GLSL snippets
+ * for the alias shader, once per material from `R_AssetAliasMaterial` (r_newerskins.js). The source bitmaps, donor
+ * topology, UVs and normal maps remain untouched; the snippets run after `#include <map_fragment>`, before baked
+ * lighting/albedo capture, so room lighting still uses the corrected colours. UV rectangles are `[u0, v0, u1, v1]` in
+ * the skin's 0..1 UV space.
+ *
+ * @param {?{ palette?: Array<{ rect: Array<number>, tint: Array<number>, gain?: number, chroma?: 'blue' }>,
+ *   grading?: Array<{ rect: Array<number>, balance?: Array<number>, gain?: number, saturation?: number,
+ *   contrast?: number }>, originalWrap?: { donorRect: Array<number>, nativeRects: Object<string, Array<number>>,
+ *   swapAxes?: boolean, opacity?: number, suppressEmission?: boolean } }} style the style; null/undefined means none.
+ *   `palette` recolours a rectangle to `tint` (sRGB 0..255) keeping the source luminance (`chroma: 'blue'` limits it to
+ *   blue-dominant texels); `grading` adjusts balance, gain, saturation and contrast (around 0.18) in a rectangle;
+ *   `originalWrap` maps the donor rectangle onto the native Quake skin's rectangle for this role
+ * @param {string} role the weapon model key (e.g. `v_light`, `g_light`) that selects `originalWrap.nativeRects`
+ * @returns {{ head: string, map: string, emission: string, wrap: boolean, opacity?: number }} `head` uniform
+ *   declarations (`qrNativeSkin`, `uHasNativeSkin` when wrapping), `map` the colour code, `emission` code that removes
+ *   luma glow over the wrapped core, `wrap` whether the native skin is wrapped (the caller must then bind
+ *   `qrNativeSkin`/`uHasNativeSkin`), and `opacity` the wrapped core's alpha factor (absent when `style` is empty)
+ */
 export function R_WeaponStyleGLSL( style, role ) {
 
 	if ( ! style ) return { head: '', map: '', emission: '', wrap: false };

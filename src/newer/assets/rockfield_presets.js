@@ -69,6 +69,18 @@ export const ROCK_PRESETS = Object.freeze( Object.fromEntries( Object.entries( {
   "amplitude": 0.1
  }
 } ).map( ( [ name, preset ] ) => [ name, Object.freeze( preset ) ] ) ) );
+/**
+ * Relief generator settings for one rock texture, used when r_rocksurfaces.js builds a chart per material/role and
+ * by the r_rockfield.js worker request when a chart has no config. A catalogue preset is returned with its profile
+ * replaced by the role asked for (role overrides live in r_rocksurfaces.js); an unknown texture gets the generic
+ * wall (blocky, fractured) or ground (near-flat, amplitude .009) recipe.
+ *
+ * @param {string} name texture name, e.g. 'uwall1_2'
+ * @param {string} profile surface role, 'wall' or 'ground' (anything other than 'wall' gets the ground default)
+ * @returns {{profile: string, featureSize: number, cells: number, amplitude: number, warp?: number, fracture?: number,
+ *  detail?: number, blockiness?: number}} a fresh object (safe to mutate); `cells` is the 64-cell field resolution and
+ *  `amplitude` the relief height scale given to the chart
+ */
 export function R_RockPreset( name, profile ) {
  const preset = ROCK_PRESETS[ name ];
  return preset ? { ...preset, profile } : profile === 'wall'

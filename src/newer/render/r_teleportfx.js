@@ -108,6 +108,13 @@ function hide() {
 
 }
 
+/**
+ * Starts the live stretch (phase 'build'): the renderer stretches the picture itself (`R_TeleportFx`). Used by the
+ * teleporter pads (`SV_TeleporterPads`, sv_seamless.js) where there is no page to copy, and by `R_TeleportFrameEnd`
+ * when the screen cannot be copied.
+ *
+ * @param {number} now the current time in seconds (`performance.now() / 1000`)
+ */
 export function R_TeleportFxBegin( now ) {
 
 	phase = 'build';
@@ -116,7 +123,10 @@ export function R_TeleportFxBegin( now ) {
 
 }
 
-// the picture is to be copied at the end of this frame, once it is drawn
+/**
+ * The picture is to be copied at the end of this frame, once it is drawn (by `R_TeleportFrameEnd`): enters phase
+ * 'overlay'. Called by `SV_TeleporterPads` (sv_seamless.js) as the player steps onto a pad, in a browser.
+ */
 export function R_TeleportFxCapture() {
 
 	captureAsked = true;
@@ -126,8 +136,20 @@ export function R_TeleportFxCapture() {
 
 }
 
-// called at the end of every frame, with the two canvases and whether the game is
-// running in a level; returns true while the copy of the screen is up
+/**
+ * Called at the end of every frame (`_Host_Frame_Internal`, host.js), with the two canvases and whether the game is
+ * running in a level. Makes the requested copy of the world picture (at most 1280 pixels wide) and shows it as three
+ * colour layers animated by the browser (so it keeps moving while the next level loads), placed just after the world
+ * canvas so the text canvas stays above it; if the picture cannot be read, falls back to the live stretch. Takes the
+ * copy away once the next level has loaded (`R_TeleportFxSnap`), has drawn two frames, and the stretch has been shown
+ * for at least 0.36 s; the colours then close up over 0.28 s (phase 'snap').
+ *
+ * @param {number} now the current time in seconds
+ * @param {HTMLCanvasElement} main the world canvas (`renderer.domElement`)
+ * @param {HTMLCanvasElement} over the 2D text and status bar canvas; not used
+ * @param {boolean} levelReady true when the client is fully signed on with a world loaded
+ * @returns {boolean} true while the copy of the screen is up
+ */
 export function R_TeleportFrameEnd( now, main, over, levelReady ) {
 
 	if ( captureAsked ) {
@@ -172,31 +194,57 @@ export function R_TeleportFrameEnd( now, main, over, levelReady ) {
 
 }
 
+/**
+ * Whether the copy of the screen is up, checked by `SV_TeleporterPads` (sv_seamless.js) before it starts the level
+ * change.
+ *
+ * @returns {boolean} true while the overlay element is in the page
+ */
 export function R_TeleportOverlayShown() {
 
 	return overlay !== null;
 
 }
 
-// the next level has been loaded
+/**
+ * The next level has been loaded: `SV_SeamlessSetup` (sv_seamless.js) calls this when the level a teleporter pad was
+ * loading is up. Lets the stretch end (the overlay goes once the level has drawn, the live stretch snaps back on its
+ * next `R_TeleportFx`). No effect outside the 'build' and 'overlay' phases.
+ */
 export function R_TeleportFxSnap() {
 
 	if ( phase === 'build' || phase === 'overlay' ) snapAsked = true;
 
 }
 
+/**
+ * The effect's phase, read by `SV_TeleporterPads` (sv_seamless.js) to see whether the copy failed and the live
+ * stretch runs instead.
+ *
+ * @returns {string} 'idle', 'build' (live stretch), 'overlay' (the copy is up or about to be) or 'snap' (colours
+ *   closing up)
+ */
 export function R_TeleportFxMode() {
 
 	return phase;
 
 }
 
+/**
+ * Whether any part of the effect is running (used by tests).
+ *
+ * @returns {boolean} true unless the phase is 'idle'
+ */
 export function R_TeleportFxActive() {
 
 	return phase !== 'idle';
 
 }
 
+/**
+ * Ends the effect at once: removes the overlay and returns to 'idle'. Called by sv_seamless.js on any level change
+ * that is not the pad's, when a pad's copy never appears, and on `SV_SeamlessReset`.
+ */
 export function R_TeleportFxReset() {
 
 	hide();
@@ -206,6 +254,16 @@ export function R_TeleportFxReset() {
 
 }
 
+/**
+ * The live stretch and colour split for the lighting pass, once per frame from `R_PostFinish` (gl_post.js), where
+ * the screen cannot be copied. Advances the phase: a 'build' whose level has loaded snaps back, and a 'snap' older
+ * than 0.28 s returns to 'idle'.
+ *
+ * @param {number} now the current time in seconds (`performance.now() / 1000`)
+ * @returns {{ stretch: number, chroma: number }} a new object: `stretch` 0..1 (smoothstep over the 0.36 s build;
+ *   0 after the snap) and `chroma`, the colour split 0..1 (rising with the build, then closing up quadratically over
+ *   0.28 s); both 0 while idle or while the copy is up
+ */
 export function R_TeleportFx( now ) {
 
 	if ( phase === 'idle' || phase === 'overlay' ) return { stretch: 0, chroma: 0 };

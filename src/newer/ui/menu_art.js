@@ -12,8 +12,18 @@
 // Single-player lettering assembled once from Quake's own menu sprites.
 // Keep native pixels and baselines: centring each letter's ink box clips
 // descenders and shifts small capitals relative to their neighbours.
-// Short labels use the complete native menu/console bitmap alphabet. Copy
-// authored cells verbatim into transparent pictures; never rasterize a web font.
+/**
+ * Short labels use the complete native menu/console bitmap alphabet. Copy authored cells verbatim into transparent
+ * pictures; never rasterize a web font. gl_draw.js builds the bestiary book's navigation labels with it once per
+ * charset.
+ *
+ * @param {?HTMLCanvasElement} charset the decoded 128x128 conchars sheet (16x16 cells of 8x8 pixels)
+ * @param {string} text 1-64 printable ASCII characters (0x20-0x7e)
+ * @param {function(): HTMLCanvasElement} makeCanvas makes the output canvas
+ * @returns {?{width: number, height: number, canvas: HTMLCanvasElement}} a picture 8 pixels per character wide and 8
+ *  tall; null when the charset is missing or not 128x128
+ * @throws {RangeError} when `text` is not 1-64 printable native glyphs
+ */
 export function BuildMenuTextArt( charset, text, makeCanvas ) {
 
 	if ( ! charset || charset.width !== 128 || charset.height !== 128 ) return null;
@@ -32,6 +42,20 @@ export function BuildMenuTextArt( charset, text, makeCanvas ) {
 
 }
 
+/**
+ * Builds the extended single-player menu picture ("Newer Game" above the native New Game / Load / Save rows and
+ * "Level Select" below) by copying letters out of Quake's own menu pictures at their native pixels and baselines.
+ * Called once by `Draw_CacheSinglePlayerMenu` (gl_draw.js), which caches it as gfx/sp_menu_ext.lmp. Source
+ * canvases are never changed.
+ *
+ * @param {?{width: number, height: number, canvas: HTMLCanvasElement}} single gfx/sp_menu.lmp
+ * @param {?{canvas: HTMLCanvasElement}} main gfx/mainmenu.lmp (source of the "r" and of "l" from Help)
+ * @param {?{canvas: HTMLCanvasElement}} multi gfx/mp_menu.lmp (source of "c" from TCP/IP)
+ * @param {?{canvas: HTMLCanvasElement}} network gfx/netmen4.lmp (source of "t")
+ * @param {function(): HTMLCanvasElement} makeCanvas makes the output canvas
+ * @returns {?{width: number, height: number, canvas: HTMLCanvasElement}} a picture as wide as sp_menu and 100 pixels
+ *  tall (five 20-pixel menu cells); null when any source picture is missing
+ */
 export function BuildSinglePlayerMenuArt( single, main, multi, network, makeCanvas ) {
 
 	if ( ! single?.canvas || ! main?.canvas || ! multi?.canvas || ! network?.canvas ) return null;

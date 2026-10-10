@@ -59,8 +59,19 @@ export { SHOTGUN, sgRandom, pelletDistance, pelletTimeAt, pelletInWater, pelletT
 export const r_shotgunfx = new cvar_t( 'r_shotgunfx', '1' );
 const K = SHOTGUN.unit;
 
-// _addBubble, line 545: a detached bubble. `dir` is the Quake direction (only its horizontal part is used);
-// positions are Quake units, motion in source units as the source has it.
+/**
+ * _addBubble, line 545, of the source: a detached bubble, for a pellet's wake (`emitWake`) and the bubbles that
+ * escape an underwater muzzle (`R_ShotgunFire`). Its life, radius, rise, wobble phase and drift come from a
+ * seeded stream, so the same seed gives the same bubble.
+ *
+ * @param {ArrayLike<number>} position birth point, Quake units, world space
+ * @param {ArrayLike<number>} dir Quake direction (only its horizontal part is used)
+ * @param {number} born client time of birth, seconds
+ * @param {number} seed 0..1, seeds the bubble's random draws
+ * @param {number} [scale=1] radius multiplier (0.6 for muzzle bubbles)
+ * @returns {object} new bubble record: origin `ox/oy/oz` (Quake units), `dx/dy`, `born`, `life` (1.35..2.3 s),
+ *   `radius`/`rise`/`drift` in source units as the source has them, phase `seed` (radians)
+ */
 export function makeBubble( position, dir, born, seed, scale = 1 ) {
 
 	const random = sgRandom( Math.floor( seed * 1e8 ) );
@@ -68,7 +79,15 @@ export function makeBubble( position, dir, born, seed, scale = 1 ) {
 	return { ox: position[ 0 ], oy: position[ 1 ], oz: position[ 2 ], dx: dir[ 0 ], dy: dir[ 1 ], born, life, radius, rise, seed: s, drift, x: position[ 0 ], y: position[ 1 ], z: position[ 2 ] };
 
 }
-// update() of the source for a bubble: where it is `a` seconds after birth, in Quake units (source +Y is Quake +Z)
+/**
+ * update() of the source for a bubble: where it is `a` seconds after birth, in Quake units (source +Y is Quake
+ * +Z). It settles out of its forward drift, wobbles and rises with increasing speed.
+ *
+ * @param {object} b bubble from `makeBubble`
+ * @param {number} a age, seconds
+ * @param {Array<number>} out written: `[x, y, z]`, Quake units, world space
+ * @returns {Array<number>} `out`
+ */
 export function bubbleAt( b, a, out ) {
 
 	const settle = ( 1 - Math.exp( - a * 5 ) ) * b.drift, wobble = .018 * Math.sin( a * 4.2 + b.seed ) - .018 * Math.sin( b.seed );
@@ -79,10 +98,19 @@ export function bubbleAt( b, a, out ) {
 
 }
 
-// fire() of the source, line 532: the tiny delayed wisps of a shot in air, three for each barrel, anchored in the
-// world at the muzzle where the shot was fired (not to the recoiling gun or its later aim). `axis` is the barrel's
-// shot direction (Quake unit vector), `cosmetic` the barrel's stream of cosmetic draws (four per wisp, in the
-// source's order: life, radius, seed, drift). Positions in Quake units; the rest in the source's units.
+/**
+ * fire() of the source, line 532: the tiny delayed wisps of a shot in air, three for each barrel
+ * (`SHOTGUN.smokePerBarrel`), anchored in the world at the muzzle where the shot was fired (not to the recoiling
+ * gun or its later aim), each a little further ahead and born a little later (0.026 s + 0.047 s per wisp).
+ *
+ * @param {ArrayLike<number>} origin muzzle point, Quake units, world space
+ * @param {ArrayLike<number>} axis the barrel's shot direction (Quake unit vector)
+ * @param {number} born client time of the shot, seconds
+ * @param {function(): number} cosmetic the barrel's stream of cosmetic draws (0..1, four per wisp, in the source's
+ *   order: life, radius, seed, drift); advanced
+ * @returns {Array<object>} new wisp records: origin `ox/oy/oz` in Quake units; `born`, `life` (s), `radius`,
+ *   `seed`, `drift` in the source's units
+ */
 export function makeSmoke( origin, axis, born, cosmetic ) {
 
 	const list = [];
@@ -95,9 +123,17 @@ export function makeSmoke( origin, axis, born, cosmetic ) {
 	return list;
 
 }
-// render() of the source, line 608: where a wisp is `a` seconds after birth (source +Y is Quake +Z, source +Z is Quake +Y),
-// its radius, its upward motion (all in Quake units) and its opacity. The climb (the .18 a second and the stretch of
-// the quad along it) is multiplied by SHOTGUN.smokeRise = .5: the owner asked for half the height.
+/**
+ * render() of the source, line 608: where a wisp is `a` seconds after birth (source +Y is Quake +Z, source +Z is
+ * Quake +Y), its radius, its upward motion (all in Quake units) and its opacity. The climb (the .18 a second and
+ * the stretch of the quad along it) is multiplied by SHOTGUN.smokeRise = .5: the owner asked for half the height.
+ *
+ * @param {object} s wisp from `makeSmoke`
+ * @param {number} a age, seconds
+ * @param {{ x: number, y: number, z: number, radius: number, rise: number, alpha: number }} out written: position,
+ *   radius and rise in Quake units (world space), alpha 0..0.19 (a sine over the wisp's life)
+ * @returns {object} `out`
+ */
 export function smokeAt( s, a, out ) {
 
 	out.x = s.ox + K * ( s.drift * a + Math.sin( a * 6 + s.seed ) * .012 * a );
@@ -117,9 +153,20 @@ export function smokeAt( s, a, out ) {
 const muzzleCache = new WeakMap();
 const _v = new THREE.Vector3();
 
-// The muzzle point(s) of a viewmodel in world space: `count` 1 gives the centre of the model's forward-most
-// vertices, 2 gives the left and right barrels (the front vertices split by side). Quake models face +X.
-// `template` is the alias template (posAttr in the model's own coordinates); the mesh is a child of the scene.
+/**
+ * The muzzle point(s) of a viewmodel in world space: `count` 1 gives the centre of the model's forward-most
+ * vertices (the front 4% of its X extent; Quake models face +X), 2 gives the left and right barrels (the front
+ * vertices split by side). Used by gl_rmain.js for the shotgun pellets and the lightning gun. The local points
+ * are cached per template for its lifetime (a WeakMap); the transform uses the mesh's own matrix, in the
+ * scene's coordinates (matrixWorld would carry the XR scene scale and give metres).
+ *
+ * @param {?THREE.Mesh} mesh the viewmodel mesh, a child of the scene; its matrix is updated when auto-updating
+ * @param {?{ posAttr: THREE.BufferAttribute }} template the alias template (posAttr in the model's own
+ *   coordinates)
+ * @param {number} count 1 for one muzzle, 2 for two barrels
+ * @returns {?Array<Array<number>>} fresh `[x, y, z]` points (Quake units, world space), or null when the mesh or
+ *   template is missing or the model has no vertices
+ */
 export function viewModelMuzzles( mesh, template, count ) {
 
 	if ( ! mesh || ! template?.posAttr ) return null;
@@ -253,8 +300,15 @@ const rows = new Float32Array( CAPACITY * 12 ), depths = new Float32Array( CAPAC
 const byDepth = ( a, b ) => depths[ b ] - depths[ a ];
 const instanced = [];
 
-// The caller supplies the scene, a function giving the viewmodel's muzzle points (muzzles( count ) -> [ [ x, y, z ], ... ] |
-// null) and a function giving the contents of a point (contents( [ x, y, z ] ) -> the BSP contents number).
+/**
+ * Connects the effect to the renderer, on every new map (gl_rmain.js `R_NewMap`, followed by `R_ShotgunClear`).
+ * Kept until replaced.
+ *
+ * @param {{ scene: THREE.Scene, muzzles?: function(number): ?Array<Array<number>>,
+ *   contents?: function(Array<number>): (number|undefined) }} externals the scene the effect's group is added to;
+ *   `muzzles( count )` gives the viewmodel's muzzle points (`[ [ x, y, z ], ... ]` or null); `contents( [ x, y,
+ *   z ] )` gives the BSP contents number of a point (undefined without a world)
+ */
 export function R_ShotgunSetup( externals ) { deps = externals; }
 
 function build() {
@@ -267,6 +321,10 @@ function build() {
 
 }
 
+/**
+ * Drops every pellet, bubble and wisp and hides the group (its GPU layer is kept). Called on a new map and when
+ * the effect is switched off (`r_shotgunfx` 0 or Classic).
+ */
 export function R_ShotgunClear() {
 
 	pellets.length = 0; bubbles.length = 0; smoke.length = 0; lastTime = 0; drawn = { pellets: 0, bubbles: 0, smoke: 0 };
@@ -294,8 +352,22 @@ function barrelWet( point, event ) {
 
 }
 
-// One native blast (an event of sv_shotrays.js) becomes pellets, and at each barrel muzzle bubbles (under water) or
-// smoke (in air), at `time`. `muzzles` are the barrel points (one, or two for the super shotgun's two-barrel blast).
+/**
+ * One native blast (an event of sv_shotrays.js) becomes pellets, and at each barrel muzzle bubbles (under water) or
+ * smoke (in air), at `time`. Each ray gets one pellet from its barrel's muzzle (or the ray's start when the target
+ * is closer than the muzzle) to where the ray stopped, with the ray's water spans; the super shotgun's rays
+ * alternate between its two barrels. Whether a barrel is wet is decided at the barrel itself. Called by
+ * `R_ShotgunFrame` for every drained event; the lists are trimmed to `SHOTGUN.maxPellets` / `maxSmoke`.
+ *
+ * @param {{ id: number, function: string, rays: Array<{ start: Array<number>, end: Array<number>,
+ *   water: Array<Array<number>> }>, submerged?: boolean }} event the blast: its id (seeds the cosmetic streams),
+ *   weapon function name ('W_FireSuperShotgun' for two barrels), rays in Quake units (world space) with water
+ *   spans as distances along the native ray, and the shooter's own underwater answer as a fallback
+ * @param {?Array<Array<number>>} muzzles the barrel points (one, or two for the super shotgun's two-barrel blast),
+ *   Quake units, world space
+ * @param {number} time client time of the blast, seconds
+ * @returns {number} the number of pellets made; 0 when there are fewer muzzles than barrels
+ */
 export function R_ShotgunFire( event, muzzles, time ) {
 
 	const double = event.function === 'W_FireSuperShotgun', barrels = double ? 2 : 1; // (the one-shell fallback is the single gun's blast)
@@ -332,9 +404,15 @@ export function R_ShotgunFire( event, muzzles, time ) {
 
 }
 
-// The wake of a pellet up to `time`: a bubble every `spacing` source units of flight (the source's update(),
-// line 566), born at the moment the pellet passed, whatever the frame length; only where the pellet is in
-// water. Calls birth( bubble ) for each.
+/**
+ * The wake of a pellet up to `time`: a bubble every `spacing` source units of flight (the source's update(),
+ * line 566, with a little seeded jitter), born at the moment the pellet passed, whatever the frame length; only
+ * where the pellet is in water and the bubble is younger than `SHOTGUN.wakeLimit`.
+ *
+ * @param {object} p pellet from `makePellet`; mutated: `nextBubble` and `bubbleIndex` advance past `time`
+ * @param {number} time client time, seconds
+ * @param {function(object): void} birth called with each new bubble (`makeBubble`)
+ */
 export function emitWake( p, time, birth ) {
 
 	const s = Math.min( p.distance, pelletDistance( p, Math.max( 0, time - p.born ) ) );
@@ -388,8 +466,19 @@ function update( time ) {
 
 const _pos = [ 0, 0, 0 ], _smoke = { x: 0, y: 0, z: 0, radius: 0, rise: 0, alpha: 0 };
 
-// Every frame, after the viewmodel has been placed (its muzzle is wanted) and before the scene renders.
-// `forward` is the view's forward vector, `viewSize` the target being rendered.
+/**
+ * Every frame, after the viewmodel has been placed (its muzzle is wanted) and before the scene renders
+ * (gl_rmain.js `R_RenderView`). Always drains the pending 'rays' events (they must not pile up while the effect is
+ * off), turns them into pellets with `R_ShotgunFire` (a soldier's shot leaves from where his own trace started),
+ * advances and culls everything, leaves water rings where pellets crossed (`R_ImpactSegment`) and fills the
+ * instanced layer back to front. Builds the layer and adds its group to the scene on first use. Clears when the
+ * client clock jumps back by more than a second.
+ *
+ * @param {number} time client time, seconds (`cl.time`)
+ * @param {ArrayLike<number>} eye view origin, Quake units (for depth sorting)
+ * @param {ArrayLike<number>} forward the view's unit forward vector
+ * @param {?ArrayLike<number>} viewSize `[width, height]` of the target being rendered, pixels
+ */
 export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 
 	const scene = deps?.scene;
@@ -478,7 +567,14 @@ export function R_ShotgunFrame( time, eye, forward, viewSize ) {
 
 }
 
-// Diagnostic read-only views for tests and the browser trial.
+/**
+ * Diagnostic read-only views for tests and the browser trial (with `R_ShotgunPellets`, `R_ShotgunBubbles` and
+ * `R_ShotgunSmoke` below, which return the live lists).
+ *
+ * @returns {{ pellets: number, bubbles: number, smoke: number, drawn: object, instances: number, visible: boolean,
+ *   group: boolean }} live counts, what the last frame drew (a copy), instances in the layer, whether the group is
+ *   visible and whether it has been built
+ */
 export function R_ShotgunSnapshot() {
 
 	return { pellets: pellets.length, bubbles: bubbles.length, smoke: smoke.length, drawn: { ...drawn }, instances: fx?.geometry.instanceCount ?? 0, visible: group?.visible ?? false, group: group !== null };

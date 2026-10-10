@@ -55,14 +55,41 @@ function functions() {
 	// which every hit runs and which returns at once while it lies, nor its fall and rise)
 	zombieFns = new Set( pr_functions.filter( f => f && /^zombie_(stand|walk|run|att|pain[a-d])/.test( PR_GetString( f.s_name ) ) ) );
 }
+/**
+ * Whether the prone-zombie rule applies now: an active local single-player server running the stock progs
+ * (`pr_crc` 24778) in the Newer Game.
+ *
+ * @returns {boolean} true when lying zombies are made hittable
+ */
 export const SV_ProneZombieActive = () => sv.active === true && svs.maxclients === 1 && pr_crc === 24778 && R_NewerGame();
 const zombie = e => !! e && ! e.free && e.v.health > 0 && PR_GetString( e.v.classname ) === 'monster_zombie' && PR_GetString( e.v.model ) === 'progs/zombie.mdl';
 function box( e, b, solid ) { e.v.mins = b.mins.slice(); e.v.maxs = b.maxs.slice(); for ( let a = 0; a < 3; a ++ ) e.v.size[ a ] = b.maxs[ a ] - b.mins[ a ]; e.v.solid = solid; SV_LinkEdict( e, false ); }
+/**
+ * Whether `e` is a live stock zombie currently lying in its low hittable box (SOLID_BBOX with the PRONE maxs). Used by
+ * the autoaim scan in pr_cmds.js (via the hooks table) to aim at the middle of the lying box instead of its origin.
+ *
+ * @param {?edict_t} e the entity to test (null or free gives false)
+ * @returns {boolean} true while the zombie lies in its PRONE box
+ */
 export const SV_ZombieProne = e => zombie( e ) && e.v.solid === SOLID_BBOX && e.v.maxs[ 2 ] === PRONE.maxs[ 2 ];
 // does the lying box fit where it lies (nothing solid in it but the zombie itself)?
 function fits( e ) { const t = SV_Move( e.v.origin, PRONE.mins, PRONE.maxs, e.v.origin, MOVE_NORMAL, e ); return ! t.startsolid && ! t.allsolid; }
 
-// QuakeC function hooks (pr_exec.js)
+/**
+ * QuakeC function hook (pr_exec.js): called from `PR_EnterFunction` for every QC function entered, before its first
+ * statement. Only acts for a live stock zombie as `self`, in local single player with the stock progs:
+ * - entering `FoundTarget` while it lies: skips the function (jumps to `SUB_Null`), so a hit does not make it get up;
+ *   its enemy is already set by T_Damage, so it goes for that attacker when it stands on its own time;
+ * - entering `zombie_paine12` (the stand-up) while prone, in any mode: restores the STAND box with SOLID_NOT so the
+ *   game's own stand-up test runs exactly as written;
+ * - entering any other standing behaviour while prone: restores the STAND box with SOLID_SLIDEBOX first.
+ * Mutates `self`'s mins, maxs, size and solid and relinks it.
+ *
+ * @param {object} f the dfunction_t being entered
+ * @returns {?{skip: number}|?{self: edict_t}} `{skip}`: the statement index (minus one) `PR_EnterFunction` jumps to;
+ *   `{self}`: a token kept on the QC stack frame for `SV_ProneZombieLeave`, given when entering zombie_paine10..12 in
+ *   the Newer Game; null when nothing is to be done
+ */
 export function SV_ProneZombieEnter( f ) {
 	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null;
 	functions();
@@ -78,6 +105,15 @@ export function SV_ProneZombieEnter( f ) {
 	else if ( prone && ! lying.has( f ) ) box( self, STAND, SOLID_SLIDEBOX );
 	return lying.has( f ) && R_NewerGame() ? { self } : null;
 }
+/**
+ * QuakeC function hook (pr_exec.js): called from `PR_LeaveFunction` with the token `SV_ProneZombieEnter` returned for
+ * the same frame. After zombie_paine10..12 leaves the zombie SOLID_NOT (still down, or its stand-up test failed), gives
+ * it the low PRONE box as SOLID_BBOX so shots, missiles and blasts reach it, but only where that box fits (nothing
+ * solid in it but the zombie itself); otherwise it stays SOLID_NOT, as in Quake. The box lives in the entity's own
+ * saved fields.
+ *
+ * @param {?{self: edict_t}} token the enter token, or null (does nothing)
+ */
 export function SV_ProneZombieLeave( token ) {
 	if ( ! token ) return;
 	const self = token.self;

@@ -35,12 +35,25 @@ export const CRATE_COMMON = [ 'crate_eagle', 'crate_bolt', 'crate_skull' ];
 // a level looks the same on every visit and from both sides of a level crossing
 let sessionSeed = ( Math.random() * 0xffffffff ) >>> 0;
 
+/**
+ * Replaces the session seed that `R_CratePlan` mixes into every crate's choice (normally chosen at random once per
+ * page load and kept for the session). Used by tests to make plans repeatable; takes effect from the next map load.
+ *
+ * @param {number} seed any number; truncated to an unsigned 32-bit integer
+ */
 export function R_CrateSetSeed( seed ) {
 
 	sessionSeed = seed >>> 0;
 
 }
 
+/**
+ * Whether a wall texture is a crate side that may wear a variant picture. Called for each surface by
+ * `Mod_CrateVariants` (gl_model.js, through the hook table) while a brush model loads.
+ *
+ * @param {string} name the BSP texture name
+ * @returns {boolean} true for `crate<digit>_side` (crate0_side, crate1_side)
+ */
 export function R_IsCrateSide( name ) {
 
 	return /^crate\d_side$/.test( name );
@@ -58,11 +71,24 @@ function hash( s ) {
 
 }
 
-// faces: [ { mins: [x,y,z], maxs: [x,y,z], normal: [x,y,z], whole } ] (only the crate sides); whole is
-// whether the face shows exactly one whole picture (the picture's size, starting on its edge). A crate
-// with a face that does not (a half crate, a crate set off the grid) keeps its ordinary picture,
-// because a picture with a sign in the middle only looks right whole.
-// Returns, for each face, the name of its variant picture or null.
+/**
+ * Chooses a picture for every crate side of one brush model, at model load from `Mod_CrateVariants` (gl_model.js,
+ * through the hook table; only in Newer Game with `r_newer_textures` on and `r_newer_crates` ≥ 1). Faces whose boxes
+ * meet (within 2 units) form one crate; each 64-unit crate, named by its lowest corner, is chosen by itself from a
+ * hash of the session seed, the map name and that corner, so the result is the same on every visit in a session.
+ * One crate in `odds` gets a rare box (its opposite faces get the box's two pictures); the rest keep their own picture
+ * or take one of `common`, all sides alike.
+ *
+ * @param {string} mapName the model's name (e.g. `maps/e1m1.bsp`), part of the hash
+ * @param {Array<{ mins: Array<number>, maxs: Array<number>, normal: Array<number>, whole: boolean }>} faces only the
+ *   crate sides: bounds in Quake units (model space) and the outward face normal. `whole` is whether the face shows
+ *   exactly one whole picture (the picture's size, starting on its edge). A crate with a face that does not (a half
+ *   crate, a crate set off the grid) keeps its ordinary picture, because a picture with a sign in the middle only
+ *   looks right whole.
+ * @param {number} [odds=CRATE_ODDS] one crate in this many gets a rare box (from `r_newer_crates`); must be ≥ 1
+ * @param {Array<string>} [common=CRATE_COMMON] the ordinary alternative pictures (empty: none)
+ * @returns {Array<?string>} for each face, in order, the texture name of its variant picture, or null to keep its own
+ */
 export function R_CratePlan( mapName, faces, odds = CRATE_ODDS, common = CRATE_COMMON ) {
 
 	const n = faces.length;

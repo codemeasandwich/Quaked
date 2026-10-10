@@ -32,7 +32,19 @@ export const BLOOD = Object.freeze( { color: 73, count: 24 } );
 let program = null, fnSpray = null, fnNull = null;
 export const meleeStats = { bled: 0 }; // (for tests: sprays turned to blood)
 
-// QuakeC function hook (pr_exec.js): returns { skip } to run SUB_Null in SpawnMeatSpray's place, or null
+/**
+ * QuakeC function hook (pr_exec.js): called by `PR_EnterFunction` for every QuakeC function entered, through the
+ * engine hook table (installed by newer/install.js). When `SpawnMeatSpray` is entered with a player as the attacker's
+ * `enemy`, it emits the blood particles instead (`SV_StartParticle` at the spray's origin, a tenth of its velocity,
+ * colour 73, 24 particles) and counts it in `meleeStats.bled`. Acts only in local single player with the stock progs
+ * (`pr_crc` 24778) while playing Newer Game. The function lookups are cached until `pr_functions` changes (progs
+ * reloaded).
+ *
+ * @param {dfunction_t} f the QuakeC function being entered (its arguments are already in OFS_PARM0 = origin and
+ *   OFS_PARM1 = velocity, Quake units and units per second)
+ * @returns {?{ skip: number }} `{ skip }` (the statement before SUB_Null's first statement) to run SUB_Null in
+ *   SpawnMeatSpray's place, or null to run the function unchanged
+ */
 export function SV_MeleeSprayEnter( f ) {
 
 	if ( sv.active !== true || svs.maxclients !== 1 || pr_crc !== 24778 ) return null; // (local single player, the stock progs)

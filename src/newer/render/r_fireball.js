@@ -61,9 +61,19 @@ export const FIREBALL = Object.freeze( {
 // The source's functions, in source units, y up, relative to the detonation point.
 // ---------------------------------------------------------------------------
 
-// burstClouds() of the source (large-fireball branch). Calls emit() once per visible
-// cloud with scalars, so the per-frame path allocates nothing:
-// emit( x, y, z, size, angle, alpha, heat, tile, tintR, tintG, tintB, seed )
+/**
+ * burstClouds() of the source (large-fireball branch). Calls emit() once per visible cloud with scalars, so the
+ * per-frame path allocates nothing. Analytic in the burst's age: called each frame by `R_FireballFrame` for every
+ * live burst, and by `fireballClouds`.
+ *
+ * @param {number} age seconds since the burst was first drawn (0 or more)
+ * @param {number} id the burst's id; seeds each burst's own cloud layout
+ * @param {{ size: number, flash: number, smoke: number, clouds: number }} p effect parameters (FIREBALL)
+ * @param {function(number, number, number, number, number, number, number, number, number, number, number, number): void} emit
+ * emit( x, y, z, size, angle, alpha, heat, tile, tintR, tintG, tintB, seed ): position and size in source units, y up,
+ * relative to the detonation point; angle in radians; alpha 0..0.94; heat 0 (smoke) up to about 1.12 (flame);
+ * tile the atlas cell 0..15; tint 0..1 per channel; seed the noise offset
+ */
 export function forEachCloud( age, id, p, emit ) {
 
 	const size = p.size;
@@ -87,7 +97,15 @@ export function forEachCloud( age, id, p, emit ) {
 
 }
 
-// Allocating view of the same function, for tests and tools.
+/**
+ * Allocating view of the same function, for tests and tools: `forEachCloud` collected into objects.
+ *
+ * @param {number} age seconds since the burst began
+ * @param {number} id the burst's id (seed)
+ * @param {Object} [p=FIREBALL] effect parameters
+ * @returns {Array<{ pos: Array<number>, size: number, angle: number, alpha: number, heat: number, tile: number, tint: Array<number>, seed: number }>}
+ * one entry per visible cloud, in source units relative to the detonation point (y up)
+ */
 export function fireballClouds( age, id, p = FIREBALL ) {
 
 	const list = [];
@@ -113,8 +131,21 @@ function sparkAt( t, vx, vy, vz, h, out, o ) {
 
 const _spark = new Float64Array( 6 );
 
-// burstSparks() of the source (large-fireball branch):
-// emit( startX, startY, startZ, endX, endY, endZ, width, alpha, colourR, colourG, colourB, brightness )
+/**
+ * burstSparks() of the source (large-fireball branch): up to min(p.sparkCap, 86 * p.sparks) sparks thrown out under
+ * gravity, bouncing once off the floor `h` below. Each is emitted as a short streak from its position 32 ms (more for
+ * some) ago to now. Called each frame by `R_FireballFrame` and by `fireballSparks`; allocates nothing (it reuses a
+ * module scratch array).
+ *
+ * @param {number} age seconds since the burst was first drawn
+ * @param {number} id the burst's id (seed)
+ * @param {{ sparks: number, sparkCap: number }} p effect parameters (FIREBALL)
+ * @param {number} h the detonation height above the floor in source units (the source's stage centre is 0.45 above
+ * its floor)
+ * @param {function(number, number, number, number, number, number, number, number, number, number, number, number): void} emit
+ * emit( startX, startY, startZ, endX, endY, endZ, width, alpha, colourR, colourG, colourB, brightness ): source
+ * units, y up, relative to the detonation point; alpha 0..1; colour 0..1
+ */
 export function forEachSpark( age, id, p, h, emit ) {
 
 	const n = Math.min( p.sparkCap, Math.round( 86 * p.sparks ) );
@@ -133,6 +164,16 @@ export function forEachSpark( age, id, p, h, emit ) {
 
 }
 
+/**
+ * Allocating view of `forEachSpark`, for tests and tools.
+ *
+ * @param {number} age seconds since the burst began
+ * @param {number} id the burst's id (seed)
+ * @param {Object} [p=FIREBALL] effect parameters
+ * @param {number} [h=0.45] detonation height above the floor, source units
+ * @returns {Array<{ start: Array<number>, end: Array<number>, width: number, alpha: number, color: Array<number>, brightness: number }>}
+ * one entry per live spark, source units relative to the detonation point (y up)
+ */
 export function fireballSparks( age, id, p = FIREBALL, h = .45 ) {
 
 	const list = [];
@@ -320,7 +361,20 @@ const quadGeometry = () => {
 
 };
 
-// (layer and material are shared with r_torchfire.js, which draws the torch flames the same way)
+/**
+ * Builds one instanced quad layer: an InstancedBufferGeometry over a unit quad with a dynamic Float32Array per
+ * instanced attribute, in a mesh that is never frustum-culled, flagged `newerOnly`, drawn at `order`. (layer and
+ * material are shared with r_torchfire.js, which draws the torch flames the same way; r_shotgun.js uses them too.)
+ * Allocated once by the caller and reused every frame.
+ *
+ * @param {string} name the mesh name
+ * @param {number} capacity the most instances it can draw
+ * @param {Object<string, number>} attributes instanced attribute name -> components per instance
+ * @param {THREE.Material} material the material, normally from `material`
+ * @param {number} order the mesh's renderOrder (after the scorch decals at 5)
+ * @returns {{ mesh: THREE.Mesh, geometry: THREE.InstancedBufferGeometry, arrays: Object<string, Float32Array>, capacity: number, count: number }}
+ * the layer; the caller writes `arrays`, sets `geometry.instanceCount` and flags the attributes for upload
+ */
 export function layer( name, capacity, attributes, material, order ) {
 
 	const geometry = quadGeometry();
@@ -339,6 +393,17 @@ export function layer( name, capacity, attributes, material, order ) {
 
 }
 
+/**
+ * A transparent effect ShaderMaterial in the shared configuration: depth-tested, no depth write, double-sided, not
+ * tone-mapped, clipping planes on, premultiplied alpha. Shared with r_torchfire.js, r_shotgun.js, r_wallburn.js and
+ * r_lightning.js.
+ *
+ * @param {string} vertexShader GLSL vertex source
+ * @param {string} fragmentShader GLSL fragment source (writing the MRT outputs as MRT_ZERO)
+ * @param {Object<string, { value: * }>} uniforms the uniforms object (kept by reference)
+ * @param {number} blending a three blending mode, e.g. THREE.NormalBlending or THREE.AdditiveBlending
+ * @returns {THREE.ShaderMaterial} a new material
+ */
 export function material( vertexShader, fragmentShader, uniforms, blending ) {
 
 	return new THREE.ShaderMaterial( { uniforms, vertexShader, fragmentShader, transparent: true, depthTest: true, depthWrite: false,
@@ -370,7 +435,13 @@ function build() {
 
 }
 
-// The effect needs both textures; until they are present explosions stay native.
+/**
+ * Installs the smoke atlas and noise textures, when the loader has both (or from tests). The effect needs both
+ * textures; until they are present explosions stay native. Updates the built layers' uniforms. Kept for the session.
+ *
+ * @param {?THREE.Texture} atlasTexture the 4x4 smoke-puff atlas (smoke-atlas.png), or null
+ * @param {?THREE.Texture} noiseTexture the repeating noise (noise.png), or null
+ */
 export function R_FireballTextures( atlasTexture, noiseTexture ) {
 
 	atlas = atlasTexture; noise = noiseTexture;
@@ -387,6 +458,13 @@ export function R_FireballTextures( atlasTexture, noiseTexture ) {
 // The two textures, loaded on first use and shared with r_torchfire.js. `ready` is false until both are
 // present (and for good if either failed), and the caller then keeps its native picture.
 let _assets = null;
+/**
+ * The two textures, loaded on first use and shared with r_torchfire.js. Starts the load if it has not begun (in a
+ * browser only).
+ *
+ * @returns {?{ atlas: THREE.Texture, noise: THREE.Texture }} null until both are present (and for good if either
+ * failed); otherwise one object while the textures stay, so callers can tell when they change
+ */
 export function R_FireballAssets() {
 
 	loadTextures();
@@ -417,7 +495,14 @@ function loadTextures() {
 
 }
 
-// The caller supplies the scene, the client and the leaf lookup, as R_DecalsSetup does.
+/**
+ * Called by R_NewMap for every new map: the caller supplies the scene, the client and the leaf lookup, as
+ * R_DecalsSetup does. Starts loading the textures. Kept until the next call.
+ *
+ * @param {{ scene: THREE.Scene, cl: function(): ?Object, pointInLeaf: function(Array<number>, Object): ?Object, allocDlight: function(number): Object }} externals
+ * the scene the layers join; a getter for the client state (`time`, `oldtime`, `worldmodel`); Mod_PointInLeaf for the
+ * floor and ring probes; CL_AllocDlight for the burst's light
+ */
 export function R_FireballSetup( externals ) {
 
 	deps = externals;
@@ -425,6 +510,10 @@ export function R_FireballSetup( externals ) {
 
 }
 
+/**
+ * Forgets every burst, smoke trail and exhaust glow and hides the layers: called by R_NewMap after
+ * `R_FireballSetup` (a new level's clock starts over).
+ */
 export function R_FireballClear() {
 
 	bursts.length = 0; R_SmokeTrailClear(); _noseCount = 0; _lastTime = 0; // (a new level's clock starts over)
@@ -437,6 +526,11 @@ export function R_FireballClear() {
 
 }
 
+/**
+ * How many explosions are live: spawned and not yet past their duration (a diagnostic; nothing in the engine reads it).
+ *
+ * @returns {number} the live burst count, at most FIREBALL.maxBursts (6)
+ */
 export function R_FireballActive() { return bursts.length; }
 
 // Height of the detonation above the first solid below it, in source units.
@@ -472,10 +566,16 @@ function ringPlane( origin, worldmodel ) {
 
 }
 
-// The game's own explosion sprite (BecomeExplosion: exploding boxes and others) is not drawn while the Fireball is
-// taking its place: a burst of ours was spawned within the last second near the sprite. When no Fireball was spawned
-// (Classic, r_fireball 0, textures not loaded, a full pool, or an explosion that sent no message of its own, such as a
-// mod's) the sprite is drawn as the game made it. `ent` is the sprite's entity.
+/**
+ * The game's own explosion sprite (BecomeExplosion: exploding boxes and others) is not drawn while the Fireball is
+ * taking its place: a burst of ours was spawned within the last second near the sprite (128 Quake units). When no
+ * Fireball was spawned (Classic, r_fireball 0, textures not loaded, a full pool, or an explosion that sent no message
+ * of its own, such as a mod's) the sprite is drawn as the game made it. Asked by the entity draw loop in gl_rmain.js
+ * for each sprite entity, every frame.
+ *
+ * @param {?entity_t} ent the sprite's entity; only `progs/s_explod.spr` can be replaced
+ * @returns {boolean} true when the sprite must not be drawn
+ */
 export function R_FireballReplacesSprite( ent ) {
 
 	if ( ent == null || deps == null || ! ready || r_fireball.value === 0 || ! R_NewerGame() || bursts.length === 0 ) return false;
@@ -495,11 +595,18 @@ export function R_FireballReplacesSprite( ent ) {
 const RING_NEAR_FADE = [ 0.3, 0.9 ];
 const SPRITE_BURST_WINDOW = 1, SPRITE_BURST_REACH = 128; // seconds, Quake units (a missile that stopped can be interpolated about a frame's travel away)
 
-// Replace one explosion's particles. Returns false when the native particles must be
-// used: Classic, textures not loaded, no scene, r_fireball 0, or a pool full of young
-// bursts. (During the title demo's split view the caller also spawns Classic-only native
-// particles for the Classic half, which hides everything Newer.) `light` drives the native dynamic light from the source's
-// curve; pass false for an event that never had one.
+/**
+ * Replace one explosion's particles: called by render.js's explosion wrappers (R_ParticleExplosion and its colour-
+ * mapped, tar and exploding-box forms) when the client parses the event. (During the title demo's split view the
+ * caller also spawns Classic-only native particles for the Classic half, which hides everything Newer.) A full pool
+ * (6) drops its oldest burst once that is 1.5 s old. The burst's clock starts on the first frame that draws it.
+ *
+ * @param {Array<number>} origin detonation point, world space, Quake units (copied)
+ * @param {{ light?: boolean }} [options] `light` (default true) drives the native dynamic light from the source's
+ * curve; pass false for an event that never had one
+ * @returns {boolean} false when the native particles must be used: Classic, textures not loaded, no scene,
+ * r_fireball 0, no client, or a pool full of young bursts; true when the Fireball took the event
+ */
 export function R_FireballSpawn( origin, { light = true } = {} ) {
 
 	if ( deps == null || ! deps.scene || r_fireball.value === 0 || ! R_NewerGame()) return false;
@@ -602,10 +709,18 @@ function emitSmokePuff( x, y, z, size, angle, alpha, heat, tile, r, g, b, seed )
 const _nose = new Float32Array( NOSE_GLOWS * 3 );
 let _noseCount = 0, _noseStamp = 0, _lastTime = 0;
 
-// A rocket (type 0) or grenade (type 1) moved from `start` to `end` this frame: the supplied
-// smoke trail replaces the native one. `key` is the entity number (each trail has its own
-// carried spacing). Returns false when the native trail must be used (Classic, textures not
-// loaded, no scene, r_smoketrails 0).
+/**
+ * A rocket (type 0) or grenade (type 1) moved from `start` to `end` this frame: the supplied smoke trail replaces the
+ * native one (R_RocketTrail in render.js, per missile per client frame). Emits puffs through `R_SmokeTrailEmit` and,
+ * for a rocket, queues an exhaust glow just behind the nose for this frame (up to 16).
+ *
+ * @param {Array<number>} start the missile's previous position, world space, Quake units
+ * @param {Array<number>} end its position now
+ * @param {boolean} rocket true for a rocket, false for a grenade
+ * @param {number} key the entity number (each trail has its own carried spacing)
+ * @returns {boolean} false when the native trail must be used (Classic, textures not loaded, no scene, no client,
+ * r_smoketrails 0); true when the supplied smoke took it
+ */
 export function R_SmokeTrail( start, end, rocket, key ) {
 
 	if ( deps == null || ! deps.scene || r_smoketrails.value === 0 || ! R_NewerGame() ) return false;
@@ -627,8 +742,19 @@ export function R_SmokeTrail( start, end, rocket, key ) {
 
 }
 
-// Every frame, before the scene renders. `forward` must be the view's current forward
-// vector (not last frame's) so the puffs sort correctly the frame the view turns.
+/**
+ * Every frame, before the scene renders (R_RenderView): writes every live burst's clouds, flash, sparks and ring,
+ * the smoke trails and the exhaust glows into the preallocated instance buffers, sorts the puffs back to front, and
+ * drives each burst's dynamic light. Builds the layers on first use and adds them to the scene. Bursts end after
+ * FIREBALL.duration (4.8 s) or when the clock jumps back more than 1 s; outside Newer Game everything is dropped and
+ * hidden. Allocates nothing per frame after the first build.
+ *
+ * @param {number} time client time, seconds (`cl.time`)
+ * @param {Array<number>} eye the view origin, world space, Quake units
+ * @param {Array<number>} forward must be the view's current forward vector (not last frame's) so the puffs sort
+ * correctly the frame the view turns (unit length)
+ * @param {?Array<number>} viewSize [width, height] of the render target in pixels, for the spark width
+ */
 export function R_FireballFrame( time, eye, forward, viewSize ) {
 
 	const scene = deps?.scene;
@@ -737,7 +863,13 @@ export function R_FireballFrame( time, eye, forward, viewSize ) {
 
 }
 
-// Diagnostic read-only view for tests and the browser trial.
+/**
+ * Diagnostic read-only view for tests and the browser trial.
+ *
+ * @returns {{ ready: boolean, bursts: number, smoke: number, group: boolean, puffs: number, sparks: number, glows: number, rings: number, capacity: ?{ puffs: number, sparks: number } }}
+ * a fresh object: whether the textures are ready, live bursts and smoke puffs, whether the layers are built, the
+ * instance counts drawn last frame, and the puff and spark capacities (null before the first build)
+ */
 export function R_FireballSnapshot() {
 
 	return { ready, bursts: bursts.length, smoke: R_SmokeTrailCount(), group: group !== null,

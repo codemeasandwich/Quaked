@@ -64,6 +64,21 @@ function poseOf( e ) {
 
 }
 
+/**
+ * Works out this frame's view shudder from native Shambler foot plants, sampled from the client entities before
+ * rendering. A Shambler within 600 Quake units whose walk or run frame crosses a heel strike (walk1/walk7, run2/run5)
+ * starts a 0.22 s pulse whose strength falls with the square of distance; first sight, a teleport (> 96 units) or a
+ * stale track (> 0.3 s) never counts as a step. The eye drops, dips in pitch and rolls away from the foot, shuddering
+ * out at 18 Hz, muted while the player is in the air. Only the displayed eye changes; physics, aim and server data
+ * stay intact. Called once per frame by `V_CalcRefdef` (`view.js`), which adds the result to the view origin's height
+ * and to the pitch and roll. Returns all zeros (and forgets tracked Shamblers) outside Newer Game, while not fully
+ * connected, in a demo, paused, at intermission, dead, in a menu or console, or with `v_shamblersteps` 0.
+ *
+ * @param {Array<number>} playerorg the player's origin (Quake units, world space), for the distance to each Shambler
+ * @param {boolean} onGround whether the player stands on the ground; steps are neither started nor felt in the air
+ * @returns {Float64Array} `[ vertical units, pitch degrees, roll degrees ]`, each clamped to +-1.2, +-0.25, +-0.15 and
+ *   scaled by `v_shamblersteps` (at most 1); one module-owned array reused every call (do not keep it)
+ */
 export function V_ShamblerStepShake( playerorg, onGround ) {
 
 	offset.fill( 0 );

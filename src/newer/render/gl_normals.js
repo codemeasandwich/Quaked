@@ -36,8 +36,25 @@ function hashTexels( data ) {
 
 }
 
-// Normal map for a diffuse DataTexture (built once and cached on it).  Returns
-// null for textures we cannot read.
+/**
+ * Normal map for a diffuse DataTexture (built once and cached on it). Called when a lit surface or skin binds its
+ * detail maps (gl_post.js, r_newerskins.js) and ahead of time by the prewarm queues (r_prewarm.js, r_levelview.js).
+ *
+ * The pixels come, in order of preference, from the background preparation (`R_NormalPrepared(diffuse).data.pixels`),
+ * the authored normal donor of the texture's crafted height map, the crafted height (`userData.newerHeight` of the same
+ * size), or generation from the picture plus its fullbright mask. Generated pixels are cached by texel content (at most
+ * 600, oldest dropped) across levels, so the same picture on the next level, or the next visit, needs no new maps.
+ * The result is cached on `diffuse._normalMap` and rebuilt when the prepared data changes; it is disposed with
+ * `diffuse`. A crafted height with an `edgeSource` adds `userData.referenceHeight` / `referenceUV` (the uncarved
+ * material's smoothed height, a lighting reference so only recess depth is shaded); an authored gloss map with any
+ * red above 20 adds `userData.glassGloss`.
+ *
+ * @param {?THREE.DataTexture} diffuse the RGBA diffuse texture, with readable `image.data`; optional `_fullbright`
+ *   (its fullbright DataTexture) and `userData.newerHeight` (crafted height field)
+ * @returns {?THREE.DataTexture} RGBA tangent-space normals with height in alpha (`userData.heightSource` true),
+ *   repeat-wrapped, mipmapped, NoColorSpace, sharing `diffuse.offset`; null for textures we cannot read, or while a
+ *   background preparation for this texture is not yet 'ready'
+ */
 export function R_NormalMapFor( diffuse ) {
 
 	if ( diffuse == null || diffuse.image == null || diffuse.image.data == null ) return null;

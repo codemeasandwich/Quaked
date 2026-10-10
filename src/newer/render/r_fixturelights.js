@@ -16,11 +16,32 @@ const BUNDLED_E1M1_BYTES = 1365176;
 const BUNDLED_E1M1_FNV = 0xa7af00e6;
 export const FIXTURE_CONE = [ Math.cos(18*Math.PI/180), Math.cos(32*Math.PI/180) ];
 const finite3 = v => (Array.isArray(v)||ArrayBuffer.isView(v)) && v.length >= 3 && Array.from(v.slice(0,3)).every(Number.isFinite);
+/**
+ * Validates and normalises a light's cone, used whenever a light is considered for shading (`consider` in
+ * gl_post.js, `R_HeightShadowFrame` in r_heightshadows.js) and by `R_LightConeFactor`.
+ *
+ * @param {Array<number>|Float32Array} direction the cone's axis, exactly three finite numbers, not zero length
+ * @param {Array<number>} cone [inner, outer] cosines of the half-angles, with 1 >= inner > outer > 0 (e.g.
+ *   `FIXTURE_CONE`, 18 and 32 degrees)
+ * @returns {?{ direction: Array<number>, cone: Array<number> }} a new unit-length direction and a copy of the cone, or
+ *   null when either is invalid (the light is then treated as a point light shining every way)
+ */
 export function R_LightCone(direction, cone) {
  if (!finite3(direction) || direction.length!==3 || cone?.length!==2 || ![cone[0],cone[1]].every(Number.isFinite) || cone[0]>1 || cone[0]<=cone[1] || cone[1]<=0) return null;
  const length=Math.hypot(...direction); if(length<1e-8)return null;
  return { direction:Array.from(direction,v=>v/length), cone:[cone[0],cone[1]] };
 }
+/**
+ * How much of a cone light reaches a receiver: the script-side twin of `POINT_CONE_GLSL`'s `pointCone`, a
+ * smoothstep between the outer and inner cosines of the angle off the axis.
+ *
+ * @param {Array<number>} receiver the lit point (world space, Quake units)
+ * @param {Array<number>} source the light's position (world space, Quake units)
+ * @param {Array<number>} direction the cone's axis (need not be unit length)
+ * @param {Array<number>} cone [inner, outer] cosines, as for `R_LightCone`
+ * @returns {number} 0..1: 1 inside the inner cone or for an invalid cone (a point light), 0 outside the outer cone or
+ *   at the source itself
+ */
 export function R_LightConeFactor(receiver, source, direction, cone) {
  const shape=R_LightCone(direction,cone);if(!shape)return 1;
  const delta=receiver.map((v,a)=>v-source[a]),length=Math.hypot(...delta);
@@ -37,6 +58,15 @@ float pointCone(vec3 receiver,int index){
  return smoothstep(uLightCone[index].y,uLightCone[index].x,dot(delta/distance,uLightDirection[index]));
 }
 `;
+/**
+ * Whether the world model is the bundled E1M1, the only map whose fixtures are known: its name is 'maps/e1m1.bsp' and
+ * its source bytes have the bundled length and 32-bit FNV-1a fingerprint. FNV is a fast admission fingerprint, not a
+ * security/hash authenticity claim; known geometry and unique helper matching are checked separately
+ * (`R_ExitFixturePairs`).
+ *
+ * @param {?model_t} model the world model, with `bspSourceBytes` (ArrayBuffer or Uint8Array) as loaded
+ * @returns {boolean} true for the bundled E1M1 bytes
+ */
 export function R_KnownFixtureSource(model) {
  if(model?.name!=='maps/e1m1.bsp')return false;
  const source=model.bspSourceBytes;
@@ -45,10 +75,27 @@ export function R_KnownFixtureSource(model) {
  let hash=2166136261;for(let i=0;i<bytes.length;i++)hash=Math.imul(hash^bytes[i],16777619)>>>0;
  return hash===BUNDLED_E1M1_FNV;
 }
-/** Return one-to-one known exit-corridor panel/helper pairs, never mutating inputs.
- * callbacks read actual polygon geometry and native BSP air leaves. All six
- * panels must qualify; unknown source, incomplete geometry or ambiguity safely
- * retains the original isotropic lights and procedural surface clustering.
+/**
+ * Return one-to-one known exit-corridor panel/helper pairs, never mutating inputs: the six downward-facing 32 x 32
+ * `tlight01` ceiling panels of the bundled E1M1's corridor to its E1M2 exit (on the exit's axis, within 1150 units
+ * beyond it), each matched to the one authored `light` entity 64..88 units below it, with open air (BSP contents
+ * empty) all the way from 10 units under the panel to the helper; a lamp separated by a wall is not a match. Called by
+ * `R_BuildWorldLights` (gl_post.js) at map load to turn those lights into fixture cones. The callbacks read actual
+ * polygon geometry and native BSP air leaves. All six panels must qualify; unknown source, incomplete geometry or
+ * ambiguity safely retains the original isotropic lights and procedural surface clustering.
+ *
+ * @param {model_t} model the world model; must pass `R_KnownFixtureSource`
+ * @param {Array<Object<string, string>>} entities the level's parsed entities (finds the one `trigger_changelevel`
+ *   to e1m2 and its '*n' brush model)
+ * @param {Array<{ classname: string, emitter?: boolean, pos: Array<number> }>} lights the level's world lights
+ *   (world space, Quake units)
+ * @param {{ info: function(msurface_t): ?{ center: Array<number> }, bounds: function(msurface_t): ?Array<number>,
+ *   leaf: function(Array<number>, model_t): mleaf_t }} callbacks `info` gives a surface's polygon centre, `bounds` its
+ *   box as [minX, minY, minZ, maxX, maxY, maxZ], `leaf` is `Mod_PointInLeaf`
+ * @returns {Array<{ face: number, helper: object, position: Array<number>, direction: Array<number>,
+ *   cone: Array<number>, center: Array<number> }>} exactly six pairs (surface index, matched light, source position
+ *   10 units below the panel, downward unit direction, a copy of `FIXTURE_CONE`, panel centre), or [] when any check
+ *   fails
  */
 export function R_ExitFixturePairs(model,entities,lights,{info,bounds,leaf}) {
  if(!R_KnownFixtureSource(model))return [];

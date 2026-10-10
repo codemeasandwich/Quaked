@@ -106,9 +106,26 @@ function bindField( uniforms, camera, field, width, height ) {
 	for ( const [ name, value ] of Object.entries( values ) ) uniforms[ 'u' + name ].value = value;
 }
 
-// Current native invocation clocks, effect-local subject bounds and an optional
-// background depth are borrowed. Hardware scene depth is mandatory: the supplied
-// shader uses bounds for conservative body protection when background is absent.
+/**
+ * The optical pass, from R_PostFinish (gl_post.js) once per rendered frame in Newer Game: runs the supplied shader
+ * once per active field, ping-ponging between the module's two half-float linear targets, over the linear composite.
+ * Current native invocation clocks, effect-local subject bounds and an optional background depth are borrowed.
+ * Hardware scene depth is mandatory: the supplied shader uses bounds for conservative body protection when
+ * background is absent. The targets are created on first use, resized with the input, and kept until
+ * `R_RendVeilOpticsShutdown` (or a different renderer). The renderer's target, viewport, scissor, autoClear and XR
+ * state are restored afterwards.
+ *
+ * @param {THREE.WebGLRenderer} renderer the renderer
+ * @param {THREE.Texture} inputTexture the linear composite; its image size sets the pass size
+ * @param {THREE.Texture} depthTexture the scene's hardware depth
+ * @param {?THREE.Texture} backgroundDepth depth without the rites' subjects, or null to use bounds only
+ * @param {THREE.Camera} camera the view camera
+ * @param {Array<{ center: THREE.Vector3, scale: number, state: Object, toReference?: THREE.Matrix4, subjectBounds?: THREE.Box3 }>} fields
+ * from `R_RendVeilFields` (r_rendveil.js): world-space centre, world units per effect unit, the timeline sample; a
+ * field is active when its state is neither pending nor complete
+ * @returns {THREE.Texture} the last target written (owned here, overwritten next frame), or `inputTexture` itself when
+ * nothing is active or an argument is missing
+ */
 export function R_RendVeilOptics( renderer, inputTexture, depthTexture, backgroundDepth, camera, fields ) {
 	if ( ! renderer || ! inputTexture || ! depthTexture || ! camera || ! fields?.length ) return inputTexture;
 	const active = fields.filter( field => field?.center?.isVector3 && Number.isFinite( field.scale ) && field.scale > 0
@@ -150,6 +167,10 @@ export function R_RendVeilOptics( renderer, inputTexture, depthTexture, backgrou
 	return result;
 }
 
+/**
+ * Disposes the pass's two targets, material and geometry: from R_PostShutdown, and before switching to another
+ * renderer. Does nothing when nothing is allocated.
+ */
 export function R_RendVeilOpticsShutdown() {
 	if ( gpu === null ) return;
 	for ( const target of gpu.targets ) target.dispose();
