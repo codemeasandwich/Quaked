@@ -289,8 +289,9 @@ export function R_WallBurnShot( p ) {
 
 }
 
-// a monster's box this frame: its current frame's own bounds (a corpse lies low), turned any way (the widest of them
-// about its origin), else the whole model's
+// a model's box this frame, about its origin: its current frame's own bounds (a corpse lies low), turned any way (the
+// widest of them about its origin), else the whole model's (also the depth of field's focus ray, card [38])
+export function R_AliasFrameBox( e ) { return boxOf( e ); }
 function boxOf( e ) {
 
 	const m = e.model, h = m.cache?.data, f = h?.frames?.[ e.frame ];

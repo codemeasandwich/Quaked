@@ -39,7 +39,7 @@ import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRip
 import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from './r_waves.js';
 import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear, R_LightningTakesBeam } from './r_lightning.js';
 import { CL_PlayerLightning } from './cl_tent.js';
-import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear } from './r_wallburn.js';
+import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear, R_AliasFrameBox } from './r_wallburn.js';
 import { r_dof, R_DofSetup, R_DofFrame, R_DofClear } from './r_dof.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
@@ -949,6 +949,39 @@ const _setupgl_drawingBufferSize = new THREE.Vector2();
 let _gunPlacedFrame = - 1;
 // the held lightning gun's muzzle (the front of its own geometry) and its placement, for the beam (r_lightning.js): only a gun
 // placed this frame
+// The depth-of-field focus ray (card [38]): the level, its brush entities (doors, lifts, trains) and the models drawn
+// this frame (monsters, items; in the chase view the player) by their boxes. { fraction, startsolid }.
+const _dofBrushes = [];
+function R_DofTrace( a, b ) {
+
+	_dofBrushes.length = 0;
+	for ( let i = 0; i < cl_numvisedicts; i ++ ) { const e = cl_visedicts[ i ]; if ( e?.model?.name?.startsWith( '*' ) ) _dofBrushes.push( e ); }
+	const t = R_ShellTrace( cl.worldmodel, a, b, 0, _dofBrushes );
+	if ( t.startsolid ) return { fraction: 0, startsolid: true };
+	let fraction = t.fraction;
+	for ( let i = 0; i < cl_numvisedicts; i ++ ) {
+
+		const e = cl_visedicts[ i ], m = e?.model;
+		if ( m == null || m.type !== mod_alias ) continue;
+		const box = R_AliasFrameBox( e ); // (the frame's own bounds: the model's are a generic cube)
+		if ( box === null ) continue;
+		let t0 = 0, t1 = fraction, hit = true;
+		for ( let k = 0; k < 3 && hit; k ++ ) {
+
+			const d = b[ k ] - a[ k ], lo = e.origin[ k ] + box[ 0 ][ k ], hi = e.origin[ k ] + box[ 1 ][ k ];
+			if ( Math.abs( d ) < 1e-9 ) { if ( a[ k ] < lo || a[ k ] > hi ) hit = false; continue; }
+			let u = ( lo - a[ k ] ) / d, v = ( hi - a[ k ] ) / d;
+			if ( u > v ) [ u, v ] = [ v, u ];
+			t0 = Math.max( t0, u ); t1 = Math.min( t1, v ); if ( t0 > t1 ) hit = false;
+
+		}
+		if ( hit && t0 > 0 ) fraction = t0; // (a box the eye is inside is not a target)
+
+	}
+	return { fraction, startsolid: false };
+
+}
+
 function R_LightningMuzzle() {
 
 	const e = cl?.viewent, mesh = e?._aliasMesh;
@@ -2240,7 +2273,7 @@ export function R_NewMap() {
 	R_TorchFireClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
 	R_LightningSetup( { scene, camera: () => camera, muzzle: R_LightningMuzzle, beam: CL_PlayerLightning, allocDlight: CL_AllocDlight } );
-	R_DofSetup( { xr: isXRActive } );
+	R_DofSetup( { xr: isXRActive, trace: R_DofTrace, pointInLeaf: Mod_PointInLeaf, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
 	R_WallBurnSetup( { scene, renderer: () => renderer, cl: () => cl, pointInLeaf: Mod_PointInLeaf, beam: CL_PlayerLightning, entities: () => cl_visedicts.slice( 0, cl_numvisedicts ), self: () => cl_entities[ cl?.viewentity ] } );
 	R_WavesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), waterOn: R_WaterActive } );
 	R_ImpactRippleListen( R_WaveImpact );

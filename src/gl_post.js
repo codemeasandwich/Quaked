@@ -49,7 +49,7 @@ import { R_TeleportFx } from './r_teleportfx.js';
 import { R_RendVeilFields, R_RendVeilBackgroundDepth, R_RendVeilLights } from './r_rendveil.js';
 import { R_RendVeilOptics, R_RendVeilOpticsShutdown } from './r_rendveil_optics.js';
 import { R_PerfStage, R_PerfSetScale } from './r_perf.js';
-import { R_DofFocus, R_DofCircle } from './r_dof.js';
+import { R_DofFocus, R_DofCircle, R_DofFar } from './r_dof.js';
 import { R_FlashlightBeam, FLASHLIGHT_OUTER, FLASHLIGHT_INNER } from './r_flashlight.js';
 import { R_WaterProbeUpdate, R_WaterProbeFor, R_WaterProbes, R_WaterProbeReadiness, WATER_PROBE_LIFT } from './r_waterprobe.js';
 import { R_AnimSetNewer, R_AnimSetLighting, R_NewerGame, r_newer_lighting, r_newer_normals, r_newer_water, r_newer_textures, r_newer_shadows } from './r_anim.js';
@@ -2908,6 +2908,48 @@ void main() {
 
 // The composite target stores linear colour. Convert and grade exactly once,
 // after upscaling, so brightness/contrast keep their display-space meaning.
+// Depth of field (card [38], r_dof.js): its own pass at the composite's resolution (dynamic resolution reduces it), after
+// the vision modes and before the present pass. uDof.x = focus distance, y = strength in composite pixels, z = the largest
+// circle; uDofFar = the depth the sky counts as (the far focus: a far focus leaves the sky sharp); uDofTexel = a pixel.
+// The held gun (G-buffer packet a < -2) is never blurred nor blurred into. The 16 taps turn per pixel (interleaved
+// gradient noise), so a small bright light behind a blur spreads as a disc rather than sixteen copies.
+const DOF_FRAGMENT = `
+uniform sampler2D tComposite;
+uniform sampler2D tDepth;
+uniform sampler2D tNormal;
+uniform mat4 uProjInv;
+uniform vec3 uDof;
+uniform vec2 uDofTexel;
+uniform float uDofFar;
+varying vec2 vUv;
+float dofDepth( vec2 uv ) {
+	float d = texture2D( tDepth, uv ).x;
+	if ( d >= 0.99999 ) return uDofFar; // the sky: the far focus
+	vec4 v = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );
+	return max( - v.z / v.w, 1.0 );
+}
+bool dofHeld( vec2 uv ) { return texture2D( tNormal, uv ).a < - 2.0; }
+float dofCircle( float z ) { return min( uDof.z, uDof.y * abs( 1.0 - uDof.x / z ) ); }
+void main() {
+	vec3 base = texture2D( tComposite, vUv ).rgb;
+	gl_FragColor = vec4( base, 1.0 );
+	if ( dofHeld( vUv ) ) return;
+	float z = dofDepth( vUv ), c = dofCircle( z );
+	if ( c < 0.5 ) return;
+	float turn = 6.2831853 * fract( 52.9829189 * fract( dot( gl_FragCoord.xy, vec2( 0.06711056, 0.00583715 ) ) ) );
+	vec3 sum = base; float total = 1.0;
+	for ( int i = 0; i < 16; i ++ ) {
+		float r = sqrt( ( float( i ) + 0.5 ) / 16.0 ), a = float( i ) * 2.39996 + turn;
+		vec2 at = vUv + vec2( cos( a ), sin( a ) ) * r * c * uDofTexel;
+		if ( dofHeld( at ) ) continue;
+		float sz = dofDepth( at );
+		// a nearer sample counts only as far as its own circle reaches here (a sharp thing in front keeps its edge)
+		float w = sz < z ? clamp( dofCircle( sz ) / max( r * c, 1e-3 ), 0.0, 1.0 ) : 1.0;
+		sum += texture2D( tComposite, at ).rgb * w; total += w;
+	}
+	gl_FragColor = vec4( sum / total, 1.0 );
+}`;
+
 const PRESENT_FRAGMENT = `
 uniform sampler2D tComposite;
 uniform float uBright;
@@ -2954,34 +2996,6 @@ vec2 screenOf( vec3 p ) {
 	vec4 q = uProj * vec4( transpose( mat3( uViewInv ) ) * ( p - uViewInv[ 3 ].xyz ), 1.0 );
 	return q.xy / q.w * 0.5 + 0.5;
 }
-// Depth of field (card [38], r_dof.js): uDof.x = focus distance (0 off), y = strength in composite pixels, z = the largest
-// circle; uDofTexel = one composite pixel. The held gun (G-buffer packet a < -2) is never blurred nor blurred into.
-uniform vec3 uDof;
-uniform vec2 uDofTexel;
-float dofDepth( vec2 uv ) {
-	float d = texture2D( tDepth, uv ).x;
-	if ( d >= 0.99999 ) return 1e5; // the sky: as far as can be
-	vec4 v = uProjInv * vec4( uv * 2.0 - 1.0, d * 2.0 - 1.0, 1.0 );
-	return max( - v.z / v.w, 1.0 );
-}
-bool dofHeld( vec2 uv ) { return texture2D( tNormal, uv ).a < - 2.0; }
-float dofCircle( float z ) { return min( uDof.z, uDof.y * abs( 1.0 - uDof.x / z ) ); }
-vec3 dofGather( vec2 uv, vec3 base ) {
-	if ( dofHeld( uv ) ) return base;
-	float z = dofDepth( uv ), c = dofCircle( z );
-	if ( c < 0.5 ) return base;
-	vec3 sum = base; float total = 1.0;
-	for ( int i = 0; i < 16; i ++ ) {
-		float r = sqrt( ( float( i ) + 0.5 ) / 16.0 ), a = float( i ) * 2.39996;
-		vec2 at = uv + vec2( cos( a ), sin( a ) ) * r * c * uDofTexel;
-		if ( dofHeld( at ) ) continue;
-		float sz = dofDepth( at );
-		// a nearer sample counts only as far as its own circle reaches here (a sharp thing in front keeps its edge)
-		float w = sz < z ? clamp( dofCircle( sz ) / max( r * c, 1e-3 ), 0.0, 1.0 ) : 1.0;
-		sum += texture2D( tComposite, at ).rgb * w; total += w;
-	}
-	return sum / total;
-}
 void main() {
 	vec2 uv = vUv;
 	float glint = 0.0, facing = 0.0;
@@ -3004,7 +3018,6 @@ void main() {
 		}
 	}
 	gl_FragColor = texture2D( tComposite, uv );
-	if ( uDof.x > 0.0 ) gl_FragColor.rgb = dofGather( uv, gl_FragColor.rgb );
 	gl_FragColor.rgb = gl_FragColor.rgb * ( 1.0 + facing ) + glint * ( 0.3 + 0.9 * dot( gl_FragColor.rgb, vec3( 0.2126, 0.7152, 0.0722 ) ) );
 	#include <colorspace_fragment>
 	vec3 shown = gl_FragColor.rgb * uBright;
@@ -3202,9 +3215,13 @@ function createPipeline() {
 			tComposite: { value: null }, uBright: { value: 1 },
 			uWaves: { value: 0 }, tDepth: shared.tDepth, tNormal: { value: null }, uProj: shared.uProj, uProjInv: shared.uProjInv, uViewInv: shared.uViewInv,
 			uWaterWave: { value: waterWave }, tWaves: { value: R_WaveTexture() },
-			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 },
-			uDof: { value: new THREE.Vector3() }, uDofTexel: { value: new THREE.Vector2() }
-		} )
+			uContrastGain: { value: 1 }, uContrastPivot: { value: 0.2 }
+		} ),
+		dofMaterial: makeMaterial( DOF_FRAGMENT, {
+			tComposite: { value: null }, tDepth: shared.tDepth, tNormal: { value: null }, uProjInv: shared.uProjInv,
+			uDof: { value: new THREE.Vector3() }, uDofTexel: { value: new THREE.Vector2() }, uDofFar: { value: 4096 }
+		} ),
+		dof: null
 	};
 
 }
@@ -3217,6 +3234,8 @@ function disposeTargets() {
 	gpu.volume.dispose();
 	if ( gpu.composite !== null ) gpu.composite.dispose();
 	gpu.composite = null;
+	if ( gpu.dof !== null ) gpu.dof.dispose();
+	gpu.dof = null;
 	for ( const rt of gpu.down ) rt.dispose();
 	for ( const rt of gpu.up ) rt.dispose();
 	gpu.hdr = null;
@@ -3794,8 +3813,17 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 		shown.uContrastPivot.value = cm.uContrastPivot.value;
 		shown.uWaves.value = waves ? 1 : 0;
 		shown.tNormal.value = cm.tNormal.value;
-		const [ dofPx, dofMax ] = R_DofCircle( hdr.height );
-		shown.uDof.value.set( dofFocus, dofPx, dofMax ); shown.uDofTexel.value.set( 1 / hdr.width, 1 / hdr.height );
+		if ( dofFocus > 0 ) {
+
+			if ( p.dof === null || p.dof.width !== hdr.width || p.dof.height !== hdr.height ) { p.dof?.dispose(); p.dof = makeRT( hdr.width, hdr.height ); }
+			const d = p.dofMaterial.uniforms, [ dofPx, dofMax ] = R_DofCircle( hdr.height );
+			d.tComposite.value = shown.tComposite.value; d.tNormal.value = cm.tNormal.value;
+			d.uDof.value.set( dofFocus, dofPx, dofMax ); d.uDofTexel.value.set( 1 / hdr.width, 1 / hdr.height ); d.uDofFar.value = R_DofFar();
+			runPass( renderer, p.dofMaterial, p.dof );
+			shown.tComposite.value = p.dof.texture;
+			R_PerfStage( 'depth of field' );
+
+		}
 
 	} else { R_PowerVisionReset(); R_QuadVisionReset(); }
 

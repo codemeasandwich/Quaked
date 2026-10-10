@@ -2276,8 +2276,7 @@ function M_Newer_Draw() {
 	}
 
 	const notes = NEWER_ROW0 + NEWER_FEATURES.length * 8 + 6;
-	M_Print( 16, notes, ' Newer Game only. Lighting, normals' );
-	M_Print( 16, notes + 8, ' and liquids switch independently.' );
+	M_Print( 16, notes, ' Newer Game only. Each switches alone.' ); // (one line: the panel ends below it)
 
 	M_DrawCharacter( 200, NEWER_ROW0 + m_newer_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
 
