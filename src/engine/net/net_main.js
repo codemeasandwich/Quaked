@@ -7,7 +7,7 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `listening`, `slistStartTime`, `slistLastShown`,
- * `configRestored`, `pollProcedureList`.
+ * `pollProcedureList`.
  *
  * Errors: calls `Sys_Error` (fatal) at 2 places.
  */
@@ -84,8 +84,6 @@ let slistLastShown = 0;
 
 const net_messagetimeout = new cvar_t( 'net_messagetimeout', '300' );
 export const hostname = new cvar_t( 'hostname', 'UNNAMED' );
-
-let configRestored = false;
 
 let pollProcedureList = null;
 
@@ -1138,11 +1136,8 @@ NET_Poll
 /**
  * Runs every scheduled poll procedure whose time has come, in time order (WinQuake net_main.c). Called by the host
  * once per frame. Each procedure is removed before it runs and may reschedule itself with `SchedulePollProcedure`.
- * Also sets the module's `configRestored` flag, which nothing else reads.
  */
 export function NET_Poll() {
-
-	configRestored = true;
 
 	SetNetTime();
 

@@ -143,7 +143,6 @@ The server uses:
 - `room_process_manager.ts` - Starts, tracks and stops a room server process per room
 - `net_webtransport_server.ts` - WebTransport server driver (the engine's network driver 1 on the server)
 - `sys_server.ts` - Deno system interface (printing, time)
-- `sys_deno.js` - an older Deno system interface that nothing imports (kept; noted in card [44g]'s review)
 - `test_imports.js` - Smoke check that the engine's modules load under Deno
 
 The older TypeScript server (`main.ts`, with its own copies of engine parts in `host_server.ts`, `mod_server.ts`,
