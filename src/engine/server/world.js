@@ -439,7 +439,8 @@ SV_TouchLinks
 */
 /**
  * Runs the touch function of every SOLID_TRIGGER entity with a touch function whose absolute box overlaps `ent`,
- * walking the area tree from `node` down every side the entity's box reaches (WinQuake world.c). Called by
+ * found in the area tree from `node` down every side the entity's box reaches (WinQuake world.c). They are collected
+ * first and touched after, each checked again (not freed, still a trigger, still overlapping), as QuakeSpasm does. Called by
  * `SV_LinkEdict` when `touch_triggers` is set. When a touch carries the entity through a camera portal it is
  * relinked at once (without touching triggers again).
  *
@@ -449,41 +450,41 @@ SV_TouchLinks
  */
 export function SV_TouchLinks( ent, node ) {
 
-	// touch linked edicts
-	let l = node.trigger_edicts.next;
-	while ( l !== node.trigger_edicts ) {
+	// the triggers first, then their touches (QuakeSpasm's order; card [44m]): a touch may free another trigger, and a
+	// freed edict's area link points at itself, so walking the list while touching could loop on it forever
+	const touched = [];
+	SV_AreaTriggers( ent, node, touched );
+	for ( const touch of touched ) {
 
-		const next = l.next;
-		const touch = l._owner; // EDICT_FROM_AREA(l)
-		if ( ! touch || touch === ent ) {
-
-			l = next;
-			continue;
-
-		}
-
-		if ( ! touch.v.touch || touch.v.solid !== SOLID_TRIGGER ) {
-
-			l = next;
-			continue;
-
-		}
-
-		if ( ent.v.absmin[ 0 ] > touch.v.absmax[ 0 ]
-			|| ent.v.absmin[ 1 ] > touch.v.absmax[ 1 ]
-			|| ent.v.absmin[ 2 ] > touch.v.absmax[ 2 ]
-			|| ent.v.absmax[ 0 ] < touch.v.absmin[ 0 ]
-			|| ent.v.absmax[ 1 ] < touch.v.absmin[ 1 ]
-			|| ent.v.absmax[ 2 ] < touch.v.absmin[ 2 ] ) {
-
-			l = next;
-			continue;
-
-		}
+		if ( touch.free || ! touch.v.touch || touch.v.solid !== SOLID_TRIGGER || ! SV_TriggerOverlaps( ent, touch ) )
+			continue; // an earlier touch removed it, or moved one of the two
 
 		if ( SV_RunTriggerTouch( ent, touch ) ) SV_LinkEdict( ent, false );
 
-		l = next;
+	}
+
+}
+
+// does `ent`'s absolute box overlap the trigger's?
+function SV_TriggerOverlaps( ent, touch ) {
+
+	return ! ( ent.v.absmin[ 0 ] > touch.v.absmax[ 0 ]
+		|| ent.v.absmin[ 1 ] > touch.v.absmax[ 1 ]
+		|| ent.v.absmin[ 2 ] > touch.v.absmax[ 2 ]
+		|| ent.v.absmax[ 0 ] < touch.v.absmin[ 0 ]
+		|| ent.v.absmax[ 1 ] < touch.v.absmin[ 1 ]
+		|| ent.v.absmax[ 2 ] < touch.v.absmin[ 2 ] );
+
+}
+
+// the SOLID_TRIGGER edicts with a touch function that overlap `ent`, from `node` down every side its box reaches
+function SV_AreaTriggers( ent, node, out ) {
+
+	for ( let l = node.trigger_edicts.next; l !== node.trigger_edicts; l = l.next ) {
+
+		const touch = l._owner; // EDICT_FROM_AREA(l)
+		if ( touch && touch !== ent && touch.v.touch && touch.v.solid === SOLID_TRIGGER && SV_TriggerOverlaps( ent, touch ) )
+			out.push( touch );
 
 	}
 
@@ -492,9 +493,9 @@ export function SV_TouchLinks( ent, node ) {
 		return;
 
 	if ( ent.v.absmax[ node.axis ] > node.dist )
-		SV_TouchLinks( ent, node.children[ 0 ] );
+		SV_AreaTriggers( ent, node.children[ 0 ], out );
 	if ( ent.v.absmin[ node.axis ] < node.dist )
-		SV_TouchLinks( ent, node.children[ 1 ] );
+		SV_AreaTriggers( ent, node.children[ 1 ], out );
 
 }
 
