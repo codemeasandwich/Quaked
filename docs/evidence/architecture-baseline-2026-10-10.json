@@ -1,5 +1,5 @@
 {
- "commit": "7633c31 (git archive 7633c31, with the next commit's tools/architecture_graph.mjs and tools/architecture_classify.mjs, which differ from 7633c31's only in one comment)",
+ "commit": "dbeadbb (git archive dbeadbb, with the next commit's tools/architecture_graph.mjs and tools/architecture_classify.mjs)",
  "tools": [
   "tools/architecture_graph.mjs",
   "tools/architecture_classify.mjs"
@@ -39930,7 +39930,12 @@
      "file": "server/pak_server.ts",
      "function": "COM_LoadFileAsString"
     }
-   ]
+   ],
+   "serverCopyFiles": {
+    "server/host_server.ts": 15,
+    "server/mod_server.ts": 16,
+    "server/pak_server.ts": 7
+   }
   },
   "missing": [
    {
@@ -40208,48 +40213,70 @@
   ],
   "modeHome": {
    "R_NewerGame": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "R_AnimSetClassicPass": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "R_ClassicPassActive": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "R_AnimSetNewer": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "R_AnimSetLighting": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "R_NewerLightingActive": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "R_IsNewer": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "r_newer_water": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "r_newer_lighting": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "r_newer_normals": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    },
    "r_newer_enemies": {
-    "module": "src/r_anim.js",
-    "importsAnim": true
+    "declaredIn": [
+     "src/r_anim.js"
+    ],
+    "done": false
    }
   },
   "orphans": [
@@ -43508,7 +43535,7 @@
      "FAIL actual START hub ground/wall rock4_1 and Hard bricka2_2 use exact owner presets on connected matching pieces while metal stays native Error: Command failed: git show HEAD:newer/textures/bricka2_2.webp",
      "FAIL public material/compositor shader preserves UV conversion and ordinary alpha1 with byte-compatible sun visibility ReferenceError: glass is not defined"
     ],
-    "classification": "real failure, fixed in 43a3641 (test behind a source change)"
+    "classification": "real failure, fixed in 43a3641 (test behind a source change); also git history (an export has none)"
    },
    {
     "suite": "tests/rockfield_test.js",

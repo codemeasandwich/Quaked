@@ -246,7 +246,10 @@ hidden.srcLiterals = [ ...new Map( ( hidden.srcLiterals || [] ).map( l => [ l.fi
 { const declared = new Set( src.flatMap( f => [ ...text[ f ].matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s*(\w+)\s*\(/g ) ].map( m => m[ 1 ] ) ) );
 	const server = Object.entries( text ).filter( ( [ f ] ) => f.startsWith( 'server/' ) && f.endsWith( '.ts' ) ).flatMap( ( [ f, s ] ) => [ ...s.matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(/g ) ].map( m => ( { file: f, function: m[ 1 ] } ) ) );
 	hidden.serverReimplements = server.filter( d => declared.has( d.function ) );
-	hidden.serverEnginePrefixed = server.filter( d => /^(SV_|Host_|MSG_|Mod_|COM_)/.test( d.function ) ); }
+	hidden.serverEnginePrefixed = server.filter( d => /^(SV_|Host_|MSG_|Mod_|COM_)/.test( d.function ) );
+	// D5's check is by file, since a name check cannot show a copy is gone (a renamed copy keeps its body): the files holding
+	// the engine-logic copies, and how many functions each still declares ( function x(, or const x = ( … ) => / function )
+	hidden.serverCopyFiles = Object.fromEntries( [ 'server/host_server.ts', 'server/mod_server.ts', 'server/pak_server.ts' ].map( f => [ f, text[ f ] === undefined ? null : ( text[ f ].match( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s*\w+\s*\(|(?:^|\n)\s*(?:export\s+)?(?:const|let|var)\s+\w+\s*(?::[^=\n]+)?=\s*(?:async\s*)?(?:function\b|\([^)]*\)\s*(?::[^=\n]+)?=>|\w+\s*=>)/g ) || [] ).length ] ) ); }
 hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.writes, g ] ) ).values() ];
 
 // --- counts the baseline states ---
@@ -271,9 +274,10 @@ for ( const f of src ) if ( ! adapters[ f ] ) for ( const m of text[ f ].matchAl
 
 }
 const modeOnly = Object.entries( animImporters ).filter( ( [ , names ] ) => names.every( n => MODE.has( n ) ) ).map( ( [ f ] ) => f );
-// where each mode name is declared (not re-exported), and whether that module imports anything from r_anim.js: D2 is done
-// when every name is declared outside r_anim.js in a module that does not
-const modeHome = Object.fromEntries( [ ...MODE ].map( n => { const f = src.find( f => ! adapters[ f ] && new RegExp( '(?:^|\\n)\\s*export\\s+(?:const|let|var|(?:async\\s+)?function)\\s+' + n + '\\b' ).test( text[ f ] ) ); return [ n, f ? { module: f, importsAnim: f === anim || !! animImporters[ f ] } : null ]; } ) );
+// where each mode name is declared (not re-exported): D2 is done when each name has exactly one declaration, outside
+// r_anim.js, in a module that does not reach r_anim.js through its imports (a copy left behind, or a facade, fails it)
+const reachesAnim = f => { const seen = new Set( [ f ] ), todo = [ f ]; while ( todo.length ) { const x = todo.pop(); if ( x === anim ) return true; for ( const e of evaluation ) if ( e.from === x ) { const t = through( e.to ); if ( ! seen.has( t ) ) { seen.add( t ); todo.push( t ); } } } return false; };
+const modeHome = Object.fromEntries( [ ...MODE ].map( n => { const declaring = src.filter( f => ! adapters[ f ] && new RegExp( '(?:^|\\n)\\s*export\\s+(?:const|let|var|(?:async\\s+)?function)\\s+' + n + '\\b' ).test( text[ f ] ) ); return [ n, { declaredIn: declaring, done: declaring.length === 1 && declaring[ 0 ] !== anim && ! reachesAnim( declaring[ 0 ] ) } ]; } ) );
 // modules nothing imports, by any edge (orphans), other than the entry points' own targets
 const imported = new Set( edges.map( e => e.to ) );
 const orphans = src.filter( f => ! imported.has( f ) );
