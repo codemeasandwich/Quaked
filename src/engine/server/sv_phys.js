@@ -207,6 +207,15 @@ export let pr_global_struct = null;
 export let host_frametime = 0;
 export let pr_strings = '';
 
+/**
+ * Points the physics module at the current server state and QuakeC globals. Called by sv_main.js's `SV_SpawnServer`
+ * at each map load, after `PR_LoadProgs` so `pr_global_struct` is valid; the references are kept until the next call.
+ *
+ * @param {server_t} _sv the server (`sv`): edicts, `num_edicts` and `time` (seconds) are used
+ * @param {server_static_t} _svs the persistent server state (`svs`): `clients` and `maxclients` are used
+ * @param {globalvars_t} _pr_global_struct the QuakeC globals (`self`, `other`, `time`, `force_retouch` and the
+ *   `StartFrame`/`PlayerPreThink`/`PlayerPostThink` function numbers)
+ */
 export function SV_SetState( _sv, _svs, _pr_global_struct ) {
 
 	sv = _sv;
@@ -215,12 +224,24 @@ export function SV_SetState( _sv, _svs, _pr_global_struct ) {
 
 }
 
+/**
+ * Sets the length of the physics frame (`host_frametime` here). Called by host.js's `Host_ServerFrame` before each
+ * `SV_Physics`; the value stays until the next call.
+ *
+ * @param {number} dt the host frame time in seconds
+ */
 export function SV_SetFrametime( dt ) {
 
 	host_frametime = dt;
 
 }
 
+/**
+ * Sets `sv_player`, the edict of the client whose messages are being processed. Called by sv_user.js's
+ * `SV_RunClients` for each active client; `SV_WalkMove` reads its water-jump flag. Stays set until the next call.
+ *
+ * @param {edict_t} ent the client's player edict
+ */
 export function SV_SetPlayer( ent ) {
 
 	sv_player = ent;
@@ -240,6 +261,21 @@ export let PROG_TO_EDICT = null;
 export let NEXT_EDICT = null;
 export let GetEdictFieldValue = null;
 
+/**
+ * Installs the world, sound and QuakeC entry points this module calls (they live in modules that import this one).
+ * Called by sv_main.js's `SV_SpawnServer` at each map load. Explicit null restores an uninitialized hook after
+ * isolated physics trials; omitted/undefined hooks retain the normal host wiring. `SV_StartSound`, `PROG_TO_EDICT`,
+ * `NEXT_EDICT` and `GetEdictFieldValue` are only replaced by a truthy value, so null leaves them as they were.
+ *
+ * @param {{ SV_Move?: ?function(Float32Array, Float32Array, Float32Array, Float32Array, number, edict_t): trace_t,
+ *   SV_TestEntityPosition?: ?function(edict_t): ?edict_t, SV_LinkEdict?: ?function(edict_t, boolean): void,
+ *   SV_PointContents?: ?function(Float32Array): number,
+ *   SV_StartSound?: function(edict_t, number, string, number, number): void,
+ *   PR_ExecuteProgram?: ?function(number): void, EDICT_TO_PROG?: ?function(edict_t): number,
+ *   PROG_TO_EDICT?: function(number): edict_t, NEXT_EDICT?: function(edict_t): edict_t,
+ *   GetEdictFieldValue?: function(edict_t, string): ?{ accessor: DataView, ofs: number } }} callbacks the hooks, named
+ *   as the exported bindings they replace
+ */
 export function SV_SetCallbacks( callbacks ) {
 
 	// Explicit null restores an uninitialized hook after isolated physics
@@ -268,6 +304,11 @@ function IS_NAN( x ) {
 SV_CheckAllEnts
 ================
 */
+/**
+ * Debug check (WinQuake sv_phys.c): prints "entity in invalid position" for every in-use entity, other than
+ * pushers and MOVETYPE_NONE/FOLLOW/NOCLIP entities, that `SV_TestEntityPosition` finds in solid. Nothing in the engine
+ * calls it.
+ */
 export function SV_CheckAllEnts() {
 
 	let check;
@@ -296,6 +337,13 @@ export function SV_CheckAllEnts() {
 SV_CheckVelocity
 ================
 */
+/**
+ * Bounds an entity's velocity (WinQuake sv_phys.c): a NaN velocity or origin component is reported ("Got a NaN
+ * velocity/origin on <classname>") and zeroed, and each velocity component is clamped to +/- `sv_maxvelocity`
+ * (default 2000 Quake units per second). Called before client, toss and freefall moves.
+ *
+ * @param {edict_t} ent the entity; mutates `ent.v.velocity` and `ent.v.origin`
+ */
 export function SV_CheckVelocity( ent ) {
 
 	//
@@ -329,13 +377,18 @@ export function SV_CheckVelocity( ent ) {
 /*
 =============
 SV_RunThink
-
-Runs thinking code if time. There is some play in the exact time the think
-function will be called, because it is called before any movement is done
-in a frame. Not used for pushmove objects, because they must be exact.
-Returns false if the entity removed itself.
 =============
 */
+/**
+ * Runs thinking code if time (WinQuake sv_phys.c): when `nextthink` is positive and falls before the end of this frame
+ * (`sv.time + host_frametime`) it clears `nextthink`, sets QuakeC `time` (to `nextthink`, but never in the past),
+ * `self` = the entity and `other` = world, and runs `ent.v.think`. There is some play in the exact time the think
+ * function will be called, because it is called before any movement is done in a frame. Not used for pushmove
+ * objects, because they must be exact. While the rend-veil hook holds the entity, nothing runs.
+ *
+ * @param {edict_t} ent the entity
+ * @returns {boolean} false if the entity removed itself (it is free after its think), true otherwise
+ */
 export function SV_RunThink( ent ) {
 	// Preserve the pending native thinker for the first Focus tick, including
 	// callers that use this public think entry point outside SV_Physics.
@@ -363,10 +416,16 @@ export function SV_RunThink( ent ) {
 /*
 ==================
 SV_Impact
-
-Two entities have touched, so run their touch functions
 ==================
 */
+/**
+ * Two entities have touched, so run their touch functions (WinQuake sv_phys.c): each entity's QuakeC `touch` runs,
+ * if it has one and is not SOLID_NOT, with `self` = that entity and `other` = the other one and `time` = `sv.time`.
+ * QuakeC `self` and `other` are restored afterwards. Called after a move clips against something.
+ *
+ * @param {edict_t} e1 the entity that moved
+ * @param {edict_t} e2 the entity it hit
+ */
 export function SV_Impact( e1, e2 ) {
 
 	const old_self = pr_global_struct.self;
@@ -397,11 +456,18 @@ export function SV_Impact( e1, e2 ) {
 /*
 ==================
 ClipVelocity
-
-Slide off of the impacting object
-returns the blocked flags (1 = floor, 2 = step / wall)
 ==================
 */
+/**
+ * Slide off of the impacting object (WinQuake sv_phys.c): removes the part of the velocity going into the plane,
+ * scaled by `overbounce`, and snaps components within 0.1 of zero to 0.
+ *
+ * @param {Float32Array|Array<number>} _in velocity to clip (Quake units per second)
+ * @param {Float32Array} normal unit normal of the surface hit
+ * @param {Float32Array|Array<number>} out written: the clipped velocity; may be the same array as `_in`
+ * @param {number} overbounce 1 to slide along the plane, more to bounce off it (1.5 for MOVETYPE_BOUNCE)
+ * @returns {number} the blocked flags (1 = floor, a normal pointing up; 2 = step / wall, a vertical plane)
+ */
 export function ClipVelocity( _in, normal, out, overbounce ) {
 
 	let blocked = 0;
@@ -429,15 +495,23 @@ export function ClipVelocity( _in, normal, out, overbounce ) {
 /*
 ============
 SV_FlyMove
-
-The basic solid body movement clip that slides along multiple planes
-Returns the clipflags if the velocity was modified (hit something solid)
-1 = floor
-2 = wall / step
-4 = dead stop
-If steptrace is not null, the trace of any vertical wall hit will be stored
 ============
 */
+/**
+ * The basic solid body movement clip that slides along multiple planes (WinQuake sv_phys.c): up to 4 traces with
+ * `SV_Move`, clipping the velocity against up to 5 planes and running `SV_Impact` on each hit. Landing on a floor
+ * (normal z > 0.7) of a SOLID_BSP entity sets FL_ONGROUND and `groundentity`. Used for walking, flying and freefall.
+ * Moves `ent.v.origin` and changes `ent.v.velocity` in place; stops early if an impact frees the entity.
+ *
+ * @param {edict_t} ent the moving entity
+ * @param {number} time seconds of movement to cover at the entity's velocity
+ * @param {?Object} steptrace if steptrace is not null, the trace of any vertical wall hit will be stored (copied into
+ *   it with `Object.assign`)
+ * @returns {number} the clipflags if the velocity was modified (hit something solid): 1 = floor, 2 = wall / step,
+ *   4 = dead stop; trapped in solid or out of clip planes returns 3 and a corner of more than two planes returns 7,
+ *   both with the velocity zeroed; 0 when nothing was hit
+ * @throws {Error} via `Sys_Error` when a partial move reports no entity hit ("SV_FlyMove: !trace.ent")
+ */
 export function SV_FlyMove( ent, time, steptrace ) {
 
 	const numbumps = 4;
@@ -594,6 +668,12 @@ export function SV_FlyMove( ent, time, steptrace ) {
 SV_AddGravity
 ============
 */
+/**
+ * Applies one frame of gravity (WinQuake sv_phys.c): lowers `ent.v.velocity[2]` by the entity's QuakeC `gravity`
+ * field (0 or missing means 1) times `sv_gravity` (default 800 Quake units per second squared) times `host_frametime`.
+ *
+ * @param {edict_t} ent the entity; mutates its velocity
+ */
 export function SV_AddGravity( ent ) {
 
 	let ent_gravity;
@@ -625,10 +705,17 @@ PUSHMOVE
 /*
 ============
 SV_PushEntity
-
-Does not change the entities velocity at all
 ============
 */
+/**
+ * Moves an entity by a fixed offset, clipping with `SV_Move` (missiles use MOVE_MISSILE; triggers and non-solids only
+ * clip against bmodels), relinks it touching triggers, and runs `SV_Impact` with whatever it hit (WinQuake
+ * sv_phys.c). Does not change the entities velocity at all.
+ *
+ * @param {edict_t} ent the entity; `ent.v.origin` is set to the trace end
+ * @param {Float32Array} push the offset (Quake units, world space)
+ * @returns {trace_t} the trace of the move
+ */
 export function SV_PushEntity( ent, push ) {
 
 	// Use cached buffer instead of allocating per-call
@@ -658,11 +745,19 @@ export function SV_PushEntity( ent, push ) {
 /*
 ============
 SV_PushRotate
-
-Handles rotating brush entities (doors, platforms with avelocity)
-QUAKE2 feature
 ============
 */
+/**
+ * Handles rotating brush entities (doors, platforms with avelocity); QUAKE2 feature of WinQuake sv_phys.c. Turns the
+ * pusher by `avelocity * movetime` and advances its `ltime`, then carries every entity standing on it or now inside
+ * it around the pusher's origin, turning it too. If one cannot be moved it is put back (corpses and triggers are
+ * instead squashed to a zero-size box), the pusher and all entities moved so far are put back, `ltime` is restored,
+ * and the pusher's QuakeC `blocked` function runs with `other` = the blocker. With no angular velocity it only
+ * advances `ltime`.
+ *
+ * @param {edict_t} pusher the MOVETYPE_PUSH entity
+ * @param {number} movetime seconds of rotation to apply
+ */
 export function SV_PushRotate( pusher, movetime ) {
 
 	// Use cached buffers instead of allocating per-call
@@ -815,6 +910,16 @@ export function SV_PushRotate( pusher, movetime ) {
 SV_PushMove
 ============
 */
+/**
+ * Moves a pusher (door, plat, train) by `velocity * movetime` and advances its `ltime`, carrying every entity standing
+ * on it or now inside its swept box (WinQuake sv_phys.c). If one cannot be moved it is put back (corpses and triggers
+ * are instead squashed to a zero-size box), the pusher and all entities moved so far are put back, `ltime` is restored,
+ * and the pusher's QuakeC `blocked` function runs with `other` = the blocker; otherwise, just stay in place until the
+ * obstacle is gone. With zero velocity it only advances `ltime`.
+ *
+ * @param {edict_t} pusher the MOVETYPE_PUSH entity
+ * @param {number} movetime seconds of movement to apply
+ */
 export function SV_PushMove( pusher, movetime ) {
 
 	// Use cached buffers to avoid per-call allocations (Golden Rule #4)
@@ -947,6 +1052,13 @@ export function SV_PushMove( pusher, movetime ) {
 SV_Physics_Pusher
 ================
 */
+/**
+ * Runs one frame for a MOVETYPE_PUSH entity (WinQuake sv_phys.c): moves it on its own clock `ltime`, stopping at
+ * `nextthink` if that comes first this frame, by `SV_PushRotate` when it has angular velocity and `SV_PushMove`
+ * otherwise, then runs its QuakeC `think` when `ltime` reached `nextthink`. Called by `SV_Physics`.
+ *
+ * @param {edict_t} ent the pusher
+ */
 export function SV_Physics_Pusher( ent ) {
 
 	const oldltime = ent.v.ltime;
@@ -1000,11 +1112,16 @@ CLIENT MOVEMENT
 /*
 =============
 SV_CheckStuck
-
-This is a big hack to try and fix the rare case of getting stuck in the world
-clipping hull.
 =============
 */
+/**
+ * This is a big hack to try and fix the rare case of getting stuck in the world clipping hull (WinQuake sv_phys.c).
+ * When the player is not in solid it records the origin in `ent.v.oldorigin`; otherwise it tries `oldorigin`, then
+ * every offset of -1..1 units on x and y and 0..17 units up, keeping the first free spot ("Unstuck." with developer
+ * on) or leaving the origin unchanged ("player is stuck."). Called each frame for walking players.
+ *
+ * @param {edict_t} ent the player edict; mutates `origin`/`oldorigin` and relinks it when moved
+ */
 export function SV_CheckStuck( ent ) {
 
 	const org = _checkstuck_org;
@@ -1053,6 +1170,14 @@ export function SV_CheckStuck( ent ) {
 SV_CheckWater
 =============
 */
+/**
+ * Sets an entity's `waterlevel` (0 none, 1 feet, 2 waist, 3 eyes) and `watertype` (a `CONTENTS_*` value, empty when
+ * dry) by testing the contents one unit above its feet, at the middle of its box and at its view offset (WinQuake
+ * sv_phys.c). Called each frame for walking players, and by newer/gameplay/sv_respawn.js when a player rises.
+ *
+ * @param {edict_t} ent the entity; mutates `ent.v.waterlevel` and `ent.v.watertype`
+ * @returns {boolean} true when the water is above the waist (level 2 or 3), which disables gravity for the frame
+ */
 export function SV_CheckWater( ent ) {
 
 	const point = _checkwater_point;
@@ -1091,6 +1216,15 @@ export function SV_CheckWater( ent ) {
 SV_WallFriction
 ============
 */
+/**
+ * Extra friction based on view angle when walking into a wall (WinQuake sv_phys.c): the more directly the player faces
+ * the wall, the more the horizontal velocity along it is cut. Called by `SV_WalkMove` after a step move hit a wall.
+ * No wall was recorded (SV_TryUnstick can report a wall hit without filling in the trace): nothing to take friction
+ * from. C gets away with an unfilled trace_t; here it would be a missing plane, so a null trace or plane does nothing.
+ *
+ * @param {edict_t} ent the player; mutates `ent.v.velocity[0..1]`
+ * @param {?{ plane?: { normal: Float32Array } }} trace the trace of the wall hit (filled by `SV_FlyMove`'s steptrace)
+ */
 export function SV_WallFriction( ent, trace ) {
 
 	// No wall was recorded (SV_TryUnstick can report a wall hit without filling
@@ -1125,15 +1259,18 @@ export function SV_WallFriction( ent, trace ) {
 /*
 =====================
 SV_TryUnstick
-
-Player has come to a dead stop, possibly due to the problem with limited
-float precision at some angle joins in the BSP hull.
-
-Try fixing by pushing one pixel in each direction.
-
-This is a hack, but in the interest of good gameplay...
 ======================
 */
+/**
+ * Player has come to a dead stop, possibly due to the problem with limited float precision at some angle joins in the
+ * BSP hull (WinQuake sv_phys.c). Try fixing by pushing one pixel in each direction: it pushes 2 units along each of 8
+ * axial and diagonal directions and retries the original horizontal move for 0.1 s, keeping the first that moves the
+ * player more than 4 units. This is a hack, but in the interest of good gameplay... Called by `SV_WalkMove`.
+ *
+ * @param {edict_t} ent the player; its origin and velocity are changed
+ * @param {Float32Array} oldvel the velocity before the blocked move (Quake units per second); its z is not used
+ * @returns {number} the `SV_FlyMove` clip flags of the move that worked, or 7 (still not moving, velocity zeroed)
+ */
 export function SV_TryUnstick( ent, oldvel ) {
 
 	const oldorg = _tryunstick_oldorg;
@@ -1187,10 +1324,17 @@ export function SV_TryUnstick( ent, oldvel ) {
 /*
 =====================
 SV_WalkMove
-
-Only used by players
 ======================
 */
+/**
+ * Moves a walking player for one frame (WinQuake sv_phys.c). Only used by players. It does a regular slide move with
+ * `SV_FlyMove` unless it looks like you ran into a step; then (when on ground or in water, still MOVETYPE_WALK,
+ * `sv_nostep` off and `sv_player` not water jumping) it retries the move 18 units up, applies `SV_TryUnstick` and
+ * `SV_WallFriction` as needed, and pushes back down. If the push down didn't end up on good ground (normal z <= 0.7),
+ * the move without the step up is used. The portal-motion stepping hook is active around the step attempt.
+ *
+ * @param {edict_t} ent the player edict; mutates origin, velocity, flags and `groundentity`
+ */
 export function SV_WalkMove( ent ) {
 
 	const upmove = _walkmove_upmove;
@@ -1309,10 +1453,17 @@ const TELEPORT_HOLD_MAX = 0.75;
 /*
 ================
 SV_SoftenTeleportLaunch
-
-Halve the push the player gets when coming out of a teleporter.
 ================
 */
+/**
+ * Halve the push the player gets when coming out of a teleporter (this port's change, not WinQuake). progs'
+ * teleport_touch sets velocity = v_forward * 300 and teleport_time = time + 0.7; once per new `teleport_time` that is
+ * at most 0.75 s ahead of `sv.time` (so the 2 s water jump hold is left alone), the velocity is scaled by 0.5. Called
+ * by `SV_Physics_Client` after PlayerPreThink.
+ *
+ * @param {edict_t} ent the player edict; `ent.v.velocity` is replaced with a new plain array and the handled time is
+ *   remembered on the edict as `ent._lastTeleportTime`
+ */
 export function SV_SoftenTeleportLaunch( ent ) {
 
 	const teleportTime = ent.v.teleport_time;
@@ -1334,10 +1485,20 @@ export function SV_SoftenTeleportLaunch( ent ) {
 /*
 ================
 SV_Physics_Client
-
-Player character actions
 ================
 */
+/**
+ * Player character actions (WinQuake sv_phys.c), once per server frame for each client slot: skips unconnected slots
+ * and players held by the seamless-exit or respawn hooks, runs QuakeC PlayerPreThink (inside the quad-jump hooks),
+ * softens teleport launches, bounds velocity, then moves by movetype (NONE thinks; WALK thinks, applies water and
+ * gravity, unsticks and `SV_WalkMove`s inside the portal-motion hooks; TOSS/BOUNCE use `SV_Physics_Toss`; FLY flies;
+ * NOCLIP moves freely), relinks the player touching triggers, and runs PlayerPostThink. Returns early if the think
+ * removed the entity.
+ *
+ * @param {edict_t} ent the player edict
+ * @param {number} num the edict number, 1..svs.maxclients (client slot `num - 1`)
+ * @throws {Error} via `Sys_Error` when the movetype is none of those ("SV_Physics_client: bad movetype")
+ */
 export function SV_Physics_Client( ent, num ) {
 
 	if ( ! svs.clients[ num - 1 ].active )
@@ -1430,10 +1591,13 @@ export function SV_Physics_Client( ent, num ) {
 /*
 =============
 SV_Physics_None
-
-Non moving objects can only think
 =============
 */
+/**
+ * Non moving objects can only think (WinQuake sv_phys.c): runs `SV_RunThink` for a MOVETYPE_NONE entity.
+ *
+ * @param {edict_t} ent the entity
+ */
 export function SV_Physics_None( ent ) {
 
 	// regular thinking
@@ -1444,10 +1608,15 @@ export function SV_Physics_None( ent ) {
 /*
 =============
 SV_Physics_Follow
-
-Entities that are "stuck" to another entity (QUAKE2 feature)
 =============
 */
+/**
+ * Entities that are "stuck" to another entity (QUAKE2 feature of WinQuake sv_phys.c): after thinking, a
+ * MOVETYPE_FOLLOW entity is placed at its `aiment`'s origin plus its own `v_angle` (used as an offset, Quake units) and
+ * relinked touching triggers.
+ *
+ * @param {edict_t} ent the following entity
+ */
 export function SV_Physics_Follow( ent ) {
 
 	// regular thinking
@@ -1468,10 +1637,15 @@ export function SV_Physics_Follow( ent ) {
 /*
 =============
 SV_Physics_Noclip
-
-A moving object that doesn't obey physics
 =============
 */
+/**
+ * A moving object that doesn't obey physics (WinQuake sv_phys.c): after thinking, a MOVETYPE_NOCLIP entity's angles
+ * and origin advance by `avelocity` and `velocity` times `host_frametime` with no clipping, and it is relinked without
+ * touching triggers.
+ *
+ * @param {edict_t} ent the entity
+ */
 export function SV_Physics_Noclip( ent ) {
 
 	// regular thinking
@@ -1498,6 +1672,14 @@ TOSS / BOUNCE
 SV_CheckWaterTransition
 =============
 */
+/**
+ * Updates a tossed or stepping entity's water state from the contents at its origin and plays misc/h2ohit1.wav
+ * (channel 0, full volume, attenuation 1) when it crosses into or out of liquid (WinQuake sv_phys.c). A `watertype`
+ * of 0 means just spawned here (not yet initialized): it is set without a sound. When out of liquid the WinQuake
+ * code's assignment `waterlevel = cont` is kept, so `waterlevel` then holds the (negative) contents value.
+ *
+ * @param {edict_t} ent the entity; mutates `ent.v.watertype` and `ent.v.waterlevel`
+ */
 export function SV_CheckWaterTransition( ent ) {
 
 	const cont = SV_PointContents( ent.v.origin );
@@ -1542,10 +1724,18 @@ export function SV_CheckWaterTransition( ent ) {
 /*
 =============
 SV_Physics_Toss
-
-Toss, bounce, and fly movement. When onground, do nothing.
 =============
 */
+/**
+ * Toss, bounce, and fly movement (WinQuake sv_phys.c). When onground, do nothing. Otherwise, after thinking, it bounds
+ * velocity, adds gravity (not for FLY or FLYMISSILE), turns by `avelocity`, moves with `SV_PushEntity`, clips the
+ * velocity off what it hit (bouncing with 1.5 for MOVETYPE_BOUNCE), and comes to rest with FL_ONGROUND on a floor
+ * (normal z > 0.7) unless it is a bounce still rising at 60 units per second or more. Ends with
+ * `SV_CheckWaterTransition`. Used for TOSS, BOUNCE, BOUNCEMISSILE, FLY and FLYMISSILE entities and for players with
+ * TOSS or BOUNCE.
+ *
+ * @param {edict_t} ent the entity
+ */
 export function SV_Physics_Toss( ent ) {
 
 	const move = _toss_move;
@@ -1614,14 +1804,17 @@ STEPPING MOVEMENT
 /*
 =============
 SV_Physics_Step
-
-Monsters freefall when they don't have a ground entity, otherwise
-all movement is done with discrete steps.
-
-This is also used for objects that have become still on the ground, but
-will fall if the floor is pulled out from under them.
 =============
 */
+/**
+ * Monsters freefall when they don't have a ground entity, otherwise all movement is done with discrete steps (by
+ * QuakeC walkmove/movetogoal, not here) (WinQuake sv_phys.c). This is also used for objects that have become still on
+ * the ground, but will fall if the floor is pulled out from under them. Without FL_ONGROUND, FL_FLY or FL_SWIM it
+ * applies gravity and a `SV_FlyMove`, playing demon/dland2.wav on landing if it was falling faster than a tenth of
+ * `sv_gravity`; then it thinks and checks water.
+ *
+ * @param {edict_t} ent a MOVETYPE_STEP entity
+ */
 export function SV_Physics_Step( ent ) {
 
 	let hitsound;
@@ -1663,6 +1856,17 @@ export function SV_Physics_Step( ent ) {
 SV_Physics
 ================
 */
+/**
+ * Runs one server frame of physics (WinQuake sv_phys.c): runs QuakeC StartFrame and the delayed shotgun pellets, then
+ * for every in-use edict relinks it while `force_retouch` is set, skips it while the rend-veil hook holds it, and runs
+ * the physics for its slot or movetype (clients, push, none, follow, noclip, step, toss/bounce/fly/missile). It then
+ * counts down `force_retouch` and advances `sv.time` by `host_frametime`. Called by host.js's `Host_ServerFrame` each
+ * server frame and twice by sv_main.js's `SV_SpawnServer` to let a new map settle. Needs `SV_SetState`,
+ * `SV_SetCallbacks` and `SV_SetFrametime` first.
+ *
+ * @throws {Error} via `Sys_Error` for an entity with an unknown movetype ("SV_Physics: bad movetype"), or from
+ *   `SV_Physics_Client`/`SV_FlyMove`
+ */
 export function SV_Physics() {
 
 	// let the progs know that a new frame has started

@@ -59,6 +59,11 @@ let cl_sfx_r_exp3 = null;
 CL_InitTEnts
 =================
 */
+/**
+ * Precaches the temporary entities' sounds (wizard and hell knight spike hits, the spike tink and three ricochets,
+ * the rocket explosion). Called once by `CL_Init` at engine start; the handles are kept in module variables for the
+ * life of the page.
+ */
 export function CL_InitTEnts() {
 
 	cl_sfx_wizhit = S_PrecacheSound( 'wizard/hit.wav' );
@@ -138,6 +143,19 @@ function CL_ParseBeam( m ) {
 CL_ParseTEnt
 =================
 */
+/**
+ * Reads one `svc_temp_entity` message body (a type byte, then that type's coordinates and extra bytes) from
+ * `net_message` and spawns its effect: particles, decals, dynamic lights and sounds for impacts and explosions, a beam
+ * record (`cl_beams`) for lightning and the grappling beam, Newer Game's gore pool (also sets `cl.grintime` to
+ * `cl.time + 2`), or a spot in `CL_TeleportSpots` (last 8 kept) for a teleport. Called by `CL_ParseServerMessage`
+ * while a server message is parsed.
+ *
+ * A one-shot native dynamic light (radius 350, 0.5 s, decay 300/s) is allocated for `TE_EXPLOSION` and
+ * `TE_EXPLOSION2` only when the Newer Fireball did not take the event. Beams use server time (`cl.mtime[0]`) and last
+ * 0.2 s; a beam for an entity that already has one replaces it.
+ *
+ * @throws {Error} via `Sys_Error` ('CL_ParseTEnt: bad type') for a type byte it does not know
+ */
 export function CL_ParseTEnt() {
 
 	const pos = new Float32Array( 3 );
@@ -359,6 +377,15 @@ function CL_NewTempEntity() {
 CL_UpdateTEnts
 =================
 */
+/**
+ * Rebuilds the per-frame temporary entities: resets the temp entity pool, then for each live beam (model set and
+ * `endtime` not past the server time `cl.mtime[0]`) lays bolt model segments every 30 Quake units from start to end
+ * with the beam's pitch and yaw and a random roll, adding each to `cl_visedicts`. A beam from the view entity starts
+ * at the player's current origin; the player's own lightning gun beam (`progs/bolt2.mdl`) is marked
+ * `_playerLightning` so the Newer pass can leave it out and draw its own (r_lightning.js). Stops early when the
+ * visedict list or the temp entity pool (`MAX_TEMP_ENTITIES`) is full. Called once a frame by `CL_ReadFromServer`
+ * after the entities are relinked.
+ */
 export function CL_UpdateTEnts() {
 
 	num_temp_entities = 0;

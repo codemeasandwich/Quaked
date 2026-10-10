@@ -38,6 +38,14 @@ let Cvar_SetValue = null;
 let R_InitParticles = null;
 let R_RenderView = null;
 
+/**
+ * Injects engine functions this module would otherwise import (avoiding import cycles). Only the provided keys are
+ * replaced; the rest keep their current values. Nothing calls it at present, so `R_Init` falls back to the imported
+ * cvar functions and does not register the `envmap` command or call `R_InitParticles`.
+ *
+ * @param {{ Cmd_AddCommand?: Function, Cvar_RegisterVariable?: Function, Cvar_SetValue?: Function,
+ *   R_InitParticles?: Function, R_RenderView?: Function }} callbacks functions to install; kept for the session
+ */
 export function R_Misc_SetCallbacks( callbacks ) {
 
 	if ( callbacks.Cmd_AddCommand ) Cmd_AddCommand = callbacks.Cmd_AddCommand;
@@ -51,9 +59,6 @@ export function R_Misc_SetCallbacks( callbacks ) {
 /*
 ===============
 R_InitParticleTexture
-
-Creates the particle dot texture used for particle effects.
-The original is an 8x8 texture with a circular dot pattern.
 ===============
 */
 
@@ -68,6 +73,13 @@ const dottexture = [
 	[ 0, 0, 0, 0, 0, 0, 0, 0 ],
 ];
 
+/**
+ * Creates the particle dot texture used for particle effects. The original is an 8x8 texture with a circular dot
+ * pattern: white texels whose alpha is 255 inside the 4x4 dot in one corner and 0 elsewhere, linearly filtered.
+ * Called by `R_Init`; the particles actually drawn use `r_part.js`'s own copy of this texture.
+ *
+ * @returns {THREE.DataTexture} a new 8x8 RGBA texture owned by the caller (not registered for filter updates)
+ */
 export function R_InitParticleTexture() {
 
 	//
@@ -101,11 +113,21 @@ export function R_InitParticleTexture() {
 /*
 ===============
 R_Envmap_f
-
-Grab six views for environment mapping tests.
-In Three.js, we would use CubeCamera for this.
 ===============
 */
+/**
+ * Grab six views for environment mapping tests (the `envmap` console command in WinQuake). In Three.js, we would use
+ * CubeCamera for this: it renders the scene into a 256-pixel cube render target from the camera's position (near 1,
+ * far 10000 Quake units). The command is registered only if `R_Misc_SetCallbacks` supplied `Cmd_AddCommand`, and a
+ * console command is called without arguments, in which case it does nothing.
+ *
+ * @param {*} r_refdef view definition (unused)
+ * @param {THREE.Scene} scene scene to capture
+ * @param {THREE.WebGLRenderer} renderer renderer used for the six passes
+ * @param {THREE.Camera} camera supplies the capture position
+ * @returns {THREE.CubeTexture|undefined} the captured cube texture (its render target is never disposed; the caller
+ *   owns it), or undefined when `renderer`, `scene` or `camera` is missing
+ */
 export function R_Envmap_f( r_refdef, scene, renderer, camera ) {
 
 	if ( ! renderer || ! scene || ! camera )
@@ -128,6 +150,14 @@ export function R_Envmap_f( r_refdef, scene, renderer, camera ) {
 R_Init
 ===============
 */
+/**
+ * Renderer start-up, called once from `Host_Init`: registers the renderer's `r_*` and `gl_*` cvars (the cvar-shaped
+ * objects exported by `glquake.js`), forces `gl_texsort` to 0 when multitexture is available (`gl_mtexable`, false in
+ * this port), creates the particle texture and then runs `gl_rmain.js`'s `R_Init`, which creates the Three.js scene
+ * and camera.
+ *
+ * @returns {{ particleTexture: THREE.DataTexture }} the texture from `R_InitParticleTexture` (`Host_Init` ignores it)
+ */
 export function R_Init() {
 
 	// Register commands
@@ -195,22 +225,40 @@ export function R_Init() {
 /*
 ===============
 R_TranslatePlayerSkin
-
-Translates a skin texture by the per-player color lookup.
-For Three.js, builds a new texture with translated colors.
-Stores the result in _playerSkinTextures[playernum] for gl_mesh.js to use.
 ===============
 */
 
 const MAX_SCOREBOARD = 16;
 const _playerSkinTextures = new Array( MAX_SCOREBOARD ).fill( null );
 
+/**
+ * Returns the colour-translated skin last built by `R_TranslatePlayerSkin` for a player; `gl_mesh.js` calls it when
+ * drawing a player entity (unless `gl_nocolors` is set).
+ *
+ * @param {number} playernum player slot, 0..15 (entity number - 1)
+ * @returns {?THREE.DataTexture} the translated skin (owned here; replaced and disposed on the next translation for
+ *   that slot), or null when none has been built
+ */
 export function R_GetPlayerSkinTexture( playernum ) {
 
 	return _playerSkinTextures[ playernum ];
 
 }
 
+/**
+ * Translates a skin texture by the per-player color lookup. For Three.js, builds a new texture with translated
+ * colors and stores the result in `_playerSkinTextures[playernum]` for gl_mesh.js to use (see
+ * `R_GetPlayerSkinTexture`). Called by `CL_NewTranslation` when a player's colours change and by `cl_parse.js`
+ * when a player entity's model or skin changes.
+ *
+ * The shirt (top, palette rows 16..31) and pants (bottom, rows 96..111) ranges are remapped to the player's
+ * `scoreboard.colors` rows, reversing the ranges the artists made backwards (rows 128 and up). The current skin of
+ * the player's alias model is converted to RGBA through `d_8to24table`, resampled to at most 512x256 texels, and
+ * uploaded as an sRGB, linearly filtered texture; the slot's previous texture is disposed. Does nothing when the
+ * player has no scoreboard entry, no model yet, a non-alias model or no loaded skin.
+ *
+ * @param {number} playernum player slot, 0..15 (entity number - 1)
+ */
 export function R_TranslatePlayerSkin( playernum ) {
 
 	if ( cl.scores == null || cl.scores[ playernum ] == null )
@@ -315,6 +363,18 @@ export function R_TranslatePlayerSkin( playernum ) {
 R_NewMap
 ===============
 */
+/**
+ * Prepares the renderer for a newly loaded world; called by `CL_ParseServerInfo` once the world model is in
+ * `cl.worldmodel`. Resets every light style to the normal value 264, clears leaf efrags in case the level hasn't been
+ * reloaded, runs `gl_rmain.js`'s `R_NewMap` (resets the world entity and view leaves), clears every texture chain,
+ * and records which world texture is the sky (name starting 'sky') and which is the mirror ('window02_1'), for
+ * gl_rsurf.js and gl_rmain.js. The last match of each wins.
+ *
+ * @param {client_state_t} cl client state whose `worldmodel` (model_t) was just loaded; its leafs and textures are
+ *   mutated
+ * @returns {{ worldEntity: entity_t, skytexturenum: number, mirrortexturenum: number }} the world entity and the
+ *   sky/mirror texture indices into `cl.worldmodel.textures` (-1 when absent); the caller does not use it
+ */
 export function R_NewMap( cl ) {
 
 	// Initialize light style values
@@ -365,10 +425,12 @@ export function R_NewMap( cl ) {
 /*
 ====================
 D_FlushCaches
-
-No-op in GL renderer
 ====================
 */
+/**
+ * No-op in GL renderer (the software renderer flushes its surface cache here). Called by `Host_ClearMemory` before
+ * models are cleared for a new map.
+ */
 export function D_FlushCaches() {
 
 	// no-op

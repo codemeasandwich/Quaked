@@ -36,6 +36,11 @@ const _chase_stop = new Float32Array( 3 );
 let _R_TracePoint = null; // the client's ray cast (render/r_trace.js), loaded lazily
 let _chase_trace = null; // reused between frames
 
+/**
+ * Registers the chase cvars (`chase_back`, `chase_up`, `chase_right`, `chase_active`) and starts the lazy import of
+ * `R_TracePoint` from render/r_trace.js (lazy to avoid the r_trace.js -> world.js circular import). Called once at
+ * startup from `Host_Init` (WinQuake chase.c). Until the import resolves, `Chase_Update` falls back to no collision.
+ */
 export function Chase_Init() {
 
 	Cvar_RegisterVariable( chase_back );
@@ -52,6 +57,10 @@ export function Chase_Init() {
 
 }
 
+/**
+ * For respawning and teleporting: in WinQuake the chase camera would restart 12 units behind the head. Kept as an
+ * empty stub, as in WinQuake chase.c; nothing calls it.
+ */
 export function Chase_Reset() {
 
 	// for respawning and teleporting
@@ -77,6 +86,17 @@ function TraceLine( start, end, impact ) {
 
 }
 
+/**
+ * Moves the view behind the player for the third-person camera. Called each frame from `V_CalcRefdef` (view.js) while
+ * the `chase_active` cvar is non-zero, after punch, bob and step smoothing (WinQuake chase.c).
+ *
+ * Places `r_refdef.vieworg` `chase_back` units behind and `chase_right` units beside the eye, with its z set to the
+ * eye height plus `chase_up` (Quake units). It casts a 4096-unit ray along `cl.viewangles` against `cl.worldmodel`
+ * (or uses the ray's end when the trace is not loaded yet or there is no world) and sets
+ * `r_refdef.viewangles[PITCH]` (degrees) so the camera looks at the same spot. The camera itself is not traced
+ * against walls, as in WinQuake. Mutates `r_refdef.vieworg` and `r_refdef.viewangles`; uses module-level scratch
+ * vectors and reuses one trace_t between frames.
+ */
 export function Chase_Update() {
 
 	// Use cached vectors (Golden Rule #4)

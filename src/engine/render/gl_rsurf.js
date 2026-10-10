@@ -23,6 +23,22 @@ import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArch
 import { DEMON_TEXTURES, R_DemonSurfaceData } from '../common/hooks.js'; // installed by newer/render/r_demonrelief.js
 import { R_DemonBakePrepare, R_DemonBakeSurface, R_DemonBakeStatus } from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
 
+/**
+ * Builds the lit material for a world or brush-model surface: a THREE.MeshLambertMaterial (so surfaces respond to
+ * Three.js PointLights for dynamic lighting effects such as explosions and muzzle flashes) with the diffuse texture
+ * and the lightmap atlas on uv1 at `lightMapIntensity` 2. A fullbright texture, when the diffuse texture has one, is
+ * applied as a white `emissiveMap`, which bypasses all lighting (see the comment in the body). The material is also
+ * registered for the HDR glow (`R_RegisterGlow`) and Newer Game's normal maps and parallax (`R_RegisterDetail`).
+ * Called at map load for the world batches, when a brush entity's group is built, for demon relief meshes, by the
+ * renderer's shader warm-up (gl_rmain.js) and by the level views (r_levelview.js).
+ *
+ * @param {THREE.Texture} diffuseMap the surface's diffuse texture (`texture_t.gl_texture`); its `_fullbright`
+ * texture, when set, holds only the fullbright texels (palette indices 224-255)
+ * @param {THREE.Texture} lightmapTex a lightmap atlas from `lightmapTextures`; mutated: its `channel` is set to 1
+ * (uv1)
+ * @returns {THREE.MeshLambertMaterial} a new material; the caller owns it (the world and brush caches dispose theirs
+ * at the next `GL_BuildLightmaps`)
+ */
 export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 
 	lightmapTex.channel = 1; // Use uv1 for lightmap coordinates
@@ -111,6 +127,12 @@ const GL_RGBA4 = 0;
 //============================================================================
 
 export let skytexturenum = - 1; // index in cl.loadmodel, not gl texture object
+/**
+ * Sets `skytexturenum`, the world texture whose chain `DrawTextureChains` draws as sky. Set at map load by
+ * `R_NewMap` (gl_rmisc.js) to the last texture whose name starts with `sky`.
+ *
+ * @param {number} v index into `cl.worldmodel.textures`, or -1 for none (not a GL texture object)
+ */
 export function set_skytexturenum( v ) { skytexturenum = v; }
 
 let lightmap_bytes = 1; // 1, 2, or 4
@@ -241,6 +263,19 @@ const worldAnimatedMeshes = [];
 const demonSurfaces = [];
 let demonEnabled = false;
 
+/**
+ * Reports the state of Newer Game's raised demon plaques in the current world, for the intro/loading readiness
+ * checks (`R_UpdateIntroReadiness` in gl_rmain.js) and the readiness report.
+ *
+ * @returns {{ preparedPending: number, preparedPhase: string, preparedSource: string, persistence: ?string,
+ * eligible: number, ready: number, nativeOnly: number, pending: number, triangles: number, enabled: boolean,
+ * errors: Array<string> }} a new object: the `prepared*` fields and `persistence` are the prepared bakes' state from
+ * `R_DemonBakeStatus` (r_demonbakes.js); `eligible` counts the world's demon-texture surfaces found at map load;
+ * `ready` those with a raised mesh built; `nativeOnly` those whose prepared bake keeps the flat native face;
+ * `pending` those still waiting (bake loading or failed, or no mesh yet while the texture is pending or has a
+ * displacement field); `triangles` the raised meshes' total triangles; `enabled` whether relief is currently shown;
+ * `errors` the bake's and surfaces' error messages
+ */
 export function R_DemonReliefStatus() {
 
 	const prepared=R_DemonBakeStatus();
@@ -427,10 +462,20 @@ function clearWaterTextureLight() {
 
 }
 
-// Reuse raw vertex samples at shared positions, refreshed when light styles
-// change. Static lighting does not need repeated BSP traces. Derived colours
-// refresh independently for the lighting switch/light curve. Native materials
-// ignore this attribute, so their texture/brightness path is unaffected.
+/**
+ * Gives a clear-water liquid geometry per-vertex brightness from the world's light, so Newer Game's clear water takes
+ * contextual baked brightness instead of glowing fullbright. Called for every liquid mesh drawn with a
+ * vertex-coloured material (`_getWaterMesh`), so once per surface per frame.
+ *
+ * Reuses raw vertex samples (`R_LightPointValue`) at shared positions, refreshed when light styles change; static
+ * lighting does not need repeated BSP traces. Derived colours refresh independently for the lighting switch/light
+ * curve (`r_newdark` while the Newer lighting is on). Native materials ignore this attribute, so their
+ * texture/brightness path is unaffected. The sample cache is per world and is cleared by `GL_BuildLightmaps`.
+ *
+ * @param {THREE.BufferGeometry} geometry the liquid geometry (Quake units, world space); mutated: gains a `color`
+ * attribute (brightness 0..2 per channel) and a `userData.waterTextureLight` cache
+ * @param {model_t} [world=cl.worldmodel] the world model to sample light from
+ */
 export function R_UpdateWaterTextureLight( geometry, world = cl.worldmodel ) {
 
 	if ( world !== waterLightWorld ) {
@@ -544,8 +589,15 @@ function _getWaterMesh( s, geometry, material, renderGroup ) {
 
 }
 
-// Chains were consumed by the enhanced draw. Prepare the already visible
-// surfaces directly instead of trying to draw those empty chains a second time.
+/**
+ * The material the Classic comparison pass (gl_rmain.js) starts from for a scene object. Chains were consumed by the
+ * enhanced draw, so the pass prepares the already visible surfaces directly instead of trying to draw those empty
+ * chains a second time: a liquid mesh gets its liquid material again at `r_wateralpha`, anything else keeps its own.
+ *
+ * @param {THREE.Object3D} mesh a scene object; a liquid carries its texture_t in `userData.quakeLiquid`
+ * @returns {THREE.Material|Array<THREE.Material>|undefined} the source material (cached for liquids), or the
+ * object's own `material`, which is undefined for objects without one
+ */
 export function R_ClassicSurfaceMaterial( mesh ) {
 
 	if ( mesh.userData.quakeLiquid )
@@ -556,10 +608,21 @@ export function R_ClassicSurfaceMaterial( mesh ) {
 
 //============================================================================
 // R_TextureAnimation
-//
-// Returns the proper texture for a given time and base texture
 //============================================================================
 
+/**
+ * Returns the proper texture for a given time and base texture (WinQuake gl_rsurf.c): the alternate animation
+ * (`+a...` textures) when the entity frame is non-zero, then the frame of the `+0...` cycle for `cl.time` at 10
+ * frames a second. Called whenever a surface's material is chosen (each frame for animated world and brush
+ * textures).
+ *
+ * @param {texture_t} base the surface's texture
+ * @param {number} [entityFrame] the entity's frame (non-zero selects the alternate animation); defaults to
+ * `currententity.frame`, or 0 without a current entity
+ * @returns {texture_t} the texture to draw (`base` itself when it is not animated)
+ * @throws {Error} via `Sys_Error` when the animation chain ends (`R_TextureAnimation: broken cycle`) or runs past 100
+ * steps (`R_TextureAnimation: infinite cycle`)
+ */
 export function R_TextureAnimation( base, entityFrame = currententity != null ? currententity.frame : 0 ) {
 
 	let reletive;
@@ -594,6 +657,17 @@ export function R_TextureAnimation( base, entityFrame = currententity != null ? 
 
 }
 
+/**
+ * Points a cached material at the current frame of its animated texture: swaps `map` and, for lit materials, the
+ * fullbright `emissiveMap` (emissive white when there is one, black otherwise), and refreshes Newer Game's detail maps
+ * (`R_RefreshDetail`). Called for each animated world batch on every world draw (`R_UpdateWorldTextureAnimations`).
+ *
+ * @param {THREE.Material} material the material to update; mutated (`needsUpdate` is set only when a map appears or
+ * disappears, which changes the shader)
+ * @param {texture_t} baseTexture the surface's base texture
+ * @param {number} [entityFrame=0] passed to `R_TextureAnimation`
+ * @returns {boolean} true when the material changed; false when it already showed the right frame
+ */
 export function R_UpdateAnimatedMaterial( material, baseTexture, entityFrame = 0 ) {
 
 	const animatedTexture = R_TextureAnimation( baseTexture, entityFrame );
@@ -639,11 +713,21 @@ export function R_UpdateAnimatedMaterial( material, baseTexture, entityFrame = 0
 
 //============================================================================
 // DrawGLPoly
-//
-// Draws a polygon. In Three.js, we build BufferGeometry from the glpoly_t
-// vertex data and add it to the scene.
 //============================================================================
 
+/**
+ * Draws a polygon (WinQuake gl_rsurf.c). In Three.js, we build BufferGeometry from the glpoly_t vertex data: the fan
+ * is split into triangles with the winding reversed for Three.js's counter-clockwise front faces, and every vertex
+ * gets the same flat normal. It does not add the geometry to the scene. Called at map load by `R_BuildWorldMeshes`
+ * for each world surface and by the level views (r_levelview.js).
+ *
+ * @param {?glpoly_t} p the polygon: `verts` holds VERTEXSIZE (7) floats per vertex, x, y, z (Quake units), s, t
+ * (texture, in tiles of the texture) and the lightmap s, t (0..1 across the atlas)
+ * @param {?Float32Array} planeNormal the face's outward normal (already flipped for SURF_PLANEBACK); null gives
+ * (0, 0, 1)
+ * @returns {THREE.BufferGeometry|undefined} a new non-indexed geometry with `position`, `normal`, `uv` and `uv1`
+ * (owned by the caller), or undefined when `p` is null or has fewer than 3 vertices
+ */
 export function DrawGLPoly( p, planeNormal ) {
 
 	if ( ! p || p.numverts < 3 ) return;
@@ -843,10 +927,17 @@ function _mergeGLPolys( polys, planeNormals ) {
 
 //============================================================================
 // DrawGLWaterPoly
-//
-// Warp the vertex coordinates for water surfaces
 //============================================================================
 
+/**
+ * Warp the vertex coordinates for water surfaces (WinQuake gl_rsurf.c): x and y move by up to 8 Quake units along
+ * sine waves of the position and `cl.time`; z is kept. The renderer's own liquids use the turbulent UVs of
+ * `EmitWaterPolysQuake` instead, so nothing in the engine calls this.
+ *
+ * @param {?glpoly_t} p the polygon (VERTEXSIZE floats per vertex: x, y, z, then s, t)
+ * @returns {?THREE.BufferGeometry} a new non-indexed geometry with warped `position`, the poly's `uv` and computed
+ * normals, or null when `p` is null or has fewer than 3 vertices
+ */
 export function DrawGLWaterPoly( p ) {
 
 	if ( ! p || p.numverts < 3 ) return null;
@@ -1130,11 +1221,17 @@ function EmitSkyPolysQuake( fa, speedscale, layer ) {
 
 //============================================================================
 // R_DrawSequentialPoly
-//
-// Systems that have fast state and texture changes can just do everything
-// as it passes with no need to sort
 //============================================================================
 
+/**
+ * Systems that have fast state and texture changes can just do everything as it passes with no need to sort
+ * (WinQuake gl_rsurf.c, the `gl_texsort 0` path). A lightmapped surface (including an underwater one) is queued on
+ * its lightmap chain and its lightmap rebuilt if needed (`R_RenderDynamicLightmaps`); a turbulent surface gets its
+ * liquid mesh for this frame in the current render group; sky is skipped here. Called from the world walk for each
+ * visible surface while `gl_texsort` is 0.
+ *
+ * @param {msurface_t} s the surface
+ */
 export function R_DrawSequentialPoly( s ) {
 
 	//
@@ -1192,6 +1289,15 @@ export function R_DrawSequentialPoly( s ) {
 // R_RenderBrushPoly
 //============================================================================
 
+/**
+ * Draws one surface of a texture chain (WinQuake gl_rsurf.c): counts it in `c_brush_polys`, skips sky (drawn from
+ * the sky chain), gives a turbulent surface its liquid mesh for this frame, and otherwise links the surface's polys
+ * onto its lightmap's chain and, while `r_dynamic` is on, rebuilds its lightmap into the atlas when a light style
+ * changed or a dynamic light touches it (now or last frame), widening the atlas's changed rectangle. Called by
+ * `DrawTextureChains` for each chained surface. `R_BlendLightmaps` uploads the changes.
+ *
+ * @param {msurface_t} fa the surface; mutated (`polys.chain`, `cached_light`, `cached_dlight`)
+ */
 export function R_RenderBrushPoly( fa ) {
 
 	let t;
@@ -1325,6 +1431,15 @@ export function R_RenderBrushPoly( fa ) {
 // R_RenderDynamicLightmaps (multitexture path)
 //============================================================================
 
+/**
+ * The lightmap half of `R_RenderBrushPoly` (WinQuake gl_rsurf.c, multitexture path): counts the surface, skips sky
+ * and turbulent surfaces, links its polys onto its lightmap's chain and, while `r_dynamic` is on, rebuilds its
+ * lightmap into the atlas when a light style changed or a dynamic light touches it (now or last frame). Called by
+ * `R_DrawSequentialPoly` and, every frame for each of a brush entity's surfaces, by `R_DrawBrushModel`, since the
+ * atlases are shared with the world.
+ *
+ * @param {msurface_t} fa the surface; mutated (`polys.chain`, `cached_light`, `cached_dlight`)
+ */
 export function R_RenderDynamicLightmaps( fa ) {
 
 	let maps;
@@ -1499,12 +1614,24 @@ function R_AddDynamicLights( surf ) {
 
 //============================================================================
 // R_BuildLightMap
-//
-// Combine and scale multiple lightmaps into the 8.8 format in blocklights
 //============================================================================
 
-// bytes is how many bytes each texel takes in dest: 1 (the light's brightness) or 3 (red, green and
-// blue, for a map with coloured lightmaps)
+/**
+ * Combine and scale multiple lightmaps into the 8.8 format in blocklights (WinQuake gl_rsurf.c), then bound, invert
+ * and shift them into `dest`. Each light style's samples are scaled by `d_lightstylevalue` (cached in
+ * `surf.cached_light`) and the dynamic lights touching the surface this frame are added (white; only a 0.3 share
+ * while the Newer lighting is on, since the pipeline draws them too). Everything is full bright when `r_fullbright`
+ * is on or the world has no light data at all. Called at map load for every surface, when a surface's light changes,
+ * by the Classic pass and by the level views.
+ *
+ * @param {msurface_t} surf the surface: its lightmap is `(extents >> 4) + 1` texels each way (at most 18 x 18);
+ * mutated (`cached_light`, `cached_dlight`)
+ * @param {Uint8Array} dest written: one value per channel per texel, stored inverted (255 - brightness, 0..255)
+ * @param {number} destOffset byte index in `dest` of the surface's first texel
+ * @param {number} stride bytes from one row of the surface's texels to the next in `dest`
+ * @param {number} [bytes=lightmap_bytes] how many bytes each texel takes in dest: 1 (the light's brightness) or 3
+ * (red, green and blue, for a map with coloured lightmaps; the .lit samples are used when the surface has them)
+ */
 export function R_BuildLightMap( surf, dest, destOffset, stride, bytes = lightmap_bytes ) {
 
 	const smax = ( surf.extents[ 0 ] >> 4 ) + 1;
@@ -1752,6 +1879,20 @@ function R_UpdateBrushDemon( e, brushGroup, clmodel ) {
 
 const _brushLeafOf = p => Mod_PointInLeaf( p, cl.worldmodel );
 
+/**
+ * Draws a brush entity (a door, a plat, a button, a lift) for this frame (WinQuake gl_rsurf.c). Culls it by its
+ * bounds (kept when a visible portal shows it), marks the dynamic lights on its surfaces, rebuilds its changed
+ * lightmaps, then shows its cached THREE.Group: built the first time (surfaces sharing a base texture, lightmap and
+ * rock chart merged into one mesh, materials shared through a cache) and rebuilt when `e.frame` changes. Animated
+ * textures swap materials each frame, a demon plaque gets its raised mesh, and the group takes the entity's origin
+ * and angles (degrees, pitch negated: the "stupid quake bug"). The group is added to the scene until the next
+ * `R_DrawWorld` and is cached on the entity until a frame change or the next `GL_BuildLightmaps`. Ends by uploading
+ * modified lightmaps (`R_BlendLightmaps`), as the C code does. Called per frame for each visible brush entity from
+ * `R_DrawEntitiesOnList` (gl_rmain.js).
+ *
+ * @param {entity_t} e the entity, with a brush `model` (nothing is drawn without one); mutated: caches
+ * `_brushGroup`, `_brushGroupFrame`, `_brushAnimSurfaces` and `_demonRelief` on it
+ */
 export function R_DrawBrushModel( e ) {
 
 	// Use pre-allocated scratch arrays to avoid per-call allocations
@@ -2109,6 +2250,16 @@ function R_AddPortalReceiverSurfaces( worldmodel ) {
 
 }
 
+/**
+ * Walks the world BSP tree front to back from `modelorg` (WinQuake gl_rsurf.c). Skips solid nodes, nodes not in the
+ * current PVS (`visframe !== r_visframecount`) and nodes outside the view frustum. At a leaf it marks the leaf's
+ * surfaces as visible this frame and stores the leaf's static entity fragments in `cl_visedicts`; at a node it
+ * queues the node's world surfaces that face the viewer (underwater ones are not backface-culled, because they warp)
+ * by texture chain or, with `gl_texsort` 0, draws them right away. Hidden arch surfaces are skipped in Newer Game.
+ * Called by `R_DrawWorld` with the root node each frame.
+ *
+ * @param {?mnode_t} node the node or leaf (mleaf_t) to walk; null is ignored
+ */
 export function R_RecursiveWorldNode( node ) {
 
 	if ( ! node ) return;
@@ -2229,6 +2380,13 @@ export function R_RecursiveWorldNode( node ) {
 // R_DrawWorld
 //============================================================================
 
+/**
+ * Draws the world for this frame (WinQuake gl_rsurf.c): makes `r_worldentity` current, removes last frame's brush
+ * entity groups from the scene, walks the BSP (`R_RecursiveWorldNode`) and the portal receivers, updates the cached
+ * world batches' visibility from the PVS (and Newer Game's demon relief and rock field), then draws the texture
+ * chains and uploads changed lightmaps. Creates the `quake_world` group on first use. Called once per frame from
+ * `R_RenderScene` (gl_rmain.js), after `R_MarkLeaves`; does nothing without a world model.
+ */
 export function R_DrawWorld() {
 
 	const cl_ref = cl;
@@ -2289,11 +2447,12 @@ export function R_DrawWorld() {
 /*
 ================
 R_CleanupWaterMeshes
-
-Remove water/sky meshes that were in the scene last frame but not rendered
-this frame. Called from R_RenderView after all water rendering is done.
 ================
 */
+/**
+ * Remove water/sky meshes that were in the scene last frame but not rendered this frame. Called from R_RenderView
+ * (gl_rmain.js) after all water rendering is done. The meshes stay cached on their surfaces for reuse.
+ */
 export function R_CleanupWaterMeshes() {
 
 	for ( const mesh of _waterMeshesInScene ) {
@@ -2313,6 +2472,13 @@ export function R_CleanupWaterMeshes() {
 // DrawTextureChains
 //============================================================================
 
+/**
+ * Draws the world's texture chains built by the BSP walk (WinQuake gl_rsurf.c): the sky texture's chain as sky, the
+ * mirror texture's chain marks the mirror when `r_mirroralpha` is below 1, translucent water is left for
+ * `R_DrawWaterSurfaces` while `r_wateralpha` is below 1, and every other surface goes through `R_RenderBrushPoly`.
+ * Empties each chain it draws (the mirror chain and deferred water chains stay). With `gl_texsort` 0 only the sky
+ * chain is drawn. Called by `R_DrawWorld` each frame.
+ */
 export function DrawTextureChains() {
 
 	const cl_ref = cl;
@@ -2369,6 +2535,13 @@ export function DrawTextureChains() {
 // R_BlendLightmaps
 //============================================================================
 
+/**
+ * Uploads the lightmap atlases changed this frame (WinQuake gl_rsurf.c). In Three.js, lightmaps are applied as
+ * texture maps on materials rather than blended separately, so this copies each modified atlas from the inverted
+ * module buffer into its THREE.DataTexture as RGBA brightness (alpha 255), sets `needsUpdate` and resets the changed
+ * rectangle. Does nothing while `r_fullbright` is on or `gl_texsort` is 0. Called at the end of `R_DrawWorld` and
+ * `R_DrawBrushModel`.
+ */
 export function R_BlendLightmaps() {
 
 	if ( r_fullbright.value )
@@ -2441,6 +2614,12 @@ export function R_BlendLightmaps() {
 // R_DrawWaterSurfaces
 //============================================================================
 
+/**
+ * Draws the translucent water left out of the texture chains (WinQuake gl_rsurf.c): each turbulent surface on the
+ * water chain (`gl_texsort` 0) or on a turbulent texture's chain gets its liquid mesh in the world group at
+ * `r_wateralpha` for this frame, and the chains are emptied. Does nothing when `r_wateralpha` is 1 and `gl_texsort`
+ * is on (the water was drawn with the world). Called per frame by `R_RenderView` (gl_rmain.js) after the scene.
+ */
 export function R_DrawWaterSurfaces() {
 
 	const cl_ref = cl;
@@ -2520,6 +2699,14 @@ export function R_DrawWaterSurfaces() {
 let _markleaves_solid = new Uint8Array( 4096 );
 let _lastMarkedPostActive = false;
 
+/**
+ * Marks the leaves and nodes in the view's PVS with a new `r_visframecount` (WinQuake gl_rsurf.c), so the BSP walk
+ * and batch visibility only see them. Skips the work (and leaves the batches' visibility alone) when the view leaf,
+ * `r_novis` and the lighting mode have not changed, or while drawing a mirror. Marks everything when `r_novis` is on
+ * or the view is outside the map. In the HDR water pipeline what is under (or above) visible water is marked too,
+ * and with portals active, what each visible portal's receiver can see. Called once per frame by `R_RenderScene`
+ * (gl_rmain.js), done there so we know if we're in water. Does nothing without a world model.
+ */
 export function R_MarkLeaves() {
 
 	const cl_ref = cl;
@@ -2795,6 +2982,20 @@ function resizeLightmapCapacity(count){
  allocated.length=count;lightmap_polys.length=count;lightmap_modified.length=count;lightmap_rectchange.length=count;MAX_LIGHTMAPS=count;
 }
 
+/**
+ * Returns a texture number and the position inside it (WinQuake gl_rsurf.c): finds room for a surface's lightmap in
+ * the first atlas with space (BLOCK_WIDTH x BLOCK_HEIGHT, 128 x 128 texels), lowest position first, and reserves it.
+ * When every atlas is full the atlas count doubles (from 64, at most 512), keeping what is already allocated.
+ * Called at map load by `GL_CreateSurfaceLightmap`; the allocation lasts until the next `GL_BuildLightmaps`.
+ *
+ * @param {number} w width in lightmap texels (1..127)
+ * @param {number} h height in lightmap texels (1..128)
+ * @param {{ value: number }} outX written: the column of the block's left edge, in texels
+ * @param {{ value: number }} outY written: the row of the block's top edge, in texels
+ * @returns {number} the atlas index (into `lightmapTextures`)
+ * @throws {Error} via `Sys_Error` (`AllocBlock: full`) when no atlas has room and no more can be added (512 atlases,
+ * or a size the atlases cannot hold)
+ */
 export function AllocBlock( w, h, outX, outY ) {
 
 	for ( let texnum = 0; texnum < MAX_LIGHTMAPS; texnum ++ ) {
@@ -2842,11 +3043,19 @@ export function AllocBlock( w, h, outX, outY ) {
 
 //============================================================================
 // BuildSurfaceDisplayList
-//
-// Reconstructs polygon from BSP edges and computes texture coordinates.
-// In Three.js, we build BufferGeometry instead of glpoly_t display lists.
 //============================================================================
 
+/**
+ * Reconstructs polygon from BSP edges and computes texture coordinates (WinQuake gl_rsurf.c). In Three.js, we build
+ * BufferGeometry instead of glpoly_t display lists, from the polygon this makes. Each vertex gets its position
+ * (Quake units), texture s, t (in tiles of the texture) and lightmap s, t (0..1 across the atlas, at the surface's
+ * `light_s`/`light_t`, so `GL_CreateSurfaceLightmap` must run first). Unless `gl_keeptjunctions` is on or the
+ * surface is underwater, co-linear points are removed. Called at map load by `GL_BuildLightmaps` for each opaque
+ * surface of `currentmodel`; does nothing when no model is current.
+ *
+ * @param {msurface_t} fa the surface; mutated: `polys` is replaced by one new glpoly_t (sky and turbulent
+ * subdivisions are owned by the loader and are not rebuilt here)
+ */
 export function BuildSurfaceDisplayList( fa ) {
 
 	if ( ! currentmodel ) return;
@@ -2971,6 +3180,15 @@ export function BuildSurfaceDisplayList( fa ) {
 // GL_CreateSurfaceLightmap
 //============================================================================
 
+/**
+ * Places a surface's lightmap in an atlas and builds it (WinQuake gl_rsurf.c): allocates its block with
+ * `AllocBlock`, records the atlas and position on the surface and fills the block with `R_BuildLightMap`. Sky and
+ * turbulent surfaces have no lightmap and are skipped. Called at map load by `GL_BuildLightmaps` for every surface.
+ *
+ * @param {msurface_t} surf the surface; mutated: `lightmaptexturenum`, `light_s`, `light_t` (texels) and the
+ * cached light values
+ * @throws {Error} via `Sys_Error` from `AllocBlock` when the atlases are full
+ */
 export function GL_CreateSurfaceLightmap( surf ) {
 
 	if ( surf.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) )
@@ -3006,12 +3224,30 @@ export const lightmapTextures = []; // THREE.DataTexture array
 const classicAtlases = new WeakMap();
 const classicLightScratch = new Uint8Array( 18 * 18 );
 
+/**
+ * The Classic comparison pass's stand-in for a lightmap atlas: the grayscale copy kept by `R_ClassicLightmapsFrame`,
+ * when there is one. Passed by `R_ClassicOn` (gl_rmain.js) to the Classic material conversion.
+ *
+ * @param {?THREE.Texture} texture an atlas from `lightmapTextures`, or any other texture
+ * @returns {?THREE.Texture} its classic atlas, or `texture` itself when it has none
+ */
 export function R_ClassicLightmap( texture ) {
 
 	return texture != null && classicAtlases.has( texture ) ? classicAtlases.get( texture ).texture : texture;
 
 }
 
+/**
+ * Refreshes the classic atlases for this frame: original grayscale samples and the full native dynamic-light
+ * contribution, kept in a separate atlas per lightmap so the enhanced draw can use coloured .lit samples and reduced
+ * baked dynamic light without contaminating the classic comparison. A surface is rebuilt only when its light styles,
+ * dynamic light or full-bright state changed; its `cached_light` and `cached_dlight` are restored afterwards so the
+ * enhanced lightmaps still see the change. Called each frame by `R_ClassicOn` (gl_rmain.js) while the Classic pass
+ * runs. A classic atlas is created on first use and disposed with its original atlas.
+ *
+ * @param {Array<?model_t>} [models] the models whose surfaces to refresh; defaults to `cl.model_precache` (or the
+ * world model alone); null entries are skipped
+ */
 export function R_ClassicLightmapsFrame( models = cl.model_precache || [ cl.worldmodel ] ) {
 
 	const touched = new Set(), seen = new Set();
@@ -3305,8 +3541,13 @@ function R_UpdateWorldTextureAnimations() {
 // is in the PVS (has visframe === r_visframecount).
 //============================================================================
 
-// For a reflection probe (r_waterprobe.js): the whole level drawable (all = true), or the view's own
-// visibility put back
+/**
+ * For a reflection probe (r_waterprobe.js): the whole level drawable (all = true), or the view's own visibility put
+ * back. Showing all still keeps hidden arch surfaces hidden in Newer Game. Passed by `R_RenderView` (gl_rmain.js)
+ * to the water probe capture, which calls it before and after rendering the probe.
+ *
+ * @param {boolean} all true to show every world batch instance; false to restore the PVS visibility
+ */
 export function R_WorldShowAll( all ) {
 
 	if ( all ) {
@@ -3327,8 +3568,15 @@ let archVisibilityKey = -1;
 let occluderRevision = -1;
 function R_BuildWorldOccluder( model ) { occluderRevision = R_ArchHiddenRevision(); return R_BuildSunOccluder( model ); }
 const noArchRestore = () => {};
-// Classic draws the same scene without rebuilding its world. Batched instance
-// visibility is not Object3D.visible, so it needs its own exception-safe scope.
+/**
+ * Shows the world surfaces that Newer Game's arch hides, for the Classic comparison pass (`R_ClassicOn`,
+ * gl_rmain.js). Classic draws the same scene without rebuilding its world. Batched instance visibility is not
+ * Object3D.visible, so it needs its own exception-safe scope: each hidden instance is made visible when one of its
+ * leaves is in the PVS, and the returned function puts the saved visibility back.
+ *
+ * @returns {function(): void} restores the visibility it changed (a no-op when nothing is hidden)
+ * @throws {*} rethrows an error raised while changing visibility, after restoring what it had changed
+ */
 export function R_ClassicArchVisibility() {
 	if(!R_HasArchHidden())return noArchRestore;
 	const saved=[];
@@ -3374,6 +3622,21 @@ function R_UpdateWorldVisibility() {
 
 }
 
+/**
+ * Builds the lightmap texture with all the surfaces from all brush models (WinQuake gl_rsurf.c). In Three.js, we
+ * create THREE.DataTexture objects for each lightmap atlas. Called at every map load by `R_NewMap` (gl_rmain.js),
+ * and by tools that bake world data.
+ *
+ * First it throws away the previous map's render state: world batches, liquid and sky meshes and materials, brush
+ * entity groups and materials, the lightmap textures, and the atlas count goes back to 64. Then, for every loaded
+ * brush model (inline `*` submodels are covered by the world's surface list), it places and builds each surface's
+ * lightmap and rebuilds its polygon. The atlas holds one byte per texel, or red, green and blue when the map has a
+ * coloured (.lit) lightmap and Newer Game is on; this choice is fixed until the next call. Finally it uploads each
+ * used atlas as RGBA brightness, builds the cached world meshes, links teleporter portals and builds the HDR
+ * pipeline's world lights and shadow occluder. Resets `r_framecount` to 1. Returns early without a client state.
+ *
+ * @throws {Error} via `Sys_Error` when the lightmap atlases are full (`AllocBlock: full`)
+ */
 export function GL_BuildLightmaps() {
 
 	clearWaterTextureLight();

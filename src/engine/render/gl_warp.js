@@ -32,6 +32,13 @@ let warpface = null; // msurface_t *
 // external reference
 let loadmodel = null;
 
+/**
+ * Sets the brush model whose edges and vertexes `GL_SubdivideSurface` reads. gl_model.js's `GL_SubdivideSurface`
+ * wrapper calls it before every sky or liquid surface it subdivides while loading a map or brush model. The reference
+ * is kept until the next call.
+ *
+ * @param {model_t} m the model being loaded (gl_model.js's `loadmodel`)
+ */
 export function GL_Warp_SetLoadmodel( m ) {
 
 	loadmodel = m;
@@ -82,6 +89,14 @@ const TURBSCALE = ( 256.0 / ( 2 * M_PI ) );
 BoundPoly
 =============
 */
+/**
+ * Finds the axial bounding box of a polygon (WinQuake gl_warp.c). Called by `SubdividePolygon`.
+ *
+ * @param {number} numverts number of vertices to read
+ * @param {Float32Array|Array<number>} verts flat `x, y, z` triples, world space (Quake units)
+ * @param {Float32Array} mins written: smallest x, y, z (9999 on each axis when `numverts` is 0)
+ * @param {Float32Array} maxs written: largest x, y, z (-9999 on each axis when `numverts` is 0)
+ */
 export function BoundPoly( numverts, verts, mins, maxs ) {
 
 	mins[ 0 ] = mins[ 1 ] = mins[ 2 ] = 9999;
@@ -108,6 +123,17 @@ export function BoundPoly( numverts, verts, mins, maxs ) {
 SubdividePolygon
 =============
 */
+/**
+ * Recursively cuts a polygon on axial planes at multiples of `gl_subdivide_size` (default 128 Quake units) through
+ * its middle, until no piece spans more than 8 units either side of such a plane, then prepends each piece to
+ * `warpface.polys` as a `glpoly_t` whose vertices hold `x, y, z, s, t` (s and t are the texinfo vec dot products,
+ * texels, without the offsets) (WinQuake gl_warp.c). Runs at map load for the surface set by `GL_SubdivideSurface`.
+ *
+ * @param {number} numverts number of vertices, at most 60
+ * @param {Float32Array} verts flat `x, y, z` triples with room for one more vertex: the first is copied to the end
+ *   (mutated) to close the loop
+ * @throws {Error} through `Sys_Error` when `numverts` is over 60
+ */
 export function SubdividePolygon( numverts, verts ) {
 
 	if ( numverts > 60 )
@@ -223,12 +249,17 @@ export function SubdividePolygon( numverts, verts ) {
 /*
 ================
 GL_SubdivideSurface
-
-Breaks a polygon up along axial 64 unit
-boundaries so that turbulent and sky warps
-can be done reasonably.
 ================
 */
+/**
+ * Breaks a polygon up along axial 64 unit boundaries so that turbulent and sky warps can be done reasonably
+ * (WinQuake gl_warp.c; the boundary is actually `gl_subdivide_size`, 128 by default). Called at load by
+ * `Mod_LoadFaces` for every sky and liquid ('*') surface, after `GL_Warp_SetLoadmodel`. Rebuilds the face's polygon
+ * from the model's surfedges, edges and vertexes, then hands it to `SubdividePolygon`.
+ *
+ * @param {msurface_t} fa the surface; kept as the module's `warpface` and given its `polys` chain (mutated)
+ * @throws {Error} through `Sys_Error` when the face or a piece has more than 60 vertices
+ */
 export function GL_SubdivideSurface( fa ) {
 
 	warpface = fa;
@@ -459,12 +490,22 @@ function R_DrawSkyChain( s, realtime ) {
 /*
 =============
 R_InitSky
-
-A sky texture is 256*128, with the right side being a masked overlay.
-For Three.js, creates two textures (solid sky and alpha sky) from the
-sky texture data.
 ==============
 */
+/**
+ * A sky texture is 256*128, with the right side being a masked overlay. For Three.js, creates two textures (solid sky
+ * and alpha sky) from the sky texture data (WinQuake gl_warp.c). The solid layer is the right 128×128 half, opaque.
+ * The alpha layer is the left half, where palette index 0 becomes the right half's average colour with alpha 0
+ * (an average value for the back, to avoid a fringe on the top level). Called at map load through gl_model.js's
+ * `R_InitSky` wrapper for each texture named 'sky...'; that wrapper keeps the textures with the model, so they are
+ * freed with it.
+ *
+ * @param {{ data: Uint8Array, offsets: Array<number> }} mt the sky miptex: `data` holds 8-bit palette indices and
+ *   `offsets[0]` is where the 256×128 mip level 0 starts in it
+ * @param {Uint32Array} d_8to24table the palette as packed 0xAABBGGRR values (vid.js)
+ * @returns {{ solidTexture: THREE.DataTexture, alphaTexture: THREE.DataTexture }} two new 128×128 RGBA sRGB textures,
+ *   linear-filtered and repeating
+ */
 export function R_InitSky( mt, d_8to24table ) {
 
 	const src = mt.data;

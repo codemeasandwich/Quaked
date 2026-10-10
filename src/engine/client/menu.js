@@ -210,9 +210,15 @@ const episodes = [
 */
 
 /**
- * Called when a connection attempt fails.
+ * Called when a connection attempt fails: by `CL_EstablishConnection` (cl_main.js) when `connect` throws and
+ * `M_ShouldReturnOnError` is true, and by the WebTransport driver (net_webtransport.js, wired through
+ * `WT_SetExternals`) when the lobby times out or refuses the join.
  * If m_return_onerror is set, returns to the saved menu state with error message.
  * Otherwise falls back to the Multiplayer menu (e.g., for URL-based joins).
+ * It only chooses the menu screen; the callers set `key_dest` to `key_menu` so it shows. The reason is kept until
+ * the Multiplayer or Join Game menu is next opened, and drawn by those screens.
+ *
+ * @param {string} [reason] message shown under the menu; `'Connection failed'` when empty or missing
  */
 export function M_ConnectionError( reason ) {
 
@@ -234,7 +240,10 @@ export function M_ConnectionError( reason ) {
 }
 
 /**
- * Check if we should return to menu on connection error.
+ * Check if we should return to menu on connection error. The flag is set when a room is picked in the Join Game menu
+ * (just before its `connect` command is queued) and cleared when that menu reopens or `M_ConnectionError` uses it.
+ *
+ * @returns {boolean} true when a menu join is in progress, so a failed `connect` should return to that menu
  */
 export function M_ShouldReturnOnError() {
 
@@ -286,6 +295,44 @@ let _SCR_ModalMessage = null;
 let _IN_RequestPointerLock = null;
 let _CL_NextDemo = null;
 
+/**
+ * Hands the menu the engine services above it (host, client, server, video, drawing, sound, network, platform) that
+ * it calls without importing them. host.js calls it twice: as the module loads, with `{ Touch_ExitFullscreen }`
+ * (card [44g], D1a), and from `Host_Init` after `Draw_Init`, with the client state and drawing functions. Each key
+ * replaces the current value only when present and truthy (`weaponModelsCredit` whenever the key is present, so it
+ * can be cleared); omitted keys keep what they had. Objects are kept by reference for the page's lifetime.
+ *
+ * Keys, and the default used until they are wired:
+ * - `key_dest_set(dest)`, `key_dest_get()`: write and read where keys go. Default null: reads fall back to the
+ *   imported `key_dest` and writes are dropped.
+ * - `cls` (`client_static_t`): `state`, `demonum`, `demoplayback`. Default `{ state: 0, demonum: -1,
+ *   demoplayback: false }`.
+ * - `sv` (`server_t`): `active`, `edicts` (the Cheats menu). Default `{ active: false }`.
+ * - `svs` (`server_static_t`): `maxclients`. Default `{ maxclients: 1 }`.
+ * - `cl` (`client_state_t`): `intermission`. Default `{ intermission: 0, gametype: 0 }`.
+ * - `vid` (`viddef_t`): the real video size, `width`/`height` in CSS pixels (the window's inner size), used to map
+ *   touches on the scaled Credits screen.
+ *   Default `{ width: 640, height: 480 }`.
+ * - `host_time_get()`, `realtime_get()`: host time and real time in seconds, for the animated cursors and
+ *   `MainMenu_End`. Default `() => 0`.
+ * - `Draw_CachePic`, `Draw_TransPic`, `Draw_Pic`, `Draw_Character`, `Draw_Fill`, `Draw_FadeScreen`,
+ *   `Draw_ConsoleBackground`, `Draw_String`, `Draw_TransPicTranslate`, `Draw_SubPic` (gl_draw.js). Default null:
+ *   the menu then draws nothing that needs them (screens that need `Draw_CachePic` return early). `Draw_String` is
+ *   stored but not used.
+ * - `S_LocalSound(name)`: menu click sounds. Default null (silent).
+ * - `SCR_BeginLoadingPlaque()`, `SCR_EndLoadingPlaque()`: the loading plaque around loads and room creation.
+ *   Default null. host.js does not wire `SCR_EndLoadingPlaque`.
+ * - `IN_RequestPointerLock()`: asked for when a game starts from the menu. Default null.
+ * - `CL_NextDemo()`: resumes the demo loop when the main menu closes while not connected. Default null.
+ * - `WT_QueryRooms(serverUrl)`, `WT_CreateRoom(serverUrl, options)` (net_webtransport.js): the Join Game room list
+ *   and the New Game room. Default null: fetching the list fails with "WebTransport not available".
+ * - `cl_name` (`cvar_t`): the player name, for the room host and the Setup menu. Default null (`'Player'` /
+ *   `'player'`).
+ * - `weaponModelsCredit`: an optional picture drawn on the Credits screen. Default null; host.js does not wire it.
+ * - `Touch_ExitFullscreen()` (platform/touch.js): leaves fullscreen when the Quit menu opens. Default a no-op.
+ *
+ * @param {object} externals any subset of the keys above
+ */
 export function M_SetExternals( externals ) {
 	if ( 'weaponModelsCredit' in externals ) _weaponModelsCredit = externals.weaponModelsCredit;
 	if ( externals.Touch_ExitFullscreen ) _Touch_ExitFullscreen = externals.Touch_ExitFullscreen;
@@ -538,6 +585,12 @@ function M_BuildTranslationTable( top, bottom ) {
 M_ToggleMenu_f
 ================
 */
+/**
+ * The `togglemenu` command, also called by `Key_Event` for Escape outside the menu and for a console key during demo
+ * playback, and by a tap or click when no menu is up. In the menu: from a submenu goes back to the main menu; from
+ * the main menu closes it (key_dest `key_game`, `m_state` `m_none`). In the console it closes the console
+ * (`Con_ToggleConsole_f`); otherwise opens the main menu. Always sets `m_entersound`.
+ */
 export function M_ToggleMenu_f() {
 
 	m_entersound = true;
@@ -592,6 +645,11 @@ function M_InGame() {
 
 }
 
+/**
+ * Opens the main menu (the `menu_main` command; also Escape in a submenu, the console closing while not connected,
+ * and the WebTransport driver after a failed join). When the menu was not already up it saves `cls.demonum` and sets
+ * it to -1, which holds the demo loop until Escape leaves the main menu and restores it.
+ */
 export function M_Menu_Main_f() {
 
 	if ( getKeyDest() !== key_menu ) {
@@ -725,6 +783,10 @@ function M_Main_Key( key ) {
 
 }
 
+/**
+ * Opens the Bestiary book (the `menu_bestiary` command and the main menu's Bestiarium item): pauses the demo loop as
+ * `M_Menu_Main_f` does, resets the book to its first spread (`R_BestiaryBookOpen`) and shows it as `m_bestiary`.
+ */
 export function M_Menu_Bestiary_f() {
 
 	if ( getKeyDest() !== key_menu ) { m_save_demonum = _cls.demonum; _cls.demonum = -1; }
@@ -941,7 +1003,14 @@ function levelSelectLevels() {
 
 }
 
-// what Level Select offers right now: the episodes, the selected one and its levels (the menu's own view, for tests)
+/**
+ * What Level Select offers right now: the episodes, the selected one and its levels (the menu's own view, for tests;
+ * tests/level_select_test.js). Availability is looked up in the loaded paks (`COM_FindFile`) on every call.
+ *
+ * @returns {{ episodes: Array<number>, episode: number, levels: Array<string>, cursor: number }} the episode numbers
+ *   this copy has (0 is the Introduction), the selected episode, its map names in order (e.g. `'e1m1'`), and the
+ *   cursor row (0..2 are mode, skill and episode; levels start at row 3). A new object on every call.
+ */
 export function M_LevelSelectOffer() {
 
 	return { episodes: levelSelectEpisodes().map( ( e ) => e.episode ), episode: levelSelectEpisode(), levels: levelSelectLevels().map( ( l ) => l.map ), cursor: m_levelselect_cursor };
@@ -2925,6 +2994,11 @@ function M_Video_Key( key ) {
 M_Init
 ================
 */
+/**
+ * Registers the menu console commands once at startup, from `Host_Init` after `Key_Init`: `togglemenu`, `menu_main`,
+ * `menu_singleplayer`, `menu_load`, `menu_save`, `menu_multiplayer`, `menu_setup`, `menu_options`, `menu_keys`,
+ * `menu_video`, `help` and `menu_credits`, `menu_bestiary`, `menu_quit`, `menu_lanconfig` and `menu_gameoptions`.
+ */
 export function M_Init() {
 
 	Cmd_AddCommand( 'togglemenu', M_ToggleMenu_f );
@@ -2951,6 +3025,12 @@ export function M_Init() {
 M_Keydown
 ================
 */
+/**
+ * Hands a key press to the current menu screen's key handler. Called by `Key_Event` (presses only, Shift already
+ * applied) while key_dest is `key_menu`, and by the touch handling for a tap outside the menu (as Escape).
+ *
+ * @param {number} key key number (0..255): ASCII or a `K_*` constant
+ */
 export function M_Keydown( key ) {
 
 	switch ( m_state ) {
@@ -2996,6 +3076,13 @@ function M_DrawSplitMarks() {
 
 }
 
+/**
+ * Draws the menu each screen update, from `SCR_UpdateScreen` (gl_screen.js, wired through `SCR_SetExternals`).
+ * While the half-Newer, half-classic title demo runs it draws the split line and labels even with no menu up. With
+ * the menu up it dims what is behind (the console background, a light fill over the split demo, or the fade), draws
+ * the current screen between `MainMenu_Begin` and `MainMenu_End`, plays the enter sound once if `m_entersound` is set,
+ * and draws the studio logo.
+ */
 export function M_Draw() {
 
 	MainMenu_SetVisible( m_state !== m_none && m_state !== m_bestiary && getKeyDest() === key_menu );
@@ -3070,11 +3157,23 @@ export function M_Draw() {
 /*
 ================
 M_TouchInput
-
-Handle touch input for menu selection.
-Converts screen coordinates to virtual 320x200 space and selects menu items.
 ================
 */
+/**
+ * Handle touch input for menu selection.
+ * Converts screen coordinates to virtual 320x200 space and selects menu items. Called by in_web.js for a mouse click
+ * while the menu is up and for a click or tap during demo playback (as `(0, 0, 1, 1)`, which only opens the menu),
+ * and by touch.js through `Touch_SetMenuCallback`. With no menu up it opens one; a touch outside the 320x200 sheet
+ * acts as Escape; the Bestiary book takes the whole screen.
+ *
+ * @param {number} touchX x from the left edge of the clicked element (in_web.js) or the window (touch.js), CSS pixels
+ *   (0..screenWidth)
+ * @param {number} touchY y from the top edge of that element or window, CSS pixels (0..screenHeight)
+ * @param {number} screenWidth that element's or window's width, CSS pixels (> 0)
+ * @param {number} screenHeight that element's or window's height, CSS pixels (> 0)
+ * @returns {boolean|undefined} in the Bestiary, true when the touch was inside the screen (`R_BestiaryBookTouch`);
+ *   otherwise undefined
+ */
 export function M_TouchInput( touchX, touchY, screenWidth, screenHeight ) {
 
 	// The book uses the full overlay, not the centered 320x200 menu sheet.

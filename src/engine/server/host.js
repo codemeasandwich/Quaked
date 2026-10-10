@@ -158,11 +158,15 @@ function _GL_EndRendering() {
 /*
 ================
 Host_ClearMemory
-
-This clears all the memory used by both the client and server, but does
-not reinitialize anything.
 ================
 */
+/**
+ * This clears all the memory used by both the client and server, but does not reinitialize anything. In this port:
+ * flushes the render caches (`D_FlushCaches`), drops every loaded model (`Mod_ClearAll`) and resets `cls.signon` to 0;
+ * there is no hunk to free (garbage collection handles it), `sv` is reset in `SV_SpawnServer` and `cl` in
+ * `CL_ClearState`. Called by `SV_SpawnServer` (sv_main.js) and `CL_ClearState` (cl_main.js, through
+ * `CL_SetExternals` wired at the end of this module) when a server or client begins.
+ */
 export function Host_ClearMemory() {
 
 	Con_DPrintf( 'Clearing memory\n' );
@@ -247,6 +251,20 @@ function Host_FindMaxClients() {
 Host_Init
 ====================
 */
+/**
+ * Starts the whole engine once at page load, called by main.js after the paks are loaded: the command buffer and
+ * commands, the view and chase camera, the host's cvars and client slots, gfx.wad, keys, console, menu, QuakeC,
+ * models, networking, server, textures, palette and colormap, video, drawing, screen, renderer, sound, CD audio,
+ * status bar, client and input, wiring the externals that need the video and client state as it goes. Then queues
+ * `exec quake.rc`, the web port's default WASD and flashlight bindings and always-run speeds, and the configuration
+ * saved in localStorage under `quake_config` (its changed defaults dropped; a missing or unavailable store is
+ * ignored), registers a `beforeunload` listener that saves the configuration, and sets `host_initialized`.
+ *
+ * @param {{ basedir: string, argc: number, argv: Array<string> }} parms the startup parameters (main.js); kept in
+ *   `host_parms` for the life of the page
+ * @returns {Promise<void>} settles when initialisation is done (the body never awaits, so it runs to completion in
+ *   the call); rejects when a subsystem's start throws (for example through `Sys_Error`)
+ */
 export async function Host_Init( parms ) {
 
 	host_parms = parms;
@@ -478,10 +496,16 @@ export async function Host_Init( parms ) {
 /*
 ==================
 Host_ServerFrame
-
-Runs server simulation for the current frame
 ==================
 */
+/**
+ * Runs server simulation for the current frame, called by `Host_Frame` when a local server is active: hands
+ * `host_frametime` to physics and QuakeC (`frametime`), clears the datagram, takes new clients and reads client
+ * messages, then runs physics unless the server is paused, Newer Game's bestiary has frozen the game, or (single
+ * player) a console or menu holds it or the welcome loading screen is up. Then Newer Game's seamless exit check,
+ * cheat power-ups (kept on while a menu holds the game) and the Ring's unseen-player rule, and finally sends every
+ * client its messages.
+ */
 export function Host_ServerFrame() {
 
 	// sync frametime to physics module
@@ -524,10 +548,21 @@ export function Host_ServerFrame() {
 /*
 ==================
 Host_Frame
-
-Runs all active servers
 ==================
 */
+/**
+ * Runs all active servers and the client for one frame, called by main.js's animation loop (or the profiler's pump).
+ * Accumulates `realtime` and runs a frame only when at least 1/72 s has passed (except in a timedemo), with
+ * `host_frametime` clamped to 0.001..0.1 s (or fixed by `host_framerate`), slowed by `host_timescale` in single
+ * player and scaled by Newer Game's bestiary. A frame reads input and touch, runs the command buffer, polls the
+ * network, sends the client's move, runs the local server (`Host_ServerFrame`), reads server messages, draws the
+ * screen, updates sound (at the view when signed on), CD and ambient music, and counts `host_framecount`. A
+ * `Host_Error` or `Host_EndGame` thrown during the frame is caught here (the error's message is printed and the
+ * profiler stopped), like C's longjmp, and the next frame runs normally.
+ *
+ * @param {number} time seconds since the previous call
+ * @throws {Error} any error other than a `Host_Error:` or `Host_EndGame:` one, re-thrown
+ */
 export function Host_Frame( time ) {
 
 	try {
@@ -690,12 +725,22 @@ function _Host_FilterTime( time ) {
 /*
 ================
 Host_Error
-
-This shuts down both the client and server
 ================
 */
 let host_error_reentrancy = false;
 
+/**
+ * This shuts down both the client and server: the engine's recoverable error. Re-enables screen updates, prints
+ * "Host_Error: <error>", shuts the local server down, disconnects the client and stops the demo loop
+ * (`cls.demonum = -1`), then throws to unwind the call stack back to `Host_Frame` (like C's longjmp), which prints it
+ * and carries on with the next frame. Modules below the host reach it through their SetExternals (wired at the end of
+ * this module); sv_main.js imports it.
+ *
+ * @param {string} error the message, used as given (no format arguments are taken; extra arguments are ignored)
+ * @returns {never}
+ * @throws {Error} always: `Host_Error: <error>`; and via `Sys_Error` ('Host_Error: recursively entered - ...') when
+ *   entered again while handling one
+ */
 export function Host_Error( error ) {
 
 	if ( host_error_reentrancy )
@@ -723,10 +768,18 @@ export function Host_Error( error ) {
 /*
 ================
 Host_EndGame
-
-End the current game
 ================
 */
+/**
+ * End the current game without an error, for example when the server disconnects or a demo's packet entities are
+ * bad (cl_parse.js, through `CL_Parse_SetExternals`): shuts the local server down, then plays the next demo when the
+ * demo loop is running (`cls.demonum !== -1`) or disconnects, and throws to unwind back to `Host_Frame`, which
+ * swallows it silently.
+ *
+ * @param {string} message why the game ended (printed with `Con_DPrintf`)
+ * @returns {never}
+ * @throws {Error} always: `Host_EndGame: <message>`
+ */
 export function Host_EndGame( message ) {
 
 	Con_DPrintf( 'Host_EndGame: %s\n', message );
@@ -752,14 +805,23 @@ export function Host_EndGame( message ) {
 /*
 ================
 Host_ShutdownServer
-
-This only happens at the end of a game, not between levels
 ================
 */
 // Cached buffer for Host_ShutdownServer disconnect message (avoid per-call allocations)
 const _shutdownBuf = new Uint8Array( 4 );
 const _shutdownMsg = { allowoverflow: false, overflowed: false, data: _shutdownBuf, maxsize: 4, cursize: 0 };
 
+/**
+ * Stops the local server. This only happens at the end of a game, not between levels: by `Host_Error`,
+ * `Host_EndGame`, the `map` command, and the client's disconnect (cl_main.js, through `CL_SetExternals`). Does nothing
+ * when no server is active. Marks it inactive, disconnects the local client, flushes pending client messages (like
+ * the score) for up to 3 seconds, sends every client `svc_disconnect` (`NET_SendToAll`, 5 seconds; prints how many it
+ * failed), drops all active clients and replaces `sv` with a fresh server state. The disconnect message uses a
+ * cached 4-byte buffer.
+ *
+ * @param {boolean} crash passed to `SV_DropClient`: true when the connections are already broken, so no farewell
+ *   message is sent to each client
+ */
 export function Host_ShutdownServer( crash ) {
 
 	if ( sv.active === false )
@@ -830,12 +892,16 @@ export function Host_ShutdownServer( crash ) {
 /*
 ===============
 Host_WriteConfiguration
-
-Writes key bindings and archived cvars to localStorage
 ===============
 */
 const CONFIG_STORAGE_KEY = 'quake_config';
 
+/**
+ * Writes key bindings and archived cvars to localStorage under `quake_config` (`Key_WriteBindings` then
+ * `Cvar_WriteVariables`, as console command text that `Host_Init` replays at the next start). Called on page unload
+ * (`beforeunload`, registered by `Host_Init`) and by `Host_Shutdown`. Does nothing before `Host_Init` finishes; prints
+ * "Couldn't save config." when storage refuses the write.
+ */
 export function Host_WriteConfiguration() {
 
 	if ( host_initialized !== true )
@@ -858,10 +924,13 @@ export function Host_WriteConfiguration() {
 /*
 ================
 Host_Shutdown
-
-Cleanly shut down everything
 ================
 */
+/**
+ * Cleanly shut down everything, called by the `quit` command (host_cmd.js). Always destroys Newer Game's WebGL main
+ * menu; when the host is initialised, saves the configuration, clears `host_initialized` and shuts down CD audio,
+ * sound, input, networking and video in reverse order. A second call only destroys the menu again.
+ */
 export function Host_Shutdown() {
 
 	MainMenu_Destroy();
@@ -887,10 +956,17 @@ export function Host_Shutdown() {
 /*
 ================
 SV_ClientPrintf
-
-Sends text across to be displayed
 ================
 */
+/**
+ * Sends text across to be displayed in the current `host_client`'s console: writes `svc_print` and the text into its
+ * reliable message buffer (sent with its next update). Used by the host's console commands (host_cmd.js). Does
+ * nothing when there is no current client.
+ *
+ * @param {string} fmt the text; each `%s` is replaced in turn by the next argument (no other format codes are
+ *   expanded)
+ * @param {...*} args values for the `%s` codes; a falsy value (including 0) becomes an empty string
+ */
 export function SV_ClientPrintf( fmt, ...args ) {
 
 	// Format the string
@@ -914,10 +990,17 @@ export function SV_ClientPrintf( fmt, ...args ) {
 /*
 ================
 SV_BroadcastPrintf
-
-Sends text to all active clients
 ================
 */
+/**
+ * Sends text to all active clients: prints it on the server's console and writes `svc_print` with it into the
+ * reliable message of every active, spawned client. Used by the `pause` command (host_cmd.js) and, through
+ * `Cvar_SetServerBroadcast` (set by `Host_Init`), to announce changes to `server` cvars while a server is active.
+ *
+ * @param {string} fmt the text; each `%s` is replaced in turn by the next argument (no other format codes are
+ *   expanded)
+ * @param {...*} args values for the `%s` codes; a falsy value (including 0) becomes an empty string
+ */
 export function SV_BroadcastPrintf( fmt, ...args ) {
 
 	// Format the string

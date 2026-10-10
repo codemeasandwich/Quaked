@@ -101,7 +101,10 @@ let _Host_Error = error => { throw new Error( 'Host_Error: ' + error ); };
 let _Host_EndGame = message => { throw new Error( 'Host_EndGame: ' + message ); };
 
 /**
- * Hands the server-message parser the host's two unwinds, as the other modules' SetExternals do.
+ * Hands the server-message parser the host's two unwinds, as the other modules' SetExternals do. Called once by
+ * host.js as it loads (the wiring block at its end). Keys left out keep their current function. Until wired, the
+ * defaults throw an Error with the same `Host_Error: ` / `Host_EndGame: ` prefix, which `Host_Frame` still catches,
+ * but without the host's cleanup (no server shutdown, disconnect or next demo).
  *
  * @param {{ Host_Error?: function( string ): never, Host_EndGame?: function( string ): never }} externals the host's
  *   error (drops the game) and end of game (next demo or disconnect); both throw to unwind to Host_Frame
@@ -159,10 +162,18 @@ export const svc_strings = [
 /*
 ===============
 CL_EntityNum
-
-This error checks and tracks the total number of entities
 ===============
 */
+/**
+ * The client entity for an entity number, error checking it and tracking the total number of entities: a number at or
+ * past `cl.num_entities` grows the count to include it, resetting each newly counted entity's colormap. Called while
+ * parsing entity updates (`CL_ParseUpdate`) and baselines (`svc_spawnbaseline`, which must use it to force
+ * `cl.num_entities` up).
+ *
+ * @param {number} num entity number from the message, 0..MAX_EDICTS-1
+ * @returns {entity_t} `cl_entities[num]` (the persistent slot, not a copy)
+ * @throws {Error} via the host's `Host_Error` ('CL_EntityNum: %i is an invalid number') when `num >= MAX_EDICTS`
+ */
 export function CL_EntityNum( num ) {
 
 	if ( num >= cl.num_entities ) {
@@ -187,6 +198,16 @@ export function CL_EntityNum( num ) {
 CL_ParseStartSoundPacket
 ==================
 */
+/**
+ * Reads an `svc_sound` message from `net_message` and starts the sound: a field mask byte, optional volume byte
+ * (default `DEFAULT_SOUND_PACKET_VOLUME`) and attenuation byte (sent times 64; default
+ * `DEFAULT_SOUND_PACKET_ATTENUATION`), a short packing entity (high 13 bits) and channel (low 3 bits), the sound's
+ * precache index and its position. Prints and skips a sound that was not precached. Outside demo playback Newer
+ * Game's shot confirmation (`R_ShellShot`) sees every sound first, whether or not audio is on. Called by
+ * `CL_ParseServerMessage`. The position goes through a reused module vector.
+ *
+ * @throws {Error} via the host's `Host_Error` when the entity number is over MAX_EDICTS
+ */
 export function CL_ParseStartSoundPacket() {
 
 	const pos = _soundPos;
@@ -242,13 +263,17 @@ export function CL_ParseStartSoundPacket() {
 /*
 ==================
 CL_KeepaliveMessage
-
-When the client is taking a long time to load stuff, send keepalive messages
-so the server doesn't disconnect.
 ==================
 */
 let _keepalive_lastmsg = 0;
 
+/**
+ * When the client is taking a long time to load stuff, send keepalive messages so the server doesn't disconnect.
+ * Called by `CL_ParseServerInfo` after each model and sound it loads; at most once every 5 seconds of
+ * `Sys_FloatTime` (the last time is kept in a module variable), never during demo playback. In this port the send
+ * (`NET_SendMessage`) is commented out, so it prints "--> client to server keepalive", writes a `clc_nop` into
+ * `cls.message` and clears it again: nothing reaches the server.
+ */
 export function CL_KeepaliveMessage() {
 
 	// if ( sv.active )
@@ -276,6 +301,20 @@ export function CL_KeepaliveMessage() {
 CL_ParseServerInfo
 ==================
 */
+/**
+ * Reads an `svc_serverinfo` message, the start of a new map's signon, called by `CL_ParseServerMessage`. Wipes the
+ * client state (`CL_ClearState`), then reads the protocol version, maxclients (1..MAX_SCOREBOARD; builds
+ * `cl.scores`), game type, level name (kept to 39 characters and printed under a banner) and the model and sound
+ * precache lists, noting `progs/player.mdl`'s index in `cl_playerindex`. Newer Game's edited maps are enabled only for
+ * a live single-player loopback connection to our own server; demos and remote servers use the original geometry.
+ * When the world BSP is not cached yet it starts fetching it (`COM_EnsureFile`), returns, and on success re-runs
+ * `connect "<address>"`. Otherwise it loads every model (`Mod_ForName`) and sound, sets `cl.worldmodel` (also entity
+ * 0's model), tells Newer Game's flashlight run about the map (not in demos), calls `R_NewMap` and clears the noclip
+ * angle hack.
+ *
+ * A wrong protocol version, bad maxclients, too many precaches or a missing model prints a message and returns with
+ * the state partly set; it does not raise.
+ */
 export function CL_ParseServerInfo() {
 
 	Con_DPrintf( 'Serverinfo packet received.\n' );
@@ -738,10 +777,6 @@ const _emptyPacket = { num_entities: 0, entities: [] };
 /*
 ==================
 CL_ParseUpdate
-
-Parse an entity update message from the server
-If an entities model or origin changes from frame to frame, it must be
-relinked. Other attributes can change without relinking.
 ==================
 */
 const bitcounts = new Int32Array( 16 );
@@ -764,6 +799,22 @@ const _playerinfo_cmd = {
 	impulse: 0
 };
 
+/**
+ * Parse an entity update message from the server (a "fast update": a command byte with the high bit set). If an
+ * entity's model or origin changes from frame to frame, it must be relinked; other attributes can change without
+ * relinking. The first update after signon stage `SIGNONS - 1` completes the signon (`CL_SignonReply`). Reads the
+ * optional second bits byte and the entity number, then each field present in `bits` (model, frame, colormap, skin,
+ * effects, origin and angles), falling back to the entity's baseline for absent ones; shifts the previous origin and
+ * angles into `msg_origins[1]`/`msg_angles[1]` for interpolation and snaps (`forcelink`) when there was no update in
+ * the previous message, the model became null, or `U_NOLERP` is set. A model or skin change on a player slot
+ * retranslates that player's skin. Also carries Newer Game's per-entity face seed (local, not demo) and Rend the Veil
+ * record. Counts each bit in the module's `bitcounts`. Called by `CL_ParseServerMessage`.
+ *
+ * @param {number} bits the command byte's low 7 bits: the first `U_*` flags (`U_MOREBITS` means another byte follows
+ *   for bits 8..15)
+ * @throws {Error} via `Host_Error` ('CL_ParseModel: bad modnum') for a model index >= MAX_MODELS, and via `Sys_Error`
+ *   when the colormap names a player slot past `cl.maxclients`
+ */
 export function CL_ParseUpdate( bits ) {
 
 	if ( cls.signon === SIGNONS - 1 ) {
@@ -931,6 +982,13 @@ export function CL_ParseUpdate( bits ) {
 CL_ParseBaseline
 ==================
 */
+/**
+ * Reads an entity baseline from `net_message`: model index, frame, colormap and skin bytes, then origin and angle
+ * pairs for each axis. Used for `svc_spawnbaseline` (the state updates delta from) and, through `CL_ParseStatic`, for
+ * static entities.
+ *
+ * @param {entity_t} ent the entity; mutated: its `baseline` (entity_state_t) is overwritten
+ */
 export function CL_ParseBaseline( ent ) {
 
 	ent.baseline.modelindex = MSG_ReadByte();
@@ -949,10 +1007,20 @@ export function CL_ParseBaseline( ent ) {
 /*
 ==================
 CL_ParseClientdata
-
-Server information pertaining to this client only
 ==================
 */
+/**
+ * Reads an `svc_clientdata` message, the server information pertaining to this client only, once per server frame:
+ * view height (default `DEFAULT_VIEWHEIGHT`), ideal pitch, punch angles, velocity (sent in 16 unit/s steps; the
+ * previous value moves to `cl.mvelocity[1]`), items (always sent; new items get `cl.item_gettime` and Newer Game's face
+ * reaction), on-ground and in-water flags, weapon frame, armour, weapon model, health, current ammo (a drop shows the
+ * view muzzle flash), the four ammo counts and the active weapon (stored as a bit in non-standard games). Then feeds
+ * client-side prediction: acknowledges the transport sequence (or the command sent closest to now as a fallback) and
+ * sets the server state from the view entity's origin, `cl.mvelocity[0]` and `cl.onground`. Finally lets Newer Game's
+ * respawn adjust the inventory stats. Called by `CL_ParseServerMessage`.
+ *
+ * @param {number} bits the `SU_*` flags short read just before
+ */
 export function CL_ParseClientdata( bits ) {
 
 	if ( bits & SU_VIEWHEIGHT )
@@ -1214,6 +1282,12 @@ function CL_ParsePlayerInfo() {
 CL_NewTranslation
 =====================
 */
+/**
+ * Rebuilds a player's colour-translated skin after `svc_updatecolors` (called by `CL_ParseServerMessage`).
+ *
+ * @param {number} slot player slot, 0-based (entity number - 1)
+ * @throws {Error} via `Sys_Error` when `slot > cl.maxclients`
+ */
 export function CL_NewTranslation( slot ) {
 
 	if ( slot > cl.maxclients )
@@ -1228,6 +1302,14 @@ export function CL_NewTranslation( slot ) {
 CL_ParseStatic
 =====================
 */
+/**
+ * Reads an `svc_spawnstatic` message (sent during signon): takes the next static entity slot, reads its baseline
+ * (`CL_ParseBaseline`), copies that into its current state (model from the precache list) and links it into the world
+ * (`R_AddEfrags`). Static entities last until the next map clears `cl.num_statics`. Called by
+ * `CL_ParseServerMessage`.
+ *
+ * @throws {Error} via `Host_Error` ('Too many static entities') at MAX_STATIC_ENTITIES
+ */
 export function CL_ParseStatic() {
 
 	const i = cl.num_statics;
@@ -1255,6 +1337,11 @@ export function CL_ParseStatic() {
 CL_ParseStaticSound
 ===================
 */
+/**
+ * Reads an `svc_spawnstaticsound` message (position, sound precache index, volume byte 0..255 and attenuation byte
+ * sent times 64) and starts the looping ambient sound with `S_StaticSound`, which keeps it until `S_StopAllSounds`.
+ * Called by `CL_ParseServerMessage` during signon. The position goes through a reused module vector.
+ */
 export function CL_ParseStaticSound() {
 
 	const org = _staticSoundOrg;
@@ -1273,6 +1360,19 @@ export function CL_ParseStaticSound() {
 CL_ParseServerMessage
 =====================
 */
+/**
+ * Parses one whole server message in `net_message` and applies each command in it, called by `CL_ReadFromServer`
+ * (cl_main.js) for every message received this frame. Clears `cl.onground` (unless the server says otherwise), then
+ * reads commands until the end: a byte with the high bit set is a fast entity update (`CL_ParseUpdate`); the others
+ * are `svc_*` commands, dispatched to the parsers here, the view, temp entities, sound, CD audio and Newer Game's
+ * QuakeWorld-style prediction messages (`svc_playerinfo`, `svc_serversequence`, packet entities). `cl_shownet` 1
+ * prints the message size, 2 each command.
+ *
+ * @throws {Error} via the host's `Host_Error` for a bad read, an unknown command, a protocol version mismatch, a
+ *   scoreboard index past `cl.maxclients` or an out-of-order signon; via `Host_EndGame` for `svc_disconnect` and
+ *   for a bad or overfull packet entities message; via `Sys_Error` for a light style >= MAX_LIGHTSTYLES or a stat
+ *   index out of range
+ */
 export function CL_ParseServerMessage() {
 
 	let cmd;

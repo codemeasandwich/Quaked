@@ -54,10 +54,17 @@ let _getClientState = null;
 /*
 ============
 Cmd_SetClientCallbacks
-
-Called from host.js after client.js is loaded to wire up client state access
 ============
 */
+/**
+ * Wires up client state access for `Cmd_ForwardToServer` (callback injection, to avoid a circular dependency with
+ * client.js). Called once from `Host_Init` in host.js after client.js is loaded; the callback is kept for the rest of
+ * the session and replaces any earlier one.
+ *
+ * @param {{ getClientState: function(): { cls: object, ca_connected: number } }} callbacks `getClientState` returns
+ *   the client static state `cls` (read for `state`, `demoplayback` and the outgoing `message` sizebuf_t) and the
+ *   `ca_connected` constant to compare `cls.state` against
+ */
 export function Cmd_SetClientCallbacks( callbacks ) {
 
 	_getClientState = callbacks.getClientState;
@@ -69,6 +76,10 @@ export function Cmd_SetClientCallbacks( callbacks ) {
 Cbuf_Init
 ============
 */
+/**
+ * Allocates the 8192-byte command buffer (space for commands and script files). Called once from `Host_Init`, before
+ * `Cmd_Init`; any text already queued is discarded because a new buffer replaces the old one.
+ */
 export function Cbuf_Init() {
 
 	SZ_Alloc( cmd_text, 8192 ); // space for commands and script files
@@ -78,10 +89,18 @@ export function Cbuf_Init() {
 /*
 ============
 Cbuf_AddText
-
-Adds command text at the end of the buffer
 ============
 */
+/**
+ * Adds command text at the end of the buffer, to run on a later `Cbuf_Execute` (once per host frame). Each character
+ * is stored as one byte (its char code truncated to 8 bits). No newline is added: callers end each command with
+ * `\n` or `;`.
+ *
+ * Prints `Cbuf_AddText: overflow` and drops the whole text, adding nothing, when it would not fit (the buffer holds
+ * at most 8191 bytes of pending text).
+ *
+ * @param {string} text command text, one or more commands separated by `\n` or `;`
+ */
 export function Cbuf_AddText( text ) {
 
 	const l = text.length;
@@ -102,12 +121,21 @@ export function Cbuf_AddText( text ) {
 /*
 ============
 Cbuf_InsertText
-
-Adds command text immediately after the current command
-Adds a \n to the text
-FIXME: actually change the command buffer to do less copying
 ============
 */
+/**
+ * Adds command text immediately after the current command, ahead of anything still queued, so it runs next. Used by
+ * `exec`, `stuffcmds` and alias expansion. FIXME (from the source): actually change the command buffer to do less
+ * copying.
+ *
+ * The WinQuake comment says it adds a `\n` to the text; this port does not, so callers pass text that already ends in
+ * a newline (alias values and `stuffcmds` lines do). If the text alone does not fit, `Cbuf_AddText` drops it and the
+ * queued commands are put back unchanged.
+ *
+ * @param {string} text command text to run before the rest of the buffer
+ * @throws {Error} via `Sys_Error` (`SZ_GetSpace: overflow without allowoverflow set`) when the inserted text fits but
+ *   the queued commands copied back after it no longer do
+ */
 export function Cbuf_InsertText( text ) {
 
 	// copy off any commands still remaining in the exec buffer
@@ -138,6 +166,12 @@ export function Cbuf_InsertText( text ) {
 Cbuf_Execute
 ============
 */
+/**
+ * Runs queued commands one line at a time. Called once per host frame from `Host_Frame`. A command ends at `\n` or at
+ * a `;` outside double quotes; each is removed from the buffer and passed to `Cmd_ExecuteString` with source
+ * `src_command`. Commands may queue more text, which runs in the same call. A `wait` command stops the loop, leaving
+ * the rest of the text in the buffer for the next frame.
+ */
 export function Cbuf_Execute() {
 
 	while ( cmd_text.cursize ) {
@@ -203,6 +237,10 @@ export function Cbuf_Execute() {
 Cmd_Init
 ============
 */
+/**
+ * Registers the command system's own commands: `stuffcmds`, `exec`, `echo`, `alias`, `cmd` (`Cmd_ForwardToServer`)
+ * and `wait`. Called once from `Host_Init`, after `Cbuf_Init`.
+ */
 export function Cmd_Init() {
 
 	// register our commands
@@ -220,6 +258,12 @@ export function Cmd_Init() {
 Cmd_Argc
 ============
 */
+/**
+ * Number of tokens in the command being executed, including the command name. Valid while a command function runs;
+ * replaced by the next `Cmd_TokenizeString`.
+ *
+ * @returns {number} token count, 0 to 80 (MAX_ARGS); 0 for an empty line
+ */
 export function Cmd_Argc() {
 
 	return cmd_argc;
@@ -231,6 +275,12 @@ export function Cmd_Argc() {
 Cmd_Argv
 ============
 */
+/**
+ * One token of the command being executed. Valid until the next `Cmd_TokenizeString`.
+ *
+ * @param {number} arg token index; 0 is the command name
+ * @returns {string} the token with surrounding quotes removed, or `''` when `arg` is outside 0..`Cmd_Argc()`-1
+ */
 export function Cmd_Argv( arg ) {
 
 	if ( arg < 0 || arg >= cmd_argc )
@@ -244,6 +294,12 @@ export function Cmd_Argv( arg ) {
 Cmd_Args
 ============
 */
+/**
+ * Everything after the command name, as one string. Valid until the next `Cmd_TokenizeString`.
+ *
+ * @returns {?string} the raw rest of the line from the first argument on (quotes and spacing kept, and anything after a
+ *   newline in the tokenized text), or null when the command has no arguments
+ */
 export function Cmd_Args() {
 
 	return cmd_args;
@@ -253,10 +309,16 @@ export function Cmd_Args() {
 /*
 ============
 Cmd_TokenizeString
-
-Parses the given string into command line tokens.
 ============
 */
+/**
+ * Parses the given string into command line tokens, replacing the arguments read by `Cmd_Argc`, `Cmd_Argv` and
+ * `Cmd_Args`. Called by `Cmd_ExecuteString`, and directly by callers that only need the arguments. Stops at the first
+ * newline (a newline separates commands in the buffer); tokens come from `COM_Parse`, so quoted strings are one token
+ * and `//` comments are skipped. Tokens past the 80th (MAX_ARGS) are dropped.
+ *
+ * @param {string} text one command line
+ */
 export function Cmd_TokenizeString( text ) {
 
 	// clear the args from the last string
@@ -305,6 +367,17 @@ export function Cmd_TokenizeString( text ) {
 Cmd_AddCommand
 ============
 */
+/**
+ * Registers a console command. Usually called at subsystem init; registrations last for the whole session (there is no
+ * removal). The newest command is searched first.
+ *
+ * Prints a message and registers nothing when `cmd_name` is already a command, or is a cvar whose value is a
+ * non-empty string.
+ *
+ * @param {string} cmd_name command name; matched case-insensitively by `Cmd_ExecuteString`
+ * @param {function(): void} fn called with no arguments when the command runs; it reads its arguments with
+ *   `Cmd_Argc`/`Cmd_Argv`/`Cmd_Args` and `cmd_source`
+ */
 export function Cmd_AddCommand( cmd_name, fn ) {
 
 	// fail if the command is a variable name
@@ -350,6 +423,12 @@ export function Cmd_AddCommand( cmd_name, fn ) {
 Cmd_Exists
 ============
 */
+/**
+ * Tells whether a command with this name is registered (aliases and cvars are not checked).
+ *
+ * @param {string} cmd_name command name, compared case-sensitively
+ * @returns {boolean} true when the command is registered
+ */
 export function Cmd_Exists( cmd_name ) {
 
 	let cmd = cmd_functions;
@@ -370,6 +449,14 @@ export function Cmd_Exists( cmd_name ) {
 Cmd_CompleteCommand
 ============
 */
+/**
+ * Finds a registered command that starts with `partial`, for console Tab completion (keys.js tries this before
+ * `Cvar_CompleteVariable`). Aliases are not searched.
+ *
+ * @param {string} partial typed prefix, compared case-sensitively
+ * @returns {?string} the first matching command name (most recently registered first), or null when `partial` is
+ *   empty or nothing matches
+ */
 export function Cmd_CompleteCommand( partial ) {
 
 	const len = partial.length;
@@ -394,11 +481,23 @@ export function Cmd_CompleteCommand( partial ) {
 /*
 ============
 Cmd_ExecuteString
-
-A complete command line has been parsed, so try to execute it
-FIXME: lookupnoadd the token to speed search?
 ============
 */
+/**
+ * A complete command line has been parsed, so try to execute it. FIXME (from the source): lookupnoadd the token to
+ * speed search?
+ *
+ * Sets `cmd_source`, tokenizes `text`, then tries, by case-insensitive name: a registered command (called at once), an
+ * alias (its text is inserted at the front of the command buffer and runs on this or a later `Cbuf_Execute`), and
+ * finally a cvar (`Cvar_Command` shows or sets it). Otherwise prints `Unknown command "<name>"`. Called by
+ * `Cbuf_Execute` for buffered text and directly for `clc_stringcmd` text from clients (sv_user.js) and some built-in
+ * commands.
+ *
+ * @param {string} text one command line
+ * @param {number} src `src_command` (from the command buffer) or `src_client` (came in over a net connection as a
+ *   clc_stringcmd); left in `cmd_source` until the next call
+ * @throws {Error} whatever the command function throws (for example `Host_Error`); this function adds none
+ */
 export function Cmd_ExecuteString( text, src ) {
 
 	cmd_source = src;
@@ -644,11 +743,16 @@ function Cmd_StuffCmds_f() {
 /*
 ================
 Cmd_CheckParm
-
-Returns the position (1 to argc-1) in the command's argument list
-where the given parameter appears, or 0 if not present
 ================
 */
+/**
+ * Looks for a parameter in the current command's arguments (not the program command line; that is `COM_CheckParm`).
+ *
+ * @param {string} parm parameter to find, compared case-insensitively; null or undefined prints
+ *   `Cmd_CheckParm: NULL` and returns 0
+ * @returns {number} the position (1 to argc-1) in the command's argument list where the given parameter appears, or
+ *   0 if not present
+ */
 export function Cmd_CheckParm( parm ) {
 
 	if ( parm == null ) {
@@ -672,10 +776,19 @@ export function Cmd_CheckParm( parm ) {
 /*
 ===================
 Cmd_ForwardToServer
-
-Sends the entire command line over to the server
 ===================
 */
+/**
+ * Sends the entire command line over to the server as a `clc_stringcmd`, written to the client's outgoing
+ * `cls.message` buffer for the next packet. Runs as the `cmd` command (which sends only its arguments), and is called
+ * by host commands in host_cmd.js typed on a client that must run on the server (those send their own name first).
+ * Arguments come from the current command (`Cmd_Argv`/`Cmd_Args`).
+ *
+ * Prints a message and sends nothing when `Cmd_SetClientCallbacks` has not run or the client is not connected; sends
+ * nothing during demo playback.
+ *
+ * @throws {Error} via `Sys_Error` from `SZ_GetSpace` when the text does not fit in `cls.message`
+ */
 export function Cmd_ForwardToServer() {
 
 	// Get client state through callback (avoids circular dependency)

@@ -33,6 +33,13 @@ let r_addent = null;
 // External references (set via setters)
 let _cl = null;
 
+/**
+ * Gives this module the client state whose efrag free list (`cl.free_efrags`) and world model it uses. Called once
+ * from host.js during `Host_Init`; until then `R_AddEfrags` and `R_RemoveEfrags` do nothing. The reference is kept for
+ * the life of the page (the client state object is reused across maps).
+ *
+ * @param {{ cl?: client_state_t }} externals `cl` is the client state; absent keeps the previous one
+ */
 export function R_Efrag_SetExternals( externals ) {
 
 	if ( externals.cl ) _cl = externals.cl;
@@ -117,10 +124,16 @@ function BOX_ON_PLANE_SIDE( emins, emaxs, p ) {
 /*
 ================
 R_RemoveEfrags
-
-Call when removing an object from the world or moving it to another position
 ================
 */
+/**
+ * Call when removing an object from the world or moving it to another position (WinQuake gl_refrag.c): unlinks each
+ * of the entity's efrags from its leaf's list and returns them to `cl.free_efrags`, then clears `ent.efrag`. Called by
+ * cl_main.js's `CL_RelinkEntities` when an entity slot has just become empty. Does nothing before
+ * `R_Efrag_SetExternals`.
+ *
+ * @param {entity_t} ent the entity; mutated (`efrag` set to null) along with the leaves it was in
+ */
 export function R_RemoveEfrags( ent ) {
 
 	if ( _cl == null ) return;
@@ -249,6 +262,17 @@ function R_SplitEntityOnNode( node ) {
 R_AddEfrags
 ===========
 */
+/**
+ * Links an entity into every BSP leaf its bounding box (origin + model mins/maxs, Quake units, world space) touches
+ * by walking the world's node tree from `nodes[0]`, taking one efrag per non-solid leaf from `cl.free_efrags`, so
+ * `R_StoreEfrags` can draw it when one of those leaves is visible (WinQuake gl_refrag.c). Prints "Too many efrags!"
+ * and stops adding when the free list (MAX_EFRAGS, rebuilt by `CL_ClearState`) runs out. Called by cl_parse.js's
+ * `CL_ParseStatic` for each static entity at map load. Does nothing before `R_Efrag_SetExternals`, or when the entity
+ * has no model; without a world model the chain stays empty.
+ *
+ * @param {entity_t} ent the entity; mutated: `efrag` becomes the head of its efrag chain and `topnode` the first node
+ *   whose plane splits its box (or the first leaf reached), null when nothing was linked
+ */
 export function R_AddEfrags( ent ) {
 
 	if ( _cl == null ) return;
@@ -282,10 +306,21 @@ export function R_AddEfrags( ent ) {
 /*
 ================
 R_StoreEfrags
-
-Add efrags to the visible entity list
 ================
 */
+/**
+ * Add efrags to the visible entity list (WinQuake gl_refrag.c): walks one leaf's efrag chain and appends each entity
+ * with a model to `cl_visedicts`, once per frame (it is skipped when its `visframe` already equals `r_framecount`, and
+ * marked otherwise), until the list holds `MAX_VISEDICTS`. Called by gl_rsurf.js for every visible leaf (and portal
+ * destination leaf) with efrags while the world is marked each frame.
+ *
+ * @param {?efrag_t} ppefrag the first efrag of the leaf (`leaf.efrags`), followed through `leafnext`; null adds nothing
+ * @param {Array<entity_t>} cl_visedicts the frame's visible-entity list; written from index `cl_numvisedicts` on
+ * @param {number} cl_numvisedicts how many entries the list already holds
+ * @param {number} MAX_VISEDICTS capacity of the list; entities beyond it are dropped
+ * @param {number} r_framecount the renderer's current frame number, stored in each added entity's `visframe`
+ * @returns {number} the new count of visible entities; the caller stores it (`set_cl_numvisedicts`)
+ */
 export function R_StoreEfrags( ppefrag, cl_visedicts, cl_numvisedicts, MAX_VISEDICTS, r_framecount ) {
 
 	let pefrag = ppefrag;

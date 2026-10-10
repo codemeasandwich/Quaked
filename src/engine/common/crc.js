@@ -52,18 +52,39 @@ const crctable = new Uint16Array( [
 	0x6e17, 0x7e36, 0x4e55, 0x5e74, 0x2e93, 0x3eb2, 0x0ed1, 0x1ef0
 ] );
 
+/**
+ * Starts a new CRC-16/CCITT checksum (WinQuake crc.c `CRC_Init`). Called once before feeding bytes, for example
+ * when `PR_LoadProgs` checksums the whole progs.dat file, and by the axe-pose check in `R_AxeSwingNormal`.
+ *
+ * @returns {number} the initial running value, 0xffff
+ */
 export function CRC_Init() {
 
 	return CRC_INIT_VALUE;
 
 }
 
+/**
+ * Folds one byte into a running CRC-16/CCITT value using the polynomial 0x1021 lookup table (WinQuake crc.c
+ * `CRC_ProcessByte`). Pure: the caller keeps the running value and passes it back for the next byte.
+ *
+ * @param {number} crcvalue running checksum from `CRC_Init` or a previous call, 0..0xffff
+ * @param {number} data the next byte, 0..255 (only the low 8 bits are used)
+ * @returns {number} the updated running checksum, 0..0xffff
+ */
 export function CRC_ProcessByte( crcvalue, data ) {
 
 	return ( ( crcvalue << 8 ) ^ crctable[ ( ( crcvalue >>> 8 ) ^ data ) & 0xff ] ) & 0xffff;
 
 }
 
+/**
+ * Finishes a checksum by applying the final XOR value (0x0000, so the value is unchanged) (WinQuake crc.c
+ * `CRC_Value`). `PR_LoadProgs` hands the result to `PR_SetCRC`.
+ *
+ * @param {number} crcvalue running checksum after the last `CRC_ProcessByte`, 0..0xffff
+ * @returns {number} the final CRC-16 value, 0..0xffff
+ */
 export function CRC_Value( crcvalue ) {
 
 	return crcvalue ^ CRC_XOR_VALUE;

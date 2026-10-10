@@ -39,9 +39,19 @@ const REGISTERED_POP = [
 	0,0,0,0,0x6400,0,0,0
 ];
 
-// Reuse the native registered cvar rather than changing programs or hub gates.
-// This is derived content state, never an archived player preference. Optional
-// missing/corrupt markers keep shareware behavior without making startup fatal.
+/**
+ * Decides whether the registered (full) game data is present and records the answer in the `registered` cvar. Runs
+ * once during `Host_Init`, after the command system is up and the paks are mounted.
+ *
+ * It looks up `gfx/pop.lmp` through the pak search path and accepts it only when the file is exactly 256 bytes and its
+ * 128 big-endian 16-bit words match WinQuake common.c's `pop[]` table. The `registered` cvar is registered here
+ * (default '0', not archived) if nothing has registered it yet, then set to '1' or '0'.
+ *
+ * Reuses the native registered cvar rather than changing programs or hub gates. This is derived content state, never
+ * an archived player preference. A missing or corrupt marker keeps shareware behaviour without making startup fatal.
+ *
+ * @returns {boolean} true when the registered marker lump is present and valid
+ */
 export function COM_CheckRegistered() {
 	if ( ! Cvar_FindVar( 'registered' ) ) Cvar_RegisterVariable( new cvar_t( 'registered', '0', false ) );
 	const marker = COM_FindFile( 'gfx/pop.lmp' );
@@ -57,6 +67,11 @@ export function COM_CheckRegistered() {
 
 export class sizebuf_t {
 
+	/**
+	 * Creates an empty size buffer (WinQuake common.h `sizebuf_t`) with no storage: `data` stays null until `SZ_Alloc`
+	 * gives it a `Uint8Array` of `maxsize` bytes. `cursize` is the number of bytes written so far. Used for network
+	 * messages, the command buffer and server datagrams.
+	 */
 	constructor() {
 
 		this.allowoverflow = false; // if false, do a Sys_Error
@@ -71,6 +86,10 @@ export class sizebuf_t {
 
 export class link_t {
 
+	/**
+	 * Creates a node of a circular doubly linked list (WinQuake common.h `link_t`), initially linked to itself so it can
+	 * serve as an empty list head. Used for the world's area-node trigger and solid lists and each edict's `area` link.
+	 */
 	constructor() {
 
 		this.prev = this;
@@ -84,13 +103,23 @@ export class link_t {
 // Linked list operations
 //============================================================================
 
-// ClearLink is used for new headnodes
+/**
+ * Makes `l` an empty list by pointing both of its links at itself. ClearLink is used for new headnodes.
+ *
+ * @param {link_t} l list head to reset (mutated)
+ */
 export function ClearLink( l ) {
 
 	l.prev = l.next = l;
 
 }
 
+/**
+ * Unlinks `l` from the list it is in by joining its neighbours. `l`'s own `prev`/`next` are left pointing at the old
+ * neighbours, so it must not be removed twice without being reinserted.
+ *
+ * @param {link_t} l node to remove (its neighbours are mutated)
+ */
 export function RemoveLink( l ) {
 
 	l.next.prev = l.prev;
@@ -98,6 +127,13 @@ export function RemoveLink( l ) {
 
 }
 
+/**
+ * Inserts `l` immediately before `before`. Passing a list head appends `l` at the end of that list, which is how
+ * `SV_LinkEdict` adds an edict to an area node's trigger or solid list.
+ *
+ * @param {link_t} l node to insert (mutated; must not currently be in a list)
+ * @param {link_t} before node or list head that `l` goes in front of (mutated)
+ */
 export function InsertLinkBefore( l, before ) {
 
 	l.next = before;
@@ -107,6 +143,12 @@ export function InsertLinkBefore( l, before ) {
 
 }
 
+/**
+ * Inserts `l` immediately after `after`. Passing a list head prepends `l` to that list.
+ *
+ * @param {link_t} l node to insert (mutated; must not currently be in a list)
+ * @param {link_t} after node or list head that `l` follows (mutated)
+ */
 export function InsertLinkAfter( l, after ) {
 
 	l.next = after.next;
@@ -120,6 +162,16 @@ export function InsertLinkAfter( l, after ) {
 // Q_ato* functions - parse numbers same way as Quake
 //============================================================================
 
+/**
+ * Parses an integer the way Quake's `Q_atoi` does: an optional leading '-', then either `0x`/`0X` hex digits, a
+ * quoted character (`'c` gives its character code), or decimal digits. Parsing stops at the first character that does
+ * not fit, so trailing text is ignored. Leading whitespace and '+' are not accepted (they give 0). Used for console
+ * command arguments and command-line parameters.
+ *
+ * @param {string} str text to parse
+ * @returns {number} the parsed integer, 0 when no digits were found (hex values use 32-bit shifts, so they wrap past
+ *   0x7fffffff)
+ */
 export function Q_atoi( str ) {
 
 	let pos = 0;
@@ -178,6 +230,15 @@ export function Q_atoi( str ) {
 
 }
 
+/**
+ * Parses a number the way Quake's `Q_atof` does: an optional leading '-', then `0x`/`0X` hex digits, a quoted
+ * character (`'c` gives its character code), or decimal digits with an optional '.' fraction. No exponent form;
+ * parsing stops at the first character that does not fit. Leading whitespace and '+' give 0. Used for console command
+ * arguments such as the movement variables in `cl_pred.js`.
+ *
+ * @param {string} str text to parse
+ * @returns {number} the parsed value, 0 when no digits were found
+ */
 export function Q_atof( str ) {
 
 	let pos = 0;
@@ -261,14 +322,42 @@ export function Q_atof( str ) {
 // which are platform-endian (little-endian on all modern platforms)
 //============================================================================
 
+/**
+ * Byte-order no-op kept for ported call sites: values are already decoded little-endian by the caller's DataView or
+ * typed array, so the 16-bit value is returned unchanged.
+ *
+ * @param {number} l 16-bit integer already in host order
+ * @returns {number} `l` unchanged
+ */
 export function LittleShort( l ) { return l; }
+/**
+ * Byte-order no-op kept for ported call sites (for example the demo reader in `cl_demo.js`): the 32-bit value is
+ * returned unchanged.
+ *
+ * @param {number} l 32-bit integer already in host order
+ * @returns {number} `l` unchanged
+ */
 export function LittleLong( l ) { return l; }
+/**
+ * Byte-order no-op kept for ported call sites (for example the demo reader in `cl_demo.js`): the float is returned
+ * unchanged.
+ *
+ * @param {number} l float already in host order
+ * @returns {number} `l` unchanged
+ */
 export function LittleFloat( l ) { return l; }
 
 //============================================================================
 // sizebuf operations
 //============================================================================
 
+/**
+ * Gives `buf` fresh zeroed storage and empties it. Called once per buffer at init (the network message, the client's
+ * outgoing message, the command buffer); any earlier `data` array is replaced, not reused.
+ *
+ * @param {sizebuf_t} buf buffer to set up (mutated: `data`, `maxsize`, `cursize`)
+ * @param {number} startsize capacity in bytes; raised to 256 when smaller
+ */
 export function SZ_Alloc( buf, startsize ) {
 
 	if ( startsize < 256 )
@@ -279,18 +368,41 @@ export function SZ_Alloc( buf, startsize ) {
 
 }
 
+/**
+ * Empties `buf`. Unlike WinQuake, which frees the hunk memory, this only resets `cursize`; the `data` array is kept
+ * and released only when `buf` itself is dropped. No current caller uses it.
+ *
+ * @param {sizebuf_t} buf buffer to empty (mutated)
+ */
 export function SZ_Free( buf ) {
 
 	buf.cursize = 0;
 
 }
 
+/**
+ * Empties `buf` by resetting `cursize` to 0, keeping its storage and its `overflowed` flag. Called before each new
+ * message is built and when an overflowing buffer is discarded.
+ *
+ * @param {sizebuf_t} buf buffer to empty (mutated)
+ */
 export function SZ_Clear( buf ) {
 
 	buf.cursize = 0;
 
 }
 
+/**
+ * Reserves `length` bytes at the end of `buf` and returns where they start; the caller writes into `buf.data` at that
+ * offset. When the bytes do not fit and `buf.allowoverflow` is set, the buffer's current contents are thrown away
+ * (`overflowed` set, "SZ_GetSpace: overflow" printed, buffer cleared) and the space is taken from offset 0.
+ *
+ * @param {sizebuf_t} buf buffer to grow (mutated: `cursize`, maybe `overflowed`)
+ * @param {number} length bytes to reserve
+ * @returns {number} byte offset into `buf.data` of the reserved space
+ * @throws {Error} via `Sys_Error` when the bytes do not fit and `allowoverflow` is false, or when `length` exceeds
+ *   `maxsize`
+ */
 export function SZ_GetSpace( buf, length ) {
 
 	if ( buf.cursize + length > buf.maxsize ) {
@@ -314,6 +426,15 @@ export function SZ_GetSpace( buf, length ) {
 
 }
 
+/**
+ * Appends the first `length` bytes of `data` to `buf`. A string is written one byte per character (the low 8 bits of
+ * each character code); no terminator is added unless it is part of `data`.
+ *
+ * @param {sizebuf_t} buf buffer to append to (mutated)
+ * @param {string|Uint8Array|ArrayLike<number>} data bytes or characters to copy
+ * @param {number} length number of bytes to copy from the start of `data`
+ * @throws {Error} via `SZ_GetSpace` when `buf` overflows without `allowoverflow`
+ */
 export function SZ_Write( buf, data, length ) {
 
 	const offset = SZ_GetSpace( buf, length );
@@ -331,6 +452,15 @@ export function SZ_Write( buf, data, length ) {
 
 }
 
+/**
+ * Appends `data` as a NUL-terminated string, joining it to a string already in `buf`: when the last byte is a
+ * trailing 0 it is overwritten, so repeated calls build one continuous string. `Cmd_ForwardToServer` uses it to
+ * build a `clc_stringcmd` in the client's outgoing message.
+ *
+ * @param {sizebuf_t} buf buffer to append to (mutated)
+ * @param {string} data text to append, one byte per character (low 8 bits)
+ * @throws {Error} via `SZ_GetSpace` when `buf` overflows without `allowoverflow`
+ */
 export function SZ_Print( buf, data ) {
 
 	const len = data.length + 1;
@@ -370,6 +500,13 @@ const _floatReadView = new DataView( _floatReadBuf );
 
 // writing functions
 
+/**
+ * Appends one signed byte to a message.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} c value -128..127 (only the low 8 bits are kept)
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteChar( sb, c ) {
 
 	const offset = SZ_GetSpace( sb, 1 );
@@ -377,6 +514,13 @@ export function MSG_WriteChar( sb, c ) {
 
 }
 
+/**
+ * Appends one unsigned byte to a message (svc/clc opcodes, flags, small counts).
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} c value 0..255 (only the low 8 bits are kept)
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteByte( sb, c ) {
 
 	const offset = SZ_GetSpace( sb, 1 );
@@ -384,6 +528,13 @@ export function MSG_WriteByte( sb, c ) {
 
 }
 
+/**
+ * Appends a 16-bit integer to a message, little-endian.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} c value -32768..32767 or 0..65535 (only the low 16 bits are kept)
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteShort( sb, c ) {
 
 	const offset = SZ_GetSpace( sb, 2 );
@@ -392,6 +543,13 @@ export function MSG_WriteShort( sb, c ) {
 
 }
 
+/**
+ * Appends a 32-bit integer to a message, little-endian.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} c 32-bit integer (signed or unsigned; only the low 32 bits are kept)
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteLong( sb, c ) {
 
 	const offset = SZ_GetSpace( sb, 4 );
@@ -402,6 +560,14 @@ export function MSG_WriteLong( sb, c ) {
 
 }
 
+/**
+ * Appends a 32-bit IEEE float to a message, little-endian (rounded to single precision). Uses a module-level
+ * DataView, so it allocates nothing per call.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} f value to send (for example server time in seconds)
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteFloat( sb, f ) {
 
 	_floatWriteView.setFloat32( 0, f, true ); // little-endian
@@ -413,6 +579,14 @@ export function MSG_WriteFloat( sb, f ) {
 
 }
 
+/**
+ * Appends a NUL-terminated string to a message, one byte per character (low 8 bits). An empty, null or undefined
+ * string writes just the terminator.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {?string} s text to send
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteString( sb, s ) {
 
 	if ( ! s ) {
@@ -427,19 +601,41 @@ export function MSG_WriteString( sb, s ) {
 
 }
 
+/**
+ * Appends a world coordinate as a 16-bit fixed-point value in 1/8 Quake-unit steps (truncated toward zero).
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} f coordinate in Quake units; representable range -4096..4095.875, values outside wrap
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteCoord( sb, f ) {
 
 	MSG_WriteShort( sb, ( f * 8 ) | 0 );
 
 }
 
+/**
+ * Appends an angle as one byte: the angle is first truncated to whole degrees, then scaled so 256 steps make a full
+ * turn (1.40625 degrees per step). Negative and over-360 angles wrap.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} f angle in degrees
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteAngle( sb, f ) {
 
 	MSG_WriteByte( sb, ( ( f | 0 ) * 256 / 360 ) & 255 );
 
 }
 
-// QuakeWorld-style 16-bit angle (more precision)
+/**
+ * QuakeWorld-style 16-bit angle (more precision). The angle is truncated to whole degrees, then scaled so 65536 steps
+ * make a full turn. Used by `sv_main.js` for the angles of a usercmd.
+ *
+ * @param {sizebuf_t} sb message being built (mutated)
+ * @param {number} f angle in degrees (wraps outside 0..360)
+ * @throws {Error} via `SZ_GetSpace` when `sb` overflows without `allowoverflow`
+ */
 export function MSG_WriteAngle16( sb, f ) {
 
 	MSG_WriteShort( sb, ( ( f | 0 ) * 65536 / 360 ) & 65535 );
@@ -453,8 +649,18 @@ export let msg_badread = false;
 
 // net_message: canonical instance lives in net.js; set via COM_SetNetMessage during init
 export let net_message = null;
+/**
+ * Points the exported `net_message` binding (read by all `MSG_Read*` functions) at the canonical buffer. Called once by
+ * `NET_Init` after it allocates that buffer.
+ *
+ * @param {sizebuf_t} msg the network module's received-message buffer; kept for the rest of the session
+ */
 export function COM_SetNetMessage( msg ) { net_message = msg; }
 
+/**
+ * Rewinds reading to the start of `net_message` and clears `msg_badread`. Called before parsing each received
+ * message, by the client (`cl_parse.js`) for server messages and by the server (`sv_user.js`) for client messages.
+ */
 export function MSG_BeginReading() {
 
 	msg_readcount = 0;
@@ -462,7 +668,12 @@ export function MSG_BeginReading() {
 
 }
 
-// returns -1 and sets msg_badread if no more characters are available
+/**
+ * Reads one signed byte from `net_message` at `msg_readcount` and advances past it. Returns -1 and sets
+ * `msg_badread` if no more characters are available (a real -1 byte is indistinguishable without checking the flag).
+ *
+ * @returns {number} -128..127, or -1 past the end
+ */
 export function MSG_ReadChar() {
 
 	if ( msg_readcount + 1 > net_message.cursize ) {
@@ -481,6 +692,11 @@ export function MSG_ReadChar() {
 
 }
 
+/**
+ * Reads one unsigned byte from `net_message` at `msg_readcount` and advances past it.
+ *
+ * @returns {number} 0..255, or -1 (with `msg_badread` set) past the end
+ */
 export function MSG_ReadByte() {
 
 	if ( msg_readcount + 1 > net_message.cursize ) {
@@ -497,6 +713,11 @@ export function MSG_ReadByte() {
 
 }
 
+/**
+ * Reads a little-endian signed 16-bit integer from `net_message` and advances 2 bytes.
+ *
+ * @returns {number} -32768..32767, or -1 (with `msg_badread` set) when fewer than 2 bytes remain
+ */
 export function MSG_ReadShort() {
 
 	if ( msg_readcount + 2 > net_message.cursize ) {
@@ -518,6 +739,11 @@ export function MSG_ReadShort() {
 
 }
 
+/**
+ * Reads a little-endian 32-bit integer from `net_message` and advances 4 bytes.
+ *
+ * @returns {number} signed 32-bit value, or -1 (with `msg_badread` set) when fewer than 4 bytes remain
+ */
 export function MSG_ReadLong() {
 
 	if ( msg_readcount + 4 > net_message.cursize ) {
@@ -538,6 +764,12 @@ export function MSG_ReadLong() {
 
 }
 
+/**
+ * Reads a little-endian 32-bit IEEE float from `net_message` and advances 4 bytes. Uses a module-level DataView, so
+ * it allocates nothing per call.
+ *
+ * @returns {number} the float, or -1 (with `msg_badread` set) when fewer than 4 bytes remain
+ */
 export function MSG_ReadFloat() {
 
 	if ( msg_readcount + 4 > net_message.cursize ) {
@@ -557,6 +789,13 @@ export function MSG_ReadFloat() {
 
 }
 
+/**
+ * Reads a NUL-terminated string from `net_message`, at most 2047 characters, stopping at the terminator or the end of
+ * the message. Characters are read with `MSG_ReadChar`, so as in WinQuake a 0xFF byte also ends the string and bytes
+ * 0x80..0xFE come back as char codes 0xFF80..0xFFFE.
+ *
+ * @returns {string} the text without its terminator ('' when nothing was left)
+ */
 export function MSG_ReadString() {
 
 	// Use array.join() instead of string concatenation to avoid O(n²) allocations
@@ -575,19 +814,34 @@ export function MSG_ReadString() {
 
 }
 
+/**
+ * Reads a world coordinate written by `MSG_WriteCoord` (16-bit, 1/8 Quake-unit steps).
+ *
+ * @returns {number} coordinate in Quake units, -4096..4095.875 (-0.125 with `msg_badread` set past the end)
+ */
 export function MSG_ReadCoord() {
 
 	return MSG_ReadShort() * ( 1.0 / 8 );
 
 }
 
+/**
+ * Reads a one-byte angle written by `MSG_WriteAngle`. The byte is read signed, so the result is -180..178.59375.
+ *
+ * @returns {number} angle in degrees (-1.40625 with `msg_badread` set past the end)
+ */
 export function MSG_ReadAngle() {
 
 	return MSG_ReadChar() * ( 360.0 / 256 );
 
 }
 
-// QuakeWorld-style 16-bit angle (more precision)
+/**
+ * QuakeWorld-style 16-bit angle (more precision), written by `MSG_WriteAngle16`. Used by `cl_parse.js` for usercmd
+ * angles. The short is read signed, so the result is -180..about 179.995.
+ *
+ * @returns {number} angle in degrees (about -0.0055 with `msg_badread` set past the end)
+ */
 export function MSG_ReadAngle16() {
 
 	return MSG_ReadShort() * ( 360.0 / 65536 );
@@ -598,6 +852,12 @@ export function MSG_ReadAngle16() {
 // Path/string utility functions
 //============================================================================
 
+/**
+ * Strips the directory part of a path ('/' separators only; backslashes are not treated as separators).
+ *
+ * @param {string} pathname path such as 'maps/e1m1.bsp'
+ * @returns {string} the text after the last '/', or `pathname` itself when it has none
+ */
 export function COM_SkipPath( pathname ) {
 
 	let last = 0;
@@ -612,6 +872,13 @@ export function COM_SkipPath( pathname ) {
 
 }
 
+/**
+ * Removes the extension from a filename: everything from the last '.' on. Note the '.' is searched in the whole
+ * string, so a dot in a directory name of an extensionless file is also cut.
+ *
+ * @param {string} _in filename or path
+ * @returns {string} `_in` without its extension, or `_in` unchanged when it has no '.'
+ */
 export function COM_StripExtension( _in ) {
 
 	const dot = _in.lastIndexOf( '.' );
@@ -620,6 +887,12 @@ export function COM_StripExtension( _in ) {
 
 }
 
+/**
+ * Returns a filename's extension: the text after the last '.' in the string (case preserved, no dot).
+ *
+ * @param {string} _in filename or path
+ * @returns {string} the extension, or '' when `_in` has no '.'
+ */
 export function COM_FileExtension( _in ) {
 
 	const dot = _in.lastIndexOf( '.' );
@@ -628,6 +901,13 @@ export function COM_FileExtension( _in ) {
 
 }
 
+/**
+ * Returns a path's bare file name, without directory or extension ('progs/player.mdl' gives 'player'). `Mod_LoadModel`
+ * uses it to set the model's `loadname`.
+ *
+ * @param {string} _in path with '/' separators
+ * @returns {string} the name between the last '/' and the last '.' after it
+ */
 export function COM_FileBase( _in ) {
 
 	const slash = _in.lastIndexOf( '/' );
@@ -638,6 +918,13 @@ export function COM_FileBase( _in ) {
 
 }
 
+/**
+ * Appends `extension` when the last path component has no '.'; used for demo names ('.dem').
+ *
+ * @param {string} path filename or path
+ * @param {string} extension extension to add, including the leading '.'
+ * @returns {string} `path` unchanged if its file part already has an extension, else `path + extension`
+ */
 export function COM_DefaultExtension( path, extension ) {
 
 	// if path doesn't have a .EXT, append extension
@@ -652,12 +939,21 @@ export function COM_DefaultExtension( path, extension ) {
 /*
 ==============
 COM_Parse
-
-Parse a token out of a string
 ==============
 */
 export let com_token = '';
 
+/**
+ * Parse a token out of a string. Skips whitespace (any character code <= 32) and `//` line comments, then takes one
+ * token: a double-quoted string (quotes removed, may contain spaces; an unterminated quote runs to the end), one of
+ * the single-character tokens `{ } ( ) ' :`, or a run of other non-space characters. The token is stored in the
+ * exported `com_token` (set to '' first, and replaced on every call). Used to walk entity text and savegames
+ * (`pr_edict.js`, `host_cmd.js`) and to tokenize command text (`cmd.js`).
+ *
+ * @param {?string} data text still to parse
+ * @returns {?string} the text after the token, to pass to the next call; null when `data` is null/undefined or holds
+ *   no more tokens (`com_token` is then '')
+ */
 export function COM_Parse( data ) {
 
 	let pos = 0;
@@ -752,6 +1048,12 @@ export let standard_quake = true;
 export let rogue = false;
 export let hipnotic = false;
 
+/**
+ * Stores the command-line arguments in `com_argc`/`com_argv`. Called once at startup from `main.js` (with an empty
+ * array in the browser build); `com_argv[0]` is treated as the program name and skipped by `COM_CheckParm`.
+ *
+ * @param {Array<string>} argv argument list; kept by reference, not copied
+ */
 export function COM_InitArgv( argv ) {
 
 	com_argc = argv.length;
@@ -759,6 +1061,12 @@ export function COM_InitArgv( argv ) {
 
 }
 
+/**
+ * Looks for a command-line parameter (exact, case-sensitive match), skipping `com_argv[0]` and empty entries.
+ *
+ * @param {string} parm parameter to find, such as '-port'
+ * @returns {number} its index in `com_argv` (the value, if any, is at index + 1), or 0 when absent
+ */
 export function COM_CheckParm( parm ) {
 
 	for ( let i = 1; i < com_argc; i ++ ) {
@@ -779,6 +1087,14 @@ export function COM_CheckParm( parm ) {
 let _realConPrintf = null;
 let _realConDPrintf = null;
 
+/**
+ * Routes this module's `Con_Printf`/`Con_DPrintf` to the real console. Called once by `Host_Init` right after
+ * `Con_Init`, with console.js's `Con_Printf` and `Con_DPrintf`; until then output goes to the browser console.
+ * The functions are kept for the rest of the session.
+ *
+ * @param {(fmt: string, ...args: *) => void} conPrintf real console print
+ * @param {(fmt: string, ...args: *) => void} conDPrintf real developer-only print
+ */
 export function Con_SetPrintFunctions( conPrintf, conDPrintf ) {
 
 	_realConPrintf = conPrintf;
@@ -786,6 +1102,13 @@ export function Con_SetPrintFunctions( conPrintf, conDPrintf ) {
 
 }
 
+/**
+ * Prints to the game console. Lets modules that cannot import console.js print; once `Con_SetPrintFunctions` has run,
+ * arguments are passed to the real `Con_Printf` (printf-style formatting), before that to `console.log`.
+ *
+ * @param {string} fmt message or printf-style format string
+ * @param {...*} args values for the format
+ */
 export function Con_Printf( fmt, ...args ) {
 
 	if ( _realConPrintf !== null ) {
@@ -801,6 +1124,13 @@ export function Con_Printf( fmt, ...args ) {
 
 }
 
+/**
+ * Developer-only console print. Once `Con_SetPrintFunctions` has run, the real `Con_DPrintf` prints only while the
+ * `developer` cvar is set; before that every message goes to `console.debug`.
+ *
+ * @param {string} fmt message or printf-style format string
+ * @param {...*} args values for the format
+ */
 export function Con_DPrintf( fmt, ...args ) {
 
 	if ( _realConDPrintf !== null ) {

@@ -95,6 +95,22 @@ let _S_LocalSound = null;
 // Static variable for Con_Print
 let cr = false;
 
+/**
+ * Wires the console to the systems it cannot import without a cycle (client state, video size, drawing, the screen,
+ * menu, sound, the developer cvar and the key-input line). Called once from host.js during `Host_Init`; each field that
+ * is present replaces the stored hook, absent fields keep their previous value (the defaults draw nothing and report a
+ * 640x480 screen). The references are kept for the life of the page.
+ *
+ * @param {{ cls?: { state: number, signon: number }, vid?: { width: number, height: number }, getRealtime?: () => number,
+ *   developer?: cvar_t, Draw_Character?: (x: number, y: number, num: number) => void,
+ *   Draw_String?: (x: number, y: number, str: string) => void, Draw_ConsoleBackground?: (lines: number) => void,
+ *   SCR_UpdateScreen?: () => void, SCR_EndLoadingPlaque?: () => void, M_Menu_Main_f?: () => void,
+ *   S_LocalSound?: (name: string) => void, scr_disabled_for_loading?: boolean, Draw_GetVirtualWidth?: () => number,
+ *   Draw_GetVirtualHeight?: () => number, key_lines?: Array<Array<number>>, getEditLine?: () => number,
+ *   getKeyLinepos?: () => number, getChatBuffer?: () => string }} externals the hooks; `vid` is the real video size and
+ *   `Draw_GetVirtualWidth`/`Height` give the console's drawing size in virtual pixels; `getRealtime` returns host
+ *   realtime in seconds; `key_lines` are keys.js's edit lines as character-code arrays
+ */
 export function Con_SetExternals( externals ) {
 
 	if ( externals.cls ) _cls = externals.cls;
@@ -119,8 +135,26 @@ export function Con_SetExternals( externals ) {
 }
 
 // Accessor functions for mutable exports
+/**
+ * Sets how far the console view is scrolled back. Called by keys.js on PgUp/PgDn/mouse wheel/Home/End; the caller
+ * clamps the value. `Con_Print` and `Con_CheckResize` reset it to 0.
+ *
+ * @param {number} val lines up from the bottom of the scrollback to display (0 = newest output)
+ */
 export function Con_SetBackscroll( val ) { con_backscroll = val; }
+/**
+ * Reads the current scrollback offset (the live binding `con_backscroll` can also be imported directly).
+ *
+ * @returns {number} lines up from the bottom of the scrollback being displayed (0 = newest output)
+ */
 export function Con_GetBackscroll() { return con_backscroll; }
+/**
+ * Sets whether the console is forced down because there are no entities to refresh (no world loaded or signon not
+ * complete). Called every frame by gl_screen.js's `SCR_SetUpToDrawConsole`; while true the input line is drawn even
+ * when the console does not have key focus.
+ *
+ * @param {boolean} val true to force the console up full screen
+ */
 export function Con_SetForcedup( val ) { con_forcedup = val; }
 
 /*
@@ -128,6 +162,11 @@ export function Con_SetForcedup( val ) { con_forcedup = val; }
 Con_ToggleConsole_f
 ================
 */
+/**
+ * The `toggleconsole` command (WinQuake console.c), bound to the ~ key. Closing the console returns key input to the
+ * game and clears the typed line when connected (`cls.state` 2, ca_connected); otherwise it opens the main menu.
+ * Opening it moves key input to the console. Either way it ends the loading plaque and clears the notify-line times.
+ */
 export function Con_ToggleConsole_f() {
 
 	if ( key_dest === key_console ) {
@@ -160,6 +199,10 @@ export function Con_ToggleConsole_f() {
 Con_Clear_f
 ================
 */
+/**
+ * The `clear` command (WinQuake console.c): blanks the whole scrollback buffer to spaces. Does nothing before
+ * `Con_Init` has allocated the buffer. The line position and scroll offset are left unchanged.
+ */
 export function Con_Clear_f() {
 
 	if ( con_text ) {
@@ -176,6 +219,10 @@ export function Con_Clear_f() {
 Con_ClearNotify
 ================
 */
+/**
+ * Forgets the print times of the last 4 lines so no notify lines are drawn over the game until new text is printed
+ * (WinQuake console.c). Called by `Con_CheckResize` and by gl_screen.js when a loading plaque begins and ends.
+ */
 export function Con_ClearNotify() {
 
 	for ( let i = 0; i < NUM_CON_TIMES; i ++ )
@@ -208,10 +255,15 @@ function Con_MessageMode2_f() {
 /*
 ================
 Con_CheckResize
-
-If the line width has changed, reformat the buffer.
 ================
 */
+/**
+ * If the line width has changed, reformat the buffer (WinQuake console.c). The width in characters is the console's
+ * virtual width / 8 - 2; when that is below 1 (video not initialised yet) it falls back to 38 and blanks the buffer,
+ * otherwise it rewraps the newest lines into the new width (truncating long lines) and clears the notify times. Called
+ * by `Con_Init` and every frame by gl_screen.js's `SCR_SetUpToDrawConsole`; returns at once when the width is unchanged.
+ * After a resize the scroll offset is reset to 0 and printing continues on the last line.
+ */
 export function Con_CheckResize() {
 
 	let width = ( _vid.width >> 3 ) - 2;
@@ -282,6 +334,12 @@ export function Con_CheckResize() {
 Con_Init
 ================
 */
+/**
+ * Allocates the 16384-character scrollback buffer, sizes it with `Con_CheckResize`, prints "Console initialized.",
+ * registers the `con_notifytime` cvar (seconds a notify line stays, default 3) and the `toggleconsole`, `messagemode`,
+ * `messagemode2` and `clear` commands, then marks the console initialised (WinQuake console.c). Called once during
+ * host start-up; anything printed before this is dropped.
+ */
 export function Con_Init() {
 
 	con_text = new Array( CON_TEXTSIZE );
@@ -325,12 +383,18 @@ function Con_Linefeed() {
 /*
 ================
 Con_Print
-
-Handles cursor positioning, line wrapping, etc
-All console printing must go through this in order to be logged to disk
-If no console is visible, the notify window will pop up.
 ================
 */
+/**
+ * Writes text into the scrollback ring buffer (WinQuake console.c). Handles cursor positioning, line wrapping, etc:
+ * words that would cross the right edge wrap to a new line, `\n` ends a line and `\r` returns to its start so the next
+ * text overwrites it. In WinQuake all console printing must go through this in order to be logged to disk; this port
+ * has no disk log. If no console is visible, the notify window will pop up: each new line records `realtime` for
+ * `Con_DrawNotify`. Printing snaps the view back to the newest line. Assumes `Con_Init` has run (the buffer exists).
+ *
+ * @param {string} txt the text; a leading character code 1 prints it in the coloured (high-bit, +128) characters and
+ *   plays misc/talk.wav (chat), a leading 2 prints it coloured without the sound
+ */
 export function Con_Print( txt ) {
 
 	con_backscroll = 0;
@@ -429,6 +493,16 @@ Handles cursor positioning, line wrapping, etc
 */
 let inupdate = false;
 
+/**
+ * Formats and prints a message to the console (WinQuake console.c). Handles cursor positioning, line wrapping, etc via
+ * `Con_Print`. With one argument it is printed as `String(arg)`; with more, the first is a printf-style format
+ * supporting `%s %d %i %f %c %%` with the `- 0 + space` flags, width and precision. The message is dropped (not
+ * buffered) before `Con_Init`. While signon is incomplete (`cls.signon` !== 4) and loading has not disabled the screen,
+ * it redraws the screen with `SCR_UpdateScreen` so start-up output is visible; a re-entrant call from that redraw only
+ * prints.
+ *
+ * @param {...*} args a single value to print, or a format string followed by its arguments
+ */
 export function Con_Printf( ...args ) {
 
 	// Format the message - simple concatenation since JS doesn't have vsprintf
@@ -469,10 +543,14 @@ export function Con_Printf( ...args ) {
 /*
 ================
 Con_DPrintf
-
-A Con_Printf that only shows up if the "developer" cvar is set
 ================
 */
+/**
+ * A Con_Printf that only shows up if the "developer" cvar is set (non-zero); otherwise it does nothing (WinQuake
+ * console.c).
+ *
+ * @param {...*} args as for `Con_Printf`: a single value, or a format string followed by its arguments
+ */
 export function Con_DPrintf( ...args ) {
 
 	if ( ! _developer.value )
@@ -485,10 +563,14 @@ export function Con_DPrintf( ...args ) {
 /*
 ==================
 Con_SafePrintf
-
-Okay to call even when the screen can't be updated
 ==================
 */
+/**
+ * A `Con_Printf` that is okay to call even when the screen can't be updated: it sets `scr_disabled_for_loading` for
+ * the duration of the print so no `SCR_UpdateScreen` redraw happens, then restores it (WinQuake console.c).
+ *
+ * @param {...*} args as for `Con_Printf`: a single value, or a format string followed by its arguments
+ */
 export function Con_SafePrintf( ...args ) {
 
 	const temp = _scr_disabled_for_loading;
@@ -546,10 +628,15 @@ function Con_DrawInput() {
 /*
 ================
 Con_DrawNotify
-
-Draws the last few lines of output transparently over the game top
 ================
 */
+/**
+ * Draws the last few lines of output transparently over the game top (WinQuake console.c): up to the 4 newest lines
+ * printed less than `con_notifytime` seconds ago, 8 virtual pixels apart from y = 0, then the `say:` chat line when
+ * key input is in message mode. Called each frame by gl_screen.js's `SCR_DrawConsole` while the console is closed and
+ * keys go to the game or chat. Raises `con_notifylines` (scan lines to clear) to the height drawn. Does nothing until
+ * `Draw_Character` has been wired with `Con_SetExternals`.
+ */
 export function Con_DrawNotify() {
 
 	if ( ! _Draw_Character ) return;
@@ -606,11 +693,17 @@ export function Con_DrawNotify() {
 /*
 ================
 Con_DrawConsole
-
-Draws the console with the solid background
-The typing input line at the bottom should only be drawn if typing is allowed
 ================
 */
+/**
+ * Draws the console with the solid background (WinQuake console.c): the background, then as many 8-pixel text rows as
+ * fit above the bottom 16 pixels, offset by `con_backscroll`. The typing input line at the bottom should only be
+ * drawn if typing is allowed. Called each frame by gl_screen.js's `SCR_DrawConsole` while the console is down; stores
+ * `lines` in `con_vislines`.
+ *
+ * @param {number} lines console height in virtual pixels from the top of the screen; 0 or less draws nothing
+ * @param {boolean} drawinput true to draw the input prompt, typed text and blinking cursor
+ */
 export function Con_DrawConsole( lines, drawinput ) {
 
 	if ( lines <= 0 )
@@ -653,6 +746,12 @@ export function Con_DrawConsole( lines, drawinput ) {
 Con_NotifyBox
 ==================
 */
+/**
+ * Prints `text` framed by a box line and "Press a key." (WinQuake console.c, used during startup for sound / cd
+ * warnings). WinQuake then blocks until a key is pressed; the browser cannot block, so this port only prints.
+ *
+ * @param {string} text the message, printed with `Con_Printf` (include its own newline)
+ */
 export function Con_NotifyBox( text ) {
 
 	// during startup for sound / cd warnings

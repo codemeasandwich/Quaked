@@ -42,6 +42,11 @@ In JS, we simplify:
 // cache_user_t equivalent
 export class cache_user_t {
 
+	/**
+	 * The handle a caller keeps for a cache entry (WinQuake zone.h cache_user_t). `data` is null until `Cache_Alloc`
+	 * fills it and is set back to null by `Cache_Free` or `Cache_Flush`, so a null `data` means "reload it". Models and
+	 * sounds currently use plain `{ data }` objects or null in its place rather than this class.
+	 */
 	constructor() {
 
 		this.data = null;
@@ -68,6 +73,11 @@ const cache_lru = []; // ordered from most recent to least recent
 Memory_Init
 ========================
 */
+/**
+ * Starts memory management at engine start-up (called first in `Host_Init`): empties the cache and prints
+ * `Memory initialized (JavaScript GC mode)` to the console. Unlike WinQuake zone.c it takes no memory block, since
+ * JavaScript allocates. The message is written with an escaped `\\n`, so it ends in a literal backslash-n.
+ */
 export function Memory_Init() {
 
 	Cache_Init();
@@ -87,10 +97,15 @@ Zone memory in JS is just regular allocations tracked for debugging.
 /*
 ========================
 Z_Malloc
-
-Returns zero-filled memory. In JS, returns an ArrayBuffer or object.
 ========================
 */
+/**
+ * Returns zero-filled memory (WinQuake zone.c). In JS, returns an ArrayBuffer or object: here always a new
+ * zero-filled `ArrayBuffer`, and adds `size` to the debugging total that `Z_FreeMemory` reads. No current caller.
+ *
+ * @param {number} size bytes (a non-negative integer; `new ArrayBuffer` throws a RangeError otherwise)
+ * @returns {ArrayBuffer} a new zero-filled buffer of `size` bytes, owned by the caller
+ */
 export function Z_Malloc( size ) {
 
 	zone_allocated += size;
@@ -103,6 +118,13 @@ export function Z_Malloc( size ) {
 Z_Free
 ========================
 */
+/**
+ * Releases zone memory (WinQuake zone.c). A no-op: the garbage collector frees `ptr` once nothing references it, and
+ * the debugging total is not reduced (we could track and subtract from `zone_allocated` but it is not critical). No
+ * current caller.
+ *
+ * @param {*} ptr the block from `Z_Malloc`; ignored
+ */
 export function Z_Free( ptr ) {
 
 	// In JS, just let GC handle it
@@ -115,6 +137,12 @@ export function Z_Free( ptr ) {
 Z_FreeMemory
 ========================
 */
+/**
+ * Approximates the free zone memory, as if the zone were 1 MiB (0x100000 bytes) and nothing were ever freed. No
+ * current caller.
+ *
+ * @returns {number} bytes: 1048576 minus all bytes ever requested through `Z_Malloc` (negative once they exceed 1 MiB)
+ */
 export function Z_FreeMemory() {
 
 	return 0x100000 - zone_allocated; // approximate
@@ -136,6 +164,15 @@ level transitions can conceptually "free" old data.
 Hunk_AllocName
 ===================
 */
+/**
+ * Allocates level-load memory from the low hunk (WinQuake zone.c). In JS, just allocates a new zero-filled
+ * `ArrayBuffer` and raises the low mark by `size`; the buffer lives as long as the caller references it (dropping
+ * the mark with `Hunk_FreeToLowMark` does not free it). No current caller.
+ *
+ * @param {number} size bytes (a non-negative integer; `new ArrayBuffer` throws a RangeError otherwise)
+ * @param {string} name a debugging label, unused
+ * @returns {ArrayBuffer} a new zero-filled buffer of `size` bytes
+ */
 export function Hunk_AllocName( size, name ) {
 
 	// In JS, just allocate. The name is for debugging.
@@ -150,18 +187,36 @@ export function Hunk_AllocName( size, name ) {
 Hunk_Alloc
 ===================
 */
+/**
+ * `Hunk_AllocName` with the name `unknown` (WinQuake zone.c). No current caller.
+ *
+ * @param {number} size bytes (a non-negative integer)
+ * @returns {ArrayBuffer} a new zero-filled buffer of `size` bytes
+ */
 export function Hunk_Alloc( size ) {
 
 	return Hunk_AllocName( size, 'unknown' );
 
 }
 
+/**
+ * Reads the low hunk mark, which a caller saves before a level loads so `Hunk_FreeToLowMark` can return to it
+ * (WinQuake zone.c). No current caller.
+ *
+ * @returns {number} bytes allocated through `Hunk_AllocName` since start-up or the last `Hunk_FreeToLowMark`
+ */
 export function Hunk_LowMark() {
 
 	return hunk_low_mark;
 
 }
 
+/**
+ * Sets the low hunk mark back to `mark` (WinQuake zone.c). In JS this only moves the counter; the memory itself is
+ * freed by the garbage collector when its references are dropped. No current caller.
+ *
+ * @param {number} mark a value from `Hunk_LowMark` (bytes)
+ */
 export function Hunk_FreeToLowMark( mark ) {
 
 	hunk_low_mark = mark;
@@ -169,6 +224,12 @@ export function Hunk_FreeToLowMark( mark ) {
 
 }
 
+/**
+ * Reads the high hunk mark (WinQuake zone.c). If a `Hunk_TempAlloc` block is outstanding it is released first, so
+ * the mark returned never includes temporary space. Called by `Hunk_TempAlloc`.
+ *
+ * @returns {number} bytes allocated through `Hunk_HighAllocName` (a counter, not an address)
+ */
 export function Hunk_HighMark() {
 
 	if ( hunk_temp_active ) {
@@ -182,6 +243,13 @@ export function Hunk_HighMark() {
 
 }
 
+/**
+ * Sets the high hunk mark back to `mark`, first releasing an outstanding `Hunk_TempAlloc` block (WinQuake zone.c).
+ * Only the counter moves; the garbage collector frees the buffers. Called by the other hunk functions to drop a
+ * temporary block.
+ *
+ * @param {number} mark a value from `Hunk_HighMark` (bytes)
+ */
 export function Hunk_FreeToHighMark( mark ) {
 
 	if ( hunk_temp_active ) {
@@ -200,6 +268,14 @@ export function Hunk_FreeToHighMark( mark ) {
 Hunk_HighAllocName
 ===================
 */
+/**
+ * Allocates from the high hunk (WinQuake zone.c): releases an outstanding `Hunk_TempAlloc` block, raises the high
+ * mark by `size` and returns a new zero-filled `ArrayBuffer`. Called by `Hunk_TempAlloc`.
+ *
+ * @param {number} size bytes (a non-negative integer; `new ArrayBuffer` throws a RangeError otherwise)
+ * @param {string} name a debugging label, unused
+ * @returns {ArrayBuffer} a new zero-filled buffer of `size` bytes
+ */
 export function Hunk_HighAllocName( size, name ) {
 
 	if ( hunk_temp_active ) {
@@ -217,10 +293,17 @@ export function Hunk_HighAllocName( size, name ) {
 /*
 =================
 Hunk_TempAlloc
-
-Return space from the top of the hunk
 =================
 */
+/**
+ * Return space from the top of the hunk (WinQuake zone.c): a temporary block that stays valid only until the next
+ * hunk high-side call (`Hunk_TempAlloc`, `Hunk_HighMark`, `Hunk_FreeToHighMark`, `Hunk_HighAllocName`), which
+ * winds the high mark back over it. In JS the buffer itself stays usable while referenced; only the mark is
+ * reclaimed. No current caller.
+ *
+ * @param {number} size bytes (a non-negative integer)
+ * @returns {ArrayBuffer} a new zero-filled buffer of `size` bytes
+ */
 export function Hunk_TempAlloc( size ) {
 
 	if ( hunk_temp_active ) {
@@ -238,6 +321,10 @@ export function Hunk_TempAlloc( size ) {
 
 }
 
+/**
+ * Checks the hunk for corruption in WinQuake zone.c. A no-op in JS (the only call site, in cl_parse.js, is commented
+ * out).
+ */
 export function Hunk_Check() {
 
 	// No-op in JS
@@ -268,10 +355,12 @@ function Cache_Init() {
 /*
 ============
 Cache_Flush
-
-Throw everything out, so new data will be demand cached
 ============
 */
+/**
+ * Throw everything out, so new data will be demand cached (WinQuake zone.c): sets every entry's `user.data` to null
+ * and empties the cache and its LRU list. No current caller.
+ */
 export function Cache_Flush() {
 
 	for ( const [ name, entry ] of cache_entries ) {
@@ -292,10 +381,15 @@ export function Cache_Flush() {
 /*
 ==============
 Cache_Free
-
-Frees the memory and removes it from the LRU list
 ==============
 */
+/**
+ * Frees the memory and removes it from the LRU list (WinQuake zone.c): drops the entry whose user is `c` and sets
+ * `c.data` to null. No current caller.
+ *
+ * @param {cache_user_t} c the handle passed to `Cache_Alloc`; mutated
+ * @throws {Error} via `Sys_Error` when `c.data` is not set (`Cache_Free: not allocated`)
+ */
 export function Cache_Free( c ) {
 
 	if ( ! c.data )
@@ -322,11 +416,16 @@ export function Cache_Free( c ) {
 /*
 ==============
 Cache_Check
-
-Returns the cached data, and moves to the head of the LRU list
-if present, otherwise returns null
 ==============
 */
+/**
+ * Returns the cached data, and moves to the head of the LRU list if present, otherwise returns null (WinQuake
+ * zone.c). Nothing is ever evicted here, so `data` is lost only through `Cache_Free` or `Cache_Flush`. gl_model.js
+ * keeps its own equivalent check instead of calling this.
+ *
+ * @param {cache_user_t} c the handle to look up
+ * @returns {?ArrayBuffer} `c.data`, or null when it is not allocated (the caller must reload it)
+ */
 export function Cache_Check( c ) {
 
 	if ( ! c.data )
@@ -360,6 +459,18 @@ export function Cache_Check( c ) {
 Cache_Alloc
 ==============
 */
+/**
+ * Allocates a cache entry for `c` (WinQuake zone.c): stores a new zero-filled `ArrayBuffer` in `c.data`, records it
+ * under `name` and puts it at the head of the LRU list. A second entry with the same `name` replaces the first in the
+ * map. The entry lives until `Cache_Free` or `Cache_Flush`. No current caller.
+ *
+ * @param {cache_user_t} c the handle to fill; mutated
+ * @param {number} size bytes, greater than 0
+ * @param {string} name the cache key
+ * @returns {ArrayBuffer} the new buffer (also in `c.data`)
+ * @throws {Error} via `Sys_Error` when `c.data` is already set (`Cache_Alloc: already allocated`) or `size` is 0 or
+ * less (`Cache_Alloc: size <size>`)
+ */
 export function Cache_Alloc( c, size, name ) {
 
 	if ( c.data )
@@ -383,6 +494,11 @@ export function Cache_Alloc( c, size, name ) {
 Cache_Report
 ============
 */
+/**
+ * Prints the total size of the cache entries as `<n> megabyte data cache` (one decimal, MiB) with `Con_DPrintf`
+ * (developer output) (WinQuake zone.c). The message ends in a literal backslash-n (escaped `\\n`). Its call
+ * in cl_main.js is commented out.
+ */
 export function Cache_Report() {
 
 	let total = 0;

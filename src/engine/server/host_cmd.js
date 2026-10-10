@@ -67,6 +67,13 @@ export { noclip_anglehack, set_noclip_anglehack } from '../common/host_state.js'
 Host_InitCommands
 ======================
 */
+/**
+ * Registers the host console commands (WinQuake host_cmd.c): `status`, `quit`, `map`, `changelevel`, `restart`,
+ * `reconnect`, `connect`, `name`, `pause`, `say`, `say_team`, `tell`, `color`, `kill`, `god`, `notarget`, `fly`,
+ * `noclip`, `give`, `ping`, `kick`, `save`/`savegame`, `load`/`loadgame`, `startdemos`, `demos`, `stopdemo`, and the
+ * signon commands `prespawn`, `spawn` and `begin` that clients send. Called once at startup from `Host_InitLocal`
+ * (host.js); the registrations last for the session. WinQuake commands not listed here are not ported.
+ */
 export function Host_InitCommands() {
 
 	Cmd_AddCommand( 'status', Host_Status_f );

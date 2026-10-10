@@ -73,6 +73,13 @@ let localstack_used = 0;
 
 let Host_Error = null;
 
+/**
+ * Installs the host's error handler that `PR_HostError` (and so `PR_RunError`) calls. Injected rather than imported
+ * to keep the interpreter free of a host.js import; `SV_Init` installs `Host_Error` once at start-up.
+ *
+ * @param {?function(string): void} callback the handler, expected never to return (`Host_Error` throws); null removes it
+ * @returns {?function(string): void} the handler it replaces (null at first), so a test can restore it
+ */
 export function PR_SetHostError( callback ) {
 
 	const previous = Host_Error;
@@ -81,6 +88,15 @@ export function PR_SetHostError( callback ) {
 
 }
 
+/**
+ * Ends the game through the installed host error handler (`Host_Error`, which prints `Host_Error: <error>`, shuts
+ * the server and client down and throws back to `Host_Frame`). Called by `PR_RunError`, by `PR_ExecuteProgram` for a
+ * null function and by QuakeC builtins that hit a fatal program error. Never returns.
+ *
+ * @param {string} error the message
+ * @throws {Error} always: whatever the handler throws; or via `Sys_Error` when no handler is installed
+ * (`PR_HostError: Host_Error callback not set`) or the handler returns (`PR_HostError: Host_Error returned`)
+ */
 export function PR_HostError( error ) {
 
 	if ( Host_Error === null )
@@ -121,6 +137,15 @@ const pr_opnames = [
 PR_PrintStatement
 =================
 */
+/**
+ * Prints one QuakeC statement to the console (WinQuake pr_exec.c): the opcode name padded to 10 characters, then
+ * its operands. Unlike WinQuake, operands print as bare global offsets, not names and values (the
+ * `PR_GlobalString` helpers here are simple fallbacks). Called by `PR_RunError` for the failing statement and, while
+ * `pr_trace` is set, for each statement `PR_ExecuteProgram` runs.
+ *
+ * @param {dstatement_t} s the statement: `op` an opcode (OP_*), `a`, `b`, `c` global offsets (or a branch distance in
+ * statements for OP_IF, OP_IFNOT and OP_GOTO)
+ */
 export function PR_PrintStatement( s ) {
 
 	let line = '';
@@ -181,6 +206,11 @@ function PR_GlobalStringNoContents( ofs ) {
 PR_StackTrace
 ============
 */
+/**
+ * Prints the QuakeC call stack to the console, innermost first, one `<file> : <function>` line per frame (or
+ * `<NO STACK>` when nothing is running) (WinQuake pr_exec.c). Called by `PR_RunError`. Records the current function
+ * in the top stack slot as it does so.
+ */
 export function PR_StackTrace() {
 
 	if ( pr_depth === 0 ) {
@@ -215,6 +245,11 @@ export function PR_StackTrace() {
 PR_Profile_f
 ============
 */
+/**
+ * The `profile` console command of WinQuake pr_exec.c: prints the ten QuakeC functions that ran the most statements
+ * (count and name, highest first) and resets every function's `profile` count to 0. The command registered by
+ * pr_edict.js uses pr_edict.js's own copy, so this export has no current caller.
+ */
 export function PR_Profile_f() {
 
 	let num = 0;
@@ -252,10 +287,18 @@ export function PR_Profile_f() {
 /*
 ============
 PR_RunError
-
-Aborts the currently executing function
 ============
 */
+/**
+ * Aborts the currently executing function (WinQuake pr_exec.c): prints the failing statement, the QuakeC stack and
+ * the message, dumps the stack (so host_error can shutdown functions), resets Newer Game's per-call hooks
+ * (`SV_AxeReset`, `SV_FaceReset`) and ends the game with `PR_HostError( 'Program error' )`. Called by the
+ * interpreter and by builtins on a QuakeC fault. Never returns.
+ *
+ * @param {string} error the message; each `%d`, `%i`, `%s` or `%f` is replaced in turn by the next argument
+ * @param {...*} args the values for the placeholders (converted with `String()`)
+ * @throws {Error} always, through `PR_HostError`
+ */
 export function PR_RunError( error, ...args ) {
 
 	let message = error;
@@ -289,10 +332,22 @@ The interpretation main loop
 /*
 ====================
 PR_EnterFunction
-
-Returns the new program statement counter
 ====================
 */
+/**
+ * Pushes a QuakeC call (WinQuake pr_exec.c): runs Newer Game's per-call hooks (face, axe, respawn, unseen, melee
+ * spray, prone zombie) and keeps their tokens in the stack frame for `PR_LeaveFunction`, saves the return point,
+ * saves off any locals that the new function steps on, copies the OFS_PARM* arguments into its parameters and makes
+ * `f` the current function. Called by `PR_ExecuteProgram` and the OP_CALL* opcodes.
+ *
+ * @param {dfunction_t} f the function being called (a QuakeC function, not a builtin)
+ * @returns {number} the new program statement counter: the statement index before `f.first_statement` (the caller's
+ * loop adds 1), or a hook's `skip` index when a hook has the interpreter run SUB_Null in the function's place (the
+ * respawn sequence; a shotgun pellet's TraceAttack that waits for its flight, sv_shotdelay.js; a melee blow's meat
+ * spray off the player, sv_meleespray.js; and a lying zombie turned on a new attacker, sv_pronezombie.js)
+ * @throws {Error} through `PR_RunError` when the call depth reaches 32 (`stack overflow`) or the locals would pass
+ * 2048 (`locals stack overflow`)
+ */
 export function PR_EnterFunction( f ) {
 	pr_stack[ pr_depth ].face = SV_FaceFunctionEnter( f, pr_xfunction );
 	pr_stack[ pr_depth ].axe = SV_AxeFunctionEnter( f, pr_xfunction );
@@ -343,6 +398,15 @@ export function PR_EnterFunction( f ) {
 PR_LeaveFunction
 ====================
 */
+/**
+ * Pops a QuakeC call (WinQuake pr_exec.c): restores the locals the function stepped on, ends Newer Game's per-call
+ * hooks with the tokens `PR_EnterFunction` kept, and makes the caller current again. Called on OP_DONE and OP_RETURN
+ * (after the return value is copied to OFS_RETURN).
+ *
+ * @returns {number} the caller's statement index to continue from (the loop adds 1)
+ * @throws {Error} via `Sys_Error` when nothing is on the stack (`prog stack underflow`), or through `PR_RunError`
+ * when the locals stack underflows
+ */
 export function PR_LeaveFunction() {
 
 	if ( pr_depth <= 0 )
@@ -379,6 +443,19 @@ export function PR_LeaveFunction() {
 PR_ExecuteProgram
 ====================
 */
+/**
+ * The interpretation main loop (WinQuake pr_exec.c): runs QuakeC function `fnum` until it returns to the depth it
+ * was called at, so calls nest (a builtin may run QuakeC again). Arguments are passed in the OFS_PARM* globals and
+ * `pr_global_struct.self`/`other`/`time` must be set by the caller; the result is left in OFS_RETURN. Called by the
+ * server for every think, touch, blocked, client and world callback. Clears `pr_trace` at the start and counts each
+ * statement in its function's `profile`.
+ *
+ * @param {number} fnum function index into `pr_functions` (1..progs.numfunctions-1)
+ * @throws {Error} through `PR_HostError` when `fnum` is 0 or out of range (`PR_ExecuteProgram: NULL function`,
+ * after printing `self`), and through `PR_RunError` on a fault: more than 100000 statements in one call (`runaway
+ * loop error`), assignment to the world entity while the server is active, a call to a null function, a bad builtin
+ * number or opcode, or a stack overflow
+ */
 export function PR_ExecuteProgram( fnum ) {
 
 	let s;

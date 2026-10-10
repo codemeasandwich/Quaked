@@ -192,7 +192,15 @@ function GP_ReleaseOwned( keyEvent ) {
 
 }
 
-// WebXR has its own controllers: the gamepad lets go of everything and is chosen afresh afterwards
+/**
+ * WebXR has its own controllers: the gamepad lets go of everything and is chosen afresh afterwards. Releases every key
+ * the game controller holds (and only those: never the keyboard's or the mouse's) and forgets which controller was
+ * playing, so the next `IN_GamepadPoll` picks one again. Called by `IN_Commands` and `IN_Move` every frame while a
+ * WebXR session is active.
+ *
+ * @param {(key: number, down: boolean, source: string) => void} [keyEvent=Key_Event] receives each release as
+ *   `( key, false, 'pad' )`; a check passes its own
+ */
 export function IN_GamepadRelease( keyEvent = Key_Event ) {
 
 	GP_ReleaseOwned( keyEvent ); gpState.index = null; gpState.id = null;
@@ -202,12 +210,27 @@ export function IN_GamepadRelease( keyEvent = Key_Event ) {
 /*
 ================
 IN_GamepadPoll
-
-Every host frame (IN_Commands, with no command: the buttons, in menus and between levels too) and again when a command
-is built (IN_Move: the sticks as movement and look, in the game). keyEvent is Key_Event, print Con_Printf (a check passes
-its own). Reading twice in a frame changes nothing: each button remembers what it sent. Returns the controller, or null.
 ================
 */
+/**
+ * Reads the game controller (card [36]). Every host frame (`IN_Commands`, with no command: the buttons, in menus and
+ * between levels too) and again when a command is built (`IN_Move`: the sticks as movement and look, in the game).
+ * Reading twice in a frame changes nothing: each button remembers what it sent. Each button sends its game key, or
+ * its menu key while the menu has the keys (A: space or Enter, B/Back/Start: Escape, X: '/', Y: Tab, LB: Shift, RB:
+ * Ctrl, LT: space or Enter, RT: mouse 1, D-pad: arrows; triggers count as down past half way), and releases that same
+ * key when let go. When the playing controller disconnects or another takes over, only the keys it holds are
+ * released; a controller without the standard mapping is announced once per id. With a command, in the game (not a
+ * demo, not locked by the bestiary), the left stick adds movement (dead zone 0.15) and the right stick turns and
+ * pitches the view (dead zone 0.12; pitch kept within -70..80 degrees).
+ *
+ * @param {?usercmd_t} cmd the move being built: `forwardmove` and `sidemove` gain up to `cl_forwardspeed` /
+ *   `cl_sidespeed` (Quake units a second) at full stick; null for buttons only
+ * @param {(key: number, down: boolean, source: string) => void} [keyEvent=Key_Event] receives presses and releases as
+ *   `( key, down, 'pad' )`; a check passes its own
+ * @param {(fmt: string) => void} [print=Con_Printf] prints the nonstandard-layout notice; a check passes its own
+ * @returns {?Gamepad} the controller playing this frame, or null when none is connected or the Gamepad API is missing
+ * @throws {Error} with a command, in the game, when the Newer hook `R_BestiaryInputLocked` is not installed
+ */
 export function IN_GamepadPoll( cmd, keyEvent = Key_Event, print = Con_Printf ) {
 
 	const gp = GP_GetPrimary();
@@ -591,6 +614,16 @@ function handleTouchStart( event ) {
 IN_Init
 ===========
 */
+/**
+ * Starts browser input: builds the DOM `code` to Quake key table, registers the `m_filter`, `gp_look_yaw` and
+ * `gp_look_pitch` cvars and the `force_centerview` command, listens for keys and visibility on the document and for
+ * the mouse, wheel, context menu and touch start on the element, and for pointer lock changes. On a mobile device
+ * (`Touch_IsMobile`) it creates the touch controls on the body; a Meta Quest browser gets no pointer lock or
+ * fullscreen. Called once by `Host_Init` (host.js), with no element. Listeners stay until `IN_Shutdown`; calling it
+ * twice would add them twice.
+ *
+ * @param {HTMLElement} [element=document.body] the element that takes mouse input and is pointer-locked
+ */
 export function IN_Init( element ) {
 
 	targetElement = element || document.body;
@@ -684,6 +717,11 @@ export function IN_Init( element ) {
 IN_Shutdown
 ===========
 */
+/**
+ * Stops browser input: removes the key, mouse, wheel, context menu, pointer lock and visibility listeners added by
+ * `IN_Init`, leaves pointer lock, and marks the mouse and input inactive. Called by `Host_Shutdown` (host.js). Does
+ * nothing before `IN_Init`. The touch start listener and the mobile touch controls are not removed.
+ */
 export function IN_Shutdown() {
 
 	if ( ! in_initialized ) return;
@@ -719,11 +757,13 @@ export function IN_Shutdown() {
 /*
 ===========
 IN_Commands
-
-Joystick button events in the original: here the game controller's buttons, every host frame, so a controller works
-the menus with no level running (card [36]); in WebXR its own controllers take over and the gamepad lets go.
 ===========
 */
+/**
+ * Joystick button events in the original: here the game controller's buttons (`IN_GamepadPoll` with no command),
+ * every host frame (host.js, before `IN_UpdateTouch` and the command buffer), so a controller works the menus with no
+ * level running (card [36]); in WebXR its own controllers take over and the gamepad lets go (`IN_GamepadRelease`).
+ */
 export function IN_Commands() {
 
 	if ( isXRActive() ) IN_GamepadRelease();
@@ -746,11 +786,17 @@ function IN_ForceCenterView() {
 /*
 ===========
 IN_MouseMove
-
-Called every frame to get mouse movement.
-Returns accumulated movement since last call.
 ===========
 */
+/**
+ * Called every frame to get mouse movement (by `IN_Move`). Returns the movement accumulated from pointer-locked
+ * `movementX`/`movementY` since the last call and resets the accumulator; with `m_filter` on, the result is averaged
+ * with the previous call's. While the bestiary locks input, it discards the movement (and the filter history).
+ *
+ * @returns {{ mx: number, my: number }} horizontal and vertical movement in CSS pixels times `sensitivity`
+ *   (right and down positive); both 0 when the mouse is not active or input is locked
+ * @throws {Error} when the Newer hook `R_BestiaryInputLocked` is not installed
+ */
 export function IN_MouseMove() {
 	if ( R_BestiaryInputLocked() ) { mx_accum = my_accum = old_mouse_x = old_mouse_y = 0; return { mx: 0, my: 0 }; }
 
@@ -792,11 +838,21 @@ export function IN_MouseMove() {
 /*
 ===========
 IN_Move
-
-Process all input movement for the current frame.
-In the original, this called IN_MouseMove and IN_JoyMove.
 ===========
 */
+/**
+ * Process all input movement for the current frame. In the original, this called IN_MouseMove and IN_JoyMove. Here
+ * it adds touch look, the touch stick and forward button, the mouse (turning, or sidestepping with strafe; pitch with
+ * mouse look, else forward movement), the WebXR controllers (left stick moves, right stick turns, triggers jump and
+ * fire) and the game controller's sticks. Called once per command by `CL_SendCmd` (cl_main.js, through
+ * `CL_SetExternals`), after `CL_BaseMove` has added the keyboard. Turns `cl.viewangles` directly (degrees; pitch kept
+ * within -70..80). While the bestiary locks input it drains the mouse and touch look, polls only the controller's
+ * buttons, and zeroes the command's movement.
+ *
+ * @param {?usercmd_t} cmd the move being built (mutated: `forwardmove`, `sidemove`, and under the bestiary lock
+ *   `upmove`, in Quake units a second); null still reads and discards the mouse
+ * @throws {Error} when the Newer hook `R_BestiaryInputLocked` is not installed
+ */
 export function IN_Move( cmd ) {
 	if ( R_BestiaryInputLocked() ) { IN_MouseMove();Touch_GetLookDelta();if(isXRActive())IN_GamepadRelease();else IN_GamepadPoll(null);if(cmd)cmd.forwardmove=cmd.sidemove=cmd.upmove=0;return; }
 
@@ -920,10 +976,13 @@ export function IN_Move( cmd ) {
 /*
 ===========
 IN_IsPointerLocked
-
-Helper for browser-specific pointer lock state check
 ===========
 */
+/**
+ * Helper for browser-specific pointer lock state check. Nothing calls it at present.
+ *
+ * @returns {boolean} true while the input element holds the pointer lock (tracked from `pointerlockchange`)
+ */
 export function IN_IsPointerLocked() {
 
 	return pointerLocked;
@@ -933,11 +992,13 @@ export function IN_IsPointerLocked() {
 /*
 ===========
 IN_RequestPointerLock
-
-Request pointer lock from a user gesture context (e.g. menu selection).
-Only applies on desktop; mobile uses fullscreen instead.
 ===========
 */
+/**
+ * Request pointer lock from a user gesture context (e.g. menu selection; menu.js, through `M_SetExternals`); the
+ * browser refuses it outside one. Only applies on desktop; mobile uses fullscreen instead. Does nothing when already
+ * locked, on a Meta Quest, or before `IN_Init`.
+ */
 export function IN_RequestPointerLock() {
 
 	if ( ! isMobile ) {
@@ -951,10 +1012,13 @@ export function IN_RequestPointerLock() {
 /*
 ===========
 IN_IsMobile
-
-Returns true if running on a mobile device
 ===========
 */
+/**
+ * Whether input runs on a mobile device, as `Touch_IsMobile` decided in `IN_Init`. Nothing calls it at present.
+ *
+ * @returns {boolean} true if running on a mobile device (touch controls in use); false before `IN_Init`
+ */
 export function IN_IsMobile() {
 
 	return isMobile;
@@ -964,11 +1028,16 @@ export function IN_IsMobile() {
 /*
 ===========
 IN_UpdateTouch
-
-Update touch control state based on key_dest.
-Should be called each frame.
 ===========
 */
+/**
+ * Update touch control state based on key_dest. Should be called each frame (host.js calls it every host frame,
+ * after `IN_Commands`). On a mobile device only: sets the Newer Game wider view, then shows the game controls while
+ * playing a connected game (not a demo), the menu overlay during a demo or in the menu, and nothing over the console;
+ * switching the game controls on or off also switches the mouse on or off. Does nothing on other devices.
+ *
+ * @throws {Error} on a mobile device when the Newer hook `R_NewerGame` is not installed
+ */
 export function IN_UpdateTouch() {
 
 	if ( ! isMobile ) return;

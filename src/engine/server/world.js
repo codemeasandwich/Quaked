@@ -52,6 +52,10 @@ for ( let i = 0; i < 32; i ++ ) _hullMidPool[ i ] = new Float32Array( 3 );
 
 export class plane_t {
 
+	/**
+	 * Creates the impact plane of a trace (world.h): `normal` a unit vector (all 0 until a hit) facing back toward
+	 * the moving object, `dist` its distance from the origin along that normal (Quake units).
+	 */
 	constructor() {
 
 		this.normal = new Float32Array( 3 );
@@ -63,6 +67,14 @@ export class plane_t {
 
 export class trace_t {
 
+	/**
+	 * Creates an empty trace result (world.h): no hit, fraction 1. `SV_ClipMoveToEntity` makes a new one per entity
+	 * clipped and resets it to allsolid true with endpos = the move's end before tracing. Fields: `allsolid` (if true,
+	 * plane is not valid), `startsolid` (if true, the initial point was in a solid area), `inopen`/`inwater` (the
+	 * trace passed through empty or liquid leaves), `fraction` (time completed 0..1, 1.0 = didn't hit anything),
+	 * `endpos` (final position, world space), `plane` (surface normal at impact), `ent` (entity the surface is on:
+	 * the world edict for map geometry, null when nothing was hit).
+	 */
 	constructor() {
 
 		this.allsolid = false; // if true, plane is not valid
@@ -149,11 +161,13 @@ for ( let i = 0; i < 6; i ++ ) {
 /*
 ===================
 SV_InitBoxHull
-
-Set up the planes and clipnodes so that the six floats of a bounding box
-can just be stored out and get a proper hull_t structure.
 ===================
 */
+/**
+ * Set up the planes and clipnodes so that the six floats of a bounding box can just be stored out and get a proper
+ * hull_t structure (WinQuake world.c). Builds the module's single six-node box hull: node i tests axis i >> 1, empty
+ * on one side, the next node (or solid after the last) on the other. Called by `SV_ClearWorld` at every map spawn.
+ */
 export function SV_InitBoxHull() {
 
 	box_hull.clipnodes = box_clipnodes;
@@ -186,11 +200,18 @@ export function SV_InitBoxHull() {
 /*
 ===================
 SV_HullForBox
-
-To keep everything totally uniform, bounding boxes are turned into small
-BSP trees instead of being compared directly.
 ===================
 */
+/**
+ * To keep everything totally uniform, bounding boxes are turned into small BSP trees instead of being compared
+ * directly (WinQuake world.c). Writes the box's six plane distances into the shared box hull built by
+ * `SV_InitBoxHull`.
+ *
+ * @param {Float32Array|Array<number>} mins box minimum corner, in the space the trace will use (Quake units)
+ * @param {Float32Array|Array<number>} maxs box maximum corner (Quake units)
+ * @returns {hull_t} the module's one box hull, shared: the next call overwrites it, so trace it before asking for
+ *   another
+ */
 export function SV_HullForBox( mins, maxs ) {
 
 	box_planes[ 0 ].dist = maxs[ 0 ];
@@ -207,13 +228,24 @@ export function SV_HullForBox( mins, maxs ) {
 /*
 ================
 SV_HullForEntity
-
-Returns a hull that can be used for testing or clipping an object of mins/maxs
-size.
-Offset is filled in to contain the adjustment that must be added to the
-testing object's origin to get a point to use with the returned hull.
 ================
 */
+/**
+ * Returns a hull that can be used for testing or clipping an object of mins/maxs size (WinQuake world.c). For a
+ * SOLID_BSP entity it picks the brush model's precomputed hull by the object's width: hull 0 (point) under 3 units,
+ * hull 1 (player size) up to 32, else hull 2 (large). Any other entity gets a temporary box hull of its own box
+ * expanded by the object's size (`SV_HullForBox`).
+ *
+ * @param {edict_t} ent the entity being clipped against; `solid`, `movetype`, `modelindex`, `origin`, `mins` and
+ *   `maxs` are read
+ * @param {Float32Array|Array<number>} mins the moving object's mins (Quake units, relative to its origin)
+ * @param {Float32Array|Array<number>} maxs the moving object's maxs (Quake units, relative to its origin)
+ * @param {Float32Array} offset written: offset is filled in to contain the adjustment that must be added to the
+ *   testing object's origin to get a point to use with the returned hull (the source's wording; `SV_ClipMoveToEntity`
+ *   subtracts it from the move's points): the entity's origin, plus the hull's centring for brush models
+ * @returns {hull_t} a hull of the entity's brush model, or the shared box hull (valid until the next box request)
+ * @throws {Error} through `Sys_Error` for SOLID_BSP without MOVETYPE_PUSH, or MOVETYPE_PUSH with a non bsp model
+ */
 export function SV_HullForEntity( ent, mins, maxs, offset ) {
 
 	let hull;
@@ -346,6 +378,12 @@ function SV_CreateAreaNode( depth, mins, maxs ) {
 SV_ClearWorld
 ===============
 */
+/**
+ * Resets the world's collision structures for a new map (WinQuake world.c): rebuilds the box hull and a fresh tree
+ * of 32 area nodes, 4 levels deep, splitting the world model's bounds in half along its longer horizontal axis
+ * (±4096 units when no world is loaded). Every entity is dropped from the old links and must be linked again.
+ * Called by `SV_SpawnServer` after the world model is loaded.
+ */
 export function SV_ClearWorld() {
 
 	SV_InitBoxHull();
@@ -378,6 +416,12 @@ export function SV_ClearWorld() {
 SV_UnlinkEdict
 ===============
 */
+/**
+ * Removes an entity from its area-node list, so traces and touches no longer see it (WinQuake world.c). Called
+ * before an entity is moved or freed; safe to call on an entity that is not linked anywhere.
+ *
+ * @param {edict_t} ent the entity; its `area` link is cleared to point at itself
+ */
 export function SV_UnlinkEdict( ent ) {
 
 	if ( ! ent.area.prev || ent.area.prev === ent.area )
@@ -393,6 +437,16 @@ export function SV_UnlinkEdict( ent ) {
 SV_TouchLinks
 ====================
 */
+/**
+ * Runs the touch function of every SOLID_TRIGGER entity with a touch function whose absolute box overlaps `ent`,
+ * walking the area tree from `node` down every side the entity's box reaches (WinQuake world.c). Called by
+ * `SV_LinkEdict` when `touch_triggers` is set. When a touch carries the entity through a camera portal it is
+ * relinked at once (without touching triggers again).
+ *
+ * @param {edict_t} ent the entity that moved
+ * @param {Object} node the area node to start from (the module's root node, `sv_areanodes[0]`)
+ * @throws {Error} whatever a QuakeC touch function throws (see `SV_RunTriggerTouch`)
+ */
 export function SV_TouchLinks( ent, node ) {
 
 	// touch linked edicts
@@ -444,10 +498,16 @@ export function SV_TouchLinks( ent, node ) {
 
 }
 
-// The public trigger dispatch keeps QC's self/other context and touch behavior
-// together. Optional executors let focused tests use the same entry point.
-// Shared stock droptofloor operation: trace the native collision hull, then
-// link without firing another touch. QC and grounded arrivals use the same path.
+/**
+ * Shared stock droptofloor operation: trace the native collision hull, then link without firing another touch. QC
+ * (the `droptofloor` builtin in pr_cmds.js) and grounded arrivals (sv_rendveil.js) use the same path. Traces the
+ * entity's box up to 256 units straight down; on a floor it moves the entity there, links it, sets FL_ONGROUND and
+ * `groundentity`. Mutates `ent.v`.
+ *
+ * @param {edict_t} ent the entity to drop
+ * @returns {boolean} true when it landed; false when there is no floor within 256 units or it starts all in solid
+ *   (the entity is then left where it was)
+ */
 export function SV_DropToFloor( ent ) {
  const end=new Float32Array(ent.v.origin);end[2]-=256;
  const trace=SV_Move(ent.v.origin,ent.v.mins,ent.v.maxs,end,MOVE_NORMAL,ent);
@@ -457,6 +517,24 @@ export function SV_DropToFloor( ent ) {
  return true;
 }
 
+/**
+ * The public trigger dispatch keeps QC's self/other context and touch behavior together. Optional executors let
+ * focused tests use the same entry point. Called by `SV_TouchLinks` for each overlapping trigger. First gives the
+ * Newer hooks their turn: a respawn drop's own pickup (never runs the QC touch), the rend-veil arrival guard, and the
+ * camera-portal crossing (which may move the teleport receiver to the portal's lateral exit for the touch). Then sets
+ * `self` = the trigger, `other` = `ent` and `time` = `sv.time` in the QC globals and runs the touch function. On the
+ * start map it also tells the flashlight run which skill hall the player entered. `self`, `other` and any moved
+ * portal receiver are restored afterwards, even when the touch throws.
+ *
+ * @param {edict_t} ent the entity doing the touching
+ * @param {edict_t} touch the trigger being touched; its `touch` function is run
+ * @param {function(number): void} [execute=PR_ExecuteProgram] runs a QC function by number
+ * @param {?function(Array<number>): boolean} [clearAt=null] true when `ent`'s hull is clear at that world-space
+ *   origin; the default traces MOVE_NOMONSTERS (stock QC owns telefrags at the actual exit)
+ * @returns {boolean} true when the touch carried `ent` through a camera portal (the caller relinks it); false for an
+ *   ordinary touch, a skipped touch, or a respawn drop
+ * @throws {Error} whatever the QC touch function throws (`PR_RunError`, `Host_Error`)
+ */
 export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, clearAt = null ) {
 	const recovered = SV_RespawnDropTouch( ent, touch );
 	if ( recovered !== null ) return false; // custom payload touch never teleports the player
@@ -504,11 +582,22 @@ export function SV_RunTriggerTouch( ent, touch, execute = PR_ExecuteProgram, cle
 
 }
 
-// Some stock windows have backing geometry that stops the player's full hull
-// just before its origin can reach the visible plane. Keep that collision;
-// authorize a mapped portal touch at actual hull contact instead of requiring
-// an unreachable centre. A wall elsewhere, or merely being near a portal, is
-// never sufficient. QC and receiver clearance still decide the teleport.
+/**
+ * Some stock windows have backing geometry that stops the player's full hull just before its origin can reach the
+ * visible plane. Keep that collision; authorize a mapped portal touch at actual hull contact instead of requiring an
+ * unreachable centre. A wall elsewhere, or merely being near a portal, is never sufficient. QC and receiver
+ * clearance still decide the teleport. Passed to `SV_BeginPortalTouch` (sv_portal.js) by `SV_RunTriggerTouch`.
+ *
+ * Contact means `distance` is within the hull's extent along the normal (plus 1/16, two BSP clipping epsilons), and
+ * a sweep of the hull toward the portal stops within 1/16 unit of where it stands, against a surface facing within
+ * about 25° of the portal normal.
+ *
+ * @param {edict_t} ent the touching entity (its hull `mins`/`maxs` and `origin` are used)
+ * @param {{ normal: Array<number> }} portal the camera portal; `normal` is its unit plane normal, pointing out of the
+ *   visible surface toward the entity
+ * @param {number} distance the entity origin's distance in front of the visible plane (Quake units)
+ * @returns {boolean} true when the hull is touching the portal's backing wall; false otherwise or with no world
+ */
 export function SV_PortalBackingContact( ent, portal, distance ) {
 
 	if ( ! sv.worldmodel?.hulls ) return false;
@@ -528,11 +617,24 @@ export function SV_PortalBackingContact( ent, portal, distance ) {
 
 const STEPSIZE = 18; // sv_phys.js's step height (QC walkmove), not imported: sv_phys imports this file
 
-// The hull overlaps a mapped camera portal's trigger but is held short of the visible threshold by a sill or frame
-// that a step cannot climb (the start hub's skill arches: a lip higher than a step, and a
-// 48-unit opening for a 32-unit hull). Its origin can never reach the threshold from there, and the lip is not the
-// surface's own backing wall, so without this the player stood still until they slid into line (card [14]). Not
-// obstructed: a step the next walk move climbs, a frame the hull slides past, or a hull still approaching.
+/**
+ * The hull overlaps a mapped camera portal's trigger but is held short of the visible threshold by a sill or frame
+ * that a step cannot climb (the start hub's skill arches: a lip higher than a step, and a 48-unit opening for a
+ * 32-unit hull). Its origin can never reach the threshold from there, and the lip is not the surface's own backing
+ * wall, so without this the player stood still until they slid into line (card [14]). Not obstructed: a step the
+ * next walk move climbs, a frame the hull slides past, or a hull still approaching. Passed to `SV_BeginPortalTouch`
+ * (sv_portal.js) by `SV_RunTriggerTouch`, which consults it only when `SV_PortalBackingContact` said no.
+ *
+ * Held means a sweep toward the portal advances no more than 1/16 unit, and so does the same sweep from
+ * STEPSIZE + 1/8 units higher and from 2.5 units to either side. Also false while sv_portalmotion reports the
+ * entity is part-way through a step attempt this frame.
+ *
+ * @param {edict_t} ent the touching entity (its hull `mins`/`maxs` and `origin` are used)
+ * @param {{ normal: Array<number> }} portal the camera portal; `normal` is its unit plane normal, pointing out of the
+ *   visible surface toward the entity
+ * @param {number} distance the entity origin's distance in front of the visible plane (Quake units)
+ * @returns {boolean} true when the hull is held short of the threshold; false otherwise or with no world
+ */
 export function SV_PortalObstructed( ent, portal, distance ) {
 
 	if ( ! sv.worldmodel?.hulls || ! ( distance > 0 ) ) return false;
@@ -580,6 +682,14 @@ export function SV_PortalObstructed( ent, portal, distance ) {
 SV_FindTouchedLeafs
 ===============
 */
+/**
+ * Records which world leaves an entity's absolute box touches, for the PVS check when entities are sent to clients
+ * (WinQuake world.c). Called by `SV_LinkEdict`. Stops adding after 16 leaves (MAX_ENT_LEAFS) and skips solid leaves.
+ * Each entry is the leaf's index minus 1, because leafs[0] is the solid leaf and PVS bit 0 = leafs[1].
+ *
+ * @param {edict_t} ent the entity; appended to `ent.leafnums`, counted in `ent.num_leafs` (the caller zeroes it)
+ * @param {?(mnode_t|mleaf_t)} node the world BSP subtree to search
+ */
 export function SV_FindTouchedLeafs( ent, node ) {
 
 	if ( ! node )
@@ -623,6 +733,19 @@ export function SV_FindTouchedLeafs( ent, node ) {
 SV_LinkEdict
 ===============
 */
+/**
+ * Links an entity into the world at its current origin (WinQuake world.c). Must be called whenever an entity's
+ * origin, size or solidity changes. Unlinks it from the old position, sets `absmin`/`absmax` (expanded by 15 units
+ * horizontally for FL_ITEM entities, to make items easier to pick up and allow them to be grabbed off of shelves,
+ * or by 1 unit everywhere because movement is clipped an epsilon away from an actual edge), records its PVS leaves,
+ * and, unless SOLID_NOT, inserts it in the trigger or solid list of the smallest area node that holds its box. The
+ * world entity and free entities are not linked.
+ *
+ * @param {edict_t} ent the entity; `v.absmin`, `v.absmax`, `leafnums`, `num_leafs` and `area` are mutated
+ * @param {boolean} touch_triggers true to run the touch function of every trigger it now overlaps (after a move);
+ *   false for placement that must not fire triggers
+ * @throws {Error} whatever a QuakeC touch function throws, when `touch_triggers` is true
+ */
 export function SV_LinkEdict( ent, touch_triggers ) {
 
 	if ( ent.area.prev && ent.area.prev !== ent.area )
@@ -712,6 +835,16 @@ POINT TESTING IN HULLS
 SV_HullPointContents
 ==================
 */
+/**
+ * Finds the contents of a point in a clipping hull by walking its clipnodes (WinQuake world.c).
+ *
+ * @param {hull_t} hull the hull to search
+ * @param {number} num clipnode to start from (normally `hull.firstclipnode`); a negative value is returned as is
+ * @param {Float32Array|Array<number>} p the point, in the hull's space (Quake units)
+ * @returns {number} the leaf's CONTENTS_* value (negative: -1 empty, -2 solid, -3 water, -4 slime, -5 lava, -6 sky,
+ *   -9..-14 currents)
+ * @throws {Error} through `Sys_Error` when a node number falls outside the hull's clipnode range
+ */
 export function SV_HullPointContents( hull, num, p ) {
 
 	while ( num >= 0 ) {
@@ -743,6 +876,15 @@ export function SV_HullPointContents( hull, num, p ) {
 SV_PointContents
 ==================
 */
+/**
+ * Returns the world contents at a point in the point-size hull, with water currents reported as plain water
+ * (WinQuake world.c). Used by the physics code (water level, liquid checks) and QC's `pointcontents`.
+ *
+ * @param {Float32Array|Array<number>} p the point, world space (Quake units)
+ * @returns {number} a CONTENTS_* value; CONTENTS_CURRENT_0..CONTENTS_CURRENT_DOWN become CONTENTS_WATER;
+ *   CONTENTS_EMPTY when no world is loaded
+ * @throws {Error} through `Sys_Error` on a corrupt hull (see `SV_HullPointContents`)
+ */
 export function SV_PointContents( p ) {
 
 	if ( ! sv.worldmodel || ! sv.worldmodel.hulls )
@@ -760,6 +902,14 @@ export function SV_PointContents( p ) {
 SV_TruePointContents
 ==================
 */
+/**
+ * Returns the world contents at a point in the point-size hull, keeping water currents as they are (WinQuake
+ * world.c).
+ *
+ * @param {Float32Array|Array<number>} p the point, world space (Quake units)
+ * @returns {number} the CONTENTS_* value; CONTENTS_EMPTY when no world is loaded
+ * @throws {Error} through `Sys_Error` on a corrupt hull (see `SV_HullPointContents`)
+ */
 export function SV_TruePointContents( p ) {
 
 	if ( ! sv.worldmodel || ! sv.worldmodel.hulls )
@@ -772,10 +922,17 @@ export function SV_TruePointContents( p ) {
 /*
 ============
 SV_TestEntityPosition
-
-This could be a lot more efficient...
 ============
 */
+/**
+ * Tests whether an entity's box at its current origin is inside anything solid, by a zero-length `SV_Move`. This
+ * could be a lot more efficient... (WinQuake world.c). Used by the push and unstick physics and by the seamless
+ * level-change placement.
+ *
+ * @param {edict_t} ent the entity to test (it does not clip against itself or its owner)
+ * @returns {?edict_t} the world edict (`sv.edicts[0]`) when the position is blocked by the world or another entity;
+ *   null when it is clear
+ */
 export function SV_TestEntityPosition( ent ) {
 
 	const trace = SV_Move( ent.v.origin, ent.v.mins, ent.v.maxs, ent.v.origin, 0, ent );
@@ -803,6 +960,23 @@ const DIST_EPSILON = 0.03125;
 SV_RecursiveHullCheck
 ==================
 */
+/**
+ * Traces the segment p1..p2 through a clipping hull and records the first impact in `trace` (WinQuake world.c). The
+ * impact point is put DIST_EPSILON (1/32 unit) on the near side of the plane and backed up further if it would still
+ * be in solid. Called by `SV_ClipMoveToEntity` with the whole move (fractions 0 and 1), then by itself per node.
+ *
+ * @param {hull_t} hull the hull to trace
+ * @param {number} num the clipnode (or negative contents) to test
+ * @param {number} p1f fraction of the whole move at `p1`, 0..1
+ * @param {number} p2f fraction of the whole move at `p2`, 0..1
+ * @param {Float32Array|Array<number>} p1 segment start, hull space (Quake units)
+ * @param {Float32Array|Array<number>} p2 segment end, hull space (Quake units)
+ * @param {trace_t} trace accumulates the result: start it with `allsolid` true and `fraction` 1; `allsolid`,
+ *   `startsolid`, `inopen`, `inwater`, and at an impact `fraction`, `endpos` and `plane`, are written
+ * @param {number} [depth=0] recursion depth, indexing a pool of scratch midpoints that grows on demand
+ * @returns {boolean} true when the segment ended without an impact; false when it hit (or never got out of solid)
+ * @throws {Error} through `Sys_Error` when a node number falls outside the hull's clipnode range
+ */
 export function SV_RecursiveHullCheck( hull, num, p1f, p2f, p1, p2, trace, depth = 0 ) {
 
 	// check for empty
@@ -934,11 +1108,22 @@ export function SV_RecursiveHullCheck( hull, num, p1f, p2f, p1, p2, trace, depth
 /*
 ==================
 SV_ClipMoveToEntity
-
-Handles selection or creation of a clipping hull, and offseting (and
-eventually rotation) of the end points
 ==================
 */
+/**
+ * Handles selection or creation of a clipping hull, and offseting (and eventually rotation) of the end points
+ * (WinQuake world.c). Traces a box from `start` to `end` against one entity only (the world when given
+ * `sv.edicts[0]`). Called by `SV_Move` for the world and for each entity the move's box reaches.
+ *
+ * @param {edict_t} ent the entity to clip against
+ * @param {Float32Array|Array<number>} start move start, world space (Quake units)
+ * @param {Float32Array|Array<number>} mins moving box mins (Quake units, relative to its origin)
+ * @param {Float32Array|Array<number>} maxs moving box maxs (Quake units, relative to its origin)
+ * @param {Float32Array|Array<number>} end move end, world space (Quake units)
+ * @returns {trace_t} a new trace with `endpos` in world space; `ent` is set to `ent` when the move was clipped or
+ *   started in solid, otherwise null
+ * @throws {Error} through `Sys_Error` for a bad SOLID_BSP entity or a corrupt hull
+ */
 export function SV_ClipMoveToEntity( ent, start, mins, maxs, end ) {
 
 	const trace = new trace_t();
@@ -1136,6 +1321,24 @@ function SV_MoveBounds( start, mins, maxs, end, boxmins, boxmaxs ) {
 SV_Move
 ==================
 */
+/**
+ * Traces a box from `start` to `end` against the world and every solid entity (WinQuake world.c), the main collision
+ * query of the server physics, QC's `traceline`/`walkmove` and the Newer gameplay. Entities never clip against
+ * themselves or their owner, nor against their own missiles. MOVE_NOMONSTERS clips only against the world and
+ * SOLID_BSP entities; MOVE_MISSILE uses a ±15-unit box against monsters so missiles hit them more easily. A mover
+ * with a size passes through point-size entities (points never interact).
+ *
+ * @param {Float32Array|Array<number>} start move start, world space (Quake units)
+ * @param {Float32Array|Array<number>} mins moving box mins (Quake units, relative to its origin; all 0 for a line)
+ * @param {Float32Array|Array<number>} maxs moving box maxs (Quake units, relative to its origin)
+ * @param {Float32Array|Array<number>} end move end, world space (Quake units)
+ * @param {number} type MOVE_NORMAL (0), MOVE_NOMONSTERS (1) or MOVE_MISSILE (2)
+ * @param {?edict_t} passedict the entity doing the move (skipped, with its owner and its missiles), or null
+ * @returns {trace_t} a new trace of the nearest impact (the caller may keep it): `ent` is the entity hit (the world
+ *   edict for map geometry), or null when nothing was hit
+ * @throws {Error} through `Sys_Error` when a trigger is found in a solid list, for a bad SOLID_BSP entity or a
+ *   corrupt hull
+ */
 export function SV_Move( start, mins, maxs, end, type, passedict ) {
 
 	const clip = new moveclip_t();

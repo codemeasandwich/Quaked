@@ -79,6 +79,15 @@ const snd_show = { name: 'snd_show', string: '0', value: 0 };
 S_Init
 ================
 */
+/**
+ * Starts the sound system (WinQuake snd_dma.c). Called once from host.js's `Host_Init`. Registers the cvars `nosound`,
+ * `volume`, `precache`, `loadas8bit`, `bgmvolume`, `ambient_level`, `ambient_fade`, `snd_noextraupdate` and
+ * `snd_show` and the commands `play`, `playvol`, `stopsound`, `soundlist` and `soundinfo`; then, unless `nosound` is
+ * set, creates the Web Audio `AudioContext` and the master (sound-effects) gain node at `volume`, marks sound started,
+ * fills the DMA-equivalent `shm` description (context sample rate, 16-bit stereo, 16384 samples) and sets the channel
+ * count to the dynamic plus ambient channels. A browser without Web Audio prints "Failed to initialize Web Audio API"
+ * and leaves sound off; nothing is thrown. The context starts suspended until `S_UnlockAudio` runs on a user gesture.
+ */
 export function S_Init() {
 
 	Con_Printf( '\nSound Initialization\n' );
@@ -149,6 +158,11 @@ export function S_Init() {
 S_Shutdown
 ================
 */
+/**
+ * Stops the sound system (WinQuake snd_dma.c). Called by host.js's `Host_Shutdown`. Shuts down the ambient-music
+ * hook, then, if sound was started, closes the `AudioContext`, drops the master gain and forgets every known sound
+ * name (the `sfx_t` slots are reused by later precaches).
+ */
 export function S_Shutdown() {
 
 	S_AmbientMusicShutdown();
@@ -176,6 +190,11 @@ export function S_Shutdown() {
 S_Startup
 ================
 */
+/**
+ * Resumes a suspended `AudioContext`, marks sound started and precaches the ambient sounds ambience/water1.wav and
+ * ambience/wind2.wav for the water and sky ambient channels (WinQuake snd_dma.c). Does nothing unless sound was
+ * initialised by `S_Init`. Nothing in the engine calls it.
+ */
 export function S_Startup() {
 
 	if ( ! snd_initialized )
@@ -198,10 +217,15 @@ export function S_Startup() {
 /*
 ================
 S_SetCallbacks
-
-Set callbacks for host_frametime access (to avoid circular dependency)
 ================
 */
+/**
+ * Set callbacks for host_frametime access (to avoid circular dependency); the frame time paces the ambient sound
+ * fades. Called once from host.js's `Host_Init` right after `S_Init`; the callback is kept for the life of the page.
+ *
+ * @param {{ getHostFrametime?: () => number }} callbacks `getHostFrametime` returns the host frame time in seconds;
+ *   absent keeps the previous callback (initially one that returns 0)
+ */
 export function S_SetCallbacks( callbacks ) {
 
 	if ( callbacks.getHostFrametime )
@@ -212,11 +236,14 @@ export function S_SetCallbacks( callbacks ) {
 /*
 ================
 S_UnlockAudio
-
-Called from user gesture handlers (mouse/keyboard/touch) to unlock the AudioContext.
-Web Audio API requires a user gesture before audio can play.
 ================
 */
+/**
+ * Called from user gesture handlers (mouse/keyboard/touch in platform/in_web.js and platform/touch.js) to unlock the
+ * AudioContext. Web Audio API requires a user gesture before audio can play; until the context is running, sounds
+ * are not started. Also unlocks the ambient-music hook. A device/autoplay rejection can leave it suspended; the
+ * rejection is swallowed and the next real gesture retries. Safe to call on every gesture.
+ */
 export function S_UnlockAudio() {
 
 	S_AmbientMusicUnlock();
@@ -284,6 +311,16 @@ function S_FindName( name ) {
 S_PrecacheSound
 ==================
 */
+/**
+ * Finds or adds a sound by name and, while the `precache` cvar is set, loads its data with `S_LoadSound` (WinQuake
+ * snd_dma.c). Called for the server's sound list at map load (cl_parse.js `CL_ParseServerInfo`), by cl_tent.js for
+ * temporary-entity sounds and by `S_LocalSound`. The `sfx_t` stays known until `S_Shutdown`; loaded data is cached on
+ * it.
+ *
+ * @param {string} name path under sound/, e.g. "misc/talk.wav" (under 64 characters)
+ * @returns {?sfx_t} the sound, or null when sound is not started, `nosound` is set, the name is empty or too long, or
+ *   the 512 known-sound slots are full
+ */
 export function S_PrecacheSound( name ) {
 
 	if ( ! sound_started || nosound.value )
@@ -304,6 +341,12 @@ export function S_PrecacheSound( name ) {
 S_TouchSound
 ==================
 */
+/**
+ * Makes a sound name known without loading it (WinQuake snd_dma.c; there it also touched the cache). Does nothing when
+ * sound is not started or `nosound` is set. Its only caller in cl_parse.js is commented out.
+ *
+ * @param {string} name path under sound/
+ */
 export function S_TouchSound( name ) {
 
 	if ( ! sound_started || nosound.value )
@@ -316,10 +359,21 @@ export function S_TouchSound( name ) {
 /*
 ==================
 SND_PickChannel
-
-Picks a channel based on priorities, empty slots, number of channels
 ==================
 */
+/**
+ * Picks a channel based on priorities, empty slots, number of channels (WinQuake snd_dma.c), among the dynamic
+ * channels after the ambient ones: always the channel this entity already uses on the same entity channel (any of
+ * its channels when `entchannel` is -1); otherwise an empty one, then one whose playback ended, then the one with the
+ * least time left, never taking a view-entity sound for another entity. Stops whatever was playing on the chosen
+ * channel and clears its `sfx`. Called by `S_StartSound`.
+ *
+ * @param {number} entnum entity number the sound comes from (-1 for world/temporary-entity sounds)
+ * @param {number} entchannel entity sound channel 0..7; 0 never replaces another sound, -1 replaces any of the
+ *   entity's
+ * @returns {?channel_t} the channel to use, or null when none is free (logged with `console.log` when `snd_show` is
+ *   set)
+ */
 export function SND_PickChannel( entnum, entchannel ) {
 
 	// Check for replacement sound, or find the best one to replace
@@ -424,6 +478,15 @@ export function SND_PickChannel( entnum, entchannel ) {
 SND_Spatialize
 =================
 */
+/**
+ * Sets a channel's `leftvol` and `rightvol` from its `master_vol`, its distance from the listener (times `dist_mult`)
+ * and its direction relative to the listener's right vector (WinQuake snd_dma.c). Anything coming from the view entity
+ * will always be full volume in both ears. The exit-machine hook may replace the distance falloff for some sounds in
+ * Newer Game. Called when a sound starts and for every playing channel each `S_Update`.
+ *
+ * @param {channel_t} ch the channel; `origin` is in Quake units, world space; mutates `leftvol`/`rightvol` (integers,
+ *   0 when out of range)
+ */
 export function SND_Spatialize( ch ) {
 
 	// anything coming from the view entity will always be full volume
@@ -476,6 +539,23 @@ export function SND_Spatialize( ch ) {
 S_StartSound
 =================
 */
+/**
+ * Starts a positioned sound on a dynamic channel (WinQuake snd_dma.c). Called by cl_parse.js for svc_sound packets,
+ * cl_tent.js for temporary-entity hits, `S_LocalSound` and the `play`/`playvol` commands. A weapon sound from the view
+ * entity (other than pickups and rattles) first tells the ambient-music hook that combat is happening, even when sound
+ * is off. The sound is dropped when sound is not started or `nosound` is set, no channel is free, it is inaudible from
+ * the listener's position at the start, or its data cannot be loaded. Playback only begins while the `AudioContext`
+ * is running (see `S_UnlockAudio`).
+ *
+ * @param {number} entnum entity number the sound comes from (-1 for world sounds)
+ * @param {number} entchannel entity sound channel 0..7 (0 = auto, -1 = replace any of the entity's), see
+ *   `SND_PickChannel`
+ * @param {?sfx_t} sfx the sound from `S_PrecacheSound`; null does nothing
+ * @param {Float32Array|Array<number>} origin where the sound is (Quake units, world space); copied
+ * @param {number} fvol volume 0..1
+ * @param {number} attenuation distance falloff: 0 none (heard everywhere), 1 normal, larger is shorter range; the
+ *   channel's `dist_mult` is attenuation / 1000
+ */
 export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation ) {
 
 	if ( entnum === cl.viewentity && /^weapons\//.test( sfx?.name || '' ) && ! /pickup|pkup|rattle/.test( sfx.name ) ) S_AmbientMusicNotifyCombat();
@@ -538,6 +618,14 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 S_StopSound
 =================
 */
+/**
+ * Stops the first sound playing from an entity on one entity channel (WinQuake snd_dma.c), clearing that channel and
+ * stopping its Web Audio source. Called by cl_parse.js for svc_stopsound. As in WinQuake, it scans channel indices 0
+ * to MAX_DYNAMIC_CHANNELS - 1.
+ *
+ * @param {number} entnum entity number
+ * @param {number} entchannel entity sound channel 0..7
+ */
 export function S_StopSound( entnum, entchannel ) {
 
 	for ( let i = 0; i < MAX_DYNAMIC_CHANNELS; i ++ ) {
@@ -575,6 +663,14 @@ export function S_StopSound( entnum, entchannel ) {
 S_StopAllSounds
 =================
 */
+/**
+ * Stops every channel, including ambient and static sounds, and zeroes all their fields, resetting the channel count
+ * so static sounds are forgotten (WinQuake snd_dma.c). Called on disconnect (cl_main.js `CL_Disconnect`), when a
+ * loading plaque begins (gl_screen.js) and by the `stopsound` command. Always stops the ambient-music hook; the
+ * channels are only touched once sound has started.
+ *
+ * @param {boolean} clear true to also clear the mixing buffer with `S_ClearBuffer`
+ */
 export function S_StopAllSounds( clear ) {
 
 	S_AmbientMusicStop();
@@ -633,6 +729,10 @@ function S_StopAllSoundsC() {
 S_ClearBuffer
 =================
 */
+/**
+ * Zeroes the DMA-equivalent sample buffer `shm.buffer` (WinQuake snd_dma.c); Web Audio does not read it, so this has
+ * no audible effect. Does nothing before sound has started.
+ */
 export function S_ClearBuffer() {
 
 	if ( ! sound_started || ! shm )
@@ -745,6 +845,19 @@ function S_UpdateAmbientSounds() {
 S_Update
 =================
 */
+/**
+ * Called once per host frame (host.js `_Host_Frame_Internal`) with the listener's view (WinQuake snd_dma.c): stores the
+ * listener position and axes, fades the ambient water/sky sounds toward the levels of the leaf the listener is in,
+ * applies the `volume` cvar to the master gain, re-spatialises every playing channel and updates its Web Audio gain
+ * and pan, and starts or keeps static sounds alive as they become audible. Does nothing when sound is not started or
+ * `nosound` is set.
+ *
+ * @param {Float32Array} origin listener position (Quake units, world space); host.js passes zero vectors for all four
+ *   arguments until signon is complete
+ * @param {Float32Array} forward listener forward unit vector
+ * @param {Float32Array} right listener right unit vector (used for stereo separation)
+ * @param {Float32Array} up listener up unit vector
+ */
 export function S_Update( origin, forward, right, up ) {
 
 	if ( ! sound_started || nosound.value )
@@ -831,10 +944,12 @@ export function S_Update( origin, forward, right, up ) {
 /*
 =================
 S_ExtraUpdate
-
-Called from other places to update sound while loading, etc.
 =================
 */
+/**
+ * Called from other places to update sound while loading, etc. (WinQuake snd_dma.c; gl_rmain.js `R_RenderScene` calls
+ * it so sound does not get messed up if going slow). In Web Audio, nothing special needed: it does nothing.
+ */
 export function S_ExtraUpdate() {
 
 	if ( snd_noextraupdate.value )
@@ -847,10 +962,16 @@ export function S_ExtraUpdate() {
 /*
 =================
 S_LocalSound
-
-Play a sound at full volume, no attenuation
 =================
 */
+/**
+ * Play a sound at full volume, no attenuation (WinQuake snd_dma.c): precaches it and starts it from the view entity on
+ * channel -1. Used for menu and console sounds (passed to menu.js and console.js through their externals). Prints
+ * "S_LocalSound: can't cache <name>" when it cannot be precached; does nothing when sound is not started or
+ * `nosound` is set.
+ *
+ * @param {string} name path under sound/, e.g. "misc/menu1.wav"
+ */
 export function S_LocalSound( name ) {
 
 	if ( ! sound_started || nosound.value )
@@ -873,6 +994,19 @@ export function S_LocalSound( name ) {
 S_StaticSound
 ==================
 */
+/**
+ * Adds a looping world sound on the next static channel after the dynamic ones (WinQuake
+ * snd_dma.c). Called by cl_parse.js `CL_ParseStaticSound` at map load. Static sounds are not played immediately
+ * here; `S_Update` manages them each frame, starting/stopping playback based on player distance. They last until
+ * `S_StopAllSounds`. Prints and gives up when all 128 channels are used or the sound has no loop point ("Sound <name>
+ * not looped"); a channel slot is still consumed when loading fails or the sound is not looped.
+ *
+ * @param {?sfx_t} sfx the sound; null does nothing
+ * @param {Float32Array|Array<number>} origin where the sound is (Quake units, world space); copied
+ * @param {number} vol volume byte 0..255 as sent by the server
+ * @param {number} attenuation attenuation byte as sent by the server (attenuation * 64); `dist_mult` becomes
+ *   (attenuation / 64) / 1000
+ */
 export function S_StaticSound( sfx, origin, vol, attenuation ) {
 
 	if ( sfx == null || ! sound_started )
@@ -922,6 +1056,10 @@ export function S_StaticSound( sfx, origin, vol, attenuation ) {
 S_ClearPrecache
 =================
 */
+/**
+ * WinQuake snd_dma.c entry point kept for the port's structure; nothing to do in web audio. Nothing in the engine
+ * calls it.
+ */
 export function S_ClearPrecache() {
 
 	// nothing to do in web audio
@@ -933,6 +1071,9 @@ export function S_ClearPrecache() {
 S_BeginPrecaching
 =================
 */
+/**
+ * WinQuake snd_dma.c entry point, a no-op here; its call in cl_parse.js `CL_ParseServerInfo` is commented out.
+ */
 export function S_BeginPrecaching() {
 
 	// nothing to do
@@ -944,6 +1085,9 @@ export function S_BeginPrecaching() {
 S_EndPrecaching
 =================
 */
+/**
+ * WinQuake snd_dma.c entry point, a no-op here; its call in cl_parse.js `CL_ParseServerInfo` is commented out.
+ */
 export function S_EndPrecaching() {
 
 	// nothing to do
@@ -955,12 +1099,19 @@ export function S_EndPrecaching() {
 S_AmbientOff / S_AmbientOn
 =================
 */
+/**
+ * Stub for WinQuake's switch that turns ambient sounds off: it does nothing (the module's `snd_ambient` flag stays
+ * true). Nothing in the engine calls it.
+ */
 export function S_AmbientOff() {
 
 	// stub
 
 }
 
+/**
+ * Stub for WinQuake's switch that turns ambient sounds back on: it does nothing. Nothing in the engine calls it.
+ */
 export function S_AmbientOn() {
 
 	// stub
@@ -1205,16 +1356,27 @@ function _updateWebAudioSpatial( chan ) {
 /*
 ================
 S_GetAudioContext
-
-Returns the Web Audio AudioContext for use by other modules (e.g. cd_audio)
 ================
 */
+/**
+ * Returns the Web Audio AudioContext for use by other modules (e.g. cd_audio, and newer/sound/s_ambientgame.js), so
+ * music shares the context the user gesture unlocked.
+ *
+ * @returns {?AudioContext} the context created by `S_Init`, or null before it, when `nosound` is set, without Web Audio,
+ *   or after `S_Shutdown`
+ */
 export function S_GetAudioContext() {
 
 	return audioContext;
 
 }
 
+/**
+ * Returns the sound-effects bus. Legacy API name: this is the sound-effects bus, not the music output. Its gain is set
+ * from the `volume` cvar every `S_Update`. Nothing in the engine calls it.
+ *
+ * @returns {?GainNode} the master gain node connected to the context's destination, or null when sound is not running
+ */
 export function S_GetMasterGain() {
 
 	// Legacy API name: this is the sound-effects bus, not the music output.

@@ -91,6 +91,15 @@ CL_ClearState
 
 =====================
 */
+/**
+ * Wipes the per-server client state (WinQuake cl_main.c, where it is a memset of `cl`) when a server info message
+ * arrives (CL_ParseServerInfo, at the start of every level and connection). Resets the Newer Game power, quad and face
+ * views; clears the host's memory when no local server is running; resets prediction; puts every field of `cl` back to
+ * its starting value (with a fresh `cl.cmd` and `cl.viewent`); empties `cls.message`; replaces every entry of
+ * `cl_entities` (each tagged with its `_entityIndex`), `cl_dlights`, `cl_lightstyle`, `cl_temp_entities` and `cl_beams`
+ * with a new object, so references kept from the previous level go stale; and clears and re-chains `cl_efrags` as the
+ * `cl.free_efrags` free list. `cl_static_entities` is left as is.
+ */
 export function CL_ClearState() {
 	R_PowerVisionReset();
 	R_QuadVisionReset();
@@ -207,11 +216,17 @@ export function CL_ClearState() {
 /*
 =====================
 CL_Disconnect
-
-Sends a disconnect message to the server
-This is also called on Host_Error, so it shouldn't cause any errors
 =====================
 */
+/**
+ * Sends a disconnect message to the server (WinQuake cl_main.c). This is also called on Host_Error, so it shouldn't
+ * cause any errors. Also called by Host_EndGame, Host_ShutdownServer, the `disconnect` command and the `map`,
+ * `connect`, `load`, `demos` and `stopdemo` commands. Releases Newer Game's hold on the world's baked displacement data
+ * (R_DemonBakeRelease), cancels a held welcome loading screen and stops all sounds. When playing a demo it stops
+ * playback; when connected it stops any recording, sends an unreliable clc_disconnect, closes `cls.netcon`, sets
+ * `cls.state` to `ca_disconnected` and shuts down a local server. Always clears demo playback/timedemo, gives back the
+ * cvars a demo split borrowed (R_DemoSplitEnd) and resets `cls.signon` to 0. Safe to call when already disconnected.
+ */
 export function CL_Disconnect() {
 	R_DemonBakeRelease();
 	if(R_WelcomeLoadingHolding())R_DemoLoadingCancel();
@@ -257,6 +272,11 @@ export function CL_Disconnect() {
 
 }
 
+/**
+ * The `disconnect` console command (registered by CL_Init). Cancels the demo loading screen, ends a flashlight run
+ * (an explicit exit, unlike a load or connect during a run), disconnects, shuts down a local server, and removes a
+ * `room=` query from the browser URL so a reload does not rejoin the room.
+ */
 export function CL_Disconnect_f() {
 	R_DemoLoadingCancel();
 
@@ -277,11 +297,23 @@ export function CL_Disconnect_f() {
 /*
 =====================
 CL_EstablishConnection
-
-Host should be either "local" or a net address to be passed on
-For remote connections, this handles async WebTransport connections.
 =====================
 */
+/**
+ * Opens a connection to a server (WinQuake cl_main.c). Host should be either "local" or a net address to be passed on;
+ * for remote connections, this handles async WebTransport connections. Called by the `connect` command (which then
+ * runs Host_Reconnect_f when the promise resolves) and by the `load` command (Host_Loadgame_f) with "local". Does nothing on
+ * a dedicated server or during demo playback. Disconnects first; a "local" connect also drops any `room=` from the
+ * browser URL. The loopback connection completes synchronously, before the first await; a WebTransport one is raced
+ * against a 30-second timeout. On success sets `cls.netcon`, `cls.demonum` to -1 (out of the demo loop),
+ * `cls.state` to `ca_connected` and `cls.signon` to 0, and for a `?room=` address writes a shareable room URL into the
+ * browser history. On failure prints `CL_Connect: ...` and, when the menu asks for it (M_ShouldReturnOnError), shows
+ * the error in the menu and sets key_dest to the menu.
+ *
+ * @param {string} host "local" for the in-browser loopback server, or a server address such as
+ *   `wts://host:port?room=id`
+ * @returns {Promise<void>} settles when the attempt finishes; connection errors are caught and reported, not rejected
+ */
 export async function CL_EstablishConnection( host ) {
 
 	if ( cls.state === ca_dedicated )
@@ -391,10 +423,15 @@ export async function CL_EstablishConnection( host ) {
 /*
 =====================
 CL_SignonReply
-
-An svc_signonnum has been received, perform a client side setup
 =====================
 */
+/**
+ * An svc_signonnum has been received, perform a client side setup (WinQuake cl_main.c). Called by CL_ParseServerMessage
+ * after it advances `cls.signon`, and by the first entity update (CL_ParseUpdate or CL_ParsePacketEntities) that
+ * completes the last stage. Queues the reply for the current stage on `cls.message` (sent by CL_SendCmd): 1 `prespawn`;
+ * 2 `name`, `color` (from `_cl_color`: top in the high 4 bits, bottom in the low) and `spawn` with `cls.spawnparms`;
+ * 3 `begin`; 4 (SIGNONS) ends the loading plaque so the screen updates normally.
+ */
 export function CL_SignonReply() {
 
 	Con_DPrintf( 'CL_SignonReply: %i\n', cls.signon );
@@ -434,10 +471,15 @@ export function CL_SignonReply() {
 /*
 =====================
 CL_NextDemo
-
-Called to play the next demo in the demo loop
 =====================
 */
+/**
+ * Called to play the next demo in the demo loop (WinQuake cl_main.c): by Host_EndGame when a demo ends while the loop
+ * runs, and by the `startdemos` and `demos` commands. Does nothing when `cls.demonum` is -1. Shows the loading plaque,
+ * wraps to the first demo at the end of `cls.demos`, and inserts `playattractdemo <name>` at the front of the command
+ * buffer, then advances `cls.demonum`. With no demos listed it prints "No demos listed with startdemos" and sets
+ * `cls.demonum` to -1.
+ */
 export function CL_NextDemo() {
 
 	if ( cls.demonum === - 1 )
@@ -493,16 +535,21 @@ function CL_PrintEntities_f() {
 /*
 =================
 CL_ViewMuzzleFlash
-
-The player's weapon has just fired (their ammunition went down).  Newer Game only:
-a flash of light at the gun.  It does not wait for the game to flag a muzzle flash
-on the player's entity, so it is there the moment the shot is.
 =================
 */
 const _flashFv = new Float32Array( 3 );
 const _flashRv = new Float32Array( 3 );
 const _flashUv = new Float32Array( 3 );
 
+/**
+ * The player's weapon has just fired (their ammunition went down). Newer Game only: a flash of light at the gun. It
+ * does not wait for the game to flag a muzzle flash on the player's entity, so it is there the moment the shot is.
+ * Called by CL_ParseClientdata when STAT_AMMO drops. Does nothing outside Newer Game, before the view entity is known,
+ * or when the muzzle module has no camera position (R_MuzzleView null). Otherwise tells the muzzle module a shot fired
+ * and takes the view entity's dynamic light: 20 units ahead of and 4 below the camera, radius 240..271 Quake units
+ * scaled by 0.35 + 0.65 x `flashScale` (R_MuzzleFlashScale, dimmer in a lit room, stored on the light), minlight 32,
+ * lasting 0.12 seconds of cl.time.
+ */
 export function CL_ViewMuzzleFlash() {
 
 	if ( R_NewerGame() === false || cl.viewentity <= 0 ) return;
@@ -529,9 +576,13 @@ export function CL_ViewMuzzleFlash() {
 /*
 ===============
 CL_DecayLights
-
 ===============
 */
+/**
+ * Shrinks each live dynamic light by its `decay` (Quake units per second) times the cl.time elapsed since the last
+ * frame, not below 0 (WinQuake cl_main.c). Lights past their `die` time or already at radius 0 are skipped. Called by
+ * Host_Frame once a frame after the sound update, only when the signon is complete.
+ */
 export function CL_DecayLights() {
 
 	const time = cl.time - cl.oldtime;
@@ -553,11 +604,17 @@ export function CL_DecayLights() {
 /*
 ===============
 CL_LerpPoint
-
-Determines the fraction between the last two messages that the objects
-should be put at.
 ===============
 */
+/**
+ * Determines the fraction between the last two messages that the objects should be put at (WinQuake cl_main.c).
+ * Called at the start of CL_RelinkEntities each frame. With no gap between the two message times, `cl_nolerp` set, a
+ * timedemo or a local server, it snaps cl.time to the newest message and returns 1. A gap over 0.1 s (a dropped packet
+ * or the start of a demo) is cut to 0.1 s by moving `cl.mtime[1]`. When cl.time strays more than 1% outside the two
+ * message times it is pulled back to the nearer one.
+ *
+ * @returns {number} 0..1: 0 at the older message time `cl.mtime[1]`, 1 at the newest `cl.mtime[0]`
+ */
 export function CL_LerpPoint() {
 
 	let f = cl.mtime[ 0 ] - cl.mtime[ 1 ];
@@ -1019,6 +1076,16 @@ const _relinkUv = new Float32Array( 3 );
 CL_RelinkEntities
 ===============
 */
+/**
+ * Rebuilds the frame's visible entity list (WinQuake cl_main.c), called each frame by CL_ReadFromServer after the
+ * server messages are parsed. Resets `cl_numvisedicts` to 0, lerps `cl.velocity` (and, in demos, `cl.viewangles`) by
+ * CL_LerpPoint's fraction, then places each entity between its last two network positions (snapping on a jump over
+ * 100 units, a teleport), auto-rotates EF_ROTATE models, spawns their muzzle-flash, bright and dim lights, particle
+ * trails and Newer Game water/portal rings, and appends it to `cl_visedicts` (up to MAX_VISEDICTS). An entity missing
+ * from the latest message loses its model; the view entity is skipped unless `chase_active` is on. In a live game
+ * with QuakeWorld-style packet entities, players come from prediction (CL_LinkPlayers) and the other entities from
+ * the packet entity frame (CL_LinkPacketEntities); demos use the NetQuake path for every entity.
+ */
 export function CL_RelinkEntities() {
 
 	// determine partial update time
@@ -1227,10 +1294,20 @@ export function CL_RelinkEntities() {
 /*
 ===============
 CL_ReadFromServer
-
-Read all incoming data from the server
 ===============
 */
+/**
+ * Read all incoming data from the server (WinQuake cl_main.c), once per Host_Frame while connected. Does nothing
+ * while Newer Game's demo loading screen freezes a fully signed-on demo. Otherwise advances cl.time by
+ * `host_frametime`, parses every waiting message (recording `cl.last_received_message` in realtime seconds), relinks
+ * entities, updates temporary entities, then runs client-side prediction in a remote live game, or copies `cl.velocity`
+ * and the on-ground state into the prediction outputs (for view bob and roll) when a local server or a demo is running.
+ *
+ * @returns {number|undefined} 0 after reading (WinQuake's return value); undefined while the demo loading screen holds.
+ *   Host_Frame ignores it.
+ * @throws {Error} through Host_Error, "CL_ReadFromServer: lost server connection", when CL_GetMessage reports the
+ *   connection lost; also whatever Host_Error a parsed message raises
+ */
 export function CL_ReadFromServer() {
 	if(R_DemoLoadingFreeze(cls.demoplayback,cls.signon,cls.timedemo))return;
 
@@ -1285,6 +1362,16 @@ export function CL_ReadFromServer() {
 CL_SendCmd
 =================
 */
+/**
+ * Sends this frame's movement and the queued reliable messages to the server (WinQuake cl_main.c, including what C
+ * calls CL_WriteToServer). Called once per Host_Frame: before the server frame with a local server, after it
+ * otherwise. Does nothing unless connected. Once fully signed on (and not held by the welcome loading screen) builds a
+ * new usercmd_t from the keyboard (CL_BaseMove) plus the platform's mouse, touch and gamepad (IN_Move) and sends it
+ * unreliably (CL_SendMove). During demo playback the reliable buffer is discarded; otherwise `cls.message`, if not
+ * empty, is sent reliably and cleared, or kept for a later frame when the connection cannot send yet.
+ *
+ * @throws {Error} through Host_Error, "CL_WriteToServer: lost server connection", when the reliable send fails
+ */
 export function CL_SendCmd() {
 
 	if ( cls.state !== ca_connected )
@@ -1334,6 +1421,12 @@ export function CL_SendCmd() {
 CL_Init
 =================
 */
+/**
+ * Sets up the client once at startup (WinQuake cl_main.c), called by Host_Init: allocates the 1024-byte `cls.message`
+ * buffer, initialises input, temporary entities and prediction, registers the client and mouse cvars (`_cl_name`,
+ * `_cl_color` and the look/mouse settings are archived to the config) and adds the `entities`, `disconnect`, `record`,
+ * `stop`, `playdemo`, `playattractdemo` and `timedemo` commands.
+ */
 export function CL_Init() {
 
 	SZ_Alloc( cls.message, 1024 );
@@ -1404,7 +1497,9 @@ let _Host_ClearMemory = () => {};
 let _IN_Move = () => {};
 
 /**
- * Hands the client the host and platform functions it calls, as the other modules' SetExternals do.
+ * Hands the client the host and platform functions it calls, as the other modules' SetExternals do. host.js calls it
+ * once as it loads, in its wiring block. Keys left out keep their current value. Until it is called, `Host_Error`
+ * throws `Error('Host_Error: ' + message)` (unwinding without the host's cleanup) and the other three do nothing.
  *
  * @param {{ Host_Error?: function( string ): never, Host_ShutdownServer?: function( boolean ): void,
  *   Host_ClearMemory?: function(): void, IN_Move?: function( object ): void }} externals the host's error, server

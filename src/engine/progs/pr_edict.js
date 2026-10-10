@@ -101,16 +101,32 @@ const MOVETYPE_STEP = 4;
 let deathmatch = { value: 0 };
 let current_skill = 0;
 
+/**
+ * Gives this module the `deathmatch` cvar, read by `ED_LoadFromFile` to drop "not in deathmatch" entities. Called
+ * once by `SV_Init`; until then a stub with value 0 is used.
+ *
+ * @param {cvar_t} dm the `deathmatch` cvar (only `value` is read)
+ */
 export function PR_SetDeathmatch( dm ) { deathmatch = dm; }
+/**
+ * Tells this module the skill of the map being spawned, read by `ED_LoadFromFile` to drop entities flagged not for
+ * that skill. Called by `SV_SpawnServer` before the entities load.
+ *
+ * @param {number} s skill 0..3 (0 easy, 1 normal, 2 hard, 3 nightmare; 2 and above use the hard flag)
+ */
 export function PR_SetCurrentSkill( s ) { current_skill = s; }
 
 /*
 =================
 ED_ClearEdict
-
-Sets everything to NULL
 =================
 */
+/**
+ * Sets everything to NULL (WinQuake pr_edict.c): zeroes all QuakeC fields and Newer Game's private records through
+ * `edict_t.clearFields`, and marks the edict in use. Called by `ED_Alloc` and by `SV_SpawnServer` for the world.
+ *
+ * @param {edict_t} e edict to clear; mutated
+ */
 export function ED_ClearEdict( e ) {
 
 	e.clearFields();
@@ -121,14 +137,19 @@ export function ED_ClearEdict( e ) {
 /*
 =================
 ED_Alloc
-
-Either finds a free edict, or allocates a new one.
-Try to avoid reusing an entity that was recently freed, because it
-can cause the client to think the entity morphed into something else
-instead of being removed and recreated, which can cause interpolated
-angles and bad trails.
 =================
 */
+/**
+ * Either finds a free edict, or allocates a new one (WinQuake pr_edict.c). Used by the QuakeC `spawn` builtin, by
+ * `ED_LoadFromFile` for every map entity after the world, and by Newer Game's server modules. Try to avoid reusing an
+ * entity that was recently freed, because it can cause the client to think the entity morphed into something else
+ * instead of being removed and recreated, which can cause interpolated angles and bad trails: a free edict is reused
+ * only if it was freed more than 0.5 seconds ago, or during the first 2 seconds of server time (which can involve a
+ * lot of freeing and allocating). Client slots and the world (0..`svs.maxclients`) are never returned.
+ *
+ * @returns {edict_t} a cleared edict (`ED_ClearEdict`); a new one raises `sv.num_edicts`
+ * @throws {Error} via `Sys_Error` when all `MAX_EDICTS` edicts are in use
+ */
 export function ED_Alloc() {
 
 	let i;
@@ -163,10 +184,21 @@ export function ED_Alloc() {
 /*
 =================
 ED_Free
-
-Marks the edict as free
 =================
 */
+/**
+ * Marks the edict as free (WinQuake pr_edict.c). Used by the QuakeC `remove` builtin, by `ED_LoadFromFile` for
+ * inhibited or spawnless entities, and by Newer Game's server modules.
+ *
+ * First, if the edict is an axe-cut corpse or owner, any edicts it was hiding are un-hidden (pending, not
+ * successfully constructed, cut replacements retain the native death; their links are retired before this cosmetic
+ * edict index can be reused). It is unlinked from the world through `sv.SV_UnlinkEdict` only when that hook is set
+ * on `sv` (no engine module sets it at present). Then the fields the client sees are reset (model, modelindex, skin,
+ * frame, colormap, origin, angles, takedamage, solid; `nextthink` to -1) and `freetime` is set to `sv.time` for the
+ * reuse delay in `ED_Alloc`.
+ *
+ * @param {edict_t} ed edict to free; mutated
+ */
 export function ED_Free( ed ) {
 	// Pending (not successfully constructed) cut replacements retain the native
 	// death. Retire their links before this cosmetic edict index can be reused.
@@ -203,6 +235,13 @@ export function ED_Free( ed ) {
 ED_GlobalAtOfs
 ============
 */
+/**
+ * Finds the global definition at a globals offset (WinQuake pr_edict.c), by linear search. Used by
+ * `PR_GlobalString` and `PR_GlobalStringNoContents` for statement dumps.
+ *
+ * @param {number} ofs globals slot (32-bit words)
+ * @returns {?ddef_t} the first global def at that offset, or null when none
+ */
 export function ED_GlobalAtOfs( ofs ) {
 
 	for ( let i = 0; i < progs.numglobaldefs; i ++ ) {
@@ -222,6 +261,13 @@ export function ED_GlobalAtOfs( ofs ) {
 ED_FieldAtOfs
 ============
 */
+/**
+ * Finds the entity field definition at a field offset (WinQuake pr_edict.c), by linear search. Used to print and
+ * save `.field` values.
+ *
+ * @param {number} ofs field slot within an edict (32-bit words)
+ * @returns {?ddef_t} the first field def at that offset, or null when none
+ */
 export function ED_FieldAtOfs( ofs ) {
 
 	for ( let i = 0; i < progs.numfielddefs; i ++ ) {
@@ -241,6 +287,13 @@ export function ED_FieldAtOfs( ofs ) {
 ED_FindField
 ============
 */
+/**
+ * Finds an entity field definition by name (WinQuake pr_edict.c), by linear search over the loaded progs. Used when
+ * parsing entity text, by `GetEdictFieldValue` and by builtins that take field names.
+ *
+ * @param {string} name QuakeC field name, e.g. `origin`
+ * @returns {?ddef_t} the field def, or null when the progs has no such field
+ */
 export function ED_FindField( name ) {
 
 	for ( let i = 0; i < progs.numfielddefs; i ++ ) {
@@ -260,6 +313,13 @@ export function ED_FindField( name ) {
 ED_FindGlobal
 ============
 */
+/**
+ * Finds a global definition by name (WinQuake pr_edict.c), by linear search over the loaded progs. Used by
+ * `ED_ParseGlobals` when loading a save.
+ *
+ * @param {string} name QuakeC global name
+ * @returns {?ddef_t} the global def, or null when the progs has no such global
+ */
 export function ED_FindGlobal( name ) {
 
 	for ( let i = 0; i < progs.numglobaldefs; i ++ ) {
@@ -282,6 +342,14 @@ ED_FindFunction
 let functionIndex = null;
 let functionIndexFor = null;
 
+/**
+ * Finds a QuakeC function by name (WinQuake pr_edict.c). Looked up by name for every entity of a level (its spawn
+ * function), so the functions are indexed in a Map once per progs; the index is rebuilt when `pr_functions` is
+ * replaced by a new `PR_LoadProgs`. When two functions share a name, the first one wins.
+ *
+ * @param {string} name function name, e.g. a classname such as `monster_ogre`
+ * @returns {?dfunction_t} the function, or null when there is none
+ */
 export function ED_FindFunction( name ) {
 
 	// looked up by name for every entity of a level: index them once per progs
@@ -307,6 +375,16 @@ GetEdictFieldValue
 */
 let gefvCache_rep = 0;
 
+/**
+ * Finds a QuakeC field of an edict by name, for fields the engine does not know at compile time (WinQuake
+ * pr_edict.c), e.g. `items2` for the status bar or `air_finished`. The last two names looked up (found or not, if
+ * shorter than 64 characters) are cached; `PR_LoadProgs` flushes the cache.
+ *
+ * @param {edict_t} ed edict whose field to locate
+ * @param {string} field QuakeC field name
+ * @returns {?{ accessor: EdictFieldAccessor, ofs: number }} the edict's field accessor and the field's slot (32-bit
+ *   words; read with `getFloat`/`getInt32`), or null when the progs has no such field
+ */
 export function GetEdictFieldValue( ed, field ) {
 
 	let def = null;
@@ -344,10 +422,18 @@ export function GetEdictFieldValue( ed, field ) {
 /*
 ============
 PR_ValueString
-
-Returns a string describing *data in a type specific manner
 =============
 */
+/**
+ * Returns a string describing *data in a type specific manner (WinQuake pr_edict.c), for debugging prints
+ * (`ED_Print`, `PR_GlobalString`). Floats and vectors are shown with one decimal; entities as `entity N`; functions
+ * as `name()`; fields as `.name`.
+ *
+ * @param {number} type `ev_*` type; the `DEF_SAVEGLOBAL` bit is ignored
+ * @param {EdictFieldAccessor} accessor slots to read (an edict's fields or `pr_globals`)
+ * @param {number} ofs slot of the value (32-bit words)
+ * @returns {string} the description; `bad type N` for an unknown type
+ */
 export function PR_ValueString( type, accessor, ofs ) {
 
 	type &= ~ DEF_SAVEGLOBAL;
@@ -395,11 +481,18 @@ export function PR_ValueString( type, accessor, ofs ) {
 /*
 ============
 PR_UglyValueString
-
-Returns a string describing *data in a type specific manner
-Easier to parse than PR_ValueString
 =============
 */
+/**
+ * Returns a string describing *data in a type specific manner, easier to parse than PR_ValueString (WinQuake
+ * pr_edict.c). Used for savegames (`ED_Write`, `ED_WriteGlobals`), so the output reads back through `ED_ParseEpair`:
+ * full-precision numbers, entity numbers, bare function and field names.
+ *
+ * @param {number} type `ev_*` type; the `DEF_SAVEGLOBAL` bit is ignored
+ * @param {EdictFieldAccessor} accessor slots to read
+ * @param {number} ofs slot of the value (32-bit words)
+ * @returns {string} the value text; `bad type N` for pointers and unknown types
+ */
 export function PR_UglyValueString( type, accessor, ofs ) {
 
 	type &= ~ DEF_SAVEGLOBAL;
@@ -445,11 +538,16 @@ export function PR_UglyValueString( type, accessor, ofs ) {
 /*
 ============
 PR_GlobalString
-
-Returns a string with a description and the contents of a global,
-padded to 20 field width
 ============
 */
+/**
+ * Returns a string with a description and the contents of a global, padded to 20 field width (WinQuake
+ * pr_edict.c), for statement dumps: `ofs(name)value`, or `ofs(???)` when no global is defined there. (pr_exec.js
+ * currently uses its own placeholder of the same name rather than this one.)
+ *
+ * @param {number} ofs globals slot (32-bit words)
+ * @returns {string} the description, space-padded to at least 20 characters plus one space
+ */
 export function PR_GlobalString( ofs ) {
 
 	const def = ED_GlobalAtOfs( ofs );
@@ -474,6 +572,13 @@ export function PR_GlobalString( ofs ) {
 
 }
 
+/**
+ * Like `PR_GlobalString` but without the value (WinQuake pr_edict.c): `ofs(name)` or `ofs(???)`, padded to 20 field
+ * width, for statement operands that are written rather than read.
+ *
+ * @param {number} ofs globals slot (32-bit words)
+ * @returns {string} the description, space-padded to at least 20 characters plus one space
+ */
 export function PR_GlobalStringNoContents( ofs ) {
 
 	const def = ED_GlobalAtOfs( ofs );
@@ -500,10 +605,17 @@ export function PR_GlobalStringNoContents( ofs ) {
 /*
 =============
 ED_Print
-
-For debugging
 =============
 */
+/**
+ * For debugging (WinQuake pr_edict.c): prints an edict's number and every non-zero field to the console, skipping
+ * the `_x`/`_y`/`_z` vector component names; a free edict prints `FREE`. Used through `ED_PrintNum` (the
+ * `edict`/`edicts` commands, the `eprint` builtin), by the `error`/`objerror` builtins, by `PR_ExecuteProgram` for a
+ * bad function number, and by `ED_LoadFromFile` for rejected entities.
+ *
+ * @param {edict_t} ed edict to print
+ * @throws {Error} from `NUM_FOR_EDICT` when `ed` is not one of the first `sv.num_edicts` edicts
+ */
 export function ED_Print( ed ) {
 
 	if ( ed.free ) {
@@ -555,10 +667,19 @@ export function ED_Print( ed ) {
 /*
 =============
 ED_Write
-
-For savegames
 =============
 */
+/**
+ * For savegames (WinQuake pr_edict.c): appends one edict as `{`, `"key" "value"` lines and `}`. A free edict writes
+ * an empty `{ }`. Before the native fields it writes Newer Game's private keys when present: `_newer_rend_veil` (only
+ * for a living edict still on the veiled model), `_newer_face_seed`, `_clockwise_player`, `_cheat_powers`,
+ * `_clockwise_drop`, `_clockwise_remains`, `_newer_axe_corpse` (or `invalid`, to retain fallback ownership across
+ * re-saving), `_newer_axe_hidden` and `_newer_axe_owner`. Native fields are written with `PR_UglyValueString`,
+ * skipping all-zero values and `_x`/`_y`/`_z` names. Used by `Host_Savegame_f` and the seamless level transfer.
+ *
+ * @param {Array<string>} lines output lines; appended to
+ * @param {edict_t} ed edict to write
+ */
 export function ED_Write( lines, ed ) {
 
 	lines.push( '{' );
@@ -612,6 +733,13 @@ export function ED_Write( lines, ed ) {
 
 }
 
+/**
+ * Prints edict number `ent` with `ED_Print` (WinQuake pr_edict.c). Used by the `edict` and `edicts` commands and the
+ * `eprint` builtin.
+ *
+ * @param {number} ent edict number, 0..`sv.max_edicts`-1
+ * @throws {Error} from `EDICT_NUM` for a number out of range
+ */
 export function ED_PrintNum( ent ) {
 
 	ED_Print( EDICT_NUM( ent ) );
@@ -642,10 +770,11 @@ function ED_PrintEdict_f() {
 /*
 =============
 ED_PrintEdicts
-
-For debugging, prints all the entities in the current server
 =============
 */
+/**
+ * Console command `edicts`. For debugging, prints all the entities in the current server (WinQuake pr_edict.c).
+ */
 export function ED_PrintEdicts() {
 
 	Con_Printf( '%i entities\n', sv.num_edicts );
@@ -657,10 +786,12 @@ export function ED_PrintEdicts() {
 /*
 =============
 ED_Count
-
-For debugging
 =============
 */
+/**
+ * Console command `edictcount`. For debugging (WinQuake pr_edict.c): prints `sv.num_edicts` and how many edicts are
+ * in use, have a model ("view"), are solid ("touch") and use `MOVETYPE_STEP`.
+ */
 export function ED_Count() {
 
 	let active = 0, models = 0, solid = 0, step = 0;
@@ -702,6 +833,13 @@ FIXME: need to tag constants, doesn't really work
 ED_WriteGlobals
 =============
 */
+/**
+ * Appends the saved globals to a savegame (WinQuake pr_edict.c) as `{`, `"name" "value"` lines and `}`. Only globals
+ * flagged `DEF_SAVEGLOBAL` of type string, float or entity are written (the source notes "need to tag constants,
+ * doesn't really work"). Used by `Host_Savegame_f` and the seamless level transfer.
+ *
+ * @param {Array<string>} lines output lines; appended to
+ */
 export function ED_WriteGlobals( lines ) {
 
 	lines.push( '{' );
@@ -732,6 +870,15 @@ export function ED_WriteGlobals( lines ) {
 ED_ParseGlobals
 =============
 */
+/**
+ * Reads the globals block of a savegame back into `pr_globals` (WinQuake pr_edict.c). Expects the text just after
+ * the opening `{` and reads key/value pairs up to the closing `}`; names that are not globals are reported on the
+ * console and skipped. Used by `Host_Loadgame_f` and the seamless level transfer.
+ *
+ * @param {string} data save text positioned after the block's `{`
+ * @throws {Error} via `Sys_Error` on end of text without a closing brace, a closing brace without data (both
+ *   messages say ED_ParseEntity, as in the source), or a value that does not parse
+ */
 export function ED_ParseGlobals( data ) {
 
 	while ( true ) {
@@ -776,15 +923,25 @@ export function ED_ParseGlobals( data ) {
 /*
 =============
 ED_NewString
-
-Returns an offset into the string table for a newly allocated string.
-Handles backslash-n escape sequences.
 =============
 */
 let growBuf = null;
 let growLen = 0;
 let growView = null;
 
+/**
+ * Returns an offset into the string table for a newly allocated string (WinQuake pr_edict.c). Handles backslash-n
+ * escape sequences (a backslash then `n` becomes a newline; a backslash then any other character becomes a
+ * single backslash, dropping that character). Used for every string value parsed from map or save text, and by Newer
+ * Game code that spawns entities.
+ *
+ * The string is appended NUL-terminated to the progs string data, which grows in place (doubling) rather than being
+ * copied for every string, since a level's entities add thousands; `pr_strings_data` is replaced by a longer view
+ * each call. Strings are never freed; they last until the next `PR_LoadProgs`.
+ *
+ * @param {string} string text to store
+ * @returns {number} byte offset of the new string in `pr_strings_data`, for `PR_GetString` and string fields
+ */
 export function ED_NewString( string ) {
 
 	// Use array + join() instead of string concatenation to avoid O(n²) allocations
@@ -850,11 +1007,19 @@ export function ED_NewString( string ) {
 /*
 =============
 ED_ParseEpair
-
-Can parse either fields or globals
-returns false if error
 =============
 */
+/**
+ * Stores one key's value text into a field or global (WinQuake pr_edict.c). Can parse either fields or globals.
+ * Strings go through `ED_NewString`; vectors are three space-separated numbers (missing parts become 0); entities
+ * are edict numbers; fields and functions are looked up by name.
+ *
+ * @param {EdictFieldAccessor} accessor where to write: an edict's `_fieldAccessor` or `pr_globals`
+ * @param {ddef_t} key definition of the field or global (its `type` and `ofs`)
+ * @param {string} s value text
+ * @returns {boolean} false if error (unknown field or function name, reported on the console), otherwise true
+ * @throws {Error} from `EDICT_NUM` when an entity number is out of range
+ */
 export function ED_ParseEpair( accessor, key, s ) {
 
 	const ofs = key.ofs;
@@ -925,12 +1090,27 @@ export function ED_ParseEpair( accessor, key, s ) {
 /*
 ====================
 ED_ParseEdict
-
-Parses an edict out of the given string, returning the new position
-ed should be a properly initialized empty edict.
-Used for initial level load and for savegames.
 ====================
 */
+/**
+ * Parses an edict out of the given string, returning the new position (WinQuake pr_edict.c). `ent` should be a
+ * properly initialized empty edict; it is cleared first unless it is the world (a hack kept from the source). Used
+ * for initial level load (`ED_LoadFromFile`) and for savegames (`Host_Loadgame_f`, the seamless level transfer).
+ *
+ * Key hacks from the source: `angle` becomes `angles` as `0 <angle> 0` (to allow QuakeEd to write single scalar
+ * angles), `light` becomes `light_lev`, and trailing spaces are trimmed from key names. Newer Game's private keys
+ * (`_newer_*`, `_clockwise_*`, `_cheat_powers`) are parsed into the edict's private records; a malformed one is
+ * ignored. Other keys with a leading underscore are utility comments and are discarded, and unknown fields are
+ * reported on the console. An entity with no keys is marked free; otherwise its face seed is assigned (legacy or
+ * malformed cosmetic metadata gets one new server identity, since a normal save restore does not execute the QuakeC
+ * setmodel spawn hook).
+ *
+ * @param {string} data entity text positioned after the opening `{`
+ * @param {edict_t} ent edict to fill; mutated
+ * @returns {?string} the remaining text after the closing `}`
+ * @throws {Error} via `Sys_Error` on end of text without a closing brace, a closing brace without data, or a value
+ *   that does not parse
+ */
 export function ED_ParseEdict( data, ent ) {
 
 	let anglehack;
@@ -1033,18 +1213,24 @@ export function ED_ParseEdict( data, ent ) {
 /*
 ================
 ED_LoadFromFile
-
-The entities are directly placed in the array, rather than allocated with
-ED_Alloc, because otherwise an error loading the map would have entity
-number references out of order.
-
-Creates a server's entity / program execution context by
-parsing textual entity definitions out of an ent file.
-
-Used for both fresh maps and savegame loads. A fresh map would also need
-to call ED_CallSpawnFunctions () to let the objects initialize themselves.
 ================
 */
+/**
+ * Creates a server's entity / program execution context by parsing textual entity definitions out of an ent file
+ * (WinQuake pr_edict.c). Called by `SV_SpawnServer` with the map's entity lump. (The source comment says the
+ * entities are directly placed in the array rather than allocated with ED_Alloc, so an error loading the map would
+ * not leave entity number references out of order, and that it serves both fresh maps and savegame loads; in this
+ * port the first entity goes into the world edict and the rest come from `ED_Alloc`, and saves use `ED_ParseEdict`.)
+ *
+ * Sets `time` in the globals to `sv.time`, then for each entity: frees it if its spawnflags exclude it from
+ * deathmatch (when `deathmatch` is non-zero) or from the current skill, frees it with a console dump if it has no
+ * classname or no spawn function, and otherwise runs its spawn function (the QuakeC function named by its classname)
+ * with `self` set to it. Prints how many entities were inhibited.
+ *
+ * @param {string} data the entity text
+ * @throws {Error} via `Sys_Error` when a token other than `{` starts an entity, or from `ED_ParseEdict`; QuakeC
+ *   runtime errors in a spawn function propagate from `PR_ExecuteProgram`
+ */
 export function ED_LoadFromFile( data ) {
 
 	let ent = null;
@@ -1128,10 +1314,22 @@ export function ED_LoadFromFile( data ) {
 /*
 ===============
 PR_LoadProgs
-
-Loads progs.dat from the provided ArrayBuffer
 ===============
 */
+/**
+ * Loads progs.dat from the provided ArrayBuffer (WinQuake pr_edict.c). Called by `SV_SpawnServer` for every new map,
+ * before the edicts are allocated.
+ *
+ * Resets the axe-cut state and the `GetEdictFieldValue` cache, computes `pr_crc` over the whole file, parses the
+ * header, statements, functions, global and field definitions, copies the string table (with 128 extra bytes for
+ * `pr_string_temp`) and the globals into fresh buffers, and installs them with the progs.js setters, including
+ * `pr_global_struct` as a `globalvars_t` over the globals. Strings added by an earlier `ED_NewString` are dropped.
+ * `pr_edict_size` is set to `entityfields` (a slot count, not C's byte size).
+ *
+ * @param {?ArrayBuffer} fileData the whole progs.dat; read, not kept
+ * @throws {Error} via `Sys_Error` when `fileData` is missing, the version is not `PROG_VERSION`, the header CRC is
+ *   not `PROGHEADER_CRC` ("progdefs.h is out of date"), or a field def has the `DEF_SAVEGLOBAL` bit
+ */
 export function PR_LoadProgs( fileData ) {
 	SV_AxeReset();
 
@@ -1346,6 +1544,12 @@ function PR_Profile_f() {
 PR_Init
 ===============
 */
+/**
+ * Registers the progs console commands (`edict`, `edicts`, `edictcount`, `profile`) and the progs cvars (`nomonsters`,
+ * `gamecfg`, `scratch1`..`4`, and the archived `savedgamecfg`, `saved1`..`4`) (WinQuake pr_edict.c). Called once by
+ * `Host_Init` and by the room server (server/game_server.js). The built-ins (server/pr_cmds.js) are installed by
+ * PR_Init's callers, the host and the room server, so the VM does not import the server (card [44g], D1a).
+ */
 export function PR_Init() {
 
 	Cmd_AddCommand( 'edict', ED_PrintEdict_f );
@@ -1373,12 +1577,17 @@ export function PR_Init() {
 /*
 ===============
 PR_AllocEdicts
-
-Allocates the edict array for the server.
-Called by server init (not in original C - we need this because
-JS doesn't have pointer arithmetic over a flat memory block).
 ===============
 */
+/**
+ * Allocates the edict array for the server. Called by server init (`SV_SpawnServer`, after `PR_LoadProgs`); not in
+ * original C - we need this because JS doesn't have pointer arithmetic over a flat memory block. The array lives as
+ * `sv.edicts` until the next map.
+ *
+ * @param {number} maxEdicts number of edicts (`MAX_EDICTS`)
+ * @param {number} entityfields 32-bit field slots per edict (`progs.entityfields`)
+ * @returns {Array<edict_t>} new edicts numbered 0..maxEdicts-1, all fields zero
+ */
 export function PR_AllocEdicts( maxEdicts, entityfields ) {
 
 	const edicts = [];

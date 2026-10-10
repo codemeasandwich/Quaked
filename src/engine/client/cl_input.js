@@ -94,6 +94,11 @@ export const in_jump = new kbutton_t();
 export const in_attack = new kbutton_t();
 export const in_up = new kbutton_t();
 export const in_down = new kbutton_t();
+/**
+ * Releases every movement and action button and drops any pending impulse, so nothing stays held while gameplay input
+ * is locked. Called by the bestiary (`newer/ui/r_bestiary.js`) when an encounter page opens. The look buttons
+ * (`in_mlook`, `in_klook`) keep their state; buttons pressed later work again once their key goes down anew.
+ */
 export function CL_SuspendGameButtons() {
 	for ( const button of [in_left,in_right,in_forward,in_back,in_lookup,in_lookdown,in_moveleft,in_moveright,in_strafe,in_speed,in_use,in_jump,in_attack,in_up,in_down] ) {
 		button.state=0;button.down[0]=button.down[1]=0;
@@ -213,13 +218,18 @@ function IN_Impulse() { in_impulse = Q_atoi( Cmd_Argv( 1 ) ); }
 /*
 ===============
 CL_KeyState
-
-Returns 0.25 if a key was pressed and released during the frame,
-0.5 if it was pressed and held
-0 if held then released, and
-1.0 if held for the entire time
 ===============
 */
+/**
+ * How much of this frame a button was held (WinQuake cl_input.c), read once per frame by `CL_AdjustAngles` and
+ * `CL_BaseMove` to scale turning and movement. Clears the button's edge (impulse) bits, so a second read in the same
+ * frame sees only the current down state.
+ *
+ * @param {kbutton_t} key button to read; `state` bit 0 is down, bit 1 went down this frame, bit 2 went up this frame
+ *   (mutated: bits 1 and 2 are cleared)
+ * @returns {number} 0.25 if a key was pressed and released during the frame, 0.5 if it was pressed and held, 0.75 if
+ *   released and re-pressed, 0 if held then released (or up the whole frame), and 1.0 if held for the entire time
+ */
 export function CL_KeyState( key ) {
 
 	let val;
@@ -272,10 +282,16 @@ export const cl_anglespeedkey = new cvar_t( 'cl_anglespeedkey', '1.5' );
 /*
 ================
 CL_AdjustAngles
-
-Moves the local angle positions
 ================
 */
+/**
+ * Moves the local angle positions (WinQuake cl_input.c): turns `cl.viewangles` from the keyboard turn and look
+ * buttons. Called by `CL_BaseMove` once per move command when fully signed on.
+ *
+ * Yaw turns at `cl_yawspeed` and pitch at `cl_pitchspeed` degrees per second times `host_frametime`, multiplied by
+ * `cl_anglespeedkey` while +speed is held. +strafe stops left/right from turning; +klook turns forward/back into
+ * pitch. Using the look keys stops pitch drift. Pitch is clamped to -70..80 degrees and roll to -50..50.
+ */
 export function CL_AdjustAngles() {
 
 	let speed;
@@ -325,10 +341,20 @@ export function CL_AdjustAngles() {
 /*
 ================
 CL_BaseMove
-
-Send the intended movement message to the server
 ================
 */
+/**
+ * Send the intended movement message to the server (WinQuake cl_input.c): fills `cmd` from the keyboard movement
+ * buttons. Called by `CL_SendCmd` once per host frame before `IN_Move` adds mouse and controller input. Does nothing
+ * until fully signed on (`cls.signon === SIGNONS`).
+ *
+ * While the bestiary holds input, `cmd` gets zero movement and the current `cl.viewangles`, and the angles are not
+ * adjusted. Otherwise it calls `CL_AdjustAngles`, zeroes `cmd.viewangles`, and sets the moves from `cl_forwardspeed`,
+ * `cl_backspeed`, `cl_sidespeed` and `cl_upspeed`, multiplied by `cl_movespeedkey` while +speed is held.
+ *
+ * @param {usercmd_t} cmd written: `forwardmove`, `sidemove`, `upmove` in Quake units per second and `viewangles` in
+ *   degrees
+ */
 export function CL_BaseMove( cmd ) {
 
 	if ( cls.signon !== SIGNONS )
@@ -380,6 +406,22 @@ export function CL_BaseMove( cmd ) {
 CL_SendMove
 ==============
 */
+/**
+ * Builds and sends the `clc_move` message (WinQuake cl_input.c), after `CL_BaseMove` and `IN_Move` have filled the
+ * command. Called by `CL_SendCmd` once per host frame when fully signed on.
+ *
+ * Writes `cl.mtime[0]` (so the server can get ping times), the view angles (in WebXR, the controller aim instead of
+ * the head, so weapons fire where the controller points), the three moves, the attack (1) and jump (2) button bits and
+ * the pending impulse; buttons and impulse are zeroed while the bestiary holds input. The attack and jump edge bits
+ * and the impulse are consumed. It also stores a prediction command (`CL_StoreCommand`) and, when an acknowledged
+ * snapshot is recent enough, appends a QuakeWorld-style `clc_delta` request.
+ *
+ * Nothing is sent during demo playback, and the first two messages of a connection are always dropped because they
+ * may contain leftover input from the last level. A lost connection prints a message and calls `CL_Disconnect`. The
+ * message buffer is allocated once and reused.
+ *
+ * @param {usercmd_t} cmd the frame's move; kept as `cl.cmd`
+ */
 export function CL_SendMove( cmd ) {
 
 	const buf = _sendmove_buf;
@@ -488,6 +530,11 @@ export function CL_SendMove( cmd ) {
 CL_InitInput
 ============
 */
+/**
+ * Registers the button commands (`+forward`/`-forward` and the rest, `impulse`, `+klook`, `+mlook`) (WinQuake
+ * cl_input.c). Called once at start-up through `CL_Init`. Unlike the original, which required manually binding
+ * +mlook, mouse look starts enabled (`in_mlook.state = 1`).
+ */
 export function CL_InitInput() {
 
 	Cmd_AddCommand( '+moveup', IN_UpDown );

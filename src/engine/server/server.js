@@ -31,6 +31,11 @@ export const ss_active = 1;
 
 export class server_static_t {
 
+	/**
+	 * Creates the persistent server info (WinQuake server.h server_static_t), which survives level changes. Its single
+	 * instance is `svs`; Host_FindMaxClients (host.js) sets `maxclients` / `maxclientslimit` and allocates
+	 * `svs.clients` (one `client_t` per slot) once at startup. `serverflags` carries episode completion between maps.
+	 */
 	constructor() {
 
 		this.maxclients = 0;
@@ -49,6 +54,11 @@ export class server_static_t {
 
 export class server_t {
 
+	/**
+	 * Creates an empty local server state (WinQuake server.h server_t): the current map, precache lists, edicts and
+	 * the per-frame message buffers. Its single instance is `sv`; SV_SpawnServer (sv_main.js) resets it to a fresh
+	 * `server_t` on every map load, so nothing in it outlives the level. `time` is server time in seconds.
+	 */
 	constructor() {
 
 		this.active = false; // false if only a net client
@@ -93,6 +103,13 @@ export class server_t {
 
 export class client_frame_t {
 
+	/**
+	 * Creates one per-client frame snapshot for QW-style delta compression (ported from QW/server/server.h): the
+	 * entities sent to that client in one server frame (`entities.num_entities` of `MAX_PACKET_ENTITIES_LOCAL`
+	 * preallocated `entity_state_t`s) and `senttime` (`sv.time` in seconds when sent). Each `client_t` holds
+	 * `PE_UPDATE_BACKUP` of them, indexed by its `outgoing_sequence & PE_UPDATE_MASK`; sv_main.js writes the slot
+	 * when sending and reads the client's `delta_sequence` slot as the delta base.
+	 */
 	constructor() {
 
 		this.senttime = 0;
@@ -116,6 +133,13 @@ export const NUM_SPAWN_PARMS = 16;
 
 export class client_t {
 
+	/**
+	 * Creates a free client slot (WinQuake server.h client_t), with its own reliable message buffer (`MAX_MSGLEN`
+	 * bytes), ping history, spawn parms and `PE_UPDATE_BACKUP` delta frames. Host_FindMaxClients allocates the
+	 * `svs.clients` slots once at startup, and SV_ConnectClient resets a slot to a fresh `client_t` (keeping its
+	 * connection) when a player connects, which is once per game rather than per level: `spawn_parms` are carried
+	 * from level to level.
+	 */
 	constructor() {
 
 		this.active = false; // false = client is free
@@ -258,10 +282,29 @@ export const svs = new server_static_t(); // persistant server info
 export const sv = new server_t(); // local server
 
 export let host_client = null; // current client being processed
+/**
+ * Selects the client the server is currently processing (WinQuake's global `host_client`). sv_main.js, host.js and
+ * host_cmd.js set it while looping over `svs.clients` (reading messages, sending updates, broadcasting) and while a
+ * console command runs on a client's behalf, often saving and restoring the previous value.
+ *
+ * @param {?client_t} v the client slot, or null
+ */
 export function set_host_client( v ) { host_client = v; }
 
 export let host_time = 0;
+/**
+ * Sets this module's `host_time` export. Nothing calls it: the host clock that advances each frame is host.js's own
+ * module variable, so this export stays 0 (sv_main.js imports it but does not read it).
+ *
+ * @param {number} v host time in seconds
+ */
 export function set_host_time( v ) { host_time = v; }
 
 export let sv_player = null;
+/**
+ * Sets this module's `sv_player` export (WinQuake's global player edict). Nothing calls it and nothing imports this
+ * export: the live `sv_player` is the one in sv_phys.js, set by its own setter from sv_user.js.
+ *
+ * @param {?edict_t} v the player's edict, or null
+ */
 export function set_sv_player( v ) { sv_player = v; }
