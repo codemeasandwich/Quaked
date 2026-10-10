@@ -472,7 +472,7 @@ export function R_SetupFrame() {
 
 	}
 
-	V_SetContentsColor( r_viewleaf ? r_viewleaf.contents : 0 );
+	V_SetContentsColor( r_viewleaf ? r_viewleaf.contents : - 1 ); // no view leaf yet: empty (CONTENTS_EMPTY), not 0, which tints as water (card [44m])
 	V_CalcBlend();
 
 	r_cache_thrash = false;
