@@ -1,0 +1,7 @@
+<!doctype html><html><head><base href="../"><meta charset="utf-8"><title>World renderer frames</title>
+<style>body{margin:0;background:#10141b;color:#eee;font:13px system-ui}canvas{position:fixed;inset:0;z-index:0}section{position:relative;z-index:200;background:#111e;padding:12px;max-height:100vh;overflow:auto}pre{white-space:pre-wrap}#views{display:flex;flex-wrap:wrap;gap:8px}#views img{width:320px}figure{margin:0}#loading{position:fixed;z-index:100;background:#111;inset:0}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}</script></head><body>
+<div id="loading"><div id="loading-bar"><div id="loading-progress"></div></div></div>
+<section><strong>World renderer frames</strong><p>Card [44i]: the real application replays the native demo1 to fixed packets and draws each view with SCR_UpdateScreen, Classic and Newer, with game time, real time and the page clock pinned. Every view's pixels, lightmap atlas bytes, scene graph and visible geometry are hashed, so the split of gl_rsurf.js can be shown to draw identical frames.</p>
+<div id="views"></div><pre id="report">Starting the application…</pre></section>
+<script type="module" src="tests/world_split_frames_trial.js"></script></body></html>
