@@ -1,5 +1,5 @@
 {
- "commit": "8e98cdc (git archive 8e98cdc, with this commit's tools/architecture_graph.mjs and tools/architecture_classify.mjs)",
+ "commit": "bfc390c (git archive bfc390c, with this commit's tools/architecture_graph.mjs and tools/architecture_classify.mjs)",
  "tools": [
   "tools/architecture_graph.mjs",
   "tools/architecture_classify.mjs"
@@ -7206,7 +7206,7 @@
     "from": "src/r_rockfield.js",
     "to": "src/rockfield_worker.js",
     "kinds": [
-     "url"
+     "worker"
     ],
     "statements": 1
    },
@@ -7647,7 +7647,7 @@
     "from": "src/rockfield_prepare.js",
     "to": "src/rockfield_worker.js",
     "kinds": [
-     "url"
+     "worker"
     ],
     "statements": 1
    },
@@ -18845,7 +18845,7 @@
     "from": "tests/helpers/rock_prepare_fixture.mjs",
     "to": "tests/helpers/rock_prepare_worker.mjs",
     "kinds": [
-     "url"
+     "worker"
     ],
     "statements": 1
    },
@@ -39400,64 +39400,19 @@
    ],
    "srcLiterals": [
     {
-     "file": "tests/demo_resolution_trial.html",
-     "names": "src/vid.js",
-     "at": 75
+     "file": "tests/displacement_store_trial.js",
+     "names": "src/displacement_store.js",
+     "at": 20
     },
     {
-     "file": "tests/demo_resolution_trial.html",
-     "names": "src/cvar.js",
-     "at": 98
+     "file": "tests/displacement_store_trial.js",
+     "names": "src/demon_bake_format.js",
+     "at": 20
     },
     {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/gl_rsurf.js",
-     "at": 11
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/pak.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/gl_model.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/gl_mesh.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/r_newerskins.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/r_anim.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/gl_post.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/cvar.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/vid.js",
-     "at": 12
-    },
-    {
-     "file": "tests/enemy_height_trial.html",
-     "names": "src/gl_normals.js",
-     "at": 90
+     "file": "tests/displacement_store_trial.js",
+     "names": "src/r_demonrelief.js",
+     "at": 20
     },
     {
      "file": "tests/helpers/prepared_corpus_audit.mjs",
@@ -39475,34 +39430,54 @@
      "at": 48
     },
     {
-     "file": "tests/wizard_texture_trial.html",
+     "file": "tests/normal_baker_inputs_test.js",
+     "names": "src/vid.js",
+     "at": 21
+    },
+    {
+     "file": "tests/rockfield_bakes_test.js",
+     "names": "src/rockfield.js",
+     "at": 289
+    },
+    {
+     "file": "tests/rockfield_bakes_test.js",
+     "names": "src/rockfield_presets.js",
+     "at": 289
+    },
+    {
+     "file": "tests/rockfield_bakes_test.js",
+     "names": "src/r_rocksurfaces.js",
+     "at": 289
+    },
+    {
+     "file": "tests/rockfield_bakes_test.js",
+     "names": "src/rockfield_bake_format.js",
+     "at": 289
+    },
+    {
+     "file": "tools/bake_alias_meshes.mjs",
+     "names": "src/alias_mesh_bakes.js",
+     "at": 22
+    },
+    {
+     "file": "tools/bake_displacement.mjs",
+     "names": "src/r_demonrelief.js",
+     "at": 26
+    },
+    {
+     "file": "tools/bake_displacement.mjs",
+     "names": "src/demon_bake_format.js",
+     "at": 26
+    },
+    {
+     "file": "tools/bake_displacement.mjs",
+     "names": "src/gl_model.js",
+     "at": 26
+    },
+    {
+     "file": "tools/bake_displacement.mjs",
      "names": "src/gl_rsurf.js",
-     "at": 27
-    },
-    {
-     "file": "tests/wizard_texture_trial.html",
-     "names": "src/cvar.js",
-     "at": 29
-    },
-    {
-     "file": "tests/wizard_texture_trial.html",
-     "names": "src/gl_post.js",
-     "at": 30
-    },
-    {
-     "file": "tests/wizard_texture_trial.html",
-     "names": "src/r_anim.js",
-     "at": 31
-    },
-    {
-     "file": "tests/wizard_texture_trial.html",
-     "names": "src/r_newertextures.js",
-     "at": 32
-    },
-    {
-     "file": "tests/wizard_texture_trial.html",
-     "names": "src/gl_normals.js",
-     "at": 33
+     "at": 26
     },
     {
      "file": "tools/bake_displacement.mjs",
@@ -39516,7 +39491,22 @@
     },
     {
      "file": "tools/bake_rockfield.mjs",
+     "names": "src/rockfield.js",
+     "at": 29
+    },
+    {
+     "file": "tools/bake_rockfield.mjs",
      "names": "src/rockfield_presets.js",
+     "at": 29
+    },
+    {
+     "file": "tools/bake_rockfield.mjs",
+     "names": "src/r_rocksurfaces.js",
+     "at": 29
+    },
+    {
+     "file": "tools/bake_rockfield.mjs",
+     "names": "src/rockfield_bake_format.js",
      "at": 29
     },
     {
@@ -39639,6 +39629,54 @@
      "function": "Mod_LoadModel"
     },
     {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadBrushModel"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadPlanes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadVertexes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadVisibility"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadLeafs"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadNodes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_SetParent"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadClipnodes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadEntities"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadSubmodels"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_MakeHull0"
+    },
+    {
+     "file": "server/net_webtransport_server.ts",
+     "function": "_isNewerSequence"
+    },
+    {
      "file": "server/net_webtransport_server.ts",
      "function": "WT_Init"
     },
@@ -39649,6 +39687,10 @@
     {
      "file": "server/net_webtransport_server.ts",
      "function": "WT_Listen"
+    },
+    {
+     "file": "server/net_webtransport_server.ts",
+     "function": "_readExact"
     },
     {
      "file": "server/net_webtransport_server.ts",
@@ -39720,6 +39762,10 @@
     },
     {
      "file": "server/sys_server.ts",
+     "function": "_shouldPrintLine"
+    },
+    {
+     "file": "server/sys_server.ts",
      "function": "Sys_Printf"
     },
     {
@@ -39733,6 +39779,156 @@
     {
      "file": "server/sys_server.ts",
      "function": "Sys_DoubleTime"
+    }
+   ],
+   "serverEnginePrefixed": [
+    {
+     "file": "server/host_server.ts",
+     "function": "MSG_WriteByte"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "MSG_WriteShort"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "MSG_WriteString"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "Host_Init_Server"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "Host_Shutdown_Server"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_CheckForNewClients"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_DropClient"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_RunClients"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_SendClientMessages"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_Physics"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "Host_ServerFrame"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_SpawnServer"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_GetClientCount"
+    },
+    {
+     "file": "server/host_server.ts",
+     "function": "SV_GetServerInfo"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_Init"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_ClearAll"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_FindName"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_ForName"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadModel"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadBrushModel"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadPlanes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadVertexes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadVisibility"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadLeafs"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadNodes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_SetParent"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadClipnodes"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadEntities"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_LoadSubmodels"
+    },
+    {
+     "file": "server/mod_server.ts",
+     "function": "Mod_MakeHull0"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_LoadPackFromFile"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_LoadPackFile"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_AddGameDirectory"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_AddPack"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_FindFile"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_LoadFile"
+    },
+    {
+     "file": "server/pak_server.ts",
+     "function": "COM_LoadFileAsString"
     }
    ]
   },
@@ -40010,6 +40206,52 @@
    "src/sv_respawn.js",
    "src/sv_unseen.js"
   ],
+  "modeHome": {
+   "R_NewerGame": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "R_AnimSetClassicPass": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "R_ClassicPassActive": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "R_AnimSetNewer": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "R_AnimSetLighting": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "R_NewerLightingActive": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "R_IsNewer": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "r_newer_water": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "r_newer_lighting": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "r_newer_normals": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   },
+   "r_newer_enemies": {
+    "module": "src/r_anim.js",
+    "importsAnim": true
+   }
+  },
   "orphans": [
    "src/r_quadparticles.js",
    "src/screen.js",
@@ -42609,8 +42851,11 @@
    {
     "suite": "tests/face_v44_composition_test.js",
     "result": null,
-    "failures": [],
-    "classification": "missing input: local page player-face-layers-v4.4.0.html"
+    "failures": [
+     "Error: ENOENT: no such file or directory, open 'player-face-layers-v4.4.0.html'"
+    ],
+    "classification": "missing input: local page player-face-layers-v4.4.0.html",
+    "note": "output from a rerun in a clean worktree of 8e98cdc without the local page (the export run kept none)"
    },
    {
     "suite": "tests/face_v44_native_test.js",
@@ -42781,8 +43026,11 @@
    {
     "suite": "tests/glass_native_interface_test.js",
     "result": null,
-    "failures": [],
-    "classification": "missing input: owned paks of other games"
+    "failures": [
+     "Error: ENOENT: no such file or directory, open 'resources/id1/pak0.pak'"
+    ],
+    "classification": "missing input: owned pak (QUAKED_OWNED_PAK / resources/)",
+    "note": "output from a rerun in an export of bfc390c without the owned pak"
    },
    {
     "suite": "tests/glass_region_assets_test.js",
@@ -42937,8 +43185,11 @@
    {
     "suite": "tests/nailgun_source_test.js",
     "result": null,
-    "failures": [],
-    "classification": "missing input: ~/Downloads/Quake/Id1/PAK3.pk3 (not readable in this sandbox)"
+    "failures": [
+     "Error: EPERM: operation not permitted, open '/Users/bri/Downloads/Quake/Id1/PAK3.pk3'"
+    ],
+    "classification": "missing input: ~/Downloads/Quake/Id1/PAK3.pk3 (not readable in this sandbox)",
+    "note": "output from a rerun in a clean worktree of 8e98cdc"
    },
    {
     "suite": "tests/net_webtransport_test.js",
@@ -43375,8 +43626,11 @@
    {
     "suite": "tests/supernailgun_profile_test.js",
     "result": null,
-    "failures": [],
-    "classification": "missing input: donor zip not on this machine (supernailgun2.zip)"
+    "failures": [
+     "Error: ENOENT: no such file or directory, open 'supernailgun2.zip'"
+    ],
+    "classification": "missing input: donor zip not on this machine (supernailgun2.zip)",
+    "note": "output from a rerun in a clean worktree of 8e98cdc"
    },
    {
     "suite": "tests/surface_filtering_test.js",
@@ -43561,11 +43815,11 @@
  },
  "suiteAllInputs": {
   "commit": "8e98cdc (a clean git worktree, with history)",
-  "inputs": "QUAKED_OWNED_PAK and resources/ (owned paks); QUAKED_THREE_MODULE, QUAKED_CANVAS_MODULE, QUAKED_SHARP_MODULE, QUAKED_PYTHON; the owner's local pages fieldlab-fx-3d-updated.html, arc-weapons-wall-canvas-shotgun.html, demon-vision.html, player-face-layers-v4.4.0.html linked read only",
+  "inputs": "QUAKED_OWNED_PAK and resources/ (owned paks); QUAKED_THREE_MODULE, QUAKED_CANVAS_MODULE, QUAKED_SHARP_MODULE, QUAKED_PYTHON; the owner's local pages fieldlab-fx-3d-updated.html, arc-weapons-wall-canvas-shotgun.html, demon-vision.html, player-face-layers-v4.4.0.html linked read only; ignored art newer/hud/playerface/blood.png linked read only (face_v44_composition rerun)",
   "summary": {
    "suites": 227,
-   "pass": 222,
-   "fail": 3,
+   "pass": 223,
+   "fail": 2,
    "noResult": 2
   },
   "results": [
@@ -43841,11 +44095,16 @@
    },
    {
     "suite": "tests/face_v44_composition_test.js",
-    "result": "7/8",
-    "failures": [
-     "FAIL v4.4 source identity manifest and all 271 PNG extractions are exact Error: ENOENT: no such file or directory, open 'newer/hud/playerface/blood.png'"
-    ],
-    "classification": "missing input: ignored art newer/hud/playerface/blood.png"
+    "result": "8/8",
+    "failures": [],
+    "firstRun": {
+     "result": "7/8",
+     "failures": [
+      "FAIL v4.4 source identity manifest and all 271 PNG extractions are exact Error: ENOENT: no such file or directory, open 'newer/hud/playerface/blood.png'"
+     ],
+     "classification": "missing input: ignored art newer/hud/playerface/blood.png"
+    },
+    "note": "rerun with the ignored newer/hud/playerface/blood.png linked read only"
    },
    {
     "suite": "tests/face_v44_native_test.js",
@@ -44135,7 +44394,9 @@
    {
     "suite": "tests/nailgun_source_test.js",
     "result": null,
-    "failures": [],
+    "failures": [
+     "Error: EPERM: operation not permitted, open '/Users/bri/Downloads/Quake/Id1/PAK3.pk3'"
+    ],
     "classification": "missing input: ~/Downloads/Quake/Id1/PAK3.pk3 (not readable in this sandbox)"
    },
    {
@@ -44551,7 +44812,9 @@
    {
     "suite": "tests/supernailgun_profile_test.js",
     "result": null,
-    "failures": [],
+    "failures": [
+     "Error: ENOENT: no such file or directory, open 'supernailgun2.zip'"
+    ],
     "classification": "missing input: donor zip not on this machine (supernailgun2.zip)"
    },
    {

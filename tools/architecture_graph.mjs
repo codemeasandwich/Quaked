@@ -20,6 +20,7 @@
 //   git archive <commit> | tar -x -C /tmp/q && node tools/architecture_graph.mjs /tmp/q /tmp/graph.json
 import fs from 'node:fs';
 import path from 'node:path';
+import { builtinModules } from 'node:module';
 
 const ROOT = path.resolve( process.argv[ 2 ] || '.' ), OUT = process.argv[ 3 ];
 const SKIP_AT_ROOT = new Set( [ 'node_modules', '.git', 'resources', 'newer', 'assets', 'docs', 'cards', 'music', 'maps' ] ); // (only at the repo's root)
@@ -55,16 +56,20 @@ const PATTERNS = [
 	[ 'fetch', /fetch\(\s*['"`]([^'"`$]*src\/[^'"`$]+\.js)['"`]/g ],
 	// an import map's entries keyed by a module path (an HTML trial page)
 	[ 'importmap', /"(\/?src\/[\w./-]+\.js)"\s*:/g ],
+	// a worker started from a module URL (loaded by the game, unlike a URL merely built)
+	[ 'worker', /new\s+(?:Shared)?Worker\(\s*new URL\(\s*['"`]([^'"`$]+)['"`]\s*,\s*import\.meta\.url/g ],
 	[ 'url', /new URL\(\s*['"`]([^'"`$]+)['"`]\s*,\s*import\.meta\.url/g ],
 	[ 'script', /<script[^>]*\ssrc=["']([^"']+)["']/g ]
 ];
 const statements = [];
+const consumed = {}; // file -> [ start, end ) spans a pattern above read (the catch-all lists only literals outside them)
 for ( const [ f, s ] of Object.entries( text ) ) {
 
 	if ( f.endsWith( '.py' ) ) continue;
 	// an HTML page's import map keys are bare specifiers it may use
 	const mapped = new Set( f.endsWith( '.html' ) ? [ ...( s.match( /<script[^>]*type=["']importmap["'][^>]*>([\s\S]*?)<\/script>/ )?.[ 1 ] ?? '' ).matchAll( /"([^"]+)"\s*:/g ) ].map( m => m[ 1 ] ) : [] );
-	const readAt = new Set(); // (new URL inside readFile: counted once, as a read)
+	const readAt = new Set(); // (new URL inside readFile or new Worker: counted once, as a read or a worker)
+	const spans = consumed[ f ] = [];
 	for ( const [ kind, re ] of PATTERNS ) {
 
 		if ( kind === 'importmap' && ! f.endsWith( '.html' ) ) continue;
@@ -73,12 +78,15 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 		while ( ( m = re.exec( s ) ) ) {
 
 			const spec = m[ 1 ].split( '?' )[ 0 ];
-			if ( kind === 'read' ) readAt.add( m.index + m[ 0 ].indexOf( 'new URL' ) );
+			spans.push( [ m.index, m.index + m[ 0 ].length ] );
+			if ( kind === 'read' || kind === 'worker' ) readAt.add( m.index + m[ 0 ].indexOf( 'new URL' ) );
 			if ( kind === 'url' && readAt.has( m.index ) ) continue;
-			if ( /^(node:|https?:|jsr:|npm:|data:|blob:)/.test( spec ) || spec === 'three' || spec.startsWith( 'three/' ) || spec.startsWith( '@' ) ) continue;
+			if ( /^(node:|https?:|jsr:|npm:|data:|blob:)/.test( spec ) || spec === 'three' || spec.startsWith( 'three/' ) || spec.startsWith( '@' ) || builtinModules.includes( spec.split( '/' )[ 0 ] ) ) continue;
 			// an import's specifier must be relative ( ./ ../ / ) unless an import map names it: src/x.js with no ./ is a bare specifier,
 			// which browsers and Node reject, so it is recorded unresolved rather than resolved as a path
-			if ( /^(static|export|dynamic|dynamic-computed|dynamic-wrapped)$/.test( kind ) && ! /^(\.{1,2}\/|\/)/.test( spec ) && ! [ ...mapped ].some( k => k.endsWith( '/' ) ? spec.startsWith( k ) : spec === k ) ) { statements.push( { from: f, to: 'bare:' + spec, kind, query: false } ); continue; }
+			// (a helper's argument is not a specifier: pathToFileURL( 'src/x.js' ) is relative to the working directory, the root)
+			if ( kind === 'dynamic-wrapped' && ! /^(\.{1,2}\/|\/)/.test( spec ) ) { statements.push( { from: f, to: spec, kind, query: false } ); continue; }
+			if ( /^(static|export|dynamic|dynamic-computed)$/.test( kind ) && ! /^(\.{1,2}\/|\/)/.test( spec ) && ! [ ...mapped ].some( k => k.endsWith( '/' ) ? spec.startsWith( k ) : spec === k ) ) { statements.push( { from: f, to: 'bare:' + spec, kind, query: false } ); continue; }
 			// (an HTML page's relative URLs resolve against its <base href>, if it has one)
 			const base = f.endsWith( '.html' ) ? ( s.match( /<base\s+href=["']([^"']+)["']/ )?.[ 1 ] ?? '' ) : '';
 			const from = path.resolve( path.dirname( path.join( ROOT, f ) ), base.startsWith( '/' ) ? path.relative( path.dirname( path.join( ROOT, f ) ), path.join( ROOT, base ) ) : base );
@@ -211,7 +219,7 @@ for ( const [ f, s ] of Object.entries( text ) ) {
 	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /['"`][^'"`\n]*src\/[^'"`\n]*['"`]\s*\+|path\.join\([^)\n]*['"`]src\/[^'"`]*['"`]/g ) ) hidden.computedSource.push( { file: f, at: s.slice( 0, m.index ).split( '\n' ).length, text: m[ 0 ].slice( 0, 80 ) } );
 	// catch-all: a src path written as a string in a test, tool, server file or page, with no edge from that file to it (the
 	// patterns above do not see how it is used, so it is listed for a person to check)
-	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /['"`](?:\.{1,2}\/)*(src\/[\w./-]+\.js)['"`]/g ) ) ( hidden.srcLiterals ??= [] ).push( { file: f, names: m[ 1 ], at: s.slice( 0, m.index ).split( '\n' ).length } );
+	if ( ! isSrc( f ) ) for ( const m of s.matchAll( /['"`](?:\.{1,2}\/)*(src\/[\w./-]+\.js)['"`]/g ) ) if ( ! ( consumed[ f ] || [] ).some( ( [ a, b ] ) => m.index >= a && m.index < b ) ) ( hidden.srcLiterals ??= [] ).push( { file: f, names: m[ 1 ], at: s.slice( 0, m.index ).split( '\n' ).length } );
 	if ( f.endsWith( '.py' ) && /src\/\*\.js|\(\s*\w+\s*\/\s*['"]src['"]\s*\)\.glob\(\s*['"]\*\.js/.test( s ) ) hidden.globs.push( f ); // (a flat src/*.js glob goes blind once modules move into folders)
 
 }
@@ -230,11 +238,15 @@ if ( fs.existsSync( path.join( ROOT, 'docs' ) ) ) walkDocs( path.join( ROOT, 'do
 hidden.docsCitingSrc = docs.length;
 // ignore rules keyed by src paths (a move into a folder defeats them)
 hidden.gitignoreSrc = fs.existsSync( path.join( ROOT, '.gitignore' ) ) ? fs.readFileSync( path.join( ROOT, '.gitignore' ), 'utf8' ).split( '\n' ).filter( l => /^\/?src\//.test( l.trim() ) ) : [];
-// literals with no edge from their file: what the catch-all leaves for a person
-{ const linked = new Set( edges.map( e => e.from + ' ' + e.to ) ); hidden.srcLiterals = [ ...new Map( ( hidden.srcLiterals || [] ).filter( l => ! linked.has( l.file + ' ' + l.names ) ).map( l => [ l.file + ' ' + l.names, l ] ) ).values() ]; }
-// engine functions the TypeScript server declares again (card [44a] D5)
-{ const exported = new Set( src.flatMap( f => [ ...text[ f ].matchAll( /export\s+(?:async\s+)?function\s+(\w+)/g ) ].map( m => m[ 1 ] ) ) );
-	hidden.serverReimplements = Object.entries( text ).filter( ( [ f ] ) => f.startsWith( 'server/' ) && f.endsWith( '.ts' ) ).flatMap( ( [ f, s ] ) => [ ...s.matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(/g ) ].map( m => m[ 1 ] ).filter( n => exported.has( n ) ).map( n => ( { file: f, function: n } ) ) ); }
+// literals outside every span a pattern read, once per file and path: what the catch-all leaves for a person (a file that
+// imports a module and also reads or hashes it by path is listed for the second use)
+hidden.srcLiterals = [ ...new Map( ( hidden.srcLiterals || [] ).map( l => [ l.file + ' ' + l.names, l ] ) ).values() ];
+// engine functions the TypeScript server declares again (card [44a] D5): any function src/ declares, exported or not; and,
+// whatever their names now, every server function with an engine prefix (a renamed copy still has one)
+{ const declared = new Set( src.flatMap( f => [ ...text[ f ].matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s*\*?\s*(\w+)\s*\(/g ) ].map( m => m[ 1 ] ) ) );
+	const server = Object.entries( text ).filter( ( [ f ] ) => f.startsWith( 'server/' ) && f.endsWith( '.ts' ) ).flatMap( ( [ f, s ] ) => [ ...s.matchAll( /(?:^|\n)\s*(?:export\s+)?(?:async\s+)?function\s+(\w+)\s*\(/g ) ].map( m => ( { file: f, function: m[ 1 ] } ) ) );
+	hidden.serverReimplements = server.filter( d => declared.has( d.function ) );
+	hidden.serverEnginePrefixed = server.filter( d => /^(SV_|Host_|MSG_|Mod_|COM_)/.test( d.function ) ); }
 hidden.generators = [ ...new Map( hidden.generators.map( g => [ g.tool + g.writes, g ] ) ).values() ];
 
 // --- counts the baseline states ---
@@ -245,23 +257,30 @@ const importMapEntries = statements.filter( e => e.kind === 'importmap' );
 const MODE = new Set( [ 'R_NewerGame', 'R_AnimSetClassicPass', 'R_ClassicPassActive', 'R_AnimSetNewer', 'R_AnimSetLighting', 'R_NewerLightingActive', 'R_IsNewer', 'r_newer_water', 'r_newer_lighting', 'r_newer_normals', 'r_newer_enemies' ] );
 // (by what each import resolves to, through adapters, so moving the importers or r_anim.js does not change the count; a
 // namespace import counts as taking everything)
+// A named re-export ( export { R_NewerGame } from './r_anim.js' ) takes those names too, so a forwarding module counts as
+// an importer. If r_anim.js is renamed, set ANIM to its new name: the tool fails rather than count nothing.
+const ANIM = 'r_anim.js';
 const through = f => adapters[ f ] ?? f;
-const anim = src.find( f => f.split( '/' ).pop() === 'r_anim.js' && ! adapters[ f ] );
+const anim = src.find( f => f.split( '/' ).pop() === ANIM && ! adapters[ f ] );
+const failures = anim ? [] : [ 'no module named ' + ANIM + ' (the D2 check measures its importers): update ANIM' ];
 const animImporters = {};
-for ( const f of src ) if ( ! adapters[ f ] ) for ( const m of text[ f ].matchAll( /(?:^|\n)\s*import\s*(\{[^}]*\}|\*\s*as\s+\w+)\s*from\s*['"]([^'"]+)['"]/g ) ) {
+for ( const f of src ) if ( ! adapters[ f ] ) for ( const m of text[ f ].matchAll( /(?:^|\n)\s*(?:import|export)\s*(\{[^}]*\}|\*\s*as\s+\w+|\*)\s*from\s*['"]([^'"]+)['"]/g ) ) {
 
 	if ( through( rel( path.resolve( path.dirname( path.join( ROOT, f ) ), m[ 2 ] ) ) ) !== anim ) continue;
 	( animImporters[ f ] ??= [] ).push( ...( m[ 1 ].startsWith( '*' ) ? [ '*' ] : m[ 1 ].slice( 1, - 1 ).split( ',' ).map( x => x.trim().split( /\s+as\s+/ )[ 0 ] ).filter( Boolean ) ) );
 
 }
 const modeOnly = Object.entries( animImporters ).filter( ( [ , names ] ) => names.every( n => MODE.has( n ) ) ).map( ( [ f ] ) => f );
+// where each mode name is declared (not re-exported), and whether that module imports anything from r_anim.js: D2 is done
+// when every name is declared outside r_anim.js in a module that does not
+const modeHome = Object.fromEntries( [ ...MODE ].map( n => { const f = src.find( f => ! adapters[ f ] && new RegExp( '(?:^|\\n)\\s*export\\s+(?:const|let|var|(?:async\\s+)?function)\\s+' + n + '\\b' ).test( text[ f ] ) ); return [ n, f ? { module: f, importsAnim: f === anim || !! animImporters[ f ] } : null ]; } ) );
 // modules nothing imports, by any edge (orphans), other than the entry points' own targets
 const imported = new Set( edges.map( e => e.to ) );
 const orphans = src.filter( f => ! imported.has( f ) );
-// modules the game never loads: not reached from the page or the room server by imports, dynamic imports or module URLs
-// (workers), so a test importing a module does not make it used (card [44a] D9)
+// modules the game never loads: not reached from the page or the room server by imports, dynamic imports or workers (a
+// URL merely built does not load a module), so a test importing a module does not make it used (card [44a] D9)
 const reach = new Set(), todoReach = entryNames.filter( f => f === 'main.js' || f === 'server/game_server.js' );
-while ( todoReach.length ) { const f = todoReach.pop(); for ( const e of edges ) if ( e.from === f && e.kinds.some( k => /^(static|export|dynamic|url)$/.test( k ) ) && text[ e.to ] !== undefined && ! reach.has( e.to ) ) { reach.add( e.to ); todoReach.push( e.to ); } }
+while ( todoReach.length ) { const f = todoReach.pop(); for ( const e of edges ) if ( e.from === f && e.kinds.some( k => /^(static|export|dynamic|worker)$/.test( k ) ) && text[ e.to ] !== undefined && ! reach.has( e.to ) ) { reach.add( e.to ); todoReach.push( e.to ); } }
 const unreached = src.filter( f => ! reach.has( f ) && ! adapters[ f ] );
 
 // --- fail closed: every file under src/ scanned, and no unresolved reference beyond those known ---
@@ -279,8 +298,8 @@ const unexpected = missing.filter( e => ! KNOWN_MISSING.some( known => known( e 
 
 const out = { root: ROOT, files: files.length, scannedRootFiles: files.map( rel ).filter( f => ! f.includes( '/' ) ), src, lines, fanIn, fanOut, edges, evaluationEdges: evaluation.length, cycles: cycles( src ), consumers, state, entries, hidden, missing, unscanned, unexpected,
 	counts: { queryImports: queryImports.length, queryImportFiles: new Set( queryImports.map( e => e.from ) ).size, queryImportsComputed: queryImports.filter( e => e.kind === 'dynamic-computed' ).length, importMapEntries: importMapEntries.length, animImporters: Object.keys( animImporters ).length, animModeOnly: modeOnly.length },
-	modeOnly, orphans, unreached, adapters };
+	modeOnly, modeHome, orphans, unreached, adapters };
 if ( OUT ) fs.writeFileSync( OUT, JSON.stringify( out, null, 1 ) );
 console.log( `files ${ files.length }, src modules ${ src.length }, distinct edges ${ edges.length } (${ statements.length } statements), cycles ${ out.cycles.map( c => c.length ).join( ', ' ) }, unresolved ${ missing.length } (unexpected ${ unexpected.length }), unscanned ${ unscanned.length }` );
-if ( unscanned.length || unexpected.length ) { console.error( 'unscanned: ' + unscanned.join( ' ' ) + '\nunexpected unresolved: ' + unexpected.map( e => e.from + ' -> ' + e.to ).join( ' ' ) ); process.exit( 1 ); }
+if ( unscanned.length || unexpected.length || failures.length ) { console.error( 'unscanned: ' + unscanned.join( ' ' ) + '\nunexpected unresolved: ' + unexpected.map( e => e.from + ' -> ' + e.to ).join( ' ' ) + '\n' + failures.join( '\n' ) ); process.exit( 1 ); }
 export { cycles };

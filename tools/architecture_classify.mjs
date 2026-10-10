@@ -17,7 +17,8 @@ if ( g.unscanned?.length || g.unexpected?.length ) { console.error( 'the graph r
 // ordered: the first that matches; [ folder, increment, pattern on the path inside src/ ]
 const RULES = [
 	[ 'newer/render/rend_veil', '44e', /^rend_veil\// ],
-	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol)\.js$/ ],
+	// (hooks: the planned neutral module the engine calls and Newer registers into, D1b)
+	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol|hooks)\.js$/ ],
 	[ 'engine/progs', '44b', /^(pr_cmds|pr_comp|pr_edict|pr_exec|progs|progdefs)\.js$/ ],
 	[ 'engine/server', '44b', /^(sv_main|sv_move|sv_phys|sv_user|server|world|pmove|host|host_cmd)\.js$/ ],
 	[ 'engine/net', '44c', /^net(_\w+)?\.js$/ ],
@@ -34,7 +35,8 @@ const RULES = [
 	[ 'newer/assets', '44f', /^(normal_prepare|rockfield_prepare|rockfield_worker|prepared_corpus|startup_\w+)\.js$/ ],
 	[ 'newer/assets', '44e', /(_bake_format|_bakes|_bundle|_transport|_startup_packs|_presets|_store)\.js$|^(alias_mesh_\w+|rockfield|r_normalprefetch|r_rockbakes|r_demonbakes|r_aliasmeshcache|demon_bake_format)\.js$/ ],
 	// the model and animation renderer ([44d]): poses, skins, held weapons, cut and lying bodies, the levels drawn in windows
-	[ 'newer/render', '44d', /^(r_anim|r_newerskins|r_weapons|r_weaponstyle|r_weapon_surface|r_axepose|r_axecorpses|r_bisect|shadow_pose|r_classicstate|r_levelview|r_levelents|r_levelgraph|r_shells|r_shelltrace)\.js$/ ],
+	// (mode: the planned leaf module for the Newer/Classic switch, D2)
+	[ 'newer/render', '44d', /^(mode|r_anim|r_newerskins|r_weapons|r_weaponstyle|r_weapon_surface|r_axepose|r_axecorpses|r_bisect|shadow_pose|r_classicstate|r_levelview|r_levelents|r_levelgraph|r_shells|r_shelltrace)\.js$/ ],
 	[ 'newer/render', '44e', /^(r_\w+|powervision_shaders|vision_coordinates|fx_math|v_shamblersteps)\.js$/ ]
 ];
 // rules match a module's name (its folder ignored), so a module already moved into its folder is classified the same; an

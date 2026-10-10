@@ -28,6 +28,7 @@ const catalog = JSON.parse( /<script id="texture-catalog"[^>]*>([\s\S]*?)<\/scri
 catalog.find( item => item.file === 'uwall1_2.webp' ).preset = { profile: 'wall', featureSize: 2.5, warp: .65, fracture: 0, detail: 1.5, cells: 64, amplitude: .8 };
 // The shipped rock bakes (newer/rockfield/…) read from the checkout, as the browser fetches them beside the page; Node's
 // fetch cannot take a relative URL, and a registered bake that fails to load is an error, not a fallback to the workers.
+// (for this file only: each test file runs in its own process)
 const nodeFetch = globalThis.fetch;
 globalThis.fetch = async ( file, options ) => typeof file === 'string' && file.startsWith( 'newer/rockfield/' ) ? new Response( readFileSync( new URL( '../' + file.split( '?' )[ 0 ], import.meta.url ) ) ) : nodeFetch( file, options );
 function expectedPreset( name, profile ) {

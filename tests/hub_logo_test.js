@@ -177,7 +177,7 @@ Deno.test( 'public enhanced texture loader installs registered recessed height a
 		equal( reference.image.data[ i * 4 ], 128, 'reference no generated X slope' ); equal( reference.image.data[ i * 4 + 1 ], 128, 'reference no generated Y slope' );
 
 	}
-	check( material.customProgramCacheKey() !== nativeProgramKey && material.customProgramCacheKey().includes( '-carved' ), 'asynchronous carved shader gets a distinct cached program' );
+	check( material.customProgramCacheKey() !== nativeProgramKey && /^quake-detail-carved(-|$)/.test( material.customProgramCacheKey() ), 'asynchronous carved shader gets a distinct cached program' );
 	const shader = { vertexShader: THREE.ShaderLib.standard.vertexShader, fragmentShader: THREE.ShaderLib.standard.fragmentShader, uniforms: THREE.UniformsUtils.clone( THREE.ShaderLib.standard.uniforms ) };
 	material.onBeforeCompile( shader );
 	equal( shader.uniforms.uCarveReference.value, reference, 'actual registered material shader uses source height reference' );
@@ -270,7 +270,7 @@ Deno.test( 'byte-packed carved occlusion stays distinct from rock/ordinary tags 
 
 		}
 		check( fragment.includes( 'vec3 albedo = base.a > 0.05 ? base.rgb : scene;' ), 'carved surfaces use original material RGB' );
-		check( fragment.includes( 'base.a < 0.05 ) return scene' ), 'reflection accepts carved receiver albedo' ); // (the unlit return adds powerup emission since 038fe59)
+		check( fragment.includes( 'if ( g.a < - 0.5 || base.a < 0.05 ) return scene+powerupEmissionAt(uv);' ), 'reflection accepts carved receiver albedo' ); // (the unlit return adds powerup emission since 038fe59)
 		check( fragment.includes( 'beamS * surfaceCarveAO( sourceBase.a )' ), 'new flashlight bounce from carved source respects occlusion' );
 		const compositeExpression = /c = actor \? [^:]+ : (scene \* \( 1\.0 \+ relit \* carveAO \)[^;]+);/.exec( fragment )[ 1 ]; // (the world receiver's branch; models, `actor`, are lit apart and never carved)
 		const compose = new Function( 'scene', 'relit', 'carveAO', 'bounce', 'receiver', 'uLightFloor', 'albedo', 'spot', 'flashAdd', 'return ' + compositeExpression );

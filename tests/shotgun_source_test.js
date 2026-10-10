@@ -192,7 +192,7 @@ Deno.test( 'standard shotgun source port preserves the supplied topology, UVs, t
 	// Exercise the real alias interpolation after independently proving both
 	// endpoints; the existing generic draw, not an app-specific animation path.
 	// In-between frames are Newer Game's (R_AnimEnabled): a Newer frame turns it on in R_PostBegin, which this draw skips.
-	const oldTime = cl.time; anim.r_lerpmodels.value = 2; anim.R_AnimSetNewer( true );
+	const oldTime = cl.time; anim.r_lerpmodels.value = 2; const wasNewer = anim.R_IsNewer(); anim.R_AnimSetNewer( true );
 	try {
 
 		const lerped = { ...e, frame: 0, _aliasMesh: null, _aliasGeo: null }; cl.time = 70; R_DrawAliasModel( lerped, h, null );
@@ -201,7 +201,7 @@ Deno.test( 'standard shotgun source port preserves the supplied topology, UVs, t
 		const imported = JSON.parse( bytes( 'newer/weapons/v_shot.json' ).toString() );
 		for ( let i = 0; i < midpoint.length; i ++ ) near( midpoint[ i ], ( imported.poses[ 0 ][ i ] + imported.poses[ 1 ][ i ] ) / 2, 'public single-shotgun midpoint interpolation', .000025 );
 
-	} finally { cl.time = oldTime; anim.r_lerpmodels.value = 0; anim.R_AnimSetNewer( false ); }
+	} finally { cl.time = oldTime; anim.r_lerpmodels.value = 0; anim.R_AnimSetNewer( wasNewer ); }
 
 } );
 
