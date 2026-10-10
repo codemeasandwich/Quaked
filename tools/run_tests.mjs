@@ -4,21 +4,44 @@
 import { register } from 'node:module';
 import { readFile, stat } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
-import { resolve } from 'node:path';
-import { existsSync } from 'node:fs';
+import { resolve, sep } from 'node:path';
+import { existsSync, accessSync, constants } from 'node:fs';
+import { homedir } from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 if ( ! process.env.QUAKED_THREE_MODULE ) throw new Error( 'Set QUAKED_THREE_MODULE to the absolute path of Three.js 0.183.0 three.module.js (with its three.core.js sibling).' );
 const files = process.argv.slice( 2 );
 // The local inputs a clean checkout lacks (baseline debt D8, card [44g]): when a test or a whole suite fails only
-// because one of these is absent (or unreadable), it is reported as skipped with the input named, never as passed.
-const LOCAL_INPUT = /(?:rocketlauncher|thuderbolt|supershotgun|supernailgun2?)\.zip|fieldlab-fx-3d-updated\.html|arc-weapons-wall-canvas-shotgun\.html|demon-vision\.html|player-face-layers-v4\.4\.0\.html|newer\/hud\/playerface\/blood\.png|\/resources\/|PAK3\.pk3|rockfield-v1\.[06]\.0\.html/i;
+// because one of these is really absent (or, for the PAK3 outside the repository, unreadable here), it is reported
+// as skipped with the input named, never as passed. Each input is matched at its own location, and only when it is
+// in fact missing, so a wrong name under an input that is present, or a refused write, still fails.
+const ROOT = process.cwd();
+const LISTED = new Set( [ 'rocketlauncher.zip', 'thuderbolt.zip', 'supershotgun.zip', 'supernailgun.zip', 'supernailgun2.zip',
+	'fieldlab-fx-3d-updated.html', 'arc-weapons-wall-canvas-shotgun.html', 'demon-vision.html', 'player-face-layers-v4.4.0.html',
+	'newer/hud/playerface/blood.png', 'rockfield-v1.0.0.html', 'rockfield-v1.6.0.html' ].map( f => resolve( ROOT, f ) ) );
+const RESOURCES = resolve( ROOT, 'resources' ), PAK3 = resolve( homedir(), 'Downloads/Quake/Id1/PAK3.pk3' );
+const unreadable = path => { try { accessSync( path, constants.R_OK ); return false; } catch { return true; } };
 function missingInput( error ) {
 
 	const text = String( error?.message ?? error ?? '' );
-	const file = /(?:ENOENT|EPERM|EACCES)[^']*'([^']+)'/.exec( text )?.[ 1 ];
-	if ( file && LOCAL_INPUT.test( file ) ) return file;
-	if ( /Command failed: git /.test( text ) && ! existsSync( resolve( '.git' ) ) ) return 'git history (this tree is not a git checkout)';
+	const code = error?.code ?? /\b(ENOENT|EPERM|EACCES)\b/.exec( text )?.[ 1 ];
+	const quoted = error?.path ?? /(?:ENOENT|EPERM|EACCES)[^']*'([^']+)'/.exec( text )?.[ 1 ];
+	if ( quoted ) {
+
+		const path = resolve( quoted );
+		if ( code === 'ENOENT' ) {
+
+			if ( LISTED.has( path ) && ! existsSync( path ) ) return path;
+			if ( path.startsWith( RESOURCES + sep ) && ! existsSync( RESOURCES ) ) return RESOURCES;
+			if ( process.env.QUAKED_OWNED_PAK && path === resolve( process.env.QUAKED_OWNED_PAK ) && ! existsSync( path ) ) return path;
+			if ( path === PAK3 && ! existsSync( PAK3 ) ) return PAK3;
+
+		}
+		// the owner's PAK3 lives outside the repository, where this process may not be allowed to read
+		if ( ( code === 'EPERM' || code === 'EACCES' ) && path === PAK3 && unreadable( PAK3 ) ) return PAK3 + ' (not readable here)';
+
+	}
+	if ( /Command failed: git /.test( text ) && ! existsSync( resolve( ROOT, '.git' ) ) ) return 'git history (this tree is not a git checkout)';
 	return null;
 
 }
@@ -31,7 +54,7 @@ if ( files[ 0 ] !== '--worker' ) {
 		process.stdout.write( child.stdout || '' ); process.stderr.write( child.stderr || '' );
 		const count = /RESULT (\d+)\/(\d+) passed/.exec( child.stdout || '' );
 		if ( count ) { passed += Number( count[ 1 ] ); total += Number( count[ 2 ] ); }
-		skipped += Number( /, (\d+) skipped/.exec( child.stdout || '' )?.[ 1 ] ?? 0 );
+		skipped += Number( /^RESULT \d+\/\d+ passed, (\d+) skipped/m.exec( child.stdout || '' )?.[ 1 ] ?? 0 );
 		if ( child.status !== 0 ) failed = true;
 
 	}
@@ -53,18 +76,18 @@ export async function resolve(specifier, context, next) {
 	await import( '../src/engine/render/gl_rsurf.js' );
 	// Newer Game plugs into the engine's hooks, as the page's entry does (src/engine/common/hooks.js, card [44g] D1b).
 	await import( '../src/newer/install.js' );
+	let suiteSkipped = null;
 	try { await import( pathToFileURL( resolve( files[ 1 ] ) ).href ); }
 	catch ( error ) {
 
 		// a suite that cannot even load because a local input is absent: skipped as a whole, the input named
-		const input = missingInput( error );
-		if ( input === null ) throw error;
-		console.log( `SKIP (whole suite) missing local input: ${input}` );
-		console.log( `RESULT 0/0 passed, 1 skipped (${files[ 1 ]})` ); process.exitCode = 0;
-		process.exit();
+		suiteSkipped = missingInput( error );
+		if ( suiteSkipped === null ) throw error;
+		console.log( `SKIP (whole suite) missing local input: ${suiteSkipped}` );
+		tests.length = 0;
 
 	}
-	let passed = 0, skipped = 0;
+	let passed = 0, skipped = suiteSkipped === null ? 0 : 1;
 	for ( const { name, fn } of tests ) {
 
 		try { await fn(); passed ++; console.log( 'PASS ' + name ); }
@@ -77,7 +100,7 @@ export async function resolve(specifier, context, next) {
 		}
 
 	}
-	const run = tests.length - skipped;
+	const run = tests.length - ( suiteSkipped === null ? skipped : 0 );
 	console.log( `RESULT ${passed}/${run} passed${skipped ? `, ${skipped} skipped` : ''} (${files[ 1 ]})` ); process.exitCode = passed === run ? 0 : 1;
 
 }

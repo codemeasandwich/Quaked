@@ -348,10 +348,10 @@ is:
 
 * D8: `tools/run_tests.mjs` reports a test as `SKIP <name>: missing local input <path>`, and a suite that cannot load
   as `SKIP (whole suite) missing local input: <path>`, when it fails only because one of the baseline's listed local
-  inputs is absent or unreadable (the donor zips, the owner's local pages, `newer/hud/playerface/blood.png`,
+  inputs, at its own location, is really absent (the PAK3, outside the repository, also when it cannot be read here) (the donor zips, the owner's local pages, `newer/hud/playerface/blood.png`,
   `resources/`, `~/Downloads/Quake/Id1/PAK3.pk3`, the rockfield pages) or because the tree has no git history. A skip
-  is never counted as a pass (`RESULT 6/6 passed, 1 skipped`); any other error, a missing file not on the list
-  included, still fails. Here the four suites that needed donor files now read as skipped, each naming its zip or
+  is never counted as a pass (`RESULT 6/6 passed, 1 skipped`); any other error still fails, including a missing file
+  not on the list, a wrong name under an input that is present, and a refused write (review of step 10). Here the four suites that needed donor files now read as skipped, each naming its zip or
   the PAK3. `tests/run_tests_skip_test.js` pins all of this. The missing settings (`QUAKED_THREE_MODULE` and the
   others) already stop the harness with a message naming them. Whether the local inputs return, and whether the
   owner's deletion of the rockfield pages is committed, stays the owner's.
