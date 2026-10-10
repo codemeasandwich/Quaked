@@ -13,7 +13,8 @@
  * places.
  *
  * `Host_Error` throws back to `Host_Frame`, which ends the current game; entered again while handling one, it calls
- * `Sys_Error`. The configuration is saved in localStorage (`quake_config`).
+ * `Sys_Error`. The configuration is saved in localStorage (`quake_config`, or a mission pack's own key:
+ * `GameSelection_ConfigKey`).
  */
 // Ported from: WinQuake/host.c -- coordinates spawning and killing of local servers
 
@@ -122,6 +123,8 @@ const temp1 = new cvar_t( 'temp1', '0' );
 // registers them: `campaign` (which campaign's start map was entered) and `sv_cheats` (cheats in co-op/deathmatch)
 const campaign = new cvar_t( 'campaign', '0' );
 const sv_cheats = new cvar_t( 'sv_cheats', '0' );
+// the re-release's quake.rc (a mission pack's runs) sets its own font; this engine keeps Quake's, so it is only kept
+const scr_usekfont = new cvar_t( 'scr_usekfont', '0' );
 
 // set_host_client is imported and re-exported from server.js
 export { set_host_client } from './server.js';
@@ -133,7 +136,7 @@ export { realtime, host_frametime, host_framecount, set_host_frametime } from '.
 // the server's rule cvars live with the server state (server.js), so it need not import the host (card [44g], D1a)
 import { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 import { GameCatalogue_Init } from '../common/game_catalogue.js';
-import { GameSelection_Init } from '../common/game_selection.js';
+import { GameSelection_Init, GameSelection_ConfigKey } from '../common/game_selection.js';
 export { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 
 /*
@@ -223,6 +226,7 @@ function Host_InitLocal() {
 	Cvar_RegisterVariable( temp1 );
 	Cvar_RegisterVariable( campaign );
 	Cvar_RegisterVariable( sv_cheats );
+	Cvar_RegisterVariable( scr_usekfont );
 
 	Host_FindMaxClients();
 
@@ -265,7 +269,7 @@ Host_Init
  * models, networking, server, textures, palette and colormap, video, drawing, screen, renderer, sound, CD audio,
  * status bar, client and input, wiring the externals that need the video and client state as it goes. Then queues
  * `exec quake.rc`, the web port's default WASD and flashlight bindings and always-run speeds, and the configuration
- * saved in localStorage under `quake_config` (its changed defaults dropped; a missing or unavailable store is
+ * saved in localStorage under `quake_config` (a mission pack's own key, `GameSelection_ConfigKey`) (its changed defaults dropped; a missing or unavailable store is
  * ignored), registers a `beforeunload` listener that saves the configuration, and sets `host_initialized`.
  *
  * @param {{ basedir: string, argc: number, argv: Array<string> }} parms the startup parameters (main.js); kept in
@@ -475,7 +479,7 @@ export async function Host_Init( parms ) {
 	// Load saved config from localStorage (overrides defaults above)
 	try {
 
-		const savedConfig = localStorage.getItem( CONFIG_STORAGE_KEY );
+		const savedConfig = localStorage.getItem( GameSelection_ConfigKey() ); // each mission pack its own (card [34c])
 		if ( savedConfig !== null ) {
 
 			Cbuf_AddText( Cvar_DropChangedDefaults( savedConfig ) );
@@ -906,10 +910,9 @@ export function Host_ShutdownServer( crash ) {
 Host_WriteConfiguration
 ===============
 */
-const CONFIG_STORAGE_KEY = 'quake_config';
 
 /**
- * Writes key bindings and archived cvars to localStorage under `quake_config` (`Key_WriteBindings` then
+ * Writes key bindings and archived cvars to localStorage under `quake_config` (a mission pack's own key, `GameSelection_ConfigKey`) (`Key_WriteBindings` then
  * `Cvar_WriteVariables`, as console command text that `Host_Init` replays at the next start). Called on page unload
  * (`beforeunload`, registered by `Host_Init`) and by `Host_Shutdown`. Does nothing before `Host_Init` finishes; prints
  * "Couldn't save config." when storage refuses the write.
@@ -923,7 +926,7 @@ export function Host_WriteConfiguration() {
 
 	try {
 
-		localStorage.setItem( CONFIG_STORAGE_KEY, config );
+		localStorage.setItem( GameSelection_ConfigKey(), config );
 
 	} catch ( e ) {
 

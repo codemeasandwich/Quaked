@@ -501,7 +501,7 @@ Cvar_WriteVariables
 /**
  * Writes lines containing "set variable value" for all variables with the archive flag set to true; in this port
  * each line is `name "value"\n`, and a borrowed (`Cvar_SetTemporary`) cvar writes its pre-borrow value.
- * `Host_WriteConfiguration` appends the result to the key bindings and saves it in localStorage under `quake_config`.
+ * `Host_WriteConfiguration` appends the result to the key bindings and saves it in localStorage under `quake_config` (a mission pack's own key, `GameSelection_ConfigKey`).
  *
  * @returns {string} configuration text for every archived cvar, newest-registered first
  */

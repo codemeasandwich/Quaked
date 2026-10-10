@@ -43,7 +43,10 @@ const files = new Map( [
 	// a second site (/complete/): Quake and both mission packs whole, as the engine needs them (card [34c])
 	[ '/complete/games/Quake/pak0.pak', pack( [ 'progs.dat', 'maps/e1m1.bsp', 'maps/e2m1.bsp', 'maps/e3m1.bsp', 'maps/e4m1.bsp' ] ) ],
 	[ '/complete/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/hip1m1.bsp' ] ) ],
-	[ '/complete/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/r1m1.bsp' ] ) ]
+	[ '/complete/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/r1m1.bsp' ] ) ],
+	// a third (/noquake/): both mission packs whole, but no Quake
+	[ '/noquake/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ],
+	[ '/noquake/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ]
 ] );
 const ignoresRange = new Set( [ '/resources/rogue/pak0.pak' ] ), served = { bytes: 0 };
 // Single-pack quirks, probed directly: each answers one way a server can go wrong
@@ -96,8 +99,8 @@ Deno.test( 'the two mission packs are playable on Quake when whole; never withou
 
 	const catalogue = await GameCatalogue_Refresh( { ...options, base: base + 'complete/' } ), g = id => catalogue.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( g( id ).playable && /a mission pack/.test( g( id ).reason ), id + ' is playable: ' + g( id ).reason );
-	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'complete/games/Scourge%20of%20Armagon/' } );
-	check( ! bare.games.find( x => x.id === 'hipnotic' )?.playable, 'nothing is playable where Quake is not found' );
+	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
+	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );
 
 } );
 

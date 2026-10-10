@@ -10,7 +10,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; browser storage.
+ * State: no mutable exports; module-level variables `running`; browser storage.
  *
  * Errors: catches at 6 places.
  *
@@ -121,17 +121,58 @@ export function GameSelection_MissionPack() {
 
 }
 
+// the game the page actually started (main.js, once its packs are mounted): it can differ from the choice when a
+// chosen game's pack is missing; null until then
+let running = null;
+
+/**
+ * Records the game the page actually started, once its packs are mounted (main.js, before Host_Init reads the
+ * configuration): the chosen one, or what ran instead when its pack was missing (Quake for a mission pack without its
+ * pack, the shareware without Quake's). The save prefix and the configuration key follow it.
+ *
+ * @param {?string} id 'shareware', 'quake', 'hipnotic', 'rogue', or null to forget it
+ */
+export function GameSelection_SetRunning( id ) {
+
+	running = id;
+
+}
+
+// the game whose saves and settings apply: null for the default (no choice made), else the one running
+function savedGame() {
+
+	if ( GameSelection_Current() === null ) return null; // the default keeps the original keys, whatever runs
+	return running ?? GameSelection_Current();
+
+}
+
 /**
  * The prefix of this game's save keys in localStorage: the original `quake_save_` for the default and the full Quake
  * (the saves made so far were made with it), `quake_save_<id>_` for the shareware and each mission pack (their maps
- * share Quake's names, so their saves must not).
+ * share Quake's names, so their saves must not). It follows the game running: a mission pack chosen without its pack
+ * runs Quake, with Quake's saves.
  *
  * @returns {string} the key prefix; a save `s0` is kept under prefix + 's0'
  */
 export function GameSelection_SavePrefix() {
 
-	const game = GameSelection_Current();
+	const game = savedGame();
 	return game === 'shareware' || MISSION_PACKS[ game ] ? `quake_save_${game}_` : 'quake_save_';
+
+}
+
+/**
+ * The localStorage key of this game's configuration (key bindings and archived cvars, Host_WriteConfiguration): the
+ * original `quake_config` for Quake and the shareware (they bind the same keys), `quake_config_<id>` for a mission
+ * pack running, whose own default.cfg binds keys differently (Scourge's 9 and 0 select the Laser Cannon and Mjolnir)
+ * and which must not overwrite Quake's, as WinQuake keeps a config.cfg per game folder.
+ *
+ * @returns {string} the key
+ */
+export function GameSelection_ConfigKey() {
+
+	const game = savedGame();
+	return MISSION_PACKS[ game ] ? `quake_config_${game}` : 'quake_config';
 
 }
 
@@ -192,7 +233,14 @@ export function GameSelection_ReportStart( mounted, missionMounted = true ) {
 
 	const choice = GameSelection_Current();
 	const mission = MISSION_PACKS[ choice ];
-	if ( mission && mounted && ! missionMounted ) {
+	if ( mission && ! mounted ) {
+
+		const line = `game: ${mission.name} was chosen, but it needs Quake, whose pack was not found (${OWNED_PACKS[ choice ].join( ' or ' )}); the shareware is running\n`;
+		Con_Printf( line ); Sys_Printf( line );
+		return false;
+
+	}
+	if ( mission && ! missionMounted ) {
 
 		const line = `game: ${mission.name} was chosen, but its pack was not found (${mission.packs.join( ' or ' )}); Quake is running\n`;
 		Con_Printf( line ); Sys_Printf( line );

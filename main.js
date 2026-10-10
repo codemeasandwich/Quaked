@@ -38,7 +38,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_SetRunning, GameSelection_Current } from './src/engine/common/game_selection.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
@@ -81,8 +81,9 @@ async function main() {
 			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
 		} );
 		const startupPack=COM_FetchOptionalPak(STARTUP_PACK.file,STARTUP_PACK.file).catch(error=>{Sys_Printf('Startup pack not loaded: '+error.message);return null;});
-		// Local owned content supplies missing native files only. Never replace
-		// this checkout's programs, palette or established startup worlds.
+		// Local owned content supplies missing native files only: Quake's pack never replaces this checkout's programs,
+		// palette or established startup worlds. (A mission pack, mounted last below, is the exception: its own
+		// QuakeC, status bar pictures, quake.rc, default.cfg and start map are the game.)
 		// Which owned pack, if any, comes from the game chosen (card [34c]): none for the shareware, so nothing more is
 		// downloaded; the full Quake's from games/Quake/ or resources/id1/ (the first found) otherwise, as before.
 		const ownedPack = ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
@@ -90,8 +91,11 @@ async function main() {
 		const mission = GameSelection_MissionPack();
 		const missionLoad = mission ? ( async () => { for ( const url of mission.packs ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )() : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
-		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so)
+		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
+		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed
 		const missionMounted = missionPak !== null && fullGamePak !== null;
+		// the game that really starts, which saves and settings follow (card [34c])
+		GameSelection_SetRunning( missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
 		const pak0 = sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');

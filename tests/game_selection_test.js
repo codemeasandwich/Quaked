@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_MissionPack, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart } from '../src/engine/common/game_selection.js';
+import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -97,5 +97,33 @@ Deno.test( 'a mission pack is chosen with Quake under it, its own pack and switc
 	check( GameSelection_SavePrefix() === 'quake_save_rogue_', 'its saves are its own (its maps share names with no one, but its start does)' );
 	store.clear();
 	check( GameSelection_MissionPack() === null, 'no mission pack otherwise' );
+
+} );
+
+Deno.test( 'saves and settings follow the game running, not only the one chosen; the default keeps the original keys', () => {
+
+	store.clear(); GameSelection_SetRunning( null );
+	check( GameSelection_SavePrefix() === 'quake_save_' && GameSelection_ConfigKey() === 'quake_config', 'the default: the original keys' );
+	GameSelection_SetRunning( 'shareware' );
+	check( GameSelection_SavePrefix() === 'quake_save_' && GameSelection_ConfigKey() === 'quake_config', 'the default stays on them whatever runs (a site with the shareware alone)' );
+	store.set( 'quaked.game.v1', 'hipnotic' );
+	GameSelection_SetRunning( 'hipnotic' );
+	check( GameSelection_SavePrefix() === 'quake_save_hipnotic_' && GameSelection_ConfigKey() === 'quake_config_hipnotic', 'Scourge running: its own saves and its own key bindings (its 0 is Mjolnir)' );
+	GameSelection_SetRunning( 'quake' );
+	check( GameSelection_SavePrefix() === 'quake_save_' && GameSelection_ConfigKey() === 'quake_config', 'Scourge chosen but its pack missing, so Quake runs: Quake\'s saves and settings' );
+	GameSelection_SetRunning( 'shareware' );
+	check( GameSelection_SavePrefix() === 'quake_save_shareware_' && GameSelection_ConfigKey() === 'quake_config', 'and without Quake, the shareware\'s' );
+	GameSelection_SetRunning( null ); store.clear();
+
+} );
+
+Deno.test( 'a mission pack that could not start says why: Quake missing, or its own pack missing', () => {
+
+	store.set( 'quaked.game.v1', 'rogue' );
+	try {
+		check( GameSelection_ReportStart( false, false ) === false, 'Quake missing: reported' );
+		check( GameSelection_ReportStart( true, false ) === false, 'its own pack missing: reported' );
+		check( GameSelection_ReportStart( true, true ) === true, 'both there: nothing to say' );
+	} finally { store.clear(); }
 
 } );

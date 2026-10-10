@@ -921,19 +921,9 @@ Returns the health face to display
 ===============
 */
 function Sbar_DrawFace() {
-	if ( R_NewerGame() && r_newer_hud.value !== 0 ) {
-		R_PlayerFacePreload();
-		const state = layeredFaceState || R_PlayerFaceFrame( _cl ), key = [ state.look, state.expression, state.health, state.strength, state.invulnerability, state.invisibility,state.eyeState,state.divingSuit,state.waterStage,state.waterOpacity ].join( ':' );
-		if ( key !== layeredFaceKey || ! layeredFacePic ) {
-			const rendered = R_PlayerFaceCompose( state );
-			if ( rendered.complete ) { layeredFaceKey = key; layeredFacePic = { canvas: rendered.canvas, width: 24, height: 24, _layeredFace: true }; }
-			else { layeredFaceKey = null; layeredFacePic = null; }
-		}
-		if ( layeredFacePic ) { sb_updates = 0; Sbar_DrawPic( 112, 0, layeredFacePic ); return; }
-	}
-
 	// PGM 01/19/97 - team color drawing
 	// PGM 03/02/97 - fixed so color swatch only appears in CTF modes
+	// (first, as in WinQuake: the team colour takes the face's place in Newer Game too)
 	const teamplay = Cvar_VariableValue( 'teamplay' );
 	if ( _rogue && _cl.maxclients !== 1 && teamplay > 3 && teamplay < 7 ) {
 
@@ -963,6 +953,17 @@ function Sbar_DrawFace() {
 		}
 
 	}
+	if ( R_NewerGame() && r_newer_hud.value !== 0 ) {
+		R_PlayerFacePreload();
+		const state = layeredFaceState || R_PlayerFaceFrame( _cl ), key = [ state.look, state.expression, state.health, state.strength, state.invulnerability, state.invisibility,state.eyeState,state.divingSuit,state.waterStage,state.waterOpacity ].join( ':' );
+		if ( key !== layeredFaceKey || ! layeredFacePic ) {
+			const rendered = R_PlayerFaceCompose( state );
+			if ( rendered.complete ) { layeredFaceKey = key; layeredFacePic = { canvas: rendered.canvas, width: 24, height: 24, _layeredFace: true }; }
+			else { layeredFaceKey = null; layeredFacePic = null; }
+		}
+		if ( layeredFacePic ) { sb_updates = 0; Sbar_DrawPic( 112, 0, layeredFacePic ); return; }
+	}
+
 
 	let f;
 	let anim;

@@ -1126,17 +1126,12 @@ export function SV_WriteClientdataToMessage( ent, msg ) {
 
 	} else {
 
-		// Mission pack (Rogue/Hipnotic): send weapon as bit index
-		for ( let i = 0; i < 32; i ++ ) {
-
-			if ( ( ent.v.weapon | 0 ) & ( 1 << i ) ) {
-
-				MSG_WriteByte( msg, i );
-				break;
-
-			}
-
-		}
+		// Mission pack (Rogue/Hipnotic): send weapon as bit index. WinQuake writes nothing when no bit is set (a weapon of
+		// 0), which leaves the client reading the next message's byte; 0 is written then instead (card [34c])
+		const weapon = ent.v.weapon | 0;
+		let bit = 0;
+		while ( bit < 31 && ( weapon & ( 1 << bit ) ) === 0 ) bit ++;
+		MSG_WriteByte( msg, weapon === 0 ? 0 : bit );
 
 	}
 

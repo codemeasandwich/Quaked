@@ -616,7 +616,7 @@ Key_SetBinding
 /**
  * Binds a command string to a key, replacing any earlier binding; `''` clears it. Called by the `bind`, `unbind` and
  * `unbindall` commands and by the menu's key-binding screen. The binding lives in `keybindings` for the session and
- * is saved only when `Host_WriteConfiguration` writes `Key_WriteBindings` to localStorage (`quake_config`).
+ * is saved only when `Host_WriteConfiguration` writes `Key_WriteBindings` to localStorage (`quake_config`; a mission pack's own key, `GameSelection_ConfigKey`).
  *
  * @param {number} keynum key number (0..255); -1 (an unknown key name) does nothing
  * @param {string} binding console text run on a press (a leading `+` makes it a button command that also runs its
@@ -720,7 +720,7 @@ Key_WriteBindings
 */
 /**
  * Writes lines containing "bind key value", one per bound key in key-number order. Called by
- * `Host_WriteConfiguration` (host.js), which saves the text with the cvars to localStorage under `quake_config`
+ * `Host_WriteConfiguration` (host.js), which saves the text with the cvars to localStorage under `quake_config` (a mission pack's own key, `GameSelection_ConfigKey`)
  * (WinQuake writes it to config.cfg).
  *
  * @returns {string} lines of the form `bind "KEY" "command"\n`; empty when nothing is bound
