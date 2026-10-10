@@ -27,14 +27,24 @@ Deno.test( 'no engine or platform module imports Newer, statically or dynamicall
 
 } );
 
-Deno.test( 'installed: every hook is Newer\'s own export, no function hook is still its stub', () => {
+Deno.test( 'installed: every hook is the export of the Newer module install.js takes it from, none still a stub', async () => {
 
 	check( hooks.Hooks_Installed() === true, 'the harness installed Newer' );
-	check( hooks.R_BestiaryInputLocked === R_BestiaryInputLocked, 'a function hook is the Newer function itself' );
-	for ( const n of Object.keys( fireball ) ) if ( n in hooks ) check( hooks[ n ] === fireball[ n ], `${n} is r_fireball's export` );
+	check( hooks.R_BestiaryInputLocked === R_BestiaryInputLocked && typeof fireball.R_FireballFrame === 'function' && hooks.R_FireballFrame === fireball.R_FireballFrame, 'sampled hooks are the Newer functions themselves' );
+	// every provider install.js imports, compared name by name with what the hook holds
+	const install = readFileSync( join( root, 'src/newer/install.js' ), 'utf8' ), seen = new Set(), wrong = [];
+	for ( const m of install.matchAll( /^import \{ ([^}]+) \} from '(\.\/[^']+)';$/gm ) ) {
+
+		const provider = await import( new URL( '../src/newer/' + m[ 2 ].slice( 2 ), import.meta.url ).href );
+		for ( const name of m[ 1 ].split( ',' ).map( n => n.trim() ) ) { seen.add( name ); if ( hooks[ name ] !== provider[ name ] ) wrong.push( name + ' <- ' + m[ 2 ] ); }
+
+	}
+	const names = Object.keys( hooks ).filter( n => ! /^Hooks_/.test( n ) );
+	check( wrong.length === 0, 'hooks not equal to their provider\'s export: ' + wrong.join( ', ' ) );
+	check( names.length === seen.size && names.every( n => seen.has( n ) ), `install.js names every hook once (${seen.size} of ${names.length})` );
 	// a stub is the inner function of Hooks_Missing, whose text carries its message
 	const stub = f => typeof f === 'function' && /called before Newer was installed/.test( String( f ) );
-	const unset = Object.keys( hooks ).filter( n => ! /^Hooks_/.test( n ) && ( hooks[ n ] === undefined || stub( hooks[ n ] ) ) );
+	const unset = names.filter( n => hooks[ n ] === undefined || stub( hooks[ n ] ) );
 	check( unset.length === 0, 'hooks not installed: ' + unset.join( ', ' ) );
 
 } );

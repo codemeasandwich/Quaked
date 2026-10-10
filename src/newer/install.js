@@ -10,6 +10,9 @@
  * State: no mutable exports.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Loading it throws when `Hooks_Install` refuses its table (a hook missing from it, or a name `hooks.js` does not
+ * declare), so a broken hook list fails at startup, not at the first call.
  */
 
 import { Hooks_Install, Hooks_Installed } from '../engine/common/hooks.js';
