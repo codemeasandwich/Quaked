@@ -6,7 +6,7 @@ This increment replaces the former `R_EntityTeleportFx` red/blue stretch with th
 
 The requested use is a monster transferred from a closet by a trigger. AI, movement and attacks resume on **Focus**, after the entire Unwind and before Remnants. Records belong to individual entity lifetimes; unrelated monsters never share an activation timer.
 
-`tools/summoning_reference/provenance.json` retains hashes and both unchanged HTML references. The later `quaked-rend-the-veil-v1.0.0.html` supplies the locked integration profile, pure clock, frame, procedural local layers, radial reveal, material binding and linear optical shader. These production modules are extracted into `src/rend_veil/`; embedded vendor runtime, demo mesh, mock activation bridge and standalone renderer are excluded. The original Forbidden Summoning source remains available for provenance.
+`tools/summoning_reference/provenance.json` retains hashes and both unchanged HTML references. The later `quaked-rend-the-veil-v1.0.0.html` supplies the locked integration profile, pure clock, frame, procedural local layers, radial reveal, material binding and linear optical shader. These production modules are extracted into `src/newer/render/rend_veil/`; embedded vendor runtime, demo mesh, mock activation bridge and standalone renderer are excluded. The original Forbidden Summoning source remains available for provenance.
 
 | Interval | Native behavior | Visual behavior |
 | --- | --- | --- |

@@ -179,6 +179,9 @@ With every module moved, 199 of the 206 adapters are deleted, and `src/rend_veil
   as an unused experiment in `docs/distribution-local-only.json`, with preservation hashes) imports those old paths, and
   its files are not this work's to edit. They go when the owner retires or updates the experiment. No tracked file
   imports them: the graph tool fails if one does.
+* Dated receipts under `docs/evidence/` that recorded the hashes of `index.html`, some test pages or docs describe those
+  files at their own commits; the prose rewrite changed some of those files after them (no tool checks the receipts
+  against today's files).
 * Prose that named the old flat paths was updated to the real ones: 67 documents, and comments in seven test pages, two
   tools and `index.html`. Left as written: the architecture baseline (a record of the flat layout), this page, and
   everything under `docs/evidence/`.
