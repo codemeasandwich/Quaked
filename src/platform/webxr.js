@@ -1,8 +1,21 @@
+/**
+ * @module platform/webxr
+ *
+ * WebXR: rendering and input for virtual-reality headsets through Three.js.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `xrSessionActive`, `xrRig`, `controllerRight`, `_scene`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * The camera is set through `XR_SetCamera`.
+ */
 // WebXR support for Three-Quake
 // Provides VR rendering via Three.js WebXR integration
 
 import * as THREE from 'three';
-import { renderer } from './vid.js';
+import { renderer } from '../vid.js';
 
 //============================================================================
 // Constants

@@ -1,13 +1,13 @@
 // (look names are the artwork's own, from the character's point of view: head_right/eyes_right look toward the screen's left)
 // Actual network/parser and view adapter boundaries; native QC loss/cadence
 // observations are separately exercised by face_native_test.
-import {cl,cls} from '../src/client.js';
-import {cl_simorg,cl_simangles} from '../src/cl_pred.js';
-import {in_attack} from '../src/cl_input.js';
+import {cl,cls} from '../src/engine/client/client.js';
+import {cl_simorg,cl_simangles} from '../src/engine/client/cl_pred.js';
+import {in_attack} from '../src/engine/client/cl_input.js';
 import * as common from '../src/engine/common/common.js';
-import {net_message} from '../src/net.js';
-import {V_ParseDamage} from '../src/view.js';
-import {CL_ParseClientdata,CL_ParseServerMessage} from '../src/cl_parse.js';
+import {net_message} from '../src/engine/net/net.js';
+import {V_ParseDamage} from '../src/engine/client/view.js';
+import {CL_ParseClientdata,CL_ParseServerMessage} from '../src/engine/client/cl_parse.js';
 import {R_PlayerFaceFrame,R_FaceShot} from '../src/r_facegame.js';
 import * as q from '../src/engine/common/quakedef.js';
 import {svc_foundsecret,svc_killedmonster} from '../src/engine/common/protocol.js';

@@ -1,6 +1,6 @@
 // Player/held-weapon surface state is separate from temporary lens droplets.
 // No age-based blood loss, texture edits, or shared pickup-material mutation.
-import { cl, cls } from './client.js';
+import { cl, cls } from './engine/client/client.js';
 import * as THREE from 'three';
 export const SURFACE_SPLATS = 12, SURFACE_DRY_SECONDS = 4;
 export class WeaponSurfaceState {

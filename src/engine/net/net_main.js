@@ -1,9 +1,22 @@
+/**
+ * @module engine/net/net_main
+ *
+ * Networking (WinQuake net_main.c): drivers, connections, sending and receiving messages, and the multiplayer room
+ * list.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `listening`, `slistStartTime`, `slistLastShown`,
+ * `configRestored`, `pollProcedureList`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 2 places.
+ */
 // Ported from: WinQuake/net_main.c -- network main module
 
-import { Sys_Error, Sys_FloatTime } from './engine/common/sys.js';
-import { Con_Printf, Con_DPrintf, SZ_Alloc, COM_CheckParm, com_argc, com_argv, Q_atoi, COM_SetNetMessage } from './engine/common/common.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cbuf_AddText } from './engine/common/cmd.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_Set } from './engine/common/cvar.js';
+import { Sys_Error, Sys_FloatTime } from '../common/sys.js';
+import { Con_Printf, Con_DPrintf, SZ_Alloc, COM_CheckParm, com_argc, com_argv, Q_atoi, COM_SetNetMessage } from '../common/common.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cbuf_AddText } from '../common/cmd.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set } from '../common/cvar.js';
 import {
 	NET_NAMELEN, NET_MAXMESSAGE, NET_LOOP_MAXMESSAGE, MAX_NET_DRIVERS,
 	qsocket_t,
@@ -24,8 +37,8 @@ import {
 	set_slistInProgress, set_slistSilent, set_slistLocal,
 	PollProcedure
 } from './net.js';
-import { sv } from './engine/server/server.js';
-import { svs } from './engine/server/server.js';
+import { sv } from '../server/server.js';
+import { svs } from '../server/server.js';
 import {
 	Loop_Init, Loop_Shutdown, Loop_Listen,
 	Loop_SearchForHosts, Loop_Connect, Loop_CheckNewConnections,
@@ -42,7 +55,7 @@ import {
 
 // Re-export for menu room list/creation
 export { WT_QueryRooms, WT_CreateRoom };
-import { MAX_SCOREBOARD } from './engine/common/quakedef.js';
+import { MAX_SCOREBOARD } from '../common/quakedef.js';
 
 //============================================================================
 // Module-level state

@@ -10,7 +10,7 @@ import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { R_DrawAliasModel } from '../src/gl_mesh.js';
 import { entity_t } from '../src/render.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import { R_ClassicMaterial } from '../src/r_classicstate.js';
 
 const report = document.querySelector( '#report' ), width = 768, heightPixels = 480;

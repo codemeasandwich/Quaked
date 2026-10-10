@@ -20,12 +20,12 @@ import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass, r_newer_portals } from '../src/r_anim.js';
 import { R_ParseBsp } from '../src/r_levelgraph.js';
-import { cls, cl, ca_dedicated, ca_connected } from '../src/client.js';
-import { CL_ParseServerInfo } from '../src/cl_parse.js';
+import { cls, cl, ca_dedicated, ca_connected } from '../src/engine/client/client.js';
+import { CL_ParseServerInfo } from '../src/engine/client/cl_parse.js';
 import { PROTOCOL_VERSION } from '../src/engine/common/protocol.js';
-import { NET_Init, NET_Close } from '../src/net_main.js';
-import { Loop_Connect, Loop_CheckNewConnections } from '../src/net_loop.js';
-import { qsocket_t } from '../src/net.js';
+import { NET_Init, NET_Close } from '../src/engine/net/net_main.js';
+import { Loop_Connect, Loop_CheckNewConnections } from '../src/engine/net/net_loop.js';
+import { qsocket_t } from '../src/engine/net/net.js';
 import { R_Init } from '../src/gl_rmain.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };

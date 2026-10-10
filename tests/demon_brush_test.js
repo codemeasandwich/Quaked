@@ -13,7 +13,7 @@ import * as vars from '../src/engine/common/cvar.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import { entity_t, r_refdef, r_origin, vpn, vright, vup } from '../src/render.js';
 import { AngleVectors } from '../src/engine/common/mathlib.js';
 

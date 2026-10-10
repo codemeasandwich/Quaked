@@ -4,7 +4,7 @@ await import('./weapon_gameplay_trial.js');
 const {R_WeaponAsset}=await import('../src/r_weapons.js');
 const {Cvar_SetValue}=await import('../src/engine/common/cvar.js');
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
-const {cl}=await import('../src/client.js');
+const {cl}=await import('../src/engine/client/client.js');
 const {camera}=await import('../src/gl_rmain.js');
 const panel=document.querySelector('section'),report=document.createElement('pre');
 let baseline=false;

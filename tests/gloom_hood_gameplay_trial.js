@@ -1,7 +1,7 @@
 // Actual game/HUD startup and QC pickups. Only the trial player's position is
 // staged; native air, power-up durations, damage and facial state are not set.
 await import('./powerups_gameplay_trial.js');
-const {sv}=await import('../src/engine/server/server.js'),{cl}=await import('../src/client.js');
+const {sv}=await import('../src/engine/server/server.js'),{cl}=await import('../src/engine/client/client.js');
 const {PR_GetString}=await import('../src/engine/progs/progs.js');
 const {SV_Move,SV_LinkEdict}=await import('../src/engine/server/world.js');
 const {SV_CheckWater}=await import('../src/engine/server/sv_phys.js');

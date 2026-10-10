@@ -1,4 +1,4 @@
-import { Touch_Layout, Touch_WeaponChoices, FOV_PORTRAIT, FOV_LANDSCAPE } from '../src/touch_layout.js';
+import { Touch_Layout, Touch_WeaponChoices, FOV_PORTRAIT, FOV_LANDSCAPE } from '../src/platform/touch_layout.js';
 
 function assertEqual( actual, expected, message ) {
 

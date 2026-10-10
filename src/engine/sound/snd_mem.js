@@ -1,8 +1,20 @@
+/**
+ * @module engine/sound/snd_mem
+ *
+ * Sound loading (WinQuake snd_mem.c): WAV files read from the paks into Web Audio buffers.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `data_p`, `iff_end`, `last_chunk`, `iff_data`, `iff_chunk_len`,
+ * `_wav`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place.
+ */
 // Ported from: WinQuake/snd_mem.c -- sound caching and WAV loading
 
-import { Con_Printf } from './engine/common/console.js';
-import { COM_LoadFile } from './engine/common/pak.js';
-import { Sys_Error } from './engine/common/sys.js';
+import { Con_Printf } from '../common/console.js';
+import { COM_LoadFile } from '../common/pak.js';
+import { Sys_Error } from '../common/sys.js';
 import {
 	sfxcache_t, wavinfo_t,
 	shm, loadas8bit

@@ -1,7 +1,7 @@
 // Options > Cheats (card [L1]): the game's own cheat commands as toggles and quick gives, only in a local single-player game.
 // Public menu input (keys and touch) and the menu's own drawing; the server is a stand-in for the state the menu reads.
 await import( '../src/gl_rsurf.js' );
-const cmd = await import( '../src/engine/common/cmd.js' ), menu = await import( '../src/menu.js' ), keys = await import( '../src/keys.js' ), draw = await import( '../src/gl_draw.js' ), cvar = await import( '../src/engine/common/cvar.js' );
+const cmd = await import( '../src/engine/common/cmd.js' ), menu = await import( '../src/engine/client/menu.js' ), keys = await import( '../src/engine/client/keys.js' ), draw = await import( '../src/gl_draw.js' ), cvar = await import( '../src/engine/common/cvar.js' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( JSON.stringify( a ) === JSON.stringify( b ), `${m}: ${JSON.stringify( a )} != ${JSON.stringify( b )}` );
 for ( const name of [ 'deathmatch', 'coop' ] ) if ( ! cvar.Cvar_FindVar( name ) ) cvar.Cvar_RegisterVariable( new cvar.cvar_t( name, '0' ) );
 

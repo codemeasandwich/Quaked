@@ -11,12 +11,12 @@ function publish(){statusNode.textContent=`${receipt.state} · ${receipt.subject
 await import('../main.js');
 await until(()=>window.Cbuf_AddText&&window.renderer&&window.scene&&window.camera,'native app initialization');
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
-const {cl,cls,cl_entities}=await import('../src/client.js');
-const input=await import('../src/cl_input.js');
+const {cl,cls,cl_entities}=await import('../src/engine/client/client.js');
+const input=await import('../src/engine/client/cl_input.js');
 const {sv,svs,MOVETYPE_NOCLIP,FL_NOTARGET}=await import('../src/engine/server/server.js');
 const {PR_GetString}=await import('../src/engine/progs/progs.js');
 const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
-const keys=await import('../src/keys.js'),split=await import('../src/r_demosplit.js');
+const keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
 const post=await import('../src/gl_post.js'),world=await import('../src/engine/server/world.js');
 const {Mod_PointInLeaf,SURF_PLANEBACK}=await import('../src/gl_model.js');
 const {COM_NewerJSON}=await import('../src/engine/common/pak.js');

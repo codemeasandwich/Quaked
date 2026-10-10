@@ -5,7 +5,7 @@ const quake = await import( '../src/glquake.js' );
 const surf = await import( '../src/gl_rsurf.js' );
 const light = await import( '../src/gl_rlight.js' );
 const split = await import( '../src/r_demosplit.js' );
-const { cl, cl_dlights } = await import( '../src/client.js' );
+const { cl, cl_dlights } = await import( '../src/engine/client/client.js' );
 const { R_ClassicTexture } = await import( '../src/r_newertextures.js' );
 const { R_SaveClassicScene, R_ClassicMaterial } = await import( '../src/r_classicstate.js' );
 

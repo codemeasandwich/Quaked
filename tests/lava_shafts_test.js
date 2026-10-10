@@ -9,7 +9,7 @@ import { readFileSync } from 'node:fs';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const same = ( a, b, message ) => check( a === b, `${message}: ${a} != ${b}` );

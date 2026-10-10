@@ -4,9 +4,9 @@
 await import( '../src/gl_rsurf.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
-const demo = await import( '../src/cl_demo.js' );
-const client = await import( '../src/cl_main.js' );
-const { cls, ca_disconnected } = await import( '../src/client.js' );
+const demo = await import( '../src/engine/client/cl_demo.js' );
+const client = await import( '../src/engine/client/cl_main.js' );
+const { cls, ca_disconnected } = await import( '../src/engine/client/client.js' );
 const pak = await import( '../src/engine/common/pak.js' );
 const post = await import( '../src/gl_post.js' );
 const split = await import( '../src/r_demosplit.js' );

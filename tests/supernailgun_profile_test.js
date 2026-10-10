@@ -10,7 +10,7 @@ const { R_WeaponStyleGLSL } = await import( '../src/r_weaponstyle.js' );
 const weapons = await import( '../src/r_weapons.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { r_lerpmodels } = await import( '../src/r_anim.js' );
-const { cl } = await import( '../src/client.js' );
+const { cl } = await import( '../src/engine/client/client.js' );
 const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }

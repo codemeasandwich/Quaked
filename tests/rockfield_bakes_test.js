@@ -16,7 +16,7 @@ import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_PreloadLooseFile, COM_
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { GL_BuildLightmaps } from '../src/gl_rsurf.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );

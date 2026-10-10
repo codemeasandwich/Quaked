@@ -68,12 +68,12 @@ import {
 	deathmatch, coop, skill,
 	fraglimit, timelimit, teamplay
 } from './server.js';
-import { hostname } from '../../net_main.js';
+import { hostname } from '../net/net_main.js';
 import {
 	NET_CheckNewConnections, NET_SendMessage, NET_SendUnreliableMessage,
 	NET_CanSendMessage, NET_CanSendUnreliableMessage, NET_SendToAll, NET_Close, NET_GetMessage
-} from '../../net_main.js';
-import { net_activeconnections, set_net_activeconnections } from '../../net.js';
+} from '../net/net_main.js';
+import { net_activeconnections, set_net_activeconnections } from '../net/net.js';
 import { realtime, Host_ClearMemory, Host_Error, set_host_frametime } from './host.js';
 import { COM_LoadFile } from '../common/pak.js';
 import { VectorCopy, VectorAdd, DotProduct } from '../common/mathlib.js';
@@ -83,7 +83,7 @@ import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, 
 import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled, SV_SeamlessCloseReturn, SV_SeamlessEntryYaw } from '../../newer/gameplay/sv_seamless.js';
 import { R_NewerGame } from '../../r_anim.js';
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from '../common/pak.js';
-import { cls, ca_dedicated } from '../../client.js';
+import { cls, ca_dedicated } from '../client/client.js';
 
 SV_SeamlessUseModels( { Mod_LoadForPreview, Mod_PointInLeaf, Mod_ForName } );
 import { SV_ClearWorld, SV_Move, SV_TestEntityPosition, SV_LinkEdict, SV_PointContents } from './world.js';
@@ -92,8 +92,8 @@ import { SV_Physics, SV_SetState, SV_SetCallbacks,
 	sv_stopspeed, sv_maxspeed, sv_accelerate, sv_idealpitchscale } from './sv_phys.js';
 import { PR_ExecuteProgram, PR_SetHostError } from '../progs/pr_exec.js';
 import { SV_User_SetCallbacks, SV_SetIdealPitch } from './sv_user.js';
-import { V_CalcRoll } from '../../view.js';
-import { key_dest } from '../../keys.js';
+import { V_CalcRoll } from '../client/view.js';
+import { key_dest } from '../client/keys.js';
 
 //============================================================================
 // Module-level state

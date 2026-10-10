@@ -14,7 +14,7 @@ import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/commo
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { GL_BuildLightmaps } from '../src/gl_rsurf.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import { createField, seedFrom } from '../src/rockfield.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };

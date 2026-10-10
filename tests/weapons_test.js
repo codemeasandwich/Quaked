@@ -11,9 +11,9 @@ const { R_DrawAliasModel, GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame } = a
 const anim = await import( '../src/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
-const { cl, cls } = await import( '../src/client.js' );
+const { cl, cls } = await import( '../src/engine/client/client.js' );
 const common = await import( '../src/engine/common/common.js' );
-const { CL_ParseStartSoundPacket } = await import( '../src/cl_parse.js' );
+const { CL_ParseStartSoundPacket } = await import( '../src/engine/client/cl_parse.js' );
 const { R_SaveClassicScene } = await import( '../src/r_classicstate.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }

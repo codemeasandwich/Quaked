@@ -1,7 +1,18 @@
+/**
+ * @module engine/net/net_loop
+ *
+ * The loopback driver (WinQuake net_loop.c): a single-player game's client and server talking inside the page.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `localconnectpending`, `loop_client`, `loop_server`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place.
+ */
 // Ported from: WinQuake/net_loop.c + net_loop.h -- loopback network driver
 
-import { Con_Printf, SZ_Clear, SZ_Write } from './engine/common/common.js';
-import { Sys_Error } from './engine/common/sys.js';
+import { Con_Printf, SZ_Clear, SZ_Write } from '../common/common.js';
+import { Sys_Error } from '../common/sys.js';
 import {
 	NET_MAXMESSAGE, NET_LOOP_MAXMESSAGE,
 	net_message,
@@ -12,8 +23,8 @@ import {
 	hostcache
 } from './net.js';
 import { NET_NewQSocket, hostname } from './net_main.js';
-import { sv } from './engine/server/server.js';
-import { svs } from './engine/server/server.js';
+import { sv } from '../server/server.js';
+import { svs } from '../server/server.js';
 
 let localconnectpending = false;
 let loop_client = null;

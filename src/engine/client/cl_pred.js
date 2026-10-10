@@ -1,16 +1,30 @@
+/**
+ * @module engine/client/cl_pred
+ *
+ * Client-side prediction (QuakeWorld cl_pred.c): the player's movement replayed locally between server updates.
+ *
+ * Types: exported classes `player_state_t`, `frame_t`.
+ *
+ * State: mutable exports `cl_simonground`, `cl_prediction_active`; module-level variables `outgoing_sequence`,
+ * `incoming_sequence`, `validsequence`, `server_sequence`, `has_server_state`, `cls_latency`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Its sequence and latency are set through `CL_SetLatency`, `CL_SetValidSequence` and `CL_SetServerSequence`.
+ */
 // Ported from: QuakeWorld/client/cl_pred.c
 // Client-side prediction for smooth movement with low server tick rates
 
-import { VectorCopy } from './engine/common/mathlib.js';
-import { Q_atof } from './engine/common/common.js';
-import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
+import { VectorCopy } from '../common/mathlib.js';
+import { Q_atof } from '../common/common.js';
+import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
 import { pmove, movevars, PlayerMove, PM_HullPointContents, PM_GetOnGround, Pmove_Init,
-	player_mins, player_maxs } from './engine/server/pmove.js';
-import { CONTENTS_EMPTY } from './engine/common/bspfile.js';
+	player_mins, player_maxs } from '../server/pmove.js';
+import { CONTENTS_EMPTY } from '../common/bspfile.js';
 import { cl, cl_entities, packet_entities_t } from './client.js';
-import { STAT_HEALTH } from './engine/common/quakedef.js';
-import { realtime, sv } from './engine/server/host.js';
+import { STAT_HEALTH } from '../common/quakedef.js';
+import { realtime, sv } from '../server/host.js';
 
 // CVars
 export const cl_nopred = new cvar_t( 'cl_nopred', '0' );

@@ -1,11 +1,27 @@
+/**
+ * @module engine/client/screen
+ *
+ * Screen definitions of the software renderer (WinQuake screen.c); the GL screen is `gl_screen.js`.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: mutable exports `scr_initialized`, `scr_disabled_for_loading`, `scr_drawloading`, `scr_con_current`,
+ * `scr_conlines`, `scr_fullupdate`, `scr_centertime_start`, `scr_centertime_off`, `scr_fps`; module-level variables
+ * `scr_centerstring`, `scr_center_lines`, `scr_erase_lines`, `scr_erase_center`, `scr_copytop`, `scr_ram`, `scr_net`,
+ * `scr_turtle`, `lastfpstime`, `fpscount`, `_realVid`, `_cls` and 8 more.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Nothing in the game imports it (baseline debt D9, for [44g]); callbacks would be injected with `SCR_SetExternals`.
+ */
 // Ported from: WinQuake/screen.c, WinQuake/screen.h -- screen management (software renderer definitions)
 // Note: The GL path is in gl_screen.js. This provides shared screen state and cvars.
 
-import { Cvar_RegisterVariable } from './engine/common/cvar.js';
-import { Cmd_AddCommand } from './engine/common/cmd.js';
-import { Con_Printf } from './engine/common/console.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
-import { renderer } from './vid.js';
+import { Cvar_RegisterVariable } from '../common/cvar.js';
+import { Cmd_AddCommand } from '../common/cmd.js';
+import { Con_Printf } from '../common/console.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../../gl_draw.js';
+import { renderer } from '../../vid.js';
 
 /*
 ==============================================================================

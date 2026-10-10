@@ -40,13 +40,13 @@ import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedP
 	SV_WriteClientdataToMessage, current_skill } from './sv_main.js';
 import { sv, svs, host_client, set_host_client,
 	NUM_SPAWN_PARMS, NUM_PING_TIMES } from './server.js';
-import { cls, cl, ca_connected, ca_dedicated, MAX_DEMOS } from '../../client.js';
-import { key_game, set_key_dest } from '../../keys.js';
+import { cls, cl, ca_connected, ca_dedicated, MAX_DEMOS } from '../client/client.js';
+import { key_game, set_key_dest } from '../client/keys.js';
 import { CL_Disconnect, CL_EstablishConnection, CL_NextDemo,
-	cl_name, cl_color } from '../../cl_main.js';
-import { CL_StopPlayback } from '../../cl_demo.js';
+	cl_name, cl_color } from '../client/cl_main.js';
+import { CL_StopPlayback } from '../client/cl_demo.js';
 import { SCR_BeginLoadingPlaque } from '../../gl_screen.js';
-import { hostname } from '../../net_main.js';
+import { hostname } from '../net/net_main.js';
 import { SV_LinkEdict } from './world.js';
 import { SV_SeamlessPlacePlayer } from '../../newer/gameplay/sv_seamless.js';
 import { SV_ClientPrintf, SV_BroadcastPrintf,

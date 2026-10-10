@@ -11,7 +11,7 @@ import { DrawGLPoly, GL_BuildLightmaps, R_DrawBrushModel, R_WorldShowAll } from 
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName, Mod_ClearAll } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
 import * as cvar from '../src/engine/common/cvar.js';

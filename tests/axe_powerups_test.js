@@ -22,7 +22,7 @@ import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import { R_AxeSwingNormal } from '../src/r_axepose.js';
 import { R_NewerSkinSalt } from '../src/r_newerskins.js';
 import { IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT } from '../src/engine/common/quakedef.js';
-import { cls, ca_dedicated } from '../src/client.js';
+import { cls, ca_dedicated } from '../src/engine/client/client.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );

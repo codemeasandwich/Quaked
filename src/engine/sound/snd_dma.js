@@ -1,8 +1,23 @@
+/**
+ * @module engine/sound/snd_dma
+ *
+ * Sound (WinQuake snd_dma.c) on the Web Audio API: starting, positioning and stopping sounds, ambient sounds and
+ * volume.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `audioContext`, `masterGain`, `num_sfx`, `ambient_sfx`,
+ * `sound_started`, `snd_ambient`, `_getHostFrametime`.
+ *
+ * Errors: catches at 6 places.
+ *
+ * Engine callbacks are injected with `S_SetCallbacks`.
+ */
 // Ported from: WinQuake/snd_dma.c -- main sound system using Web Audio API
 
-import { Cvar_RegisterVariable } from './engine/common/cvar.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
-import { Con_Printf, Con_DPrintf } from './engine/common/console.js';
+import { Cvar_RegisterVariable } from '../common/cvar.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
+import { Con_Printf, Con_DPrintf } from '../common/console.js';
 import {
 	sfx_t, sfxcache_t, channel_t, dma_t,
 	channels, MAX_CHANNELS, MAX_DYNAMIC_CHANNELS, NUM_AMBIENTS,
@@ -15,11 +30,11 @@ import {
 	Sound_SetTotalChannels, Sound_SetPaintedtime, Sound_SetShm, Sound_SetInitialized
 } from './sound.js';
 import { S_LoadSound } from './snd_mem.js';
-import { cl } from './client.js';
-import { Mod_PointInLeaf } from './gl_model.js';
-import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from './s_ambientmusic.js';
-import { S_ExitMachineFalloff } from './s_exitmachine.js';
-import { R_NewerGame } from './r_anim.js';
+import { cl } from '../client/client.js';
+import { Mod_PointInLeaf } from '../../gl_model.js';
+import { S_AmbientMusicUnlock, S_AmbientMusicStop, S_AmbientMusicShutdown, S_AmbientMusicNotifyCombat } from '../../s_ambientmusic.js';
+import { S_ExitMachineFalloff } from '../../s_exitmachine.js';
+import { R_NewerGame } from '../../r_anim.js';
 
 /*
 ==============================================================================

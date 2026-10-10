@@ -12,7 +12,7 @@ import { DrawGLPoly, GL_BuildLightmaps, R_DrawBrushModel } from '../src/gl_rsurf
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import * as main from '../src/gl_rmain.js';
 import { entity_t } from '../src/render.js';
 

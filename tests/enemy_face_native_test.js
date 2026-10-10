@@ -20,10 +20,10 @@ import { Axe_ParseRecord } from '../src/newer/gameplay/axe_record.js';
 import { Face_Index } from '../src/enemy_face.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
-import { CL_ParseUpdate, CL_EntityNum } from '../src/cl_parse.js';
-import { cl, cls, cl_visedicts, cl_numvisedicts } from '../src/client.js';
-import { CL_RelinkEntities } from '../src/cl_main.js';
-import { CL_ResetPrediction, CL_GetEntityFrame, CL_SetServerSequence, CL_SetValidSequence } from '../src/cl_pred.js';
+import { CL_ParseUpdate, CL_EntityNum } from '../src/engine/client/cl_parse.js';
+import { cl, cls, cl_visedicts, cl_numvisedicts } from '../src/engine/client/client.js';
+import { CL_RelinkEntities } from '../src/engine/client/cl_main.js';
+import { CL_ResetPrediction, CL_GetEntityFrame, CL_SetServerSequence, CL_SetValidSequence } from '../src/engine/client/cl_pred.js';
 import { entity_state_t } from '../src/engine/common/quakedef.js';
 import { COM_SetNetMessage, MSG_BeginReading, MSG_WriteByte, SZ_Alloc, sizebuf_t } from '../src/engine/common/common.js';
 

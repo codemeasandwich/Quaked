@@ -1,5 +1,5 @@
 import { type QSocket, WT_QGetMessage } from "./net_webtransport_server.ts";
-import { net_message } from "../src/net.js";
+import { net_message } from "../src/engine/net/net.js";
 
 function assertEqual(
   actual: unknown,

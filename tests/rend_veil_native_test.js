@@ -19,11 +19,11 @@ import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { cl, cls, ca_connected } from '../src/client.js';
-import { NET_Init, NET_Connect, NET_CheckNewConnections, NET_Close } from '../src/net_main.js';
-import { CL_ParseUpdate, CL_EntityNum } from '../src/cl_parse.js';
-import { CL_RelinkEntities } from '../src/cl_main.js';
-import { CL_ResetPrediction, CL_GetEntityFrame, CL_SetServerSequence, CL_SetValidSequence } from '../src/cl_pred.js';
+import { cl, cls, ca_connected } from '../src/engine/client/client.js';
+import { NET_Init, NET_Connect, NET_CheckNewConnections, NET_Close } from '../src/engine/net/net_main.js';
+import { CL_ParseUpdate, CL_EntityNum } from '../src/engine/client/cl_parse.js';
+import { CL_RelinkEntities } from '../src/engine/client/cl_main.js';
+import { CL_ResetPrediction, CL_GetEntityFrame, CL_SetServerSequence, CL_SetValidSequence } from '../src/engine/client/cl_pred.js';
 import { COM_SetNetMessage, MSG_BeginReading, MSG_WriteByte, SZ_Alloc, sizebuf_t } from '../src/engine/common/common.js';
 import { entity_state_t } from '../src/engine/common/quakedef.js';
 

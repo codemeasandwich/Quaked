@@ -4,7 +4,7 @@ const surf = await import( '../src/gl_rsurf.js' ), cvar = await import( '../src/
 const probes = await import( '../src/r_waterprobe.js' );
 const mist = await import( '../src/r_mist.js' );
 const flashlight = await import( '../src/r_flashlight.js' );
-const { cl } = await import( '../src/client.js' );
+const { cl } = await import( '../src/engine/client/client.js' );
 const vars = [ post.r_bounce, post.r_water_look, post.r_mist, flashlight.r_flashlight, post.r_hdr, post.r_dynres, post.r_reflect, post.r_reflect_screen, post.r_caustics, post.r_bloom, post.r_volumetric, post.r_newbright, post.r_newcontrast, anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water ];
 for ( const v of vars ) if ( ! cvar.Cvar_FindVar( v.name ) ) cvar.Cvar_RegisterVariable( v );
 for ( const [ name, value ] of [ [ 'r_hdr', 1 ], [ 'r_dynres', 0 ], [ 'r_newer_lighting', 0 ], [ 'r_newer_normals', 1 ], [ 'r_newer_water', 1 ], [ 'r_reflect', .8 ], [ 'r_reflect_screen', 1 ], [ 'r_caustics', 0 ], [ 'r_bloom', 0 ], [ 'r_volumetric', 0 ] ] ) cvar.Cvar_SetValue( name, value );

@@ -5,10 +5,10 @@ window.addEventListener('error',event=>errors.push(event.message));
 for(const kind of ['keydown','keyup','mousedown','mouseup','pointerdown','pointerup'])panel.addEventListener(kind,event=>event.stopPropagation());
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(resolve=>setTimeout(resolve,50));
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
-const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js');
+const {cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import('../src/engine/server/server.js');
 const {PR_GetString}=await import('../src/engine/progs/progs.js'),{SV_LinkEdict}=await import('../src/engine/server/world.js');
 const run=await import('../src/r_flashlightrun.js'),rock=await import('../src/r_rockfield.js');
-const split=await import('../src/r_demosplit.js'),keys=await import('../src/keys.js');
+const split=await import('../src/r_demosplit.js'),keys=await import('../src/engine/client/keys.js');
 let witness=null;
 function hub(){split.R_DemoSplitRelease(true);keys.set_key_dest(keys.key_game);Cbuf_AddText('maxplayers 1\nr_hdr 1\nr_newer_lighting 1\nr_newer_normals 1\nr_newer_shadows 1\nr_pointshadows 1\nr_heightshadows 1\ngamma .75\ncl_showfps 1\nr_dynres 1\nmap start\n');}
 document.querySelector('#hub').onclick=hub;

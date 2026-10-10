@@ -1,7 +1,7 @@
 await import('../src/gl_rsurf.js');
 const cmd=await import('../src/engine/common/cmd.js');
-const keys=await import('../src/keys.js');
-const menu=await import('../src/menu.js');
+const keys=await import('../src/engine/client/keys.js');
+const menu=await import('../src/engine/client/menu.js');
 const draw=await import('../src/gl_draw.js');
 const {BuildSinglePlayerMenuArt}=await import('../src/menu_art.js');
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}

@@ -27,7 +27,7 @@ import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface, R_PlayerBo
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
 import { cvar_t } from './engine/common/cvar.js';
-import { cl } from './client.js';
+import { cl } from './engine/client/client.js';
 import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from './r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';

@@ -4,7 +4,7 @@ const errors=[],history=[],gpuErrors=[];window.addEventListener('error',e=>error
 const originalFetch=window.fetch.bind(window),slow=new URLSearchParams(location.search).get('slow')==='1';
 if(slow)window.fetch=async(...args)=>{if(/newer\/(textures|enemies)\/index\.json/.test(String(args[0])))await new Promise(r=>setTimeout(r,10000));return originalFetch(...args);};
 const panel=document.querySelector('section');for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(type,e=>e.stopPropagation());
-const state=await import('../src/r_demoloading.js'),screen=await import('../src/gl_screen.js'),{cl,cls}=await import('../src/client.js');
+const state=await import('../src/r_demoloading.js'),screen=await import('../src/gl_screen.js'),{cl,cls}=await import('../src/engine/client/client.js');
 const {Draw_GetOverlayCanvas}=await import('../src/gl_draw.js');
 await import('../main.js');
 document.querySelector('#newer').onclick=()=>window.Cbuf_AddText?.('menu_singleplayer\n');

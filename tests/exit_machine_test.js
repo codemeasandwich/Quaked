@@ -13,11 +13,11 @@ import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
 import { sv_gravity } from '../src/engine/server/sv_phys.js';
-import * as dma from '../src/snd_dma.js';
-import * as sound from '../src/sound.js';
+import * as dma from '../src/engine/sound/snd_dma.js';
+import * as sound from '../src/engine/sound/sound.js';
 import * as anim from '../src/r_anim.js';
-import { cl } from '../src/client.js';
-import { CL_ParseStaticSound } from '../src/cl_parse.js';
+import { cl } from '../src/engine/client/client.js';
+import { CL_ParseStaticSound } from '../src/engine/client/cl_parse.js';
 import * as common from '../src/engine/common/common.js';
 import { svc_spawnstaticsound } from '../src/engine/common/protocol.js';
 

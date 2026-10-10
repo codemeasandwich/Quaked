@@ -2,11 +2,11 @@
 // menu geometry. WebGL calls are recording endpoints: these checks do not claim
 // GPU shader/pixel proof (tests/menu_webgl_gpu_trial.html and the live capture do).
 import {readFileSync} from 'node:fs';
-import * as menu from '../src/menu.js';
+import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/gl_draw.js';
 import * as gpu from '../src/menu_webgl.js';
 import * as cmd from '../src/engine/common/cmd.js';
-import * as keys from '../src/keys.js';
+import * as keys from '../src/engine/client/keys.js';
 import * as pak from '../src/engine/common/pak.js';
 import {W_LoadWadFile} from '../src/engine/common/wad.js';
 const check=(value,label)=>{if(!value)throw Error(label);};

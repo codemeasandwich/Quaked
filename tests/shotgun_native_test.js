@@ -15,12 +15,12 @@ import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/
 import * as cmd from '../src/engine/common/cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {Host_InitCommands} from '../src/engine/server/host_cmd.js';
-import {CL_Init,CL_Disconnect_f} from '../src/cl_main.js';
-import {cls,cl,ca_disconnected} from '../src/client.js';
-import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/net_main.js';
+import {CL_Init,CL_Disconnect_f} from '../src/engine/client/cl_main.js';
+import {cls,cl,ca_disconnected} from '../src/engine/client/client.js';
+import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/gl_rmain.js';
-import {V_Init} from '../src/view.js';
+import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);

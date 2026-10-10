@@ -5,12 +5,12 @@ for ( const name of [ 'pointerdown', 'mousedown', 'mouseup', 'keydown', 'keyup' 
 await import( '../main.js' );
 while ( ! window.renderer || ! window.Cbuf_AddText ) await new Promise( resolve => setTimeout( resolve, 20 ) );
 const perf = await import( '../src/r_perf.js' ), anim = await import( '../src/r_anim.js' ), split = await import( '../src/r_demosplit.js' );
-const cvar = await import( '../src/engine/common/cvar.js' ), menu = await import( '../src/menu.js' ), draw = await import( '../src/gl_draw.js' ), keys = await import( '../src/keys.js' );
+const cvar = await import( '../src/engine/common/cvar.js' ), menu = await import( '../src/engine/client/menu.js' ), draw = await import( '../src/gl_draw.js' ), keys = await import( '../src/engine/client/keys.js' );
 const { Cbuf_AddText, Cmd_ExecuteString, Cmd_AddCommand } = await import( '../src/engine/common/cmd.js' );
 // Read the mutable frame counter through its live module namespace.
 const hostRuntime = await import( '../src/engine/server/host.js' );
 const { Host_Error } = hostRuntime;
-const { cls } = await import( '../src/client.js' );
+const { cls } = await import( '../src/engine/client/client.js' );
 const renderer = window.renderer, originalRender = renderer.render;
 const evidence = { idleEnhanced: 0, idleClassic: 0, runs: [], failures: [] };
 let current = null, active = false, seenFrames = new Map(), pendingStop = false;

@@ -24,7 +24,7 @@ import { R_SetupLevelViews, R_LevelViewCount, R_ClearLevelViews, LEVEL_VIEW_OFFS
 import { R_LevelPortalMatrix, R_RenderPortals, R_PortalsBeginFrame, R_ClearPortals } from '../src/gl_portal.js';
 import * as main from '../src/gl_rmain.js';
 import * as surf from '../src/gl_rsurf.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import { r_refdef, entity_t } from '../src/render.js';
 import { R_SaveClassicScene } from '../src/r_classicstate.js';
 

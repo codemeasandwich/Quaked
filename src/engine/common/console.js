@@ -20,7 +20,7 @@
 import { Cmd_AddCommand } from './cmd.js';
 import { Cvar_RegisterVariable } from './cvar.js';
 import { key_dest, set_key_dest, key_game, key_console, key_message,
-	key_lines, edit_line, key_linepos, chat_buffer } from '../../keys.js';
+	key_lines, edit_line, key_linepos, chat_buffer } from '../client/keys.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../../gl_draw.js';
 
 /*

@@ -12,7 +12,7 @@ import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion, R_RocketTra
 import * as smoke from '../src/r_smoketrail.js';
 import { r_demosplit } from '../src/r_demosplit.js';
 import * as part from '../src/r_part.js';
-import { cl as clientState } from '../src/client.js';
+import { cl as clientState } from '../src/engine/client/client.js';
 
 const SOURCE_SHA256 = '7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
@@ -263,7 +263,7 @@ Deno.test( 'every explosion family uses the Fireball in Newer Game and the nativ
 
 Deno.test( 'an exploding box (particle message with count 255) is the Fireball in Newer Game, and its sprite is hidden only while a Fireball stands in for it', async () => {
 
-	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/net.js' );
+	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/engine/net/net.js' );
 	const feed = ( count, org = [ 10, 20, 30 ] ) => {
 
 		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
@@ -302,7 +302,7 @@ Deno.test( 'an exploding box (particle message with count 255) is the Fireball i
 
 Deno.test( 'a box blast keeps its native particles for Classic and for a pool that cannot take it, and drops them when the Fireball does', async () => {
 
-	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/net.js' );
+	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/engine/net/net.js' );
 	const feed = ( count, org = [ 10, 20, 30 ] ) => {
 
 		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
@@ -625,7 +625,7 @@ Deno.test( 'title-demo split: trails get the supplied smoke for the enhanced hal
 
 Deno.test( 'the engine passes each missile\'s entity number so every trail keeps its own spacing', () => {
 
-	const text = readFileSync( new URL( '../src/cl_main.js', import.meta.url ), 'utf8' );
+	const text = readFileSync( new URL( '../src/engine/client/cl_main.js', import.meta.url ), 'utf8' );
 	check( /R_RocketTrail\( _peOldorg, ent\.origin, 0, s1\.number \)/.test( text ), 'live rocket trail call passes the entity number' );
 	check( /R_RocketTrail\( _peOldorg, ent\.origin, 1, s1\.number \)/.test( text ), 'live grenade trail call passes the entity number' );
 	check( /R_RocketTrail\( _relinkOldorg, ent\.origin, 0, i \)/.test( text ), 'demo-playback rocket trail call passes the entity number' );

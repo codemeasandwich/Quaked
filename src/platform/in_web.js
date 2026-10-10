@@ -1,3 +1,16 @@
+/**
+ * @module platform/in_web
+ *
+ * Browser input (WinQuake in_win.c): keyboard, mouse with pointer lock, and game controllers.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `codeToQuakeKey`, `mouse_x`, `mouse_y`, `old_mouse_x`,
+ * `old_mouse_y`, `mx_accum`, `my_accum`, `mouseinitialized`, `mouseactive`, `pointerLocked`, `targetElement`,
+ * `isMobile` and 5 more.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Ported from: WinQuake/in_win.c, WinQuake/input.h -- browser input system
 // Adapted for web: uses Pointer Lock API for mouse, DOM keyboard events
 
@@ -11,24 +24,24 @@ import {
 	K_MWHEELUP, K_MWHEELDOWN,
 	Key_Event,
 	key_game, key_menu, key_dest
-} from './keys.js';
-import { Cvar_RegisterVariable } from './engine/common/cvar.js';
-import { Cmd_AddCommand } from './engine/common/cmd.js';
-import { Con_Printf } from './engine/common/console.js';
-import { cl, cls, ca_connected } from './client.js';
-import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from './cl_main.js';
-import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from './cl_input.js';
-import { R_NewerGame } from './r_anim.js';
-import { V_StopPitchDrift } from './view.js';
-import { host_frametime } from './engine/server/host.js';
-import { PITCH, YAW } from './engine/common/quakedef.js';
+} from '../engine/client/keys.js';
+import { Cvar_RegisterVariable } from '../engine/common/cvar.js';
+import { Cmd_AddCommand } from '../engine/common/cmd.js';
+import { Con_Printf } from '../engine/common/console.js';
+import { cl, cls, ca_connected } from '../engine/client/client.js';
+import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from '../engine/client/cl_main.js';
+import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from '../engine/client/cl_input.js';
+import { R_NewerGame } from '../r_anim.js';
+import { V_StopPitchDrift } from '../engine/client/view.js';
+import { host_frametime } from '../engine/server/host.js';
+import { PITCH, YAW } from '../engine/common/quakedef.js';
 import {
 	Touch_IsMobile, Touch_Init, Touch_Enable, Touch_Disable, Touch_IsEnabled,
 	Touch_GetMoveInput, Touch_GetLookDelta, Touch_GetStick, touch_turn, touch_aim, touch_strafe, Touch_StrafeHeld, Touch_UpdateFov,
 	Touch_ShowMenu, Touch_HideMenu, Touch_SetMenuCallback, Touch_RequestFullscreen
 } from './touch.js';
-import { M_TouchInput } from './menu.js';
-import { S_UnlockAudio } from './snd_dma.js';
+import { M_TouchInput } from '../engine/client/menu.js';
+import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
 import { isXRActive, XR_PollInput, xrInput } from './webxr.js';
 
 /*
@@ -51,7 +64,7 @@ let codeToQuakeKey = {}; // built in IN_Init to avoid circular dep in Deno
 */
 
 // Mouse state (replaces DirectInput mouse in in_win.c)
-import { R_BestiaryInputLocked } from './r_bestiary.js';
+import { R_BestiaryInputLocked } from '../r_bestiary.js';
 let mouse_x = 0;
 let mouse_y = 0;
 let old_mouse_x = 0;

@@ -6,7 +6,7 @@ const gl_rmisc = await import( '../src/gl_rmisc.js' );
 const gl_rsurf = await import( '../src/gl_rsurf.js' );
 const {
 	cl, cl_static_entities, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts
-} = await import( '../src/client.js' );
+} = await import( '../src/engine/client/client.js' );
 const { SPR_SINGLE } = await import( '../src/gl_model.js' );
 
 function assertEqual( actual, expected, message ) {

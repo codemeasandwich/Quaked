@@ -1,26 +1,38 @@
-import { SV_RespawnInventoryStats } from './newer/gameplay/sv_respawn.js';
-import { SV_RendVeilClientRecord } from './newer/gameplay/sv_rendveil.js';
+/**
+ * @module engine/client/cl_parse
+ *
+ * Reading the server's messages (WinQuake cl_parse.c): server info, entity updates, sounds, stats, temporary entities
+ * and Newer Game's extensions.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: mutable exports `cl_playerindex`; module-level variables `_keepalive_lastmsg`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 4 places; calls `Host_Error` at 11 places.
+ */
+import { SV_RespawnInventoryStats } from '../../newer/gameplay/sv_respawn.js';
+import { SV_RendVeilClientRecord } from '../../newer/gameplay/sv_rendveil.js';
 // Ported from: WinQuake/cl_parse.c -- parse a message received from the server
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
 	MAX_CL_STATS, MAX_SCOREBOARD,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,
 	STAT_WEAPONFRAME, STAT_SHELLS, STAT_ACTIVEWEAPON, STAT_MONSTERS,
-	STAT_SECRETS, entity_state_t } from './engine/common/quakedef.js';
+	STAT_SECRETS, entity_state_t } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_BeginReading, MSG_ReadByte, MSG_ReadChar, MSG_ReadShort, MSG_ReadLong,
 	MSG_ReadFloat, MSG_ReadString, MSG_ReadCoord, MSG_ReadAngle,
 	MSG_ReadAngle16,
 	MSG_WriteByte,
 	msg_readcount, msg_badread,
-	net_message, standard_quake } from './engine/common/common.js';
-import { Sys_Error, Sys_FloatTime } from './engine/common/sys.js';
-import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from './engine/common/pak.js';
-import { sv, svs } from './engine/server/server.js';
-import { Cbuf_AddText } from './engine/common/cmd.js';
-import { Cmd_ExecuteString } from './engine/common/cmd.js';
-import { src_command } from './engine/common/cmd.js';
-import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from './r_facegame.js';
+	net_message, standard_quake } from '../common/common.js';
+import { Sys_Error, Sys_FloatTime } from '../common/sys.js';
+import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from '../common/pak.js';
+import { sv, svs } from '../server/server.js';
+import { Cbuf_AddText } from '../common/cmd.js';
+import { Cmd_ExecuteString } from '../common/cmd.js';
+import { src_command } from '../common/cmd.js';
+import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from '../../r_facegame.js';
 import {
 	PROTOCOL_VERSION,
 	svc_bad, svc_nop, svc_disconnect, svc_updatestat, svc_version,
@@ -51,36 +63,36 @@ import {
 	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
 	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS, PE_SOLID,
 	MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP, PE_UPDATE_MASK
-} from './engine/common/protocol.js';
+} from '../common/protocol.js';
 import {
 	SIGNONS, MAX_STATIC_ENTITIES, MAX_DLIGHTS,
 	ca_connected,
 	cl, cls, cl_entities, cl_static_entities, cl_lightstyle,
 	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
-import { VectorCopy } from './engine/common/mathlib.js';
-import { R_NewerGame } from './r_anim.js';
-import { R_FlashlightRunMap } from './r_flashlightrun.js';
+import { VectorCopy } from '../common/mathlib.js';
+import { R_NewerGame } from '../../r_anim.js';
+import { R_FlashlightRunMap } from '../../r_flashlightrun.js';
 import { V_ParseDamage } from './view.js';
-import { Mod_ForName } from './gl_model.js';
+import { Mod_ForName } from '../../gl_model.js';
 import { CL_SetServerState, CL_AcknowledgeCommand, CL_AcknowledgeTransportSequence,
 	CL_FindAcknowledgedSequence,
 	CL_SetValidSequence, CL_SetPlayerInfo,
 	CL_GetServerSequence, CL_SetServerSequence, CL_GetFrame, CL_GetEntityFrame,
 	CL_GetValidSequence } from './cl_pred.js';
-import { R_TranslatePlayerSkin } from './gl_rmisc.js';
+import { R_TranslatePlayerSkin } from '../../gl_rmisc.js';
 
 // QuakeWorld model precache indices (set during CL_ParseServerInfo)
 export let cl_playerindex = -1;
-import { R_NewMap } from './gl_rmisc.js';
-import { R_ParseParticleEffect, R_AddEfrags } from './render.js';
-import { Host_Error, Host_EndGame, realtime } from './engine/server/host.js';
-import { set_noclip_anglehack } from './engine/server/host_cmd.js';
+import { R_NewMap } from '../../gl_rmisc.js';
+import { R_ParseParticleEffect, R_AddEfrags } from '../../render.js';
+import { Host_Error, Host_EndGame, realtime } from '../server/host.js';
+import { set_noclip_anglehack } from '../server/host_cmd.js';
 import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
 import { CL_ParseTEnt } from './cl_tent.js';
-import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from './snd_dma.js';
-import { R_ShellShot } from './r_shells.js';
-import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from './cd_audio.js';
-import { SCR_CenterPrint } from './gl_screen.js';
+import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from '../sound/snd_dma.js';
+import { R_ShellShot } from '../../r_shells.js';
+import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from '../sound/cd_audio.js';
+import { SCR_CenterPrint } from '../../gl_screen.js';
 
 export const svc_strings = [
 	'svc_bad',

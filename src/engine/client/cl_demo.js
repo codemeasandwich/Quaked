@@ -1,22 +1,33 @@
+/**
+ * @module engine/client/cl_demo
+ *
+ * Demos (WinQuake cl_demo.c): recording and playing back the server messages of a game.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `demo_buffer`, `demo_buffer_pos`, `demo_name`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place.
+ */
 // Ported from: WinQuake/cl_demo.c -- demo recording and playback
 
-import { R_DemoSplitStart, R_DemoSplitEnd } from './r_demosplit.js';
-import { R_DemoLoadingAttract, R_DemoLoadingFreeze, R_DemoLoadingCancel } from './r_demoloading.js';
-import { R_PerfProfiling } from './r_perf.js';
-import { MAX_MSGLEN } from './engine/common/quakedef.js';
+import { R_DemoSplitStart, R_DemoSplitEnd } from '../../r_demosplit.js';
+import { R_DemoLoadingAttract, R_DemoLoadingFreeze, R_DemoLoadingCancel } from '../../r_demoloading.js';
+import { R_PerfProfiling } from '../../r_perf.js';
+import { MAX_MSGLEN } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString,
 	LittleLong, LittleFloat,
-	net_message, COM_DefaultExtension } from './engine/common/common.js';
-import { Sys_Error } from './engine/common/sys.js';
-import { Cmd_Argc, Cmd_Argv, Cmd_ExecuteString, cmd_source, src_command } from './engine/common/cmd.js';
-import { svc_nop, svc_disconnect } from './engine/common/protocol.js';
-import { VectorCopy } from './engine/common/mathlib.js';
+	net_message, COM_DefaultExtension } from '../common/common.js';
+import { Sys_Error } from '../common/sys.js';
+import { Cmd_Argc, Cmd_Argv, Cmd_ExecuteString, cmd_source, src_command } from '../common/cmd.js';
+import { svc_nop, svc_disconnect } from '../common/protocol.js';
+import { VectorCopy } from '../common/mathlib.js';
 import { SIGNONS, cl, cls, ca_disconnected, ca_connected } from './client.js';
 import { CL_Disconnect } from './cl_main.js';
-import { host_framecount, realtime } from './engine/server/host.js';
-import { NET_GetMessage } from './net_main.js';
-import { COM_FindFile } from './engine/common/pak.js';
+import { host_framecount, realtime } from '../server/host.js';
+import { NET_GetMessage } from '../net/net_main.js';
+import { COM_FindFile } from '../common/pak.js';
 
 /*
 ==============================================================================

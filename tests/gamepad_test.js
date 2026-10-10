@@ -3,7 +3,7 @@
 // controller releases only the controller's own keys; the controller playing stays while connected, a standard one is
 // preferred; triggers at half travel; sticks with deadzones move and look in the game only; X changes weapon.
 await import( '../src/gl_rsurf.js' );
-const input = await import( '../src/in_web.js' ), keys = await import( '../src/keys.js' );
+const input = await import( '../src/platform/in_web.js' ), keys = await import( '../src/engine/client/keys.js' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
 let pads = [];
@@ -62,7 +62,7 @@ Deno.test( 'sticks: deadzones, then movement and look in the game; nothing in a 
 // review of [36]: through the real Key_Event and bindings, a key the keyboard and the controller both hold stays down
 // until both let go; the buttons are read every host frame (IN_Commands), with no level running
 Deno.test( 'keyboard and controller on the same key: neither cuts the other (real Key_Event, bindings and buttons)', async () => {
-	const cmd = await import( '../src/engine/common/cmd.js' ), cli = await import( '../src/cl_input.js' );
+	const cmd = await import( '../src/engine/common/cmd.js' ), cli = await import( '../src/engine/client/cl_input.js' );
 	cmd.Cbuf_Init(); if ( ! cmd.Cmd_Exists( '+jump' ) ) cli.CL_InitInput();
 	reset(); keys.Key_ClearStates(); keys.Key_SetBinding( K_SPACE, '+jump' ); keys.Key_SetBinding( keys.K_CTRL, '+attack' );
 	const run = () => cmd.Cbuf_Execute(), held = b => ( b.state & 1 ) !== 0;
@@ -91,7 +91,7 @@ Deno.test( 'the buttons are read every host frame, with no level running; WebXR 
 } );
 
 Deno.test( 'look: right stick turns and tilts the view by the look settings; no sticks in a demo; the layout note once; a new id at the same index is a new controller', async () => {
-	const host = await import( '../src/engine/server/host.js' ), client = await import( '../src/client.js' ), vars = await import( '../src/engine/common/cvar.js' ), cli = await import( '../src/cl_input.js' );
+	const host = await import( '../src/engine/server/host.js' ), client = await import( '../src/engine/client/client.js' ), vars = await import( '../src/engine/common/cvar.js' ), cli = await import( '../src/engine/client/cl_input.js' );
 	for ( const c of [ cli.cl_yawspeed, cli.cl_pitchspeed, cli.cl_forwardspeed, cli.cl_sidespeed ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );
 	reset(); const p = pad( 0 ); pads = [ p ]; host.set_host_frametime( .1 );
 	const cmd = () => ( { forwardmove: 0, sidemove: 0, upmove: 0 } );

@@ -5,11 +5,11 @@ for ( const type of [ 'mousedown', 'mouseup', 'keydown', 'keyup', 'pointerdown',
 await import( '../main.js' );
 while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 20 ) );
 const { Cbuf_AddText } = await import( '../src/engine/common/cmd.js' );
-const { cl, cls } = await import( '../src/client.js' ), { sv } = await import( '../src/engine/server/server.js' );
+const { cl, cls } = await import( '../src/engine/client/client.js' ), { sv } = await import( '../src/engine/server/server.js' );
 const { R_ShellsStatus, R_ShellsSnapshot } = await import( '../src/r_shells.js' );
 const { R_WeaponStatus } = await import( '../src/r_weapons.js' );
 const { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/engine/common/cvar.js' );
-const keys = await import( '../src/keys.js' ), split = await import( '../src/r_demosplit.js' );
+const keys = await import( '../src/engine/client/keys.js' ), split = await import( '../src/r_demosplit.js' );
 const comparison = new URLSearchParams( window.location.search ).get( 'weapons' );
 const nailComparison = comparison === 'nail-profile', shotgunComparison = comparison === 'shotgun-profile';
 const cleanComparison = nailComparison || shotgunComparison;

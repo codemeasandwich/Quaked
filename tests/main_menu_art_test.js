@@ -3,9 +3,9 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as draw from '../src/gl_draw.js';
-import * as menu from '../src/menu.js';
+import * as menu from '../src/engine/client/menu.js';
 import * as cmd from '../src/engine/common/cmd.js';
-import * as keys from '../src/keys.js';
+import * as keys from '../src/engine/client/keys.js';
 const canvasAPI=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js');
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bytes=readFileSync(new URL('../newer/ui/mainmenu-bestiarium.png',import.meta.url)),image=await canvasAPI.loadImage(bytes);let sheet;
 Deno.test('supplied seven-row main menu remains byte-identical and uses the existing native-pitch PNG loader',async()=>{

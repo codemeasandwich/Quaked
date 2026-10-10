@@ -3,7 +3,7 @@ await import( '../src/gl_rsurf.js' );
 
 const gl_rmisc = await import( '../src/gl_rmisc.js' );
 const { mod_alias, mod_sprite } = await import( '../src/gl_rmain.js' );
-const { cl, cl_entities } = await import( '../src/client.js' );
+const { cl, cl_entities } = await import( '../src/engine/client/client.js' );
 
 function assertEqual( actual, expected, message ) {
 

@@ -1,7 +1,18 @@
+/**
+ * @module engine/net/net_webtransport
+ *
+ * The WebTransport client driver: multiplayer connections to a dedicated room server.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `wt_initialized`; 3 module-level collections (Map/Set).
+ *
+ * Errors: throws at 19 places; catches at 23 places.
+ */
 // WebTransport network driver for multiplayer support
 // New module for browser-based WebTransport client connections
 
-import { Con_Printf, Con_DPrintf, SZ_Clear, SZ_Write } from './engine/common/common.js';
+import { Con_Printf, Con_DPrintf, SZ_Clear, SZ_Write } from '../common/common.js';
 import { NET_NewQSocket, NET_FreeQSocket } from './net_main.js';
 import {
 	NET_MAXMESSAGE,
@@ -10,8 +21,8 @@ import {
 	hostCacheCount, set_hostCacheCount,
 	hostcache
 } from './net.js';
-import { M_ConnectionError, M_Menu_Main_f } from './menu.js';
-import { set_key_dest, key_menu } from './keys.js';
+import { M_ConnectionError, M_Menu_Main_f } from '../client/menu.js';
+import { set_key_dest, key_menu } from '../client/keys.js';
 
 // WebTransport connection state
 let wt_initialized = false;

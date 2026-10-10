@@ -6,7 +6,7 @@ import { GL_BuildLightmaps } from '../src/gl_rsurf.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const near = ( a, b, label, epsilon = .003 ) => check( Math.abs( a - b ) <= epsilon, `${label}: ${a} != ${b}` );

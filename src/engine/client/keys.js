@@ -1,14 +1,29 @@
+/**
+ * @module engine/client/keys
+ *
+ * Keys (WinQuake keys.c): key numbers, bindings, the console's line editing, and which device holds a key down.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: mutable exports `key_linepos`, `shift_down`, `key_lastpress`, `edit_line`, `history_line`, `key_dest`,
+ * `key_count`, `chat_buffer`, `team_message`; module-level variables `_cls`, `_realVid`; 1 module-level collection
+ * (Map/Set).
+ *
+ * Errors: calls `Sys_Error` (fatal) at 2 places.
+ *
+ * Drawing and command callbacks are injected with `Key_SetExternals`.
+ */
 // Ported from: WinQuake/keys.c, WinQuake/keys.h -- keyboard input handling
 
-import { Cbuf_AddText } from './engine/common/cmd.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_CompleteCommand } from './engine/common/cmd.js';
-import { Cvar_CompleteVariable } from './engine/common/cvar.js';
-import { Con_Printf, con_forcedup, con_backscroll, Con_SetBackscroll, con_totallines } from './engine/common/console.js';
+import { Cbuf_AddText } from '../common/cmd.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_CompleteCommand } from '../common/cmd.js';
+import { Cvar_CompleteVariable } from '../common/cvar.js';
+import { Con_Printf, con_forcedup, con_backscroll, Con_SetBackscroll, con_totallines } from '../common/console.js';
 import { M_Keydown, M_ToggleMenu_f } from './menu.js';
-import { SCR_UpdateScreen } from './gl_screen.js';
-import { Sys_Error } from './engine/common/sys.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
-import { R_BestiaryKey } from './r_bestiary.js';
+import { SCR_UpdateScreen } from '../../gl_screen.js';
+import { Sys_Error } from '../common/sys.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../../gl_draw.js';
+import { R_BestiaryKey } from '../../r_bestiary.js';
 
 /*
 ==============================================================================

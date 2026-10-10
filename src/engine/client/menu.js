@@ -1,16 +1,32 @@
+/**
+ * @module engine/client/menu
+ *
+ * The native menu (WinQuake menu.c) and the Newer Game options: main, single player, multiplayer rooms, options,
+ * features, cheats, saves.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: mutable exports `m_state`, `m_entersound`; module-level variables `m_recursiveDraw`, `m_return_state`,
+ * `m_return_onerror`, `m_return_reason`, `m_save_demonum`, `lanConfig_cursor`, `lanConfig_joinname`, `slist_rooms`,
+ * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 51 more; browser storage.
+ *
+ * Errors: throws at 1 place; catches at 4 places.
+ *
+ * Engine callbacks are injected with `M_SetExternals`.
+ */
 // Ported from: WinQuake/menu.c, WinQuake/menu.h -- menu system
 
-import { NEWER_ENABLED_FEATURES } from './newer_defaults.js';
+import { NEWER_ENABLED_FEATURES } from '../../newer_defaults.js';
 import { MainMenu_Begin, MainMenu_End, MainMenu_Glyph, MainMenu_Image, MainMenu_Panel, MainMenu_TextBox,
-	MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text } from './menu_webgl.js';
-import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from './r_bestiary_book.js';
-import { R_FlashlightToggle } from './r_flashlight.js';
-import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from './r_demoloading.js';
-import { Draw_StudioLogo } from './studio_logo.js';
-import { R_DemoSplitActive, R_DemoSplitRelease } from './r_demosplit.js';
-import { Cbuf_AddText } from './engine/common/cmd.js';
-import { Cmd_AddCommand } from './engine/common/cmd.js';
-import { Con_Printf, Con_ToggleConsole_f } from './engine/common/console.js';
+	MainMenu_SetInGame, MainMenu_SetVisible, MainMenu_Skinned, MainMenu_Slider, MainMenu_Text } from '../../menu_webgl.js';
+import { R_BestiaryBookOpen, R_BestiaryBookDraw, R_BestiaryBookKey, R_BestiaryBookTouch, R_BestiaryBookCorner } from '../../r_bestiary_book.js';
+import { R_FlashlightToggle } from '../../r_flashlight.js';
+import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from '../../r_demoloading.js';
+import { Draw_StudioLogo } from '../../studio_logo.js';
+import { R_DemoSplitActive, R_DemoSplitRelease } from '../../r_demosplit.js';
+import { Cbuf_AddText } from '../common/cmd.js';
+import { Cmd_AddCommand } from '../common/cmd.js';
+import { Con_Printf, Con_ToggleConsole_f } from '../common/console.js';
 import {
 	K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW,
 	K_BACKSPACE, K_DEL,
@@ -19,16 +35,16 @@ import {
 } from './keys.js';
 import { cl_forwardspeed, cl_backspeed } from './cl_input.js';
 import { sensitivity, m_pitch, lookspring, lookstrafe, cl_color } from './cl_main.js';
-import { volume, bgmvolume } from './sound.js';
-import { Cvar_SetValue, Cvar_VariableValue } from './engine/common/cvar.js';
-import { scr_viewsize, scr_con_current } from './gl_screen.js';
+import { volume, bgmvolume } from '../sound/sound.js';
+import { Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
+import { scr_viewsize, scr_con_current } from '../../gl_screen.js';
 import { v_gamma } from './view.js';
-import { gl_texturemode, GL_UpdateTextureFiltering } from './glquake.js';
-import { skill, coop, teamplay, deathmatch, svs } from './engine/server/server.js';
-import { Touch_ExitFullscreen } from './touch.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from './gl_draw.js';
-import { SAVEGAME_COMMENT_LENGTH } from './engine/common/quakedef.js';
-import { COM_FindFile } from './engine/common/pak.js';
+import { gl_texturemode, GL_UpdateTextureFiltering } from '../../glquake.js';
+import { skill, coop, teamplay, deathmatch, svs } from '../server/server.js';
+import { Touch_ExitFullscreen } from '../../platform/touch.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from '../../gl_draw.js';
+import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
+import { COM_FindFile } from '../common/pak.js';
 
 /*
 ==============================================================================

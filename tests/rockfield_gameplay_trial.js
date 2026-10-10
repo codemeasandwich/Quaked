@@ -7,7 +7,7 @@ for ( const type of [ 'mousedown', 'mouseup', 'keydown', 'keyup', 'pointerdown',
 await import( '../main.js' );
 while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 50 ) );
 const { Cbuf_AddText } = await import( '../src/engine/common/cmd.js' ), { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/engine/common/cvar.js' );
-const { cl, cls } = await import( '../src/client.js' ), { sv, svs } = await import( '../src/engine/server/server.js' );
+const { cl, cls } = await import( '../src/engine/client/client.js' ), { sv, svs } = await import( '../src/engine/server/server.js' );
 const post = await import( '../src/gl_post.js' );
 const { R_HeightShadowDecode } = await import( '../src/r_heightshadows.js' );
 const THREE = await import( 'three' );
@@ -16,7 +16,7 @@ const { SV_HullPointContents } = await import( '../src/engine/server/world.js' )
 const { R_DemonReliefStatus } = await import( '../src/gl_rsurf.js' );
 const { Mod_PointInLeaf } = await import( '../src/gl_model.js' );
 const drops = await import( '../src/r_screendrops.js' );
-const keys = await import( '../src/keys.js' ), split = await import( '../src/r_demosplit.js' ), rock = await import( '../src/r_rockfield.js' );
+const keys = await import( '../src/engine/client/keys.js' ), split = await import( '../src/r_demosplit.js' ), rock = await import( '../src/r_rockfield.js' );
 let generation = 0, setupCount = 0, inspectionMovement = null;
 // Trial-only A/B switch uses the production shader's uniform holder.
 const { rockBandWarpOn } = await import('../src/r_rockshader.js');

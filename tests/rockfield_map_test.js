@@ -5,7 +5,7 @@ import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { GL_BuildLightmaps } from '../src/gl_rsurf.js';
 import { SV_HullPointContents } from '../src/engine/server/world.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import { R_RockSurfaceCharts } from '../src/r_rocksurfaces.js';
 import { R_RockfieldStatus } from '../src/r_rockfield.js';
 Deno.test( 'shipped E1M1 assigns continuous natural rock and terrain charts without changing BSP polygons or texture scale', () => {

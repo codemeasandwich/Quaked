@@ -3,9 +3,9 @@ await import( '../src/gl_rsurf.js' );
 
 const common = await import( '../src/engine/common/common.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
-const demo = await import( '../src/cl_demo.js' );
-const net = await import( '../src/net.js' );
-const { cl, cls, ca_disconnected } = await import( '../src/client.js' );
+const demo = await import( '../src/engine/client/cl_demo.js' );
+const net = await import( '../src/engine/net/net.js' );
+const { cl, cls, ca_disconnected } = await import( '../src/engine/client/client.js' );
 const { svc_nop, svc_disconnect } = await import( '../src/engine/common/protocol.js' );
 
 function assertEqual( actual, expected, message ) {

@@ -1,7 +1,22 @@
+/**
+ * @module engine/net/net
+ *
+ * The networking interface (WinQuake net.h): constants and the socket structure shared by the drivers.
+ *
+ * Types: exported classes `qsocket_t`, `net_landriver_t`, `net_driver_t`, `hostcache_t`, `PollProcedure`.
+ *
+ * State: mutable exports `net_activeSockets`, `net_freeSockets`, `net_numsockets`, `net_numdrivers`,
+ * `net_numlandrivers`, `DEFAULTnet_hostport`, `net_hostport`, `net_driverlevel`, `serialAvailable`, `ipxAvailable`,
+ * `tcpipAvailable`, `my_ipx_address`, `my_tcpip_address`, `net_time`, `net_activeconnections`, `messagesSent`,
+ * `messagesReceived`, `unreliableMessagesSent`, `unreliableMessagesReceived`, `hostCacheCount`, `slistInProgress`,
+ * `slistSilent`, `slistLocal`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Ported from: WinQuake/net.h -- quake's interface to the networking layer
 
-import { MAX_DATAGRAM } from './engine/common/quakedef.js';
-import { sizebuf_t } from './engine/common/common.js';
+import { MAX_DATAGRAM } from '../common/quakedef.js';
+import { sizebuf_t } from '../common/common.js';
 
 //============================================================================
 // Network constants

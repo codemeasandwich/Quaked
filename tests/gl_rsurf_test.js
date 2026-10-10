@@ -2,7 +2,7 @@
 const gl_rsurf = await import( '../src/gl_rsurf.js' );
 
 const gl_rmain = await import( '../src/gl_rmain.js' );
-const { cl } = await import( '../src/client.js' );
+const { cl } = await import( '../src/engine/client/client.js' );
 
 function assertEqual( actual, expected, message ) {
 

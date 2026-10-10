@@ -4,7 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 await import( '../src/gl_rsurf.js' );
-const sbar = await import( '../src/sbar.js' ), draw = await import( '../src/gl_draw.js' );
+const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/gl_draw.js' );
 const layer = await import('../src/r_playerface.js');
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
 const hud = await import( '../src/r_newerhud.js' ), anim = await import( '../src/r_anim.js' );

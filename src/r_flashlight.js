@@ -7,7 +7,7 @@
 import { cvar_t, Cvar_SetValue, Cvar_VariableValue } from './engine/common/cvar.js';
 import { Cmd_AddCommand } from './engine/common/cmd.js';
 import { R_NewerLightingActive, R_NewerGame } from './r_anim.js';
-import { cls, ca_connected } from './client.js';
+import { cls, ca_connected } from './engine/client/client.js';
 import { R_FlashlightRunManualChange, R_FlashlightRunObserve } from './r_flashlightrun.js';
 
 export const r_flashlight = new cvar_t( 'r_flashlight', '0' );

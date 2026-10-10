@@ -14,7 +14,7 @@ import { d_lightstylevalue, r_viewleaf, r_norefresh, r_lightmap,
 	envmap } from './glquake.js';
 import { mod_alias, r_worldentity, R_Init as R_Init_rmain, R_NewMap as R_NewMap_rmain } from './gl_rmain.js';
 import { set_skytexturenum as set_skytexturenum_rsurf } from './gl_rsurf.js';
-import { cl, cl_entities } from './client.js';
+import { cl, cl_entities } from './engine/client/client.js';
 import { d_8to24table } from './vid.js';
 
 // External function stubs (set by engine)

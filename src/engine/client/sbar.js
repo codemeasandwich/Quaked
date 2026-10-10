@@ -1,12 +1,27 @@
-import { R_NewerGame, r_newer_hud } from './r_anim.js';
-import { R_PlayerFaceFrame } from './r_facegame.js';
-import { R_PlayerFacePreload, R_PlayerFaceCompose } from './r_playerface.js';
+/**
+ * @module engine/client/sbar
+ *
+ * The status bar (WinQuake sbar.c): ammunition, armour, health, items, the face and the scoreboard.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: mutable exports `sb_lines`; module-level variables `sb_updates`, `sb_colon`, `sb_slash`, `sb_ibar`,
+ * `sb_sbar`, `sb_scorebar`, `sb_face_invis`, `sb_face_quad`, `sb_face_quad_invuln`, `sb_face_invuln`,
+ * `sb_face_invis_invuln`, `layeredFaceKey` and 17 more.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Engine callbacks are injected with `Sbar_SetExternals`.
+ */
+import { R_NewerGame, r_newer_hud } from '../../r_anim.js';
+import { R_PlayerFaceFrame } from '../../r_facegame.js';
+import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../../r_playerface.js';
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
 
-import { Cmd_AddCommand } from './engine/common/cmd.js';
-import { realtime } from './engine/server/host.js';
-import { Con_Printf } from './engine/common/console.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
+import { Cmd_AddCommand } from '../common/cmd.js';
+import { realtime } from '../server/host.js';
+import { Con_Printf } from '../common/console.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../../gl_draw.js';
 import {
 	IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN,
 	IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING, IT_SUPER_LIGHTNING,
@@ -27,7 +42,7 @@ import {
 	RIT_ARMOR1, RIT_ARMOR2, RIT_ARMOR3,
 	RIT_LAVA_NAILS, RIT_PLASMA_AMMO, RIT_MULTI_ROCKETS,
 	RIT_SHIELD, RIT_ANTIGRAV, RIT_SUPERHEALTH,
-} from './engine/common/quakedef.js';
+} from '../common/quakedef.js';
 
 /*
 ==============================================================================

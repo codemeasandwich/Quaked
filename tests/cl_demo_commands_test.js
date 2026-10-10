@@ -2,7 +2,7 @@
 await import( '../src/gl_rsurf.js' );
 
 const cmd = await import( '../src/engine/common/cmd.js' );
-const { CL_Init } = await import( '../src/cl_main.js' );
+const { CL_Init } = await import( '../src/engine/client/cl_main.js' );
 
 function assertEqual( actual, expected, message ) {
 

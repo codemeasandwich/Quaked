@@ -29,7 +29,7 @@ import { R_AnimEnabled, R_NewerLightingActive, R_NewerGame, R_SmoothMove, r_lerp
 import { R_NewerTexturesFrame } from './r_newertextures.js';
 import { R_PerfStage, R_PerfInit, cl_showfps } from './r_perf.js';
 import { R_WarmLevel, R_WarmFrame } from './r_prewarm.js';
-import { CL_TeleportSpots } from './cl_tent.js';
+import { CL_TeleportSpots } from './engine/client/cl_tent.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities, R_SyncLevelViews } from './r_levelview.js';
 import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from './r_weapon_surface.js';
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from './r_screendrops.js';
@@ -38,12 +38,12 @@ import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_Fireball
 import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset, R_ImpactRippleListen } from './r_impactripples.js';
 import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from './r_waves.js';
 import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear, R_LightningTakesBeam } from './r_lightning.js';
-import { CL_PlayerLightning } from './cl_tent.js';
+import { CL_PlayerLightning } from './engine/client/cl_tent.js';
 import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear, R_AliasFrameBox } from './r_wallburn.js';
 import { r_dof, R_DofSetup, R_DofFrame, R_DofClear } from './r_dof.js';
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from './r_shotgun.js';
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from './r_torchfire.js';
-import { CL_AllocDlight } from './cl_main.js';
+import { CL_AllocDlight } from './engine/client/cl_main.js';
 import { R_ClassicTexture } from './r_newertextures.js';
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from './r_anim.js';
 import { R_SaveClassicScene, R_ClassicMaterial } from './r_classicstate.js';
@@ -70,17 +70,17 @@ import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_mod
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
 import { r_avertexnormal_dots } from './engine/common/anorm_dots.js';
-import { V_SetContentsColor as V_SetContentsColor_view, V_CalcBlend as V_CalcBlend_view } from './view.js';
-import { chase_active } from './chase.js';
+import { V_SetContentsColor as V_SetContentsColor_view, V_CalcBlend as V_CalcBlend_view } from './engine/client/view.js';
+import { chase_active } from './engine/client/chase.js';
 import {
 	R_InitParticles, R_SetParticleExternals, R_ClearParticles,
 	R_DrawParticles as R_DrawParticles_impl
 } from './r_part.js';
-import { isXRActive, getXRRig, XR_SetCamera, XR_SCALE, XR_GetControllerWorldPose } from './webxr.js';
+import { isXRActive, getXRRig, XR_SetCamera, XR_SCALE, XR_GetControllerWorldPose } from './platform/webxr.js';
 import {
 	cl, cls, ca_connected, cl_visedicts, cl_numvisedicts, cl_dlights, cl_entities,
 	cl_static_entities, cl_temp_entities, cl_lightstyle
-} from './client.js';
+} from './engine/client/client.js';
 import { d_lightstylevalue, r_framecount, set_r_framecount, inc_r_framecount,
 	v_blend, v_liquid_blend, mirrortexturenum, set_mirrortexturenum,
 	r_norefresh, r_drawentities, r_drawviewmodel, r_speeds,

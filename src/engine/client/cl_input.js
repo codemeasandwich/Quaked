@@ -1,23 +1,35 @@
+/**
+ * @module engine/client/cl_input
+ *
+ * The player's move (WinQuake cl_input.c): buttons and axes turned into the movement command sent to the server,
+ * including WebXR aim.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `in_impulse`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Ported from: WinQuake/cl_input.c -- builds an intended movement command to send to the server
 
-import { PITCH, YAW, ROLL } from './engine/common/quakedef.js';
+import { PITCH, YAW, ROLL } from '../common/quakedef.js';
 import { Con_Printf, Q_atoi, SZ_Clear,
 	MSG_WriteByte, MSG_WriteFloat, MSG_WriteShort, MSG_WriteAngle,
-	net_message } from './engine/common/common.js';
-import { Cmd_AddCommand, Cmd_Argv } from './engine/common/cmd.js';
-import { R_BestiaryInputLocked } from './r_bestiary.js';
-import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
-import { clc_move, clc_delta, PE_UPDATE_BACKUP } from './engine/common/protocol.js';
+	net_message } from '../common/common.js';
+import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
+import { R_BestiaryInputLocked } from '../../r_bestiary.js';
+import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
+import { clc_move, clc_delta, PE_UPDATE_BACKUP } from '../common/protocol.js';
 import { SIGNONS,
 	kbutton_t, usercmd_t,
 	cl, cls, cl_entities } from './client.js';
-import { anglemod, VectorCopy } from './engine/common/mathlib.js';
-import { host_frametime, realtime } from './engine/server/host.js';
+import { anglemod, VectorCopy } from '../common/mathlib.js';
+import { host_frametime, realtime } from '../server/host.js';
 import { V_StartPitchDrift, V_StopPitchDrift } from './view.js';
 import { lookspring, CL_Disconnect } from './cl_main.js';
-import { NET_SendUnreliableMessage } from './net_main.js';
+import { NET_SendUnreliableMessage } from '../net/net_main.js';
 import { CL_StoreCommand, CL_GetValidSequence, CL_GetServerSequence } from './cl_pred.js';
-import { isXRActive, XR_GetAimAngles } from './webxr.js';
+import { isXRActive, XR_GetAimAngles } from '../../platform/webxr.js';
 
 // Pre-allocated array for XR aim angles (Golden Rule #4)
 const _xrAimAngles = new Float32Array( 3 );

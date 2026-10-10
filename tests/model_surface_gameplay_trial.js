@@ -1,7 +1,7 @@
 const panel=document.querySelector('section'),errors=[];for(const t of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(t,e=>e.stopPropagation());window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
-const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/menu.js'),draw=await import('../src/gl_draw.js'),vars=await import('../src/engine/common/cvar.js');
-const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js'),{SV_Move,SV_LinkEdict,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),{Mod_PointInLeaf}=await import('../src/gl_model.js');
+const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/engine/client/menu.js'),draw=await import('../src/gl_draw.js'),vars=await import('../src/engine/common/cvar.js');
+const {cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import('../src/engine/server/server.js'),{SV_Move,SV_LinkEdict,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),{Mod_PointInLeaf}=await import('../src/gl_model.js');
 const loading=await import('../src/r_demoloading.js'),post=await import('../src/gl_post.js'),weapons=await import('../src/r_weapons.js'),surface=await import('../src/r_weapon_surface.js'),parts=await import('../src/r_part.js'),lens=await import('../src/r_screendrops.js');
 let ready=false,token=0,exitPosition=[128,1008,-199.95],held=2,measure=null;
 const touch=(x,y)=>{const w=draw.Draw_GetVirtualWidth(),h=draw.Draw_GetVirtualHeight();menu.M_TouchInput(x+(w-320)/2,y+(h-200)/2,w,h);};

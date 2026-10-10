@@ -4,18 +4,18 @@
 // it does not claim server spawning, GPU readiness or browser qualification.
 import * as vars from '../src/engine/common/cvar.js';
 import * as cmd from '../src/engine/common/cmd.js';
-import * as client from '../src/cl_main.js';
-import * as demo from '../src/cl_demo.js';
+import * as client from '../src/engine/client/cl_main.js';
+import * as demo from '../src/engine/client/cl_demo.js';
 import * as split from '../src/r_demosplit.js';
-import * as menu from '../src/menu.js';
-import * as keys from '../src/keys.js';
+import * as menu from '../src/engine/client/menu.js';
+import * as keys from '../src/engine/client/keys.js';
 import * as draw from '../src/gl_draw.js';
 import * as post from '../src/gl_post.js';
-import { cls, ca_disconnected } from '../src/client.js';
+import { cls, ca_disconnected } from '../src/engine/client/client.js';
 import { COM_AddPack } from '../src/engine/common/pak.js';
 import { NEWER_ENABLED_FEATURES } from '../src/newer_defaults.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
-import { NET_Init, NET_Shutdown } from '../src/net_main.js';
+import { NET_Init, NET_Shutdown } from '../src/engine/net/net_main.js';
 import { svs } from '../src/engine/server/server.js';
 
 const check = ( value, label ) => { if ( ! value ) throw Error( label ); };

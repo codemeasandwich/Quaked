@@ -11,7 +11,7 @@ import * as anim from '../src/r_anim.js';
 import * as main from '../src/gl_rmain.js';
 import { r_hdr } from '../src/gl_post.js';
 import * as cvar from '../src/engine/common/cvar.js';
-import { cl, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../src/client.js';
+import { cl, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../src/engine/client/client.js';
 import { entity_t } from '../src/render.js';
 import { r_avertexnormals } from '../src/engine/common/anorm_dots.js';
 

@@ -2,20 +2,20 @@
 // player, changes their view angles, or writes pause/timescale preferences.
 import * as THREE from 'three';
 import {BESTIARY_ENTRIES,BESTIARY_SPREADS,BestiaryJournal,BestiaryEncounter,Bestiary_Identify,Bestiary_FacesPlayer} from './bestiary_state.js';
-import {cl,cls,cl_entities,ca_connected} from './client.js';
+import {cl,cls,cl_entities,ca_connected} from './engine/client/client.js';
 import {sv,svs,MOVETYPE_NONE} from './engine/server/server.js';
 import {PR_GetString,pr_functions} from './engine/progs/progs.js';
 import {GetEdictFieldValue} from './engine/progs/pr_edict.js';
 import {Bestiary_ComposeFrontispiece,Bestiary_FrontispieceMask} from './bestiary_art.js';
-import {key_dest,key_game} from './keys.js';
+import {key_dest,key_game} from './engine/client/keys.js';
 import {R_NewerGame} from './r_anim.js';
 import {R_IntroLoadingHolding} from './r_demoloading.js';
 import {R_ShellTrace} from './r_shelltrace.js';
-import {isXRActive} from './webxr.js';
+import {isXRActive} from './platform/webxr.js';
 import {COM_NewerURL} from './engine/common/pak.js';
 import { R_FolioPrepare } from './r_folio.js';
-import {CL_SuspendGameButtons} from './cl_input.js';
-import {Touch_GetLookDelta,Touch_WeaponMenuActive} from './touch.js';
+import {CL_SuspendGameButtons} from './engine/client/cl_input.js';
+import {Touch_GetLookDelta,Touch_WeaponMenuActive} from './platform/touch.js';
 import {SV_SeamlessPending} from './newer/gameplay/sv_seamless.js';
 
 const journal=new BestiaryJournal(),encounter=new BestiaryEncounter(),images=new Map(),imageStates=new Map(),imageAt=new Map();

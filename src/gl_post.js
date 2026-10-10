@@ -28,7 +28,7 @@ import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFram
 // scene's dynamic resolution; only its inexpensive presentation fills the display.
 
 import * as THREE from 'three';
-import { cl } from './client.js';
+import { cl } from './engine/client/client.js';
 import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
 import { R_PowerVisionRender, R_PowerVisionReset } from './r_powervision.js';
 import { VISION_UV_PACK_GLSL } from './vision_coordinates.js';

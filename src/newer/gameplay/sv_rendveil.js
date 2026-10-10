@@ -14,7 +14,7 @@
 // The server clock releases AI at Focus even when no frame is being rendered.
 import { sv, svs, MOVETYPE_STEP, FL_FLY, FL_SWIM } from '../../engine/server/server.js';
 import { SV_DropToFloor } from '../../engine/server/world.js';
-import { cls, ca_connected } from '../../client.js';
+import { cls, ca_connected } from '../../engine/client/client.js';
 import { PR_GetString, pr_functions, pr_crc } from '../../engine/progs/progs.js';
 import { R_NewerGame } from '../../r_anim.js';
 import { Rend_Schedule } from './rend_veil_state.js';

@@ -1,8 +1,8 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
 await import( '../src/gl_rsurf.js' );
 
-const clientTransport = await import( '../src/net_webtransport.js' );
-const { qsocket_t, net_message } = await import( '../src/net.js' );
+const clientTransport = await import( '../src/engine/net/net_webtransport.js' );
+const { qsocket_t, net_message } = await import( '../src/engine/net/net.js' );
 
 function assertEqual( actual, expected, message ) {
 

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {sv,svs} from './engine/server/server.js';
-import {cl} from './client.js';
+import {cl} from './engine/client/client.js';
 import {R_NewerGame,r_newer_shadows} from './r_anim.js';
 import {SUN_SHADOW_LAYER,R_ReleaseShadowCaster} from './gl_post.js';
 import {Mod_ForName} from './gl_model.js';

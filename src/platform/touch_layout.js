@@ -1,3 +1,14 @@
+/**
+ * @module platform/touch_layout
+ *
+ * Where the touch controls go on the screen: pure geometry, tested on its own.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Where the touch controls go. Pure geometry (CSS pixels from the top left), so it can be tested.
 //
 // Landscape: the stick on the left, the buttons on the right.

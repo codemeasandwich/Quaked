@@ -3,14 +3,14 @@ for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointe
 window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 await import('../main.js');const deadline=performance.now()+120000;
 while(!window.Cbuf_AddText){if(performance.now()>deadline)throw Error('Startup timeout');await new Promise(r=>setTimeout(r,50));}
-const {Cbuf_AddText,Cmd_ExecuteString}=await import('../src/engine/common/cmd.js'),{cl,cls}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js');
+const {Cbuf_AddText,Cmd_ExecuteString}=await import('../src/engine/common/cmd.js'),{cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import('../src/engine/server/server.js');
 const {SV_LinkEdict,SV_Move}=await import('../src/engine/server/world.js'),{PR_GetString}=await import('../src/engine/progs/progs.js');
 const {GetEdictFieldValue}=await import('../src/engine/progs/pr_edict.js');
 const writeField=(e,name,value)=>{const f=GetEdictFieldValue(e,name);if(!f)throw Error('Missing QC field '+name);f.accessor.setFloat(f.ofs,value);};
 const {IT_AXE,IT_QUAD,IT_INVULNERABILITY}=await import('../src/engine/common/quakedef.js');
 const {renderer}=await import('../src/vid.js');
 const {R_AxeCorpseStatus}=await import('../src/r_axecorpses.js');
-const keys=await import('../src/keys.js'),split=await import('../src/r_demosplit.js');
+const keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
 let generation=0,target=null,deathOrigin=null,combo=false,orbit=0,killTime=null;
 function power(){const p=sv.edicts?.[1];if(!p)return;writeField(p,'super_damage_finished',sv.time+120);writeField(p,'invincible_finished',combo?sv.time+120:0);p.v.items=(p.v.items|IT_AXE|IT_QUAD)|(combo?IT_INVULNERABILITY:0);if(!combo)p.v.items&=~IT_INVULNERABILITY;p.v.weapon=IT_AXE;Cbuf_AddText('impulse 1\n');status.textContent=combo?'Quad + pentagram: swing to test lethal gib damage.':'Quad: fatal axe hits split the enemy along the animated blade angle.';}
 function inspect(){

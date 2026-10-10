@@ -2,7 +2,7 @@
 // Handles incoming client connections via WebTransport/HTTP3
 
 import { Sys_Printf } from "./sys_server.ts";
-import { net_message } from "../src/net.js";
+import { net_message } from "../src/engine/net/net.js";
 
 // Server configuration
 let serverPort = 4433;

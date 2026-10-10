@@ -9,7 +9,7 @@ import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/gl_model.js';
 import {VID_SetPalette,vid} from '../src/vid.js';
 import {GL_BuildLightmaps} from '../src/gl_rsurf.js';
 import {R_ParseEntityLump} from '../src/gl_portal.js';
-import {cl} from '../src/client.js';
+import {cl} from '../src/engine/client/client.js';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
 import * as anim from '../src/r_anim.js';

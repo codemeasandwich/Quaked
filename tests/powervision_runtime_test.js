@@ -8,10 +8,10 @@ import { PowerVisionMode } from '../src/newer/gameplay/powervision_state.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
 import * as skins from '../src/r_newerskins.js';
-import * as view from '../src/view.js';
+import * as view from '../src/engine/client/view.js';
 import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
 if(!Cvar_FindVar(post.r_hdr.name))Cvar_RegisterVariable(post.r_hdr);
-import { cl, CSHIFT_POWERUP, CSHIFT_DAMAGE, CSHIFT_BONUS, CSHIFT_CONTENTS } from '../src/client.js';
+import { cl, CSHIFT_POWERUP, CSHIFT_DAMAGE, CSHIFT_BONUS, CSHIFT_CONTENTS } from '../src/engine/client/client.js';
 import { IT_INVISIBILITY, IT_INVULNERABILITY, IT_QUAD, IT_SUIT, STAT_HEALTH } from '../src/engine/common/quakedef.js';
 function fixture(run) {
  vision.R_PowerVisionReset(true);

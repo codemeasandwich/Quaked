@@ -9,7 +9,7 @@ import {r_newer_weapons} from '../src/r_weapons.js';
 import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import {VID_SetPalette} from '../src/vid.js';
-import {cl,cl_dlights} from '../src/client.js';
+import {cl,cl_dlights} from '../src/engine/client/client.js';
 import {r_refdef,entity_t} from '../src/render.js';
 import {R_DrawAliasModel} from '../src/gl_mesh.js';
 import {R_CloneAliasMaterial} from '../src/r_newerskins.js';

@@ -3,7 +3,7 @@
 // outsiders. These proxies never enter gameplay, network or discovery state.
 import * as THREE from 'three';
 import { sv, FL_MONSTER } from './engine/server/server.js';
-import { cl } from './client.js';
+import { cl } from './engine/client/client.js';
 import { IT_QUAD, STAT_HEALTH } from './engine/common/quakedef.js';
 import { SV_FaceLocalActive } from './newer/gameplay/sv_faceevents.js';
 import { GL_DrawAliasFrame } from './gl_mesh.js';

@@ -4,9 +4,9 @@
 import {readFileSync} from 'node:fs';
 import {Script} from 'node:vm';
 import {BESTIARY_ENTRIES,BESTIARY_SPREADS,Bestiary_SpreadMapping} from '../src/bestiary_state.js';
-import * as keys from '../src/keys.js';
+import * as keys from '../src/engine/client/keys.js';
 import * as cmd from '../src/engine/common/cmd.js';
-import * as menu from '../src/menu.js';
+import * as menu from '../src/engine/client/menu.js';
 import * as draw from '../src/gl_draw.js';
 import {BuildMenuTextArt} from '../src/menu_art.js';
 const canvasAPI=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js');

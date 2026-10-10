@@ -8,8 +8,8 @@ import { MAX_LIGHTSTYLES } from './engine/common/quakedef.js';
 import { MAXLIGHTMAPS, d_lightstylevalue, r_framecount,
 	gl_flashblend, v_blend, v_liquid_blend } from './glquake.js';
 import { r_origin } from './render.js';
-import { cl_dlights } from './client.js';
-import { isXRActive, XR_SCALE } from './webxr.js';
+import { cl_dlights } from './engine/client/client.js';
+import { isXRActive, XR_SCALE } from './platform/webxr.js';
 
 export const MAX_DLIGHTS = 32;
 

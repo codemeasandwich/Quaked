@@ -1,9 +1,21 @@
+/**
+ * @module engine/client/client
+ *
+ * Client structures (WinQuake client.h): `cl`, `cls`, the entity, light and beam arrays the renderer reads.
+ *
+ * Types: exported classes `usercmd_t`, `lightstyle_t`, `scoreboard_t`, `cshift_t`, `dlight_t`, `beam_t`, `kbutton_t`,
+ * `packet_entities_t`, `entity_t`, `efrag_t`, `client_static_t`, `client_state_t`.
+ *
+ * State: mutable exports `cl_numvisedicts`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Ported from: WinQuake/client.h -- client structures and definitions
 
 import { MAX_STYLESTRING, MAX_CL_STATS, MAX_SCOREBOARD, MAX_SCOREBOARDNAME,
-	MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES, entity_state_t } from './engine/common/quakedef.js';
-import { sizebuf_t } from './engine/common/common.js';
-import { MAX_PACKET_ENTITIES_LOCAL } from './engine/common/protocol.js';
+	MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES, entity_state_t } from '../common/quakedef.js';
+import { sizebuf_t } from '../common/common.js';
+import { MAX_PACKET_ENTITIES_LOCAL } from '../common/protocol.js';
 
 //=============================================================================
 

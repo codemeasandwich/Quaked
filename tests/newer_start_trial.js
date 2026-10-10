@@ -4,8 +4,8 @@ const panel=document.querySelector('section'),errors=[];
 for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(type,e=>e.stopPropagation());
 window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
-const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/menu.js'),draw=await import('../src/gl_draw.js'),vars=await import('../src/engine/common/cvar.js');
-const {sv}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/client.js'),{SV_LinkEdict}=await import('../src/engine/server/world.js');
+const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/engine/client/menu.js'),draw=await import('../src/gl_draw.js'),vars=await import('../src/engine/common/cvar.js');
+const {sv}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/engine/client/client.js'),{SV_LinkEdict}=await import('../src/engine/server/world.js');
 const loading=await import('../src/r_demoloading.js'),rock=await import('../src/r_rockfield.js'),textures=await import('../src/r_newertextures.js');
 const weapons=await import('../src/r_weapons.js'),skins=await import('../src/r_newerskins.js'),powerups=await import('../src/r_powerups.js'),anim=await import('../src/r_anim.js');
 // Independent expected contract, not generated from the production baseline.

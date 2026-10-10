@@ -1,6 +1,20 @@
+/**
+ * @module engine/sound/sound
+ *
+ * Sound definitions (WinQuake sound.h): the sound, channel and DMA structures, and their shared state.
+ *
+ * Types: exported classes `portable_samplepair_t`, `sfx_t`, `sfxcache_t`, `dma_t`, `channel_t`, `wavinfo_t`.
+ *
+ * State: mutable exports `total_channels`, `fakedma`, `fakedma_updates`, `paintedtime`, `shm`, `snd_initialized`,
+ * `snd_blocked`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Its shared state is set through `Sound_SetTotalChannels`, `Sound_SetPaintedtime` and `Sound_SetShm`.
+ */
 // Ported from: WinQuake/sound.h -- client sound i/o definitions
 
-import { MAX_QPATH } from './engine/common/quakedef.js';
+import { MAX_QPATH } from '../common/quakedef.js';
 
 /*
 ==============================================================================

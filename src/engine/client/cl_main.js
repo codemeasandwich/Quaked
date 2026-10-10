@@ -1,22 +1,34 @@
-import {R_DemonBakeRelease} from './r_demonbakes.js';
-import {R_PowerVisionReset} from './r_powervision.js';
-import {R_QuadVisionReset} from './r_quadvision.js';
-import {R_FaceGameReset} from './r_facegame.js';
-import { SV_RendVeilClientRecord } from './newer/gameplay/sv_rendveil.js';
+/**
+ * @module engine/client/cl_main
+ *
+ * The client's main loop (WinQuake cl_main.c): connecting and disconnecting, relinking entities each frame from the
+ * server's updates, dynamic lights and the local copy of Newer Game's per-entity records.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `_rippleFrame`.
+ *
+ * Errors: calls `Host_Error` at 2 places; catches at 2 places.
+ */
+import {R_DemonBakeRelease} from '../../r_demonbakes.js';
+import {R_PowerVisionReset} from '../../r_powervision.js';
+import {R_QuadVisionReset} from '../../r_quadvision.js';
+import {R_FaceGameReset} from '../../r_facegame.js';
+import { SV_RendVeilClientRecord } from '../../newer/gameplay/sv_rendveil.js';
 // Ported from: WinQuake/cl_main.c -- client main loop
-import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from './r_demoloading.js';
+import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from '../../r_demoloading.js';
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,
 	STAT_WEAPONFRAME, STAT_SHELLS, STAT_ACTIVEWEAPON, STAT_MONSTERS,
-	STAT_SECRETS } from './engine/common/quakedef.js';
+	STAT_SECRETS } from '../common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Alloc, SZ_Clear,
-	MSG_WriteByte, MSG_WriteString } from './engine/common/common.js';
-import { NET_Connect, NET_SendMessage, NET_SendUnreliableMessage, NET_CanSendMessage, NET_Close } from './net_main.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_VariableValue } from './engine/common/cvar.js';
-import { Cmd_AddCommand } from './engine/common/cmd.js';
-import { Cbuf_InsertText } from './engine/common/cmd.js';
-import { clc_disconnect, clc_stringcmd } from './engine/common/protocol.js';
+	MSG_WriteByte, MSG_WriteString } from '../common/common.js';
+import { NET_Connect, NET_SendMessage, NET_SendUnreliableMessage, NET_CanSendMessage, NET_Close } from '../net/net_main.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_VariableValue } from '../common/cvar.js';
+import { Cmd_AddCommand } from '../common/cmd.js';
+import { Cbuf_InsertText } from '../common/cmd.js';
+import { clc_disconnect, clc_stringcmd } from '../common/protocol.js';
 import { CL_GetMessage, CL_Record_f, CL_PlayDemo_f, CL_PlayAttractDemo_f, CL_TimeDemo_f, CL_StopPlayback, CL_Stop_f } from './cl_demo.js';
 import { CL_ParseServerMessage } from './cl_parse.js';
 import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
@@ -28,17 +40,17 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	dlight_t, entity_t, efrag_t, lightstyle_t, beam_t,
 	client_state_t, usercmd_t, cshift_t,
 	NUM_CSHIFTS } from './client.js';
-import { anglemod, VectorCopy, VectorMA, AngleVectors } from './engine/common/mathlib.js';
-import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from './render.js';
-import { R_ImpactMissile } from './r_impactripples.js';
-import { R_FlashlightRunEnd } from './r_flashlightrun.js';
-import { R_DemoSplitEnd } from './r_demosplit.js';
-import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from './r_muzzle.js';
-import { R_NewerGame } from './r_anim.js';
+import { anglemod, VectorCopy, VectorMA, AngleVectors } from '../common/mathlib.js';
+import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from '../../render.js';
+import { R_ImpactMissile } from '../../r_impactripples.js';
+import { R_FlashlightRunEnd } from '../../r_flashlightrun.js';
+import { R_DemoSplitEnd } from '../../r_demosplit.js';
+import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../../r_muzzle.js';
+import { R_NewerGame } from '../../r_anim.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
-import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from './engine/server/host.js';
-import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from './gl_screen.js';
-import { S_StopAllSounds } from './snd_dma.js';
+import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from '../server/host.js';
+import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../../gl_screen.js';
+import { S_StopAllSounds } from '../sound/snd_dma.js';
 import { M_ConnectionError, M_ShouldReturnOnError } from './menu.js';
 import { key_menu, set_key_dest } from './keys.js';
 import { CL_InitPrediction, CL_ResetPrediction, CL_PredictMove,
@@ -1435,4 +1447,4 @@ import { cl_upspeed, cl_forwardspeed, cl_backspeed, cl_sidespeed,
 	cl_anglespeedkey,
 	CL_InitInput as CL_InitInput_impl,
 	CL_BaseMove, CL_SendMove } from './cl_input.js';
-import { IN_Move } from './in_web.js';
+import { IN_Move } from '../../platform/in_web.js';

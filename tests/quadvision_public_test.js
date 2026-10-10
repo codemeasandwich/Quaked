@@ -15,12 +15,12 @@ import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/
 import * as cmd from '../src/engine/common/cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {Host_InitCommands} from '../src/engine/server/host_cmd.js';
-import {CL_Init,CL_Disconnect_f} from '../src/cl_main.js';
-import {cls,cl,ca_disconnected} from '../src/client.js';
-import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/net_main.js';
+import {CL_Init,CL_Disconnect_f} from '../src/engine/client/cl_main.js';
+import {cls,cl,ca_disconnected} from '../src/engine/client/client.js';
+import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/gl_rmain.js';
-import {V_Init} from '../src/view.js';
+import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
@@ -39,7 +39,7 @@ function native(p,n){progs.pr_global_struct.self=progs.EDICT_TO_PROG(p);progs.pr
 
 import * as THREE from 'three';
 import * as quadVision from '../src/r_quadvision.js';
-import {cl_entities} from '../src/client.js';
+import {cl_entities} from '../src/engine/client/client.js';
 import {FL_MONSTER} from '../src/engine/server/server.js';
 import {IT_QUAD,STAT_HEALTH} from '../src/engine/common/quakedef.js';
 function acquire(p){const pickup=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='item_artifact_super_damage');check(pickup,'native Quad pickup');if(pickup.v.solid!==1&&pickup.v.think){progs.pr_global_struct.self=progs.EDICT_TO_PROG(pickup);PR_ExecuteProgram(pickup.v.think);}progs.pr_global_struct.other=progs.EDICT_TO_PROG(p);native(pickup,'powerup_touch');check(p.v.items&IT_QUAD,'native QC granted Quad');cl.items=p.v.items;cl.stats[STAT_HEALTH]=p.v.health;cl.time=sv.time;}
@@ -69,7 +69,7 @@ Deno.test('Quad expiry Classic death and resize retire owned render resources an
  }finally{f.dispose();acknowledge();CL_Disconnect_f();}
 });
 Deno.test('actual post and palette entry points activate Quad alone and restore native blue tint in Classic',async()=>{
- const p=await fresh();acquire(p);const f=renderFixture(),post=await import('../src/gl_post.js'),anim=await import('../src/r_anim.js'),view=await import('../src/view.js'),{CSHIFT_POWERUP}=await import('../src/client.js'),features=[anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water],saved=features.map(v=>v.value);
+ const p=await fresh();acquire(p);const f=renderFixture(),post=await import('../src/gl_post.js'),anim=await import('../src/r_anim.js'),view=await import('../src/engine/client/view.js'),{CSHIFT_POWERUP}=await import('../src/engine/client/client.js'),features=[anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water],saved=features.map(v=>v.value);
  Object.assign(f.renderer,{capabilities:{isWebGL2:true},extensions:{has:()=>true},setViewport(){},setScissorTest(){}});features.forEach(v=>v.value=0);
  try{check(post.R_PostBegin(f.renderer,true,160,90),'Quad independently starts shared post path with other options off');view.V_UpdatePalette();same(cl.cshifts[CSHIFT_POWERUP].percent,0,'active Quad silhouette replaces obsolete blue wash');post.R_PostBind(f.renderer);post.R_PostFinish(f.renderer,f.world,f.camera,{lx:0,ly:0,lw:160,lh:90},0,[],[],cl.time,1,false);same(f.calls.length,4,'actual post path runs composite mask purple pass and final display');check(f.calls[1].children.length>0,'actual post path includes server-only native monster proxies');same(f.calls[3].target,null,'final picture reaches display');same(f.calls[3].material[0].uniforms.tComposite.value,f.calls[2].target.texture,'final display receives completed Quad picture');
  vars.Cvar_SetValue('r_hdr',0);same(post.R_PostBegin(f.renderer,false,160,90),false,'Classic bypasses enhanced post');view.V_UpdatePalette();same(cl.cshifts[CSHIFT_POWERUP].percent,30,'Classic preserves native Quad blue tint');

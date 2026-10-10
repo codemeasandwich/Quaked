@@ -11,7 +11,7 @@ const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = a
 const anim = await import( '../src/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
-const { cl } = await import( '../src/client.js' );
+const { cl } = await import( '../src/engine/client/client.js' );
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function equal( a, b, label ) { check( a === b, `${label}: ${a} != ${b}` ); }
 function near( a, b, label, epsilon = .00002 ) { check( Number.isFinite( a ) && Math.abs( a - b ) < epsilon, `${label}: ${a} != ${b}` ); }

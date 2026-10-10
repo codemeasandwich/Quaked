@@ -55,7 +55,7 @@ Deno.test( 'the supplied noise texture: the source\'s own generator, seed 897234
 // the event: only the player's own lightning gun beam (TE_LIGHTNING2 from the view entity) is taken; its bolt models are
 // marked for the Newer pass to leave out (R_DrawEntitiesOnList), the Classic pass keeps them; the Shambler's are not marked
 Deno.test( 'only the player\'s own TE_LIGHTNING2 is taken, and only its native bolts are marked to be left out, in the Newer pass alone', async () => {
-	const client = await import( '../src/client.js' ), tent = await import( '../src/cl_tent.js' );
+	const client = await import( '../src/engine/client/client.js' ), tent = await import( '../src/engine/client/cl_tent.js' );
 	const { cl, cl_beams, cl_entities } = client;
 	cl.viewentity = 1; cl.mtime[ 0 ] = 10; if ( ! cl_entities[ 1 ] ) throw new Error( 'no client entity 1' ); cl_entities[ 1 ].origin.set( [ 0, 0, 0 ] );
 	for ( const b of cl_beams ) { b.model = null; b.endtime = 0; }

@@ -16,7 +16,7 @@
 // monster counters, targets, drops and death callbacks. We only raise combined
 // power-up axe damage and replace the confirmed kill's enhanced presentation.
 import {sv,svs} from '../../engine/server/server.js';
-import {cls,ca_dedicated} from '../../client.js';
+import {cls,ca_dedicated} from '../../engine/client/client.js';
 import {pr_crc,pr_functions,PR_GetString,pr_globals_int,pr_globals_float,pr_global_struct,PROG_TO_EDICT} from '../../engine/progs/progs.js';
 import {OFS_PARM0,OFS_PARM1,OFS_PARM2,OFS_PARM3} from '../../engine/progs/pr_comp.js';
 import {ED_Alloc,ED_FindFunction,ED_NewString,GetEdictFieldValue} from '../../engine/progs/pr_edict.js';

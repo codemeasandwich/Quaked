@@ -2,7 +2,7 @@
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
 import { Con_Printf } from './engine/common/console.js';
-import { Sbar_Changed } from './sbar.js';
+import { Sbar_Changed } from './engine/client/sbar.js';
 import { W_GetLumpName } from './engine/common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from './engine/common/pak.js';

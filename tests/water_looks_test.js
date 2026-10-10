@@ -4,7 +4,7 @@ await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
 const surf = await import( '../src/gl_rsurf.js' ), anim = await import( '../src/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), cmd = await import( '../src/engine/common/cmd.js' );
-const menu = await import( '../src/menu.js' ), keys = await import( '../src/keys.js' ), draw = await import( '../src/gl_draw.js' );
+const menu = await import( '../src/engine/client/menu.js' ), keys = await import( '../src/engine/client/keys.js' ), draw = await import( '../src/gl_draw.js' );
 
 function equal( actual, expected, label ) {
 

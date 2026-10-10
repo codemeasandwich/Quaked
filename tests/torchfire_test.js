@@ -15,7 +15,7 @@ import { VID_SetPalette } from '../src/vid.js';
 import { R_DrawAliasModel } from '../src/gl_mesh.js';
 import { COM_FindFile } from '../src/engine/common/pak.js';
 import { entity_t } from '../src/render.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import { R_FireballTextures, R_FireballAssets } from '../src/r_fireball.js';
 import { R_SaveClassicScene } from '../src/r_classicstate.js';
 import { R_AnimSetClassicPass, R_AnimSetNewer, r_lerpmodels } from '../src/r_anim.js';

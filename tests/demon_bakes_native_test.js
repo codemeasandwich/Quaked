@@ -15,7 +15,7 @@ import * as vars from '../src/engine/common/cvar.js';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {Mod_Init,Mod_ForName,Mod_ClearAll} from '../src/gl_model.js';
 import {VID_SetPalette} from '../src/vid.js';
-import {cl} from '../src/client.js';
+import {cl} from '../src/engine/client/client.js';
 import {entity_t,r_refdef} from '../src/render.js';
 import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/r_demonbakes.js';
 import {R_IntroReadinessChecks,R_DemoLoadingWelcome,R_DemoLoadingCancel,R_DemoLoadingStatus} from '../src/r_demoloading.js';

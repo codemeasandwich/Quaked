@@ -7,7 +7,7 @@ const { R_AssetAliasMaterial, R_CloneAliasMaterial } = await import( '../src/r_n
 const { R_ShellTrace } = await import( '../src/r_shelltrace.js' );
 const shells = await import( '../src/r_shells.js' );
 const weapons = await import( '../src/r_weapons.js' );
-const { cl } = await import( '../src/client.js' );
+const { cl } = await import( '../src/engine/client/client.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 

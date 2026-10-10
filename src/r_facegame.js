@@ -1,8 +1,8 @@
 // Gameplay adapter: events choose expression/attention; movement never does.
 import { FaceState, FaceWaterState, faceWaterStage } from './face_state.js';
-import { cl, cls } from './client.js';
+import { cl, cls } from './engine/client/client.js';
 import { r_refdef } from './render.js';
-import { in_attack } from './cl_input.js';
+import { in_attack } from './engine/client/cl_input.js';
 import { sv, MOVETYPE_NOCLIP } from './engine/server/server.js';
 import { GetEdictFieldValue } from './engine/progs/pr_edict.js';
 import { SV_FaceDrain, SV_FaceLocalActive, SV_FaceReset } from './newer/gameplay/sv_faceevents.js';

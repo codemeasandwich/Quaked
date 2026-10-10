@@ -4,7 +4,7 @@
 // these are geometry/interaction checks, not raster or browser visual acceptance.
 import { readFileSync } from 'node:fs';
 await import( '../src/gl_rsurf.js' );
-const menu = await import( '../src/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/keys.js' );
+const menu = await import( '../src/engine/client/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
 const draw = await import( '../src/gl_draw.js' );
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); }
 function check( value, label ) { if ( ! value ) throw new Error( label ); }

@@ -19,7 +19,7 @@ import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';
 import { sv, svs, client_t } from '../src/engine/server/server.js';
 import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
 import { sv_gravity } from '../src/engine/server/sv_phys.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';

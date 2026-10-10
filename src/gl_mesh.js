@@ -6,7 +6,7 @@ import { R_WeaponAsset, R_WeaponRotorFrame } from './r_weapons.js';
 import { R_NewerAliasMaterial, R_EnemyAliasMaterial, R_AssetAliasMaterial } from './r_newerskins.js';
 import { R_AnimEnabled, R_AliasPoseBlend, R_BlendArrays, ANIM_STEP } from './r_anim.js';
 import { Con_Printf, Con_DPrintf } from './engine/common/common.js';
-import { cl } from './client.js';
+import { cl } from './engine/client/client.js';
 import { R_GetPlayerSkinTexture } from './gl_rmisc.js';
 import { gl_nocolors } from './glquake.js';
 import { r_avertexnormals } from './engine/common/anorm_dots.js';

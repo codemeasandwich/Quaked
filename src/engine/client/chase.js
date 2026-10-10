@@ -1,11 +1,22 @@
+/**
+ * @module engine/client/chase
+ *
+ * The chase camera (WinQuake chase.c): the third-person view behind the player.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `_SV_RecursiveHullCheck`, `_trace_t`, `_chase_trace`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
 // Ported from: WinQuake/chase.c -- chase camera code
 
-import { PITCH } from './engine/common/quakedef.js';
-import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
+import { PITCH } from '../common/quakedef.js';
+import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
 import { VectorCopy, VectorSubtract, VectorMA, DotProduct,
-	AngleVectors, M_PI } from './engine/common/mathlib.js';
+	AngleVectors, M_PI } from '../common/mathlib.js';
 import { cl } from './client.js';
-import { r_refdef } from './render.js';
+import { r_refdef } from '../../render.js';
 
 export const chase_back = new cvar_t( 'chase_back', '100' );
 export const chase_up = new cvar_t( 'chase_up', '16' );
@@ -34,7 +45,7 @@ export function Chase_Init() {
 	Cvar_RegisterVariable( chase_active );
 
 	// Lazy-load collision detection to avoid circular dependency
-	import( './engine/server/world.js' ).then( ( world ) => {
+	import( '../server/world.js' ).then( ( world ) => {
 
 		_SV_RecursiveHullCheck = world.SV_RecursiveHullCheck;
 		_trace_t = world.trace_t;

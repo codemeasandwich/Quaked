@@ -43,7 +43,7 @@ export function createQuakeLightmapMaterial( diffuseMap, lightmapTex ) {
 	return material;
 
 }
-import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './client.js';
+import { cl, cl_dlights, MAX_DLIGHTS, MAX_VISEDICTS, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from './engine/client/client.js';
 import { R_StoreEfrags } from './gl_refrag.js';
 import { R_BuildWorldLights, R_BuildSunOccluder, R_RegisterGlow, R_RegisterDetail, R_RefreshDetail, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, R_GetLiquidLinks, r_newdark } from './gl_post.js';
 import { R_BuildPortals, R_GetPortals, R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial, R_BoxInPortalReceiver } from './gl_portal.js';

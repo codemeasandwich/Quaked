@@ -13,7 +13,7 @@ globalThis.document = { createElement: () => createCanvas( 1, 1 ) };
 globalThis.window = { devicePixelRatio: 1, innerWidth: 640, innerHeight: height };
 await import( '../src/gl_rsurf.js' );
 const pak = await import( '../src/engine/common/pak.js' ), wad = await import( '../src/engine/common/wad.js' ), vid = await import( '../src/vid.js' );
-const draw = await import( '../src/gl_draw.js' ), menu = await import( '../src/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/keys.js' );
+const draw = await import( '../src/gl_draw.js' ), menu = await import( '../src/engine/client/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
 const raw = await readFile( new URL( '../pak0.pak', import.meta.url ) );
 pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 const gfx = pak.COM_FindFile( 'gfx.wad' ).data;

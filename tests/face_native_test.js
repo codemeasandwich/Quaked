@@ -16,12 +16,12 @@ import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/
 import * as cmd from '../src/engine/common/cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {Host_InitCommands} from '../src/engine/server/host_cmd.js';
-import {CL_Init,CL_Disconnect_f} from '../src/cl_main.js';
-import {cls,cl,ca_disconnected} from '../src/client.js';
-import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/net_main.js';
+import {CL_Init,CL_Disconnect_f} from '../src/engine/client/cl_main.js';
+import {cls,cl,ca_disconnected} from '../src/engine/client/client.js';
+import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/gl_rmain.js';
-import {V_Init} from '../src/view.js';
+import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
@@ -62,7 +62,7 @@ Deno.test('native event bridge excludes demo, remote and multiplayer and clears 
  native(p,'W_Attack');p=await fresh('e1m2');same(face.SV_FaceDrain('shot').length,0,'world/progs transition cannot replay old shots');acknowledge();CL_Disconnect_f();
 });
 const gameface=await import('../src/r_facegame.js');
-const {in_attack}=await import('../src/cl_input.js');
+const {in_attack}=await import('../src/engine/client/cl_input.js');
 const Q=await import('../src/engine/common/quakedef.js');
 function portrait(p,t){cl.worldmodel=sv.worldmodel;cl.time=t;cl.stats[Q.STAT_HEALTH]=p.v.health;cl.stats[Q.STAT_AMMO]=p.v.currentammo;cl.stats[Q.STAT_ACTIVEWEAPON]=p.v.weapon;cl.stats[Q.STAT_WEAPONFRAME]=p.v.weaponframe;cl.items=p.v.items;return gameface.R_PlayerFaceFrame();}
 Deno.test('public face adapter keeps native impact intervals and releases focused attack tail despite a nonzero weapon frame',async()=>{
@@ -89,7 +89,7 @@ Deno.test('public face adapter uses actual impact separation across separate nat
 });
 const {SV_WriteClientdataToMessage}=await import('../src/engine/server/sv_main.js');
 const {sizebuf_t,SZ_Alloc,COM_SetNetMessage}=await import('../src/engine/common/common.js');
-const {CL_ParseServerMessage}=await import('../src/cl_parse.js');
+const {CL_ParseServerMessage}=await import('../src/engine/client/cl_parse.js');
 function wire(p){const packet=new sizebuf_t();SZ_Alloc(packet,8192);SV_SetPlayer(p);SV_WriteClientdataToMessage(p,packet);COM_SetNetMessage(packet);CL_ParseServerMessage();}
 Deno.test('actual native reward expires while HUD is not sampled and cannot be restarted by deferred drain',async()=>{
  const p=await fresh('e1m1');face.SV_FaceReset();portrait(p,sv.time);const pickup=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='item_artifact_super_damage');if(pickup.v.solid!==1&&pickup.v.think){progs.pr_global_struct.self=progs.EDICT_TO_PROG(pickup);PR_ExecuteProgram(pickup.v.think);}

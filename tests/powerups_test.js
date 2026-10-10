@@ -103,7 +103,7 @@ Deno.test( 'live pickup lights share the existing eight-source budget and stable
 
 Deno.test( 'actual public entity draw dispatch attaches effects to native world pickups and excludes held viewmodel', async () => {
 
-	setup(); const main = await import( '../src/gl_rmain.js' ), client = await import( '../src/client.js' );
+	setup(); const main = await import( '../src/gl_rmain.js' ), client = await import( '../src/engine/client/client.js' );
 	const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	main.R_Init(); const savedWorld = client.cl.worldmodel, savedView = client.cl.viewent, savedCount = client.cl_numvisedicts, savedList = client.cl_visedicts.slice();
 	try {

@@ -1,37 +1,50 @@
-import { R_PlayerSurfaceBlood } from './r_weapon_surface.js';
-import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
-import { R_PostActive } from './gl_post.js';
-import { R_QuadVisionActive } from './r_quadvision.js';
-import { R_FaceDamage } from './r_facegame.js';
-import { SV_RespawnView } from './newer/gameplay/sv_respawn.js';
+/**
+ * @module engine/client/view
+ *
+ * The player's view (WinQuake view.c): bob, roll, the damage kick, view blends (water, damage, power-ups) and the
+ * chase camera.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `_Chase_Update`, `v_dmg_time`, `v_dmg_roll`, `v_dmg_pitch`,
+ * `_bobtime`, `_bob`, `_oldgammavalue`, `_gun_oldyaw`, `_gun_oldpitch`, `_oldz`.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ */
+import { R_PlayerSurfaceBlood } from '../../r_weapon_surface.js';
+import { PowerVisionMode } from '../../newer/gameplay/powervision_state.js';
+import { R_PostActive } from '../../gl_post.js';
+import { R_QuadVisionActive } from '../../r_quadvision.js';
+import { R_FaceDamage } from '../../r_facegame.js';
+import { SV_RespawnView } from '../../newer/gameplay/sv_respawn.js';
 // Ported from: WinQuake/view.c -- player eye positioning
 
 import { PITCH, YAW, ROLL,
 	IT_QUAD, IT_SUIT, IT_INVISIBILITY, IT_INVULNERABILITY,
-	STAT_HEALTH, STAT_WEAPON, STAT_WEAPONFRAME } from './engine/common/quakedef.js';
-import { MSG_ReadByte, MSG_ReadCoord } from './engine/common/common.js';
-import { Cmd_AddCommand, Cmd_Argv } from './engine/common/cmd.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './engine/common/cvar.js';
+	STAT_HEALTH, STAT_WEAPON, STAT_WEAPONFRAME } from '../common/quakedef.js';
+import { MSG_ReadByte, MSG_ReadCoord } from '../common/common.js';
+import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
 import { VectorCopy, VectorAdd, VectorSubtract, VectorNormalize,
-	DotProduct, AngleVectors, anglemod, M_PI } from './engine/common/mathlib.js';
-import { host_frametime, sv } from './engine/server/host.js';
-import { noclip_anglehack } from './engine/server/host_cmd.js';
-import { r_refdef } from './render.js';
+	DotProduct, AngleVectors, anglemod, M_PI } from '../common/mathlib.js';
+import { host_frametime, sv } from '../server/host.js';
+import { noclip_anglehack } from '../server/host_cmd.js';
+import { r_refdef } from '../../render.js';
 import {
 	CSHIFT_CONTENTS, CSHIFT_DAMAGE, CSHIFT_BONUS, CSHIFT_POWERUP,
 	NUM_CSHIFTS,
 	cl, cls, cl_entities, entity_t
 } from './client.js';
 import { cl_forwardspeed } from './cl_input.js';
-import { R_RenderView } from './gl_rmain.js';
-import { R_PushDlights } from './gl_rlight.js';
-import { con_forcedup } from './engine/common/console.js';
-import { R_DemoLoadingHolding } from './r_demoloading.js';
-import { VID_UpdateGamma } from './vid.js';
-import { scr_viewsize } from './gl_screen.js';
+import { R_RenderView } from '../../gl_rmain.js';
+import { R_PushDlights } from '../../gl_rlight.js';
+import { con_forcedup } from '../common/console.js';
+import { R_DemoLoadingHolding } from '../../r_demoloading.js';
+import { VID_UpdateGamma } from '../../vid.js';
+import { scr_viewsize } from '../../gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
-import { v_blend, v_liquid_blend } from './glquake.js';
-import { V_ShamblerStepShake, v_shamblersteps } from './v_shamblersteps.js';
+import { v_blend, v_liquid_blend } from '../../glquake.js';
+import { V_ShamblerStepShake, v_shamblersteps } from '../../v_shamblersteps.js';
 
 export { v_blend };
 

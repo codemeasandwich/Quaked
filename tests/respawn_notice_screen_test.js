@@ -8,7 +8,7 @@ const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m
 Deno.test( 'the corner message is drawn while active at the top right, and not before or after', async () => {
 
 	const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
-	const draw = await import( '../src/gl_draw.js' ), screen = await import( '../src/gl_screen.js' ), state = await import( '../src/client.js' ), vars = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/keys.js' );
+	const draw = await import( '../src/gl_draw.js' ), screen = await import( '../src/gl_screen.js' ), state = await import( '../src/engine/client/client.js' ), vars = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' );
 	const notice = await import( '../src/respawn_notice.js' ), cmd = await import( '../src/engine/common/cmd.js' ), console_ = await import( '../src/engine/common/console.js' );
 	const oldWindow = Object.getOwnPropertyDescriptor( globalThis, 'window' ), oldDocument = Object.getOwnPropertyDescriptor( globalThis, 'document' );
 	globalThis.window = { devicePixelRatio: 1, innerWidth: 640, innerHeight: 400 }; globalThis.document = { createElement: () => canvas.createCanvas( 1, 1 ) };

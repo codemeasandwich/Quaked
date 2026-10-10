@@ -2,7 +2,7 @@
 await import( '../src/gl_rsurf.js' );
 
 const THREE = await import( 'three' );
-const { cl } = await import( '../src/client.js' );
+const { cl } = await import( '../src/engine/client/client.js' );
 const glquake = await import( '../src/glquake.js' );
 const { sv_gravity } = await import( '../src/engine/server/sv_phys.js' );
 const {

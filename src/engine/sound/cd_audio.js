@@ -1,10 +1,24 @@
+/**
+ * @module engine/sound/cd_audio
+ *
+ * Music (WinQuake cd_audio.c), played from audio files instead of a CD.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `playing`, `wasPlaying`, `initialized`, `enabled`, `playLooping`,
+ * `playTrack`, `cdvolume`, `musicElement`, `musicGainNode`, `musicSource`, `_getTrackURL`.
+ *
+ * Errors: catches at 9 places.
+ *
+ * Where a track's audio file is comes from `CDAudio_SetTrackURLProvider`.
+ */
 // Ported from: WinQuake/cd_audio.c -- CD audio playback
 // In browser port: uses Web Audio API (HTML5 Audio element) for music tracks
 
-import { Con_Printf, Con_DPrintf } from './engine/common/console.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
-import { Cvar_SetValue } from './engine/common/cvar.js';
-import { COM_CheckParm } from './engine/common/common.js';
+import { Con_Printf, Con_DPrintf } from '../common/console.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
+import { Cvar_SetValue } from '../common/cvar.js';
+import { COM_CheckParm } from '../common/common.js';
 import { bgmvolume } from './sound.js';
 import { S_GetAudioContext } from './snd_dma.js';
 

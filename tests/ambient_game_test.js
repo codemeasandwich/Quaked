@@ -1,12 +1,12 @@
 await import( '../src/gl_rsurf.js' );
 const game = await import( '../src/s_ambientgame.js' ), music = await import( '../src/s_ambientmusic.js' );
 const { MediaDouble, ContextDouble } = await import( './ambient_music_test.js' );
-const { cl, cls, cl_entities, SIGNONS, ca_connected } = await import( '../src/client.js' );
+const { cl, cls, cl_entities, SIGNONS, ca_connected } = await import( '../src/engine/client/client.js' );
 const { sv, FL_MONSTER } = await import( '../src/engine/server/server.js' );
 const { edict_t } = await import( '../src/engine/progs/progs.js' );
 const anim = await import( '../src/r_anim.js' ), post = await import( '../src/gl_post.js' );
-const cvar = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/keys.js' ), input = await import( '../src/cl_input.js' );
-const sound = await import( '../src/sound.js' ), dma = await import( '../src/snd_dma.js' );
+const cvar = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' ), input = await import( '../src/engine/client/cl_input.js' );
+const sound = await import( '../src/engine/sound/sound.js' ), dma = await import( '../src/engine/sound/snd_dma.js' );
 const { STAT_HEALTH, STAT_ARMOR } = await import( '../src/engine/common/quakedef.js' );
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); }
 async function withGame( run ) {

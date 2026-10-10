@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
-import {cl} from '../src/client.js';
+import {cl} from '../src/engine/client/client.js';
 import {entity_t,r_refdef} from '../src/render.js';
 import * as world from '../src/gl_rsurf.js';
 import * as main from '../src/gl_rmain.js';

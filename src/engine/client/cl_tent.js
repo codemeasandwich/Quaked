@@ -1,16 +1,29 @@
+/**
+ * @module engine/client/cl_tent
+ *
+ * Temporary entities (WinQuake cl_tent.c): beams, explosions, spikes hitting walls and the teleport flash, with Newer
+ * Game's effects hooked in.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `num_temp_entities`, `cl_sfx_wizhit`, `cl_sfx_knighthit`,
+ * `cl_sfx_tink1`, `cl_sfx_ric1`, `cl_sfx_ric2`, `cl_sfx_ric3`, `cl_sfx_r_exp3`.
+ *
+ * Errors: calls `Sys_Error` (fatal) at 1 place.
+ */
 // Ported from: WinQuake/cl_tent.c -- client side temporary entities
 
-import { Con_Printf } from './engine/common/common.js';
-import { Sys_Error } from './engine/common/sys.js';
+import { Con_Printf } from '../common/common.js';
+import { Sys_Error } from '../common/sys.js';
 import {
 	MSG_ReadByte, MSG_ReadShort, MSG_ReadCoord
-} from './engine/common/common.js';
+} from '../common/common.js';
 import {
 	TE_SPIKE, TE_SUPERSPIKE, TE_GUNSHOT, TE_EXPLOSION,
 	TE_TAREXPLOSION, TE_LIGHTNING1, TE_LIGHTNING2, TE_LIGHTNING3,
 	TE_LAVASPLASH, TE_TELEPORT, TE_GORE, TE_EXPLOSION2, TE_WIZSPIKE,
 	TE_KNIGHTSPIKE, TE_BEAM
-} from './engine/common/protocol.js';
+} from '../common/protocol.js';
 import {
 	MAX_TEMP_ENTITIES, MAX_BEAMS, MAX_VISEDICTS,
 	cl, cls, cl_entities, cl_temp_entities, cl_beams,
@@ -18,16 +31,16 @@ import {
 	entity_t, beam_t
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
-import { R_WallBurnShot } from './r_wallburn.js';
+import { R_WallBurnShot } from '../../r_wallburn.js';
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
-import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from './engine/common/mathlib.js';
-import { S_PrecacheSound, S_StartSound } from './snd_dma.js';
+import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from '../common/mathlib.js';
+import { S_PrecacheSound, S_StartSound } from '../sound/snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
-	R_ParticleExplosion2, R_LavaSplash } from './render.js';
-import { Mod_ForName } from './gl_model.js';
-import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from './r_decals.js';
+	R_ParticleExplosion2, R_LavaSplash } from '../../render.js';
+import { Mod_ForName } from '../../gl_model.js';
+import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../../r_decals.js';
 
 let num_temp_entities = 0;
 

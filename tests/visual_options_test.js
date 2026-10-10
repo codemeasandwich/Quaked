@@ -5,8 +5,8 @@ const post = await import( '../src/gl_post.js' );
 const anim = await import( '../src/r_anim.js' );
 const cvar = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
-const menu = await import( '../src/menu.js' );
-const keys = await import( '../src/keys.js' );
+const menu = await import( '../src/engine/client/menu.js' );
+const keys = await import( '../src/engine/client/keys.js' );
 
 function equal( actual, expected, label ) {
 

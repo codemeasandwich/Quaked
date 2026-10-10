@@ -8,10 +8,10 @@ await import('../main.js');
 const deadline=performance.now()+120000;
 while(!window.Cbuf_AddText){if(performance.now()>deadline)throw new Error('Game startup timed out');await new Promise(r=>setTimeout(r,50));}
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
-const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js'),{PR_GetString}=await import('../src/engine/progs/progs.js');
+const {cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import('../src/engine/server/server.js'),{PR_GetString}=await import('../src/engine/progs/progs.js');
 const {SV_LinkEdict,SV_Move}=await import('../src/engine/server/world.js'),{Mod_PointInLeaf}=await import('../src/gl_model.js');
 const {R_PowerupStatus}=await import('../src/r_powerups.js'),{R_PointShadowStatus}=await import('../src/gl_post.js');
-const keys=await import('../src/keys.js'),split=await import('../src/r_demosplit.js');
+const keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
 const choices={quad:['e1m1','progs/quaddama.mdl'],pentagram:['e1m8','progs/invulner.mdl'],ring:['e1m3','progs/invisibl.mdl']};
 let current='quad',pickup=null,generation=0,angle=0;
 function place(collect=false){

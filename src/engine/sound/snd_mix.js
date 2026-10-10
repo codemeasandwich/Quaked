@@ -1,3 +1,16 @@
+/**
+ * @module engine/sound/snd_mix
+ *
+ * Sound mixing (WinQuake snd_mix.c), kept from the port; Web Audio mixes instead.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports.
+ *
+ * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ *
+ * Nothing in the game imports it (baseline debt D9, for [44g]).
+ */
 // Ported from: WinQuake/snd_mix.c -- portable code to mix sounds for snd_dma.c
 
 import {

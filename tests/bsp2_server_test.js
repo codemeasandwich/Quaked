@@ -12,7 +12,7 @@ import {ED_Alloc,ED_NewString} from '../src/engine/progs/pr_edict.js';
 import {sv,svs,client_t,SOLID_BBOX} from '../src/engine/server/server.js';
 import {SV_SpawnServer,SV_SendClientMessages} from '../src/engine/server/sv_main.js';
 import {SV_ClearWorld,SV_LinkEdict} from '../src/engine/server/world.js';
-import {net_drivers} from '../src/net.js';
+import {net_drivers} from '../src/engine/net/net.js';
 import {Cbuf_Init} from '../src/engine/common/cmd.js';
 import {Cvar_FindVar,Cvar_RegisterVariable,Cvar_SetValue} from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/gl_post.js';

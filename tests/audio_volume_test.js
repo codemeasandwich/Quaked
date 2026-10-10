@@ -1,10 +1,10 @@
 // Public CD audio and SFX gain controls. Only browser audio endpoints are
 // doubles; the real init/play/update/pause/resume/shutdown paths execute.
-import * as cd from '../src/cd_audio.js';
-import * as dma from '../src/snd_dma.js';
-import * as sound from '../src/sound.js';
+import * as cd from '../src/engine/sound/cd_audio.js';
+import * as dma from '../src/engine/sound/snd_dma.js';
+import * as sound from '../src/engine/sound/sound.js';
 import * as cvar from '../src/engine/common/cvar.js';
-import { cl } from '../src/client.js';
+import { cl } from '../src/engine/client/client.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );

@@ -1,3 +1,18 @@
+/**
+ * @module platform/touch
+ *
+ * Touch controls for phones and tablets: the stick, the buttons and the weapon menu.
+ *
+ * Types: plain values and functions; no exported classes.
+ *
+ * State: no mutable exports; module-level variables `enabled`, `initialized`, `menuOverlay`, `menuTouchCallback`,
+ * `fullscreenActivated`, `wakeLock`, `stickTouch`, `stickX`, `stickY`, `forwardHeld`, `lookTouch`, `lastLookPos` and
+ * 29 more; 1 module-level collection (Map/Set).
+ *
+ * Errors: catches at 4 places.
+ *
+ * The menu callback is injected with `Touch_SetMenuCallback`.
+ */
 // Touch controls for mobile devices
 //
 // Landscape: an analog stick on the left and a cluster of buttons on the right. Portrait: the same in a
@@ -13,14 +28,14 @@
 //
 // Dragging anywhere else on the screen looks around, and so does tilting the device (gyroscope).
 
-import { K_ESCAPE, K_ENTER, K_MOUSE1, Key_Event } from './keys.js';
-import { R_BestiaryInputLocked } from './r_bestiary.js';
-import { in_attack, in_jump } from './cl_input.js';
-import { S_UnlockAudio } from './snd_dma.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './engine/common/cvar.js';
-import { Cbuf_AddText } from './engine/common/cmd.js';
-import { cl } from './client.js';
-import { STAT_SHELLS } from './engine/common/quakedef.js';
+import { K_ESCAPE, K_ENTER, K_MOUSE1, Key_Event } from '../engine/client/keys.js';
+import { R_BestiaryInputLocked } from '../r_bestiary.js';
+import { in_attack, in_jump } from '../engine/client/cl_input.js';
+import { S_UnlockAudio } from '../engine/sound/snd_dma.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../engine/common/cvar.js';
+import { Cbuf_AddText } from '../engine/common/cmd.js';
+import { cl } from '../engine/client/client.js';
+import { STAT_SHELLS } from '../engine/common/quakedef.js';
 import { Touch_Layout, Touch_WeaponChoices } from './touch_layout.js';
 
 // left and right of the stick: 0 turns, 1 sidesteps
