@@ -8,7 +8,7 @@
  *
  * State: mutable exports `scr_con_current`, `scr_initialized`, `scr_disabled_for_loading`, `scr_drawloading`;
  * module-level variables `glx`, `gly`, `glwidth`, `glheight`, `scr_copytop`, `scr_copyeverything`, `scr_conlines`,
- * `scr_wasforced`, `oldfov`, `oldtouchinset`, `oldscreensize`, `scr_ram` and 31 more.
+ * `scr_wasforced`, `oldfov`, `oldtouchinset`, `oldscreensize`, `scr_ram` and 33 more.
  *
  * Errors: catches at 1 place.
  *
@@ -21,8 +21,6 @@ import { Con_Printf, Con_CheckResize, Con_DrawConsole, Con_DrawNotify, Con_Clear
 	con_forcedup, Con_SetForcedup, con_initialized } from '../common/console.js';
 import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from '../common/hooks.js'; // installed by newer/render/r_perf.js
 import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines, Sbar_SetYOffset } from '../client/sbar.js';
-import { Touch_BottomInset } from '../../platform/touch.js';
-import { M_Draw } from '../client/menu.js';
 import { R_BestiaryInputLocked } from '../common/hooks.js'; // installed by newer/ui/r_bestiary.js
 import { R_BestiaryEncounterDraw } from '../common/hooks.js'; // installed by newer/ui/r_bestiary_book.js
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
@@ -84,7 +82,7 @@ let oldtouchinset = 0;
 // the status bar sits above them
 function SCR_TouchInset() {
 
-	const px = Touch_BottomInset();
+	const px = _Touch_BottomInset();
 	if ( px <= 0 || typeof window === 'undefined' || ! window.innerHeight ) return 0;
 	return Math.round( px * _vid.height / window.innerHeight );
 
@@ -186,6 +184,9 @@ let _V_UpdatePalette = null;
 let _GL_BeginRendering = null;
 let _GL_EndRendering = null;
 let _S_StopAllSounds = null;
+// the menu's drawing and the touch controls' height (client/menu.js, platform/touch.js; set by the host, [44g] D1a)
+let _M_Draw = () => {};
+let _Touch_BottomInset = () => 0;
 let _r_cache_thrash = false;
 
 export function SCR_SetExternals( externals ) {
@@ -199,6 +200,8 @@ export function SCR_SetExternals( externals ) {
 	if ( externals.GL_BeginRendering ) _GL_BeginRendering = externals.GL_BeginRendering;
 	if ( externals.GL_EndRendering ) _GL_EndRendering = externals.GL_EndRendering;
 	if ( externals.S_StopAllSounds ) _S_StopAllSounds = externals.S_StopAllSounds;
+	if ( externals.M_Draw ) _M_Draw = externals.M_Draw;
+	if ( externals.Touch_BottomInset ) _Touch_BottomInset = externals.Touch_BottomInset;
 
 }
 
@@ -1037,7 +1040,7 @@ export function SCR_UpdateScreen() {
 		Draw_Fill(0,0,_vid.width,_vid.height,0);
 		scr_plaque=true;SCR_DrawLoading();scr_plaque=false;
 		if(key_dest===key_console)SCR_DrawConsole();
-		M_Draw();
+		_M_Draw();
 	} else if ( scr_drawloading || scr_plaque ) {
 
 		SCR_DrawLoading();
@@ -1065,7 +1068,7 @@ export function SCR_UpdateScreen() {
 		SCR_CheckDrawCenterString();
 		SCR_DrawStatusBar();
 		SCR_DrawConsole();
-		M_Draw();
+		_M_Draw();
 
 	}
 

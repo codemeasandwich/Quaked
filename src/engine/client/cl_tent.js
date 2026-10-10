@@ -43,6 +43,8 @@ import { Mod_ForName } from '../render/gl_model.js';
 import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../common/hooks.js'; // installed by newer/render/r_decals.js
 
 let num_temp_entities = 0;
+// the player's beam lookup lives with the beams in client.js, so the renderer need not import this module ([44g], D1a)
+export { CL_PlayerLightning } from './client.js';
 
 let cl_sfx_wizhit = null;
 let cl_sfx_knighthit = null;
@@ -351,27 +353,6 @@ function CL_NewTempEntity() {
 
 }
 
-/*
-=================
-CL_PlayerLightning
-
-The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
-(r_lightning.js, card [30a]) and its burn on the walls (r_wallburn.js, card [30c]): { start, end } or null. Other beams
-(the Shambler's, Chthon's, the grapple's) are not it.
-=================
-*/
-export function CL_PlayerLightning() {
-
-	const serverTime = cl.mtime[ 0 ];
-	for ( let i = 0; i < MAX_BEAMS; i ++ ) {
-
-		const b = cl_beams[ i ];
-		if ( b.model != null && b.endtime >= serverTime && b.entity === cl.viewentity && b.model.name === 'progs/bolt2.mdl' ) return { start: Array.from( b.start ), end: Array.from( b.end ) };
-
-	}
-	return null;
-
-}
 
 /*
 =================

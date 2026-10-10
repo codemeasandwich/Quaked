@@ -9,8 +9,8 @@
  * State: mutable exports `r_worldentity`, `r_cache_thrash`, `currententity`, `r_visframecount`, `c_brush_polys`,
  * `c_alias_polys`, `envmap`, `currenttexture`, `particletexture`, `playertextures`, `mirror`, `mirror_plane` and 11
  * more; module-level variables `_entityMeshesInScene`, `_entityMeshesThisFrame`, `_gunPlacedFrame`, `_fireTexture`,
- * `_fireMaterial`, `_fireGeometry`, `_shadowFrame`, `_shadowCount`, `polyBlendMesh`, `polyBlendScene`,
- * `polyBlendCamera`, `_classicRestore` and 8 more; 5 module-level collections (Map/Set).
+ * `_fireMaterial`, `_fireGeometry`, `_shadowFrame`, `_shadowCount`, `_V_SetContentsColor`, `_V_CalcBlend`,
+ * `polyBlendMesh`, `polyBlendScene` and 10 more; 5 module-level collections (Map/Set).
  *
  * Errors: catches at 3 places.
  */
@@ -46,7 +46,6 @@ import { R_NewerLightingActive, R_NewerGame, r_newer_lighting, r_newer_normals, 
 import { R_NewerTexturesFrame } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
 import { R_PerfStage, R_PerfInit, cl_showfps } from '../common/hooks.js'; // installed by newer/render/r_perf.js
 import { R_WarmLevel, R_WarmFrame } from '../common/hooks.js'; // installed by newer/render/r_prewarm.js
-import { CL_TeleportSpots } from '../client/cl_tent.js';
 import { R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities, R_SyncLevelViews } from '../common/hooks.js'; // installed by newer/render/r_levelview.js
 import { R_WeaponSurfaceContext, R_WeaponSurfaceFrame } from '../common/hooks.js'; // installed by newer/render/r_weapon_surface.js
 import { R_ScreenDropsSetView, R_ScreenDropsView, R_ScreenDropsReset } from '../common/hooks.js'; // installed by newer/render/r_screendrops.js
@@ -55,12 +54,10 @@ import { r_fireball, r_fireballalpha, r_smoketrails, R_FireballSetup, R_Fireball
 import { r_impactripples, R_ImpactRipplesSetup, R_ImpactRippleFrame, R_ImpactRippleReset, R_ImpactRippleListen } from '../common/hooks.js'; // installed by newer/render/r_impactripples.js
 import { R_WavesSetup, R_WavesFrame, R_WavesReset, R_WaveImpact } from '../common/hooks.js'; // installed by newer/render/r_waves.js
 import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear, R_LightningTakesBeam } from '../common/hooks.js'; // installed by newer/render/r_lightning.js
-import { CL_PlayerLightning } from '../client/cl_tent.js';
 import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear, R_AliasFrameBox } from '../common/hooks.js'; // installed by newer/render/r_wallburn.js
 import { r_dof, R_DofSetup, R_DofFrame, R_DofClear } from '../common/hooks.js'; // installed by newer/render/r_dof.js
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from '../common/hooks.js'; // installed by newer/render/r_shotgun.js
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from '../common/hooks.js'; // installed by newer/render/r_torchfire.js
-import { CL_AllocDlight } from '../client/cl_main.js';
 import { R_ClassicTexture } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from '../common/hooks.js'; // installed by newer/mode.js
 import { R_SaveClassicScene, R_ClassicMaterial } from '../common/hooks.js'; // installed by newer/render/r_classicstate.js
@@ -87,7 +84,7 @@ import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_mod
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
 import { r_avertexnormal_dots } from '../common/anorm_dots.js';
-import { V_SetContentsColor as V_SetContentsColor_view, V_CalcBlend as V_CalcBlend_view } from '../client/view.js';
+import { CL_AllocDlight, CL_PlayerLightning } from '../client/client.js';
 import { chase_active } from '../client/chase.js';
 import {
 	R_InitParticles, R_SetParticleExternals, R_ClearParticles,
@@ -1356,6 +1353,25 @@ function R_DrawBrushModel( e ) {
 // Ported from: WinQuake/gl_rmain.c
 //============================================================================
 
+
+// the client's view blend (view.js), which the renderer applies but does not import (card [44g], debt D1a): set by
+// the host; until then no contents colour or blend is computed
+let _V_SetContentsColor = () => {};
+let _V_CalcBlend = () => {};
+
+/**
+ * Hands the renderer the client functions it calls each frame, as the other modules' SetExternals do.
+ *
+ * @param {{ V_SetContentsColor?: function( number ): void, V_CalcBlend?: function(): void }} externals view.js's
+ *   contents colour (from the view leaf's contents) and its screen blend
+ */
+export function R_SetExternals( externals ) {
+
+	if ( externals.V_SetContentsColor ) _V_SetContentsColor = externals.V_SetContentsColor;
+	if ( externals.V_CalcBlend ) _V_CalcBlend = externals.V_CalcBlend;
+
+}
+
 /*
 ================
 R_GetSpriteFrame
@@ -2380,13 +2396,13 @@ function R_AnimateLight() {
 
 function V_SetContentsColor( contents ) {
 
-	V_SetContentsColor_view( contents );
+	_V_SetContentsColor( contents );
 
 }
 
 function V_CalcBlend() {
 
-	V_CalcBlend_view();
+	_V_CalcBlend();
 
 }
 

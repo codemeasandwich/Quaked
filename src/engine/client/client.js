@@ -389,3 +389,87 @@ export function set_cl_numvisedicts( val ) {
 	cl_numvisedicts = val;
 
 }
+
+// The two client functions the renderer calls, here with the state they read (cl, cl_dlights, cl_beams), so the
+// renderer need not import cl_main.js or cl_tent.js (card [44g], baseline debt D1a); both re-export them.
+
+/*
+===============
+CL_AllocDlight
+
+===============
+*/
+export function CL_AllocDlight( key ) {
+
+	// first look for an exact key match
+	if ( key ) {
+
+		for ( let i = 0; i < MAX_DLIGHTS; i ++ ) {
+
+			if ( cl_dlights[ i ].key === key ) {
+
+				const dl = cl_dlights[ i ];
+				dl.origin.fill( 0 );
+				dl.radius = 0;
+				dl.die = 0;
+				dl.decay = 0;
+				dl.minlight = 0;
+				dl.key = key;
+				return dl;
+
+			}
+
+		}
+
+	}
+
+	// then look for anything else
+	for ( let i = 0; i < MAX_DLIGHTS; i ++ ) {
+
+		if ( cl_dlights[ i ].die < cl.time ) {
+
+			const dl = cl_dlights[ i ];
+			dl.origin.fill( 0 );
+			dl.radius = 0;
+			dl.die = 0;
+			dl.decay = 0;
+			dl.minlight = 0;
+			dl.key = key;
+			return dl;
+
+		}
+
+	}
+
+	const dl = cl_dlights[ 0 ];
+	dl.origin.fill( 0 );
+	dl.radius = 0;
+	dl.die = 0;
+	dl.decay = 0;
+	dl.minlight = 0;
+	dl.key = key;
+	return dl;
+
+}
+
+/*
+=================
+CL_PlayerLightning
+
+The player's own lightning gun beam (TE_LIGHTNING2 from the view entity) while it lives, for the Newer Game beam
+(r_lightning.js, card [30a]) and its burn on the walls (r_wallburn.js, card [30c]): { start, end } or null. Other beams
+(the Shambler's, Chthon's, the grapple's) are not it.
+=================
+*/
+export function CL_PlayerLightning() {
+
+	const serverTime = cl.mtime[ 0 ];
+	for ( let i = 0; i < MAX_BEAMS; i ++ ) {
+
+		const b = cl_beams[ i ];
+		if ( b.model != null && b.endtime >= serverTime && b.entity === cl.viewentity && b.model.name === 'progs/bolt2.mdl' ) return { start: Array.from( b.start ), end: Array.from( b.end ) };
+
+	}
+	return null;
+
+}

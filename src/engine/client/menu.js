@@ -8,7 +8,7 @@
  *
  * State: mutable exports `m_state`, `m_entersound`; module-level variables `m_recursiveDraw`, `m_return_state`,
  * `m_return_onerror`, `m_return_reason`, `m_save_demonum`, `lanConfig_cursor`, `lanConfig_joinname`, `slist_rooms`,
- * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 51 more; browser storage.
+ * `slist_cursor`, `slist_fetching`, `slist_error`, `_WT_QueryRooms` and 52 more; browser storage.
  *
  * Errors: throws at 1 place; catches at 4 places.
  *
@@ -41,7 +41,6 @@ import { scr_viewsize, scr_con_current } from '../render/gl_screen.js';
 import { v_gamma } from './view.js';
 import { gl_texturemode, GL_UpdateTextureFiltering } from '../render/glquake.js';
 import { skill, coop, teamplay, deathmatch, svs } from '../server/server.js';
-import { Touch_ExitFullscreen } from '../../platform/touch.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from '../render/gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { COM_FindFile } from '../common/pak.js';
@@ -243,6 +242,10 @@ export function M_ShouldReturnOnError() {
 
 }
 
+// leaving fullscreen on a touch device (platform/touch.js), set by the host ([44g] D1a): the client does not import
+// the platform
+let _Touch_ExitFullscreen = () => {};
+
 /*
 ==============================================================================
 
@@ -285,6 +288,7 @@ let _CL_NextDemo = null;
 
 export function M_SetExternals( externals ) {
 	if ( 'weaponModelsCredit' in externals ) _weaponModelsCredit = externals.weaponModelsCredit;
+	if ( externals.Touch_ExitFullscreen ) _Touch_ExitFullscreen = externals.Touch_ExitFullscreen;
 
 	if ( externals.key_dest_set ) _key_dest_set = externals.key_dest_set;
 	if ( externals.key_dest_get ) _key_dest_get = externals.key_dest_get;
@@ -709,7 +713,7 @@ function M_Main_Key( key ) {
 					break;
 				case 5:
 					// Exit fullscreen when entering quit menu
-					Touch_ExitFullscreen();
+					_Touch_ExitFullscreen();
 					M_Menu_Quit_f();
 					break;
 

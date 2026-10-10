@@ -8,7 +8,7 @@
  *
  * State: no mutable exports; module-level variables `numgltextures`, `texture_extension_number`, `minimumUIWidth`,
  * `minimumUIHeight`, `scopedUIScale`, `overlayCanvas`, `overlayCtx`, `char_canvas`, `conback`, `draw_disc`,
- * `draw_backtile`, `host_basepal` and 14 more.
+ * `draw_backtile`, `host_basepal` and 15 more.
  *
  * Errors: throws at 2 places; catches at 2 places.
  *
@@ -18,7 +18,6 @@
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
 import { Con_Printf } from '../common/console.js';
-import { Sbar_Changed } from '../client/sbar.js';
 import { W_GetLumpName } from '../common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
 import { COM_FindFile } from '../common/pak.js';
@@ -385,6 +384,9 @@ function Draw_InitCommands() {
 
 }
 
+// the status bar's redraw flag (client/sbar.js), set by the host ([44g] D1a): the renderer does not import the client
+let _Sbar_Changed = () => {};
+
 /*
 ==============================================================================
 
@@ -413,6 +415,7 @@ export function Draw_SetExternals( externals ) {
 	if ( externals.vid ) _realVid = externals.vid;
 	if ( externals.host_basepal ) host_basepal = externals.host_basepal;
 	if ( externals.d_8to24table ) d_8to24table = externals.d_8to24table;
+	if ( externals.Sbar_Changed ) _Sbar_Changed = externals.Sbar_Changed;
 
 }
 
@@ -970,7 +973,7 @@ export function Draw_FadeScreen() {
 	overlayCtx.fillStyle = 'rgba(0, 0, 0, 0.8)';
 	overlayCtx.fillRect( 0, 0, _vid.width, _vid.height );
 
-	Sbar_Changed();
+	_Sbar_Changed();
 
 }
 
