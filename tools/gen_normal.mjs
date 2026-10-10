@@ -1,5 +1,5 @@
 // Generates a tangent-space normal map from raw RGBA texels using the game's own
-// generator (src/gl_normals.js), so offline maps match the ones made at runtime.
+// generator (src/newer/render/gl_normals.js), so offline maps match the ones made at runtime.
 //   node tools/gen_normal.mjs in.rgba WIDTH HEIGHT out.rgba
 
 import { register } from 'node:module';

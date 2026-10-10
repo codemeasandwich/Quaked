@@ -13,7 +13,7 @@ The existing hidden Nightmare choice retains Hard's OFF/OFF behavior. Manual cha
 
 ## Implementation and invariants
 
-`src/r_flashlightrun.js` owns both automatic aids through the existing per-run coordinator. `R_FlashlightNewRun` now resets them only for a successful fresh **Newer START**. It no longer derives flashlight state from difficulty for direct starts/restarts of other maps: those retain current choices. Classic START also keeps its existing preferences. The crosshair is not added to the general Newer feature startup batch; that would turn it on outside the requested entrance policy.
+`src/newer/render/r_flashlightrun.js` owns both automatic aids through the existing per-run coordinator. `R_FlashlightNewRun` now resets them only for a successful fresh **Newer START**. It no longer derives flashlight state from difficulty for direct starts/restarts of other maps: those retain current choices. Classic START also keeps its existing preferences. The crosshair is not added to the general Newer feature startup batch; that would turn it on outside the requested entrance policy.
 
 The existing local-player `trigger_multiple` floor-message hook in `world.js` chooses the aid pair at real corridor contact. It is more than 500 world units ahead of the late stock `trigger_setskill`/teleport area. Only the aids change there; the native difficulty selection, map geometry, movement, portal transition and message script remain unchanged. `R_FlashlightSkillSelected` shares the existing selected-choice deduplicator with the later native QuakeC skill-setting callback. Thus repeated floor touches and the later same-choice skill trigger cannot undo manual changes or consume another automatic choice.
 

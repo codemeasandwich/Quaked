@@ -8,7 +8,7 @@ verification evidence are retained together, with owner acceptance pending.
 
 Options now displays Newer Game features first, Performance profiler immediately
 above Go to console, and FPS counter immediately above Texture Filtering. The
-remaining controls retain their relative order. `src/menu.js` keeps cursor and
+remaining controls retain their relative order. `src/engine/client/menu.js` keeps cursor and
 touch indices as visible rows, translating them through a single ordered list
 to the existing action IDs. Drawing uses the inverse mapping for labels and
 their widgets. Keyboard, touch and slider dispatch therefore agree with the
@@ -54,7 +54,7 @@ mixing invalid surfaces into neighbouring pigments.
 Turning lighting off returns to the original two attachments, preserving the
 normal/liquid path's original bandwidth. Target reuse also checks attachment count.
 
-`src/gl_post.js` removes the unconditional baked-light floor and the grey beam
+`src/newer/render/gl_post.js` removes the unconditional baked-light floor and the grey beam
 fallback. Flashlight diffuse response and direct-light lift use the retained
 material colour, while the existing scene lighting, occlusion, normals, beam
 falloff, HDR grading and dynamic scene-resolution presentation remain in place.

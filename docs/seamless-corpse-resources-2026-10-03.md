@@ -15,7 +15,7 @@ The public native regression reproduces this exact failure through
 
 ## Small reuse of the existing session boundary
 
-`src/sv_seamless.js` retains copied model and sound precache manifests alongside
+`src/newer/gameplay/sv_seamless.js` retains copied model and sound precache manifests alongside
 each existing level snapshot. One shared source manifest also accompanies the
 existing follower batch. This first-arrival manifest includes native/mod-specific
 pain, attack, death and head resources, rather than guessing them from the body

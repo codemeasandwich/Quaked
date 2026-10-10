@@ -4,7 +4,7 @@
 
 The custom `spmenu.png` already contained miscropped letter fragments and inconsistent baselines in **Newer Game** and **Level Select**. The menu's positions and selection indices were correct: it draws at virtual `(72,32)` with five 20-pixel rows, and the cursor follows those same rows. Moving the entire sheet could not repair its individual letters.
 
-The game now composes the extended sheet once from its original PAK menu sprites. `main.js`, after `Host_Init` and before starting the frame loop, calls `Draw_CacheSinglePlayerMenu` in `src/gl_draw.js`. That reuses `Draw_CachePic` and its palette-aware, transparent native canvases, then calls the leaf builder in `src/menu_art.js`. The result is cached under the existing `gfx/sp_menu_ext.lmp` key, so `M_SinglePlayer_Draw` and all selection handling remain unchanged.
+The game now composes the extended sheet once from its original PAK menu sprites. `main.js`, after `Host_Init` and before starting the frame loop, calls `Draw_CacheSinglePlayerMenu` in `src/engine/render/gl_draw.js`. That reuses `Draw_CachePic` and its palette-aware, transparent native canvases, then calls the leaf builder in `src/newer/ui/menu_art.js`. The result is cached under the existing `gfx/sp_menu_ext.lmp` key, so `M_SinglePlayer_Draw` and all selection handling remain unchanged.
 
 The old PNG stays in the repository as a legacy asset, but startup no longer fetches it. Cached copies of that PNG cannot replace the newly composed menu. A hard refresh is still required to load changed JavaScript.
 

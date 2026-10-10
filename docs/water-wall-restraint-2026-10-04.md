@@ -12,7 +12,7 @@ collision, continuous rock fields and authored crafted-height assets are retaine
 
 ## Source changes
 
-`src/gl_post.js` reduces the shared water ripple slope to 65% of its previous
+`src/newer/render/gl_post.js` reduces the shared water ripple slope to 65% of its previous
 value, applies 35% of the previous refractive offset, and caps that offset at
 0.4% of screen height instead of 1.2%. The single shared refraction ray remains;
 there was no RGB dispersion term in this water shader. Physical IOR 1.333,
@@ -32,7 +32,7 @@ image is not rewritten. A live per-material getter follows asynchronous art
 arrival. Classic and native pigment do not receive this widened footprint.
 The shader cache key changes to prevent reuse of an earlier program variant.
 
-`src/gl_normals.js` now enforces its existing intended maximum fallback slope
+`src/newer/render/gl_normals.js` now enforces its existing intended maximum fallback slope
 of 0.5 before encoding. Painted high-resolution grain can otherwise produce
 near-vertical normals. This soft limit preserves direction and leaves the height
 alpha byte unchanged. Crafted heights continue to use their authored caps.

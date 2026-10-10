@@ -32,15 +32,15 @@ explosions use), so each half shows its own trail.
 
 ## How it is built
 
-* `src/r_smoketrail.js` (pure, no renderer): the pool of live puffs and the source's per-puff
+* `src/newer/render/r_smoketrail.js` (pure, no renderer): the pool of live puffs and the source's per-puff
   motion. `forEachSmoke` is the source's `smokeList` with an explicit time-scale parameter;
   at scale 1 it equals the source exactly. Puffs are stored in the source's own space
   (y up, source units) because the source's drift terms assume it.
-* `src/r_fireball.js` owns the puff layer, textures and shader (the source shares one for
+* `src/newer/render/r_fireball.js` owns the puff layer, textures and shader (the source shares one for
   smoke and explosions), so trail smoke and explosion clouds are depth-sorted together, back
   to front, in one instanced draw. The rocket's exhaust glow (the source's glow card behind
   the nose) uses the flash layer, only on frames the rocket moved.
-* `src/fx_math.js`: the source's own `clamp / mix / smooth / hashJS`, shared by both ports.
+* `src/newer/render/fx_math.js`: the source's own `clamp / mix / smooth / hashJS`, shared by both ports.
 
 ### Changes from the source, and why
 

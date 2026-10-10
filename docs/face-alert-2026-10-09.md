@@ -8,15 +8,15 @@ status bar looks toward where it came from.
 * **The trigger is the game's own.** A monster that has just noticed the player runs `FoundTarget`, which always plays its
   sight sound (`SightSound`) and then starts the hunt. In the stock progs `FoundTarget` is called from three places:
   `FindTarget` (the monster sees or hears the player), `T_Damage` (the player hurt a monster that had a different
-  enemy) and `monster_use` (a trigger or alarm wakes it). The server hook (`src/sv_faceevents.js`, `alertEnter`) watches
+  enemy) and `monster_use` (a trigger or alarm wakes it). The server hook (`src/newer/gameplay/sv_faceevents.js`, `alertEnter`) watches
   `FoundTarget` and queues an `alert` event when the monster is a real monster (`FL_MONSTER`) whose enemy is the player.
   It changes nothing in the game. Every such notice is queued (the queue is bounded to 256).
-* **Off screen only.** The client adapter (`R_FaceAlerts` in `src/r_facegame.js`) takes the angle from the player's view
+* **Off screen only.** The client adapter (`R_FaceAlerts` in `src/newer/ui/r_facegame.js`) takes the angle from the player's view
   at that moment to the monster with the same function the damage glance uses (`faceImpactAngle`; yaw only) and ignores
   a monster within half the **live** horizontal field of view plus 5 degrees of it (`r_refdef.fov_x`, which widens on
   wide screens and with the Newer phone settings: 53 degrees at fov 90 on 16:9, about 70 at the phone's 120). The
   fixed 55 degrees (`FACE_ALERT_ONSCREEN`) is only the fallback when the field of view is not known.
-* **The face.** `FaceState.alert` (`src/face_state.js`) turns the head the way a hit from that direction would. Everything
+* **The face.** `FaceState.alert` (`src/newer/ui/face_state.js`) turns the head the way a hit from that direction would. Everything
   past the screen edge is 45 degrees or more off the view, so it is a head turn left or right, or the centred pose for
   straight behind (as for damage; nothing visible happens for a sound exactly behind, though it still holds the
   second). It lasts one second and shows no pain. **One glance per half second**, applied after the on-screen filter, so
@@ -55,7 +55,7 @@ screen yet 90 degrees to the side by yaw). A monster the player shoots while it 
 
 ## Correction, 9 October 2026: the head turned the wrong way
 
-The owner reported that the head did not move toward the sound. In the real game it moved, but **away** from it: the face artwork names its looks from the character's own point of view (`head_left` looks toward the screen's right), while the code used the names as the player's left. A Soldier on the player's left made the head look to the screen's right. The same mix-up made damage reactions look away from the attacker. `faceDirection` (`src/face_state.js`) now maps something on the player's left to the right-named looks, so the head turns toward it on screen, for alerts and for damage alike; the tests' expected look names were mirrored to match (the intended direction of each case is unchanged).
+The owner reported that the head did not move toward the sound. In the real game it moved, but **away** from it: the face artwork names its looks from the character's own point of view (`head_left` looks toward the screen's right), while the code used the names as the player's left. A Soldier on the player's left made the head look to the screen's right. The same mix-up made damage reactions look away from the attacker. `faceDirection` (`src/newer/ui/face_state.js`) now maps something on the player's left to the right-named looks, so the head turns toward it on screen, for alerts and for damage alike; the tests' expected look names were mirrored to match (the intended direction of each case is unchanged).
 
 ![With a Soldier on the player's left, the face turns toward the screen's left](images/face-alert-turns-left.png)
 

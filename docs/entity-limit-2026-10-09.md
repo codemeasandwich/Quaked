@@ -14,7 +14,7 @@ The server sends each client, every frame, the entities in view. This port uses 
 
 ## Fix
 
-The 64-entity, 1024-byte packet stays for network play (real packets have a size limit). The local game, which talks to itself through an in-memory link, now carries up to **512 entities in a packet of up to 32,000 bytes** (`MAX_PACKET_ENTITIES_LOCAL`, `MAX_DATAGRAM_LOCAL`; `SV_SendClientDatagram`/`SV_WriteEntitiesToClient` in `src/sv_main.js` choose by the client's link). The entity arrays on both sides, the loopback buffers and the client's receive buffer were enlarged to match (`src/protocol.js`, `client.js`, `server.js`, `cl_parse.js`, `net.js`, `net_loop.js`, `net_main.js`, `quakedef.js`). This applies to New Game and Newer Game alike: it is the transport, not the look.
+The 64-entity, 1024-byte packet stays for network play (real packets have a size limit). The local game, which talks to itself through an in-memory link, now carries up to **512 entities in a packet of up to 32,000 bytes** (`MAX_PACKET_ENTITIES_LOCAL`, `MAX_DATAGRAM_LOCAL`; `SV_SendClientDatagram`/`SV_WriteEntitiesToClient` in `src/engine/server/sv_main.js` choose by the client's link). The entity arrays on both sides, the loopback buffers and the client's receive buffer were enlarged to match (`src/engine/common/protocol.js`, `client.js`, `server.js`, `cl_parse.js`, `net.js`, `net_loop.js`, `net_main.js`, `quakedef.js`). This applies to New Game and Newer Game alike: it is the transport, not the look.
 
 ## Checks
 

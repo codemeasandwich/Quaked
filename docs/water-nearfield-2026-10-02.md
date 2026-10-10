@@ -42,4 +42,4 @@ Hard-refresh Newer Game, leave Water appearance at Map and inspect E1M3. Nearby 
 
 The inspection fixture is `tests/water_gameplay_trial.html`. Start E1M3 and use `-1280 -600 -328 12 35` in Camera xyz pitch yaw. The calibrated fixture exposes near/far volume and per-marker controls in `tests/water_optics_trial.html`. These controls are test-only and do not change production movement.
 
-Independent planning, testing and source review were used. Work remains local and uncommitted. The owner's concurrent weapon-model work, weapon assets, `src/r_weapons.js`, `src/r_newerskins.js` and `tools/import_weapons.py` were preserved and not edited or staged by this water increment. Owner visual acceptance remains pending.
+Independent planning, testing and source review were used. Work remains local and uncommitted. The owner's concurrent weapon-model work, weapon assets, `src/newer/render/r_weapons.js`, `src/newer/render/r_newerskins.js` and `tools/import_weapons.py` were preserved and not edited or staged by this water increment. Owner visual acceptance remains pending.

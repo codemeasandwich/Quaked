@@ -1,12 +1,12 @@
 # The first-discovery page: frame first, a diagonal roll, drawn when the game stops, no matte
 
-Cards [1] and [39] (owner requests). `R_BestiaryEncounterDraw` in `src/r_bestiary_book.js`.
+Cards [1] and [39] (owner requests). `R_BestiaryEncounterDraw` in `src/newer/ui/r_bestiary_book.js`.
 
 ![A real first sighting on E1M5: frame and title, the drawing coming in, the settled page](images/bestiary-encounter-2026-10-09.jpg)
 
 ![Mid-writing: a sharp writing edge, the live world around the paper](images/bestiary-encounter-writing-2026-10-09.jpg)
 
-The page now has its own clocks, taken from the encounter's phases (`BestiaryEncounter.tick` in `src/bestiary_state.js` gives
+The page now has its own clocks, taken from the encounter's phases (`BestiaryEncounter.tick` in `src/newer/ui/bestiary_state.js` gives
 `t`, the seconds in the phase, and `paused`, the seconds since the game's time scale reached zero, 0.55 s into the enter phase):
 
 * **At once**: the authored frame and title, the supplied blank folio and the entry's heading crop (the same pair a locked

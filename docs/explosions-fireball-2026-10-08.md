@@ -55,7 +55,7 @@ original explosion is shown everywhere.
 
 ## How it is built
 
-`src/r_fireball.js` ports the source's functions line for line and evaluates them per
+`src/newer/render/r_fireball.js` ports the source's functions line for line and evaluates them per
 frame, exactly as the source does: the effect is analytic in the burst's age
 (`forEachCloud`, `forEachSpark`, `fireballFlash`, `fireballRingRadius`,
 `fireballLight`). The exported `fireballClouds` / `fireballSparks` are thin

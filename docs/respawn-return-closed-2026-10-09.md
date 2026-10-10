@@ -14,7 +14,7 @@ closed gate. The player stayed in E1M3 when walked into it.)
 
 ## How it works
 
-* **Server** (`src/sv_seamless.js`). `SV_SeamlessCloseReturn()` flags every crossing with `back === true` as `closed` and
+* **Server** (`src/newer/gameplay/sv_seamless.js`). `SV_SeamlessCloseReturn()` flags every crossing with `back === true` as `closed` and
   clears the hidden arch surfaces (the only arch surfaces ever hidden are the way back's, so they are drawn again: the
   wall the brush always was; its collision was never removed). A closed crossing is skipped by `SV_SeamlessFrame` (so it
   cannot be crossed) and by `SV_WarmNearExits` (the level behind it is no longer prepared). The crossing **stays in the
@@ -22,16 +22,16 @@ closed gate. The player stayed in E1M3 when walked into it.)
 * **Followers.** Monsters that were chasing the player when they crossed, and are still on their way through, would step
   out of a doorway that has just shut. Closing the way back puts them back in the level they came from (the same
   `SV_ReturnFollowers` as when the player walks back) and takes their figures out of the window.
-* **When.** `contact()` in `src/sv_respawn.js` calls a hook the moment the respawn lands, just before the alert pass and
+* **When.** `contact()` in `src/newer/gameplay/sv_respawn.js` calls a hook the moment the respawn lands, just before the alert pass and
   the guard ([respawn-guard-2026-10-09.md](respawn-guard-2026-10-09.md)). `sv_main.js` sets the hook to
   `SV_SeamlessCloseReturn` at each level spawn, so `sv_respawn.js` does not import the seamless and renderer modules
   (importing them there changed module load order and broke loading `sv_respawn`, `sv_phys` or `cl_parse` on their own). So the way back is shut by the time the player is
   standing at the start of the level, where the doorway usually is.
-* **Renderer.** `R_SyncLevelViews()` (`src/r_levelview.js`), called every frame from `gl_rmain.js`, drops the view and
-  the window (`R_RemoveLevelPortal` in `src/gl_portal.js`) of any crossing the server has flagged, and detaches the
+* **Renderer.** `R_SyncLevelViews()` (`src/newer/render/r_levelview.js`), called every frame from `gl_rmain.js`, drops the view and
+  the window (`R_RemoveLevelPortal` in `src/newer/render/gl_portal.js`) of any crossing the server has flagged, and detaches the
   monsters that were running in that view. `buildView` also refuses a flagged crossing, so a view still being built when
   the way back shuts never appears. Views now remember the crossing they belong to (`view.crossing`).
-* **Shadows.** The wall is also put back into the shadow-casting geometry (`R_BuildWorldOccluder` in `src/gl_rsurf.js`
+* **Shadows.** The wall is also put back into the shadow-casting geometry (`R_BuildWorldOccluder` in `src/engine/render/gl_rsurf.js`
   rebuilds it whenever the hidden-arch revision changes), so the restored wall blocks sun, lamp and flashlight light like
   any other wall. Without this it was visible but cast no shadow.
 * **What is not touched.** Forward exits (`back` is false), teleporter pads, other same-level teleporters, and the

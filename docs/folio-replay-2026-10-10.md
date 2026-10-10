@@ -32,7 +32,7 @@ supplied the effect as `folio-pencil-fast-replay.html` (on the owner's Desktop, 
     analyzer's and template's hashes, the schedule's, and the encoder's version).
 
   All 47 pages come to about 31 MB, next to the Bestiary's 190 MB of art.
-* **The replay** (`src/r_folio.js`). The supplied shader's per-texel rule, on those moments:
+* **The replay** (`src/newer/ui/r_folio.js`). The supplied shader's per-texel rule, on those moments:
   * `first` = reached x strength;
   * `reveal` = first + (1 - first) x second;
   * the colour mixes the paper towards the page's own pixel by `reveal`.
@@ -69,7 +69,7 @@ reads the maps texel for texel against the image.
     straight line's; the page's own pixels untouched);
   * every page prepared from today's image by today's makers, at the image's own size, with no drawn pixel left without a
     stroke;
-  * the runtime (`src/r_folio.js`, with fetch and images stood in for): loading, ready and none; a failing image; the
+  * the runtime (`src/newer/ui/r_folio.js`, with fetch and images stood in for): loading, ready and none; a failing image; the
     2.3 s timing; no plate for an image not the maps' size.
   * Each of these fails when its rule is broken. This was checked by deliberately breaking each: no eased curve,
     pressure on every stroke, no second layer.

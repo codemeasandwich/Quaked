@@ -1,6 +1,6 @@
 # Stronger shafts and local lava illumination
 
-The owner requested four times the default light-shaft intensity, plus glowing lava that lights adjacent surfaces. This increment reuses the existing HDR, bloom, light-selection and deferred surface-lighting paths. It changes `src/gl_post.js`; the original lava material and turbulent-UV path in `src/gl_rsurf.js` already supplies the required unlit source texture and remains unchanged.
+The owner requested four times the default light-shaft intensity, plus glowing lava that lights adjacent surfaces. This increment reuses the existing HDR, bloom, light-selection and deferred surface-lighting paths. It changes `src/newer/render/gl_post.js`; the original lava material and turbulent-UV path in `src/engine/render/gl_rsurf.js` already supplies the required unlit source texture and remains unchanged.
 
 ## Shaft control contract
 

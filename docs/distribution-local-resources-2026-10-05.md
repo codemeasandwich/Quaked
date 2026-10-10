@@ -39,7 +39,7 @@ The 27 retained candidates include the other seven Gemini sheets; the water-refe
 
 ## Corrected path evidence
 
-The initial audit incorrectly treated `logo.png` as a substring of the loaded studio-logo path. On baseline `b536c9359a4ac37c4541a9debce76991fcd20ef1`, `index.html:71` loads **`newer/ui/studio-logo.png`**. `src/studio_logo.js:18` resolves **`../newer/ui/studio-logo.png`** relative to that module, producing the same runtime path. Neither call loads root `logo.png`. [The existing studio document](studio-logo-2026-10-04.md) records the installed runtime asset and preservation of the root owner file.
+The initial audit incorrectly treated `logo.png` as a substring of the loaded studio-logo path. On baseline `b536c9359a4ac37c4541a9debce76991fcd20ef1`, `index.html:71` loads **`newer/ui/studio-logo.png`**. `src/newer/ui/studio_logo.js:18` resolves **`../newer/ui/studio-logo.png`** relative to that module, producing the same runtime path. Neither call loads root `logo.png`. [The existing studio document](studio-logo-2026-10-04.md) records the installed runtime asset and preservation of the root owner file.
 
 Root `logo.png` is conservatively retained owner material, with no exclusion approved and no runtime-consumer claim. The runtime studio logo remains retained. Original failed report/manifest/hash receipts remain unchanged in the lane's private Bluey outbox; corrected effective classifications and caller-resolved references are separate receipts. Bulk private machine/resource inventories are not part of this source commit.
 

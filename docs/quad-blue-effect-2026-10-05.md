@@ -15,10 +15,10 @@ The owner requested the blue Quad pickup effect from the extracted Quake archive
 retaining Quaked's existing white flame. This supersedes the earlier purple Quad
 halo/tint/light specification in `powerup-flames-2026-10-04.md` for Quad only.
 
-`src/r_powerups.js` now attaches the donor blue central and lower spark layers,
+`src/newer/render/r_powerups.js` now attaches the donor blue central and lower spark layers,
 uses blue native-surface emission and a `[0,0,1.1]` light with radius metadata80.
 The white `[1.5,1.5,1.5]` volumetric fire, its native geometry fuel and glyph guard,
-and `src/r_powerupfire.js` are unchanged. Native pickup shape, artwork, gameplay,
+and `src/newer/render/r_powerupfire.js` are unchanged. Native pickup shape, artwork, gameplay,
 collection, inventory, Classic mode and other powerups retain their owners.
 
 ## Source and adaptation

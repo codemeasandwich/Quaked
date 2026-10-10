@@ -1,6 +1,6 @@
 # Bestiary book: the cover turns like a page, and a turn waits for its pages
 
-Card [7] (owner request). `src/r_bestiary_book.js`, with two small exports of `src/r_bestiary.js`.
+Card [7] (owner request). `src/newer/ui/r_bestiary_book.js`, with two small exports of `src/newer/ui/r_bestiary.js`.
 
 ![The cover folding about the spine, then the dedication beside the inner illustration](images/bestiary-cover-turn-2026-10-09.jpg)
 

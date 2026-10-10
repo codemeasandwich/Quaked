@@ -21,7 +21,7 @@ Positions read left to right, top to bottom. Each name is both the BSP texture k
 | Row 3, column 1 | `wizwood1_7` / `wizwood1_7.webp` | Vine-covered red boards |
 | Row 3, column 2 | `wizwood1_8` / `wizwood1_8.webp` | Dark boards with staggered nailed joints |
 
-The engine binding is `R_NewerTexturesFrame` / `R_NewerTexturesForModel` -> `R_NewerTextureUpgrade` (`src/r_newertextures.js`). It keeps the original texture object and swaps only its GPU pixels and matching height data. `R_NormalMapFor` (`src/gl_normals.js`) regenerates normals from that height; material detail uses the same diffuse UVs and offset. BSP texture sizes remain **64 × 64**, replacement diffuse/height images remain **256 × 256**. World texture coordinates therefore keep the existing scale and brush alignment.
+The engine binding is `R_NewerTexturesFrame` / `R_NewerTexturesForModel` -> `R_NewerTextureUpgrade` (`src/newer/render/r_newertextures.js`). It keeps the original texture object and swaps only its GPU pixels and matching height data. `R_NormalMapFor` (`src/newer/render/gl_normals.js`) regenerates normals from that height; material detail uses the same diffuse UVs and offset. BSP texture sizes remain **64 × 64**, replacement diffuse/height images remain **256 × 256**. World texture coordinates therefore keep the existing scale and brush alignment.
 
 ## Crop, spacing and alignment
 

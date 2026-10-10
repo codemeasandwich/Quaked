@@ -52,7 +52,7 @@ lights, and its own animation is independent of the light's flicker.
 
 ## How it is built
 
-* `src/r_torchfire.js`, pure part: the model's **parts** (`torchParts`), the flame's **extents**
+* `src/newer/render/r_torchfire.js`, pure part: the model's **parts** (`torchParts`), the flame's **extents**
   (`flameExtent`), the registry the entity list fills, and the source's ember and smoke
   functions (`forEachEmber`, `forEachSmoke`), which equal the source's exactly. No state is kept
   per torch.

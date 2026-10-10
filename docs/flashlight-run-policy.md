@@ -25,7 +25,7 @@ state prevents the late trigger from undoing a manual switch-off. See
 The following describes the original 2026-10-03 late-trigger integration,
 which remains the fallback for actual difficulty selection.
 
-`src/r_flashlightrun.js` holds a small local run record and automatic-change baseline. It has no renderer, server loop, browser or save-file ownership. `r_flashlight.js` retains its shoulder offset and lag. It observes direct console changes once per view frame; the F/menu toggle supplies its actual previous setting immediately.
+`src/newer/render/r_flashlightrun.js` holds a small local run record and automatic-change baseline. It has no renderer, server loop, browser or save-file ownership. `r_flashlight.js` retains its shoulder offset and lag. It observes direct console changes once per view frame; the F/menu toggle supplies its actual previous setting immediately.
 
 The successful `Host_Map_f` hook runs after `connect local`, because that connection first disconnects previous client state. Native loopback connection is synchronous. Failed map fetch/spawn returns before the hook; an unsuccessful or dedicated connection does not activate Newer run policy. `Host_Changelevel_f` and server portal/seamless code do not reset this state. Client serverinfo updates the current map and can establish a loaded-game context without applying new defaults or resetting a continuing run's notice. Only an explicit disconnect ends the record; generic load/connect disconnects preserve it.
 

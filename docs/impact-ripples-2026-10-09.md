@@ -11,7 +11,7 @@ The first version drew rings: a fixed wave packet spreading from each hit, which
 *"Shooting at the surface of the water should cause ripples + Shooting at projected standing portals that you walk through when
 fired should have a metallic ripple effect NOT rings!! The effect has to show a visible visual distortion and ripples should
 interact with each other and surrounding edges we are looking for realism."* The rings are replaced by a wave simulation
-(`src/r_waves.js`); the detector below is unchanged and now feeds it.
+(`src/newer/render/r_waves.js`); the detector below is unchanged and now feeds it.
 
 | Two hits on E1M1's pool, injected 0.25 s apart (0, 0.25, 0.6, 1.0, 1.6, 2.4 s) | A real rocket into the same pool |
 | --- | --- |
@@ -19,7 +19,7 @@ interact with each other and surrounding edges we are looking for realism."* The
 | **Two hits on E1M4's slipgate ring** (0, 0.15, 0.4, 0.7, 1.1, 1.7 s) | **A real shotgun blast at an E1M5 teleporter** (0, 0.4, 0.7, 1.1, 1.7, 2.6 s) |
 | ![Liquid-metal waves coming back off the round frame and interfering](images/ripples-metal-slipgate.jpg) | ![The teleporter's view rippling like liquid metal](images/ripples-metal-teleporter-shotgun.jpg) |
 
-## The simulation (`src/r_waves.js`)
+## The simulation (`src/newer/render/r_waves.js`)
 
 * A **wave field** is a height field of up to 128 x 128 cells stepped with the 2D wave equation (explicit, fine enough steps to
   stay stable: the wave moves under half a cell a step), with a little damping. Waves are linear, so ripples from different
@@ -48,7 +48,7 @@ interact with each other and surrounding edges we are looking for realism."* The
 
 ## How it is drawn
 
-* **Water** (`PRESENT_FRAGMENT`, `src/gl_post.js`): the composite pass that draws the water already uses all sixteen of its
+* **Water** (`PRESENT_FRAGMENT`, `src/newer/render/gl_post.js`): the composite pass that draws the water already uses all sixteen of its
   texture units, so the ripples are applied to the finished picture in the present pass, which is switched on while a water
   field lives (otherwise it runs only for dynamic resolution or the power-up visions). For each pixel the ray is met with a
   live field's surface in front of what the pixel shows; there the picture is taken from a point moved across the surface by
@@ -56,7 +56,7 @@ interact with each other and surrounding edges we are looking for realism."* The
   bank, the gun or a wall), the slope turned toward the eye is lightened and the one turned away darkened (more or less of the
   light above is mirrored), and a sharp glint is added on the crests. The reflection and what is seen below the surface bend
   together, as they do on real water.
-* **Portal** (the portal fragment shader, `src/gl_portal.js`): the slope tilts the window's surface; the view through it is
+* **Portal** (the portal fragment shader, `src/newer/render/gl_portal.js`): the slope tilts the window's surface; the view through it is
   bent by the tilt (as a refracting surface would bend it) and the tilted metal mirrors a bright overhead where it tilts up and
   darkens where it tilts down, with a glint on the crests. A flat window is unchanged.
 * **Slipgate windows** onto the next level (card [B2]) are hit like teleporter windows: their plane carries the window's
@@ -68,12 +68,12 @@ Everything is decided on the client side of the picture, only for what is drawn,
 saved, nothing changes in the rules).
 
 * **Missiles**: a rocket, a grenade or a nail (`R_ImpactMissile`, called from `CL_LinkPacketEntities` in a live game and
-  `CL_RelinkEntities` in a demo, in `src/cl_main.js`, for the segment each moved this frame; a jump of more than 128 units is
+  `CL_RelinkEntities` in a demo, in `src/engine/client/cl_main.js`, for the segment each moved this frame; a jump of more than 128 units is
   a teleport and counts for nothing, an entity must have been linked on the previous frame too so a reused slot's old
   position is not used, and the lava fountain's ball, which carries the rocket flag, is not a missile).
 * **Shotgun pellets**: `r_shotgun.js` hands each pellet's stretch of flight this frame to the detector, so the ring appears
   when the pellet gets there, not when the shot was fired (the pellets are the supplied ones, with their own speed).
-* **Detector** (`R_ImpactSegment` in `src/r_impactripples.js`): if a segment's ends are on different sides of a liquid
+* **Detector** (`R_ImpactSegment` in `src/newer/render/r_impactripples.js`): if a segment's ends are on different sides of a liquid
   surface (water or slime by BSP contents; lava has no water optics to draw a ring on), the crossing is found by bisection
   and a **water ring** is made there (going in at full strength, coming out at 0.6), unless the point is inside a
   teleporter's window (its brush is water to the BSP, and the window's ring is the one wanted); if it passes through a
@@ -87,12 +87,12 @@ saved, nothing changes in the rules).
 
 ## How the first version drew them (replaced)
 
-* **Water** (`src/gl_post.js`, `waterImpactRings`): a wave packet of two or three crests travels out at 62 units a second,
+* **Water** (`src/newer/render/gl_post.js`, `waterImpactRings`): a wave packet of two or three crests travels out at 62 units a second,
   short ahead of its front and with a longer wake, fading in about a second. It adds a slope to the same ripple normal that
   already bends the water's reflections and refraction, and a faint crest of foam so it reads in a dark pool too (the existing
   optics clamp the refraction offset to a few pixels, so the normal alone was not visible in the dark). It only touches water
   at the ring's own height, so a ring on one pool does not show on another level of water.
-* **Portal** (`src/gl_portal.js`, the portal fragment shader): the same kind of packet, spreading at 150 units a second over
+* **Portal** (`src/newer/render/gl_portal.js`, the portal fragment shader): the same kind of packet, spreading at 150 units a second over
   the portal surface; it bends the view through the portal along the screen-space direction away from the hit and adds a
   steel-blue highlight and a short flash at the hit. The shader is on every portal surface; only teleporter windows are given
   hits.
@@ -150,7 +150,7 @@ First version (rings):
   is (a visible surface and a trigger box 8 units short of it, two faces and a second plane 8 units behind), the portal
   module gives one window, built once, a shot through the visible surface makes one ring, a shot stopping at the trigger
   box or passing beside makes none, and switching portals off leaves nothing to hit.
-* Mutation checks: 29 mutants of `src/r_impactripples.js` (Classic ungated, cvar ignored, hi or bisect 6, exits as strong,
+* Mutation checks: 29 mutants of `src/newer/render/r_impactripples.js` (Classic ungated, cvar ignored, hi or bisect 6, exits as strong,
   slime or lava mis-classed, margin 40 or 3, the x box test removed, the plane side ignored, an in-plane segment, no cap, no
   expiry, expiry `>`, future rings packed, teleport 64 or ignored, clock jump kept, every model a missile, laser dropped,
   grenade as rocket, lava ball a rocket, no set-up guard, undefined contents accepted, water in a window, stop after the first
@@ -173,7 +173,7 @@ lens drops, a teleport stretch, a power-up vision) the ripples' outline can be o
 ripples are simulated and the present pass runs for a picture then covered by the classic half; the ripples seen from below the surface (the present pass also bends it, not photographed); Episode 2 to 4
 pools and slime (the same code); a fireball or other effect drawn over the water without depth is bent with the water for the
 moment it is there (seen in the rocket run, under half a second); multiplayer; how the strengths, speeds and damping feel is
-for the owner to judge (the constants are `WATER` and `METAL` in `src/r_waves.js`). Cost, measured in Node on this Mac (Apple
+for the owner to judge (the constants are `WATER` and `METAL` in `src/newer/render/r_waves.js`). Cost, measured in Node on this Mac (Apple
 silicon): stepping and uploading 4 water fields and 1 portal field took 1.7 ms a frame (before the review's changes), and making a water field about 2 ms
 with a trivial contents lookup (the real BSP lookups for its 16,000 cells take longer: a one-off hitch on the hit, not
 measured); a slower machine was not tried, nor the GPU cost of the present pass (which runs while a water field lives).

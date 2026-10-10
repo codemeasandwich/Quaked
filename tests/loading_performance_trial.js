@@ -127,6 +127,6 @@ try{
  // Main must establish its normal module graph first; arbitrary leaf-first
  // imports change Quake's existing cyclic initialization order.
  await import('../main.js');
- const paths={vid:'vid',main:'gl_rmain',client:'client',server:'server',loading:'r_demoloading',screen:'gl_screen',draw:'gl_draw',vars:'cvar',textures:'r_newertextures',skins:'r_newerskins',weapons:'r_weapons',hud:'r_newerhud',rock:'r_rockfield',surfaces:'gl_rsurf',post:'gl_post',cmd:'cmd',menu:'menu',keys:'keys',bestiary:'r_bestiary'};
+ const paths={vid:'engine/render/vid',main:'engine/render/gl_rmain',client:'engine/client/client',server:'engine/server/server',loading:'newer/ui/r_demoloading',screen:'engine/render/gl_screen',draw:'engine/render/gl_draw',vars:'engine/common/cvar',textures:'newer/render/r_newertextures',skins:'newer/render/r_newerskins',weapons:'newer/render/r_weapons',hud:'newer/ui/r_newerhud',rock:'newer/render/r_rockfield',surfaces:'engine/render/gl_rsurf',post:'newer/render/gl_post',cmd:'engine/common/cmd',menu:'engine/client/menu',keys:'engine/client/keys',bestiary:'newer/ui/r_bestiary'};
  modules=Object.fromEntries(await Promise.all(Object.entries(paths).map(async([key,path])=>[key,await import('../src/'+path+'.js')])));report.engineModuleGraphReadyMs=performance.now();if(finished)modules.vid.renderer?.setAnimationLoop(null);else{attachRenderer();sample();}
 }catch(error){noteError('bootstrap',error);finish('bootstrap-error');}

@@ -11,16 +11,16 @@ adds **no background**, and matches the original's **exact positions and spacing
 * Renderer source: `quake-menu-final.html`, SHA-256
   `0c17c95648f1bcfa20fe2d882814ed11577d2f423cf7682a19535fb889d1f8ce`
   (kept local; not shipped). `tools/extract_menu_webgl.py` derives
-  `src/menu_webgl_source.js` from it and `--check` verifies the result. Patches
+  `src/newer/ui/menu_webgl_source.js` from it and `--check` verifies the result. Patches
   are explicit `once()` replacements, so a donor change fails loudly.
-* `src/menu.js` is still the only owner of menu state, actions, input, Continue
+* `src/engine/client/menu.js` is still the only owner of menu state, actions, input, Continue
   availability, saves and confirmations. There is no second navigation stack and
   no GPU hit map: the engine's own 20-unit row grid is the touch map.
-* `src/menu_webgl.js` is the adapter. `menu.js`'s drawing helpers (`M_Print`,
+* `src/newer/ui/menu_webgl.js` is the adapter. `menu.js`'s drawing helpers (`M_Print`,
   `M_PrintWhite`, `M_DrawCharacter`, `M_DrawTextBox`, `M_DrawSlider`,
   `M_DrawPic/TransPic/SubPic`) hand it their native coordinates; it builds one
   command list per frame and the single detached WebGL2 canvas renders it.
-* `src/gl_draw.js`: `Draw_FullResolutionCanvas` copies the rendered canvas onto the
+* `src/engine/render/gl_draw.js`: `Draw_FullResolutionCanvas` copies the rendered canvas onto the
   2D overlay at physical resolution (identity transform, state restored);
   `Draw_FullResolutionImage` copies a source rectangle the same way (logo art and
   deferred pictures). Cached pictures now carry their `path` so the adapter can
@@ -52,12 +52,12 @@ The menu has no background panel, so text over a bright scene can be hard to rea
 direction (8 Oct 2026): instead of a panel, give **every menu element a large soft black
 drop shadow** that blurs into a dark area behind the text and fades off. The renderer's
 whole output is copied to the overlay by `Draw_FullResolutionCanvas( canvas, shadow )`
-(`src/gl_draw.js`); with a `shadow` list of `[ blur px, alpha ]` it first draws the image
+(`src/engine/render/gl_draw.js`); with a `shadow` list of `[ blur px, alpha ]` it first draws the image
 once per entry **off-canvas** with the 2D context's shadow offset back, so only the blurred
 black shadow lands on screen, then clears the shadow state and draws the crisp image in
 place. Because the shadow comes from the copied pixels' alpha, it follows the glyphs,
 plaques, sliders and selector exactly, including whatever the supplied renderer adds.
-The strengths are `SHADOW` in `src/menu_webgl.js` (virtual units, scaled by the UI scale):
+The strengths are `SHADOW` in `src/newer/ui/menu_webgl.js` (virtual units, scaled by the UI scale):
 `[ [ 34, 1 ], [ 34, 1 ], [ 16, 1 ], [ 8, .9 ] ]` (wide halo stacked twice, a medium one, a
 tight one). A first, lighter version (`[22,.85],[9,.8]` ) was too faint and was strengthened
 by eye. Measured on a bright scene (`r_newbright 8`): luminance of the text block 34.0 →
@@ -92,7 +92,7 @@ the last frame's commands and blits.
 The embedded font atlas is DpQuake (Dead Pete): "You may freely distribute this
 font, but you must ALWAYS include this file!!". `docs/newer/menu-webgl/` holds
 `FONT-NOTICE.txt`, the MIT `LICENSE`, `SOURCE.json` and `README.md`; the generated
-`src/menu_webgl_source.js` header points there and **must ship with it**.
+`src/newer/ui/menu_webgl_source.js` header points there and **must ship with it**.
 
 ## Verification (what was actually run)
 

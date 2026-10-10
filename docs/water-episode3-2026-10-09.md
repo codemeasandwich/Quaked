@@ -23,8 +23,8 @@ A list of every `*` texture in the 2021 re-release's maps (`resources/id1/pak0.p
 
 ## Change
 
-`R_IsWaterTextureName` (`src/gl_post.js`) is the one test, used by the pool-region builder and the surface material
-(`src/gl_rsurf.js`): water is a `*` texture with "water" or "mwat" in its name that is not slime, lava or a
+`R_IsWaterTextureName` (`src/newer/render/gl_post.js`) is the one test, used by the pool-region builder and the surface material
+(`src/engine/render/gl_rsurf.js`): water is a `*` texture with "water" or "mwat" in its name that is not slime, lava or a
 teleporter. The look choice (`liquidMapLook`) shares the "mwat" pattern. The murky water uses the **muddy** look, the same as E1M3's brown `*04water1` (the owner can ask for
 another). Contents, movement, damage and Classic are untouched.
 

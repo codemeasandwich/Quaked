@@ -1,6 +1,6 @@
 // Real public book/menu and glyph pipeline, without starting a gameplay map.
 await import('../src/engine/render/gl_rsurf.js');
-const [draw,menu,cmd,keys,pak,wad,vidModule,bestiary]=await Promise.all(['gl_draw','menu','cmd','keys','pak','wad','vid','r_bestiary'].map(n=>import('../src/'+n+'.js')));
+const [draw,menu,cmd,keys,pak,wad,vidModule,bestiary]=await Promise.all(['engine/render/gl_draw','engine/client/menu','engine/common/cmd','engine/client/keys','engine/common/pak','engine/common/wad','engine/render/vid','newer/ui/r_bestiary'].map(n=>import('../src/'+n+'.js')));
 const canvas=document.querySelector('#book'),ctx=canvas.getContext('2d'),report=document.querySelector('#report'),vid={width:innerWidth,height:innerHeight};
 const bytes=await(await fetch('../pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('book-nav-trial',bytes));
 const gfx=pak.COM_FindFile('gfx.wad').data;wad.W_LoadWadFile(gfx.buffer.slice(gfx.byteOffset,gfx.byteOffset+gfx.byteLength));const palette=pak.COM_FindFile('gfx/palette.lmp').data;vidModule.VID_SetPalette(palette);

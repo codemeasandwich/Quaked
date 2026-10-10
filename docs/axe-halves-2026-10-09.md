@@ -3,18 +3,18 @@
 Card [18] (owner request). Newer Game, local single player; the cut itself (which kills qualify) is unchanged.
 
 * **They stay.** The halves' owner entity was removed after 30 seconds; now it stays, as any Quake corpse does, and is
-  saved and loaded with the game (`src/sv_axecut.js`). Each costs an entity: within `AXE_KEEP_MARGIN` (64) of the engine's
+  saved and loaded with the game (`src/newer/gameplay/sv_axecut.js`). Each costs an entity: within `AXE_KEEP_MARGIN` (64) of the engine's
   600, a new cut's halves go after 30 seconds as before, so cuts can never exhaust the entities. Native gibs thrown by the combined power-up kill keep their
   removal.
 * **They rest on the ground under them.** Each half used one floor sample under where it lands and a clamp on its lowest
-  point. Now (`src/r_axecorpses.js`) five floor samples around that spot give the ground's plane (a least-squares fit,
+  point. Now (`src/newer/render/r_axecorpses.js`) five floor samples around that spot give the ground's plane (a least-squares fit,
   `R_AxeFloorSlope`; too few hits, a wall-steep fit, or hits that are not one plane (a step or a ledge: any hit more than a
   unit off the fit) are level ground, so no slope is made up from a stair). The half rests at the fitted ground's height under
   its middle. As a half falls it turns to lie along that plane,
   and it is held with its lowest point half a unit above the plane, never through it. The plane is saved with the cut
-  (`slope` in `src/axe_record.js`, validated: two unit normals pointing up) so a loaded game settles them the same; older
+  (`slope` in `src/newer/gameplay/axe_record.js`, validated: two unit normals pointing up) so a loaded game settles them the same; older
   saves without it rest level, as before.
-* **Their cut faces continue the skin.** `src/r_bisect.js` already carried the skin coordinates to the cut edge; it now keeps
+* **Their cut faces continue the skin.** `src/newer/render/r_bisect.js` already carried the skin coordinates to the cut edge; it now keeps
   every attribute (skin coordinates, lighting colour) at the contour points and gives them to the cap, which is drawn with a
   clone of the body's own material under a restrained red tint (`CAP_TINT` = 1, 0.66, 0.6). A Quake skin keeps the body's
   back in its right half, so a cap triangle joining front and back points would stretch skin across both: its odd points are

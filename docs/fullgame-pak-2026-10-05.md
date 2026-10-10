@@ -43,7 +43,7 @@ the existing pack system (179,618,935 bytes in the inspected installation).
 This first increment retains the current loader's linear lookup; no new
 indexing or performance claim is made.
 
-`src/menu.js` adds one catalogue entry to the existing file-availability
+`src/engine/client/menu.js` adds one catalogue entry to the existing file-availability
 filter. Ten available levels fit the current 320×200 menu with its existing
 keyboard, wrapping, touch, skill and mode selection. The rest of the full-game
 catalogue would require a separately scoped presentation decision.
@@ -179,7 +179,7 @@ console HDR choice had the same problem. The definitive pre-edit public
 baseline failed four controls and passed two (**2/6**, terminal exit 1).
 
 The repair adds `r_hdr` to the existing borrowed demo-preference loop in
-`src/r_demosplit.js`. It removes the separate HDR snapshot and unconditional
+`src/newer/render/r_demosplit.js`. It removes the separate HDR snapshot and unconditional
 ordinary `Cvar_Set` restoration. No additional state, flag, manager, cvar,
 renderer, transport ordering or asynchronous mechanism is introduced.
 `Cvar_SetTemporary` and `Cvar_RestoreTemporary` already provide the required

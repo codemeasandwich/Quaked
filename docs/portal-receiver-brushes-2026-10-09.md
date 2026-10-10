@@ -12,8 +12,8 @@ window shows the door, with the key standing in the cell:
 
 ## The change
 
-`R_DrawBrushModel` (`src/gl_rsurf.js`) now also draws a brush entity that the main frustum culls when it lies in a leaf the receiver
-of a **visible** camera portal can see (`R_BoxInPortalReceiver` in `src/gl_portal.js`: the portal's source leaf is in the main view,
+`R_DrawBrushModel` (`src/engine/render/gl_rsurf.js`) now also draws a brush entity that the main frustum culls when it lies in a leaf the receiver
+of a **visible** camera portal can see (`R_BoxInPortalReceiver` in `src/newer/render/gl_portal.js`: the portal's source leaf is in the main view,
 and the box's centre or one of its eight corners is in one of the receiver's leaves). Each camera still culls it by its own frustum, so
 it costs nothing where it is not seen. Position and state update every frame as for any drawn door, so a door that opens opens in
 the preview. No entity is hidden by class or by scene; the arch surface removal for seamless doorways is separate and untouched.

@@ -11,7 +11,7 @@ Card [42]. The owner's answer of 10 October 2026 to the [caustics investigation]
 
 ## The change
 
-In `LIQUID_LOOKS` (`src/gl_post.js`), the Muddy look's:
+In `LIQUID_LOOKS` (`src/newer/render/gl_post.js`), the Muddy look's:
 
 * absorption per unit of water, from `[0.009, 0.014, 0.020]` to `[0.016, 0.025, 0.035]` (red, green, blue). Water a ray
   crosses lets through `exp( -absorption x distance )` of the floor's light, and the rest becomes the brown scattered light

@@ -8,10 +8,10 @@ Card [12] (owner request). Newer Game; Classic keeps the native MDLs.
   8.3 units) with its length and height unchanged. The fitted art is widened about its middle after the ordinary native fit
   (`TRANSVERSE` in `tools/import_weapons.py`, recorded as `transverseScale: 2` in `newer/weapons/index.json`). The held super
   shotgun is untouched.
-* **Basic shotgun drop**: Quake never had a pickup model for the basic shotgun, and the respawn drops (`src/sv_respawn.js`)
+* **Basic shotgun drop**: Quake never had a pickup model for the basic shotgun, and the respawn drops (`src/newer/gameplay/sv_respawn.js`)
   used the super shotgun's for both. The basic shotgun's drop is now skin 1 of `progs/g_shot.mdl` (`RESPAWN_WEAPONS` in
-  `src/respawn_record.js`; set when dropped and again when a saved drop is restored). Newer Game draws that skin as a new role,
-  `g_shot1` (`R_WeaponRole` in `src/r_weapons.js`): the basic shotgun's own supplied art fitted to the pickup MDL's native box.
+  `src/newer/gameplay/respawn_record.js`; set when dropped and again when a saved drop is restored). Newer Game draws that skin as a new role,
+  `g_shot1` (`R_WeaponRole` in `src/newer/render/r_weapons.js`): the basic shotgun's own supplied art fitted to the pickup MDL's native box.
   The native MDL has one skin, so with the Newer weapons off it shows as before. Picking it up gives the weapon and shells its
   drop record says, as before. No new model is precached.
 * **How the art was made**: the supplied archives are not all in this checkout (`shotgun.zip` is; `supershotgun.zip` and others

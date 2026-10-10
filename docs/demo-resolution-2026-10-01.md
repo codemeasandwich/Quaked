@@ -4,9 +4,9 @@ The enhanced and classic halves of the startup demo now render the scene at exac
 
 ## Cause and implementation
 
-Previously, `src/r_demosplit.js` allocated the classic target at a fixed 240-pixel height and calculated its width from the viewport aspect ratio. The enhanced pass used the HDR target selected by `R_PostBegin`, including device pixel ratio, dynamic resolution and even-dimension rounding.
+Previously, `src/newer/render/r_demosplit.js` allocated the classic target at a fixed 240-pixel height and calculated its width from the viewport aspect ratio. The enhanced pass used the HDR target selected by `R_PostBegin`, including device pixel ratio, dynamic resolution and even-dimension rounding.
 
-`R_RenderView` in `src/gl_rmain.js` now captures the bound enhanced scene target after the world draw and before `R_PostFinish` changes the active target. It passes that target to `R_DemoSplitClassic`, which uses its exact width and height. The classic target is reused when both dimensions match, and disposed and replaced when either changes. This avoids duplicating the HDR pipeline's scaling or rounding rules.
+`R_RenderView` in `src/engine/render/gl_rmain.js` now captures the bound enhanced scene target after the world draw and before `R_PostFinish` changes the active target. It passes that target to `R_DemoSplitClassic`, which uses its exact width and height. The classic target is reused when both dimensions match, and disposed and replaced when either changes. This avoids duplicating the HDR pipeline's scaling or rounding rules.
 
 The optional target argument keeps the helper usable by existing callers: without a scene target, it uses physical viewport dimensions, falling back to logical dimensions multiplied by the renderer's pixel ratio. Existing full-classic mode, scene/camera identity, callbacks, target restoration, viewport and split scissor behavior are preserved.
 

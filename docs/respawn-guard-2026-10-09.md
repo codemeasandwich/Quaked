@@ -6,7 +6,7 @@ death scattered there ([clockwise-respawn-2026-10-04.md](clockwise-respawn-2026-
 
 ## How it works
 
-* **The game's own monster.** At the moment the respawn lands (`contact()` in `src/sv_respawn.js`), after the alert pass
+* **The game's own monster.** At the moment the respawn lands (`contact()` in `src/newer/gameplay/sv_respawn.js`), after the alert pass
   that wakes the level, the game's QuakeC spawn function (`monster_demon1` or `monster_shambler`) runs on a new entity
   at the recorded death spot. So it is a real Fiend or Shambler: stock model, health, sounds and behaviour, counted in the
   kills, saved with the game, killable. It is not part of the alert pass, so it waits instead of hunting the player at

@@ -32,7 +32,7 @@ the actual color/height alignment remains subject to visual review.
 
 ## Geometry, lighting and native behavior
 
-`src/r_demonrelief.js` builds real tessellated surface positions from the saved
+`src/newer/render/r_demonrelief.js` builds real tessellated surface positions from the saved
 field. The raised surface uses `0.05 + 9.6*height` along the original outward
 normal. The native flat face remains its backing; eye/mouth cavities sit deeper
 than the protruding bone, without cutting through or rewriting the BSP wall.

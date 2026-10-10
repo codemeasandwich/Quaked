@@ -5,7 +5,7 @@ Card T-d833f5d2, "[45] Equipped super nailgun: smooth barrel coast and spin-down
 
 ## What it does
 
-`R_WeaponRotorFrame` (`src/r_weapons.js`), the existing rotor coordinator, now keeps a **continuous angle and angular
+`R_WeaponRotorFrame` (`src/newer/render/r_weapons.js`), the existing rotor coordinator, now keeps a **continuous angle and angular
 velocity** per held weapon entity instead of an angle derived from the current pose:
 
 * **Firing** (any weapon pose except the idle pose 0): the speed eases up to the firing speed, the stored poses' own rate

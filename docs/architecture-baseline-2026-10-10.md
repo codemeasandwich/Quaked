@@ -16,8 +16,9 @@ Their output, with the full edge lists, is in
 earlier versions of this page were rejected by independent review, and a fourth accepted with corrections; what they
 got wrong is listed at the end.
 
-**Since this baseline.** The increments' progress is kept in [module-layout.md](module-layout.md): [44b] has moved its
-50 modules, and debt D7 is closed. The figures below stay those of the baseline's commit.
+**Since this baseline.** Progress is kept in [module-layout.md](module-layout.md): [44b] to [44f] have moved all 206
+modules into their folders, debt D7 is closed, and [44g] is removing the adapters and closing the other debts. The
+figures and paths below stay those of the baseline's commit, when `src/` was flat.
 
 **Change of plan (10 October 2026).** The increments [44b] to [44f] move modules only: each module to its folder, with its
 `@module` header, its consumers updated and an adapter at its old path. Every debt action the table below gives to one

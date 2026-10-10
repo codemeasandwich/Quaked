@@ -12,19 +12,19 @@ sprite. So a box showed a brown particle burst and a sprite, not the Fireball. E
 the progs (rockets, grenades, tar babies) sends its own explosion message first, and nothing else sends count 255
 (blood is at most 40, chunks 6, lightning 120).
 
-* `R_ParseParticleEffect` (`src/render.js`): a message count of 255 is the box blast and goes through the same path as
+* `R_ParseParticleEffect` (`src/engine/render/render.js`): a message count of 255 is the box blast and goes through the same path as
   every other explosion: the Fireball in Newer Game, the original 1024-particle burst in Classic, with `r_fireball 0`,
   before the textures load, or when the pool is full. Other particle messages are untouched. The Fireball is centred on
   the box (the message gives the box's corner on the floor; it is offset by 16, 16, 20), and it has the explosion's
   dynamic light like a rocket's (a stock box never had one).
-* `R_FireballReplacesSprite` (`src/r_fireball.js`, asked by the sprite draw in `src/gl_rmain.js`): the `s_explod.spr`
+* `R_FireballReplacesSprite` (`src/newer/render/r_fireball.js`, asked by the sprite draw in `src/engine/render/gl_rmain.js`): the `s_explod.spr`
   sprite is not drawn **only while a Fireball of ours was spawned within the last second within 128 units of it**.
   So when no Fireball took the blast (Classic, `r_fireball 0`, textures not loaded, a full pool) or an explosion sent no
   message of its own (Hipnotic's Armagon death, Quoth's pyro flame impact, as a reviewer found), the sprite is drawn as
   the game made it.
 * The title demo's split view: the Newer half has the Fireball and no sprite, the Classic pass (where Newer is off) keeps the
   sprite and, with the new `classicOnly` flag on `R_RunParticleEffect`, the native burst flagged for the Classic half only.
-* The gore blood (`src/sv_gore.js`) is clamped to count 254 so a very large monster's blood can never read as a box.
+* The gore blood (`src/newer/gameplay/sv_gore.js`) is clamped to count 254 so a very large monster's blood can never read as a box.
 
 ## [X2] The ring faces the camera
 

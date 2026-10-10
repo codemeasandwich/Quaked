@@ -12,7 +12,7 @@ Console: `r_dof` (0 to 1, saved). **It is on by default at 0.15**, three steps o
 
 ## How it works
 
-* **Autofocus** (`src/r_dof.js`, fed by `R_DofTrace` in `src/gl_rmain.js`).
+* **Autofocus** (`src/newer/render/r_dof.js`, fed by `R_DofTrace` in `src/engine/render/gl_rmain.js`).
   * **The rays.** Each frame, five rays go from the eye through the middle of the view (straight ahead, and 0.03 to each
     side, up and down) against what is drawn there:
     * the level;
@@ -30,7 +30,7 @@ Console: `r_dof` (0 to 1, saved). **It is on by default at 0.15**, three steps o
     * It holds while the game is paused, and while the eye is inside a wall (noclip, a chase camera against a wall).
     * It snaps to the target at once on a new level, on a jump of the eye of more than 96 units in a frame (a teleport,
       a respawn), or when the clock goes back (a loaded game).
-* **The blur** (`DOF_FRAGMENT` in `src/gl_post.js`). It is its own pass at the composite's resolution, after the vision
+* **The blur** (`DOF_FRAGMENT` in `src/newer/render/gl_post.js`). It is its own pass at the composite's resolution, after the vision
   modes and before the present pass, so dynamic resolution reduces its cost too.
   * **The circle.** Each pixel's circle of confusion is `min( largest, strength x | 1 - focus / depth | )` pixels.
     Strength is 14 x `r_dof` (held at most 1) pixels of a 1080-line picture, and the largest circle is twice that.

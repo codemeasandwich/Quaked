@@ -38,7 +38,7 @@ With the chase camera on (`chase_active 1`), the chase camera sets its own pitch
 
 ## Design and boundaries
 
-The implementation is `src/v_shamblersteps.js`. `V_CalcRefdef` in `src/view.js` calls it once per rendered frame, after stair-step smoothing and before chase-camera placement.
+The implementation is `src/newer/render/v_shamblersteps.js`. `V_CalcRefdef` in `src/engine/client/view.js` calls it once per rendered frame, after stair-step smoothing and before chase-camera placement.
 
 The returned offsets go to the eye's position and angles and to the weapon's height. When an offset was applied, the eye is clamped again with the existing `V_BoundOffsets`. New Game and frames without a shake skip that extra clamp, so their view is exactly as before.
 

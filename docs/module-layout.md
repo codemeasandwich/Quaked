@@ -165,6 +165,25 @@ moved: `src/` itself now holds only the 206 adapters (198 at its root, 8 in `src
   menu with the studio logo, Newer Game and Classic, the Bestiary's images and pencil replay (ready), the player face
   (ready, 270 images) and the ambient music's file.
 
+## [44g], step 1: the adapters removed
+
+With every module moved, 199 of the 206 adapters are deleted, and `src/rend_veil/` with them.
+
+* The four trials that built a module's path from its name (`credits_trial`, `bestiary_navigation_trial`,
+  `oldone_gameplay_trial`, `loading_performance_trial`) name each module's real path now. In the browser each still loads
+  its modules (197 to 201 of them) with no missing file, as does `normal_inputs_trial`.
+* **Seven adapters stay**, each saying why in its comment: `src/pak.js`, `src/displacement_store.js`,
+  `src/normal_bakes.js`, `src/normal_bake_format.js`, `src/normal_transport.js`, `src/r_normalprefetch.js` and
+  `src/startup_normal_bakes.js`. The owner's untracked normal-bundle experiment (`src/normal_bundle.js`,
+  `tests/normal_bundle_test.js`, `tests/normal_startup_packs_test.js`, `tools/build_normal_startup_packs.mjs`; recorded
+  as an unused experiment in `docs/distribution-local-only.json`, with preservation hashes) imports those old paths, and
+  its files are not this work's to edit. They go when the owner retires or updates the experiment. No tracked file
+  imports them: the graph tool fails if one does.
+* Prose that named the old flat paths was updated to the real ones: 67 documents, and comments in seven test pages, two
+  tools and `index.html`. Left as written: the architecture baseline (a record of the flat layout), this page, and
+  everything under `docs/evidence/`.
+* Unchanged: both architecture tools pass; 206 modules (and 7 adapters); the same cycles.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

@@ -2,7 +2,7 @@
 // Baseline is a replay of the unchanged native primitives at the former scale;
 // it is a comparison control, not an alternate production menu implementation.
 await import('../src/engine/render/gl_rsurf.js');
-const [draw,menu,cmd,keys,pak,wad]=await Promise.all(['gl_draw','menu','cmd','keys','pak','wad'].map(name=>import('../src/'+name+'.js')));
+const [draw,menu,cmd,keys,pak,wad]=await Promise.all(['engine/render/gl_draw','engine/client/menu','engine/common/cmd','engine/client/keys','engine/common/pak','engine/common/wad'].map(name=>import('../src/'+name+'.js')));
 const canvas=document.querySelector('#credits'),context=canvas.getContext('2d'),report=document.querySelector('#report');
 const bytes=await (await fetch('../pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('credits-trial-pak0',bytes));
 const gfx=pak.COM_FindFile('gfx.wad').data;wad.W_LoadWadFile(gfx.buffer.slice(gfx.byteOffset,gfx.byteOffset+gfx.byteLength));

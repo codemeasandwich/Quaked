@@ -32,13 +32,13 @@ player's body keeps one of its own.
 
 ## Where
 
-* `src/r_weapon_surface.js`: `WeaponSurfaceBank` holds a `WeaponSurfaceState` per weapon model plus `body`.
+* `src/newer/render/r_weapon_surface.js`: `WeaponSurfaceBank` holds a `WeaponSurfaceState` per weapon model plus `body`.
   `frameAll` (from `R_WeaponSurfaceFrame`) frames the body and the drawn weapon and `dry()`s the rest; `bleed`
   (from both blood events) adds to the body and to the drawn weapon. `R_ActiveWeaponSurface()` is the drawn
   weapon's state (a blank one when none is drawn) and `R_PlayerBodySurface()` the body's. The bank also answers the
   old single-state API for the drawn weapon, so the lens, post-processing wet film and older tests are unchanged.
-* `src/r_newerskins.js`: the held-weapon material reads the drawn weapon's spots, the own-body material the body's.
-* `src/host_cmd.js`: the `// weapon-surface` save line is now `{version: 2, body, weapons: {<model>: <coating>}}`
+* `src/newer/render/r_newerskins.js`: the held-weapon material reads the drawn weapon's spots, the own-body material the body's.
+* `src/engine/server/host_cmd.js`: the `// weapon-surface` save line is now `{version: 2, body, weapons: {<model>: <coating>}}`
   (weapons that are bloody or wet only). A load checks everything first and applies all or nothing; keys must be
   model-like names, at most 64 weapons, and the writer keeps only what the reader accepts. A save made while a
   version 1 coating was still pending keeps it pending. A save from before this change (version 1, one shared coating) becomes the

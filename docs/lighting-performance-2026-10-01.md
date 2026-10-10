@@ -4,7 +4,7 @@
 
 The lighting toggle's large cost was reproduced in the real game. Its final compositor ray-marched up to eight lights with eight visibility steps each, sampled eight neighbouring points for bounce light, and calculated corner accents at full device-pixel display resolution. Dynamic resolution reduced the scene, volumetric and bloom targets, but never reduced that compositor's output rectangle. At a 50% scene scale, it still shaded four times the scene's pixel count.
 
-The implementation reuses the existing pipeline in `src/gl_post.js`:
+The implementation reuses the existing pipeline in `src/newer/render/gl_post.js`:
 
 1. `R_PostBegin` continues to size the scene according to the existing dynamic-resolution controller, including DPR and even-dimension rounding.
 2. When lighting is enabled and the scene scale is below one, `R_PostFinish` draws the expensive compositor to a lazily allocated half-float target with the exact scene dimensions.
@@ -13,7 +13,7 @@ The implementation reuses the existing pipeline in `src/gl_post.js`:
 
 No light counts, bounce strengths, ray step counts, dynamic-resolution floor or visual-option defaults were reduced. Two zero-contribution cases also skip unnecessary work: volumetric lights whose range falloff is already zero skip their visibility marches; coplanar/back-facing bounce samples whose transfer weight is zero skip their HDR colour reads and beam estimate.
 
-`src/r_perf.js` names the additional presentation stage `lighting upscale`, keeping it separate from `final lighting pass`.
+`src/newer/render/r_perf.js` names the additional presentation stage `lighting upscale`, keeping it separate from `final lighting pass`.
 
 ## Evidence
 

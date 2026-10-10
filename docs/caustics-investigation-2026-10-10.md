@@ -13,7 +13,7 @@ broken reflections on the surface and a bright green-gold caustic network on a s
 
 ## What changed since
 
-* The caustic pattern (`caustic()` in `src/gl_post.js`) and how it lights Clear and Tinted water are unchanged; its
+* The caustic pattern (`caustic()` in `src/newer/render/gl_post.js`) and how it lights Clear and Tinted water are unchanged; its
   strength rose from 0.6 to 0.75.
 * Commit 8e4fefc made `liquidMapLook()` give the texture `*04water1` the Muddy look, as "E1M3's brown sediment".
   But `*04water1` is the water of eleven maps: E1M2, E1M3, E1M4, E2M2, E2M4 to E2M6, E4M5, E4M6, the end map and dm7.

@@ -1,6 +1,6 @@
 # Enemy animation: jumps and deaths audited, early frames no longer snap
 
-Card [43]. Newer Game's smoothed enemy animation (`src/r_anim.js`, `R_AliasPoseBlend`, applied in `src/gl_mesh.js`)
+Card [43]. Newer Game's smoothed enemy animation (`src/newer/render/r_anim.js`, `R_AliasPoseBlend`, applied in `src/engine/render/gl_mesh.js`)
 blends from the pose the game showed last to the pose it shows now, over the frame's interval (0.1 s, or a group frame's
 own). This is a runtime blend between the model's own frames; nothing new is generated or stored on disk. Classic Game
 draws the game's exact poses, unchanged.

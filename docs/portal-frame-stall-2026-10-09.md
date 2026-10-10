@@ -19,13 +19,13 @@ get there and the player stands still until they happen to slide into line.
 
 ## Change
 
-`SV_PortalObstructed` (`src/world.js`) says the hull overlaps the trigger and is held short of the threshold: a
+`SV_PortalObstructed` (`src/engine/server/world.js`) says the hull overlaps the trigger and is held short of the threshold: a
 sweep toward the surface advances no further than two BSP clipping epsilons, and neither the same sweep one step
 higher (18 units, the walk move's step), nor the sweep nudged 2.5 units either way (the walk move slides a hull
 past a chamfered frame) can advance. A hull that can still step, slide or walk forward is not obstructed and waits
 as before.
 
-`SV_BeginPortalTouch` (`src/sv_portal.js`) takes it as an optional fourth argument. For an obstructed player:
+`SV_BeginPortalTouch` (`src/newer/gameplay/sv_portal.js`) takes it as an optional fourth argument. For an obstructed player:
 
 * the crossing is made from the origin **projected onto the threshold**, with the incoming speed restored as the
   existing backing-wall case does, so the view and velocity carry through (the player pops forward by the
@@ -66,7 +66,7 @@ scenarios, against the code before this change:
   did not recount them after the last edit, and the 35-degree hub approaches are in this group.
 * **No duplicate teleports:** an earlier build fired QuakeC twice in one frame at the start map's `*19` (198
   scenarios): the touch came from inside the walk move's step-down, which was then undone, and the final link
-  teleported again. `SV_PortalMoveStepping` (`src/sv_portalmotion.js`, set by `SV_WalkMove` around its step
+  teleported again. `SV_PortalMoveStepping` (`src/newer/gameplay/sv_portalmotion.js`, set by `SV_WalkMove` around its step
   attempt) now makes the obstruction test ignore those links, and the frame's final link decides.
 
 ## Checks

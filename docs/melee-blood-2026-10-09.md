@@ -13,7 +13,7 @@ anything. A death that gibs the player is a different call (`ThrowGib`), untouch
 
 ## What happens now
 
-`src/sv_meleespray.js` hooks `SpawnMeatSpray` (through the interpreter's function hooks in `src/pr_exec.js`, the same way the
+`src/newer/gameplay/sv_meleespray.js` hooks `SpawnMeatSpray` (through the interpreter's function hooks in `src/engine/progs/pr_exec.js`, the same way the
 respawn sequence and the shotgun's delayed pellets are hooked). When the attacker's enemy is a player, the function does
 nothing (`SUB_Null` runs in its place) and the same spot bleeds instead, with the game's own blood particles (colour 73, the
 call `SpawnBlood` makes, 24 of them), moving the way the chunk would have. A monster hitting a monster still throws its chunk.

@@ -12,7 +12,7 @@ When the page first loads, the thin progress bar is replaced by the Quaked logo 
 - **Cropped to the artwork.** The artwork occupies only part of Inkscape's 194 × 194 page: x 13.73–160.43, y 118.06–148.57, measured in Chrome with `getBBox`. The inline copy uses a viewBox cropped to that box plus a one-unit margin (`12.73 117.06 148.7 32.51`), so the logo is truly centred.
 - **Size.** The logo is `min(80vw, 560px)` wide: about 560 × 122 px on a desktop and 312 px wide on a 390 px phone.
 - **Two layers.** The logo is drawn twice with `<use>`: a dim base, and a white copy clipped by `#loading-fill`, a rectangle in the logo's own units. The fill therefore follows the letter shapes exactly, including the Q's tail, which fills first.
-- **`src/loading_screen.js`.**
+- **`src/newer/ui/loading_screen.js`.**
   - `LoadingScreen_SetProgress( value )` sets the rectangle to the bottom `value` fraction of the crop, and sets `aria-valuenow` on the `role="progressbar"` overlay.
   - Values are clamped to 0–1, and non-numbers count as 0. A compressed download can report over 1, and a download without a size reports nothing until it completes.
   - Pages without the logo, such as the trial pages, are ignored.

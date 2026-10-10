@@ -15,7 +15,7 @@ the pellets that hit him arriving: the picture was behind the damage. Direction:
 and make the pellets the impact trigger, "the same as the nail gun and rockets". So:
 
 * pellet speed is doubled (air 124, water 68 source units a second; the source has 62 and 34);
-* the damage of each pellet that hit something waits for that pellet's flight (`src/sv_shotdelay.js`);
+* the damage of each pellet that hit something waits for that pellet's flight (`src/newer/gameplay/sv_shotdelay.js`);
 * there is no range cap any more (the source's 30 and 23 unit caps belong to a demo wall a few units away): a
   pellet flies all the way to where the game's ray stopped, because the damage now arrives with it.
 

@@ -1,7 +1,7 @@
 # The lightning gun's beam
 
-Card [30a] (owner request 30). Newer Game only; Classic keeps Quake's bolt models. `src/r_lightning.js`, fed by
-`src/cl_tent.js` (the beam) and `src/gl_rmain.js` (the held gun).
+Card [30a] (owner request 30). Newer Game only; Classic keeps Quake's bolt models. `src/newer/render/r_lightning.js`, fed by
+`src/engine/client/cl_tent.js` (the beam) and `src/engine/render/gl_rmain.js` (the held gun).
 
 ![Left: the supplied page's lightning gun. Right: the game's lightning gun on E1M1](images/lightning-2026-10-09.jpg)
 

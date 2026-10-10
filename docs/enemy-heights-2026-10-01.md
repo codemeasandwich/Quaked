@@ -40,7 +40,7 @@ The actual MDL triangle UV footprint, including the half-texel and back-seam off
 
 ## Runtime ownership and failure handling
 
-The caller remains `R_DrawAliasModel` -> `R_GetAliasMaterial` (`src/gl_mesh.js`). Custom replacements use `R_NewerAliasMaterial`; the selected original skin/frame uses `R_EnemyAliasMaterial`. Both share the existing enemy shader/material path in `src/r_newerskins.js`. The custom loader decodes height and diffuse in either completion order; a readable data companion feeds the existing normal generator without replacing a browser Texture's image with an incompatible pixel object.
+The caller remains `R_DrawAliasModel` -> `R_GetAliasMaterial` (`src/engine/render/gl_mesh.js`). Custom replacements use `R_NewerAliasMaterial`; the selected original skin/frame uses `R_EnemyAliasMaterial`. Both share the existing enemy shader/material path in `src/newer/render/r_newerskins.js`. The custom loader decodes height and diffuse in either completion order; a readable data companion feeds the existing normal generator without replacing a browser Texture's image with an incompatible pixel object.
 
 The native path runs **after** exact original skin/frame selection and **before** returning a cached classic material. Native height selection mirrors the model loader: groups of one to four frames repeat modulo their count; longer groups use the last frame assigned to each `j & 3` slot. This prevents a height from being attached to a different animated skin. Geometry UVs, offsets and native diffuse identity remain unchanged.
 

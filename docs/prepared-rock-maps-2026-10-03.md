@@ -31,7 +31,7 @@ QUAKED_THREE_MODULE=/path/to/three.module.mjs node tools/bake_rockfield.mjs
 `--plan` reports coverage without generating assets. The tool uses two bounded
 workers and terminates them on completion/failure. It writes gzip files and
 `newer/rockfield/manifest.json`, plus the small generated registry
-`src/rockfield_bakes.js`. Commit the assets and registry together after authorized
+`src/newer/assets/rockfield_bakes.js`. Commit the assets and registry together after authorized
 review. Rebuild after changes to source field functions, chart/material rules,
 presets or map geometry; bump the bake-format version for incompatible generator
 or coordinate contracts. The public package test compares all source hashes and

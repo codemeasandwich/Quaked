@@ -1,7 +1,7 @@
 # Bestiary family spreads
 
 Card [19] (owner request). The book's creature pages are two-page spreads: a base creature on the left and its relative on the
-right, families in consecutive spreads (`BESTIARY_SPREADS` in `src/bestiary_state.js`, drawn by `src/r_bestiary_book.js`).
+right, families in consecutive spreads (`BESTIARY_SPREADS` in `src/newer/ui/bestiary_state.js`, drawn by `src/newer/ui/r_bestiary_book.js`).
 
 ![Rottweiler beside the Demo Dog; the Rocket Ogre beside a deliberate blank; the Zombie beside the Mummy](images/bestiary-spreads-2026-10-09.jpg)
 

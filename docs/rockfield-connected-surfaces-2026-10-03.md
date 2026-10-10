@@ -21,7 +21,7 @@ continues around corners and onto tunnel undersides.
 - Previously supported natural rock remains eligible, including requested
   `rock4_2`. Its earlier maximum block preset remains the fallback.
 
-`src/rockfield_presets.js` starts from the six saved catalog presets. The
+`src/newer/assets/rockfield_presets.js` starts from the six saved catalog presets. The
 owner's screenshot `Screenshot 2026-10-03 at 16.11.16.png` supersedes only
 `uwall1_2`: feature size 2.50, warp .65, fracture 0, detail 1.50, 64 intervals,
 amplitude .80. The original donor HTML is retained unchanged.

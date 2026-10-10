@@ -1,7 +1,7 @@
 # Burn marks on the walls
 
 Cards [30c] (the port) and [33] (this write-up). Newer Game only; Classic keeps Quake's own marks. The code is
-`src/r_wallburn.js`, fed by `src/cl_tent.js` (the shotgun pellets) and `src/gl_rmain.js` (the lightning beam, set-up, each
+`src/newer/render/r_wallburn.js`, fed by `src/engine/client/cl_tent.js` (the shotgun pellets) and `src/engine/render/gl_rmain.js` (the lightning beam, set-up, each
 frame, a new level).
 
 ![Top: the supplied page's lightning gun drawing on its wall, then cooled. Middle: the game's lightning gun on an E1M1 wall: firing, cooling after 1.5 s, cooled after 5.5 s. Bottom right: super shotgun pellets on the same wall](images/wallburn-2026-10-09.jpg)

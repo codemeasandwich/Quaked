@@ -3,13 +3,13 @@
 Card [40]. Newer Game only (local single player, stock progs); Classic keeps Quake's.
 
 In stock QuakeC a zombie knocked down (25+ damage at once) goes SOLID_NOT at `zombie_paine10`: traces, missiles and
-`T_RadiusDamage` all skip it, so it always gets up. `src/sv_pronezombie.js` (hooked in `src/pr_exec.js`) makes it a low solid box
+`T_RadiusDamage` all skip it, so it always gets up. `src/newer/gameplay/sv_pronezombie.js` (hooked in `src/engine/progs/pr_exec.js`) makes it a low solid box
 while it lies there (SOLID_BBOX, 12 units high: a player steps over it), and gives it back its standing box and SOLID_NOT just
 before the game's own stand-up test in `zombie_paine12`. Damage follows the game's own rule: `zombie_pain` resets its health to 60
 on every hit, so only 60+ at once kills it (a rocket or grenade, a quad blast); then the game's own `zombie_die` throws its head
 and gibs once and counts one kill. A smaller hit does nothing and it gets up on time.
 
-Quake's autoaim (`PF_aim`, `src/pr_cmds.js`) aims at a target's origin, which for a lying zombie is its standing middle, 18
+Quake's autoaim (`PF_aim`, `src/engine/progs/pr_cmds.js`) aims at a target's origin, which for a lying zombie is its standing middle, 18
 units over the box: a rocket aimed near it flew over. For a lying zombie only, autoaim now aims at the box's middle from the
 height the shot leaves at; every other target keeps Quake's exact aim.
 

@@ -8,7 +8,7 @@ The owner reported that enhancements were not loading as part of normal Newer Ga
 
 ## Implementation and boundaries
 
-`src/newer_defaults.js` is a pure, shared list of sixteen binary enhancement switches. Normal **Newer Game** and **Newer Level Select** derive their existing command batch from that list and apply it **before** dispatching the map command. The commands keep the existing gamma midpoint and FPS default. Each explicit Newer launch starts with these enhancements enabled:
+`src/newer/ui/newer_defaults.js` is a pure, shared list of sixteen binary enhancement switches. Normal **Newer Game** and **Newer Level Select** derive their existing command batch from that list and apply it **before** dispatching the map command. The commands keep the existing gamma midpoint and FPS default. Each explicit Newer launch starts with these enhancements enabled:
 
 | Feature | Switches |
 | --- | --- |

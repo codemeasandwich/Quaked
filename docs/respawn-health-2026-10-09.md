@@ -52,9 +52,9 @@ and teleporters inside a level. Walking A, B, A, B pays once, for the first B.
 
 ## Where
 
-`src/sv_respawn.js` (`respawnHealth`, `levelKey`, `SV_RespawnCaptureTravel`, `restoreTravel`, the contact step that
-used to write 100), `src/respawn_record.js` (validation), `src/respawn_notice.js` (the message channel between the
-local server and the screen), `src/gl_screen.js` (`SCR_DrawRespawnNotice`, top right just under the FPS line,
+`src/newer/gameplay/sv_respawn.js` (`respawnHealth`, `levelKey`, `SV_RespawnCaptureTravel`, `restoreTravel`, the contact step that
+used to write 100), `src/newer/gameplay/respawn_record.js` (validation), `src/newer/ui/respawn_notice.js` (the message channel between the
+local server and the screen), `src/engine/render/gl_screen.js` (`SCR_DrawRespawnNotice`, top right just under the FPS line,
 for three seconds).
 
 ## Checks

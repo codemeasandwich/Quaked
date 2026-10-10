@@ -64,7 +64,7 @@ pictures retained from earlier tuning are not final default-appearance receipts.
 
 ## Whole-world point shadows and budgets
 
-`src/r_pointshadows.js` reuses the complete solid-world sun-occluder position
+`src/newer/render/r_pointshadows.js` reuses the complete solid-world sun-occluder position
 buffer, including actual demon displacement. Private indexed 256-unit spatial
 chunks provide frustum culling without copying or altering source vertices.
 Each chunk owns its indices/bounds; disposal removes its borrowed position
