@@ -15,7 +15,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_batt0.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -29,7 +29,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_batt1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -43,7 +43,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_bh10.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -57,7 +57,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_bh100.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -71,7 +71,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_bh25.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -85,7 +85,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_explob.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -99,7 +99,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_nail0.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -113,7 +113,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_nail1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -127,7 +127,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_rock0.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -141,7 +141,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_rock1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -155,7 +155,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_shell0.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -169,7 +169,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_shell1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -183,7 +183,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/baldm6.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -197,7 +197,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m1.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 10,
    "tiles": 607,
    "bytes": 5808462,
@@ -209,7 +209,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 9,
    "tiles": 519,
    "bytes": 4976208,
@@ -223,7 +223,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m2.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 11,
    "tiles": 277,
    "bytes": 2653292,
@@ -235,7 +235,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m2.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 9,
    "tiles": 246,
    "bytes": 2356670,
@@ -249,7 +249,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m3.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 34,
    "tiles": 1448,
    "bytes": 13846006,
@@ -261,7 +261,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m3.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 24,
    "tiles": 767,
    "bytes": 7344652,
@@ -275,7 +275,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m4.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 35,
    "tiles": 1825,
    "bytes": 17459428,
@@ -287,7 +287,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m4.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 29,
    "tiles": 1617,
    "bytes": 15476828,
@@ -301,7 +301,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m5.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 6,
    "tiles": 420,
    "bytes": 4016532,
@@ -313,7 +313,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m5.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 6,
    "tiles": 498,
    "bytes": 4763476,
@@ -327,7 +327,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m6.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -339,7 +339,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m6.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -353,7 +353,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m7.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -365,7 +365,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m7.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -379,7 +379,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/e1m8.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -391,7 +391,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e1m8.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -405,7 +405,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/edc.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -419,7 +419,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/efdm9.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -433,7 +433,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/naked5.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 15,
    "tiles": 328,
    "bytes": 3137952,
@@ -447,7 +447,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/rapture1.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -461,7 +461,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/spinev2.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -475,7 +475,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/shareware/start.rf.gz",
    "namespace": "shareware",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 33,
    "tiles": 863,
    "bytes": 8249854,
@@ -487,7 +487,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/newer/start.rf.gz",
    "namespace": "newer",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 33,
    "tiles": 864,
    "bytes": 8260544,
@@ -499,7 +499,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/start.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 34,
    "tiles": 945,
    "bytes": 9033732,
@@ -511,7 +511,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/start.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 13,
    "tiles": 711,
    "bytes": 6797112,
@@ -523,7 +523,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/start.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 15,
    "tiles": 1333,
    "bytes": 12733696,
@@ -535,7 +535,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/start.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 1,
    "tiles": 184,
    "bytes": 1760416,
@@ -547,7 +547,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/start.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -561,7 +561,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/ultrav.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -575,7 +575,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/loose/zed.rf.gz",
    "namespace": "loose",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -589,7 +589,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/base32b.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 6,
    "tiles": 639,
    "bytes": 6115088,
@@ -603,7 +603,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/b_exbox2.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -617,7 +617,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/death32c.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -631,7 +631,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -645,7 +645,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm2.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -659,7 +659,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm3.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 4,
    "tiles": 97,
    "bytes": 929100,
@@ -673,7 +673,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm4.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -687,7 +687,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm5.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -701,7 +701,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm6.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -715,7 +715,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm7.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 15,
    "tiles": 578,
    "bytes": 5531722,
@@ -729,7 +729,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/dm8.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -743,7 +743,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -757,7 +757,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m2.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 24,
    "tiles": 2115,
    "bytes": 20222362,
@@ -771,7 +771,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m3.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 7,
    "tiles": 585,
    "bytes": 5595486,
@@ -785,7 +785,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m4.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 15,
    "tiles": 773,
    "bytes": 7392746,
@@ -799,7 +799,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m5.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 22,
    "tiles": 1190,
    "bytes": 11379776,
@@ -813,7 +813,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m6.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 60,
    "tiles": 1450,
    "bytes": 13910178,
@@ -827,7 +827,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e2m7.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 22,
    "tiles": 1386,
    "bytes": 13240118,
@@ -841,7 +841,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 3,
    "tiles": 442,
    "bytes": 4228232,
@@ -855,7 +855,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m2.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -869,7 +869,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m3.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -883,7 +883,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m4.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -897,7 +897,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m5.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -911,7 +911,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m6.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -925,7 +925,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e3m7.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -939,7 +939,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m1.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -953,7 +953,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m2.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 14,
    "tiles": 1459,
    "bytes": 13944082,
@@ -967,7 +967,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m3.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 7,
    "tiles": 120,
    "bytes": 1152512,
@@ -981,7 +981,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m4.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 12,
    "tiles": 760,
    "bytes": 7263696,
@@ -995,7 +995,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m5.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1009,7 +1009,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m6.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 3,
    "tiles": 67,
    "bytes": 641482,
@@ -1023,7 +1023,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m7.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1037,7 +1037,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/e4m8.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1051,7 +1051,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/id1/end.rf.gz",
    "namespace": "id1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 40,
    "tiles": 3716,
    "bytes": 35510752,
@@ -1065,7 +1065,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip1m1.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 6,
    "tiles": 549,
    "bytes": 5243186,
@@ -1079,7 +1079,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip1m2.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1093,7 +1093,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip1m3.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 74,
    "tiles": 8507,
    "bytes": 81339758,
@@ -1107,7 +1107,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip1m4.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 12,
    "tiles": 1768,
    "bytes": 16903968,
@@ -1121,7 +1121,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip1m5.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 21,
    "tiles": 1298,
    "bytes": 12413064,
@@ -1135,7 +1135,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip2m1.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 73,
    "tiles": 4333,
    "bytes": 41395002,
@@ -1149,7 +1149,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip2m2.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 1,
    "tiles": 99,
    "bytes": 947290,
@@ -1163,7 +1163,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip2m3.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 16,
    "tiles": 1482,
    "bytes": 14261812,
@@ -1177,7 +1177,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip2m4.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1191,7 +1191,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip2m5.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 40,
    "tiles": 1842,
    "bytes": 17614798,
@@ -1205,7 +1205,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip2m6.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 22,
    "tiles": 2023,
    "bytes": 19327716,
@@ -1219,7 +1219,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip3m1.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 117,
    "tiles": 1985,
    "bytes": 19034208,
@@ -1233,7 +1233,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip3m2.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 105,
    "tiles": 1497,
    "bytes": 14332372,
@@ -1247,7 +1247,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip3m3.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1261,7 +1261,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hip3m4.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1275,7 +1275,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hipdm1.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1289,7 +1289,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/hipnotic/hipend.rf.gz",
    "namespace": "hipnotic",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 4,
    "tiles": 307,
    "bytes": 2934644,
@@ -1303,7 +1303,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/b_lnail0.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -1317,7 +1317,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/b_lnail1.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -1331,7 +1331,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/b_mrock0.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -1345,7 +1345,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/b_mrock1.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -1359,7 +1359,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/b_plas0.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1373,7 +1373,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/b_plas1.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1387,7 +1387,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/ctf1.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1401,7 +1401,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m1.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 55,
    "tiles": 5665,
    "bytes": 54095444,
@@ -1415,7 +1415,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m2.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1429,7 +1429,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m3.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 2,
    "tiles": 230,
    "bytes": 2196702,
@@ -1443,7 +1443,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m4.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 3,
    "tiles": 301,
    "bytes": 2884788,
@@ -1457,7 +1457,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m5.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1471,7 +1471,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m6.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 20,
    "tiles": 1891,
    "bytes": 18072620,
@@ -1485,7 +1485,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r1m7.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1499,7 +1499,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m1.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1513,7 +1513,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m2.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 60,
    "tiles": 4339,
    "bytes": 41455642,
@@ -1527,7 +1527,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m3.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 25,
    "tiles": 431,
    "bytes": 4124784,
@@ -1541,7 +1541,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m4.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 2,
    "tiles": 254,
    "bytes": 2435950,
@@ -1555,7 +1555,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m5.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1569,7 +1569,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m6.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1583,7 +1583,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m7.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 14,
    "tiles": 937,
    "bytes": 8967194,
@@ -1597,7 +1597,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/rogue/r2m8.rf.gz",
    "namespace": "rogue",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1611,7 +1611,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5dm.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1625,7 +1625,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5end.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 11,
    "tiles": 1486,
    "bytes": 14206422,
@@ -1639,7 +1639,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m1.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 4,
    "tiles": 405,
    "bytes": 3868678,
@@ -1653,7 +1653,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m2.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 1,
    "tiles": 177,
    "bytes": 1692772,
@@ -1667,7 +1667,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m3.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 12,
    "tiles": 395,
    "bytes": 3778196,
@@ -1681,7 +1681,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m4.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 10,
    "tiles": 513,
    "bytes": 4898500,
@@ -1695,7 +1695,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m5.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 3,
    "tiles": 359,
    "bytes": 3428876,
@@ -1709,7 +1709,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m6.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1723,7 +1723,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5m7.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 22,
    "tiles": 459,
    "bytes": 4396848,
@@ -1737,7 +1737,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5sm1.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 5,
    "tiles": 248,
    "bytes": 2379712,
@@ -1751,7 +1751,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5sm2.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 4,
    "tiles": 457,
    "bytes": 4363544,
@@ -1765,7 +1765,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/dopa/e5start.rf.gz",
    "namespace": "dopa",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 1,
    "tiles": 184,
    "bytes": 1760416,
@@ -1779,7 +1779,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/hub.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 166,
@@ -1793,7 +1793,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mgdm1.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1807,7 +1807,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mgdm2.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1821,7 +1821,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mgdm3.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1835,7 +1835,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mgdm4.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 168,
@@ -1849,7 +1849,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge1m1.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1863,7 +1863,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge1m2.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1877,7 +1877,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge1m3.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1891,7 +1891,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge2m1.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1905,7 +1905,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge2m2.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1919,7 +1919,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge3m1.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1933,7 +1933,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge3m2.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -1947,7 +1947,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge4arena.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 172,
@@ -1961,7 +1961,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge4m1.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 9,
    "tiles": 1400,
    "bytes": 13381956,
@@ -1975,7 +1975,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge4m2.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 11,
    "tiles": 1736,
    "bytes": 16594122,
@@ -1989,7 +1989,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge4m2b.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 11,
    "tiles": 1736,
    "bytes": 16594116,
@@ -2003,7 +2003,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge5m1.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 0,
    "tiles": 0,
    "bytes": 170,
@@ -2017,7 +2017,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mge5m2.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 225,
    "tiles": 20625,
    "bytes": 197005390,
@@ -2031,7 +2031,7 @@ export const ROCK_BAKES = {
   {
    "file": "newer/rockfield/mg1/mgend.rf.gz",
    "namespace": "mg1",
-   "generatorFingerprint": "37e6bbcdb003b61af5dbdfb469821ac95c237af83bd94dadd97be048f34d10aa",
+   "generatorFingerprint": "5d95653a3565afd7fdb25e84476c55df2c805365f5e58e8e9fedce976eb5d309",
    "charts": 3,
    "tiles": 364,
    "bytes": 3475856,

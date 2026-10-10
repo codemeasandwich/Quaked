@@ -15,7 +15,7 @@ export const DEMON_BAKES = {
  "maps/e1m3.bsp": [
   {
    "file": "newer/displacement/shareware/e1m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5941c37c67267ae11aff572fdba7f813148cc99da3cfc34d01eea81dc23edfd0",
    "sha256": "8aa452550334b3716e3b905dfe1a0a6ff6726e8ec7027f7ec91c8ebc00ed0c20",
@@ -29,7 +29,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c86a67d50d0711fce48279af372a56576634fe71926d9f178195c813d52b3b4e",
    "sha256": "e9f7b678299ab6d0b39bb06da41aa6faead7d2e8dc2b895feef365f9bfabe0a4",
@@ -45,7 +45,7 @@ export const DEMON_BAKES = {
  "maps/start.bsp": [
   {
    "file": "newer/displacement/shareware/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "a4e907bb36bb13e82be5656342a75cfd412e843784014f76a1df5bdcb63896d0",
    "sha256": "a912a7af3b6ec895dcd24baca954ae59e4b35eb730ac34c3348dc1a55b8b95f2",
@@ -59,7 +59,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/newer/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "2492d2fe230a4c8d6aa02cfbe87ab38106ff94295770505960ef276e8760128f",
    "sha256": "9f98f669af4784e1a8ed38cd4473f29181e5bb5a4da154d49b367c36acb98a0e",
@@ -73,7 +73,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "bb3bc6a42132d998859e77f8df162e1af078ba3864d0ac987cbc3b41ad1bf605",
    "sha256": "67c28f10cb3ce48b258099065d3d576593314d2257c9446ec22750e72a0e4064",
@@ -87,7 +87,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/hipnotic/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "0a1938ff8cf4338754b79ce1b6a2a5b60b171229bcc2ea95e206f904df0f2c64",
    "sha256": "686b9991bd488866db3cb9bf828306cdcac430f0644884d7db3a64e9f6b03cc6",
@@ -101,7 +101,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/rogue/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f89b0ca15bdb1b801070a58d984a1953b5325f844a17368116d8725b037ca54b",
    "sha256": "d8223e21fb65cd1fb4f1c7d3021b75c21c68689b19d434a6a7d4fe3b4ec96bd1",
@@ -115,7 +115,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/dopa/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5dc74f163d6c2f088c66148c78dfaf457422bf598b251a656d1a8d4f61446a46",
    "sha256": "45f4392e21525d212038fd18eaa2db1c805221bd7e063d8ffd137a455eecf0b1",
@@ -129,7 +129,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/mg1/start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "31503938dcdc1930a716c3e582d8e6d182558e01f75363bbefef0e0c8fed63b3",
    "sha256": "a2eb78318b05a87086ddc3685d003166e69f8a45f5febfaa66176d0b0f6d2eee",
@@ -145,7 +145,7 @@ export const DEMON_BAKES = {
  "maps/b_bh10.bsp": [
   {
    "file": "newer/displacement/shareware/b_bh10.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "93ed244c445817cc96ac5a378f4a556ff2e910d40fde654f181534930eaf39d4",
    "sha256": "beb9ae11aec3f34d2c6c8d1be1c2704e9f576ffb457d26dd9f0bad532fed3597",
@@ -159,7 +159,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_bh10.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "93ed244c445817cc96ac5a378f4a556ff2e910d40fde654f181534930eaf39d4",
    "sha256": "5ae9ad80f86e597b26087429a443e490aea5ce93839d8eb9e14e47fdb23edf49",
@@ -175,7 +175,7 @@ export const DEMON_BAKES = {
  "maps/b_bh100.bsp": [
   {
    "file": "newer/displacement/shareware/b_bh100.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "74aa7b2f080562dae303a3601872df9a684c5b52e71c8fed2460bbb47ff190c7",
    "sha256": "b270c1e03f6adba92614dd9366aefa73ac88f50469a130222fcdeded35f43036",
@@ -189,7 +189,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_bh100.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "74aa7b2f080562dae303a3601872df9a684c5b52e71c8fed2460bbb47ff190c7",
    "sha256": "0a016c93166b849529f291c93928cfbd2f352121267e2fac631c187959ef406c",
@@ -205,7 +205,7 @@ export const DEMON_BAKES = {
  "maps/b_bh25.bsp": [
   {
    "file": "newer/displacement/shareware/b_bh25.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "cb3ee7125c0cf453be37249127aa99a8bdcc3752fbbaa009f560afa242120777",
    "sha256": "39fd67ba83f3381939ed6bffe5323ed36e68193dce3d331beea4e5bf47cfccdb",
@@ -219,7 +219,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_bh25.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "cb3ee7125c0cf453be37249127aa99a8bdcc3752fbbaa009f560afa242120777",
    "sha256": "48df5a20f3ec07ec3a8d1c05c199029dca2785b517b94e9136a5b2a66008474b",
@@ -235,7 +235,7 @@ export const DEMON_BAKES = {
  "maps/b_shell1.bsp": [
   {
    "file": "newer/displacement/shareware/b_shell1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ee35ecc6230c0f0206d88acf8cc270e1de0876ecbe2272085ffa6a6c45651db6",
    "sha256": "870e2e844024a5577b9cc333bfc86733265302de1611df6db285dd2fd0e64210",
@@ -249,7 +249,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_shell1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ee35ecc6230c0f0206d88acf8cc270e1de0876ecbe2272085ffa6a6c45651db6",
    "sha256": "cca8c9bfd472912513f3a00a7d90a8ba58dcfa6ebd517934611f7bff4bb19d6d",
@@ -265,7 +265,7 @@ export const DEMON_BAKES = {
  "maps/b_shell0.bsp": [
   {
    "file": "newer/displacement/shareware/b_shell0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ac2e9b3d3b35f7c30c9b1cde66c175fdfd89561970e64368af612442ed5f11c9",
    "sha256": "cf9949b7679b302698b5edbf2dd902d8866a393b2ed837964a7afaa0f5d5999e",
@@ -279,7 +279,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_shell0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ac2e9b3d3b35f7c30c9b1cde66c175fdfd89561970e64368af612442ed5f11c9",
    "sha256": "989757e252e04aefae19b63a8eaa74d52b69187253569a97f26eeb1464df6b6d",
@@ -295,7 +295,7 @@ export const DEMON_BAKES = {
  "maps/b_nail1.bsp": [
   {
    "file": "newer/displacement/shareware/b_nail1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "90004f3fbb0ca8f2c7d348b79e06984640aa20550cc5897ddfc9b40e0819cfd5",
    "sha256": "226f773ec59b616b632fe7c1d39977ed44fb341566b83bb6a9819a206e985b3b",
@@ -309,7 +309,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_nail1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "90004f3fbb0ca8f2c7d348b79e06984640aa20550cc5897ddfc9b40e0819cfd5",
    "sha256": "dbbce9ba2fa0e8bda53b95fa66df1dfd19ff501e839b83eb26ab7a8b64ea7833",
@@ -325,7 +325,7 @@ export const DEMON_BAKES = {
  "maps/b_nail0.bsp": [
   {
    "file": "newer/displacement/shareware/b_nail0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "1f0a5b113348bd8c843ecbe88196ff518bf06e8afbde3cb4a1b9e445912fea41",
    "sha256": "4b73c7fc90fbda07b17577b98917d3716a42b58e879843dc387ab01f8e095103",
@@ -339,7 +339,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_nail0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "1f0a5b113348bd8c843ecbe88196ff518bf06e8afbde3cb4a1b9e445912fea41",
    "sha256": "7e9fa631443041982063d1f49d92cba6c22a5ed2c0d974bb0a60b79574577418",
@@ -355,7 +355,7 @@ export const DEMON_BAKES = {
  "maps/b_rock1.bsp": [
   {
    "file": "newer/displacement/shareware/b_rock1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "749e46465857d802b527bf5865da60b3ab170dbf6661d81462588e59f1792594",
    "sha256": "0eab63372a11f248647685e6d83c0052866c9b91d850ec0316d5e47ec6c1f8a3",
@@ -369,7 +369,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_rock1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "749e46465857d802b527bf5865da60b3ab170dbf6661d81462588e59f1792594",
    "sha256": "1272dc6a0366364c586df30a11925fa105fdaccd8d65eac7ac2601c29d936c71",
@@ -385,7 +385,7 @@ export const DEMON_BAKES = {
  "maps/b_rock0.bsp": [
   {
    "file": "newer/displacement/shareware/b_rock0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "14b82cd4e56615875afa3b40d754830e6718c515093731313fe85d871b11e331",
    "sha256": "57675541ab7fdb791ece552d34484d379f1006f51276af82b4717357278b7ec7",
@@ -399,7 +399,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_rock0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "14b82cd4e56615875afa3b40d754830e6718c515093731313fe85d871b11e331",
    "sha256": "28481a3e7826fd39a228e6eef1735f21cd177aee63bab553dd8788e6dc9f524b",
@@ -415,7 +415,7 @@ export const DEMON_BAKES = {
  "maps/b_batt1.bsp": [
   {
    "file": "newer/displacement/shareware/b_batt1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "978d4644f3e0361965066cbb3c88597ced748effb0252f0b60d4d6981efb00b7",
    "sha256": "1764ae11f6a489520e29eeb185254547019d1e66c3010fca2ba937bab77c81f7",
@@ -429,7 +429,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_batt1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "978d4644f3e0361965066cbb3c88597ced748effb0252f0b60d4d6981efb00b7",
    "sha256": "42c0062f83953135cb226a3cd2d27f9975ec6dd498d45514b2005b8ffa1fe9e9",
@@ -445,7 +445,7 @@ export const DEMON_BAKES = {
  "maps/b_batt0.bsp": [
   {
    "file": "newer/displacement/shareware/b_batt0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "1a6289e1daf96880b9a7cb366cb363bcfc45f277d04d922fc551d2ef05ee5104",
    "sha256": "230672262ccd3ff38331191e1092b004154af510dff0b449a7de59fc118dea53",
@@ -459,7 +459,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_batt0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "1a6289e1daf96880b9a7cb366cb363bcfc45f277d04d922fc551d2ef05ee5104",
    "sha256": "82c52f48c87ce30e4f3cf446d246bfd4f44029f2af410b2be7c17290ec4f0e37",
@@ -475,7 +475,7 @@ export const DEMON_BAKES = {
  "maps/b_explob.bsp": [
   {
    "file": "newer/displacement/shareware/b_explob.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d2b6d055bde377a425d082a52046a6e41a609197d6cd56db5cdfafe26314efb8",
    "sha256": "9003a7e6702ae0f82a47673dc08365edfba8b9483c1024328f27261f1e2717e2",
@@ -489,7 +489,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/b_explob.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d2b6d055bde377a425d082a52046a6e41a609197d6cd56db5cdfafe26314efb8",
    "sha256": "046f5a6576f2e21f15787b8ef1b046fe1e51e6e7393a0cab88c7c6d98230d16e",
@@ -505,7 +505,7 @@ export const DEMON_BAKES = {
  "maps/e1m1.bsp": [
   {
    "file": "newer/displacement/shareware/e1m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7b7061ec63c3e8ecb9c0e0a8075f18823efea6578666d57d601c191bcaf16c26",
    "sha256": "05ff3e4b45eadfe9ff5e611da7da63f548a218a0831f71b9561cf2bb703f204d",
@@ -519,7 +519,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "aa658c9716a2242a56f955a329cce0ae379644aee4f1a7584da131d72eb65d9d",
    "sha256": "8a4088e19cb69b95fe242330d900796aa9b7e68f31dcd9808696f725ec257a46",
@@ -535,7 +535,7 @@ export const DEMON_BAKES = {
  "maps/e1m2.bsp": [
   {
    "file": "newer/displacement/shareware/e1m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d0aff066a89cb75bcc4dc729d0130a2ac2ed93287d91e57a5b63ac26dce4fb27",
    "sha256": "f8d88789eeab6d643dcc134c8cef1cb20226838a283c470eee144baeaf002a1d",
@@ -549,7 +549,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "0a162ecb622937798571a7d1cc8cc3c7aeef4377da19c8ca2e4e0a339eaa509a",
    "sha256": "93567f0cd8533e3e3c931121e403617fc4a7274ee3fee0d7e9511e002e220779",
@@ -565,7 +565,7 @@ export const DEMON_BAKES = {
  "maps/e1m4.bsp": [
   {
    "file": "newer/displacement/shareware/e1m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ec6b51b8a7e7ef56b549349c2797f925340a4d94bda55440dd04b039824a140c",
    "sha256": "5b4b167729cfcc6da10c6b5d5d1e3bc3fd1938a2979010d6903bd28cd52b2771",
@@ -579,7 +579,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "2fdea1588c921e359b6e8ceda20588944a369d82e26cf7b2def3af8ed0e27ca5",
    "sha256": "d5a4816002ae15dd456a8c58945068fafd1745144b7da954675605dc84a19555",
@@ -595,7 +595,7 @@ export const DEMON_BAKES = {
  "maps/e1m5.bsp": [
   {
    "file": "newer/displacement/shareware/e1m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "a7fab95ca32b9142b720c9d974b35210cd992f1c46fd3e86723971466d1570d9",
    "sha256": "668007ca71779e90d9917bf44798a203ba6e6db2834317463e51fa08744e774f",
@@ -609,7 +609,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f8cd3581e81bdcfa5e5157526f8b6fec282d988ea9ad03822fdb27bf2e74908d",
    "sha256": "2804e6ec559bdc1c60635a1236f2702df14df62f8b3e0a9bff9b66f389c93984",
@@ -625,7 +625,7 @@ export const DEMON_BAKES = {
  "maps/e1m6.bsp": [
   {
    "file": "newer/displacement/shareware/e1m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "6a7fefad7a5a99ec85d98b3f1e9e9dad3d0639d3a0512cc780ba1810be09c7a6",
    "sha256": "b01e9a29007db12e3ac2bcaeb4b38d522d88ae3f3f5e31f38cb8f441970a222e",
@@ -639,7 +639,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c8f889a009659ba92b2b5dd170e5e12de5509acdfa63b177104822b234070964",
    "sha256": "ca4babaa20f730519495272fcf605249e94df2dc9ecb23c3112492f9c98fbfd9",
@@ -655,7 +655,7 @@ export const DEMON_BAKES = {
  "maps/e1m7.bsp": [
   {
    "file": "newer/displacement/shareware/e1m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c1f8565fd7b9bb93c23da05c67b98c51d89c71f8b60f9561ca29b28911c1911d",
    "sha256": "9757413fe72cea50e07751b0184b62e02edcbf18ddcdae0cf104131569c35955",
@@ -669,7 +669,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ebcb32c64e7eca11bef8aced5ea1a807bc4b967fb66df688776e9e2b31e6d226",
    "sha256": "a389b1e76dba8c9725f167d51a2ec62cc744a74da0ed7af4a539cc9e5d8ff135",
@@ -685,7 +685,7 @@ export const DEMON_BAKES = {
  "maps/e1m8.bsp": [
   {
    "file": "newer/displacement/shareware/e1m8.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "68cb9173303631d70f4b5da3d430c08d2c9932d32500d48e36aa4320a23522fc",
    "sha256": "26d20fdaa022dd965a6b0dae42713ad12539dae27dbf85ba13fe541dfc3b2fa3",
@@ -699,7 +699,7 @@ export const DEMON_BAKES = {
   },
   {
    "file": "newer/displacement/id1/e1m8.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "b1b75b16f9ca00ccdacf03aca8f4dd972c0009da55ff015b8f1ff742d90a1ace",
    "sha256": "9300619f5b195facae1e2aa4d0255a9c1549b18b63ac4d93c677be9f3f9c564a",
@@ -715,7 +715,7 @@ export const DEMON_BAKES = {
  "maps/base32b.bsp": [
   {
    "file": "newer/displacement/id1/base32b.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "00369b39dc1216408290a243a8a7336d609318612ef05055b73ccee5b49791aa",
    "sha256": "c1d56497ce40988e0e306caca23d6b27e7d11e6d78c742a7d6fbfb873bf8449e",
@@ -731,7 +731,7 @@ export const DEMON_BAKES = {
  "maps/b_exbox2.bsp": [
   {
    "file": "newer/displacement/id1/b_exbox2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "db8bbbfd1c9a576fa8a8ddc85ea473000036c49ca420ff32703eb6795cdaa680",
    "sha256": "f77a9ef0664ffbf5aa69698bd026eb5b0ea684a5e5565efb2a9aa4415e954575",
@@ -747,7 +747,7 @@ export const DEMON_BAKES = {
  "maps/death32c.bsp": [
   {
    "file": "newer/displacement/id1/death32c.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "1b4b74763d3cd8467a5e301fb063b5ca3185a5fb4de1291269e430db45309f60",
    "sha256": "d848164ed9fa798d46a7e1a27038d11a8e300938a27cf5de45554120d9c78ae9",
@@ -763,7 +763,7 @@ export const DEMON_BAKES = {
  "maps/dm1.bsp": [
   {
    "file": "newer/displacement/id1/dm1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "df1c363d292296bbc7b522afd3e67cf57b35893cd6089b265b8e2ad21871810c",
    "sha256": "90e0fda54813127413331c41edbf7166f0916c4c6ae0e17c323b3ee32514643b",
@@ -779,7 +779,7 @@ export const DEMON_BAKES = {
  "maps/dm2.bsp": [
   {
    "file": "newer/displacement/id1/dm2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "3ae45eedccf896080a564954f41f42a095cce0c567a4a1f2780b8d4fc426239f",
    "sha256": "ac8c4d7c47f356530796fb9af090c0a672d2801b28fcce298b705b4c964204ba",
@@ -795,7 +795,7 @@ export const DEMON_BAKES = {
  "maps/dm3.bsp": [
   {
    "file": "newer/displacement/id1/dm3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "40c1efa9d938d1d6ea09f2c1005d4309442b6bd1be35d3c65693d1bede05f028",
    "sha256": "62cdf4a953f162a064285bb7b8f7f5f3298f84ea622f8ab1c752821219390f62",
@@ -811,7 +811,7 @@ export const DEMON_BAKES = {
  "maps/dm4.bsp": [
   {
    "file": "newer/displacement/id1/dm4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "6a3b3017b9b43f455f4de25206dd708288521ac04ae4ea1622f83d3346d6ab36",
    "sha256": "744033e56a84eeac66df1ae3ea7a290036166e9fcd119468b6ed40dcabcfa107",
@@ -827,7 +827,7 @@ export const DEMON_BAKES = {
  "maps/dm5.bsp": [
   {
    "file": "newer/displacement/id1/dm5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "2837e106c53ae5f34e12172f3925ba9b8be48a18891972e51344ece54bd9194d",
    "sha256": "c5f465b81e8f3e9ae48dce625539d5a10f40118655ce55f43b171b7c139ecd1e",
@@ -843,7 +843,7 @@ export const DEMON_BAKES = {
  "maps/dm6.bsp": [
   {
    "file": "newer/displacement/id1/dm6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c5773e52693e5df8f6821fc3aaad0531ce7b9eb13613ee1cf55a6da3050554ec",
    "sha256": "0b5661900121d3a0ac374cc767b1038bb2aa1ff41c752fb25f555d5790ec2ab8",
@@ -859,7 +859,7 @@ export const DEMON_BAKES = {
  "maps/dm7.bsp": [
   {
    "file": "newer/displacement/id1/dm7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "72e9252ba497f7b1cb25da2d071f89d8862fc7fc1a6539fbf38962e91def6531",
    "sha256": "fb3676118dd24f7e59016ce64546bd7af727d25fc8794eb95534fbd00a904b99",
@@ -875,7 +875,7 @@ export const DEMON_BAKES = {
  "maps/dm8.bsp": [
   {
    "file": "newer/displacement/id1/dm8.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7c2c5e1541a9f64e0735c31e892dbdc37ff7a36c589f376916a0b3495aee5c4b",
    "sha256": "3a28bfd7f8dc36b07419876ddf7620720e4166d6d0835d4e533c270d1b38a4a9",
@@ -891,7 +891,7 @@ export const DEMON_BAKES = {
  "maps/e2m1.bsp": [
   {
    "file": "newer/displacement/id1/e2m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "de2f7b284ee64b24cdfe545ea4b09abdf9cce657f7ba6b1aab7ef06fecf2c26a",
    "sha256": "ceb0bf9239de2463fbd7394354740c2ec462317b6c6e41822947376f42a52fb7",
@@ -907,7 +907,7 @@ export const DEMON_BAKES = {
  "maps/e2m2.bsp": [
   {
    "file": "newer/displacement/id1/e2m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "1109ddb0808914da28545cd0a49875ec3a4742d58dcd9e22976c75323508a744",
    "sha256": "6c238eafe60304487cdcbd7c070efb83f26759d0537db71b58aa45c377d26a30",
@@ -923,7 +923,7 @@ export const DEMON_BAKES = {
  "maps/e2m3.bsp": [
   {
    "file": "newer/displacement/id1/e2m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "30135bf804b236fd939643c0e3b84d4552d7e74c1f479e65b43a8367983aa35b",
    "sha256": "f56d2839510dd787da7275ee0a5d57c3ee16d80b365a46fb7597ca1327b7a6a2",
@@ -939,7 +939,7 @@ export const DEMON_BAKES = {
  "maps/e2m4.bsp": [
   {
    "file": "newer/displacement/id1/e2m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "792027ca189ccb29daf2cdd58523bc538e2b3561aa98c57726e5890e28909a3a",
    "sha256": "d484b285d61f7981b2588f1e9eb57c42394a8eb993e0d105d19589d929a951e6",
@@ -955,7 +955,7 @@ export const DEMON_BAKES = {
  "maps/e2m5.bsp": [
   {
    "file": "newer/displacement/id1/e2m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "8353a5727b3466955150b2f324590f184ab96e11ac2c1190b200bd90afc93f68",
    "sha256": "be0ff414ae0a097236a632ead4c3d837c7d12f8373b1168e35b48dca6b2a328a",
@@ -971,7 +971,7 @@ export const DEMON_BAKES = {
  "maps/e2m6.bsp": [
   {
    "file": "newer/displacement/id1/e2m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "6507c7d8cc820c64203a54b726836960be51af6fa013f9947578902bf0feaa65",
    "sha256": "52635569213cb09183d0c3affed693e49afcb4b191388a56431eedc5ccc6a546",
@@ -987,7 +987,7 @@ export const DEMON_BAKES = {
  "maps/e2m7.bsp": [
   {
    "file": "newer/displacement/id1/e2m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "4aeff3a130dd2e0bfddb513e03b9f55d4c07adce3133be308270120c0658b0ff",
    "sha256": "3de2ea774d2c0d1bdf5b3eeeefd1c94cb28f335f2eca6dacd4ab0941384c4c0d",
@@ -1003,7 +1003,7 @@ export const DEMON_BAKES = {
  "maps/e3m1.bsp": [
   {
    "file": "newer/displacement/id1/e3m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f4fc6b0a90dd50486f4a540881c0714873fb5166d69d0d3474d96669b435c3ba",
    "sha256": "1b0565e87b54993118e87c80bf18cfad68edc4f54f24e2765106405e51411533",
@@ -1019,7 +1019,7 @@ export const DEMON_BAKES = {
  "maps/e3m2.bsp": [
   {
    "file": "newer/displacement/id1/e3m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7ddd5cb6f262e0369ffc146614840db9c0632b41ac7ef5030b5f0bd91042b4e0",
    "sha256": "03bd8fcf165b8468cf0dd12efaab813fafd10c606e7217028df1d1a90b1f9f5f",
@@ -1035,7 +1035,7 @@ export const DEMON_BAKES = {
  "maps/e3m3.bsp": [
   {
    "file": "newer/displacement/id1/e3m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "18d922fe2766ae5428d6bd06757d29f0363e81798e065f1d5811d8e2c492d98d",
    "sha256": "eb1ca8a47ef7fbf40e5f022e5a32f6f0371ec29b4162f012752a65e526cd876c",
@@ -1051,7 +1051,7 @@ export const DEMON_BAKES = {
  "maps/e3m4.bsp": [
   {
    "file": "newer/displacement/id1/e3m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "6e4726f7eba9d4b232dfcdbe9e71740dcf23a0cd55c9434b2c71eda60da5c4e6",
    "sha256": "82c01b62084534a145bbe1c8e76762abd00ad3b6c7c2017ed4ad50af6f1853bf",
@@ -1067,7 +1067,7 @@ export const DEMON_BAKES = {
  "maps/e3m5.bsp": [
   {
    "file": "newer/displacement/id1/e3m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "0c24ac55b62551952223abc0dd8fb1537fa08e1339a12a855e672c3c340d71d9",
    "sha256": "67d58ec6b7bc94d8e1295ad7628768d7d15c3569e8216d2f3eecf173cea7a4e9",
@@ -1083,7 +1083,7 @@ export const DEMON_BAKES = {
  "maps/e3m6.bsp": [
   {
    "file": "newer/displacement/id1/e3m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "a6e32aeb991a76c09040c7d16f026c68ac4fb1acca3e7311f7db4662d89ce651",
    "sha256": "12f9f58e2151669a73517e4c855a8460a4acccc0a7c1b7c9d7da01ed95f2eb74",
@@ -1099,7 +1099,7 @@ export const DEMON_BAKES = {
  "maps/e3m7.bsp": [
   {
    "file": "newer/displacement/id1/e3m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "e977aded92248734d8a50b8f722798c781ecb18bca9c30a353810e8c1462b0ba",
    "sha256": "b6e7a3777d2a95c912c3f76b67f25adb8411e03a280667c122f3edc33f45a4fb",
@@ -1115,7 +1115,7 @@ export const DEMON_BAKES = {
  "maps/e4m1.bsp": [
   {
    "file": "newer/displacement/id1/e4m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "10c9819e1151c1c97505815a6d62de8abe9a56fbcdb5c0c2c66c58c2d3d237d1",
    "sha256": "f60e6571607d5d92017f090cac570da21501dae96999e8555b59acc32506195a",
@@ -1131,7 +1131,7 @@ export const DEMON_BAKES = {
  "maps/e4m2.bsp": [
   {
    "file": "newer/displacement/id1/e4m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "b1ded2b6e303ed3b686aeaed6bd95b7fdbe5cdbdf93244348dcfc74d503331b0",
    "sha256": "b9778aecc1d45cabb0ed46ed379c8247bc58c26374da7b3a023d8b42d41307a8",
@@ -1147,7 +1147,7 @@ export const DEMON_BAKES = {
  "maps/e4m3.bsp": [
   {
    "file": "newer/displacement/id1/e4m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "894714b277730e4fcb90b001da31bbab44c52ce7f361626cf4f322d6818a883f",
    "sha256": "9a36fcdcba97296032aa45052367894a03f2b18e5098dc54b0d9c1cb761269ed",
@@ -1163,7 +1163,7 @@ export const DEMON_BAKES = {
  "maps/e4m4.bsp": [
   {
    "file": "newer/displacement/id1/e4m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d7ef27af97dc36afdcf93992836283489669d8c665b854afcf7f3f9a203d36b1",
    "sha256": "e3858d49a3f8d61c696b6d0128e7931c3836233e2a38b65a5f362a3f079298c3",
@@ -1179,7 +1179,7 @@ export const DEMON_BAKES = {
  "maps/e4m5.bsp": [
   {
    "file": "newer/displacement/id1/e4m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "253c4e4081bbbb9e4c8f1ffebe9cdd2aff1a5e292cb0804ae19d1f7f34acbba3",
    "sha256": "5c0b626aaa4e2ea5defb5049ad8b5f3c32984d6d8fb01ff7c12543433e67f8dd",
@@ -1195,7 +1195,7 @@ export const DEMON_BAKES = {
  "maps/e4m6.bsp": [
   {
    "file": "newer/displacement/id1/e4m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "943c854be61574f9d218e0377598515221c49dd110dda3c8f2e666eb936478c7",
    "sha256": "32db0a2f13ed800510ff1e60638472699bd549c27ba372441cfb944b6a931f8f",
@@ -1211,7 +1211,7 @@ export const DEMON_BAKES = {
  "maps/e4m7.bsp": [
   {
    "file": "newer/displacement/id1/e4m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "fdfa14957d8c57dabc25d9d7a16f44f7832e9cb9cfe8afe7cf03327dcd1042ed",
    "sha256": "414b811dad2dcd04dcf11ce8f076a6579d4d8dea7ac42819ad1fc75ab0917fe8",
@@ -1227,7 +1227,7 @@ export const DEMON_BAKES = {
  "maps/e4m8.bsp": [
   {
    "file": "newer/displacement/id1/e4m8.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "33269771656e99222d89d709494ec795cae1ce64ead29f650e3bf92a589dcab5",
    "sha256": "85a9031254334b4059005020e170f3eeb159479feffd830930702c0cc64db634",
@@ -1243,7 +1243,7 @@ export const DEMON_BAKES = {
  "maps/end.bsp": [
   {
    "file": "newer/displacement/id1/end.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "84bccc471793a2f457ee8e23e32b64e3fb2e73a016b3c831d5950323419dbb23",
    "sha256": "b8662ac8e7b52989d875def618a3bbf1ec4d8d084ffbc8892ef63b5e54f9e971",
@@ -1259,7 +1259,7 @@ export const DEMON_BAKES = {
  "maps/hip1m1.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip1m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "422675b550ba96075ea364e952e17482322f393dd856a740ded04aa85540fe9a",
    "sha256": "f03ac36e30ea3b0461ce756fad1244a8c324c1de99b58ae3d4a2db5ac89a7c54",
@@ -1275,7 +1275,7 @@ export const DEMON_BAKES = {
  "maps/hip1m2.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip1m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "a2b5a453557c2610ef54e34c354b5aa5fb145c849ed544705ce20cd3f9b702a2",
    "sha256": "b73eb2977dd1e6791789a9165904c39f090ca9f88af596fc439c322e76d96d17",
@@ -1291,7 +1291,7 @@ export const DEMON_BAKES = {
  "maps/hip1m3.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip1m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7b52f5d1f0924af505b631a1635ecbeba0bad7bbbe42d451f6cfec69339e8eb1",
    "sha256": "9f60f772e75edc1b504bea552862bb1d2e0e3e92bb6a1ab9aa064d1ab731084e",
@@ -1307,7 +1307,7 @@ export const DEMON_BAKES = {
  "maps/hip1m4.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip1m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5ab085d533a1d502859d2ea1fd8ab04f1ab8223a395731db44bfeacd4235a124",
    "sha256": "0716ae9ba296bdb30f420a5e3ef110673f6e6374e26a36c0edc5415de9d129f6",
@@ -1323,7 +1323,7 @@ export const DEMON_BAKES = {
  "maps/hip1m5.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip1m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "3ee752dfae3e019aab2152d7df9abf2456de55f14584727b8bb6a05be0872f86",
    "sha256": "9e924e9155cd405231275d90368f164a32ec2ac9d1dd441bd1f17baae422a41b",
@@ -1339,7 +1339,7 @@ export const DEMON_BAKES = {
  "maps/hip2m1.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip2m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d352e23c33ed2a0bc39267ba463308b77f90d020c6447468724e2234b72d2076",
    "sha256": "e16824280807aff3a658658b22856c82114f27dd082746d6250244f86b9c24f1",
@@ -1355,7 +1355,7 @@ export const DEMON_BAKES = {
  "maps/hip2m2.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip2m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "67c167a10165f9680eee2edb0d35104d5c034ddb77a9445b9b282945f1144407",
    "sha256": "ba423f9b39ba886ffb46bc47e99874b2e9b9c71f6d47c85bca610bbe6346f15a",
@@ -1371,7 +1371,7 @@ export const DEMON_BAKES = {
  "maps/hip2m3.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip2m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "79dfbe9dd19ea8bcba1987a404e55359cb4a90e73ad94d919ee4ef39343e9850",
    "sha256": "406d962efb299b6454314d518cf08f3bbbbd5e770628e6a4308480581c648451",
@@ -1387,7 +1387,7 @@ export const DEMON_BAKES = {
  "maps/hip2m4.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip2m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5f9b7eb14e656f4e7747a226a10bbec5dcb58ae4301a027a026e2c77bc755bf0",
    "sha256": "629e8bf139e89693518b732941f277215f7a6ea4bd7c52b049c401513ab2655b",
@@ -1403,7 +1403,7 @@ export const DEMON_BAKES = {
  "maps/hip2m5.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip2m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "329b55bd58a8ce3fbb4b2651eeb338d5b7554bf2a7b0f88b2feca0468d615992",
    "sha256": "570c41a2c6593c358dad69173731de2d4ae9810d244a34e42559c0dc3076f88e",
@@ -1419,7 +1419,7 @@ export const DEMON_BAKES = {
  "maps/hip2m6.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip2m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "93026302bda4c3c1a505893d5194e4eae6396d171828f3c1902f5432b9904505",
    "sha256": "0a760cbde94459b6eaab213eeca1219eafd098bff46e254f728821f5090a263b",
@@ -1434,7 +1434,7 @@ export const DEMON_BAKES = {
  ],
  "maps/hip3m1.bsp": [
   {
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "38b4bca491069ee1f76c1378dd2ff89bca507d0adf0cd0fb54842e4283dbc9d6",
    "sha256": "61e770eb7b9a779815754498e42a5d16efc10550857e428db080344361eb60a2",
@@ -1473,7 +1473,7 @@ export const DEMON_BAKES = {
  "maps/hip3m2.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip3m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "de430329bf5d49978830d776e6da6a7606dca87e106b51f89019af87d7883f3c",
    "sha256": "6857ba25a718bb4f1c6e4874b36de8fb5827f1d49c167e3830bf32891d7ba445",
@@ -1489,7 +1489,7 @@ export const DEMON_BAKES = {
  "maps/hip3m3.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip3m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "b5600952e87a2fdb0ef0070d36f6167a6bdabc034d11c8ddb60ed4b7048d57c7",
    "sha256": "ab2d09904164119d4d591ff8bc5492e0d653ff5fd7ae00fe2cb98c052241ead0",
@@ -1505,7 +1505,7 @@ export const DEMON_BAKES = {
  "maps/hip3m4.bsp": [
   {
    "file": "newer/displacement/hipnotic/hip3m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d3bc94223858a54314a322e2e1fedfa2cdd70f16fbf0a01dc2058238b5a15a79",
    "sha256": "579877302bdcc48ceca6225fe3183c5cf6db59c4b27767dfdf1680301d196846",
@@ -1521,7 +1521,7 @@ export const DEMON_BAKES = {
  "maps/hipdm1.bsp": [
   {
    "file": "newer/displacement/hipnotic/hipdm1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "77160b82f63d5168df003b69d0111270538ea843034a562708aa0e73900b1bad",
    "sha256": "67c3341b53464b9b1bcb7df00cb1bb9355eab138aee3e43a3d405fc5b033cf1f",
@@ -1537,7 +1537,7 @@ export const DEMON_BAKES = {
  "maps/hipend.bsp": [
   {
    "file": "newer/displacement/hipnotic/hipend.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "54ea5c0eccad28943ed0bf2e72865d1690e18f2257e38407b2c0418ff8b14302",
    "sha256": "d12da1da1900df31c0d23f6249d15d5623a93d13fc82210ba95fba2531dad9b5",
@@ -1553,7 +1553,7 @@ export const DEMON_BAKES = {
  "maps/b_lnail0.bsp": [
   {
    "file": "newer/displacement/rogue/b_lnail0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7cdb69c1793fed2d01c4284c87b314f4e44022ddc83990cb15ea9c7ad59d16df",
    "sha256": "3442e10666654f48e66aa1b0ad17b5fd4addf5436dd62980c781c4916bce69ad",
@@ -1569,7 +1569,7 @@ export const DEMON_BAKES = {
  "maps/b_lnail1.bsp": [
   {
    "file": "newer/displacement/rogue/b_lnail1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f220c616a09f3a156ddfe54f72982765d91c404ce94b3321ca96c05b8422ea69",
    "sha256": "cd920078677e65df850378a8265f8dc28cbbfa2695502ae9037de3e41632a3ca",
@@ -1585,7 +1585,7 @@ export const DEMON_BAKES = {
  "maps/b_mrock0.bsp": [
   {
    "file": "newer/displacement/rogue/b_mrock0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "cb748a9359bbabfc2ed3d393f762c56d5bdfcf5c3c395383f99827c1f8c4d941",
    "sha256": "e2a54ced0263720157c9ecaa61f3ca93dfbb6190903a13a9b37a4c8d367524c7",
@@ -1601,7 +1601,7 @@ export const DEMON_BAKES = {
  "maps/b_mrock1.bsp": [
   {
    "file": "newer/displacement/rogue/b_mrock1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "948fd6275abb79680c7650ba758cd4e712bfcdec94dc6d94746b95e0b93881a8",
    "sha256": "e45edca91f61539e4f576acd22324a5c5323fc9c5286ba26b1e3a3b01f73f0cf",
@@ -1617,7 +1617,7 @@ export const DEMON_BAKES = {
  "maps/b_plas0.bsp": [
   {
    "file": "newer/displacement/rogue/b_plas0.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "b3feecba45273a9a57081e43f1d7f14dafa5feb64a12b8e590ba1f36b1b84c48",
    "sha256": "ed0d725bd648cbd7423b55ab4d54c4e2bb232c19b99ec3ddf5bca27d7b628bed",
@@ -1633,7 +1633,7 @@ export const DEMON_BAKES = {
  "maps/b_plas1.bsp": [
   {
    "file": "newer/displacement/rogue/b_plas1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ffe49c95fb1b630dd8d3ee155b032d3b00af6de4cc675b5063638e0c3a07627b",
    "sha256": "58c9e12e503f07d96d64d13cf2376d394363461ff021ae0f3dcbf04ea6565ca2",
@@ -1649,7 +1649,7 @@ export const DEMON_BAKES = {
  "maps/ctf1.bsp": [
   {
    "file": "newer/displacement/rogue/ctf1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "347f4a70ec8cecb897b0e670058b912ae8351792fb633cf045c112a4168d51e3",
    "sha256": "18689712874e7a19c730c314eb04de510203a2478aef30752c2cc8c0e83f8365",
@@ -1665,7 +1665,7 @@ export const DEMON_BAKES = {
  "maps/r1m1.bsp": [
   {
    "file": "newer/displacement/rogue/r1m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "bef6217c9f02beec4c030498314dd88b4eb9d71b00bcb288f62180d82cc4f667",
    "sha256": "0239eced839c58d7eff493a3a68eb6f0a85d390580c0ff3b64173805d90cef97",
@@ -1681,7 +1681,7 @@ export const DEMON_BAKES = {
  "maps/r1m2.bsp": [
   {
    "file": "newer/displacement/rogue/r1m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "a347dac33d6aa15e510dc99e6aa584acc439dd9c58b3dc26fde2cdcacbc426d2",
    "sha256": "78ca01779c673c9d2c765986a0009cbf55f4cde143241b0909274e1a3444d2d1",
@@ -1697,7 +1697,7 @@ export const DEMON_BAKES = {
  "maps/r1m3.bsp": [
   {
    "file": "newer/displacement/rogue/r1m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "8ec56b34762d3197c0195977796928a73d244a54fa50d126cdd5ad8b8b879550",
    "sha256": "801de6b1d3adadaf619a8fe2aa675244b9a122c9f32ebccdfe9a73edd430ae17",
@@ -1713,7 +1713,7 @@ export const DEMON_BAKES = {
  "maps/r1m4.bsp": [
   {
    "file": "newer/displacement/rogue/r1m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "135de1ac3a653b75991a8f65622eb92b08c9f7167c128ca9c3c95281acf5c398",
    "sha256": "e8d7f5e6e70b8d10c85702c5f60a150a004c26bc86f8da86ea40a8b4ef0ab185",
@@ -1729,7 +1729,7 @@ export const DEMON_BAKES = {
  "maps/r1m5.bsp": [
   {
    "file": "newer/displacement/rogue/r1m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "4857b69c857d25246d7a33a063868fbdd7d67cc847fc32f7b8b50ae370e60257",
    "sha256": "7c3895ccddea3c6dee9ab3398be214c53bc321f22214b221b9e24107392befd4",
@@ -1745,7 +1745,7 @@ export const DEMON_BAKES = {
  "maps/r1m6.bsp": [
   {
    "file": "newer/displacement/rogue/r1m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "23bcf529a1332b10cc57f863b556008ad1aafaa0f24fce0290497aad204afaf6",
    "sha256": "d07e7f700d53fc04ae2981672bbe3ec7cb015214b9bb9891ea48fd4dd6b975e9",
@@ -1761,7 +1761,7 @@ export const DEMON_BAKES = {
  "maps/r1m7.bsp": [
   {
    "file": "newer/displacement/rogue/r1m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c16175ca29a9648e3af8954813f871f435507beeaf37c6d1b0d340811971d79c",
    "sha256": "1df531eb6915fa9a7bceaa8ccbcaaabe0ce0938644eb4abdc49ea1c6ba4b4760",
@@ -1777,7 +1777,7 @@ export const DEMON_BAKES = {
  "maps/r2m1.bsp": [
   {
    "file": "newer/displacement/rogue/r2m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "83373595930408a1152234b7e2a5543a5745da82b374ae0ef2187f7997b4598d",
    "sha256": "c5276d69335a6d540de37d67b726c4fdc3619b7744edd53842c63594a6119a04",
@@ -1793,7 +1793,7 @@ export const DEMON_BAKES = {
  "maps/r2m2.bsp": [
   {
    "file": "newer/displacement/rogue/r2m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "146ea6d7803782fc681367b9459075c14cf830dfa4e5b6f9d552cbe70bb37faa",
    "sha256": "1aba3a6b7ec4610f9d937e37fb0f57008ea6a340cef374e1417412b9b846d927",
@@ -1809,7 +1809,7 @@ export const DEMON_BAKES = {
  "maps/r2m3.bsp": [
   {
    "file": "newer/displacement/rogue/r2m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f2e7220bcac0175baf8f356e67cae3980ef85d7f8d23ccbda10b09fb8c97a314",
    "sha256": "d7c118aa07cc9408e7f3cbee21d32f129d36237faa69eafe8451c2eb989f4a00",
@@ -1825,7 +1825,7 @@ export const DEMON_BAKES = {
  "maps/r2m4.bsp": [
   {
    "file": "newer/displacement/rogue/r2m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "bb93b5b7b99519a3305ecc39a53d285d1e9bfb31e7af6aef138725c6568d86d5",
    "sha256": "545687a48dbab9341aef41f7feaf34212c5de7498d040d7c33e3fe718c37cfe3",
@@ -1841,7 +1841,7 @@ export const DEMON_BAKES = {
  "maps/r2m5.bsp": [
   {
    "file": "newer/displacement/rogue/r2m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "ff5d58559570a9b6c1180ca85d5d6996b1ed93564a47773f38b1c3f2fccdbaa2",
    "sha256": "b63148769a156a69de5dd7dff5dabae127827a34c80312d282b33b1be41eacec",
@@ -1857,7 +1857,7 @@ export const DEMON_BAKES = {
  "maps/r2m6.bsp": [
   {
    "file": "newer/displacement/rogue/r2m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "933c927207204121384693a7c351072abc1eb1421d7162ae0e064ae0eef67c72",
    "sha256": "a7d6604cd6e2d53a24c8e320847ccdc2049241de8b988254609eadfb428dde5c",
@@ -1873,7 +1873,7 @@ export const DEMON_BAKES = {
  "maps/r2m7.bsp": [
   {
    "file": "newer/displacement/rogue/r2m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "cd48f2dc47ed775617ca05db72c5bb865fd2c5c9c07634b7032c0dbba196e588",
    "sha256": "c95ade1f99bbbe652ce8cda7a37eff57aafdb950d72c2d06f15f07a3b3f846c6",
@@ -1889,7 +1889,7 @@ export const DEMON_BAKES = {
  "maps/r2m8.bsp": [
   {
    "file": "newer/displacement/rogue/r2m8.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "436854fcba6572ba917630b803f12a14e5d9aa06e254bf515b2ae5cdfe2ec196",
    "sha256": "626a932805e8dfb2d23582353bbe7706b263cbbfbae27b84a9797cfb5aca89f8",
@@ -1905,7 +1905,7 @@ export const DEMON_BAKES = {
  "maps/e5dm.bsp": [
   {
    "file": "newer/displacement/dopa/e5dm.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "64493a9d093627c2f969dc4d483ab56962c3f6a8689a1343a045a59ecc15bc0b",
    "sha256": "b6d80f9053248ca24af11a9743ba8d7c9e15699c0c9d448c679c2b119aa59e88",
@@ -1921,7 +1921,7 @@ export const DEMON_BAKES = {
  "maps/e5end.bsp": [
   {
    "file": "newer/displacement/dopa/e5end.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c9d7bf633da9ed7524570be6df53dd1e3e8c8c9acff4fb6401615fbcf71aa759",
    "sha256": "521dc72ab100ba23c7664a6fb7d4fb3699bb525454969c2a12848f115fd524c3",
@@ -1937,7 +1937,7 @@ export const DEMON_BAKES = {
  "maps/e5m1.bsp": [
   {
    "file": "newer/displacement/dopa/e5m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c06007fdabc329e0c5597e0861dc18dbb05061d1227d8fadb7214cc98a91d16e",
    "sha256": "8f2a3ab248918bde6e47dd1afe1bf5434dcb4a94f9fee34456912d2562b264e4",
@@ -1953,7 +1953,7 @@ export const DEMON_BAKES = {
  "maps/e5m2.bsp": [
   {
    "file": "newer/displacement/dopa/e5m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "cf4d039a7f030703984457a18d2c096431776b4cfa881173d07442ddd1c5d674",
    "sha256": "0a674b11d1939375de30546991ab9251c4c6a0b893252f50dc6a1bbe4f74da76",
@@ -1969,7 +1969,7 @@ export const DEMON_BAKES = {
  "maps/e5m3.bsp": [
   {
    "file": "newer/displacement/dopa/e5m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c341923360adefe1dff3c3456c9a73f2a4a5b939196effa3ca6de23110beb6d2",
    "sha256": "47bc4fcf095fcc3e2e179c5c8098234022768330d1ad5c6e37bd2cc14a777198",
@@ -1985,7 +1985,7 @@ export const DEMON_BAKES = {
  "maps/e5m4.bsp": [
   {
    "file": "newer/displacement/dopa/e5m4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "251777b4a8237e7585825553bf33c11fbfab3d77fe6bb2b73a46ef4b58739f64",
    "sha256": "af8ff8b196acfb10182bf4755c45df3ce3d145129fce10cd3d4ddbf15da2f844",
@@ -2001,7 +2001,7 @@ export const DEMON_BAKES = {
  "maps/e5m5.bsp": [
   {
    "file": "newer/displacement/dopa/e5m5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "9f904dba99be59d189c376e97b72cb666e082e8255408356f97e4a93a25d2def",
    "sha256": "9535f962590f1c49fa4103af9281eadf85aa0c6889170f16d3c77c3f6395b5a8",
@@ -2017,7 +2017,7 @@ export const DEMON_BAKES = {
  "maps/e5m6.bsp": [
   {
    "file": "newer/displacement/dopa/e5m6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5aa1dc6074d048e396b76c8787d0dcdeb1e7a5396ff0e76b421db1053d3479d0",
    "sha256": "0a37988da17ceeea7209d8187e8052b9934fceb862bf12f212d914b6f70c864d",
@@ -2033,7 +2033,7 @@ export const DEMON_BAKES = {
  "maps/e5m7.bsp": [
   {
    "file": "newer/displacement/dopa/e5m7.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "14b31403128303f833c9ddcf3d7820df2f89cfc1578da1720e7c63936750ee74",
    "sha256": "af73e7dafdb04373fbdcfe6bdb73ee82e5deba63d007f0ac59b6859ac61d29c5",
@@ -2049,7 +2049,7 @@ export const DEMON_BAKES = {
  "maps/e5sm1.bsp": [
   {
    "file": "newer/displacement/dopa/e5sm1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7a1d72d7871f849c798ebe6363a24fb12fd590b9b3a4576dcc9ad42e80a1c336",
    "sha256": "8e71f534b6cb1d809096abceb5e86cdb6a02285acfc3275febc92e82451e1006",
@@ -2065,7 +2065,7 @@ export const DEMON_BAKES = {
  "maps/e5sm2.bsp": [
   {
    "file": "newer/displacement/dopa/e5sm2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "de69bfbd247fbdba8a45bf6015e743eb624151a24e2c6084af2e31fd452e0cca",
    "sha256": "c420fe121f82d49663f44e48aad5bd643cb2eaf889af4c72517b45b592f68a94",
@@ -2081,7 +2081,7 @@ export const DEMON_BAKES = {
  "maps/e5start.bsp": [
   {
    "file": "newer/displacement/dopa/e5start.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5dc74f163d6c2f088c66148c78dfaf457422bf598b251a656d1a8d4f61446a46",
    "sha256": "8ae87bb17356818750ef984c7f1d5566dc4ed446eb9d31b3aab397c17be3fdd7",
@@ -2097,7 +2097,7 @@ export const DEMON_BAKES = {
  "maps/hub.bsp": [
   {
    "file": "newer/displacement/mg1/hub.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "60a6ce2f18c2760c8b563dc77fa2b28d1de3d8eabd1b68d8120016abf54ee12c",
    "sha256": "6f5d6e15af9d938530c396159d8426188fb9332827530308b490d4f6b8180592",
@@ -2113,7 +2113,7 @@ export const DEMON_BAKES = {
  "maps/mgdm1.bsp": [
   {
    "file": "newer/displacement/mg1/mgdm1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f9cdfe5b15d4b80a6c0d40a3af8f20d367f6aadcc557e8295f88419fe31e0ba1",
    "sha256": "12ead2cfb7990d5cff4cab09b4aaa2a3a6bbc385df1b3985e580f009a126629a",
@@ -2129,7 +2129,7 @@ export const DEMON_BAKES = {
  "maps/mgdm2.bsp": [
   {
    "file": "newer/displacement/mg1/mgdm2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "e784fd332f3abf5d9bf876abf7473e7385c34cd4d8652ba00971f62901d5f245",
    "sha256": "32bc336fbda42a1ed895d043a5700ef74c0201de06adfb61e9c6f2df5a5a0321",
@@ -2145,7 +2145,7 @@ export const DEMON_BAKES = {
  "maps/mgdm3.bsp": [
   {
    "file": "newer/displacement/mg1/mgdm3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "d981353b3b9bc03778153eb25ade436c9c03e035528c529502f12dcd6fe2caa2",
    "sha256": "a5264776ee90a3faafdba2cec094d29ea0ccfc180829354f7e3725061cc0c903",
@@ -2161,7 +2161,7 @@ export const DEMON_BAKES = {
  "maps/mgdm4.bsp": [
   {
    "file": "newer/displacement/mg1/mgdm4.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "2f9840b302b6bd365f47fd0f21953ba923541bbe942ae15e9a426048cd612616",
    "sha256": "f62fdbcdfd26a5c5dffd9dbdd3d66977a1a0a87ac031f9150a67b9e0b70fcb95",
@@ -2177,7 +2177,7 @@ export const DEMON_BAKES = {
  "maps/mge1m1.bsp": [
   {
    "file": "newer/displacement/mg1/mge1m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "33c1a34645fdbf7abb56cd0766232062769ef5153be9456437b7d3f7bb43ef45",
    "sha256": "6d72f7cd821d1530fa2604ebd585c7acbd830c0c0b82f2e7626a4ef843bb72eb",
@@ -2193,7 +2193,7 @@ export const DEMON_BAKES = {
  "maps/mge1m2.bsp": [
   {
    "file": "newer/displacement/mg1/mge1m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "dd1de7c8931b3cfea497a5639faa9dbca4e0debe94724e4f1e68b4d408677c16",
    "sha256": "068f44886c9cd1918e33e4c8ac588dc3da04bf6c9a777a8d8cb0f20ce9520b76",
@@ -2209,7 +2209,7 @@ export const DEMON_BAKES = {
  "maps/mge1m3.bsp": [
   {
    "file": "newer/displacement/mg1/mge1m3.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "24fb27f72d7c4e78769bdbe66cd9d6390d553282f30b8480fcd6519b6f87544a",
    "sha256": "88b8224a7d2d839ec596be231f7023beeafc4648d069c8c32dbac2b4419c4e76",
@@ -2225,7 +2225,7 @@ export const DEMON_BAKES = {
  "maps/mge2m1.bsp": [
   {
    "file": "newer/displacement/mg1/mge2m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "7587f710342160e1ce955f961c101ce5126eb1dec102c5328b4858575b9a639e",
    "sha256": "88912e14767791ef6e88a0ccd1d9b578541f65919e913ef72f16dca3c6a7d3a6",
@@ -2241,7 +2241,7 @@ export const DEMON_BAKES = {
  "maps/mge2m2.bsp": [
   {
    "file": "newer/displacement/mg1/mge2m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "09c493abd9d55a4d01a042e77134cf6130fb8b675b56d78cd44cb0cfbbe3bdc2",
    "sha256": "f5025beda97eac94099b74ac22a4d43b97cbb6b27496372f215d204ae0169ce1",
@@ -2257,7 +2257,7 @@ export const DEMON_BAKES = {
  "maps/mge3m1.bsp": [
   {
    "file": "newer/displacement/mg1/mge3m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "75527c7de0287c6f68960389068b11392210e2813612ff94620508f7612af0ec",
    "sha256": "2a9a6f76f4fce6f387982858c3a134549335057d48de3633d653ff9cfd7e3d69",
@@ -2273,7 +2273,7 @@ export const DEMON_BAKES = {
  "maps/mge3m2.bsp": [
   {
    "file": "newer/displacement/mg1/mge3m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "0c4aaf499a6e17ec39ce3de4242cdb047fe830d9793c8b2bed22e4b94ee9302c",
    "sha256": "1f7db1f24b3eb7134e6affbe598211f315f2cb57ad18b042f5b2321722803cae",
@@ -2289,7 +2289,7 @@ export const DEMON_BAKES = {
  "maps/mge4arena.bsp": [
   {
    "file": "newer/displacement/mg1/mge4arena.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "725bd688e684af4ab905f50b4b190c3631dd54ee681bf0caee887492da15dd3a",
    "sha256": "1c7e6200ceb5c9fcc55eb9567d58f817628973fc9a33d8ae0d71040b85393951",
@@ -2305,7 +2305,7 @@ export const DEMON_BAKES = {
  "maps/mge4m1.bsp": [
   {
    "file": "newer/displacement/mg1/mge4m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
    "sha256": "283c7eeab8b02e162965d10e7c72adf8e0ae4f7e6db2e0e1bde9f0011ed51fb0",
@@ -2321,7 +2321,7 @@ export const DEMON_BAKES = {
  "maps/mge4m2.bsp": [
   {
    "file": "newer/displacement/mg1/mge4m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "6cd4cc7a636b4cf5b28edcbe7d7c53d40c356453e88f75370bbeed1904d5d8c2",
    "sha256": "963c4a383b91a82b5a228c76fac561c66408c8944af4f2ae92e6899f6e5992b2",
@@ -2337,7 +2337,7 @@ export const DEMON_BAKES = {
  "maps/mge4m2b.bsp": [
   {
    "file": "newer/displacement/mg1/mge4m2b.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f56e56c3d9b545ad29d7bf5c67c40b0c1740681b0c5e1ce7ff921fb3f9295358",
    "sha256": "de434097899bea556a88b9eec9fddc0e6669736fca92449e3449b22625a7a8af",
@@ -2353,7 +2353,7 @@ export const DEMON_BAKES = {
  "maps/mge5m1.bsp": [
   {
    "file": "newer/displacement/mg1/mge5m1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "0d6af194f10cee98d23d3f5f6b2abded347c6abcd935d9a9eab04145f2adc790",
    "sha256": "f8a7e25741f3e61528c9b16c8c71751dd9f0b1a7733f693d5df559153a437e31",
@@ -2369,7 +2369,7 @@ export const DEMON_BAKES = {
  "maps/mge5m2.bsp": [
   {
    "file": "newer/displacement/mg1/mge5m2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "88c8e41590c27d6176122ead1ece11131395a2d1955aeb25cb8e4477e76868dd",
    "sha256": "6be0b2a5ae73737e8eba3af94d029c1e60b4fe5310ae8c02d263f2bfc36e12eb",
@@ -2385,7 +2385,7 @@ export const DEMON_BAKES = {
  "maps/mgend.bsp": [
   {
    "file": "newer/displacement/mg1/mgend.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "f09fb16bc6026e90b48eb62130553141fef0b706ecbd10b6c157cf1c32949037",
    "sha256": "7c26872cb2362038f569e8f10853da67514c7546d484b8fa0452601e9a8f0c4b",
@@ -2401,7 +2401,7 @@ export const DEMON_BAKES = {
  "maps/baldm6.bsp": [
   {
    "file": "newer/displacement/loose/baldm6.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "10aaac8790d57afc7b22af4e51c2ba0aeec31a17fc9db98776bbc693d4ab6a74",
    "sha256": "f59d1ab20a2358857cc2f7d5c84afe7b0e1de3b8251b83610b616a776565ce8e",
@@ -2417,7 +2417,7 @@ export const DEMON_BAKES = {
  "maps/edc.bsp": [
   {
    "file": "newer/displacement/loose/edc.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "c3ca4a1b2f54a669677d811b2ef7136ac2527476f1bf4924306011aca145c2c5",
    "sha256": "9d51677ddf9ed96dd1e88435b7c980d101b214c8c58f46748e0ad3c3da76ba82",
@@ -2433,7 +2433,7 @@ export const DEMON_BAKES = {
  "maps/efdm9.bsp": [
   {
    "file": "newer/displacement/loose/efdm9.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "552a8ad5da33036ad59d49e33cd5f60c78038b495818da028131cfc623999795",
    "sha256": "94264697e402dae8e90ca0e9b0f0dddfaeaa3c4019e1b538369cdadbebf5b8b8",
@@ -2449,7 +2449,7 @@ export const DEMON_BAKES = {
  "maps/naked5.bsp": [
   {
    "file": "newer/displacement/loose/naked5.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "5438072dcdee94d06549df039098037973e61309aa6f924bcbd41b7ef6f3eab5",
    "sha256": "a1ca2f397e365f113dcd975efcd6d69a141a1d58cdf753955a9cf5dbd8850663",
@@ -2465,7 +2465,7 @@ export const DEMON_BAKES = {
  "maps/rapture1.bsp": [
   {
    "file": "newer/displacement/loose/rapture1.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "40d800a199aa8f75c54d1026c0604073b9bbc94870cd363056e7eadc904a89ce",
    "sha256": "44bf81842a5c1c2d220a5642f7a42fde4d28b56e79e794451c89b86ce398b502",
@@ -2481,7 +2481,7 @@ export const DEMON_BAKES = {
  "maps/spinev2.bsp": [
   {
    "file": "newer/displacement/loose/spinev2.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "394cfc3b2046f671fc776b75000a605ff9a9dad4fb69ac87d0cb9f2710ff82a5",
    "sha256": "3c31212d03e422dd92f3ee82d57c06eeb55aeb84ffd78967fbe5a3cce1b47675",
@@ -2497,7 +2497,7 @@ export const DEMON_BAKES = {
  "maps/ultrav.bsp": [
   {
    "file": "newer/displacement/loose/ultrav.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "9fa52f9f733ae40214207d52399baac780a0d38d257b49cf9e66f9600a19f370",
    "sha256": "1322e78549160e4552b248439b99b143401d685b881d82cd31e010d85b664a3c",
@@ -2513,7 +2513,7 @@ export const DEMON_BAKES = {
  "maps/zed.bsp": [
   {
    "file": "newer/displacement/loose/zed.dm.gz",
-   "generatorFingerprint": "0ad660d210a464373a55a76b16245950b7cb8bf503de3c440f47c4bb0af77385",
+   "generatorFingerprint": "cb8a9737d0e7a64f5aeba2a7416d10fe9ca892ad3141ecc883d3b294e17d7350",
    "generatorVersion": "quaked-sculpt-generator-1",
    "bspSha256": "9418dbe56a5c6a80663a76ca986c5b9fdd22448457a05e0d2c7e33aaba65a4c3",
    "sha256": "948307cfff05054fca3a8036ed0996d90a3ce980de6c3f31e22f0d9316b46f1c",

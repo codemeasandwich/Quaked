@@ -18,7 +18,7 @@ server's copies and the rest) are closed in [44g], after the moves. See the base
 | `src/engine/net`, `src/engine/client`, `src/engine/sound`, `src/platform` | Networking, the client, sound, browser input, touch and WebXR | [44c] | yes |
 | `src/engine/render`, `src/newer/render` (models and animation) | The GL renderer port; poses, skins, held weapons, bodies, level windows | [44d] | yes |
 | `src/newer/render` (the rest), `src/newer/assets` (prepared data) | Effects, materials, post-processing, portals, vision; bakes and their formats | [44e] | yes |
-| `src/newer/ui`, `src/newer/sound`, `src/newer/assets` (preparation) | Menu, loading, HUD, Bestiary; ambient music; asset preparation | [44f] | not yet |
+| `src/newer/ui`, `src/newer/sound`, `src/newer/assets` (preparation) | Menu, loading, HUD, Bestiary; ambient music; asset preparation | [44f] | yes |
 
 Every module's folder is decided by `tools/architecture_classify.mjs` (by its name, so a module already moved is placed
 the same). Each moved module starts with a `@module` JSDoc block: what it is (written by hand), and, taken from its code,
@@ -115,14 +115,16 @@ weapons, the axe's halves, level windows, shells).
 * The displacement manifest (`newer/displacement/manifest.json`) records the hashes of the sources that made the
   bakes. Its keys follow the moves; its values are left as recorded. For `gl_model.js` and `gl_rsurf.js` they were already
   out of date before the move (both files changed after the bakes), as `tests/helpers/prepared_corpus_audit.mjs` (run by
-  hand, not in the suite) reports; a re-bake records new ones.
+  hand, not in the suite) reports; a re-bake records new ones. (Renaming the keys changed the hash of the sources, which
+  each level's `generatorFingerprint` records: restated in [44f], see [44e] below.)
 * Unchanged: both architecture tools pass; 206 modules (and 107 adapters); the same cycles; the room server and the page
   load 198 and 202 modules. In the browser: Newer Game and Classic start, the menu answers, and the face trial draws
   grunts, ogres and knights with their faces and keeps all 23 through save and load.
 
 ## [44e]: what moved
 
-71 modules: 46 into `newer/render` (with `rend_veil/`, 8), 17 into `newer/assets` (prepared data and its formats).
+71 modules: 46 into `newer/render`, 8 into `newer/render/rend_veil`, 17 into `newer/assets` (prepared data and its
+formats).
 
 * 703 literal paths in 290 files were rewritten, among them query imports, the quad vision trial's source fetch, the
   displacement trial's imports through a helper, the bake tools' paths, and the keys of the rock and displacement manifests
@@ -133,13 +135,35 @@ weapons, the axe's halves, level windows, shells).
   the module's header).
 * Recorded source hashes: the rock manifest's four sources and the displacement manifest's two moved ones were re-hashed
   (code unchanged; `tests/rockfield_bakes_test.js` regenerates a real tile for every chart against the bakes and passes).
-  Each manifest says why in `sourcesNote`.
+  Each level's `generatorFingerprint` is the hash of its manifest's sources, so it was restated with them ([44f]), in the
+  manifests and in the registry modules (`rockfield_bakes.js`, `demon_bakes.js`); nothing at run time reads it. Each
+  manifest says why in `sourcesNote`, which a real re-bake removes.
+  * The manual audit (`node tests/helpers/prepared_corpus_audit.mjs`) walks all 159 maps again. It reports the two
+    stale displacement sources below, and one gap of its own that predates the moves: it does not know the `quake:`
+    namespace of the Vore's normal map entry.
 * Headers: every moved module's facts were regenerated with multi-name declarations split (`gl_rmain.js` gained `gly`,
   `glwidth`, `glheight`) and the origin private file system counted as browser storage.
 * Unchanged: both architecture tools pass; 206 modules (and 178 adapters); the same cycles; the room server and the page
   load 198 and 202 modules. In the browser: Newer Game and Classic start; a fired rocket loads the fireball's textures from
   their new relative URL; the face trial keeps 23 seeds through save and load; the GPU water trial passes (its toxic vapour
   check failed once while the full suite loaded the machine, and passed twice on a rerun).
+
+## [44f]: what moved
+
+28 modules: 19 into `newer/ui`, 3 into `newer/sound`, 6 into `newer/assets` (preparation). With them every module has
+moved: `src/` itself now holds only the 206 adapters (198 at its root, 8 in `src/rend_veil/`).
+
+* 255 literal paths in 139 files were rewritten, among them the two starts of the rock worker, query imports of
+  `r_bestiary.js`, `r_playerface.js` and `normal_prepare.js`, and the generators' output paths.
+* By hand: the module URLs built from names in `r_bestiary.js`, `r_folio.js` and `r_playerface.js` (three folders up
+  now); `normal_inputs_trial`'s path list.
+* The four generators (`build_startup_pak.py`, `build_startup_normal_prefetch.mjs`, `prepare_corpus.mjs`,
+  `extract_menu_webgl.py`) write the `@module` header into the modules they generate. `extract_menu_webgl.py --check`
+  passes; its receipt (`docs/newer/menu-webgl/SOURCE.json`) records the generated module's new hash.
+* Unchanged: both architecture tools pass; 206 modules (and 206 adapters); the same cycles; the room server and the page
+  load 198 and 202 modules. In the browser, with no failed request: the loading screen and split title demo, the WebGL
+  menu with the studio logo, Newer Game and Classic, the Bestiary's images and pencil replay (ready), the player face
+  (ready, 270 images) and the ambient music's file.
 
 ## Checks for each move
 
