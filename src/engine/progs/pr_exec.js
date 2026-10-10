@@ -47,7 +47,7 @@ import {
 	OP_STATE, OP_GOTO, OP_AND, OP_OR,
 	OP_BITAND, OP_BITOR,
 } from './pr_comp.js';
-import { ED_Print } from './pr_edict.js';
+import { ED_Print, PR_GlobalString, PR_GlobalStringNoContents } from './pr_edict.js';
 import { ss_active } from '../server/server.js';
 import { SV_RespawnFunctionEnter, SV_RespawnFunctionLeave } from '../common/hooks.js'; // installed by newer/gameplay/sv_respawn.js
 import { SV_AxeFunctionEnter, SV_AxeFunctionLeave, SV_AxeReset } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
@@ -139,8 +139,8 @@ PR_PrintStatement
 */
 /**
  * Prints one QuakeC statement to the console (WinQuake pr_exec.c): the opcode name padded to 10 characters, then
- * its operands. Unlike WinQuake, operands print as bare global offsets, not names and values (the
- * `PR_GlobalString` helpers here are simple fallbacks). Called by `PR_RunError` for the failing statement and, while
+ * its operands, each as its global's offset, name and value (`PR_GlobalString`, pr_edict.js), or offset and name for a
+ * result (`PR_GlobalStringNoContents`). Called by `PR_RunError` for the failing statement and, while
  * `pr_trace` is set, for each statement `PR_ExecuteProgram` runs.
  *
  * @param {dstatement_t} s the statement: `op` an opcode (OP_*), `a`, `b`, `c` global offsets (or a branch distance in
@@ -183,21 +183,6 @@ export function PR_PrintStatement( s ) {
 	}
 
 	Con_Printf( '%s\n', line );
-
-}
-
-// Forward references to pr_edict.js functions for printing
-// (used by PR_PrintStatement but defined in pr_edict.js)
-function PR_GlobalString( ofs ) {
-
-	// Simple fallback - will be overridden by imports if needed
-	return ofs + ' ';
-
-}
-
-function PR_GlobalStringNoContents( ofs ) {
-
-	return ofs + ' ';
 
 }
 
