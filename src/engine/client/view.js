@@ -27,8 +27,8 @@ import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
 import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
 import { VectorCopy, VectorAdd, VectorSubtract, VectorNormalize,
 	DotProduct, AngleVectors, anglemod, M_PI } from '../common/mathlib.js';
-import { host_frametime, sv } from '../server/host.js';
-import { noclip_anglehack } from '../server/host_cmd.js';
+import { host_frametime, noclip_anglehack } from '../common/host_state.js';
+import { sv } from '../server/server.js';
 import { r_refdef } from '../render/render.js';
 import {
 	CSHIFT_CONTENTS, CSHIFT_DAMAGE, CSHIFT_BONUS, CSHIFT_POWERUP,

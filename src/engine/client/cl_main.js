@@ -48,7 +48,9 @@ import { R_DemoSplitEnd } from '../common/hooks.js'; // installed by newer/rende
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../common/hooks.js'; // installed by newer/render/r_muzzle.js
 import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
-import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from '../server/host.js';
+import { Host_Error, Host_ShutdownServer, Host_ClearMemory } from '../server/host.js';
+import { host_frametime, realtime } from '../common/host_state.js';
+import { sv } from '../server/server.js';
 import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_StopAllSounds } from '../sound/snd_dma.js';
 import { M_ConnectionError, M_ShouldReturnOnError } from './menu.js';

@@ -93,7 +93,7 @@ import { SV_Physics, SV_SetState, SV_SetCallbacks,
 import { PR_ExecuteProgram, PR_SetHostError } from '../progs/pr_exec.js';
 import { SV_User_SetCallbacks, SV_SetIdealPitch } from './sv_user.js';
 import { V_CalcRoll } from '../client/view.js';
-import { key_dest } from '../client/keys.js';
+import { key_dest } from '../common/key_dest.js';
 
 //============================================================================
 // Module-level state

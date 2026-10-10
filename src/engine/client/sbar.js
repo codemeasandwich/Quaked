@@ -19,7 +19,7 @@ import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../common/hooks.js'; /
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
 
 import { Cmd_AddCommand } from '../common/cmd.js';
-import { realtime } from '../server/host.js';
+import { realtime } from '../common/host_state.js';
 import { Con_Printf } from '../common/console.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
 import {

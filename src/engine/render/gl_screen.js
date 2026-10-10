@@ -31,8 +31,8 @@ import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, 
 import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from '../common/cvar.js';
 import { Respawn_NoticeAt } from '../common/hooks.js'; // installed by newer/ui/respawn_notice.js
 import { Cmd_AddCommand } from '../common/cmd.js';
-import { key_dest, key_game, key_console, key_message } from '../client/keys.js';
-import { realtime, host_frametime } from '../server/host.js';
+import { key_dest, key_game, key_console, key_message } from '../common/key_dest.js';
+import { realtime, host_frametime } from '../common/host_state.js';
 import { renderer } from './vid.js';
 import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleSpeed } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 import { R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js

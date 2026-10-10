@@ -24,7 +24,8 @@ import { pmove, movevars, PlayerMove, PM_HullPointContents, PM_GetOnGround, Pmov
 import { CONTENTS_EMPTY } from '../common/bspfile.js';
 import { cl, cl_entities, packet_entities_t } from './client.js';
 import { STAT_HEALTH } from '../common/quakedef.js';
-import { realtime, sv } from '../server/host.js';
+import { realtime } from '../common/host_state.js';
+import { sv } from '../server/server.js';
 
 // CVars
 export const cl_nopred = new cvar_t( 'cl_nopred', '0' );

@@ -33,7 +33,7 @@ import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from '../e
 import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from '../engine/client/cl_input.js';
 import { R_NewerGame } from '../engine/common/hooks.js'; // installed by newer/mode.js
 import { V_StopPitchDrift } from '../engine/client/view.js';
-import { host_frametime } from '../engine/server/host.js';
+import { host_frametime } from '../engine/common/host_state.js';
 import { PITCH, YAW } from '../engine/common/quakedef.js';
 import {
 	Touch_IsMobile, Touch_Init, Touch_Enable, Touch_Disable, Touch_IsEnabled,

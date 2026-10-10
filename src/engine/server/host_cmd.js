@@ -6,7 +6,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: mutable exports `noclip_anglehack`; browser storage.
+ * State: no mutable exports; browser storage.
  *
  * Errors: calls `Sys_Error` (fatal) at 1 place; catches at 5 places.
  *
@@ -57,14 +57,10 @@ import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../common/hooks.js'; 
 import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../common/hooks.js'; // installed by newer/render/r_shells.js
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
+import { set_noclip_anglehack } from '../common/host_state.js';
 
-export let noclip_anglehack = false;
-
-export function set_noclip_anglehack( v ) {
-
-	noclip_anglehack = v;
-
-}
+// noclip_anglehack lives in a leaf (card [44g], D1a), so the client reads it without importing the host
+export { noclip_anglehack, set_noclip_anglehack } from '../common/host_state.js';
 
 /*
 ======================
@@ -701,13 +697,13 @@ function Host_Noclip_f() {
 
 	if ( sv_player.v.movetype !== MOVETYPE_NOCLIP ) {
 
-		noclip_anglehack = true;
+		set_noclip_anglehack( true );
 		sv_player.v.movetype = MOVETYPE_NOCLIP;
 		SV_ClientPrintf( 'noclip ON\n' );
 
 	} else {
 
-		noclip_anglehack = false;
+		set_noclip_anglehack( false );
 		sv_player.v.movetype = MOVETYPE_WALK;
 		SV_ClientPrintf( 'noclip OFF\n' );
 

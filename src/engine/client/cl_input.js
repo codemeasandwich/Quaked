@@ -24,7 +24,7 @@ import { SIGNONS,
 	kbutton_t, usercmd_t,
 	cl, cls, cl_entities } from './client.js';
 import { anglemod, VectorCopy } from '../common/mathlib.js';
-import { host_frametime, realtime } from '../server/host.js';
+import { host_frametime, realtime } from '../common/host_state.js';
 import { V_StartPitchDrift, V_StopPitchDrift } from './view.js';
 import { lookspring, CL_Disconnect } from './cl_main.js';
 import { NET_SendUnreliableMessage } from '../net/net_main.js';

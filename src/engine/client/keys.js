@@ -5,9 +5,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: mutable exports `key_linepos`, `shift_down`, `key_lastpress`, `edit_line`, `history_line`, `key_dest`,
- * `key_count`, `chat_buffer`, `team_message`; module-level variables `_cls`, `_realVid`; 1 module-level collection
- * (Map/Set).
+ * State: mutable exports `key_linepos`, `shift_down`, `key_lastpress`, `edit_line`, `history_line`, `key_count`,
+ * `chat_buffer`, `team_message`; module-level variables `_cls`, `_realVid`; 1 module-level collection (Map/Set).
  *
  * Errors: calls `Sys_Error` (fatal) at 2 places.
  *
@@ -35,6 +34,9 @@ import { R_BestiaryKey } from '../common/hooks.js'; // installed by newer/ui/r_b
 
 // these are the key numbers that should be passed to Key_Event
 export const K_TAB = 9;
+import { key_dest, set_key_dest, key_game, key_console, key_message, key_menu } from '../common/key_dest.js';
+// where keys go lives in a leaf (card [44g], D1a), so modules below the client read it without importing this one
+export { key_dest, set_key_dest, key_game, key_console, key_message, key_menu } from '../common/key_dest.js';
 export const K_ENTER = 13;
 export const K_ESCAPE = 27;
 export const K_SPACE = 32;
@@ -128,10 +130,6 @@ export const K_MWHEELDOWN = 240;
 ==============================================================================
 */
 
-export const key_game = 0;
-export const key_console = 1;
-export const key_message = 2;
-export const key_menu = 3;
 
 /*
 ==============================================================================
@@ -158,8 +156,6 @@ export let key_lastpress = 0;
 export let edit_line = 0;
 export let history_line = 0;
 
-export let key_dest = key_game;
-export function set_key_dest( v ) { key_dest = v; }
 
 export let key_count = 0; // incremented every key event
 
@@ -494,7 +490,7 @@ function Key_Message( key ) {
 		Cbuf_AddText( chat_buffer );
 		Cbuf_AddText( '"\n' );
 
-		key_dest = key_game;
+		set_key_dest( key_game );
 		chat_buffer = '';
 		return;
 
@@ -502,7 +498,7 @@ function Key_Message( key ) {
 
 	if ( key === K_ESCAPE ) {
 
-		key_dest = key_game;
+		set_key_dest( key_game );
 		chat_buffer = '';
 		return;
 

@@ -25,7 +25,7 @@ import { svc_nop, svc_disconnect } from '../common/protocol.js';
 import { VectorCopy } from '../common/mathlib.js';
 import { SIGNONS, cl, cls, ca_disconnected, ca_connected } from './client.js';
 import { CL_Disconnect } from './cl_main.js';
-import { host_framecount, realtime } from '../server/host.js';
+import { host_framecount, realtime } from '../common/host_state.js';
 import { NET_GetMessage } from '../net/net_main.js';
 import { COM_FindFile } from '../common/pak.js';
 

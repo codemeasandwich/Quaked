@@ -18,7 +18,7 @@ if ( g.unscanned?.length || g.unexpected?.length ) { console.error( 'the graph r
 const RULES = [
 	[ 'newer/render/rend_veil', '44e', /^rend_veil\// ],
 	// (hooks: the neutral module whose hooks the engine calls and Newer installs, made in [44g] for D1b)
-	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol|hooks)\.js$/ ],
+	[ 'engine/common', '44b', /^(common|cmd|cvar|zone|sys|crc|mathlib|quakedef|console|wad|pak|bspfile|anorm_dots|protocol|hooks|host_state|key_dest)\.js$/ ],
 	[ 'engine/progs', '44b', /^(pr_cmds|pr_comp|pr_edict|pr_exec|progs|progdefs)\.js$/ ],
 	[ 'engine/server', '44b', /^(sv_main|sv_move|sv_phys|sv_user|server|world|pmove|host|host_cmd)\.js$/ ],
 	[ 'engine/net', '44c', /^net(_\w+)?\.js$/ ],

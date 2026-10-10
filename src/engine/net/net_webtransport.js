@@ -22,7 +22,7 @@ import {
 	hostcache
 } from './net.js';
 import { M_ConnectionError, M_Menu_Main_f } from '../client/menu.js';
-import { set_key_dest, key_menu } from '../client/keys.js';
+import { set_key_dest, key_menu } from '../common/key_dest.js';
 
 // WebTransport connection state
 let wt_initialized = false;

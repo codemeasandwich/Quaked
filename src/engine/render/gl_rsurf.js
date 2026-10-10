@@ -89,7 +89,7 @@ import {
 	AngleVectors, Length
 } from '../common/mathlib.js';
 import { Mod_LeafPVS, Mod_PointInLeaf, solidskytexture, alphaskytexture } from './gl_model.js';
-import { realtime } from '../server/host.js';
+import { realtime } from '../common/host_state.js';
 
 //============================================================================
 // Constants

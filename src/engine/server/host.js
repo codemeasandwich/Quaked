@@ -6,9 +6,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: mutable exports `host_parms`, `host_initialized`, `host_frametime`, `realtime`, `host_framecount`,
- * `host_basepal`, `host_colormap`; module-level variables `host_time`, `oldrealtime`, `host_error_reentrancy`;
- * browser storage.
+ * State: mutable exports `host_parms`, `host_initialized`, `host_basepal`, `host_colormap`; module-level variables
+ * `host_time`, `oldrealtime`, `host_error_reentrancy`; browser storage.
  *
  * Errors: calls `Sys_Error` (fatal) at 1 place; throws at 3 places; calls `Host_Error` at 1 place; catches at 3
  * places.
@@ -34,7 +33,7 @@ import { V_Init } from '../client/view.js';
 import { Chase_Init } from '../client/chase.js';
 import { W_LoadWadFile } from '../common/wad.js';
 import { COM_LoadFile } from '../common/pak.js';
-import { Key_Init, Key_WriteBindings } from '../client/keys.js';
+import { Key_Init, Key_WriteBindings, key_lines, edit_line, key_linepos, chat_buffer } from '../client/keys.js';
 import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as RealConDPrintf } from '../common/console.js';
 import { M_Init, M_SetExternals } from '../client/menu.js';
 import { MainMenu_Destroy } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
@@ -50,7 +49,7 @@ import { sv, svs, client_t,
 	host_client, set_host_client } from './server.js';
 import { R_Init, D_FlushCaches } from '../render/gl_rmisc.js';
 import { VID_Init, VID_Shutdown } from '../render/vid.js';
-import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from '../render/gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from '../render/gl_draw.js';
 import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
@@ -88,11 +87,8 @@ export let host_parms = null;
 
 export let host_initialized = false;
 
-export let host_frametime = 0;
 let host_time = 0;
-export let realtime = 0;
 let oldrealtime = 0;
-export let host_framecount = 0;
 
 // host_client is imported from server.js (canonical copy)
 
@@ -124,11 +120,13 @@ const pausable = new cvar_t( 'pausable', '1' );
 
 const temp1 = new cvar_t( 'temp1', '0' );
 
-export function set_host_frametime( v ) { host_frametime = v; }
 // set_host_client is imported and re-exported from server.js
 export { set_host_client } from './server.js';
 // sv is the server state, re-exported for client-side prediction
 export { sv } from './server.js';
+import { realtime, host_frametime, host_framecount, set_realtime, set_host_frametime, set_host_framecount } from '../common/host_state.js';
+// the frame clock lives in a leaf (card [44g], D1a); the host is its only writer
+export { realtime, host_frametime, host_framecount, set_host_frametime } from '../common/host_state.js';
 
 /*
 ====================
@@ -403,7 +401,13 @@ export async function Host_Init( parms ) {
 		M_Menu_Main_f: M_Menu_Main_f,
 		S_LocalSound: S_LocalSound,
 		getRealtime: () => realtime,
-		developer: developer
+		developer: developer,
+		Draw_GetVirtualWidth: Draw_GetVirtualWidth,
+		Draw_GetVirtualHeight: Draw_GetVirtualHeight,
+		key_lines: key_lines,
+		getEditLine: () => edit_line,
+		getKeyLinepos: () => key_linepos,
+		getChatBuffer: () => chat_buffer
 	} );
 
 	SCR_SetExternals( {
@@ -634,7 +638,7 @@ function _Host_Frame_Internal( time ) {
 	CDAudio_Update();
 	S_UpdateAmbientMusic();
 
-	host_framecount ++;
+	set_host_framecount( host_framecount + 1 );
 
 	// (a teleporter's copy of the screen: made now the frame is drawn, and taken down once the new level is up)
 	if ( renderer != null ) R_TeleportFrameEnd( performance.now() / 1000, renderer.domElement, Draw_GetOverlayCanvas(), cls.signon === SIGNONS && cl.worldmodel != null );
@@ -652,35 +656,35 @@ Returns false if the time is too short to run a frame
 */
 function _Host_FilterTime( time ) {
 
-	realtime += time;
+	set_realtime( realtime + time );
 
 	// Don't run too fast - cap at 72 FPS
 	// This prevents packets from flooding out and keeps physics consistent
 	if ( cls.timedemo !== true && realtime - oldrealtime < 1.0 / 72.0 )
 		return false; // framerate is too high
 
-	host_frametime = realtime - oldrealtime;
+	set_host_frametime( realtime - oldrealtime );
 	oldrealtime = realtime;
 
 	if ( host_framerate.value > 0 ) {
 
-		host_frametime = host_framerate.value;
+		set_host_frametime( host_framerate.value );
 
 	} else {
 
 		// don't allow really long or short frames
 		if ( host_frametime > 0.1 )
-			host_frametime = 0.1;
+			set_host_frametime( 0.1 );
 		if ( host_frametime < 0.001 )
-			host_frametime = 0.001;
+			set_host_frametime( 0.001 );
 
 	}
 
 	// slow motion (single player only: a network game cannot run at its own speed)
 	if ( host_timescale.value > 0 && host_timescale.value < 1 && sv.active && svs.maxclients === 1 )
-		host_frametime *= host_timescale.value;
+		set_host_frametime( host_frametime * host_timescale.value );
 	R_BestiaryFrame( realtime );
-	host_frametime *= R_BestiaryTimeScale();
+	set_host_frametime( host_frametime * R_BestiaryTimeScale() );
 
 	return true;
 

@@ -7,8 +7,8 @@
  *
  * State: mutable exports `con_linewidth`, `con_forcedup`, `con_totallines`, `con_backscroll`, `con_vislines`,
  * `con_initialized`, `con_notifylines`; module-level variables `con_current`, `con_x`, `con_text`, `con_debuglog`,
- * `_cls`, `_realVid`, `_getRealtime`, `_scr_disabled_for_loading`, `_developer`, `_Draw_Character`, `_Draw_String`,
- * `_Draw_ConsoleBackground` and 6 more.
+ * `_cls`, `_realVid`, `_getVirtualWidth`, `_getVirtualHeight`, `_key_lines`, `_getEditLine`, `_getKeyLinepos`,
+ * `_getChatBuffer` and 12 more.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -19,9 +19,7 @@
 
 import { Cmd_AddCommand } from './cmd.js';
 import { Cvar_RegisterVariable } from './cvar.js';
-import { key_dest, set_key_dest, key_game, key_console, key_message,
-	key_lines, edit_line, key_linepos, chat_buffer } from '../client/keys.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
+import { key_dest, set_key_dest, key_game, key_console, key_message } from './key_dest.js';
 
 /*
 ==============================================================================
@@ -71,10 +69,18 @@ export let con_notifylines = 0; // scan lines to clear for notify lines
 // Cross-reference to other systems (set via Con_SetExternals to avoid circular imports)
 let _cls = { state: 0, signon: 0 };
 let _realVid = { width: 640, height: 480 };
+// the console's own drawing size (gl_draw's virtual width and height, set by the host; the real video size until then)
+let _getVirtualWidth = () => _realVid.width;
+let _getVirtualHeight = () => _realVid.height;
 const _vid = {
-	get width() { return Draw_GetVirtualWidth(); },
-	get height() { return Draw_GetVirtualHeight(); }
+	get width() { return _getVirtualWidth(); },
+	get height() { return _getVirtualHeight(); }
 };
+// the typed line and the chat message (keys.js, set by the host): the 32 edit lines, the current one, the cursor
+let _key_lines = [ [ 0, 0 ] ];
+let _getEditLine = () => 0;
+let _getKeyLinepos = () => 1;
+let _getChatBuffer = () => '';
 let _getRealtime = () => 0;
 let _scr_disabled_for_loading = false;
 let _developer = { value: 0 };
@@ -103,6 +109,12 @@ export function Con_SetExternals( externals ) {
 	if ( externals.M_Menu_Main_f ) _M_Menu_Main_f = externals.M_Menu_Main_f;
 	if ( externals.S_LocalSound ) _S_LocalSound = externals.S_LocalSound;
 	if ( externals.scr_disabled_for_loading !== undefined ) _scr_disabled_for_loading = externals.scr_disabled_for_loading;
+	if ( externals.Draw_GetVirtualWidth ) _getVirtualWidth = externals.Draw_GetVirtualWidth;
+	if ( externals.Draw_GetVirtualHeight ) _getVirtualHeight = externals.Draw_GetVirtualHeight;
+	if ( externals.key_lines ) _key_lines = externals.key_lines;
+	if ( externals.getEditLine ) _getEditLine = externals.getEditLine;
+	if ( externals.getKeyLinepos ) _getKeyLinepos = externals.getKeyLinepos;
+	if ( externals.getChatBuffer ) _getChatBuffer = externals.getChatBuffer;
 
 }
 
@@ -124,7 +136,7 @@ export function Con_ToggleConsole_f() {
 
 			set_key_dest( key_game );
 
-			key_lines[ edit_line ][ 1 ] = 0; // clear any typing
+			_key_lines[ _getEditLine() ][ 1 ] = 0; // clear any typing
 
 		} else {
 
@@ -508,7 +520,7 @@ function Con_DrawInput() {
 
 	if ( ! _Draw_Character ) return;
 
-	const text = key_lines[ edit_line ];
+	const text = _key_lines[ _getEditLine() ], key_linepos = _getKeyLinepos();
 
 	// add the cursor frame
 	text[ key_linepos ] = 10 + ( ( Math.floor( _getRealtime() * con_cursorspeed ) ) & 1 );
@@ -527,7 +539,7 @@ function Con_DrawInput() {
 		_Draw_Character( ( i + 1 ) << 3, con_vislines - 16, text[ start + i ] );
 
 	// remove cursor
-	key_lines[ edit_line ][ key_linepos ] = 0;
+	_key_lines[ _getEditLine() ][ key_linepos ] = 0;
 
 }
 
@@ -573,6 +585,7 @@ export function Con_DrawNotify() {
 
 		if ( _Draw_Character ) {
 
+			const chat_buffer = _getChatBuffer();
 			for ( let x = 0; x < chat_buffer.length; x ++ ) {
 
 				_Draw_Character( ( x + 5 ) << 3, v, chat_buffer.charCodeAt( x ) );
