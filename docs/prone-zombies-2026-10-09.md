@@ -9,7 +9,7 @@ before the game's own stand-up test in `zombie_paine12`. Damage follows the game
 on every hit, so only 60+ at once kills it (a rocket or grenade, a quad blast); then the game's own `zombie_die` throws its head
 and gibs once and counts one kill. A smaller hit does nothing and it gets up on time.
 
-Quake's autoaim (`PF_aim`, `src/engine/progs/pr_cmds.js`) aims at a target's origin, which for a lying zombie is its standing middle, 18
+Quake's autoaim (`PF_aim`, `src/engine/server/pr_cmds.js`) aims at a target's origin, which for a lying zombie is its standing middle, 18
 units over the box: a rocket aimed near it flew over. For a lying zombie only, autoaim now aims at the box's middle from the
 height the shot leaves at; every other target keeps Quake's exact aim.
 

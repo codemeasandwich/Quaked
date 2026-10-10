@@ -60,7 +60,8 @@ export function facingAt(sequence,progress){
  *   bodyUp, right, forward, up }`: roll (radians) and roll rate (rad/s), whether past contact, whether finished,
  *   eye position and velocity (Quake units, units/s; velocity leaves out the rise's yaw rate), Euler angles in
  *   degrees that reproduce the basis through Quake's AngleVectors, the local and absolute quaternions, the frame
- *   in effect, and the unit basis vectors; all fresh arrays
+ *   in effect, and the unit basis vectors; fresh arrays except `frame`, which before
+ *   contact is `sequence.frame` itself (do not change it)
  */
 export function Respawn_Sample(sequence,time){
  const duration=sequence.turn||RESPAWN_TURN,t=Math.max(0,time-sequence.at),u=clamp((t-RESPAWN_DELAY)/duration);

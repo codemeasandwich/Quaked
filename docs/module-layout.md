@@ -344,6 +344,22 @@ is:
   server as before (below). A first version wired the new externals in `Host_Init`, which no test calls; a save/load
   test failed (`Host_ShutdownServer` did nothing), which wiring at load fixed.
 
+## [44g]: function JSDoc
+
+Every exported function, class constructor and public method in `src/` has a JSDoc block: what it does and when it
+runs, `@param` with types and units for every parameter, `@returns`, `@throws` only where `Sys_Error`, `Host_Error`
+or `throw` really runs, and lifetime or persistence where it is real (1,668 of them: 760 in Newer, 908 in the engine
+and platform). The existing comments were kept in the blocks, with their provenance (WinQuake sources, cards,
+owner dates); WinQuake's `/* ===== Name ===== */` banners stay.
+
+* Comment-only: every changed file's code tokens equal its previous version's (acorn's tokenizer, comments ignored).
+* `menu_webgl_source.js` is generated: its blocks come from `tools/extract_menu_webgl.py` (`QUAKEMENU_JSDOC`), whose
+  `--check` passes; `docs/newer/menu-webgl/SOURCE.json` is regenerated.
+* Five sources the bake manifests hash gained comments; `newer/rockfield/manifest.json` and
+  `newer/displacement/manifest.json` re-hash them and say so in their `sourcesNote`.
+* Where reading the code showed a comment was wrong, the block says what the code does; where it showed a likely
+  defect (an export nothing calls, a missing import), the block notes it and card [44m] lists them; no code changed.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the
