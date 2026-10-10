@@ -6,9 +6,9 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `sunDirection`, `glowActive`, `postActive`, `detailActive`,
- * `underwater`, `worldLights`, `hasSky`, `liquidRegions`, `lavaRegions`, `leafKeyCounter`, `liquidLinks`, `occluder`
- * and 9 more; 4 module-level collections (Map/Set).
+ * State: no mutable exports; module-level variables `sunDirection`, `worldLights`, `hasSky`, `liquidRegions`,
+ * `lavaRegions`, `leafKeyCounter`, `liquidLinks`, `occluder`, `skyInfo`, `skyCookie`, `skyCookieCloud`, `skySeen` and
+ * 5 more; 4 module-level collections (Map/Set).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -75,6 +75,8 @@ import { PointShadowAtlas, R_CreateShadowCaptureMaterial, POINT_SHADOW_GLSL, POI
 import { r_heightshadows, heightShadowUniforms, R_HeightShadowFrame, R_HeightShadowScope, HEIGHT_SHADOW_GLSL, HEIGHT_MASK_DECODE_GLSL } from './r_heightshadows.js';
 import { r_hdr, r_pointshadows, r_bloom, r_heathaze, r_mist, r_water_look, r_reflect, r_reflect_screen, r_pillars, r_cloudspeed, r_bounce, r_volumetric, r_newbright, r_newcontrast, r_caustics, r_newdark, r_newedges, r_dynres, r_fps_target, MAX_VOLUME_LIGHTS, SUN_SHADOW_LAYER, EMITTER_LIGHT_GAIN, SURF_DRAWSKY, SURF_DRAWTURB, EMISSIVE_BOOST, LAVA_BOOST, LAVA_PULSE, LIGHT_GAIN, SCATTER, LIGHT_FLOOR, LIGHT_SURFACE, SPOT_POWER, MAX_RAY, SUN_COLOR, PILLAR_MAX, PILLAR_DEFAULT, SHAFT_GAIN, SUN_SCATTER, SUN_SURFACE, SUN_SURFACE_COLOR, SATURATION, VIBRANCE, CONTRAST, HDR_EXPOSURE, OUTDOOR_EXPOSURE, OUTDOOR_BLOOM_THRESHOLD, OUTDOOR_BLOOM, CAUSTIC, BUMP_LIGHT, BLOOM_LEVELS, SUN_SHADOW_SIZE, SUN_SHADOW_EXTENT, SUN_SHADOW_DEPTH } from './r_post_config.js';
 export { r_hdr, r_pointshadows, r_bloom, r_heathaze, r_mist, r_water_look, r_reflect, r_reflect_screen, r_pillars, r_cloudspeed, r_bounce, r_volumetric, r_newbright, r_newcontrast, r_caustics, r_newdark, r_newedges, r_dynres, r_fps_target, MAX_VOLUME_LIGHTS, SUN_SHADOW_LAYER, EMITTER_LIGHT_GAIN } from './r_post_config.js';
+import { postState, lightCurve, classicLook, lightingLook, R_PostSetUnderwater, R_PostActive, R_WaterActive } from './r_post_state.js';
+export { classicLook, R_PostSetUnderwater, R_PostActive, R_WaterActive } from './r_post_state.js';
 
 const DYNRES_MIN = 0.5;
 const dyn = { scale: 1, last: 0, sum: 0, frames: 0, cool: 0, probing: false, probeEvery: 240, since: 0 };
@@ -148,10 +150,6 @@ function dynResUpdate( now ) {
 
 }
 
-// shared with the lit world materials' shader
-const lightCurve = { value: 1 };
-// 1 while the classic half of the title demo is drawn (see r_demosplit.js): no bounce floor, the original light curve, no relief
-export const classicLook = { value: 0 };
 // Unlit material colour is retained separately from baked lighting. A surface
 // without a light source need not be lifted merely to recover its colour later.
 
@@ -172,60 +170,15 @@ function sunFromAngles( yaw, pitch ) {
 //============================================================================
 
 const glowMaterials = new Set();
-let glowActive = false; // advanced lighting and emissive boost
-let postActive = false; // shared render targets, also needed by normals and liquids
-let detailActive = false;
-const lightingLook = { value: 0 };
-
-
-// The eye is under water, slime or lava: no drops on the lens, no edge outlines
-let underwater = false;
-
-/**
- * Records whether the eye is under water, slime or lava (no drops on the lens, no edge outlines). Called once a
- * frame by gl_rmain.js `R_SetupFrame` from the view leaf's contents.
- *
- * @param {boolean} v true when the view leaf is water, slime or lava (anything but `true` counts as false)
- */
-export function R_PostSetUnderwater( v ) {
-
-	underwater = v === true;
-
-}
-
-/**
- * Whether this frame goes through the shared HDR targets (decided by `R_PostBegin`), outside the classic half of
- * the title demo. Asked by the world renderer, view effects and power vision.
- *
- * @returns {boolean} true while the post pipeline is drawing and the classic look is not
- */
-export function R_PostActive() {
-
-	return postActive && classicLook.value === 0;
-
-}
-
-/**
- * Whether the Newer liquids are drawn this frame. Newer liquids use the shared targets, independently of advanced
- * lighting.
- *
- * @returns {boolean} `R_PostActive()` and r_newer_water is not 0
- */
-export function R_WaterActive() {
-
-	return R_PostActive() && r_newer_water.value !== 0;
-
-}
-
 function applyGlow( material, boost ) {
 
 	if ( material.emissive !== undefined ) {
 
-		material.emissiveIntensity = glowActive ? boost : 1;
+		material.emissiveIntensity = postState.glowActive ? boost : 1;
 
 	} else if ( material.color !== undefined ) {
 
-		material.color.setScalar( glowActive ? boost : 1 );
+		material.color.setScalar( postState.glowActive ? boost : 1 );
 
 	}
 
@@ -293,8 +246,8 @@ export function R_GlowBoostForTexture( name ) {
 
 function setGlowActive( active ) {
 
-	if ( active === glowActive ) return;
-	glowActive = active;
+	if ( active === postState.glowActive ) return;
+	postState.glowActive = active;
 	for ( const m of glowMaterials )
 		applyGlow( m, m.userData.glowBoost );
 
@@ -302,8 +255,8 @@ function setGlowActive( active ) {
 
 function setDetailActive( active ) {
 
-	if ( active === detailActive ) return;
-	detailActive = active;
+	if ( active === postState.detailActive ) return;
+	postState.detailActive = active;
 	for ( const m of detailMaterials ) applyDetail( m );
 
 }
@@ -606,9 +559,9 @@ function applyDetail( material ) {
 		}
 
 	}
-	const waiting=detailActive&&diffuse?.userData.newerPending;
-	if(detailActive&&!waiting&&diffuse?.image?.data&&typeof window!=='undefined'&&R_NormalPreparationNeeded(diffuse))R_NormalPrepare(diffuse);
-	const wanted = detailActive && !waiting && diffuse != null ? R_NormalMapFor( diffuse ) : null;
+	const waiting=postState.detailActive&&diffuse?.userData.newerPending;
+	if(postState.detailActive&&!waiting&&diffuse?.image?.data&&typeof window!=='undefined'&&R_NormalPreparationNeeded(diffuse))R_NormalPrepare(diffuse);
+	const wanted = postState.detailActive && !waiting && diffuse != null ? R_NormalMapFor( diffuse ) : null;
 
 	if ( material.normalMap === wanted ) return;
 
@@ -3413,12 +3366,12 @@ function samplesFor( scale ) {
 
 function ensureTargets( width, height ) {
 
-	const heightMasks = glowActive && detailActive && r_heightshadows.value !== 0;
+	const heightMasks = postState.glowActive && postState.detailActive && r_heightshadows.value !== 0;
 	// Packed visibility is data: MSAA averaging would mix unrelated source bits.
 	// Receiver classes and true view depth are data even with micro relief off.
  // Multisample resolution would average a model packet with background.
  const samples = 0;
-	const count = glowActive || PowerVisionMode(cl, R_NewerGame()) ? 4 : 2; // vision also consumes unlit pigment
+	const count = postState.glowActive || PowerVisionMode(cl, R_NewerGame()) ? 4 : 2; // vision also consumes unlit pigment
 	if ( gpu.hdr !== null && gpu.width === width && gpu.height === height && gpu.samples === samples && gpu.hdr.textures.length === count ) return;
 
 	disposeTargets();
@@ -3506,7 +3459,7 @@ let heightFrameSnapshot = null;
 export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dlights, time, hasSkyView ) {
  if ( ! gpu ) { heightFrameSnapshot = null; R_HeightShadowScope( false ); return null; }
  camera.updateMatrixWorld( true );
- if ( glowActive ) selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
+ if ( postState.glowActive ) selectLights( camera.matrixWorldInverse, visframe, styles, dlights, time );
  else selectedCount = 0;
  const lights = _selected.slice( 0, selectedCount ).map( light => ( { ...light, pos: light.pos.slice(), worldPos: light.worldPos.slice(), color: light.color.slice(), direction:light.direction.slice(), viewDirection:light.viewDirection.slice(), cone:light.cone.slice(), powerupRotation: light.source?.rotation?.slice() || [ 0, 0, 0, 1 ] } ) );
  const liveBeam = R_FlashlightBeam();
@@ -3517,7 +3470,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
   far: light.source.pos?130+170*Math.sqrt(light.source.power*(light.source.emitter===1?EMITTER_LIGHT_GAIN:1)*2.25):light.range*1.5, live: !light.source.pos||light.source.bestiary===true } );
  shadowSources.sort((a,b)=>Number(b.live)-Number(a.live));
  const spotCasters=[];
- if(glowActive&&r_pointshadows.value!==0){
+ if(postState.glowActive&&r_pointshadows.value!==0){
   scene.updateMatrixWorld(true);
   scene.traverse(object=>{
    if(!object.isMesh||!object.visible)return;
@@ -3529,27 +3482,27 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
   });
   gpu.pointShadows.update(renderer,shadowSources,spotCasters,{frozenPose:R_IntroLoadingHolding()});
  }
- gpu.pointShadows.updateSun(renderer,{on:glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:sunDirection,focus:camera.position.toArray()},spotCasters);
+ gpu.pointShadows.updateSun(renderer,{on:postState.glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:sunDirection,focus:camera.position.toArray()},spotCasters);
  sh.tNearSunShadow.value=gpu.pointShadows.sunTexture;sh.uNearSunShadowVP.value.copy(gpu.pointShadows.sunVP);sh.uNearSunShadowOn.value=gpu.pointShadows.sunReady?1:0;
  sh.tPointShadow.value = gpu.pointShadows.target.texture;
  for ( let i = 0; i < MAX_VOLUME_LIGHTS; i ++ ) {
   const source = lights[ i ]?.source;
-  const shadow = glowActive && r_pointshadows.value !== 0 && source ? gpu.pointShadows.lookup( source ) : null;
+  const shadow = postState.glowActive && r_pointshadows.value !== 0 && source ? gpu.pointShadows.lookup( source ) : null;
   sh.uPointShadowInfo.value[ i ].set( shadow?.ready ? shadow.slot : -1, shadow?.far || 0 );
  }
- if(glowActive && beam.on && r_pointshadows.value!==0) {
+ if(postState.glowActive && beam.on && r_pointshadows.value!==0) {
   gpu.pointShadows.updateSpot(renderer,{...beam,range:1500,outerCos:FLASHLIGHT_OUTER},spotCasters);
  } else gpu.pointShadows.clearSpot();
  sh.tSpotShadow.value=gpu.pointShadows.spotTexture;
  sh.uSpotShadowVP.value.copy(gpu.pointShadows.spotVP);
  sh.uSpotShadowLightWorld.value.set(...beam.pos,1500);
- sh.uSpotWorldShadowOn.value=glowActive && beam.on && r_pointshadows.value!==0 && gpu.pointShadows.spotReady?1:0;
- const masks = glowActive && detailActive && r_heightshadows.value !== 0 && gpu.hdr?.textures.length === 4;
+ sh.uSpotWorldShadowOn.value=postState.glowActive && beam.on && r_pointshadows.value!==0 && gpu.pointShadows.spotReady?1:0;
+ const masks = postState.glowActive && postState.detailActive && r_heightshadows.value !== 0 && gpu.hdr?.textures.length === 4;
  sh.tHeightShadow.value = masks ? gpu.hdr.textures[ 3 ] : null; sh.uHeightMasks.value = masks ? 1 : 0;
  R_HeightShadowFrame( {
   points: lights.map( light => ( { position: light.worldPos, range: light.range, color: light.color, direction:light.direction, cone:light.cone } ) ),
-  sun: { direction: sunDirection, on: glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
-  spot: { position: beam.pos, range: 1500, direction: beam.dir, cone: [ FLASHLIGHT_INNER, FLASHLIGHT_OUTER ], on: glowActive && beam.on,
+  sun: { direction: sunDirection, on: postState.glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
+  spot: { position: beam.pos, range: 1500, direction: beam.dir, cone: [ FLASHLIGHT_INNER, FLASHLIGHT_OUTER ], on: postState.glowActive && beam.on,
    color: [ SPOT_POWER, SPOT_POWER * .985, SPOT_POWER * .96 ] }
  } );
  R_HeightShadowScope( masks );
@@ -3587,7 +3540,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	const newer = enabled && r_hdr.value !== 0;
 	const wanted = r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0 || PowerVisionMode(cl,newer) !== 0 || R_QuadVisionActive();
 	const active = newer && wanted && R_PostSupported( renderer ) && width > 8 && height > 8;
-	postActive = active;
+	postState.postActive = active;
 	const lighting = active && r_newer_lighting.value !== 0;
 	setGlowActive( lighting );
 	setDetailActive( active && r_newer_normals.value !== 0 );
@@ -3761,7 +3714,7 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	const hdr = p.hdr;
 	const sh = p.shared;
 
-	const lighting = glowActive;
+	const lighting = postState.glowActive;
  const hadSnapshot = heightFrameSnapshot?.camera === camera && heightFrameSnapshot.time === time && heightFrameSnapshot.visframe === visframe;
  if ( ! hadSnapshot ) {
   R_PostLightsFrame( renderer, scene, camera, visframe, styles, dlights, time, hasSkyView );
@@ -3960,8 +3913,8 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	}
 
 	cm.uLavaCount.value = lavaCount;
-	cm.uUnderwater.value = underwater ? 1 : 0;
-	cm.uHeat.value = underwater ? 0 : Math.max( 0, r_heathaze.value );
+	cm.uUnderwater.value = postState.underwater ? 1 : 0;
+	cm.uHeat.value = postState.underwater ? 0 : Math.max( 0, r_heathaze.value );
 	cm.uReflect.value = Math.max( 0, r_reflect.value ); // the per-pool interface selects top/underside optics
 
 	// the pools' reflection probes (at most two are used at once)
@@ -3988,9 +3941,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 
 	cm.uScreenReflect.value = r_reflect_screen.value !== 0 ? 1 : 0;
 
-	cm.uEdge.value = underwater || ! lighting ? 0 : Math.max( 0, r_newedges.value );
+	cm.uEdge.value = postState.underwater || ! lighting ? 0 : Math.max( 0, r_newedges.value );
 	const drops = R_ScreenDropsUpdate();
-	cm.uDropDensity.value = underwater ? 0 : drops.density;
+	cm.uDropDensity.value = postState.underwater ? 0 : drops.density;
 	cm.uDropBlood.value = drops.blood;
 	const tele = R_TeleportFx( performance.now() / 1000 );
 	cm.uTeleStretch.value = tele.stretch;
