@@ -5,18 +5,15 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `Cmd_AddCommand`, `Cvar_RegisterVariable`, `Cvar_SetValue`,
- * `R_InitParticles`, `R_RenderView`.
+ * State: no mutable exports.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
- *
- * Engine callbacks are injected with `R_Misc_SetCallbacks`.
  */
 // Ported from: WinQuake/gl_rmisc.c -- GL misc rendering functions
 
 import * as THREE from 'three';
 import { Con_Printf } from '../common/common.js';
-import { Cvar_RegisterVariable as Cvar_RegisterVariable_impl, Cvar_SetValue as Cvar_SetValue_impl } from '../common/cvar.js';
+import { Cvar_RegisterVariable, Cvar_SetValue } from '../common/cvar.js';
 import { d_lightstylevalue, r_viewleaf, r_norefresh, r_lightmap,
 	r_fullbright, r_drawentities, r_drawviewmodel, r_shadows,
 	r_mirroralpha, r_wateralpha, r_dynamic, r_novis, r_speeds,
@@ -30,31 +27,6 @@ import { mod_alias, r_worldentity, R_Init as R_Init_rmain, R_NewMap as R_NewMap_
 import { set_skytexturenum as set_skytexturenum_rsurf } from './gl_rsurf.js';
 import { cl, cl_entities } from '../client/client.js';
 import { d_8to24table } from './vid.js';
-
-// External function stubs (set by engine)
-let Cmd_AddCommand = null;
-let Cvar_RegisterVariable = null;
-let Cvar_SetValue = null;
-let R_InitParticles = null;
-let R_RenderView = null;
-
-/**
- * Injects engine functions this module would otherwise import (avoiding import cycles). Only the provided keys are
- * replaced; the rest keep their current values. Nothing calls it at present, so `R_Init` falls back to the imported
- * cvar functions and does not register the `envmap` command or call `R_InitParticles`.
- *
- * @param {{ Cmd_AddCommand?: Function, Cvar_RegisterVariable?: Function, Cvar_SetValue?: Function,
- *   R_InitParticles?: Function, R_RenderView?: Function }} callbacks functions to install; kept for the session
- */
-export function R_Misc_SetCallbacks( callbacks ) {
-
-	if ( callbacks.Cmd_AddCommand ) Cmd_AddCommand = callbacks.Cmd_AddCommand;
-	if ( callbacks.Cvar_RegisterVariable ) Cvar_RegisterVariable = callbacks.Cvar_RegisterVariable;
-	if ( callbacks.Cvar_SetValue ) Cvar_SetValue = callbacks.Cvar_SetValue;
-	if ( callbacks.R_InitParticles ) R_InitParticles = callbacks.R_InitParticles;
-	if ( callbacks.R_RenderView ) R_RenderView = callbacks.R_RenderView;
-
-}
 
 /*
 ===============
@@ -112,41 +84,6 @@ export function R_InitParticleTexture() {
 
 /*
 ===============
-R_Envmap_f
-===============
-*/
-/**
- * Grab six views for environment mapping tests (the `envmap` console command in WinQuake). In Three.js, we would use
- * CubeCamera for this: it renders the scene into a 256-pixel cube render target from the camera's position (near 1,
- * far 10000 Quake units). The command is registered only if `R_Misc_SetCallbacks` supplied `Cmd_AddCommand`, and a
- * console command is called without arguments, in which case it does nothing.
- *
- * @param {*} r_refdef view definition (unused)
- * @param {THREE.Scene} scene scene to capture
- * @param {THREE.WebGLRenderer} renderer renderer used for the six passes
- * @param {THREE.Camera} camera supplies the capture position
- * @returns {THREE.CubeTexture|undefined} the captured cube texture (its render target is never disposed; the caller
- *   owns it), or undefined when `renderer`, `scene` or `camera` is missing
- */
-export function R_Envmap_f( r_refdef, scene, renderer, camera ) {
-
-	if ( ! renderer || ! scene || ! camera )
-		return;
-
-	const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 256 );
-	const cubeCamera = new THREE.CubeCamera( 1, 10000, cubeRenderTarget );
-	cubeCamera.position.copy( camera.position );
-
-	cubeCamera.update( renderer, scene );
-
-	Con_Printf( 'Environment map captured via CubeCamera\n' );
-
-	return cubeRenderTarget.texture;
-
-}
-
-/*
-===============
 R_Init
 ===============
 */
@@ -154,64 +91,48 @@ R_Init
  * Renderer start-up, called once from `Host_Init`: registers the renderer's `r_*` and `gl_*` cvars (the cvar-shaped
  * objects exported by `glquake.js`), forces `gl_texsort` to 0 when multitexture is available (`gl_mtexable`, false in
  * this port), creates the particle texture and then runs `gl_rmain.js`'s `R_Init`, which creates the Three.js scene
- * and camera.
+ * and camera and initialises the particles (`R_InitParticles`). WinQuake's `envmap` command is not registered.
  *
  * @returns {{ particleTexture: THREE.DataTexture }} the texture from `R_InitParticleTexture` (`Host_Init` ignores it)
  */
 export function R_Init() {
 
-	// Register commands
-	if ( Cmd_AddCommand ) {
+	// Register cvars (WinQuake's envmap command, a developer tool that writes six views to files, is not ported)
+	Cvar_RegisterVariable( r_norefresh );
+	Cvar_RegisterVariable( r_lightmap );
+	Cvar_RegisterVariable( r_fullbright );
+	Cvar_RegisterVariable( r_drawentities );
+	Cvar_RegisterVariable( r_drawviewmodel );
+	Cvar_RegisterVariable( r_shadows );
+	Cvar_RegisterVariable( r_mirroralpha );
+	Cvar_RegisterVariable( r_wateralpha );
+	Cvar_RegisterVariable( r_dynamic );
+	Cvar_RegisterVariable( r_novis );
+	Cvar_RegisterVariable( r_speeds );
 
-		Cmd_AddCommand( 'envmap', R_Envmap_f );
+	Cvar_RegisterVariable( gl_clear );
+	Cvar_RegisterVariable( gl_texsort );
 
-	}
+	if ( gl_mtexable ) {
 
-	// Register cvars
-	const _Cvar_RegisterVariable = Cvar_RegisterVariable || Cvar_RegisterVariable_impl;
-	const _Cvar_SetValue = Cvar_SetValue || Cvar_SetValue_impl;
-	if ( _Cvar_RegisterVariable ) {
-
-		_Cvar_RegisterVariable( r_norefresh );
-		_Cvar_RegisterVariable( r_lightmap );
-		_Cvar_RegisterVariable( r_fullbright );
-		_Cvar_RegisterVariable( r_drawentities );
-		_Cvar_RegisterVariable( r_drawviewmodel );
-		_Cvar_RegisterVariable( r_shadows );
-		_Cvar_RegisterVariable( r_mirroralpha );
-		_Cvar_RegisterVariable( r_wateralpha );
-		_Cvar_RegisterVariable( r_dynamic );
-		_Cvar_RegisterVariable( r_novis );
-		_Cvar_RegisterVariable( r_speeds );
-
-		_Cvar_RegisterVariable( gl_clear );
-		_Cvar_RegisterVariable( gl_texsort );
-
-		if ( gl_mtexable ) {
-
-			_Cvar_SetValue( 'gl_texsort', 0.0 );
-
-		}
-
-		_Cvar_RegisterVariable( gl_cull );
-		_Cvar_RegisterVariable( gl_smoothmodels );
-		_Cvar_RegisterVariable( gl_affinemodels );
-		_Cvar_RegisterVariable( gl_polyblend );
-		_Cvar_RegisterVariable( gl_flashblend );
-		_Cvar_RegisterVariable( gl_playermip );
-		_Cvar_RegisterVariable( gl_nocolors );
-
-		_Cvar_RegisterVariable( gl_keeptjunctions );
-		_Cvar_RegisterVariable( gl_reporttjunctions );
-
-		_Cvar_RegisterVariable( gl_doubleeyes );
-
-		_Cvar_RegisterVariable( gl_texturemode );
+		Cvar_SetValue( 'gl_texsort', 0.0 );
 
 	}
 
-	if ( R_InitParticles )
-		R_InitParticles();
+	Cvar_RegisterVariable( gl_cull );
+	Cvar_RegisterVariable( gl_smoothmodels );
+	Cvar_RegisterVariable( gl_affinemodels );
+	Cvar_RegisterVariable( gl_polyblend );
+	Cvar_RegisterVariable( gl_flashblend );
+	Cvar_RegisterVariable( gl_playermip );
+	Cvar_RegisterVariable( gl_nocolors );
+
+	Cvar_RegisterVariable( gl_keeptjunctions );
+	Cvar_RegisterVariable( gl_reporttjunctions );
+
+	Cvar_RegisterVariable( gl_doubleeyes );
+
+	Cvar_RegisterVariable( gl_texturemode );
 
 	const particleTex = R_InitParticleTexture();
 
