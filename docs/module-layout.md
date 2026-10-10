@@ -422,6 +422,65 @@ hook table among them).
   * the graph tool did not know the owner's mission-pack paks, which [34e]'s test reads;
   * the classifier had no rule for local play's and the game shelf's modules ([37a], [M1]).
 
+## [44i]: `gl_rsurf.js` split by stage (debt D3)
+
+`src/engine/render/gl_rsurf.js` was 3,859 lines holding the whole world renderer. It is now 187 lines: the two
+sequences, the frame's (`R_DrawWorld`) and the map load's (`GL_BuildLightmaps`), which call each stage in the order
+they always did. It re-exports the same 40 public names, so none of its importers changed.
+
+| Module | Lines | What it holds |
+|---|---|---|
+| `gl_rsurf_state.js` | 41 | the world's two groups (`worldState.group`, `worldState.renderGroup`) and `R_EnsureWorldGroup` |
+| `gl_rsurf_lightmaps.js` | 879 | the atlases: allocation, `R_BuildLightMap` with the styles and dynamic lights, the blend, the uploads; the surface polygons (`BuildSurfaceDisplayList`); the Classic pass's grayscale copies |
+| `gl_rsurf_materials.js` | 397 | the lit material, texture animation, a polygon's triangles alone or merged by material |
+| `gl_rsurf_liquids.js` | 830 | liquid materials and meshes, the turbulent warp, clear water's light, the sky's two layers |
+| `gl_rsurf_batches.js` | 657 | the world's batched meshes, leaf marking (`R_MarkLeaves`), their visibility, the demon relief, the arch and the sun's occluder |
+| `gl_rsurf_world.js` | 731 | the BSP walk, the texture chains, a surface's own drawing, the lightmaps that change under styles and lights |
+| `gl_rsurf_brush.js` | 502 | brush entities: each a group of meshes kept on its entity, with the demon relief on its demon surfaces |
+
+* **Shared state.** The world's group and the group the surface renderers add to were two variables written from
+  several places; they are `worldState`, and the group is made in one place (`R_EnsureWorldGroup`, before in two).
+  What the sequences used to write in another stage's variables (the atlas format, the model being built, the liquid
+  and brush sets, the batches' flags) is now a call to that stage: `R_LightmapsSetFormat`, `R_LightmapsSetModel`,
+  `R_LiquidsBeginFrame`, `R_BrushBeginFrame`, and one clear function a stage for the map load.
+* **One-way imports.** state, lightmaps, materials, liquids, batches, world, brush, then gl_rsurf.js; each stage
+  imports only those before it, and none imports gl_rsurf.js. `tools/architecture_classify.mjs` assigns
+  `gl_rsurf_*.js` to engine/render, [44i].
+* **The render cycle grew from 5 to 12 modules**, by the owner's decision (option a, 10 Oct 2026: accept a larger
+  cycle rather than move gl_rmain.js's state first). Every stage reads gl_rmain.js's frame state (the current entity,
+  the frame counters, the scene), and gl_rmain.js reaches every stage through gl_rsurf.js, so all seven are in it; the
+  plan had estimated 10. The other cycles are unchanged (8, 4, 4, 4, 2) and Newer Game has none of its own.
+* **Moved, not rewritten.** Each move was made by a tool that cuts whole top-level statements with their comments,
+  gives the new module exactly the imports its code uses, and refuses a move that would leave a write to a moved
+  variable or a use of code left behind. A count of every line before and after accounts for all of them (only blank
+  lines differ). The 12 functions that became exports gained JSDoc; the 11 new stage functions have it.
+* **Proof that the frames are the same:** `tests/world_split_frames_trial.html`, run headless by
+  `tools/world_split_frames.mjs`.
+  * The real application replays the native demo1 to packets 300, 600 and 850 and draws each view with its own
+    `SCR_UpdateScreen`, which runs the real order (R_MarkLeaves, R_DrawWorld, the brush entities, the liquids, the
+    render, R_CleanupWaterMeshes). The views are Classic and Newer at two game times, a changed light style with a
+    dynamic light, and Classic with `gl_texsort 0` and `r_wateralpha .5`.
+  * A view's digest covers its pixels, every lightmap atlas byte, gl_rsurf's own objects (the world's group and each
+    brush entity's, with visibility, draw ranges and every geometry attribute, liquid and sky texture coordinates
+    included) and `c_brush_polys`.
+  * What is not the frame's own is pinned: the page clock, `realtime`, the frame time, `Math.random` and
+    `crypto.getRandomValues` (enemy faces, decals), the particles, the damage flash, the stair smoothing. The torch
+    fire and the point shadows are off: both keep history from earlier frames.
+  * On the commit before the split (897e3ba6), the world digest is e5de8891… in ten runs of ten. The full digest is
+    1b245eb2… or 6bcfc8b1…, about half each: the Newer views at packets 600 and 850 settle one of two ways in their
+    torch-lit areas, a choice made in the post pipeline's lighting. Every step gave the same world digest and one of
+    the two full digests; changing the liquid warp or the lightmap builder changes the world digest.
+* **A test for each stage**, through its own public interface, on the shareware E1M1 where a map is needed:
+  * `gl_rsurf_state_test`, `gl_rsurf_materials_test`;
+  * `gl_rsurf_lightmaps_test` (one-byte and coloured texels, E1M1's atlases), `gl_rsurf_liquids_test` (the warp, a
+    liquid mesh's life);
+  * `gl_rsurf_batches_test` (the batches, the view's visible set, a probe's "show all"), `gl_rsurf_world_test` (a
+    changed style rebuilds the atlas), `gl_rsurf_brush_test` (a door's group kept, taken out, thrown away).
+  * Breaking the upload, the liquid clean-up, "show all" or the style rebuild fails its test.
+  * The suites that use gl_rsurf.js's exports pass unchanged.
+* **Bakes.** `newer/displacement/manifest.json` keeps gl_rsurf.js's bake-time hash (no key changes) and says so in
+  its `sourcesNote`; `tools/bake_displacement.mjs` now hashes the seven stages too.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

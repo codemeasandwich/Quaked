@@ -2,7 +2,12 @@
  * @module engine/render/gl_rsurf
  *
  * World surfaces (WinQuake gl_rsurf.c): the BSP walk, lightmaps, brush models, and Newer Game's materials and relief
- * on them.
+ * on them. Since card [44i] this module keeps only the two sequences, the frame's (`R_DrawWorld`) and the map load's
+ * (`GL_BuildLightmaps`), and the public names, re-exported from the stages it was split into: gl_rsurf_state.js (the
+ * world's groups), gl_rsurf_lightmaps.js (atlases, surface polygons), gl_rsurf_materials.js (the lit material,
+ * texture animation), gl_rsurf_liquids.js (liquids and sky), gl_rsurf_batches.js (the cached world meshes, leaf
+ * marking and visibility), gl_rsurf_world.js (the BSP walk and the texture chains) and gl_rsurf_brush.js (brush
+ * entities). Each stage imports only those before it in that list.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -22,16 +27,16 @@ import { SURF_DRAWSKY, SURF_DRAWTURB, modelorg, r_worldentity, r_framecount, set
 import { VectorCopy } from '../common/mathlib.js';
 import { worldState, R_EnsureWorldGroup } from './gl_rsurf_state.js';
 import { MAX_LIGHTMAPS, lightmap_polys, R_BlendLightmaps, BuildSurfaceDisplayList, GL_CreateSurfaceLightmap, R_LightmapsClear, R_LightmapsSetFormat, R_LightmapsSetModel, R_LightmapsUpload } from './gl_rsurf_lightmaps.js';
+export { BLOCK_WIDTH, BLOCK_HEIGHT, MAX_LIGHTMAPS, gl_lightmap_format, gl_solid_format, gl_alpha_format, gl_mtexable, DYNAMIC_SHARE, R_BuildLightMap, R_BlendLightmaps, AllocBlock, BuildSurfaceDisplayList, GL_CreateSurfaceLightmap, lightmapTextures, R_ClassicLightmap, R_ClassicLightmapsFrame } from './gl_rsurf_lightmaps.js';
+export { createQuakeLightmapMaterial, R_TextureAnimation, R_UpdateAnimatedMaterial, DrawGLPoly } from './gl_rsurf_materials.js';
 import { clearWaterTextureLight, R_LiquidsClear, R_LiquidsBeginFrame, R_SkyClear } from './gl_rsurf_liquids.js';
+export { R_UpdateWaterTextureLight, R_ClassicSurfaceMaterial, DrawGLWaterPoly, R_CleanupWaterMeshes, R_LiquidSurfaceMaterial } from './gl_rsurf_liquids.js';
 import { R_UpdateDemonSurfaces, R_WorldBatchesClear, R_BuildWorldMeshes, R_UpdateWorldTextureAnimations, R_BuildWorldOccluder, R_UpdateWorldVisibility } from './gl_rsurf_batches.js';
+export { R_DemonReliefStatus, R_MarkLeaves, R_WorldShowAll, R_ClassicArchVisibility } from './gl_rsurf_batches.js';
 import { R_AddPortalReceiverSurfaces, R_RecursiveWorldNode, DrawTextureChains } from './gl_rsurf_world.js';
+export { skytexturenum, set_skytexturenum, R_DrawSequentialPoly, R_RenderBrushPoly, R_RenderDynamicLightmaps, R_RecursiveWorldNode, DrawTextureChains, R_DrawWaterSurfaces } from './gl_rsurf_world.js';
 import { R_BrushClear, R_BrushBeginFrame } from './gl_rsurf_brush.js';
 export { R_DrawBrushModel } from './gl_rsurf_brush.js';
-export { skytexturenum, set_skytexturenum, R_DrawSequentialPoly, R_RenderBrushPoly, R_RenderDynamicLightmaps, R_RecursiveWorldNode, DrawTextureChains, R_DrawWaterSurfaces } from './gl_rsurf_world.js';
-export { R_DemonReliefStatus, R_MarkLeaves, R_WorldShowAll, R_ClassicArchVisibility } from './gl_rsurf_batches.js';
-export { R_UpdateWaterTextureLight, R_ClassicSurfaceMaterial, DrawGLWaterPoly, R_CleanupWaterMeshes, R_LiquidSurfaceMaterial } from './gl_rsurf_liquids.js';
-export { createQuakeLightmapMaterial, R_TextureAnimation, R_UpdateAnimatedMaterial, DrawGLPoly } from './gl_rsurf_materials.js';
-export { BLOCK_WIDTH, BLOCK_HEIGHT, MAX_LIGHTMAPS, gl_lightmap_format, gl_solid_format, gl_alpha_format, gl_mtexable, DYNAMIC_SHARE, R_BuildLightMap, R_BlendLightmaps, AllocBlock, BuildSurfaceDisplayList, GL_CreateSurfaceLightmap, lightmapTextures, R_ClassicLightmap, R_ClassicLightmapsFrame } from './gl_rsurf_lightmaps.js';
 
 //============================================================================
 // R_DrawWorld

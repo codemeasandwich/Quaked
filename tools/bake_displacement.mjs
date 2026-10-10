@@ -24,7 +24,7 @@ for(const [name,entry] of members)if(/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp
 for(const path of packs)archives.push({path});
 vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();model.R_InitTextures();
 const manifestPath='newer/displacement/manifest.json';let manifest;try{manifest=JSON.parse(await readFile(manifestPath,'utf8'));}catch{manifest={version:1,sources:{},levels:{}};}
-for(const path of ['src/newer/render/r_demonrelief.js','src/newer/assets/demon_bake_format.js','src/engine/render/gl_model.js','src/engine/render/gl_rsurf.js','newer/textures/index.json','newer/textures/normals/demon-face.r16'])manifest.sources[path]=sha(await readFile(path));
+for(const path of ['src/newer/render/r_demonrelief.js','src/newer/assets/demon_bake_format.js','src/engine/render/gl_model.js','src/engine/render/gl_rsurf.js','src/engine/render/gl_rsurf_state.js','src/engine/render/gl_rsurf_lightmaps.js','src/engine/render/gl_rsurf_materials.js','src/engine/render/gl_rsurf_liquids.js','src/engine/render/gl_rsurf_batches.js','src/engine/render/gl_rsurf_world.js','src/engine/render/gl_rsurf_brush.js','newer/textures/index.json','newer/textures/normals/demon-face.r16'])manifest.sources[path]=sha(await readFile(path));
 const generatorFingerprint=sha(new TextEncoder().encode(JSON.stringify(manifest.sources)));
 const recipes=JSON.parse(await readFile('newer/textures/index.json','utf8')).normals,fields=new Map();
 for(const name of DEMON_TEXTURES){const recipe=recipes[name];if(!recipe?.displacement||!recipe.dataFile)throw Error('Missing exact saved scalar recipe '+name);
