@@ -117,7 +117,7 @@ try {
    // the runtime's own input key must name a shipped bake: a bake made from other skin bytes (a stale diffuse) has another
    // key, and the runtime then generates the normals instead, which looks the same but leaves the shipped bake unused
    const normals=skins.R_NewerSkinsStatus('progs/'+key+'.mdl').normals;
-   check(normals.ready>0&&normals.shipped===normals.ready,key+': every ready normal map is the shipped bake ('+JSON.stringify(normals)+')');
+   check(normals.pending===0&&normals.ready>0&&normals.shipped===normals.ready,key+': every ready normal map is the shipped bake ('+JSON.stringify(normals)+')');
    customResults.push({model:key,dimensions:[material.map.image.width,material.map.image.height],storedHeight:variant.dir+'/'+variant.maps.height,normals});
   }
   evidence.nativeHeightLoads=nativeResults;evidence.customHeightLoads=customResults;evidence.customNotInPak=notInPak;evidence.checks=checks;
