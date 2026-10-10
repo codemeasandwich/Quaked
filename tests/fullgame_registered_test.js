@@ -5,7 +5,7 @@ import * as pak from '../src/engine/common/pak.js';
 import { COM_CheckRegistered } from '../src/engine/common/common.js';
 import { Cvar_FindVar, Cvar_VariableValue } from '../src/engine/common/cvar.js';
 import { Cmd_Init, Cbuf_Init } from '../src/engine/common/cmd.js';
-import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { PR_LoadProgs, ED_FindFunction, ED_FindGlobal, ED_NewString, GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';

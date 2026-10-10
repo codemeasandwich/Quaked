@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
-import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { sv, svs, client_t } from '../src/engine/server/server.js';
 import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
 import { SV_Move, MOVE_NOMONSTERS } from '../src/engine/server/world.js';

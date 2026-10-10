@@ -19,7 +19,7 @@ import { skill } from '../src/engine/server/host.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import * as split from '../src/newer/render/r_demosplit.js';
 import * as progs from '../src/engine/progs/progs.js';
-import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );

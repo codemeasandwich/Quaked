@@ -1,5 +1,5 @@
 /**
- * @module engine/progs/pr_cmds
+ * @module engine/server/pr_cmds
  *
  * QuakeC's built-in functions (WinQuake pr_cmds.c): what the game code calls in the engine (spawning, tracing,
  * sounds, precaching, messages) and where Newer Game observes it (gore, face events, axe cuts, respawn).
@@ -27,7 +27,7 @@ import { MAX_MODELS, MAX_SOUNDS } from '../common/quakedef.js';
 import {
 	OFS_RETURN, OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3,
 	OFS_PARM4, OFS_PARM5, OFS_PARM6, OFS_PARM7,
-} from './pr_comp.js';
+} from '../progs/pr_comp.js';
 import {
 	progs, pr_functions,
 	pr_global_struct, pr_globals_float, pr_globals_int,
@@ -41,22 +41,22 @@ import {
 	sv,
 	PR_SetBuiltins,
 	PR_SetTempString,
-} from './progs.js';
+} from '../progs/progs.js';
 import {
 	ED_Alloc, ED_Free, ED_Print, ED_PrintNum, ED_PrintEdicts,
 	ED_FindFunction, ED_FindField,
-} from './pr_edict.js';
-import { PR_HostError, PR_RunError } from './pr_exec.js';
-import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from '../server/world.js';
-import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from '../server/sv_move.js';
-import { SV_StartSound, SV_StartParticle, sv_aim } from '../server/sv_main.js';
+} from '../progs/pr_edict.js';
+import { PR_HostError, PR_RunError } from '../progs/pr_exec.js';
+import { SV_Move, SV_LinkEdict, SV_PointContents, SV_DropToFloor } from './world.js';
+import { SV_movestep, SV_CheckBottom, SV_MoveToGoal as SV_MoveToGoal_Real, SV_Move_SetCallbacks } from './sv_move.js';
+import { SV_StartSound, SV_StartParticle, sv_aim } from './sv_main.js';
 import { R_FlashlightSkillSelected } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
 import { SV_GoreOnSetModel } from '../common/hooks.js'; // installed by newer/gameplay/sv_gore.js
 import { SV_AxeGibSeen } from '../common/hooks.js'; // installed by newer/gameplay/sv_axecut.js
 import { Cbuf_AddText } from '../common/cmd.js';
 import { SV_FaceShotTrace } from '../common/hooks.js'; // installed by newer/gameplay/sv_faceevents.js
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
-import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from '../server/server.js';
+import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from './server.js';
 import { Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from '../render/gl_model.js';
 import {
 	svc_sound, svc_print, svc_centerprint, svc_stufftext, svc_lightstyle,

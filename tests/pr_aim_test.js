@@ -1,5 +1,5 @@
 import { CONTENTS_EMPTY } from '../src/engine/common/bspfile.js';
-import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { OFS_PARM0, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
 import { PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
 import {

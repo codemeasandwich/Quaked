@@ -13,7 +13,7 @@ import { Axe_ParseRecord } from '../src/newer/gameplay/axe_record.js';
 import { entity_t } from '../src/engine/render/render.js';
 import { ED_Alloc, ED_Free, ED_Write, ED_ParseEdict, ED_NewString, ED_ClearEdict, ED_FindFunction } from '../src/engine/progs/pr_edict.js';
 import * as progs from '../src/engine/progs/progs.js';
-import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import { OFS_PARM0, OFS_PARM1 } from '../src/engine/progs/pr_comp.js';
 import { sv, svs, client_t } from '../src/engine/server/server.js';

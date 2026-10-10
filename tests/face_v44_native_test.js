@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init} from '../src/engine/render/gl_model.js';
-import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
+import {PR_InitBuiltins} from '../src/engine/server/pr_cmds.js';
 import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
 import {ED_FindFunction,GetEdictFieldValue} from '../src/engine/progs/pr_edict.js';

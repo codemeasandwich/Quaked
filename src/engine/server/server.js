@@ -16,6 +16,7 @@
 import { MAX_MODELS, MAX_SOUNDS, MAX_LIGHTSTYLES, MAX_DATAGRAM, MAX_MSGLEN, entity_state_t } from '../common/quakedef.js';
 import { sizebuf_t } from '../common/common.js';
 import { MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP } from '../common/protocol.js';
+import { cvar_t } from '../common/cvar.js';
 
 //============================================================================
 // Server state enum
@@ -241,7 +242,13 @@ export const SPAWNFLAG_NOT_DEATHMATCH = 2048;
 
 // Note: These are re-exported from host.js where they are defined and registered.
 // This matches original Quake where cvars were defined in host.c and extern'd in server.h.
-export { skill, deathmatch, coop, teamplay, fraglimit, timelimit } from './host.js';
+// the rules a game runs under (WinQuake declares them in host.c; registered by Host_InitLocal)
+export const fraglimit = new cvar_t( 'fraglimit', '0', false, true );
+export const timelimit = new cvar_t( 'timelimit', '0', false, true );
+export const teamplay = new cvar_t( 'teamplay', '0', false, true );
+export const skill = new cvar_t( 'skill', '1' ); // 0 - 3
+export const deathmatch = new cvar_t( 'deathmatch', '0' ); // 0, 1, or 2
+export const coop = new cvar_t( 'coop', '0' ); // 0 or 1
 
 //============================================================================
 // Global server state

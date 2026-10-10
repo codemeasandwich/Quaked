@@ -5,7 +5,7 @@ import {BSP2,convertBsp29,widenFixture,splitBsp,joinBsp} from './helpers/bsp2_fi
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/engine/render/vid.js';
 import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/engine/render/gl_model.js';
-import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
+import {PR_InitBuiltins} from '../src/engine/server/pr_cmds.js';
 import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
 import {ED_Alloc,ED_NewString} from '../src/engine/progs/pr_edict.js';

@@ -38,6 +38,7 @@ import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as
 import { M_Init, M_SetExternals } from '../client/menu.js';
 import { MainMenu_Destroy } from '../common/hooks.js'; // installed by newer/ui/menu_webgl.js
 import { PR_Init } from '../progs/pr_edict.js';
+import { PR_InitBuiltins } from './pr_cmds.js';
 import { Mod_Init, Mod_ClearAll, R_InitTextures } from '../render/gl_model.js';
 import { NET_Init, NET_Poll, NET_Shutdown, NET_SendMessage, NET_CanSendMessage,
 	NET_GetMessage, NET_SendToAll, WT_QueryRooms, WT_CreateRoom } from '../net/net_main.js';
@@ -103,18 +104,12 @@ const host_speeds = new cvar_t( 'host_speeds', '0' ); // set for running times
 export const sys_ticrate = new cvar_t( 'sys_ticrate', '0.05' );
 const serverprofile = new cvar_t( 'serverprofile', '0' );
 
-export const fraglimit = new cvar_t( 'fraglimit', '0', false, true );
-export const timelimit = new cvar_t( 'timelimit', '0', false, true );
-export const teamplay = new cvar_t( 'teamplay', '0', false, true );
 
 export const samelevel = new cvar_t( 'samelevel', '0' );
 export const noexit = new cvar_t( 'noexit', '0', false, true );
 
 const developer = new cvar_t( 'developer', '0' );
 
-export const skill = new cvar_t( 'skill', '1' ); // 0 - 3
-export const deathmatch = new cvar_t( 'deathmatch', '0' ); // 0, 1, or 2
-export const coop = new cvar_t( 'coop', '0' ); // 0 or 1
 
 const pausable = new cvar_t( 'pausable', '1' );
 
@@ -127,6 +122,9 @@ export { sv } from './server.js';
 import { realtime, host_frametime, host_framecount, set_realtime, set_host_frametime, set_host_framecount } from '../common/host_state.js';
 // the frame clock lives in a leaf (card [44g], D1a); the host is its only writer
 export { realtime, host_frametime, host_framecount, set_host_frametime } from '../common/host_state.js';
+// the server's rule cvars live with the server state (server.js), so it need not import the host (card [44g], D1a)
+import { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
+export { fraglimit, timelimit, teamplay, skill, deathmatch, coop } from './server.js';
 
 /*
 ====================
@@ -281,6 +279,7 @@ export async function Host_Init( parms ) {
 
 	M_Init();
 	PR_Init();
+	PR_InitBuiltins(); // the QuakeC built-ins (server/pr_cmds.js)
 	Mod_Init();
 	NET_Init();
 	SV_Init();

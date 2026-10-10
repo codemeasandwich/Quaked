@@ -24,7 +24,6 @@ import { Sys_Error } from '../common/sys.js';
 import { Con_Printf, Con_DPrintf, COM_Parse, com_token } from '../common/common.js';
 import { Cmd_AddCommand, Cmd_Argv } from '../common/cmd.js';
 import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
-import { PR_InitBuiltins } from './pr_cmds.js';
 import { CRC_Init, CRC_ProcessByte, CRC_Value } from '../common/crc.js';
 import { MAX_EDICTS } from '../common/quakedef.js';
 import {
@@ -1366,7 +1365,8 @@ export function PR_Init() {
 	Cvar_RegisterVariable( saved3 );
 	Cvar_RegisterVariable( saved4 );
 
-	PR_InitBuiltins();
+	// the built-ins (server/pr_cmds.js) are installed by PR_Init's callers, the host and the room server, so the VM
+	// does not import the server (card [44g], D1a)
 
 }
 

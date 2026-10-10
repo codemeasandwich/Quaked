@@ -12,6 +12,7 @@ import { deathmatch, samelevel, noexit, sys_ticrate } from '../src/engine/server
 import { cls, ca_dedicated } from '../src/engine/client/client.js';
 import { Memory_Init } from '../src/engine/common/zone.js';
 import { PR_Init } from '../src/engine/progs/pr_edict.js';
+import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { SV_Init, SV_SpawnServer, SV_CheckForNewClients, SV_SendClientMessages, SV_ClearDatagram } from '../src/engine/server/sv_main.js';
 import { SV_Physics, SV_SetFrametime } from '../src/engine/server/sv_phys.js';
 import { SV_RunClients } from '../src/engine/server/sv_user.js';
@@ -204,6 +205,7 @@ async function Host_Init_Server() {
 
 	// Initialize server systems
 	PR_Init();
+	PR_InitBuiltins(); // the QuakeC built-ins (server/pr_cmds.js)
 	Mod_Init();
 	R_InitTextures();
 	SV_Init();
