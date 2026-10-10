@@ -6,9 +6,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `sunDirection`, `worldLights`, `hasSky`, `leafKeyCounter`,
- * `occluder`, `skyInfo`, `skyCookie`, `skyCookieCloud`, `skySeen`, `selectedCount`, `portraitLight`, `gpu` and 2
- * more.
+ * State: no mutable exports; module-level variables `worldLights`, `leafKeyCounter`, `occluder`, `selectedCount`,
+ * `portraitLight`, `gpu`, `heightFrameSnapshot`, `splitLeft`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
@@ -82,6 +81,8 @@ export { MAX_LIQUID_REGIONS, R_GetLiquidLinks, R_IsWaterTextureName, LIQUID_LOOK
 import { QUAD_VERTEX, VOLUME_FRAGMENT, BLOOM_PREFILTER_FRAGMENT, BLOOM_DOWN_FRAGMENT, BLOOM_UP_FRAGMENT, COMPOSITE_FRAGMENT, DOF_FRAGMENT, PRESENT_FRAGMENT } from './r_post_shaders.js';
 import { R_RegisterGlow, R_GlowBoostForTexture, R_PostInstallGBufferPatch, R_RegisterDetail, R_RefreshDetail, pulseLava, setGlowActive, setDetailActive } from './r_post_gbuffer.js';
 export { R_RegisterGlow, R_GlowBoostForTexture, R_PostInstallGBufferPatch, R_RegisterDetail, R_RefreshDetail } from './r_post_gbuffer.js';
+import { skyState, sunFromAngles, buildSkyCookie, cookieNorm, cookieMean, cookieDepth, R_AnalyseSky, R_SkyBrightness, R_GetSkyInfo, R_PostNoteSky, R_MapHasSky } from './r_post_sky.js';
+export { R_AnalyseSky, R_SkyBrightness, R_GetSkyInfo, R_PostNoteSky, R_MapHasSky } from './r_post_sky.js';
 
 const DYNRES_MIN = 0.5;
 const dyn = { scale: 1, last: 0, sum: 0, frames: 0, cool: 0, probing: false, probeEvery: 240, since: 0 };
@@ -159,23 +160,11 @@ function dynResUpdate( now ) {
 // without a light source need not be lifted merely to recover its colour later.
 
 
-// direction towards the sun (worldspawn "_sun_mangle" "yaw pitch" overrides it)
-let sunDirection = [ - 0.28, - 0.18, 0.94 ];
-
-function sunFromAngles( yaw, pitch ) {
-
-	const y = yaw * Math.PI / 180, p = pitch * Math.PI / 180;
-	// a sun at pitch -90 shines straight down, so the direction to it points up
-	return [ Math.cos( y ) * Math.cos( p ) * - 1, Math.sin( y ) * Math.cos( p ) * - 1, - Math.sin( p ) ];
-
-}
-
 //============================================================================
 // Light database
 //============================================================================
 
 let worldLights = [];
-let hasSky = false;
 
 let leafKeyCounter = 0;
 
@@ -332,10 +321,10 @@ const MAX_SURFACE_LIGHTS = 500;
 export function R_BuildWorldLights( model ) {
 
 	worldLights = [];
-	hasSky = false;
+	skyState.hasSky = false;
 	R_PostLiquidsReset();
 	buildSkyCookie();
-	sunDirection = [ - 0.28, - 0.18, 0.94 ];
+	skyState.sunDirection = [ - 0.28, - 0.18, 0.94 ];
 
 	if ( model == null || model.nodes == null ) return worldLights;
 
@@ -348,7 +337,7 @@ export function R_BuildWorldLights( model ) {
 		if ( world != null && world._sun_mangle != null ) {
 
 			const a = parseVector( world._sun_mangle, null );
-			if ( a != null ) sunDirection = sunFromAngles( a[ 0 ], a[ 1 ] );
+			if ( a != null ) skyState.sunDirection = sunFromAngles( a[ 0 ], a[ 1 ] );
 
 		}
 
@@ -405,7 +394,7 @@ export function R_BuildWorldLights( model ) {
 
 			const surf = model.surfaces[ i ];
 			if ( surf == null || surf.texinfo == null || surf.texinfo.texture == null ) continue;
-			if ( surf.flags & SURF_DRAWSKY ) { hasSky = true; continue; }
+			if ( surf.flags & SURF_DRAWSKY ) { skyState.hasSky = true; continue; }
 
 			// lava: the pools the heat shimmers over
 			const lname = surf.texinfo.texture.name.toLowerCase();
@@ -526,7 +515,7 @@ export function R_BuildWorldLights( model ) {
 
 	}
 
-	rockUniforms.qrRockSun.value.set( ...sunDirection ).normalize();
+	rockUniforms.qrRockSun.value.set( ...skyState.sunDirection ).normalize();
 	return worldLights;
 
 }
@@ -629,201 +618,6 @@ export function R_BuildSunOccluder( model ) {
 	return corners / 3;
 }
 
-//============================================================================
-// Sky analysis
-//
-// How much light comes through the sky, what colour it is and what pattern it
-// has all come from the map's own sky textures, so a bright clear sky gives a
-// bright sunlit outdoors and crisp shafts with little haze, while a dark or
-// stormy sky gives dim light, faint shafts and more haze.  The pattern (clouds)
-// becomes a "cookie" that is projected along the sun so shafts and sunlit
-// patches break up the way the sky does.
-//============================================================================
-
-const SKY_DEFAULT = { luma: 0.5, color: [ 1, 0.85, 0.65 ], contrast: 0 };
-let skyInfo = SKY_DEFAULT;
-let skyCookie = null;
-let skyCookieCloud = null;
-const cookieNorm = new THREE.Vector3( 1, 1, 1 );
-const cookieMean = new THREE.Vector3( 1, 1, 1 );
-const cookieDepth = { value: 1 };
-
-// brightness is judged the way it looks (display values), not in linear light,
-// so a sky that looks mid-dark is not rated as black
-function srgbToLinear( v ) {
-
-	return v / 255;
-
-}
-
-/**
- * Analyse RGBA sky layers: the clouds are blended over the solid layer by their alpha and judged in display values
- * (not linear light). Used by the sky cookie built at `R_BuildWorldLights` (and by tests).
- *
- * @param {?ArrayLike<number>} solid the solid sky layer, RGBA bytes, at least `size`² x 4
- * @param {?ArrayLike<number>} cloud the cloud layer, RGBA bytes (ignored when shorter than the solid layer)
- * @param {number} size side of the square layers, texels
- * @returns {?{ luma: number, color: Array<number>, contrast: number, cookie: Float32Array }} mean luma 0..1, the
- *   average colour normalised so its largest channel is 1, contrast 0..1, and a mean-1 cookie (brighter than
- *   average sky passes more light), one value per texel; null when `solid` is missing or too short
- */
-export function R_AnalyseSky( solid, cloud, size ) {
-
-	if ( solid == null || solid.length < size * size * 4 ) return null;
-
-	const n = size * size;
-	const luma = new Float32Array( n );
-	let r = 0, g = 0, b = 0, sum = 0;
-
-	for ( let i = 0; i < n; i ++ ) {
-
-		let cr = srgbToLinear( solid[ i * 4 ] ), cg = srgbToLinear( solid[ i * 4 + 1 ] ), cb = srgbToLinear( solid[ i * 4 + 2 ] );
-
-		if ( cloud != null && cloud.length >= n * 4 ) {
-
-			const a = cloud[ i * 4 + 3 ] / 255;
-			cr += ( srgbToLinear( cloud[ i * 4 ] ) - cr ) * a;
-			cg += ( srgbToLinear( cloud[ i * 4 + 1 ] ) - cg ) * a;
-			cb += ( srgbToLinear( cloud[ i * 4 + 2 ] ) - cb ) * a;
-
-		}
-
-		luma[ i ] = cr * 0.2126 + cg * 0.7152 + cb * 0.0722;
-		r += cr; g += cg; b += cb; sum += luma[ i ];
-
-	}
-
-	const mean = sum / n;
-	let variance = 0;
-	for ( let i = 0; i < n; i ++ ) variance += ( luma[ i ] - mean ) * ( luma[ i ] - mean );
-	const contrast = Math.min( 1, Math.sqrt( variance / n ) / ( mean + 0.02 ) );
-
-	// the average colour, kept saturated but normalised so it tints and does not dim
-	const peak = Math.max( r, g, b ) / n || 1;
-	const color = [ r / n / peak, g / n / peak, b / n / peak ];
-
-	// mean-1 cookie: brighter than average sky passes more light
-	const cookie = new Float32Array( n );
-	for ( let i = 0; i < n; i ++ ) cookie[ i ] = luma[ i ] / ( mean + 1e-4 );
-
-	return { luma: mean, color, contrast, cookie };
-
-}
-
-/**
- * Shared strength derived from the sky: 0 = a dark sky, 1 = a bright clear one.
- *
- * @param {number} luma mean sky luma 0..1 (from `R_AnalyseSky`)
- * @returns {number} 0..1, a smoothstep from luma 0.05 to 0.45
- */
-export function R_SkyBrightness( luma ) {
-
-	const t = Math.max( 0, Math.min( 1, ( luma - 0.05 ) / 0.4 ) );
-	return t * t * ( 3 - 2 * t );
-
-}
-
-/**
- * The current map's sky analysis, rebuilt at `R_BuildWorldLights`. Not called elsewhere in the current tree.
- *
- * @returns {{ luma: number, color: Array<number>, contrast: number }} the live module object (do not mutate); the
- *   default `{ luma: 0.5, color: [1, 0.85, 0.65], contrast: 0 }` when the map's sky could not be analysed
- */
-export function R_GetSkyInfo() {
-
-	return skyInfo;
-
-}
-
-function buildSkyCookie() {
-
-	skyInfo = SKY_DEFAULT;
-	if ( skyCookie !== null ) { skyCookie.dispose(); skyCookie = null; }
-	if ( skyCookieCloud !== null ) { skyCookieCloud.dispose(); skyCookieCloud = null; }
-
-	const sd = solidskytexture != null && solidskytexture.image != null ? solidskytexture.image.data : null;
-	const ad = alphaskytexture != null && alphaskytexture.image != null ? alphaskytexture.image.data : null;
-	const size = solidskytexture != null && solidskytexture.image != null ? solidskytexture.image.width : 0;
-	const result = size > 0 ? R_AnalyseSky( sd, ad, size ) : null;
-	if ( result == null ) return;
-
-	skyInfo = { luma: result.luma, color: result.color, contrast: result.contrast };
-
-	// how much of the pattern shows through: a clear sky barely varies, a cloudy or veined one (lightning,
-	// storm) carries its pattern well into the shafts
-	const depth = 0.75 + 1.1 * result.contrast;
-
-	// the pattern in colour: how much brighter than the sky's average each part is (a steeper curve,
-	// so the bright veins stand out from the dark clouds), and where the colour differs from the average
-	const n = size * size;
-	const mean = [ 0, 0, 0 ];
-	const pix = new Float32Array( n * 3 );
-	for ( let i = 0; i < n; i ++ ) {
-
-		let cr = sd[ i * 4 ] / 255, cg = sd[ i * 4 + 1 ] / 255, cb = sd[ i * 4 + 2 ] / 255;
-		if ( ad != null && ad.length >= n * 4 ) {
-
-			const a = ad[ i * 4 + 3 ] / 255;
-			cr += ( ad[ i * 4 ] / 255 - cr ) * a;
-			cg += ( ad[ i * 4 + 1 ] / 255 - cg ) * a;
-			cb += ( ad[ i * 4 + 2 ] / 255 - cb ) * a;
-
-		}
-
-		pix[ i * 3 ] = cr; pix[ i * 3 + 1 ] = cg; pix[ i * 3 + 2 ] = cb;
-		mean[ 0 ] += cr; mean[ 1 ] += cg; mean[ 2 ] += cb;
-
-	}
-
-	for ( let k = 0; k < 3; k ++ ) mean[ k ] = mean[ k ] / n + 1e-4;
-
-	let total = [ 0, 0, 0 ];
-	const rgb = new Float32Array( n * 3 );
-	for ( let i = 0; i < n; i ++ ) {
-
-		const bright = Math.pow( Math.max( result.cookie[ i ], 0 ), 1 + 0.9 * depth );
-		for ( let k = 0; k < 3; k ++ ) {
-
-			const hue = Math.pow( pix[ i * 3 + k ] / mean[ k ] / Math.max( result.cookie[ i ], 1e-3 ), 0.6 );
-			rgb[ i * 3 + k ] = Math.max( 0, bright * Math.min( hue, 2.5 ) );
-			total[ k ] += rgb[ i * 3 + k ];
-
-		}
-
-	}
-
-	// each channel averages 1 (so the pattern shapes the light and does not dim or tint the whole of it): the
-	// shader works the same curve out for each point, and divides by these
-	cookieNorm.set( total[ 0 ] / n + 1e-4, total[ 1 ] / n + 1e-4, total[ 2 ] / n + 1e-4 );
-	cookieMean.set( mean[ 0 ], mean[ 1 ], mean[ 2 ] );
-	cookieDepth.value = depth;
-
-	// The sky is two layers that move at their own speeds (the solid one 8 units a second, the clouds over it
-	// 16), so the pattern is kept as the two layers and put together in the shader, each scrolled at its own
-	// speed: the light on the ground then moves as the clouds overhead do.
-	const make = ( withAlpha ) => {
-
-		const data = new Uint16Array( n * 4 );
-		const src = withAlpha ? ad : sd;
-		for ( let i = 0; i < n * 4; i ++ ) data[ i ] = THREE.DataUtils.toHalfFloat( ( withAlpha || ( i & 3 ) !== 3 ) && src != null ? src[ i ] / 255 : 1 );
-
-		const t = new THREE.DataTexture( data, size, size, THREE.RGBAFormat, THREE.HalfFloatType );
-		t.wrapS = THREE.RepeatWrapping;
-		t.wrapT = THREE.RepeatWrapping;
-		t.magFilter = THREE.LinearFilter;
-		t.minFilter = THREE.LinearFilter;
-		t.colorSpace = THREE.NoColorSpace;
-		t.needsUpdate = true;
-		return t;
-
-	};
-
-	skyCookie = make( false );
-	if ( skyCookieCloud !== null ) skyCookieCloud.dispose();
-	skyCookieCloud = ad != null && ad.length >= n * 4 ? make( true ) : null;
-
-}
-
 /**
  * The light database built by `R_BuildWorldLights` (gl_rmain.js `R_ShadowLights` picks monsters' floor-shadow
  * lights from it).
@@ -833,31 +627,6 @@ function buildSkyCookie() {
 export function R_GetWorldLights() {
 
 	return worldLights;
-
-}
-
-// the world renderer reports when it draws sky; sun shafts only make sense then
-let skySeen = false;
-
-/**
- * The world renderer reports when it draws sky (gl_rsurf.js `R_DrawSkyChain`); sun shafts only make sense then.
- * Reset by every `R_PostBegin`.
- */
-export function R_PostNoteSky() {
-
-	skySeen = true;
-
-}
-
-/**
- * Whether the current map has any sky surface (found by `R_BuildWorldLights`); gl_rmain.js passes it to
- * `R_PostLightsFrame` and `R_PostFinish` as `hasSkyView`.
- *
- * @returns {boolean} true when the world model has a sky surface
- */
-export function R_MapHasSky() {
-
-	return hasSky;
 
 }
 
@@ -1394,7 +1163,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
   });
   gpu.pointShadows.update(renderer,shadowSources,spotCasters,{frozenPose:R_IntroLoadingHolding()});
  }
- gpu.pointShadows.updateSun(renderer,{on:postState.glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:sunDirection,focus:camera.position.toArray()},spotCasters);
+ gpu.pointShadows.updateSun(renderer,{on:postState.glowActive&&hasSkyView&&r_pointshadows.value!==0,direction:skyState.sunDirection,focus:camera.position.toArray()},spotCasters);
  sh.tNearSunShadow.value=gpu.pointShadows.sunTexture;sh.uNearSunShadowVP.value.copy(gpu.pointShadows.sunVP);sh.uNearSunShadowOn.value=gpu.pointShadows.sunReady?1:0;
  sh.tPointShadow.value = gpu.pointShadows.target.texture;
  for ( let i = 0; i < MAX_VOLUME_LIGHTS; i ++ ) {
@@ -1413,7 +1182,7 @@ export function R_PostLightsFrame( renderer, scene, camera, visframe, styles, dl
  sh.tHeightShadow.value = masks ? gpu.hdr.textures[ 3 ] : null; sh.uHeightMasks.value = masks ? 1 : 0;
  R_HeightShadowFrame( {
   points: lights.map( light => ( { position: light.worldPos, range: light.range, color: light.color, direction:light.direction, cone:light.cone } ) ),
-  sun: { direction: sunDirection, on: postState.glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
+  sun: { direction: skyState.sunDirection, on: postState.glowActive && hasSkyView, color: SUN_SURFACE_COLOR },
   spot: { position: beam.pos, range: 1500, direction: beam.dir, cone: [ FLASHLIGHT_INNER, FLASHLIGHT_OUTER ], on: postState.glowActive && beam.on,
    color: [ SPOT_POWER, SPOT_POWER * .985, SPOT_POWER * .96 ] }
  } );
@@ -1462,7 +1231,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	lightingLook.value = lighting ? 1 : 0;
 	lightCurve.value = lighting ? Math.max( 1, r_newdark.value ) : 1;
 	if ( lighting ) pulseLava( performance.now() / 1000 );
-	skySeen = false;
+	skyState.seen = false;
 
 	if ( active === false ) { R_PowerVisionReset(); R_QuadVisionReset(); return false; }
 
@@ -1498,7 +1267,7 @@ function renderSunShadow( renderer, scene, camera ) {
 	const p = gpu;
 	const cam = p.sunCamera;
 
-	_sunDir.set( sunDirection[ 0 ], sunDirection[ 1 ], sunDirection[ 2 ] ).normalize();
+	_sunDir.set( skyState.sunDirection[ 0 ], skyState.sunDirection[ 1 ], skyState.sunDirection[ 2 ] ).normalize();
 
 	const e = camera.matrixWorld.elements;
 	_sunCenter.set( e[ 12 ], e[ 13 ], e[ 14 ] );
@@ -1631,9 +1400,9 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	const sunOn = lighting && hasSkyView === true;
 	sh.uSunOn.value = sunOn ? 1 : 0;
 
-	const bright = R_SkyBrightness( skyInfo.luma );
+	const bright = R_SkyBrightness( skyState.info.luma );
 	const sunGain = 0.5 + 0.9 * bright; // a dark sky still gives a little
-	const tint = skyInfo.color;
+	const tint = skyState.info.color;
 	sh.uSunCol.value.set(
 		SUN_COLOR[ 0 ] * sunGain * ( 0.55 + 0.45 * tint[ 0 ] ),
 		SUN_COLOR[ 1 ] * sunGain * ( 0.55 + 0.45 * tint[ 1 ] ),
@@ -1650,15 +1419,15 @@ export function R_PostFinish( renderer, scene, camera, viewport, visframe, style
 	p.volumeMaterial.uniforms.uOpenFog.value = 0; // no broad atmospheric veil
 	// a bright, clear sky is crisp; a dark one a little hazier
 	sh.uBounce.value = lighting ? Math.max( 0, r_bounce.value ) : 0;
-	sh.tCookie.value = skyCookie;
-	sh.tCookieCloud.value = skyCookieCloud;
-	sh.uCookieCloud.value = skyCookieCloud !== null ? 1 : 0;
-	sh.uCookie.value = skyCookie !== null ? 1 : 0;
+	sh.tCookie.value = skyState.cookie;
+	sh.tCookieCloud.value = skyState.cookieCloud;
+	sh.uCookieCloud.value = skyState.cookieCloud !== null ? 1 : 0;
+	sh.uCookie.value = skyState.cookie !== null ? 1 : 0;
 	sh.uCookieTime.value = time * Math.max( 0, r_cloudspeed.value );
 	if ( sunOn ) {
 
 		const e = camera.matrixWorldInverse.elements;
-		const sd = sunDirection;
+		const sd = skyState.sunDirection;
 		sh.uSunDirV.value.set(
 			e[ 0 ] * sd[ 0 ] + e[ 4 ] * sd[ 1 ] + e[ 8 ] * sd[ 2 ],
 			e[ 1 ] * sd[ 0 ] + e[ 5 ] * sd[ 1 ] + e[ 9 ] * sd[ 2 ],
