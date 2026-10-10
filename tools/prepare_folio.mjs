@@ -6,10 +6,12 @@
 //   <id>.reveal.png   per texel: R = when its first stroke reaches it, G = when its second (deepening) stroke does
 //                     (255: none), as 0..254 of the replay's duration; B = the first stroke's strength (the supplied
 //                     hatching pressure); A = 255 drawn by a stroke, 0 the page's own pixels (frame, title, rails)
-//   <id>.paper.webp   the sampled paper the strokes are drawn onto (the analyzer's underpaint)
+//   <id>.paper.webp   the sampled paper the strokes are drawn onto (the analyzer's underpaint; WebP at quality 85, so within a
+//                     few levels of it: lossless would be about five times the size)
 //   index.json        the replay's duration and speed, the source's identity, and each page's image hash
 //
-// The analysis takes 30 to 60 seconds a page, so it is never run by the game. Usage:
+// The analysis takes 20 to 60 seconds a page, so it is never run by the game. A page is made again when its image, the
+// analyzer, the template, the schedule or the encoder changes (each recorded per page, as `made`). Usage:
 //   node tools/prepare_folio.mjs [page-id ...]      (default: every page; skips pages whose image hash is unchanged)
 //   QUAKED_CANVAS_MODULE=<@napi-rs/canvas index.js> selects the canvas module (it decodes and encodes the images).
 import fs from 'node:fs';
@@ -24,6 +26,7 @@ const ROOT = path.resolve( path.dirname( fileURLToPath( import.meta.url ) ), '..
 const OUT = path.join( ROOT, 'newer/bestiary/folio' );
 const SOURCE = { file: 'folio-pencil-fast-replay.html', sha256: 'b864769450933bf95e23af478223bdbca6ed808fef7af14d1b559b7e3f115295' };
 export const FOLIO_SCHEDULE = { artSeconds: 7, noteSeconds: 4, firstShare: .68, speed: 3 }; // the supplied defaults
+export const FOLIO_ENCODER = 1; // (raise when encodeReveal changes: every page is made again)
 const canvasModule = () => import( process.env.QUAKED_CANVAS_MODULE || '@napi-rs/canvas' );
 const sha256 = b => crypto.createHash( 'sha256' ).update( b ).digest( 'hex' );
 
@@ -81,6 +84,14 @@ export function encodeReveal( paths, ownership, width, height, duration ) {
 
 }
 
+// what a page was made by: the analyzer's and template's bytes, the schedule and the encoder's version
+export function folioMade() {
+
+	return { analyzer: sha256( fs.readFileSync( path.join( ROOT, 'tools/folio/analysis_worker.js' ) ) ), template: sha256( fs.readFileSync( path.join( ROOT, 'tools/folio/template.json' ) ) ),
+		schedule: sha256( JSON.stringify( FOLIO_SCHEDULE ) ), encoder: FOLIO_ENCODER };
+
+}
+
 async function analyzePage( file ) {
 
 	const { createCanvas, loadImage } = await canvasModule();
@@ -91,7 +102,9 @@ async function analyzePage( file ) {
 	const template = JSON.parse( fs.readFileSync( path.join( ROOT, 'tools/folio/template.json' ), 'utf8' ) );
 	const bytes = fs.readFileSync( file ), im = await loadImage( bytes );
 	// the supplied loadPage: analysis at native size up to 1536 on the long side, over the supplied paper colour
-	const scale = Math.min( 1, 1536 / Math.max( im.width, im.height ) ), w = Math.max( 1, Math.round( im.width * scale ) ), h = Math.max( 1, Math.round( im.height * scale ) );
+	// (the game's replay reads the maps texel for texel against the image: a page analysed smaller would never be replayed)
+	if ( Math.max( im.width, im.height ) > 1536 ) throw Error( file + ' is larger than 1536 on its long side: the replay needs maps at its own size' );
+	const scale = 1, w = im.width, h = im.height;
 	const c = createCanvas( w, h ), x = c.getContext( '2d' ); x.fillStyle = '#ead3a9'; x.fillRect( 0, 0, w, h ); x.drawImage( im, 0, 0, w, h );
 	const result = ctx.__analyze( { width: w, height: h, pixels: x.getImageData( 0, 0, w, h ).data.buffer, cleanPixels: null, template, sensitivity: 1, style: { fluidity: 1, nib: 5.2 } }, () => {} );
 	const duration = schedule( result.paths );
@@ -118,7 +131,8 @@ if ( ! isMainThread ) {
 	const index = fs.existsSync( indexPath ) ? JSON.parse( fs.readFileSync( indexPath, 'utf8' ) ) : { pages: {} };
 	Object.assign( index, { version: 1, source: SOURCE, analyzer: { file: 'tools/folio/analysis_worker.js', sha256: sha256( fs.readFileSync( path.join( ROOT, 'tools/folio/analysis_worker.js' ) ) ) },
 		template: 'tools/folio/template.json', schedule: FOLIO_SCHEDULE } );
-	const todo = entries.filter( e => { const have = index.pages[ e.id ], bytes = fs.readFileSync( path.join( ROOT, 'newer/bestiary', e.image ) ); return ! ( have && have.image?.sha256 === sha256( bytes ) && fs.existsSync( path.join( OUT, have.reveal ) ) ); } );
+	const made = folioMade();
+	const todo = entries.filter( e => { const have = index.pages[ e.id ], bytes = fs.readFileSync( path.join( ROOT, 'newer/bestiary', e.image ) ); return ! ( have && have.image?.sha256 === sha256( bytes ) && JSON.stringify( have.made ) === JSON.stringify( made ) && fs.existsSync( path.join( OUT, have.reveal ) ) ); } );
 	console.log( `${ todo.length } of ${ entries.length } pages to prepare` );
 	const lanes = Math.max( 1, Math.min( todo.length, os.cpus().length - 1, 8 ) );
 	let next = 0;
@@ -130,7 +144,7 @@ if ( ! isMainThread ) {
 			const r = await new Promise( ( resolve, reject ) => { const w = new Worker( fileURLToPath( import.meta.url ), { workerData: { file: path.join( ROOT, 'newer/bestiary', e.image ) } } ); w.once( 'message', resolve ); w.once( 'error', reject ); } );
 			fs.writeFileSync( path.join( OUT, e.id + '.reveal.png' ), Buffer.from( r.reveal ) );
 			fs.writeFileSync( path.join( OUT, e.id + '.paper.webp' ), Buffer.from( r.paper ) );
-			index.pages[ e.id ] = { image: { file: e.image, ...r.image }, map: r.map, duration: r.duration, reveal: e.id + '.reveal.png', paper: e.id + '.paper.webp', stats: r.stats };
+			index.pages[ e.id ] = { image: { file: e.image, ...r.image }, map: r.map, duration: r.duration, reveal: e.id + '.reveal.png', paper: e.id + '.paper.webp', made, stats: r.stats };
 			fs.writeFileSync( indexPath, JSON.stringify( index, null, 1 ) + '\n' );
 			console.log( `${ e.id }: ${ r.stats.paths } strokes, ${ Math.round( ( Date.now() - t0 ) / 1000 ) } s, reveal ${ r.reveal.byteLength } B, paper ${ r.paper.byteLength } B` );
 

@@ -1,7 +1,7 @@
 // The Bestiary's pencil replay (card: Folio pencil fast replay): on the first-discovery page, the creature's illustration
 // and notes are drawn as if by pencil, from the owner-supplied folio-pencil-fast-replay.html (sha256 b8647694…).
 //
-// The supplied page analyses each page image in a worker (30 to 60 seconds a page) into strokes, and replays them with a
+// The supplied page analyses each page image in a worker (20 to 60 seconds a page) into strokes, and replays them with a
 // WebGL2 shader that, per texel, mixes the sampled paper with the page's own pixel as the stroke's head passes. Here the
 // analysis is done ahead of time by tools/prepare_folio.mjs (the supplied worker, verbatim, and its schedulePaths), into
 // two small images a page in newer/bestiary/folio/: when each texel's first and second strokes reach it and how strong the
@@ -10,8 +10,11 @@
 // small WebGL2 canvas of its own and composed into the Bestiary's 2D overlay as an image (R_FolioPlate). The page's own
 // pixels (frame, title, rails, ornament) are never touched, and the finished replay is the page itself.
 //
-// Loading: the index once, and a page's two images when its encounter begins (a few hundred kB). A page that is not
-// ready, has no prepared data, fails to load, or a browser without WebGL2 (or a lost context) keeps the line reveal.
+// Loading: the index as the module loads, and a page's two images (about 670 kB) as soon as its creature is discovered
+// (R_FolioPrepare from the Bestiary's unlock). The images of the last few pages met are kept. A page that is not ready
+// when its drawing starts, has no prepared data, fails to load, or a browser without WebGL2 (or a lost context, or an
+// upload that fails) keeps the line reveal. The replay's canvas and its three page-sized textures (about 25 MB of GPU
+// memory) live for the session.
 
 import { COM_NewerURL } from './pak.js';
 
@@ -19,9 +22,10 @@ const FOLDER = 'newer/bestiary/folio/';
 const url = file => COM_NewerURL( FOLDER + file, new URL( '../' + FOLDER + file, import.meta.url ).href );
 
 let index = null, indexState = 'idle'; // 'idle' | 'loading' | 'ready' | 'failed'
-const pages = new Map(); // id -> { state, reveal, paper, page, duration }
+const pages = new Map(); // id -> { state, reveal, paper, duration, speed }, the last KEEP pages met
+const KEEP = 4;
 let gl = null, canvas = null, program = null, textures = null, uniforms = null, lost = false, shownFor = null;
-export const folioStats = { plates: 0, failures: 0 };
+export const folioStats = { plates: 0, failures: 0, sizeMismatch: 0 };
 
 function loadImage( file ) {
 
@@ -45,6 +49,8 @@ function loadIndex() {
 
 }
 
+if ( typeof fetch !== 'undefined' && typeof document !== 'undefined' ) loadIndex(); // (ahead of the first sighting)
+
 /*
 ================
 R_FolioPrepare
@@ -66,6 +72,7 @@ export function R_FolioPrepare( id ) {
 
 		p = { state: 'loading', duration: info.duration, speed: index.schedule?.speed || 3 };
 		pages.set( id, p );
+		for ( const old of pages.keys() ) { if ( pages.size <= KEEP ) break; if ( old !== id && old !== shownFor ) pages.delete( old ); }
 		Promise.all( [ loadImage( info.reveal ), loadImage( info.paper ) ] )
 			.then( ( [ reveal, paper ] ) => { p.reveal = reveal; p.paper = paper; p.state = 'ready'; } )
 			.catch( () => { p.state = 'none'; folioStats.failures ++; } );
@@ -93,7 +100,7 @@ uniform float uTime;
 uniform vec2 uSize;
 out vec4 outColor;
 void main(){
- ivec2 p = ivec2( gl_FragCoord.x, uSize.y - 1. - gl_FragCoord.y );
+ ivec2 p = ivec2( gl_FragCoord.x, uSize.y - gl_FragCoord.y ); // (row j's centre is j + .5: image row h - 1 - j)
  vec3 ink = texelFetch( uSource, p, 0 ).rgb;
  vec4 r = texelFetch( uReveal, p, 0 );
  if ( r.a < .5 ) { outColor = vec4( ink, 1. ); return; }
@@ -147,13 +154,19 @@ prepared maps do not match, no WebGL2, or a lost context: the caller keeps its l
 export function R_FolioPlate( id, image, amount ) {
 
 	const p = pages.get( id );
-	if ( ! p || p.state !== 'ready' || ! image || ! setup() ) return null;
+	if ( ! p || p.state !== 'ready' || ! image ) return null;
 	const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
-	if ( p.reveal.naturalWidth !== w || p.reveal.naturalHeight !== h ) return null; // (the maps are of the image at its own size)
+	if ( p.reveal.naturalWidth !== w || p.reveal.naturalHeight !== h ) { folioStats.sizeMismatch ++; return null; } // (the maps are of the image at its own size)
+	if ( ! setup() ) return null;
 	if ( shownFor !== id ) {
 
-		canvas.width = w; canvas.height = h;
-		upload( textures[ 0 ], image ); upload( textures[ 1 ], p.paper ); upload( textures[ 2 ], p.reveal );
+		try {
+
+			canvas.width = w; canvas.height = h;
+			upload( textures[ 0 ], image ); upload( textures[ 1 ], p.paper ); upload( textures[ 2 ], p.reveal );
+			if ( gl.getError() !== gl.NO_ERROR ) throw Error( 'upload' );
+
+		} catch ( e ) { shownFor = null; p.state = 'none'; folioStats.failures ++; return null; } // (a failed upload: the line reveal)
 		shownFor = id;
 
 	}

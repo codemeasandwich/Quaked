@@ -208,8 +208,9 @@ export function R_BestiaryBookDraw() {
 //  * at once: the authored frame and title (the supplied blank folio and the entry's heading crop);
 //  * while the camera moves (the enter phase's first ROLL seconds): the paper rolls up diagonally from its lower-left corner,
 //    its curl travelling to the upper right;
-//  * from the moment the game stops (snapshot.paused): the illustration and the handwriting are revealed over REVEAL seconds,
-//    line by line from the top, as if drawn and written; the camera and the roll may still be moving;
+//  * from the moment the game stops (snapshot.paused): the illustration and the handwriting are drawn by the supplied pencil
+//    replay (r_folio.js, about 2.3 s) when its prepared data is ready, else revealed line by line from the top over REVEAL
+//    seconds; the camera and the roll may still be moving;
 //  * settled: one plain draw of the supplied page, unchanged.
 // Only the paper is drawn, with a soft shadow at its edges: the rest of its half of the screen shows the live world (no matte).
 // Each frame is drawn from the snapshot alone, so a cancel, a new encounter or a resize leaves nothing behind.

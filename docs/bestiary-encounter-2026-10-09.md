@@ -13,9 +13,10 @@ The page now has its own clocks, taken from the encounter's phases (`BestiaryEnc
   page uses).
 * **While the camera moves** (the first `ROLL` = 0.65 s of the enter phase, the camera's own move): the paper rolls up
   diagonally from its lower-left corner, a shaded curl travelling to the upper right.
-* **From the moment the game stops** (`paused`): the illustration and the handwriting come in line by line from the top over
-  `REVEAL` = 1.6 s, as if drawn and written, while the camera and the roll may still be moving. Art that arrives late is revealed
-  only as far as it has arrived.
+* **From the moment the game stops** (`paused`): the illustration and the handwriting are drawn by the owner-supplied pencil
+  replay ([folio-replay-2026-10-10.md](folio-replay-2026-10-10.md), about 2.3 s) when its prepared data is ready; otherwise
+  they come in line by line from the top over `REVEAL` = 1.6 s. The camera and the roll may still be moving. Art that arrives
+  late is revealed only as far as it has arrived.
 * **Settled**: one plain draw of the supplied page, its pixels unchanged.
 * **No matte** (card [39]): the half of the screen behind the page used to be filled with a solid dark grey. Only the paper is
   drawn now, with a soft drop shadow; around it the live world goes on rendering (the game itself is paused). On the way out

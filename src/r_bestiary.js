@@ -13,6 +13,7 @@ import {R_IntroLoadingHolding} from './r_demoloading.js';
 import {R_ShellTrace} from './r_shelltrace.js';
 import {isXRActive} from './webxr.js';
 import {COM_NewerURL} from './pak.js';
+import { R_FolioPrepare } from './r_folio.js';
 import {CL_SuspendGameButtons} from './cl_input.js';
 import {Touch_GetLookDelta,Touch_WeaponMenuActive} from './touch.js';
 import {SV_SeamlessPending} from './sv_seamless.js';
@@ -138,6 +139,7 @@ export function R_BestiaryObserve(scene,camera,entities){
   const distance=centre.distanceTo(camera.position);if(distance<camera.near||distance>camera.far)continue;
   const trace=R_ShellTrace(cl.worldmodel,camera.position.toArray(),centre.toArray(),0,cl_entities);if(trace.startsolid||trace.allsolid||trace.fraction<.999)continue;
   if(!journal.unlock(entry.id))continue;
+  R_FolioPrepare(entry.id); // (its pencil replay starts loading now, before the page is drawn)
   target={native,mesh,centre:centre.clone(),size:size.clone()};base=null;encounter.start(entry,clock);CL_SuspendGameButtons();R_BestiaryPage(entry.id);return true;
  }
  return false;
