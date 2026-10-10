@@ -1,6 +1,6 @@
-import { Cmd_ExecuteString, src_command } from '../src/cmd.js';
-import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from '../src/cvar.js';
-import { sv_edgefriction } from '../src/sv_phys.js';
+import { Cmd_ExecuteString, src_command } from '../src/engine/common/cmd.js';
+import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from '../src/engine/common/cvar.js';
+import { sv_edgefriction } from '../src/engine/server/sv_phys.js';
 
 Deno.test( 'edgefriction console cvar updates the movement setting', () => {
 

@@ -15,7 +15,7 @@
 // per stage, draw calls and triangles, and the bottlenecks with what to do about them.
 // It goes to the console, the screen, and a JSON file that is downloaded.
 
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_DemoSplitEnd } from './r_demosplit.js';
 
 export const cl_showfps = new cvar_t( 'cl_showfps', '0' );

@@ -9,7 +9,7 @@ const shells = await import( '../src/r_shells.js' );
 const weapons = await import( '../src/r_weapons.js' );
 const { cl } = await import( '../src/client.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
-const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/cvar.js' );
+const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function near( actual, expected, label, epsilon = 0.00005 ) {

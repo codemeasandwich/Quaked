@@ -1,11 +1,11 @@
 // Native Shambler foot plants, sampled from client entities before rendering.
 // This changes only the displayed eye; physics, aim and server data stay intact.
 import { cl, cls, cl_entities, ca_connected, SIGNONS } from './client.js';
-import { sv } from './server.js';
-import { STAT_HEALTH } from './quakedef.js';
+import { sv } from './engine/server/server.js';
+import { STAT_HEALTH } from './engine/common/quakedef.js';
 import { key_dest, key_game } from './keys.js';
 import { R_NewerGame, R_AnimEnabled, ANIM_STEP } from './r_anim.js';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 
 export const v_shamblersteps = new cvar_t( 'v_shamblersteps', '1', true );
 const REACH = 600, DURATION = 0.22, STALE = 0.3, TELEPORT = 96;

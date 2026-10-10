@@ -1,17 +1,17 @@
 // Three-Quake entry point
 // Equivalent to WinQuake/sys_win.c WinMain() + main()
 
-import { Sys_Init, Sys_Printf, Sys_Error } from './src/sys.js';
-import { COM_InitArgv } from './src/common.js';
-import { Host_Init, Host_Frame, Host_Shutdown } from './src/host.js';
-import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/pak.js';
-import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/cmd.js';
-import { Con_Printf } from './src/common.js';
-import { Cvar_VariableValue, Cvar_SetValue } from './src/cvar.js';
+import { Sys_Init, Sys_Printf, Sys_Error } from './src/engine/common/sys.js';
+import { COM_InitArgv } from './src/engine/common/common.js';
+import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.js';
+import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/engine/common/pak.js';
+import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
+import { Con_Printf } from './src/engine/common/common.js';
+import { Cvar_VariableValue, Cvar_SetValue } from './src/engine/common/cvar.js';
 import { key_dest, key_game } from './src/keys.js';
 import { R_PerfSetHost, R_PerfStart, R_PerfStop, R_PerfProfiling, R_PerfPump, R_PerfLastReport } from './src/r_perf.js';
 import { cls, cl } from './src/client.js';
-import { sv } from './src/server.js';
+import { sv } from './src/engine/server/server.js';
 import { scene, camera } from './src/gl_rmain.js';
 import { renderer } from './src/vid.js';
 import { Draw_CachePicFromPNG, Draw_CacheSinglePlayerMenu, Draw_LoadConbackImage } from './src/gl_draw.js';

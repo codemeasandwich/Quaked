@@ -6,8 +6,8 @@ window.addEventListener( 'error', event => errors.push( event.message ) ); windo
 await import( '../main.js' ); const deadline = performance.now() + 120000;
 while ( ! window.Cbuf_AddText ) { if ( performance.now() > deadline ) throw Error( 'Engine startup timeout' ); await new Promise( resolve => setTimeout( resolve, 50 ) ); }
 const pred = await import( '../src/cl_pred.js' );
-const cmd = await import( '../src/cmd.js' ), { sv } = await import( '../src/server.js' ), { cl, cls, cl_entities } = await import( '../src/client.js' );
-const { PR_GetString } = await import( '../src/progs.js' ), { SV_Move, SV_LinkEdict } = await import( '../src/world.js' ), keys = await import( '../src/keys.js' );
+const cmd = await import( '../src/engine/common/cmd.js' ), { sv } = await import( '../src/engine/server/server.js' ), { cl, cls, cl_entities } = await import( '../src/client.js' );
+const { PR_GetString } = await import( '../src/engine/progs/progs.js' ), { SV_Move, SV_LinkEdict } = await import( '../src/engine/server/world.js' ), keys = await import( '../src/keys.js' );
 const bestiary = await import( '../src/r_bestiary.js' );
 const split = await import( '../src/r_demosplit.js' ), loading = await import( '../src/r_demoloading.js' ), skins = await import( '../src/r_newerskins.js' );
 const { renderer } = await import( '../src/vid.js' );

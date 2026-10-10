@@ -12,7 +12,7 @@ import { RockTileCache, ROCK_PAGES, ROCK_SIDE, ROCK_TABLE_SIZE, ROCK_PROBES, R_R
 import { createField, generateTile } from '../src/rockfield.js';
 import { R_RockPreset } from '../src/rockfield_presets.js';
 import { R_RockSurfaceCharts } from '../src/r_rocksurfaces.js';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_PreloadLooseFile, COM_SetNewerPack, COM_NewerPackLoaded } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_PreloadLooseFile, COM_SetNewerPack, COM_NewerPackLoaded } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { GL_BuildLightmaps } from '../src/gl_rsurf.js';

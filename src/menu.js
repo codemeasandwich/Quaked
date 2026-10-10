@@ -8,9 +8,9 @@ import { R_FlashlightToggle } from './r_flashlight.js';
 import { R_DemoLoadingConsoleOverride, R_WelcomeLoadingHolding } from './r_demoloading.js';
 import { Draw_StudioLogo } from './studio_logo.js';
 import { R_DemoSplitActive, R_DemoSplitRelease } from './r_demosplit.js';
-import { Cbuf_AddText } from './cmd.js';
-import { Cmd_AddCommand } from './cmd.js';
-import { Con_Printf, Con_ToggleConsole_f } from './console.js';
+import { Cbuf_AddText } from './engine/common/cmd.js';
+import { Cmd_AddCommand } from './engine/common/cmd.js';
+import { Con_Printf, Con_ToggleConsole_f } from './engine/common/console.js';
 import {
 	K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW,
 	K_BACKSPACE, K_DEL,
@@ -20,15 +20,15 @@ import {
 import { cl_forwardspeed, cl_backspeed } from './cl_input.js';
 import { sensitivity, m_pitch, lookspring, lookstrafe, cl_color } from './cl_main.js';
 import { volume, bgmvolume } from './sound.js';
-import { Cvar_SetValue, Cvar_VariableValue } from './cvar.js';
+import { Cvar_SetValue, Cvar_VariableValue } from './engine/common/cvar.js';
 import { scr_viewsize, scr_con_current } from './gl_screen.js';
 import { v_gamma } from './view.js';
 import { gl_texturemode, GL_UpdateTextureFiltering } from './glquake.js';
-import { skill, coop, teamplay, deathmatch, svs } from './server.js';
+import { skill, coop, teamplay, deathmatch, svs } from './engine/server/server.js';
 import { Touch_ExitFullscreen } from './touch.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from './gl_draw.js';
-import { SAVEGAME_COMMENT_LENGTH } from './quakedef.js';
-import { COM_FindFile } from './pak.js';
+import { SAVEGAME_COMMENT_LENGTH } from './engine/common/quakedef.js';
+import { COM_FindFile } from './engine/common/pak.js';
 
 /*
 ==============================================================================

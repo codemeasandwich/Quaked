@@ -16,7 +16,7 @@
 // upload that fails) keeps the line reveal. The replay's canvas and its three page-sized textures (about 25 MB of GPU
 // memory) live for the session.
 
-import { COM_NewerURL } from './pak.js';
+import { COM_NewerURL } from './engine/common/pak.js';
 
 const FOLDER = 'newer/bestiary/folio/';
 const url = file => COM_NewerURL( FOLDER + file, new URL( '../' + FOLDER + file, import.meta.url ).href );

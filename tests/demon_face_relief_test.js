@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
 import { createQuakeLightmapMaterial, DrawGLPoly } from '../src/gl_rsurf.js';

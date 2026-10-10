@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
 const W=256,H=256, report=document.querySelector('#report'), views=document.querySelector('#views'), button=document.querySelector('#run');
 const mutation=new URLSearchParams(location.search).get('mutation');

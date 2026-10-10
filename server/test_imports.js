@@ -8,7 +8,7 @@ console.log('Testing imports from ../src/...');
 
 // Test basic modules
 try {
-	const { Sys_Printf, Sys_FloatTime } = await import('../src/sys.js');
+	const { Sys_Printf, Sys_FloatTime } = await import('../src/engine/common/sys.js');
 	console.log('✓ sys.js imported');
 	Sys_Printf('  Test printf: %s', 'works!');
 } catch (e) {
@@ -16,35 +16,35 @@ try {
 }
 
 try {
-	const mathlib = await import('../src/mathlib.js');
+	const mathlib = await import('../src/engine/common/mathlib.js');
 	console.log('✓ mathlib.js imported');
 } catch (e) {
 	console.error('✗ mathlib.js failed:', e.message);
 }
 
 try {
-	const quakedef = await import('../src/quakedef.js');
+	const quakedef = await import('../src/engine/common/quakedef.js');
 	console.log('✓ quakedef.js imported');
 } catch (e) {
 	console.error('✗ quakedef.js failed:', e.message);
 }
 
 try {
-	const protocol = await import('../src/protocol.js');
+	const protocol = await import('../src/engine/common/protocol.js');
 	console.log('✓ protocol.js imported');
 } catch (e) {
 	console.error('✗ protocol.js failed:', e.message);
 }
 
 try {
-	const common = await import('../src/common.js');
+	const common = await import('../src/engine/common/common.js');
 	console.log('✓ common.js imported');
 } catch (e) {
 	console.error('✗ common.js failed:', e.message);
 }
 
 try {
-	const server = await import('../src/server.js');
+	const server = await import('../src/engine/server/server.js');
 	console.log('✓ server.js imported');
 } catch (e) {
 	console.error('✗ server.js failed:', e.message);
@@ -52,21 +52,21 @@ try {
 
 // Test server modules
 try {
-	const sv_main = await import('../src/sv_main.js');
+	const sv_main = await import('../src/engine/server/sv_main.js');
 	console.log('✓ sv_main.js imported');
 } catch (e) {
 	console.error('✗ sv_main.js failed:', e.message);
 }
 
 try {
-	const sv_phys = await import('../src/sv_phys.js');
+	const sv_phys = await import('../src/engine/server/sv_phys.js');
 	console.log('✓ sv_phys.js imported');
 } catch (e) {
 	console.error('✗ sv_phys.js failed:', e.message);
 }
 
 try {
-	const world = await import('../src/world.js');
+	const world = await import('../src/engine/server/world.js');
 	console.log('✓ world.js imported');
 } catch (e) {
 	console.error('✗ world.js failed:', e.message);
@@ -74,14 +74,14 @@ try {
 
 // Test QuakeC modules
 try {
-	const pr_exec = await import('../src/pr_exec.js');
+	const pr_exec = await import('../src/engine/progs/pr_exec.js');
 	console.log('✓ pr_exec.js imported');
 } catch (e) {
 	console.error('✗ pr_exec.js failed:', e.message);
 }
 
 try {
-	const pr_edict = await import('../src/pr_edict.js');
+	const pr_edict = await import('../src/engine/progs/pr_edict.js');
 	console.log('✓ pr_edict.js imported');
 } catch (e) {
 	console.error('✗ pr_edict.js failed:', e.message);

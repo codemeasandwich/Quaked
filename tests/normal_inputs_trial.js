@@ -1,8 +1,8 @@
 import '../src/gl_rsurf.js';
-import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/pak.js';
+import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette,vid} from '../src/vid.js';
 import {Mod_Init,Mod_ForName,R_InitTextures} from '../src/gl_model.js';
-import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_SetValue} from '../src/cvar.js';
+import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_SetValue} from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
 import {R_NewerTexturesForModel,R_NewerTexturesStatus} from '../src/r_newertextures.js';

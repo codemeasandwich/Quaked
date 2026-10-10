@@ -1,16 +1,16 @@
 // Ported from: WinQuake/cl_tent.c -- client side temporary entities
 
-import { Con_Printf } from './common.js';
-import { Sys_Error } from './sys.js';
+import { Con_Printf } from './engine/common/common.js';
+import { Sys_Error } from './engine/common/sys.js';
 import {
 	MSG_ReadByte, MSG_ReadShort, MSG_ReadCoord
-} from './common.js';
+} from './engine/common/common.js';
 import {
 	TE_SPIKE, TE_SUPERSPIKE, TE_GUNSHOT, TE_EXPLOSION,
 	TE_TAREXPLOSION, TE_LIGHTNING1, TE_LIGHTNING2, TE_LIGHTNING3,
 	TE_LAVASPLASH, TE_TELEPORT, TE_GORE, TE_EXPLOSION2, TE_WIZSPIKE,
 	TE_KNIGHTSPIKE, TE_BEAM
-} from './protocol.js';
+} from './engine/common/protocol.js';
 import {
 	MAX_TEMP_ENTITIES, MAX_BEAMS, MAX_VISEDICTS,
 	cl, cls, cl_entities, cl_temp_entities, cl_beams,
@@ -22,7 +22,7 @@ import { R_WallBurnShot } from './r_wallburn.js';
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
-import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from './mathlib.js';
+import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from './engine/common/mathlib.js';
 import { S_PrecacheSound, S_StartSound } from './snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
 	R_ParticleExplosion2, R_LavaSplash } from './render.js';

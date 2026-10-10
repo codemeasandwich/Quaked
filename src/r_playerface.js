@@ -2,7 +2,7 @@
 // Keep full-cell origins, nearest sampling, manifest registration and layer order.
 import { validatePlayerFaceManifest } from './playerface_manifest.js';
 import { faceWaterStage } from './face_state.js';
-import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
 let M, SIZE=96, assets, poses, ready=false, loading=null;
 const images=new Map(),failed=new Set(),cache=new Map();
 const BASE='newer/hud/playerface/';

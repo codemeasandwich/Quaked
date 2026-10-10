@@ -4,7 +4,7 @@ await import( '../src/gl_rsurf.js' );
 const gl_rmain = await import( '../src/gl_rmain.js' );
 const glquake = await import( '../src/glquake.js' );
 const chase = await import( '../src/chase.js' );
-const cvar = await import( '../src/cvar.js' );
+const cvar = await import( '../src/engine/common/cvar.js' );
 const { cl } = await import( '../src/client.js' );
 
 function assertEqual( actual, expected, message ) {

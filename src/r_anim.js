@@ -12,8 +12,8 @@
 // monster coming into view does not slide out of its previous pose), when the
 // model changes, or when the entity has teleported or jumped.
 
-import { cvar_t, Cvar_VariableValue } from './cvar.js';
-import { COM_SetNewerActive } from './pak.js';
+import { cvar_t, Cvar_VariableValue } from './engine/common/cvar.js';
+import { COM_SetNewerActive } from './engine/common/pak.js';
 
 // 0 = off; values 1 and above enable smoothing only in Newer Game.
 // Legacy value 2 is retained as a preference, but never overrides Classic.

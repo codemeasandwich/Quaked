@@ -2,7 +2,7 @@
 await import( '../src/gl_rsurf.js' );
 
 const { sensitivity } = await import( '../src/cl_main.js' );
-const cvar = await import( '../src/cvar.js' );
+const cvar = await import( '../src/engine/common/cvar.js' );
 const input = await import( '../src/in_web.js' );
 
 function assertEqual( actual, expected, message ) {

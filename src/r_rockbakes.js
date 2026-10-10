@@ -4,7 +4,7 @@ import {ROCK_BAKES} from './rockfield_bakes.js';
 import {RockBakeDecode,RockBakeSignature,RockBakeConfig,RockBakeEncode,RockBakeTileCoordinates,ROCK_BAKE_VERSION} from './rockfield_bake_format.js';
 import {DisplacementStore,DisplacementKey,DisplacementHash} from './displacement_store.js';
 import {RockPrepareTiles} from './rockfield_prepare.js';
-import { COM_NewerURL,COM_FindFile } from './pak.js';
+import { COM_NewerURL,COM_FindFile } from './engine/common/pak.js';
 // Three decoded levels, including pending fetches; warm upcoming portal levels
 // without creating GPU pages, workers, or additional game instances.
 const cache=new Map(),MAX_LEVELS=3,sourceKeys=new WeakMap(),store=new DisplacementStore();

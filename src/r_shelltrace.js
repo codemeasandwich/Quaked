@@ -1,6 +1,6 @@
 // Swept casing centre with six radius probes through the existing BSP hull.
 // Reuses Quake's collision algorithm; cosmetics never participate in SV_Move.
-import { trace_t, SV_RecursiveHullCheck } from './world.js';
+import { trace_t, SV_RecursiveHullCheck } from './engine/server/world.js';
 import * as THREE from 'three';
 
 export function R_ShellTrace( model, start, end, radius = 0.55, entities = [] ) {

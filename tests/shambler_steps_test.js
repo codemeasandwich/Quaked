@@ -7,12 +7,12 @@ import { V_ShamblerStepShake, v_shamblersteps } from '../src/v_shamblersteps.js'
 import { V_CalcRefdef, V_Init } from '../src/view.js';
 import { r_refdef } from '../src/render.js';
 import { cl, cls, cl_entities, ca_connected, SIGNONS } from '../src/client.js';
-import { sv } from '../src/server.js';
-import { STAT_HEALTH } from '../src/quakedef.js';
+import { sv } from '../src/engine/server/server.js';
+import { STAT_HEALTH } from '../src/engine/common/quakedef.js';
 import { key_game, key_console, key_message, key_menu, set_key_dest } from '../src/keys.js';
 import { r_hdr } from '../src/gl_post.js';
 import { r_lerpmodels, R_AnimSetNewer } from '../src/r_anim.js';
-import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from '../src/cvar.js';
+import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set } from '../src/engine/common/cvar.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const LIMITS = [ 1.2, 0.25, 0.15 ]; // vertical units, pitch and roll degrees

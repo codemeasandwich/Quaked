@@ -5,13 +5,13 @@
 // on the same machine.
 
 import * as THREE from 'three';
-import { Sys_Error } from './sys.js';
-import { Con_Printf, COM_FileBase } from './common.js';
+import { Sys_Error } from './engine/common/sys.js';
+import { Con_Printf, COM_FileBase } from './engine/common/common.js';
 import { d_8to24table, vid } from './vid.js';
-import { COM_LoadFile, COM_FindFile } from './pak.js';
+import { COM_LoadFile, COM_FindFile } from './engine/common/pak.js';
 import { Lit_Parse, Ent_Parse } from './lit.js';
-import { DotProduct, VectorCopy, Length } from './mathlib.js';
-import { Cvar_RegisterVariable } from './cvar.js';
+import { DotProduct, VectorCopy, Length } from './engine/common/mathlib.js';
+import { Cvar_RegisterVariable } from './engine/common/cvar.js';
 import { R_InitSky as R_InitSky_warp, GL_SubdivideSurface as GL_SubdivideSurface_warp, GL_Warp_SetLoadmodel } from './gl_warp.js';
 import { GL_MakeAliasModelDisplayLists as GL_MakeAliasModelDisplayLists_mesh } from './gl_mesh.js';
 
@@ -28,7 +28,7 @@ import {
 	CONTENTS_EMPTY,
 	MIPLEVELS, MAXLIGHTMAPS, NUM_AMBIENTS,
 	TEX_SPECIAL
-} from './bspfile.js';
+} from './engine/common/bspfile.js';
 import { gl_subdivide_size, gl_texturemode, GL_TextureLinear, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
 import { R_NewerTextureUpgrade } from './r_newertextures.js';
 import { R_NewerGame, r_newer_textures, r_newer_crates } from './r_anim.js';

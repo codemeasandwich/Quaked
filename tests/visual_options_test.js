@@ -3,8 +3,8 @@ await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const post = await import( '../src/gl_post.js' );
 const anim = await import( '../src/r_anim.js' );
-const cvar = await import( '../src/cvar.js' );
-const cmd = await import( '../src/cmd.js' );
+const cvar = await import( '../src/engine/common/cvar.js' );
+const cmd = await import( '../src/engine/common/cmd.js' );
 const menu = await import( '../src/menu.js' );
 const keys = await import( '../src/keys.js' );
 

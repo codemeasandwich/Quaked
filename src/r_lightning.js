@@ -20,7 +20,7 @@
 // the grapple's beam and anything in Classic stay the native bolt models.
 
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame } from './r_anim.js';
 import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
 

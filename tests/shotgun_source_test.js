@@ -9,7 +9,7 @@ const THREE = await import( 'three' );
 const weapons = await import( '../src/r_weapons.js' );
 const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/gl_mesh.js' );
 const anim = await import( '../src/r_anim.js' );
-const vars = await import( '../src/cvar.js' );
+const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { cl } = await import( '../src/client.js' );
 function check( value, label ) { if ( ! value ) throw new Error( label ); }

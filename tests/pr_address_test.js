@@ -1,13 +1,13 @@
-import { PR_ExecuteProgram, PR_SetHostError } from '../src/pr_exec.js';
-import { OP_ADDRESS, OP_DONE } from '../src/pr_comp.js';
-import { ss_active, ss_loading } from '../src/server.js';
+import { PR_ExecuteProgram, PR_SetHostError } from '../src/engine/progs/pr_exec.js';
+import { OP_ADDRESS, OP_DONE } from '../src/engine/progs/pr_comp.js';
+import { ss_active, ss_loading } from '../src/engine/server/server.js';
 import {
 	progs, pr_functions, pr_strings_data, pr_statements,
 	pr_globals_float, pr_globals_int, pr_trace, pr_xfunction, pr_xstatement, sv,
 	PR_SetProgs, PR_SetFunctions, PR_SetStringsData, PR_SetStatements,
 	PR_SetGlobalsFloat, PR_SetGlobalsInt, PR_SetTrace,
 	PR_SetXFunction, PR_SetXStatement, PR_SetSV,
-} from '../src/progs.js';
+} from '../src/engine/progs/progs.js';
 
 Deno.test( 'OP_ADDRESS rejects assignments to the active world entity', () => {
 

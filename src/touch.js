@@ -17,10 +17,10 @@ import { K_ESCAPE, K_ENTER, K_MOUSE1, Key_Event } from './keys.js';
 import { R_BestiaryInputLocked } from './r_bestiary.js';
 import { in_attack, in_jump } from './cl_input.js';
 import { S_UnlockAudio } from './snd_dma.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
-import { Cbuf_AddText } from './cmd.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './engine/common/cvar.js';
+import { Cbuf_AddText } from './engine/common/cmd.js';
 import { cl } from './client.js';
-import { STAT_SHELLS } from './quakedef.js';
+import { STAT_SHELLS } from './engine/common/quakedef.js';
 import { Touch_Layout, Touch_WeaponChoices } from './touch_layout.js';
 
 // left and right of the stick: 0 turns, 1 sidesteps

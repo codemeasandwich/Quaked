@@ -1,8 +1,8 @@
-import { PR_ExecuteProgram, PR_RunError, PR_SetHostError } from '../src/pr_exec.js';
+import { PR_ExecuteProgram, PR_RunError, PR_SetHostError } from '../src/engine/progs/pr_exec.js';
 import {
 	progs, pr_global_struct, pr_statements, pr_xstatement,
 	PR_SetProgs, PR_SetGlobalStruct, PR_SetStatements, PR_SetXStatement,
-} from '../src/progs.js';
+} from '../src/engine/progs/progs.js';
 
 function expectHostError( action, expectedMessage ) {
 

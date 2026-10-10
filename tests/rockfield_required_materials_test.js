@@ -8,13 +8,13 @@ import { seedFrom, createField } from '../src/rockfield.js';
 import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialName, R_RockMaterialProfile, ROCK_AXIS_U, ROCK_AXIS_V } from '../src/r_rocksurfaces.js';
 import { R_RockfieldBuild, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen, R_RockfieldStatus, ROCK_SIDE, rockUniforms, r_rockfield } from '../src/r_rockfield.js';
 import { DrawGLPoly, GL_BuildLightmaps, R_DrawBrushModel, R_WorldShowAll } from '../src/gl_rsurf.js';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName, Mod_ClearAll } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { cl } from '../src/client.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as cvar from '../src/cvar.js';
+import * as cvar from '../src/engine/common/cvar.js';
 import * as main from '../src/gl_rmain.js';
 import { entity_t, r_refdef } from '../src/render.js';
 

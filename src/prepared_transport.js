@@ -1,4 +1,4 @@
-import {COM_NewerURL} from './pak.js';
+import {COM_NewerURL} from './engine/common/pak.js';
 import {DisplacementHash,ReadPreparedPayload} from './displacement_store.js';
 // Large prepared bundles are split into ordinary Git-sized gzip byte chunks.
 // Concatenation is streamed into the same gzip decoder; geometry is unchanged.

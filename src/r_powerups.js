@@ -3,7 +3,7 @@ import { R_CreatePowerupFire, R_RenderPowerupFire, R_ClearPowerupFireTarget } fr
 // pickup rules and inventory remain owned by Quake. Main scene Begin/End owns
 // lifetime; Classic redraw never mutates this registry.
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame, R_ClassicPassActive } from './r_anim.js';
 
 export const r_powerups = new cvar_t( 'r_powerups', '1', true );

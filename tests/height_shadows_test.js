@@ -3,13 +3,13 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
-import {COM_AddPack} from '../src/pak.js';
+import {COM_AddPack} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import * as height from '../src/r_heightshadows.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { R_NormalMapFor } from '../src/gl_normals.js';
 import { createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
 import * as skins from '../src/r_newerskins.js';

@@ -11,7 +11,7 @@
 // own, so it is lit exactly as the surface is.
 
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame } from './r_anim.js';
 
 export const r_decals = new cvar_t( 'r_decals', '1' );

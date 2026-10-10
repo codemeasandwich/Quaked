@@ -1,4 +1,4 @@
-import { edict_t } from '../src/progs.js';
+import { edict_t } from '../src/engine/progs/progs.js';
 import {
 	SV_AddGravity,
 	SV_SetCallbacks,
@@ -8,7 +8,7 @@ import {
 	SV_WallFriction,
 	host_frametime,
 	sv_gravity
-} from '../src/sv_phys.js';
+} from '../src/engine/server/sv_phys.js';
 
 function assertNear( actual, expected, epsilon, message ) {
 

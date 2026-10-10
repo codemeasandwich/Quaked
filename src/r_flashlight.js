@@ -4,8 +4,8 @@
 // the head: flick the view across the room and the beam trails behind, then
 // settles.  The lighting pipeline (gl_post.js) draws the beam and what it hits.
 
-import { cvar_t, Cvar_SetValue, Cvar_VariableValue } from './cvar.js';
-import { Cmd_AddCommand } from './cmd.js';
+import { cvar_t, Cvar_SetValue, Cvar_VariableValue } from './engine/common/cvar.js';
+import { Cmd_AddCommand } from './engine/common/cmd.js';
 import { R_NewerLightingActive, R_NewerGame } from './r_anim.js';
 import { cls, ca_connected } from './client.js';
 import { R_FlashlightRunManualChange, R_FlashlightRunObserve } from './r_flashlightrun.js';

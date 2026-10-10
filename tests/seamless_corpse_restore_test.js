@@ -1,23 +1,23 @@
 // Actual native BSP crossings, QuakeC damage, server respawn and baseline creation.
 // No private seamless state access or substitute serialization/model lookup.
 import { readFileSync } from 'node:fs';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import { ED_NewString, ED_Alloc, ED_Free } from '../src/pr_edict.js';
-import * as progs from '../src/progs.js';
-import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3 } from '../src/pr_comp.js';
-import { sv, svs, client_t, FL_CLIENT } from '../src/server.js';
-import { SV_SpawnServer, SV_ModelIndex } from '../src/sv_main.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import { ED_NewString, ED_Alloc, ED_Free } from '../src/engine/progs/pr_edict.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3 } from '../src/engine/progs/pr_comp.js';
+import { sv, svs, client_t, FL_CLIENT } from '../src/engine/server/server.js';
+import { SV_SpawnServer, SV_ModelIndex } from '../src/engine/server/sv_main.js';
 import { SV_SeamlessReset, SV_SeamlessFrame, SV_SeamlessCrossings, SV_SeamlessPending,
-	SV_SeamlessPlacePlayer, SV_SeamlessHolding, SV_LevelSnapshotEntities, sv_seamless } from '../src/sv_seamless.js';
-import { Cbuf_Init } from '../src/cmd.js';
-import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/cvar.js';
+	SV_SeamlessPlacePlayer, SV_SeamlessHolding, SV_LevelSnapshotEntities, sv_seamless } from '../src/newer/gameplay/sv_seamless.js';
+import { Cbuf_Init } from '../src/engine/common/cmd.js';
+import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
-import { sv_gravity, SV_Physics, SV_SetFrametime } from '../src/sv_phys.js';
+import { skill } from '../src/engine/server/host.js';
+import { sv_gravity, SV_Physics, SV_SetFrametime } from '../src/engine/server/sv_phys.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} != ${expected}` );

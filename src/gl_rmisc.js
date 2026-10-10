@@ -1,8 +1,8 @@
 // Ported from: WinQuake/gl_rmisc.c -- GL misc rendering functions
 
 import * as THREE from 'three';
-import { Con_Printf } from './common.js';
-import { Cvar_RegisterVariable as Cvar_RegisterVariable_impl, Cvar_SetValue as Cvar_SetValue_impl } from './cvar.js';
+import { Con_Printf } from './engine/common/common.js';
+import { Cvar_RegisterVariable as Cvar_RegisterVariable_impl, Cvar_SetValue as Cvar_SetValue_impl } from './engine/common/cvar.js';
 import { d_lightstylevalue, r_viewleaf, r_norefresh, r_lightmap,
 	r_fullbright, r_drawentities, r_drawviewmodel, r_shadows,
 	r_mirroralpha, r_wateralpha, r_dynamic, r_novis, r_speeds,

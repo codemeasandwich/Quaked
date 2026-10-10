@@ -1,11 +1,11 @@
 const controls = document.querySelector( 'section' ); for ( const event of [ 'mousedown', 'mouseup', 'keydown', 'keyup', 'touchstart', 'touchend', 'pointerdown', 'pointerup' ] ) controls.addEventListener( event, e => e.stopPropagation() );
 await import( '../main.js' ); while ( ! window.Cbuf_AddText ) await new Promise( r => setTimeout( r, 20 ) );
 const menu = await import( '../src/menu.js' );
-const { Cbuf_AddText, Cmd_ExecuteString } = await import( '../src/cmd.js' ), cvar = await import( '../src/cvar.js' ), keys = await import( '../src/keys.js' );
-const { sv, MOVETYPE_NOCLIP } = await import( '../src/server.js' ), { cl,cls } = await import( '../src/client.js' );
+const { Cbuf_AddText, Cmd_ExecuteString } = await import( '../src/engine/common/cmd.js' ), cvar = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/keys.js' );
+const { sv, MOVETYPE_NOCLIP } = await import( '../src/engine/server/server.js' ), { cl,cls } = await import( '../src/client.js' );
 const blendRuntime = await import( '../src/glquake.js' );
 const viewRuntime = await import( '../src/view.js' ), renderRuntime = await import( '../src/gl_rmain.js' );
-const post = await import( '../src/gl_post.js' ), split = await import( '../src/r_demosplit.js' ), world = await import( '../src/world.js' );
+const post = await import( '../src/gl_post.js' ), split = await import( '../src/r_demosplit.js' ), world = await import( '../src/engine/server/world.js' );
 const probe = await import( '../src/r_waterprobe.js' );
 const loadingRuntime=await import('../src/r_demoloading.js');
 const { Mod_PointInLeaf } = await import( '../src/gl_model.js' );

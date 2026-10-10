@@ -29,12 +29,12 @@ import { R_PowerupLights, R_PowerupPulse, R_DrawPowerupFire, R_PowerupShroudFram
 
 import * as THREE from 'three';
 import { cl } from './client.js';
-import { PowerVisionMode } from './powervision_state.js';
+import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
 import { R_PowerVisionRender, R_PowerVisionReset } from './r_powervision.js';
 import { VISION_UV_PACK_GLSL } from './vision_coordinates.js';
 import { R_QuadVisionActive, R_QuadVisionRender, R_QuadVisionReset } from './r_quadvision.js';
 import { R_IntroLoadingHolding } from './r_demoloading.js';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_ParseEntityLump } from './gl_portal.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, solidskytexture, alphaskytexture } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';

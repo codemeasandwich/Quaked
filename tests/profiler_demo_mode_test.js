@@ -2,16 +2,16 @@
 // A tiny header-only in-memory demo supplies playback; no map or renderer mock
 // decides whether comparison is enabled. Actual rendering is a browser trial.
 await import( '../src/gl_rsurf.js' );
-const vars = await import( '../src/cvar.js' );
-const cmd = await import( '../src/cmd.js' );
+const vars = await import( '../src/engine/common/cvar.js' );
+const cmd = await import( '../src/engine/common/cmd.js' );
 const demo = await import( '../src/cl_demo.js' );
 const client = await import( '../src/cl_main.js' );
 const { cls, ca_disconnected } = await import( '../src/client.js' );
-const pak = await import( '../src/pak.js' );
+const pak = await import( '../src/engine/common/pak.js' );
 const post = await import( '../src/gl_post.js' );
 const split = await import( '../src/r_demosplit.js' );
 const perf = await import( '../src/r_perf.js' );
-const host = await import( '../src/host.js' );
+const host = await import( '../src/engine/server/host.js' );
 
 const preferences = [ post.r_hdr, split.r_demosplit, post.r_dynres, perf.cl_showfps ];
 for ( const variable of preferences ) if ( ! vars.Cvar_FindVar( variable.name ) ) vars.Cvar_RegisterVariable( variable );

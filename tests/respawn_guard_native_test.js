@@ -3,30 +3,30 @@
 // (the drop and health tests turn the guard off with sv_respawnguard 0; here it is on)
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { ED_FindFunction, ED_NewString, ED_Write, ED_ParseEdict, ED_Alloc, ED_Free, GetEdictFieldValue } from '../src/pr_edict.js';
-import { OFS_PARM0 } from '../src/pr_comp.js';
-import { sv, svs, client_t, FL_MONSTER, FL_ONGROUND } from '../src/server.js';
-import { SV_SpawnServer, SV_CheckForNewClients, SV_SaveSpawnparms, SV_ClearCarriedPowerups, SV_WriteClientdataToMessage } from '../src/sv_main.js';
-import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../src/world.js';
-import { SV_Physics, SV_Physics_Client, SV_Physics_Toss, SV_SetPlayer, SV_SetFrametime, SV_PushEntity, sv_gravity } from '../src/sv_phys.js';
-import * as travel from '../src/sv_seamless.js';
-import * as respawn from '../src/sv_respawn.js';
-import {Respawn_DropAmmo} from '../src/respawn_record.js';
-import * as vars from '../src/cvar.js';
-import { Cbuf_Init, Cbuf_Execute, Cmd_AddCommand, Cmd_ExecuteString, src_command } from '../src/cmd.js';
-import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/common.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { ED_FindFunction, ED_NewString, ED_Write, ED_ParseEdict, ED_Alloc, ED_Free, GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
+import { OFS_PARM0 } from '../src/engine/progs/pr_comp.js';
+import { sv, svs, client_t, FL_MONSTER, FL_ONGROUND } from '../src/engine/server/server.js';
+import { SV_SpawnServer, SV_CheckForNewClients, SV_SaveSpawnparms, SV_ClearCarriedPowerups, SV_WriteClientdataToMessage } from '../src/engine/server/sv_main.js';
+import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../src/engine/server/world.js';
+import { SV_Physics, SV_Physics_Client, SV_Physics_Toss, SV_SetPlayer, SV_SetFrametime, SV_PushEntity, sv_gravity } from '../src/engine/server/sv_phys.js';
+import * as travel from '../src/newer/gameplay/sv_seamless.js';
+import * as respawn from '../src/newer/gameplay/sv_respawn.js';
+import {Respawn_DropAmmo} from '../src/newer/gameplay/respawn_record.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { Cbuf_Init, Cbuf_Execute, Cmd_AddCommand, Cmd_ExecuteString, src_command } from '../src/engine/common/cmd.js';
+import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/engine/common/common.js';
 import { CL_ParseServerMessage } from '../src/cl_parse.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
+import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connected, ca_dedicated } from '../src/client.js';
-import * as Q from '../src/quakedef.js';
+import * as Q from '../src/engine/common/quakedef.js';
 import { R_LevelEntities } from '../src/r_levelents.js';
 import { NET_Init, NET_Close } from '../src/net_main.js';
 import { Loop_Connect, Loop_CheckNewConnections } from '../src/net_loop.js';
@@ -34,7 +34,7 @@ import { V_Init, V_CalcRefdef } from '../src/view.js';
 import * as render from '../src/gl_rmain.js';
 import { r_refdef, entity_t } from '../src/render.js';
 import { R_DrawAliasModel } from '../src/gl_mesh.js';
-import { Host_InitCommands } from '../src/host_cmd.js';
+import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import { Respawn_Sample } from '../src/respawn_motion.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-4)=>check(Math.abs(a-b)<e,`${m}: ${a} != ${b}`);
 const pools=['ammo_shells','ammo_nails','ammo_rockets','ammo_cells'], weapons=[1,2,4,8,16,32,64],powerFields=['invisible_finished','invincible_finished','super_damage_finished','radsuit_finished','invisible_time','invincible_time','super_time','rad_time'];
@@ -51,13 +51,13 @@ function inventory(p,ammo=[19,61,7,13],bits=127|Q.IT_AXE){p.v.items=bits;p.v.wea
 function kill(p,command=false){if(command)call(p,'ClientKill');else{const world=sv.edicts[0];progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PROG(p);progs.pr_globals_int[OFS_PARM0+3]=progs.EDICT_TO_PROG(world);progs.pr_globals_int[OFS_PARM0+6]=progs.EDICT_TO_PROG(world);progs.pr_globals_float[OFS_PARM0+9]=200;call(p,'T_Damage');}check(p._respawn?.sequence,'native lethal outcome starts sequence');return p._respawn.sequence;}
 function at(p,time){sv.time=time;progs.pr_global_struct.time=time;SV_SetFrametime(.01);SV_Physics_Client(p,1);}
 function finish(p){const s=p._respawn.sequence,cut=s.at+.22+s.turn/2+1e-6,end=s.at+.22+s.turn+.001;if(sv.time<cut)at(p,cut);check(s.respawned,'native physics reaches contact');if(sv.time<end)at(p,end);check(!p._respawn.sequence,'native physics finishes sequence');}
-const {SV_PointContents}=await import('../src/world.js'),{MOVETYPE_WALK}=await import('../src/server.js');
+const {SV_PointContents}=await import('../src/engine/server/world.js'),{MOVETYPE_WALK}=await import('../src/engine/server/server.js');
 // real slime/lava with room: a point with at least 40 units of that liquid above a solid floor, in a stock map
 function findLiquid(type,maps=['e1m2','e1m3','e1m4','e1m5','e1m6','e1m7','start']){for(const map of maps){spawn(map);const w=sv.worldmodel,lo=w.mins,hi=w.maxs;
  for(let x=lo[0];x<hi[0];x+=32)for(let y=lo[1];y<hi[1];y+=32)for(let z=lo[2];z<hi[2];z+=8){if(SV_PointContents([x,y,z+4])!==type)continue;let ok=true;for(let d=4;d<=44;d+=8)if(SV_PointContents([x,y,z+d])!==type){ok=false;break;}if(!ok)continue;if(SV_PointContents([x,y,z-4])===-2)return {map,x,y,z};}}return null;}
 const wet=type=>({slime:-4,lava:-5})[type];
-import { SV_TestEntityPosition } from '../src/world.js';
-import { SV_Move as Move, MOVE_NOMONSTERS as NOMONSTERS } from '../src/world.js';
+import { SV_TestEntityPosition } from '../src/engine/server/world.js';
+import { SV_Move as Move, MOVE_NOMONSTERS as NOMONSTERS } from '../src/engine/server/world.js';
 const GUARDS=['monster_demon1','monster_shambler'];
 const guards=()=>sv.edicts.filter(e=>e&&!e.free&&GUARDS.includes(text(e.v.classname)));
 // the game at a given difficulty, with the player standing on a real floor spot far from the start (a monster's own spot is one)

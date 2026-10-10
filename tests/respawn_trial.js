@@ -2,13 +2,13 @@ const controls=document.querySelector('section'),status=document.querySelector('
 for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])controls.addEventListener(type,e=>e.stopPropagation());
 window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
-const {Cbuf_AddText}=await import('../src/cmd.js'),{sv,FL_GODMODE,FL_MONSTER}=await import('../src/server.js'),{cl,cls}=await import('../src/client.js');
-const progs=await import('../src/progs.js'),{PR_ExecuteProgram}=await import('../src/pr_exec.js'),{ED_FindFunction,GetEdictFieldValue}=await import('../src/pr_edict.js');
-const {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS}=await import('../src/world.js'),loading=await import('../src/r_demoloading.js'),split=await import('../src/r_demosplit.js'),keys=await import('../src/keys.js');
+const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{sv,FL_GODMODE,FL_MONSTER}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/client.js');
+const progs=await import('../src/engine/progs/progs.js'),{PR_ExecuteProgram}=await import('../src/engine/progs/pr_exec.js'),{ED_FindFunction,GetEdictFieldValue}=await import('../src/engine/progs/pr_edict.js');
+const {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),loading=await import('../src/r_demoloading.js'),split=await import('../src/r_demosplit.js'),keys=await import('../src/keys.js');
 const {renderer}=await import('../src/vid.js');
 const renderRuntime=await import('../src/gl_rmain.js');
-const {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo}=await import('../src/respawn_record.js');
-const {OFS_PARM0}=await import('../src/pr_comp.js');
+const {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo}=await import('../src/newer/gameplay/respawn_record.js');
+const {OFS_PARM0}=await import('../src/engine/progs/pr_comp.js');
 let ready=false,generation=0,lastDeath=null,lastAngles=null,previouslyActive=false;
 function call(name){const previous=progs.pr_global_struct.self;try{progs.pr_global_struct.self=progs.EDICT_TO_PROG(sv.edicts[1]);const f=ED_FindFunction(name);PR_ExecuteProgram(progs.pr_functions.indexOf(f));}finally{progs.pr_global_struct.self=previous;}}
 function field(e,n,value){const f=GetEdictFieldValue(e,n);if(f){if(value!==undefined)f.accessor.setFloat(f.ofs,value);return f.accessor.getFloat(f.ofs);}return 0;}

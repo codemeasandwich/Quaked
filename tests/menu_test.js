@@ -1,4 +1,4 @@
-const cmd = await import( '../src/cmd.js' );
+const cmd = await import( '../src/engine/common/cmd.js' );
 const keys = await import( '../src/keys.js' );
 const menu = await import( '../src/menu.js' );
 

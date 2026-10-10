@@ -3,7 +3,7 @@ await import('../src/gl_rsurf.js');
 const THREE=await import('three');
 const post=await import('../src/gl_post.js');
 const anim=await import('../src/r_anim.js');
-const cvar=await import('../src/cvar.js');
+const cvar=await import('../src/engine/common/cvar.js');
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 const options=[post.r_hdr,post.r_dynres,post.r_fps_target,post.r_bloom,post.r_volumetric,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water];
 function setup(){for(const v of options)if(!cvar.Cvar_FindVar(v.name))cvar.Cvar_RegisterVariable(v);const saved=options.map(v=>v.string);for(const v of options)cvar.Cvar_SetValue(v.name,1);cvar.Cvar_SetValue('r_bloom',0);cvar.Cvar_SetValue('r_volumetric',0);cvar.Cvar_SetValue('r_fps_target',60);return()=>{post.R_PostSetSplit(false);options.forEach((v,i)=>cvar.Cvar_Set(v.name,saved[i]));post.R_PostBegin(renderer,false,0,0);};}

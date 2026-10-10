@@ -2,10 +2,10 @@ const panel=document.querySelector('section'),status=document.querySelector('#st
 for(const type of['mousedown','mouseup','keydown','keyup','pointerdown','pointerup'])panel.addEventListener(type,e=>e.stopPropagation());
 window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason)));
 await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,50));
-const cmd=await import('../src/cmd.js'),menu=await import('../src/menu.js'),draw=await import('../src/gl_draw.js'),keys=await import('../src/keys.js'),bestiary=await import('../src/r_bestiary.js');
-const {sv,FL_GODMODE,FL_NOTARGET}=await import('../src/server.js'),{cl,cls}=await import('../src/client.js'),progs=await import('../src/progs.js');
-const {SV_Move,SV_LinkEdict,MOVE_NORMAL,MOVE_NOMONSTERS}=await import('../src/world.js'),{R_ShellTrace}=await import('../src/r_shelltrace.js'),loading=await import('../src/r_demoloading.js'),render=await import('../src/gl_rmain.js');
-const vars=await import('../src/cvar.js');
+const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/menu.js'),draw=await import('../src/gl_draw.js'),keys=await import('../src/keys.js'),bestiary=await import('../src/r_bestiary.js');
+const {sv,FL_GODMODE,FL_NOTARGET}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/client.js'),progs=await import('../src/engine/progs/progs.js');
+const {SV_Move,SV_LinkEdict,MOVE_NORMAL,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),{R_ShellTrace}=await import('../src/r_shelltrace.js'),loading=await import('../src/r_demoloading.js'),render=await import('../src/gl_rmain.js');
+const vars=await import('../src/engine/common/cvar.js');
 let ready=false,generation=0,stage=null,pauseCheck=null;
 const touch=(x,y)=>{const w=draw.Draw_GetVirtualWidth(),h=draw.Draw_GetVirtualHeight();menu.M_TouchInput(x+(w-320)/2,y+(h-200)/2,w,h);};
 function start(map='e1m2'){const old=sv.edicts?.[1],token=++generation;ready=false;bestiary.R_BestiaryCancel();cmd.Cmd_ExecuteString('menu_singleplayer');touch(100,122);touch(100,map==='e1m2'?96:104);status.textContent='Loading actual Newer Level Select '+map+'…';const until=performance.now()+180000,timer=setInterval(()=>{if(token!==generation||performance.now()>until){clearInterval(timer);return;}if(sv.edicts?.[1]===old||cls.signon!==4||cls.demoplayback||loading.R_IntroLoadingHolding()||sv.name!==map)return;clearInterval(timer);ready=true;sv.edicts[1].v.flags|=FL_GODMODE|FL_NOTARGET;status.textContent='Ready. Face a new illustrated beast, then press a key/shoot. Menu book retains discoveries.';},100);}

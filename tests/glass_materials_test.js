@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import { R_NormalMapFor } from '../src/gl_normals.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/gl_post.js';
 import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';
 const check=(v,m)=>{if(!v)throw Error(m)},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),equal=(a,b,m)=>same(Buffer.from(a).toString('hex'),Buffer.from(b).toString('hex'),m);

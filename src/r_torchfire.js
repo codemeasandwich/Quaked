@@ -34,7 +34,7 @@
 // and the renderer layers. The two share the shaders, textures and layer helpers of r_fireball.js
 // because the source does.
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { smooth, hashJS } from './fx_math.js';
 import { R_NewerGame } from './r_anim.js';
 import { GL_DrawAliasFrame } from './gl_mesh.js';

@@ -10,16 +10,16 @@ async function until(test,label,milliseconds=180000){const deadline=performance.
 function publish(){statusNode.textContent=`${receipt.state} · ${receipt.subject}/${receipt.view} · ${receipt.classic?'Classic':receipt.filter==='old'?'previous 4 texels':'production default 2 texels'} · ${receipt.sceneFrames} native frames${receipt.errors.length?' · '+receipt.errors.at(-1):''}`;receiptNode.textContent=JSON.stringify(receipt,null,2);}
 await import('../main.js');
 await until(()=>window.Cbuf_AddText&&window.renderer&&window.scene&&window.camera,'native app initialization');
-const {Cbuf_AddText}=await import('../src/cmd.js');
+const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
 const {cl,cls,cl_entities}=await import('../src/client.js');
 const input=await import('../src/cl_input.js');
-const {sv,svs,MOVETYPE_NOCLIP,FL_NOTARGET}=await import('../src/server.js');
-const {PR_GetString}=await import('../src/progs.js');
-const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/cvar.js');
+const {sv,svs,MOVETYPE_NOCLIP,FL_NOTARGET}=await import('../src/engine/server/server.js');
+const {PR_GetString}=await import('../src/engine/progs/progs.js');
+const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
 const keys=await import('../src/keys.js'),split=await import('../src/r_demosplit.js');
-const post=await import('../src/gl_post.js'),world=await import('../src/world.js');
+const post=await import('../src/gl_post.js'),world=await import('../src/engine/server/world.js');
 const {Mod_PointInLeaf,SURF_PLANEBACK}=await import('../src/gl_model.js');
-const {COM_NewerJSON}=await import('../src/pak.js');
+const {COM_NewerJSON}=await import('../src/engine/common/pak.js');
 const renderer=window.renderer,originalRender=renderer.render,wrappers=new Map(),names=new Map(),anchors=new Map();
 let manifest=null,lastPublish=0,epoch=0,disposed=false;
 let downloadRequested=false,frameRequested=false;

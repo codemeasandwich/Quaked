@@ -7,7 +7,7 @@ import { Script } from 'node:vm';
 await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const weapons = await import( '../src/r_weapons.js' );
-const vars = await import( '../src/cvar.js' );
+const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const startup = await import( '../src/r_demoloading.js' );
 

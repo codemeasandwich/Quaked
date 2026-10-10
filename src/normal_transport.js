@@ -1,6 +1,6 @@
 import {DisplacementHash,ReadPreparedPayload} from './displacement_store.js';
 import {NormalBakeDecode} from './normal_bake_format.js';
-import {COM_NewerURL} from './pak.js';
+import {COM_NewerURL} from './engine/common/pak.js';
 const entries=new Map(),MAX_BYTES=128*1024*1024,MAX_ENTRIES=256;
 function trim(){
  let bytes=[...entries.values()].reduce((n,e)=>n+(e.data?.bytes||0),0);

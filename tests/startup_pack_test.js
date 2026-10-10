@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {STARTUP_PACK} from '../src/startup_pack.js';
-import {COM_LoadPackFile,COM_SetNewerStartupPack,COM_SetNewerPack,COM_NewerFile,COM_NewerURL} from '../src/pak.js';
+import {COM_LoadPackFile,COM_SetNewerStartupPack,COM_SetNewerPack,COM_NewerFile,COM_NewerURL} from '../src/engine/common/pak.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),read=p=>readFileSync(new URL('../'+p,import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex'),ab=b=>b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength);
 const pack=()=>COM_LoadPackFile('independent-startup-pack',ab(read(STARTUP_PACK.file)));
 function direct(entries){let total=12;const files=[];for(const [name,value]of entries){const data=new TextEncoder().encode(value);files.push({name,filepos:total,filelen:data.length,bytes:data});total+=data.length;}const bytes=new Uint8Array(total);for(const f of files)bytes.set(f.bytes,f.filepos);return{data:bytes.buffer,files};}

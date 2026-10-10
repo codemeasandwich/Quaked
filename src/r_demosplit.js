@@ -11,7 +11,7 @@ import { R_DemoLoadingCancel } from './r_demoloading.js';
 // half. The scene is drawn again with Newer switched off (see R_ClassicOn in gl_rmain.js).
 
 import * as THREE from 'three';
-import { cvar_t, Cvar_SetTemporary, Cvar_RestoreTemporary, Cvar_VariableString } from './cvar.js';
+import { cvar_t, Cvar_SetTemporary, Cvar_RestoreTemporary, Cvar_VariableString } from './engine/common/cvar.js';
 import { cls } from './client.js';
 import { R_PerfProfiling } from './r_perf.js';
 import { R_NewerTexturesRevert } from './r_newertextures.js';

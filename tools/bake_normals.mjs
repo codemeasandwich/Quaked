@@ -19,8 +19,8 @@ globalThis.Image=FileImage;globalThis.document={createElement:tag=>{if(tag!=='ca
 globalThis.fetch=async url=>{
  const path=String(url).split('?')[0];try{const data=await readFile(path);return new Response(data);}catch{return new Response(null,{status:404});}
 };
-const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js');
-const textures=await import('../src/r_newertextures.js'),cvar=await import('../src/cvar.js'),{r_hdr}=await import('../src/gl_post.js');
+const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js');
+const textures=await import('../src/r_newertextures.js'),cvar=await import('../src/engine/common/cvar.js'),{r_hdr}=await import('../src/gl_post.js');
 const {NormalInputs,NormalInputKey,NormalGenerate}=await import('../src/normal_prepare.js'),{NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION}=await import('../src/normal_bake_format.js');
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{path,name:path,loose:true});
 const palette=await memberSearch(['pak0.pak']);pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.vid.fullbright=224;model.Mod_Init();model.R_InitTextures();cvar.Cvar_RegisterVariable(r_hdr);

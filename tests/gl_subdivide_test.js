@@ -4,8 +4,8 @@ await import( '../src/gl_rsurf.js' );
 const gl_model = await import( '../src/gl_model.js' );
 const glquake = await import( '../src/glquake.js' );
 const gl_warp = await import( '../src/gl_warp.js' );
-const { Cmd_ExecuteString, src_command } = await import( '../src/cmd.js' );
-const { Cvar_FindVar, Cvar_Set, Cvar_WriteVariables } = await import( '../src/cvar.js' );
+const { Cmd_ExecuteString, src_command } = await import( '../src/engine/common/cmd.js' );
+const { Cvar_FindVar, Cvar_Set, Cvar_WriteVariables } = await import( '../src/engine/common/cvar.js' );
 
 function assertEqual( actual, expected, message ) {
 

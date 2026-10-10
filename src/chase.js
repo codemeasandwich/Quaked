@@ -1,9 +1,9 @@
 // Ported from: WinQuake/chase.c -- chase camera code
 
-import { PITCH } from './quakedef.js';
-import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
+import { PITCH } from './engine/common/quakedef.js';
+import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
 import { VectorCopy, VectorSubtract, VectorMA, DotProduct,
-	AngleVectors, M_PI } from './mathlib.js';
+	AngleVectors, M_PI } from './engine/common/mathlib.js';
 import { cl } from './client.js';
 import { r_refdef } from './render.js';
 
@@ -34,7 +34,7 @@ export function Chase_Init() {
 	Cvar_RegisterVariable( chase_active );
 
 	// Lazy-load collision detection to avoid circular dependency
-	import( './world.js' ).then( ( world ) => {
+	import( './engine/server/world.js' ).then( ( world ) => {
 
 		_SV_RecursiveHullCheck = world.SV_RecursiveHullCheck;
 		_trace_t = world.trace_t;

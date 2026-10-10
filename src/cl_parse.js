@@ -1,25 +1,25 @@
-import { SV_RespawnInventoryStats } from './sv_respawn.js';
-import { SV_RendVeilClientRecord } from './sv_rendveil.js';
+import { SV_RespawnInventoryStats } from './newer/gameplay/sv_respawn.js';
+import { SV_RendVeilClientRecord } from './newer/gameplay/sv_rendveil.js';
 // Ported from: WinQuake/cl_parse.c -- parse a message received from the server
 
 import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
 	MAX_CL_STATS, MAX_SCOREBOARD,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,
 	STAT_WEAPONFRAME, STAT_SHELLS, STAT_ACTIVEWEAPON, STAT_MONSTERS,
-	STAT_SECRETS, entity_state_t } from './quakedef.js';
+	STAT_SECRETS, entity_state_t } from './engine/common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_BeginReading, MSG_ReadByte, MSG_ReadChar, MSG_ReadShort, MSG_ReadLong,
 	MSG_ReadFloat, MSG_ReadString, MSG_ReadCoord, MSG_ReadAngle,
 	MSG_ReadAngle16,
 	MSG_WriteByte,
 	msg_readcount, msg_badread,
-	net_message, standard_quake } from './common.js';
-import { Sys_Error, Sys_FloatTime } from './sys.js';
-import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from './pak.js';
-import { sv, svs } from './server.js';
-import { Cbuf_AddText } from './cmd.js';
-import { Cmd_ExecuteString } from './cmd.js';
-import { src_command } from './cmd.js';
+	net_message, standard_quake } from './engine/common/common.js';
+import { Sys_Error, Sys_FloatTime } from './engine/common/sys.js';
+import { COM_FindFile, COM_EnsureFile, COM_SetNewerMapsEnabled } from './engine/common/pak.js';
+import { sv, svs } from './engine/server/server.js';
+import { Cbuf_AddText } from './engine/common/cmd.js';
+import { Cmd_ExecuteString } from './engine/common/cmd.js';
+import { src_command } from './engine/common/cmd.js';
 import { R_FaceInventory, R_FaceSecret, R_FaceHealthChanged } from './r_facegame.js';
 import {
 	PROTOCOL_VERSION,
@@ -51,13 +51,13 @@ import {
 	PE_ANGLE2, PE_REMOVE, PE_MOREBITS,
 	PE_FRAME, PE_ANGLE1, PE_ANGLE3, PE_MODEL, PE_COLORMAP, PE_SKIN, PE_EFFECTS, PE_SOLID,
 	MAX_PACKET_ENTITIES_LOCAL, PE_UPDATE_BACKUP, PE_UPDATE_MASK
-} from './protocol.js';
+} from './engine/common/protocol.js';
 import {
 	SIGNONS, MAX_STATIC_ENTITIES, MAX_DLIGHTS,
 	ca_connected,
 	cl, cls, cl_entities, cl_static_entities, cl_lightstyle,
 	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
-import { VectorCopy } from './mathlib.js';
+import { VectorCopy } from './engine/common/mathlib.js';
 import { R_NewerGame } from './r_anim.js';
 import { R_FlashlightRunMap } from './r_flashlightrun.js';
 import { V_ParseDamage } from './view.js';
@@ -73,8 +73,8 @@ import { R_TranslatePlayerSkin } from './gl_rmisc.js';
 export let cl_playerindex = -1;
 import { R_NewMap } from './gl_rmisc.js';
 import { R_ParseParticleEffect, R_AddEfrags } from './render.js';
-import { Host_Error, Host_EndGame, realtime } from './host.js';
-import { set_noclip_anglehack } from './host_cmd.js';
+import { Host_Error, Host_EndGame, realtime } from './engine/server/host.js';
+import { set_noclip_anglehack } from './engine/server/host_cmd.js';
 import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
 import { CL_ParseTEnt } from './cl_tent.js';
 import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from './snd_dma.js';

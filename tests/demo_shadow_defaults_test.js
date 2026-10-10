@@ -1,12 +1,12 @@
 // Demo intent/preferences through public playback commands and actual beam API.
 // A header-only in-memory demo drives no map, server, renderer or game loop.
 import * as THREE from 'three';
-import * as vars from '../src/cvar.js';
-import * as cmd from '../src/cmd.js';
+import * as vars from '../src/engine/common/cvar.js';
+import * as cmd from '../src/engine/common/cmd.js';
 import * as client from '../src/cl_main.js';
 import * as demo from '../src/cl_demo.js';
 import { cls, ca_disconnected } from '../src/client.js';
-import { COM_AddPack } from '../src/pak.js';
+import { COM_AddPack } from '../src/engine/common/pak.js';
 import * as split from '../src/r_demosplit.js';
 import * as perf from '../src/r_perf.js';
 import * as post from '../src/gl_post.js';

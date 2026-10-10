@@ -1,27 +1,27 @@
 // Actual native server, reciprocal loopback sockets, public renderer new-map,
 // client command and host physics endpoints. GPU readiness remains a browser test.
 import {readFileSync} from 'node:fs';
-import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init} from '../src/gl_model.js';
-import {PR_InitBuiltins} from '../src/pr_cmds.js';
-import {PR_ExecuteProgram} from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import {sv,svs,client_t,FL_ONGROUND} from '../src/server.js';
-import {SV_Init,SV_SpawnServer} from '../src/sv_main.js';
-import * as host from '../src/host.js';
+import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
+import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import {sv,svs,client_t,FL_ONGROUND} from '../src/engine/server/server.js';
+import {SV_Init,SV_SpawnServer} from '../src/engine/server/sv_main.js';
+import * as host from '../src/engine/server/host.js';
 import * as client from '../src/cl_main.js';
 import {cl,cls,ca_connected,ca_disconnected} from '../src/client.js';
 import * as main from '../src/gl_rmain.js';
 import {R_DrawWorld,R_DemonReliefStatus} from '../src/gl_rsurf.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as boot from '../src/r_demoloading.js';
 import {R_DemonBakeStatus} from '../src/r_demonbakes.js';
 import {NET_Init,NET_Connect,NET_CheckNewConnections,NET_Shutdown} from '../src/net_main.js';
-import {Cbuf_Init,Cmd_Init} from '../src/cmd.js';
+import {Cbuf_Init,Cmd_Init} from '../src/engine/common/cmd.js';
 import {set_key_dest,key_game} from '../src/keys.js';
-import {SZ_Clear,MSG_WriteByte} from '../src/common.js';
+import {SZ_Clear,MSG_WriteByte} from '../src/engine/common/common.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 Deno.test('actual paired Newer arrivals hold native time/input before preparation; Classic, recorded, network and stale peers never acquire the hold',()=>{
  const pack=readFileSync(new URL('../pak0.pak',import.meta.url));COM_AddPack(COM_LoadPackFile('custom-arrival-native',pack.buffer.slice(pack.byteOffset,pack.byteOffset+pack.length)));VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);Mod_Init();PR_InitBuiltins();Cbuf_Init();Cmd_Init();client.CL_Init();SV_Init();main.R_Init();svs.maxclients=svs.maxclientslimit=1;svs.clients=[new client_t()];NET_Init();vars.Cvar_SetValue('r_hdr',1);sv.active=false;SV_SpawnServer('e1m1');const serverClient=svs.clients[0],p=serverClient.edict;progs.pr_global_struct.self=progs.EDICT_TO_PROG(p);PR_ExecuteProgram(progs.pr_global_struct.SetNewParms);PR_ExecuteProgram(progs.pr_global_struct.ClientConnect);PR_ExecuteProgram(progs.pr_global_struct.PutClientInServer);const local=NET_Connect('local'),peer=NET_CheckNewConnections();check(local&&peer&&local.driverdata===peer&&peer.driverdata===local,'real native loopback pair');serverClient.netconnection=peer;serverClient.active=true;serverClient.spawned=false;cls.netcon=local;cls.state=ca_connected;cls.signon=4;cls.demoplayback=false;cl.worldmodel=sv.worldmodel;cl.model_precache=sv.models.slice();cl.maxclients=1;cl.movemessages=4;set_key_dest(key_game);host.set_host_frametime(.02);

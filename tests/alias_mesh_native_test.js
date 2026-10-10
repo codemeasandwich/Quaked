@@ -3,7 +3,7 @@
 // strip/fan code, not from the optimized cache or generated baked records.
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/pak.js';
+import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import {AliasMeshSignature} from '../src/alias_mesh_format.js';

@@ -6,7 +6,7 @@ import zipfile,struct,json,hashlib,ast,re,io,argparse
 import numpy as np
 from PIL import Image
 p=argparse.ArgumentParser();p.add_argument('--archive',type=Path,required=True);p.add_argument('--root',type=Path,required=True);p.add_argument('--out',type=Path,required=True);cfg=p.parse_args();cfg.out.mkdir(parents=True,exist_ok=True)
-text=(cfg.root/'src/anorm_dots.js').read_text();table=np.array(ast.literal_eval(re.search(r'export const r_avertexnormals = (\[.*?\]);',text,re.S).group(1)))
+text=(cfg.root/'src/engine/common/anorm_dots.js').read_text();table=np.array(ast.literal_eval(re.search(r'export const r_avertexnormals = (\[.*?\]);',text,re.S).group(1)))
 def winding(points,normals,triangles):
  tris=np.array(triangles);cross=np.cross(points[tris[:,1]]-points[tris[:,0]],points[tris[:,2]]-points[tris[:,0]]);dot=(cross*normals[tris].mean(1)).sum(1);valid=np.linalg.norm(cross,axis=1)>1e-8
  reverse=np.median(dot[valid])<0

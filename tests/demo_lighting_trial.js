@@ -7,7 +7,7 @@ for(const kind of ['keydown','keyup','mousedown','mouseup','pointerdown','pointe
 await import('../main.js');
 while(!window.renderer)await new Promise(r=>setTimeout(r,50));
 const split=await import('../src/r_demosplit.js'),post=await import('../src/gl_post.js');
-const {Cvar_VariableValue}=await import('../src/cvar.js'),{cl,cls}=await import('../src/client.js');
+const {Cvar_VariableValue}=await import('../src/engine/common/cvar.js'),{cl,cls}=await import('../src/client.js');
 const renderer=window.renderer;let seen={enhanced:0,classic:0},compositor;const gpuErrors=[];
 const render=window.renderer.render;
 window.renderer.render=function(scene,camera){

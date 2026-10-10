@@ -3,7 +3,7 @@
 import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import * as THREE from 'three';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
 import { r_newer_textures, R_AnimSetClassicPass } from '../src/r_anim.js';
 import { R_NewerTextureUpgrade, R_NewerTextureSettled, R_ClassicTexture, R_NewerTexturesRevert } from '../src/r_newertextures.js';

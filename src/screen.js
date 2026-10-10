@@ -1,9 +1,9 @@
 // Ported from: WinQuake/screen.c, WinQuake/screen.h -- screen management (software renderer definitions)
 // Note: The GL path is in gl_screen.js. This provides shared screen state and cvars.
 
-import { Cvar_RegisterVariable } from './cvar.js';
-import { Cmd_AddCommand } from './cmd.js';
-import { Con_Printf } from './console.js';
+import { Cvar_RegisterVariable } from './engine/common/cvar.js';
+import { Cmd_AddCommand } from './engine/common/cmd.js';
+import { Con_Printf } from './engine/common/console.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { renderer } from './vid.js';
 

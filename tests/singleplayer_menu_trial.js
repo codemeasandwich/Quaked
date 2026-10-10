@@ -3,7 +3,7 @@ const controls=document.querySelector('section');
 for(const event of ['mousedown','mouseup','keydown','keyup','touchstart','touchend','pointerdown','pointerup'])controls.addEventListener(event,e=>e.stopPropagation());
 await import('../main.js');
 while(!window.Cbuf_AddText)await new Promise(r=>setTimeout(r,20));
-const draw=await import('../src/gl_draw.js'),menu=await import('../src/menu.js'),cmd=await import('../src/cmd.js'),keys=await import('../src/keys.js');
+const draw=await import('../src/gl_draw.js'),menu=await import('../src/menu.js'),cmd=await import('../src/engine/common/cmd.js'),keys=await import('../src/keys.js');
 const art=draw.Draw_CacheSinglePlayerMenu(),single=draw.Draw_CachePic('gfx/sp_menu.lmp'),main=draw.Draw_CachePic('gfx/mainmenu.lmp'),network=draw.Draw_CachePic('gfx/netmen4.lmp');
 const rgba=p=>p.canvas.getContext('2d').getImageData(0,0,p.width,p.height).data;
 const a=rgba(art),s=rgba(single),m=rgba(main),n=rgba(network);let checks=0,failures=0;const problems=[];

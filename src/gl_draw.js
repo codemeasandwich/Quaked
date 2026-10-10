@@ -1,12 +1,12 @@
 // Ported from: WinQuake/gl_draw.c -- GL 2D drawing functions
 // In browser port: uses a canvas 2D overlay context for HUD/menu/console drawing
 
-import { Con_Printf } from './console.js';
+import { Con_Printf } from './engine/common/console.js';
 import { Sbar_Changed } from './sbar.js';
-import { W_GetLumpName } from './wad.js';
+import { W_GetLumpName } from './engine/common/wad.js';
 import { d_8to24table as vid_d_8to24table } from './vid.js';
-import { COM_FindFile } from './pak.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
+import { COM_FindFile } from './engine/common/pak.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
 import { R_NewerHudCanvas } from './r_newerhud.js';
 import { BuildSinglePlayerMenuArt, BuildMenuTextArt } from './menu_art.js';
 

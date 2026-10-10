@@ -1,8 +1,8 @@
 // Depth of field (card [38]): the autofocus where the view looks (the median of five rays against the level), smoothed in
 // log distance over a quarter second on the client's clock, held while paused, snapped on a new level, a teleport or the
 // clock going back; off in Classic, at strength 0 and in WebXR; the circle of confusion scaled to the picture's height.
-import * as vars from '../src/cvar.js';
-import { cvar_t } from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import * as D from '../src/r_dof.js';
 const DEFAULT_STRENGTH = D.r_dof.string; // (as the module declares it, before any test sets it)
@@ -75,7 +75,7 @@ Deno.test( 'inside a wall the focus holds; along the ray the sky focuses far and
 } );
 
 Deno.test( 'the real E1M1 hull: a ray at the sky stops on its face, and knowing the sky faces makes it focus far', async () => {
-	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/pak.js' ), { VID_SetPalette } = await import( '../src/vid.js' ), M = await import( '../src/gl_model.js' );
+	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/engine/common/pak.js' ), { VID_SetPalette } = await import( '../src/vid.js' ), M = await import( '../src/gl_model.js' );
 	const data = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
 	VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); M.Mod_Init();
 	const e1m1 = M.Mod_ForName( 'maps/e1m1.bsp', true ), at = p => M.Mod_PointInLeaf( p, e1m1 ).contents;

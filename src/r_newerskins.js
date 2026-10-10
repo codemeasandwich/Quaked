@@ -26,11 +26,11 @@ import { R_LevelEntities } from './r_levelents.js';
 import { ACTOR_COAT_GLSL, ACTOR_COAT_MAP_GLSL, R_ActiveWeaponSurface, R_PlayerBodySurface } from './r_weapon_surface.js';
 import { R_WeaponStyleGLSL } from './r_weaponstyle.js';
 import { heightShadowUniforms, HEIGHT_SHADOW_GLSL } from './r_heightshadows.js';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { cl } from './client.js';
-import { PowerVisionMode } from './powervision_state.js';
+import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
 import { R_IsNewer, R_NewerLightingActive, r_newer_enemies, r_newer_normals } from './r_anim.js';
-import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
 import { R_NormalMapFor, R_HeightFromRGBA, R_MultiScaleHeight } from './gl_normals.js';
 
 // 1 = each monster picks one of its model's skins at random, 0 = always the first

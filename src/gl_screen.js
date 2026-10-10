@@ -2,7 +2,7 @@
 // Master for refresh, status bar, console, chat, notify, etc
 
 import { Con_Printf, Con_CheckResize, Con_DrawConsole, Con_DrawNotify, Con_ClearNotify,
-	con_forcedup, Con_SetForcedup, con_initialized } from './console.js';
+	con_forcedup, Con_SetForcedup, con_initialized } from './engine/common/console.js';
 import { R_PerfStage, R_PerfFpsText, R_PerfScreenLines } from './r_perf.js';
 import { Sbar_Draw, Sbar_Changed, Sbar_IntermissionOverlay, Sbar_FinaleOverlay, SBAR_HEIGHT, set_sb_lines as Sbar_set_sb_lines, Sbar_SetYOffset } from './sbar.js';
 import { Touch_BottomInset } from './touch.js';
@@ -12,11 +12,11 @@ import { R_BestiaryEncounterDraw } from './r_bestiary_book.js';
 import { Draw_Character, Draw_String, Draw_CachePic, Draw_Pic, Draw_FadeScreen, Draw_BeginFrame,
 	GL_Set2D, Draw_TileClear, Draw_PicFromWad, Draw_GetUIScale,
 	Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
-import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
+import { Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './engine/common/cvar.js';
 import { Respawn_NoticeAt } from './respawn_notice.js';
-import { Cmd_AddCommand } from './cmd.js';
+import { Cmd_AddCommand } from './engine/common/cmd.js';
 import { key_dest, key_game, key_console, key_message } from './keys.js';
-import { realtime, host_frametime } from './host.js';
+import { realtime, host_frametime } from './engine/server/host.js';
 import { renderer } from './vid.js';
 import { R_DemoLoadingHolding, R_DemoLoadingConsoleOverride, R_DemoLoadingConsoleDrawn, R_DemoLoadingConsoleClosed, R_DemoLoadingConsoleSpeed } from './r_demoloading.js';
 import { R_WelcomeLoadingHolding } from './r_demoloading.js';

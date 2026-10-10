@@ -1,11 +1,11 @@
 // Actual game/HUD startup and QC pickups. Only the trial player's position is
 // staged; native air, power-up durations, damage and facial state are not set.
 await import('./powerups_gameplay_trial.js');
-const {sv}=await import('../src/server.js'),{cl}=await import('../src/client.js');
-const {PR_GetString}=await import('../src/progs.js');
-const {SV_Move,SV_LinkEdict}=await import('../src/world.js');
-const {SV_CheckWater}=await import('../src/sv_phys.js');
-const {Cbuf_AddText}=await import('../src/cmd.js');
+const {sv}=await import('../src/engine/server/server.js'),{cl}=await import('../src/client.js');
+const {PR_GetString}=await import('../src/engine/progs/progs.js');
+const {SV_Move,SV_LinkEdict}=await import('../src/engine/server/world.js');
+const {SV_CheckWater}=await import('../src/engine/server/sv_phys.js');
+const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
 const {R_PlayerFaceFrame}=await import('../src/r_facegame.js');
 const {R_PlayerFaceCompose,R_PlayerFaceStatus}=await import('../src/r_playerface.js');
 const panel=document.querySelector('section'),report=document.createElement('pre'),canvas=document.createElement('canvas');

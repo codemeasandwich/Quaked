@@ -3,7 +3,7 @@
 await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const post = await import( '../src/gl_post.js' ), anim = await import( '../src/r_anim.js' );
-const vars = await import( '../src/cvar.js' ), flashlight = await import( '../src/r_flashlight.js' );
+const vars = await import( '../src/engine/common/cvar.js' ), flashlight = await import( '../src/r_flashlight.js' );
 const surf = await import( '../src/gl_rsurf.js' ), probes = await import( '../src/r_waterprobe.js' );
 
 function equal( actual, expected, label ) {

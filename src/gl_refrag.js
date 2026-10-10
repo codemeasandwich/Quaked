@@ -1,7 +1,7 @@
 // Ported from: WinQuake/gl_refrag.c -- entity fragment functions
 
-import { Con_Printf } from './console.js';
-import { CONTENTS_SOLID } from './bspfile.js';
+import { Con_Printf } from './engine/common/console.js';
+import { CONTENTS_SOLID } from './engine/common/bspfile.js';
 
 /*
 ===============================================================================

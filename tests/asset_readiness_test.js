@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { R_AnimSetNewer, R_AnimSetLighting, R_AnimSetClassicPass, r_newer_normals, r_newer_textures, r_newer_enemies } from '../src/r_anim.js';
 import { r_hdr } from '../src/gl_post.js';
-import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/cvar.js';
+import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );

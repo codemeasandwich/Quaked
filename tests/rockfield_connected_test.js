@@ -9,7 +9,7 @@ import { ROCK_PRESETS, R_RockPreset } from '../src/rockfield_presets.js';
 import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialProfile } from '../src/r_rocksurfaces.js';
 import { R_RockfieldBuild, R_RockfieldGeometry, RockTileCache, rockUniforms } from '../src/r_rockfield.js';
 import { DrawGLPoly, GL_BuildLightmaps, R_DrawBrushModel } from '../src/gl_rsurf.js';
-import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/pak.js';
+import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { cl } from '../src/client.js';

@@ -2,7 +2,7 @@
 // No geometry, albedo or collision data is replaced. Workers are lazy and there
 // are only two outstanding jobs, with no unbounded queue.
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame, r_newer_normals } from './r_anim.js';
 import { R_RockSurfaceCharts, R_RockCoordinates } from './r_rocksurfaces.js';
 import { R_RockPreset } from './rockfield_presets.js';

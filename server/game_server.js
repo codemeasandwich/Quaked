@@ -4,18 +4,18 @@
 // Local dev:  deno run --allow-net --allow-read --unstable-net --config ../deno.json game_server.js
 // Production: deno run --allow-net --allow-read --unstable-net --config /opt/three-quake/deno.json /opt/three-quake/server/game_server.js
 
-import { Sys_Printf, Sys_FloatTime } from '../src/sys.js';
-import { COM_FetchPak, COM_AddPack, COM_SetLooseFileBasePath, COM_EnsureFile } from '../src/pak.js';
-import { Cbuf_Init, Cbuf_Execute, Cmd_Init } from '../src/cmd.js';
-import { Host_InitCommands } from '../src/host_cmd.js';
-import { deathmatch, samelevel, noexit, sys_ticrate } from '../src/host.js';
+import { Sys_Printf, Sys_FloatTime } from '../src/engine/common/sys.js';
+import { COM_FetchPak, COM_AddPack, COM_SetLooseFileBasePath, COM_EnsureFile } from '../src/engine/common/pak.js';
+import { Cbuf_Init, Cbuf_Execute, Cmd_Init } from '../src/engine/common/cmd.js';
+import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
+import { deathmatch, samelevel, noexit, sys_ticrate } from '../src/engine/server/host.js';
 import { cls, ca_dedicated } from '../src/client.js';
-import { Memory_Init } from '../src/zone.js';
-import { PR_Init } from '../src/pr_edict.js';
-import { SV_Init, SV_SpawnServer, SV_CheckForNewClients, SV_SendClientMessages, SV_ClearDatagram } from '../src/sv_main.js';
-import { SV_Physics, SV_SetFrametime } from '../src/sv_phys.js';
-import { SV_RunClients } from '../src/sv_user.js';
-import { svs, sv, client_t } from '../src/server.js';
+import { Memory_Init } from '../src/engine/common/zone.js';
+import { PR_Init } from '../src/engine/progs/pr_edict.js';
+import { SV_Init, SV_SpawnServer, SV_CheckForNewClients, SV_SendClientMessages, SV_ClearDatagram } from '../src/engine/server/sv_main.js';
+import { SV_Physics, SV_SetFrametime } from '../src/engine/server/sv_phys.js';
+import { SV_RunClients } from '../src/engine/server/sv_user.js';
+import { svs, sv, client_t } from '../src/engine/server/server.js';
 import { Mod_Init, R_InitTextures } from '../src/gl_model.js';
 import { NET_Init, set_listening } from '../src/net_main.js';
 import { net_drivers, set_net_numdrivers, set_net_driverlevel } from '../src/net.js';

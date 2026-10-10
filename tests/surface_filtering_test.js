@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as heights from '../src/r_heightshadows.js';
 import { createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
 import { R_NormalsFromHeight, R_NormalsFromCraftedHeight } from '../src/gl_normals.js';

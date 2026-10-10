@@ -14,7 +14,7 @@
 
 import {R_NormalPrepared,R_NormalPrepare,R_NormalPreparationNeeded} from './normal_prepare.js';
 import { R_NewerGame, r_newer_textures } from './r_anim.js';
-import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
 import * as THREE from 'three';
 import { gl_texturemode } from './glquake.js';
 

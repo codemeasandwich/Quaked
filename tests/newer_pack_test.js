@@ -1,4 +1,4 @@
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import { Lit_Parse, Ent_Parse, LIT_MAGIC } from '../src/lit.js';
 
 function assertEqual( actual, expected, message ) {

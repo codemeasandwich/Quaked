@@ -3,7 +3,7 @@
 // finite model_lighting_gpu_trial, not inferred from these compiler checks.
 import * as THREE from 'three';
 import {readFileSync} from 'node:fs';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import * as main from '../src/gl_rmain.js';
@@ -12,10 +12,10 @@ import {R_TranslatePlayerSkin,R_GetPlayerSkinTexture} from '../src/gl_rmisc.js';
 import * as skins from '../src/r_newerskins.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import {r_newer_weapons} from '../src/r_weapons.js';
 import {weaponSurface,WeaponSurfaceState,R_ActiveWeaponSurface,R_PlayerBodySurface,R_WeaponSurfaceContext,R_PlayerSurfaceBlood,R_WeaponSurfaceBloodAt,R_WeaponSurfaceFrame} from '../src/r_weapon_surface.js';
-import * as common from '../src/common.js';
+import * as common from '../src/engine/common/common.js';
 import {V_ParseDamage} from '../src/view.js';
 import {R_InitParticles,R_SetParticleExternals,R_ClearParticles,R_RunParticleEffect} from '../src/r_part.js';
 import {cls,cl,cl_entities,cl_visedicts,cl_dlights,set_cl_numvisedicts} from '../src/client.js';

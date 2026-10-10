@@ -5,7 +5,7 @@ import {PreparedLoad} from './prepared_transport.js';
 import {PREPARED_CORPUS} from './prepared_corpus.js';
 import {DEMON_BAKES} from './demon_bakes.js';
 import {DemonBakeDecode,DemonBakeEncode,DEMON_BAKE_VERSION,DemonSurfaceSignature,DemonFieldSettings} from './demon_bake_format.js';
-import {COM_FindFile,COM_NewerURL} from './pak.js';
+import {COM_FindFile,COM_NewerURL} from './engine/common/pak.js';
 const sourceKeys=new WeakMap(),entries=new Map(),content=new Map(),fields=new WeakMap();
 const unprepared={status:'unprepared',data:null};
 let active=null,surfaces=new Map();

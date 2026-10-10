@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {Script} from 'node:vm';
 import {BESTIARY_ENTRIES,BESTIARY_SPREADS,Bestiary_SpreadMapping} from '../src/bestiary_state.js';
 import * as keys from '../src/keys.js';
-import * as cmd from '../src/cmd.js';
+import * as cmd from '../src/engine/common/cmd.js';
 import * as menu from '../src/menu.js';
 import * as draw from '../src/gl_draw.js';
 import {BuildMenuTextArt} from '../src/menu_art.js';

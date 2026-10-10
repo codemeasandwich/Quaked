@@ -4,10 +4,10 @@ await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const { cl } = await import( '../src/client.js' );
 const glquake = await import( '../src/glquake.js' );
-const { sv_gravity } = await import( '../src/sv_phys.js' );
+const { sv_gravity } = await import( '../src/engine/server/sv_phys.js' );
 const {
 	Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set
-} = await import( '../src/cvar.js' );
+} = await import( '../src/engine/common/cvar.js' );
 const {
 	R_InitParticles, R_SetParticleExternals, R_ClearParticles,
 	R_RocketTrail, R_DrawParticles

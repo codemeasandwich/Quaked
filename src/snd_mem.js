@@ -1,8 +1,8 @@
 // Ported from: WinQuake/snd_mem.c -- sound caching and WAV loading
 
-import { Con_Printf } from './console.js';
-import { COM_LoadFile } from './pak.js';
-import { Sys_Error } from './sys.js';
+import { Con_Printf } from './engine/common/console.js';
+import { COM_LoadFile } from './engine/common/pak.js';
+import { Sys_Error } from './engine/common/sys.js';
 import {
 	sfxcache_t, wavinfo_t,
 	shm, loadas8bit

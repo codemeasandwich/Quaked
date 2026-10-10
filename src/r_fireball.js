@@ -17,8 +17,8 @@
 // instance buffers. Nothing is simulated or retained per particle, and the per-frame path writes
 // scalars into preallocated typed arrays.
 import * as THREE from 'three';
-import { COM_NewerURL } from './pak.js';
-import { cvar_t } from './cvar.js';
+import { COM_NewerURL } from './engine/common/pak.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { clamp, mix, smooth, hashJS } from './fx_math.js';
 import { SMOKE, alphaBoost, forEachSmoke, R_SmokeTrailEmit, R_SmokeTrailClear, R_SmokeTrailCount } from './r_smoketrail.js';
 import { R_NewerGame } from './r_anim.js';

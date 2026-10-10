@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';
 import {NormalInputs,NormalInputKey} from '../src/normal_prepare.js';
 const report=document.querySelector('#report'),views=document.querySelector('#views'),button=document.querySelector('#run'),download=document.querySelector('#download');

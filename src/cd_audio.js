@@ -1,10 +1,10 @@
 // Ported from: WinQuake/cd_audio.c -- CD audio playback
 // In browser port: uses Web Audio API (HTML5 Audio element) for music tracks
 
-import { Con_Printf, Con_DPrintf } from './console.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
-import { Cvar_SetValue } from './cvar.js';
-import { COM_CheckParm } from './common.js';
+import { Con_Printf, Con_DPrintf } from './engine/common/console.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
+import { Cvar_SetValue } from './engine/common/cvar.js';
+import { COM_CheckParm } from './engine/common/common.js';
 import { bgmvolume } from './sound.js';
 import { S_GetAudioContext } from './snd_dma.js';
 

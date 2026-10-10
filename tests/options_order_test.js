@@ -1,5 +1,5 @@
 await import('../src/gl_rsurf.js');
-const cmd=await import('../src/cmd.js'),menu=await import('../src/menu.js'),keys=await import('../src/keys.js'),draw=await import('../src/gl_draw.js'),cvar=await import('../src/cvar.js');
+const cmd=await import('../src/engine/common/cmd.js'),menu=await import('../src/menu.js'),keys=await import('../src/keys.js'),draw=await import('../src/gl_draw.js'),cvar=await import('../src/engine/common/cvar.js');
 const expected=['Newer Game features','Customize controls','Performance profiler','Go to console','Reset to defaults','FPS counter','Texture Filtering','Screen size','Brightness','Mouse Speed','Sound Volume','Music Volume','Always Run','Invert Mouse','Lookspring','Lookstrafe','Crosshair','Cheats'];
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 Deno.test('options order, widgets, keyboard and touch dispatch match the visible rows',async()=>{

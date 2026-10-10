@@ -1,17 +1,17 @@
-import { CONTENTS_EMPTY } from '../src/bspfile.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { OFS_PARM0, OFS_RETURN } from '../src/pr_comp.js';
-import { PR_AllocEdicts } from '../src/pr_edict.js';
+import { CONTENTS_EMPTY } from '../src/engine/common/bspfile.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { OFS_PARM0, OFS_RETURN } from '../src/engine/progs/pr_comp.js';
+import { PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
 import {
 	pr_builtins, pr_numbuiltins, pr_global_struct,
 	pr_globals_float, pr_globals_int, sv as progs_sv,
 	PR_SetBuiltins, PR_SetGlobalStruct, PR_SetGlobalsFloat, PR_SetGlobalsInt, PR_SetSV,
-} from '../src/progs.js';
+} from '../src/engine/progs/progs.js';
 import {
 	MOVETYPE_PUSH, SOLID_BBOX, SOLID_BSP, sv, teamplay,
-} from '../src/server.js';
-import { sv_aim } from '../src/sv_main.js';
-import { SV_ClearWorld, SV_LinkEdict } from '../src/world.js';
+} from '../src/engine/server/server.js';
+import { sv_aim } from '../src/engine/server/sv_main.js';
+import { SV_ClearWorld, SV_LinkEdict } from '../src/engine/server/world.js';
 
 function assertNear( actual, expected, epsilon, message ) {
 

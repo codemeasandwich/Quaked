@@ -1,7 +1,7 @@
 // WebTransport network driver for multiplayer support
 // New module for browser-based WebTransport client connections
 
-import { Con_Printf, Con_DPrintf, SZ_Clear, SZ_Write } from './common.js';
+import { Con_Printf, Con_DPrintf, SZ_Clear, SZ_Write } from './engine/common/common.js';
 import { NET_NewQSocket, NET_FreeQSocket } from './net_main.js';
 import {
 	NET_MAXMESSAGE,

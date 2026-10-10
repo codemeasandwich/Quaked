@@ -3,7 +3,7 @@ import { R_LightCone } from './r_fixturelights.js';
 // Callers own height samplers and the frozen pre-HDR light ordering. This module
 // neither imports the renderer pipeline nor changes geometry/albedo/emission.
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 
 export const r_heightshadows = new cvar_t( 'r_heightshadows', '1', true );
 export const HEIGHT_SHADOW_POINTS = 8;

@@ -3,7 +3,7 @@
 import '../src/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/r_anim.js';
 import * as rock from '../src/r_rockfield.js';
 import { DrawGLPoly } from '../src/gl_rsurf.js';

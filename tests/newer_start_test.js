@@ -3,11 +3,11 @@
 // are applied BEFORE dispatch, without starting an extra server/browser loop.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import * as cmd from '../src/cmd.js';
+import * as cmd from '../src/engine/common/cmd.js';
 import * as menu from '../src/menu.js';
 import * as keys from '../src/keys.js';
 import * as draw from '../src/gl_draw.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/r_anim.js';
 import * as post from '../src/gl_post.js';
 import * as rock from '../src/r_rockfield.js';
@@ -19,10 +19,10 @@ import { r_decals } from '../src/r_decals.js';
 import { r_flashlight } from '../src/r_flashlight.js';
 import { cl_showfps } from '../src/r_perf.js';
 import { v_gamma } from '../src/view.js';
-import { skill } from '../src/server.js';
+import { skill } from '../src/engine/server/server.js';
 import { cls, ca_disconnected } from '../src/client.js';
 import * as split from '../src/r_demosplit.js';
-import { COM_AddPack, COM_LoadPackFile } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile } from '../src/engine/common/pak.js';
 import { R_NewerTexturesStatus } from '../src/r_newertextures.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 // Literal owner-contract oracle, deliberately not imported from newer_defaults.

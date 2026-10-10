@@ -3,20 +3,20 @@
 // owner visual acceptance and raster occlusion remain separate browser checks.
 import * as THREE from 'three';
 import {readFileSync} from 'node:fs';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import * as main from '../src/gl_rmain.js';
 import * as weapons from '../src/r_weapons.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as view from '../src/view.js';
 import {r_hdr} from '../src/gl_post.js';
 import {cl,cls,cl_entities} from '../src/client.js';
 import {r_refdef,entity_t} from '../src/render.js';
-import {STAT_HEALTH,STAT_WEAPON,STAT_WEAPONFRAME} from '../src/quakedef.js';
+import {STAT_HEALTH,STAT_WEAPON,STAT_WEAPONFRAME} from '../src/engine/common/quakedef.js';
 import {cl_simvel,set_cl_simonground} from '../src/cl_pred.js';
-import {set_host_frametime} from '../src/host.js';
+import {set_host_frametime} from '../src/engine/server/host.js';
 const check=(value,message)=>{if(!value)throw Error(message);},same=(a,b,message)=>check(a===b,`${message}: ${a} != ${b}`),near=(a,b,message,tolerance=1e-5)=>check(Math.abs(a-b)<=tolerance,`${message}: ${a} != ${b}`);
 const read=path=>readFileSync(new URL('../'+path,import.meta.url)),oldFetch=globalThis.fetch,oldLoad=THREE.TextureLoader.prototype.load;
 globalThis.fetch=async path=>{try{return{ok:true,json:async()=>JSON.parse(read(String(path).split('?')[0]))};}catch{return{ok:false};}};

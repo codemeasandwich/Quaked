@@ -1,7 +1,7 @@
 // Ported from: WinQuake/net.h -- quake's interface to the networking layer
 
-import { MAX_DATAGRAM } from './quakedef.js';
-import { sizebuf_t } from './common.js';
+import { MAX_DATAGRAM } from './engine/common/quakedef.js';
+import { sizebuf_t } from './engine/common/common.js';
 
 //============================================================================
 // Network constants

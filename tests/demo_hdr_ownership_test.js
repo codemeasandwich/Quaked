@@ -2,8 +2,8 @@
 // Header-only demo and availability-only BSP fixtures create no world/browser.
 // The map command endpoint observes the real CL_Disconnect ownership boundary;
 // it does not claim server spawning, GPU readiness or browser qualification.
-import * as vars from '../src/cvar.js';
-import * as cmd from '../src/cmd.js';
+import * as vars from '../src/engine/common/cvar.js';
+import * as cmd from '../src/engine/common/cmd.js';
 import * as client from '../src/cl_main.js';
 import * as demo from '../src/cl_demo.js';
 import * as split from '../src/r_demosplit.js';
@@ -12,11 +12,11 @@ import * as keys from '../src/keys.js';
 import * as draw from '../src/gl_draw.js';
 import * as post from '../src/gl_post.js';
 import { cls, ca_disconnected } from '../src/client.js';
-import { COM_AddPack } from '../src/pak.js';
+import { COM_AddPack } from '../src/engine/common/pak.js';
 import { NEWER_ENABLED_FEATURES } from '../src/newer_defaults.js';
-import { Host_InitCommands } from '../src/host_cmd.js';
+import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import { NET_Init, NET_Shutdown } from '../src/net_main.js';
-import { svs } from '../src/server.js';
+import { svs } from '../src/engine/server/server.js';
 
 const check = ( value, label ) => { if ( ! value ) throw Error( label ); };
 const same = ( actual, expected, label ) => check( actual === expected, `${label}: expected ${expected}, got ${actual}` );

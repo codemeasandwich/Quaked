@@ -3,30 +3,30 @@
 // the real T_Damage and SpawnMeatSpray. Classic keeps Quake's.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { ED_FindFunction, ED_NewString, ED_Write, ED_ParseEdict, ED_Alloc, ED_Free, GetEdictFieldValue } from '../src/pr_edict.js';
-import { OFS_PARM0 } from '../src/pr_comp.js';
-import { sv, svs, client_t, FL_MONSTER, FL_ONGROUND } from '../src/server.js';
-import { SV_SpawnServer, SV_CheckForNewClients, SV_SaveSpawnparms, SV_ClearCarriedPowerups, SV_WriteClientdataToMessage } from '../src/sv_main.js';
-import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../src/world.js';
-import { SV_Physics, SV_Physics_Client, SV_Physics_Toss, SV_SetPlayer, SV_SetFrametime, SV_PushEntity, sv_gravity } from '../src/sv_phys.js';
-import * as travel from '../src/sv_seamless.js';
-import * as respawn from '../src/sv_respawn.js';
-import {Respawn_DropAmmo} from '../src/respawn_record.js';
-import * as vars from '../src/cvar.js';
-import { Cbuf_Init, Cbuf_Execute, Cmd_AddCommand, Cmd_ExecuteString, src_command } from '../src/cmd.js';
-import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/common.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { ED_FindFunction, ED_NewString, ED_Write, ED_ParseEdict, ED_Alloc, ED_Free, GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
+import { OFS_PARM0 } from '../src/engine/progs/pr_comp.js';
+import { sv, svs, client_t, FL_MONSTER, FL_ONGROUND } from '../src/engine/server/server.js';
+import { SV_SpawnServer, SV_CheckForNewClients, SV_SaveSpawnparms, SV_ClearCarriedPowerups, SV_WriteClientdataToMessage } from '../src/engine/server/sv_main.js';
+import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../src/engine/server/world.js';
+import { SV_Physics, SV_Physics_Client, SV_Physics_Toss, SV_SetPlayer, SV_SetFrametime, SV_PushEntity, sv_gravity } from '../src/engine/server/sv_phys.js';
+import * as travel from '../src/newer/gameplay/sv_seamless.js';
+import * as respawn from '../src/newer/gameplay/sv_respawn.js';
+import {Respawn_DropAmmo} from '../src/newer/gameplay/respawn_record.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { Cbuf_Init, Cbuf_Execute, Cmd_AddCommand, Cmd_ExecuteString, src_command } from '../src/engine/common/cmd.js';
+import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/engine/common/common.js';
 import { CL_ParseServerMessage } from '../src/cl_parse.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
+import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connected, ca_dedicated } from '../src/client.js';
-import * as Q from '../src/quakedef.js';
+import * as Q from '../src/engine/common/quakedef.js';
 import { R_LevelEntities } from '../src/r_levelents.js';
 import { NET_Init, NET_Close } from '../src/net_main.js';
 import { Loop_Connect, Loop_CheckNewConnections } from '../src/net_loop.js';
@@ -34,7 +34,7 @@ import { V_Init, V_CalcRefdef } from '../src/view.js';
 import * as render from '../src/gl_rmain.js';
 import { r_refdef, entity_t } from '../src/render.js';
 import { R_DrawAliasModel } from '../src/gl_mesh.js';
-import { Host_InitCommands } from '../src/host_cmd.js';
+import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import { Respawn_Sample } from '../src/respawn_motion.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-4)=>check(Math.abs(a-b)<e,`${m}: ${a} != ${b}`);
 const pools=['ammo_shells','ammo_nails','ammo_rockets','ammo_cells'], weapons=[1,2,4,8,16,32,64],powerFields=['invisible_finished','invincible_finished','super_damage_finished','radsuit_finished','invisible_time','invincible_time','super_time','rad_time'];
@@ -52,8 +52,8 @@ function kill(p,command=false){if(command)call(p,'ClientKill');else{const world=
 function at(p,time){sv.time=time;progs.pr_global_struct.time=time;SV_SetFrametime(.01);SV_Physics_Client(p,1);}
 function finish(p){const s=p._respawn.sequence,cut=s.at+.22+s.turn/2+1e-6,end=s.at+.22+s.turn+.001;if(sv.time<cut)at(p,cut);check(s.respawned,'native physics reaches contact');if(sv.time<end)at(p,end);check(!p._respawn.sequence,'native physics finishes sequence');}
 
-import { SV_TestEntityPosition } from '../src/world.js';
-import { meleeStats, BLOOD } from '../src/sv_meleespray.js';
+import { SV_TestEntityPosition } from '../src/engine/server/world.js';
+import { meleeStats, BLOOD } from '../src/newer/gameplay/sv_meleespray.js';
 const gibs=()=>sv.edicts.filter(e=>e&&!e.free&&text(e.v.model)==='progs/zom_gib.mdl').length;
 const monster=(cls)=>{const m=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)===cls&&e.v.health>0);check(m,'a '+cls+' in E1M5');return m;};
 // the victim is moved beside the attacker (where the level put it), the attacker faces it with the victim as its enemy, and swings once

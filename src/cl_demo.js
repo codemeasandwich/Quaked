@@ -3,20 +3,20 @@
 import { R_DemoSplitStart, R_DemoSplitEnd } from './r_demosplit.js';
 import { R_DemoLoadingAttract, R_DemoLoadingFreeze, R_DemoLoadingCancel } from './r_demoloading.js';
 import { R_PerfProfiling } from './r_perf.js';
-import { MAX_MSGLEN } from './quakedef.js';
+import { MAX_MSGLEN } from './engine/common/quakedef.js';
 import { Con_Printf, Con_DPrintf, SZ_Clear,
 	MSG_WriteByte, MSG_WriteString,
 	LittleLong, LittleFloat,
-	net_message, COM_DefaultExtension } from './common.js';
-import { Sys_Error } from './sys.js';
-import { Cmd_Argc, Cmd_Argv, Cmd_ExecuteString, cmd_source, src_command } from './cmd.js';
-import { svc_nop, svc_disconnect } from './protocol.js';
-import { VectorCopy } from './mathlib.js';
+	net_message, COM_DefaultExtension } from './engine/common/common.js';
+import { Sys_Error } from './engine/common/sys.js';
+import { Cmd_Argc, Cmd_Argv, Cmd_ExecuteString, cmd_source, src_command } from './engine/common/cmd.js';
+import { svc_nop, svc_disconnect } from './engine/common/protocol.js';
+import { VectorCopy } from './engine/common/mathlib.js';
 import { SIGNONS, cl, cls, ca_disconnected, ca_connected } from './client.js';
 import { CL_Disconnect } from './cl_main.js';
-import { host_framecount, realtime } from './host.js';
+import { host_framecount, realtime } from './engine/server/host.js';
 import { NET_GetMessage } from './net_main.js';
-import { COM_FindFile } from './pak.js';
+import { COM_FindFile } from './engine/common/pak.js';
 
 /*
 ==============================================================================

@@ -2,7 +2,7 @@
 // No second animation loop, scene traversal, gameplay timer or HUD pass.
 import * as THREE from 'three';
 import { FULLSCREEN_VERTEX, UNSEEN_FRAGMENT, HISTORY_FRAGMENT, DEMON_FRAGMENT } from './powervision_shaders.js';
-import { PowerVisionHistory } from './powervision_state.js';
+import { PowerVisionHistory } from './newer/gameplay/powervision_state.js';
 import { VISION_COORDINATES_GLSL, VISION_PREVIOUS_COORDINATES_GLSL } from './vision_coordinates.js';
 
 export const POWER_VISION_PRESETS = Object.freeze({

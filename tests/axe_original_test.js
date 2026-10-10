@@ -9,8 +9,8 @@ const weapons = await import( '../src/r_weapons.js' );
 const anim = await import( '../src/r_anim.js' );
 const { R_SaveClassicScene } = await import( '../src/r_classicstate.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
-const { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } = await import( '../src/cvar.js' );
-const { r_avertexnormals } = await import( '../src/anorm_dots.js' );
+const { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
+const { r_avertexnormals } = await import( '../src/engine/common/anorm_dots.js' );
 const { cl } = await import( '../src/client.js' );
 
 const read = path => readFileSync( new URL( '../' + path, import.meta.url ) );

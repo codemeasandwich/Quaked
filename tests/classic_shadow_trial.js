@@ -11,12 +11,12 @@ try {
 	await import( '../main.js' );
 	while ( ! window.Cbuf_AddText || ! window.renderer ) { if ( performance.now() - started > 115000 ) throw new Error( 'Application startup exceeded 115 seconds' ); await sleep( 50 ); }
 	const renderer = window.renderer; renderer.setAnimationLoop( null );
-	const THREE = await import( 'three' ), { COM_FindFile } = await import( '../src/pak.js' );
+	const THREE = await import( 'three' ), { COM_FindFile } = await import( '../src/engine/common/pak.js' );
 	const { cl, cls, cl_entities } = await import( '../src/client.js' );
 	const { CL_PlayDemoFromData, CL_GetMessage } = await import( '../src/cl_demo.js' ), { CL_ParseServerMessage } = await import( '../src/cl_parse.js' );
 	const { CL_RelinkEntities } = await import( '../src/cl_main.js' ), { V_CalcRefdef } = await import( '../src/view.js' );
 	const { SCR_UpdateScreen, SCR_EndLoadingPlaque } = await import( '../src/gl_screen.js' );
-	const { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/cvar.js' ), keys = await import( '../src/keys.js' );
+	const { Cvar_SetValue, Cvar_VariableValue } = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/keys.js' );
 	const { R_DemoLoadingCancel } = await import( '../src/r_demoloading.js' ), { LoadingScreen_Remove } = await import( '../src/loading_screen.js' );
 	const { rockUniforms } = await import( '../src/r_rockfield.js' ), { heightShadowUniforms } = await import( '../src/r_heightshadows.js' );
 	const { classicLook } = await import( '../src/gl_post.js' ), { vid } = await import( '../src/vid.js' );

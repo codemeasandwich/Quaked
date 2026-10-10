@@ -1,11 +1,11 @@
 // Optional imported weapon art, fitted independently to the original held and
 // pickup MDLs by tools/import_weapons.py. Gameplay identities stay native.
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame, R_ClassicPassActive } from './r_anim.js';
-import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
 import { R_AssetAliasMaterial } from './r_newerskins.js';
-import { r_avertexnormals } from './anorm_dots.js';
+import { r_avertexnormals } from './engine/common/anorm_dots.js';
 
 export const r_newer_weapons = new cvar_t( 'r_newer_weapons', '1' );
 const BASE = 'newer/weapons/';

@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 import {createHash} from 'node:crypto';
 import {memberSearch,readMember,isolatedPack} from '../tools/pak_members.mjs';
-import {COM_AddPack,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/gl_model.js';
 import {VID_SetPalette,vid} from '../src/vid.js';
 import {GL_BuildLightmaps} from '../src/gl_rsurf.js';
@@ -13,7 +13,7 @@ import {cl} from '../src/client.js';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import {R_KnownFixtureSource,R_ExitFixturePairs,R_LightCone,R_LightConeFactor} from '../src/r_fixturelights.js';
 
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-9)=>check(Math.abs(a-b)<=e,`${m}: ${a} != ${b}`),vector=(a,b,m)=>{same(a.length,b.length,m+' length');a.forEach((v,i)=>near(v,b[i],m+' component'+i));},sha=b=>createHash('sha256').update(b).digest('hex');

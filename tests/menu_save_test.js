@@ -1,7 +1,7 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
 await import( '../src/gl_rsurf.js' );
 
-const cmd = await import( '../src/cmd.js' );
+const cmd = await import( '../src/engine/common/cmd.js' );
 const keys = await import( '../src/keys.js' );
 const menu = await import( '../src/menu.js' );
 

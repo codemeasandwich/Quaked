@@ -2,23 +2,23 @@
 // PVS contains ONLY a high leaf bit, so narrowing to16bits cannot pass by chance.
 import {readFileSync} from 'node:fs';
 import {BSP2,convertBsp29,widenFixture,splitBsp,joinBsp} from './helpers/bsp2_fixture.mjs';
-import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/gl_model.js';
-import {PR_InitBuiltins} from '../src/pr_cmds.js';
-import {PR_ExecuteProgram} from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import {ED_Alloc,ED_NewString} from '../src/pr_edict.js';
-import {sv,svs,client_t,SOLID_BBOX} from '../src/server.js';
-import {SV_SpawnServer,SV_SendClientMessages} from '../src/sv_main.js';
-import {SV_ClearWorld,SV_LinkEdict} from '../src/world.js';
+import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
+import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import {ED_Alloc,ED_NewString} from '../src/engine/progs/pr_edict.js';
+import {sv,svs,client_t,SOLID_BBOX} from '../src/engine/server/server.js';
+import {SV_SpawnServer,SV_SendClientMessages} from '../src/engine/server/sv_main.js';
+import {SV_ClearWorld,SV_LinkEdict} from '../src/engine/server/world.js';
 import {net_drivers} from '../src/net.js';
-import {Cbuf_Init} from '../src/cmd.js';
-import {Cvar_FindVar,Cvar_RegisterVariable,Cvar_SetValue} from '../src/cvar.js';
+import {Cbuf_Init} from '../src/engine/common/cmd.js';
+import {Cvar_FindVar,Cvar_RegisterVariable,Cvar_SetValue} from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/gl_post.js';
-import {skill} from '../src/host.js';
-import {sv_gravity,SV_SetPlayer} from '../src/sv_phys.js';
-import {SZ_Alloc,SZ_Clear} from '../src/common.js';
+import {skill} from '../src/engine/server/host.js';
+import {sv_gravity,SV_SetPlayer} from '../src/engine/server/sv_phys.js';
+import {SZ_Alloc,SZ_Clear} from '../src/engine/common/common.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 Deno.test('actual linked high-leaf entity survives expanded server fatPVS into the emitted native packet snapshot',()=>{
  const pack=readFileSync(new URL('../pak0.pak',import.meta.url));COM_AddPack(COM_LoadPackFile('wide-pvs-native',pack.buffer.slice(pack.byteOffset,pack.byteOffset+pack.length)));VID_SetPalette(COM_FindFile('gfx/palette.lmp').data);Mod_Init();PR_InitBuiltins();Cbuf_Init();for(const v of[r_hdr,skill,sv_gravity])if(!Cvar_FindVar(v.name))Cvar_RegisterVariable(v);Cvar_SetValue('r_hdr',0);Cvar_SetValue('skill',1);svs.maxclients=1;svs.clients=[new client_t()];sv.active=false;SV_SpawnServer('e1m1');const client=svs.clients[0],player=client.edict;progs.pr_global_struct.self=progs.EDICT_TO_PROG(player);PR_ExecuteProgram(progs.pr_global_struct.SetNewParms);PR_ExecuteProgram(progs.pr_global_struct.ClientConnect);PR_ExecuteProgram(progs.pr_global_struct.PutClientInServer);

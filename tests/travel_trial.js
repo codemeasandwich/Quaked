@@ -3,10 +3,10 @@ for(const type of ['mousedown','mouseup','keydown','keyup','pointerdown','pointe
 window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 await import('../main.js');const deadline=performance.now()+120000;
 while(!window.Cbuf_AddText){if(performance.now()>deadline)throw Error('Startup timeout');await new Promise(r=>setTimeout(r,50));}
-const {Cbuf_AddText}=await import('../src/cmd.js'),{Cvar_SetValue}=await import('../src/cvar.js');
-const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/server.js');
-const {SV_LinkEdict,SV_Move}=await import('../src/world.js'),{SV_PushEntity}=await import('../src/sv_phys.js');
-const seamless=await import('../src/sv_seamless.js'),{R_LevelPortalCount}=await import('../src/gl_portal.js');
+const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{Cvar_SetValue}=await import('../src/engine/common/cvar.js');
+const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js');
+const {SV_LinkEdict,SV_Move}=await import('../src/engine/server/world.js'),{SV_PushEntity}=await import('../src/engine/server/sv_phys.js');
+const seamless=await import('../src/newer/gameplay/sv_seamless.js'),{R_LevelPortalCount}=await import('../src/gl_portal.js');
 const {renderer}=await import('../src/vid.js');
 const keys=await import('../src/keys.js'),split=await import('../src/r_demosplit.js');
 let generation=0,ready=false,walk=null;

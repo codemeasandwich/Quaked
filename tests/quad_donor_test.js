@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { createHash } from 'node:crypto';
 import * as power from '../src/r_powerups.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/gl_post.js';
 import { entity_t } from '../src/render.js';
 const check=(x,s)=>{if(!x)throw Error(s)}, same=(a,b,s)=>check(a===b,`${s}: ${a} !== ${b}`), hash=s=>createHash('sha256').update(s).digest('hex');

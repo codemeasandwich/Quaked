@@ -1,7 +1,7 @@
 // Controlled in-game trial, using the actual renderer and option cvars.
 await import('../main.js');
 const vid=await import('../src/vid.js');
-const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/cvar.js');
+const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
 const {R_DynResScale}=await import('../src/gl_post.js');
 while(!window.Cbuf_AddText) await new Promise(r=>setTimeout(r,20));
 const renderer=vid.renderer;

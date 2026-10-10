@@ -3,10 +3,10 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {BSP2,PSB2,convertBsp29,splitBsp,joinBsp,widenFixture} from './helpers/bsp2_fixture.mjs';
-import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName,Mod_ClearAll,Mod_LeafPVS,Mod_DecompressVis,Mod_PointInLeaf} from '../src/gl_model.js';
-import {SV_HullPointContents,SV_RecursiveHullCheck,trace_t} from '../src/world.js';
+import {SV_HullPointContents,SV_RecursiveHullCheck,trace_t} from '../src/engine/server/world.js';
 import {R_ParseBsp} from '../src/r_levelgraph.js';
 import {R_BspTextureNames} from '../src/r_newertextures.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),hash=b=>createHash('sha256').update(b).digest('hex');

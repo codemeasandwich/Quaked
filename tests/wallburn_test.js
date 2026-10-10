@@ -4,8 +4,8 @@
 // is a small built level; the GPU passes go to a recording renderer (the browser check covers the pixels).
 await import( '../src/gl_rsurf.js' );
 import * as THREE from 'three';
-import * as vars from '../src/cvar.js';
-import { cvar_t } from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import * as W from '../src/r_wallburn.js';
 
@@ -206,7 +206,7 @@ Deno.test( 'Newer Game only: Classic and the switch take nothing (the pellets ke
 
 // review of [30c]: the real ray cast (the level's own hull 0, as the beam's plane and the sweep's occluder checks use)
 Deno.test( 'the level\'s own hull: the beam\'s ray in E1M1 meets the wall the browser trial burned, with that wall\'s plane facing back along the ray; rays in the open meet nothing', async () => {
-	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/pak.js' ), { VID_SetPalette } = await import( '../src/vid.js' ), { Mod_Init, Mod_ForName } = await import( '../src/gl_model.js' );
+	const { readFileSync } = await import( 'node:fs' ), pak = await import( '../src/engine/common/pak.js' ), { VID_SetPalette } = await import( '../src/vid.js' ), { Mod_Init, Mod_ForName } = await import( '../src/gl_model.js' );
 	const data = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', data.buffer.slice( data.byteOffset, data.byteOffset + data.length ) ) );
 	VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const e1m1 = Mod_ForName( 'maps/e1m1.bsp', true );

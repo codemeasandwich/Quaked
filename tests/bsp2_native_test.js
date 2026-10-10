@@ -1,10 +1,10 @@
 // Exact installed PAK member reads avoid materializing the725MiB MG1 archive.
 import {openSync,readSync,closeSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName,Mod_LeafPVS,Mod_PointInLeaf,Mod_ClearAll} from '../src/gl_model.js';
-import {SV_HullPointContents} from '../src/world.js';
+import {SV_HullPointContents} from '../src/engine/server/world.js';
 import {GL_BuildLightmaps,MAX_LIGHTMAPS,lightmapTextures} from '../src/gl_rsurf.js';
 import {cl} from '../src/client.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),hash=b=>createHash('sha256').update(b).digest('hex');

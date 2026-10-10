@@ -95,7 +95,7 @@ liveRenderer.render=function(scene,camera){
  }
  return originalRender.call(this,scene,camera);
 };
-const {Cvar_SetValue}=await import('./src/cvar.js');
+const {Cvar_SetValue}=await import('./src/engine/common/cvar.js');
 document.querySelector('#full-resolution').onclick=()=>Cvar_SetValue('r_dynres',0);
 document.querySelector('#dynamic-resolution').onclick=()=>Cvar_SetValue('r_dynres',1);
 </script>

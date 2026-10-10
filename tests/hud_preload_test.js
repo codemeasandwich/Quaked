@@ -5,7 +5,7 @@ const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/mani
 const faceSources=new Set(faceManifest.assets.map(a=>a.source).filter(Boolean));
 import { r_hdr } from '../src/gl_post.js';
 import { R_AnimSetClassicPass, r_newer_hud } from '../src/r_anim.js';
-import { Cvar_RegisterVariable, Cvar_FindVar } from '../src/cvar.js';
+import { Cvar_RegisterVariable, Cvar_FindVar } from '../src/engine/common/cvar.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( r_hdr );

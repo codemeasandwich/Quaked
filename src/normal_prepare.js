@@ -2,7 +2,7 @@ import {DisplacementStore,DisplacementKey,DisplacementHash,ReadPreparedPayload} 
 import {NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION} from './normal_bake_format.js';
 import {NORMAL_BAKES} from './normal_bakes.js';
 import {R_HeightFromRGBA,R_MultiScaleHeight,R_NormalsFromHeight,R_NormalsFromCraftedHeight} from './gl_normals.js';
-import {COM_NewerURL} from './pak.js';
+import {COM_NewerURL} from './engine/common/pak.js';
 import {NormalTransport} from './normal_transport.js';
 const store=new DisplacementStore(),jobs=new WeakMap();
 const copy=view=>view?new view.constructor(view):null;

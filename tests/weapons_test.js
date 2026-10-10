@@ -9,10 +9,10 @@ const shells = await import( '../src/r_shells.js' );
 const { R_ShellTrace } = await import( '../src/r_shelltrace.js' );
 const { R_DrawAliasModel, GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame } = await import( '../src/gl_mesh.js' );
 const anim = await import( '../src/r_anim.js' );
-const vars = await import( '../src/cvar.js' );
+const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { cl, cls } = await import( '../src/client.js' );
-const common = await import( '../src/common.js' );
+const common = await import( '../src/engine/common/common.js' );
 const { CL_ParseStartSoundPacket } = await import( '../src/cl_parse.js' );
 const { R_SaveClassicScene } = await import( '../src/r_classicstate.js' );
 

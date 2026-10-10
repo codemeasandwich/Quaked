@@ -1,8 +1,8 @@
 // Ported from: WinQuake/snd_dma.c -- main sound system using Web Audio API
 
-import { Cvar_RegisterVariable } from './cvar.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
-import { Con_Printf, Con_DPrintf } from './console.js';
+import { Cvar_RegisterVariable } from './engine/common/cvar.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
+import { Con_Printf, Con_DPrintf } from './engine/common/console.js';
 import {
 	sfx_t, sfxcache_t, channel_t, dma_t,
 	channels, MAX_CHANNELS, MAX_DYNAMIC_CHANNELS, NUM_AMBIENTS,

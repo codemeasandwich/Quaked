@@ -1,21 +1,21 @@
 import { R_PlayerSurfaceBlood } from './r_weapon_surface.js';
-import { PowerVisionMode } from './powervision_state.js';
+import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
 import { R_PostActive } from './gl_post.js';
 import { R_QuadVisionActive } from './r_quadvision.js';
 import { R_FaceDamage } from './r_facegame.js';
-import { SV_RespawnView } from './sv_respawn.js';
+import { SV_RespawnView } from './newer/gameplay/sv_respawn.js';
 // Ported from: WinQuake/view.c -- player eye positioning
 
 import { PITCH, YAW, ROLL,
 	IT_QUAD, IT_SUIT, IT_INVISIBILITY, IT_INVULNERABILITY,
-	STAT_HEALTH, STAT_WEAPON, STAT_WEAPONFRAME } from './quakedef.js';
-import { MSG_ReadByte, MSG_ReadCoord } from './common.js';
-import { Cmd_AddCommand, Cmd_Argv } from './cmd.js';
-import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './cvar.js';
+	STAT_HEALTH, STAT_WEAPON, STAT_WEAPONFRAME } from './engine/common/quakedef.js';
+import { MSG_ReadByte, MSG_ReadCoord } from './engine/common/common.js';
+import { Cmd_AddCommand, Cmd_Argv } from './engine/common/cmd.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_Set, Cvar_VariableValue } from './engine/common/cvar.js';
 import { VectorCopy, VectorAdd, VectorSubtract, VectorNormalize,
-	DotProduct, AngleVectors, anglemod, M_PI } from './mathlib.js';
-import { host_frametime, sv } from './host.js';
-import { noclip_anglehack } from './host_cmd.js';
+	DotProduct, AngleVectors, anglemod, M_PI } from './engine/common/mathlib.js';
+import { host_frametime, sv } from './engine/server/host.js';
+import { noclip_anglehack } from './engine/server/host_cmd.js';
 import { r_refdef } from './render.js';
 import {
 	CSHIFT_CONTENTS, CSHIFT_DAMAGE, CSHIFT_BONUS, CSHIFT_POWERUP,
@@ -25,7 +25,7 @@ import {
 import { cl_forwardspeed } from './cl_input.js';
 import { R_RenderView } from './gl_rmain.js';
 import { R_PushDlights } from './gl_rlight.js';
-import { con_forcedup } from './console.js';
+import { con_forcedup } from './engine/common/console.js';
 import { R_DemoLoadingHolding } from './r_demoloading.js';
 import { VID_UpdateGamma } from './vid.js';
 import { scr_viewsize } from './gl_screen.js';

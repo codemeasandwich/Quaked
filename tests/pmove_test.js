@@ -1,5 +1,5 @@
-import { CONTENTS_EMPTY, CONTENTS_SOLID } from '../src/bspfile.js';
-import { pmove, PM_HullPointContents, PM_PlayerMove } from '../src/pmove.js';
+import { CONTENTS_EMPTY, CONTENTS_SOLID } from '../src/engine/common/bspfile.js';
+import { pmove, PM_HullPointContents, PM_PlayerMove } from '../src/engine/server/pmove.js';
 
 function assertNear( actual, expected, epsilon, message ) {
 

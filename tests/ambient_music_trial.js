@@ -1,14 +1,14 @@
 await import( '../main.js' );
-const { Cbuf_AddText } = await import( '../src/cmd.js' );
-const { Cvar_SetValue } = await import( '../src/cvar.js' );
+const { Cbuf_AddText } = await import( '../src/engine/common/cmd.js' );
+const { Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
 const { R_DemoSplitRelease } = await import( '../src/r_demosplit.js' );
 const { S_UnlockAudio, S_GetAudioContext, S_GetMasterGain } = await import( '../src/snd_dma.js' );
 const { S_GetAmbientMusicStatus } = await import( '../src/s_ambientgame.js' );
 const music = await import( '../src/s_ambientmusic.js' );
 const keys = await import( '../src/keys.js' );
-const { sv, FL_MONSTER } = await import( '../src/server.js' );
+const { sv, FL_MONSTER } = await import( '../src/engine/server/server.js' );
 const { cl, cls } = await import( '../src/client.js' );
-const { ED_Alloc, ED_Free } = await import( '../src/pr_edict.js' );
+const { ED_Alloc, ED_Free } = await import( '../src/engine/progs/pr_edict.js' );
 while ( ! window.renderer ) await new Promise( r => setTimeout( r, 10 ) );
 const evidence = { checks: 0, failures: [], modes: {}, defaultSlotSeconds: music.AMBIENT_SLOT_SECONDS,
 	observations: { demoSilent: 0, classicSilent: 0, safeMoving: 0, enemySuppressed: 0, combatSuppressed: 0, creditsSilent: 0, actualPlayback: 0, swells: 0, transitions: 0, peakRms: 0 }, starts: [], duration: null, state: null };

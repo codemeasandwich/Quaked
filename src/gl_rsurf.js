@@ -2,7 +2,7 @@
 
 import * as THREE from 'three';
 import { R_RockfieldBuild, R_RockfieldChart, R_RockfieldGeometry, R_RockfieldUpdate, R_RockfieldBrushSeen } from './r_rockfield.js';
-import { Sys_Error } from './sys.js';
+import { Sys_Error } from './engine/common/sys.js';
 import { R_NewerGame, R_NewerLightingActive, r_newer_normals, r_newer_textures } from './r_anim.js';
 import { R_ArchSurfaceHidden, R_ArchModelHidden, R_ArchHiddenRevision, R_HasArchHidden } from './r_archframe.js';
 import { DEMON_TEXTURES, R_DemonSurfaceData } from './r_demonrelief.js';
@@ -72,9 +72,9 @@ import {
 import {
 	DotProduct, VectorCopy, VectorSubtract, VectorAdd, VectorNormalize,
 	AngleVectors, Length
-} from './mathlib.js';
+} from './engine/common/mathlib.js';
 import { Mod_LeafPVS, Mod_PointInLeaf, solidskytexture, alphaskytexture } from './gl_model.js';
-import { realtime } from './host.js';
+import { realtime } from './engine/server/host.js';
 
 //============================================================================
 // Constants

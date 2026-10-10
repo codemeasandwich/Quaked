@@ -1,8 +1,8 @@
 // Ported from: WinQuake/r_part.c -- particle system
 
 import * as THREE from 'three';
-import { VectorCopy, VectorSubtract, VectorNormalize } from './mathlib.js';
-import { r_avertexnormals } from './anorm_dots.js';
+import { VectorCopy, VectorSubtract, VectorNormalize } from './engine/common/mathlib.js';
+import { r_avertexnormals } from './engine/common/anorm_dots.js';
 import { d_8to24table } from './vid.js';
 import { cl as client_cl } from './client.js';
 import { GL_TextureLinear, GL_RegisterTexture } from './glquake.js';

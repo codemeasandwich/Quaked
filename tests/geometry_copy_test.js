@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {PointShadowAtlas,POINT_SHADOW_CELL_UNITS} from '../src/r_pointshadows.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),buffer=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);
 export function chunkCases(){
  const coordinates=Float32Array.from({length:180*3},(_,i)=>i%3===0?((i*71)%2000)-1000:i%3===1?((i*43)%1100)-550:((i*31)%800)-400),a=new THREE.BufferGeometry();a.setAttribute('position',new THREE.BufferAttribute(coordinates,3));

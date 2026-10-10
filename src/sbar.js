@@ -3,9 +3,9 @@ import { R_PlayerFaceFrame } from './r_facegame.js';
 import { R_PlayerFacePreload, R_PlayerFaceCompose } from './r_playerface.js';
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
 
-import { Cmd_AddCommand } from './cmd.js';
-import { realtime } from './host.js';
-import { Con_Printf } from './console.js';
+import { Cmd_AddCommand } from './engine/common/cmd.js';
+import { realtime } from './engine/server/host.js';
+import { Con_Printf } from './engine/common/console.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import {
 	IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN,
@@ -27,7 +27,7 @@ import {
 	RIT_ARMOR1, RIT_ARMOR2, RIT_ARMOR3,
 	RIT_LAVA_NAILS, RIT_PLASMA_AMMO, RIT_MULTI_ROCKETS,
 	RIT_SHIELD, RIT_ANTIGRAV, RIT_SUPERHEALTH,
-} from './quakedef.js';
+} from './engine/common/quakedef.js';
 
 /*
 ==============================================================================

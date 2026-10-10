@@ -7,9 +7,9 @@ const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function until(test,label){const end=performance.now()+180000;while(!test()){if(performance.now()>end)throw Error(label+' exceeded setup deadline');await sleep(100);}}
 await import('../main.js');await until(()=>window.Cbuf_AddText&&window.renderer,'native initialization');
 const menu=await import('../src/menu.js'),adapter=await import('../src/menu_webgl.js'),keys=await import('../src/keys.js');
-const {cl,cls}=await import('../src/client.js'),{sv,svs}=await import('../src/server.js');
-const {Cbuf_AddText,Cmd_ExecuteString}=await import('../src/cmd.js');
-const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/cvar.js');
+const {cl,cls}=await import('../src/client.js'),{sv,svs}=await import('../src/engine/server/server.js');
+const {Cbuf_AddText,Cmd_ExecuteString}=await import('../src/engine/common/cmd.js');
+const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
 const {Draw_GetOverlayCanvas}=await import('../src/gl_draw.js');
 const split=await import('../src/r_demosplit.js');
 let phase='ready',generation=0,timer=null,deadline=0,lastTime=null,latest=null;

@@ -12,16 +12,16 @@ import {
 	Key_Event,
 	key_game, key_menu, key_dest
 } from './keys.js';
-import { Cvar_RegisterVariable } from './cvar.js';
-import { Cmd_AddCommand } from './cmd.js';
-import { Con_Printf } from './console.js';
+import { Cvar_RegisterVariable } from './engine/common/cvar.js';
+import { Cmd_AddCommand } from './engine/common/cmd.js';
+import { Con_Printf } from './engine/common/console.js';
 import { cl, cls, ca_connected } from './client.js';
 import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from './cl_main.js';
 import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from './cl_input.js';
 import { R_NewerGame } from './r_anim.js';
 import { V_StopPitchDrift } from './view.js';
-import { host_frametime } from './host.js';
-import { PITCH, YAW } from './quakedef.js';
+import { host_frametime } from './engine/server/host.js';
+import { PITCH, YAW } from './engine/common/quakedef.js';
 import {
 	Touch_IsMobile, Touch_Init, Touch_Enable, Touch_Disable, Touch_IsEnabled,
 	Touch_GetMoveInput, Touch_GetLookDelta, Touch_GetStick, touch_turn, touch_aim, touch_strafe, Touch_StrafeHeld, Touch_UpdateFov,

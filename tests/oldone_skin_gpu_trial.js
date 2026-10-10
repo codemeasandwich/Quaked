@@ -1,12 +1,12 @@
 import '../src/gl_rsurf.js';
 import * as THREE from 'three';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import * as models from '../src/gl_model.js';
 import * as mesh from '../src/gl_mesh.js';
 import * as skins from '../src/r_newerskins.js';
 import * as anim from '../src/r_anim.js';
 import * as post from '../src/gl_post.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import {vid,VID_SetPalette} from '../src/vid.js';
 import {entity_t} from '../src/render.js';
 const W=640,H=640,button=document.querySelector('#run'),report=document.querySelector('#report'),views=document.querySelector('#views');

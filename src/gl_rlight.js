@@ -3,8 +3,8 @@
 import { R_NewerLightingActive, R_ClassicPassActive } from './r_anim.js';
 import { LIGHTNING } from './r_lightning.js';
 import * as THREE from 'three';
-import { DotProduct, VectorCopy, VectorSubtract, Length } from './mathlib.js';
-import { MAX_LIGHTSTYLES } from './quakedef.js';
+import { DotProduct, VectorCopy, VectorSubtract, Length } from './engine/common/mathlib.js';
+import { MAX_LIGHTSTYLES } from './engine/common/quakedef.js';
 import { MAXLIGHTMAPS, d_lightstylevalue, r_framecount,
 	gl_flashblend, v_blend, v_liquid_blend } from './glquake.js';
 import { r_origin } from './render.js';

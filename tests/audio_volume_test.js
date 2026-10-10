@@ -3,7 +3,7 @@
 import * as cd from '../src/cd_audio.js';
 import * as dma from '../src/snd_dma.js';
 import * as sound from '../src/sound.js';
-import * as cvar from '../src/cvar.js';
+import * as cvar from '../src/engine/common/cvar.js';
 import { cl } from '../src/client.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };

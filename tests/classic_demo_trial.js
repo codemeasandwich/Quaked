@@ -12,7 +12,7 @@ const post = await import( '../src/gl_post.js' );
 const portal = await import( '../src/gl_portal.js' );
 const quake = await import( '../src/glquake.js' );
 const { cl, cl_dlights } = await import( '../src/client.js' );
-const { Cvar_SetValue } = await import( '../src/cvar.js' );
+const { Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
 const { R_ClassicTexture } = await import( '../src/r_newertextures.js' );
 while ( ! vid.renderer ) await new Promise( resolve => setTimeout( resolve, 10 ) );
 const renderer = vid.renderer, render = renderer.render;

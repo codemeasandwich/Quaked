@@ -2,26 +2,26 @@
 // functions on a real local server (the same harness as face_native_test.js). This tests the read-only
 // observer: it must see exactly the rays the game traced and change nothing.
 import {readFileSync} from 'node:fs';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init} from '../src/gl_model.js';
-import {PR_InitBuiltins} from '../src/pr_cmds.js';
-import {PR_ExecuteProgram} from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import {ED_FindFunction} from '../src/pr_edict.js';
-import {sv,svs,client_t,set_host_client,skill} from '../src/server.js';
-import {SV_CheckForNewClients} from '../src/sv_main.js';
-import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/sv_phys.js';
-import * as cmd from '../src/cmd.js';
-import * as vars from '../src/cvar.js';
-import {Host_InitCommands} from '../src/host_cmd.js';
+import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
+import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import {ED_FindFunction} from '../src/engine/progs/pr_edict.js';
+import {sv,svs,client_t,set_host_client,skill} from '../src/engine/server/server.js';
+import {SV_CheckForNewClients} from '../src/engine/server/sv_main.js';
+import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/engine/server/sv_phys.js';
+import * as cmd from '../src/engine/common/cmd.js';
+import * as vars from '../src/engine/common/cvar.js';
+import {Host_InitCommands} from '../src/engine/server/host_cmd.js';
 import {CL_Init,CL_Disconnect_f} from '../src/cl_main.js';
 import {cls,cl,ca_disconnected} from '../src/client.js';
 import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/net_main.js';
-import {SZ_Clear} from '../src/common.js';
+import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/gl_rmain.js';
 import {V_Init} from '../src/view.js';
-import * as travel from '../src/sv_seamless.js';
+import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
@@ -33,14 +33,14 @@ function acknowledge(){const c=svs.clients[0];if(c?.active&&c.netconnection&&cls
 function finishConnect(){SV_CheckForNewClients();const c=svs.clients[0];check(c.active&&c.netconnection&&cls.netcon?.driverdata===c.netconnection,'actual local loopback is paired');set_host_client(c);SV_SetPlayer(c.edict);cmd.Cmd_ExecuteString('spawn',cmd.src_client);cmd.Cmd_ExecuteString('begin',cmd.src_client);cls.signon=4;cl.intermission=0;acknowledge();R_DemoLoadingCancel();check(c.edict.v.health>0&&text(c.edict.v.classname)==='player','actual native spawn command initializes living player');return c.edict;}
 async function command(value){acknowledge();cmd.Cmd_ExecuteString(value,cmd.src_command);await Promise.resolve();return finishConnect();}
 async function fresh(map='e1m1'){vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('skill',1);vars.Cvar_SetValue('sv_seamless',1);return command('map '+map);}
-const face=await import('../src/sv_faceevents.js');
-const {OFS_PARM0}=await import('../src/pr_comp.js');
+const face=await import('../src/newer/gameplay/sv_faceevents.js');
+const {OFS_PARM0}=await import('../src/engine/progs/pr_comp.js');
 function native(p,n){progs.pr_global_struct.self=progs.EDICT_TO_PROG(p);progs.pr_global_struct.time=sv.time;const f=ED_FindFunction(n);check(f,'native '+n);PR_ExecuteProgram(progs.pr_functions.indexOf(f));}
 function hit(p,source,amount){progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PROG(p);progs.pr_globals_int[OFS_PARM0+3]=progs.EDICT_TO_PROG(source);progs.pr_globals_int[OFS_PARM0+6]=progs.EDICT_TO_PROG(source);progs.pr_globals_float[OFS_PARM0+9]=amount;native(p,'T_Damage');}
 function equip(p,weapon,ammo=50){p.v.items=127|4096;p.v.weapon=weapon;p.v.ammo_shells=ammo;p.v.ammo_nails=ammo;p.v.ammo_rockets=ammo;p.v.ammo_cells=ammo;p.v.button0=1;native(p,'W_SetCurrentAmmo');}
-const {SV_PointContents,SV_Move}=await import('../src/world.js');
-const {SV_LinkEdict}=await import('../src/world.js');
-const rays=await import('../src/sv_shotrays.js'),delay=await import('../src/sv_shotdelay.js'),flight=await import('../src/shotgun_flight.js');
+const {SV_PointContents,SV_Move}=await import('../src/engine/server/world.js');
+const {SV_LinkEdict}=await import('../src/engine/server/world.js');
+const rays=await import('../src/newer/gameplay/sv_shotrays.js'),delay=await import('../src/newer/gameplay/sv_shotdelay.js'),flight=await import('../src/newer/gameplay/shotgun_flight.js');
 if(!vars.Cvar_FindVar('sv_shotdelay'))vars.Cvar_RegisterVariable(delay.sv_shotdelay);
 const fire=(p,weapon,ammo=50)=>{equip(p,weapon,ammo);face.SV_FaceReset();native(p,'W_Attack');return face.SV_FaceDrain('rays');};
 const unit=(a,b)=>{const d=[b[0]-a[0],b[1]-a[1],b[2]-a[2]],n=Math.hypot(...d);return d.map(x=>x/n);};
@@ -127,7 +127,7 @@ Deno.test('a soldier\'s shotgun is observed the same way: his four native pellet
  svs.maxclients=2;native(soldier,'army_fire');same(face.SV_FaceDrain('rays').length,0,'multiplayer');svs.maxclients=1;
  console.log('SOLDIER_RAYS '+JSON.stringify({rays:e.rays.length,enemy:e.enemy,submerged:e.submerged}));acknowledge();CL_Disconnect_f();
 });
-const THREE=await import('three'),sgfx=await import('../src/r_shotgun.js'),physics=await import('../src/sv_phys.js'),edict=await import('../src/pr_edict.js');
+const THREE=await import('three'),sgfx=await import('../src/r_shotgun.js'),physics=await import('../src/engine/server/sv_phys.js'),edict=await import('../src/engine/progs/pr_edict.js');
 Deno.test('end to end: a real blast becomes pellets on the next frame, once, and a soldier\'s shot leaves from the soldier',async()=>{
  let p=await fresh('e1m2');face.SV_FaceReset();const scene=new THREE.Scene(),eye=[0,0,0],fwd=[1,0,0],view=[1280,720];
  sgfx.R_ShotgunSetup({scene,muzzles:n=>Array.from({length:n},(_,i)=>[p.v.origin[0]+20,p.v.origin[1]+i*6,p.v.origin[2]+20])});sgfx.R_ShotgunClear();sgfx.r_shotgunfx.value=1;

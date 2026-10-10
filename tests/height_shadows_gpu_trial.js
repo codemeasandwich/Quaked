@@ -6,7 +6,7 @@ const post = await import( '../src/gl_post.js' );
 const skins = await import( '../src/r_newerskins.js' );
 const height = await import( '../src/r_heightshadows.js' );
 const anim = await import( '../src/r_anim.js' );
-const cvars = await import( '../src/cvar.js' );
+const cvars = await import( '../src/engine/common/cvar.js' );
 const W = 512, H = 512, report = document.querySelector( '#report' ), button = document.querySelector( '#run' );
 const registered = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce,
 	anim.r_newer_lighting, anim.r_newer_normals, anim.r_newer_water, height.r_heightshadows ];

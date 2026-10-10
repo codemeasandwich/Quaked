@@ -2,26 +2,26 @@
 // metadata is observed only after native QC has confirmed the outcome.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { ED_FindFunction, ED_NewString, GetEdictFieldValue } from '../src/pr_edict.js';
-import { sv, svs, client_t } from '../src/server.js';
-import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedPowerups } from '../src/sv_main.js';
-import { SV_Move, SV_LinkEdict, MOVE_NOMONSTERS } from '../src/world.js';
-import { sv_gravity } from '../src/sv_phys.js';
-import * as vars from '../src/cvar.js';
-import { Cbuf_Init } from '../src/cmd.js';
-import { SZ_Alloc } from '../src/common.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { ED_FindFunction, ED_NewString, GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
+import { sv, svs, client_t } from '../src/engine/server/server.js';
+import { SV_SpawnServer, SV_SaveSpawnparms, SV_RestorePowerups, SV_ClearCarriedPowerups } from '../src/engine/server/sv_main.js';
+import { SV_Move, SV_LinkEdict, MOVE_NOMONSTERS } from '../src/engine/server/world.js';
+import { sv_gravity } from '../src/engine/server/sv_phys.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { Cbuf_Init } from '../src/engine/common/cmd.js';
+import { SZ_Alloc } from '../src/engine/common/common.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
+import { skill } from '../src/engine/server/host.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import { R_AxeSwingNormal } from '../src/r_axepose.js';
 import { R_NewerSkinSalt } from '../src/r_newerskins.js';
-import { IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT } from '../src/quakedef.js';
+import { IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT } from '../src/engine/common/quakedef.js';
 import { cls, ca_dedicated } from '../src/client.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
@@ -63,7 +63,7 @@ function swing( f ) { progs.pr_global_struct.self = progs.EDICT_TO_PROG( f.playe
 const corpses = () => sv.edicts.filter( e => e && ! e.free && e._axeCorpse );
 const gibs = () => sv.edicts.filter( e => e && ! e.free && /^progs\/(gib[123]|h_[a-z0-9_]+)\.mdl$/.test( text( e.v.model ) ) );
 
-import { MAX_EDICTS } from '../src/quakedef.js';
+import { MAX_EDICTS } from '../src/engine/common/quakedef.js';
 Deno.test( 'native axe miss, normal hit, nonfatal Quad, expired Quad and pentagram-only preserve stock damage without cut records', () => {
 
 	for ( const [ options, expected ] of [ [ { miss: true, quad: true }, 40 ], [ { health: 100 }, 80 ], [ { health: 10 }, -10 ], [ { health: 120, quad: true }, 40 ], [ { health: 100, expired: true }, 80 ], [ { health: 100, pent: true }, 80 ], [ { quad: true, pent: true, immune: true }, 40 ], [ { quad: true, pent: true, undamageable: true }, 40 ] ] ) {

@@ -1,8 +1,8 @@
 // Ported from: WinQuake/render.h -- public interface to refresh functions
 
-import { entity_state_t } from './quakedef.js';
+import { entity_state_t } from './engine/common/quakedef.js';
 import { vrect_t } from './vid.js';
-import { MSG_ReadCoord, MSG_ReadChar, MSG_ReadByte } from './common.js';
+import { MSG_ReadCoord, MSG_ReadChar, MSG_ReadByte } from './engine/common/common.js';
 import {
 	R_RunParticleEffect as _R_RunParticleEffect,
 	R_RocketTrail as _R_RocketTrail,

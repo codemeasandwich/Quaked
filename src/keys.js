@@ -1,12 +1,12 @@
 // Ported from: WinQuake/keys.c, WinQuake/keys.h -- keyboard input handling
 
-import { Cbuf_AddText } from './cmd.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_CompleteCommand } from './cmd.js';
-import { Cvar_CompleteVariable } from './cvar.js';
-import { Con_Printf, con_forcedup, con_backscroll, Con_SetBackscroll, con_totallines } from './console.js';
+import { Cbuf_AddText } from './engine/common/cmd.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv, Cmd_CompleteCommand } from './engine/common/cmd.js';
+import { Cvar_CompleteVariable } from './engine/common/cvar.js';
+import { Con_Printf, con_forcedup, con_backscroll, Con_SetBackscroll, con_totallines } from './engine/common/console.js';
 import { M_Keydown, M_ToggleMenu_f } from './menu.js';
 import { SCR_UpdateScreen } from './gl_screen.js';
-import { Sys_Error } from './sys.js';
+import { Sys_Error } from './engine/common/sys.js';
 import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from './gl_draw.js';
 import { R_BestiaryKey } from './r_bestiary.js';
 

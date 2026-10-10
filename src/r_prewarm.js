@@ -13,7 +13,7 @@ import { Mod_LoadForPreview } from './gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { R_NewerTexturesForModel, R_NewerTextureSettled } from './r_newertextures.js';
 import { R_LevelEntities } from './r_levelents.js';
-import { Cvar_VariableValue } from './cvar.js';
+import { Cvar_VariableValue } from './engine/common/cvar.js';
 
 const warm = new Map(); // map name -> { step, model, models, textures }
 let current = null; // the one being worked on

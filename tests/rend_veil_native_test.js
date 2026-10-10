@@ -1,31 +1,31 @@
 // Independent real stock QuakeC teleport/server clock/save boundaries.
 // GPU effect fidelity is a separate browser proof owned by the implementer.
 import { readFileSync } from 'node:fs';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_SetNewerMapsEnabled } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_SetNewerMapsEnabled } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { ED_FindFunction, ED_Write, ED_ParseEdict, ED_Alloc, ED_Free, ED_NewString } from '../src/pr_edict.js';
-import { sv, svs, client_t, ss_loading, FL_ONGROUND, FL_FLY, FL_SWIM } from '../src/server.js';
-import { SV_Init, SV_SpawnServer } from '../src/sv_main.js';
-import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NORMAL } from '../src/world.js';
-import { SV_Physics, SV_Physics_Step, SV_RunThink, SV_SetFrametime, sv_gravity } from '../src/sv_phys.js';
-import { SV_RendVeilLocalActive, SV_RendVeilHolding, SV_RendVeilClientRecord, Rend_ParseRecord } from '../src/sv_rendveil.js';
-import { Rend_Schedule } from '../src/rend_veil_state.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { ED_FindFunction, ED_Write, ED_ParseEdict, ED_Alloc, ED_Free, ED_NewString } from '../src/engine/progs/pr_edict.js';
+import { sv, svs, client_t, ss_loading, FL_ONGROUND, FL_FLY, FL_SWIM } from '../src/engine/server/server.js';
+import { SV_Init, SV_SpawnServer } from '../src/engine/server/sv_main.js';
+import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NORMAL } from '../src/engine/server/world.js';
+import { SV_Physics, SV_Physics_Step, SV_RunThink, SV_SetFrametime, sv_gravity } from '../src/engine/server/sv_phys.js';
+import { SV_RendVeilLocalActive, SV_RendVeilHolding, SV_RendVeilClientRecord, Rend_ParseRecord } from '../src/newer/gameplay/sv_rendveil.js';
+import { Rend_Schedule } from '../src/newer/gameplay/rend_veil_state.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
-import { Cbuf_Init } from '../src/cmd.js';
-import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/cvar.js';
+import { Cbuf_Init } from '../src/engine/common/cmd.js';
+import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
+import { skill } from '../src/engine/server/host.js';
 import { cl, cls, ca_connected } from '../src/client.js';
 import { NET_Init, NET_Connect, NET_CheckNewConnections, NET_Close } from '../src/net_main.js';
 import { CL_ParseUpdate, CL_EntityNum } from '../src/cl_parse.js';
 import { CL_RelinkEntities } from '../src/cl_main.js';
 import { CL_ResetPrediction, CL_GetEntityFrame, CL_SetServerSequence, CL_SetValidSequence } from '../src/cl_pred.js';
-import { COM_SetNetMessage, MSG_BeginReading, MSG_WriteByte, SZ_Alloc, sizebuf_t } from '../src/common.js';
-import { entity_state_t } from '../src/quakedef.js';
+import { COM_SetNetMessage, MSG_BeginReading, MSG_WriteByte, SZ_Alloc, sizebuf_t } from '../src/engine/common/common.js';
+import { entity_state_t } from '../src/engine/common/quakedef.js';
 
 const check = ( value, label ) => { if ( ! value ) throw Error( label ); };
 const same = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} !== ${expected}` );

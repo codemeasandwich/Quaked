@@ -1,9 +1,9 @@
 // Ported from: WinQuake/gl_warp.c -- sky and water polygons
 
 import * as THREE from 'three';
-import { Sys_Error } from './sys.js';
+import { Sys_Error } from './engine/common/sys.js';
 import { DotProduct, VectorCopy, VectorAdd, VectorSubtract, M_PI,
-	vec3_origin } from './mathlib.js';
+	vec3_origin } from './engine/common/mathlib.js';
 import { VERTEXSIZE, glpoly_t, gl_subdivide_size, r_origin,
 	GL_Bind, GL_DisableMultitexture, d_lightstylevalue } from './glquake.js';
 

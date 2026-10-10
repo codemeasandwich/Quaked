@@ -1,15 +1,15 @@
 // Execute actual bundled QC gates through the native VM/builtin cvar boundary.
 // No browser, renderer, mocked Host_Map, or alternate program is used.
 import { readFileSync } from 'node:fs';
-import * as pak from '../src/pak.js';
-import { COM_CheckRegistered } from '../src/common.js';
-import { Cvar_FindVar, Cvar_VariableValue } from '../src/cvar.js';
-import { Cmd_Init, Cbuf_Init } from '../src/cmd.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_LoadProgs, ED_FindFunction, ED_FindGlobal, ED_NewString, GetEdictFieldValue } from '../src/pr_edict.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { sv, svs } from '../src/server.js';
+import * as pak from '../src/engine/common/pak.js';
+import { COM_CheckRegistered } from '../src/engine/common/common.js';
+import { Cvar_FindVar, Cvar_VariableValue } from '../src/engine/common/cvar.js';
+import { Cmd_Init, Cbuf_Init } from '../src/engine/common/cmd.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_LoadProgs, ED_FindFunction, ED_FindGlobal, ED_NewString, GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { sv, svs } from '../src/engine/server/server.js';
 const check = ( value, message ) => { if ( ! value ) throw Error( message ); };
 const load = path => { const b = readFileSync( path ); return pak.COM_LoadPackFile( String( path ), b.buffer.slice( b.byteOffset, b.byteOffset + b.byteLength ) ); };
 const global = ( name, value ) => { const d = ED_FindGlobal( name ); check( d, 'native global ' + name ); if ( value !== undefined ) progs.pr_globals_int[ d.ofs ] = value; return progs.pr_globals_int[ d.ofs ]; };

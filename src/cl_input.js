@@ -1,18 +1,18 @@
 // Ported from: WinQuake/cl_input.c -- builds an intended movement command to send to the server
 
-import { PITCH, YAW, ROLL } from './quakedef.js';
+import { PITCH, YAW, ROLL } from './engine/common/quakedef.js';
 import { Con_Printf, Q_atoi, SZ_Clear,
 	MSG_WriteByte, MSG_WriteFloat, MSG_WriteShort, MSG_WriteAngle,
-	net_message } from './common.js';
-import { Cmd_AddCommand, Cmd_Argv } from './cmd.js';
+	net_message } from './engine/common/common.js';
+import { Cmd_AddCommand, Cmd_Argv } from './engine/common/cmd.js';
 import { R_BestiaryInputLocked } from './r_bestiary.js';
-import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
-import { clc_move, clc_delta, PE_UPDATE_BACKUP } from './protocol.js';
+import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
+import { clc_move, clc_delta, PE_UPDATE_BACKUP } from './engine/common/protocol.js';
 import { SIGNONS,
 	kbutton_t, usercmd_t,
 	cl, cls, cl_entities } from './client.js';
-import { anglemod, VectorCopy } from './mathlib.js';
-import { host_frametime, realtime } from './host.js';
+import { anglemod, VectorCopy } from './engine/common/mathlib.js';
+import { host_frametime, realtime } from './engine/server/host.js';
 import { V_StartPitchDrift, V_StopPitchDrift } from './view.js';
 import { lookspring, CL_Disconnect } from './cl_main.js';
 import { NET_SendUnreliableMessage } from './net_main.js';

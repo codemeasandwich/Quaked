@@ -5,10 +5,10 @@
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function until(test,label,ms=240000){const end=performance.now()+ms;while(!test()){if(performance.now()>end)throw Error(label+' exceeded its deadline');await sleep(50);}}
 await import('../main.js');await until(()=>window.Cbuf_AddText&&window.renderer,'native initialization');
-const {cl,cls,cl_static_entities,cl_entities}=await import('../src/client.js'),{sv}=await import('../src/server.js');
-const {Cbuf_AddText}=await import('../src/cmd.js');
-const {Cvar_SetValue}=await import('../src/cvar.js');
-const {SV_LinkEdict}=await import('../src/world.js');
+const {cl,cls,cl_static_entities,cl_entities}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js');
+const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
+const {Cvar_SetValue}=await import('../src/engine/common/cvar.js');
+const {SV_LinkEdict}=await import('../src/engine/server/world.js');
 const keys=await import('../src/keys.js'),tf=await import('../src/r_torchfire.js'),fb=await import('../src/r_fireball.js');
 const errors=[];window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 window.torchTrial={
@@ -27,7 +27,7 @@ window.torchTrial={
   const pitch=Math.atan2(-(t.origin[2]-(o[2]+22)),dist)*180/Math.PI;
   player.v.angles=[pitch,yaw,0];player.v.fixangle=1;cl.viewangles.set(player.v.angles);SV_LinkEdict(player,false);return {torch:t,eye:[o[0],o[1],o[2]+22]};},
  // the title demo with its Newer | Classic split, as the attract loop starts it
- async startSplitDemo(){const demo=await import('../src/cl_demo.js'),pak=await import('../src/pak.js'),split=await import('../src/r_demosplit.js');
+ async startSplitDemo(){const demo=await import('../src/cl_demo.js'),pak=await import('../src/engine/common/pak.js'),split=await import('../src/r_demosplit.js');
   keys.set_key_dest(keys.key_game);Cvar_SetValue('r_demosplit',1);
   const file=pak.COM_FindFile('demo1.dem');if(!file)throw Error('demo1.dem not found');
   demo.CL_PlayDemoFromData(file.data.buffer.slice(file.data.byteOffset,file.data.byteOffset+file.data.length),true);

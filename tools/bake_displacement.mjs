@@ -15,7 +15,7 @@ for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else 
 if(!/^[a-z0-9-]+$/.test(namespace)||(!packs.length&&!loose.length)||!process.env.QUAKED_THREE_MODULE)throw Error('Provide --namespace, --pack and QUAKED_THREE_MODULE');
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
-const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js'),{cl}=await import('../src/client.js');
+const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js'),{cl}=await import('../src/client.js');
 const sha=b=>createHash('sha256').update(b).digest('hex'),names=new Set(),archives=[];
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{loose:true,path,name:path});const palette=await memberSearch(['pak0.pak']);
 pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));

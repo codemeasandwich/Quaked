@@ -16,6 +16,9 @@ Their output, with the full edge lists, is in
 earlier versions of this page were rejected by independent review, and a fourth accepted with corrections; what they
 got wrong is listed at the end.
 
+**Since this baseline.** The increments' progress is kept in [module-layout.md](module-layout.md): [44b] has moved its
+50 modules, and debt D7 is closed. The figures below stay those of the baseline's commit.
+
 ```sh
 git archive <commit> | tar -x -C /tmp/q                             # a commit, not a dirty working tree
 node tools/architecture_graph.mjs /tmp/q /tmp/graph.json             # exit 1: a src module not scanned, or an unexpected unresolved import

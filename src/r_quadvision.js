@@ -2,10 +2,10 @@
 // server entities because ordinary client visibility intentionally omits PVS
 // outsiders. These proxies never enter gameplay, network or discovery state.
 import * as THREE from 'three';
-import { sv, FL_MONSTER } from './server.js';
+import { sv, FL_MONSTER } from './engine/server/server.js';
 import { cl } from './client.js';
-import { IT_QUAD, STAT_HEALTH } from './quakedef.js';
-import { SV_FaceLocalActive } from './sv_faceevents.js';
+import { IT_QUAD, STAT_HEALTH } from './engine/common/quakedef.js';
+import { SV_FaceLocalActive } from './newer/gameplay/sv_faceevents.js';
 import { GL_DrawAliasFrame } from './gl_mesh.js';
 import { VISION_COORDINATES_GLSL } from './vision_coordinates.js';
 

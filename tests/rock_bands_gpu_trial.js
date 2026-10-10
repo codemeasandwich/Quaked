@@ -6,7 +6,7 @@ import { R_RockCoordinates } from '../src/r_rocksurfaces.js';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
 const W=384,H=384,report=document.querySelector('#report'),owned=[],checks=[],errors=[];let draws=0;
 const check=(passed,name,data={})=>checks.push({passed,name,...data});

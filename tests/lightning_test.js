@@ -3,8 +3,8 @@
 // in Classic. The beam's choice of event (the player's own TE_LIGHTNING2 only) is tested with cl_tent below.
 await import( '../src/gl_rsurf.js' );
 import * as THREE from 'three';
-import * as vars from '../src/cvar.js';
-import { cvar_t } from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { cvar_t } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import * as L from '../src/r_lightning.js';
 

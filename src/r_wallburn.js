@@ -30,11 +30,11 @@
 //   kept for the session.  A lost WebGL context loses the marks.
 
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame } from './r_anim.js';
 import { R_DecalSurface } from './r_decals.js';
 import { MRT_OUT, MRT_ZERO, material } from './r_fireball.js';
-import { trace_t, SV_RecursiveHullCheck } from './world.js';
+import { trace_t, SV_RecursiveHullCheck } from './engine/server/world.js';
 import { VERTEXSIZE } from './glquake.js';
 
 export const r_newer_wallburn = new cvar_t( 'r_newer_wallburn', '1' );

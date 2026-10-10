@@ -6,7 +6,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';
-import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/cvar.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import * as fb from '../src/r_fireball.js';
 import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion, R_RocketTrail } from '../src/render.js';
 import * as smoke from '../src/r_smoketrail.js';
@@ -263,7 +263,7 @@ Deno.test( 'every explosion family uses the Fireball in Newer Game and the nativ
 
 Deno.test( 'an exploding box (particle message with count 255) is the Fireball in Newer Game, and its sprite is hidden only while a Fireball stands in for it', async () => {
 
-	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/common.js' ), net = await import( '../src/net.js' );
+	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/net.js' );
 	const feed = ( count, org = [ 10, 20, 30 ] ) => {
 
 		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
@@ -302,7 +302,7 @@ Deno.test( 'an exploding box (particle message with count 255) is the Fireball i
 
 Deno.test( 'a box blast keeps its native particles for Classic and for a pool that cannot take it, and drops them when the Fireball does', async () => {
 
-	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/common.js' ), net = await import( '../src/net.js' );
+	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/net.js' );
 	const feed = ( count, org = [ 10, 20, 30 ] ) => {
 
 		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );

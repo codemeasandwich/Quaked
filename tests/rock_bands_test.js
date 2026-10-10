@@ -5,7 +5,7 @@ import * as field from '../src/r_rockfield.js';
 import * as shader from '../src/r_rockshader.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 const face=(name,x0,x1,z0,z1,phase=0)=>({flags:0,plane:{normal:[0,-1,0],dist:0},texinfo:{texture:{name,width:64,height:64}},polys:{numverts:4,verts:new Float32Array([[x0,z0],[x0,z1],[x1,z1],[x1,z0]].flatMap(([x,z])=>[x,0,z,x/64+phase,z/64-phase,.2,.3]))}});

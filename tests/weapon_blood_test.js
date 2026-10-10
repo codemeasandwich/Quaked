@@ -4,7 +4,7 @@
 // restoreAll (saves). The weapon in hand is the one the renderer draws: cl.viewent.model, which V_CalcRefdef sets
 // from STAT_WEAPON each frame (null when dead, at intermission and before the first clientdata).
 import { cl, cls, cl_entities } from '../src/client.js';
-import { STAT_WEAPON } from '../src/quakedef.js';
+import { STAT_WEAPON } from '../src/engine/common/quakedef.js';
 import { V_CalcRefdef, V_CalcIntermissionRefdef } from '../src/view.js';
 import { weaponSurface, weaponKey, WeaponSurfaceState, R_ActiveWeaponSurface, R_PlayerBodySurface, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceFrame } from '../src/r_weapon_surface.js';
 

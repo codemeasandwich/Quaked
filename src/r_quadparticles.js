@@ -1,7 +1,7 @@
 // Quad-only adapter of the retained SMC effectinfo excerpt. The native pickup
 // and white fire remain owned by r_powerups/r_powerupfire. No gameplay hooks.
 import * as THREE from 'three';
-import { COM_NewerURL } from './pak.js';
+import { COM_NewerURL } from './engine/common/pak.js';
 
 export const QUAD_LAYERS = Object.freeze( [
  { count:20, type:'spark', tex:[61,61], size:[.1,.3], growth:-.05, alpha:[100,200,190], stretch:4, offset:[0,0,35], jitter:[15,15,15], velocity:[-20,-20,-20], friction:-.5 },

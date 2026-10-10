@@ -3,7 +3,7 @@ await import( '../src/gl_rsurf.js' );
 
 const { CL_ClearState } = await import( '../src/cl_main.js' );
 const { Mod_FindName, mod_brush, mod_alias } = await import( '../src/gl_model.js' );
-const { sv } = await import( '../src/server.js' );
+const { sv } = await import( '../src/engine/server/server.js' );
 const { cls } = await import( '../src/client.js' );
 
 function assertEqual( actual, expected, message ) {

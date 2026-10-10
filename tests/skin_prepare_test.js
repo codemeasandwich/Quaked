@@ -2,7 +2,7 @@
 // native alias-header layout and later actual material selection cache.
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init, Mod_ForName, aliashdr_t } from '../src/gl_model.js';
 import * as anim from '../src/r_anim.js';

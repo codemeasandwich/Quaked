@@ -5,7 +5,7 @@ import {DemonBakeEncode,DemonBakeDecode,DemonSurfaceSignature,DemonFieldSettings
 import {DEMON_BAKES} from '../src/demon_bakes.js';
 import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/r_demonbakes.js';
 import {R_DemonSurfaceData} from '../src/r_demonrelief.js';
-import {COM_AddPack,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {R_IntroReadinessChecks} from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bytes=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength),sha=a=>createHash('sha256').update(a instanceof ArrayBuffer?new Uint8Array(a):a).digest('hex'),ab=a=>a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength),turn=()=>new Promise(r=>setTimeout(r,0));
 async function until(predicate,label){for(let i=0;i<100&&!predicate();i++)await turn();check(predicate(),label);}

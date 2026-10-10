@@ -1,16 +1,16 @@
-import { sizebuf_t, SZ_Alloc } from '../src/common.js';
+import { sizebuf_t, SZ_Alloc } from '../src/engine/common/common.js';
 import {
 	progs, pr_fielddefs, pr_global_struct, pr_strings_data,
 	sv as progs_sv, PR_SetSV, edict_t,
 	PR_SetProgs, PR_SetFieldDefs, PR_SetGlobalStruct, PR_SetStringsData,
-} from '../src/progs.js';
+} from '../src/engine/progs/progs.js';
 import {
 	DEFAULT_VIEWHEIGHT, SU_ITEMS, SU_WEAPON, svc_clientdata, svc_sound,
-} from '../src/protocol.js';
-import { sv } from '../src/server.js';
-import { GetEdictFieldValue } from '../src/pr_edict.js';
-import { sv_player, SV_SetPlayer } from '../src/sv_phys.js';
-import { SV_StartSound, SV_WriteClientdataToMessage } from '../src/sv_main.js';
+} from '../src/engine/common/protocol.js';
+import { sv } from '../src/engine/server/server.js';
+import { GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
+import { sv_player, SV_SetPlayer } from '../src/engine/server/sv_phys.js';
+import { SV_StartSound, SV_WriteClientdataToMessage } from '../src/engine/server/sv_main.js';
 
 function assertEqual( actual, expected, message ) {
 

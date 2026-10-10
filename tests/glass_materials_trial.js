@@ -1,7 +1,7 @@
 import '../src/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/r_anim.js';
 import {R_ClassicMaterial} from '../src/r_classicstate.js';
 import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';

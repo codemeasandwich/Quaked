@@ -1,16 +1,16 @@
 // Ported from: QuakeWorld/client/cl_pred.c
 // Client-side prediction for smooth movement with low server tick rates
 
-import { VectorCopy } from './mathlib.js';
-import { Q_atof } from './common.js';
-import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
-import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
+import { VectorCopy } from './engine/common/mathlib.js';
+import { Q_atof } from './engine/common/common.js';
+import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
+import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './engine/common/cmd.js';
 import { pmove, movevars, PlayerMove, PM_HullPointContents, PM_GetOnGround, Pmove_Init,
-	player_mins, player_maxs } from './pmove.js';
-import { CONTENTS_EMPTY } from './bspfile.js';
+	player_mins, player_maxs } from './engine/server/pmove.js';
+import { CONTENTS_EMPTY } from './engine/common/bspfile.js';
 import { cl, cl_entities, packet_entities_t } from './client.js';
-import { STAT_HEALTH } from './quakedef.js';
-import { realtime, sv } from './host.js';
+import { STAT_HEALTH } from './engine/common/quakedef.js';
+import { realtime, sv } from './engine/server/host.js';
 
 // CVars
 export const cl_nopred = new cvar_t( 'cl_nopred', '0' );

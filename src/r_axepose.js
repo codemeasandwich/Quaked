@@ -1,8 +1,8 @@
 // The native cutting edge is vertices82–83 in the axe-head component82–97.
 // Use the impact edge and its movement from the preceding animation pose.
 // This approximates the instantaneous swept blade plane; QC owns hit detection.
-import { CRC_Init, CRC_ProcessByte, CRC_Value } from './crc.js';
-import { AngleVectors } from './mathlib.js';
+import { CRC_Init, CRC_ProcessByte, CRC_Value } from './engine/common/crc.js';
+import { AngleVectors } from './engine/common/mathlib.js';
 const cache=new WeakMap();
 export function R_AxeSwingNormal(bytes,frame,angles){
 	if(!bytes)return null;

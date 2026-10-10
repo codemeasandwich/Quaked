@@ -32,13 +32,13 @@
 // The source's muzzle flash and impact kinds are not drawn here. In air each barrel also leaves the source's three tiny
 // delayed smoke wisps in the world at the muzzle where the shot was fired (card [30b]); under water there is none.
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { R_NewerGame } from './r_anim.js';
-import { SV_FaceDrain } from './sv_faceevents.js';
+import { SV_FaceDrain } from './newer/gameplay/sv_faceevents.js';
 import { MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 const CONTENTS_WATER = - 3, CONTENTS_SLIME = - 4; // (bspfile.js; lava is not water)
 import { R_ImpactSegment, STRENGTH } from './r_impactripples.js';
-import { SHOTGUN, sgRandom, clamp, pelletDistance, pelletTimeAt, pelletInWater, pelletTrailLength, makePellet, pelletDraws, pelletStream } from './shotgun_flight.js';
+import { SHOTGUN, sgRandom, clamp, pelletDistance, pelletTimeAt, pelletInWater, pelletTrailLength, makePellet, pelletDraws, pelletStream } from './newer/gameplay/shotgun_flight.js';
 
 // (the flight maths is shotgun_flight.js, shared with the server's damage schedule; re-exported for the tests)
 export { SHOTGUN, sgRandom, pelletDistance, pelletTimeAt, pelletInWater, pelletTrailLength, makePellet, pelletDraws, pelletStream };

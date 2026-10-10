@@ -2,27 +2,27 @@
 // boundaries. Owned Rogue data is read in bounded members; no owned bytes are
 // written, and no browser or background gameplay is launched.
 import {readFileSync} from 'node:fs';
-import * as pak from '../src/pak.js';
+import * as pak from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init} from '../src/gl_model.js';
-import {PR_InitBuiltins} from '../src/pr_cmds.js';
-import {PR_ExecuteProgram} from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import {ED_FindFunction,ED_FindField,ED_NewString,GetEdictFieldValue} from '../src/pr_edict.js';
-import {sv,svs,client_t,set_host_client,skill} from '../src/server.js';
-import {SV_CheckForNewClients,SV_Init} from '../src/sv_main.js';
-import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/sv_phys.js';
-import * as cmd from '../src/cmd.js';
-import * as vars from '../src/cvar.js';
-import {Host_InitCommands} from '../src/host_cmd.js';
+import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
+import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import {ED_FindFunction,ED_FindField,ED_NewString,GetEdictFieldValue} from '../src/engine/progs/pr_edict.js';
+import {sv,svs,client_t,set_host_client,skill} from '../src/engine/server/server.js';
+import {SV_CheckForNewClients,SV_Init} from '../src/engine/server/sv_main.js';
+import {SV_SetPlayer,SV_SetFrametime,SV_Physics_Client,sv_gravity} from '../src/engine/server/sv_phys.js';
+import * as cmd from '../src/engine/common/cmd.js';
+import * as vars from '../src/engine/common/cvar.js';
+import {Host_InitCommands} from '../src/engine/server/host_cmd.js';
 import {CL_Init,CL_Disconnect_f} from '../src/cl_main.js';
 import {cls,cl,cl_entities,cl_visedicts,cl_dlights,set_cl_numvisedicts,ca_disconnected} from '../src/client.js';
 import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/net_main.js';
-import {SZ_Clear} from '../src/common.js';
+import {SZ_Clear} from '../src/engine/common/common.js';
 import {R_Init} from '../src/gl_rmain.js';
 import {V_Init} from '../src/view.js';
-import {SV_RunClients} from '../src/sv_user.js';
-import * as travel from '../src/sv_seamless.js';
+import {SV_RunClients} from '../src/engine/server/sv_user.js';
+import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),text=i=>progs.PR_GetString(i);
 const bytes=readFileSync(new URL('../pak0.pak',import.meta.url));
@@ -40,14 +40,14 @@ import * as bestiary from '../src/r_bestiary.js';
 import {Bestiary_FacesPlayer} from '../src/bestiary_state.js';
 import * as main from '../src/gl_rmain.js';
 import * as post from '../src/gl_post.js';
-import * as host from '../src/host.js';
+import * as host from '../src/engine/server/host.js';
 import * as keys from '../src/keys.js';
 import * as input from '../src/cl_input.js';
 import {IN_Move} from '../src/in_web.js';
 import * as loading from '../src/r_demoloading.js';
 import * as parts from '../src/r_part.js';
 import {R_ShellTrace} from '../src/r_shelltrace.js';
-import {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS,MOVE_NORMAL} from '../src/world.js';
+import {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS,MOVE_NORMAL} from '../src/engine/server/world.js';
 import {R_DrawAliasModel} from '../src/gl_mesh.js';
 import {r_refdef,entity_t} from '../src/render.js';
 const near=(a,b,m,e=1e-6)=>check(Math.abs(a-b)<=e,`${m}: ${a} != ${b}`);
@@ -63,7 +63,7 @@ function clearPair(p,prefer=null,allowKnown=false){for(const e of living().sort(
 const observe=e=>bestiary.R_BestiaryObserve(main.scene,main.camera,[e]);
 
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
-import {MOVETYPE_NONE,DAMAGE_AIM} from '../src/server.js';
+import {MOVETYPE_NONE,DAMAGE_AIM} from '../src/engine/server/server.js';
 function qcName(e,field){const f=GetEdictFieldValue(e,field);return f?text(progs.pr_functions[f.accessor.getInt32(f.ofs)]?.s_name||0):'';}
 function nativeCall(e,name){const f=ED_FindFunction(name);check(f,'real native function '+name);progs.pr_global_struct.self=progs.EDICT_TO_PROG(e);progs.pr_global_struct.other=progs.EDICT_TO_PROG(sv.edicts[1]);progs.pr_global_struct.activator=progs.EDICT_TO_PROG(sv.edicts[1]);progs.pr_global_struct.time=sv.time;PR_ExecuteProgram(progs.pr_functions.indexOf(f));}
 let eligibilityClock=100;
@@ -82,7 +82,7 @@ Deno.test('public native observation rejects back-facing living idle enemies wit
 });
 Deno.test('actual pinned zombie remains excluded after native damage fix while alive and still crucified',async()=>{
  const p=await game('start');readyObservation();const pinned=sv.edicts.filter(e=>e&&!e.free&&text(e.v.classname)==='monster_zombie'&&(e.v.spawnflags&1)&&e.v.movetype===MOVETYPE_NONE&&/^zombie_cruc[1-6]$/.test(qcName(e,'think')));check(pinned.length>=2,'actual START pinned zombies present');
- const {OFS_PARM0}=await import('../src/pr_comp.js');for(const e of pinned){same(e.v.takedamage,DAMAGE_AIM,'real spawn applied pinned-zombie damage fix');same(qcName(e,'th_pain'),'','fixed pinned zombie no longer has misleading native pain callback');let ent=placeFor(p,e);check(ent,'actual pinned body has clear facing sightline');rejected(p,ent,'fixed but still crucified zombie');const before=e.v.health;progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PROG(e);progs.pr_globals_int[OFS_PARM0+3]=progs.EDICT_TO_PROG(p);progs.pr_globals_int[OFS_PARM0+6]=progs.EDICT_TO_PROG(p);progs.pr_globals_float[OFS_PARM0+9]=5;nativeCall(e,'T_Damage');check(e.v.health>0&&e.v.health<before,'real native nonlethal damage reached pinned body');same(e.v.movetype,MOVETYPE_NONE,'damage did not unpin native movement');check(/^zombie_cruc[1-6]$/.test(qcName(e,'think')),'native crucifixion thinker retained');ent=drawEnemy(e);rejected(p,ent,'damaged but still crucified zombie');}
+ const {OFS_PARM0}=await import('../src/engine/progs/pr_comp.js');for(const e of pinned){same(e.v.takedamage,DAMAGE_AIM,'real spawn applied pinned-zombie damage fix');same(qcName(e,'th_pain'),'','fixed pinned zombie no longer has misleading native pain callback');let ent=placeFor(p,e);check(ent,'actual pinned body has clear facing sightline');rejected(p,ent,'fixed but still crucified zombie');const before=e.v.health;progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PROG(e);progs.pr_globals_int[OFS_PARM0+3]=progs.EDICT_TO_PROG(p);progs.pr_globals_int[OFS_PARM0+6]=progs.EDICT_TO_PROG(p);progs.pr_globals_float[OFS_PARM0+9]=5;nativeCall(e,'T_Damage');check(e.v.health>0&&e.v.health<before,'real native nonlethal damage reached pinned body');same(e.v.movetype,MOVETYPE_NONE,'damage did not unpin native movement');check(/^zombie_cruc[1-6]$/.test(qcName(e,'think')),'native crucifixion thinker retained');ent=drawEnemy(e);rejected(p,ent,'damaged but still crucified zombie');}
 });
 Deno.test('real Rogue statues reject dormancy and admit only after their actual activation callbacks execute',async()=>{
  acknowledge();CL_Disconnect_f();const owned=await pakDirectory('resources/id1/pak0.pak'),rogue=await pakDirectory('resources/rogue/pak0.pak');

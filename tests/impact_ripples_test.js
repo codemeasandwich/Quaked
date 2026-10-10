@@ -2,10 +2,10 @@
 // exercised in the browser run recorded in docs/impact-ripples-2026-10-09.md; here the rules: where the ring is, what is
 // ignored, the caps, the lifetime and the packing the shaders read, Classic having none.
 await import( '../src/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import * as r from '../src/r_impactripples.js';
-import { cvar_t } from '../src/cvar.js';
+import { cvar_t } from '../src/engine/common/cvar.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` ), near = ( a, b, m, e = 1 ) => check( Math.abs( a - b ) <= e, `${m}: ${a} != ${b}` );
 for ( const c of [ new cvar_t( 'r_hdr', '1' ), r.r_impactripples ] ) if ( ! vars.Cvar_FindVar( c.name ) ) vars.Cvar_RegisterVariable( c );

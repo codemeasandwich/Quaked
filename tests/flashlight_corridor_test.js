@@ -2,24 +2,24 @@
 // trigger is the corridor's floor message brush, hundreds of units before the
 // stock skill-setting and teleport brushes. No browser/game loop is started.
 import { readFileSync } from 'node:fs';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { ED_NewString } from '../src/pr_edict.js';
-import { sv, svs, client_t } from '../src/server.js';
-import { SV_SpawnServer } from '../src/sv_main.js';
-import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../src/world.js';
-import { SV_PushEntity, sv_gravity } from '../src/sv_phys.js';
-import { Cbuf_Init } from '../src/cmd.js';
-import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/cvar.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { ED_NewString } from '../src/engine/progs/pr_edict.js';
+import { sv, svs, client_t } from '../src/engine/server/server.js';
+import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
+import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NOMONSTERS } from '../src/engine/server/world.js';
+import { SV_PushEntity, sv_gravity } from '../src/engine/server/sv_phys.js';
+import { Cbuf_Init } from '../src/engine/common/cmd.js';
+import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
+import { skill } from '../src/engine/server/host.js';
 import { r_flashlight } from '../src/r_flashlight.js';
 import * as run from '../src/r_flashlightrun.js';
-import { SZ_Alloc } from '../src/common.js';
+import { SZ_Alloc } from '../src/engine/common/common.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );

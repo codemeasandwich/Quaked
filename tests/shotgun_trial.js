@@ -5,12 +5,12 @@
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function until(test,label,ms=240000){const end=performance.now()+ms;while(!test()){if(performance.now()>end)throw Error(label+' exceeded its deadline');await sleep(50);}}
 await import('../main.js');await until(()=>window.Cbuf_AddText&&window.renderer,'native initialization');
-const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/server.js'),progs=await import('../src/progs.js');
-const {Cbuf_AddText}=await import('../src/cmd.js');
-const {Cvar_SetValue}=await import('../src/cvar.js');
-const {SV_LinkEdict,SV_PointContents}=await import('../src/world.js');
+const {cl,cls}=await import('../src/client.js'),{sv}=await import('../src/engine/server/server.js'),progs=await import('../src/engine/progs/progs.js');
+const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
+const {Cvar_SetValue}=await import('../src/engine/common/cvar.js');
+const {SV_LinkEdict,SV_PointContents}=await import('../src/engine/server/world.js');
 const keys=await import('../src/keys.js'),sg=await import('../src/r_shotgun.js');
-const {PR_ExecuteProgram}=await import('../src/pr_exec.js'),{ED_FindFunction}=await import('../src/pr_edict.js');
+const {PR_ExecuteProgram}=await import('../src/engine/progs/pr_exec.js'),{ED_FindFunction}=await import('../src/engine/progs/pr_edict.js');
 window.__pr={exec:(e,ed)=>{progs.pr_global_struct.self=progs.EDICT_TO_PROG(e);progs.pr_global_struct.time=sv.time;e.v.enemy=progs.EDICT_TO_PROG(sv.edicts[1]);PR_ExecuteProgram(progs.pr_functions.indexOf(ED_FindFunction('army_fire')));return true;}};
 const errors=[];window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 window.shotgunTrial={

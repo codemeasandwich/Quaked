@@ -2,7 +2,7 @@
 // behind it shows through the preview. Synthetic leaves; the real E1M5 case is in docs/portal-receiver-brushes-2026-10-09.md.
 await import( '../src/gl_rsurf.js' );
 const portal = await import( '../src/gl_portal.js' );
-const vars = await import( '../src/cvar.js' );
+const vars = await import( '../src/engine/common/cvar.js' );
 if ( ! vars.Cvar_FindVar( 'r_hdr' ) ) vars.Cvar_RegisterVariable( new vars.cvar_t( 'r_hdr', '1' ) ); vars.Cvar_SetValue( 'r_hdr', 1 ); // (Newer Game: portals are drawn)
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const leafIn = { id: 'in' }, leafOut = { id: 'out' };

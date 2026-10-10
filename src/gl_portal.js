@@ -9,10 +9,10 @@
 // stepped through.
 
 import * as THREE from 'three';
-import { cvar_t } from './cvar.js';
+import { cvar_t } from './engine/common/cvar.js';
 import { WATER as WAVE_WATER, METAL as WAVE_METAL, WAVE_GLSL, metalWave, R_WaveTexture } from './r_waves.js';
 import { R_NewerGame, r_newer_portals } from './r_anim.js';
-import { COM_Parse, com_token } from './common.js';
+import { COM_Parse, com_token } from './engine/common/common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from './gl_model.js';
 
 export const r_portals = new cvar_t( 'r_portals', '1' );

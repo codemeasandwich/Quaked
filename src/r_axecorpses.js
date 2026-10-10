@@ -1,13 +1,13 @@
 import * as THREE from 'three';
-import {sv,svs} from './server.js';
+import {sv,svs} from './engine/server/server.js';
 import {cl} from './client.js';
 import {R_NewerGame,r_newer_shadows} from './r_anim.js';
 import {SUN_SHADOW_LAYER,R_ReleaseShadowCaster} from './gl_post.js';
 import {Mod_ForName} from './gl_model.js';
 import {R_DrawAliasModel} from './gl_mesh.js';
-import {r_avertexnormal_dots} from './anorm_dots.js';
+import {r_avertexnormal_dots} from './engine/common/anorm_dots.js';
 import {R_LightPoint} from './gl_rlight.js';
-import {SV_Move,MOVE_NOMONSTERS,SV_HullPointContents} from './world.js';
+import {SV_Move,MOVE_NOMONSTERS,SV_HullPointContents} from './engine/server/world.js';
 import {R_BisectGeometry} from './r_bisect.js';
 import {R_CloneAliasMaterial} from './r_newerskins.js';
 // The cut faces (card [18]): the body's own skin at the cut (r_bisect.js carries the skin coordinates and lighting colour to the

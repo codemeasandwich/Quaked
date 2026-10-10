@@ -4,7 +4,7 @@
 import {openSync,readSync,closeSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
-import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
 import {cl} from '../src/client.js';
@@ -13,7 +13,7 @@ import * as world from '../src/gl_rsurf.js';
 import * as main from '../src/gl_rmain.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import {R_DemonSurfaceData} from '../src/r_demonrelief.js';
 import {DemonBakeEncode,DemonSurfaceSignature,DemonFieldSettings} from '../src/demon_bake_format.js';
 import {R_DemonBakePrefetch,R_DemonBakePrepare,R_DemonBakeSurface,R_DemonBakeRelease} from '../src/r_demonbakes.js';

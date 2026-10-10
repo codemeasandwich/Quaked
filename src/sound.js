@@ -1,6 +1,6 @@
 // Ported from: WinQuake/sound.h -- client sound i/o definitions
 
-import { MAX_QPATH } from './quakedef.js';
+import { MAX_QPATH } from './engine/common/quakedef.js';
 
 /*
 ==============================================================================

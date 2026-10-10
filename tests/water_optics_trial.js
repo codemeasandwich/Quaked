@@ -1,6 +1,6 @@
 await import( '../src/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' ), anim = await import( '../src/r_anim.js' );
-const surf = await import( '../src/gl_rsurf.js' ), cvar = await import( '../src/cvar.js' ), quake = await import( '../src/glquake.js' );
+const surf = await import( '../src/gl_rsurf.js' ), cvar = await import( '../src/engine/common/cvar.js' ), quake = await import( '../src/glquake.js' );
 const probes = await import( '../src/r_waterprobe.js' );
 const mist = await import( '../src/r_mist.js' );
 const flashlight = await import( '../src/r_flashlight.js' );

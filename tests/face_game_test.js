@@ -4,13 +4,13 @@
 import {cl,cls} from '../src/client.js';
 import {cl_simorg,cl_simangles} from '../src/cl_pred.js';
 import {in_attack} from '../src/cl_input.js';
-import * as common from '../src/common.js';
+import * as common from '../src/engine/common/common.js';
 import {net_message} from '../src/net.js';
 import {V_ParseDamage} from '../src/view.js';
 import {CL_ParseClientdata,CL_ParseServerMessage} from '../src/cl_parse.js';
 import {R_PlayerFaceFrame,R_FaceShot} from '../src/r_facegame.js';
-import * as q from '../src/quakedef.js';
-import {svc_foundsecret,svc_killedmonster} from '../src/protocol.js';
+import * as q from '../src/engine/common/quakedef.js';
+import {svc_foundsecret,svc_killedmonster} from '../src/engine/common/protocol.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 function fixture(fn){const saved={world:cl.worldmodel,time:cl.time,stats:cl.stats.slice(),items:cl.items,viewentity:cl.viewentity,signon:cls.signon,demo:cls.demoplayback,attack:in_attack.state,origin:cl_simorg.slice(),angles:cl_simangles.slice(),net:{...net_message},message:common.net_message};try{cl.worldmodel={faceFixture:true};cl.time=0;cl.stats.fill(0);cl.stats[q.STAT_HEALTH]=100;cl.items=0;cl.viewentity=0;cls.signon=4;cls.demoplayback=false;in_attack.state=0;cl_simorg.fill(0);cl_simangles.fill(0);common.SZ_Alloc(net_message,512);common.COM_SetNetMessage(net_message);R_PlayerFaceFrame();fn();}finally{cl.worldmodel=saved.world;cl.time=saved.time;cl.stats.set(saved.stats);cl.items=saved.items;cl.viewentity=saved.viewentity;cls.signon=saved.signon;cls.demoplayback=saved.demo;in_attack.state=saved.attack;cl_simorg.set(saved.origin);cl_simangles.set(saved.angles);Object.assign(net_message,saved.net);common.COM_SetNetMessage(saved.message);}}
 function frame(time){cl.time=time;return R_PlayerFaceFrame();}

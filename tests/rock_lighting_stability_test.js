@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import * as rock from '../src/r_rockfield.js';
 import {ROCK_PARALLAX_GLSL,ROCK_GLSL} from '../src/r_rockshader.js';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import * as anim from '../src/r_anim.js';
 import * as post from '../src/gl_post.js';
 import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';

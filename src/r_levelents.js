@@ -1,5 +1,5 @@
 import { Face_ParseSeed } from './enemy_face.js';
-import { Rend_ParseRecord } from './sv_rendveil.js';
+import { Rend_ParseRecord } from './newer/gameplay/sv_rendveil.js';
 // What stands in another level, for drawing it from here (see r_levelview.js):
 // its monsters, items, torches and brush entities (secret doors, false walls,
 // doors, buttons), from the level's entity list or, for a level you have been in,
@@ -9,7 +9,7 @@ import { Rend_ParseRecord } from './sv_rendveil.js';
 // chosen here the way the QuakeC spawn functions do.
 
 import { R_ParseEntityLump } from './r_levelgraph.js';
-import { Axe_ParseRecord, Axe_ValidOwnerKey } from './axe_record.js';
+import { Axe_ParseRecord, Axe_ValidOwnerKey } from './newer/gameplay/axe_record.js';
 
 const MONSTERS = {
 	monster_army: 'soldier', monster_dog: 'dog', monster_ogre: 'ogre', monster_ogre_marksman: 'ogre',

@@ -2,16 +2,16 @@
 // construction and edict fields. QC's callback is the only simulated part.
 await import( '../src/gl_rsurf.js' );
 const { R_BuildPortals, R_ClearPortals, R_PortalsBeginFrame, r_portals } = await import( '../src/gl_portal.js' );
-const { SV_RunTriggerTouch } = await import( '../src/world.js' );
-const progs = await import( '../src/progs.js' );
-const { sv, svs, FL_CLIENT } = await import( '../src/server.js' );
+const { SV_RunTriggerTouch } = await import( '../src/engine/server/world.js' );
+const progs = await import( '../src/engine/progs/progs.js' );
+const { sv, svs, FL_CLIENT } = await import( '../src/engine/server/server.js' );
 const { r_newer_portals } = await import( '../src/r_anim.js' );
-const { Cvar_FindVar, Cvar_RegisterVariable, cvar_t } = await import( '../src/cvar.js' );
-const { SV_SoftenTeleportLaunch, SV_SetState } = await import( '../src/sv_phys.js' );
-const physics = await import( '../src/sv_phys.js' );
-const { SV_WriteClientdataToMessage } = await import( '../src/sv_main.js' );
-const { sizebuf_t, SZ_Alloc } = await import( '../src/common.js' );
-const { svc_setangle } = await import( '../src/protocol.js' );
+const { Cvar_FindVar, Cvar_RegisterVariable, cvar_t } = await import( '../src/engine/common/cvar.js' );
+const { SV_SoftenTeleportLaunch, SV_SetState } = await import( '../src/engine/server/sv_phys.js' );
+const physics = await import( '../src/engine/server/sv_phys.js' );
+const { SV_WriteClientdataToMessage } = await import( '../src/engine/server/sv_main.js' );
+const { sizebuf_t, SZ_Alloc } = await import( '../src/engine/common/common.js' );
+const { svc_setangle } = await import( '../src/engine/common/protocol.js' );
 
 function equal( actual, expected, label ) {
 

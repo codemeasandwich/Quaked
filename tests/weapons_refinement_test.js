@@ -10,7 +10,7 @@ const { R_WeaponStyleGLSL } = await import( '../src/r_weaponstyle.js' );
 const weapons = await import( '../src/r_weapons.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { r_lerpmodels } = await import( '../src/r_anim.js' );
-const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/cvar.js' );
+const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function near( a, b, label, epsilon = 0.00002 ) { check( Number.isFinite( a ) && Math.abs( a - b ) <= epsilon, `${label}: ${a} != ${b}` ); }

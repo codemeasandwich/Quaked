@@ -1,5 +1,5 @@
-import { CONTENTS_EMPTY, CONTENTS_SOLID } from '../src/bspfile.js';
-import { SV_RecursiveHullCheck, trace_t } from '../src/world.js';
+import { CONTENTS_EMPTY, CONTENTS_SOLID } from '../src/engine/common/bspfile.js';
+import { SV_RecursiveHullCheck, trace_t } from '../src/engine/server/world.js';
 
 function assertNear( actual, expected, epsilon, message ) {
 

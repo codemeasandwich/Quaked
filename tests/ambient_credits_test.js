@@ -4,7 +4,7 @@
 // these are geometry/interaction checks, not raster or browser visual acceptance.
 import { readFileSync } from 'node:fs';
 await import( '../src/gl_rsurf.js' );
-const menu = await import( '../src/menu.js' ), cmd = await import( '../src/cmd.js' ), keys = await import( '../src/keys.js' );
+const menu = await import( '../src/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/keys.js' );
 const draw = await import( '../src/gl_draw.js' );
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); }
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
@@ -15,7 +15,7 @@ function bounds( rectangles ) {
  return { left, top, right, bottom, width: right - left, height: bottom - top };
 }
 cmd.Cbuf_Init(); cmd.Cmd_Init(); menu.M_Init();
-const pak = await import( '../src/pak.js' ), wad = await import( '../src/wad.js' );
+const pak = await import( '../src/engine/common/pak.js' ), wad = await import( '../src/engine/common/wad.js' );
 const raw = readFileSync( new URL( '../pak0.pak', import.meta.url ) );
 pak.COM_AddPack( pak.COM_LoadPackFile( 'credits-test-pak0', raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 const gfx = pak.COM_FindFile( 'gfx.wad' ).data;

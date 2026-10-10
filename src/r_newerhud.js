@@ -6,7 +6,7 @@
 // the picture is still laid out at the sprite's original size, so nothing moves.
 
 import { R_NewerGame, r_newer_hud } from './r_anim.js';
-import { COM_NewerJSON, COM_NewerURL } from './pak.js';
+import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
 import { R_PlayerFacePreload, R_PlayerFaceStatus } from './r_playerface.js';
 
 const BASE = 'newer/hud/';

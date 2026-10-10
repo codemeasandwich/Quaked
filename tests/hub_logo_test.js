@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import * as THREE from 'three';
-import * as vars from '../src/cvar.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr, R_RegisterDetail, R_RefreshDetail, R_PostBegin } from '../src/gl_post.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';

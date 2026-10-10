@@ -2,8 +2,8 @@
 // installation only; they are never copied into a fixture or redistributed.
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import * as pak from '../src/pak.js';
-import * as cmd from '../src/cmd.js';
+import * as pak from '../src/engine/common/pak.js';
+import * as cmd from '../src/engine/common/cmd.js';
 import * as keys from '../src/keys.js';
 import * as menu from '../src/menu.js';
 const check = ( value, message ) => { if ( ! value ) throw Error( message ); };

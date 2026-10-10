@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 await import( '../src/gl_rsurf.js' ); // established renderer import order
-const pak = await import( '../src/pak.js' ), model = await import( '../src/gl_model.js' );
+const pak = await import( '../src/engine/common/pak.js' ), model = await import( '../src/gl_model.js' );
 const mesh = await import( '../src/gl_mesh.js' ), weapons = await import( '../src/r_weapons.js' );
-const anim = await import( '../src/r_anim.js' ), vars = await import( '../src/cvar.js' );
-const normals = await import( '../src/anorm_dots.js' );
+const anim = await import( '../src/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
+const normals = await import( '../src/engine/common/anorm_dots.js' );
 const hdr = ( await import( '../src/gl_post.js' ) ).r_hdr;
 vars.Cvar_RegisterVariable( hdr ); vars.Cvar_RegisterVariable( weapons.r_newer_weapons ); vars.Cvar_SetValue( 'r_hdr', 1 ); anim.R_AnimSetNewer( true );
 pak.COM_AddPack( await pak.COM_FetchPak( '../pak0.pak', 'pak0.pak' ) );

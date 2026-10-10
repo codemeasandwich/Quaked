@@ -19,13 +19,13 @@ import { R_AddLevelPortal, R_ClearLevelPortals, R_RemoveLevelPortal } from './gl
 import { R_NormalMapFor } from './gl_normals.js';
 import { R_LightPoint } from './gl_rlight.js';
 import { R_DrawAliasModel } from './gl_mesh.js';
-import { r_avertexnormal_dots } from './anorm_dots.js';
-import { Cvar_VariableValue } from './cvar.js';
+import { r_avertexnormal_dots } from './engine/common/anorm_dots.js';
+import { Cvar_VariableValue } from './engine/common/cvar.js';
 import { R_LevelEntities, R_FramePrefix } from './r_levelents.js';
 import { R_NewerTexturesForModel } from './r_newertextures.js';
 import { R_RockBakePrefetch } from './r_rockbakes.js';
 import { R_AxeCorpsePreview } from './r_axecorpses.js';
-import { Con_DPrintf } from './common.js';
+import { Con_DPrintf } from './engine/common/common.js';
 
 // glquake.h
 const SURF_PLANEBACK = 2;

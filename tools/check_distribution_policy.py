@@ -54,7 +54,7 @@ for group in policy['runtimeClosure']:
 assert not ignored(closure), 'runtime manifest dependency excluded'
 # Check actual relative production imports without requiring unrelated deleted
 # development prototypes to reappear. A classified path cannot be an import.
-for source in [root / 'main.js', *(root / 'src').glob('*.js')]:
+for source in [root / 'main.js', *(root / 'src').rglob('*.js')]:  # (every folder: modules move into src/engine, src/newer, src/platform)
     for target in re.findall(r"(?:from\s*|import\s*\()\s*['\"]([^'\"]+)", source.read_text()):
         if not target.startswith('.'):
             continue

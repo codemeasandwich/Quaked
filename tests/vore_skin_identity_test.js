@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 import {createHash} from 'node:crypto';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
-import {COM_AddPack,COM_FindFile} from '../src/pak.js';
+import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
 import {VID_SetPalette} from '../src/vid.js';
 import {Mod_Init,Mod_ForName,Mod_LoadModel,model_t} from '../src/gl_model.js';
 import * as anim from '../src/r_anim.js';

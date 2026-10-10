@@ -9,13 +9,13 @@ import * as surf from '../src/gl_rsurf.js';
 import * as main from '../src/gl_rmain.js';
 import * as post from '../src/gl_post.js';
 import * as anim from '../src/r_anim.js';
-import * as vars from '../src/cvar.js';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import * as vars from '../src/engine/common/cvar.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { cl } from '../src/client.js';
 import { entity_t, r_refdef, r_origin, vpn, vright, vup } from '../src/render.js';
-import { AngleVectors } from '../src/mathlib.js';
+import { AngleVectors } from '../src/engine/common/mathlib.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );

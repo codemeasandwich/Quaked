@@ -1,25 +1,25 @@
 // Native E1M1 signon sound -> public client static-sound parser -> real channel
 // spatializer/mixer. Only Web Audio output nodes are silent endpoint doubles.
 import { readFileSync } from 'node:fs';
-import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/pak.js';
+import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { sv, svs, client_t } from '../src/server.js';
-import { SV_SpawnServer } from '../src/sv_main.js';
-import { SV_Move, MOVE_NOMONSTERS } from '../src/world.js';
-import { Cbuf_Init } from '../src/cmd.js';
-import * as vars from '../src/cvar.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { sv, svs, client_t } from '../src/engine/server/server.js';
+import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
+import { SV_Move, MOVE_NOMONSTERS } from '../src/engine/server/world.js';
+import { Cbuf_Init } from '../src/engine/common/cmd.js';
+import * as vars from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
-import { skill } from '../src/host.js';
-import { sv_gravity } from '../src/sv_phys.js';
+import { skill } from '../src/engine/server/host.js';
+import { sv_gravity } from '../src/engine/server/sv_phys.js';
 import * as dma from '../src/snd_dma.js';
 import * as sound from '../src/sound.js';
 import * as anim from '../src/r_anim.js';
 import { cl } from '../src/client.js';
 import { CL_ParseStaticSound } from '../src/cl_parse.js';
-import * as common from '../src/common.js';
-import { svc_spawnstaticsound } from '../src/protocol.js';
+import * as common from '../src/engine/common/common.js';
+import { svc_spawnstaticsound } from '../src/engine/common/protocol.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} !== ${b}` );

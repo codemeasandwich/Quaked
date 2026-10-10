@@ -2,8 +2,8 @@
 // touch), the real pak0.pak; the owned full-game archive (resources/id1/pak0.pak) is read from the local installation
 // only, never copied, and its part of the test is skipped when it is absent.
 import { readFileSync, existsSync } from 'node:fs';
-import * as pak from '../src/pak.js';
-import * as cmd from '../src/cmd.js';
+import * as pak from '../src/engine/common/pak.js';
+import * as cmd from '../src/engine/common/cmd.js';
 import * as keys from '../src/keys.js';
 import * as menu from '../src/menu.js';
 import * as draw from '../src/gl_draw.js';

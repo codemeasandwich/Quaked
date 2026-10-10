@@ -1,5 +1,5 @@
-import { ED_Alloc, PR_AllocEdicts } from '../src/pr_edict.js';
-import { PR_SetSV, PR_SetSVS, sv as progs_sv, svs as progs_svs } from '../src/progs.js';
+import { ED_Alloc, PR_AllocEdicts } from '../src/engine/progs/pr_edict.js';
+import { PR_SetSV, PR_SetSVS, sv as progs_sv, svs as progs_svs } from '../src/engine/progs/progs.js';
 
 Deno.test( 'ED_Alloc never reuses reserved client edicts', () => {
 

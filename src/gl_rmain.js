@@ -1,5 +1,5 @@
 import {R_RendVeilSeen,R_RendVeilRelease,R_RendVeilClear,R_RendVeilBegin,R_RendVeilEnd,R_RendVeilCapture} from './r_rendveil.js';
-import {sv,svs} from './server.js';
+import {sv,svs} from './engine/server/server.js';
 import { R_RespawnCameraFrame } from './r_respawn.js';
 import { R_DemonBakeRelease } from './r_demonbakes.js';
 import { R_CompileSceneAsync, R_ShaderAssetStamp } from './r_shaderwarm.js';
@@ -11,17 +11,17 @@ import { R_WeaponsPreload, R_WeaponStatus, R_WeaponMaterials, R_WeaponTextures, 
 import { R_NewerHudPreload, R_NewerHudStatus } from './r_newerhud.js';
 import { r_powerups, R_PowerupBegin, R_PowerupSeen, R_PowerupEnd, R_PowerupClear } from './r_powerups.js';
 import { R_AxeCorpsesFrame, R_ClearAxeCorpses } from './r_axecorpses.js';
-import { SV_AxeEntitySuppressed } from './sv_axecut.js';
+import { SV_AxeEntitySuppressed } from './newer/gameplay/sv_axecut.js';
 import { R_PointShadowStatus, R_WaterStartupStatus } from './gl_post.js';
 import { R_DemonReliefStatus, R_ClassicArchVisibility } from './gl_rsurf.js';
 // Ported from: WinQuake/gl_rmain.c -- main GL renderer
 // + WinQuake/glquake.h -- GL definitions
 
 import * as THREE from 'three';
-import { Sys_FloatTime } from './sys.js';
-import { Con_Printf } from './common.js';
-import { PITCH, YAW, ROLL } from './quakedef.js';
-import { cvar_t, Cvar_RegisterVariable } from './cvar.js';
+import { Sys_FloatTime } from './engine/common/sys.js';
+import { Con_Printf } from './engine/common/common.js';
+import { PITCH, YAW, ROLL } from './engine/common/quakedef.js';
+import { cvar_t, Cvar_RegisterVariable } from './engine/common/cvar.js';
 import { r_rockfield } from './r_rockfield.js';
 import { r_portals, R_PortalsBeginFrame, R_RenderPortals, R_GetPortals, R_LevelPortalMatrix, R_ImpactPortalPlanes } from './gl_portal.js';
 import { r_heightshadows, R_HeightShadowScope } from './r_heightshadows.js';
@@ -55,21 +55,21 @@ import { R_ShellTrace } from './r_shelltrace.js';
 import { R_BestiaryApplyCamera, R_BestiaryObserve, R_BestiaryInputLocked } from './r_bestiary.js';
 import { r_flashlight, R_FlashlightInit, R_FlashlightUpdate, R_FlashlightBeam } from './r_flashlight.js';
 import { R_MuzzleSetView, R_MuzzleSetProbe } from './r_muzzle.js';
-import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './sv_seamless.js';
+import { SV_SeamlessCrossings, SV_SeamlessPending, SV_SetLiquidLinks, SV_SetWarmLevel, SV_LevelSnapshotEntities } from './newer/gameplay/sv_seamless.js';
 import { r_newer_variety, R_NewerSkinsNewMap, R_CloneAliasMaterial, R_ReleaseAliasReceiver, R_HeldVisionTag } from './r_newerskins.js';
-import { PowerVisionMode } from './powervision_state.js';
+import { PowerVisionMode } from './newer/gameplay/powervision_state.js';
 import { R_PostSetSplit, classicLook, R_WaterProbesFrame, r_reflect_screen, r_bounce, r_cloudspeed, r_pillars, r_heathaze, r_mist, r_reflect, r_water_look, r_hdr, r_pointshadows, r_newdark, r_newedges, r_bloom, r_volumetric, r_caustics, r_newbright, r_newcontrast, R_PostBegin, R_PostBind, R_PostFinish, R_PostLightsFrame, R_PostActive, R_WaterActive, R_MapHasSky, R_RegisterGlow, R_PostSetUnderwater, R_GetLiquidLinks, R_GetWorldLights, R_FireFlicker, R_DynResScale, r_dynres, r_fps_target, SUN_SHADOW_LAYER } from './gl_post.js';
 import { vid, renderer } from './vid.js';
 import { r_refdef, r_origin, vpn, vright, vup, entity_t } from './render.js';
 import {
 	M_PI, DotProduct, VectorCopy, VectorAdd, VectorSubtract, VectorMA,
 	VectorNormalize, AngleVectors, Length, RotatePointAroundVector, BoxOnPlaneSide
-} from './mathlib.js';
+} from './engine/common/mathlib.js';
 import { R_DrawWorld as R_DrawWorld_impl, R_MarkLeaves as R_MarkLeaves_impl, GL_BuildLightmaps as GL_BuildLightmaps_rsurf, R_DrawBrushModel as R_DrawBrushModel_rsurf, R_DrawWaterSurfaces as R_DrawWaterSurfaces_rsurf, R_CleanupWaterMeshes as R_CleanupWaterMeshes_rsurf, createQuakeLightmapMaterial, R_WorldShowAll, R_ClassicSurfaceMaterial, R_ClassicLightmapsFrame, R_ClassicLightmap } from './gl_rsurf.js';
 import { Mod_PointInLeaf, Mod_LeafPVS, SPR_SINGLE, SPR_ORIENTED } from './gl_model.js';
 import { R_AnimateLight as R_AnimateLight_impl, R_PushDlights as R_PushDlights_impl, R_RenderDlights as R_RenderDlights_impl, R_LightPoint, lightspot, lightplane } from './gl_rlight.js';
 import { R_DrawAliasModel as R_DrawAliasModel_mesh, GL_DrawAliasShadow, GL_DrawAliasLightShadow } from './gl_mesh.js';
-import { r_avertexnormal_dots } from './anorm_dots.js';
+import { r_avertexnormal_dots } from './engine/common/anorm_dots.js';
 import { V_SetContentsColor as V_SetContentsColor_view, V_CalcBlend as V_CalcBlend_view } from './view.js';
 import { chase_active } from './chase.js';
 import {

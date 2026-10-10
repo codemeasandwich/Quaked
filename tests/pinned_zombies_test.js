@@ -1,20 +1,20 @@
 // Real stock QuakeC spawn, shotgun traces, damage/death and save fields.
 // Only the renderer/audio devices are absent; no substitute damage function.
 import { readFileSync } from 'node:fs';
-import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/pak.js';
+import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/vid.js';
 import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { PR_InitBuiltins } from '../src/pr_cmds.js';
-import { PR_LoadProgs, PR_AllocEdicts, ED_LoadFromFile, ED_NewString, ED_Write, ED_ClearEdict, ED_ParseEdict, GetEdictFieldValue } from '../src/pr_edict.js';
-import { PR_ExecuteProgram } from '../src/pr_exec.js';
-import * as progs from '../src/progs.js';
-import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3 } from '../src/pr_comp.js';
-import { sv, svs, ss_loading, ss_active, SOLID_BSP, SOLID_SLIDEBOX, MOVETYPE_NONE, MOVETYPE_WALK, MOVETYPE_PUSH, FL_CLIENT, DAMAGE_AIM } from '../src/server.js';
-import { SV_ClearWorld, SV_LinkEdict, SV_Move } from '../src/world.js';
-import { SV_PinnedZombieSpawned } from '../src/sv_pinnedzombies.js';
+import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
+import { PR_LoadProgs, PR_AllocEdicts, ED_LoadFromFile, ED_NewString, ED_Write, ED_ClearEdict, ED_ParseEdict, GetEdictFieldValue } from '../src/engine/progs/pr_edict.js';
+import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
+import * as progs from '../src/engine/progs/progs.js';
+import { OFS_PARM0, OFS_PARM1, OFS_PARM2, OFS_PARM3 } from '../src/engine/progs/pr_comp.js';
+import { sv, svs, ss_loading, ss_active, SOLID_BSP, SOLID_SLIDEBOX, MOVETYPE_NONE, MOVETYPE_WALK, MOVETYPE_PUSH, FL_CLIENT, DAMAGE_AIM } from '../src/engine/server/server.js';
+import { SV_ClearWorld, SV_LinkEdict, SV_Move } from '../src/engine/server/world.js';
+import { SV_PinnedZombieSpawned } from '../src/newer/gameplay/sv_pinnedzombies.js';
 import { R_AnimSetClassicPass } from '../src/r_anim.js';
 import { r_hdr } from '../src/gl_post.js';
-import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/cvar.js';
+import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 
 const check = ( value, message ) => { if ( ! value ) throw new Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );

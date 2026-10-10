@@ -5,12 +5,12 @@
 //    stall indefinitely, centred or not; they now teleport a frame or two after the hull meets the sill;
 //  * E1M2 portals whose entry has a step or a slide-through frame keep the camera crossing, exactly as before.
 await import('../src/gl_rsurf.js');
-const {sv,SOLID_BSP,MOVETYPE_PUSH,svs,FL_CLIENT,MOVETYPE_WALK}=await import('../src/server.js');
-const progs=await import('../src/progs.js');const {edict_t}=progs;
+const {sv,SOLID_BSP,MOVETYPE_PUSH,svs,FL_CLIENT,MOVETYPE_WALK}=await import('../src/engine/server/server.js');
+const progs=await import('../src/engine/progs/progs.js');const {edict_t}=progs;
 const {R_BuildPortals,R_PortalsBeginFrame,r_portals,R_TransformPortalPoint}=await import('../src/gl_portal.js');
-const worldModule=await import('../src/world.js');const {SV_ClearWorld,SV_Move,MOVE_NOMONSTERS}=worldModule;
-const physics=await import('../src/sv_phys.js');
-const {Cvar_FindVar,Cvar_RegisterVariable,cvar_t}=await import('../src/cvar.js');
+const worldModule=await import('../src/engine/server/world.js');const {SV_ClearWorld,SV_Move,MOVE_NOMONSTERS}=worldModule;
+const physics=await import('../src/engine/server/sv_phys.js');
+const {Cvar_FindVar,Cvar_RegisterVariable,cvar_t}=await import('../src/engine/common/cvar.js');
 const {r_newer_portals}=await import('../src/r_anim.js');
 const FL_ONGROUND=512;
 const decode=(data)=>new TextDecoder().decode(data).split('\0')[0];
