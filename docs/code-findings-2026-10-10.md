@@ -29,8 +29,9 @@ any. This card took each item in turn.
 | 19 | A second `IN_Init` doubled every listener. `IN_Shutdown` left the touch-start listener and the touch controls. | Input starts once and stops completely. | 47aac516 | `in_web_lifecycle_test` |
 | 20 | Cutscenes (`cl.intermission` 3) drew the status bar and crosshair, where WinQuake draws only the text. | The text alone. `SCR_CenterPrint` counts the lines it keeps. | b22a2586 | `cutscene_screen_test`, the real screen on a real canvas |
 | 21 | The room server never registered skill, coop and the other rule cvars, so at spawn it printed "Cvar_Set: variable skill not found" and ignored its skill. | `Host_InitRuleCvars` registers them, called by `Host_InitLocal` and by server/game_server.js. | 927b6362 | `rule_cvars_test`. The real room server, run for 25 s on e1m1: Dev printed the message, the fix does not. |
-| 22 | Three of the four Python verifiers failed on later, deliberate changes. | They check their increments at those increments' own commits. The heights verifier compares decoded pixels, since the encoder's bytes vary. The verifiers rewrite their dated evidence only with `--write-evidence`. | c141653c | Level textures, head skins and wizard pass. Heights: see below. |
+| 22 | Three of the four Python verifiers failed on later, deliberate changes. | The level-texture and head-skin verifiers check the shipped files, exempting by name only those a later increment changed by design, each with its commit. The wizard verifier, whose twelve textures the 2 October level sheet replaced, is a labelled historical reproduction, and fails unless the level recipe covers all twelve. The heights verifier compares decoded pixels, since the encoder's bytes vary. The verifiers rewrite their dated evidence only with `--write-evidence`. | c141653c, review fix | Level textures, head skins and wizard pass. Heights: see below. |
 | 23 | `unseen_native_test` sampled the hunt once, at 2 s. A hurt ogre's random pain sequence could outlast that; 4 seeds in 36 failed. | The test watches for up to 2 s more, within the spot's 5 s life. | be0ab043 | 36 of 36 seeds pass; the slowest needs 0.4 s. |
+| review | Once ED_Free unlinked, a trigger whose touch freed the next trigger in its area list left `SV_TouchLinks` walking a self-linked edict forever, hanging the page. | Triggers are gathered first and touched after, each checked again, as QuakeSpasm does. | 7738d85e | `trigger_touch_order_native_test`, the game's own `multi_touch` killtargeting its neighbour. The old code hangs (killed at 60 s). |
 | 24 | (Found in [34e]'s review.) [44g]'s and [34e]'s re-hashes left each level's bake `generatorFingerprint` as it was, so the prepared-corpus audit failed. | The fingerprints are restated, in the manifests and the registry modules, as [44e] did. The audit also reads `quake:` as the full game's pak. | 5d21492f | The audit walks all 159 maps. |
 
 ## Dead code removed
@@ -63,7 +64,8 @@ any. This card took each item in turn.
   - The ogre's and soldier's height maps were authored from their earlier skins. The owner's new skins (b229ee1f, 4
     October) replaced the diffuse maps but not the heights, so their relief no longer matches their pictures.
   - Regenerating the heights (`tools/texture_sheets/update_enemy_heights.py`) changes how both monsters look.
-  - The owner's checkout also has an uncommitted edit to the ogre's skin. So this is left to the owner.
+  - The owner's checkout also has an uncommitted edit to the ogre's skin. So this is the owner's decision, recorded as
+    card [44n] (T-743276ec), with the owner responsible.
 - **24, `gl_model.js` and `gl_rsurf.js`. Stale until a re-bake.** Their recorded source hashes in the displacement
   manifest are still the bake-time ones. The audit reports them, as module-layout.md already says, until the next
   re-bake.

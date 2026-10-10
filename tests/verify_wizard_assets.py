@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Verify the exact supplied artwork, recipe, stored heights and BSP name bindings.
 Run: python3 tests/verify_wizard_assets.py (Pillow and NumPy required); --write-evidence rewrites the dated JSON record.
-Checks the increment as it was made, at its own commit (AT): the level sheet of 2 October (9a71a465, verified by
-tests/level_texture_assets_test.py) has since replaced these textures (card [44m]). Never modifies textures or the manifest.
+A historical record: the level sheet of 2 October (9a71a465) has since replaced all twelve textures, so this reproduces the
+increment as it was made, at its own commit (AT), and checks nothing that ships. What ships is checked by
+tests/level_texture_assets_test.py, and this script fails unless that recipe covers every one of the twelve (card [44m]).
+Never modifies textures or the manifest.
 """
 import hashlib
 import io
@@ -30,6 +32,9 @@ source_path = ROOT / 'tools/texture_sheets/sources' / recipe['source']
 assert hashlib.sha256(source_path.read_bytes()).hexdigest() == recipe['source_sha256']
 assert index['version'] > recipe['base_version']
 source = Image.open(source_path).convert('RGB')
+# the shipped versions of these textures are the level sheet's, checked by tests/level_texture_assets_test.py
+level = json.loads((ROOT / 'tools/texture_sheets/sources/level-2026-10-02/manifest.json').read_text())
+assert {t['name'] for t in recipe['textures']} <= set(level['tiles']), 'the level recipe covers the wizard textures'
 usage = {t['name']: [] for t in recipe['textures']}
 for filename, bsp in read_pak(ROOT / 'games/shareware/pak0.pak').items():
     if not filename.startswith('maps/') or not filename.endswith('.bsp'):
@@ -73,5 +78,5 @@ report = dict(checks_passed=checks, source_size=source.size, source_sha256=recip
               version=index['version'], textures=details)
 if '--write-evidence' in sys.argv:
     (ROOT / 'docs/evidence/wizard-textures-2026-10-01.json').write_text(json.dumps(report, indent=2) + '\n')
-print(f'PASS: {checks} source, recipe, dimensions, height, manifest and map checks')
+print(f'PASS (historical, at {AT}): {checks} source, recipe, dimensions, height, manifest and map checks; the shipped textures are the level sheet\'s')
 print('Map usage:', ', '.join(sorted(set(m for d in details for m in d['maps']))))

@@ -30,11 +30,14 @@ for model,spec in recipe['models'].items():
  checks+=1
  reports.append(dict(model=model,dimensions=diffuse.size,source_sha256=spec['source_sha256'],visible_pixels=int(visible.sum()),matte_pixels=int(matte.sum())))
 old=json.loads((ROOT/'docs/evidence/head-skins-before.json').read_text())
-# the increment kept these files as they were: checked at its own commit (67a49812), since later increments change
-# some by design (card [44m]: the owner's ogre and soldier skins in b229ee1f; pak0.pak moved to games/shareware/ in [34a])
-import subprocess
-for file,digest in old.items():assert hashlib.sha256(subprocess.run(['git','show','67a49812:'+file],cwd=ROOT,capture_output=True,check=True).stdout).hexdigest()==digest,file;checks+=1
+# the files the increment kept are still as they were, in the shipped tree; by name, the ones a later increment changed
+# by design (card [44m]): the owner's ogre and soldier skins (b229ee1f), and pak0.pak, which [34a] moved, unchanged
+LATER={'newer/enemies/ogre/custom/diffuse.webp':'b229ee1f','newer/enemies/soldier/custom/diffuse.webp':'b229ee1f'}
+MOVED={'pak0.pak':'games/shareware/pak0.pak'}
+for file,digest in old.items():
+ if file in LATER:continue
+ assert hashlib.sha256((ROOT/MOVED.get(file,file)).read_bytes()).hexdigest()==digest,file;checks+=1
 report=dict(checks=checks,preserved_files=len(old),version=index['version'],models=reports)
 # the dated evidence record is rewritten only on request (--write-evidence); a plain run checks and changes nothing
 if '--write-evidence' in sys.argv:(ROOT/'docs/evidence/head-skins-verification-2026-10-01.json').write_text(json.dumps(report,indent=2)+'\n')
-print(f'PASS: {checks} checks, four supplied atlases, {len(old)} original assets preserved')
+print(f'PASS: {checks} checks, four supplied atlases, {len(old)-len(LATER)} original assets preserved ({len(LATER)} changed since by design)')
