@@ -386,6 +386,7 @@ export function SND_PickChannel( entnum, entchannel ) {
 	let first_to_die = - 1;
 	let first_empty = - 1;
 	let first_finished = - 1;
+	let nearest_end = - 1;
 	let life_left = 0x7fffffff;
 
 	for ( let ch_idx = NUM_AMBIENTS; ch_idx < NUM_AMBIENTS + MAX_DYNAMIC_CHANNELS; ch_idx ++ ) {
@@ -400,18 +401,18 @@ export function SND_PickChannel( entnum, entchannel ) {
 
 		}
 
-		// Track empty channels (never used or fully cleared)
-		if ( ! channels[ ch_idx ].sfx && first_empty === - 1 ) {
+		// Track empty channels (never used or fully cleared); none of them is a playing sound to steal
+		if ( ! channels[ ch_idx ].sfx ) {
 
-			first_empty = ch_idx;
+			if ( first_empty === - 1 ) first_empty = ch_idx;
 			continue;
 
 		}
 
 		// Track channels where audio has finished playing (Web Audio onended fired)
-		if ( channels[ ch_idx ].sfx && ! channels[ ch_idx ]._audioSource && first_finished === - 1 ) {
+		if ( ! channels[ ch_idx ]._audioSource ) {
 
-			first_finished = ch_idx;
+			if ( first_finished === - 1 ) first_finished = ch_idx;
 			continue;
 
 		}
@@ -424,13 +425,13 @@ export function SND_PickChannel( entnum, entchannel ) {
 		if ( channels[ ch_idx ].end - paintedtime < life_left ) {
 
 			life_left = channels[ ch_idx ].end - paintedtime;
-			first_to_die = ch_idx;
+			nearest_end = ch_idx;
 
 		}
 
 	}
 
-	// Priority: same entity/channel > empty channel > finished channel > oldest channel
+	// Priority: same entity/channel > empty channel > finished channel > the one nearest its end
 	if ( first_to_die === - 1 ) {
 
 		if ( first_empty !== - 1 ) {
@@ -440,6 +441,10 @@ export function SND_PickChannel( entnum, entchannel ) {
 		} else if ( first_finished !== - 1 ) {
 
 			first_to_die = first_finished;
+
+		} else {
+
+			first_to_die = nearest_end;
 
 		}
 
@@ -540,6 +545,14 @@ export function SND_Spatialize( ch ) {
 
 }
 
+// paintedtime (WinQuake's mixer clock, in output samples) follows the audio context's own clock (card [44m]): a
+// channel's end is paintedtime + the sound's length, so SND_PickChannel steals the channel nearest its end
+function S_AdvancePaintedtime() {
+
+	if ( audioContext && shm ) Sound_SetPaintedtime( Math.floor( audioContext.currentTime * shm.speed ) );
+
+}
+
 /*
 =================
 S_StartSound
@@ -571,6 +584,8 @@ export function S_StartSound( entnum, entchannel, sfx, origin, fvol, attenuation
 
 	if ( nosound.value )
 		return;
+
+	S_AdvancePaintedtime(); // a channel's end is in the same sample clock
 
 	const vol = Math.floor( fvol * 255 );
 
@@ -868,6 +883,8 @@ export function S_Update( origin, forward, right, up ) {
 
 	if ( ! sound_started || nosound.value )
 		return;
+
+	S_AdvancePaintedtime();
 
 	listener_origin[ 0 ] = origin[ 0 ];
 	listener_origin[ 1 ] = origin[ 1 ];

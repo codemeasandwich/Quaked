@@ -223,8 +223,8 @@ export let snd_blocked = 0;
  */
 export function Sound_SetTotalChannels( val ) { total_channels = val; }
 /**
- * Sets `paintedtime`, the mixer's sample clock that channel_t `end` times are compared with. Imported by snd_dma.js
- * but not called, so `paintedtime` stays 0.
+ * Sets `paintedtime`, the mixer's sample clock that channel_t `end` times are compared with. snd_dma.js sets it from
+ * the audio context's clock (output samples) on every `S_StartSound` and `S_Update`.
  *
  * @param {number} val time in output samples
  */
