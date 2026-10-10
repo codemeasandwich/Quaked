@@ -1,5 +1,5 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 
 const { sensitivity } = await import( '../src/engine/client/cl_main.js' );
 const cvar = await import( '../src/engine/common/cvar.js' );

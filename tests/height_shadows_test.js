@@ -4,15 +4,15 @@ import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack} from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init,Mod_ForName} from '../src/engine/render/gl_model.js';
 import * as height from '../src/r_heightshadows.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { R_NormalMapFor } from '../src/gl_normals.js';
-import { createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
-import * as skins from '../src/r_newerskins.js';
+import { createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
+import * as skins from '../src/newer/render/r_newerskins.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
@@ -180,7 +180,7 @@ Deno.test( 'installed21 native and14 replacement enemy scalar assets reach publi
 
 Deno.test( 'actual public decal, portal and level-view sky materials write all four HDR attachments; multiplicative decals preserve normal distances and every packed slot', () => fixture( async () => {
 
-	const decals = await import( '../src/r_decals.js' ), portals = await import( '../src/gl_portal.js' ), levels = await import( '../src/r_levelview.js' ), canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
+	const decals = await import( '../src/r_decals.js' ), portals = await import( '../src/gl_portal.js' ), levels = await import( '../src/newer/render/r_levelview.js' ), canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
 	const savedDocument = Object.getOwnPropertyDescriptor( globalThis, 'document' ), scene = new THREE.Scene(), diffuse = pixels(); let decal = null, view = null, portalMaterial = null;
 	Object.defineProperty( globalThis, 'document', { configurable: true, value: { createElement: tag => { same( tag, 'canvas', 'decal public atlas uses canvas' ); return canvas.createCanvas( 1, 1 ); } } } );
 	const floor = { flags: 0, plane: { normal: [ 0, 0, 1 ], dist: 0 }, texinfo: { vecs: [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ] ] }, texturemins: [ -16, -16 ], extents: [ 32, 32 ] }, leaf = { contents: -1, compressed_vis: null, firstmarksurface: [ floor ], nummarksurfaces: 1 }, model = { leafs: [ { contents: -2 }, leaf ], nodes: [ leaf ], numleafs: 1 };

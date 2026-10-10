@@ -9,7 +9,7 @@ import * as demo from '../src/engine/client/cl_demo.js';
 import * as split from '../src/r_demosplit.js';
 import * as menu from '../src/engine/client/menu.js';
 import * as keys from '../src/engine/client/keys.js';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import * as post from '../src/gl_post.js';
 import { cls, ca_disconnected } from '../src/engine/client/client.js';
 import { COM_AddPack } from '../src/engine/common/pak.js';

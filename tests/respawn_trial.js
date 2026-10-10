@@ -5,8 +5,8 @@ await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTi
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{sv,FL_GODMODE,FL_MONSTER}=await import('../src/engine/server/server.js'),{cl,cls}=await import('../src/engine/client/client.js');
 const progs=await import('../src/engine/progs/progs.js'),{PR_ExecuteProgram}=await import('../src/engine/progs/pr_exec.js'),{ED_FindFunction,GetEdictFieldValue}=await import('../src/engine/progs/pr_edict.js');
 const {SV_Move,SV_LinkEdict,MOVE_NOMONSTERS}=await import('../src/engine/server/world.js'),loading=await import('../src/r_demoloading.js'),split=await import('../src/r_demosplit.js'),keys=await import('../src/engine/client/keys.js');
-const {renderer}=await import('../src/vid.js');
-const renderRuntime=await import('../src/gl_rmain.js');
+const {renderer}=await import('../src/engine/render/vid.js');
+const renderRuntime=await import('../src/engine/render/gl_rmain.js');
 const {RESPAWN_WEAPONS,RESPAWN_AMMO,Respawn_DropAmmo}=await import('../src/newer/gameplay/respawn_record.js');
 const {OFS_PARM0}=await import('../src/engine/progs/pr_comp.js');
 let ready=false,generation=0,lastDeath=null,lastAngles=null,previouslyActive=false;

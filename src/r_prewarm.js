@@ -9,10 +9,10 @@
 // kept (the relief maps by picture, the decoded textures by name, the models by name),
 // so the real load finds it done and only has to put the level together.
 
-import { Mod_LoadForPreview } from './gl_model.js';
+import { Mod_LoadForPreview } from './engine/render/gl_model.js';
 import { R_NormalMapFor } from './gl_normals.js';
 import { R_NewerTexturesForModel, R_NewerTextureSettled } from './r_newertextures.js';
-import { R_LevelEntities } from './r_levelents.js';
+import { R_LevelEntities } from './newer/render/r_levelents.js';
 import { Cvar_VariableValue } from './engine/common/cvar.js';
 
 const warm = new Map(); // map name -> { step, model, models, textures }

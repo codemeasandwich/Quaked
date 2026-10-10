@@ -1,8 +1,8 @@
 // Public frame interfaces with real Three.js targets/materials, not a source-only check.
-await import('../src/gl_rsurf.js');
+await import('../src/engine/render/gl_rsurf.js');
 const THREE=await import('three');
 const post=await import('../src/gl_post.js');
-const anim=await import('../src/r_anim.js');
+const anim=await import('../src/newer/render/r_anim.js');
 const cvar=await import('../src/engine/common/cvar.js');
 function equal(a,b,label){if(a!==b)throw new Error(`${label}: expected ${b}, got ${a}`);}
 const options=[post.r_hdr,post.r_dynres,post.r_fps_target,post.r_bloom,post.r_volumetric,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water];

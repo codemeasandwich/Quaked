@@ -1,17 +1,17 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as power from '../src/r_powerups.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as height from '../src/r_heightshadows.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { R_DrawAliasModel } from '../src/gl_mesh.js';
-import { entity_t } from '../src/render.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
+import { entity_t } from '../src/engine/render/render.js';
 import { cl } from '../src/engine/client/client.js';
-import { R_ClassicMaterial } from '../src/r_classicstate.js';
+import { R_ClassicMaterial } from '../src/newer/render/r_classicstate.js';
 
 const report = document.querySelector( '#report' ), width = 768, heightPixels = 480;
 try {

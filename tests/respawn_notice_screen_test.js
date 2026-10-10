@@ -2,13 +2,13 @@
 // while it is active. The real draw function and Draw_String onto a real canvas; pixels counted in the message's rectangle.
 // (SCR_UpdateScreen calls it once, after SCR_DrawPerf; the last test reads that call out of the source.)
 import * as pak from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { readFileSync } from 'node:fs';
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 Deno.test( 'the corner message is drawn while active at the top right, and not before or after', async () => {
 
 	const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
-	const draw = await import( '../src/gl_draw.js' ), screen = await import( '../src/gl_screen.js' ), state = await import( '../src/engine/client/client.js' ), vars = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' );
+	const draw = await import( '../src/engine/render/gl_draw.js' ), screen = await import( '../src/engine/render/gl_screen.js' ), state = await import( '../src/engine/client/client.js' ), vars = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' );
 	const notice = await import( '../src/respawn_notice.js' ), cmd = await import( '../src/engine/common/cmd.js' ), console_ = await import( '../src/engine/common/console.js' );
 	const oldWindow = Object.getOwnPropertyDescriptor( globalThis, 'window' ), oldDocument = Object.getOwnPropertyDescriptor( globalThis, 'document' );
 	globalThis.window = { devicePixelRatio: 1, innerWidth: 640, innerHeight: 400 }; globalThis.document = { createElement: () => canvas.createCanvas( 1, 1 ) };
@@ -44,7 +44,7 @@ Deno.test( 'the corner message is drawn while active at the top right, and not b
 
 Deno.test( 'SCR_UpdateScreen calls the corner message once, outside the in-game-only block, after the perf text', () => {
 
-	const source = readFileSync( new URL( '../src/gl_screen.js', import.meta.url ), 'utf8' ), calls = source.split( 'SCR_DrawRespawnNotice();' ).length - 1;
+	const source = readFileSync( new URL( '../src/engine/render/gl_screen.js', import.meta.url ), 'utf8' ), calls = source.split( 'SCR_DrawRespawnNotice();' ).length - 1;
 	same( calls, 1, 'one call' ); const perf = source.indexOf( '\tSCR_DrawPerf();\n\tSCR_DrawRespawnNotice();' ); check( perf > 0, 'directly after SCR_DrawPerf at the top level of SCR_UpdateScreen' );
 
 } );

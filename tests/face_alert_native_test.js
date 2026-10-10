@@ -4,8 +4,8 @@
 // Hidden-HUD lifecycle and stock maps as in face_native_test.js.
 import {readFileSync} from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init} from '../src/gl_model.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init} from '../src/engine/render/gl_model.js';
 import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
 import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -20,7 +20,7 @@ import {CL_Init,CL_Disconnect_f} from '../src/engine/client/cl_main.js';
 import {cls,cl,ca_disconnected} from '../src/engine/client/client.js';
 import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear} from '../src/engine/common/common.js';
-import {R_Init} from '../src/gl_rmain.js';
+import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';
@@ -41,7 +41,7 @@ function hit(p,source,amount){progs.pr_globals_int[OFS_PARM0]=progs.EDICT_TO_PRO
 function equip(p,weapon,ammo=50){p.v.items=127|4096;p.v.weapon=weapon;p.v.ammo_shells=ammo;p.v.ammo_nails=ammo;p.v.ammo_rockets=ammo;p.v.ammo_cells=ammo;p.v.button0=1;native(p,'W_SetCurrentAmmo');}
 import {FaceState} from '../src/face_state.js';
 import {R_FaceAlerts,FACE_ALERT_ONSCREEN,faceAlertOnScreenLimit} from '../src/r_facegame.js';
-import {r_refdef} from '../src/render.js';
+import {r_refdef} from '../src/engine/render/render.js';
 const near=(a,b,e,m)=>check(Math.abs(a-b)<=e,m+': '+a+' != '+b);
 import {FL_MONSTER} from '../src/engine/server/server.js';
 const monsters=()=>sv.edicts.filter(e=>e&&!e.free&&(e.v.flags&FL_MONSTER)&&text(e.v.classname).startsWith('monster_'));

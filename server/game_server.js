@@ -16,7 +16,7 @@ import { SV_Init, SV_SpawnServer, SV_CheckForNewClients, SV_SendClientMessages, 
 import { SV_Physics, SV_SetFrametime } from '../src/engine/server/sv_phys.js';
 import { SV_RunClients } from '../src/engine/server/sv_user.js';
 import { svs, sv, client_t } from '../src/engine/server/server.js';
-import { Mod_Init, R_InitTextures } from '../src/gl_model.js';
+import { Mod_Init, R_InitTextures } from '../src/engine/render/gl_model.js';
 import { NET_Init, set_listening } from '../src/engine/net/net_main.js';
 import { net_drivers, set_net_numdrivers, set_net_driverlevel } from '../src/engine/net/net.js';
 

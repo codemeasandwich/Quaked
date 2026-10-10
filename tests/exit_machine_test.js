@@ -2,8 +2,8 @@
 // spatializer/mixer. Only Web Audio output nodes are silent endpoint doubles.
 import { readFileSync } from 'node:fs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { sv, svs, client_t } from '../src/engine/server/server.js';
 import { SV_SpawnServer } from '../src/engine/server/sv_main.js';
@@ -15,7 +15,7 @@ import { skill } from '../src/engine/server/host.js';
 import { sv_gravity } from '../src/engine/server/sv_phys.js';
 import * as dma from '../src/engine/sound/snd_dma.js';
 import * as sound from '../src/engine/sound/sound.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import { cl } from '../src/engine/client/client.js';
 import { CL_ParseStaticSound } from '../src/engine/client/cl_parse.js';
 import * as common from '../src/engine/common/common.js';

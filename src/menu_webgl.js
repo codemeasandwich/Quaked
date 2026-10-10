@@ -1,6 +1,6 @@
 // Reuses the supplied WebGL2 glyph, bronze panel and selector renderer across
 // Quaked's native menu stack. menu.js remains the only action/input owner.
-import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionImage, Draw_GetUIScale } from './gl_draw.js';
+import { Draw_GetOverlayCanvas, Draw_FullResolutionCanvas, Draw_FullResolutionImage, Draw_GetUIScale } from './engine/render/gl_draw.js';
 
 let renderer = null, loading = null, failed = null, visible = false, epoch = 0;
 let frameSkin = false, presented = false, commands = [], blits = [], size = [ 0, 0 ];

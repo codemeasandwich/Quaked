@@ -5,14 +5,14 @@ import * as THREE from 'three';
 import {createHash} from 'node:crypto';
 import {memberSearch,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
-import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/gl_model.js';
-import {VID_SetPalette,vid} from '../src/vid.js';
-import {GL_BuildLightmaps} from '../src/gl_rsurf.js';
+import {Mod_Init,Mod_ForName,Mod_PointInLeaf} from '../src/engine/render/gl_model.js';
+import {VID_SetPalette,vid} from '../src/engine/render/vid.js';
+import {GL_BuildLightmaps} from '../src/engine/render/gl_rsurf.js';
 import {R_ParseEntityLump} from '../src/gl_portal.js';
 import {cl} from '../src/engine/client/client.js';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {R_KnownFixtureSource,R_ExitFixturePairs,R_LightCone,R_LightConeFactor} from '../src/r_fixturelights.js';
 

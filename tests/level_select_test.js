@@ -6,7 +6,7 @@ import * as pak from '../src/engine/common/pak.js';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as menu from '../src/engine/client/menu.js';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 const check = ( value, message ) => { if ( ! value ) throw Error( message ); }, same = ( a, b, m ) => check( JSON.stringify( a ) === JSON.stringify( b ), `${m}: ${JSON.stringify( a )} != ${JSON.stringify( b )}` );
 const buffer = bytes => bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength );
 const OWNED = new URL( '../resources/id1/pak0.pak', import.meta.url );

@@ -12,7 +12,7 @@
 
 import * as THREE from 'three';
 import { cvar_t } from './engine/common/cvar.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
 
 export const r_decals = new cvar_t( 'r_decals', '1' );
 

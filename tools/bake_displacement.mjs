@@ -15,7 +15,7 @@ for(let i=0;i<args.length;i++){if(args[i]==='--pack')packs.push(args[++i]);else 
 if(!/^[a-z0-9-]+$/.test(namespace)||(!packs.length&&!loose.length)||!process.env.QUAKED_THREE_MODULE)throw Error('Provide --namespace, --pack and QUAKED_THREE_MODULE');
 const three=pathToFileURL(resolve(process.env.QUAKED_THREE_MODULE)).href;
 register('data:text/javascript,'+encodeURIComponent("let three;export function initialize(d){three=d.three;}export function resolve(s,c,next){return s==='three'?{url:three,shortCircuit:true}:next(s,c);}"),{data:{three}});
-const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js'),{cl}=await import('../src/engine/client/client.js');
+const surface=await import('../src/engine/render/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js'),{cl}=await import('../src/engine/client/client.js');
 const sha=b=>createHash('sha256').update(b).digest('hex'),names=new Set(),archives=[];
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{loose:true,path,name:path});const palette=await memberSearch(['pak0.pak']);
 pak.COM_AddPack(isolatedPack('gfx/palette.lmp',await readMember(palette.get('gfx/palette.lmp'))));
@@ -23,7 +23,7 @@ for(const [name,entry] of members)if(/^maps\/[^/]+\.bsp$/.test(name)&&new RegExp
 for(const path of packs)archives.push({path});
 vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);model.Mod_Init();model.R_InitTextures();
 const manifestPath='newer/displacement/manifest.json';let manifest;try{manifest=JSON.parse(await readFile(manifestPath,'utf8'));}catch{manifest={version:1,sources:{},levels:{}};}
-for(const path of ['src/r_demonrelief.js','src/demon_bake_format.js','src/gl_model.js','src/gl_rsurf.js','newer/textures/index.json','newer/textures/normals/demon-face.r16'])manifest.sources[path]=sha(await readFile(path));
+for(const path of ['src/r_demonrelief.js','src/demon_bake_format.js','src/engine/render/gl_model.js','src/engine/render/gl_rsurf.js','newer/textures/index.json','newer/textures/normals/demon-face.r16'])manifest.sources[path]=sha(await readFile(path));
 const generatorFingerprint=sha(new TextEncoder().encode(JSON.stringify(manifest.sources)));
 const recipes=JSON.parse(await readFile('newer/textures/index.json','utf8')).normals,fields=new Map();
 for(const name of DEMON_TEXTURES){const recipe=recipes[name];if(!recipe?.displacement||!recipe.dataFile)throw Error('Missing exact saved scalar recipe '+name);

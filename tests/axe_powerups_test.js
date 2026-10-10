@@ -3,8 +3,8 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -18,9 +18,9 @@ import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { SZ_Alloc } from '../src/engine/common/common.js';
 import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
-import { R_AxeSwingNormal } from '../src/r_axepose.js';
-import { R_NewerSkinSalt } from '../src/r_newerskins.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
+import { R_AxeSwingNormal } from '../src/newer/render/r_axepose.js';
+import { R_NewerSkinSalt } from '../src/newer/render/r_newerskins.js';
 import { IT_QUAD, IT_INVULNERABILITY, IT_INVISIBILITY, IT_SUIT } from '../src/engine/common/quakedef.js';
 import { cls, ca_dedicated } from '../src/engine/client/client.js';
 

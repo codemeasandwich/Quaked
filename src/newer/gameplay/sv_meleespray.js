@@ -21,7 +21,7 @@
 // ThrowGib, not SpawnMeatSpray). Nothing in the rules changes: the spray only ever was a picture.
 
 import { sv, svs } from '../../engine/server/server.js';
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../render/r_anim.js';
 import { pr_crc, pr_functions, pr_global_struct, pr_globals_float, PR_GetString, PROG_TO_EDICT } from '../../engine/progs/progs.js';
 import { OFS_PARM0, OFS_PARM1 } from '../../engine/progs/pr_comp.js';
 import { ED_FindFunction } from '../../engine/progs/pr_edict.js';

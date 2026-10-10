@@ -2,15 +2,15 @@
 // Readback is only for this trial; production rendering has no GPU readbacks.
 import * as THREE from 'three';
 await import( '../main.js' );
-const draw = await import( '../src/gl_draw.js' );
+const draw = await import( '../src/engine/render/gl_draw.js' );
 const sbar = await import( '../src/engine/client/sbar.js' );
 const hud = await import( '../src/r_newerhud.js' );
 const split = await import( '../src/r_demosplit.js' );
-const vid = await import( '../src/vid.js' );
-const anim = await import( '../src/r_anim.js' );
+const vid = await import( '../src/engine/render/vid.js' );
+const anim = await import( '../src/newer/render/r_anim.js' );
 const post = await import( '../src/gl_post.js' );
 const portal = await import( '../src/gl_portal.js' );
-const quake = await import( '../src/glquake.js' );
+const quake = await import( '../src/engine/render/glquake.js' );
 const { cl, cl_dlights } = await import( '../src/engine/client/client.js' );
 const { Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
 const { R_ClassicTexture } = await import( '../src/r_newertextures.js' );

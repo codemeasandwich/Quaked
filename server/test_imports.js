@@ -89,7 +89,7 @@ try {
 
 // Test model loading (uses THREE)
 try {
-	const gl_model = await import('../src/gl_model.js');
+	const gl_model = await import('../src/engine/render/gl_model.js');
 	console.log('✓ gl_model.js imported');
 } catch (e) {
 	console.error('✗ gl_model.js failed:', e.message);

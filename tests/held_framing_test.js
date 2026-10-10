@@ -4,16 +4,16 @@
 import * as THREE from 'three';
 import {readFileSync} from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init,Mod_ForName} from '../src/gl_model.js';
-import * as main from '../src/gl_rmain.js';
-import * as weapons from '../src/r_weapons.js';
-import * as anim from '../src/r_anim.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init,Mod_ForName} from '../src/engine/render/gl_model.js';
+import * as main from '../src/engine/render/gl_rmain.js';
+import * as weapons from '../src/newer/render/r_weapons.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as view from '../src/engine/client/view.js';
 import {r_hdr} from '../src/gl_post.js';
 import {cl,cls,cl_entities} from '../src/engine/client/client.js';
-import {r_refdef,entity_t} from '../src/render.js';
+import {r_refdef,entity_t} from '../src/engine/render/render.js';
 import {STAT_HEALTH,STAT_WEAPON,STAT_WEAPONFRAME} from '../src/engine/common/quakedef.js';
 import {cl_simvel,set_cl_simonground} from '../src/engine/client/cl_pred.js';
 import {set_host_frametime} from '../src/engine/server/host.js';
@@ -50,6 +50,6 @@ Deno.test('actual native bob and all imported held poses retain visible near-pla
 Deno.test('public asset loader rejects malformed or pickup pullback metadata and waits for ready geometry',async()=>{
  const fetchBefore=globalThis.fetch,loadBefore=THREE.TextureLoader.prototype.load;const miniature={sources:{fixture:{maps:{diffuse:'diffuse.png'}}},models:{v_negative:{source:'fixture',cameraPullback:-1},v_string:{source:'fixture',cameraPullback:'1'},v_null:{source:'fixture',cameraPullback:null},v_infinite:{source:'fixture',cameraPullback:Infinity},g_rogue:{source:'fixture',cameraPullback:3},v_pending:{source:'fixture',cameraPullback:1.25},v_failed:{source:'fixture',cameraPullback:1.25}}},geometry={poses:[[0,0,0,1,0,0,0,1,0]],uv:[0,0,1,0,0,1],indices:[0,1,2]};let release;
  globalThis.fetch=async path=>{if(String(path).endsWith('index.json'))return{ok:true,json:async()=>miniature};if(String(path).endsWith('v_failed.json'))return{ok:false};if(String(path).endsWith('v_pending.json'))return new Promise(resolve=>release=()=>resolve({ok:true,json:async()=>geometry}));return{ok:true,json:async()=>geometry};};THREE.TextureLoader.prototype.load=function(url,done){const texture=new THREE.Texture();queueMicrotask(()=>done(texture));return texture;};
- try{const isolated=await import('../src/r_weapons.js?held-framing-metadata');await isolated.R_WeaponsLoad();const pending=isolated.R_WeaponLoad('v_pending');for(let i=0;i<8;i++)await Promise.resolve();same(isolated.R_WeaponHeldPullback('progs/v_pending.mdl'),0,'pending geometry cannot shift native fallback');check(release,'real geometry request pending');release();await pending;same(isolated.R_WeaponHeldPullback('progs/v_pending.mdl'),1.25,'valid held metadata appears only with ready asset');for(const key of['v_negative','v_string','v_null','v_infinite','g_rogue','v_failed']){await isolated.R_WeaponLoad(key);same(isolated.R_WeaponHeldPullback('progs/'+key+'.mdl'),0,'invalid or unsupported metadata cannot shift '+key);}check(isolated.R_WeaponStatus().failures.v_failed,'controlled geometry failure remains diagnosed');for(const material of isolated.R_WeaponMaterials())material.dispose();for(const texture of isolated.R_WeaponTextures())texture.dispose();
+ try{const isolated=await import('../src/newer/render/r_weapons.js?held-framing-metadata');await isolated.R_WeaponsLoad();const pending=isolated.R_WeaponLoad('v_pending');for(let i=0;i<8;i++)await Promise.resolve();same(isolated.R_WeaponHeldPullback('progs/v_pending.mdl'),0,'pending geometry cannot shift native fallback');check(release,'real geometry request pending');release();await pending;same(isolated.R_WeaponHeldPullback('progs/v_pending.mdl'),1.25,'valid held metadata appears only with ready asset');for(const key of['v_negative','v_string','v_null','v_infinite','g_rogue','v_failed']){await isolated.R_WeaponLoad(key);same(isolated.R_WeaponHeldPullback('progs/'+key+'.mdl'),0,'invalid or unsupported metadata cannot shift '+key);}check(isolated.R_WeaponStatus().failures.v_failed,'controlled geometry failure remains diagnosed');for(const material of isolated.R_WeaponMaterials())material.dispose();for(const texture of isolated.R_WeaponTextures())texture.dispose();
  }finally{globalThis.fetch=fetchBefore;THREE.TextureLoader.prototype.load=loadBefore;}
 });

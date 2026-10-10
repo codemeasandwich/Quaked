@@ -3,12 +3,12 @@ await import( '../main.js' ); while ( ! window.Cbuf_AddText ) await new Promise(
 const menu = await import( '../src/engine/client/menu.js' );
 const { Cbuf_AddText, Cmd_ExecuteString } = await import( '../src/engine/common/cmd.js' ), cvar = await import( '../src/engine/common/cvar.js' ), keys = await import( '../src/engine/client/keys.js' );
 const { sv, MOVETYPE_NOCLIP } = await import( '../src/engine/server/server.js' ), { cl,cls } = await import( '../src/engine/client/client.js' );
-const blendRuntime = await import( '../src/glquake.js' );
-const viewRuntime = await import( '../src/engine/client/view.js' ), renderRuntime = await import( '../src/gl_rmain.js' );
+const blendRuntime = await import( '../src/engine/render/glquake.js' );
+const viewRuntime = await import( '../src/engine/client/view.js' ), renderRuntime = await import( '../src/engine/render/gl_rmain.js' );
 const post = await import( '../src/gl_post.js' ), split = await import( '../src/r_demosplit.js' ), world = await import( '../src/engine/server/world.js' );
 const probe = await import( '../src/r_waterprobe.js' );
 const loadingRuntime=await import('../src/r_demoloading.js');
-const { Mod_PointInLeaf } = await import( '../src/gl_model.js' );
+const { Mod_PointInLeaf } = await import( '../src/engine/render/gl_model.js' );
 window.addEventListener('error',e=>evidence.errors.push(e.message)); window.addEventListener('unhandledrejection',e=>evidence.errors.push(String(e.reason?.stack||e.reason)));
 const evidence = { sceneFrames: 0, errors: [], views: {}, pools: [], textures: [], captureFrames: 0, mode: 'startup', viewpoint: null };
 const renderer = window.renderer, render = renderer.render; let selected = null;

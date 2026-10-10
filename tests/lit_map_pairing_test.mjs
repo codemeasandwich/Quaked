@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { Lit_Parse, LIT_MAGIC } from '../src/lit.js';
+import { Lit_Parse, LIT_MAGIC } from '../src/engine/render/lit.js';
 
 function lighting(samples) {
 	const file = new Uint8Array(8 + samples * 3);

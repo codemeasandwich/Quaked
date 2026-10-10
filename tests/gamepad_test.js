@@ -2,7 +2,7 @@
 // same key even when a menu opens in between; a key two buttons hold goes up with the last; a disconnect or a change of
 // controller releases only the controller's own keys; the controller playing stays while connected, a standard one is
 // preferred; triggers at half travel; sticks with deadzones move and look in the game only; X changes weapon.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const input = await import( '../src/platform/in_web.js' ), keys = await import( '../src/engine/client/keys.js' );
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 

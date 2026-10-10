@@ -3,16 +3,16 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { GL_DrawAliasFrame, R_DrawAliasModel } from '../src/gl_mesh.js';
-import { R_SaveClassicScene } from '../src/r_classicstate.js';
-import * as anim from '../src/r_anim.js';
-import * as main from '../src/gl_rmain.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { GL_DrawAliasFrame, R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
+import { R_SaveClassicScene } from '../src/newer/render/r_classicstate.js';
+import * as anim from '../src/newer/render/r_anim.js';
+import * as main from '../src/engine/render/gl_rmain.js';
 import { r_hdr } from '../src/gl_post.js';
 import * as cvar from '../src/engine/common/cvar.js';
 import { cl, cl_visedicts, cl_numvisedicts, set_cl_numvisedicts } from '../src/engine/client/client.js';
-import { entity_t } from '../src/render.js';
+import { entity_t } from '../src/engine/render/render.js';
 import { r_avertexnormals } from '../src/engine/common/anorm_dots.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };

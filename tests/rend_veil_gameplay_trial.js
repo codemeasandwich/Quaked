@@ -10,8 +10,8 @@ while(!window.Cbuf_AddText){if(performance.now()>until)throw Error('Engine start
 const {sv}=await import('../src/engine/server/server.js'),{cl,cls,cl_entities}=await import('../src/engine/client/client.js');
 const progs=await import('../src/engine/progs/progs.js'),{PR_ExecuteProgram}=await import('../src/engine/progs/pr_exec.js');
 const {SV_Move,SV_LinkEdict,SV_RunTriggerTouch}=await import('../src/engine/server/world.js'),{Cbuf_AddText}=await import('../src/engine/common/cmd.js');
-const {renderer}=await import('../src/vid.js'),loading=await import('../src/r_demoloading.js'),veil=await import('../src/r_rendveil.js');
-const {camera,scene}=await import('../src/gl_rmain.js');
+const {renderer}=await import('../src/engine/render/vid.js'),loading=await import('../src/r_demoloading.js'),veil=await import('../src/r_rendveil.js');
+const {camera,scene}=await import('../src/engine/render/gl_rmain.js');
 const THREE=await import('three');
 const bestiary=await import('../src/r_bestiary.js'),keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
 const text=progs.PR_GetString;

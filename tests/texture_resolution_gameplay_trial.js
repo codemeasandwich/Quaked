@@ -18,7 +18,7 @@ const {PR_GetString}=await import('../src/engine/progs/progs.js');
 const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
 const keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
 const post=await import('../src/gl_post.js'),world=await import('../src/engine/server/world.js');
-const {Mod_PointInLeaf,SURF_PLANEBACK}=await import('../src/gl_model.js');
+const {Mod_PointInLeaf,SURF_PLANEBACK}=await import('../src/engine/render/gl_model.js');
 const {COM_NewerJSON}=await import('../src/engine/common/pak.js');
 const renderer=window.renderer,originalRender=renderer.render,wrappers=new Map(),names=new Map(),anchors=new Map();
 let manifest=null,lastPublish=0,epoch=0,disposed=false;

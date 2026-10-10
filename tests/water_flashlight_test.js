@@ -1,10 +1,10 @@
 // Public cvar, beam, frame, material and probe interfaces. This checks state
 // boundaries; the controlled WebGL trial supplies the optical pixel proof.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const post = await import( '../src/gl_post.js' ), anim = await import( '../src/r_anim.js' );
+const post = await import( '../src/gl_post.js' ), anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), flashlight = await import( '../src/r_flashlight.js' );
-const surf = await import( '../src/gl_rsurf.js' ), probes = await import( '../src/r_waterprobe.js' );
+const surf = await import( '../src/engine/render/gl_rsurf.js' ), probes = await import( '../src/r_waterprobe.js' );
 
 function equal( actual, expected, label ) {
 

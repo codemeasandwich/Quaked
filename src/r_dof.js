@@ -15,7 +15,7 @@
 // 1080-line picture.  A nearer, sharper sample does not spread into the blur behind it.  The sky counts as the far focus.
 
 import { cvar_t } from './engine/common/cvar.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
 import { trace_t, SV_RecursiveHullCheck } from './engine/server/world.js';
 
 export const r_dof = new cvar_t( 'r_dof', '0.15', true ); // strength 0..1 (0 off; the options slider, a step .05: the owner's default is three steps)

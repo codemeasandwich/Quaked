@@ -1,4 +1,4 @@
-import {GL_MakeAliasModelDisplayLists} from '../src/gl_mesh.js';
+import {GL_MakeAliasModelDisplayLists} from '../src/engine/render/gl_mesh.js';
 import {AliasMeshSignature,AliasMeshValidate} from '../src/alias_mesh_format.js';
 import {R_AliasMeshLookup,R_AliasMeshRemember,R_AliasMeshCacheStatus} from '../src/r_aliasmeshcache.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),bits=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);

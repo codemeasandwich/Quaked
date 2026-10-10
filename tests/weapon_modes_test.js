@@ -2,19 +2,19 @@
 // Three meshes and weapon materials. Map dispatch and GPU presentation are
 // observed, not launched; live gameplay/rendering remains a browser check.
 import { readFileSync } from 'node:fs';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
 const menu = await import( '../src/engine/client/menu.js' );
 const split = await import( '../src/r_demosplit.js' );
-const anim = await import( '../src/r_anim.js' );
-const weapons = await import( '../src/r_weapons.js' );
+const anim = await import( '../src/newer/render/r_anim.js' );
+const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { cls, cl } = await import( '../src/engine/client/client.js' );
 const { K_ENTER, K_DOWNARROW, key_game } = await import( '../src/engine/client/keys.js' );
-const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/gl_mesh.js' );
-const { R_SaveClassicScene } = await import( '../src/r_classicstate.js' );
+const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
+const { R_SaveClassicScene } = await import( '../src/newer/render/r_classicstate.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function same( actual, expected, label ) { check( actual === expected, `${label}: ${actual} != ${expected}` ); }

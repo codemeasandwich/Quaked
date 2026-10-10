@@ -1,10 +1,10 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/r_anim.js';
-import {R_ClassicMaterial} from '../src/r_classicstate.js';
-import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';
+import * as anim from '../src/newer/render/r_anim.js';
+import {R_ClassicMaterial} from '../src/newer/render/r_classicstate.js';
+import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 import {R_NewerTextureUpgrade,R_GlassTextureKey,R_ClassicTexture} from '../src/r_newertextures.js';
 const W=360,H=480,report=document.querySelector('#report'),errors=[];
 window.addEventListener('error',e=>errors.push(e.message));

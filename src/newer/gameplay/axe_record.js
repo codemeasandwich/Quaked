@@ -10,7 +10,7 @@
  *
  * Errors: catches at 1 place.
  */
-import { Face_Seed } from '../../enemy_face.js';
+import { Face_Seed } from '../render/enemy_face.js';
 // Optional save metadata, ignored by the original Quake underscore-key rule.
 // Validate before allocating geometry from a save, and never retain stale data
 // when an edict slot is recycled.

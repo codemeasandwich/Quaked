@@ -8,13 +8,13 @@ import * as rock from '../src/rockfield.js';
 import { ROCK_PRESETS, R_RockPreset } from '../src/rockfield_presets.js';
 import { R_RockSurfaceCharts, R_RockCoordinates, R_RockMaterialProfile } from '../src/r_rocksurfaces.js';
 import { R_RockfieldBuild, R_RockfieldGeometry, RockTileCache, rockUniforms } from '../src/r_rockfield.js';
-import { DrawGLPoly, GL_BuildLightmaps, R_DrawBrushModel } from '../src/gl_rsurf.js';
+import { DrawGLPoly, GL_BuildLightmaps, R_DrawBrushModel } from '../src/engine/render/gl_rsurf.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { cl } from '../src/engine/client/client.js';
-import * as main from '../src/gl_rmain.js';
-import { entity_t } from '../src/render.js';
+import * as main from '../src/engine/render/gl_rmain.js';
+import { entity_t } from '../src/engine/render/render.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };
 const same = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );

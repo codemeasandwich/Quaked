@@ -15,7 +15,7 @@
  * Newer Game's private save keys (`_newer_face_seed`, `_newer_axe_corpse`, `_clockwise_*`, the rend veil) are parsed
  * here; a malformed one is ignored and the native fields still load.
  */
-import { Face_Seed, Face_ParseSeed, Face_Assign } from '../../enemy_face.js';
+import { Face_Seed, Face_ParseSeed, Face_Assign } from '../../newer/render/enemy_face.js';
 import { Rend_ValidRecord, Rend_ParseRecord } from '../../newer/gameplay/sv_rendveil.js';
 import { Respawn_ParseDrop, Respawn_ParsePlayer, Respawn_ParseRemains } from '../../newer/gameplay/respawn_record.js';
 // Ported from: WinQuake/pr_edict.c -- entity dictionary

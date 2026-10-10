@@ -1,10 +1,10 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';
+import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 import {NormalInputs,NormalInputKey} from '../src/normal_prepare.js';
 const report=document.querySelector('#report'),views=document.querySelector('#views'),button=document.querySelector('#run'),download=document.querySelector('#download');
 download.onclick=()=>{if(!window.textureResolutionResult)return;const url=URL.createObjectURL(new Blob([JSON.stringify(window.textureResolutionResult,null,2)+'\n'],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='texture-resolution-receipt.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};

@@ -1,8 +1,8 @@
 // Real Three.js points/attributes through the public mist-frame interface.
 // Only the canvas backing the soft sprite is stubbed in the non-browser runner.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
-const anim = await import( '../src/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
 const mist = await import( '../src/r_mist.js' );
 
 function equal( actual, expected, label ) {

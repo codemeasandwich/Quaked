@@ -37,12 +37,12 @@ import { cl_forwardspeed, cl_backspeed } from './cl_input.js';
 import { sensitivity, m_pitch, lookspring, lookstrafe, cl_color } from './cl_main.js';
 import { volume, bgmvolume } from '../sound/sound.js';
 import { Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
-import { scr_viewsize, scr_con_current } from '../../gl_screen.js';
+import { scr_viewsize, scr_con_current } from '../render/gl_screen.js';
 import { v_gamma } from './view.js';
-import { gl_texturemode, GL_UpdateTextureFiltering } from '../../glquake.js';
+import { gl_texturemode, GL_UpdateTextureFiltering } from '../render/glquake.js';
 import { skill, coop, teamplay, deathmatch, svs } from '../server/server.js';
 import { Touch_ExitFullscreen } from '../../platform/touch.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from '../../gl_draw.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight, Draw_GetUIScale, Draw_WithVirtualSize } from '../render/gl_draw.js';
 import { SAVEGAME_COMMENT_LENGTH } from '../common/quakedef.js';
 import { COM_FindFile } from '../common/pak.js';
 

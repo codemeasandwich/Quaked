@@ -1,5 +1,5 @@
-import * as anim from '../src/r_anim.js';
-import * as glquake from '../src/glquake.js';
+import * as anim from '../src/newer/render/r_anim.js';
+import * as glquake from '../src/engine/render/glquake.js';
 
 function assertEqual( actual, expected, message ) {
 
@@ -183,7 +183,7 @@ Deno.test( 'Newer Game forces smooth texture filtering without touching the user
 
 Deno.test( 'walking monsters glide between the game\'s steps', async () => {
 
-	const { R_SmoothMove } = await import( '../src/r_anim.js' );
+	const { R_SmoothMove } = await import( '../src/newer/render/r_anim.js' );
 
 	// stepped 10 units every 0.1 s, drawn at 60 fps
 	const e = { origin: [ 0, 0, 0 ], angles: [ 0, 0, 0 ], model: { flags: 0 } };

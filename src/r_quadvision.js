@@ -6,7 +6,7 @@ import { sv, FL_MONSTER } from './engine/server/server.js';
 import { cl } from './engine/client/client.js';
 import { IT_QUAD, STAT_HEALTH } from './engine/common/quakedef.js';
 import { SV_FaceLocalActive } from './newer/gameplay/sv_faceevents.js';
-import { GL_DrawAliasFrame } from './gl_mesh.js';
+import { GL_DrawAliasFrame } from './engine/render/gl_mesh.js';
 import { VISION_COORDINATES_GLSL } from './vision_coordinates.js';
 
 export function R_QuadVisionActive() {

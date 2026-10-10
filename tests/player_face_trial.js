@@ -1,4 +1,4 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import {FaceState} from '../src/face_state.js';
 import {R_PlayerFacePreload,R_PlayerFaceStatus,R_PlayerFaceCompose,R_PlayerFaceLayer} from '../src/r_playerface.js';
 const $=id=>document.getElementById(id),state=new FaceState({random:()=>.25});let time=0,manifest;

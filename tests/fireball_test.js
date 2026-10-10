@@ -8,10 +8,10 @@ import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import * as fb from '../src/r_fireball.js';
-import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion, R_RocketTrail } from '../src/render.js';
+import { R_ParticleExplosion, R_ParticleExplosion2, R_BlobExplosion, R_RocketTrail } from '../src/engine/render/render.js';
 import * as smoke from '../src/r_smoketrail.js';
 import { r_demosplit } from '../src/r_demosplit.js';
-import * as part from '../src/r_part.js';
+import * as part from '../src/engine/render/r_part.js';
 import { cl as clientState } from '../src/engine/client/client.js';
 
 const SOURCE_SHA256 = '7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6';
@@ -263,7 +263,7 @@ Deno.test( 'every explosion family uses the Fireball in Newer Game and the nativ
 
 Deno.test( 'an exploding box (particle message with count 255) is the Fireball in Newer Game, and its sprite is hidden only while a Fireball stands in for it', async () => {
 
-	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/engine/net/net.js' );
+	const { R_ParseParticleEffect } = await import( '../src/engine/render/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/engine/net/net.js' );
 	const feed = ( count, org = [ 10, 20, 30 ] ) => {
 
 		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
@@ -302,7 +302,7 @@ Deno.test( 'an exploding box (particle message with count 255) is the Fireball i
 
 Deno.test( 'a box blast keeps its native particles for Classic and for a pool that cannot take it, and drops them when the Fireball does', async () => {
 
-	const { R_ParseParticleEffect } = await import( '../src/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/engine/net/net.js' );
+	const { R_ParseParticleEffect } = await import( '../src/engine/render/render.js' ), common = await import( '../src/engine/common/common.js' ), net = await import( '../src/engine/net/net.js' );
 	const feed = ( count, org = [ 10, 20, 30 ] ) => {
 
 		common.SZ_Alloc( net.net_message, 256 ); common.SZ_Clear( net.net_message ); common.COM_SetNetMessage( net.net_message );
@@ -328,7 +328,7 @@ Deno.test( 'a box blast keeps its native particles for Classic and for a pool th
 
 Deno.test( 'the sprite draw asks the Fireball, and the particle parser routes count 255 (read from the source)', () => {
 
-	const rmain = readFileSync( new URL( '../src/gl_rmain.js', import.meta.url ), 'utf8' ), render = readFileSync( new URL( '../src/render.js', import.meta.url ), 'utf8' );
+	const rmain = readFileSync( new URL( '../src/engine/render/gl_rmain.js', import.meta.url ), 'utf8' ), render = readFileSync( new URL( '../src/engine/render/render.js', import.meta.url ), 'utf8' );
 	check( /case mod_sprite:\s*if \( R_FireballReplacesSprite\( currententity \) \) break;[^\n]*\s*R_DrawSpriteModel/.test( rmain ), 'the sprite case skips a sprite the Fireball replaces' );
 	check( /msgcount === 255/.test( render ), 'the parser routes count 255' );
 

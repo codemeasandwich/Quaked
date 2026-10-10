@@ -30,7 +30,7 @@ import { sv, svs, ss_loading } from '../../engine/server/server.js';
 import { MAX_MODELS, MAX_SOUNDS } from '../../engine/common/quakedef.js';
 import { Sys_Error } from '../../engine/common/sys.js';
 import { COM_FindFile } from '../../engine/common/pak.js';
-import { Ent_Parse } from '../../lit.js';
+import { Ent_Parse } from '../../engine/render/lit.js';
 import { SV_LinkEdict, SV_PointContents, SV_TestEntityPosition } from '../../engine/server/world.js';
 import { PR_GetString, EDICT_NUM, EDICT_TO_PROG, pr_global_struct } from '../../engine/progs/progs.js';
 import { ED_Alloc, ED_Free, ED_Write, ED_WriteGlobals, ED_ParseGlobals, ED_ParseEdict } from '../../engine/progs/pr_edict.js';
@@ -39,13 +39,13 @@ import { svc_temp_entity, TE_TELEPORT } from '../../engine/common/protocol.js';
 import { Cbuf_AddText } from '../../engine/common/cmd.js';
 import { Con_DPrintf } from '../../engine/common/common.js';
 import { Cvar_VariableValue } from '../../engine/common/cvar.js';
-import { r_newer_portals } from '../../r_anim.js';
+import { r_newer_portals } from '../render/r_anim.js';
 import { R_MeasureArchFrame, R_ClearArchHidden, R_HideArchSurfaces, R_HideArchModel } from '../../r_archframe.js';
-import { R_AddLevelRunner, R_MoveLevelRunner, R_RemoveLevelRunner, R_ClearLevelRunners } from '../../r_levelview.js';
+import { R_AddLevelRunner, R_MoveLevelRunner, R_RemoveLevelRunner, R_ClearLevelRunners } from '../render/r_levelview.js';
 import { R_TeleportFxBegin, R_TeleportFxCapture, R_TeleportFxMode, R_TeleportOverlayShown, R_TeleportFxSnap, R_TeleportFxReset } from '../../r_teleportfx.js';
 import {
 	R_ParseBsp, R_ParseEntityLump, R_LevelLinks, R_CrossingTransform, R_ChooseApproach, R_InverseCrossing
-} from '../../r_levelgraph.js';
+} from '../render/r_levelgraph.js';
 
 export const sv_seamless = new cvar_t( 'sv_seamless', '1' );
 

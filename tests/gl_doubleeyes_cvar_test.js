@@ -1,8 +1,8 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 
-const gl_rmisc = await import( '../src/gl_rmisc.js' );
-const glquake = await import( '../src/glquake.js' );
+const gl_rmisc = await import( '../src/engine/render/gl_rmisc.js' );
+const glquake = await import( '../src/engine/render/glquake.js' );
 const { Cmd_ExecuteString, src_command } = await import( '../src/engine/common/cmd.js' );
 const { Cvar_FindVar, Cvar_Set } = await import( '../src/engine/common/cvar.js' );
 

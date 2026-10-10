@@ -3,14 +3,14 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import * as power from '../src/r_powerups.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/gl_post.js';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { R_DrawAliasModel } from '../src/gl_mesh.js';
-import { entity_t } from '../src/render.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
+import { entity_t } from '../src/engine/render/render.js';
 import * as height from '../src/r_heightshadows.js';
 import * as fire from '../src/r_powerupfire.js';
 
@@ -103,7 +103,7 @@ Deno.test( 'live pickup lights share the existing eight-source budget and stable
 
 Deno.test( 'actual public entity draw dispatch attaches effects to native world pickups and excludes held viewmodel', async () => {
 
-	setup(); const main = await import( '../src/gl_rmain.js' ), client = await import( '../src/engine/client/client.js' );
+	setup(); const main = await import( '../src/engine/render/gl_rmain.js' ), client = await import( '../src/engine/client/client.js' );
 	const pak = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.byteLength ) ) ); VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	main.R_Init(); const savedWorld = client.cl.worldmodel, savedView = client.cl.viewent, savedCount = client.cl_numvisedicts, savedList = client.cl_visedicts.slice();
 	try {

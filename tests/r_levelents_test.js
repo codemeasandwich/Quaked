@@ -1,4 +1,4 @@
-import { R_LevelEntities, R_FramePrefix } from '../src/r_levelents.js';
+import { R_LevelEntities, R_FramePrefix } from '../src/newer/render/r_levelents.js';
 
 function assertEqual( actual, expected, message ) {
 

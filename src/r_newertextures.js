@@ -13,10 +13,10 @@
 // the original glowing area, enlarged, picks the glowing part out of the new picture.
 
 import {R_NormalPrepared,R_NormalPrepare,R_NormalPreparationNeeded} from './normal_prepare.js';
-import { R_NewerGame, r_newer_textures } from './r_anim.js';
+import { R_NewerGame, r_newer_textures } from './newer/render/r_anim.js';
 import { COM_NewerJSON, COM_NewerURL } from './engine/common/pak.js';
 import * as THREE from 'three';
-import { gl_texturemode } from './glquake.js';
+import { gl_texturemode } from './engine/render/glquake.js';
 
 // the textures that have been given their Newer picture, so they can be put back (r_demosplit.js)
 const upgraded = new Set();

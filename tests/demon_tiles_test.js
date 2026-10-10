@@ -2,10 +2,10 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { R_DemonGeometryField, R_DemonSurfaceData } from '../src/r_demonrelief.js';
-import { GL_BuildLightmaps } from '../src/gl_rsurf.js';
+import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { cl } from '../src/engine/client/client.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };

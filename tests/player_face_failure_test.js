@@ -3,11 +3,11 @@
 // surfaces are stubbed. No renderer, game or browser instance is launched.
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-await import( '../src/gl_rsurf.js' );
-const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/gl_draw.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
+const sbar = await import( '../src/engine/client/sbar.js' ), draw = await import( '../src/engine/render/gl_draw.js' );
 const layer = await import('../src/r_playerface.js');
 const faceManifest=JSON.parse(readFileSync(new URL('../newer/hud/playerface/manifest.json',import.meta.url),'utf8'));
-const hud = await import( '../src/r_newerhud.js' ), anim = await import( '../src/r_anim.js' );
+const hud = await import( '../src/r_newerhud.js' ), anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' ), cmd = await import( '../src/engine/common/cmd.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { W_LoadWadFile } = await import( '../src/engine/common/wad.js' );

@@ -31,7 +31,7 @@ import { Con_Printf } from '../engine/common/console.js';
 import { cl, cls, ca_connected } from '../engine/client/client.js';
 import { sensitivity, m_pitch, m_yaw, m_forward, m_side, lookstrafe } from '../engine/client/cl_main.js';
 import { in_mlook, in_strafe, cl_forwardspeed, cl_sidespeed, cl_yawspeed, cl_pitchspeed } from '../engine/client/cl_input.js';
-import { R_NewerGame } from '../r_anim.js';
+import { R_NewerGame } from '../newer/render/r_anim.js';
 import { V_StopPitchDrift } from '../engine/client/view.js';
 import { host_frametime } from '../engine/server/host.js';
 import { PITCH, YAW } from '../engine/common/quakedef.js';

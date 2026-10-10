@@ -13,7 +13,7 @@
  * Saved games are kept in localStorage; a failed save or load is caught and reported on the console. A map not yet
  * loaded is fetched first and the command reissued.
  */
-import { weaponSurface } from '../../r_weapon_surface.js';
+import { weaponSurface } from '../../newer/render/r_weapon_surface.js';
 import { SV_RespawnRestoreDropModel, SV_RespawnClearTravel, SV_RespawnFinishTravel } from '../../newer/gameplay/sv_respawn.js';
 // Ported from: WinQuake/host_cmd.c
 
@@ -45,7 +45,7 @@ import { key_game, set_key_dest } from '../client/keys.js';
 import { CL_Disconnect, CL_EstablishConnection, CL_NextDemo,
 	cl_name, cl_color } from '../client/cl_main.js';
 import { CL_StopPlayback } from '../client/cl_demo.js';
-import { SCR_BeginLoadingPlaque } from '../../gl_screen.js';
+import { SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { hostname } from '../net/net_main.js';
 import { SV_LinkEdict } from './world.js';
 import { SV_SeamlessPlacePlayer } from '../../newer/gameplay/sv_seamless.js';
@@ -54,7 +54,7 @@ import { SV_ClientPrintf, SV_BroadcastPrintf,
 import { COM_FindFile, COM_EnsureFile } from '../common/pak.js';
 import { R_FlashlightNewRun, R_FlashlightRunLoaded } from '../../r_flashlightrun.js';
 import { R_DemoLoadingCancel, R_DemoLoadingWelcome } from '../../r_demoloading.js';
-import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../../r_shells.js';
+import { R_ShellsReset, R_ShellsSnapshot, R_ShellsRestore } from '../../newer/render/r_shells.js';
 
 const SHELL_SAVE_PREFIX = '// quaked-shells-v1 ';
 

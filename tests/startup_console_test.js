@@ -2,8 +2,8 @@
 // draw endpoint. The coordinator still requires three actual-ready snapshots.
 import {readFileSync} from 'node:fs';
 import * as boot from '../src/r_demoloading.js';
-import * as screen from '../src/gl_screen.js';
-import * as draw from '../src/gl_draw.js';
+import * as screen from '../src/engine/render/gl_screen.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import * as consoleUI from '../src/engine/common/console.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as host from '../src/engine/server/host.js';
@@ -13,7 +13,7 @@ import * as keys from '../src/engine/client/keys.js';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as common from '../src/engine/common/common.js';
 import * as pak from '../src/engine/common/pak.js';
-import * as vid from '../src/vid.js';
+import * as vid from '../src/engine/render/vid.js';
 import * as wad from '../src/engine/common/wad.js';
 import {r_hdr} from '../src/gl_post.js';
 const check=(v,m)=>{if(!v)throw Error(m);},near=(a,b,m)=>check(Math.abs(a-b)<1e-8,`${m}: ${a} != ${b}`);

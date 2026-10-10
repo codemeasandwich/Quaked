@@ -2,10 +2,10 @@
 // Pixel behavior is checked separately by surface_filtering_gpu_trial.html.
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as heights from '../src/r_heightshadows.js';
-import { createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
+import { createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 import { R_NormalsFromHeight, R_NormalsFromCraftedHeight } from '../src/gl_normals.js';
 const check=(v,m)=>{if(!v)throw new Error(m);}, same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 const controls=[post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,heights.r_heightshadows];

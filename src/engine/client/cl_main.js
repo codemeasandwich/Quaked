@@ -41,15 +41,15 @@ import { SIGNONS, MAX_DLIGHTS, MAX_EFRAGS, MAX_BEAMS, MAX_TEMP_ENTITIES,
 	client_state_t, usercmd_t, cshift_t,
 	NUM_CSHIFTS } from './client.js';
 import { anglemod, VectorCopy, VectorMA, AngleVectors } from '../common/mathlib.js';
-import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from '../../render.js';
+import { R_RocketTrail, R_RemoveEfrags, R_EntityParticles } from '../render/render.js';
 import { R_ImpactMissile } from '../../r_impactripples.js';
 import { R_FlashlightRunEnd } from '../../r_flashlightrun.js';
 import { R_DemoSplitEnd } from '../../r_demosplit.js';
 import { R_MuzzleFlashFired, R_MuzzleView, R_MuzzleFlashScale } from '../../r_muzzle.js';
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../../newer/render/r_anim.js';
 import { CL_InitTEnts, CL_UpdateTEnts } from './cl_tent.js';
 import { host_frametime, realtime, Host_Error, Host_ShutdownServer, Host_ClearMemory, sv } from '../server/host.js';
-import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../../gl_screen.js';
+import { SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_StopAllSounds } from '../sound/snd_dma.js';
 import { M_ConnectionError, M_ShouldReturnOnError } from './menu.js';
 import { key_menu, set_key_dest } from './keys.js';

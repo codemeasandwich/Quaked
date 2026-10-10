@@ -28,7 +28,7 @@
 // stock progs (the field and function names are the game's), Newer Game only. Markers in a saved game are picked up again.
 
 import { sv, svs, FL_MONSTER } from '../../engine/server/server.js';
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../render/r_anim.js';
 import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, EDICT_TO_PROG } from '../../engine/progs/progs.js';
 import { OFS_PARM0 } from '../../engine/progs/pr_comp.js';
 import { GetEdictFieldValue, ED_FindFunction, ED_Alloc, ED_Free, ED_NewString } from '../../engine/progs/pr_edict.js';

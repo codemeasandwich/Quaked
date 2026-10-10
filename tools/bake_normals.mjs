@@ -19,7 +19,7 @@ globalThis.Image=FileImage;globalThis.document={createElement:tag=>{if(tag!=='ca
 globalThis.fetch=async url=>{
  const path=String(url).split('?')[0];try{const data=await readFile(path);return new Response(data);}catch{return new Response(null,{status:404});}
 };
-const surface=await import('../src/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/gl_model.js'),vid=await import('../src/vid.js');
+const surface=await import('../src/engine/render/gl_rsurf.js'),pak=await import('../src/engine/common/pak.js'),model=await import('../src/engine/render/gl_model.js'),vid=await import('../src/engine/render/vid.js');
 const textures=await import('../src/r_newertextures.js'),cvar=await import('../src/engine/common/cvar.js'),{r_hdr}=await import('../src/gl_post.js');
 const {NormalInputs,NormalInputKey,NormalGenerate}=await import('../src/normal_prepare.js'),{NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION}=await import('../src/normal_bake_format.js');
 const members=await memberSearch(packs);for(const path of loose)members.set(path,{path,name:path,loose:true});
@@ -46,7 +46,7 @@ for(const[name,entry]of members)if(!skins&&/^maps\/[^/]+\.bsp$/.test(name)&&new 
 }
 
 if(skins){
- const THREE=await import('three'),{ENEMY_SKIN_MODELS}=await import('../src/r_newerskins.js'),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
+ const THREE=await import('three'),{ENEMY_SKIN_MODELS}=await import('../src/newer/render/r_newerskins.js'),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
  const runsCustom=namespace==='shareware'||variantFilter!==null;
  const selectedVariants=runsCustom?Object.entries(skinIndex.models||{}).flatMap(([key,variants])=>ENEMY_SKIN_MODELS.has(key)&&new RegExp(filter).test('progs/'+key+'.mdl')?variants.filter(variant=>variantFilter===null||variant.dir===variantFilter).map(variant=>({key,variant})):[]):[];
  if(variantFilter!==null&&!selectedVariants.length)throw Error('No matching custom skin variant: '+variantFilter);

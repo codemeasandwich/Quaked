@@ -4,9 +4,9 @@ import * as THREE from 'three';
 import * as field from '../src/r_rockfield.js';
 import * as shader from '../src/r_rockshader.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
+import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 const check=(x,m)=>{if(!x)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 const face=(name,x0,x1,z0,z1,phase=0)=>({flags:0,plane:{normal:[0,-1,0],dist:0},texinfo:{texture:{name,width:64,height:64}},polys:{numverts:4,verts:new Float32Array([[x0,z0],[x0,z1],[x1,z1],[x1,z0]].flatMap(([x,z])=>[x,0,z,x/64+phase,z/64-phase,.2,.3]))}});
 function metadata(faces){const result=field.R_RockfieldBuild({name:'maps/start.bsp',surfaces:faces});return faces.map(f=>{const geometry=DrawGLPoly(f.polys,f.plane.normal),before=Object.fromEntries(Object.entries(geometry.attributes).map(([n,a])=>[n,{attribute:a,values:a.array.slice()}]));check(field.R_RockfieldGeometry(geometry,f),'public annotation accepts natural wall');const warp=geometry.getAttribute('rockWarp'),chart=result.bySurface.get(f);check(warp?.itemSize===2&&warp.count===geometry.attributes.position.count,'one warp metadata pair per native vertex');for(let i=0;i<warp.count;i++){same(warp.getX(i),chart.seed&65535,'exact16-bit map/material seed');check(Math.abs(warp.getY(i)-(chart.name==='bricka2_2'?.2:0))<1e-7,'only target material receives small warp amplitude');}for(const[n,a]of Object.entries(before)){same(geometry.getAttribute(n),a.attribute,'native attribute identity '+n);check(a.values.every((v,i)=>v===a.attribute.array[i]),'native attribute values '+n);}const out={seed:warp.getX(0),amplitude:warp.getY(0)};geometry.dispose();return out;});}

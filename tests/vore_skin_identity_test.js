@@ -5,9 +5,9 @@ import * as THREE from 'three';
 import {createHash} from 'node:crypto';
 import {pakDirectory,readMember,isolatedPack} from '../tools/pak_members.mjs';
 import {COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init,Mod_ForName,Mod_LoadModel,model_t} from '../src/gl_model.js';
-import * as anim from '../src/r_anim.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init,Mod_ForName,Mod_LoadModel,model_t} from '../src/engine/render/gl_model.js';
+import * as anim from '../src/newer/render/r_anim.js';
 const EXPECTED='da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`);
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -36,7 +36,7 @@ async function fixture(fn){
  const requests=[];Object.defineProperty(globalThis,'document',{configurable:true,value:{}});
  THREE.TextureLoader.prototype.load=function(url,done,_progress,fail){const texture=new THREE.DataTexture(new Uint8Array(4*4*4).fill(127),4,4);requests.push({url:String(url),done,fail,texture});return texture;};
  anim.R_AnimSetClassicPass(false);anim.R_AnimSetNewer(true);anim.r_newer_enemies.value=1;anim.r_newer_normals.value=0;
- const skins=await import('../src/r_newerskins.js?vore-identity-'+(++serial));
+ const skins=await import('../src/newer/render/r_newerskins.js?vore-identity-'+(++serial));
  try{await fn(skins,requests);}finally{skins.R_NewerSkinsShutdown();THREE.TextureLoader.prototype.load=old.loader;if(old.doc)Object.defineProperty(globalThis,'document',old.doc);else delete globalThis.document;anim.R_AnimSetClassicPass(old.classic);anim.R_AnimSetNewer(old.newer);anim.r_newer_normals.value=old.normals;anim.r_newer_enemies.value=old.enemies;}
 }
 Deno.test('actual owned Vore loaded through COM/Mod hashes once and preserves all native pose/skin/head bytes',async()=>{

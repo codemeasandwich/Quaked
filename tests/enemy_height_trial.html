@@ -8,8 +8,8 @@ const status=document.querySelector('#status');let checks=0;
 const trialControls=[...document.querySelectorAll('header button,header select,header input')];trialControls.forEach(c=>c.disabled=true);
 function check(value,label){if(!value)throw new Error(label);checks++;}
 try {
- await import('./src/gl_rsurf.js');
- const THREE=await import('three'),pak=await import('./src/engine/common/pak.js'),models=await import('./src/gl_model.js'),mesh=await import('./src/gl_mesh.js'),skins=await import('./src/r_newerskins.js'),anim=await import('./src/r_anim.js'),post=await import('./src/gl_post.js'),cvars=await import('./src/engine/common/cvar.js'),vid=await import('./src/vid.js');
+ await import('./src/engine/render/gl_rsurf.js');
+ const THREE=await import('three'),pak=await import('./src/engine/common/pak.js'),models=await import('./src/engine/render/gl_model.js'),mesh=await import('./src/engine/render/gl_mesh.js'),skins=await import('./src/newer/render/r_newerskins.js'),anim=await import('./src/newer/render/r_anim.js'),post=await import('./src/gl_post.js'),cvars=await import('./src/engine/common/cvar.js'),vid=await import('./src/engine/render/vid.js');
  const archive=pak.COM_LoadPackFile('pak0.pak',await (await fetch('pak0.pak')).arrayBuffer());pak.COM_AddPack(archive);vid.VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);models.Mod_Init();
  const index=await (await fetch('newer/enemies/index.json',{cache:'no-store'})).json();skins.R_NewerSetIndex(index);
  for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,post.r_newdark,post.r_newedges,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_enemies])if(!cvars.Cvar_FindVar(v.name))cvars.Cvar_RegisterVariable(v);

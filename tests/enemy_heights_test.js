@@ -1,7 +1,7 @@
-await import('../src/gl_rsurf.js');
+await import('../src/engine/render/gl_rsurf.js');
 const THREE = await import('three');
-const skins = await import('../src/r_newerskins.js');
-const anim = await import('../src/r_anim.js');
+const skins = await import('../src/newer/render/r_newerskins.js');
+const anim = await import('../src/newer/render/r_anim.js');
 
 function equal(a,b,label) { if(a!==b) throw new Error(`${label}: ${a} != ${b}`); }
 function pixels(seed=1,w=16,h=16) {

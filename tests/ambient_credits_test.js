@@ -3,9 +3,9 @@
 // Canvas2D boundary. Assertions measure transformed destination rectangles;
 // these are geometry/interaction checks, not raster or browser visual acceptance.
 import { readFileSync } from 'node:fs';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const menu = await import( '../src/engine/client/menu.js' ), cmd = await import( '../src/engine/common/cmd.js' ), keys = await import( '../src/engine/client/keys.js' );
-const draw = await import( '../src/gl_draw.js' );
+const draw = await import( '../src/engine/render/gl_draw.js' );
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: ${a} != ${b}` ); }
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function near( a, b, label, tolerance = 1e-8 ) { check( Math.abs( a - b ) <= tolerance, `${label}: ${a} != ${b}` ); }

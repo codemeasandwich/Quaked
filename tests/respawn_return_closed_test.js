@@ -4,8 +4,8 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -24,11 +24,11 @@ import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/engine/
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
 import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connected, ca_dedicated } from '../src/engine/client/client.js';
 import * as Q from '../src/engine/common/quakedef.js';
-import { R_LevelEntities } from '../src/r_levelents.js';
-import { R_SetupLevelViews, R_LevelViewCount, R_ClearLevelViews, R_SyncLevelViews } from '../src/r_levelview.js';
+import { R_LevelEntities } from '../src/newer/render/r_levelents.js';
+import { R_SetupLevelViews, R_LevelViewCount, R_ClearLevelViews, R_SyncLevelViews } from '../src/newer/render/r_levelview.js';
 import { R_LevelPortalCount, R_LevelPortalMatrix, R_ClearPortals } from '../src/gl_portal.js';
 import { SV_TestEntityPosition } from '../src/engine/server/world.js';
 import { R_HasArchHidden } from '../src/r_archframe.js';

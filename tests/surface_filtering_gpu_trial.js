@@ -1,10 +1,10 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
+import { createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 const W=256,H=256, report=document.querySelector('#report'), views=document.querySelector('#views'), button=document.querySelector('#run');
 const mutation=new URLSearchParams(location.search).get('mutation');
 for(const c of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,height.r_heightshadows])if(!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);

@@ -1,9 +1,9 @@
 // Impact ripples (card [W1]): what crosses a pool or hits a standing portal leaves a ring. The detector with a real BSP lookup is
 // exercised in the browser run recorded in docs/impact-ripples-2026-10-09.md; here the rules: where the ring is, what is
 // ignored, the caps, the lifetime and the packing the shaders read, Classic having none.
-await import( '../src/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
+await import( '../src/engine/render/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
 import * as vars from '../src/engine/common/cvar.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import * as r from '../src/r_impactripples.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
 

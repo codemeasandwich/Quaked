@@ -2,8 +2,8 @@
 // client command and host physics endpoints. GPU readiness remains a browser test.
 import {readFileSync} from 'node:fs';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init} from '../src/gl_model.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init} from '../src/engine/render/gl_model.js';
 import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
 import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -12,9 +12,9 @@ import {SV_Init,SV_SpawnServer} from '../src/engine/server/sv_main.js';
 import * as host from '../src/engine/server/host.js';
 import * as client from '../src/engine/client/cl_main.js';
 import {cl,cls,ca_connected,ca_disconnected} from '../src/engine/client/client.js';
-import * as main from '../src/gl_rmain.js';
-import {R_DrawWorld,R_DemonReliefStatus} from '../src/gl_rsurf.js';
-import * as anim from '../src/r_anim.js';
+import * as main from '../src/engine/render/gl_rmain.js';
+import {R_DrawWorld,R_DemonReliefStatus} from '../src/engine/render/gl_rsurf.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as boot from '../src/r_demoloading.js';
 import {R_DemonBakeStatus} from '../src/r_demonbakes.js';

@@ -10,15 +10,15 @@ import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { COM_LoadPackFile, COM_AddPack } from '../src/engine/common/pak.js';
-import { Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { R_DrawAliasModel } from '../src/gl_mesh.js';
+import { Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { COM_FindFile } from '../src/engine/common/pak.js';
-import { entity_t } from '../src/render.js';
+import { entity_t } from '../src/engine/render/render.js';
 import { cl } from '../src/engine/client/client.js';
 import { R_FireballTextures, R_FireballAssets } from '../src/r_fireball.js';
-import { R_SaveClassicScene } from '../src/r_classicstate.js';
-import { R_AnimSetClassicPass, R_AnimSetNewer, r_lerpmodels } from '../src/r_anim.js';
+import { R_SaveClassicScene } from '../src/newer/render/r_classicstate.js';
+import { R_AnimSetClassicPass, R_AnimSetNewer, r_lerpmodels } from '../src/newer/render/r_anim.js';
 import * as tf from '../src/r_torchfire.js';
 
 const SOURCE_SHA256 = '7e35fc808c24200e9dbf2b010a72d2fbea04aca567528ebd2e61e79979afc7d6';
@@ -265,7 +265,7 @@ Deno.test( 'the alias mesh can draw only a model\'s handle, and draws all of it 
 
 Deno.test( 'the renderer asks for the torch before it draws the entity list and flushes after it, and keeps the pit\'s shadow', () => {
 
-	const rmain = readFileSync( new URL( '../src/gl_rmain.js', import.meta.url ), 'utf8' );
+	const rmain = readFileSync( new URL( '../src/engine/render/gl_rmain.js', import.meta.url ), 'utf8' );
 	const begin = rmain.indexOf( 'R_TorchFireBegin();\n\tR_DrawEntitiesOnList();' ), flush = rmain.indexOf( 'R_TorchFireFlush(' );
 	check( begin > 0 && flush > begin, 'begin, then the entity list, then flush (the list is built inside R_RenderScene)' );
 	check( rmain.indexOf( 'R_DrawEntitiesOnList();', begin ) < flush, 'the flush follows the list' );

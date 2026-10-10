@@ -1,11 +1,11 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as rock from '../src/r_rockfield.js';
 import { ROCK_AXIS_U, ROCK_AXIS_V } from '../src/r_rocksurfaces.js';
-import { DrawGLPoly } from '../src/gl_rsurf.js';
+import { DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
 
 const report = document.querySelector( '#report' ), owned = [];
 // Explicit mutation control only for proving this diagnostic catches the old

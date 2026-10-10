@@ -39,7 +39,7 @@ import { Con_Init, Con_SetExternals, Con_Printf as RealConPrintf, Con_DPrintf as
 import { M_Init, M_SetExternals } from '../client/menu.js';
 import { MainMenu_Destroy } from '../../menu_webgl.js';
 import { PR_Init } from '../progs/pr_edict.js';
-import { Mod_Init, Mod_ClearAll, R_InitTextures } from '../../gl_model.js';
+import { Mod_Init, Mod_ClearAll, R_InitTextures } from '../render/gl_model.js';
 import { NET_Init, NET_Poll, NET_Shutdown, NET_SendMessage, NET_CanSendMessage,
 	NET_GetMessage, NET_SendToAll, WT_QueryRooms, WT_CreateRoom } from '../net/net_main.js';
 import { SV_Init, SV_CheckForNewClients, SV_ClearDatagram,
@@ -48,10 +48,10 @@ import { SV_RunClients } from './sv_user.js';
 import { SV_Physics, SV_SetFrametime, sv_gravity } from './sv_phys.js';
 import { sv, svs, client_t,
 	host_client, set_host_client } from './server.js';
-import { R_Init, D_FlushCaches } from '../../gl_rmisc.js';
-import { VID_Init, VID_Shutdown } from '../../vid.js';
-import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from '../../gl_draw.js';
-import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../../gl_screen.js';
+import { R_Init, D_FlushCaches } from '../render/gl_rmisc.js';
+import { VID_Init, VID_Shutdown } from '../render/vid.js';
+import { Draw_GetOverlayCanvas, Draw_Init, Draw_Character, Draw_String, Draw_ConsoleBackground, Draw_SetExternals, Draw_PicFromWad, Draw_CachePic, Draw_Pic, Draw_SubPic, Draw_TransPic, Draw_TransPicTranslate, Draw_Fill, Draw_FadeScreen } from '../render/gl_draw.js';
+import { SCR_Init, SCR_UpdateScreen, SCR_SetExternals, SCR_EndLoadingPlaque, SCR_BeginLoadingPlaque } from '../render/gl_screen.js';
 import { S_Init, S_Update, S_Shutdown, S_StopAllSounds, S_SetCallbacks } from '../sound/snd_dma.js';
 import { CDAudio_Init, CDAudio_Update, CDAudio_Shutdown } from '../sound/cd_audio.js';
 import { S_UpdateAmbientMusic } from '../../s_ambientgame.js';
@@ -60,18 +60,18 @@ import { CL_Init, CL_SendCmd, CL_ReadFromServer, CL_DecayLights, CL_Disconnect, 
 import { IN_Init, IN_Commands, IN_Shutdown, IN_UpdateTouch, IN_RequestPointerLock } from '../../platform/in_web.js';
 import { cls, cl, SIGNONS, ca_connected, ca_dedicated } from '../client/client.js';
 import { key_dest, key_game, Key_SetExternals, set_key_dest } from '../client/keys.js';
-import { r_origin, vpn, vright, vup } from '../../render.js';
+import { r_origin, vpn, vright, vup } from '../render/render.js';
 import { vec3_origin } from '../common/mathlib.js';
 import { pr_global_struct } from '../progs/progs.js';
-import { vid, d_8to24table, renderer } from '../../vid.js';
+import { vid, d_8to24table, renderer } from '../render/vid.js';
 import { V_RenderView, V_UpdatePalette } from '../client/view.js';
 import { S_LocalSound } from '../sound/snd_dma.js';
 import { M_Menu_Main_f } from '../client/menu.js';
-import { R_Efrag_SetExternals } from '../../gl_refrag.js';
+import { R_Efrag_SetExternals } from '../render/gl_refrag.js';
 import { R_PerfFrameBegin, R_PerfFrameEnd, R_PerfStage, R_PerfStop } from '../../r_perf.js';
 import { R_TeleportFrameEnd } from '../../r_teleportfx.js';
 import { Host_InitCommands } from './host_cmd.js';
-import { R_SetParticleExternals } from '../../r_part.js';
+import { R_SetParticleExternals } from '../render/r_part.js';
 
 /*
 

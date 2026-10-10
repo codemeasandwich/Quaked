@@ -1,8 +1,8 @@
 // Bootstrap the client renderer graph in its established safe import order.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 
 const { CL_ClearState } = await import( '../src/engine/client/cl_main.js' );
-const { Mod_FindName, mod_brush, mod_alias } = await import( '../src/gl_model.js' );
+const { Mod_FindName, mod_brush, mod_alias } = await import( '../src/engine/render/gl_model.js' );
 const { sv } = await import( '../src/engine/server/server.js' );
 const { cls } = await import( '../src/engine/client/client.js' );
 

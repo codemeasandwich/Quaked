@@ -1,13 +1,13 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
-const gl_rsurf = await import( '../src/gl_rsurf.js' );
+const gl_rsurf = await import( '../src/engine/render/gl_rsurf.js' );
 
-const glquake = await import( '../src/glquake.js' );
-const gl_rmain = await import( '../src/gl_rmain.js' );
-const gl_rlight = await import( '../src/gl_rlight.js' );
+const glquake = await import( '../src/engine/render/glquake.js' );
+const gl_rmain = await import( '../src/engine/render/gl_rmain.js' );
+const gl_rlight = await import( '../src/engine/render/gl_rlight.js' );
 const view = await import( '../src/engine/client/view.js' );
 const THREE = await import( 'three' );
 const { cl, cl_dlights } = await import( '../src/engine/client/client.js' );
-const { r_origin } = await import( '../src/render.js' );
+const { r_origin } = await import( '../src/engine/render/render.js' );
 
 function assertEqual( actual, expected, message ) {
 

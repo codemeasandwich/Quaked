@@ -20,8 +20,8 @@
 import { Cvar_RegisterVariable } from '../common/cvar.js';
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { Con_Printf } from '../common/console.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../../gl_draw.js';
-import { renderer } from '../../vid.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
+import { renderer } from '../render/vid.js';
 
 /*
 ==============================================================================

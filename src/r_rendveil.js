@@ -1,7 +1,7 @@
 // Rend the Veil binds the EXISTING native alias mesh. The server owns the hold;
 // no render callback activates, relocates, damages or creates a game entity.
 import * as THREE from 'three';
-import { R_IsNewer } from './r_anim.js';
+import { R_IsNewer } from './newer/render/r_anim.js';
 import { PROFILE } from './rend_veil/config.js';
 import { sampleRendVeil } from './rend_veil/timeline.js';
 import { createLocalEffectPool } from './rend_veil/local-effects.js';

@@ -1,12 +1,12 @@
 // A deliberately bounded, real renderer check. There is no replacement GLSL,
 // synthetic height producer or CPU picture standing in for rendered results.
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/gl_post.js';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as rock from '../src/r_rockfield.js';
-import { DrawGLPoly } from '../src/gl_rsurf.js';
+import { DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
 
 const size = 256, report = document.querySelector( '#report' );
 const owned = [];

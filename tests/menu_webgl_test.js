@@ -3,7 +3,7 @@
 // GPU shader/pixel proof (tests/menu_webgl_gpu_trial.html and the live capture do).
 import {readFileSync} from 'node:fs';
 import * as menu from '../src/engine/client/menu.js';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import * as gpu from '../src/menu_webgl.js';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as keys from '../src/engine/client/keys.js';

@@ -2,8 +2,8 @@
 // GPU effect fidelity is a separate browser proof owned by the implementer.
 import { readFileSync } from 'node:fs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile, COM_SetNewerMapsEnabled } from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -14,7 +14,7 @@ import { SV_RunTriggerTouch, SV_LinkEdict, SV_Move, MOVE_NORMAL } from '../src/e
 import { SV_Physics, SV_Physics_Step, SV_RunThink, SV_SetFrametime, sv_gravity } from '../src/engine/server/sv_phys.js';
 import { SV_RendVeilLocalActive, SV_RendVeilHolding, SV_RendVeilClientRecord, Rend_ParseRecord } from '../src/newer/gameplay/sv_rendveil.js';
 import { Rend_Schedule } from '../src/newer/gameplay/rend_veil_state.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import { Cbuf_Init } from '../src/engine/common/cmd.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';

@@ -7,7 +7,7 @@
 
 import * as THREE from 'three';
 import { R_GetLiquidRegions, R_WaterActive, R_LiquidLookIndex, r_mist } from './gl_post.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
 
 const MAX_WISPS = 720;
 const TINT = [ 0.34, 0.95, 0.30 ];

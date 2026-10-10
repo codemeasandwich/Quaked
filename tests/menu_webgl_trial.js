@@ -10,7 +10,7 @@ const menu=await import('../src/engine/client/menu.js'),adapter=await import('..
 const {cl,cls}=await import('../src/engine/client/client.js'),{sv,svs}=await import('../src/engine/server/server.js');
 const {Cbuf_AddText,Cmd_ExecuteString}=await import('../src/engine/common/cmd.js');
 const {Cvar_SetValue,Cvar_VariableValue}=await import('../src/engine/common/cvar.js');
-const {Draw_GetOverlayCanvas}=await import('../src/gl_draw.js');
+const {Draw_GetOverlayCanvas}=await import('../src/engine/render/gl_draw.js');
 const split=await import('../src/r_demosplit.js');
 let phase='ready',generation=0,timer=null,deadline=0,lastTime=null,latest=null;
 function status(){

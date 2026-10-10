@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import {PointShadowAtlas,POINT_SHADOW_CELL_UNITS} from '../src/r_pointshadows.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),buffer=a=>Buffer.from(a.buffer,a.byteOffset,a.byteLength);
 export function chunkCases(){

@@ -33,7 +33,7 @@
 // delayed smoke wisps in the world at the muzzle where the shot was fired (card [30b]); under water there is none.
 import * as THREE from 'three';
 import { cvar_t } from './engine/common/cvar.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
 import { SV_FaceDrain } from './newer/gameplay/sv_faceevents.js';
 import { MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 const CONTENTS_WATER = - 3, CONTENTS_SLIME = - 4; // (bspfile.js; lava is not water)

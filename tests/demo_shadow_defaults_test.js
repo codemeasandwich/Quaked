@@ -10,7 +10,7 @@ import { COM_AddPack } from '../src/engine/common/pak.js';
 import * as split from '../src/r_demosplit.js';
 import * as perf from '../src/r_perf.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import { r_flashlight, R_FlashlightUpdate, R_FlashlightBeam } from '../src/r_flashlight.js';
 
 const check = ( x, label ) => { if ( ! x ) throw new Error( label ); };

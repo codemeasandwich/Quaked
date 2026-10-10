@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Flashlight material-colour trial</title><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js"}}</script></head><body style="background:#050505;color:white;font:14px system-ui"><h2>Zero baked light: beam off / beam on</h2><div id="views" style="display:flex;flex-wrap:wrap;gap:12px"></div><pre id="report">Running actual GPU surface checks…</pre><script type="module">
-await import('../src/gl_rsurf.js');
-const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/r_anim.js'),cvar=await import('../src/engine/common/cvar.js'),flash=await import('../src/r_flashlight.js'),skins=await import('../src/r_newerskins.js');
+await import('../src/engine/render/gl_rsurf.js');
+const THREE=await import('three'),post=await import('../src/gl_post.js'),anim=await import('../src/newer/render/r_anim.js'),cvar=await import('../src/engine/common/cvar.js'),flash=await import('../src/r_flashlight.js'),skins=await import('../src/newer/render/r_newerskins.js');
 for(const v of [post.r_hdr,post.r_dynres,post.r_bloom,post.r_volumetric,post.r_bounce,post.r_newbright,post.r_newcontrast,anim.r_newer_lighting,anim.r_newer_normals,anim.r_newer_water,flash.r_flashlight])if(!cvar.Cvar_FindVar(v.name))cvar.Cvar_RegisterVariable(v);
 for(const [k,v] of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_volumetric:0,r_bounce:0,r_newer_lighting:1,r_newer_normals:0,r_newer_water:0}))cvar.Cvar_SetValue(k,v);
 const renderer=new THREE.WebGLRenderer({preserveDrawingBuffer:true});renderer.setSize(192,128);renderer.setClearColor(0,0);

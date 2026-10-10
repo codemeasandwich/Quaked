@@ -17,7 +17,7 @@
 // pellet per frame and one plane test per portal (the ripples' own cost is r_waves.js's); `r_impactripples 0` turns it all off, and Classic Quake has none.
 
 import { cvar_t } from './engine/common/cvar.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
 
 export const r_impactripples = new cvar_t( 'r_impactripples', '1', true );
 

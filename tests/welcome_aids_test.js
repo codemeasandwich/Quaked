@@ -2,8 +2,8 @@
 // trigger geometry and QC. No helper directly applies welcome policy.
 import {readFileSync} from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init} from '../src/gl_model.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init} from '../src/engine/render/gl_model.js';
 import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
 import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -19,13 +19,13 @@ import {CL_Init,CL_Disconnect_f} from '../src/engine/client/cl_main.js';
 import {cls,cl,ca_connected,ca_disconnected} from '../src/engine/client/client.js';
 import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear} from '../src/engine/common/common.js';
-import {R_Init} from '../src/gl_rmain.js';
+import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init,crosshair} from '../src/engine/client/view.js';
 import {r_hdr} from '../src/gl_post.js';
 import {r_flashlight} from '../src/r_flashlight.js';
 import * as run from '../src/r_flashlightrun.js';
 import * as menu from '../src/engine/client/menu.js';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import * as keys from '../src/engine/client/keys.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';

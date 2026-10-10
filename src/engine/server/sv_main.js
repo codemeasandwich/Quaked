@@ -77,11 +77,11 @@ import { net_activeconnections, set_net_activeconnections } from '../net/net.js'
 import { realtime, Host_ClearMemory, Host_Error, set_host_frametime } from './host.js';
 import { COM_LoadFile } from '../common/pak.js';
 import { VectorCopy, VectorAdd, DotProduct } from '../common/mathlib.js';
-import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from '../../gl_model.js';
+import { Mod_ForName, Mod_LeafPVS, Mod_LoadForPreview, Mod_PointInLeaf } from '../render/gl_model.js';
 import { PR_LoadProgs, PR_AllocEdicts, ED_ClearEdict, ED_LoadFromFile, ED_NewString, GetEdictFieldValue, PR_SetCurrentSkill, PR_SetDeathmatch } from '../progs/pr_edict.js';
 import { pr_global_struct, pr_strings, pr_edict_size, progs, pr_crc, EDICT_NUM, NUM_FOR_EDICT, PR_SetSV, PR_SetSVS, EDICT_TO_PROG, PROG_TO_EDICT, NEXT_EDICT, PR_GetString } from '../progs/progs.js';
 import { SV_SeamlessSetup, SV_SeamlessUseModels, SV_LiquidLinks, SV_SeamlessEnabled, SV_SeamlessCloseReturn, SV_SeamlessEntryYaw } from '../../newer/gameplay/sv_seamless.js';
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../../newer/render/r_anim.js';
 import { COM_SetNewerActive, COM_SetNewerMapsEnabled } from '../common/pak.js';
 import { cls, ca_dedicated } from '../client/client.js';
 

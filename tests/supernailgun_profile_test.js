@@ -2,14 +2,14 @@
 // source-shape transforms and barrel-only mild grading at the public draw.
 import { readFileSync } from 'node:fs';
 import { inflateRawSync, inflateSync } from 'node:zlib';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const { GL_MakeAliasModelDisplayLists, R_DrawAliasModel } = await import( '../src/gl_mesh.js' );
-const { R_CloneAliasMaterial } = await import( '../src/r_newerskins.js' );
-const { R_WeaponStyleGLSL } = await import( '../src/r_weaponstyle.js' );
-const weapons = await import( '../src/r_weapons.js' );
+const { GL_MakeAliasModelDisplayLists, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
+const { R_CloneAliasMaterial } = await import( '../src/newer/render/r_newerskins.js' );
+const { R_WeaponStyleGLSL } = await import( '../src/newer/render/r_weaponstyle.js' );
+const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
-const { r_lerpmodels } = await import( '../src/r_anim.js' );
+const { r_lerpmodels } = await import( '../src/newer/render/r_anim.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
 const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 

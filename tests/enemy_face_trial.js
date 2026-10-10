@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-await import( '../src/gl_rsurf.js' );
-const pak = await import( '../src/engine/common/pak.js' ), models = await import( '../src/gl_model.js' ), mesh = await import( '../src/gl_mesh.js' );
-const skins = await import( '../src/r_newerskins.js' ), anim = await import( '../src/r_anim.js' ), face = await import( '../src/enemy_face.js' );
-const vars = await import( '../src/engine/common/cvar.js' ), vid = await import( '../src/vid.js' ), dots = ( await import( '../src/engine/common/anorm_dots.js' ) ).r_avertexnormal_dots[ 0 ];
+await import( '../src/engine/render/gl_rsurf.js' );
+const pak = await import( '../src/engine/common/pak.js' ), models = await import( '../src/engine/render/gl_model.js' ), mesh = await import( '../src/engine/render/gl_mesh.js' );
+const skins = await import( '../src/newer/render/r_newerskins.js' ), anim = await import( '../src/newer/render/r_anim.js' ), face = await import( '../src/newer/render/enemy_face.js' );
+const vars = await import( '../src/engine/common/cvar.js' ), vid = await import( '../src/engine/render/vid.js' ), dots = ( await import( '../src/engine/common/anorm_dots.js' ) ).r_avertexnormal_dots[ 0 ];
 const status = document.querySelector( '#status' ), errors = [], receipts = [];
 window.addEventListener( 'error', event => errors.push( event.message ) );
 window.addEventListener( 'unhandledrejection', event => errors.push( String( event.reason ) ) );

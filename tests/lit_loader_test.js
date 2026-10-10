@@ -2,8 +2,8 @@
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
 
 Deno.test('native loader falls back for E1M3 but preserves matching E2M1 RGB', () => {
 	for (const path of ['resources/id1/pak0.pak', 'pak0.pak']) {

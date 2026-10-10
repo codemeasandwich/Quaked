@@ -4,7 +4,7 @@ import { R_CreatePowerupFire, R_RenderPowerupFire, R_ClearPowerupFireTarget } fr
 // lifetime; Classic redraw never mutates this registry.
 import * as THREE from 'three';
 import { cvar_t } from './engine/common/cvar.js';
-import { R_NewerGame, R_ClassicPassActive } from './r_anim.js';
+import { R_NewerGame, R_ClassicPassActive } from './newer/render/r_anim.js';
 
 export const r_powerups = new cvar_t( 'r_powerups', '1', true );
 const kinds = { 'progs/quaddama.mdl': 'quad', 'progs/invulner.mdl': 'pentagram', 'progs/invisibl.mdl': 'ring' };

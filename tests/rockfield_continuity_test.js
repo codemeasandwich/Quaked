@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { createField, generateTile } from '../src/rockfield.js';
 import { R_RockSurfaceCharts, R_RockCoordinates } from '../src/r_rocksurfaces.js';
 import { R_RockfieldBuild, R_RockfieldGeometry } from '../src/r_rockfield.js';
-import { DrawGLPoly } from '../src/gl_rsurf.js';
+import { DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
 
 const assert = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const same = ( a, b, label ) => assert( a === b, `${label}: ${a} !== ${b}` );

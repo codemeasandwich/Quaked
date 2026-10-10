@@ -2,14 +2,14 @@
 // MDLs directly, then exercise the public draw and material interfaces.
 import { readFileSync } from 'node:fs';
 import { inflateRawSync } from 'node:zlib';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const { GL_MakeAliasModelDisplayLists, R_DrawAliasModel } = await import( '../src/gl_mesh.js' );
-const { R_CloneAliasMaterial } = await import( '../src/r_newerskins.js' );
-const { R_WeaponStyleGLSL } = await import( '../src/r_weaponstyle.js' );
-const weapons = await import( '../src/r_weapons.js' );
+const { GL_MakeAliasModelDisplayLists, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
+const { R_CloneAliasMaterial } = await import( '../src/newer/render/r_newerskins.js' );
+const { R_WeaponStyleGLSL } = await import( '../src/newer/render/r_weaponstyle.js' );
+const weapons = await import( '../src/newer/render/r_weapons.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
-const { r_lerpmodels } = await import( '../src/r_anim.js' );
+const { r_lerpmodels } = await import( '../src/newer/render/r_anim.js' );
 const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } = await import( '../src/engine/common/cvar.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }

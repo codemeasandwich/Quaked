@@ -1,7 +1,7 @@
 // Public selected-asset readiness and terminal native fallbacks. Timers/image
 // transport are controlled at endpoints; actual loaders/materials remain used.
 import * as THREE from 'three';
-import { R_AnimSetNewer, R_AnimSetLighting, R_AnimSetClassicPass, r_newer_normals, r_newer_textures, r_newer_enemies } from '../src/r_anim.js';
+import { R_AnimSetNewer, R_AnimSetLighting, R_AnimSetClassicPass, r_newer_normals, r_newer_textures, r_newer_enemies } from '../src/newer/render/r_anim.js';
 import { r_hdr } from '../src/gl_post.js';
 import { Cvar_FindVar, Cvar_RegisterVariable } from '../src/engine/common/cvar.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
@@ -64,7 +64,7 @@ Deno.test( 'successful world diffuse/height readiness waits for all selected art
 } ) );
 
 Deno.test( 'selected custom and native skin height requests settle with diagnostics and reject late textures', async () => endpoints( async env => {
-	const skins = await import( '../src/r_newerskins.js?readiness-selected' );
+	const skins = await import( '../src/newer/render/r_newerskins.js?readiness-selected' );
 	skins.R_NewerSetIndex( { models: { shambler: [ { dir: 'shambler/readiness', maps: { diffuse: 'd.webp', height: 'h.webp' } } ],
 		wizard: [ { dir: 'wizard/preview', maps: { diffuse: 'd.webp' } } ] }, nativeHeights: { dog: [ [ { file: 'dog-height.webp' } ] ] }, version: 1 } );
 	const entity = { _entityIndex: 1 }; skins.R_NewerAliasMaterial( entity, 'progs/shambler.mdl', true );
@@ -83,7 +83,7 @@ Deno.test( 'selected custom and native skin height requests settle with diagnost
 
 Deno.test( 'skin index timeout is terminal and late response cannot create a replacement', async () => endpoints( async env => {
 	let release; globalThis.fetch = () => new Promise( resolve => { release = resolve; } );
-	const skins = await import( '../src/r_newerskins.js?readiness-index' ), entity = { _entityIndex: 1 };
+	const skins = await import( '../src/newer/render/r_newerskins.js?readiness-index' ), entity = { _entityIndex: 1 };
 	skins.R_NewerAliasMaterial( entity, 'progs/shambler.mdl', true ); equal( skins.R_NewerSkinsStatus( 'progs/shambler.mdl' ).pending, 1, 'selected index pending' );
 	env.expire(); check( skins.R_NewerSkinsStatus( 'progs/shambler.mdl' ).settled, 'index native fallback settles' );
 	release( { ok: true, json: async () => ( { models: { shambler: [ { dir: 'late', maps: { diffuse: 'd.webp' } } ] } } ) } ); await flush();
@@ -91,7 +91,7 @@ Deno.test( 'skin index timeout is terminal and late response cannot create a rep
 } ) );
 
 Deno.test( 'failed authored skin normal is terminal and generates matching relief from the loaded diffuse', async () => endpoints( async env => {
-	const skins = await import( '../src/r_newerskins.js?readiness-normal-failure' );
+	const skins = await import( '../src/newer/render/r_newerskins.js?readiness-normal-failure' );
 	skins.R_NewerSetIndex( { version: 1, models: { shambler: [ { dir: 'shambler/normalfailure', maps: { diffuse: 'd.webp', normal: 'n.webp' } } ] } } );
 	const entity = { _entityIndex: 1 }; skins.R_NewerAliasMaterial( entity, 'progs/shambler.mdl', true );
 	const diffuse = env.textures.find( request => request.url.includes( 'd.webp' ) ), normal = env.textures.find( request => request.url.includes( 'n.webp' ) ); diffuse.onLoad( diffuse.texture ); normal.onError();
@@ -104,7 +104,7 @@ Deno.test( 'weapon preload status observes concurrent requests, bounds stalled t
 	const manifest = { models: { v_shot: { source: 'shotgun' } }, sources: { shotgun: { maps: { diffuse: 'd.webp', normal: 'n.webp' } }, shell: { maps: { diffuse: 's.webp' } } } };
 	const geometry = { poses: [ [ 0, 0, 0, 1, 0, 0, 0, 1, 0 ] ], uv: [ 0, 0, 1, 0, 0, 1 ], indices: [ 0, 1, 2 ] };
 	globalThis.fetch = async path => ( { ok: true, json: async () => String( path ).endsWith( 'index.json' ) ? manifest : geometry } );
-	const weapons = await import( '../src/r_weapons.js?readiness-preload' ), preload = weapons.R_WeaponsPreload(); await flush();
+	const weapons = await import( '../src/newer/render/r_weapons.js?readiness-preload' ), preload = weapons.R_WeaponsPreload(); await flush();
 	equal( weapons.R_WeaponStatus().preload, 'loading', 'preload loading' ); equal( weapons.R_WeaponStatus().pending.length, 2, 'held and shell concurrent' ); check( ! weapons.R_WeaponStatus().settled, 'images keep startup unready' );
 	env.expire(); await preload; const status = weapons.R_WeaponStatus(); check( status.settled, 'preload failures terminal' ); equal( status.preload, 'fallback', 'preload fallback diagnostic' ); equal( status.pending.length, 0, 'no dangling role pending' );
 	let disposed = 0; for ( const request of env.textures ) { request.texture.addEventListener( 'dispose', () => disposed ++ ); request.onLoad( request.texture ); }
@@ -115,7 +115,7 @@ Deno.test( 'weapon preload status observes concurrent requests, bounds stalled t
 Deno.test( 'successful weapon preload exposes terminal readiness and a stalled manifest cannot later enable art', async () => endpoints( async env => {
 	const manifest = { models: { v_shot: { source: 'shotgun' } }, sources: { shotgun: { maps: { diffuse: 'd.webp', normal: 'n.webp' } }, shell: { maps: { diffuse: 's.webp' } } } }, geometry = { poses: [ [ 0, 0, 0, 1, 0, 0, 0, 1, 0 ] ], uv: [ 0, 0, 1, 0, 0, 1 ], indices: [ 0, 1, 2 ] };
 	globalThis.fetch = async path => ( { ok: true, json: async () => String( path ).endsWith( 'index.json' ) ? manifest : geometry } );
-	const weapons = await import( '../src/r_weapons.js?readiness-success' ), preload = weapons.R_WeaponsPreload(); await flush();
+	const weapons = await import( '../src/newer/render/r_weapons.js?readiness-success' ), preload = weapons.R_WeaponsPreload(); await flush();
 	for ( const request of env.textures ) request.onLoad( request.texture ); await preload;
 	const status = weapons.R_WeaponStatus(); equal( status.preload, 'ready', 'successful preload state' ); check( status.settled && status.ready.includes( 'v_shot' ) && status.ready.includes( 'shell' ), 'successful roles ready' );
 	const before = env.textures.length, materials = weapons.R_WeaponMaterials(); equal( materials.length, 2, 'readyheld+shell warmmaterials' );
@@ -123,7 +123,7 @@ Deno.test( 'successful weapon preload exposes terminal readiness and a stalled m
 	const textures = weapons.R_WeaponTextures(); equal( textures.length, 3, 'readyhelddiffuse/normal+shell actualtexturebindings' ); check( textures.includes( weapons.R_WeaponAsset( 'progs/v_shot.mdl' ).material.map ), 'weapontexturegetter exactdiffuseidentity' );
 	check( textures.includes( env.textures.find( request => request.url.includes( 'n.webp' ) ).texture ), 'weapontexturegetter exactnormalidentity' ); equal( env.textures.length, before, 'weapontexturegetterrequests none' );
 	let release; globalThis.fetch = () => new Promise( resolve => { release = resolve; } );
-	const stalled = await import( '../src/r_weapons.js?readiness-manifest-stall' ), wait = stalled.R_WeaponsPreload(); await flush(); env.expire(); await wait;
+	const stalled = await import( '../src/newer/render/r_weapons.js?readiness-manifest-stall' ), wait = stalled.R_WeaponsPreload(); await flush(); env.expire(); await wait;
 	check( stalled.R_WeaponStatus().settled && stalled.R_WeaponStatus().failures.manifest, 'manifest timeout settles startup' );
 	release( { ok: true, json: async () => manifest } ); await flush(); equal( stalled.R_WeaponStatus().ready.length, 0, 'late manifest enables no art' );
 } ) );

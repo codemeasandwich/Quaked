@@ -1,10 +1,10 @@
 // Independent public-interface contracts; run using Quaked/tools/run_tests.mjs.
 import * as THREE from 'three';
 import { R_NormalMapFor } from '../src/gl_normals.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/gl_post.js';
-import {createQuakeLightmapMaterial} from '../src/gl_rsurf.js';
+import {createQuakeLightmapMaterial} from '../src/engine/render/gl_rsurf.js';
 const check=(v,m)=>{if(!v)throw Error(m)},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),equal=(a,b,m)=>same(Buffer.from(a).toString('hex'),Buffer.from(b).toString('hex'),m);
 const flush=async()=>{for(let i=0;i<60;i++)await Promise.resolve()};
 const normalBytes=new Uint8Array([32,220,180,17,230,66,180,89,90,180,245,150,170,75,245,230]);

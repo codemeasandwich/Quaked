@@ -1,6 +1,6 @@
 // Presentation only: the menu owns visibility, Draw_BeginFrame clears it on
 // close, and loading failure never blocks startup or changes gameplay state.
-import { Draw_GetOverlayCanvas } from './gl_draw.js';
+import { Draw_GetOverlayCanvas } from './engine/render/gl_draw.js';
 
 let image = null, requested = false;
 function artwork() {

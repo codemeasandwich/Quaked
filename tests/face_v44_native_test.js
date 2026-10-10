@@ -3,8 +3,8 @@
 // Save/load uses the actual host commands with isolated in-memory storage.
 import {readFileSync} from 'node:fs';
 import * as pak from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init} from '../src/gl_model.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init} from '../src/engine/render/gl_model.js';
 import {PR_InitBuiltins} from '../src/engine/progs/pr_cmds.js';
 import {PR_ExecuteProgram} from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -23,7 +23,7 @@ import {cls,cl,ca_disconnected} from '../src/engine/client/client.js';
 import {NET_Init,NET_SendMessage,NET_GetMessage,NET_CanSendMessage} from '../src/engine/net/net_main.js';
 import {SZ_Clear,sizebuf_t,SZ_Alloc,COM_SetNetMessage} from '../src/engine/common/common.js';
 import {CL_ParseServerMessage} from '../src/engine/client/cl_parse.js';
-import {R_Init} from '../src/gl_rmain.js';
+import {R_Init} from '../src/engine/render/gl_rmain.js';
 import {V_Init} from '../src/engine/client/view.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import {R_DemoLoadingCancel} from '../src/r_demoloading.js';

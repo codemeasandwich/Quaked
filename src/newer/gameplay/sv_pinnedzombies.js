@@ -13,7 +13,7 @@
 // animation. The stock spawn skips walkmonster_start, leaving DAMAGE_NO set.
 // Fresh maps and restored saves in Newer Game opt them into the existing
 // weapon -> T_Damage -> zombie_die path. Already mortal/dead records stay intact.
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../render/r_anim.js';
 import { DAMAGE_NO, DAMAGE_AIM, MOVETYPE_NONE } from '../../engine/server/server.js';
 import { PR_GetString, pr_functions } from '../../engine/progs/progs.js';
 import { GetEdictFieldValue } from '../../engine/progs/pr_edict.js';

@@ -3,7 +3,7 @@
 import {readFileSync} from 'node:fs';
 import * as THREE from 'three';
 import {R_BspTextureNames} from '../src/r_newertextures.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/gl_post.js';
 import * as boot from '../src/r_demoloading.js';

@@ -13,7 +13,7 @@
  *
  * Engine callbacks are injected with `Sbar_SetExternals`.
  */
-import { R_NewerGame, r_newer_hud } from '../../r_anim.js';
+import { R_NewerGame, r_newer_hud } from '../../newer/render/r_anim.js';
 import { R_PlayerFaceFrame } from '../../r_facegame.js';
 import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../../r_playerface.js';
 // Ported from: WinQuake/sbar.c, WinQuake/sbar.h -- status bar / HUD code
@@ -21,7 +21,7 @@ import { R_PlayerFacePreload, R_PlayerFaceCompose } from '../../r_playerface.js'
 import { Cmd_AddCommand } from '../common/cmd.js';
 import { realtime } from '../server/host.js';
 import { Con_Printf } from '../common/console.js';
-import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../../gl_draw.js';
+import { Draw_GetVirtualWidth, Draw_GetVirtualHeight } from '../render/gl_draw.js';
 import {
 	IT_SHOTGUN, IT_SUPER_SHOTGUN, IT_NAILGUN, IT_SUPER_NAILGUN,
 	IT_GRENADE_LAUNCHER, IT_ROCKET_LAUNCHER, IT_LIGHTNING, IT_SUPER_LIGHTNING,

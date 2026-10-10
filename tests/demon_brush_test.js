@@ -5,16 +5,16 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { R_DemonSurfaceData } from '../src/r_demonrelief.js';
-import * as surf from '../src/gl_rsurf.js';
-import * as main from '../src/gl_rmain.js';
+import * as surf from '../src/engine/render/gl_rsurf.js';
+import * as main from '../src/engine/render/gl_rmain.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { cl } from '../src/engine/client/client.js';
-import { entity_t, r_refdef, r_origin, vpn, vright, vup } from '../src/render.js';
+import { entity_t, r_refdef, r_origin, vpn, vright, vup } from '../src/engine/render/render.js';
 import { AngleVectors } from '../src/engine/common/mathlib.js';
 
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };

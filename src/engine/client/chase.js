@@ -16,7 +16,7 @@ import { cvar_t, Cvar_RegisterVariable } from '../common/cvar.js';
 import { VectorCopy, VectorSubtract, VectorMA, DotProduct,
 	AngleVectors, M_PI } from '../common/mathlib.js';
 import { cl } from './client.js';
-import { r_refdef } from '../../render.js';
+import { r_refdef } from '../render/render.js';
 
 export const chase_back = new cvar_t( 'chase_back', '100' );
 export const chase_up = new cvar_t( 'chase_up', '16' );

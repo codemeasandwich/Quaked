@@ -11,7 +11,7 @@
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
-import { R_PlayerSurfaceBlood } from '../../r_weapon_surface.js';
+import { R_PlayerSurfaceBlood } from '../../newer/render/r_weapon_surface.js';
 import { PowerVisionMode } from '../../newer/gameplay/powervision_state.js';
 import { R_PostActive } from '../../gl_post.js';
 import { R_QuadVisionActive } from '../../r_quadvision.js';
@@ -29,21 +29,21 @@ import { VectorCopy, VectorAdd, VectorSubtract, VectorNormalize,
 	DotProduct, AngleVectors, anglemod, M_PI } from '../common/mathlib.js';
 import { host_frametime, sv } from '../server/host.js';
 import { noclip_anglehack } from '../server/host_cmd.js';
-import { r_refdef } from '../../render.js';
+import { r_refdef } from '../render/render.js';
 import {
 	CSHIFT_CONTENTS, CSHIFT_DAMAGE, CSHIFT_BONUS, CSHIFT_POWERUP,
 	NUM_CSHIFTS,
 	cl, cls, cl_entities, entity_t
 } from './client.js';
 import { cl_forwardspeed } from './cl_input.js';
-import { R_RenderView } from '../../gl_rmain.js';
-import { R_PushDlights } from '../../gl_rlight.js';
+import { R_RenderView } from '../render/gl_rmain.js';
+import { R_PushDlights } from '../render/gl_rlight.js';
 import { con_forcedup } from '../common/console.js';
 import { R_DemoLoadingHolding } from '../../r_demoloading.js';
-import { VID_UpdateGamma } from '../../vid.js';
-import { scr_viewsize } from '../../gl_screen.js';
+import { VID_UpdateGamma } from '../render/vid.js';
+import { scr_viewsize } from '../render/gl_screen.js';
 import { cl_simorg, cl_simvel, cl_simangles, cl_simonground, cl_nopred, cl_prediction_active } from './cl_pred.js';
-import { v_blend, v_liquid_blend } from '../../glquake.js';
+import { v_blend, v_liquid_blend } from '../render/glquake.js';
 import { V_ShamblerStepShake, v_shamblersteps } from '../../v_shamblersteps.js';
 
 export { v_blend };

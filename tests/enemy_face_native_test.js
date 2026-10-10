@@ -4,8 +4,8 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -13,11 +13,11 @@ import { PR_LoadProgs, PR_AllocEdicts, ED_FindFunction, ED_NewString, ED_Alloc, 
 import { sv, svs, ss_loading, SOLID_BSP, MOVETYPE_PUSH } from '../src/engine/server/server.js';
 import { SV_ClearWorld } from '../src/engine/server/world.js';
 import { SV_SetState, SV_SetCallbacks } from '../src/engine/server/sv_phys.js';
-import { R_ParseEntityLump } from '../src/r_levelgraph.js';
-import { R_LevelEntities } from '../src/r_levelents.js';
-import { R_AddLevelRunner, R_MoveLevelRunner, R_ClearLevelRunners, R_ClearLevelViews, R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from '../src/r_levelview.js';
+import { R_ParseEntityLump } from '../src/newer/render/r_levelgraph.js';
+import { R_LevelEntities } from '../src/newer/render/r_levelents.js';
+import { R_AddLevelRunner, R_MoveLevelRunner, R_ClearLevelRunners, R_ClearLevelViews, R_SetupLevelViews, R_LevelViewUseSnapshots, R_UpdateLevelViewEntities } from '../src/newer/render/r_levelview.js';
 import { Axe_ParseRecord } from '../src/newer/gameplay/axe_record.js';
-import { Face_Index } from '../src/enemy_face.js';
+import { Face_Index } from '../src/newer/render/enemy_face.js';
 import { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { r_hdr } from '../src/gl_post.js';
 import { CL_ParseUpdate, CL_EntityNum } from '../src/engine/client/cl_parse.js';

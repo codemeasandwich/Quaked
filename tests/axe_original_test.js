@@ -2,12 +2,12 @@
 // in every game mode. Decode the original PAK directly; no donated axe art.
 import { readFileSync, existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/gl_mesh.js' );
-const weapons = await import( '../src/r_weapons.js' );
-const anim = await import( '../src/r_anim.js' );
-const { R_SaveClassicScene } = await import( '../src/r_classicstate.js' );
+const { GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame, R_DrawAliasModel } = await import( '../src/engine/render/gl_mesh.js' );
+const weapons = await import( '../src/newer/render/r_weapons.js' );
+const anim = await import( '../src/newer/render/r_anim.js' );
+const { R_SaveClassicScene } = await import( '../src/newer/render/r_classicstate.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { Cvar_FindVar, Cvar_RegisterVariable, Cvar_SetValue } = await import( '../src/engine/common/cvar.js' );
 const { r_avertexnormals } = await import( '../src/engine/common/anorm_dots.js' );

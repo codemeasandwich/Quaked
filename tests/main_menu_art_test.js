@@ -2,7 +2,7 @@
 // by real menu command/keyboard/touch routing in the authored title order.
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import * as menu from '../src/engine/client/menu.js';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as keys from '../src/engine/client/keys.js';

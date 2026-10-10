@@ -1,11 +1,11 @@
 // Deliberately no main.js, Quake server, RAF loop, asset downloads or synthetic
 // renderer. Every fixture draw uses the current production material callbacks.
-await import( '../src/gl_rsurf.js' ); // production import order avoids its cycle
+await import( '../src/engine/render/gl_rsurf.js' ); // production import order avoids its cycle
 const THREE = await import( 'three' );
 const post = await import( '../src/gl_post.js' );
-const skins = await import( '../src/r_newerskins.js' );
+const skins = await import( '../src/newer/render/r_newerskins.js' );
 const height = await import( '../src/r_heightshadows.js' );
-const anim = await import( '../src/r_anim.js' );
+const anim = await import( '../src/newer/render/r_anim.js' );
 const cvars = await import( '../src/engine/common/cvar.js' );
 const W = 512, H = 512, report = document.querySelector( '#report' ), button = document.querySelector( '#run' );
 const registered = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_bounce,

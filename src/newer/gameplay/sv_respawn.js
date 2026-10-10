@@ -17,7 +17,7 @@
 // only its backpack/restart are replaced while this coordinator owns a death.
 import {sv,svs,FL_MONSTER,FL_ONGROUND,MOVETYPE_NONE,MOVETYPE_WALK,MOVETYPE_TOSS,SOLID_NOT,SOLID_TRIGGER,SOLID_SLIDEBOX,ss_loading} from '../../engine/server/server.js';
 import {cls,ca_dedicated} from '../../engine/client/client.js';
-import {R_NewerGame} from '../../r_anim.js';
+import {R_NewerGame} from '../render/r_anim.js';
 import {pr_crc,PR_GetString,pr_functions,pr_global_struct,pr_globals_int,EDICT_TO_PROG,PROG_TO_EDICT} from '../../engine/progs/progs.js';
 import {ED_Alloc,ED_Free,ED_FindFunction,ED_NewString,GetEdictFieldValue} from '../../engine/progs/pr_edict.js';
 import {PR_ExecuteProgram} from '../../engine/progs/pr_exec.js';
@@ -26,7 +26,7 @@ import {svc_updatestat} from '../../engine/common/protocol.js';
 import {MSG_WriteByte,MSG_WriteLong} from '../../engine/common/common.js';
 import {Cvar_VariableValue,cvar_t} from '../../engine/common/cvar.js';
 import {Respawn_NoticeSet,Respawn_NoticeClear,RESPAWN_MINUS,RESPAWN_PLUS} from '../../respawn_notice.js';
-import {Mod_ForName} from '../../gl_model.js';
+import {Mod_ForName} from '../../engine/render/gl_model.js';
 import {COM_FindFile} from '../../engine/common/pak.js';
 import {sv_gravity,SV_CheckWater} from '../../engine/server/sv_phys.js';
 import {Respawn_Sample,Respawn_NextFrame,RESPAWN_DELAY,RESPAWN_TURN} from '../../respawn_motion.js';

@@ -72,7 +72,7 @@
 <script type="module">
 import * as THREE from 'three';
 await import('./main.js');
-const vid=await import('./src/vid.js');
+const vid=await import('./src/engine/render/vid.js');
 while(vid.renderer==null)await new Promise(resolve=>setTimeout(resolve,10));
 const liveRenderer=vid.renderer;
 // Three.js installs these methods on the instance; prototype wrappers are

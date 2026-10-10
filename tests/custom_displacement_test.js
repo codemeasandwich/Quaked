@@ -9,7 +9,7 @@ import {DemonBakeDecode,DemonBakeEncode} from '../src/demon_bake_format.js';
 import {nativeStorage,recordingLocks} from './helpers/opfs_native_fixture.mjs';
 import {customModel,addCustomSurface,readyCustom} from './helpers/custom_displacement_fixture.mjs';
 import * as vars from '../src/engine/common/cvar.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import {r_hdr} from '../src/gl_post.js';
 import {R_IntroReadinessChecks} from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),turn=()=>new Promise(r=>setTimeout(r,0));let serial=0;

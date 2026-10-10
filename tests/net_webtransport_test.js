@@ -1,5 +1,5 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 
 const clientTransport = await import( '../src/engine/net/net_webtransport.js' );
 const { qsocket_t, net_message } = await import( '../src/engine/net/net.js' );

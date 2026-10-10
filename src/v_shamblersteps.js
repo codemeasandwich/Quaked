@@ -4,7 +4,7 @@ import { cl, cls, cl_entities, ca_connected, SIGNONS } from './engine/client/cli
 import { sv } from './engine/server/server.js';
 import { STAT_HEALTH } from './engine/common/quakedef.js';
 import { key_dest, key_game } from './engine/client/keys.js';
-import { R_NewerGame, R_AnimEnabled, ANIM_STEP } from './r_anim.js';
+import { R_NewerGame, R_AnimEnabled, ANIM_STEP } from './newer/render/r_anim.js';
 import { cvar_t } from './engine/common/cvar.js';
 
 export const v_shamblersteps = new cvar_t( 'v_shamblersteps', '1', true );

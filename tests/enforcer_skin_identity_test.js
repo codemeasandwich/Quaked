@@ -6,9 +6,9 @@ import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { pakDirectory, readMember, isolatedPack } from '../tools/pak_members.mjs';
 import { COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/gl_model.js';
-import * as anim from '../src/r_anim.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/normal_prepare.js';
 import { NormalBakeDecode } from '../src/normal_bake_format.js';
 const EXPECTED = '01eee88d78a0fe8014b86c57b45c235b59548bccc3436c97d8f59c420e865677';
@@ -37,7 +37,7 @@ async function fixture( run ) {
  const requests = []; Object.defineProperty( globalThis, 'document', { configurable: true, value: {} } ); Object.defineProperty( globalThis, 'window', { configurable: true, value: {} } );
  THREE.TextureLoader.prototype.load = function ( url, done, _, fail ) { const texture = new THREE.DataTexture( new Uint8Array( 64 ).fill( 127 ), 4, 4 ); requests.push( { url: String( url ), done, fail, texture } ); return texture; };
  anim.R_AnimSetClassicPass( false ); anim.R_AnimSetNewer( true ); anim.r_newer_enemies.value = 1; anim.r_newer_normals.value = 0;
- const skins = await import( '../src/r_newerskins.js?enforcer-public-' + ++serial ); skins.R_NewerSetIndex( index );
+ const skins = await import( '../src/newer/render/r_newerskins.js?enforcer-public-' + ++serial ); skins.R_NewerSetIndex( index );
  try { await run( skins, requests ); } finally {
   skins.R_NewerSkinsShutdown(); THREE.TextureLoader.prototype.load = old.loader;
   for ( const key of [ 'document', 'window' ] ) { if ( old[ key ] ) Object.defineProperty( globalThis, key, old[ key ] ); else delete globalThis[ key ]; }

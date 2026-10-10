@@ -24,11 +24,11 @@ function canvasFor(data, width, height) {
  c.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(data), width, height), 0, 0); return c;
 }
 try {
- await import('./src/gl_rsurf.js'); // safe bootstrap of the existing module graph
+ await import('./src/engine/render/gl_rsurf.js'); // safe bootstrap of the existing module graph
  const THREE = await import('three');
  const {Cvar_RegisterVariable,Cvar_SetValue} = await import('./src/engine/common/cvar.js');
  const {r_hdr} = await import('./src/gl_post.js');
- const {r_newer_textures,R_AnimSetNewer} = await import('./src/r_anim.js');
+ const {r_newer_textures,R_AnimSetNewer} = await import('./src/newer/render/r_anim.js');
  const {R_NewerTextureUpgrade} = await import('./src/r_newertextures.js');
  const {R_NormalMapFor,R_NormalsFromCraftedHeight} = await import('./src/gl_normals.js');
  Cvar_RegisterVariable(r_hdr); Cvar_RegisterVariable(r_newer_textures);

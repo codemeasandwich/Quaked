@@ -1,7 +1,7 @@
 // Public playback commands and profiler lifecycle share the real cvar registry.
 // A tiny header-only in-memory demo supplies playback; no map or renderer mock
 // decides whether comparison is enabled. Actual rendering is a browser trial.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const cmd = await import( '../src/engine/common/cmd.js' );
 const demo = await import( '../src/engine/client/cl_demo.js' );

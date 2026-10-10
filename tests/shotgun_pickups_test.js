@@ -4,8 +4,8 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -24,16 +24,16 @@ import { SZ_Alloc, SZ_Clear, sizebuf_t, COM_SetNetMessage } from '../src/engine/
 import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
 import { r_hdr } from '../src/gl_post.js';
 import { skill } from '../src/engine/server/host.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import { cls, cl, cl_entities, set_cl_numvisedicts, ca_disconnected, ca_connected, ca_dedicated } from '../src/engine/client/client.js';
 import * as Q from '../src/engine/common/quakedef.js';
-import { R_LevelEntities } from '../src/r_levelents.js';
+import { R_LevelEntities } from '../src/newer/render/r_levelents.js';
 import { NET_Init, NET_Close } from '../src/engine/net/net_main.js';
 import { Loop_Connect, Loop_CheckNewConnections } from '../src/engine/net/net_loop.js';
 import { V_Init, V_CalcRefdef } from '../src/engine/client/view.js';
-import * as render from '../src/gl_rmain.js';
-import { r_refdef, entity_t } from '../src/render.js';
-import { R_DrawAliasModel } from '../src/gl_mesh.js';
+import * as render from '../src/engine/render/gl_rmain.js';
+import { r_refdef, entity_t } from '../src/engine/render/render.js';
+import { R_DrawAliasModel } from '../src/engine/render/gl_mesh.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import { Respawn_Sample } from '../src/respawn_motion.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),near=(a,b,m,e=1e-4)=>check(Math.abs(a-b)<e,`${m}: ${a} != ${b}`);
@@ -81,7 +81,7 @@ Deno.test('a death drops the basic shotgun as skin 1 and the super shotgun as sk
 });
 
 Deno.test('the renderer draws skin 1 of g_shot.mdl as the basic shotgun role and skin 0 as the super shotgun',async()=>{
- const weapons=await import('../src/r_weapons.js');
+ const weapons=await import('../src/newer/render/r_weapons.js');
  same(weapons.R_WeaponRole('progs/g_shot.mdl',0),'g_shot','skin 0: the super shotgun');
  same(weapons.R_WeaponRole('progs/g_shot.mdl',1),'g_shot1','skin 1: the basic shotgun');
  same(weapons.R_WeaponRole('progs/g_nail.mdl',1),'g_nail','other pickups ignore the skin');

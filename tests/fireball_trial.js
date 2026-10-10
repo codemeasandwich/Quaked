@@ -8,7 +8,7 @@ const {cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import(
 const {Cbuf_AddText}=await import('../src/engine/common/cmd.js');
 const {Cvar_SetValue}=await import('../src/engine/common/cvar.js');
 const keys=await import('../src/engine/client/keys.js');
-const render=await import('../src/render.js'),fb=await import('../src/r_fireball.js');
+const render=await import('../src/engine/render/render.js'),fb=await import('../src/r_fireball.js');
 const errors=[];window.addEventListener('error',e=>errors.push(e.message));window.addEventListener('unhandledrejection',e=>errors.push(String(e.reason?.stack||e.reason)));
 let started=0;
 window.fireballTrial={

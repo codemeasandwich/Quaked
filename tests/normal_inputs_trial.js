@@ -1,12 +1,12 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import {COM_LoadPackFile,COM_AddPack,COM_FindFile} from '../src/engine/common/pak.js';
-import {VID_SetPalette,vid} from '../src/vid.js';
-import {Mod_Init,Mod_ForName,R_InitTextures} from '../src/gl_model.js';
+import {VID_SetPalette,vid} from '../src/engine/render/vid.js';
+import {Mod_Init,Mod_ForName,R_InitTextures} from '../src/engine/render/gl_model.js';
 import {Cvar_RegisterVariable,Cvar_FindVar,Cvar_SetValue} from '../src/engine/common/cvar.js';
 import {r_hdr} from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import {R_NewerTexturesForModel,R_NewerTexturesStatus} from '../src/r_newertextures.js';
-import * as skins from '../src/r_newerskins.js';
+import * as skins from '../src/newer/render/r_newerskins.js';
 import {NormalInputs,NormalInputWitness,R_NormalPrepared} from '../src/normal_prepare.js';
 const button=document.querySelector('#run'),save=document.querySelector('#save'),output=document.querySelector('#report');let report,controller,stopped=false;
 const fields=['width','height','crafted','derive','strength','cap','rgba','fullbright','scalar','edge','authored'];

@@ -7,10 +7,10 @@ import { createHash } from 'node:crypto';
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import * as post from '../src/gl_post.js';
-import * as anim from '../src/r_anim.js';
-import { createQuakeLightmapMaterial, DrawGLPoly } from '../src/gl_rsurf.js';
+import * as anim from '../src/newer/render/r_anim.js';
+import { createQuakeLightmapMaterial, DrawGLPoly } from '../src/engine/render/gl_rsurf.js';
 import { R_NewerTextureUpgrade, R_NewerTexturesRevert, R_ClassicTexture } from '../src/r_newertextures.js';
-import { R_ClassicMaterial } from '../src/r_classicstate.js';
+import { R_ClassicMaterial } from '../src/newer/render/r_classicstate.js';
 import { R_NormalMapFor, R_NormalsFromCraftedHeight } from '../src/gl_normals.js';
 
 const { createCanvas, Image: NativeImage } = await import( pathToFileURL( process.env.QUAKED_CANVAS_MODULE ).href );

@@ -7,7 +7,7 @@ import {BESTIARY_ENTRIES,BESTIARY_SPREADS,Bestiary_SpreadMapping} from '../src/b
 import * as keys from '../src/engine/client/keys.js';
 import * as cmd from '../src/engine/common/cmd.js';
 import * as menu from '../src/engine/client/menu.js';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import {BuildMenuTextArt} from '../src/menu_art.js';
 const canvasAPI=await import(process.env.QUAKED_CANVAS_MODULE||'/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js');
 const near=(a,b,e,m)=>{if(!(Math.abs(a-b)<=e))throw Error(m+': '+a+' != '+b);};

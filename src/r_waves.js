@@ -23,7 +23,7 @@
 
 import * as THREE from 'three';
 import { r_impactripples } from './r_impactripples.js';
-import { R_NewerGame } from './r_anim.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
 
 export const SIZE = 128; // cells a side of a field's slot
 export const WATER = Object.freeze( { fields: 4, cell: 3, speed: 66, keep: .85, sponge: 12, radius: 5, depth: 9, jet: { delay: .11, scale: .55, radius: .6 } } );

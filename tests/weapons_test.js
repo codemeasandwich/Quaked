@@ -2,19 +2,19 @@
 // the checkout; texture decoding is stubbed, while Three geometry stays real.
 import { readFileSync } from 'node:fs';
 import { inflateRawSync } from 'node:zlib';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const weapons = await import( '../src/r_weapons.js' );
-const shells = await import( '../src/r_shells.js' );
-const { R_ShellTrace } = await import( '../src/r_shelltrace.js' );
-const { R_DrawAliasModel, GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame } = await import( '../src/gl_mesh.js' );
-const anim = await import( '../src/r_anim.js' );
+const weapons = await import( '../src/newer/render/r_weapons.js' );
+const shells = await import( '../src/newer/render/r_shells.js' );
+const { R_ShellTrace } = await import( '../src/newer/render/r_shelltrace.js' );
+const { R_DrawAliasModel, GL_MakeAliasModelDisplayLists, GL_DrawAliasFrame } = await import( '../src/engine/render/gl_mesh.js' );
+const anim = await import( '../src/newer/render/r_anim.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const { cl, cls } = await import( '../src/engine/client/client.js' );
 const common = await import( '../src/engine/common/common.js' );
 const { CL_ParseStartSoundPacket } = await import( '../src/engine/client/cl_parse.js' );
-const { R_SaveClassicScene } = await import( '../src/r_classicstate.js' );
+const { R_SaveClassicScene } = await import( '../src/newer/render/r_classicstate.js' );
 
 function check( value, label ) { if ( ! value ) throw new Error( label ); }
 function equal( a, b, label ) { check( a === b, `${label}: ${a} != ${b}` ); }

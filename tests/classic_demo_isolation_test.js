@@ -1,13 +1,13 @@
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const anim = await import( '../src/r_anim.js' );
-const quake = await import( '../src/glquake.js' );
-const surf = await import( '../src/gl_rsurf.js' );
-const light = await import( '../src/gl_rlight.js' );
+const anim = await import( '../src/newer/render/r_anim.js' );
+const quake = await import( '../src/engine/render/glquake.js' );
+const surf = await import( '../src/engine/render/gl_rsurf.js' );
+const light = await import( '../src/engine/render/gl_rlight.js' );
 const split = await import( '../src/r_demosplit.js' );
 const { cl, cl_dlights } = await import( '../src/engine/client/client.js' );
 const { R_ClassicTexture } = await import( '../src/r_newertextures.js' );
-const { R_SaveClassicScene, R_ClassicMaterial } = await import( '../src/r_classicstate.js' );
+const { R_SaveClassicScene, R_ClassicMaterial } = await import( '../src/newer/render/r_classicstate.js' );
 
 function equal( a, b, label ) { if ( a !== b ) throw new Error( `${label}: expected ${b}, got ${a}` ); }
 function texture( value = 20 ) { return new THREE.DataTexture( new Uint8Array( [ value, value, value, 255 ] ), 1, 1 ); }

@@ -1,13 +1,13 @@
-import '../src/gl_rsurf.js';
+import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as rock from '../src/r_rockfield.js';
 import * as band from '../src/r_rockshader.js';
 import { R_RockCoordinates } from '../src/r_rocksurfaces.js';
 import * as post from '../src/gl_post.js';
 import * as height from '../src/r_heightshadows.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import * as vars from '../src/engine/common/cvar.js';
-import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/gl_rsurf.js';
+import { DrawGLPoly, createQuakeLightmapMaterial } from '../src/engine/render/gl_rsurf.js';
 const W=384,H=384,report=document.querySelector('#report'),owned=[],checks=[],errors=[];let draws=0;
 const check=(passed,name,data={})=>checks.push({passed,name,...data});
 const face=(name,rect,phase=0)=>{const[x0,x1,z0,z1]=rect;return{flags:0,plane:{normal:[0,-1,0],dist:0},texinfo:{texture:{name,width:64,height:64}},polys:{numverts:4,verts:new Float32Array([[x0,z0],[x0,z1],[x1,z1],[x1,z0]].flatMap(([x,z])=>[x,0,z,x/64+phase,z/64-phase,.5,.5]))}};};

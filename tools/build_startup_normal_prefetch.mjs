@@ -1,6 +1,6 @@
 // Transport hints only. Admission still hashes every actual material input.
 import {readFile,writeFile} from 'node:fs/promises';
-import {R_LevelEntities} from '../src/r_levelents.js';
+import {R_LevelEntities} from '../src/newer/render/r_levelents.js';
 import {memberSearch,readMember,sha256} from './pak_members.mjs';
 const manifest=JSON.parse(await readFile('newer/normals/manifest.json','utf8')),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
 const campaigns=[['shareware','pak0.pak'],['newer','newer/maps.pak']],output={};

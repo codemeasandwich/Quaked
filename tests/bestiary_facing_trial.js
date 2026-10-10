@@ -10,7 +10,7 @@ await import('../main.js');while(!window.Cbuf_AddText)await new Promise(r=>setTi
 const {cl,cls,cl_entities}=await import('../src/engine/client/client.js'),{sv}=await import('../src/engine/server/server.js');
 const {PR_GetString}=await import('../src/engine/progs/progs.js'),world=await import('../src/engine/server/world.js');
 const cmd=await import('../src/engine/common/cmd.js'),vars=await import('../src/engine/common/cvar.js'),keys=await import('../src/engine/client/keys.js');
-const bestiary=await import('../src/r_bestiary.js'),render=await import('../src/gl_rmain.js'),host=await import('../src/engine/server/host.js');
+const bestiary=await import('../src/r_bestiary.js'),render=await import('../src/engine/render/gl_rmain.js'),host=await import('../src/engine/server/host.js');
 const split=await import('../src/r_demosplit.js');
 let enemy=null,ready=false,pending=null,results=[];
 split.R_DemoSplitRelease(true);cmd.Cbuf_AddText('r_hdr 0\nr_lerpmodels 0\nr_demosplit 0\nbgmvolume 0\nmap e1m1\n');

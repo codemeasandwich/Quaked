@@ -2,10 +2,10 @@
 import {openSync,readSync,closeSync,readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {COM_AddPack,COM_LoadPackFile,COM_FindFile} from '../src/engine/common/pak.js';
-import {VID_SetPalette} from '../src/vid.js';
-import {Mod_Init,Mod_ForName,Mod_LeafPVS,Mod_PointInLeaf,Mod_ClearAll} from '../src/gl_model.js';
+import {VID_SetPalette} from '../src/engine/render/vid.js';
+import {Mod_Init,Mod_ForName,Mod_LeafPVS,Mod_PointInLeaf,Mod_ClearAll} from '../src/engine/render/gl_model.js';
 import {SV_HullPointContents} from '../src/engine/server/world.js';
-import {GL_BuildLightmaps,MAX_LIGHTMAPS,lightmapTextures} from '../src/gl_rsurf.js';
+import {GL_BuildLightmaps,MAX_LIGHTMAPS,lightmapTextures} from '../src/engine/render/gl_rsurf.js';
 import {cl} from '../src/engine/client/client.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),hash=b=>createHash('sha256').update(b).digest('hex');
 function member(path,name){const fd=openSync(new URL('../'+path,import.meta.url),'r');try{const header=Buffer.alloc(12);readSync(fd,header,0,12,0);same(header.toString('ascii',0,4),'PACK','actual archive signature');const offset=header.readInt32LE(4),size=header.readInt32LE(8),directory=Buffer.alloc(size);readSync(fd,directory,0,size,offset);for(let p=0;p<size;p+=64)if(directory.subarray(p,p+56).toString().split('\0')[0]===name){const start=directory.readInt32LE(p+56),length=directory.readInt32LE(p+60),bytes=Buffer.alloc(length);same(readSync(fd,bytes,0,length,start),length,'complete actual BSP member');return bytes;}throw Error('Missing installed member '+name);}finally{closeSync(fd);}}

@@ -2,10 +2,10 @@
 // Uses the supported Canvas2D runtime, without launching the browser or game.
 import { readFileSync } from 'node:fs';
 import { BuildMenuTextArt } from '../src/menu_art.js';
-import * as draw from '../src/gl_draw.js';
+import * as draw from '../src/engine/render/gl_draw.js';
 import * as pak from '../src/engine/common/pak.js';
 import * as wad from '../src/engine/common/wad.js';
-import * as vid from '../src/vid.js';
+import * as vid from '../src/engine/render/vid.js';
 const canvasAPI = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );

@@ -9,7 +9,7 @@ import {R_ShaderAssetStamp,R_CompileSceneAsync} from '../src/r_shaderwarm.js';
 import * as boot from '../src/r_demoloading.js';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,`${m}: ${a} != ${b}`),flush=async()=>{for(let i=0;i<20;i++)await Promise.resolve();};
 function collectorFixture(oldStamp=false){
- const source=readFileSync(new URL('../src/gl_rmain.js',import.meta.url),'utf8'),begin=source.indexOf('let _needCompile = false;'),end=source.indexOf('export function R_NewMap()',begin);check(begin>=0&&end>begin,'actual collector/warm source boundaries exist');let body=source.slice(begin,end);
+ const source=readFileSync(new URL('../src/engine/render/gl_rmain.js',import.meta.url),'utf8'),begin=source.indexOf('let _needCompile = false;'),end=source.indexOf('export function R_NewMap()',begin);check(begin>=0&&end>begin,'actual collector/warm source boundaries exist');let body=source.slice(begin,end);
  const texture=new THREE.DataTexture(new Uint8Array([170,120,90,255]),1,1),materials=[new THREE.MeshBasicMaterial({map:texture,transparent:true,side:THREE.DoubleSide})],uploaded=[texture],scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(),originalTarget={},compileTargets=[],completions=[],frames=[];
  let normalPreparations=0;
  const status={normals:{pending:0,ready:3,shipped:3,generated:0,settled:true,errors:{}},textures:{ready:3,fallback:0,settled:true},skins:{ready:2,fallback:0,settled:true},weapons:{ready:['v_shot'],settled:true},hud:{ready:2,fallback:0,settled:true},rock:{active:true,preparedState:'ready',preparedTiles:12,resident:12,missingVisibleTiles:0},demon:{enabled:true,ready:1,triangles:100,pending:0},shadows:{pending:0},water:{pending:0}},boundTarget={};

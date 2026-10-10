@@ -2,8 +2,8 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import * as skins from '../src/r_newerskins.js';
-import * as anim from '../src/r_anim.js';
+import * as skins from '../src/newer/render/r_newerskins.js';
+import * as anim from '../src/newer/render/r_anim.js';
 const check = ( ok, why ) => { if ( ! ok ) throw Error( why ); };
 const equal = ( a, b, why ) => check( a === b, `${why}: ${a} != ${b}` );
 const manifest = JSON.parse( readFileSync( new URL( '../newer/enemies/index.json', import.meta.url ) ) );

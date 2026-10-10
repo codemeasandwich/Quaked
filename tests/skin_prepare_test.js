@@ -3,9 +3,9 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import { COM_AddPack, COM_LoadPackFile, COM_FindFile } from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init, Mod_ForName, aliashdr_t } from '../src/gl_model.js';
-import * as anim from '../src/r_anim.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init, Mod_ForName, aliashdr_t } from '../src/engine/render/gl_model.js';
+import * as anim from '../src/newer/render/r_anim.js';
 const check = ( value, label ) => { if ( ! value ) throw new Error( label ); };
 const equal = ( a, b, label ) => check( a === b, `${label}: ${a} != ${b}` );
 const pixels = () => new THREE.DataTexture( new Uint8Array( 16 * 16 * 4 ).fill( 128 ), 16, 16 );
@@ -23,7 +23,7 @@ async function fixture( fn ) {
 function shader( material ) { const source = { uniforms: {}, vertexShader: '#include <project_vertex>', fragmentShader: '#include <map_fragment>\n#include <opaque_fragment>\n#include <colorspace_fragment>' }; material.onBeforeCompile( source ); return source; }
 
 Deno.test( 'startup prepare begins every unseen custom variant and native skin/frame, then actual draws reuse them without another download', async () => fixture( async requests => {
-	const skins = await import( '../src/r_newerskins.js?prepare-all' ), header = new aliashdr_t(); header.numskins = 2;
+	const skins = await import( '../src/newer/render/r_newerskins.js?prepare-all' ), header = new aliashdr_t(); header.numskins = 2;
 	const textureGroups = Array.from( { length: 2 }, () => Array.from( { length: 4 }, pixels ) );
 	header.gl_texturenum = textureGroups;
 	const model = { name: 'progs/dog.mdl', cache: { data: header } }, preview = { name: 'progs/wizard.mdl', cache: { data: new aliashdr_t() } };
@@ -57,7 +57,7 @@ Deno.test( 'actual native loaded Quake model header prepares stored relief witho
 	const bytes = readFileSync( new URL( '../pak0.pak', import.meta.url ) ); COM_AddPack( COM_LoadPackFile( 'pak0.pak', bytes.buffer.slice( bytes.byteOffset, bytes.byteOffset + bytes.byteLength ) ) );
 	VID_SetPalette( COM_FindFile( 'gfx/palette.lmp' ).data ); Mod_Init();
 	const model = Mod_ForName( 'progs/dog.mdl', true ), header = model.cache.data, texture = header.gl_texturenum[ 0 ][ 0 ];
-	const skins = await import( '../src/r_newerskins.js?prepare-real-model' ); skins.R_NewerSetIndex( { version: 1, models: {}, nativeHeights: { dog: [ [ { file: 'real-dog.webp' } ] ] } } );
+	const skins = await import( '../src/newer/render/r_newerskins.js?prepare-real-model' ); skins.R_NewerSetIndex( { version: 1, models: {}, nativeHeights: { dog: [ [ { file: 'real-dog.webp' } ] ] } } );
 	let disposed = 0; texture.addEventListener( 'dispose', () => disposed ++ );
 	await skins.R_NewerSkinsPrepare( [ model ] ); equal( requests.length, 1, 'staticnativefour slots share one request' ); equal( skins.R_NewerSkinsStatus( [ model ] ).pending, 1, 'actualnativeheight pending' );
 	requests[ 0 ].onError(); check( skins.R_NewerSkinsStatus( [ model ] ).settled, 'storedfailure fallsbackwithoutlatepop' );
@@ -66,7 +66,7 @@ Deno.test( 'actual native loaded Quake model header prepares stored relief witho
 } ) );
 
 Deno.test( 'startup preparation respects independent skin/normal gates and shutdown prevents delayed index from preparing a retired map', async () => fixture( async requests => {
-	const skins = await import( '../src/r_newerskins.js?prepare-cancel' ), model = { name: 'progs/dog.mdl', cache: { data: { numskins: 1, gl_texturenum: [ Array( 4 ).fill( pixels() ) ] } } };
+	const skins = await import( '../src/newer/render/r_newerskins.js?prepare-cancel' ), model = { name: 'progs/dog.mdl', cache: { data: { numskins: 1, gl_texturenum: [ Array( 4 ).fill( pixels() ) ] } } };
 	anim.r_newer_normals.value = anim.r_newer_enemies.value = 0; let fetches = 0;
 	globalThis.fetch = async () => { fetches ++; return { ok: false }; }; await skins.R_NewerSkinsPrepare( [ model ] ); equal( fetches, 0, 'disabledfeatures requestnothing' ); equal( requests.length, 0, 'disabledfeatures noimages' );
 	anim.r_newer_enemies.value = 1; let release; globalThis.fetch = () => new Promise( resolve => { release = resolve; } );

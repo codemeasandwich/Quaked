@@ -36,8 +36,8 @@
 import * as THREE from 'three';
 import { cvar_t } from './engine/common/cvar.js';
 import { smooth, hashJS } from './fx_math.js';
-import { R_NewerGame } from './r_anim.js';
-import { GL_DrawAliasFrame } from './gl_mesh.js';
+import { R_NewerGame } from './newer/render/r_anim.js';
+import { GL_DrawAliasFrame } from './engine/render/gl_mesh.js';
 import { MRT_OUT, MRT_ZERO, PUFF_VERTEX, PUFF_FRAGMENT, SPARK_VERTEX, SPARK_FRAGMENT, layer, material, R_FireballAssets } from './r_fireball.js';
 
 // 0 puts the native flame models back

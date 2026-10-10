@@ -15,7 +15,7 @@
 // Provides VR rendering via Three.js WebXR integration
 
 import * as THREE from 'three';
-import { renderer } from '../vid.js';
+import { renderer } from '../engine/render/vid.js';
 
 //============================================================================
 // Constants

@@ -4,9 +4,9 @@
 // loop now warms assets behind the native console. No browser/game is launched.
 import { readFileSync } from 'node:fs';
 import { Script } from 'node:vm';
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' );
-const weapons = await import( '../src/r_weapons.js' );
+const weapons = await import( '../src/newer/render/r_weapons.js' );
 const vars = await import( '../src/engine/common/cvar.js' );
 const { r_hdr } = await import( '../src/gl_post.js' );
 const startup = await import( '../src/r_demoloading.js' );
@@ -88,7 +88,7 @@ Deno.test( 'weapon startup: missing optional manifest resolves without blocking 
 	globalThis.fetch = async () => ( { ok: false } );
 	try {
 
-		const isolated = await import( '../src/r_weapons.js?missing-preload-manifest' );
+		const isolated = await import( '../src/newer/render/r_weapons.js?missing-preload-manifest' );
 		await isolated.R_WeaponsPreload();
 		check( isolated.R_WeaponStatus().failures.manifest && isolated.R_WeaponStatus().ready.length === 0, 'manifest failure visible; native app can proceed' );
 

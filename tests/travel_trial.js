@@ -7,7 +7,7 @@ const {Cbuf_AddText}=await import('../src/engine/common/cmd.js'),{Cvar_SetValue}
 const {cl,cls}=await import('../src/engine/client/client.js'),{sv}=await import('../src/engine/server/server.js');
 const {SV_LinkEdict,SV_Move}=await import('../src/engine/server/world.js'),{SV_PushEntity}=await import('../src/engine/server/sv_phys.js');
 const seamless=await import('../src/newer/gameplay/sv_seamless.js'),{R_LevelPortalCount}=await import('../src/gl_portal.js');
-const {renderer}=await import('../src/vid.js');
+const {renderer}=await import('../src/engine/render/vid.js');
 const keys=await import('../src/engine/client/keys.js'),split=await import('../src/r_demosplit.js');
 let generation=0,ready=false,walk=null;
 function face(yaw){const p=sv.edicts?.[1];p.v.angles=[0,yaw,0];p.v.v_angle=[0,yaw,0];p.v.fixangle=1;cl.viewangles.set([0,yaw,0]);}

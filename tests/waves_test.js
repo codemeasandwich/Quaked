@@ -2,10 +2,10 @@
 // spreads at the water's speed, comes back off the pool's side, ripples add up where they meet, a portal's ripples are held by
 // its frame; and the bookkeeping: fields are reused and capped, die away, and go when switched off, in Classic, or when the clock
 // jumps back. The shaders that draw them were checked in the browser (docs/impact-ripples-2026-10-09.md).
-await import( '../src/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
+await import( '../src/engine/render/gl_rsurf.js' ); // (the renderer's module graph in its safe order)
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import * as ir from '../src/r_impactripples.js';
 import * as w from '../src/r_waves.js';
 

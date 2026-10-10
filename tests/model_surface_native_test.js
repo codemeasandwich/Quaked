@@ -3,8 +3,8 @@
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { Mod_Init, Mod_PointInLeaf } from '../src/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { Mod_Init, Mod_PointInLeaf } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/progs/pr_cmds.js';
 import { PR_ExecuteProgram } from '../src/engine/progs/pr_exec.js';
 import * as progs from '../src/engine/progs/progs.js';
@@ -20,14 +20,14 @@ import { CL_Init, CL_Disconnect_f } from '../src/engine/client/cl_main.js';
 import { cls, cl, ca_disconnected } from '../src/engine/client/client.js';
 import { NET_Init, NET_SendMessage, NET_GetMessage, NET_CanSendMessage } from '../src/engine/net/net_main.js';
 import { SZ_Clear } from '../src/engine/common/common.js';
-import { R_Init, R_SetupFrame, scene } from '../src/gl_rmain.js';
+import { R_Init, R_SetupFrame, scene } from '../src/engine/render/gl_rmain.js';
 import { V_Init } from '../src/engine/client/view.js';
-import { r_refdef } from '../src/render.js';
+import { r_refdef } from '../src/engine/render/render.js';
 import { r_hdr } from '../src/gl_post.js';
 import * as travel from '../src/newer/gameplay/sv_seamless.js';
 import { R_DemoLoadingCancel } from '../src/r_demoloading.js';
 import { sv_respawnguard } from '../src/newer/gameplay/sv_respawn.js';
-import { weaponSurface, weaponKey, WeaponSurfaceState, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt } from '../src/r_weapon_surface.js';
+import { weaponSurface, weaponKey, WeaponSurfaceState, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt } from '../src/newer/render/r_weapon_surface.js';
 
 const check = ( value, label ) => { if ( !value ) throw Error( label ); };
 const same = ( actual, expected, label ) => check( actual === expected, `${label}: ${actual} !== ${expected}` );

@@ -1,7 +1,7 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
-const gl_rsurf = await import( '../src/gl_rsurf.js' );
+const gl_rsurf = await import( '../src/engine/render/gl_rsurf.js' );
 
-const gl_rmain = await import( '../src/gl_rmain.js' );
+const gl_rmain = await import( '../src/engine/render/gl_rmain.js' );
 const { cl } = await import( '../src/engine/client/client.js' );
 
 function assertEqual( actual, expected, message ) {

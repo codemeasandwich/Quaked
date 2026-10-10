@@ -2,7 +2,7 @@
 // flashlight. Geometry is borrowed from the existing solid-world occluder and
 // live actor/brush meshes; no BSP, vertex copy or source reparenting.
 import * as THREE from 'three';
-import { ShadowPoseCapture, ShadowPoseEqual } from './shadow_pose.js';
+import { ShadowPoseCapture, ShadowPoseEqual } from './newer/render/shadow_pose.js';
 import { R_RendVeilShadowShader, R_RendVeilShadowObject, R_RendVeilShadowVersion } from './r_rendveil.js';
 
 export const POINT_SHADOW_SLOTS = 8;

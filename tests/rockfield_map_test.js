@@ -1,9 +1,9 @@
 // Real shipped BSPs, original polygons and unchanged texture/lightmap UVs.
 import { readFileSync } from 'node:fs';
 import { COM_LoadPackFile, COM_AddPack, COM_FindFile } from '../src/engine/common/pak.js';
-import { Mod_Init, Mod_ForName } from '../src/gl_model.js';
-import { VID_SetPalette } from '../src/vid.js';
-import { GL_BuildLightmaps } from '../src/gl_rsurf.js';
+import { Mod_Init, Mod_ForName } from '../src/engine/render/gl_model.js';
+import { VID_SetPalette } from '../src/engine/render/vid.js';
+import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { SV_HullPointContents } from '../src/engine/server/world.js';
 import { cl } from '../src/engine/client/client.js';
 import { R_RockSurfaceCharts } from '../src/r_rocksurfaces.js';

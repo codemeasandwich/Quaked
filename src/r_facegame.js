@@ -1,7 +1,7 @@
 // Gameplay adapter: events choose expression/attention; movement never does.
 import { FaceState, FaceWaterState, faceWaterStage } from './face_state.js';
 import { cl, cls } from './engine/client/client.js';
-import { r_refdef } from './render.js';
+import { r_refdef } from './engine/render/render.js';
 import { in_attack } from './engine/client/cl_input.js';
 import { sv, MOVETYPE_NOCLIP } from './engine/server/server.js';
 import { GetEdictFieldValue } from './engine/progs/pr_edict.js';

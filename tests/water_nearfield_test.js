@@ -1,9 +1,9 @@
 // Public BSP classification and real Three cube-camera coverage. Pixel-level
 // low-marker SSR/probe and distance-dependent transmission belong to the GPU
 // trial; this fixture protects the lower capture against a low air ceiling.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
-const modelApi = await import( '../src/gl_model.js' );
+const modelApi = await import( '../src/engine/render/gl_model.js' );
 
 function equal( actual, expected, label ) {
 

@@ -1,9 +1,9 @@
 // Bootstrap the renderer's existing circular module graph in its safe order.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 
 const THREE = await import( 'three' );
 const { cl } = await import( '../src/engine/client/client.js' );
-const glquake = await import( '../src/glquake.js' );
+const glquake = await import( '../src/engine/render/glquake.js' );
 const { sv_gravity } = await import( '../src/engine/server/sv_phys.js' );
 const {
 	Cvar_FindVar, Cvar_RegisterVariable, Cvar_Set
@@ -11,7 +11,7 @@ const {
 const {
 	R_InitParticles, R_SetParticleExternals, R_ClearParticles,
 	R_RocketTrail, R_DrawParticles
-} = await import( '../src/r_part.js' );
+} = await import( '../src/engine/render/r_part.js' );
 
 function assertEqual( actual, expected, message ) {
 

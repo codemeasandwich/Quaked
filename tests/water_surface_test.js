@@ -1,12 +1,12 @@
 // Public frame/material boundaries for both sides of the water interface.
 // Optical Fresnel, Snell-window/TIR and calmer ripple pixels are checked in
 // the real WebGL surface trial rather than by duplicating shader arithmetic.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 const THREE = await import( 'three' ), post = await import( '../src/gl_post.js' );
-const surf = await import( '../src/gl_rsurf.js' ), main = await import( '../src/gl_rmain.js' );
-const anim = await import( '../src/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
+const surf = await import( '../src/engine/render/gl_rsurf.js' ), main = await import( '../src/engine/render/gl_rmain.js' );
+const anim = await import( '../src/newer/render/r_anim.js' ), vars = await import( '../src/engine/common/cvar.js' );
 const view = await import( '../src/engine/client/view.js' ), client = await import( '../src/engine/client/client.js' );
-const quake = await import( '../src/glquake.js' ), light = await import( '../src/gl_rlight.js' );
+const quake = await import( '../src/engine/render/glquake.js' ), light = await import( '../src/engine/render/gl_rlight.js' );
 
 function equal( actual, expected, label ) {
 
@@ -113,7 +113,7 @@ Deno.test( 'water underside keeps live reflection controls, material cues and in
 
 Deno.test( 'mapped water probes choose real air anchors instead of a solid merged centre and skip unsafe pools before budgeting', async () => {
 
-	const modelApi = await import( '../src/gl_model.js' );
+	const modelApi = await import( '../src/engine/render/gl_model.js' );
 	// Isolate this public probe instance's private capture clock from other test
 	// files, which independently simulate different performance.now timelines.
 	const probes = await import( '../src/r_waterprobe.js?water-surface-anchor-fixture' );

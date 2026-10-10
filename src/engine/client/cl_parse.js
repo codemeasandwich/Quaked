@@ -70,29 +70,29 @@ import {
 	cl, cls, cl_entities, cl_static_entities, cl_lightstyle,
 	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
 import { VectorCopy } from '../common/mathlib.js';
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../../newer/render/r_anim.js';
 import { R_FlashlightRunMap } from '../../r_flashlightrun.js';
 import { V_ParseDamage } from './view.js';
-import { Mod_ForName } from '../../gl_model.js';
+import { Mod_ForName } from '../render/gl_model.js';
 import { CL_SetServerState, CL_AcknowledgeCommand, CL_AcknowledgeTransportSequence,
 	CL_FindAcknowledgedSequence,
 	CL_SetValidSequence, CL_SetPlayerInfo,
 	CL_GetServerSequence, CL_SetServerSequence, CL_GetFrame, CL_GetEntityFrame,
 	CL_GetValidSequence } from './cl_pred.js';
-import { R_TranslatePlayerSkin } from '../../gl_rmisc.js';
+import { R_TranslatePlayerSkin } from '../render/gl_rmisc.js';
 
 // QuakeWorld model precache indices (set during CL_ParseServerInfo)
 export let cl_playerindex = -1;
-import { R_NewMap } from '../../gl_rmisc.js';
-import { R_ParseParticleEffect, R_AddEfrags } from '../../render.js';
+import { R_NewMap } from '../render/gl_rmisc.js';
+import { R_ParseParticleEffect, R_AddEfrags } from '../render/render.js';
 import { Host_Error, Host_EndGame, realtime } from '../server/host.js';
 import { set_noclip_anglehack } from '../server/host_cmd.js';
 import { CL_SignonReply, CL_ClearState, cl_shownet, CL_ViewMuzzleFlash } from './cl_main.js';
 import { CL_ParseTEnt } from './cl_tent.js';
 import { S_PrecacheSound, S_StartSound, S_StopSound, S_StaticSound } from '../sound/snd_dma.js';
-import { R_ShellShot } from '../../r_shells.js';
+import { R_ShellShot } from '../../newer/render/r_shells.js';
 import { CDAudio_Play, CDAudio_Pause, CDAudio_Resume } from '../sound/cd_audio.js';
-import { SCR_CenterPrint } from '../../gl_screen.js';
+import { SCR_CenterPrint } from '../render/gl_screen.js';
 
 export const svc_strings = [
 	'svc_bad',

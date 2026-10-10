@@ -1,5 +1,5 @@
-import * as skins from '../src/r_newerskins.js';
-import * as anim from '../src/r_anim.js';
+import * as skins from '../src/newer/render/r_newerskins.js';
+import * as anim from '../src/newer/render/r_anim.js';
 
 function assertEqual( actual, expected, message ) {
 

@@ -36,7 +36,7 @@ export async function resolve(specifier, context, next) {
 	// Bootstrap the renderer graph before individual test fixtures, as the
 	// browser entry does. Direct leaf imports otherwise reach cyclic render
 	// definitions before vrect_t is initialized under the real Three runtime.
-	await import( '../src/gl_rsurf.js' );
+	await import( '../src/engine/render/gl_rsurf.js' );
 	await import( pathToFileURL( resolve( files[ 1 ] ) ).href );
 	let passed = 0;
 	for ( const { name, fn } of tests ) {

@@ -10,7 +10,7 @@ import * as keys from '../src/engine/client/keys.js';
 import * as consoleUI from '../src/engine/common/console.js';
 import { Con_SetPrintFunctions } from '../src/engine/common/common.js';
 import { cls, ca_connected } from '../src/engine/client/client.js';
-import * as anim from '../src/r_anim.js';
+import * as anim from '../src/newer/render/r_anim.js';
 import { r_hdr, r_pointshadows } from '../src/gl_post.js';
 import { r_heightshadows } from '../src/r_heightshadows.js';
 import { v_gamma } from '../src/engine/client/view.js';

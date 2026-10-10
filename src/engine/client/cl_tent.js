@@ -38,8 +38,8 @@ export const CL_TeleportSpots = [];
 import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from '../common/mathlib.js';
 import { S_PrecacheSound, S_StartSound } from '../sound/snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
-	R_ParticleExplosion2, R_LavaSplash } from '../../render.js';
-import { Mod_ForName } from '../../gl_model.js';
+	R_ParticleExplosion2, R_LavaSplash } from '../render/render.js';
+import { Mod_ForName } from '../render/gl_model.js';
 import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../../r_decals.js';
 
 let num_temp_entities = 0;

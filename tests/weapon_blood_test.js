@@ -6,7 +6,7 @@
 import { cl, cls, cl_entities } from '../src/engine/client/client.js';
 import { STAT_WEAPON } from '../src/engine/common/quakedef.js';
 import { V_CalcRefdef, V_CalcIntermissionRefdef } from '../src/engine/client/view.js';
-import { weaponSurface, weaponKey, WeaponSurfaceState, R_ActiveWeaponSurface, R_PlayerBodySurface, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceFrame } from '../src/r_weapon_surface.js';
+import { weaponSurface, weaponKey, WeaponSurfaceState, R_ActiveWeaponSurface, R_PlayerBodySurface, R_WeaponSurfaceContext, R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceFrame } from '../src/newer/render/r_weapon_surface.js';
 
 const check = ( v, m ) => { if ( ! v ) throw Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const air = - 1, water = - 3;

@@ -1,11 +1,11 @@
 // The lightning gun's beam (card [30a]): the supplied ribbons built between the real muzzle and the server's hit point, the
 // hood's root recessed into the gun, the electrode arcs at the muzzle, a light at the hit; nothing once the beam is over; none
 // in Classic. The beam's choice of event (the player's own TE_LIGHTNING2 only) is tested with cl_tent below.
-await import( '../src/gl_rsurf.js' );
+await import( '../src/engine/render/gl_rsurf.js' );
 import * as THREE from 'three';
 import * as vars from '../src/engine/common/cvar.js';
 import { cvar_t } from '../src/engine/common/cvar.js';
-import { R_AnimSetClassicPass } from '../src/r_anim.js';
+import { R_AnimSetClassicPass } from '../src/newer/render/r_anim.js';
 import * as L from '../src/r_lightning.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );

@@ -1,13 +1,13 @@
 // Browser trial of the public native menu and real Canvas2D/PAK artwork.
 // Baseline is a replay of the unchanged native primitives at the former scale;
 // it is a comparison control, not an alternate production menu implementation.
-await import('../src/gl_rsurf.js');
+await import('../src/engine/render/gl_rsurf.js');
 const [draw,menu,cmd,keys,pak,wad]=await Promise.all(['gl_draw','menu','cmd','keys','pak','wad'].map(name=>import('../src/'+name+'.js')));
 const canvas=document.querySelector('#credits'),context=canvas.getContext('2d'),report=document.querySelector('#report');
 const bytes=await (await fetch('../pak0.pak')).arrayBuffer();pak.COM_AddPack(pak.COM_LoadPackFile('credits-trial-pak0',bytes));
 const gfx=pak.COM_FindFile('gfx.wad').data;wad.W_LoadWadFile(gfx.buffer.slice(gfx.byteOffset,gfx.byteOffset+gfx.byteLength));
 const palette=pak.COM_FindFile('gfx/palette.lmp').data,vid={width:innerWidth,height:innerHeight};
-(await import('../src/vid.js')).VID_SetPalette(palette);
+(await import('../src/engine/render/vid.js')).VID_SetPalette(palette);
 draw.Draw_SetExternals({vid,host_basepal:palette});cmd.Cbuf_Init();cmd.Cmd_Init();draw.Draw_Init(canvas);menu.M_Init();
 const picture=await draw.Draw_CachePicFromPNG('gfx/weapon_models_name.lmp','../assets/credits/dannaki-name.png',{blackKey:3,trim:true,displayHeight:8});
 let dest=keys.key_game,mode='current',calls=[],recording=false,frame={},opened=[];

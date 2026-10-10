@@ -19,7 +19,7 @@
 // TraceAttack of a pellet of an observed shotgun blast waits for its pellet (traceAttackEnter, sv_shotdelay.js).
 import { sv, svs, FL_MONSTER } from '../../engine/server/server.js';
 import { cls, ca_connected } from '../../engine/client/client.js';
-import { R_NewerGame } from '../../r_anim.js';
+import { R_NewerGame } from '../render/r_anim.js';
 import { pr_crc, pr_functions, pr_global_struct, pr_globals_int, PR_GetString, PROG_TO_EDICT, pr_xfunction } from '../../engine/progs/progs.js';
 import { OFS_PARM0, OFS_PARM1 } from '../../engine/progs/pr_comp.js';
 import { GetEdictFieldValue, ED_FindFunction } from '../../engine/progs/pr_edict.js';

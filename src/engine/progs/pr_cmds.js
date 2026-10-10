@@ -10,7 +10,7 @@
  *
  * Errors: calls `PR_RunError` at 13 places.
  */
-import { Face_Assign } from '../../enemy_face.js';
+import { Face_Assign } from '../../newer/render/enemy_face.js';
 // Ported from: WinQuake/pr_cmds.c -- QuakeC built-in functions
 
 import { SV_ZombieProne } from '../../newer/gameplay/sv_pronezombie.js';
@@ -57,7 +57,7 @@ import { Cbuf_AddText } from '../common/cmd.js';
 import { SV_FaceShotTrace } from '../../newer/gameplay/sv_faceevents.js';
 import { Cvar_VariableValue, Cvar_Set } from '../common/cvar.js';
 import { FL_ONGROUND, FL_FLY, FL_SWIM, svs, ss_loading, ss_active, teamplay } from '../server/server.js';
-import { Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from '../../gl_model.js';
+import { Mod_ForName, Mod_PointInLeaf, Mod_LeafPVS } from '../render/gl_model.js';
 import {
 	svc_sound, svc_print, svc_centerprint, svc_stufftext, svc_lightstyle,
 	svc_spawnstatic, svc_spawnstaticsound,

@@ -1,4 +1,4 @@
-await import('../src/gl_rsurf.js');
+await import('../src/engine/render/gl_rsurf.js');
 const THREE=await import('three');
 const post=await import('../src/gl_post.js');
 const split=await import('../src/r_demosplit.js');

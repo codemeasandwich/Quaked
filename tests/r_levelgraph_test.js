@@ -1,4 +1,4 @@
-import * as graph from '../src/r_levelgraph.js';
+import * as graph from '../src/newer/render/r_levelgraph.js';
 
 function assertEqual( actual, expected, message ) {
 
