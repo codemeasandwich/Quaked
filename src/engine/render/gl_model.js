@@ -4,10 +4,9 @@
  * Model loading (WinQuake gl_model.c): BSP worlds (including BSP2), alias models and sprites, their textures and
  * caches.
  *
- * Types: exported classes `mvertex_t`, `mplane_t`, `texture_t`, `medge_t`, `mtexinfo_t`, `glpoly_t`, `msurface_t`,
- * `mnode_t`, `mleaf_t`, `dclipnode_t`, `hull_t`, `mspriteframe_t`, `mspritegroup_t`, `mspriteframedesc_t`,
- * `msprite_t`, `trivertx_t`, `stvert_t`, `dtriangle_t`, `mtriangle_t`, `maliasframedesc_t`, `aliashdr_t`, `dmodel_t`,
- * `model_t`.
+ * Types: exported classes `mvertex_t`, `mplane_t`, `texture_t`, `medge_t`, `mtexinfo_t`, `msurface_t`, `mnode_t`,
+ * `mleaf_t`, `dclipnode_t`, `hull_t`, `mspriteframe_t`, `mspritegroup_t`, `mspriteframedesc_t`, `msprite_t`,
+ * `trivertx_t`, `stvert_t`, `mtriangle_t`, `maliasframedesc_t`, `aliashdr_t`, `dmodel_t`, `model_t`.
  *
  * State: mutable exports `solidskytexture`, `alphaskytexture`, `pheader`; module-level variables `loadmodel`,
  * `loadname`, `mod_novis`, `mod_numknown`, `posenum`, `r_notexture_mip`, `mod_base`, `bspWide`, `bspFloatBounds`,
@@ -258,26 +257,6 @@ export class mtexinfo_t {
 		this.mipadjust = 0;
 		this.texture = null;
 		this.flags = 0;
-
-	}
-
-}
-
-export class glpoly_t {
-
-	/**
-	 * A polygon of a surface in drawing order (gl_model.h): `numverts` vertices, each a `Float32Array(VERTEXSIZE)`
-	 * of `x, y, z, s1, t1, s2, t2` (world texels and lightmap coordinates), chained through `next` (several for a warped
-	 * surface) and `chain`. The engine builds these from glquake.js's copy of this class (gl_warp.js); this one is kept
-	 * for the gl_model.h layout.
-	 */
-	constructor() {
-
-		this.next = null;
-		this.chain = null;
-		this.numverts = 0;
-		this.flags = 0;			// for SURF_UNDERWATER
-		this.verts = [];		// array of Float32Array(VERTEXSIZE) -- variable sized (xyz s1t1 s2t2)
 
 	}
 
@@ -537,21 +516,6 @@ export class stvert_t {
 		this.onseam = 0;
 		this.s = 0;
 		this.t = 0;
-
-	}
-
-}
-
-export class dtriangle_t {
-
-	/**
-	 * An alias-model triangle as stored on disk (modelgen.h): `facesfront` (DT_FACES_FRONT when it faces the front
-	 * skin half) and the three vertex indices. Not constructed by the engine; `mtriangle_t` is used instead.
-	 */
-	constructor() {
-
-		this.facesfront = 0;
-		this.vertindex = new Int32Array( 3 );
 
 	}
 

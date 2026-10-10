@@ -60,7 +60,6 @@ import {
 	sv, svs, ss_loading, ss_active,
 	server_t, client_t, NUM_PING_TIMES,
 	host_client, set_host_client,
-	host_time,
 	MOVETYPE_PUSH, MOVETYPE_STEP,
 	SOLID_BSP, SOLID_NOT, SOLID_TRIGGER,
 	FL_ITEM, FL_ONGROUND, FL_MONSTER,

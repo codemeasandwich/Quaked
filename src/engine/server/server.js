@@ -5,11 +5,11 @@
  *
  * Types: exported classes `server_static_t`, `server_t`, `client_frame_t`, `client_t`.
  *
- * State: mutable exports `host_client`, `host_time`, `sv_player`.
+ * State: mutable exports `host_client`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  *
- * `host_client`, `host_time` and `sv_player` are set through `set_host_client`, `set_host_time` and `set_sv_player`.
+ * `host_client` is set through `set_host_client`.
  */
 // Ported from: WinQuake/server.h -- server structures and constants
 
@@ -295,21 +295,3 @@ export let host_client = null; // current client being processed
  * @param {?client_t} v the client slot, or null
  */
 export function set_host_client( v ) { host_client = v; }
-
-export let host_time = 0;
-/**
- * Sets this module's `host_time` export. Nothing calls it: the host clock that advances each frame is host.js's own
- * module variable, so this export stays 0 (sv_main.js imports it but does not read it).
- *
- * @param {number} v host time in seconds
- */
-export function set_host_time( v ) { host_time = v; }
-
-export let sv_player = null;
-/**
- * Sets this module's `sv_player` export (WinQuake's global player edict). Nothing calls it and nothing imports this
- * export: the live `sv_player` is the one in sv_phys.js, set by its own setter from sv_user.js.
- *
- * @param {?edict_t} v the player's edict, or null
- */
-export function set_sv_player( v ) { sv_player = v; }

@@ -3,7 +3,7 @@
  *
  * Dynamic lights (WinQuake gl_rlight.c): marking lit surfaces, light styles and the light under a point.
  *
- * Types: exported classes `dlight_t`.
+ * Types: plain values and functions; no exported classes.
  *
  * State: mutable exports `r_dlightframecount`, `lightplane`, `lightspot`.
  *
@@ -627,69 +627,3 @@ export function R_LightPointValue( p, client ) {
 
 }
 
-/*
-=============
-R_AddDynamicLights
-=============
-*/
-/**
- * Add contribution of dynamic lights to a surface's lightmap. In Three.js, this can be used to compute per-vertex
- * lighting contributions from dynamic lights for surfaces near them. Currently a stub: it finds each light in
- * `surf.dlightbits` whose radius reaches the surface plane but changes nothing (the working version is the private
- * `R_AddDynamicLights` in gl_rsurf.js, and nothing imports this one).
- *
- * @param {msurface_t} surf the surface; `dlightbits` and `plane` are read
- * @param {client_state_t} cl the client state; returns at once when it has no `dlights`
- */
-export function R_AddDynamicLights( surf, cl ) {
-
-	if ( ! cl || ! cl.dlights )
-		return;
-
-	for ( let lnum = 0; lnum < MAX_DLIGHTS; lnum ++ ) {
-
-		if ( ! ( surf.dlightbits & ( 1 << lnum ) ) )
-			continue; // not lit by this light
-
-		const dl = cl.dlights[ lnum ];
-		if ( ! dl ) continue;
-
-		const dist = DotProduct( dl.origin, surf.plane.normal ) - surf.plane.dist;
-		const rad = dl.radius - Math.abs( dist );
-		if ( rad < 0 )
-			continue;
-
-		// This light affects this surface
-		// In a full Three.js implementation, you'd update the surface's
-		// lightmap texture data here based on the light contribution
-
-	}
-
-}
-
-/*
-=============
-dlight_t class
-=============
-*/
-export class dlight_t {
-
-	/**
-	 * Creates an unlit dynamic light: origin at 0,0,0, radius 0, all times 0. This copy is not used by the engine
-	 * (the client's `cl_dlights` is built from client.js's `dlight_t`); it keeps the same fields.
-	 * Fields: `origin` world position (Quake units), `radius` (Quake units), `die` client time in seconds after
-	 * which the light stops, `decay` radius lost per second, `minlight` don't add when contributing less (lightmap
-	 * units), `key` the owner's key (0 for none); `CL_AllocDlight` reuses the slot whose key matches.
-	 */
-	constructor() {
-
-		this.origin = new Float32Array( 3 );
-		this.radius = 0;
-		this.die = 0; // stop lighting after this time
-		this.decay = 0; // drop this each second
-		this.minlight = 0; // don't add when contributing less
-		this.key = 0;
-
-	}
-
-}

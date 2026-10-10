@@ -5,7 +5,7 @@
  *
  * Types: exported classes `efrag_t`, `entity_t`, `refdef_t`.
  *
- * State: mutable exports `r_notexture_mip`, `reinit_surfcache`, `r_cache_thrash`.
+ * State: mutable exports `r_notexture_mip`, `r_cache_thrash`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -21,8 +21,7 @@ import {
 	R_BlobExplosion as _R_BlobExplosion,
 	R_ParticleExplosion as _R_ParticleExplosion,
 	R_ParticleExplosion2 as _R_ParticleExplosion2,
-	R_LavaSplash as _R_LavaSplash,
-	R_TeleportSplash as _R_TeleportSplash
+	R_LavaSplash as _R_LavaSplash
 } from './r_part.js';
 import { R_FireballSpawn, R_SmokeTrail } from '../common/hooks.js'; // installed by newer/render/r_fireball.js
 import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
@@ -30,8 +29,6 @@ import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/re
 //============================================================================
 // Constants
 //============================================================================
-
-export const MAXCLIPPLANES = 11;
 
 export const TOP_RANGE = 16; // soldier uniform colors
 export const BOTTOM_RANGE = 96;
@@ -176,7 +173,6 @@ export const vup = new Float32Array( 3 ); // view up vector
 
 export let r_notexture_mip = null; // texture_t -- fallback texture
 
-export let reinit_surfcache = 0; // if 1, surface cache is currently empty
 export let r_cache_thrash = false; // set if thrashing the surface cache
 
 //============================================================================
@@ -204,35 +200,12 @@ export function R_InitTextures() {
 }
 
 /**
- * Empty stub of render.h's R_InitEfrags; the efrag pool is allocated in client.js instead. Nothing imports it.
- */
-export function R_InitEfrags() {
-
-	// Stub
-
-}
-
-/**
  * Empty stub of render.h's R_RenderView. The real one is implemented in gl_rmain.js and must have `r_refdef` set
  * first. Nothing imports this one.
  */
 export function R_RenderView() {
 
 	// Implemented in gl_rmain.js -- must set r_refdef first
-
-}
-
-/**
- * Empty stub of render.h's R_ViewChanged, which the software renderer called whenever `r_refdef` or vid change. The
- * GL port recomputes the view each frame instead; nothing imports it.
- *
- * @param {vrect_t} pvrect new view rectangle, screen pixels (unused)
- * @param {number} lineadj status-bar line adjustment, pixels (unused)
- * @param {number} aspect pixel aspect ratio (unused)
- */
-export function R_ViewChanged( pvrect, lineadj, aspect ) {
-
-	// Called whenever r_refdef or vid change
 
 }
 
@@ -439,17 +412,6 @@ export function R_LavaSplash( org ) {
 }
 
 /**
- * Forwarder to r_part.js R_TeleportSplash (the teleport sparkle cube). No engine code imports this wrapper.
- *
- * @param {Float32Array} org centre, Quake units, world space
- */
-export function R_TeleportSplash( org ) {
-
-	_R_TeleportSplash( org );
-
-}
-
-/**
  * Empty stub of render.h's R_PushDlights; the real one is in gl_rlight.js. Nothing imports this one.
  */
 export function R_PushDlights() {
@@ -463,20 +425,6 @@ export function R_PushDlights() {
 //============================================================================
 
 /**
- * Stub of the software renderer's surface-cache sizing (WinQuake d_iface.h); the GL renderer has no surface cache.
- * Nothing imports it.
- *
- * @param {number} width screen width, pixels (unused)
- * @param {number} height screen height, pixels (unused)
- * @returns {number} always 0 bytes
- */
-export function D_SurfaceCacheForRes( width, height ) {
-
-	return 0;
-
-}
-
-/**
  * Empty stub of the software surface-cache flush; the GL port's D_FlushCaches is in gl_rmisc.js. Nothing imports
  * this one.
  */
@@ -486,37 +434,3 @@ export function D_FlushCaches() {
 
 }
 
-/**
- * Empty stub of the software surface-cache release; the GL renderer has no surface cache. Nothing imports it.
- */
-export function D_DeleteSurfaceCache() {
-
-	// Stub
-
-}
-
-/**
- * Empty stub of the software surface-cache setup; the GL renderer has no surface cache. Nothing imports it.
- *
- * @param {*} buffer cache memory (unused)
- * @param {number} size cache size, bytes (unused)
- */
-export function D_InitCaches( buffer, size ) {
-
-	// Stub
-
-}
-
-/**
- * Empty stub of the software renderer's R_SetVrect (which sized the 3D view inside the screen for `viewsize`).
- * Nothing imports it.
- *
- * @param {vrect_t} pvrect full view rectangle, screen pixels (unused)
- * @param {vrect_t} pvrectin rectangle that would be written (unused; left unchanged)
- * @param {number} lineadj status-bar line adjustment, pixels (unused)
- */
-export function R_SetVrect( pvrect, pvrectin, lineadj ) {
-
-	// Stub
-
-}

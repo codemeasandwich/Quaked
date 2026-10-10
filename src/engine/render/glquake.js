@@ -3,7 +3,7 @@
  *
  * GL definitions and texture state (WinQuake glquake.h): the registry of game textures and their filtering.
  *
- * Types: exported classes `gltexture_t`, `glpoly_t`, `glvert_t`, `particle_t`.
+ * Types: exported classes `gltexture_t`, `glpoly_t`, `glvert_t`.
  *
  * State: mutable exports `texture_extension_number`, `texture_mode`, `gldepthmin`, `gldepthmax`, `currenttexture`,
  * `cnttextures`, `particletexture`, `playertextures`, `gltextures`, `numgltextures`, `glv`, `glx` and 33 more;
@@ -194,31 +194,6 @@ export const pt_explode = 4;
 export const pt_explode2 = 5;
 export const pt_blob = 6;
 export const pt_blob2 = 7;
-
-export class particle_t {
-
-	/**
-	 * Creates a free particle (WinQuake glquake.h `particle_t`). `org` (Quake units, world space) and `color`
-	 * (palette index) are the driver-usable fields; `next` links the free or active list, `vel` is Quake units per
-	 * second, `ramp` is the colour-ramp position, `die` the client time in seconds when it is removed, and `type` one
-	 * of the `pt_*` behaviours. Nothing constructs this class at present: `r_part.js` declares and pools its own
-	 * `particle_t`.
-	 */
-	constructor() {
-
-		// driver-usable fields
-		this.org = new Float32Array( 3 );
-		this.color = 0;
-		// drivers never touch the following fields
-		this.next = null;
-		this.vel = new Float32Array( 3 );
-		this.ramp = 0;
-		this.die = 0;
-		this.type = pt_static;
-
-	}
-
-}
 
 /*
 ===============================================================================

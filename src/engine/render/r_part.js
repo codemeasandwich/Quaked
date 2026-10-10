@@ -520,59 +520,6 @@ export function R_LavaSplash( org ) {
 
 /*
 ===============
-R_TeleportSplash
-===============
-*/
-/**
- * Spawns the teleport sparkle (WinQuake r_part.c, TE_TELEPORT): a cube of `pt_slowgrav` particles 32 Quake units
- * wide and 56 high around `org`, flying outward at 50..113 units per second in palette 7..14, for 0.2 to 0.34
- * seconds. Does nothing without a client state, and stops early when the pool runs out. No engine code reaches it at
- * present: cl_tent.js records TE_TELEPORT spots instead, and nothing imports the render.js forwarder.
- *
- * @param {ArrayLike<number>} org centre, Quake units, world space
- */
-export function R_TeleportSplash( org ) {
-
-	if ( ! client_cl ) return;
-	const dir = new Float32Array( 3 );
-
-	for ( let i = - 16; i < 16; i += 4 ) {
-
-		for ( let j = - 16; j < 16; j += 4 ) {
-
-			for ( let k = - 24; k < 32; k += 4 ) {
-
-				const p = allocParticle();
-				if ( ! p ) return;
-
-				p.die = client_cl.time + 0.2 + ( Math.random() * 8 | 0 ) * 0.02;
-				p.color = 7 + ( Math.random() * 8 | 0 );
-				p.type = pt_slowgrav;
-
-				dir[ 0 ] = j * 8;
-				dir[ 1 ] = i * 8;
-				dir[ 2 ] = k * 8;
-
-				p.org[ 0 ] = org[ 0 ] + i + ( Math.random() * 4 | 0 );
-				p.org[ 1 ] = org[ 1 ] + j + ( Math.random() * 4 | 0 );
-				p.org[ 2 ] = org[ 2 ] + k + ( Math.random() * 4 | 0 );
-
-				VectorNormalize( dir );
-				const vel = 50 + ( Math.random() * 64 | 0 );
-				p.vel[ 0 ] = dir[ 0 ] * vel;
-				p.vel[ 1 ] = dir[ 1 ] * vel;
-				p.vel[ 2 ] = dir[ 2 ] * vel;
-
-			}
-
-		}
-
-	}
-
-}
-
-/*
-===============
 R_RocketTrail
 ===============
 */
