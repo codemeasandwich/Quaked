@@ -5,7 +5,7 @@
     "src/newer/assets/demon_bake_format.js": "d92c571927711f9917e51cb7d1f61dc53f2c5208770cb46475deb9473e76fe30",
     "src/engine/render/gl_model.js": "e791ceb5ef8eb527a65fb45f08303aa6a10b4c46b68a371e3730937d0bb14488",
     "src/engine/render/gl_rsurf.js": "a7a8c69cf5e3d77f55b1ef40d1c05662384573b90c774cb370d44f43a8ab45cb",
-    "newer/textures/index.json": "e7a50d1ab8c3dcf1c8dc3e54024392fbfcd072bd4a80c3c64451632966629901",
+    "newer/textures/index.json": "3b6db4bb6b87fd6e196e79a52c9eed5a7b16396a0d73692b867dcf310d21019c",
     "newer/textures/normals/demon-face.r16": "471edf6290158d4956e85aadbff1a302f3e20473be446d45570c7fc78e34af4e"
   },
   "levels": {
@@ -2524,5 +2524,5 @@
       }
     ]
   },
-  "sourcesNote": "r_demonrelief.js and demon_bake_format.js re-hashed by card [44e] (10 Oct 2026): moved and given a @module header, code unchanged. gl_model.js and gl_rsurf.js keep the hashes recorded at the bake: both have changed since, so tests/helpers/prepared_corpus_audit.mjs reports them until a re-bake. Every level's generatorFingerprint (the hash of these sources, whose keys also follow the moves) was restated with them, here and in the registry module. Re-hashed again by card [44g] (10 Oct 2026): r_demonrelief.js, demon_bake_format.js gained function JSDoc; their code tokens are identical to before (comments only)."
+  "sourcesNote": "r_demonrelief.js and demon_bake_format.js re-hashed by card [44e] (10 Oct 2026): moved and given a @module header, code unchanged. gl_model.js and gl_rsurf.js keep the hashes recorded at the bake: both have changed since, so tests/helpers/prepared_corpus_audit.mjs reports them until a re-bake. Every level's generatorFingerprint (the hash of these sources, whose keys also follow the moves) was restated with them, here and in the registry module. Re-hashed again by card [44g] (10 Oct 2026): r_demonrelief.js, demon_bake_format.js gained function JSDoc; their code tokens are identical to before (comments only). Re-hashed again by card [34e] (10 Oct 2026): newer/textures/index.json gained its \"sources\" entry (the pixels each upgrade was made from); the bakes read only its \"normals\", which is byte for byte the same."
 }

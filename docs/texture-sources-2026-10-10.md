@@ -21,7 +21,7 @@ use Quake's own `metal5_6`, such as hip2m1, still get the upgrade.
     keep matching by name, as before.
 - **The check.** `R_NewerTextureUpgrade` (`src/newer/render/r_newertextures.js`) gives a texture its upgrade only when
   the texture's identity is one of its name's sources. Otherwise the texture falls back (`userData.newerFallback`) and
-  keeps its own pixels, and nothing is fetched for it.
+  keeps its own pixels, and nothing is fetched for it at upgrade time. (The startup prefetch, `R_NewerTexturesPrefetch`, still goes by name, but it prefetches only Quake's own e1m3 and Newer Game's start map.)
   - A name with no sources goes by name, as before.
   - A glass texture is chosen by its identity already (`glass` in the index), and that is unchanged.
 - **The tool.** `tools/build_texture_sources.mjs` makes the record. It loads every map in the packs given, through the
@@ -34,6 +34,10 @@ use Quake's own `metal5_6`, such as hip2m1, still get the upgrade.
 
   Give it Quake's own packs only. An add-on's pack would record the add-on's pictures as sources, and that is what
   this change exists to prevent.
+
+- **The displacement bakes' record** (`newer/displacement/manifest.json`) lists the index among its generator inputs.
+  Its hash there is restated for the new file, as card [44g] did for its comment-only changes, and its `sourcesNote`
+  says why: the bakes read only the index's `normals`, which is byte for byte the same.
 
 ## What changes for each game
 
@@ -73,6 +77,3 @@ them.
   WebTransport room server (`DEFAULT_WT_SERVER`), not in the page, and Online is disabled in the Multiplayer menu at
   the owner's direction (card [MP1]). It is for the owner to take up when Online is enabled.
 - **Add-ons' own pictures** keep their original look. Making upgrades for them is separate work.
-- **The displacement bakes' record** (`newer/displacement/manifest.json`) still holds the index's earlier SHA-256
-  among its generator inputs. The page does not check it. `tools/bake_displacement.mjs` treats it as changed input, so
-  its next run makes the bakes again rather than reusing them.
