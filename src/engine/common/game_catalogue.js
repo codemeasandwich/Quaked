@@ -116,8 +116,10 @@ async function rangedGet( fetchImpl, url, start, length, timeoutMs ) {
 		const bytes = response.ok ? await readBounded( response, length ) : new Uint8Array( 0 );
 		if ( ! response.ok && response.body?.cancel ) response.body.cancel().catch( () => {} );
 		// a 206 counts only when it is the range asked for (a server can answer another part of the file)
-		const served = /^bytes\s+(\d+)-(\d+)\//.exec( response.headers.get( 'content-range' ) ?? '' );
-		const exact = response.status === 206 && served !== null && Number( served[ 1 ] ) === start && Number( served[ 2 ] ) === start + length - 1;
+		// (its end may fall short of the request only where the file itself ends)
+		const served = /^bytes\s+(\d+)-(\d+)\/(\d+|\*)/.exec( response.headers.get( 'content-range' ) ?? '' );
+		const end = served && Number( served[ 2 ] ), total = served && served[ 3 ] !== '*' ? Number( served[ 3 ] ) : Infinity;
+		const exact = response.status === 206 && served !== null && Number( served[ 1 ] ) === start && end === Math.min( start + length - 1, total - 1 );
 		return { response, bytes, exact };
 
 	} catch ( error ) {
