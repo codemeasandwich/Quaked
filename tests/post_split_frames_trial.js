@@ -4,6 +4,9 @@
 // step (tools/post_split_frames.mjs); every hash must match. The views are chosen from the map's own leaves: the
 // open air under its sky, inside and above its water and its slime, an interior with the flashlight, depth of field and
 // the split screen.
+// Two digests are known on the unchanged pipeline (both seen at the commit before the split): 4e633bcf… and f216c748….
+// They differ only in the view under the water, by at most 15 levels across a very dark frame, with the same passes:
+// the water's start-up state settles one of two ways (a race filed as its own card). Either is the same rendering.
 import '../src/engine/render/gl_rsurf.js';
 import * as THREE from 'three';
 import * as post from '../src/newer/render/gl_post.js';
