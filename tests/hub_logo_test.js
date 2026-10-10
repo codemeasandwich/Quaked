@@ -177,7 +177,7 @@ Deno.test( 'public enhanced texture loader installs registered recessed height a
 		equal( reference.image.data[ i * 4 ], 128, 'reference no generated X slope' ); equal( reference.image.data[ i * 4 + 1 ], 128, 'reference no generated Y slope' );
 
 	}
-	check( material.customProgramCacheKey() !== nativeProgramKey && material.customProgramCacheKey().endsWith( '-carved' ), 'asynchronous carved shader gets a distinct cached program' );
+	check( material.customProgramCacheKey() !== nativeProgramKey && material.customProgramCacheKey().includes( '-carved' ), 'asynchronous carved shader gets a distinct cached program' );
 	const shader = { vertexShader: THREE.ShaderLib.standard.vertexShader, fragmentShader: THREE.ShaderLib.standard.fragmentShader, uniforms: THREE.UniformsUtils.clone( THREE.ShaderLib.standard.uniforms ) };
 	material.onBeforeCompile( shader );
 	equal( shader.uniforms.uCarveReference.value, reference, 'actual registered material shader uses source height reference' );
@@ -252,7 +252,8 @@ Deno.test( 'byte-packed carved occlusion stays distinct from rock/ordinary tags 
 		const decode = new Function( 'tag', 'clamp', 'return ' + expression );
 		const encode = new Function( 'carveAO', 'return ' + carvedAlphaExpression );
 		const sunExpression = /float rockSunVisibility = ([^;]+);/.exec( fragment )[ 1 ];
-		const sun = new Function( 'tag', 'clamp', 'return ' + sunExpression.replaceAll( 'base.a', 'tag' ) );
+		const unpackSun = new Function( 'tag', 'clamp', 'heightMaskValid', 'receiverHeightVisibility', 'uvd', 'P', 'glass', 'return ' + sunExpression.replaceAll( 'base.a', 'tag' ) );
+		const sun = ( tag, clamp ) => unpackSun( tag, clamp, () => false, () => 1, {}, {}, false ); // (no height mask, not glass: the tag alone decides)
 		for ( const ao of [ .08, .15, .5, .6, .75, .9, 1 ] ) {
 
 			const tag = Math.round( encode( ao ) * 255 ) / 255;
@@ -269,9 +270,9 @@ Deno.test( 'byte-packed carved occlusion stays distinct from rock/ordinary tags 
 
 		}
 		check( fragment.includes( 'vec3 albedo = base.a > 0.05 ? base.rgb : scene;' ), 'carved surfaces use original material RGB' );
-		check( fragment.includes( 'base.a < 0.05 ) return scene;' ), 'reflection accepts carved receiver albedo' );
+		check( fragment.includes( 'base.a < 0.05 ) return scene' ), 'reflection accepts carved receiver albedo' ); // (the unlit return adds powerup emission since 038fe59)
 		check( fragment.includes( 'beamS * surfaceCarveAO( sourceBase.a )' ), 'new flashlight bounce from carved source respects occlusion' );
-		const compositeExpression = /c = (scene \* \( 1\.0 \+ relit \* carveAO \)[^;]+);/.exec( fragment )[ 1 ];
+		const compositeExpression = /c = actor \? [^:]+ : (scene \* \( 1\.0 \+ relit \* carveAO \)[^;]+);/.exec( fragment )[ 1 ]; // (the world receiver's branch; models, `actor`, are lit apart and never carved)
 		const compose = new Function( 'scene', 'relit', 'carveAO', 'bounce', 'receiver', 'uLightFloor', 'albedo', 'spot', 'flashAdd', 'return ' + compositeExpression );
 		const baseline = .2, full = compose( baseline, .3, 1, .4, .1, .2, .5, .6, .7 );
 		for ( const ao of [ .5, .75, 1 ] ) {

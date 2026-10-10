@@ -17,6 +17,7 @@ function makeTexture( name ) {
 
 	return {
 		name: name,
+		userData: {}, // (as every THREE.Texture has: filtering changes count there as sampler updates)
 		disposals: 0,
 		generateMipmaps: false,
 		needsUpdate: false,
@@ -90,6 +91,7 @@ Deno.test( 'model clearing disposes only map-owned Three textures', () => {
 		glquake.GL_UpdateTextureFiltering();
 		assertEqual( aliasTexture.needsUpdate, true, 'alias filtering update' );
 		assertEqual( particleTexture.needsUpdate, true, 'particle filtering update' );
+		assertEqual( aliasTexture.userData.normalSamplerUpdates, 1, 'a filtering change is a sampler update, not new pixels' );
 		assertEqual( base.needsUpdate, false, 'disposed filtering exclusion' );
 
 		gl_model.Mod_ClearAll();

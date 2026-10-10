@@ -154,7 +154,7 @@ Deno.test( 'r_lerpmodels: off or Newer Game only, including legacy forced values
 
 Deno.test( 'Newer Game forces smooth texture filtering without touching the user setting', () => {
 
-	const texture = { magFilter: 1003, minFilter: 1003, generateMipmaps: true, anisotropy: 1, needsUpdate: false };
+	const texture = { magFilter: 1003, minFilter: 1003, generateMipmaps: true, anisotropy: 1, needsUpdate: false, userData: {} }; // (userData: as a THREE.Texture)
 	glquake.GL_RegisterTexture( texture );
 
 	try {

@@ -220,7 +220,8 @@ Deno.test( 'inline brush models receive dynamic light marks', () => {
 			children: [],
 			parent: { remove() {} },
 			position: { set() {} },
-			quaternion: { identity() {}, setFromEuler() {} }
+			quaternion: { identity() {}, setFromEuler() {} },
+			userData: {}, visible: true // (as a THREE.Group: the draw records whether a Newer arch hides it)
 		};
 		const model = {
 			mins: new Float32Array( [ - 1, - 1, - 1 ] ),

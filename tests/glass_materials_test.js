@@ -68,7 +68,7 @@ Deno.test('independent actual material compiler isolates glass mask, Classic and
  const gm=createQuakeLightmapMaterial(glass,lm),om=createQuakeLightmapMaterial(ordinary,lm);materials.push(gm,om);const gs=compile(gm),os=compile(om);
  same(gs.uniforms.uGlassGloss.value,gm.normalMap.userData.glassGloss,'actual compiled material binds donor gloss');
  glass.userData.newerPicture=true;ordinary.userData.newerPicture=true;
- same(gs.uniforms.uPigmentMinFootprint.value,4,'glass starts with ordinary pigment footprint outside reviewed aperture');same(os.uniforms.uPigmentMinFootprint.value,4,'ordinary replacement pigment filtering unchanged');
+ same(gs.uniforms.uPigmentMinFootprint.value,2,'glass starts with ordinary pigment footprint outside reviewed aperture (two texels since 612a071)');same(os.uniforms.uPigmentMinFootprint.value,2,'ordinary replacement pigment filtering unchanged');
  check(gs.fragmentShader.includes('mix(uPigmentMinFootprint,1.,step(.5,texture2D(uGlassGloss,pUv).g))*(1.-uClassic)'),'only reviewed aperture G sharpens pigment at actual parallax UV; Classic disables correction');
  check(gs.fragmentShader.includes('vec3 qrGlassPigment=textureGrad(map,DETAIL_UV,dFdx(vMapUv),dFdy(vMapUv)).rgb;'),'glass pane mask samples original pigment independently of diffuseColor');
  check(/#ifdef USE_EMISSIVEMAP\s+qrGlassPigment\+=textureGrad\(emissiveMap,DETAIL_UV,dFdx\(vMapUv\),dFdy\(vMapUv\)\).rgb;\s+#endif/.test(gs.fragmentShader),'actual emissiveMap reconstructs split fullbright panes under the feature gate');
