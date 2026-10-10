@@ -74,7 +74,7 @@ async function main() {
 
 		// Load the shareware pak0.pak from games/shareware/ (card [34a]; a deployment that still serves it at the root is
 		// tried next); the loading logo fills as it downloads
-		Sys_Printf( 'Loading pak0.pak...\\n' );
+		Sys_Printf( 'Loading pak0.pak...\n' );
 		// Overlap independent transports; native installation order stays intact.
 		const nativePack = COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		const optionalPack = COM_FetchOptionalPak( 'newer.pak', 'newer.pak' ).catch( error => {
@@ -105,7 +105,7 @@ async function main() {
 			// optional archive first so bundled identities always win.
 			if ( fullGamePak ) COM_AddPack( fullGamePak );
 			COM_AddPack( pak0 );
-			Sys_Printf( 'pak0.pak loaded successfully\\n' );
+			Sys_Printf( 'pak0.pak loaded successfully\n' );
 			// a mission pack's own QuakeC, status bar pictures and maps replace the base game's: it is mounted last,
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
@@ -114,7 +114,7 @@ async function main() {
 
 		} else {
 
-			Sys_Printf( 'Warning: pak0.pak not found - game data will be missing\\n' );
+			Sys_Printf( 'Warning: pak0.pak not found - game data will be missing\n' );
 
 		}
 
@@ -159,11 +159,11 @@ async function main() {
 		try {
 
 			await Draw_CachePicFromPNG( 'gfx/mainmenu_ext.lmp', 'newer/ui/mainmenu-bestiarium.png', { displayHeight:140 } );
-			Sys_Printf( 'Loaded custom menu images\\n' );
+			Sys_Printf( 'Loaded custom menu images\n' );
 
 		} catch ( e ) {
 
-			Sys_Printf( 'Warning: Could not load custom menu images\\n' );
+			Sys_Printf( 'Warning: Could not load custom menu images\n' );
 
 		}
 
@@ -218,7 +218,7 @@ async function main() {
 
 			const serverUrl = urlParams.get( 'server' ) || 'https://wts.mrdoob.com:4433';
 			const connectUrl = serverUrl + '?room=' + encodeURIComponent( roomId );
-			Sys_Printf( 'Auto-joining room: %s\\n', roomId );
+			Sys_Printf( 'Auto-joining room: %s\n', roomId );
 			Cbuf_AddText( 'connect "' + connectUrl + '"\n' );
 
 		}

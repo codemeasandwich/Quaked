@@ -208,7 +208,7 @@ export function COM_LoadPackFile( filename, buffer ) {
 
 	}
 
-	Con_Printf( 'Added packfile ' + filename + ' (' + numpackfiles + ' files)\\n' );
+	Con_Printf( 'Added packfile ' + filename + ' (' + numpackfiles + ' files)\n' );
 
 	loadedPacks.push( pack );
 
@@ -657,7 +657,7 @@ export async function COM_PreloadMaps( mapList, basePath ) {
 
 	if ( loaded > 0 ) {
 
-		Sys_Printf( 'Preloaded %d custom maps\\n', loaded );
+		Sys_Printf( 'Preloaded %d custom maps\n', loaded );
 
 	}
 
@@ -737,7 +737,7 @@ COM_FetchPak
  */
 export async function COM_FetchPak( url, filename, onProgress ) {
 
-	Sys_Printf( 'Fetching ' + url + '...\\n' );
+	Sys_Printf( 'Fetching ' + url + '...\n' );
 
 	// Check if running in Deno
 	if ( typeof Deno !== 'undefined' ) {
@@ -751,7 +751,7 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 
 		} catch ( e ) {
 
-			Con_Printf( 'Failed to load ' + url + ': ' + e.message + '\\n' );
+			Con_Printf( 'Failed to load ' + url + ': ' + e.message + '\n' );
 			return null;
 
 		}
@@ -762,7 +762,7 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 	const response = await fetch( url );
 	if ( ! response.ok ) {
 
-		Con_Printf( 'Failed to fetch ' + url + ': ' + response.statusText + '\\n' );
+		Con_Printf( 'Failed to fetch ' + url + ': ' + response.statusText + '\n' );
 		return null;
 
 	}
@@ -805,7 +805,7 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 
 	}
 
-	Sys_Printf( 'Loaded ' + url + ' (' + buffer.byteLength + ' bytes)\\n' );
+	Sys_Printf( 'Loaded ' + url + ' (' + buffer.byteLength + ' bytes)\n' );
 
 	return COM_LoadPackFile( filename || url, buffer );
 

@@ -76,12 +76,12 @@ Memory_Init
 /**
  * Starts memory management at engine start-up (called first in `Host_Init`): empties the cache and prints
  * `Memory initialized (JavaScript GC mode)` to the console. Unlike WinQuake zone.c it takes no memory block, since
- * JavaScript allocates. The message is written with an escaped `\\n`, so it ends in a literal backslash-n.
+ * JavaScript allocates.
  */
 export function Memory_Init() {
 
 	Cache_Init();
-	Con_Printf( 'Memory initialized (JavaScript GC mode)\\n' );
+	Con_Printf( 'Memory initialized (JavaScript GC mode)\n' );
 
 }
 
@@ -496,8 +496,8 @@ Cache_Report
 */
 /**
  * Prints the total size of the cache entries as `<n> megabyte data cache` (one decimal, MiB) with `Con_DPrintf`
- * (developer output) (WinQuake zone.c). The message ends in a literal backslash-n (escaped `\\n`). Its call
- * in cl_main.js is commented out.
+ * (developer output) (WinQuake zone.c). Its call in cl_main.js is
+ * commented out.
  */
 export function Cache_Report() {
 
@@ -508,6 +508,6 @@ export function Cache_Report() {
 
 	}
 
-	Con_DPrintf( ( total / ( 1024 * 1024 ) ).toFixed( 1 ) + ' megabyte data cache\\n' );
+	Con_DPrintf( ( total / ( 1024 * 1024 ) ).toFixed( 1 ) + ' megabyte data cache\n' );
 
 }
