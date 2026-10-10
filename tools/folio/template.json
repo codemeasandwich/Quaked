@@ -1,0 +1,17 @@
+{
+ "name": "Bestiarium · shared frame",
+ "version": 1,
+ "autoSubtitle": true,
+ "regions": [
+  {"name":"Illustrations + annotations","role":"illustration","box":[0.012,0.139,0.988,0.779]},
+  {"name":"Left heading","role":"notes","order":0,"box":[0.062,0.806,0.338,0.833]},
+  {"name":"Left description","role":"notes","order":1,"box":[0.062,0.846,0.338,0.929]},
+  {"name":"Middle heading","role":"notes","order":2,"box":[0.370,0.806,0.637,0.833]},
+  {"name":"Middle description","role":"notes","order":3,"box":[0.370,0.846,0.637,0.929]},
+  {"name":"Right heading","role":"notes","order":4,"box":[0.677,0.806,0.942,0.833]},
+  {"name":"Right description","role":"notes","order":5,"box":[0.677,0.846,0.942,0.929]},
+  {"name":"Left frame rail","role":"protect","box":[0.030,0.135,0.051,0.220]},
+  {"name":"Right frame rail","role":"protect","box":[0.952,0.135,0.970,0.220]},
+  {"name":"Divider ornament","role":"protect","box":[0.477,0.766,0.527,0.811]}
+ ]
+}

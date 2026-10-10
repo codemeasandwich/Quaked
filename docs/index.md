@@ -81,6 +81,7 @@ Custom enemy skins, heights, heads, the Bestiary and the player portrait.
 - [Enforcer skin fitted to its native model](enemy-skin-enforcer-2026-10-09.md)
 - [Spawn skin fitted to its native model](enemy-skin-spawn-2026-10-09.md)
 - [The status-bar face turns toward an off-screen enemy that has just noticed you](face-alert-2026-10-09.md)
+- [The Bestiary's pencil replay](folio-replay-2026-10-10.md)
 - [Gloom Hood layered player face](gloom-hood-face-2026-10-04.md)
 - [Gloom Hood v4.4.0 — T-dde52e7c](gloom-hood-v44-2026-10-08.md)
 - [Four supplied head/gib skins — 2026-10-01](head-skins-2026-10-01.md)

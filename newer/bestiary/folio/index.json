@@ -1,0 +1,1007 @@
+{
+ "pages": {
+  "grunt": {
+   "image": {
+    "file": "grunt.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "48b1941dfd21cc5c6fda11993b2a0b6337285b1230653b66f2479d9693782154"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "grunt.reveal.png",
+   "paper": "grunt.paper.webp",
+   "stats": {
+    "paths": 9727,
+    "segments": 44312,
+    "unownedForeground": 0,
+    "analysisMs": 21559
+   }
+  },
+  "scrag": {
+   "image": {
+    "file": "scrag.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "eed301c42c50f8b7f3d3592a044d9d7067e248498415dab112c11ff1baee31f2"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "scrag.reveal.png",
+   "paper": "scrag.paper.webp",
+   "stats": {
+    "paths": 9014,
+    "segments": 33001,
+    "unownedForeground": 0,
+    "analysisMs": 42745
+   }
+  },
+  "zombie": {
+   "image": {
+    "file": "zombie.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "f263c7acf07c232ceeabd3623ef75f4997716d24d9b3de76a07a1cd2b239bc55"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "zombie.reveal.png",
+   "paper": "zombie.paper.webp",
+   "stats": {
+    "paths": 9490,
+    "segments": 39273,
+    "unownedForeground": 0,
+    "analysisMs": 42748
+   }
+  },
+  "rotfish": {
+   "image": {
+    "file": "rotfish.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "5bd5632823cbce6cf8828e93c4bbba8e4fd40eabc8fb3985b4807f816dfdf0ca"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "rotfish.reveal.png",
+   "paper": "rotfish.paper.webp",
+   "stats": {
+    "paths": 9444,
+    "segments": 40180,
+    "unownedForeground": 0,
+    "analysisMs": 43202
+   }
+  },
+  "dog": {
+   "image": {
+    "file": "rottweiler.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "e763d40b17723043a289563450e1fe09199fa119db8374078246a086ca4ffeaa"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "dog.reveal.png",
+   "paper": "dog.paper.webp",
+   "stats": {
+    "paths": 9674,
+    "segments": 42524,
+    "unownedForeground": 0,
+    "analysisMs": 43845
+   }
+  },
+  "knight": {
+   "image": {
+    "file": "knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "ee63b9f54bccdf1630f4a37e914cf3c4e3a90eda676a0c757ad524cd66f3fee2"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "knight.reveal.png",
+   "paper": "knight.paper.webp",
+   "stats": {
+    "paths": 9716,
+    "segments": 44213,
+    "unownedForeground": 0,
+    "analysisMs": 44570
+   }
+  },
+  "enforcer": {
+   "image": {
+    "file": "enforcer.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "d9c07d69e362a973fd8dd59cc6bfaf0d3e559818ad9980264d0a0617d7a7a0db"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "enforcer.reveal.png",
+   "paper": "enforcer.paper.webp",
+   "stats": {
+    "paths": 10044,
+    "segments": 48839,
+    "unownedForeground": 0,
+    "analysisMs": 44983
+   }
+  },
+  "death_knight": {
+   "image": {
+    "file": "death-knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "e869dfbdf44e75503b8d231527b893aba5cda3f10c91f13b3d5bb81822ada9ae"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "death_knight.reveal.png",
+   "paper": "death_knight.paper.webp",
+   "stats": {
+    "paths": 10888,
+    "segments": 47651,
+    "unownedForeground": 0,
+    "analysisMs": 45926
+   }
+  },
+  "spawn": {
+   "image": {
+    "file": "spawn.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "4cef2f8e041296f5d5a178c77cc5e2d01841b2241a46b804c7604074b6df91aa"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "spawn.reveal.png",
+   "paper": "spawn.paper.webp",
+   "stats": {
+    "paths": 9006,
+    "segments": 33432,
+    "unownedForeground": 0,
+    "analysisMs": 39941
+   }
+  },
+  "ogre": {
+   "image": {
+    "file": "ogre.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "48befe8d2928008a77372a221f8609a7ff2a6b4ad6d978d06d782e168e810b06"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "ogre.reveal.png",
+   "paper": "ogre.paper.webp",
+   "stats": {
+    "paths": 9734,
+    "segments": 46571,
+    "unownedForeground": 0,
+    "analysisMs": 41467
+   }
+  },
+  "vore": {
+   "image": {
+    "file": "vore.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "54c5566bfbe1eb9b9a9b7e6ea921d749a530d88df2fccad00b05c96cdadd344b"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "vore.reveal.png",
+   "paper": "vore.paper.webp",
+   "stats": {
+    "paths": 9532,
+    "segments": 35879,
+    "unownedForeground": 0,
+    "analysisMs": 40363
+   }
+  },
+  "fiend": {
+   "image": {
+    "file": "fiend.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "857fb8d4ac0043085fe02435f63245f5b9a39e1209efb788d16fe36c4bead0c0"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "fiend.reveal.png",
+   "paper": "fiend.paper.webp",
+   "stats": {
+    "paths": 10595,
+    "segments": 47778,
+    "unownedForeground": 0,
+    "analysisMs": 42339
+   }
+  },
+  "shub": {
+   "image": {
+    "file": "shub.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "5b1974151852a7b9fb8063df7a856aff147d012d5236deb999f4a71095dd2214"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "shub.reveal.png",
+   "paper": "shub.paper.webp",
+   "stats": {
+    "paths": 8469,
+    "segments": 37245,
+    "unownedForeground": 0,
+    "analysisMs": 40679
+   }
+  },
+  "chthon": {
+   "image": {
+    "file": "chthon.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "0fd9a40d62170913edfb622a4d143a15da4f7e001121d456ef4a59f920c01e53"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "chthon.reveal.png",
+   "paper": "chthon.paper.webp",
+   "stats": {
+    "paths": 11027,
+    "segments": 54710,
+    "unownedForeground": 0,
+    "analysisMs": 43480
+   }
+  },
+  "shambler": {
+   "image": {
+    "file": "shambler.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "22dad6724f776c890fe4aa842b0ca8172188645ca4c79786e5f4dce129095c58"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "shambler.reveal.png",
+   "paper": "shambler.paper.webp",
+   "stats": {
+    "paths": 11800,
+    "segments": 57378,
+    "unownedForeground": 0,
+    "analysisMs": 44172
+   }
+  },
+  "phantom_swordsman": {
+   "image": {
+    "file": "phantom-swordsman.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "9a78f7dc139a150cf8d5f16abf394590517057043855a949aff68adb59284cd8"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "phantom_swordsman.reveal.png",
+   "paper": "phantom_swordsman.paper.webp",
+   "stats": {
+    "paths": 8310,
+    "segments": 22795,
+    "unownedForeground": 0,
+    "analysisMs": 44369
+   }
+  },
+  "centroid": {
+   "image": {
+    "file": "centroid.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "9fcdf07e1fc40b48822798fb0793f34574e984b54b1eb98775a8027ce82c0940"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "centroid.reveal.png",
+   "paper": "centroid.paper.webp",
+   "stats": {
+    "paths": 10310,
+    "segments": 45757,
+    "unownedForeground": 0,
+    "analysisMs": 47863
+   }
+  },
+  "electric_eel": {
+   "image": {
+    "file": "electric-eel.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "caef09e8b2c4dd6c5e4a17340b2b0dea2603501a0e60ef79617bdf98e307ceac"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "electric_eel.reveal.png",
+   "paper": "electric_eel.paper.webp",
+   "stats": {
+    "paths": 10049,
+    "segments": 42119,
+    "unownedForeground": 0,
+    "analysisMs": 48360
+   }
+  },
+  "multi_grenade_ogre": {
+   "image": {
+    "file": "multi-grenade-ogre.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "d77fe7359d1743d09f771cb3af1dab99a3602494eb269623c75d65c0aad633b9"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "multi_grenade_ogre.reveal.png",
+   "paper": "multi_grenade_ogre.paper.webp",
+   "stats": {
+    "paths": 9837,
+    "segments": 49715,
+    "unownedForeground": 0,
+    "analysisMs": 48434
+   }
+  },
+  "splitting_spawn": {
+   "image": {
+    "file": "splitting-spawn.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "ba117f6b636e47c55769caeee2c5e928a06d3f0625799ac0b4e21d3da64773cf"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "splitting_spawn.reveal.png",
+   "paper": "splitting_spawn.paper.webp",
+   "stats": {
+    "paths": 9505,
+    "segments": 43222,
+    "unownedForeground": 0,
+    "analysisMs": 49683
+   }
+  },
+  "chthon_sleeper": {
+   "image": {
+    "file": "chthon-sleeper.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "111a646d1878898c83d1cd6d5310605ed47d73d6e61f104c9b847545d12692c8"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "chthon_sleeper.reveal.png",
+   "paper": "chthon_sleeper.paper.webp",
+   "stats": {
+    "paths": 12005,
+    "segments": 61213,
+    "unownedForeground": 0,
+    "analysisMs": 52853
+   }
+  },
+  "shub_awakened": {
+   "image": {
+    "file": "shub-awakened.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "5e7a576e58406ebc24edcc0f25da6d796766a0324fb2a483c0a253483db6fbc3"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "shub_awakened.reveal.png",
+   "paper": "shub_awakened.paper.webp",
+   "stats": {
+    "paths": 9845,
+    "segments": 43627,
+    "unownedForeground": 0,
+    "analysisMs": 51019
+   }
+  },
+  "infected_death_knight": {
+   "image": {
+    "file": "infected-death-knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "1f73907a79e687c6b4cc2017c26810b93249b2e6a68ee81b0ccc23417d1fc2e1"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "infected_death_knight.reveal.png",
+   "paper": "infected_death_knight.paper.webp",
+   "stats": {
+    "paths": 11184,
+    "segments": 52304,
+    "unownedForeground": 0,
+    "analysisMs": 55860
+   }
+  },
+  "overlord": {
+   "image": {
+    "file": "overlord.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "84441c7406178fee7b63e463310d00c26d4748db173af41d5ae63a97dd9e260a"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "overlord.reveal.png",
+   "paper": "overlord.paper.webp",
+   "stats": {
+    "paths": 10226,
+    "segments": 41024,
+    "unownedForeground": 0,
+    "analysisMs": 54823
+   }
+  },
+  "egyptian_guardian": {
+   "image": {
+    "file": "egyptian-guardian.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "14d154bd13d10d6bf4125e11151c048235d658d576de53f437b11390ad922bf6"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "egyptian_guardian.reveal.png",
+   "paper": "egyptian_guardian.paper.webp",
+   "stats": {
+    "paths": 9814,
+    "segments": 42451,
+    "unownedForeground": 0,
+    "analysisMs": 57570
+   }
+  },
+  "infected_enforcer": {
+   "image": {
+    "file": "infected-enforcer.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "0ad8a50b8272a85f7852a5982e5c1c06f41a79ed42c8aabe3c478e3eca734e83"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "infected_enforcer.reveal.png",
+   "paper": "infected_enforcer.paper.webp",
+   "stats": {
+    "paths": 11087,
+    "segments": 56792,
+    "unownedForeground": 0,
+    "analysisMs": 59755
+   }
+  },
+  "dragon": {
+   "image": {
+    "file": "dragon.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "8f5ff2d88aec41f07664cb3b297932774f68eb9fc4a4e3c8c096a37bd9cc9124"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "dragon.reveal.png",
+   "paper": "dragon.paper.webp",
+   "stats": {
+    "paths": 8820,
+    "segments": 37128,
+    "unownedForeground": 0,
+    "analysisMs": 56868
+   }
+  },
+  "infected_grunt": {
+   "image": {
+    "file": "infected-grunt.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "3f8e6f93ccc1bd8096ee07a1151c6d33f062ec15461b35477bfc9fd76d6ac5ae"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "infected_grunt.reveal.png",
+   "paper": "infected_grunt.paper.webp",
+   "stats": {
+    "paths": 10627,
+    "segments": 47576,
+    "unownedForeground": 0,
+    "analysisMs": 60499
+   }
+  },
+  "infected_knight": {
+   "image": {
+    "file": "infected-knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "fff06816196c83cf2bd6d62a92599f75abb5a277fb9b797609431a47136c3e4d"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "infected_knight.reveal.png",
+   "paper": "infected_knight.paper.webp",
+   "stats": {
+    "paths": 10914,
+    "segments": 48813,
+    "unownedForeground": 0,
+    "analysisMs": 61560
+   }
+  },
+  "ranged_death_knight": {
+   "image": {
+    "file": "ranged-death-knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "d3dc05ac2e047503425975bec6d316691ecae9745fe89f65dffd2a361f88ab3e"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "ranged_death_knight.reveal.png",
+   "paper": "ranged_death_knight.paper.webp",
+   "stats": {
+    "paths": 10828,
+    "segments": 42921,
+    "unownedForeground": 0,
+    "analysisMs": 54772
+   }
+  },
+  "demo_dog": {
+   "image": {
+    "file": "demo-dog.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "44484c928ef79a076efe5958979386cd0440dd2ced93780ce420b8107e206bb8"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "demo_dog.reveal.png",
+   "paper": "demo_dog.paper.webp",
+   "stats": {
+    "paths": 9711,
+    "segments": 46455,
+    "unownedForeground": 0,
+    "analysisMs": 53699
+   }
+  },
+  "mummy": {
+   "image": {
+    "file": "mummy.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "70ee3c002c6d1ffc942dc93e6198bba7637d49a1a521b0a9e7eafb741585db44"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "mummy.reveal.png",
+   "paper": "mummy.paper.webp",
+   "stats": {
+    "paths": 10169,
+    "segments": 44121,
+    "unownedForeground": 0,
+    "analysisMs": 53876
+   }
+  },
+  "statue_knight": {
+   "image": {
+    "file": "statue-knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "c0b4468a71c03e63e42871344f367ebc323cd69aa307730c8ee0774499765e3f"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "statue_knight.reveal.png",
+   "paper": "statue_knight.paper.webp",
+   "stats": {
+    "paths": 10628,
+    "segments": 48855,
+    "unownedForeground": 0,
+    "analysisMs": 55275
+   }
+  },
+  "statue_death_knight": {
+   "image": {
+    "file": "statue-death-knight.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "f3e494d4be6d39fce11961b5540612b7d55fdd914b860b792c57c1705e7191a6"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "statue_death_knight.reveal.png",
+   "paper": "statue_death_knight.paper.webp",
+   "stats": {
+    "paths": 11101,
+    "segments": 48765,
+    "unownedForeground": 0,
+    "analysisMs": 54870
+   }
+  },
+  "gremlin": {
+   "image": {
+    "file": "gremlin.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "ef60830c02f916671b13ab9c87aec99031beb8216bae1842f02ff0b24f4cb1c0"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "gremlin.reveal.png",
+   "paper": "gremlin.paper.webp",
+   "stats": {
+    "paths": 9591,
+    "segments": 43427,
+    "unownedForeground": 0,
+    "analysisMs": 50872
+   }
+  },
+  "rocket_ogre": {
+   "image": {
+    "file": "rocket-ogre.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "387fb616eb6b3bd70ce24ae8ce8b1db97f144758d8d54b819853ac118e3ff50d"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "rocket_ogre.reveal.png",
+   "paper": "rocket_ogre.paper.webp",
+   "stats": {
+    "paths": 9849,
+    "segments": 47819,
+    "unownedForeground": 0,
+    "analysisMs": 51836
+   }
+  },
+  "hell_spawn": {
+   "image": {
+    "file": "hell-spawn.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "58485f2066013d931bc0f0dc118502b1c645a2a9ff8d0487535369ac49b18aa8"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "hell_spawn.reveal.png",
+   "paper": "hell_spawn.paper.webp",
+   "stats": {
+    "paths": 9840,
+    "segments": 43542,
+    "unownedForeground": 0,
+    "analysisMs": 47927
+   }
+  },
+  "wrath": {
+   "image": {
+    "file": "wrath.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "0cc040672985bb08b6ed142d5bc39770dc9f80c7ce2d70ad7c8b83e30a692e2d"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "wrath.reveal.png",
+   "paper": "wrath.paper.webp",
+   "stats": {
+    "paths": 9763,
+    "segments": 38620,
+    "unownedForeground": 0,
+    "analysisMs": 42710
+   }
+  },
+  "blood_shambler": {
+   "image": {
+    "file": "blood-shambler.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "9435c386c4e59cfd7b90466a0f80e70ecd355c5099d6714e1e561a158e49f3b9"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "blood_shambler.reveal.png",
+   "paper": "blood_shambler.paper.webp",
+   "stats": {
+    "paths": 11447,
+    "segments": 61354,
+    "unownedForeground": 0,
+    "analysisMs": 49545
+   }
+  },
+  "spike_mine": {
+   "image": {
+    "file": "spike-mine.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "21f51c78e2cf59232b0973a0ed01c1dc25251750121163da9c9d9dcdcf762a12"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "spike_mine.reveal.png",
+   "paper": "spike_mine.paper.webp",
+   "stats": {
+    "paths": 9607,
+    "segments": 36214,
+    "unownedForeground": 0,
+    "analysisMs": 41909
+   }
+  },
+  "orb": {
+   "image": {
+    "file": "orb.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "a3024aa5f4c028d3c5e1682b780c9d504f46ac86fa60b99c78502bedae3bf193"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "orb.reveal.png",
+   "paper": "orb.paper.webp",
+   "stats": {
+    "paths": 9469,
+    "segments": 42596,
+    "unownedForeground": 0,
+    "analysisMs": 41160
+   }
+  },
+  "armagon": {
+   "image": {
+    "file": "armagon.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "baedf903d233a3686b7f0e8403e727611f7740d03f0d2a69556815344d1507cb"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "armagon.reveal.png",
+   "paper": "armagon.paper.webp",
+   "stats": {
+    "paths": 10199,
+    "segments": 47635,
+    "unownedForeground": 0,
+    "analysisMs": 42081
+   }
+  },
+  "hephaestus": {
+   "image": {
+    "file": "hephaestus.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "d2f7896eeadcedee8d3c0bf269dd1df124c08b198fe98bd64874f56c7688e0f8"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "hephaestus.reveal.png",
+   "paper": "hephaestus.paper.webp",
+   "stats": {
+    "paths": 10620,
+    "segments": 53143,
+    "unownedForeground": 0,
+    "analysisMs": 42847
+   }
+  },
+  "guardian": {
+   "image": {
+    "file": "guardian.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "c77f92c7355276b8c4dd4b44d6ee3d03b46cfe90ffdb1309f6596224a7b7ee62"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "guardian.reveal.png",
+   "paper": "guardian.paper.webp",
+   "stats": {
+    "paths": 10244,
+    "segments": 42760,
+    "unownedForeground": 0,
+    "analysisMs": 29117
+   }
+  },
+  "quakes_guardian": {
+   "image": {
+    "file": "quakes-guardian.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "2361c80c604149f626ca82e6109b6e5adc98cd37f3cdea7d1e59366f88c30bd7"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "quakes_guardian.reveal.png",
+   "paper": "quakes_guardian.paper.webp",
+   "stats": {
+    "paths": 10445,
+    "segments": 45009,
+    "unownedForeground": 0,
+    "analysisMs": 29027
+   }
+  },
+  "chthon_vengeance": {
+   "image": {
+    "file": "chthon-vengeance.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "3ef043dabfc709a9729db692d63ef4b1b3ad520cb44b69ea70aa8b75f1674808"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "chthon_vengeance.reveal.png",
+   "paper": "chthon_vengeance.paper.webp",
+   "stats": {
+    "paths": 11294,
+    "segments": 61329,
+    "unownedForeground": 0,
+    "analysisMs": 30644
+   }
+  },
+  "quakes_high_priest": {
+   "image": {
+    "file": "quakes-high-priest.png",
+    "width": 1024,
+    "height": 1536,
+    "sha256": "1b9406472c5a827b00bd4a120c339f38273d330ef12aacd56cc2962a2f566a11"
+   },
+   "map": {
+    "width": 1024,
+    "height": 1536
+   },
+   "duration": 7,
+   "reveal": "quakes_high_priest.reveal.png",
+   "paper": "quakes_high_priest.paper.webp",
+   "stats": {
+    "paths": 10451,
+    "segments": 44098,
+    "unownedForeground": 0,
+    "analysisMs": 28749
+   }
+  }
+ },
+ "version": 1,
+ "source": {
+  "file": "folio-pencil-fast-replay.html",
+  "sha256": "b864769450933bf95e23af478223bdbca6ed808fef7af14d1b559b7e3f115295"
+ },
+ "analyzer": {
+  "file": "tools/folio/analysis_worker.js",
+  "sha256": "1fd72ab3ae66c7c743b9a68b1c579673368b40900b33dac4c46976fad1019490"
+ },
+ "template": "tools/folio/template.json",
+ "schedule": {
+  "artSeconds": 7,
+  "noteSeconds": 4,
+  "firstShare": 0.68,
+  "speed": 3
+ }
+}

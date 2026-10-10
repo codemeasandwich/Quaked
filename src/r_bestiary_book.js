@@ -4,6 +4,7 @@
 import { Draw_GetOverlayCanvas, Draw_CacheBookNavigation } from './gl_draw.js';
 import { K_LEFTARROW, K_RIGHTARROW, K_ENTER } from './keys.js';
 import { R_BestiarySnapshot, R_BestiaryEntries, R_BestiarySpreads, R_BestiaryPage, R_BestiaryCancel, R_BestiaryCover, R_BestiaryFrontispiece, R_BestiaryContents, R_BestiaryVerso, R_BestiaryDedication, R_BestiaryEntryBlank, R_BestiaryHeading, R_BestiaryArtFailed, R_BestiaryArtRetry, R_BestiaryArtLoading } from './r_bestiary.js';
+import { R_FolioPrepare, R_FolioPlate, R_FolioSeconds } from './r_folio.js';
 
 const TURN_MS = 320, WAIT_MS = 10000;
 let spread = 0, turn = null, pending = null;
@@ -234,9 +235,29 @@ function reveal( ctx, image, box, amount ) {
  }
  ctx.globalAlpha = alpha;
 }
+// The pencil replay (r_folio.js): chosen once an encounter's drawing begins, if its prepared data is ready by then, and kept
+// for that encounter (never switching style half way); otherwise the line reveal.
+let encounterStyle = null; // { id, folio }
+function drawPage( ctx, snapshot, image, box, opacity ) {
+ const id = snapshot.entry.id, paused = snapshot.paused ?? Infinity, age = clamp(snapshot.imageAge ?? 1,0,1);
+ if ( encounterStyle?.id !== id ) encounterStyle = { id, folio: R_FolioPrepare(id) === 'ready' };
+ ctx.globalAlpha = opacity*age;
+ if ( encounterStyle.folio ) {
+  const seconds = R_FolioSeconds(id), amount = seconds > 0 ? clamp(paused/seconds,0,1) : 1, shown = age < 1 ? Math.min(amount,age) : amount;
+  const plate = shown < 1 ? R_FolioPlate(id,image,shown) : null, imageBox = fitImage(image,box);
+  if ( shown >= 1 ) reveal(ctx,image,box,1);
+  else if ( plate && imageBox ) { ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high'; ctx.drawImage(plate,imageBox.x,imageBox.y,imageBox.w,imageBox.h); }
+  else reveal(ctx,image,box,shown); // (no WebGL2 or a lost context: the line reveal)
+ } else {
+  const drawn = clamp(paused/REVEAL,0,1);
+  reveal(ctx,image,box,age < 1 ? Math.min(drawn,age) : drawn);
+ }
+ ctx.globalAlpha = opacity;
+}
 export function R_BestiaryEncounterDraw() {
  const snapshot = R_BestiarySnapshot();
- if ( snapshot.phase === 'idle' || !snapshot.entry ) return false;
+ if ( snapshot.phase === 'idle' || !snapshot.entry ) { encounterStyle = null; return false; }
+ if ( snapshot.phase === 'enter' && !( ( snapshot.paused ?? 0 ) > 0 ) ) { R_FolioPrepare(snapshot.entry.id); if ( encounterStyle?.id === snapshot.entry.id ) encounterStyle = null; } // (begin loading; choose when the drawing starts)
  const s = surface(); if ( !s ) return false;
  const {ctx,width,height,unit} = s, half = width/2;
  const x = snapshot.side === 'left' ? half : 0, margin = Math.min(16*unit,half*.07);
@@ -257,7 +278,7 @@ export function R_BestiaryEncounterDraw() {
   ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 18*unit; ctx.shadowOffsetY = 4*unit; ctx.fillStyle = '#e6dbc2'; ctx.fillRect(box.x,box.y,box.w,box.h); ctx.restore();
   frame(ctx,snapshot.entry,box,unit);
   const unlocked = new Set(snapshot.unlocked || []), image = unlocked.has(snapshot.entry.id) ? R_BestiaryPage(snapshot.entry.id) : null;
-  if ( image && drawn > 0 ) { const age = clamp(snapshot.imageAge ?? 1,0,1); ctx.globalAlpha = opacity*age; reveal(ctx,image,box,age < 1 ? Math.min(drawn,age) : drawn); ctx.globalAlpha = opacity; }
+  if ( image && drawn > 0 ) drawPage(ctx,snapshot,image,box,opacity);
   // the curl: a shaded band along the rolling edge
   if ( roll < 1 ) {
    const g = ctx.createLinearGradient(box.x+reach/2-6*unit,bottom-reach/2-6*unit,box.x+reach/2+6*unit,bottom-reach/2+6*unit);
