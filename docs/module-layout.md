@@ -348,8 +348,8 @@ is:
 
 Every exported function, class constructor and public method in `src/` has a JSDoc block: what it does and when it
 runs, `@param` with types and units for every parameter, `@returns`, `@throws` only where `Sys_Error`, `Host_Error`
-or `throw` really runs, and lifetime or persistence where it is real (1,668 of them: 760 in Newer, 908 in the engine
-and platform). The existing comments were kept in the blocks, with their provenance (WinQuake sources, cards,
+or `throw` really runs, and lifetime or persistence where it is real (1,681 of them: 760 in Newer, 908 in the engine
+and platform, and 13 that [44g] itself added: the hooks, the two leaves and the new SetExternals). The existing comments were kept in the blocks, with their provenance (WinQuake sources, cards,
 owner dates); WinQuake's `/* ===== Name ===== */` banners stay.
 
 * Comment-only: every changed file's code tokens equal its previous version's (acorn's tokenizer, comments ignored).
