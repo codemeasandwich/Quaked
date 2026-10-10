@@ -223,33 +223,3 @@ export function W_GetLumpNum( num ) {
 	};
 
 }
-
-/*
-=============
-SwapPic
-=============
-*/
-/**
- * Reads a qpic header (width and height as little-endian 32-bit integers) at `offset`. In the original C this
- * byte-swaps the header in place; here it is kept for API compatibility and returns the decoded values instead.
- * No current caller uses it.
- *
- * @param {Uint8Array} data bytes holding the picture (for example `wad_base`)
- * @param {number} offset byte offset of the qpic header within `data`. The DataView is made relative to
- *   `data.buffer`, so this is only correct when `data` starts at byte 0 of its buffer
- * @returns {{ width: number, height: number, data: Uint8Array }} size in pixels and a view (not a copy) of the
- *   palette-index pixels that follow the 8-byte header
- */
-export function SwapPic( data, offset ) {
-
-	// In the original C, this byte-swaps width/height from little-endian.
-	// JavaScript DataView handles this, so this is a no-op on little-endian systems.
-	// We keep it for API compatibility.
-	const view = new DataView( data.buffer, offset );
-	return {
-		width: view.getInt32( 0, true ),
-		height: view.getInt32( 4, true ),
-		data: data.subarray( offset + 8 )
-	};
-
-}
