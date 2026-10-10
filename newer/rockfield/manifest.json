@@ -2,9 +2,9 @@
   "version": "quaked-rockfield-1.2.0-1",
   "sources": {
     "src/newer/assets/rockfield.js": "83134c132976ff81ee193cd580e85d741db1d84400ca903f60826266fdc080d2",
-    "src/newer/assets/rockfield_presets.js": "32f756e452edb67d6a19a76e6e8245396ca16dbb7180fc504a434f1c0840027c",
-    "src/newer/render/r_rocksurfaces.js": "f2a923d1b82f896d6e23f4be2b21c3d530368d1fbcb34667a3d4f49c0fb8de09",
-    "src/newer/assets/rockfield_bake_format.js": "a6f018ada2cd1f1f296b34277aa92ae399c98e4271730b68838c9f40ccaaeb8a"
+    "src/newer/assets/rockfield_presets.js": "449e2e914e1d661faebcabb75805c06e03abdd1dd01c00067ebc93edd267fa05",
+    "src/newer/render/r_rocksurfaces.js": "20a5ea39a367c966cca994b58054e22c2057bd08671402d0e87bdbc868e8133d",
+    "src/newer/assets/rockfield_bake_format.js": "d71fb261a18e65d26b7b0d12c012c19e9c95284963317bcee19708c50f7733c4"
   },
   "levels": {
     "maps/b_batt0.bsp": [
@@ -2038,5 +2038,5 @@
       }
     ]
   },
-  "sourcesNote": "Re-hashed by cards [44e]/[44f] (10 Oct 2026): the four sources moved into src/newer/ and gained a @module header; their code is unchanged, and tests/rockfield_bakes_test.js regenerates a real tile for every chart against these bakes. Every level's generatorFingerprint (the hash of these sources) was restated with them, here and in the registry module."
+  "sourcesNote": "Re-hashed by cards [44e]/[44f] (10 Oct 2026): the four sources moved into src/newer/ and gained a @module header; their code is unchanged, and tests/rockfield_bakes_test.js regenerates a real tile for every chart against these bakes. Every level's generatorFingerprint (the hash of these sources) was restated with them, here and in the registry module. Re-hashed again by card [44g] (10 Oct 2026): rockfield_presets.js, r_rocksurfaces.js, rockfield_bake_format.js gained function JSDoc; their code tokens are identical to before (comments only)."
 }
