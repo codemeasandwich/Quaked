@@ -13,7 +13,7 @@
 import * as THREE from 'three';
 import { Sys_Error } from '../common/sys.js';
 import { cl } from '../client/client.js';
-import { R_RegisterGlow, R_RegisterDetail, R_RefreshDetail } from '../common/hooks.js';
+import { R_RegisterGlow, R_RegisterDetail, R_RefreshDetail } from '../common/hooks.js'; // installed by newer/render/gl_post.js
 import { VERTEXSIZE, currententity } from './gl_rmain.js';
 
 /**

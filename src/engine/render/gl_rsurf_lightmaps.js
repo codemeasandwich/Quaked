@@ -18,7 +18,7 @@
  */
 import * as THREE from 'three';
 import { Sys_Error } from '../common/sys.js';
-import { R_NewerLightingActive } from '../common/hooks.js';
+import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newer/mode.js
 import { cl, cl_dlights } from '../client/client.js';
 import { VERTEXSIZE, SURF_DRAWSKY, SURF_DRAWTURB, SURF_UNDERWATER, MAXLIGHTMAPS, r_framecount, d_lightstylevalue, r_fullbright, gl_texsort, gl_keeptjunctions } from './gl_rmain.js';
 import { DotProduct, VectorNormalize } from '../common/mathlib.js';

@@ -17,10 +17,10 @@
  * ones not drawn; `R_LiquidsClear` and `R_SkyClear` throw everything away at a map load.
  */
 import * as THREE from 'three';
-import { R_NewerLightingActive } from '../common/hooks.js';
+import { R_NewerLightingActive } from '../common/hooks.js'; // installed by newer/mode.js
 import { cl } from '../client/client.js';
-import { R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, r_newdark } from '../common/hooks.js';
-import { R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from '../common/hooks.js';
+import { R_RegisterGlow, R_GlowBoostForTexture, R_PostActive, R_WaterActive, R_PostNoteSky, R_LiquidOpacity, R_IsWaterTextureName, r_newdark } from '../common/hooks.js'; // installed by newer/render/gl_post.js
+import { R_PortalsActive, R_PortalNoteVisible, R_PortalMaterial } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { R_LightPointValue } from './gl_rlight.js';
 import { r_origin } from './render.js';
 import { VERTEXSIZE, r_framecount, d_lightstylevalue, r_wateralpha, r_viewleaf } from './gl_rmain.js';
