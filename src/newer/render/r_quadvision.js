@@ -32,6 +32,14 @@ export function R_QuadVisionActive() {
 	return SV_FaceLocalActive() && cl.stats[STAT_HEALTH]>0 && !cl.intermission && Boolean(cl.items&IT_QUAD);
 }
 /**
+ * Each Newer frame (gl_post.js R_PostBegin), whether Quad is held or not: a local game (`SV_FaceLocalActive`) floods on
+ * a little toward knowing which monsters are in the level (quadvision_region.js, 2 ms a frame, done about a second and
+ * a half into a level), so the vision is ready when Quad is picked up.
+ */
+export function R_QuadVisionPrepare() {
+	if(SV_FaceLocalActive())QuadVisionRegion(sv,2);
+}
+/**
  * The monsters to silhouette: live (health > 0, not dead), FL_MONSTER, with an alias model whose pose data is loaded,
  * and where the player can get to: not waiting in a monster closet (quadvision_region.js, card [QV1]: a flood of the
  * player-sized hull from the player). Read from the local server's entities because ordinary client visibility omits

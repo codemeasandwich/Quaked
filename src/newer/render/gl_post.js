@@ -48,7 +48,7 @@ import * as THREE from 'three';
 import { cl } from '../../engine/client/client.js';
 import { PowerVisionMode } from '../gameplay/powervision_state.js';
 import { R_PowerVisionReset } from './r_powervision.js';
-import { R_QuadVisionActive, R_QuadVisionReset } from './r_quadvision.js';
+import { R_QuadVisionActive, R_QuadVisionReset, R_QuadVisionPrepare } from './r_quadvision.js';
 import { GL_SetForceLinear } from '../../engine/render/glquake.js';
 import { R_AliasReceiverPass } from './r_newerskins.js';
 import { R_RendVeilOpticsShutdown } from './r_rendveil_optics.js';
@@ -138,6 +138,7 @@ export function R_PostBegin( renderer, enabled, width, height ) {
 	// The shared targets serve three independent visual options. Turning lighting
 	// off keeps relief and liquid compositing available without relighting the world.
 	const newer = enabled && r_hdr.value !== 0;
+	if ( newer ) R_QuadVisionPrepare(); // (which monsters Quad may reveal, worked out ahead of a pickup)
 	const wanted = r_newer_lighting.value !== 0 || r_newer_normals.value !== 0 || r_newer_water.value !== 0 || PowerVisionMode(cl,newer) !== 0 || R_QuadVisionActive();
 	const active = newer && wanted && R_PostSupported( renderer ) && width > 8 && height > 8;
 	postState.postActive = active;

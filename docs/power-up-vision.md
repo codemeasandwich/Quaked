@@ -58,8 +58,11 @@ revealed (owner request, 11 October 2026, card [QV1];
   - A closet's own teleporter is inside the closet, so the flood never gets in.
 - **Judged where the monster is now.** A monster pacing inside its closet stays hidden; one
   sent into the level shows at once.
-- **Built a few milliseconds a frame.** A whole level takes 130 to 290 ms. Until the flood
-  reaches a monster, that monster is not revealed.
+- **Built a few milliseconds a frame,** from the start of each level (2 ms a frame, 4 while
+  Quad is held). A whole level takes 130 to 290 ms, so it is normally done about a second and a
+  half in, long before Quad is reached. Until the flood reaches a monster, that monster is not
+  revealed. The first full-suite run caught a test that expected every monster at once, on a
+  loaded machine; that is why the flood starts at the level, not at the pickup.
 - **What the first version missed.** It hid monsters overlapping a teleporter with a
   targetname. The [QV1] review found that rule missed walk-in closets (e1m4's ogre, dozens on
   the registered maps) and pacing scrags, and hid monsters in the level under teleporters that

@@ -24,8 +24,9 @@
 // the flood never gets in. A monster is revealed while a reached grid point near it has a clear trace to it; it is
 // judged by where it is now, so one pacing inside its closet stays hidden and one sent into the level shows at once.
 //
-// The flood is built once per edict list (each server spawn makes a new one), from the first question on, a few
-// milliseconds a frame (a whole level takes 130 to 290 ms: about a second of play), and extended from the player
+// The flood is built once per edict list (each server spawn makes a new one), a few milliseconds a frame from the start
+// of each level (r_quadvision.js R_QuadVisionPrepare, 2 ms a frame; a whole level takes 130 to 290 ms) and faster
+// while Quad is held (4 ms), and extended from the player
 // whenever the player stands somewhere not yet reached. Until it reaches a monster that monster is not revealed, so a
 // closet is never given away while the flood is under way; the monsters in the level appear as it reaches them. Each monster's answer is kept while it stays
 // in the same grid cell. When there is no world hull, no player or no edict list, every monster counts, as before.
