@@ -6,11 +6,10 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: mutable exports `solidskytexture`, `alphaskytexture`, `pheader`; module-level variables `loadmodel`,
- * `loadname`, `mod_novis`, `mod_numknown`, `posenum`, `r_notexture_mip`, `mod_base`, `bspWide`, `bspFloatBounds`,
- * `decompressed`, `previewLoad`.
+ * State: mutable exports `pheader`; module-level variables `loadname`, `mod_novis`, `posenum`, `mod_base`, `bspWide`,
+ * `bspFloatBounds`, `decompressed`.
  *
- * Errors: calls `Sys_Error` (fatal) at 48 places; throws at 1 place; catches at 1 place.
+ * Errors: calls `Sys_Error` (fatal) at 46 places; throws at 1 place; catches at 1 place.
  */
 // Ported from: WinQuake/gl_model.c + gl_model.h + modelgen.h + spritegn.h
 // models.c -- model loading and caching
@@ -21,61 +20,25 @@
 import * as THREE from 'three';
 import { Sys_Error } from '../common/sys.js';
 import { Con_Printf, COM_FileBase } from '../common/common.js';
-import { d_8to24table, vid } from './vid.js';
+import { d_8to24table } from './vid.js';
 import { COM_LoadFile, COM_FindFile } from '../common/pak.js';
 import { Lit_Parse, Ent_Parse } from './lit.js';
 import { DotProduct, VectorCopy, Length } from '../common/mathlib.js';
 import { Cvar_RegisterVariable } from '../common/cvar.js';
 import { R_InitSky as R_InitSky_warp, GL_SubdivideSurface as GL_SubdivideSurface_warp, GL_Warp_SetLoadmodel } from './gl_warp.js';
 import { GL_MakeAliasModelDisplayLists as GL_MakeAliasModelDisplayLists_mesh } from './gl_mesh.js';
-
-// Sky textures (set by R_InitSky during level load)
-export let solidskytexture = null;
-export let alphaskytexture = null;
-/**
- * Sets the solid sky layer's texture (`solidskytexture`; null at `Mod_ClearAll`, made by `R_InitSky` at a map load).
- *
- * @param {?THREE.Texture} value the texture
- */
-export function set_solidskytexture( value ) { solidskytexture = value; }
-/**
- * Sets the alpha sky layer's texture (`alphaskytexture`; null at `Mod_ClearAll`, made by `R_InitSky` at a map load).
- *
- * @param {?THREE.Texture} value the texture
- */
-export function set_alphaskytexture( value ) { alphaskytexture = value; }
 import { BSPVERSION, LUMP_ENTITIES, LUMP_PLANES, LUMP_TEXTURES, LUMP_VERTEXES, LUMP_VISIBILITY, LUMP_NODES, LUMP_TEXINFO, LUMP_FACES, LUMP_LIGHTING, LUMP_CLIPNODES, LUMP_LEAFS, LUMP_MARKSURFACES, LUMP_EDGES, LUMP_SURFEDGES, LUMP_MODELS, HEADER_LUMPS, MAX_MAP_HULLS, MAX_MAP_LEAFS, CONTENTS_EMPTY, MIPLEVELS, MAXLIGHTMAPS, TEX_SPECIAL } from '../common/bspfile.js';
-import { gl_subdivide_size, gl_texturemode, GL_TextureLinear, GL_RegisterTexture, GL_UnregisterTexture } from './glquake.js';
+import { gl_subdivide_size, GL_UnregisterTexture } from './glquake.js';
 import { R_NewerTextureUpgrade } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
 import { R_NewerGame, r_newer_textures, r_newer_crates } from '../common/hooks.js'; // installed by newer/mode.js
 import { R_IsCrateSide, R_CratePlan } from '../common/hooks.js';
-import { ALIAS_VERSION, ALIAS_SINGLE, ALIAS_SKIN_SINGLE, IDPOLYHEADER, ALIAS_BASE_SIZE_RATIO, MAX_LBM_HEIGHT, SPRITE_VERSION, SPR_SINGLE, IDSPRITEHEADER, SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, SURF_DRAWTILED, SURF_UNDERWATER, mod_brush, mod_sprite, mod_alias, MAX_SKINS, MAXALIASVERTS, MAXALIASTRIS, mvertex_t, mplane_t, texture_t, medge_t, mtexinfo_t, msurface_t, mnode_t, mleaf_t, dclipnode_t, mspriteframe_t, mspritegroup_t, mspriteframedesc_t, msprite_t, stvert_t, mtriangle_t, maliasframedesc_t, aliashdr_t, dmodel_t, model_t } from './gl_model_types.js';
+import { ALIAS_VERSION, ALIAS_SINGLE, ALIAS_SKIN_SINGLE, IDPOLYHEADER, ALIAS_BASE_SIZE_RATIO, MAX_LBM_HEIGHT, SPRITE_VERSION, SPR_SINGLE, IDSPRITEHEADER, SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, SURF_DRAWTILED, SURF_UNDERWATER, mod_brush, mod_sprite, mod_alias, MAX_SKINS, MAXALIASVERTS, MAXALIASTRIS, mvertex_t, mplane_t, texture_t, medge_t, mtexinfo_t, msurface_t, mnode_t, mleaf_t, dclipnode_t, mspriteframe_t, mspritegroup_t, mspriteframedesc_t, msprite_t, stvert_t, mtriangle_t, maliasframedesc_t, aliashdr_t, dmodel_t } from './gl_model_types.js';
+import { set_solidskytexture, set_alphaskytexture, loadmodel, set_loadmodel, mod_known, mod_numknown, r_notexture_mip, set_r_notexture_mip, GL_LoadTexture, previewLoad, set_previewLoad, Mod_FindName, readString, RadiusFromBounds } from './gl_model_common.js';
+export { solidskytexture, alphaskytexture, set_solidskytexture, set_alphaskytexture, Mod_FindName, RadiusFromBounds } from './gl_model_common.js';
 export { ALIAS_VERSION, ALIAS_ONSEAM, ST_SYNC, ST_RAND, ALIAS_SINGLE, ALIAS_GROUP, ALIAS_SKIN_SINGLE, ALIAS_SKIN_GROUP, DT_FACES_FRONT, IDPOLYHEADER, ALIAS_BASE_SIZE_RATIO, MAX_LBM_HEIGHT, SPRITE_VERSION, SPR_VP_PARALLEL_UPRIGHT, SPR_FACING_UPRIGHT, SPR_VP_PARALLEL, SPR_ORIENTED, SPR_VP_PARALLEL_ORIENTED, SPR_SINGLE, SPR_GROUP, IDSPRITEHEADER, EF_BRIGHTFIELD, EF_MUZZLEFLASH, EF_BRIGHTLIGHT, EF_DIMLIGHT, SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWSPRITE, SURF_DRAWTURB, SURF_DRAWTILED, SURF_DRAWBACKGROUND, SURF_UNDERWATER, SIDE_FRONT, SIDE_BACK, SIDE_ON, VERTEXSIZE, mod_brush, mod_sprite, mod_alias, EF_ROCKET, EF_GRENADE, EF_GIB, EF_ROTATE, EF_TRACER, EF_ZOMGIB, EF_TRACER2, EF_TRACER3, MAX_SKINS, MAXALIASVERTS, MAXALIASFRAMES, MAXALIASTRIS, mvertex_t, mplane_t, texture_t, medge_t, mtexinfo_t, msurface_t, mnode_t, mleaf_t, dclipnode_t, hull_t, mspriteframe_t, mspritegroup_t, mspriteframedesc_t, msprite_t, trivertx_t, stvert_t, mtriangle_t, maliasframedesc_t, aliashdr_t, dmodel_t, model_t } from './gl_model_types.js'; // installed by newer/render/r_cratevariants.js
-
-// ============================================================================
-// Module-level state (mirrors C globals)
-// ============================================================================
-
-let loadmodel = null;
-/**
- * Names the model being loaded (`loadmodel`): set by `Mod_LoadModel` and, for each inline model, by the BSP loader.
- *
- * @param {?model_t} value the model
- */
-function set_loadmodel( value ) { loadmodel = value; }
 let loadname = '';
 
 let mod_novis = new Uint8Array( MAX_MAP_LEAFS / 8 );
-
-// the most model names a page can know (WinQuake's 512): a large map names its brush submodels *1 up to *285 and more,
-// and the cache keeps every map's for the page's life; the entries are made as they are needed (card [34f])
-const MAX_MOD_KNOWN = 4096;
-const mod_known = [];
-let mod_numknown = 0;
-
-// Initialize mod_known array (WinQuake's 512 up front; more as needed, up to MAX_MOD_KNOWN)
-for ( let i = 0; i < 512; i ++ )
-	mod_known[ i ] = new model_t();
 
 // Alias model globals
 export let pheader = null;
@@ -90,15 +53,6 @@ for ( let i = 0; i < MAXALIASVERTS; i ++ )
 for ( let i = 0; i < MAXALIASTRIS; i ++ )
 	triangles[ i ] = new mtriangle_t();
 
-// GL texture placeholder
-let r_notexture_mip = null;
-/**
- * Sets the checkerboard texture missing textures use (`r_notexture_mip`, made by `R_InitTextures`).
- *
- * @param {?texture_t} value the texture
- */
-function set_r_notexture_mip( value ) { r_notexture_mip = value; }
-
 // mod_base: Uint8Array - the raw file bytes of the BSP currently being loaded
 let mod_base = null;
 // BSP2 layouts follow QuakeSpasm Quake/bspfile.h (32-bit indices).
@@ -106,120 +60,6 @@ let bspWide=false,bspFloatBounds=false;
 
 // Decompressed visibility buffer (reused)
 let decompressed = new Uint8Array( MAX_MAP_LEAFS / 8 );
-
-// ============================================================================
-// Stub functions for GL operations not yet ported
-// ============================================================================
-
-function GL_LoadTexture( name, width, height, data, mipmap, alpha, splitFullbright ) {
-
-	// Convert 8-bit palette-indexed pixels to RGBA and create a THREE.DataTexture
-	const rgba = new Uint8Array( width * height * 4 );
-	const fullbrightStart = vid.fullbright; // palette index 224+
-	let hasFullbright = false;
-	let fullbrightTexture = null;
-
-	for ( let i = 0; i < width * height; i ++ ) {
-
-		const palIdx = data[ i ];
-
-		if ( alpha && palIdx === 255 ) {
-
-			// Transparent pixel (used for '{' textures)
-			rgba[ i * 4 ] = 0;
-			rgba[ i * 4 + 1 ] = 0;
-			rgba[ i * 4 + 2 ] = 0;
-			rgba[ i * 4 + 3 ] = 0;
-
-		} else {
-
-			const color = d_8to24table[ palIdx ];
-			rgba[ i * 4 ] = color & 0xff;
-			rgba[ i * 4 + 1 ] = ( color >> 8 ) & 0xff;
-			rgba[ i * 4 + 2 ] = ( color >> 16 ) & 0xff;
-			rgba[ i * 4 + 3 ] = 255;
-
-			if ( palIdx >= fullbrightStart ) hasFullbright = true;
-
-		}
-
-	}
-
-	// If texture has fullbright pixels (palette 224-255), create a separate
-	// fullbright texture for use as emissiveMap. Fullbright pixels should render
-	// at full intensity regardless of lighting (e.g. glowing buttons, lava).
-	// Set fullbright pixels to BLACK in the base texture so they don't get
-	// darkened by the lightmap, and put them in the fullbright texture instead.
-	if ( hasFullbright === true && splitFullbright === true ) {
-
-		const fbRgba = new Uint8Array( width * height * 4 );
-
-		for ( let i = 0; i < width * height; i ++ ) {
-
-			const palIdx = data[ i ];
-
-			if ( palIdx >= fullbrightStart && ! ( alpha && palIdx === 255 ) ) {
-
-				// Copy to fullbright texture
-				fbRgba[ i * 4 ] = rgba[ i * 4 ];
-				fbRgba[ i * 4 + 1 ] = rgba[ i * 4 + 1 ];
-				fbRgba[ i * 4 + 2 ] = rgba[ i * 4 + 2 ];
-				fbRgba[ i * 4 + 3 ] = 255;
-
-				// Black out in base texture
-				rgba[ i * 4 ] = 0;
-				rgba[ i * 4 + 1 ] = 0;
-				rgba[ i * 4 + 2 ] = 0;
-
-			}
-
-		}
-
-		fullbrightTexture = new THREE.DataTexture( fbRgba, width, height, THREE.RGBAFormat );
-		const fbFilter = GL_TextureLinear() ? THREE.LinearFilter : THREE.NearestFilter;
-		const fbMipFilter = GL_TextureLinear() ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
-		fullbrightTexture.magFilter = fbFilter;
-		fullbrightTexture.minFilter = mipmap ? fbMipFilter : fbFilter;
-		fullbrightTexture.wrapS = THREE.RepeatWrapping;
-		fullbrightTexture.wrapT = THREE.RepeatWrapping;
-		fullbrightTexture.generateMipmaps = mipmap;
-		fullbrightTexture.colorSpace = THREE.SRGBColorSpace;
-		fullbrightTexture.needsUpdate = true;
-		GL_RegisterTexture( fullbrightTexture );
-		if ( loadmodel != null ) loadmodel._threeTextures.add( fullbrightTexture );
-
-	}
-
-	const texture = new THREE.DataTexture( rgba, width, height, THREE.RGBAFormat );
-	// Use cvar to determine filter mode: 0 = nearest (pixelated), 1 = linear (smooth)
-	const filter = GL_TextureLinear() ? THREE.LinearFilter : THREE.NearestFilter;
-	const mipFilter = GL_TextureLinear() ? THREE.LinearMipmapLinearFilter : THREE.NearestMipmapLinearFilter;
-	texture.magFilter = filter;
-	texture.minFilter = mipmap ? mipFilter : filter;
-	texture.wrapS = THREE.RepeatWrapping;
-	texture.wrapT = THREE.RepeatWrapping;
-	texture.generateMipmaps = mipmap;
-	texture.colorSpace = THREE.SRGBColorSpace;
-	// the HDR ("Newer") lighting also filters textures anisotropically; classic stays as it was
-	if ( GL_TextureLinear() && gl_texturemode.value === 0 ) texture.anisotropy = 16;
-	// Note: flipY defaults to false for DataTexture, which is correct for Quake
-	// Quake's UV T=0 at top + texture row 0 at V=0 means no flip is needed
-	texture.needsUpdate = true;
-
-	// Attach fullbright texture if one was created
-	if ( fullbrightTexture != null ) {
-
-		texture._fullbright = fullbrightTexture;
-
-	}
-
-	// Register for filter updates when setting changes
-	GL_RegisterTexture( texture );
-	if ( loadmodel != null ) loadmodel._threeTextures.add( texture );
-
-	return texture;
-
-}
 
 function GL_SubdivideSurface( s ) {
 
@@ -265,14 +105,6 @@ function R_InitSky( tx ) {
 	}
 
 }
-
-let previewLoad = false;
-/**
- * Marks a load made only to look at a level (`Mod_LoadForPreview`): its inline models are not registered.
- *
- * @param {boolean} value true while such a load runs
- */
-function set_previewLoad( value ) { previewLoad = value; }
 
 /*
 ================
@@ -607,47 +439,6 @@ export function Mod_ClearAll() {
 }
 
 // ============================================================================
-// Mod_FindName
-// ============================================================================
-
-/**
- * Returns the cache entry for a model name, claiming a new one (marked `needload`) the first time the name is seen
- * (WinQuake gl_model.c). Does not load anything.
- *
- * @param {string} name model path, e.g. 'progs/player.mdl', or a submodel name such as '*1'
- * @returns {model_t} the entry; the same object for the same name for the life of the page
- * @throws {Error} through `Sys_Error` for an empty name or when all 512 entries are in use
- */
-export function Mod_FindName( name ) {
-
-	if ( ! name || name.length === 0 )
-		Sys_Error( 'Mod_ForName: NULL name' );
-
-	// search the currently loaded models
-	let i;
-	for ( i = 0; i < mod_numknown; i ++ ) {
-
-		if ( mod_known[ i ].name === name )
-			break;
-
-	}
-
-	if ( i === mod_numknown ) {
-
-		if ( mod_numknown === MAX_MOD_KNOWN )
-			Sys_Error( 'mod_numknown == MAX_MOD_KNOWN' );
-		if ( i === mod_known.length ) mod_known.push( new model_t() );
-		mod_known[ i ].name = name;
-		mod_known[ i ].needload = true;
-		mod_numknown ++;
-
-	}
-
-	return mod_known[ i ];
-
-}
-
-// ============================================================================
 // Mod_TouchModel
 // ============================================================================
 
@@ -786,25 +577,6 @@ const SIZEOF_DCLIPNODE = 8;		// int planenum, short children[2]
 const SIZEOF_TEXINFO = 40;			// float vecs[2][4], int miptex, int flags
 const SIZEOF_DPLANE = 20;			// float normal[3], float dist, int type
 const SIZEOF_DMODEL = 64;			// float mins[3], maxs[3], origin[3], int headnode[4], int visleafs, int firstface, int numfaces
-
-// ============================================================================
-// Helper: read a null-terminated string from Uint8Array
-// ============================================================================
-
-function readString( bytes, offset, maxLen ) {
-
-	let s = '';
-	for ( let i = 0; i < maxLen; i ++ ) {
-
-		const c = bytes[ offset + i ];
-		if ( c === 0 ) break;
-		s += String.fromCharCode( c );
-
-	}
-
-	return s;
-
-}
 
 // ============================================================================
 // Mod_LoadTextures
@@ -1886,29 +1658,6 @@ function Mod_LoadSubmodels( fileofs, filelen ) {
 		out[ i ] = sm;
 
 	}
-
-}
-
-// ============================================================================
-// RadiusFromBounds
-// ============================================================================
-
-/**
- * Returns the distance from the origin to the farthest corner of a box, using each axis's larger absolute bound
- * (WinQuake gl_model.c). Sets each brush submodel's `radius` at load.
- *
- * @param {Float32Array|Array<number>} mins box minimum (Quake units)
- * @param {Float32Array|Array<number>} maxs box maximum (Quake units)
- * @returns {number} the radius (Quake units)
- */
-export function RadiusFromBounds( mins, maxs ) {
-
-	const corner = new Float32Array( 3 );
-
-	for ( let i = 0; i < 3; i ++ )
-		corner[ i ] = Math.abs( mins[ i ] ) > Math.abs( maxs[ i ] ) ? Math.abs( mins[ i ] ) : Math.abs( maxs[ i ] );
-
-	return Length( corner );
 
 }
 
