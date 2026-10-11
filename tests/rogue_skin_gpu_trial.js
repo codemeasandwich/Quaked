@@ -11,7 +11,7 @@ import * as vars from '../src/engine/common/cvar.js';
 import {vid,VID_SetPalette} from '../src/engine/render/vid.js';
 import {entity_t} from '../src/engine/render/render.js';
 import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
-const trialModels={dragon:{title:'Dragon',sha:'1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec',dimensions:[1540,895]},s_wrath:{title:'Overlord',sha:'4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d',dimensions:[1540,930]},mummy:{title:'Mummy',sha:'3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1',dimensions:[1008,1164]}};
+const trialModels={dog:{title:'Dog',sha:'c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6',dimensions:[1872,1014],pack:'resources/id1/pak0.pak',negative:'fish'},dragon:{title:'Dragon',sha:'1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec',dimensions:[1540,895]},s_wrath:{title:'Overlord',sha:'4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d',dimensions:[1540,930]},mummy:{title:'Mummy',sha:'3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1',dimensions:[1008,1164]}};
 const modelKey=new URLSearchParams(location.search).get('model')||'dragon',trial=trialModels[modelKey];if(!trial)throw Error('Unknown skin trial');
 document.querySelector('h1').textContent=trial.title+': native UV and prepared skin';
 const W=640,H=640,button=document.querySelector('#run'),report=document.querySelector('#report'),views=document.querySelector('#views');
@@ -47,16 +47,16 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
   const classic=draw('Classic original Rogue enemy',{classic:true,custom:true}),classicNative=draw('Classic with custom switch off',{classic:true,custom:false});verify(classic.nativeBound&&classicNative.nativeBound&&difference(classic,classicNative).energy===0,'Classic pixels and original native material unchanged');
   vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('r_newer_enemies',1);vars.Cvar_SetValue('r_newer_normals',1);post.R_PostBegin(renderer,true,W,H);
   const status=skins.R_NewerSkinsStatus([body]);verify(status.settled&&status.normals.pending===0&&status.normals.shipped>=2&&status.normals.generated===0&&Object.keys(status.errors).length===0,'native and fitted normals are shipped and settled',{status});
-  verify(!skins.R_NewerVariantMatchesModel({nativeModelSha256:trial.sha},head),'ordinary Wrath cannot wear this replacement');verify(shape(header)===initialShape,'all native pose, triangle and UV records unchanged');verify(errors.length===0,'actual material/compositor compile and runtime clean',{errors});
+  verify(!skins.R_NewerVariantMatchesModel({nativeModelSha256:trial.sha},head),'different native model cannot wear this replacement');verify(shape(header)===initialShape,'all native pose, triangle and UV records unchanged');verify(errors.length===0,'actual material/compositor compile and runtime clean',{errors});
  }catch(error){checks.push({passed:false,name:String(error),stack:error.stack});}
  finally{renderer.setRenderTarget(null);button.disabled=false;}
- const result={model:modelKey,status:checks.every(c=>c.passed)?'PASS':'FAIL',modelSHA:body.aliasSourceIdentity.sha256,frames:header.numframes,dimensions:trial.dimensions,draws,elapsedMs:performance.now()-started,poses,checks,scope:'Controlled actual owned MDL/production alias rendering; gameplay discovery/combat remains separate.'};window.rogueSkinResult=result;report.textContent=JSON.stringify(result,null,2); const receipt=document.querySelector('#receipt');receipt.href=URL.createObjectURL(new Blob([report.textContent],{type:'application/json'}));receipt.hidden=false; if(new URLSearchParams(location.search).has('saveEvidence')){const response=await fetch('/__qa__/rogue/'+modelKey,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({result,views:[...views.querySelectorAll('img')].slice(0,4).map(image=>image.src)})});if(!response.ok)throw Error('Evidence save failed');}
+ const result={model:modelKey,status:checks.every(c=>c.passed)?'PASS':'FAIL',modelSHA:body.aliasSourceIdentity.sha256,frames:header.numframes,dimensions:trial.dimensions,draws,elapsedMs:performance.now()-started,poses,checks,scope:'Controlled actual owned MDL/production alias rendering; gameplay discovery/combat remains separate.'};window.rogueSkinResult=result;report.textContent=JSON.stringify(result,null,2); const receipt=document.querySelector('#receipt');receipt.href=URL.createObjectURL(new Blob([report.textContent],{type:'application/json'}));receipt.hidden=false; if(new URLSearchParams(location.search).has('saveEvidence')){const response=await fetch('/__qa__/rogue/'+modelKey,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({result,views:[...views.querySelectorAll('img')].map(image=>image.src)})});if(!response.ok)throw Error('Evidence save failed');}
 }
 try{
  for(const c of options)if(c&&!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);
  for(const[name,value]of Object.entries({r_hdr:1,r_dynres:0,r_bloom:0,r_bounce:0,r_volumetric:0,r_newbright:1,r_newcontrast:1,r_pointshadows:1,r_newer_lighting:1,r_newer_normals:1,r_newer_enemies:1,r_newer_shadows:1,r_lerpmodels:0}))vars.Cvar_SetTemporary(name,String(value));
- for(const name of ['gfx/palette.lmp','progs/'+modelKey+'.mdl','progs/wrath.mdl']){
-  const path=name.startsWith('gfx/')?'games/shareware/pak0.pak':'resources/rogue/pak0.pak';
+ for(const name of ['gfx/palette.lmp','progs/'+modelKey+'.mdl','progs/'+(trial.negative||'wrath')+'.mdl']){
+  const path=name.startsWith('gfx/')?'games/shareware/pak0.pak':(trial.pack||'resources/rogue/pak0.pak');
   const range=async(start,length)=>{const r=await fetch(path,{headers:{Range:`bytes=${start}-${start+length-1}`}});if(r.status!==206)throw Error('Serve this trial with tools/serve.py (byte ranges required)');return r.arrayBuffer();};
   const h=new DataView(await range(0,12));if(h.getUint32(0,true)!==0x4b434150)throw Error('Invalid owned PAK');
   const directory=await range(h.getUint32(4,true),h.getUint32(8,true)),view=new DataView(directory),bytes=new Uint8Array(directory);let data;
@@ -64,7 +64,7 @@ try{
   if(!data)throw Error('Missing owned member '+name);
   pak.COM_AddPack({filename:'owned-native-proof:'+name,files:[{name,filepos:0,filelen:data.byteLength}],data});
  }
- VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.fullbright=224;models.Mod_Init();body=models.Mod_ForName('progs/'+modelKey+'.mdl',true);head=models.Mod_ForName('progs/wrath.mdl',true);await body.aliasSourceIdentity.promise;
+ VID_SetPalette(pak.COM_FindFile('gfx/palette.lmp').data);vid.fullbright=224;models.Mod_Init();body=models.Mod_ForName('progs/'+modelKey+'.mdl',true);head=models.Mod_ForName('progs/'+(trial.negative||'wrath')+'.mdl',true);await body.aliasSourceIdentity.promise;
  if(body.aliasSourceIdentity.sha256!==trial.sha)throw Error('Actual Rogue enemy body identity mismatch');header=body.cache.data;initialShape=shape(header);
  const index=await(await fetch('newer/enemies/index.json')).json();skins.R_NewerSetIndex(index);
  renderer=new THREE.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});renderer.setPixelRatio(1);renderer.setSize(W,H);renderer.setClearColor(0,0);renderer.autoClear=false;renderer.debug.onShaderError=(gl,p,v,f)=>errors.push({program:gl.getProgramInfoLog(p),vertex:gl.getShaderInfoLog(v),fragment:gl.getShaderInfoLog(f)});

@@ -1,0 +1,45 @@
+meshing progs/dog.mdl...
+
+PASS owned Dog public loader preserves every native UV triangle and all 86 poses with exact source identity
+meshing progs/dog.mdl...
+
+PASS actual manifest admits only matching Dog skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Dog image loads settle native fallback and shutdown rejects late image and identity publication
+RESULT 4/5 passed (tests/dog_skin_identity_test.js)
+FAIL actual Dog assets retain generated source, matching dimensions, existing head and other enemy entries Error: all pre-existing enemy variants and native height mappings unchanged: a17e98fb493f79892744388722c3875e2cccbc7fa90a0feb1a379a26a252b87e != 7f9249f313410f7ec717243b4222914bb48d6c07602eee45584cd14d186eee26
+    at check (file:///Users/bri/SOURCE/Quaked/tests/dog_skin_identity_test.js:16:59)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/dog_skin_identity_test.js:17:47)
+    at file:///Users/bri/SOURCE/Quaked/tests/dog_skin_identity_test.js:68:2
+    at file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:93:15
+TOTAL 4/5 passed
+meshing progs/dog.mdl...
+
+PASS owned Dog public loader preserves every native UV triangle and all 86 poses with exact source identity
+meshing progs/dog.mdl...
+
+PASS actual manifest admits only matching Dog skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Dog image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Dog shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 5/6 passed (tests/dog_skin_identity_test.js)
+FAIL actual Dog assets retain generated source, matching dimensions, existing head and other enemy entries Error: Invalid SVG image
+    at /Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/load-image.js:141:15
+    at new Promise (<anonymous>)
+    at createImage (/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/load-image.js:135:10)
+    at Module.loadImage (/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/load-image.js:19:71)
+    at file:///Users/bri/SOURCE/Quaked/tests/dog_skin_identity_test.js:75:33
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:93:9
+TOTAL 5/6 passed
+meshing progs/dog.mdl...
+
+PASS owned Dog public loader preserves every native UV triangle and all 86 poses with exact source identity
+PASS actual Dog assets retain generated source, matching dimensions, existing head and other enemy entries
+meshing progs/dog.mdl...
+
+PASS actual manifest admits only matching Dog skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Dog image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Dog shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/dog_skin_identity_test.js)
+TOTAL 6/6 passed

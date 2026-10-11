@@ -70,7 +70,7 @@ Deno.test( 'actual Centroid assets retain both supplied sources, matching dimens
  same( index.models.scor.length, 1, 'single approved Centroid variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' );
  same( approved.dir, 'scor/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.png', 'lossless fitted PNG is used by the product' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
  const other = structuredClone( index ); delete other.version; delete other.models.scor; // Later Rogue additions have their own exact preservation contract.
- for (const key of ['dragon','s_wrath','mummy']) delete other.models[key];
+ for (const key of ['dragon','s_wrath','mummy','dog']) delete other.models[key];
  same( sha( JSON.stringify( other ) ), '59d8a84a50a47a31e0601dcda3efbb4570155d8b1b235a8feff7aca08767e271', 'all pre-existing enemy variants and native height mappings unchanged' );
  const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };

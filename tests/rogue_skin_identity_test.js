@@ -57,6 +57,7 @@ async function fixture( run ) {
 }
 Deno.test( 'three Rogue replacements preserve every pre-existing enemy variant and height entry', () => {
  const other = structuredClone( index ); delete other.version; for ( const { key } of SPECS ) delete other.models[ key ];
+ delete other.models.dog; // Later Dog increment has its own exact preservation test.
  same( sha( JSON.stringify( other ) ), 'a17e98fb493f79892744388722c3875e2cccbc7fa90a0feb1a379a26a252b87e', 'pre-edit manifest, excluding cache revision and only these three additions' );
 } );
 for ( const spec of SPECS ) {

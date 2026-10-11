@@ -32,8 +32,10 @@ RECIPES = {
 def sha(data):
  return hashlib.sha256(data).hexdigest()
 
-def fit_one(key, pack, source_root, output):
- spec=RECIPES[key]; name='Gemini_Generated_Image_'+spec['source']+'.jpeg'
+def fit_one(key, pack, source_root, output, recipe=None):
+ # Generated, native-layout atlases share this same importer. An explicit recipe
+ # supplies their source path and matte policy; the original Rogue recipes stay fixed.
+ spec=recipe or RECIPES[key]; name=spec.get('sourceFile','Gemini_Generated_Image_'+spec.get('source','')+'.jpeg')
  source_path=source_root/name; raw=source_path.read_bytes()
  if sha(raw)!=spec['sourceSha']: raise ValueError('Supplied image changed: '+name)
  data=member(pack,'progs/'+key+'.mdl')
@@ -46,7 +48,8 @@ def fit_one(key, pack, source_root, output):
  # Explicit sheet-specific matte policies: the dragon has neutral grey plus a
  # black centre divider, the Overlord black, and the Mummy a dark brown gradient.
  # Enclosed dark anatomy remains inside the foreground silhouette.
- if key=='dragon': foreground=(rgb.max(2)-rgb.min(2)>12)&(rgb.max(2)>25)
+ if spec.get('matte')=='blue-grey': foreground=((rgb[:,:,2]-rgb[:,:,0])<6)&((rgb[:,:,2]-rgb[:,:,1])<8)
+ elif key=='dragon': foreground=(rgb.max(2)-rgb.min(2)>12)&(rgb.max(2)>25)
  elif key=='mummy': foreground=rgb.max(2)>25
  else: foreground=rgb.max(2)>15
  # Close narrow dark channels before filling the silhouette. Otherwise a dark
@@ -79,10 +82,11 @@ def fit_one(key, pack, source_root, output):
  report=dict(schema=1,model='progs/'+key+'.mdl',nativeModelSha256=spec['modelSha'],source=name,sourceSha256=spec['sourceSha'],sourceDimensions=spec['size'],
   dimensions=[W,H],factor=factor,skin=0,poses=spec['layout'][5],vertices=spec['layout'][3],triangles=spec['layout'][4],
   transform='complete atlas, top-row-first, no flip; original UVs preserved',
-  mattePolicy={'dragon':'neutral grey and black divider','s_wrath':'black','mummy':'dark brown gradient'}[key],
+  mattePolicy=spec.get('matte') or {'dragon':'neutral grey and black divider','s_wrath':'black','mummy':'dark brown gradient'}[key],
   nativeTexturePixelsUsed=0,islands=islands,surfacePixels=int(footprint.sum()),edgePixels=sum(i['edgePixels'] for i in islands),
   normalProfile=dict(strength=.65,cap=.55),reuse=['fit_vore.member','uv_footprint','fit_skin.spread','height_for'],
   files={f:sha((out/f).read_bytes()) for f in ['diffuse.png','height.webp']})
+ if spec.get('generation'):report['generation']=spec['generation']
  (out/'SOURCE.json').write_text(json.dumps(report,indent=2)+'\n');print(key,json.dumps({k:report[k] for k in ['dimensions','surfacePixels','edgePixels']}))
 
 if __name__=='__main__':

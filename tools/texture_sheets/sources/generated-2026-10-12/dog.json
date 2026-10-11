@@ -1,0 +1,26 @@
+{
+  "key": "dog",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/dog.png",
+  "sourceSha": "c5381c353225ec755b80fc65e7b3a2b0c5006e6c3d8a35059b15a37b64ef5a2c",
+  "modelSha": "c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6",
+  "layout": [
+    1,
+    312,
+    169,
+    236,
+    426,
+    86
+  ],
+  "size": [
+    1704,
+    923
+  ],
+  "factor": 6,
+  "matte": "blue-grey",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original progs/dog.mdl skin0 decoded using native palette, nearest enlarged4x for reference only",
+    "prompt": "Edit the supplied original Quake Dog UV skin atlas into a high-resolution game texture. This is a texture atlas, NOT a new character illustration or a rendered model. Preserve the exact atlas layout, aspect ratio (312:169), orientation, body silhouettes, proportional positions, UV islands and every small detached mouth/teeth/gore piece. Both side views must stay in precisely their existing positions and facing directions. Preserve the original dark nearly-black brown coat, tan-brown legs and muzzle markings, blood-red injured areas, collar, reddish eyes, and original aggressive Quake dog design. Add restrained realistic fur, leather and flesh detail within those original regions. Do not change breed, anatomy, pose, palette, markings, blood placement, mouth opening or proportions. Do not crop, rearrange or add islands. Keep the same flat muted blue-grey background, with crisp boundaries and no shadows outside the atlas pieces. No text, labels, borders or watermark. Preserve the bottom-edge fragments even where they are cut by the image boundary. Aim for an approximately 4x to 8x higher-resolution faithful repaint of exactly this bitmap, with no new lighting direction or highlights. Retain a complete rectangular atlas with exactly the same composition as the reference."
+  }
+}

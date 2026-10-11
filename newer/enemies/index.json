@@ -809,9 +809,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "dog": [
+   {
+    "dir": "dog/custom",
+    "skin": 0,
+    "nativeModelSha256": "c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 29,
+ "version": 30,
  "nativeHeights": {
   "gib1": [
    [
