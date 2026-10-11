@@ -74,12 +74,12 @@ function step(ball,dt){sv.time+=dt;progs.pr_global_struct.time=sv.time;SV_SetFra
 for(const enhanced of[false,true])Deno.test(`${enhanced?'Newer Game':'Classic'}: the ball flies its lap through Shub, smoothly, ${enhanced?'without stopping at its corners':'with stock Quake\'s 0.1 s at each corner'}`,()=>{
  const p=endLevel(enhanced),ball=start(p),shub=find('monster_oldone')[0];check(shub,'Shub-Niggurath');
  const dt=1/72,speed=ball.v.speed||100;let last=Array.from(ball.v.origin),worst=0,still=0,through=false,moved=0;const turn0=Array.from(ball.v.angles);
- let fastest=0,turnedFlying=0;for(let k=0;k<72*24;k++){const a0=Array.from(ball.v.angles),o0=Array.from(ball.v.origin);step(ball,dt);if(Math.hypot(...[0,1,2].map(i=>ball.v.origin[i]-o0[i]))>.5&&Math.hypot(...[0,1,2].map(i=>ball.v.angles[i]-a0[i]))>1e-6)turnedFlying++;fastest=Math.max(fastest,Math.hypot(...ball.v.velocity));const o=Array.from(ball.v.origin),d=Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2]);worst=Math.max(worst,d);if(d<1e-6&&k>2)still++;moved+=d;if(inside(o,shub))through=true;last=o;}
+ let fastest=0,turnedFlying=0,turnedStill=0;for(let k=0;k<72*24;k++){const a0=Array.from(ball.v.angles),o0=Array.from(ball.v.origin);step(ball,dt);const turned=Math.hypot(...[0,1,2].map(i=>ball.v.angles[i]-a0[i]))>1e-6;if(Math.hypot(...[0,1,2].map(i=>ball.v.origin[i]-o0[i]))>.5){if(turned)turnedFlying++;}else if(turned)turnedStill++;fastest=Math.max(fastest,Math.hypot(...ball.v.velocity));const o=Array.from(ball.v.origin),d=Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2]);worst=Math.max(worst,d);if(d<1e-6&&k>2)still++;moved+=d;if(inside(o,shub))through=true;last=o;}
  check(moved>3000,`it flew its lap (${moved.toFixed(0)} units)`);
  check(fastest>=speed*.99&&fastest<=210,`it flies at its own speed (${fastest.toFixed(0)} units/s)`);
  check(worst<=fastest*dt*1.05+.01,`no jumps: at most its speed's ${(fastest*dt).toFixed(2)} units a frame (${worst.toFixed(2)})`);
  check(through,'it passed through Shub');
- if(enhanced)check(turnedFlying>72*20,`Newer Game: it spins as it flies (${turnedFlying} frames)`);else same(turnedFlying,0,'Classic: as WinQuake, a moving pusher is not turned');
+ if(enhanced)check(turnedFlying>72*20,`Newer Game: it spins as it flies (${turnedFlying} frames)`);else{same(turnedFlying,0,'Classic: as WinQuake, the ball is not turned as it flies');same(turnedStill,0,'nor at its corner stops');}
  if(enhanced)same(still,0,'Newer Game: never still');else check(still>=6*19*.8,`Classic: stock pauses at the corners (${still} still frames)`);
 });
 
@@ -106,4 +106,10 @@ Deno.test('Newer Game: only the teleport ball loses its corner stops; an ordinar
  const p=endLevel(true),ball=find('misc_teleporttrain')[0];ball.v.classname=ED_NewString('func_train');start(p);
  let last=Array.from(ball.v.origin),still=0;for(let k=0;k<72*12;k++){step(ball,1/72);const o=Array.from(ball.v.origin);if(k>2&&Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2])<1e-6)still++;last=o;}
  check(still>=6*5,`a func_train with the same path still stops at its corners (${still} still frames)`);
+});
+
+Deno.test('Newer Game, but a multiplayer host: the ball keeps its corner stops (the gameplay rule is local single player only)',()=>{
+ const p=endLevel(true),ball=start(p);svs.maxclients=2;
+ try{let last=Array.from(ball.v.origin),still=0;for(let k=0;k<72*12;k++){step(ball,1/72);const o=Array.from(ball.v.origin);if(k>2&&Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2])<1e-6)still++;last=o;}
+  check(still>=6*5,`stock corner stops (${still} still frames)`);}finally{svs.maxclients=1;}
 });

@@ -1087,10 +1087,11 @@ export function SV_Physics_Pusher( ent ) {
 		// WinQuake's QUAKE2 code). One that moves goes by SV_PushMove, as WinQuake always did: the end level's teleport
 		// train (misc_teleporttrain, the spiked ball Shub-Niggurath is telefragged with) has both velocity and angular
 		// velocity, and turning it in place left it jumping from corner to corner (SUB_CalcMoveDone's setorigin), never
-		// inside Shub (card [END1]). WinQuake never turned a moving pusher; in Newer Game the moving ball also spins.
+		// inside Shub (card [END1]). WinQuake never turned that ball (an alias model, not solid: turning it pushes
+		// nothing), so in Classic only a brush pusher turns in place; in Newer Game the ball spins, flying or waiting.
 		const moving = ent.v.velocity[ 0 ] !== 0 || ent.v.velocity[ 1 ] !== 0 || ent.v.velocity[ 2 ] !== 0;
 		const turning = ent.v.avelocity[ 0 ] !== 0 || ent.v.avelocity[ 1 ] !== 0 || ent.v.avelocity[ 2 ] !== 0;
-		if ( turning && ! moving )
+		if ( turning && ! moving && ( R_NewerGame() || PR_GetString( ent.v.model ).charAt( 0 ) === '*' ) )
 			SV_PushRotate( ent, movetime );
 		else {
 

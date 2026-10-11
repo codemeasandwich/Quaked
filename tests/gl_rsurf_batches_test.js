@@ -45,3 +45,33 @@ Deno.test( 'E1M1\'s world is batched by texture and atlas, and the view\'s leaf 
 		check( worldState.group.children.filter( o => o.isBatchedMesh ).length === 0, 'a map load throws the batches away' );
 	} finally { cl.worldmodel = saved.world; saved.models.forEach( ( m, i ) => { cl.model_precache[ i ] = m; } ); }
 } );
+
+// card [END1]: a teleporter window that follows a moving train sees from a new leaf though the viewer has not moved;
+// R_MarkLeaves must mark again then, or the window's world goes missing
+Deno.test( 'R_MarkLeaves marks again when a portal window comes to see from another leaf, the viewer standing still', async () => {
+	const rmain = await import( '../src/engine/render/gl_rmain.js' );
+	const portal = await import( '../src/newer/render/gl_portal.js' );
+	const saved = { world: cl.worldmodel, models: cl.model_precache.slice() }; d_lightstylevalue.fill( 256 );
+	try {
+		const world = Mod_ForName( 'maps/e1m1.bsp', true );
+		cl.worldmodel = world; cl.model_precache.fill( null ); cl.model_precache[ 1 ] = world;
+		GL_BuildLightmaps();
+		set_r_viewleaf( Mod_PointInLeaf( [ 480, - 352, 110 ], world ) ); set_r_oldviewleaf( null );
+		batches.R_MarkLeaves();
+		const marked = rmain.r_visframecount;
+		batches.R_MarkLeaves();
+		check( rmain.r_visframecount === marked, 'the viewer still and nothing else changed: no new marking' );
+		// a window's receiver now sees from another leaf (any portal build or follow step does: R_PortalsVisRevision)
+		const leaf = { contents: - 1, visframe: 0, firstmarksurface: null, nummarksurfaces: 0, compressed_vis: null };
+		const surface = { flags: 0x10, plane: { normal: new Float32Array( [ 1, 0, 0 ] ), dist: 100 }, texinfo: { texture: { name: '*teleport' } },
+			polys: { numverts: 4, verts: [ [ 100, - 32, 0, 0, 0 ], [ 100, 32, 0, 1, 0 ], [ 100, 32, 112, 1, 1 ], [ 100, - 32, 112, 0, 1 ] ], next: null } };
+		const before = portal.R_PortalsVisRevision();
+		portal.R_BuildPortals( { entities: '{\n"classname" "worldspawn"\n}\n{\n"classname" "trigger_teleport"\n"target" "t1"\n"model" "*1"\n}\n{\n"classname" "info_teleport_destination"\n"targetname" "t1"\n"origin" "0 0 0"\n}\n',
+			surfaces: [ surface ], firstmodelsurface: 0, nummodelsurfaces: 1, submodels: [ { mins: [ - 4096, - 4096, - 4096 ], maxs: [ 4096, 4096, 4096 ] }, { mins: [ 90, - 40, - 8 ], maxs: [ 110, 40, 120 ] } ],
+			nodes: [ leaf ], leafs: [ { contents: - 2 }, leaf ], numleafs: 1 } );
+		check( portal.R_PortalsVisRevision() !== before, '(a window came to see from a leaf)' );
+		batches.R_MarkLeaves();
+		check( rmain.r_visframecount !== marked, 'R_MarkLeaves marked again, the viewer not having moved' );
+		portal.R_ClearPortals();
+	} finally { cl.worldmodel = saved.world; cl.model_precache.splice( 0, saved.models.length, ...saved.models ); }
+} );
