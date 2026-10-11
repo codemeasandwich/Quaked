@@ -6,7 +6,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_pending`, `_crossed`, `_world`; 1 module-level collection
+ * State: no mutable exports; module-level variables `_pending`, `_crossed`, `_edicts`; 1 module-level collection
  * (Map/Set).
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
