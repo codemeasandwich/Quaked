@@ -156,7 +156,8 @@
       "nativePoseRigidRms": [
         4.09284852223519e-15
       ],
-      "excludedNativeVertices": []
+      "excludedNativeVertices": [],
+      "transverseScale": 2.0
     },
     "v_nail2": {
       "source": "supernailgun",
@@ -209,7 +210,8 @@
         104,
         105,
         106
-      ]
+      ],
+      "cameraPullback": 1.0
     },
     "g_nail2": {
       "source": "supernailgun",
@@ -401,7 +403,8 @@
         9,
         10,
         11
-      ]
+      ],
+      "cameraPullback": 0.5
     },
     "g_rock2": {
       "source": "rocketlauncher",
