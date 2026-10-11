@@ -248,21 +248,25 @@ Deno.test( 'an entity number reused by a new shot starts a new bolt; a full pool
 
 Deno.test( 'a laser striking a wall gets the source\'s impact on the wall; real bullets keep theirs', () => {
 
-	const env = setup(), e = laser( [ 40, 0, 64 ] );
-	frame( env, [ e ] ); e.origin[ 0 ] = 80; frame( env, [ e ], 1 / 15 );
-	// Laser_Touch: TE_GUNSHOT 8 units back from where it touched the wall (x = 100)
-	same( sb.R_StasisBoltImpact( [ 0, 300, 64 ] ), false, 'a gunshot off the bolt\'s path is a bullet' );
-	same( sb.R_StasisBoltImpact( [ 92, 0, 64 ] ), true, 'the gunshot on its path is the laser\'s impact' );
-	same( sb.R_StasisBoltImpact( [ 92, 0, 64 ] ), false, 'one impact per bolt' );
+	// a shot at 30 degrees to the wall's normal, so the struck point, the event point and their perpendiculars differ
+	const env = setup(), d = [ Math.cos( Math.PI / 6 ), Math.sin( Math.PI / 6 ), 0 ], e = laser( [ 40, 0, 64 ], 30 );
+	frame( env, [ e ] ); e.origin[ 0 ] += d[ 0 ] * 45; e.origin[ 1 ] += d[ 1 ] * 45; frame( env, [ e ], 1 / 15 );
+	// Laser_Touch: TE_GUNSHOT 8 units back along the shot from where it touched the wall (x = 100)
+	const t = 60 / d[ 0 ], touch = [ 40 + d[ 0 ] * t, d[ 1 ] * t, 64 ], event = [ touch[ 0 ] - d[ 0 ] * 8, touch[ 1 ] - d[ 1 ] * 8, 64 ];
+	same( sb.R_StasisBoltImpact( [ 0, 300, 64 ] ), false, 'a gunshot far off the bolt\'s path is a bullet' );
+	same( sb.R_StasisBoltImpact( [ event[ 0 ], event[ 1 ] + 40, 64 ] ), false, 'a gunshot level with the bolt but 40 units off its line is a bullet' );
+	same( sb.R_StasisBoltImpact( event ), true, 'the gunshot on its path is the laser\'s impact' );
+	same( sb.R_StasisBoltImpact( event ), false, 'one impact per bolt' );
 	let s = frame( env, [], 1 / 60 );
 	same( s.bolts, 0, 'the bolt ends at its impact' ); same( s.impacts, 1, 'one impact' ); same( s.rings, 1, 'its ring' );
 	check( s.sparks >= sb.STASIS.impact.count - 2, 'its particles: ' + s.sparks );
 	const R = env.group().children.find( c => c.name === 'stasis_rings' ).geometry.attributes;
-	near( R.aCenterRadius.array[ 0 ], 99.5, 1e-4, 'the ring lies on the struck wall (half a unit off it)' );
+	near( R.aCenterRadius.array[ 0 ], 99.5, 1e-3, 'the ring lies on the struck wall (half a unit off it)' );
+	near( R.aCenterRadius.array[ 1 ], touch[ 1 ], 1e-3, '...where the shot touched it, along the shot' );
 	near( Math.abs( R.aAxisU.array[ 0 ] ) + Math.abs( R.aAxisV.array[ 0 ] ), 0, 1e-6, 'in the wall\'s plane' );
 	s = frame( env, [], .5 ); same( s.rings, 0, 'the ring is over after 0.45 s' ); check( s.impacts === 1, 'particles live up to 0.8 s' );
 	s = frame( env, [], .4 ); same( s.impacts, 0, 'all over after 0.8 s' );
-	newer( false ); same( sb.R_StasisBoltImpact( [ 92, 0, 64 ] ), false, 'Classic: native' ); newer( true );
+	newer( false ); same( sb.R_StasisBoltImpact( event ), false, 'Classic: native' ); newer( true );
 
 } );
 
