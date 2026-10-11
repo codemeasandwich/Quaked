@@ -116,31 +116,53 @@ Knights. The rule applies in Newer Game only; Classic keeps Quake's rules.
 **What stops.** A Death Knight shot (`progs/k_spike.mdl`) or a lava ball (`progs/lavaball.mdl`)
 that enters water or slime goes out at the surface.
 
-**How it happens.** After every missile move, `sv_phys.js SV_Physics_Toss` asks
-`SV_FireQuench` (`src/newer/gameplay/sv_firequench.js`). When a fireball's new origin is in
-water or slime:
+**How it happens.** `sv_phys.js SV_Physics_Toss` asks `src/newer/gameplay/sv_firequench.js`
+twice per missile move:
 
-* The surface point is found by halving the step from its old origin 8 times.
-* The server broadcasts `TE_KNIGHTSPIKE` at that point. The client draws it as the fireball's
-  own impact (sparks, ring, smoke), with the Knight's hit sizzle.
-* `R_LavaBallImpact` sees liquid just below the point and lays the ring flat on the surface.
-* Quake's missile splash, `misc/h2ohit1.wav`, is played.
-* The edict is removed, so it deals no damage.
+* **Before the move** (`SV_FireQuenchStep`). A fireball in the air whose step would pass into
+  water or slime has the step cut at the surface. The step is sampled every 2 units, because it
+  may end in the pool's floor. The surface is then found between the last dry sample and the
+  first wet one, halved 8 times. So the move, and any touch it makes, stays above the water.
+  The first version put the shot out only after the move. The [FB3] review measured a shot
+  hurting a submerged player within one long (0.05 s) frame.
+* **After the move** (`SV_FireQuench`). A fireball that reached that point goes out:
+  * the server broadcasts `TE_KNIGHTSPIKE` there; the client draws it as the fireball's own
+    impact (sparks, ring, smoke) with the Knight's hit sizzle;
+  * `R_LavaBallImpact` sees liquid just below the point (water, slime or a current) and lays
+    the ring flat on the surface;
+  * Quake's missile splash, `misc/h2ohit1.wav`, is played;
+  * the edict is removed, so it deals no damage.
+
+**Where it applies.** As the other Newer gameplay rules do, it applies to a local single-player
+game (not dedicated, not a demo) on the stock progs (CRC 24778). A mod's QuakeC that still holds
+such a missile is never surprised by the engine removing it. A multiplayer host does not change
+the rules for its clients.
 
 **Edge cases and limits:**
 
-* A fireball born in liquid goes out at once.
+* A fireball born in liquid (a Death Knight standing in water) does not move at all. It goes
+  out where it is, without a splash, since no surface was crossed.
 * Lava does not put fire out: `misc_fireball`'s balls rise out of lava and fall back as
   before.
 * Other missiles (nails, rockets, the Scrag's spit) fly on underwater as in Quake.
-* Stock Quake checks a missile's water transition only when it hits something. The quench
-  check runs every move.
+* The defence is being *fully* under the water. A player whose eyes are just under it still
+  has up to 10 units of body above the surface (maxs z 32, view height 22), and a flat shot
+  can hit that.
+* A real wall hit within 2 units above water also gets the flat ring. This is cosmetic.
 
 **Evidence.**
 
-* `tests/firequench_native_test.js` (4 tests) uses e1m1's own water and e1m7's own lava with
-  real edicts moved by `SV_Physics_Toss`. Each deliberate break was caught: Classic not
-  exempt, lava quenching, a wrong bisection, no removal, a wrong event.
+* `tests/firequench_native_test.js` (5 tests) uses e1m1's own water and e1m7's own lava with
+  real edicts moved by `SV_Physics_Toss`, at frames of 0.02 to 0.1 s. It checks:
+  * the burst on the surface;
+  * the splash sound's index and place;
+  * a submerged player not hurt by a real `spike_touch` shot (while Classic hurts them);
+  * born in water, with no move and no splash;
+  * a full datagram;
+  * lava, Classic, a multiplayer host, nails and rockets.
+
+  Each deliberate break was caught: no cut before the move, no splash, a born-wet shot moving
+  or splashing, no overflow guard, no single-player gate.
 * `tests/lavaballs_test.js` checks that the ring lies flat on water.
 * **Browser trial.** With `?game=quake` on e2m3, a level's Death Knight was stood beside the
   level's water and fired its fan at a point under the surface, watched from across the pool.

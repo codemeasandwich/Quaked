@@ -35,7 +35,9 @@ window.lavaTrial={
   const ed=await import('../src/engine/progs/pr_edict.js'),e=sv.edicts[index],f=e&&ed.GetEdictFieldValue(e,'th_missile'),fn=f?f.accessor.getInt32(f.ofs):0;
   let player=sv.edicts[1];if(aim){const t=ed.ED_Alloc();t.v.origin=[...aim];t.v.angles=[0,0,0];player=t;}
   if(!fn)return false;e.v.enemy=pg.EDICT_TO_PROG(player);
-  ph.pr_global_struct.self=pg.EDICT_TO_PROG(e);ph.pr_global_struct.other=pg.EDICT_TO_PROG(player);ex.PR_ExecuteProgram(fn);return true;},
+  ph.pr_global_struct.self=pg.EDICT_TO_PROG(e);ph.pr_global_struct.other=pg.EDICT_TO_PROG(player);ex.PR_ExecuteProgram(fn);
+  // (the aim edict goes once the fan is thrown, 1.5 s on: the knight forgets it first)
+  if(aim)setTimeout(()=>{if(!e.free&&e.v.enemy===pg.EDICT_TO_PROG(player))e.v.enemy=0;if(!player.free)ed.ED_Free(player);},1500);return true;},
  // park the player at `eye`, looking at `at`
  look(eye,at){const player=sv.edicts[1],o=[eye[0],eye[1],eye[2]-22],d=[at[0]-eye[0],at[1]-eye[1],at[2]-eye[2]];
   player.v.movetype=0;player.v.solid=0;player.v.flags|=64|128;player.v.origin=o;player.v.velocity=[0,0,0];

@@ -55,56 +55,90 @@ function finish(p){const s=p._respawn.sequence,cut=s.at+.22+s.turn/2+1e-6,end=s.
 
 
 import { SV_PointContents } from '../src/engine/server/world.js';
-import { FIRE_QUENCH, SV_FireQuench } from '../src/newer/gameplay/sv_firequench.js';
-const WATER=-3,SLIME=-4,LAVA=-5,EMPTY=-1;
+import { FIRE_QUENCH, SV_FireQuench, SV_FireQuenchStep } from '../src/newer/gameplay/sv_firequench.js';
+import { PROTOCOL_LARGE } from '../src/engine/common/protocol.js';
+const WATER=-3,LAVA=-5,EMPTY=-1;
 // a point of the map's own liquid `kind` with open air straight above it: [ inside, surface z, a point 64 units above ]
 function pool(kind){for(const leaf of sv.worldmodel.leafs){if(leaf.contents!==kind)continue;const c=[0,1,2].map(i=>(leaf.minmaxs[i]+leaf.minmaxs[i+3])/2);
  if(SV_PointContents(c)!==kind)continue;let z=c[2];while(SV_PointContents([c[0],c[1],z+1])===kind&&z<c[2]+512)z++;const above=[c[0],c[1],z+64];
  let open=true;for(let k=z+1;k<=above[2];k+=4)if(SV_PointContents([c[0],c[1],k])!==EMPTY)open=false;if(open)return{inside:c,surface:z,above};}return null;}
 // a missile edict of `model`, flying at `velocity` from `origin` (what QuakeC launch_spike makes: FLYMISSILE, a point box)
-function missile(model,origin,velocity){const e=ED_Alloc();e.v.model=ED_NewString(model);e.v.classname=ED_NewString('test_missile');e.v.movetype=Q.MOVETYPE_FLYMISSILE??9;e.v.solid=2;
+function missile(model,origin,velocity){const e=ED_Alloc();e.v.model=ED_NewString(model);e.v.classname=ED_NewString('knightspike');e.v.movetype=9;e.v.solid=2;
  e.v.origin=[...origin];e.v.velocity=[...velocity];e.v.mins=[0,0,0];e.v.maxs=[0,0,0];e.v.nextthink=sv.time+10;SV_LinkEdict(e,false);return e;}
-function fly(e,seconds){SV_SetFrametime(.02);for(let t=0;t<seconds&&!e.free;t+=.02){sv.time+=.02;progs.pr_global_struct.time=sv.time;SV_Physics_Toss(e);}}
+function fly(e,seconds,dt=.02){SV_SetFrametime(dt);for(let t=0;t<seconds-1e-9&&!e.free;t+=dt){sv.time+=dt;progs.pr_global_struct.time=sv.time;SV_Physics_Toss(e);}}
 // the temp entities and sounds the server broadcast since the datagram was cleared
-function broadcast(){const out=[],d=sv.datagram;const b=new Uint8Array(d.data.buffer??d.data,0,d.cursize);
- for(let i=0;i<b.length;){const cmd=b[i];if(cmd===23){const type=b[i+1];const v=new DataView(b.buffer,b.byteOffset+i+2,6);out.push({te:type,at:[0,1,2].map(k=>v.getInt16(k*2,true)/8)});i+=8;}else break;}return out;}
+function broadcast(){const out=[],d=sv.datagram,b=new Uint8Array(d.data.buffer??d.data,0,d.cursize),v=new DataView(b.buffer,b.byteOffset,b.length);
+ const coords=j=>[0,1,2].map(k=>v.getInt16(j+k*2,true)/8);
+ for(let i=0;i<b.length;){const cmd=b[i];
+  if(cmd===23){out.push({te:b[i+1],at:coords(i+2)});i+=8;}
+  else if(cmd===6){const mask=b[i+1];let j=i+2;if(mask&1)j++;if(mask&2)j++;j+=2;let index;if(sv.protocol===PROTOCOL_LARGE){index=v.getInt16(j,true);j+=2;}else index=b[j++];out.push({sound:index,at:coords(j)});i=j+6;}
+  else break;}
+ return out;}
 const fresh=(enhanced=true,map='e1m1')=>{const p=spawn(map,true,enhanced);SZ_Clear(sv.datagram);return p;};
+const splash=()=>sv.sound_precache.indexOf(FIRE_QUENCH.sound);
 
-Deno.test('Newer Game: a Death Knight shot or a lava ball flying into water goes out at the surface with a small burst; it flies no further',()=>{
- fresh();const w=pool(WATER);check(w,'e1m1 has open water');
- for(const model of FIRE_QUENCH.models){
+Deno.test('Newer Game: a Death Knight shot or a lava ball flying into water goes out at the surface with a small burst and a splash; it flies no further',()=>{
+ fresh();const w=pool(WATER);check(w,'e1m1 has open water');check(splash()>0,'the splash is precached by the stock progs');
+ for(const model of FIRE_QUENCH.models)for(const dt of[.02,.1]){
   SZ_Clear(sv.datagram);
-  const e=missile(model,w.above,[40,0,-300]);fly(e,1);
-  check(e.free,`${model}: removed once it entered the water`);
-  const te=broadcast().filter(m=>m.te===8);same(te.length,1,`${model}: one burst`);
-  near(te[0].at[2],w.surface+1,`${model}: at the surface (the last dry point of its path)`,1.01);
-  check(SV_PointContents(te[0].at)===EMPTY||Math.abs(te[0].at[2]-w.surface-1)<1,'not under the water');
+  const e=missile(model,w.above,[40,0,-300]);fly(e,1,dt);
+  check(e.free,`${model}, frame ${dt}: removed at the water`);
+  const sent=broadcast(),te=sent.filter(m=>m.te===8),snd=sent.filter(m=>m.sound!==undefined);
+  same(te.length,1,`${model}: one burst`);
+  check(te[0].at[2]>=w.surface&&te[0].at[2]<=w.surface+1.13&&SV_PointContents(te[0].at)!==WATER,`${model}, frame ${dt}: the burst on the surface, not under it (${te[0].at[2]} vs ${w.surface})`);
+  same(snd.length,1,`${model}: one sound`);same(snd[0].sound,splash(),'the splash');
+  near(snd[0].at[2],te[0].at[2],`${model}: heard where it went out`,.26);
  }
 });
 
-Deno.test('a fireball already underwater goes out at once; lava does not put it out',()=>{
+Deno.test('a shot cannot reach a player fully under the water, even in one long frame',()=>{
+ const p=fresh();const w=pool(WATER);
+ // the player's box top 2 units under the surface (maxs z 32), straight below a shot 4 units above it
+ vars.Cvar_SetValue('skill',1);p.v.health=100;p.v.takedamage=2;p.v.flags&=~64;p.v.movetype=0;
+ p.v.origin=[w.inside[0],w.inside[1],w.surface-2-32];SV_LinkEdict(p,true);
+ check(SV_PointContents([w.inside[0],w.inside[1],w.surface-2])===WATER,'the box top is under the water');
+ const fnTouch=progs.pr_functions.indexOf(ED_FindFunction('spike_touch'));check(fnTouch>0,'the real spike_touch');
+ for(const dt of[.02,.05,.1]){
+  const e=missile('progs/k_spike.mdl',[w.inside[0],w.inside[1],w.surface+4],[0,0,-300]);e.v.touch=fnTouch;e.v.owner=0;
+  fly(e,.5,dt);
+  check(e.free,`frame ${dt}: the shot went out`);same(p.v.health,100,`frame ${dt}: the player under the water is not hurt`);
+ }
+ // control: the same shot in Classic does hurt (spike_touch, 9 damage)
+ const c=fresh(false);const w2=pool(WATER);c.v.health=100;c.v.takedamage=2;c.v.flags&=~64;c.v.movetype=0;c.v.origin=[w2.inside[0],w2.inside[1],w2.surface-2-32];SV_LinkEdict(c,true);
+ const e=missile('progs/k_spike.mdl',[w2.inside[0],w2.inside[1],w2.surface+4],[0,0,-300]);e.v.touch=fnTouch;e.v.owner=0;fly(e,.5,.05);
+ check(c.v.health<100,'Classic: the shot reaches the player under the water');
+});
+
+Deno.test('a fireball already underwater goes out where it is, without a splash; lava does not put fire out; a full datagram still puts it out',()=>{
  fresh();const w=pool(WATER);
  const e=missile('progs/k_spike.mdl',w.inside,[300,0,0]);fly(e,.02);check(e.free,'born in water: out on its first move');
- const te=broadcast().filter(m=>m.te===8);same(te.length,1,'one burst');
+ const sent=broadcast();same(sent.filter(m=>m.te===8).length,1,'one burst');
+ const at=sent.find(m=>m.te===8).at;for(let i=0;i<3;i++)near(at[i],w.inside[i],'where it was: it did not move',.13);
+ same(sent.filter(m=>m.sound!==undefined).length,0,'no splash: no surface was crossed');
+ // a full datagram: no burst message, but the fire still goes out
+ SZ_Clear(sv.datagram);sv.datagram.cursize=Q.MAX_DATAGRAM-10;const f=missile('progs/k_spike.mdl',w.above,[0,0,-300]);fly(f,1);
+ check(f.free,'the fire goes out');same(sv.datagram.cursize,Q.MAX_DATAGRAM-10,'nothing written past the limit');
  // lava: misc_fireball's balls rise out of it and fall back; they are the game's own there
  fresh(true,'e1m7');const l=pool(LAVA);check(l,'e1m7 has open lava');SZ_Clear(sv.datagram);
- const b=missile('progs/lavaball.mdl',l.inside,[0,0,10]);SV_SetFrametime(.02);sv.time+=.02;SV_Physics_Toss(b);
+ const b=missile('progs/lavaball.mdl',l.inside,[0,0,10]);fly(b,.02);
  check(!b.free,'a lava ball in lava flies on');same(broadcast().length,0,'no burst');
 });
 
-Deno.test('Classic keeps Quake\'s rules, and other missiles fly into water as before',()=>{
+Deno.test('Classic, multiplayer and other missiles keep Quake\'s rules',()=>{
  fresh(false);const w=pool(WATER);
  const e=missile('progs/k_spike.mdl',w.above,[0,0,-300]);fly(e,.5);
  check(!e.free&&SV_PointContents(e.v.origin)===WATER,'Classic: the shot flies on underwater');same(broadcast().length,0,'no burst');
- fresh();const n=missile('progs/spike.mdl',w.above,[0,0,-300]);fly(n,.5);
+ fresh();svs.maxclients=2;const m=missile('progs/k_spike.mdl',w.above,[0,0,-300]);fly(m,.5);svs.maxclients=1;
+ check(!m.free&&SV_PointContents(m.v.origin)===WATER,'a multiplayer host keeps Quake\'s rule for its clients');
+ const n=missile('progs/spike.mdl',w.above,[0,0,-300]);fly(n,.5);
  check(!n.free&&SV_PointContents(n.v.origin)===WATER,'Newer Game: a nail flies on underwater');
  const r=missile('progs/missile.mdl',w.above,[0,0,-300]);fly(r,.5);check(!r.free,'and so does a rocket');
- same(SV_FireQuench(null,[0,0,0]),false,'nothing to quench');
+ same(SV_FireQuench(null),false,'nothing to put out');SV_FireQuenchStep(null,new Float32Array(3));
 });
 
-Deno.test('the engine asks after each missile move, and stops when the fireball went out',()=>{
+Deno.test('the engine cuts the step before the move and asks after it',()=>{
  const src=readFileSync(new URL('../src/engine/server/sv_phys.js',import.meta.url),'utf8');
  const fn=src.slice(src.indexOf('export function SV_Physics_Toss'));
- const push=fn.indexOf('SV_PushEntity( ent, move )'),ask=fn.indexOf('if ( SV_FireQuench( ent, _toss_from ) )'),from=fn.indexOf('VectorCopy( ent.v.origin, _toss_from )');
- check(from>0&&from<push&&push<ask&&ask<fn.indexOf('trace.fraction === 1'),'origin kept before the move, quench asked right after it');
+ const cut=fn.indexOf('SV_FireQuenchStep( ent, move )'),push=fn.indexOf('SV_PushEntity( ent, move )'),ask=fn.indexOf('if ( SV_FireQuench( ent ) )');
+ check(cut>0&&cut<push&&push<ask&&ask<fn.indexOf('trace.fraction === 1'),'cut before the move, put out right after it');
 });

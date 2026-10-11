@@ -93,7 +93,7 @@ export const LAVABALL = Object.freeze( {
 } );
 
 const CONTENTS_SOLID = - 2;
-const LIQUID = Object.freeze( [ - 3, - 4 ] ); // CONTENTS_WATER, CONTENTS_SLIME
+const LIQUID = Object.freeze( [ - 3, - 4, - 9, - 10, - 11, - 12, - 13, - 14 ] ); // water, slime, and the currents (water)
 
 // ---------------------------------------------------------------------------
 // Shaders: the source's NOISE_GLSL, FIREBALL_FRAGMENT and PARTICLE_FRAGMENT, adapted to three's

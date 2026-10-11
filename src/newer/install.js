@@ -29,7 +29,7 @@ import { SV_MeleeSprayEnter } from './gameplay/sv_meleespray.js';
 import { SV_PinnedZombieSpawned } from './gameplay/sv_pinnedzombies.js';
 import { SV_BeginPortalTouch, SV_FinishPortalTouch, SV_PreparePortalTouch, SV_RestorePortalReceiver } from './gameplay/sv_portal.js';
 import { SV_PortalMoveEnd, SV_PortalMoveRead, SV_PortalMoveStart, SV_PortalMoveStepping } from './gameplay/sv_portalmotion.js';
-import { SV_FireQuench } from './gameplay/sv_firequench.js';
+import { SV_FireQuench, SV_FireQuenchStep } from './gameplay/sv_firequench.js';
 import { SV_ProneZombieEnter, SV_ProneZombieLeave, SV_ZombieProne } from './gameplay/sv_pronezombie.js';
 import { SV_QuadJumpBegin, SV_QuadJumpEnd, SV_QuadMovementScale } from './gameplay/sv_quadmovement.js';
 import { Rend_ParseRecord, Rend_ValidRecord, SV_RendVeilClientRecord, SV_RendVeilHolding, SV_RendVeilTouchBegin, SV_RendVeilTouchEnd } from './gameplay/sv_rendveil.js';
@@ -113,7 +113,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	SV_PinnedZombieSpawned,
 	SV_BeginPortalTouch, SV_FinishPortalTouch, SV_PreparePortalTouch, SV_RestorePortalReceiver,
 	SV_PortalMoveEnd, SV_PortalMoveRead, SV_PortalMoveStart, SV_PortalMoveStepping,
-	SV_FireQuench,
+	SV_FireQuench, SV_FireQuenchStep,
 	SV_ProneZombieEnter, SV_ProneZombieLeave, SV_ZombieProne,
 	SV_QuadJumpBegin, SV_QuadJumpEnd, SV_QuadMovementScale,
 	Rend_ParseRecord, Rend_ValidRecord, SV_RendVeilClientRecord, SV_RendVeilHolding, SV_RendVeilTouchBegin, SV_RendVeilTouchEnd,
