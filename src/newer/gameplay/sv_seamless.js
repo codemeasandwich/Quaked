@@ -187,6 +187,8 @@ function clearDistance( p, dir ) {
 }
 
 // the floor under a point (the first solid below it)
+const EXIT_FLOATING = 128; // Quake units above the floor below it: higher, a plane exit is not a doorway
+
 function floorBelow( p ) {
 
 	for ( let d = 0; d <= 480; d += 4 )
@@ -1223,6 +1225,12 @@ export function SV_SeamlessSetup() {
 			( exit.mins[ 1 ] + exit.maxs[ 1 ] ) * 0.5,
 			( exit.mins[ 2 ] + exit.maxs[ 2 ] ) * 0.5
 		];
+
+		// An exit floating far above the floor below it is not a doorway: end.bsp's deathmatch exit hangs 447 units over
+		// Shub's arena, and as a crossing its doorway, dropped to the floor and widened to the open arena, showed the
+		// start level across the wall behind Shub, and could not be walked through (card [END1]). The game keeps it. Every
+		// other id1 plane exit sits at most 39 units above its floor.
+		if ( exit.kind === 'plane' && exit.mins[ 2 ] - floorBelow( centre ) > EXIT_FLOATING ) continue;
 
 		const approach = R_ChooseApproach( exit, clearDistance );
 		const side = approach.side;

@@ -59,7 +59,7 @@ let registered=false;
 function endLevel(enhanced){
  if(!registered){const big=readFileSync(new URL('../resources/id1/pak0.pak',import.meta.url));pak.COM_AddPack(pak.COM_LoadPackFile('pak0r.pak',big.buffer.slice(big.byteOffset,big.byteOffset+big.length)));registered=true;}
  svs.maxclients=1;svs.clients=[new client_t()];SZ_Alloc(svs.clients[0].message,32768);cls.state=ca_disconnected;cls.demoplayback=false;
- vars.Cvar_SetValue('r_hdr',enhanced?1:0);vars.Cvar_SetValue('skill',1);R_AnimSetClassicPass(false);sv.active=false;SV_SpawnServer('end');
+ vars.Cvar_SetValue('r_hdr',enhanced?1:0);vars.Cvar_SetValue('skill',1);vars.Cvar_SetValue('sv_seamless',1);R_AnimSetClassicPass(false);sv.active=false;SV_SpawnServer('end');
  const p=svs.clients[0].edict;call(p,progs.pr_global_struct.SetNewParms);call(p,progs.pr_global_struct.ClientConnect);call(p,progs.pr_global_struct.PutClientInServer);
  svs.clients[0].active=true;svs.clients[0].spawned=true;return p;
 }
@@ -90,4 +90,12 @@ for(const enhanced of[false,true])Deno.test(`${enhanced?'Newer Game':'Classic'}:
  progs.pr_global_struct.self=progs.EDICT_TO_PROG(tele);progs.pr_global_struct.other=progs.EDICT_TO_PROG(p);progs.pr_global_struct.time=sv.time;PR_ExecuteProgram(tele.v.touch);
  SV_SetPlayer(p);SV_SetFrametime(.05);for(let f=0;f<6;f++){sv.time+=.05;progs.pr_global_struct.time=sv.time;SV_Physics();}
  check(before>1000&&(shub.free||shub.v.health<=0||shub.v.deadflag),`Shub-Niggurath is telefragged (health ${before} -> ${shub.free?'gone':shub.v.health})`);
+});
+
+Deno.test('Newer Game: the deathmatch exit floating over Shub\'s arena is not made a walk-through doorway (it showed the start level on the wall)',()=>{
+ endLevel(true);
+ const crossings=travel.SV_SeamlessCrossings();
+ const floating=crossings.filter(c=>c.exit.mins[2]>600);
+ same(floating.length,0,'no crossing for the exit 447 units above the floor');
+ check(crossings.some(c=>c.map==='start'),'the real exit to the start level (the slipgate window) is still a crossing');
 });
