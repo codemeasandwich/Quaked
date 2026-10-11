@@ -77,16 +77,27 @@ when the leading edge reaches its target the packet drains into it. Here:
   * **The stream.** It is one fixed ray, from the fang to the end of the spike's own flight.
     That end is sampled once at launch along the spike's direction: the player, or the first
     wall. The spike, launched about 11 units beside the fang, stays close to that ray and
-    meets it at the end. The ray is not re-aimed in flight, so four things all work on the
-    stream's own line:
-    * the stream's narrowing and break-up toward its end;
-    * the droplets riding it;
-    * the check that tells a reused entity slot from the stream's own spike;
-    * the matching of the splash.
+    meets it at the end. The ray is not re-aimed in flight, so the stream's narrowing and its
+    droplets keep to the stream's own line. Each stream also keeps the spike's own flight line,
+    from where it was first drawn along its direction. The check that tells a reused entity
+    slot from the stream's own spike, and the matching of a splash, measure against that line.
+    If the player dodges, the spike flies on past the estimated end: from then on the ray turns
+    onto the spike, as a ray without a Scrag does, at a small angle by then.
 
-    The first version re-aimed the ray at the spike every frame. The [SP2] review found that this
-    broke all four, so it was replaced.
-  * **Limits.** The fang is fixed at launch. The jaw moving during the 0.28 s the tail takes to
+    The first version re-aimed the ray at the spike every frame. The [SP2] reviews found that
+    broke the limit, the droplets, the reused-slot check and the splash match, and later that
+    a fixed ray alone lost a dodged spike past its end. Both were fixed and are tested with
+    QuakeC's launch geometry:
+    * the limit at the player;
+    * a 0.2 s stall;
+    * a dodge to the wall behind;
+    * a Scrag turned 60 to 90 degrees;
+    * a hit partway along the flight.
+  * **Limits.** When the Scrag has turned since it stored its launch points, its face is
+    further from QuakeC's launch point. At 90 degrees the drawn head is up to about 30 units
+    off the spike at the start, closing in as it flies. The jaw comes from the blended pose
+    only while pose smoothing is on and was drawn in the last 0.25 s. Otherwise it comes from
+    the frame's own pose. The fang is fixed at launch. The jaw moving during the 0.28 s the tail takes to
     leave it is not followed. A Scrag mesh with frame groups would use each group's first
     pose; id1's has none.
   * **Fallbacks.** A Scrag mesh with a different vertex count uses QuakeC's launch height on

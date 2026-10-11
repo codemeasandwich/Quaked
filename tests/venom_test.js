@@ -236,17 +236,30 @@ Deno.test( 'the spit leaves the Scrag\'s face: a fang beside its jaw in the fram
 Deno.test( 'the fang is on the jaw as drawn: halfway through r_anim.js\'s pose blend it is halfway between the two poses', async () => {
 
 	const { Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
+	const { r_lerpmodels } = await import( '../src/newer/render/r_anim.js' );
+	const { R_AnimSetNewer } = await import( '../src/newer/mode.js' );
+	R_AnimSetNewer( true ); // (as each Newer Game frame sets it: pose smoothing on)
 	const WIZARD = Mod_ForName( 'progs/wizard.mdl', true ), h = WIZARD.cache.data;
-	const env = setup(), S = [ 0, 0, 40 ];
-	// QuakeC changed the frame to magatt4 (32) 0.05 s ago; the blend from magatt3 (31) is half done
-	const scrag = { _entityIndex: 9, model: WIZARD, frame: 32, origin: Float32Array.from( S ), angles: Float32Array.of( 0, 0, 0 ),
-		_aliasLerp: { model: h, from: h.frames[ 31 ].firstpose, to: h.frames[ 32 ].firstpose, start: env.time.now + 1 / 60 - .05, interval: .1 } };
-	env.ents[ 9 ] = scrag; env.visible.push( scrag );
-	spike( env, 5, [ 22, 14, 70 ], [ 1, 0, 0 ] ); // (the Scrag's left: side -1)
-	env.frame();
-	const jet = venom.R_VenomSnapshot().jets.find( j => j.entity === 5 );
-	near( jet.origin[ 2 ], 40 + ( 23.7184 + 31.206 ) / 2, .02, 'the jaw height halfway between magatt3 and magatt4' );
-	near( jet.origin[ 0 ], 11.4602, .02, 'forward as the jaw' );
+	const jawZ = ( lerp, lerpmodels ) => {
+
+		const env = setup(), S = [ 0, 0, 40 ];
+		r_lerpmodels.value = lerpmodels;
+		// QuakeC changed the frame to magatt4 (32) 0.05 s ago; the blend from magatt3 (31) is half done
+		const scrag = { _entityIndex: 9, model: WIZARD, frame: 32, origin: Float32Array.from( S ), angles: Float32Array.of( 0, 0, 0 ),
+			_aliasLerp: { model: h, from: h.frames[ 31 ].firstpose, to: h.frames[ 32 ].firstpose, start: env.time.now + 1 / 60 - .05, interval: .1, lastTime: env.time.now + 1 / 60 - lerp } };
+		env.ents[ 9 ] = scrag; env.visible.push( scrag );
+		spike( env, 5, [ 22, 14, 70 ], [ 1, 0, 0 ] ); // (the Scrag's left: side -1)
+		env.frame();
+		const jet = venom.R_VenomSnapshot().jets.find( j => j.entity === 5 );
+		near( jet.origin[ 0 ], 11.4602, .02, 'forward as the jaw' );
+		return jet.origin[ 2 ] - 40;
+
+	};
+	near( jawZ( .016, 1 ), ( 23.7184 + 31.206 ) / 2, .02, 'the jaw height halfway between magatt3 and magatt4' );
+	// a blend not drawn for 0.25 s, or smoothing switched off, is not what is on screen: the frame's own pose
+	near( jawZ( .5, 1 ), 31.206, .02, 'a stale blend: magatt4 as drawn' );
+	near( jawZ( .016, 0 ), 31.206, .02, 'r_lerpmodels 0: magatt4 as drawn' );
+	r_lerpmodels.value = 1; R_AnimSetNewer( false );
 
 } );
 
@@ -298,6 +311,56 @@ Deno.test( 'with QuakeC\'s launch geometry the fang\'s stream still ends at the 
 		if ( SPEED * ( .27 + 1 / 72 + .15 ) > D - 40 ) continue; // (at or past the player: no wall to splash on there)
 		same( venom.R_VenomImpact( hit ), true, 'the splash is the venom\'s' );
 		check( venom.R_VenomSnapshot().jets.find( j => j.entity === q.spike.e._entityIndex )?.hitKnown, `D ${D} side ${side}: matched to its own stream` );
+
+	}
+
+} );
+
+Deno.test( 'a turned Scrag\'s spit that strikes something partway is matched to its own stream (the spike\'s own line, not the fang\'s ray)', async () => {
+
+	const { Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
+	const WIZARD = Mod_ForName( 'progs/wizard.mdl', true );
+	for ( const side of [ 1, - 1 ] ) {
+
+		const env = setup(), q = quakecSpit( env, side, [ - 300, 0, 40 ], 32, WIZARD );
+		q.scrag.angles[ 1 ] = 90 * side;
+		for ( let t = 0; t < .08; t += 1 / 60 ) { q.spike.at( t ); env.frame(); }
+		// it strikes something a fifth of the way (a monster's or a wall's edge), just ahead of where it was last drawn
+		const hit = Float32Array.from( [ 0, 1, 2 ].map( i => q.spike.e.origin[ i ] + q.dir[ i ] * 20 ) );
+		same( venom.R_VenomImpact( hit ), true, 'the venom\'s splash' );
+		check( venom.R_VenomSnapshot().jets.find( j => j.entity === q.spike.e._entityIndex )?.hitKnown, `side ${side}: matched to its own stream` );
+
+	}
+
+} );
+
+Deno.test( 'a dodged spit flies on past the player to the wall behind: one stream that stays on the spike, and its splash; also from a Scrag that has turned', async () => {
+
+	const { Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
+	const WIZARD = Mod_ForName( 'progs/wizard.mdl', true );
+	for ( const [ D, turn ] of [ [ 80, 0 ], [ 150, 0 ], [ 150, 60 ], [ 150, 90 ], [ 300, 90 ] ] ) for ( const side of [ 1, - 1 ] ) {
+
+		const env = setup(), q = quakecSpit( env, side, [ - D, 0, 40 ], 32, WIZARD );
+		q.scrag.angles[ 1 ] = turn; // (it turned after Wiz_StartFast stored the launch points)
+		const id = q.spike.e._entityIndex;
+		// flies past the player at (0, 0, 0) on to the wall at x = 1000
+		const hitT = ( 1000 - q.start[ 0 ] ) / ( q.dir[ 0 ] * SPEED ) - 1 / 72;
+		let t = 0;
+		for ( ; t + 1 / 60 < hitT - .02; t += 1 / 60 ) {
+
+			q.spike.at( t ); env.frame();
+			const mine = venom.R_VenomSnapshot().jets.filter( j => j.entity === id );
+			same( mine.length, 1, `D ${D} turn ${turn} side ${side}: one stream at ${t.toFixed( 2 )} s` );
+			// the drawn stream's leading edge is on the spike
+			const jet = mine[ 0 ], head = [ 0, 1, 2 ].map( i => jet.origin[ i ] + jet.dir[ i ] * jet.head );
+			// (within the fang's offset: about 11 units; when the Scrag has turned since it stored its launch points, the
+			// face it spits from is further from where QuakeC launches: up to about 30 units at the start for 90 degrees)
+			check( Math.hypot( ...[ 0, 1, 2 ].map( i => head[ i ] - q.spike.e.origin[ i ] ) ) < ( turn ? 34 : 16 ), `D ${D} turn ${turn} side ${side}: the stream's head is on the spike at ${t.toFixed( 2 )} s` );
+
+		}
+		const hit = Float32Array.from( [ 0, 1, 2 ].map( i => q.start[ i ] + q.dir[ i ] * ( 1000 - q.start[ 0 ] ) / q.dir[ 0 ] ) );
+		same( venom.R_VenomImpact( hit ), true, 'the splash is the venom\'s' );
+		check( venom.R_VenomSnapshot().jets.find( j => j.entity === id )?.hitKnown, `D ${D} turn ${turn} side ${side}: the wall splash is matched to its stream` );
 
 	}
 
