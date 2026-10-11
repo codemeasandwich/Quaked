@@ -59,10 +59,23 @@ when the leading edge reaches its target the packet drains into it. Here:
 * **Leading edge = the native entity.** Each frame `R_VenomFrame` (called from `R_RenderView` before
   the entities are drawn) finds the `w_spike` entities in `cl_visedicts` and puts each stream's
   leading edge at its entity's interpolated origin, along the ray of its actual motion.
-* **The mouth.** The client first sees a missile a server frame or two after launch (about 60 units
-  out). The ray is taken back to the Scrag that spat it: the nearest `progs/wizard.mdl` behind the
-  spike within 48 units of the ray, at its mouth 14 units in front of it (QuakeC's launch point). With
-  no Scrag found (it is out of view) the ray starts where the spike was first drawn.
+* **The mouth (card [SP2]).** The owner asked for the spit to come from the Scrag's face.
+  * **The problem.** The client first sees a missile a server frame or two after launch, about
+    60 units out. QuakeC launches it beside the Scrag's head, not from its mouth:
+    `origin + '0 0 30' + v_forward*14 ± v_right*14`.
+  * **The Scrag.** The stream belongs to the nearest `progs/wizard.mdl` behind the spike within
+    48 units of its ray.
+  * **The fang.** Its stream starts at a fang on that Scrag's face. The source's jets leave its
+    creature's two fang sockets, 0.13 m either side of the mouth (`twinPlan` `origins`). Here
+    the mouth is the jaw corner of id1's Scrag model, vertex 52 on its centre line, read from
+    the frame being drawn. For example, it sits 11.5 units forward and 31 up in `magatt4`, the
+    frame of the first spike.
+  * **Placement.** The mouth is turned with the Scrag as the renderer turns it. The fang is
+    `VENOM_MOUTH.fang` (0.13 m, 3.5 units) to the side the spike was launched from.
+  * **The stream.** It runs from the fang to the drawn spike and then follows it.
+  * **Fallbacks.** A Scrag mesh with a different vertex count uses QuakeC's launch height on
+    the centre line (14 forward, 30 up). With no Scrag in view, the ray starts where the spike
+    was first drawn.
 * **Trailing edge.** `duration × speed` (0.28 s of flight, 168 units) behind the entity while it flies.
 * **Impact.** `TE_WIZSPIKE` arrives in the same server message that removes the spike. It is matched to
   the stream whose ray passes within 16 units of the point (no more than 32 units behind its drawn

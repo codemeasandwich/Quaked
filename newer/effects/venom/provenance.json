@@ -27,6 +27,7 @@
   },
   "not_taken": {
     "startLab()": "the playground (cobra, target board, floor grid, UI, chat commands, camera) is the source's demo scene, not the effect",
+    "twinPlan origins / fang sockets": "since card [SP2] each stream starts at a fang on the Scrag's face: the jaw corner of id1 progs/wizard.mdl (vertex 52, the frame drawn) with the source demo's fang sockets 0.13 m either side, on the side the native spike left from",
     "twinPlan lanes / simultaneous pair": "the native Scrag already fires two projectiles from either side of its mouth at two points either side of the player; each native projectile is one lane, and their 0.5 s spacing is gameplay timing, kept",
     "collisionTest / onLaunch / onImpact": "collisions, damage and events stay the server's (QuakeC spike_touch, TE_WIZSPIKE)",
     "tint natural, quality low": "not used"

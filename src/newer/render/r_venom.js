@@ -504,13 +504,43 @@ function setBasis( j ) {
 
 }
 
-// The client first sees a missile a server frame or two after QuakeC launched it (60 units or so at 600 units/s), so
-// the ray is taken back to the Scrag that spat it: the nearest progs/wizard.mdl behind the spike within SCRAG_REACH of
-// the ray. The spike leaves 14 units in front of the Scrag (Wiz_StartFast: v_forward * 14), so the stream starts there,
-// on the ray, as the source's leaves the fang. Returns how far back along the ray that is (0 with no Scrag found).
-function mouthBack( ox, oy, oz, dx, dy, dz, entities, count ) {
+// The client first sees a missile a server frame or two after QuakeC launched it (60 units or so at 600 units/s), and
+// QuakeC launches it beside the Scrag's head (Wiz_StartFast: origin + '0 0 30' + v_forward * 14 +- v_right * 14), not
+// from its mouth. The source's jets leave the creature's fangs (its demo's fang sockets, 0.13 m either side of the
+// mouth: twinPlan `origins`), and the owner asked for the spit to come from the Scrag's face (card [SP2]). So the
+// stream starts at one of two fangs on the Scrag's mouth: the jaw corner of its model (VENOM_MOUTH: id1 wizard.mdl
+// vertex 52, on the centre line, in the frame being drawn), turned with the Scrag, and VENOM_MOUTH.fang either side of
+// it, on the side the spike was launched from. The Scrag is the nearest progs/wizard.mdl behind the spike within
+// SCRAG_REACH of its ray. Writes the fang point into `out` and returns true, or false with no Scrag found.
+export const VENOM_MOUTH = Object.freeze( {
+	vertex: 52, verts: 80,      // the jaw corner of id1's progs/wizard.mdl (80 vertices); another mesh uses `fallback`
+	fallback: Object.freeze( [ 14, 0, 30 ] ), // model space (forward, left, up): QuakeC's launch point, on the centre line
+	fang: .13 * VENOM.unit      // Quake units: the source's fang sockets, 0.13 m either side of the mouth
+} );
+function mouthPoint( e, side, out ) {
 
-	let best = 0, bestOff = SCRAG_REACH;
+	// model space: the mouth vertex of the drawn frame (Quake's alias trivertx: v * scale + scale_origin)
+	const h = e.model.cache?.data, f = h?.frames?.[ e.frame | 0 ], pose = f && h.poseverts?.[ f.firstpose ];
+	let mx, my, mz;
+	if ( h?.numverts === VENOM_MOUTH.verts && pose?.[ VENOM_MOUTH.vertex ]?.v && h.scale && h.scale_origin ) {
+
+		const v = pose[ VENOM_MOUTH.vertex ].v;
+		mx = v[ 0 ] * h.scale[ 0 ] + h.scale_origin[ 0 ]; my = v[ 1 ] * h.scale[ 1 ] + h.scale_origin[ 1 ]; mz = v[ 2 ] * h.scale[ 2 ] + h.scale_origin[ 2 ];
+
+	} else { mx = VENOM_MOUTH.fallback[ 0 ]; my = VENOM_MOUTH.fallback[ 1 ]; mz = VENOM_MOUTH.fallback[ 2 ]; }
+	my -= side * VENOM_MOUTH.fang; // (model y is left; `side` +1 is the Scrag's right)
+	// to the world as the renderer turns an alias model: roll about x, then -pitch about y, then yaw about z
+	const a = e.angles, roll = ( a?.[ 2 ] ?? 0 ) * Math.PI / 180, pitch = - ( a?.[ 0 ] ?? 0 ) * Math.PI / 180, yaw = ( a?.[ 1 ] ?? 0 ) * Math.PI / 180;
+	let y1 = my * Math.cos( roll ) - mz * Math.sin( roll ), z1 = my * Math.sin( roll ) + mz * Math.cos( roll );
+	const x2 = mx * Math.cos( pitch ) + z1 * Math.sin( pitch ), z2 = - mx * Math.sin( pitch ) + z1 * Math.cos( pitch );
+	out[ 0 ] = e.origin[ 0 ] + x2 * Math.cos( yaw ) - y1 * Math.sin( yaw );
+	out[ 1 ] = e.origin[ 1 ] + x2 * Math.sin( yaw ) + y1 * Math.cos( yaw );
+	out[ 2 ] = e.origin[ 2 ] + z2;
+
+}
+function scragMouth( ox, oy, oz, dx, dy, dz, entities, count, out ) {
+
+	let best = null, bestOff = SCRAG_REACH, bestSide = 1;
 	for ( let i = 0; i < count; i ++ ) {
 
 		const e = entities[ i ];
@@ -519,13 +549,23 @@ function mouthBack( ox, oy, oz, dx, dy, dz, entities, count ) {
 		const along = vx * dx + vy * dy + vz * dz;
 		if ( along > 0 || along < - SCRAG_BACK ) continue;
 		const off = Math.hypot( vx - dx * along, vy - dy * along, vz - dz * along );
-		if ( off < bestOff ) { bestOff = off; best = Math.max( 0, - along - 14 ); }
+		if ( off < bestOff ) {
+
+			bestOff = off; best = e;
+			// the side the spike left from: where its ray passes the Scrag, against the Scrag's right
+			const yaw = ( e.angles?.[ 1 ] ?? 0 ) * Math.PI / 180, rx = Math.sin( yaw ), ry = - Math.cos( yaw );
+			bestSide = ( dx * along - vx ) * rx + ( dy * along - vy ) * ry >= 0 ? 1 : - 1;
+
+		}
 
 	}
-	return best;
+	if ( best === null ) return false;
+	mouthPoint( best, bestSide, out );
+	return true;
 
 }
 const SCRAG_MODEL = 'progs/wizard.mdl', SCRAG_MOUTH = 30, SCRAG_REACH = 48, SCRAG_BACK = 200; // Quake units
+const _mouth = [ 0, 0, 0 ];
 
 function launch( j, ent, time, eye, model, entities, count ) {
 
@@ -535,8 +575,15 @@ function launch( j, ent, time, eye, model, entities, count ) {
 	// until it has moved, the direction is the entity's angles (QuakeC vectoangles of its velocity: pitch up)
 	const pitch = ( a?.[ 0 ] ?? 0 ) * Math.PI / 180, yaw = ( a?.[ 1 ] ?? 0 ) * Math.PI / 180;
 	jetDir[ o ] = Math.cos( pitch ) * Math.cos( yaw ); jetDir[ o + 1 ] = Math.cos( pitch ) * Math.sin( yaw ); jetDir[ o + 2 ] = Math.sin( pitch );
-	const back = mouthBack( jetOrigin[ o ], jetOrigin[ o + 1 ], jetOrigin[ o + 2 ], jetDir[ o ], jetDir[ o + 1 ], jetDir[ o + 2 ], entities, count );
-	jetOrigin[ o ] -= jetDir[ o ] * back; jetOrigin[ o + 1 ] -= jetDir[ o + 1 ] * back; jetOrigin[ o + 2 ] -= jetDir[ o + 2 ] * back;
+	let back = 0;
+	if ( scragMouth( jetOrigin[ o ], jetOrigin[ o + 1 ], jetOrigin[ o + 2 ], jetDir[ o ], jetDir[ o + 1 ], jetDir[ o + 2 ], entities, count, _mouth ) ) {
+
+		// the ray runs from the fang to where the spike is drawn
+		const vx = ent.origin[ 0 ] - _mouth[ 0 ], vy = ent.origin[ 1 ] - _mouth[ 1 ], vz = ent.origin[ 2 ] - _mouth[ 2 ], l = Math.hypot( vx, vy, vz );
+		jetOrigin[ o ] = _mouth[ 0 ]; jetOrigin[ o + 1 ] = _mouth[ 1 ]; jetOrigin[ o + 2 ] = _mouth[ 2 ];
+		if ( l > 1e-3 ) { back = l; jetDir[ o ] = vx / l; jetDir[ o + 1 ] = vy / l; jetDir[ o + 2 ] = vz / l; }
+
+	}
 	setBasis( j );
 	// (the leading edge is where the entity is; the stream has been flying since it left the mouth)
 	jetHead[ j ] = back / VENOM.unit; jetTail[ j ] = 0; jetBirth[ j ] = time - back / ( VENOM.speed * VENOM.unit ); jetSeed[ j ] = rand( 0, 100 );
