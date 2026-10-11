@@ -154,7 +154,7 @@ value was chosen by eye against the source's frames.
 * **Unit tests.** `node tools/run_tests.mjs tests/lavaballs_test.js`: 13 tests. Four of them
   are [FB2]'s: one fireball per Knight shot, and the gate; the tracer replaced, kept in
   Classic and in the split demo's classic half; the wall impact drawn once at the server's
-  point, with the native spray in Classic; the `cl_main.js` and `cl_tent.js` call sites. The
+  point, facing back along the Knight's shot even with a lava ball nearer, or up for an unseen shot, with the native spray in Classic and for a shot a full pool left native; the `cl_main.js` and `cl_tent.js` call sites. The
   shareware pak has no `k_spike.mdl`, so the unit tests use its name alone. The 13 tests
   cover:
   * the source equivalence of the shaders and constants;
@@ -201,6 +201,9 @@ value was chosen by eye against the source's frames.
 * A new ball's direction is known only once it has moved, which is up to one server update
   (about 0.1 s). Until then it is drawn, still small (it grows in from 0.3), along its last
   direction, or upright, and its trail starts once the direction is known.
+* With the pool full, a Death Knight shot that finds no slot keeps its native model and tracer,
+  and its wall hit keeps the native spray: `R_LavaBallImpact` declines when no held shot is
+  near the point and no slot is free.
 * With one pool slot left and two new balls in the same client frame, both lose their native
   trail for that frame, and the second, which finds no slot, shows its native model.
 * With `r_drawentities 0` (or an overflowing visible-entity list) a lava ball has neither

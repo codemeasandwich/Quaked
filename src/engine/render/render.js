@@ -291,7 +291,8 @@ export function R_ParseParticleEffect() {
 
 /**
  * Spawns a native particle spray; a thin forwarder to r_part.js R_RunParticleEffect for cl_tent.js temp entities
- * (spikes, gunshots, wizard and knight spikes).
+ * (spikes, gunshots and the like; the wizard and knight spikes go through `R_WizardSpikeImpact` and
+ * `R_KnightSpikeImpact`).
  *
  * @param {Float32Array} org centre, Quake units, world space
  * @param {Float32Array} dir drift direction; particle velocity is `dir * 15` Quake units per second
@@ -308,8 +309,8 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
 
 /**
  * Spawns a missile's trail for one frame's movement; cl_main.js calls it per entity per frame from the model's trail
- * flags. In Newer Game a lava ball's rocket trail is not spawned while the supplied fireball draws that ball
- * (r_lavaballs.js, which draws its own trail). Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by distance along
+ * flags. In Newer Game a lava ball's rocket trail, and a Death Knight shot's tracer (type 5), is not spawned while the
+ * supplied fireball draws that ball or shot (r_lavaballs.js, which draws its own trail). Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by distance along
  * each frame's segment; `key` is the entity number, so every missile carries its own spacing (a call without one
  * keeps the native trail). The Scrag's spike's green tracer (type 3 with a key) is left out in Newer Game while
  * r_venom.js draws that spike as its venom stream. Everything else, and Classic, keeps the native trail. In the title demo's split view the

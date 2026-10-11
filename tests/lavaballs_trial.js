@@ -3,9 +3,11 @@ import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (s
 // (r_lavaballs.js) on Quake's own flying lava balls next to the native lava ball model. The game's
 // own `pause` freezes cl.time, so a paused frame holds a ball mid-flight. Since card [FB2] it also
 // photographs a Death Knight's fan (progs/k_spike.mdl shots, the registered game: open the page with
-// ?game=quake): `provoke` runs the knight's own th_missile at the player, as its AI does. Observation only: the player
-// is parked with the engine's own noclip-style flags, as tests/torchfire_trial.js does; the balls are
-// the level's own (misc_fireball, Chthon). No gameplay is altered.
+// ?game=quake): `stand` moves one of the level's knights into view and `provoke` runs its own
+// th_missile at the player, as its AI does. Observation only: the player is parked with the engine's
+// own noclip-style flags, as tests/torchfire_trial.js does; the balls are the level's own
+// (misc_fireball, Chthon). The game code is not altered; only the trial's own helpers move a monster
+// and start its attack.
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 async function until(test,label,ms=240000){const end=performance.now()+ms;while(!test()){if(performance.now()>end)throw Error(label+' exceeded its deadline');await sleep(50);}}
 await import('../main.js');await until(()=>window.Cbuf_AddText&&window.renderer,'native initialization');

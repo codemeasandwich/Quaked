@@ -392,11 +392,11 @@ export function R_LavaBall( e ) {
 	if ( s < 0 ) {
 
 		if ( free < 0 ) return false;
-		s = free; slotKey[ s ] = key; slotHasDir[ s ] = 0; slotBorn[ s ] = - 1; slotKnight[ s ] = e.model.name === LAVABALL.knight ? 1 : 0;
+		s = free; slotKey[ s ] = key; slotHasDir[ s ] = 0; slotBorn[ s ] = - 1;
 		slotDir[ s * 3 ] = slotDir[ s * 3 + 1 ] = slotDir[ s * 3 + 2 ] = 0; // (no direction of another ball's)
 
 	}
-	slotSeen[ s ] = frame;
+	slotSeen[ s ] = frame; slotKnight[ s ] = e.model.name === LAVABALL.knight ? 1 : 0; // (each registration: a reused number may change model)
 	slotCur[ s * 3 ] = e.origin[ 0 ]; slotCur[ s * 3 + 1 ] = e.origin[ 1 ]; slotCur[ s * 3 + 2 ] = e.origin[ 2 ];
 	return true;
 
@@ -406,11 +406,12 @@ export function R_LavaBall( e ) {
  * The picture of a Death Knight's shot hitting a wall (cl_tent.js TE_KNIGHTSPIKE, through render.js
  * R_KnightSpikeImpact; the caller plays the sound): the source's `_impact` at the server's point, its normal against
  * the direction of the held shot nearest that point (within `LAVABALL.knightNear`), or up when none is held (the shot
- * was never in view). Allocates nothing.
+ * was never in view). When no held shot matches and the pool is full, the shot was left native (its model and tracer
+ * were drawn), so its spray stays native too. Allocates nothing.
  *
  * @param {ArrayLike<number>} org the impact point, Quake units, world space
  * @returns {boolean} true when the source's impact was drawn and the native particle spray must not be; false
- * (native spray) for Classic, the classic pass, r_lavaballs 0 and no scene
+ * (native spray) for Classic, the classic pass, r_lavaballs 0, no scene, and a full pool with no held shot near
  */
 export function R_LavaBallImpact( org ) {
 
@@ -424,6 +425,7 @@ export function R_LavaBallImpact( org ) {
 
 	}
 	if ( best >= 0 ) impact( org[ 0 ], org[ 1 ], org[ 2 ], - slotDir[ best * 3 ], - slotDir[ best * 3 + 1 ], - slotDir[ best * 3 + 2 ] );
+	else if ( slotOf( - 1 ) < 0 ) return false;
 	else impact( org[ 0 ], org[ 1 ], org[ 2 ], 0, 0, 1 );
 	held = true;
 	return true;
@@ -589,7 +591,7 @@ export function R_LavaBallsClear() {
 /**
  * Every frame, after the entity list has been drawn (so the registry is this frame's): moves each registered ball's
  * picture to its origin and turns it along its motion, emits its trail, gives a ball that went against something solid
- * the source's impact and forgets every ball not registered this frame, steps the particles and rings, and writes all
+ * the source's impact (not a Death Knight shot: its wall hit is `R_LavaBallImpact`) and forgets every ball not registered this frame, steps the particles and rings, and writes all
  * of it into the preallocated instance buffers. Builds the layers and adds them to the scene on first use; hides them
  * when there is nothing to draw. Outside Newer Game everything is dropped. Allocates nothing per frame after the build.
  *

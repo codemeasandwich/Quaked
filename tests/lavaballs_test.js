@@ -349,10 +349,10 @@ Deno.test( 'a Death Knight shot\'s native tracer gives way to the fireball\'s ow
 
 Deno.test( 'a Death Knight shot hitting a wall ends in the source\'s impact at the server\'s point, once; Classic keeps the native spray', () => {
 
-	const env = setup();
+	let env = setup();
 	const e = ball( 320, [ 900, 0, 100 ], KSPIKE );
 	for ( let k = 0; k < 6; k ++ ) { frame( env, [ e ] ); e.origin[ 0 ] += 300 * .02; }
-	frame( env, [ e ] );
+	e.origin[ 0 ] = 996; frame( env, [ e ] ); // (close enough that the lava ball's contents probe would find the wall)
 	const glowBefore = lb.R_LavaBallsSnapshot().glow;
 	// the server removes the shot and sends TE_KNIGHTSPIKE at the wall (x = 1000) in the same message
 	let took;
@@ -365,8 +365,27 @@ Deno.test( 'a Death Knight shot hitting a wall ends in the source\'s impact at t
 	const R = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aCenterRadius' ).array, N = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array;
 	near( R[ 0 ], 1000, 1e-3, 'the ring at the server\'s point' ); near( N[ 0 ], - 1, 1e-5, 'facing back along the shot (the source\'s fallback normal)' );
 	// a hit with no shot in view: the impact still, facing up
-	setup();
+	env = setup();
 	same( R_KnightSpikeImpact( Float32Array.of( 0, 0, 0 ) ), true, 'an unseen shot\'s hit is the source\'s impact too' );
+	frame( env, [] );
+	near( layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array[ 2 ], 1, 1e-6, 'facing up' );
+	// a lava ball nearer the point than the Knight's shot: the shot's direction is the one taken
+	env = setup();
+	const shot = ball( 330, [ 400, 0, 100 ], KSPIKE ), lava = ball( 331, [ 470, 0, 74 ] );
+	for ( let k = 0; k < 6; k ++ ) { frame( env, [ shot, lava ] ); shot.origin[ 0 ] += 6; lava.origin[ 2 ] += 6; }
+	R_KnightSpikeImpact( Float32Array.of( 470, 0, 100 ) );
+	frame( env, [ lava ] );
+	const NA = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array;
+	near( NA[ 0 ], - 1, 1e-5, 'the ring faces back along the Knight shot (-x), not the lava ball (up)' ); near( NA[ 2 ], 0, 1e-5, 'no vertical part' );
+	// the pool full with lava balls: a Knight shot left native ends in the native spray
+	env = setup();
+	lb.R_LavaBallsBegin();
+	for ( let k = 0; k < lb.LAVABALL.max; k ++ ) lb.R_LavaBall( ball( 400 + k, [ k * 10, 500, 100 ] ) );
+	const left = ball( 999, [ 0, 0, 100 ], KSPIKE );
+	check( ! lb.R_LavaBall( left ) && ! lb.R_LavaBallTakes( KSPIKE, 999 ), 'full pool: the shot keeps its native model and tracer' );
+	const spray = particles( env, () => { took = R_KnightSpikeImpact( Float32Array.of( 0, 0, 0 ) ); } );
+	same( took, false, 'full pool: the native spray' ); check( spray.length === 1 && ! spray[ 0 ].classicOnly, 'the ordinary native spray' );
+	lb.R_LavaBallsClear();
 	// Classic: the native spray, reported
 	newer( false );
 	const classic = particles( env, () => { took = R_KnightSpikeImpact( Float32Array.of( 0, 0, 0 ) ); } );
