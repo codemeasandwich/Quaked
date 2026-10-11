@@ -433,10 +433,10 @@ they always did. It re-exports the same 40 public names, so none of its importer
 | `gl_rsurf_state.js` | 41 | the world's two groups (`worldState.group`, `worldState.renderGroup`) and `R_EnsureWorldGroup` |
 | `gl_rsurf_lightmaps.js` | 879 | the atlases: allocation, `R_BuildLightMap` with the styles and dynamic lights, the blend, the uploads; the surface polygons (`BuildSurfaceDisplayList`); the Classic pass's grayscale copies |
 | `gl_rsurf_materials.js` | 397 | the lit material, texture animation, a polygon's triangles alone or merged by material |
-| `gl_rsurf_liquids.js` | 830 | liquid materials and meshes, the turbulent warp, clear water's light, the sky's two layers |
+| `gl_rsurf_liquids.js` | 833 | liquid materials and meshes, the turbulent warp, clear water's light, the sky's two layers |
 | `gl_rsurf_batches.js` | 657 | the world's batched meshes, leaf marking (`R_MarkLeaves`), their visibility, the demon relief, the arch and the sun's occluder |
 | `gl_rsurf_world.js` | 731 | the BSP walk, the texture chains, a surface's own drawing, the lightmaps that change under styles and lights |
-| `gl_rsurf_brush.js` | 543 | brush entities: each a group of meshes kept on its entity, with the demon relief on its demon surfaces and its liquid and teleporter faces |
+| `gl_rsurf_brush.js` | 545 | brush entities: each a group of meshes kept on its entity, with the demon relief on its demon surfaces and its liquid and teleporter faces |
 
 * **Shared state.** The world's group and the group the surface renderers add to were two variables written from
   several places; they are `worldState`, and the group is made in one place (`R_EnsureWorldGroup`, before in two).
