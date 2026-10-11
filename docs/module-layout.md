@@ -532,7 +532,7 @@ exports the state's setters and `menuOpeners` beside them.
 
 ## [44k]: `gl_model.js` split by format (debt D3)
 
-`src/engine/render/gl_model.js` was 3,396 lines holding every loader. It is now 515 lines: `Mod_Init`, `Mod_ForName`,
+`src/engine/render/gl_model.js` was 3,396 lines holding every loader. It is now 519 lines: `Mod_Init`, `Mod_ForName`,
 `Mod_LoadModel` (which picks the loader by the file's first four bytes), the cache, the PVS and leaf lookups and the
 preview load. It re-exports the same 92 public names (and the two sky textures' setters), so none of its importers,
 the room server among them, changed.
@@ -558,9 +558,12 @@ the room server among them, changed.
 * **Proof that maps and models load identically:** `tests/model_load_digest_test.js` loads every model of the
   shareware pak through `Mod_ForName` (its maps with their inline models, the alias models and the sprites: 699) and
   serialises each whole: every own property, objects numbered as first met (so the tree's shared and parent links
-  count), typed arrays and texture pixels by their bytes, three.js `uuid` and `version` left out. It prints one digest.
-  It is f8f766d0… on the commit before the split (5d9630d8), the same in two runs, and the same after every step.
-  Changing a map's frame count or an alias model's flags changes it.
+  count), typed arrays and texture pixels by their bytes, three.js `uuid` and `version` left out. A map and its inline
+  models are digested as soon as it loads (the next map writes over the shared `*1`, `*2` ... entries); the alias models
+  and sprites once all are loaded. It prints one digest: 388fdfc6… on the loader before the split (5d9630d8) and after
+  the split, the same in two runs; every step was also checked with the first version of the test (f8f766d0…, which
+  digested the inline models only as the last map left them). Changing a map's frame count or an alias model's flags
+  changes it.
 * **A test for the parts**, through their own interfaces: `gl_model_common_test` (the table, the readers, the
   radius) and `gl_model_loaders_test` (E1M1's lumps, hulls and inline models and a refused version; the player's
   frames; an explosion's frames). Breaking `readString` or a sprite's frame count fails them. The model suites, the

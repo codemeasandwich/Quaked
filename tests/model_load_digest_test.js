@@ -2,7 +2,8 @@
 // models identically. Every model in the shareware pak (its maps with their inline models, the alias models and the
 // sprites) is loaded through Mod_ForName and serialised whole: every own property, nested objects in the order first
 // met (each object once; later meetings name it by number, so the BSP tree's shared and parent links count), every
-// typed array's bytes and every texture's pixels. Random ids (three.js `uuid`) and three.js `version` counters are left
+// typed array's bytes and every texture's pixels. A map and its inline models are digested as soon as it loads (the
+// next map writes over the shared *1, *2 ... entries); the alias models and sprites once everything is loaded. Random ids (three.js `uuid`) and three.js `version` counters are left
 // out. The digest of all is printed (and each model's with MODEL_DIGEST_LIST=1); the test checks the set loads. Run it
 // on the commit before the split and after each step: the printed digests must be equal (two runs on one commit are).
 import { readFileSync } from 'node:fs';
@@ -39,14 +40,17 @@ function digest( root ) {
 function loadAll() {
 	model.Mod_Init();
 	const names = [ ...archive.files.map( f => f.name ) ].filter( n => /^(maps\/[^/]+\.bsp|progs\/[^/]+\.(mdl|spr|bsp))$/.test( n ) ).sort();
-	const loaded = [];
+	const out = [], later = [];
 	for ( const name of names ) {
 		const m = model.Mod_ForName( name, true );
-		loaded.push( [ name, m ] );
-		if ( name.startsWith( 'maps/' ) ) for ( let i = 1; i < ( m.numsubmodels || 0 ); i ++ ) loaded.push( [ name + ' *' + i, model.Mod_ForName( '*' + i, true ) ] );
+		if ( name.startsWith( 'maps/' ) ) {
+			// a map and its inline models are digested at once: the next map's load writes over the shared *1, *2 ... entries
+			out.push( [ name, digest( m ) ] );
+			for ( let i = 1; i < ( m.numsubmodels || 0 ); i ++ ) out.push( [ name + ' *' + i, digest( model.Mod_ForName( '*' + i, true ) ) ] );
+		} else later.push( [ name, m ] );
 	}
-	// digested once everything is loaded: a cached alias model is the same object every later load sees
-	return loaded.map( ( [ n, m ] ) => [ n, digest( m ) ] );
+	// the alias models and sprites once everything is loaded: a cached one is the same object every later load sees
+	return [ ...out, ...later.map( ( [ n, m ] ) => [ n, digest( m ) ] ) ];
 }
 
 Deno.test( 'every shareware model loads; the digest of all of them is printed for the split', () => {
