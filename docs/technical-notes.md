@@ -75,6 +75,8 @@ Torches and fire pits get the supplied flame as well: a living, noise-eroded fla
 
 Shotgun and super shotgun blasts (and the soldiers' shotguns) show the supplied pellets in single-player Newer Game: small glowing streaks, flying at twice the supplied speed from the gun's muzzle along the very rays the game traced, and the shot's damage, blood and puffs arrive when the pellets do, like a nail or a rocket landing (`sv_shotdelay 0` keeps the instant hitscan). In air each barrel also leaves a few tiny wisps of muzzle smoke that drift up a short way; under water the pellets instead slow, leave a wake of small rising bubbles, and a few bubbles escape the muzzle. Ammunition, spread and firing cadence are untouched; Classic Quake, demos, remote and multiplayer games are unchanged, and `r_shotgunfx 0` turns the picture off. See `docs/shotgun-pellets-2026-10-08.md`.
 
+Every laser shot (the Enforcer's and the laser traps', `progs/laser.mdl`) is drawn in Newer Game as one supplied "STASIS 02" plasma bolt at the owner's miniature scale 0.24, travelling with the game's own projectile, with the supplied spark-and-ring impact where a laser strikes a wall in place of the gunshot puff. Speed, damage, collision, sounds and the dim light are the game's; Classic Quake is unchanged, and `r_stasisbolt 0` turns the picture off. See `docs/laser-stasis-bolt-2026-10-11.md`.
+
 The held super nailgun's barrels no longer stop dead when you let go: they keep turning and slow smoothly to a stop, and start again from where they are. See `docs/super-nailgun-coast-2026-10-08.md`.
 
 ### Lens drops, lava glow and level changes

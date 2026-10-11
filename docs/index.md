@@ -141,6 +141,7 @@ Lighting, shadows, water, lava, glass and the fire and explosion effects.
 - [Bubbled stained glass — base game and resource expansions — 2026-10-05](glass-materials-2026-10-05.md)
 - [Height-map shadows and rock-wall contrast — 2026-10-03](height-map-shadows-2026-10-03.md)
 - [Ripples where shots cross water and hit portals](impact-ripples-2026-10-09.md)
+- [Laser shots: the supplied "STASIS 02" bolt](laser-stasis-bolt-2026-10-11.md)
 - [Stronger shafts and local lava illumination](lava-and-shafts-2026-10-03.md)
 - [Coloured-lighting map compatibility — 8 October 2026](lighting-map-compatibility.md)
 - [Lighting performance investigation](lighting-performance-2026-10-01.md)
