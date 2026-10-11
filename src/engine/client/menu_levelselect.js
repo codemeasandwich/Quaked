@@ -278,8 +278,9 @@ function M_LevelSelect_Start() {
  * `M_Keydown` on Level Select. ESC returns to single player; Up and Down move the cursor over the three option rows
  * and the levels, wrapping; Left and Right change the row under the cursor (toggle Newer / New Game, step `skill`
  * 0..3 with `Cvar_SetValue`, step the episode). Enter does the same as Right on an option row and starts the level on
- * a level row: `disconnect` if a server runs, `maxplayers 1`, `r_hdr 1` and the Newer defaults or `r_hdr 0`, then
- * `map <name>`, with key_dest `key_game`.
+ * a level row (`M_LevelSelect_Start`): the enter sound, key_dest `key_game`, a pointer-lock request, `disconnect` if a
+ * server runs, `maxplayers 1`, `r_hdr 1` and the Newer defaults or `r_hdr 0`, the title demo's split released
+ * (`R_DemoSplitRelease`), then `map <name>`.
  *
  * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
  */

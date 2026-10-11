@@ -13,7 +13,7 @@
  * `_Draw_Character`, `_Draw_WithAlpha`, `_Draw_String`, `_Draw_TransPicTranslate`, `_Draw_SubPic`,
  * `_SCR_ModalMessage`.
  *
- * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
+ * Errors: throws at 1 place.
  *
  * Each state field has one writer, its setter; `menuOpeners` is filled by the facade (menu.js) as it loads.
  */
@@ -114,7 +114,11 @@ export function set_m_save_demonum( value ) { m_save_demonum = value; }
 
 // The screens the main menu opens that live in later families (level select, multiplayer, options): filled by the
 // facade (menu.js) as it loads, so the main family does not import the families that return to it.
-export const menuOpeners = { levelSelect: null, multiplayerChoice: null, options: null };
+// Until then each says what is missing (a test or tool that loads a family without menu.js).
+const unfilled = name => () => { throw new Error( 'menuOpeners.' + name + ': load menu.js first, which fills the openers' ); };
+export const menuOpeners = {
+	levelSelect: unfilled( 'levelSelect' ), multiplayerChoice: unfilled( 'multiplayerChoice' ), options: unfilled( 'options' )
+};
 
 // WT_QueryRooms and WT_CreateRoom will be injected via M_SetExternals
 export let _WT_QueryRooms = null;
