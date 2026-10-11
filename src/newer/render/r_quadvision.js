@@ -33,8 +33,9 @@ export function R_QuadVisionActive() {
 }
 /**
  * The monsters to silhouette: live (health > 0, not dead), FL_MONSTER, with an alias model whose pose data is loaded,
- * and in the part of the level the player is in: not waiting in a sealed monster closet (quadvision_region.js, card
- * [QV1]). Read from the local server's entities because ordinary client visibility omits those outside the PVS.
+ * and where the player can get to: not waiting in a monster closet (quadvision_region.js, card [QV1]: a flood of the
+ * player-sized hull from the player). Read from the local server's entities because ordinary client visibility omits
+ * those outside the PVS.
  *
  * @param {{ edicts: Array<edict_t>, models: Array<Object> }} server the server state (`sv`)
  * @returns {Array<edict_t>} a new array of the matching edicts

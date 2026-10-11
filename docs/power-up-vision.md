@@ -50,18 +50,32 @@ poses; each owns its GPU position attribute. No PVS, packets, entity state or
 discovery state is modified. Monsters waiting in monster closets are not
 revealed (owner request, 11 October 2026, card [QV1];
 `src/newer/render/quadvision_region.js`):
-- **The rule.** A monster whose box overlaps a closet teleporter is left out. A closet
-  teleporter is a `trigger_teleport` with a targetname, which QuakeC works only for 0.2 s
-  after the level's trigger uses it.
-- **When it shows.** Once teleported out, the monster is in the level and is revealed.
-  Monsters behind closed doors are revealed too.
-- **Checked against every id1 map** (`tests/quadvision_closets_native_test.js` for the
-  shareware episode, a one-off scan of the registered game's 23 maps with 1091 monsters):
-  no monster in the level is hidden, and none waiting in a closet is shown.
-- **In the browser**, on e1m2 at Hard with Quad: before the change the vision chose all 42
-  monsters, including the 4 in closets; after it, 38, none from a closet.
-- **Not kept:** a sealed-region test (the leaves joined to the player's leaf through the
-  visibility data, water surfaces and teleporters) hid nothing more on any of those maps.
+- **The rule.** A monster is revealed only where the player can get to. The code floods the
+  open space of the world's player-sized collision hull (hull 1) from the player, on a 16-unit
+  grid, taking each step only along a clear trace.
+  - Doors, bars and every other brush entity are passable, and so are liquids.
+  - Every teleporter the flood reaches joins its destination.
+  - A closet's own teleporter is inside the closet, so the flood never gets in.
+- **Judged where the monster is now.** A monster pacing inside its closet stays hidden; one
+  sent into the level shows at once.
+- **Built a few milliseconds a frame.** A whole level takes 130 to 290 ms. Until the flood
+  reaches a monster, that monster is not revealed.
+- **What the first version missed.** It hid monsters overlapping a teleporter with a
+  targetname. The [QV1] review found that rule missed walk-in closets (e1m4's ogre, dozens on
+  the registered maps) and pacing scrags, and hid monsters in the level under teleporters that
+  cover playable space (end.bsp's arena). Its "none wrong" scan reused the rule's own
+  definition of a closet.
+- **Evidence.** `tests/quadvision_closets_native_test.js` checks fixtures against the real maps
+  and progs, at Hard:
+  - e1m2: exactly its four teleport-closet monsters are hidden and its 38 others revealed;
+  - e1m3: only five hidden, and the zombies down its narrow passages revealed (a 32-unit grid
+    wrongly hid them);
+  - e1m4: the walk-in ogre and two pacing scrags stay hidden through 30 s of real play;
+  - e1m2's closet emptied by the level's own button;
+  - nothing in a closet is revealed while the flood is under way;
+  - end.bsp, with the registered pak: the closet row hidden and the shambler guarding Shub
+    revealed.
+- **In the browser** (first version, the same e1m2 numbers): 42 shown before, 38 after.
 
 A separate enemy depth mask and purple composite
 preserve the held weapon and ordinary visible enemy pixels. Expiry, resize,
@@ -81,7 +95,7 @@ Use Three.js 0.183.0 with its adjacent core module:
 ```sh
 QUAKED_THREE_MODULE=/path/to/three.module.js node tools/run_tests.mjs \
   tests/powervision_state_test.js tests/powervision_runtime_test.js \
-  tests/quad_movement_native_test.js tests/quadvision_public_test.js \
+  tests/quad_movement_native_test.js tests/quadvision_public_test.js tests/quadvision_closets_native_test.js \
   tests/powervision_save_native_test.js
 ```
 

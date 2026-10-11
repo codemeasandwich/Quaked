@@ -1,6 +1,7 @@
-// Quad's through-wall vision reveals the monsters in the level, not those waiting in monster
-// closets (owner request, 11 Oct 2026, card [QV1]). The real e1m2 and its own closets, real edicts, the real
-// teleport_use that empties a closet.
+// Quad's through-wall vision reveals the monsters in the level, not those waiting in monster closets (owner request,
+// 11 Oct 2026, card [QV1]). Real maps and progs, real edicts moved by the real SV_Physics; the expectations are fixtures
+// checked by hand against each map's geometry and entities (and, for the registered maps, a reviewer's independent
+// flood), not the rule's own idea of a closet.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
 import * as pak from '../src/engine/common/pak.js';
@@ -55,47 +56,72 @@ function finish(p){const s=p._respawn.sequence,cut=s.at+.22+s.turn/2+1e-6,end=s.
 
 import { QuadVisionEnemies } from '../src/newer/render/r_quadvision.js';
 import { QuadVisionRegion, QuadVisionRegionReset } from '../src/newer/render/quadvision_region.js';
-const fresh=(map='e1m2')=>{const p=spawn(map);QuadVisionRegionReset();return p;};
-const cls_=e=>text(e.v.classname),monsters=()=>sv.edicts.filter(e=>e&&!e.free&&(e.v.flags&FL_MONSTER)&&e.v.health>0);
-// the closets: the volumes of the level's trigger_teleports that have a targetname (QuakeC teleports monsters out of
-// them only when the level's trigger uses them)
-const closets=()=>sv.edicts.filter(e=>e&&!e.free&&cls_(e)==='trigger_teleport'&&text(e.v.targetname)!=='');
-const inside=(m,t)=>[0,1,2].every(i=>m.v.origin[i]>=t.v.absmin[i]-32&&m.v.origin[i]<=t.v.absmax[i]+32);
+const monsters=()=>sv.edicts.filter(e=>e&&!e.free&&(e.v.flags&FL_MONSTER)&&e.v.health>0);
+const by=(m,o,r=48)=>Math.hypot(m.v.origin[0]-o[0],m.v.origin[1]-o[1],m.v.origin[2]-o[2])<=r;
+const around=(o,r)=>monsters().filter(m=>by(m,o,r));
+function level(map,sk=2){const p=spawn(map);vars.Cvar_SetValue('skill',sk);if(sk!==2){sv.active=false;SV_SpawnServer(map);const q=svs.clients[0].edict;call(q,progs.pr_global_struct.SetNewParms);call(q,progs.pr_global_struct.ClientConnect);call(q,progs.pr_global_struct.PutClientInServer);}
+ const pl=svs.clients[0].edict;pl.v.flags|=128;/* notarget: the monsters stay where the level put them */QuadVisionRegionReset();return pl;}
+function frames(pl,seconds,dt=.1){SV_SetPlayer(pl);SV_SetFrametime(dt);for(let i=0;i<seconds/dt;i++){SZ_Clear(sv.datagram);SZ_Clear(svs.clients[0].message);sv.time+=0;SV_Physics();}}
+const ask=()=>QuadVisionRegion(sv,Infinity);
 
-Deno.test('the monsters waiting in e1m2\'s sealed closets are not revealed; those in the level are',()=>{
- fresh();const inLevel=QuadVisionRegion(sv),all=monsters(),boxes=closets();
- check(boxes.length>=2,'e1m2 has closet teleporters');
- const waiting=all.filter(m=>boxes.some(t=>inside(m,t))),out=all.filter(m=>!waiting.includes(m));
- check(waiting.length>=2,`monsters wait in the closets (${waiting.length})`);
- for(const m of waiting)check(!inLevel(m),`${cls_(m)} at ${Array.from(m.v.origin).map(Math.round)} in a closet: hidden`);
- const shown=out.filter(m=>inLevel(m));
- same(shown.length,out.length,'every monster outside the closets is in the level');
- // the public selection (alias poses are loaded on demand: require only that no closet monster is chosen)
- for(const m of QuadVisionEnemies(sv))check(!waiting.includes(m),'Quad vision never picks a closet monster');
+Deno.test('e1m2 at Hard: exactly the four monsters waiting in its two teleport closets are hidden; all 38 in the level are revealed',async()=>{
+ level('e1m2');const inLevel=ask(),all=monsters();
+ const closet=[...around([1912,-856,217],8),...around([1912,-936,217],8),...around([32,840,359],8),...around([-192,840,359],8)];
+ same(closet.length,4,'the closet monsters (two scrags, two fiends)');
+ for(const m of all)same(inLevel(m),!closet.includes(m),`${text(m.v.classname)} at ${Array.from(m.v.origin).map(Math.round)}`);
+ same(QuadVisionEnemies(sv).filter(m=>closet.includes(m)).length,0,'the public selection picks none of them');
 });
 
-Deno.test('a closet emptied by the level\'s own trigger: its monsters are revealed once they are in the level',()=>{
- const p=fresh();const boxes=closets(),all=monsters();
- const t=boxes.find(b=>all.some(m=>inside(m,b)));const m=all.find(x=>inside(x,t));
- check(!QuadVisionRegion(sv)(m),'waiting: hidden');
- // what the level's trigger does: the teleporter's own use (teleport_use), then the monster touches it
- call(t,t.v.use);progs.pr_global_struct.self=progs.EDICT_TO_PROG(t);progs.pr_global_struct.other=progs.EDICT_TO_PROG(m);progs.pr_global_struct.time=sv.time;PR_ExecuteProgram(t.v.touch);
- check(!inside(m,t),'the monster left the closet through the teleporter');
- check(QuadVisionRegion(sv)(m),'now in the level: revealed');
+// e1m3 at Hard: its sewers' narrow passages and the grid's own alignment once hid most of the level (the zombies at
+// -848,-928 among them). Hidden are exactly its four teleport-closet monsters and a scrag (t148) waiting in a space no
+// player-sized body can enter, which an 8-unit flood confirms
+Deno.test('e1m3 at Hard: only the five closet monsters are hidden; the zombies down its narrow passages are revealed',()=>{
+ level('e1m3');const inLevel=ask(),hidden=monsters().filter(m=>!inLevel(m));
+ const expected=[[-528,-304,-64],[-1224,272,-64],[1496,1272,560],[1392,1272,560],[1288,1288,560]];
+ same(hidden.length,5,`hidden: ${hidden.map(m=>text(m.v.classname)+'@'+Array.from(m.v.origin).map(Math.round)).join(' ')}`);
+ for(const o of expected)check(hidden.some(m=>by(m,o,24)),`${o} is hidden`);
+ for(const m of around([-848,-928,-8],80))check(inLevel(m),'a zombie down the narrow passage is revealed');
 });
 
-// every shareware map: no monster in the level hidden, no monster in a closet shown (a closet monster: one whose box
-// overlaps a closet teleporter, or within 32 units of one). A one-off scan of the registered game's 23 maps (1091
-// monsters) gave the same: none hidden in the level, none shown from a closet.
-Deno.test('on every shareware map no monster in the level is hidden and none waiting in a closet is shown',()=>{
- const near=(m,t)=>[0,1,2].every(i=>m.v.absmax[i]>=t.v.absmin[i]-32&&m.v.absmin[i]<=t.v.absmax[i]+32);
- for(const map of['e1m1','e1m2','e1m3','e1m4','e1m5','e1m6','e1m7','e1m8']){
-  fresh(map);const inLevel=QuadVisionRegion(sv),all=monsters(),boxes=closets(),waiting=all.filter(m=>boxes.some(t=>near(m,t)));
-  for(const m of all)same(inLevel(m),!waiting.includes(m),`${map}: ${cls_(m)} at ${Array.from(m.v.origin).map(Math.round)}`);
- }
+Deno.test('e1m4 at Hard: a walk-in closet (an ogre whose only way out is an always-on teleporter) and scrags pacing in their closets stay hidden for 30 s of play',()=>{
+ const pl=level('e1m4');const ogre=around([1794,224,912],24)[0],scrags=[...around([1632,1496,960],40),...around([96,864,968],40)];
+ check(ogre&&scrags.length===2,'the walk-in ogre and the two pacing scrags');
+ const start=scrags.map(s=>Array.from(s.v.origin));let moved=0;
+ for(let t=0;t<30;t+=.5){frames(pl,.5);const inLevel=ask();
+  for(const m of[ogre,...scrags])check(!inLevel(m),`${text(m.v.classname)} at ${Array.from(m.v.origin).map(Math.round)} after ${t+.5} s: hidden`);}
+ scrags.forEach((s,i)=>{moved=Math.max(moved,Math.hypot(...[0,1,2].map(k=>s.v.origin[k]-start[i][k])));});
+ check(moved>16,`(a scrag did pace about its closet: ${moved.toFixed(0)} units)`);
+ check(monsters().filter(m=>ask()(m)).length>=40,'most of e1m4 is revealed');
 });
 
-Deno.test('with no server or no box to judge by, every monster counts, as before',()=>{
- same(QuadVisionRegion({})({v:{absmin:[0,0,0],absmax:[1,1,1]}}),true,'no edict list');
- fresh();same(QuadVisionRegion(sv)({v:{}}),true,'an edict without a box');
+Deno.test('e1m2: a closet emptied by the level\'s own button reveals its monsters once they are in the level',()=>{
+ const pl=level('e1m2');const scrag=around([1912,-856,217],8)[0];check(scrag&&!ask()(scrag),'waiting: hidden');
+ // the button that sends them (its target is the closet teleporter's name), pressed by the player's touch
+ const tele=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='trigger_teleport'&&[0,1,2].every(k=>scrag.v.origin[k]>=e.v.absmin[k]-16&&scrag.v.origin[k]<=e.v.absmax[k]+16));
+ const button=sv.edicts.find(e=>e&&!e.free&&text(e.v.classname)==='func_button'&&text(e.v.target)===text(tele.v.targetname));check(button,'the level\'s button for that closet');
+ pl.v.flags&=~128;const act=progs.pr_globaldefs.find(d=>text(d.s_name)==='activator');if(act)progs.pr_globals_int[act.ofs]=progs.EDICT_TO_PROG(pl);progs.pr_global_struct.self=progs.EDICT_TO_PROG(button);progs.pr_global_struct.other=progs.EDICT_TO_PROG(pl);progs.pr_global_struct.time=sv.time;PR_ExecuteProgram(button.v.touch||button.v.use);
+ const before=Array.from(scrag.v.origin);for(let k=0;k<20&&by(scrag,before,8);k++)frames(pl,.1);
+ check(!by(scrag,before,64),`the scrag was sent into the level (${Array.from(scrag.v.origin).map(Math.round)})`);
+ check(ask()(scrag),'now in the level: revealed');
+});
+
+Deno.test('while the flood is under way nothing in a closet is ever revealed, and the level fills in',()=>{
+ level('e1m2');const closet=[...around([1912,-856,217],8),...around([32,840,359],8)];let steps=0,shown=0;
+ for(;steps<500;steps++){const inLevel=QuadVisionRegion(sv,.2);for(const m of closet)check(!inLevel(m),'a closet monster mid-flood');shown=monsters().filter(m=>inLevel(m)).length;if(shown===38)break;}
+ same(shown,38,'the level filled in');check(steps>2,`(it took ${steps} small steps)`);
+});
+
+let registered=false;
+function regLevel(map){if(!registered){const big=readFileSync(new URL('../resources/id1/pak0.pak',import.meta.url));pak.COM_AddPack(pak.COM_LoadPackFile('pak0r.pak',big.buffer.slice(big.byteOffset,big.byteOffset+big.length)));pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));registered=true;}
+ svs.maxclients=1;svs.clients=[new client_t()];SZ_Alloc(svs.clients[0].message,32768);cls.state=ca_disconnected;cls.demoplayback=false;vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('skill',2);sv.active=false;SV_SpawnServer(map);
+ const p=svs.clients[0].edict;call(p,progs.pr_global_struct.SetNewParms);call(p,progs.pr_global_struct.ClientConnect);call(p,progs.pr_global_struct.PutClientInServer);QuadVisionRegionReset();return p;}
+
+Deno.test('registered game (local pak, stock progs as the browser runs it): end.bsp\'s teleport-closet row hidden, the shambler guarding Shub revealed',()=>{
+ regLevel('end');let inLevel=ask();
+ const guard=around([-688,1808,72],24)[0];check(guard,'the arena shambler');check(inLevel(guard),'the shambler in Shub\'s arena is revealed (a large teleporter that only works after Shub dies covers it)');
+ const closet=monsters().filter(m=>m.v.origin[1]>=800&&m.v.origin[1]<=1050&&m.v.origin[0]<=-900&&m.v.origin[2]<100);
+ // (with the stock progs the browser runs over the registered maps, the row holds its six shamblers; the vores spawn
+ // only with the registered progs, which a one-off check also found hidden)
+ check(closet.length>=6,`the closet row (${closet.length})`);for(const m of closet)check(!inLevel(m),'a closet monster');
+
 });
