@@ -13,16 +13,17 @@
 // On the last level (end.bsp) a misc_teleporttrain, the spiked ball, flies a lap of 30 path_corners round the arena and
 // passes through Shub-Niggurath; the final teleporter sends the player to the ball, and arriving while it is inside Shub
 // telefrags the boss. The owner asked for its flight to be clean and fluid. Stock QuakeC train_wait stops a train for
-// 0.1 s at every corner even when the corner has no `wait` (`self.nextthink = self.ltime + 0.1`), so the ball halts 19
-// times a lap. In Newer Game a teleport train whose corner has no wait goes straight on to its next leg: when its think
+// 0.1 s at every corner even when the corner has no `wait` (`self.nextthink = self.ltime + 0.1`), so the ball halts at
+// each of its 30 corners every lap. In Newer Game a teleport train whose corner has no wait goes straight on to its next leg: when its think
 // has just run train_wait and left train_next 0.1 s away, train_next runs at once, in the same frame (QuakeC's own
 // function: it reads the next corner and starts SUB_CalcMove). Its path, speed and the corners it passes are the
 // level's own; only the pauses go. Other trains (doors, platforms, func_train) and every rule outside Newer Game are
-// unchanged.
-import { PR_GetString, pr_functions, pr_global_struct, EDICT_TO_PROG } from '../../engine/progs/progs.js';
+// unchanged; as the other Newer gameplay rules, it applies to a local single-player game on the stock progs.
+import { PR_GetString, pr_functions, pr_global_struct, EDICT_TO_PROG, pr_crc } from '../../engine/progs/progs.js';
+import { cls, ca_dedicated } from '../../engine/client/client.js';
 import { PR_ExecuteProgram } from '../../engine/progs/pr_exec.js';
 import { ED_FindFunction } from '../../engine/progs/pr_edict.js';
-import { sv } from '../../engine/server/server.js';
+import { sv, svs } from '../../engine/server/server.js';
 import { R_NewerGame } from '../mode.js';
 
 let program = null, fnNext = 0;
@@ -35,7 +36,8 @@ let program = null, fnNext = 0;
  */
 export function SV_TeleportTrainThought( ent ) {
 
-	if ( ent == null || ent.free || ! R_NewerGame() ) return;
+	// (as the other Newer gameplay rules: a local single-player game, not dedicated, not a demo, on the stock progs)
+	if ( ent == null || ent.free || sv.active !== true || svs.maxclients !== 1 || cls.state === ca_dedicated || cls.demoplayback || pr_crc !== 24778 || ! R_NewerGame() ) return;
 	if ( program !== pr_functions ) { program = pr_functions; const f = ED_FindFunction( 'train_next' ); fnNext = f ? pr_functions.indexOf( f ) : 0; }
 	if ( fnNext <= 0 || ent.v.think !== fnNext || ent.v.wait ) return;
 	if ( PR_GetString( ent.v.classname ) !== 'misc_teleporttrain' ) return;

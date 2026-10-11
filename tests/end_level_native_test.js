@@ -57,7 +57,9 @@ function finish(p){const s=p._respawn.sequence,cut=s.at+.22+s.turn/2+1e-6,end=s.
 import { SV_Physics_Pusher } from '../src/engine/server/sv_phys.js';
 let registered=false;
 function endLevel(enhanced){
- if(!registered){const big=readFileSync(new URL('../resources/id1/pak0.pak',import.meta.url));pak.COM_AddPack(pak.COM_LoadPackFile('pak0r.pak',big.buffer.slice(big.byteOffset,big.byteOffset+big.length)));registered=true;}
+ if(!registered){const big=readFileSync(new URL('../resources/id1/pak0.pak',import.meta.url));pak.COM_AddPack(pak.COM_LoadPackFile('pak0r.pak',big.buffer.slice(big.byteOffset,big.byteOffset+big.length)));
+  // the stock progs over the registered maps, as the browser runs the full game (game_selection.js)
+  pak.COM_AddPack(pak.COM_LoadPackFile('pak0.pak',bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.length)));registered=true;}
  svs.maxclients=1;svs.clients=[new client_t()];SZ_Alloc(svs.clients[0].message,32768);cls.state=ca_disconnected;cls.demoplayback=false;
  vars.Cvar_SetValue('r_hdr',enhanced?1:0);vars.Cvar_SetValue('skill',1);vars.Cvar_SetValue('sv_seamless',1);R_AnimSetClassicPass(false);sv.active=false;SV_SpawnServer('end');
  const p=svs.clients[0].edict;call(p,progs.pr_global_struct.SetNewParms);call(p,progs.pr_global_struct.ClientConnect);call(p,progs.pr_global_struct.PutClientInServer);
@@ -66,18 +68,18 @@ function endLevel(enhanced){
 const find=(c,key='classname')=>sv.edicts.filter(e=>e&&!e.free&&text(e.v[key])===c);
 const inside=(o,e)=>[0,1,2].every(i=>o[i]>=e.v.absmin[i]&&o[i]<=e.v.absmax[i]);
 // what trigger_once *4 does when the player walks through it: the train's own use, the player as activator
-function start(p){const ball=find('misc_teleporttrain')[0];check(ball,'the teleport ball');const act=progs.pr_globaldefs.find(d=>text(d.s_name)==='activator');if(act)progs.pr_globals_int[act.ofs]=progs.EDICT_TO_PROG(p);call(ball,ball.v.use);return ball;}
+function start(p){const ball=find('misc_teleporttrain')[0]||find('func_train').find(t=>text(t.v.targetname)==='t33');check(ball,'the teleport ball');const act=progs.pr_globaldefs.find(d=>text(d.s_name)==='activator');if(act)progs.pr_globals_int[act.ofs]=progs.EDICT_TO_PROG(p);call(ball,ball.v.use);return ball;}
 function step(ball,dt){sv.time+=dt;progs.pr_global_struct.time=sv.time;SV_SetFrametime(dt);SV_Physics_Pusher(ball);}
 
 for(const enhanced of[false,true])Deno.test(`${enhanced?'Newer Game':'Classic'}: the ball flies its lap through Shub, smoothly, ${enhanced?'without stopping at its corners':'with stock Quake\'s 0.1 s at each corner'}`,()=>{
  const p=endLevel(enhanced),ball=start(p),shub=find('monster_oldone')[0];check(shub,'Shub-Niggurath');
  const dt=1/72,speed=ball.v.speed||100;let last=Array.from(ball.v.origin),worst=0,still=0,through=false,moved=0;const turn0=Array.from(ball.v.angles);
- let fastest=0;for(let k=0;k<72*24;k++){step(ball,dt);fastest=Math.max(fastest,Math.hypot(...ball.v.velocity));const o=Array.from(ball.v.origin),d=Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2]);worst=Math.max(worst,d);if(d<1e-6&&k>2)still++;moved+=d;if(inside(o,shub))through=true;last=o;}
+ let fastest=0,turnedFlying=0;for(let k=0;k<72*24;k++){const a0=Array.from(ball.v.angles),o0=Array.from(ball.v.origin);step(ball,dt);if(Math.hypot(...[0,1,2].map(i=>ball.v.origin[i]-o0[i]))>.5&&Math.hypot(...[0,1,2].map(i=>ball.v.angles[i]-a0[i]))>1e-6)turnedFlying++;fastest=Math.max(fastest,Math.hypot(...ball.v.velocity));const o=Array.from(ball.v.origin),d=Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2]);worst=Math.max(worst,d);if(d<1e-6&&k>2)still++;moved+=d;if(inside(o,shub))through=true;last=o;}
  check(moved>3000,`it flew its lap (${moved.toFixed(0)} units)`);
  check(fastest>=speed*.99&&fastest<=210,`it flies at its own speed (${fastest.toFixed(0)} units/s)`);
  check(worst<=fastest*dt*1.05+.01,`no jumps: at most its speed's ${(fastest*dt).toFixed(2)} units a frame (${worst.toFixed(2)})`);
  check(through,'it passed through Shub');
- check(Math.hypot(...[0,1,2].map(i=>ball.v.angles[i]-turn0[i]))>1,'it spins as it flies');
+ if(enhanced)check(turnedFlying>72*20,`Newer Game: it spins as it flies (${turnedFlying} frames)`);else same(turnedFlying,0,'Classic: as WinQuake, a moving pusher is not turned');
  if(enhanced)same(still,0,'Newer Game: never still');else check(still>=6*19*.8,`Classic: stock pauses at the corners (${still} still frames)`);
 });
 
@@ -98,4 +100,10 @@ Deno.test('Newer Game: the deathmatch exit floating over Shub\'s arena is not ma
  const floating=crossings.filter(c=>c.exit.mins[2]>600);
  same(floating.length,0,'no crossing for the exit 447 units above the floor');
  check(crossings.some(c=>c.map==='start'),'the real exit to the start level (the slipgate window) is still a crossing');
+});
+
+Deno.test('Newer Game: only the teleport ball loses its corner stops; an ordinary train keeps them',()=>{
+ const p=endLevel(true),ball=find('misc_teleporttrain')[0];ball.v.classname=ED_NewString('func_train');start(p);
+ let last=Array.from(ball.v.origin),still=0;for(let k=0;k<72*12;k++){step(ball,1/72);const o=Array.from(ball.v.origin);if(k>2&&Math.hypot(o[0]-last[0],o[1]-last[1],o[2]-last[2])<1e-6)still++;last=o;}
+ check(still>=6*5,`a func_train with the same path still stops at its corners (${still} still frames)`);
 });

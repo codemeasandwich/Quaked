@@ -215,6 +215,17 @@ const TRAIN_ENTITIES = `
 "angle" "270"
 }
 {
+"classname" "trigger_teleport"
+"target" "t63"
+"targetname" "t68"
+"model" "*1"
+}
+{
+"classname" "info_teleport_destination"
+"targetname" "t63"
+"origin" "-784 1792 392"
+}
+{
 "classname" "misc_teleporttrain"
 "targetname" "t33"
 "target" "t32"
@@ -236,7 +247,7 @@ Deno.test( 'a teleporter onto a teleport train: one window, onto the train itsel
 		// the deathmatch-only twin (spawnflags 1792: left out at every single-player skill) gets no window
 		assertEqual( portals.length, 1, 'one window' );
 		const p = portals[ 0 ];
-		assertEqual( p.triggerTarget, 't33', 'onto the train, not the deathmatch twin\'s fixed destination' );
+		assertEqual( p.triggerTarget, 't33', 'onto the train: not the deathmatch twin\'s fixed destination, nor the equally near teleporter that works only when the level uses it (a targetname: end.bsp\'s *39)' );
 		assertEqual( p.follow, true, 'it follows the train' );
 		assertVecNear( p.dest, [ - 520, 696, 72 ], 'the train\'s own origin (where teleport_touch puts the player: no 27 added)' );
 		assertEqual( p.yaw, 0, 'facing as the teleport leaves the player (the train has no mangle)' );
@@ -269,12 +280,57 @@ Deno.test( 'a teleporter onto a teleport train: one window, onto the train itsel
 
 		} finally { cl_entities[ 300 ] = keep[ 0 ]; cl_entities[ 301 ] = keep[ 1 ]; }
 
-		// in deathmatch the game keeps the twin instead (spawnflags 2049 includes 2048: not in deathmatch)
-		Cvar_SetValue( 'deathmatch', 1 );
-		const dm = portal.R_BuildPortals( makeModel( [ makeSurface( '*teleport', 100, 1 ) ], TRAIN_ENTITIES ) );
-		assertEqual( dm.length, 1, 'deathmatch: one window' );
-		assertEqual( dm[ 0 ].triggerTarget, 't69', 'onto the deathmatch destination' );
-		Cvar_SetValue( 'deathmatch', 0 );
+		// in deathmatch (the game type the server sent this client: a local-play window agrees with its host) the game
+		// keeps the twin instead (spawnflags 2049 includes 2048: not in deathmatch)
+		const was = cl.gametype; cl.gametype = 1;
+		try {
+
+			const dm = portal.R_BuildPortals( makeModel( [ makeSurface( '*teleport', 100, 1 ) ], TRAIN_ENTITIES ) );
+			assertEqual( dm.length, 1, 'deathmatch: one window' );
+			assertEqual( dm[ 0 ].triggerTarget, 't69', 'onto the deathmatch destination' );
+
+		} finally { cl.gametype = was; }
+
+	} finally { portal.R_ClearPortals(); }
+
+} );
+
+Deno.test( 'a window following a train into another leaf sees from there: its visibility, the server\'s link and the leaf marking follow', async () => {
+
+	const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar, cvar_t } = await import( '../src/engine/common/cvar.js' );
+	if ( ! Cvar_FindVar( 'r_hdr' ) ) Cvar_RegisterVariable( new cvar_t( 'r_hdr', '1' ) );
+	Cvar_SetValue( 'r_hdr', 1 );
+	const { cl, cl_entities } = await import( '../src/engine/client/client.js' );
+	// two leaves, split at x = 0
+	const west = { contents: - 1, visframe: 0, firstmarksurface: null, nummarksurfaces: 0, compressed_vis: null };
+	const east = { contents: - 1, visframe: 0, firstmarksurface: null, nummarksurfaces: 0, compressed_vis: null };
+	const model = makeModel( [ makeSurface( '*teleport', 100, 1 ) ], TRAIN_ENTITIES );
+	model.nodes = [ { contents: 0, plane: { normal: [ 1, 0, 0 ], dist: 0 }, children: [ east, west ] } ];
+	model.leafs = [ { contents: - 2 }, west, east ]; model.numleafs = 2;
+	const portals = portal.R_BuildPortals( model );
+	try {
+
+		const p = portals[ 0 ];
+		assertEqual( p.destLeaf, west, 'the train starts in the west leaf (x -520)' );
+		p._svLink = { above: p.srcLeaf, below: null, aboveVis: [], belowVis: p.destVis };
+		p._destLeafSet = new Set( p.destLeafs );
+		const vis0 = p.destVis, rev0 = portal.R_PortalsVisRevision();
+		const ball = { model: { name: 'progs/teleport.mdl' }, msgtime: cl.mtime[ 0 ], origin: new Float32Array( [ - 40, 0, 0 ] ) };
+		const keep = cl_entities[ 300 ]; cl_entities[ 300 ] = ball;
+		try {
+
+			portal.R_PortalsBeginFrame( true );
+			assertEqual( p.destVis, vis0, 'still in the west leaf: nothing to refresh' );
+			assertEqual( portal.R_PortalsVisRevision(), rev0, 'and no new marking' );
+			ball.origin.set( [ 40, 0, 0 ] );
+			portal.R_PortalsBeginFrame( true );
+			assertEqual( p.destLeaf, east, 'the window sees from the east leaf' );
+			assertEqual( p.destVis !== vis0, true, 'its visibility row is the new leaf\'s' );
+			assertEqual( p._svLink.belowVis, p.destVis, 'the server sends what the new leaf sees' );
+			assertEqual( p._destLeafSet, undefined, 'the receiver\'s leaf set is built again' );
+			assertEqual( portal.R_PortalsVisRevision() !== rev0, true, 'R_MarkLeaves marks again, though the viewer has not moved' );
+
+		} finally { cl_entities[ 300 ] = keep; }
 
 	} finally { portal.R_ClearPortals(); }
 

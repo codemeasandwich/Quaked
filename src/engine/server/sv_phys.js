@@ -32,6 +32,7 @@ import { trace_t } from './world.js';
 import { SV_ShotDelayRun } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
 import { SV_FireQuench, SV_FireQuenchStep } from '../common/hooks.js'; // installed by newer/gameplay/sv_firequench.js
 import { SV_TeleportTrainThought } from '../common/hooks.js'; // installed by newer/gameplay/sv_teleporttrain.js
+import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 
 /*
 
@@ -1082,19 +1083,21 @@ export function SV_Physics_Pusher( ent ) {
 
 	if ( movetime ) {
 
-		// A pusher turning in place (rotating doors and platforms) is turned by SV_PushRotate. One that moves goes by
-		// SV_PushMove, as in WinQuake, and keeps any spin: the end level's teleport train (misc_teleporttrain, the
-		// spiked ball Shub-Niggurath is telefragged with) has both, and turning it in place left it jumping from corner
-		// to corner (SUB_CalcMoveDone's setorigin), never inside Shub (card [END1])
+		// A pusher turning in place (rotating doors and platforms) is turned by SV_PushRotate (this port's, from
+		// WinQuake's QUAKE2 code). One that moves goes by SV_PushMove, as WinQuake always did: the end level's teleport
+		// train (misc_teleporttrain, the spiked ball Shub-Niggurath is telefragged with) has both velocity and angular
+		// velocity, and turning it in place left it jumping from corner to corner (SUB_CalcMoveDone's setorigin), never
+		// inside Shub (card [END1]). WinQuake never turned a moving pusher; in Newer Game the moving ball also spins.
 		const moving = ent.v.velocity[ 0 ] !== 0 || ent.v.velocity[ 1 ] !== 0 || ent.v.velocity[ 2 ] !== 0;
 		const turning = ent.v.avelocity[ 0 ] !== 0 || ent.v.avelocity[ 1 ] !== 0 || ent.v.avelocity[ 2 ] !== 0;
 		if ( turning && ! moving )
 			SV_PushRotate( ent, movetime );
 		else {
 
-			const before = ent.v.ltime;
+			const x = ent.v.origin[ 0 ], y = ent.v.origin[ 1 ], z = ent.v.origin[ 2 ];
 			SV_PushMove( ent, movetime ); // advances ent.v.ltime if not blocked
-			if ( turning && ent.v.ltime !== before ) VectorMA( ent.v.angles, movetime, ent.v.avelocity, ent.v.angles );
+			const moved = ent.v.origin[ 0 ] !== x || ent.v.origin[ 1 ] !== y || ent.v.origin[ 2 ] !== z;
+			if ( turning && moved && R_NewerGame() ) VectorMA( ent.v.angles, movetime, ent.v.avelocity, ent.v.angles );
 
 		}
 

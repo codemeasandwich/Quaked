@@ -30,9 +30,9 @@ The local [water near-field correction](water-nearfield-2026-10-02.md) restores 
 
 ### Live portals
 
-Every teleporter surface (`*teleport`) that leads somewhere is a live camera onto its receiver. The world is rendered a second time from the destination, so the teleporter looks cut out of the wall with a slight shimmer, and what you see through it is the space you step into.
+Every teleporter surface (`*teleport`) that leads somewhere is a live camera onto its receiver. The world is rendered a second time from the destination, so the teleporter looks cut out of the wall with a slight shimmer, and what you see through it is the space you step into. A teleporter that sends you to a moving teleport train (the last level's spiked ball) shows a live view that follows it ([end level](end-level-2026-10-11.md)); in Newer Game that ball also flies its lap without stopping at its corners, a gameplay rule for local single player on the stock game.
 
-- Destinations come from the map's own entities (`trigger_teleport` → `info_teleport_destination`), so it works on any map.
+- Destinations come from the map's own entities (`trigger_teleport` → `info_teleport_destination`, or a moving `misc_teleporttrain`), so it works on any map.
 - Up to 3 nearest visible portals are rendered per frame, at 75% resolution.
 - `r_portals 0` in the console turns it off and restores the classic swirl.
 - Teleporting is quieter: the sound stays, the white particle burst is gone, and the launch out of the teleporter is halved (300 to 150 units/s).

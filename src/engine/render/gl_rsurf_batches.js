@@ -9,7 +9,7 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `_visibilityNeedsUpdate`, `worldMeshesBuilt`, `demonEnabled`,
- * `_markleaves_solid`, `_lastMarkedPostActive`, `archVisibilityKey`, `occluderRevision`.
+ * `_markleaves_solid`, `_lastMarkedPostActive`, `_lastPortalRevision`, `archVisibilityKey`, `occluderRevision`.
  *
  * Errors: throws at 1 place; catches at 1 place.
  *
@@ -25,7 +25,7 @@ import { DEMON_TEXTURES, R_DemonSurfaceData } from '../common/hooks.js'; // inst
 import { R_DemonBakePrepare, R_DemonBakeSurface, R_DemonBakeStatus } from '../common/hooks.js'; // installed by newer/assets/r_demonbakes.js
 import { cl } from '../client/client.js';
 import { R_BuildSunOccluder, R_PostActive, R_WaterActive, R_GetLiquidLinks } from '../common/hooks.js'; // installed by newer/render/gl_post.js
-import { R_GetPortals, R_PortalsActive } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
+import { R_GetPortals, R_PortalsActive, R_PortalsVisRevision } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, mirror, r_novis, r_viewleaf, r_oldviewleaf, inc_r_visframecount, set_r_oldviewleaf } from './gl_rmain.js';
 import { Mod_LeafPVS } from './gl_model.js';
 import { worldState, R_EnsureWorldGroup } from './gl_rsurf_state.js';
@@ -160,6 +160,7 @@ export function R_UpdateDemonSurfaces() {
 // Cached buffer for r_novis solid visibility (matches C's static byte solid[4096])
 let _markleaves_solid = new Uint8Array( 4096 );
 let _lastMarkedPostActive = false;
+let _lastPortalRevision = 0;
 
 /**
  * Marks the leaves and nodes in the view's PVS with a new `r_visframecount` (WinQuake gl_rsurf.c), so the BSP walk
@@ -178,8 +179,12 @@ export function R_MarkLeaves() {
 	const postActive = R_PostActive() ? ( R_WaterActive() ? 2 : 1 ) : 0;
 	const modeChanged = postActive !== _lastMarkedPostActive;
 	_lastMarkedPostActive = postActive;
+	// a window following a teleport train sees from another leaf: what it sees has to be marked (card [END1])
+	const portalRevision = R_PortalsVisRevision();
+	const portalsMoved = portalRevision !== _lastPortalRevision;
+	_lastPortalRevision = portalRevision;
 
-	if ( r_oldviewleaf === r_viewleaf && ! r_novis.value && ! modeChanged ) {
+	if ( r_oldviewleaf === r_viewleaf && ! r_novis.value && ! modeChanged && ! portalsMoved ) {
 
 		_visibilityNeedsUpdate = false;
 		return;

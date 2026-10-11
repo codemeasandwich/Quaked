@@ -5,9 +5,9 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `portals`, `levelPortals`, `portalFrame`, `portalsEnabled`,
- * `_planes`, `_planesFor`, `_planesCount`, `_gatesFor`, `_gatesCount`, `dummyTexture`, `viewCamera`, `viewMatrix` and
- * 5 more.
+ * State: no mutable exports; module-level variables `portals`, `levelPortals`, `visRevision`, `portalFrame`,
+ * `portalsEnabled`, `_planes`, `_planesFor`, `_planesCount`, `_gatesFor`, `_gatesCount`, `dummyTexture`, `viewCamera`
+ * and 6 more.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -27,7 +27,6 @@ import { WATER as WAVE_WATER, METAL as WAVE_METAL, WAVE_GLSL, metalWave, R_WaveT
 import { R_NewerGame, r_newer_portals } from '../mode.js';
 import { COM_Parse, com_token } from '../../engine/common/common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from '../../engine/render/gl_model.js';
-import { Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { cl, cl_entities } from '../../engine/client/client.js';
 
 export const r_portals = new cvar_t( 'r_portals', '1' );
@@ -49,6 +48,7 @@ const PORTAL_RT_MAX = 1600;
 
 let portals = [];
 let levelPortals = [];
+let visRevision = 0; // changes whenever a window's receiver sees from another leaf (`R_PortalsVisRevision`)
 let portalFrame = 0;
 let portalsEnabled = true;
 
@@ -372,15 +372,18 @@ export function R_GetPortals() {
 }
 
 // Does the game leave this entity out (ED_LoadFromFile): in deathmatch one marked not for deathmatch (2048), otherwise
-// one marked not for this skill (256 easy, 512 normal, 1024 hard and nightmare)
+// one marked not for any skill (256 easy, 512 normal and 1024 hard all set: a deathmatch-only entity). Whether it is
+// deathmatch is what the server told this client (svc_serverinfo's game type), so a local-play window, a page of its
+// own, agrees with the host. The skill is not sent to clients, so a trigger left out at some skills only keeps its
+// window (no id1 teleporter is marked so).
 function inhibited( ent ) {
 
 	const flags = parseInt( ent.spawnflags, 10 ) || 0;
-	if ( Cvar_VariableValue( 'deathmatch' ) ) return ( flags & 2048 ) !== 0;
-	const skill = Math.floor( Cvar_VariableValue( 'skill' ) + 0.5 );
-	return ( flags & ( skill <= 0 ? 256 : skill === 1 ? 512 : 1024 ) ) !== 0;
+	if ( cl.gametype === GAME_DEATHMATCH ) return ( flags & 2048 ) !== 0;
+	return ( flags & 1792 ) === 1792;
 
 }
+const GAME_DEATHMATCH = 1; // (client.js cl.gametype, as sbar.js reads it)
 
 // What a portal's receiver sees from `leaf`: its PVS row, the leaves in it, and their sky and water surfaces (which have
 // to be handed to the renderer even when the main view's frustum never reaches them). Kept until the receiver moves into
@@ -390,6 +393,8 @@ function portalSight( portal, leaf ) {
 	if ( leaf === portal.destLeaf ) return;
 	const model = portal.model;
 	portal.destLeaf = leaf;
+	portal._destLeafSet = undefined; // (R_BoxInPortalReceiver's set of these leaves is built again)
+	visRevision ++;                  // (R_MarkLeaves marks what the receiver now sees, though the viewer has not moved)
 	portal.destVis = Mod_LeafPVS( leaf, model ).slice( 0, ( model.numleafs + 7 ) >> 3 );
 	portal.destLeafs = []; portal.extraSurfaces = [];
 	if ( portal._svLink ) portal._svLink.belowVis = portal.destVis;
@@ -438,9 +443,11 @@ function followTrain( portal ) {
 	}
 	portal.followEntity = best;
 	if ( best === null ) return;
-	const D = [ best.origin[ 0 ], best.origin[ 1 ], best.origin[ 2 ] ];
+	const D = portal.dest;
+	if ( D[ 0 ] === best.origin[ 0 ] && D[ 1 ] === best.origin[ 1 ] && D[ 2 ] === best.origin[ 2 ] ) return;
+	D[ 0 ] = best.origin[ 0 ]; D[ 1 ] = best.origin[ 1 ]; D[ 2 ] = best.origin[ 2 ];
 	const m = portalMatrix( portal.center, portal.normal, D, portal.yaw );
-	portal.dest = D; portal.forward = m.forward; portal.matrix = m.elements;
+	portal.forward = m.forward; portal.matrix = m.elements;
 	portalSight( portal, Mod_PointInLeaf( D, portal.model ) );
 
 }
@@ -698,6 +705,15 @@ export function R_PortalsBeginFrame( enabled ) {
 	if ( portalsEnabled ) for ( const p of portals ) if ( p.follow ) followTrain( p );
 
 }
+
+/**
+ * A number that changes whenever a window's receiver comes to see from another leaf (a window following a teleport
+ * train): R_MarkLeaves (gl_rsurf_batches.js) marks again though the viewer has not moved, so the window's view of the
+ * world is drawn whole.
+ *
+ * @returns {number} the current revision
+ */
+export function R_PortalsVisRevision() { return visRevision; }
 
 /**
  * @returns {boolean} true when this frame draws teleporter surfaces as live windows: Newer Game, portals enabled by
