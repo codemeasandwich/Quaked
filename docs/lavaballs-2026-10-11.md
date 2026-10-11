@@ -1,0 +1,155 @@
+# Lava balls: the supplied "FIREBALLS" fire fan
+
+Card [FB1], "Fireball attach /Users/bri/Downloads/fireballs.html". Branch `claude-fx-fire`
+from Dev `459bde6d`. In Newer Game every flying lava ball is drawn as the supplied
+fireball; Classic keeps the original model and trail; gameplay is unchanged.
+
+## Source
+
+* Owner-supplied `fireballs.html`, "FIREBALLS — Straight-flight FX Lab" (the owner calls
+  it the "fire fan"), SHA-256
+  `9913ff9ff80bf9f89aeed49eb2b88c0e12f2a17089e961d34501241337b925ae`, 76 601 bytes. Kept
+  local, never committed, edited or distributed.
+* What the page shows: one ability, "01 / FIREBALLS". A stand-in character throws a volley of
+  four small fireballs (outer left, inner left, inner right, outer right, 120 ms apart).
+  Each one flies straight to its own mark in 0.82 s and ends in a small impact of sparks, a
+  ring and smoke. The fireball is three crossed planes carrying a procedural flame shader
+  (`FIREBALL_FRAGMENT`). Behind it runs a trail of flame puffs and sparks (`FxParticles`). No
+  textures are used.
+* What was taken from it, line by line, is listed in `newer/effects/lavaballs/provenance.json`:
+  `NOISE_GLSL` (217) verbatim, `FIREBALL_FRAGMENT` (241) and `PARTICLE_FRAGMENT` (280)
+  statement for statement, the point-size rule of `PARTICLE_VERTEX` (267), the `FxParticles`
+  pools (348), the capacities (430), the `shootFireballs` defaults (467), the planes of
+  `_spawn` (485), `_ring` (522), `_impact` (531) and the trail and grow-in of
+  `_updateFireballs` (546). `tests/lavaballs_test.js` compares those statements and constants
+  with the page when it is present locally. Point `QUAKED_LAVABALLS_SOURCE` at it, and set
+  `QUAKED_LAVABALLS_SOURCE_REQUIRED=1` to make a missing or different page fail instead of skip.
+
+## Which native fireballs it targets
+
+The lab draws flying fireballs and an impact. It is not an explosion. The explosion
+fireball is the FieldLab "04 Fireball" (card [25], `r_fireball.js`), which is unchanged.
+Quake's flying fireballs are all entities drawn with **`progs/lavaball.mdl`**. The model
+carries the `EF_ROCKET` flag, so natively it also leaves a rocket trail and carries a
+radius-200 dynamic light:
+
+| Native ball | Thrown by | Motion | End |
+|---|---|---|---|
+| Lava spurt | `misc_fireball` (`misc.qc fire_fly`): `start` ×3, `e1m6` ×15, `e1m8` ×6 in the shareware maps | `MOVETYPE_TOSS`: up at `speed` (+0..200) units/s, ±50 sideways, falling back under gravity | removed on touching anything (20 damage, no explosion) or after 5 s |
+| Chthon's ball | `monster_boss` (`boss.qc boss_missile`), e1m7 | `MOVETYPE_FLYMISSILE`: straight at 300 units/s | `T_MissileTouch`: an ordinary explosion (drawn by `r_fireball.js`) |
+
+In id1's QuakeC only these two set `lavaball.mdl`. The vore, the scrag and the others have
+their own models.
+
+### The fan, one for one
+
+The source's "fan" is a scripted volley. `burstPlan` and `fireballsPlan` lay out four lanes
+and four straight rays. Quake decides how many balls fly and where they go, so the planner
+is **not** used and no projectile is added. Each native ball draws exactly one source
+fireball. A Chthon throw is one ball per hand, so it draws one fireball per hand. A pit of
+`misc_fireball`s draws one per spurt. The picture follows the native motion. Each ball's
+fireball sits at the entity's interpolated origin and points along the ball's own motion,
+taken from the last frame's displacement and smoothed at 25/s through the client's 10 Hz
+interpolation steps. A lava spurt's fireball therefore arcs: it points up, turns over at
+the top and points down as it falls. Chthon's flies straight, as in the lab.
+
+## What replaces what
+
+* **Model.** `R_DrawAliasModel` (`gl_rmain.js`) asks `R_LavaBall( e )` before it builds the
+  mesh. When it answers true the native mesh, and so its shadow, is not drawn.
+* **Trail.** `cl_main.js` now hands each `EF_ROCKET` trail its entity's model
+  (`R_RocketTrail( …, 0, key, model )`). `render.js` spawns no trail when
+  `R_LavaBallTakes( model, key )`, which also needs a pool slot for that ball. In Newer Game that trail would otherwise have been the
+  `r_smoketrails` rocket smoke. The fireball's own flame-and-spark trail replaces it.
+* **Kept native:** the server's movement, touch, damage, removal and sounds; the client's
+  interpolation; the `EF_ROCKET` dynamic light (the source's `PointLight` is not used);
+  Chthon's explosion (`r_fireball.js`).
+* **Impact.** When a ball disappears, the module probes the BSP contents just ahead of where
+  it was last drawn (`Mod_PointInLeaf`). If that point is solid, the ball went against a wall
+  or floor, and the source's `_impact` is drawn there: about 27 sparks, a ring and 6 smoke
+  puffs. The normal points against the direction of travel, which is the source's own
+  fallback. A ball that leaves view, or expires in the air after 5 s, just goes, as the
+  native one does. For Chthon this small impact is added inside the native explosion.
+* **Not taken:** the launch ring of `_spawn`. The client cannot tell a ball being thrown from
+  one coming into view, and a ring popping in mid-air would be wrong.
+
+Classic (`r_hdr` 0), the classic half of the split title demo, `r_lavaballs 0`, no scene, and
+more than 64 balls at once keep the native model and trail exactly as before. In the split
+demo the native trail is also spawned flagged classic-only for the Classic half, as
+`r_smoketrails` does.
+
+## How it is built
+
+`src/newer/render/r_lavaballs.js` follows the `r_torchfire.js` pattern:
+
+* **Each frame.** `R_LavaBallsBegin` runs before the entity list. `R_LavaBall` registers each
+  ball while the list is drawn. `R_LavaBallsFlush` runs after the list and draws this
+  frame's balls.
+* **Per ball.** Each ball holds one of 64 slots, found by entity number. A slot keeps the
+  ball's last origin, its direction, its travel and its trail carry. A slot not registered
+  this frame is released, with the impact check described above.
+* **The fireball.** All balls share one instanced mesh. Its geometry is the source's three
+  crossed planes, baked into the ball's own frame. Each instance carries its position, its
+  scale and its direction.
+* **The particles.** Trail and impact particles live in the source's fixed-size pools,
+  stored as typed arrays, with the oldest slot recycled. They are drawn as camera-facing
+  quads with the source's particle shader: additive glow (flame puffs and sparks) and
+  normal-blended smoke.
+* **Trail placement.** The source emits at each 1/120 s substep. Here each trail particle is
+  placed at a random point of the frame's motion and aged accordingly. A fast ball, or a slow
+  frame, therefore leaves an unbroken trail.
+* **No per-frame allocation.** After the first build only scalars are written into the
+  preallocated arrays. The materials and the layer helper are `r_fireball.js`'s
+  (`material`, `layer`, `MRT_OUT`, `MRT_ZERO`). So is the scale: `FIREBALL.unit`, 24 Quake
+  units per source unit. At that scale the source's flight speed of about 12.6 units/s lands
+  on Chthon's 300 units/s, and the 0.42-size fireball is about 36 units long and 10 to 18
+  units thick.
+
+### Light gain
+
+The source draws on an 8-bit canvas, where its three summed planes stop at 1 per channel.
+The core goes yellow-white and the edges stay red. Newer Game's composite multiplies the
+frame by its exposure (`HDR_EXPOSURE` 1.3) and rolls anything past 0.8 toward white. In the
+first browser trial the summed core came out salmon-pink. `LAVABALL.gain` (0.55) scales the
+additive layers so the summed core lands in the range where the shoulder keeps its hue. The
+value was chosen by eye against the source's frames.
+
+## Switches
+
+* `r_lavaballs` (default 1): 0 puts the native lava ball model and trail back. In Newer Game
+  that means the `r_smoketrails` smoke.
+
+## Evidence
+
+* **Unit tests.** `node tools/run_tests.mjs tests/lavaballs_test.js`: 8 tests. They cover:
+  * the source equivalence of the shaders and constants;
+  * the gate (Classic, the classic pass, `r_lavaballs 0`, other models, no scene);
+  * one fireball per ball, at its origin and along its motion, including an arc and a turn;
+  * a ball forgotten when it goes, with no impact in the air;
+  * the impact on contact, and that everything expires;
+  * leaving Newer Game, a clock jump and a new map;
+  * buffer reuse;
+  * the native trail in Newer, Classic and the split demo;
+  * the engine call sites.
+
+  Each test was seen to fail on a deliberate break of the code it guards.
+  `fireball_test.js` and `torchfire_test.js` were rerun. Their call-site regexes now accept
+  the model argument.
+* **Browser trial.** `tests/lavaballs_trial.html` boots the real game and loads a map with
+  `map`, then:
+  * parks the view by a `misc_fireball` on `start`;
+  * wakes Chthon on e1m7 by running his own `use`, as his trigger would;
+  * puts away the Bestiary's first-sighting page;
+  * pauses the game to photograph a ball mid-flight.
+
+  The playwright drivers are kept with the card's evidence, not in the repository.
+
+## Known limits
+
+* Seen nose-on, the crossed planes show only their cross-section, as they do in the source.
+  A ball flying straight at the player, as Chthon's do, reads as a small flame with its
+  trail behind it. At the source's size it is smaller than the native ball, which is about
+  17 units across. `LAVABALL.size` is the source's 0.42. Making it larger is an owner choice.
+* The impact needs the ball to have been seen to move at least once, and a solid point within
+  about 1.5 frames of travel ahead of it. A ball removed by touching a monster or the player
+  gets no impact; its damage is still dealt natively.

@@ -327,7 +327,7 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
 export function R_RocketTrail( start, end, type, key, model ) {
 
 	// a lava ball's trail is the supplied fireball's own (in the split title demo the Classic half still gets the native one)
-	if ( type === 0 && model != null && R_LavaBallTakes( model ) ) {
+	if ( type === 0 && model != null && R_LavaBallTakes( model, key ) ) {
 
 		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
 		return;

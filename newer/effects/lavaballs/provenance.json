@@ -1,0 +1,31 @@
+{
+  "source_file": "fireballs.html, \"FIREBALLS — Straight-flight FX Lab\" (owner-supplied as /Users/bri/Downloads/fireballs.html, kept local, not distributed)",
+  "source_sha256": "9913ff9ff80bf9f89aeed49eb2b88c0e12f2a17089e961d34501241337b925ae",
+  "source_bytes": 76601,
+  "owner_name": "the fire fan",
+  "effect": "01 / FIREBALLS (mode 'fireballs'): FireballsFX fireball, trail and impact",
+  "target": "Quake's flying lava balls, progs/lavaball.mdl (misc_fireball lava spurts; Chthon's thrown balls, boss.qc boss_missile)",
+  "port": "src/newer/render/r_lavaballs.js (cvar r_lavaballs, default 1)",
+  "doc": "docs/lavaballs-2026-10-11.md",
+  "extraction": "No asset files: the source is procedural. GLSL and constants copied into r_lavaballs.js; nothing is decoded or stored here.",
+  "taken": {
+    "NOISE_GLSL": { "line": 217, "use": "verbatim (hash31, noise3, fbm)" },
+    "FIREBALL_FRAGMENT": { "line": 241, "use": "every statement of main(); the output is kept as `src` and written premultiplied times LAVABALL.gain" },
+    "PARTICLE_FRAGMENT": { "line": 280, "use": "every statement of main() but gl_PointCoord (a quad's coordinate, y down as gl_PointCoord) and the output" },
+    "PARTICLE_VERTEX": { "line": 267, "use": "the point size rule (aSize world units, clamped 1..180 px) as a camera-facing quad" },
+    "FxParticles": { "line": 348, "use": "fixed-size pools, oldest slot recycled; emit/update rules (drag, gravity, grow, life) as typed arrays; the lab's floor bounce is not taken" },
+    "capacities": { "line": 430, "use": "glow 2200, smoke 600 (quality high)" },
+    "shootFireballs defaults": { "line": 467, "use": "size 0.42, power 1" },
+    "_spawn": { "line": 485, "use": "three PlaneGeometry(3.6, 1.8) translated -1.65 along the flight, turned i*60 degrees, uPhase i*5.1, additive" },
+    "_ring": { "line": 522, "use": "impact ring: RingGeometry(0.94, 1), 0xff982d, opacity (1-u)*0.45, scale 0.1+u*size" },
+    "_impact": { "line": 531, "use": "max(3, floor(65*density*size)) sparks, ring(0.35 s, 1.6*size), ceil(12*size) smoke puffs, with the source's speeds, colours, sizes, lives, gravity and drag; normal = against the direction of travel (the source's fallback)" },
+    "_updateFireballs": { "line": 546, "use": "grow-in min(1, 0.3+age*9); 480*density*size trail particles per second up to 2.6*size behind, 23% sparks, with the source's colours, sizes, lives, gravity and drift" }
+  },
+  "not_taken": {
+    "burstPlan / fireballsPlan / straightPoint": { "lines": "166, 188, 208", "why": "the four-lane volley and its straight-line planner: Quake decides how many balls fly and where; each native ball draws one fireball along its own motion" },
+    "PointLight": { "line": 499, "why": "the native ball keeps its own dynamic light (EF_ROCKET, cl_main.js)" },
+    "_spawn launch ring": { "line": 512, "why": "the client cannot tell a ball being thrown from one coming into view; a ring popping in mid-air would be wrong" },
+    "lab scene, actor, UI, chat, floor bounce": { "why": "the lab's own presentation" }
+  },
+  "scale": "Quake units per source unit = r_fireball.js FIREBALL.unit (24); the source's flight (about 12.6 source units/s) is then Chthon's 300 units/s"
+}

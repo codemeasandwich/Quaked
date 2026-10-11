@@ -1,11 +1,13 @@
 /**
  * @module newer/render/r_lavaballs
  *
- * The supplied "FIREBALLS — Straight-flight FX Lab" fireball (the owner's "fire fan") drawn on Quake's flying lava balls.
+ * The supplied "FIREBALLS — Straight-flight FX Lab" fireball (the owner's "fire fan") drawn on Quake's flying lava
+ * balls.
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports.
+ * State: no mutable exports; module-level variables `frame`, `deps`, `lastTime`, `held`, `ringCount`, `group`,
+ * `planeLayer`, `glowLayer`, `smokeLayer`, `ringLayer`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -69,7 +71,13 @@ export const LAVABALL = Object.freeze( {
 	max: 64, // balls drawn at once; any more draw as the native model
 	// a ball not seen for this long, or one that jumped this far in one frame, is a new ball
 	forget: .25, jump: 256,
-	dirRate: 25 // per second: how quickly the drawn direction turns onto the ball's motion (interpolation steps)
+	dirRate: 25, // per second: how quickly the drawn direction turns onto the ball's motion (interpolation steps)
+	// Light gain of the additive layers (fireball planes, trail and spark glow). The source sums its three planes and
+	// its glow on an 8-bit canvas, where a channel stops at 1: the core goes yellow-white and the edges stay red. Newer
+	// Game's composite instead multiplies the frame by its exposure (HDR_EXPOSURE 1.3) and rolls anything past 0.8
+	// toward white (r_post_shaders.js shoulder), which turned the summed core salmon-pink in the browser trial. At
+	// this gain the summed core lands in the shoulder's hue-keeping range: compared by eye against the source's frames.
+	gain: .55
 } );
 
 const CONTENTS_SOLID = - 2;
@@ -119,7 +127,7 @@ void main(){
 }`;
 const PLANE_FRAGMENT = `
 #include <clipping_planes_pars_fragment>
-uniform float uTime, uPower;
+uniform float uTime, uPower, uGain;
 varying vec2 vUv;varying float vPhase;
 ${MRT_OUT}
 ${NOISE_GLSL}
@@ -144,7 +152,7 @@ void main(){
   col+=vec3(0.8,0.56,0.3)*hot;
   float glow=exp(-y*y*5.0)*max(0.0,sin(x*3.14159265))*0.05;
   vec4 src=vec4((col*body+vec3(1.0,0.13,0.008)*glow)*uPower,body*0.94+glow);
-  gl_FragColor=vec4(src.rgb*clamp(src.a,0.,1.),0.);
+  gl_FragColor=vec4(src.rgb*clamp(src.a,0.,1.)*uGain,0.);
   ${MRT_ZERO}
 }`;
 
@@ -170,7 +178,7 @@ void main(){
 }`;
 const particleFragment = additive => `
 #include <clipping_planes_pars_fragment>
-uniform float uTime;
+uniform float uTime, uGain;
 varying float vLife, vKind, vSeed;
 varying vec3 vColor;varying vec2 vUV;
 ${MRT_OUT}
@@ -192,7 +200,7 @@ void main(){
     alpha=exp(-r*r*5.5)*fade;
     col+=vec3(0.3)*exp(-r*r*40.0);
   }
-  gl_FragColor=${additive ? 'vec4(col*alpha,0.)' : 'vec4(col*alpha,alpha)'};
+  gl_FragColor=${additive ? 'vec4(col*alpha*uGain,0.)' : 'vec4(col*alpha,alpha)'};
   ${MRT_ZERO}
 }`;
 
@@ -248,6 +256,7 @@ function emit( P, x, y, z, vx, vy, vz, r, g, b, size, life, gravity, drag, grow,
 	P.x[ i ] = x; P.y[ i ] = y; P.z[ i ] = z; P.vx[ i ] = vx; P.vy[ i ] = vy; P.vz[ i ] = vz;
 	P.r[ i ] = r; P.g[ i ] = g; P.b[ i ] = b; P.size[ i ] = size; P.life[ i ] = life; P.age[ i ] = 0;
 	P.gravity[ i ] = gravity; P.drag[ i ] = drag; P.grow[ i ] = grow; P.kind[ i ] = kind; P.seed[ i ] = Math.random() * 30;
+	return i;
 
 }
 
@@ -323,15 +332,26 @@ export function R_LavaBallsBegin() { frame ++; }
 
 /**
  * Does the supplied fireball draw this model (used for its native trail as well as its mesh): Newer Game, outside the
- * classic pass, r_lavaballs on, a scene, and progs/lavaball.mdl. Asked by render.js R_RocketTrail for every EF_ROCKET
- * trail segment and by `R_LavaBall`.
+ * classic pass, r_lavaballs on, a scene, and progs/lavaball.mdl; with an entity number, also a pool slot for it (the
+ * ball already holds one, or one is free), so a ball the full pool leaves native keeps its native trail too. Asked by
+ * render.js R_RocketTrail for every EF_ROCKET trail segment and by `R_LavaBall`.
  *
  * @param {?Object} model the entity's model (`name` is read)
+ * @param {number} [key] the entity number
  * @returns {boolean} true when the native lava ball picture (model and trail) must not be drawn
  */
-export function R_LavaBallTakes( model ) {
+export function R_LavaBallTakes( model, key ) {
 
-	return model != null && deps != null && deps.scene != null && r_lavaballs.value !== 0 && R_NewerGame() && LAVABALL.models.includes( model.name );
+	if ( model == null || deps == null || deps.scene == null || r_lavaballs.value === 0 || ! R_NewerGame() || ! LAVABALL.models.includes( model.name ) ) return false;
+	return key === undefined || slotOf( key ) >= 0 || slotOf( - 1 ) >= 0;
+
+}
+
+// the slot holding entity `key` (-1 finds a free one), or -1
+function slotOf( key ) {
+
+	for ( let i = 0; i < MAX; i ++ ) if ( slotKey[ i ] === key ) return i;
+	return - 1;
 
 }
 
@@ -420,25 +440,30 @@ function struck( s ) {
 }
 const _probe = Object.freeze( [ 0, .5, 1, 1.5 ] ), _point = [ 0, 0, 0 ];
 
-// _updateFireballs trail emission for one ball over dt. Source axes (x, y up, z) are Quake's (x, z up, y).
-function trail( s, dt ) {
+// _updateFireballs trail emission for one ball over dt. The source emits at every 1/120 s substep along the ball's
+// line; here each particle is placed at a random point of this frame's motion (mx, my, mz: from last frame's origin to
+// this one, Quake units), aged by the part of the frame since the ball was there, so a fast ball or a slow frame
+// leaves an unbroken trail. Source axes (x, y up, z) are Quake's (x, z up, y).
+function trail( s, dt, mx, my, mz ) {
 
-	const K = LAVABALL.unit, size = LAVABALL.size, o = s * 3;
+	const K = LAVABALL.unit, size = LAVABALL.size, o = s * 3, moved = Math.hypot( mx, my, mz ) / K;
 	const dx = slotDir[ o ], dy = slotDir[ o + 1 ], dz = slotDir[ o + 2 ];
 	slotEmit[ s ] += dt * LAVABALL.trailRate * LAVABALL.density * size;
 	while ( slotEmit[ s ] >= 1 ) {
 
 		slotEmit[ s ] --;
-		const behind = rand( 0, Math.min( slotTravel[ s ], LAVABALL.trailBehind * size ) ) * K;
-		const px = slotLast[ o ] - dx * behind + rand( - .1, .1 ) * size * K;
-		const py = slotLast[ o + 1 ] - dy * behind + rand( - .16, .16 ) * size * K;
-		const pz = slotLast[ o + 2 ] - dz * behind + rand( - .16, .16 ) * size * K;
+		const u = Math.random(), back = 1 - u; // (u = 1: where the ball is now)
+		const behind = rand( 0, Math.min( Math.max( 0, slotTravel[ s ] - back * moved ), LAVABALL.trailBehind * size ) ) * K;
+		const px = slotLast[ o ] - mx * back - dx * behind + rand( - .1, .1 ) * size * K;
+		const py = slotLast[ o + 1 ] - my * back - dy * behind + rand( - .16, .16 ) * size * K;
+		const pz = slotLast[ o + 2 ] - mz * back - dz * behind + rand( - .16, .16 ) * size * K;
 		const spark = Math.random() < LAVABALL.sparkShare, ahead = rand( .15, .6 );
 		// (the source drifts each particle forward along its flight, up a little, and sideways a little)
-		emit( glowPool, px, py, pz, dx * ahead * K, ( dy * ahead + rand( - .18, .18 ) ) * K, ( dz * ahead + rand( .08, .5 ) ) * K,
+		const i = emit( glowPool, px, py, pz, dx * ahead * K, ( dy * ahead + rand( - .18, .18 ) ) * K, ( dz * ahead + rand( .08, .5 ) ) * K,
 			1, spark ? .52 : rand( .1, .29 ), spark ? .1 : .01,
 			( spark ? rand( .017, .028 ) : rand( .18, .44 ) * size ) * K, spark ? rand( .25, .55 ) : rand( .18, .34 ),
 			( spark ? .7 : - .2 ) * K, 0, spark ? 0 : .08 * K, spark ? 0 : 1 );
+		glowPool.age[ i ] = - u * dt; // (the step that follows ages it by dt: back * dt old by then)
 
 	}
 
@@ -479,16 +504,16 @@ function planeGeometry() {
 
 function build() {
 
-	const resolution = { value: 720 };
+	const resolution = { value: 720 }, gain = { value: LAVABALL.gain };
 	glowLayer = layer( 'lavaball_glow', LAVABALL.glowCap, { aPosSize: 4, aInfo: 4, aColor: 4 },
-		material( PARTICLE_VERTEX, particleFragment( true ), { uTime: { value: 0 }, uViewHeight: resolution }, THREE.AdditiveBlending ), LAVABALL_ORDER.glow );
+		material( PARTICLE_VERTEX, particleFragment( true ), { uTime: { value: 0 }, uViewHeight: resolution, uGain: gain }, THREE.AdditiveBlending ), LAVABALL_ORDER.glow );
 	smokeLayer = layer( 'lavaball_smoke', LAVABALL.smokeCap, { aPosSize: 4, aInfo: 4, aColor: 4 },
-		material( PARTICLE_VERTEX, particleFragment( false ), { uTime: { value: 0 }, uViewHeight: resolution }, THREE.NormalBlending ), LAVABALL_ORDER.smoke );
+		material( PARTICLE_VERTEX, particleFragment( false ), { uTime: { value: 0 }, uViewHeight: resolution, uGain: gain }, THREE.NormalBlending ), LAVABALL_ORDER.smoke );
 	ringLayer = layer( 'lavaball_rings', LAVABALL.ringCap, { aCenterRadius: 4, aNormalAlpha: 4 },
 		material( RING_VERTEX, RING_FRAGMENT, {}, THREE.AdditiveBlending ), LAVABALL_ORDER.ring );
 	// the fireball planes: the shared layer's arrays and flags over the three-plane geometry
 	planeLayer = layer( 'lavaball_fireballs', MAX, { aPosScale: 4, aDirPhase: 4 },
-		material( PLANE_VERTEX, PLANE_FRAGMENT, { uTime: { value: 0 }, uPower: { value: LAVABALL.power } }, THREE.AdditiveBlending ), LAVABALL_ORDER.plane );
+		material( PLANE_VERTEX, PLANE_FRAGMENT, { uTime: { value: 0 }, uPower: { value: LAVABALL.power }, uGain: gain }, THREE.AdditiveBlending ), LAVABALL_ORDER.plane );
 	const planes = planeGeometry();
 	for ( const [ name, attribute ] of Object.entries( planeLayer.geometry.attributes ) ) if ( attribute.isInstancedBufferAttribute ) planes.setAttribute( name, attribute );
 	planeLayer.geometry.dispose(); planeLayer.geometry = planes; planeLayer.mesh.geometry = planes;
@@ -555,6 +580,7 @@ export function R_LavaBallsFlush( time, viewSize ) {
 		}
 		const mx = slotCur[ o ] - slotLast[ o ], my = slotCur[ o + 1 ] - slotLast[ o + 1 ], mz = slotCur[ o + 2 ] - slotLast[ o + 2 ];
 		const moved = Math.hypot( mx, my, mz );
+		let frameMoved = false;
 		if ( slotBorn[ s ] < 0 || time - slotLastTime[ s ] > LAVABALL.forget || moved > LAVABALL.jump ) {
 
 			// a new ball (or one back in view after a while): it starts here, its direction not yet known
@@ -575,12 +601,13 @@ export function R_LavaBallsFlush( time, viewSize ) {
 			}
 			slotTravel[ s ] += moved / K;
 			slotStep[ o ] = mx; slotStep[ o + 1 ] = my; slotStep[ o + 2 ] = mz;
+			frameMoved = true;
 
 		}
 		slotLast[ o ] = slotCur[ o ]; slotLast[ o + 1 ] = slotCur[ o + 1 ]; slotLast[ o + 2 ] = slotCur[ o + 2 ];
 		slotLastTime[ s ] = time;
 		if ( slotHasDir[ s ] === 0 ) continue; // (drawn from the first frame its direction of travel is known)
-		trail( s, dt );
+		if ( frameMoved ) trail( s, dt, mx, my, mz ); else trail( s, dt, 0, 0, 0 );
 		balls ++;
 
 	}

@@ -103,6 +103,12 @@ Deno.test( 'only Newer Game\'s lava balls are taken: Classic, the classic pass, 
 	check( ! lb.R_LavaBall( e ), 'no scene: native' );
 	setup();
 	check( lb.R_LavaBallTakes( LAVABALL ) && ! lb.R_LavaBallTakes( MISSILE ) && ! lb.R_LavaBallTakes( null ), 'the trail question answers the same' );
+	// a full pool: the 65th ball keeps its native model and its native trail; the 64 held keep theirs replaced
+	const many = Array.from( { length: lb.LAVABALL.max }, ( _, k ) => ball( 100 + k, [ k * 10, 0, 100 ] ) );
+	lb.R_LavaBallsBegin();
+	check( many.every( e2 => lb.R_LavaBall( e2 ) ), 'the pool takes 64' );
+	check( ! lb.R_LavaBall( ball( 999, [ 0, 0, 0 ] ) ) && ! lb.R_LavaBallTakes( LAVABALL, 999 ), 'the 65th: native model and native trail' );
+	check( lb.R_LavaBallTakes( LAVABALL, 100 ), 'a held ball\'s trail stays replaced' );
 	void env;
 
 } );
