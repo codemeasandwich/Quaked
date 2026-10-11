@@ -36,6 +36,8 @@ const RULES = [
 	[ 'newer/render', '44g', /^normal_math\.js$/ ],
 	// the post pipeline's stages, split from gl_post (card [44h], debt D3)
 	[ 'newer/render', '44h', /^r_post_\w+\.js$/ ],
+	// the model loader's formats, split from gl_model (card [44k], debt D3)
+	[ 'engine/render', '44k', /^gl_model_\w+\.js$/ ],
 	// the world renderer's stages, split from gl_rsurf (card [44i], debt D3)
 	[ 'engine/render', '44i', /^gl_rsurf_\w+\.js$/ ],
 	[ 'engine/render', '44d', /^(gl_\w+|glquake|render|vid|r_part|lit)\.js$/ ],
