@@ -183,3 +183,4 @@ Documents that no topic rule claims yet.
 - [Local play across windows: cards (37a) to (37c), 10 October 2026](local-play-2026-10-10.md)
 - [The mission packs: Scourge of Armagon and Dissolution of Eternity (card (34c)), 10 October 2026](mission-packs-2026-10-10.md)
 - [Multiplayer menu: Local (split screen) and Online — card (MP1), 10 October 2026](multiplayer-menu-2026-10-10.md)
+- [The Scrag's spit: the supplied twin-shot venom](scrag-venom-2026-10-11.md)
