@@ -12,7 +12,7 @@
  *
  * State: mutable exports `R_AliasMeshLookup`, `R_AliasMeshRemember`, `R_DemonBakePrepare`, `R_DemonBakeRelease`,
  * `R_DemonBakeStatus`, `R_DemonBakeSurface`, `Axe_ParseRecord`, `Axe_ValidOwnerKey`, `PowerVisionMode`,
- * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 415 more; module-level variables
+ * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 416 more; module-level variables
  * `_installed`.
  *
  * Errors: throws at 2 places.
@@ -329,6 +329,7 @@ export let r_impactripples;
 
 // newer/render/r_lavaballs.js
 export let R_LavaBall = Hooks_Missing( 'R_LavaBall' );
+export let R_LavaBallImpact = Hooks_Missing( 'R_LavaBallImpact' );
 export let R_LavaBallTakes = Hooks_Missing( 'R_LavaBallTakes' );
 export let R_LavaBallsBegin = Hooks_Missing( 'R_LavaBallsBegin' );
 export let R_LavaBallsClear = Hooks_Missing( 'R_LavaBallsClear' );
@@ -657,7 +658,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_FlashlightNewRun', 'R_FlashlightRunEnd', 'R_FlashlightRunLoaded', 'R_FlashlightRunMap', 'R_FlashlightSkillSelected',
 	'R_HeightShadowScope', 'r_heightshadows',
 	'R_ImpactMissile', 'R_ImpactRippleFrame', 'R_ImpactRippleListen', 'R_ImpactRippleReset', 'R_ImpactRipplesSetup', 'r_impactripples',
-	'R_LavaBall', 'R_LavaBallTakes', 'R_LavaBallsBegin', 'R_LavaBallsClear', 'R_LavaBallsFlush', 'R_LavaBallsSetup', 'r_lavaballs',
+	'R_LavaBall', 'R_LavaBallImpact', 'R_LavaBallTakes', 'R_LavaBallsBegin', 'R_LavaBallsClear', 'R_LavaBallsFlush', 'R_LavaBallsSetup', 'r_lavaballs',
 	'R_LevelViewUseSnapshots', 'R_SetupLevelViews', 'R_SyncLevelViews', 'R_UpdateLevelViewEntities',
 	'LIGHTNING', 'R_LightningClear', 'R_LightningFrame', 'R_LightningSetup', 'R_LightningTakesBeam', 'r_newer_lightning',
 	'R_MistClear', 'R_MistFrame',
@@ -763,7 +764,7 @@ export function Hooks_Install( table ) {
 	R_FlashlightNewRun = table.R_FlashlightNewRun; R_FlashlightRunEnd = table.R_FlashlightRunEnd; R_FlashlightRunLoaded = table.R_FlashlightRunLoaded; R_FlashlightRunMap = table.R_FlashlightRunMap; R_FlashlightSkillSelected = table.R_FlashlightSkillSelected;
 	R_HeightShadowScope = table.R_HeightShadowScope; r_heightshadows = table.r_heightshadows;
 	R_ImpactMissile = table.R_ImpactMissile; R_ImpactRippleFrame = table.R_ImpactRippleFrame; R_ImpactRippleListen = table.R_ImpactRippleListen; R_ImpactRippleReset = table.R_ImpactRippleReset; R_ImpactRipplesSetup = table.R_ImpactRipplesSetup; r_impactripples = table.r_impactripples;
-	R_LavaBall = table.R_LavaBall; R_LavaBallTakes = table.R_LavaBallTakes; R_LavaBallsBegin = table.R_LavaBallsBegin; R_LavaBallsClear = table.R_LavaBallsClear; R_LavaBallsFlush = table.R_LavaBallsFlush; R_LavaBallsSetup = table.R_LavaBallsSetup; r_lavaballs = table.r_lavaballs;
+	R_LavaBall = table.R_LavaBall; R_LavaBallImpact = table.R_LavaBallImpact; R_LavaBallTakes = table.R_LavaBallTakes; R_LavaBallsBegin = table.R_LavaBallsBegin; R_LavaBallsClear = table.R_LavaBallsClear; R_LavaBallsFlush = table.R_LavaBallsFlush; R_LavaBallsSetup = table.R_LavaBallsSetup; r_lavaballs = table.r_lavaballs;
 	R_LevelViewUseSnapshots = table.R_LevelViewUseSnapshots; R_SetupLevelViews = table.R_SetupLevelViews; R_SyncLevelViews = table.R_SyncLevelViews; R_UpdateLevelViewEntities = table.R_UpdateLevelViewEntities;
 	LIGHTNING = table.LIGHTNING; R_LightningClear = table.R_LightningClear; R_LightningFrame = table.R_LightningFrame; R_LightningSetup = table.R_LightningSetup; R_LightningTakesBeam = table.R_LightningTakesBeam; r_newer_lightning = table.r_newer_lightning;
 	R_MistClear = table.R_MistClear; R_MistFrame = table.R_MistFrame;

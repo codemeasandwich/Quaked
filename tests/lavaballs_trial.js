@@ -1,7 +1,9 @@
 import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 // Drives one ordinary game instance so a browser run can photograph the supplied fireball
 // (r_lavaballs.js) on Quake's own flying lava balls next to the native lava ball model. The game's
-// own `pause` freezes cl.time, so a paused frame holds a ball mid-flight. Observation only: the player
+// own `pause` freezes cl.time, so a paused frame holds a ball mid-flight. Since card [FB2] it also
+// photographs a Death Knight's fan (progs/k_spike.mdl shots, the registered game: open the page with
+// ?game=quake): `provoke` runs the knight's own th_missile at the player, as its AI does. Observation only: the player
 // is parked with the engine's own noclip-style flags, as tests/torchfire_trial.js does; the balls are
 // the level's own (misc_fireball, Chthon). No gameplay is altered.
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
@@ -18,8 +20,18 @@ window.lavaTrial={
  async start(newer=true,map='start'){Cvar_SetValue('r_hdr',newer?1:0);keys.set_key_dest(keys.key_game);
   Cbuf_AddText('maxplayers 1\nr_dynres 1\nbgmvolume 0\nscr_showpause 0\ncon_notifytime 0\nmap '+map+'\n');
   await until(()=>!cls.demoplayback&&cls.signon===4&&sv.active&&cl.worldmodel?.name==='maps/'+map+'.bsp'&&cl.stats[0]>0,'level signon');return true;},
- // the lava balls the client has this frame
- balls(){const list=[];for(let i=0;i<cl_entities.length;i++){const e=cl_entities[i];if(e?.model?.name==='progs/lavaball.mdl'&&e.msgtime===cl.mtime[0])list.push({i,origin:[...e.origin]});}return list;},
+ // the lava balls and Death Knight shots the client has this frame
+ balls(){const list=[];for(let i=0;i<cl_entities.length;i++){const e=cl_entities[i];if(lb.LAVABALL.models.includes(e?.model?.name)&&e.msgtime===cl.mtime[0])list.push({i,model:e.model.name,origin:[...e.origin]});}return list;},
+ // the server's edicts of one classname (monster_hell_knight)
+ async find(classname){const pg=await import('../src/engine/progs/progs.js');const out=[];for(let i=1;i<sv.num_edicts;i++){const e=sv.edicts[i];if(!e.free&&pg.PR_GetString(e.v.classname)===classname&&e.v.health>0)out.push({i,origin:[...e.v.origin]});}return out;},
+ // stand a monster at `origin` (observation only: brings a level's Death Knight into a lit room in front of the camera)
+ stand(index,origin){const e=sv.edicts[index];e.v.origin=[...origin];e.v.velocity=[0,0,0];SV_LinkEdict(e,false);return true;},
+ // what the knight's AI does once it sees the player in range: face it and run its own th_missile (hknight.qc
+ // hknight_magicc1, the fan of six shots aimed at its enemy)
+ async provoke(index){const pg=await import('../src/engine/progs/progs.js'),ex=await import('../src/engine/progs/pr_exec.js'),ph=await import('../src/engine/server/sv_phys.js');
+  const ed=await import('../src/engine/progs/pr_edict.js'),e=sv.edicts[index],player=sv.edicts[1],f=e&&ed.GetEdictFieldValue(e,'th_missile'),fn=f?f.accessor.getInt32(f.ofs):0;
+  if(!fn)return false;e.v.enemy=pg.EDICT_TO_PROG(player);
+  ph.pr_global_struct.self=pg.EDICT_TO_PROG(e);ph.pr_global_struct.other=pg.EDICT_TO_PROG(player);ex.PR_ExecuteProgram(fn);return true;},
  // park the player at `eye`, looking at `at`
  look(eye,at){const player=sv.edicts[1],o=[eye[0],eye[1],eye[2]-22],d=[at[0]-eye[0],at[1]-eye[1],at[2]-eye[2]];
   player.v.movetype=0;player.v.solid=0;player.v.flags|=64|128;player.v.origin=o;player.v.velocity=[0,0,0];

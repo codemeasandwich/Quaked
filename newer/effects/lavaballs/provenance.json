@@ -4,7 +4,7 @@
   "source_bytes": 76601,
   "owner_name": "the fire fan",
   "effect": "01 / FIREBALLS (mode 'fireballs'): FireballsFX fireball, trail and impact",
-  "target": "Quake's flying lava balls, progs/lavaball.mdl (misc_fireball lava spurts; Chthon's thrown balls, boss.qc boss_missile)",
+  "target": "Quake's flying lava balls, progs/lavaball.mdl (misc_fireball lava spurts; Chthon's thrown balls, boss.qc boss_missile), and since card [FB2] the Death Knight's fan shots, progs/k_spike.mdl (hknight.qc hknight_shot, one fireball per native shot, its trail and its TE_KNIGHTSPIKE impact)",
   "port": "src/newer/render/r_lavaballs.js (cvar r_lavaballs, default 1)",
   "doc": "docs/lavaballs-2026-10-11.md",
   "extraction": "No asset files: the source is procedural. GLSL and constants copied into r_lavaballs.js; nothing is decoded or stored here.",

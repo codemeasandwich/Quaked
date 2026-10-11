@@ -10,7 +10,7 @@ import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue } from '../src/engine/common/cvar.js';
 import { COM_LoadPackFile, COM_AddPack } from '../src/engine/common/pak.js';
 import { Mod_ForName } from '../src/engine/render/gl_model.js';
-import { entity_t, R_RocketTrail } from '../src/engine/render/render.js';
+import { entity_t, R_RocketTrail, R_KnightSpikeImpact } from '../src/engine/render/render.js';
 import * as part from '../src/engine/render/r_part.js';
 import { cl as clientState } from '../src/engine/client/client.js';
 import { R_AnimSetClassicPass } from '../src/newer/mode.js';
@@ -26,6 +26,9 @@ const same = ( a, b, label ) => { if ( a !== b ) throw new Error( `${label}: ${a
 const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
 COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) );
 const LAVABALL = Mod_ForName( 'progs/lavaball.mdl', true ), MISSILE = Mod_ForName( 'progs/missile.mdl', true );
+// The Death Knight's shot is in the registered game only, not the shareware pak: the module reads its name alone (the
+// browser trial draws the real model)
+const KSPIKE = { name: 'progs/k_spike.mdl', flags: 0x40 };
 Cvar_RegisterVariable( new cvar_t( 'r_hdr', '1' ) );
 if ( ! lb.r_lavaballs.registered ) Cvar_RegisterVariable( lb.r_lavaballs );
 const newer = on => Cvar_SetValue( 'r_hdr', on ? 1 : 0 );
@@ -285,5 +288,103 @@ Deno.test( 'the engine draws no lava ball model while the fireball has it and ha
 	// the module reads entities only: it imports nothing of the server or client
 	const own = readFileSync( new URL( '../src/newer/render/r_lavaballs.js', import.meta.url ), 'utf8' );
 	check( ! /from '[^']*(server|client)\//.test( own ), 'no server or client import' );
+
+} );
+
+// card [FB2]: the Death Knight's fan, one supplied fireball on each of its native shots
+Deno.test( 'each Death Knight shot is drawn as the supplied fireball, one per native shot, in Newer Game only', () => {
+
+	const env = setup();
+	// hknight.qc's fan: six k_spike shots at 300 units/s, spread across its aim
+	const shots = [ - 3, - 2, - 1, 1, 2, 3 ].map( ( k, n ) => ball( 300 + n, [ 0, 0, 100 ], KSPIKE ) );
+	const vel = [ - 3, - 2, - 1, 1, 2, 3 ].map( k => { const a = k * .04; return [ 300 * Math.cos( a ), 300 * Math.sin( a ), 0 ]; } );
+	for ( let f = 0; f < 10; f ++ ) {
+
+		check( frame( env, shots ).every( Boolean ), 'every shot taken: its native model is not drawn' );
+		shots.forEach( ( e, n ) => { for ( let i = 0; i < 3; i ++ ) e.origin[ i ] += vel[ n ][ i ] * .02; } );
+
+	}
+	frame( env, shots );
+	const snap = lb.R_LavaBallsSnapshot();
+	same( snap.balls, 6, 'six shots held' ); same( snap.drawn, 6, 'six fireballs drawn: one per native shot, none added' );
+	shots.forEach( ( e, n ) => {
+
+		const at = snap.keys.indexOf( 300 + n );
+		for ( let i = 0; i < 3; i ++ ) near( snap.positions[ at ][ i ], e.origin[ i ], 1e-3, `shot ${n} drawn at its origin` );
+		const len = Math.hypot( ...vel[ n ] );
+		for ( let i = 0; i < 3; i ++ ) near( snap.directions[ at ][ i ], vel[ n ][ i ] / len, 1e-5, `shot ${n} points along its own flight` );
+
+	} );
+	check( layerOf( env, 'lavaball_glow' ).geometry.instanceCount > 0, 'the source\'s trail is burning' );
+	same( shots[ 0 ].model, KSPIKE, 'the entity is only read' );
+	newer( false );
+	check( ! lb.R_LavaBall( shots[ 0 ] ) && ! lb.R_LavaBallTakes( KSPIKE ), 'Classic: the native shot' );
+	newer( true ); R_AnimSetClassicPass( true );
+	check( ! lb.R_LavaBall( shots[ 0 ] ), 'the classic half of the title demo: native' );
+	R_AnimSetClassicPass( false ); lb.r_lavaballs.value = 0;
+	check( ! lb.R_LavaBall( shots[ 0 ] ) && ! lb.R_LavaBallTakes( KSPIKE ), 'r_lavaballs 0: native' );
+	lb.r_lavaballs.value = 1;
+	// the Scrag's spike and the vore's ball are not the Knight's
+	check( ! lb.R_LavaBallTakes( { name: 'progs/w_spike.mdl' } ) && ! lb.R_LavaBallTakes( { name: 'progs/v_spike.mdl' } ), 'other tracers: native' );
+
+} );
+
+Deno.test( 'a Death Knight shot\'s native tracer gives way to the fireball\'s own; Classic and the split demo\'s classic half keep it', () => {
+
+	const env = setup();
+	const trail = () => R_RocketTrail( [ 0, 0, 100 ], [ 30, 0, 100 ], 5, 310, KSPIKE );
+	same( particles( env, trail ).length, 0, 'Newer Game: no native tracer for a Knight shot' );
+	check( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 30, 0, 100 ], 5 ) ).length > 0, 'a type-5 tracer without a model: native' );
+	lb.r_lavaballs.value = 0;
+	check( particles( env, trail ).length > 0, 'r_lavaballs 0: the native tracer is back' );
+	lb.r_lavaballs.value = 1; newer( false );
+	const classic = particles( env, trail );
+	check( classic.length === 1 && ! classic[ 0 ].classicOnly, 'Classic: the ordinary native tracer' );
+	newer( true ); r_demosplit.value = 2;
+	const split = particles( env, trail );
+	check( split.length === 1 && split[ 0 ].classicOnly, 'split title demo: a native tracer for the classic half only' );
+	r_demosplit.value = 0;
+
+} );
+
+Deno.test( 'a Death Knight shot hitting a wall ends in the source\'s impact at the server\'s point, once; Classic keeps the native spray', () => {
+
+	const env = setup();
+	const e = ball( 320, [ 900, 0, 100 ], KSPIKE );
+	for ( let k = 0; k < 6; k ++ ) { frame( env, [ e ] ); e.origin[ 0 ] += 300 * .02; }
+	frame( env, [ e ] );
+	const glowBefore = lb.R_LavaBallsSnapshot().glow;
+	// the server removes the shot and sends TE_KNIGHTSPIKE at the wall (x = 1000) in the same message
+	let took;
+	const native = particles( env, () => { took = R_KnightSpikeImpact( Float32Array.of( 1000, 0, 100 ) ); } );
+	same( took, true, 'the fireball takes the event' ); same( native.length, 0, 'no native spray' );
+	frame( env, [] );
+	const s = lb.R_LavaBallsSnapshot();
+	same( s.rings, 1, 'one impact ring: the shot\'s disappearance adds no second impact' ); same( s.drawn, 0, 'the fireball is gone' );
+	check( s.glow >= glowBefore + 20 && s.smoke >= 5, `the source's sparks and smoke (${glowBefore} -> ${s.glow}, smoke ${s.smoke})` );
+	const R = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aCenterRadius' ).array, N = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array;
+	near( R[ 0 ], 1000, 1e-3, 'the ring at the server\'s point' ); near( N[ 0 ], - 1, 1e-5, 'facing back along the shot (the source\'s fallback normal)' );
+	// a hit with no shot in view: the impact still, facing up
+	setup();
+	same( R_KnightSpikeImpact( Float32Array.of( 0, 0, 0 ) ), true, 'an unseen shot\'s hit is the source\'s impact too' );
+	// Classic: the native spray, reported
+	newer( false );
+	const classic = particles( env, () => { took = R_KnightSpikeImpact( Float32Array.of( 0, 0, 0 ) ); } );
+	same( took, false, 'Classic: native' ); check( classic.length === 1 && ! classic[ 0 ].classicOnly, 'the ordinary native spray' );
+	newer( true ); r_demosplit.value = 2;
+	const split = particles( env, () => { took = R_KnightSpikeImpact( Float32Array.of( 0, 0, 0 ) ); } );
+	check( took && split.length === 1 && split[ 0 ].classicOnly, 'split title demo: the native spray for the classic half only' );
+	r_demosplit.value = 0;
+	lb.R_LavaBallsClear();
+
+} );
+
+Deno.test( 'the engine hands each EF_TRACER2 trail its key and model and routes TE_KNIGHTSPIKE through the fireball', () => {
+
+	const clmain = readFileSync( new URL( '../src/engine/client/cl_main.js', import.meta.url ), 'utf8' );
+	check( /R_RocketTrail\( _peOldorg, ent\.origin, 5, s1\.number, model \)/.test( clmain ) && /R_RocketTrail\( _relinkOldorg, ent\.origin, 5, i, ent\.model \)/.test( clmain ), 'both EF_TRACER2 trail calls pass the key and model' );
+	const tent = readFileSync( new URL( '../src/engine/client/cl_tent.js', import.meta.url ), 'utf8' );
+	const at = tent.indexOf( 'case TE_KNIGHTSPIKE:' ), next = tent.indexOf( 'break;', at );
+	check( at > 0 && /R_KnightSpikeImpact\( pos \)/.test( tent.slice( at, next ) ) && /cl_sfx_knighthit/.test( tent.slice( at, next ) ), 'TE_KNIGHTSPIKE draws through R_KnightSpikeImpact and keeps its sound' );
 
 } );

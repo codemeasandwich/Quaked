@@ -26,7 +26,7 @@ import {
 import { R_FireballSpawn, R_SmokeTrail } from '../common/hooks.js'; // installed by newer/render/r_fireball.js
 import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 import { R_VenomTrail, R_VenomImpact } from '../common/hooks.js'; // installed by newer/render/r_venom.js
-import { R_LavaBallTakes } from '../common/hooks.js'; // installed by newer/render/r_lavaballs.js
+import { R_LavaBallTakes, R_LavaBallImpact } from '../common/hooks.js'; // installed by newer/render/r_lavaballs.js
 
 //============================================================================
 // Constants
@@ -321,15 +321,15 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
  *     adding 128 makes the native trail three times as dense
  * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1, the venom on type 3 and a lava
  *     ball's pool slot
- * @param {?Object} [model] the entity's model: a rocket trail (type 0) of a lava ball drawn by the supplied fireball
- *     (r_lavaballs.js, which draws that ball's own trail) is not spawned
+ * @param {?Object} [model] the entity's model: a rocket trail (type 0) of a lava ball, or the tracer (type 5) of a
+ *     Death Knight's shot, drawn by the supplied fireball (r_lavaballs.js, which draws its own trail) is not spawned
  * @throws {Error} for types 0, 1 and 3 with a key when the Newer hooks (`R_SmokeTrail`, `R_VenomTrail`,
- *     `R_DemoSplitActive`) are not installed, and for type 0 with a model when `R_LavaBallTakes` is not
+ *     `R_DemoSplitActive`) are not installed, and for types 0 and 5 with a model when `R_LavaBallTakes` is not
  */
 export function R_RocketTrail( start, end, type, key, model ) {
 
 	// a lava ball's trail is the supplied fireball's own (in the split title demo the Classic half still gets the native one)
-	if ( type === 0 && model != null && R_LavaBallTakes( model, key ) ) {
+	if ( ( type === 0 || type === 5 ) && model != null && R_LavaBallTakes( model, key ) ) {
 
 		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
 		return;
@@ -374,6 +374,24 @@ export function R_WizardSpikeImpact( org ) {
 
 }
 const WIZSPIKE_DIR = new Float32Array( 3 ); // (the native spray has no drift: vec3_origin)
+
+/**
+ * The picture of a Death Knight's shot hitting a wall (cl_tent.js TE_KNIGHTSPIKE; the caller plays the sound): the
+ * supplied fireball's impact in Newer Game (r_lavaballs.js R_LavaBallImpact, card [FB2]), otherwise the native particle
+ * spray (palette 226, 20 particles). In the title demo's split view the native spray is also spawned for the Classic
+ * half only.
+ *
+ * @param {Float32Array} org the impact point, Quake units, world space
+ * @returns {boolean} true when the fireball took the event, false when the native particles were spawned
+ * @throws {Error} when the Newer hooks (`R_LavaBallImpact`, `R_DemoSplitActive`) are not installed
+ */
+export function R_KnightSpikeImpact( org ) {
+
+	if ( ! R_LavaBallImpact( org ) ) { _R_RunParticleEffect( org, WIZSPIKE_DIR, 226, 20 ); return false; }
+	if ( R_DemoSplitActive() ) _R_RunParticleEffect( org, WIZSPIKE_DIR, 226, 20, true );
+	return true;
+
+}
 
 /**
  * Spawns the ring of particles around an entity with EF_BRIGHTFIELD; a forwarder to r_part.js R_EntityParticles,

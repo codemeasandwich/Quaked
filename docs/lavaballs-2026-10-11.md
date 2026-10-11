@@ -78,6 +78,35 @@ more than 64 balls at once keep the native model and trail exactly as before. In
 demo the native trail is also spawned flagged classic-only for the Classic half, as
 `r_smoketrails` does.
 
+## The Death Knight's fan (card [FB2])
+
+The owner asked for the Death Knight's fan attack to be replaced with this same fireball, its
+trail and its impact taken exactly from `fireballs.html`, and chose **one fireball on each native
+shot**. The fan itself stays Quake's:
+
+* **Native fan.** `hknight.qc` (`hknight_magicc1`…`c11`, its `th_missile`) throws six shots,
+  one per frame, with `hknight_shot( -2 … 3 )`. Each shot is aimed at the enemy and turned
+  6° per step. It is `progs/k_spike.mdl`, a `MOVETYPE_FLYMISSILE` that flies straight at
+  300 units/s and carries `EF_TRACER2`. On a wall, `spike_touch` sends `TE_KNIGHTSPIKE` at
+  the hit point. On a monster or the player it deals 9 damage and bleeds.
+* **The fireball.** `progs/k_spike.mdl` is the second entry of `LAVABALL.models`. Each shot is
+  drawn by exactly the lava ball code: the same source shader, size, grow-in and trail. Six
+  shots draw six fireballs, and none is added.
+* **Trail.** `cl_main.js` hands each `EF_TRACER2` trail its entity number and model.
+  `render.js R_RocketTrail` spawns no type-5 tracer when `R_LavaBallTakes` says the fireball
+  has the shot. The source's flame-and-spark trail is drawn instead.
+* **Impact.** `cl_tent.js` `TE_KNIGHTSPIKE` calls `render.js R_KnightSpikeImpact`. In Newer
+  Game that draws the source's `_impact` (sparks, ring and smoke) at the server's own point,
+  through `R_LavaBallImpact` (hook `R_LavaBallImpact`). The impact's normal points back
+  along the held shot nearest the point, within 64 units, or up when no shot was in view. The
+  native spray (palette 226, 20 particles) is not drawn. A Knight shot's slot never runs the
+  lava ball's contents probe, so a wall hit draws one impact, not two. The hit sound is
+  unchanged.
+* **Kept native:** the shot's count, timing, aim, speed, damage, removal and sounds; the
+  blood on a monster or the player. Classic, the classic pass and `r_lavaballs 0` keep the
+  native model, tracer and spray. In the split demo the native tracer and spray are spawned
+  for the Classic half only.
+
 ## How it is built
 
 `src/newer/render/r_lavaballs.js` follows the `r_torchfire.js` pattern:
@@ -117,11 +146,17 @@ value was chosen by eye against the source's frames.
 ## Switches
 
 * `r_lavaballs` (default 1): 0 puts the native lava ball model and trail back. In Newer Game
-  that means the `r_smoketrails` smoke.
+  that means the `r_smoketrails` smoke. Since [FB2] it also puts back the Death Knight shot's
+  model, tracer and wall spray.
 
 ## Evidence
 
-* **Unit tests.** `node tools/run_tests.mjs tests/lavaballs_test.js`: 9 tests. They cover:
+* **Unit tests.** `node tools/run_tests.mjs tests/lavaballs_test.js`: 13 tests. Four of them
+  are [FB2]'s: one fireball per Knight shot, and the gate; the tracer replaced, kept in
+  Classic and in the split demo's classic half; the wall impact drawn once at the server's
+  point, with the native spray in Classic; the `cl_main.js` and `cl_tent.js` call sites. The
+  shareware pak has no `k_spike.mdl`, so the unit tests use its name alone. The 13 tests
+  cover:
   * the source equivalence of the shaders and constants;
   * the gate (Classic, the classic pass, `r_lavaballs 0`, other models, no scene, a full pool);
   * one fireball per ball, drawn from the frame its native model is hidden, at its origin and
@@ -144,6 +179,16 @@ value was chosen by eye against the source's frames.
   * wakes Chthon on e1m7 by running his own `use`, as his trigger would;
   * puts away the Bestiary's first-sighting page;
   * pauses the game to photograph a ball mid-flight.
+  * For [FB2], with `?game=quake`:
+    * stands one of the level's Death Knights (`find`, `stand`) in the lit start area of
+      e2m5, 220 units in front of the player;
+    * runs its own `th_missile` at the player (`provoke`), which is what its AI does;
+    * then photographs the six shots from the side, unpaused, as they cross and hit the
+      wall.
+
+    In Newer Game, six fireballs flew with the source's trail, and two rings and smoke
+    marked the wall hits. Classic showed the six native shots with their tracers. No page
+    errors occurred.
 
   The playwright drivers are kept with the card's evidence, not in the repository.
 

@@ -921,9 +921,9 @@ function CL_LinkPacketEntities( frac ) {
 
 					R_RocketTrail( _peOldorg, ent.origin, 4 );
 
-				} else if ( model.flags & 0x40 ) { // EF_TRACER2
+				} else if ( model.flags & 0x40 ) { // EF_TRACER2 (the key and model let the fireball replace a Death Knight's shot: r_lavaballs.js)
 
-					R_RocketTrail( _peOldorg, ent.origin, 5 );
+					R_RocketTrail( _peOldorg, ent.origin, 5, s1.number, model );
 
 				} else if ( model.flags & 0x80 ) { // EF_TRACER3
 
@@ -1289,8 +1289,8 @@ export function CL_RelinkEntities() {
 				R_RocketTrail( _relinkOldorg, ent.origin, 4 );
 			else if ( ent.model.flags & 0x10 ) // EF_TRACER (the key lets the Scrag's venom replace it: r_venom.js)
 				R_RocketTrail( _relinkOldorg, ent.origin, 3, i );
-			else if ( ent.model.flags & 0x40 ) // EF_TRACER2
-				R_RocketTrail( _relinkOldorg, ent.origin, 5 );
+			else if ( ent.model.flags & 0x40 ) // EF_TRACER2 (the key and model let the fireball replace a Death Knight's shot: r_lavaballs.js)
+				R_RocketTrail( _relinkOldorg, ent.origin, 5, i, ent.model );
 			else if ( ent.model.flags & 0x01 ) { // EF_ROCKET
 
 				R_RocketTrail( _relinkOldorg, ent.origin, 0, i, ent.model );

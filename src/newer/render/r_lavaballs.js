@@ -26,6 +26,14 @@
 // follows that ball's own interpolated origin, its direction is the ball's own motion this frame,
 // and no projectile is added, moved or removed.
 //
+// The Death Knight's shots (card [FB2]). hknight.qc's magic attack throws its fan of six
+// progs/k_spike.mdl shots (MOVETYPE_FLYMISSILE, 300 units/s, straight, EF_TRACER2), and the owner
+// chose to draw each of them as this same supplied fireball, with its trail and impact: one
+// fireball per native shot, the fan's count, timing, aim and damage untouched. Its native tracer
+// trail (type 5) gives way to the fireball's own, and its wall hit, the server's TE_KNIGHTSPIKE,
+// draws the source's impact at the server's point in place of the native spray
+// (R_LavaBallImpact). A shot that hits a monster or player keeps its native blood.
+//
 // Ownership. The server still owns the ball (motion, touch, damage, removal), cl_main.js its
 // interpolated origin and its dynamic light (EF_ROCKET, radius 200), cl_tent.js Chthon's explosion
 // (which r_fireball.js draws). This module only replaces the *picture*: the lava ball model is not
@@ -48,11 +56,15 @@ import { hashJS } from './fx_math.js';
 import { FIREBALL, MRT_OUT, MRT_ZERO, layer, material } from './r_fireball.js';
 import { R_NewerGame } from '../mode.js';
 
-// 0 puts the native lava ball model and its trail back
+// 0 puts the native lava ball and Death Knight shot models, trails and impact back
 export const r_lavaballs = new cvar_t( 'r_lavaballs', '1' );
 
 export const LAVABALL = Object.freeze( {
-	models: Object.freeze( [ 'progs/lavaball.mdl' ] ),
+	// the lava balls, and the Death Knight's magic shots (card [FB2]: the owner's choice, one supplied fireball on each
+	// of the native shots of hknight.qc's fan, which keeps its count, damage, timing and aim)
+	models: Object.freeze( [ 'progs/lavaball.mdl', 'progs/k_spike.mdl' ] ),
+	knight: 'progs/k_spike.mdl',
+	knightNear: 64, // an impact this close to a held shot's last drawn origin takes that shot's direction
 	// shootFireballs() defaults of the source (size 0.42, power 1) at quality "high" (density 1)
 	size: .42, power: 1, density: 1,
 	// Quake units per source unit: the explosion port's (r_fireball.js FIREBALL.unit)
@@ -309,6 +321,7 @@ const slotLastTime = new Float64Array( MAX );    // client time last drawn
 const slotTravel = new Float32Array( MAX );      // source units travelled since first drawn
 const slotEmit = new Float32Array( MAX );        // trail emission carry
 const slotPhase = new Float32Array( MAX );
+const slotKnight = new Uint8Array( MAX );        // a Death Knight shot: its impact comes from TE_KNIGHTSPIKE, not the probe
 let frame = 0, deps = null, lastTime = 0, held = false; // (held: something may be kept that leaving Newer must drop)
 
 const rings = new Float32Array( LAVABALL.ringCap * 8 ); // x, y, z, nx, ny, nz, age, size
@@ -332,9 +345,9 @@ export function R_LavaBallsBegin() { frame = ( frame + 1 ) | 0; } // (wraps with
 
 /**
  * Does the supplied fireball draw this model (used for its native trail as well as its mesh): Newer Game, outside the
- * classic pass, r_lavaballs on, a scene, and progs/lavaball.mdl; with an entity number, also a pool slot for it (the
+ * classic pass, r_lavaballs on, a scene, and progs/lavaball.mdl or progs/k_spike.mdl (a Death Knight's shot); with an entity number, also a pool slot for it (the
  * ball already holds one, or one is free), so a ball the full pool leaves native keeps its native trail too. Asked by
- * render.js R_RocketTrail for every EF_ROCKET trail segment and by `R_LavaBall`.
+ * render.js R_RocketTrail for every EF_ROCKET and EF_TRACER2 trail segment and by `R_LavaBall`.
  *
  * @param {?Object} model the entity's model (`name` is read)
  * @param {number} [key] the entity number
@@ -379,7 +392,7 @@ export function R_LavaBall( e ) {
 	if ( s < 0 ) {
 
 		if ( free < 0 ) return false;
-		s = free; slotKey[ s ] = key; slotHasDir[ s ] = 0; slotBorn[ s ] = - 1;
+		s = free; slotKey[ s ] = key; slotHasDir[ s ] = 0; slotBorn[ s ] = - 1; slotKnight[ s ] = e.model.name === LAVABALL.knight ? 1 : 0;
 		slotDir[ s * 3 ] = slotDir[ s * 3 + 1 ] = slotDir[ s * 3 + 2 ] = 0; // (no direction of another ball's)
 
 	}
@@ -389,7 +402,35 @@ export function R_LavaBall( e ) {
 
 }
 
-function release( s ) { slotKey[ s ] = - 1; slotHasDir[ s ] = 0; }
+/**
+ * The picture of a Death Knight's shot hitting a wall (cl_tent.js TE_KNIGHTSPIKE, through render.js
+ * R_KnightSpikeImpact; the caller plays the sound): the source's `_impact` at the server's point, its normal against
+ * the direction of the held shot nearest that point (within `LAVABALL.knightNear`), or up when none is held (the shot
+ * was never in view). Allocates nothing.
+ *
+ * @param {ArrayLike<number>} org the impact point, Quake units, world space
+ * @returns {boolean} true when the source's impact was drawn and the native particle spray must not be; false
+ * (native spray) for Classic, the classic pass, r_lavaballs 0 and no scene
+ */
+export function R_LavaBallImpact( org ) {
+
+	if ( org == null || deps == null || deps.scene == null || r_lavaballs.value === 0 || ! R_NewerGame() ) return false;
+	let best = - 1, bestD = LAVABALL.knightNear;
+	for ( let s = 0; s < MAX; s ++ ) {
+
+		if ( slotKey[ s ] < 0 || slotKnight[ s ] === 0 || slotHasDir[ s ] === 0 ) continue;
+		const d = Math.hypot( slotLast[ s * 3 ] - org[ 0 ], slotLast[ s * 3 + 1 ] - org[ 1 ], slotLast[ s * 3 + 2 ] - org[ 2 ] );
+		if ( d <= bestD ) { best = s; bestD = d; }
+
+	}
+	if ( best >= 0 ) impact( org[ 0 ], org[ 1 ], org[ 2 ], - slotDir[ best * 3 ], - slotDir[ best * 3 + 1 ], - slotDir[ best * 3 + 2 ] );
+	else impact( org[ 0 ], org[ 1 ], org[ 2 ], 0, 0, 1 );
+	held = true;
+	return true;
+
+}
+
+function release( s ) { slotKey[ s ] = - 1; slotHasDir[ s ] = 0; slotKnight[ s ] = 0; }
 
 // _ring of the source
 function ring( x, y, z, nx, ny, nz, size ) {
@@ -539,7 +580,7 @@ function hide() {
  */
 export function R_LavaBallsClear() {
 
-	slotKey.fill( - 1 ); slotHasDir.fill( 0 );
+	slotKey.fill( - 1 ); slotHasDir.fill( 0 ); slotKnight.fill( 0 );
 	clearPool( glowPool ); clearPool( smokePool ); ringCount = 0; lastTime = 0; held = false;
 	hide();
 
@@ -580,8 +621,9 @@ export function R_LavaBallsFlush( time, viewSize ) {
 		if ( slotSeen[ s ] !== frame ) {
 
 			// gone this frame: the source's impact when it went against a wall or floor (a ball that left view or
-			// expired in the air just goes, as the native one does)
-			if ( slotHasDir[ s ] === 1 && struck( s ) ) impact( slotLast[ o ], slotLast[ o + 1 ], slotLast[ o + 2 ], - slotDir[ o ], - slotDir[ o + 1 ], - slotDir[ o + 2 ] );
+			// expired in the air just goes, as the native one does). A Death Knight shot's wall hit is the server's own
+			// TE_KNIGHTSPIKE (R_LavaBallImpact), and one that hit a monster or player bleeds natively, so it just goes
+			if ( slotKnight[ s ] === 0 && slotHasDir[ s ] === 1 && struck( s ) ) impact( slotLast[ o ], slotLast[ o + 1 ], slotLast[ o + 2 ], - slotDir[ o ], - slotDir[ o + 1 ], - slotDir[ o + 2 ] );
 			release( s );
 			continue;
 
