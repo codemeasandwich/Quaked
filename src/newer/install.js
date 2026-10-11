@@ -73,6 +73,7 @@ import { R_CompileSceneAsync, R_ShaderAssetStamp } from './render/r_shaderwarm.j
 import { R_ShellShot, R_ShellsFrame, R_ShellsNewMap, R_ShellsReset, R_ShellsRestore, R_ShellsSetup, R_ShellsSnapshot } from './render/r_shells.js';
 import { R_ShellTrace } from './render/r_shelltrace.js';
 import { R_ShotgunClear, R_ShotgunFrame, R_ShotgunSetup, r_shotgunfx, viewModelMuzzles } from './render/r_shotgun.js';
+import { R_StasisBoltClear, R_StasisBoltFrame, R_StasisBoltImpact, R_StasisBoltSetup, R_StasisBoltTakes, r_stasisbolt } from './render/r_stasisbolt.js';
 import { R_TeleportFrameEnd } from './render/r_teleportfx.js';
 import { R_TorchFire, R_TorchFireBegin, R_TorchFireClear, R_TorchFireFlush, R_TorchFireSetup, TORCH_HANDLE, TORCH_WHOLE, r_torchfire, torchParts } from './render/r_torchfire.js';
 import { R_AliasFrameBox, R_WallBurnClear, R_WallBurnFrame, R_WallBurnSetup, R_WallBurnShot, r_newer_wallburn } from './render/r_wallburn.js';
@@ -153,6 +154,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_ShellShot, R_ShellsFrame, R_ShellsNewMap, R_ShellsReset, R_ShellsRestore, R_ShellsSetup, R_ShellsSnapshot,
 	R_ShellTrace,
 	R_ShotgunClear, R_ShotgunFrame, R_ShotgunSetup, r_shotgunfx, viewModelMuzzles,
+	R_StasisBoltClear, R_StasisBoltFrame, R_StasisBoltImpact, R_StasisBoltSetup, R_StasisBoltTakes, r_stasisbolt,
 	R_TeleportFrameEnd,
 	R_TorchFire, R_TorchFireBegin, R_TorchFireClear, R_TorchFireFlush, R_TorchFireSetup, TORCH_HANDLE, TORCH_WHOLE, r_torchfire, torchParts,
 	R_AliasFrameBox, R_WallBurnClear, R_WallBurnFrame, R_WallBurnSetup, R_WallBurnShot, r_newer_wallburn,

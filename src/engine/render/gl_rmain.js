@@ -57,6 +57,7 @@ import { r_newer_lightning, R_LightningSetup, R_LightningFrame, R_LightningClear
 import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear, R_AliasFrameBox } from '../common/hooks.js'; // installed by newer/render/r_wallburn.js
 import { r_dof, R_DofSetup, R_DofFrame, R_DofClear } from '../common/hooks.js'; // installed by newer/render/r_dof.js
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from '../common/hooks.js'; // installed by newer/render/r_shotgun.js
+import { r_stasisbolt, R_StasisBoltSetup, R_StasisBoltFrame, R_StasisBoltClear, R_StasisBoltTakes } from '../common/hooks.js'; // installed by newer/render/r_stasisbolt.js
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from '../common/hooks.js'; // installed by newer/render/r_torchfire.js
 import { R_ClassicTexture } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from '../common/hooks.js'; // installed by newer/mode.js
@@ -781,6 +782,7 @@ export function R_DrawEntitiesOnList() {
 
 			case mod_alias:
 				if ( currententity._playerLightning === true && R_LightningTakesBeam() ) break; // drawn by r_lightning.js (card [30a])
+				if ( R_StasisBoltTakes( currententity ) ) break; // a laser shot: drawn by r_stasisbolt.js (card [LZ1])
 				R_DrawAliasModel( currententity );
 				break;
 
@@ -1999,6 +2001,7 @@ export function R_RenderView() {
 	R_FlashlightUpdate( r_refdef.vieworg, vpn, vright, vup );
 	R_DrawViewModel();
 	R_ShotgunFrame( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the gun is placed: the pellets leave its muzzle)
+	R_StasisBoltFrame( cl != null ? cl.time : 0, _fireballView ); // (the laser shots this frame's entity list took, card [LZ1])
 	R_LightningFrame( cl != null ? cl.time : 0 ); // (after the gun is placed: the beam leaves its muzzle, card [30a])
 	R_WallBurnFrame( cl != null ? cl.time : 0 ); // (the beam's and the pellets' burn on the walls, card [30c])
 	R_DofFrame( cl != null ? cl.time : 0, cl?.worldmodel, r_refdef.vieworg, vpn, vright, vup ); // (the focus, card [38]: vpn is this frame's here)
@@ -2247,6 +2250,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_shotgunfx );
+	Cvar_RegisterVariable( r_stasisbolt );
 	Cvar_RegisterVariable( r_impactripples );
 	Cvar_RegisterVariable( r_newer_lightning );
 	Cvar_RegisterVariable( r_newer_wallburn );
@@ -2487,6 +2491,8 @@ export function R_NewMap() {
 	R_ImpactRippleListen( R_WaveImpact );
 	R_ShotgunSetup( { scene, muzzles: R_ShotgunMuzzles, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
 	R_ShotgunClear();
+	R_StasisBoltSetup( { scene, cl: () => cl, pointInLeaf: Mod_PointInLeaf } );
+	R_StasisBoltClear();
 	R_DecalsClear();
 	let shellBrushes = [];
 	R_ShellsSetup( { scene, client: () => cl, refresh: () => { shellBrushes = cl_entities.filter( e => e?.model?.name?.startsWith( '*' ) ); },

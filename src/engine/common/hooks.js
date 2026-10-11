@@ -12,7 +12,7 @@
  *
  * State: mutable exports `R_AliasMeshLookup`, `R_AliasMeshRemember`, `R_DemonBakePrepare`, `R_DemonBakeRelease`,
  * `R_DemonBakeStatus`, `R_DemonBakeSurface`, `Axe_ParseRecord`, `Axe_ValidOwnerKey`, `PowerVisionMode`,
- * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 395 more; module-level variables
+ * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 401 more; module-level variables
  * `_installed`.
  *
  * Errors: throws at 2 places.
@@ -453,6 +453,14 @@ export let R_ShotgunSetup = Hooks_Missing( 'R_ShotgunSetup' );
 export let r_shotgunfx;
 export let viewModelMuzzles = Hooks_Missing( 'viewModelMuzzles' );
 
+// newer/render/r_stasisbolt.js
+export let R_StasisBoltClear = Hooks_Missing( 'R_StasisBoltClear' );
+export let R_StasisBoltFrame = Hooks_Missing( 'R_StasisBoltFrame' );
+export let R_StasisBoltImpact = Hooks_Missing( 'R_StasisBoltImpact' );
+export let R_StasisBoltSetup = Hooks_Missing( 'R_StasisBoltSetup' );
+export let R_StasisBoltTakes = Hooks_Missing( 'R_StasisBoltTakes' );
+export let r_stasisbolt;
+
 // newer/render/r_teleportfx.js
 export let R_TeleportFrameEnd = Hooks_Missing( 'R_TeleportFrameEnd' );
 
@@ -650,6 +658,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_ShellShot', 'R_ShellsFrame', 'R_ShellsNewMap', 'R_ShellsReset', 'R_ShellsRestore', 'R_ShellsSetup', 'R_ShellsSnapshot',
 	'R_ShellTrace',
 	'R_ShotgunClear', 'R_ShotgunFrame', 'R_ShotgunSetup', 'r_shotgunfx', 'viewModelMuzzles',
+	'R_StasisBoltClear', 'R_StasisBoltFrame', 'R_StasisBoltImpact', 'R_StasisBoltSetup', 'R_StasisBoltTakes', 'r_stasisbolt',
 	'R_TeleportFrameEnd',
 	'R_TorchFire', 'R_TorchFireBegin', 'R_TorchFireClear', 'R_TorchFireFlush', 'R_TorchFireSetup', 'TORCH_HANDLE', 'TORCH_WHOLE', 'r_torchfire', 'torchParts',
 	'R_AliasFrameBox', 'R_WallBurnClear', 'R_WallBurnFrame', 'R_WallBurnSetup', 'R_WallBurnShot', 'r_newer_wallburn',
@@ -753,6 +762,7 @@ export function Hooks_Install( table ) {
 	R_ShellShot = table.R_ShellShot; R_ShellsFrame = table.R_ShellsFrame; R_ShellsNewMap = table.R_ShellsNewMap; R_ShellsReset = table.R_ShellsReset; R_ShellsRestore = table.R_ShellsRestore; R_ShellsSetup = table.R_ShellsSetup; R_ShellsSnapshot = table.R_ShellsSnapshot;
 	R_ShellTrace = table.R_ShellTrace;
 	R_ShotgunClear = table.R_ShotgunClear; R_ShotgunFrame = table.R_ShotgunFrame; R_ShotgunSetup = table.R_ShotgunSetup; r_shotgunfx = table.r_shotgunfx; viewModelMuzzles = table.viewModelMuzzles;
+	R_StasisBoltClear = table.R_StasisBoltClear; R_StasisBoltFrame = table.R_StasisBoltFrame; R_StasisBoltImpact = table.R_StasisBoltImpact; R_StasisBoltSetup = table.R_StasisBoltSetup; R_StasisBoltTakes = table.R_StasisBoltTakes; r_stasisbolt = table.r_stasisbolt;
 	R_TeleportFrameEnd = table.R_TeleportFrameEnd;
 	R_TorchFire = table.R_TorchFire; R_TorchFireBegin = table.R_TorchFireBegin; R_TorchFireClear = table.R_TorchFireClear; R_TorchFireFlush = table.R_TorchFireFlush; R_TorchFireSetup = table.R_TorchFireSetup; TORCH_HANDLE = table.TORCH_HANDLE; TORCH_WHOLE = table.TORCH_WHOLE; r_torchfire = table.r_torchfire; torchParts = table.torchParts;
 	R_AliasFrameBox = table.R_AliasFrameBox; R_WallBurnClear = table.R_WallBurnClear; R_WallBurnFrame = table.R_WallBurnFrame; R_WallBurnSetup = table.R_WallBurnSetup; R_WallBurnShot = table.R_WallBurnShot; r_newer_wallburn = table.r_newer_wallburn;

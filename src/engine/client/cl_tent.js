@@ -32,6 +32,7 @@ import {
 } from './client.js';
 import { CL_AllocDlight } from './cl_main.js';
 import { R_WallBurnShot } from '../common/hooks.js'; // installed by newer/render/r_wallburn.js
+import { R_StasisBoltImpact } from '../common/hooks.js'; // installed by newer/render/r_stasisbolt.js
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
@@ -223,11 +224,11 @@ export function CL_ParseTEnt() {
 
 			break;
 
-		case TE_GUNSHOT: // bullet hitting wall
+		case TE_GUNSHOT: // bullet hitting wall (and a laser: Laser_Touch sends this too)
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			R_RunParticleEffect( pos, vec3_origin, 0, 20 );
+			if ( ! R_StasisBoltImpact( pos ) ) R_RunParticleEffect( pos, vec3_origin, 0, 20 ); // (Newer Game: a laser's own impact, card [LZ1])
 			if ( ! R_WallBurnShot( pos ) ) R_DecalShot( pos ); // (Newer Game: the pellet's burn on the wall, card [30c])
 			break;
 

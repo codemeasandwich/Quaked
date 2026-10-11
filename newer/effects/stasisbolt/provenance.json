@@ -1,0 +1,30 @@
+{
+  "source_file": "stasis-combat-fx-v2.html (owner-supplied \"STASIS 02 — Miniature Plasma Lab\", kept local, not distributed)",
+  "source_sha256": "8ae01c6dbfdc442b43dec7c48d622963f52069a8c6e665a785b6a1da248c52a8",
+  "source_bytes": 90589,
+  "effect": "Stasis bolt (ability 01 / KINETIC, fireBurst('bolt'))",
+  "owner_call": "fireBurst('bolt', { origin, direction, count: 4, frequency: 8, scale: 0.24, freezeAt: 7.5 })",
+  "owner_clarification": "one for one: each native laser projectile is one bolt at scale 0.24, travelling with the projectile",
+  "assets": "none: the source is procedural (no textures); nothing was decoded or copied as a file",
+  "port": "src/newer/render/r_stasisbolt.js",
+  "taken": {
+    "NOISE_GLSL": { "lines": "219-236", "use": "verbatim (hash31, noise3, fbm)" },
+    "PLASMA_VERTEX / PLASMA_FRAGMENT": { "lines": "240-300", "use": "the ray march statement for statement; the camera (uCameraLocal) and phase (uPhase) become per-instance varyings, the output is converted to linear light with alpha 0" },
+    "PARTICLE_VERTEX / PARTICLE_FRAGMENT kind 0": { "lines": "302-343", "use": "the glow particle's shading on camera-facing quads; point size clamp (1 px minimum) kept" },
+    "FxParticles.update": { "lines": "424-452", "use": "its 1/60 s step law (damping, gravity, position) summed in closed form: particleOffset" },
+    "FxPlasmaVolume": { "lines": "465-500", "use": "proxy box (length, 3.5 radius, 3.5 radius), colours 0xff202d / 0xffe3d0, steps 28 (quality high), roughness 0.4, additive, back faces, no depth write" },
+    "shootBolt / _emitBurst (bolt)": { "lines": "537-553, 593-605", "use": "length 3.15 x scale, radius max(0.014, 0.115 x scale), power 1; uPhase = random x 40" },
+    "_updateBolts": { "lines": "683-704", "use": "glow sparks: 45 per second while flying, on the bolt (half length along, one radius across), drift (direction.x x +-0.4, +-0.35, +-0.35), life 0.04-0.13 s, size 0.007-0.019, colour [1, 0.055, 0.08]" },
+    "_impact('bolt') / _ring": { "lines": "652-657, 666-682", "use": "floor(30 x sqrt(scale)) = 14 particles, speed (1.5..6) x sqrt(scale) along the normal plus (+-1.5, 0..2.5 up, +-2), size (0.025..0.085) x scale, life 0.3-0.8 s, gravity 6, drag 1, colour [1, 0.08, 0.075]; ring 0xff4158, 0.94-1 radius band, life 0.45 s, radius 0.1 + u x 1.1 x scale, opacity (1 - u) x 0.45" },
+    "update (rings)": { "lines": "769-774", "use": "ring growth and fade" }
+  },
+  "not_taken": {
+    "count / frequency (PulseSequence)": "one bolt per native projectile (owner's clarification); the game fires the shots",
+    "freezeAt 7.5 (BoltMotion)": "a travel distance in metres where a bolt stops and hangs; here the bolt must travel with the projectile",
+    "PointLight per bolt": "the laser keeps its native EF_DIMLIGHT",
+    "stage floor bounce of particles": "the level has no such plane",
+    "acid / fire abilities, training scene, UI": "not part of the card"
+  },
+  "scale": "one source unit (metre) = 24 Quake units, as the Fireball, smoke trails and shotgun pellets: bolt 18.1 units long (native laser.mdl 19.2)",
+  "doc": "docs/laser-stasis-bolt-2026-10-11.md"
+}
