@@ -24,6 +24,8 @@ const RULES = [
 	[ 'engine/progs', '44b', /^(pr_comp|pr_edict|pr_exec|progs|progdefs)\.js$/ ],
 	[ 'engine/server', '44b', /^(sv_main|sv_move|sv_phys|sv_user|server|world|pmove|host|host_cmd)\.js$/ ],
 	[ 'engine/net', '44c', /^net(_\w+)?\.js$/ ],
+	// the menu's screen families, split from menu (card [44j], debt D3)
+	[ 'engine/client', '44j', /^menu_\w+\.js$/ ],
 	[ 'engine/client', '44c', /^(cl_\w+|client|chase|view|keys|sbar|screen|menu)\.js$/ ],
 	// local play's player windows (made in [37a])
 	[ 'engine/client', '37a', /^local_play\.js$/ ],
