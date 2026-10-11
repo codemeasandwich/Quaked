@@ -107,6 +107,46 @@ shot**. The fan itself stays Quake's:
   native model, tracer and spray. In the split demo the native tracer and spray are spawned
   for the Classic half only.
 
+## Fire goes out in water (card [FB3])
+
+The owner's rule (11 Oct 2026) is that fire cannot travel underwater. The owner chose real
+gameplay over a picture-only change, so hiding underwater is now a defence against Death
+Knights. The rule applies in Newer Game only; Classic keeps Quake's rules.
+
+**What stops.** A Death Knight shot (`progs/k_spike.mdl`) or a lava ball (`progs/lavaball.mdl`)
+that enters water or slime goes out at the surface.
+
+**How it happens.** After every missile move, `sv_phys.js SV_Physics_Toss` asks
+`SV_FireQuench` (`src/newer/gameplay/sv_firequench.js`). When a fireball's new origin is in
+water or slime:
+
+* The surface point is found by halving the step from its old origin 8 times.
+* The server broadcasts `TE_KNIGHTSPIKE` at that point. The client draws it as the fireball's
+  own impact (sparks, ring, smoke), with the Knight's hit sizzle.
+* `R_LavaBallImpact` sees liquid just below the point and lays the ring flat on the surface.
+* Quake's missile splash, `misc/h2ohit1.wav`, is played.
+* The edict is removed, so it deals no damage.
+
+**Edge cases and limits:**
+
+* A fireball born in liquid goes out at once.
+* Lava does not put fire out: `misc_fireball`'s balls rise out of lava and fall back as
+  before.
+* Other missiles (nails, rockets, the Scrag's spit) fly on underwater as in Quake.
+* Stock Quake checks a missile's water transition only when it hits something. The quench
+  check runs every move.
+
+**Evidence.**
+
+* `tests/firequench_native_test.js` (4 tests) uses e1m1's own water and e1m7's own lava with
+  real edicts moved by `SV_Physics_Toss`. Each deliberate break was caught: Classic not
+  exempt, lava quenching, a wrong bisection, no removal, a wrong event.
+* `tests/lavaballs_test.js` checks that the ring lies flat on water.
+* **Browser trial.** With `?game=quake` on e2m3, a level's Death Knight was stood beside the
+  level's water and fired its fan at a point under the surface, watched from across the pool.
+  * In Newer Game the shots burst on the surface with flat rings, and none was seen below it.
+  * In Classic five of the six went on underwater.
+
 ## How it is built
 
 `src/newer/render/r_lavaballs.js` follows the `r_torchfire.js` pattern:

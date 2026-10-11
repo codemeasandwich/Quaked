@@ -30,8 +30,10 @@ window.lavaTrial={
  stand(index,origin){const e=sv.edicts[index];e.v.origin=[...origin];e.v.velocity=[0,0,0];SV_LinkEdict(e,false);return true;},
  // what the knight's AI does once it sees the player in range: face it and run its own th_missile (hknight.qc
  // hknight_magicc1, the fan of six shots aimed at its enemy)
- async provoke(index){const pg=await import('../src/engine/progs/progs.js'),ex=await import('../src/engine/progs/pr_exec.js'),ph=await import('../src/engine/server/sv_phys.js');
-  const ed=await import('../src/engine/progs/pr_edict.js'),e=sv.edicts[index],player=sv.edicts[1],f=e&&ed.GetEdictFieldValue(e,'th_missile'),fn=f?f.accessor.getInt32(f.ofs):0;
+ // (with `aim`, at a blank edict there instead of the player: card [FB3] fires it into water from the side)
+ async provoke(index,aim=null){const pg=await import('../src/engine/progs/progs.js'),ex=await import('../src/engine/progs/pr_exec.js'),ph=await import('../src/engine/server/sv_phys.js');
+  const ed=await import('../src/engine/progs/pr_edict.js'),e=sv.edicts[index],f=e&&ed.GetEdictFieldValue(e,'th_missile'),fn=f?f.accessor.getInt32(f.ofs):0;
+  let player=sv.edicts[1];if(aim){const t=ed.ED_Alloc();t.v.origin=[...aim];t.v.angles=[0,0,0];player=t;}
   if(!fn)return false;e.v.enemy=pg.EDICT_TO_PROG(player);
   ph.pr_global_struct.self=pg.EDICT_TO_PROG(e);ph.pr_global_struct.other=pg.EDICT_TO_PROG(player);ex.PR_ExecuteProgram(fn);return true;},
  // park the player at `eye`, looking at `at`
@@ -53,6 +55,10 @@ window.lavaTrial={
   ph.pr_global_struct.self=pg.EDICT_TO_PROG(e);ph.pr_global_struct.other=pg.EDICT_TO_PROG(player);ex.PR_ExecuteProgram(e.v.use);return true;},
  // a first sighting (Chthon's) holds the game on its Bestiary page: put it away so the fight plays on
  async dismiss(){const bestiary=await import('../src/newer/ui/r_bestiary.js');const was=bestiary.R_BestiarySnapshot().phase;if(was!=='idle')bestiary.R_BestiaryCancel();return was;},
+ // a point of the level's own water with open air above it: { inside, surface (z), above }
+ pool(){for(const leaf of cl.worldmodel.leafs){if(leaf.contents!==-3)continue;const c=[0,1,2].map(i=>(leaf.minmaxs[i]+leaf.minmaxs[i+3])/2),at=p=>gm.Mod_PointInLeaf(p,cl.worldmodel)?.contents;
+   if(at(c)!==-3)continue;let z=c[2];while(at([c[0],c[1],z+1])===-3&&z<c[2]+512)z++;let open=true;for(let k=z+1;k<=z+120;k+=4)if(at([c[0],c[1],k])!==-1)open=false;
+   if(open)return{inside:c,surface:z,above:[c[0],c[1],z+120]};}return null;},
  time(){return cl.time;},
  freeze(){if(!cl.paused)Cbuf_AddText('pause\n');},
  thaw(){if(cl.paused)Cbuf_AddText('pause\n');},

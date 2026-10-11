@@ -407,3 +407,19 @@ Deno.test( 'the engine hands each EF_TRACER2 trail its key and model and routes 
 	check( at > 0 && /R_KnightSpikeImpact\( pos \)/.test( tent.slice( at, next ) ) && /cl_sfx_knighthit/.test( tent.slice( at, next ) ), 'TE_KNIGHTSPIKE draws through R_KnightSpikeImpact and keeps its sound' );
 
 } );
+
+// card [FB3]: a fireball put out on water (sv_firequench.js sends TE_KNIGHTSPIKE at the surface)
+Deno.test( 'a fireball put out on water bursts flat on the surface, even with a Knight shot nearby', () => {
+
+	// water below z = 50, air above
+	const env = setup( { contents: p => ( p[ 2 ] < 50 ? - 3 : - 1 ) } );
+	const e = ball( 340, [ 0, 0, 90 ], KSPIKE );
+	for ( let k = 0; k < 6; k ++ ) { frame( env, [ e ] ); e.origin[ 0 ] += 4; e.origin[ 2 ] -= 6; }
+	same( R_KnightSpikeImpact( Float32Array.of( e.origin[ 0 ], 0, 50.02 ) ), true, 'the fireball\'s burst' );
+	frame( env, [] );
+	const N = layerOf( env, 'lavaball_rings' ).geometry.getAttribute( 'aNormalAlpha' ).array;
+	near( N[ 2 ], 1, 1e-6, 'the ring lies flat on the water, not across the shot' );
+	same( lb.R_LavaBallsSnapshot().rings, 1, 'one burst' );
+	lb.R_LavaBallsClear();
+
+} );

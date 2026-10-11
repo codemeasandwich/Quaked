@@ -30,6 +30,7 @@ import { MAX_EDICTS, YAW } from '../common/quakedef.js';
 import { PR_GetString } from '../progs/progs.js';
 import { trace_t } from './world.js';
 import { SV_ShotDelayRun } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
+import { SV_FireQuench } from '../common/hooks.js'; // installed by newer/gameplay/sv_firequench.js
 
 /*
 
@@ -167,6 +168,7 @@ const _walkmove_nostepvel = new Float32Array( 3 );
 
 // Cached buffer for SV_Physics_Toss (Golden Rule #4)
 const _toss_move = new Float32Array( 3 );
+const _toss_from = new Float32Array( 3 );
 
 // Cached buffers for SV_PushRotate (Golden Rule #4)
 const _pushrotate_amove = new Float32Array( 3 );
@@ -1760,7 +1762,11 @@ export function SV_Physics_Toss( ent ) {
 
 	// move origin
 	VectorScale( ent.v.velocity, host_frametime, move );
+	VectorCopy( ent.v.origin, _toss_from );
 	const trace = SV_PushEntity( ent, move );
+	// Newer Game: a fireball that flew into water or slime goes out there (newer/gameplay/sv_firequench.js, card [FB3])
+	if ( SV_FireQuench( ent, _toss_from ) )
+		return;
 	if ( trace.fraction === 1 )
 		return;
 	if ( ent.free )

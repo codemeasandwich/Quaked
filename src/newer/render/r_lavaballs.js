@@ -93,6 +93,7 @@ export const LAVABALL = Object.freeze( {
 } );
 
 const CONTENTS_SOLID = - 2;
+const LIQUID = Object.freeze( [ - 3, - 4 ] ); // CONTENTS_WATER, CONTENTS_SLIME
 
 // ---------------------------------------------------------------------------
 // Shaders: the source's NOISE_GLSL, FIREBALL_FRAGMENT and PARTICLE_FRAGMENT, adapted to three's
@@ -406,7 +407,8 @@ export function R_LavaBall( e ) {
  * The picture of a Death Knight's shot hitting a wall (cl_tent.js TE_KNIGHTSPIKE, through render.js
  * R_KnightSpikeImpact; the caller plays the sound): the source's `_impact` at the server's point, its normal against
  * the direction of the held shot nearest that point (within `LAVABALL.knightNear`), or up when none is held (the shot
- * was never in view). When no held shot matches and the pool is full, the shot was left native (its model and tracer
+ * was never in view), or up, flat on the surface, when the point is just above water or slime (a fireball put out
+ * there: sv_firequench.js). When no held shot matches and the pool is full, the shot was left native (its model and tracer
  * were drawn), so its spray stays native too. Allocates nothing.
  *
  * @param {ArrayLike<number>} org the impact point, Quake units, world space
@@ -424,7 +426,11 @@ export function R_LavaBallImpact( org ) {
 		if ( d <= bestD ) { best = s; bestD = d; }
 
 	}
-	if ( best >= 0 ) impact( org[ 0 ], org[ 1 ], org[ 2 ], - slotDir[ best * 3 ], - slotDir[ best * 3 + 1 ], - slotDir[ best * 3 + 2 ] );
+	// a fireball put out on water or slime (sv_firequench.js, card [FB3]): the burst lies flat on the surface
+	_point[ 0 ] = org[ 0 ]; _point[ 1 ] = org[ 1 ]; _point[ 2 ] = org[ 2 ] - 2;
+	const liquid = deps.contents != null && LIQUID.includes( deps.contents( _point ) );
+	if ( liquid && ( best >= 0 || slotOf( - 1 ) >= 0 ) ) impact( org[ 0 ], org[ 1 ], org[ 2 ], 0, 0, 1 );
+	else if ( best >= 0 ) impact( org[ 0 ], org[ 1 ], org[ 2 ], - slotDir[ best * 3 ], - slotDir[ best * 3 + 1 ], - slotDir[ best * 3 + 2 ] );
 	else if ( slotOf( - 1 ) < 0 ) return false;
 	else impact( org[ 0 ], org[ 1 ], org[ 2 ], 0, 0, 1 );
 	held = true;

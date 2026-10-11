@@ -12,7 +12,7 @@
  *
  * State: mutable exports `R_AliasMeshLookup`, `R_AliasMeshRemember`, `R_DemonBakePrepare`, `R_DemonBakeRelease`,
  * `R_DemonBakeStatus`, `R_DemonBakeSurface`, `Axe_ParseRecord`, `Axe_ValidOwnerKey`, `PowerVisionMode`,
- * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 416 more; module-level variables
+ * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 417 more; module-level variables
  * `_installed`.
  *
  * Errors: throws at 2 places.
@@ -88,6 +88,9 @@ export let SV_PortalMoveEnd = Hooks_Missing( 'SV_PortalMoveEnd' );
 export let SV_PortalMoveRead = Hooks_Missing( 'SV_PortalMoveRead' );
 export let SV_PortalMoveStart = Hooks_Missing( 'SV_PortalMoveStart' );
 export let SV_PortalMoveStepping = Hooks_Missing( 'SV_PortalMoveStepping' );
+
+// newer/gameplay/sv_firequench.js
+export let SV_FireQuench = Hooks_Missing( 'SV_FireQuench' );
 
 // newer/gameplay/sv_pronezombie.js
 export let SV_ProneZombieEnter = Hooks_Missing( 'SV_ProneZombieEnter' );
@@ -633,6 +636,7 @@ const HOOK_NAMES = Object.freeze( [
 	'SV_PinnedZombieSpawned',
 	'SV_BeginPortalTouch', 'SV_FinishPortalTouch', 'SV_PreparePortalTouch', 'SV_RestorePortalReceiver',
 	'SV_PortalMoveEnd', 'SV_PortalMoveRead', 'SV_PortalMoveStart', 'SV_PortalMoveStepping',
+	'SV_FireQuench',
 	'SV_ProneZombieEnter', 'SV_ProneZombieLeave', 'SV_ZombieProne',
 	'SV_QuadJumpBegin', 'SV_QuadJumpEnd', 'SV_QuadMovementScale',
 	'Rend_ParseRecord', 'Rend_ValidRecord', 'SV_RendVeilClientRecord', 'SV_RendVeilHolding', 'SV_RendVeilTouchBegin', 'SV_RendVeilTouchEnd',
@@ -739,6 +743,7 @@ export function Hooks_Install( table ) {
 	SV_PinnedZombieSpawned = table.SV_PinnedZombieSpawned;
 	SV_BeginPortalTouch = table.SV_BeginPortalTouch; SV_FinishPortalTouch = table.SV_FinishPortalTouch; SV_PreparePortalTouch = table.SV_PreparePortalTouch; SV_RestorePortalReceiver = table.SV_RestorePortalReceiver;
 	SV_PortalMoveEnd = table.SV_PortalMoveEnd; SV_PortalMoveRead = table.SV_PortalMoveRead; SV_PortalMoveStart = table.SV_PortalMoveStart; SV_PortalMoveStepping = table.SV_PortalMoveStepping;
+	SV_FireQuench = table.SV_FireQuench;
 	SV_ProneZombieEnter = table.SV_ProneZombieEnter; SV_ProneZombieLeave = table.SV_ProneZombieLeave; SV_ZombieProne = table.SV_ZombieProne;
 	SV_QuadJumpBegin = table.SV_QuadJumpBegin; SV_QuadJumpEnd = table.SV_QuadJumpEnd; SV_QuadMovementScale = table.SV_QuadMovementScale;
 	Rend_ParseRecord = table.Rend_ParseRecord; Rend_ValidRecord = table.Rend_ValidRecord; SV_RendVeilClientRecord = table.SV_RendVeilClientRecord; SV_RendVeilHolding = table.SV_RendVeilHolding; SV_RendVeilTouchBegin = table.SV_RendVeilTouchBegin; SV_RendVeilTouchEnd = table.SV_RendVeilTouchEnd;
