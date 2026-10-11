@@ -12,7 +12,7 @@
  *
  * State: mutable exports `R_AliasMeshLookup`, `R_AliasMeshRemember`, `R_DemonBakePrepare`, `R_DemonBakeRelease`,
  * `R_DemonBakeStatus`, `R_DemonBakeSurface`, `Axe_ParseRecord`, `Axe_ValidOwnerKey`, `PowerVisionMode`,
- * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 401 more; module-level variables
+ * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 408 more; module-level variables
  * `_installed`.
  *
  * Errors: throws at 2 places.
@@ -475,6 +475,15 @@ export let TORCH_WHOLE;
 export let r_torchfire;
 export let torchParts = Hooks_Missing( 'torchParts' );
 
+// newer/render/r_venom.js
+export let R_VenomClear = Hooks_Missing( 'R_VenomClear' );
+export let R_VenomFrame = Hooks_Missing( 'R_VenomFrame' );
+export let R_VenomImpact = Hooks_Missing( 'R_VenomImpact' );
+export let R_VenomSetup = Hooks_Missing( 'R_VenomSetup' );
+export let R_VenomTakesEntity = Hooks_Missing( 'R_VenomTakesEntity' );
+export let R_VenomTrail = Hooks_Missing( 'R_VenomTrail' );
+export let r_venom;
+
 // newer/render/r_wallburn.js
 export let R_AliasFrameBox = Hooks_Missing( 'R_AliasFrameBox' );
 export let R_WallBurnClear = Hooks_Missing( 'R_WallBurnClear' );
@@ -661,6 +670,7 @@ const HOOK_NAMES = Object.freeze( [
 	'R_StasisBoltClear', 'R_StasisBoltFrame', 'R_StasisBoltImpact', 'R_StasisBoltSetup', 'R_StasisBoltTakes', 'r_stasisbolt',
 	'R_TeleportFrameEnd',
 	'R_TorchFire', 'R_TorchFireBegin', 'R_TorchFireClear', 'R_TorchFireFlush', 'R_TorchFireSetup', 'TORCH_HANDLE', 'TORCH_WHOLE', 'r_torchfire', 'torchParts',
+	'R_VenomClear', 'R_VenomFrame', 'R_VenomImpact', 'R_VenomSetup', 'R_VenomTakesEntity', 'R_VenomTrail', 'r_venom',
 	'R_AliasFrameBox', 'R_WallBurnClear', 'R_WallBurnFrame', 'R_WallBurnSetup', 'R_WallBurnShot', 'r_newer_wallburn',
 	'R_WaveImpact', 'R_WavesFrame', 'R_WavesReset', 'R_WavesSetup',
 	'R_PlayerSurfaceBlood', 'R_WeaponSurfaceBloodAt', 'R_WeaponSurfaceContext', 'R_WeaponSurfaceFrame', 'weaponSurface',
@@ -765,6 +775,7 @@ export function Hooks_Install( table ) {
 	R_StasisBoltClear = table.R_StasisBoltClear; R_StasisBoltFrame = table.R_StasisBoltFrame; R_StasisBoltImpact = table.R_StasisBoltImpact; R_StasisBoltSetup = table.R_StasisBoltSetup; R_StasisBoltTakes = table.R_StasisBoltTakes; r_stasisbolt = table.r_stasisbolt;
 	R_TeleportFrameEnd = table.R_TeleportFrameEnd;
 	R_TorchFire = table.R_TorchFire; R_TorchFireBegin = table.R_TorchFireBegin; R_TorchFireClear = table.R_TorchFireClear; R_TorchFireFlush = table.R_TorchFireFlush; R_TorchFireSetup = table.R_TorchFireSetup; TORCH_HANDLE = table.TORCH_HANDLE; TORCH_WHOLE = table.TORCH_WHOLE; r_torchfire = table.r_torchfire; torchParts = table.torchParts;
+	R_VenomClear = table.R_VenomClear; R_VenomFrame = table.R_VenomFrame; R_VenomImpact = table.R_VenomImpact; R_VenomSetup = table.R_VenomSetup; R_VenomTakesEntity = table.R_VenomTakesEntity; R_VenomTrail = table.R_VenomTrail; r_venom = table.r_venom;
 	R_AliasFrameBox = table.R_AliasFrameBox; R_WallBurnClear = table.R_WallBurnClear; R_WallBurnFrame = table.R_WallBurnFrame; R_WallBurnSetup = table.R_WallBurnSetup; R_WallBurnShot = table.R_WallBurnShot; r_newer_wallburn = table.r_newer_wallburn;
 	R_WaveImpact = table.R_WaveImpact; R_WavesFrame = table.R_WavesFrame; R_WavesReset = table.R_WavesReset; R_WavesSetup = table.R_WavesSetup;
 	R_PlayerSurfaceBlood = table.R_PlayerSurfaceBlood; R_WeaponSurfaceBloodAt = table.R_WeaponSurfaceBloodAt; R_WeaponSurfaceContext = table.R_WeaponSurfaceContext; R_WeaponSurfaceFrame = table.R_WeaponSurfaceFrame; weaponSurface = table.weaponSurface;

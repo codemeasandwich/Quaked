@@ -76,6 +76,7 @@ import { R_ShotgunClear, R_ShotgunFrame, R_ShotgunSetup, r_shotgunfx, viewModelM
 import { R_StasisBoltClear, R_StasisBoltFrame, R_StasisBoltImpact, R_StasisBoltSetup, R_StasisBoltTakes, r_stasisbolt } from './render/r_stasisbolt.js';
 import { R_TeleportFrameEnd } from './render/r_teleportfx.js';
 import { R_TorchFire, R_TorchFireBegin, R_TorchFireClear, R_TorchFireFlush, R_TorchFireSetup, TORCH_HANDLE, TORCH_WHOLE, r_torchfire, torchParts } from './render/r_torchfire.js';
+import { R_VenomClear, R_VenomFrame, R_VenomImpact, R_VenomSetup, R_VenomTakesEntity, R_VenomTrail, r_venom } from './render/r_venom.js';
 import { R_AliasFrameBox, R_WallBurnClear, R_WallBurnFrame, R_WallBurnSetup, R_WallBurnShot, r_newer_wallburn } from './render/r_wallburn.js';
 import { R_WaveImpact, R_WavesFrame, R_WavesReset, R_WavesSetup } from './render/r_waves.js';
 import { R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceContext, R_WeaponSurfaceFrame, weaponSurface } from './render/r_weapon_surface.js';
@@ -157,6 +158,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_StasisBoltClear, R_StasisBoltFrame, R_StasisBoltImpact, R_StasisBoltSetup, R_StasisBoltTakes, r_stasisbolt,
 	R_TeleportFrameEnd,
 	R_TorchFire, R_TorchFireBegin, R_TorchFireClear, R_TorchFireFlush, R_TorchFireSetup, TORCH_HANDLE, TORCH_WHOLE, r_torchfire, torchParts,
+	R_VenomClear, R_VenomFrame, R_VenomImpact, R_VenomSetup, R_VenomTakesEntity, R_VenomTrail, r_venom,
 	R_AliasFrameBox, R_WallBurnClear, R_WallBurnFrame, R_WallBurnSetup, R_WallBurnShot, r_newer_wallburn,
 	R_WaveImpact, R_WavesFrame, R_WavesReset, R_WavesSetup,
 	R_PlayerSurfaceBlood, R_WeaponSurfaceBloodAt, R_WeaponSurfaceContext, R_WeaponSurfaceFrame, weaponSurface,

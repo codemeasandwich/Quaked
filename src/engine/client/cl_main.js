@@ -913,9 +913,9 @@ function CL_LinkPacketEntities( frac ) {
 
 					R_RocketTrail( _peOldorg, ent.origin, 2 );
 
-				} else if ( model.flags & 0x10 ) { // EF_TRACER
+				} else if ( model.flags & 0x10 ) { // EF_TRACER (the key lets the Scrag's venom replace it: r_venom.js)
 
-					R_RocketTrail( _peOldorg, ent.origin, 3 );
+					R_RocketTrail( _peOldorg, ent.origin, 3, s1.number );
 
 				} else if ( model.flags & 0x20 ) { // EF_ZOMGIB
 
@@ -1250,8 +1250,8 @@ export function CL_RelinkEntities() {
 				R_RocketTrail( _relinkOldorg, ent.origin, 2 );
 			else if ( ent.model.flags & 0x20 ) // EF_ZOMGIB
 				R_RocketTrail( _relinkOldorg, ent.origin, 4 );
-			else if ( ent.model.flags & 0x10 ) // EF_TRACER
-				R_RocketTrail( _relinkOldorg, ent.origin, 3 );
+			else if ( ent.model.flags & 0x10 ) // EF_TRACER (the key lets the Scrag's venom replace it: r_venom.js)
+				R_RocketTrail( _relinkOldorg, ent.origin, 3, i );
 			else if ( ent.model.flags & 0x40 ) // EF_TRACER2
 				R_RocketTrail( _relinkOldorg, ent.origin, 5 );
 			else if ( ent.model.flags & 0x01 ) { // EF_ROCKET

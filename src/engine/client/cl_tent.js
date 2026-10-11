@@ -40,7 +40,7 @@ export const CL_TeleportSpots = [];
 import { VectorCopy, VectorSubtract, VectorNormalize, vec3_origin, M_PI } from '../common/mathlib.js';
 import { S_PrecacheSound, S_StartSound } from '../sound/snd_dma.js';
 import { R_RunParticleEffect, R_ParticleExplosion, R_BlobExplosion,
-	R_ParticleExplosion2, R_LavaSplash } from '../render/render.js';
+	R_ParticleExplosion2, R_LavaSplash, R_WizardSpikeImpact } from '../render/render.js';
 import { Mod_ForName } from '../render/gl_model.js';
 import { R_DecalShot, R_DecalScorch, R_DecalBloodPool } from '../common/hooks.js'; // installed by newer/render/r_decals.js
 
@@ -169,7 +169,7 @@ export function CL_ParseTEnt() {
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			R_RunParticleEffect( pos, vec3_origin, 20, 30 );
+			R_WizardSpikeImpact( pos ); // (the venom's splash in Newer Game: r_venom.js)
 			S_StartSound( - 1, 0, cl_sfx_wizhit, pos, 1, 1 );
 			break;
 

@@ -25,6 +25,7 @@ import {
 } from './r_part.js';
 import { R_FireballSpawn, R_SmokeTrail } from '../common/hooks.js'; // installed by newer/render/r_fireball.js
 import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
+import { R_VenomTrail, R_VenomImpact } from '../common/hooks.js'; // installed by newer/render/r_venom.js
 
 //============================================================================
 // Constants
@@ -308,16 +309,17 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
  * Spawns a missile's trail for one frame's movement; cl_main.js calls it per entity per frame from the model's trail
  * flags. Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by distance along
  * each frame's segment; `key` is the entity number, so every missile carries its own spacing (a call without one
- * keeps the native trail). Everything else, and Classic, keeps the native trail. In the title demo's split view the
+ * keeps the native trail). The Scrag's spike's green tracer (type 3 with a key) is left out in Newer Game while
+ * r_venom.js draws that spike as its venom stream. Everything else, and Classic, keeps the native trail. In the title demo's split view the
  * Classic half hides everything Newer, so the native trail is also spawned there, flagged to draw in that half only.
  *
  * @param {Float32Array} start the entity's previous origin, Quake units, world space
  * @param {Float32Array} end its origin now
  * @param {number} type 0 rocket, 1 grenade smoke, 2 blood, 3 and 5 tracers, 4 slight blood, 6 vore trail;
  *     adding 128 makes the native trail three times as dense
- * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1
- * @throws {Error} for types 0 and 1 with a key when the Newer hooks (`R_SmokeTrail`, `R_DemoSplitActive`) are not
- *     installed
+ * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1 and the venom on type 3
+ * @throws {Error} for types 0, 1 and 3 with a key when the Newer hooks (`R_SmokeTrail`, `R_VenomTrail`,
+ *     `R_DemoSplitActive`) are not installed
  */
 export function R_RocketTrail( start, end, type, key ) {
 
@@ -329,10 +331,36 @@ export function R_RocketTrail( start, end, type, key ) {
 		return;
 
 	}
+	// the Scrag's spike (EF_TRACER, type 3) is drawn as the supplied venom stream, which replaces its green tracer
+	if ( type === 3 && key !== undefined && R_VenomTrail( key ) ) {
+
+		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
+		return;
+
+	}
 
 	_R_RocketTrail( start, end, type );
 
 }
+
+/**
+ * The picture of a Scrag's spike hitting a wall (cl_tent.js TE_WIZSPIKE; the caller plays the sound): the supplied
+ * venom impact in Newer Game (r_venom.js: the stream runs on to the point, splashes and leaves a stain), otherwise the
+ * native particle spray (palette 20, 30 particles). In the title demo's split view the native spray is also spawned
+ * for the Classic half only.
+ *
+ * @param {Float32Array} org the impact point, Quake units, world space
+ * @returns {boolean} true when the venom took the event, false when the native particles were spawned
+ * @throws {Error} when the Newer hooks (`R_VenomImpact`, `R_DemoSplitActive`) are not installed
+ */
+export function R_WizardSpikeImpact( org ) {
+
+	if ( ! R_VenomImpact( org ) ) { _R_RunParticleEffect( org, WIZSPIKE_DIR, 20, 30 ); return false; }
+	if ( R_DemoSplitActive() ) _R_RunParticleEffect( org, WIZSPIKE_DIR, 20, 30, true );
+	return true;
+
+}
+const WIZSPIKE_DIR = new Float32Array( 3 ); // (the native spray has no drift: vec3_origin)
 
 /**
  * Spawns the ring of particles around an entity with EF_BRIGHTFIELD; a forwarder to r_part.js R_EntityParticles,

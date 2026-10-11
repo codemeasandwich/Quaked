@@ -59,6 +59,7 @@ import { r_dof, R_DofSetup, R_DofFrame, R_DofClear } from '../common/hooks.js'; 
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from '../common/hooks.js'; // installed by newer/render/r_shotgun.js
 import { r_stasisbolt, R_StasisBoltSetup, R_StasisBoltFrame, R_StasisBoltClear, R_StasisBoltTakes } from '../common/hooks.js'; // installed by newer/render/r_stasisbolt.js
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from '../common/hooks.js'; // installed by newer/render/r_torchfire.js
+import { r_venom, R_VenomSetup, R_VenomClear, R_VenomFrame, R_VenomTakesEntity } from '../common/hooks.js'; // installed by newer/render/r_venom.js
 import { R_ClassicTexture } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
 import { R_AnimSetClassicPass, R_ClassicPassActive, R_IsNewer } from '../common/hooks.js'; // installed by newer/mode.js
 import { R_SaveClassicScene, R_ClassicMaterial } from '../common/hooks.js'; // installed by newer/render/r_classicstate.js
@@ -760,8 +761,8 @@ export function R_Clear() {
 /**
  * Draws this frame's visible entities (`cl_visedicts[ 0 .. cl_numvisedicts - 1 ]`), skipped entirely when
  * `r_drawentities` is 0. First pass: alias models (except the player's lightning-gun bolt models when r_lightning.js
- * draws the beam) and brush models (brush models are left as they are during the classic pass of the split title
- * demo); second pass: sprites, because of alpha blending (except explosions replaced by the Newer Fireball). Called
+ * draws the beam, and the Scrag's spikes while r_venom.js draws them as its venom streams) and brush models (brush
+ * models are left as they are during the classic pass of the split title demo); second pass: sprites, because of alpha blending (except explosions replaced by the Newer Fireball). Called
  * every frame by `R_RenderScene`, and by `R_ClassicOn` for the classic half of the title demo. Leaves
  * `currententity` at the last entity looked at.
  */
@@ -783,6 +784,7 @@ export function R_DrawEntitiesOnList() {
 			case mod_alias:
 				if ( currententity._playerLightning === true && R_LightningTakesBeam() ) break; // drawn by r_lightning.js (card [30a])
 				if ( R_StasisBoltTakes( currententity ) ) break; // a laser shot: drawn by r_stasisbolt.js (card [LZ1])
+				if ( R_VenomTakesEntity( currententity ) ) break; // a Scrag's spit, drawn as the venom stream (r_venom.js)
 				R_DrawAliasModel( currententity );
 				break;
 
@@ -1993,6 +1995,7 @@ export function R_RenderView() {
 	_fireballView[ 0 ] = r_refdef.vrect.width * r_refdef.vrectScale * R_DynResScale();
 	_fireballView[ 1 ] = r_refdef.vrect.height * r_refdef.vrectScale * R_DynResScale();
 	R_FireballFrame( cl != null ? cl.time : 0, r_refdef.vieworg, _fireballForward, _fireballView );
+	R_VenomFrame( cl != null ? cl.time : 0, r_refdef.vieworg, cl_visedicts, cl_numvisedicts, _fireballView ); // (the Scrags' spit, placed before the entities are drawn)
 
 	R_ImpactRippleFrame( cl != null ? cl.time : 0 ); // (the detector's list of hits, aged)
 	R_WavesFrame( cl != null ? cl.time : 0 ); // (and the ripples they make, stepped to now)
@@ -2249,6 +2252,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_fireballalpha );
 	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_torchfire );
+	Cvar_RegisterVariable( r_venom );
 	Cvar_RegisterVariable( r_shotgunfx );
 	Cvar_RegisterVariable( r_stasisbolt );
 	Cvar_RegisterVariable( r_impactripples );
@@ -2483,6 +2487,8 @@ export function R_NewMap() {
 	R_FireballClear();
 	R_TorchFireSetup( { scene } );
 	R_TorchFireClear();
+	R_VenomSetup( { scene, cl: () => cl, entity: n => cl_entities[ n ], pointInLeaf: Mod_PointInLeaf } );
+	R_VenomClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
 	R_LightningSetup( { scene, camera: () => camera, muzzle: R_LightningMuzzle, beam: CL_PlayerLightning, allocDlight: CL_AllocDlight } );
 	R_DofSetup( { xr: isXRActive, trace: R_DofTrace, pointInLeaf: Mod_PointInLeaf, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );

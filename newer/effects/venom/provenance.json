@@ -1,0 +1,35 @@
+{
+  "source_file": "twin-shot-venom.html (owner-supplied \"TWINSHOT — Venom FX Lab\", kept local, not committed or distributed; gitignored at the repository root)",
+  "source_sha256": "7cf9a25dfc9fd8aa9bd5a49319248822f0774501002d23da475cd3a30cf9e934",
+  "source_bytes": 66452,
+  "effect": "Twin-shot Venom (TwinVenomFX.spit), tint \"toxic\", quality \"high\"",
+  "card": "[SP1] T-18792e32 Scrag spit: replace with the supplied twin-shot venom effect",
+  "port": "src/newer/render/r_venom.js",
+  "doc": "docs/scrag-venom-2026-10-11.md",
+  "assets": "none: the source is procedural geometry and shaders (\"No image assets\"); nothing was extracted as a file",
+  "source_layout": "the effect's ES module is one JavaScript string literal on source line 79 (`const source=\"...\"`), imported as a blob; the names below are inside it",
+  "taken": {
+    "streamWindow()": "ported verbatim as the exported streamWindow (motion of the spit packet); tests/venom_test.js runs the source's own copy against it",
+    "NOISE (hash1, noise1)": "verbatim",
+    "STREAM_VERTEX": "thickness() and main() verbatim; per-stream uniforms became instance attributes, the local frame is built from the stream direction, positions stay in source metres until scaled into the world by `unit`; plus a minimum on-screen width (port addition, see doc)",
+    "LIQUID_FRAGMENT": "verbatim apart from the two light directions turned from y-up to Quake z-up, premultiplied output and zeroed G-buffer outputs; the source's ACES tone-mapping include is not used (Quaked grades the frame itself; measured colour matched without it)",
+    "DROP_VERTEX": "the instance matrix (direction-aligned, scale r, r*stretch, r) and its normal transform, rebuilt from per-instance position/direction attributes",
+    "SPLAT_VERTEX / SPLAT_FRAGMENT": "fragment verbatim apart from instanced age/seed and premultiplied output; the quad is oriented on the struck surface with its v axis down the surface",
+    "streamGeometry(144, 8)": "verbatim (quality high)",
+    "DropletPool": "the fixed-capacity ring pool (900 at quality high) with emit/update rules, as typed arrays",
+    "TwinVenomFX._jetDroplets": "125 per second per stream, radius .004-.010 m, stretch 1.7-5.5, offsets +-.038 / +-.024 m",
+    "TwinVenomFX._splash": "30 on impact plus 85 per second while the stream drains; radius .009-.025 m, stretch 1.1-2.9, life .28-.8 s, gravity 5.3 m/s^2",
+    "TwinVenomFX._stain": "size .58-.74 m, life 4.4 s, growth .28 to 1 over .065 s, offset .012 m, at most 24",
+    "TwinVenomFX._step / update": "the stream window, impact, droplet production and the 1/90 s substeps",
+    "twinPlan defaults": "speed 22 m/s, duration .28 s, radius .015 m",
+    "PALETTES.toxic": "0xb9d675",
+    "liquidMaterial opacities": "streams .74, droplets .86"
+  },
+  "not_taken": {
+    "startLab()": "the playground (cobra, target board, floor grid, UI, chat commands, camera) is the source's demo scene, not the effect",
+    "twinPlan lanes / simultaneous pair": "the native Scrag already fires two projectiles from either side of its mouth at two points either side of the player; each native projectile is one lane, and their 0.5 s spacing is gameplay timing, kept",
+    "collisionTest / onLaunch / onImpact": "collisions, damage and events stay the server's (QuakeC spike_touch, TE_WIZSPIKE)",
+    "tint natural, quality low": "not used"
+  },
+  "scale": "1 source metre = 600 / 22 = 27.27 Quake units (native wizspike speed over the source jet speed): all timings are the source's"
+}
