@@ -1793,7 +1793,7 @@ export function R_PolyBlend() {
  * Builds the main view's scene for this frame (`r_refdef` must be set before the first call): starts the powerup,
  * rite-veil and portal frames (portal views only outside XR and envmap captures), runs `R_SetupFrame`,
  * `R_SetFrustum`, `R_SetupGL` and `R_MarkLeaves`, draws the world (which adds the static entities to the list), the
- * axe-cut corpses, the torch fires and the entity list, lets the Bestiary look for a first sighting, removes from the
+ * axe-cut corpses, the torch fires, the entity list and the lava balls it registered (r_lavaballs.js), lets the Bestiary look for a first sighting, removes from the
  * scene every entity mesh that was there last frame but was not drawn this frame, and updates the dynamic lights and
  * particles. Called once per frame by `R_RenderView`; it does not draw to the screen.
  */

@@ -328,7 +328,7 @@ export function R_LavaBallsSetup( externals ) { deps = externals; }
  * Starts the frame's registry: gl_rmain.js before the entity list is drawn each frame. A ball not registered again by
  * `R_LavaBall` before `R_LavaBallsFlush` has gone.
  */
-export function R_LavaBallsBegin() { frame ++; }
+export function R_LavaBallsBegin() { frame = ( frame + 1 ) | 0; } // (wraps within slotSeen's Int32)
 
 /**
  * Does the supplied fireball draw this model (used for its native trail as well as its mesh): Newer Game, outside the
@@ -380,6 +380,7 @@ export function R_LavaBall( e ) {
 
 		if ( free < 0 ) return false;
 		s = free; slotKey[ s ] = key; slotHasDir[ s ] = 0; slotBorn[ s ] = - 1;
+		slotDir[ s * 3 ] = slotDir[ s * 3 + 1 ] = slotDir[ s * 3 + 2 ] = 0; // (no direction of another ball's)
 
 	}
 	slotSeen[ s ] = frame;
@@ -559,7 +560,14 @@ export function R_LavaBallsFlush( time, viewSize ) {
 	const scene = deps?.scene;
 	if ( ! scene ) return;
 	if ( ! R_NewerGame() || r_lavaballs.value === 0 ) { if ( held ) R_LavaBallsClear(); return; }
-	if ( time < lastTime - 1 ) R_LavaBallsClear(); // the clock jumped back
+	if ( time < lastTime - 1 ) {
+
+		// the clock jumped back (a demo loop, a new game): drop the particles and rings, and start every ball again
+		// where it is, keeping this frame's registrations (their native models are already hidden)
+		clearPool( glowPool ); clearPool( smokePool ); ringCount = 0; lastTime = 0;
+		slotBorn.fill( - 1 );
+
+	}
 	held = true;
 	const dt = lastTime > 0 ? Math.min( .1, Math.max( 0, time - lastTime ) ) : 0;
 	lastTime = time;
@@ -583,8 +591,11 @@ export function R_LavaBallsFlush( time, viewSize ) {
 		let frameMoved = false;
 		if ( slotBorn[ s ] < 0 || time - slotLastTime[ s ] > LAVABALL.forget || moved > LAVABALL.jump ) {
 
-			// a new ball (or one back in view after a while): it starts here, its direction not yet known
+			// a new ball (or one back in view after a while): it starts here, its direction not yet known. Until its
+			// motion gives one it is drawn (small: it grows in from 0.3) along its last direction, or upright, so a
+			// frame whose native model is hidden is never empty
 			slotBorn[ s ] = time; slotTravel[ s ] = 0; slotEmit[ s ] = 0; slotHasDir[ s ] = 0;
+			if ( ! ( Math.abs( slotDir[ o ] ) + Math.abs( slotDir[ o + 1 ] ) + Math.abs( slotDir[ o + 2 ] ) > .5 ) ) { slotDir[ o ] = 0; slotDir[ o + 1 ] = 0; slotDir[ o + 2 ] = 1; }
 			slotPhase[ s ] = hashJS( slotKey[ s ] * .37 + time ) * 97;
 			slotStep[ o ] = slotStep[ o + 1 ] = slotStep[ o + 2 ] = 0;
 
@@ -606,9 +617,9 @@ export function R_LavaBallsFlush( time, viewSize ) {
 		}
 		slotLast[ o ] = slotCur[ o ]; slotLast[ o + 1 ] = slotCur[ o + 1 ]; slotLast[ o + 2 ] = slotCur[ o + 2 ];
 		slotLastTime[ s ] = time;
-		if ( slotHasDir[ s ] === 0 ) continue; // (drawn from the first frame its direction of travel is known)
-		if ( frameMoved ) trail( s, dt, mx, my, mz ); else trail( s, dt, 0, 0, 0 );
 		balls ++;
+		if ( slotHasDir[ s ] === 0 ) continue; // (its trail starts once its direction of travel is known)
+		if ( frameMoved ) trail( s, dt, mx, my, mz ); else trail( s, dt, 0, 0, 0 );
 
 	}
 	// step the rings (the source's: scale 0.1 + u * size, opacity (1 - u) * 0.45 over its life)
@@ -633,7 +644,7 @@ export function R_LavaBallsFlush( time, viewSize ) {
 	let n = 0;
 	for ( let s = 0; s < MAX; s ++ ) {
 
-		if ( slotKey[ s ] < 0 || slotHasDir[ s ] === 0 ) continue;
+		if ( slotKey[ s ] < 0 ) continue;
 		const o = s * 3, c = n * 4;
 		A[ c ] = slotLast[ o ]; A[ c + 1 ] = slotLast[ o + 1 ]; A[ c + 2 ] = slotLast[ o + 2 ];
 		A[ c + 3 ] = LAVABALL.size * Math.min( 1, LAVABALL.growFrom + ( time - slotBorn[ s ] ) * LAVABALL.growRate ) * K;

@@ -121,20 +121,23 @@ value was chosen by eye against the source's frames.
 
 ## Evidence
 
-* **Unit tests.** `node tools/run_tests.mjs tests/lavaballs_test.js`: 8 tests. They cover:
+* **Unit tests.** `node tools/run_tests.mjs tests/lavaballs_test.js`: 9 tests. They cover:
   * the source equivalence of the shaders and constants;
-  * the gate (Classic, the classic pass, `r_lavaballs 0`, other models, no scene);
-  * one fireball per ball, at its origin and along its motion, including an arc and a turn;
+  * the gate (Classic, the classic pass, `r_lavaballs 0`, other models, no scene, a full pool);
+  * one fireball per ball, drawn from the frame its native model is hidden, at its origin and
+    along its motion, including an arc and a turn;
   * a ball forgotten when it goes, with no impact in the air;
   * the impact on contact, and that everything expires;
-  * leaving Newer Game, a clock jump and a new map;
+  * leaving Newer Game, a clock jump and a new map; a clock jump keeps the balls in view;
   * buffer reuse;
-  * the native trail in Newer, Classic and the split demo;
+  * the native trail in Newer, Classic, the split demo and with a full pool, through
+    `R_RocketTrail`;
   * the engine call sites.
 
-  Each test was seen to fail on a deliberate break of the code it guards.
-  `fireball_test.js` and `torchfire_test.js` were rerun. Their call-site regexes now accept
-  the model argument.
+  Each test was seen to fail on a deliberate break of the code it guards (the breaks are listed
+  in the card's report). `fireball_test.js`'s call-site regexes now accept the model argument.
+  `torchfire_test.js` is unchanged and still passes: `R_LavaBallsBegin()` sits before
+  `R_TorchFireBegin()`, so its begin/list/flush order check still holds.
 * **Browser trial.** `tests/lavaballs_trial.html` boots the real game and loads a map with
   `map`, then:
   * parks the view by a `misc_fireball` on `start`;
@@ -150,6 +153,14 @@ value was chosen by eye against the source's frames.
   A ball flying straight at the player, as Chthon's do, reads as a small flame with its
   trail behind it. At the source's size it is smaller than the native ball, which is about
   17 units across. `LAVABALL.size` is the source's 0.42. Making it larger is an owner choice.
+* A new ball's direction is known only once it has moved, which is up to one server update
+  (about 0.1 s). Until then it is drawn, still small (it grows in from 0.3), along its last
+  direction, or upright, and its trail starts once the direction is known.
+* With one pool slot left and two new balls in the same client frame, both lose their native
+  trail for that frame, and the second, which finds no slot, shows its native model.
+* With `r_drawentities 0` (or an overflowing visible-entity list) a lava ball has neither
+  model nor trail: the trail question finds a free slot, and the entity list never registers
+  the ball.
 * The impact needs the ball to have been seen to move at least once, and a solid point within
   about 1.5 frames of travel ahead of it. A ball removed by touching a monster or the player
   gets no impact; its damage is still dealt natively.

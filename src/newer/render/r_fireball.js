@@ -364,7 +364,7 @@ const quadGeometry = () => {
 /**
  * Builds one instanced quad layer: an InstancedBufferGeometry over a unit quad with a dynamic Float32Array per
  * instanced attribute, in a mesh that is never frustum-culled, flagged `newerOnly`, drawn at `order`. (layer and
- * material are shared with r_torchfire.js, which draws the torch flames the same way; r_shotgun.js uses them too.)
+ * material are shared with r_torchfire.js, which draws the torch flames the same way; r_shotgun.js and r_lavaballs.js use them too.)
  * Allocated once by the caller and reused every frame.
  *
  * @param {string} name the mesh name
@@ -395,8 +395,8 @@ export function layer( name, capacity, attributes, material, order ) {
 
 /**
  * A transparent effect ShaderMaterial in the shared configuration: depth-tested, no depth write, double-sided, not
- * tone-mapped, clipping planes on, premultiplied alpha. Shared with r_torchfire.js, r_shotgun.js, r_wallburn.js and
- * r_lightning.js.
+ * tone-mapped, clipping planes on, premultiplied alpha. Shared with r_torchfire.js, r_shotgun.js, r_wallburn.js,
+ * r_lightning.js and r_lavaballs.js.
  *
  * @param {string} vertexShader GLSL vertex source
  * @param {string} fragmentShader GLSL fragment source (writing the MRT outputs as MRT_ZERO)

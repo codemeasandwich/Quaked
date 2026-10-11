@@ -9,23 +9,75 @@
   "doc": "docs/lavaballs-2026-10-11.md",
   "extraction": "No asset files: the source is procedural. GLSL and constants copied into r_lavaballs.js; nothing is decoded or stored here.",
   "taken": {
-    "NOISE_GLSL": { "line": 217, "use": "verbatim (hash31, noise3, fbm)" },
-    "FIREBALL_FRAGMENT": { "line": 241, "use": "every statement of main(); the output is kept as `src` and written premultiplied times LAVABALL.gain" },
-    "PARTICLE_FRAGMENT": { "line": 280, "use": "every statement of main() but gl_PointCoord (a quad's coordinate, y down as gl_PointCoord) and the output" },
-    "PARTICLE_VERTEX": { "line": 267, "use": "the point size rule (aSize world units, clamped 1..180 px) as a camera-facing quad" },
-    "FxParticles": { "line": 348, "use": "fixed-size pools, oldest slot recycled; emit/update rules (drag, gravity, grow, life) as typed arrays; the lab's floor bounce is not taken" },
-    "capacities": { "line": 430, "use": "glow 2200, smoke 600 (quality high)" },
-    "shootFireballs defaults": { "line": 467, "use": "size 0.42, power 1" },
-    "_spawn": { "line": 485, "use": "three PlaneGeometry(3.6, 1.8) translated -1.65 along the flight, turned i*60 degrees, uPhase i*5.1, additive" },
-    "_ring": { "line": 522, "use": "impact ring: RingGeometry(0.94, 1), 0xff982d, opacity (1-u)*0.45, scale 0.1+u*size" },
-    "_impact": { "line": 531, "use": "max(3, floor(65*density*size)) sparks, ring(0.35 s, 1.6*size), ceil(12*size) smoke puffs, with the source's speeds, colours, sizes, lives, gravity and drag; normal = against the direction of travel (the source's fallback)" },
-    "_updateFireballs": { "line": 546, "use": "grow-in min(1, 0.3+age*9); 480*density*size trail particles per second up to 2.6*size behind, 23% sparks, with the source's colours, sizes, lives, gravity and drift" }
+    "NOISE_GLSL": {
+      "line": 217,
+      "use": "verbatim (hash31, noise3, fbm)"
+    },
+    "FIREBALL_FRAGMENT": {
+      "line": 241,
+      "use": "every statement of main(); the output is kept as `src` and written premultiplied times LAVABALL.gain"
+    },
+    "PARTICLE_FRAGMENT": {
+      "line": 280,
+      "use": "every statement of main() but gl_PointCoord (a quad's coordinate, y down as gl_PointCoord) and the output"
+    },
+    "PARTICLE_VERTEX": {
+      "line": 267,
+      "use": "the point size rule (aSize world units, clamped 1..180 px) as a camera-facing quad"
+    },
+    "FxParticles": {
+      "line": 348,
+      "use": "fixed-size pools, oldest slot recycled; emit/update rules (drag, gravity, grow, life) as typed arrays; the lab's floor bounce is not taken"
+    },
+    "capacities": {
+      "line": 430,
+      "use": "glow 2200, smoke 600 (quality high)"
+    },
+    "shootFireballs defaults": {
+      "line": 467,
+      "use": "size 0.42, power 1"
+    },
+    "_spawn": {
+      "line": 485,
+      "use": "three PlaneGeometry(3.6, 1.8) translated -1.65 along the flight, turned i*60 degrees, uPhase i*5.1, additive"
+    },
+    "_ring": {
+      "line": 522,
+      "use": "impact ring: RingGeometry(0.94, 1), 0xff982d, opacity (1-u)*0.45, scale 0.1+u*size"
+    },
+    "_impact": {
+      "line": 531,
+      "use": "max(3, floor(65*density*size)) sparks, ring(0.35 s, 1.6*size), ceil(12*size) smoke puffs, with the source's speeds, colours, sizes, lives, gravity and drag; normal = against the direction of travel (the source's fallback)"
+    },
+    "_updateFireballs": {
+      "line": 546,
+      "use": "grow-in min(1, 0.3+age*9); 480*density*size trail particles per second up to 2.6*size behind, 23% sparks, with the source's colours, sizes, lives, gravity and drift"
+    }
   },
   "not_taken": {
-    "burstPlan / fireballsPlan / straightPoint": { "lines": "166, 188, 208", "why": "the four-lane volley and its straight-line planner: Quake decides how many balls fly and where; each native ball draws one fireball along its own motion" },
-    "PointLight": { "line": 499, "why": "the native ball keeps its own dynamic light (EF_ROCKET, cl_main.js)" },
-    "_spawn launch ring": { "line": 512, "why": "the client cannot tell a ball being thrown from one coming into view; a ring popping in mid-air would be wrong" },
-    "lab scene, actor, UI, chat, floor bounce": { "why": "the lab's own presentation" }
+    "burstPlan / fireballsPlan / straightPoint": {
+      "lines": "166, 188, 208",
+      "why": "the four-lane volley and its straight-line planner: Quake decides how many balls fly and where; each native ball draws one fireball along its own motion"
+    },
+    "PointLight": {
+      "line": 499,
+      "why": "the native ball keeps its own dynamic light (EF_ROCKET, cl_main.js)"
+    },
+    "_spawn launch ring": {
+      "line": 512,
+      "why": "the client cannot tell a ball being thrown from one coming into view; a ring popping in mid-air would be wrong"
+    },
+    "lab scene, actor, UI, chat, floor bounce": {
+      "why": "the lab's own presentation"
+    }
   },
-  "scale": "Quake units per source unit = r_fireball.js FIREBALL.unit (24); the source's flight (about 12.6 source units/s) is then Chthon's 300 units/s"
+  "scale": "Quake units per source unit = r_fireball.js FIREBALL.unit (24); the source's flight (about 12.6 source units/s) is then Chthon's 300 units/s",
+  "generalised": {
+    "trail drift": "the source drifts each trail particle forward by direction.x*rand(0.15,0.6) only (its flight is along +x); the port drifts along the whole direction of travel, plus the source's up and sideways terms",
+    "trail jitter": "kept on the world axes as in the source (x 0.1, the two others 0.16 sizes)",
+    "trail placement": "the source emits at each 1/120 s substep; the port places each particle at a random point of the frame's motion and ages it to match",
+    "impact smoke": "the source gives x: n.x*0.5+rand(-0.2,0.2), y(up): rand(0.7,1.5), z: rand(-0.4,0.4); the port adds n.y*0.5 on Quake y so the drift away from the wall works for any wall",
+    "impact normal": "against the direction of travel (the source's own fallback when its collision gives none)",
+    "light gain": "LAVABALL.gain 0.55 on the additive layers, for Newer Game's exposure and highlight shoulder (docs/lavaballs-2026-10-11.md, Light gain)"
+  }
 }

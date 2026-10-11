@@ -119,6 +119,8 @@ Deno.test( 'one fireball per native ball, at its origin and along its motion; go
 	// a misc_fireball ball arcing under gravity, and two of Chthon's flying straight at 300 units/s
 	const a = ball( 50, [ 0, 0, 100 ] ), b = ball( 51, [ 200, 0, 200 ] ), c = ball( 52, [ 200, 100, 200 ] );
 	const va = [ 30, - 20, 1100 ];
+	frame( env, [ a, b, c ] );
+	same( lb.R_LavaBallsSnapshot().drawn, 3, 'drawn from the very frame their native models are hidden (direction not yet known)' );
 	for ( let k = 0; k < 10; k ++ ) {
 
 		const taken = frame( env, [ a, b, c ] );
@@ -199,6 +201,20 @@ Deno.test( 'leaving Newer Game, r_lavaballs 0, a clock jump back and a new map d
 
 } );
 
+Deno.test( 'a clock jump back keeps the balls in view and drops only the particles', () => {
+
+	const env = setup();
+	const e = ball( 75, [ 0, 0, 100 ] );
+	for ( let k = 0; k < 6; k ++ ) { frame( env, [ e ] ); e.origin[ 2 ] += 10; }
+	check( lb.R_LavaBallsSnapshot().glow > 0, 'a trail before' );
+	env.time -= 5;
+	frame( env, [ e ], 0 );
+	const s = lb.R_LavaBallsSnapshot();
+	same( s.drawn, 1, 'the ball registered this frame is still drawn (its native model is hidden)' );
+	same( s.glow + s.smoke + s.rings, 0, 'the old trail is gone' );
+
+} );
+
 Deno.test( 'per-frame work reuses its buffers', () => {
 
 	const env = setup();
@@ -235,7 +251,14 @@ Deno.test( 'a lava ball\'s native trail gives way to the fireball\'s own in Newe
 	const trail = () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 90, LAVABALL );
 	same( particles( env, trail ).length, 0, 'Newer Game: no native trail for a lava ball' );
 	lb.r_lavaballs.value = 0;
-	check( particles( env, trail ).length > 0, 'r_lavaballs 0: the native trail (or the supplied smoke) is back' );
+	check( particles( env, trail ).length > 0, 'r_lavaballs 0: the native trail is back (r_smoketrails is not set up here)' );
+	// a full pool: the ball left out keeps its native trail through the real entry point; a held ball's stays replaced
+	lb.r_lavaballs.value = 1;
+	lb.R_LavaBallsBegin();
+	for ( let k = 0; k < lb.LAVABALL.max; k ++ ) lb.R_LavaBall( ball( 200 + k, [ k * 10, 0, 100 ] ) );
+	check( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 999, LAVABALL ) ).length > 0, 'full pool: a new ball\'s native trail' );
+	same( particles( env, () => R_RocketTrail( [ 0, 0, 100 ], [ 0, 0, 130 ], 0, 200, LAVABALL ) ).length, 0, 'a held ball: none' );
+	lb.R_LavaBallsClear();
 	lb.r_lavaballs.value = 1; newer( false );
 	const classic = particles( env, trail );
 	check( classic.length === 1 && ! classic[ 0 ].classicOnly, 'Classic: the ordinary native trail' );

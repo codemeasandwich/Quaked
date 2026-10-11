@@ -308,7 +308,8 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
 
 /**
  * Spawns a missile's trail for one frame's movement; cl_main.js calls it per entity per frame from the model's trail
- * flags. Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by distance along
+ * flags. In Newer Game a lava ball's rocket trail is not spawned while the supplied fireball draws that ball
+ * (r_lavaballs.js, which draws its own trail). Rocket (type 0) and grenade (type 1) trails use the supplied smoke in Newer Game, placed by distance along
  * each frame's segment; `key` is the entity number, so every missile carries its own spacing (a call without one
  * keeps the native trail). The Scrag's spike's green tracer (type 3 with a key) is left out in Newer Game while
  * r_venom.js draws that spike as its venom stream. Everything else, and Classic, keeps the native trail. In the title demo's split view the
@@ -318,7 +319,8 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
  * @param {Float32Array} end its origin now
  * @param {number} type 0 rocket, 1 grenade smoke, 2 blood, 3 and 5 tracers, 4 slight blood, 6 vore trail;
  *     adding 128 makes the native trail three times as dense
- * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1 and the venom on type 3
+ * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1, the venom on type 3 and a lava
+ *     ball's pool slot
  * @param {?Object} [model] the entity's model: a rocket trail (type 0) of a lava ball drawn by the supplied fireball
  *     (r_lavaballs.js, which draws that ball's own trail) is not spawned
  * @throws {Error} for types 0, 1 and 3 with a key when the Newer hooks (`R_SmokeTrail`, `R_VenomTrail`,
