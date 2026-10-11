@@ -49,6 +49,7 @@ def fit_one(key, pack, source_root, output, recipe=None):
  # black centre divider, the Overlord black, and the Mummy a dark brown gradient.
  # Enclosed dark anatomy remains inside the foreground silhouette.
  if spec.get('matte')=='blue-grey': foreground=((rgb[:,:,2]-rgb[:,:,0])<6)&((rgb[:,:,2]-rgb[:,:,1])<8)
+ elif spec.get('matte')=='dark-brown': foreground=rgb.max(2)>25
  elif key=='dragon': foreground=(rgb.max(2)-rgb.min(2)>12)&(rgb.max(2)>25)
  elif key=='mummy': foreground=rgb.max(2)>25
  else: foreground=rgb.max(2)>15

@@ -38874,6 +38874,28 @@
       "height": 1014,
       "bytes": 15185848,
       "compressedBytes": 6073588
+    },
+    "7e9636e598ee90bafcd2ff55c067788bf58598d3de04b063f6b8f76e5b8204e5": {
+      "file": "newer/normals/7e9636e598ee90bafcd2ff55c067788bf58598d3de04b063f6b8f76e5b8204e5.nm.gz",
+      "input": {
+        "width": 1560,
+        "height": 1164,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "34cee934496be3cf857f5f4bc1f1b7df4ab5865d910c5f2034f3d1a029c65b26",
+        "fullbright": null,
+        "scalar": "978c61c5ffb017da3a8a69ad040e40975874224613d838c3d9a6f07cc80f6612",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "8626c3befa66d339eecd5c2054b3327c11b44cf033646cea13f7682dbdd28c22",
+      "rawSha256": "25bab9fce2d9c31b74d9e71ac6b2f6e9079c262b3cd8907e0f73e4074d1f2e89",
+      "width": 1560,
+      "height": 1164,
+      "bytes": 14526904,
+      "compressedBytes": 6203247
     }
   },
   "levels": {
@@ -69751,6 +69773,11 @@
     "custom:dog/custom": {
       "keys": [
         "64f955f6f359928cff97e3268bfd8fc083922d2f5ba448560ed6725b141d22ed"
+      ]
+    },
+    "custom:fish/custom": {
+      "keys": [
+        "7e9636e598ee90bafcd2ff55c067788bf58598d3de04b063f6b8f76e5b8204e5"
       ]
     }
   }

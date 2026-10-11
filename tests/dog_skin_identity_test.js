@@ -66,7 +66,10 @@ Deno.test( 'actual Dog assets retain generated source, matching dimensions, exis
  for ( const file of [ 'diffuse.png', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
  same( index.models.dog.length, 1, 'single approved Dog variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' );
  same( approved.dir, 'dog/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.png', 'lossless fitted PNG is used by the product' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
- const other = structuredClone( index ); delete other.version; delete other.models.dog;
+ const other = structuredClone( index ); delete other.version;
+ // Pin every baseline model and its data; later added families have their own contracts.
+ const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor", "dragon", "s_wrath", "mummy"];
+ other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)));
  same( sha( JSON.stringify( other ) ), '7f9249f313410f7ec717243b4222914bb48d6c07602eee45584cd14d186eee26', 'all pre-existing enemy variants and native height mappings unchanged' );
  same( sha( read( 'newer/enemies/h_dog/custom/diffuse.webp' ) ), 'bc3f0b2d01d2fddaff6b8e28a61490a78fd54f0bb2921bf869c1923fa9da8724', 'existing HD dog head diffuse unchanged' );
  same( sha( read( 'newer/enemies/h_dog/custom/height.webp' ) ), 'f648145229d96773a1ddceb78308cbc9160ae3aa4817a89836792075522496bf', 'existing HD dog head height unchanged' );

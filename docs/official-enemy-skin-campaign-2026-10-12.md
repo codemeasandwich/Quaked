@@ -21,8 +21,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 
 | Increment | Model / missing slots at intake | Initial normal coverage | Status |
 | --- | --- | --- | --- |
-| Dog | `dog:0` | Stored native height + bake | Generated and fitted; verification/commit in progress, T-cd37aeb2 |
-| Rotfish | `fish:0` | Native generated bake; no authored height | Next after Dog push |
+| Dog | `dog:0` | Stored native height + bake | Committed/pushed `5fccab35`, remote verified; T-cd37aeb2 Done |
+| Rotfish | `fish:0` | Native generated bake; no authored height | Generated, fitted and verified; separate commit/push in progress, T-74803f43 |
 | Gremlin | `grem:0` | Missing classification, height and bake | Pending |
 | Armagon | `armabody:0`, `armalegs:0` | Both missing | Pending; one enemy uses two models |
 | Electric Eel | `eel2:0–5` | Missing | Pending; skins1–5 are attack animation states |

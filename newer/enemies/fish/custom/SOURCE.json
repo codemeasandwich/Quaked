@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "model": "progs/fish.mdl",
+  "nativeModelSha256": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/fish.png",
+  "sourceSha256": "a7843310f24cd720095d1e475751adfb05dd95a083f75bd659de9e2c49c3e366",
+  "sourceDimensions": [
+    1452,
+    1083
+  ],
+  "dimensions": [
+    1560,
+    1164
+  ],
+  "factor": 6,
+  "skin": 0,
+  "poses": 66,
+  "vertices": 97,
+  "triangles": 172,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "mattePolicy": "dark-brown",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 454530,
+      "directPixels": 448140,
+      "edgePixels": 6390
+    },
+    {
+      "id": 2,
+      "surfacePixels": 454534,
+      "directPixels": 454386,
+      "edgePixels": 148
+    },
+    {
+      "id": 3,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 4,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 5,
+      "surfacePixels": 10989,
+      "directPixels": 10989,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 11949,
+      "directPixels": 11949,
+      "edgePixels": 0
+    },
+    {
+      "id": 7,
+      "surfacePixels": 14912,
+      "directPixels": 14912,
+      "edgePixels": 0
+    },
+    {
+      "id": 8,
+      "surfacePixels": 16433,
+      "directPixels": 16431,
+      "edgePixels": 2
+    },
+    {
+      "id": 9,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 10,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 11,
+      "surfacePixels": 5424,
+      "directPixels": 5420,
+      "edgePixels": 4
+    },
+    {
+      "id": 12,
+      "surfacePixels": 5928,
+      "directPixels": 5927,
+      "edgePixels": 1
+    }
+  ],
+  "surfacePixels": 974703,
+  "edgePixels": 6545,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "c4fdfa47caf4760dd7105eb2f567218fe24affcefe58f2c254e991bb898c0c9f",
+    "height.webp": "a396febaaab6478ff4d1960baf48e6a147c3b405a9cc33d54d9d2aa8db5d91cf"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original progs/fish.mdl skin0 decoded with native palette and nearest enlarged4x",
+    "prompt": "Faithfully enhance this original Quake Rotfish model skin atlas into a detailed high-resolution game texture. Edit the bitmap atlas itself, not a rendered creature or concept sheet. Keep the exact 260:194 aspect ratio, all UV-island locations, silhouettes, orientations, proportions, gaps and detached fin strips. Preserve both side-view halves precisely where they are; do not rearrange, mirror, crop or add pieces. Retain the original design and colours: decaying ochre/tan-brown flesh and bone, dark red exposed bloody muscle and wounds, ivory pointed teeth, dull yellow-green eyes, the same skeletal rotten fish anatomy. Add restrained fine scales, skin, bone and flesh detail only within these original regions. Keep the original broad markings, shading distribution and wounds. Do not redesign the fish, add horns, change mouth size, make it a different species, add neon colours or invent decorative features. Keep the flat very dark burgundy background and clean atlas boundaries; no scene, perspective render, labels, text or watermark. Keep every tiny detached triangle/fin fragment exactly at the original location. This is a production UV texture repaint, with original layout and colour fidelity more important than embellishment."
+  }
+}

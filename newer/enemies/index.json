@@ -823,9 +823,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "fish": [
+   {
+    "dir": "fish/custom",
+    "skin": 0,
+    "nativeModelSha256": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 30,
+ "version": 31,
  "nativeHeights": {
   "gib1": [
    [

@@ -1,0 +1,26 @@
+{
+  "key": "fish",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/fish.png",
+  "sourceSha": "a7843310f24cd720095d1e475751adfb05dd95a083f75bd659de9e2c49c3e366",
+  "modelSha": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
+  "layout": [
+    1,
+    260,
+    194,
+    97,
+    172,
+    66
+  ],
+  "size": [
+    1452,
+    1083
+  ],
+  "factor": 6,
+  "matte": "dark-brown",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original progs/fish.mdl skin0 decoded with native palette and nearest enlarged4x",
+    "prompt": "Faithfully enhance this original Quake Rotfish model skin atlas into a detailed high-resolution game texture. Edit the bitmap atlas itself, not a rendered creature or concept sheet. Keep the exact 260:194 aspect ratio, all UV-island locations, silhouettes, orientations, proportions, gaps and detached fin strips. Preserve both side-view halves precisely where they are; do not rearrange, mirror, crop or add pieces. Retain the original design and colours: decaying ochre/tan-brown flesh and bone, dark red exposed bloody muscle and wounds, ivory pointed teeth, dull yellow-green eyes, the same skeletal rotten fish anatomy. Add restrained fine scales, skin, bone and flesh detail only within these original regions. Keep the original broad markings, shading distribution and wounds. Do not redesign the fish, add horns, change mouth size, make it a different species, add neon colours or invent decorative features. Keep the flat very dark burgundy background and clean atlas boundaries; no scene, perspective render, labels, text or watermark. Keep every tiny detached triangle/fin fragment exactly at the original location. This is a production UV texture repaint, with original layout and colour fidelity more important than embellishment."
+  }
+}
