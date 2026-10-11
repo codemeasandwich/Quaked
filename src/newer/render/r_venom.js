@@ -6,7 +6,7 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: no mutable exports; module-level variables `deps`, `group`, `streams`, `drops`, `stains`, `_instanced`,
- * `_lastTime`, `_frame`, `_dropCursor`, `_stainCursor`, `_generation`.
+ * `_lastTime`, `_frame`, `_dropCursor`, `_stainCursor`, `_generation`, `_empty`.
  *
  * Errors: none raised here (no `Sys_Error`, `throw`, `Host_Error` or `PR_RunError`).
  */
@@ -278,6 +278,7 @@ let streams = null, drops = null, stains = null; // the three meshes' { mesh, ge
 let _instanced = [];
 let _lastTime = - Infinity, _frame = 0;
 let _dropCursor = 0, _stainCursor = 0, _generation = 0;
+let _empty = true; // nothing launched, emitted or stained since the last R_VenomClear
 
 // Streams, one slot per native projectile. Quake units for positions; metres for head / tail / limit (the source's).
 const J = VENOM.jets;
@@ -422,7 +423,7 @@ export function R_VenomSetup( externals ) {
 export function R_VenomClear() {
 
 	jetUsed.fill( 0 ); jetEnt.fill( null ); dLife.fill( 0 ); sBirth.fill( - Infinity );
-	_lastTime = - Infinity; _dropCursor = 0; _stainCursor = 0;
+	_lastTime = - Infinity; _dropCursor = 0; _stainCursor = 0; _empty = true;
 	if ( group ) { group.visible = false; streams.geometry.instanceCount = 0; drops.geometry.instanceCount = 0; stains.geometry.instanceCount = 0; }
 
 }
@@ -529,7 +530,7 @@ const SCRAG_MODEL = 'progs/wizard.mdl', SCRAG_MOUTH = 30, SCRAG_REACH = 48, SCRA
 function launch( j, ent, time, eye, model, entities, count ) {
 
 	const o = j * 3, a = ent.angles;
-	jetUsed[ j ] = 1; jetEnt[ j ] = ent; jetGen[ j ] = ++ _generation;
+	jetUsed[ j ] = 1; jetEnt[ j ] = ent; jetGen[ j ] = ++ _generation; _empty = false;
 	jetOrigin[ o ] = ent.origin[ 0 ]; jetOrigin[ o + 1 ] = ent.origin[ 1 ]; jetOrigin[ o + 2 ] = ent.origin[ 2 ];
 	// until it has moved, the direction is the entity's angles (QuakeC vectoangles of its velocity: pitch up)
 	const pitch = ( a?.[ 0 ] ?? 0 ) * Math.PI / 180, yaw = ( a?.[ 1 ] ?? 0 ) * Math.PI / 180;
@@ -628,7 +629,7 @@ function surfaceNormal( pos, dir, od, out, oo ) {
 // DropletPool.emit of the source (ring buffer, the oldest slot is reused).
 function emit( px, py, pz, vx, vy, vz, radius, stretch, life, gravity, shot, nx, ny, nz, pd ) {
 
-	const i = _dropCursor; _dropCursor = ( _dropCursor + 1 ) % D;
+	const i = _dropCursor; _dropCursor = ( _dropCursor + 1 ) % D; _empty = false;
 	dLife[ i ] = life; dAge[ i ] = 0; dRadius[ i ] = radius; dStretch[ i ] = stretch; dGravity[ i ] = gravity;
 	dPos[ i * 3 ] = px; dPos[ i * 3 + 1 ] = py; dPos[ i * 3 + 2 ] = pz;
 	dVel[ i * 3 ] = vx; dVel[ i * 3 + 1 ] = vy; dVel[ i * 3 + 2 ] = vz;
@@ -680,7 +681,7 @@ function jetDroplets( j, count ) {
 // _stain() of the source: a stain on the surface at p, the oldest replaced when there are stainCap.
 function stain( px, py, pz, nx, ny, nz, time ) {
 
-	const i = _stainCursor; _stainCursor = ( _stainCursor + 1 ) % S;
+	const i = _stainCursor; _stainCursor = ( _stainCursor + 1 ) % S; _empty = false;
 	const K = VENOM.unit, o = i * 3;
 	// V runs down the surface (the source's target board is vertical with its y up: the runnels run down it)
 	let vx = - nx * nz, vy = - ny * nz, vz = 1 - nz * nz; // up minus its normal part
@@ -807,7 +808,7 @@ function stepJet( j, time, dt, released ) {
 export function R_VenomFrame( time, eye, entities, count, viewSize = null ) {
 
 	if ( deps == null || ! deps.scene ) return;
-	if ( ! active() ) { if ( group !== null || jetUsed.includes( 1 ) ) R_VenomClear(); return; }
+	if ( ! active() ) { if ( ! _empty ) R_VenomClear(); return; }
 	if ( time < _lastTime - REWIND_DROP ) R_VenomClear(); // the clock jumped back (a demo loop, a new game)
 	const dt = _lastTime === - Infinity ? 0 : Math.min( MAX_STEP, Math.max( 0, time - _lastTime ) );
 	_lastTime = time;

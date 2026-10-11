@@ -143,6 +143,14 @@ Deno.test( 'Classic and r_venom 0 keep the native spit: mesh, green tracer and i
 		same( total( hit ), 30, `${mode}: the native TE_WIZSPIKE spray (30 particles)` );
 
 	}
+	// switched off with spit in the air: everything goes at once, and the native picture is back
+	const env = setup(), s = spike( env );
+	for ( let f = 0; f < 10; f ++ ) { s.at( f / 60 ); env.frame(); }
+	check( venom.R_VenomSnapshot().jets.length === 1 && env.group().visible, 'a stream in the air' );
+	venom.r_venom.value = 0; env.frame();
+	same( venom.R_VenomSnapshot().jets.length + venom.R_VenomSnapshot().droplets, 0, 'r_venom 0 drops the stream and its droplets' );
+	same( env.group().visible, false, 'and hides the meshes' );
+	same( venom.R_VenomTakesEntity( s.e ), false, 'the native mesh is drawn again' );
 	newer( true ); venom.r_venom.value = 1;
 
 } );
@@ -272,6 +280,8 @@ Deno.test( 'fixed pools: the instance buffers are allocated once and reused, fra
 	const first = arrays();
 	for ( let f = 2; f < 120; f ++ ) { s.at( f / 60 ); env.frame(); }
 	const after = arrays();
+	same( env.scene.children.filter( c => c.name === 'quake_venom' ).length, 1, 'one venom group in the scene, built once' );
+	check( env.group().children.every( m => m.geometry.attributes.position.array === env.mesh( m.name ).geometry.attributes.position.array ), 'the meshes are the first build\'s' );
 	same( after.length, first.length, 'same attributes' );
 	check( after.every( ( a, i ) => a === first[ i ] ), 'the same typed arrays every frame (nothing reallocated)' );
 	check( venom.R_VenomSnapshot().droplets <= venom.VENOM.dropCap, 'the droplet pool never grows past its capacity' );
