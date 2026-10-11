@@ -31,6 +31,7 @@ import { PR_GetString } from '../progs/progs.js';
 import { trace_t } from './world.js';
 import { SV_ShotDelayRun } from '../common/hooks.js'; // installed by newer/gameplay/sv_shotdelay.js
 import { SV_FireQuench, SV_FireQuenchStep } from '../common/hooks.js'; // installed by newer/gameplay/sv_firequench.js
+import { SV_TeleportTrainThought } from '../common/hooks.js'; // installed by newer/gameplay/sv_teleporttrain.js
 
 /*
 
@@ -1055,8 +1056,9 @@ SV_Physics_Pusher
 */
 /**
  * Runs one frame for a MOVETYPE_PUSH entity (WinQuake sv_phys.c): moves it on its own clock `ltime`, stopping at
- * `nextthink` if that comes first this frame, by `SV_PushRotate` when it has angular velocity and `SV_PushMove`
- * otherwise, then runs its QuakeC `think` when `ltime` reached `nextthink`. Called by `SV_Physics`.
+ * `nextthink` if that comes first this frame, by `SV_PushRotate` when it turns in place (angular velocity, no velocity)
+ * and `SV_PushMove` otherwise (also turning its angles by any angular velocity), then runs its QuakeC `think` when
+ * `ltime` reached `nextthink`. Called by `SV_Physics`.
  *
  * @param {edict_t} ent the pusher
  */
@@ -1080,11 +1082,21 @@ export function SV_Physics_Pusher( ent ) {
 
 	if ( movetime ) {
 
-		// Check for angular velocity (rotating doors/platforms)
-		if ( ent.v.avelocity[ 0 ] !== 0 || ent.v.avelocity[ 1 ] !== 0 || ent.v.avelocity[ 2 ] !== 0 )
+		// A pusher turning in place (rotating doors and platforms) is turned by SV_PushRotate. One that moves goes by
+		// SV_PushMove, as in WinQuake, and keeps any spin: the end level's teleport train (misc_teleporttrain, the
+		// spiked ball Shub-Niggurath is telefragged with) has both, and turning it in place left it jumping from corner
+		// to corner (SUB_CalcMoveDone's setorigin), never inside Shub (card [END1])
+		const moving = ent.v.velocity[ 0 ] !== 0 || ent.v.velocity[ 1 ] !== 0 || ent.v.velocity[ 2 ] !== 0;
+		const turning = ent.v.avelocity[ 0 ] !== 0 || ent.v.avelocity[ 1 ] !== 0 || ent.v.avelocity[ 2 ] !== 0;
+		if ( turning && ! moving )
 			SV_PushRotate( ent, movetime );
-		else
+		else {
+
+			const before = ent.v.ltime;
 			SV_PushMove( ent, movetime ); // advances ent.v.ltime if not blocked
+			if ( turning && ent.v.ltime !== before ) VectorMA( ent.v.angles, movetime, ent.v.avelocity, ent.v.angles );
+
+		}
 
 	}
 
@@ -1097,6 +1109,7 @@ export function SV_Physics_Pusher( ent ) {
 		PR_ExecuteProgram( ent.v.think );
 		if ( ent.free )
 			return;
+		SV_TeleportTrainThought( ent ); // Newer Game: the end level's ball does not stop at its corners (card [END1])
 
 	}
 
