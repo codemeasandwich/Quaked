@@ -34,6 +34,18 @@ import { GL_MakeAliasModelDisplayLists as GL_MakeAliasModelDisplayLists_mesh } f
 // Sky textures (set by R_InitSky during level load)
 export let solidskytexture = null;
 export let alphaskytexture = null;
+/**
+ * Sets the solid sky layer's texture (`solidskytexture`; null at `Mod_ClearAll`, made by `R_InitSky` at a map load).
+ *
+ * @param {?THREE.Texture} value the texture
+ */
+export function set_solidskytexture( value ) { solidskytexture = value; }
+/**
+ * Sets the alpha sky layer's texture (`alphaskytexture`; null at `Mod_ClearAll`, made by `R_InitSky` at a map load).
+ *
+ * @param {?THREE.Texture} value the texture
+ */
+export function set_alphaskytexture( value ) { alphaskytexture = value; }
 import {
 	BSPVERSION,
 	LUMP_ENTITIES, LUMP_PLANES, LUMP_TEXTURES, LUMP_VERTEXES,
@@ -727,6 +739,12 @@ export class model_t {
 // ============================================================================
 
 let loadmodel = null;
+/**
+ * Names the model being loaded (`loadmodel`): set by `Mod_LoadModel` and, for each inline model, by the BSP loader.
+ *
+ * @param {?model_t} value the model
+ */
+function set_loadmodel( value ) { loadmodel = value; }
 let loadname = '';
 
 let mod_novis = new Uint8Array( MAX_MAP_LEAFS / 8 );
@@ -756,6 +774,12 @@ for ( let i = 0; i < MAXALIASTRIS; i ++ )
 
 // GL texture placeholder
 let r_notexture_mip = null;
+/**
+ * Sets the checkerboard texture missing textures use (`r_notexture_mip`, made by `R_InitTextures`).
+ *
+ * @param {?texture_t} value the texture
+ */
+function set_r_notexture_mip( value ) { r_notexture_mip = value; }
 
 // mod_base: Uint8Array - the raw file bytes of the BSP currently being loaded
 let mod_base = null;
@@ -917,14 +941,20 @@ function R_InitSky( tx ) {
 
 	if ( previewLoad === false ) {
 
-		solidskytexture = result.solidTexture;
-		alphaskytexture = result.alphaTexture;
+		set_solidskytexture( result.solidTexture );
+		set_alphaskytexture( result.alphaTexture );
 
 	}
 
 }
 
 let previewLoad = false;
+/**
+ * Marks a load made only to look at a level (`Mod_LoadForPreview`): its inline models are not registered.
+ *
+ * @param {boolean} value true while such a load runs
+ */
+function set_previewLoad( value ) { previewLoad = value; }
 
 /*
 ================
@@ -943,7 +973,7 @@ Mod_LoadForPreview
  */
 export function Mod_LoadForPreview( name ) {
 
-	previewLoad = true;
+	set_previewLoad( true );
 
 	try {
 
@@ -951,7 +981,7 @@ export function Mod_LoadForPreview( name ) {
 
 	} finally {
 
-		previewLoad = false;
+		set_previewLoad( false );
 
 	}
 
@@ -1043,7 +1073,7 @@ export function R_InitTextures() {
 	texture.needsUpdate = true;
 	fallback.gl_texture = texture;
 
-	r_notexture_mip = fallback;
+	set_r_notexture_mip( fallback );
 	return r_notexture_mip;
 
 }
@@ -1253,8 +1283,8 @@ export function Mod_ClearAll() {
 
 	}
 
-	solidskytexture = null;
-	alphaskytexture = null;
+	set_solidskytexture( null );
+	set_alphaskytexture( null );
 
 }
 
@@ -1373,7 +1403,7 @@ export function Mod_LoadModel( mod, crash ) {
 	// allocate a new model
 	loadname = COM_FileBase( mod.name );
 
-	loadmodel = mod;
+	set_loadmodel( mod );
 
 	// fill it in
 
@@ -2708,7 +2738,7 @@ function Mod_LoadBrushModel( mod, buffer ) {
 			nextmodel.needload = false;
 
 			nextmodel.name = name;
-			loadmodel = nextmodel;
+			set_loadmodel( nextmodel );
 			mod = nextmodel;
 
 		}
