@@ -152,22 +152,29 @@ the rules for its clients.
 
 **Evidence.**
 
-* `tests/firequench_native_test.js` (5 tests) uses e1m1's own water and e1m7's own lava with
+* `tests/firequench_native_test.js` (7 tests) uses e1m1's own water and e1m7's own lava with
   real edicts moved by `SV_Physics_Toss`, at frames of 0.02 to 0.1 s. It checks:
   * the burst on the surface;
   * the splash sound's index and place;
   * a submerged player not hurt by a real `spike_touch` shot (while Classic hurts them);
   * born in water, with no move and no splash;
   * a full datagram;
-  * lava, Classic, a multiplayer host, nails and rockets.
+  * lava, Classic, a multiplayer host, a demo playing, another game's progs, nails and rockets;
+  * the same map loaded again, whose runtime strings reuse the offsets: a nail is never taken
+    for an earlier fireball. The second review found that model-name cache going stale.
 
   Each deliberate break was caught: no cut before the move, no splash, a born-wet shot moving
-  or splashing, no overflow guard, no single-player gate.
+  or splashing, no overflow guard, no single-player, demo or progs gate, a cache kept across
+  spawns. The "stopped short of the surface" check in `SV_FireQuench` is defensive and
+  untested. In the stock progs every touch that stops a fireball also removes it or changes
+  its model.
 * `tests/lavaballs_test.js` checks that the ring lies flat on water.
-* **Browser trial.** With `?game=quake` on e2m3, a level's Death Knight was stood beside the
-  level's water and fired its fan at a point under the surface, watched from across the pool.
+* **Browser trial**, run again on the final version. With `?game=quake` on e2m3, a level's
+  Death Knight was stood beside the level's water and fired its fan at a point under the
+  surface, watched from across the pool.
   * In Newer Game the shots burst on the surface with flat rings, and none was seen below it.
-  * In Classic five of the six went on underwater.
+  * In Classic the shots went on underwater: all six on the final run, five of six on an
+    earlier one.
 
 ## How it is built
 

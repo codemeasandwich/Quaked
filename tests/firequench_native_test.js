@@ -136,6 +136,22 @@ Deno.test('Classic, multiplayer and other missiles keep Quake\'s rules',()=>{
  same(SV_FireQuench(null),false,'nothing to put out');SV_FireQuenchStep(null,new Float32Array(3));
 });
 
+Deno.test('the same map again (or a loaded game) reuses string offsets: a nail is never taken for an earlier fireball',()=>{
+ fresh();let w=pool(WATER);
+ const e=missile('progs/k_spike.mdl',w.above,[0,0,-300]);const offset=e.v.model;fly(e,1);check(e.free,'a fireball put out');
+ fresh();w=pool(WATER);
+ const n=missile('progs/spike.mdl',w.above,[0,0,-300]);same(n.v.model,offset,'the nail\'s model string has the fireball\'s old offset');
+ fly(n,.5);check(!n.free&&SV_PointContents(n.v.origin)===WATER,'the nail flies on underwater');
+});
+
+Deno.test('a demo playing, or another game\'s progs, keep Quake\'s rules',()=>{
+ fresh();const w=pool(WATER);
+ cls.demoplayback=true;const d=missile('progs/k_spike.mdl',w.above,[0,0,-300]);fly(d,.5);cls.demoplayback=false;
+ check(!d.free&&SV_PointContents(d.v.origin)===WATER,'during a demo: the game\'s own rules');
+ const crc=progs.pr_crc;progs.PR_SetCRC(1);const m=missile('progs/k_spike.mdl',w.above,[0,0,-300]);fly(m,.5);progs.PR_SetCRC(crc);
+ check(!m.free&&SV_PointContents(m.v.origin)===WATER,'another game\'s progs: the game\'s own rules');
+});
+
 Deno.test('the engine cuts the step before the move and asks after it',()=>{
  const src=readFileSync(new URL('../src/engine/server/sv_phys.js',import.meta.url),'utf8');
  const fn=src.slice(src.indexOf('export function SV_Physics_Toss'));

@@ -60,12 +60,13 @@ const wet = c => c === CONTENTS_WATER || c === CONTENTS_SLIME;
 const _a = [ 0, 0, 0 ], _b = [ 0, 0, 0 ], _m = [ 0, 0, 0 ], _surface = [ 0, 0, 0 ];
 let _pending = null, _crossed = false; // the edict whose step was cut at `_surface` this move; did it cross the surface
 // Is this edict a fireball: its model string, looked up once per string (the server's per-frame path allocates
-// nothing; a new map loads new progs strings, so the answers are dropped with the world model)
+// nothing). Each server spawn (a new map, the same map again, a loaded game) reloads the progs and their runtime
+// strings, so an offset can name another string: the answers are dropped with the edict list SV_SpawnServer builds.
 const _fire = new Map();
-let _world = null;
+let _edicts = null;
 function fireball( ent ) {
 
-	if ( _world !== sv.worldmodel ) { _world = sv.worldmodel; _fire.clear(); }
+	if ( _edicts !== sv.edicts ) { _edicts = sv.edicts; _fire.clear(); }
 	const key = ent.v.model | 0;
 	let yes = _fire.get( key );
 	if ( yes === undefined ) { yes = FIRE_QUENCH.models.includes( PR_GetString( key ) ); _fire.set( key, yes ); }
@@ -87,7 +88,7 @@ export function SV_FireQuenchActive() {
 
 /**
  * Called by sv_phys.js SV_Physics_Toss before it moves a missile by `move`: a fireball in the air whose step would pass into
- * in water or slime has `move` cut to the surface (the last dry point), so it touches nothing under the water; the
+ * water or slime has `move` cut to the surface (the last dry point), so it touches nothing under the water; the
  * `SV_FireQuench` that follows the move puts it out there. Allocates nothing.
  *
  * @param {Object} ent the edict about to move (`v.model`, `v.origin` read)
