@@ -530,6 +530,44 @@ exports the state's setters and `menuOpeners` beside them.
   game options' bands, the key-binding wait, setup has none); level select's cursor is not clamped after an episode
   change; minor dead code.
 
+## [44k]: `gl_model.js` split by format (debt D3)
+
+`src/engine/render/gl_model.js` was 3,396 lines holding every loader. It is now 515 lines: `Mod_Init`, `Mod_ForName`,
+`Mod_LoadModel` (which picks the loader by the file's first four bytes), the cache, the PVS and leaf lookups and the
+preview load. It re-exports the same 92 public names (and the two sky textures' setters), so none of its importers,
+the room server among them, changed.
+
+| Module | Lines | What it holds |
+|---|---|---|
+| `gl_model_types.js` | 689 | the formats' constants and the structures the loaders fill (72 names) |
+| `gl_model_common.js` | 298 | the model being loaded, the known-model table (`Mod_FindName`), `GL_LoadTexture`, the placeholder and sky textures, `readString`, `RadiusFromBounds` |
+| `gl_model_bsp.js` | 1,336 | the BSP loader: the lumps, BSP2 and 2PSB, the hulls, the inline models, the sky, the crate variants |
+| `gl_model_alias.js` | 537 | the alias loader: header, skins, frames, display lists, and the shared arrays gl_mesh.js reads |
+| `gl_model_sprite.js` | 195 | the sprite loader |
+
+* **Shared state.** `loadmodel`, `previewLoad`, `r_notexture_mip` and the two sky textures were written from more
+  than one part; each has one setter in gl_model_common.js. The state only the BSP loader uses (`mod_base`, the BSP2
+  flags) moved with it.
+* **One-way imports.** types import nothing of these; common imports the types; each loader imports the types and
+  common; gl_model.js imports them all and none imports it. `tools/architecture_classify.mjs` assigns `gl_model_*.js`
+  to engine/render, [44k].
+* **Cycles.** The render cycle grew from 12 to 13 modules, by the owner's decision (option a): the alias loader reads
+  gl_mesh.js, which is in the cycle. The types, common, BSP and sprite modules are in no cycle.
+* **Moved, not rewritten,** by the same tool as [44i]: whole statements with their comments, every line accounted for.
+  The 6 functions that became exports have JSDoc.
+* **Proof that maps and models load identically:** `tests/model_load_digest_test.js` loads every model of the
+  shareware pak through `Mod_ForName` (its maps with their inline models, the alias models and the sprites: 699) and
+  serialises each whole: every own property, objects numbered as first met (so the tree's shared and parent links
+  count), typed arrays and texture pixels by their bytes, three.js `uuid` and `version` left out. It prints one digest.
+  It is f8f766d0… on the commit before the split (5d9630d8), the same in two runs, and the same after every step.
+  Changing a map's frame count or an alias model's flags changes it.
+* **A test for the parts**, through their own interfaces: `gl_model_common_test` (the table, the readers, the
+  radius) and `gl_model_loaders_test` (E1M1's lumps, hulls and inline models and a refused version; the player's
+  frames; an explosion's frames). Breaking `readString` or a sprite's frame count fails them. The model suites, the
+  BSP2 server test and the room server's imports pass unchanged.
+* **Found on the way, not changed:** the alias loader reads `mod.flags` twice, first from the wrong offset (72, the
+  sync type); the second read (76) wins, so it is harmless.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the

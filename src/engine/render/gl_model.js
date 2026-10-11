@@ -2,7 +2,11 @@
  * @module engine/render/gl_model
  *
  * Model loading (WinQuake gl_model.c): BSP worlds (including BSP2), alias models and sprites, their textures and
- * caches.
+ * caches. Since card [44k] this module keeps the entry points (`Mod_Init`, `Mod_ForName` and `Mod_LoadModel`, which
+ * picks the loader by the file's first four bytes, the cache, PVS and leaf lookups) and the public names, re-exported
+ * from the parts it was split into: gl_model_types.js (the formats' constants and structures), gl_model_common.js
+ * (the model being loaded, the known-model table, texture upload), gl_model_bsp.js, gl_model_alias.js and
+ * gl_model_sprite.js (one loader each). The loaders import only the types and common; none imports this module.
  *
  * Types: plain values and functions; no exported classes.
  *
