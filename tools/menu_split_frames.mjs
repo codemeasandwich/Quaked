@@ -10,8 +10,8 @@
 // 1, the size the trial draws at. Prints one JSON line a run: the digest and, per step, its label and short hashes.
 import { pathToFileURL } from 'node:url';
 
-// the digest on the unchanged menus (Dev fa1ef637): five runs of five
-const BASE = 'c95bdf9086e2dbbe36d5b8f0c66ef2a18d025e85b713f1252583c86b26df0639';
+// the digest on the unchanged menus (Dev fa1ef637, three runs of three; the same at [44j] step 1, five of five)
+const BASE = 'e38d89beca6467c6249755c355530057e748ee2ae460bc21e2cb7e1a6a20e3c2';
 
 const [ port = '8000', runs = '1' ] = process.argv.slice( 2 );
 if ( ! process.env.PLAYWRIGHT_CORE || ! process.env.CHROMIUM ) throw Error( 'Set PLAYWRIGHT_CORE (playwright-core index.mjs) and CHROMIUM (the browser binary)' );

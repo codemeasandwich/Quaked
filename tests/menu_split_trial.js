@@ -7,8 +7,9 @@
 // split and after each step (tools/menu_split_frames.mjs); the digests must match.
 // No step starts a game, quits, runs the profiler or resets the configuration: ENTER is pressed only where it opens a
 // screen, and the command buffer is never run.
-// On the unchanged menus (Dev fa1ef637, Metal) the digest is c95bdf90…0639 in five runs of five; changing one label or
-// one key's cursor step changes it.
+// On the unchanged menus (Dev fa1ef637, Metal) the digest is e38d89be…e3c2; changing one label or one key's cursor
+// step changes it. (The first version stopped the application before its startup commands had always run, and so had
+// two digests, by how fast the page started.)
 import '../src/newer/install.js'; // Newer Game plugs into the engine's hooks (src/engine/common/hooks.js)
 const report = document.querySelector( '#report' ), views = document.querySelector( '#views' ), errors = [];
 window.addEventListener( 'error', e => errors.push( { runtime: e.message } ) ); window.addEventListener( 'unhandledrejection', e => errors.push( { rejection: String( e.reason ) } ) );
@@ -27,6 +28,10 @@ try {
 	const started = performance.now();
 	await import( '../main.js' );
 	while ( ! window.Cbuf_AddText || ! window.renderer ) { if ( performance.now() - started > 115000 ) throw Error( 'Application startup exceeded 115 seconds' ); await sleep( 50 ); }
+	// the loop runs the startup's queued commands (quake.rc, the default bindings and speeds) on its first frames: stop
+	// it only after they have run, or the configuration depends on how fast the page started
+	const hostState = await import( '../src/engine/common/host_state.js' );
+	while ( hostState.host_framecount < 3 ) { if ( performance.now() - started > 115000 ) throw Error( 'The host did not run its first frames' ); await sleep( 20 ); }
 	const renderer = window.renderer; renderer.setAnimationLoop( null );
 	const { COM_FindFile } = await import( '../src/engine/common/pak.js' );
 	const client = await import( '../src/engine/client/client.js' ), { cl, cls } = client;
@@ -88,7 +93,7 @@ try {
 			const figure = document.createElement( 'figure' ), img = document.createElement( 'img' ), caption = document.createElement( 'figcaption' ); img.src = both.toDataURL(); caption.textContent = label; figure.append( img, caption ); views.append( figure );
 		}
 		const skinned = MainMenu_Frame(), calls = trace; trace = [];
-		return { label, sha256: await hash( pixels ), draws: await hash( new TextEncoder().encode( calls.join( '\n' ) ) ), drawCount: calls.length, skinned: await hash( new TextEncoder().encode( JSON.stringify( skinned ) ) ), skinnedCount: skinned.commands.length, overlay: await hash( drawn ), state: menu.m_state, keyDest: keys.key_dest, cvars: await hash( new TextEncoder().encode( Cvar_WriteVariables() ) ), bindings: await hash( new TextEncoder().encode( keys.keybindings.map( b => b ?? '' ).join( '\n' ) ) ), glError: gl.getError() };
+		return { label, sha256: await hash( pixels ), draws: await hash( new TextEncoder().encode( calls.join( '\n' ) ) ), drawCount: calls.length, skinned: await hash( new TextEncoder().encode( JSON.stringify( skinned ) ) ), skinnedCount: skinned.commands.length, overlay: await hash( drawn ), state: menu.m_state, keyDest: keys.key_dest, cvars: await hash( new TextEncoder().encode( Cvar_WriteVariables() ) ), bindings: await hash( new TextEncoder().encode( keys.keybindings.map( b => b ?? '' ).join( '\n' ) ) ), glError: gl.getError(), ...DEBUG ? { cvarText: Cvar_WriteVariables(), bindText: keys.keybindings.map( ( b, i ) => i + ' ' + ( b ?? '' ) ).join( '\n' ) } : {} };
 	}
 	const K = { DOWN: keys.K_DOWNARROW, UP: keys.K_UPARROW, LEFT: keys.K_LEFTARROW, RIGHT: keys.K_RIGHTARROW, ENTER: keys.K_ENTER, ESC: keys.K_ESCAPE, N: 110 };
 	const times = ( n, key ) => new Array( n ).fill( key );
