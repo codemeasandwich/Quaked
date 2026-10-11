@@ -57,7 +57,9 @@ revealed (owner request, 11 October 2026, card [QV1];
 - **How "joined" is decided.** The code floods the open space of the world's player-sized
   collision hull (hull 1) from the player.
   - Doors, platforms and every other brush entity are passable, and so are liquids.
-  - Every teleporter the flood reaches joins its destination.
+  - Every teleporter the flood reaches joins its destination, when the player's hull would
+    touch it. A place the player can go by teleporter is part of their level; a box monsters are
+    teleported out of is not, since the flood never gets into it.
   - The flood steps over a 16-unit grid. Each cell's node is the nearest point above or below
     the grid point, within 8 units, that the hull fits, so the flood follows ramps under low
     ceilings and ducts the hull barely fits.
@@ -65,6 +67,8 @@ revealed (owner request, 11 October 2026, card [QV1];
 - **When a monster counts as reached.** An open point by it (its origin, or nudged up to 16
   units sideways and from 32 down to 16 up, joined to the origin by a clear line) must have a
   clear trace to a reached node of its cell or the cells round it.
+- **Following the player.** If the player gets somewhere the flood missed (noclip, say), the
+  flood grows from there and answers are asked again.
 - **Built from the level's start, breadth first,** a bounded number of cells a frame (150; 400
   per question while Quad is held). A whole level is done in about 20 to 55 s of play on the
   largest maps, nearest the player first. A monster not yet reached is not revealed.
@@ -86,12 +90,18 @@ revealed (owner request, 11 October 2026, card [QV1];
     - e1m4: the walk-in ogre and pacing scrags hidden through 30 s of real play;
     - a closet emptied by the level's own button;
     - nothing in a closet revealed while the flood is under way;
-    - with the registered pak and stock progs: e3m5 revealed past its ramp, e2m7's duct scrags
-      revealed, end.bsp's closet row hidden and its arena shambler revealed.
-  - The reviewer's independent check: 31 maps at Hard, with a local point-hull flood round each
-    monster deciding whether it is sealed in. With the flood finished, no monster it finds open
-    is hidden. The one monster it calls sealed but shown, end.bsp's fish, sits in the player's
-    own start pocket, which the reviewer confirmed at 8 units.
+    - with the registered pak and stock progs: e3m5 hides exactly its four closet scrags past its
+      ramp, e2m7's duct scrags revealed, end.bsp's closet row hidden and its arena shambler
+      revealed;
+    - a player moved into a pocket after the flood is done has its monsters revealed.
+  - **The reviewer's own scan, for fd7a5ca0.** It ran with the production per-frame budgets over
+    30 s of real play, at skills 0, 1 and 2, on all 31 maps with stock progs (e4m1 at skill 0
+    only). A local point-hull flood round each monster decides whether it is sealed in.
+    - No closet monster was revealed in any frame.
+    - No monster in the level was hidden once the flood finished.
+    - Every flood finished within 30 s.
+    - The only flag was end.bsp's fish, which sits in the player's own start pocket (confirmed at
+      8 units).
 - **In the browser** (first version, the same e1m2 result): 42 shown before, 38 after.
 
 A separate enemy depth mask and purple composite

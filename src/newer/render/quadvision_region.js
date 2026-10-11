@@ -38,7 +38,6 @@ import { PR_GetString } from '../../engine/progs/progs.js';
 
 const STEP = 16;                    // Quake units between grid points
 const CONTENTS_SOLID = - 2;
-const HALF = STEP / 2;
 // where a cell's node is looked for when its grid point is solid for the player's hull, nearest first: up or down by up
 // to half a step, so the flood follows the height of the floor, a ramp under a low ceiling or a duct the hull barely fits
 const SNAP = Object.freeze( [ 2, - 2, 4, - 4, 6, - 6, 8, - 8 ].map( dz => Object.freeze( [ 0, 0, dz ] ) ) );
@@ -54,7 +53,7 @@ const DIRS = Object.freeze( [ [ 1, 0, 0 ], [ - 1, 0, 0 ], [ 0, 1, 0 ], [ 0, - 1,
 export const QUAD_REGION = Object.freeze( { step: STEP, cellsPerFrame: 150, cellsPerQuestion: 400 } );
 
 let edicts = null, flood = null;    // the edict list the flood belongs to; the flood
-const answers = new WeakMap();      // edict -> { cell, flood, reached, done, inLevel }
+const answers = new WeakMap();      // edict -> { cell, flood, reached, inLevel }
 
 const text = n => { try { return n ? PR_GetString( n ) : ''; } catch { return ''; } };
 
@@ -185,7 +184,9 @@ function prepare( server ) {
 	for ( const e of edicts ) {
 
 		if ( e == null || e.free || e.v.absmin == null || text( e.v.classname ) !== 'trigger_teleport' ) continue;
-		flood.teleporters.push( { lo: Array.from( e.v.absmin, v => v - HALF ), hi: Array.from( e.v.absmax, v => v + HALF ), to: byName.get( text( e.v.target ) ) || null } );
+		// (a node is where the player's origin would be: the player touches the teleporter wherever the hull, -16 -16 -24
+		// to 16 16 32, overlaps its box)
+		flood.teleporters.push( { lo: [ e.v.absmin[ 0 ] - 16, e.v.absmin[ 1 ] - 16, e.v.absmin[ 2 ] - 32 ], hi: [ e.v.absmax[ 0 ] + 16, e.v.absmax[ 1 ] + 16, e.v.absmax[ 2 ] + 24 ], to: byName.get( text( e.v.target ) ) || null } );
 
 	}
 
@@ -250,11 +251,12 @@ export function QuadVisionRegion( server, cells = QUAD_REGION.cellsPerQuestion )
 		if ( o == null ) return true;
 		const cell = index( f, o );
 		const kept = answers.get( e );
-		// (a revealed monster stays revealed in its cell: the flood only grows; a hidden one is asked again once the flood
-		// has taken in REASK more cells, or has finished)
-		if ( kept && kept.cell === cell && kept.flood === f && ( kept.inLevel || ( f.reached - kept.reached < REASK && ( pending( f.queue ) || kept.done ) ) ) ) return kept.inLevel;
+		// (a revealed monster stays revealed in its cell: the flood only grows; a hidden one is asked again once a running
+		// flood has taken in REASK more cells, or whenever a finished flood has grown at all)
+		const fresh = pending( f.queue ) ? f.reached - ( kept?.reached ?? 0 ) < REASK : f.reached === kept?.reached;
+		if ( kept && kept.cell === cell && kept.flood === f && ( kept.inLevel || fresh ) ) return kept.inLevel;
 		const inLevel = cell < 0 ? true : reachedAt( f, o );
-		answers.set( e, { cell, flood: f, reached: f.reached, done: ! pending( f.queue ), inLevel } );
+		answers.set( e, { cell, flood: f, reached: f.reached, inLevel } );
 		return inLevel;
 
 	};

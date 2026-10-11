@@ -106,6 +106,13 @@ Deno.test('e1m2: a closet emptied by the level\'s own button reveals its monster
  check(ask()(scrag),'now in the level: revealed');
 });
 
+Deno.test('after the flood is done, a player who gets into a pocket it missed (noclip, say) is followed there: what is there is revealed',()=>{
+ const pl=level('e1m2');ask();const scrag=around([1912,-856,217],8)[0];check(!ask()(scrag),'the closet scrag: hidden');
+ pl.v.origin=[1930,-856,217];SV_LinkEdict(pl,false); // (beside it, in its closet)
+ let shown=false;for(let k=0;k<50&&!shown;k++)shown=QuadVisionRegion(sv,400)(scrag);
+ check(shown,'the space the player is in now is the level: the scrag beside them is revealed');
+});
+
 Deno.test('while the flood is under way nothing in a closet is ever revealed, and the level fills in',()=>{
  level('e1m2');const closet=[...around([1912,-856,217],8),...around([32,840,359],8)];let steps=0,shown=0;
  for(;steps<2000;steps++){const inLevel=QuadVisionRegion(sv,200);for(const m of closet)check(!inLevel(m),'a closet monster mid-flood');shown=monsters().filter(m=>inLevel(m)).length;if(shown===38)break;}
@@ -121,7 +128,9 @@ Deno.test('registered game (local pak, stock progs as the browser runs it): e3m5
  regLevel('e3m5');let inLevel=ask();
  // e3m5: the only way on from the start is a ramp under a low ceiling (a fixed 16-unit grid never climbed it and hid
  // every monster on the map)
- const e3m5=monsters();check(e3m5.length>=40,'e3m5\'s monsters');check(e3m5.filter(m=>inLevel(m)).length>=e3m5.length-10,`most of e3m5 is revealed (${e3m5.filter(m=>inLevel(m)).length} of ${e3m5.length})`);
+ const e3m5=monsters(),e3hidden=e3m5.filter(m=>!inLevel(m));check(e3m5.length>=40,'e3m5\'s monsters');
+ same(e3hidden.length,4,`e3m5 hides only its four closet scrags (${e3hidden.map(m=>Array.from(m.v.origin).map(Math.round)).join(' ')})`);
+ for(const o of[[-8,-2664,1136],[-178,-2706,1136],[-776,-2712,1136],[-776,-2832,1136]])check(e3hidden.some(m=>by(m,o,24)),`the closet scrag at ${o}`);
  // e2m7: scrags hovering in ducts 64 units tall, where the player's hull fits in a band 8 units thick
  regLevel('e2m7');inLevel=ask();for(const o of[[1280,680,128],[584,1112,128]]){const m=around(o,24)[0];check(m&&inLevel(m),`the duct scrag at ${o} is revealed`);}
  regLevel('end');inLevel=ask();
