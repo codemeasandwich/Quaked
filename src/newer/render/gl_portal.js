@@ -534,13 +534,24 @@ export function R_BuildPortals( model ) {
 
 	if ( triggers.length === 0 ) return portals;
 
-	// Link every "*teleport" surface of the world to the trigger it belongs to
+	// Link every "*teleport" surface of the world, and of the level's static walls, to the trigger it belongs to: a
+	// teleporter's face can be a func_wall's (end.bsp's secret teleporter behind the Quad Damage, *59, card [END2]).
+	// A wall does not move, so its faces are where the map puts them; one the game leaves out has none.
 	const groups = new Map();
 	const first = model.firstmodelsurface || 0;
-	const last = first + ( model.nummodelsurfaces || model.surfaces.length );
+	const faces = [];
+	for ( let i = first, last = first + ( model.nummodelsurfaces || model.surfaces.length ); i < last; i ++ ) faces.push( i );
+	for ( const ent of ents ) {
+
+		if ( ( ent.classname !== 'func_wall' && ent.classname !== 'func_illusionary' ) || ent.model == null || ent.model.charAt( 0 ) !== '*' || ent.origin != null || inhibited( ent ) ) continue;
+		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
+		if ( sub == null || ! ( sub.numfaces > 0 ) ) continue;
+		for ( let i = sub.firstface; i < sub.firstface + sub.numfaces; i ++ ) faces.push( i );
+
+	}
 	const smins = [ 0, 0, 0 ], smaxs = [ 0, 0, 0 ];
 
-	for ( let i = first; i < last; i ++ ) {
+	for ( const i of faces ) {
 
 		const surf = model.surfaces[ i ];
 		if ( surf == null || surf.texinfo == null || surf.texinfo.texture == null ) continue;
@@ -554,11 +565,14 @@ export function R_BuildPortals( model ) {
 		let best = - 1, bestGap = TRIGGER_SLOP;
 		for ( let t = 0; t < triggers.length; t ++ ) {
 
-			// as near (the later wins, as before), unless the later only works when the level's trigger uses it
-			// (a targetname: teleport_touch for 0.2 s after teleport_use) and the one already chosen always works:
-			// end.bsp's large post-death teleporters overlap the final teleporter (card [END1])
+			// The nearest (on a tie the later, as before), but a teleporter that always works takes the face over one
+			// that only works when the level's trigger uses it (a targetname: teleport_touch for 0.2 s after
+			// teleport_use), however near that one is: end.bsp's large post-death teleporters overlap the final
+			// teleporter and the secret one behind the Quad Damage (cards [END1], [END2])
 			const gap = boxGap( smins, smaxs, triggers[ t ].mins, triggers[ t ].maxs );
-			if ( gap < bestGap || ( gap === bestGap && ! ( triggers[ t ].named && best >= 0 && ! triggers[ best ].named ) ) ) {
+			if ( gap > TRIGGER_SLOP ) continue;
+			const better = best < 0 || ( triggers[ t ].named === triggers[ best ].named ? gap <= bestGap : ! triggers[ t ].named );
+			if ( better ) {
 
 				bestGap = gap;
 				best = t;

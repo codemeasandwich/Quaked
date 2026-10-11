@@ -38,3 +38,25 @@ Deno.test( 'a door is a group kept on its entity: out of the scene each frame, g
 		check( entity._brushGroup && entity._brushGroup !== group, 'and the next draw makes a new one' );
 	} finally { cl.worldmodel = saved.world; saved.models.forEach( ( m, i ) => { cl.model_precache[ i ] = m; } ); }
 } );
+
+// card [END2]: a brush entity's liquid and teleporter faces are drawn, as WinQuake draws them (they were left out, so
+// end.bsp's secret teleporter face on a func_wall was missing; E1M3's *98 carries a teleporter face too)
+Deno.test( 'a brush entity\'s teleporter face is drawn, warped, in its group, and survives the group\'s rebuild', () => {
+	const saved = { world: cl.worldmodel, models: cl.model_precache.slice() }; d_lightstylevalue.fill( 256 );
+	try {
+		const map = Mod_ForName( 'maps/e1m3.bsp', true ), wall = Mod_ForName( '*98', false );
+		cl.worldmodel = map; cl.model_precache.fill( null ); cl.model_precache[ 1 ] = map; cl.model_precache[ 2 ] = wall;
+		GL_BuildLightmaps();
+		const entity = { origin: new Float32Array( 3 ), angles: new Float32Array( 3 ), frame: 0, model: wall };
+		brush.R_DrawBrushModel( entity );
+		const liquids = () => entity._brushGroup.children.filter( m => m.userData.quakeLiquid );
+		const first = liquids();
+		check( first.length > 0 && first.every( m => m.userData.quakeLiquid.name.startsWith( '*teleport' ) ), 'the teleporter face is drawn (' + first.length + ')' );
+		const geometry = first[ 0 ].geometry; let disposed = 0; geometry.addEventListener( 'dispose', () => disposed ++ );
+		entity.frame = 1; brush.R_BrushBeginFrame(); brush.R_DrawBrushModel( entity ); // (a new frame number rebuilds the group)
+		const again = liquids();
+		check( again.length === first.length && again[ 0 ] === first[ 0 ], 'the same face mesh, in the rebuilt group' );
+		check( disposed === 0, 'its geometry was not thrown away with the old group' );
+		brush.R_BrushClear();
+	} finally { cl.worldmodel = saved.world; saved.models.forEach( ( m, i ) => { cl.model_precache[ i ] = m; } ); }
+} );

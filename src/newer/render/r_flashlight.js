@@ -18,7 +18,7 @@
 import { cvar_t, Cvar_SetValue, Cvar_VariableValue } from '../../engine/common/cvar.js';
 import { Cmd_AddCommand } from '../../engine/common/cmd.js';
 import { R_NewerLightingActive, R_NewerGame } from '../mode.js';
-import { cls, ca_connected } from '../../engine/client/client.js';
+import { cl, cls, ca_connected } from '../../engine/client/client.js';
 import { R_FlashlightRunManualChange, R_FlashlightRunObserve } from './r_flashlightrun.js';
 
 export const r_flashlight = new cvar_t( 'r_flashlight', '0' );
@@ -67,8 +67,8 @@ R_FlashlightUpdate
 /**
  * Once per frame with the view (R_RenderView): origin, forward, right, up. Moves the beam towards where the view
  * points, with a 0.1 s time constant measured in wall-clock time (the step is capped at 0.1 s), and places it on the
- * right shoulder (15 right, 9 down, 4 forward). The beam is on only with r_flashlight set and Newer lighting active;
- * it comes on pointing where you look. Also reports the switch state to the flashlight-run tracker.
+ * right shoulder (15 right, 9 down, 4 forward). The beam is on only with r_flashlight set and Newer lighting active,
+ * and not during an intermission or cutscene (`cl.intermission`, card [END2]); it comes on pointing where you look. Also reports the switch state to the flashlight-run tracker.
  *
  * @param {Array<number>} origin the view origin, world space, Quake units
  * @param {Array<number>} forward the view's unit forward vector
@@ -82,7 +82,9 @@ export function R_FlashlightUpdate( origin, forward, right, up ) {
 	const dt = Math.min( 0.1, Math.max( 0, t - lastTime ) );
 	lastTime = t;
 
-	beam.on = r_flashlight.value !== 0 && R_NewerLightingActive();
+	// (not in an intermission or cutscene: the end-of-level view, the finale, the mission packs' end scenes; svc_intermission,
+	// svc_finale and svc_cutscene set cl.intermission. The switch is left as it is, and the beam is back after it)
+	beam.on = r_flashlight.value !== 0 && R_NewerLightingActive() && ! cl.intermission;
 	if ( beam.on === false ) {
 
 		seeded = false; // it comes on pointing where you look

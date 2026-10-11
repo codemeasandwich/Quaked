@@ -23,12 +23,13 @@ import { cl, cl_dlights, MAX_DLIGHTS } from '../client/client.js';
 import { R_PortalsActive, R_BoxInPortalReceiver } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { R_MarkLights } from './gl_rlight.js';
 import { r_refdef } from './render.js';
-import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, r_framecount, gl_flashblend, R_CullBox, scene } from './gl_rmain.js';
+import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, r_framecount, gl_flashblend, R_CullBox, scene, r_wateralpha } from './gl_rmain.js';
 import { VectorAdd } from '../common/mathlib.js';
 import { Mod_PointInLeaf } from './gl_model.js';
 import { R_BlendLightmaps, lightmapTextures } from './gl_rsurf_lightmaps.js';
 import { createQuakeLightmapMaterial, R_TextureAnimation, _mergeGLPolys } from './gl_rsurf_materials.js';
 import { R_RenderDynamicLightmaps } from './gl_rsurf_world.js';
+import { _getWaterMaterial, _getWaterMesh, EmitWaterPolysQuake } from './gl_rsurf_liquids.js';
 
 // Brush entity rendering support
 // worldState.renderGroup is the THREE.Group that surface renderers add meshes to.
@@ -235,6 +236,7 @@ export function R_DrawBrushModel( e ) {
 		if ( brushGroup.parent ) brushGroup.parent.remove( brushGroup );
 		for ( const child of brushGroup.children ) {
 
+			if ( child.userData.quakeLiquid ) continue; // (a liquid face's mesh belongs to its surface: gl_rsurf_liquids.js)
 			if ( child.geometry ) child.geometry.dispose();
 			// Don't dispose materials - they're cached in _brushMaterialCache (a demon relief owns its own)
 			if ( child.userData.ownMaterial ) child.material.dispose();
@@ -438,6 +440,23 @@ export function R_DrawBrushModel( e ) {
 	brushGroup.visible = ! ( R_NewerGame() && brushGroup.userData.archHidden );
 	if ( scene && ! brushGroup.parent ) scene.add( brushGroup );
 	brushEntityGroups.push( brushGroup );
+
+	// The entity's liquid and teleporter faces (SURF_DRAWTURB), warped each frame as the world's are (WinQuake draws
+	// them; they were left out here, so end.bsp's secret teleporter face on a func_wall was missing, card [END2]). Their
+	// meshes join the entity's group, which places and turns them with it; a face that leads somewhere is a window.
+	if ( clmodel.surfaces && clmodel.nummodelsurfaces ) {
+
+		const startSurf = clmodel.firstmodelsurface, time = cl ? cl.time : 0;
+		for ( let i = 0; i < clmodel.nummodelsurfaces; i ++ ) {
+
+			const s = clmodel.surfaces[ startSurf + i ];
+			if ( s == null || ( s.flags & SURF_DRAWTURB ) === 0 || s.polys == null ) continue;
+			const geometry = EmitWaterPolysQuake( s, time );
+			if ( geometry ) _getWaterMesh( s, geometry, _getWaterMaterial( R_TextureAnimation( s.texinfo.texture ), r_wateralpha.value ), brushGroup );
+
+		}
+
+	}
 	R_RockfieldBrushSeen( clmodel, brushGroup, r_refdef.vieworg, r_framecount );
 
 	// Upload any modified lightmaps (matches original C: R_BlendLightmaps called
@@ -471,6 +490,7 @@ export function R_BrushClear() {
 		if ( group.parent ) group.parent.remove( group );
 		for ( const child of group.children ) {
 
+			if ( child.userData.quakeLiquid ) continue; // (a liquid face's mesh belongs to its surface: gl_rsurf_liquids.js)
 			if ( child.geometry ) child.geometry.dispose();
 			if ( child.userData.ownMaterial ) child.material.dispose();
 

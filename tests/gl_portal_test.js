@@ -335,3 +335,55 @@ Deno.test( 'a window following a train into another leaf sees from there: its vi
 	} finally { portal.R_ClearPortals(); }
 
 } );
+
+// card [END2]: end.bsp's secret teleporter behind the Quad Damage has its face on a func_wall (*59), not the world, and
+// a large post-death teleporter (a targetname) overlaps it
+Deno.test( 'a teleporter face on a static wall gets its window, and an always-on teleporter takes it over a nearer named one', () => {
+
+	const world = makeSurface( '*sky1', 100, 1 ); world.flags = 0; // (the world's own face: not a teleporter)
+	const wall = makeSurface( '*teleport', 100, 1 );
+	const model = makeModel( [ world, wall ], `
+{
+"classname" "worldspawn"
+}
+{
+"classname" "func_wall"
+"model" "*2"
+}
+{
+"classname" "trigger_teleport"
+"target" "t1"
+"model" "*1"
+}
+{
+"classname" "trigger_teleport"
+"target" "t9"
+"targetname" "t68"
+"model" "*3"
+}
+{
+"classname" "info_teleport_destination"
+"targetname" "t1"
+"origin" "500 600 32"
+}
+{
+"classname" "info_teleport_destination"
+"targetname" "t9"
+"origin" "-500 -600 32"
+}
+` );
+	model.nummodelsurfaces = 1; // (the world's own faces; the wall's are its submodel's)
+	model.submodels[ 1 ] = { mins: [ 104, - 40, - 8 ], maxs: [ 120, 40, 120 ] };     // the secret teleporter, beside its face
+	model.submodels.push( { mins: [ 96, - 32, 0 ], maxs: [ 104, 32, 112 ], firstface: 1, numfaces: 1 } ); // the func_wall
+	model.submodels.push( { mins: [ 0, - 400, - 400 ], maxs: [ 400, 400, 400 ] } );  // the large named teleporter, round it
+	const portals = portal.R_BuildPortals( model );
+	try {
+
+		assertEqual( portals.length, 1, 'one window' );
+		assertEqual( wall._portal, portals[ 0 ], 'on the wall\'s teleporter face' );
+		assertEqual( portals[ 0 ].triggerTarget, 't1', 'onto the always-on teleporter, not the overlapping named one' );
+		assertEqual( world._portal, undefined, 'the world\'s own face is no teleporter' );
+
+	} finally { portal.R_ClearPortals(); }
+
+} );
