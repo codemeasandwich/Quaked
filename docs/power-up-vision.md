@@ -50,35 +50,49 @@ poses; each owns its GPU position attribute. No PVS, packets, entity state or
 discovery state is modified. Monsters waiting in monster closets are not
 revealed (owner request, 11 October 2026, card [QV1];
 `src/newer/render/quadvision_region.js`):
-- **The rule.** A monster is revealed only where the player can get to. The code floods the
-  open space of the world's player-sized collision hull (hull 1) from the player, on a 16-unit
-  grid, taking each step only along a clear trace.
-  - Doors, bars and every other brush entity are passable, and so are liquids.
+- **The rule (the owner's ruling, 11 October 2026).** Reveal the monsters in the game space the
+  player occupies and everything physically joined to it, where each monster is now. Monsters in
+  boxes and platforms detached from it are not revealed: those are normally teleported in later.
+  Doors are part of the level, so monsters behind them are revealed.
+- **How "joined" is decided.** The code floods the open space of the world's player-sized
+  collision hull (hull 1) from the player.
+  - Doors, platforms and every other brush entity are passable, and so are liquids.
   - Every teleporter the flood reaches joins its destination.
-  - A closet's own teleporter is inside the closet, so the flood never gets in.
-- **Judged where the monster is now.** A monster pacing inside its closet stays hidden; one
-  sent into the level shows at once.
-- **Built a few milliseconds a frame,** from the start of each level (2 ms a frame, 4 while
-  Quad is held). A whole level takes 130 to 290 ms, so it is normally done about a second and a
-  half in, long before Quad is reached. Until the flood reaches a monster, that monster is not
-  revealed. The first full-suite run caught a test that expected every monster at once, on a
-  loaded machine; that is why the flood starts at the level, not at the pickup.
-- **What the first version missed.** It hid monsters overlapping a teleporter with a
-  targetname. The [QV1] review found that rule missed walk-in closets (e1m4's ogre, dozens on
-  the registered maps) and pacing scrags, and hid monsters in the level under teleporters that
-  cover playable space (end.bsp's arena). Its "none wrong" scan reused the rule's own
-  definition of a closet.
-- **Evidence.** `tests/quadvision_closets_native_test.js` checks fixtures against the real maps
-  and progs, at Hard:
-  - e1m2: exactly its four teleport-closet monsters are hidden and its 38 others revealed;
-  - e1m3: only five hidden, and the zombies down its narrow passages revealed (a 32-unit grid
-    wrongly hid them);
-  - e1m4: the walk-in ogre and two pacing scrags stay hidden through 30 s of real play;
-  - e1m2's closet emptied by the level's own button;
-  - nothing in a closet is revealed while the flood is under way;
-  - end.bsp, with the registered pak: the closet row hidden and the shambler guarding Shub
-    revealed.
-- **In the browser** (first version, the same e1m2 numbers): 42 shown before, 38 after.
+  - The flood steps over a 16-unit grid. Each cell's node is the nearest point above or below
+    the grid point, within 8 units, that the hull fits, so the flood follows ramps under low
+    ceilings and ducts the hull barely fits.
+  - A step joins two nodes only along a clear hull-1 trace.
+- **When a monster counts as reached.** An open point by it (its origin, or nudged up to 16
+  units sideways and from 32 down to 16 up, joined to the origin by a clear line) must have a
+  clear trace to a reached node of its cell or the cells round it.
+- **Built from the level's start, breadth first,** a bounded number of cells a frame (150; 400
+  per question while Quad is held). A whole level is done in about 20 to 55 s of play on the
+  largest maps, nearest the player first. A monster not yet reached is not revealed.
+- **Cost.** A frame costs about 1.3 ms typically, 2 to 3 ms at the 95th percentile and at most
+  about 7 ms, measured in node on e4m3 and e2m6 at a load average of about 9. Revealed answers
+  are kept; a hidden monster is asked again after 4000 more cells, or when the flood finishes.
+- **Two earlier versions were replaced after review:**
+  - The first hid monsters overlapping a teleporter with a targetname. It missed walk-in closets
+    and pacing scrags, hid monsters under teleporters that cover playable space, and was checked
+    only against its own definition.
+  - The second used a fixed 16-unit grid. It hid all of e3m5 (a ramp under a low ceiling),
+    e2m7's duct scrags and a scrag against a wall on e1m3. Its time budget also made a test
+    flaky under load.
+- **Evidence.**
+  - `tests/quadvision_closets_native_test.js` checks hand-verified fixtures against the real maps
+    and progs at Hard:
+    - e1m2: exactly its four teleport-closet monsters hidden;
+    - e1m3: exactly four hidden, the narrow-passage zombies and the wall scrag revealed;
+    - e1m4: the walk-in ogre and pacing scrags hidden through 30 s of real play;
+    - a closet emptied by the level's own button;
+    - nothing in a closet revealed while the flood is under way;
+    - with the registered pak and stock progs: e3m5 revealed past its ramp, e2m7's duct scrags
+      revealed, end.bsp's closet row hidden and its arena shambler revealed.
+  - The reviewer's independent check: 31 maps at Hard, with a local point-hull flood round each
+    monster deciding whether it is sealed in. With the flood finished, no monster it finds open
+    is hidden. The one monster it calls sealed but shown, end.bsp's fish, sits in the player's
+    own start pocket, which the reviewer confirmed at 8 units.
+- **In the browser** (first version, the same e1m2 result): 42 shown before, 38 after.
 
 A separate enemy depth mask and purple composite
 preserve the held weapon and ordinary visible enemy pixels. Expiry, resize,

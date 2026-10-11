@@ -73,14 +73,15 @@ Deno.test('e1m2 at Hard: exactly the four monsters waiting in its two teleport c
 });
 
 // e1m3 at Hard: its sewers' narrow passages and the grid's own alignment once hid most of the level (the zombies at
-// -848,-928 among them). Hidden are exactly its four teleport-closet monsters and a scrag (t148) waiting in a space no
-// player-sized body can enter, which an 8-unit flood confirms
-Deno.test('e1m3 at Hard: only the five closet monsters are hidden; the zombies down its narrow passages are revealed',()=>{
+// -848,-928 among them), and a scrag (t148) touching a wall was hidden though the player can reach it (a reviewer's
+// 8-unit flood). Hidden are exactly its four teleport-closet monsters
+Deno.test('e1m3 at Hard: only the four closet monsters are hidden; the zombies down its narrow passages and the scrag at the wall are revealed',()=>{
  level('e1m3');const inLevel=ask(),hidden=monsters().filter(m=>!inLevel(m));
- const expected=[[-528,-304,-64],[-1224,272,-64],[1496,1272,560],[1392,1272,560],[1288,1288,560]];
- same(hidden.length,5,`hidden: ${hidden.map(m=>text(m.v.classname)+'@'+Array.from(m.v.origin).map(Math.round)).join(' ')}`);
+ const expected=[[-1224,272,-64],[1496,1272,560],[1392,1272,560],[1288,1288,560]];
+ same(hidden.length,4,`hidden: ${hidden.map(m=>text(m.v.classname)+'@'+Array.from(m.v.origin).map(Math.round)).join(' ')}`);
  for(const o of expected)check(hidden.some(m=>by(m,o,24)),`${o} is hidden`);
  for(const m of around([-848,-928,-8],80))check(inLevel(m),'a zombie down the narrow passage is revealed');
+ const wallScrag=around([-528,-304,-64],24)[0];check(wallScrag&&inLevel(wallScrag),'the scrag flush against the wall is revealed');
 });
 
 Deno.test('e1m4 at Hard: a walk-in closet (an ogre whose only way out is an always-on teleporter) and scrags pacing in their closets stay hidden for 30 s of play',()=>{
@@ -107,7 +108,7 @@ Deno.test('e1m2: a closet emptied by the level\'s own button reveals its monster
 
 Deno.test('while the flood is under way nothing in a closet is ever revealed, and the level fills in',()=>{
  level('e1m2');const closet=[...around([1912,-856,217],8),...around([32,840,359],8)];let steps=0,shown=0;
- for(;steps<500;steps++){const inLevel=QuadVisionRegion(sv,.2);for(const m of closet)check(!inLevel(m),'a closet monster mid-flood');shown=monsters().filter(m=>inLevel(m)).length;if(shown===38)break;}
+ for(;steps<2000;steps++){const inLevel=QuadVisionRegion(sv,200);for(const m of closet)check(!inLevel(m),'a closet monster mid-flood');shown=monsters().filter(m=>inLevel(m)).length;if(shown===38)break;}
  same(shown,38,'the level filled in');check(steps>2,`(it took ${steps} small steps)`);
 });
 
@@ -116,8 +117,14 @@ function regLevel(map){if(!registered){const big=readFileSync(new URL('../resour
  svs.maxclients=1;svs.clients=[new client_t()];SZ_Alloc(svs.clients[0].message,32768);cls.state=ca_disconnected;cls.demoplayback=false;vars.Cvar_SetValue('r_hdr',1);vars.Cvar_SetValue('skill',2);sv.active=false;SV_SpawnServer(map);
  const p=svs.clients[0].edict;call(p,progs.pr_global_struct.SetNewParms);call(p,progs.pr_global_struct.ClientConnect);call(p,progs.pr_global_struct.PutClientInServer);QuadVisionRegionReset();return p;}
 
-Deno.test('registered game (local pak, stock progs as the browser runs it): end.bsp\'s teleport-closet row hidden, the shambler guarding Shub revealed',()=>{
- regLevel('end');let inLevel=ask();
+Deno.test('registered game (local pak, stock progs as the browser runs it): e3m5 past its low ramp and e2m7\'s duct scrags revealed; end.bsp\'s teleport-closet row hidden, the shambler guarding Shub revealed',()=>{
+ regLevel('e3m5');let inLevel=ask();
+ // e3m5: the only way on from the start is a ramp under a low ceiling (a fixed 16-unit grid never climbed it and hid
+ // every monster on the map)
+ const e3m5=monsters();check(e3m5.length>=40,'e3m5\'s monsters');check(e3m5.filter(m=>inLevel(m)).length>=e3m5.length-10,`most of e3m5 is revealed (${e3m5.filter(m=>inLevel(m)).length} of ${e3m5.length})`);
+ // e2m7: scrags hovering in ducts 64 units tall, where the player's hull fits in a band 8 units thick
+ regLevel('e2m7');inLevel=ask();for(const o of[[1280,680,128],[584,1112,128]]){const m=around(o,24)[0];check(m&&inLevel(m),`the duct scrag at ${o} is revealed`);}
+ regLevel('end');inLevel=ask();
  const guard=around([-688,1808,72],24)[0];check(guard,'the arena shambler');check(inLevel(guard),'the shambler in Shub\'s arena is revealed (a large teleporter that only works after Shub dies covers it)');
  const closet=monsters().filter(m=>m.v.origin[1]>=800&&m.v.origin[1]<=1050&&m.v.origin[0]<=-900&&m.v.origin[2]<100);
  // (with the stock progs the browser runs over the registered maps, the row holds its six shamblers; the vores spawn

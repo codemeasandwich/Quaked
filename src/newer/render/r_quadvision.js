@@ -19,7 +19,7 @@ import { IT_QUAD, STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { SV_FaceLocalActive } from '../gameplay/sv_faceevents.js';
 import { GL_DrawAliasFrame } from '../../engine/render/gl_mesh.js';
 import { VISION_COORDINATES_GLSL } from './vision_coordinates.js';
-import { QuadVisionRegion } from './quadvision_region.js';
+import { QuadVisionRegion, QUAD_REGION } from './quadvision_region.js';
 
 /**
  * True while Quad Damage's through-wall silhouettes should show: the paired local single-player Newer Game
@@ -33,11 +33,10 @@ export function R_QuadVisionActive() {
 }
 /**
  * Each Newer frame (gl_post.js R_PostBegin), whether Quad is held or not: a local game (`SV_FaceLocalActive`) floods on
- * a little toward knowing which monsters are in the level (quadvision_region.js, 2 ms a frame, done about a second and
- * a half into a level), so the vision is ready when Quad is picked up.
+ * a little toward knowing which monsters are in the level (quadvision_region.js, a bounded number of cells a frame), so the vision is ready when Quad is picked up.
  */
 export function R_QuadVisionPrepare() {
-	if(SV_FaceLocalActive())QuadVisionRegion(sv,2);
+	if(SV_FaceLocalActive())QuadVisionRegion(sv,QUAD_REGION.cellsPerFrame);
 }
 /**
  * The monsters to silhouette: live (health > 0, not dead), FL_MONSTER, with an alias model whose pose data is loaded,
