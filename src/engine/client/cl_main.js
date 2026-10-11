@@ -899,7 +899,7 @@ function CL_LinkPacketEntities( frac ) {
 
 				if ( model.flags & 0x01 ) { // EF_ROCKET
 
-					R_RocketTrail( _peOldorg, ent.origin, 0, s1.number );
+					R_RocketTrail( _peOldorg, ent.origin, 0, s1.number, model );
 					const dl = CL_AllocDlight( s1.number );
 					VectorCopy( ent.origin, dl.origin );
 					dl.radius = 200;
@@ -1293,7 +1293,7 @@ export function CL_RelinkEntities() {
 				R_RocketTrail( _relinkOldorg, ent.origin, 5 );
 			else if ( ent.model.flags & 0x01 ) { // EF_ROCKET
 
-				R_RocketTrail( _relinkOldorg, ent.origin, 0, i );
+				R_RocketTrail( _relinkOldorg, ent.origin, 0, i, ent.model );
 				const dl = CL_AllocDlight( i );
 				VectorCopy( ent.origin, dl.origin );
 				dl.radius = 200;

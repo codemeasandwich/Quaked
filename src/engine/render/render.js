@@ -26,6 +26,7 @@ import {
 import { R_FireballSpawn, R_SmokeTrail } from '../common/hooks.js'; // installed by newer/render/r_fireball.js
 import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 import { R_VenomTrail, R_VenomImpact } from '../common/hooks.js'; // installed by newer/render/r_venom.js
+import { R_LavaBallTakes } from '../common/hooks.js'; // installed by newer/render/r_lavaballs.js
 
 //============================================================================
 // Constants
@@ -318,10 +319,20 @@ export function R_RunParticleEffect( org, dir, color, count, classicOnly = false
  * @param {number} type 0 rocket, 1 grenade smoke, 2 blood, 3 and 5 tracers, 4 slight blood, 6 vore trail;
  *     adding 128 makes the native trail three times as dense
  * @param {number} [key] entity number, needed for the supplied smoke on types 0 and 1 and the venom on type 3
+ * @param {?Object} [model] the entity's model: a rocket trail (type 0) of a lava ball drawn by the supplied fireball
+ *     (r_lavaballs.js, which draws that ball's own trail) is not spawned
  * @throws {Error} for types 0, 1 and 3 with a key when the Newer hooks (`R_SmokeTrail`, `R_VenomTrail`,
- *     `R_DemoSplitActive`) are not installed
+ *     `R_DemoSplitActive`) are not installed, and for type 0 with a model when `R_LavaBallTakes` is not
  */
-export function R_RocketTrail( start, end, type, key ) {
+export function R_RocketTrail( start, end, type, key, model ) {
+
+	// a lava ball's trail is the supplied fireball's own (in the split title demo the Classic half still gets the native one)
+	if ( type === 0 && model != null && R_LavaBallTakes( model ) ) {
+
+		if ( R_DemoSplitActive() ) _R_RocketTrail( start, end, type, true );
+		return;
+
+	}
 
 	// (no entity number, no supplied smoke: its spacing is carried per missile, and two missiles must
 	// never share a carry)

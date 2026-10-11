@@ -54,6 +54,7 @@ import { R_FlashlightBeam, R_FlashlightInit, R_FlashlightToggle, R_FlashlightUpd
 import { R_FlashlightNewRun, R_FlashlightRunEnd, R_FlashlightRunLoaded, R_FlashlightRunMap, R_FlashlightSkillSelected } from './render/r_flashlightrun.js';
 import { R_HeightShadowScope, r_heightshadows } from './render/r_heightshadows.js';
 import { R_ImpactMissile, R_ImpactRippleFrame, R_ImpactRippleListen, R_ImpactRippleReset, R_ImpactRipplesSetup, r_impactripples } from './render/r_impactripples.js';
+import { R_LavaBall, R_LavaBallTakes, R_LavaBallsBegin, R_LavaBallsClear, R_LavaBallsFlush, R_LavaBallsSetup, r_lavaballs } from './render/r_lavaballs.js';
 import { R_LevelViewUseSnapshots, R_SetupLevelViews, R_SyncLevelViews, R_UpdateLevelViewEntities } from './render/r_levelview.js';
 import { LIGHTNING, R_LightningClear, R_LightningFrame, R_LightningSetup, R_LightningTakesBeam, r_newer_lightning } from './render/r_lightning.js';
 import { R_MistClear, R_MistFrame } from './render/r_mist.js';
@@ -136,6 +137,7 @@ if ( ! Hooks_Installed() ) Hooks_Install( {
 	R_FlashlightNewRun, R_FlashlightRunEnd, R_FlashlightRunLoaded, R_FlashlightRunMap, R_FlashlightSkillSelected,
 	R_HeightShadowScope, r_heightshadows,
 	R_ImpactMissile, R_ImpactRippleFrame, R_ImpactRippleListen, R_ImpactRippleReset, R_ImpactRipplesSetup, r_impactripples,
+	R_LavaBall, R_LavaBallTakes, R_LavaBallsBegin, R_LavaBallsClear, R_LavaBallsFlush, R_LavaBallsSetup, r_lavaballs,
 	R_LevelViewUseSnapshots, R_SetupLevelViews, R_SyncLevelViews, R_UpdateLevelViewEntities,
 	LIGHTNING, R_LightningClear, R_LightningFrame, R_LightningSetup, R_LightningTakesBeam, r_newer_lightning,
 	R_MistClear, R_MistFrame,

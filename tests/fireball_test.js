@@ -626,12 +626,12 @@ Deno.test( 'title-demo split: trails get the supplied smoke for the enhanced hal
 Deno.test( 'the engine passes each missile\'s entity number so every trail keeps its own spacing', () => {
 
 	const text = readFileSync( new URL( '../src/engine/client/cl_main.js', import.meta.url ), 'utf8' );
-	check( /R_RocketTrail\( _peOldorg, ent\.origin, 0, s1\.number \)/.test( text ), 'live rocket trail call passes the entity number' );
+	check( /R_RocketTrail\( _peOldorg, ent\.origin, 0, s1\.number, model \)/.test( text ), 'live rocket trail call passes the entity number (and the model, for r_lavaballs.js)' );
 	check( /R_RocketTrail\( _peOldorg, ent\.origin, 1, s1\.number \)/.test( text ), 'live grenade trail call passes the entity number' );
-	check( /R_RocketTrail\( _relinkOldorg, ent\.origin, 0, i \)/.test( text ), 'demo-playback rocket trail call passes the entity number' );
+	check( /R_RocketTrail\( _relinkOldorg, ent\.origin, 0, i, ent\.model \)/.test( text ), 'demo-playback rocket trail call passes the entity number (and the model, for r_lavaballs.js)' );
 	check( /R_RocketTrail\( _relinkOldorg, ent\.origin, 1, i \)/.test( text ), 'demo-playback grenade trail call passes the entity number' );
 	const calls = [ ...text.matchAll( /R_RocketTrail\( ([^)]*) \)/g ) ].map( m => m[ 1 ].split( ',' ).map( v => v.trim() ) ).filter( a => a[ 2 ] === '0' || a[ 2 ] === '1' );
 	same( calls.length, 4, 'there are exactly four rocket/grenade trail call sites' );
-	check( calls.every( a => a.length === 4 ), 'and every one passes a key' );
+	check( calls.every( a => a.length >= 4 ), 'and every one passes a key' );
 
 } );

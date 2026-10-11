@@ -58,6 +58,7 @@ import { r_newer_wallburn, R_WallBurnSetup, R_WallBurnFrame, R_WallBurnClear, R_
 import { r_dof, R_DofSetup, R_DofFrame, R_DofClear } from '../common/hooks.js'; // installed by newer/render/r_dof.js
 import { r_shotgunfx, R_ShotgunSetup, R_ShotgunFrame, R_ShotgunClear, viewModelMuzzles } from '../common/hooks.js'; // installed by newer/render/r_shotgun.js
 import { r_stasisbolt, R_StasisBoltSetup, R_StasisBoltFrame, R_StasisBoltClear, R_StasisBoltTakes } from '../common/hooks.js'; // installed by newer/render/r_stasisbolt.js
+import { r_lavaballs, R_LavaBall, R_LavaBallsSetup, R_LavaBallsBegin, R_LavaBallsFlush, R_LavaBallsClear } from '../common/hooks.js'; // installed by newer/render/r_lavaballs.js
 import { r_torchfire, R_TorchFire, TORCH_WHOLE, TORCH_HANDLE, torchParts, R_TorchFireSetup, R_TorchFireBegin, R_TorchFireFlush, R_TorchFireClear } from '../common/hooks.js'; // installed by newer/render/r_torchfire.js
 import { r_venom, R_VenomSetup, R_VenomClear, R_VenomFrame, R_VenomTakesEntity } from '../common/hooks.js'; // installed by newer/render/r_venom.js
 import { R_ClassicTexture } from '../common/hooks.js'; // installed by newer/render/r_newertextures.js
@@ -1181,6 +1182,10 @@ function R_DrawAliasModel( e ) {
 	const paliashdr = e.model.cache ? e.model.cache.data : null;
 	if ( ! paliashdr || ! paliashdr.posedata ) return;
 
+	// Newer Game: the supplied fireball takes a flying lava ball (r_lavaballs.js); its native model, and so its
+	// shadow, is not drawn
+	if ( R_LavaBall( e ) ) return;
+
 	//
 	// get lighting information
 	//
@@ -1818,9 +1823,11 @@ export function R_RenderScene() {
 
 	S_ExtraUpdate(); // don't let sound get messed up if going slow
 
+	R_LavaBallsBegin();
 	R_TorchFireBegin();
 	R_DrawEntitiesOnList();
 	R_TorchFireFlush( cl != null ? cl.time : 0, r_refdef.vieworg, vpn, _fireballView ); // (after the list: it is this frame's torches)
+	R_LavaBallsFlush( cl != null ? cl.time : 0, _fireballView ); // (after the list: it is this frame's lava balls)
 	R_PowerupEnd();
 	R_RendVeilEnd(scene);
 	R_BestiaryObserve( scene, camera, cl_visedicts.slice( 0, cl_numvisedicts ) );
@@ -2253,6 +2260,7 @@ export function R_Init() {
 	Cvar_RegisterVariable( r_smoketrails );
 	Cvar_RegisterVariable( r_torchfire );
 	Cvar_RegisterVariable( r_venom );
+	Cvar_RegisterVariable( r_lavaballs );
 	Cvar_RegisterVariable( r_shotgunfx );
 	Cvar_RegisterVariable( r_stasisbolt );
 	Cvar_RegisterVariable( r_impactripples );
@@ -2489,6 +2497,8 @@ export function R_NewMap() {
 	R_TorchFireClear();
 	R_VenomSetup( { scene, cl: () => cl, entity: n => cl_entities[ n ], pointInLeaf: Mod_PointInLeaf } );
 	R_VenomClear();
+	R_LavaBallsSetup( { scene, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
+	R_LavaBallsClear();
 	R_ImpactRipplesSetup( { contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ), portals: R_ImpactPortalPlanes } );
 	R_LightningSetup( { scene, camera: () => camera, muzzle: R_LightningMuzzle, beam: CL_PlayerLightning, allocDlight: CL_AllocDlight } );
 	R_DofSetup( { xr: isXRActive, trace: R_DofTrace, pointInLeaf: Mod_PointInLeaf, contents: p => ( cl?.worldmodel ? Mod_PointInLeaf( p, cl.worldmodel )?.contents : undefined ) } );
