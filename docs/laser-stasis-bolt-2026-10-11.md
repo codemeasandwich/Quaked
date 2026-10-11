@@ -38,7 +38,8 @@ through four hooks (`src/engine/common/hooks.js`, filled by `src/newer/install.j
 
 The effect is off, and the native picture used, in Classic (`r_hdr 0`), in the Classic half of the title demo's split
 view (`R_NewerGame()` is false in that pass and the layers are `newerOnly`), with `r_stasisbolt 0`, with no scene or
-client, and for a shot beyond the pool of 32 tracked shots.
+client, and for a shot beyond the pool of 32 tracked shots. In the split view a laser's impact also spawns the native
+gunshot particles flagged for the Classic half alone (as the explosions do), so neither half shows both.
 
 ## How it is built (`src/newer/render/r_stasisbolt.js`)
 
@@ -59,8 +60,10 @@ client, and for a shot beyond the pool of 32 tracked shots.
   drift, life and size from the source's distributions, drawn as camera-facing quads with the source's kind-0 particle
   shading and its one-pixel minimum.
 * **Impact.** `Laser_Touch` sends `TE_GUNSHOT` 8 units back along the shot, the same event a bullet sends. A
-  `TE_GUNSHOT` is taken as a laser's when it lies on the path of a bolt drawn in the last 0.25 s (within 12 units of
-  its line, from 24 units behind it to 16 units past where it could have flown by now); that bolt then ends. The
+  `TE_GUNSHOT` is taken as a laser's when it lies on the path of a bolt drawn in the last 0.25 s: within 4 units of the
+  line of its measured flight (the angles reach the client rounded to 1.4°; the event lies exactly on the line), from
+  24 units behind it to 16 units past where it could be one server tick (0.1 s) from now. That bolt then ends; if the
+  same shot is still listed 0.1 s later the event was not its own, and it is drawn again. The
   impact is the source's `_impact('bolt')` at visual scale 0.24: 14 sparks thrown off the struck surface (found with
   the decal code's `R_DecalSurface` within 48 units, facing the shot; else the touch point, facing back), under
   gravity 6 m/s² and drag 1, and the ring (0.94–1 band, growing 0.1 → 0.364 m, fading over 0.45 s) in the surface's
@@ -133,7 +136,8 @@ client, and for a shot beyond the pool of 32 tracked shots.
 
 * One bolt per shot, no burst, no stop point (above).
 * A `TE_GUNSHOT` that happens to lie on a live laser's path (a soldier's pellet striking right where a laser is about
-  to) would be drawn as the laser's impact. The window is 0.25 s and 12 units; no such case has been seen.
+  to) would be drawn as the laser's impact. The match is 4 units off the line and at most a tick's flight ahead, and a
+  shot wrongly ended comes back after 0.1 s; no such case has been seen.
 * A laser that strikes a brush entity (a door, a platform) gets its impact at the touch point facing back along the
   shot, because the surface search reads only the world's leaves.
 * The source's particles bounce on its stage floor; here impact sparks fall freely and are hidden by the level's depth.

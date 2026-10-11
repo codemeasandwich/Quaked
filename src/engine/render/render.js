@@ -295,10 +295,12 @@ export function R_ParseParticleEffect() {
  * @param {Float32Array} dir drift direction; particle velocity is `dir * 15` Quake units per second
  * @param {number} color palette index; each particle takes a random shade of its 8-colour row
  * @param {number} count number of particles (1024 makes a rocket-explosion burst)
+ * @param {boolean} [classicOnly=false] drawn in the Classic half of the title demo's split view only (a Newer effect
+ *   took the event for the Newer half: a laser's impact, card [LZ1])
  */
-export function R_RunParticleEffect( org, dir, color, count ) {
+export function R_RunParticleEffect( org, dir, color, count, classicOnly = false ) {
 
-	_R_RunParticleEffect( org, dir, color, count );
+	_R_RunParticleEffect( org, dir, color, count, classicOnly );
 
 }
 

@@ -89,8 +89,10 @@ export const STASIS = Object.freeze( {
 	speed: 600,
 	maxBolts: 32, maxImpacts: 16, sparksPerBolt: 8,
 	// a TE_GUNSHOT is a laser's impact when it lies on the path of a bolt last drawn at most `window` seconds ago:
-	// within `reach` units of the line, from `behind` units behind the bolt to `ahead` units past where it could be by now
-	match: { reach: 12, behind: 24, ahead: 16, window: .25 }
+	// within `reach` units of its line (its measured flight; Laser_Touch sends the event exactly on it), from `behind`
+	// units behind the bolt to `ahead` units past where it could be `lead` seconds (one server tick) after now. A shot
+	// marked struck that is still listed `recover` seconds later was not the one that struck, and is drawn again.
+	match: { reach: 4, behind: 24, ahead: 16, lead: .1, window: .25, recover: .1 }
 } );
 
 // ---------------------------------------------------------------------------
@@ -140,7 +142,7 @@ void main(){
  vec3 ax=aAxis.xyz,up=abs(ax.z)<.99?vec3(0.,0.,1.):vec3(1.,0.,0.);
  vec3 ay=normalize(cross(up,ax)),az=cross(ax,ay);
  vec3 world=aCenter.xyz+ax*position.x*aAxis.w+ay*position.y*uHalfWidth+az*position.z*uHalfWidth;
- vec3 cam=(inverse(modelMatrix)*vec4(cameraPosition,1.)).xyz-aCenter.xyz;
+ vec3 cam=(inverse(modelMatrix)*vec4(cameraPosition,1.)).xyz-aCenter.xyz; // (the group is identity unless a scene scale is applied, as in XR)
  vCam=vec3(dot(cam,ax)/aAxis.w,dot(cam,ay)/uHalfWidth,dot(cam,az)/uHalfWidth);
  vLocal=position;vPhase=aCenter.w;
  vec4 mvPosition=modelViewMatrix*vec4(world,1.);
@@ -373,15 +375,18 @@ export function impactParticle( id, j, nx, ny, nz, out ) {
 
 /**
  * The impact ring's radius and opacity at `age` (update() of the source: scale 0.1 + u * size, opacity (1 - u) * 0.45,
- * u = age / life).
+ * u = age / life). Writes into `out`; allocates nothing.
  *
  * @param {number} age seconds since the impact
- * @returns {{ radius: number, opacity: number }} radius in source units (0 opacity once the ring's 0.45 s are over)
+ * @param {Float64Array|Array<number>} out receives [ radius in source units, opacity 0..0.45 ] (0 opacity once the
+ *   ring's 0.45 s are over)
+ * @returns {Float64Array|Array<number>} `out`
  */
-export function impactRing( age ) {
+export function impactRing( age, out ) {
 
 	const k = STASIS.impact, u = Math.min( 1, Math.max( 0, age / k.ringLife ) );
-	return { radius: k.ringStart + u * k.ringSize, opacity: ( 1 - u ) * k.ringOpacity };
+	out[ 0 ] = k.ringStart + u * k.ringSize; out[ 1 ] = ( 1 - u ) * k.ringOpacity;
+	return out;
 
 }
 
@@ -399,7 +404,7 @@ let nextId = 1, stamp = 1, lastTime = 0;
 
 // one record per tracked projectile, allocated once
 const slots = Array.from( { length: STASIS.maxBolts }, () => ( {
-	state: FREE, ent: null, id: 0, hit: false, stamp: 0, born: 0, phase: 0,
+	state: FREE, ent: null, id: 0, hit: false, hitTime: 0, stamp: 0, born: 0, phase: 0,
 	first: new Float64Array( 3 ), firstTime: 0, origin: new Float64Array( 3 ), seen: 0,
 	dir: new Float64Array( 3 ), vel: new Float64Array( 3 )
 } ) );
@@ -408,7 +413,7 @@ const impacts = Array.from( { length: STASIS.maxImpacts }, () => ( {
 	live: false, id: 0, start: null, spawned: 0, p: new Float64Array( 3 ), n: new Float64Array( 3 ), u: new Float64Array( 3 ), v: new Float64Array( 3 )
 } ) );
 let impactCursor = 0;
-const _spark = new Float64Array( 8 ), _particle = new Float64Array( 5 ), _offset = new Float64Array( 3 );
+const _spark = new Float64Array( 8 ), _particle = new Float64Array( 5 ), _offset = new Float64Array( 3 ), _ring = new Float64Array( 2 );
 const _instanced = [];
 
 function build() {
@@ -508,13 +513,14 @@ export function R_StasisBoltTakes( ent ) {
 		if ( free === null && c.state === FREE ) free = c;
 
 	}
-	if ( s !== null && s.stamp === stamp ) { s.origin[ 0 ] = o[ 0 ]; s.origin[ 1 ] = o[ 1 ]; s.origin[ 2 ] = o[ 2 ]; return true; } // (drawn again this frame: a mirror)
+	if ( s !== null && s.stamp === stamp ) { s.origin[ 0 ] = o[ 0 ]; s.origin[ 1 ] = o[ 1 ]; s.origin[ 2 ] = o[ 2 ]; return true; } // (listed twice in one frame: the client's list can hold an entity twice)
 	if ( s !== null ) {
 
 		// still the same shot: close to where its line puts it now, and seen lately
 		const dt = time - s.seen, ex = s.origin[ 0 ] + s.vel[ 0 ] * dt, ey = s.origin[ 1 ] + s.vel[ 1 ] * dt, ez = s.origin[ 2 ] + s.vel[ 2 ] * dt;
 		if ( dt < - .05 || dt > STALE || Math.hypot( o[ 0 ] - ex, o[ 1 ] - ey, o[ 2 ] - ez ) > JUMP ) { s.state = FREE; s.ent = null; free = s; s = null; }
-		else if ( s.hit ) return true; // (the shot already struck: listed once more before its removal arrives, it is not drawn)
+		else if ( s.hit && time - s.hitTime <= STASIS.match.recover ) return true; // (the shot already struck: listed once more before its removal arrives, it is not drawn)
+		else if ( s.hit ) s.hit = false; // (still flying well after: the event was not this shot's; draw it again)
 
 	}
 	if ( s === null ) {
@@ -546,10 +552,11 @@ const facesShot = ( surf, side ) => ( surf.plane.normal[ 0 ] * _acceptX + surf.p
 
 /**
  * A bullet-hole event (TE_GUNSHOT, cl_tent.js) that is in fact a laser striking a wall (Laser_Touch sends TE_GUNSHOT 8
- * units back along the shot): when the point lies on the path of a bolt drawn in the last 0.25 s, the source's bolt
- * impact is spawned there (on the struck surface when one is found within 48 units, facing the shot) and that bolt
- * ends. Called by cl_tent.js for every TE_GUNSHOT while the message is parsed. The caller keeps the event's sound and
- * marks (decal or wall burn); only its particles are replaced.
+ * units back along the shot): when the point lies on the path of a bolt drawn in the last 0.25 s (STASIS.match: within
+ * 4 units of its measured line, no further ahead than a server tick's flight), the source's bolt impact is spawned there
+ * (on the struck surface when one is found within 48 units, facing the shot) and that bolt ends. Called by cl_tent.js
+ * for every TE_GUNSHOT while the message is parsed. The caller keeps the event's sound and marks (decal or wall burn);
+ * only its particles are replaced (and, in the title demo's split view, spawns them for the Classic half alone).
  *
  * @param {Array<number>} pos the event's point, world space, Quake units
  * @returns {boolean} true when it was a laser's impact and the bolt drew it (the native particles must not be spawned);
@@ -565,16 +572,19 @@ export function R_StasisBoltImpact( pos ) {
 	for ( const s of slots ) {
 
 		if ( s.state === FREE || s.hit || time - s.seen > M.window || time < s.seen - M.window ) continue;
-		const rx = pos[ 0 ] - s.origin[ 0 ], ry = pos[ 1 ] - s.origin[ 1 ], rz = pos[ 2 ] - s.origin[ 2 ];
-		const along = rx * s.dir[ 0 ] + ry * s.dir[ 1 ] + rz * s.dir[ 2 ];
+		// the line it flies along: its measured velocity (the angles reach the client rounded to 1.4 degrees)
 		const speed = Math.hypot( s.vel[ 0 ], s.vel[ 1 ], s.vel[ 2 ] );
-		if ( along < - M.behind || along > speed * ( Math.max( 0, time - s.seen ) + M.window ) + M.ahead ) continue;
-		const off = Math.hypot( rx - s.dir[ 0 ] * along, ry - s.dir[ 1 ] * along, rz - s.dir[ 2 ] * along );
+		if ( speed < 1 ) continue;
+		const dx = s.vel[ 0 ] / speed, dy = s.vel[ 1 ] / speed, dz = s.vel[ 2 ] / speed;
+		const rx = pos[ 0 ] - s.origin[ 0 ], ry = pos[ 1 ] - s.origin[ 1 ], rz = pos[ 2 ] - s.origin[ 2 ];
+		const along = rx * dx + ry * dy + rz * dz;
+		if ( along < - M.behind || along > speed * ( Math.max( 0, time - s.seen ) + M.lead ) + M.ahead ) continue;
+		const off = Math.hypot( rx - dx * along, ry - dy * along, rz - dz * along );
 		if ( off < bestDistance ) { bestDistance = off; best = s; }
 
 	}
 	if ( best === null ) return false;
-	best.hit = true; best.state = GONE; // (the shot is over: its sparks finish, its plasma is not drawn again)
+	best.hit = true; best.hitTime = time; best.state = GONE; // (the shot is over: its sparks finish, its plasma is not drawn again)
 	const d = best.dir, i = impacts[ impactCursor ];
 	impactCursor = ( impactCursor + 1 ) % impacts.length;
 	i.live = true; i.id = nextId ++; i.start = null; i.spawned = time;
@@ -724,11 +734,11 @@ export function R_StasisBoltFrame( time, viewSize ) {
 		}
 		if ( age < k.ringLife && rings.count < rings.capacity ) {
 
-			const ring = impactRing( age ), o = rings.count * 4, R = rings.arrays;
+			const ring = impactRing( age, _ring ), o = rings.count * 4, R = rings.arrays;
 			// (half a unit off the surface, so the wall does not cut it)
 			R.aCenterRadius[ o ] = i.p[ 0 ] + i.n[ 0 ] * .5; R.aCenterRadius[ o + 1 ] = i.p[ 1 ] + i.n[ 1 ] * .5; R.aCenterRadius[ o + 2 ] = i.p[ 2 ] + i.n[ 2 ] * .5;
-			R.aCenterRadius[ o + 3 ] = ring.radius * K;
-			R.aAxisU[ o ] = i.u[ 0 ]; R.aAxisU[ o + 1 ] = i.u[ 1 ]; R.aAxisU[ o + 2 ] = i.u[ 2 ]; R.aAxisU[ o + 3 ] = ring.opacity;
+			R.aCenterRadius[ o + 3 ] = ring[ 0 ] * K;
+			R.aAxisU[ o ] = i.u[ 0 ]; R.aAxisU[ o + 1 ] = i.u[ 1 ]; R.aAxisU[ o + 2 ] = i.u[ 2 ]; R.aAxisU[ o + 3 ] = ring[ 1 ];
 			R.aAxisV[ o ] = i.v[ 0 ]; R.aAxisV[ o + 1 ] = i.v[ 1 ]; R.aAxisV[ o + 2 ] = i.v[ 2 ]; R.aAxisV[ o + 3 ] = 0;
 			rings.count ++;
 

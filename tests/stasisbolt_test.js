@@ -10,6 +10,7 @@ import { runInNewContext } from 'node:vm';
 import * as THREE from 'three';
 import { cvar_t, Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar } from '../src/engine/common/cvar.js';
 import { R_AnimSetClassicPass } from '../src/newer/mode.js';
+import { r_demosplit } from '../src/newer/render/r_demosplit.js';
 import * as sb from '../src/newer/render/r_stasisbolt.js';
 import * as part from '../src/engine/render/r_part.js';
 import { COM_SetNetMessage, MSG_BeginReading } from '../src/engine/common/common.js';
@@ -167,7 +168,7 @@ Deno.test( 'glow sparks and the bolt impact draw from the source\'s distribution
 	// the ring as update() grows and fades it
 	fx.update( .2 );
 	const u = ring.age / ring.life;
-	near( sb.impactRing( ring.age ).radius, ring.mesh.scale.x, 1e-9, 'ring radius' ); near( sb.impactRing( ring.age ).opacity, ( 1 - u ) * .45, 1e-9, 'ring opacity' );
+	const rr = sb.impactRing( ring.age, [ 0, 0 ] ); near( rr[ 0 ], ring.mesh.scale.x, 1e-9, 'ring radius' ); near( rr[ 1 ], ( 1 - u ) * .45, 1e-9, 'ring opacity' );
 	// motion: the source's step-by-step integration against the closed form (the source's y up is the port's z)
 	fx.clear(); const probe = fx.glow;
 	probe.emit( { position: { x: 0, y: 5, z: 0 }, velocity: { x: 2, y: 3, z: - 1 }, gravity: 6, drag: 1, life: 2, size: .1 } );
@@ -228,6 +229,16 @@ Deno.test( 'one bolt per native projectile, at its origin along its flight, foll
 
 } );
 
+Deno.test( 'a shot wrongly marked struck that is still flying a moment later is drawn again', () => {
+
+	const env = setup(), e = laser( [ 0, 0, 64 ] );
+	frame( env, [ e ] ); e.origin[ 0 ] = 40; frame( env, [ e ], 1 / 15 );
+	same( sb.R_StasisBoltImpact( [ 60, 0, 64 ] ), true, 'an event on its path is taken as its impact' );
+	same( frame( env, [ e ], 1 / 60 ).bolts, 0, 'still listed at once: taken as the removal not yet arrived, not drawn' );
+	e.origin[ 0 ] = 120; same( frame( env, [ e ], .15 ).bolts, 1, 'still flying 0.1 s later: it was not this shot\'s event; drawn again' );
+
+} );
+
 Deno.test( 'an entity number reused by a new shot starts a new bolt; a full pool keeps the native model', () => {
 
 	const env = setup(), e = laser( [ 0, 0, 0 ] );
@@ -255,6 +266,8 @@ Deno.test( 'a laser striking a wall gets the source\'s impact on the wall; real 
 	const t = 60 / d[ 0 ], touch = [ 40 + d[ 0 ] * t, d[ 1 ] * t, 64 ], event = [ touch[ 0 ] - d[ 0 ] * 8, touch[ 1 ] - d[ 1 ] * 8, 64 ];
 	same( sb.R_StasisBoltImpact( [ 0, 300, 64 ] ), false, 'a gunshot far off the bolt\'s path is a bullet' );
 	same( sb.R_StasisBoltImpact( [ event[ 0 ], event[ 1 ] + 40, 64 ] ), false, 'a gunshot level with the bolt but 40 units off its line is a bullet' );
+	const side = [ - d[ 1 ], d[ 0 ], 0 ], ahead = [ e.origin[ 0 ] + d[ 0 ] * 100 + side[ 0 ] * 8, e.origin[ 1 ] + d[ 1 ] * 100 + side[ 1 ] * 8, 64 ];
+	same( sb.R_StasisBoltImpact( ahead ), false, 'a gunshot 8 units off the line, 100 units ahead, is a bullet' );
 	same( sb.R_StasisBoltImpact( event ), true, 'the gunshot on its path is the laser\'s impact' );
 	same( sb.R_StasisBoltImpact( event ), false, 'one impact per bolt' );
 	let s = frame( env, [], 1 / 60 );
@@ -288,6 +301,7 @@ Deno.test( 'engine: the entity draw loop leaves out the laser\'s mesh in Newer o
 		same( sb.R_StasisBoltSnapshot().bolts, 1, 'Newer: one bolt instead' );
 		check( main.scene.children.some( c => c.name === 'quake_stasis_bolts' && c.visible ), 'the bolt layers joined the renderer\'s scene' );
 		// a TE_GUNSHOT on its path: no native puff; one elsewhere: the native puff
+		let classicOnlyPuffs = 0;
 		const puffs = gunshot => {
 
 			part.R_ClearParticles(); part.R_SetParticleExternals( { scene: main.scene } );
@@ -295,14 +309,21 @@ Deno.test( 'engine: the entity draw loop leaves out the laser\'s mesh in Newer o
 			data[ 0 ] = 2; for ( let i = 0; i < 3; i ++ ) view.setInt16( 1 + i * 2, gunshot[ i ] * 8, true );
 			COM_SetNetMessage( { data, cursize: 7, maxsize: 7 } ); MSG_BeginReading(); tent.CL_ParseTEnt();
 			client.cl.oldtime = client.cl.time - .01; part.R_DrawParticles();
-			return main.scene.children.filter( c => c.isPoints ).reduce( ( n, c ) => n + c.geometry.drawRange.count, 0 );
+			const points = main.scene.children.filter( c => c.isPoints );
+			classicOnlyPuffs = points.filter( c => c.userData.classicOnly === true ).reduce( ( n, c ) => n + c.geometry.drawRange.count, 0 );
+			return points.reduce( ( n, c ) => n + c.geometry.drawRange.count, 0 );
 
 		};
 		same( puffs( [ 400, 400, 30 ] ), 20, 'a bullet keeps its 20 native particles' );
 		same( puffs( [ 30, 20, 30 ] ), 0, 'the laser\'s impact has no native particles (the bolt\'s impact draws it)' );
 		sb.R_StasisBoltFrame( client.cl.time, null ); same( sb.R_StasisBoltSnapshot().impacts, 1, 'the bolt impact is live' ); same( sb.R_StasisBoltSnapshot().rings, 1, 'with its ring' );
+		// the title demo's split view: the Newer half gets the bolt impact, the Classic half the native puff (flagged for it alone)
+		const e3 = laser( [ 10, 60, 30 ], 0, 0, model ); client.cl_visedicts.splice( 0, 1, e3 ); main.R_DrawEntitiesOnList(); sb.R_StasisBoltFrame( client.cl.time, null );
+		r_demosplit.value = 2;
+		try { same( puffs( [ 30, 60, 30 ] ), 20, 'split: the native puff is spawned' ); same( classicOnlyPuffs, 20, '...for the Classic half only' ); } finally { r_demosplit.value = 0; }
+		same( sb.R_StasisBoltSnapshot().impacts, 2, 'split: and the Newer half has the bolt impact' );
 		// Classic and the Classic pass draw the native mesh
-		newer( false ); main.R_DrawEntitiesOnList();
+		client.cl_visedicts.splice( 0, 1, e ); newer( false ); main.R_DrawEntitiesOnList();
 		check( e._aliasMesh?.parent === main.scene, 'Classic: the native laser mesh is drawn' );
 		same( puffs( [ 30, 20, 30 ] ), 20, 'Classic: the gunshot keeps its native particles' );
 		const e2 = laser( [ 50, 20, 30 ], 0, 0, model ); client.cl_visedicts.splice( 0, 1, e2 );

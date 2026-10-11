@@ -33,6 +33,7 @@ import {
 import { CL_AllocDlight } from './cl_main.js';
 import { R_WallBurnShot } from '../common/hooks.js'; // installed by newer/render/r_wallburn.js
 import { R_StasisBoltImpact } from '../common/hooks.js'; // installed by newer/render/r_stasisbolt.js
+import { R_DemoSplitActive } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 
 // where monsters have just been teleported in (for their arrival effect)
 export const CL_TeleportSpots = [];
@@ -228,7 +229,9 @@ export function CL_ParseTEnt() {
 			pos[ 0 ] = MSG_ReadCoord();
 			pos[ 1 ] = MSG_ReadCoord();
 			pos[ 2 ] = MSG_ReadCoord();
-			if ( ! R_StasisBoltImpact( pos ) ) R_RunParticleEffect( pos, vec3_origin, 0, 20 ); // (Newer Game: a laser's own impact, card [LZ1])
+			// (Newer Game: a laser's own impact, card [LZ1]; the split title demo's Classic half still gets the native puff)
+			if ( ! R_StasisBoltImpact( pos ) ) R_RunParticleEffect( pos, vec3_origin, 0, 20 );
+			else if ( R_DemoSplitActive() ) R_RunParticleEffect( pos, vec3_origin, 0, 20, true );
 			if ( ! R_WallBurnShot( pos ) ) R_DecalShot( pos ); // (Newer Game: the pellet's burn on the wall, card [30c])
 			break;
 
