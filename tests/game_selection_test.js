@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart } from '../src/engine/common/game_selection.js';
+import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -127,5 +127,23 @@ Deno.test( 'a mission pack that could not start says why: Quake missing, or its 
 		check( GameSelection_ReportStart( true, false ) === false, 'its own pack missing: reported' );
 		check( GameSelection_ReportStart( true, true ) === true, 'both there: nothing to say' );
 	} finally { store.clear(); }
+
+} );
+
+Deno.test( 'one rule for the shelf and the console: what can start, including a game a range-less server could not check', () => {
+
+	const unread = { name: 'pak0.pak', state: 'present', reason: 'the server ignores byte ranges, so its directory was not read' };
+	const s = GameSelection_Startable( { id: 'shareware', name: 'Quake (shareware)', present: true, validated: false, playable: false, reason: 'found, not validated', packs: [ unread ] } );
+	check( s.ok && ! s.unchecked, 'the shareware always starts (it ships with the page)' );
+	const q = GameSelection_Startable( { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'found, not validated: ' + unread.reason, packs: [ unread ] } );
+	check( q.ok && q.unchecked && /byte ranges/.test( q.why ), 'Quake found on a range-less server: starts, unchecked' );
+	const m = GameSelection_Startable( { id: 'hipnotic', name: 'Scourge of Armagon', present: true, validated: true, playable: true, reason: 'a mission pack', packs: [ { name: 'pak0.pak', state: 'valid' } ] } );
+	check( m.ok && ! m.unchecked, 'a checked, playable mission pack starts' );
+	const b = GameSelection_Startable( { id: 'quake', name: 'Quake', present: true, validated: false, playable: false, reason: 'x', packs: [ { name: 'pak0.pak', state: 'invalid', reason: 'not a packfile' } ] } );
+	check( ! b.ok && b.refusal === 'is not playable' && /is broken \(not a packfile\)/.test( b.why ), 'a broken pack is refused' );
+	const a = GameSelection_Startable( { id: 'ad', name: 'Arcane Dimensions', present: true, validated: false, playable: false, reason: 'add-on support is not yet shown to work', packs: [ unread ] } );
+	check( ! a.ok && a.refusal === 'cannot be chosen yet' && /add-on support/.test( a.why ), 'an add-on is not offered, checked or not' );
+	const n = GameSelection_Startable( { id: 'rogue', name: 'Dissolution of Eternity', present: true, validated: true, playable: false, reason: 'its gfx.wad is missing', packs: [ { name: 'pak0.pak', state: 'valid' } ] } );
+	check( ! n.ok && /gfx\.wad/.test( n.why ), 'a checked mission pack that is not whole is refused' );
 
 } );

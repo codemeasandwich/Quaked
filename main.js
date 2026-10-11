@@ -38,7 +38,7 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_SetRunning, GameSelection_Current } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
@@ -64,7 +64,10 @@ async function main() {
 			const installed = ( catalogue?.games ?? [] ).filter( game => game.present );
 			if ( installed.length > 1 ) {
 
-				await GameShelf_Show( installed, { current: GameSelection_Kept(), remember: GameSelection_Remember } );
+				// a box can be played when the game can start: by the rule a choice from the console follows, so a server
+				// that ignores byte ranges (Python's own, most static servers) still offers its games, checked as they start
+				const shelf = installed.map( game => { const can = GameSelection_Startable( game ); return { ...game, playable: can.ok, reason: can.why }; } );
+				await GameShelf_Show( shelf, { current: GameSelection_Kept(), remember: GameSelection_Remember } );
 				return; // the chosen game's URL is loading
 
 			}

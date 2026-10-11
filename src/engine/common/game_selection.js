@@ -194,6 +194,33 @@ export function GameSelection_ConfigKey() {
 }
 
 /**
+ * Whether a catalogue entry can be started, by the rule `GameSelection_Select` and the game shelf (main.js) share. The
+ * shareware ships with the page and always can. Another game must be one the engine runs (`GAME_SELECTION_CHOICES`),
+ * with no pack broken or unreadable; then either the catalogue found it playable, or it was found but could not be
+ * checked because the server ignores byte ranges (every pack's header read, its directory not): such a game can start,
+ * since the start reads its packs whole and refuses a broken one.
+ *
+ * @param {{ id: string, name: string, present?: boolean, validated?: boolean, playable?: boolean, reason?: string,
+ *   packs?: Array<{ name?: string, state: string, reason?: string }> }} game a catalogue entry (game_catalogue.js)
+ * @returns {{ ok: boolean, unchecked: boolean, refusal: string, why: string }} whether it can start, whether only
+ *   unchecked, how a refusal begins ('is not playable' or 'cannot be chosen yet') and why (the catalogue's reason, or
+ *   the broken pack)
+ */
+export function GameSelection_Startable( game ) {
+
+	if ( game.id === 'shareware' ) return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
+	if ( ! GAME_SELECTION_CHOICES.includes( game.id ) ) return { ok: false, unchecked: false, refusal: 'cannot be chosen yet', why: game.reason || 'its support is not built' };
+	// found but not checked (a server that ignores byte ranges): allowed, as the start reads the whole pack and refuses
+	// a broken one; anything else must be playable
+	const packs = game.packs ?? [], broken = packs.find( p => p.state === 'invalid' || p.state === 'error' );
+	if ( broken ) return { ok: false, unchecked: false, refusal: 'is not playable', why: `its ${broken.name ?? 'pack'} ${broken.state === 'invalid' ? 'is broken' : 'could not be read'} (${broken.reason})` };
+	if ( game.present && ! game.validated && packs.length > 0 && packs.every( p => p.state === 'valid' || p.state === 'present' ) ) return { ok: true, unchecked: true, refusal: '', why: game.reason ?? '' };
+	if ( ! game.playable ) return { ok: false, unchecked: false, refusal: 'is not playable', why: game.reason ?? '' };
+	return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
+
+}
+
+/**
  * Chooses the game to run: checks with the catalogue that it is playable (the shareware, which ships with the page,
  * needs no check; a found pack the server would not let it check is allowed with a warning, since the start reads it
  * whole and refuses a broken one), keeps the choice (read back) and reloads the page so the game starts clean (a page
@@ -220,13 +247,9 @@ export async function GameSelection_Select( id, options = {} ) {
 
 		const catalogue = await refresh(), game = catalogue?.games?.find( g => g.id === id );
 		if ( ! game ) return { ok: false, reason: `no game called '${id}'` };
-		if ( ! GAME_SELECTION_CHOICES.includes( id ) ) return { ok: false, reason: `${game.name} cannot be chosen yet: ${game.reason || 'its support is not built'}` };
-		// found but not checked (a server that ignores byte ranges): allowed, as the start reads the whole pack and
-		// refuses a broken one; anything else must be playable
-		const packs = game.packs ?? [], broken = packs.find( p => p.state === 'invalid' || p.state === 'error' );
-		if ( broken ) return { ok: false, reason: `${game.name} is not playable: its ${broken.name ?? 'pack'} ${broken.state === 'invalid' ? 'is broken' : 'could not be read'} (${broken.reason})` };
-		if ( game.present && ! game.validated && packs.every( p => p.state === 'valid' || p.state === 'present' ) ) warning = ` (it could not be checked here: ${game.reason}; the start checks it)`;
-		else if ( ! game.playable ) return { ok: false, reason: `${game.name} is not playable: ${game.reason}` };
+		const startable = GameSelection_Startable( game );
+		if ( ! startable.ok ) return { ok: false, reason: `${game.name} ${startable.refusal}: ${startable.why}` };
+		if ( startable.unchecked ) warning = ` (it could not be checked here: ${game.reason}; the start checks it)`;
 
 	}
 	const store = storage();
