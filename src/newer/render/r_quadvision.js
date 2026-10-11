@@ -19,6 +19,7 @@ import { IT_QUAD, STAT_HEALTH } from '../../engine/common/quakedef.js';
 import { SV_FaceLocalActive } from '../gameplay/sv_faceevents.js';
 import { GL_DrawAliasFrame } from '../../engine/render/gl_mesh.js';
 import { VISION_COORDINATES_GLSL } from './vision_coordinates.js';
+import { QuadVisionRegion } from './quadvision_region.js';
 
 /**
  * True while Quad Damage's through-wall silhouettes should show: the paired local single-player Newer Game
@@ -31,15 +32,17 @@ export function R_QuadVisionActive() {
 	return SV_FaceLocalActive() && cl.stats[STAT_HEALTH]>0 && !cl.intermission && Boolean(cl.items&IT_QUAD);
 }
 /**
- * The monsters to silhouette: live (health > 0, not dead), FL_MONSTER, with an alias model whose pose data is loaded.
- * Read from the local server's entities because ordinary client visibility omits those outside the PVS.
+ * The monsters to silhouette: live (health > 0, not dead), FL_MONSTER, with an alias model whose pose data is loaded,
+ * and in the part of the level the player is in: not waiting in a sealed monster closet (quadvision_region.js, card
+ * [QV1]). Read from the local server's entities because ordinary client visibility omits those outside the PVS.
  *
  * @param {{ edicts: Array<edict_t>, models: Array<Object> }} server the server state (`sv`)
  * @returns {Array<edict_t>} a new array of the matching edicts
  */
 export function QuadVisionEnemies(server) {
+	const inLevel=QuadVisionRegion(server);
 	return (server.edicts||[]).filter(e=>e && !e.free && e.v.health>0 && !e.v.deadflag &&
-		(e.v.flags&FL_MONSTER) && server.models[e.v.modelindex]?.cache?.data?.posedata);
+		(e.v.flags&FL_MONSTER) && server.models[e.v.modelindex]?.cache?.data?.posedata && inLevel(e));
 }
 
 const VERTEX=`varying vec2 vUv; void main(){vUv=uv;gl_Position=vec4(position,1.);}`;

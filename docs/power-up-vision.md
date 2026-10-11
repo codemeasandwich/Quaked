@@ -47,7 +47,23 @@ vision-only native material is created while normals are disabled.
 Quad reads guarded local-server living monster records, because client PVS
 omits occluded entities. It builds render-only proxies using native alias
 poses; each owns its GPU position attribute. No PVS, packets, entity state or
-discovery state is modified. A separate enemy depth mask and purple composite
+discovery state is modified. Monsters waiting in monster closets are not
+revealed (owner request, 11 October 2026, card [QV1];
+`src/newer/render/quadvision_region.js`):
+- **The rule.** A monster whose box overlaps a closet teleporter is left out. A closet
+  teleporter is a `trigger_teleport` with a targetname, which QuakeC works only for 0.2 s
+  after the level's trigger uses it.
+- **When it shows.** Once teleported out, the monster is in the level and is revealed.
+  Monsters behind closed doors are revealed too.
+- **Checked against every id1 map** (`tests/quadvision_closets_native_test.js` for the
+  shareware episode, a one-off scan of the registered game's 23 maps with 1091 monsters):
+  no monster in the level is hidden, and none waiting in a closet is shown.
+- **In the browser**, on e1m2 at Hard with Quad: before the change the vision chose all 42
+  monsters, including the 4 in closets; after it, 38, none from a closet.
+- **Not kept:** a sealed-region test (the leaves joined to the player's leaf through the
+  visibility data, water surfaces and teleporters) hid nothing more on any of those maps.
+
+A separate enemy depth mask and purple composite
 preserve the held weapon and ordinary visible enemy pixels. Expiry, resize,
 world changes and client clear dispose proxy resources.
 
