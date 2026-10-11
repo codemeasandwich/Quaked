@@ -6,8 +6,8 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `_rippleFrame`, `_Host_Error`, `_Host_ShutdownServer`,
- * `_Host_ClearMemory`, `_IN_Move`.
+ * State: no mutable exports; module-level variables `_rippleFrame`, `_packetMarks`, `_packetStamp`, `_Host_Error`,
+ * `_Host_ShutdownServer`, `_Host_ClearMemory`, `_IN_Move`.
  *
  * Errors: throws at 1 place; calls `Host_Error` at 2 places; catches at 2 places.
  */
@@ -1072,11 +1072,40 @@ const _relinkFv = new Float32Array( 3 );
 const _relinkRv = new Float32Array( 3 );
 const _relinkUv = new Float32Array( 3 );
 
+// The entity numbers in this frame's packet, stamped once a frame (no per-frame allocation; grown when a number is past
+// the end)
+let _packetMarks = new Uint32Array( 1024 ), _packetStamp = 0;
+/**
+ * Stamps the numbers of the visible entities in the current server frame's packet (QW-style), so `CL_RelinkEntities`
+ * leaves them to `CL_LinkPacketEntities`. Nothing is stamped when the frame is invalid.
+ */
+function CL_MarkPacketEntities() {
+
+	// (a Uint32Array holds the marks: at 2^32 the count would no longer match them, so it starts again from 1)
+	_packetStamp = ( _packetStamp + 1 ) >>> 0;
+	if ( _packetStamp === 0 ) { _packetMarks.fill( 0 ); _packetStamp = 1; }
+	const eframe = CL_GetEntityFrame( CL_GetServerSequence() );
+	if ( eframe.invalid ) return;
+	const pack = eframe.packet_entities;
+	for ( let p = 0; p < pack.num_entities; p ++ ) {
+
+		// an invisible one (model 0) is not linked by the packet path: the loop still clears its old model
+		if ( pack.entities[ p ].modelindex === 0 ) continue;
+		const n = pack.entities[ p ].number;
+		if ( n >= _packetMarks.length ) { const grown = new Uint32Array( Math.max( n + 1, _packetMarks.length * 2 ) ); grown.set( _packetMarks ); _packetMarks = grown; }
+		_packetMarks[ n ] = _packetStamp;
+
+	}
+
+}
+
+
 /*
 ===============
 CL_RelinkEntities
 ===============
 */
+
 /**
  * Rebuilds the frame's visible entity list (WinQuake cl_main.c), called each frame by CL_ReadFromServer after the
  * server messages are parsed. Resets `cl_numvisedicts` to 0, lerps `cl.velocity` (and, in demos, `cl.viewangles`) by
@@ -1136,7 +1165,15 @@ export function CL_RelinkEntities() {
 	// For QW path, skip player entity slots (they're handled above).
 	// For NQ path, process all entities including players.
 	const firstRelinkEntity = usePacketEntities ? cl.maxclients + 1 : 1;
+	// ...and the entities in this frame's packet: CL_LinkPacketEntities links them (card [44q]). It stamps them with
+	// this message's time, so on a frame without a new packet this loop took them as current and listed them too:
+	// drawn twice, their brightfield particles made twice (their trail segment was then empty, their light the same
+	// keyed slot). (Before, on a frame with a new packet, this loop cleared their model as stale and the packet path set
+	// it again, re-rolling `syncbase`, which only an ST_RAND sprite's group frames read.)
+	if ( usePacketEntities ) CL_MarkPacketEntities();
 	for ( let i = firstRelinkEntity; i < cl.num_entities; i ++ ) {
+
+		if ( usePacketEntities && _packetMarks[ i ] === _packetStamp ) continue; // linked from the packet
 
 		const ent = cl_entities[ i ];
 		if ( ent.model == null ) {
