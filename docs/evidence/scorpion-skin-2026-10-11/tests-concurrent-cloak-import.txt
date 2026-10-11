@@ -1,0 +1,41 @@
+file:///Users/bri/SOURCE/Quaked/src/engine/client/cl_main.js:15
+import {R_PowerVisionReset, R_CloakReset} from '../common/hooks.js'; // installed by Newer rendering
+                            ^^^^^^^^^^^^
+SyntaxError: The requested module '../common/hooks.js' does not provide an export named 'R_CloakReset'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:78:2
+
+Node.js v24.13.0
+file:///Users/bri/SOURCE/Quaked/src/engine/client/cl_main.js:15
+import {R_PowerVisionReset, R_CloakReset} from '../common/hooks.js'; // installed by Newer rendering
+                            ^^^^^^^^^^^^
+SyntaxError: The requested module '../common/hooks.js' does not provide an export named 'R_CloakReset'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:78:2
+
+Node.js v24.13.0
+file:///Users/bri/SOURCE/Quaked/src/engine/client/cl_main.js:15
+import {R_PowerVisionReset, R_CloakReset} from '../common/hooks.js'; // installed by Newer rendering
+                            ^^^^^^^^^^^^
+SyntaxError: The requested module '../common/hooks.js' does not provide an export named 'R_CloakReset'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:78:2
+
+Node.js v24.13.0
+file:///Users/bri/SOURCE/Quaked/src/engine/client/cl_main.js:15
+import {R_PowerVisionReset, R_CloakReset} from '../common/hooks.js'; // installed by Newer rendering
+                            ^^^^^^^^^^^^
+SyntaxError: The requested module '../common/hooks.js' does not provide an export named 'R_CloakReset'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:78:2
+
+Node.js v24.13.0
+TOTAL 0/0 passed

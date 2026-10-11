@@ -753,9 +753,65 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "scor": [
+   {
+    "dir": "scor/custom",
+    "skin": 0,
+    "nativeModelSha256": "13f3baa6760b38c1a7ba30eea9b581754dd87eeb1875248ce6feb1d1efb3582f",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "dragon": [
+   {
+    "dir": "dragon/custom",
+    "skin": 0,
+    "nativeModelSha256": "1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "s_wrath": [
+   {
+    "dir": "s_wrath/custom",
+    "skin": 0,
+    "nativeModelSha256": "4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "mummy": [
+   {
+    "dir": "mummy/custom",
+    "skin": 0,
+    "nativeModelSha256": "3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 27,
+ "version": 29,
  "nativeHeights": {
   "gib1": [
    [

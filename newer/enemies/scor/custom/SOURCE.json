@@ -1,0 +1,311 @@
+{
+  "schema": 1,
+  "model": "progs/scor.mdl",
+  "nativeModelSha256": "13f3baa6760b38c1a7ba30eea9b581754dd87eeb1875248ce6feb1d1efb3582f",
+  "sources": [
+    {
+      "source": "aa0f86eb-168c-4ed4-b4c4-df318d5b0ed6.jpeg",
+      "sourceSha256": "57f7de4fe54c77e1e7cc18817272ef35aee137ef3537ace7243cd079cfa0c7a0"
+    },
+    {
+      "source": "4d36fc39-968f-460d-934d-6690cc5f663c.jpeg",
+      "sourceSha256": "57a880a9fa982fe6144cf553224270ddb19dc62997ea4c70ded434d5db9ae681"
+    }
+  ],
+  "dimensions": [
+    1540,
+    780
+  ],
+  "factor": 5,
+  "skin": 0,
+  "poses": 41,
+  "parts": [
+    {
+      "name": "outer limb",
+      "side": 0,
+      "sourceBox": [
+        5,
+        9,
+        124,
+        355
+      ],
+      "initialBox": [
+        10,
+        5,
+        200,
+        550
+      ],
+      "fittedBox": [
+        13,
+        7,
+        193,
+        542
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": 0.15286455201054322,
+      "detailAfter": 0.7081098117774061,
+      "surfacePixels": 55174,
+      "carriedPixels": 977
+    },
+    {
+      "name": "inner limb",
+      "side": 0,
+      "sourceBox": [
+        98,
+        14,
+        216,
+        362
+      ],
+      "initialBox": [
+        150,
+        15,
+        340,
+        555
+      ],
+      "fittedBox": [
+        152,
+        15,
+        331,
+        553
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": 0.4258109718838876,
+      "detailAfter": 0.7207242887505478,
+      "surfacePixels": 54694,
+      "carriedPixels": 285
+    },
+    {
+      "name": "torso",
+      "side": 0,
+      "sourceBox": [
+        207,
+        19,
+        500,
+        366
+      ],
+      "initialBox": [
+        310,
+        25,
+        760,
+        560
+      ],
+      "fittedBox": [
+        317,
+        22,
+        759,
+        558
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": 0.380327912112577,
+      "detailAfter": 0.7005586852356653,
+      "surfacePixels": 188590,
+      "carriedPixels": 138
+    },
+    {
+      "name": "tail",
+      "side": 0,
+      "sourceBox": [
+        7,
+        355,
+        509,
+        484
+      ],
+      "initialBox": [
+        5,
+        540,
+        765,
+        770
+      ],
+      "fittedBox": [
+        14,
+        546,
+        773,
+        768
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": -0.030795685024559757,
+      "detailAfter": 0.40865243499570403,
+      "surfacePixels": 90384,
+      "carriedPixels": 2380
+    },
+    {
+      "name": "thin limb",
+      "side": 0,
+      "sourceBox": [
+        254,
+        452,
+        405,
+        479
+      ],
+      "initialBox": [
+        350,
+        715,
+        620,
+        760
+      ],
+      "fittedBox": [
+        357,
+        712,
+        613,
+        760
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": 0.4160295363108315,
+      "detailAfter": 0.6116855605759225,
+      "surfacePixels": 4728,
+      "carriedPixels": 94
+    },
+    {
+      "name": "outer limb",
+      "side": 1,
+      "sourceBox": [
+        5,
+        9,
+        124,
+        355
+      ],
+      "initialBox": [
+        780,
+        5,
+        970,
+        550
+      ],
+      "fittedBox": [
+        785,
+        8,
+        961,
+        540
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": 0.09643525904643498,
+      "detailAfter": 0.4660634001167297,
+      "surfacePixels": 55175,
+      "carriedPixels": 1401
+    },
+    {
+      "name": "inner limb",
+      "side": 1,
+      "sourceBox": [
+        98,
+        14,
+        216,
+        362
+      ],
+      "initialBox": [
+        920,
+        15,
+        1110,
+        555
+      ],
+      "fittedBox": [
+        918,
+        6,
+        1104,
+        549
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": -0.13533925022643764,
+      "detailAfter": 0.26232028333951524,
+      "surfacePixels": 54697,
+      "carriedPixels": 70
+    },
+    {
+      "name": "torso",
+      "side": 1,
+      "sourceBox": [
+        207,
+        19,
+        500,
+        366
+      ],
+      "initialBox": [
+        1080,
+        25,
+        1530,
+        560
+      ],
+      "fittedBox": [
+        1080,
+        25,
+        1530,
+        560
+      ],
+      "registration": "measured silhouette bounds; redrawn internal pattern",
+      "detailBefore": 0.01739075252691216,
+      "detailAfter": 0.03937732953207095,
+      "surfacePixels": 188584,
+      "carriedPixels": 514
+    },
+    {
+      "name": "tail",
+      "side": 1,
+      "sourceBox": [
+        7,
+        355,
+        509,
+        484
+      ],
+      "initialBox": [
+        775,
+        540,
+        1535,
+        770
+      ],
+      "fittedBox": [
+        775,
+        540,
+        1535,
+        770
+      ],
+      "registration": "measured silhouette bounds; redrawn internal pattern",
+      "detailBefore": 0.010768434518578347,
+      "detailAfter": 0.06772745297950068,
+      "surfacePixels": 90386,
+      "carriedPixels": 2250
+    },
+    {
+      "name": "thin limb",
+      "side": 1,
+      "sourceBox": [
+        254,
+        452,
+        405,
+        479
+      ],
+      "initialBox": [
+        1120,
+        715,
+        1390,
+        760
+      ],
+      "fittedBox": [
+        1136,
+        711,
+        1388,
+        761
+      ],
+      "registration": "native-detail correlation",
+      "detailBefore": 0.3517757926120343,
+      "detailAfter": 0.5402808376898038,
+      "surfacePixels": 4734,
+      "carriedPixels": 12
+    }
+  ],
+  "surfacePixels": 791408,
+  "nativeKept": {
+    "reason": "Two persistent red joint islands absent from supplied sheets",
+    "surfacePixels": 4262,
+    "pixelsInFile": 6582
+  },
+  "excluded": "Right rendered references and lower detached-head panels; h_scourg unchanged",
+  "reuse": [
+    "fit_enforcer.register",
+    "fit_skin.spread",
+    "uv_footprint",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "8f753262342b706e4a7f56343e6f1542f26d332e2a8cc5dccd768e540f030238",
+    "height.webp": "9a97fbfa6a33a04e24837796b16bd6cecfb16c158e51186d1a411e653a52c07c"
+  }
+}

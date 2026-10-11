@@ -1,0 +1,2008 @@
+{
+  "model": "mummy",
+  "status": "PASS",
+  "modelSHA": "3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1",
+  "frames": 192,
+  "dimensions": [
+    1008,
+    1164
+  ],
+  "draws": 202,
+  "elapsedMs": 22899.30000001192,
+  "poses": [
+    {
+      "frame": 0,
+      "name": "stand1",
+      "visible": 22095
+    },
+    {
+      "frame": 1,
+      "name": "stand2",
+      "visible": 19186
+    },
+    {
+      "frame": 2,
+      "name": "stand3",
+      "visible": 22357
+    },
+    {
+      "frame": 3,
+      "name": "stand4",
+      "visible": 18602
+    },
+    {
+      "frame": 4,
+      "name": "stand5",
+      "visible": 22372
+    },
+    {
+      "frame": 5,
+      "name": "stand6",
+      "visible": 18483
+    },
+    {
+      "frame": 6,
+      "name": "stand7",
+      "visible": 22251
+    },
+    {
+      "frame": 7,
+      "name": "stand8",
+      "visible": 18273
+    },
+    {
+      "frame": 8,
+      "name": "stand9",
+      "visible": 21498
+    },
+    {
+      "frame": 9,
+      "name": "stand10",
+      "visible": 17818
+    },
+    {
+      "frame": 10,
+      "name": "stand11",
+      "visible": 21437
+    },
+    {
+      "frame": 11,
+      "name": "stand12",
+      "visible": 18799
+    },
+    {
+      "frame": 12,
+      "name": "stand13",
+      "visible": 21020
+    },
+    {
+      "frame": 13,
+      "name": "stand14",
+      "visible": 19270
+    },
+    {
+      "frame": 14,
+      "name": "stand15",
+      "visible": 21506
+    },
+    {
+      "frame": 15,
+      "name": "walk1",
+      "visible": 17144
+    },
+    {
+      "frame": 16,
+      "name": "walk2",
+      "visible": 18832
+    },
+    {
+      "frame": 17,
+      "name": "walk3",
+      "visible": 16945
+    },
+    {
+      "frame": 18,
+      "name": "walk4",
+      "visible": 18970
+    },
+    {
+      "frame": 19,
+      "name": "walk5",
+      "visible": 16580
+    },
+    {
+      "frame": 20,
+      "name": "walk6",
+      "visible": 20357
+    },
+    {
+      "frame": 21,
+      "name": "walk7",
+      "visible": 17053
+    },
+    {
+      "frame": 22,
+      "name": "walk8",
+      "visible": 22177
+    },
+    {
+      "frame": 23,
+      "name": "walk9",
+      "visible": 18140
+    },
+    {
+      "frame": 24,
+      "name": "walk10",
+      "visible": 22316
+    },
+    {
+      "frame": 25,
+      "name": "walk11",
+      "visible": 17255
+    },
+    {
+      "frame": 26,
+      "name": "walk12",
+      "visible": 20763
+    },
+    {
+      "frame": 27,
+      "name": "walk13",
+      "visible": 18122
+    },
+    {
+      "frame": 28,
+      "name": "walk14",
+      "visible": 18963
+    },
+    {
+      "frame": 29,
+      "name": "walk15",
+      "visible": 17229
+    },
+    {
+      "frame": 30,
+      "name": "walk16",
+      "visible": 18291
+    },
+    {
+      "frame": 31,
+      "name": "walk17",
+      "visible": 17312
+    },
+    {
+      "frame": 32,
+      "name": "walk18",
+      "visible": 18030
+    },
+    {
+      "frame": 33,
+      "name": "walk19",
+      "visible": 17296
+    },
+    {
+      "frame": 34,
+      "name": "run1",
+      "visible": 20635
+    },
+    {
+      "frame": 35,
+      "name": "run2",
+      "visible": 17594
+    },
+    {
+      "frame": 36,
+      "name": "run3",
+      "visible": 20893
+    },
+    {
+      "frame": 37,
+      "name": "run4",
+      "visible": 18168
+    },
+    {
+      "frame": 38,
+      "name": "run5",
+      "visible": 21456
+    },
+    {
+      "frame": 39,
+      "name": "run6",
+      "visible": 18499
+    },
+    {
+      "frame": 40,
+      "name": "run7",
+      "visible": 21308
+    },
+    {
+      "frame": 41,
+      "name": "run8",
+      "visible": 18266
+    },
+    {
+      "frame": 42,
+      "name": "run9",
+      "visible": 20656
+    },
+    {
+      "frame": 43,
+      "name": "run10",
+      "visible": 17010
+    },
+    {
+      "frame": 44,
+      "name": "run11",
+      "visible": 20503
+    },
+    {
+      "frame": 45,
+      "name": "run12",
+      "visible": 16059
+    },
+    {
+      "frame": 46,
+      "name": "run13",
+      "visible": 20386
+    },
+    {
+      "frame": 47,
+      "name": "run14",
+      "visible": 17680
+    },
+    {
+      "frame": 48,
+      "name": "run15",
+      "visible": 20334
+    },
+    {
+      "frame": 49,
+      "name": "run16",
+      "visible": 16863
+    },
+    {
+      "frame": 50,
+      "name": "run17",
+      "visible": 20999
+    },
+    {
+      "frame": 51,
+      "name": "run18",
+      "visible": 17407
+    },
+    {
+      "frame": 52,
+      "name": "atta1",
+      "visible": 21203
+    },
+    {
+      "frame": 53,
+      "name": "atta2",
+      "visible": 18299
+    },
+    {
+      "frame": 54,
+      "name": "atta3",
+      "visible": 18552
+    },
+    {
+      "frame": 55,
+      "name": "atta4",
+      "visible": 14032
+    },
+    {
+      "frame": 56,
+      "name": "atta5",
+      "visible": 14207
+    },
+    {
+      "frame": 57,
+      "name": "atta6",
+      "visible": 13438
+    },
+    {
+      "frame": 58,
+      "name": "atta7",
+      "visible": 19802
+    },
+    {
+      "frame": 59,
+      "name": "atta8",
+      "visible": 18509
+    },
+    {
+      "frame": 60,
+      "name": "atta9",
+      "visible": 21061
+    },
+    {
+      "frame": 61,
+      "name": "atta10",
+      "visible": 19515
+    },
+    {
+      "frame": 62,
+      "name": "atta11",
+      "visible": 21550
+    },
+    {
+      "frame": 63,
+      "name": "atta12",
+      "visible": 19027
+    },
+    {
+      "frame": 64,
+      "name": "atta13",
+      "visible": 15016
+    },
+    {
+      "frame": 65,
+      "name": "attb1",
+      "visible": 18556
+    },
+    {
+      "frame": 66,
+      "name": "attb2",
+      "visible": 20688
+    },
+    {
+      "frame": 67,
+      "name": "attb3",
+      "visible": 15977
+    },
+    {
+      "frame": 68,
+      "name": "attb4",
+      "visible": 17586
+    },
+    {
+      "frame": 69,
+      "name": "attb5",
+      "visible": 15517
+    },
+    {
+      "frame": 70,
+      "name": "attb6",
+      "visible": 17378
+    },
+    {
+      "frame": 71,
+      "name": "attb7",
+      "visible": 16488
+    },
+    {
+      "frame": 72,
+      "name": "attb8",
+      "visible": 18941
+    },
+    {
+      "frame": 73,
+      "name": "attb9",
+      "visible": 17969
+    },
+    {
+      "frame": 74,
+      "name": "attb10",
+      "visible": 19358
+    },
+    {
+      "frame": 75,
+      "name": "attb11",
+      "visible": 18942
+    },
+    {
+      "frame": 76,
+      "name": "attb12",
+      "visible": 19058
+    },
+    {
+      "frame": 77,
+      "name": "attb13",
+      "visible": 17897
+    },
+    {
+      "frame": 78,
+      "name": "attb14",
+      "visible": 16337
+    },
+    {
+      "frame": 79,
+      "name": "attc1",
+      "visible": 18556
+    },
+    {
+      "frame": 80,
+      "name": "attc2",
+      "visible": 21842
+    },
+    {
+      "frame": 81,
+      "name": "attc3",
+      "visible": 19390
+    },
+    {
+      "frame": 82,
+      "name": "attc4",
+      "visible": 21763
+    },
+    {
+      "frame": 83,
+      "name": "attc5",
+      "visible": 18829
+    },
+    {
+      "frame": 84,
+      "name": "attc6",
+      "visible": 21606
+    },
+    {
+      "frame": 85,
+      "name": "attc7",
+      "visible": 19002
+    },
+    {
+      "frame": 86,
+      "name": "attc8",
+      "visible": 22262
+    },
+    {
+      "frame": 87,
+      "name": "attc9",
+      "visible": 19292
+    },
+    {
+      "frame": 88,
+      "name": "attc10",
+      "visible": 20255
+    },
+    {
+      "frame": 89,
+      "name": "attc11",
+      "visible": 16455
+    },
+    {
+      "frame": 90,
+      "name": "attc12",
+      "visible": 15275
+    },
+    {
+      "frame": 91,
+      "name": "paina1",
+      "visible": 19785
+    },
+    {
+      "frame": 92,
+      "name": "paina2",
+      "visible": 14817
+    },
+    {
+      "frame": 93,
+      "name": "paina3",
+      "visible": 15414
+    },
+    {
+      "frame": 94,
+      "name": "paina4",
+      "visible": 16428
+    },
+    {
+      "frame": 95,
+      "name": "paina5",
+      "visible": 15436
+    },
+    {
+      "frame": 96,
+      "name": "paina6",
+      "visible": 17549
+    },
+    {
+      "frame": 97,
+      "name": "paina7",
+      "visible": 15982
+    },
+    {
+      "frame": 98,
+      "name": "paina8",
+      "visible": 20625
+    },
+    {
+      "frame": 99,
+      "name": "paina9",
+      "visible": 18952
+    },
+    {
+      "frame": 100,
+      "name": "paina10",
+      "visible": 22549
+    },
+    {
+      "frame": 101,
+      "name": "paina11",
+      "visible": 18705
+    },
+    {
+      "frame": 102,
+      "name": "paina12",
+      "visible": 22749
+    },
+    {
+      "frame": 103,
+      "name": "painb1",
+      "visible": 19605
+    },
+    {
+      "frame": 104,
+      "name": "painb2",
+      "visible": 19339
+    },
+    {
+      "frame": 105,
+      "name": "painb3",
+      "visible": 17023
+    },
+    {
+      "frame": 106,
+      "name": "painb4",
+      "visible": 17070
+    },
+    {
+      "frame": 107,
+      "name": "painb5",
+      "visible": 16163
+    },
+    {
+      "frame": 108,
+      "name": "painb6",
+      "visible": 13223
+    },
+    {
+      "frame": 109,
+      "name": "painb7",
+      "visible": 14362
+    },
+    {
+      "frame": 110,
+      "name": "painb8",
+      "visible": 12383
+    },
+    {
+      "frame": 111,
+      "name": "painb9",
+      "visible": 13839
+    },
+    {
+      "frame": 112,
+      "name": "painb10",
+      "visible": 11638
+    },
+    {
+      "frame": 113,
+      "name": "painb11",
+      "visible": 13126
+    },
+    {
+      "frame": 114,
+      "name": "painb12",
+      "visible": 12656
+    },
+    {
+      "frame": 115,
+      "name": "painb13",
+      "visible": 11823
+    },
+    {
+      "frame": 116,
+      "name": "painb14",
+      "visible": 13416
+    },
+    {
+      "frame": 117,
+      "name": "painb15",
+      "visible": 12356
+    },
+    {
+      "frame": 118,
+      "name": "painb16",
+      "visible": 13922
+    },
+    {
+      "frame": 119,
+      "name": "painb17",
+      "visible": 12340
+    },
+    {
+      "frame": 120,
+      "name": "painb18",
+      "visible": 14868
+    },
+    {
+      "frame": 121,
+      "name": "painb19",
+      "visible": 14590
+    },
+    {
+      "frame": 122,
+      "name": "painb20",
+      "visible": 15955
+    },
+    {
+      "frame": 123,
+      "name": "painb21",
+      "visible": 12598
+    },
+    {
+      "frame": 124,
+      "name": "painb22",
+      "visible": 12715
+    },
+    {
+      "frame": 125,
+      "name": "painb23",
+      "visible": 13997
+    },
+    {
+      "frame": 126,
+      "name": "painb24",
+      "visible": 20232
+    },
+    {
+      "frame": 127,
+      "name": "painb25",
+      "visible": 18855
+    },
+    {
+      "frame": 128,
+      "name": "painb26",
+      "visible": 21314
+    },
+    {
+      "frame": 129,
+      "name": "painb27",
+      "visible": 18407
+    },
+    {
+      "frame": 130,
+      "name": "painb28",
+      "visible": 23027
+    },
+    {
+      "frame": 131,
+      "name": "painc1",
+      "visible": 19572
+    },
+    {
+      "frame": 132,
+      "name": "painc2",
+      "visible": 17955
+    },
+    {
+      "frame": 133,
+      "name": "painc3",
+      "visible": 14053
+    },
+    {
+      "frame": 134,
+      "name": "painc4",
+      "visible": 12259
+    },
+    {
+      "frame": 135,
+      "name": "painc5",
+      "visible": 12867
+    },
+    {
+      "frame": 136,
+      "name": "painc6",
+      "visible": 12186
+    },
+    {
+      "frame": 137,
+      "name": "painc7",
+      "visible": 13418
+    },
+    {
+      "frame": 138,
+      "name": "painc8",
+      "visible": 12186
+    },
+    {
+      "frame": 139,
+      "name": "painc9",
+      "visible": 12628
+    },
+    {
+      "frame": 140,
+      "name": "painc10",
+      "visible": 12300
+    },
+    {
+      "frame": 141,
+      "name": "painc11",
+      "visible": 13788
+    },
+    {
+      "frame": 142,
+      "name": "painc12",
+      "visible": 16193
+    },
+    {
+      "frame": 143,
+      "name": "painc13",
+      "visible": 16160
+    },
+    {
+      "frame": 144,
+      "name": "painc14",
+      "visible": 20229
+    },
+    {
+      "frame": 145,
+      "name": "painc15",
+      "visible": 17877
+    },
+    {
+      "frame": 146,
+      "name": "painc16",
+      "visible": 21731
+    },
+    {
+      "frame": 147,
+      "name": "painc17",
+      "visible": 18325
+    },
+    {
+      "frame": 148,
+      "name": "painc18",
+      "visible": 23039
+    },
+    {
+      "frame": 149,
+      "name": "paind1",
+      "visible": 19386
+    },
+    {
+      "frame": 150,
+      "name": "paind2",
+      "visible": 20757
+    },
+    {
+      "frame": 151,
+      "name": "paind3",
+      "visible": 19035
+    },
+    {
+      "frame": 152,
+      "name": "paind4",
+      "visible": 18420
+    },
+    {
+      "frame": 153,
+      "name": "paind5",
+      "visible": 19001
+    },
+    {
+      "frame": 154,
+      "name": "paind6",
+      "visible": 18879
+    },
+    {
+      "frame": 155,
+      "name": "paind7",
+      "visible": 19637
+    },
+    {
+      "frame": 156,
+      "name": "paind8",
+      "visible": 21220
+    },
+    {
+      "frame": 157,
+      "name": "paind9",
+      "visible": 19736
+    },
+    {
+      "frame": 158,
+      "name": "paind10",
+      "visible": 23528
+    },
+    {
+      "frame": 159,
+      "name": "paind11",
+      "visible": 18548
+    },
+    {
+      "frame": 160,
+      "name": "paind12",
+      "visible": 22794
+    },
+    {
+      "frame": 161,
+      "name": "paind13",
+      "visible": 19374
+    },
+    {
+      "frame": 162,
+      "name": "paine1",
+      "visible": 23098
+    },
+    {
+      "frame": 163,
+      "name": "paine2",
+      "visible": 18687
+    },
+    {
+      "frame": 164,
+      "name": "paine3",
+      "visible": 22723
+    },
+    {
+      "frame": 165,
+      "name": "paine4",
+      "visible": 18579
+    },
+    {
+      "frame": 166,
+      "name": "paine5",
+      "visible": 17978
+    },
+    {
+      "frame": 167,
+      "name": "paine6",
+      "visible": 16170
+    },
+    {
+      "frame": 168,
+      "name": "paine7",
+      "visible": 15140
+    },
+    {
+      "frame": 169,
+      "name": "paine8",
+      "visible": 13755
+    },
+    {
+      "frame": 170,
+      "name": "paine9",
+      "visible": 14487
+    },
+    {
+      "frame": 171,
+      "name": "paine10",
+      "visible": 16120
+    },
+    {
+      "frame": 172,
+      "name": "paine11",
+      "visible": 14846
+    },
+    {
+      "frame": 173,
+      "name": "paine12",
+      "visible": 17356
+    },
+    {
+      "frame": 174,
+      "name": "paine13",
+      "visible": 14756
+    },
+    {
+      "frame": 175,
+      "name": "paine14",
+      "visible": 17570
+    },
+    {
+      "frame": 176,
+      "name": "paine15",
+      "visible": 14982
+    },
+    {
+      "frame": 177,
+      "name": "paine16",
+      "visible": 17451
+    },
+    {
+      "frame": 178,
+      "name": "paine17",
+      "visible": 15039
+    },
+    {
+      "frame": 179,
+      "name": "paine18",
+      "visible": 18084
+    },
+    {
+      "frame": 180,
+      "name": "paine19",
+      "visible": 17765
+    },
+    {
+      "frame": 181,
+      "name": "paine20",
+      "visible": 16679
+    },
+    {
+      "frame": 182,
+      "name": "paine21",
+      "visible": 15856
+    },
+    {
+      "frame": 183,
+      "name": "paine22",
+      "visible": 13377
+    },
+    {
+      "frame": 184,
+      "name": "paine23",
+      "visible": 13597
+    },
+    {
+      "frame": 185,
+      "name": "paine24",
+      "visible": 11609
+    },
+    {
+      "frame": 186,
+      "name": "paine25",
+      "visible": 10155
+    },
+    {
+      "frame": 187,
+      "name": "paine26",
+      "visible": 9895
+    },
+    {
+      "frame": 188,
+      "name": "paine27",
+      "visible": 10927
+    },
+    {
+      "frame": 189,
+      "name": "paine28",
+      "visible": 14892
+    },
+    {
+      "frame": 190,
+      "name": "paine29",
+      "visible": 21840
+    },
+    {
+      "frame": 191,
+      "name": "paine30",
+      "visible": 19462
+    }
+  ],
+  "checks": [
+    {
+      "passed": true,
+      "name": "actual fitted material visible: front",
+      "visible": 22095
+    },
+    {
+      "passed": true,
+      "name": "actual fitted material visible: back",
+      "visible": 21698
+    },
+    {
+      "passed": true,
+      "name": "actual fitted material visible: oblique",
+      "visible": 19212
+    },
+    {
+      "passed": true,
+      "name": "actual fitted material visible: other oblique",
+      "visible": 19357
+    },
+    {
+      "passed": true,
+      "name": "stand1",
+      "visible": 22095
+    },
+    {
+      "passed": true,
+      "name": "stand2",
+      "visible": 19186
+    },
+    {
+      "passed": true,
+      "name": "stand3",
+      "visible": 22357
+    },
+    {
+      "passed": true,
+      "name": "stand4",
+      "visible": 18602
+    },
+    {
+      "passed": true,
+      "name": "stand5",
+      "visible": 22372
+    },
+    {
+      "passed": true,
+      "name": "stand6",
+      "visible": 18483
+    },
+    {
+      "passed": true,
+      "name": "stand7",
+      "visible": 22251
+    },
+    {
+      "passed": true,
+      "name": "stand8",
+      "visible": 18273
+    },
+    {
+      "passed": true,
+      "name": "stand9",
+      "visible": 21498
+    },
+    {
+      "passed": true,
+      "name": "stand10",
+      "visible": 17818
+    },
+    {
+      "passed": true,
+      "name": "stand11",
+      "visible": 21437
+    },
+    {
+      "passed": true,
+      "name": "stand12",
+      "visible": 18799
+    },
+    {
+      "passed": true,
+      "name": "stand13",
+      "visible": 21020
+    },
+    {
+      "passed": true,
+      "name": "stand14",
+      "visible": 19270
+    },
+    {
+      "passed": true,
+      "name": "stand15",
+      "visible": 21506
+    },
+    {
+      "passed": true,
+      "name": "walk1",
+      "visible": 17144
+    },
+    {
+      "passed": true,
+      "name": "walk2",
+      "visible": 18832
+    },
+    {
+      "passed": true,
+      "name": "walk3",
+      "visible": 16945
+    },
+    {
+      "passed": true,
+      "name": "walk4",
+      "visible": 18970
+    },
+    {
+      "passed": true,
+      "name": "walk5",
+      "visible": 16580
+    },
+    {
+      "passed": true,
+      "name": "walk6",
+      "visible": 20357
+    },
+    {
+      "passed": true,
+      "name": "walk7",
+      "visible": 17053
+    },
+    {
+      "passed": true,
+      "name": "walk8",
+      "visible": 22177
+    },
+    {
+      "passed": true,
+      "name": "walk9",
+      "visible": 18140
+    },
+    {
+      "passed": true,
+      "name": "walk10",
+      "visible": 22316
+    },
+    {
+      "passed": true,
+      "name": "walk11",
+      "visible": 17255
+    },
+    {
+      "passed": true,
+      "name": "walk12",
+      "visible": 20763
+    },
+    {
+      "passed": true,
+      "name": "walk13",
+      "visible": 18122
+    },
+    {
+      "passed": true,
+      "name": "walk14",
+      "visible": 18963
+    },
+    {
+      "passed": true,
+      "name": "walk15",
+      "visible": 17229
+    },
+    {
+      "passed": true,
+      "name": "walk16",
+      "visible": 18291
+    },
+    {
+      "passed": true,
+      "name": "walk17",
+      "visible": 17312
+    },
+    {
+      "passed": true,
+      "name": "walk18",
+      "visible": 18030
+    },
+    {
+      "passed": true,
+      "name": "walk19",
+      "visible": 17296
+    },
+    {
+      "passed": true,
+      "name": "run1",
+      "visible": 20635
+    },
+    {
+      "passed": true,
+      "name": "run2",
+      "visible": 17594
+    },
+    {
+      "passed": true,
+      "name": "run3",
+      "visible": 20893
+    },
+    {
+      "passed": true,
+      "name": "run4",
+      "visible": 18168
+    },
+    {
+      "passed": true,
+      "name": "run5",
+      "visible": 21456
+    },
+    {
+      "passed": true,
+      "name": "run6",
+      "visible": 18499
+    },
+    {
+      "passed": true,
+      "name": "run7",
+      "visible": 21308
+    },
+    {
+      "passed": true,
+      "name": "run8",
+      "visible": 18266
+    },
+    {
+      "passed": true,
+      "name": "run9",
+      "visible": 20656
+    },
+    {
+      "passed": true,
+      "name": "run10",
+      "visible": 17010
+    },
+    {
+      "passed": true,
+      "name": "run11",
+      "visible": 20503
+    },
+    {
+      "passed": true,
+      "name": "run12",
+      "visible": 16059
+    },
+    {
+      "passed": true,
+      "name": "run13",
+      "visible": 20386
+    },
+    {
+      "passed": true,
+      "name": "run14",
+      "visible": 17680
+    },
+    {
+      "passed": true,
+      "name": "run15",
+      "visible": 20334
+    },
+    {
+      "passed": true,
+      "name": "run16",
+      "visible": 16863
+    },
+    {
+      "passed": true,
+      "name": "run17",
+      "visible": 20999
+    },
+    {
+      "passed": true,
+      "name": "run18",
+      "visible": 17407
+    },
+    {
+      "passed": true,
+      "name": "atta1",
+      "visible": 21203
+    },
+    {
+      "passed": true,
+      "name": "atta2",
+      "visible": 18299
+    },
+    {
+      "passed": true,
+      "name": "atta3",
+      "visible": 18552
+    },
+    {
+      "passed": true,
+      "name": "atta4",
+      "visible": 14032
+    },
+    {
+      "passed": true,
+      "name": "atta5",
+      "visible": 14207
+    },
+    {
+      "passed": true,
+      "name": "atta6",
+      "visible": 13438
+    },
+    {
+      "passed": true,
+      "name": "atta7",
+      "visible": 19802
+    },
+    {
+      "passed": true,
+      "name": "atta8",
+      "visible": 18509
+    },
+    {
+      "passed": true,
+      "name": "atta9",
+      "visible": 21061
+    },
+    {
+      "passed": true,
+      "name": "atta10",
+      "visible": 19515
+    },
+    {
+      "passed": true,
+      "name": "atta11",
+      "visible": 21550
+    },
+    {
+      "passed": true,
+      "name": "atta12",
+      "visible": 19027
+    },
+    {
+      "passed": true,
+      "name": "atta13",
+      "visible": 15016
+    },
+    {
+      "passed": true,
+      "name": "attb1",
+      "visible": 18556
+    },
+    {
+      "passed": true,
+      "name": "attb2",
+      "visible": 20688
+    },
+    {
+      "passed": true,
+      "name": "attb3",
+      "visible": 15977
+    },
+    {
+      "passed": true,
+      "name": "attb4",
+      "visible": 17586
+    },
+    {
+      "passed": true,
+      "name": "attb5",
+      "visible": 15517
+    },
+    {
+      "passed": true,
+      "name": "attb6",
+      "visible": 17378
+    },
+    {
+      "passed": true,
+      "name": "attb7",
+      "visible": 16488
+    },
+    {
+      "passed": true,
+      "name": "attb8",
+      "visible": 18941
+    },
+    {
+      "passed": true,
+      "name": "attb9",
+      "visible": 17969
+    },
+    {
+      "passed": true,
+      "name": "attb10",
+      "visible": 19358
+    },
+    {
+      "passed": true,
+      "name": "attb11",
+      "visible": 18942
+    },
+    {
+      "passed": true,
+      "name": "attb12",
+      "visible": 19058
+    },
+    {
+      "passed": true,
+      "name": "attb13",
+      "visible": 17897
+    },
+    {
+      "passed": true,
+      "name": "attb14",
+      "visible": 16337
+    },
+    {
+      "passed": true,
+      "name": "attc1",
+      "visible": 18556
+    },
+    {
+      "passed": true,
+      "name": "attc2",
+      "visible": 21842
+    },
+    {
+      "passed": true,
+      "name": "attc3",
+      "visible": 19390
+    },
+    {
+      "passed": true,
+      "name": "attc4",
+      "visible": 21763
+    },
+    {
+      "passed": true,
+      "name": "attc5",
+      "visible": 18829
+    },
+    {
+      "passed": true,
+      "name": "attc6",
+      "visible": 21606
+    },
+    {
+      "passed": true,
+      "name": "attc7",
+      "visible": 19002
+    },
+    {
+      "passed": true,
+      "name": "attc8",
+      "visible": 22262
+    },
+    {
+      "passed": true,
+      "name": "attc9",
+      "visible": 19292
+    },
+    {
+      "passed": true,
+      "name": "attc10",
+      "visible": 20255
+    },
+    {
+      "passed": true,
+      "name": "attc11",
+      "visible": 16455
+    },
+    {
+      "passed": true,
+      "name": "attc12",
+      "visible": 15275
+    },
+    {
+      "passed": true,
+      "name": "paina1",
+      "visible": 19785
+    },
+    {
+      "passed": true,
+      "name": "paina2",
+      "visible": 14817
+    },
+    {
+      "passed": true,
+      "name": "paina3",
+      "visible": 15414
+    },
+    {
+      "passed": true,
+      "name": "paina4",
+      "visible": 16428
+    },
+    {
+      "passed": true,
+      "name": "paina5",
+      "visible": 15436
+    },
+    {
+      "passed": true,
+      "name": "paina6",
+      "visible": 17549
+    },
+    {
+      "passed": true,
+      "name": "paina7",
+      "visible": 15982
+    },
+    {
+      "passed": true,
+      "name": "paina8",
+      "visible": 20625
+    },
+    {
+      "passed": true,
+      "name": "paina9",
+      "visible": 18952
+    },
+    {
+      "passed": true,
+      "name": "paina10",
+      "visible": 22549
+    },
+    {
+      "passed": true,
+      "name": "paina11",
+      "visible": 18705
+    },
+    {
+      "passed": true,
+      "name": "paina12",
+      "visible": 22749
+    },
+    {
+      "passed": true,
+      "name": "painb1",
+      "visible": 19605
+    },
+    {
+      "passed": true,
+      "name": "painb2",
+      "visible": 19339
+    },
+    {
+      "passed": true,
+      "name": "painb3",
+      "visible": 17023
+    },
+    {
+      "passed": true,
+      "name": "painb4",
+      "visible": 17070
+    },
+    {
+      "passed": true,
+      "name": "painb5",
+      "visible": 16163
+    },
+    {
+      "passed": true,
+      "name": "painb6",
+      "visible": 13223
+    },
+    {
+      "passed": true,
+      "name": "painb7",
+      "visible": 14362
+    },
+    {
+      "passed": true,
+      "name": "painb8",
+      "visible": 12383
+    },
+    {
+      "passed": true,
+      "name": "painb9",
+      "visible": 13839
+    },
+    {
+      "passed": true,
+      "name": "painb10",
+      "visible": 11638
+    },
+    {
+      "passed": true,
+      "name": "painb11",
+      "visible": 13126
+    },
+    {
+      "passed": true,
+      "name": "painb12",
+      "visible": 12656
+    },
+    {
+      "passed": true,
+      "name": "painb13",
+      "visible": 11823
+    },
+    {
+      "passed": true,
+      "name": "painb14",
+      "visible": 13416
+    },
+    {
+      "passed": true,
+      "name": "painb15",
+      "visible": 12356
+    },
+    {
+      "passed": true,
+      "name": "painb16",
+      "visible": 13922
+    },
+    {
+      "passed": true,
+      "name": "painb17",
+      "visible": 12340
+    },
+    {
+      "passed": true,
+      "name": "painb18",
+      "visible": 14868
+    },
+    {
+      "passed": true,
+      "name": "painb19",
+      "visible": 14590
+    },
+    {
+      "passed": true,
+      "name": "painb20",
+      "visible": 15955
+    },
+    {
+      "passed": true,
+      "name": "painb21",
+      "visible": 12598
+    },
+    {
+      "passed": true,
+      "name": "painb22",
+      "visible": 12715
+    },
+    {
+      "passed": true,
+      "name": "painb23",
+      "visible": 13997
+    },
+    {
+      "passed": true,
+      "name": "painb24",
+      "visible": 20232
+    },
+    {
+      "passed": true,
+      "name": "painb25",
+      "visible": 18855
+    },
+    {
+      "passed": true,
+      "name": "painb26",
+      "visible": 21314
+    },
+    {
+      "passed": true,
+      "name": "painb27",
+      "visible": 18407
+    },
+    {
+      "passed": true,
+      "name": "painb28",
+      "visible": 23027
+    },
+    {
+      "passed": true,
+      "name": "painc1",
+      "visible": 19572
+    },
+    {
+      "passed": true,
+      "name": "painc2",
+      "visible": 17955
+    },
+    {
+      "passed": true,
+      "name": "painc3",
+      "visible": 14053
+    },
+    {
+      "passed": true,
+      "name": "painc4",
+      "visible": 12259
+    },
+    {
+      "passed": true,
+      "name": "painc5",
+      "visible": 12867
+    },
+    {
+      "passed": true,
+      "name": "painc6",
+      "visible": 12186
+    },
+    {
+      "passed": true,
+      "name": "painc7",
+      "visible": 13418
+    },
+    {
+      "passed": true,
+      "name": "painc8",
+      "visible": 12186
+    },
+    {
+      "passed": true,
+      "name": "painc9",
+      "visible": 12628
+    },
+    {
+      "passed": true,
+      "name": "painc10",
+      "visible": 12300
+    },
+    {
+      "passed": true,
+      "name": "painc11",
+      "visible": 13788
+    },
+    {
+      "passed": true,
+      "name": "painc12",
+      "visible": 16193
+    },
+    {
+      "passed": true,
+      "name": "painc13",
+      "visible": 16160
+    },
+    {
+      "passed": true,
+      "name": "painc14",
+      "visible": 20229
+    },
+    {
+      "passed": true,
+      "name": "painc15",
+      "visible": 17877
+    },
+    {
+      "passed": true,
+      "name": "painc16",
+      "visible": 21731
+    },
+    {
+      "passed": true,
+      "name": "painc17",
+      "visible": 18325
+    },
+    {
+      "passed": true,
+      "name": "painc18",
+      "visible": 23039
+    },
+    {
+      "passed": true,
+      "name": "paind1",
+      "visible": 19386
+    },
+    {
+      "passed": true,
+      "name": "paind2",
+      "visible": 20757
+    },
+    {
+      "passed": true,
+      "name": "paind3",
+      "visible": 19035
+    },
+    {
+      "passed": true,
+      "name": "paind4",
+      "visible": 18420
+    },
+    {
+      "passed": true,
+      "name": "paind5",
+      "visible": 19001
+    },
+    {
+      "passed": true,
+      "name": "paind6",
+      "visible": 18879
+    },
+    {
+      "passed": true,
+      "name": "paind7",
+      "visible": 19637
+    },
+    {
+      "passed": true,
+      "name": "paind8",
+      "visible": 21220
+    },
+    {
+      "passed": true,
+      "name": "paind9",
+      "visible": 19736
+    },
+    {
+      "passed": true,
+      "name": "paind10",
+      "visible": 23528
+    },
+    {
+      "passed": true,
+      "name": "paind11",
+      "visible": 18548
+    },
+    {
+      "passed": true,
+      "name": "paind12",
+      "visible": 22794
+    },
+    {
+      "passed": true,
+      "name": "paind13",
+      "visible": 19374
+    },
+    {
+      "passed": true,
+      "name": "paine1",
+      "visible": 23098
+    },
+    {
+      "passed": true,
+      "name": "paine2",
+      "visible": 18687
+    },
+    {
+      "passed": true,
+      "name": "paine3",
+      "visible": 22723
+    },
+    {
+      "passed": true,
+      "name": "paine4",
+      "visible": 18579
+    },
+    {
+      "passed": true,
+      "name": "paine5",
+      "visible": 17978
+    },
+    {
+      "passed": true,
+      "name": "paine6",
+      "visible": 16170
+    },
+    {
+      "passed": true,
+      "name": "paine7",
+      "visible": 15140
+    },
+    {
+      "passed": true,
+      "name": "paine8",
+      "visible": 13755
+    },
+    {
+      "passed": true,
+      "name": "paine9",
+      "visible": 14487
+    },
+    {
+      "passed": true,
+      "name": "paine10",
+      "visible": 16120
+    },
+    {
+      "passed": true,
+      "name": "paine11",
+      "visible": 14846
+    },
+    {
+      "passed": true,
+      "name": "paine12",
+      "visible": 17356
+    },
+    {
+      "passed": true,
+      "name": "paine13",
+      "visible": 14756
+    },
+    {
+      "passed": true,
+      "name": "paine14",
+      "visible": 17570
+    },
+    {
+      "passed": true,
+      "name": "paine15",
+      "visible": 14982
+    },
+    {
+      "passed": true,
+      "name": "paine16",
+      "visible": 17451
+    },
+    {
+      "passed": true,
+      "name": "paine17",
+      "visible": 15039
+    },
+    {
+      "passed": true,
+      "name": "paine18",
+      "visible": 18084
+    },
+    {
+      "passed": true,
+      "name": "paine19",
+      "visible": 17765
+    },
+    {
+      "passed": true,
+      "name": "paine20",
+      "visible": 16679
+    },
+    {
+      "passed": true,
+      "name": "paine21",
+      "visible": 15856
+    },
+    {
+      "passed": true,
+      "name": "paine22",
+      "visible": 13377
+    },
+    {
+      "passed": true,
+      "name": "paine23",
+      "visible": 13597
+    },
+    {
+      "passed": true,
+      "name": "paine24",
+      "visible": 11609
+    },
+    {
+      "passed": true,
+      "name": "paine25",
+      "visible": 10155
+    },
+    {
+      "passed": true,
+      "name": "paine26",
+      "visible": 9895
+    },
+    {
+      "passed": true,
+      "name": "paine27",
+      "visible": 10927
+    },
+    {
+      "passed": true,
+      "name": "paine28",
+      "visible": 14892
+    },
+    {
+      "passed": true,
+      "name": "paine29",
+      "visible": 21840
+    },
+    {
+      "passed": true,
+      "name": "paine30",
+      "visible": 19462
+    },
+    {
+      "passed": true,
+      "name": "stored height changes actual GPU pixels",
+      "changed": 2185,
+      "energy": 33288
+    },
+    {
+      "passed": true,
+      "name": "custom toggle restores native and visibly changes actual body",
+      "changed": 21574,
+      "energy": 774483
+    },
+    {
+      "passed": true,
+      "name": "Classic pixels and original native material unchanged"
+    },
+    {
+      "passed": true,
+      "name": "native and fitted normals are shipped and settled",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 2,
+          "shipped": 2,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 2,
+        "fallback": 0,
+        "total": 2,
+        "settled": true,
+        "errors": {}
+      }
+    },
+    {
+      "passed": true,
+      "name": "ordinary Wrath cannot wear this replacement"
+    },
+    {
+      "passed": true,
+      "name": "all native pose, triangle and UV records unchanged"
+    },
+    {
+      "passed": true,
+      "name": "actual material/compositor compile and runtime clean",
+      "errors": []
+    }
+  ],
+  "scope": "Controlled actual owned MDL/production alias rendering; gameplay discovery/combat remains separate."
+}

@@ -90,7 +90,8 @@ function cancelSkinLoads( set ) { for ( const cancel of set.cancellations || [] 
 // also covers registered-game models absent from this checkout's shareware pak.
 export const ENEMY_SKIN_MODELS = new Set( [
 	'boss', 'demon', 'dog', 'enforcer', 'fish', 'hknight', 'knight', 'ogre', 'oldone',
-	'shalrath', 'shambler', 'soldier', 'tarbaby', 'wizard', 'zombie', 'h_demon',
+	'shalrath', 'shambler', 'soldier', 'tarbaby', 'wizard', 'zombie', 'scor',
+	'dragon', 's_wrath', 'mummy', 'h_demon',
 	'h_dog', 'h_hellkn', 'h_knight', 'h_ogre', 'h_shal', 'h_shams', 'h_guard',
 	'h_wizard', 'h_zombie', 'gib1', 'gib2', 'gib3', 'zom_gib'
 ] );

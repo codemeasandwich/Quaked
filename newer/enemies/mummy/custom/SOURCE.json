@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "model": "progs/mummy.mdl",
+  "nativeModelSha256": "3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1",
+  "source": "Gemini_Generated_Image_jc5i6kjc5i6kjc5i.jpeg",
+  "sourceSha256": "3bc0906638ddc4c6e9d22f894bb74337709fc760ddb2f817d5f6bc64e11cc640",
+  "sourceDimensions": [
+    960,
+    1109
+  ],
+  "dimensions": [
+    1008,
+    1164
+  ],
+  "factor": 6,
+  "skin": 0,
+  "poses": 192,
+  "vertices": 177,
+  "triangles": 347,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "mattePolicy": "dark brown gradient",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 202753,
+      "directPixels": 202042,
+      "edgePixels": 711
+    },
+    {
+      "id": 2,
+      "surfacePixels": 202769,
+      "directPixels": 202211,
+      "edgePixels": 558
+    },
+    {
+      "id": 3,
+      "surfacePixels": 36169,
+      "directPixels": 36151,
+      "edgePixels": 18
+    },
+    {
+      "id": 4,
+      "surfacePixels": 36171,
+      "directPixels": 36166,
+      "edgePixels": 5
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    }
+  ],
+  "surfacePixels": 477864,
+  "edgePixels": 1292,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "b131bef5d0ce68a7aec30d554a98fa609a0613b3d1ea81aed629b09ab82addc6",
+    "height.webp": "a7dcf2ad36e9fa37006d91ef2e0b5469bf5ab64082f55f687ab2b3149e3051d0"
+  }
+}
