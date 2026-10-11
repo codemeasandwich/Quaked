@@ -244,7 +244,7 @@ export function R_PostShadowsFrame( renderer, scene, camera, lights, beam, hasSk
    if(!object.isMesh||!object.visible)return;
    const aliasOwner=object._quakeOwner,brushOwner=object.parent?._quakeOwner;
    const physicalAlias=aliasOwner?._aliasMesh===object&&!/flame|bolt|eyes/.test(aliasOwner.model?.name||'');
-   const physicalBrush=brushOwner?._brushGroup===object.parent;
+   const physicalBrush=brushOwner?._brushGroup===object.parent&&!object.userData.quakeLiquid; // (a brush entity's liquid or window face casts no shadow, as the world's do not)
    object.userData.quakePhysicalAlias=physicalAlias;
    if((physicalAlias||object.userData.quakeAxePart===true)&&r_newer_shadows.value!==0||physicalBrush)spotCasters.push(object);
   });

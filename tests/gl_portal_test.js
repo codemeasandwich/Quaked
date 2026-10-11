@@ -387,3 +387,46 @@ Deno.test( 'a teleporter face on a static wall gets its window, and an always-on
 	} finally { portal.R_ClearPortals(); }
 
 } );
+
+// card [END2] review: only static walls lend their faces; a door (it moves), a wall with an origin (placed elsewhere)
+// and a wall the game leaves out in single player (spawnflags 1792) get no window
+Deno.test( 'teleporter faces on a door, on a wall with an origin, or on a deathmatch-only wall get no window', () => {
+
+	for ( const [ classname, extra ] of [ [ 'func_door', '' ], [ 'func_wall', '"origin" "8 0 0"' ], [ 'func_wall', '"spawnflags" "1792"' ] ] ) {
+
+		const world = makeSurface( '*sky1', 100, 1 ); world.flags = 0;
+		const face = makeSurface( '*teleport', 100, 1 );
+		const model = makeModel( [ world, face ], `
+{
+"classname" "worldspawn"
+}
+{
+"classname" "${classname}"
+"model" "*2"
+${extra}
+}
+{
+"classname" "trigger_teleport"
+"target" "t1"
+"model" "*1"
+}
+{
+"classname" "info_teleport_destination"
+"targetname" "t1"
+"origin" "500 600 32"
+}
+` );
+		model.nummodelsurfaces = 1;
+		model.submodels[ 1 ] = { mins: [ 104, - 40, - 8 ], maxs: [ 120, 40, 120 ] };
+		model.submodels.push( { mins: [ 96, - 32, 0 ], maxs: [ 104, 32, 112 ], firstface: 1, numfaces: 1 } );
+		const portals = portal.R_BuildPortals( model );
+		try {
+
+			assertEqual( portals.length, 0, `${classname} ${extra || '(no origin)'}: no window` );
+			assertEqual( face._portal, undefined, `${classname} ${extra}: its face is no window` );
+
+		} finally { portal.R_ClearPortals(); }
+
+	}
+
+} );

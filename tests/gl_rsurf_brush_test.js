@@ -6,6 +6,8 @@ import * as THREE from 'three';
 import * as brush from '../src/engine/render/gl_rsurf_brush.js';
 import { GL_BuildLightmaps } from '../src/engine/render/gl_rsurf.js';
 import { d_lightstylevalue } from '../src/engine/render/gl_rmain.js';
+import { r_refdef } from '../src/engine/render/render.js';
+import { R_LiquidsBeginFrame, R_CleanupWaterMeshes } from '../src/engine/render/gl_rsurf_liquids.js';
 import { cl } from '../src/engine/client/client.js';
 import * as pak from '../src/engine/common/pak.js';
 import { VID_SetPalette } from '../src/engine/render/vid.js';
@@ -48,6 +50,12 @@ Deno.test( 'a brush entity\'s teleporter face is drawn, warped, in its group, an
 		cl.worldmodel = map; cl.model_precache.fill( null ); cl.model_precache[ 1 ] = map; cl.model_precache[ 2 ] = wall;
 		GL_BuildLightmaps();
 		const entity = { origin: new Float32Array( 3 ), angles: new Float32Array( 3 ), frame: 0, model: wall };
+		// (from where its teleporter face faces: a liquid face is drawn only from its front, as GLQuake draws it)
+		const face = wall.surfaces.slice( wall.firstmodelsurface, wall.firstmodelsurface + wall.nummodelsurfaces ).find( f => f.texinfo.texture.name.startsWith( '*teleport' ) );
+		const sign = ( face.flags & 2 ) ? - 1 : 1, nrm = face.plane.normal;
+		const mid = [ 0, 1, 2 ].map( k => ( wall.mins[ k ] + wall.maxs[ k ] ) / 2 );
+		const off = nrm[ 0 ] * mid[ 0 ] + nrm[ 1 ] * mid[ 1 ] + nrm[ 2 ] * mid[ 2 ] - face.plane.dist;
+		r_refdef.vieworg.set( [ 0, 1, 2 ].map( k => mid[ k ] - nrm[ k ] * off + nrm[ k ] * sign * 64 ) );
 		brush.R_DrawBrushModel( entity );
 		const liquids = () => entity._brushGroup.children.filter( m => m.userData.quakeLiquid );
 		const first = liquids();
@@ -58,5 +66,31 @@ Deno.test( 'a brush entity\'s teleporter face is drawn, warped, in its group, an
 		check( again.length === first.length && again[ 0 ] === first[ 0 ], 'the same face mesh, in the rebuilt group' );
 		check( disposed === 0, 'its geometry was not thrown away with the old group' );
 		brush.R_BrushClear();
+		check( disposed === 0, 'nor at a map load (the mesh belongs to its surface)' );
 	} finally { cl.worldmodel = saved.world; saved.models.forEach( ( m, i ) => { cl.model_precache[ i ] = m; } ); }
+} );
+
+// card [END2]: only the faces that face the view, as GLQuake draws a brush entity: E4M4's pool water (func_illusionary
+// *56) seen from inside the pool shows only its top, not its five outer faces lying on the pool's floor and walls
+Deno.test( 'a brush entity\'s water seen from inside its pool: only the face toward the view (registered pak, local)', () => {
+	const saved = { world: cl.worldmodel, models: cl.model_precache.slice(), view: Array.from( r_refdef.vieworg ) }; d_lightstylevalue.fill( 256 );
+	const big = readFileSync( new URL( '../resources/id1/pak0.pak', import.meta.url ) );
+	pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0r.pak', big.buffer.slice( big.byteOffset, big.byteOffset + big.length ) ) );
+	try {
+		const map = Mod_ForName( 'maps/e4m4.bsp', true ), pool = Mod_ForName( '*56', false );
+		cl.worldmodel = map; cl.model_precache.fill( null ); cl.model_precache[ 1 ] = map; cl.model_precache[ 2 ] = pool;
+		GL_BuildLightmaps();
+		const entity = { origin: new Float32Array( 3 ), angles: new Float32Array( 3 ), frame: 0, model: pool };
+		// one frame as the renderer runs it: the liquids' frame begins, the entity is drawn, the meshes not drawn go
+		const frame = () => { R_LiquidsBeginFrame(); brush.R_BrushBeginFrame(); brush.R_DrawBrushModel( entity ); R_CleanupWaterMeshes(); };
+		r_refdef.vieworg.set( [ - 112, - 416, - 2 ] ); // (in the pool, above the water's top at z -31)
+		frame();
+		const drawn = () => entity._brushGroup.children.filter( m => m.userData.quakeLiquid && m.parent === entity._brushGroup );
+		check( drawn().length === 1, 'from inside the pool, only the top face, not the five on its floor and walls (' + drawn().length + ')' );
+		// under the water every face of the volume faces away: GLQuake draws none of them
+		r_refdef.vieworg.set( [ - 112, - 416, - 40 ] );
+		frame();
+		check( drawn().length === 0, 'under the water: none (' + drawn().length + ')' );
+		brush.R_BrushClear();
+	} finally { cl.worldmodel = saved.world; saved.models.forEach( ( m, i ) => { cl.model_precache[ i ] = m; } ); r_refdef.vieworg.set( saved.view ); }
 } );

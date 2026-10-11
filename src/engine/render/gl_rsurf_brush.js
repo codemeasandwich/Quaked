@@ -3,7 +3,9 @@
  *
  * Brush entities (card [44i], split from gl_rsurf.js): doors, lifts, buttons and the other inline models, each drawn
  * as a group of meshes kept on its entity, its surfaces merged by material, its lightmaps updated as they change,
- * with Newer Game's demon relief on its demon surfaces.
+ * with Newer Game's demon relief on its demon surfaces, and its liquid and teleporter faces (those facing the view)
+ * drawn each frame through gl_rsurf_liquids.js (`_getWaterMesh`: their meshes belong to the surfaces, and
+ * `R_CleanupWaterMeshes` takes out those not drawn).
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -23,8 +25,8 @@ import { cl, cl_dlights, MAX_DLIGHTS } from '../client/client.js';
 import { R_PortalsActive, R_BoxInPortalReceiver } from '../common/hooks.js'; // installed by newer/render/gl_portal.js
 import { R_MarkLights } from './gl_rlight.js';
 import { r_refdef } from './render.js';
-import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, r_framecount, gl_flashblend, R_CullBox, scene, r_wateralpha } from './gl_rmain.js';
-import { VectorAdd } from '../common/mathlib.js';
+import { SURF_PLANEBACK, SURF_DRAWSKY, SURF_DRAWTURB, r_visframecount, r_framecount, gl_flashblend, R_CullBox, scene, r_wateralpha, BACKFACE_EPSILON } from './gl_rmain.js';
+import { VectorAdd, AngleVectors } from '../common/mathlib.js';
 import { Mod_PointInLeaf } from './gl_model.js';
 import { R_BlendLightmaps, lightmapTextures } from './gl_rsurf_lightmaps.js';
 import { createQuakeLightmapMaterial, R_TextureAnimation, _mergeGLPolys } from './gl_rsurf_materials.js';
@@ -59,6 +61,7 @@ const _brushPlaneNormal = new Float32Array( 3 );
 
 // Euler object reused for brush entity rotation (avoid per-frame allocation)
 const _brushEuler = new THREE.Euler( 0, 0, 0, 'ZYX' );
+const _brushModelOrg = new Float32Array( 3 );
 
 // Real displacement for a demon plaque that belongs to a brush entity (a door, a plat, a secret wall),
 // such as the e1m4 door with dem5_3 on both faces. The world's plaques are meshes in the world batch with
@@ -154,7 +157,9 @@ const _brushLeafOf = p => Mod_PointInLeaf( p, cl.worldmodel );
  * lightmaps, then shows its cached THREE.Group: built the first time (surfaces sharing a base texture, lightmap and
  * rock chart merged into one mesh, materials shared through a cache) and rebuilt when `e.frame` changes. Animated
  * textures swap materials each frame, a demon plaque gets its raised mesh, and the group takes the entity's origin
- * and angles (degrees, pitch negated: the "stupid quake bug"). The group is added to the scene until the next
+ * and angles (degrees, pitch negated: the "stupid quake bug"). Its liquid and teleporter faces that face the view
+ * (GLQuake's modelorg test) are drawn each frame into the group through `_getWaterMesh`; a window face wakes its window
+ * only when the entity is in the main view (card [END2]). The group is added to the scene until the next
  * `R_DrawWorld` and is cached on the entity until a frame change or the next `GL_BuildLightmaps`. Ends by uploading
  * modified lightmaps (`R_BlendLightmaps`), as the C code does. Called per frame for each visible brush entity from
  * `R_DrawEntitiesOnList` (gl_rmain.js).
@@ -191,7 +196,8 @@ export function R_DrawBrushModel( e ) {
 	}
 
 	// (outside the main view but in what a visible portal shows: drawn, so it hides what is behind it in the preview too)
-	if ( R_CullBox( mins, maxs ) && ! ( R_PortalsActive() && R_BoxInPortalReceiver( mins, maxs, _brushLeafOf, r_visframecount ) ) )
+	const outOfView = R_CullBox( mins, maxs );
+	if ( outOfView && ! ( R_PortalsActive() && R_BoxInPortalReceiver( mins, maxs, _brushLeafOf, r_visframecount ) ) )
 		return;
 
 	// Calculate dynamic lighting for non-instanced brush models.
@@ -441,18 +447,35 @@ export function R_DrawBrushModel( e ) {
 	if ( scene && ! brushGroup.parent ) scene.add( brushGroup );
 	brushEntityGroups.push( brushGroup );
 
-	// The entity's liquid and teleporter faces (SURF_DRAWTURB), warped each frame as the world's are (WinQuake draws
-	// them; they were left out here, so end.bsp's secret teleporter face on a func_wall was missing, card [END2]). Their
-	// meshes join the entity's group, which places and turns them with it; a face that leads somewhere is a window.
+	// The entity's liquid and teleporter faces (SURF_DRAWTURB), warped each frame as the world's are, and only those
+	// facing the view, as GLQuake's R_DrawBrushModel draws them (they were left out here, so end.bsp's secret teleporter
+	// face on a func_wall was missing, card [END2]; a back face would fight the world face on its plane, as E4M4's pool
+	// water does). Their meshes join the entity's group, which places and turns them with it; one not drawn this frame
+	// is taken out by R_CleanupWaterMeshes. A face that leads somewhere is a window, woken only when the entity is in
+	// the main view (an entity kept only for what a window's far side shows does not wake a window of its own).
 	if ( clmodel.surfaces && clmodel.nummodelsurfaces ) {
 
+		// the view in the entity's own frame (GLQuake's modelorg)
+		const v = r_refdef.vieworg;
+		_brushModelOrg[ 0 ] = v[ 0 ] - e.origin[ 0 ]; _brushModelOrg[ 1 ] = v[ 1 ] - e.origin[ 1 ]; _brushModelOrg[ 2 ] = v[ 2 ] - e.origin[ 2 ];
+		if ( rotated ) {
+
+			AngleVectors( e.angles, _brushForward, _brushRight, _brushUp );
+			const x = _brushModelOrg[ 0 ], y = _brushModelOrg[ 1 ], z = _brushModelOrg[ 2 ];
+			_brushModelOrg[ 0 ] = x * _brushForward[ 0 ] + y * _brushForward[ 1 ] + z * _brushForward[ 2 ];
+			_brushModelOrg[ 1 ] = - ( x * _brushRight[ 0 ] + y * _brushRight[ 1 ] + z * _brushRight[ 2 ] );
+			_brushModelOrg[ 2 ] = x * _brushUp[ 0 ] + y * _brushUp[ 1 ] + z * _brushUp[ 2 ];
+
+		}
 		const startSurf = clmodel.firstmodelsurface, time = cl ? cl.time : 0;
 		for ( let i = 0; i < clmodel.nummodelsurfaces; i ++ ) {
 
 			const s = clmodel.surfaces[ startSurf + i ];
-			if ( s == null || ( s.flags & SURF_DRAWTURB ) === 0 || s.polys == null ) continue;
+			if ( s == null || ( s.flags & SURF_DRAWTURB ) === 0 || s.polys == null || s.plane == null ) continue;
+			const n = s.plane.normal, dot = _brushModelOrg[ 0 ] * n[ 0 ] + _brushModelOrg[ 1 ] * n[ 1 ] + _brushModelOrg[ 2 ] * n[ 2 ] - s.plane.dist;
+			if ( ( s.flags & SURF_PLANEBACK ) ? dot >= - BACKFACE_EPSILON : dot <= BACKFACE_EPSILON ) continue; // (facing away)
 			const geometry = EmitWaterPolysQuake( s, time );
-			if ( geometry ) _getWaterMesh( s, geometry, _getWaterMaterial( R_TextureAnimation( s.texinfo.texture ), r_wateralpha.value ), brushGroup );
+			if ( geometry ) _getWaterMesh( s, geometry, _getWaterMaterial( R_TextureAnimation( s.texinfo.texture ), r_wateralpha.value ), brushGroup, ! outOfView );
 
 		}
 

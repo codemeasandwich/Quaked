@@ -1,9 +1,10 @@
 /**
  * @module engine/render/gl_rsurf_liquids
  *
- * The world's liquids and sky (card [44i], split from gl_rsurf.js): water, slime, lava and teleporter surfaces (their
- * materials, the warped polygons, their light from the world's lightmaps) and the scrolling sky, each surface a mesh
- * kept for the session and shown on the frames that draw it.
+ * The liquids and sky (card [44i], split from gl_rsurf.js): water, slime, lava and teleporter surfaces of the world
+ * and of brush entities (gl_rsurf_brush.js, card [END2]; their materials, the warped polygons, their light from the
+ * world's lightmaps) and the scrolling sky, each surface a mesh kept for the session and shown on the frames that
+ * draw it.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -254,9 +255,11 @@ Returns a cached Mesh for a water/turb surface. Cached on the surface object.
  * @param {THREE.BufferGeometry} geometry its warped polygons (`EmitWaterPolysQuake`)
  * @param {THREE.Material} material its material (`_getWaterMaterial`)
  * @param {THREE.Group} renderGroup the group to draw it in (the world's, or a brush entity's)
+ * @param {boolean} [wakePortal=true] whether a window face makes its window live this frame (false for a brush entity
+ *   drawn only because a window's far side shows it)
  * @returns {THREE.Mesh} the surface's mesh
  */
-export function _getWaterMesh( s, geometry, material, renderGroup ) {
+export function _getWaterMesh( s, geometry, material, renderGroup, wakePortal = true ) {
 
 	if ( material.vertexColors ) R_UpdateWaterTextureLight( geometry );
 
@@ -264,7 +267,7 @@ export function _getWaterMesh( s, geometry, material, renderGroup ) {
 	if ( s._portal != null && R_PortalsActive() ) {
 
 		material = R_PortalMaterial( s._portal, material.map );
-		R_PortalNoteVisible( s._portal );
+		if ( wakePortal ) R_PortalNoteVisible( s._portal );
 
 	}
 

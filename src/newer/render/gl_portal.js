@@ -454,8 +454,10 @@ function followTrain( portal ) {
 
 /**
  * Builds the camera portals for a world model at map load (gl_rsurf.js, after the world surfaces are built). Every
- * `*teleport` turbulent surface within `TRIGGER_SLOP` (24) units of a `trigger_teleport` whose target is an
- * `info_teleport_destination` becomes part of a portal; coplanar faces of one doorway/pad share a portal so they share
+ * `*teleport` turbulent surface of the world or of a static wall (func_wall, func_illusionary: no origin, not left out
+ * by skill or game type) within `TRIGGER_SLOP` (24) units of a `trigger_teleport` whose target is an
+ * `info_teleport_destination` (or a moving `misc_teleporttrain`) becomes part of a portal, the nearest trigger taking it
+ * except that one that always works wins over one with a targetname; coplanar faces of one doorway/pad share a portal so they share
  * one view. A level exit's gate (a trigger_changelevel at it) shows the next level (r_levelview.js), not a view within
  * this one, even when a trigger_teleport lies near it too (E1M4's secret exit gate): its surfaces are left out here, the
  * whole gate (E3M6's has two planes 4 units apart, a teleport trigger behind one and the exit's in front of the other).
