@@ -29,8 +29,9 @@
 //
 // Motion: the source's stream is a finite packet on a straight ray: its leading edge travels at the jet speed, its
 // trailing edge leaves the mouth `duration` later, and once the leading edge reaches the target the packet drains into
-// it. Here the leading edge IS the native entity's interpolated origin; the ray starts where the client first saw the
-// entity; when the entity goes away the leading edge carries on to the TE_WIZSPIKE point (if one came) and the trailing
+// it. Here the leading edge IS the native entity's interpolated origin (its place along the ray); the ray starts at a
+// fang on the Scrag's face (card [SP2]: see scragMouth), or where the client first saw the entity when no Scrag is in
+// view; when the entity goes away the leading edge carries on to the TE_WIZSPIKE point (if one came) and the trailing
 // edge drains into it (at most `duration`, 0.28 s, later).
 //
 // Units: the source works in metres with a 22 m/s jet; the native spike flies at 600 units/s, so one source metre is
@@ -299,6 +300,7 @@ const jetHitKnown = new Uint8Array( J );    // 1 once a TE_WIZSPIKE was matched 
 const jetHit = new Uint8Array( J );         // 1 once the leading edge reached the limit with a known hit (splashed)
 const jetNormal = new Float64Array( J * 3 ); // the impact surface's normal
 const jetDropCarry = new Float64Array( J ), jetSplashCarry = new Float64Array( J );
+const jetFixed = new Uint8Array( J );       // 1: the ray runs from a Scrag's fang and is not re-aimed (card [SP2])
 
 // Droplets: the source's DropletPool, in typed arrays (Quake units and seconds).
 const D = VENOM.dropCap;
@@ -512,33 +514,50 @@ function setBasis( j ) {
 // vertex 52, on the centre line, in the frame being drawn), turned with the Scrag, and VENOM_MOUTH.fang either side of
 // it, on the side the spike was launched from. The Scrag is the nearest progs/wizard.mdl behind the spike within
 // SCRAG_REACH of its ray. Writes the fang point into `out` and returns true, or false with no Scrag found.
+// The jaw is read from the pose on screen: Newer Game blends alias poses over 0.1 s (r_anim.js R_AliasPoseBlend, its
+// state on `e._aliasLerp`), and QuakeC fires each spike on the very think that changes the Scrag's frame, so the
+// pose drawn at launch is still mostly the previous frame's. The fang is fixed at launch; the jaw moving during the
+// 0.28 s the tail takes to leave it is not followed.
 export const VENOM_MOUTH = Object.freeze( {
 	vertex: 52, verts: 80,      // the jaw corner of id1's progs/wizard.mdl (80 vertices); another mesh uses `fallback`
 	fallback: Object.freeze( [ 14, 0, 30 ] ), // model space (forward, left, up): QuakeC's launch point, on the centre line
 	fang: .13 * VENOM.unit      // Quake units: the source's fang sockets, 0.13 m either side of the mouth
 } );
-function mouthPoint( e, side, out ) {
+// the mouth vertex of one pose, model space (Quake's alias trivertx: v * scale + scale_origin), or null
+function jawOf( h, pose ) {
 
-	// model space: the mouth vertex of the drawn frame (Quake's alias trivertx: v * scale + scale_origin)
-	const h = e.model.cache?.data, f = h?.frames?.[ e.frame | 0 ], pose = f && h.poseverts?.[ f.firstpose ];
-	let mx, my, mz;
-	if ( h?.numverts === VENOM_MOUTH.verts && pose?.[ VENOM_MOUTH.vertex ]?.v && h.scale && h.scale_origin ) {
+	const v = h.poseverts?.[ pose ]?.[ VENOM_MOUTH.vertex ]?.v;
+	return v ? [ v[ 0 ] * h.scale[ 0 ] + h.scale_origin[ 0 ], v[ 1 ] * h.scale[ 1 ] + h.scale_origin[ 1 ], v[ 2 ] * h.scale[ 2 ] + h.scale_origin[ 2 ] ] : null;
 
-		const v = pose[ VENOM_MOUTH.vertex ].v;
-		mx = v[ 0 ] * h.scale[ 0 ] + h.scale_origin[ 0 ]; my = v[ 1 ] * h.scale[ 1 ] + h.scale_origin[ 1 ]; mz = v[ 2 ] * h.scale[ 2 ] + h.scale_origin[ 2 ];
+}
+function mouthPoint( e, side, out, time ) {
 
-	} else { mx = VENOM_MOUTH.fallback[ 0 ]; my = VENOM_MOUTH.fallback[ 1 ]; mz = VENOM_MOUTH.fallback[ 2 ]; }
+	// model space: the jaw of the pose on screen (the frame's own pose, as R_SetupAliasFrame picks it for a single
+	// frame; an out-of-range frame draws frame 0; a frame group's first pose: id1's Scrag has none), blended as r_anim.js
+	// blends it
+	const h = e.model.cache?.data, frames = h?.frames, frame = frames?.[ e.frame | 0 ] ? e.frame | 0 : 0;
+	let m = h?.numverts === VENOM_MOUTH.verts && h.scale && h.scale_origin && frames?.[ frame ] ? jawOf( h, frames[ frame ].firstpose ) : null;
+	const s = e._aliasLerp;
+	if ( m !== null && s != null && s.model === h && s.from !== s.to && time != null ) {
+
+		const a = jawOf( h, s.from ), b = jawOf( h, s.to ), t = Math.min( 1, Math.max( 0, ( time - s.start ) / ( s.interval > 0 ? s.interval : .1 ) ) );
+		if ( a !== null && b !== null ) m = [ a[ 0 ] + ( b[ 0 ] - a[ 0 ] ) * t, a[ 1 ] + ( b[ 1 ] - a[ 1 ] ) * t, a[ 2 ] + ( b[ 2 ] - a[ 2 ] ) * t ];
+
+	}
+	if ( m === null ) m = VENOM_MOUTH.fallback;
+	const mx = m[ 0 ], mz = m[ 2 ];
+	let my = m[ 1 ];
 	my -= side * VENOM_MOUTH.fang; // (model y is left; `side` +1 is the Scrag's right)
 	// to the world as the renderer turns an alias model: roll about x, then -pitch about y, then yaw about z
 	const a = e.angles, roll = ( a?.[ 2 ] ?? 0 ) * Math.PI / 180, pitch = - ( a?.[ 0 ] ?? 0 ) * Math.PI / 180, yaw = ( a?.[ 1 ] ?? 0 ) * Math.PI / 180;
-	let y1 = my * Math.cos( roll ) - mz * Math.sin( roll ), z1 = my * Math.sin( roll ) + mz * Math.cos( roll );
+	const y1 = my * Math.cos( roll ) - mz * Math.sin( roll ), z1 = my * Math.sin( roll ) + mz * Math.cos( roll );
 	const x2 = mx * Math.cos( pitch ) + z1 * Math.sin( pitch ), z2 = - mx * Math.sin( pitch ) + z1 * Math.cos( pitch );
 	out[ 0 ] = e.origin[ 0 ] + x2 * Math.cos( yaw ) - y1 * Math.sin( yaw );
 	out[ 1 ] = e.origin[ 1 ] + x2 * Math.sin( yaw ) + y1 * Math.cos( yaw );
 	out[ 2 ] = e.origin[ 2 ] + z2;
 
 }
-function scragMouth( ox, oy, oz, dx, dy, dz, entities, count, out ) {
+function scragMouth( ox, oy, oz, dx, dy, dz, entities, count, out, time ) {
 
 	let best = null, bestOff = SCRAG_REACH, bestSide = 1;
 	for ( let i = 0; i < count; i ++ ) {
@@ -560,7 +579,7 @@ function scragMouth( ox, oy, oz, dx, dy, dz, entities, count, out ) {
 
 	}
 	if ( best === null ) return false;
-	mouthPoint( best, bestSide, out );
+	mouthPoint( best, bestSide, out, time );
 	return true;
 
 }
@@ -569,33 +588,48 @@ const _mouth = [ 0, 0, 0 ];
 
 function launch( j, ent, time, eye, model, entities, count ) {
 
-	const o = j * 3, a = ent.angles;
+	const o = j * 3, a = ent.angles, K = VENOM.unit;
 	jetUsed[ j ] = 1; jetEnt[ j ] = ent; jetGen[ j ] = ++ _generation; _empty = false;
 	jetOrigin[ o ] = ent.origin[ 0 ]; jetOrigin[ o + 1 ] = ent.origin[ 1 ]; jetOrigin[ o + 2 ] = ent.origin[ 2 ];
-	// until it has moved, the direction is the entity's angles (QuakeC vectoangles of its velocity: pitch up)
+	// the spike's flight: its angles (QuakeC vectoangles of its velocity: pitch up)
 	const pitch = ( a?.[ 0 ] ?? 0 ) * Math.PI / 180, yaw = ( a?.[ 1 ] ?? 0 ) * Math.PI / 180;
-	jetDir[ o ] = Math.cos( pitch ) * Math.cos( yaw ); jetDir[ o + 1 ] = Math.cos( pitch ) * Math.sin( yaw ); jetDir[ o + 2 ] = Math.sin( pitch );
+	_p[ 0 ] = Math.cos( pitch ) * Math.cos( yaw ); _p[ 1 ] = Math.cos( pitch ) * Math.sin( yaw ); _p[ 2 ] = Math.sin( pitch );
+	jetDir[ o ] = _p[ 0 ]; jetDir[ o + 1 ] = _p[ 1 ]; jetDir[ o + 2 ] = _p[ 2 ];
+	// where it will end along that flight (Quake units from the entity), sampled once, as the source samples its target
+	const ahead = launchLimit( ent.origin, _p, eye, model ) * K;
 	let back = 0;
-	if ( scragMouth( jetOrigin[ o ], jetOrigin[ o + 1 ], jetOrigin[ o + 2 ], jetDir[ o ], jetDir[ o + 1 ], jetDir[ o + 2 ], entities, count, _mouth ) ) {
+	jetFixed[ j ] = 0;
+	if ( scragMouth( jetOrigin[ o ], jetOrigin[ o + 1 ], jetOrigin[ o + 2 ], _p[ 0 ], _p[ 1 ], _p[ 2 ], entities, count, _mouth, time ) ) {
 
-		// the ray runs from the fang to where the spike is drawn
-		const vx = ent.origin[ 0 ] - _mouth[ 0 ], vy = ent.origin[ 1 ] - _mouth[ 1 ], vz = ent.origin[ 2 ] - _mouth[ 2 ], l = Math.hypot( vx, vy, vz );
-		jetOrigin[ o ] = _mouth[ 0 ]; jetOrigin[ o + 1 ] = _mouth[ 1 ]; jetOrigin[ o + 2 ] = _mouth[ 2 ];
-		if ( l > 1e-3 ) { back = l; jetDir[ o ] = vx / l; jetDir[ o + 1 ] = vy / l; jetDir[ o + 2 ] = vz / l; }
+		// One fixed ray from the fang to the end of the spike's flight (card [SP2]). The spike, launched beside the head,
+		// stays within about 11 units of it, closing to 0 at the end, so the limit, the droplets, the reused-slot test
+		// and the impact matching all keep working on the stream's own line; the ray is not re-aimed as it flies.
+		const ex = ent.origin[ 0 ] + _p[ 0 ] * ahead - _mouth[ 0 ], ey = ent.origin[ 1 ] + _p[ 1 ] * ahead - _mouth[ 1 ], ez = ent.origin[ 2 ] + _p[ 2 ] * ahead - _mouth[ 2 ];
+		const total = Math.hypot( ex, ey, ez );
+		if ( total > 1e-3 ) {
+
+			jetOrigin[ o ] = _mouth[ 0 ]; jetOrigin[ o + 1 ] = _mouth[ 1 ]; jetOrigin[ o + 2 ] = _mouth[ 2 ];
+			jetDir[ o ] = ex / total; jetDir[ o + 1 ] = ey / total; jetDir[ o + 2 ] = ez / total;
+			back = Math.max( 0, ( ent.origin[ 0 ] - _mouth[ 0 ] ) * jetDir[ o ] + ( ent.origin[ 1 ] - _mouth[ 1 ] ) * jetDir[ o + 1 ] + ( ent.origin[ 2 ] - _mouth[ 2 ] ) * jetDir[ o + 2 ] );
+			jetFixed[ j ] = 1;
+			jetLimit[ j ] = total / K;
+
+		}
 
 	}
+	if ( ! jetFixed[ j ] ) jetLimit[ j ] = ahead / K; // (no Scrag in view: the ray starts at the entity, along its flight)
 	setBasis( j );
 	// (the leading edge is where the entity is; the stream has been flying since it left the mouth)
-	jetHead[ j ] = back / VENOM.unit; jetTail[ j ] = 0; jetBirth[ j ] = time - back / ( VENOM.speed * VENOM.unit ); jetSeed[ j ] = rand( 0, 100 );
+	jetHead[ j ] = back / K; jetTail[ j ] = 0; jetBirth[ j ] = time - back / ( VENOM.speed * K ); jetSeed[ j ] = rand( 0, 100 );
 	jetHitKnown[ j ] = 0; jetHit[ j ] = 0; jetDropCarry[ j ] = 0; jetSplashCarry[ j ] = 0;
 	jetNormal[ o ] = - jetDir[ o ]; jetNormal[ o + 1 ] = - jetDir[ o + 1 ]; jetNormal[ o + 2 ] = - jetDir[ o + 2 ];
-	_p[ 0 ] = jetDir[ o ]; _p[ 1 ] = jetDir[ o + 1 ]; _p[ 2 ] = jetDir[ o + 2 ];
-	jetLimit[ j ] = back / VENOM.unit + launchLimit( ent.origin, _p, eye, model );
 
 }
 
-// The leading edge follows the drawn entity along the ray (never backwards); the ray's direction is the entity's actual
-// motion once it has moved. False when the entity has left the ray: a new projectile in a reused entity slot.
+// The leading edge follows the drawn entity along the ray (never backwards). A ray from a Scrag's fang is fixed at
+// launch (aimed at the end of the spike's flight); one that starts at the entity (no Scrag in view) turns onto the
+// entity's actual motion once it has moved. False when the entity has left the ray: a new projectile in a reused
+// entity slot.
 function follow( j, ent ) {
 
 	const o = j * 3, K = VENOM.unit;
@@ -603,7 +637,7 @@ function follow( j, ent ) {
 	const along = vx * jetDir[ o ] + vy * jetDir[ o + 1 ] + vz * jetDir[ o + 2 ];
 	const off = Math.hypot( vx - jetDir[ o ] * along, vy - jetDir[ o + 1 ] * along, vz - jetDir[ o + 2 ] * along );
 	if ( along < jetHead[ j ] * K - OFF_RAY_NEW || off > OFF_RAY_NEW ) return false;
-	const l = Math.hypot( vx, vy, vz );
+	const l = jetFixed[ j ] ? 0 : Math.hypot( vx, vy, vz );
 	if ( l > 8 ) { jetDir[ o ] = vx / l; jetDir[ o + 1 ] = vy / l; jetDir[ o + 2 ] = vz / l; setBasis( j ); }
 	jetHead[ j ] = Math.max( jetHead[ j ], ( l > 8 ? l : along ) / K );
 	if ( ! jetHitKnown[ j ] && jetHead[ j ] > jetLimit[ j ] ) jetLimit[ j ] = jetHead[ j ]; // flew past the estimate

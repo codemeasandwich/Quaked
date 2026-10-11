@@ -58,7 +58,7 @@ when the leading edge reaches its target the packet drains into it. Here:
 
 * **Leading edge = the native entity.** Each frame `R_VenomFrame` (called from `R_RenderView` before
   the entities are drawn) finds the `w_spike` entities in `cl_visedicts` and puts each stream's
-  leading edge at its entity's interpolated origin, along the ray of its actual motion.
+  leading edge at its entity's interpolated origin, measured along the stream's ray (below).
 * **The mouth (card [SP2]).** The owner asked for the spit to come from the Scrag's face.
   * **The problem.** The client first sees a missile a server frame or two after launch, about
     60 units out. QuakeC launches it beside the Scrag's head, not from its mouth:
@@ -67,12 +67,28 @@ when the leading edge reaches its target the packet drains into it. Here:
     48 units of its ray.
   * **The fang.** Its stream starts at a fang on that Scrag's face. The source's jets leave its
     creature's two fang sockets, 0.13 m either side of the mouth (`twinPlan` `origins`). Here
-    the mouth is the jaw corner of id1's Scrag model, vertex 52 on its centre line, read from
-    the frame being drawn. For example, it sits 11.5 units forward and 31 up in `magatt4`, the
-    frame of the first spike.
+    the mouth is the jaw corner of id1's Scrag model, vertex 52 on its centre line. It is read
+    from the pose on screen: Newer Game blends poses over 0.1 s (`r_anim.js`), and QuakeC fires
+    each spike on the think that changes the Scrag's frame. So the jaw is blended between the
+    previous frame and the new one exactly as the mesh is drawn. For example, it sits 11.5
+    units forward, and between 24 and 31 units up, from `magatt3` to `magatt4`.
   * **Placement.** The mouth is turned with the Scrag as the renderer turns it. The fang is
     `VENOM_MOUTH.fang` (0.13 m, 3.5 units) to the side the spike was launched from.
-  * **The stream.** It runs from the fang to the drawn spike and then follows it.
+  * **The stream.** It is one fixed ray, from the fang to the end of the spike's own flight.
+    That end is sampled once at launch along the spike's direction: the player, or the first
+    wall. The spike, launched about 11 units beside the fang, stays close to that ray and
+    meets it at the end. The ray is not re-aimed in flight, so four things all work on the
+    stream's own line:
+    * the stream's narrowing and break-up toward its end;
+    * the droplets riding it;
+    * the check that tells a reused entity slot from the stream's own spike;
+    * the matching of the splash.
+
+    The first version re-aimed the ray at the spike every frame. The [SP2] review found that this
+    broke all four, so it was replaced.
+  * **Limits.** The fang is fixed at launch. The jaw moving during the 0.28 s the tail takes to
+    leave it is not followed. A Scrag mesh with frame groups would use each group's first
+    pose; id1's has none.
   * **Fallbacks.** A Scrag mesh with a different vertex count uses QuakeC's launch height on
     the centre line (14 forward, 30 up). With no Scrag in view, the ray starts where the spike
     was first drawn.

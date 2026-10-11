@@ -160,20 +160,20 @@ Deno.test( 'Classic and r_venom 0 keep the native spit: mesh, green tracer and i
 Deno.test( 'Newer Game: one stream per native spike, its leading edge on the entity, the tracer and mesh left out', () => {
 
 	const env = setup(), a = spike( env, 5 ), b = spike( env, 6, [ 100, 40, 64 ], [ .96, - .28, 0 ] );
-	const other = entity( 7, 'progs/k_spike.mdl', [ 0, 0, 64 ] ), plain = entity( 8, 'progs/wizard.mdl', [ 0, 0, 64 ] );
+	const other = entity( 7, 'progs/k_spike.mdl', [ 0, 0, 64 ] ), plain = entity( 8, 'progs/wizard.mdl', [ 0, 0, 34 ] );
 	env.ents[ 7 ] = other; env.ents[ 8 ] = plain; env.visible.push( other, plain );
 	for ( let f = 0; f <= 12; f ++ ) { a.at( f / 60 ); b.at( f / 60 ); env.frame(); }
 	const snap = venom.R_VenomSnapshot();
 	same( snap.jets.length, 2, 'two native spikes, two streams (no extra projectile, nothing for other models)' );
 	const ja = snap.jets.find( j => j.entity === 5 ), jb = snap.jets.find( j => j.entity === 6 );
 	check( ja && jb, 'each stream belongs to its own entity' );
-	// spike 5 has the Scrag (entity 8, 100 units behind it) near its ray: the stream starts at a fang on the Scrag's
-	// face. This stand-in model has no mesh, so the mouth is QuakeC's launch point on the centre line (14 forward, 30
-	// up) and the fang 0.13 source metres to the side (the real mesh: the next test); spike 6 has no Scrag behind it
-	// and starts where first drawn
-	const fang = .13 * K, mouth = [ 14, - fang, 94 ];
+	// spike 5 has the Scrag (entity 8, 100 units behind it, 30 below its line as QuakeC launches) near its ray: the
+	// stream starts at a fang on the Scrag's face. This stand-in model has no mesh, so the mouth is QuakeC's launch
+	// point on the centre line (14 forward, 30 up) and the fang 0.13 source metres to the side (the real mesh: the
+	// next test); spike 6 has no Scrag behind it and starts where first drawn
+	const fang = .13 * K, mouth = [ 14, - fang, 64 ];
 	for ( let i = 0; i < 3; i ++ ) near( ja.origin[ i ], mouth[ i ], 1e-4, 'spike 5: the stream starts at the Scrag\'s fang' );
-	near( ja.head, Math.hypot( 100 + SPEED * 12 / 60 - 14, fang, 30 ), .01, 'the leading edge is where the entity is drawn (Quake units from the fang)' );
+	near( ja.head, 100 + SPEED * 12 / 60 - 14, .05, 'the leading edge is where the entity is drawn (Quake units from the fang, along the ray)' );
 	for ( let i = 0; i < 3; i ++ ) { near( jb.origin[ i ], [ 100, 40, 64 ][ i ], 1e-4, 'spike 6: the ray starts where the entity was first drawn' ); near( jb.dir[ i ], [ .96, - .28, 0 ][ i ], 1e-4, 'ray follows the entity\'s motion' ); }
 	near( jb.head, SPEED * 12 / 60, .01, 'spike 6: the leading edge is where the entity is drawn' );
 	near( jb.tail, 0, 1e-9, 'within 0.28 s of launch the trailing edge is still at the mouth' );
@@ -219,11 +219,85 @@ Deno.test( 'the spit leaves the Scrag\'s face: a fang beside its jaw in the fram
 		const want = [ 0, 1, 2 ].map( i => S[ i ] + f[ i ] * m[ 0 ] + left[ i ] * ( m[ 1 ] - side * fang ) + ( i === 2 ? m[ 2 ] : 0 ) );
 		for ( let i = 0; i < 3; i ++ ) near( jet.origin[ i ], want[ i ], .02, `frame ${frame}, yaw ${yawDeg}, side ${side}: the stream starts at the fang beside the jaw` );
 		near( Math.hypot( ...[ 0, 1 ].map( i => jet.origin[ i ] - S[ i ] - f[ i ] * m[ 0 ] ) ), fang, .1, 'one fang either side of the centre line, as the source\'s' );
-		// it runs from there to the drawn spike
-		const to = [ 0, 1, 2 ].map( i => s.e.origin[ i ] - jet.origin[ i ] ), l = Math.hypot( ...to );
-		near( jet.head, l, .01, 'the leading edge is on the spike' );
-		for ( let i = 0; i < 3; i ++ ) near( jet.dir[ i ], to[ i ] / l, 1e-3, 'the ray points from the fang to the spike' );
-		same( scrag.frame, frame, 'the Scrag is only read' );
+		// one fixed ray from the fang to the end of the spike's flight: the end lies on the flight line, and the spike
+		// flies within the fang's offset of the ray
+		const end = [ 0, 1, 2 ].map( i => jet.origin[ i ] + jet.dir[ i ] * jet.limit ), w = [ 0, 1, 2 ].map( i => end[ i ] - from[ i ] );
+		const wa = w[ 0 ] * f[ 0 ] + w[ 1 ] * f[ 1 ] + w[ 2 ] * f[ 2 ];
+		near( Math.hypot( w[ 0 ] - f[ 0 ] * wa, w[ 1 ] - f[ 1 ] * wa, w[ 2 ] - f[ 2 ] * wa ), 0, .01, 'the ray ends on the spike\'s own flight' );
+		const v = [ 0, 1, 2 ].map( i => s.e.origin[ i ] - jet.origin[ i ] ), along = v[ 0 ] * jet.dir[ 0 ] + v[ 1 ] * jet.dir[ 1 ] + v[ 2 ] * jet.dir[ 2 ];
+		near( jet.head, along, .01, 'the leading edge is the spike\'s place along the ray' );
+		check( Math.hypot( v[ 0 ] - jet.dir[ 0 ] * along, v[ 1 ] - jet.dir[ 1 ] * along, v[ 2 ] - jet.dir[ 2 ] * along ) < 16, 'the spike flies close to the ray' );
+		same( scrag.frame, frame, 'the Scrag is only read' ); same( scrag.origin[ 0 ], S[ 0 ], 'its origin is untouched' );
+
+	}
+
+} );
+
+Deno.test( 'the fang is on the jaw as drawn: halfway through r_anim.js\'s pose blend it is halfway between the two poses', async () => {
+
+	const { Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
+	const WIZARD = Mod_ForName( 'progs/wizard.mdl', true ), h = WIZARD.cache.data;
+	const env = setup(), S = [ 0, 0, 40 ];
+	// QuakeC changed the frame to magatt4 (32) 0.05 s ago; the blend from magatt3 (31) is half done
+	const scrag = { _entityIndex: 9, model: WIZARD, frame: 32, origin: Float32Array.from( S ), angles: Float32Array.of( 0, 0, 0 ),
+		_aliasLerp: { model: h, from: h.frames[ 31 ].firstpose, to: h.frames[ 32 ].firstpose, start: env.time.now + 1 / 60 - .05, interval: .1 } };
+	env.ents[ 9 ] = scrag; env.visible.push( scrag );
+	spike( env, 5, [ 22, 14, 70 ], [ 1, 0, 0 ] ); // (the Scrag's left: side -1)
+	env.frame();
+	const jet = venom.R_VenomSnapshot().jets.find( j => j.entity === 5 );
+	near( jet.origin[ 2 ], 40 + ( 23.7184 + 31.206 ) / 2, .02, 'the jaw height halfway between magatt3 and magatt4' );
+	near( jet.origin[ 0 ], 11.4602, .02, 'forward as the jaw' );
+
+} );
+
+// QuakeC's own geometry (wizard.qc Wiz_StartFast / Wiz_FastFire): the spike leaves origin + '0 0 30' + v_forward * 14
+// +- v_right * 14 at 600 units/s toward the player's origin -+ 13 * v_right, and is first drawn one 1/72 s server tick
+// out. The player's eye is the test's view origin (0, 0, 22).
+function quakecSpit( env, side, scragAt, frame, WIZARD ) {
+
+	const scrag = { _entityIndex: 9, model: WIZARD, frame, origin: Float32Array.from( scragAt ), angles: Float32Array.of( 0, 0, 0 ) };
+	env.ents[ 9 ] = scrag; if ( ! env.visible.includes( scrag ) ) env.visible.push( scrag );
+	const right = [ 0, - 1, 0 ], start = [ scragAt[ 0 ] + 14, scragAt[ 1 ] + 14 * right[ 1 ] * side, scragAt[ 2 ] + 30 ];
+	const dst = [ 0, - 13 * right[ 1 ] * side, 0 ], d = [ 0, 1, 2 ].map( i => dst[ i ] - start[ i ] ), l = Math.hypot( ...d );
+	const dir = d.map( v => v / l ), first = [ 0, 1, 2 ].map( i => start[ i ] + dir[ i ] * SPEED / 72 );
+	return { scrag, start, dir, spike: spike( env, 5 + ( side > 0 ? 0 : 1 ), first, dir ) };
+
+}
+
+Deno.test( 'with QuakeC\'s launch geometry the fang\'s stream still ends at the player, keeps its spike through a stall and takes its splash', async () => {
+
+	const { COM_LoadPackFile, COM_AddPack } = await import( '../src/engine/common/pak.js' );
+	const { Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
+	const pak = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
+	COM_AddPack( COM_LoadPackFile( 'pak0.pak', pak.buffer.slice( pak.byteOffset, pak.byteOffset + pak.length ) ) );
+	const WIZARD = Mod_ForName( 'progs/wizard.mdl', true );
+	for ( const D of [ 300, 600, 900 ] ) for ( const side of [ 1, - 1 ] ) {
+
+		const env = setup(), q = quakecSpit( env, side, [ - D, 0, 40 ], 32, WIZARD );
+		env.frame();
+		let jet = venom.R_VenomSnapshot().jets.find( j => j.entity === q.spike.e._entityIndex );
+		check( jet, `D ${D}: a stream` );
+		// the limit is the player (the ray passes within PLAYER_REACH of the eye), not the far wall
+		const toEye = Math.hypot( jet.origin[ 0 ], jet.origin[ 1 ], jet.origin[ 2 ] - 6 );
+		check( Math.abs( jet.limit - toEye ) < 45, `D ${D} side ${side}: the stream ends at the player (${jet.limit.toFixed( 0 )} vs ${toEye.toFixed( 0 )})` );
+		// a stall: 0.2 s without a frame, then the flight goes on; still one stream for this spike
+		q.spike.at( .05 ); env.frame(); q.spike.at( .25 ); env.frame( .2 ); q.spike.at( .27 ); env.frame();
+		const mine = venom.R_VenomSnapshot().jets.filter( j => j.entity === q.spike.e._entityIndex );
+		same( mine.length, 1, `D ${D} side ${side}: one stream for the spike after a 0.2 s stall` );
+		jet = mine[ 0 ];
+		// the spike stays near the ray all the way (droplets ride the ray)
+		for ( const t of [ .1, .3, .6, .9 ] ) {
+
+			const p = [ 0, 1, 2 ].map( i => q.start[ i ] + q.dir[ i ] * SPEED * t ), v = [ 0, 1, 2 ].map( i => p[ i ] - jet.origin[ i ] ), a = v[ 0 ] * jet.dir[ 0 ] + v[ 1 ] * jet.dir[ 1 ] + v[ 2 ] * jet.dir[ 2 ];
+			if ( a > jet.limit ) break;
+			check( Math.hypot( v[ 0 ] - jet.dir[ 0 ] * a, v[ 1 ] - jet.dir[ 1 ] * a, v[ 2 ] - jet.dir[ 2 ] * a ) < 16, `D ${D}: the flight at ${t} s is within 16 units of the stream` );
+
+		}
+		// a splash 0.15 s of flight ahead of where the spike was last drawn is matched to this stream
+		const hit = Float32Array.from( [ 0, 1, 2 ].map( i => q.start[ i ] + q.dir[ i ] * SPEED * ( .27 + 1 / 72 + .15 ) ) );
+		if ( SPEED * ( .27 + 1 / 72 + .15 ) > D - 40 ) continue; // (at or past the player: no wall to splash on there)
+		same( venom.R_VenomImpact( hit ), true, 'the splash is the venom\'s' );
+		check( venom.R_VenomSnapshot().jets.find( j => j.entity === q.spike.e._entityIndex )?.hitKnown, `D ${D} side ${side}: matched to its own stream` );
 
 	}
 
