@@ -110,6 +110,8 @@ Everything is preallocated: 32 stream slots (one instanced tube, 144 × 8 segmen
 pool and 24 stains, as typed arrays and instanced attributes written in place each frame. Nothing is
 allocated per frame after the first build (a test checks the buffers are the same objects frame after
 frame). Outside Newer Game, or with `r_venom 0`, everything is dropped once and hidden.
+A 33rd spike in flight at once has no stream slot and is drawn natively in flight, but its `TE_WIZSPIKE` still gets
+the venom splash and stain (every `TE_WIZSPIKE` in Newer Game does; in id1 only the Scrag's spike sends one).
 
 ## How to try it
 

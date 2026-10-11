@@ -18,7 +18,7 @@ const files = process.argv.slice( 2 );
 const ROOT = process.cwd();
 const LISTED = new Set( [ 'rocketlauncher.zip', 'thuderbolt.zip', 'supershotgun.zip', 'supernailgun.zip', 'supernailgun2.zip',
 	'fieldlab-fx-3d-updated.html', 'arc-weapons-wall-canvas-shotgun.html', 'demon-vision.html', 'player-face-layers-v4.4.0.html',
-	'newer/hud/playerface/blood.png', 'rockfield-v1.0.0.html', 'rockfield-v1.6.0.html', 'stasis-combat-fx-v2.html' ].map( f => resolve( ROOT, f ) ) );
+	'newer/hud/playerface/blood.png', 'rockfield-v1.0.0.html', 'rockfield-v1.6.0.html', 'stasis-combat-fx-v2.html', 'twin-shot-venom.html' ].map( f => resolve( ROOT, f ) ) );
 const RESOURCES = resolve( ROOT, 'resources' ), PAK3 = resolve( homedir(), 'Downloads/Quake/Id1/PAK3.pk3' );
 const unreadable = path => { try { accessSync( path, constants.R_OK ); return false; } catch { return true; } };
 function missingInput( error ) {

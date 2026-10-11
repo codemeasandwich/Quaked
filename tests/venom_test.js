@@ -87,7 +87,9 @@ Deno.test( 'the ported stream window and shaders are the source\'s own', () => {
 
 	const path = process.env.QUAKED_VENOM_SOURCE || new URL( '../twin-shot-venom.html', import.meta.url ).pathname;
 	const need = process.env.QUAKED_VENOM_SOURCE_REQUIRED === '1', skip = why => { if ( need ) throw new Error( why + ' (QUAKED_VENOM_SOURCE_REQUIRED=1)' ); console.log( 'SKIPPED source equivalence: ' + why ); };
-	if ( ! existsSync( path ) ) return skip( 'source file not present locally (set QUAKED_VENOM_SOURCE)' );
+	// absent: read it anyway, so the missing page (a local input, never committed) is reported by tools/run_tests.mjs as
+	// this test skipped with the page named, not as passed
+	if ( ! existsSync( path ) ) { if ( need ) throw new Error( 'source file not present locally (QUAKED_VENOM_SOURCE_REQUIRED=1)' ); readFileSync( path ); }
 	const bytes = readFileSync( path );
 	if ( createHash( 'sha256' ).update( bytes ).digest( 'hex' ) !== SOURCE_SHA256 ) return skip( 'different source revision' );
 	// the effect's ES module is one JS string literal in the page (`const source="..."`)
