@@ -268,6 +268,8 @@ Deno.test( 'a laser striking a wall gets the source\'s impact on the wall; real 
 	same( sb.R_StasisBoltImpact( [ event[ 0 ], event[ 1 ] + 40, 64 ] ), false, 'a gunshot level with the bolt but 40 units off its line is a bullet' );
 	const side = [ - d[ 1 ], d[ 0 ], 0 ], ahead = [ e.origin[ 0 ] + d[ 0 ] * 100 + side[ 0 ] * 8, e.origin[ 1 ] + d[ 1 ] * 100 + side[ 1 ] * 8, 64 ];
 	same( sb.R_StasisBoltImpact( ahead ), false, 'a gunshot 8 units off the line, 100 units ahead, is a bullet' );
+	const beside = [ e.origin[ 0 ] + d[ 0 ] * 20 + side[ 0 ] * 8, e.origin[ 1 ] + d[ 1 ] * 20 + side[ 1 ] * 8, 64 ];
+	same( sb.R_StasisBoltImpact( beside ), false, 'a gunshot 8 units off the line, just ahead of the bolt, is a bullet' );
 	same( sb.R_StasisBoltImpact( event ), true, 'the gunshot on its path is the laser\'s impact' );
 	same( sb.R_StasisBoltImpact( event ), false, 'one impact per bolt' );
 	let s = frame( env, [], 1 / 60 );
