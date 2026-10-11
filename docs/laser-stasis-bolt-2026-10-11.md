@@ -100,7 +100,7 @@ gunshot particles flagged for the Classic half alone (as the explosions do), so 
 
 ## Verification
 
-* `tests/stasisbolt_test.js` (8 tests). Against the source (run when the hashed page is at the repository root or
+* `tests/stasisbolt_test.js` (9 tests). Against the source (run when the hashed page is at the repository root or
   `QUAKED_STASIS_SOURCE` names it; `QUAKED_STASIS_SOURCE_REQUIRED=1` makes its absence a failure): the source's own
   `CombatFX` runs in a VM with the real three.js and the owner's call; its bolt's length, radius, proxy box, colours,
   steps, roughness and power equal the port's; every ray-march statement is in the port's shader; its spark rate,

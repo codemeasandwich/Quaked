@@ -64,7 +64,9 @@ function source() {
 	const path = new URL( process.env.QUAKED_STASIS_SOURCE ? 'file://' + process.env.QUAKED_STASIS_SOURCE : '../stasis-combat-fx-v2.html', import.meta.url );
 	const need = process.env.QUAKED_STASIS_SOURCE_REQUIRED === '1';
 	const skip = why => { if ( need ) throw new Error( why + ' (QUAKED_STASIS_SOURCE_REQUIRED=1)' ); console.log( 'SKIPPED source equivalence: ' + why ); return null; };
-	if ( ! existsSync( path ) ) return skip( 'source file not present locally' );
+	// absent: read it anyway, so the missing page (a local input, never committed) is reported by tools/run_tests.mjs as
+	// this test skipped with the page named, not as passed
+	if ( ! existsSync( path ) ) { if ( need ) throw new Error( 'source file not present locally (QUAKED_STASIS_SOURCE_REQUIRED=1)' ); readFileSync( path ); }
 	const bytes = readFileSync( path );
 	if ( createHash( 'sha256' ).update( bytes ).digest( 'hex' ) !== SOURCE_SHA256 ) return skip( 'different source revision' );
 	const text = bytes.toString( 'utf8' ), lines = text.split( '\n' );
