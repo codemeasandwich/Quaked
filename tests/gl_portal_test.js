@@ -189,3 +189,93 @@ Deno.test( 'a teleporter surface at a level exit is left to the next level\'s wi
 	try { assertEqual( portal.R_BuildPortals( gate ).length, 0, 'no face of the gate is a camera portal' ); } finally { portal.R_ClearPortals(); }
 
 } );
+
+// card [END1]: end.bsp's final teleporter sends the player to the spiked teleport ball (a misc_teleporttrain) as it
+// flies its lap; its window follows the ball, from inside it
+const TRAIN_ENTITIES = `
+{
+"classname" "worldspawn"
+}
+{
+"classname" "trigger_teleport"
+"target" "t33"
+"model" "*1"
+"spawnflags" "2049"
+}
+{
+"classname" "trigger_teleport"
+"target" "t69"
+"model" "*1"
+"spawnflags" "1792"
+}
+{
+"classname" "info_teleport_destination"
+"targetname" "t69"
+"origin" "-768 2208 56"
+"angle" "270"
+}
+{
+"classname" "misc_teleporttrain"
+"targetname" "t33"
+"target" "t32"
+"origin" "-520 696 72"
+}
+`;
+
+Deno.test( 'a teleporter onto a teleport train: one window, onto the train itself, following it from inside', async () => {
+
+	const { Cvar_RegisterVariable, Cvar_SetValue, Cvar_FindVar, cvar_t } = await import( '../src/engine/common/cvar.js' );
+	for ( const [ name, value ] of [ [ 'r_hdr', '1' ], [ 'skill', '1' ], [ 'deathmatch', '0' ] ] ) if ( ! Cvar_FindVar( name ) ) Cvar_RegisterVariable( new cvar_t( name, value ) );
+	Cvar_SetValue( 'r_hdr', 1 ); Cvar_SetValue( 'skill', 1 ); Cvar_SetValue( 'deathmatch', 0 );
+	const { cl, cl_entities } = await import( '../src/engine/client/client.js' );
+	const THREE = await import( 'three' );
+	const surf = makeSurface( '*teleport', 100, 1 );
+	const portals = portal.R_BuildPortals( makeModel( [ surf ], TRAIN_ENTITIES ) );
+	try {
+
+		// the deathmatch-only twin (spawnflags 1792: left out at every single-player skill) gets no window
+		assertEqual( portals.length, 1, 'one window' );
+		const p = portals[ 0 ];
+		assertEqual( p.triggerTarget, 't33', 'onto the train, not the deathmatch twin\'s fixed destination' );
+		assertEqual( p.follow, true, 'it follows the train' );
+		assertVecNear( p.dest, [ - 520, 696, 72 ], 'the train\'s own origin (where teleport_touch puts the player: no 27 added)' );
+		assertEqual( p.yaw, 0, 'facing as the teleport leaves the player (the train has no mangle)' );
+
+		// the ball flying: its client entity, updated this frame
+		const ball = { model: { name: 'progs/teleport.mdl' }, msgtime: cl.mtime[ 0 ], origin: new Float32Array( [ - 300, 900, 136 ] ), _aliasMesh: new THREE.Object3D() };
+		const other = { model: { name: 'progs/teleport.mdl' }, msgtime: cl.mtime[ 0 ] - 1, origin: new Float32Array( [ - 520, 696, 72 ] ) };
+		const keep = [ cl_entities[ 300 ], cl_entities[ 301 ] ];
+		cl_entities[ 300 ] = ball; cl_entities[ 301 ] = other;
+		try {
+
+			portal.R_PortalsBeginFrame( true );
+			assertVecNear( p.dest, [ - 300, 900, 136 ], 'the window\'s receiver is where the ball is drawn this frame (not a stale entity)' );
+			assertEqual( p.followEntity, ball, 'the ball\'s entity' );
+			assertVecNear( portal.R_TransformPortalPoint( p, p.center ), p.dest, 'the doorway maps onto the ball' );
+			ball.origin.set( [ - 280, 900, 136 ] );
+			portal.R_PortalsBeginFrame( true );
+			assertVecNear( p.dest, [ - 280, 900, 136 ], 'and moves with it, frame by frame' );
+
+			// its view is drawn from inside the ball: the ball's own model is out of that picture, and back afterwards
+			portal.R_PortalNoteVisible( p );
+			const seen = [];
+			const renderer = { getRenderTarget: () => null, setRenderTarget() {}, getClearColor: c => c, getClearAlpha: () => 1, setClearColor() {}, clear() {},
+				render: () => seen.push( ball._aliasMesh.visible ) };
+			const camera = new THREE.PerspectiveCamera( 90, 1, 1, 8192 );
+			camera.position.set( p.center[ 0 ] + 100, p.center[ 1 ], p.center[ 2 ] ); camera.lookAt( p.center[ 0 ], p.center[ 1 ], p.center[ 2 ] ); camera.updateMatrixWorld();
+			assertEqual( portal.R_RenderPortals( renderer, new THREE.Scene(), camera, 640, 480, 0, [] ), 1, 'the view is drawn' );
+			assertEqual( seen.join(), 'false', 'without the ball in it' );
+			assertEqual( ball._aliasMesh.visible, true, 'the ball is drawn again in the main view' );
+
+		} finally { cl_entities[ 300 ] = keep[ 0 ]; cl_entities[ 301 ] = keep[ 1 ]; }
+
+		// in deathmatch the game keeps the twin instead (spawnflags 2049 includes 2048: not in deathmatch)
+		Cvar_SetValue( 'deathmatch', 1 );
+		const dm = portal.R_BuildPortals( makeModel( [ makeSurface( '*teleport', 100, 1 ) ], TRAIN_ENTITIES ) );
+		assertEqual( dm.length, 1, 'deathmatch: one window' );
+		assertEqual( dm[ 0 ].triggerTarget, 't69', 'onto the deathmatch destination' );
+		Cvar_SetValue( 'deathmatch', 0 );
+
+	} finally { portal.R_ClearPortals(); }
+
+} );

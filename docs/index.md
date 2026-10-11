@@ -105,6 +105,7 @@ Level textures, rock relief, seams, seamless levels and portals.
 - [Continuous procedural natural rock and terrain relief](continuous-rockfield-2026-10-02.md)
 - [Equal resolution in the startup demo](demo-resolution-2026-10-01.md)
 - [E1M1 exit corridor ceiling fixtures](e1m1-ceiling-fixtures.md)
+- [The last level: Shub-Niggurath's spiked ball, the final teleporter and the hub wall](end-level-2026-10-11.md)
 - [Lifts, buttons and monsters no longer vanish in busy levels](entity-limit-2026-10-09.md)
 - [Level Select by episode, and a Cheats menu in Options](level-select-cheats-2026-10-09.md)
 - [City/Church and Wizard texture updates](level-texture-update-2026-10-02.md)

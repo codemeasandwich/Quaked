@@ -68,7 +68,10 @@ const nightmare=result.find(p=>p.trigger==='*19'&&p.normal[1]===1);
 if(!nightmare||nightmare.startsolid||nightmare.fraction>=1||Math.abs(nightmare.distance-8.03125)>1e-6||!nightmare.atContact)throw new Error('nightmare backing must permit QC at actual hull contact');
 const reachable=result.filter(p=>!p.startsolid&&!p.allsolid);
 if(reachable.some(p=>p.from48||(p.fraction<1&&!p.atContact)))throw new Error('reachable source either teleports early or stalls at a backing wall');
-if(reachable.length!==13)throw new Error('unexpected shipped start hub source coverage');
+// The deathmatch-only teleporters (*45, *49: spawnflags 1792, left out at every single-player skill) have no window in
+// single player, as the game has no trigger there (card [END1]): 11 of the 13 reachable windows of a deathmatch build.
+if(portals.some(p=>['*45','*49'].includes(p.triggerModel)))throw new Error('a deathmatch-only teleporter got a single-player window');
+if(reachable.length!==11)throw new Error('unexpected shipped start hub source coverage');
 
 // Now exercise the actual player physics caller: the wall clips the normal
 // component before its final trigger link. QC is the only simulated action.

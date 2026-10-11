@@ -27,6 +27,8 @@ import { WATER as WAVE_WATER, METAL as WAVE_METAL, WAVE_GLSL, metalWave, R_WaveT
 import { R_NewerGame, r_newer_portals } from '../mode.js';
 import { COM_Parse, com_token } from '../../engine/common/common.js';
 import { Mod_PointInLeaf, Mod_LeafPVS } from '../../engine/render/gl_model.js';
+import { Cvar_VariableValue } from '../../engine/common/cvar.js';
+import { cl, cl_entities } from '../../engine/client/client.js';
 
 export const r_portals = new cvar_t( 'r_portals', '1' );
 
@@ -369,6 +371,80 @@ export function R_GetPortals() {
 
 }
 
+// Does the game leave this entity out (ED_LoadFromFile): in deathmatch one marked not for deathmatch (2048), otherwise
+// one marked not for this skill (256 easy, 512 normal, 1024 hard and nightmare)
+function inhibited( ent ) {
+
+	const flags = parseInt( ent.spawnflags, 10 ) || 0;
+	if ( Cvar_VariableValue( 'deathmatch' ) ) return ( flags & 2048 ) !== 0;
+	const skill = Math.floor( Cvar_VariableValue( 'skill' ) + 0.5 );
+	return ( flags & ( skill <= 0 ? 256 : skill === 1 ? 512 : 1024 ) ) !== 0;
+
+}
+
+// What a portal's receiver sees from `leaf`: its PVS row, the leaves in it, and their sky and water surfaces (which have
+// to be handed to the renderer even when the main view's frustum never reaches them). Kept until the receiver moves into
+// another leaf; the server's link through the window (gl_rmain.js `_svLink`) follows.
+function portalSight( portal, leaf ) {
+
+	if ( leaf === portal.destLeaf ) return;
+	const model = portal.model;
+	portal.destLeaf = leaf;
+	portal.destVis = Mod_LeafPVS( leaf, model ).slice( 0, ( model.numleafs + 7 ) >> 3 );
+	portal.destLeafs = []; portal.extraSurfaces = [];
+	if ( portal._svLink ) portal._svLink.belowVis = portal.destVis;
+	const destVis = portal.destVis, seen = new Set();
+	for ( let l = 0; l < model.numleafs; l ++ ) {
+
+		if ( ( destVis[ l >> 3 ] & ( 1 << ( l & 7 ) ) ) === 0 ) continue;
+
+		const lf = model.leafs[ l + 1 ];
+		if ( lf == null ) continue;
+		portal.destLeafs.push( lf );
+
+		if ( lf.firstmarksurface == null ) continue;
+		for ( let c = 0; c < lf.nummarksurfaces; c ++ ) {
+
+			const s = lf.firstmarksurface[ c ];
+			if ( s == null || seen.has( s ) ) continue;
+			seen.add( s );
+
+			if ( ( s.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) === 0 ) continue;
+			if ( s.texinfo != null && s.texinfo.texture != null &&
+				s.texinfo.texture.name.charAt( 0 ) === '*' &&
+				s.texinfo.texture.name.toLowerCase().indexOf( '*teleport' ) === 0 ) continue;
+			portal.extraSurfaces.push( s );
+
+		}
+
+	}
+
+}
+
+const TRAIN_MODEL = 'progs/teleport.mdl';
+
+// A window onto a teleport train: its receiver is moved to where the train is drawn this frame (the client entity's
+// interpolated origin; the nearest such entity to the last receiver), its view matrix rebuilt, and what it sees
+// refreshed when the train enters another leaf. A train not sent this frame keeps the last place.
+function followTrain( portal ) {
+
+	let best = null, bestD = Infinity;
+	for ( const e of cl_entities ) {
+
+		if ( e == null || e.model?.name !== TRAIN_MODEL || e.msgtime !== cl.mtime[ 0 ] || e.origin == null ) continue;
+		const d = ( e.origin[ 0 ] - portal.dest[ 0 ] ) ** 2 + ( e.origin[ 1 ] - portal.dest[ 1 ] ) ** 2 + ( e.origin[ 2 ] - portal.dest[ 2 ] ) ** 2;
+		if ( d < bestD ) { bestD = d; best = e; }
+
+	}
+	portal.followEntity = best;
+	if ( best === null ) return;
+	const D = [ best.origin[ 0 ], best.origin[ 1 ], best.origin[ 2 ] ];
+	const m = portalMatrix( portal.center, portal.normal, D, portal.yaw );
+	portal.dest = D; portal.forward = m.forward; portal.matrix = m.elements;
+	portalSight( portal, Mod_PointInLeaf( D, portal.model ) );
+
+}
+
 /**
  * Builds the camera portals for a world model at map load (gl_rsurf.js, after the world surfaces are built). Every
  * `*teleport` turbulent surface within `TRIGGER_SLOP` (24) units of a `trigger_teleport` whose target is an
@@ -403,17 +479,36 @@ export function R_BuildPortals( model ) {
 
 	}
 
+	// A teleporter that sends the player to a moving teleport train (end.bsp's final teleporter: to the spiked ball that
+	// flies through Shub-Niggurath) gets a window that follows the train (card [END1]): its view is moved to the train
+	// every frame (`R_PortalsBeginFrame`). The train's own origin is where teleport_touch puts the player.
+	const trains = new Map();
+	for ( const ent of ents )
+		if ( ent.classname === 'misc_teleporttrain' && ent.targetname != null && ! trains.has( ent.targetname ) ) trains.set( ent.targetname, ent );
+
 	const triggers = [];
 	for ( const ent of ents ) {
 
 		if ( ent.classname !== 'trigger_teleport' || ent.target == null || ent.model == null ) continue;
 		if ( ent.model.charAt( 0 ) !== '*' ) continue;
+		// a trigger the game leaves out at this skill or in this kind of game (ED_LoadFromFile) has no window: end.bsp's
+		// deathmatch-only twin of the final teleporter took its faces and showed a fixed view of Shub (card [END1])
+		if ( inhibited( ent ) ) continue;
+
+		const train = trains.get( ent.target );
+		if ( train != null ) {
+
+			const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
+			if ( sub != null ) triggers.push( { dest: train, follow: true, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs, named: ent.targetname != null } );
+			continue;
+
+		}
 
 		const dest = dests.get( ent.target );
 		const sub = model.submodels[ parseInt( ent.model.substring( 1 ), 10 ) ];
 		if ( dest == null || sub == null ) continue;
 
-		triggers.push( { dest, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs } );
+		triggers.push( { dest, model: ent.model, target: ent.target, mins: sub.mins, maxs: sub.maxs, named: ent.targetname != null } );
 
 	}
 
@@ -452,8 +547,11 @@ export function R_BuildPortals( model ) {
 		let best = - 1, bestGap = TRIGGER_SLOP;
 		for ( let t = 0; t < triggers.length; t ++ ) {
 
+			// as near (the later wins, as before), unless the later only works when the level's trigger uses it
+			// (a targetname: teleport_touch for 0.2 s after teleport_use) and the one already chosen always works:
+			// end.bsp's large post-death teleporters overlap the final teleporter (card [END1])
 			const gap = boxGap( smins, smaxs, triggers[ t ].mins, triggers[ t ].maxs );
-			if ( gap <= bestGap ) {
+			if ( gap < bestGap || ( gap === bestGap && ! ( triggers[ t ].named && best >= 0 && ! triggers[ best ].named ) ) ) {
 
 				bestGap = gap;
 				best = t;
@@ -538,14 +636,13 @@ export function R_BuildPortals( model ) {
 		C[ 2 ] -= n[ 2 ] * off;
 
 		const origin = parseVector( g.trigger.dest.origin );
-		const D = [ origin[ 0 ], origin[ 1 ], origin[ 2 ] + TELEPORT_DEST_HEIGHT ];
+		// (a train is where the player arrives; a destination's spawn function adds 27)
+		const D = [ origin[ 0 ], origin[ 1 ], origin[ 2 ] + ( g.trigger.follow ? 0 : TELEPORT_DEST_HEIGHT ) ];
 		const yaw = destinationYaw( g.trigger.dest );
 
 		const m = portalMatrix( C, n, D, yaw );
 
 		const srcLeaf = Mod_PointInLeaf( [ C[ 0 ] + n[ 0 ] * 16, C[ 1 ] + n[ 1 ] * 16, C[ 2 ] + n[ 2 ] * 16 ], model );
-		const destLeaf = Mod_PointInLeaf( D, model );
-		const destVis = Mod_LeafPVS( destLeaf, model ).slice( 0, ( model.numleafs + 7 ) >> 3 );
 
 		const portal = {
 			triggerModel: g.trigger.model,
@@ -561,41 +658,17 @@ export function R_BuildPortals( model ) {
 			forward: m.forward,
 			matrix: m.elements,
 			srcLeaf,
-			destVis,
+			destVis: null,
 			destLeafs: [],
 			extraSurfaces: [],
 			material: null,
-			activeFrame: - 1
+			activeFrame: - 1,
+			follow: g.trigger.follow === true, // the receiver moves with a teleport train
+			followEntity: null,                // that train's client entity, while it is known
+			destLeaf: null,
+			model
 		};
-
-		// Leaves the receiver can see: their static entities and their sky / water
-		// surfaces have to be handed to the renderer even when the main view's
-		// frustum never reaches them.
-		const seen = new Set();
-		for ( let l = 0; l < model.numleafs; l ++ ) {
-
-			if ( ( destVis[ l >> 3 ] & ( 1 << ( l & 7 ) ) ) === 0 ) continue;
-
-			const leaf = model.leafs[ l + 1 ];
-			if ( leaf == null ) continue;
-			portal.destLeafs.push( leaf );
-
-			if ( leaf.firstmarksurface == null ) continue;
-			for ( let c = 0; c < leaf.nummarksurfaces; c ++ ) {
-
-				const s = leaf.firstmarksurface[ c ];
-				if ( s == null || seen.has( s ) ) continue;
-				seen.add( s );
-
-				if ( ( s.flags & ( SURF_DRAWSKY | SURF_DRAWTURB ) ) === 0 ) continue;
-				if ( s.texinfo != null && s.texinfo.texture != null &&
-					s.texinfo.texture.name.charAt( 0 ) === '*' &&
-					s.texinfo.texture.name.toLowerCase().indexOf( '*teleport' ) === 0 ) continue;
-				portal.extraSurfaces.push( s );
-
-			}
-
-		}
+		portalSight( portal, Mod_PointInLeaf( D, model ) );
 
 		for ( const s of portal.surfaces ) s._portal = portal;
 		portals.push( portal );
@@ -622,6 +695,7 @@ export function R_PortalsBeginFrame( enabled ) {
 	// camera portals belong to Newer Game (and can be switched off there); the
 	// original game keeps its teleporters as they were
 	portalsEnabled = enabled && r_portals.value !== 0 && R_NewerGame() && r_newer_portals.value !== 0;
+	if ( portalsEnabled ) for ( const p of portals ) if ( p.follow ) followTrain( p );
 
 }
 
@@ -987,7 +1061,10 @@ export function R_RenderPortals( renderer, scene, camera, width, height, time, h
 			renderer.setRenderTarget( rt );
 			renderer.setClearColor( 0x000000, 1 );
 			renderer.clear( true, true, true );
-			renderer.render( scene, viewCamera );
+			// the view from a train is from inside it: its own model is not in the picture
+			const own = p.follow ? p.followEntity?._aliasMesh : null, ownShown = own?.visible;
+			if ( own ) own.visible = false;
+			try { renderer.render( scene, viewCamera ); } finally { if ( own ) own.visible = ownShown; }
 
 			setPortalUniforms( p, rt.texture, 1, time );
 			rendered ++;
