@@ -54,6 +54,12 @@ export function M_Menu_Main_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_main`: the plaque, the title, the items from the `gfx/mainmenu_ext.lmp` sheet (its
+ * Continue row only in a game; text labels when the sheet is missing) and the spinning `menudot` cursor, 20 pixels a
+ * row from y 32. Tells the WebGL menu whether a game is on and clamps the cursor to the items shown. Draws nothing
+ * until `Draw_CachePic` is wired.
+ */
 export function M_Main_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -98,6 +104,14 @@ export function M_Main_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the main menu. ESC closes the menu (key_dest `key_game`), restores `cls.demonum` and, when not
+ * connected or playing a demo, resumes the demo loop (`CL_NextDemo`). Up and Down move the cursor, wrapping. Enter
+ * opens the item: Continue (in a game only) closes the menu; then Single Player, Multiplayer (the local or online
+ * choice), Bestiarium, Options, Credits, and Quit (leaving fullscreen first).
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Main_Key( key ) {
 
 	const inGame = M_InGame();
@@ -186,6 +200,12 @@ export function M_Menu_Bestiary_f() {
 
 }
 
+/**
+ * `M_Keydown` in the Bestiary book: ESC returns to the main menu; any other key goes to `R_BestiaryBookKey`, with the
+ * menu click sound when the book used it.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Bestiary_Key( key ) {
 
 	if ( key === K_ESCAPE ) { M_Menu_Main_f(); return; }
@@ -205,6 +225,10 @@ let m_singleplayer_cursor = 0;
 
 const SINGLEPLAYER_ITEMS = 5; // Newer Game, New Game, Load, Save, Level Select
 
+/**
+ * Opens the single player menu (the `menu_singleplayer` command, the main menu's Single Player item, and ESC from
+ * Load, Save and Level Select): key_dest `key_menu`, `m_state` `m_singleplayer`, enter sound.
+ */
 export function M_Menu_SinglePlayer_f() {
 
 	setKeyDest( key_menu );
@@ -213,6 +237,11 @@ export function M_Menu_SinglePlayer_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_singleplayer`: the plaque, the title, the five items from `gfx/sp_menu_ext.lmp`
+ * (or the classic `gfx/sp_menu.lmp` with Newer Game and Level Select printed as text; Level Select also printed over
+ * an older four-row sheet) and the spinning cursor, 20 pixels a row from y 32. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_SinglePlayer_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -244,6 +273,13 @@ export function M_SinglePlayer_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the single player menu. ESC returns to the main menu; Up and Down move the cursor, wrapping. Enter on
+ * Newer Game or New Game starts `map start` (key_dest `key_game`): `disconnect` if a server runs, `maxplayers 1`, then
+ * `r_hdr 1` and the Newer defaults, or `r_hdr 0`. Enter on Load, Save or Level Select opens that screen.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_SinglePlayer_Key( key ) {
 
 	switch ( key ) {
@@ -365,6 +401,10 @@ function M_ScanSaves() {
 
 }
 
+/**
+ * Opens the load menu (the `menu_load` command and the single player Load item) and reads the 12 slots' comments from
+ * browser storage (`M_ScanSaves`, this game's save prefix).
+ */
 export function M_Menu_Load_f() {
 
 	set_m_entersound( true );
@@ -374,6 +414,10 @@ export function M_Menu_Load_f() {
 
 }
 
+/**
+ * Opens the save menu (the `menu_save` command and the single player Save item) and reads the slots' comments; does
+ * nothing unless a local server runs, the game is not at an intermission and `maxclients` is 1.
+ */
 export function M_Menu_Save_f() {
 
 	if ( ! _sv.active )
@@ -390,6 +434,10 @@ export function M_Menu_Save_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_load`: the Load title, the 12 slot comments 8 pixels apart from y 32 (`--- UNUSED SLOT
+ * ---` for empty ones) and the blinking cursor. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_Load_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -405,6 +453,9 @@ export function M_Load_Draw() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_save`: as `M_Load_Draw`, under the Save title.
+ */
 export function M_Save_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -419,6 +470,13 @@ export function M_Save_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the load menu. ESC returns to single player; Up or Left and Down or Right move the slot cursor,
+ * wrapping. Enter on a slot with a save closes the menu (key_dest `key_game`), shows the loading plaque and queues
+ * `load s<n>`; on an empty slot it only plays the click.
+ *
+ * @param {number} k key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Load_Key( k ) {
 
 	switch ( k ) {
@@ -455,6 +513,12 @@ export function M_Load_Key( k ) {
 
 }
 
+/**
+ * `M_Keydown` on the save menu. ESC returns to single player; Up or Left and Down or Right move the slot cursor,
+ * wrapping. Enter closes the menu (key_dest `key_game`) and queues `save s<n>` for the slot, used or not.
+ *
+ * @param {number} k key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Save_Key( k ) {
 
 	switch ( k ) {
@@ -509,6 +573,10 @@ function M_OpenCreditsSource() {
 
 }
 
+/**
+ * Opens the credits (the `help` and `menu_credits` commands and the main menu's Credits item): key_dest `key_menu`,
+ * `m_state` `m_credits`, enter sound.
+ */
 export function M_Menu_Credits_f() {
 
 	setKeyDest( key_menu );
@@ -517,6 +585,11 @@ export function M_Menu_Credits_f() {
 
 }
 
+/**
+ * Draws the credits box: `M_Draw` calls it while `m_state` is `m_credits`, inside `Draw_WithVirtualSize` (320 x
+ * `CREDITS_HEIGHT`, scaled by `CREDITS_SCALE`). The id Software, port and Newer credits, the weapon models credit
+ * (its picture when the host gave one) and the source link, from y `CREDITS_TOP`.
+ */
 export function M_Credits_Draw() {
 
 	M_DrawTextBox( 0, CREDITS_TOP, 38, 32 );
@@ -550,6 +623,11 @@ export function M_Credits_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the credits: ESC returns to the main menu; Enter opens the project's source page in a new window.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Credits_Key( key ) {
 
 	switch ( key ) {
@@ -565,6 +643,13 @@ export function M_Credits_Key( key ) {
 
 }
 
+/**
+ * `M_TouchInput` on the credits: a touch on the source link (8 pixels from `CREDITS_TOP + 248`) opens it in a new
+ * window; a touch anywhere else returns to the main menu, as ESC.
+ *
+ * @param {number} vx x in menu pixels (0..320)
+ * @param {number} vy y in menu pixels (`CREDITS_TOP` .. `CREDITS_TOP + CREDITS_HEIGHT`)
+ */
 export function M_Credits_Touch( vx, vy ) {
 
 	if ( vy >= CREDITS_TOP + 248 && vy < CREDITS_TOP + 256 && vx >= CREDITS_LINK_X && vx < CREDITS_LINK_X + CREDITS_LINK_TEXT.length * 8 ) {
@@ -586,6 +671,10 @@ export function M_Credits_Touch( vx, vy ) {
 ==============================================================================
 */
 
+/**
+ * Opens the quit prompt (the `menu_quit` command and the main menu's Quit item): key_dest `key_menu`, `m_state`
+ * `m_quit`, enter sound.
+ */
 export function M_Menu_Quit_f() {
 
 	setKeyDest( key_menu );
@@ -594,6 +683,9 @@ export function M_Menu_Quit_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_quit`: a text box asking "Are you sure you want to quit? (Y/N)".
+ */
 export function M_Quit_Draw() {
 
 	M_DrawTextBox( 56, 76, 24, 4 );
@@ -602,6 +694,12 @@ export function M_Quit_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the quit prompt. ESC, `n` or `N` return to the main menu. `y` or `Y` do not quit: they open the
+ * project's GitHub page in a new window (`window.open`) and return to the main menu.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Quit_Key( key ) {
 
 	switch ( key ) {
@@ -624,6 +722,13 @@ export function M_Quit_Key( key ) {
 }
 
 // Main menu touch - items at y=32, 20px spacing
+/**
+ * `M_TouchInput` on the main menu: a touch on an item row (20 pixels a row from y 32, Continue first in a game) moves
+ * the cursor there and chooses it, as Enter.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_Main_Touch( vx, vy ) {
 
 	const inGame = M_InGame();
@@ -645,6 +750,13 @@ export function M_Main_Touch( vx, vy ) {
 }
 
 // Single player menu touch
+/**
+ * `M_TouchInput` on the single player menu: a touch on one of the five rows (20 pixels a row from y 32) moves the
+ * cursor there and chooses it, as Enter.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_SinglePlayer_Touch( vx, vy ) {
 
 	if ( vy >= 32 && vy < 32 + SINGLEPLAYER_ITEMS * 20 ) {
@@ -662,6 +774,13 @@ export function M_SinglePlayer_Touch( vx, vy ) {
 }
 
 // Load/Save menu touch - items at y=32, 8px spacing
+/**
+ * `M_TouchInput` on the load or save menu: a touch on a slot row (8 pixels a row from y 32) moves the cursor there and
+ * loads or saves it, as Enter on `M_Load_Key` or `M_Save_Key` for the screen shown.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_LoadSave_Touch( vx, vy ) {
 
 	if ( vy >= 32 && vy < 32 + MAX_SAVEGAMES * 8 ) {
@@ -682,6 +801,12 @@ export function M_LoadSave_Touch( vx, vy ) {
 }
 
 // Quit menu touch - tap top half for yes, bottom half for no
+/**
+ * `M_TouchInput` on the quit prompt: a touch above y 100 answers `y` (`M_Quit_Key`), anywhere lower `n`.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_Quit_Touch( vx, vy ) {
 
 	if ( vy < 100 ) {

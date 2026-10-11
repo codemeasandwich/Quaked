@@ -71,6 +71,11 @@ function M_Menu_Cheats_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_cheats`: the eight cheats 8 pixels apart from y 48, `on`/`off` for each switch as read
+ * from the player entity (`sv.edicts[1]`), the cursor, and below either whether a cheat was used in this game or that
+ * cheats need a local single player game. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_Cheats_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -113,6 +118,14 @@ function M_Cheats_Apply() {
 
 }
 
+/**
+ * `M_Keydown` on the cheats. ESC returns to the options; Up and Down move the cursor, wrapping; Left and Right toggle
+ * a switch row; Enter applies any row. Applying, only in a local single player game (no `deathmatch` or `coop`),
+ * queues the row's command (`noclip`, `notarget`, `fly`, `cheat_power ...`, `cheat_weapons`, `give h 100`) and marks
+ * this game as cheated.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Cheats_Key( key ) {
 
 	switch ( key ) {
@@ -144,6 +157,13 @@ export function M_Cheats_Key( key ) {
 
 }
 
+/**
+ * `M_TouchInput` on the cheats: a touch on a cheat row (8 pixels a row from y 48) moves the cursor there and applies
+ * it, as Enter.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_Cheats_Touch( vx, vy ) {
 
 	if ( vy >= CHEATS_ROW_Y && vy < CHEATS_ROW_Y + CHEATS.length * 8 ) {
@@ -291,6 +311,10 @@ const OPTIONS_ITEMS = OPTIONS_ORDER.length;
 function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
 let m_options_cursor = 0;
 
+/**
+ * Opens the options (the `menu_options` command, the main menu's Options item, and ESC from the Newer Game, cheats,
+ * keys and video screens): key_dest `key_menu`, `m_state` `m_options`, enter sound.
+ */
 export function M_Menu_Options_f() {
 
 	setKeyDest( key_menu );
@@ -299,6 +323,11 @@ export function M_Menu_Options_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_options`: the 18 rows 8 pixels apart from y 32 in `OPTIONS_ORDER`, with sliders
+ * (screen size, brightness, mouse speed, sound and music volume) and on/off values read from their cvars at x 220,
+ * and the cursor at x 200. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_Options_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -362,6 +391,15 @@ export function M_Options_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the options. ESC returns to the main menu; Up and Down move the cursor, wrapping; Left and Right
+ * step a slider or flip a switch (`M_AdjustSliders`). Enter opens Newer Game features, Customize controls or Cheats;
+ * Go to console closes the menu and opens the console; Performance profiler closes the menu and queues `perfprofile`;
+ * Reset to defaults queues `exec default.cfg`, the WASD and mouse binds, speeds 400, gamma, `volume 0.4` and
+ * `bgmvolume 1`; on any other row Enter acts as Right.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Options_Key( key ) {
 
 	switch ( key ) {
@@ -481,6 +519,11 @@ function M_Menu_Newer_f() {
 // the rows start here
 const NEWER_ROW0 = 44;
 
+/**
+ * `M_Draw` while `m_state` is `m_newer`: a dark panel (unless the WebGL menu is skinned), the banner, each Newer Game
+ * feature 8 pixels apart from y 44 with its on/off, slider or water appearance choice read from its cvar, a note, and
+ * the cursor. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_Newer_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -550,6 +593,14 @@ function M_Newer_Toggle( dir ) {
 
 }
 
+/**
+ * `M_Keydown` on the Newer Game features. ESC returns to the options; Up and Down move the cursor, wrapping. Left and
+ * Right step the row: a slider by 0.05 within 0..1, a choice back or forward, a switch flipped. Enter flips a switch,
+ * steps a choice forward, or steps a slider up 0.05, round to 0 past the top. The flashlight goes through
+ * `R_FlashlightToggle`, the others through `Cvar_SetValue`.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Newer_Key( key ) {
 
 	switch ( key ) {
@@ -579,6 +630,13 @@ export function M_Newer_Key( key ) {
 
 }
 
+/**
+ * `M_TouchInput` on the Newer Game features: a touch on a feature row (8 pixels a row from y 44) moves the cursor there
+ * and changes it as Enter does.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_Newer_Touch( vx, vy ) {
 
 	if ( vy >= NEWER_ROW0 && vy < NEWER_ROW0 + NEWER_FEATURES.length * 8 ) {
@@ -680,6 +738,10 @@ function M_UnbindCommand( command ) {
 
 }
 
+/**
+ * Opens Customize controls (the `menu_keys` command and the options' Customize controls item): key_dest `key_menu`,
+ * `m_state` `m_keys`, enter sound.
+ */
 export function M_Menu_Keys_f() {
 
 	setKeyDest( key_menu );
@@ -688,6 +750,11 @@ export function M_Menu_Keys_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_keys`: the title, a hint line, each action 8 pixels apart from y 48 with up to two
+ * keys bound to it (`???` for none), and the cursor (`=` while waiting for a key). Nothing until `Draw_CachePic` is
+ * wired.
+ */
 export function M_Keys_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -741,6 +808,14 @@ export function M_Keys_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on Customize controls. While waiting for a key, ESC cancels and any other key queues
+ * `bind "<key>" "<command>"` for the row. Otherwise ESC returns to the options; Up or Left and Down or Right move the
+ * cursor, wrapping; Enter waits for a key, first unbinding the command if it already has two; Backspace or Del unbinds
+ * every key for it.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Keys_Key( key ) {
 
 	if ( bind_grab ) {
@@ -810,6 +885,9 @@ export function M_Keys_Key( key ) {
 ==============================================================================
 */
 
+/**
+ * Opens the video screen (the `menu_video` command): key_dest `key_menu`, `m_state` `m_video`, enter sound.
+ */
 export function M_Menu_Video_f() {
 
 	setKeyDest( key_menu );
@@ -818,12 +896,20 @@ export function M_Menu_Video_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_video`: only the line "Video settings not available in browser".
+ */
 export function M_Video_Draw() {
 
 	M_Print( 16, 32, 'Video settings not available in browser' );
 
 }
 
+/**
+ * `M_Keydown` on the video screen: ESC returns to the options; every other key is ignored.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Video_Key( key ) {
 
 	if ( key === K_ESCAPE )
@@ -832,6 +918,13 @@ export function M_Video_Key( key ) {
 }
 
 // Options menu touch - items at y=32, 8px spacing
+/**
+ * `M_TouchInput` on the options: a touch on a row (8 pixels a row from y 32) moves the cursor there and presses Enter
+ * on it (`M_Options_Key`).
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_Options_Touch( vx, vy ) {
 
 	if ( vy >= 32 && vy < 32 + OPTIONS_ITEMS * 8 ) {
@@ -849,6 +942,13 @@ export function M_Options_Touch( vx, vy ) {
 }
 
 // Keys menu touch - items at y=48, 8px spacing
+/**
+ * `M_TouchInput` on Customize controls: a touch on an action row (8 pixels a row from y 48) moves the cursor there and
+ * presses Enter on it, so it waits for a key; a touch while already waiting binds Enter to that row.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_Keys_Touch( vx, vy ) {
 
 	if ( vy >= 48 && vy < 48 + NUMCOMMANDS * 8 ) {

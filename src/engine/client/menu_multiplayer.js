@@ -179,6 +179,10 @@ export function M_Menu_MultiplayerChoice_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_mpchoice`: the plaque, the Multiplayer title, Local (split screen) and the faded
+ * Online item 20 pixels apart from y 32, and the spinning cursor. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_MultiplayerChoice_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -204,6 +208,13 @@ function mpchoiceStep( step ) {
 
 }
 
+/**
+ * `M_Keydown` on the Multiplayer choice. ESC returns to the main menu; Up and Down move to the next item that can be
+ * chosen, wrapping (so the cursor stays on Local while Online is disabled). Enter on Local opens the local play screen;
+ * on a disabled item it does nothing.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_MultiplayerChoice_Key( key ) {
 
 	switch ( key ) {
@@ -226,6 +237,13 @@ export function M_MultiplayerChoice_Key( key ) {
 
 }
 
+/**
+ * `M_TouchInput` on the Multiplayer choice: a touch on an enabled item's row (20 pixels a row from y 32) moves the
+ * cursor there and chooses it, as Enter; touches on Online or elsewhere do nothing.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_MultiplayerChoice_Touch( vx, vy ) {
 
 	const item = Math.floor( ( vy - 32 ) / 20 );
@@ -299,6 +317,12 @@ function localPlayRows( role ) {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_splitscreen`, for this window's role: in a player's window, which player it is and
+ * Leave local play; on the hosting page, the players in and Open player n's window / End local play; otherwise the
+ * Start local play button, Players and Game Type, with a note on pop-ups. Clamps and draws the row cursor. Nothing
+ * until `Draw_CachePic` is wired.
+ */
 export function M_SplitScreen_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -342,6 +366,14 @@ export function M_SplitScreen_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the local play screen. ESC returns to the Multiplayer choice; Up and Down move over the role's rows,
+ * wrapping; Left and Right change Players (`LOCAL_PLAYERS_MIN`..`LOCAL_PLAYERS_MAX`) or Game Type. Enter on an
+ * enabled row changes it as Right, or runs it: Start (`r_hdr 1`, the Newer defaults, `LocalPlay_Start`, menu closed),
+ * Open player n's window, End local play (back to the main menu), or Leave (`disconnect` and close the window).
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_SplitScreen_Key( key ) {
 
 	const rows = localPlayRows( localPlayRole() );
@@ -374,6 +406,13 @@ export function M_SplitScreen_Key( key ) {
 }
 
 // a tap or click on a row moves the cursor there and presses Enter on it
+/**
+ * `M_TouchInput` on the local play screen: a touch on a row's 8-pixel text line moves the cursor there and presses
+ * Enter on it; a touch above y 32 off every row acts as ESC.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_SplitScreen_Touch( vx, vy ) {
 
 	const rows = localPlayRows( localPlayRole() );
@@ -408,6 +447,10 @@ export function M_LocalPlayerJoin( role ) {
 let m_multiplayer_cursor = 0;
 const MULTIPLAYER_ITEMS = 3;
 
+/**
+ * Opens the online Multiplayer menu (the `menu_multiplayer` command, and ESC from Join Game, New Game and Setup):
+ * key_dest `key_menu`, `m_state` `m_multiplayer`, enter sound, and clears the last connection error's reason.
+ */
 export function M_Menu_MultiPlayer_f() {
 
 	setKeyDest( key_menu );
@@ -417,6 +460,11 @@ export function M_Menu_MultiPlayer_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_multiplayer`: the plaque, the title, the `gfx/mp_menu.lmp` items (Join Game, New
+ * Game, Setup) with the spinning cursor, and a failed connection's reason at y 97. Nothing until `Draw_CachePic` is
+ * wired.
+ */
 export function M_MultiPlayer_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -438,6 +486,12 @@ export function M_MultiPlayer_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on the online Multiplayer menu. ESC returns to the main menu; Up and Down move the cursor over the three
+ * items, wrapping; Enter opens Join Game (`M_Menu_LanConfig_f`), New Game (`M_Menu_GameOptions_f`) or Setup.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_MultiPlayer_Key( key ) {
 
 	switch ( key ) {
@@ -487,6 +541,11 @@ export function M_MultiPlayer_Key( key ) {
 ==============================================================================
 */
 
+/**
+ * Opens Join Game (the `menu_lanconfig` command and the Multiplayer menu's Join Game item): puts the room cursor on
+ * the first room, clears the error-return flag and reason, and starts fetching the room list (`M_FetchRooms`, not
+ * awaited) from the `?server=` address or the default WebTransport server.
+ */
 export function M_Menu_LanConfig_f() {
 
 	setKeyDest( key_menu );
@@ -502,6 +561,11 @@ export function M_Menu_LanConfig_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_lanconfig`: the Join Game title, then "Searching for games...", the fetch error,
+ * "No games found", or up to 8 rooms (map, players / maximum, room id) 12 pixels apart from y 52, scrolled to keep the
+ * cursor in view; a failed connection's reason at y 170. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_LanConfig_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -562,6 +626,14 @@ export function M_LanConfig_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on Join Game. ESC returns to the Multiplayer menu; Up and Down move over the rooms, wrapping; Space
+ * fetches the list again. Enter on a full room only sets the reason "Room is full"; on another it rewrites the page
+ * address to `?room=<id>`, arms the error return to this screen, closes the menu and queues
+ * `connect "wts://...?room=<id>"` through the lobby.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_LanConfig_Key( key ) {
 
 	switch ( key ) {
@@ -653,6 +725,10 @@ export function M_LanConfig_Key( key ) {
 ==============================================================================
 */
 
+/**
+ * Opens New Game's options (the `menu_gameoptions` command and the Multiplayer menu's New Game item): key_dest
+ * `key_menu`, `m_state` `m_gameoptions`, enter sound; a max players below 2 is reset to 4.
+ */
 export function M_Menu_GameOptions_f() {
 
 	setKeyDest( key_menu );
@@ -666,6 +742,11 @@ export function M_Menu_GameOptions_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_gameoptions`: the begin game button, Max players, Game Type (the `coop` cvar),
+ * Teamplay, Skill, Episode and Level (from menu_common.js's `episodes` and `levels`, with the map name), and the
+ * cursor at the row's y from `gameoptions_cursor_table`. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_GameOptions_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -788,6 +869,16 @@ function M_NetStart_Change( dir ) {
 
 }
 
+/**
+ * `M_Keydown` on New Game's options. ESC returns to the Multiplayer menu; Up and Down move over the seven rows,
+ * wrapping; Left and Right (and Enter, off the first row) change the row: max players 2..4, `coop` toggled, `teamplay`
+ * 0..2 and `skill` 0..3 wrapping, the episode (resetting the level) and the level. Enter on begin game creates a
+ * WebTransport room (`WT_CreateRoom`) and on success closes the menu and queues `connect` (a browser without
+ * WebTransport gets an alert and the main menu); with no room service wired it queues `disconnect` (if a server
+ * runs), `listen 0`, `maxplayers <n>` and `map <name>` instead.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_GameOptions_Key( key ) {
 
 	switch ( key ) {
@@ -948,6 +1039,10 @@ let setup_top = 0;
 let setup_bottom = 0;
 const NUM_SETUP_CMDS = 4;
 
+/**
+ * Opens player Setup (the `menu_setup` command and the Multiplayer menu's Setup item), starting from the current
+ * `cl_name` and the shirt and pants colours in `cl_color`.
+ */
 export function M_Menu_Setup_f() {
 
 	setKeyDest( key_menu );
@@ -961,6 +1056,11 @@ export function M_Menu_Setup_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_setup`: the name field, Shirt color and Pants color, the player in the chosen colours
+ * (`M_BuildTranslationTable`, `M_DrawTransPicTranslate`), Accept Changes, the row cursor and, on the name, the text
+ * cursor. Nothing until `Draw_CachePic` is wired.
+ */
 export function M_Setup_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -994,6 +1094,14 @@ export function M_Setup_Draw() {
 
 }
 
+/**
+ * `M_Keydown` on Setup. ESC returns to the Multiplayer menu without applying; Up and Down move over the four rows,
+ * wrapping. On the name, Backspace deletes and characters 32..126 type, up to 15. Left and Right step the shirt or
+ * pants colour (Enter steps it forward), wrapping 0..13. Enter on Accept Changes queues `name "<name>"`, and
+ * `color <top> <bottom>` when either changed, then returns to the Multiplayer menu.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_Setup_Key( key ) {
 
 	switch ( key ) {
@@ -1094,6 +1202,13 @@ export function M_Setup_Key( key ) {
 }
 
 // Multiplayer menu touch
+/**
+ * `M_TouchInput` on the online Multiplayer menu: a touch on one of the three rows (20 pixels a row from y 32) moves
+ * the cursor there and chooses it, as Enter.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_MultiPlayer_Touch( vx, vy ) {
 
 	if ( vy >= 32 && vy < 32 + MULTIPLAYER_ITEMS * 20 ) {
@@ -1111,6 +1226,13 @@ export function M_MultiPlayer_Touch( vx, vy ) {
 }
 
 // LAN Config touch - handle room list selection
+/**
+ * `M_TouchInput` on Join Game: a touch on a room row (12 pixels a row from y 52, counted from the first room, not the
+ * scrolled view) moves the cursor there and joins it, as Enter.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_LanConfig_Touch( vx, vy ) {
 
 	// Room list starts at y=52 with 12px spacing
@@ -1129,6 +1251,13 @@ export function M_LanConfig_Touch( vx, vy ) {
 }
 
 // Game Options touch - handle all options
+/**
+ * `M_TouchInput` on New Game's options: the first row whose band (from 4 pixels above its cursor y to 12 below)
+ * holds the touch gets the cursor and Enter (begin game, or change the row as Right).
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_GameOptions_Touch( vx, vy ) {
 
 	// Find which row was touched based on cursor table

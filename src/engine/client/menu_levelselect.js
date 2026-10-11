@@ -174,6 +174,11 @@ export function M_LevelSelectOffer() {
 
 }
 
+/**
+ * Opens Level Select (key_dest `key_menu`, `m_state` `m_levelselect`, enter sound). The single player menu opens it
+ * through `menuOpeners.levelSelect`. Keeps the last cursor row, pulled back to the last level when the selected
+ * episode now has fewer.
+ */
 export function M_Menu_LevelSelect_f() {
 
 	setKeyDest( key_menu );
@@ -183,6 +188,11 @@ export function M_Menu_LevelSelect_f() {
 
 }
 
+/**
+ * `M_Draw` while `m_state` is `m_levelselect`: the plaque and single player title, the Game (Newer Game / New Game),
+ * Skill (the `skill` cvar, clamped to 0..3) and Episode rows, the selected episode's available maps from y 84, and
+ * the blinking cursor. Draws nothing until `Draw_CachePic` is wired.
+ */
 export function M_LevelSelect_Draw() {
 
 	if ( ! _Draw_CachePic ) return;
@@ -264,6 +274,15 @@ function M_LevelSelect_Start() {
 
 }
 
+/**
+ * `M_Keydown` on Level Select. ESC returns to single player; Up and Down move the cursor over the three option rows
+ * and the levels, wrapping; Left and Right change the row under the cursor (toggle Newer / New Game, step `skill`
+ * 0..3 with `Cvar_SetValue`, step the episode). Enter does the same as Right on an option row and starts the level on
+ * a level row: `disconnect` if a server runs, `maxplayers 1`, `r_hdr 1` and the Newer defaults or `r_hdr 0`, then
+ * `map <name>`, with key_dest `key_game`.
+ *
+ * @param {number} key key number (0..255): ASCII or a keys.js `K_*` constant
+ */
 export function M_LevelSelect_Key( key ) {
 
 	const count = LEVELSELECT_ROWS + levelSelectLevels().length;
@@ -300,6 +319,13 @@ export function M_LevelSelect_Key( key ) {
 
 }
 
+/**
+ * `M_TouchInput` on Level Select: a touch on an option row (y 48..71) moves the cursor there and changes it as Right
+ * would; a touch on a level row (from y 84) moves the cursor there and starts that level as Enter does.
+ *
+ * @param {number} vx x in menu pixels (0..320; unused)
+ * @param {number} vy y in menu pixels (0..200)
+ */
 export function M_LevelSelect_Touch( vx, vy ) {
 
 	if ( vy >= LEVELSELECT_ROW_Y && vy < LEVELSELECT_ROW_Y + LEVELSELECT_ROWS * 8 ) {
