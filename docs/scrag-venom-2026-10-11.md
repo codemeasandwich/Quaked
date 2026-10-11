@@ -83,6 +83,16 @@ when the leading edge reaches its target the packet drains into it. Here:
     slot from the stream's own spike, and the matching of a splash, measure against that line.
     If the player dodges, the spike flies on past the estimated end: from then on the ray turns
     onto the spike, as a ray without a Scrag does, at a small angle by then.
+  * **Rounded angles.** A spike's angles reach the client rounded: QuakeC cuts them to whole
+    degrees and the network sends one byte each, so 1.4-degree steps. Once the spike has flown
+    32 units, its line's direction is taken from its actual motion instead. Positions arrive in
+    1/8-unit steps. The fang's ray is then re-aimed at the end of that line, keeping the same
+    distance, which moves it a fraction of a degree each frame.
+  * **Splash position.** When the server's splash is matched, a fang's ray is turned to end
+    exactly at that point, so the stream, splash and stain are where the spike struck.
+  * **Tests.** The tests' spikes carry angles rounded exactly as the engine sends them. Walls
+    at 300, 600 and 1000 units keep one stream on the spike, and each splash ends where the
+    spike struck.
 
     The first version re-aimed the ray at the spike every frame. The [SP2] reviews found that
     broke the limit, the droplets, the reused-slot check and the splash match, and later that

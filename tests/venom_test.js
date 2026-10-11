@@ -73,10 +73,13 @@ function particles( env, act ) {
 }
 const total = batches => batches.reduce( ( n, m ) => n + m.count, 0 );
 
-// A spike flying +x from (100, 0, 64) at 600 units/s, launched as entity 5.
+// The angles a client sees: QuakeC vectoangles cuts to whole degrees (pr_cmds.js PF_vectoangles), then each is sent as
+// one byte (common.js MSG_WriteAngle), 1.40625 degree steps
+const netAngle = a => { let d = Math.trunc( a ); if ( d < 0 ) d += 360; return ( ( ( d | 0 ) * 256 / 360 ) & 255 ) * 360 / 256; };
+// A spike flying +x from (100, 0, 64) at 600 units/s, launched as entity 5, its angles as the network delivers them.
 function spike( env, index = 5, from = [ 100, 0, 64 ], dir = [ 1, 0, 0 ] ) {
 
-	const yaw = Math.atan2( dir[ 1 ], dir[ 0 ] ) * 180 / Math.PI, pitch = Math.asin( dir[ 2 ] ) * 180 / Math.PI;
+	const yaw = netAngle( Math.atan2( dir[ 1 ], dir[ 0 ] ) * 180 / Math.PI ), pitch = netAngle( Math.atan2( dir[ 2 ], Math.hypot( dir[ 0 ], dir[ 1 ] ) ) * 180 / Math.PI );
 	const e = entity( index, 'progs/w_spike.mdl', from, [ pitch, yaw, 0 ] );
 	env.ents[ index ] = e; env.visible.push( e );
 	return { e, at: t => { for ( let i = 0; i < 3; i ++ ) e.origin[ i ] = from[ i ] + dir[ i ] * SPEED * t; } };
@@ -221,9 +224,11 @@ Deno.test( 'the spit leaves the Scrag\'s face: a fang beside its jaw in the fram
 		near( Math.hypot( ...[ 0, 1 ].map( i => jet.origin[ i ] - S[ i ] - f[ i ] * m[ 0 ] ) ), fang, .1, 'one fang either side of the centre line, as the source\'s' );
 		// one fixed ray from the fang to the end of the spike's flight: the end lies on the flight line, and the spike
 		// flies within the fang's offset of the ray
+		// (on the line its angles give, as far as it has flown: before 32 units of flight its motion does not refine it)
+		const ap = s.e.angles[ 0 ] * Math.PI / 180, ay = s.e.angles[ 1 ] * Math.PI / 180, g = [ Math.cos( ap ) * Math.cos( ay ), Math.cos( ap ) * Math.sin( ay ), Math.sin( ap ) ];
 		const end = [ 0, 1, 2 ].map( i => jet.origin[ i ] + jet.dir[ i ] * jet.limit ), w = [ 0, 1, 2 ].map( i => end[ i ] - from[ i ] );
-		const wa = w[ 0 ] * f[ 0 ] + w[ 1 ] * f[ 1 ] + w[ 2 ] * f[ 2 ];
-		near( Math.hypot( w[ 0 ] - f[ 0 ] * wa, w[ 1 ] - f[ 1 ] * wa, w[ 2 ] - f[ 2 ] * wa ), 0, .01, 'the ray ends on the spike\'s own flight' );
+		const wa = w[ 0 ] * g[ 0 ] + w[ 1 ] * g[ 1 ] + w[ 2 ] * g[ 2 ];
+		near( Math.hypot( w[ 0 ] - g[ 0 ] * wa, w[ 1 ] - g[ 1 ] * wa, w[ 2 ] - g[ 2 ] * wa ), 0, .01, 'the ray ends on the spike\'s own flight' );
 		const v = [ 0, 1, 2 ].map( i => s.e.origin[ i ] - jet.origin[ i ] ), along = v[ 0 ] * jet.dir[ 0 ] + v[ 1 ] * jet.dir[ 1 ] + v[ 2 ] * jet.dir[ 2 ];
 		near( jet.head, along, .01, 'the leading edge is the spike\'s place along the ray' );
 		check( Math.hypot( v[ 0 ] - jet.dir[ 0 ] * along, v[ 1 ] - jet.dir[ 1 ] * along, v[ 2 ] - jet.dir[ 2 ] * along ) < 16, 'the spike flies close to the ray' );
@@ -328,7 +333,47 @@ Deno.test( 'a turned Scrag\'s spit that strikes something partway is matched to 
 		// it strikes something a fifth of the way (a monster's or a wall's edge), just ahead of where it was last drawn
 		const hit = Float32Array.from( [ 0, 1, 2 ].map( i => q.spike.e.origin[ i ] + q.dir[ i ] * 20 ) );
 		same( venom.R_VenomImpact( hit ), true, 'the venom\'s splash' );
-		check( venom.R_VenomSnapshot().jets.find( j => j.entity === q.spike.e._entityIndex )?.hitKnown, `side ${side}: matched to its own stream` );
+		const jet = venom.R_VenomSnapshot().jets.find( j => j.entity === q.spike.e._entityIndex );
+		check( jet?.hitKnown, `side ${side}: matched to its own stream` );
+		const end = [ 0, 1, 2 ].map( i => jet.origin[ i ] + jet.dir[ i ] * jet.limit );
+		check( Math.hypot( ...[ 0, 1, 2 ].map( i => end[ i ] - hit[ i ] ) ) < .5, `side ${side}: the stream ends, and splashes, where the spike struck, not on the fang's ray beside it` );
+
+	}
+
+} );
+
+Deno.test( 'a long spit at a far wall keeps one stream on the spike and ends in its splash exactly where it struck, though its angles arrive rounded', async () => {
+
+	const { Mod_ForName } = await import( '../src/engine/render/gl_model.js' );
+	const WIZARD = Mod_ForName( 'progs/wizard.mdl', true );
+	for ( const W of [ 300, 600, 1000 ] ) for ( const [ side, lean ] of [ [ 1, 0 ], [ - 1, 0 ], [ 1, 7 ], [ - 1, - 19 ] ] ) {
+
+		// a Scrag W units from the wall at x = 1000, far from the player, spitting at the wall (QuakeC's launch points;
+		// `lean` units of the aim's sideways offset bring out different roundings)
+		const env = setup(), S = [ 1000 - W, 500, 40 ];
+		const scrag = { _entityIndex: 9, model: WIZARD, frame: 32, origin: Float32Array.from( S ), angles: Float32Array.of( 0, 0, 0 ) };
+		env.ents[ 9 ] = scrag; env.visible.push( scrag );
+		const start = [ S[ 0 ] + 14, S[ 1 ] - 14 * side, S[ 2 ] + 30 ], aim = [ 1000, S[ 1 ] + 13 * side + lean, 50 ];
+		const d = [ 0, 1, 2 ].map( i => aim[ i ] - start[ i ] ), l = Math.hypot( ...d ), dir = d.map( v => v / l );
+		const first = [ 0, 1, 2 ].map( i => start[ i ] + dir[ i ] * SPEED / 72 ), sp = spike( env, 5, first, dir );
+		const T = ( l - SPEED / 72 ) / SPEED;
+		let worst = 0;
+		for ( let t = 0; t < T - .02; t += 1 / 60 ) {
+
+			sp.at( t ); env.frame();
+			const mine = venom.R_VenomSnapshot().jets.filter( j => j.entity === 5 );
+			same( mine.length, 1, `wall ${W}, side ${side}, lean ${lean}: one stream at ${t.toFixed( 2 )} s` );
+			const jet = mine[ 0 ], head = [ 0, 1, 2 ].map( i => jet.origin[ i ] + jet.dir[ i ] * jet.head );
+			if ( t > .1 ) worst = Math.max( worst, Math.hypot( ...[ 0, 1, 2 ].map( i => head[ i ] - sp.e.origin[ i ] ) ) );
+
+		}
+		check( worst < 14, `wall ${W}, side ${side}, lean ${lean}: the stream's head stays on the spike (${worst.toFixed( 1 )})` );
+		const hit = Float32Array.from( [ 0, 1, 2 ].map( i => start[ i ] + dir[ i ] * l ) );
+		same( venom.R_VenomImpact( hit ), true, 'the venom\'s splash' );
+		const jet = venom.R_VenomSnapshot().jets.find( j => j.entity === 5 );
+		check( jet?.hitKnown, `wall ${W}, side ${side}, lean ${lean}: matched to its stream` );
+		const end = [ 0, 1, 2 ].map( i => jet.origin[ i ] + jet.dir[ i ] * jet.limit );
+		check( Math.hypot( ...[ 0, 1, 2 ].map( i => end[ i ] - hit[ i ] ) ) < .5, `wall ${W}: the stream ends, and splashes, where the spike struck` );
 
 	}
 

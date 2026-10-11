@@ -303,6 +303,7 @@ const jetNormal = new Float64Array( J * 3 ); // the impact surface's normal
 const jetDropCarry = new Float64Array( J ), jetSplashCarry = new Float64Array( J );
 const jetFixed = new Uint8Array( J );       // 1: the ray runs from a Scrag's fang and is not re-aimed (card [SP2])
 const jetFlight = new Float64Array( J * 6 ); // the spike's own flight line: where first drawn, and its direction
+const jetFlightEnd = new Float64Array( J );   // Quake units along that line from where first drawn to the estimated end
 
 // Droplets: the source's DropletPool, in typed arrays (Quake units and seconds).
 const D = VENOM.dropCap;
@@ -602,6 +603,7 @@ function launch( j, ent, time, eye, model, entities, count ) {
 	for ( let i = 0; i < 3; i ++ ) { jetFlight[ fl + i ] = ent.origin[ i ]; jetFlight[ fl + 3 + i ] = _p[ i ]; }
 	// where it will end along that flight (Quake units from the entity), sampled once, as the source samples its target
 	const ahead = launchLimit( ent.origin, _p, eye, model ) * K;
+	jetFlightEnd[ j ] = ahead;
 	let back = 0;
 	jetFixed[ j ] = 0;
 	if ( scragMouth( jetOrigin[ o ], jetOrigin[ o + 1 ], jetOrigin[ o + 2 ], _p[ 0 ], _p[ 1 ], _p[ 2 ], entities, count, _mouth, time ) ) {
@@ -647,18 +649,41 @@ function lineOff( j, p ) {
 
 }
 
+// The spike's angles reach the client rounded (QuakeC vectoangles to whole degrees, then one byte per angle: 1.4 degree
+// steps), so a line taken from them drifts off a long flight. Once the spike has flown FLIGHT_REFINE units from where
+// it was first drawn, the line's direction is its actual motion (positions arrive in 1/8 unit steps), and the fang's
+// ray is re-aimed at the end of that line (the same distance along it): a fraction of a degree each frame.
+function refineFlight( j, ent ) {
+
+	const o = j * 3, f = j * 6, K = VENOM.unit;
+	const dx = ent.origin[ 0 ] - jetFlight[ f ], dy = ent.origin[ 1 ] - jetFlight[ f + 1 ], dz = ent.origin[ 2 ] - jetFlight[ f + 2 ], d = Math.hypot( dx, dy, dz );
+	if ( d < FLIGHT_REFINE ) return;
+	jetFlight[ f + 3 ] = dx / d; jetFlight[ f + 4 ] = dy / d; jetFlight[ f + 5 ] = dz / d;
+	if ( jetHitKnown[ j ] ) return; // (the ray already ends at the server's impact point)
+	const end = jetFlightEnd[ j ];
+	const ex = jetFlight[ f ] + jetFlight[ f + 3 ] * end - jetOrigin[ o ], ey = jetFlight[ f + 1 ] + jetFlight[ f + 4 ] * end - jetOrigin[ o + 1 ], ez = jetFlight[ f + 2 ] + jetFlight[ f + 5 ] * end - jetOrigin[ o + 2 ];
+	const total = Math.hypot( ex, ey, ez );
+	if ( total < 1e-3 ) return;
+	jetDir[ o ] = ex / total; jetDir[ o + 1 ] = ey / total; jetDir[ o + 2 ] = ez / total; setBasis( j );
+	jetLimit[ j ] = Math.max( jetHead[ j ], total / K );
+
+}
+const FLIGHT_REFINE = 32; // Quake units
+
 function follow( j, ent ) {
 
 	const o = j * 3, K = VENOM.unit;
 	const vx = ent.origin[ 0 ] - jetOrigin[ o ], vy = ent.origin[ 1 ] - jetOrigin[ o + 1 ], vz = ent.origin[ 2 ] - jetOrigin[ o + 2 ];
 	const along = vx * jetDir[ o ] + vy * jetDir[ o + 1 ] + vz * jetDir[ o + 2 ];
 	if ( along < jetHead[ j ] * K - OFF_RAY_NEW || lineOff( j, ent.origin ) > OFF_RAY_NEW ) return false;
+	if ( jetFixed[ j ] ) refineFlight( j, ent );
 	// a fang's ray holds to its estimated end; a spike flying on past it (the player dodged) has the ray turned onto it
 	// from then on, as a ray without a Scrag is (the angle is small by then)
-	if ( jetFixed[ j ] && ! jetHitKnown[ j ] && along > jetLimit[ j ] * K ) jetFixed[ j ] = 0;
+	const on = ( ent.origin[ 0 ] - jetOrigin[ o ] ) * jetDir[ o ] + ( ent.origin[ 1 ] - jetOrigin[ o + 1 ] ) * jetDir[ o + 1 ] + ( ent.origin[ 2 ] - jetOrigin[ o + 2 ] ) * jetDir[ o + 2 ];
+	if ( jetFixed[ j ] && ! jetHitKnown[ j ] && on > jetLimit[ j ] * K ) jetFixed[ j ] = 0;
 	const l = jetFixed[ j ] ? 0 : Math.hypot( vx, vy, vz );
 	if ( l > 8 ) { jetDir[ o ] = vx / l; jetDir[ o + 1 ] = vy / l; jetDir[ o + 2 ] = vz / l; setBasis( j ); }
-	jetHead[ j ] = Math.max( jetHead[ j ], ( l > 8 ? l : along ) / K );
+	jetHead[ j ] = Math.max( jetHead[ j ], ( l > 8 ? l : on ) / K );
 	if ( ! jetHitKnown[ j ] && jetHead[ j ] > jetLimit[ j ] ) jetLimit[ j ] = jetHead[ j ]; // flew past the estimate
 	return true;
 
@@ -693,6 +718,14 @@ export function R_VenomImpact( pos ) {
 	if ( best >= 0 ) {
 
 		const o = best * 3;
+		if ( jetFixed[ best ] ) {
+
+			// a fang's ray is turned to end exactly at the server's point (it meets the spike's line only at its
+			// estimated end), so the stream runs into the splash and the stain is where the spike struck
+			const ex = pos[ 0 ] - jetOrigin[ o ], ey = pos[ 1 ] - jetOrigin[ o + 1 ], ez = pos[ 2 ] - jetOrigin[ o + 2 ], l = Math.hypot( ex, ey, ez );
+			if ( l > 1e-3 ) { jetDir[ o ] = ex / l; jetDir[ o + 1 ] = ey / l; jetDir[ o + 2 ] = ez / l; setBasis( best ); }
+
+		}
 		const along = ( pos[ 0 ] - jetOrigin[ o ] ) * jetDir[ o ] + ( pos[ 1 ] - jetOrigin[ o + 1 ] ) * jetDir[ o + 1 ] + ( pos[ 2 ] - jetOrigin[ o + 2 ] ) * jetDir[ o + 2 ];
 		jetLimit[ best ] = Math.max( jetHead[ best ], Math.max( 0, along ) / K ); jetHitKnown[ best ] = 1;
 		surfaceNormal( pos, jetDir, o, jetNormal, o );
