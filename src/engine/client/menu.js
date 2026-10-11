@@ -2,7 +2,13 @@
  * @module engine/client/menu
  *
  * The native menu (WinQuake menu.c) and the Newer Game options: main, single player, multiplayer rooms, options,
- * features, cheats, saves.
+ * features, cheats, saves. Since card [44j] this module keeps the menu's entry points (`M_Init` and its commands,
+ * `M_Draw`, `M_Keydown`, `M_ToggleMenu_f`, the touch input) and the public names, re-exported from the screen
+ * families it was split into: menu_common.js (the state, the host's externals, the drawing helpers), menu_main.js
+ * (main, single player, load and save, the Bestiarium, credits, quit), menu_levelselect.js, menu_multiplayer.js
+ * (local play, online rooms, game options, setup) and menu_options.js (options, Newer's options, keys, cheats,
+ * video). The families import only menu_common.js and menu_main.js; the main menu reaches the others through
+ * `menuOpeners`, which this module fills as it loads.
  *
  * Types: plain values and functions; no exported classes.
  *

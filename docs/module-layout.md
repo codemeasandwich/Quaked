@@ -481,6 +481,55 @@ they always did. It re-exports the same 40 public names, so none of its importer
 * **Bakes.** `newer/displacement/manifest.json` keeps gl_rsurf.js's bake-time hash (no key changes) and says so in
   its `sourcesNote`; `tools/bake_displacement.mjs` now hashes the seven stages too.
 
+## [44j]: `menu.js` split by screen family (debt D3)
+
+`src/engine/client/menu.js` was 3,766 lines holding every menu screen. It is now 400 lines: the menu's entry points
+(`M_Init` and its `menu_*` commands, `M_Draw`, `M_Keydown`, `M_ToggleMenu_f`, the touch input) that dispatch on
+`m_state` to the screen families. It re-exports the same 45 public names, so none of its importers changed, and
+exports the state's setters and `menuOpeners` beside them.
+
+| Module | Lines | What it holds |
+|---|---|---|
+| `menu_common.js` | 610 | the screen ids, `m_state` and the shared flags with their setters, `menuOpeners`, the host's drawing, sound and clocks (`M_SetExternals`), the drawing helpers, the player colour table, `M_InGame`, the episodes and levels, the Newer defaults |
+| `menu_main.js` | 822 | main, single player, load and save, the Bestiarium, credits, quit |
+| `menu_levelselect.js` | 343 | level select |
+| `menu_multiplayer.js` | 1,276 | the multiplayer choice, local play, online rooms, LAN config, game options, setup, a failed connection's return |
+| `menu_options.js` | 966 | options and their sliders, Newer's options, the key bindings, cheats, video |
+
+* **Shared state.** `m_state`, `m_entersound`, `m_recursiveDraw`, the three return fields and `m_save_demonum` were
+  assigned from every family (71 places). Each now has one setter in menu_common.js (`set_m_state` and so on); a
+  tool rewrote the plain assignment statements and refused anything else.
+* **One-way imports.** menu_common.js imports no family; menu_main.js imports common; level select, multiplayer and
+  options import common and main (their ESC returns to the main or single-player menu). The main menu reaches the
+  three later families through `menuOpeners`, which menu.js fills as it loads, so no family imports a later one.
+  `tools/architecture_classify.mjs` assigns `menu_*.js` to engine/client, [44j].
+* **The client cycle grew from 8 to 13 modules**, by the owner's decision (option a, 10 Oct 2026). Every family reads
+  keys.js (the key numbers and destinations), which is in the cycle with the client, so all five joined it. The other
+  cycles are unchanged (12 render, 4, 4, 4, 2).
+* **Moved, not rewritten.** The same tool as [44i]'s moved whole statements with their comments; a count of every line
+  before and after accounts for all of them (blank lines and the multi-line imports it rewrote on one line aside).
+  The 78 functions the split exported have JSDoc, added as a comment-only step (code tokens unchanged).
+* **Proof that the menus draw and behave the same:** `tests/menu_split_trial.html`, run headless by
+  `tools/menu_split_frames.mjs`.
+  * The real application, frozen on a demo1 frame as the menus' background, runs 16 scripts of menu commands and keys
+    (244 steps) through the menu's own entry points, Classic and Newer. No step starts a game, quits or resets the
+    configuration.
+  * A step's record: menu.js's drawing and sound calls (recorded through `M_SetExternals`, which also pins its two
+    clocks), the WebGL menu's own commands (`MainMenu_Frame`), `m_state`, the key destination, every archived cvar,
+    the key bindings and the world's pixels. The 2D overlay's pixels are left out: compositing the WebGL menu onto it
+    changes a few pixels from one identical draw to the next.
+  * The digest is e38d89be… on the commit before the split (fa1ef637) and after every step. Changing one label or
+    one key's cursor step changes it. (Its first version stopped the application before the startup's commands had
+    always run; it now waits for the host's third frame.)
+* **A test for each family**, through its own public interface: `menu_common_test` (the setters, `M_InGame`, the
+  helpers' placement, the colour table), `menu_main_test`, `menu_levelselect_test`, `menu_multiplayer_test` (a
+  failed connection's return), `menu_options_test` (a slider's steps and ends). Breaking the colour table, the main
+  cursor, the return flag or the slider's step fails its test. The 13 existing menu suites pass unchanged.
+* **Found on the way, not changed** (card [44p]): quit opens the project page instead of quitting, unguarded where
+  there is no `window`; Continue leaves the demo loop held; several touch areas are off (the scrolled room list, the
+  game options' bands, the key-binding wait, setup has none); level select's cursor is not clamped after an episode
+  change; minor dead code.
+
 ## Checks for each move
 
 * Both architecture tools pass (no unscanned module, no unexpected unresolved import, no unassigned module) and the
