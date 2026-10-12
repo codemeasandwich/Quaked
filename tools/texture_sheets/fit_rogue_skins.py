@@ -32,6 +32,23 @@ RECIPES = {
 def sha(data):
  return hashlib.sha256(data).hexdigest()
 
+def flatten_height(path, data, factor, vertex_range):
+ """Keep non-solid flash surfaces flat and above all virtual height blockers.
+
+ Uses actual native triangles, plus six texels for the five-texel normal kernel
+ and bilinear sampling. Refuse padding that reaches another real UV surface.
+ """
+ surface=uv_footprint(data,factor,vertex_range)
+ if not surface.any():raise ValueError('Empty flat-height UV region')
+ padded=ndimage.binary_dilation(surface,structure=np.ones((13,13),bool))
+ overlap=padded & uv_footprint(data,factor) & ~surface
+ if overlap.any():raise ValueError('Flat-height padding reaches another UV surface')
+ height=np.asarray(Image.open(path).convert('L')).copy()
+ if height.shape!=surface.shape:raise ValueError('Flat-height dimensions differ')
+ height[padded]=255
+ Image.fromarray(height).save(path,'WEBP',lossless=True,method=6)
+ return dict(vertexRange=vertex_range,value=255,padding=6,surfacePixels=int(surface.sum()),paddedPixels=int(padded.sum()))
+
 def fit_one(key, pack, source_root, output, recipe=None):
  # Generated, native-layout atlases share this same importer. An explicit recipe
  # supplies their source path and matte policy; the original Rogue recipes stay fixed.
@@ -50,6 +67,7 @@ def fit_one(key, pack, source_root, output, recipe=None):
  # Enclosed dark anatomy remains inside the foreground silhouette.
  if spec.get('matte')=='blue-grey': foreground=((rgb[:,:,2]-rgb[:,:,0])<6)&((rgb[:,:,2]-rgb[:,:,1])<8)
  elif spec.get('matte')=='dark-brown': foreground=rgb.max(2)>25
+ elif spec.get('matte')=='brown': foreground=np.max(np.abs(rgb-np.asarray(spec['background'])),axis=2)>spec.get('matteTolerance',18)
  elif key=='dragon': foreground=(rgb.max(2)-rgb.min(2)>12)&(rgb.max(2)>25)
  elif key=='mummy': foreground=rgb.max(2)>25
  else: foreground=rgb.max(2)>15
@@ -58,9 +76,18 @@ def fit_one(key, pack, source_root, output, recipe=None):
  foreground=ndimage.binary_fill_holes(ndimage.binary_closing(foreground,iterations=8 if key=='mummy' else 4))
  footprint=uv_footprint(data,factor)
  labels,count=ndimage.label(footprint)
- # Keep authored coordinates exact; the native UVs remain the correspondence.
- pixels=np.asarray(source.resize((W,H),Image.Resampling.LANCZOS))
- valid=np.asarray(Image.fromarray((foreground*255).astype(np.uint8)).resize((W,H),Image.Resampling.NEAREST))>0
+ # Normally the full atlas maps directly. A measured registration may correct
+ # imagegen's content scale/offset without moving the model's original UVs.
+ box=spec.get('atlasBox',[0,0,W,H]);left,top,right,bottom=box
+ if len(box)!=4 or any(not isinstance(v,int) for v in box) or right<=left or bottom<=top:raise ValueError('Invalid registered atlas box')
+ size=(right-left,bottom-top)
+ scaled=np.asarray(source.resize(size,Image.Resampling.LANCZOS))
+ scaled_mask=np.asarray(Image.fromarray((foreground*255).astype(np.uint8)).resize(size,Image.Resampling.NEAREST))>0
+ pixels=np.zeros((H,W,3),np.uint8);valid=np.zeros((H,W),bool)
+ cl,ct,cr,cb=max(0,left),max(0,top),min(W,right),min(H,bottom)
+ if cr<=cl or cb<=ct:raise ValueError('Registered atlas misses the destination')
+ pixels[ct:cb,cl:cr]=scaled[ct-top:cb-top,cl-left:cr-left]
+ valid[ct:cb,cl:cr]=scaled_mask[ct-top:cb-top,cl-left:cr-left]
  canvas=np.zeros((H,W,3),np.uint8); covered=np.zeros((H,W),bool); islands=[]
  for index,bounds in enumerate(ndimage.find_objects(labels),1):
   top=max(0,bounds[0].start-40);bottom=min(H,bounds[0].stop+40)
@@ -80,14 +107,17 @@ def fit_one(key, pack, source_root, output, recipe=None):
  out=output/key/'custom';out.mkdir(parents=True,exist_ok=True)
  result=Image.fromarray(canvas);result.save(out/'diffuse.png')
  height_for(result,out/'height.webp',key+'/custom')
+ flat=flatten_height(out/'height.webp',data,factor,spec['flatHeightVertices']) if spec.get('flatHeightVertices') else None
  report=dict(schema=1,model='progs/'+key+'.mdl',nativeModelSha256=spec['modelSha'],source=name,sourceSha256=spec['sourceSha'],sourceDimensions=spec['size'],
   dimensions=[W,H],factor=factor,skin=0,poses=spec['layout'][5],vertices=spec['layout'][3],triangles=spec['layout'][4],
   transform='complete atlas, top-row-first, no flip; original UVs preserved',
+  atlasBox=box,registration=spec.get('registration'),
   mattePolicy=spec.get('matte') or {'dragon':'neutral grey and black divider','s_wrath':'black','mummy':'dark brown gradient'}[key],
   nativeTexturePixelsUsed=0,islands=islands,surfacePixels=int(footprint.sum()),edgePixels=sum(i['edgePixels'] for i in islands),
   normalProfile=dict(strength=.65,cap=.55),reuse=['fit_vore.member','uv_footprint','fit_skin.spread','height_for'],
   files={f:sha((out/f).read_bytes()) for f in ['diffuse.png','height.webp']})
  if spec.get('generation'):report['generation']=spec['generation']
+ if flat:report['flatHeight']=flat
  (out/'SOURCE.json').write_text(json.dumps(report,indent=2)+'\n');print(key,json.dumps({k:report[k] for k in ['dimensions','surfacePixels','edgePixels']}))
 
 if __name__=='__main__':

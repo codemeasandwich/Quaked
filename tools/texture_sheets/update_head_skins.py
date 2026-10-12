@@ -29,7 +29,7 @@ def foreground(piece, background):
     return np.asarray(framed)[1:-1,1:-1]!=128
 
 
-def uv_footprint(data,factor):
+def uv_footprint(data,factor,vertex_range=None):
     skins,width,height=struct.unpack('<3i',data[48:60]);vertices,triangles=struct.unpack('<2i',data[60:68]);pos=84
     for _ in range(skins):
         grouped=struct.unpack('<i',data[pos:pos+4])[0];pos+=4;count=1
@@ -39,6 +39,10 @@ def uv_footprint(data,factor):
     tris=np.frombuffer(data[pos:pos+triangles*16],dtype='<i4').reshape(triangles,4)
     mask=Image.new('L',(width*factor,height*factor),0);draw=ImageDraw.Draw(mask)
     for front,*indices in tris:
+        if vertex_range is not None:
+            selected=[vertex_range[0] <= v < vertex_range[1] for v in indices]
+            if any(selected) and not all(selected):raise ValueError('Selected UV region shares a triangle with other vertices')
+            if not all(selected):continue
         points=[((uv[v,1]+.5+(width/2 if not front and uv[v,0] else 0))*factor,(uv[v,2]+.5)*factor) for v in indices]
         draw.polygon(points,fill=255)
     return np.asarray(mask)>0

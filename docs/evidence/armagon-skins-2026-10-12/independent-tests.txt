@@ -1,0 +1,133 @@
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+RESULT 12/13 passed (tests/armagon_skin_identity_test.js)
+FAIL Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface Error: one prepared load: 0 != 1
+    at check (file:///Users/bri/SOURCE/Quaked/tests/armagon_skin_identity_test.js:48:59)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/armagon_skin_identity_test.js:49:47)
+    at verifyBake (file:///Users/bri/SOURCE/Quaked/tests/armagon_skin_identity_test.js:179:144)
+    at async file:///Users/bri/SOURCE/Quaked/tests/armagon_skin_identity_test.js:231:17
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:93:9
+TOTAL 12/13 passed
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+RESULT 13/13 passed (tests/armagon_skin_identity_test.js)
+TOTAL 13/13 passed
+
+Native-height identity follow-up:17/17PASS; diagnostic output retained below.
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+armagon request armabody {
+  state: 'ready',
+  sha256: 'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151',
+  error: null,
+  promise: Promise {
+    'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151'
+  }
+} 0 undefined 33:heights/armabody/skin0_0.webp
+PASS Armagon native authored height prewarms only its correct model with custom enemies off
+armagon request armabody {
+  state: 'ready',
+  sha256: 'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151',
+  promise: Promise {
+    'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151'
+  }
+} 0 undefined 33:heights/armabody/skin0_0.webp
+PASS Armagon native-only preparation waits for pending model identity and starts no premature height requests
+meshing progs/armabody.mdl...
+
+PASS Armagon mismatched and unavailable native identities never fetch constrained authored heights
+armagon request armabody {
+  state: 'ready',
+  sha256: 'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151',
+  error: null,
+  promise: Promise {
+    'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151'
+  }
+} 0 undefined 33:heights/armabody/skin0_0.webp
+armagon reset armabody {
+  state: 'ready',
+  sha256: '0000000000000000000000000000000000000000000000000000000000000000'
+} 0
+armagon request armabody {
+  state: 'ready',
+  sha256: 'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151',
+  error: null,
+  promise: Promise {
+    'e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151'
+  }
+} 0 null 33:heights/armabody/skin0_0.webp
+armagon reset armabody {
+  state: 'ready',
+  sha256: '0000000000000000000000000000000000000000000000000000000000000000'
+} 0
+PASS Armagon reused native texture drops formerly approved relief and rejects cancelled late authored images
+RESULT 17/17 passed (tests/armagon_skin_identity_test.js)
+TOTAL 17/17 passed

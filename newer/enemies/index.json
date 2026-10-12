@@ -851,9 +851,37 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "armabody": [
+   {
+    "dir": "armabody/custom",
+    "skin": 0,
+    "nativeModelSha256": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
+  ],
+  "armalegs": [
+   {
+    "dir": "armalegs/custom",
+    "skin": 0,
+    "nativeModelSha256": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 32,
+ "version": 33,
  "nativeHeights": {
   "gib1": [
    [
@@ -1041,6 +1069,16 @@
      "file": "heights/boss/skin0_0.webp",
      "strength": 0.65,
      "cap": 0.55
+    }
+   ]
+  ],
+  "armabody": [
+   [
+    {
+     "file": "heights/armabody/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151"
     }
    ]
   ]

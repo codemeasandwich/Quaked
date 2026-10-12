@@ -23,8 +23,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | --- | --- | --- | --- |
 | Dog | `dog:0` | Stored native height + bake | Committed/pushed `5fccab35`, remote verified; T-cd37aeb2 Done |
 | Rotfish | `fish:0` | Native generated bake; no authored height | Committed/pushed `aa33d6d4`, remote verified; T-74803f43 Done |
-| Gremlin | `grem:0` | Missing classification, height and bake | Generated, fitted and verified; separate commit/push in progress, T-3f8f9b0a |
-| Armagon | `armabody:0`, `armalegs:0` | Both missing | Pending; one enemy uses two models |
+| Gremlin | `grem:0` | Missing classification, height and bake | Committed/pushed `ba2fdf4d`, remote verified; T-3f8f9b0a Done |
+| Armagon | `armabody:0`, `armalegs:0` | Both missing | Generated/fitted both models;112 GPU checks and17 independent checks pass; isolated checks/review before separate commit/push, T-b9e82259 |
 | Electric Eel | `eel2:0–5` | Missing | Pending; skins1–5 are attack animation states |
 | Phantom Swordsman | `sword:0` | Missing | Pending |
 | Wrath | `wrath:0` | Missing | Pending; distinct from supplied Overlord |

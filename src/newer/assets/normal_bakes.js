@@ -17155,5 +17155,50 @@ export const NORMAL_BAKES = {
   "height": 1014,
   "bytes": 14991160,
   "compressedBytes": 6617702
+ },
+ "762375e8270472f8b240acaf783820101620fd4c961e120fcc868344c0795837": {
+  "file": "newer/normals/762375e8270472f8b240acaf783820101620fd4c961e120fcc868344c0795837.nm.gz",
+  "sha256": "0940d6afce47535ab667f88bfd36455601e1c6002ca17b9414128b44c1ee334b",
+  "rawSha256": "9e26914a7860548691a69ab17aa386ab172a7587072163c8cf494bfa50ec5291",
+  "width": 216,
+  "height": 194,
+  "bytes": 335412,
+  "compressedBytes": 242454
+ },
+ "97554cfda7eb82fcd82819cb6e8f36a37b472fe8db397edcbba9352dbd681100": {
+  "file": "newer/normals/97554cfda7eb82fcd82819cb6e8f36a37b472fe8db397edcbba9352dbd681100.nm.gz",
+  "sha256": "9b80451af3a7e74b3ca4e233ae349f5a5b9f69559c6370226d2b974703e80a50",
+  "rawSha256": "61c74572b29a56531f084c26b86802ed070e25a82e31b279dd0afbe1c2e940b6",
+  "width": 216,
+  "height": 194,
+  "bytes": 335412,
+  "compressedBytes": 179849
+ },
+ "ab6a0c9ab2556f3c79f78cd629dad1e3a076ed6f39f847ea92cdab2b0dcee940": {
+  "file": "newer/normals/ab6a0c9ab2556f3c79f78cd629dad1e3a076ed6f39f847ea92cdab2b0dcee940.nm.gz",
+  "sha256": "dc736e561a595acea52bf24923bf1864ce58f05d37a450f7bdce271c975f2d80",
+  "rawSha256": "13fef5b576d50e4e66298d49d420453465b79e3e28e3031fea4541413ea9005c",
+  "width": 1512,
+  "height": 1358,
+  "bytes": 16426552,
+  "compressedBytes": 7174687
+ },
+ "20c958bfb3572ffae9758f737d31a94d3cf35620dc380f2830534b94efee3f42": {
+  "file": "newer/normals/20c958bfb3572ffae9758f737d31a94d3cf35620dc380f2830534b94efee3f42.nm.gz",
+  "sha256": "8ed962b7dc0a756b153d711476a66a6a2df05c802574ee777fa2252f450e8aaa",
+  "rawSha256": "ac1be3370abf4b4eb71e7c389323e720c6700bca859adcd3d89d944fc1295ca3",
+  "width": 228,
+  "height": 194,
+  "bytes": 354036,
+  "compressedBytes": 211541
+ },
+ "e81df26d8418924d174fa1c758f02b484dc0fbf73f9f076c46629486120c4005": {
+  "file": "newer/normals/e81df26d8418924d174fa1c758f02b484dc0fbf73f9f076c46629486120c4005.nm.gz",
+  "sha256": "eaf976ed707782485ef3cd13dc48901ab03a1f3862f0e026e045204e423a9d36",
+  "rawSha256": "ccec0da9816fa689f7b237e7fe682df5348e4b29c65e618d750a1dabbbdc8f7f",
+  "width": 1368,
+  "height": 1164,
+  "bytes": 12739000,
+  "compressedBytes": 5444615
  }
 };

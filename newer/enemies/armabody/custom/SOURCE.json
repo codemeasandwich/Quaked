@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "model": "progs/armabody.mdl",
+  "nativeModelSha256": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/armabody.png",
+  "sourceSha256": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
+  "sourceDimensions": [
+    1324,
+    1188
+  ],
+  "dimensions": [
+    1512,
+    1358
+  ],
+  "factor": 7,
+  "skin": 0,
+  "poses": 98,
+  "vertices": 204,
+  "triangles": 398,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1512,
+    1358
+  ],
+  "registration": null,
+  "mattePolicy": "brown",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 560358,
+      "directPixels": 559212,
+      "edgePixels": 1146
+    },
+    {
+      "id": 2,
+      "surfacePixels": 560374,
+      "directPixels": 558937,
+      "edgePixels": 1437
+    },
+    {
+      "id": 3,
+      "surfacePixels": 20939,
+      "directPixels": 20939,
+      "edgePixels": 0
+    },
+    {
+      "id": 4,
+      "surfacePixels": 20939,
+      "directPixels": 20938,
+      "edgePixels": 1
+    },
+    {
+      "id": 5,
+      "surfacePixels": 19699,
+      "directPixels": 19699,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 19701,
+      "directPixels": 19700,
+      "edgePixels": 1
+    }
+  ],
+  "surfacePixels": 1202010,
+  "edgePixels": 2585,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "69afec8a240968e32a69e92412cb9c070466af1ee4671bc55632e61cf4f143a1",
+    "height.webp": "d934152d59e6452991ade26ef1170fe30b7dec0c3c1239e187c2eb24c8f8b94c"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Hipnotic armabody.mdl skin0 with native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Scourge of Armagon ARMAGON UPPER-BODY UV TEXTURE ATLAS at high resolution. It is a production texture atlas, not a character illustration. Preserve EXACTLY the 216:194 aspect ratio, the two SIDEWAYS atlas halves, every silhouette/UV island, all flesh and cannon positions, original proportions and every gap. DO NOT rotate the body upright or rearrange anything. Keep the original warm pale-grey/tan wounded flesh, deep blood-red wounds, dark charcoal/brown metal cannon barrels and mechanical details. Add restrained fine skin, scar and metal texture while preserving original design, palette and broad shading. IMPORTANT: the FOUR separate ORANGE/YELLOW MUZZLE-FLASH shapes in the open brown spaces are essential animated model pieces. Preserve their exact positions, size, orientation, pointed shapes and orange-to-pale-yellow colours. Give them subtle flame detail contained inside their existing silhouettes; no sparks or bloom outside the islands. Keep the flat solid brown original background (approximately RGB83,55,35). No new head, armour, extra guns, objects, text, labels, border, watermark or cast shadows. Do not omit small pieces. This must remain the same usable model skin atlas, with higher detail rather than a redesign."
+  },
+  "flatHeight": {
+    "vertexRange": [
+      192,
+      204
+    ],
+    "value": 255,
+    "padding": 6,
+    "surfacePixels": 81278,
+    "paddedPixels": 104294
+  },
+  "nativeHeight": {
+    "file": "heights/armabody/skin0_0.webp",
+    "sha256": "f7b42e940ffb27bb2d6b508d67feb5c1c261df9eb9619a3bc554b94053f2fc70",
+    "dimensions": [
+      216,
+      194
+    ],
+    "flatHeight": {
+      "vertexRange": [
+        192,
+        204
+      ],
+      "value": 255,
+      "padding": 6,
+      "surfacePixels": 1718,
+      "paddedPixels": 5582
+    }
+  }
+}

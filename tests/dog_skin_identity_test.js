@@ -70,6 +70,8 @@ Deno.test( 'actual Dog assets retain generated source, matching dimensions, exis
  // Pin every baseline model and its data; later added families have their own contracts.
  const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor", "dragon", "s_wrath", "mummy"];
  other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)));
+ const baselineHeightKeys = ["gib1", "gib2", "gib3", "zom_gib", "ogre", "h_ogre", "demon", "h_demon", "shambler", "h_shams", "knight", "h_knight", "soldier", "h_guard", "wizard", "h_wizard", "h_dog", "dog", "zombie", "h_zombie", "boss"];
+ other.nativeHeights = Object.fromEntries(Object.entries(other.nativeHeights).filter(([key]) => baselineHeightKeys.includes(key)));
  same( sha( JSON.stringify( other ) ), '7f9249f313410f7ec717243b4222914bb48d6c07602eee45584cd14d186eee26', 'all pre-existing enemy variants and native height mappings unchanged' );
  same( sha( read( 'newer/enemies/h_dog/custom/diffuse.webp' ) ), 'bc3f0b2d01d2fddaff6b8e28a61490a78fd54f0bb2921bf869c1923fa9da8724', 'existing HD dog head diffuse unchanged' );
  same( sha( read( 'newer/enemies/h_dog/custom/height.webp' ) ), 'f648145229d96773a1ddceb78308cbc9160ae3aa4817a89836792075522496bf', 'existing HD dog head height unchanged' );

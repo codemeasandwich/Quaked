@@ -1,0 +1,50 @@
+{
+  "key": "armalegs",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/armalegs.png",
+  "sourceSha": "474955ee6ca53875c2829455030f81be9afa90dbcf2bd1f6c188b820d8418bbf",
+  "modelSha": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
+  "layout": [
+    1,
+    228,
+    194,
+    134,
+    318,
+    98
+  ],
+  "size": [
+    1360,
+    1157
+  ],
+  "factor": 6,
+  "matte": "black",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Hipnotic armalegs.mdl skin0 with native palette, nearest enlarged4x; generated armabody source used only as finish/style reference",
+    "styleReferenceSha256": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
+    "prompt": "Image 1 is the EDIT TARGET: original Quake Scourge of Armagon ARMAGON MECHANICAL LEGS UV ATLAS. Image 2 is only a finish/detail-style reference for the matching upper-body skin; never copy its body, flames or layout into the legs. Faithfully repaint image1 at high resolution. Preserve EXACT 228:194 aspect ratio, both atlas halves, all original UV-island shapes, proportions, coordinates, mechanical panel layout, vents, joints, foot/tread shapes and red details. Do not rotate, mirror, crop or rearrange anything. Keep the original DARK EARTHY BROWN/BRONZE industrial metal and muted charcoal recesses, with the same restrained dark-red blood and vent details. Do not turn the armour silver, blue, glossy chrome or gold. Add restrained wear, rivet, seam, pipe and machining detail that follows existing features. The visual finish should belong with image2's dark weathered metal, but original image1 determines colours, design and layout. Keep the original pure black background and crisp boundaries; no cast shadow, scene, new body parts, guns, flames, labels, text, border or watermark. This is a production model skin atlas, not a rendered robot or concept sheet. Faithfulness to original silhouette, palette and UV placement is the priority."
+  },
+  "atlasBox": [
+    0,
+    4,
+    1368,
+    1210
+  ],
+  "registration": {
+    "method": "Independent bounded full-atlas vertical registration against native detail over the actual UV footprint; source remains unchanged",
+    "analysisScale": 3,
+    "testedHeights": [
+      582,
+      612
+    ],
+    "testedOffsets": [
+      -5,
+      3
+    ],
+    "initialCorrelation": 0.0613,
+    "registeredCorrelation": 0.396,
+    "initialUncoveredPixels": 6727,
+    "registeredUncoveredPixels": 0,
+    "unchangedBleedLimit": 24
+  }
+}

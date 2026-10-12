@@ -91,7 +91,7 @@ function cancelSkinLoads( set ) { for ( const cancel of set.cancellations || [] 
 export const ENEMY_SKIN_MODELS = new Set( [
 	'boss', 'demon', 'dog', 'enforcer', 'fish', 'hknight', 'knight', 'ogre', 'oldone',
 	'shalrath', 'shambler', 'soldier', 'tarbaby', 'wizard', 'zombie', 'scor',
-	'dragon', 's_wrath', 'mummy', 'grem', 'h_demon',
+	'dragon', 's_wrath', 'mummy', 'grem', 'armabody', 'armalegs', 'h_demon',
 	'h_dog', 'h_hellkn', 'h_knight', 'h_ogre', 'h_shal', 'h_shams', 'h_guard',
 	'h_wizard', 'h_zombie', 'gib1', 'gib2', 'gib3', 'zom_gib'
 ] );
@@ -430,10 +430,11 @@ const nativeSets = new Map(); // selected native Texture -> detail/material set
  * @param {boolean} hasLighting true for the vertex-coloured (baked light) variant
  * @param {number} [skinnum=0] the entity's skin number
  * @param {number} [frame=0] the skin animation slot 0..3 (gl_mesh.js: `floor(cl.time * 10) & 3`)
+ * @param {?model_t} [model=null] actual loaded model; required by identity-bound authored native heights
  * @returns {?THREE.MeshBasicMaterial} the shared cached material, or null when Newer Game is not drawing, normal maps
  *   are off (and no power vision is on), the model is not an enemy model, or there is no texture
  */
-export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum = 0, frame = 0 ) {
+export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum = 0, frame = 0, model = null ) {
 
 	const key = R_NewerModelKey( modelName );
 	if ( ! R_IsNewer() || (r_newer_normals.value === 0 && !PowerVisionMode(cl,true)) || ! ENEMY_SKIN_MODELS.has( key ) || texture == null ) return null;
@@ -468,8 +469,17 @@ export function R_EnemyAliasMaterial( texture, modelName, hasLighting, skinnum =
 	if (r_newer_normals.value !== 0 && set.detailDiffuse === null) refreshHeight(set);
 	const list = groups != null ? ( groups[ skinnum ] || groups[ 0 ] ) : null;
 	// Match gl_model's j & 3 animation slots, including groups longer than four.
-	const stored = list != null && list.length > 0 ? ( list.length <= 4 ? list[ frame % list.length ]
+	const candidate = list != null && list.length > 0 ? ( list.length <= 4 ? list[ frame % list.length ]
 		: list.filter( ( _, i ) => ( i & 3 ) === frame ).at( - 1 ) ) : null;
+	const stored = R_NewerVariantMatchesModel( candidate, model ) ? candidate : null;
+	// A reused texture must never retain relief from a formerly approved model.
+	// Pending/mismatched identities use relief derived from their actual pixels.
+	if ( stored == null && set.requestedHeight != null ) {
+		set.cancelHeight?.(); set.requestedHeight = null;
+		if ( set.heightTexture !== null ) { set.heightTexture.dispose(); set.heightTexture = null; }
+		set.variant.heightStrength = 0.65; set.variant.heightCap = 0.55;
+		refreshHeight( set );
+	}
 	const requestKey = stored != null ? skinVersion + ':' + stored.file : null;
 	const requestVersion = skinVersion;
 	if ( stored != null && set.requestedHeight !== requestKey && typeof THREE.TextureLoader !== 'undefined' && typeof document !== 'undefined' ) {
@@ -923,7 +933,11 @@ export function R_NewerSkinsPrepare( models ) {
   // Reuse the preparation promise/epoch so identity work cannot reveal a
   // half-loaded custom skin or start requests after shutdown.
   if(epoch!==preparationEpoch||!sameSources())return false;
-  const required=custom?current.filter(model=>(skinIndex?.[R_NewerModelKey(model.name)]||[]).some(variant=>variant.nativeModelSha256!==undefined)):[];
+  const required=current.filter(model=>{
+   const modelKey=R_NewerModelKey(model.name);
+   return (custom&&(skinIndex?.[modelKey]||[]).some(variant=>variant.nativeModelSha256!==undefined)) ||
+    (native&&(nativeHeights[modelKey]||[]).some(group=>group?.some(entry=>entry?.nativeModelSha256!==undefined)));
+  });
   return Promise.all(required.map(model=>model.aliasSourceIdentity?.promise)).then(()=>true);
  }).then( allowed => {
   if(!allowed||epoch!==preparationEpoch||!sameSources()){work.started=true;work.version=skinVersion;work.cancelled=true;return {models:[],cancelled:true};}
@@ -941,7 +955,7 @@ export function R_NewerSkinsPrepare( models ) {
 				for ( let skin = 0; skin < ( header?.numskins || header?.gl_texturenum?.length || 0 ); skin ++ ) {
 					const group = header.gl_texturenum?.[ skin ] || [];
 					for ( let frame = 0; frame < Math.min( 4, group.length ); frame ++ ) if ( group[ frame ]?.isTexture ) {
-						R_EnemyAliasMaterial( group[ frame ], model.name, true, skin, frame );
+						R_EnemyAliasMaterial( group[ frame ], model.name, true, skin, frame, model );
 						const set = nativeSets.get( group[ frame ] ); if ( set ) set.prepared = true;
 					}
 				}

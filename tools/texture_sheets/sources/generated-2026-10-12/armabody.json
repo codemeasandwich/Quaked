@@ -1,0 +1,37 @@
+{
+  "key": "armabody",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/armabody.png",
+  "sourceSha": "ca4f0c246a5853fefa02444350ddbef1e928c2703a1ab0d355397b4e01a0ee69",
+  "modelSha": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151",
+  "layout": [
+    1,
+    216,
+    194,
+    204,
+    398,
+    98
+  ],
+  "size": [
+    1324,
+    1188
+  ],
+  "factor": 7,
+  "matte": "brown",
+  "background": [
+    83,
+    55,
+    35
+  ],
+  "matteTolerance": 18,
+  "flatHeightVertices": [
+    192,
+    204
+  ],
+  "nativeHeightFile": "heights/armabody/skin0_0.webp",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Hipnotic armabody.mdl skin0 with native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Scourge of Armagon ARMAGON UPPER-BODY UV TEXTURE ATLAS at high resolution. It is a production texture atlas, not a character illustration. Preserve EXACTLY the 216:194 aspect ratio, the two SIDEWAYS atlas halves, every silhouette/UV island, all flesh and cannon positions, original proportions and every gap. DO NOT rotate the body upright or rearrange anything. Keep the original warm pale-grey/tan wounded flesh, deep blood-red wounds, dark charcoal/brown metal cannon barrels and mechanical details. Add restrained fine skin, scar and metal texture while preserving original design, palette and broad shading. IMPORTANT: the FOUR separate ORANGE/YELLOW MUZZLE-FLASH shapes in the open brown spaces are essential animated model pieces. Preserve their exact positions, size, orientation, pointed shapes and orange-to-pale-yellow colours. Give them subtle flame detail contained inside their existing silhouettes; no sparks or bloom outside the islands. Keep the flat solid brown original background (approximately RGB83,55,35). No new head, armour, extra guns, objects, text, labels, border, watermark or cast shadows. Do not omit small pieces. This must remain the same usable model skin atlas, with higher detail rather than a redesign."
+  }
+}

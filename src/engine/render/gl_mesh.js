@@ -671,7 +671,7 @@ function R_GetAliasMaterial( paliashdr, entity, hasLighting, playerSkinTexture )
 
 	if ( texture && entity != null && entity.model != null ) {
 
-		const detailed = R_EnemyAliasMaterial( texture, entity.model.name, hasLighting, skinnum, anim );
+		const detailed = R_EnemyAliasMaterial( texture, entity.model.name, hasLighting, skinnum, anim, entity.model );
 		if ( detailed !== null ) return detailed;
 
 	}
