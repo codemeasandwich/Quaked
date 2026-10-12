@@ -73,7 +73,7 @@ Options has separate **Sound Volume** (effects, environmental sounds and menus) 
 
 ## Game data
 
-The single-file web distribution embeds the original free shareware Episode 1. Its build input is pinned and checksum-verified. The native app reads your own files from `~/quaked` and supports the original split `pak0.pak`/`pak1.pak` layout as well as the combined rerelease PAK. Game and expansion files remain outside the application and source tree. Only validated, supported installations can be selected; finding an add-on does not imply its engine features are supported. [Distribution and data-location contract](docs/distribution.md).
+The web distribution on GitHub Pages ships the original free shareware Episode 1 as its own data file beside the engine HTML. Its build input is pinned and checksum-verified. The native app reads your own files from `~/quaked` and supports the original split `pak0.pak`/`pak1.pak` layout as well as the combined rerelease PAK. Game and expansion files remain outside the application and source tree. Only validated, supported installations can be selected; finding an add-on does not imply its engine features are supported. [Distribution and data-location contract](docs/distribution.md).
 
 ## What Newer Game adds
 
@@ -97,7 +97,7 @@ Quaked is a working, playable project under active development, and has had litt
 
 ## For developers
 
-Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and Newer Game's art and data in `newer/`. The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Actions builds the single-file shareware page from `Dev` and deploys only the generated HTML after its required checks pass.
+Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and Newer Game's art and data in `newer/`. The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Actions builds the shareware web page and its data files from `Dev` and deploys only that generated site after its required checks pass.
 
 ## License
 

@@ -1,12 +1,43 @@
 /** Artifact-level offline trial. Uses a fresh browser profile; never the owner's session. */
 import {chromium} from '@playwright/test';
-import {resolve} from 'node:path';
+import {resolve,extname} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {mkdir,mkdtemp,readFile,rm,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import {createServer} from 'node:http';
+import {createServer as createSecureServer} from 'node:https';
+import {execFileSync} from 'node:child_process';
+import {tmpdir} from 'node:os';
 import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
-const target=process.argv[2]??pathToFileURL(resolve('dist/web/index.html')).href;
+// Modes (docs/distribution.md): 'http' (default) serves dist/web from a local server, as
+// GitHub Pages does; 'file' opens index.html from disk, as a downloaded copy is, and answers
+// its GitHub Pages data requests from the same local files. An explicit URL is used as given.
+const site=resolve(process.env.QUAKED_TRIAL_SITE??'dist/web'),mode=process.env.QUAKED_TRIAL_MODE??'http';
+if(!['http','file'].includes(mode))throw Error('QUAKED_TRIAL_MODE must be http or file');
+const types={'.html':'text/html; charset=utf-8','.bin':'application/octet-stream','.js':'text/javascript','.json':'application/json'};
+// QUAKED_TRIAL_TAMPER=1 flips one byte of the first data part served: the page must then refuse to start.
+const tamper=process.env.QUAKED_TRIAL_TAMPER==='1';let tampered=null;
+async function siteFile(pathname){let decoded;try{decoded=decodeURIComponent(pathname);}catch{return null;}const path=resolve(site,'.'+decoded);if(!path.startsWith(site+'/'))return null;try{let body=await readFile(path);if(tamper&&extname(path)==='.bin'&&(tampered===null||tampered===path)){tampered=path;body=Buffer.from(body);body[body.length>>1]^=1;}return {body,type:types[extname(path)]??'application/octet-stream'};}catch{return null;}}
+let server=null,target=process.argv[2]||undefined;
+const dataBase=(await readFile(resolve(site,'index.html'),'utf8').catch(()=>'')).match(/"dataBase":"([^"]+)"/)?.[1]??null;
+// Serves the site as GitHub Pages does (same files, CORS open); `prefix` is the Pages path.
+const serve=prefix=>async(request,response)=>{const pathname=new URL(request.url,'http://127.0.0.1').pathname;const file=pathname.startsWith(prefix)?await siteFile('/'+pathname.slice(prefix.length).replace(/^$|\/$/,'index.html')):null;if(!file){response.writeHead(404).end();return;}response.writeHead(200,{'content-type':file.type,'content-length':file.body.length,'access-control-allow-origin':'*','cache-control':'max-age=600','etag':'"'+createHash('sha1').update(file.body).digest('hex')+'"'}).end(file.body);};
+const resolverArgs=[];
+if(!target&&mode==='http'){
+ server=createServer(serve('/'));
+ await new Promise(done=>server.listen(0,'127.0.0.1',done));target=`http://127.0.0.1:${server.address().port}/index.html`;
+}else if(!target&&dataBase){
+ // A downloaded copy: the page is a file and its data comes from the Pages host. Chrome
+ // resolves that host to a local https server (throwaway certificate) holding the same files,
+ // so the real cross-origin, integrity-checked fetch runs without the network.
+ const pages=new URL(dataBase),dir=await mkdtemp(resolve(tmpdir(),'quaked-trial-tls-'));
+ execFileSync('openssl',['req','-x509','-newkey','rsa:2048','-nodes','-days','1','-subj','/CN='+pages.hostname,'-keyout',resolve(dir,'key.pem'),'-out',resolve(dir,'cert.pem')],{stdio:'ignore'});
+ server=createSecureServer({key:await readFile(resolve(dir,'key.pem')),cert:await readFile(resolve(dir,'cert.pem'))},serve(pages.pathname));await rm(dir,{recursive:true,force:true});
+ await new Promise(done=>server.listen(0,'127.0.0.1',done));
+ resolverArgs.push(`--host-resolver-rules=MAP ${pages.hostname} 127.0.0.1:${server.address().port}`,'--ignore-certificate-errors');
+}
+target??=pathToFileURL(resolve(site,'index.html')).href;
 const reportPath=process.argv[3]??'dist/browser-trial.json';
 // CI runs this trial on a macOS runner with Chrome's default WebGL backend; Linux
 // has no supported hardware GPU and its software renderer cannot start the game
@@ -18,7 +49,7 @@ const softwareDefault=process.platform==='linux'&&process.env.CI==='true';
 const backend=process.env.QUAKED_WEBGL_BACKEND??(softwareDefault?'swiftshader':'default');
 if(!['default','swiftshader'].includes(backend))throw Error('QUAKED_WEBGL_BACKEND must be default or swiftshader');
 const channel=process.env.QUAKED_CHROME_CHANNEL??'chrome';
-const args=['--enable-precise-memory-info',...(backend==='swiftshader'?['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']:[])];
+const args=[...resolverArgs,'--enable-precise-memory-info',...(backend==='swiftshader'?['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']:[])];
 const started=Date.now(),errors=[],requests=[],consoleErrors=[],consoleTail=[],requestFailures=[],phases=[],samples=[];
 let browser,context,page,result,phase='launch',sampler,finished=false,processSession=null,peakBrowserRss=0;
 const elapsed=()=>Date.now()-started;
@@ -86,44 +117,60 @@ async function sample(){
  if(!finished)sampler=setTimeout(sample,20000);
 }
 let targetSha256=null;
-if(target.startsWith('file:'))try{targetSha256=createHash('sha256').update(await readFile(fileURLToPath(target))).digest('hex');}catch{}
+// Only a file this trial actually served or opened: an explicit remote URL records none.
+try{if(target.startsWith('file:')||server&&target.startsWith('http://127.0.0.1:'))targetSha256=createHash('sha256').update(await readFile(target.startsWith('file:')?fileURLToPath(target):resolve(site,'index.html'))).digest('hex');}catch{}
 try{
  await mkdir(resolve(reportPath,'..'),{recursive:true});
  browser=await step('launch',()=>chromium.launch({channel,headless:true,args}));
  // Memory diagnostics never decide the trial: a failed session only loses browserRss.
  try{processSession=await bounded(()=>browser.newBrowserCDPSession(),'browser process session');}catch(error){processSession=null;tail(consoleTail,{elapsedMs:elapsed(),type:'diagnostic',text:'browser process session: '+String(error)});}
- context=await browser.newContext({viewport:{width:1280,height:800}});
+ context=await browser.newContext({viewport:{width:1280,height:800},ignoreHTTPSErrors:resolverArgs.length>0});
  page=await context.newPage();
  page.on('pageerror',error=>errors.push(error.stack??String(error)));
  page.on('crash',()=>errors.push('Browser page crashed'));
  page.on('console',msg=>{const text=msg.text();tail(consoleTail,{elapsedMs:elapsed(),type:msg.type(),text:text.slice(0,4000)});if(msg.type()==='error')consoleErrors.push(text);});
  page.on('requestfailed',request=>tail(requestFailures,{elapsedMs:elapsed(),url:request.url().slice(0,1000),error:request.failure()?.errorText}));
- await context.route(/^https?:/,route=>{if(route.request().url()===target)return route.continue();requests.push(route.request().url());return route.abort();});
+ // Only the page's own site is reachable; a file:// page's GitHub Pages data requests are
+ // answered from the local site, everything else is recorded and refused.
+ const origin=target.startsWith('http')?new URL(target).origin+'/':null;
+ await context.route(/^https?:/,async route=>{
+  const url=route.request().url();
+  if(url===target||origin&&url.startsWith(origin))return route.continue();
+  if(resolverArgs.length&&url.startsWith(dataBase+'data/'))return route.continue();
+  requests.push(url);return route.abort();
+ });
  sampler=setTimeout(sample,20000);
  await step('navigation',()=>page.goto(target,{waitUntil:'domcontentloaded',timeout:180000}));
- await step('engine-initialization',()=>page.waitForFunction(()=>typeof window.Cbuf_AddText==='function',null,{timeout:180000}));
- await step('initial-demo',()=>page.waitForFunction(()=>window.cl?.worldmodel&&window.cls?.signon===4&&!document.getElementById('loading'),null,{timeout:180000}));
- tail(samples,await snapshot(),30);
- const scenarios=[];
- for(const [mode,map] of [[0,'e1m1'],[1,'e1m1'],[1,'e1m2']]){
-  await step(`${mode?'newer':'classic'}-${map}`,async()=>{
-   // The map command runs on a later host frame, and two scenarios load e1m1: remember the
-   // running level's server time so the waits below cannot pass on the level being replaced
-   // (a new server starts at 1 s; the previous one is past 3 s).
-   await page.evaluate(({mode,map})=>{window.__trialPreviousServerTime=window.sv?.active?window.sv.time:-1;window.Cbuf_AddText(`stopdemo\nr_hdr ${mode}\nmap ${map}\n`);},{mode,map});
-   await page.waitForFunction(map=>window.cl?.worldmodel?.name===`maps/${map}.bsp`&&window.cls?.signon===4&&!window.cls.demoplayback&&(window.__trialPreviousServerTime<0||window.sv.time<window.__trialPreviousServerTime),map,{timeout:120000});
-   // Signed on is not playing: a Newer level's welcome hold keeps the loading plaque up and
-   // game time frozen near 1 s until its assets are ready. Require about 2 s of play, then
-   // further progress over a 5 s settle (at least 1 s of game time, so a slow GPU still passes).
-   await page.waitForFunction(()=>window.sv?.active&&window.cl.time>=3,null,{timeout:120000});
-   const startTime=await page.evaluate(()=>cl.time);
-   await page.waitForTimeout(5000);
-   scenarios.push(await page.evaluate(startTime=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,startTime,time:cl.time}),startTime));
-  });
+ if(tamper){
+  // The trust boundary: one flipped byte in one data part must stop the page before the engine runs.
+  await step('refuses-tampered-data',()=>page.waitForFunction(()=>/Quaked could not start/.test(document.body?.innerText??''),null,{timeout:120000}));
+  const state=await page.evaluate(()=>({body:document.body.innerText.slice(0,600),engineStarted:typeof window.Cbuf_AddText==='function'}));
+  result={ok:/could not download or verify/.test(state.body)&&!state.engineStarted,tamper:{file:tampered,...state}};
+ }else{
+  await step('engine-initialization',()=>page.waitForFunction(()=>typeof window.Cbuf_AddText==='function',null,{timeout:180000}));
+  await step('initial-demo',()=>page.waitForFunction(()=>window.cl?.worldmodel&&window.cls?.signon===4&&!document.getElementById('loading'),null,{timeout:180000}));
+  tail(samples,await snapshot(),30);
+  const scenarios=[];
+  for(const [mode,map] of [[0,'e1m1'],[1,'e1m1'],[1,'e1m2']]){
+   await step(`${mode?'newer':'classic'}-${map}`,async()=>{
+    // The map command runs on a later host frame, and two scenarios load e1m1: remember the
+    // running level's server time so the waits below cannot pass on the level being replaced
+    // (a new server starts at 1 s; the previous one is past 3 s).
+    await page.evaluate(({mode,map})=>{window.__trialPreviousServerTime=window.sv?.active?window.sv.time:-1;window.Cbuf_AddText(`stopdemo\nr_hdr ${mode}\nmap ${map}\n`);},{mode,map});
+    await page.waitForFunction(map=>window.cl?.worldmodel?.name===`maps/${map}.bsp`&&window.cls?.signon===4&&!window.cls.demoplayback&&(window.__trialPreviousServerTime<0||window.sv.time<window.__trialPreviousServerTime),map,{timeout:120000});
+    // Signed on is not playing: a Newer level's welcome hold keeps the loading plaque up and
+    // game time frozen near 1 s until its assets are ready. Require about 2 s of play, then
+    // further progress over a 5 s settle (at least 1 s of game time, so a slow GPU still passes).
+    await page.waitForFunction(()=>window.sv?.active&&window.cl.time>=3,null,{timeout:120000});
+    const startTime=await page.evaluate(()=>cl.time);
+    await page.waitForTimeout(5000);
+    scenarios.push(await page.evaluate(startTime=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,startTime,time:cl.time}),startTime));
+   });
+  }
+  result=await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),metrics:globalThis.__QUAKED_DISTRIBUTION__?.metrics,memory:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize}:null,body:document.body.innerText.slice(-1500)}));
+  result.scenarios=scenarios;
+  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1);
  }
- result=await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),metrics:globalThis.__QUAKED_DISTRIBUTION__?.metrics,memory:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize}:null,body:document.body.innerText.slice(-1500)}));
- result.scenarios=scenarios;
- result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1);
 }catch(error){result={ok:false,failure:String(error),failedPhase:phase};}
 finally{
  finished=true;clearTimeout(sampler);
@@ -131,18 +178,18 @@ finally{
  if(processSession)await bounded(()=>processSession.detach(),'browser process session detach').catch(()=>{});let screenshot=null,screenshotError=null,gpu=null;
  if(page&&!page.isClosed())try{screenshot=reportPath.replace(/\.json$/,'.png');await page.screenshot({path:screenshot,timeout:10000});}catch(error){screenshotError=String(error);}
  if(browser)try{gpu=await bounded(async()=>{const session=await browser.newBrowserCDPSession();try{return (await session.send('SystemInfo.getInfo')).gpu;}finally{await session.detach();}},'browser GPU diagnostics');}catch(error){gpu={diagnosticError:String(error)};}
- if(result.ok&&(screenshotError||errors.length||consoleErrors.length||requests.length||diagnostic.metrics?.missing?.length)){
+ if(result.ok&&!tamper&&(screenshotError||errors.length||consoleErrors.length||requests.length||diagnostic.metrics?.missing?.length)){
   result.ok=false;
   if(screenshotError){result.failure=screenshotError;result.failedPhase='screenshot';}
  }
  // The final snapshot can fail on a crashed or stalled page; fall back to the newest sample.
  const webgl=diagnostic.webgl??[...samples].reverse().find(entry=>entry.webgl)?.webgl;
  const webglRenderer=webgl?.unmaskedRenderer??webgl?.renderer??null;
- const receipt={target,targetSha256,elapsedMs:elapsed(),...result,webglRenderer,
+ const receipt={target,mode:target.startsWith('file:')?'file':'http',targetSha256,elapsedMs:elapsed(),...result,webglRenderer,
   softwareWebGL:webglRenderer?/swiftshader|llvmpipe|software/i.test(webglRenderer):null,
   browserMemory:{peakRssBytes:peakBrowserRss||null,final:diagnostic.browserRss??null},environment:{platform:process.platform,channel,backend,args,browserVersion:browser?.version()??null},
   phases,samples,diagnostic,gpu,screenshot,screenshotError,errors,requests,consoleErrors,consoleTail,requestFailures};
  await mkdir(resolve(reportPath,'..'),{recursive:true});await writeFile(reportPath,JSON.stringify(receipt,null,2)+'\n');
  console.log(JSON.stringify({target,ok:receipt.ok,elapsedMs:receipt.elapsedMs,failedPhase:receipt.failedPhase,webglRenderer,peakBrowserRssBytes:peakBrowserRss||null,reportPath}));
- await browser?.close();if(!receipt.ok)process.exitCode=1;
+ await browser?.close();server?.close();if(!receipt.ok)process.exitCode=1;
 }

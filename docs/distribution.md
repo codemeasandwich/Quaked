@@ -1,7 +1,8 @@
 # Quaked distribution and native launcher
 
-Two profiles share the existing engine. The web profile is one offline HTML file,
-with the normal shareware attract demo, Classic and Newer Game. The Tauri 2 profile
+Two profiles share the existing engine. The web profile is an HTML page (engine and
+code) plus content-hashed data files on GitHub Pages, with the normal shareware
+attract demo, Classic and Newer Game. The Tauri 2 profile
 opens the existing game shelf and reads the user's installed games. It needs neither
 Deno nor a separately installed server for single-player or native LAN hosting.
 
@@ -94,7 +95,8 @@ An existing verified input can be supplied through `QUAKED_SHAREWARE_PAK`.
 The original tracked shareware location remains a supported build input when it
 exists. The native application inventory excludes all original game PAKs.
 
-Outputs are `dist/web/index.html`, native frontend files under `dist/desktop`,
+Outputs are `dist/web/index.html` with its data files in `dist/web/data/`, native
+frontend files under `dist/desktop`,
 and native packaged resources under `dist/desktop-assets`. Tauri places
 `Quaked.app` beneath its target's `universal-apple-darwin/release/bundle/macos`
 directory. It builds no installer or DMG. For a download archive, run
@@ -125,11 +127,13 @@ matching custom enemy variants and currently unassigned canonical normal samples
 Bestiary pages remain included because the existing journal can remember entries
 across games. Development sources, candidate art and owned archives are excluded.
 Asset bytes and bake identities are preserved; compression does not reduce visual
-quality. The HTML decodes assets lazily to Blob URLs, and the packaged resolver is
-installed before any engine module runs. Source-relative workers and asset URLs
+quality (the web optimisation rulings below will change this for the web build
+only). The packaged resolver is installed before any engine module runs and hands
+the engine Blob URLs. Source-relative workers and asset URLs
 are resolved at build time. No global fetch interception is installed.
 
-The HTML also plays its bundled shareware levels opened as a local file. A
+A downloaded HTML also plays the shareware levels opened as a local file (it needs
+network access to fetch its data files from GitHub Pages). A
 `file://` page has an opaque origin, so the origin-private file system that
 stores first-use generated normals is refused (`SecurityError`). Normals with no
 shipped bake (the Episode 1 crate variants, for example) are then generated for
@@ -148,11 +152,82 @@ plaque with game time frozen (found 12 October 2026 in CI run 38296015129 and a
 local 180 s probe; over http the same build released after about 14 s). Over
 https the normals are still stored and reused as before.
 
-The current enhanced HTML is close to one GiB. Build receipts report actual byte
-counts; a build at or above the Pages site limit fails rather than discarding
-features. Browser heap measurements describe observed JavaScript heap, not total
+Build receipts report actual byte counts; a site (HTML plus data files) at or
+above the 1 GB Pages limit fails the build rather than discarding features. Browser heap measurements describe observed JavaScript heap, not total
 GPU/process memory. `inventory.json` records per-asset SHA-256 and the engine
 bundle metadata; a staged build additionally records its exact Git tree identity.
+
+## Web data files
+
+Owner rulings, 12 October 2026. The web build was one ~952 MB HTML, so any engine
+fix re-downloaded the shareware and every asset. It is now split so one small
+change does not invalidate everything else:
+
+- `index.html` (about 5.6 MB): the engine bundle, the rockfield worker and the few
+  images the page shows before the engine runs, embedded as before.
+- `data/<category>-<sha256 prefix>.bin`, one per category (`DataCategory`,
+  `tools/distribution/manifest.mjs`): `pak0` (the shareware PAK), `textures`,
+  `normals`, `skins` (enemies and weapons), `maps` (prepared displacement and
+  rockfield data, `maps.pak`, `startup.pak`), `music` and `images` (bestiary, HUD,
+  UI, effects, credits). Each is the category's files concatenated in path order,
+  gzipped whole when that saves at least 5% (today only `pak0`: 18.7 to 8.9 MB),
+  then cut into parts of at most 32 MB, `data/<category>-<sha256 prefix of the
+  part>.bin`. Parts keep browser cache entries small, let per-part integrity show
+  progress, and keep their names when a later asset in the category changes.
+  First split build: 26 parts, 763 MB in all with the HTML, against 952 MB, since
+  base85 is gone.
+
+The page lists every part with its size and `sha256` integrity. The boot loader
+(`tools/distribution/bootstrap.js`) fetches them all, four at a time, before the
+engine starts. The browser releases an integrity-checked response only once it is
+whole and verified, so the logo progress bar (`LoadingScreen_SetProgress`) moves
+per part; the engine does not move it again for the shareware PAK. Each part's bytes
+are copied into a Blob the page owns (`arrayBuffer()`, not `response.blob()`): with
+Pages-like cache headers Chrome backed the response Blobs with HTTP cache entries,
+evicting them broke every slice (`ERR_BLOB_REFERENCED_BLOB_BROKEN`) and the Newer
+level never left its loading hold (local http trial, 12 October 2026; the file
+trial missed it because Chrome does not cache its self-signed responses). Each
+category is joined (and un-gzipped) into one Blob; an asset's URL is a zero-copy slice of it,
+so the engine's loaders are unchanged. The first failure aborts the other
+downloads; a part that fails verification is reported as "could not download or
+verify". The desktop profile shares the boot loader and is behaviourally unchanged
+(it has no data files). Served over http(s) the files are read beside the page;
+opened from disk the page fetches them from GitHub Pages (`dataBase`,
+`QUAKED_DATA_BASE` at build time, default https://codemeasandwich.github.io/Quaked/),
+which allows cross-origin reads (checked in Chrome only; Safari and Firefox are not
+yet trialled). Unchanged parts keep their names, so browsers reuse them (Pages
+answers `ETag`, `max-age=600`). Measured 12 October 2026 with an on-disk Chrome
+profile and a server sending those headers: the first visit transferred 758 MB;
+repeat visits within `max-age` transferred 0 bytes (all 26 parts from cache);
+with `max-age=0` each later visit revalidated for 7.8 KB in all (304 responses).
+Newer e1m1 played on every visit. The site only holds the current files: a
+downloaded copy whose data has since changed fails its integrity or download check
+and says the latest is at the Pages address. Just after a deploy a browser may
+reuse a cached `index.html` whose parts are gone; over http(s) a 404 makes the page
+fetch itself afresh and reload once before reporting. The desktop app does not use
+data files; it keeps the full-resolution source files.
+
+To try a local web build, serve `dist/web` over http (for example
+`python3 -m http.server -d dist/web 8000`) and open http://localhost:8000/.
+Opening `dist/web/index.html` from disk fetches the published data from GitHub
+Pages, which an unpublished build does not match, so it reports itself out of date.
+
+Rulings still to implement, for the web data only: textures, skins and images at
+most 4x the original Quake resolution; image optimisation with no noticeable loss,
+preferring compression to resizing; bestiary pages under 700 KB each at their
+existing 1024x1536 (WebP quality 88 to 92 measured 421 to 728 KB). Lossy
+re-encoding of textures or skins changes the bytes their shipped normals are keyed
+by, so it needs a build-time normal re-bake; height, gloss, normal and glass maps
+can only be re-encoded losslessly.
+
+Trials: `browser-trial.mjs` serves `dist/web` from a local http server (as Pages
+does); with `QUAKED_TRIAL_MODE=file` it opens `index.html` from disk and Chrome
+resolves the Pages host to a local https server (throwaway certificate) holding
+the same files, so the real cross-origin, integrity-checked fetch runs offline.
+CI runs both before Pages deploys; the pages job checks the HTML digest and runs
+`verify-site.mjs` (every named data file present with its exact size and
+integrity, nothing extra). First local results on an M2: data ready after 5.7 s
+(http) and 6.1 s (file); all three gameplay scenarios passed in each.
 
 ## Hook, CI and release
 
@@ -172,7 +247,7 @@ hook configurations are never overwritten automatically.
 
 GitHub Actions runs the web checks and browser trial on an Apple Silicon Mac
 runner, and native builds on both Apple Silicon and Intel Mac runners.
-Successful `Dev` pushes deploy only the generated HTML to Pages.
+Successful `Dev` pushes deploy only the generated site (HTML and data files) to Pages.
 Tags matching `package.json`'s `v<version>` publish the universal app in a ZIP with checksums and release notes.
 Configure GitHub Pages to use Actions. Artifact generation, owner acceptance,
 commit/landing and actual publication are separate evidence states.
@@ -230,10 +305,15 @@ settle. Being signed on is not proof of play: a Newer level's welcome hold keeps
 time frozen behind the loading plaque. Run 38296015129 passed the older
 signed-on check while Newer levels were still held.
 
-On a `Dev` push only, the web job checks the file still matches `targetSha256`,
-uploads it as the one-day `web-html` artifact and exports its sha256. Re-running
-only the `pages` job works within that day; later, re-run all jobs. The `pages` job downloads
-it, refuses to continue unless the digest matches, then deploys it. Pages
+The web job also runs `verify-site.mjs` on the build and a tamper trial
+(`QUAKED_TRIAL_TAMPER=1`: one flipped byte in one part must stop the page with
+"could not download or verify" before the engine runs). On a `Dev` push only, it
+checks `index.html` still matches `targetSha256`, uploads the site (`index.html`
+and `data/`) as the one-day `web-html` artifact and exports the HTML's sha256.
+Re-running only the `pages` job works within that day; later, re-run all jobs. The
+`pages` job downloads the site, refuses to continue unless the HTML digest matches
+(the HTML's integrity values bind every part) and `verify-site.mjs` passes, then
+deploys it. Pages
 deploys only when the web job and both Mac jobs pass; a failed or skipped run
 leaves the previous site in place. The `github-pages` environment allows the
 `Dev` branch (checked 12 October 2026).

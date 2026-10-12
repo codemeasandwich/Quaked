@@ -31,11 +31,26 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run test:distribution
       - run: npm run build:web
+      - run: node tools/distribution/verify-site.mjs dist/web
+      # As served by GitHub Pages: index.html and its data files over http.
       - run: node tools/distribution/browser-trial.mjs
         timeout-minutes: 30
         env:
           QUAKED_CHROME_CHANNEL: chrome
-      # Only a Dev push deploys, so only it hands the tested HTML to the pages job.
+      # As a downloaded copy: index.html from disk, data from the Pages host (mapped locally).
+      - run: node tools/distribution/browser-trial.mjs "" dist/browser-trial-file.json
+        timeout-minutes: 30
+        env:
+          QUAKED_CHROME_CHANNEL: chrome
+          QUAKED_TRIAL_MODE: file
+      # One flipped byte in one data part: the page must refuse to start.
+      - run: node tools/distribution/browser-trial.mjs "" dist/browser-trial-tamper.json
+        timeout-minutes: 10
+        env:
+          QUAKED_CHROME_CHANNEL: chrome
+          QUAKED_TRIAL_TAMPER: '1'
+      # Only a Dev push deploys, so only it hands the tested site to the pages job. The HTML
+      # names each data file's sha256 (fetch integrity), so its digest binds the data too.
       - id: digest
         if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
         # The exported digest must be the one the trial hashed before it ran.
@@ -48,15 +63,18 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
         with:
           name: web-html
-          path: dist/web/index.html
+          path: |
+            dist/web/index.html
+            dist/web/data/
           retention-days: 1
+          compression-level: 0
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: web-evidence
           path: |
             dist/web/inventory.json
-            dist/browser-trial.*
+            dist/browser-trial*
   mac:
     strategy:
       matrix:
@@ -93,13 +111,14 @@ jobs:
     needs: [web, mac]
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Publish exactly the HTML the web job's browser trial passed.
+      # Publish exactly the site (HTML and data files) the web job's browser trials passed.
       - uses: actions/download-artifact@v4
         with:
           name: web-html
@@ -110,6 +129,15 @@ jobs:
         run: |
           test -n "$TESTED_SHA256"
           echo "$TESTED_SHA256  dist/pages/index.html" | sha256sum -c -
+      # Data files must be exactly the ones the tested HTML names; only the verifier script
+      # is checked out, and no repository code builds anything here.
+      - uses: actions/checkout@v4
+        with:
+          path: source
+          persist-credentials: false
+          sparse-checkout: tools/distribution/verify-site.mjs
+          sparse-checkout-cone-mode: false
+      - run: node source/tools/distribution/verify-site.mjs dist/pages
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/pages

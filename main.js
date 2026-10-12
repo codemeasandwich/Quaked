@@ -82,7 +82,8 @@ async function main() {
 		// tried next); the loading logo fills as it downloads
 		Sys_Printf( 'Loading pak0.pak...\n' );
 		// Overlap independent transports; native installation order stays intact.
-		const nativePack = desktop ? Promise.resolve(null) : COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		// The web build's boot loader already filled the logo while downloading its data files.
+		const nativePack = desktop ? Promise.resolve(null) : COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', Distribution_Profile() === 'web' ? undefined : value => LoadingScreen_SetProgress( value ) );
 		const optionalPack = COM_FetchOptionalPak( 'newer.pak', 'newer.pak' ).catch( error => {
 			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
 		} );
