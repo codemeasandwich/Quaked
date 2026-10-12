@@ -4,16 +4,21 @@ import {mkdtemp,writeFile,readFile,rm,stat} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {execFileSync} from 'node:child_process';
-import {snapshotIndex} from '../tools/distribution/precommit.mjs';
+import {snapshotIndex,withoutGitEnvironment} from '../tools/distribution/precommit.mjs';
 test('staged snapshot includes only index bytes and deletions, preserving working files',async()=>{
  const root=await mkdtemp(join(tmpdir(),'quaked-index-test-'));const snapshot=await mkdtemp(join(tmpdir(),'quaked-index-output-'));
- const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'});
+ // The fixture repository is isolated even when run from a hook that exports GIT_DIR.
+ const env=withoutGitEnvironment();const git=(...args)=>execFileSync('git',args,{cwd:root,env,encoding:'utf8'});
  try{
   git('init','-q');await writeFile(join(root,'kept.txt'),'staged');await writeFile(join(root,'deleted.txt'),'old');git('add','.');
   git('rm','--cached','deleted.txt');await writeFile(join(root,'kept.txt'),'unstaged');await writeFile(join(root,'untracked.txt'),'private');
-  const before=git('ls-files','--stage');const tree=await snapshotIndex(root,snapshot);
+  const before=git('ls-files','--stage');const tree=await snapshotIndex(root,snapshot,env);
   assert.match(tree,/^[a-f0-9]{40,64}$/);assert.equal(await readFile(join(snapshot,'kept.txt'),'utf8'),'staged');
   await assert.rejects(stat(join(snapshot,'deleted.txt')),{code:'ENOENT'});await assert.rejects(stat(join(snapshot,'untracked.txt')),{code:'ENOENT'});
   assert.equal(await readFile(join(root,'kept.txt'),'utf8'),'unstaged');assert.equal(await readFile(join(root,'deleted.txt'),'utf8'),'old');assert.equal(git('ls-files','--stage'),before);
  }finally{await rm(root,{recursive:true,force:true});await rm(snapshot,{recursive:true,force:true});}
+});
+test('staged builds and tests never inherit the hook\'s Git environment',()=>{
+ const env=withoutGitEnvironment({GIT_DIR:'/repo/.git/worktrees/w',GIT_INDEX_FILE:'/repo/.git/worktrees/w/index',GIT_PREFIX:'',PATH:'/bin',QUAKED_X:'1'});
+ assert.deepEqual(env,{PATH:'/bin',QUAKED_X:'1'});
 });

@@ -1398,10 +1398,13 @@ export function Draw_CachePicFromPNG( path, url, options = {} ) {
 				const cs = document.createElement( 'canvas' );
 				cs.width = img.width;
 				cs.height = img.height;
-				const ctx = cs.getContext( '2d' );
+				const processed = options.blackKey !== undefined || options.trim || options.displayHeight;
+				// A picture that is read back stays on a CPU canvas: a GPU canvas makes getImageData wait on the GPU,
+				// which under software WebGL (SwiftShader) stalled startup for tens of seconds.
+				const ctx = cs.getContext( '2d', processed ? { willReadFrequently: true } : undefined );
 				ctx.drawImage( img, 0, 0 );
 				let canvas = cs;
-				if ( options.blackKey !== undefined || options.trim || options.displayHeight ) {
+				if ( processed ) {
 
 					const pixels = ctx.getImageData( 0, 0, cs.width, cs.height );
 					let left = cs.width, top = cs.height, right = 0, bottom = 0;

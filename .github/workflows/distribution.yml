@@ -12,7 +12,14 @@ concurrency:
   cancel-in-progress: true
 jobs:
   web:
-    runs-on: ubuntu-latest
+    # The game needs real WebGL: under Linux's software renderer (SwiftShader) the
+    # unchanged startup gate times out (run 38240397203). GitHub's macOS runners
+    # come with Google Chrome. The receipt's webglRenderer field records the WebGL
+    # renderer the runner provided and browserMemory the Chrome process-tree RSS.
+    runs-on: macos-15
+    timeout-minutes: 60
+    outputs:
+      html-sha256: ${{ steps.digest.outputs.sha256 }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,14 +29,19 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run test:distribution
       - run: npm run build:web
-      - run: npx playwright install --with-deps chromium
       - run: node tools/distribution/browser-trial.mjs
         env:
-          QUAKED_CHROME_CHANNEL: chromium
-      - run: mkdir -p dist/pages && cp dist/web/index.html dist/pages/index.html
-      - uses: actions/upload-pages-artifact@v3
+          QUAKED_CHROME_CHANNEL: chrome
+      # Only a Dev push deploys, so only it hands the tested HTML to the pages job.
+      - id: digest
+        if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
+        run: echo "sha256=$(shasum -a 256 dist/web/index.html | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
         with:
-          path: dist/pages
+          name: web-html
+          path: dist/web/index.html
+          retention-days: 1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -79,6 +91,20 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # Publish exactly the HTML the web job's browser trial passed.
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-html
+          path: dist/pages
+      - name: Verify the HTML is the tested file
+        env:
+          TESTED_SHA256: ${{ needs.web.outputs.html-sha256 }}
+        run: |
+          test -n "$TESTED_SHA256"
+          echo "$TESTED_SHA256  dist/pages/index.html" | sha256sum -c -
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/pages
       - uses: actions/deploy-pages@v4
         id: deployment
   release:

@@ -12,7 +12,7 @@
  *
  * State: mutable exports `R_AliasMeshLookup`, `R_AliasMeshRemember`, `R_DemonBakePrepare`, `R_DemonBakeRelease`,
  * `R_DemonBakeStatus`, `R_DemonBakeSurface`, `Axe_ParseRecord`, `Axe_ValidOwnerKey`, `PowerVisionMode`,
- * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 420 more; module-level variables
+ * `Respawn_ParseDrop`, `Respawn_ParsePlayer`, `Respawn_ParseRemains` and 421 more; module-level variables
  * `_installed`.
  *
  * Errors: throws at 2 places.
@@ -550,6 +550,9 @@ export let S_AmbientMusicUnlock = Hooks_Missing( 'S_AmbientMusicUnlock' );
 // newer/sound/s_exitmachine.js
 export let S_ExitMachineFalloff = Hooks_Missing( 'S_ExitMachineFalloff' );
 
+// newer/ui/game_shelf.js
+export let GameShelf_Show = Hooks_Missing( 'GameShelf_Show' );
+
 // newer/ui/menu_art.js
 export let BuildMenuTextArt = Hooks_Missing( 'BuildMenuTextArt' );
 export let BuildSinglePlayerMenuArt = Hooks_Missing( 'BuildSinglePlayerMenuArt' );
@@ -699,6 +702,7 @@ const HOOK_NAMES = Object.freeze( [
 	'S_UpdateAmbientMusic',
 	'S_AmbientMusicNotifyCombat', 'S_AmbientMusicShutdown', 'S_AmbientMusicStop', 'S_AmbientMusicUnlock',
 	'S_ExitMachineFalloff',
+	'GameShelf_Show',
 	'BuildMenuTextArt', 'BuildSinglePlayerMenuArt',
 	'MainMenu_Begin', 'MainMenu_Destroy', 'MainMenu_End', 'MainMenu_Glyph', 'MainMenu_Image', 'MainMenu_Panel', 'MainMenu_SetInGame', 'MainMenu_SetVisible', 'MainMenu_Skinned', 'MainMenu_Slider', 'MainMenu_Text', 'MainMenu_TextBox',
 	'NEWER_ENABLED_FEATURES',
@@ -806,6 +810,7 @@ export function Hooks_Install( table ) {
 	S_UpdateAmbientMusic = table.S_UpdateAmbientMusic;
 	S_AmbientMusicNotifyCombat = table.S_AmbientMusicNotifyCombat; S_AmbientMusicShutdown = table.S_AmbientMusicShutdown; S_AmbientMusicStop = table.S_AmbientMusicStop; S_AmbientMusicUnlock = table.S_AmbientMusicUnlock;
 	S_ExitMachineFalloff = table.S_ExitMachineFalloff;
+	GameShelf_Show = table.GameShelf_Show;
 	BuildMenuTextArt = table.BuildMenuTextArt; BuildSinglePlayerMenuArt = table.BuildSinglePlayerMenuArt;
 	MainMenu_Begin = table.MainMenu_Begin; MainMenu_Destroy = table.MainMenu_Destroy; MainMenu_End = table.MainMenu_End; MainMenu_Glyph = table.MainMenu_Glyph; MainMenu_Image = table.MainMenu_Image; MainMenu_Panel = table.MainMenu_Panel; MainMenu_SetInGame = table.MainMenu_SetInGame; MainMenu_SetVisible = table.MainMenu_SetVisible; MainMenu_Skinned = table.MainMenu_Skinned; MainMenu_Slider = table.MainMenu_Slider; MainMenu_Text = table.MainMenu_Text; MainMenu_TextBox = table.MainMenu_TextBox;
 	NEWER_ENABLED_FEATURES = table.NEWER_ENABLED_FEATURES;

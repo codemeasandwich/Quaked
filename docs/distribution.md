@@ -43,6 +43,11 @@ enabled. Discovery does not make unsupported mods playable. A corrupt, changed o
 missing game returns to the shelf with a reason. Saves and settings retain the
 existing per-game namespaces.
 
+`src/platform/desktop.js` opens the shelf through the engine's `GameShelf_Show`
+hook (`src/engine/common/hooks.js`), which `src/newer/install.js` fills before
+`main.js` loads the desktop module; platform code never imports `src/newer`
+directly (`tests/hooks_test.js`).
+
 The first release targets macOS 14+ and uses an ad-hoc signature for executable
 integrity, without a Developer ID signature or Apple notarization. A downloaded
 app can require approval: attempt to open it, then use **System Settings >
@@ -137,11 +142,18 @@ untracked files are not substituted. It runs independent distribution tests and
 builds HTML everywhere; on macOS it also builds native assets, runs Rust tests and
 builds the universal application. Failures block the commit and retain the failed
 snapshot for diagnosis. Successful generated artifacts remain outside the index.
+Only the index snapshot reads Git's hook environment; every build and test in
+the snapshot runs without `GIT_*` variables (`withoutGitEnvironment`). From a
+linked worktree Git exports an absolute `GIT_DIR`, and on 12 October 2026 the
+contract test's fixture `git init` re-initialised the real repository through it
+and set `core.bare=true` (restored by hand; now covered by
+`tests/staged_contract_test.mjs`).
 Dependency caches and Cargo's normal incremental cache are reused. Existing custom
 hook configurations are never overwritten automatically.
 
-GitHub Actions runs web checks and native builds on both Apple Silicon and Intel
-Mac runners. Successful `Dev` pushes deploy only the generated HTML to Pages.
+GitHub Actions runs the web checks and browser trial on an Apple Silicon Mac
+runner, and native builds on both Apple Silicon and Intel Mac runners.
+Successful `Dev` pushes deploy only the generated HTML to Pages.
 Tags matching `package.json`'s `v<version>` publish the universal app in a ZIP with checksums and release notes.
 Configure GitHub Pages to use Actions. Artifact generation, owner acceptance,
 commit/landing and actual publication are separate evidence states.
@@ -167,7 +179,30 @@ those outcomes. Current task: Bluey `T-91ae6d7d`.
 
 The initial [distribution CI run](https://github.com/codemeasandwich/Quaked/actions/runs/38240397203)
 passed both Mac runner jobs, but its Linux browser startup timed out, so Pages did
-not deploy. The browser trial now records startup phases, engine state, graphics
-backend and failure screenshots. Linux CI explicitly selects software WebGL while
-retaining every gameplay assertion and timeout. This diagnostic change is not
-evidence that the original failure is resolved; the succeeding run must prove it.
+not deploy. The browser trial records startup phases, engine state, graphics
+backend and failure screenshots. Linux has only software WebGL (SwiftShader); a
+local profile of the source game under SwiftShader showed the main thread blocked
+62 s in shader linking and 46 s in one `getImageData` readback
+(`Draw_CachePicFromPNG`). That function now asks for a CPU-backed scratch canvas
+(`willReadFrequently`) when it reads pixels back; the canvases it draws and
+returns are unchanged. Opaque pixels are identical; semi-transparent ones may
+differ by rounding between Chrome's CPU and GPU canvas paths.
+
+Shader compilation stays slow on any software renderer, so the web job now runs
+on a `macos-15` runner with its preinstalled Google Chrome. The trial's timeouts
+and gameplay assertions are unchanged, and the job stops after 60 minutes. The
+receipt (`web-evidence` artifact, `dist/browser-trial.json`) records:
+
+- `webglRenderer` and `softwareWebGL`: the WebGL renderer the runner provided
+  (`gpu` is Chrome's GPU-process information, not the WebGL renderer);
+- `browserMemory` and each sample's `browserRss`: summed RSS of Chrome's
+  process tree, since JavaScript heap figures exclude the HTML text, GPU process
+  and blob storage;
+- `targetSha256`: the tested file's digest.
+
+On a `Dev` push only, the web job uploads the tested `index.html` as the
+one-day `web-html` artifact and exports its sha256. The `pages` job downloads
+it, refuses to continue unless the digest matches, then deploys it. Pages
+deploys only when the web job and both Mac jobs pass; a failed or skipped run
+leaves the previous site in place. The `github-pages` environment allows the
+`Dev` branch (checked 12 October 2026).

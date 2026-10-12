@@ -7,16 +7,21 @@ import {tmpdir,homedir,platform} from 'node:os';
 import {resolve,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 const run=(file,args,cwd,env=process.env)=>execFileSync(file,args,{cwd,env,stdio:'inherit'});
-export async function snapshotIndex(root,target){
- const tree=execFileSync('git',['write-tree'],{cwd:root,encoding:'utf8'}).trim();
+// Git exports GIT_DIR, GIT_INDEX_FILE and others to hooks; from a linked worktree GIT_DIR
+// is absolute. Builds and tests in the snapshot must never inherit them: a nested
+// `git init` would otherwise re-initialise the real repository (it set core.bare=true
+// on 12 October 2026). Only snapshotIndex reads the commit's index through them.
+export const withoutGitEnvironment=(env=process.env)=>Object.fromEntries(Object.entries(env).filter(([key])=>!key.startsWith('GIT_')));
+export async function snapshotIndex(root,target,env=process.env){
+ const tree=execFileSync('git',['write-tree'],{cwd:root,env,encoding:'utf8'}).trim();
  await mkdir(target,{recursive:true});
- execFileSync('git',['checkout-index','--all','--prefix='+target+'/'],{cwd:root,stdio:'inherit'});
+ execFileSync('git',['checkout-index','--all','--prefix='+target+'/'],{cwd:root,env,stdio:'inherit'});
  return tree;
 }
 export async function precommit(root=process.cwd()){
  const snapshot=await mkdtemp(join(tmpdir(),'quaked-staged-'));
  const tree=await snapshotIndex(root,snapshot);
- const env={...process.env,QUAKED_SOURCE_TREE:tree};
+ const env={...withoutGitEnvironment(),QUAKED_SOURCE_TREE:tree};
  if(platform()==='darwin')env.CARGO_TARGET_DIR=env.CARGO_TARGET_DIR??join(homedir(),'build','quaked-distribution');
  try {
   run(process.platform==='win32'?'npm.cmd':'npm',['ci','--ignore-scripts'],snapshot,env);

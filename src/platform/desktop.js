@@ -6,7 +6,7 @@ import {listen} from '@tauri-apps/api/event';
 import {GAME_CATALOGUE_GAMES,GameCatalogue_Refresh,GameCatalogue_SetProvider} from '../engine/common/game_catalogue.js';
 import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember} from '../engine/common/game_selection.js';
 import {COM_LoadPackFile} from '../engine/common/pak.js';
-import {GameShelf_Show} from '../newer/ui/game_shelf.js';
+import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
 let listening=false;
 export async function Desktop_SelectLocation(){
   document.exitPointerLock?.();
