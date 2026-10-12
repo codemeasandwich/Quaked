@@ -12,7 +12,7 @@ import * as mode from '../src/newer/mode.js';
 import {NormalInputs,NormalInputWitness,R_NormalPrepare} from '../src/newer/assets/normal_prepare.js';
 import {NormalBakeDecode} from '../src/newer/assets/normal_bake_format.js';
 const NAME='progs/hknight.mdl',BASE_SHA='78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a',ROGUE_SHA='ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485';
-const DIFFUSE_SHA='6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863',HEIGHT_SHA='2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592';
+const DIFFUSE_SHA='76f55546a915f058026429955838b8edff7f27a01e5dadefbe64f9e40556d393',HEIGHT_SHA='ca3c433ed4f0005bae54644dc230c5ffcc61d4230a6a3930c89e214bc2c3cc16';
 const STONE_SOURCE='tools/texture_sheets/sources/generated-2026-10-12/hknight-rogue-skin1.png',STONE_SHA='b0dda8fc735580c5c32573cfcd175fefad336290278ac974c21f697829884ba0';
 const check=(v,m)=>{if(!v)throw Error(m);},same=(a,b,m)=>check(a===b,m+': '+a+' != '+b),sha=b=>createHash('sha256').update(b).digest('hex');
 const read=p=>readFileSync(new URL('../'+p,import.meta.url)),index=JSON.parse(read('newer/enemies/index.json'));
@@ -64,13 +64,13 @@ Deno.test('Rogue variants append without changing any prior catalogue entry or b
  const prior=structuredClone(index);prior.models.ogre=prior.models.ogre.slice(0,1);prior.nativeHeights.ogre=prior.nativeHeights.ogre.slice(0,1);prior.models.knight=prior.models.knight.slice(0,1);prior.nativeHeights.knight=prior.nativeHeights.knight.slice(0,1);delete prior.version;prior.models.hknight=prior.models.hknight.slice(0,1);prior.models.tarbaby=prior.models.tarbaby.slice(0,1);
  same(sha(JSON.stringify(prior)),'cfec724325b5606d93c70c9392274b3ebd9fce5f28a832f13129971714a570ea','entire pre-increment catalogue preserved');
  same(new Set(index.models.hknight.map(v=>v.dir)).size,3,'unique cache directories for all three bindings');
- for(const[file,digest]of [['diffuse.webp',DIFFUSE_SHA],['height.webp',HEIGHT_SHA]]){same(sha(read('newer/enemies/hknight/custom/'+file)),digest,'base asset unchanged');same(sha(read('newer/enemies/hknight/rogue0/'+file)),digest,'Rogue0 asset is exact copy');}
+ for(const[file,digest]of [['diffuse.webp',DIFFUSE_SHA],['height.webp',HEIGHT_SHA]]){same(sha(read('newer/enemies/hknight/custom/'+file)),digest,'base asset is the current file (4x standard)');same(sha(read('newer/enemies/hknight/rogue0/'+file)),digest,'Rogue0 asset is exact copy');}
  const reused=JSON.parse(read('newer/enemies/hknight/rogue0/SOURCE.json'));same(reused.nativeModelSha256,ROGUE_SHA,'reuse targets Rogue identity');same(reused.skin,0,'reuse slot');same(reused.reuse.fromDirectory,'hknight/custom','existing art source');same(reused.reuse.fromModelSha256,BASE_SHA,'existing native provenance');same(sha(read(reused.reuse.sourceProvenance)),reused.reuse.sourceProvenanceSha256,'reuse chain refers to intact original provenance');
  const stone=JSON.parse(read('newer/enemies/hknight/rogue1/SOURCE.json'));same(stone.nativeModelSha256,ROGUE_SHA,'stone target identity');same(stone.source,STONE_SOURCE,'generated stone source');same(stone.sourceSha256,STONE_SHA,'stone source pin');same(sha(read(STONE_SOURCE)),STONE_SHA,'actual generated stone');same(stone.skin,1,'stone slot');same(JSON.stringify(stone.dimensions),'[1848,924]','stone fitted dimensions');
  const source=read(STONE_SOURCE);same(source.readUInt32BE(16),1774,'source width');same(source.readUInt32BE(20),887,'source height');
  for(let skin=0;skin<2;skin++){
   const v=rogueVariant(skin),dir='newer/enemies/'+v.dir+'/',report=skin?stone:reused;same(v.dir,'hknight/rogue'+skin,'unique variant path');same(v.maps.diffuse,skin?'diffuse.png':'diffuse.webp','diffuse format');same(v.maps.height,'height.webp','height map');same(Object.keys(v.maps).length,2,'no new emission');
-  for(const file of Object.values(v.maps))same(sha(read(dir+file)),report.files[file],'actual output digest');const d=await decodedImage(dir+v.maps.diffuse),h=await decodedImage(dir+v.maps.height);same(d.width,skin?1848:1540,'decoded width');same(d.height,skin?924:770,'decoded height');same(h.width,d.width,'height width');same(h.height,d.height,'height height');check(d.data.every((v,i)=>i%4!==3||v===255)&&h.data.every((v,i)=>i%4!==3||v===255),'opaque assets');check(h.data.every((v,i)=>i%4===3||v===h.data[i-i%4]),'grayscale authored height');
+  for(const file of Object.values(v.maps))same(sha(read(dir+file)),report.files[file],'actual output digest');const d=await decodedImage(dir+v.maps.diffuse),h=await decodedImage(dir+v.maps.height);same(d.width,skin?1848:1232,'decoded width');same(d.height,skin?924:616,'decoded height');same(h.width,d.width,'height width');same(h.height,d.height,'height height');check(d.data.every((v,i)=>i%4!==3||v===255)&&h.data.every((v,i)=>i%4!==3||v===255),'opaque assets');check(h.data.every((v,i)=>i%4===3||v===h.data[i-i%4]),'grayscale authored height');
  }
 });
 Deno.test('Three same-name source/skin bindings coexist without material or prewarm cache collisions',async()=>fixture(async(skins,requests)=>{
@@ -151,9 +151,9 @@ for(let skin=0;skin<2;skin++)Deno.test('Rogue Death Knight skin'+skin+' selects 
 });
 Deno.test('Rogue reuse retains all three existing normal inputs and adds only the statue custom payload',()=>{
  const m=JSON.parse(read('newer/normals/manifest.json')),native=m.levels['rogue:'+NAME];same(native.modelSha256,ROGUE_SHA,'Rogue native family identity');same(native.keys.length,2,'both native states prepared');
- const copied=m.levels['custom:hknight/rogue0'].keys,original=m.levels['custom:hknight/custom'].keys;same(copied.join(),original.join(),'copied art reuses existing base custom input');same(copied[0],'5be895ba3bcea0ec90b24caa3acc03863ea1feaa5e631b824ada0e705e430a26','original prepared input remains exact');
- const old=new Set(['c50abb2d14b086b8ce5474885e040dbcd4de38ebf82ce684ee5e593d341aa3c0','215feaed328d1a044cf9dd438a227ab7848c7c782c0978cf5873982f679f56bf','5be895ba3bcea0ec90b24caa3acc03863ea1feaa5e631b824ada0e705e430a26']);
- const current=new Set([...native.keys,...copied,...m.levels['custom:hknight/rogue1'].keys]);same(current.size,4,'four Rogue material input references');same([...current].filter(k=>old.has(k)).length,3,'three existing inputs retained');same([...current].filter(k=>!old.has(k)).length,1,'only one newly generated normal payload');
+ const copied=m.levels['custom:hknight/rogue0'].keys,original=m.levels['custom:hknight/custom'].keys;same(copied.join(),original.join(),'copied art reuses existing base custom input');same(copied[0],'7d489763e38d7aed87d11fa1addc24d601e68ab594dc55c3616bc7e7f8341cff','base prepared input is the current one (4x standard)');
+ const old=new Set(['c50abb2d14b086b8ce5474885e040dbcd4de38ebf82ce684ee5e593d341aa3c0','215feaed328d1a044cf9dd438a227ab7848c7c782c0978cf5873982f679f56bf','7d489763e38d7aed87d11fa1addc24d601e68ab594dc55c3616bc7e7f8341cff']);
+ const current=new Set([...native.keys,...copied,...m.levels['custom:hknight/rogue1'].keys]);same(current.size,4,'four Rogue material input references');same([...current].filter(k=>old.has(k)).length,3,'three existing inputs retained (the base one re-baked for the 4x standard)');same([...current].filter(k=>!old.has(k)).length,1,'only one newly generated normal payload');
 });
 Deno.test('Actual Rogue QuakeC keeps statue skin1 after activation and defaults its initial pose tochar_a11',async()=>{
  const {rogueDirectory}=await pair(),q=roguePrograms(await readMember(rogueDirectory.get('progs.dat'))),spawn=q.inspect('monster_hell_knight');

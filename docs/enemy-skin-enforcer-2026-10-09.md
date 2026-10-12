@@ -35,3 +35,13 @@ Reproduce: `/usr/bin/python3 tools/texture_sheets/fit_enforcer.py --source <the 
 ## Not checked
 
 All 102 poses in a GPU gallery (the Shub skin had one; this has two in-game captures), the pain, death and gib frames by eye, the height strength by eye, and the flash on a firing frame. The registration is by whole boxes: a part the artist drew out of proportion inside a piece (a hand, say) is not warped to its triangles. The back pack's art touches the sheet's right edge, so up to 2 source pixels of it may be missing and are stretched. The evidence record of the Shub skin (`docs/evidence/oldone-skin-2026-10-08/`) pins the index, manifest and test files as they were then; it is a historical snapshot and those files have since changed here.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md) the shipped diffuse is this fit
+(1480×975, factor 5) resampled to 1184×780, with the height re-authored from it; `SOURCE.json`
+keeps the fit's own digests under `standard4x.fitFiles`. The Reproduce command above writes
+the 5x fit into the shipped directory by default: run it with `--out <scratch dir>` and
+check its diffuse and height against `standard4x.fitFiles`. The shipped files come from
+`tools/texture_sheets/standardise_4x.py` (record
+`tools/texture_sheets/sources/standard-4x/batch2-id1.json`, which refuses to re-run once it
+holds results) followed by `update_enemy_heights.height_for` on the new diffuse; then re-bake
+`custom:enforcer/custom`.

@@ -22,7 +22,7 @@ species. Fine scales and tissue fibres provide detail without painted bright rim
 Some connective tissue remains paler than the native low-resolution palette;
 photographic material fidelity is not a claim of pixel-identical colour.
 
-The existing fitter produces1560×1164, covering974,703surface pixels with3,121
+Re-fitted at factor 4 for the [4x standard](texture-standard-4x-2026-10-12.md), it is 1040×776 with 434,022 surface pixels and 1,656 edge pixels. At the first, factor-6 fit the existing fitter produced 1560×1164, covering974,703surface pixels with3,121
 pixels supplied by bounded edge extension and no missing surface. Catalogue46
 changes only the cache version; the exact-model/skin binding and material settings
 are unchanged. Height and the content-bound custom normal payload were rebuilt.

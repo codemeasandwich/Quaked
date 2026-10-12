@@ -31,15 +31,19 @@ def main():
  source=Image.open(args.source).convert('RGB')
  if source.size!=(1120,958):raise ValueError('Unexpected source dimensions')
  # Blank destination and source-only masks prohibit native fallback pigment.
- result,coverage=fit(Image.new('RGB',(width,height)),source,dict(parts=PARTS,background=[20,20,15]),data,5,10)
+ result,coverage=fit(Image.new('RGB',(width,height)),source,dict(parts=PARTS,background=[20,20,15]),data,FACTOR,BLEED)
  if coverage['surface_coverage']!=1 or coverage['source_matte_seed_pixels']!=0:raise ValueError('Incomplete supplied UV coverage')
  args.out.mkdir(parents=True,exist_ok=True);result.save(args.out/'diffuse.webp','WEBP',lossless=True,method=6)
  height_for(result,args.out/'height.webp','oldone/custom')
  report=dict(schema=1,model='progs/oldone.mdl',nativeModelSha256=MODEL_SHA,source=args.source.name,sourceSha256=SOURCE_SHA,
-  skin=0,skinFrame=0,poses=frames,vertices=vertices,triangles=triangles,factor=5,dimensions=list(result.size),parts=PARTS,
-  background=[20,20,15],bleed=10,fit=coverage,nativeTexturePixelsUsed=0,
-  authoredBlackSurfacePixels=int((np.max(np.asarray(result),2)[uv_footprint(data,5)]==0).sum()),
+  skin=0,skinFrame=0,poses=frames,vertices=vertices,triangles=triangles,factor=FACTOR,dimensions=list(result.size),parts=PARTS,
+  background=[20,20,15],bleed=BLEED,fit=coverage,nativeTexturePixelsUsed=0,
+  authoredBlackSurfacePixels=int((np.max(np.asarray(result),2)[uv_footprint(data,FACTOR)]==0).sum()),
   normalProfile=dict(strength=.65,cap=.55),reuse=['update_head_skins.fit','fit_skin.spread','uv_footprint','height_for'],
   files={p:hashlib.sha256((args.out/p).read_bytes()).hexdigest() for p in ['diffuse.webp','height.webp']})
  (args.out/'SOURCE.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+# The 4x art standard (docs/texture-standard-4x-2026-10-12.md): factor 4, and a bleed of the same
+# two native texels the first fit used at factor 5 (10 canvas pixels).
+FACTOR, BLEED = 4, 8
+
 if __name__=='__main__':main()

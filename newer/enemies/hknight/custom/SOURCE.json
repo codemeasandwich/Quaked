@@ -9,10 +9,10 @@
   "poses": 166,
   "vertices": 250,
   "triangles": 452,
-  "factor": 5,
+  "factor": 4,
   "dimensions": [
-    1540,
-    770
+    1232,
+    616
   ],
   "bleed": 24,
   "edge": 3,
@@ -386,7 +386,21 @@
     "fit_vore.member"
   ],
   "files": {
-    "diffuse.webp": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
-    "height.webp": "2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592"
+    "diffuse.webp": "76f55546a915f058026429955838b8edff7f27a01e5dadefbe64f9e40556d393",
+    "height.webp": "ca3c433ed4f0005bae54644dc230c5ffcc61d4230a6a3930c89e214bc2c3cc16"
+  },
+  "standard4x": {
+    "fitDimensions": [
+      1540,
+      770
+    ],
+    "fitFactor": 5,
+    "method": "Lanczos resample of this fit to 4x native (docs/texture-standard-4x-2026-10-12.md); height re-authored from the 4x diffuse",
+    "record": "tools/texture_sheets/sources/standard-4x/batch2-id1.json",
+    "fitFiles": {
+      "diffuse.webp": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+      "height.webp": "2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592"
+    },
+    "note": "factor and dimensions describe the shipped files; bleed, edge, parts and fit statistics are in the fit's units (fitFactor, fitDimensions, fitFiles)."
   }
 }

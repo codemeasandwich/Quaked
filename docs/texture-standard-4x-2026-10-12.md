@@ -86,11 +86,35 @@ showed no visible difference for the batch-1 texture, dog and shambler.
   disk). `newer/displacement/manifest.json` records the texture index's earlier hash for its
   manual audit only; nothing reads it at run time.
 
+## Batch 2: full game (done)
+
+- Re-fitted at 4x: `fish/custom` (recipe `fish-v2.json` factor 6 to 4: 1560x1164 to 1040x776;
+  the factor-6 run reproduced the committed files byte for byte first).
+- Re-fitted at 4x: `shalrath` and `oldone`. `fit_vore.py` and `fit_oldone.py` use fixed part
+  mappings (no alignment search); their factor and bleed are now named constants,
+  `FACTOR, BLEED = 4, 8` (the same two native texels the factor-5 fit bled).
+- Resampled from the accepted fit (5x to 4x), heights re-authored from the 4x diffuse:
+  `enforcer`, `tarbaby` and `hknight`. `fit_enforcer.py`, `fit_tarbaby.py` and
+  `fit_registered.py` were each checked to reproduce the committed pixels first; they search
+  for part alignment in canvas pixels at factor 5, so re-running them at 4 could shift
+  accepted art, while resampling keeps it. `SOURCE.json` gives the shipped `factor`,
+  `dimensions` and `files`; the fit's own are under `standard4x` (`fitFactor`,
+  `fitDimensions`, `fitFiles`), and its fit-unit fields (bleed, parts, statistics) say so.
+  Their docs' Reproduce steps now fit into a scratch directory and then resample. Record:
+  `tools/texture_sheets/sources/standard-4x/batch2-id1.json`;
+  `tests/standard_4x_records_contract_test.mjs` checks that each `SOURCE.json` agrees with it.
+- `tarbaby/rogue0` and `hknight/rogue0` are byte copies of the base custom skins (the Rogue
+  tests require exact compatibility), so they follow them; their `SOURCE.json` reuse chain
+  is updated.
+- Re-baked: the eight custom variants (in the `id1` namespace; the `rogue0` copies with
+  the Rogue PAK alone, since a later PAK on the command line wins). 6 samples replace 6 (the
+  copies share their base's inputs); 1953 samples. Skin cache version 48.
+- Tests: the identity tests expect fourfold dimensions and the new digests. The Enforcer and
+  Old One tests still stop at their pre-existing cache-revision pin.
+
 ## Remaining batches
 
-Full game (id1): `shalrath`, `oldone`, `enforcer`, `tarbaby/custom`, `hknight/custom` and
-`fish`. Hipnotic: `scor`, `armabody`, `armalegs`, `grem` and `sword`. Rogue: `dragon`,
-`s_wrath`, `mummy`, `lavaman`, `wrath`, `eel2` (six skins generated from one base, so
-re-fitted rather than resampled to keep their exact relationship), the nine Guardian skins,
-`knight/rogue1`, `tarbaby/rogue0` to `rogue2` and `hknight/rogue0` and `rogue1`. Card
-T-06e53ceb.
+Hipnotic: `scor`, `armabody`, `armalegs`, `grem` and `sword`. Rogue: `dragon`, `s_wrath`,
+`mummy`, `lavaman`, `wrath`, `eel2` (six skins generated from one base, so re-fitted rather
+than resampled to keep their exact relationship), the nine Guardian skins, `knight/rogue1`,
+`tarbaby/rogue1` and `rogue2` and `hknight/rogue1`. Card T-06e53ceb.

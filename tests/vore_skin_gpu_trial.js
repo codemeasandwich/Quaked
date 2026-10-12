@@ -47,7 +47,7 @@ async function run(){button.disabled=true;checks.length=0;views.replaceChildren(
   verify(skins.R_NewerAliasMaterial({model:head},head.name,true,0)===null,'separate head has no body replacement');verify(shape(header)===initialShape,'all native pose, triangle and UV records unchanged');verify(errors.length===0,'actual material/compositor compile and runtime clean',{errors});
  }catch(error){checks.push({passed:false,name:String(error),stack:error.stack});}
  finally{renderer.setRenderTarget(null);button.disabled=false;}
- const result={status:checks.every(c=>c.passed)?'PASS':'FAIL',modelSHA:body.aliasSourceIdentity.sha256,frames:header.numframes,dimensions:[1060,975],draws,elapsedMs:performance.now()-started,poses,checks,scope:'Controlled actual owned MDL/production alias rendering; gameplay discovery/combat remains separate.'};window.voreSkinResult=result;report.textContent=JSON.stringify(result,null,2);
+ const result={status:checks.every(c=>c.passed)?'PASS':'FAIL',modelSHA:body.aliasSourceIdentity.sha256,frames:header.numframes,dimensions:[848,780],draws,elapsedMs:performance.now()-started,poses,checks,scope:'Controlled actual owned MDL/production alias rendering; gameplay discovery/combat remains separate.'};window.voreSkinResult=result;report.textContent=JSON.stringify(result,null,2);
 }
 try{
  for(const c of options)if(c&&!vars.Cvar_FindVar(c.name))vars.Cvar_RegisterVariable(c);

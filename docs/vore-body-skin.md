@@ -11,7 +11,7 @@ separate `h_shal` head remain unchanged.
 `tools/texture_sheets/fit_vore.py` reads only the named PAK member and reuses
 existing connected-island, UV-footprint, edge-spread and height helpers. A
 blank destination prevents native pigment from entering the public derivative.
-Factor 5 produces 1060×975 diffuse and scalar assets. The recipe and exact
+Factor 5 produced 1060×975 diffuse and scalar assets; under the [4x standard](texture-standard-4x-2026-10-12.md) the tool now fits at factor 4 (`FACTOR, BLEED = 4, 8`), giving 848×780. The recipe and exact
 output/input identities are in `newer/enemies/shalrath/custom/SOURCE.json`.
 Coverage is 334,921 nativeUV pixels: 334,022 donor-derived pixels after per-part
 resampling/bleed and 899 final edge-filled pixels. These are not pixel-for-pixel

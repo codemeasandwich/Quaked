@@ -21,3 +21,7 @@ The actual owned-model/production-material GPU trial passes77/77, including all6
 The final visible native capture `native-end.png` and same-frame `native-end.json` are independently reviewed. The real NPC is visibly fitted, with native health40000, exact model SHA,1140×975v23diffuse andactualheight-source normal sampler on the main camera/current GL program. The axe occludes part of this in-map view; full body/seam/67-pose coverage comes from the controlled gallery. This proves integration and source preservation, not traversal/combat or pointer capture. No owner appearance-feedback gate is introduced; the owner requested independent verification and correction. Hub darkness and frame rate shown in the owner's screenshots are separate from this final-boss skin and remain unresolved by this card.
 
 Reproduce with the bundled Python/Pillow/NumPy runtime: `fit_oldone.py --source <exact supplied JPEG> --pack <owned id1 PAK>`. Use the pinned Three0.183.0/Canvas runtime for `tools/bake_normals.mjs --skins --maps '^progs/oldone\.mdl$' --variant oldone/custom --namespace quake --pack <owned PAK>`. Public tests use `QUAKED_OWNED_PAK`, `QUAKED_OLDONE_SOURCE` and `QUAKED_THREE_MODULE`. Neither source JPEG nor native MDL/palette is copied into the new public assets.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md) `fit_oldone.py` now fits at factor 4
+(`FACTOR, BLEED = 4, 8`): the shipped diffuse and height are 912×780. The 1140×975 figures,
+version 23 and the sample key above describe the first, factor-5 fit.

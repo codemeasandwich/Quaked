@@ -1,0 +1,121 @@
+{
+ "batch": "id1",
+ "ruling": "Owner, 12 Oct 2026: 4x standard, one version",
+ "method": "Lanczos resample of each accepted registration fit: fit_enforcer.py, fit_tarbaby.py and fit_registered.py search for part alignment in canvas pixels at factor 5 (each reproduced the committed pixels first), so re-running them at 4 could shift accepted art. Heights re-authored from the 4x diffuse by update_enemy_heights.height_for.",
+ "files": [
+  {
+   "file": "newer/enemies/enforcer/custom/diffuse.webp",
+   "target": [
+    1184,
+    780
+   ],
+   "native": [
+    296,
+    195
+   ],
+   "kind": "skin-diffuse"
+  },
+  {
+   "file": "newer/enemies/tarbaby/custom/diffuse.webp",
+   "target": [
+    1216,
+    776
+   ],
+   "native": [
+    304,
+    194
+   ],
+   "kind": "skin-diffuse"
+  },
+  {
+   "file": "newer/enemies/hknight/custom/diffuse.webp",
+   "target": [
+    1232,
+    616
+   ],
+   "native": [
+    308,
+    154
+   ],
+   "kind": "skin-diffuse"
+  }
+ ],
+ "results": [
+  {
+   "file": "newer/enemies/enforcer/custom/diffuse.webp",
+   "target": [
+    1184,
+    780
+   ],
+   "before": {
+    "size": [
+     1480,
+     975
+    ],
+    "sha256": "e82869428978103cb4f9e44b0fade06fcba0675d3d10e8efa72a1cd3e9cf8ab9",
+    "bytes": 1029936
+   },
+   "after": {
+    "size": [
+     1184,
+     780
+    ],
+    "sha256": "0558563c88c260272ea3c40ef8c8782504e11cdb0c02d43d4bd4b519e28132df",
+    "bytes": 756758
+   }
+  },
+  {
+   "file": "newer/enemies/tarbaby/custom/diffuse.webp",
+   "target": [
+    1216,
+    776
+   ],
+   "before": {
+    "size": [
+     1520,
+     970
+    ],
+    "sha256": "95e9bd8d3a9f30fe28f2d15617bd7f4061c93086582415940144b1f56ea3d389",
+    "bytes": 566242
+   },
+   "after": {
+    "size": [
+     1216,
+     776
+    ],
+    "sha256": "acd955d0badb9615bacd7c69291a83e68639e8c2869f0bb56e30f3a3ac82d8c9",
+    "bytes": 430852
+   }
+  },
+  {
+   "file": "newer/enemies/hknight/custom/diffuse.webp",
+   "target": [
+    1232,
+    616
+   ],
+   "before": {
+    "size": [
+     1540,
+     770
+    ],
+    "sha256": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+    "bytes": 701246
+   },
+   "after": {
+    "size": [
+     1232,
+     616
+    ],
+    "sha256": "76f55546a915f058026429955838b8edff7f27a01e5dadefbe64f9e40556d393",
+    "bytes": 543732
+   }
+  }
+ ],
+ "notReSampled": {
+  "files": [
+   "newer/enemies/oldone/custom/diffuse.webp",
+   "newer/enemies/shalrath/custom/diffuse.webp"
+  ],
+  "reason": "Re-fitted at factor 4 by fit_vore.py and fit_oldone.py (fixed part mappings, no alignment search; factor and bleed are now named constants, FACTOR 4 and BLEED 8, the same two native texels as before)."
+ }
+}

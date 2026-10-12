@@ -2,14 +2,15 @@
   "schema": 1,
   "model": "progs/shalrath.mdl",
   "nativeModelSha256": "da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee",
-  "source": "Gemini_Generated_Image_ea7a33a03-2346-46b.jpeg",
+  "source": "a7a33a03-2346-46ba-b59b-ddae4b0252e4.jpeg",
   "sourceSha256": "f702e38e2e415eb791734b43f8f79a6d28f8f9a873c392584252f3a66c6faabc",
   "skin": 0,
   "skinFrame": 0,
-  "factor": 5,
+  "factor": 4,
+  "bleed": 8,
   "dimensions": [
-    1060,
-    975
+    848,
+    780
   ],
   "parts": [
     {
@@ -62,13 +63,13 @@
     }
   ],
   "fit": {
-    "surface_pixels": 334921,
-    "direct_supplied_pixels": 334022,
-    "edge_fill_pixels": 899,
+    "surface_pixels": 215075,
+    "direct_supplied_pixels": 214411,
+    "edge_fill_pixels": 664,
     "surface_coverage": 1.0,
     "source_matte_seed_pixels": 0
   },
-  "darkSuppliedSurfaceSamples": 68,
+  "darkSuppliedSurfaceSamples": 32,
   "nativeTexturePixelsUsed": 0,
   "separateHead": "Unchanged native h_shal model/skin",
   "normalProfile": {
@@ -82,7 +83,7 @@
     "height_for"
   ],
   "files": {
-    "diffuse.webp": "9dfb0b3a7ae996723d75d0c722fc1450fd960f64068328ffb6b0b7523eebdfe0",
-    "height.webp": "de8568797d8e464978abf8e01ae018b617fe575582f499ffc189161e697a0d34"
+    "diffuse.webp": "572f2685ca9823dcd7a3803e4eed6ac5727c95d89b71bb791ea938e266b86fae",
+    "height.webp": "ec741fc8ee1ffcdbb1b66befa68edb3b499ca9cad57a6a55fe1f62cae74e4e1a"
   }
 }

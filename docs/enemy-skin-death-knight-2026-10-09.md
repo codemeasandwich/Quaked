@@ -37,3 +37,13 @@ Reproduce: `/usr/bin/python3 tools/texture_sheets/fit_registered.py hknight --so
 ## Not checked
 
 All 166 poses in a GPU gallery, the attack, pain and death frames by eye (the sword swings through most of them), and the height strength by eye.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md) the shipped diffuse is this fit
+(1540×770, factor 5) resampled to 1232×616, with the height re-authored from it; `SOURCE.json`
+keeps the fit's own digests under `standard4x.fitFiles`. The Reproduce command above writes
+the 5x fit into the shipped directory by default: run it with `--out <scratch dir>` and
+check its diffuse and height against `standard4x.fitFiles`. The shipped files come from
+`tools/texture_sheets/standardise_4x.py` (record
+`tools/texture_sheets/sources/standard-4x/batch2-id1.json`, which refuses to re-run once it
+holds results) followed by `update_enemy_heights.height_for` on the new diffuse; then re-bake
+`custom:hknight/custom`.

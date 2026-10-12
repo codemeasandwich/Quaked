@@ -34,3 +34,13 @@ Reproduce: `/usr/bin/python3 tools/texture_sheets/fit_tarbaby.py --source <the J
 ## Not checked
 
 All 61 poses in a GPU gallery, the jump and explode frames by eye, the height strength by eye (a Spawn is glossy tar; the stock profile was used), and how it reads in the dark places Spawns live without the flashlight.
+
+Under the [4x standard](texture-standard-4x-2026-10-12.md) the shipped diffuse is this fit
+(1520×970, factor 5) resampled to 1216×776, with the height re-authored from it; `SOURCE.json`
+keeps the fit's own digests under `standard4x.fitFiles`. The Reproduce command above writes
+the 5x fit into the shipped directory by default: run it with `--out <scratch dir>` and
+check its diffuse and height against `standard4x.fitFiles`. The shipped files come from
+`tools/texture_sheets/standardise_4x.py` (record
+`tools/texture_sheets/sources/standard-4x/batch2-id1.json`, which refuses to re-run once it
+holds results) followed by `update_enemy_heights.height_for` on the new diffuse; then re-bake
+`custom:tarbaby/custom`.

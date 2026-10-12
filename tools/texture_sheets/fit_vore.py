@@ -24,6 +24,10 @@ MODEL_SHA = 'da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee'
 PARTS = [dict(name='front connected body', src=[10,8,500,930], dst=[3,3,103,192], seed=[255,350]),
          dict(name='back connected body', src=[526,10,1012,931], dst=[109,3,209,192], seed=[768,350])]
 
+# The 4x art standard (docs/texture-standard-4x-2026-10-12.md): factor 4, and a bleed of the same
+# two native texels the first fit used at factor 5 (10 canvas pixels).
+FACTOR, BLEED = 4, 8
+
 def member(path, name):
     with path.open('rb') as stream:
         header = stream.read(12)
@@ -90,8 +94,8 @@ def main():
         components.append(dict(name=part['name'],body_pixels=int(body.sum())))
     blank=Image.new('RGB',(width,height),(0,0,0))
     spec=dict(parts=PARTS,background=[0,0,0])
-    result,coverage=fit(blank,cleaned,spec,data,5,10)
-    footprint=uv_footprint(data,5)
+    result,coverage=fit(blank,cleaned,spec,data,FACTOR,BLEED)
+    footprint=uv_footprint(data,FACTOR)
     if (np.max(np.asarray(result),2)[footprint]==0).any():
         raise ValueError('Unresolved black matte on native UV surface')
     args.out.mkdir(parents=True,exist_ok=True)
@@ -99,7 +103,7 @@ def main():
     height_for(result,args.out/'height.webp','shalrath/custom')
     report=dict(schema=1,model='progs/shalrath.mdl',nativeModelSha256=MODEL_SHA,
                 source=args.source.name,sourceSha256=SOURCE_SHA,skin=0,skinFrame=0,
-                factor=5,dimensions=list(result.size),parts=PARTS,components=components,
+                factor=FACTOR,bleed=BLEED,dimensions=list(result.size),parts=PARTS,components=components,
                 fit=coverage,darkSuppliedSurfaceSamples=int((np.max(np.asarray(result),2)[footprint]<=9).sum()),nativeTexturePixelsUsed=0,separateHead='Unchanged native h_shal model/skin',
                 normalProfile=dict(strength=.65,cap=.55),
                 reuse=['update_head_skins.fit','fit_skin.spread','uv_footprint','height_for'],
