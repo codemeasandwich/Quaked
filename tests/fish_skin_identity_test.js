@@ -67,7 +67,9 @@ Deno.test( 'actual Rotfish assets retain generated source, matching dimensions a
  same( index.models.fish.length, 1, 'single approved Rotfish variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' );
  same( approved.dir, 'fish/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.png', 'lossless fitted PNG is used by the product' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
  same( index.models.h_fish, undefined, 'no invented detached fish head variant' );
- const other = structuredClone( index ); delete other.version; delete other.models.fish;
+ const other = structuredClone( index ); delete other.version;
+ const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor", "dragon", "s_wrath", "mummy", "dog"];
+ other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)));
  same( sha( JSON.stringify( other ) ), 'e2225dde69bc6d3c22c3f45784cdaadfc4a6953a36ad1c8143d3423d530a4d4b', 'all pre-existing enemy variants and native height mappings unchanged' );
  const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };

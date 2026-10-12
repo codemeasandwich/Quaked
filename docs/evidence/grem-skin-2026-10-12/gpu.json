@@ -1,0 +1,1878 @@
+{
+  "model": "grem",
+  "status": "PASS",
+  "modelSHA": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763",
+  "frames": 179,
+  "dimensions": [
+    1848,
+    1014
+  ],
+  "draws": 189,
+  "elapsedMs": 1192.5,
+  "poses": [
+    {
+      "frame": 0,
+      "name": "stand1.asc",
+      "visible": 23931
+    },
+    {
+      "frame": 1,
+      "name": "stand2.asc",
+      "visible": 20310
+    },
+    {
+      "frame": 2,
+      "name": "stand3.asc",
+      "visible": 23453
+    },
+    {
+      "frame": 3,
+      "name": "stand4.asc",
+      "visible": 19926
+    },
+    {
+      "frame": 4,
+      "name": "stand5.asc",
+      "visible": 23463
+    },
+    {
+      "frame": 5,
+      "name": "stand6.asc",
+      "visible": 20744
+    },
+    {
+      "frame": 6,
+      "name": "stand7.asc",
+      "visible": 23789
+    },
+    {
+      "frame": 7,
+      "name": "stand8.asc",
+      "visible": 20756
+    },
+    {
+      "frame": 8,
+      "name": "stand9.asc",
+      "visible": 23063
+    },
+    {
+      "frame": 9,
+      "name": "stand10.asc",
+      "visible": 19956
+    },
+    {
+      "frame": 10,
+      "name": "stand11.asc",
+      "visible": 23098
+    },
+    {
+      "frame": 11,
+      "name": "stand12.asc",
+      "visible": 20600
+    },
+    {
+      "frame": 12,
+      "name": "stand13.asc",
+      "visible": 23323
+    },
+    {
+      "frame": 13,
+      "name": "stand14.asc",
+      "visible": 20381
+    },
+    {
+      "frame": 14,
+      "name": "stand15.asc",
+      "visible": 22908
+    },
+    {
+      "frame": 15,
+      "name": "stand16.asc",
+      "visible": 20004
+    },
+    {
+      "frame": 16,
+      "name": "stand17.asc",
+      "visible": 22941
+    },
+    {
+      "frame": 17,
+      "name": "walk1.asc",
+      "visible": 23852
+    },
+    {
+      "frame": 18,
+      "name": "walk2.asc",
+      "visible": 28860
+    },
+    {
+      "frame": 19,
+      "name": "walk3.asc",
+      "visible": 25700
+    },
+    {
+      "frame": 20,
+      "name": "walk4.asc",
+      "visible": 29610
+    },
+    {
+      "frame": 21,
+      "name": "walk5.asc",
+      "visible": 26533
+    },
+    {
+      "frame": 22,
+      "name": "walk6.asc",
+      "visible": 27090
+    },
+    {
+      "frame": 23,
+      "name": "walk7.asc",
+      "visible": 25675
+    },
+    {
+      "frame": 24,
+      "name": "walk8.asc",
+      "visible": 27881
+    },
+    {
+      "frame": 25,
+      "name": "walk9.asc",
+      "visible": 28399
+    },
+    {
+      "frame": 26,
+      "name": "walk10.asc",
+      "visible": 29242
+    },
+    {
+      "frame": 27,
+      "name": "walk11.asc",
+      "visible": 25565
+    },
+    {
+      "frame": 28,
+      "name": "walk12.asc",
+      "visible": 29373
+    },
+    {
+      "frame": 29,
+      "name": "run1.asc",
+      "visible": 27663
+    },
+    {
+      "frame": 30,
+      "name": "run2.asc",
+      "visible": 27420
+    },
+    {
+      "frame": 31,
+      "name": "run3.asc",
+      "visible": 26507
+    },
+    {
+      "frame": 32,
+      "name": "run4.asc",
+      "visible": 22196
+    },
+    {
+      "frame": 33,
+      "name": "run5.asc",
+      "visible": 26169
+    },
+    {
+      "frame": 34,
+      "name": "run6.asc",
+      "visible": 26898
+    },
+    {
+      "frame": 35,
+      "name": "run7.asc",
+      "visible": 26791
+    },
+    {
+      "frame": 36,
+      "name": "run8.asc",
+      "visible": 29220
+    },
+    {
+      "frame": 37,
+      "name": "run9.asc",
+      "visible": 23082
+    },
+    {
+      "frame": 38,
+      "name": "run10.asc",
+      "visible": 25925
+    },
+    {
+      "frame": 39,
+      "name": "run11.asc",
+      "visible": 25086
+    },
+    {
+      "frame": 40,
+      "name": "run12.asc",
+      "visible": 23164
+    },
+    {
+      "frame": 41,
+      "name": "run13.asc",
+      "visible": 25147
+    },
+    {
+      "frame": 42,
+      "name": "run14.asc",
+      "visible": 26230
+    },
+    {
+      "frame": 43,
+      "name": "run15.asc",
+      "visible": 24165
+    },
+    {
+      "frame": 44,
+      "name": "jump1.asc",
+      "visible": 29364
+    },
+    {
+      "frame": 45,
+      "name": "jump2.asc",
+      "visible": 27136
+    },
+    {
+      "frame": 46,
+      "name": "jump3.asc",
+      "visible": 28677
+    },
+    {
+      "frame": 47,
+      "name": "jump4.asc",
+      "visible": 29100
+    },
+    {
+      "frame": 48,
+      "name": "jump5.asc",
+      "visible": 36333
+    },
+    {
+      "frame": 49,
+      "name": "jump6.asc",
+      "visible": 31965
+    },
+    {
+      "frame": 50,
+      "name": "jump7.asc",
+      "visible": 31263
+    },
+    {
+      "frame": 51,
+      "name": "jump8.asc",
+      "visible": 27613
+    },
+    {
+      "frame": 52,
+      "name": "jump9.asc",
+      "visible": 28030
+    },
+    {
+      "frame": 53,
+      "name": "jump10.asc",
+      "visible": 27225
+    },
+    {
+      "frame": 54,
+      "name": "jump11.asc",
+      "visible": 25881
+    },
+    {
+      "frame": 55,
+      "name": "jump12.asc",
+      "visible": 21959
+    },
+    {
+      "frame": 56,
+      "name": "jump13.asc",
+      "visible": 21980
+    },
+    {
+      "frame": 57,
+      "name": "jump14.asc",
+      "visible": 20414
+    },
+    {
+      "frame": 58,
+      "name": "jump15.asc",
+      "visible": 23406
+    },
+    {
+      "frame": 59,
+      "name": "jump16.asc",
+      "visible": 23587
+    },
+    {
+      "frame": 60,
+      "name": "attk1.asc",
+      "visible": 29747
+    },
+    {
+      "frame": 61,
+      "name": "attk2.asc",
+      "visible": 30263
+    },
+    {
+      "frame": 62,
+      "name": "attk3.asc",
+      "visible": 29247
+    },
+    {
+      "frame": 63,
+      "name": "attk4.asc",
+      "visible": 32161
+    },
+    {
+      "frame": 64,
+      "name": "attk5.asc",
+      "visible": 27028
+    },
+    {
+      "frame": 65,
+      "name": "attk6.asc",
+      "visible": 30047
+    },
+    {
+      "frame": 66,
+      "name": "attk7.asc",
+      "visible": 24440
+    },
+    {
+      "frame": 67,
+      "name": "attk8.asc",
+      "visible": 24972
+    },
+    {
+      "frame": 68,
+      "name": "attk9.asc",
+      "visible": 24267
+    },
+    {
+      "frame": 69,
+      "name": "attk10.asc",
+      "visible": 23895
+    },
+    {
+      "frame": 70,
+      "name": "attk11.asc",
+      "visible": 29763
+    },
+    {
+      "frame": 71,
+      "name": "maul1.asc",
+      "visible": 24903
+    },
+    {
+      "frame": 72,
+      "name": "maul2.asc",
+      "visible": 24164
+    },
+    {
+      "frame": 73,
+      "name": "maul3.asc",
+      "visible": 24527
+    },
+    {
+      "frame": 74,
+      "name": "maul4.asc",
+      "visible": 21230
+    },
+    {
+      "frame": 75,
+      "name": "maul5.asc",
+      "visible": 24351
+    },
+    {
+      "frame": 76,
+      "name": "maul6.asc",
+      "visible": 22760
+    },
+    {
+      "frame": 77,
+      "name": "maul7.asc",
+      "visible": 22643
+    },
+    {
+      "frame": 78,
+      "name": "maul8.asc",
+      "visible": 21034
+    },
+    {
+      "frame": 79,
+      "name": "maul9.asc",
+      "visible": 21021
+    },
+    {
+      "frame": 80,
+      "name": "maul10.asc",
+      "visible": 19591
+    },
+    {
+      "frame": 81,
+      "name": "maul11.asc",
+      "visible": 21807
+    },
+    {
+      "frame": 82,
+      "name": "maul12.asc",
+      "visible": 22329
+    },
+    {
+      "frame": 83,
+      "name": "maul13.asc",
+      "visible": 24621
+    },
+    {
+      "frame": 84,
+      "name": "spawn1.asc",
+      "visible": 4952
+    },
+    {
+      "frame": 85,
+      "name": "spawn2.asc",
+      "visible": 7417
+    },
+    {
+      "frame": 86,
+      "name": "spawn3.asc",
+      "visible": 12022
+    },
+    {
+      "frame": 87,
+      "name": "spawn4.asc",
+      "visible": 15792
+    },
+    {
+      "frame": 88,
+      "name": "spawn5.asc",
+      "visible": 23084
+    },
+    {
+      "frame": 89,
+      "name": "spawn6.asc",
+      "visible": 27426
+    },
+    {
+      "frame": 90,
+      "name": "look1.asc",
+      "visible": 30117
+    },
+    {
+      "frame": 91,
+      "name": "look2.asc",
+      "visible": 28148
+    },
+    {
+      "frame": 92,
+      "name": "look3.asc",
+      "visible": 28465
+    },
+    {
+      "frame": 93,
+      "name": "look4.asc",
+      "visible": 27162
+    },
+    {
+      "frame": 94,
+      "name": "look5.asc",
+      "visible": 27361
+    },
+    {
+      "frame": 95,
+      "name": "look6.asc",
+      "visible": 25479
+    },
+    {
+      "frame": 96,
+      "name": "look7.asc",
+      "visible": 28757
+    },
+    {
+      "frame": 97,
+      "name": "look8.asc",
+      "visible": 24576
+    },
+    {
+      "frame": 98,
+      "name": "look9.asc",
+      "visible": 28116
+    },
+    {
+      "frame": 99,
+      "name": "look10.asc",
+      "visible": 25960
+    },
+    {
+      "frame": 100,
+      "name": "pain1.asc",
+      "visible": 30571
+    },
+    {
+      "frame": 101,
+      "name": "pain2.asc",
+      "visible": 25735
+    },
+    {
+      "frame": 102,
+      "name": "pain3.asc",
+      "visible": 30672
+    },
+    {
+      "frame": 103,
+      "name": "pain4.asc",
+      "visible": 27413
+    },
+    {
+      "frame": 104,
+      "name": "death1.asc",
+      "visible": 30857
+    },
+    {
+      "frame": 105,
+      "name": "death2.asc",
+      "visible": 27048
+    },
+    {
+      "frame": 106,
+      "name": "death3.asc",
+      "visible": 27670
+    },
+    {
+      "frame": 107,
+      "name": "death4.asc",
+      "visible": 23130
+    },
+    {
+      "frame": 108,
+      "name": "death5.asc",
+      "visible": 25933
+    },
+    {
+      "frame": 109,
+      "name": "death6.asc",
+      "visible": 21524
+    },
+    {
+      "frame": 110,
+      "name": "death7.asc",
+      "visible": 20322
+    },
+    {
+      "frame": 111,
+      "name": "death8.asc",
+      "visible": 22107
+    },
+    {
+      "frame": 112,
+      "name": "death9.asc",
+      "visible": 17561
+    },
+    {
+      "frame": 113,
+      "name": "death10.asc",
+      "visible": 23591
+    },
+    {
+      "frame": 114,
+      "name": "death11.asc",
+      "visible": 23529
+    },
+    {
+      "frame": 115,
+      "name": "death12.asc",
+      "visible": 22386
+    },
+    {
+      "frame": 116,
+      "name": "flip1.asc",
+      "visible": 30186
+    },
+    {
+      "frame": 117,
+      "name": "flip2.asc",
+      "visible": 33601
+    },
+    {
+      "frame": 118,
+      "name": "flip3.asc",
+      "visible": 25116
+    },
+    {
+      "frame": 119,
+      "name": "flip4.asc",
+      "visible": 29614
+    },
+    {
+      "frame": 120,
+      "name": "flip5.asc",
+      "visible": 23275
+    },
+    {
+      "frame": 121,
+      "name": "flip6.asc",
+      "visible": 25083
+    },
+    {
+      "frame": 122,
+      "name": "flip7.asc",
+      "visible": 20302
+    },
+    {
+      "frame": 123,
+      "name": "flip8.asc",
+      "visible": 22782
+    },
+    {
+      "frame": 124,
+      "name": "lunge1.asc",
+      "visible": 30005
+    },
+    {
+      "frame": 125,
+      "name": "lunge2.asc",
+      "visible": 26901
+    },
+    {
+      "frame": 126,
+      "name": "lunge3.asc",
+      "visible": 30112
+    },
+    {
+      "frame": 127,
+      "name": "lunge4.asc",
+      "visible": 27753
+    },
+    {
+      "frame": 128,
+      "name": "lunge5.asc",
+      "visible": 28851
+    },
+    {
+      "frame": 129,
+      "name": "lunge6.asc",
+      "visible": 28357
+    },
+    {
+      "frame": 130,
+      "name": "lunge7.asc",
+      "visible": 27823
+    },
+    {
+      "frame": 131,
+      "name": "lunge8.asc",
+      "visible": 25824
+    },
+    {
+      "frame": 132,
+      "name": "lunge9.asc",
+      "visible": 21996
+    },
+    {
+      "frame": 133,
+      "name": "lunge10.asc",
+      "visible": 26588
+    },
+    {
+      "frame": 134,
+      "name": "lunge11.asc",
+      "visible": 28785
+    },
+    {
+      "frame": 135,
+      "name": "gfire1.ASC",
+      "visible": 28492
+    },
+    {
+      "frame": 136,
+      "name": "gfire2.ASC",
+      "visible": 28360
+    },
+    {
+      "frame": 137,
+      "name": "gfire3.ASC",
+      "visible": 29293
+    },
+    {
+      "frame": 138,
+      "name": "gfire4.ASC",
+      "visible": 26580
+    },
+    {
+      "frame": 139,
+      "name": "gfire5.ASC",
+      "visible": 28698
+    },
+    {
+      "frame": 140,
+      "name": "gfire6.ASC",
+      "visible": 26653
+    },
+    {
+      "frame": 141,
+      "name": "glook1.asc",
+      "visible": 28208
+    },
+    {
+      "frame": 142,
+      "name": "glook2.asc",
+      "visible": 33953
+    },
+    {
+      "frame": 143,
+      "name": "glook3.ASC",
+      "visible": 25002
+    },
+    {
+      "frame": 144,
+      "name": "glook4.ASC",
+      "visible": 31903
+    },
+    {
+      "frame": 145,
+      "name": "glook5.ASC",
+      "visible": 23874
+    },
+    {
+      "frame": 146,
+      "name": "glook6.ASC",
+      "visible": 30911
+    },
+    {
+      "frame": 147,
+      "name": "glook7.ASC",
+      "visible": 22748
+    },
+    {
+      "frame": 148,
+      "name": "glook8.ASC",
+      "visible": 31750
+    },
+    {
+      "frame": 149,
+      "name": "glook9.ASC",
+      "visible": 24212
+    },
+    {
+      "frame": 150,
+      "name": "glook10.ASC",
+      "visible": 32316
+    },
+    {
+      "frame": 151,
+      "name": "glook11.ASC",
+      "visible": 28512
+    },
+    {
+      "frame": 152,
+      "name": "glook12.ASC",
+      "visible": 32935
+    },
+    {
+      "frame": 153,
+      "name": "glook13.ASC",
+      "visible": 31325
+    },
+    {
+      "frame": 154,
+      "name": "glook14.ASC",
+      "visible": 29277
+    },
+    {
+      "frame": 155,
+      "name": "glook15.ASC",
+      "visible": 31816
+    },
+    {
+      "frame": 156,
+      "name": "glook16.ASC",
+      "visible": 29238
+    },
+    {
+      "frame": 157,
+      "name": "glook17.ASC",
+      "visible": 32201
+    },
+    {
+      "frame": 158,
+      "name": "glook18.ASC",
+      "visible": 33571
+    },
+    {
+      "frame": 159,
+      "name": "glook19.ASC",
+      "visible": 30864
+    },
+    {
+      "frame": 160,
+      "name": "glook20.asc",
+      "visible": 35449
+    },
+    {
+      "frame": 161,
+      "name": "gpain1.ASC",
+      "visible": 34448
+    },
+    {
+      "frame": 162,
+      "name": "gpain2.ASC",
+      "visible": 33349
+    },
+    {
+      "frame": 163,
+      "name": "gpain3.ASC",
+      "visible": 32773
+    },
+    {
+      "frame": 164,
+      "name": "grun1.asc",
+      "visible": 33667
+    },
+    {
+      "frame": 165,
+      "name": "grun2.ASC",
+      "visible": 32434
+    },
+    {
+      "frame": 166,
+      "name": "grun3.ASC",
+      "visible": 33997
+    },
+    {
+      "frame": 167,
+      "name": "grun4.ASC",
+      "visible": 33477
+    },
+    {
+      "frame": 168,
+      "name": "grun5.ASC",
+      "visible": 32652
+    },
+    {
+      "frame": 169,
+      "name": "grun6.ASC",
+      "visible": 30386
+    },
+    {
+      "frame": 170,
+      "name": "grun7.ASC",
+      "visible": 34005
+    },
+    {
+      "frame": 171,
+      "name": "grun8.ASC",
+      "visible": 29228
+    },
+    {
+      "frame": 172,
+      "name": "grun9.ASC",
+      "visible": 32633
+    },
+    {
+      "frame": 173,
+      "name": "grun10.ASC",
+      "visible": 30581
+    },
+    {
+      "frame": 174,
+      "name": "grun11.ASC",
+      "visible": 33254
+    },
+    {
+      "frame": 175,
+      "name": "grun12.ASC",
+      "visible": 31162
+    },
+    {
+      "frame": 176,
+      "name": "grun13.ASC",
+      "visible": 33953
+    },
+    {
+      "frame": 177,
+      "name": "grun14.ASC",
+      "visible": 33786
+    },
+    {
+      "frame": 178,
+      "name": "grun15.ASC",
+      "visible": 32993
+    }
+  ],
+  "checks": [
+    {
+      "passed": true,
+      "name": "actual fitted material visible: front",
+      "visible": 23931
+    },
+    {
+      "passed": true,
+      "name": "actual fitted material visible: back",
+      "visible": 24883
+    },
+    {
+      "passed": true,
+      "name": "actual fitted material visible: oblique",
+      "visible": 20899
+    },
+    {
+      "passed": true,
+      "name": "actual fitted material visible: other oblique",
+      "visible": 23917
+    },
+    {
+      "passed": true,
+      "name": "stand1.asc",
+      "visible": 23931
+    },
+    {
+      "passed": true,
+      "name": "stand2.asc",
+      "visible": 20310
+    },
+    {
+      "passed": true,
+      "name": "stand3.asc",
+      "visible": 23453
+    },
+    {
+      "passed": true,
+      "name": "stand4.asc",
+      "visible": 19926
+    },
+    {
+      "passed": true,
+      "name": "stand5.asc",
+      "visible": 23463
+    },
+    {
+      "passed": true,
+      "name": "stand6.asc",
+      "visible": 20744
+    },
+    {
+      "passed": true,
+      "name": "stand7.asc",
+      "visible": 23789
+    },
+    {
+      "passed": true,
+      "name": "stand8.asc",
+      "visible": 20756
+    },
+    {
+      "passed": true,
+      "name": "stand9.asc",
+      "visible": 23063
+    },
+    {
+      "passed": true,
+      "name": "stand10.asc",
+      "visible": 19956
+    },
+    {
+      "passed": true,
+      "name": "stand11.asc",
+      "visible": 23098
+    },
+    {
+      "passed": true,
+      "name": "stand12.asc",
+      "visible": 20600
+    },
+    {
+      "passed": true,
+      "name": "stand13.asc",
+      "visible": 23323
+    },
+    {
+      "passed": true,
+      "name": "stand14.asc",
+      "visible": 20381
+    },
+    {
+      "passed": true,
+      "name": "stand15.asc",
+      "visible": 22908
+    },
+    {
+      "passed": true,
+      "name": "stand16.asc",
+      "visible": 20004
+    },
+    {
+      "passed": true,
+      "name": "stand17.asc",
+      "visible": 22941
+    },
+    {
+      "passed": true,
+      "name": "walk1.asc",
+      "visible": 23852
+    },
+    {
+      "passed": true,
+      "name": "walk2.asc",
+      "visible": 28860
+    },
+    {
+      "passed": true,
+      "name": "walk3.asc",
+      "visible": 25700
+    },
+    {
+      "passed": true,
+      "name": "walk4.asc",
+      "visible": 29610
+    },
+    {
+      "passed": true,
+      "name": "walk5.asc",
+      "visible": 26533
+    },
+    {
+      "passed": true,
+      "name": "walk6.asc",
+      "visible": 27090
+    },
+    {
+      "passed": true,
+      "name": "walk7.asc",
+      "visible": 25675
+    },
+    {
+      "passed": true,
+      "name": "walk8.asc",
+      "visible": 27881
+    },
+    {
+      "passed": true,
+      "name": "walk9.asc",
+      "visible": 28399
+    },
+    {
+      "passed": true,
+      "name": "walk10.asc",
+      "visible": 29242
+    },
+    {
+      "passed": true,
+      "name": "walk11.asc",
+      "visible": 25565
+    },
+    {
+      "passed": true,
+      "name": "walk12.asc",
+      "visible": 29373
+    },
+    {
+      "passed": true,
+      "name": "run1.asc",
+      "visible": 27663
+    },
+    {
+      "passed": true,
+      "name": "run2.asc",
+      "visible": 27420
+    },
+    {
+      "passed": true,
+      "name": "run3.asc",
+      "visible": 26507
+    },
+    {
+      "passed": true,
+      "name": "run4.asc",
+      "visible": 22196
+    },
+    {
+      "passed": true,
+      "name": "run5.asc",
+      "visible": 26169
+    },
+    {
+      "passed": true,
+      "name": "run6.asc",
+      "visible": 26898
+    },
+    {
+      "passed": true,
+      "name": "run7.asc",
+      "visible": 26791
+    },
+    {
+      "passed": true,
+      "name": "run8.asc",
+      "visible": 29220
+    },
+    {
+      "passed": true,
+      "name": "run9.asc",
+      "visible": 23082
+    },
+    {
+      "passed": true,
+      "name": "run10.asc",
+      "visible": 25925
+    },
+    {
+      "passed": true,
+      "name": "run11.asc",
+      "visible": 25086
+    },
+    {
+      "passed": true,
+      "name": "run12.asc",
+      "visible": 23164
+    },
+    {
+      "passed": true,
+      "name": "run13.asc",
+      "visible": 25147
+    },
+    {
+      "passed": true,
+      "name": "run14.asc",
+      "visible": 26230
+    },
+    {
+      "passed": true,
+      "name": "run15.asc",
+      "visible": 24165
+    },
+    {
+      "passed": true,
+      "name": "jump1.asc",
+      "visible": 29364
+    },
+    {
+      "passed": true,
+      "name": "jump2.asc",
+      "visible": 27136
+    },
+    {
+      "passed": true,
+      "name": "jump3.asc",
+      "visible": 28677
+    },
+    {
+      "passed": true,
+      "name": "jump4.asc",
+      "visible": 29100
+    },
+    {
+      "passed": true,
+      "name": "jump5.asc",
+      "visible": 36333
+    },
+    {
+      "passed": true,
+      "name": "jump6.asc",
+      "visible": 31965
+    },
+    {
+      "passed": true,
+      "name": "jump7.asc",
+      "visible": 31263
+    },
+    {
+      "passed": true,
+      "name": "jump8.asc",
+      "visible": 27613
+    },
+    {
+      "passed": true,
+      "name": "jump9.asc",
+      "visible": 28030
+    },
+    {
+      "passed": true,
+      "name": "jump10.asc",
+      "visible": 27225
+    },
+    {
+      "passed": true,
+      "name": "jump11.asc",
+      "visible": 25881
+    },
+    {
+      "passed": true,
+      "name": "jump12.asc",
+      "visible": 21959
+    },
+    {
+      "passed": true,
+      "name": "jump13.asc",
+      "visible": 21980
+    },
+    {
+      "passed": true,
+      "name": "jump14.asc",
+      "visible": 20414
+    },
+    {
+      "passed": true,
+      "name": "jump15.asc",
+      "visible": 23406
+    },
+    {
+      "passed": true,
+      "name": "jump16.asc",
+      "visible": 23587
+    },
+    {
+      "passed": true,
+      "name": "attk1.asc",
+      "visible": 29747
+    },
+    {
+      "passed": true,
+      "name": "attk2.asc",
+      "visible": 30263
+    },
+    {
+      "passed": true,
+      "name": "attk3.asc",
+      "visible": 29247
+    },
+    {
+      "passed": true,
+      "name": "attk4.asc",
+      "visible": 32161
+    },
+    {
+      "passed": true,
+      "name": "attk5.asc",
+      "visible": 27028
+    },
+    {
+      "passed": true,
+      "name": "attk6.asc",
+      "visible": 30047
+    },
+    {
+      "passed": true,
+      "name": "attk7.asc",
+      "visible": 24440
+    },
+    {
+      "passed": true,
+      "name": "attk8.asc",
+      "visible": 24972
+    },
+    {
+      "passed": true,
+      "name": "attk9.asc",
+      "visible": 24267
+    },
+    {
+      "passed": true,
+      "name": "attk10.asc",
+      "visible": 23895
+    },
+    {
+      "passed": true,
+      "name": "attk11.asc",
+      "visible": 29763
+    },
+    {
+      "passed": true,
+      "name": "maul1.asc",
+      "visible": 24903
+    },
+    {
+      "passed": true,
+      "name": "maul2.asc",
+      "visible": 24164
+    },
+    {
+      "passed": true,
+      "name": "maul3.asc",
+      "visible": 24527
+    },
+    {
+      "passed": true,
+      "name": "maul4.asc",
+      "visible": 21230
+    },
+    {
+      "passed": true,
+      "name": "maul5.asc",
+      "visible": 24351
+    },
+    {
+      "passed": true,
+      "name": "maul6.asc",
+      "visible": 22760
+    },
+    {
+      "passed": true,
+      "name": "maul7.asc",
+      "visible": 22643
+    },
+    {
+      "passed": true,
+      "name": "maul8.asc",
+      "visible": 21034
+    },
+    {
+      "passed": true,
+      "name": "maul9.asc",
+      "visible": 21021
+    },
+    {
+      "passed": true,
+      "name": "maul10.asc",
+      "visible": 19591
+    },
+    {
+      "passed": true,
+      "name": "maul11.asc",
+      "visible": 21807
+    },
+    {
+      "passed": true,
+      "name": "maul12.asc",
+      "visible": 22329
+    },
+    {
+      "passed": true,
+      "name": "maul13.asc",
+      "visible": 24621
+    },
+    {
+      "passed": true,
+      "name": "spawn1.asc",
+      "visible": 4952
+    },
+    {
+      "passed": true,
+      "name": "spawn2.asc",
+      "visible": 7417
+    },
+    {
+      "passed": true,
+      "name": "spawn3.asc",
+      "visible": 12022
+    },
+    {
+      "passed": true,
+      "name": "spawn4.asc",
+      "visible": 15792
+    },
+    {
+      "passed": true,
+      "name": "spawn5.asc",
+      "visible": 23084
+    },
+    {
+      "passed": true,
+      "name": "spawn6.asc",
+      "visible": 27426
+    },
+    {
+      "passed": true,
+      "name": "look1.asc",
+      "visible": 30117
+    },
+    {
+      "passed": true,
+      "name": "look2.asc",
+      "visible": 28148
+    },
+    {
+      "passed": true,
+      "name": "look3.asc",
+      "visible": 28465
+    },
+    {
+      "passed": true,
+      "name": "look4.asc",
+      "visible": 27162
+    },
+    {
+      "passed": true,
+      "name": "look5.asc",
+      "visible": 27361
+    },
+    {
+      "passed": true,
+      "name": "look6.asc",
+      "visible": 25479
+    },
+    {
+      "passed": true,
+      "name": "look7.asc",
+      "visible": 28757
+    },
+    {
+      "passed": true,
+      "name": "look8.asc",
+      "visible": 24576
+    },
+    {
+      "passed": true,
+      "name": "look9.asc",
+      "visible": 28116
+    },
+    {
+      "passed": true,
+      "name": "look10.asc",
+      "visible": 25960
+    },
+    {
+      "passed": true,
+      "name": "pain1.asc",
+      "visible": 30571
+    },
+    {
+      "passed": true,
+      "name": "pain2.asc",
+      "visible": 25735
+    },
+    {
+      "passed": true,
+      "name": "pain3.asc",
+      "visible": 30672
+    },
+    {
+      "passed": true,
+      "name": "pain4.asc",
+      "visible": 27413
+    },
+    {
+      "passed": true,
+      "name": "death1.asc",
+      "visible": 30857
+    },
+    {
+      "passed": true,
+      "name": "death2.asc",
+      "visible": 27048
+    },
+    {
+      "passed": true,
+      "name": "death3.asc",
+      "visible": 27670
+    },
+    {
+      "passed": true,
+      "name": "death4.asc",
+      "visible": 23130
+    },
+    {
+      "passed": true,
+      "name": "death5.asc",
+      "visible": 25933
+    },
+    {
+      "passed": true,
+      "name": "death6.asc",
+      "visible": 21524
+    },
+    {
+      "passed": true,
+      "name": "death7.asc",
+      "visible": 20322
+    },
+    {
+      "passed": true,
+      "name": "death8.asc",
+      "visible": 22107
+    },
+    {
+      "passed": true,
+      "name": "death9.asc",
+      "visible": 17561
+    },
+    {
+      "passed": true,
+      "name": "death10.asc",
+      "visible": 23591
+    },
+    {
+      "passed": true,
+      "name": "death11.asc",
+      "visible": 23529
+    },
+    {
+      "passed": true,
+      "name": "death12.asc",
+      "visible": 22386
+    },
+    {
+      "passed": true,
+      "name": "flip1.asc",
+      "visible": 30186
+    },
+    {
+      "passed": true,
+      "name": "flip2.asc",
+      "visible": 33601
+    },
+    {
+      "passed": true,
+      "name": "flip3.asc",
+      "visible": 25116
+    },
+    {
+      "passed": true,
+      "name": "flip4.asc",
+      "visible": 29614
+    },
+    {
+      "passed": true,
+      "name": "flip5.asc",
+      "visible": 23275
+    },
+    {
+      "passed": true,
+      "name": "flip6.asc",
+      "visible": 25083
+    },
+    {
+      "passed": true,
+      "name": "flip7.asc",
+      "visible": 20302
+    },
+    {
+      "passed": true,
+      "name": "flip8.asc",
+      "visible": 22782
+    },
+    {
+      "passed": true,
+      "name": "lunge1.asc",
+      "visible": 30005
+    },
+    {
+      "passed": true,
+      "name": "lunge2.asc",
+      "visible": 26901
+    },
+    {
+      "passed": true,
+      "name": "lunge3.asc",
+      "visible": 30112
+    },
+    {
+      "passed": true,
+      "name": "lunge4.asc",
+      "visible": 27753
+    },
+    {
+      "passed": true,
+      "name": "lunge5.asc",
+      "visible": 28851
+    },
+    {
+      "passed": true,
+      "name": "lunge6.asc",
+      "visible": 28357
+    },
+    {
+      "passed": true,
+      "name": "lunge7.asc",
+      "visible": 27823
+    },
+    {
+      "passed": true,
+      "name": "lunge8.asc",
+      "visible": 25824
+    },
+    {
+      "passed": true,
+      "name": "lunge9.asc",
+      "visible": 21996
+    },
+    {
+      "passed": true,
+      "name": "lunge10.asc",
+      "visible": 26588
+    },
+    {
+      "passed": true,
+      "name": "lunge11.asc",
+      "visible": 28785
+    },
+    {
+      "passed": true,
+      "name": "gfire1.ASC",
+      "visible": 28492
+    },
+    {
+      "passed": true,
+      "name": "gfire2.ASC",
+      "visible": 28360
+    },
+    {
+      "passed": true,
+      "name": "gfire3.ASC",
+      "visible": 29293
+    },
+    {
+      "passed": true,
+      "name": "gfire4.ASC",
+      "visible": 26580
+    },
+    {
+      "passed": true,
+      "name": "gfire5.ASC",
+      "visible": 28698
+    },
+    {
+      "passed": true,
+      "name": "gfire6.ASC",
+      "visible": 26653
+    },
+    {
+      "passed": true,
+      "name": "glook1.asc",
+      "visible": 28208
+    },
+    {
+      "passed": true,
+      "name": "glook2.asc",
+      "visible": 33953
+    },
+    {
+      "passed": true,
+      "name": "glook3.ASC",
+      "visible": 25002
+    },
+    {
+      "passed": true,
+      "name": "glook4.ASC",
+      "visible": 31903
+    },
+    {
+      "passed": true,
+      "name": "glook5.ASC",
+      "visible": 23874
+    },
+    {
+      "passed": true,
+      "name": "glook6.ASC",
+      "visible": 30911
+    },
+    {
+      "passed": true,
+      "name": "glook7.ASC",
+      "visible": 22748
+    },
+    {
+      "passed": true,
+      "name": "glook8.ASC",
+      "visible": 31750
+    },
+    {
+      "passed": true,
+      "name": "glook9.ASC",
+      "visible": 24212
+    },
+    {
+      "passed": true,
+      "name": "glook10.ASC",
+      "visible": 32316
+    },
+    {
+      "passed": true,
+      "name": "glook11.ASC",
+      "visible": 28512
+    },
+    {
+      "passed": true,
+      "name": "glook12.ASC",
+      "visible": 32935
+    },
+    {
+      "passed": true,
+      "name": "glook13.ASC",
+      "visible": 31325
+    },
+    {
+      "passed": true,
+      "name": "glook14.ASC",
+      "visible": 29277
+    },
+    {
+      "passed": true,
+      "name": "glook15.ASC",
+      "visible": 31816
+    },
+    {
+      "passed": true,
+      "name": "glook16.ASC",
+      "visible": 29238
+    },
+    {
+      "passed": true,
+      "name": "glook17.ASC",
+      "visible": 32201
+    },
+    {
+      "passed": true,
+      "name": "glook18.ASC",
+      "visible": 33571
+    },
+    {
+      "passed": true,
+      "name": "glook19.ASC",
+      "visible": 30864
+    },
+    {
+      "passed": true,
+      "name": "glook20.asc",
+      "visible": 35449
+    },
+    {
+      "passed": true,
+      "name": "gpain1.ASC",
+      "visible": 34448
+    },
+    {
+      "passed": true,
+      "name": "gpain2.ASC",
+      "visible": 33349
+    },
+    {
+      "passed": true,
+      "name": "gpain3.ASC",
+      "visible": 32773
+    },
+    {
+      "passed": true,
+      "name": "grun1.asc",
+      "visible": 33667
+    },
+    {
+      "passed": true,
+      "name": "grun2.ASC",
+      "visible": 32434
+    },
+    {
+      "passed": true,
+      "name": "grun3.ASC",
+      "visible": 33997
+    },
+    {
+      "passed": true,
+      "name": "grun4.ASC",
+      "visible": 33477
+    },
+    {
+      "passed": true,
+      "name": "grun5.ASC",
+      "visible": 32652
+    },
+    {
+      "passed": true,
+      "name": "grun6.ASC",
+      "visible": 30386
+    },
+    {
+      "passed": true,
+      "name": "grun7.ASC",
+      "visible": 34005
+    },
+    {
+      "passed": true,
+      "name": "grun8.ASC",
+      "visible": 29228
+    },
+    {
+      "passed": true,
+      "name": "grun9.ASC",
+      "visible": 32633
+    },
+    {
+      "passed": true,
+      "name": "grun10.ASC",
+      "visible": 30581
+    },
+    {
+      "passed": true,
+      "name": "grun11.ASC",
+      "visible": 33254
+    },
+    {
+      "passed": true,
+      "name": "grun12.ASC",
+      "visible": 31162
+    },
+    {
+      "passed": true,
+      "name": "grun13.ASC",
+      "visible": 33953
+    },
+    {
+      "passed": true,
+      "name": "grun14.ASC",
+      "visible": 33786
+    },
+    {
+      "passed": true,
+      "name": "grun15.ASC",
+      "visible": 32993
+    },
+    {
+      "passed": true,
+      "name": "stored height changes actual GPU pixels",
+      "changed": 1272,
+      "energy": 24728
+    },
+    {
+      "passed": true,
+      "name": "custom toggle restores native and visibly changes actual body",
+      "changed": 23467,
+      "energy": 1407608
+    },
+    {
+      "passed": true,
+      "name": "Classic pixels and original native material unchanged"
+    },
+    {
+      "passed": true,
+      "name": "native and fitted normals are shipped and settled",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 2,
+          "shipped": 2,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 2,
+        "fallback": 0,
+        "total": 2,
+        "settled": true,
+        "errors": {}
+      }
+    },
+    {
+      "passed": true,
+      "name": "different native model cannot wear this replacement"
+    },
+    {
+      "passed": true,
+      "name": "all native pose, triangle and UV records unchanged"
+    },
+    {
+      "passed": true,
+      "name": "actual material/compositor compile and runtime clean",
+      "errors": []
+    }
+  ],
+  "scope": "Controlled actual owned MDL/production alias rendering; gameplay discovery/combat remains separate."
+}

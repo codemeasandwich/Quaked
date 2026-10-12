@@ -1,0 +1,26 @@
+{
+  "key": "grem",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/grem.png",
+  "sourceSha": "82ffaf95ffa2263f354e7c3d49ce1a716d8021281e17b887ff0c1cfc2532326b",
+  "modelSha": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763",
+  "layout": [
+    1,
+    308,
+    169,
+    123,
+    245,
+    179
+  ],
+  "size": [
+    1692,
+    930
+  ],
+  "factor": 6,
+  "matte": "black",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Hipnotic progs/grem.mdl skin0 decoded with native palette and nearest enlarged4x; all8body/weapon islands retained",
+    "prompt": "Create a faithful high-resolution repaint of this exact original Quake Scourge of Armagon Gremlin UV skin atlas. This is a production model texture bitmap, NOT concept art or a 3D render. Preserve exact 308:169 aspect ratio, the front and back halves, all eight UV islands, silhouettes, proportions, limb lengths, the tiny original face and its position, claw shapes, and every gap. Both body halves and all small islands must remain at their original proportional coordinates. IMPORTANT: preserve the two small triangular pieces and the metallic/brown weapon piece BETWEEN THE FEET of EACH HALF. These are used by real weapon-firing animation, not discarded background. Do not add another weapon or rearrange them. Keep the original dirty grey-brown leathery skin, dark nearly-black dorsal stripe, muted brown highlights, deep blood-red chest wound and bloody hands/claws, with the same placement and extent. Add restrained fine skin folds, scars and metal/wood detail within the original regions only. Do not create a large new head, change anatomy, add horns/armour/clothes, change palette or exaggerate gore. Keep the pure black background, with crisp boundaries and no cast shadows, text, labels, border or watermark. Preserve original design and UV fidelity above all; increase image detail while leaving the original atlas composition intact."
+  }
+}

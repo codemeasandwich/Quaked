@@ -138,8 +138,8 @@ Deno.test( 'every file the skin index names exists', async () => {
 
 	}
 
-	assertEqual( variants, 28, 'the twenty-eight custom skins are indexed' );
-	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'armor,backpack,boss,demon,dog,dragon,enforcer,fish,h_demon,h_dog,h_shams,hknight,knight,mummy,ogre,oldone,s_wrath,scor,shalrath,shambler,soldier,suit,tarbaby,wizard,zom_gib,zombie', 'only retained custom models are indexed' );
+	assertEqual( variants, 29, 'the twenty-nine custom skins are indexed' );
+	assertEqual( Object.keys( index.models ).sort().join( ',' ), 'armor,backpack,boss,demon,dog,dragon,enforcer,fish,grem,h_demon,h_dog,h_shams,hknight,knight,mummy,ogre,oldone,s_wrath,scor,shalrath,shambler,soldier,suit,tarbaby,wizard,zom_gib,zombie', 'only retained custom models are indexed' );
 	for ( const [ model, list ] of Object.entries( index.models ) )
 		assertEqual( list[ 0 ].dir, model + '/custom', 'retains the custom skin directory' );
 

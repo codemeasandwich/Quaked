@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "model": "progs/grem.mdl",
+  "nativeModelSha256": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/grem.png",
+  "sourceSha256": "82ffaf95ffa2263f354e7c3d49ce1a716d8021281e17b887ff0c1cfc2532326b",
+  "sourceDimensions": [
+    1692,
+    930
+  ],
+  "dimensions": [
+    1848,
+    1014
+  ],
+  "factor": 6,
+  "skin": 0,
+  "poses": 179,
+  "vertices": 123,
+  "triangles": 245,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 414703,
+      "directPixels": 406299,
+      "edgePixels": 8404
+    },
+    {
+      "id": 2,
+      "surfacePixels": 414705,
+      "directPixels": 405785,
+      "edgePixels": 8920
+    },
+    {
+      "id": 3,
+      "surfacePixels": 1,
+      "directPixels": 0,
+      "edgePixels": 1
+    },
+    {
+      "id": 4,
+      "surfacePixels": 1,
+      "directPixels": 0,
+      "edgePixels": 1
+    },
+    {
+      "id": 5,
+      "surfacePixels": 7443,
+      "directPixels": 6916,
+      "edgePixels": 527
+    },
+    {
+      "id": 6,
+      "surfacePixels": 8608,
+      "directPixels": 7796,
+      "edgePixels": 812
+    },
+    {
+      "id": 7,
+      "surfacePixels": 7444,
+      "directPixels": 6925,
+      "edgePixels": 519
+    },
+    {
+      "id": 8,
+      "surfacePixels": 8607,
+      "directPixels": 7819,
+      "edgePixels": 788
+    },
+    {
+      "id": 9,
+      "surfacePixels": 31459,
+      "directPixels": 27285,
+      "edgePixels": 4174
+    },
+    {
+      "id": 10,
+      "surfacePixels": 31458,
+      "directPixels": 27253,
+      "edgePixels": 4205
+    }
+  ],
+  "surfacePixels": 924429,
+  "edgePixels": 28351,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "29a9ac02735ba4941593e6cab58de048971e30618b5295f5cc0d41dfda1e8be2",
+    "height.webp": "8b7b263f6faf8758087f0938b7c6e79b92e28c0c8a354d3e92c1716cf01fd156"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Hipnotic progs/grem.mdl skin0 decoded with native palette and nearest enlarged4x; all8body/weapon islands retained",
+    "prompt": "Create a faithful high-resolution repaint of this exact original Quake Scourge of Armagon Gremlin UV skin atlas. This is a production model texture bitmap, NOT concept art or a 3D render. Preserve exact 308:169 aspect ratio, the front and back halves, all eight UV islands, silhouettes, proportions, limb lengths, the tiny original face and its position, claw shapes, and every gap. Both body halves and all small islands must remain at their original proportional coordinates. IMPORTANT: preserve the two small triangular pieces and the metallic/brown weapon piece BETWEEN THE FEET of EACH HALF. These are used by real weapon-firing animation, not discarded background. Do not add another weapon or rearrange them. Keep the original dirty grey-brown leathery skin, dark nearly-black dorsal stripe, muted brown highlights, deep blood-red chest wound and bloody hands/claws, with the same placement and extent. Add restrained fine skin folds, scars and metal/wood detail within the original regions only. Do not create a large new head, change anatomy, add horns/armour/clothes, change palette or exaggerate gore. Keep the pure black background, with crisp boundaries and no cast shadows, text, labels, border or watermark. Preserve original design and UV fidelity above all; increase image detail while leaving the original atlas composition intact."
+  }
+}

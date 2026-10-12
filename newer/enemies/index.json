@@ -837,9 +837,23 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "grem": [
+   {
+    "dir": "grem/custom",
+    "skin": 0,
+    "nativeModelSha256": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   }
   ]
  },
- "version": 31,
+ "version": 32,
  "nativeHeights": {
   "gib1": [
    [
