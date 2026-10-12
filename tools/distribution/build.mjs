@@ -6,6 +6,7 @@ import {gzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {collectAssets,assetPath,DataCategory} from './manifest.mjs';
 import {encode85} from './base85.js';
+import {WebOptimise} from './web_images.mjs';
 
 const profile=process.argv[2];
 if(!['web','desktop'].includes(profile))throw Error('Usage: build.mjs web|desktop');
@@ -62,8 +63,11 @@ try {
  if(profile==='desktop'){await mkdir(resolve(out,'assets'),{recursive:true});await mkdir(resolve(root,'dist/desktop-assets'),{recursive:true});}
  let i=0,total=0;const packParts=new Map();
  for(const path of [...paths,...generated.keys()].sort()) {
-  const bytes=generated.get(path)??await readFile(assetPath(root,path));
-  const hash=sha(bytes),id='q'+i+++extname(path),entry={id,mime:mime(path)};
+  const source=generated.get(path)??await readFile(assetPath(root,path));
+  // Web-only optimisation (web_images.mjs); the desktop app ships the source bytes.
+  const optimised=profile==='web'&&!generated.has(path)?await WebOptimise(path,source,process.env.QUAKED_WEB_IMAGE_CACHE??resolve(root,'.distribution-cache/web-images')):null;
+  const bytes=optimised?.bytes??source;
+  const hash=sha(bytes),id='q'+i+++extname(path),entry={id,mime:optimised?.mime??mime(path)};
   // Kept in the HTML: generated engine files, images the page shows before the engine
   // runs, and the licence (so the HTML carries its own terms).
   if(profile==='web'&&!generated.has(path)&&!pageRefs.has(path)&&path!=='LICENSE') {
@@ -78,7 +82,7 @@ try {
    entry.external=!generated.has(path);
    await writeFile(resolve(entry.external?resolve(root,'dist/desktop-assets'):resolve(out,'assets'),id),bytes);total+=bytes.length;
   }
-  files[path]=entry;inventory.push({path,bytes:bytes.length,sha256:hash});
+  files[path]=entry;inventory.push({path,bytes:bytes.length,sha256:hash,...(optimised?{sourceBytes:source.length,sourceSha256:sha(source),webp:{quality:optimised.quality,width:optimised.width,height:optimised.height}}:{})});
  }
  if(profile==='web'){
   await mkdir(resolve(out,'data'),{recursive:true});

@@ -167,9 +167,17 @@ try{
     scenarios.push(await page.evaluate(startTime=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,startTime,time:cl.time}),startTime));
    });
   }
+  // The Bestiary's images, re-encoded for the web build (web_images.mjs), must each decode at a
+  // real size through the distribution's own resolver; then the Bestiary itself is opened.
+  const bestiary=await step('bestiary-images',()=>page.evaluate(async()=>{
+   const spec=JSON.parse(document.getElementById('quaked-assets')?.textContent??'{}'),paths=Object.keys(spec.files??{}).filter(path=>/^newer\/bestiary\/.+\.(png|webp)$/.test(path)),failed=[];let decoded=0;
+   for(const path of paths){const image=new Image();image.src=__QUAKED_DISTRIBUTION__.url(path);try{await image.decode();if(image.naturalWidth>0&&image.naturalHeight>0)decoded++;else failed.push(path);}catch(error){failed.push(path+': '+error.message);}}
+   return {checked:paths.length,decoded,failed:failed.slice(0,10)};
+  }));
+  await step('bestiary-open',async()=>{await page.evaluate(()=>window.Cbuf_AddText('menu_bestiary\n'));await page.waitForTimeout(4000);await page.screenshot({path:reportPath.replace(/\.json$/,'-bestiary.png'),timeout:10000});});
   result=await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),metrics:globalThis.__QUAKED_DISTRIBUTION__?.metrics,memory:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize}:null,body:document.body.innerText.slice(-1500)}));
-  result.scenarios=scenarios;
-  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1);
+  result.scenarios=scenarios;result.bestiary=bestiary;
+  result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1)&&bestiary.checked>0&&bestiary.decoded===bestiary.checked;
  }
 }catch(error){result={ok:false,failure:String(error),failedPhase:phase};}
 finally{

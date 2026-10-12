@@ -24,9 +24,11 @@ globalThis.__QUAKED_DISTRIBUTION__={profile:spec.profile,engineHash:spec.engineH
     if(spec.profile==='desktop')return entry.external?convertFileSrc(resourceBase+'/'+entry.id):new URL('assets/'+entry.id,location.href.split('?')[0]).href;
     let url;
     if(entry.pack){
-      // A data-file asset is a zero-copy slice of its category's Blob.
+      // A data-file asset becomes its own small Blob, made when first asked for (as the
+      // single-file build did). Slices of large category Blobs broke intermittently
+      // (ERR_BLOB_REFERENCED_BLOB_BROKEN on a cold start) and could stop the game starting.
       const pack=packs.get(entry.pack);if(!pack)throw Error('Data file not loaded for '+k+': '+entry.pack);
-      url=URL.createObjectURL(pack.slice(entry.offset,entry.offset+entry.length,entry.mime));
+      url=URL.createObjectURL(new Blob([pack.subarray(entry.offset,entry.offset+entry.length)],{type:entry.mime}));metrics.blobBytes+=entry.length;
     }else{
       const element=document.getElementById(entry.id);
       let bytes=decode85(element.textContent,entry.bytes);
@@ -46,19 +48,18 @@ if(spec.packs&&Object.keys(spec.packs).length){
   // is integrity-checked by the browser, which releases it only whole, so progress moves per part.
   const http=/^https?:$/.test(location.protocol),base=http?new URL('.',location.href).href:spec.dataBase;
   const jobs=Object.entries(spec.packs).flatMap(([name,pack])=>pack.parts.map((part,index)=>({name,index,part})));
-  const total=jobs.reduce((sum,job)=>sum+job.part.bytes,0),blobs=new Map(),abort=new AbortController();let received=0,next=0,stale=false;
+  // Each category's bytes land in one ArrayBuffer, each part written at its own offset as it arrives.
+  const joined=new Map(Object.entries(spec.packs).map(([name,pack])=>[name,{bytes:new Uint8Array(pack.bytes),offsets:pack.parts.map((_,index)=>pack.parts.slice(0,index).reduce((sum,part)=>sum+part.bytes,0))}]));
+  const total=jobs.reduce((sum,job)=>sum+job.part.bytes,0),abort=new AbortController();let received=0,next=0,stale=false;
   const latest=`This copy of Quaked may be out of date: the latest is at ${spec.dataBase}`;
   async function fetchPart({name,index,part}){
     const where=new URL(part.file,base).href;let response;
     try{response=await fetch(where,{integrity:part.integrity,mode:'cors',signal:abort.signal});}
     catch(error){if(abort.signal.aborted&&error.name==='AbortError')return;throw Error(`could not download or verify ${where} (${error.message}). ${latest}`);}
     if(!response.ok){if(response.status===404)stale=true;throw Error(`${where} answered HTTP ${response.status}. ${latest}`);}
-    // Copy into a Blob the page owns: Chrome may back response.blob() with the HTTP cache
-    // entry, and evicting those large entries broke every slice of them
-    // (ERR_BLOB_REFERENCED_BLOB_BROKEN; the Newer level then never left its loading hold).
-    const blob=new Blob([await response.arrayBuffer()]);
-    if(blob.size!==part.bytes)throw Error(`${where} is ${blob.size} bytes, expected ${part.bytes}`);
-    (blobs.get(name)??blobs.set(name,[]).get(name))[index]=blob;received+=part.bytes;LoadingScreen_SetProgress(received/total);
+    const bytes=new Uint8Array(await response.arrayBuffer());
+    if(bytes.byteLength!==part.bytes)throw Error(`${where} is ${bytes.byteLength} bytes, expected ${part.bytes}`);
+    const target=joined.get(name);target.bytes.set(bytes,target.offsets[index]);received+=part.bytes;LoadingScreen_SetProgress(received/total);
   }
   const worker=async()=>{while(next<jobs.length)await fetchPart(jobs[next++]);};
   try{await Promise.all(Array.from({length:Math.min(4,jobs.length)},worker));}
@@ -71,10 +72,9 @@ if(spec.packs&&Object.keys(spec.packs).length){
   }
   if(http)sessionStorage.removeItem('quaked-data-reload');
   for(const [name,pack] of Object.entries(spec.packs)){
-    let blob=new Blob(blobs.get(name));
-    if(pack.gzip)blob=await new Response(blob.stream().pipeThrough(new DecompressionStream('gzip'))).blob();
-    if(blob.size!==pack.rawBytes)throw Error(`${name} data unpacked to ${blob.size} bytes, expected ${pack.rawBytes}`);
-    packs.set(name,blob);metrics.dataBytes+=pack.bytes;
+    const bytes=pack.gzip?gunzipSync(joined.get(name).bytes):joined.get(name).bytes;joined.delete(name);
+    if(bytes.byteLength!==pack.rawBytes)throw Error(`${name} data unpacked to ${bytes.byteLength} bytes, expected ${pack.rawBytes}`);
+    packs.set(name,bytes);metrics.dataBytes+=pack.bytes;
   }
   metrics.dataReadyMs=performance.now()-metrics.startedAt;
 }

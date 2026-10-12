@@ -181,14 +181,16 @@ The page lists every part with its size and `sha256` integrity. The boot loader
 (`tools/distribution/bootstrap.js`) fetches them all, four at a time, before the
 engine starts. The browser releases an integrity-checked response only once it is
 whole and verified, so the logo progress bar (`LoadingScreen_SetProgress`) moves
-per part; the engine does not move it again for the shareware PAK. Each part's bytes
-are copied into a Blob the page owns (`arrayBuffer()`, not `response.blob()`): with
-Pages-like cache headers Chrome backed the response Blobs with HTTP cache entries,
-evicting them broke every slice (`ERR_BLOB_REFERENCED_BLOB_BROKEN`) and the Newer
-level never left its loading hold (local http trial, 12 October 2026; the file
-trial missed it because Chrome does not cache its self-signed responses). Each
-category is joined (and un-gzipped) into one Blob; an asset's URL is a zero-copy slice of it,
-so the engine's loaders are unchanged. The first failure aborts the other
+per part; the engine does not move it again for the shareware PAK. Each part is
+written, as it arrives, at its offset in one `ArrayBuffer` per category (`pak0` is
+then un-gzipped with fflate); an asset's URL is a small Blob of its own bytes, made
+when first asked for, as the single-file build did, so the engine's loaders are
+unchanged. Large Blobs are avoided on purpose: holding categories as Blobs and
+handing out slices failed intermittently with `ERR_BLOB_REFERENCED_BLOB_BROKEN`
+(12 October 2026: first with cache-backed `response.blob()`, then on one cold
+start in five with page-owned Blobs, breaking a 106 KB JSON asset; a broken asset
+can stop the game starting). With ArrayBuffers, 12 cold boots and every trial
+since have had no broken loads. The first failure aborts the other
 downloads; a part that fails verification is reported as "could not download or
 verify". The desktop profile shares the boot loader and is behaviourally unchanged
 (it has no data files). Served over http(s) the files are read beside the page;
@@ -212,10 +214,24 @@ To try a local web build, serve `dist/web` over http (for example
 Opening `dist/web/index.html` from disk fetches the published data from GitHub
 Pages, which an unpublished build does not match, so it reports itself out of date.
 
-Rulings still to implement, for the web data only: textures, skins and images at
-most 4x the original Quake resolution; image optimisation with no noticeable loss,
-preferring compression to resizing; bestiary pages under 700 KB each at their
-existing 1024x1536 (WebP quality 88 to 92 measured 421 to 728 KB). Lossy
+Bestiary (done; `tools/distribution/web_images.mjs`, web build only): every page is
+at most 700,000 bytes at its existing pixel size. Pictures are re-encoded as WebP
+starting at quality 92 and stepping down only as far as the limit needs (99 pages
+at 92, 3 at 90); alpha is lossless; a page that cannot fit at quality 70 fails the
+build rather than being resized. Data maps are never re-encoded: the folio's
+`<id>.reveal.png` holds each texel's pencil-stroke timing (a first attempt that
+re-encoded them measured 13 dB against 38 dB for pictures) and already fits. The
+re-encoded pages measure 37.4 dB (cover, lowest) to a median 40.7 dB PSNR with
+alpha-weighted colour, and a 100% crop of the lowest shows no visible difference.
+The images data file went from 230 MB to 77 MB; the site from 763 MB to 610 MB.
+Encoding (sharp 0.35.5, a pinned dev dependency) takes about 5 minutes, cached
+by input digest in `.distribution-cache/web-images`. The browser trials decode
+every shipped bestiary image through the distribution resolver and open the
+Bestiary (`<receipt>-bestiary.png`).
+
+Rulings still to implement, for the web data only (card T-06e53ceb): textures,
+skins and images at most 4x the original Quake resolution; image optimisation with
+no noticeable loss, preferring compression to resizing, for the other images. Lossy
 re-encoding of textures or skins changes the bytes their shipped normals are keyed
 by, so it needs a build-time normal re-bake; height, gloss, normal and glass maps
 can only be re-encoded losslessly.

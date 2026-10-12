@@ -21,7 +21,8 @@ export async function snapshotIndex(root,target,env=process.env){
 export async function precommit(root=process.cwd()){
  const snapshot=await mkdtemp(join(tmpdir(),'quaked-staged-'));
  const tree=await snapshotIndex(root,snapshot);
- const env={...withoutGitEnvironment(),QUAKED_SOURCE_TREE:tree};
+ // The snapshot reuses the repository's encoded web images (keyed by source and encoder).
+ const env={...withoutGitEnvironment(),QUAKED_SOURCE_TREE:tree,QUAKED_WEB_IMAGE_CACHE:resolve(root,'.distribution-cache/web-images')};
  if(platform()==='darwin')env.CARGO_TARGET_DIR=env.CARGO_TARGET_DIR??join(homedir(),'build','quaked-distribution');
  try {
   run(process.platform==='win32'?'npm.cmd':'npm',['ci','--ignore-scripts'],snapshot,env);
