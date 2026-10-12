@@ -14,7 +14,9 @@ Quaked is developed by [@codemeasandwich](https://github.com/codemeasandwich) an
 
 **[Play the shareware demo](https://codemeasandwich.github.io/Quaked/)** · **[Mac application releases](https://github.com/codemeasandwich/Quaked/releases)**
 
-The Tauri launcher opens with a double-click and uses **`~/quaked`**, a folder in the current user's home directory. Place your own Quake and expansion PAKs there in their game subfolders; change the location through **Select Game Locations** in the native menu or Options. The Mac application includes no shareware or purchased game data. LAN hosting and joining are available through **LAN Multiplayer**; each player supplies the same game files. [Folder layouts, building, LAN play and verification status](docs/distribution.md).
+Download the Mac ZIP and double-click it to extract **Quaked.app**. Double-click the app to play; optionally drag it into **Applications**. There is no installer and no Deno setup.
+
+The launcher uses **`~/quaked`**, a folder in the current user's home directory. Place your own Quake and expansion PAKs there in their game subfolders; change the location through **Select Game Locations** in the native menu or Options. The Mac application includes no shareware or purchased game data. LAN hosting and joining are available through **LAN Multiplayer**; each player supplies the same game files. [Folder layouts, building, LAN play and verification status](docs/distribution.md).
 
 ## Play
 
@@ -95,7 +97,7 @@ Quaked is a working, playable project under active development, and has had litt
 
 ## For developers
 
-Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and Newer Game's art and data in `newer/`. The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Pages publishes this folder from `main`; only committed files are deployed.
+Source lives in `src/` (a JavaScript port of the Quake engine and its QuakeC virtual machine, with the Three.js renderer), tests in `tests/`, build and asset tools in `tools/`, and Newer Game's art and data in `newer/`. The docs are written so that a future contributor can continue the work: each says what a change is for, what it touches and what was checked. `python3 tests/docs_index_test.py` checks the links in this README, the index and the technical notes; `python3 tools/build_docs_index.py` rebuilds the index after you add a document. GitHub Actions builds the single-file shareware page from `Dev` and deploys only the generated HTML after its required checks pass.
 
 ## License
 

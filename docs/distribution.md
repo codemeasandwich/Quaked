@@ -5,7 +5,15 @@ with the normal shareware attract demo, Classic and Newer Game. The Tauri 2 prof
 opens the existing game shelf and reads the user's installed games. It needs neither
 Deno nor a separately installed server for single-player or native LAN hosting.
 
-## Player installation
+## Opening the Mac application
+
+Download `Quaked_<version>_universal.zip` from Releases and double-click the ZIP
+to extract **Quaked.app**. Double-click that app to launch it, or drag it into
+**Applications** first if you want to keep it there. Finder shows the self-contained
+app bundle as one item. No installer, DMG, Deno installation or separate server is
+required. The ZIP is just the download container; it is not used when playing.
+
+## Game files
 
 The default game location is **`~/quaked`**: the `quaked` directory inside the home
 directory of whichever user launches the app. It is resolved using Tauri's home
@@ -37,9 +45,11 @@ existing per-game namespaces.
 
 The first release targets macOS 14+ and uses an ad-hoc signature for executable
 integrity, without a Developer ID signature or Apple notarization. A downloaded
-app can require approval through macOS Privacy & Security. Do not describe the
-local trial as a Gatekeeper-qualified download until the actual downloaded DMG has
-been tested.
+app can require approval: attempt to open it, then use **System Settings >
+Privacy & Security > Open Anyway**, authenticate, and confirm **Open**. This applies
+only to a download you trust. Do not describe the local trial as a
+Gatekeeper-qualified download until the actual released ZIP has been downloaded,
+extracted and opened through this procedure. See [Apple’s opening instructions](https://support.apple.com/en-us/102445).
 
 ## LAN multiplayer
 
@@ -80,8 +90,14 @@ The original tracked shareware location remains a supported build input when it
 exists. The native application inventory excludes all original game PAKs.
 
 Outputs are `dist/web/index.html`, native frontend files under `dist/desktop`,
-and native packaged resources under `dist/desktop-assets`. Tauri places the app
-and DMG beneath its target's `release/bundle` directory. Resource assets live
+and native packaged resources under `dist/desktop-assets`. Tauri places
+`Quaked.app` beneath its target's `universal-apple-darwin/release/bundle/macos`
+directory. It builds no installer or DMG. For a download archive, run
+`node tools/distribution/archive-mac.mjs` with the same `CARGO_TARGET_DIR`; this
+verifies the universal app signature and both architectures, creates a ZIP with
+macOS metadata using `ditto`, checks archive integrity and records its SHA-256.
+For a hook-built app, set `QUAKED_NATIVE_INVENTORY=dist/staged/desktop/inventory.json`
+to use the exact staged asset inventory. Resource assets live
 inside the self-contained `.app`, avoiding gigabytes of Rust-generated static
 arrays. They are accessed through Tauri's resource-only asset scope; game PAK
 access is granted only for discovered files beneath the selected root.
@@ -126,7 +142,7 @@ hook configurations are never overwritten automatically.
 
 GitHub Actions runs web checks and native builds on both Apple Silicon and Intel
 Mac runners. Successful `Dev` pushes deploy only the generated HTML to Pages.
-Tags matching `package.json`'s `v<version>` produce the universal DMG and checksums.
+Tags matching `package.json`'s `v<version>` publish the universal app in a ZIP with checksums and release notes.
 Configure GitHub Pages to use Actions. Artifact generation, owner acceptance,
 commit/landing and actual publication are separate evidence states.
 
@@ -145,6 +161,13 @@ authored style policy and script CSP, use the original project icon, explicitly 
 accepted sockets to blocking mode, and test the corrected public contracts.
 
 The owner accepted the native shelf and external-shareware demo trial on 12 October
-2026. Two physical Macs, downloaded-DMG Gatekeeper behavior, all game campaigns and
+2026. Two physical Macs, downloaded-ZIP Gatekeeper behavior, all game campaigns and
 publication still require their own evidence; loopback framing tests do not prove
 those outcomes. Current task: Bluey `T-91ae6d7d`.
+
+The initial [distribution CI run](https://github.com/codemeasandwich/Quaked/actions/runs/38240397203)
+passed both Mac runner jobs, but its Linux browser startup timed out, so Pages did
+not deploy. The browser trial now records startup phases, engine state, graphics
+backend and failure screenshots. Linux CI explicitly selects software WebGL while
+retaining every gameplay assertion and timeout. This diagnostic change is not
+evidence that the original failure is resolved; the succeeding run must prove it.

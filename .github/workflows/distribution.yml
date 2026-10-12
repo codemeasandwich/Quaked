@@ -59,11 +59,14 @@ jobs:
         env:
           QUAKED_LAN_TEST_BRIDGE: ${{ github.workspace }}/.distribution-cache/target/debug/examples/lan_test_bridge
       - run: npm run tauri -- build --target universal-apple-darwin -- --locked
+      - name: Archive the self-contained application
+        run: node tools/distribution/archive-mac.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: mac-${{ matrix.runner }}
           path: |
-            .distribution-cache/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+            dist/release/*.zip
+            dist/release/*.json
             dist/desktop/inventory.json
   pages:
     if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
@@ -99,7 +102,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          find release -name '*.dmg' -exec cp {} release/ \;
+          find release -mindepth 2 -name '*.zip' -exec cp {} release/ \;
           cd release
-          sha256sum ./*.dmg > SHA256SUMS.txt
-          gh release create "$RELEASE_TAG" ./*.dmg SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --generate-notes --title "Quaked $RELEASE_TAG"
+          sha256sum ./*.zip > SHA256SUMS.txt
+          gh release create "$RELEASE_TAG" ./*.zip SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --generate-notes --title "Quaked $RELEASE_TAG"
