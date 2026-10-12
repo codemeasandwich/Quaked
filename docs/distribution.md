@@ -245,6 +245,17 @@ CI runs both before Pages deploys; the pages job checks the HTML digest and runs
 integrity, nothing extra). First local results on an M2: data ready after 5.7 s
 (http) and 6.1 s (file); all three gameplay scenarios passed in each.
 
+Live, 12 October 2026 (Pages deploy of 3d56a6e3, CI run 38312332254, all jobs
+green): every one of the 22 parts the live `index.html` names answers 200 at its
+exact size with `access-control-allow-origin: *`. The trial against
+https://codemeasandwich.github.io/Quaked/ passed (604 MB of data ready after 40.7 s
+over the internet, the three scenarios played, 196/196 Bestiary images decoded),
+and so did the live `index.html` saved to disk and opened from there (an explicit
+`file:` target: its data came from GitHub Pages, ready after 43.2 s). Peak Chrome
+memory in those two runs was 4.3 and 5.0 GB, above the 1.6 to 2.8 GB of local and
+CI runs and the 3.5 GB of the live single-file build; this is not yet explained
+and is recorded as a follow-up.
+
 ## Hook, CI and release
 
 The tracked hook snapshots the Git index into a temporary directory. Unstaged and

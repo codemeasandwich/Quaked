@@ -136,7 +136,9 @@ try{
  await context.route(/^https?:/,async route=>{
   const url=route.request().url();
   if(url===target||origin&&url.startsWith(origin))return route.continue();
-  if(resolverArgs.length&&url.startsWith(dataBase+'data/'))return route.continue();
+  // A page opened from disk fetches its data from the Pages host: mapped to the local stand-in
+  // in file mode, or the real site when an explicit downloaded copy is trialled.
+  if(dataBase&&target.startsWith('file:')&&url.startsWith(dataBase+'data/'))return route.continue();
   requests.push(url);return route.abort();
  });
  sampler=setTimeout(sample,20000);
