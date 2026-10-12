@@ -3,7 +3,7 @@ import {readFile,writeFile} from 'node:fs/promises';
 import {R_LevelEntities} from '../src/newer/render/r_levelents.js';
 import {memberSearch,readMember,sha256} from './pak_members.mjs';
 const manifest=JSON.parse(await readFile('newer/normals/manifest.json','utf8')),skinIndex=JSON.parse(await readFile('newer/enemies/index.json','utf8'));
-const campaigns=[['shareware','games/shareware/pak0.pak'],['newer','newer/maps.pak']],output={};
+const campaigns=[['shareware','games/shareware/pak0.pak'],['newer','newer/maps.pak']],output={},sharewareModels=await memberSearch(['games/shareware/pak0.pak']);
 const heads={demon:'h_demon',dog:'h_dog',hknight:'h_hellkn',knight:'h_knight',ogre:'h_ogre',shalrath:'h_shal',shambler:'h_shams',enforcer:'h_guard',wizard:'h_wizard',zombie:'h_zombie'};
 for(const[namespace,path]of campaigns){
  const members=await memberSearch([path]);
@@ -12,7 +12,12 @@ for(const[namespace,path]of campaigns){
   const bytes=await readMember(member),bspSha256=sha256(bytes);if(level.bspSha256!==bspSha256||!level.upgradedKeys?.length)throw Error('Rebuild startup normal mode lists '+namespace+':'+name);
   const view=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength),text=new TextDecoder().decode(bytes.subarray(view.getInt32(4,true),view.getInt32(4,true)+view.getInt32(8,true))),actors=new Set(['gib1','gib2','gib3','zom_gib']);
   for(let skill=0;skill<3;skill++)for(const entity of R_LevelEntities(text,null,null,skill)){const match=/^progs\/([^/]+)\.mdl$/.exec(entity.model||'');if(match){actors.add(match[1]);if(heads[match[1]])actors.add(heads[match[1]]);}}
-  const actorKeys=new Set();for(const actor of actors){for(const key of manifest.levels['shareware:progs/'+actor+'.mdl']?.keys||[])actorKeys.add(key);for(const variant of skinIndex.models?.[actor]||[])for(const key of manifest.levels['custom:'+variant.dir]?.keys||[])actorKeys.add(key);}
+  const actorKeys=new Set();for(const actor of actors){for(const key of manifest.levels['shareware:progs/'+actor+'.mdl']?.keys||[])actorKeys.add(key);for(const variant of skinIndex.models?.[actor]||[]){
+   // A variant bound to another game's model (nativeModelSha256, e.g. a Rogue skin) never
+   // applies here: both campaigns run the shareware models (newer/maps.pak has no progs), and
+   // the web build checks variants against the same pak.
+   if(variant.nativeModelSha256){const native=sharewareModels.get('progs/'+actor+'.mdl');if(!native||sha256(await readMember(native))!==variant.nativeModelSha256)continue;}
+   for(const key of manifest.levels['custom:'+variant.dir]?.keys||[])actorKeys.add(key);}}
   const keys=[...new Set([...level.upgradedKeys,...actorKeys])];for(const key of keys)if(!manifest.samples[key])throw Error('Missing startup normal spec '+key);
   (output[name]??=[]).push({bspSha256,keys,namespace,actors:[...actors].sort()});
  }

@@ -7,6 +7,7 @@ only changed its version. BASE is the last commit before the repairs.
 
     python3 -m unittest tests/texture_seams_test.py
 """
+import hashlib
 import io
 import json
 import subprocess
@@ -62,6 +63,10 @@ def clear_line(image, name):
     return found
 
 
+# Files resampled to the 4x standard, with the SHA-256 each plan recorded (tools/texture_sheets/standardise_4x.py).
+STANDARDISED = {r['file']: r['after']['sha256'] for plan in sorted((ROOT / 'tools/texture_sheets/sources/standard-4x').glob('*.json'))
+                for r in json.loads(plan.read_text()).get('results', []) if 'after' in r}
+
 class TextureSeams(unittest.TestCase):
     def test_no_clear_line_at_any_mended_texture_edge(self):
         checked = 0
@@ -85,6 +90,11 @@ class TextureSeams(unittest.TestCase):
             self.assertNotIn(name, fix_seams.AUTHORED)
             for key, path in (('touched', INDEX['textures'][name]), ('heightTouched', INDEX['normals'][name]['file'])):
                 with self.subTest(texture=name, map=key):
+                    if 'newer/textures/' + path in STANDARDISED:
+                        # Resampled to the 4x standard after its seam repair (docs/texture-standard-4x-2026-10-12.md):
+                        # the size changes by design, so the file must be exactly the one that plan recorded.
+                        self.assertEqual(hashlib.sha256((TEXTURES / path).read_bytes()).hexdigest(), STANDARDISED['newer/textures/' + path], '4x standard record')
+                        continue
                     new, old = Image.open(TEXTURES / path), at_base(path)
                     self.assertEqual(new.size, old.size, 'size (and so UVs) unchanged')
                     a, b = rgb(new), rgb(old)
@@ -105,6 +115,10 @@ class TextureSeams(unittest.TestCase):
         changed = set(subprocess.check_output(['git', 'diff', '--name-only', BASE, '--', 'newer/textures'], cwd=ROOT, text=True).splitlines())
         changed |= set(subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard', 'newer/textures'], cwd=ROOT, text=True).splitlines())
         allowed = {'newer/textures/index.json', 'newer/textures/CREDITS.txt'}
+        # Files resampled to the 4x standard are allowed when they are exactly what the plan recorded.
+        for path, digest in STANDARDISED.items():
+            if path.startswith('newer/textures/') and hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest:
+                allowed.add(path)
         for name, fixes in FIXED.items():
             allowed.add('newer/textures/' + INDEX['textures'][name])
             if any(f['heightRows'] for f in fixes): allowed.add('newer/textures/' + INDEX['normals'][name]['file'])

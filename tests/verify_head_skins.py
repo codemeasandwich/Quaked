@@ -32,7 +32,19 @@ for model,spec in recipe['models'].items():
 old=json.loads((ROOT/'docs/evidence/head-skins-before.json').read_text())
 # the files the increment kept are still as they were, in the shipped tree; by name, the ones a later increment changed
 # by design (card [44m]): the owner's ogre and soldier skins (b229ee1f), and pak0.pak, which [34a] moved, unchanged
-LATER={'newer/enemies/ogre/custom/diffuse.webp':'b229ee1f','newer/enemies/soldier/custom/diffuse.webp':'b229ee1f'}
+LATER={'newer/enemies/ogre/custom/diffuse.webp':'b229ee1f','newer/enemies/soldier/custom/diffuse.webp':'b229ee1f',
+ 'newer/enemies/armor/custom/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/armor/skin1/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/armor/skin2/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/backpack/custom/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/demon/custom/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/demon/custom/height.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/shambler/custom/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/shambler/custom/height.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/suit/custom/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/zombie/custom/diffuse.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+ 'newer/enemies/zombie/custom/height.webp':'4x standard, docs/texture-standard-4x-2026-10-12.md',
+}
 MOVED={'pak0.pak':'games/shareware/pak0.pak'}
 for file,digest in old.items():
  if file in LATER:continue

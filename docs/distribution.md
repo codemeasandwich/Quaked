@@ -229,9 +229,10 @@ by input digest in `.distribution-cache/web-images`. The browser trials decode
 every shipped bestiary image through the distribution resolver and open the
 Bestiary (`<receipt>-bestiary.png`).
 
-Rulings still to implement, for the web data only (card T-06e53ceb): textures,
-skins and images at most 4x the original Quake resolution; image optimisation with
-no noticeable loss, preferring compression to resizing, for the other images. Lossy
+The 4x standard is applied in the source art itself, for the web build and the Mac
+app alike ([texture-standard-4x-2026-10-12.md](texture-standard-4x-2026-10-12.md);
+owner ruling, superseding the web-only cap), batch by batch (card T-06e53ceb).
+Optimising the remaining images with no noticeable loss is still to do. Lossy
 re-encoding of textures or skins changes the bytes their shipped normals are keyed
 by, so it needs a build-time normal re-bake; height, gloss, normal and glass maps
 can only be re-encoded losslessly.

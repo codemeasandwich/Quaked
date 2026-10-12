@@ -9,28 +9,35 @@
     923
   ],
   "dimensions": [
-    1872,
-    1014
+    1248,
+    676
   ],
-  "factor": 6,
+  "factor": 4,
   "skin": 0,
   "poses": 86,
   "vertices": 236,
   "triangles": 426,
   "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1248,
+    676
+  ],
+  "registration": null,
   "mattePolicy": "blue-grey",
   "nativeTexturePixelsUsed": 0,
   "islands": [
     {
       "id": 1,
-      "surfacePixels": 369461,
-      "directPixels": 369461,
+      "surfacePixels": 164651,
+      "directPixels": 164651,
       "edgePixels": 0
     },
     {
       "id": 2,
-      "surfacePixels": 369366,
-      "directPixels": 369366,
+      "surfacePixels": 164633,
+      "directPixels": 164633,
       "edgePixels": 0
     },
     {
@@ -41,199 +48,157 @@
     },
     {
       "id": 4,
-      "surfacePixels": 10,
-      "directPixels": 10,
+      "surfacePixels": 3,
+      "directPixels": 3,
       "edgePixels": 0
     },
     {
       "id": 5,
-      "surfacePixels": 3,
-      "directPixels": 3,
-      "edgePixels": 0
-    },
-    {
-      "id": 6,
-      "surfacePixels": 6,
-      "directPixels": 6,
-      "edgePixels": 0
-    },
-    {
-      "id": 7,
-      "surfacePixels": 3,
-      "directPixels": 3,
-      "edgePixels": 0
-    },
-    {
-      "id": 8,
-      "surfacePixels": 3,
-      "directPixels": 3,
-      "edgePixels": 0
-    },
-    {
-      "id": 9,
-      "surfacePixels": 6,
-      "directPixels": 6,
-      "edgePixels": 0
-    },
-    {
-      "id": 10,
-      "surfacePixels": 3,
-      "directPixels": 3,
-      "edgePixels": 0
-    },
-    {
-      "id": 11,
-      "surfacePixels": 3,
-      "directPixels": 3,
-      "edgePixels": 0
-    },
-    {
-      "id": 12,
       "surfacePixels": 2,
       "directPixels": 2,
       "edgePixels": 0
     },
     {
-      "id": 13,
+      "id": 6,
       "surfacePixels": 3,
       "directPixels": 3,
       "edgePixels": 0
     },
     {
+      "id": 7,
+      "surfacePixels": 573,
+      "directPixels": 573,
+      "edgePixels": 0
+    },
+    {
+      "id": 8,
+      "surfacePixels": 572,
+      "directPixels": 521,
+      "edgePixels": 51
+    },
+    {
+      "id": 9,
+      "surfacePixels": 426,
+      "directPixels": 426,
+      "edgePixels": 0
+    },
+    {
+      "id": 10,
+      "surfacePixels": 1132,
+      "directPixels": 1132,
+      "edgePixels": 0
+    },
+    {
+      "id": 11,
+      "surfacePixels": 425,
+      "directPixels": 424,
+      "edgePixels": 1
+    },
+    {
+      "id": 12,
+      "surfacePixels": 1131,
+      "directPixels": 1131,
+      "edgePixels": 0
+    },
+    {
+      "id": 13,
+      "surfacePixels": 1217,
+      "directPixels": 1217,
+      "edgePixels": 0
+    },
+    {
       "id": 14,
-      "surfacePixels": 1248,
-      "directPixels": 1248,
+      "surfacePixels": 1190,
+      "directPixels": 1190,
       "edgePixels": 0
     },
     {
       "id": 15,
-      "surfacePixels": 1247,
-      "directPixels": 1146,
-      "edgePixels": 101
-    },
-    {
-      "id": 16,
-      "surfacePixels": 926,
-      "directPixels": 926,
+      "surfacePixels": 1217,
+      "directPixels": 1217,
       "edgePixels": 0
     },
     {
+      "id": 16,
+      "surfacePixels": 1191,
+      "directPixels": 1157,
+      "edgePixels": 34
+    },
+    {
       "id": 17,
-      "surfacePixels": 2495,
-      "directPixels": 2495,
+      "surfacePixels": 793,
+      "directPixels": 793,
       "edgePixels": 0
     },
     {
       "id": 18,
-      "surfacePixels": 925,
-      "directPixels": 925,
+      "surfacePixels": 793,
+      "directPixels": 793,
       "edgePixels": 0
     },
     {
       "id": 19,
-      "surfacePixels": 2494,
-      "directPixels": 2494,
+      "surfacePixels": 290,
+      "directPixels": 290,
       "edgePixels": 0
     },
     {
       "id": 20,
-      "surfacePixels": 2689,
-      "directPixels": 2689,
-      "edgePixels": 0
+      "surfacePixels": 289,
+      "directPixels": 288,
+      "edgePixels": 1
     },
     {
       "id": 21,
-      "surfacePixels": 2607,
-      "directPixels": 2607,
+      "surfacePixels": 1733,
+      "directPixels": 1733,
       "edgePixels": 0
     },
     {
       "id": 22,
-      "surfacePixels": 2689,
-      "directPixels": 2689,
-      "edgePixels": 0
+      "surfacePixels": 1734,
+      "directPixels": 1716,
+      "edgePixels": 18
     },
     {
       "id": 23,
-      "surfacePixels": 2608,
-      "directPixels": 2557,
-      "edgePixels": 51
-    },
-    {
-      "id": 24,
-      "surfacePixels": 1729,
-      "directPixels": 1729,
+      "surfacePixels": 974,
+      "directPixels": 974,
       "edgePixels": 0
     },
     {
+      "id": 24,
+      "surfacePixels": 981,
+      "directPixels": 975,
+      "edgePixels": 6
+    },
+    {
       "id": 25,
-      "surfacePixels": 1729,
-      "directPixels": 1729,
+      "surfacePixels": 846,
+      "directPixels": 846,
       "edgePixels": 0
     },
     {
       "id": 26,
-      "surfacePixels": 626,
-      "directPixels": 626,
+      "surfacePixels": 841,
+      "directPixels": 841,
       "edgePixels": 0
     },
     {
       "id": 27,
-      "surfacePixels": 625,
-      "directPixels": 623,
-      "edgePixels": 2
-    },
-    {
-      "id": 28,
-      "surfacePixels": 3859,
-      "directPixels": 3859,
-      "edgePixels": 0
-    },
-    {
-      "id": 29,
-      "surfacePixels": 3860,
-      "directPixels": 3834,
-      "edgePixels": 26
-    },
-    {
-      "id": 30,
-      "surfacePixels": 2175,
-      "directPixels": 2175,
-      "edgePixels": 0
-    },
-    {
-      "id": 31,
-      "surfacePixels": 2182,
-      "directPixels": 2173,
-      "edgePixels": 9
-    },
-    {
-      "id": 32,
-      "surfacePixels": 1866,
-      "directPixels": 1866,
-      "edgePixels": 0
-    },
-    {
-      "id": 33,
-      "surfacePixels": 1861,
-      "directPixels": 1861,
-      "edgePixels": 0
-    },
-    {
-      "id": 34,
       "surfacePixels": 1,
       "directPixels": 1,
       "edgePixels": 0
     },
     {
-      "id": 35,
+      "id": 28,
       "surfacePixels": 1,
       "directPixels": 1,
       "edgePixels": 0
     }
   ],
-  "surfacePixels": 779314,
-  "edgePixels": 189,
+  "surfacePixels": 347645,
+  "edgePixels": 111,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -245,8 +210,8 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "0a6dde7bbf3bd8ffbdba6ffeddda6b5cd178fd94d8fd867630e190b446140daa",
-    "height.webp": "93baa828678fd2e7a241400104982e36772b17628d20e193ed754e54336d05b5"
+    "diffuse.png": "90655e109fb0083ad53311a71f53af08bf34d654cf979697cf57e8b6dc261b9a",
+    "height.webp": "e22e9a0e0b5e0b625b202b8edfa815a2c3de169b3d15ca708cb7f3684251e311"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
