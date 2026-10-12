@@ -2,8 +2,8 @@
   "schema": 1,
   "model": "progs/fish.mdl",
   "nativeModelSha256": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
-  "source": "tools/texture_sheets/sources/generated-2026-10-12/fish.png",
-  "sourceSha256": "a7843310f24cd720095d1e475751adfb05dd95a083f75bd659de9e2c49c3e366",
+  "source": "tools/texture_sheets/sources/fidelity-2026-10-12/fish-v2.png",
+  "sourceSha256": "af3e562932ebf34c8fc1be0c000c6864c694adefe5cc3ceb1307420bd0851c64",
   "sourceDimensions": [
     1452,
     1083
@@ -18,20 +18,27 @@
   "vertices": 97,
   "triangles": 172,
   "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1560,
+    1164
+  ],
+  "registration": null,
   "mattePolicy": "dark-brown",
   "nativeTexturePixelsUsed": 0,
   "islands": [
     {
       "id": 1,
       "surfacePixels": 454530,
-      "directPixels": 448140,
-      "edgePixels": 6390
+      "directPixels": 453632,
+      "edgePixels": 898
     },
     {
       "id": 2,
       "surfacePixels": 454534,
-      "directPixels": 454386,
-      "edgePixels": 148
+      "directPixels": 453482,
+      "edgePixels": 1052
     },
     {
       "id": 3,
@@ -48,54 +55,54 @@
     {
       "id": 5,
       "surfacePixels": 10989,
-      "directPixels": 10989,
-      "edgePixels": 0
+      "directPixels": 10921,
+      "edgePixels": 68
     },
     {
       "id": 6,
       "surfacePixels": 11949,
-      "directPixels": 11949,
-      "edgePixels": 0
+      "directPixels": 11664,
+      "edgePixels": 285
     },
     {
       "id": 7,
       "surfacePixels": 14912,
-      "directPixels": 14912,
-      "edgePixels": 0
+      "directPixels": 14719,
+      "edgePixels": 193
     },
     {
       "id": 8,
       "surfacePixels": 16433,
-      "directPixels": 16431,
-      "edgePixels": 2
+      "directPixels": 16294,
+      "edgePixels": 139
     },
     {
       "id": 9,
       "surfacePixels": 1,
-      "directPixels": 1,
-      "edgePixels": 0
+      "directPixels": 0,
+      "edgePixels": 1
     },
     {
       "id": 10,
       "surfacePixels": 1,
-      "directPixels": 1,
-      "edgePixels": 0
+      "directPixels": 0,
+      "edgePixels": 1
     },
     {
       "id": 11,
       "surfacePixels": 5424,
-      "directPixels": 5420,
-      "edgePixels": 4
+      "directPixels": 5273,
+      "edgePixels": 151
     },
     {
       "id": 12,
       "surfacePixels": 5928,
-      "directPixels": 5927,
-      "edgePixels": 1
+      "directPixels": 5595,
+      "edgePixels": 333
     }
   ],
   "surfacePixels": 974703,
-  "edgePixels": 6545,
+  "edgePixels": 3121,
   "normalProfile": {
     "strength": 0.65,
     "cap": 0.55
@@ -107,13 +114,14 @@
     "height_for"
   ],
   "files": {
-    "diffuse.png": "c4fdfa47caf4760dd7105eb2f567218fe24affcefe58f2c254e991bb898c0c9f",
-    "height.webp": "a396febaaab6478ff4d1960baf48e6a147c3b405a9cc33d54d9d2aa8db5d91cf"
+    "diffuse.png": "7b6f9cfee707ecfdd498205a7a25618207a40c23022b9e4fe94f8ac7d2f7fc09",
+    "height.webp": "c164f87f653793b9d2c359cb8d494d485f7cb5209cea459f3548766c4ac72f8e"
   },
   "generation": {
     "tool": "ChatGPT built-in imagegen",
     "date": "2026-10-12",
-    "reference": "Original progs/fish.mdl skin0 decoded with native palette and nearest enlarged4x",
-    "prompt": "Faithfully enhance this original Quake Rotfish model skin atlas into a detailed high-resolution game texture. Edit the bitmap atlas itself, not a rendered creature or concept sheet. Keep the exact 260:194 aspect ratio, all UV-island locations, silhouettes, orientations, proportions, gaps and detached fin strips. Preserve both side-view halves precisely where they are; do not rearrange, mirror, crop or add pieces. Retain the original design and colours: decaying ochre/tan-brown flesh and bone, dark red exposed bloody muscle and wounds, ivory pointed teeth, dull yellow-green eyes, the same skeletal rotten fish anatomy. Add restrained fine scales, skin, bone and flesh detail only within these original regions. Keep the original broad markings, shading distribution and wounds. Do not redesign the fish, add horns, change mouth size, make it a different species, add neon colours or invent decorative features. Keep the flat very dark burgundy background and clean atlas boundaries; no scene, perspective render, labels, text or watermark. Keep every tiny detached triangle/fin fragment exactly at the original location. This is a production UV texture repaint, with original layout and colour fidelity more important than embellishment."
+    "reference": "Original Quake progs/fish.mdl skin0, owned native palette, nearest4x reference; no current generated art used as donor",
+    "prompt": "Use case: identity-preserve / photographic material restoration.\nEdit the supplied ORIGINAL Quake Rotfish UV texture atlas. The goal is a high-resolution PHOTOREALISTIC MATERIAL VERSION OF THIS EXACT STYLIZED CREATURE, not a different fish, not a concept painting. Preserve the artist's exaggerated skeletal rotten-fish anatomy.\nLOCK atlas and design: complete260:194 aspect ratio, both asymmetric side islands, exact silhouettes and proportional positions, every eye/tooth/rib/wound/fin landmark, dark openings, detached fin triangles and bottom fin rays. Do not crop, turn, mirror, rearrange, fill dark gaps or invent anatomy. Mouth and teeth stay precisely the original shapes and sizes. Do not improve it into a real-world fish species.\nLOCK original broad colour regions and low-key brightness. The native reference has muted DIRTY TAN / ochre-brown decayed skin and stained bone, deep dark MAROON exposed tissue, dull OLIVE eyes, restrained dirty ivory tooth points. Match those existing regional tones and darkness. No golden-orange armour, creamy bright bone bands, shiny jewel eye, red glow, metallic scales or saturated fresh-red blood.\nCHANGE resolution and material realism only: genuinely photographic fine irregular fish scales and pores, subtle translucent dead membrane, weathered porous stained bone/enamel, torn fibrous connective tissue and organic decay with plausible varied microstructure. Preserve Quake's dramatic stylized forms, but material details must resemble macro photography of physical organic surfaces. Avoid thick illustrated strokes, uniform engraved grooves, CGI plastic gloss, smooth cartoon gradients, oversharpened pixel mosaics and embossed decorative patterns.\nNeutral albedo illumination: no new specular highlight painting, rim light, directional studio lights or new body shading. Let game lighting supply highlights and relief. Keep native broad values readable without brightening them.\nFlat exact very dark burgundy background matching the reference; crisp island boundaries, no shadows/halo outside islands. No labels, text, watermark, border or scenery. Output a detailed complete production texture atlas, around1560x1164 or larger with the same aspect and layout.",
+    "purpose": "Owner-directed photographic material correction retaining original stylized design"
   }
 }

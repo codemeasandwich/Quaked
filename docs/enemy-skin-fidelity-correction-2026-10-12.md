@@ -1,5 +1,26 @@
 # Enemy appearance correction
 
+## Continued original-design material corrections
+
+The owner explicitly instructed continuing the other generated enemies after the
+Ogre delivery. Each correction uses original native files as design/colour guides,
+photographic material detail and the original stylized anatomy. Dog and the chosen
+Ogre pair remain protected; supplied Centroid/Dragon/Overlord/Mummy and pre-existing
+owner artwork are outside this generated-art correction pass.
+
+| Enemy | Corrective state |
+| --- | --- |
+| Rotfish | Catalogue46; [source, fit and renderer evidence](fish-fidelity-2026-10-12.md); publication tracked on T-4049c5a1 |
+| Gremlin | Original reference and independent material/design plan ready; next |
+| Armagon | Original body/legs references and independent plan ready |
+| Eel, Phantom Swordsman, Wrath, Lava Man | Remaining |
+| Aztec, Egyptian and Greek Guardians | Remaining |
+| Rogue Death Knight, Spawn and Knight statue | Remaining |
+
+The level-texture agent confirmed its candidate work does not write the shared
+normal manifests or distribution closure during the Rotfish increment; coordinate
+again before either lane publishes shared prepared-normal changes.
+
 ## Final owner-selected Ogre pair
 
 The owner subsequently supplied the exact dark-armour original Ogre and explicitly

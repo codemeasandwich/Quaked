@@ -1,0 +1,27 @@
+{
+  "key": "fish",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-12/fish-v2.png",
+  "sourceSha": "af3e562932ebf34c8fc1be0c000c6864c694adefe5cc3ceb1307420bd0851c64",
+  "modelSha": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
+  "layout": [
+    1,
+    260,
+    194,
+    97,
+    172,
+    66
+  ],
+  "size": [
+    1452,
+    1083
+  ],
+  "factor": 6,
+  "matte": "dark-brown",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Quake progs/fish.mdl skin0, owned native palette, nearest4x reference; no current generated art used as donor",
+    "prompt": "Use case: identity-preserve / photographic material restoration.\nEdit the supplied ORIGINAL Quake Rotfish UV texture atlas. The goal is a high-resolution PHOTOREALISTIC MATERIAL VERSION OF THIS EXACT STYLIZED CREATURE, not a different fish, not a concept painting. Preserve the artist's exaggerated skeletal rotten-fish anatomy.\nLOCK atlas and design: complete260:194 aspect ratio, both asymmetric side islands, exact silhouettes and proportional positions, every eye/tooth/rib/wound/fin landmark, dark openings, detached fin triangles and bottom fin rays. Do not crop, turn, mirror, rearrange, fill dark gaps or invent anatomy. Mouth and teeth stay precisely the original shapes and sizes. Do not improve it into a real-world fish species.\nLOCK original broad colour regions and low-key brightness. The native reference has muted DIRTY TAN / ochre-brown decayed skin and stained bone, deep dark MAROON exposed tissue, dull OLIVE eyes, restrained dirty ivory tooth points. Match those existing regional tones and darkness. No golden-orange armour, creamy bright bone bands, shiny jewel eye, red glow, metallic scales or saturated fresh-red blood.\nCHANGE resolution and material realism only: genuinely photographic fine irregular fish scales and pores, subtle translucent dead membrane, weathered porous stained bone/enamel, torn fibrous connective tissue and organic decay with plausible varied microstructure. Preserve Quake's dramatic stylized forms, but material details must resemble macro photography of physical organic surfaces. Avoid thick illustrated strokes, uniform engraved grooves, CGI plastic gloss, smooth cartoon gradients, oversharpened pixel mosaics and embossed decorative patterns.\nNeutral albedo illumination: no new specular highlight painting, rim light, directional studio lights or new body shading. Let game lighting supply highlights and relief. Keep native broad values readable without brightening them.\nFlat exact very dark burgundy background matching the reference; crisp island boundaries, no shadows/halo outside islands. No labels, text, watermark, border or scenery. Output a detailed complete production texture atlas, around1560x1164 or larger with the same aspect and layout.",
+    "purpose": "Owner-directed photographic material correction retaining original stylized design"
+  }
+}
