@@ -140,14 +140,14 @@ export function R_DemoLoadingStatus(){return{phase,mode,appReady,consoleSeen,fad
  *
  * @param {{assets?: Iterable<Array<*>>, shaderPending?: boolean, shaderFailure?: string, rock?: Object, demon?: Object,
  *  shadows?: Object, water?: Object, captureEnabled?: boolean, spotOn?: boolean}} frame `assets` [name, { settled, errors
- *  or failures }] pairs; the rock relief, sculpted-surface (demon), shadow and water probe status objects; whether
+ *  or failures, notes }] pairs (`notes`: non-blocking lesser paths, such as normals generated for this session only); the rock relief, sculpted-surface (demon), shadow and water probe status objects; whether
  *  shadow capture is on and the flashlight is lit
  * @returns {{pending: Array<string>, fallbacks: Array<string>}} new arrays of readable names still in flight and of
  *  fallback notes
  */
 export function R_IntroReadinessChecks(frame){
  const pending=[],fallbacks=[];
- for(const[name,state]of frame.assets||[]){if(!state.settled)pending.push(name);for(const[asset,error]of Object.entries(state.errors||state.failures||{}))fallbacks.push(name+': '+asset+': '+error);}
+ for(const[name,state]of frame.assets||[]){if(!state.settled)pending.push(name);for(const[asset,error]of Object.entries(state.errors||state.failures||{}))fallbacks.push(name+': '+asset+': '+error);for(const[asset,note]of Object.entries(state.notes||{}))fallbacks.push(name+': '+asset+': '+note);}
  if(frame.shaderPending)pending.push('GPU shaders');
  if(frame.shaderFailure)fallbacks.push('Shader warm-up: '+frame.shaderFailure);
  const rock=frame.rock||{},demon=frame.demon||{},shadows=frame.shadows||{},water=frame.water||{};

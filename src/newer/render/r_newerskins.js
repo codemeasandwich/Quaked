@@ -859,7 +859,9 @@ export function R_NewerSkinsShutdown() {
  *   set
  * @returns {{ index: string, normals: { pending: number, ready: number, shipped: number, disk: number,
  *   generated: number, errors: Object<string, string> }, preparePending: number, pending: number, ready: number,
- *   fallback: number, total: number, settled: boolean, errors: Object<string, string> }} `index` is 'idle', 'loading',
+ *   fallback: number, total: number, settled: boolean, errors: Object<string, string>, notes: Object<string, string> }}
+ *   `normals.generated` counts runtime generation, stored or session-only; `notes` names session-only normal work
+ *   (`R_NormalPrepare` without a store). `index` is 'idle', 'loading',
  *   'ready' or 'fallback'; `pending` counts loading textures, unstarted preparations, the index while loading, and
  *   normal-map work not yet ready; `fallback` counts loads that failed (their messages in `errors`, keyed
  *   `model:set:map`); `settled` is true when nothing is pending. A fresh object.
@@ -868,7 +870,7 @@ export function R_NewerSkinsStatus( modelNames ) {
 	const names = modelNames == null ? null : ( Array.isArray( modelNames ) ? modelNames : [ modelNames ] );
 	const keys = names ? new Set( names.map( value => R_NewerModelKey( typeof value === 'string' ? value : value?.name ) ).filter( Boolean ) ) : null;
 	const selected = [ ...sets.values(), ...nativeSets.values() ].filter( set => set.alive && ( ! keys || keys.has( set.modelKey ) ) && setMatchesModels(set,modelNames) );
-	let pending = 0, ready = 0, fallback = 0, preparePending = 0; const errors = {}; const normals={pending:0,ready:0,shipped:0,disk:0,generated:0,errors:{}};
+	let pending = 0, ready = 0, fallback = 0, preparePending = 0; const errors = {}, notes = {}; const normals={pending:0,ready:0,shipped:0,disk:0,generated:0,errors:{}};
 	for ( const work of preparations.values() ) if ( ! work.started && ( ! work.isCurrent || work.isCurrent() ) && ( ! keys || [ ...work.keys ].some( key => keys.has( key ) ) ) ) preparePending ++;
 	pending += preparePending;
 	if ( R_IsNewer() && ( indexState === 'loading' || indexState === 'idle' && keys?.size ) ) pending ++;
@@ -877,9 +879,9 @@ export function R_NewerSkinsStatus( modelNames ) {
 		else if ( load.status === 'ready' ) ready ++;
 		else { fallback ++; if ( load.error ) errors[ set.modelKey + ':' + set.key + ':' + name ] = load.error; }
 	}
-	for(const set of selected)if(R_IsNewer()&&r_newer_normals.value!==0&&set.normalWork){if(set.normalWork.status!=='ready'){pending++;normals.pending++;if(set.normalWork.error){errors[set.modelKey+':normal']=set.normalWork.error;normals.errors[set.modelKey]=set.normalWork.error;}}else{normals.ready++;if(set.normalWork.source==='shipped')normals.shipped++;else if(set.normalWork.source==='disk')normals.disk++;else if(set.normalWork.source==='generated-and-stored')normals.generated++;}}
+	for(const set of selected)if(R_IsNewer()&&r_newer_normals.value!==0&&set.normalWork){if(set.normalWork.status!=='ready'){pending++;normals.pending++;if(set.normalWork.error){errors[set.modelKey+':normal']=set.normalWork.error;normals.errors[set.modelKey]=set.normalWork.error;}}else{normals.ready++;if(set.normalWork.source==='shipped')normals.shipped++;else if(set.normalWork.source==='disk')normals.disk++;else if(set.normalWork.source==='generated-and-stored'||set.normalWork.source==='generated')normals.generated++;if(set.normalWork.source==='generated')notes[set.modelKey+':normal']='generated for this session only ('+set.normalWork.persistence+')';}}
 	if ( indexError ) errors.index = indexError;
-	return { index: indexState, normals, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors };
+	return { index: indexState, normals, preparePending, pending, ready, fallback, total: pending + ready + fallback, settled: pending === 0, errors, notes };
 }
 
 /**

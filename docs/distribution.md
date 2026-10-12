@@ -129,6 +129,25 @@ quality. The HTML decodes assets lazily to Blob URLs, and the packaged resolver 
 installed before any engine module runs. Source-relative workers and asset URLs
 are resolved at build time. No global fetch interception is installed.
 
+The HTML also plays its bundled shareware levels opened as a local file. A
+`file://` page has an opaque origin, so the origin-private file system that
+stores first-use generated normals is refused (`SecurityError`). Normals with no
+shipped bake (the Episode 1 crate variants, for example) are then generated for
+that session only: the job reports `source: 'generated'` and
+`persistence: 'unavailable: <reason>'` (`src/newer/assets/normal_prepare.js`),
+counts as runtime generation, and the readiness gate prints it as an
+`Enhanced intro fallback` note. Only a `SecurityError` or a missing storage API
+counts; a transient failure still goes through the store's retry. Rock relief
+and sculpted surfaces use the same store without this fallback; the web build's
+shareware levels have shipped bakes for both, so they are unaffected, but a
+level without them would still hold on `file://`. Keeping generated normals
+across restarts for a local file would need another store (IndexedDB is
+available there); that is an open owner choice. Before this, the job ended in error, the
+Newer level's readiness gate never settled, and the level stayed on the LOADING
+plaque with game time frozen (found 12 October 2026 in CI run 38296015129 and a
+local 180 s probe; over http the same build released after about 14 s). Over
+https the normals are still stored and reused as before.
+
 The current enhanced HTML is close to one GiB. Build receipts report actual byte
 counts; a build at or above the Pages site limit fails rather than discarding
 features. Browser heap measurements describe observed JavaScript heap, not total
@@ -203,6 +222,13 @@ receipt (`web-evidence` artifact, `dist/browser-trial.json`) records:
   so it overstates; processes launchd starts are not included). JavaScript heap
   figures exclude the HTML text, GPU process and blob storage;
 - `targetSha256`: the tested file's digest, taken before the browser starts.
+
+Each gameplay scenario first waits until the level it replaces is gone (two
+scenarios load e1m1), then until game time reaches 3 s (a new level starts near
+1 s, so about 2 s of play), then requires at least 1 s more game time over a 5 s
+settle. Being signed on is not proof of play: a Newer level's welcome hold keeps
+time frozen behind the loading plaque. Run 38296015129 passed the older
+signed-on check while Newer levels were still held.
 
 On a `Dev` push only, the web job checks the file still matches `targetSha256`,
 uploads it as the one-day `web-html` artifact and exports its sha256. Re-running

@@ -661,16 +661,18 @@ export function R_NewerTexturesRevert() {
  *
  * @param {?object} model a brush model_t
  * @returns {{pending: number, ready: number, shipped: number, generated: number, settled: boolean,
- *   errors: Object<string, string>}} `shipped` / `generated` split the ready ones by source ('shipped' /
- *   'generated-and-stored'); `errors` maps texture name to its preparation error
+ *   errors: Object<string, string>, notes: Object<string, string>}} `shipped` / `generated` split the ready ones by
+ *   source ('shipped' / 'generated-and-stored' or session-only 'generated'); `errors` maps texture name to its
+ *   preparation error; `notes` names each texture generated for this session only, with the storage reason (shown
+ *   by the readiness gate as a fallback, never blocking)
  */
 export function R_NewerNormalsStatus(model){
- let pending=0,ready=0,shipped=0,generated=0;const errors={};
+ let pending=0,ready=0,shipped=0,generated=0;const errors={},notes={};
  for(const t of new Set([...(model?.textures||[]),...(model?.texinfo||[]).map(info=>info?.texture)])){if(!t?.gl_texture||t.name.startsWith('*')||t.name.startsWith('sky'))continue;if(t.gl_texture.userData.newerPending){pending++;continue;}const work=R_NormalPrepared(t.gl_texture);
-  if(work?.status==='ready'){ready++;if(work.source==='shipped')shipped++;else if(work.source==='generated-and-stored')generated++;}
+  if(work?.status==='ready'){ready++;if(work.source==='shipped')shipped++;else if(work.source==='generated-and-stored'||work.source==='generated')generated++;if(work.source==='generated')notes[t.name]='generated for this session only ('+work.persistence+')';}
   else{pending++;if(work?.error)errors[t.name]=work.error;}
  }
- return {pending,ready,shipped,generated,settled:pending===0,errors};
+ return {pending,ready,shipped,generated,settled:pending===0,errors,notes};
 }
 
 /**

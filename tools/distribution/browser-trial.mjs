@@ -107,15 +107,23 @@ try{
  const scenarios=[];
  for(const [mode,map] of [[0,'e1m1'],[1,'e1m1'],[1,'e1m2']]){
   await step(`${mode?'newer':'classic'}-${map}`,async()=>{
-   await page.evaluate(({mode,map})=>window.Cbuf_AddText(`stopdemo\nr_hdr ${mode}\nmap ${map}\n`),{mode,map});
-   await page.waitForFunction(map=>window.cl?.worldmodel?.name===`maps/${map}.bsp`&&window.cls?.signon===4&&!window.cls.demoplayback,map,{timeout:120000});
+   // The map command runs on a later host frame, and two scenarios load e1m1: remember the
+   // running level's server time so the waits below cannot pass on the level being replaced
+   // (a new server starts at 1 s; the previous one is past 3 s).
+   await page.evaluate(({mode,map})=>{window.__trialPreviousServerTime=window.sv?.active?window.sv.time:-1;window.Cbuf_AddText(`stopdemo\nr_hdr ${mode}\nmap ${map}\n`);},{mode,map});
+   await page.waitForFunction(map=>window.cl?.worldmodel?.name===`maps/${map}.bsp`&&window.cls?.signon===4&&!window.cls.demoplayback&&(window.__trialPreviousServerTime<0||window.sv.time<window.__trialPreviousServerTime),map,{timeout:120000});
+   // Signed on is not playing: a Newer level's welcome hold keeps the loading plaque up and
+   // game time frozen near 1 s until its assets are ready. Require about 2 s of play, then
+   // further progress over a 5 s settle (at least 1 s of game time, so a slow GPU still passes).
+   await page.waitForFunction(()=>window.sv?.active&&window.cl.time>=3,null,{timeout:120000});
+   const startTime=await page.evaluate(()=>cl.time);
    await page.waitForTimeout(5000);
-   scenarios.push(await page.evaluate(()=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,time:cl.time})));
+   scenarios.push(await page.evaluate(startTime=>({map:cl.worldmodel.name,signon:cls.signon,active:sv.active,entities:sv.num_edicts,startTime,time:cl.time}),startTime));
   });
  }
  result=await page.evaluate(()=>({title:document.title,canvas:!!document.querySelector('canvas'),metrics:globalThis.__QUAKED_DISTRIBUTION__?.metrics,memory:performance.memory?{used:performance.memory.usedJSHeapSize,total:performance.memory.totalJSHeapSize}:null,body:document.body.innerText.slice(-1500)}));
  result.scenarios=scenarios;
- result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4);
+ result.ok=errors.length===0&&consoleErrors.length===0&&requests.length===0&&result.canvas&&result.metrics?.missing.length===0&&scenarios.every(s=>s.active&&s.signon===4&&s.time>=s.startTime+1);
 }catch(error){result={ok:false,failure:String(error),failedPhase:phase};}
 finally{
  finished=true;clearTimeout(sampler);

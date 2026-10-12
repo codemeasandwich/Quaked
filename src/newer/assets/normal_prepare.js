@@ -7,7 +7,7 @@
  *
  * State: no mutable exports.
  *
- * Errors: throws at 8 places; catches at 1 place.
+ * Errors: throws at 8 places; catches at 2 places.
  */
 import {DisplacementStore,DisplacementKey,DisplacementHash,ReadPreparedPayload} from './displacement_store.js';
 import {NormalBakeEncode,NormalBakeDecode,NORMAL_GENERATOR_VERSION} from './normal_bake_format.js';
@@ -16,6 +16,8 @@ import {R_HeightFromRGBA,R_MultiScaleHeight,R_NormalsFromHeight,R_NormalsFromCra
 import {COM_NewerURL} from '../../engine/common/pak.js';
 import {NormalTransport} from './normal_transport.js';
 const store=new DisplacementStore(),jobs=new WeakMap();
+// A page that can never have the store (file:// opaque origin, no OPFS or Web Locks) rather than one that failed once.
+const STORE_STRUCTURALLY_UNAVAILABLE=e=>e?.name==='SecurityError'||/filesystem\/locking unavailable/.test(String(e?.message));
 const copy=view=>view?new view.constructor(view):null;
 const same=(a,b)=>a===b||!!a&&!!b&&a.length===b.length&&a.every((v,i)=>Object.is(v,b[i]));
 function inputStillCurrent(diffuse,input){
@@ -99,7 +101,7 @@ export function NormalGenerate(input){
 /**
  * Starts (or reuses) the background job that prepares normal data for `diffuse`, preferring a shipped bake from
  * `NORMAL_BAKES` (fetched through `NormalTransport`), then the local disk cache, then generation that is stored to
- * disk. Called when `R_NormalPreparationNeeded` says so, and for skin companions in r_newerskins.js. An existing job
+ * disk; only where the page can have no disk cache at all, generation kept for this session. Called when `R_NormalPreparationNeeded` says so, and for skin companions in r_newerskins.js. An existing job
  * whose snapshot still matches the texture is kept (its revision refreshed); otherwise it is cancelled. The job is
  * kept in a module WeakMap keyed by the texture and cancelled when the texture fires `dispose`. If the texture's
  * bytes changed while preparing, the job is cancelled and a replacement started whose outcome is copied in. On
@@ -114,7 +116,12 @@ export function NormalGenerate(input){
  * @returns {{status: string, data: ?Object, error: ?string, input: Object, revision: Array<*>, promise: Promise<void>,
  *  cancel: function(): void, key?: string, source?: string, persistence?: string}} the live job record (mutated as it
  *  progresses): `status` 'loading' | 'ready' | 'error' | 'cancelled'; `data` the decoded normal payload once ready;
- *  `source` 'shipped', 'disk' or 'generated-and-stored'; `persistence` the storage persistence grant reported by the disk cache
+ *  `source` 'shipped', 'disk', 'generated-and-stored' or 'generated'; `persistence` the storage persistence grant reported
+ *  by the disk cache. When the page structurally cannot have the store (a `SecurityError`, as for a page opened from
+ *  `file://` with its opaque origin, or no origin-private file system or Web Locks at all) the normals are generated
+ *  for this session only: `source` 'generated', `persistence` 'unavailable: <reason>'. Without that the level's
+ *  readiness gate would hold forever (docs/distribution.md). Any other failure, including a transient one opening the
+ *  store, goes through the store as before and stays an error.
  * @throws {Error} synchronously, from `NormalInputs`, when the texture's inputs are invalid
  */
 export function R_NormalPrepare(diffuse,{disk=store,loader,generate=NormalGenerate}={}){
@@ -128,9 +135,15 @@ export function R_NormalPrepare(diffuse,{disk=store,loader,generate=NormalGenera
    if(controller.signal.aborted)return;
    const transport=NormalTransport({...spec},key,input.width,input.height,loader);work.release=transport.release;
    const data=await transport.promise;if(data.referenceWidth!==(input.edge?.width||0)||data.referenceHeight!==(input.edge?.height||0))throw Error('Prepared normal reference coverage mismatch');result={data,source:'shipped'};
-  }else result=await disk.ensure(key,{signal:controller.signal,decode,generate:()=>NormalBakeEncode(key,input.width,input.height,generate(input))});
+  }else{
+   const encode=()=>NormalBakeEncode(key,input.width,input.height,generate(input));
+   let unavailable=null;try{await disk.open();}catch(e){if(STORE_STRUCTURALLY_UNAVAILABLE(e))unavailable=String(e?.message||e);}
+   if(controller.signal.aborted)return;
+   if(unavailable===null)result=await disk.ensure(key,{signal:controller.signal,decode,generate:encode});
+   else{const raw=encode();result={data:await decode(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength)),source:'generated',persistence:'unavailable: '+unavailable};}
+  }
   if(controller.signal.aborted)return;
-  if(await NormalInputKey(NormalInputs(diffuse))!==key){dispose();const replacement=R_NormalPrepare(diffuse,{disk,loader,generate});await replacement.promise;Object.assign(work,{status:replacement.status,data:replacement.data,source:replacement.source,error:replacement.error});return;}
+  if(await NormalInputKey(NormalInputs(diffuse))!==key){dispose();const replacement=R_NormalPrepare(diffuse,{disk,loader,generate});await replacement.promise;Object.assign(work,{status:replacement.status,data:replacement.data,source:replacement.source,persistence:replacement.persistence,error:replacement.error});return;}
   work.data=result.data;work.source=result.source;work.persistence=result.persistence;work.status='ready';diffuse.dispatchEvent({type:'newertextureupdated'});
  })().catch(e=>{if(work.status!=='cancelled'){work.status='error';work.error=String(e.message||e);}});return work;
 }
