@@ -56,7 +56,7 @@ async function fixture( run ) {
  }
 }
 Deno.test( 'three Rogue replacements preserve every pre-existing enemy variant and height entry', () => {
- const other = structuredClone( index ); delete other.version;
+ const other = structuredClone( index );other.models.knight=other.models.knight.slice(0,1);other.nativeHeights.knight=other.nativeHeights.knight.slice(0,1); delete other.version;
  // Pin every baseline model and its data; later added families have their own contracts.
  const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor"];
  other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));

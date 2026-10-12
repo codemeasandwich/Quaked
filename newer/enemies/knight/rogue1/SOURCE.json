@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "model": "progs/knight.mdl",
+  "nativeModelSha256": "749325dd12abbfae8fc89416f217fa07c6d06bd30fed7359e599a04d969eefcf",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/knight-rogue-skin1.png",
+  "sourceSha256": "e1a73ef1c822d8a21fd15c062df589be6c402f4e831681b954c21d96f2bf257a",
+  "sourceDimensions": [
+    1475,
+    1067
+  ],
+  "dimensions": [
+    1608,
+    1164
+  ],
+  "factor": 6,
+  "skin": 1,
+  "poses": 97,
+  "vertices": 108,
+  "triangles": 213,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1608,
+    1164
+  ],
+  "registration": null,
+  "mattePolicy": "blue-grey",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 203143,
+      "directPixels": 197390,
+      "edgePixels": 5753
+    },
+    {
+      "id": 2,
+      "surfacePixels": 203147,
+      "directPixels": 197090,
+      "edgePixels": 6057
+    }
+  ],
+  "surfacePixels": 406290,
+  "edgePixels": 11810,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "995286381da29e94b5835c8b2e362b5c65f563094537622cf23f575c80bb0697",
+    "height.webp": "942d7f5065c7f5f8bc4e40b2abd87b5dddff3a271795f239f496e474e6917a20"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue knight.mdl statue skin1 decoded with native palette, nearest enlarged4x; dominant background RGB27/27/47 distinct from first-pixel index1",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Dissolution of Eternity KNIGHT STATUE skin1 UV texture atlas at high resolution. Preserve the complete268:194 aspect ratio and EXACT positions, silhouettes and dimensions of both front/back armoured bodies and their upright swords, including blade tips reaching the top border and the hands at the side edges. Keep the original muted grey/taupe CARVED STONE material throughout: helmet/face plate with dark eye slots, segmented armour, chest and skirt plates, limbs, boots, gloves and swords. This is the ordinary Knight, NOT the taller spiked Death Knight; do not add shoulder spikes or change armour design. Preserve the distinct original front and back, fine native engraved lines and any small spare texture details without inventing new geometry. Add continuous natural mineral grain, subtle pitting and worn carved edges, not enlarged square pixels, thick cartoon cracks or shiny metal. No living human face/skin, coloured eyes, gold, blood, emission or glow. Keep the original flat dark blue-grey background RGB27,27,47, not black, with crisp island edges and no cast shadows. No scene, text, labels, border or watermark. Exact native UV layout and original stone palette take priority over decoration."
+  },
+  "strictMatteDonors": {
+    "policy": "neutral stone donor pixels exclude blue-grey after resampling",
+    "rejectedPixels": 1227
+  }
+}

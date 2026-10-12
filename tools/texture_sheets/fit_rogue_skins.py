@@ -123,6 +123,14 @@ def fit_one(key, pack, source_root, output, recipe=None):
  if cr<=cl or cb<=ct:raise ValueError('Registered atlas misses the destination')
  pixels[ct:cb,cl:cr]=scaled[ct-top:cb-top,cl-left:cr-left]
  valid[ct:cb,cl:cr]=scaled_mask[ct-top:cb-top,cl-left:cr-left]
+ rejected_matte=0
+ if spec.get('strictMatteDonors'):
+  if spec.get('matte')!='blue-grey':raise ValueError('Strict donor policy is only defined for neutral stone on blue-grey')
+  # Closing/filling determines the silhouette, but must not turn blue backdrop
+  # trapped under an arm into source pigment for a neutral stone skin.
+  colour=pixels.astype(np.int16)
+  donor_colour=((colour[:,:,2]-colour[:,:,0])<6)&((colour[:,:,2]-colour[:,:,1])<8)
+  rejected_matte=int((valid & ~donor_colour).sum());valid &= donor_colour
  accepted_black=np.zeros((H,W),bool)
  if spec.get('nativeBlackRegions'):
   # Certain real native surfaces are intentionally black, not absent pigment.
@@ -172,6 +180,7 @@ def fit_one(key, pack, source_root, output, recipe=None):
   normalProfile=dict(strength=.65,cap=.55),reuse=['fit_vore.member','uv_footprint','fit_skin.spread','height_for'],
   files={f:sha((out/f).read_bytes()) for f in ['diffuse.png','height.webp']})
  if spec.get('generation'):report['generation']=spec['generation']
+ if spec.get('strictMatteDonors'):report['strictMatteDonors']=dict(policy='neutral stone donor pixels exclude blue-grey after resampling',rejectedPixels=rejected_matte)
  if flat:report['flatHeight']=flat
  if charge:report['chargeOverlay']=charge
  if spec.get('nativeBlackRegions'):report['generatedBlackSurface']=dict(nativeRegions=spec['nativeBlackRegions'],nativePaletteIndex=0,maximumGeneratedChannel=1,acceptedPixels=int(accepted_black.sum()),nativePigmentCopied=False)

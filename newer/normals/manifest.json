@@ -39952,6 +39952,28 @@
       "height": 1164,
       "bytes": 16985272,
       "compressedBytes": 4868341
+    },
+    "186635b10612fa3665836460f014993f221b187b5d5c3239d0d4589eb0b88fcb": {
+      "file": "newer/normals/186635b10612fa3665836460f014993f221b187b5d5c3239d0d4589eb0b88fcb.nm.gz",
+      "input": {
+        "width": 1608,
+        "height": 1164,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "f6b4d5051c792f8cd2211b73d24c3e6bb939e761b146e353070eb8dd44d7b76a",
+        "fullbright": null,
+        "scalar": "c688555912008c597b54f1d1ad57cd8c8e8c50a876f2e47278c90ffcf3a7ff7c",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "91c7939a30cf54b783b62848c24cbc4be9a43df7a37684c9b9353955f8402ddd",
+      "rawSha256": "744ec4fc9b2537bc76bfb5aed1ae6bb41cfb2d3772712a0418dcb640c7b03c24",
+      "width": 1608,
+      "height": 1164,
+      "bytes": 14973880,
+      "compressedBytes": 3792189
     }
   },
   "levels": {
@@ -70717,8 +70739,7 @@
       "keys": [
         "921c23ef325e946ff2fdfe7fa798bbd7b720ed022216cbde01cf26351f384619",
         "0477d1138a34f6d0d1083c5143ec251e7b0dd67c3014168f5b77fe274e8968fe",
-        "8c2217735fe4c8350a88515c5d83cb7afecc6e92bdb9301895ae940dd88d5a96",
-        "ae93f6785a185de94b8a4e56cd64085146806098a1878dfa367f641a71815482"
+        "8c2217735fe4c8350a88515c5d83cb7afecc6e92bdb9301895ae940dd88d5a96"
       ]
     },
     "rogue:progs/ogre.mdl": {
@@ -71042,6 +71063,11 @@
     "custom:tarbaby/rogue2": {
       "keys": [
         "ca2cde0507ffeb95b3f7d9a51ce9e2ba194ed8e198436bb12215b8c4ff901db1"
+      ]
+    },
+    "custom:knight/rogue1": {
+      "keys": [
+        "186635b10612fa3665836460f014993f221b187b5d5c3239d0d4589eb0b88fcb"
       ]
     }
   }

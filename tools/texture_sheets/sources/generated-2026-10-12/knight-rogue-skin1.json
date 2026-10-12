@@ -1,0 +1,30 @@
+{
+  "key": "knight",
+  "skin": 1,
+  "outputVariant": "rogue1",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/knight-rogue-skin1.png",
+  "sourceSha": "e1a73ef1c822d8a21fd15c062df589be6c402f4e831681b954c21d96f2bf257a",
+  "modelSha": "749325dd12abbfae8fc89416f217fa07c6d06bd30fed7359e599a04d969eefcf",
+  "layout": [
+    2,
+    268,
+    194,
+    108,
+    213,
+    97
+  ],
+  "size": [
+    1475,
+    1067
+  ],
+  "factor": 6,
+  "matte": "blue-grey",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue knight.mdl statue skin1 decoded with native palette, nearest enlarged4x; dominant background RGB27/27/47 distinct from first-pixel index1",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Dissolution of Eternity KNIGHT STATUE skin1 UV texture atlas at high resolution. Preserve the complete268:194 aspect ratio and EXACT positions, silhouettes and dimensions of both front/back armoured bodies and their upright swords, including blade tips reaching the top border and the hands at the side edges. Keep the original muted grey/taupe CARVED STONE material throughout: helmet/face plate with dark eye slots, segmented armour, chest and skirt plates, limbs, boots, gloves and swords. This is the ordinary Knight, NOT the taller spiked Death Knight; do not add shoulder spikes or change armour design. Preserve the distinct original front and back, fine native engraved lines and any small spare texture details without inventing new geometry. Add continuous natural mineral grain, subtle pitting and worn carved edges, not enlarged square pixels, thick cartoon cracks or shiny metal. No living human face/skin, coloured eyes, gold, blood, emission or glow. Keep the original flat dark blue-grey background RGB27,27,47, not black, with crisp island edges and no cast shadows. No scene, text, labels, border or watermark. Exact native UV layout and original stone palette take priority over decoration."
+  },
+  "strictMatteDonors": true,
+  "matteCorrection": "Reject resampled blue-grey donor colour even when silhouette closing/filling includes it; preserve neutral stone and unchanged24pixel coverage gate."
+}

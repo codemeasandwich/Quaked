@@ -33,8 +33,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | Egyptian Guardian | `morph_eg:0–2` | Missing | Committed/pushed `a155bd16`, remote verified; T-5f22456c Done |
 | Greek Guardian | `morph_gr:0–2` | Missing | Committed/pushed `d7e466c8`, remote verified; T-13eafa13 Done |
 | Rogue Death Knight | `hknight:0–1` | Native bake exists | Committed/pushed `4a0375d7`, remote verified; T-03622157 Done |
-| Rogue Spawn | `tarbaby:0–2` | Native bake exists | Skin0 HD reused; green1/nodule2 fitted;12 new+6 base independent/198 GPU checks pass; finalchecks beforecommit, T-e2dbdfec |
-| Rogue Knight statue | `knight:1` | Existing height fallback uses skin0 | Pending; author correct slot height |
+| Rogue Spawn | `tarbaby:0–2` | Native bake exists | Committed/pushed `bcc84b6f`, remote verified; T-e2dbdfec Done |
+| Rogue Knight statue | `knight:1` | Existing height fallback uses skin0 | Stone generated/fitted; native slot1 height derives correctly;11 independent/209 GPU checks pass, T-73be2ab4 |
 | Rogue Ogre variant | `ogre:1` | Existing height fallback uses skin0 | Pending; author correct slot height |
 
 Guardian skin changes accompany awakening/death. Their three skin2 images are

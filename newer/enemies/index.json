@@ -158,6 +158,18 @@
      ],
      "sourceSha256": "4f5bf0da795a7166791aca024499f37b3a2df8c79078cf4e0d55a6fdf30b3a68"
     }
+   },
+   {
+    "dir": "knight/rogue1",
+    "skin": 1,
+    "nativeModelSha256": "749325dd12abbfae8fc89416f217fa07c6d06bd30fed7359e599a04d969eefcf",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "ogre": [
@@ -1171,7 +1183,7 @@
    }
   ]
  },
- "version": 42,
+ "version": 43,
  "nativeHeights": {
   "gib1": [
    [
@@ -1270,7 +1282,8 @@
      "strength": 0.65,
      "cap": 0.55
     }
-   ]
+   ],
+   []
   ],
   "h_knight": [
    [
