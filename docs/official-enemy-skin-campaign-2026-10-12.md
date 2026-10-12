@@ -27,8 +27,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | Armagon | `armabody:0`, `armalegs:0` | Both missing | Committed/pushed `eaca8f0c`, remote verified; T-b9e82259 Done |
 | Electric Eel | `eel2:0–5` | Missing | Committed/pushed `ba2b8779`, remote verified; T-89884f7b Done |
 | Phantom Swordsman | `sword:0` | Missing | Committed/pushed `d8c0b53e`, remote verified; T-98629a4a Done |
-| Wrath | `wrath:0` | Missing | Generated/fitted;7 independent and98 GPU checks pass, review cleared; isolated checks before commit, T-d0114751 |
-| Lava Man | `lavaman:0` | Missing | Pending |
+| Wrath | `wrath:0` | Missing | Committed/pushed `0cf13349`, remote verified; T-d0114751 Done |
+| Lava Man | `lavaman:0` | Missing | Generated/fitted;101 GPU checks pass; independent verification before commit, T-51cf2d18 |
 | Aztec Guardian | `morph_az:0–2` | Missing | Pending |
 | Egyptian Guardian | `morph_eg:0–2` | Missing | Pending |
 | Greek Guardian | `morph_gr:0–2` | Missing | Pending |

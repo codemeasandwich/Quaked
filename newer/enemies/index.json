@@ -981,9 +981,23 @@
     "skin": 0,
     "nativeModelSha256": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6"
    }
+  ],
+  "lavaman": [
+   {
+    "dir": "lavaman/custom",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 0,
+    "nativeModelSha256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1"
+   }
   ]
  },
- "version": 36,
+ "version": 37,
  "nativeHeights": {
   "gib1": [
    [

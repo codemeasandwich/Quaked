@@ -1,0 +1,211 @@
+Isolated HEAD+scoped Lava Man candidate; id1
+meshing progs/fish.mdl...
+
+172 tri 268 vert 585 cmd
+
+PASS owned Rotfish public loader preserves every native UV triangle and all 66 poses with exact source identity
+PASS actual Rotfish assets retain generated source, matching dimensions and other enemy entries
+meshing progs/fish.mdl...
+
+PASS actual manifest admits only matching Rotfish skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Rotfish image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Rotfish shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/fish_skin_identity_test.js)
+meshing progs/dog.mdl...
+
+PASS owned Dog public loader preserves every native UV triangle and all 86 poses with exact source identity
+PASS actual Dog assets retain generated source, matching dimensions, existing head and other enemy entries
+meshing progs/dog.mdl...
+
+PASS actual manifest admits only matching Dog skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Dog image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Dog shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/dog_skin_identity_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS early skin inspection rejects malformed BSP views and starts only actual all-skill model, head and shared-gib sets through ordinary cached loads
+PASS actual E1M3 entity bytes prefetch exactly its19 installed authored skin maps and the ogre face sheet without loading models or unrelated enemy families
+PASS both BSP2 entity directory versions positively initiate needed skin requests before any model or game exists
+RESULT 3/3 passed (tests/startup_skins_test.js)
+PASS startup prepare begins every unseen custom variant and native skin/frame, then actual draws reuse them without another download
+Added packfile pak0.pak (339 files)
+
+meshing progs/dog.mdl...
+
+PASS actual native loaded Quake model header prepares stored relief without drawing and keeps native diffuse ownership
+PASS startup preparation respects independent skin/normal gates and shutdown prevents delayed index from preparing a retired map
+RESULT 3/3 passed (tests/skin_prepare_test.js)
+TOTAL 26/26 passed
+Isolated HEAD+scoped Lava Man candidate; rogue
+PASS three Rogue replacements preserve every pre-existing enemy variant and height entry
+meshing progs/dragon.mdl...
+
+608 tri 972 vert 2127 cmd
+
+PASS dragon: public loader retains every native UV, triangle and pose byte
+PASS dragon: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/dragon.mdl...
+
+PASS dragon: actual public selection is source-bound, preserves geometry and restores native options
+PASS dragon: pending identity, failed images and retired work remain native without late publication
+meshing progs/s_wrath.mdl...
+
+564 tri 892 vert 1949 cmd
+
+PASS s_wrath: public loader retains every native UV, triangle and pose byte
+PASS s_wrath: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/s_wrath.mdl...
+
+meshing progs/wrath.mdl...
+
+420 tri 646 vert 1406 cmd
+
+PASS s_wrath: actual public selection is source-bound, preserves geometry and restores native options
+PASS s_wrath: pending identity, failed images and retired work remain native without late publication
+meshing progs/mummy.mdl...
+
+PASS mummy: public loader retains every native UV, triangle and pose byte
+PASS mummy: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/mummy.mdl...
+
+meshing progs/zombie.mdl...
+
+PASS mummy: actual public selection is source-bound, preserves geometry and restores native options
+PASS mummy: pending identity, failed images and retired work remain native without late publication
+RESULT 13/13 passed (tests/rogue_skin_identity_test.js)
+PASS Eel preserves every previously delivered model and native-height family
+meshing progs/eel2.mdl...
+
+260 tri 384 vert 831 cmd
+
+PASS Owned eel retains six exact native skins, every UV/triangle and all twenty-one poses
+PASS Six generated Eel sources and fitted variants retain exact provenance, dimensions and shared anatomical height
+PASS Generated charge skins preserve the fitted base exactly outside original electrical masks, including all sixteen triangle islands
+meshing progs/eel2.mdl...
+
+PASS Public Eel selector binds all six distinct skin slots on one entity and retains native geometry/options
+PASS Pending Eel identity blocks every charge request and resolves all six states together
+PASS Failed or retired Eel state images settle to native and never publish late materials
+PASS Eel skin 0: custom, generated native and authored native inputs each select their exact shipped normal
+PASS Eel skin 1: custom, generated native and authored native inputs each select their exact shipped normal
+PASS Eel skin 2: custom, generated native and authored native inputs each select their exact shipped normal
+PASS Eel skin 3: custom, generated native and authored native inputs each select their exact shipped normal
+PASS Eel skin 4: custom, generated native and authored native inputs each select their exact shipped normal
+PASS Eel skin 5: custom, generated native and authored native inputs each select their exact shipped normal
+PASS All six Eel authored native heights remain source-bound with replacement art disabled
+PASS Actual Rogue QuakeC preserves Eel charge lighting and immediate skin-five reset without inventing an animation interval
+RESULT 15/15 passed (tests/eel_skin_identity_test.js)
+meshing progs/sword.mdl...
+
+106 tri 170 vert 373 cmd
+
+PASS owned Phantom Swordsman public loader preserves every native UV triangle and all 40 poses with exact source identity
+PASS actual Phantom Swordsman assets retain generated source, matching dimensions and other enemy entries
+meshing progs/sword.mdl...
+
+PASS actual manifest admits only matching Phantom Swordsman skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Phantom Swordsman image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Phantom Swordsman custom and native generated inputs use exact shipped normal samples
+RESULT 6/6 passed (tests/sword_skin_identity_test.js)
+meshing progs/wrath.mdl...
+
+420 tri 646 vert 1406 cmd
+
+PASS owned Wrath public loader preserves every native UV triangle and all 87 poses with exact source identity
+PASS actual Wrath assets retain generated source, matching dimensions and other enemy entries
+meshing progs/wrath.mdl...
+
+meshing progs/s_wrath.mdl...
+
+564 tri 892 vert 1949 cmd
+
+PASS actual manifest admits only matching Wrath skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Wrath image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Wrath custom and native generated inputs use exact shipped normal samples
+PASS Wrath has two persistent native eye meshes and four separate red atlas islands, not firing flashes
+RESULT 7/7 passed (tests/wrath_skin_identity_test.js)
+meshing progs/lavaman.mdl...
+
+PASS owned Lava Man public loader preserves every native UV triangle and all 90 poses with exact source identity
+PASS actual Lava Man assets retain generated source, matching dimensions and other enemy entries
+meshing progs/lavaman.mdl...
+
+meshing progs/boss.mdl...
+
+PASS actual manifest admits only matching Lava Man skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Lava Man image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Lava Man custom and native generated inputs use exact shipped normal samples
+PASS All forty-eight native Lava Man UV components retain molten body and dark appendage pigment with ordinary relief
+RESULT 7/7 passed (tests/lavaman_skin_identity_test.js)
+TOTAL 48/48 passed
+Isolated HEAD+scoped Lava Man candidate; hipnotic
+meshing progs/grem.mdl...
+
+245 tri 393 vert 861 cmd
+
+PASS owned Gremlin public loader preserves every native UV triangle and all 179 poses with exact source identity
+PASS actual Gremlin assets retain generated source, matching dimensions and other enemy entries
+meshing progs/grem.mdl...
+
+PASS actual manifest admits only matching Gremlin skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Gremlin image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Gremlin shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/grem_skin_identity_test.js)
+meshing progs/scor.mdl...
+
+422 tri 666 vert 1455 cmd
+
+PASS owned Centroid public loader preserves every native UV triangle and all 41 poses with exact source identity
+PASS actual Centroid assets retain both supplied sources, matching dimensions and other enemy entries
+meshing progs/scor.mdl...
+
+PASS actual manifest admits only matching Centroid skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Centroid image loads settle native fallback and shutdown rejects late image and identity publication
+RESULT 5/5 passed (tests/scorpion_skin_identity_test.js)
+PASS Armagon preserves all existing model and native-height families
+meshing progs/armabody.mdl...
+
+398 tri 602 vert 1307 cmd
+
+PASS armabody: public loader retains every native UV, triangle and pose byte
+PASS armabody: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armabody.mdl...
+
+PASS armabody: actual public selection is source-bound, preserves geometry and restores native options
+PASS armabody: pending identity, failed images and retired work remain native without late publication
+meshing progs/armalegs.mdl...
+
+318 tri 522 vert 1147 cmd
+
+PASS armalegs: public loader retains every native UV, triangle and pose byte
+PASS armalegs: actual fitted images and provenance target the supplied art and exact native model
+meshing progs/armalegs.mdl...
+
+PASS armalegs: actual public selection is source-bound, preserves geometry and restores native options
+PASS armalegs: pending identity, failed images and retired work remain native without late publication
+PASS armabody: exact custom and native normal inputs select shipped samples
+PASS armalegs: exact custom and native normal inputs select shipped samples
+PASS Armagon native and custom flames have maximal flat height and flat baked normals without padding another surface
+PASS Armagon native parts have ninety-eight paired frames and genuine extended firing geometry
+PASS Armagon native authored height prewarms only its correct model with custom enemies off
+PASS Armagon native-only preparation waits for pending model identity and starts no premature height requests
+meshing progs/armabody.mdl...
+
+PASS Armagon mismatched and unavailable native identities never fetch constrained authored heights
+PASS Armagon reused native texture drops formerly approved relief and rejects cancelled late authored images
+RESULT 17/17 passed (tests/armagon_skin_identity_test.js)
+TOTAL 28/28 passed

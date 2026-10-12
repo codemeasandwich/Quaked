@@ -39534,6 +39534,50 @@
       "height": 1164,
       "bytes": 13856440,
       "compressedBytes": 5449845
+    },
+    "b1926da81f93898335d76235ece8c9c254919a22ef301f34e5676c136182442a": {
+      "file": "newer/normals/b1926da81f93898335d76235ece8c9c254919a22ef301f34e5676c136182442a.nm.gz",
+      "input": {
+        "width": 300,
+        "height": 194,
+        "crafted": true,
+        "derive": true,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "b0ba11bb59343d2c9d6b31bf82d3387008c3132778ff0a7e2adda44ce48c8491",
+        "fullbright": null,
+        "scalar": null,
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "c09db976626407285ab4296ebe4359a7df4ed459d6a9666a9324daea1c59b500",
+      "rawSha256": "ad0b85381f98f0e4e65bb9416eabe0edbe3725b8426f8ff880f623c789455937",
+      "width": 300,
+      "height": 194,
+      "bytes": 465780,
+      "compressedBytes": 340843
+    },
+    "39cb199daf6621d86aa963debe8b9b2e2976c2a24baa33e2569807baeed38d7f": {
+      "file": "newer/normals/39cb199daf6621d86aa963debe8b9b2e2976c2a24baa33e2569807baeed38d7f.nm.gz",
+      "input": {
+        "width": 1800,
+        "height": 1164,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "ae802a316991f267c3c495fd152eb4b5b48f44d7a227a35262b5992c25055a06",
+        "fullbright": null,
+        "scalar": "fcc9abccda555d4366c00eafe501f585cf8d9943c2413679c85fb98c564442b4",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "ed9362904eff52bac7acdc57f50d6bd009b7592124e9a3f8d9fcd399b83a166f",
+      "rawSha256": "ae88e165c2bed4fcf8cfa7bb83497b24483bc2c93e41d063fde665741b9b669e",
+      "width": 1800,
+      "height": 1164,
+      "bytes": 16761784,
+      "compressedBytes": 8321288
     }
   },
   "levels": {
@@ -70519,6 +70563,17 @@
     "custom:wrath/custom": {
       "keys": [
         "62539e1a2ad738c072867c4b7c8593471d52960e5c576878c300e3b0a56b4695"
+      ]
+    },
+    "rogue:progs/lavaman.mdl": {
+      "modelSha256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1",
+      "keys": [
+        "b1926da81f93898335d76235ece8c9c254919a22ef301f34e5676c136182442a"
+      ]
+    },
+    "custom:lavaman/custom": {
+      "keys": [
+        "39cb199daf6621d86aa963debe8b9b2e2976c2a24baa33e2569807baeed38d7f"
       ]
     }
   }
