@@ -28,8 +28,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | Electric Eel | `eel2:0–5` | Missing | Committed/pushed `ba2b8779`, remote verified; T-89884f7b Done |
 | Phantom Swordsman | `sword:0` | Missing | Committed/pushed `d8c0b53e`, remote verified; T-98629a4a Done |
 | Wrath | `wrath:0` | Missing | Committed/pushed `0cf13349`, remote verified; T-d0114751 Done |
-| Lava Man | `lavaman:0` | Missing | Generated/fitted;101 GPU checks pass; independent verification before commit, T-51cf2d18 |
-| Aztec Guardian | `morph_az:0–2` | Missing | Pending |
+| Lava Man | `lavaman:0` | Missing | Committed/pushed `e0febc2f`, remote verified; T-51cf2d18 Done |
+| Aztec Guardian | `morph_az:0–2` | Missing | All3states fitted;10 independent and446 GPU checks pass; isolated checks/review before commit, T-e8decd62 |
 | Egyptian Guardian | `morph_eg:0–2` | Missing | Pending |
 | Greek Guardian | `morph_gr:0–2` | Missing | Pending |
 | Rogue Death Knight | `hknight:0–1` | Native bake exists | Skin0 has identical pixels/UVs to base; reuse existing HD art with reviewed identity binding |

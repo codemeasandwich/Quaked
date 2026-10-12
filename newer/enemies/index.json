@@ -995,9 +995,47 @@
     "skin": 0,
     "nativeModelSha256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1"
    }
+  ],
+  "morph_az": [
+   {
+    "dir": "morph_az/custom",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 0,
+    "nativeModelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f"
+   },
+   {
+    "dir": "morph_az/custom1",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 1,
+    "nativeModelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f"
+   },
+   {
+    "dir": "morph_az/custom2",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 2,
+    "nativeModelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f"
+   }
   ]
  },
- "version": 37,
+ "version": 38,
  "nativeHeights": {
   "gib1": [
    [

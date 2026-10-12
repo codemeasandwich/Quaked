@@ -1,0 +1,49 @@
+{
+  "key": "morph_az",
+  "skin": 1,
+  "outputVariant": "custom1",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin1.png",
+  "sourceSha": "b1e7e0ebc24e27be89bddeaf494eec4b13a18c161fe53656e27a7e889a4a63fc",
+  "modelSha": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f",
+  "layout": [
+    3,
+    276,
+    195,
+    221,
+    430,
+    142
+  ],
+  "size": [
+    1492,
+    1054
+  ],
+  "factor": 6,
+  "matte": "blue-grey",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue morph_az.mdl skin1, native palette, nearest enlarged4x",
+    "prompt": "Create the PARTIAL-STONE skin1 for this same Aztec Guardian production UV atlas. Image1 is the ORIGINAL partial-stone skin and is the authority for proportions, arrangement, colours and degree of petrification. Image2 is the approved detailed living skin0: keep its exact anatomy, features and artwork alignment. Image3 is the shared detailed stone skin2: use its dark olive-brown weathered masonry surface to form the transition. Preserve the complete 276:195 atlas layout and all body, staff and detached-panel silhouettes/coordinates. The result should closely match original image1: dark muted earth-brown stone texture across the body and weapon while the Aztec face/headdress, blue markings, collar, pale skirt and boots are faintly visible beneath/through the stone. It is neither fully living nor fully stone. Keep the existing broad stone pattern coherently aligned with image3 and original image1; do not add a new pose, body, accessories, bright metallic jewellery or lighting effects. Keep flat blue background RGB47,47,159. No scene, cast shadows, glow, labels, text, border or watermark. High-resolution material detail; preserve original design and the same enemy identity.",
+    "initialSource": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin1-initial.png",
+    "initialSourceSha256": "c080b6296ddc32d630e9f3586437bd422f0b483d1cbca20704145fb33d66cb6e",
+    "refinementPrompt": "Edit ONLY the small detached rectangular panel near the lower right, between the right-hand staff and the back-view body's left boot (approximately x860\u20131000,y820\u20131020 in this1492x1054atlas). Remove the invented jaguar/skull face from THAT REVERSE-SIDE panel: it must be plain dark olive-brown partly petrified scale/stone material, matching the original reverse panel, with NO face, eyes, mask, gold ornament or symbol. Keep the lower-left front-side panel's small ornament intact. Preserve EVERYTHING ELSE pixel-for-pixel as closely as possible: body, stone transition, two staffs, front/back features, all atlas coordinates, blue backdrop and dimensions. This is a precise correction of one wrongly duplicated detail, not a redesign.",
+    "supportingSources": [
+      {
+        "file": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin0.png",
+        "sha256": "333d627949a413fd1bb557d67e2befdf1bf34d03d3aa258af082e63042b06c33"
+      },
+      {
+        "file": "tools/texture_sheets/sources/generated-2026-10-12/guardian-stone.png",
+        "sha256": "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661"
+      }
+    ],
+    "provisionalSource": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin1-provisional.png",
+    "provisionalSourceSha256": "4331d89c57ac10caee1363c2df02d15d4468abb178d5a81bdf8bcdc61e986ec0",
+    "materialCorrectionPrompt": "Create the ORIGINAL Aztec Guardian PARTIAL-STONE skin1 as a high-resolution production UV atlas. Image1 is the original skin1: match its very dark, uniformly muted brown/olive appearance and degree of petrification. Image2 supplies detailed living identity/layout only, NOT its brightness or saturated colours. Image3 supplies the correct fine natural dark stone surface. Preserve exact276:195 atlas proportions and every original island coordinate, silhouette and gap. Visually let roughly80% dark brown/olive stone dominate across ALL regions, with only faint20% traces of the original living skin, tattoos, headdress, collar, pale skirt and boots showing underneath. The red/gold decorations, blue paint and cloth must be dulled and submerged beneath stone, NOT bright ornaments on an otherwise stone body. Match original image1's restrained low-contrast transition. Fine continuous mineral grain, pores and fissures; no enlarged pixel-mosaic surface. Preserve anatomy, front/back differences, both staffs and detached panels; the reverse detached panel is plain stone/scales, NEVER a duplicated jaguar/skull face. Keep blue RGB47,47,159 background, no shadows, scene, glow, new features, text or watermark. This is the dark halfway-petrified material state of the same native enemy, not a new design.",
+    "materialCorrectionReason": "Independent review: remove square mosaic stone grain and overly vivid living colours in partial state",
+    "misalignedSource": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin1-misaligned.png",
+    "misalignedSourceSha256": "a34e6921961021668557259bece2165e791d8db37b0c3b425b0629f43dc355c0",
+    "geometryCorrectionPrompt": "Image1 is the ONLY EDIT TARGET and EXACT GEOMETRY/LAYOUT AUTHORITY. Its production UV atlas already fits the game mesh. Preserve its1492x1054canvas, EVERY silhouette boundary and EVERY feature position exactly, especially the BACK-VIEW HEAD width and both BACK-VIEW ARM thicknesses and inner edges. Do not narrow, shift, stretch or redraw their outlines. Change MATERIAL/COLOUR ONLY: make image1's skin1 much darker and more uniformly brown/olive partly petrified, using image2 ONLY as a natural fine stone material/colour sample. Ignore image2's changed anatomy and placement. Image3 is the original game's partialstone palette target: markings, red/gold headdress/collar, blue tattoos and pale skirt should be faint and muted beneath dominant weathered brown stone. Replace pixel-mosaic grain with fine continuous mineral pores/cracks within image1's unchanged surfaces. Keep the reverse detached panel plain with no face. Leave image1's exact blue background and every gap untouched. No new geometry, layout shifts, jewellery, bright areas, lighting, scenes, text or watermark. This is a strict material-only edit over a successfully registered atlas.",
+    "geometryCorrectionReason": "1053 actual non-background native surface pixels missed on back head/arms/knee after material regeneration. Reapply material to known-good fitted provisional layout, never admit blue backdrop."
+  }
+}

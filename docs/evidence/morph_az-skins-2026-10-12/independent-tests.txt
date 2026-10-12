@@ -1,0 +1,20 @@
+PASS Guardian additions preserve every pre-campaign model and native-height family
+meshing progs/morph_az.mdl...
+
+430 tri 638 vert 1381 cmd
+
+PASS morph_az: three original skins, six UV components and all142poses survive real native loading including blue-matte floodfill
+PASS morph_az: other cultures share exact geometry and stone skin but have different identities and living art
+PASS morph_az: generated states have pinned provenance, independent material heights and unique runtime directories
+meshing progs/morph_az.mdl...
+
+meshing progs/morph_az.mdl...
+
+PASS morph_az: all state materials select correctly while actual other-culture bytes are rejected
+PASS morph_az: pending identity, failed state images and shutdown have accountable native fallbacks
+PASS morph_az skin 0: custom and actual flood-filled native inputs select exact shipped normals
+PASS morph_az skin 1: custom and actual flood-filled native inputs select exact shipped normals
+PASS morph_az skin 2: custom and actual flood-filled native inputs select exact shipped normals
+PASS Actual Guardian QuakeC selects each culture and performs stone2 to transition1 to living0, then death0 to1
+RESULT 10/10 passed (tests/guardian_skin_identity_test.js)
+TOTAL 10/10 passed

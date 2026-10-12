@@ -1,0 +1,12 @@
+Review rejected initial stone square-mosaic grain and partial-state living colours.
+Original-reference material regeneration corrected both. Source1 then failed fitter:
+Uncovered UV component2,1053pixels. Exact8-neighbour diagnostic:302backhead,
+~748arm boundaries,3knee; all original pixels non214 (actualstone), generated
+RGBmedian35/45/183 (backdrop). Increasing chroma tolerance still left missing
+anatomy and was rejected. Known-good layout was edited material-only in ChatGPT.
+Final source1 b1e7e0ebc24e27be89bddeaf494eec4b13a18c161fe53656e27a7e889a4a63fc
+passes0missing/2079edge. Sharedstone e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661
+passes0missing/2206edge. No source0change, matteexception or largerbleed.
+All generation lineages retained in recipes and initial/provisional/misalignedPNGs.
+Provisionalnormalbake log retained; unselected provisionalinputs excluded from
+active normalmanifest/registry and archived in /private/tmp/quaked-morph_az-provisional-bakes.

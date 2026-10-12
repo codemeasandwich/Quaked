@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "model": "progs/morph_az.mdl",
+  "nativeModelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin0.png",
+  "sourceSha256": "333d627949a413fd1bb557d67e2befdf1bf34d03d3aa258af082e63042b06c33",
+  "sourceDimensions": [
+    1492,
+    1054
+  ],
+  "dimensions": [
+    1656,
+    1170
+  ],
+  "factor": 6,
+  "skin": 0,
+  "poses": 142,
+  "vertices": 221,
+  "triangles": 430,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1656,
+    1170
+  ],
+  "registration": null,
+  "mattePolicy": "blue-grey",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 353621,
+      "directPixels": 350815,
+      "edgePixels": 2806
+    },
+    {
+      "id": 2,
+      "surfacePixels": 353612,
+      "directPixels": 352755,
+      "edgePixels": 857
+    },
+    {
+      "id": 3,
+      "surfacePixels": 48333,
+      "directPixels": 48333,
+      "edgePixels": 0
+    },
+    {
+      "id": 4,
+      "surfacePixels": 48333,
+      "directPixels": 48333,
+      "edgePixels": 0
+    },
+    {
+      "id": 5,
+      "surfacePixels": 27431,
+      "directPixels": 27431,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 27430,
+      "directPixels": 27428,
+      "edgePixels": 2
+    }
+  ],
+  "surfacePixels": 858760,
+  "edgePixels": 3665,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "a7a4b703cb3cee74ea2ded463acaaa356ee25ecafc86541ee71154afc660ef25",
+    "height.webp": "e75c9d504454d06c83f6c9301e97e064c7c2dd85b1c19029f60b106f59a55131"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue morph_az.mdl skin0, native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this exact ORIGINAL Quake Dissolution of Eternity AZTEC GUARDIAN production model UV atlas, LIVING skin0, at high resolution. Preserve the complete 276:195 aspect ratio and every UV island in EXACTLY its original proportional position, size and silhouette: front/back body, both long separate staffs/weapons, two detached rectangular hand/surface pieces near the feet, tiny gold pieces and any partial piece at the lower border. Do not replace this atlas with a standing portrait or rearrange it. Preserve the original warm brown skin, muscular anatomy, dark red and gold collar/headdress, green feathers, blue-grey chest and wrist markings, dirty pale grey wrap/skirt with subdued blue edging, dark brown crisscross boots and restrained existing blood stains. Retain the distinct front and back and the exact face placement. Repaint weapon heads and long shafts faithfully, not as new weapons. Add restrained skin pores, woven cloth, leather wear, feathers, carved wood and tarnished gold detail following the existing shapes. No new armor, face mask, tattoos, feathers, ornaments or other redesign. Keep the original flat solid blue backdrop RGB approximately51,51,153, no shadows, scene, halo, text, labels or watermark. This is a production UV texture bitmap; precise layout and original colour scheme take priority."
+  }
+}
