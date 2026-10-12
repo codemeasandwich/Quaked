@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "model": "progs/hknight.mdl",
+  "nativeModelSha256": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+  "skin": 0,
+  "dimensions": [
+    1540,
+    770
+  ],
+  "poses": 166,
+  "vertices": 250,
+  "triangles": 452,
+  "source": "newer/enemies/hknight/custom/diffuse.webp",
+  "sourceSha256": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+  "files": {
+    "diffuse.webp": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+    "height.webp": "2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592"
+  },
+  "reuse": {
+    "fromDirectory": "hknight/custom",
+    "fromModelSha256": "78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a",
+    "sourceProvenance": "newer/enemies/hknight/custom/SOURCE.json",
+    "sourceProvenanceSha256": "ce763481bf6a303dbda0d698cf2828d59a8e7b9d636e68e16ce6ae86cea95520",
+    "nativeSkinSha256": "784bdd23234c131234af86addf1a4111e93525ad2029687c7f524c804f9d18db",
+    "proof": "Skin0 pixels, UVs, triangles, pose vertices/normals and meaningful bounds/names match base; ignored frame padding/bbox-normal bytes differ.",
+    "reasonForUniqueDirectory": "Material cache keys by version/directory; packed COM_NewerFile lookup does not normalize parent-relative paths. Byte copies preserve original art and content-bound normal reuse."
+  },
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  }
+}

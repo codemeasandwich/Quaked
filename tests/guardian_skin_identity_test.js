@@ -159,7 +159,7 @@ async function decodedImage(path){
 Deno.test('Guardian additions preserve every pre-campaign model and native-height family',()=>{
  const modelKeys=['boss','knight','ogre','soldier','wizard','backpack','suit','armor','shambler','zombie','demon','h_demon','h_dog','zom_gib','h_shams','shalrath','oldone','enforcer','tarbaby','hknight','scor','dragon','s_wrath','mummy','dog','fish','grem','armabody','armalegs','eel2','sword','wrath','lavaman'];
  const heightKeys=['gib1','gib2','gib3','zom_gib','ogre','h_ogre','demon','h_demon','shambler','h_shams','knight','h_knight','soldier','h_guard','wizard','h_wizard','h_dog','dog','zombie','h_zombie','boss','armabody','eel2'];
- const other=structuredClone(index);delete other.version;other.models=Object.fromEntries(Object.entries(other.models).filter(([key])=>modelKeys.includes(key)));other.nativeHeights=Object.fromEntries(Object.entries(other.nativeHeights).filter(([key])=>heightKeys.includes(key)));
+ const other=structuredClone(index);delete other.version;other.models=Object.fromEntries(Object.entries(other.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,key==='hknight'?list.slice(0,1):list]));other.nativeHeights=Object.fromEntries(Object.entries(other.nativeHeights).filter(([key])=>heightKeys.includes(key)));
  same(sha(JSON.stringify(other)),'3c787a30ab6d09054111830159d8129c3fcff948637cc6309719f9389918b42c','all prior catalogue data preserved');
 });
 for(const spec of TARGETS){
@@ -282,7 +282,7 @@ Deno.test('Actual Guardian QuakeC selects each culture and performs stone2 to tr
 Deno.test('Egyptian increment preserves the published Aztec catalogue and every fitted Aztec image',()=>{
  const modelKeys=['boss','knight','ogre','soldier','wizard','backpack','suit','armor','shambler','zombie','demon','h_demon','h_dog','zom_gib','h_shams','shalrath','oldone','enforcer','tarbaby','hknight','scor','dragon','s_wrath','mummy','dog','fish','grem','armabody','armalegs','eel2','sword','wrath','lavaman','morph_az'];
  const heightKeys=['gib1','gib2','gib3','zom_gib','ogre','h_ogre','demon','h_demon','shambler','h_shams','knight','h_knight','soldier','h_guard','wizard','h_wizard','h_dog','dog','zombie','h_zombie','boss','armabody','eel2'];
- const prior=structuredClone(index);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
+ const prior=structuredClone(index);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,key==='hknight'?list.slice(0,1):list]));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
  same(sha(JSON.stringify(prior)),'0ee72c958c80953caa83a20c8c64c303fa6383d58a6aec61af0dcc94ee961ead','all34prior model families and23native-height families unchanged');
  const files={
   'custom/diffuse.png':'a7a4b703cb3cee74ea2ded463acaaa356ee25ecafc86541ee71154afc660ef25',
@@ -307,7 +307,7 @@ Deno.test('Shared Guardian statue reuses exact fitted art, relief and prepared i
 Deno.test('Greek increment preserves all published Aztec and Egyptian catalogue data and Egyptian image bytes',()=>{
  const modelKeys=['boss','knight','ogre','soldier','wizard','backpack','suit','armor','shambler','zombie','demon','h_demon','h_dog','zom_gib','h_shams','shalrath','oldone','enforcer','tarbaby','hknight','scor','dragon','s_wrath','mummy','dog','fish','grem','armabody','armalegs','eel2','sword','wrath','lavaman','morph_az','morph_eg'];
  const heightKeys=['gib1','gib2','gib3','zom_gib','ogre','h_ogre','demon','h_demon','shambler','h_shams','knight','h_knight','soldier','h_guard','wizard','h_wizard','h_dog','dog','zombie','h_zombie','boss','armabody','eel2'];
- const prior=structuredClone(index);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
+ const prior=structuredClone(index);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,key==='hknight'?list.slice(0,1):list]));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
  same(sha(JSON.stringify(prior)),'b2f2e3834b184e35342307520ddf397cba23b1a0b9d6594f99aa81a66f43d72e','all35prior model families and23native-height families unchanged');
  const files={
   'custom/diffuse.png':'335363768ff102f1e3f1ae9e37468428e91c28876c731a02dc2b586175f23ea2',

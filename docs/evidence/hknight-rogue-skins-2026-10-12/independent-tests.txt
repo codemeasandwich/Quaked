@@ -1,0 +1,20 @@
+meshing progs/hknight.mdl...
+
+452 tri 706 vert 1540 cmd
+
+meshing progs/hknight.mdl...
+
+PASS Actual base and Rogue Death Knights retain all original skins, UVs, triangles and166poses
+PASS Rogue skin0 is exactly compatible with base artwork while stone skin1 and full model identities remain distinct
+PASS Rogue variants append without changing any prior catalogue entry or base asset and accurately record copied/generated provenance
+meshing progs/hknight.mdl...
+
+PASS Three same-name source/skin bindings coexist without material or prewarm cache collisions
+PASS Pending, failed and retired Rogue image preparation retains both native skin fallbacks
+PASS Every actual material path resolves directly from a Newer pack without parent-relative aliases
+PASS Rogue Death Knight skin0 selects exact generated native and authored custom prepared normals
+PASS Rogue Death Knight skin1 selects exact generated native and authored custom prepared normals
+PASS Rogue reuse retains all three existing normal inputs and adds only the statue custom payload
+PASS Actual Rogue QuakeC keeps statue skin1 after activation and defaults its initial pose tochar_a11
+RESULT 10/10 passed (tests/rogue_hknight_skin_identity_test.js)
+TOTAL 10/10 passed

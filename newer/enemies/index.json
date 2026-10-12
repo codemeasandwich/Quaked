@@ -752,6 +752,30 @@
     },
     "heightStrength": 0.65,
     "heightCap": 0.55
+   },
+   {
+    "dir": "hknight/rogue0",
+    "skin": 0,
+    "nativeModelSha256": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.webp",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
+   },
+   {
+    "dir": "hknight/rogue1",
+    "skin": 1,
+    "nativeModelSha256": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "scor": [
@@ -1111,7 +1135,7 @@
    }
   ]
  },
- "version": 40,
+ "version": 41,
  "nativeHeights": {
   "gib1": [
    [

@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "model": "progs/hknight.mdl",
+  "nativeModelSha256": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/hknight-rogue-skin1.png",
+  "sourceSha256": "b0dda8fc735580c5c32573cfcd175fefad336290278ac974c21f697829884ba0",
+  "sourceDimensions": [
+    1774,
+    887
+  ],
+  "dimensions": [
+    1848,
+    924
+  ],
+  "factor": 6,
+  "skin": 1,
+  "poses": 166,
+  "vertices": 250,
+  "triangles": 452,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1848,
+    924
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 1539,
+      "directPixels": 1539,
+      "edgePixels": 0
+    },
+    {
+      "id": 2,
+      "surfacePixels": 1539,
+      "directPixels": 1539,
+      "edgePixels": 0
+    },
+    {
+      "id": 3,
+      "surfacePixels": 1537,
+      "directPixels": 1361,
+      "edgePixels": 176
+    },
+    {
+      "id": 4,
+      "surfacePixels": 1537,
+      "directPixels": 1453,
+      "edgePixels": 84
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1438,
+      "directPixels": 1438,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 256952,
+      "directPixels": 254475,
+      "edgePixels": 2477
+    },
+    {
+      "id": 7,
+      "surfacePixels": 1438,
+      "directPixels": 1438,
+      "edgePixels": 0
+    },
+    {
+      "id": 8,
+      "surfacePixels": 1440,
+      "directPixels": 1374,
+      "edgePixels": 66
+    },
+    {
+      "id": 9,
+      "surfacePixels": 256947,
+      "directPixels": 253447,
+      "edgePixels": 3500
+    },
+    {
+      "id": 10,
+      "surfacePixels": 1440,
+      "directPixels": 1367,
+      "edgePixels": 73
+    },
+    {
+      "id": 11,
+      "surfacePixels": 937,
+      "directPixels": 937,
+      "edgePixels": 0
+    },
+    {
+      "id": 12,
+      "surfacePixels": 937,
+      "directPixels": 882,
+      "edgePixels": 55
+    },
+    {
+      "id": 13,
+      "surfacePixels": 937,
+      "directPixels": 937,
+      "edgePixels": 0
+    },
+    {
+      "id": 14,
+      "surfacePixels": 937,
+      "directPixels": 908,
+      "edgePixels": 29
+    },
+    {
+      "id": 15,
+      "surfacePixels": 25029,
+      "directPixels": 24933,
+      "edgePixels": 96
+    },
+    {
+      "id": 16,
+      "surfacePixels": 25029,
+      "directPixels": 24764,
+      "edgePixels": 265
+    },
+    {
+      "id": 17,
+      "surfacePixels": 2778,
+      "directPixels": 2758,
+      "edgePixels": 20
+    },
+    {
+      "id": 18,
+      "surfacePixels": 2814,
+      "directPixels": 2708,
+      "edgePixels": 106
+    },
+    {
+      "id": 19,
+      "surfacePixels": 1,
+      "directPixels": 0,
+      "edgePixels": 1
+    },
+    {
+      "id": 20,
+      "surfacePixels": 1,
+      "directPixels": 0,
+      "edgePixels": 1
+    },
+    {
+      "id": 21,
+      "surfacePixels": 2655,
+      "directPixels": 2619,
+      "edgePixels": 36
+    },
+    {
+      "id": 22,
+      "surfacePixels": 2694,
+      "directPixels": 2577,
+      "edgePixels": 117
+    },
+    {
+      "id": 23,
+      "surfacePixels": 1,
+      "directPixels": 0,
+      "edgePixels": 1
+    },
+    {
+      "id": 24,
+      "surfacePixels": 1,
+      "directPixels": 0,
+      "edgePixels": 1
+    }
+  ],
+  "surfacePixels": 590558,
+  "edgePixels": 7104,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "dc610e95731e720629f11d260fc4445fb4f262612821f36df6ffc3306a62f958",
+    "height.webp": "503279cdb528d9ec327a407f2208a5c26bc730d6580c62a5796a992389daff6a"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue hknight.mdl stone skin1 decoded with native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Dissolution of Eternity DEATH KNIGHT STONE skin1 UV atlas at high resolution. Preserve the exact full308:154 aspect ratio, front/back halves, every original silhouette, UV island coordinate and gap. Keep BOTH complete armoured bodies with their distinct face/back-of-head, tall shoulder spikes, chest ornament, segmented arms, skirt plates, knees and boots; BOTH diagonal swords including their full grips; and ALL tiny detached curved hand/arm pieces beside the hips. Do not omit the small pieces or narrow the swords. Everything is the original muted grey/taupe weathered CARVED STONE statue, not shiny steel, gold or living flesh. Add fine continuous natural mineral grain, subtle pitting and worn carved edges inside the existing shapes. Preserve original armour lines, large shadows and front/back differences, with no new ornaments/symbols, changed face, bloody areas, coloured eyes or glow. No square pixel-mosaic grain or cartoon cracks; original low-resolution pixels guide layout and tone, not the final grain. Pure black background with crisp island boundaries, no cast shadows, scene, text, labels, border or watermark. It must remain a correctly registered production texture atlas, with original palette and design rather than a redesign."
+  }
+}
