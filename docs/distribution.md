@@ -252,9 +252,12 @@ https://codemeasandwich.github.io/Quaked/ passed (604 MB of data ready after 40.
 over the internet, the three scenarios played, 196/196 Bestiary images decoded),
 and so did the live `index.html` saved to disk and opened from there (an explicit
 `file:` target: its data came from GitHub Pages, ready after 43.2 s). Peak Chrome
-memory in those two runs was 4.3 and 5.0 GB, above the 1.6 to 2.8 GB of local and
-CI runs and the 3.5 GB of the live single-file build; this is not yet explained
-and is recorded as a follow-up.
+memory (summed process RSS) was 4.3 and 5.0 GB in those runs and 3.7 to 3.9 GB in
+local runs of the same build, against 3.5 GB for the live single-file build and
+1.6 GB for the earlier Blob-slice design. The rise comes with holding the 604 MB
+of data in page memory (ArrayBuffers), which fixed the broken Blob loads; reducing
+it (for example by freeing category buffers once their assets are made) is a
+follow-up on card T-06e53ceb.
 
 ## Hook, CI and release
 
