@@ -41,7 +41,7 @@ async function browserMemory(){
   const {processInfo}=await bounded(()=>processSession.send('SystemInfo.getProcessInfo'),'browser process list');
   const {stdout}=await promisify(execFile)('ps',['-A','-o','pid=,ppid=,rss=']);
   const rows=stdout.trim().split('\n').map(line=>line.trim().split(/\s+/).map(Number));
-  const tree=new Set(processInfo.map(entry=>entry.id));let grew=true;
+  const tree=new Set(processInfo.map(entry=>entry.id).filter(id=>id>1));let grew=true;
   while(grew){grew=false;for(const [pid,ppid] of rows)if(tree.has(ppid)&&!tree.has(pid)){tree.add(pid);grew=true;}}
   const rssBytes=rows.filter(([pid])=>tree.has(pid)).reduce((sum,[,,rss])=>sum+rss*1024,0);
   peakBrowserRss=Math.max(peakBrowserRss,rssBytes);
@@ -90,7 +90,8 @@ if(target.startsWith('file:'))try{targetSha256=createHash('sha256').update(await
 try{
  await mkdir(resolve(reportPath,'..'),{recursive:true});
  browser=await step('launch',()=>chromium.launch({channel,headless:true,args}));
- processSession=await browser.newBrowserCDPSession();
+ // Memory diagnostics never decide the trial: a failed session only loses browserRss.
+ try{processSession=await bounded(()=>browser.newBrowserCDPSession(),'browser process session');}catch(error){processSession=null;tail(consoleTail,{elapsedMs:elapsed(),type:'diagnostic',text:'browser process session: '+String(error)});}
  context=await browser.newContext({viewport:{width:1280,height:800}});
  page=await context.newPage();
  page.on('pageerror',error=>errors.push(error.stack??String(error)));
@@ -119,14 +120,16 @@ try{
 finally{
  finished=true;clearTimeout(sampler);
  const diagnostic=await snapshot();
- await processSession?.detach().catch(()=>{});let screenshot=null,screenshotError=null,gpu=null;
+ if(processSession)await bounded(()=>processSession.detach(),'browser process session detach').catch(()=>{});let screenshot=null,screenshotError=null,gpu=null;
  if(page&&!page.isClosed())try{screenshot=reportPath.replace(/\.json$/,'.png');await page.screenshot({path:screenshot,timeout:10000});}catch(error){screenshotError=String(error);}
  if(browser)try{gpu=await bounded(async()=>{const session=await browser.newBrowserCDPSession();try{return (await session.send('SystemInfo.getInfo')).gpu;}finally{await session.detach();}},'browser GPU diagnostics');}catch(error){gpu={diagnosticError:String(error)};}
  if(result.ok&&(screenshotError||errors.length||consoleErrors.length||requests.length||diagnostic.metrics?.missing?.length)){
   result.ok=false;
   if(screenshotError){result.failure=screenshotError;result.failedPhase='screenshot';}
  }
- const webglRenderer=diagnostic.webgl?.unmaskedRenderer??diagnostic.webgl?.renderer??null;
+ // The final snapshot can fail on a crashed or stalled page; fall back to the newest sample.
+ const webgl=diagnostic.webgl??[...samples].reverse().find(entry=>entry.webgl)?.webgl;
+ const webglRenderer=webgl?.unmaskedRenderer??webgl?.renderer??null;
  const receipt={target,targetSha256,elapsedMs:elapsed(),...result,webglRenderer,
   softwareWebGL:webglRenderer?/swiftshader|llvmpipe|software/i.test(webglRenderer):null,
   browserMemory:{peakRssBytes:peakBrowserRss||null,final:diagnostic.browserRss??null},environment:{platform:process.platform,channel,backend,args,browserVersion:browser?.version()??null},

@@ -190,18 +190,23 @@ differ by rounding between Chrome's CPU and GPU canvas paths.
 
 Shader compilation stays slow on any software renderer, so the web job now runs
 on a `macos-15` runner with its preinstalled Google Chrome. The trial's timeouts
-and gameplay assertions are unchanged, and the job stops after 60 minutes. The
+and gameplay assertions are unchanged; the trial step stops after 30 minutes and
+the job after 60. Whether that runner gives headless Chrome hardware WebGL, and
+whether the trial passes there, is unproven until a run's receipt records
+`webglRenderer`, `softwareWebGL: false` and `ok: true`. The
 receipt (`web-evidence` artifact, `dist/browser-trial.json`) records:
 
 - `webglRenderer` and `softwareWebGL`: the WebGL renderer the runner provided
   (`gpu` is Chrome's GPU-process information, not the WebGL renderer);
-- `browserMemory` and each sample's `browserRss`: summed RSS of Chrome's
-  process tree, since JavaScript heap figures exclude the HTML text, GPU process
-  and blob storage;
-- `targetSha256`: the tested file's digest.
+- `browserMemory` and each sample's `browserRss`: summed per-process RSS of
+  Chrome's process tree, sampled every 20 s (shared pages count once per process,
+  so it overstates; processes launchd starts are not included). JavaScript heap
+  figures exclude the HTML text, GPU process and blob storage;
+- `targetSha256`: the tested file's digest, taken before the browser starts.
 
-On a `Dev` push only, the web job uploads the tested `index.html` as the
-one-day `web-html` artifact and exports its sha256. The `pages` job downloads
+On a `Dev` push only, the web job checks the file still matches `targetSha256`,
+uploads it as the one-day `web-html` artifact and exports its sha256. Re-running
+only the `pages` job works within that day; later, re-run all jobs. The `pages` job downloads
 it, refuses to continue unless the digest matches, then deploys it. Pages
 deploys only when the web job and both Mac jobs pass; a failed or skipped run
 leaves the previous site in place. The `github-pages` environment allows the

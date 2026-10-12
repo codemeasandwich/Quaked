@@ -12,9 +12,11 @@ concurrency:
   cancel-in-progress: true
 jobs:
   web:
-    # The game needs real WebGL: under Linux's software renderer (SwiftShader) the
-    # unchanged startup gate times out (run 38240397203). GitHub's macOS runners
-    # come with Google Chrome. The receipt's webglRenderer field records the WebGL
+    # The game needs real WebGL. Linux runners have only software WebGL; run
+    # 38240397203 timed out at startup there, and a local SwiftShader profile showed
+    # 62 s of shader linking (docs/distribution.md). GitHub's macOS runners come
+    # with Google Chrome; whether they give it hardware WebGL is unproven until a
+    # run's receipt records it. The receipt's webglRenderer field records the WebGL
     # renderer the runner provided and browserMemory the Chrome process-tree RSS.
     runs-on: macos-15
     timeout-minutes: 60
@@ -30,12 +32,18 @@ jobs:
       - run: npm run test:distribution
       - run: npm run build:web
       - run: node tools/distribution/browser-trial.mjs
+        timeout-minutes: 30
         env:
           QUAKED_CHROME_CHANNEL: chrome
       # Only a Dev push deploys, so only it hands the tested HTML to the pages job.
       - id: digest
         if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
-        run: echo "sha256=$(shasum -a 256 dist/web/index.html | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+        # The exported digest must be the one the trial hashed before it ran.
+        run: |
+          tested=$(node -p "require('./dist/browser-trial.json').targetSha256")
+          actual=$(shasum -a 256 dist/web/index.html | cut -d' ' -f1)
+          test "$tested" = "$actual"
+          echo "sha256=$actual" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
         with:
