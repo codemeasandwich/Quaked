@@ -123,6 +123,21 @@ def fit_one(key, pack, source_root, output, recipe=None):
  if cr<=cl or cb<=ct:raise ValueError('Registered atlas misses the destination')
  pixels[ct:cb,cl:cr]=scaled[ct-top:cb-top,cl-left:cr-left]
  valid[ct:cb,cl:cr]=scaled_mask[ct-top:cb-top,cl-left:cr-left]
+ accepted_black=np.zeros((H,W),bool)
+ if spec.get('nativeBlackRegions'):
+  # Certain real native surfaces are intentionally black, not absent pigment.
+  # Admit generated near-black only in reviewed bounded native-black regions.
+  allowed=np.zeros((h,w),bool)
+  for region in spec['nativeBlackRegions']:
+   if len(region)!=4 or any(not isinstance(v,int) for v in region):raise ValueError('Invalid native-black region')
+   l,t,r,b=region
+   if not 0<=l<r<=w or not 0<=t<b<=h:raise ValueError('Native-black region outside atlas')
+   allowed[t:b,l:r]=True
+  allowed &= native_single_skin(data,spec.get('skin',0))==0
+  allowed=np.repeat(np.repeat(allowed,factor,0),factor,1)
+  accepted_black=allowed & footprint & (pixels.max(2)<=1) & ~valid
+  if not accepted_black.any():raise ValueError('Reviewed native-black region has no generated black pixels')
+  valid |= accepted_black
  canvas=np.zeros((H,W,3),np.uint8); covered=np.zeros((H,W),bool); islands=[]
  for index,bounds in enumerate(ndimage.find_objects(labels),1):
   top=max(0,bounds[0].start-40);bottom=min(H,bounds[0].stop+40)
@@ -159,6 +174,7 @@ def fit_one(key, pack, source_root, output, recipe=None):
  if spec.get('generation'):report['generation']=spec['generation']
  if flat:report['flatHeight']=flat
  if charge:report['chargeOverlay']=charge
+ if spec.get('nativeBlackRegions'):report['generatedBlackSurface']=dict(nativeRegions=spec['nativeBlackRegions'],nativePaletteIndex=0,maximumGeneratedChannel=1,acceptedPixels=int(accepted_black.sum()),nativePigmentCopied=False)
  (out/'SOURCE.json').write_text(json.dumps(report,indent=2)+'\n');print(key,json.dumps({k:report[k] for k in ['dimensions','surfacePixels','edgePixels']}))
 
 if __name__=='__main__':

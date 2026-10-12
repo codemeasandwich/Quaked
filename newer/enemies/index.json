@@ -967,9 +967,23 @@
     "skin": 0,
     "nativeModelSha256": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2"
    }
+  ],
+  "wrath": [
+   {
+    "dir": "wrath/custom",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 0,
+    "nativeModelSha256": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6"
+   }
   ]
  },
- "version": 35,
+ "version": 36,
  "nativeHeights": {
   "gib1": [
    [

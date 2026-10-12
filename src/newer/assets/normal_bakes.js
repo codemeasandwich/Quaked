@@ -17380,5 +17380,23 @@ export const NORMAL_BAKES = {
   "height": 1560,
   "bytes": 12380344,
   "compressedBytes": 2619800
+ },
+ "5c0c95cf76ebe4267e2724537e1df6b59a8e3ed3f73c1a19425f24c1b50981f9": {
+  "file": "newer/normals/5c0c95cf76ebe4267e2724537e1df6b59a8e3ed3f73c1a19425f24c1b50981f9.nm.gz",
+  "sha256": "81ce8439e267535303c85e69a4cc913c136224af1829fd26c9997c1581049bc8",
+  "rawSha256": "6b7cd1de0a4723df9c408cbb05eebac4686f3b3cec8ea0c6e2f3ef5dfcbfad20",
+  "width": 248,
+  "height": 194,
+  "bytes": 385076,
+  "compressedBytes": 218587
+ },
+ "62539e1a2ad738c072867c4b7c8593471d52960e5c576878c300e3b0a56b4695": {
+  "file": "newer/normals/62539e1a2ad738c072867c4b7c8593471d52960e5c576878c300e3b0a56b4695.nm.gz",
+  "sha256": "7e0d28e0f7644565bb50d37011c09a71679103d6f97ee9a6a5017faed0e3ee0d",
+  "rawSha256": "27ededed0e8ee7856711c195033780251c08b0806e690d5f101d82f38ff2d716",
+  "width": 1488,
+  "height": 1164,
+  "bytes": 13856440,
+  "compressedBytes": 5449845
  }
 };

@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "model": "progs/wrath.mdl",
+  "nativeModelSha256": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/wrath.png",
+  "sourceSha256": "80dec1d312004b3af5248dd83736fbabdeb17e121a8cb24424f6df4d53b322de",
+  "sourceDimensions": [
+    1418,
+    1109
+  ],
+  "dimensions": [
+    1488,
+    1164
+  ],
+  "factor": 6,
+  "skin": 0,
+  "poses": 87,
+  "vertices": 212,
+  "triangles": 420,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1488,
+    1180
+  ],
+  "registration": {
+    "method": "Independent bounded native-detail correlation; full-atlas vertical scale1.0137466, no change to native UVs",
+    "initialCorrelation": 0.123,
+    "registeredCorrelation": 0.51,
+    "initialUncoveredPixels": 19,
+    "registeredUncoveredBeforeBlack": 46,
+    "registeredUncoveredPixels": 0,
+    "unchangedBleedLimit": 24,
+    "landmarks": {
+      "frontHood": [
+        0.326,
+        0.411
+      ],
+      "chainsChest": [
+        0.154,
+        0.629
+      ],
+      "lowerRobe": [
+        0.05,
+        0.608
+      ],
+      "leftArm": [
+        0.201,
+        0.63
+      ],
+      "rightArm": [
+        0.013,
+        0.181
+      ],
+      "frontEyesLeft": [
+        -0.301,
+        0.532
+      ],
+      "frontEyesRight": [
+        -0.254,
+        0.462
+      ],
+      "backHood": [
+        0.262,
+        0.387
+      ],
+      "backChains": [
+        0.062,
+        0.44
+      ]
+    }
+  },
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 350519,
+      "directPixels": 346742,
+      "edgePixels": 3777
+    },
+    {
+      "id": 2,
+      "surfacePixels": 350655,
+      "directPixels": 346137,
+      "edgePixels": 4518
+    },
+    {
+      "id": 3,
+      "surfacePixels": 5857,
+      "directPixels": 5857,
+      "edgePixels": 0
+    },
+    {
+      "id": 4,
+      "surfacePixels": 5845,
+      "directPixels": 5845,
+      "edgePixels": 0
+    },
+    {
+      "id": 5,
+      "surfacePixels": 5857,
+      "directPixels": 5857,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 5845,
+      "directPixels": 5845,
+      "edgePixels": 0
+    }
+  ],
+  "surfacePixels": 724578,
+  "edgePixels": 8295,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
+    "height.webp": "7e577a07637aefe7c1f5996bf734175cf289133761699fa037f69fcfa80a4dd4"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue wrath.mdl skin0 decoded with native palette, nearest enlarged4x; four persistent eye patches distinct from the faceless hood",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Dissolution of Eternity ordinary WRATH production model UV atlas at high resolution. Preserve EXACT 248:194 proportions, front and back, every original UV-island silhouette, position, size and gap. Keep the original muted charcoal/blue-black hood and cloth, dark brown leather shoulder plates and straps, dull metal chains/rings/studs, grey-tan wounded bare arms and restrained dark red blood in the same locations. Add finely woven worn cloth, cracked leather, tarnished metal and subtle skin detail following the original shapes. CRITICAL: the FRONT HOOD IS EMPTY AND FACELESS. Keep its interior completely black. DO NOT paint a skull, face or eyes inside it. The FOUR separate RED DIAMOND shapes at the bottom are the enemy's actual eye texture islands: preserve them exactly at their original coordinates and size. The front pair have intense red centers with darker red edges; the back pair are dark maroon. They are essential, not background, muzzle flames or spare parts. Preserve the original chest ornament and back rings without adding new symbols. Do not add legs, wings, weapons, extra anatomy, scene, labels, text, border, halo or watermark. Pure black backdrop, no cast shadows. This must remain a registered native UV atlas, increasing detail without redesigning the enemy."
+  },
+  "generatedBlackSurface": {
+    "nativeRegions": [
+      [
+        7,
+        85,
+        10,
+        88
+      ],
+      [
+        131,
+        85,
+        134,
+        88
+      ]
+    ],
+    "nativePaletteIndex": 0,
+    "maximumGeneratedChannel": 1,
+    "acceptedPixels": 458,
+    "nativePigmentCopied": false
+  }
+}

@@ -1,0 +1,19 @@
+meshing progs/wrath.mdl...
+
+420 tri 646 vert 1406 cmd
+
+PASS owned Wrath public loader preserves every native UV triangle and all 87 poses with exact source identity
+PASS actual Wrath assets retain generated source, matching dimensions and other enemy entries
+meshing progs/wrath.mdl...
+
+meshing progs/s_wrath.mdl...
+
+564 tri 892 vert 1949 cmd
+
+PASS actual manifest admits only matching Wrath skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Wrath image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Wrath custom and native generated inputs use exact shipped normal samples
+PASS Wrath has two persistent native eye meshes and four separate red atlas islands, not firing flashes
+RESULT 7/7 passed (tests/wrath_skin_identity_test.js)
+TOTAL 7/7 passed
