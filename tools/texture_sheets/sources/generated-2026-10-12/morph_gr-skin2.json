@@ -1,0 +1,41 @@
+{
+  "key": "morph_gr",
+  "skin": 2,
+  "outputVariant": "custom2",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/guardian-stone.png",
+  "sourceSha": "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661",
+  "modelSha": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+  "layout": [
+    3,
+    276,
+    195,
+    221,
+    430,
+    142
+  ],
+  "size": [
+    1492,
+    1054
+  ],
+  "factor": 6,
+  "matte": "blue-grey",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue morph_az.mdl skin2, native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this EXACT ORIGINAL Quake Guardian STONE skin2 UV atlas at high resolution. Preserve the full 276:195 aspect ratio and exact UV shapes, coordinates and gaps: front/back body silhouettes, two long staff silhouettes and detached rectangular pieces. Every shape must stay in its original position and have the SAME dark olive-brown weathered stone material shown in the reference. Keep the original low-contrast irregular diagonal/block masonry pattern and black-brown crevices, with restrained stone grain and worn edges. This is the shared completely petrified state for three Guardian models. DO NOT add flesh, clothing colours, gold, jewellery, painted face/eyes, glowing cracks, new symbols or a new sculpted character design. Broad material and pattern placement follow the original reference. Keep the original flat blue background approximately RGB47,47,159; no scene, shadows, floor, text, labels, border or watermark. Production UV atlas only, precise original layout and subdued original palette, richer stone detail inside its existing islands.",
+    "initialSource": "tools/texture_sheets/sources/generated-2026-10-12/guardian-stone-initial.png",
+    "initialSourceSha256": "f9fad8eba9a6090d5d92f6c8ef073006ab3fd9e9c4ce439e009aa69366fd329a",
+    "refinementPrompt": "Refine this production STONE UV atlas to genuinely high-resolution natural stone texture. Keep EVERY island boundary, atlas coordinate, size, blue background, dark olive-brown palette and broad masonry pattern EXACTLY unchanged. Change only the square pixel-mosaic surface grain into fine irregular physical mineral grain, pitting, weathered cracks and subtle rough stone texture at high resolution. Preserve subdued dark values and existing large cracks; do not deepen every edge into black cartoon mortar. No pixel-art effect, no visibly enlarged square pixels, no new carved anatomy, face, clothing, jewellery, glow, scene, labels or text. This is a material-detail quality pass on the exact same atlas layout, not a redesign.",
+    "provisionalSource": "tools/texture_sheets/sources/generated-2026-10-12/guardian-stone-provisional.png",
+    "provisionalSourceSha256": "b61ffb006ba291e99e866a0c482650ac70ff297816b4f8b9a97e3f90aa85b1be",
+    "materialCorrectionPrompt": "Create a photorealistic high-resolution GAME MATERIAL TEXTURE ATLAS from this original layout reference. The reference is low-resolution pixel art ONLY because it comes from an old game; DO NOT reproduce its pixelated surface grain. Inside every island, replace that coarse grain with continuous fine natural mineral detail: dark weathered olive-brown sandstone, tiny irregular pores, subtle sandy roughness and hairline fissures. Material must look like real stone photographed close up, not square pixels, mosaic tiles, cubes or Minecraft. Preserve the ORIGINAL 276:195 aspect ratio and EXACT island silhouettes/positions/sizes: two human-shaped front/back surfaces, both long staff strips, and both detached rectangular panels. All islands use the same dark brown stone, no new sculpted facial features, flesh, clothing or jewelry. Retain the original broad irregular diagonal/block crack pattern at approximately the same scale but make the seams low-contrast and weathered, NOT thick black grout around a rectangular grid. Stay dark olive-brown, no brighter gold/silver/grey tint or dramatic lighting. Background remains flat solid blue RGB47,47,159, sharp separation from islands, no cast shadows, scene, text, labels or watermark. The UV outline is exact, while its MATERIAL DETAIL is rebuilt as genuine fine photoreal stone at high resolution.",
+    "materialCorrectionReason": "Independent review: remove square mosaic stone grain and overly vivid living colours in partial state"
+  },
+  "sharedNativeSkinSha256": "c8cd3d457d9ea848a6c29cb233f2f07e274ca996a75d85ad2baec22cabb4be28",
+  "reuseProof": {
+    "sourceRecipe": "tools/texture_sheets/sources/generated-2026-10-12/morph_az-skin2.json",
+    "nativeStoneSha256": "c8cd3d457d9ea848a6c29cb233f2f07e274ca996a75d85ad2baec22cabb4be28",
+    "basis": "Actual morph_gr and morph_az headers,UVs,triangles,allposebytes and skin2 byte-identical; separate wholemodelSHA and runtime directory"
+  }
+}

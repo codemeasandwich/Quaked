@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "model": "progs/morph_gr.mdl",
+  "nativeModelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/morph_gr-skin0.png",
+  "sourceSha256": "9e1e2a6bc675c6920d42ad0919ba54c98accf424da1df161b11f5cff061046aa",
+  "sourceDimensions": [
+    1491,
+    1055
+  ],
+  "dimensions": [
+    1656,
+    1170
+  ],
+  "factor": 6,
+  "skin": 0,
+  "poses": 142,
+  "vertices": 221,
+  "triangles": 430,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1656,
+    1170
+  ],
+  "registration": null,
+  "mattePolicy": "blue-grey",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 353621,
+      "directPixels": 353158,
+      "edgePixels": 463
+    },
+    {
+      "id": 2,
+      "surfacePixels": 353612,
+      "directPixels": 353576,
+      "edgePixels": 36
+    },
+    {
+      "id": 3,
+      "surfacePixels": 48333,
+      "directPixels": 48329,
+      "edgePixels": 4
+    },
+    {
+      "id": 4,
+      "surfacePixels": 48333,
+      "directPixels": 47186,
+      "edgePixels": 1147
+    },
+    {
+      "id": 5,
+      "surfacePixels": 27431,
+      "directPixels": 27431,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 27430,
+      "directPixels": 27430,
+      "edgePixels": 0
+    }
+  ],
+  "surfacePixels": 858760,
+  "edgePixels": 1650,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "8628ba7fd9a0933f626e82028d77b3b99d174b14f13554bbe5405cb0ba1d4a19",
+    "height.webp": "203701b23c847cbdce61624b19cb0ebf7d85e0323446012ca2065ff1af6428d1"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue morph_gr.mdl skin0 decoded with native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this EXACT ORIGINAL Quake Dissolution of Eternity GREEK GUARDIAN living skin0 UV texture atlas at high resolution. Keep the full276:195 aspect ratio and every original island at exactly its original proportional coordinates, size and silhouette: front/back body, both long staffs, both detached rectangular clothing/fringe panels, and tiny gold spare detail. Preserve warm tan-brown skin, muscular proportions, long charcoal/grey hair and beard, small gold temple/laurel ornaments, restrained red eyes, dirty pale beige diagonal toga and skirt with muted blue Greek-key hem, black/dark belt with small gold clasp, reddish-brown forearm guards with dull gold trim, brown crisscross boots, and existing blood stains. Keep front face and plain rear hair distinct. The front detached panel has narrow gold/brown fringe/strips; the back detached panel is plain pale fabric: do not copy the front onto the back. Keep original darkwood staff shafts and bloodstained darkstone heads; no trident or other new weapon. Add fine natural skin, hair, woven fabric, leather and worn metal/stone detail following original features. No new armour, tattoos, symbols, jewellery or redesigned anatomy. Flat solid blue background RGB47,47,159, no shadows, scene, halo, text, labels or watermark. This is a precisely registered production UV atlas, not a character portrait."
+  }
+}

@@ -17506,5 +17506,41 @@ export const NORMAL_BAKES = {
   "height": 1170,
   "bytes": 15500344,
   "compressedBytes": 6537302
+ },
+ "f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1": {
+  "file": "newer/normals/f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1.nm.gz",
+  "sha256": "d5f76e1022c45eba932a7e160384409f6d871c254291d5612a8d363ae9f5a9a0",
+  "rawSha256": "f67a1725342df3471eafb27e38aa9606f2153821e90a2532c0b562cd945faec8",
+  "width": 276,
+  "height": 195,
+  "bytes": 430740,
+  "compressedBytes": 276534
+ },
+ "54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5": {
+  "file": "newer/normals/54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5.nm.gz",
+  "sha256": "196a63900849426d2803428089acdab1c999c1de98caa0f6ffcf7df76e6bb9d7",
+  "rawSha256": "77fde3d6aec44afbc5aa496524ec9647c3411b3e16daae6bba9b2d13e5b3a15e",
+  "width": 276,
+  "height": 195,
+  "bytes": 430740,
+  "compressedBytes": 270084
+ },
+ "db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b": {
+  "file": "newer/normals/db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b.nm.gz",
+  "sha256": "abea57d43456dc8879da12b7c04183b63f55e3c683e0cd265008c3478576a119",
+  "rawSha256": "a10b693dc28d48c10b78e2870e634cdb27901311fb7bc63ed1bd2bece37b7429",
+  "width": 1656,
+  "height": 1170,
+  "bytes": 15500344,
+  "compressedBytes": 6390173
+ },
+ "0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd": {
+  "file": "newer/normals/0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd.nm.gz",
+  "sha256": "8adc2b3efa8f22345605e2e3b36e218556f4ccfbea9198c1eed860530b326945",
+  "rawSha256": "ddcebf20035df7f7dd71fba4ee9a6f2dc8772cdd792bb4ef847715f37c60574e",
+  "width": 1656,
+  "height": 1170,
+  "bytes": 15500344,
+  "compressedBytes": 6513218
  }
 };

@@ -39798,6 +39798,94 @@
       "height": 1170,
       "bytes": 15500344,
       "compressedBytes": 6537302
+    },
+    "f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1": {
+      "file": "newer/normals/f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1.nm.gz",
+      "input": {
+        "width": 276,
+        "height": 195,
+        "crafted": true,
+        "derive": true,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "3eeb0522d519c55e7f2a0325b13e1a361442793fe55d83e83e49e180e3ecc910",
+        "fullbright": null,
+        "scalar": null,
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "d5f76e1022c45eba932a7e160384409f6d871c254291d5612a8d363ae9f5a9a0",
+      "rawSha256": "f67a1725342df3471eafb27e38aa9606f2153821e90a2532c0b562cd945faec8",
+      "width": 276,
+      "height": 195,
+      "bytes": 430740,
+      "compressedBytes": 276534
+    },
+    "54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5": {
+      "file": "newer/normals/54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5.nm.gz",
+      "input": {
+        "width": 276,
+        "height": 195,
+        "crafted": true,
+        "derive": true,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "a4b0cc5e72cc23e9a8db42dfce22f0f75a15ff71368cccd917766fe696ade1e9",
+        "fullbright": null,
+        "scalar": null,
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "196a63900849426d2803428089acdab1c999c1de98caa0f6ffcf7df76e6bb9d7",
+      "rawSha256": "77fde3d6aec44afbc5aa496524ec9647c3411b3e16daae6bba9b2d13e5b3a15e",
+      "width": 276,
+      "height": 195,
+      "bytes": 430740,
+      "compressedBytes": 270084
+    },
+    "db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b": {
+      "file": "newer/normals/db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b.nm.gz",
+      "input": {
+        "width": 1656,
+        "height": 1170,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "d9eab4afedb79188446a99269031930c32f28c6537f6995cf2a2f8a2925f79da",
+        "fullbright": null,
+        "scalar": "77b7afb851146f46eb2afa38aea98c91f495058a37e6bb398681b296b2ad40cb",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "abea57d43456dc8879da12b7c04183b63f55e3c683e0cd265008c3478576a119",
+      "rawSha256": "a10b693dc28d48c10b78e2870e634cdb27901311fb7bc63ed1bd2bece37b7429",
+      "width": 1656,
+      "height": 1170,
+      "bytes": 15500344,
+      "compressedBytes": 6390173
+    },
+    "0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd": {
+      "file": "newer/normals/0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd.nm.gz",
+      "input": {
+        "width": 1656,
+        "height": 1170,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "fcc745f4fcfcf826553dbb69013a246797cc88aee8a96cb47210a97b43d8a059",
+        "fullbright": null,
+        "scalar": "860db25b1b8cb9532b6f15d5f0183237d9b5e9b7630e897247d34f29bc610feb",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "8adc2b3efa8f22345605e2e3b36e218556f4ccfbea9198c1eed860530b326945",
+      "rawSha256": "ddcebf20035df7f7dd71fba4ee9a6f2dc8772cdd792bb4ef847715f37c60574e",
+      "width": 1656,
+      "height": 1170,
+      "bytes": 15500344,
+      "compressedBytes": 6513218
     }
   },
   "levels": {
@@ -70838,6 +70926,29 @@
       ]
     },
     "custom:morph_eg/custom2": {
+      "keys": [
+        "3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff"
+      ]
+    },
+    "rogue:progs/morph_gr.mdl": {
+      "modelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+      "keys": [
+        "f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1",
+        "54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5",
+        "0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7"
+      ]
+    },
+    "custom:morph_gr/custom": {
+      "keys": [
+        "db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b"
+      ]
+    },
+    "custom:morph_gr/custom1": {
+      "keys": [
+        "0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd"
+      ]
+    },
+    "custom:morph_gr/custom2": {
       "keys": [
         "3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff"
       ]

@@ -1071,9 +1071,47 @@
     "skin": 2,
     "nativeModelSha256": "14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b"
    }
+  ],
+  "morph_gr": [
+   {
+    "dir": "morph_gr/custom",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 0,
+    "nativeModelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8"
+   },
+   {
+    "dir": "morph_gr/custom1",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 1,
+    "nativeModelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8"
+   },
+   {
+    "dir": "morph_gr/custom2",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 2,
+    "nativeModelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8"
+   }
   ]
  },
- "version": 39,
+ "version": 40,
  "nativeHeights": {
   "gib1": [
    [

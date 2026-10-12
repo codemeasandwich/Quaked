@@ -30,8 +30,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | Wrath | `wrath:0` | Missing | Committed/pushed `0cf13349`, remote verified; T-d0114751 Done |
 | Lava Man | `lavaman:0` | Missing | Committed/pushed `e0febc2f`, remote verified; T-51cf2d18 Done |
 | Aztec Guardian | `morph_az:0–2` | Missing | Committed/pushed `6f308cfb`, remote verified; T-e8decd62 Done |
-| Egyptian Guardian | `morph_eg:0–2` | Missing | All3states fitted;20 combined independent/446 GPU checks pass; isolated checks/review before commit, T-5f22456c |
-| Greek Guardian | `morph_gr:0–2` | Missing | Pending |
+| Egyptian Guardian | `morph_eg:0–2` | Missing | Committed/pushed `a155bd16`, remote verified; T-5f22456c Done |
+| Greek Guardian | `morph_gr:0–2` | Missing | All3states fitted;30 combined independent/446 GPU checks pass; isolated checks/review before commit, T-13eafa13 |
 | Rogue Death Knight | `hknight:0–1` | Native bake exists | Skin0 has identical pixels/UVs to base; reuse existing HD art with reviewed identity binding |
 | Rogue Spawn | `tarbaby:0–2` | Native bake exists | Skin0 likewise reusable; other skins need original-reference art |
 | Rogue Knight statue | `knight:1` | Existing height fallback uses skin0 | Pending; author correct slot height |

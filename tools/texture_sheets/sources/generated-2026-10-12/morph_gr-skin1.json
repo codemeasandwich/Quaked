@@ -1,0 +1,38 @@
+{
+  "key": "morph_gr",
+  "skin": 1,
+  "outputVariant": "custom1",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/morph_gr-skin1.png",
+  "sourceSha": "6631221115b40e60aa872b37352537b5c928584e61331bcc68379f16e78e6483",
+  "modelSha": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+  "layout": [
+    3,
+    276,
+    195,
+    221,
+    430,
+    142
+  ],
+  "size": [
+    1491,
+    1055
+  ],
+  "factor": 6,
+  "matte": "blue-grey",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue morph_gr.mdl skin1 supplies palette/state; generated living skin0 is exact layout target and shared stone is material reference",
+    "prompt": "Image1 is the exact EDIT TARGET: the already-fitting Greek Guardian living UV atlas. Preserve its1491x1055canvas, EVERY silhouette boundary and feature position, especially back-head width, inner/outer arm edges, cloth panels, staffs and all gaps. Change MATERIAL/COLOUR ONLY to the original PARTIAL-STONE skin1 shown in image2. Match image2's dark uniformly muted olive-brown petrification: dominant fine weathered brown stone across hair, beard, flesh, toga, boots, wristguards and staffs, with faint subdued traces of original Greek clothing/blue hem/red-brown leather/gold accents underneath. Do not leave bright white cloth or shiny gold over the stone. Image3 provides the verified continuous natural stone grain and irregular fissures; no square mosaic pixels or thick black cartoon mortar. Keep both detached panels distinct: front retains faint strip/fringe pattern understone, rear stays plain fabric-understone with no new ornaments. Preserve original blue background exactly, no geometry shifts/narrowing/stretch, new anatomy, design changes, scene, shadows, halo, text or watermark. This is the same native Guardian in its dark transitional material state, with precise UV registration.",
+    "supportingSources": [
+      {
+        "file": "tools/texture_sheets/sources/generated-2026-10-12/morph_gr-skin0.png",
+        "sha256": "9e1e2a6bc675c6920d42ad0919ba54c98accf424da1df161b11f5cff061046aa"
+      },
+      {
+        "file": "tools/texture_sheets/sources/generated-2026-10-12/guardian-stone.png",
+        "sha256": "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661"
+      }
+    ]
+  }
+}

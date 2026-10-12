@@ -18,15 +18,95 @@ const NATIVE={
  morph_gr:{sha:'662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8',skins:['444fb8ab177bd253dee1f0693656920864b00f90e12fb3a44c08fcc20db52b18','89733f772f49359d10bdec7e889b7949559df29b06ae87713324f54a7020450a','c8cd3d457d9ea848a6c29cb233f2f07e274ca996a75d85ad2baec22cabb4be28']}
 };
 // Add later cultures only after independent source pinning. Material corrections replace provisional references before qualification.
-const TARGETS=[{key:'morph_az',sources:[
- ['morph_az-skin0.png','333d627949a413fd1bb557d67e2befdf1bf34d03d3aa258af082e63042b06c33'],
- ['morph_az-skin1.png','b1e7e0ebc24e27be89bddeaf494eec4b13a18c161fe53656e27a7e889a4a63fc'],
- ['guardian-stone.png','e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661']
-]},{key:'morph_eg',sources:[
- ['morph_eg-skin0.png','fe071af30cdea1752da8520e589698a5e0c54726b7c9441fe93728ddd9e2d8a6'],
- ['morph_eg-skin1.png','5f0bd126108822191a33b09265fa4bae615e286628e711713601266ac81c1b40'],
- ['guardian-stone.png','e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661']
-]}];
+const TARGETS=[
+ {
+  "key": "morph_az",
+  "sources": [
+   [
+    "morph_az-skin0.png",
+    "333d627949a413fd1bb557d67e2befdf1bf34d03d3aa258af082e63042b06c33",
+    [
+     1492,
+     1054
+    ]
+   ],
+   [
+    "morph_az-skin1.png",
+    "b1e7e0ebc24e27be89bddeaf494eec4b13a18c161fe53656e27a7e889a4a63fc",
+    [
+     1492,
+     1054
+    ]
+   ],
+   [
+    "guardian-stone.png",
+    "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661",
+    [
+     1492,
+     1054
+    ]
+   ]
+  ]
+ },
+ {
+  "key": "morph_eg",
+  "sources": [
+   [
+    "morph_eg-skin0.png",
+    "fe071af30cdea1752da8520e589698a5e0c54726b7c9441fe93728ddd9e2d8a6",
+    [
+     1492,
+     1054
+    ]
+   ],
+   [
+    "morph_eg-skin1.png",
+    "5f0bd126108822191a33b09265fa4bae615e286628e711713601266ac81c1b40",
+    [
+     1492,
+     1054
+    ]
+   ],
+   [
+    "guardian-stone.png",
+    "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661",
+    [
+     1492,
+     1054
+    ]
+   ]
+  ]
+ },
+ {
+  "key": "morph_gr",
+  "sources": [
+   [
+    "morph_gr-skin0.png",
+    "9e1e2a6bc675c6920d42ad0919ba54c98accf424da1df161b11f5cff061046aa",
+    [
+     1491,
+     1055
+    ]
+   ],
+   [
+    "morph_gr-skin1.png",
+    "6631221115b40e60aa872b37352537b5c928584e61331bcc68379f16e78e6483",
+    [
+     1491,
+     1055
+    ]
+   ],
+   [
+    "guardian-stone.png",
+    "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661",
+    [
+     1492,
+     1054
+    ]
+   ]
+  ]
+ }
+];
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );
 const sha = bytes => createHash( 'sha256' ).update( bytes ).digest( 'hex' );
@@ -122,7 +202,7 @@ for(const spec of TARGETS){
   for(let skin=0;skin<3;skin++){
    const v=variant(key,skin);check(v,'state registered');same(v.dir,key+'/custom'+(skin||''),'unique state directory');dirs.add(v.dir);same(v.nativeModelSha256,expected.sha,'state hash boundary');same(v.maps.diffuse,'diffuse.png','diffuse file');same(v.maps.height,'height.webp','height file');same(Object.keys(v.maps).length,2,'no new emission');same(v.flipGreen,false,'generated normal convention');
    const p=JSON.parse(read(base(key,skin)+'SOURCE.json')),source='tools/texture_sheets/sources/generated-2026-10-12/'+spec.sources[skin][0];same(p.model,NAME,'fit model');same(p.nativeModelSha256,expected.sha,'fit identity');same(p.skin,skin,'fit state');same(p.source,source,'source path');check(/^[a-f0-9]{64}$/.test(spec.sources[skin][1]||''),'final generation must be independently pinned before qualification');same(p.sourceSha256,spec.sources[skin][1],'pinned generation identity');same(sha(read(source)),spec.sources[skin][1],'actual generated reference');same(JSON.stringify(p.dimensions),'[1656,1170]','sixfold fitted size');
-   const sourceBytes=read(source);same(sourceBytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a','source PNG');same(sourceBytes.readUInt32BE(16),1492,'source width');same(sourceBytes.readUInt32BE(20),1054,'source height');
+   const sourceBytes=read(source);same(sourceBytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a','source PNG');check(spec.sources[skin][2]?.length===2,'final per-source dimensions independently pinned');same(sourceBytes.readUInt32BE(16),spec.sources[skin][2][0],'source width');same(sourceBytes.readUInt32BE(20),spec.sources[skin][2][1],'source height');
    for(const file of ['diffuse.png','height.webp'])same(sha(read(base(key,skin)+file)),p.files[file],'actual fitted bytes');
    const d=await decodedImage(base(key,skin)+'diffuse.png'),h=await decodedImage(base(key,skin)+'height.webp');for(const image of [d,h]){same(image.width,1656,'decoded width');same(image.height,1170,'decoded height');check(image.data.every((v,i)=>i%4!==3||v===255),'opaque map');}
    check(h.data.every((v,i)=>i%4===3||v===h.data[i-i%4]),'grayscale height');diffuses.add(sha(d.data));heights.add(sha(h.data));
@@ -224,3 +304,27 @@ Deno.test('Shared Guardian statue reuses exact fitted art, relief and prepared i
   const current=keys(key);same(current.size,6,'next culture still has all six input identities');same([...current].filter(k=>firstKeys.has(k)).length,2,'only native and custom stone inputs deduplicate');same([...current].filter(k=>!firstKeys.has(k)).length,4,'living and transitional states add four exact inputs');
  }
 });
+Deno.test('Greek increment preserves all published Aztec and Egyptian catalogue data and Egyptian image bytes',()=>{
+ const modelKeys=['boss','knight','ogre','soldier','wizard','backpack','suit','armor','shambler','zombie','demon','h_demon','h_dog','zom_gib','h_shams','shalrath','oldone','enforcer','tarbaby','hknight','scor','dragon','s_wrath','mummy','dog','fish','grem','armabody','armalegs','eel2','sword','wrath','lavaman','morph_az','morph_eg'];
+ const heightKeys=['gib1','gib2','gib3','zom_gib','ogre','h_ogre','demon','h_demon','shambler','h_shams','knight','h_knight','soldier','h_guard','wizard','h_wizard','h_dog','dog','zombie','h_zombie','boss','armabody','eel2'];
+ const prior=structuredClone(index);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
+ same(sha(JSON.stringify(prior)),'b2f2e3834b184e35342307520ddf397cba23b1a0b9d6594f99aa81a66f43d72e','all35prior model families and23native-height families unchanged');
+ const files={
+  'custom/diffuse.png':'335363768ff102f1e3f1ae9e37468428e91c28876c731a02dc2b586175f23ea2',
+  'custom/height.webp':'7d93bfa06167aefb6461a5d98394cf90e504cc1da4c71dc77330b91ba1eb8369',
+  'custom1/diffuse.png':'6d282efb7c238d711aa9dcdadf679c1b642f8dc5c9c9a93375d5ca7e1a973dc7',
+  'custom1/height.webp':'ed88c75f59e1b844003ed01f9f8b54f3bf40b73c51710f6f7c2c3a8017d32b40',
+  'custom2/diffuse.png':'6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04',
+  'custom2/height.webp':'bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137'
+ };
+ for(const[file,digest]of Object.entries(files))same(sha(read('newer/enemies/morph_eg/'+file)),digest,'published Egyptian bytes retained: '+file);
+});
+Deno.test('Simultaneous Guardian preparation keeps nine culture/state material bindings separate despite shared statue art',async()=>fixture(async(skins,requests)=>{
+ const models=await Promise.all(TARGETS.map(async spec=>(await native(spec.key)).model));await skins.R_NewerSkinsPrepare(models);same(requests.length,18,'nine separate diffuse/height pairs');requests.forEach(r=>r.done(r.texture));
+ const entity={model:null,_entityIndex:31},selected=new Set();
+ for(let i=0;i<TARGETS.length;i++)for(const skin of [0,1,2,1,0,2]){
+  const key=TARGETS[i].key,model=models[i];entity.model=model;const material=skins.R_NewerAliasMaterial(entity,model.name,true,skin),request=requests.find(r=>r.url.startsWith(base(key,skin)+'diffuse.png?'));
+  check(material&&request,'prepared culture/state ready');same(material.map,request.texture,'same entity switching culture/state keeps exact texture');selected.add(material.map);
+ }
+ same(selected.size,9,'unique directories prevent all cross-culture/state material collisions');same(requests.length,18,'switching creates no extra image requests');check(skins.R_NewerSkinsStatus(models).settled,'all prepared culture/state images settle');
+}));
