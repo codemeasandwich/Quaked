@@ -1,0 +1,30 @@
+{
+  "key": "tarbaby",
+  "skin": 2,
+  "outputVariant": "rogue2",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/tarbaby-rogue-skin2.png",
+  "sourceSha": "4ed67597d7cbd0bd3a90bdce25276c882c2d67c8d79a0c2566689ef39c6fe1d4",
+  "modelSha": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e",
+  "layout": [
+    3,
+    304,
+    194,
+    130,
+    256,
+    61
+  ],
+  "size": [
+    1570,
+    1002
+  ],
+  "factor": 6,
+  "matte": "blue-grey",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Generated green skin1 is exact layout/material target; original Rogue tarbaby.mdl skin2 supplies actual nodule positions and palette",
+    "prompt": "Image1 is the exact EDIT TARGET: the detailed dark olive-green Spawn UV atlas that already fits the native model. Preserve its1570x1001canvas, BOTH body-half silhouettes, every boundary, ridge, fold, dark crevice and blue gap exactly. Image2 is the original game's skin2 and controls the only change: add its small round muted brown/orange nodules at the SAME atlas locations, counts and proportional sizes. Do not move/repaint unrelated green anatomy or rearrange either half. The nodules are modest opaque organic bumps, not eyes: no irises, pupils, glow, sparks or bloody wounds. Preserve the dark original olive-green body and the reference's restrained brown nodules, with fine natural moist/leathery surface detail. The two stray small reference dots off the right body may stay in the source but must not become new body parts. No extra anatomy, face, mouth, teeth, limbs or spikes. Background stays pure blue RGB0,0,255, no shadows, scene, text, labels, border or watermark. It is the same production UV atlas with the original nodule variant, not a redesign.",
+    "supportingSource": "tools/texture_sheets/sources/generated-2026-10-12/tarbaby-rogue-skin1.png",
+    "supportingSourceSha256": "bafc3bcbf99987188f89a038f389b11e3ece23adec28fb925f79875720cad48f"
+  }
+}

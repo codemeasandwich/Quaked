@@ -32,8 +32,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | Aztec Guardian | `morph_az:0–2` | Missing | Committed/pushed `6f308cfb`, remote verified; T-e8decd62 Done |
 | Egyptian Guardian | `morph_eg:0–2` | Missing | Committed/pushed `a155bd16`, remote verified; T-5f22456c Done |
 | Greek Guardian | `morph_gr:0–2` | Missing | Committed/pushed `d7e466c8`, remote verified; T-13eafa13 Done |
-| Rogue Death Knight | `hknight:0–1` | Native bake exists | Skin0 HD reused exactly; stone skin1 generated/fitted;10 independent/347 GPU checks pass; finalchecks beforecommit, T-03622157 |
-| Rogue Spawn | `tarbaby:0–2` | Native bake exists | Skin0 likewise reusable; other skins need original-reference art |
+| Rogue Death Knight | `hknight:0–1` | Native bake exists | Committed/pushed `4a0375d7`, remote verified; T-03622157 Done |
+| Rogue Spawn | `tarbaby:0–2` | Native bake exists | Skin0 HD reused; green1/nodule2 fitted;12 new+6 base independent/198 GPU checks pass; finalchecks beforecommit, T-e2dbdfec |
 | Rogue Knight statue | `knight:1` | Existing height fallback uses skin0 | Pending; author correct slot height |
 | Rogue Ogre variant | `ogre:1` | Existing height fallback uses skin0 | Pending; author correct slot height |
 

@@ -76,7 +76,7 @@ Deno.test('Eel preserves every previously delivered model and native-height fami
  const modelKeys=['boss','knight','ogre','soldier','wizard','backpack','suit','armor','shambler','zombie','demon','h_demon','h_dog','zom_gib','h_shams','shalrath','oldone','enforcer','tarbaby','hknight','scor','dragon','s_wrath','mummy','dog','fish','grem','armabody','armalegs'];
  const heightKeys=['gib1','gib2','gib3','zom_gib','ogre','h_ogre','demon','h_demon','shambler','h_shams','knight','h_knight','soldier','h_guard','wizard','h_wizard','h_dog','dog','zombie','h_zombie','boss','armabody'];
  const other=structuredClone(index);delete other.version;
- other.models=Object.fromEntries(Object.entries(other.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,key==='hknight'?list.slice(0,1):list]));
+ other.models=Object.fromEntries(Object.entries(other.models).filter(([key])=>modelKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));
  other.nativeHeights=Object.fromEntries(Object.entries(other.nativeHeights).filter(([key])=>heightKeys.includes(key)));
  same(sha(JSON.stringify(other)),'ef9a084df3f412bf9bf86e09b9d8f459d1ff9385638400e886c86aa3064c9942','all prior data remains byte-equivalent; later append-only families may be added');
 });

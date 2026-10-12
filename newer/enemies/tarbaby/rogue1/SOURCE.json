@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "model": "progs/tarbaby.mdl",
+  "nativeModelSha256": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/tarbaby-rogue-skin1.png",
+  "sourceSha256": "bafc3bcbf99987188f89a038f389b11e3ece23adec28fb925f79875720cad48f",
+  "sourceDimensions": [
+    1570,
+    1001
+  ],
+  "dimensions": [
+    1824,
+    1164
+  ],
+  "factor": 6,
+  "skin": 1,
+  "poses": 61,
+  "vertices": 130,
+  "triangles": 256,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1824,
+    1164
+  ],
+  "registration": null,
+  "mattePolicy": "blue-grey",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 311185,
+      "directPixels": 311185,
+      "edgePixels": 0
+    },
+    {
+      "id": 2,
+      "surfacePixels": 311366,
+      "directPixels": 311366,
+      "edgePixels": 0
+    }
+  ],
+  "surfacePixels": 622551,
+  "edgePixels": 0,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "ef41d9d08236a6604aa80a567699bf3985a98c4621ca03eaa1cda1c123f5e180",
+    "height.webp": "8c40ba4959ac60ddc066b668cc892c3e3295d55fdd73444b5c0ace70a004cb3e"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue tarbaby.mdl green skin1 decoded with native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this ORIGINAL Quake Dissolution of Eternity green SPAWN (tarbaby) skin1 UV atlas at high resolution. Preserve the exact complete304:194 aspect ratio and BOTH long irregular body-half silhouettes, every edge, coordinate, proportion and blue gap, including the wide lower bases reaching the bottom border. These stretched atlas shapes are parts of an amorphous bouncing blob, NOT heads, faces, humanoids or plants. Keep the original very dark olive-green and near-black palette, same organic ridges/folds and large dark crevices in exactly their original placement. Add fine continuous leathery/slimy organic grain, subtle moist surface detail and gentle ridge highlights while keeping the skin dark, not bright lime or neon. Do not invent eyes, teeth, mouths, skulls, limbs, spikes, nodules or new anatomy. Do not turn the original low-resolution grain into enlarged pixel mosaics. Keep pure flat blue background RGB0,0,255 with crisp silhouette boundaries, no cast shadows, halo, scene, text, labels, border or watermark. Precise production UV texture atlas; original pattern, palette and layout take priority."
+  }
+}

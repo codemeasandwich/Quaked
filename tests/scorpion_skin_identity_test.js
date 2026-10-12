@@ -72,7 +72,7 @@ Deno.test( 'actual Centroid assets retain both supplied sources, matching dimens
  const other = structuredClone( index ); delete other.version;
  // Pin every baseline model and its data; later added families have their own contracts.
  const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight"];
- other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,key==='hknight'?list.slice(0,1):list]));
+ other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));
  const baselineHeightKeys = ["gib1", "gib2", "gib3", "zom_gib", "ogre", "h_ogre", "demon", "h_demon", "shambler", "h_shams", "knight", "h_knight", "soldier", "h_guard", "wizard", "h_wizard", "h_dog", "dog", "zombie", "h_zombie", "boss"];
  other.nativeHeights = Object.fromEntries(Object.entries(other.nativeHeights).filter(([key]) => baselineHeightKeys.includes(key)));
  same( sha( JSON.stringify( other ) ), '59d8a84a50a47a31e0601dcda3efbb4570155d8b1b235a8feff7aca08767e271', 'all pre-existing enemy variants and native height mappings unchanged' );

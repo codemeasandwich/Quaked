@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "model": "progs/tarbaby.mdl",
+  "nativeModelSha256": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e",
+  "skin": 0,
+  "dimensions": [
+    1520,
+    970
+  ],
+  "poses": 61,
+  "vertices": 130,
+  "triangles": 256,
+  "source": "newer/enemies/tarbaby/custom/diffuse.webp",
+  "sourceSha256": "95e9bd8d3a9f30fe28f2d15617bd7f4061c93086582415940144b1f56ea3d389",
+  "files": {
+    "diffuse.webp": "95e9bd8d3a9f30fe28f2d15617bd7f4061c93086582415940144b1f56ea3d389",
+    "height.webp": "dfc80b188f46bee146ea3824e13759a7017bd4e5e12f7152bdcc2f04331a5e95"
+  },
+  "reuse": {
+    "fromDirectory": "tarbaby/custom",
+    "fromModelSha256": "9933ee9b251e4c32a22129e2a9cda8cebfd2f317aeb2961a0591a098e9e823ea",
+    "sourceProvenance": "newer/enemies/tarbaby/custom/SOURCE.json",
+    "sourceProvenanceSha256": "cbf13e97ddae342aacc0d898d8b0a80e850bd213190af03b85fc6e37c341add2",
+    "nativeSkinSha256": "8eba28bd9d361bce5698e770c10a00742162398e7bab797b8fcddabf5750e626",
+    "proof": "Skin0 pixels, header exceptnumskins, UVs, triangles and all meaningful frame bounds/names/vertices/normals match base.",
+    "reasonForUniqueDirectory": "Existing material cache uses version/directory; packed paths are literal. Bytecopies retain original art and exactnormal reuse."
+  },
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  }
+}

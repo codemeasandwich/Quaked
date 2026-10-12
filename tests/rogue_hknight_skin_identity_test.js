@@ -61,7 +61,7 @@ Deno.test('Rogue skin0 is exactly compatible with base artwork while stone skin1
 });
 Deno.test('Rogue variants append without changing any prior catalogue entry or base asset and accurately record copied/generated provenance',async()=>{
  same(index.models.hknight.length,3,'base0 plus Rogue0 and Rogue1');same(sha(JSON.stringify(index.models.hknight[0])),'c5d9a133223ed6ab6ca53ba3730000d360e5eae5017480c78807796e73b17fef','original base variant exact');
- const prior=structuredClone(index);delete prior.version;prior.models.hknight=prior.models.hknight.slice(0,1);
+ const prior=structuredClone(index);delete prior.version;prior.models.hknight=prior.models.hknight.slice(0,1);prior.models.tarbaby=prior.models.tarbaby.slice(0,1);
  same(sha(JSON.stringify(prior)),'cfec724325b5606d93c70c9392274b3ebd9fce5f28a832f13129971714a570ea','entire pre-increment catalogue preserved');
  same(new Set(index.models.hknight.map(v=>v.dir)).size,3,'unique cache directories for all three bindings');
  for(const[file,digest]of [['diffuse.webp',DIFFUSE_SHA],['height.webp',HEIGHT_SHA]]){same(sha(read('newer/enemies/hknight/custom/'+file)),digest,'base asset unchanged');same(sha(read('newer/enemies/hknight/rogue0/'+file)),digest,'Rogue0 asset is exact copy');}

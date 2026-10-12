@@ -39908,6 +39908,50 @@
       "height": 924,
       "bytes": 13660600,
       "compressedBytes": 5012291
+    },
+    "4dd4a39dd83853b183101a6dc42802d4f12c3c8ca0ca9d5ce4bcfdfb5e2a6956": {
+      "file": "newer/normals/4dd4a39dd83853b183101a6dc42802d4f12c3c8ca0ca9d5ce4bcfdfb5e2a6956.nm.gz",
+      "input": {
+        "width": 1824,
+        "height": 1164,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "a58e782a6e6bed9b350b3673c61873696269f9dfb29432621c8c9ec1f043f84a",
+        "fullbright": null,
+        "scalar": "dd09e513ab814eb47cf235689550d982d4fdf5a6b6c7a57ee2726107b8b8d648",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "3fe176dc95e66ac879ea063bd05d080d4da9c27d0c72cd996c0cbbdca1e053c0",
+      "rawSha256": "cab6e1f07ee0819ae363681fa8a6f621534d755f0fa778112a583a5ccd886ced",
+      "width": 1824,
+      "height": 1164,
+      "bytes": 16985272,
+      "compressedBytes": 4857759
+    },
+    "ca2cde0507ffeb95b3f7d9a51ce9e2ba194ed8e198436bb12215b8c4ff901db1": {
+      "file": "newer/normals/ca2cde0507ffeb95b3f7d9a51ce9e2ba194ed8e198436bb12215b8c4ff901db1.nm.gz",
+      "input": {
+        "width": 1824,
+        "height": 1164,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "da3056463d50c4d1b941ac044c545812a666ecb7b79587fa1ba9d22ca5ec5444",
+        "fullbright": null,
+        "scalar": "80c1cd56a40a97c42b479616200f44c0cc4bb92802ce397d79a65e1df1b92650",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "0791dce00d5830fdb3ece983b3afd2f9803304722d4e75f487fced533978ffd7",
+      "rawSha256": "a01b1535a9f9d62d228224a853c21bb2509095b2bb3065983e7dedc79f6f0a82",
+      "width": 1824,
+      "height": 1164,
+      "bytes": 16985272,
+      "compressedBytes": 4868341
     }
   },
   "levels": {
@@ -70983,6 +71027,21 @@
     "custom:hknight/rogue1": {
       "keys": [
         "af0f9332fcd6e65fbcf01a343ba2393ddb4664024c05348b59ad06aac3896145"
+      ]
+    },
+    "custom:tarbaby/rogue0": {
+      "keys": [
+        "6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c"
+      ]
+    },
+    "custom:tarbaby/rogue1": {
+      "keys": [
+        "4dd4a39dd83853b183101a6dc42802d4f12c3c8ca0ca9d5ce4bcfdfb5e2a6956"
+      ]
+    },
+    "custom:tarbaby/rogue2": {
+      "keys": [
+        "ca2cde0507ffeb95b3f7d9a51ce9e2ba194ed8e198436bb12215b8c4ff901db1"
       ]
     }
   }

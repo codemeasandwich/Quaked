@@ -71,7 +71,7 @@ Deno.test( 'actual Phantom Swordsman assets retain generated source, matching di
  const other = structuredClone( index ); delete other.version;
  // Pin all existing families and their data while permitting future append-only enemy families.
  const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor", "dragon", "s_wrath", "mummy", "dog", "fish", "grem", "armabody", "armalegs", "eel2"];
- other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,key==='hknight'?list.slice(0,1):list]));
+ other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));
  const baselineHeightKeys = ["gib1", "gib2", "gib3", "zom_gib", "ogre", "h_ogre", "demon", "h_demon", "shambler", "h_shams", "knight", "h_knight", "soldier", "h_guard", "wizard", "h_wizard", "h_dog", "dog", "zombie", "h_zombie", "boss", "armabody", "eel2"];
  other.nativeHeights = Object.fromEntries(Object.entries(other.nativeHeights).filter(([key]) => baselineHeightKeys.includes(key)));
  same(sha(JSON.stringify(other)), '5dac3ca6c52ca19fa3e57dd7e8bce54b0599dae7df5da9cae69bad52509bd758', 'all prior model and native-height families preserved');
