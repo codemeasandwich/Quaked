@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "model": "progs/eel2.mdl",
+  "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin4.png",
+  "sourceSha256": "e608016e3cd7c2e2d2d503fc265d9d872b9b70e2b9bc650e7c27750695ab6118",
+  "sourceDimensions": [
+    1050,
+    1498
+  ],
+  "dimensions": [
+    1088,
+    1552
+  ],
+  "factor": 8,
+  "skin": 4,
+  "poses": 21,
+  "vertices": 148,
+  "triangles": 260,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1088,
+    1552
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 343848,
+      "directPixels": 342979,
+      "edgePixels": 869
+    },
+    {
+      "id": 2,
+      "surfacePixels": 343851,
+      "directPixels": 336122,
+      "edgePixels": 7729
+    },
+    {
+      "id": 3,
+      "surfacePixels": 9921,
+      "directPixels": 9849,
+      "edgePixels": 72
+    },
+    {
+      "id": 4,
+      "surfacePixels": 9921,
+      "directPixels": 8788,
+      "edgePixels": 1133
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 9801,
+      "directPixels": 9644,
+      "edgePixels": 157
+    },
+    {
+      "id": 7,
+      "surfacePixels": 9801,
+      "directPixels": 8533,
+      "edgePixels": 1268
+    },
+    {
+      "id": 8,
+      "surfacePixels": 10433,
+      "directPixels": 10258,
+      "edgePixels": 175
+    },
+    {
+      "id": 9,
+      "surfacePixels": 10433,
+      "directPixels": 9046,
+      "edgePixels": 1387
+    },
+    {
+      "id": 10,
+      "surfacePixels": 9317,
+      "directPixels": 9109,
+      "edgePixels": 208
+    },
+    {
+      "id": 11,
+      "surfacePixels": 9317,
+      "directPixels": 8042,
+      "edgePixels": 1275
+    },
+    {
+      "id": 12,
+      "surfacePixels": 9921,
+      "directPixels": 9678,
+      "edgePixels": 243
+    },
+    {
+      "id": 13,
+      "surfacePixels": 9921,
+      "directPixels": 8609,
+      "edgePixels": 1312
+    },
+    {
+      "id": 14,
+      "surfacePixels": 9317,
+      "directPixels": 9192,
+      "edgePixels": 125
+    },
+    {
+      "id": 15,
+      "surfacePixels": 9317,
+      "directPixels": 8176,
+      "edgePixels": 1141
+    },
+    {
+      "id": 16,
+      "surfacePixels": 9317,
+      "directPixels": 9179,
+      "edgePixels": 138
+    },
+    {
+      "id": 17,
+      "surfacePixels": 9317,
+      "directPixels": 8043,
+      "edgePixels": 1274
+    },
+    {
+      "id": 18,
+      "surfacePixels": 9317,
+      "directPixels": 9210,
+      "edgePixels": 107
+    },
+    {
+      "id": 19,
+      "surfacePixels": 9317,
+      "directPixels": 8049,
+      "edgePixels": 1268
+    }
+  ],
+  "surfacePixels": 842388,
+  "edgePixels": 19881,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "ae492c2ef7e1bdec85068f4160ebd642f4a7cb6f9206570f06f014d1656b5bf8",
+    "height.webp": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin4, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the edit target, detailed uncharged Electric Eel production UV atlas. Image2 is the ORIGINAL skin4, the stronger fourth charging state. Change only electrical pattern on the two body strips: thin bright pale cyan-white jagged connected arcs down the charge-node rows, with subtle turquoise edging and brighter eyes, matching image2's exact path, location and extent. Preserve the same eel anatomy, brown/olive and cream palette everywhere else, exact atlas proportions and every UV island position. Keep all sixteen detached mouth/flesh triangles and all noncharging areas identical to image1. Do not add large branches, blue whole-body tint, excess bloom or external sparks. Keep black background, no new objects, text, labels or watermark. Original layout and state4 design are strict constraints."
+  },
+  "chargeOverlay": {
+    "base": "eel2/custom",
+    "nativeChangedPixels": 1169,
+    "allowedPixels": 169792,
+    "changedPixels": 165150,
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1,
+    "baseDiffuseSha256": "8ed61a2d170cfe1bac2838c5bbe96aa7f69e62ebe8bc6577b13a867faae9f936",
+    "sharedHeightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  }
+}

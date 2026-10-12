@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "model": "progs/eel2.mdl",
+  "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin0.png",
+  "sourceSha256": "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
+  "sourceDimensions": [
+    1050,
+    1498
+  ],
+  "dimensions": [
+    1088,
+    1552
+  ],
+  "factor": 8,
+  "skin": 0,
+  "poses": 21,
+  "vertices": 148,
+  "triangles": 260,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1088,
+    1552
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 343848,
+      "directPixels": 343301,
+      "edgePixels": 547
+    },
+    {
+      "id": 2,
+      "surfacePixels": 343851,
+      "directPixels": 337282,
+      "edgePixels": 6569
+    },
+    {
+      "id": 3,
+      "surfacePixels": 9921,
+      "directPixels": 9894,
+      "edgePixels": 27
+    },
+    {
+      "id": 4,
+      "surfacePixels": 9921,
+      "directPixels": 8962,
+      "edgePixels": 959
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 9801,
+      "directPixels": 9729,
+      "edgePixels": 72
+    },
+    {
+      "id": 7,
+      "surfacePixels": 9801,
+      "directPixels": 8712,
+      "edgePixels": 1089
+    },
+    {
+      "id": 8,
+      "surfacePixels": 10433,
+      "directPixels": 10369,
+      "edgePixels": 64
+    },
+    {
+      "id": 9,
+      "surfacePixels": 10433,
+      "directPixels": 9294,
+      "edgePixels": 1139
+    },
+    {
+      "id": 10,
+      "surfacePixels": 9317,
+      "directPixels": 9235,
+      "edgePixels": 82
+    },
+    {
+      "id": 11,
+      "surfacePixels": 9317,
+      "directPixels": 8313,
+      "edgePixels": 1004
+    },
+    {
+      "id": 12,
+      "surfacePixels": 9921,
+      "directPixels": 9849,
+      "edgePixels": 72
+    },
+    {
+      "id": 13,
+      "surfacePixels": 9921,
+      "directPixels": 8901,
+      "edgePixels": 1020
+    },
+    {
+      "id": 14,
+      "surfacePixels": 9317,
+      "directPixels": 9291,
+      "edgePixels": 26
+    },
+    {
+      "id": 15,
+      "surfacePixels": 9317,
+      "directPixels": 8496,
+      "edgePixels": 821
+    },
+    {
+      "id": 16,
+      "surfacePixels": 9317,
+      "directPixels": 9292,
+      "edgePixels": 25
+    },
+    {
+      "id": 17,
+      "surfacePixels": 9317,
+      "directPixels": 8389,
+      "edgePixels": 928
+    },
+    {
+      "id": 18,
+      "surfacePixels": 9317,
+      "directPixels": 9302,
+      "edgePixels": 15
+    },
+    {
+      "id": 19,
+      "surfacePixels": 9317,
+      "directPixels": 8418,
+      "edgePixels": 899
+    }
+  ],
+  "surfacePixels": 842388,
+  "edgePixels": 15358,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "8ed61a2d170cfe1bac2838c5bbe96aa7f69e62ebe8bc6577b13a867faae9f936",
+    "height.webp": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin0, native palette, nearest enlarged4x",
+    "prompt": "Faithfully repaint this original Quake Dissolution of Eternity ELECTRIC EEL model UV atlas at high resolution. This is the ORIGINAL uncharged skin0 and is the exact layout reference. Preserve the complete 136:194 aspect ratio and EVERY island at precisely its original coordinates and silhouette: two long eel body strips with small heads at the top, and sixteen detached triangular mouth/flesh pieces in two vertical columns. Do not rotate, mirror, rearrange, crop, merge or omit any piece. Keep the original muted brown/olive-green scaly back, pale dirty cream/tan underside, dark lattice scale pattern and restrained red flesh at mouth pieces and tail tips. Add fine reptilian scales, wet leathery detail, believable tiny teeth and restrained flesh detail within the existing shapes, without changing design or broad colours. The right-hand column triangles are dark blood-maroon, not black missing pieces; retain all eight. Keep pure black atlas background and crisp original island boundaries, no cast shadows. No lightning, glow, new fins, anatomy, text, labels, scene or watermark. It must remain a precisely registered usable production texture atlas, not a rendered eel portrait."
+  },
+  "nativeHeight": {
+    "file": "heights/eel2/skin0_0.webp",
+    "sha256": "8e16bdb0ff8f4ce40d0c2dfd78ce126d97d8d93c39466e1c766ec806ccbabca0",
+    "dimensions": [
+      136,
+      194
+    ],
+    "flatHeight": null
+  }
+}

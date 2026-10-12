@@ -31,6 +31,6 @@ if __name__ == '__main__':
   image=native_skins(data,palette)[0][0];target=args.output/relative
   height_for(image,target,key+'/native')
   flat=flatten_height(target,data,1,recipe['flatHeightVertices']) if recipe.get('flatHeightVertices') else None
-  path=args.output/key/'custom/SOURCE.json';report=json.loads(path.read_text())
+  path=args.output/key/recipe.get('outputVariant','custom')/'SOURCE.json';report=json.loads(path.read_text())
   report['nativeHeight']=dict(file=relative.as_posix(),sha256=hashlib.sha256(target.read_bytes()).hexdigest(),dimensions=list(image.size),flatHeight=flat)
   path.write_text(json.dumps(report,indent=2)+'\n')

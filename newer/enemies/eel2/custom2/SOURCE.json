@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "model": "progs/eel2.mdl",
+  "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin2.png",
+  "sourceSha256": "65c9d256f3ccbd716d0873199e541e3f6d53cc9013bf65ee1fa1bb0232960a56",
+  "sourceDimensions": [
+    1050,
+    1498
+  ],
+  "dimensions": [
+    1088,
+    1552
+  ],
+  "factor": 8,
+  "skin": 2,
+  "poses": 21,
+  "vertices": 148,
+  "triangles": 260,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1088,
+    1552
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 343848,
+      "directPixels": 343011,
+      "edgePixels": 837
+    },
+    {
+      "id": 2,
+      "surfacePixels": 343851,
+      "directPixels": 336330,
+      "edgePixels": 7521
+    },
+    {
+      "id": 3,
+      "surfacePixels": 9921,
+      "directPixels": 9839,
+      "edgePixels": 82
+    },
+    {
+      "id": 4,
+      "surfacePixels": 9921,
+      "directPixels": 8785,
+      "edgePixels": 1136
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 9801,
+      "directPixels": 9650,
+      "edgePixels": 151
+    },
+    {
+      "id": 7,
+      "surfacePixels": 9801,
+      "directPixels": 8532,
+      "edgePixels": 1269
+    },
+    {
+      "id": 8,
+      "surfacePixels": 10433,
+      "directPixels": 10267,
+      "edgePixels": 166
+    },
+    {
+      "id": 9,
+      "surfacePixels": 10433,
+      "directPixels": 9066,
+      "edgePixels": 1367
+    },
+    {
+      "id": 10,
+      "surfacePixels": 9317,
+      "directPixels": 9134,
+      "edgePixels": 183
+    },
+    {
+      "id": 11,
+      "surfacePixels": 9317,
+      "directPixels": 8069,
+      "edgePixels": 1248
+    },
+    {
+      "id": 12,
+      "surfacePixels": 9921,
+      "directPixels": 9729,
+      "edgePixels": 192
+    },
+    {
+      "id": 13,
+      "surfacePixels": 9921,
+      "directPixels": 8653,
+      "edgePixels": 1268
+    },
+    {
+      "id": 14,
+      "surfacePixels": 9317,
+      "directPixels": 9219,
+      "edgePixels": 98
+    },
+    {
+      "id": 15,
+      "surfacePixels": 9317,
+      "directPixels": 8230,
+      "edgePixels": 1087
+    },
+    {
+      "id": 16,
+      "surfacePixels": 9317,
+      "directPixels": 9210,
+      "edgePixels": 107
+    },
+    {
+      "id": 17,
+      "surfacePixels": 9317,
+      "directPixels": 8104,
+      "edgePixels": 1213
+    },
+    {
+      "id": 18,
+      "surfacePixels": 9317,
+      "directPixels": 9247,
+      "edgePixels": 70
+    },
+    {
+      "id": 19,
+      "surfacePixels": 9317,
+      "directPixels": 8106,
+      "edgePixels": 1211
+    }
+  ],
+  "surfacePixels": 842388,
+  "edgePixels": 19206,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "5471a5c3f3c0a56bc64424a5d1b5781a6db436b240b8b2f270344842dba7929f",
+    "height.webp": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin2, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the EDIT TARGET: detailed uncharged Electric Eel UV atlas. Image2 is ORIGINAL skin2 and specifies charge locations/colour. Produce the exact same atlas as image1 but illuminate the original row of charge nodes on each body strip as small cool pale cyan-white dots, matching image2's locations, sizes and uneven progression. This is the second charge state; do not add broad connecting lightning or blue skin. Preserve every original feature, UV island boundary/position and image dimensions, brown/olive scales, cream underside, eyes, and all sixteen triangular pieces unchanged. Change only the charge nodes shown in image2. Pure black background; no external glow, text, new anatomy, scene or watermark."
+  },
+  "chargeOverlay": {
+    "base": "eel2/custom",
+    "nativeChangedPixels": 416,
+    "allowedPixels": 64000,
+    "changedPixels": 59396,
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1,
+    "baseDiffuseSha256": "8ed61a2d170cfe1bac2838c5bbe96aa7f69e62ebe8bc6577b13a867faae9f936",
+    "sharedHeightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "model": "progs/eel2.mdl",
+  "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin5.png",
+  "sourceSha256": "21c309eb66f7c91bd78cb2e4a3bd0f042a9ba3061d5c0acb0f6a1414ccf31ef3",
+  "sourceDimensions": [
+    1050,
+    1498
+  ],
+  "dimensions": [
+    1088,
+    1552
+  ],
+  "factor": 8,
+  "skin": 5,
+  "poses": 21,
+  "vertices": 148,
+  "triangles": 260,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1088,
+    1552
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 343848,
+      "directPixels": 342969,
+      "edgePixels": 879
+    },
+    {
+      "id": 2,
+      "surfacePixels": 343851,
+      "directPixels": 335911,
+      "edgePixels": 7940
+    },
+    {
+      "id": 3,
+      "surfacePixels": 9921,
+      "directPixels": 9840,
+      "edgePixels": 81
+    },
+    {
+      "id": 4,
+      "surfacePixels": 9921,
+      "directPixels": 8736,
+      "edgePixels": 1185
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 9801,
+      "directPixels": 9646,
+      "edgePixels": 155
+    },
+    {
+      "id": 7,
+      "surfacePixels": 9801,
+      "directPixels": 8482,
+      "edgePixels": 1319
+    },
+    {
+      "id": 8,
+      "surfacePixels": 10433,
+      "directPixels": 10273,
+      "edgePixels": 160
+    },
+    {
+      "id": 9,
+      "surfacePixels": 10433,
+      "directPixels": 9013,
+      "edgePixels": 1420
+    },
+    {
+      "id": 10,
+      "surfacePixels": 9317,
+      "directPixels": 9127,
+      "edgePixels": 190
+    },
+    {
+      "id": 11,
+      "surfacePixels": 9317,
+      "directPixels": 8040,
+      "edgePixels": 1277
+    },
+    {
+      "id": 12,
+      "surfacePixels": 9921,
+      "directPixels": 9722,
+      "edgePixels": 199
+    },
+    {
+      "id": 13,
+      "surfacePixels": 9921,
+      "directPixels": 8612,
+      "edgePixels": 1309
+    },
+    {
+      "id": 14,
+      "surfacePixels": 9317,
+      "directPixels": 9215,
+      "edgePixels": 102
+    },
+    {
+      "id": 15,
+      "surfacePixels": 9317,
+      "directPixels": 8189,
+      "edgePixels": 1128
+    },
+    {
+      "id": 16,
+      "surfacePixels": 9317,
+      "directPixels": 9196,
+      "edgePixels": 121
+    },
+    {
+      "id": 17,
+      "surfacePixels": 9317,
+      "directPixels": 8077,
+      "edgePixels": 1240
+    },
+    {
+      "id": 18,
+      "surfacePixels": 9317,
+      "directPixels": 9244,
+      "edgePixels": 73
+    },
+    {
+      "id": 19,
+      "surfacePixels": 9317,
+      "directPixels": 8083,
+      "edgePixels": 1234
+    }
+  ],
+  "surfacePixels": 842388,
+  "edgePixels": 20012,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "8d46efe49942d62c1ba86a79ac76294f8483f922ad164e23f9a278d76f5d17f5",
+    "height.webp": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin5, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the edit target, the detailed uncharged Electric Eel UV atlas. Image2 is the ORIGINAL game's final charge skin5. Create a precisely aligned final electrical charge variant. Follow image2: brighter eyes and a thin intense pale cyan-white irregular electrical arc tracing the original charge-node row down the upper-to-middle length of each body strip, with restrained turquoise edge and small local branches only where the original pattern shows them. It must occupy the original narrow route and extent, not the entire body. Preserve image1's exact atlas proportions, every UV position and outline, unchanged brown/olive scales, cream underside, head, tail and all sixteen detached red triangles. Do not change the rest of the anatomy or overall palette. Keep black background, no scene, text, labels, watermark or halo outside islands. This is the same production skin in its final charge state."
+  },
+  "chargeOverlay": {
+    "base": "eel2/custom",
+    "nativeChangedPixels": 1473,
+    "allowedPixels": 198848,
+    "changedPixels": 194196,
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1,
+    "baseDiffuseSha256": "8ed61a2d170cfe1bac2838c5bbe96aa7f69e62ebe8bc6577b13a867faae9f936",
+    "sharedHeightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  }
+}

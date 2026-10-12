@@ -1,0 +1,35 @@
+{
+  "key": "eel2",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin5.png",
+  "sourceSha": "21c309eb66f7c91bd78cb2e4a3bd0f042a9ba3061d5c0acb0f6a1414ccf31ef3",
+  "modelSha": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "layout": [
+    6,
+    136,
+    194,
+    148,
+    260,
+    21
+  ],
+  "size": [
+    1050,
+    1498
+  ],
+  "factor": 8,
+  "matte": "black",
+  "skin": 5,
+  "outputVariant": "custom5",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin5, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the edit target, the detailed uncharged Electric Eel UV atlas. Image2 is the ORIGINAL game's final charge skin5. Create a precisely aligned final electrical charge variant. Follow image2: brighter eyes and a thin intense pale cyan-white irregular electrical arc tracing the original charge-node row down the upper-to-middle length of each body strip, with restrained turquoise edge and small local branches only where the original pattern shows them. It must occupy the original narrow route and extent, not the entire body. Preserve image1's exact atlas proportions, every UV position and outline, unchanged brown/olive scales, cream underside, head, tail and all sixteen detached red triangles. Do not change the rest of the anatomy or overall palette. Keep black background, no scene, text, labels, watermark or halo outside islands. This is the same production skin in its final charge state."
+  },
+  "chargeOverlay": {
+    "base": "custom",
+    "baseSourceSha256": "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1
+  }
+}

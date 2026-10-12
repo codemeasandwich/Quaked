@@ -11,6 +11,7 @@ import hashlib
 import json
 from pathlib import Path
 import struct
+import shutil
 import sys
 sys.dont_write_bytecode = True
 import numpy as np
@@ -48,6 +49,40 @@ def flatten_height(path, data, factor, vertex_range):
  height[padded]=255
  Image.fromarray(height).save(path,'WEBP',lossless=True,method=6)
  return dict(vertexRange=vertex_range,value=255,padding=6,surfacePixels=int(surface.sum()),paddedPixels=int(padded.sum()))
+
+def native_single_skin(data, skin):
+ """Read an explicitly selected single skin; never silently use animation frame0."""
+ count,w,h=struct.unpack_from('<3i',data,48)
+ if not isinstance(skin,int) or not 0<=skin<count:raise ValueError('Invalid native skin index')
+ pos=84
+ for index in range(count):
+  grouped=struct.unpack_from('<i',data,pos)[0];pos+=4
+  if grouped:raise ValueError('Charge fitting requires explicit single native skins')
+  pixels=np.frombuffer(data[pos:pos+w*h],np.uint8).reshape(h,w);pos+=w*h
+  if index==skin:return pixels
+
+def preserve_charge_anatomy(canvas,data,spec,output,key):
+ """Use generated charge pigment only inside the original state's local change envelope.
+
+ All unchanged anatomy and detached islands come from the approved generated base.
+ Native palette indices define a mask only; none supply runtime pigment.
+ """
+ overlay=spec['chargeOverlay'];base_name=overlay['base']
+ if not base_name.replace('_','').isalnum():raise ValueError('Invalid base variant')
+ base=output/key/base_name;report=json.loads((base/'SOURCE.json').read_text())
+ if report['nativeModelSha256']!=spec['modelSha'] or report['sourceSha256']!=overlay['baseSourceSha256']:raise ValueError('Charge base identity differs')
+ for name in ['diffuse.png','height.webp']:
+  if sha((base/name).read_bytes())!=report['files'][name]:raise ValueError('Charge base artifact changed: '+name)
+ original=np.asarray(Image.open(base/'diffuse.png').convert('RGB'))
+ if original.shape!=canvas.shape:raise ValueError('Charge/base dimensions differ')
+ if overlay['nativeMaskDilation']!=1 or overlay['maskShape']!='square' or overlay['featherPixels']!=1:raise ValueError('Unsupported charge mask policy')
+ delta=native_single_skin(data,spec['skin'])!=native_single_skin(data,0)
+ mask=ndimage.binary_dilation(delta,structure=np.ones((3,3),bool))
+ mask=np.repeat(np.repeat(mask,spec['factor'],0),spec['factor'],1)
+ # Feather only inward. The outside of the bounded mask remains byte-identical.
+ alpha=np.clip(ndimage.distance_transform_edt(mask)/2,0,1)[:,:,None]
+ result=np.rint(original*(1-alpha)+canvas*alpha).astype(np.uint8)
+ return result,base/'height.webp',dict(base=key+'/'+base_name,nativeChangedPixels=int(delta.sum()),allowedPixels=int(mask.sum()),changedPixels=int(np.any(result!=original,axis=2).sum()),nativeMaskDilation=1,maskShape='square',featherPixels=1,baseDiffuseSha256=sha((base/'diffuse.png').read_bytes()),sharedHeightSha256=sha((base/'height.webp').read_bytes()))
 
 def fit_one(key, pack, source_root, output, recipe=None):
  # Generated, native-layout atlases share this same importer. An explicit recipe
@@ -104,12 +139,17 @@ def fit_one(key, pack, source_root, output, recipe=None):
   canvas[area][region]=extended[region];covered[area]|=region
   islands.append(dict(id=index,surfacePixels=int(surface.sum()),directPixels=int((surface&seeds).sum()),edgePixels=int((surface&~seeds).sum())))
  if np.any(footprint&~covered): raise ValueError('Uncovered native surface')
- out=output/key/'custom';out.mkdir(parents=True,exist_ok=True)
+ variant=spec.get('outputVariant','custom');skin=spec.get('skin',0)
+ if not variant.replace('_','').isalnum() or not isinstance(skin,int) or not 0<=skin<spec['layout'][0]:raise ValueError('Invalid output variant/skin')
+ charge=None;shared_height=None
+ if spec.get('chargeOverlay'):canvas,shared_height,charge=preserve_charge_anatomy(canvas,data,spec,output,key)
+ out=output/key/variant;out.mkdir(parents=True,exist_ok=True)
  result=Image.fromarray(canvas);result.save(out/'diffuse.png')
- height_for(result,out/'height.webp',key+'/custom')
+ if shared_height:shutil.copyfile(shared_height,out/'height.webp')
+ else:height_for(result,out/'height.webp',key+'/'+variant)
  flat=flatten_height(out/'height.webp',data,factor,spec['flatHeightVertices']) if spec.get('flatHeightVertices') else None
  report=dict(schema=1,model='progs/'+key+'.mdl',nativeModelSha256=spec['modelSha'],source=name,sourceSha256=spec['sourceSha'],sourceDimensions=spec['size'],
-  dimensions=[W,H],factor=factor,skin=0,poses=spec['layout'][5],vertices=spec['layout'][3],triangles=spec['layout'][4],
+  dimensions=[W,H],factor=factor,skin=skin,poses=spec['layout'][5],vertices=spec['layout'][3],triangles=spec['layout'][4],
   transform='complete atlas, top-row-first, no flip; original UVs preserved',
   atlasBox=box,registration=spec.get('registration'),
   mattePolicy=spec.get('matte') or {'dragon':'neutral grey and black divider','s_wrath':'black','mummy':'dark brown gradient'}[key],
@@ -118,6 +158,7 @@ def fit_one(key, pack, source_root, output, recipe=None):
   files={f:sha((out/f).read_bytes()) for f in ['diffuse.png','height.webp']})
  if spec.get('generation'):report['generation']=spec['generation']
  if flat:report['flatHeight']=flat
+ if charge:report['chargeOverlay']=charge
  (out/'SOURCE.json').write_text(json.dumps(report,indent=2)+'\n');print(key,json.dumps({k:report[k] for k in ['dimensions','surfacePixels','edgePixels']}))
 
 if __name__=='__main__':

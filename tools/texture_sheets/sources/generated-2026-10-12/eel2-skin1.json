@@ -1,0 +1,35 @@
+{
+  "key": "eel2",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin1.png",
+  "sourceSha": "b6632c9eda9e41de75fb97561a6f3895e6aa92464538b696a736a8d0ea6bd3ae",
+  "modelSha": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "layout": [
+    6,
+    136,
+    194,
+    148,
+    260,
+    21
+  ],
+  "size": [
+    1050,
+    1498
+  ],
+  "factor": 8,
+  "matte": "black",
+  "skin": 1,
+  "outputVariant": "custom1",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin1, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the EDIT TARGET: the newly detailed Electric Eel UV atlas. Image2 is the original game's skin1 and controls EXACTLY where the first electrical charge appears. Create skin1 by changing only the small row of circular yellow-green nodes running down each of the two eel body strips into the modest pale yellow-white luminous dots shown in image2. Match the original node positions, extent and restrained intensity; do not add connecting arcs yet. Preserve image1's exact atlas size, UV island locations, brown/olive scales, cream belly, eyes, tiny teeth and every red triangular piece. All body areas outside these small charge nodes must remain identical. Keep black background and no bloom beyond the islands. No new anatomy, accessories, text or labels. This is a production animation texture variant, not a new eel design."
+  },
+  "chargeOverlay": {
+    "base": "custom",
+    "baseSourceSha256": "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1
+  }
+}

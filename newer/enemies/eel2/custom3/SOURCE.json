@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "model": "progs/eel2.mdl",
+  "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin3.png",
+  "sourceSha256": "153ec154ff2d7e4f90de3c1cae706880e3822a19fc8f715c039bf39561ef0a51",
+  "sourceDimensions": [
+    1050,
+    1498
+  ],
+  "dimensions": [
+    1088,
+    1552
+  ],
+  "factor": 8,
+  "skin": 3,
+  "poses": 21,
+  "vertices": 148,
+  "triangles": 260,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1088,
+    1552
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 343848,
+      "directPixels": 342947,
+      "edgePixels": 901
+    },
+    {
+      "id": 2,
+      "surfacePixels": 343851,
+      "directPixels": 336141,
+      "edgePixels": 7710
+    },
+    {
+      "id": 3,
+      "surfacePixels": 9921,
+      "directPixels": 9840,
+      "edgePixels": 81
+    },
+    {
+      "id": 4,
+      "surfacePixels": 9921,
+      "directPixels": 8789,
+      "edgePixels": 1132
+    },
+    {
+      "id": 5,
+      "surfacePixels": 1,
+      "directPixels": 1,
+      "edgePixels": 0
+    },
+    {
+      "id": 6,
+      "surfacePixels": 9801,
+      "directPixels": 9639,
+      "edgePixels": 162
+    },
+    {
+      "id": 7,
+      "surfacePixels": 9801,
+      "directPixels": 8529,
+      "edgePixels": 1272
+    },
+    {
+      "id": 8,
+      "surfacePixels": 10433,
+      "directPixels": 10259,
+      "edgePixels": 174
+    },
+    {
+      "id": 9,
+      "surfacePixels": 10433,
+      "directPixels": 9058,
+      "edgePixels": 1375
+    },
+    {
+      "id": 10,
+      "surfacePixels": 9317,
+      "directPixels": 9119,
+      "edgePixels": 198
+    },
+    {
+      "id": 11,
+      "surfacePixels": 9317,
+      "directPixels": 8067,
+      "edgePixels": 1250
+    },
+    {
+      "id": 12,
+      "surfacePixels": 9921,
+      "directPixels": 9699,
+      "edgePixels": 222
+    },
+    {
+      "id": 13,
+      "surfacePixels": 9921,
+      "directPixels": 8630,
+      "edgePixels": 1291
+    },
+    {
+      "id": 14,
+      "surfacePixels": 9317,
+      "directPixels": 9202,
+      "edgePixels": 115
+    },
+    {
+      "id": 15,
+      "surfacePixels": 9317,
+      "directPixels": 8203,
+      "edgePixels": 1114
+    },
+    {
+      "id": 16,
+      "surfacePixels": 9317,
+      "directPixels": 9192,
+      "edgePixels": 125
+    },
+    {
+      "id": 17,
+      "surfacePixels": 9317,
+      "directPixels": 8084,
+      "edgePixels": 1233
+    },
+    {
+      "id": 18,
+      "surfacePixels": 9317,
+      "directPixels": 9216,
+      "edgePixels": 101
+    },
+    {
+      "id": 19,
+      "surfacePixels": 9317,
+      "directPixels": 8086,
+      "edgePixels": 1231
+    }
+  ],
+  "surfacePixels": 842388,
+  "edgePixels": 19687,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "f052be5f6b7eaa1f05391371e7edf4c1e5ec3b662b6b42f48bfffb1070e758f1",
+    "height.webp": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin3, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the edit target, the detailed uncharged Electric Eel atlas. Image2 is ORIGINAL skin3 and controls the exact electrical pattern. Create charge skin3: a thin pale cyan-white jagged arc connects the row of charge nodes from below the head down to the middle of EACH body strip, following image2's precise route, length and restrained width. The eye also brightens subtly as in image2. Keep the rest of image1 absolutely unchanged: identical 136:194 atlas proportions, coordinates, outlines, brown/olive scales, pale underside, teeth, tail and all sixteen detached red triangles. Do not run the arc down the entire eel, add branches, create a surrounding halo or change anatomy. Pure black background, no scene, text, labels or watermark. This is the third animation texture state of the same production skin."
+  },
+  "chargeOverlay": {
+    "base": "eel2/custom",
+    "nativeChangedPixels": 838,
+    "allowedPixels": 135936,
+    "changedPixels": 131305,
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1,
+    "baseDiffuseSha256": "8ed61a2d170cfe1bac2838c5bbe96aa7f69e62ebe8bc6577b13a867faae9f936",
+    "sharedHeightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928"
+  }
+}

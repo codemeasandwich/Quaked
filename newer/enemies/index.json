@@ -879,9 +879,83 @@
     "heightStrength": 0.65,
     "heightCap": 0.55
    }
+  ],
+  "eel2": [
+   {
+    "dir": "eel2/custom",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 0,
+    "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+   },
+   {
+    "dir": "eel2/custom1",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 1,
+    "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+   },
+   {
+    "dir": "eel2/custom2",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 2,
+    "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+   },
+   {
+    "dir": "eel2/custom3",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 3,
+    "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+   },
+   {
+    "dir": "eel2/custom4",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 4,
+    "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+   },
+   {
+    "dir": "eel2/custom5",
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55,
+    "flipGreen": false,
+    "skin": 5,
+    "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+   }
   ]
  },
- "version": 33,
+ "version": 34,
  "nativeHeights": {
   "gib1": [
    [
@@ -1079,6 +1153,56 @@
      "strength": 0.65,
      "cap": 0.55,
      "nativeModelSha256": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151"
+    }
+   ]
+  ],
+  "eel2": [
+   [
+    {
+     "file": "heights/eel2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+    }
+   ],
+   [
+    {
+     "file": "heights/eel2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+    }
+   ],
+   [
+    {
+     "file": "heights/eel2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+    }
+   ],
+   [
+    {
+     "file": "heights/eel2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+    }
+   ],
+   [
+    {
+     "file": "heights/eel2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
+    }
+   ],
+   [
+    {
+     "file": "heights/eel2/skin0_0.webp",
+     "strength": 0.65,
+     "cap": 0.55,
+     "nativeModelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7"
     }
    ]
   ]

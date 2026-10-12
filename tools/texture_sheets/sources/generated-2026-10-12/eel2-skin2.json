@@ -1,0 +1,35 @@
+{
+  "key": "eel2",
+  "sourceFile": "tools/texture_sheets/sources/generated-2026-10-12/eel2-skin2.png",
+  "sourceSha": "65c9d256f3ccbd716d0873199e541e3f6d53cc9013bf65ee1fa1bb0232960a56",
+  "modelSha": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+  "layout": [
+    6,
+    136,
+    194,
+    148,
+    260,
+    21
+  ],
+  "size": [
+    1050,
+    1498
+  ],
+  "factor": 8,
+  "matte": "black",
+  "skin": 2,
+  "outputVariant": "custom2",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue eel2.mdl skin2, native palette, nearest enlarged4x; generated skin0 atlas used as edit target, original skin determines charge placement",
+    "prompt": "Image1 is the EDIT TARGET: detailed uncharged Electric Eel UV atlas. Image2 is ORIGINAL skin2 and specifies charge locations/colour. Produce the exact same atlas as image1 but illuminate the original row of charge nodes on each body strip as small cool pale cyan-white dots, matching image2's locations, sizes and uneven progression. This is the second charge state; do not add broad connecting lightning or blue skin. Preserve every original feature, UV island boundary/position and image dimensions, brown/olive scales, cream underside, eyes, and all sixteen triangular pieces unchanged. Change only the charge nodes shown in image2. Pure black background; no external glow, text, new anatomy, scene or watermark."
+  },
+  "chargeOverlay": {
+    "base": "custom",
+    "baseSourceSha256": "ed8881a5cc70b359bda6e17c846ba3b877262014889b11a0835fb2f785c870ac",
+    "nativeMaskDilation": 1,
+    "maskShape": "square",
+    "featherPixels": 1
+  }
+}
