@@ -10,6 +10,12 @@
 
 Quaked is developed by [@codemeasandwich](https://github.com/codemeasandwich) and is based on [three-quake](https://github.com/mrdoob/three-quake) by [@mrdoob](https://github.com/mrdoob). The project lives at [codemeasandwich/Quaked](https://github.com/codemeasandwich/Quaked).
 
+## Downloads and local game files
+
+**[Play the shareware demo](https://codemeasandwich.github.io/Quaked/)** · **[Mac application releases](https://github.com/codemeasandwich/Quaked/releases)**
+
+The Tauri launcher opens with a double-click and uses **`~/quaked`**, a folder in the current user's home directory. Place your own Quake and expansion PAKs there in their game subfolders; change the location through **Select Game Locations** in the native menu or Options. The Mac application includes no shareware or purchased game data. LAN hosting and joining are available through **LAN Multiplayer**; each player supplies the same game files. [Folder layouts, building, LAN play and verification status](docs/distribution.md).
+
 ## Play
 
 **[Play Quaked now](https://codemeasandwich.github.io/Quaked/)** in a recent browser with WebGL2 (a desktop is best; phones are covered below). It is developed in Chrome; Safari and Firefox have not been checked. From the main menu choose **Single Player**, then **Newer Game**. You start in a welcome hall; walk into the Easy, Normal or Hard corridor to choose the difficulty.
@@ -17,7 +23,7 @@ Quaked is developed by [@codemeasandwich](https://github.com/codemeasandwich) an
 To run your own copy, serve this folder over HTTP and open it:
 
 ```sh
-python3 tools/serve.py 8000
+python3 tools/serve.py 8000 --game-root "$HOME/quaked"
 ```
 
 Then visit [localhost:8000](http://localhost:8000/). It needs internet access, because Three.js is loaded from a CDN.
@@ -65,9 +71,7 @@ Options has separate **Sound Volume** (effects, environmental sounds and menus) 
 
 ## Game data
 
-The repository includes the free shareware `pak0.pak` (Episode 1), in `games/shareware/`. The `games/` folder has a
-folder for each Quake game and add-on, with a README saying what goes there ([games/README.md](games/README.md)); what
-you put in them stays out of Git, and the game does not read them yet. In your own local copy only (not the online page), you can add content from a Quake you own: copy the 2021 re-release's `id1/pak0.pak` to `resources/id1/pak0.pak`. It is read in addition to the shareware data and never uploaded or committed. Level Select then offers Episodes 2 to 4 (choose the episode, then the level); so far only E2M1 has been played through, the full campaign is not verified, and copies that split the data into `pak0.pak` and `pak1.pak` are not supported. [How it is loaded, what was tried and what is not covered](docs/fullgame-pak-2026-10-05.md).
+The single-file web distribution embeds the original free shareware Episode 1. Its build input is pinned and checksum-verified. The native app reads your own files from `~/quaked` and supports the original split `pak0.pak`/`pak1.pak` layout as well as the combined rerelease PAK. Game and expansion files remain outside the application and source tree. Only validated, supported installations can be selected; finding an add-on does not imply its engine features are supported. [Distribution and data-location contract](docs/distribution.md).
 
 ## What Newer Game adds
 

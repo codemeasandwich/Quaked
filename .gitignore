@@ -1963,3 +1963,10 @@ __pycache__/
 /newer/rockfield/shareware/b_rock1.rf.gz
 /newer/rockfield/shareware/b_shell0.rf.gz
 /newer/rockfield/shareware/b_shell1.rf.gz
+
+# Reproducible distribution outputs and local tool caches
+/node_modules/
+/dist/
+/src-tauri/target/
+/src-tauri/gen/
+/.distribution-cache/

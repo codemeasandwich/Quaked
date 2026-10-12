@@ -1,3 +1,4 @@
+import {Distribution_Profile} from '../../platform/distribution.js';
 /**
  * @module engine/client/menu_options
  *
@@ -307,6 +308,7 @@ function M_AdjustSliders( dir ) {
 // Cursor/touch indices remain visible rows; action IDs retain their established
 // meaning across drawing, Enter and slider/toggle dispatch.
 const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17 ];
+if(Distribution_Profile()==='desktop')OPTIONS_ORDER.unshift(18);
 const OPTIONS_ITEMS = OPTIONS_ORDER.length;
 function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
 let m_options_cursor = 0;
@@ -385,6 +387,7 @@ export function M_Options_Draw() {
 	M_Print( 16, optionsY( 15 ), '  Performance profiler' );
 
 	M_Print( 16, optionsY( 17 ), '                Cheats' );
+	if(Distribution_Profile()==='desktop')M_Print(16,optionsY(18),' Select Game Locations');
 
 	// cursor
 	M_DrawCharacter( 200, 32 + m_options_cursor * 8, 12 + ( ( Math.floor( _realtime_get() * 4 ) ) & 1 ) );
@@ -433,6 +436,8 @@ export function M_Options_Key( key ) {
 					Cbuf_AddText( 'volume 0.4\n' );
 					Cbuf_AddText( 'bgmvolume 1\n' );
 					break;
+				case 18:
+					globalThis.__QUAKED_SELECT_LOCATION__?.();break;
 				case 13:
 					M_Menu_Newer_f();
 					break;

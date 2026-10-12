@@ -77,7 +77,7 @@ export function LocalPlay_PlayerCommands( role ) {
  */
 export function LocalPlay_Hosting() {
 
-	return sv.active === true && svs.maxclients > 1 && Window_HostSession() !== null;
+	return sv.active === true && svs.maxclients > 1 && Window_HostSession() !== null && Window_HostSession() !== 'lan';
 
 }
 

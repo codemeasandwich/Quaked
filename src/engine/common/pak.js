@@ -1,3 +1,4 @@
+import {AssetURL, AssetFetch} from '../../platform/distribution.js';
 /**
  * @module engine/common/pak
  *
@@ -462,7 +463,7 @@ COM_NewerURL
 export function COM_NewerURL( name, fallback ) {
 
 	const f = COM_NewerFile( name );
-	if ( f === null || typeof URL === 'undefined' || typeof Blob === 'undefined' || typeof URL.createObjectURL !== 'function' ) return fallback;
+	if ( f === null || typeof URL === 'undefined' || typeof Blob === 'undefined' || typeof URL.createObjectURL !== 'function' ) return AssetURL(fallback);
 
 	let url = newerUrls.get( name );
 	if ( url === undefined ) {
@@ -503,7 +504,7 @@ export async function COM_NewerJSON( name, fallback ) {
 
 	try {
 
-		const r = await fetch( fallback, { cache: 'no-cache' } );
+		const r = await AssetFetch( fallback, { cache: 'no-cache' } );
 		return r.ok ? await r.json() : {};
 
 	} catch ( e ) {
@@ -599,7 +600,7 @@ export async function COM_PreloadLooseFile( filename, url ) {
 		} else {
 
 			// Browser: use fetch
-			const response = await fetch( url );
+			const response = await AssetFetch( url );
 			if ( ! response.ok ) {
 
 				return false;
@@ -759,7 +760,7 @@ export async function COM_FetchPak( url, filename, onProgress ) {
 	}
 
 	// Browser: use fetch
-	const response = await fetch( url );
+	const response = await AssetFetch( url );
 	if ( ! response.ok ) {
 
 		Con_Printf( 'Failed to fetch ' + url + ': ' + response.statusText + '\n' );
@@ -837,7 +838,7 @@ export async function COM_FetchOptionalPak( url, filename ) {
 
 		}
 
-		const response = await fetch( url );
+		const response = await AssetFetch( url );
 		if ( ! response.ok ) return null;
 
 		const buffer = await response.arrayBuffer();

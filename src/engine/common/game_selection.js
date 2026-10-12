@@ -1,3 +1,4 @@
+import {Distribution_Profile} from '../../platform/distribution.js';
 /**
  * @module engine/common/game_selection
  *
@@ -50,6 +51,7 @@ const storage = () => { try { return globalThis.localStorage ?? null; } catch { 
  * @returns {?string} 'quake', 'shareware', 'hipnotic', 'rogue' or null
  */
 export function GameSelection_Current() {
+	if(Distribution_Profile()==='web')return 'shareware';
 
 	// a game's own URL (`?game=<id>`, the game shelf's links, card [M1]) wins over the choice kept in the browser
 	const fromUrl = GameSelection_UrlChoice( globalThis.location?.search ?? '' );
@@ -206,7 +208,8 @@ export function GameSelection_ConfigKey() {
  *   unchecked, how a refusal begins ('is not playable' or 'cannot be chosen yet') and why (the catalogue's reason, or
  *   the broken pack)
  */
-export function GameSelection_Startable( game ) {
+export function GameSelection_Startable( game, options = {} ) {
+	if(options.strict && !(game.present && game.validated && game.playable))return {ok:false,unchecked:false,refusal:"is not playable",why:game.reason || "required game files are unavailable"};
 
 	if ( game.id === 'shareware' ) return { ok: true, unchecked: false, refusal: '', why: game.reason ?? '' };
 	if ( ! GAME_SELECTION_CHOICES.includes( game.id ) ) return { ok: false, unchecked: false, refusal: 'cannot be chosen yet', why: game.reason || 'its support is not built' };
@@ -243,11 +246,11 @@ export async function GameSelection_Select( id, options = {} ) {
 
 	} );
 	let warning = '';
-	if ( id !== 'shareware' ) { // the shareware ships with the page: no evidence needed
+	if ( id !== 'shareware' || Distribution_Profile()==='desktop' ) { // the shareware ships with the page: no evidence needed
 
 		const catalogue = await refresh(), game = catalogue?.games?.find( g => g.id === id );
 		if ( ! game ) return { ok: false, reason: `no game called '${id}'` };
-		const startable = GameSelection_Startable( game );
+		const startable = GameSelection_Startable( game, {strict:Distribution_Profile()==='desktop'} );
 		if ( ! startable.ok ) return { ok: false, reason: `${game.name} ${startable.refusal}: ${startable.why}` };
 		if ( startable.unchecked ) warning = ` (it could not be checked here: ${game.reason}; the start checks it)`;
 

@@ -1,3 +1,4 @@
+import {AssetURL} from '../../platform/distribution.js';
 /**
  * @module engine/render/gl_draw
  *
@@ -1302,7 +1303,7 @@ export function Draw_LoadConbackImage( url ) {
 
 		};
 
-		img.src = url;
+		img.src = AssetURL(url);
 
 	} );
 
@@ -1443,7 +1444,7 @@ export function Draw_CachePicFromPNG( path, url, options = {} ) {
 
 		};
 
-		img.src = url;
+		img.src = AssetURL(url);
 
 	} );
 

@@ -1,0 +1,28 @@
+{
+  "name": "quaked",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:web": "node tools/distribution/build.mjs web",
+    "build:desktop": "node tools/distribution/build.mjs desktop",
+    "build:mac": "npm run build:desktop && tauri build --target universal-apple-darwin -- --locked",
+    "test:distribution": "node --test tests/*_contract_test.mjs",
+    "hooks:install": "node tools/distribution/install-hook.mjs",
+    "precommit": "node tools/distribution/precommit.mjs",
+    "tauri": "tauri",
+    "prepare:shareware": "node tools/distribution/prepare-shareware.mjs",
+    "pretest:distribution": "npm run prepare:shareware",
+    "prebuild:web": "npm run prepare:shareware"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.12.3",
+    "fflate": "0.8.3",
+    "three": "0.183.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "@tauri-apps/cli": "2.12.2",
+    "esbuild": "0.28.2"
+  }
+}

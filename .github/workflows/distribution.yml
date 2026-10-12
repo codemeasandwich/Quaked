@@ -1,0 +1,105 @@
+name: Distribution
+on:
+  pull_request:
+  push:
+    branches: [Dev]
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: distribution-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:distribution
+      - run: npm run build:web
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/distribution/browser-trial.mjs
+        env:
+          QUAKED_CHROME_CHANNEL: chromium
+      - run: mkdir -p dist/pages && cp dist/web/index.html dist/pages/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/pages
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: web-evidence
+          path: |
+            dist/web/inventory.json
+            dist/browser-trial.*
+  mac:
+    strategy:
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/.distribution-cache/target
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
+      - run: npm ci --ignore-scripts
+      - run: npm run test:distribution && npm run build:desktop
+      - run: cargo test --locked --manifest-path src-tauri/Cargo.toml
+      - run: cargo build --locked --manifest-path src-tauri/Cargo.toml --example lan_test_bridge
+      - run: node tools/distribution/engine-tests.mjs
+        env:
+          QUAKED_LAN_TEST_BRIDGE: ${{ github.workspace }}/.distribution-cache/target/debug/examples/lan_test_bridge
+      - run: npm run tauri -- build --target universal-apple-darwin -- --locked
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mac-${{ matrix.runner }}
+          path: |
+            .distribution-cache/target/universal-apple-darwin/release/bundle/dmg/*.dmg
+            dist/desktop/inventory.json
+  pages:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/Dev'
+    needs: [web, mac]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: [web, mac]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify version tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: node -e 'if(process.env.RELEASE_TAG!=="v"+require("./package.json").version)throw Error("Tag does not match package version")'
+      - uses: actions/download-artifact@v4
+        with:
+          name: mac-macos-15
+          path: release
+      - name: Publish Mac application
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          find release -name '*.dmg' -exec cp {} release/ \;
+          cd release
+          sha256sum ./*.dmg > SHA256SUMS.txt
+          gh release create "$RELEASE_TAG" ./*.dmg SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --generate-notes --title "Quaked $RELEASE_TAG"

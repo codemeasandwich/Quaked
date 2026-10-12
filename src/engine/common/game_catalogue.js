@@ -25,6 +25,7 @@
  */
 
 import { COM_PackHeader, COM_PackEntries } from './pak.js';
+import {Distribution_Profile,AssetFetch} from '../../platform/distribution.js';
 import { Cmd_AddCommand } from './cmd.js';
 import { Con_Printf } from './console.js';
 
@@ -260,10 +261,22 @@ function assess( game, files, byId ) {
  *   `beyondLimit` (more packs than the bound, never then playable);
  *   and what the probe cost
  */
-export function GameCatalogue_Refresh( options = {} ) {
+let defaultOptions = null;
+let embeddedShareware = null;
+/** A platform may supply fresh discovery options; explicit caller options still win. */
+export function GameCatalogue_SetProvider(provider) { defaultOptions = provider; }
+export function GameCatalogue_Refresh( options ) {
+  if(options===undefined&&Distribution_Profile()==='web')options={games:[GAME_CATALOGUE_GAMES[0]],fetch:async(url,init)=>{
+    if(!new URL(url).pathname.endsWith('/games/shareware/pak0.pak'))return new Response(null,{status:404});
+    embeddedShareware??=AssetFetch('games/shareware/pak0.pak').then(r=>r.arrayBuffer()).then(b=>new Uint8Array(b));
+    const bytes=await embeddedShareware;
+    const match=/bytes=(\d+)-(\d+)/.exec(init.headers.Range),start=Number(match[1]),end=Math.min(Number(match[2]),bytes.length-1);
+    if(start>=bytes.length)return new Response(null,{status:416});
+    return new Response(bytes.subarray(start,end+1),{status:206,headers:{'Content-Range':`bytes ${start}-${end}/${bytes.length}`,'Content-Length':String(end-start+1),'ETag':'embedded-shareware'}});
+  }};
 
 	// one refresh at a time: a second request while one runs (the startup probe and the `games` command) shares it
-	if ( _pending === null ) _pending = refresh( options ).finally( () => { _pending = null; } );
+	if ( _pending === null ) _pending = Promise.resolve(options ?? defaultOptions?.() ?? {}).then(refresh).finally( () => { _pending = null; } );
 	return _pending;
 
 }
@@ -312,15 +325,15 @@ async function refresh( options ) {
 	const base = options.base ?? ( typeof document !== 'undefined' && document.baseURI ? document.baseURI : typeof location !== 'undefined' ? location.href : 'http://localhost/' );
 	// every game's folders are probed at once (the shelf waits on this before a game starts, card [M1]); each game's own
 	// packs stay in order, and the games are judged in order afterwards (an expansion is judged against its base)
-	const probed = await Promise.all( GAME_CATALOGUE_GAMES.map( game => probeGame( game, base, options ) ) );
+	const probed = await Promise.all( (options.games ?? GAME_CATALOGUE_GAMES).map( game => probeGame( game, base, options ) ) );
 	const games = [], byId = new Map();
-	GAME_CATALOGUE_GAMES.forEach( ( game, i ) => {
+	(options.games ?? GAME_CATALOGUE_GAMES).forEach( ( game, i ) => {
 
 		const { entry, files } = probed[ i ];
 		if ( entry.present && ! entry.validated ) entry.reason = 'found, not validated: ' + ( entry.packs.find( p => p.state !== 'valid' )?.reason ?? '' );
 		// the base game is judged on its pak0.pak alone: the pack the start mounts (an original release's pak1.pak,
 		// with Episodes 2 to 4, is not read yet: card [34c])
-		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId ) );
+		else if ( entry.validated ) Object.assign( entry, assess( game, game.kind === 'base' && !options.allPacks ? new Set( entry.packs[ 0 ]?.files ?? [] ) : files, byId ) );
 		else if ( ! game.placeholder ) entry.reason = 'not installed';
 		if ( entry.beyondLimit ) { entry.playable = false; entry.reason += ` (it has more than ${GAME_CATALOGUE_LIMITS.packs} packs; pak${GAME_CATALOGUE_LIMITS.packs}.pak and later were not read)`; }
 		games.push( entry ); byId.set( game.id, entry );

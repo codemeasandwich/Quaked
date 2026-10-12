@@ -11,13 +11,13 @@ const port = 20000 + Math.floor( Math.random() * 20000 ), url = `http://127.0.0.
 
 Deno.test( 'ranges are served as 206 with the right bytes; whole files as before; past the end is 416', async () => {
 
-	const server = spawn( python, [ 'tools/serve.py', String( port ) ], { cwd: root, stdio: 'ignore' } );
+	const server = spawn( python, [ 'tools/serve.py', String( port ), ...(process.env.QUAKED_GAME_ROOT?['--game-root',process.env.QUAKED_GAME_ROOT]:[]) ], { cwd: root, stdio: 'ignore' } );
 	try {
 
 		let up = false;
 		for ( let i = 0; i < 50 && ! up; i ++ ) { try { await fetch( url, { method: 'HEAD' } ); up = true; } catch { await new Promise( r => setTimeout( r, 100 ) ); } }
 		check( up, 'the server started' );
-		const pak = readFileSync( root + 'games/shareware/pak0.pak' );
+		const pak = readFileSync(process.env.QUAKED_SHAREWARE_PAK ?? root + 'games/shareware/pak0.pak');
 		const r = await fetch( url, { headers: { Range: 'bytes=4-11' } } ), body = Buffer.from( await r.arrayBuffer() );
 		check( r.status === 206 && r.headers.get( 'content-range' ) === `bytes 4-11/${pak.length}`, 'a range: 206 with the archive size' );
 		check( body.equals( pak.subarray( 4, 12 ) ), 'exactly those bytes' );

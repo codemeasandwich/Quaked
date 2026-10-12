@@ -1,3 +1,4 @@
+import {Distribution_Profile} from '../../platform/distribution.js';
 /**
  * @module engine/client/menu_multiplayer
  *
@@ -163,7 +164,7 @@ export function M_ShouldReturnOnError() {
 */
 
 // Online is shown but cannot be chosen yet; the online screens below stay for joins by link and connection errors.
-const MPCHOICE_ITEMS = Object.freeze( [ Object.freeze( { label: 'Local (split screen)', enabled: true } ), Object.freeze( { label: 'Online', enabled: false } ) ] );
+const MPCHOICE_ITEMS = Object.freeze( [ Object.freeze( { label: 'Local (split screen)', enabled: true } ), Object.freeze( { label: 'Online', enabled: false } ), ...(Distribution_Profile()==='desktop'?[{label:'LAN Multiplayer',enabled:true}]:[]) ] );
 let m_mpchoice_cursor = 0;
 
 /**
@@ -231,6 +232,7 @@ export function M_MultiplayerChoice_Key( key ) {
 			if ( ! MPCHOICE_ITEMS[ m_mpchoice_cursor ]?.enabled ) break; // Online: not yet
 			set_m_entersound( true );
 			if ( m_mpchoice_cursor === 0 ) M_Menu_SplitScreen_f();
+			else if(m_mpchoice_cursor===2)globalThis.__QUAKED_LAN_MENU__?.();
 			break;
 
 	}

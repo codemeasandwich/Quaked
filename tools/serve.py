@@ -11,9 +11,22 @@ import http.server
 import os
 import re
 import sys
+import argparse
+from pathlib import Path
+from urllib.parse import urlsplit, unquote
 
 
 class RangeHandler(http.server.SimpleHTTPRequestHandler):
+    game_root = None
+
+    def translate_path(self, path):
+        logical = unquote(urlsplit(path).path)
+        if self.game_root is not None and logical.startswith('/games/'):
+            candidate = (self.game_root / logical[len('/games/'):]).resolve()
+            if candidate.is_relative_to(self.game_root):
+                return str(candidate)
+            return str(self.game_root / '__refused_path__')
+        return super().translate_path(path)
 
     def send_head(self):
         match = re.fullmatch(r'bytes=(\d*)-(\d*)', self.headers.get('Range', '').strip())
@@ -57,5 +70,11 @@ class RangeHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('port', nargs='?', type=int, default=8000)
+    parser.add_argument('--game-root', type=Path, help='Read-only external games directory, exposed locally as /games/')
+    args = parser.parse_args()
+    port = args.port
+    if args.game_root:
+        RangeHandler.game_root = args.game_root.expanduser().resolve(strict=True)
     http.server.ThreadingHTTPServer(('127.0.0.1', port), RangeHandler).serve_forever()

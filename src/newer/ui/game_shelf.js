@@ -1,3 +1,4 @@
+import {AssetURL} from '../../platform/distribution.js';
 /**
  * @module newer/ui/game_shelf
  *
@@ -173,7 +174,7 @@ function face( box, side, cls, w, h ) {
 
 	const f = el( 'div', 'face ' + cls );
 	f.style.width = w + 'px'; f.style.height = h + 'px';
-	const url = box[ side ];
+	const url = box[ side ] ? AssetURL(box[side]) : null;
 	if ( url ) f.style.backgroundImage = `url("${url}")`;
 	else {
 
@@ -222,7 +223,7 @@ function aspectOf( url ) {
 		const img = new Image();
 		img.onload = () => resolve( img.naturalWidth > 0 ? Math.min( 1.1, Math.max( 0.55, img.naturalWidth / img.naturalHeight ) ) : 0.82 );
 		img.onerror = () => resolve( 0.82 );
-		img.src = url;
+		img.src = AssetURL(url);
 
 	} );
 
@@ -248,7 +249,7 @@ export async function GameShelf_Show( games, options = {} ) {
 	const button = ( label, fn ) => { const b = el( 'button', '', controls ); b.textContent = label; b.addEventListener( 'click', e => { e.stopPropagation(); fn(); } ); return b; };
 
 	const boxes = games.map( g => GameShelf_Box( g ) );
-	for ( const record of await storedGames() ) boxes.push( folderBox( record ) );
+	for ( const record of options.native ? [] : await storedGames() ) boxes.push( folderBox( record ) );
 	boxes.push( { id: '+add', name: 'Add a game', kind: 'add', playable: false, reason: '', front: null, back: null, spine: null, text: '' } );
 	// drawn at once with a box's usual shape; each box takes its front's own shape as that image arrives
 	for ( const b of boxes ) b.aspect = 0.82;
@@ -301,6 +302,7 @@ export async function GameShelf_Show( games, options = {} ) {
 
 		try {
 
+			if(options.selectLocation){await options.selectLocation();return;}
 			const picked = await pickFolder();
 			if ( ! picked ) return;
 			const { name: folderName, files } = GameShelf_ReadFolder( picked.files, picked.name );
@@ -315,6 +317,7 @@ export async function GameShelf_Show( games, options = {} ) {
 
 	button( '◀', () => select( index - 1 ) );
 	button( 'Turn over', flip );
+	if(options.selectLocation)button('Select Game Locations',options.selectLocation);
 	const playButton = button( 'Play', choose );
 	button( '▶', () => select( index + 1 ) );
 

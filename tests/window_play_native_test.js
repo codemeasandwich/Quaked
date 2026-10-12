@@ -26,7 +26,7 @@ const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const tick = ( ms = 5 ) => new Promise( resolve => setTimeout( resolve, ms ) );
 
-const raw = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
+const raw = readFileSync(process.env.QUAKED_SHAREWARE_PAK ?? new URL('../games/shareware/pak0.pak',import.meta.url));
 pak.COM_AddPack( pak.COM_LoadPackFile( 'pak0.pak', raw.buffer.slice( raw.byteOffset, raw.byteOffset + raw.length ) ) );
 VID_SetPalette( pak.COM_FindFile( 'gfx/palette.lmp' ).data );
 Cbuf_Init(); Cmd_Init(); Mod_Init(); PR_InitBuiltins(); Host_InitCommands(); SV_Init();

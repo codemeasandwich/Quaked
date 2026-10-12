@@ -1,3 +1,4 @@
+import {Distribution_Profile} from './src/platform/distribution.js';
 // Three-Quake entry point
 // Equivalent to WinQuake/sys_win.c WinMain() + main()
 
@@ -49,6 +50,8 @@ async function main() {
 
 		COM_InitArgv( parms.argv );
 		const urlParams = new URLSearchParams( window.location.search );
+		const desktop = Distribution_Profile()==='desktop' ? await (await import('./src/platform/desktop.js')).Desktop_Prepare() : null;
+		if(Distribution_Profile()==='desktop' && !desktop)return;
 		// A player's window in local play (card [37a]): it joins player 1's page, and saves no settings of its own
 		const playerWindow = LocalPlay_PlayerWindow( window.location.search );
 		if ( playerWindow ) { Cvar_SetStorageWritable( false ); document.title = 'Quaked: Player ' + playerWindow.player; }
@@ -58,7 +61,7 @@ async function main() {
 		// One game only (a site with the shareware alone), a game's URL, a room, a player's window, or another page that
 		// boots this (the trial pages under tests/): straight in.
 		const indexPage = /(^|\/)(index\.html)?$/.test( window.location.pathname ?? '/' ); // not a trial page that boots main.js
-		if ( indexPage && ! joining && ! urlParams.has( 'game' ) ) {
+		if ( Distribution_Profile()==='source' && indexPage && ! joining && ! urlParams.has( 'game' ) ) {
 
 			const catalogue = await GameCatalogue_Refresh().catch( error => { Sys_Printf( 'Game catalogue: ' + error.message + '\n' ); return null; } );
 			const installed = ( catalogue?.games ?? [] ).filter( game => game.present );
@@ -79,7 +82,7 @@ async function main() {
 		// tried next); the loading logo fills as it downloads
 		Sys_Printf( 'Loading pak0.pak...\n' );
 		// Overlap independent transports; native installation order stays intact.
-		const nativePack = COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		const nativePack = desktop ? Promise.resolve(null) : COM_FetchPak( 'games/shareware/pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		const optionalPack = COM_FetchOptionalPak( 'newer.pak', 'newer.pak' ).catch( error => {
 			Sys_Printf( 'newer.pak not loaded: ' + error.message );return null;
 		} );
@@ -89,15 +92,15 @@ async function main() {
 		// QuakeC, status bar pictures, quake.rc, default.cfg and start map are the game.)
 		// Which owned pack, if any, comes from the game chosen (card [34c]): none for the shareware, so nothing more is
 		// downloaded; the full Quake's from games/Quake/ or resources/id1/ (the first found) otherwise, as before.
-		const ownedPack = ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
+		const ownedPack = desktop ? Promise.resolve(null) : ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
 		// A mission pack (card [34c]) also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first found)
 		const mission = GameSelection_MissionPack();
-		const missionLoad = mission ? ( async () => { for ( const url of mission.packs ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )() : Promise.resolve( null );
+		const missionLoad = mission && !desktop ? ( async () => { for ( const url of mission.packs ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )() : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed
-		const missionMounted = missionPak !== null && fullGamePak !== null;
-		const pak0 = sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
+		const missionMounted = desktop ? desktop.mission : missionPak !== null && fullGamePak !== null;
+		const pak0 = desktop?.packs[0] ?? sharewarePak ?? await COM_FetchPak( 'pak0.pak', 'pak0.pak', value => LoadingScreen_SetProgress( value ) );
 		if(hudPak){
 		 const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',hudPak.data)),n=>n.toString(16).padStart(2,'0')).join('');
 		 if(digest===STARTUP_PACK.sha256)COM_SetNewerStartupPack(hudPak);else Sys_Printf('Startup pack checksum mismatch; loose HUD fallback');
@@ -107,13 +110,13 @@ async function main() {
 			// COM_AddPack gives the last mounted pack priority. Mount the
 			// optional archive first so bundled identities always win.
 			if ( fullGamePak ) COM_AddPack( fullGamePak );
-			COM_AddPack( pak0 );
+			if(desktop){for(const pack of desktop.packs)COM_AddPack(pack);}else COM_AddPack( pak0 );
 			Sys_Printf( 'pak0.pak loaded successfully\n' );
 			// a mission pack's own QuakeC, status bar pictures and maps replace the base game's: it is mounted last,
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
-			GameSelection_SetRunning( missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
-			if ( missionMounted ) { COM_AddPack( missionPak ); if ( mission.switch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name; an episode has no switch */ Sys_Printf( mission.name + ' loaded\n' ); }
+			GameSelection_SetRunning( desktop ? desktop.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
+			if ( missionMounted ) { if(!desktop)COM_AddPack( missionPak ); if ( mission.switch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name; an episode has no switch */ Sys_Printf( mission.name + ' loaded\n' ); }
 
 		} else {
 
@@ -146,7 +149,7 @@ async function main() {
 		await Host_Init( parms );
 		// a game whose larger levels need the large-map protocol asks for it before any map loads (card [34f])
 		if ( missionMounted && mission.protocol ) Cvar_SetValue( 'sv_protocol', mission.protocol );
-		GameSelection_ReportStart( fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])
+		GameSelection_ReportStart( desktop ? desktop.id !== 'shareware' : fullGamePak !== null, mission === null || missionMounted ); // a chosen game whose pack has gone is said so (card [34c])
 		// Which games are installed (card [34b]): probed once the game is running, a few bounded reads per folder
 		if ( GameCatalogue_Get() === null ) setTimeout( () => GameCatalogue_Refresh().catch( error => Sys_Printf( 'Game catalogue: ' + error.message + '\n' ) ), 4000 );
 

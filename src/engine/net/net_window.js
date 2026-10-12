@@ -37,6 +37,10 @@ export const WINDOW_ADDRESS_PREFIX = 'window:';
 const JOIN_RETRY_MS = 250;
 const JOIN_TIMEOUT_MS = 25000; // under CL_EstablishConnection's 30 s race, so the socket is freed here
 const CLOSE_LINGER_MS = 3000; // a closed end's channel stays open this long, so its last messages are not cut off
+let channelFactory=null;
+/** A native platform can carry this exact driver protocol over a different channel. */
+export function Window_SetChannelFactory(factory){channelFactory=factory;}
+function makeChannel(session,id){return channelFactory?.(session,id)??new BroadcastChannel(WINDOW_CHANNEL_PREFIX+session);}
 
 let hostSession = null, hostChannel = null, hostListening = false;
 const pendingJoins = []; // client ids waiting for the server to take them
@@ -99,6 +103,7 @@ function installPageHide() {
 }
 
 function enqueue( d, message ) {
+ if(d.session==='lan'&&d.queue.length>=256){d.open=false;d.channel.close();return;}
 
 	const last = d.queue[ d.queue.length - 1 ];
 	if ( message.r === 0 && last !== undefined && last.r === 0 ) d.queue[ d.queue.length - 1 ] = message;
@@ -165,7 +170,7 @@ export function Window_Host( session ) {
 	if ( hostChannel ) { const old = hostChannel; old.onmessage = null; setTimeout( () => old.close(), CLOSE_LINGER_MS ); }
 	hostChannel = null; hostSession = session; pendingJoins.length = 0;
 	if ( session === null ) return true;
-	hostChannel = new BroadcastChannel( WINDOW_CHANNEL_PREFIX + session );
+	hostChannel = makeChannel(session,'host');
 	hostChannel.onmessage = onHostMessage;
 	installPageHide();
 	return true;
@@ -180,7 +185,7 @@ export function Window_Host( session ) {
  */
 export function Window_InLocalPlay() {
 
-	return hostSession !== null || clientSockets.size > 0;
+	return hostSession !== null && hostSession !== 'lan' || [...clientSockets].some(sock=>sock.driverdata?.session!=='lan');
 
 }
 
@@ -223,6 +228,11 @@ export function Window_Listen( state ) {
 
 	hostListening = !! state;
 	if ( ! hostListening ) pendingJoins.length = 0;
+ if(!hostListening&&hostSession==='lan'){
+  hostChannel?.close();hostChannel=null;hostSession=null;
+  for(const sock of hostPeers.values())sock.driverdata.open=false;
+  hostPeers.clear();
+ }
 
 }
 
@@ -256,7 +266,7 @@ export function Window_Connect( host ) {
 	if ( ! WINDOW_SESSION_PATTERN.test( session ) || ! channelAvailable() ) return null;
 	const sock = NET_NewQSocket();
 	if ( sock === null ) { Con_Printf( 'Window_Connect: no qsocket available\n' ); return null; }
-	const id = newId(), channel = new BroadcastChannel( WINDOW_CHANNEL_PREFIX + session );
+	const id = newId(), channel = makeChannel(session,id);
 	const d = { id, peer: 'host', channel, queue: [], open: false, session, abandon: null };
 	sock.driverdata = d; sock.address = host;
 	installPageHide();
