@@ -1,0 +1,44 @@
+meshing progs/ogre.mdl...
+
+meshing progs/ogre.mdl...
+
+PASS Actual base and Rogue Ogres preserve every native UV triangle and all 147 original poses
+PASS Living Ogre skin0 and geometry are compatible with all 147 native poses and names identical
+PASS Multigrenade appends without changing original living art face metadata or stored skin0 height
+PASS Living faces remain available on base and Rogue slot0 but alternate slot1 never acquires them
+meshing progs/ogre.mdl...
+
+PASS Missing mismatched and pending identities cannot borrow ready alternate while legacy slot0 remains unchanged
+PASS Failed multigrenade images settle to native and shutdown rejects late decoded callbacks
+PASS Native alternate skin1 derives relief from actual pixels and never fetches living height
+PASS Living native generated and stored relief still match their exact shipped inputs
+PASS Multigrenade authored output selects exact shipped custom relief while native family omits wrong inherited input
+PASS Alternate Ogre retains exactly six native UV pieces without adding weapon geometry
+RESULT 10/11 passed (tests/rogue_ogre_skin_identity_test.js)
+FAIL Actual Rogue Ogre flag and random selection preserve multigrenade projectile and ammo contracts Error: actual explicit flag and skill/random rule: 0 != 1
+    at check (file:///Users/bri/SOURCE/Quaked/tests/rogue_ogre_skin_identity_test.js:17:33)
+    at same (file:///Users/bri/SOURCE/Quaked/tests/rogue_ogre_skin_identity_test.js:17:58)
+    at file:///Users/bri/SOURCE/Quaked/tests/rogue_ogre_skin_identity_test.js:174:112
+    at async file:///Users/bri/SOURCE/Quaked/tools/run_tests.mjs:93:9
+TOTAL 10/11 passed
+
+RETEST: fixed independent QC evaluator omission of original OP_BITOR65, used when a random spawn gains flag2. Prior10/11 failure retained; product unchanged.
+meshing progs/ogre.mdl...
+
+meshing progs/ogre.mdl...
+
+PASS Actual base and Rogue Ogres preserve every native UV triangle and all 147 original poses
+PASS Living Ogre skin0 and geometry are compatible with all 147 native poses and names identical
+PASS Multigrenade appends without changing original living art face metadata or stored skin0 height
+PASS Living faces remain available on base and Rogue slot0 but alternate slot1 never acquires them
+meshing progs/ogre.mdl...
+
+PASS Missing mismatched and pending identities cannot borrow ready alternate while legacy slot0 remains unchanged
+PASS Failed multigrenade images settle to native and shutdown rejects late decoded callbacks
+PASS Native alternate skin1 derives relief from actual pixels and never fetches living height
+PASS Living native generated and stored relief still match their exact shipped inputs
+PASS Multigrenade authored output selects exact shipped custom relief while native family omits wrong inherited input
+PASS Alternate Ogre retains exactly six native UV pieces without adding weapon geometry
+PASS Actual Rogue Ogre flag and random selection preserve multigrenade projectile and ammo contracts
+RESULT 11/11 passed (tests/rogue_ogre_skin_identity_test.js)
+TOTAL 11/11 passed

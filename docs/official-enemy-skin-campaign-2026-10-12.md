@@ -34,8 +34,8 @@ normal coverage. These are initial inventory counts, not delivery totals.
 | Greek Guardian | `morph_gr:0–2` | Missing | Committed/pushed `d7e466c8`, remote verified; T-13eafa13 Done |
 | Rogue Death Knight | `hknight:0–1` | Native bake exists | Committed/pushed `4a0375d7`, remote verified; T-03622157 Done |
 | Rogue Spawn | `tarbaby:0–2` | Native bake exists | Committed/pushed `bcc84b6f`, remote verified; T-e2dbdfec Done |
-| Rogue Knight statue | `knight:1` | Existing height fallback uses skin0 | Stone generated/fitted; native slot1 height derives correctly;11 independent/209 GPU checks pass, T-73be2ab4 |
-| Rogue Ogre variant | `ogre:1` | Existing height fallback uses skin0 | Pending; author correct slot height |
+| Rogue Knight statue | `knight:1` | Existing height fallback uses skin0 | Committed/pushed `598d28ff`, remote verified; T-73be2ab4 Done |
+| Rogue Ogre variant | `ogre:1` | Existing height fallback uses skin0 | Final increment: generated, fitted and verified; publication tracked on T-328a3c5a |
 
 Guardian skin changes accompany awakening/death. Their three skin2 images are
 identical and should share source work where safe; do not invent independent
@@ -84,3 +84,49 @@ The parent chat owns execution; supervised helpers are not durable handoffs.
 No unattended worker is claimed. If the campaign must transfer beyond this session,
 use the shared followup service contract and record its acknowledged owner/job ID
 and verified durable state here before retiring.
+
+## Final body-asset coverage
+
+Catalogue version 44 covers **50 body-skin slots, 34 native model identities and
+29 model basenames** across Quake, Hipnotic and Rogue. The slots select 47 unique
+HD directories and 102 unique prepared normal inputs. Existing correct artwork
+was preserved; missing artwork was generated from the decoded original skins.
+Compatible reuse was checked against actual native pixels and UVs.
+
+The independent [audit report](evidence/official-body-skin-audit-2026-10-12/audit.json)
+records each native identity and skin, selected directory, HD dimensions and hashes,
+binding policy, face metadata and native/custom normal keys. Its 36 checks decode
+the actual images and baked normal payloads and exercise the public material
+selection/preparation path. The isolated candidate repeats the audit in
+[isolated-audit.json](evidence/official-body-skin-audit-2026-10-12/isolated-audit.json).
+Eleven legacy filename/skin bindings remain intentionally unchanged; this is not
+a claim that every historical variant has an exact model-hash constraint.
+Final isolated verification passes 224/224 checks (188 regression plus 36 audit),
+and distribution policy passes. Each increment also retains its own GPU receipts
+and independent review; the final Ogre trial passes 307/307 GPU checks.
+
+The supplied sheets were matched to Hipnotic Centroid (`scor`), Rogue Dragon
+(`dragon`), Overlord (`s_wrath`, distinct from ordinary `wrath`) and Mummy (`mummy`).
+Subsequent completed enemies were committed and pushed separately, as listed above.
+The final [Ogre report](rogue-ogre-skin-2026-10-12.md) includes the last increment,
+reproduction instructions and controlled renderer evidence. Owner visual acceptance
+and live combat acceptance remain separate from this asset/public-interface proof.
+Heads, gibs, traps and third-party mods are excluded from these completion totals.
+
+## How the engine uses these assets
+
+Diffuse images supply colour; height images describe surface relief. The normal
+preparation path converts that relief into directional lighting detail and loads
+content-bound prepared payloads from `newer/normals`. It does not add polygons.
+The enemy catalogue in `newer/enemies/index.json` chooses the model's skin variant;
+new entries also constrain the actual MDL identity so similarly named incompatible
+models do not receive the wrong skin. The alias renderer keeps native mesh, UVs,
+poses and gameplay, while Classic mode retains native appearance.
+
+Level textures use a separate catalogue, `newer/textures/index.json`, and
+`src/newer/render/r_newertextures.js`. Original textures load first; matching HD
+pixels replace the existing texture object after arrival, preserving the references
+held by materials and lightmap batches. Native pixel identities prevent a same-name
+add-on texture from receiving an unrelated replacement. The normal preparation
+path is refreshed for the replacement, and original fullbright areas retain a
+separate glow map. This campaign changes enemy assets, not level geometry or art.

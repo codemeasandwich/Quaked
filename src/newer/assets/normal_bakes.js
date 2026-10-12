@@ -17578,5 +17578,14 @@ export const NORMAL_BAKES = {
   "height": 1164,
   "bytes": 14973880,
   "compressedBytes": 3792189
+ },
+ "7e3ed25eeb30a777c37016a68281bf77e755019b3bf20a4e75cc855235433aa2": {
+  "file": "newer/normals/7e3ed25eeb30a777c37016a68281bf77e755019b3bf20a4e75cc855235433aa2.nm.gz",
+  "sha256": "ddf51d7f96005c7922112e519ec5aed9d1a17b4be52f4c6fd3067bb72b4e57e8",
+  "rawSha256": "09b09b913b7662b7fcdce85c6540cca5bb2b29307289346ae2e8903d772a73bb",
+  "width": 1584,
+  "height": 1164,
+  "bytes": 14750392,
+  "compressedBytes": 6441638
  }
 };

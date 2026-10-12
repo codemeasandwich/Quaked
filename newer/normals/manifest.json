@@ -39974,6 +39974,28 @@
       "height": 1164,
       "bytes": 14973880,
       "compressedBytes": 3792189
+    },
+    "7e3ed25eeb30a777c37016a68281bf77e755019b3bf20a4e75cc855235433aa2": {
+      "file": "newer/normals/7e3ed25eeb30a777c37016a68281bf77e755019b3bf20a4e75cc855235433aa2.nm.gz",
+      "input": {
+        "width": 1584,
+        "height": 1164,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "73238ea9b23587dfcab94fb2115b84dfed6c2926813765d77139a8af01863bd8",
+        "fullbright": null,
+        "scalar": "fefab9b6cf7bc18f61e45a93376cb59ca2e7446f2f0840d1d1e46b40cb6124f6",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "ddf51d7f96005c7922112e519ec5aed9d1a17b4be52f4c6fd3067bb72b4e57e8",
+      "rawSha256": "09b09b913b7662b7fcdce85c6540cca5bb2b29307289346ae2e8903d772a73bb",
+      "width": 1584,
+      "height": 1164,
+      "bytes": 14750392,
+      "compressedBytes": 6441638
     }
   },
   "levels": {
@@ -70747,8 +70769,7 @@
       "keys": [
         "b03bcb1a1361d17ec6b80ba50933142bbdbb5a5cab09e707915586d4d94738f0",
         "d53cb46e1b0f030deabc70c7a4ca51734fc4959b9c6416e5b38cd590dfed3c7d",
-        "a860e33d3574ca4cbfb6c9d9e4674fd7c6259da81bd085fa8db83f223a2cc907",
-        "c8505d702d53057d902d0c38a653ea01f9b046cf5778b6c450da85f6ab996cfc"
+        "a860e33d3574ca4cbfb6c9d9e4674fd7c6259da81bd085fa8db83f223a2cc907"
       ]
     },
     "rogue:progs/tarbaby.mdl": {
@@ -71068,6 +71089,11 @@
     "custom:knight/rogue1": {
       "keys": [
         "186635b10612fa3665836460f014993f221b187b5d5c3239d0d4589eb0b88fcb"
+      ]
+    },
+    "custom:ogre/rogue1": {
+      "keys": [
+        "7e3ed25eeb30a777c37016a68281bf77e755019b3bf20a4e75cc855235433aa2"
       ]
     }
   }

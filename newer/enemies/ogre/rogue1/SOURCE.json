@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "model": "progs/ogre.mdl",
+  "nativeModelSha256": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/ogre-rogue-skin1.png",
+  "sourceSha256": "a9f0e23b55392bfcef3045861a0f9f9ce49955de2b5017a8c6e857fad3c0f4e0",
+  "sourceDimensions": [
+    1462,
+    1076
+  ],
+  "dimensions": [
+    1584,
+    1164
+  ],
+  "factor": 6,
+  "skin": 1,
+  "poses": 147,
+  "vertices": 169,
+  "triangles": 326,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1584,
+    1164
+  ],
+  "registration": null,
+  "mattePolicy": "dark-brown",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 82086,
+      "directPixels": 82062,
+      "edgePixels": 24
+    },
+    {
+      "id": 2,
+      "surfacePixels": 82090,
+      "directPixels": 81190,
+      "edgePixels": 900
+    },
+    {
+      "id": 3,
+      "surfacePixels": 368724,
+      "directPixels": 361358,
+      "edgePixels": 7366
+    },
+    {
+      "id": 4,
+      "surfacePixels": 368724,
+      "directPixels": 339603,
+      "edgePixels": 29121
+    },
+    {
+      "id": 5,
+      "surfacePixels": 23212,
+      "directPixels": 21367,
+      "edgePixels": 1845
+    },
+    {
+      "id": 6,
+      "surfacePixels": 23061,
+      "directPixels": 20732,
+      "edgePixels": 2329
+    }
+  ],
+  "surfacePixels": 947897,
+  "edgePixels": 41585,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "86eb09df20d51caa2dd0a1c61a7f2e36b0c9e095434feae0713c43a1287bd454",
+    "height.webp": "8e6087af0c6b5da3ba43487ec2e4caef8ed2fb1e498a79acf9d7b4d13b56c946"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue ogre.mdl alternate skin1 decoded with native palette, nearest enlarged4x; background RGB15/7/7",
+    "prompt": "Faithfully repaint this EXACT ORIGINAL Quake Dissolution of Eternity MULTI-GRENADE OGRE alternate skin1 UV atlas at high resolution. Preserve the full264:194 aspect ratio and EVERY original island location, size, silhouette, orientation and gap. Include BOTH front/back body surfaces, BOTH bloodstained chainsaw assemblies above the shoulders, and BOTH separate grenade-launcher/hand pieces near the bottom; do not omit or rearrange weapon parts. Retain original pale tan wounded skin, bald snarling ogre face on FRONT only, plain rear head, dark olive-green studded/leather armour/clothing, dark belt/buckle, brown lower clothing and boots, blue-grey worn weapon metal, and original restrained blood distribution. The variant is identified by its original green armour; do not recolour it brown or invent new armour, masks, tattoos, weapon types or anatomy. Add continuous high-resolution skin folds/pores, worn green leather/fabric, studs, tarnished metal and wood detail following existing broad features. Keep original asymmetries and front/back differences. Avoid enlarged pixel mosaics or fake plastic gloss. Background remains flat very dark brown RGB15,7,7, with crisp boundaries; no cast shadows, scene, halo, text, labels, border or watermark. This is a precise production game UV atlas, not a character portrait."
+  }
+}

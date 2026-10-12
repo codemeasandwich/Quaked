@@ -406,6 +406,18 @@
       }
      ]
     }
+   },
+   {
+    "dir": "ogre/rogue1",
+    "skin": 1,
+    "nativeModelSha256": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+    "flipGreen": false,
+    "maps": {
+     "diffuse": "diffuse.png",
+     "height": "height.webp"
+    },
+    "heightStrength": 0.65,
+    "heightCap": 0.55
    }
   ],
   "soldier": [
@@ -1183,7 +1195,7 @@
    }
   ]
  },
- "version": 43,
+ "version": 44,
  "nativeHeights": {
   "gib1": [
    [
@@ -1228,7 +1240,8 @@
      "strength": 0.65,
      "cap": 0.55
     }
-   ]
+   ],
+   []
   ],
   "h_ogre": [
    [

@@ -1,0 +1,72 @@
+meshing progs/fish.mdl...
+
+172 tri 268 vert 585 cmd
+
+PASS owned Rotfish public loader preserves every native UV triangle and all 66 poses with exact source identity
+PASS actual Rotfish assets retain generated source, matching dimensions and other enemy entries
+meshing progs/fish.mdl...
+
+PASS actual manifest admits only matching Rotfish skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Rotfish image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Rotfish shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/fish_skin_identity_test.js)
+meshing progs/dog.mdl...
+
+PASS owned Dog public loader preserves every native UV triangle and all 86 poses with exact source identity
+PASS actual Dog assets retain generated source, matching dimensions, existing head and other enemy entries
+meshing progs/dog.mdl...
+
+PASS actual manifest admits only matching Dog skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Dog image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Dog shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/dog_skin_identity_test.js)
+meshing progs/hknight.mdl...
+
+452 tri 706 vert 1540 cmd
+
+PASS owned Death Knight public loader preserves every native UV triangle and all 166 poses with exact source identity
+PASS actual Death Knight assets retain approved provenance and every other enemy manifest entry
+meshing progs/hknight.mdl...
+
+PASS actual manifest admits only matching Death Knight skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Death Knight image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Death Knight shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/hknight_skin_identity_test.js)
+meshing progs/tarbaby.mdl...
+
+256 tri 400 vert 873 cmd
+
+PASS owned Spawn public loader preserves every native UV triangle and all 61 poses with exact source identity
+PASS actual Spawn assets retain approved provenance and every other enemy manifest entry
+meshing progs/tarbaby.mdl...
+
+PASS actual manifest admits only matching Spawn skin zero and preserves native geometry through preparation and selection
+PASS pending source waits for exact identity while unsupported and Classic preparations settle without art requests
+PASS failed Spawn image loads settle native fallback and shutdown rejects late image and identity publication
+PASS Spawn shipped normal cache is bound to actual decoded diffuse height and scalar settings
+RESULT 6/6 passed (tests/tarbaby_skin_identity_test.js)
+PASS model names map to skin keys
+PASS each monster keeps its skin, and skins vary between monsters
+PASS one skin, or variety off, always gives the first
+PASS entities without a slot number get a seed of their own that sticks
+PASS no replacement material unless Newer Game is on and the skin is known
+PASS every file the skin index names exists
+PASS a skin listed for a skin number is used for that skin only (the armor colours)
+PASS removed pack models fall back to original skins with the shipped manifest
+RESULT 8/8 passed (tests/r_newerskins_test.js)
+PASS early skin inspection rejects malformed BSP views and starts only actual all-skill model, head and shared-gib sets through ordinary cached loads
+PASS actual E1M3 bytes prefetch only 19 unbound authored maps and the Ogre face sheet while identity-bound variants wait for model loading
+PASS both BSP2 entity directory versions positively initiate needed skin requests before any model or game exists
+RESULT 3/3 passed (tests/startup_skins_test.js)
+PASS startup prepare begins every unseen custom variant and native skin/frame, then actual draws reuse them without another download
+Added packfile pak0.pak (339 files)
+
+meshing progs/dog.mdl...
+
+PASS actual native loaded Quake model header prepares stored relief without drawing and keeps native diffuse ownership
+PASS startup preparation respects independent skin/normal gates and shutdown prevents delayed index from preparing a retired map
+RESULT 3/3 passed (tests/skin_prepare_test.js)
+TOTAL 38/38 passed
