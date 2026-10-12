@@ -1,0 +1,31 @@
+{
+  "key": "ogre",
+  "skin": 1,
+  "outputVariant": "photoreal_proof",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-v2.png",
+  "sourceSha": "90dadea1437f7885092c56ebd819d7bce2bfd6aeb8065c5d2968ed8fef942c22",
+  "modelSha": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+  "layout": [
+    2,
+    264,
+    194,
+    169,
+    326,
+    147
+  ],
+  "size": [
+    1463,
+    1075
+  ],
+  "factor": 4,
+  "matte": "dark-brown",
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Owner HD base Ogre diffuse.webp primary edit target; original Rogue skin0/1 secondary variant-difference guide",
+    "baseDiffuse": "newer/enemies/ogre/custom/diffuse.webp",
+    "baseDiffuseSha256": "af5290302ed3251cbabd0641c8a00dfdb437a0078583c078516b541720c7c933",
+    "promptsFile": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-prompts.json",
+    "status": "Unaccepted owner-directed visual proof; production catalogue unchanged"
+  }
+}

@@ -1,0 +1,1732 @@
+{
+  "scope": "Quake + Hipnotic + Rogue enemy body skins only",
+  "excluded": [
+    "heads",
+    "gibs",
+    "traps including Spike Mines",
+    "third-party mods"
+  ],
+  "catalogueVersion": 45,
+  "sourceInventory": {
+    "basenames": 29,
+    "identities": 34,
+    "skinSlots": 50
+  },
+  "policy": "Existing unbound legacy variants retain their original filename/skin applicability. Exact model boundaries are verified only where declared.",
+  "rows": [
+    {
+      "game": "id1",
+      "model": "progs/boss.mdl",
+      "modelSha256": "4b802488480de2e36130e06ee03a31b2e96046a3ffe12f66e62d9bf4bd2f2eea",
+      "skin": 0,
+      "originalSize": [
+        300,
+        194
+      ],
+      "selectedDirectory": "boss/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1200,
+        776
+      ],
+      "diffuseSha256": "af3d5509b5571fa933649afe61054b863ee517711a6ffd0ce7fe279899fdffb7",
+      "heightSha256": "31a5a49df8775484130ffacf53724d889cb91e08b3e2bc5d64ebde1c209d6075",
+      "customNormal": {
+        "key": "c8c908d792edf8bb82bfd617ea0f0d4734c5afe636875f8189e83d2f0d59c903",
+        "file": "newer/normals/c8c908d792edf8bb82bfd617ea0f0d4734c5afe636875f8189e83d2f0d59c903.nm.gz",
+        "sha256": "2b378fd7d4322148cfe6779191b737d5a2a6aa0e12471c0d1c1f5a9e92ea4333"
+      },
+      "nativeNormals": [
+        {
+          "key": "c24f369cc308524e77aa20e6bf54b96c6a9d280ceebf4ea6dc55451ee26f6b4a",
+          "file": "newer/normals/c24f369cc308524e77aa20e6bf54b96c6a9d280ceebf4ea6dc55451ee26f6b4a.nm.gz",
+          "sha256": "b0e736da85eca60d715d2daf371a0918166a6647bba1aebe13408c713e5eaf79"
+        },
+        {
+          "key": "4626562b19efcd23b6bbcef158b2d2b8d096c4fefd2781b6533551c3bb832c75",
+          "file": "newer/normals/4626562b19efcd23b6bbcef158b2d2b8d096c4fefd2781b6533551c3bb832c75.nm.gz",
+          "sha256": "9f62cfb98fd5be984fd187dd2cd8eea1c17d04142d397164a7dd0856e82be8b8"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/demon.mdl",
+      "modelSha256": "388209db7e53cb0cde176c9976bb8004d37205a50a77b199cb4878a71e909db9",
+      "skin": 0,
+      "originalSize": [
+        308,
+        177
+      ],
+      "selectedDirectory": "demon/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        885
+      ],
+      "diffuseSha256": "d5efc56a076b8bf22ebd734a8cd5a1871637c354351b599e200ab68a2eb3dba2",
+      "heightSha256": "6c1020f4ab8f4fe9adf17e66e161e04c0c3f2e36ea2d472f2ea5a72fd1df534c",
+      "customNormal": {
+        "key": "f16afa7a3876258f8af1fa4aac8f76b3f512234afb092782acd09a09b6246ce5",
+        "file": "newer/normals/f16afa7a3876258f8af1fa4aac8f76b3f512234afb092782acd09a09b6246ce5.nm.gz",
+        "sha256": "7c52db443d4dc3d5fe7dec111f332740943eb08f32216794402cceda2b83e3af"
+      },
+      "nativeNormals": [
+        {
+          "key": "fa2b80080c5b0f21c6c3d19ff95a867bf9f6d8529b6e8afedc57bac579533d64",
+          "file": "newer/normals/fa2b80080c5b0f21c6c3d19ff95a867bf9f6d8529b6e8afedc57bac579533d64.nm.gz",
+          "sha256": "e9bfef05fe7f26649c6b5f27e039c93d17cc11b17cc4d5c98cd8b230326ebe67"
+        },
+        {
+          "key": "15823738b8c97b7f05c27798943ef2941d4dc301f6b375598e36e65f39c953b2",
+          "file": "newer/normals/15823738b8c97b7f05c27798943ef2941d4dc301f6b375598e36e65f39c953b2.nm.gz",
+          "sha256": "1f849e43400fc0da835353b5f110f4e90f2cfe140ccb3385bc06013c7adbbe73"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/dog.mdl",
+      "modelSha256": "c84104192b336b5360033a4efcc7e033fce4589d1af6c3c895101a9c6d6932b6",
+      "skin": 0,
+      "originalSize": [
+        312,
+        169
+      ],
+      "selectedDirectory": "dog/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1872,
+        1014
+      ],
+      "diffuseSha256": "0a6dde7bbf3bd8ffbdba6ffeddda6b5cd178fd94d8fd867630e190b446140daa",
+      "heightSha256": "93baa828678fd2e7a241400104982e36772b17628d20e193ed754e54336d05b5",
+      "customNormal": {
+        "key": "64f955f6f359928cff97e3268bfd8fc083922d2f5ba448560ed6725b141d22ed",
+        "file": "newer/normals/64f955f6f359928cff97e3268bfd8fc083922d2f5ba448560ed6725b141d22ed.nm.gz",
+        "sha256": "759eac5eca7c9521db516a24812b06aad5ca65a19394aa1e0df72214d8af48de"
+      },
+      "nativeNormals": [
+        {
+          "key": "fd84d071a844c78b6870af4616e20d6e8d5fd6123e24426a41a265bb3acdb725",
+          "file": "newer/normals/fd84d071a844c78b6870af4616e20d6e8d5fd6123e24426a41a265bb3acdb725.nm.gz",
+          "sha256": "8978fdb85b715dd67fd3ea34a0a21dcc78364deebd77ab96c54878bdef9baae6"
+        },
+        {
+          "key": "165021474dbe628b2c0e7e12a8ade3b72ad907fe808c91018a307e818e1a3c8f",
+          "file": "newer/normals/165021474dbe628b2c0e7e12a8ade3b72ad907fe808c91018a307e818e1a3c8f.nm.gz",
+          "sha256": "d2ad270a5a4a6754729725c9c62dc757d5a1de0bac565d933e72fb930d31d239"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/enforcer.mdl",
+      "modelSha256": "01eee88d78a0fe8014b86c57b45c235b59548bccc3436c97d8f59c420e865677",
+      "skin": 0,
+      "originalSize": [
+        296,
+        195
+      ],
+      "selectedDirectory": "enforcer/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1480,
+        975
+      ],
+      "diffuseSha256": "e82869428978103cb4f9e44b0fade06fcba0675d3d10e8efa72a1cd3e9cf8ab9",
+      "heightSha256": "31a9a1c2d36f6a7cadcd903c4afe324c1956b18a8fea9325e96e3ae981d25e90",
+      "customNormal": {
+        "key": "b5446b9428a605242d2c77377cab6ae2156e75cd0a9dcd892a1304638100a2d5",
+        "file": "newer/normals/b5446b9428a605242d2c77377cab6ae2156e75cd0a9dcd892a1304638100a2d5.nm.gz",
+        "sha256": "7960b7a7e4d6b56c0d19a98c34fb6caf7d64be8f877cc2c43a025b6ae571c6d7"
+      },
+      "nativeNormals": [
+        {
+          "key": "8ceaef252e558ae6518aad9756b20127db4ca6aa5a9886e25198e76e8abc3e15",
+          "file": "newer/normals/8ceaef252e558ae6518aad9756b20127db4ca6aa5a9886e25198e76e8abc3e15.nm.gz",
+          "sha256": "ef256e8b3e6557b105b3a978e5a55050ca934b7a19c92533ed62504a1e7eb6cc"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/fish.mdl",
+      "modelSha256": "e6a0396ac97d981cd49b39f7af8f1f32d9f910768f7a554f59bcb5926c2a3568",
+      "skin": 0,
+      "originalSize": [
+        260,
+        194
+      ],
+      "selectedDirectory": "fish/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1560,
+        1164
+      ],
+      "diffuseSha256": "c4fdfa47caf4760dd7105eb2f567218fe24affcefe58f2c254e991bb898c0c9f",
+      "heightSha256": "a396febaaab6478ff4d1960baf48e6a147c3b405a9cc33d54d9d2aa8db5d91cf",
+      "customNormal": {
+        "key": "7e9636e598ee90bafcd2ff55c067788bf58598d3de04b063f6b8f76e5b8204e5",
+        "file": "newer/normals/7e9636e598ee90bafcd2ff55c067788bf58598d3de04b063f6b8f76e5b8204e5.nm.gz",
+        "sha256": "8626c3befa66d339eecd5c2054b3327c11b44cf033646cea13f7682dbdd28c22"
+      },
+      "nativeNormals": [
+        {
+          "key": "3749213dd8ea4b7e5ce004c41ddd2ef7c1876968f7c0044fdc7e69b3b1d1ca4e",
+          "file": "newer/normals/3749213dd8ea4b7e5ce004c41ddd2ef7c1876968f7c0044fdc7e69b3b1d1ca4e.nm.gz",
+          "sha256": "a783c8d2b28bdf7b0a0d398db4ac466a60406e376f742e16efd94fe1313dbde3"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/hknight.mdl",
+      "modelSha256": "78d0273de6850f92d059fa90969f66ee57435330b3c4954c836a7204bc7a9d5a",
+      "skin": 0,
+      "originalSize": [
+        308,
+        154
+      ],
+      "selectedDirectory": "hknight/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        770
+      ],
+      "diffuseSha256": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+      "heightSha256": "2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592",
+      "customNormal": {
+        "key": "5be895ba3bcea0ec90b24caa3acc03863ea1feaa5e631b824ada0e705e430a26",
+        "file": "newer/normals/5be895ba3bcea0ec90b24caa3acc03863ea1feaa5e631b824ada0e705e430a26.nm.gz",
+        "sha256": "9e96f3fc55e69c7b407acfbad7e7ee78a840c76444afde4f8d0e30a0cfd91e0c"
+      },
+      "nativeNormals": [
+        {
+          "key": "c50abb2d14b086b8ce5474885e040dbcd4de38ebf82ce684ee5e593d341aa3c0",
+          "file": "newer/normals/c50abb2d14b086b8ce5474885e040dbcd4de38ebf82ce684ee5e593d341aa3c0.nm.gz",
+          "sha256": "66680522da31f19d689941e87d7580751839c6bdf323a3395b73dba3ba7fde6f"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/knight.mdl",
+      "modelSha256": "094c278cba9851a940e3e40e4f209f372b916ad7bac68ba13efd7c0d7d676ed1",
+      "skin": 0,
+      "originalSize": [
+        268,
+        194
+      ],
+      "selectedDirectory": "knight/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": true,
+      "hdSize": [
+        1072,
+        776
+      ],
+      "diffuseSha256": "3cfdd9d3c2a5d4bd4bfbcb34b4e15f58b645d592f658342149519c8d6e5fce55",
+      "heightSha256": "b9bfd8a47f91541f23826f46ce9d37ee345f2f95319b86c3faa935499d3f1a6d",
+      "customNormal": {
+        "key": "8d71aa5daf3ce06e6ef748f850bddb70f4c7bc0c07ef23cd77599f2c29ba29c4",
+        "file": "newer/normals/8d71aa5daf3ce06e6ef748f850bddb70f4c7bc0c07ef23cd77599f2c29ba29c4.nm.gz",
+        "sha256": "355c6eeb2642e09119783636f1b7a87e44343b9b85222ac5cad510bff88dd807"
+      },
+      "nativeNormals": [
+        {
+          "key": "921c23ef325e946ff2fdfe7fa798bbd7b720ed022216cbde01cf26351f384619",
+          "file": "newer/normals/921c23ef325e946ff2fdfe7fa798bbd7b720ed022216cbde01cf26351f384619.nm.gz",
+          "sha256": "35e58833bb92d29d7ac14382dca8242dd7b0dd0871d6f4cdf7ddf59d3e61cee9"
+        },
+        {
+          "key": "0477d1138a34f6d0d1083c5143ec251e7b0dd67c3014168f5b77fe274e8968fe",
+          "file": "newer/normals/0477d1138a34f6d0d1083c5143ec251e7b0dd67c3014168f5b77fe274e8968fe.nm.gz",
+          "sha256": "f4f4964eb75e73297cdfba7691d145dad82c33ee537400b1d170ad1a980c3991"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/ogre.mdl",
+      "modelSha256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+      "skin": 0,
+      "originalSize": [
+        264,
+        194
+      ],
+      "selectedDirectory": "ogre/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": true,
+      "hdSize": [
+        1056,
+        776
+      ],
+      "diffuseSha256": "85c05c35ca01a665251feb351262ff1c0cfa68719f3bc7753a334f6b7aa16cc3",
+      "heightSha256": "8b8071e22422789c9701e125676be34fd48b0bc92c87aa99ab24ed5b7ae06840",
+      "customNormal": {
+        "key": "200271e9bf85af314ac76124bc10a73234d436ec55a3de6889312e1e01c10ff3",
+        "file": "newer/normals/200271e9bf85af314ac76124bc10a73234d436ec55a3de6889312e1e01c10ff3.nm.gz",
+        "sha256": "694d85d614d1f64448bbeae64f425f080e03fc992aefc2bde7bdc04bfce4662b"
+      },
+      "nativeNormals": [
+        {
+          "key": "b03bcb1a1361d17ec6b80ba50933142bbdbb5a5cab09e707915586d4d94738f0",
+          "file": "newer/normals/b03bcb1a1361d17ec6b80ba50933142bbdbb5a5cab09e707915586d4d94738f0.nm.gz",
+          "sha256": "916deac5b8ef8913d727de1e26e4eb431756b5815db684986fd6247c6ef15574"
+        },
+        {
+          "key": "d53cb46e1b0f030deabc70c7a4ca51734fc4959b9c6416e5b38cd590dfed3c7d",
+          "file": "newer/normals/d53cb46e1b0f030deabc70c7a4ca51734fc4959b9c6416e5b38cd590dfed3c7d.nm.gz",
+          "sha256": "2ccbd22e337ad93361008bea7b06e34080c57eab616566ccc3a522b2601ea3ab"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/oldone.mdl",
+      "modelSha256": "81966deede395272b220ae664ccdbf1c78fc5db79b56d19eb9b45dc2f807e407",
+      "skin": 0,
+      "originalSize": [
+        228,
+        195
+      ],
+      "selectedDirectory": "oldone/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1140,
+        975
+      ],
+      "diffuseSha256": "f5d54b4d70addac58b773c5bf07574e49d6f37f29e435d92d482627857b74905",
+      "heightSha256": "673bf8ca67543ebe52141fd3b23ba418c81bf75db089d8080c8d0457314a0bb5",
+      "customNormal": {
+        "key": "c5c13f810dcd6f4d17b6ad5f7f55bc1e5c760945783841f49be8d4be2ca4b4f0",
+        "file": "newer/normals/c5c13f810dcd6f4d17b6ad5f7f55bc1e5c760945783841f49be8d4be2ca4b4f0.nm.gz",
+        "sha256": "e3ae7805bfc0c1a84b0e4712f1796da1429105768271a30e5e6693a02748ca71"
+      },
+      "nativeNormals": [
+        {
+          "key": "62b4f026eea512623bceddc0c18cbc2ec0bfe9aa87666e1e3af1c32d605d621e",
+          "file": "newer/normals/62b4f026eea512623bceddc0c18cbc2ec0bfe9aa87666e1e3af1c32d605d621e.nm.gz",
+          "sha256": "e1108b60ba1ad7dc2f014a517031862682dd73a5aa3bf07364b9c97df4cce8c0"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/shalrath.mdl",
+      "modelSha256": "da3dddbf592c05ce0c0340cc2eea842f28b5dcb9c0c03946abfb225c0b0a54ee",
+      "skin": 0,
+      "originalSize": [
+        212,
+        195
+      ],
+      "selectedDirectory": "shalrath/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1060,
+        975
+      ],
+      "diffuseSha256": "9dfb0b3a7ae996723d75d0c722fc1450fd960f64068328ffb6b0b7523eebdfe0",
+      "heightSha256": "de8568797d8e464978abf8e01ae018b617fe575582f499ffc189161e697a0d34",
+      "customNormal": {
+        "key": "51edc80e42298cefeff47e6ea68cbfcf2494795b006dd2c9494aa42f3b4710f4",
+        "file": "newer/normals/51edc80e42298cefeff47e6ea68cbfcf2494795b006dd2c9494aa42f3b4710f4.nm.gz",
+        "sha256": "b7471b5bd25cee165d865ac23ce9c4a82aa0d105e02e04cb3d7c0f726af76ad7"
+      },
+      "nativeNormals": [
+        {
+          "key": "7db153e229ee38f6d760d106635895dca371c1415c67c286c7d76f290f282089",
+          "file": "newer/normals/7db153e229ee38f6d760d106635895dca371c1415c67c286c7d76f290f282089.nm.gz",
+          "sha256": "4d207184f9d8deb74928ad5a6393310c5089f55f9564295de8521d1eafaa1691"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/shambler.mdl",
+      "modelSha256": "45c4f21ce566bd4304222d581a6b015bf01c310035821f927f9b51d94193b8d3",
+      "skin": 0,
+      "originalSize": [
+        308,
+        115
+      ],
+      "selectedDirectory": "shambler/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        575
+      ],
+      "diffuseSha256": "a0488f27fb490c0fe776d4e09a89289e4e4e8a8de9946cf37a7c54c79d2cb527",
+      "heightSha256": "1a90223904058e9417e1224c8cf9df7f0944a85fc774dc0c0c25c86c479bf74a",
+      "customNormal": {
+        "key": "160812b59ffed0c5398f329180b0e151f0e990ca7c73acd223dc896ffc9f4a71",
+        "file": "newer/normals/160812b59ffed0c5398f329180b0e151f0e990ca7c73acd223dc896ffc9f4a71.nm.gz",
+        "sha256": "70f66f5240541d009bd62d691d7f0f3d08ad20c801b0d9209b081dbcea9ecba0"
+      },
+      "nativeNormals": [
+        {
+          "key": "e41748e82ef624cc6dd2a48b1a8b22c4ebacf8c22ec771c268977be226230f3d",
+          "file": "newer/normals/e41748e82ef624cc6dd2a48b1a8b22c4ebacf8c22ec771c268977be226230f3d.nm.gz",
+          "sha256": "557ae0e88448119195ad7c72b6a8c661d99d4b6ea5558ced4b46f497a1561795"
+        },
+        {
+          "key": "85ced51eb575980351da43e19e735887ee6e6aa4c162affed1323f7b5e45e851",
+          "file": "newer/normals/85ced51eb575980351da43e19e735887ee6e6aa4c162affed1323f7b5e45e851.nm.gz",
+          "sha256": "f8eb40a23a690607fadfd197fd5337f6b1bbf005556d4a2d3d98ff08bc744e83"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/soldier.mdl",
+      "modelSha256": "1e70eb11aad02793a8fb90ece4a17328605cf9165c7305049ff30fcc21b3ce75",
+      "skin": 0,
+      "originalSize": [
+        300,
+        194
+      ],
+      "selectedDirectory": "soldier/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": true,
+      "hdSize": [
+        1200,
+        776
+      ],
+      "diffuseSha256": "dd2c5a4bdc95026ebf71794db687ca9263b78b332317a45283c7259d9c499bbe",
+      "heightSha256": "a67c970048cec4d905913ab2f956a049a6bc8fce287250a4b49e4e30f927cc33",
+      "customNormal": {
+        "key": "11fa0aed467f078e5eb74d05612a792bf55dbdd87fdb2b9ce59ce2b369a55fa8",
+        "file": "newer/normals/11fa0aed467f078e5eb74d05612a792bf55dbdd87fdb2b9ce59ce2b369a55fa8.nm.gz",
+        "sha256": "4136a432709148e91ae5ef15e01916cf0164c8590a89faeb2585d5add51e179e"
+      },
+      "nativeNormals": [
+        {
+          "key": "3013784211236a28cf2b007986727a35e33447e6bb77be79f0a6fb91512520b8",
+          "file": "newer/normals/3013784211236a28cf2b007986727a35e33447e6bb77be79f0a6fb91512520b8.nm.gz",
+          "sha256": "34e2bd3952e7fef3be858602bb839ebd5d1b43a65931b4e03fef23867009927b"
+        },
+        {
+          "key": "4dff0e9f4b6a7b83418f34002d29269b2319ce7a8a8180e509baeea209eb14a0",
+          "file": "newer/normals/4dff0e9f4b6a7b83418f34002d29269b2319ce7a8a8180e509baeea209eb14a0.nm.gz",
+          "sha256": "8c9f7d491d96bb5ef57a53a430f6f358894d40b3e7faf1238ff1de7cdc7bb060"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/tarbaby.mdl",
+      "modelSha256": "9933ee9b251e4c32a22129e2a9cda8cebfd2f317aeb2961a0591a098e9e823ea",
+      "skin": 0,
+      "originalSize": [
+        304,
+        194
+      ],
+      "selectedDirectory": "tarbaby/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1520,
+        970
+      ],
+      "diffuseSha256": "95e9bd8d3a9f30fe28f2d15617bd7f4061c93086582415940144b1f56ea3d389",
+      "heightSha256": "dfc80b188f46bee146ea3824e13759a7017bd4e5e12f7152bdcc2f04331a5e95",
+      "customNormal": {
+        "key": "6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c",
+        "file": "newer/normals/6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c.nm.gz",
+        "sha256": "f4bb59a486de9575fec7934974838e6defc273cb7d77993d4d327e3ff3e1cdef"
+      },
+      "nativeNormals": [
+        {
+          "key": "5f63e6e50570110544ca91831ead6addb0fad6a1f3ce7d02ea9feab9aba1ca80",
+          "file": "newer/normals/5f63e6e50570110544ca91831ead6addb0fad6a1f3ce7d02ea9feab9aba1ca80.nm.gz",
+          "sha256": "cba7bde0ab788faadbd424164614b422f62ebd59e513ce6e4ee7d05219cd2ce6"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/wizard.mdl",
+      "modelSha256": "41a0c51bbd21362874369fb64127886df67d8b0b605aad96574b671445926e2d",
+      "skin": 0,
+      "originalSize": [
+        216,
+        195
+      ],
+      "selectedDirectory": "wizard/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        864,
+        780
+      ],
+      "diffuseSha256": "bb99713b9590e636d3a459a2832b29ace8888c7076703b3cf063d52de114ec74",
+      "heightSha256": "efae1548e535aa7e4455d9eed507037cdd5f1bbd1a73fc558cd73c680e44843d",
+      "customNormal": {
+        "key": "cc47090852340b8d378e65b60d52c0ed8e5cbeff36a4fb32078cf40ec295f33f",
+        "file": "newer/normals/cc47090852340b8d378e65b60d52c0ed8e5cbeff36a4fb32078cf40ec295f33f.nm.gz",
+        "sha256": "e1856aa0f4cab187c0b020759c59c8ac8d03a9d037a080c165cf00b19ca88f8f"
+      },
+      "nativeNormals": [
+        {
+          "key": "266866b2b2322b307a35fdc71b2e72ff05cc4378a3302cbae699901ad3004d60",
+          "file": "newer/normals/266866b2b2322b307a35fdc71b2e72ff05cc4378a3302cbae699901ad3004d60.nm.gz",
+          "sha256": "62fe8b9c18699525bd0e321581e76210ab799bcf63abd068d2eefbf54c10b1a6"
+        },
+        {
+          "key": "47231ca3f5d641f538a2f5eccdbf074f5dd72280fb6de58858510c4e1456e46b",
+          "file": "newer/normals/47231ca3f5d641f538a2f5eccdbf074f5dd72280fb6de58858510c4e1456e46b.nm.gz",
+          "sha256": "02f8dd873faa6bf8b0acab9fb16c39720d19aafba3839f4487d7401260bfa344"
+        }
+      ]
+    },
+    {
+      "game": "id1",
+      "model": "progs/zombie.mdl",
+      "modelSha256": "76430f4aebfb39e918f524d81d5012051e49d0749f6f9a692ae7445a15cc8dfe",
+      "skin": 0,
+      "originalSize": [
+        168,
+        194
+      ],
+      "selectedDirectory": "zombie/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        840,
+        970
+      ],
+      "diffuseSha256": "ce228b9ca960340e6178c2fe7696ef4eb46eaa0222968e25331176c449b0972d",
+      "heightSha256": "0eb82654b167c0e0d4aadbcc057ff869d94ffc94f44cdb3c6d421c45bae0ac70",
+      "customNormal": {
+        "key": "cd17a3fe8ebdecd8710bbb9f30a34fa383c73656affb723b38e6f48deb254590",
+        "file": "newer/normals/cd17a3fe8ebdecd8710bbb9f30a34fa383c73656affb723b38e6f48deb254590.nm.gz",
+        "sha256": "c65853ddcaa64a3aebb0c5105a8dc0ff450afe505e4c9376c2342e92ef223fb6"
+      },
+      "nativeNormals": [
+        {
+          "key": "945d5046c02257a1c445683a77e3660f23875d5d0ce3c0dea0efef1ca96f060c",
+          "file": "newer/normals/945d5046c02257a1c445683a77e3660f23875d5d0ce3c0dea0efef1ca96f060c.nm.gz",
+          "sha256": "e397755e1875828d38a6da7a35efc057512b0f3ae09b39449d028d6d86691c0d"
+        },
+        {
+          "key": "d0ae4927029e10138a35b3e727fb51af7fe73cfd645a32f39bceda8defb1993b",
+          "file": "newer/normals/d0ae4927029e10138a35b3e727fb51af7fe73cfd645a32f39bceda8defb1993b.nm.gz",
+          "sha256": "7793143d604e67b6f761be52f4b1fda4d0f6515c8d41b6674af96b0fb90deb99"
+        }
+      ]
+    },
+    {
+      "game": "hipnotic",
+      "model": "progs/armabody.mdl",
+      "modelSha256": "e827535032c8e83609fedf07c9989c504e7eaa6772ce0d5cf73788e00980f151",
+      "skin": 0,
+      "originalSize": [
+        216,
+        194
+      ],
+      "selectedDirectory": "armabody/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1512,
+        1358
+      ],
+      "diffuseSha256": "69afec8a240968e32a69e92412cb9c070466af1ee4671bc55632e61cf4f143a1",
+      "heightSha256": "d934152d59e6452991ade26ef1170fe30b7dec0c3c1239e187c2eb24c8f8b94c",
+      "customNormal": {
+        "key": "ab6a0c9ab2556f3c79f78cd629dad1e3a076ed6f39f847ea92cdab2b0dcee940",
+        "file": "newer/normals/ab6a0c9ab2556f3c79f78cd629dad1e3a076ed6f39f847ea92cdab2b0dcee940.nm.gz",
+        "sha256": "dc736e561a595acea52bf24923bf1864ce58f05d37a450f7bdce271c975f2d80"
+      },
+      "nativeNormals": [
+        {
+          "key": "762375e8270472f8b240acaf783820101620fd4c961e120fcc868344c0795837",
+          "file": "newer/normals/762375e8270472f8b240acaf783820101620fd4c961e120fcc868344c0795837.nm.gz",
+          "sha256": "0940d6afce47535ab667f88bfd36455601e1c6002ca17b9414128b44c1ee334b"
+        },
+        {
+          "key": "97554cfda7eb82fcd82819cb6e8f36a37b472fe8db397edcbba9352dbd681100",
+          "file": "newer/normals/97554cfda7eb82fcd82819cb6e8f36a37b472fe8db397edcbba9352dbd681100.nm.gz",
+          "sha256": "9b80451af3a7e74b3ca4e233ae349f5a5b9f69559c6370226d2b974703e80a50"
+        }
+      ]
+    },
+    {
+      "game": "hipnotic",
+      "model": "progs/armalegs.mdl",
+      "modelSha256": "b33a8f7e4cd3fca9b8c9427d8002a5470da44ce919648e1a0045f3f131f73deb",
+      "skin": 0,
+      "originalSize": [
+        228,
+        194
+      ],
+      "selectedDirectory": "armalegs/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1368,
+        1164
+      ],
+      "diffuseSha256": "e67f2e0829d49d5b34baec15df31ed708dfa2ea51f37beb4d5e518ab544dc4b9",
+      "heightSha256": "5d3b88ec4f2e601da75f240ec9531ca47f93a89ae5ce645ba021da7a33208faf",
+      "customNormal": {
+        "key": "e81df26d8418924d174fa1c758f02b484dc0fbf73f9f076c46629486120c4005",
+        "file": "newer/normals/e81df26d8418924d174fa1c758f02b484dc0fbf73f9f076c46629486120c4005.nm.gz",
+        "sha256": "eaf976ed707782485ef3cd13dc48901ab03a1f3862f0e026e045204e423a9d36"
+      },
+      "nativeNormals": [
+        {
+          "key": "20c958bfb3572ffae9758f737d31a94d3cf35620dc380f2830534b94efee3f42",
+          "file": "newer/normals/20c958bfb3572ffae9758f737d31a94d3cf35620dc380f2830534b94efee3f42.nm.gz",
+          "sha256": "8ed962b7dc0a756b153d711476a66a6a2df05c802574ee777fa2252f450e8aaa"
+        }
+      ]
+    },
+    {
+      "game": "hipnotic",
+      "model": "progs/grem.mdl",
+      "modelSha256": "bdc4443c3a0d0bb30b4302bb7b1d9759344690c6148bea08a747436191325763",
+      "skin": 0,
+      "originalSize": [
+        308,
+        169
+      ],
+      "selectedDirectory": "grem/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1848,
+        1014
+      ],
+      "diffuseSha256": "29a9ac02735ba4941593e6cab58de048971e30618b5295f5cc0d41dfda1e8be2",
+      "heightSha256": "8b7b263f6faf8758087f0938b7c6e79b92e28c0c8a354d3e92c1716cf01fd156",
+      "customNormal": {
+        "key": "4b0e7cedeba9f4d924a9ae21d623e81322aab77de58963f038e22487541f4f6e",
+        "file": "newer/normals/4b0e7cedeba9f4d924a9ae21d623e81322aab77de58963f038e22487541f4f6e.nm.gz",
+        "sha256": "e0629a4ef6377c3fed1463f50d0ae7f06578636a6e3d3d0de4536b705d0be8f5"
+      },
+      "nativeNormals": [
+        {
+          "key": "189cb8ec2392720d640c13735650d511cdf1ddc5b2bc1f66c56740ffc23d6d17",
+          "file": "newer/normals/189cb8ec2392720d640c13735650d511cdf1ddc5b2bc1f66c56740ffc23d6d17.nm.gz",
+          "sha256": "df96d1cbf5bdacb7020c30c1874f382aaf03fd115c7b3bfeee741a8fb9f92848"
+        }
+      ]
+    },
+    {
+      "game": "hipnotic",
+      "model": "progs/scor.mdl",
+      "modelSha256": "13f3baa6760b38c1a7ba30eea9b581754dd87eeb1875248ce6feb1d1efb3582f",
+      "skin": 0,
+      "originalSize": [
+        308,
+        156
+      ],
+      "selectedDirectory": "scor/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        780
+      ],
+      "diffuseSha256": "8f753262342b706e4a7f56343e6f1542f26d332e2a8cc5dccd768e540f030238",
+      "heightSha256": "9a97fbfa6a33a04e24837796b16bd6cecfb16c158e51186d1a411e653a52c07c",
+      "customNormal": {
+        "key": "b6a3561f29e8ecd535b213b528c1c70938578606c7281f6168dadd515e4b241c",
+        "file": "newer/normals/b6a3561f29e8ecd535b213b528c1c70938578606c7281f6168dadd515e4b241c.nm.gz",
+        "sha256": "fe92f83a98b2b48a25b58f6b1138efae989f526eca62bdc6621dbeb7c2d83b97"
+      },
+      "nativeNormals": [
+        {
+          "key": "7d9c00801082997cca0e57afef1610d16d3166e80d00e666eb58e3000c38cc35",
+          "file": "newer/normals/7d9c00801082997cca0e57afef1610d16d3166e80d00e666eb58e3000c38cc35.nm.gz",
+          "sha256": "a57a3c0e482268838532fbc99162128fece9d369bf1c04262acfa1a8d82f018b"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/dragon.mdl",
+      "modelSha256": "1ba01029d4113cc832aa5ab551c7bf060b5f7a4eb1afde35607564413bfee2ec",
+      "skin": 0,
+      "originalSize": [
+        308,
+        179
+      ],
+      "selectedDirectory": "dragon/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        895
+      ],
+      "diffuseSha256": "6330f5d134bd4f324fb2e3c6245cefe85af018fce893f447820c23daea9a0341",
+      "heightSha256": "0cec7c3a5a53c1d9e9df2bb0971f3d6706ca3bf36c7487c81a54b41413bc2d61",
+      "customNormal": {
+        "key": "8ea6335e58fc6089fed1775384e664ef08798a612175e0e38b1667709efc8b21",
+        "file": "newer/normals/8ea6335e58fc6089fed1775384e664ef08798a612175e0e38b1667709efc8b21.nm.gz",
+        "sha256": "6335af4fa03cb06f058df949afcf09027b3c6215755f2a1a7f6ae10a332387e8"
+      },
+      "nativeNormals": [
+        {
+          "key": "b349b7531956c22aa4cd8d9f581c6c6999d4172a2ab8d70d63ba0a89370b24a1",
+          "file": "newer/normals/b349b7531956c22aa4cd8d9f581c6c6999d4172a2ab8d70d63ba0a89370b24a1.nm.gz",
+          "sha256": "b6d96787a512d8c73ef985f85c090150ba2a4e91347dc12aaef38f3ef8b5514f"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/eel2.mdl",
+      "modelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+      "skin": 0,
+      "originalSize": [
+        136,
+        194
+      ],
+      "selectedDirectory": "eel2/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1088,
+        1552
+      ],
+      "diffuseSha256": "8ed61a2d170cfe1bac2838c5bbe96aa7f69e62ebe8bc6577b13a867faae9f936",
+      "heightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928",
+      "customNormal": {
+        "key": "a2fae9bf4cca616abf07c32c28f27ddf86260652e6e2ef900571647f76a3c28a",
+        "file": "newer/normals/a2fae9bf4cca616abf07c32c28f27ddf86260652e6e2ef900571647f76a3c28a.nm.gz",
+        "sha256": "897e7cd19c99c03228761236d740847d1db4d4e90a0899f61a70b8e9e9e38716"
+      },
+      "nativeNormals": [
+        {
+          "key": "52b8141fa3d4f50736987858b7c0a2ce902b63a1bcf6b7f23aad280c6da9b488",
+          "file": "newer/normals/52b8141fa3d4f50736987858b7c0a2ce902b63a1bcf6b7f23aad280c6da9b488.nm.gz",
+          "sha256": "c858722724dbb8f9645a41a48b3133d6db40915b17145a00ede9a198e0fe2111"
+        },
+        {
+          "key": "25f49c1b8666493fa7a4aa652e676adea70004d62c8e1ba295775187d4f4ee60",
+          "file": "newer/normals/25f49c1b8666493fa7a4aa652e676adea70004d62c8e1ba295775187d4f4ee60.nm.gz",
+          "sha256": "49d10c422155c7ea422d3841b92786d17dfca6c50e7bed34bf2aec249c7a4a0e"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/eel2.mdl",
+      "modelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+      "skin": 1,
+      "originalSize": [
+        136,
+        194
+      ],
+      "selectedDirectory": "eel2/custom1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1088,
+        1552
+      ],
+      "diffuseSha256": "3fb7c8a23915f382181abbff7e0c9d2b0dd191bb5608c7c3bc8b9751735c5159",
+      "heightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928",
+      "customNormal": {
+        "key": "2a4b811a4d7b4d05a857d2eda55c9da631313fd392d381487f08cb559bc592bf",
+        "file": "newer/normals/2a4b811a4d7b4d05a857d2eda55c9da631313fd392d381487f08cb559bc592bf.nm.gz",
+        "sha256": "8e688248e71b69f335c9e2060d27bcd10140bb642c06f7029aed878abad96baf"
+      },
+      "nativeNormals": [
+        {
+          "key": "8632f4c539552fd8689b92a44a397b0294018287950116d540f955f78e31a38c",
+          "file": "newer/normals/8632f4c539552fd8689b92a44a397b0294018287950116d540f955f78e31a38c.nm.gz",
+          "sha256": "043fdefa99619d7a20a805c4c123ca7e862caa215df9fb889e6820b2f266c627"
+        },
+        {
+          "key": "1da3e5ff85990290ffb2b8f16f435db42a1c6483ea1bd328f493cbfa2bef0505",
+          "file": "newer/normals/1da3e5ff85990290ffb2b8f16f435db42a1c6483ea1bd328f493cbfa2bef0505.nm.gz",
+          "sha256": "09fc115c5bc116a1fdf1316d969a30b0fab393fca47238f224ec6ba567b9aaf1"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/eel2.mdl",
+      "modelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+      "skin": 2,
+      "originalSize": [
+        136,
+        194
+      ],
+      "selectedDirectory": "eel2/custom2",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1088,
+        1552
+      ],
+      "diffuseSha256": "5471a5c3f3c0a56bc64424a5d1b5781a6db436b240b8b2f270344842dba7929f",
+      "heightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928",
+      "customNormal": {
+        "key": "acb964147d8c25199ddd6dfd74ccb498cc70850d362e4a92de9007dd7861d7e3",
+        "file": "newer/normals/acb964147d8c25199ddd6dfd74ccb498cc70850d362e4a92de9007dd7861d7e3.nm.gz",
+        "sha256": "9f0afacbebaf0a6f612894e59d5740c5d8eab37e8a93b2f036a708aff6a1866f"
+      },
+      "nativeNormals": [
+        {
+          "key": "da16473b9bf709fde5f15258e1851ce2a858c43e5cb1f0329bbc8b6a2cd7d226",
+          "file": "newer/normals/da16473b9bf709fde5f15258e1851ce2a858c43e5cb1f0329bbc8b6a2cd7d226.nm.gz",
+          "sha256": "7b3f498f00b16fe79a79a5b0b8ebb9053e31ee36fdf5c114eca4fb38eb6e0473"
+        },
+        {
+          "key": "1af4384fcb3415495189a225206e1e51e89e9818274234a8a49da57fb3972008",
+          "file": "newer/normals/1af4384fcb3415495189a225206e1e51e89e9818274234a8a49da57fb3972008.nm.gz",
+          "sha256": "bb906569f19616b6a507695a0abd30b92aa87e1d9e38794007a175fa97327958"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/eel2.mdl",
+      "modelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+      "skin": 3,
+      "originalSize": [
+        136,
+        194
+      ],
+      "selectedDirectory": "eel2/custom3",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1088,
+        1552
+      ],
+      "diffuseSha256": "f052be5f6b7eaa1f05391371e7edf4c1e5ec3b662b6b42f48bfffb1070e758f1",
+      "heightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928",
+      "customNormal": {
+        "key": "5bba6fdc62ce266fd057d43e20c73cff5683914058169bee24207a091de4ace7",
+        "file": "newer/normals/5bba6fdc62ce266fd057d43e20c73cff5683914058169bee24207a091de4ace7.nm.gz",
+        "sha256": "5c26ff663e99f96e3bfa66fc73973543900a09c60406a4ad9e162ebeb35d5bd6"
+      },
+      "nativeNormals": [
+        {
+          "key": "f833255dc09133cdab810bc58ff21b6909720a20ec0df773a0c6f4c738a7974f",
+          "file": "newer/normals/f833255dc09133cdab810bc58ff21b6909720a20ec0df773a0c6f4c738a7974f.nm.gz",
+          "sha256": "8eb1bf7adb0cd453c8df26549321463ad11549d52be5d86dc4041a369ddcab1a"
+        },
+        {
+          "key": "31feceacd033810fc0ea822b83a56fc623aeee64f5d8a9210470e1cbd1558506",
+          "file": "newer/normals/31feceacd033810fc0ea822b83a56fc623aeee64f5d8a9210470e1cbd1558506.nm.gz",
+          "sha256": "63884de29c9d18ff9a02384333f63f4482b9789c8a4fecabf25c2b01737eaa52"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/eel2.mdl",
+      "modelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+      "skin": 4,
+      "originalSize": [
+        136,
+        194
+      ],
+      "selectedDirectory": "eel2/custom4",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1088,
+        1552
+      ],
+      "diffuseSha256": "ae492c2ef7e1bdec85068f4160ebd642f4a7cb6f9206570f06f014d1656b5bf8",
+      "heightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928",
+      "customNormal": {
+        "key": "0d88b6797a48e095b5c9ee90ffa9d1c5ce9f0ab3531eb0053ca2d924c4987b25",
+        "file": "newer/normals/0d88b6797a48e095b5c9ee90ffa9d1c5ce9f0ab3531eb0053ca2d924c4987b25.nm.gz",
+        "sha256": "1683eea4e04ab833fba58b6a9469fd5d122652536777c58095b043f8f0b33357"
+      },
+      "nativeNormals": [
+        {
+          "key": "2268940799a84129b3b2b7c6e4963edb299d5a502d761214bfae4690e229dfbe",
+          "file": "newer/normals/2268940799a84129b3b2b7c6e4963edb299d5a502d761214bfae4690e229dfbe.nm.gz",
+          "sha256": "07ab2296333ad66d33c880c8480175cff9f3d45eab30ead3bbcecc8429a36056"
+        },
+        {
+          "key": "36e28c7c1c268bf7cc872b4dfe5da66125ef55ababb08d5dc84ce78a88535305",
+          "file": "newer/normals/36e28c7c1c268bf7cc872b4dfe5da66125ef55ababb08d5dc84ce78a88535305.nm.gz",
+          "sha256": "cf3049d56ec997d39761f779d5ed0d7f25fff13f69f165f259d6062c679420f2"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/eel2.mdl",
+      "modelSha256": "58b9c4a4af9953f8c024158ba8a7cebd33e19834440c09026fd5931cb6b831a7",
+      "skin": 5,
+      "originalSize": [
+        136,
+        194
+      ],
+      "selectedDirectory": "eel2/custom5",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1088,
+        1552
+      ],
+      "diffuseSha256": "8d46efe49942d62c1ba86a79ac76294f8483f922ad164e23f9a278d76f5d17f5",
+      "heightSha256": "9df9a6a28085faecdb3a142f4650f8bff303737d60393c7b3ba19cdaf0443928",
+      "customNormal": {
+        "key": "6997cd18eca765338dd8d15de405ea59313691736926f8dfe3e7c537b22e96bc",
+        "file": "newer/normals/6997cd18eca765338dd8d15de405ea59313691736926f8dfe3e7c537b22e96bc.nm.gz",
+        "sha256": "e87ec51ffcacf4be4f81724c0b480b831e651b9a71086ef80e8769ab247baffe"
+      },
+      "nativeNormals": [
+        {
+          "key": "aedcfd5181e85e79f63002385c76736079b6f16336ca04479046cf0684a943d9",
+          "file": "newer/normals/aedcfd5181e85e79f63002385c76736079b6f16336ca04479046cf0684a943d9.nm.gz",
+          "sha256": "573881b4810b9213e408f58066e327d93b279e591c92fec112d796c1f97e9210"
+        },
+        {
+          "key": "24eb7300bf59227a11fce583b702e86e86214f9980625ce422ebaafdec96b4ea",
+          "file": "newer/normals/24eb7300bf59227a11fce583b702e86e86214f9980625ce422ebaafdec96b4ea.nm.gz",
+          "sha256": "7836e21c607904ee3b165b46c8106c7c6bae230d27e1bfaee3ecde3eb96c2cfe"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/hknight.mdl",
+      "modelSha256": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+      "skin": 0,
+      "originalSize": [
+        308,
+        154
+      ],
+      "selectedDirectory": "hknight/rogue0",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        770
+      ],
+      "diffuseSha256": "6d2d99bb144d0af07aad7e0b544220def239e979b56311bb0498f7ac5f7fc863",
+      "heightSha256": "2cbebd4657b618977a0c502afb8ecde290597017e4f9f69d5dd46dff48d65592",
+      "customNormal": {
+        "key": "5be895ba3bcea0ec90b24caa3acc03863ea1feaa5e631b824ada0e705e430a26",
+        "file": "newer/normals/5be895ba3bcea0ec90b24caa3acc03863ea1feaa5e631b824ada0e705e430a26.nm.gz",
+        "sha256": "9e96f3fc55e69c7b407acfbad7e7ee78a840c76444afde4f8d0e30a0cfd91e0c"
+      },
+      "nativeNormals": [
+        {
+          "key": "c50abb2d14b086b8ce5474885e040dbcd4de38ebf82ce684ee5e593d341aa3c0",
+          "file": "newer/normals/c50abb2d14b086b8ce5474885e040dbcd4de38ebf82ce684ee5e593d341aa3c0.nm.gz",
+          "sha256": "66680522da31f19d689941e87d7580751839c6bdf323a3395b73dba3ba7fde6f"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/hknight.mdl",
+      "modelSha256": "ff5e8e7e0339d70fa0edca83a0d082cfc934ae6f60bbbd8f310f32c438646485",
+      "skin": 1,
+      "originalSize": [
+        308,
+        154
+      ],
+      "selectedDirectory": "hknight/rogue1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1848,
+        924
+      ],
+      "diffuseSha256": "dc610e95731e720629f11d260fc4445fb4f262612821f36df6ffc3306a62f958",
+      "heightSha256": "503279cdb528d9ec327a407f2208a5c26bc730d6580c62a5796a992389daff6a",
+      "customNormal": {
+        "key": "af0f9332fcd6e65fbcf01a343ba2393ddb4664024c05348b59ad06aac3896145",
+        "file": "newer/normals/af0f9332fcd6e65fbcf01a343ba2393ddb4664024c05348b59ad06aac3896145.nm.gz",
+        "sha256": "547bccab06c136a75db2940df43491cb026ca5599c07b8457061de7ea1904e0a"
+      },
+      "nativeNormals": [
+        {
+          "key": "215feaed328d1a044cf9dd438a227ab7848c7c782c0978cf5873982f679f56bf",
+          "file": "newer/normals/215feaed328d1a044cf9dd438a227ab7848c7c782c0978cf5873982f679f56bf.nm.gz",
+          "sha256": "d4d4d7885fc750f2767466d6f9782187d000a5df43b75a6263d12880e69595fb"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/knight.mdl",
+      "modelSha256": "749325dd12abbfae8fc89416f217fa07c6d06bd30fed7359e599a04d969eefcf",
+      "skin": 0,
+      "originalSize": [
+        268,
+        194
+      ],
+      "selectedDirectory": "knight/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": "Actual base and override skin0 pixels, UVs and triangles are identical",
+      "faces": true,
+      "hdSize": [
+        1072,
+        776
+      ],
+      "diffuseSha256": "3cfdd9d3c2a5d4bd4bfbcb34b4e15f58b645d592f658342149519c8d6e5fce55",
+      "heightSha256": "b9bfd8a47f91541f23826f46ce9d37ee345f2f95319b86c3faa935499d3f1a6d",
+      "customNormal": {
+        "key": "8d71aa5daf3ce06e6ef748f850bddb70f4c7bc0c07ef23cd77599f2c29ba29c4",
+        "file": "newer/normals/8d71aa5daf3ce06e6ef748f850bddb70f4c7bc0c07ef23cd77599f2c29ba29c4.nm.gz",
+        "sha256": "355c6eeb2642e09119783636f1b7a87e44343b9b85222ac5cad510bff88dd807"
+      },
+      "nativeNormals": [
+        {
+          "key": "921c23ef325e946ff2fdfe7fa798bbd7b720ed022216cbde01cf26351f384619",
+          "file": "newer/normals/921c23ef325e946ff2fdfe7fa798bbd7b720ed022216cbde01cf26351f384619.nm.gz",
+          "sha256": "35e58833bb92d29d7ac14382dca8242dd7b0dd0871d6f4cdf7ddf59d3e61cee9"
+        },
+        {
+          "key": "0477d1138a34f6d0d1083c5143ec251e7b0dd67c3014168f5b77fe274e8968fe",
+          "file": "newer/normals/0477d1138a34f6d0d1083c5143ec251e7b0dd67c3014168f5b77fe274e8968fe.nm.gz",
+          "sha256": "f4f4964eb75e73297cdfba7691d145dad82c33ee537400b1d170ad1a980c3991"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/knight.mdl",
+      "modelSha256": "749325dd12abbfae8fc89416f217fa07c6d06bd30fed7359e599a04d969eefcf",
+      "skin": 1,
+      "originalSize": [
+        268,
+        194
+      ],
+      "selectedDirectory": "knight/rogue1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1608,
+        1164
+      ],
+      "diffuseSha256": "995286381da29e94b5835c8b2e362b5c65f563094537622cf23f575c80bb0697",
+      "heightSha256": "942d7f5065c7f5f8bc4e40b2abd87b5dddff3a271795f239f496e474e6917a20",
+      "customNormal": {
+        "key": "186635b10612fa3665836460f014993f221b187b5d5c3239d0d4589eb0b88fcb",
+        "file": "newer/normals/186635b10612fa3665836460f014993f221b187b5d5c3239d0d4589eb0b88fcb.nm.gz",
+        "sha256": "91c7939a30cf54b783b62848c24cbc4be9a43df7a37684c9b9353955f8402ddd"
+      },
+      "nativeNormals": [
+        {
+          "key": "8c2217735fe4c8350a88515c5d83cb7afecc6e92bdb9301895ae940dd88d5a96",
+          "file": "newer/normals/8c2217735fe4c8350a88515c5d83cb7afecc6e92bdb9301895ae940dd88d5a96.nm.gz",
+          "sha256": "aff750d538339eb5859e68350bd05bd28ac4afce990704f2af404ec523a7a118"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/lavaman.mdl",
+      "modelSha256": "b81bb7f5cebb2889cfd2f431f743200f672d0195b05fe3faa98b50163fed7fb1",
+      "skin": 0,
+      "originalSize": [
+        300,
+        194
+      ],
+      "selectedDirectory": "lavaman/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1800,
+        1164
+      ],
+      "diffuseSha256": "00a8adae20bdce3819e1916019640b6bc7fd1fd83fefe77da34cc4ba800d1bc2",
+      "heightSha256": "f4b5de5351477c5dac3ae8bd3b282fcc4ed2e452fe37881dbdcfa415656a36cb",
+      "customNormal": {
+        "key": "39cb199daf6621d86aa963debe8b9b2e2976c2a24baa33e2569807baeed38d7f",
+        "file": "newer/normals/39cb199daf6621d86aa963debe8b9b2e2976c2a24baa33e2569807baeed38d7f.nm.gz",
+        "sha256": "ed9362904eff52bac7acdc57f50d6bd009b7592124e9a3f8d9fcd399b83a166f"
+      },
+      "nativeNormals": [
+        {
+          "key": "b1926da81f93898335d76235ece8c9c254919a22ef301f34e5676c136182442a",
+          "file": "newer/normals/b1926da81f93898335d76235ece8c9c254919a22ef301f34e5676c136182442a.nm.gz",
+          "sha256": "c09db976626407285ab4296ebe4359a7df4ed459d6a9666a9324daea1c59b500"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_az.mdl",
+      "modelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f",
+      "skin": 0,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_az/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "a7a4b703cb3cee74ea2ded463acaaa356ee25ecafc86541ee71154afc660ef25",
+      "heightSha256": "e75c9d504454d06c83f6c9301e97e064c7c2dd85b1c19029f60b106f59a55131",
+      "customNormal": {
+        "key": "4ef580cec4475390ef12742ab94dcefca5f7f663f45b17b6b894e4d917a1df5e",
+        "file": "newer/normals/4ef580cec4475390ef12742ab94dcefca5f7f663f45b17b6b894e4d917a1df5e.nm.gz",
+        "sha256": "6833750baaff36dc8a52fff8c050af60148ec5ff9864a5346fbac0ba7d7674f5"
+      },
+      "nativeNormals": [
+        {
+          "key": "ec583d4d465bbc550ff9f72145f87bab0cf1a9f6784cb773a9fa3a1d17773fc3",
+          "file": "newer/normals/ec583d4d465bbc550ff9f72145f87bab0cf1a9f6784cb773a9fa3a1d17773fc3.nm.gz",
+          "sha256": "2b2027e4277ca360800949c214fad9f9bb55413a79e1aef9b403d59b28a5f725"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_az.mdl",
+      "modelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f",
+      "skin": 1,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_az/custom1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "cd72b3258094c11b535136d4214e9b55a77c1a1c89e9fb8400cb0cad5e3d394f",
+      "heightSha256": "c2d6fd52fdcf32959e6bdb0f3f31e73103b1fe00c0edc375df8823b642597ac1",
+      "customNormal": {
+        "key": "605a5188a86a9553c4ca3520418d8c3ebebb6c3e8689a705789a548296b23a6f",
+        "file": "newer/normals/605a5188a86a9553c4ca3520418d8c3ebebb6c3e8689a705789a548296b23a6f.nm.gz",
+        "sha256": "e3995388091a223f373506b40b676e529c2e96ad0f4133c7d658042255b2ac31"
+      },
+      "nativeNormals": [
+        {
+          "key": "f6f20bad6705a9af8860bc0cddbd72ddadf5071e29d9a5eea8d3989ecdd53495",
+          "file": "newer/normals/f6f20bad6705a9af8860bc0cddbd72ddadf5071e29d9a5eea8d3989ecdd53495.nm.gz",
+          "sha256": "c7c23ecc74e599427d21401eec1c1946fdb3bb19565835433af71ccd9ee23ddd"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_az.mdl",
+      "modelSha256": "98d86ad428b5ab5643e12921f3f41572eb84c2025a8f05c7b882ccce6bdc4a5f",
+      "skin": 2,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_az/custom2",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04",
+      "heightSha256": "bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137",
+      "customNormal": {
+        "key": "3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff",
+        "file": "newer/normals/3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff.nm.gz",
+        "sha256": "f9395877b243cc5db37136b096bec16d3d991b290bc45e415c36003ad7f4cfbe"
+      },
+      "nativeNormals": [
+        {
+          "key": "0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7",
+          "file": "newer/normals/0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7.nm.gz",
+          "sha256": "5e788c9647494db1d9b827e56f756d6e1972b548f13aef797d0135342c8672d2"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_eg.mdl",
+      "modelSha256": "14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b",
+      "skin": 0,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_eg/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "335363768ff102f1e3f1ae9e37468428e91c28876c731a02dc2b586175f23ea2",
+      "heightSha256": "7d93bfa06167aefb6461a5d98394cf90e504cc1da4c71dc77330b91ba1eb8369",
+      "customNormal": {
+        "key": "c2368cc4ceb6c5db1c915f23cfcb07f86c653e27559670b7e475da0a5556350e",
+        "file": "newer/normals/c2368cc4ceb6c5db1c915f23cfcb07f86c653e27559670b7e475da0a5556350e.nm.gz",
+        "sha256": "8581a9adb29d03e294482562ab6d0b12a6803618f347930ea7cdfe2930e4587d"
+      },
+      "nativeNormals": [
+        {
+          "key": "bf7282c659ec5bda9fd4724ce69affa6180dc0668eee792177b830fb45852aaf",
+          "file": "newer/normals/bf7282c659ec5bda9fd4724ce69affa6180dc0668eee792177b830fb45852aaf.nm.gz",
+          "sha256": "ddf0bcbbb4ad0fd6da9886fb5e52fb52131310ab6e953a5d0d94b61c01416463"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_eg.mdl",
+      "modelSha256": "14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b",
+      "skin": 1,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_eg/custom1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "6d282efb7c238d711aa9dcdadf679c1b642f8dc5c9c9a93375d5ca7e1a973dc7",
+      "heightSha256": "ed88c75f59e1b844003ed01f9f8b54f3bf40b73c51710f6f7c2c3a8017d32b40",
+      "customNormal": {
+        "key": "5bd0786e3f1971fce18412886fc448d3c0ba7cf3467de2b652fb0cfbeda14eaf",
+        "file": "newer/normals/5bd0786e3f1971fce18412886fc448d3c0ba7cf3467de2b652fb0cfbeda14eaf.nm.gz",
+        "sha256": "8ee62a200b599458869586dbdb29299873451c3a036785541c7b4369468d0e43"
+      },
+      "nativeNormals": [
+        {
+          "key": "511fc398183f748b042d2b41997dc0038ea0213d480a0f60cdc2bcee9d4e7b81",
+          "file": "newer/normals/511fc398183f748b042d2b41997dc0038ea0213d480a0f60cdc2bcee9d4e7b81.nm.gz",
+          "sha256": "e2bbbb19c5574d4e641d2e79c78647bb80f84d1ccb37f3a1e1bf642e6d90e683"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_eg.mdl",
+      "modelSha256": "14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b",
+      "skin": 2,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_eg/custom2",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04",
+      "heightSha256": "bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137",
+      "customNormal": {
+        "key": "3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff",
+        "file": "newer/normals/3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff.nm.gz",
+        "sha256": "f9395877b243cc5db37136b096bec16d3d991b290bc45e415c36003ad7f4cfbe"
+      },
+      "nativeNormals": [
+        {
+          "key": "0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7",
+          "file": "newer/normals/0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7.nm.gz",
+          "sha256": "5e788c9647494db1d9b827e56f756d6e1972b548f13aef797d0135342c8672d2"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_gr.mdl",
+      "modelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+      "skin": 0,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_gr/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "8628ba7fd9a0933f626e82028d77b3b99d174b14f13554bbe5405cb0ba1d4a19",
+      "heightSha256": "203701b23c847cbdce61624b19cb0ebf7d85e0323446012ca2065ff1af6428d1",
+      "customNormal": {
+        "key": "db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b",
+        "file": "newer/normals/db1e1c117589b5910a29361224e8a6b18a20752a181a3fe591cc70debb8bb34b.nm.gz",
+        "sha256": "abea57d43456dc8879da12b7c04183b63f55e3c683e0cd265008c3478576a119"
+      },
+      "nativeNormals": [
+        {
+          "key": "f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1",
+          "file": "newer/normals/f6810ef0031a4314a51a4b801b4bc1ee87b741f572bcd1a5c33e2cd2cabdf4a1.nm.gz",
+          "sha256": "d5f76e1022c45eba932a7e160384409f6d871c254291d5612a8d363ae9f5a9a0"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_gr.mdl",
+      "modelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+      "skin": 1,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_gr/custom1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "db387be3eabdf2e94f00395fab61c7cd5675b1f642875ae735d38cafa2a5ac88",
+      "heightSha256": "2f759f1f2820b65f6e300aca78b80fa459a3f8c3e30af4c7b92ae2bf1c84388f",
+      "customNormal": {
+        "key": "0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd",
+        "file": "newer/normals/0ad2145438c67a5a4062d0cbf734d20cdbf8ff734f287870c7452faf4866c5bd.nm.gz",
+        "sha256": "8adc2b3efa8f22345605e2e3b36e218556f4ccfbea9198c1eed860530b326945"
+      },
+      "nativeNormals": [
+        {
+          "key": "54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5",
+          "file": "newer/normals/54d21355e6fc250b0a3166b4f05a7e7b13d608c10b707fe66df8482d2c026fb5.nm.gz",
+          "sha256": "196a63900849426d2803428089acdab1c999c1de98caa0f6ffcf7df76e6bb9d7"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/morph_gr.mdl",
+      "modelSha256": "662aa03785b4a6d2689670bebc5a9d081c36541347e324fac3957f599eab3be8",
+      "skin": 2,
+      "originalSize": [
+        276,
+        195
+      ],
+      "selectedDirectory": "morph_gr/custom2",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1656,
+        1170
+      ],
+      "diffuseSha256": "6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04",
+      "heightSha256": "bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137",
+      "customNormal": {
+        "key": "3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff",
+        "file": "newer/normals/3572b55115cad0ee20babfeb9fb9f9577cc482e090c0c3ce2bdb1db6fc8e68ff.nm.gz",
+        "sha256": "f9395877b243cc5db37136b096bec16d3d991b290bc45e415c36003ad7f4cfbe"
+      },
+      "nativeNormals": [
+        {
+          "key": "0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7",
+          "file": "newer/normals/0ef92b8e7515b57e9c9706bbb2d0bbfb8be0b092d55c1b50b6f1ce391ed7f0c7.nm.gz",
+          "sha256": "5e788c9647494db1d9b827e56f756d6e1972b548f13aef797d0135342c8672d2"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/mummy.mdl",
+      "modelSha256": "3926d2dcf2451deaf32e67877016884cfb91a313968beefe514b9274fc30a1d1",
+      "skin": 0,
+      "originalSize": [
+        168,
+        194
+      ],
+      "selectedDirectory": "mummy/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1008,
+        1164
+      ],
+      "diffuseSha256": "b131bef5d0ce68a7aec30d554a98fa609a0613b3d1ea81aed629b09ab82addc6",
+      "heightSha256": "a7dcf2ad36e9fa37006d91ef2e0b5469bf5ab64082f55f687ab2b3149e3051d0",
+      "customNormal": {
+        "key": "63aa8dfa6a043cd271705a1458eaedb4a1fefe9ba1c2a1f37e3fa23092913d56",
+        "file": "newer/normals/63aa8dfa6a043cd271705a1458eaedb4a1fefe9ba1c2a1f37e3fa23092913d56.nm.gz",
+        "sha256": "ef9d590eb5a30592dd056683b8db738bb40cce7dd3e8454fc55c777304c70a91"
+      },
+      "nativeNormals": [
+        {
+          "key": "a02ffdfc716e1b0892f8acbcac42787c8741d92396cfd3cf6cf267faad756c40",
+          "file": "newer/normals/a02ffdfc716e1b0892f8acbcac42787c8741d92396cfd3cf6cf267faad756c40.nm.gz",
+          "sha256": "4fb77293461d3344567e99f58479b79c696bd54676da83f58fea30325e39561f"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/ogre.mdl",
+      "modelSha256": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+      "skin": 0,
+      "originalSize": [
+        264,
+        194
+      ],
+      "selectedDirectory": "ogre/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": "Actual base and override skin0 pixels, UVs and triangles are identical",
+      "faces": true,
+      "hdSize": [
+        1056,
+        776
+      ],
+      "diffuseSha256": "85c05c35ca01a665251feb351262ff1c0cfa68719f3bc7753a334f6b7aa16cc3",
+      "heightSha256": "8b8071e22422789c9701e125676be34fd48b0bc92c87aa99ab24ed5b7ae06840",
+      "customNormal": {
+        "key": "200271e9bf85af314ac76124bc10a73234d436ec55a3de6889312e1e01c10ff3",
+        "file": "newer/normals/200271e9bf85af314ac76124bc10a73234d436ec55a3de6889312e1e01c10ff3.nm.gz",
+        "sha256": "694d85d614d1f64448bbeae64f425f080e03fc992aefc2bde7bdc04bfce4662b"
+      },
+      "nativeNormals": [
+        {
+          "key": "b03bcb1a1361d17ec6b80ba50933142bbdbb5a5cab09e707915586d4d94738f0",
+          "file": "newer/normals/b03bcb1a1361d17ec6b80ba50933142bbdbb5a5cab09e707915586d4d94738f0.nm.gz",
+          "sha256": "916deac5b8ef8913d727de1e26e4eb431756b5815db684986fd6247c6ef15574"
+        },
+        {
+          "key": "d53cb46e1b0f030deabc70c7a4ca51734fc4959b9c6416e5b38cd590dfed3c7d",
+          "file": "newer/normals/d53cb46e1b0f030deabc70c7a4ca51734fc4959b9c6416e5b38cd590dfed3c7d.nm.gz",
+          "sha256": "2ccbd22e337ad93361008bea7b06e34080c57eab616566ccc3a522b2601ea3ab"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/ogre.mdl",
+      "modelSha256": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+      "skin": 1,
+      "originalSize": [
+        264,
+        194
+      ],
+      "selectedDirectory": "ogre/rogue1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": true,
+      "hdSize": [
+        1056,
+        776
+      ],
+      "diffuseSha256": "ab86d44791d10fc1e8c3a4114673b24daa93acae738945c47486b4822cfa1513",
+      "heightSha256": "876b0ee4e8f8cf56cb23abec03a19f3ace4f9c0991966d2a647d7822f8807b0f",
+      "customNormal": {
+        "key": "f1eb093d6356c5bec8f8218f116965b2d9b2763f6756922cde7c9779e144d214",
+        "file": "newer/normals/f1eb093d6356c5bec8f8218f116965b2d9b2763f6756922cde7c9779e144d214.nm.gz",
+        "sha256": "0686fd2c72ca188febc13a201589802dfe44db6aa3b0cbd2a5a941a1be579b46"
+      },
+      "nativeNormals": [
+        {
+          "key": "a860e33d3574ca4cbfb6c9d9e4674fd7c6259da81bd085fa8db83f223a2cc907",
+          "file": "newer/normals/a860e33d3574ca4cbfb6c9d9e4674fd7c6259da81bd085fa8db83f223a2cc907.nm.gz",
+          "sha256": "5e80d67eceefe2fdab9bb7f9d8fc62674c0116e9b51a4a4600b0bc78df3b9f94"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/sword.mdl",
+      "modelSha256": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2",
+      "skin": 0,
+      "originalSize": [
+        124,
+        195
+      ],
+      "selectedDirectory": "sword/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        992,
+        1560
+      ],
+      "diffuseSha256": "07d94244f095a6b9f838c3d4530e01ef7b05b06b284f063094814ca89803bc13",
+      "heightSha256": "808a497e2bff1dce301a0a5e0296679e47ff0e115c02d468f7ca7b7e51310ba7",
+      "customNormal": {
+        "key": "47da4ea2b9ef95fc438749e59d92231c2758bb910a1cdf53495eaeae5dcfbe38",
+        "file": "newer/normals/47da4ea2b9ef95fc438749e59d92231c2758bb910a1cdf53495eaeae5dcfbe38.nm.gz",
+        "sha256": "ed34ee0549c83854f0924e78c58441070cc79f9a5e756bfe14cd8b550e8e9de5"
+      },
+      "nativeNormals": [
+        {
+          "key": "e3893868c3d6e4d72f264d36210688731175de52bb0f9798a77803cc9efbcf5b",
+          "file": "newer/normals/e3893868c3d6e4d72f264d36210688731175de52bb0f9798a77803cc9efbcf5b.nm.gz",
+          "sha256": "e37843c0638c1079d0052e6f1a20781b82787adf401e155a2bd9cfd9a8aa685d"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/s_wrath.mdl",
+      "modelSha256": "4c0653e3adba99be4d581c92a928fd6e8c27b0a2159a97f7ec5e885478249b8d",
+      "skin": 0,
+      "originalSize": [
+        308,
+        186
+      ],
+      "selectedDirectory": "s_wrath/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1540,
+        930
+      ],
+      "diffuseSha256": "7cf19b0eee380623e642f07aee12e6c3208249eae055deccf9274665cac4c5aa",
+      "heightSha256": "42d5f376129c9de33ffd1b3716da3a7adb833fb10dc32788f2be6fbec7d2c808",
+      "customNormal": {
+        "key": "6f83d29328e167215f7ffba51c846a3c081960bf14756fffa90f3e3d7bd63340",
+        "file": "newer/normals/6f83d29328e167215f7ffba51c846a3c081960bf14756fffa90f3e3d7bd63340.nm.gz",
+        "sha256": "98598f3c7dd6fe0b0320cfc3e894e6085383158ffc03123a248e58a84da7c986"
+      },
+      "nativeNormals": [
+        {
+          "key": "4dcf5335ac288fc5b2d7fa59f3729859c6be5cab5c80288f2653038dd648ee9f",
+          "file": "newer/normals/4dcf5335ac288fc5b2d7fa59f3729859c6be5cab5c80288f2653038dd648ee9f.nm.gz",
+          "sha256": "9e584d5160f513e0565c49f6059ba019764393630b312ed4d311ba933f3092d3"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/tarbaby.mdl",
+      "modelSha256": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e",
+      "skin": 0,
+      "originalSize": [
+        304,
+        194
+      ],
+      "selectedDirectory": "tarbaby/rogue0",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1520,
+        970
+      ],
+      "diffuseSha256": "95e9bd8d3a9f30fe28f2d15617bd7f4061c93086582415940144b1f56ea3d389",
+      "heightSha256": "dfc80b188f46bee146ea3824e13759a7017bd4e5e12f7152bdcc2f04331a5e95",
+      "customNormal": {
+        "key": "6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c",
+        "file": "newer/normals/6da56a42c5b53185c2c6ac1f64d9ab81317b9c4aa72b546ac5afb291ed730b0c.nm.gz",
+        "sha256": "f4bb59a486de9575fec7934974838e6defc273cb7d77993d4d327e3ff3e1cdef"
+      },
+      "nativeNormals": [
+        {
+          "key": "5f63e6e50570110544ca91831ead6addb0fad6a1f3ce7d02ea9feab9aba1ca80",
+          "file": "newer/normals/5f63e6e50570110544ca91831ead6addb0fad6a1f3ce7d02ea9feab9aba1ca80.nm.gz",
+          "sha256": "cba7bde0ab788faadbd424164614b422f62ebd59e513ce6e4ee7d05219cd2ce6"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/tarbaby.mdl",
+      "modelSha256": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e",
+      "skin": 1,
+      "originalSize": [
+        304,
+        194
+      ],
+      "selectedDirectory": "tarbaby/rogue1",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1824,
+        1164
+      ],
+      "diffuseSha256": "ef41d9d08236a6604aa80a567699bf3985a98c4621ca03eaa1cda1c123f5e180",
+      "heightSha256": "8c40ba4959ac60ddc066b668cc892c3e3295d55fdd73444b5c0ace70a004cb3e",
+      "customNormal": {
+        "key": "4dd4a39dd83853b183101a6dc42802d4f12c3c8ca0ca9d5ce4bcfdfb5e2a6956",
+        "file": "newer/normals/4dd4a39dd83853b183101a6dc42802d4f12c3c8ca0ca9d5ce4bcfdfb5e2a6956.nm.gz",
+        "sha256": "3fe176dc95e66ac879ea063bd05d080d4da9c27d0c72cd996c0cbbdca1e053c0"
+      },
+      "nativeNormals": [
+        {
+          "key": "5703fd712a94a88ef00c2d6daa43f295467ec8d487ab80a109eb68e5efd7de59",
+          "file": "newer/normals/5703fd712a94a88ef00c2d6daa43f295467ec8d487ab80a109eb68e5efd7de59.nm.gz",
+          "sha256": "deb24ec542e8aaa6f984f1c625f802db0cde20fd8f2a7a4a436ab7e7af9f7b28"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/tarbaby.mdl",
+      "modelSha256": "5dd6250329f64a9570021ced7a40d9c46020f46ad046366100cf0a7c6bd8612e",
+      "skin": 2,
+      "originalSize": [
+        304,
+        194
+      ],
+      "selectedDirectory": "tarbaby/rogue2",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1824,
+        1164
+      ],
+      "diffuseSha256": "cdca93b60552a513f01303d0007f0c2f7251ebd095d4f6b6c4abf39db55baf1d",
+      "heightSha256": "c157b3a3c06415b3e73ee6c304f8a3a33a0b972481a2e3522b48ad131901a05b",
+      "customNormal": {
+        "key": "ca2cde0507ffeb95b3f7d9a51ce9e2ba194ed8e198436bb12215b8c4ff901db1",
+        "file": "newer/normals/ca2cde0507ffeb95b3f7d9a51ce9e2ba194ed8e198436bb12215b8c4ff901db1.nm.gz",
+        "sha256": "0791dce00d5830fdb3ece983b3afd2f9803304722d4e75f487fced533978ffd7"
+      },
+      "nativeNormals": [
+        {
+          "key": "42a785cecd057e65d53042d84a29bb7a0c531a2eb70905d3c0dcee7149b95da9",
+          "file": "newer/normals/42a785cecd057e65d53042d84a29bb7a0c531a2eb70905d3c0dcee7149b95da9.nm.gz",
+          "sha256": "46bb8171dea8cf5e3a883f7d3845cfc6642504c268ac3d9acb10f8352c8bd7db"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/wrath.mdl",
+      "modelSha256": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6",
+      "skin": 0,
+      "originalSize": [
+        248,
+        194
+      ],
+      "selectedDirectory": "wrath/custom",
+      "matchingPolicy": "exact-model-sha256",
+      "compatibleReuse": null,
+      "faces": false,
+      "hdSize": [
+        1488,
+        1164
+      ],
+      "diffuseSha256": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
+      "heightSha256": "7e577a07637aefe7c1f5996bf734175cf289133761699fa037f69fcfa80a4dd4",
+      "customNormal": {
+        "key": "62539e1a2ad738c072867c4b7c8593471d52960e5c576878c300e3b0a56b4695",
+        "file": "newer/normals/62539e1a2ad738c072867c4b7c8593471d52960e5c576878c300e3b0a56b4695.nm.gz",
+        "sha256": "7e0d28e0f7644565bb50d37011c09a71679103d6f97ee9a6a5017faed0e3ee0d"
+      },
+      "nativeNormals": [
+        {
+          "key": "5c0c95cf76ebe4267e2724537e1df6b59a8e3ed3f73c1a19425f24c1b50981f9",
+          "file": "newer/normals/5c0c95cf76ebe4267e2724537e1df6b59a8e3ed3f73c1a19425f24c1b50981f9.nm.gz",
+          "sha256": "81ce8439e267535303c85e69a4cc913c136224af1829fd26c9997c1581049bc8"
+        }
+      ]
+    },
+    {
+      "game": "rogue",
+      "model": "progs/zombie.mdl",
+      "modelSha256": "42ab30ec209295b479e29cdf93e08720c778207b20210ff25c04ebf9c3634bae",
+      "skin": 0,
+      "originalSize": [
+        168,
+        194
+      ],
+      "selectedDirectory": "zombie/custom",
+      "matchingPolicy": "legacy-unbound-name-and-skin",
+      "compatibleReuse": "Actual base and override skin0 pixels, UVs and triangles are identical",
+      "faces": false,
+      "hdSize": [
+        840,
+        970
+      ],
+      "diffuseSha256": "ce228b9ca960340e6178c2fe7696ef4eb46eaa0222968e25331176c449b0972d",
+      "heightSha256": "0eb82654b167c0e0d4aadbcc057ff869d94ffc94f44cdb3c6d421c45bae0ac70",
+      "customNormal": {
+        "key": "cd17a3fe8ebdecd8710bbb9f30a34fa383c73656affb723b38e6f48deb254590",
+        "file": "newer/normals/cd17a3fe8ebdecd8710bbb9f30a34fa383c73656affb723b38e6f48deb254590.nm.gz",
+        "sha256": "c65853ddcaa64a3aebb0c5105a8dc0ff450afe505e4c9376c2342e92ef223fb6"
+      },
+      "nativeNormals": [
+        {
+          "key": "945d5046c02257a1c445683a77e3660f23875d5d0ce3c0dea0efef1ca96f060c",
+          "file": "newer/normals/945d5046c02257a1c445683a77e3660f23875d5d0ce3c0dea0efef1ca96f060c.nm.gz",
+          "sha256": "e397755e1875828d38a6da7a35efc057512b0f3ae09b39449d028d6d86691c0d"
+        },
+        {
+          "key": "d0ae4927029e10138a35b3e727fb51af7fe73cfd645a32f39bceda8defb1993b",
+          "file": "newer/normals/d0ae4927029e10138a35b3e727fb51af7fe73cfd645a32f39bceda8defb1993b.nm.gz",
+          "sha256": "7793143d604e67b6f761be52f4b1fda4d0f6515c8d41b6674af96b0fb90deb99"
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "inventoryVerified": true,
+  "complete": true,
+  "verifiedSlots": 50,
+  "uniqueCustomDirectories": 47,
+  "legacyUnboundSlots": [
+    "id1:progs/boss.mdl:0",
+    "id1:progs/demon.mdl:0",
+    "id1:progs/knight.mdl:0",
+    "id1:progs/ogre.mdl:0",
+    "id1:progs/shambler.mdl:0",
+    "id1:progs/soldier.mdl:0",
+    "id1:progs/wizard.mdl:0",
+    "id1:progs/zombie.mdl:0",
+    "rogue:progs/knight.mdl:0",
+    "rogue:progs/ogre.mdl:0",
+    "rogue:progs/zombie.mdl:0"
+  ],
+  "uniquePreparedNormalInputs": 102
+}

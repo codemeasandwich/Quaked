@@ -1,0 +1,32 @@
+{
+  "key": "ogre",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-multi-no-abs.png",
+  "sourceSha": "402d263b4c3994d95bea6ef85110720de0e46abfddd88e3e6fcfdb105de1ad50",
+  "modelSha": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+  "layout": [
+    2,
+    264,
+    194,
+    169,
+    326,
+    147
+  ],
+  "size": [
+    1462,
+    1076
+  ],
+  "factor": 4,
+  "matte": "black",
+  "outputVariant": "rogue1",
+  "skin": 1,
+  "generation": {
+    "tool": "ChatGPT built-in imagegen edit of owner-approved green atlas",
+    "date": "2026-10-12",
+    "reference": "Latest explicit owner selection; randomized faces retained on both",
+    "instruction": "Use dark owner image for original Ogre; approved green multi-grenade Ogre with sculpted abdominal pads removed",
+    "status": "Selected for integration by owner",
+    "promptFile": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-prompts.json",
+    "promptKey": "removeAbs",
+    "approvedInputSha256": "4cacb41038dc1b7ee9bf69c656073ca76026a0a420b36bce1817b9d2d2e714e2"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "model": "progs/ogre.mdl",
+  "nativeModelSha256": "d7e65c136645747dacb3901e61a4117bc9cdd062669d0f64fa562872d2bd0d4e",
+  "source": "tools/texture_sheets/sources/fidelity-2026-10-12/ogre-owner-base.png",
+  "sourceSha256": "dd36fe10a6494e040a14c18966cc3dd8819ecc63c373c107fd084a8f867d9912",
+  "sourceDimensions": [
+    1448,
+    1086
+  ],
+  "dimensions": [
+    1056,
+    776
+  ],
+  "factor": 4,
+  "skin": 0,
+  "poses": 147,
+  "vertices": 169,
+  "triangles": 326,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1056,
+    776
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 36572,
+      "directPixels": 34295,
+      "edgePixels": 2277
+    },
+    {
+      "id": 2,
+      "surfacePixels": 36576,
+      "directPixels": 32736,
+      "edgePixels": 3840
+    },
+    {
+      "id": 3,
+      "surfacePixels": 164353,
+      "directPixels": 154915,
+      "edgePixels": 9438
+    },
+    {
+      "id": 4,
+      "surfacePixels": 164352,
+      "directPixels": 152181,
+      "edgePixels": 12171
+    },
+    {
+      "id": 5,
+      "surfacePixels": 10369,
+      "directPixels": 6861,
+      "edgePixels": 3508
+    },
+    {
+      "id": 6,
+      "surfacePixels": 10309,
+      "directPixels": 7331,
+      "edgePixels": 2978
+    }
+  ],
+  "surfacePixels": 422531,
+  "edgePixels": 34212,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "height.webp": "8b8071e22422789c9701e125676be34fd48b0bc92c87aa99ab24ed5b7ae06840",
+    "diffuse.webp": "85c05c35ca01a665251feb351262ff1c0cfa68719f3bc7753a334f6b7aa16cc3"
+  },
+  "generation": {
+    "tool": "Owner supplied image",
+    "date": "2026-10-12",
+    "reference": "Latest explicit owner selection; randomized faces retained on both",
+    "instruction": "Use dark owner image for original Ogre; approved green multi-grenade Ogre with sculpted abdominal pads removed",
+    "status": "Selected for integration by owner"
+  },
+  "installation": {
+    "diffuseFormat": "lossless WebP",
+    "reason": "Preserve existing catalogue path and face atlas coordinates",
+    "decodedPixelsUnchangedFromFit": true
+  }
+}

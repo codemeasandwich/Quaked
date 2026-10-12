@@ -1,0 +1,1634 @@
+{
+  "model": "ogre_rogue",
+  "mode": "fidelity-proof",
+  "status": "PASS",
+  "ownerAcceptance": "pending",
+  "productionCatalogueChanged": false,
+  "modelSHA": "2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732",
+  "frame": 0,
+  "poseName": "stand1",
+  "faceSeed": 0,
+  "draws": 18,
+  "elapsedMs": 1387.4000000357628,
+  "lights": [
+    {
+      "origin": [
+        140,
+        -100,
+        150
+      ],
+      "radius": 600,
+      "die": 1000000000,
+      "minlight": 0
+    },
+    {
+      "origin": [
+        -90,
+        100,
+        70
+      ],
+      "radius": 300,
+      "die": 1000000000,
+      "minlight": 0
+    }
+  ],
+  "assets": [
+    {
+      "version": "Your HD base",
+      "role": "diffuse",
+      "path": "newer/enemies/ogre/custom/diffuse.webp",
+      "sha256": "af5290302ed3251cbabd0641c8a00dfdb437a0078583c078516b541720c7c933",
+      "bytes": 192446
+    },
+    {
+      "version": "Your HD base",
+      "role": "height",
+      "path": "newer/enemies/ogre/custom/height.webp",
+      "sha256": "155a06b586e1e361f6da38ead01495b3f4d56eed4604155e3db503842b39e0df",
+      "bytes": 337854
+    },
+    {
+      "version": "Published variant",
+      "role": "diffuse",
+      "path": "newer/enemies/ogre/rogue1/diffuse.png",
+      "sha256": "86eb09df20d51caa2dd0a1c61a7f2e36b0c9e095434feae0713c43a1287bd454",
+      "bytes": 1838756
+    },
+    {
+      "version": "Published variant",
+      "role": "height",
+      "path": "newer/enemies/ogre/rogue1/height.webp",
+      "sha256": "8e6087af0c6b5da3ba43487ec2e4caef8ed2fb1e498a79acf9d7b4d13b56c946",
+      "bytes": 606664
+    },
+    {
+      "version": "Proposed variant",
+      "role": "diffuse",
+      "path": "newer/enemies/ogre/photoreal_proof/diffuse.png",
+      "sha256": "5151eaed1ac47e6aebb0ad92192da27dbbfd9f3422523cbb1b9b2c6abef3fca5",
+      "bytes": 929193
+    },
+    {
+      "version": "Proposed variant",
+      "role": "height",
+      "path": "newer/enemies/ogre/photoreal_proof/height.webp",
+      "sha256": "60271060ed4fc85bdf527dc2f16c67dd57cb53ac4d14a27a0be2359c7c2a51b3",
+      "bytes": 318216
+    },
+    {
+      "role": "shared-owner-face-sheet",
+      "path": "newer/enemies/faces/ogre.png",
+      "sha256": "355d82fdd351f67796719588d0936274d0e77b0a33ac09a2652360dbcbe45279"
+    }
+  ],
+  "samples": [
+    {
+      "label": "Left side \u00b7 Original Rogue",
+      "version": "Original Rogue",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 90,
+      "detail": false,
+      "visible": 133607,
+      "dimensions": [
+        264,
+        194
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Left side \u00b7 Your HD base",
+      "version": "Your HD base",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 0,
+      "faceSeed": 0,
+      "yaw": 90,
+      "detail": false,
+      "visible": 130242,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Left side \u00b7 Published variant",
+      "version": "Published variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 90,
+      "detail": false,
+      "visible": 134398,
+      "dimensions": [
+        1584,
+        1164
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Left side \u00b7 Proposed variant",
+      "version": "Proposed variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 90,
+      "detail": false,
+      "visible": 130859,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Right side \u00b7 Original Rogue",
+      "version": "Original Rogue",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 270,
+      "detail": false,
+      "visible": 134015,
+      "dimensions": [
+        264,
+        194
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Right side \u00b7 Your HD base",
+      "version": "Your HD base",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 0,
+      "faceSeed": 0,
+      "yaw": 270,
+      "detail": false,
+      "visible": 128311,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Right side \u00b7 Published variant",
+      "version": "Published variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 270,
+      "detail": false,
+      "visible": 136322,
+      "dimensions": [
+        1584,
+        1164
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Right side \u00b7 Proposed variant",
+      "version": "Proposed variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 270,
+      "detail": false,
+      "visible": 135057,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Front angle \u00b7 Original Rogue",
+      "version": "Original Rogue",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 45,
+      "detail": false,
+      "visible": 204850,
+      "dimensions": [
+        264,
+        194
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Front angle \u00b7 Your HD base",
+      "version": "Your HD base",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 0,
+      "faceSeed": 0,
+      "yaw": 45,
+      "detail": false,
+      "visible": 200553,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Front angle \u00b7 Published variant",
+      "version": "Published variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 45,
+      "detail": false,
+      "visible": 206775,
+      "dimensions": [
+        1584,
+        1164
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Front angle \u00b7 Proposed variant",
+      "version": "Proposed variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 45,
+      "detail": false,
+      "visible": 203604,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Face detail \u00b7 Original Rogue",
+      "version": "Original Rogue",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 0,
+      "detail": false,
+      "visible": 286323,
+      "dimensions": [
+        264,
+        194
+      ],
+      "camera": {
+        "position": [
+          43.384602546691895,
+          -3.7237625122070312,
+          26.30647087097168
+        ],
+        "quaternion": [
+          0.48509740724119765,
+          0.4850974072411977,
+          0.5144710929565115,
+          0.5144710929565116
+        ]
+      }
+    },
+    {
+      "label": "Face detail \u00b7 Your HD base",
+      "version": "Your HD base",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 0,
+      "faceSeed": 0,
+      "yaw": 0,
+      "detail": false,
+      "visible": 282691,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          43.384602546691895,
+          -3.7237625122070312,
+          26.30647087097168
+        ],
+        "quaternion": [
+          0.48509740724119765,
+          0.4850974072411977,
+          0.5144710929565115,
+          0.5144710929565116
+        ]
+      }
+    },
+    {
+      "label": "Face detail \u00b7 Published variant",
+      "version": "Published variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 0,
+      "detail": false,
+      "visible": 285448,
+      "dimensions": [
+        1584,
+        1164
+      ],
+      "camera": {
+        "position": [
+          43.384602546691895,
+          -3.7237625122070312,
+          26.30647087097168
+        ],
+        "quaternion": [
+          0.48509740724119765,
+          0.4850974072411977,
+          0.5144710929565115,
+          0.5144710929565116
+        ]
+      }
+    },
+    {
+      "label": "Face detail \u00b7 Proposed variant",
+      "version": "Proposed variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 0,
+      "detail": false,
+      "visible": 280840,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          43.384602546691895,
+          -3.7237625122070312,
+          26.30647087097168
+        ],
+        "quaternion": [
+          0.48509740724119765,
+          0.4850974072411977,
+          0.5144710929565115,
+          0.5144710929565116
+        ]
+      }
+    },
+    {
+      "label": "Proposed \u00b7 Surface relief off",
+      "version": "Proposed variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 45,
+      "detail": false,
+      "visible": 203604,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    },
+    {
+      "label": "Proposed \u00b7 Surface relief on",
+      "version": "Proposed variant",
+      "frame": 0,
+      "poseName": "stand1",
+      "skin": 1,
+      "faceSeed": 0,
+      "yaw": 45,
+      "detail": true,
+      "visible": 203558,
+      "dimensions": [
+        1056,
+        776
+      ],
+      "camera": {
+        "position": [
+          73.18530368804932,
+          -3.7237625122070312,
+          34.05465316772461
+        ],
+        "quaternion": [
+          0.4077346969369895,
+          0.4077346969369895,
+          0.5777130922124766,
+          0.5777130922124765
+        ]
+      }
+    }
+  ],
+  "faceSelections": [
+    {
+      "kind": "Your HD base",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Proposed variant",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Your HD base",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Proposed variant",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Your HD base",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Proposed variant",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Your HD base",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Proposed variant",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Proposed variant",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    },
+    {
+      "kind": "Proposed variant",
+      "crop": [
+        0.057291666666666664,
+        0.0234375,
+        0.12239583333333333,
+        0.2412109375
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "passed": true,
+      "name": "Left side \u00b7 Original Rogue uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Left side \u00b7 Your HD base uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Left side \u00b7 Your HD base retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Left side \u00b7 Published variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Left side \u00b7 Proposed variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Left side \u00b7 Proposed variant retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Right side \u00b7 Original Rogue uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Right side \u00b7 Your HD base uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Right side \u00b7 Your HD base retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Right side \u00b7 Published variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Right side \u00b7 Proposed variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Right side \u00b7 Proposed variant retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Front angle \u00b7 Original Rogue uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Front angle \u00b7 Your HD base uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Front angle \u00b7 Your HD base retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Front angle \u00b7 Published variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Front angle \u00b7 Proposed variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Front angle \u00b7 Proposed variant retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Face detail \u00b7 Original Rogue uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Face detail \u00b7 Your HD base uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Face detail \u00b7 Your HD base retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Face detail \u00b7 Published variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Face detail \u00b7 Proposed variant uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Face detail \u00b7 Proposed variant retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Proposed \u00b7 Surface relief off uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Proposed \u00b7 Surface relief off retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Proposed \u00b7 Surface relief on uses its intended skin"
+    },
+    {
+      "passed": true,
+      "name": "Proposed \u00b7 Surface relief on retains the existing Ogre face"
+    },
+    {
+      "passed": true,
+      "name": "Your base and the proposal use the same existing Ogre face choice"
+    },
+    {
+      "passed": true,
+      "name": "Proposed atlas retains the existing HD layout dimensions"
+    },
+    {
+      "passed": true,
+      "name": "Original model geometry, UVs and animation remain unchanged"
+    },
+    {
+      "passed": true,
+      "name": "Comparison rendered without shader or runtime errors",
+      "errors": []
+    },
+    {
+      "passed": true,
+      "name": "Preview relief readiness recorded",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 4,
+          "shipped": 3,
+          "disk": 0,
+          "generated": 1,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 12,
+        "fallback": 0,
+        "total": 12,
+        "settled": true,
+        "errors": {}
+      },
+      "changes": {
+        "changed": 13324,
+        "energy": 209750
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "label": "Left side \u00b7 Original Rogue",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 5,
+        "fallback": 0,
+        "total": 5,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 5,
+            "fallback": 0,
+            "total": 5,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Left side \u00b7 Your HD base",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 5,
+        "fallback": 0,
+        "total": 5,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 5,
+            "fallback": 0,
+            "total": 5,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Left side \u00b7 Published variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 5,
+        "fallback": 0,
+        "total": 5,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 5,
+            "fallback": 0,
+            "total": 5,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Left side \u00b7 Proposed variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Right side \u00b7 Original Rogue",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Right side \u00b7 Your HD base",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Right side \u00b7 Published variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Right side \u00b7 Proposed variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Front angle \u00b7 Original Rogue",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Front angle \u00b7 Your HD base",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Front angle \u00b7 Published variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Front angle \u00b7 Proposed variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Face detail \u00b7 Original Rogue",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Face detail \u00b7 Your HD base",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Face detail \u00b7 Published variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Face detail \u00b7 Proposed variant",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Proposed \u00b7 Surface relief off",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 0,
+          "shipped": 0,
+          "disk": 0,
+          "generated": 0,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 11,
+        "fallback": 0,
+        "total": 11,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 0,
+              "shipped": 0,
+              "disk": 0,
+              "generated": 0,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 11,
+            "fallback": 0,
+            "total": 11,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    },
+    {
+      "label": "Proposed \u00b7 Surface relief on",
+      "status": {
+        "index": "ready",
+        "normals": {
+          "pending": 0,
+          "ready": 4,
+          "shipped": 3,
+          "disk": 0,
+          "generated": 1,
+          "errors": {}
+        },
+        "preparePending": 0,
+        "pending": 0,
+        "ready": 12,
+        "fallback": 0,
+        "total": 12,
+        "settled": true,
+        "errors": {}
+      },
+      "parts": [
+        {
+          "key": "ogre",
+          "status": {
+            "index": "ready",
+            "normals": {
+              "pending": 0,
+              "ready": 4,
+              "shipped": 3,
+              "disk": 0,
+              "generated": 1,
+              "errors": {}
+            },
+            "preparePending": 0,
+            "pending": 0,
+            "ready": 12,
+            "fallback": 0,
+            "total": 12,
+            "settled": true,
+            "errors": {}
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Bounded visual comparison on the actual owned Rogue Ogre model. Technical rendering success is not aesthetic acceptance or delivery qualification; proposed relief may be derived."
+}

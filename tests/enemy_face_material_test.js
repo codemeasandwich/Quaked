@@ -154,10 +154,12 @@ Deno.test( 'upright ogre choices and every grunt/knight face retain finite ident
 	equal( controls, 31, 'all twenty-four other-model faces plus seven upright ogres independently checked' );
 	console.log( 'OGRE_PUBLIC_ALIGNMENT_IDENTITY_CONTROLS ' + controls );
 } ) );
-Deno.test( 'the three face-overlay blocks are exactly the reviewed ones, and no other variant has faces', () => {
+Deno.test( 'the three reviewed face-overlay blocks remain exact and only the approved Rogue Ogre clones its original faces', () => {
 	// (the skin identity suites leave these blocks out of their "every other entry unchanged" digest; this pins them)
 	const blocks = [ 'soldier', 'ogre', 'knight' ].map( model => manifest.models[ model ][ 0 ].faces );
 	equal( createHash( 'sha256' ).update( JSON.stringify( blocks ) ).digest( 'hex' ), 'e643dd83d10075063a56cbae58b199394908d10a34cfedc9c171e1a8f950d3eb', 'face blocks of grunt, ogre and knight' );
-	const others = Object.entries( manifest.models ).flatMap( ( [ model, list ] ) => list.filter( ( variant, i ) => variant.faces && ! ( i === 0 && [ 'soldier', 'ogre', 'knight' ].includes( model ) ) ).map( () => model ) );
-	equal( others.join(), '', 'no other variant has faces' );
+	const others = Object.entries( manifest.models ).flatMap( ( [ model, list ] ) => list.flatMap( ( variant, i ) => variant.faces && ! ( i === 0 && [ 'soldier', 'ogre', 'knight' ].includes( model ) ) ? [ { model, i, variant } ] : [] ) );
+	equal( others.length, 1, 'exactly one approved additional face binding' );
+	const { model, i, variant } = others[ 0 ]; equal( model, 'ogre', 'only Ogre gains a cloned face binding' ); equal( i, 1, 'only its second variant' ); equal( variant.dir, 'ogre/rogue1', 'approved variant directory' ); equal( variant.skin, 1, 'only native alternate slot' ); equal( variant.nativeModelSha256, '2bd7b6633d2c95627cca8b216ad2c84057e800778a94e0fa97f3a14f86420732', 'exact Rogue native identity' );
+	equal( JSON.stringify( variant.faces ), JSON.stringify( manifest.models.ogre[ 0 ].faces ), 'alternate uses the exact existing twelve portraits, masks, colour balance and alignment' );
 } );

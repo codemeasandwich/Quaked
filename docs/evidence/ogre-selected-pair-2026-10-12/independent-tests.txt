@@ -1,0 +1,32 @@
+meshing progs/ogre.mdl...
+
+meshing progs/ogre.mdl...
+
+PASS Actual base and Rogue Ogres preserve every native UV triangle and all 147 original poses
+PASS Living Ogre skin0 and geometry are compatible with all 147 native poses and names identical
+PASS Owner-selected dark and green Ogres retain original face metadata native heights and catalogue boundaries
+PASS Both selected Ogre skins retain all twelve randomized faces with stable matching identity
+meshing progs/ogre.mdl...
+
+PASS Missing mismatched and pending identities cannot borrow ready alternate while legacy slot0 remains unchanged
+PASS Failed multigrenade images settle to native and shutdown rejects late decoded callbacks
+PASS Native alternate skin1 derives relief from actual pixels and never fetches living height
+PASS Living native generated and stored relief still match their exact shipped inputs
+PASS Multigrenade authored output selects exact shipped custom relief while native family omits wrong inherited input
+PASS Alternate Ogre retains exactly six native UV pieces without adding weapon geometry
+PASS Actual Rogue Ogre flag and random selection preserve multigrenade projectile and ammo contracts
+PASS Selected Ogre replacement leaves the liked published Dog and its generation source unchanged
+PASS Failure of the alternate face sheet keeps its selected body and never changes its random face identity
+RESULT 13/13 passed (tests/rogue_ogre_skin_identity_test.js)
+PASS all individual face choices share the actual body and one sheet; preparation returns actual draw bindings
+PASS failed or late face sheet retains base skin and assigned identity
+PASS Classic, enemy gate, lighting and variety switches retain individual identity
+OGRE_PUBLIC_ALIGNMENT_PIXEL_AFFINE [{"face":1,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":2,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":3,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":4,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":5,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":6,"measuredRoll":3.000000000000008,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":7,"measuredRoll":-3.000000000000008,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":8,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":9,"measuredRoll":-5.000000000000002,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":10,"measuredRoll":6.000000000000004,"sourcePixelSize":[188,247],"samplingScale":0.9800000000000001},{"face":11,"measuredRoll":0,"sourcePixelSize":[188,247],"samplingScale":0.9999999999999998},{"face":12,"measuredRoll":-16.000000000000004,"sourcePixelSize":[188,247],"samplingScale":0.8500000000000003}]
+PASS public ogre material alignment is a conformal rotation in non-square source pixels and keeps the model mask fixed
+OGRE_PUBLIC_ALIGNMENT_LANDMARK_RESIDUALS [{"face":1,"sourceEarAxisDegrees":-0.2908390223505519,"displayedResidualDegrees":-0.2908390223505519},{"face":2,"sourceEarAxisDegrees":0.2822429362708571,"displayedResidualDegrees":0.2822429362708571},{"face":3,"sourceEarAxisDegrees":-0.2864765102770745,"displayedResidualDegrees":-0.2864765102770745},{"face":4,"sourceEarAxisDegrees":0.2822429362708571,"displayedResidualDegrees":0.28224293627085717},{"face":5,"sourceEarAxisDegrees":-0.5846305207051778,"displayedResidualDegrees":-0.5846305207051778},{"face":6,"sourceEarAxisDegrees":1.6929784376289005,"displayedResidualDegrees":-1.3070215623710977},{"face":7,"sourceEarAxisDegrees":-2.905920999653342,"displayedResidualDegrees":0.09407900034665537},{"face":8,"sourceEarAxisDegrees":0.2850512775838264,"displayedResidualDegrees":0.2850512775838264},{"face":9,"sourceEarAxisDegrees":-6.536633648797066,"displayedResidualDegrees":-1.536633648797064},{"face":10,"sourceEarAxisDegrees":6.1155035662854065,"displayedResidualDegrees":0.11550356628540488},{"face":11,"sourceEarAxisDegrees":-0.2808594146833859,"displayedResidualDegrees":-0.280859414683386},{"face":12,"sourceEarAxisDegrees":-15.004920382860224,"displayedResidualDegrees":0.9950796171397795}]
+PASS actual public inverse bindings level annotated ogre head/ear axes within two degrees and recenter tilted eye pivots
+OGRE_PUBLIC_ALIGNMENT_IDENTITY_CONTROLS 31
+PASS upright ogre choices and every grunt/knight face retain finite identity sampling defaults
+PASS the three reviewed face-overlay blocks remain exact and only the approved Rogue Ogre clones its original faces
+RESULT 7/7 passed (tests/enemy_face_material_test.js)
+TOTAL 20/20 passed

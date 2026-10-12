@@ -1,5 +1,21 @@
 # Official-game enemy skin completion
 
+**Owner appearance rejection, 12 October 2026:** the generated skins have not
+been accepted. The owner requires the originals' shape, colour and design with
+photorealistic high-resolution materials. The delivery and coverage receipts
+below remain technical evidence, not proof of that visual goal. Corrective work
+is tracked on T-c2f3b3fb. The owner then clarified that the **first published Dog
+is liked and must remain**; the unused Dog correction is not selected in the
+catalogue. The first corrective target is now the multi-grenade Ogre, derived
+from the owner's existing base-game HD Ogre while preserving its oversized-human
+identity. Root owns correction of the other generated campaign assets; validate
+the concrete visual direction with the owner before repeating it.
+The owner then selected an exact new dark-armour original Ogre and approved the
+green multi-grenade variant with its sculpted abs removed, explicitly retaining
+randomized faces on both. See [the selected-pair correction record](enemy-skin-fidelity-correction-2026-10-12.md).
+Catalogue 45 integrates that pair; previous catalogue-44 audit totals below are
+historical technical coverage, not blanket visual acceptance.
+
 Owner authority (12 October 2026): systematically generate missing HD skins and/or
 normal maps with ChatGPT image generation, directly from original files; preserve
 the original colour scheme and design; commit and push each completed enemy to
