@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "model": "progs/sword.mdl",
+  "nativeModelSha256": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/sword.png",
+  "sourceSha256": "9ebff631899dea90bc1aa5e26bc2b3e2294a8442c6e58994bc37ae8fdfc0c671",
+  "sourceDimensions": [
+    1000,
+    1573
+  ],
+  "dimensions": [
+    992,
+    1560
+  ],
+  "factor": 8,
+  "skin": 0,
+  "poses": 40,
+  "vertices": 58,
+  "triangles": 106,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    992,
+    1560
+  ],
+  "registration": null,
+  "mattePolicy": "black",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 108646,
+      "directPixels": 108642,
+      "edgePixels": 4
+    },
+    {
+      "id": 2,
+      "surfacePixels": 108634,
+      "directPixels": 108612,
+      "edgePixels": 22
+    }
+  ],
+  "surfacePixels": 217280,
+  "edgePixels": 26,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "07d94244f095a6b9f838c3d4530e01ef7b05b06b284f063094814ca89803bc13",
+    "height.webp": "808a497e2bff1dce301a0a5e0296679e47ff0e115c02d468f7ca7b7e51310ba7"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue sword.mdl skin0 decoded with native palette, nearest enlarged5x; both distinct atlas halves",
+    "prompt": "Faithfully repaint this exact ORIGINAL Quake Dissolution of Eternity PHANTOM SWORDSMAN UV TEXTURE ATLAS at high resolution. It contains the front and back of ONE floating sword, not two redesigned weapons. Preserve the complete 124:195 atlas aspect ratio, both different halves, exact original silhouettes and proportional coordinates of the narrow blades, angular crossguards, small decorated blade bases, olive-brown wrapped grips and dark pointed pommels. Keep the original dark grey steel, subdued brown/olive grip and dark blood-red staining in its original distribution, heavier near each blade tip. The front/back blood patterns differ: preserve both, do not mirror or copy one onto the other. Add restrained fine scratches, steel wear, tiny engraving already suggested in the source and leather-wrap texture inside existing outlines. Do not enlarge or straighten the original shapes, invent new symbols or precious-metal colours. Pure black background, crisp boundaries, no cast shadow, halo, sparks, bloom, text or watermark. No visible person, hand, body, scenery or extra weapon. This is a precise production model skin atlas: original UV layout and design take priority over decorative changes."
+  }
+}

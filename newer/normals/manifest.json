@@ -39446,6 +39446,50 @@
       "height": 1552,
       "bytes": 13508792,
       "compressedBytes": 6087638
+    },
+    "e3893868c3d6e4d72f264d36210688731175de52bb0f9798a77803cc9efbcf5b": {
+      "file": "newer/normals/e3893868c3d6e4d72f264d36210688731175de52bb0f9798a77803cc9efbcf5b.nm.gz",
+      "input": {
+        "width": 124,
+        "height": 195,
+        "crafted": true,
+        "derive": true,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "7a1bcbaccd903c0d119cb28dd439154e32e69c7938e2f5c698f87a3a3de13bf5",
+        "fullbright": null,
+        "scalar": null,
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "e37843c0638c1079d0052e6f1a20781b82787adf401e155a2bd9cfd9a8aa685d",
+      "rawSha256": "cd21dcbb1fc30b9db306d575978532ce9471c287a81fd49cfd5e0346e6cd1ec9",
+      "width": 124,
+      "height": 195,
+      "bytes": 193620,
+      "compressedBytes": 55268
+    },
+    "47da4ea2b9ef95fc438749e59d92231c2758bb910a1cdf53495eaeae5dcfbe38": {
+      "file": "newer/normals/47da4ea2b9ef95fc438749e59d92231c2758bb910a1cdf53495eaeae5dcfbe38.nm.gz",
+      "input": {
+        "width": 992,
+        "height": 1560,
+        "crafted": true,
+        "derive": false,
+        "strength": 0.65,
+        "cap": 0.55,
+        "rgba": "982a94861338b47824a53df31bab905d9036dfddd91eed431a2b32ef243f621c",
+        "fullbright": null,
+        "scalar": "b2952eb820df0925b08aaefe60cbb148739aee00a6479ad1af8def5ede50a764",
+        "edge": null,
+        "authored": null
+      },
+      "sha256": "ed34ee0549c83854f0924e78c58441070cc79f9a5e756bfe14cd8b550e8e9de5",
+      "rawSha256": "784d41c51749a3a2747b8cda62abbbe1e188f6277bd7f0bdf2942e5a37530a30",
+      "width": 992,
+      "height": 1560,
+      "bytes": 12380344,
+      "compressedBytes": 2619800
     }
   },
   "levels": {
@@ -70409,6 +70453,17 @@
     "custom:eel2/custom5": {
       "keys": [
         "6997cd18eca765338dd8d15de405ea59313691736926f8dfe3e7c537b22e96bc"
+      ]
+    },
+    "rogue:progs/sword.mdl": {
+      "modelSha256": "a72818767602e676cb08aa19db1780df9ee71b1f5c650f24c4f7ad2f761360d2",
+      "keys": [
+        "e3893868c3d6e4d72f264d36210688731175de52bb0f9798a77803cc9efbcf5b"
+      ]
+    },
+    "custom:sword/custom": {
+      "keys": [
+        "47da4ea2b9ef95fc438749e59d92231c2758bb910a1cdf53495eaeae5dcfbe38"
       ]
     }
   }
