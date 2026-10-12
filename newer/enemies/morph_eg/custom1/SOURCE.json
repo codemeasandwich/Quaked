@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "model": "progs/morph_eg.mdl",
+  "nativeModelSha256": "14468fccffaa1508c03610dd58fb51cd9058ca3bab036bca18f7a41cb37c195b",
+  "source": "tools/texture_sheets/sources/generated-2026-10-12/morph_eg-skin1.png",
+  "sourceSha256": "5f0bd126108822191a33b09265fa4bae615e286628e711713601266ac81c1b40",
+  "sourceDimensions": [
+    1492,
+    1054
+  ],
+  "dimensions": [
+    1656,
+    1170
+  ],
+  "factor": 6,
+  "skin": 1,
+  "poses": 142,
+  "vertices": 221,
+  "triangles": 430,
+  "transform": "complete atlas, top-row-first, no flip; original UVs preserved",
+  "atlasBox": [
+    0,
+    0,
+    1656,
+    1170
+  ],
+  "registration": null,
+  "mattePolicy": "blue-grey",
+  "nativeTexturePixelsUsed": 0,
+  "islands": [
+    {
+      "id": 1,
+      "surfacePixels": 353621,
+      "directPixels": 353534,
+      "edgePixels": 87
+    },
+    {
+      "id": 2,
+      "surfacePixels": 353612,
+      "directPixels": 353593,
+      "edgePixels": 19
+    },
+    {
+      "id": 3,
+      "surfacePixels": 48333,
+      "directPixels": 48332,
+      "edgePixels": 1
+    },
+    {
+      "id": 4,
+      "surfacePixels": 48333,
+      "directPixels": 47505,
+      "edgePixels": 828
+    },
+    {
+      "id": 5,
+      "surfacePixels": 27431,
+      "directPixels": 27419,
+      "edgePixels": 12
+    },
+    {
+      "id": 6,
+      "surfacePixels": 27430,
+      "directPixels": 27430,
+      "edgePixels": 0
+    }
+  ],
+  "surfacePixels": 858760,
+  "edgePixels": 947,
+  "normalProfile": {
+    "strength": 0.65,
+    "cap": 0.55
+  },
+  "reuse": [
+    "fit_vore.member",
+    "uv_footprint",
+    "fit_skin.spread",
+    "height_for"
+  ],
+  "files": {
+    "diffuse.png": "6d282efb7c238d711aa9dcdadf679c1b642f8dc5c9c9a93375d5ca7e1a973dc7",
+    "height.webp": "ed88c75f59e1b844003ed01f9f8b54f3bf40b73c51710f6f7c2c3a8017d32b40"
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-12",
+    "reference": "Original Rogue morph_eg.mdl skin1 supplies palette/state; generated living skin0 is immutable layout target and shared stone is material reference",
+    "prompt": "Image1 is the EDIT TARGET and exact geometry authority: the detailed Egyptian Guardian living UV atlas already fits the original game model. Keep its1492x1054canvas, every silhouette boundary, every feature position and all gaps EXACTLY unchanged, especially both back-view head edges and inner/outer arms. Change MATERIAL/COLOUR ONLY to the original PARTIAL-STONE skin1 shown in image2. Image2 controls the dark muted brown/olive degree of petrification, not a new pose. Image3 provides fine natural stone material. Cover all body, head, clothing, ornaments, boots and staff surfaces with dominant dark weathered brown/olive stone, leaving only faint subdued traces of the Egyptian striped headdress, neck ornament, blue-grey chest band, pale wrap and living skin beneath. Like image2, none of the gold/red/blue/cloth details should remain brightly saturated. Use continuous fine mineral pores and irregular stone fissures; no square pixel-mosaic grain or thick black cartoon grout. Keep the original two plain detached cloth panels, now muted partly stone, no invented face or ornaments on them. Preserve image1's exact blue backdrop and outline positions, no narrowing/shift/stretch/new anatomy. No scene, shadows, halo, text or watermark. It must be the same native enemy in its dark transitional state, with high-resolution detail and precise UV alignment.",
+    "supportingSources": [
+      {
+        "file": "tools/texture_sheets/sources/generated-2026-10-12/morph_eg-skin0.png",
+        "sha256": "fe071af30cdea1752da8520e589698a5e0c54726b7c9441fe93728ddd9e2d8a6"
+      },
+      {
+        "file": "tools/texture_sheets/sources/generated-2026-10-12/guardian-stone.png",
+        "sha256": "e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661"
+      }
+    ]
+  }
+}

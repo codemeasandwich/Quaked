@@ -22,6 +22,10 @@ const TARGETS=[{key:'morph_az',sources:[
  ['morph_az-skin0.png','333d627949a413fd1bb557d67e2befdf1bf34d03d3aa258af082e63042b06c33'],
  ['morph_az-skin1.png','b1e7e0ebc24e27be89bddeaf494eec4b13a18c161fe53656e27a7e889a4a63fc'],
  ['guardian-stone.png','e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661']
+]},{key:'morph_eg',sources:[
+ ['morph_eg-skin0.png','fe071af30cdea1752da8520e589698a5e0c54726b7c9441fe93728ddd9e2d8a6'],
+ ['morph_eg-skin1.png','5f0bd126108822191a33b09265fa4bae615e286628e711713601266ac81c1b40'],
+ ['guardian-stone.png','e29305e344e6218df725f1f327522540fb7a7f5e2611b0bab44361eb2030a661']
 ]}];
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );
@@ -194,4 +198,29 @@ Deno.test('Actual Guardian QuakeC selects each culture and performs stone2 to tr
  const transition=q.inspect('morph_wake15');same(transition.states[0].frame,15,'stone-to-transition frame15');check(transition.writes.some(w=>w.field==='skin'&&w.expression.constant===1),'wake15 selects unique transitional skin1');
  const alive=q.inspect('morph_wake31');same(alive.states[0].frame,31,'living transition frame31');check(alive.writes.some(w=>w.field==='skin'&&w.expression.op==='-'&&w.expression.left.field==='skin'&&w.expression.right.constant===1),'wake31 decrements skin1 to0');
  const death=q.inspect('morph_die9');same(death.states[0].frame,129,'death morph uses original mfdth09');check(death.writes.some(w=>w.field==='skin'&&w.expression.op==='+'&&w.expression.left.field==='skin'&&w.expression.right.constant===1),'death increments active skin0 to1 rather than jumping to2');
+});
+Deno.test('Egyptian increment preserves the published Aztec catalogue and every fitted Aztec image',()=>{
+ const modelKeys=['boss','knight','ogre','soldier','wizard','backpack','suit','armor','shambler','zombie','demon','h_demon','h_dog','zom_gib','h_shams','shalrath','oldone','enforcer','tarbaby','hknight','scor','dragon','s_wrath','mummy','dog','fish','grem','armabody','armalegs','eel2','sword','wrath','lavaman','morph_az'];
+ const heightKeys=['gib1','gib2','gib3','zom_gib','ogre','h_ogre','demon','h_demon','shambler','h_shams','knight','h_knight','soldier','h_guard','wizard','h_wizard','h_dog','dog','zombie','h_zombie','boss','armabody','eel2'];
+ const prior=structuredClone(index);delete prior.version;prior.models=Object.fromEntries(Object.entries(prior.models).filter(([key])=>modelKeys.includes(key)));prior.nativeHeights=Object.fromEntries(Object.entries(prior.nativeHeights).filter(([key])=>heightKeys.includes(key)));
+ same(sha(JSON.stringify(prior)),'0ee72c958c80953caa83a20c8c64c303fa6383d58a6aec61af0dcc94ee961ead','all34prior model families and23native-height families unchanged');
+ const files={
+  'custom/diffuse.png':'a7a4b703cb3cee74ea2ded463acaaa356ee25ecafc86541ee71154afc660ef25',
+  'custom/height.webp':'e75c9d504454d06c83f6c9301e97e064c7c2dd85b1c19029f60b106f59a55131',
+  'custom1/diffuse.png':'cd72b3258094c11b535136d4214e9b55a77c1a1c89e9fb8400cb0cad5e3d394f',
+  'custom1/height.webp':'c2d6fd52fdcf32959e6bdb0f3f31e73103b1fe00c0edc375df8823b642597ac1',
+  'custom2/diffuse.png':'6cbbd95c9fc3d0aa9035af2023a29c37cb743f2b26317a3fde3c0cae6c0afa04',
+  'custom2/height.webp':'bd3cbc1b5d47d7dd47d9eb2bdb5bf17a79d85266fc594c1759909a9c339d0137'
+ };
+ for(const[file,digest]of Object.entries(files))same(sha(read('newer/enemies/morph_az/'+file)),digest,'published Aztec bytes retained: '+file);
+});
+Deno.test('Shared Guardian statue reuses exact fitted art, relief and prepared inputs without aliasing living cultures',()=>{
+ const manifest=JSON.parse(read('newer/normals/manifest.json'));
+ const keys=key=>new Set([...manifest.levels['rogue:progs/'+key+'.mdl'].keys,...[0,1,2].flatMap(skin=>manifest.levels['custom:'+variant(key,skin).dir].keys)]);
+ const first=TARGETS[0].key,firstKeys=keys(first);same(firstKeys.size,6,'first culture has three native and three custom inputs');
+ for(const {key}of TARGETS.slice(1)){
+  for(const file of ['diffuse.png','height.webp'])same(sha(read(base(key,2)+file)),sha(read(base(first,2)+file)),'common stone fitted bytes reused: '+file);
+  same(manifest.levels['custom:'+variant(key,2).dir].keys.join(),manifest.levels['custom:'+variant(first,2).dir].keys.join(),'shared custom stone content key');
+  const current=keys(key);same(current.size,6,'next culture still has all six input identities');same([...current].filter(k=>firstKeys.has(k)).length,2,'only native and custom stone inputs deduplicate');same([...current].filter(k=>!firstKeys.has(k)).length,4,'living and transitional states add four exact inputs');
+ }
 });
