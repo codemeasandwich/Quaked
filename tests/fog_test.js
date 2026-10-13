@@ -1,10 +1,11 @@
 // Fog as Quakespasm has it (src/engine/render/r_fog.js; docs/fog-2026-10-13.md, card dadcb966): a map's worldspawn
 // "fog" key starts it, the `fog` console command changes it (as QuakeC's stuffcmd sends it), fading when given a time,
 // a map without the key is clear; the scene is fogged while it is drawn, each surface at its own distance, and the sky
-// takes the fog's colour by a fixed share.
+// takes the fog's colour by its map/console share.
 import { readFileSync } from 'node:fs';
 import * as THREE from 'three';
-import { R_FogSet, R_FogNewMap, R_FogParams, R_FogInit, R_FogApply, R_FogSkyMaterial, FOG_SKY } from '../src/engine/render/r_fog.js';
+import { R_FogSet, R_FogNewMap, R_FogParams, R_FogInit, R_FogApply, R_FogSkyMaterial, R_FogSkyShare, FOG_SKY, r_skyfog } from '../src/engine/render/r_fog.js';
+import { Cvar_Set } from '../src/engine/common/cvar.js';
 import { Cbuf_Init, Cmd_Init, Cbuf_AddText, Cbuf_Execute } from '../src/engine/common/cmd.js';
 const check = ( v, m ) => { if ( ! v ) throw Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const now = () => { const f = R_FogParams(); return [ f.density, f.r, f.g, f.b ].map( v => Math.round( v * 1000 ) / 1000 ).join( ' ' ); };
@@ -73,9 +74,15 @@ Deno.test( 'the scene is fogged while drawn: as given in the classic picture, li
 
 Deno.test( 'the sky takes the fog\'s colour by its share, not by its distance; the renderer is wired', () => {
 
-	const material = R_FogSkyMaterial( new THREE.MeshBasicMaterial() ), shader = { fragmentShader: 'void main() {\n#include <fog_fragment>\n}' };
+	const material = R_FogSkyMaterial( new THREE.MeshBasicMaterial() ), shader = { uniforms: {}, fragmentShader: 'void main() {\n#include <fog_fragment>\n}' };
 	material.onBeforeCompile( shader, null );
-	check( shader.fragmentShader.includes( `mix( gl_FragColor.rgb, fogColor, ${FOG_SKY.toFixed( 3 )} )` ) && ! shader.fragmentShader.includes( '#include <fog_fragment>' ), 'a fixed share replaces the distance fog' );
+	check( shader.fragmentShader.includes( 'mix( gl_FragColor.rgb, fogColor, uQuakedSkyFog )' ) && ! shader.fragmentShader.includes( '#include <fog_fragment>' ), 'the sky\'s share replaces the distance fog' );
+	// the share: the map's skyfog, else r_skyfog; a change of r_skyfog in play takes over
+	R_FogNewMap( '' ); same( shader.uniforms.uQuakedSkyFog.value, FOG_SKY, 'r_skyfog\'s default' );
+	R_FogNewMap( '{\n"classname" "worldspawn"\n"_skyfog" "0.85"\n}' ); same( shader.uniforms.uQuakedSkyFog.value, 0.85, 'the map\'s _skyfog (Quake\'s re-release e1m7)' );
+	Cvar_Set( 'r_skyfog', '0.2' ); same( R_FogSkyShare(), 0.2, 'r_skyfog set in play (Arcane Dimensions\' QuakeC) takes over' );
+	R_FogNewMap( '' ); same( R_FogSkyShare(), 0.2, 'and stays the default for the next map' );
+	Cvar_Set( 'r_skyfog', String( FOG_SKY ) ); R_FogNewMap( '' ); same( R_FogSkyShare(), FOG_SKY, 'back to the default' );
 	check( material.customProgramCacheKey().endsWith( '|quaked-sky-fog' ), 'its own program' );
 	same( FOG_SKY, 0.5, 'Quakespasm\'s r_skyfog default' );
 	// the renderer's calls (gl_rmain.js, gl_rsurf_liquids.js): the per-map start, the command, both pictures' draws, the sky
@@ -86,4 +93,32 @@ Deno.test( 'the sky takes the fog\'s colour by its share, not by its distance; t
 	check( /R_FogApply\( scene \);[^\n]*\n\t*try \{ renderer\.render\( scene, camera \); \} finally \{ scene\.fog = null; \}/.test( rmain ), 'the classic draw is fogged, and the fog taken off after' );
 	same( ( readFileSync( new URL( '../src/engine/render/gl_rsurf_liquids.js', import.meta.url ), 'utf8' ).match( /R_FogSkyMaterial\( new THREE\.MeshBasicMaterial/g ) ?? [] ).length, 3, 'all three sky materials' );
 
+} );
+
+
+Deno.test( 'sky fog observes every changed console string, even between draws', () => {
+ const run = text => { Cbuf_AddText( text + '\n' ); Cbuf_Execute(); };
+ for ( const command of [ 'r_skyfog 0.500000', 'r_skyfog 0\nr_skyfog 0.5' ] ) {
+  Cvar_Set( 'r_skyfog', '0.5' ); R_FogNewMap( world( '"skyfog" "0.85"' ) );
+  run( command ); same( R_FogSkyShare(), 0.5, command + ' overrides the map' );
+ }
+ Cvar_Set( 'r_skyfog', '0.5' ); R_FogNewMap( world( '"skyfog" "0.85"' ) );
+ run( 'r_skyfog 0.5' ); same( R_FogSkyShare(), 0.85, 'identical string is not a change, as Quakespasm' );
+ Cvar_Set( 'r_skyfog', '0.25' ); same( R_FogSkyShare(), 0.25, 'the QuakeC public setter also takes over' );
+ R_FogNewMap( world( '"_skyfog" "0.9"' ) ); same( R_FogSkyShare(), 0.9, 'next map reads its own key again' );
+ R_FogNewMap( '' ); same( R_FogSkyShare(), 0.25, 'map without a key uses the console default' );
+ Cvar_Set( 'r_skyfog', String( FOG_SKY ) ); R_FogNewMap( '' );
+} );
+
+Deno.test( 'sky fog clamps keys and commands, updating every compiled material without recompilation', () => {
+ const materials = [ R_FogSkyMaterial( new THREE.MeshBasicMaterial() ), R_FogSkyMaterial( new THREE.MeshBasicMaterial() ) ];
+ const shaders = materials.map( material => { const shader = { uniforms: {}, fragmentShader: '#include <fog_fragment>' }; material.onBeforeCompile( shader, null ); return shader; } );
+ same( shaders[ 0 ].uniforms.uQuakedSkyFog, shaders[ 1 ].uniforms.uQuakedSkyFog, 'shared uniform identity' );
+ for ( const [ value, expected ] of [ [ '-2', 0 ], [ '4', 1 ], [ '0', 0 ], [ '0.75', 0.75 ] ] ) {
+  R_FogNewMap( world( '"skyfog" "' + value + '"' ) ); same( R_FogSkyShare(), expected, 'map clamp ' + value );
+  Cvar_Set( 'r_skyfog', value ); R_FogApply( { fog: null } );
+  same( shaders[ 1 ].uniforms.uQuakedSkyFog.value, expected, 'updated even without distance fog' );
+ }
+ Cvar_Set( 'r_skyfog', String( FOG_SKY ) ); R_FogNewMap( '' );
+ for ( const material of materials ) material.dispose();
 } );

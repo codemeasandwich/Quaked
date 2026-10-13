@@ -167,7 +167,8 @@ export class cvar_t {
 	/**
 	 * Creates a console variable (WinQuake cvar.h `cvar_t`). It is not visible to the console or `Cvar_Set` until
 	 * passed to `Cvar_RegisterVariable`, which may replace `string` with the archived value. `value` is always the
-	 * `Q_atof` reading of `string`; `next` links the registered list.
+	 * `Q_atof` reading of `string`; `next` links the registered list. `changeRevision` increases for each changed
+	 * string set through the public setter, including numerically equivalent spellings and temporary writes.
 	 *
 	 * @param {string} name console name, matched case-sensitively
 	 * @param {string} [string=''] default value text
@@ -182,6 +183,7 @@ export class cvar_t {
 		this.archive = archive || false; // set to true to cause it to be saved to vars.rc
 		this.server = server || false; // notifies players when changed
 		this.value = Q_atof( this.string );
+		this.changeRevision = 0;
 		this.next = null;
 
 	}
@@ -362,6 +364,7 @@ function Cvar_SetInternal( var_name, value, temporary ) {
 
 	_var.string = value;
 	_var.value = Q_atof( _var.string );
+	if ( changed ) _var.changeRevision ++;
 
 	if ( _var.server && changed ) {
 

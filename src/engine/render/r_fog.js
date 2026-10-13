@@ -9,7 +9,8 @@
  * distance)^2) (GL_EXP2 at density / 64): Three.js' exponential-squared fog, put on the scene while it is drawn
  * (R_FogApply, gl_rmain.js), in the classic picture and in the Newer Game picture's scene pass alike, so particles and
  * explosions are fogged at their own distance and bloom is made from the fogged picture. The sky is not fogged by
- * distance: it takes half the fog's colour (Quakespasm's r_skyfog 0.5; R_FogSkyMaterial). A density of 0 is no fog.
+ * distance: it takes a share of the fog's colour (R_FogSkyMaterial): the map's worldspawn `skyfog` key, else the
+ * r_skyfog setting (0.5, as Quakespasm; R_FogSkyShare). A density of 0 is no fog.
  *
  * Fog is mixed in the picture's linear light, where Quakespasm mixes the displayed values: at middling amounts a dark
  * surface comes out slightly lighter than in Quakespasm. In the Newer Game picture the colour goes through that
@@ -18,16 +19,24 @@
  * Types: plain values and functions; no exported classes.
  *
  * State: module-level `from`/`to` (the fade's ends), `fadeStart`/`fadeTime`, and `current` (the fog now), reset for
- * each map (R_FogNewMap).
+ * each map (R_FogNewMap); `mapSkyFog` (the map's own sky share, or null) and the one uniform every sky material reads.
  *
  * Errors: none raised; a `fog` command with too many values prints its usage and changes nothing.
  */
 import * as THREE from 'three';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from '../common/cmd.js';
 import { Con_Printf } from '../common/console.js';
+import { cvar_t, Cvar_RegisterVariable, Cvar_FindVar, Cvar_SetValue } from '../common/cvar.js';
 
-/** The share of the fog's colour the sky takes (Quakespasm's r_skyfog default). */
+/** The share of the fog's colour the sky takes by default (Quakespasm's r_skyfog default). */
 export const FOG_SKY = 0.5;
+/** The sky's share of the fog's colour (Quakespasm's r_skyfog); a map's worldspawn `skyfog` key sets it for that map. */
+export const r_skyfog = new cvar_t( 'r_skyfog', String( FOG_SKY ) );
+// the share every sky material reads (one uniform object for all of them): the map's `skyfog`, else r_skyfog; a change
+// of r_skyfog while the map plays (Arcane Dimensions' QuakeC sets it) takes over, as Quakespasm's r_skyfog callback does.
+// Observe writes, not numeric snapshots: different spellings and multiple writes between draws must count.
+const skyFogUniform = { value: FOG_SKY };
+let mapSkyFog = null, seenSkyFogRevision = r_skyfog.changeRevision;
 // Quakespasm's colour when none is given
 const DEFAULT = Object.freeze( { density: 0, r: 0.3, g: 0.3, b: 0.3 } );
 
@@ -97,22 +106,29 @@ function worldspawn( text ) {
 /**
  * Starts a map's fog from its entities, as Quakespasm's Fog_ParseWorldspawn: its worldspawn `fog` key (a leading `_`
  * on the key is allowed; the last one wins), its values filled in order (density, red, green, blue; those missing keep
- * their defaults), else none: a map without one is clear, whatever the last map had. Called by the renderer's R_NewMap.
+ * their defaults), else none: a map without one is clear, whatever the last map had. Its `skyfog` key sets the sky's
+ * share for this map (R_FogSkyShare). Called by the renderer's R_NewMap.
  *
  * @param {?string} entities the map's entity text (model.entities)
  */
 export function R_FogNewMap( entities ) {
 
 	let next = { ...DEFAULT };
+	// the sky's share: worldspawn `skyfog` (Quake's re-release maps set `_skyfog` per map), else r_skyfog
+	mapSkyFog = null;
 	for ( const [ key, value ] of worldspawn( entities ?? '' ) ) {
 
-		if ( key.replace( /^_/, '' ).toLowerCase() !== 'fog' ) continue;
+		const name = key.replace( /^_/, '' ).toLowerCase();
+		if ( name === 'skyfog' && Number.isFinite( Number.parseFloat( value ) ) ) mapSkyFog = Number.parseFloat( value );
+		if ( name !== 'fog' ) continue;
 		const v = value.trim().split( /\s+/ ).map( Number.parseFloat ), filled = { ...DEFAULT };
 		[ 'density', 'r', 'g', 'b' ].forEach( ( name, k ) => { if ( Number.isFinite( v[ k ] ) ) filled[ name ] = v[ k ]; } );
 		next = filled;
 
 	}
 	from = { ...next }; to = { ...next }; fadeTime = 0;
+	seenSkyFogRevision = r_skyfog.changeRevision;
+	R_FogSkyShare();
 	to.density = from.density = Math.max( 0, next.density );
 	R_FogParams();
 
@@ -146,6 +162,7 @@ const sceneFog = new THREE.FogExp2( 0, 0 ); // reused: the fog put on the scene 
 export function R_FogApply( scene, exposure = null ) {
 
 	const fog = R_FogParams();
+	R_FogSkyShare();
 	if ( ! ( fog.density > 0 ) ) { scene.fog = null; return false; }
 	sceneFog.density = fog.density / 64;
 	if ( exposure === null ) sceneFog.color.setRGB( fog.r, fog.g, fog.b, THREE.SRGBColorSpace );
@@ -156,8 +173,37 @@ export function R_FogApply( scene, exposure = null ) {
 }
 
 /**
- * Makes a sky material take the fog's colour by FOG_SKY instead of by distance (Quakespasm draws the sky unfogged, then
- * lays the fog's colour over it at r_skyfog). Keeps whatever the material's prototype does to its shader first (the
+ * The sky's share of the fog's colour now: the map's `skyfog`, or r_skyfog (a change to r_skyfog in play taking over),
+ * 0..1. Updates the value the sky materials read.
+ *
+ * @returns {number} the share
+ */
+export function R_FogSkyShare() {
+
+	if ( r_skyfog.changeRevision !== seenSkyFogRevision ) { seenSkyFogRevision = r_skyfog.changeRevision; mapSkyFog = null; }
+	const share = mapSkyFog ?? r_skyfog.value;
+	skyFogUniform.value = Math.min( 1, Math.max( 0, Number.isFinite( share ) ? share : FOG_SKY ) );
+	return skyFogUniform.value;
+
+}
+
+/**
+ * Chooses the sky share explicitly from Options, including when the chosen value matches the console default.
+ * Unlike an unchanged console assignment, a menu choice always releases the current map's override.
+ *
+ * @param {number} value share 0..1 (0 removes the sky tint; distance fog is unchanged)
+ */
+export function R_FogSkySet( value ) {
+
+ Cvar_SetValue( 'r_skyfog', Math.round( clamp01( value ) * 100 ) / 100 );
+ mapSkyFog = null;
+ R_FogSkyShare();
+
+}
+
+/**
+ * Makes a sky material take the fog's colour by the sky's share (R_FogSkyShare) instead of by distance (Quakespasm
+ * draws the sky unfogged, then lays the fog's colour over it at r_skyfog). Keeps whatever the material's prototype does to its shader first (the
  * Newer Game G-buffer patch).
  *
  * @param {THREE.Material} material a sky material (fog on)
@@ -169,8 +215,9 @@ export function R_FogSkyMaterial( material ) {
 	material.onBeforeCompile = function ( shader, renderer ) {
 
 		before?.call( this, shader, renderer );
-		shader.fragmentShader = shader.fragmentShader.replace( '#include <fog_fragment>',
-			`#ifdef USE_FOG\n\tgl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, ${FOG_SKY.toFixed( 3 )} ); // the sky's share (r_fog.js)\n#endif` );
+		shader.uniforms.uQuakedSkyFog = skyFogUniform;
+		shader.fragmentShader = 'uniform float uQuakedSkyFog;\n' + shader.fragmentShader.replace( '#include <fog_fragment>',
+			'#ifdef USE_FOG\n\tgl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, uQuakedSkyFog ); // the sky\'s share (r_fog.js)\n#endif' );
 
 	};
 	const key = material.customProgramCacheKey.bind( material );
@@ -189,9 +236,10 @@ function R_Fog_f() {
 
 }
 
-/** Registers the `fog` command. Called once by R_Init. */
+/** Registers the `fog` command and the r_skyfog setting. Called once by R_Init. */
 export function R_FogInit() {
 
 	Cmd_AddCommand( 'fog', R_Fog_f );
+	if ( ! Cvar_FindVar( r_skyfog.name ) ) Cvar_RegisterVariable( r_skyfog );
 
 }

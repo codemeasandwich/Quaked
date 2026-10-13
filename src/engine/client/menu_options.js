@@ -23,6 +23,7 @@ import { cl_forwardspeed } from './cl_input.js';
 import { sensitivity, m_pitch, lookspring, lookstrafe } from './cl_main.js';
 import { volume, bgmvolume } from '../sound/sound.js';
 import { Cvar_SetValue, Cvar_VariableValue } from '../common/cvar.js';
+import { R_FogSkyShare, R_FogSkySet } from '../render/r_fog.js';
 import { scr_viewsize } from '../render/gl_screen.js';
 import { v_gamma } from './view.js';
 import { gl_texturemode, GL_UpdateTextureFiltering } from '../render/glquake.js';
@@ -289,6 +290,10 @@ function M_AdjustSliders( dir ) {
 			Cvar_SetValue( 'crosshair', Cvar_VariableValue( 'crosshair' ) !== 0 ? 0 : 1 );
 			break;
 
+		case 19: // sky fog applies to Classic and Newer Game alike
+			R_FogSkySet( R_FogSkyShare() + dir * 0.05 );
+			break;
+
 		case 14: // FPS counter
 			Cvar_SetValue( 'cl_showfps', Cvar_VariableValue( 'cl_showfps' ) !== 0 ? 0 : 1 );
 			break;
@@ -307,7 +312,7 @@ function M_AdjustSliders( dir ) {
 
 // Cursor/touch indices remain visible rows; action IDs retain their established
 // meaning across drawing, Enter and slider/toggle dispatch.
-const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17 ];
+const OPTIONS_ORDER = [ 13, 0, 15, 1, 2, 14, 3, 4, 5, 6, 7, 16, 8, 9, 10, 11, 12, 17, 19 ];
 if(Distribution_Profile()==='desktop')OPTIONS_ORDER.unshift(18);
 const OPTIONS_ITEMS = OPTIONS_ORDER.length;
 function optionsY( action ) { return 32 + OPTIONS_ORDER.indexOf( action ) * 8; }
@@ -326,7 +331,7 @@ export function M_Menu_Options_f() {
 }
 
 /**
- * `M_Draw` while `m_state` is `m_options`: the 18 rows 8 pixels apart from y 32 in `OPTIONS_ORDER`, with sliders
+ * `M_Draw` while `m_state` is `m_options`: the 19 rows (20 in the app) 8 pixels apart from y 32 in `OPTIONS_ORDER`, with sliders
  * (screen size, brightness, mouse speed, sound and music volume) and on/off values read from their cvars at x 220,
  * and the cursor at x 200. Nothing until `Draw_CachePic` is wired.
  */
@@ -387,6 +392,8 @@ export function M_Options_Draw() {
 	M_Print( 16, optionsY( 15 ), '  Performance profiler' );
 
 	M_Print( 16, optionsY( 17 ), '                Cheats' );
+	M_Print( 16, optionsY( 19 ), '               Sky fog' );
+	M_DrawSlider( 220, optionsY( 19 ), R_FogSkyShare() );
 	if(Distribution_Profile()==='desktop')M_Print(16,optionsY(18),' Select Game Locations');
 
 	// cursor

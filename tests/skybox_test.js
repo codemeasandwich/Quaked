@@ -86,7 +86,7 @@ Deno.test( 'the sky surfaces draw the skybox by direction, with the scrolling sk
 	R_SkyBoxMaterial().onBeforeCompile( shader, null );
 	check( shader.vertexShader.includes( 'vQuakedSkyWorld = ( modelMatrix * vec4( transformed, 1.0 ) ).xyz;' ), 'the world position goes to the fragment' );
 	check( shader.fragmentShader.includes( 'quakedSky( vQuakedSkyWorld - cameraPosition )' ), 'looked up from whichever camera draws it' );
-	check( shader.fragmentShader.includes( 'fogColor, 0.500' ), 'the fog\'s share, not its distance' );
+	check( shader.fragmentShader.includes( 'fogColor, uQuakedSkyFog' ), 'the fog\'s share, not its distance' );
 	same( Object.keys( shader.uniforms ).filter( k => k.startsWith( 'tQuakedSky' ) ).length, 6, 'its six images' );
 	R_SkyBoxSet( '' );
 	const rmain = readFileSync( new URL( '../src/engine/render/gl_rmain.js', import.meta.url ), 'utf8' ), liquids = readFileSync( new URL( '../src/engine/render/gl_rsurf_liquids.js', import.meta.url ), 'utf8' );

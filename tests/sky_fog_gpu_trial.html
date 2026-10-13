@@ -1,0 +1,36 @@
+<!doctype html><meta charset="utf-8"><title>Sky fog GPU verification</title>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {R_FogInit,R_FogNewMap,R_FogApply,R_FogSkyMaterial} from '/src/engine/render/r_fog.js';
+import {R_SkyBoxSet,R_SkyBoxMaterial,SKYBOX_SUFFIXES} from '/src/engine/render/r_skybox.js';
+import {COM_AddPack,COM_LoadPackFile,COM_BuildPack} from '/src/engine/common/pak.js';
+import {Cbuf_Init,Cmd_Init,Cbuf_AddText,Cbuf_Execute} from '/src/engine/common/cmd.js';
+import {R_PostInstallGBufferPatch} from '/src/newer/render/r_post_gbuffer.js';
+const results=[];window.results=results;
+try {
+ Cbuf_Init();Cmd_Init();R_FogInit();R_PostInstallGBufferPatch();
+ const renderer=new THREE.WebGLRenderer({antialias:false});renderer.setSize(256,256);document.body.append(renderer.domElement);
+ const target=new THREE.WebGLRenderTarget(32,32,{count:4,type:THREE.UnsignedByteType,depthBuffer:true});
+ const scene=new THREE.Scene(),camera=new THREE.OrthographicCamera(-1,1,1,-1,0.1,100);
+ const mesh=new THREE.Mesh(new THREE.PlaneGeometry(2,2),R_FogSkyMaterial(new THREE.MeshBasicMaterial({color:0x0000ff})));mesh.position.z=-5;scene.add(mesh);
+ const tga=new Uint8Array([0,0,2,0,0,0,0,0,0,0,0,0,1,0,1,0,24,0,255,0,0]);
+ COM_AddPack(COM_LoadPackFile('skyfog-fixture.pak',COM_BuildPack(SKYBOX_SUFFIXES.map(s=>({name:`gfx/env/probe${s}.tga`,data:tga})))));
+ const run=s=>{Cbuf_AddText(s+'\n');Cbuf_Execute();};
+ const read=()=>{renderer.setRenderTarget(target);renderer.render(scene,camera);const px=new Uint8Array(4);renderer.readRenderTargetPixels(target,16,16,1,1,px);return [...px];};
+ const near=(a,b)=>Math.abs(a-b)<=2;
+ for(const kind of ['scrolling-material','skybox']){
+  if(kind==='skybox'){R_SkyBoxSet('probe');mesh.material=R_SkyBoxMaterial();}
+  for(const [mode,exposure] of [['Classic',null],['Newer scene pass',2]]){
+   for(const share of [0,0.5,0.85,1]){
+    R_FogNewMap(`{"classname" "worldspawn" "fog" "0.15 1 0 0" "skyfog" "${share}"}`);R_FogApply(scene,exposure);
+    const pixel=read(),expected=[255*share/(exposure??1),0,255*(1-share),255];
+    results.push({kind,mode,share,pixel,expected,pass:pixel.every((v,i)=>near(v,expected[i]))});
+   }
+   run('r_skyfog 0.5');R_FogNewMap('{"classname" "worldspawn" "fog" "0.15 1 0 0" "skyfog" "0.85"}');run('r_skyfog 0.500000');R_FogApply(scene,exposure);
+   const pixel=read(),expected=[127.5/(exposure??1),0,127.5,255];results.push({kind,mode,case:'changed text command',pixel,expected,pass:pixel.every((v,i)=>near(v,expected[i]))});
+  }
+ }
+ renderer.setRenderTarget(null);renderer.render(scene,camera);window.complete=true;
+} catch(e){window.failure=String(e.stack??e);window.complete=true;}
+</script>
