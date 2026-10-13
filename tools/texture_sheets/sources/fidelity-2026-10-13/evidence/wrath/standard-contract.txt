@@ -1,0 +1,36 @@
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (44.41475ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (0.990875ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (0.96325ms)
+  ✔ empty successor (1.445334ms)
+  ✔ wrong predecessor (0.713666ms)
+  ✔ missing recipe (0.514917ms)
+  ✔ missing source record (0.563166ms)
+  ✔ different source record (0.616584ms)
+  ✔ wrong pinned model (0.976875ms)
+  ✔ wrong pinned source (1.40225ms)
+  ✔ recipe not 4x (2.750792ms)
+  ✔ record not 4x (3.060791ms)
+  ✔ missing height pin (3.070791ms)
+  ✔ wrong current height (3.932625ms)
+  ✔ wrong current dimensions despite matching hashes (4.443667ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (26.077583ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (4.536167ms)
+▶ renamed Q92 successor requires explicit safe filename, real codec and current catalogue
+  ✔ undisclosed rename (2.989125ms)
+  ✔ path escape rename (0.727125ms)
+  ✔ wrong codec despite matching hashes (6.067167ms)
+  ✔ wrong catalogue rename (4.366209ms)
+  ✔ wrong catalogue identity (4.010625ms)
+  ✔ recipe Q92 intent missing (4.314375ms)
+  ✔ SOURCE Q92 intent wrong (3.035042ms)
+  ✔ runtime receipt hash wrong (4.74725ms)
+✔ renamed Q92 successor requires explicit safe filename, real codec and current catalogue (31.280625ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.099125

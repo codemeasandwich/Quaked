@@ -4,6 +4,8 @@
 import * as THREE from 'three';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { gunzipSync } from 'node:zlib';
 import { NormalInputs, NormalInputWitness, R_NormalPrepare } from '../src/newer/assets/normal_prepare.js';
 import { NormalBakeDecode } from '../src/newer/assets/normal_bake_format.js';
@@ -13,8 +15,8 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init, Mod_ForName, Mod_LoadModel, model_t } from '../src/engine/render/gl_model.js';
 import * as mode from '../src/newer/mode.js';
 const EXPECTED = '0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6';
-const SOURCE = 'tools/texture_sheets/sources/generated-2026-10-12/wrath.png';
-const SOURCE_SHA = '80dec1d312004b3af5248dd83736fbabdeb17e121a8cb24424f6df4d53b322de';
+const SOURCE = 'tools/texture_sheets/sources/fidelity-2026-10-13/wrath-photographic-detailed.png';
+const SOURCE_SHA = '4a190d6e0fb2d74ff5eb29188f857be028d3b1a946fe869d8b5783a4ba3660dd';
 const NAME = 'progs/wrath.mdl', BASE = 'newer/enemies/wrath/custom/';
 const check = ( value, message ) => { if ( !value ) throw Error( message ); };
 const same = ( actual, expected, message ) => check( actual === expected, `${message}: ${actual} != ${expected}` );
@@ -64,29 +66,47 @@ Deno.test( 'owned Wrath public loader preserves every native UV triangle and all
 Deno.test( 'actual Wrath assets retain generated source, matching dimensions and other enemy entries', async () => {
  const provenance = JSON.parse( read( BASE + 'SOURCE.json' ) ); same( provenance.nativeModelSha256, EXPECTED, 'fit targets exact native model' ); same( provenance.model, NAME, 'fit model' );
  same( JSON.stringify( provenance.dimensions ), '[992,776]', 'fourfold native atlas dimensions (the 4x standard)' );
- same(JSON.stringify(provenance.atlasBox),'[0,0,1488,1180]','reviewed vertical registration');
- same(JSON.stringify(provenance.generatedBlackSurface.nativeRegions),'[[7,85,10,88],[131,85,134,88]]','black acceptance has exact narrow native regions');same(provenance.generatedBlackSurface.nativePaletteIndex,0,'requires original pure black');same(provenance.generatedBlackSurface.maximumGeneratedChannel,1,'requires generated black');same(provenance.generatedBlackSurface.acceptedPixels,458,'independently measured black surface count');same(provenance.generatedBlackSurface.nativePigmentCopied,false,'only generated pigment is used');same(provenance.flatHeight,undefined,'solid eyes do not inherit flash-height override');
+ const recipe=JSON.parse(read('tools/texture_sheets/sources/fidelity-2026-10-13/wrath-photographic.json'));
+ same(recipe.sourceFile,SOURCE,'selected recipe uses exact prospective source');same(recipe.sourceSha,SOURCE_SHA,'recipe source identity');same(recipe.modelSha,EXPECTED,'recipe exact native model');same(JSON.stringify(recipe.layout),'[1,248,194,212,420,87]','recipe actual native topology');same(JSON.stringify(recipe.size),'[1419,1109]','recipe source size');same(recipe.factor,4,'recipe uses existing fourfold standard');same(JSON.stringify(recipe.runtimeEncoding),'{"format":"webp","quality":92}','explicit WebP92 recipe');
+ same(provenance.factor,4,'actual fitted scale');same(JSON.stringify(provenance.atlasBox),'[0,0,992,776]','whole native atlas registered without rotation');same(provenance.nativeTexturePixelsUsed,0,'new material comes from generated source, not copied native pigment');same(provenance.surfacePixels,323337,'complete body and eye native UV area');same(provenance.edgePixels,12893,'recorded bounded extension for selected source');same(provenance.islands.length,6,'two body islands and all four eye islands fitted');for(const island of provenance.islands)same(island.directPixels+island.edgePixels,island.surfacePixels,'each half has accounted coverage');
+ same(approved.heightFlat,undefined,'solid eyes has no Armagon flash-height reconstruction');same(index.nativeHeights.wrath,undefined,'native fallback still derives from its original skin');
+ const encoding=provenance.runtimeEncoding;same(encoding.format,'webp','runtime codec');same(encoding.quality,92,'owner-selected quality');same(encoding.lossless,false,'lossy runtime image format declared');same(encoding.authoringSourceUnchanged,true,'generated authoring original retained');
+ const receiptInputs=[];
+ for(const file of ['diffuse.webp','height.webp']){
+  const data=read(BASE+file),receipt=encoding.maps[file];same(data.toString('ascii',0,4),'RIFF','WebP container');same(data.toString('ascii',8,12),'WEBP','WebP signature');let offset=12,lossy=false;
+  while(offset+8<=data.length){const tag=data.toString('ascii',offset,offset+4),size=data.readUInt32LE(offset+4);if(tag==='VP8 ')lossy=true;check(tag!=='VP8L','lossless payload cannot masquerade as Q92');offset+=8+size+(size&1);}check(lossy,'actual lossy VP8 payload');same(receipt.sha256,sha(data),'encoding receipt binds shipped file');same(receipt.bytes,data.length,'encoded byte count');check(/^[0-9a-f]{64}$/.test(receipt.masterSha256),'retained lossless fit-master identity');
+  receiptInputs.push(fileURLToPath(new URL('../'+BASE+file,import.meta.url)));
+ }
+ // These receipts name Pillow explicitly. Runtime canvas decoding is separately
+ // used by the exact shipped-normal witness case below, never substituted here.
+ const proof=spawnSync(process.env.QUAKED_PYTHON||'/usr/bin/python3',['-c',"import sys,json,hashlib\nfrom PIL import Image\nfor path in json.load(sys.stdin):\n with Image.open(path) as im: print(hashlib.sha256(im.convert('RGBA').tobytes()).hexdigest())"],{input:JSON.stringify(receiptInputs),encoding:'utf8',env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'}});same(proof.status,0,'decode actual Pillow provenance: '+proof.stderr);const decodedHashes=proof.stdout.trim().split('\n');same(decodedHashes.length,2,'both decoded maps checked');for(const[i,file]of ['diffuse.webp','height.webp'].entries())same(encoding.maps[file].pillowDecodedRgbaSha256,decodedHashes[i],'actual decoded receipt '+file);
+
+ same(recipe.atlasBox,undefined,'fresh recipe has no old registration box');same(recipe.nativeBlackRegions,undefined,'fresh recipe has no stale black-pixel exception');
+
+ same(JSON.stringify(provenance.atlasBox),'[0,0,992,776]','new source registered directly at native fourfold dimensions');same(provenance.registration,null,'no stale factor-six registration');
+ check(provenance.generatedBlackSurface==null,'new fit needs no historical black-region exception');same(provenance.flatHeight,undefined,'solid eyes do not inherit flash-height override');
  same( provenance.source, SOURCE, 'generated source provenance path' ); same( provenance.sourceSha256, SOURCE_SHA, 'generated source hash' ); same( sha( read( SOURCE ) ), SOURCE_SHA, 'actual generated PNG bytes' );
- for ( const file of [ 'diffuse.png', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
+ for ( const file of [ 'diffuse.webp', 'height.webp' ] ) same( sha( read( BASE + file ) ), provenance.files[ file ], 'actual fitted asset digest: ' + file );
  same( index.models.wrath.length, 1, 'single approved Wrath variant' ); same( approved.skin, 0, 'only native skin zero admitted' ); same( approved.nativeModelSha256, EXPECTED, 'manifest requires native identity' );
- same( approved.dir, 'wrath/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.png', 'lossless fitted PNG is used by the product' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
+ same( approved.dir, 'wrath/custom', 'directory' ); same( approved.maps.diffuse, 'diffuse.webp', 'reviewed fit uses owner-required lossy WebP92' ); same( approved.maps.height, 'height.webp', 'matching stored height' ); same( Object.keys( approved.maps ).length, 2, 'only expected maps' ); same( approved.flipGreen, false, 'generated normal green convention' );
  const other = structuredClone( index );other.models.ogre=other.models.ogre.slice(0,1);other.nativeHeights.ogre=other.nativeHeights.ogre.slice(0,1);other.models.knight=other.models.knight.slice(0,1);other.nativeHeights.knight=other.nativeHeights.knight.slice(0,1); delete other.version;
- // Pin all existing families and their data while permitting future append-only enemy families.
+ // Same historical family projection, refreshed from committed HEAD9950863c after
+ // separately published photographic corrections; no prior family is omitted.
  const baselineKeys = ["boss", "knight", "ogre", "soldier", "wizard", "backpack", "suit", "armor", "shambler", "zombie", "demon", "h_demon", "h_dog", "zom_gib", "h_shams", "shalrath", "oldone", "enforcer", "tarbaby", "hknight", "scor", "dragon", "s_wrath", "mummy", "dog", "fish", "grem", "armabody", "armalegs", "eel2", "sword"];
  other.models = Object.fromEntries(Object.entries(other.models).filter(([key]) => baselineKeys.includes(key)).map(([key,list])=>[key,['hknight','tarbaby'].includes(key)?list.slice(0,1):list]));
  const baselineHeightKeys = ["gib1", "gib2", "gib3", "zom_gib", "ogre", "h_ogre", "demon", "h_demon", "shambler", "h_shams", "knight", "h_knight", "soldier", "h_guard", "wizard", "h_wizard", "h_dog", "dog", "zombie", "h_zombie", "boss", "armabody", "eel2"];
  other.nativeHeights = Object.fromEntries(Object.entries(other.nativeHeights).filter(([key]) => baselineHeightKeys.includes(key)));
- same(sha(JSON.stringify(other)), 'e0cde1bf100be07739e3b37633de0eff900a632d2cca7c3642c72012a4221a10', 'all prior model and native-height families preserved');
+ same(sha(JSON.stringify(other)), '40909ae6c9a488c9f47d4a631fc3a0d85bc50805ff6f41d9d6d8ebf878e51cfb', 'all prior model and native-height families preserved');
  const canvas = await import( process.env.QUAKED_CANVAS_MODULE || '/Users/bri/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas/index.js' );
  const decode = async file => { const image = await canvas.loadImage( read( BASE + file ) ), surface = canvas.createCanvas( image.width, image.height ), ctx = surface.getContext( '2d' ); ctx.drawImage( image, 0, 0 ); return ctx.getImageData( 0, 0, image.width, image.height ); };
  // Read hash-pinned source dimensions from PNG IHDR. Both product maps undergo actual canvas decoding below.
- const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1418, 'generated source width' ); same( generated.readUInt32BE( 20 ), 1109, 'generated source height' );
- const diffuse = await decode( 'diffuse.png' ), height = await decode( 'height.webp' ); same( diffuse.width, 992, 'actual diffuse width' ); same( diffuse.height, 776, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
+ const generated = read( SOURCE ); same( generated.subarray( 0, 8 ).toString( 'hex' ), '89504e470d0a1a0a', 'generated source PNG signature' ); same( generated.toString( 'ascii', 12, 16 ), 'IHDR', 'generated source image header' ); same( generated.readUInt32BE( 16 ), 1419, 'generated source width' ); same( generated.readUInt32BE( 20 ), 1109, 'generated source height' );
+ const diffuse = await decode( 'diffuse.webp' ), height = await decode( 'height.webp' ); same( diffuse.width, 992, 'actual diffuse width' ); same( diffuse.height, 776, 'actual diffuse height' ); same( height.width, diffuse.width, 'height aligned horizontally' ); same( height.height, diffuse.height, 'height aligned vertically' );
  let halfDifferences=0;for(let y=0;y<diffuse.height;y++)for(let x=0;x<diffuse.width/2;x++){const a=(y*diffuse.width+x)*4,b=a+diffuse.width/2*4;if(diffuse.data[a]!==diffuse.data[b]||diffuse.data[a+1]!==diffuse.data[b+1]||diffuse.data[a+2]!==diffuse.data[b+2])halfDifferences++;}check(halfDifferences>1418,'fitted front/back preserve distinct art instead of duplicating one half');
  // Fixed interior of the native front hood opening: original atlas is entirely black here.
  for(let y=30*4;y<44*4;y++)for(let x=57*4;x<65*4;x++){const o=(y*diffuse.width+x)*4;check(Math.max(diffuse.data[o],diffuse.data[o+1],diffuse.data[o+2])<=4,'hood interior remains empty instead of gaining a painted face');}
  let min = 255, max = 0;
- for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; same( height.data[i+1], value, 'height green is grayscale' ); same( height.data[i+2], value, 'height blue is grayscale' ); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
+ for ( let i = 0; i < height.data.length; i += 4 ) { const value = height.data[i]; check(Math.max(value,height.data[i+1],height.data[i+2])-Math.min(value,height.data[i+1],height.data[i+2])<=1,'neutral height remains gray within one codec rounding unit; runtime uses decoded red'); same( height.data[i+3], 255, 'height fully opaque' ); same( diffuse.data[i+3], 255, 'diffuse fully opaque' ); min = Math.min( min, value ); max = Math.max( max, value ); }
  check( max - min > 32, 'actual stored height is nonflat' );
 } );
 Deno.test( 'actual manifest admits only matching Wrath skin zero and preserves native geometry through preparation and selection', async () => fixture( async ( skins, requests ) => {
@@ -97,7 +117,7 @@ Deno.test( 'actual manifest admits only matching Wrath skin zero and preserves n
  same(skins.R_NewerAliasMaterial({model:{...overlord,name:NAME}},NAME,true,0),null,'Overlord bytes cannot select Wrath art even under its filename');
  const preparing = skins.R_NewerSkinsPrepare( [ model ] ); same( skins.R_NewerSkinsPrepare( [ model, model ] ), preparing, 'matching preparation deduplicates' ); await preparing; same( requests.length, 2, 'exact diffuse and height requests' );
  check( requests.every( r => r.url.startsWith( BASE ) && r.url.endsWith( '?v=' + index.version ) ), 'both requests use approved directory and cache revision' ); same( skins.R_NewerSkinsStatus( [ model ] ).pending, 2, 'preparation acknowledgement is not image readiness' ); same( skins.R_NewerAliasMaterial( { model }, NAME, true, 0 ), null, 'pending diffuse retains native' );
- for ( const request of requests ) request.done( request.texture ); const material = skins.R_NewerAliasMaterial( { model, _entityIndex: 9 }, NAME, true, 0 ); check( material, 'matched skin zero material ready' ); same( material.map, requests.find( r => r.url.includes( 'diffuse.png' ) ).texture, 'draw uses approved decoded diffuse' );
+ for ( const request of requests ) request.done( request.texture ); const material = skins.R_NewerAliasMaterial( { model, _entityIndex: 9 }, NAME, true, 0 ); check( material, 'matched skin zero material ready' ); same( material.map, requests.find( r => r.url.includes( 'diffuse.webp' ) ).texture, 'draw uses approved decoded diffuse' );
  same( material.map.flipY, false, 'native top-row-first UV convention retained' ); same( material.map.colorSpace, THREE.SRGBColorSpace, 'diffuse uses native color contract' ); same( skins.R_NewerSkinsStatus( [ model ] ).ready, 2, 'both image callbacks counted' ); check( skins.R_NewerSkinsStatus( [ model ] ).settled, 'image family settled' );
  for ( const skin of [ 1, 2, 7 ] ) same( skins.R_NewerAliasMaterial( { model }, NAME, true, skin ), null, 'unapproved skin remains native' );
  for ( const unsupported of [ wrong, { name: NAME }, { ...model, name: 'progs/unsupported_wrath.mdl' } ] ) { same( skins.R_NewerAliasMaterial( { model: unsupported }, unsupported.name, true, 0 ), null, 'unsupported source/model remains native after positive cache fill' ); same( skins.R_NewerSkinsMaterials( [ unsupported ] ).length, 0, 'unsupported model has no approved materials' ); same( skins.R_NewerSkinsTextures( [ unsupported ] ).length, 0, 'unsupported model has no approved textures' ); }
@@ -146,7 +166,7 @@ async function verifyBake(texture,family,expectedModelSha=null) {
  return decoded;
 }
 Deno.test('Wrath custom and native generated inputs use exact shipped normal samples',async()=>{
- const {model}=await native(),pixels=model.cache.data.gl_texturenum[0][0].image,diffuse=await decodedImage(BASE+'diffuse.png'),height=await decodedImage(BASE+'height.webp');
+ const {model}=await native(),pixels=model.cache.data.gl_texturenum[0][0].image,diffuse=await decodedImage(BASE+'diffuse.webp'),height=await decodedImage(BASE+'height.webp');
  const custom=companion(diffuse,height,approved.heightStrength,approved.heightCap);await verifyBake(custom,'custom:wrath/custom');
  await verifyBake(companion(pixels,null),'rogue:'+NAME,EXPECTED);
 });
@@ -167,11 +187,12 @@ Deno.test('Wrath has two persistent native eye meshes and four separate red atla
   let span=0;for(let axis=0;axis<3;axis++){const values=ids.map(v=>h.poseverts[pose][v].v[axis]);span=Math.max(span,(Math.max(...values)-Math.min(...values))*h.scale[axis]);}
   check(span>.5&&span<3.5,'each eye remains a tiny persistent solid surface in pose '+pose);
  }
- const diffuse=await decodedImage(BASE+'diffuse.png'),height=await decodedImage(BASE+'height.webp');
+ const diffuse=await decodedImage(BASE+'diffuse.webp'),height=await decodedImage(BASE+'height.webp'),eyeRedMeans=[];
  for(const [left,top,right,bottom]of [[29,163,49,179],[75,163,95,179],[153,163,173,179],[199,163,219,179]]){
-  let red=0,total=0,nonMaxHeight=0;for(let y=(top+4)*4;y<(bottom-4)*4;y++)for(let x=(left+6)*4;x<(right-6)*4;x++){
-   const o=(y*diffuse.width+x)*4;total++;if(diffuse.data[o]>diffuse.data[o+1]+10&&diffuse.data[o]>diffuse.data[o+2]+10)red++;if(height.data[o]<255)nonMaxHeight++;
+  let red=0,total=0,nonMaxHeight=0,redSum=0;for(let y=(top+4)*4;y<(bottom-4)*4;y++)for(let x=(left+6)*4;x<(right-6)*4;x++){
+   const o=(y*diffuse.width+x)*4;total++;redSum+=diffuse.data[o];if(diffuse.data[o]>diffuse.data[o+1]+10&&diffuse.data[o]>diffuse.data[o+2]+10)red++;if(height.data[o]<255)nonMaxHeight++;
   }
-  check(red>total*.5,'each fitted eye island retains its red pigment');check(nonMaxHeight>total*.5,'eye height is not the maximal flash shadow-bypass plateau');
+  check(red>total*.5,'each fitted eye island retains its red pigment');check(nonMaxHeight>total*.5,'eye height is not the maximal flash shadow-bypass plateau');eyeRedMeans.push(redSum/total);
  }
+ check(eyeRedMeans[0]>eyeRedMeans[2]&&eyeRedMeans[1]>eyeRedMeans[3],'both bright front eyes remain brighter red than their dark maroon backs');
 });

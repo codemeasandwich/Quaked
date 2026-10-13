@@ -1,44 +1,58 @@
 {
- "batch": "rogue",
- "ruling": "Owner, 12 Oct 2026: 4x standard, one version",
- "method": "Lanczos resample of the accepted Wrath fit: its recipe's registration and atlasBox [0,0,1488,1180] are in factor-6 pixels with no whole-pixel factor-4 equivalent, so re-fitting would change the accepted registration. Height re-authored from the 4x diffuse by update_enemy_heights.height_for (which reproduced the committed height first). Every other Rogue skin above 4x was re-fitted at factor 4 through its recipe (ogre/rogue1 was already 4x; the rogue0 copies follow batch 2).",
- "files": [
-  {
-   "file": "newer/enemies/wrath/custom/diffuse.png",
-   "target": [
-    992,
-    776
-   ],
-   "native": [
-    248,
-    194
-   ],
-   "kind": "skin-diffuse"
-  }
- ],
- "results": [
-  {
-   "file": "newer/enemies/wrath/custom/diffuse.png",
-   "target": [
-    992,
-    776
-   ],
-   "before": {
-    "size": [
-     1488,
-     1164
-    ],
-    "sha256": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
-    "bytes": 1586914
-   },
-   "after": {
-    "size": [
-     992,
-     776
-    ],
-    "sha256": "f847d9d26c50a9399a848aeb490992d86f5ec4b72cb0a1e2908a84567edd0087",
-    "bytes": 761575
-   }
-  }
- ]
+  "batch": "rogue",
+  "ruling": "Owner, 12 Oct 2026: 4x standard, one version",
+  "method": "Lanczos resample of the accepted Wrath fit: its recipe's registration and atlasBox [0,0,1488,1180] are in factor-6 pixels with no whole-pixel factor-4 equivalent, so re-fitting would change the accepted registration. Height re-authored from the 4x diffuse by update_enemy_heights.height_for (which reproduced the committed height first). Every other Rogue skin above 4x was re-fitted at factor 4 through its recipe (ogre/rogue1 was already 4x; the rogue0 copies follow batch 2).",
+  "files": [
+    {
+      "file": "newer/enemies/wrath/custom/diffuse.png",
+      "target": [
+        992,
+        776
+      ],
+      "native": [
+        248,
+        194
+      ],
+      "kind": "skin-diffuse"
+    }
+  ],
+  "results": [
+    {
+      "file": "newer/enemies/wrath/custom/diffuse.png",
+      "target": [
+        992,
+        776
+      ],
+      "before": {
+        "size": [
+          1488,
+          1164
+        ],
+        "sha256": "067b1f0da0fb581932d97c28cdb628313ead6c0193d8b004c69c8e2f5df30fa4",
+        "bytes": 1586914
+      },
+      "after": {
+        "size": [
+          992,
+          776
+        ],
+        "sha256": "f847d9d26c50a9399a848aeb490992d86f5ec4b72cb0a1e2908a84567edd0087",
+        "bytes": 761575
+      },
+      "successor": {
+        "kind": "native-refit",
+        "reason": "Photographic replacement generated directly from native atlas, fitted fresh at4x and encoded asWebP92; historical resample receipts preserved.",
+        "replacesSha256": "f847d9d26c50a9399a848aeb490992d86f5ec4b72cb0a1e2908a84567edd0087",
+        "recipe": "tools/texture_sheets/sources/fidelity-2026-10-13/wrath-photographic.json",
+        "sourceRecord": "newer/enemies/wrath/custom/SOURCE.json",
+        "nativeModelSha256": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6",
+        "sourceSha256": "4a190d6e0fb2d74ff5eb29188f857be028d3b1a946fe869d8b5783a4ba3660dd",
+        "files": {
+          "diffuse.webp": "2f6389335bf416b9eef669fe4abd22354dd2099ca4fed5927fbf5266c4e61ec6",
+          "height.webp": "c1ce58ba0f2926c6cb7986494420ce58344751ae8d2eaa26d476db12e418ce7b"
+        },
+        "diffuseFile": "diffuse.webp"
+      }
+    }
+  ]
 }

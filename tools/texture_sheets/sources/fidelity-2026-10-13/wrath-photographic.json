@@ -1,0 +1,37 @@
+{
+  "key": "wrath",
+  "modelSha": "0a57ee912df3142c5e17183d5f6bd461021b141d53f7534014d59eda97e6bfa6",
+  "layout": [
+    1,
+    248,
+    194,
+    212,
+    420,
+    87
+  ],
+  "matte": "black",
+  "sourceFile": "tools/texture_sheets/sources/fidelity-2026-10-13/wrath-photographic-detailed.png",
+  "sourceSha": "4a190d6e0fb2d74ff5eb29188f857be028d3b1a946fe869d8b5783a4ba3660dd",
+  "size": [
+    1419,
+    1109
+  ],
+  "factor": 4,
+  "runtimeEncoding": {
+    "format": "webp",
+    "quality": 92
+  },
+  "generation": {
+    "tool": "ChatGPT built-in imagegen",
+    "date": "2026-10-13",
+    "reference": "Original Rogue wrath.mdl skin0 decoded with original Quake palette; front/back and four persistent eye islands.",
+    "prompt": "Create a photorealistic high-resolution production UV texture atlas directly from this ORIGINAL Quake Dissolution of Eternity WRATH atlas. The pixel image is a shape/design/colour blueprint, not surface grain to enlarge. Preserve the complete248:194 framing and exact normalized positions and silhouettes of every part. Front is LEFT, back is RIGHT; four separate thin arms down the sides; two long pointed robe halves; four separate RED DIAMOND eye islands along the bottom. This is the ordinary Wrath, not the Overlord.\n\nTranslate the original materials into believable photographed costume/creature surfaces: weighty muted charcoal/blue-black cloth with broad soft folds and subtle worn weave visible only close up; dark brown leather shoulder straps/plates with restrained creases and rubbed edges; heavy dull silver/iron chain links, rings and studs; grey-tan gaunt wounded arm skin with natural tendons, occasional scars and restrained dark burgundy blood in the original arm regions. Keep the original chain arrangement, small central chest ornament, back rings and long robe points. Prioritize quiet coherent material planes and character. No coarse denim noise, orange cracked leather, tiled gore, pixel blocks, stone cracks, gravel or uniform microtexture. Preserve the original dark palette; do not brighten into colourful armour or invent exposed chest anatomy.\n\nCRITICAL HOOD: the FRONT hood interior must remain COMPLETELY BLACK, EMPTY AND FACELESS, with only the surrounding folded hood fabric. No skull, face, teeth or eyes inside the hood. The back hood is closed cloth.\n\nCRITICAL FOUR EYE ISLANDS: these are separate persistent model surfaces, NOT paint in the hood and NOT background. Keep FOUR solid red diamond-shaped islands, same sizes and exact original locations: on the native248x194 atlas their bounding regions are [29,163,49,179], [75,163,95,179], [153,163,173,179], [199,163,219,179]. The front pair (left half) have bright intense RED centres and darker red edges; the back pair (right half) are DARK MAROON. Keep their diamond silhouettes distinct from robe and arms, with clean black gaps, no external bloom or floating glow. Do not replace with eyeballs, flame shapes or transparent patches.\n\nKeep every outer silhouette and UV gap intact, pureBLACK unused background and no cast shadows, labels, text, watermark, scenery, legs, wings, weapons or additional parts. Full atlas in one image, no crop/tilt/perspective. Photographic detail must follow the original model design and colours, not redesign it.\n",
+    "ownerDirection": "Photorealistic detail and character while retaining original colors and artistic design.",
+    "detailEditSource": {
+      "file": "tools/texture_sheets/sources/fidelity-2026-10-13/wrath-photographic.png",
+      "sha256": "2663b7a309eb38a23974bfcc3eade410eed02cd189cd3e5191ecc6904e4fc072"
+    },
+    "detailPrompt": "The owner asks for MORE DETAIL in this Wrath production skin. Create a more richly detailed, photorealistic version of this exact atlas, with tactile material depth and character rather than grain. Preserve all original colours and the exact normalized UV layout, silhouettes and framing. This is a material-detail enhancement, not a design change. Use a high-resolution authoring canvas, approximately2560x2000 if possible, keeping the exact248:194 aspect ratio and complete layout.\n\nCLOTH: Develop the existing charcoal/blue-black hood and robe into thick weighty fabric with more sculpted folds, realistic overlapping seams, visible sewn stitches along existing borders, subtle compressed woven fibres and selective fraying at worn edges. Broad folds must still dominate at game distance; no speckled image grain, noisy denim filter or uniformly sharp weave.\n\nLEATHER: Keep the dark brown shoulder plates and straps. Add layered leather edges, natural creases around studs, fine stitching where edges are already joined, rubbed corners, restrained pores and aged dark patina. Avoid orange leather, stone cracks and decorative new armour pieces.\n\nMETAL: Make each existing chain link, ring, stud and the chest ornament read as solid three-dimensional aged metal: defined bevels, subtle dents, dark recesses and selective polished contact edges. Preserve their positions, count and existing design. No invented runes, gems, gold trim or extra chains.\n\nARMS: Increase believable anatomical detail within the same four grey-tan arm/hand islands: tendons, knuckles, sparse veins, fine wrinkles, pallid stretched skin, specific torn wounds and natural dark burgundy blood with dried edges and a little wet depth. Keep the original injury locations and restrained palette. Avoid tiled gore, bright pink flesh, all-over scabs or pixelated speckles. Preserve every fingertip and outer contour.\n\nABSOLUTE HOOD/EYE REQUIREMENTS: the front hood interior remains completely BLACK, EMPTY, FACELESS; never add a skull, face, mouth or eyes there. The four separate red diamond eye islands at the bottom retain their EXACT silhouettes, sizes, positions and colour relationships: two front diamonds brightred, two back diamonds darkmaroon. Keep clean black gaps and no glow outside their borders. These are essential model surfaces, not optional decoration.\n\nKeep front onleft/back onright, robe points, all fourarms and eye islands unchanged in layout. Pure black unused background. No external shadows, bloom, scene, text, labels or watermark. Neutral diffuse material lighting, detailed and realistic without adding noise or changing the original character design.\n",
+    "ownerDetailDirection": "Owner requested more detail during Wrath review; enrich folds, stitching, leather, metal and anatomy while preserving original colours and model design."
+  }
+}
