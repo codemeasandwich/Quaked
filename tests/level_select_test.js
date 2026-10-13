@@ -122,3 +122,50 @@ Deno.test( 'what Level Select draws: the Episode row at y 64 with its name at x 
 	} finally { restore(); }
 
 } );
+
+Deno.test( 'every Level Select table fits its page: at most 14 levels to an episode', async () => {
+
+	const { M_LevelSelectTables } = await import( '../src/engine/client/menu_levelselect.js' );
+	const tables = M_LevelSelectTables();
+	check( tables.some( t => t.game === 'malice' ) && tables.some( t => t.game === 'quoth' ), 'the add-ons\' tables are listed' );
+	for ( const { game, levels } of tables ) {
+
+		const counts = {};
+		for ( const l of levels ) counts[ l.episode ] = ( counts[ l.episode ] ?? 0 ) + 1;
+		for ( const [ episode, n ] of Object.entries( counts ) ) check( n <= 14, `${game} episode ${episode} has ${n} levels (14 fit)` );
+
+	}
+
+} );
+
+Deno.test( 'an add-on\'s level names start after its longest map name, and a long one is cut at a word inside the menu', async () => {
+
+	const restore = win(), selection = await import( '../src/engine/common/game_selection.js' );
+	const names = [ 'maps/start.bsp', 'maps/e1m1quoth.bsp', 'maps/e1m2quoth.bsp', 'maps/kelltest1.bsp', 'maps/kelltest3.bsp' ];
+	const dir = new Uint8Array( 64 * names.length ), view = new DataView( dir.buffer );
+	names.forEach( ( n, i ) => { for ( let c = 0; c < n.length; c ++ ) dir[ i * 64 + c ] = n.charCodeAt( c ); view.setInt32( i * 64 + 56, 12, true ); } );
+	const bytes = new Uint8Array( 12 + dir.length ); 'PACK'.split( '' ).forEach( ( c, i ) => { bytes[ i ] = c.charCodeAt( 0 ); } );
+	new DataView( bytes.buffer ).setInt32( 4, 12, true ); new DataView( bytes.buffer ).setInt32( 8, dir.length, true ); bytes.set( dir, 12 );
+	pak.COM_AddPack( pak.COM_LoadPackFile( 'quoth-names.pak', bytes.buffer ) );
+	selection.GameSelection_SetRunning( 'quoth' );
+	try {
+
+		open();
+		const glyphs = [];
+		menu.M_SetExternals( { key_dest_set: value => { dest = value; }, key_dest_get: () => dest, cls: { demonum: - 1 }, sv: { active: false }, svs: { maxclients: 1 }, Draw_CachePic: () => ( { width: 0, height: 0 } ), Draw_TransPic: () => {}, Draw_Pic: () => {}, Draw_Character: ( x, y, code ) => glyphs.push( { x, y, code } ), Draw_FadeScreen: () => {}, S_LocalSound: () => {}, realtime_get: () => 0 } );
+		const dx = ( draw.Draw_GetVirtualWidth() - 320 ) >> 1, dy = ( draw.Draw_GetVirtualHeight() - 200 ) >> 1;
+		const row = y => glyphs.filter( g => g.y === y + dy ).map( g => ( { x: g.x - dx, c: String.fromCharCode( g.code & 127 ) } ) ).sort( ( a, b ) => a.x - b.x );
+		for ( const [ episode, first ] of [ [ 1, 'The Slipgate' ], [ 2, 'Slime' ] ] ) {
+
+			toEpisode( episode ); glyphs.length = 0; menu.M_Draw();
+			const r = row( 84 ), at = r.filter( g => g.x >= 144 ).map( g => g.c ).join( '' );
+			check( at.startsWith( first ), `episode ${episode}: the name starts at x 144, after E1M1QUOTH and a space: ${at}` );
+			check( r.every( g => g.x < 320 ), 'nothing drawn past the menu' );
+
+		}
+		const long = row( 92 ).filter( g => g.x >= 144 ).map( g => g.c ).join( '' );
+		same( long, 'All The Men Of The', 'Kelltest3\'s long name (22 characters fit after x 144) is cut at a word, inside the menu' );
+
+	} finally { selection.GameSelection_SetRunning( null ); restore(); }
+
+} );

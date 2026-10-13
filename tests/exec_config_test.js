@@ -3,7 +3,7 @@
 // have no default.cfg, so the classic keys (the arrow keys, Ctrl, ...) were never bound. Through cmd.js and pak.js.
 import { Cbuf_Init, Cmd_Init, Cmd_AddCommand, Cbuf_AddText, Cbuf_InsertText, Cbuf_Execute, Cmd_SetExecFallback } from '../src/engine/common/cmd.js';
 import { COM_LoadPackFile, COM_AddPack } from '../src/engine/common/pak.js';
-import { HOST_CLASSIC_DEFAULT_CFG, Host_SetDefaultCfgFallback } from '../src/engine/server/host.js';
+import { HOST_CLASSIC_DEFAULT_CFG, Host_SetDefaultCfgFallback, Host_DefaultBinds } from '../src/engine/server/host.js';
 import { Key_Init, Key_WriteBindings } from '../src/engine/client/keys.js';
 const check = ( v, m ) => { if ( ! v ) throw Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
@@ -56,5 +56,14 @@ Deno.test( 'Host_Init registers the classic keys: exec default.cfg with no file 
 	check( written.includes( 'bind "UPARROW" "+forward"' ) && written.includes( 'bind "CTRL" "+attack"' ), 'arrow and fire keys bound' );
 	const host = await Deno.readTextFile( new URL( '../src/engine/server/host.js', import.meta.url ) ), init = host.slice( host.indexOf( 'export async function Host_Init' ) );
 	check( init.indexOf( 'Host_SetDefaultCfgFallback()' ) > 0 && init.indexOf( 'Host_SetDefaultCfgFallback()' ) < init.indexOf( "exec quake.rc" ), 'Host_Init registers it before quake.rc runs' );
+
+} );
+
+Deno.test( 'a game\'s own default.cfg, inherited on its first run, leaves the port\'s WASD, jump, flashlight and fire keys alone', () => {
+
+	// Malice's default.cfg binds a and d to look and swim; its own keys (r, y) are kept
+	COM_AddPack( COM_LoadPackFile( 'malice-like.pak', pak( { 'default.cfg': 'unbindall\nbind a +lookup\nbind\t"d"\t+moveup\nbind SPACE +jump\nbind r reload\nbind y nexttoy\nbind UPARROW +forward\n' } ) ) );
+	const binds = Host_DefaultBinds().split( '\n' ).filter( Boolean );
+	same( binds.join( '|' ), 'bind r reload|bind y nexttoy|bind UPARROW +forward', 'only the pack\'s other keys' );
 
 } );

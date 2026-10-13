@@ -53,6 +53,11 @@ const files = new Map( [
 	[ '/complete/games/Quoth/pak2.pak', pack( [ 'progs.dat' ] ) ],
 	[ '/complete/games/Malice/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
 	[ '/complete/games/X-Men/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
+	// Abyss of Pandemonium as released: its start map in pak1, its QuakeC in pak3
+	[ '/complete/games/Abyss of Pandemonium/pak0.pak', pack( [ 'gfx.wad' ] ) ],
+	[ '/complete/games/Abyss of Pandemonium/pak1.pak', pack( [ 'maps/start.bsp' ] ) ],
+	[ '/complete/games/Abyss of Pandemonium/pak2.pak', pack( [ 'maps/aop1m1.bsp' ] ) ],
+	[ '/complete/games/Abyss of Pandemonium/pak3.pak', pack( [ 'progs.dat' ] ) ],
 	// a third (/noquake/): both mission packs whole, but no Quake
 	[ '/noquake/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ],
 	[ '/noquake/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ]
@@ -112,6 +117,7 @@ Deno.test( 'the two mission packs and both episodes are playable on Quake when w
 	check( g( 'mg1' ).playable && /large-map protocol/.test( g( 'mg1' ).reason ), 'Dimension of the Machine is playable, on the large-map protocol: ' + g( 'mg1' ).reason );
 	check( g( 'quoth' ).playable && /an add-on/.test( g( 'quoth' ).reason ), 'Quoth is playable from its three packs: ' + g( 'quoth' ).reason );
 	check( g( 'malice' ).playable && /an add-on/.test( g( 'malice' ).reason ), 'Malice is playable: ' + g( 'malice' ).reason );
+	check( g( 'aopfm_v2' ).playable && /an add-on/.test( g( 'aopfm_v2' ).reason ), 'Abyss of Pandemonium is playable from its four packs: ' + g( 'aopfm_v2' ).reason );
 	check( g( 'xmen' ).present && ! g( 'xmen' ).playable && /add-on support/.test( g( 'xmen' ).reason ), 'an add-on not yet shown to play stays locked: ' + g( 'xmen' ).reason );
 	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );

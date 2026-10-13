@@ -30,8 +30,8 @@ const STORAGE_KEY = 'quaked.game.v1';
 // resources/ until card [34d] moves it there)
 const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
 const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS, malice: QUAKE_PACKS, aopfm_v2: QUAKE_PACKS } );
-// a mission pack or an episode mounts its own pack over Quake (and the shareware); a mission pack also starts with its
-// switch, an episode runs as standard Quake (card [34c])
+// a mission pack, episode or add-on mounts its own packs over Quake (and the shareware); a mission pack also starts
+// with its switch, an episode runs as standard Quake (card [34c]), an add-on with the switch it needs, if any
 const MISSION_PACKS = Object.freeze( {
 	hipnotic: Object.freeze( { name: 'Scourge of Armagon', switch: '-hipnotic', packs: Object.freeze( [ 'games/Scourge of Armagon/pak0.pak', 'resources/hipnotic/pak0.pak' ] ) } ),
 	rogue: Object.freeze( { name: 'Dissolution of Eternity', switch: '-rogue', packs: Object.freeze( [ 'games/Dissolution of Eternity/pak0.pak', 'resources/rogue/pak0.pak' ] ) } ),
@@ -184,7 +184,7 @@ export function GameSelection_SetRunning( id ) {
 
 /**
  * The game this page runs: the one started (`GameSelection_SetRunning`), else the one chosen; null for the default
- * before the start. Read by Level Select for an episode's maps (an episode sets no engine switch).
+ * before the start. Read by Level Select for the running game's own maps (a mission pack, episode or add-on).
  *
  * @returns {?string} the game's id, or null
  */

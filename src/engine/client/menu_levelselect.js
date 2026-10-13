@@ -1,8 +1,8 @@
 /**
  * @module engine/client/menu_levelselect
  *
- * Level select (card [44j], split from menu.js): the stock maps and each mission pack's by episode, only those this
- * copy of the game has; a skill and Classic or Newer; starting the chosen map.
+ * Level select (card [44j], split from menu.js): the stock maps and each mission pack's, episode's and add-on's by
+ * episode, only those this copy of the game has; a skill and Classic or Newer; starting the chosen map.
  *
  * Types: plain values and functions; no exported classes.
  *
@@ -79,7 +79,8 @@ export const LEVEL_SELECT_EPISODES = [
 	{ episode: 4, name: 'E4 Elder World' }
 ];
 // The mission packs' own maps (WinQuake menu.c's hipnoticlevels/hipnoticepisodes and roguelevels/rogueepisodes; card
-// [34c]): a mission pack offers these instead of Quake's, though Quake's pack is mounted under it
+// [34c]), and the episodes' and add-ons' (docs/add-ons-2026-10-13.md): each offers these instead of Quake's, though
+// Quake's pack is mounted under it
 const MISSION_LEVEL_SELECT = Object.freeze( {
 	hipnotic: {
 		episodes: [ { episode: 0, name: 'Command HQ' }, { episode: 1, name: 'H1 Fortress' }, { episode: 2, name: 'H2 Dominion' },
@@ -118,7 +119,8 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 2, 'kelltest5', 'Edie And The Sentinels' ], [ 2, 'breakable', 'Break Stuff' ], [ 2, 'ne_basetest', 'Base Test' ] ]
 	},
 	// Malice and Abyss of Pandemonium (add-ons, docs/add-ons-2026-10-13.md) run as standard Quake; at most 14 levels
-	// fit an episode's page, so Malice's twenty missions are two episodes. Names are each map's own (blank: its file)
+	// fit an episode's page, so Malice's twenty missions are two episodes. Names are each map's own worldspawn message,
+	// with case, spacing and a trailing full stop tidied (a blank message: the file name without its trailing underscores)
 	malice: {
 		episodes: [ { episode: 0, name: 'The Academy' }, { episode: 1, name: 'Missions I' }, { episode: 2, name: 'Missions II' }, { episode: 3, name: 'Deathmatch' }, { episode: 4, name: 'Extras' } ],
 		levels: [ [ 0, 'start', 'The Academy' ],
@@ -147,13 +149,33 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 	}
 } );
 
-// the tables for the game running: its own (an add-on that runs with a mission pack's switch has one), else the
-// mission pack's its switch names, else Quake's
+// the tables for the game running: its own (every mission pack, episode and playable add-on has one, whatever switch
+// it runs with), else the mission pack's its switch names, else Quake's
 function levelSelectTable() {
 
 	const mission = MISSION_LEVEL_SELECT[ GameSelection_Running() ] ?? ( hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : null );
 	if ( mission === null ) return { levels: LEVEL_SELECT_LEVELS, episodes: LEVEL_SELECT_EPISODES };
 	return { levels: mission.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ), episodes: mission.episodes };
+
+}
+
+// x of the level names: after the running game's longest map name and a space (64 + 6 * 8 for map names up to five
+// characters, as Quake's)
+function levelSelectNameX() {
+
+	return 64 + Math.max( 6, ...levelSelectTable().levels.map( ( l ) => l.map.length + 1 ) ) * 8;
+
+}
+
+/**
+ * Every Level Select table (Quake's and each mission pack's, episode's and add-on's), for tests: at most 14 levels to an
+ * episode fit the page.
+ *
+ * @returns {Array<{ game: string, levels: Array<{ episode: number, map: string, name: string }> }>} the tables
+ */
+export function M_LevelSelectTables() {
+
+	return [ { game: 'quake', levels: LEVEL_SELECT_LEVELS }, ...Object.entries( MISSION_LEVEL_SELECT ).map( ( [ game, t ] ) => ( { game, levels: t.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ) } ) ) ];
 
 }
 
@@ -244,13 +266,14 @@ export function M_LevelSelect_Draw() {
 	const episode = levelSelectEpisode();
 	M_PrintWhite( 184, 64, ( levelSelectTable().episodes.find( ( e ) => e.episode === episode ) || { name: '' } ).name );
 
-	// the names start after the longest map name shown (add-ons have names such as E1M1QUOTH), and are cut to the
-	// 320-pixel menu
-	const nameX = 64 + Math.max( 6, ...levels.map( ( l ) => l.map.length + 1 ) ) * 8, nameChars = Math.floor( ( 320 - nameX ) / 8 );
+	// the names start after the game's longest map name (add-ons have names such as E1M1QUOTH; one column for all its
+	// episodes; Quake's stays at x 112), and a name too long for the 320-pixel menu is cut at a word
+	const nameX = levelSelectNameX(), nameChars = Math.floor( ( 320 - nameX ) / 8 );
 	for ( let i = 0; i < levels.length; i ++ ) {
 
 		M_Print( 64, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].map.toUpperCase().padEnd( 6 ) );
-		M_PrintWhite( nameX, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].name.slice( 0, nameChars ) );
+		const name = levels[ i ].name, cut = name.length <= nameChars ? name : name.slice( 0, nameChars + 1 ).replace( /\s+\S*$/, '' );
+		M_PrintWhite( nameX, LEVELSELECT_LEVEL_Y + i * 8, cut.length > 0 ? cut : name.slice( 0, nameChars ) );
 
 	}
 

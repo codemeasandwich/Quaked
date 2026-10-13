@@ -948,13 +948,21 @@ export const HOST_CLASSIC_DEFAULT_CFG = [
 	'bind MOUSE1 +attack', 'bind MOUSE2 +forward', 'bind MOUSE3 +mlook',
 ].join( '\n' ) + '\n';
 
-// the bind lines of the default.cfg mounted (the mission pack's own when it has one)
-function Host_DefaultBinds() {
+// Keys the port binds itself after quake.rc (Host_Init): a game's own default.cfg must not take them back on its first
+// run (Malice's binds a to +lookup and d to +moveup, which turned WASD's strafe keys into look and swim keys).
+const HOST_PORT_KEYS = new Set( [ 'w', 'a', 's', 'd', 'space', 'f', 'mouse1' ] );
+/**
+ * The bind lines of the default.cfg mounted (a mission pack's or add-on's own when it has one), for a game's first run
+ * over the player's Quake settings (Host_Init); lines for the port's own keys (HOST_PORT_KEYS) are left out.
+ *
+ * @returns {string} bind lines, each ending in a newline ('' when there is no default.cfg)
+ */
+export function Host_DefaultBinds() {
 
 	const file = COM_FindFile( 'default.cfg' );
 	if ( ! file ) return '';
 	const text = Array.from( file.data, c => String.fromCharCode( c ) ).join( '' );
-	return text.split( /\r?\n/ ).filter( line => /^\s*bind\s/i.test( line ) ).join( '\n' ) + '\n';
+	return text.split( /\r?\n/ ).filter( line => { const m = /^\s*bind\s+"?([^"\s]+)/i.exec( line ); return m && ! HOST_PORT_KEYS.has( m[ 1 ].toLowerCase() ); } ).join( '\n' ) + '\n';
 
 }
 
