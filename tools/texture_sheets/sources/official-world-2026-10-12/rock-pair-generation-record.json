@@ -1,0 +1,64 @@
+{
+  "qualification": "Two source-identity-specific photographic candidates; not interchangeable with other rock3_8 images. Runtime acceptance and native verification recorded separately.",
+  "entries": [
+    {
+      "alias": "rock5_2",
+      "name": "rock5_2",
+      "nativeKey": "128x128:bd31b650a4fb2682",
+      "generator": "built-in GPT image generation",
+      "reference": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock5_2.png",
+        "sha256": "f8e95fbf1353dcce0ecf2df186f3dcb059836e82f518b1cb3d6fe67ce535551d"
+      },
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/rock5_2-prompt.txt",
+        "sha256": "2843f6b930ffff845f73484beaf756d502935859982babab854d14abc4dbbe64"
+      },
+      "selectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/rock5_2-generated-v1.png",
+        "sha256": "0601782341bb87100d126bd1f1e775415a83eb7e7b8d419c21bf769807207135"
+      },
+      "finisherReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/rock5_2-photographic-4x.json",
+        "sha256": "6e17875defc4c9e9558fa8295881a4ba358ec10ab81780923cc0713e726f19be"
+      },
+      "encoderReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz.json",
+        "sha256": "b1f881474a8bf2c172369ab482636f736699efe2e75618fbb5980be0c423b6c9"
+      }
+    },
+    {
+      "alias": "rock3_8-base",
+      "name": "rock3_8",
+      "nativeKey": "64x64:5b26cfca296c1fa8",
+      "generator": "built-in GPT image generation",
+      "reference": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8-base.png",
+        "sha256": "f4a93ffa4e9184699faba321b9da453581051a55b63d07452ad2bb677341d097"
+      },
+      "prompt": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/rock3_8-base-prompt.txt",
+        "sha256": "8205381137b4e85e2b927c4f5ad3afb559f1c802e94a3b238b60f4d6de2462a8"
+      },
+      "selectedRaw": {
+        "file": "tools/texture_sheets/sources/official-world-2026-10-12/rock3_8-base-generated-v1.png",
+        "sha256": "ab617aa1b6c2300706f3a5442f4e357ed54fe19e63432883a0eb14041df18883"
+      },
+      "finisherReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/rock3_8-base-photographic-4x.json",
+        "sha256": "2a9a27b47e268517b7bbe8170c07128a2ee965c7779456a382e4ce8b69de1015"
+      },
+      "encoderReceipt": {
+        "file": "newer/textures/candidates-2026-10-12/rock3_8-base-4x-q92-xyz.json",
+        "sha256": "b860af011acc84e3cf1c6966f77725abd43d9ad300c0f41b947f5bbbe4c9ba90"
+      }
+    }
+  ],
+  "heldSibling": {
+    "name": "rock3_8",
+    "key": "64x64:57663646989d1874",
+    "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8.png",
+    "sourceFileSha256": "078b4a9411b8ad128dbc3f5186f86429d3238dd01be34743b806a34dce4e3c4b",
+    "reason": "Different native pixels; no replacement assignment authorized by visual similarity alone."
+  }
+}

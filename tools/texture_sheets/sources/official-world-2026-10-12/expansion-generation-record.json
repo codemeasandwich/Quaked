@@ -1,0 +1,269 @@
+{
+  "qualification": "Current six expansion material trials; no catalogue coverage or owner acceptance inferred",
+  "records": [
+    {
+      "alias": "hipnotic-metal5_6",
+      "state": "unregistered material trial",
+      "source": "tools/texture_sheets/sources/official-world-2026-10-12/native-hipnotic-metal5_6.png",
+      "sourceSha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/hipnotic-metal5_6-prompt.txt",
+      "promptSha256": "74f8326c084acfe52b4dec8c3d064b6cd960896c2d4debff887b2424df29e650",
+      "raw": "tools/texture_sheets/sources/official-world-2026-10-12/hipnotic-metal5_6-generated-v1.png",
+      "rawSha256": "dbdbbb02e4ab3343ab7e8158a27bd6c318b11963584b30e919ff62af2c90d413",
+      "tool": "built-in GPT image_gen",
+      "candidate": {
+        "name": "metal5_6",
+        "game": "hipnotic",
+        "nativeKey": "32x64:b15237abb6d97cf1",
+        "file": "candidates-2026-10-12/hipnotic-metal5_6-photographic.png",
+        "height": "candidates-2026-10-12/hipnotic-metal5_6-photographic-height.webp",
+        "width": 256,
+        "heightPixels": 512,
+        "strength": 0.35,
+        "cap": 0.5,
+        "diffuseSha256": "241e4642a4670d159c843df01deceae342bb0245c55288dbd0effcb677ec00f2",
+        "heightSha256": "7124206b25d4297e04ca9e2913b15645679fdaff7916a685a6a5cd4a0df16b23",
+        "method": "photographic",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-hipnotic-metal5_6.png",
+        "originalSha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28"
+      },
+      "heightAuthoring": {
+        "tool": "tools/craft_normals.py",
+        "toolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+        "profile": {
+          "bands": [
+            0.8,
+            1,
+            0.5,
+            0.2
+          ],
+          "groove": 0.8,
+          "bump": 0.2,
+          "glow": 0,
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "alias": "mg1-comp1_2",
+      "state": "unregistered material trial",
+      "source": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_2.png",
+      "sourceSha256": "22815eef7acb4c7e59145477985ccafabb432dbd84ece567c289da6aa1f4a23e",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-comp1_2-prompt.txt",
+      "promptSha256": "f171c892649188474822d45e6fbad094348b783a18e14c70a2e2864052fb3780",
+      "raw": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-comp1_2-generated-v1.png",
+      "rawSha256": "866019647fbc95f85846ead6f54732286d2142f0b3621d99935dae1dd02f0a42",
+      "tool": "built-in GPT image_gen",
+      "candidate": {
+        "name": "comp1_2",
+        "game": "mg1",
+        "nativeKey": "64x64:a823407b09df4331",
+        "file": "candidates-2026-10-12/mg1-comp1_2-photographic.png",
+        "height": "candidates-2026-10-12/mg1-comp1_2-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.35,
+        "cap": 0.5,
+        "diffuseSha256": "d359475e5414572268a6c0545c6c922075c6891085845d053d9f70042e057828",
+        "heightSha256": "884833465a4cfc8629dbb6a2ff9a0903162753c0100920c0fc50ab228ffefbbe",
+        "method": "photographic",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_2.png",
+        "originalSha256": "22815eef7acb4c7e59145477985ccafabb432dbd84ece567c289da6aa1f4a23e"
+      },
+      "heightAuthoring": {
+        "tool": "tools/craft_normals.py",
+        "toolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.8,
+          "bump": 0.6,
+          "glow": 0.2,
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "alias": "mg1-comp1_3",
+      "state": "unregistered material trial",
+      "source": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_3.png",
+      "sourceSha256": "75d80b8205e78f16a8231942739367b586d7c3b8db15dfb74644e43f62659c5a",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-comp1_3-prompt.txt",
+      "promptSha256": "2e672451502f481f90ae51749c0cdbcc0f28b669cefd89dbdef086c89d7d3f04",
+      "raw": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-comp1_3-generated-v1.png",
+      "rawSha256": "43913d738d296ecf3f5902701512b2dfd27caaff6962a9720932c0737910be18",
+      "tool": "built-in GPT image_gen",
+      "candidate": {
+        "name": "comp1_3",
+        "game": "mg1",
+        "nativeKey": "64x64:4b7a14875bfadccd",
+        "file": "candidates-2026-10-12/mg1-comp1_3-photographic.png",
+        "height": "candidates-2026-10-12/mg1-comp1_3-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.35,
+        "cap": 0.5,
+        "diffuseSha256": "9e86ba713c6ccf16c77f1a04447a55af51bd6e3cb4adb5785479db96d00a2fa1",
+        "heightSha256": "ae51ee7af431ee1501d6e7b037e4248ff9769429974da6b2e7491889bc640a20",
+        "method": "photographic",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-comp1_3.png",
+        "originalSha256": "75d80b8205e78f16a8231942739367b586d7c3b8db15dfb74644e43f62659c5a"
+      },
+      "heightAuthoring": {
+        "tool": "tools/craft_normals.py",
+        "toolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+        "profile": {
+          "bands": [
+            0.6,
+            1,
+            0.8,
+            0.5
+          ],
+          "groove": 0.8,
+          "bump": 0.6,
+          "glow": 0.2,
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "alias": "mg1-metal1_1",
+      "state": "unregistered material trial",
+      "source": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_1.png",
+      "sourceSha256": "b8da654238ed4496bd58df630e5df999ad528e7417cbaa9831537d554bfb878a",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-metal1_1-prompt.txt",
+      "promptSha256": "5180bca4e5c349c4fa0482648e000cd798fde311e99cb439ff2cbf60482f4aa4",
+      "raw": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-metal1_1-generated-v1.png",
+      "rawSha256": "be7b4035350c8452f0ddb878adfd00cb67e6978cc631d9b58ba5cf99ab764d8e",
+      "tool": "built-in GPT image_gen",
+      "candidate": {
+        "name": "metal1_1",
+        "game": "mg1",
+        "nativeKey": "64x64:5fdc8d86e1f32d2c",
+        "file": "candidates-2026-10-12/mg1-metal1_1-photographic.png",
+        "height": "candidates-2026-10-12/mg1-metal1_1-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.35,
+        "cap": 0.5,
+        "diffuseSha256": "a8409c68487412da66948fed5d466c9bcbadbe70571a1688abbd1a52f78662a9",
+        "heightSha256": "e85fa23410c312a9b89794044d22a6e42e454d290b508263ac6e5a4446ced829",
+        "method": "photographic",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_1.png",
+        "originalSha256": "b8da654238ed4496bd58df630e5df999ad528e7417cbaa9831537d554bfb878a"
+      },
+      "heightAuthoring": {
+        "tool": "tools/craft_normals.py",
+        "toolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+        "profile": {
+          "bands": [
+            1,
+            0.9,
+            0.3,
+            0.1
+          ],
+          "groove": 0.2,
+          "bump": 0.6,
+          "glow": 0,
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "alias": "mg1-metal1_3",
+      "state": "unregistered material trial",
+      "source": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_3.png",
+      "sourceSha256": "b94064bc6a8baf1bd520b3097cb374980d992904dbfa465310a7f6bf61d35190",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-metal1_3-prompt.txt",
+      "promptSha256": "3d2afa473649dc8e6f3b1961f91161ba5a7c620ab6fd46f743b4c1287671ff21",
+      "raw": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-metal1_3-generated-v1.png",
+      "rawSha256": "7df2af7cdea82d008ccf00004e660df776dbfb7970deb3b0c12aceca9e20d2a9",
+      "tool": "built-in GPT image_gen",
+      "candidate": {
+        "name": "metal1_3",
+        "game": "mg1",
+        "nativeKey": "64x64:7c6b8625f6f16f6f",
+        "file": "candidates-2026-10-12/mg1-metal1_3-photographic.png",
+        "height": "candidates-2026-10-12/mg1-metal1_3-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.35,
+        "cap": 0.5,
+        "diffuseSha256": "0fdcd9d2ebbfd6d6296f7d1c628cfde5380fd8ef851201e7648e7a594c93d123",
+        "heightSha256": "65f41dc0f5ea112e075ae4aff7ba2893758a0448d63c16cde758dd000fa58d26",
+        "method": "photographic",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_3.png",
+        "originalSha256": "b94064bc6a8baf1bd520b3097cb374980d992904dbfa465310a7f6bf61d35190"
+      },
+      "heightAuthoring": {
+        "tool": "tools/craft_normals.py",
+        "toolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+        "profile": {
+          "bands": [
+            0.8,
+            1,
+            0.5,
+            0.2
+          ],
+          "groove": 0.8,
+          "bump": 0.2,
+          "glow": 0,
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "alias": "mg1-metal1_4",
+      "state": "unregistered material trial",
+      "source": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_4.png",
+      "sourceSha256": "a0ee2fca2d25e2e0dfdbfa8825e7747a85e3a9c98dc5e7537882773648550dff",
+      "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-metal1_4-prompt.txt",
+      "promptSha256": "fde8d4f4d4ad93fbb2e0a4fc7bb622ac7a1bd761145fab4d43963a39ad03c72d",
+      "raw": "tools/texture_sheets/sources/official-world-2026-10-12/mg1-metal1_4-generated-v1.png",
+      "rawSha256": "287154d0e33c80c312904d99a4dcf45d4fa861757164325d1e673e304c40aec3",
+      "tool": "built-in GPT image_gen",
+      "candidate": {
+        "name": "metal1_4",
+        "game": "mg1",
+        "nativeKey": "64x64:5fcb234d8850a05f",
+        "file": "candidates-2026-10-12/mg1-metal1_4-photographic.png",
+        "height": "candidates-2026-10-12/mg1-metal1_4-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.35,
+        "cap": 0.5,
+        "diffuseSha256": "43c787510e9bb672fd9d882adf70a5671fc13bb9d6af2e3f7d8680783b920893",
+        "heightSha256": "ff1a073bf8dbfa414e7a486a479bcbf97d1eb9288f6619c0a240fbb44752a4aa",
+        "method": "photographic",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-mg1-metal1_4.png",
+        "originalSha256": "a0ee2fca2d25e2e0dfdbfa8825e7747a85e3a9c98dc5e7537882773648550dff"
+      },
+      "heightAuthoring": {
+        "tool": "tools/craft_normals.py",
+        "toolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+        "profile": {
+          "bands": [
+            0.5,
+            1,
+            0.6,
+            0.3
+          ],
+          "groove": 0.6,
+          "bump": 1.1,
+          "glow": 0,
+          "strength": 0.35,
+          "cap": 0.5
+        }
+      }
+    }
+  ]
+}

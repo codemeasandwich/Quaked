@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "city6_8",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+  "originalSha256": "4bc60a1876f96405b9f45992f56a5e82aa20bb80fb263424eab790ca176d2347",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/city6_8-photographic-4x.png",
+  "authoringDiffuseSha256": "59bacf4c609707c4755ccf85d08e5ab25f71763eb10b99047ddd5c4203935f80",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/city6_8-4x-q92-xyz-diffuse.webp",
+      "sha256": "6f812fba0d73578e800186d1b3479393d93da3001453c2b270fcfccf924bc852",
+      "bytes": 31876,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/city6_8-4x-q92-xyz-height.webp",
+      "sha256": "a258c898db5926c9881841258383dd703706c9f792dd771197c6ee66cb65140f",
+      "bytes": 33202,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/city6_8-4x-q92-xyz-normalX.webp",
+      "sha256": "964059c2f4de07b489c56510497fdf208fbc145963065ace5a4a368f7e964891",
+      "bytes": 28022,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/city6_8-4x-q92-xyz-normalY.webp",
+      "sha256": "8acd90738b80f25671fc89d46a29d08a7b6753663b30279c00fa234a4eb41366",
+      "bytes": 28788,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/city6_8-4x-q92-xyz-normalZ.webp",
+      "sha256": "1735a36e5eb32dcf6b09186d89812d050f627dbfef281d93d57a76a272a64550",
+      "bytes": 8172,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 8.027994791666666,
+  "distanceMaximum": 48.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 4.48828125,
+  "secondaryDistanceMaximum": 20.0,
+  "colourCompressionMAE": 2.5341593424479165,
+  "heightCompressionMAE": 1.3755950927734375,
+  "heightCompressionMaximum": 11.0,
+  "normalAngularMean": 1.020984139096862,
+  "normalAngularP99": 2.5948618557918985,
+  "normalAngularMaximum": 4.301399488965066,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

@@ -1,0 +1,81 @@
+{
+  "primaryDivisor": 2,
+  "secondaryDivisor": 4,
+  "records": [
+    {
+      "name": "city2_3",
+      "originalSha256": "73ee4ed5b58f823890c316a925ca5b070a9672085306c5a26ce668107917b636",
+      "decodedFile": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-diffuse.webp",
+      "fileSha256": "3251d9fd22fed613933d06181541c6fab5de4f1f7571d3042f69156bf6b74126",
+      "views": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "mae": 8.615234375,
+          "max": 44.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "mae": 6.2890625,
+          "max": 25.0
+        }
+      },
+      "acceptance": "Visual similarity: half-native primary, quarter-native secondary; no equality threshold"
+    },
+    {
+      "name": "city2_5",
+      "originalSha256": "6ee082212a1b20165e6ee432fb4e626b62c01de4ba6825a4c464d1632f762f49",
+      "decodedFile": "newer/textures/candidates-2026-10-12/city2_5-4x-q92-diffuse.webp",
+      "fileSha256": "db466f38cd953962d4cbffcd89add74f76e580cc45b10c199cc75a34d03bda57",
+      "views": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "mae": 3.4840494791666665,
+          "max": 23.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "mae": 2.0481770833333335,
+          "max": 11.0
+        }
+      },
+      "acceptance": "Visual similarity: half-native primary, quarter-native secondary; no equality threshold"
+    },
+    {
+      "name": "city2_6",
+      "originalSha256": "d61aab4e104e7960ef4a43919a1297c0058d372ea1a0c7acbe73a40232c77733",
+      "decodedFile": "newer/textures/candidates-2026-10-12/city2_6-4x-q92-diffuse.webp",
+      "fileSha256": "ede1ffa718a91f302aec0a84c94b54e689502775390bdd3a99343a546712e481",
+      "views": {
+        "2": {
+          "dimensions": [
+            32,
+            32
+          ],
+          "mae": 5.71484375,
+          "max": 29.0
+        },
+        "4": {
+          "dimensions": [
+            16,
+            16
+          ],
+          "mae": 2.90234375,
+          "max": 12.0
+        }
+      },
+      "acceptance": "Visual similarity: half-native primary, quarter-native secondary; no equality threshold"
+    }
+  ]
+}

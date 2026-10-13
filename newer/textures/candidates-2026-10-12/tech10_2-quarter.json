@@ -1,0 +1,45 @@
+{
+  "factor": 8,
+  "detailStrength": 0.7,
+  "verticalLandmarks": null,
+  "projectionIterations": 5,
+  "comparisonDivisor": 4,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMeanMaxError": 0.056640625,
+  "distanceMeanMAE": 0.011285781860351562,
+  "nativeDiagnosticMaxError": 17.6875,
+  "sourceMean": [
+    62.08251953125,
+    46.39990234375,
+    26.4620361328125
+  ],
+  "outputMean": [
+    62.08264636993408,
+    46.39972972869873,
+    26.462411880493164
+  ],
+  "boundaries": {
+    "wrap_x_mean": 0.40852864583333337,
+    "wrap_y_mean": 4.008138020833334,
+    "interior_x_mean": 4.14051076541626,
+    "interior_y_mean": 4.474455046941187
+  },
+  "passedDistanceCheck": true,
+  "qualification": "Both images reduced to the same quarter-original size by pixel-area averaging. Feature-scale, tiling, engine and owner appearance checks remain separate.",
+  "original": "docs/evidence/official-textures-2026-10-12/tech10_2-original.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/tech10_2-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-12/tech10_2-quarter.png",
+  "originalSha256": "e85e0ea2a0a9ecaf7cc105c94dba90afbdca2baef358154969b1d65cc3d635de",
+  "generatedSha256": "b41ae5a12c609e8d2de5425531cf90ef08cc55214a9d7831793aa2998d4bd4ad",
+  "outputSha256": "c98b0dc2e72e5706ad647349366d096fde2abd77e60864a3f6aa7ece77dc9c38",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "a1cf9ecb507ffa96bdccb6fec6fc77b18bf6c302c2145505b91630452b57a51e",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

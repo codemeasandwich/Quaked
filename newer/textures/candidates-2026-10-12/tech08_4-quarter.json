@@ -1,0 +1,94 @@
+{
+  "factor": 8,
+  "detailStrength": 0.7,
+  "verticalLandmarks": [
+    [
+      0,
+      0
+    ],
+    [
+      18,
+      18
+    ],
+    [
+      25,
+      24
+    ],
+    [
+      36,
+      34
+    ],
+    [
+      49,
+      47
+    ],
+    [
+      62,
+      60
+    ],
+    [
+      75,
+      73
+    ],
+    [
+      88,
+      86
+    ],
+    [
+      101,
+      99
+    ],
+    [
+      114,
+      112
+    ],
+    [
+      120,
+      117.5
+    ],
+    [
+      128,
+      128
+    ]
+  ],
+  "projectionIterations": 6,
+  "comparisonDivisor": 4,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMeanMaxError": 0.0556640625,
+  "distanceMeanMAE": 0.011449495951334635,
+  "nativeDiagnosticMaxError": 28.359375,
+  "sourceMean": [
+    95.981201171875,
+    74.2158203125,
+    57.166259765625
+  ],
+  "outputMean": [
+    95.98142337799072,
+    74.21599864959717,
+    57.166300773620605
+  ],
+  "boundaries": {
+    "wrap_x_mean": 1.708984375,
+    "wrap_y_mean": 4.178385416666667,
+    "interior_x_mean": 6.271308727394916,
+    "interior_y_mean": 6.94086912471489
+  },
+  "passedDistanceCheck": true,
+  "qualification": "Both images reduced to the same quarter-original size by pixel-area averaging. Feature-scale, tiling, engine and owner appearance checks remain separate.",
+  "original": "docs/evidence/official-textures-2026-10-12/tech08_4-original.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/tech08_4-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-12/tech08_4-quarter.png",
+  "originalSha256": "8fd09d9743aab088b07ec365a91a498fda916909ac67654e300a982c9d59097c",
+  "generatedSha256": "8ec20f9467d986b464dab54d1ea05a1abe306e399add6730a14d3261fc873f4b",
+  "outputSha256": "64d0fa2fab6144c2e0b92c808027193504e77ca403be2ff31d4f58f8d160e6dd",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "a1cf9ecb507ffa96bdccb6fec6fc77b18bf6c302c2145505b91630452b57a51e",
+  "landmarkFile": "tools/texture_sheets/sources/official-world-2026-10-12/tech08_4-row-registration.json",
+  "landmarkSha256": "2fe30e0aef06a0d3b0ddf67287c7bb0fe4b7510ab15d90e54a0a60fc541ae33d"
+}

@@ -1,0 +1,16 @@
+Q92_NATIVE_SOURCES {"bindings":37,"occurrences":261,"indexSha256":"d5105cd9378d897c6d3bcb42b64403075ab603dbaf2ce715c22b631ff063cf83"}
+PASS 37 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions
+PASS actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte
+PASS real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor
+PASS unknown registered native pixels are rejected and Classic requests no replacements
+PASS TF material names preserve exact case and reject same pixels under a differently cased name
+PASS real held rock3_8 sibling remains native across all recorded PAK occurrences
+RESULT 6/6 passed (tests/official_texture_q92_test.js)
+REALISM_PREFLIGHT {"candidates":6,"occurrences":59,"liveIndexSha256":"d5105cd9378d897c6d3bcb42b64403075ab603dbaf2ce715c22b631ff063cf83"}
+PASS six realism candidates pin actual native source identities and all30Q92 files
+PASS actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte
+PASS real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor
+PASS unknown registered native pixels are rejected and Classic requests no replacements
+PASS live index remains byte-for-byte unchanged after candidate preflight
+RESULT 5/5 passed (tests/official_texture_realism_preflight_test.js)
+TOTAL 11/11 passed

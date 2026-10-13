@@ -1,0 +1,36 @@
+{
+  "qualification": "Deterministic source-phase fit using GPT photographic donor; review required before binding",
+  "originalCrestNativeY": [
+    0,
+    6,
+    12,
+    18,
+    24,
+    30,
+    36,
+    43,
+    49,
+    55,
+    61,
+    64
+  ],
+  "measuredDonorCrestNativeY": [
+    1.4800637958532696,
+    7.655502392344498,
+    13.881977671451356,
+    20.363636363636363,
+    26.48803827751196,
+    33.07177033492823,
+    39.34928229665072,
+    45.728867623604465,
+    52.057416267942585,
+    58.334928229665074,
+    65.48006379585327,
+    71.6555023923445
+  ],
+  "donor": "tools/texture_sheets/sources/official-world-2026-10-12/cable1_1-generated-realistic-v1.png",
+  "donorSha256": "d8ad4f8890cc5357e056a4f1cdbe8afebedd36292295c0edd2edd97ad5d5433c",
+  "output": "tools/texture_sheets/sources/official-world-2026-10-12/cable1_1-generated-phase-v3.png",
+  "outputSha256": "5e5214701fefa6a94053c5f851bc6f43b1cbd0238504de65b6ac14eff0702473",
+  "method": "Monotonic piecewise vertical sampling with cyclic donor reuse for eleventh visible crest; bilinear rows, unchanged horizontal detail"
+}

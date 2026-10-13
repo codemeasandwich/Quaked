@@ -1,0 +1,63 @@
+{
+  "source": {
+    "id": "city2_6|64x64:86c3ff49a01388ab",
+    "name": "city2_6",
+    "key": "64x64:86c3ff49a01388ab",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "27266d49b4cbb761b203e8f14192eed9412b92c61a38a720f2d8ff4c71c42a31",
+    "original": "originals/64x64-86c3ff49a01388ab.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/dm5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 5,
+        "faces": 356,
+        "visibleCandidateFaces": 356,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/dm6.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 0,
+        "faces": 518,
+        "visibleCandidateFaces": 518,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 2,
+        "faces": 661,
+        "visibleCandidateFaces": 661,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 212,
+        "faces": 804,
+        "visibleCandidateFaces": 804,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "freshSnapshotSha256": "62167e768570f34dfb1bb4e9f4f405ad6019ad4226aea39db8c416fd9553e586",
+  "referenceSha256": "d61aab4e104e7960ef4a43919a1297c0058d372ea1a0c7acbe73a40232c77733"
+}

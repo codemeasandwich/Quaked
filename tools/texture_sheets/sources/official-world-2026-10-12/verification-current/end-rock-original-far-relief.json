@@ -1,0 +1,751 @@
+{
+  "schema": 1,
+  "state": "ready",
+  "priorFailedSetup": "E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.",
+  "qualification": "Candidate-only actual-level trial; visual acceptance and other-map coverage remain separate.",
+  "art": "original",
+  "relief": true,
+  "view": "far",
+  "sceneFrames": 1777,
+  "errors": [],
+  "checks": [
+    {
+      "passed": true,
+      "label": "rock5_2: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "rock5_2: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "rock5_2: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "rock5_2: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "rock3_8: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "rock3_8: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "rock3_8: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "rock3_8: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "rock5_2: present in maps/end.bsp"
+    },
+    {
+      "passed": true,
+      "label": "rock5_2: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "rock3_8: present in maps/end.bsp"
+    },
+    {
+      "passed": true,
+      "label": "rock3_8: actual native identity matches candidate authority"
+    }
+  ],
+  "materials": [
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "upgraded": false,
+      "dimensions": [
+        128,
+        128
+      ],
+      "drawDimensions": [
+        128,
+        128
+      ],
+      "normal": "91420be7-97f9-41a8-b0e9-d887ef726523",
+      "normalDimensions": [
+        128,
+        128
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "upgraded": false,
+      "dimensions": [
+        128,
+        128
+      ],
+      "drawDimensions": [
+        128,
+        128
+      ],
+      "normal": "91420be7-97f9-41a8-b0e9-d887ef726523",
+      "normalDimensions": [
+        128,
+        128
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "upgraded": false,
+      "dimensions": [
+        128,
+        128
+      ],
+      "drawDimensions": [
+        128,
+        128
+      ],
+      "normal": "91420be7-97f9-41a8-b0e9-d887ef726523",
+      "normalDimensions": [
+        128,
+        128
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "upgraded": false,
+      "dimensions": [
+        128,
+        128
+      ],
+      "drawDimensions": [
+        128,
+        128
+      ],
+      "normal": "91420be7-97f9-41a8-b0e9-d887ef726523",
+      "normalDimensions": [
+        128,
+        128
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "upgraded": false,
+      "dimensions": [
+        128,
+        128
+      ],
+      "drawDimensions": [
+        128,
+        128
+      ],
+      "normal": "91420be7-97f9-41a8-b0e9-d887ef726523",
+      "normalDimensions": [
+        128,
+        128
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock5_2",
+      "upgraded": false,
+      "dimensions": [
+        128,
+        128
+      ],
+      "drawDimensions": [
+        128,
+        128
+      ],
+      "normal": "91420be7-97f9-41a8-b0e9-d887ef726523",
+      "normalDimensions": [
+        128,
+        128
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "rock3_8",
+      "upgraded": false,
+      "dimensions": [
+        64,
+        64
+      ],
+      "drawDimensions": [
+        64,
+        64
+      ],
+      "normal": "1d42a920-b7b0-4167-aa6e-3c3616b97d73",
+      "normalDimensions": [
+        64,
+        64
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  ],
+  "fixture": {
+    "game": "quake",
+    "map": "end",
+    "aliases": [
+      "rock5_2",
+      "rock3_8-base"
+    ],
+    "allowCornerJoins": true
+  },
+  "candidates": {
+    "rock5_2": {
+      "name": "rock5_2",
+      "file": "candidates-2026-10-12/rock5_2-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/rock5_2-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/rock5_2-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/rock5_2-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/rock5_2-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "894681ba10154ab88547ee8e365cb29a43ec4427c9441c2acedb66967b66f5eb",
+        "y": "1c25513521a34c2449b3b933adf4cb5812b09fb05c6c3460fe98da696330aaa9",
+        "z": "06c356017ee627c9de23c14e14ad3f62ef2951a9558328c44d989fa38c11e019"
+      },
+      "width": 512,
+      "heightPixels": 512,
+      "strength": 0.3,
+      "cap": 0.5,
+      "diffuseSha256": "bdb5f87e33bfdf9a184b5d29fd98a6ada38ce606af50538ed2b46c5aa8f12c66",
+      "heightSha256": "a373783f05a9546a2fa8e79d925344bd245a0de8a1103439b7d0e0871dd94ca1",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock5_2.png",
+      "originalSha256": "f8e95fbf1353dcce0ecf2df186f3dcb059836e82f518b1cb3d6fe67ce535551d",
+      "nativeKey": "128x128:bd31b650a4fb2682",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "photographic",
+      "expectedNativeIdentity": "128x128:bd31b650a4fb2682"
+    },
+    "rock3_8": {
+      "name": "rock3_8",
+      "file": "candidates-2026-10-12/rock3_8-base-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/rock3_8-base-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/rock3_8-base-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/rock3_8-base-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/rock3_8-base-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "0a2f454504c779a004686104c02cd1413d2bd4e3d634db23f833df0fc91306e4",
+        "y": "b93b6ae34594a2c18d4864e7747b6426f7efc13d1bd62fcde9e80ec128adcc78",
+        "z": "abecb20de0e4ef32a9b5b1d4f99dfc0f8d0c3fc36fae2d6a0ab765eec20acdd9"
+      },
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.3,
+      "cap": 0.5,
+      "diffuseSha256": "ebe56bf46636b74842541cc621f555eb894b052787f7b27ae57fff5a53ad0ce2",
+      "heightSha256": "9c89d491995825d81762532adf28ceb6d4b6e9fa557c9f8c569496451f0d931a",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock3_8-base.png",
+      "originalSha256": "f4a93ffa4e9184699faba321b9da453581051a55b63d07452ad2bb677341d097",
+      "nativeKey": "64x64:5b26cfca296c1fa8",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "photographic",
+      "expectedNativeIdentity": "64x64:5b26cfca296c1fa8"
+    }
+  },
+  "assetRouting": "Page-local loose Newer assets; native PAK routing unchanged",
+  "presentationIsolation": "Page-local Bestiary observation disabled to preserve the measured camera; no journal reset; restored on stop",
+  "shaderErrors": [],
+  "actualEye": [
+    -1262.46875,
+    1304.90625,
+    181.78125
+  ],
+  "framebuffer": {
+    "scene": [
+      2562,
+      1440
+    ],
+    "display": [
+      2560,
+      1440
+    ]
+  },
+  "signon": 4,
+  "serverTime": 144.09399999999846,
+  "hdr": 1,
+  "map": {
+    "name": "maps/end.bsp",
+    "sha256": "84bccc471793a2f457ee8e23e32b64e3fb2e73a016b3c831d5950323419dbb23",
+    "faces": 2885
+  },
+  "join": {
+    "kind": "corner",
+    "faces": [
+      1191,
+      1292
+    ],
+    "points": [
+      [
+        -1248,
+        1488,
+        80
+      ],
+      [
+        -1437.0909423828125,
+        1248,
+        80
+      ]
+    ],
+    "center": [
+      -1342.5454711914062,
+      1368,
+      80
+    ],
+    "surfaceNormals": [
+      [
+        0.7854916453361511,
+        -0.6188722252845764,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "viewDirection": [
+      0.5554264750753805,
+      -0.4376087519871282,
+      0.7071067889432302
+    ],
+    "interiorProbes": [
+      [
+        -1342.5454654440694,
+        1367.9999954717944,
+        83.9999999999933
+      ],
+      [
+        -1339.403504714367,
+        1365.5245108246727,
+        80
+      ]
+    ],
+    "views": {
+      "near": [
+        -1315.885000387788,
+        1346.9947799046179,
+        113.94112586927506
+      ],
+      "far": [
+        -1262.5640587805515,
+        1304.9843397138536,
+        181.82337760782514
+      ],
+      "oblique": [
+        -1326.8020901891998,
+        1314.8573080565106,
+        125.25483449236674
+      ]
+    },
+    "length": 305.5411338776174,
+    "textures": [
+      {
+        "face": 1191,
+        "name": "rock3_8",
+        "identity": "64x64:5b26cfca296c1fa8",
+        "s": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          0,
+          -1,
+          0
+        ]
+      },
+      {
+        "face": 1292,
+        "name": "rock5_2",
+        "identity": "128x128:bd31b650a4fb2682",
+        "s": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "t": [
+          0,
+          -1,
+          0,
+          0
+        ]
+      }
+    ],
+    "alternatives": 319
+  },
+  "requestedView": {
+    "eye": [
+      -1262.5640587805515,
+      1304.9843397138536,
+      181.82337760782514
+    ],
+    "target": [
+      -1342.5454711914062,
+      1368,
+      80
+    ],
+    "angles": [
+      45.000000628512126,
+      141.76617392837696,
+      0
+    ]
+  }
+}

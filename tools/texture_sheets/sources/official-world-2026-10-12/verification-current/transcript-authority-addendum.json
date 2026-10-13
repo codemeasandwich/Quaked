@@ -1,0 +1,35 @@
+{
+  "qualification": "Post-snapshot authority addendum. Original transcript snapshots, extracted records and earlier audit remain unchanged.",
+  "source": "/Users/bri/.codex/sessions/2026/10/13/rollout-2026-10-13T07-28-46-01a12eef-bc66-7c03-84c7-d2bb59f40c82_01a133f3-04b5-7773-9833-5aec2229e382.jsonl",
+  "authority": [
+    {
+      "line": 855,
+      "timestamp": "2026-10-13T08:35:01.249Z",
+      "ownerAnswer": "All texture maps at lossy quality 92",
+      "clarificationScope": "Question explicitly included normal/height/mask maps, so their policy is decided, not pending."
+    },
+    {
+      "line": 927,
+      "timestamp": "2026-10-13T08:46:38.885Z",
+      "ownerInstruction": "4x dimensions with quality92, matching relief maps; visually similar at half-native resolution, not identical."
+    },
+    {
+      "line": 958,
+      "role": "assistant",
+      "recommendation": "Half-native primary, quarter-native secondary; close-up quality and tiling separate."
+    },
+    {
+      "line": 969,
+      "timestamp": "2026-10-13T08:52:51.466Z",
+      "ownerApproval": "good"
+    }
+  ],
+  "currentPolicy": {
+    "runtimeDimensions": "Exactly4x native width and height",
+    "storage": "All texture maps at LOSSY quality92, including diffuse, normal, height, gloss and mask data. No lossless-data exception inferred.",
+    "primaryComparison": "Both native and replacement reduced to half-native dimensions:64->32 and256->32",
+    "secondaryComparison": "Both reduced to quarter-native dimensions:64->16 and256->16",
+    "acceptance": "Visual similarity of representative palette/style/intention, feature scale and meaningful layout; no automatic pixel-equality art gate; natural photographic forms and seamless intended edge phase",
+    "validationImplication": "Inspect and test decoded Q92 files. Old lossless byte-equality and normal/gloss exact-value evidence must not be described as proof for newly lossy files; retain history and bind fresh evidence to actual encoded bytes."
+  }
+}

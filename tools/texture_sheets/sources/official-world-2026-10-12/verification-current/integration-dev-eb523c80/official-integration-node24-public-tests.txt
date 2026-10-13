@@ -1,0 +1,56 @@
+UNCHANGED_DEV_GLASS {"baseline":"eb523c80dafc5433898e98c26ca6eb481dc8658b","names":110,"materials":130,"files":659}
+PASS current catalogue contains the 45 source-bound additions and preserves every entry of the fixed Git baseline
+OFFICIAL_NATIVE_SOURCES {"qualification":"NEW current-state source verification; not recovered historical evidence","inputPath":"tools/texture_sheets/sources/official-world-2026-10-12/current-registration-inputs.json","inputSha256":"046f66338fd884b1a4887a9ccb00b15fb1364f2c80e3f8280fcb7ff1482f5a34","baselineCommit":"a28d939647d93f7c1ea96160ebb79751388d2fcb","source_root":"/Users/bri/quaked","externalGameRoot":true,"indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3","entries":45,"occurrences":162,"donors":43,"fullbright":16,"actualPacks":["/Users/bri/quaked/Dimension of the Machine/pak0.pak","/Users/bri/quaked/Dimension of the Past/pak0.pak","/Users/bri/quaked/Dissolution of Eternity/pak0.pak","/Users/bri/quaked/Quake/pak0.pak","/Users/bri/quaked/Scourge of Armagon/pak0.pak"],"sourceContentSha256":"23f348a90a009bdbd5bc488395c5110361fb4ca1f1e45a2be6feb0c124af512e"}
+PASS all 162 current source occurrences and 43 donor bindings match actual BSP palette pixels
+PASS all 45 actual native textures load their registered real images and height maps through the public interface
+PASS all 45 new source guards reject unrelated same-name original pixels without requesting HD artwork
+RESULT 4/4 passed (tests/official_texture_registration_test.js)
+EXPANSION_NATIVE_SOURCES {"source_root":"/Users/bri/quaked","indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3","bindings":6,"occurrences":6,"sourceContentSha256":"93647a9683d7d1b67e567a4c694d0cc54900c7c4cabfdb3699e4610fe4ddf8d1"}
+PASS six expansion registrations match reviewed candidates and native BSP identities without changing any base mapping
+PASS six expansion identities install exact reviewed pixels and own relief while the six base identities still install base art
+PASS all six unrelated expansion pixel identities fall back and Classic mode requests no variant assets
+RESULT 3/3 passed (tests/official_texture_expansion_test.js)
+MASONRY_NATIVE_SOURCES {"source_root":"/Users/bri/quaked","indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3","bindings":6,"artworks":4,"occurrences":41,"sourceContentSha256":"bd15b30d798a2801ba85ce87d218f4fd7cf45a30231fdd8ba4f97fa0576cb80e"}
+PASS four reviewed masonry artworks bind six exact native names, including both alias pairs, without widening base sources
+PASS all six masonry identities install reviewed pixels and matching heights, reuse alias caches and restore native Classic images
+PASS six unknown masonry identities retain native art and Classic mode requests no masonry variants
+RESULT 3/3 passed (tests/official_texture_masonry_test.js)
+Q92_NATIVE_SOURCES {"bindings":40,"occurrences":279,"indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3"}
+PASS 40 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions
+PASS actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte
+PASS real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor
+PASS unknown registered native pixels are rejected and Classic requests no replacements
+PASS TF material names preserve exact case and reject same pixels under a differently cased name
+PASS real held rock3_8 sibling remains native across all recorded PAK occurrences
+RESULT 6/6 passed (tests/official_texture_q92_test.js)
+Added packfile /Users/bri/quaked/shareware/pak0.pak (339 files)
+
+TEXTURE_SOURCE_PACK {"source_root":"/Users/bri/quaked","path":"/Users/bri/quaked/shareware/pak0.pak","sha256":"35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"}
+Added packfile /Users/bri/quaked/Scourge of Armagon/pak0.pak (179 files)
+
+TEXTURE_SOURCE_PACK {"source_root":"/Users/bri/quaked","path":"/Users/bri/quaked/Scourge of Armagon/pak0.pak","sha256":"e6c268cf86081b2926e5745cff718600672fcdac7c94998fbb2555d74cad6ed1"}
+PASS the index records the pictures each upgrade was made from, and Quake's own match them
+PASS Quake's metal5_6 gets its upgrade; the same name over other pixels keeps its own; an unrecorded name goes by name
+PASS Scourge of Armagon's own metal5_6 (hip2m4) selects its own artwork and rejects unrelated pixels
+RESULT 3/3 passed (tests/texture_sources_test.js)
+PREFETCH_SOURCE_PACK {"source_root":"/Users/bri/quaked","path":"/Users/bri/quaked/shareware/pak0.pak","sha256":"35a9c55e5e5a284a159ad2a62e0e8def23d829561fe2f54eb402dbc0a9a946af"}
+PASS bounded BSP29 texture-directory prefetch handles real native views, duplicate names and unsupported directories without touching a model
+PASS named prefetch shares exact decoded pigment/height/edge/scalar caches while actual textures and startup readiness remain authoritative
+PASS optional prefetch failure remains a recorded native fallback and cannot conceal another actual texture still loading
+RESULT 3/3 passed (tests/startup_texture_prefetch_test.js)
+PASS all26 installed WebPs and registered heights reach the public texture object without changing the64unit UV period
+PASS crafted normals match an independent periodic sine derivative and preserve height at the wrap
+PASS classic pass and normal NewGame preserve native pixels; returning restores all upgraded textures
+RESULT 3/3 passed (tests/level_texture_runtime_test.js)
+PASS normal input capture is an independent snapshot and full SHA includes previously unsampled pixel bytes and every authored source
+PASS prepared normal codec and generator preserve exact legacy fallback, crafted and reference bytes while rejecting corrupt identity or scalar coverage
+PASS normal readiness follows closed-file readback, emits one update, and another texture/module reuses exact disk output without generation
+PASS normal disposal cancels pending storage and shipped decode without ready events, and failed known payload never generates
+PASS different full-byte normal sources create new records, and storage that cannot open generates for the session only, saying why
+PASS malformed crafted reference inputs cannot silently generate a valid-looking cached normal image
+PASS same-object byte edits with Three upload hints and direct recipe edits invalidate public normal preparation
+PASS a source edit during persisted normal preparation publishes only the latest snapshot and preserves its readback requirement
+PASS distinct normal textures share one shipped transport, one consumer cancellation cannot harm another, and reference dimensions remain authoritative
+PASS actual Classic/HDR filtering switches do not rescan unchanged normal inputs, while pixel upload hints and recipe edits still prepare
+RESULT 10/10 passed (tests/normal_prepare_test.js)
+TOTAL 35/35 passed

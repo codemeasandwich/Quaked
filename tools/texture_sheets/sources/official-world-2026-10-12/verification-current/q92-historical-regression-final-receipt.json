@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "qualification": "Retained result of an already completed independent public regression run; no rerun, merge, release or whole-campaign completion is implied.",
+  "date": "2026-10-13",
+  "workspace": "/Users/bri/SOURCE/Quaked",
+  "gameRoot": "/Users/bri/quaked",
+  "execution": {
+    "sessionId": 59589,
+    "completionChunkId": "188a46",
+    "exitCode": 0,
+    "passed": 10,
+    "total": 10,
+    "skipped": 0,
+    "suites": [
+      {
+        "file": "tests/official_texture_registration_test.js",
+        "passed": 4,
+        "total": 4
+      },
+      {
+        "file": "tests/official_texture_expansion_test.js",
+        "passed": 3,
+        "total": 3
+      },
+      {
+        "file": "tests/official_texture_masonry_test.js",
+        "passed": 3,
+        "total": 3
+      }
+    ]
+  },
+  "log": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/q92-historical-regression-final.txt",
+    "sha256": "539c0f25def406b71ecc6a1dc8ed9bd305c15d807b686a9af673c82444957a2c",
+    "provenance": "Captured tool output copied into a retained log; metadata header and command added for traceability."
+  },
+  "sourceHashes": {
+    "tests/official_texture_standard.js": "2cccb2a1b6ef226fe0a69fdc3f8491b23ec7a488dcbf68d009dd65e9a696e25b",
+    "tests/official_texture_registration_test.js": "3e303a5c4292a131e4311fcf27f94eabd31cbec6ffae39deb66eef882649ed1c",
+    "tests/official_texture_expansion_test.js": "d5c6c65732c8f8b73d97194df62ac8a3cae5c643d1bab9454ae9497d6d95fa3a",
+    "tests/official_texture_masonry_test.js": "fb6fb2f762c019a4824f98f560dd1cb7149deb1640fa10a42c4fd7d9bdf05b0f",
+    "src/newer/render/r_newertextures.js": "9a86a30c8aa203e34512e753d0555c5ac2c9944a1a892a4a116db814a6ccd414",
+    "newer/textures/index.json": "221bce26a8ff6ce6ab4d21823c77c7d2c860146a572ba89ee3177cabeb2a9baa"
+  },
+  "postRunChange": {
+    "file": "tests/official_texture_standard.js",
+    "kind": "comment-only",
+    "description": "Corrected outdated statement that four trials were uninstalled; no executable code changed.",
+    "currentSha256": "2cccb2a1b6ef226fe0a69fdc3f8491b23ec7a488dcbf68d009dd65e9a696e25b",
+    "executedSha256": "c0e7f9f03f7ccd7db05a4f06736a139679f57083796ccb8ec9938bc701879071",
+    "executedHashBasis": "Derived by reversing the sole recorded comment-only patch in the current retained source. This is not a separately archived execution-time source copy."
+  },
+  "checks": [
+    "Historical -> 4x -> explicit Q92 binding/source/candidate chain",
+    "Immutable historical receipt hashes and retained old asset hashes",
+    "Lossy VP8/quality92 encoding records and exact 4x decoded dimensions",
+    "Installed XYZ/height through foreground normal, NormalInputs and NormalGenerate",
+    "Source guards, alias caches, UV registration, Classic restoration",
+    "Exact approved glass migration; unrelated baseline entries remain strict"
+  ],
+  "remainingRuntimeFailures": [],
+  "notes": [
+    "Syntax and whitespace checks passed.",
+    "Final source hash for the helper includes the documented post-run comment edit.",
+    "57 historical registered identities are covered by these suites; separate current-all19 and browser results belong to their own receipts."
+  ]
+}

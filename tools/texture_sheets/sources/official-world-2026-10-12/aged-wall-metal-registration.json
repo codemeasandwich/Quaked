@@ -1,0 +1,306 @@
+{
+  "qualification": "Independently reviewed photographic stone and patina metal, exact native identities. Historical ambiguous donor reuse is not selected; three owner variants retained unchanged. Local source integration, not all-map qualification or release.",
+  "beforeIndexSha256": "274aa97e384236d28575affa36acb5d5a90839c87bd1b516b3d16f6fb8011fa8",
+  "afterIndexSha256": "6660d6989de4e1391ad275e19ebc768cc86031a68f067b1d237d0ffbf09346aa",
+  "protectedOwnerBindings": {
+    "cop1_1": {
+      "textures": "cop1_1.webp",
+      "normals": {
+        "file": "normals/cop1_1.webp",
+        "strength": 1.2
+      },
+      "sources": [
+        "64x64:d97a6a868b8864ec"
+      ],
+      "ordinaryVariants": null,
+      "glass": null
+    },
+    "ecop1_1": {
+      "textures": "ecop1_1.webp",
+      "normals": {
+        "file": "normals/ecop1_1.webp",
+        "strength": 1.2
+      },
+      "sources": [
+        "64x64:d97a6a868b8864ec"
+      ],
+      "ordinaryVariants": null,
+      "glass": null
+    },
+    "metal5_1": {
+      "textures": "metal5_1.webp",
+      "normals": {
+        "file": "normals/metal5_1.webp",
+        "strength": 1.4
+      },
+      "sources": [
+        "64x64:d97a6a868b8864ec"
+      ],
+      "ordinaryVariants": null,
+      "glass": null
+    }
+  },
+  "entries": [
+    {
+      "name": "wall14_5",
+      "key": "64x64:a9763815741a765f",
+      "source": {
+        "id": "wall14_5|64x64:a9763815741a765f",
+        "name": "wall14_5",
+        "key": "64x64:a9763815741a765f",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "d099165f3ea37c124611184bec1e43bfb1982e5c56faefe5f1f2b6d5061da798",
+        "original": "originals/64x64-a9763815741a765f.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "id1",
+            "map": "maps/e2m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 15,
+            "faces": 75,
+            "visibleCandidateFaces": 75,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e4m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 5,
+            "faces": 540,
+            "visibleCandidateFaces": 540,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "id1",
+            "map": "maps/e4m6.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 8,
+            "faces": 892,
+            "visibleCandidateFaces": 860,
+            "hiddenTriggerFaces": 32,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "hipnotic",
+            "map": "maps/hip3m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+            "slot": 19,
+            "faces": 772,
+            "visibleCandidateFaces": 772,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/start.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 10,
+            "faces": 75,
+            "visibleCandidateFaces": 75,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r1m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 6,
+            "faces": 881,
+            "visibleCandidateFaces": 881,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 7,
+            "faces": 1512,
+            "visibleCandidateFaces": 1500,
+            "hiddenTriggerFaces": 12,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/wall14_5-a9763815741a765f-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/wall14_5-a9763815741a765f-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/wall14_5-a9763815741a765f-4x-q92-normalX.webp",
+            "y": "official/wall14_5-a9763815741a765f-4x-q92-normalY.webp",
+            "z": "official/wall14_5-a9763815741a765f-4x-q92-normalZ.webp"
+          },
+          "strength": 0.25,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-wall14_5.png",
+      "sourceFileSha256": "538c7cff73ceaa0ecf117fee34be96afdf388087c83b6e998e07836995c07006",
+      "diffuseSha256": "8ca3b32e0eae46e1f8b621d027c3dacd7ce52aaf328de4277039c8c6aa084ba5",
+      "heightSha256": "7b9c7821eccba14f750dd1318bbf91a793cf8d8f4a7bfb154767f595c9875166",
+      "normalChannelSha256": {
+        "x": "f2bd5d89b1b46c1b8f32a2e8ba7692b38f29fdef90b246dc3fdaae45a0207a07",
+        "y": "279f7cff2f3ed219f976c3d7998c6c58ee458aefcc591ccec0d08f1f45573ef1",
+        "z": "76dbae12839742812719aa192077293fadcfb0bc818f75452ed9298c1910b7da"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-12/wall14_5-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "8ca3b32e0eae46e1f8b621d027c3dacd7ce52aaf328de4277039c8c6aa084ba5",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    },
+    {
+      "name": "metal7_1",
+      "key": "64x64:d97a6a868b8864ec",
+      "source": {
+        "id": "metal7_1|64x64:d97a6a868b8864ec",
+        "name": "metal7_1",
+        "key": "64x64:d97a6a868b8864ec",
+        "width": 64,
+        "height": 64,
+        "pixelSha256": "4e84a9946a97e1bf0e40c46dca228704628742b01b87a78c7ebd1b198f64db46",
+        "original": "originals/64x64-d97a6a868b8864ec.rgba",
+        "status": "missing",
+        "file": null,
+        "reason": "No replacement entry",
+        "uses": [
+          {
+            "game": "id1",
+            "map": "maps/dm7.bsp",
+            "scope": "installed-extra-review",
+            "pack": "/Users/bri/quaked/Quake/pak0.pak",
+            "slot": 10,
+            "faces": 465,
+            "visibleCandidateFaces": 465,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r1m1.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 12,
+            "faces": 179,
+            "visibleCandidateFaces": 179,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m2.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 4,
+            "faces": 347,
+            "visibleCandidateFaces": 347,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 13,
+            "faces": 817,
+            "visibleCandidateFaces": 817,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m4.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 12,
+            "faces": 1166,
+            "visibleCandidateFaces": 1166,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m5.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 36,
+            "faces": 14,
+            "visibleCandidateFaces": 14,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "rogue",
+            "map": "maps/r2m7.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dissolution of Eternity/pak0.pak",
+            "slot": 5,
+            "faces": 2656,
+            "visibleCandidateFaces": 2656,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          },
+          {
+            "game": "mg1",
+            "map": "maps/mgdm3.bsp",
+            "scope": "campaign-or-multiplayer",
+            "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+            "slot": 90,
+            "faces": 670,
+            "visibleCandidateFaces": 670,
+            "hiddenTriggerFaces": 0,
+            "animationVisibleCandidateFaces": 0
+          }
+        ],
+        "action": "generate"
+      },
+      "previousBinding": null,
+      "binding": {
+        "file": "official/metal7_1-d97a6a868b8864ec-4x-q92-diffuse.webp",
+        "normal": {
+          "file": "official/metal7_1-d97a6a868b8864ec-4x-q92-height.webp",
+          "normalChannels": {
+            "x": "official/metal7_1-d97a6a868b8864ec-4x-q92-normalX.webp",
+            "y": "official/metal7_1-d97a6a868b8864ec-4x-q92-normalY.webp",
+            "z": "official/metal7_1-d97a6a868b8864ec-4x-q92-normalZ.webp"
+          },
+          "strength": 0.12,
+          "cap": 0.5
+        }
+      },
+      "sourceFile": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal7_1.png",
+      "sourceFileSha256": "583c956fa207ed2525fbaae8a01b728254ea461973398dad35818ba062a84f1e",
+      "diffuseSha256": "2ab2af313e1527ab35d1d8c16a8e4e42af3a1d1838fb1f242e2652e1fb6b1320",
+      "heightSha256": "ac66b1d7417a5ad42f22608f350da6343c11cc7ca1973e4e7362c9fdd6dd8bde",
+      "normalChannelSha256": {
+        "x": "5c414cc82d02887033e8db8f2bee61f70896d08e5731edc6ac443e372c0582c2",
+        "y": "805e02752133b4bf5e78b0dd0f35ad233c63b47d59f6fb05ab79856cbfbbb932",
+        "z": "5ec25121215a430d231ec1aa0f47b9fa494c08402a08dec07d365e3eeec8f3c1"
+      },
+      "encodingReceipt": "newer/textures/candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz.json",
+      "candidate": "candidates-2026-10-12/metal7_1-photographic-seam-v2-4x-q92-xyz-diffuse.webp",
+      "candidateSha256": "2ab2af313e1527ab35d1d8c16a8e4e42af3a1d1838fb1f242e2652e1fb6b1320",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false
+    }
+  ]
+}

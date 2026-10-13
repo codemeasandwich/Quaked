@@ -1,0 +1,41 @@
+PASS same-name native identities select separate ordinary pictures and their own relief without changing UVs
+PASS unknown identity retains native art while legacy unguarded names remain compatible
+PASS variant-only names remain pending until actual installation and unknown variants settle to native fallback
+PASS ordinary variant without relief never borrows another identity base height
+PASS malformed exact variant cannot silently substitute unrelated base artwork
+PASS glass selection and glass mismatch remain authoritative over ordinary variants
+PASS name-only prefetch requests base art only; actual identity then reuses caches and requests expansion art on demand
+PASS variant image failure records a terminal native fallback and leaves other actual requests pending
+PASS Classic pass, disabled Newer mode and disabled texture option suppress variant transport; reversion restores native art
+RESULT 9/9 passed (tests/texture_identity_variants_test.js)
+SOURCE_BUILDER_INPUT {"source_root":"/Users/bri/quaked","pack":"/Users/bri/quaked/Quake/pak0.pak","paletteSha256":"6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe","map":"maps/e1m2.bsp","mapSha256":"0a162ecb622937798571a7d1cc8cc3c7aeef4377da19c8ca2e4e0a339eaa509a"}
+PASS source-builder CLI preserves authored expansion and base allowlists, infers only unrecorded native identities and is idempotent
+SOURCE_BUILDER_INPUT {"source_root":"/Users/bri/quaked","pack":"/Users/bri/quaked/Quake/pak0.pak","paletteSha256":"6b20b5bc4ea965ef1852b05670d043ca16148a0ecad4e63028121c8aebc268fe","map":"maps/e1m2.bsp","mapSha256":"0a162ecb622937798571a7d1cc8cc3c7aeef4377da19c8ca2e4e0a339eaa509a"}
+PASS source-builder CLI retains ordinary variants and unrelated metadata following the sources property
+RESULT 2/2 passed (tests/texture_source_builder_test.js)
+UNCHANGED_DEV_GLASS {"baseline":"eb523c80dafc5433898e98c26ca6eb481dc8658b","names":110,"materials":130,"files":659}
+PASS current catalogue contains the 45 source-bound additions and preserves every entry of the fixed Git baseline
+OFFICIAL_NATIVE_SOURCES {"qualification":"NEW current-state source verification; not recovered historical evidence","inputPath":"tools/texture_sheets/sources/official-world-2026-10-12/current-registration-inputs.json","inputSha256":"046f66338fd884b1a4887a9ccb00b15fb1364f2c80e3f8280fcb7ff1482f5a34","baselineCommit":"a28d939647d93f7c1ea96160ebb79751388d2fcb","source_root":"/Users/bri/quaked","externalGameRoot":true,"indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3","entries":45,"occurrences":162,"donors":43,"fullbright":16,"actualPacks":["/Users/bri/quaked/Dimension of the Machine/pak0.pak","/Users/bri/quaked/Dimension of the Past/pak0.pak","/Users/bri/quaked/Dissolution of Eternity/pak0.pak","/Users/bri/quaked/Quake/pak0.pak","/Users/bri/quaked/Scourge of Armagon/pak0.pak"],"sourceContentSha256":"23f348a90a009bdbd5bc488395c5110361fb4ca1f1e45a2be6feb0c124af512e"}
+PASS all 162 current source occurrences and 43 donor bindings match actual BSP palette pixels
+PASS all 45 actual native textures load their registered real images and height maps through the public interface
+PASS all 45 new source guards reject unrelated same-name original pixels without requesting HD artwork
+RESULT 4/4 passed (tests/official_texture_registration_test.js)
+Q92_NATIVE_SOURCES {"bindings":40,"occurrences":279,"indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3"}
+PASS 40 q92 channel bindings pin exact original identities and real lossy colour/height/normal companions
+PASS actual current encoder reproduces each q92 diffuse, decoded-height-derived relief and authored normal byte-for-byte
+PASS real q92 images install with original UVs and decoded grayscale XYZ plus decoded height R reaches R_NormalMapFor
+PASS unknown registered native pixels are rejected and Classic requests no replacements
+PASS TF material names preserve exact case and reject same pixels under a differently cased name
+PASS real held rock3_8 sibling remains native across all recorded PAK occurrences
+RESULT 6/6 passed (tests/official_texture_q92_test.js)
+EXPANSION_NATIVE_SOURCES {"source_root":"/Users/bri/quaked","indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3","bindings":6,"occurrences":6,"sourceContentSha256":"93647a9683d7d1b67e567a4c694d0cc54900c7c4cabfdb3699e4610fe4ddf8d1"}
+PASS six expansion registrations match reviewed candidates and native BSP identities without changing any base mapping
+PASS six expansion identities install exact reviewed pixels and own relief while the six base identities still install base art
+PASS all six unrelated expansion pixel identities fall back and Classic mode requests no variant assets
+RESULT 3/3 passed (tests/official_texture_expansion_test.js)
+MASONRY_NATIVE_SOURCES {"source_root":"/Users/bri/quaked","indexSha256":"e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3","bindings":6,"artworks":4,"occurrences":41,"sourceContentSha256":"bd15b30d798a2801ba85ce87d218f4fd7cf45a30231fdd8ba4f97fa0576cb80e"}
+PASS four reviewed masonry artworks bind six exact native names, including both alias pairs, without widening base sources
+PASS all six masonry identities install reviewed pixels and matching heights, reuse alias caches and restore native Classic images
+PASS six unknown masonry identities retain native art and Classic mode requests no masonry variants
+RESULT 3/3 passed (tests/official_texture_masonry_test.js)
+TOTAL 27/27 passed

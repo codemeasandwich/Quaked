@@ -5,7 +5,7 @@
  *
  * Types: plain values and functions; no exported classes.
  *
- * State: no mutable exports; module-level variables `index`, `glass`, `sources`, `normals`, `version`,
+ * State: no mutable exports; module-level variables `index`, `glass`, `ordinaryVariants`, `sources`, `normals`, `version`,
  * `indexPromise`, `indexState`, `indexError`, `appliedFor`, `appliedOn`; 4 module-level collections (Map/Set).
  *
  * Errors: throws at 2 places; catches at 4 places.
@@ -27,6 +27,7 @@
 // the original glowing area, enlarged, picks the glowing part out of the new picture.
 
 import {R_NormalPrepared,R_NormalPrepare,R_NormalPreparationNeeded} from '../assets/normal_prepare.js';
+import { R_GenerateNormalData } from './normal_math.js';
 import { R_NewerGame, r_newer_textures } from '../mode.js';
 import { COM_NewerJSON, COM_NewerURL } from '../../engine/common/pak.js';
 import * as THREE from 'three';
@@ -39,6 +40,9 @@ const BASE = 'newer/textures/';
 
 let index = null; // name -> file
 let glass = {}; // native-RGBA identity -> per-window authored/generated material
+// Same-name ordinary artwork in official games, bound to exact original pixels:
+// name -> native key -> {file, normal?: existing crafted-height recipe}.
+let ordinaryVariants = {};
 let sources = {}; // name -> native-RGBA identities (R_GlassTextureKey) of Quake's own pictures the upgrade was made from
 let normals = {}; // name -> { file, strength }: the height map crafted for the texture (tools/craft_normals.py)
 let version = '0'; // changes whenever a picture does, so the browser fetches the new one
@@ -76,7 +80,7 @@ function loadIndex() {
 
 		indexState = 'loading';
 		indexPromise = bounded( COM_NewerJSON( BASE + 'index.json', BASE + 'index.json' ), 'Texture index' )
-			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; sources = j.sources || {}; version = String( j.version ); indexState = 'ready'; return index; } )
+			.then( ( j ) => { if ( ! j.textures ) throw new Error( 'Missing texture manifest' ); index = j.textures; normals = j.normals || {}; glass = j.glass || {}; ordinaryVariants = j.ordinaryVariants || {}; sources = j.sources || {}; version = String( j.version ); indexState = 'ready'; return index; } )
 			.catch( error => { indexError = String( error.message || error ); indexState = 'fallback'; index = {}; return index; } );
 
 	}
@@ -127,6 +131,8 @@ function loadPicture( file ) {
  * names from `R_BspTextureNames`). These are the same decoded-picture/scalar caches used by actual upgrades below, kept
  * for the page's lifetime; prefetch does not create textures, change native pixels or settle a gate. Loads the texture
  * index first; for each listed name loads its picture and, when crafted, its height, edge source and 16-bit scalar.
+ * Identity-specific ordinary expansion variants are not prefetched by these
+ * Quake startup names. Their actual native pixels select them at upgrade time.
  *
  * @param {Iterable<string>} names texture names as in the BSP (duplicates ignored; unlisted names skipped)
  * @returns {Promise<Array<?object>>} settles when every requested file has loaded or failed; never rejects (failures
@@ -207,7 +213,9 @@ export function R_GlassTextureKey( texture ) {
  * Sets `userData.newerPending` while loading, then `newerPicture`, or `newerFallback` (with `newerError` on an error)
  * when there is no picture, no matching glass variant, pixels other than those the picture was made from (the
  * index's `sources`, card [34e]), or loading failed. Does nothing in Classic, with `r_newer_textures 0`, or when the
- * texture is already upgraded, pending or fallen back.
+ * texture is already upgraded, pending or fallen back. `ordinaryVariants[name][nativeKey]` can select different
+ * ordinary expansion art before the guarded base path. It uses only its own optional `normal` recipe, never the
+ * other picture's height. Glass selection and terminal glass-identity mismatch behavior retain priority.
  *
  * @param {string} name the game's texture name, the key into `index.json`
  * @param {?THREE.DataTexture} texture the texture's `gl_texture`; mutated asynchronously
@@ -221,18 +229,24 @@ export function R_NewerTextureUpgrade( name, texture ) {
 
 	loadIndex().then( ( idx ) => {
 
-		const variant = glass[ name ]?.[ R_GlassTextureKey( texture ) ];
+		const nativeKey = R_GlassTextureKey( texture );
+		const variant = glass[ name ]?.[ nativeKey ];
 		if ( glass[ name ] && !variant ) return null;
+		const ordinary = variant ? undefined : ordinaryVariants[ name ]?.[ nativeKey ];
+		if ( ordinary && ( typeof ordinary.file !== 'string' || !ordinary.file ) ) return null;
 		// the same name over other pixels (an add-on's own picture, such as Scourge of Armagon's metal5_6) keeps its own
-		if ( ! variant && sources[ name ] && ! sources[ name ].includes( R_GlassTextureKey( texture ) ) ) return null;
-		const file = variant?.file || idx[ name ];
+		if ( ! variant && !ordinary && sources[ name ] && ! sources[ name ].includes( nativeKey ) ) return null;
+		const file = variant?.file || ordinary?.file || idx[ name ];
 		if ( file === undefined ) return null;
 
 		// the picture and, when there is one, its crafted height map
-		const crafted = variant ? { file: variant.heightFile, normalFile: variant.normalFile, glossFile: variant.glossFile, strength: 1, cap: 1.1 } : normals[ name ];
+		const crafted = variant ? { file: variant.heightFile, normalFile: variant.normalFile, normalChannels: variant.normalChannels, glossFile: variant.glossFile, glossOpeningFile: variant.glossOpeningFile, composeOutsideGlass: variant.composeOutsideGlass, strength: 1, cap: 1.1 } : ordinary ? ordinary.normal : normals[ name ];
+		const channels = crafted?.normalChannels;
+		const channelFiles = [ 'x', 'y', 'z' ].map( axis => typeof channels?.[ axis ] === 'string' && channels[ axis ] ? channels[ axis ] : null );
 		return Promise.all( [ loadPicture( file ), crafted !== undefined ? loadPicture( crafted.file ) : null,
-			crafted?.edgeSource ? loadPicture( crafted.edgeSource.file ) : null, loadScalar( crafted?.dataFile ), crafted?.normalFile ? loadPicture( crafted.normalFile ) : null, crafted?.glossFile ? loadPicture( crafted.glossFile ) : null ] )
-			.then( ( [ pic, heightPic, edgePic, scalar, normalPic, glossPic ] ) => ( pic == null ? null : { pic, heightPic, edgePic, scalar, normalPic, glossPic, crafted } ) );
+			crafted?.edgeSource ? loadPicture( crafted.edgeSource.file ) : null, loadScalar( crafted?.dataFile ), crafted?.normalFile ? loadPicture( crafted.normalFile ) : null, crafted?.glossFile ? loadPicture( crafted.glossFile ) : null,
+			...channelFiles.map( path => path ? loadPicture( path ) : null ), crafted?.glossOpeningFile ? loadPicture( crafted.glossOpeningFile ) : null ] )
+			.then( ( [ pic, heightPic, edgePic, scalar, normalPic, glossPic, nx, ny, nz, openingPic ] ) => ( pic == null ? null : { pic, heightPic, edgePic, scalar, normalPic, glossPic, channelPics: [ nx, ny, nz ], openingPic, crafted } ) );
 
 	} ).then( ( loaded ) => {
 
@@ -256,11 +270,45 @@ export function R_NewerTextureUpgrade( name, texture ) {
 			texture.userData.newerHeight.dataFile = scalarReady ? loaded.crafted.dataFile : undefined;
    // Optional authored normals are accepted only as a complete registered image.
    // A missing gloss keeps relief and falls back to matte, never a shiny placeholder.
-   const donor = loaded.normalPic, glossPic = loaded.glossPic;
+   const validMap = map => map && map.width===pic.width && map.height===pic.height && map.data?.length===pic.width*pic.height*4;
+   let donor = loaded.normalPic, glossPic = loaded.glossPic;
+   let normalSource = loaded.crafted.normalFile;
+   // Lossy WebP chroma mixes unrelated RGB data channels. Independent grayscale
+   // XYZ maps keep quality92 storage while reconstructing the existing RGBA
+   // normal input, before its content snapshot / prepared-normal cache key.
+   if(loaded.crafted.normalChannels) {
+    donor=null;
+    if(loaded.channelPics.every(validMap)) {
+     const data=new Uint8Array(pic.width*pic.height*4);
+     for(let i=0;i<data.length;i+=4){data[i]=loaded.channelPics[0].data[i];data[i+1]=loaded.channelPics[1].data[i];data[i+2]=loaded.channelPics[2].data[i];data[i+3]=255;}
+     donor={width:pic.width,height:pic.height,data};
+     normalSource='channels:'+['x','y','z'].map(axis=>loaded.crafted.normalChannels[axis]).join('|');
+    }
+   }
+   if(loaded.crafted.glossOpeningFile!==undefined||loaded.crafted.composeOutsideGlass===true) {
+    if(validMap(glossPic)&&validMap(loaded.openingPic)) {
+     const data=new Uint8Array(pic.width*pic.height*4);
+     for(let i=0;i<data.length;i+=4){
+      const opening=loaded.openingPic.data[i]>=128;
+      const pane=opening&&glossPic.data[i]>20&&Math.max(pic.data[i],pic.data[i+1],pic.data[i+2])>255*.22;
+      data[i]=pane?glossPic.data[i]:0;data[i+1]=opening?255:0;data[i+3]=255;
+     }
+     glossPic={width:pic.width,height:pic.height,data};
+    } else glossPic=null; // A missing categorical mask must remain matte.
+   }
+   const canonical=loaded.crafted.composeOutsideGlass===true?R_GenerateNormalData(pic.data,pic.width,pic.height):null;
+   if(canonical&&!validMap(donor)) {
+    donor={width:pic.width,height:pic.height,data:canonical};glossPic=null;
+    normalSource='canonical:'+loaded.crafted.file;
+   }
    if(donor && donor.width===pic.width && donor.height===pic.height) {
     const bytes=new Uint8Array(donor.data);
     for(let i=0;i<h.length;i++)bytes[i*4+3]=Math.round(h[i]*255);
-    texture.userData.newerHeight.authoredNormal={file:loaded.crafted.normalFile,...donor,data:bytes};
+    if(canonical)for(let i=0;i<h.length;i++){
+     const at=i*4,pane=validMap(glossPic)&&glossPic.data[at]>20&&glossPic.data[at+1]>=128;
+     if(!pane){bytes.set(canonical.subarray(at,at+4),at);h[i]=canonical[at+3]/255;}
+    }
+    texture.userData.newerHeight.authoredNormal={file:normalSource,...donor,data:bytes};
     if(glossPic && glossPic.width===pic.width && glossPic.height===pic.height)
      texture.userData.newerHeight.authoredGloss={file:loaded.crafted.glossFile,...glossPic};
    }
@@ -524,7 +572,7 @@ export function R_NewerTextureSettled( name, texture ) {
 
 	if ( ! R_NewerGame() || r_newer_textures.value === 0 || texture == null ) return true;
 	if ( index === null ) return false;
-	if ( index[ name ] === undefined && !glass[ name ] ) return true;
+	if ( index[ name ] === undefined && !glass[ name ] && !ordinaryVariants[ name ] ) return true;
 	return texture.userData != null && ( texture.userData.newerPicture === true || texture.userData.newerFallback === true );
 
 }
@@ -546,7 +594,7 @@ export function R_NewerTexturesStatus( model ) {
 	for ( const t of textures ) {
 		if ( ! on ) { fallback ++; continue; }
 		if ( t.gl_texture.userData.newerPicture ) ready ++;
-		else if ( t.gl_texture.userData.newerFallback || index !== null && index[ t.name ] === undefined && !glass[ t.name ] ) fallback ++;
+		else if ( t.gl_texture.userData.newerFallback || index !== null && index[ t.name ] === undefined && !glass[ t.name ] && !ordinaryVariants[ t.name ] ) fallback ++;
 		else pending ++;
 	}
 	return { index: indexState, pending, ready, fallback, total: textures.length, settled: pending === 0,

@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T19:14:17.196857+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only independent actualdecodedQ92diffuse full/half128/quarter64/3x3/wrapclose review, exactnativeidentity, authoringpreservation andpublicCLIreplay checks. Analyticalcomparison/repeatimages only; no runtime registration or textureasset edits.",
+  "result": "HOLD for narrow x-wrap vein-detail repair; materialrealism, character andbroadtone direction are acceptable.",
+  "native": {
+    "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png",
+    "sha256": "d2e549fb56b9149b9b41acffc7c7b6c2fadd58a459b21254f778f3cf41d35a08",
+    "key": "256x256:685e88a59ef2729f",
+    "rgbaSha256": "dc8c515d43219cb5405888d66954aa42453102833b32edc6f5f7deecd27298be",
+    "dimensions": [
+      256,
+      256
+    ]
+  },
+  "runtimeFiles": {
+    "diffuse": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-diffuse.webp",
+      "sha256": "f205bb0908205f54cf24e2e93766f61e4e1602d8d61ec3cb2697d05e3e33a23f",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "height": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-height.webp",
+      "sha256": "83ba4ddeb5751c1439fc8faac43f6a6bd7102f934b93be90a91c956d3df10c05",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalX": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalX.webp",
+      "sha256": "3e3786fd1ab8e8c45dd810f781955ae7fdf367e1cadbadb8e27b2abed31acf56",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalY": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalY.webp",
+      "sha256": "9716d842ac5c560ad3a3a0f18a581aa4d11a4491dbee02db94abb86ca635ebde",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "normalZ": {
+      "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalZ.webp",
+      "sha256": "41d114a1d49e3d17261c3073a074adf087541200637bf59f865ccaa4af1f2196",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    }
+  },
+  "authoringReceipt": {
+    "path": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x.json",
+    "sha256": "e06b0d62db8d0f59d6c8eb25db6f2a40d8ab69eca7290df184413ab51f8ae8d9",
+    "data": {
+      "source": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-v3-4x.png",
+      "sourceSha256": "47fdcb90c19d921412cb00df1f5c7f95ff55f455ea0a889a4af541b51bdbb98d",
+      "output": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x.png",
+      "outputSha256": "3bf15d55d022c083ee0605e4f97616960e967eb5a5595b2bf66449f985321876",
+      "axes": "xy",
+      "bandFraction": 0.125,
+      "unchangedInterior": true,
+      "spatialResampling": false,
+      "clippingFraction": 0.0,
+      "allowedPixelFraction": 0.4375,
+      "implementation": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+      "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+      "toolSha256": "be3558b7c070c9f62bbe8335eb13fd39811d088a4b7d3b48fdbe207e9a9fa8b0",
+      "qualification": "Authoring seam correction; decoded Q92 visual and public checks remain separate."
+    }
+  },
+  "visualFindings": [
+    "Full1024image has quietcontinuous mineralclouding, sparsehairlinecalciteveins andoccasional smallpore/shell-like marks. These provide restrainedcharacter without a grain/noiseblanket ornewmajor structures.",
+    "Half128andquarter64views remain representative ofnativewarmgrey/beige mottledstone; photographicdetail isnot confusedwithpixelidentity.",
+    "No whole-imagebevel, perimeterframe, directionalspotlight or broadtonecropgrid found.",
+    "Specific residual: fineveins crossing right/leftedges do notjoin atmatchingheights. Close xwrapshows uppervein ending exactlyatcentreboundary near~335of1024runtime-imagepixels while nexttile veinbeginsnear~400; lower crossingalsoterminatesatcut. These are geometry/detailcropendpoints ratherthan remainingRGBedge-tone mismatch.",
+    "3x3lookscontinuous inbroadtone, butcloserinspection reveals these finefeaturebreaks. Keep quietinterior andrepaironlyedgeveinendpoints orfade them naturallybefore thecut."
+  ],
+  "checks": {
+    "nativeRGBAIdentityMatchesMetadata": true,
+    "publicCLIReplayPNGByteExact": true,
+    "central768By768AuthoringPixelsByteIdentical": true,
+    "reportedClippingFraction": 0.0,
+    "allFiveRuntimeMaps1024": true
+  },
+  "evidence": [
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-v3-comparison.png",
+      "sha256": "32185b5e49c5afdb50e0755b16809cfb37377c69b48f5a5e1578fe4db2ddf3e2"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-v3-repeat.png",
+      "sha256": "100d45381523b3b8960cb493beb8fcb7ba1e5821456a68dbd1706f796e17e95a"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-v3-wrap-close.png",
+      "sha256": "3aefdc9671ef3c0ddf86576c978add9063e1bec3d09ffa22f03b4b9237b44168"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/limestone-seam-v3-replay.png",
+      "sha256": "3bf15d55d022c083ee0605e4f97616960e967eb5a5595b2bf66449f985321876"
+    }
+  ],
+  "limits": [
+    "v1/v2remainrejected; thisreview doesnotrehabilitatethem.",
+    "No nativeGPU/material/normal-semanticproof conducted here.",
+    "Tone-only edgealgorithm preserves spatialdetail andthereforecannotrepairnonmatchingveintrajectories byitself.",
+    "No runtimebinding orowneracceptance implied."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Perform boundedrepair ofxedgehairlineveins whilepreserving quietstone, regenerateQ92companionsasneeded, and re-review exactnewdecodededges."
+}

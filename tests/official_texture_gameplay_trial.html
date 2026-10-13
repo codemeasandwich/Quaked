@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><base href="../"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quaked — actual E2M1 texture join</title>
+<style>*{box-sizing:border-box;margin:0}html,body{width:100%;height:100%;overflow:hidden;background:#000}canvas{display:block;position:fixed;inset:0;width:100%;height:100%}#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#000;z-index:100}#loading-bar{width:200px;height:2px;background:#333}#loading-progress{width:0;height:100%;background:white}section{position:fixed;left:8px;top:8px;z-index:200;max-width:min(800px,96vw);max-height:42vh;overflow:auto;color:#eee;background:#10141eed;padding:10px;font:12px/1.4 system-ui}button,select{font:inherit;padding:5px;margin:3px}pre{white-space:pre-wrap;font:10px/1.4 monospace}a{color:#bcd}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/"}}</script></head><body>
+<div id="loading"><div id="loading-bar"><div id="loading-progress"></div></div></div>
+<section><strong>Actual E2M1: tech08_3 / tech08_4 join</strong><br>
+<button id="restart">Restart E2M1</button><label>View <select id="view"><option value="near">Near</option><option value="oblique">Oblique</option><option value="far">Far</option></select></label>
+<label>World textures <select id="art"><option value="hd">Photographic replacements</option><option value="original">Original</option></select></label>
+<label><input id="relief" type="checkbox"> Relief</label>
+<label><input id="flashlight" type="checkbox"> Flashlight</label>
+<button id="place">Return to join</button><button id="hide">Hide controls (Esc restores)</button>
+<button id="receipt-save">Save receipt</button><button id="frame-save">Save frame</button><button id="stop">Stop preview</button>
+<div id="status">Preparing source-bound candidate catalogue…</div><details><summary>Actual map, join and material receipt</summary><pre id="receipt"></pre></details>
+<p>Uses the game's actual search path, geometry, player and renderer. Select <a href="tests/official_texture_gameplay_trial.html">Quake E2M1</a> or <a href="tests/official_texture_gameplay_trial.html?scene=machine">Machine MGE5M1</a>. The diagnostic verifies the actual map, texture identity and camera clearance. Its receipt distinguishes shared joins from single-surface views. Original/HD changes world artwork while HDR lighting stays on. Relief and the native flashlight are separate.</p>
+<p>The catalogue override and loose-asset routing exist only in this page. No settings are saved. Stop preview or close this tab to stop the native game loop.</p></section>
+<script type="module" src="tests/official_texture_gameplay_trial.js"></script></body></html>

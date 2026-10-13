@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "rock5_2",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-rock5_2.png",
+  "originalSha256": "f8e95fbf1353dcce0ecf2df186f3dcb059836e82f518b1cb3d6fe67ce535551d",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/rock5_2-photographic-4x.png",
+  "authoringDiffuseSha256": "cca018126997d6d968dff8f8832416c8766971379e560be23eabb787d3a01fbe",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.3,
+      1,
+      1.6,
+      1.3
+    ],
+    "groove": 1.6,
+    "bump": 0.9,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-diffuse.webp",
+      "sha256": "bdb5f87e33bfdf9a184b5d29fd98a6ada38ce606af50538ed2b46c5aa8f12c66",
+      "bytes": 96122,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-height.webp",
+      "sha256": "a373783f05a9546a2fa8e79d925344bd245a0de8a1103439b7d0e0871dd94ca1",
+      "bytes": 82666,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-normalX.webp",
+      "sha256": "894681ba10154ab88547ee8e365cb29a43ec4427c9441c2acedb66967b66f5eb",
+      "bytes": 83306,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-normalY.webp",
+      "sha256": "1c25513521a34c2449b3b933adf4cb5812b09fb05c6c3460fe98da696330aaa9",
+      "bytes": 85494,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/rock5_2-4x-q92-xyz-normalZ.webp",
+      "sha256": "06c356017ee627c9de23c14e14ad3f62ef2951a9558328c44d989fa38c11e019",
+      "bytes": 23454,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 2.0572102864583335,
+  "distanceMaximum": 17.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 1.2164713541666667,
+  "secondaryDistanceMaximum": 7.0,
+  "colourCompressionMAE": 2.0547332763671875,
+  "heightCompressionMAE": 1.3219032287597656,
+  "heightCompressionMaximum": 8.0,
+  "normalAngularMean": 0.9857130211061248,
+  "normalAngularP99": 2.567285324212655,
+  "normalAngularMaximum": 5.238545756456867,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

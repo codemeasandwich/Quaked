@@ -1,0 +1,21 @@
+{
+  "source": "newer/textures/candidates-2026-10-12/wall14_5-photographic-v1-4x.png",
+  "sourceSha256": "735899ada7805607b6acfd3f3918bab3c68d6945faedb59f12729fd9cf295cb4",
+  "output": "newer/textures/candidates-2026-10-12/wall14_5-photographic-seam-v2-4x.png",
+  "outputSha256": "f4e325ed9a3f97c928174844e164dcced8c0ad330021b9a199408e1363b9dcea",
+  "axes": "xy",
+  "bandFraction": 0.125,
+  "unchangedInterior": true,
+  "spatialResampling": false,
+  "clippingFraction": 0.0,
+  "allowedPixelFraction": 0.4375,
+  "implementation": "/Users/bri/SOURCE/Quaked/tools/texture_sheets/sources/official-world-2026-10-12/finish_realistic_edges.py",
+  "implementationSha256": "e0ba992126bd5e591cf8fe319b4aae4c3296f651d342a329166f2f54c6666020",
+  "toolSha256": "a1e70d2e2d82c6e880f741b9470f6a58cd59b65f78ce4a716d0ec5a448256536",
+  "qualification": "Authoring seam correction; decoded Q92 visual and public checks remain separate.",
+  "generatedRepair": "tools/texture_sheets/sources/official-world-2026-10-12/wall14_5-offset-repair-v1.png",
+  "generatedRepairSha256": "df7484711ae55607f75551f2476cc4e0ea4076d49421b6be9ee2898f5fa6bfac",
+  "coreFraction": 0.0234375,
+  "outerHalfWidthFraction": 0.125,
+  "method": "GPT cyclic-offset repair confined to feathered boundary cross"
+}

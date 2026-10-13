@@ -1,0 +1,81 @@
+{
+  "generator": "Built-in GPT image generation and precise seam edit",
+  "ownerDirection": "Interesting small material details without pixelation/grain, preserving 4x/Q92 half/quarter comparisons and edge continuity.",
+  "selection": {
+    "v1": "Rejected: granular surface",
+    "v2": "Rejected: excessive curled mineral detail",
+    "v3": "Smooth surface accepted in principle, edge vein endpoints rejected",
+    "v4": "Independent visual/replay review passed: boundary veins taper naturally, full/half/quarter/repeat accepted."
+  },
+  "sources": [
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png",
+      "sha256": "d2e549fb56b9149b9b41acffc7c7b6c2fadd58a459b21254f778f3cf41d35a08"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.json",
+      "sha256": "cca6baf1eb78af5ff642357478ebb1670d4145f9ef9982bea5a6106318e7933a"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-layout-colour-only-reference.png",
+      "sha256": "7ad09dd5b7c3899810910c38b0e558ceea62a8288ce439667078e27fb1fa245f"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-prompt.txt",
+      "sha256": "b208c095048c4077127304c26620f6f9b820dd1e6d04970deb26a18d7148e144"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-v2-prompt.txt",
+      "sha256": "bccc2b5e2ad4665c6e57646e86789b53c3a123409193042873b18e9e5a310d56"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-v3-prompt.txt",
+      "sha256": "960dea13a6452e63e39e4b7d34c8b8abede3ab13330c6fff8cd50a29892e8eec"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-repair-prompt.txt",
+      "sha256": "421b0d4a20ff7e417901edd351426f9eff79a5bfb5e5e279d4f5d4c2f51ccb7e"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-generated-v1.png",
+      "sha256": "315823b47a53a14ee5cd91221503e0ef4427652459200ac8e93dc1e7c2381401"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-generated-v2.png",
+      "sha256": "2b9fdcc8d5664dce90adfdb930e01cc4bcffe6d1086c55475ee6e380e92af55b"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-generated-v3.png",
+      "sha256": "6a75134cdbbd3ba34cf3880f4479e8368c29198c7216d553583bc451fa07c8ea"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-offset-reference.png",
+      "sha256": "77a2d28365a162894618f88766ce7c45bf49f13c13def15ebe697d922dbe6edf"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/wstone_03_JM-character-offset-repair-v1.png",
+      "sha256": "9fbcff33b34b3ee9a8e6e1e8f4021914eed20adeceeb89ee7918ebd82d0956aa"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/finish_character_stone.py",
+      "sha256": "3631a5a2c57d38a7e5c47e79847259e832a5f196501ebd2119bbc7368e51edf7"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/finish_quiet_edges.py",
+      "sha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1"
+    },
+    {
+      "file": "tools/texture_sheets/sources/official-world-2026-10-12/finish_realistic_edges.py",
+      "sha256": "e0ba992126bd5e591cf8fe319b4aae4c3296f651d342a329166f2f54c6666020"
+    }
+  ],
+  "finishing": "finish_official_texture.py photographic factor4 comparison-divisor2 field-sigma2; quiet smooth boundary correction then generated seam repair confined to boundary bands",
+  "encodingReceipt": "newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v4-4x-q92-xyz.json",
+  "runtimeRegistered": true,
+  "registration": "tools/texture_sheets/sources/official-world-2026-10-12/character-stone-registration.json",
+  "postGenerationDocumentationCorrection": {
+    "file": "tools/texture_sheets/sources/official-world-2026-10-12/finish_character_stone.py",
+    "sha256": "a1e70d2e2d82c6e880f741b9470f6a58cd59b65f78ce4a716d0ec5a448256536",
+    "note": "Opening docstring corrected to distinguish colour correction and GPT offset-repair modes; executable body unchanged after generation."
+  }
+}

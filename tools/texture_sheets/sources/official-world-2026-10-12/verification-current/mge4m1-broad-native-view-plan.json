@@ -1,0 +1,830 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T17:47:34.476281+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Bounded read-only actualMGE4M1native-loader, staticworldface, bakedlighting and camera/shoulderpoint-hull probe. No engine/image/index edits.",
+  "map": "maps/mge4m1.bsp",
+  "mapSha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+  "totalFaces": 71470,
+  "staticWorldRangeExclusiveEnd": [
+    0,
+    62605
+  ],
+  "broadWall": {
+    "face": 39827,
+    "name": "metal1_2c",
+    "vertices": [
+      [
+        -984,
+        1872,
+        96
+      ],
+      [
+        -984,
+        1744,
+        96
+      ],
+      [
+        -984,
+        1744,
+        32
+      ],
+      [
+        -984,
+        1872,
+        32
+      ]
+    ],
+    "center": [
+      -984,
+      1808,
+      64
+    ],
+    "normal": [
+      -1,
+      0,
+      0
+    ],
+    "area": 8192,
+    "nativeKey": "64x64:dd3e42851935951f",
+    "s": [
+      0,
+      -1,
+      0,
+      -28.783899307250977
+    ],
+    "t": [
+      0,
+      0,
+      -1,
+      -48
+    ],
+    "minEdgeDistance": 32,
+    "light": {
+      "sampleOffset": 0,
+      "sampleCount": 50,
+      "styles": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "min": null,
+      "max": null,
+      "mean": null
+    },
+    "views": [
+      {
+        "label": "near",
+        "eye": [
+          -1032,
+          1808,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          0,
+          0
+        ],
+        "shoulder": [
+          -1028,
+          1793,
+          55
+        ],
+        "axisHit": [
+          -984,
+          1793,
+          55
+        ],
+        "shoulderLeaf": -1,
+        "cameraTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "shoulderTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "cameraToShoulder": {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        "passed": true
+      },
+      {
+        "label": "far",
+        "eye": [
+          -1128,
+          1808,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          0,
+          0
+        ],
+        "shoulder": [
+          -1124,
+          1793,
+          55
+        ],
+        "axisHit": [
+          -984,
+          1793,
+          55
+        ],
+        "shoulderLeaf": -1,
+        "cameraTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "shoulderTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "cameraToShoulder": {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        "passed": true
+      },
+      {
+        "label": "oblique",
+        "eye": [
+          -1048,
+          1840,
+          64
+        ],
+        "target": [
+          -984,
+          1808,
+          64
+        ],
+        "angles": [
+          0,
+          -26.56505117707799,
+          0
+        ],
+        "shoulder": [
+          -1051.1304951684997,
+          1824.7947377530015,
+          55
+        ],
+        "axisHit": [
+          -984,
+          1791.2294901687517,
+          55
+        ],
+        "shoulderLeaf": -1,
+        "cameraTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "shoulderTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "cameraToShoulder": {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        "passed": true
+      }
+    ]
+  },
+  "litFloorAlternative": {
+    "face": 45075,
+    "name": "metal1_2c",
+    "vertices": [
+      [
+        -2136,
+        2112,
+        -776
+      ],
+      [
+        -2148,
+        2100,
+        -776
+      ],
+      [
+        -2340,
+        2196,
+        -776
+      ],
+      [
+        -2328,
+        2208,
+        -776
+      ],
+      [
+        -2292,
+        2208,
+        -776
+      ],
+      [
+        -2136,
+        2130,
+        -776
+      ]
+    ],
+    "center": [
+      -2230,
+      2159,
+      -776
+    ],
+    "normal": [
+      0,
+      0,
+      1
+    ],
+    "area": 6588,
+    "nativeKey": "64x64:dd3e42851935951f",
+    "s": [
+      0.800000011920929,
+      -0.4000000059604645,
+      -0.4472140073776245,
+      -31.436100006103516
+    ],
+    "t": [
+      -0.44444510340690613,
+      -0.8888891935348511,
+      0,
+      24.000499725341797
+    ],
+    "minEdgeDistance": 16.099689437998485,
+    "light": {
+      "sampleOffset": 1180276,
+      "sampleCount": 60,
+      "styles": [
+        0,
+        11,
+        255,
+        255
+      ],
+      "min": 8,
+      "max": 45,
+      "mean": 26.516666666666666
+    },
+    "views": [
+      {
+        "label": "near",
+        "eye": [
+          -2230,
+          2159,
+          -728
+        ],
+        "target": [
+          -2230,
+          2159,
+          -776
+        ],
+        "angles": [
+          90,
+          0,
+          0
+        ],
+        "shoulder": [
+          -2239,
+          2144,
+          -732
+        ],
+        "axisHit": [
+          -2239,
+          2144,
+          -776
+        ],
+        "shoulderLeaf": -1,
+        "cameraTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "shoulderTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "cameraToShoulder": {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        "passed": true
+      },
+      {
+        "label": "far",
+        "eye": [
+          -2230,
+          2159,
+          -680
+        ],
+        "target": [
+          -2230,
+          2159,
+          -776
+        ],
+        "angles": [
+          90,
+          0,
+          0
+        ],
+        "shoulder": [
+          -2239,
+          2144,
+          -684
+        ],
+        "axisHit": [
+          -2239,
+          2144,
+          -776
+        ],
+        "shoulderLeaf": -1,
+        "cameraTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "shoulderTraces": [
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          },
+          {
+            "clear": true,
+            "contents": -1,
+            "fraction": 1,
+            "startsolid": false,
+            "allsolid": false
+          }
+        ],
+        "cameraToShoulder": {
+          "clear": true,
+          "contents": -1,
+          "fraction": 1,
+          "startsolid": false,
+          "allsolid": false
+        },
+        "passed": true
+      }
+    ]
+  },
+  "flashlightPlacement": "Current r_flashlight.js: eye+15right-9up+4forward. Used engine AngleVectors for actual requestedangles.",
+  "qualification": [
+    "Wall39827 gives broad128x64worldsurface (area8192,mincentroid-edge32), withclearnear48/far144/oblique64+32 andclearshoulderpositions/beamaxisrays. It has no bakedlight; flashlight/renderedvisibility must be checked live.",
+    "Litfloor45075 hasarea6588,butmincentroid-edge16.0997; explicitly a narrowerflooralternative rather than broadwall. Near48/far96andshoulderpaths clear. Bakedstyle0samplemean26.5167,max45; style11also present.",
+    "Every chosenface lies inworldrange0..62604; no submodelout-of-rangeface accepted.",
+    "TF_Metal_02 has128mapfaces but0staticworldfaces here; excludeitforstaticworldtrial. Cable69worldfaces/67lit, metal1_2c3769/2999lit, TF_Metal4_6a95/57lit.",
+    "No litface amongthese4meetsarea>=4096andmincentroid-edge>=24 inthismap. Do not claim a broadlitface wasfound.",
+    "Staticpoint-hull clearance doesnot replace liveSV_Moveentitycollision,signon,camera receipt orvisibleframeproof. Blackframe failure remains retained."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/mge4m1-broad-face-light-probe.json",
+      "sha256": "903c1cde56bae9fabc8472e587b2e7898f5f7635e03e39d316cc02f6aa07dfc4"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/mge4m1-broad-face-short-views.json",
+      "sha256": "13d7d5504e15f8fa4fcff876724288c1286e84317a2703b2c5d87a6ea5085155"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/mge4m1-lit-broad-rejected.json",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/mge4m1-light-availability-probe.txt",
+      "sha256": "ea412e81370502b138346554bae4cde041caa57da3d7cd9d810c96d6c4e556c9"
+    }
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Try broadwall39827 withcurrentflashlight andcapturemeasuredbeamposition; ifbrightnessstillfails, use litfloor45075asexplicitnarrowerdiagnostic andinvestigate renderingwithoutclaimingvisualpass."
+}

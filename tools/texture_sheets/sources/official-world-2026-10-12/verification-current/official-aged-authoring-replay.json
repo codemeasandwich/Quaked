@@ -1,0 +1,28 @@
+{
+  "qualification": "Independent candidate authoring replay; visual and installed acceptance separate",
+  "testSha256": "7dba75735f2f95f019dc660cfeaa1ea86b6173072381e394f182510b605d5eea",
+  "rows": [
+    {
+      "name": "wall14_5",
+      "outputSha256": "f4e325ed9a3f97c928174844e164dcced8c0ad330021b9a199408e1363b9dcea",
+      "sourceSha256": "735899ada7805607b6acfd3f3918bab3c68d6945faedb59f12729fd9cf295cb4",
+      "toolSha256": "a1e70d2e2d82c6e880f741b9470f6a58cd59b65f78ce4a716d0ec5a448256536",
+      "implementationSha256": "e0ba992126bd5e591cf8fe319b4aae4c3296f651d342a329166f2f54c6666020",
+      "protectedPixels": 36864,
+      "changedPixels": 25066,
+      "outsideBandUnchanged": true,
+      "operation": "Recorded photographic repair confined to XY boundary bands"
+    },
+    {
+      "name": "metal7_1",
+      "outputSha256": "549e5cc925327aba1b1a245786439a424d6d06a95e7aba02d6e352f70aa1b8c1",
+      "sourceSha256": "bb6037652a1af5eb412eb6e681b9ed2deafb8befdcd29a2e50e76c0ae343156c",
+      "toolSha256": "a1e70d2e2d82c6e880f741b9470f6a58cd59b65f78ce4a716d0ec5a448256536",
+      "implementationSha256": "b4d0ffed5d127c976ca73d0fb203636cb33a0c1ba43bb04361407e3eb83642a1",
+      "protectedPixels": 36864,
+      "changedPixels": 20625,
+      "outsideBandUnchanged": true,
+      "operation": "Independent spatial Gaussian validates paired colour correction without resampling"
+    }
+  ]
+}

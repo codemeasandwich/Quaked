@@ -1,0 +1,54 @@
+{
+  "method": "photographic",
+  "factor": 8,
+  "verticalLandmarks": null,
+  "colorStrength": 0.65,
+  "fieldSigma": 0.75,
+  "comparisonDivisor": 4,
+  "comparisonDimensions": [
+    4,
+    4
+  ],
+  "distanceMeanMaxError": 33.255859375,
+  "distanceMeanMAE": 6.380228678385417,
+  "donorDistanceMAE": 12.48828125,
+  "newClippedChannelFraction": 0.0054931640625,
+  "donorContourCorrelation": 0.9994760268588815,
+  "sourceMean": [
+    57.25,
+    61.65625,
+    73.78125
+  ],
+  "outputMean": [
+    63.659912109375,
+    66.55596923828125,
+    74.7760009765625
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 7.299479166666666,
+    "wrap_y_mean": 8.0859375,
+    "interior_x_mean": 7.342294127296588,
+    "interior_y_mean": 7.64298310367454
+  },
+  "boundaries": {
+    "wrap_x_mean": 7.283854166666666,
+    "wrap_y_mean": 8.026041666666666,
+    "interior_x_mean": 7.310962106299213,
+    "interior_y_mean": 7.612327755905512
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Quarter-size colour metrics are diagnostics calibrated against owner-enhanced examples, not pixel-equality acceptance. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "docs/evidence/official-textures-2026-10-12/ceil1_1-original.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/ceil1_1-artistic-v2.png",
+  "output": "newer/textures/candidates-2026-10-12/ceil1_1-photographic-v2.png",
+  "originalSha256": "93d8fe0c85fc8207e969a94f631a369601bdf712e18a8f9b232062d812cd7d0b",
+  "generatedSha256": "1a7c7d8b66b61a44b7966432ed9de0f6e08dfd73e378fbdf8aa2dea94e2f9cf6",
+  "outputSha256": "853544072ec601d16dbf68c8b489e84413549869bf1b3ef19138d11dd8586185",
+  "outputDimensions": [
+    128,
+    128
+  ],
+  "toolSha256": "fdd4407cc3359645070cd7af03bc0637cc824dcddb27d3588118f2d1463f6b89",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

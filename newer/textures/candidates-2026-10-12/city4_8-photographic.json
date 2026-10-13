@@ -1,0 +1,55 @@
+{
+  "method": "photographic",
+  "factor": 8,
+  "verticalLandmarks": null,
+  "colorStrength": 0.65,
+  "fieldSigma": 0.75,
+  "edgeAnchor": false,
+  "comparisonDivisor": 4,
+  "comparisonDimensions": [
+    16,
+    16
+  ],
+  "distanceMeanMaxError": 20.8232421875,
+  "distanceMeanMAE": 4.104590098063151,
+  "donorDistanceMAE": 10.782798767089844,
+  "newClippedChannelFraction": 0.00629425048828125,
+  "donorContourCorrelation": 0.9997488464606981,
+  "sourceMean": [
+    42.5283203125,
+    31.6298828125,
+    16.595703125
+  ],
+  "outputMean": [
+    47.54677963256836,
+    35.5629997253418,
+    19.001949310302734
+  ],
+  "donorBoundaries": {
+    "wrap_x_mean": 7.283854166666666,
+    "wrap_y_mean": 8.020833333333334,
+    "interior_x_mean": 10.595238095238097,
+    "interior_y_mean": 11.081845238095239
+  },
+  "boundaries": {
+    "wrap_x_mean": 7.220703125,
+    "wrap_y_mean": 7.975260416666666,
+    "interior_x_mean": 10.575580713878018,
+    "interior_y_mean": 11.060611851761252
+  },
+  "passedDistanceCheck": null,
+  "qualification": "Quarter-size colour metrics are diagnostics calibrated against owner-enhanced examples, not pixel-equality acceptance. Photographic form, intention, feature scale and tile joins require visual review.",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-12/city4_8-photographic.png",
+  "originalSha256": "2c26333e46faaa5e9c87b65b48eb1cc2ccaa9627a79c621bbdceea96e98fbc44",
+  "generatedSha256": "fe560361aa5572d2735e71e4fccb93ea7ca327a2e8d9577385da89f117166e75",
+  "outputSha256": "bc895d1b0a3673bbf7e212b52c7d9195ea39ebb98a2927ea75fc1e644c40c142",
+  "outputDimensions": [
+    512,
+    512
+  ],
+  "toolSha256": "0b0ba7a2fcdaa47953f733d1ac978014478d5559e7ec9ca0bd3bd9b91a320194",
+  "landmarkFile": null,
+  "landmarkSha256": null
+}

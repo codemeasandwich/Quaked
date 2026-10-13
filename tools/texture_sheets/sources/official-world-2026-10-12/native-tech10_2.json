@@ -1,0 +1,85 @@
+{
+  "source": {
+    "id": "tech10_2|128x128:7e69745d82cfe79f",
+    "name": "tech10_2",
+    "key": "128x128:7e69745d82cfe79f",
+    "width": 128,
+    "height": 128,
+    "pixelSha256": "70fe861a14ba9402688e38ccbb5be1193055f1aa41e0e7e7a2d8029d9d98f560",
+    "original": "originals/128x128-7e69745d82cfe79f.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 47,
+        "faces": 15,
+        "visibleCandidateFaces": 15,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 67,
+        "faces": 11,
+        "visibleCandidateFaces": 11,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m3.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 54,
+        "faces": 17,
+        "visibleCandidateFaces": 17,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m4.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 11,
+        "faces": 1236,
+        "visibleCandidateFaces": 1236,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip1m5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 47,
+        "faces": 61,
+        "visibleCandidateFaces": 61,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge5m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 93,
+        "faces": 1025,
+        "visibleCandidateFaces": 1025,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "e85e0ea2a0a9ecaf7cc105c94dba90afbdca2baef358154969b1d65cc3d635de",
+  "qualification": "Fresh verified PAK reference after evidence-path disappearance; not historical receipt recovery"
+}

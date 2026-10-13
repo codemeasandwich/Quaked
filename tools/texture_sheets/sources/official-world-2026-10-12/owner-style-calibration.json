@@ -1,0 +1,95 @@
+{
+  "qualification": "Fresh owner-style calibration from retained runtime artwork and verified relocated native PAKs. Diagnostic examples, not universal acceptance thresholds.",
+  "entries": [
+    {
+      "name": "tech01_1",
+      "sourceReference": "tools/texture_sheets/sources/official-world-2026-10-12/calibration-native-tech01_1.png",
+      "sourceIdentity": "64x64:c7242ebe9f211484",
+      "sourceRGBAsha256": "9b7b80984332beb669571ece67a4d19e9bcc76b4cf58ece9ed99b70ef7a1b01e",
+      "enhanced": "tech01_1.webp",
+      "sourceFileSha256": "551deecaef0fee4d3bb2080ff3053e9008faba837855aa2a65c774d2aab14b28",
+      "enhancedFileSha256": "c1e1b845b69276b6bab78927f0a90a36220f35bd96ee45fa5fb217c3b290324f",
+      "comparisonDimensions": [
+        16,
+        16
+      ],
+      "quarterMAE": 10.5859375,
+      "quarterMax": 52.0
+    },
+    {
+      "name": "metal5_6",
+      "sourceReference": "tools/texture_sheets/sources/official-world-2026-10-12/calibration-native-metal5_6.png",
+      "sourceIdentity": "64x64:4a6ade755f357b3f",
+      "sourceRGBAsha256": "37f5e3586f940d5458bb9e973da7dbfd9d55fad8c7789d13b8adba9a1c92bd6d",
+      "enhanced": "metal5_6.webp",
+      "sourceFileSha256": "0c1062165a9b8734e1a1331e46b00b54f42dc452376162ed8b8ab771c1abdf29",
+      "enhancedFileSha256": "51ab4be3e04055565fb0fdf392ed0f27d01bf3a2973286882fc1360c35be7d22",
+      "comparisonDimensions": [
+        16,
+        16
+      ],
+      "quarterMAE": 17.09765625,
+      "quarterMax": 52.0
+    },
+    {
+      "name": "wizwood1_4",
+      "sourceReference": "tools/texture_sheets/sources/official-world-2026-10-12/calibration-native-wizwood1_4.png",
+      "sourceIdentity": "64x64:1ac0768688edd7c4",
+      "sourceRGBAsha256": "6a67dea55e4c002311946336a922e0ee35de78fb8418c37a160159e2d742b17f",
+      "enhanced": "wizwood1_4.webp",
+      "sourceFileSha256": "9b8cc3ed67e39420e8cba6df6c562ea3fbf6faa95cab0ab0f45d3e8e1aad635c",
+      "enhancedFileSha256": "0d44b668235a170e426ac12d91fffaa3129958fc0048da89743554f9abfc2c99",
+      "comparisonDimensions": [
+        16,
+        16
+      ],
+      "quarterMAE": 9.553385416666666,
+      "quarterMax": 38.0
+    },
+    {
+      "name": "city5_1",
+      "sourceReference": "tools/texture_sheets/sources/official-world-2026-10-12/calibration-native-city5_1.png",
+      "sourceIdentity": "64x64:0e9bcc5df43f23df",
+      "sourceRGBAsha256": "5bcc15214083201fb093a4d2cad7d94ee27712f9240c1acfd8ec10346893360a",
+      "enhanced": "city5_1.webp",
+      "sourceFileSha256": "e9310bac3801c6738108aa07d10b4d6d78955f18711ebd65ad94d703f4c99d2d",
+      "enhancedFileSha256": "cf04d2b9280fd6b4dff2d770a05ac1e22081a6048189633a4689411e23d0fe79",
+      "comparisonDimensions": [
+        16,
+        16
+      ],
+      "quarterMAE": 6.170572916666667,
+      "quarterMax": 31.0
+    },
+    {
+      "name": "wall9_8",
+      "sourceReference": "tools/texture_sheets/sources/official-world-2026-10-12/calibration-native-wall9_8.png",
+      "sourceIdentity": "64x64:b7f3c70ef624e81c",
+      "sourceRGBAsha256": "0043635bfbdc929c7685f39bf4c2e23ffe511c1e7f1dc88d78616ebf9b55cbbe",
+      "enhanced": "wall9_8.webp",
+      "sourceFileSha256": "da8a1ba6f748fb1e67a5d4490ba30bb664b48b79273ff4f3f21b0962500354af",
+      "enhancedFileSha256": "17dbe8baa55516797c86498ff0f6cd9e40b7666172021d6a09421e433607d6eb",
+      "comparisonDimensions": [
+        16,
+        16
+      ],
+      "quarterMAE": 4.5390625,
+      "quarterMax": 26.0
+    },
+    {
+      "name": "column1_2",
+      "sourceReference": "tools/texture_sheets/sources/official-world-2026-10-12/calibration-native-column1_2.png",
+      "sourceIdentity": "64x64:2d36f4f5a1e9ec47",
+      "sourceRGBAsha256": "0d70174bb6cb5a082db4b6391b6c61eaa06015d19d47c92656ed1b023500129b",
+      "enhanced": "column1_2.webp",
+      "sourceFileSha256": "153d8794ec4f5d5b8fa7868f7589d0bbdc43a52792af937fb919401134d08f32",
+      "enhancedFileSha256": "dd9998570314f29295d4eacff24710439d35665b22c39845f8fd0688ff6293e5",
+      "comparisonDimensions": [
+        16,
+        16
+      ],
+      "quarterMAE": 5.466145833333333,
+      "quarterMax": 26.0
+    }
+  ]
+}

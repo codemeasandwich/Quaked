@@ -1,0 +1,17 @@
+{
+  "source": "tools/texture_sheets/sources/official-world-2026-10-12/door02_1-generated-v1.png",
+  "sourceSha256": "63f54af76abbc0886cd6d0e4b1d7d5c7d33cce9a15915a0fb54ca1becc37db7e",
+  "crop": [
+    250,
+    0,
+    477,
+    2164
+  ],
+  "originalDimensions": [
+    727,
+    2164
+  ],
+  "output": "tools/texture_sheets/sources/official-world-2026-10-12/door02_1-donor-crop.png",
+  "outputSha256": "d1a7bd7b4b693d7a41d010b44b9c9c57d0039e4ddb314389f2e3939c9d3ee0a5",
+  "reason": "Remove only model-added black letterbox outside the authored narrow strip; original native pixels/UVs unchanged"
+}

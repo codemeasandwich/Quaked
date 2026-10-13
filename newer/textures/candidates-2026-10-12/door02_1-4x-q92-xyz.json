@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "door02_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-door02_1.png",
+  "originalSha256": "5c31efae940a4197c9798212e0f274fc49f1fb4b9f41a2370293878909e9ef88",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/door02_1-photographic-4x.png",
+  "authoringDiffuseSha256": "1c6723cf358e8198fd187b8c3b286c5014d788311ff6df87bc7e24267824b79b",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.8,
+    "bump": 0.6,
+    "glow": 0.2,
+    "strength": 0.45,
+    "cap": 0.55
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/door02_1-4x-q92-xyz-diffuse.webp",
+      "sha256": "b27171c60f623d03682a3dc96fd1fa39538f16a28c31b46371740b78bb14aaaf",
+      "bytes": 7832,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/door02_1-4x-q92-xyz-height.webp",
+      "sha256": "8d6eb2ed709f53b9ce86f0da14953e8d22aa2e5719edd329136d9516cc8234c5",
+      "bytes": 20296,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/door02_1-4x-q92-xyz-normalX.webp",
+      "sha256": "e90793302537184d2ca17eb0cce64e4b1583add0e1d8052385ed5bc95a8017e8",
+      "bytes": 17130,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/door02_1-4x-q92-xyz-normalY.webp",
+      "sha256": "0a2d85516216dc1eca6b2701f3d8646554080eaf7ce73acdd307f502f81b23e9",
+      "bytes": 16980,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/door02_1-4x-q92-xyz-normalZ.webp",
+      "sha256": "69025c8a808392e654a4ba66afffc4c9c6f71f41f4c17feecd44042f4b9ccc35",
+      "bytes": 6012,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        64,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    8,
+    64
+  ],
+  "distanceMAE": 3.7845052083333335,
+  "distanceMaximum": 25.0,
+  "secondaryComparisonDimensions": [
+    4,
+    32
+  ],
+  "secondaryDistanceMAE": 2.4661458333333335,
+  "secondaryDistanceMaximum": 11.0,
+  "colourCompressionMAE": 2.021484375,
+  "heightCompressionMAE": 1.402862548828125,
+  "heightCompressionMaximum": 7.0,
+  "normalAngularMean": 1.0856763955431363,
+  "normalAngularP99": 2.6633888692823864,
+  "normalAngularMaximum": 3.856105231769976,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

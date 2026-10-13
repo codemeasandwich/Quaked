@@ -1,0 +1,31 @@
+{
+  "source": {
+    "id": "metal5_6|32x64:b15237abb6d97cf1",
+    "name": "metal5_6",
+    "key": "32x64:b15237abb6d97cf1",
+    "width": 32,
+    "height": 64,
+    "pixelSha256": "e8efea9843fa38e4458d32b39ac03ec7d227b1c7827932bf2b6f6700a6a961cd",
+    "original": "originals/32x64-b15237abb6d97cf1.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "Same name has different original pixels",
+    "uses": [
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m4.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 31,
+        "faces": 13,
+        "visibleCandidateFaces": 13,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "freshSnapshotSha256": "7e5c1e3cf87e41c8847406580a454736f51450ae7b8cc149b6dde4946c6c8802",
+  "referenceSha256": "bbbdbb43016ff0a19797611372901911b221d25ad04ca648e186e2e9e2358a28",
+  "qualification": "Fresh source extraction after relocation, not historical evidence recovery"
+}

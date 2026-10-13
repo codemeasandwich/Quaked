@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T13:21:19.949842+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only review of Wood01 PNG seam prototype; analytical before/after wrap-strip crop only. No asset/index/engine edits.",
+  "recipe": {
+    "path": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-seam-v1-4x.json",
+    "sha256": "055f3b4ba0902993ae1b82b674f9cc714177717c494d2b23724d0f47cfd94d36"
+  },
+  "inputs": {
+    "qualification": "Experimental seam repair, unregistered; independent review required",
+    "master": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x.png",
+    "masterSha256": "3987aa144958c61bbc980f350f0ad1e17a3b714af8f4912d742536e9d96cbf4c",
+    "generatedOffsetRepair": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01-offset-repair-v1.png",
+    "generatedOffsetRepairSha256": "133919ae95fa9f018759e5ae169c368cef322e409088087a7297eaad0562e9bb",
+    "offset": [
+      256,
+      256
+    ],
+    "mask": "Horizontal center strip,12pixel core,64pixel outer half-width, smoothstep feather; then undo cyclicxy offset",
+    "output": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-seam-v1-4x.png",
+    "outputSha256": "56e96fb1dab2d38ebc39a0ee5212a4721a5e70435f613b0439dcad5528c851f4"
+  },
+  "result": "Accept PNG authoring seam repair for Q92 encoding and subsequent review.",
+  "checks": {
+    "sourceDonorOutputHashesReverified": true,
+    "centralRows64Through447ByteIdentical": true,
+    "changedPixelFraction": 0.21265411376953125,
+    "dimensions": [
+      512,
+      512
+    ]
+  },
+  "visualFindings": [
+    "3x3 repeat reads as continuous long planks; prior straight horizontal cuts no longer obvious.",
+    "Close 128pixel wrap strip compared before/after: grain, tone and plank gaps now flow through y wrap.",
+    "No obvious doubled/ghost plank edges, artificial smeared strip or return to noisy grain. Natural fine variation retained."
+  ],
+  "evidence": [
+    {
+      "path": "/private/tmp/TF_Wood01-realistic-seam-v1-repeat.png",
+      "sha256": "671eeec25290b91dea6e1cb986dac0d24bfb505a7af35570e4d3bfc0c4a62ef5"
+    },
+    {
+      "path": "/private/tmp/quaked-texture-independent-review/wood-seam-v1-close-comparison.png",
+      "sha256": "1d7646c5fd59c81919e559337cc1d0e28e0b89be0c1550ff73e3607a970362c4"
+    }
+  ],
+  "limits": [
+    "PNG prototype only; Q92 decoded result, companions and native runtime not reviewed here.",
+    "Method may be reused for axis-specific attempts, but other assets require independent outcome inspection.",
+    "Cliff2b repair must preserve intentional y transition; do not force top/bottom equality."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Encode to exact512Q92, recheck repeats and materials; apply separately reviewed boundary repairs to held assets."
+}

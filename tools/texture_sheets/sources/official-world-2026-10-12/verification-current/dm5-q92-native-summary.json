@@ -1,0 +1,73 @@
+{
+  "qualification": "Actual native map and Q92 material proof with visible corner; dark lighting limits fine-detail appearance judgement. Corner discovery is independently reviewed, not a coplanar claim.",
+  "captures": [
+    {
+      "file": "dm5-q92-hd-far-relief.json",
+      "sha256": "e2d3e86b4a754a7ae4b277ebeb37c8592b78638688fd6548fe267e182e628ba0",
+      "kind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "state": "ready",
+      "checks": 12,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.06459587464259367,
+      "art": "hd",
+      "view": "far",
+      "relief": true
+    },
+    {
+      "file": "dm5-q92-hd-near-relief.json",
+      "sha256": "af1b4712cd9c812dc7e120a8b3974e467d3474a0a5e50734a730fdf51aa1aeb9",
+      "kind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "state": "ready",
+      "checks": 12,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.04012959598730172,
+      "art": "hd",
+      "view": "near",
+      "relief": true
+    },
+    {
+      "file": "dm5-q92-hd-oblique-relief.json",
+      "sha256": "50d57fcf9496246574dfcc7225a9792e13d0222d66e001ebd2b350775166791a",
+      "kind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "state": "ready",
+      "checks": 12,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.09842793883453249,
+      "art": "hd",
+      "view": "oblique",
+      "relief": true
+    },
+    {
+      "file": "dm5-original-far-relief.json",
+      "sha256": "6e1b1f165541aa881d6e4a12978fae716b4d680331e46a9431540dfbe0670662",
+      "kind": "corner",
+      "faces": [
+        209,
+        210
+      ],
+      "state": "ready",
+      "checks": 12,
+      "errors": [],
+      "shaderErrors": [],
+      "cameraError": 0.06459587464259367,
+      "art": "original",
+      "view": "far",
+      "relief": true
+    }
+  ]
+}

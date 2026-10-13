@@ -1,0 +1,133 @@
+
+added 19 packages, and audited 20 packages in 2s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> quaked@0.1.0 pretest:distribution
+> npm run prepare:shareware
+
+
+> quaked@0.1.0 prepare:shareware
+> node tools/distribution/prepare-shareware.mjs
+
+Verified pinned shareware build input: /private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-N2c6dG/.distribution-cache/shareware.pak
+
+> quaked@0.1.0 test:distribution
+> node --test tests/*_contract_test.mjs
+
+✔ artifact inventories enforce the original-game data boundary (0.733417ms)
+✔ web closure retains every Episode 1/hub normal and eligible custom enemy sample (222.613083ms)
+✔ desktop inventory includes all prepared map transports and no bundled original game (108.924167ms)
+✔ embedded binary codec preserves bytes across word boundaries and excludes HTML delimiters (167.633959ms)
+✔ corrupt encoded data and impossible lengths are rejected (0.310125ms)
+✔ departing peer queued sends cannot close host or prevent another peer receiving (16.276334ms)
+✔ asynchronous sends preserve peer FIFO and copy bytes before caller reuse (2.352583ms)
+✔ poll events completing after close cannot reach the driver or restart polling (2.4175ms)
+✔ late poll failure after close cannot emit fresh driver events (4.928167ms)
+✔ late send failure after close cannot manufacture another peer departure (0.633084ms)
+✔ rejected client handshake closes that client without ending an independent host (1.011458ms)
+✔ desktop catalogue validates selected split archives and preserves legacy default mounting policy (22.589958ms)
+✔ native strict selection refuses unread directories, damaged packs and absent shareware (1.508708ms)
+✔ native catalogue refuses a pack set beyond the existing bounded limit (1.034416ms)
+✔ only the parts the release lacks are uploaded; core is bundled, never uploaded (1.66025ms)
+✔ a dist/packs that is not exactly the listed parts is refused (0.322334ms)
+✔ a release asset of a part's name but another size is refused, and so is passing the asset limit (1.268ms)
+✔ the manifest is read from the built page, and a bundled build has nothing to upload (0.236292ms)
+✔ an asset a cancelled upload left incomplete is replaced, never taken as present; the result is confirmed afresh (0.194459ms)
+✔ a game needs its own pack and its ancestors; shared assets go to the nearest common ancestor (2.030708ms)
+✖ the committed game index is current and covers every playable game (12.209209ms)
+✔ each playable game finds all of its assets in its own packs (212.26625ms)
+✔ the shareware pack holds everything the HTML can start with (20.287875ms)
+✔ staged snapshot includes only index bytes and deletions, preserving working files (132.113125ms)
+✔ staged builds and tests never inherit the hook's Git environment (0.350417ms)
+✔ resampled files retain their historical 4x receipt or an explicitly verified native-refit successor (65.840083ms)
+✔ Armagon successor retains the actual before and after records rather than relabelling the old resample (0.517167ms)
+▶ missing invalid or mismatched successors cannot bypass the historical file gate
+  ✔ no successor (0.621042ms)
+  ✔ empty successor (1.290167ms)
+  ✔ wrong predecessor (0.604041ms)
+  ✔ missing recipe (0.458ms)
+  ✔ missing source record (0.757041ms)
+  ✔ different source record (0.508875ms)
+  ✔ wrong pinned model (0.6385ms)
+  ✔ wrong pinned source (0.900292ms)
+  ✔ recipe not 4x (2.490791ms)
+  ✔ record not 4x (2.712542ms)
+  ✔ missing height pin (2.962041ms)
+  ✔ wrong current height (3.723291ms)
+  ✔ wrong current dimensions despite matching hashes (2.833875ms)
+✔ missing invalid or mismatched successors cannot bypass the historical file gate (21.847917ms)
+✔ nonsuperseded rows still enforce original file hashes and resample provenance (3.754792ms)
+▶ renamed Q92 successor requires explicit safe filename, real codec and current catalogue
+  ✔ undisclosed rename (2.269958ms)
+  ✔ path escape rename (0.903458ms)
+  ✔ wrong codec despite matching hashes (4.560708ms)
+  ✔ wrong catalogue rename (2.40475ms)
+  ✔ wrong catalogue identity (2.377875ms)
+  ✔ recipe Q92 intent missing (2.08675ms)
+  ✔ SOURCE Q92 intent wrong (2.096ms)
+  ✔ runtime receipt hash wrong (3.102167ms)
+✔ renamed Q92 successor requires explicit safe filename, real codec and current catalogue (20.39425ms)
+✔ the web build ships the core and shareware packs and the shareware PAK; other games stay out of it (46.501583ms)
+✔ a site is published only with exactly the data files its HTML names, byte for byte (11.035666ms)
+✔ the verifier runs when reached through a symlink, so a CI path can never make it skip (37.991209ms)
+✔ only Bestiary pictures are re-encoded; data maps and other assets keep their bytes (10.965375ms)
+✔ a Bestiary page becomes WebP at its own size, under the limit, at the highest quality that fits, and is cached (290.055666ms)
+✔ a page that cannot fit without resizing stops the build for an owner decision (8566.667916ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 56
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10005.03475
+
+✖ failing tests:
+
+test at tests/packs_contract_test.mjs:19:1
+✖ the committed game index is current and covers every playable game (12.209209ms)
+  AssertionError [ERR_ASSERTION]: newer/packs/games.json was built from the current texture and enemy indexes (re-run tools/distribution/build_game_index.mjs)
+  + actual - expected
+  
+    {
+      modelNames: 'f9530ca65a72444ba1f5515cf5c51f81455914886d1a9d9f26181d6886cb8309',
+  +   textureNames: '37d537886485e04311a9487ae579b03238701d12adcd25ffd932fbf77410cf10'
+  -   textureNames: '0a7491c302cf3aba77f3e7fac4ce21ef2f24da9fc32da200f46029dbabe612fd'
+    }
+  
+      at TestContext.<anonymous> (file:///private/var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-N2c6dG/tests/packs_contract_test.mjs:21:9)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { textureNames: '37d537886485e04311a9487ae579b03238701d12adcd25ffd932fbf77410cf10', modelNames: 'f9530ca65a72444ba1f5515cf5c51f81455914886d1a9d9f26181d6886cb8309' },
+    expected: { textureNames: '0a7491c302cf3aba77f3e7fac4ce21ef2f24da9fc32da200f46029dbabe612fd', modelNames: 'f9530ca65a72444ba1f5515cf5c51f81455914886d1a9d9f26181d6886cb8309' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+Commit blocked. Failed staged snapshot retained at /var/folders/25/dg_v_0sd16zdy5nqwxcb1l3c0000gn/T/quaked-staged-N2c6dG
+node:internal/errors:985
+  const err = new Error(message);
+              ^
+
+Error: Command failed: npm run test:distribution
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execFileSync (node:child_process:961:15)
+    at run (file:///Users/bri/.codex/worktrees/official-textures-q92/Quaked/tools/distribution/precommit.mjs:9:44)
+    at precommit (file:///Users/bri/.codex/worktrees/official-textures-q92/Quaked/tools/distribution/precommit.mjs:29:3)
+    at async file:///Users/bri/.codex/worktrees/official-textures-q92/Quaked/tools/distribution/precommit.mjs:47:79 {
+  status: 1,
+  signal: null,
+  output: [ null, null, null ],
+  pid: 24833,
+  stdout: null,
+  stderr: null
+}
+
+Node.js v24.13.0

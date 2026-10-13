@@ -1,0 +1,41 @@
+{
+  "source": {
+    "id": "city4_8|64x64:3eb3f2adf6aa1457",
+    "name": "city4_8",
+    "key": "64x64:3eb3f2adf6aa1457",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "67d4f8d7572814e5110d678a249e9dee986dcc79907fb2c70fcdbe387723352a",
+    "original": "originals/64x64-3eb3f2adf6aa1457.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/e2m7.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 5,
+        "faces": 379,
+        "visibleCandidateFaces": 379,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "hipnotic",
+        "map": "maps/hip2m6.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Scourge of Armagon/pak0.pak",
+        "slot": 8,
+        "faces": 166,
+        "visibleCandidateFaces": 166,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "freshSnapshotSha256": "62167e768570f34dfb1bb4e9f4f405ad6019ad4226aea39db8c416fd9553e586",
+  "referenceSha256": "2c26333e46faaa5e9c87b65b48eb1cc2ccaa9627a79c621bbdceea96e98fbc44"
+}

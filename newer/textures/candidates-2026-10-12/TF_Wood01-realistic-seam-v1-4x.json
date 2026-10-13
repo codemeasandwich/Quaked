@@ -1,0 +1,14 @@
+{
+  "qualification": "Experimental seam repair, unregistered; independent review required",
+  "master": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-4x.png",
+  "masterSha256": "3987aa144958c61bbc980f350f0ad1e17a3b714af8f4912d742536e9d96cbf4c",
+  "generatedOffsetRepair": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Wood01-offset-repair-v1.png",
+  "generatedOffsetRepairSha256": "133919ae95fa9f018759e5ae169c368cef322e409088087a7297eaad0562e9bb",
+  "offset": [
+    256,
+    256
+  ],
+  "mask": "Horizontal center strip,12pixel core,64pixel outer half-width, smoothstep feather; then undo cyclicxy offset",
+  "output": "newer/textures/candidates-2026-10-12/TF_Wood01-realistic-seam-v1-4x.png",
+  "outputSha256": "56e96fb1dab2d38ebc39a0ee5212a4721a5e70435f613b0439dcad5528c851f4"
+}

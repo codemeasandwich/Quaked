@@ -35,6 +35,8 @@ test('each playable game finds all of its assets in its own packs',async()=>{
   for(const [name,level] of Object.entries(normals.levels))if(bsps.has(level.bspSha256)||ours(name.slice(0,name.indexOf(':'))))for(const key of level.keys??[])need(normals.samples[key].file,'normal sample for its level');
   const glassFiles=name=>Object.values(textures.glass?.[name]??{}).flatMap(v=>Object.values(v)).filter(f=>typeof f==='string'&&/\.(png|webp)$/.test(f));
   for(const [name,users] of Object.entries(games.textures))if(users.includes(id)){if(textures.textures[name])need('newer/textures/'+textures.textures[name],'texture '+name);if(textures.normals?.[name])need('newer/textures/'+textures.normals[name].file,'crafted normal '+name);for(const f of glassFiles(name))need('newer/textures/'+f,'glass '+name);}
+  for(const [name,byKey] of Object.entries(textures.ordinaryVariants??{}))if(games.textures[name.toLowerCase()]?.includes(id))for(const v of Object.values(byKey))
+   for(const f of [v.file,v.normal?.file,...Object.values(v.normal?.normalChannels??{})])if(f)need('newer/textures/'+f,'ordinary variant '+name);
   const shown=[];
   for(const [model,list] of Object.entries(enemies.models)){const owners=games.models['progs/'+model+'.mdl']?.[id];if(!owners)continue;
    for(const v of list)if(!v.nativeModelSha256||v.nativeModelSha256===owners){shown.push(v.dir);for(const file of Object.values(v.maps))need(`newer/enemies/${v.dir}/${file}`,'skin '+v.dir);}}
@@ -47,4 +49,18 @@ test('each playable game finds all of its assets in its own packs',async()=>{
 test('the shareware pack holds everything the HTML can start with',async()=>{
  const classify=await PackClassifier(),prefetch=await json('newer/normals/startup-prefetch.json'),normals=await json('newer/normals/manifest.json');
  for(const spec of Object.values(prefetch.levels).flat())for(const key of spec.keys)assert.ok(['core','shareware'].includes(classify(normals.samples[key].file)),`startup normal ${key} is in core or shareware`);
+});
+
+test('ordinary variant names and all companion images use their owning game packs',async()=>{
+ const textures=await json('newer/textures/index.json'),games=await json('newer/packs/games.json'),classify=await PackClassifier();
+ const owners=new Map();
+ for(const [name,byKey] of Object.entries(textures.ordinaryVariants??{})){
+  const users=games.textures[name.toLowerCase()];assert.ok(users?.length,'indexed games for '+name);
+  for(const v of Object.values(byKey))for(const f of [v.file,v.normal?.file,...Object.values(v.normal?.normalChannels??{})])if(f){
+   const shared=owners.get(f)??new Set();for(const user of users)shared.add(user);owners.set(f,shared);
+  }
+ }
+ // Exact-original aliases intentionally share images; their placement serves
+ // every alias's games, not just whichever alias was visited first.
+ for(const [file,users] of owners)assert.equal(classify('newer/textures/'+file),CommonAncestor(users),'ordinary companion pack '+file);
 });

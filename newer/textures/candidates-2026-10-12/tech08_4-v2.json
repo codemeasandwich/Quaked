@@ -1,0 +1,86 @@
+{
+  "factor": 8,
+  "detailStrength": 0.7,
+  "verticalLandmarks": [
+    [
+      0,
+      0
+    ],
+    [
+      18,
+      18
+    ],
+    [
+      25,
+      24
+    ],
+    [
+      36,
+      34
+    ],
+    [
+      49,
+      47
+    ],
+    [
+      62,
+      60
+    ],
+    [
+      75,
+      73
+    ],
+    [
+      88,
+      86
+    ],
+    [
+      101,
+      99
+    ],
+    [
+      114,
+      112
+    ],
+    [
+      120,
+      117.5
+    ],
+    [
+      128,
+      128
+    ]
+  ],
+  "projectionIterations": 13,
+  "nativeMeanMaxError": 0.15625,
+  "nativeMeanMAE": 0.028420448303222656,
+  "sourceMean": [
+    95.981201171875,
+    74.2158203125,
+    57.166259765625
+  ],
+  "outputMean": [
+    95.98125171661377,
+    74.21645545959473,
+    57.16634178161621
+  ],
+  "boundaries": {
+    "wrap_x_mean": 2.742838541666667,
+    "wrap_y_mean": 5.2099609375,
+    "interior_x_mean": 6.45166381557511,
+    "interior_y_mean": 7.078854001201531
+  },
+  "passedDistanceCheck": true,
+  "qualification": "Pixel-area fidelity check only; feature-scale, tiling, engine and owner appearance checks remain separate.",
+  "original": "docs/evidence/official-textures-2026-10-12/tech08_4-original.png",
+  "generated": "tools/texture_sheets/sources/official-world-2026-10-12/tech08_4-generated-v1.png",
+  "output": "newer/textures/candidates-2026-10-12/tech08_4-v2.png",
+  "originalSha256": "8fd09d9743aab088b07ec365a91a498fda916909ac67654e300a982c9d59097c",
+  "generatedSha256": "8ec20f9467d986b464dab54d1ea05a1abe306e399add6730a14d3261fc873f4b",
+  "outputSha256": "8e6e312ea04220044e469ea5715b8ce1ffe4ca29565a027aab3dfe8a023d4c2b",
+  "outputDimensions": [
+    1024,
+    1024
+  ],
+  "toolSha256": "69c512df2bc692259ec9dbbfab5822de3ae6b30095d2092e3b9865a3be822079"
+}

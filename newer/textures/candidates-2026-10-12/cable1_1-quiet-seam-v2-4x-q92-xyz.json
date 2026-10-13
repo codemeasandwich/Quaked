@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "cable1_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+  "originalSha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x.png",
+  "authoringDiffuseSha256": "853b7d9e7f261bb3f4f61880cc96a36fdd242c827c7aee0b85bdc0003062988b",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+      "sha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba",
+      "bytes": 5868,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+      "sha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83",
+      "bytes": 10994,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+      "sha256": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b",
+      "bytes": 7646,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+      "sha256": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d",
+      "bytes": 8710,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp",
+      "sha256": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d",
+      "bytes": 2112,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 13.07421875,
+  "distanceMaximum": 41.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 6.16796875,
+  "secondaryDistanceMaximum": 22.0,
+  "colourCompressionMAE": 1.2831573486328125,
+  "heightCompressionMAE": 1.0829010009765625,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.766603258805628,
+  "normalAngularP99": 2.1194553670463203,
+  "normalAngularMaximum": 4.658772194869599,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

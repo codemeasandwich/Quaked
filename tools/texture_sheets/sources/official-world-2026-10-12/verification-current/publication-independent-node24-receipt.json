@@ -1,0 +1,31 @@
+{
+  "qualification": "Independent public-interface verification in isolated ordinary-texture publication tree; not a build, push, visual acceptance or excluded glass migration qualification",
+  "workspace": "/Users/bri/.codex/worktrees/official-textures-q92/Quaked",
+  "head": "eb523c80dafc5433898e98c26ca6eb481dc8658b",
+  "node": "v24.19.0",
+  "gameRoot": "/Users/bri/quaked",
+  "result": "27/27 passed, 0 skipped",
+  "exitCode": 0,
+  "files": {
+    "newer/textures/index.json": "e35644be527818be967f46294f8b8da14506f82b3f72fade37f41828617f65a3",
+    "src/newer/render/r_newertextures.js": "5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246",
+    "tools/build_texture_sources.mjs": "ef903bfa02cd3d90f52db91981842393991061b42317f0770544337911d367c6",
+    "tools/texture_sheets/encode_official_maps.py": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+    "tools/craft_normals.py": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+    "tests/texture_identity_variants_test.js": "11d15ce7c5c5bbd36dd839efbb5cb790e62cf59cf9f4e5d57cbc8804736e43e7",
+    "tests/texture_source_builder_test.js": "7a529124170557ebc253c7c4fd0653f820c766651e7cd7cb177ee5d4f4ad0a81",
+    "tests/official_texture_registration_test.js": "34fde849d80c68980724b34ec0f76151d2756b4516885c50363390392126cced",
+    "tests/official_texture_q92_test.js": "08311ea8556880eaffc4790868ede68d472461f51dd13d9fad2389e63e823061",
+    "tests/official_texture_expansion_test.js": "d5c6c65732c8f8b73d97194df62ac8a3cae5c643d1bab9454ae9497d6d95fa3a",
+    "tests/official_texture_masonry_test.js": "fb6fb2f762c019a4824f98f560dd1cb7149deb1640fa10a42c4fd7d9bdf05b0f",
+    "tools/texture_sheets/sources/official-world-2026-10-12/verification-current/publication-independent-node24-tests.txt": "0e364c51c1ec73ae6bec8c337be873b2a781d17cbbe5a0a981f042c602f29c7d"
+  },
+  "priorAttempt": "publication-independent-tests.txt retained; system Node20.8.1 failed import.meta.dirname in five suites; overall exit1 despite identity9/9",
+  "glassPreservation": {
+    "baseline": "eb523c80dafc5433898e98c26ca6eb481dc8658b",
+    "names": 110,
+    "materials": 130,
+    "files": 659
+  },
+  "limitation": "Loader must be rerun after planned removal of unused glassOpening/composeOutsideGlass paths; this run used loader 5aabea2d4c5e713ae1c81cf4e606ef3b387ce98bcca0b6e293719a7cded32246"
+}

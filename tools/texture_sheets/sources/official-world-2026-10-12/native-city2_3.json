@@ -1,0 +1,74 @@
+{
+  "source": {
+    "id": "city2_3|64x64:2129a131b015141b",
+    "name": "city2_3",
+    "key": "64x64:2129a131b015141b",
+    "width": 64,
+    "height": 64,
+    "pixelSha256": "7b0d51610e99a37a8d47a89774d30932bbfccdc0d763c639e3c37d988155f781",
+    "original": "originals/64x64-2129a131b015141b.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "id1",
+        "map": "maps/dm5.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 3,
+        "faces": 447,
+        "visibleCandidateFaces": 447,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/dm7.bsp",
+        "scope": "installed-extra-review",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 30,
+        "faces": 19,
+        "visibleCandidateFaces": 19,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "id1",
+        "map": "maps/e4m8.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Quake/pak0.pak",
+        "slot": 0,
+        "faces": 1815,
+        "visibleCandidateFaces": 1809,
+        "hiddenTriggerFaces": 6,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge2m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 56,
+        "faces": 128,
+        "visibleCandidateFaces": 128,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge2m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 47,
+        "faces": 4302,
+        "visibleCandidateFaces": 4302,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "freshSnapshotSha256": "62167e768570f34dfb1bb4e9f4f405ad6019ad4226aea39db8c416fd9553e586",
+  "referenceSha256": "73ee4ed5b58f823890c316a925ca5b070a9672085306c5a26ce668107917b636"
+}

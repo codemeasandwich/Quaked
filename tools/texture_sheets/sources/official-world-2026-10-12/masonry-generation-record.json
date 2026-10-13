@@ -1,0 +1,214 @@
+{
+  "state": "Four material trials, six proposed names; no registration yet",
+  "records": [
+    {
+      "name": "city6_8",
+      "reference": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+      "referenceSha256": "4bc60a1876f96405b9f45992f56a5e82aa20bb80fb263424eab790ca176d2347",
+      "referenceTransform": "native64",
+      "candidate": {
+        "file": "candidates-2026-10-12/city6_8-photographic.png",
+        "height": "candidates-2026-10-12/city6_8-photographic-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.3,
+        "cap": 0.5,
+        "diffuseSha256": "fce7d66e627f47c5295226e94e41c007cf376fd05a2399e96e6c3bfdbb1c7cd0",
+        "heightSha256": "42991f96d76539f3521424a75f71266e2e7c356dd253f7eb5db3cc783e65ae9d",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city6_8.png",
+        "originalSha256": "4bc60a1876f96405b9f45992f56a5e82aa20bb80fb263424eab790ca176d2347",
+        "nativeKey": "64x64:3300e41335b7e451",
+        "method": "photographic"
+      },
+      "attempts": [
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/city6_8-generated-v1.png",
+          "rawSha256": "f1efa601f08d8335aedaa0b2dd044c35eace81ed1e33f04d6d5a88d93093023a",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/city6_8-prompt.txt",
+          "promptSha256": "9cd1808956b411a991d78dea41822c06887e92afd59a968d7df9601b2ce75775",
+          "tool": "built-in GPT image_gen",
+          "state": "material trial"
+        }
+      ],
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      },
+      "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c"
+    },
+    {
+      "name": "city4_2",
+      "reference": "tools/texture_sheets/sources/official-world-2026-10-12/city4_2-layout-reference-512.png",
+      "referenceSha256": "ee62321d5b057949e15b233132ad1f5eb7e49fa2764709e588b64ecadec369aa",
+      "referenceTransform": "nearest8x layout cue; native64 remains fidelity authority",
+      "candidate": {
+        "file": "candidates-2026-10-12/city4_2-photographic-v2.png",
+        "height": "candidates-2026-10-12/city4_2-photographic-v2-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.3,
+        "cap": 0.5,
+        "diffuseSha256": "e1a4f1d89cb445d5b0929a1163a76efb9bfc75a416af470c9054fa56d96493c4",
+        "heightSha256": "83e82bbb16dfd1e1c1a5d711b0126a9d3dce08bf5142360bf4cf942a4b8498b9",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_2.png",
+        "originalSha256": "608b008142b8695a0593d42e500cc55accdc3edbf76ddbe64fb489edf28db72f",
+        "nativeKey": "64x64:0621dd3e82b96b24",
+        "method": "photographic"
+      },
+      "attempts": [
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/city4_2-generated-v1.png",
+          "rawSha256": "d3640a23a4007f2bd8fa03ed79c939f35706b71ed2e3540eb3e64b1e07929657",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/city4_2-prompt.txt",
+          "promptSha256": "9b05ed4175a3aab9418923f5b4a91c1830d7fef8d931b351348d1f02ae615220",
+          "tool": "built-in GPT image_gen",
+          "state": "rejected: wrong masonry course count and stone scale"
+        },
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/city4_2-generated-v2.png",
+          "rawSha256": "5c5dad8534399755f23be9a58bd3567853cbbb66b30522c87e485dd622fff884",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/city4_2-v2-prompt.txt",
+          "promptSha256": "9e6d061693cea81b448d5b8037724cd3c5a5874da9c7df2839b6c29b35d5c0ad",
+          "tool": "built-in GPT image_gen",
+          "state": "material trial"
+        }
+      ],
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      },
+      "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c"
+    },
+    {
+      "name": "city4_8",
+      "reference": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-layout-reference-512.png",
+      "referenceSha256": "73b416136262742896453b99fb3d73001f72f5db75c3bbf221744a7912afa6f8",
+      "referenceTransform": "nearest8x layout cue; native64 remains fidelity authority",
+      "candidate": {
+        "file": "candidates-2026-10-12/city4_8-photographic-joints-v2.png",
+        "height": "candidates-2026-10-12/city4_8-photographic-joints-v2-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.3,
+        "cap": 0.5,
+        "diffuseSha256": "0c9ebb100794063659e2334d2bac2b156c9d79ddbcf0b6eec2c1fb7fda3a5ca2",
+        "heightSha256": "59215c513acb625f63f157ab7b19b4731f2af6ce2865fbd6e8953528c2b80b5d",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city4_8.png",
+        "originalSha256": "2c26333e46faaa5e9c87b65b48eb1cc2ccaa9627a79c621bbdceea96e98fbc44",
+        "nativeKey": "64x64:3eb3f2adf6aa1457",
+        "method": "photographic"
+      },
+      "attempts": [
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-generated-v1.png",
+          "rawSha256": "fe560361aa5572d2735e71e4fccb93ea7ca327a2e8d9577385da89f117166e75",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-prompt.txt",
+          "promptSha256": "972c57f7f9e1e291e6cc613908d483dd74f0b9f0e4bec706fb97fda33dac3377",
+          "tool": "built-in GPT image_gen",
+          "state": "rejected: wrong masonry course count and stone scale"
+        },
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-generated-v2.png",
+          "rawSha256": "506e42f53b1d1dceaa101d1b804adf3c77e7fd3e556844a5368e908bdbecd9e5",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-v2-prompt.txt",
+          "promptSha256": "a977d92ccc27011901372a52c701be45db338c7acf2a0cbeea2ef2273039b102",
+          "tool": "built-in GPT image_gen",
+          "state": "held: three original vertical mortar joints omitted"
+        },
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-generated-v3.png",
+          "rawSha256": "4a3736bcda1523f2eb14d6bc76cbebfb1d94d4ae2a9337dc02fa973b4197a6a2",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-v3-prompt.txt",
+          "promptSha256": "0a1ca284c37c590519ffb38741bda63708564d07faf6a86cec6f09c7cbc6e8dc",
+          "tool": "built-in GPT image_gen",
+          "state": "joint strip donor only; raw output lost other original joints"
+        }
+      ],
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      },
+      "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+      "jointRestorationReceipt": "tools/texture_sheets/sources/official-world-2026-10-12/city4_8-joint-patches-v2.json"
+    },
+    {
+      "name": "bricka2_4",
+      "reference": "tools/texture_sheets/sources/official-world-2026-10-12/bricka2_4-layout-reference-512.png",
+      "referenceSha256": "f807c80011b6eb4f1b3e857ece439903fe9202ce284d3023a41ddb5f3be16035",
+      "referenceTransform": "nearest8x layout cue; native64 remains fidelity authority",
+      "candidate": {
+        "file": "candidates-2026-10-12/bricka2_4-photographic-v2.png",
+        "height": "candidates-2026-10-12/bricka2_4-photographic-v2-height.webp",
+        "width": 512,
+        "heightPixels": 512,
+        "strength": 0.3,
+        "cap": 0.5,
+        "diffuseSha256": "163b4bd1bd6f683675aea1bc285cb5c9655083966537ef5317de932bf8932703",
+        "heightSha256": "e4f20fafd6e3cd8b87d4dd9185c644d491d86d9f994c18ed4d04b7b5541c6c3d",
+        "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-bricka2_4.png",
+        "originalSha256": "7b957baafff66a9f86b20b43889f2db52634b1b1a9654af520ea91beca44069a",
+        "nativeKey": "64x64:4b2a165efc1a200c",
+        "method": "photographic"
+      },
+      "attempts": [
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/bricka2_4-generated-v1.png",
+          "rawSha256": "f59f735f974b9a2cb7dc72d83c451191eb842663ad4755db23f63670eb3bdc92",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/bricka2_4-prompt.txt",
+          "promptSha256": "e5a31da34d5aac1de4bd200562423876e61191cc591241c7e64e51c457511d52",
+          "tool": "built-in GPT image_gen",
+          "state": "rejected: wrong masonry course count and stone scale"
+        },
+        {
+          "raw": "tools/texture_sheets/sources/official-world-2026-10-12/bricka2_4-generated-v2.png",
+          "rawSha256": "ac72d18460b40f8969049e02eca860c0bdb0dcd539d3181942d324fb27eaa05f",
+          "prompt": "tools/texture_sheets/sources/official-world-2026-10-12/bricka2_4-v2-prompt.txt",
+          "promptSha256": "675a818073eb58e0fa21d040d4013af0ba7d03d85c0197b19940279d04019961",
+          "tool": "built-in GPT image_gen",
+          "state": "material trial"
+        }
+      ],
+      "heightProfile": {
+        "bands": [
+          0.35,
+          1,
+          1.4,
+          1
+        ],
+        "groove": 1.4,
+        "bump": 0.7,
+        "glow": 0,
+        "strength": 0.3,
+        "cap": 0.5
+      },
+      "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c"
+    }
+  ]
+}

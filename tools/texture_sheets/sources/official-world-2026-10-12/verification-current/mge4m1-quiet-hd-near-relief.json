@@ -1,0 +1,2700 @@
+{
+  "schema": 1,
+  "state": "ready",
+  "priorFailedSetup": "E1M1 was rejected: the bundled runtime map lacks tech08_3. Registered-pack E1M1 faces1115/1125 were not the active game map. This fixture now uses actual E2M1 and discovers its own join.",
+  "qualification": "Candidate-only actual-level trial; visual acceptance and other-map coverage remain separate.",
+  "art": "hd",
+  "relief": true,
+  "view": "near",
+  "sceneFrames": 6941,
+  "errors": [],
+  "checks": [
+    {
+      "passed": true,
+      "label": "TF_Metal_02: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal_02: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal_02: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal_02: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "metal1_2c: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "metal1_2c: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "metal1_2c: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "metal1_2c: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal4_6a: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal4_6a: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal4_6a: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal4_6a: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "cable1_1: trial specification present"
+    },
+    {
+      "passed": true,
+      "label": "cable1_1: candidate file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "cable1_1: height file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "cable1_1: original reference file SHA256 matches"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal_02: present in maps/mge4m1.bsp"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal_02: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "metal1_2c: present in maps/mge4m1.bsp"
+    },
+    {
+      "passed": true,
+      "label": "metal1_2c: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal4_6a: present in maps/mge4m1.bsp"
+    },
+    {
+      "passed": true,
+      "label": "TF_Metal4_6a: actual native identity matches candidate authority"
+    },
+    {
+      "passed": true,
+      "label": "cable1_1: present in maps/mge4m1.bsp"
+    },
+    {
+      "passed": true,
+      "label": "cable1_1: actual native identity matches candidate authority"
+    }
+  ],
+  "materials": [
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "cable1_1",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "f14a4592-3a21-4cd2-b2a0-57c9d2ad7fcc",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "upgraded": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "drawDimensions": [
+        512,
+        512
+      ],
+      "normal": "cae7b68c-02e3-4d0c-affd-b9d1c17c1047",
+      "normalDimensions": [
+        512,
+        512
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "metal1_2c",
+      "upgraded": true,
+      "dimensions": [
+        256,
+        256
+      ],
+      "drawDimensions": [
+        256,
+        256
+      ],
+      "normal": "7bebd7cd-d989-4ae1-bd95-00d2c01699db",
+      "normalDimensions": [
+        256,
+        256
+      ],
+      "material": "MeshLambertMaterial",
+      "repeat": [
+        1,
+        1
+      ],
+      "offset": [
+        0,
+        0
+      ]
+    }
+  ],
+  "fixture": {
+    "game": "mg1",
+    "map": "mge4m1",
+    "aliases": [
+      "TF_Metal_02",
+      "metal1_2c",
+      "TF_Metal4_6a",
+      "cable1_1"
+    ]
+  },
+  "candidates": {
+    "TF_Metal_02": {
+      "file": "candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/TF_Metal_02-quiet-seam-v2-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "3df19db6be324d156efa493289ca2ab3bbc538c836107825f9de2d31d4c8f0a1",
+        "y": "281b16fda8026238cc60e0d6240867931fbfd1b28e807de0aa25358805e9e130",
+        "z": "b20a41b9dceb5c434424ef6913aa0cbdaedad26cd923ca2b4fc8c71039d0e628"
+      },
+      "width": 512,
+      "heightPixels": 512,
+      "strength": 0.12,
+      "cap": 0.5,
+      "diffuseSha256": "366f73a0110416bb1c409436b7e2fbb56517b6930535eab28f11ae7bd49a8946",
+      "heightSha256": "20a565185e9f05ce6e4382e2c59967ad184eec789a01b99c6862daac06aabe34",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+      "originalSha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0",
+      "nativeKey": "128x128:6b357bb99759b7db",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "quiet-photographic",
+      "expectedNativeIdentity": "128x128:6b357bb99759b7db"
+    },
+    "metal1_2c": {
+      "file": "candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/metal1_2c-quiet-seam-v2-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "723724b62d1b21eee160fb4ff2d98a4df3124f786bf7e8fe170c4977119c63ff",
+        "y": "75a55eb64b91014abe9abba973f33022cdd8016f7f57adcc9f7ca58ae7f43c05",
+        "z": "2ddbcec8ca73ba0963fc09ea05f58ff2b8d78cf3f0d2c498da3c650832ad7934"
+      },
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.25,
+      "cap": 0.5,
+      "diffuseSha256": "84feed61e3251010e5032dcb33f11de9de2a7fe65f6e84ba3eee8bca922c823f",
+      "heightSha256": "43354bfbf4bd9b4a8e490833a50fa3af2cc6e48d00a353e5a328740712de4e5f",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+      "originalSha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392",
+      "nativeKey": "64x64:dd3e42851935951f",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "quiet-photographic",
+      "expectedNativeIdentity": "64x64:dd3e42851935951f"
+    },
+    "TF_Metal4_6a": {
+      "file": "candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/TF_Metal4_6a-quiet-seam-v2-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "971c0bcbc8722c5726f4d1ab28a49b9d612a819b163eb20c3dcfb27a9bf21aed",
+        "y": "b3adb79ea3c87916a903fe233d7d649c909fd0cc7a076c59f85e13aeb864ba4d",
+        "z": "716f941915ff2788d8604d3377a1f1a53d07eda84a8f753778049d5b63d9a1df"
+      },
+      "width": 512,
+      "heightPixels": 512,
+      "strength": 0.2,
+      "cap": 0.5,
+      "diffuseSha256": "72b42f150ffdb931853b1d1348e2036d35941bf4443b5219d1c228441949b360",
+      "heightSha256": "6173125f720a260b15bdc9cb5e435a0a88919c9a236e29a8b014328b45b7bd85",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+      "originalSha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65",
+      "nativeKey": "128x128:fc84e0f963258783",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "quiet-photographic",
+      "expectedNativeIdentity": "128x128:fc84e0f963258783"
+    },
+    "cable1_1": {
+      "file": "candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-diffuse.webp",
+      "height": "candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-height.webp",
+      "normalChannels": {
+        "x": "candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalX.webp",
+        "y": "candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalY.webp",
+        "z": "candidates-2026-10-12/cable1_1-quiet-seam-v2-4x-q92-xyz-normalZ.webp"
+      },
+      "normalChannelSha256": {
+        "x": "487e33d865049595cf3f4945500cb986773f53965735354fd99762d81ddcd07b",
+        "y": "e8f4791ccd484a7be18a5fd728489a1659944f2c0877dbad2b123b69993a0a6d",
+        "z": "b54d04fe305aa2156fbe50f021c3d7fc1b11bdcf9201d9699502acbea69f198d"
+      },
+      "width": 256,
+      "heightPixels": 256,
+      "strength": 0.2,
+      "cap": 0.5,
+      "diffuseSha256": "2f185c6a2fb7817652bf91ee533f7d7760a6b22c6a4dc57a7b3eb1080de6fcba",
+      "heightSha256": "c743b79d5e75e53fd9ffe35410c68a67aab97e9b94753ec3855ca1445eb46f83",
+      "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+      "originalSha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02",
+      "nativeKey": "64x64:2f8eb5151663ac6f",
+      "factor": 4,
+      "quality": 92,
+      "lossless": false,
+      "method": "quiet-photographic",
+      "expectedNativeIdentity": "64x64:2f8eb5151663ac6f"
+    }
+  },
+  "assetRouting": "Page-local loose Newer assets; native PAK routing unchanged",
+  "presentationIsolation": "Page-local Bestiary observation disabled to preserve the measured camera; no journal reset; restored on stop",
+  "shaderErrors": [],
+  "actualEye": [
+    -1479.96875,
+    544.03125,
+    -31.96875
+  ],
+  "framebuffer": {
+    "scene": [
+      2562,
+      1440
+    ],
+    "display": [
+      2560,
+      1440
+    ]
+  },
+  "signon": 4,
+  "serverTime": 430.11010000000005,
+  "hdr": 1,
+  "map": {
+    "name": "maps/mge4m1.bsp",
+    "sha256": "9c2711cd7cfababcc8b5620888c09dd7dffaf6d284c1c36eb0510650669b96fd",
+    "faces": 71470
+  },
+  "join": {
+    "kind": "coplanar",
+    "faces": [
+      55595,
+      55596
+    ],
+    "points": [
+      [
+        -1480,
+        496,
+        -96
+      ],
+      [
+        -1480,
+        496,
+        32
+      ]
+    ],
+    "center": [
+      -1480,
+      496,
+      -32
+    ],
+    "surfaceNormals": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ]
+    ],
+    "viewDirection": [
+      0,
+      1,
+      0
+    ],
+    "interiorProbes": [
+      [
+        -1482,
+        496,
+        -32
+      ],
+      [
+        -1477.6,
+        496,
+        -32
+      ]
+    ],
+    "views": {
+      "near": [
+        -1480,
+        544,
+        -32
+      ],
+      "far": [
+        -1480,
+        640,
+        -32
+      ],
+      "oblique": [
+        -1480,
+        560,
+        0
+      ]
+    },
+    "length": 128,
+    "textures": [
+      {
+        "face": 55595,
+        "name": "TF_Metal4_6a",
+        "identity": "128x128:fc84e0f963258783",
+        "s": [
+          0,
+          0,
+          -1,
+          -83
+        ],
+        "t": [
+          -1,
+          0,
+          0,
+          8
+        ]
+      },
+      {
+        "face": 55596,
+        "name": "metal1_2c",
+        "identity": "64x64:dd3e42851935951f",
+        "s": [
+          0,
+          0,
+          -1,
+          -41.372398376464844
+        ],
+        "t": [
+          -1,
+          0,
+          0,
+          24
+        ]
+      }
+    ],
+    "alternatives": 2
+  },
+  "requestedView": {
+    "eye": [
+      -1480,
+      544,
+      -32
+    ],
+    "target": [
+      -1480,
+      496,
+      -32
+    ],
+    "angles": [
+      0,
+      -90,
+      0
+    ]
+  }
+}

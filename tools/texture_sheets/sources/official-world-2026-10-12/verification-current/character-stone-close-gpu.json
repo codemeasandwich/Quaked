@@ -1,0 +1,125 @@
+{
+  "qualification": "Candidate-only material/source trial. No gameplay catalogue edit or owner appearance acceptance.",
+  "manifest": "character-trial.json",
+  "checks": [
+    {
+      "passed": true,
+      "label": "Image available: tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: tools/texture_sheets/sources/official-world-2026-10-12/native-wstone_03_JM.png"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-diffuse.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-height.webp"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: height image dimensions"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalX.webp"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: x normal component dimensions"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalY.webp"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: y normal component dimensions"
+    },
+    {
+      "passed": true,
+      "label": "Image available: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "Image SHA matches trial: newer/textures/candidates-2026-10-12/wstone_03_JM-character-seam-v3-4x-q92-xyz-normalZ.webp"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: z normal component dimensions"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: four-times native dimensions"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: actual native identity matches"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: public loader selected candidate"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: original image preserved"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: full candidate resolution"
+    },
+    {
+      "passed": true,
+      "label": "wstone_03_JM: prepared normal dimensions"
+    }
+  ],
+  "assets": {
+    "wstone_03_JM": {
+      "native": [
+        256,
+        256
+      ],
+      "candidate": [
+        1024,
+        1024
+      ],
+      "normal": [
+        1024,
+        1024
+      ],
+      "sourceIdentity": "256x256:685e88a59ef2729f",
+      "normalHeightSource": true
+    }
+  },
+  "shaderErrors": [],
+  "lastDraw": {
+    "name": "wstone_03_JM",
+    "view": "512",
+    "comparisonDimensions": [
+      512,
+      512
+    ],
+    "repeat": 1,
+    "relief": true,
+    "material": "MeshLambertMaterial",
+    "drawCalls": 1
+  }
+}

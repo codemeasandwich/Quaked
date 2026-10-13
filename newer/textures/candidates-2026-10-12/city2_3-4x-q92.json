@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "name": "city2_3",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-city2_3.png",
+  "originalSha256": "73ee4ed5b58f823890c316a925ca5b070a9672085306c5a26ce668107917b636",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/city2_3-photographic-4x.png",
+  "authoringDiffuseSha256": "897be60796c1da678ad678b2cdba9e569c174bafff08188c04300d53ea83ee7d",
+  "toolSha256": "cfe6baeb0e59ec254ac904b7d97e366422391fe2a17680a466bf1c4ec3d67bfc",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.35,
+      1,
+      1.4,
+      1
+    ],
+    "groove": 1.4,
+    "bump": 0.7,
+    "glow": 0,
+    "strength": 0.3,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-diffuse.webp",
+      "sha256": "3251d9fd22fed613933d06181541c6fab5de4f1f7571d3042f69156bf6b74126",
+      "bytes": 30806,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-height.webp",
+      "sha256": "44a9c5283f24827b5f28f77cc877e586bed11693de6d0befe7fe6ab6a65e94d5",
+      "bytes": 28274,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normal": {
+      "file": "newer/textures/candidates-2026-10-12/city2_3-4x-q92-normal.webp",
+      "sha256": "d49eeaf7b0acd815fadb3a911e495acd0400c11de377876e632f5bad1471fd96",
+      "bytes": 29968,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDimensions": [
+    16,
+    16
+  ],
+  "quarterMAE": 6.2890625,
+  "quarterMaximum": 25.0,
+  "colourCompressionMAE": 2.625086466471354,
+  "heightCompressionMAE": 1.40460205078125,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 5.123488751605471,
+  "normalAngularP99": 14.67232657391667,
+  "normalAngularMaximum": 26.29613011811537,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

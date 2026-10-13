@@ -1,0 +1,373 @@
+{
+  "schema": 1,
+  "createdAt": "2026-10-13T16:19:46.142842+00:00",
+  "reviewer": "texture_plan independent subagent",
+  "scope": "Read-only independent actualdecodedQ92 full/half/quarter/repeat visual review, phase measurements, recipehash andcompaniondimension checks. No generation/integration/index/engine edits.",
+  "authority": "Owner wants photographic realism without grain/dither, preserved meaningful source layout and tile continuity; scalar resemblance metrics are not acceptance.",
+  "result": "All4 HOLD for specific repeat crop defects. Quiet photographic material and feature counts are acceptable directions; do not revert to grain.",
+  "rows": [
+    {
+      "name": "TF_Metal_02",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal_02.png",
+          "sha256": "09262a1d456a477a22e28c74b754010f1724270602d9ba1648bd8b2d3f3da7c0",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "738fbb8e2de3ba748ce93cb395af60c043feeefbd1c266adf09102e49eff3a84",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "materialAndStructure": "Quiet continuous blue-grey steel with restrained broad oxidation and scratches, no added seams/rivets. Photographic direction acceptable.",
+      "blockingFinding": "HOLD: visible rectangular tonal grid at both x/y repeat boundaries; repair edge continuity without adding grain or new panel boundaries.",
+      "disposition": "HOLD for repeat-boundary correction; preserve quiet photographic direction",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x.json",
+        "sha256": "b505180e6587353568fb51faa416a97ae2cc587881b2511192082874948e1cb9",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal_02-generated-realistic-v1.png"
+      },
+      "recipeSourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "738fbb8e2de3ba748ce93cb395af60c043feeefbd1c266adf09102e49eff3a84",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x-q92-xyz-height.webp",
+          "sha256": "02ac7db990ea83b6c3eabd8f57cb7a2c86a9c2df90699e4c2fcfa38634f636bc",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x-q92-xyz-normalX.webp",
+          "sha256": "7e00845b8ba878b426fc1942464ba64c396b82dbaa02b6919bf081740655d419",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x-q92-xyz-normalY.webp",
+          "sha256": "4d007c912ae9268a08a2f1b691e43d75fde6c2b2f11037b8fd6f2aef6dc91f7e",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal_02-quiet-4x-q92-xyz-normalZ.webp",
+          "sha256": "1d165a8eb757eb7c7130c8bbe51926726a46bbf160ec77d42ed1c520a5ac0798",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "comparisonEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal_02-quiet-comparison.png",
+        "sha256": "f753bba63677eb203f96cbb166309800cd72c937fe843d64643999f4e345c502"
+      },
+      "repeatEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal_02-quiet-repeat.png",
+        "sha256": "830d559aa0a4ce3dd4f9effc651cfd52ee27120ad736f03b54fbe6a0031c247e"
+      }
+    },
+    {
+      "name": "metal1_2c",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-metal1_2c.png",
+          "sha256": "0fe7879c848c0b2fd04d2e1ff3665a01f25c6df3fea8eb895f42dc80a1985392",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "95316dd94311877339b42db463fa3f6c01c85392158a88f46734e171c8d93bbf",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "materialAndStructure": "Four alternating riveted/plain bands; four rows of eight rivets,32total. Dark brown continuous faces and plausible small heads.",
+      "blockingFinding": "HOLD: vertical tone/texture cuts through continuous horizontal bands at x wrap. Keep band/rivet phase and quiet centers while repairing.",
+      "disposition": "HOLD for repeat-boundary correction; preserve quiet photographic direction",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x.json",
+        "sha256": "0e5b0233300349178018459503f5fc458d7fe23b862a7a90451f73db2f6a4ba7",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/metal1_2c-generated-realistic-v1.png"
+      },
+      "recipeSourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "95316dd94311877339b42db463fa3f6c01c85392158a88f46734e171c8d93bbf",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x-q92-xyz-height.webp",
+          "sha256": "9ad62d2c7f9c1bf58995f68a31a01a90b7aac3650dd53af73d654933069ff60d",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x-q92-xyz-normalX.webp",
+          "sha256": "fb7550f8f3c404b8f898eed022dac04b6179a0a677ab689d7befd7fa6ee7ca6e",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x-q92-xyz-normalY.webp",
+          "sha256": "27c01760be4dc52d3d9b998248bfa5ad8d0a55b2da0b79cf62207c764fcfc6ea",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/metal1_2c-quiet-4x-q92-xyz-normalZ.webp",
+          "sha256": "b093fa53b0f5d6010c9253a547d90a148091a87d266f944b4e6aa1041045a62c",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "comparisonEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/metal1_2c-quiet-comparison.png",
+        "sha256": "849429aeb2b819eef515ebf3fc00d5f555db53ca1bae5a151a36a6a4bb4108f1"
+      },
+      "repeatEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/metal1_2c-quiet-repeat.png",
+        "sha256": "981ede9610f42b6e87a226ec01058df5a353e7d9b568c4405797bcc487bbe8b7"
+      }
+    },
+    {
+      "name": "TF_Metal4_6a",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_Metal4_6a.png",
+          "sha256": "e5b6e7427abaa18a78136b0f442b92fa50063454fb8eb3cd35aff04b35e1da65",
+          "dimensions": [
+            128,
+            128
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "d6cef2305a80c1ea43812de7cd1efe938e451e578b121d6de621f2f518a59229",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "materialAndStructure": "Eight plain horizontal strips with correct nominal16native-pixel pitch, restrained seams and quiet brownmetal.",
+      "blockingFinding": "HOLD: vertical crop cuts through continuous strips at x wrap. Preserve existing structural horizontal seams; no new vertical panel joints.",
+      "disposition": "HOLD for repeat-boundary correction; preserve quiet photographic direction",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x.json",
+        "sha256": "4b769024c300241c1c9e94904d2b9491e652e030eaae6e56560e4d74da780b44",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/TF_Metal4_6a-generated-realistic-v1.png"
+      },
+      "recipeSourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "d6cef2305a80c1ea43812de7cd1efe938e451e578b121d6de621f2f518a59229",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x-q92-xyz-height.webp",
+          "sha256": "4cd29ded5f7f6a6b4747a0d46d15b593682797aa96f433b66e2722376c9bf6f6",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x-q92-xyz-normalX.webp",
+          "sha256": "15fa551cbc856e541f20d31c68f2be2b3247752e803353cde392e37eed25ab67",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x-q92-xyz-normalY.webp",
+          "sha256": "911ba8a40700944b211f27ee534a1c1cfadbb873e7b646acc74c9a26a50ac4de",
+          "dimensions": [
+            512,
+            512
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/TF_Metal4_6a-quiet-4x-q92-xyz-normalZ.webp",
+          "sha256": "9514bbd159648fe1500fd7e48e82226acba999479e8770c8daaf61869fcb69ac",
+          "dimensions": [
+            512,
+            512
+          ]
+        }
+      },
+      "comparisonEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal4_6a-quiet-comparison.png",
+        "sha256": "a0058b554375e5cf7933baada7cbfa12421a2ad338fafe07ee42f2f7bc98a7d1"
+      },
+      "repeatEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/TF_Metal4_6a-quiet-repeat.png",
+        "sha256": "020866b82a872d263e21ba8e94c3a89bfe841b2194dc2335d7ca492cf75c3633"
+      }
+    },
+    {
+      "name": "cable1_1",
+      "inputs": {
+        "native": {
+          "path": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+          "sha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02",
+          "dimensions": [
+            64,
+            64
+          ]
+        },
+        "new": {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "f386e151f09103220c39bb04c90a863794f6219a05e82d0dbcff7465874cfcb9",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "materialAndStructure": "Eleven visible crest phases confirmed in actualdecodedQ92, within0.25nativepixel of measuredtarget. Smooth cylindrical/rib detail and subdued grey-brown material avoid source dither.",
+      "blockingFinding": "HOLD: vertical tone/highlight cuts across continuous cables at x wrap. Preserve intentional partial-edge verticalphase while repairing horizontal continuity.",
+      "disposition": "HOLD for repeat-boundary correction; preserve quiet photographic direction",
+      "recipe": {
+        "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x.json",
+        "sha256": "c619c2e13931e9fe412c1989046937c6f599addc1e11580addb603875edef59d",
+        "generated": "tools/texture_sheets/sources/official-world-2026-10-12/cable1_1-generated-phase-v3.png"
+      },
+      "recipeSourceDonorOutputHashesReverified": true,
+      "runtimeFiles": {
+        "diffuse": {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-diffuse.webp",
+          "sha256": "f386e151f09103220c39bb04c90a863794f6219a05e82d0dbcff7465874cfcb9",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "height": {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-height.webp",
+          "sha256": "29ee491c5f5ee37fafe89c12af116e78dbfa2a6cce403c3de1bd53228103b0cf",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalX": {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-normalX.webp",
+          "sha256": "3ea848717adfd766948082d59cc74388b256541b5318d76b83c3973457aab05c",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalY": {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-normalY.webp",
+          "sha256": "5efdf872f719b058f3962ea3a0c01986d581ba022561bd0b5dbe4550acf9d01b",
+          "dimensions": [
+            256,
+            256
+          ]
+        },
+        "normalZ": {
+          "path": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-normalZ.webp",
+          "sha256": "c5dc623cd6501df5d46b436d04205e21490ea51eccd1d58334cfa5075ac72bbf",
+          "dimensions": [
+            256,
+            256
+          ]
+        }
+      },
+      "comparisonEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/cable1_1-quiet-comparison.png",
+        "sha256": "c28a9a0657af7974e5082edda672b0430e0af192a09cfc663795d4b8a58a0a4d"
+      },
+      "repeatEvidence": {
+        "path": "/private/tmp/quaked-texture-independent-review/cable1_1-quiet-repeat.png",
+        "sha256": "ea12cf4b012634c804bac957732bfce66d77e5ca4b578cc29c3f1bd4e9048219"
+      }
+    }
+  ],
+  "cablePhaseReview": {
+    "receipt": "tools/texture_sheets/sources/official-world-2026-10-12/cable1_1-phase-v3.json",
+    "sha256": "77a2da908919f75ad761fa95c6f0de2c98e0147cf9e7426049d3ce5d5b17c65a",
+    "donorAndPhaseOutputHashReverified": true,
+    "targetNativeY": [
+      0,
+      6,
+      12,
+      18,
+      24,
+      30,
+      36,
+      43,
+      49,
+      55,
+      61
+    ],
+    "measuredFinalQ92CrestNativeY": [
+      0,
+      5.75,
+      11.75,
+      18,
+      24,
+      30,
+      35.75,
+      42.75,
+      49,
+      54.75,
+      60.75
+    ],
+    "visibleCrests": 11,
+    "maxNativePositionDifference": 0.25,
+    "interpretation": "Short last interval and partial top/bottom features are intentional nativephase. Do not redistribute uniformly or count that as a defect. Horizontalrepeat crop-tone changes are the actualhold.",
+    "limits": "Measured decodedrowprofile and visual topology; this is not full phase-tool replay proof."
+  },
+  "remaining": [
+    "Boundarycorrection on all4 with unchangedquietmaterialcenters and preservedtrue seams/rivet/cablephase.",
+    "Re-encodeQ92 and re-review exactnewrepeatimages.",
+    "Normal semantics/GPU/native-map appearance remain separate after diffusepasses.",
+    "Earlier six reviewedcandidates remainunregistered; no newindexbindings made byreviewer."
+  ],
+  "nextOwner": "root campaign coordinator",
+  "nextAction": "Use edge-focused correction for plainmetalxy and structuredmetal/cablex; protect legitimate horizontal features. Recheck finaldecodedfiles beforebinding."
+}

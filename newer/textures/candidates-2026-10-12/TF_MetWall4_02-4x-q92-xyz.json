@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "TF_MetWall4_02",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-TF_MetWall4_02.png",
+  "originalSha256": "f2540409cd5b6bbfce49b7adfaaec7314bc144c966edd55f163e8c2b2f64b5c9",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-photographic-4x.png",
+  "authoringDiffuseSha256": "74686e23b0b76165c88b1fe3bc9a2ffa47468870726ecc1040c29473c032bb06",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.35,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-diffuse.webp",
+      "sha256": "aca1e2890843e14e972a1dd963a93446dfb1b69b6e30fc49dd4fe08591e38555",
+      "bytes": 93008,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-height.webp",
+      "sha256": "4adda09488f2e7d3d874640498169e8a16b531d98e83817d7538c2fae9dd9810",
+      "bytes": 117538,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalX.webp",
+      "sha256": "783f430c3e995c9c1460aa1e422ef4c221fc233ddf97a096a4ace61d16787757",
+      "bytes": 120952,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalY.webp",
+      "sha256": "0fd40ac0fda3278c9171791690fef3d71c014bfb83986c7f0e04f998814b27b0",
+      "bytes": 118862,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/TF_MetWall4_02-4x-q92-xyz-normalZ.webp",
+      "sha256": "4a156a7a3bdb79b4d05355662015dd50f2594b9708a9051a81fd51607a34ed6e",
+      "bytes": 28734,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    64,
+    64
+  ],
+  "distanceMAE": 6.461995442708333,
+  "distanceMaximum": 29.0,
+  "secondaryComparisonDimensions": [
+    32,
+    32
+  ],
+  "secondaryDistanceMAE": 5.982096354166667,
+  "secondaryDistanceMaximum": 19.0,
+  "colourCompressionMAE": 2.639240264892578,
+  "heightCompressionMAE": 1.3731613159179688,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.9789839860244839,
+  "normalAngularP99": 2.4540004861486566,
+  "normalAngularMaximum": 4.053649276164013,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

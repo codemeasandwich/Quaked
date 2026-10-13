@@ -1,0 +1,14 @@
+{
+  "base": "ec216be6c3872b35327e14d3e50fd950f18dda4f",
+  "target": "4c5f3f8c1913dbdc4bfbbec299523d73ea704ef3",
+  "oursSha256": "8f136ef2fa293ce34b955379f426d0b4d9e5cbfbb6693a39312faac25320cb1b",
+  "conflicts": [
+    {
+      "path": "/version",
+      "base": 2026100502,
+      "ours": 2026101307,
+      "theirs": 2026101201
+    }
+  ],
+  "qualification": "Read-only semantic three-way comparison. No index installed, no bakes touched, no commit or release."
+}

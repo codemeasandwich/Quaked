@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "name": "cable1_1",
+  "factor": 4,
+  "quality": 92,
+  "lossless": false,
+  "normalLayout": "channels",
+  "original": "tools/texture_sheets/sources/official-world-2026-10-12/native-cable1_1.png",
+  "originalSha256": "0110c51da6a2f9826b87b1225317fbe55a35f0c0de11a4d83b98004736d91c02",
+  "authoringDiffuse": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x.png",
+  "authoringDiffuseSha256": "29670467b1e7d9321bec57f94fda1061738bc7987ad6ef726bc82585cb92e5e9",
+  "toolSha256": "23820da3caab28863e8b7953ec434092e144639f941bb196a80d75351e9fa4b9",
+  "heightToolSha256": "770aef28d92b68d407789ef5820c8611b89cbed9bb5dff22b741296598c3378c",
+  "profile": {
+    "bands": [
+      0.6,
+      1,
+      0.8,
+      0.5
+    ],
+    "groove": 0.5,
+    "bump": 0.5,
+    "glow": 0.2,
+    "strength": 0.2,
+    "cap": 0.5
+  },
+  "outputs": {
+    "diffuse": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-diffuse.webp",
+      "sha256": "f386e151f09103220c39bb04c90a863794f6219a05e82d0dbcff7465874cfcb9",
+      "bytes": 5864,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "height": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-height.webp",
+      "sha256": "29ee491c5f5ee37fafe89c12af116e78dbfa2a6cce403c3de1bd53228103b0cf",
+      "bytes": 11040,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalX": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-normalX.webp",
+      "sha256": "3ea848717adfd766948082d59cc74388b256541b5318d76b83c3973457aab05c",
+      "bytes": 6948,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalY": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-normalY.webp",
+      "sha256": "5efdf872f719b058f3962ea3a0c01986d581ba022561bd0b5dbe4550acf9d01b",
+      "bytes": 8830,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    },
+    "normalZ": {
+      "file": "newer/textures/candidates-2026-10-12/cable1_1-quiet-4x-q92-xyz-normalZ.webp",
+      "sha256": "c5dc623cd6501df5d46b436d04205e21490ea51eccd1d58334cfa5075ac72bbf",
+      "bytes": 2066,
+      "quality": 92,
+      "lossless": false,
+      "dimensions": [
+        256,
+        256
+      ]
+    }
+  },
+  "comparisonDivisor": 2,
+  "comparisonDimensions": [
+    32,
+    32
+  ],
+  "distanceMAE": 13.077473958333334,
+  "distanceMaximum": 42.0,
+  "secondaryComparisonDimensions": [
+    16,
+    16
+  ],
+  "secondaryDistanceMAE": 6.15625,
+  "secondaryDistanceMaximum": 22.0,
+  "colourCompressionMAE": 1.2800852457682292,
+  "heightCompressionMAE": 1.0924072265625,
+  "heightCompressionMaximum": 9.0,
+  "normalAngularMean": 0.788988606285497,
+  "normalAngularP99": 2.1679842225354533,
+  "normalAngularMaximum": 3.908061634484502,
+  "qualification": "Decoded quality92 diagnostics; visual material/edge review remains required"
+}

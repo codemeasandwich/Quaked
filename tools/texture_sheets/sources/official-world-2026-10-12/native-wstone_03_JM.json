@@ -1,0 +1,51 @@
+{
+  "source": {
+    "id": "wstone_03_JM|256x256:685e88a59ef2729f",
+    "name": "wstone_03_JM",
+    "key": "256x256:685e88a59ef2729f",
+    "width": 256,
+    "height": 256,
+    "pixelSha256": "dc8c515d43219cb5405888d66954aa42453102833b32edc6f5f7deecd27298be",
+    "original": "originals/256x256-685e88a59ef2729f.rgba",
+    "status": "missing",
+    "file": null,
+    "reason": "No replacement entry",
+    "uses": [
+      {
+        "game": "mg1",
+        "map": "maps/mge4m1.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 18,
+        "faces": 7793,
+        "visibleCandidateFaces": 7793,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge4m2.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 4,
+        "faces": 7112,
+        "visibleCandidateFaces": 7112,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      },
+      {
+        "game": "mg1",
+        "map": "maps/mge4m2b.bsp",
+        "scope": "campaign-or-multiplayer",
+        "pack": "/Users/bri/quaked/Dimension of the Machine/pak0.pak",
+        "slot": 4,
+        "faces": 7112,
+        "visibleCandidateFaces": 7112,
+        "hiddenTriggerFaces": 0,
+        "animationVisibleCandidateFaces": 0
+      }
+    ],
+    "action": "generate"
+  },
+  "referenceSha256": "d2e549fb56b9149b9b41acffc7c7b6c2fadd58a459b21254f778f3cf41d35a08"
+}
