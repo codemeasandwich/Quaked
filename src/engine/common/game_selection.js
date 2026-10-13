@@ -24,23 +24,23 @@ import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { Con_Printf } from './console.js';
 import { Sys_Printf } from './sys.js';
 import { GameCatalogue_Refresh, GAME_CATALOGUE_LOOSE_FILES, GAME_CATALOGUE_GAMES, GameCatalogue_AllGames } from './game_catalogue.js';
+import { COM_FindFile } from './pak.js';
 
 const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
 // resources/ until card [34d] moves it there)
 const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
-const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS } );
+const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS } );
 // a mission pack, episode or add-on mounts its own packs over Quake (and the shareware); a mission pack also starts
-// with its switch, an episode runs as standard Quake (card [34c]), an add-on with the switch it needs, if any
+// with its switch (card [34c]); an episode or add-on has none of its own (null): its gfx.wad decides (GameSelection_StartSwitch)
 const MISSION_PACKS = Object.freeze( {
 	hipnotic: Object.freeze( { name: 'Scourge of Armagon', switch: '-hipnotic', packs: Object.freeze( [ 'games/Scourge of Armagon/pak0.pak', 'resources/hipnotic/pak0.pak' ] ) } ),
 	rogue: Object.freeze( { name: 'Dissolution of Eternity', switch: '-rogue', packs: Object.freeze( [ 'games/Dissolution of Eternity/pak0.pak', 'resources/rogue/pak0.pak' ] ) } ),
 	dopa: Object.freeze( { name: 'Dimension of the Past', switch: null, packs: Object.freeze( [ 'games/Dimension of the Past/pak0.pak', 'resources/dopa/pak0.pak' ] ) } ),
 	// its larger levels need more than 256 models and an 8 KB signon: the large-map protocol (card [34f])
-	mg1: Object.freeze( { name: 'Dimension of the Machine', switch: null, protocol: 1015, packs: Object.freeze( [ 'games/Dimension of the Machine/pak0.pak', 'resources/mg1/pak0.pak' ] ) } ),
-	// Quoth runs as Quakespasm runs it, with Scourge of Armagon's switch (its status bar is Scourge's); every other add-on
-	// needs no entry (addonEntry)
-	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', folders: Object.freeze( [ 'games/Quoth', 'resources/quoth' ] ) } )
+	mg1: Object.freeze( { name: 'Dimension of the Machine', switch: null, protocol: 1015, packs: Object.freeze( [ 'games/Dimension of the Machine/pak0.pak', 'resources/mg1/pak0.pak' ] ) } )
+	// an add-on needs no entry (addonEntry): its switch, if any, follows its own status-bar pictures
+	// (GameSelection_SwitchFromWad), so Quoth, whose status bar is Scourge of Armagon's, runs with -hipnotic
 } );
 const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth' } );
 // Any add-on, known or found by its folder (`mod_<folder>`, game_catalogue.js), is chosen and run the same way, with no
@@ -137,7 +137,7 @@ export function GameSelection_OwnedPacks() {
 
 /**
  * The mission pack, episode or add-on the current choice runs, if any: its name, its switch for COM_InitArgv (null for
- * an episode or add-on that runs as standard Quake) and where its packs are, mounted over Quake and the shareware: a
+ * an episode or add-on, whose gfx.wad then decides: GameSelection_StartSwitch) and where its packs are, mounted over Quake and the shareware: a
  * mission pack or episode names its pack (`packs`, the first found; `protocol` when it needs the large-map one), an
  * add-on its folders (`folders`; see GameSelection_FetchMission).
  *
@@ -186,6 +186,56 @@ export async function GameSelection_FetchMission( mission, fetchPak, fetchFile =
 
 	}
 	for ( const url of mission.packs ) { const pack = await fetchPak( url ); if ( pack ) return pack; }
+	return null;
+
+}
+
+/**
+ * The switch a mission entry starts with: its own (`-hipnotic`, `-rogue`), or, for one with none (an episode or an
+ * add-on), the one its `gfx.wad` asks for (GameSelection_SwitchFromWad). Called by main.js once the game's packs are
+ * mounted and before Host_Init, so `find` reaches the `gfx.wad` the engine will draw from: the last mounted pack's.
+ *
+ * @param {?{ switch?: ?string }} mission the entry (GameSelection_MissionPack), or null
+ * @param {function(string): ?{ data: Uint8Array }} [find] the file lookup (COM_FindFile)
+ * @returns {?string} '-hipnotic', '-rogue' or null
+ */
+export function GameSelection_StartSwitch( mission, find = COM_FindFile ) {
+
+	if ( ! mission ) return null;
+	return mission.switch ?? GameSelection_SwitchFromWad( find( 'gfx.wad' )?.data ?? null );
+
+}
+
+// Pictures only a mission pack's status bar has: Scourge of Armagon's weapons and suit, Dissolution of Eternity's ammo
+const HIPNOTIC_LUMPS = Object.freeze( [ 'inv_laser', 'inv_mjolnir', 'sb_wsuit' ] );
+const ROGUE_LUMPS = Object.freeze( [ 'r_lava', 'r_multirock' ] );
+/**
+ * The mission-pack switch a game's own status bar asks for, from the picture names in its `gfx.wad`: Scourge of
+ * Armagon's (`inv_laser`, `inv_mjolnir`, `sb_wsuit`) mean `-hipnotic`, Dissolution of Eternity's (`r_lava`,
+ * `r_multirock`) mean `-rogue` (the switch Quakespasm also gives Quoth, through its -quoth); anything else, a damaged
+ * file or none runs as standard Quake. One such picture is enough: an add-on with standard QuakeC that ships Scourge's
+ * whole gfx.wad would run with Scourge's status bar (none of the add-ons here does; docs/add-ons-2026-10-13.md). Called by main.js for a game with no switch of its own, once its packs are mounted, with the
+ * `gfx.wad` the game then reads (docs/add-ons-2026-10-13.md).
+ *
+ * @param {?(Uint8Array|ArrayBuffer)} wad the `gfx.wad` bytes (WAD2), or null
+ * @returns {?string} '-hipnotic', '-rogue' or null
+ */
+export function GameSelection_SwitchFromWad( wad ) {
+
+	if ( ! wad ) return null;
+	const bytes = wad instanceof Uint8Array ? wad : new Uint8Array( wad );
+	if ( bytes.length < 12 || String.fromCharCode( ...bytes.subarray( 0, 4 ) ) !== 'WAD2' ) return null;
+	const view = new DataView( bytes.buffer, bytes.byteOffset, bytes.byteLength ), count = view.getInt32( 4, true ), table = view.getInt32( 8, true );
+	if ( count < 0 || table < 12 || table + count * 32 > bytes.length ) return null;
+	const names = new Set();
+	for ( let i = 0; i < count; i ++ ) {
+
+		const raw = bytes.subarray( table + i * 32 + 16, table + i * 32 + 32 ), end = raw.indexOf( 0 );
+		names.add( String.fromCharCode( ...raw.subarray( 0, end < 0 ? 16 : end ) ).toLowerCase() );
+
+	}
+	if ( HIPNOTIC_LUMPS.some( n => names.has( n ) ) ) return '-hipnotic';
+	if ( ROGUE_LUMPS.some( n => names.has( n ) ) ) return '-rogue';
 	return null;
 
 }

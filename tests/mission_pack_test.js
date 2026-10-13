@@ -106,19 +106,29 @@ Deno.test( 'Level Select: a mission pack\'s or an episode\'s own episodes and ma
 			same( dopa.episodes.join(), '0,1,3', 'its introduction, its episode and its final level (this copy has no secret or deathmatch map)' );
 			same( dopa.levels.join(), 'e5m1,e5m2', 'its own episode\'s maps' );
 		} finally { selection.GameSelection_SetRunning( null ); }
-		// Quoth (an add-on) runs with -hipnotic: its own table, looked up by the game running, wins over Scourge's
+		// an add-on (Quoth runs with -hipnotic) has no table of its own: Level Select builds one from its own packs'
+		// maps (level_select_auto.js), which wins over Scourge's; without them it is Scourge's, as its switch names
+		const auto = await import( '../src/engine/client/level_select_auto.js' );
+		const bsp = message => { const t = `{\n"classname" "worldspawn"\n"message" "${message}"\n}\n{\n"classname" "info_player_start"\n}\n\0`, b = new Uint8Array( 124 + t.length ), v = new DataView( b.buffer ); v.setInt32( 0, 29, true ); v.setInt32( 4, 124, true ); v.setInt32( 8, t.length, true ); for ( let i = 0; i < t.length; i ++ ) b[ 124 + i ] = t.charCodeAt( i ); return b; };
+		const quothPack = pak.COM_LoadPackFile( 'quoth/pak0.pak', pak.COM_BuildPack( [ [ 'start', 'A Stranger Place' ], [ 'e1m1quoth', 'The Slipgate Triplex' ], [ 'e1m2quoth', 'Remix Of The Damned' ], [ 'kelltest1', 'Slime Machine' ] ].map( ( [ m, msg ] ) => ( { name: `maps/${m}.bsp`, data: bsp( msg ) } ) ) ) );
+		pak.COM_AddPack( quothPack );
 		common.COM_InitArgv( [ 'quaked', '-hipnotic' ] ); selection.GameSelection_SetRunning( 'quoth' );
 		try {
+			auto.LevelSelect_SetGamePacks( [ quothPack ] );
 			const quoth = menu.M_LevelSelectOffer();
-			same( quoth.episodes.join(), '0,1,2', 'its introduction, its levels and its test maps' );
-			same( quoth.levels.join(), 'e1m1quoth,e1m2quoth', 'its own levels, not Scourge\'s hip1m1' );
-		} finally { selection.GameSelection_SetRunning( null ); }
-		// Malice and Abyss of Pandemonium run as standard Quake: their own tables, not Quake's e1m1
-		common.COM_InitArgv( [ 'quaked' ] );
-		for ( const [ game, levels ] of [ [ 'malice', 'd1,d1b' ], [ 'aopfm_v2', 'aop1m1' ], [ 'soe', 'soe1m1' ], [ 'xmen', 'x1m1' ] ] ) {
-			selection.GameSelection_SetRunning( game );
-			try { same( menu.M_LevelSelectOffer().levels.join(), levels, game + '\'s first episode' ); } finally { selection.GameSelection_SetRunning( null ); }
-		}
+			same( quoth.episodes.join(), '0,1', 'its introduction and its levels, built from its maps' );
+			same( quoth.levels.join(), 'e1m1quoth,e1m2quoth,kelltest1', 'its own levels, not Scourge\'s hip1m1' );
+			auto.LevelSelect_SetGamePacks( [] );
+			same( menu.M_LevelSelectOffer().levels.join(), 'hip1m1,hip1m2', 'without its packs named: Scourge\'s, as its switch names' );
+			// a mission pack or episode keeps its own table even when packs are named (main.js names them for every game)
+			auto.LevelSelect_SetGamePacks( [ quothPack ] ); common.COM_InitArgv( [ 'quaked' ] ); selection.GameSelection_SetRunning( 'dopa' );
+			same( menu.M_LevelSelectOffer().levels.join(), 'e5m1,e5m2', 'Dimension of the Past keeps its own levels' );
+			// a mod with no campaign of its own (its start and a deathmatch map) keeps Quake's levels, its own groups after
+			const modPack = pak.COM_LoadPackFile( 'mod_x/pak0.pak', pak.COM_BuildPack( [ { name: 'maps/start.bsp', data: bsp( 'Mod Hub' ) }, { name: 'maps/moddm1.bsp', data: bsp( 'Mod Arena' ) } ] ) );
+			pak.COM_AddPack( modPack ); auto.LevelSelect_SetGamePacks( [ modPack ] ); selection.GameSelection_SetRunning( 'mod_x' );
+			const mod = menu.M_LevelSelectOffer();
+			check( mod.levels.includes( 'e1m1' ) && mod.episodes.includes( 101 ), 'Quake\'s episode 1 and the mod\'s deathmatch group: ' + mod.episodes.join() );
+		} finally { selection.GameSelection_SetRunning( null ); auto.LevelSelect_SetGamePacks( [] ); }
 	} finally {
 		common.COM_InitArgv( [] );
 	}

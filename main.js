@@ -39,7 +39,8 @@ const parms = {
 	argv: []
 };
 import { GameCatalogue_Refresh, GameCatalogue_Get } from './src/engine/common/game_catalogue.js';
-import { GameSelection_OwnedPacks, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { GameSelection_OwnedPacks, GameSelection_StartSwitch, GameSelection_ReportStart, GameSelection_Kept, GameSelection_Remember, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_FetchLoose, GameSelection_NeedsDiscovery, GameSelection_SetRunning, GameSelection_Current, GameSelection_Startable } from './src/engine/common/game_selection.js';
+import { LevelSelect_SetGamePacks, LevelSelect_OwnPacks } from './src/engine/client/level_select_auto.js';
 import { GameShelf_Show } from './src/newer/ui/game_shelf.js';
 
 async function main() {
@@ -120,7 +121,7 @@ async function main() {
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
 			GameSelection_SetRunning( desktop ? desktop.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
-			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); if ( mission.switch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name; an episode has no switch */ Sys_Printf( mission.name + ' loaded\n' ); }
+			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); LevelSelect_SetGamePacks( desktop ? LevelSelect_OwnPacks( desktop.packs, desktop.id ) : [ missionPak ].flat() ); /* its own maps, for a Level Select built from them */ const missionSwitch = GameSelection_StartSwitch( mission ); /* its own, or as its gfx.wad's status-bar pictures ask (Quoth's are Scourge of Armagon's) */ if ( missionSwitch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), missionSwitch ] ); /* argv[0] is the program name */ Sys_Printf( mission.name + ' loaded' + ( missionSwitch && ! mission.switch ? ' (' + missionSwitch + ': its status bar is a mission pack\'s)' : '' ) + '\n' ); }
 
 		} else {
 

@@ -127,7 +127,7 @@ Deno.test( 'every Level Select table fits its page: at most 14 levels to an epis
 
 	const { M_LevelSelectTables } = await import( '../src/engine/client/menu_levelselect.js' );
 	const tables = M_LevelSelectTables();
-	check( tables.some( t => t.game === 'malice' ) && tables.some( t => t.game === 'quoth' ), 'the add-ons\' tables are listed' );
+	check( tables.some( t => t.game === 'hipnotic' ) && tables.some( t => t.game === 'mg1' ), 'the mission packs\' and episodes\' tables are listed (add-ons build theirs: level_select_auto_test.js)' );
 	for ( const { game, levels } of tables ) {
 
 		const counts = {};
@@ -140,13 +140,13 @@ Deno.test( 'every Level Select table fits its page: at most 14 levels to an epis
 
 Deno.test( 'an add-on\'s level names start after its longest map name, and a long one is cut at a word inside the menu', async () => {
 
-	const restore = win(), selection = await import( '../src/engine/common/game_selection.js' );
-	const names = [ 'maps/start.bsp', 'maps/e1m1quoth.bsp', 'maps/e1m2quoth.bsp', 'maps/kelltest1.bsp', 'maps/kelltest3.bsp' ];
-	const dir = new Uint8Array( 64 * names.length ), view = new DataView( dir.buffer );
-	names.forEach( ( n, i ) => { for ( let c = 0; c < n.length; c ++ ) dir[ i * 64 + c ] = n.charCodeAt( c ); view.setInt32( i * 64 + 56, 12, true ); } );
-	const bytes = new Uint8Array( 12 + dir.length ); 'PACK'.split( '' ).forEach( ( c, i ) => { bytes[ i ] = c.charCodeAt( 0 ); } );
-	new DataView( bytes.buffer ).setInt32( 4, 12, true ); new DataView( bytes.buffer ).setInt32( 8, dir.length, true ); bytes.set( dir, 12 );
-	pak.COM_AddPack( pak.COM_LoadPackFile( 'quoth-names.pak', bytes.buffer ) );
+	const restore = win(), selection = await import( '../src/engine/common/game_selection.js' ), auto = await import( '../src/engine/client/level_select_auto.js' );
+	// an add-on's maps, each a BSP29 with its entities (lump 0): its message and a player start; Level Select builds its
+	// table from them (level_select_auto.js), as it does for any add-on
+	const bsp = message => { const text = `{\n"classname" "worldspawn"\n"message" "${message}"\n}\n{\n"classname" "info_player_start"\n}\n\0`, b = new Uint8Array( 124 + text.length ), v = new DataView( b.buffer ); v.setInt32( 0, 29, true ); v.setInt32( 4, 124, true ); v.setInt32( 8, text.length, true ); for ( let i = 0; i < text.length; i ++ ) b[ 124 + i ] = text.charCodeAt( i ); return b; };
+	const maps = [ [ 'start', 'A Stranger Place Than This' ], [ 'e1m1quoth', 'The Slipgate Triplex' ], [ 'e1m2quoth', 'Remix Of The Damned' ], [ 'kelltest1', 'Slime Machine' ], [ 'kelltest3', 'All The Men Of The Earth Shall Quake' ] ];
+	const pack = pak.COM_LoadPackFile( 'quoth/pak0.pak', pak.COM_BuildPack( maps.map( ( [ m, msg ] ) => ( { name: `maps/${m}.bsp`, data: bsp( msg ) } ) ) ) );
+	pak.COM_AddPack( pack ); auto.LevelSelect_SetGamePacks( [ pack ] );
 	selection.GameSelection_SetRunning( 'quoth' );
 	try {
 
@@ -155,17 +155,36 @@ Deno.test( 'an add-on\'s level names start after its longest map name, and a lon
 		menu.M_SetExternals( { key_dest_set: value => { dest = value; }, key_dest_get: () => dest, cls: { demonum: - 1 }, sv: { active: false }, svs: { maxclients: 1 }, Draw_CachePic: () => ( { width: 0, height: 0 } ), Draw_TransPic: () => {}, Draw_Pic: () => {}, Draw_Character: ( x, y, code ) => glyphs.push( { x, y, code } ), Draw_FadeScreen: () => {}, S_LocalSound: () => {}, realtime_get: () => 0 } );
 		const dx = ( draw.Draw_GetVirtualWidth() - 320 ) >> 1, dy = ( draw.Draw_GetVirtualHeight() - 200 ) >> 1;
 		const row = y => glyphs.filter( g => g.y === y + dy ).map( g => ( { x: g.x - dx, c: String.fromCharCode( g.code & 127 ) } ) ).sort( ( a, b ) => a.x - b.x );
-		for ( const [ episode, first ] of [ [ 1, 'The Slipgate' ], [ 2, 'Slime' ] ] ) {
-
-			toEpisode( episode ); glyphs.length = 0; menu.M_Draw();
-			const r = row( 84 ), at = r.filter( g => g.x >= 144 ).map( g => g.c ).join( '' );
-			check( at.startsWith( first ), `episode ${episode}: the name starts at x 144, after E1M1QUOTH and a space: ${at}` );
-			check( r.every( g => g.x < 320 ), 'nothing drawn past the menu' );
-
-		}
-		const long = row( 92 ).filter( g => g.x >= 144 ).map( g => g.c ).join( '' );
+		toEpisode( 1 ); glyphs.length = 0; menu.M_Draw(); // Levels: e1m1quoth, e1m2quoth, kelltest1, kelltest3
+		const r = row( 84 ), at = r.filter( g => g.x >= 144 ).map( g => g.c ).join( '' );
+		check( at.startsWith( 'The Slipgate' ), `the name starts at x 144, after E1M1QUOTH and a space: ${at}` );
+		check( r.every( g => g.x < 320 ), 'nothing drawn past the menu' );
+		const long = row( 108 ).filter( g => g.x >= 144 ).map( g => g.c ).join( '' );
 		same( long, 'All The Men Of The', 'Kelltest3\'s long name (22 characters fit after x 144) is cut at a word, inside the menu' );
 
-	} finally { selection.GameSelection_SetRunning( null ); restore(); }
+	} finally { selection.GameSelection_SetRunning( null ); auto.LevelSelect_SetGamePacks( [] ); restore(); }
+
+} );
+
+Deno.test( 'a found add-on\'s very long map name is cut to its column; the level names keep their room inside the menu', async () => {
+
+	const restore = win(), selection = await import( '../src/engine/common/game_selection.js' ), auto = await import( '../src/engine/client/level_select_auto.js' );
+	const bsp = message => { const text = `{\n"classname" "worldspawn"\n"message" "${message}"\n}\n{\n"classname" "info_player_start"\n}\n\0`, b = new Uint8Array( 124 + text.length ), v = new DataView( b.buffer ); v.setInt32( 0, 29, true ); v.setInt32( 4, 124, true ); v.setInt32( 8, text.length, true ); for ( let i = 0; i < text.length; i ++ ) b[ 124 + i ] = text.charCodeAt( i ); return b; };
+	const long = 'jam9_somebody_longmapname_version2x'; // 35 characters: before the cap the names started past x 320
+	const pack = pak.COM_LoadPackFile( 'mod_jam/pak0.pak', pak.COM_BuildPack( [ { name: `maps/${long}.bsp`, data: bsp( 'A Level With A Name' ) }, { name: 'maps/jam9_a.bsp', data: bsp( 'Short' ) } ] ) );
+	pak.COM_AddPack( pack ); auto.LevelSelect_SetGamePacks( [ pack ] ); selection.GameSelection_SetRunning( 'mod_jam' );
+	try {
+
+		open();
+		const glyphs = [];
+		menu.M_SetExternals( { key_dest_set: value => { dest = value; }, key_dest_get: () => dest, cls: { demonum: - 1 }, sv: { active: false }, svs: { maxclients: 1 }, Draw_CachePic: () => ( { width: 0, height: 0 } ), Draw_TransPic: () => {}, Draw_Pic: () => {}, Draw_Character: ( x, y, code ) => glyphs.push( { x, y, code } ), Draw_FadeScreen: () => {}, S_LocalSound: () => {}, realtime_get: () => 0 } );
+		const dx = ( draw.Draw_GetVirtualWidth() - 320 ) >> 1, dy = ( draw.Draw_GetVirtualHeight() - 200 ) >> 1;
+		toEpisode( 1 ); glyphs.length = 0; menu.M_Draw();
+		const rows = [ 84, 92 ].map( y => glyphs.filter( g => g.y === y + dy ).map( g => ( { x: g.x - dx, c: String.fromCharCode( g.code & 127 ) } ) ) );
+		check( rows.every( r => r.length > 0 && r.every( g => g.x < 320 ) ), 'nothing drawn past the menu: ' + rows.map( r => r.map( g => g.x + g.c ).join( ' ' ) ).join( ' || ' ) );
+		const names = rows.map( r => r.filter( g => g.x >= 168 ).map( g => g.c ).join( '' ) ).join( '|' );
+		check( /A Level With A|Short/.test( names ) && names.includes( 'Short' ), 'names start at x 168 with room to read: ' + names );
+
+	} finally { selection.GameSelection_SetRunning( null ); auto.LevelSelect_SetGamePacks( [] ); restore(); }
 
 } );

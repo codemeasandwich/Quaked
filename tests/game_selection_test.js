@@ -2,7 +2,7 @@
 // full Quake's pack is fetched when there, saves under their original keys); choosing the shareware keeps the choice,
 // reloads the page, fetches no owned pack and keeps its own saves; a game the catalogue does not call playable, and
 // one whose support is not built (a mission pack), is refused with the reason; a blocked store refuses honestly.
-import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_LibraryOrder, GameSelection_FetchLoose, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable } from '../src/engine/common/game_selection.js';
+import { GameSelection_SetRunning, GameSelection_ConfigKey, GameSelection_MissionPack, GameSelection_FetchMission, GameSelection_LibraryOrder, GameSelection_FetchLoose, GameSelection_Current, GameSelection_OwnedPacks, GameSelection_SavePrefix, GameSelection_Select, GameSelection_ReportStart, GameSelection_Startable, GameSelection_SwitchFromWad } from '../src/engine/common/game_selection.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); };
 const store = new Map();
@@ -242,5 +242,27 @@ Deno.test( 'the app library gives loose files to exactly the catalogue\'s add-on
 	check( listed === GAME_CATALOGUE_GAMES.filter( g => g.kind === 'addon' ).map( g => g.id ).sort().join(), 'library.rs ADDONS: ' + listed );
 	const games = [ ...rust.matchAll( /\("([a-z0-9_]+)", &\[/g ) ].map( m => m[ 1 ] ).sort().join();
 	check( games === GAME_CATALOGUE_GAMES.filter( g => ! g.placeholder ).map( g => g.id ).sort().join(), 'library.rs GAMES: ' + games );
+
+} );
+
+Deno.test( 'an add-on runs with the switch its own status-bar pictures ask for, as Quakespasm runs it', () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	// a WAD2 of the named lumps (no data), as gfx.wad is laid out
+	const wad = names => { const b = new Uint8Array( 12 + names.length * 32 ), v = new DataView( b.buffer ); b.set( [ 87, 65, 68, 50 ] ); v.setInt32( 4, names.length, true ); v.setInt32( 8, 12, true ); names.forEach( ( n, i ) => b.set( new TextEncoder().encode( n ), 12 + i * 32 + 16 ) ); return b; };
+	const quake = [ 'conchars', 'sb_sigil1', 'inv_shotgun', 'face1' ];
+	same( GameSelection_SwitchFromWad( wad( [ ...quake, 'INV_LASER', 'inv_mjolnir', 'sb_wsuit' ] ) ), '-hipnotic', 'Scourge of Armagon\'s pictures (Quoth\'s status bar), any case' );
+	same( GameSelection_SwitchFromWad( wad( [ ...quake, 'r_lava', 'r_multirock' ] ) ), '-rogue', 'Dissolution of Eternity\'s' );
+	same( GameSelection_SwitchFromWad( wad( quake ) ), null, 'Quake\'s own pictures: standard Quake (Malice, X-Men, Arcane Dimensions)' );
+	same( GameSelection_SwitchFromWad( null ), null, 'no gfx.wad' );
+	same( GameSelection_SwitchFromWad( new TextEncoder().encode( 'PACK0000000000' ) ), null, 'not a WAD2' );
+	// a directory that claims one entry more than the file holds: refused whole, though inv_laser is readable in it
+	const over = wad( [ 'inv_laser', ...quake ] ); new DataView( over.buffer ).setInt32( 4, quake.length + 2, true );
+	same( GameSelection_SwitchFromWad( over ), null, 'a directory past the end of the file: refused, not read' );
+	const negative = wad( [ 'inv_laser' ] ); new DataView( negative.buffer ).setInt32( 4, - 1, true );
+	same( GameSelection_SwitchFromWad( negative ), null, 'a negative count: refused' );
+	// as COM_FindFile gives it: a view into its pack, at an offset
+	const inner = wad( [ ...quake, 'inv_mjolnir' ] ), big = new Uint8Array( inner.length + 100 ); big.set( inner, 37 );
+	same( GameSelection_SwitchFromWad( new Uint8Array( big.buffer, 37, inner.length ) ), '-hipnotic', 'a gfx.wad inside a larger buffer' );
 
 } );

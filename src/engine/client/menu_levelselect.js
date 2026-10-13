@@ -13,6 +13,7 @@
  *
  * Opened from single player (through `menuOpeners`); ESC returns there.
  */
+import { LevelSelect_GameTable } from './level_select_auto.js';
 import { R_DemoSplitRelease } from '../common/hooks.js'; // installed by newer/render/r_demosplit.js
 import { Cbuf_AddText } from '../common/cmd.js';
 import { K_ESCAPE, K_ENTER, K_UPARROW, K_DOWNARROW, K_LEFTARROW, K_RIGHTARROW, key_game, key_menu } from './keys.js';
@@ -109,54 +110,6 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 3, 'mgend', 'Chthon\'s Vengeance' ],
 			[ 4, 'mgdm1', 'Art of the Condemned' ], [ 4, 'mgdm2', 'The Bad Space' ], [ 4, 'mgdm3', 'The Mustard Factory' ], [ 4, 'mgdm4', 'The Boiler' ] ]
 	},
-	// Quoth (an add-on, docs/add-ons-2026-10-13.md): runs with -hipnotic, so it is looked up by the running game first;
-	// the names are each map's own (its worldspawn message); kellbase1_fan is a prop with no player start
-	quoth: {
-		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Levels' }, { episode: 2, name: 'Test Maps' } ],
-		levels: [ [ 0, 'start', 'A Stranger Place Than This' ],
-			[ 1, 'e1m1quoth', 'The Slipgate Triplex' ], [ 1, 'e1m2quoth', 'Remix Of The Damned' ], [ 1, 'kellbase1', 'Base Matter' ],
-			[ 2, 'kelltest1', 'Slime Machine' ], [ 2, 'kelltest2', 'Birth Machine' ], [ 2, 'kelltest3', 'All The Men Of The Earth Shall Quake' ], [ 2, 'kelltest4', 'Diary of a Gug Fiend' ],
-			[ 2, 'kelltest5', 'Edie And The Sentinels' ], [ 2, 'breakable', 'Break Stuff' ], [ 2, 'ne_basetest', 'Base Test' ] ]
-	},
-	// Malice and Abyss of Pandemonium (add-ons, docs/add-ons-2026-10-13.md) run as standard Quake; at most 14 levels
-	// fit an episode's page, so Malice's twenty missions are two episodes. Names are each map's own worldspawn message,
-	// with case, spacing and a trailing full stop tidied (a blank message: the file name without its trailing underscores)
-	malice: {
-		episodes: [ { episode: 0, name: 'The Academy' }, { episode: 1, name: 'Missions I' }, { episode: 2, name: 'Missions II' }, { episode: 3, name: 'Deathmatch' }, { episode: 4, name: 'Extras' } ],
-		levels: [ [ 0, 'start', 'The Academy' ],
-			[ 1, 'd1', 'The Lab' ], [ 1, 'd1b', 'Area 33' ], [ 1, 'd1c', 'Area 44' ], [ 1, 'd2', 'Takahiro Towers' ], [ 1, 'd3', 'A Rat\'s Life' ], [ 1, 'd3b', 'Secret Missions' ],
-			[ 1, 'd4', 'Into The Flood' ], [ 1, 'd4b', 'Back 2 Malice' ], [ 1, 'd5', 'The Flood' ], [ 1, 'd6', 'Nuclear Plant' ], [ 1, 'd7', 'The Incinerator Plant' ], [ 1, 'd7b', 'The Foundry' ],
-			[ 2, 'd8', 'The Underwater Base' ], [ 2, 'd9', 'Takahiro Base' ], [ 2, 'd10', 'The Hospital' ], [ 2, 'd11', 'The Genetics Lab' ], [ 2, 'd12', 'Takahiro Laboratories' ],
-			[ 2, 'd13', 'Stayin\' Alive' ], [ 2, 'd14', 'B.O.S.S. HQ' ], [ 2, 'd15', 'Showdown!' ],
-			[ 3, 'ddm1', 'The Seventh Precinct' ], [ 3, 'ddm2', 'Sub Station' ], [ 3, 'ddm3', 'Crazy Eights!' ], [ 3, 'ddm4', 'East Side Invertational' ], [ 3, 'ddm5', 'Slaughterhouse' ],
-			[ 3, 'ddm6', 'Domino' ], [ 3, 'ddm7', 'Sandra\'s Ladder' ],
-			[ 4, 'isle', 'H-27 Cargo' ], [ 4, 'test', 'TESTosterone' ], [ 4, 'csm0__', 'csm0' ], [ 4, 'csm1____', 'csm1' ], [ 4, 'csm2____', 'csm2' ], [ 4, 'csm3_', 'Bubbah\'s Go' ], [ 4, 'show1', 'show1' ] ]
-	},
-	// Soul of Evil: as above, but where the message repeats the add-on's name ("Soul of Evil - Introduction", the
-	// arena's "Welcome to Soul Of Evil") the label keeps only the part that tells the maps apart
-	soe: {
-		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Epilogue' }, { episode: 4, name: 'Deathmatch' } ],
-		levels: [ [ 0, 'start', 'Welcome to Soul Of Evil' ], [ 0, 'soeintro', 'Introduction' ], [ 0, 'soestart', 'A Land In Need' ],
-			[ 1, 'soe1m1', 'Arms of Darken Wood' ], [ 1, 'soe1m2', 'Devil\'s Pass' ], [ 1, 'soe1m3', 'The Fallen Village' ], [ 1, 'soe1m4', 'The Autumn Citadel' ], [ 1, 'soe1m5', 'Tower Of Twilight' ], [ 1, 'soe1m6', 'The Den Of Zombies' ],
-			[ 2, 'soe2m1', 'The Blackness Beneath' ], [ 2, 'soe2m2', 'The Ogre Mines' ], [ 2, 'soe2m3', 'The Subterranean Swamp' ], [ 2, 'soe2m4', 'Whispers in Darkness' ], [ 2, 'soe2m5', 'The Morbid Manse' ], [ 2, 'soe2m6', 'Haunted Shadows' ], [ 2, 'soe2m7', 'Highlands' ],
-			[ 3, 'soeexit', 'Epilogue' ],
-			[ 4, 'soearena', 'Arena' ], [ 4, 'soedm1', 'The Graveyard of Heroes' ], [ 4, 'soedm2', 'soedm2' ], [ 4, 'soedm3', 'Halls Of Darkness' ], [ 4, 'soedm4', 'The Elder Sanctuary' ], [ 4, 'soedm5', 'Fortress of the Fading Day' ], [ 4, 'soedm6', 'Ancient Courtyard' ] ]
-	},
-	xmen: {
-		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Deathmatch' } ],
-		levels: [ [ 0, 'start', 'X-Men Mansion' ],
-			[ 1, 'x1m1', 'Enter the Unknown' ], [ 1, 'x1m2', 'Power Hungry' ], [ 1, 'x1m3', 'Cloning Central' ], [ 1, 'x1m4', 'Final Defense' ], [ 1, 'x1m5', 'Apocalypse\'s Crypt' ], [ 1, 'x1m6', 'Delphi Defiled' ], [ 1, 'x1end', 'An Apocalyptic End' ],
-			[ 2, 'x2m1', 'Suburban Anarchy' ], [ 2, 'x2m2', 'Industrial Takeover' ], [ 2, 'x2m3', 'The Forgotten Fortress' ], [ 2, 'x2m4', 'Power Station Panic' ], [ 2, 'x2m5', 'Desert Stronghold' ], [ 2, 'x2end', 'A Sinister End' ],
-			[ 3, 'xdm1', 'X-tinction' ], [ 3, 'xdm2', 'X-Men Warehouse' ], [ 3, 'xdm3', 'OctaFrag' ], [ 3, 'xdm4', 'Pyramid of Destruction' ] ]
-	},
-	aopfm_v2: {
-		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Final Level' }, { episode: 4, name: 'Deathmatch' } ],
-		levels: [ [ 0, 'start', 'Enter the Abyss' ],
-			[ 1, 'aop1m1', 'Gates of Abyss' ], [ 1, 'aop1m2', 'Core Reactor' ], [ 1, 'aop1m3', 'The Power Station' ], [ 1, 'aop1m4', 'Temple of Moon' ], [ 1, 'aop1m5', 'The Dark Palace' ], [ 1, 'aop1m6', 'The Forgotten One' ],
-			[ 2, 'aop2m1', 'Heresy' ], [ 2, 'aop2m2', 'Carnage Castle' ], [ 2, 'aop2m3', 'Central Complex' ],
-			[ 3, 'aopend', 'Legonds of Quake' ],
-			[ 4, 'aopdm1', 'The Absolution' ], [ 4, 'aopdm2', 'Runic Raging' ], [ 4, 'aopdm3', 'Mental Overlord' ], [ 4, 'aopdm4', 'Mental Overlord II' ], [ 4, 'aopdm5', 'Midnight Darkness' ], [ 4, 'aopdm6', 'aopdm6' ] ]
-	},
 	rogue: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'R1 Fortress' }, { episode: 2, name: 'R2 Corridors' }, { episode: 3, name: 'Deathmatch Arena' } ],
 		levels: [ [ 0, 'start', 'Split Decision' ],
@@ -166,33 +119,45 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 	}
 } );
 
-// the tables for the game running: its own (every mission pack, episode and playable add-on has one, whatever switch
-// it runs with), else the mission pack's its switch names, else Quake's
+// the tables for the game running: its own (each mission pack and episode has one, as its own menus name its levels),
+// else one built from the game's own maps (an add-on, known or found: level_select_auto.js; docs/add-ons-2026-10-13.md),
+// else the mission pack's its switch names, else Quake's
 function levelSelectTable() {
 
-	const mission = MISSION_LEVEL_SELECT[ GameSelection_Running() ] ?? ( hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : null );
-	if ( mission === null ) return { levels: LEVEL_SELECT_LEVELS, episodes: LEVEL_SELECT_EPISODES };
-	return { levels: mission.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ), episodes: mission.episodes };
+	const own = MISSION_LEVEL_SELECT[ GameSelection_Running() ];
+	const mission = own ?? ( hipnotic ? MISSION_LEVEL_SELECT.hipnotic : rogue ? MISSION_LEVEL_SELECT.rogue : null );
+	const base = mission === null ? { levels: LEVEL_SELECT_LEVELS, episodes: LEVEL_SELECT_EPISODES } : { levels: mission.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ), episodes: mission.episodes };
+	const built = own ? null : LevelSelect_GameTable();
+	if ( ! built ) return base;
+	// an add-on with a campaign of its own lists its maps; one without (a mod played on Quake's maps, with perhaps its own
+	// start and deathmatch maps) keeps the base game's levels and adds its own groups after them
+	if ( built.episodes.some( ( e ) => e.episode !== 0 && e.name !== 'Deathmatch' ) ) return built;
+	const extra = built.episodes.filter( ( e ) => e.episode !== 0 ), offset = 100;
+	return { levels: [ ...base.levels, ...built.levels.filter( ( l ) => l.episode !== 0 ).map( ( l ) => ( { ...l, episode: l.episode + offset } ) ) ],
+		episodes: [ ...base.episodes, ...extra.map( ( e ) => ( { episode: e.episode + offset, name: e.name } ) ) ] };
 
 }
 
 // x of the level names: after the running game's longest map name and a space (64 + 6 * 8 for map names up to five
-// characters, as Quake's)
+// characters, as Quake's), but never past x 168 (13 characters), so a found add-on's long map name leaves the names
+// room: a longer map name is cut to fit its column
+const LEVELSELECT_MAP_COLUMN = 13;
 function levelSelectNameX() {
 
-	return 64 + Math.max( 6, ...levelSelectTable().levels.map( ( l ) => l.map.length + 1 ) ) * 8;
+	return 64 + Math.min( LEVELSELECT_MAP_COLUMN, Math.max( 6, ...levelSelectTable().levels.map( ( l ) => l.map.length + 1 ) ) ) * 8;
 
 }
 
 /**
- * Every Level Select table (Quake's and each mission pack's, episode's and add-on's), for tests: at most 14 levels to an
+ * Every Level Select table (Quake's, each mission pack's and episode's, and the one built from the running add-on's maps), for tests: at most 14 levels to an
  * episode fit the page.
  *
  * @returns {Array<{ game: string, levels: Array<{ episode: number, map: string, name: string }> }>} the tables
  */
 export function M_LevelSelectTables() {
 
-	return [ { game: 'quake', levels: LEVEL_SELECT_LEVELS }, ...Object.entries( MISSION_LEVEL_SELECT ).map( ( [ game, t ] ) => ( { game, levels: t.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ) } ) ) ];
+	const built = LevelSelect_GameTable();
+	return [ { game: 'quake', levels: LEVEL_SELECT_LEVELS }, ...Object.entries( MISSION_LEVEL_SELECT ).map( ( [ game, t ] ) => ( { game, levels: t.levels.map( ( [ episode, map, name ] ) => ( { episode, map, name } ) ) } ) ), ...( built ? [ { game: 'built', levels: built.levels } ] : [] ) ];
 
 }
 
@@ -213,7 +178,8 @@ function levelSelectEpisodes() {
 
 }
 
-// the selected episode, or the first one there is if it is not in this copy (Episode 1 is the usual start)
+// the selected episode, or the first one there is if it is not in this copy (Episode 1 is the usual start; a table built
+// from an add-on's maps numbers its groups from 1 after its Introduction, so it opens on its first campaign group too)
 function levelSelectEpisode() {
 
 	const episodes = levelSelectEpisodes();
@@ -285,10 +251,10 @@ export function M_LevelSelect_Draw() {
 
 	// the names start after the game's longest map name (add-ons have names such as E1M1QUOTH; one column for all its
 	// episodes; Quake's stays at x 112), and a name too long for the 320-pixel menu is cut at a word
-	const nameX = levelSelectNameX(), nameChars = Math.floor( ( 320 - nameX ) / 8 );
+	const nameX = levelSelectNameX(), nameChars = Math.max( 0, Math.floor( ( 320 - nameX ) / 8 ) ), mapChars = ( nameX - 64 ) / 8 - 1;
 	for ( let i = 0; i < levels.length; i ++ ) {
 
-		M_Print( 64, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].map.toUpperCase().padEnd( 6 ) );
+		M_Print( 64, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].map.toUpperCase().slice( 0, mapChars ).padEnd( 6 ) );
 		const name = levels[ i ].name, cut = name.length <= nameChars ? name : name.slice( 0, nameChars + 1 ).replace( /\s+\S*$/, '' );
 		M_PrintWhite( nameX, LEVELSELECT_LEVEL_Y + i * 8, cut.length > 0 ? cut : name.slice( 0, nameChars ) );
 
