@@ -51,8 +51,6 @@ export function R_GetLiquidLinks() {
 // 0 water, 1 slime, -1 not a see-through liquid (lava is opaque, teleporters are portals)
 // Stock Quake's water textures: *water0-2, *04water1/2, *04awater1 and, in Episode 3 (E3M3 to E3M5), *04mwat1/2 (murky
 // water, the name has no "water" in it). Anything else starting with '*' is slime, lava or a teleporter.
-// Murky water (Episode 3) is brown sediment like E1M3's *04water1, so it shares that look (see liquidMapLook).
-const MURKY_WATER = /mwat/i;
 export const R_IsWaterTextureName = name => name.charAt( 0 ) === '*' && /water|mwat/i.test( name ) && ! /slime|lava|teleport/i.test( name );
 
 /**
@@ -85,8 +83,8 @@ export const LIQUID_LOOKS = Object.freeze( [
  * map's own look. Actual slime always retains its hazard identity.
  *
  * @param {number} kind 0 water, 1 slime
- * @param {number} [mapLook=0] the look authored by the texture (2 brown sediment for E1M3's water and E3's murky
- *   water, 1 for the owner's E1M2 appearance, else 0)
+ * @param {number} [mapLook=0] the look authored by the texture (1 for the owner's E1M2 appearance, else 0;
+ *   liquidMapLook)
  * @returns {number} look index 0 Clear, 1 Tinted, 2 Muddy, 3 Toxic
  */
 export function R_LiquidLookIndex( kind, mapLook = 0 ) {
@@ -114,20 +112,22 @@ export function R_LiquidOpacity( name, fallback ) {
 
 }
 
-// Stock E1M3's brown sediment water is authored by its texture identity.
+// A map's water may ask for its own optical look by texture identity (only E1M2's, today).
 // This affects optics only; contents, movement and damage remain map-owned.
 /**
  * The optical look a level's own water texture asks for (`LIQUID_LOOKS`), for its pools' `mapLook`.
  *
  * @param {string} name the texture's name
- * @returns {number} 1 for E1M2's *04water1, 2 for other brown sediment/murky water, else 0
+ * @returns {number} 1 for E1M2's *04water1, else 0 (the kind's own look)
  */
 export function liquidMapLook( name ) {
 	const n = name.toLowerCase();
-	// The owner's E1M2 reference uses the existing green-tinted clear look.
-	// Its reused texture must not also change E1M3's muddy/swamp water.
+	// The owner's E1M2 reference uses the existing green-tinted clear look; the same texture elsewhere stays Clear.
 	if ( liquidMapName === 'maps/e1m2.bsp' && n === '*04water1' ) return 1;
-	return n === '*04water1' || MURKY_WATER.test( n ) ? 2 : 0; // brown sediment: E1M3's water and E3's murky water
+	// Every other map's water takes its kind's own (clear) look, so its pools show caustics at full strength: the
+	// owner chose caustics on all maps (13 October 2026), over Muddy as the default for *04water1 (E1M3 and ten other
+	// maps) and Episode 3's murky water. Muddy stays a choice (r_water_look 3).
+	return 0;
 }
 
 // Generated constants keep the GPU's optical values identical to the material

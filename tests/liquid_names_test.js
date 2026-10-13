@@ -16,14 +16,16 @@ Deno.test( 'every stock water texture is water, slime lava and teleporter textur
 
 } );
 
-Deno.test( 'every water texture gets its look: Clear for ordinary water, Muddy for E1M3\'s brown water and Episode 3\'s murky water, Toxic for slime', () => {
+// Since 13 October 2026 E1M3's brown water and Episode 3's murky water default to Clear too: the owner chose caustics on
+// all maps, which Muddy dimmed (docs/caustics-all-maps-2026-10-13.md); Muddy stays a choice (r_water_look 3).
+Deno.test( 'every water texture gets its look: Clear for all water, Muddy only when chosen, Toxic for slime', () => {
 
 	const saved = r_newer_water.value; r_newer_water.value = 1;
 	try {
 
 		const look = n => R_LiquidOpacity( n, SENTINEL );
 		for ( const n of [ '*water0', '*water1', '*water2', '*04water2', '*04awater1' ] ) same( look( n ), LIQUID_LOOKS[ 0 ].opacity, n + ' is Clear' );
-		for ( const n of [ '*04water1', '*04mwat1', '*04mwat2' ] ) same( look( n ), LIQUID_LOOKS[ 2 ].opacity, n + ' is Muddy' );
+		for ( const n of [ '*04water1', '*04mwat1', '*04mwat2' ] ) same( look( n ), LIQUID_LOOKS[ 0 ].opacity, n + ' is Clear by default' );
 		for ( const n of [ '*slime', '*slime0', '*slime1' ] ) same( look( n ), LIQUID_LOOKS[ 3 ].opacity, n + ' is Toxic' );
 		for ( const n of [ '*lava1', '*teleport' ] ) same( look( n ), SENTINEL, n + ' keeps the fallback' );
 		check( new Set( [ 0, 2, 3 ].map( i => LIQUID_LOOKS[ i ].opacity ) ).size === 3, 'control: the three looks differ in coverage, so the assertions above can tell them apart' );

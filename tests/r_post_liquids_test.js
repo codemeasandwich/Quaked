@@ -7,11 +7,15 @@ import * as THREE from 'three';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 
-Deno.test( 'water and slime by name; lava and teleporters are not see-through; sediment water has its own look', () => {
+Deno.test( "water and slime by name; lava and teleporters are not see-through; no water defaults to Muddy, so every map's pools show caustics", () => {
 	for ( const n of [ '*water0', '*04water1', '*04awater1', '*04mwat1' ] ) same( liquids.liquidKind( n ), 0, n + ' is water' );
 	same( liquids.liquidKind( '*slime0' ), 1, 'slime' );
 	for ( const n of [ '*lava1', '*teleport', 'water_not_a_liquid' ] ) same( liquids.liquidKind( n ), - 1, n + ' is not' );
-	same( liquids.liquidMapLook( '*04water1' ), 2, 'E1M3 sediment' ); same( liquids.liquidMapLook( '*04mwat2' ), 2, 'murky water' ); same( liquids.liquidMapLook( '*water0' ), 0, 'clear' );
+	// caustics on all maps (owner, 13 October 2026): no map's water defaults to Muddy, whose pools dim them
+	same( liquids.liquidMapLook( '*04water1' ), 0, 'E1M3 and the other *04water1 maps: clear' ); same( liquids.liquidMapLook( '*04mwat2' ), 0, 'murky water: clear' ); same( liquids.liquidMapLook( '*water0' ), 0, 'clear' );
+	liquids.R_PostLiquidsReset( 'maps/e1m2.bsp' ); same( liquids.liquidMapLook( '*04water1' ), 1, 'E1M2 keeps the owner\'s tinted look' ); liquids.R_PostLiquidsReset();
+	same( liquids.R_LiquidOpacity( '*04water1', .5 ) === liquids.LIQUID_LOOKS[ 0 ].opacity || post.r_newer_water?.value === 0, true, '*04water1 has Clear coverage' );
+	post.r_water_look.value = 3; same( liquids.R_LiquidLookIndex( 0, liquids.liquidMapLook( '*04water1' ) ), 2, 'Muddy is still a choice (r_water_look 3)' ); post.r_water_look.value = 0;
 	check( liquids.liquidLookGLSL.includes( 'vec3 liquidAbsorption( float look )' ), 'the looks as GLSL' );
 	same( post.R_IsWaterTextureName, liquids.R_IsWaterTextureName, 'gl_post.js re-exports the same function' );
 } );

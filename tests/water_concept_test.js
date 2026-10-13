@@ -100,7 +100,9 @@ Deno.test( 'ordinary torch sources reach the water compositor within the existin
 
 } );
 
-Deno.test( 'brown stock water uses a Muddy map default while explicit looks and native paths preserve map identity', () => {
+// Since 13 October 2026 no map's water defaults to Muddy (the owner chose caustics on all maps;
+// docs/caustics-all-maps-2026-10-13.md): *04water1 and murky water take the Clear default, and Muddy is a choice.
+Deno.test( 'brown stock water takes the Clear map default while explicit looks (Muddy among them) and native paths preserve map identity', () => {
 
 	const options = [ post.r_hdr, post.r_dynres, post.r_bloom, post.r_volumetric, post.r_water_look, post.r_mist,
 		mode.r_newer_lighting, mode.r_newer_normals, mode.r_newer_water ];
@@ -131,31 +133,32 @@ Deno.test( 'brown stock water uses a Muddy map default while explicit looks and 
 		for ( const v of options ) vars.Cvar_SetValue( v.name, 1 );
 		for ( const name of [ 'r_dynres', 'r_bloom', 'r_volumetric', 'r_newer_lighting', 'r_water_look' ] ) vars.Cvar_SetValue( name, 0 );
 		post.R_BuildWorldLights( model ); frame(); const regions = post.R_GetLiquidRegions();
-		equal( regions.length, 3, 'adjacent Clear and Muddy map defaults are not incorrectly merged' );
-		const clearRegion = regions.find( r => r.min[ 0 ] === - 128 ), brownRegion = regions.find( r => r.min[ 0 ] === 0 );
+		equal( regions.length, 2, 'adjacent ordinary and brown pools, both Clear by default, merge into one region (lava apart)' );
+		const clearRegion = regions.find( r => r.min[ 0 ] === - 128 ), brownRegion = clearRegion;
+		equal( clearRegion.max[ 0 ], 128, 'the *04water1 pool is part of the Clear region' );
 		equal( clearRegion.kind, 0, 'ordinary Clear pool remains physical water' ); equal( brownRegion.kind, 0, 'brown pool remains ordinary water, not damaging slime' );
-		equal( clearRegion.mapLook, 0, 'ordinary map water defaults to Clear' ); equal( brownRegion.mapLook, 2, 'stock brown texture authors a Muddy map default' );
+		equal( clearRegion.mapLook, 0, 'ordinary map water defaults to Clear' ); equal( brownRegion.mapLook, 0, 'stock brown texture defaults to Clear too' );
 		equal( post.R_GetLavaRegions().length, 1, 'lava retains separate opaque handling' );
 		const clear = surf.R_LiquidSurfaceMaterial( textures[ 0 ], .75 ), brown = surf.R_LiquidSurfaceMaterial( textures[ 1 ], .75 );
 		equal( clear.opacity, post.LIQUID_LOOKS[ 0 ].opacity, 'Map chooses Clear material coverage for normal water' );
-		equal( brown.opacity, post.LIQUID_LOOKS[ 2 ].opacity, 'Map chooses Muddy material coverage for brown water' );
+		equal( brown.opacity, post.LIQUID_LOOKS[ 0 ].opacity, 'Map chooses Clear material coverage for brown water' );
 		equal( post.R_LiquidOpacity( '*04WATER1', .75 ), brown.opacity, 'stock name policy is case insensitive' );
-		// Episode 3's murky water (*04mwat1/2) is water: Muddy coverage, and the surface takes the level's baked brightness (vertex colours)
+		// Episode 3's murky water (*04mwat1/2) is water: Clear coverage by default, and the surface takes the level's baked brightness (vertex colours)
 		// as every Newer water does; a lava or teleporter surface does not. (Each needs its own texture: the material cache is keyed by it.)
 		const fresh = name => ( { name, gl_texture: new THREE.DataTexture( new Uint8Array( [ 80, 64, 32, 255 ] ), 1, 1 ) } );
 		for ( const name of [ '*04mwat1', '*04mwat2', '*water2', '*04awater1' ] ) equal( surf.R_LiquidSurfaceMaterial( fresh( name ), .75 ).vertexColors, true, name + ' surface uses baked brightness like other Newer water' );
 		for ( const name of [ '*lava1', '*teleport', '*slime0' ] ) equal( surf.R_LiquidSurfaceMaterial( fresh( name ), .75 ).vertexColors, false, name + ' is not clear water' );
-		equal( surf.R_LiquidSurfaceMaterial( fresh( '*04mwat2' ), .75 ).opacity, post.LIQUID_LOOKS[ 2 ].opacity, 'murky water has the Muddy coverage' );
-		for ( const choice of [ 0, 1, 2, 4, 0 ] ) {
+		equal( surf.R_LiquidSurfaceMaterial( fresh( '*04mwat2' ), .75 ).opacity, post.LIQUID_LOOKS[ 0 ].opacity, 'murky water has the Clear coverage by default' );
+		for ( const choice of [ 0, 1, 2, 3, 4, 0 ] ) { // 3: Muddy, still a choice
 
 			vars.Cvar_SetValue( 'r_water_look', choice ); frame(); const ids = new Map();
 			for ( let i = 0; i < uniforms.uWaterCount.value; i ++ ) ids.set( uniforms.uWaterMin.value[ i ].x, uniforms.uWaterMax.value[ i ].w );
 			equal( ids.get( - 128 ), choice === 0 ? 0 : choice - 1, 'normal pool profile matches selected/default policy' );
-			equal( ids.get( 0 ), choice === 0 ? 2 : choice - 1, 'brown pool profile matches selected/default policy' );
+			equal( ids.has( 0 ), false, 'the brown pool is part of the normal pool\'s region, so it has that profile' );
 			equal( ids.get( 400 ), 3, 'native slime hazard appearance stays Toxic under overrides' );
 			equal( post.R_GetLiquidRegions(), regions, 'appearance override does not rebuild or reclassify map regions' );
 			equal( surf.R_LiquidSurfaceMaterial( textures[ 1 ], .75 ), brown, 'brown water material cache retained' );
-			equal( brown.opacity, post.LIQUID_LOOKS[ choice === 0 ? 2 : choice - 1 ].opacity, 'brown material follows same policy as uploaded profile id' );
+			equal( brown.opacity, post.LIQUID_LOOKS[ choice === 0 ? 0 : choice - 1 ].opacity, 'brown material follows same policy as uploaded profile id' );
 			equal( brown.map, textures[ 1 ].gl_texture, 'original brown texture is retained' );
 			equal( surf.R_LiquidSurfaceMaterial( textures[ 0 ], .75 ), clear, 'normal water material cache retained' );
 			equal( surf.R_LiquidSurfaceMaterial( textures[ 3 ], 1 ).opacity, 1, 'lava remains opaque under every water choice' );
