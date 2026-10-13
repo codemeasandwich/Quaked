@@ -889,14 +889,16 @@ function PF_Remove() {
 
 }
 
-// entity (entity start, .string field, string match) find = #5;
+// entity (entity start, .string field, string match) find = #18;
 function PF_Find() {
 
 	let e = G_EDICTNUM( OFS_PARM0 );
 	const f = G_INT( OFS_PARM1 );
 	const s = G_STRING( OFS_PARM2 );
 
-	if ( ! s )
+	// As WinQuake's C, where a string is never NULL: an empty search string is valid and matches an empty field
+	// (Quoth's plats.qc searches with one, card c5dc18e1); only a missing one is an error.
+	if ( s == null )
 		PR_RunError( 'PF_Find: bad search string' );
 
 	for ( e ++; e < sv.num_edicts; e ++ ) {
@@ -905,7 +907,7 @@ function PF_Find() {
 		if ( ed.free )
 			continue;
 		const t = E_STRING( ed, f );
-		if ( ! t )
+		if ( t == null )
 			continue;
 		if ( t === s ) {
 

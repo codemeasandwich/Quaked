@@ -46,6 +46,11 @@ const files = new Map( [
 	[ '/complete/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp', 'maps/r1m1.bsp' ] ) ],
 	[ '/complete/games/Dimension of the Past/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e5m1.bsp' ] ) ],
 	[ '/complete/games/Dimension of the Machine/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/mge1m1.bsp' ] ) ],
+	// add-ons (docs/add-ons-2026-10-13.md): Quoth's QuakeC is in its last pack, its start map in the first; Malice is not yet shown to play
+	[ '/complete/games/Quoth/pak0.pak', pack( [ 'gfx.wad', 'maps/start.bsp' ] ) ],
+	[ '/complete/games/Quoth/pak1.pak', pack( [ 'quake.rc' ] ) ],
+	[ '/complete/games/Quoth/pak2.pak', pack( [ 'progs.dat' ] ) ],
+	[ '/complete/games/Malice/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
 	// a third (/noquake/): both mission packs whole, but no Quake
 	[ '/noquake/games/Scourge of Armagon/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ],
 	[ '/noquake/games/Dissolution of Eternity/pak0.pak', pack( [ 'progs.dat', 'gfx.wad', 'maps/start.bsp' ] ) ]
@@ -103,6 +108,8 @@ Deno.test( 'the two mission packs and both episodes are playable on Quake when w
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( g( id ).playable && /a mission pack/.test( g( id ).reason ), id + ' is playable: ' + g( id ).reason );
 	check( g( 'dopa' ).playable && /an episode/.test( g( 'dopa' ).reason ), 'Dimension of the Past is playable: ' + g( 'dopa' ).reason );
 	check( g( 'mg1' ).playable && /large-map protocol/.test( g( 'mg1' ).reason ), 'Dimension of the Machine is playable, on the large-map protocol: ' + g( 'mg1' ).reason );
+	check( g( 'quoth' ).playable && /an add-on/.test( g( 'quoth' ).reason ), 'Quoth is playable from its three packs: ' + g( 'quoth' ).reason );
+	check( g( 'malice' ).present && ! g( 'malice' ).playable && /add-on support/.test( g( 'malice' ).reason ), 'an add-on not yet shown to play stays locked: ' + g( 'malice' ).reason );
 	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );
 

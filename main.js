@@ -96,7 +96,8 @@ async function main() {
 		const ownedPack = desktop ? Promise.resolve(null) : ( async () => { for ( const url of GameSelection_OwnedPacks() ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )();
 		// A mission pack (card [34c]) also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first found)
 		const mission = GameSelection_MissionPack();
-		const missionLoad = mission && !desktop ? ( async () => { for ( const url of mission.packs ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack ) return pack; } return null; } )() : Promise.resolve( null );
+		// an add-on mounts all of its packs (`all`): it is mounted only when every one is found
+		const missionLoad = mission && !desktop ? ( async () => { const found = []; for ( const url of mission.packs ) { const pack = await COM_FetchOptionalPak( url, url ); if ( pack && ! mission.all ) return pack; if ( pack ) found.push( pack ); else if ( mission.all ) return null; } return mission.all ? found : null; } )() : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed
@@ -117,7 +118,7 @@ async function main() {
 			// and its switch (-hipnotic or -rogue) sets the engine's mission-pack behaviour before Host_Init
 			// the game that really starts, which saves and settings follow (card [34c]): set from what was mounted
 			GameSelection_SetRunning( desktop ? desktop.id : missionMounted ? GameSelection_Current() : fullGamePak !== null ? 'quake' : 'shareware' );
-			if ( missionMounted ) { if(!desktop)COM_AddPack( missionPak ); if ( mission.switch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name; an episode has no switch */ Sys_Printf( mission.name + ' loaded\n' ); }
+			if ( missionMounted ) { if(!desktop)for ( const pack of [ missionPak ].flat() ) COM_AddPack( pack ); if ( mission.switch ) COM_InitArgv( [ parms.argv[ 0 ] ?? 'quaked', ...parms.argv.slice( 1 ), mission.switch ] ); /* argv[0] is the program name; an episode has no switch */ Sys_Printf( mission.name + ' loaded\n' ); }
 
 		} else {
 

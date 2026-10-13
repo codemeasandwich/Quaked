@@ -204,6 +204,8 @@ export async function GameCatalogue_ProbePack( url, options = {} ) {
 const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
+// the add-ons shown to play (docs/add-ons-2026-10-13.md): each over Quake, with its own QuakeC and maps
+const ADDONS = new Set( [ 'quoth' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
@@ -242,6 +244,13 @@ function assess( game, files, byId ) {
 		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
 		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
 		return { playable: true, reason: game.id === 'mg1' ? 'an episode: its QuakeC and BSP2 maps, played on Quake with the large-map protocol' : 'an episode: its QuakeC and BSP2 maps, played on Quake' };
+
+	}
+	if ( game.kind === 'addon' && ADDONS.has( game.id ) ) {
+
+		const missing = [ 'progs.dat', 'maps/start.bsp' ].filter( name => ! has( name ) );
+		if ( missing.length > 0 ) return { playable: false, reason: `its ${missing.join( ', ' )} ${missing.length === 1 ? 'is' : 'are'} missing` };
+		return { playable: true, reason: 'an add-on: its QuakeC and maps, played on Quake' };
 
 	}
 	return { playable: false, reason: game.kind === 'addon' ? 'add-on support (its QuakeC, entities and limits) is not yet shown to work' : 'its HUD, QuakeC and protocol support are not yet shown to work' };
