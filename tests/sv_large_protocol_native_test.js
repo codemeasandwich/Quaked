@@ -70,6 +70,9 @@ Deno.test( 'a map past 600 entities loads again on the large-map protocol and ru
 
 		SV_SpawnServer( 'e1m1' );
 		same( sv.protocol, PROTOCOL_LARGE, 'so the next map starts on it' );
+		vars.Cvar_Set( 'sv_protocol', '999' ); // as Arcane Dimensions' quake.rc sets it
+		SV_SpawnServer( 'e1m1' );
+		same( sv.protocol, PROTOCOL_LARGE, 'RMQ\'s 999 (and FitzQuake\'s 666) ask for the large-map protocol' );
 	} finally { vars.Cvar_Set( 'sv_protocol', String( PROTOCOL_VERSION ) ); sv.active = false; }
 } );
 

@@ -106,6 +106,20 @@ import { key_dest } from '../common/key_dest.js';
 export const sv_protocol = new cvar_t( 'sv_protocol', String( PROTOCOL_VERSION ) );
 
 /**
+ * The protocol a server speaks for an sv_protocol value: this port's large-map protocol for 1015, and also for the
+ * larger protocols other engines name, FitzQuake's 666 and RMQ's 999, which add-ons ask for in their own quake.rc
+ * (Arcane Dimensions sets `sv_protocol 999`) as a request for higher limits; protocol 15 for anything else.
+ *
+ * @param {number} value the sv_protocol value
+ * @returns {number} PROTOCOL_LARGE or PROTOCOL_VERSION
+ */
+export function SV_ProtocolFor( value ) {
+
+	return [ PROTOCOL_LARGE, 666, 999 ].includes( value | 0 ) ? PROTOCOL_LARGE : PROTOCOL_VERSION;
+
+}
+
+/**
  * The most models this server can name: 256 in protocol 15 (bytes on the wire), MAX_MODELS in the large-map protocol.
  *
  * @returns {number} the limit for `sv.model_precache`
@@ -1968,7 +1982,7 @@ function spawnServer( server ) {
 	Object.assign( sv, new ( sv.constructor )() );
 	sv._newerMapsEnabled = useNewerMaps;
 	// the protocol for this map, before anything is precached or written (card [34f])
-	sv.protocol = ( sv_protocol.value | 0 ) === PROTOCOL_LARGE ? PROTOCOL_LARGE : PROTOCOL_VERSION;
+	sv.protocol = SV_ProtocolFor( sv_protocol.value );
 
 	// Ensure progs.js has references to the canonical server objects
 	PR_SetSV( sv );

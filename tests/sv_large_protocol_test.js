@@ -18,3 +18,11 @@ Deno.test( 'a protocol-15 limit passed while loading asks for the large-map prot
 	check( thrown?.largeProtocol === 'in a settle frame', 'the two settle frames still count as loading' );
 
 } );
+
+Deno.test( 'the larger protocols other engines name ask for the large-map protocol; anything else is 15', async () => {
+
+	const { SV_ProtocolFor } = await import( '../src/engine/server/sv_main.js' );
+	for ( const v of [ 1015, 666, 999 ] ) check( SV_ProtocolFor( v ) === PROTOCOL_LARGE, v + ': large (Arcane Dimensions\' quake.rc sets 999)' );
+	for ( const v of [ 15, 0, 42, NaN ] ) check( SV_ProtocolFor( v ) === PROTOCOL_VERSION, v + ': 15' );
+
+} );

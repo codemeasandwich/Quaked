@@ -25,6 +25,7 @@ import { Con_Printf } from './console.js';
 import { Sys_Printf } from './sys.js';
 import { GameCatalogue_Refresh, GAME_CATALOGUE_LOOSE_FILES, GAME_CATALOGUE_GAMES, GameCatalogue_AllGames } from './game_catalogue.js';
 import { COM_FindFile } from './pak.js';
+import { PROTOCOL_LARGE } from './protocol.js';
 
 const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
@@ -53,7 +54,10 @@ function addonEntry( id ) {
 
 	const def = addonDefinition( id );
 	if ( ! def ) return null;
-	return { name: def.name, switch: null, folders: def.folders.filter( f => /^(games|resources)\//.test( f ) ) };
+	// the large-map protocol from the start (as Dimension of the Machine): a map can pass protocol 15's 600 entities in
+	// play, after loading has checked it (Arcane Dimensions' ad_e1m1 loads with 393 and spawns past 1400), and the
+	// game would end; the large-map protocol is the port's own, so nothing else needs protocol 15 here
+	return { name: def.name, switch: null, protocol: PROTOCOL_LARGE, folders: def.folders.filter( f => /^(games|resources)\//.test( f ) ) };
 
 }
 const missionEntry = id => MISSION_PACKS[ id ] ?? ( isAddon( id ) ? addonEntry( id ) : null );

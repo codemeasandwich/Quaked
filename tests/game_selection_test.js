@@ -266,3 +266,15 @@ Deno.test( 'an add-on runs with the switch its own status-bar pictures ask for, 
 	same( GameSelection_SwitchFromWad( new Uint8Array( big.buffer, 37, inner.length ) ), '-hipnotic', 'a gfx.wad inside a larger buffer' );
 
 } );
+
+Deno.test( 'every add-on starts on the large-map protocol, as a map may pass protocol 15\'s entities in play', () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	store.set( 'quaked.game.v1', 'malice' );
+	try { same( GameSelection_MissionPack()?.protocol, 1015, 'an add-on\'s entry asks for 1015' ); }
+	finally { store.clear(); }
+	store.set( 'quaked.game.v1', 'dopa' );
+	try { same( GameSelection_MissionPack()?.protocol, undefined, 'an official episode keeps protocol 15' ); }
+	finally { store.clear(); }
+
+} );
