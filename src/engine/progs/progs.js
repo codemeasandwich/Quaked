@@ -173,8 +173,8 @@ export class EdictFieldAccessor {
 export class edict_t {
 
 	/**
-	 * Creates one entity dictionary entry with zeroed field data. `PR_AllocEdicts` makes all of them (`sv.max_edicts`)
-	 * when a server is spawned; they are reused by `ED_Alloc`/`ED_Free` and live until the next server spawn.
+	 * Creates one entity dictionary entry with zeroed field data. `PR_AllocEdicts` makes the first ones when a server
+	 * is spawned and `EDICT_NUM` the rest as they are first used, up to `sv.max_edicts`; they are reused by `ED_Alloc`/`ED_Free` and live until the next server spawn.
 	 *
 	 * @param {number} index entity number, 0 for the world; replaces C pointer arithmetic over `sv.edicts`
 	 * @param {number} entityfields number of 32-bit field slots (`progs.entityfields`: the `entvars_t` fields followed
@@ -518,7 +518,7 @@ export function PR_SetSVS( s ) { svs = s; }
  * Gives the edict with this number (C macro `EDICT_NUM`).
  *
  * @param {number} n entity number, 0..`sv.max_edicts`-1 (0 is the world)
- * @returns {edict_t} the edict; it may be free
+ * @returns {edict_t} the edict; it may be free (made, cleared, when it is the first use of that number)
  * @throws {Error} `EDICT_NUM: bad number <n>` when `n` is outside 0..`sv.max_edicts`-1
  */
 export function EDICT_NUM( n ) {
@@ -529,6 +529,14 @@ export function EDICT_NUM( n ) {
 
 	}
 
+	// the large-map protocol's 8192 are made as they are first used, not all at each spawn (PR_AllocEdicts makes the
+	// first ones): an ordinary map never builds more than it needs
+	if ( n >= sv.edicts.length ) {
+
+		const fields = sv.edicts[ 0 ]._entityfields;
+		for ( let i = sv.edicts.length; i <= n; i ++ ) sv.edicts.push( new edict_t( i, fields ) );
+
+	}
 	return sv.edicts[ n ];
 
 }
@@ -562,7 +570,7 @@ export function NUM_FOR_EDICT( e ) {
  */
 export function NEXT_EDICT( e ) {
 
-	return sv.edicts[ e.index + 1 ];
+	return sv.edicts[ e.index + 1 ] ?? ( e.index + 1 < sv.max_edicts ? EDICT_NUM( e.index + 1 ) : undefined ); // (made on first use)
 
 }
 
@@ -587,7 +595,7 @@ export function EDICT_TO_PROG( e ) {
  */
 export function PROG_TO_EDICT( e ) {
 
-	return sv.edicts[ e ];
+	return sv.edicts[ e ] ?? ( e >= 0 && e < sv.max_edicts ? EDICT_NUM( e ) : undefined ); // (made on first use, EDICT_NUM)
 
 }
 

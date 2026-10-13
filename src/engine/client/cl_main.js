@@ -19,7 +19,7 @@ import { SV_RendVeilClientRecord } from '../common/hooks.js'; // installed by ne
 // Ported from: WinQuake/cl_main.c -- client main loop
 import { R_DemoLoadingFreeze, R_DemoLoadingCancel, R_WelcomeLoadingHolding } from '../common/hooks.js'; // installed by newer/ui/r_demoloading.js
 
-import { MAX_MODELS, MAX_SOUNDS, MAX_EDICTS, MAX_LIGHTSTYLES,
+import { MAX_MODELS, MAX_SOUNDS, MAX_LIGHTSTYLES,
 	STAT_HEALTH, STAT_FRAGS, STAT_WEAPON, STAT_AMMO, STAT_ARMOR,
 	STAT_WEAPONFRAME, STAT_SHELLS, STAT_ACTIVEWEAPON, STAT_MONSTERS,
 	STAT_SECRETS } from '../common/quakedef.js';
@@ -60,7 +60,7 @@ import { CL_InitPrediction, CL_ResetPrediction, CL_PredictMove,
 	CL_GetServerSequence, CL_GetValidSequence, CL_GetEntityFrame,
 	cl_simorg, cl_simvel, cl_simangles, cl_nopred, set_cl_simonground } from './cl_pred.js';
 // the dynamic-light allocator lives with the lights in client.js, so the renderer need not import this module ([44g], D1a)
-import { CL_AllocDlight } from './client.js';
+import { CL_AllocDlight, CL_ENTITIES_FIRST } from './client.js';
 export { CL_AllocDlight } from './client.js';
 
 // Re-export prediction state for view.js to use
@@ -185,7 +185,8 @@ export function CL_ClearState() {
 
 	}
 
-	for ( let i = 0; i < MAX_EDICTS; i ++ ) {
+	cl_entities.length = CL_ENTITIES_FIRST; // a large map's others are made again as its messages name them (CL_EntitySlot)
+	for ( let i = 0; i < CL_ENTITIES_FIRST; i ++ ) {
 
 		cl_entities[ i ] = new entity_t();
 		cl_entities[ i ]._entityIndex = i;

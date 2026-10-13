@@ -836,18 +836,26 @@ function SV_WriteDelta( from, to, msg, force ) {
 	//
 	// write the message
 	//
+	// the word's 10 bits name entities up to 1023; the large-map protocol adds a byte after the word with the bits
+	// above them, for up to MAX_EDICTS (cl_parse.js CL_PacketEntityNumber; docs/add-ons-2026-10-13.md)
+	const large = sv.protocol === PROTOCOL_LARGE;
 	if ( to.number === 0 )
 		Sys_Error( 'SV_WriteDelta: unset entity number' );
-	if ( to.number > PE_ENT_MASK )
-		Sys_Error( 'SV_WriteDelta: entity number > ' + PE_ENT_MASK );
+	if ( to.number >= ( large ? MAX_EDICTS : PE_ENT_MASK + 1 ) )
+		Sys_Error( 'SV_WriteDelta: entity number ' + to.number + ' too large' );
 
 	if ( bits === 0 && ! force )
 		return; // nothing to send!
 
-	const i = to.number | ( bits & ~PE_ENT_MASK );
+	// an entity numbered a multiple of 1024 with nothing changed would write 0, the list's end: say "more bits" (none)
+	if ( ( to.number & PE_ENT_MASK ) === 0 && ( bits & ~PE_ENT_MASK ) === 0 )
+		bits |= PE_MOREBITS;
+	const i = ( to.number & PE_ENT_MASK ) | ( bits & ~PE_ENT_MASK );
 	if ( i & PE_REMOVE )
 		Sys_Error( 'SV_WriteDelta: PE_REMOVE' );
 	MSG_WriteShort( msg, i );
+	if ( large )
+		MSG_WriteByte( msg, to.number >> PE_ENT_BITS );
 
 	if ( bits & PE_MOREBITS )
 		MSG_WriteByte( msg, bits & 0xFF );
@@ -884,7 +892,17 @@ Writes a delta update of a packet_entities_t to the message.
 Ported from: QW/server/sv_ents.c
 =============
 */
-function SV_EmitPacketEntities( client, to, msg ) {
+/**
+ * Writes one client's packet entities (`to`, sorted by number) to `msg`: an svc_packetentities from the baselines, or
+ * an svc_deltapacketentities against the frame the client last acknowledged (`client.delta_sequence`). Called by
+ * SV_WriteEntitiesToClient each frame; exported for tests/sv_large_protocol_native_test.js, which reads it back with
+ * the real client parser.
+ *
+ * @param {object} client the client (`client_t`: `delta_sequence`, `frames`)
+ * @param {{ num_entities: number, entities: Array<object> }} to this frame's entity states
+ * @param {object} msg the message (`sizebuf_t`)
+ */
+export function SV_EmitPacketEntities( client, to, msg ) {
 
 	let from;
 	let oldmax;
@@ -939,7 +957,9 @@ function SV_EmitPacketEntities( client, to, msg ) {
 		if ( newnum > oldnum ) {
 
 			// the old entity isn't present in the new message
-			MSG_WriteShort( msg, oldnum | PE_REMOVE );
+			MSG_WriteShort( msg, ( oldnum & PE_ENT_MASK ) | PE_REMOVE );
+			if ( sv.protocol === PROTOCOL_LARGE )
+				MSG_WriteByte( msg, oldnum >> PE_ENT_BITS );
 			oldindex ++;
 			continue;
 
@@ -1975,7 +1995,7 @@ function spawnServer( server ) {
 
 	// Allocate edicts array using entityfields from loaded progs
 	const entityfields = progs ? progs.entityfields : 105; // 105 is default for standard Quake
-	sv.edicts = PR_AllocEdicts( sv.max_edicts, entityfields );
+	sv.edicts = PR_AllocEdicts( Math.min( sv.max_edicts, 1024 ), entityfields ); // the rest as used (EDICT_NUM)
 
 	// set up sizebuf data pointers
 	sv.datagram.maxsize = MAX_DATAGRAM;

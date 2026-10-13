@@ -37,7 +37,7 @@ export const MAX_DATAGRAM_LOCAL = 32000; // max length of a local game's per-fra
 //
 // per-level limits
 //
-export const MAX_EDICTS = 1024; // the most the delta packets' 10-bit entity numbers can name; a protocol-15 server keeps WinQuake's 600 (card [34f])
+export const MAX_EDICTS = 8192; // the large-map protocol's limit (Quakespasm's default max_edicts; its delta packets add a byte to the 10-bit numbers, and svc_sound's 13 bits name up to 8191); a protocol-15 server keeps WinQuake's 600 (card [34f], docs/add-ons-2026-10-13.md)
 export const MAX_EDICTS_STANDARD = 600; // FIXME: ouch! ouch! ouch! (WinQuake's)
 export const MAX_LIGHTSTYLES = 64;
 export const MAX_MODELS = 2048; // the most a map can have; protocol 15 sends them as bytes, so it stops at 256 (SV_ModelLimit)

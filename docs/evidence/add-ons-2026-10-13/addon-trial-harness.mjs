@@ -12,6 +12,8 @@ const PACKS=process.env.HOME+'/Library/Application Support/com.codemeasandwich.q
 import {readdirSync} from 'node:fs';
 const FOLDERS={quake:'Quake',shareware:'shareware',hipnotic:'Scourge of Armagon',rogue:'Dissolution of Eternity',dopa:'Dimension of the Past',mg1:'Dimension of the Machine',ad:'Arcane Dimensions',quoth:'Quoth',malice:'Malice',xmen:'X-Men',aopfm_v2:'Abyss of Pandemonium',soe:'soul of evil'};
 const library=[];for(const [g,f] of Object.entries(FOLDERS)){let names=[];try{names=readdirSync('/Users/bri/quaked/'+f);}catch{continue;}const by=new Map(names.map(n=>[n.toLowerCase(),n]));for(let n=0;n<=5;n++){const real=by.get(`pak${n}.pak`);if(!real)break;const path=`/Users/bri/quaked/${f}/${real}`;library.push({token:`${g}/pak${n}.pak`,game:g,name:`pak${n}.pak`,path,bytes:statSync(path).size,modified:'x',loose:false});}if(by.get('pak0.pak'))for(const name of ['progs.dat','autoexec.cfg','quake.rc']){const real=by.get(name);if(real){const path=`/Users/bri/quaked/${f}/${real}`;library.push({token:`${g}/${name}`,game:g,name,path,bytes:statSync(path).size,modified:'x',loose:true});}}}
+// DISCOVER="mod_id:Folder name:real folder": a folder no known game names, as the app's library reports one
+const discovered=[];if(process.env.DISCOVER){const [id,name,real]=process.env.DISCOVER.split(':');discovered.push({id,name});const by=new Map(readdirSync('/Users/bri/quaked/'+real).map(n=>[n.toLowerCase(),n]));for(let n=0;n<=5;n++){const f=by.get(`pak${n}.pak`);if(!f)break;const path=`/Users/bri/quaked/${real}/${f}`;library.push({token:`${id}/pak${n}.pak`,game:id,name:`pak${n}.pak`,path,bytes:statSync(path).size,modified:'x',loose:false});}}
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.mp3':'audio/mpeg','.wasm':'application/wasm'};
 const server=createServer((req,res)=>{
  const url=new URL(req.url,'http://x');let path=decodeURIComponent(url.pathname);
@@ -25,20 +27,21 @@ const server=createServer((req,res)=>{
 });
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
 const browser=await engine.launch({headless:true});const page=await browser.newPage({viewport:{width:1280,height:800}});
-const logs=[],all=[];page.on('console',m=>{const t=m.text();all.push(t);if(m.type()==='error'||m.type()==='warning'||/fallback|insecure|error/i.test(t))logs.push(m.type()+': '+t.slice(0,300));});page.on('pageerror',e=>logs.push('PAGEERROR '+e.message));
+const logs=[],all=[];page.on('console',m=>{const t=m.text();all.push(t);if(m.type()==='error'||m.type()==='warning'||/fallback|insecure|error/i.test(t))logs.push(m.type()+': '+t.slice(0,300));});page.on('pageerror',e=>logs.push('PAGEERROR '+e.message));page.on('crash',()=>{console.log('PAGE CRASHED');process.exit(3);});
+if(process.env.CONSOLELOG){const {writeFileSync}=await import('node:fs');setInterval(()=>writeFileSync(process.env.CONSOLELOG,all.slice(-120).join('\n')),3000).unref();}
 await page.exposeFunction('__harnessRead',(token,offset,length)=>{const p=library.find(x=>x.token===token);const fd=openSync(p.path,'r');const b=Buffer.alloc(Math.max(0,Math.min(length,p.bytes-offset)));readSync(fd,b,0,b.length,offset);closeSync(fd);return b.toString('base64');});
-await page.route(/^http:\/\/asset\.localhost\//,async route=>{const path=decodeURIComponent(new URL(route.request().url()).pathname.slice(1));try{statSync(path);}catch{await route.fulfill({status:404,headers:{'Access-Control-Allow-Origin':base}});return;}await route.fulfill({path,headers:{'Access-Control-Allow-Origin':base,'Content-Type':types[extname(path)]??'application/octet-stream'}});});
-await page.addInitScript(({base,library,PACKS,W})=>{
+await page.route(/^http:\/\/asset\.localhost\//,async route=>{const path=decodeURIComponent(new URL(route.request().url()).pathname.slice(1));let size;try{size=statSync(path).size;}catch{await route.fulfill({status:404,headers:{'Access-Control-Allow-Origin':'*'}});return;}await route.fulfill({path,headers:{'Access-Control-Allow-Origin':base,'Content-Type':types[extname(path)]??'application/octet-stream'}});});
+await page.addInitScript(({base,library,PACKS,W,discovered})=>{
  let next=1;
  window.__TAURI_EVENT_PLUGIN_INTERNALS__={unregisterListener(){}};
  window.__TAURI_INTERNALS__={
   transformCallback(cb){const id=next++;window['_'+id]=cb;return id;},
-  convertFileSrc(path){return 'http://asset.localhost/'+encodeURIComponent(path);},
+  convertFileSrc(path){return path.startsWith('/Users/bri/quaked/')?base+'/fs'+encodeURI(path):'http://asset.localhost/'+encodeURIComponent(path);},
   metadata:{currentWindow:{label:'main'},currentWebview:{label:'main',windowLabel:'main'}},
   async invoke(cmd,args){
    switch(cmd){
     case 'distribution_resources':return W+'/dist/desktop-assets';
-    case 'library_scan':return {root:'/Users/bri/quaked',packs:library,error:null};
+    case 'library_scan':return {root:'/Users/bri/quaked',packs:library,discovered,error:null};
     case 'library_read':{const b64=await window.__harnessRead(args.token,args.offset,args.length);return Uint8Array.from(atob(b64),c=>c.charCodeAt(0)).buffer;}
     case 'packs_ensure':return PACKS;
     case 'plugin:event|listen':return next++;
@@ -47,12 +50,13 @@ await page.addInitScript(({base,library,PACKS,W})=>{
    }
   }
  };
-},{base,library,PACKS,W});
+},{base,library,PACKS,W,discovered});
 await page.goto(`${base}/index.html?game=${game}`);
 const t0=Date.now();
-const ok=await page.waitForFunction(()=>window.cls?.signon===4,null,{timeout:180000}).then(()=>true).catch(()=>false);
+// the engine is up when it plays its demo, or (a game without demos: Arcane Dimensions) once it takes commands
+const ok=await page.waitForFunction(()=>window.cls?.signon===4||(typeof window.Cbuf_AddText==='function'&&window.cls&&window.cl),null,{timeout:180000}).then(()=>true).catch(()=>false);await page.waitForTimeout(3000);
 console.log('first signon',ok,Math.round((Date.now()-t0)/1000)+'s',JSON.stringify(await page.evaluate(()=>({map:window.cl?.worldmodel?.name,demo:window.cls?.demoplayback,body:document.body.innerText.slice(0,300)}))));
-if(!ok){console.log(logs.slice(0,30).join('\n'));await browser.close();server.close();process.exit(1);}
+if(!ok){await page.screenshot({path:J+'/shots/'+game+'-nosignon.png'}).catch(()=>{});console.log(logs.slice(0,30).join('\n'));await browser.close();server.close();process.exit(1);}
 const maps=(process.env.MAPS??'start').split(',').filter(Boolean),results=[];
 for(const map of maps){
  logs.length=0;const start=Date.now();

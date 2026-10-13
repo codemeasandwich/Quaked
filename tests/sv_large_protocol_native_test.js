@@ -9,13 +9,17 @@ import { VID_SetPalette } from '../src/engine/render/vid.js';
 import { Mod_Init } from '../src/engine/render/gl_model.js';
 import { PR_InitBuiltins } from '../src/engine/server/pr_cmds.js';
 import { sv, svs, client_t, coop, deathmatch, teamplay, skill } from '../src/engine/server/server.js';
-import { SV_Init, SV_SpawnServer, sv_protocol } from '../src/engine/server/sv_main.js';
+import { SV_Init, SV_SpawnServer, SV_EmitPacketEntities, sv_protocol } from '../src/engine/server/sv_main.js';
 import { Host_InitCommands } from '../src/engine/server/host_cmd.js';
 import * as vars from '../src/engine/common/cvar.js';
 import { Cbuf_Init, Cmd_Init, Cbuf_AddText, Cbuf_Execute } from '../src/engine/common/cmd.js';
-import { PROTOCOL_VERSION, PROTOCOL_LARGE } from '../src/engine/common/protocol.js';
+import { PROTOCOL_VERSION, PROTOCOL_LARGE, svc_serversequence, svc_updatestat } from '../src/engine/common/protocol.js';
+import { sizebuf_t, SZ_Alloc, SZ_Clear, MSG_WriteByte, MSG_WriteLong, COM_SetNetMessage } from '../src/engine/common/common.js';
+import { cl } from '../src/engine/client/client.js';
+import { CL_ParseServerMessage } from '../src/engine/client/cl_parse.js';
+import { CL_GetEntityFrame } from '../src/engine/client/cl_pred.js';
 import { cls, ca_dedicated } from '../src/engine/client/client.js';
-import { MAX_EDICTS_STANDARD } from '../src/engine/common/quakedef.js';
+import { MAX_EDICTS, MAX_EDICTS_STANDARD } from '../src/engine/common/quakedef.js';
 
 const check = ( v, m ) => { if ( ! v ) throw new Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
 const raw = readFileSync( new URL( '../games/shareware/pak0.pak', import.meta.url ) );
@@ -86,4 +90,38 @@ Deno.test( 'a save with more than 600 entities loads on the large-map protocol i
 		vars.Cvar_Set( 'sv_protocol', String( PROTOCOL_VERSION ) ); sv.active = false;
 		if ( saved ) Object.defineProperty( globalThis, 'localStorage', saved ); else delete globalThis.localStorage;
 	}
+} );
+
+Deno.test( 'entity numbers past 1023 go out and come back whole in the large-map protocol\'s delta packets', () => {
+	const SENTINEL = 31;
+	// one frame's packet as the server writes it, a sentinel stat after it, read by the real client parser
+	const send = ( client, seq, numbers, x ) => {
+		const to = client.frames[ seq & 63 ].entities;
+		to.num_entities = numbers.length;
+		numbers.forEach( ( n, k ) => { const e = to.entities[ k ]; e.number = n; e.flags = 0; e.modelindex = 1; e.frame = 0; e.colormap = 0; e.skin = 0; e.effects = 0; e.origin[ 0 ] = x + n % 1000; e.origin[ 1 ] = 8; e.origin[ 2 ] = 16; e.angles.fill( 0 ); } );
+		const msg = new sizebuf_t(); SZ_Alloc( msg, 8192 ); SZ_Clear( msg );
+		MSG_WriteByte( msg, svc_serversequence ); MSG_WriteLong( msg, seq );
+		SV_EmitPacketEntities( client, to, msg );
+		MSG_WriteByte( msg, svc_updatestat ); MSG_WriteByte( msg, SENTINEL ); MSG_WriteLong( msg, 4242 );
+		return msg;
+	};
+	const read = msg => { cl.stats[ SENTINEL ] = 0; COM_SetNetMessage( msg ); CL_ParseServerMessage(); return cl.stats[ SENTINEL ] === 4242; };
+	const got = seq => { const p = CL_GetEntityFrame( seq ).packet_entities; return p.entities.slice( 0, p.num_entities ).map( e => e.number + '@' + e.origin[ 0 ] ).join(); }; // (origins within a coordinate's range)
+	try {
+		vars.Cvar_Set( 'sv_protocol', String( PROTOCOL_LARGE ) );
+		SV_SpawnServer( 'e1m1' );
+		same( sv.protocol, PROTOCOL_LARGE, 'a large-map server' );
+		cl.protocol = PROTOCOL_LARGE;
+		const client = new client_t(); client.delta_sequence = - 1;
+		const numbers = [ 5, 1023, 1024, 2051, MAX_EDICTS - 1 ]; // 1024: low bits 0, the word would be 0 without "more bits"
+		check( read( send( client, 1, numbers, 100 ) ), 'the full packet read to its end' );
+		same( got( 1 ), numbers.map( n => n + '@' + ( 100 + n % 1000 ) ).join(), 'every number and its state, from the baselines' );
+		client.delta_sequence = 1; // the client acknowledged frame 1: frame 2 is a delta, 1024 removed, the others moved
+		check( read( send( client, 2, [ 5, 1023, 2051, MAX_EDICTS - 1 ], 300 ) ), 'the delta read to its end' );
+		same( got( 2 ), [ 5, 1023, 2051, MAX_EDICTS - 1 ].map( n => n + '@' + ( 300 + n % 1000 ) ).join(), 'the removal and the moves, by the right numbers' );
+		// the control: a protocol-15 reader of the same packet loses its place (it does not read the high byte)
+		client.delta_sequence = - 1; cl.protocol = PROTOCOL_VERSION;
+		let intact = false; try { intact = read( send( client, 3, numbers, 500 ) ); } catch {}
+		check( ! intact || got( 3 ) !== numbers.map( n => n + '@' + ( 500 + n % 1000 ) ).join(), 'read without the byte, the packet does not come back: ' + got( 3 ) );
+	} finally { vars.Cvar_Set( 'sv_protocol', String( PROTOCOL_VERSION ) ); sv.active = false; cl.protocol = PROTOCOL_VERSION; }
 } );

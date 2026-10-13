@@ -214,7 +214,7 @@ export class entity_t {
 	/**
 	 * A client-side entity the renderer draws (WinQuake client.h `entity_t`): baseline, the last two network origins and
 	 * angles (index 0 newest) that CL_RelinkEntities lerps into `origin`/`angles` (world space, Quake units and degrees),
-	 * model, frame, skin, effects and the renderer's efrag/visframe bookkeeping. The MAX_EDICTS `cl_entities`, the
+	 * model, frame, skin, effects and the renderer's efrag/visframe bookkeeping. The `cl_entities` (CL_ENTITIES_FIRST, more as named), the
 	 * static and temporary entity pools and `cl.viewent` (the gun) are made at module load; CL_ClearState replaces the
 	 * `cl_entities` and `cl_temp_entities` entries and `cl.viewent` with fresh ones at each signon (the static pool is
 	 * reused in place, counted by `cl.num_statics`).
@@ -430,8 +430,25 @@ export const cl = new client_state_t();
 export const cl_efrags = [];
 for ( let i = 0; i < MAX_EFRAGS; i ++ ) cl_efrags.push( new efrag_t() );
 
+// the first 1024 are made up front (CL_ClearState remakes them for each map); the large-map protocol's others, up to
+// MAX_EDICTS, as a message first names them (CL_EntitySlot), so an ordinary map never builds 8192
+export const CL_ENTITIES_FIRST = 1024;
 export const cl_entities = [];
-for ( let i = 0; i < MAX_EDICTS; i ++ ) cl_entities.push( new entity_t() );
+for ( let i = 0; i < CL_ENTITIES_FIRST; i ++ ) cl_entities.push( new entity_t() );
+
+/**
+ * Makes sure `cl_entities[ n ]` exists (n below MAX_EDICTS), making the slots up to it. Called where a server message
+ * first names an entity: CL_EntityNum and the packet-entities parser (cl_parse.js).
+ *
+ * @param {number} n the entity number
+ * @returns {entity_t} the slot
+ */
+export function CL_EntitySlot( n ) {
+
+	for ( let i = cl_entities.length; i <= n; i ++ ) { const e = new entity_t(); e._entityIndex = i; cl_entities.push( e ); }
+	return cl_entities[ n ];
+
+}
 
 export const cl_static_entities = [];
 // WinQuake's 128 made at load; more are made as a map needs them, up to MAX_STATIC_ENTITIES (CL_ParseStatic), as 4096 made

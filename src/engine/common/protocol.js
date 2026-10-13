@@ -178,7 +178,9 @@ export const CM_ANGLE2 = ( 1 << 7 );
 //
 // The first 16 bits of a packetentities update holds 10 bits
 // of entity number (max 1024, to support MAX_EDICTS=600) and
-// 6 bits of flags.
+// 6 bits of flags. In the large-map protocol (PROTOCOL_LARGE) a
+// byte follows that word with the entity number's bits above the
+// 10, for up to MAX_EDICTS (8192); protocol 15 is unchanged.
 //==============================================
 
 export const svc_packetentities = 47; // [...]

@@ -17,6 +17,8 @@ than a second with no page error. Each `.jsonl` file is one run, a line per map,
 | `xmen-before-edge-fix.jsonl` | every X-Men level, before the edge fix (map lines only: its summary line was not kept) | 16 of 18: `x2m1` leads to `x2m4`, refused for an unused edge 0; the last two lines are labelled `x2m1` because the harness names the map the client is on, so they are the failed `x2m4` and the `x2end` after it |
 | `xmen.jsonl` | every X-Men level, after it | 18 of 18 |
 | `soe.jsonl` | every Soul of Evil map | 24 of 24 levels; the 4 `b_*` props fail, as they have no player start |
+| `ad-large-protocol.jsonl` | Arcane Dimensions' `start`, `ad_e1m1` and `ad_tfuma` after the 8192-entity change (map lines only) | `start` (1664 entities, 282 models) and `ad_e1m1` (1488, 250) play; headless WebKit's page process stopped loading `ad_tfuma`, which loads and runs on the server in Node (last line) |
+| `ad-start-large-protocol.jpg` | the `start` run's screenshot | Arcane Dimensions' hub in play on the large-map protocol |
 
 The Quoth and Abyss of Pandemonium runs (11 of 12 and 17 of 17) were printed to the console and are
 summarised in the add-ons note, not kept here.

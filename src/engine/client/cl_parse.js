@@ -71,7 +71,7 @@ import {
 	SIGNONS, MAX_STATIC_ENTITIES, MAX_DLIGHTS,
 	ca_connected,
 	cl, cls, cl_entities, cl_static_entities, cl_lightstyle,
-	entity_t, scoreboard_t, lightstyle_t, packet_entities_t } from './client.js';
+	entity_t, scoreboard_t, lightstyle_t, packet_entities_t, CL_EntitySlot } from './client.js';
 import { VectorCopy } from '../common/mathlib.js';
 import { R_NewerGame } from '../common/hooks.js'; // installed by newer/mode.js
 import { R_FlashlightRunMap } from '../common/hooks.js'; // installed by newer/render/r_flashlightrun.js
@@ -189,6 +189,7 @@ export function CL_EntityNum( num ) {
 
 		if ( num >= MAX_EDICTS )
 			_Host_Error( 'CL_EntityNum: %i is an invalid number', num );
+		CL_EntitySlot( num );
 		while ( cl.num_entities <= num ) {
 
 			cl_entities[ cl.num_entities ].colormap = null; // vid.colormap
@@ -235,13 +236,13 @@ export function CL_ParseStartSoundPacket() {
 	else
 		attenuation = DEFAULT_SOUND_PACKET_ATTENUATION;
 
-	const channel = MSG_ReadShort();
+	const channel = MSG_ReadShort() & 0xFFFF; // unsigned: entities from 4096 up set the top bit (up to MAX_EDICTS 8192)
 	const sound_num = MSG_ReadIndex();
 
 	const ent = channel >> 3;
 	const ch = channel & 7;
 
-	if ( ent > MAX_EDICTS )
+	if ( ent >= MAX_EDICTS )
 		_Host_Error( 'CL_ParseStartSoundPacket: ent = %i', ent );
 
 	for ( let i = 0; i < 3; i ++ )
@@ -485,6 +486,20 @@ export function CL_ParseServerInfo() {
 
 }
 
+/**
+ * The entity number of a packet-entities entry whose first word was just read: the word's low 10 bits, and in the
+ * large-map protocol a byte after the word with the bits above them, for numbers up to MAX_EDICTS (the server's
+ * SV_WriteDelta; docs/add-ons-2026-10-13.md). Protocol 15 is unchanged.
+ *
+ * @param {number} word the entry's first word (unsigned)
+ * @returns {number} the entity number
+ */
+function CL_PacketEntityNumber( word ) {
+
+	return cl.protocol === PROTOCOL_LARGE ? ( word & PE_ENT_MASK ) | ( MSG_ReadByte() << PE_ENT_BITS ) : word & PE_ENT_MASK;
+
+}
+
 /*
 ==================
 CL_ParseDelta
@@ -494,12 +509,12 @@ Can delta from either a baseline or a previous packet_entity.
 Ported from: QW/client/cl_ents.c
 ==================
 */
-function CL_ParseDelta( from, to, bits ) {
+function CL_ParseDelta( from, to, bits, number ) {
 
 	// set everything to the state we are delta'ing from
 	to.copyFrom( from );
 
-	to.number = bits & PE_ENT_MASK;
+	to.number = number;
 	bits &= ~PE_ENT_MASK;
 
 	if ( bits & PE_MOREBITS ) {
@@ -581,7 +596,7 @@ function FlushEntityPacket() {
 		if ( word === 0 )
 			break; // done
 
-		CL_ParseDelta( _flushOlde, _flushNewe, word );
+		CL_ParseDelta( _flushOlde, _flushNewe, word, CL_PacketEntityNumber( word ) );
 
 	}
 
@@ -686,8 +701,10 @@ function CL_ParsePacketEntities( delta ) {
 
 		}
 
-		const newnum = word & PE_ENT_MASK;
-		let oldnum = oldindex >= oldp.num_entities ? 9999 : oldp.entities[ oldindex ].number;
+		const newnum = CL_PacketEntityNumber( word );
+		if ( newnum >= MAX_EDICTS ) { _Host_EndGame( 'CL_ParsePacketEntities: entity number ' + newnum ); return; }
+		CL_EntitySlot( newnum ); // its baseline (a large map's entities past 1023 are made as first named)
+		let oldnum = oldindex >= oldp.num_entities ? 9999 : oldp.entities[ oldindex ].number; // 9999: above any entity
 
 		// copy unchanged old entities that sort before this new entry
 		while ( newnum > oldnum ) {
@@ -740,7 +757,7 @@ function CL_ParsePacketEntities( delta ) {
 
 			}
 
-			CL_ParseDelta( cl_entities[ newnum ].baseline, newp.entities[ newindex ], word );
+			CL_ParseDelta( cl_entities[ newnum ].baseline, newp.entities[ newindex ], word, newnum );
 			newindex ++;
 			continue;
 
@@ -770,7 +787,7 @@ function CL_ParsePacketEntities( delta ) {
 
 			}
 
-			CL_ParseDelta( oldp.entities[ oldindex ], newp.entities[ newindex ], word );
+			CL_ParseDelta( oldp.entities[ oldindex ], newp.entities[ newindex ], word, newnum );
 			newindex ++;
 			oldindex ++;
 
@@ -1510,7 +1527,7 @@ export function CL_ParseServerMessage() {
 				break;
 
 			case svc_stopsound:
-				i = MSG_ReadShort();
+				i = MSG_ReadShort() & 0xFFFF; // unsigned, as svc_sound's
 				S_StopSound( i >> 3, i & 7 );
 				break;
 
