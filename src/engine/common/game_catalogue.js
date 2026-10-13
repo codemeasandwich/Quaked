@@ -205,7 +205,7 @@ const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
 // the add-ons shown to play (docs/add-ons-2026-10-13.md): each over Quake, with its own QuakeC and maps
-const ADDONS = new Set( [ 'quoth' ] );
+const ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {

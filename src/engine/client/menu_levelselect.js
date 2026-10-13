@@ -117,6 +117,27 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 2, 'kelltest1', 'Slime Machine' ], [ 2, 'kelltest2', 'Birth Machine' ], [ 2, 'kelltest3', 'All The Men Of The Earth Shall Quake' ], [ 2, 'kelltest4', 'Diary of a Gug Fiend' ],
 			[ 2, 'kelltest5', 'Edie And The Sentinels' ], [ 2, 'breakable', 'Break Stuff' ], [ 2, 'ne_basetest', 'Base Test' ] ]
 	},
+	// Malice and Abyss of Pandemonium (add-ons, docs/add-ons-2026-10-13.md) run as standard Quake; at most 14 levels
+	// fit an episode's page, so Malice's twenty missions are two episodes. Names are each map's own (blank: its file)
+	malice: {
+		episodes: [ { episode: 0, name: 'The Academy' }, { episode: 1, name: 'Missions I' }, { episode: 2, name: 'Missions II' }, { episode: 3, name: 'Deathmatch' }, { episode: 4, name: 'Extras' } ],
+		levels: [ [ 0, 'start', 'The Academy' ],
+			[ 1, 'd1', 'The Lab' ], [ 1, 'd1b', 'Area 33' ], [ 1, 'd1c', 'Area 44' ], [ 1, 'd2', 'Takahiro Towers' ], [ 1, 'd3', 'A Rat\'s Life' ], [ 1, 'd3b', 'Secret Missions' ],
+			[ 1, 'd4', 'Into The Flood' ], [ 1, 'd4b', 'Back 2 Malice' ], [ 1, 'd5', 'The Flood' ], [ 1, 'd6', 'Nuclear Plant' ], [ 1, 'd7', 'The Incinerator Plant' ], [ 1, 'd7b', 'The Foundry' ],
+			[ 2, 'd8', 'The Underwater Base' ], [ 2, 'd9', 'Takahiro Base' ], [ 2, 'd10', 'The Hospital' ], [ 2, 'd11', 'The Genetics Lab' ], [ 2, 'd12', 'Takahiro Laboratories' ],
+			[ 2, 'd13', 'Stayin\' Alive' ], [ 2, 'd14', 'B.O.S.S. HQ' ], [ 2, 'd15', 'Showdown!' ],
+			[ 3, 'ddm1', 'The Seventh Precinct' ], [ 3, 'ddm2', 'Sub Station' ], [ 3, 'ddm3', 'Crazy Eights!' ], [ 3, 'ddm4', 'East Side Invertational' ], [ 3, 'ddm5', 'Slaughterhouse' ],
+			[ 3, 'ddm6', 'Domino' ], [ 3, 'ddm7', 'Sandra\'s Ladder' ],
+			[ 4, 'isle', 'H-27 Cargo' ], [ 4, 'test', 'TESTosterone' ], [ 4, 'csm0__', 'csm0' ], [ 4, 'csm1____', 'csm1' ], [ 4, 'csm2____', 'csm2' ], [ 4, 'csm3_', 'Bubbah\'s Go' ], [ 4, 'show1', 'show1' ] ]
+	},
+	aopfm_v2: {
+		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Final Level' }, { episode: 4, name: 'Deathmatch' } ],
+		levels: [ [ 0, 'start', 'Enter the Abyss' ],
+			[ 1, 'aop1m1', 'Gates of Abyss' ], [ 1, 'aop1m2', 'Core Reactor' ], [ 1, 'aop1m3', 'The Power Station' ], [ 1, 'aop1m4', 'Temple of Moon' ], [ 1, 'aop1m5', 'The Dark Palace' ], [ 1, 'aop1m6', 'The Forgotten One' ],
+			[ 2, 'aop2m1', 'Heresy' ], [ 2, 'aop2m2', 'Carnage Castle' ], [ 2, 'aop2m3', 'Central Complex' ],
+			[ 3, 'aopend', 'Legonds of Quake' ],
+			[ 4, 'aopdm1', 'The Absolution' ], [ 4, 'aopdm2', 'Runic Raging' ], [ 4, 'aopdm3', 'Mental Overlord' ], [ 4, 'aopdm4', 'Mental Overlord II' ], [ 4, 'aopdm5', 'Midnight Darkness' ], [ 4, 'aopdm6', 'aopdm6' ] ]
+	},
 	rogue: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'R1 Fortress' }, { episode: 2, name: 'R2 Corridors' }, { episode: 3, name: 'Deathmatch Arena' } ],
 		levels: [ [ 0, 'start', 'Split Decision' ],
@@ -223,10 +244,13 @@ export function M_LevelSelect_Draw() {
 	const episode = levelSelectEpisode();
 	M_PrintWhite( 184, 64, ( levelSelectTable().episodes.find( ( e ) => e.episode === episode ) || { name: '' } ).name );
 
+	// the names start after the longest map name shown (add-ons have names such as E1M1QUOTH), and are cut to the
+	// 320-pixel menu
+	const nameX = 64 + Math.max( 6, ...levels.map( ( l ) => l.map.length + 1 ) ) * 8, nameChars = Math.floor( ( 320 - nameX ) / 8 );
 	for ( let i = 0; i < levels.length; i ++ ) {
 
 		M_Print( 64, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].map.toUpperCase().padEnd( 6 ) );
-		M_PrintWhite( 112, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].name );
+		M_PrintWhite( nameX, LEVELSELECT_LEVEL_Y + i * 8, levels[ i ].name.slice( 0, nameChars ) );
 
 	}
 

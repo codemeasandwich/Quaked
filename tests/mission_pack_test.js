@@ -84,7 +84,7 @@ Deno.test( 'Level Select: a mission pack\'s or an episode\'s own episodes and ma
 	const menu = await import( '../src/engine/client/menu.js' );
 	cmd.Cbuf_Init(); cmd.Cmd_Init(); keys.Key_Init(); menu.M_Init();
 	// a pack of empty files with the maps of both Quake's first episode and Scourge of Armagon
-	const names = [ 'maps/start.bsp', 'maps/e1m1.bsp', 'maps/hip1m1.bsp', 'maps/hip1m2.bsp', 'maps/hip2m1.bsp', 'maps/hipdm1.bsp', 'maps/e5m1.bsp', 'maps/e5m2.bsp', 'maps/e5end.bsp', 'maps/e1m1quoth.bsp', 'maps/e1m2quoth.bsp', 'maps/kelltest1.bsp' ];
+	const names = [ 'maps/start.bsp', 'maps/e1m1.bsp', 'maps/hip1m1.bsp', 'maps/hip1m2.bsp', 'maps/hip2m1.bsp', 'maps/hipdm1.bsp', 'maps/e5m1.bsp', 'maps/e5m2.bsp', 'maps/e5end.bsp', 'maps/e1m1quoth.bsp', 'maps/e1m2quoth.bsp', 'maps/kelltest1.bsp', 'maps/d1.bsp', 'maps/d1b.bsp', 'maps/aop1m1.bsp' ];
 	const dir = new Uint8Array( 64 * names.length ), view = new DataView( dir.buffer );
 	names.forEach( ( n, i ) => { for ( let c = 0; c < n.length; c ++ ) dir[ i * 64 + c ] = n.charCodeAt( c ); view.setInt32( i * 64 + 56, 12, true ); view.setInt32( i * 64 + 60, 0, true ); } );
 	const head = new Uint8Array( 12 ), hv = new DataView( head.buffer ); 'PACK'.split( '' ).forEach( ( c, i ) => { head[ i ] = c.charCodeAt( 0 ); } );
@@ -113,6 +113,12 @@ Deno.test( 'Level Select: a mission pack\'s or an episode\'s own episodes and ma
 			same( quoth.episodes.join(), '0,1,2', 'its introduction, its levels and its test maps' );
 			same( quoth.levels.join(), 'e1m1quoth,e1m2quoth', 'its own levels, not Scourge\'s hip1m1' );
 		} finally { selection.GameSelection_SetRunning( null ); }
+		// Malice and Abyss of Pandemonium run as standard Quake: their own tables, not Quake's e1m1
+		common.COM_InitArgv( [ 'quaked' ] );
+		for ( const [ game, levels ] of [ [ 'malice', 'd1,d1b' ], [ 'aopfm_v2', 'aop1m1' ] ] ) {
+			selection.GameSelection_SetRunning( game );
+			try { same( menu.M_LevelSelectOffer().levels.join(), levels, game + '\'s first episode' ); } finally { selection.GameSelection_SetRunning( null ); }
+		}
 	} finally {
 		common.COM_InitArgv( [] );
 	}
