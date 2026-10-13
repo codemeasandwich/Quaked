@@ -56,7 +56,7 @@ Newer Game's parts can be switched off one by one in **Options > Newer Game feat
 | Esc | Menu, options and saved games |
 | ` (backtick) | Console |
 
-Every key can be changed under Options. A game controller is supported ([buttons, pairing and what was tested](docs/gamepad-2026-10-10.md)), and so is touch:
+Every key can be changed under Options. A game controller is supported (buttons, pairing and what was tested), and so is touch:
 
 ### Phones and tablets
 
@@ -68,7 +68,7 @@ On a touch device the game shows on-screen controls. Held sideways the stick is 
 - Dragging anywhere else on the screen looks around, and so does tilting the device. The pause button is at the top right.
 - Newer Game starts with a wider view on a phone: `fov` 100 upright and 120 sideways (until you set your own `fov`; New Game keeps 90).
 
-Options has separate **Sound Volume** (effects, environmental sounds and menus) and **Music Volume** (classic tracks and ambient music) sliders. Both settings are saved. Console equivalents are `volume` and `bgmvolume`. [Routing and verification](docs/audio-volume-controls-2026-10-02.md).
+Options has separate **Sound Volume** (effects, environmental sounds and menus) and **Music Volume** (classic tracks and ambient music) sliders. Both settings are saved. Console equivalents are `volume` and `bgmvolume`. Routing and verification.
 
 
 ## Game data
@@ -79,15 +79,15 @@ The web distribution on GitHub Pages ships the original free shareware Episode 1
 
 A short tour; each line links the document that says how it was made and checked.
 
-- **Light and shadow**: torches, lamps and lava light the rooms, with sun shafts, bloom and a shoulder flashlight. [Lighting](docs/emissive-lighting-2026-10-03.md), [flashlight](docs/flashlight-run-policy.md).
-- **Water you can see into**: clear, tinted, muddy or toxic, with ripples (shots leave rings where they cross the surface), reflections and drops on the lens when you come out. [Water](docs/water-optics-2026-10-02.md).
+- **Light and shadow**: torches, lamps and lava light the rooms, with sun shafts, bloom and a shoulder flashlight.
+- **Water you can see into**: clear, tinted, muddy or toxic, with ripples (shots leave rings where they cross the surface), reflections and drops on the lens when you come out.
 - **Fire**: [explosions](docs/explosions-fireball-2026-10-08.md), [rocket smoke](docs/rocket-grenade-smoke-2026-10-08.md), [torch flames](docs/torch-fire-2026-10-08.md), [flying lava balls and the Death Knight's fan](docs/lavaballs-2026-10-11.md) and [shotgun pellets](docs/shotgun-pellets-2026-10-08.md) with muzzle smoke and underwater bubbles. Every laser shot (the Enforcers' and the laser traps') is the supplied [stasis bolt](docs/laser-stasis-bolt-2026-10-11.md).
-- **New art**: [wall textures](docs/level-texture-update-2026-10-02.md) with [relief](docs/continuous-rockfield-2026-10-02.md) ([how it works, with a picture](docs/procedural-surface-enhancement.md)), [custom enemy skins](docs/enemy-heights-2026-10-01.md) (grunts, ogres and knights each with [a face of their own](docs/enemy-face-overlays-2026-10-07.md)), [3D weapons and shells](docs/weapons-and-shells-2026-10-02.md), a [layered status-bar face](docs/gloom-hood-face-2026-10-04.md) and [real displacement on the demon plaques](docs/demon-displacement-2026-10-03.md).
-- **The guns' marks**: the [lightning gun's beam](docs/lightning-2026-10-09.md), and the [burn it and the shotguns leave on the walls](docs/burn-decals.md), white-hot, cooling to a black groove.
-- **Joined-up levels**: [seamless travel](docs/technical-notes.md#seamless-levels) and [live teleporter windows](docs/technical-notes.md#live-portals), including the last level's [window that follows Shub-Niggurath's spiked ball](docs/end-level-2026-10-11.md).
-- **A Bestiary** that fills in as you meet each creature, [47 of them](docs/bestiary-complete-2026-10-04.md).
-- **Death has a cost and a path back**: your weapons scatter where you fell and you [respawn with an axe](docs/clockwise-respawn-2026-10-04.md).
-- **Sound**: quiet [ambient music](docs/ambient-music-2026-10-01.md) and [separate music and sound volume](docs/audio-volume-controls-2026-10-02.md).
+- **New art**: wall textures with relief (how it works, with a picture), custom enemy skins (grunts, ogres and knights each with a face of their own), 3D weapons and shells, a layered status-bar face and real displacement on the demon plaques.
+- **The guns' marks**: the [lightning gun's beam](docs/lightning-2026-10-09.md), and the burn it and the shotguns leave on the walls, white-hot, cooling to a black groove.
+- **Joined-up levels**: [seamless travel](docs/technical-notes.md#seamless-levels) and [live teleporter windows](docs/technical-notes.md#live-portals), including the last level's window that follows Shub-Niggurath's spiked ball.
+- **A Bestiary** that fills in as you meet each creature, 47 of them.
+- **Death has a cost and a path back**: your weapons scatter where you fell and you respawn with an axe.
+- **Sound**: quiet ambient music and separate music and sound volume.
 
 Everything, in more detail: [technical notes](docs/technical-notes.md) (feature by feature, with the console variables) and the [documentation index](docs/index.md) (every document, by topic).
 

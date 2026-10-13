@@ -19,7 +19,7 @@ const server=createServer((req,res)=>{
  const url=new URL(req.url,'http://x');let path=decodeURIComponent(url.pathname);
  res.setHeader('Access-Control-Allow-Origin','*');
  if(path.startsWith('/fs/'))path=path.slice(3);else path=W+'/dist/desktop'+(path==='/'?'/index.html':path);
- try{statSync(path);}catch{res.writeHead(404).end();return;}
+ let size;try{size=statSync(path).size;}catch{res.writeHead(404).end();return;}
  res.setHeader('Content-Type',types[extname(path)]??'application/octet-stream');
  const range=/bytes=(\d+)-(\d+)/.exec(req.headers.range??'');
  if(range){const s=+range[1],e=Math.min(+range[2],size-1);res.writeHead(206,{'Content-Range':`bytes ${s}-${e}/${size}`,'Content-Length':e-s+1});createReadStream(path,{start:s,end:e}).pipe(res);}
