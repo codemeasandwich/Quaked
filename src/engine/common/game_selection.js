@@ -23,13 +23,13 @@ import {Distribution_Profile} from '../../platform/distribution.js';
 import { Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './cmd.js';
 import { Con_Printf } from './console.js';
 import { Sys_Printf } from './sys.js';
-import { GameCatalogue_Refresh } from './game_catalogue.js';
+import { GameCatalogue_Refresh, GAME_CATALOGUE_LOOSE_FILES } from './game_catalogue.js';
 
 const STORAGE_KEY = 'quaked.game.v1';
 // what each choosable game mounts on top of the shareware, in order tried (card [34a]'s folder, then the owner's
 // resources/ until card [34d] moves it there)
 const QUAKE_PACKS = Object.freeze( [ 'games/Quake/pak0.pak', 'resources/id1/pak0.pak' ] );
-const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS, malice: QUAKE_PACKS, aopfm_v2: QUAKE_PACKS, soe: QUAKE_PACKS } );
+const OWNED_PACKS = Object.freeze( { quake: QUAKE_PACKS, shareware: Object.freeze( [] ), hipnotic: QUAKE_PACKS, rogue: QUAKE_PACKS, dopa: QUAKE_PACKS, mg1: QUAKE_PACKS, quoth: QUAKE_PACKS, malice: QUAKE_PACKS, aopfm_v2: QUAKE_PACKS, soe: QUAKE_PACKS, xmen: QUAKE_PACKS } );
 // a mission pack, episode or add-on mounts its own packs over Quake (and the shareware); a mission pack also starts
 // with its switch, an episode runs as standard Quake (card [34c]), an add-on with the switch it needs, if any
 const MISSION_PACKS = Object.freeze( {
@@ -44,9 +44,11 @@ const MISSION_PACKS = Object.freeze( {
 	quoth: Object.freeze( { name: 'Quoth', switch: '-hipnotic', folders: Object.freeze( [ 'games/Quoth', 'resources/quoth' ] ) } ),
 	malice: Object.freeze( { name: 'Malice', switch: null, folders: Object.freeze( [ 'games/Malice', 'resources/malice' ] ) } ),
 	aopfm_v2: Object.freeze( { name: 'Abyss of Pandemonium', switch: null, folders: Object.freeze( [ 'games/Abyss of Pandemonium', 'resources/aopfm_v2' ] ) } ),
-	soe: Object.freeze( { name: 'Soul of Evil', switch: null, folders: Object.freeze( [ 'games/Soul of Evil', 'resources/soe' ] ) } )
+	soe: Object.freeze( { name: 'Soul of Evil', switch: null, folders: Object.freeze( [ 'games/Soul of Evil', 'resources/soe' ] ) } ),
+	// X-Men's QuakeC is a loose progs.dat beside its packs
+	xmen: Object.freeze( { name: 'X-Men', switch: null, folders: Object.freeze( [ 'games/X-Men', 'resources/xmen' ] ) } )
 } );
-const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth', malice: 'Malice', aopfm_v2: 'Abyss of Pandemonium', soe: 'Soul of Evil' } );
+const NAMES = Object.freeze( { shareware: 'Quake (shareware)', quake: 'Quake', hipnotic: 'Scourge of Armagon', rogue: 'Dissolution of Eternity', dopa: 'Dimension of the Past', mg1: 'Dimension of the Machine', quoth: 'Quoth', malice: 'Malice', aopfm_v2: 'Abyss of Pandemonium', soe: 'Soul of Evil', xmen: 'X-Men' } );
 export const GAME_SELECTION_CHOICES = Object.freeze( Object.keys( OWNED_PACKS ) );
 
 const storage = () => { try { return globalThis.localStorage ?? null; } catch { return null; } };
@@ -140,13 +142,16 @@ export function GameSelection_MissionPack() {
  * Fetches the packs of a mission entry (GameSelection_MissionPack) for the source and web builds; the Mac app reads
  * its library instead (src/platform/desktop.js). A mission pack or episode: its first pack found. An add-on: every
  * pack of the first of its folders that has a pak0, from pak0 up to the first missing one (at most pak9), in order, so
- * a later pack's files win (COM_AddPack), as Quake reads a game folder.
+ * a later pack's files win (COM_AddPack), as Quake reads a game folder; and, first, a pack of the loose game files in
+ * that folder (GAME_CATALOGUE_LOOSE_FILES, such as X-Men's progs.dat), which Quake searches after the folder's packs.
  *
  * @param {?object} mission the entry
  * @param {function(string): Promise<?object>} fetchPak fetches one pack by URL, null when it is not there
+ * @param {?function(string): Promise<?Uint8Array>} [fetchFile] fetches one loose file by URL, null when it is not there
+ * @param {?function(string, Array<{ name: string, data: Uint8Array }>): object} [loosePack] makes a pack of loose files
  * @returns {Promise<?(object|Array<object>)>} the pack, the add-on's packs, or null when none was found
  */
-export async function GameSelection_FetchMission( mission, fetchPak ) {
+export async function GameSelection_FetchMission( mission, fetchPak, fetchFile = null, loosePack = null ) {
 
 	if ( ! mission ) return null;
 	if ( mission.folders ) {
@@ -155,7 +160,15 @@ export async function GameSelection_FetchMission( mission, fetchPak ) {
 
 			const found = [];
 			for ( let n = 0; n < 10; n ++ ) { const pack = await fetchPak( `${folder}/pak${n}.pak` ); if ( ! pack ) break; found.push( pack ); }
-			if ( found.length > 0 ) return found;
+			if ( found.length === 0 ) continue;
+			if ( fetchFile && loosePack ) {
+
+				const loose = [];
+				for ( const name of GAME_CATALOGUE_LOOSE_FILES ) { const data = await fetchFile( `${folder}/${name}` ); if ( data ) loose.push( { name, data } ); }
+				if ( loose.length > 0 ) found.unshift( loosePack( `${folder}/loose`, loose ) );
+
+			}
+			return found;
 
 		}
 		return null;

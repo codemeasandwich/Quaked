@@ -17,6 +17,9 @@ pub struct Pack {
     pub path: PathBuf,
     pub bytes: u64,
     pub modified: String,
+    /// A loose game file beside the packs (LOOSE_FILES), not a pack: the frontend mounts these as one pack under
+    /// the game's own packs, as Quake searches a game folder after its packs.
+    pub loose: bool,
 }
 #[derive(Clone, Serialize, Default)]
 pub struct Library {
@@ -42,6 +45,12 @@ pub const GAMES: &[(&str, &[&str])] = &[
     ("aopfm_v2", &["aopfm_v2", "Abyss of Pandemonium"]),
     ("soe", &["soe", "Soul of Evil"]),
 ];
+/// The loose files Quake reads from a game folder that add-ons ship outside their packs (X-Men's progs.dat, Malice's
+/// autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md). The same list as the source build's
+/// (src/engine/common/game_selection.js); config.cfg is not read: the port keeps its own settings.
+pub const LOOSE_FILES: &[&str] = &["progs.dat", "autoexec.cfg", "quake.rc"];
+/// At most this many bytes for a loose file.
+const LOOSE_LIMIT: u64 = 64 << 20;
 fn children(path: &Path) -> Result<BTreeMap<String, PathBuf>, String> {
     let mut out = BTreeMap::new();
     for entry in fs::read_dir(path).map_err(|e| e.to_string())? {
@@ -102,6 +111,26 @@ pub fn scan(root: &Path) -> Result<Library, String> {
                     path,
                     bytes: meta.len(),
                     modified: format!("{:?}", meta.modified().map_err(|e| e.to_string())?),
+                    loose: false,
+                });
+            }
+            for name in LOOSE_FILES {
+                let Some(path) = entries.get(*name) else {
+                    continue;
+                };
+                let path = path.canonicalize().map_err(|e| e.to_string())?;
+                let meta = fs::metadata(&path).map_err(|e| e.to_string())?;
+                if !path.starts_with(&root) || !meta.is_file() || meta.len() > LOOSE_LIMIT {
+                    continue;
+                }
+                packs.push(Pack {
+                    token: format!("{game}/{name}"),
+                    game: game.to_string(),
+                    name: name.to_string(),
+                    path,
+                    bytes: meta.len(),
+                    modified: format!("{:?}", meta.modified().map_err(|e| e.to_string())?),
+                    loose: true,
                 });
             }
             break;

@@ -205,3 +205,19 @@ fn missing_root_and_directory_named_as_archive_fail_without_creating_content() {
         .err()
         .is_some_and(|e| e.contains("not a file")));
 }
+
+#[test]
+fn lists_an_add_ons_loose_game_files_after_its_packs_and_nothing_else_loose() {
+    let f = Fixture::new();
+    f.write("X-Men/pak0.pak", b"pack");
+    f.write("X-Men/PROGS.DAT", b"loose quakec");
+    f.write("X-Men/autoexec.cfg", b"bind i prevtoy");
+    f.write("X-Men/config.cfg", b"unbindall");
+    f.write("X-Men/readme.txt", b"not a game file");
+    f.write("Quoth/progs.dat", b"no pak0: not a game folder");
+    let found = library::scan(&f.0).unwrap();
+    assert_eq!(tokens(&found), ["xmen/pak0.pak", "xmen/progs.dat", "xmen/autoexec.cfg"]);
+    let loose: Vec<bool> = found.packs.iter().map(|p| p.loose).collect();
+    assert_eq!(loose, [false, true, true]);
+    assert_eq!(library::read_range(&found, "xmen/progs.dat", 0, 5).unwrap(), b"loose");
+}

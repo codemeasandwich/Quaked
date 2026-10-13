@@ -2,7 +2,7 @@
 // quake.rc ends without a newline, so its last line ran into the next queued command (`bind w +forward`); and its PAKs
 // have no default.cfg, so the classic keys (the arrow keys, Ctrl, ...) were never bound. Through cmd.js and pak.js.
 import { Cbuf_Init, Cmd_Init, Cmd_AddCommand, Cbuf_AddText, Cbuf_InsertText, Cbuf_Execute, Cmd_SetExecFallback } from '../src/engine/common/cmd.js';
-import { COM_LoadPackFile, COM_AddPack } from '../src/engine/common/pak.js';
+import { COM_LoadPackFile, COM_AddPack, COM_BuildPack, COM_FindFile } from '../src/engine/common/pak.js';
 import { HOST_CLASSIC_DEFAULT_CFG, Host_SetDefaultCfgFallback, Host_DefaultBinds } from '../src/engine/server/host.js';
 import { Key_Init, Key_WriteBindings } from '../src/engine/client/keys.js';
 const check = ( v, m ) => { if ( ! v ) throw Error( m ); }, same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
@@ -65,5 +65,15 @@ Deno.test( 'a game\'s own default.cfg, inherited on its first run, leaves the po
 	COM_AddPack( COM_LoadPackFile( 'malice-like.pak', pak( { 'default.cfg': 'unbindall\nbind a +lookup\nbind\t"d"\t+moveup\nbind SPACE +jump\nbind r reload\nbind y nexttoy\nbind UPARROW +forward\n' } ) ) );
 	const binds = Host_DefaultBinds().split( '\n' ).filter( Boolean );
 	same( binds.join( '|' ), 'bind r reload|bind y nexttoy|bind UPARROW +forward', 'only the pack\'s other keys' );
+
+} );
+
+Deno.test( 'COM_BuildPack makes a pack the engine reads back file for file', () => {
+
+	const text = s => new TextEncoder().encode( s );
+	const pack = COM_LoadPackFile( 'loose-test', COM_BuildPack( [ { name: 'progs.dat', data: text( 'quakec' ) }, { name: 'autoexec.cfg', data: text( 'bind i prevtoy\n' ) } ] ) );
+	COM_AddPack( pack );
+	same( new TextDecoder().decode( COM_FindFile( 'progs.dat' ).data ), 'quakec', 'progs.dat' );
+	same( new TextDecoder().decode( COM_FindFile( 'autoexec.cfg' ).data ), 'bind i prevtoy\n', 'autoexec.cfg' );
 
 } );

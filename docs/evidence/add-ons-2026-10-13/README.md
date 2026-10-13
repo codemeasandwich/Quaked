@@ -14,6 +14,8 @@ than a second with no page error. Each `.jsonl` file is one run, a line per map,
 | `malice-props.jsonl` | Malice's 14 prop maps (no player start), then `d2`, `ddm7`, `ddm5`, `isle`, `test`; before the QuakeC stack fix | 0 of 19: every level after the props failed to load (the client's world stays `tank5`); a screenshot showed the next level's QuakeC stopping (the "locals stack overflow" cause is in the add-ons note) |
 | `malice-props2.jsonl` | the same sequence, after the fix (`PR_ResetStack`) | the 5 levels after the props load and play |
 | `malice-real.jsonl` | all 35 Malice levels back to back | 35 of 35 |
+| `xmen-before-edge-fix.jsonl` | every X-Men level, before the edge fix | 16 of 18: `x2m1` leads to `x2m4`, refused for an unused edge 0 |
+| `xmen.jsonl` | every X-Men level, after it | 18 of 18 |
 | `soe.jsonl` | every Soul of Evil map | 24 of 24 levels; the 4 `b_*` props fail, as they have no player start |
 
 The Quoth and Abyss of Pandemonium runs (11 of 12 and 17 of 17) were printed to the console and are

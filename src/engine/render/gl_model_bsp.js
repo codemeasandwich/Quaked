@@ -405,7 +405,9 @@ function Mod_LoadEdges( fileofs, filelen ) {
 		const base = i * recordSize;
 		e.v[ 0 ] = bspWide?view.getUint32(base,true):view.getUint16(base,true);
 		e.v[ 1 ] = bspWide?view.getUint32(base+4,true):view.getUint16(base+2,true);
-		if(e.v[0]>=loadmodel.numvertexes||e.v[1]>=loadmodel.numvertexes)Sys_Error('Invalid BSP edge vertex');
+		// an edge naming a vertex the map does not have is refused only where a face uses it (Mod_LoadSurfedges): edge 0
+		// is a placeholder no face can name, and X-Men's x2m4 ships it with garbage, which WinQuake never reads
+		e.bad=e.v[0]>=loadmodel.numvertexes||e.v[1]>=loadmodel.numvertexes;
 		out[ i ] = e;
 
 	}
@@ -431,8 +433,13 @@ function Mod_LoadSurfedges( fileofs, filelen ) {
 	loadmodel.surfedges = out;
 	loadmodel.numsurfedges = count;
 
-	for ( let i = 0; i < count; i ++ )
+	for ( let i = 0; i < count; i ++ ) {
+
 		out[ i ] = view.getInt32( i * 4, true );
+		const edge = loadmodel.edges[ Math.abs( out[ i ] ) ];
+		if ( ! edge || edge.bad ) Sys_Error( 'Invalid BSP edge ' + Math.abs( out[ i ] ) + ' in ' + loadmodel.name );
+
+	}
 
 }
 

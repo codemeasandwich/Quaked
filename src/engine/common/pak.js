@@ -235,6 +235,34 @@ export function COM_AddGameDirectory( dir ) {
 
 }
 
+/**
+ * Builds the bytes of a PAK holding the given files, in order, for files that are not in a pack: an add-on's loose game
+ * files (docs/add-ons-2026-10-13.md), which the caller loads with `COM_LoadPackFile` and mounts under the add-on's own
+ * packs, as Quake searches a game folder after its packs.
+ *
+ * @param {Array<{ name: string, data: Uint8Array }>} files game paths (at most 55 characters) and their bytes
+ * @returns {ArrayBuffer} the PAK
+ */
+export function COM_BuildPack( files ) {
+
+	const body = files.reduce( ( n, f ) => n + f.data.length, 0 ), out = new Uint8Array( 12 + body + files.length * 64 ), view = new DataView( out.buffer );
+	out.set( [ 80, 65, 67, 75 ] ); // PACK
+	view.setInt32( 4, 12 + body, true ); view.setInt32( 8, files.length * 64, true );
+	let at = 12;
+	files.forEach( ( f, i ) => {
+
+		if ( f.name.length > 55 ) throw Error( 'COM_BuildPack: name too long: ' + f.name );
+		out.set( f.data, at );
+		const d = 12 + body + i * 64;
+		for ( let c = 0; c < f.name.length; c ++ ) out[ d + c ] = f.name.charCodeAt( c ) & 255;
+		view.setInt32( d + 56, at, true ); view.setInt32( d + 60, f.data.length, true );
+		at += f.data.length;
+
+	} );
+	return out.buffer;
+
+}
+
 /*
 =================
 COM_AddPack

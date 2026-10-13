@@ -37,3 +37,15 @@ Deno.test('truncated and malformed widened lumps, cyclic nodes and leaf marksurf
 Deno.test('visibility RLE is bounded and rejects truncated, zero-length or overflowing runs without hanging',()=>{
  const large={numleafs:70000},row=(large.numleafs+7)>>3,encoded=[];for(let n=row;n>0;n-=Math.min(n,255))encoded.push(0,Math.min(n,255));const expanded=Mod_DecompressVis(Uint8Array.from(encoded),0,large);check(expanded.length>=row&&expanded.subarray(0,row).every(v=>v===0),'valid wide zero runs fill actual row');for(const [input,offset,leaves]of [[[],0,8],[[0],0,8],[[0,0],0,8],[[0,2],0,8],[[255],-1,8],[[255],1,8]]){let error;try{Mod_DecompressVis(Uint8Array.from(input),offset,{numleafs:leaves});}catch(e){error=e;}check(error instanceof Error,'malformed RLE rejected '+JSON.stringify(input));}
 });
+
+// Edge 0 is a placeholder no face can name (surfedges are signed); X-Men's x2m4 ships it with vertices the map does not
+// have, which WinQuake never reads. Only an edge a face uses is refused (docs/add-ons-2026-10-13.md).
+Deno.test('an unused edge 0 with vertices past the map loads; an edge a face uses with such vertices is refused, naming the map',()=>{
+ const raw=native('maps/b_shell0.bsp'),parts=splitBsp(raw);
+ const edges=Buffer.from(parts[12]);edges.writeUInt16LE(0xffff,0);edges.writeUInt16LE(0xfffe,2);
+ const loose=Buffer.from(joinBsp(parts.map((p,i)=>i===12?edges:p),29));
+ const m=load(loose);check(m&&m.numsurfaces>0,'the map with a garbage edge 0 loads');
+ const used=Math.abs(Buffer.from(parts[13]).readInt32LE(0)),bad=Buffer.from(parts[12]);bad.writeUInt16LE(0xffff,used*4);
+ let error='';try{load(Buffer.from(joinBsp(parts.map((p,i)=>i===12?bad:p),29)),'maps/bad-edge.bsp');}catch(e){error=String(e?.message??e);}
+ check(/Invalid BSP edge \d+ in maps\/bad-edge\.bsp/.test(error),'a used bad edge is refused with the map name: '+error);
+});

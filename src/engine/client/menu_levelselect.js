@@ -142,6 +142,13 @@ const MISSION_LEVEL_SELECT = Object.freeze( {
 			[ 3, 'soeexit', 'Epilogue' ],
 			[ 4, 'soearena', 'Arena' ], [ 4, 'soedm1', 'The Graveyard of Heroes' ], [ 4, 'soedm2', 'soedm2' ], [ 4, 'soedm3', 'Halls Of Darkness' ], [ 4, 'soedm4', 'The Elder Sanctuary' ], [ 4, 'soedm5', 'Fortress of the Fading Day' ], [ 4, 'soedm6', 'Ancient Courtyard' ] ]
 	},
+	xmen: {
+		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Deathmatch' } ],
+		levels: [ [ 0, 'start', 'X-Men Mansion' ],
+			[ 1, 'x1m1', 'Enter the Unknown' ], [ 1, 'x1m2', 'Power Hungry' ], [ 1, 'x1m3', 'Cloning Central' ], [ 1, 'x1m4', 'Final Defense' ], [ 1, 'x1m5', 'Apocalypse\'s Crypt' ], [ 1, 'x1m6', 'Delphi Defiled' ], [ 1, 'x1end', 'An Apocalyptic End' ],
+			[ 2, 'x2m1', 'Suburban Anarchy' ], [ 2, 'x2m2', 'Industrial Takeover' ], [ 2, 'x2m3', 'The Forgotten Fortress' ], [ 2, 'x2m4', 'Power Station Panic' ], [ 2, 'x2m5', 'Desert Stronghold' ], [ 2, 'x2end', 'A Sinister End' ],
+			[ 3, 'xdm1', 'X-tinction' ], [ 3, 'xdm2', 'X-Men Warehouse' ], [ 3, 'xdm3', 'OctaFrag' ], [ 3, 'xdm4', 'Pyramid of Destruction' ] ]
+	},
 	aopfm_v2: {
 		episodes: [ { episode: 0, name: 'Introduction' }, { episode: 1, name: 'Episode 1' }, { episode: 2, name: 'Episode 2' }, { episode: 3, name: 'Final Level' }, { episode: 4, name: 'Deathmatch' } ],
 		levels: [ [ 0, 'start', 'Enter the Abyss' ],

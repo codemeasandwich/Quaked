@@ -47,12 +47,14 @@ const files = new Map( [
 	[ '/complete/games/Dimension of the Past/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/e5m1.bsp' ] ) ],
 	[ '/complete/games/Dimension of the Machine/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp', 'maps/mge1m1.bsp' ] ) ],
 	// add-ons (docs/add-ons-2026-10-13.md): Quoth's QuakeC is in its last pack, its start map in the first; Malice plays;
-	// X-Men is not yet shown to play
+	// X-Men's QuakeC is a loose progs.dat beside its packs; Arcane Dimensions is not yet shown to play
 	[ '/complete/games/Quoth/pak0.pak', pack( [ 'gfx.wad', 'maps/start.bsp' ] ) ],
 	[ '/complete/games/Quoth/pak1.pak', pack( [ 'quake.rc' ] ) ],
 	[ '/complete/games/Quoth/pak2.pak', pack( [ 'progs.dat' ] ) ],
 	[ '/complete/games/Malice/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
-	[ '/complete/games/X-Men/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
+	[ '/complete/games/X-Men/pak0.pak', pack( [ 'maps/start.bsp', 'xmen.cfg' ] ) ],
+	[ '/complete/games/X-Men/progs.dat', Buffer.from( 'loose quakec' ) ],
+	[ '/complete/games/Arcane Dimensions/pak0.pak', pack( [ 'progs.dat', 'maps/start.bsp' ] ) ],
 	// Abyss of Pandemonium as released: its start map in pak1, its QuakeC in pak3
 	[ '/complete/games/Abyss of Pandemonium/pak0.pak', pack( [ 'gfx.wad' ] ) ],
 	[ '/complete/games/Abyss of Pandemonium/pak1.pak', pack( [ 'maps/start.bsp' ] ) ],
@@ -120,7 +122,8 @@ Deno.test( 'the two mission packs and both episodes are playable on Quake when w
 	check( g( 'malice' ).playable && /an add-on/.test( g( 'malice' ).reason ), 'Malice is playable: ' + g( 'malice' ).reason );
 	check( g( 'aopfm_v2' ).playable && /an add-on/.test( g( 'aopfm_v2' ).reason ), 'Abyss of Pandemonium is playable from its four packs: ' + g( 'aopfm_v2' ).reason );
 	check( g( 'soe' ).playable && /an add-on/.test( g( 'soe' ).reason ), 'Soul of Evil is playable: ' + g( 'soe' ).reason );
-	check( g( 'xmen' ).present && ! g( 'xmen' ).playable && /add-on support/.test( g( 'xmen' ).reason ), 'an add-on not yet shown to play stays locked: ' + g( 'xmen' ).reason );
+	check( g( 'xmen' ).playable && /an add-on/.test( g( 'xmen' ).reason ) && g( 'xmen' ).loose.join() === 'progs.dat', 'X-Men is playable from its loose progs.dat: ' + g( 'xmen' ).reason );
+	check( g( 'ad' ).present && ! g( 'ad' ).playable && /add-on support/.test( g( 'ad' ).reason ), 'an add-on not yet shown to play stays locked: ' + g( 'ad' ).reason );
 	const bare = await GameCatalogue_Refresh( { ...options, base: base + 'noquake/' } ), h = id => bare.games.find( x => x.id === id );
 	for ( const id of [ 'hipnotic', 'rogue' ] ) check( h( id ).present && h( id ).validated && ! h( id ).playable && /needs Quake/.test( h( id ).reason ), id + ' whole but without Quake: found, not playable (' + h( id ).reason + ')' );
 

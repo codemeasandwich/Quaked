@@ -5,7 +5,7 @@ import {invoke,convertFileSrc} from '@tauri-apps/api/core';
 import {listen} from '@tauri-apps/api/event';
 import {GAME_CATALOGUE_GAMES,GameCatalogue_Refresh,GameCatalogue_SetProvider} from '../engine/common/game_catalogue.js';
 import {GameSelection_Startable,GameSelection_Kept,GameSelection_Remember} from '../engine/common/game_selection.js';
-import {COM_LoadPackFile} from '../engine/common/pak.js';
+import {COM_LoadPackFile,COM_BuildPack} from '../engine/common/pak.js';
 import {GameShelf_Show} from '../engine/common/hooks.js'; // filled by src/newer/install.js, which main.js loads first
 import {LoadingScreen_SetProgress} from '../newer/ui/loading_screen.js';
 let listening=false;
@@ -86,10 +86,19 @@ export async function Desktop_Prepare(){
   await ensurePacks(definition);
   const ids=definition.base?[definition.base,id]:[id];
   const packs=[];
-  for(const game of ids)for(const entry of library.packs.filter(p=>p.game===game)){
+  const read=async entry=>{
    const response=await fetch(convertFileSrc(entry.path));if(!response.ok)throw Error('Archive unavailable: '+entry.name);
    const bytes=await response.arrayBuffer();if(bytes.byteLength!==entry.bytes)throw Error('Archive changed: '+entry.name);
-   const pack=COM_LoadPackFile(entry.token,bytes);if(!pack)throw Error('Invalid archive: '+entry.name);packs.push(pack);
+   return bytes;
+  };
+  for(const game of ids){
+   // an add-on's loose game files (X-Men's progs.dat; library.rs LOOSE_FILES) as one pack under its own packs, as
+   // Quake searches a game folder after its packs (docs/add-ons-2026-10-13.md)
+   const loose=library.packs.filter(p=>p.game===game&&p.loose);
+   if(loose.length){const files=[];for(const entry of loose)files.push({name:entry.name,data:new Uint8Array(await read(entry))});packs.push(COM_LoadPackFile(game+'/loose',COM_BuildPack(files)));}
+   for(const entry of library.packs.filter(p=>p.game===game&&!p.loose)){
+    const pack=COM_LoadPackFile(entry.token,await read(entry));if(!pack)throw Error('Invalid archive: '+entry.name);packs.push(pack);
+   }
   }
   // Re-read metadata after full reads so changing files cannot silently select a different game.
   for(const entry of library.packs.filter(p=>ids.includes(p.game)))await invoke('library_read',{token:entry.token,offset:0,length:12});

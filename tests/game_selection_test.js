@@ -166,3 +166,17 @@ Deno.test( 'an add-on fetches every pack of its folder in order, up to the first
 	same( GameSelection_MissionPack(), null, 'with no choice there is no mission entry' );
 
 } );
+
+Deno.test( 'an add-on\'s loose game files become one pack mounted under its own packs', async () => {
+
+	const same = ( a, b, m ) => check( a === b, `${m}: ${a} != ${b}` );
+	const present = [ 'games/X-Men/pak0.pak', 'games/X-Men/pak1.pak' ], loose = { 'games/X-Men/progs.dat': 'qc', 'games/X-Men/autoexec.cfg': 'bind i prevtoy' };
+	const made = [];
+	const packs = await GameSelection_FetchMission( { name: 'X-Men', folders: [ 'games/X-Men' ] }, async url => present.includes( url ) ? { url } : null,
+		async url => loose[ url ] ? new TextEncoder().encode( loose[ url ] ) : null, ( name, files ) => { made.push( files.map( f => f.name ).join() ); return { url: name }; } );
+	same( packs.map( p => p.url ).join(), 'games/X-Men/loose,games/X-Men/pak0.pak,games/X-Men/pak1.pak', 'the loose pack first (mounted first, so the packs win), then the packs' );
+	same( made.join( '|' ), 'progs.dat,autoexec.cfg', 'progs.dat and autoexec.cfg, not config.cfg' );
+	const none = await GameSelection_FetchMission( { name: 'Quoth', folders: [ 'games/Quoth' ] }, async url => url === 'games/Quoth/pak0.pak' ? { url } : null, async () => null, () => { throw Error( 'no loose files: no pack' ); } );
+	same( none.map( p => p.url ).join(), 'games/Quoth/pak0.pak', 'no loose files: only the packs' );
+
+} );

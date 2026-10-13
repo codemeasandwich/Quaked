@@ -206,7 +206,7 @@ const MISSION_PACKS = new Set( [ 'hipnotic', 'rogue' ] );
 // the episodes the engine runs: Dimension of the Past
 const EPISODES = new Set( [ 'dopa', 'mg1' ] ); // mg1 on the large-map protocol (card [34f])
 // the add-ons shown to play (docs/add-ons-2026-10-13.md): each over Quake, with its own QuakeC and maps
-const ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2', 'soe' ] );
+const ADDONS = new Set( [ 'quoth', 'malice', 'aopfm_v2', 'soe', 'xmen' ] );
 
 // What a found game's files show it to be, and whether that is evidence enough to call it playable.
 function assess( game, files, byId ) {
@@ -292,6 +292,11 @@ export function GameCatalogue_Refresh( options ) {
 }
 
 // one game's folders: the first holding a pak0.pak is the game's; its packs pak0.. in order, stopping at a gap
+// The loose files Quake reads from a game folder that add-ons ship outside their packs (X-Men's progs.dat, Malice's
+// autoexec.cfg, Arcane Dimensions' quake.rc; docs/add-ons-2026-10-13.md); the Mac app's library lists the same
+// (src-tauri/src/library.rs LOOSE_FILES). config.cfg is not read: the port keeps its own settings.
+export const GAME_CATALOGUE_LOOSE_FILES = Object.freeze( [ 'progs.dat', 'autoexec.cfg', 'quake.rc' ] );
+
 async function probeGame( game, base, options ) {
 
 	const entry = { id: game.id, name: game.name, kind: game.kind, folder: null, packs: [], present: false, validated: false, playable: false, reason: '', fileCount: 0 };
@@ -320,6 +325,18 @@ async function probeGame( game, base, options ) {
 		entry.folder = folder; entry.packs = packs; entry.present = true;
 		entry.validated = packs.every( p => p.state === 'valid' );
 		for ( const p of packs ) for ( const f of p.files ?? [] ) files.add( f );
+		// an add-on's loose game files beside its packs count as its files (one byte read to see each is there)
+		if ( game.kind === 'addon' ) {
+
+			entry.loose = [];
+			for ( const name of GAME_CATALOGUE_LOOSE_FILES ) {
+
+				const got = await rangedGet( options.fetch ?? globalThis.fetch, new URL( folder.split( '/' ).map( encodeURIComponent ).join( '/' ) + '/' + name, base ).href, 0, 1, options.timeoutMs ?? GAME_CATALOGUE_LIMITS.timeoutMs );
+				if ( got.response?.ok && got.bytes.length > 0 ) { entry.loose.push( name ); files.add( name ); }
+
+			}
+
+		}
 		entry.fileCount = files.size;
 		break;
 

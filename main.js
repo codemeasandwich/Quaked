@@ -5,7 +5,7 @@ import {Distribution_Profile} from './src/platform/distribution.js';
 import { Sys_Init, Sys_Printf, Sys_Error } from './src/engine/common/sys.js';
 import { COM_InitArgv } from './src/engine/common/common.js';
 import { Host_Init, Host_Frame, Host_Shutdown } from './src/engine/server/host.js';
-import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile } from './src/engine/common/pak.js';
+import { COM_FetchPak, COM_FetchOptionalPak, COM_AddPack, COM_SetNewerPack, COM_SetNewerStartupPack, COM_SetNewerMapsPack, COM_NewerFile, COM_LoadPackFile, COM_BuildPack } from './src/engine/common/pak.js';
 import { Cbuf_AddText, Cmd_AddCommand, Cmd_Argc, Cmd_Argv } from './src/engine/common/cmd.js';
 import { Con_Printf } from './src/engine/common/common.js';
 import { Cvar_VariableValue, Cvar_SetValue, Cvar_SetStorageWritable } from './src/engine/common/cvar.js';
@@ -97,7 +97,7 @@ async function main() {
 		// A mission pack (card [34c]) or episode also fetches its own pack, from games/<name>/ or resources/<dir>/ (the first
 		// found); an add-on every pack of its folder (GameSelection_FetchMission)
 		const mission = GameSelection_MissionPack();
-		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ) ) : Promise.resolve( null );
+		const missionLoad = mission && !desktop ? GameSelection_FetchMission( mission, url => COM_FetchOptionalPak( url, url ), url => fetch( url ).then( r => r.ok ? r.arrayBuffer().then( b => new Uint8Array( b ) ) : null ).catch( () => null ), ( name, files ) => COM_LoadPackFile( name, COM_BuildPack( files ) ) ) : Promise.resolve( null );
 		const [ sharewarePak, newerPak, hudPak, fullGamePak, missionPak ] = await Promise.all( [ nativePack, optionalPack, startupPack, ownedPack, missionLoad ] );
 		// it runs only over Quake: without Quake's pack, the shareware alone starts (and says so). Both packs are fetched
 		// together, so a missing Quake costs the mission pack's download (up to 80 MB), traded for a start not delayed
